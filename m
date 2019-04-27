@@ -1,42 +1,77 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E9BB262
-	for <lists+amd-gfx@lfdr.de>; Sat, 27 Apr 2019 03:41:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A69EB3A4
+	for <lists+amd-gfx@lfdr.de>; Sat, 27 Apr 2019 15:49:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D905989291;
-	Sat, 27 Apr 2019 01:41:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E220891E1;
+	Sat, 27 Apr 2019 13:49:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC0AC8925D;
- Sat, 27 Apr 2019 01:41:43 +0000 (UTC)
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id CFDC1216FD;
- Sat, 27 Apr 2019 01:41:42 +0000 (UTC)
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 30/53] drm/amd/display: fix cursor black issue
-Date: Fri, 26 Apr 2019 21:40:27 -0400
-Message-Id: <20190427014051.7522-30-sashal@kernel.org>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20190427014051.7522-1-sashal@kernel.org>
-References: <20190427014051.7522-1-sashal@kernel.org>
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr810073.outbound.protection.outlook.com [40.107.81.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4357D891E1;
+ Sat, 27 Apr 2019 13:49:29 +0000 (UTC)
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
+ BN6PR12MB1940.namprd12.prod.outlook.com (10.175.96.146) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1835.13; Sat, 27 Apr 2019 13:49:27 +0000
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::bc5b:de68:25b7:d853]) by BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::bc5b:de68:25b7:d853%12]) with mapi id 15.20.1835.010; Sat, 27 Apr
+ 2019 13:49:27 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: Sasha Levin <sashal@kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org"
+ <stable@vger.kernel.org>
+Subject: Re: [PATCH AUTOSEL 4.19 29/53] drm/amdkfd: Add picasso pci id
+Thread-Topic: [PATCH AUTOSEL 4.19 29/53] drm/amdkfd: Add picasso pci id
+Thread-Index: AQHU/Jpiylo526cPvE+FZxga04cllqZQBqhe
+Date: Sat, 27 Apr 2019 13:49:27 +0000
+Message-ID: <BN6PR12MB18098B1A85760FCFFFDD3C37F73F0@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <20190427014051.7522-1-sashal@kernel.org>,
+ <20190427014051.7522-29-sashal@kernel.org>
+In-Reply-To: <20190427014051.7522-29-sashal@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [71.219.84.143]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c2574804-7029-4adc-96bb-08d6cb172a77
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1940; 
+x-ms-traffictypediagnostic: BN6PR12MB1940:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BN6PR12MB1940D050F346ADE7CF37B392F73F0@BN6PR12MB1940.namprd12.prod.outlook.com>
+x-forefront-prvs: 0020414413
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(346002)(136003)(366004)(396003)(376002)(39860400002)(189003)(199004)(97736004)(446003)(3846002)(229853002)(68736007)(2201001)(105004)(86362001)(2501003)(476003)(6116002)(33656002)(6436002)(2906002)(71200400001)(486006)(71190400001)(256004)(478600001)(76116006)(14454004)(72206003)(11346002)(966005)(66946007)(8936002)(54906003)(316002)(73956011)(52536014)(110136005)(7696005)(19627405001)(99286004)(6246003)(76176011)(66446008)(606006)(81166006)(5660300002)(53936002)(186003)(26005)(236005)(9686003)(74316002)(66476007)(7736002)(6306002)(55016002)(54896002)(66066001)(53546011)(8676002)(6506007)(4326008)(81156014)(25786009)(102836004)(64756008)(66556008);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1940;
+ H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: o25fqV95UsPAzVqSGSJ5WMRVUfZ/jxgJ5N9bAemq2hfZa5aOMQRup1Cjacg00qEIaNmUN/PBzA0uA4gqJBj3tBoUJofZrFWA2nLBya4u9ATymbHkeIbVTEvNk9jV+Lga7MmgIg1PzmW5jmU28E4QL93YpTvFjWrHHo6WYTE+Kc/eLY0xeg+FPxpV+BjWKTwzadDbUOkHvFTaKle7aAgh3RCo5H2djBfIPF1aZq3PUz8F0mXkif3XxTpanaeM01eWoZ87m0kc03bTBaJqWcWfSGekucSlfPt85rh+afVAv1fr+eyI0M7MIKpQ0FAU875bLnaXL9wOcLIZ15PLo4fRtgLfiqLmUXrYtGzJcBEH+KSb+aFP1bE5f64kA3Jik7c/h7r7v12XmKemk+AeVRNgS2KBrZa5EietrkTJ4tqoDYs=
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=kernel.org; s=default; t=1556329303;
- bh=ieGh2GH9KJAGVH6l0lHgLbKL+x65MK5xcFbTnBnSKU8=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=n7WFg2yaBCyPNCNpyZtyzA2uw8fAjSvixE79Z+KnMw2yEU3QHqEHzi3dktHhbpNm2
- 5Hu5VmkSWQ9aJcEvCq1HiJdinjZ9Mu5Y5upE/qhqdNWQROeHQs8Mt4SteY7eQzpeLB
- YqkV93o0K2ZjOXcIh/eoOnpZ4MwcX+R9YGF4Iie8=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2574804-7029-4adc-96bb-08d6cb172a77
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2019 13:49:27.5049 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1940
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector1-amd-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rH7k4RUXEGOpwpC9UcXGvOiK5HzAU8T1kjz7dkcl8RI=;
+ b=F+QbUlJ6U3bk6cSajBrgSTMkXU2hN6yRPNC3IYk2fSvWmybOlF+NdPksLbbmKL5ZpbMXbB4POgZuh/mHUgZukaXKnghvP7tffmM5C7NoO6I9DxzaOWIqDY4Ig5EGONwfIi6SKLm9cOcAUtQrBppdQ1EfXA5Qr1uWy78KlN0bsGM=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -48,39 +83,166 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
- tiancyin <tianci.yin@amd.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0197953096=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogdGlhbmN5aW4gPHRpYW5jaS55aW5AYW1kLmNvbT4KClsgVXBzdHJlYW0gY29tbWl0IGMx
-Y2VmZTExNWQxY2RjNDYwMDE0NDgzMzE5ZDQ0MGIyZjBkMDdjNjggXQoKW1doeV0KdGhlIG1lbWJl
-ciBzZHJfd2hpdGVfbGV2ZWwgb2Ygc3RydWN0IGRjX2N1cnNvcl9hdHRyaWJ1dGVzIHdhcyBub3QK
-aW5pdGlhbGl6ZWQsIHRoZW4gdGhlIHJhbmRvbSB2YWx1ZSByZXN1bHQgdGhhdApkY24xMF9zZXRf
-Y3Vyc29yX3Nkcl93aGl0ZV9sZXZlbCgpIHNldCBlcnJvciBod19zY2FsZSB2YWx1ZSAweDIwRDko
-bm9ybWFsCnZhbHVlIGlzIDB4M2MwMCksIHRoaXMgY2F1c2UgdGhlIGJsYWNrIGN1cnNvciBpc3N1
-ZS4KCltob3ddCmp1c3QgaW5pdGlsaXplIHRoZSBvYmogb2Ygc3RydWN0IGRjX2N1cnNvcl9hdHRy
-aWJ1dGVzIHRvIHplcm8gdG8gYXZvaWQKdGhlIHJhbmRvbSB2YWx1ZS4KClJldmlld2VkLWJ5OiBO
-aWNob2xhcyBLYXpsYXVza2FzIDxuaWNob2xhcy5rYXpsYXVza2FzQGFtZC5jb20+ClNpZ25lZC1v
-ZmYtYnk6IFRpYW5jaSBZaW4gPHRpYW5jaS55aW5AYW1kLmNvbT4KU2lnbmVkLW9mZi1ieTogQWxl
-eCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgpTaWduZWQtb2ZmLWJ5OiBTYXNo
-YSBMZXZpbiA8c2FzaGFsQGtlcm5lbC5vcmc+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNw
-bGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYyB8IDEgKwogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0
-aW9uKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9k
-bS9hbWRncHVfZG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1k
-Z3B1X2RtLmMKaW5kZXggMmI4Yjg5MmViODQ2Li43NmVlMmRlNDNlYTYgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYwpAQCAtNDAyOCw2
-ICs0MDI4LDcgQEAgc3RhdGljIHZvaWQgaGFuZGxlX2N1cnNvcl91cGRhdGUoc3RydWN0IGRybV9w
-bGFuZSAqcGxhbmUsCiAJYW1kZ3B1X2NydGMtPmN1cnNvcl93aWR0aCA9IHBsYW5lLT5zdGF0ZS0+
-Y3J0Y193OwogCWFtZGdwdV9jcnRjLT5jdXJzb3JfaGVpZ2h0ID0gcGxhbmUtPnN0YXRlLT5jcnRj
-X2g7CiAKKwltZW1zZXQoJmF0dHJpYnV0ZXMsIDAsIHNpemVvZihhdHRyaWJ1dGVzKSk7CiAJYXR0
-cmlidXRlcy5hZGRyZXNzLmhpZ2hfcGFydCA9IHVwcGVyXzMyX2JpdHMoYWRkcmVzcyk7CiAJYXR0
-cmlidXRlcy5hZGRyZXNzLmxvd19wYXJ0ICA9IGxvd2VyXzMyX2JpdHMoYWRkcmVzcyk7CiAJYXR0
-cmlidXRlcy53aWR0aCAgICAgICAgICAgICA9IHBsYW5lLT5zdGF0ZS0+Y3J0Y193OwotLSAKMi4x
-OS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQt
-Z2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============0197953096==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB18098B1A85760FCFFFDD3C37F73F0BN6PR12MB1809namp_"
+
+--_000_BN6PR12MB18098B1A85760FCFFFDD3C37F73F0BN6PR12MB1809namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+NACK.  4.19 did not contain support for picasso. Please drop this patch for=
+ 4.19.
+
+Alex
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Sasha Le=
+vin <sashal@kernel.org>
+Sent: Friday, April 26, 2019 9:40 PM
+To: linux-kernel@vger.kernel.org; stable@vger.kernel.org
+Cc: Deucher, Alexander; Sasha Levin; amd-gfx@lists.freedesktop.org; dri-dev=
+el@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 4.19 29/53] drm/amdkfd: Add picasso pci id
+
+From: Alex Deucher <alexander.deucher@amd.com>
+
+[ Upstream commit e7ad88553aa1d48e950ca9a4934d246c1bee4be4 ]
+
+Picasso is a new raven variant.
+
+Reviewed-by: Kent Russell <kent.russell@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/=
+amdkfd/kfd_device.c
+index 5aba50f63ac6..06d19bb89cfc 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -275,6 +275,7 @@ static const struct kfd_deviceid supported_devices[] =
+=3D {
+         { 0x9876, &carrizo_device_info },       /* Carrizo */
+         { 0x9877, &carrizo_device_info },       /* Carrizo */
+         { 0x15DD, &raven_device_info },         /* Raven */
++       { 0x15D8, &raven_device_info },         /* Raven */
+ #endif
+         { 0x67A0, &hawaii_device_info },        /* Hawaii */
+         { 0x67A1, &hawaii_device_info },        /* Hawaii */
+--
+2.19.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN6PR12MB18098B1A85760FCFFFDD3C37F73F0BN6PR12MB1809namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+NACK.&nbsp; 4.19 did not contain support for picasso. Please drop this patc=
+h for 4.19.<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Alex<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Sasha Levin &lt;sashal@kernel=
+.org&gt;<br>
+<b>Sent:</b> Friday, April 26, 2019 9:40 PM<br>
+<b>To:</b> linux-kernel@vger.kernel.org; stable@vger.kernel.org<br>
+<b>Cc:</b> Deucher, Alexander; Sasha Levin; amd-gfx@lists.freedesktop.org; =
+dri-devel@lists.freedesktop.org<br>
+<b>Subject:</b> [PATCH AUTOSEL 4.19 29/53] drm/amdkfd: Add picasso pci id</=
+font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">From: Alex Deucher &lt;alexander.deucher@amd.com&g=
+t;<br>
+<br>
+[ Upstream commit e7ad88553aa1d48e950ca9a4934d246c1bee4be4 ]<br>
+<br>
+Picasso is a new raven variant.<br>
+<br>
+Reviewed-by: Kent Russell &lt;kent.russell@amd.com&gt;<br>
+Signed-off-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+Signed-off-by: Sasha Levin &lt;sashal@kernel.org&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdkfd/kfd_device.c | 1 &#43;<br>
+&nbsp;1 file changed, 1 insertion(&#43;)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/=
+amdkfd/kfd_device.c<br>
+index 5aba50f63ac6..06d19bb89cfc 100644<br>
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
+@@ -275,6 &#43;275,7 @@ static const struct kfd_deviceid supported_devices[=
+] =3D {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 0x9876, &amp;carrizo_dev=
+ice_info },&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Carrizo */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 0x9877, &amp;carrizo_dev=
+ice_info },&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Carrizo */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 0x15DD, &amp;raven_devic=
+e_info },&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Raven */<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 0x15D8, &amp;raven_device_info =
+},&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Raven */<br>
+&nbsp;#endif<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 0x67A0, &amp;hawaii_devi=
+ce_info },&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Hawaii */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 0x67A1, &amp;hawaii_devi=
+ce_info },&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Hawaii */<br>
+-- <br>
+2.19.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN6PR12MB18098B1A85760FCFFFDD3C37F73F0BN6PR12MB1809namp_--
+
+--===============0197953096==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0197953096==--
