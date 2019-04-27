@@ -2,34 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC10DA49
+	by mail.lfdr.de (Postfix) with ESMTPS id BEDD3DA4B
 	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2019 03:04:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F57A890FE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAAC89117;
 	Mon, 29 Apr 2019 01:04:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF77D89232;
- Fri, 26 Apr 2019 21:48:14 +0000 (UTC)
-Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
- by youngberry.canonical.com with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
- (Exim 4.76) (envelope-from <colin.king@canonical.com>)
- id 1hK8hX-00005a-Kl; Fri, 26 Apr 2019 21:48:11 +0000
-From: Colin King <colin.king@canonical.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Zhou <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH][next] drm/amd/display: fix incorrect null check on pointer
-Date: Fri, 26 Apr 2019 22:48:11 +0100
-Message-Id: <20190426214811.12310-1-colin.king@canonical.com>
-X-Mailer: git-send-email 2.20.1
+Received: from smtp.codeaurora.org (smtp.codeaurora.org [198.145.29.96])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E754D88F61;
+ Sat, 27 Apr 2019 00:01:14 +0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+ id 814496086B; Sat, 27 Apr 2019 00:01:14 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+ pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+ DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from lmark-linux.qualcomm.com (i-global254.qualcomm.com
+ [199.106.103.254])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested)
+ (Authenticated sender: lmark@smtp.codeaurora.org)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id BA46E607CA;
+ Sat, 27 Apr 2019 00:01:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BA46E607CA
+From: Liam Mark <lmark@codeaurora.org>
+To: ckoenig.leichtzumerken@gmail.com
+Subject: [PATCH 01/12] dma-buf: add dynamic caching of sg_table
+Date: Fri, 26 Apr 2019 17:01:09 -0700
+Message-Id: <1556323269-19670-1-git-send-email-lmark@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <20190416183841.1577-1-christian.koenig@amd.com>
+References: <20190416183841.1577-1-christian.koenig@amd.com>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 29 Apr 2019 01:04:22 +0000
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=codeaurora.org; s=default; t=1556323274;
+ bh=F9CGa1Jb2BIbUCAdHSZn16z6iMU0C8BjBM1CfdG9Eq0=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=FAGEYtkFc5dOVwHcmJJ98hSwBOLXgeDsS8tL1n4kkhHr+6bx6yPOe9Yg8YheRUtpJ
+ vzSteCyWdTcCTiNRbkcLuod3cdYefNgywkqmrKAApK9l/u56HnhsJLVIxkeerM0uZn
+ u8YrW4O5Wd2JP9jw0rRgbecULmkPY9Yff3Big+24=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=codeaurora.org; s=default; t=1556323274;
+ bh=F9CGa1Jb2BIbUCAdHSZn16z6iMU0C8BjBM1CfdG9Eq0=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=FAGEYtkFc5dOVwHcmJJ98hSwBOLXgeDsS8tL1n4kkhHr+6bx6yPOe9Yg8YheRUtpJ
+ vzSteCyWdTcCTiNRbkcLuod3cdYefNgywkqmrKAApK9l/u56HnhsJLVIxkeerM0uZn
+ u8YrW4O5Wd2JP9jw0rRgbecULmkPY9Yff3Big+24=
+X-Mailman-Original-Authentication-Results: pdx-caf-mail.web.codeaurora.org;
+ dmarc=none (p=none dis=none)
+ header.from=codeaurora.org
+X-Mailman-Original-Authentication-Results: pdx-caf-mail.web.codeaurora.org;
+ spf=none
+ smtp.mailfrom=lmark@codeaurora.org
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -41,32 +68,116 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: lmark@codeaurora.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ amd-gfx@lists.freedesktop.org, sumit.semwal@linaro.org,
+ linux-media@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0494246839=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KCkN1cnJlbnRs
-eSBhbiBhbGxvY2F0aW9uIGlzIGJlaW5nIG1hZGUgYnV0IHRoZSBhbGxvY2F0aW9uIGZhaWx1cmUK
-Y2hlY2sgaXMgYmVpbmcgcGVyZm9ybWVkIG9uIGFub3RoZXIgcG9pbnRlci4gRml4IHRoaXMgYnkg
-Y2hlY2tpbmcKdGhlIGNvcnJlY3QgcG9pbnRlci4gQWxzbyB1c2UgdGhlIG5vcm1hbCBrZXJuZWwg
-aWRpb20gZm9yIG51bGwKcG9pbnRlciBjaGVja3MuCgpBZGRyZXNzZXMtQ292ZXJpdHk6ICgiUmVz
-b3VyY2UgbGVhayIpCkZpeGVzOiA0M2UzYWM4Mzg5ZWYgKCJkcm0vYW1kL2Rpc3BsYXk6IEFkZCBm
-dW5jdGlvbiB0byBjb3B5IERDIHN0cmVhbXMiKQpTaWduZWQtb2ZmLWJ5OiBDb2xpbiBJYW4gS2lu
-ZyA8Y29saW4ua2luZ0BjYW5vbmljYWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvZGlz
-cGxheS9kYy9jb3JlL2RjX3N0cmVhbS5jIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0
-aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9k
-aXNwbGF5L2RjL2NvcmUvZGNfc3RyZWFtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkv
-ZGMvY29yZS9kY19zdHJlYW0uYwppbmRleCA2MjAwZGYzZWRjZDAuLjk2ZTk3ZDI1ZDYzOSAxMDA2
-NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2NvcmUvZGNfc3RyZWFtLmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2NvcmUvZGNfc3RyZWFtLmMKQEAg
-LTE2OCw3ICsxNjgsNyBAQCBzdHJ1Y3QgZGNfc3RyZWFtX3N0YXRlICpkY19jb3B5X3N0cmVhbShj
-b25zdCBzdHJ1Y3QgZGNfc3RyZWFtX3N0YXRlICpzdHJlYW0pCiAJc3RydWN0IGRjX3N0cmVhbV9z
-dGF0ZSAqbmV3X3N0cmVhbTsKIAogCW5ld19zdHJlYW0gPSBremFsbG9jKHNpemVvZihzdHJ1Y3Qg
-ZGNfc3RyZWFtX3N0YXRlKSwgR0ZQX0tFUk5FTCk7Ci0JaWYgKHN0cmVhbSA9PSBOVUxMKQorCWlm
-ICghbmV3X3N0cmVhbSkKIAkJcmV0dXJuIE5VTEw7CiAKIAltZW1jcHkobmV3X3N0cmVhbSwgc3Ry
-ZWFtLCBzaXplb2Yoc3RydWN0IGRjX3N0cmVhbV9zdGF0ZSkpOwotLSAKMi4yMC4xCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcg
-bGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============0494246839==
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
+
+On Tue, 16 Apr 2019, Christian König wrote:
+
+> To allow a smooth transition from pinning buffer objects to dynamic
+> invalidation we first start to cache the sg_table for an attachment
+> unless the driver explicitly says to not do so.
+> 
+> ---
+>  drivers/dma-buf/dma-buf.c | 24 ++++++++++++++++++++++++
+>  include/linux/dma-buf.h   | 11 +++++++++++
+>  2 files changed, 35 insertions(+)
+> 
+> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+> index 7c858020d14b..65161a82d4d5 100644
+> --- a/drivers/dma-buf/dma-buf.c
+> +++ b/drivers/dma-buf/dma-buf.c
+> @@ -573,6 +573,20 @@ struct dma_buf_attachment *dma_buf_attach(struct dma_buf *dmabuf,
+>  	list_add(&attach->node, &dmabuf->attachments);
+>  
+>  	mutex_unlock(&dmabuf->lock);
+> +
+> +	if (!dmabuf->ops->dynamic_sgt_mapping) {
+> +		struct sg_table *sgt;
+> +
+> +		sgt = dmabuf->ops->map_dma_buf(attach, DMA_BIDIRECTIONAL);
+> +		if (!sgt)
+> +			sgt = ERR_PTR(-ENOMEM);
+> +		if (IS_ERR(sgt)) {
+> +			dma_buf_detach(dmabuf, attach);
+> +			return ERR_CAST(sgt);
+> +		}
+> +		attach->sgt = sgt;
+> +	}
+> +
+>  	return attach;
+>  
+>  err_attach:
+> @@ -595,6 +609,10 @@ void dma_buf_detach(struct dma_buf *dmabuf, struct dma_buf_attachment *attach)
+>  	if (WARN_ON(!dmabuf || !attach))
+>  		return;
+>  
+> +	if (attach->sgt)
+> +		dmabuf->ops->unmap_dma_buf(attach, attach->sgt,
+> +					   DMA_BIDIRECTIONAL);
+> +
+>  	mutex_lock(&dmabuf->lock);
+>  	list_del(&attach->node);
+>  	if (dmabuf->ops->detach)
+> @@ -630,6 +648,9 @@ struct sg_table *dma_buf_map_attachment(struct dma_buf_attachment *attach,
+>  	if (WARN_ON(!attach || !attach->dmabuf))
+>  		return ERR_PTR(-EINVAL);
+>  
+> +	if (attach->sgt)
+> +		return attach->sgt;
+> +
+
+I am concerned by this change to make caching the sg_table the default 
+behavior as this will result in the exporter's map_dma_buf/unmap_dma_buf 
+calls are no longer being called in 
+dma_buf_map_attachment/dma_buf_unmap_attachment.
+	
+This seems concerning to me as it appears to ignore the cache maintenance 
+aspect of the map_dma_buf/unmap_dma_buf calls.
+For example won't this potentially cause issues for clients of ION.
+
+If we had the following
+- #1 dma_buf_attach coherent_device
+- #2 dma_buf attach non_coherent_device
+- #3 dma_buf_map_attachment non_coherent_device
+- #4 non_coherent_device writes to buffer
+- #5 dma_buf_unmap_attachment non_coherent_device
+- #6 dma_buf_map_attachment coherent_device
+- #7 coherent_device reads buffer
+- #8 dma_buf_unmap_attachment coherent_device	
+
+There wouldn't be any CMO at step #5 anymore (specifically no invalidate) 
+so now at step #7 the coherent_device could read a stale cache line.
+
+Also, now by default dma_buf_unmap_attachment no longer removes the 
+mappings from the iommu, so now by default dma_buf_unmap_attachment is not 
+doing what I would expect and clients are losing the potential sandboxing 
+benefits of removing the mappings.
+Shouldn't this caching behavior be something that clients opt into instead 
+of being the default?
+
+Liam
+
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
+
+--===============0494246839==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0494246839==--
