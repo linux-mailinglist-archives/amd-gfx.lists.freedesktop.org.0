@@ -1,80 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0A4CB5D4
-	for <lists+amd-gfx@lfdr.de>; Sun, 28 Apr 2019 12:25:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10A08DA4A
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2019 03:04:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2799889142;
-	Sun, 28 Apr 2019 10:25:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BA7F89101;
+	Mon, 29 Apr 2019 01:04:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com
- (mail-eopbgr780083.outbound.protection.outlook.com [40.107.78.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7349289142
- for <amd-gfx@lists.freedesktop.org>; Sun, 28 Apr 2019 10:25:24 +0000 (UTC)
-Received: from MN2PR12CA0022.namprd12.prod.outlook.com (2603:10b6:208:a8::35)
- by CY1PR12MB0651.namprd12.prod.outlook.com (2a01:111:e400:c43c::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1835.12; Sun, 28 Apr
- 2019 10:25:22 +0000
-Received: from DM3NAM03FT008.eop-NAM03.prod.protection.outlook.com
- (2a01:111:f400:7e49::200) by MN2PR12CA0022.outlook.office365.com
- (2603:10b6:208:a8::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1835.12 via Frontend
- Transport; Sun, 28 Apr 2019 10:25:21 +0000
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXCHOV01.amd.com (165.204.84.17) by
- DM3NAM03FT008.mail.protection.outlook.com (10.152.82.122) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.1835.14 via Frontend Transport; Sun, 28 Apr 2019 10:25:21 +0000
-Received: from bb-VirtualBox.amd.com (10.34.1.3) by SATLEXCHOV01.amd.com
- (10.181.40.71) with Microsoft SMTP Server id 14.3.389.1; Sun, 28 Apr 2019
- 05:25:20 -0500
-From: Trigger Huang <Trigger.Huang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu:  Unmap CSA under SR-IOV in KFD path
-Date: Sun, 28 Apr 2019 18:25:15 +0800
-Message-ID: <1556447115-1689-1-git-send-email-Trigger.Huang@amd.com>
-X-Mailer: git-send-email 2.7.4
+X-Greylist: delayed 361 seconds by postgrey-1.36 at gabe;
+ Sun, 28 Apr 2019 23:49:49 UTC
+Received: from mo6-p00-ob.smtp.rzone.de (mo6-p00-ob.smtp.rzone.de
+ [IPv6:2a01:238:20a:202:5300::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EABC8910C
+ for <amd-gfx@lists.freedesktop.org>; Sun, 28 Apr 2019 23:49:48 +0000 (UTC)
+X-RZG-AUTH: ":NW0KfEuIYvY/xzctq0OeiE2W912UUs5cb1akLvZ1gZCDX/4R8MPEuGWDreWybbA2vpHTGLEw"
+X-RZG-CLASS-ID: mo01
+Received: from [192.168.178.49] by smtp.strato.de (RZmta 44.18 DYNA|AUTH)
+ with ESMTPSA id U0a003v3SNhaaZU
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with
+ 521 ECDH bits, eq. 15360 bits RSA))
+ (Client did not present a certificate);
+ Mon, 29 Apr 2019 01:43:36 +0200 (CEST)
+From: Yanik Yiannakis <yanik@yiannakis.de>
+To: rex.zhu@amd.com, evan.quan@amd.com, amd-gfx@lists.freedesktop.org
+Subject: Bug Report: [PowerPlay] MCLK can't be set above 1107MHz on Vega 64
+Message-ID: <f0312882-75cf-f79e-9fe8-fd95adf739b9@yiannakis.de>
+Date: Mon, 29 Apr 2019 01:43:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(396003)(136003)(39850400004)(376002)(346002)(2980300002)(428003)(199004)(189003)(16586007)(81166006)(81156014)(8936002)(14444005)(316002)(8676002)(53936002)(426003)(7696005)(77096007)(50226002)(51416003)(47776003)(305945005)(5660300002)(97736004)(336012)(26005)(70206006)(70586007)(126002)(2616005)(476003)(6916009)(486006)(72206003)(478600001)(68736007)(356004)(2906002)(50466002)(6666004)(36756003)(4326008)(186003)(48376002)(2351001)(86362001)(53416004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR12MB0651; H:SATLEXCHOV01.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e559211a-2f84-42cc-856f-08d6cbc3d179
-X-Microsoft-Antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328);
- SRVR:CY1PR12MB0651; 
-X-MS-TrafficTypeDiagnostic: CY1PR12MB0651:
-X-Microsoft-Antispam-PRVS: <CY1PR12MB06516085B9084ADDA7CC121DFE380@CY1PR12MB0651.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-Forefront-PRVS: 0021920B5A
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: jZSca5pepRheJS5UDjbKy2Wfx3DTPoim3+3mzJkTwwXclXf3b1rA/D20qfBxwUAeR+wF8yJWHsr8+rZaTKyCqd3KsdLLJbsE6L1PGzzm2OCng0NzrgC74/inRcwpaxRcq9y8dhwNZeArzIx4rqayfK+n0sySTA/IlNPSQiCW0mBXHLI01r2XS+Dz92xY7lugRIU8WRNnxrqRFNgKcuL6dw0zEkem/6NF3HyPJD62wackB7hLP1Fddcn3ZvuMiLu6sMvqBwCcd2ALPKhrbmf7bB8m5ehvdwv5v+RUJV3BKzEl593xKFLR0l8ha48uzIZDMVplnv+JlWVSDBrfUq/avkBcyFA2Sx+ahnX2NB05fxes29qCNq9JkOFVySSPXe7PG99AuO5XgzktVIqe+/YOwt5T0qS4iJ6g5YTcMaI4/8w=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2019 10:25:21.0995 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e559211a-2f84-42cc-856f-08d6cbc3d179
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXCHOV01.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR12MB0651
+Content-Language: en-US
+X-Mailman-Approved-At: Mon, 29 Apr 2019 01:04:22 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amd-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bLTIrQJY5bk35G1U3c6v761gb8T+SQPLKY4wCoJmVJc=;
- b=ilzuJ/HxqSRbxnMNZ+iDrCI1xzGx0UpR0rrWMbnb6ixtKkOJHLD0lcQyrleNxGBLGNPqNdSGAEk0QjmfiZkwcEwmlizRy1jxf9RMhe42qayoEU0dsK8RRQC2SjFHVdfRpdG9i4rJ+RNl04h1pWHXQxirlkpvt0QWvNMaWJYlv/k=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is
- 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
+ t=1556495387; 
+ s=strato-dkim-0002; d=yiannakis.de;
+ h=Date:Message-ID:Subject:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+ Subject:Sender;
+ bh=JvE4OVC+AerUOHcuz13yc41A13yJLqIWLX9/xcj9doI=;
+ b=cgXR3cT5P6YrNrJupSIB+gDyS4lVw2cUdGePC7SsSAN5Eqjt70Q80Hi2ZGnkdQrWnu
+ URQUECBR2wMQCbcAKY8RMSVb8SHI2RnuGX+jJANV5vL2+aDrDatAJFidXVl53BWLorZU
+ 6vUEQO5z1SP6184NXaH4heXuz6pmeuXB5OpTJlETczKVsMga9+zKQxQz+qaOLv9X6yjU
+ wPOqMUmR5Hm/kxMMl8uZWzf/w5VON55DEg485uFASvQ28sSbfHg8mhwffbWrFMTLYZgi
+ MFvhS+lzN9M5VcMtrBEYRks1IRkBrKEO3mPzvbCV+5C6qfZuChjdG2Y+K8rX2Naad59f
+ BA9Q==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -86,46 +56,389 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Trigger.Huang@amd.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1747236445=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SW4gYW1kZ3B1IG9wZW4gcGF0aCwgQ1NBIHdpbGwgYmUgbWFwcGVuZWQgaW4gVk0sIHNvIHdoZW4g
-b3BlbmluZwpLRkQsIGNhbGxpbmcgbWRncHVfdm1fbWFrZV9jb21wdXRlICB3aWxsIGZhaWwgYmVj
-YXVzZSBpdCBmb3VuZCB0aGlzClZNIGlzIG5vdCBhIGNsZWFuIFZNIHdpdGggc29tZSBtYXBwaW5n
-cywgYXMgYSByZXN1bHQsIGl0IHdpbGwgbGVhZAp0byBmYWlsZWQgdG8gY3JlYXRlIHByb2Nlc3Mg
-Vk0gb2JqZWN0CgpUaGUgZml4IGlzIHRyeSB0byB1bm1hcCBDU0EsIGFuZCBhY3R1YWxseSBDU0Eg
-aXMgbm90IG5lZWRlZCBpbgpjb21wdXRlIFZGIHdvcmxkIHN3aXRjaAoKU2lnbmVkLW9mZi1ieTog
-VHJpZ2dlciBIdWFuZyA8VHJpZ2dlci5IdWFuZ0BhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV9hbWRrZmRfZ3B1dm0uYyB8IDEwICsrKysrKysrKysKIGRyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9rbXMuYyAgICAgICAgICB8ICAyICstCiAyIGZp
-bGVzIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkX2dwdXZtLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkX2dwdXZtLmMKaW5kZXggNjk3Yjhl
-Zi4uZTBiYzQ1NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
-X2FtZGtmZF9ncHV2bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9h
-bWRrZmRfZ3B1dm0uYwpAQCAtOTU2LDYgKzk1NiwxNiBAQCBpbnQgYW1kZ3B1X2FtZGtmZF9ncHV2
-bV9hY3F1aXJlX3Byb2Nlc3Nfdm0oc3RydWN0IGtnZF9kZXYgKmtnZCwKIAlpZiAoYXZtLT5wcm9j
-ZXNzX2luZm8pCiAJCXJldHVybiAtRUlOVkFMOwogCisJLyogRGVsZXRlIENTQSBtYXBwaW5nIHRv
-IG1ha2Ugc3VyZSB0aGlzIFZNIGlzIGEgY2xlYW4gVk0gIGJlZm9yZQorCSAqICBjb252ZXJ0aW5n
-IFZNCisJICovCisJaWYgKGFtZGdwdV9zcmlvdl92ZihhZGV2KSAmJiBkcnZfcHJpdi0+Y3NhX3Zh
-KSB7CisJCWFtZGdwdV9ib19yZXNlcnZlKGFkZXYtPnZpcnQuY3NhX29iaiwgdHJ1ZSk7CisJCWFt
-ZGdwdV92bV9ib19ybXYoYWRldiwgZHJ2X3ByaXYtPmNzYV92YSk7CisJCWRydl9wcml2LT5jc2Ff
-dmEgPSBOVUxMOworCQlhbWRncHVfYm9fdW5yZXNlcnZlKGFkZXYtPnZpcnQuY3NhX29iaik7CisJ
-fQorCiAJLyogQ29udmVydCBWTSBpbnRvIGEgY29tcHV0ZSBWTSAqLwogCXJldCA9IGFtZGdwdV92
-bV9tYWtlX2NvbXB1dGUoYWRldiwgYXZtLCBwYXNpZCk7CiAJaWYgKHJldCkKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9rbXMuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV9rbXMuYwppbmRleCBkYTdiNGZlLi4zNjFjMmU1IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfa21zLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ttcy5jCkBAIC0xMDY5LDcgKzEwNjksNyBAQCB2
-b2lkIGFtZGdwdV9kcml2ZXJfcG9zdGNsb3NlX2ttcyhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAog
-CiAJYW1kZ3B1X3ZtX2JvX3JtdihhZGV2LCBmcHJpdi0+cHJ0X3ZhKTsKIAotCWlmIChhbWRncHVf
-c3Jpb3ZfdmYoYWRldikpIHsKKwlpZiAoYW1kZ3B1X3NyaW92X3ZmKGFkZXYpICYmIGZwcml2LT5j
-c2FfdmEpIHsKIAkJLyogVE9ETzogaG93IHRvIGhhbmRsZSByZXNlcnZlIGZhaWx1cmUgKi8KIAkJ
-QlVHX09OKGFtZGdwdV9ib19yZXNlcnZlKGFkZXYtPnZpcnQuY3NhX29iaiwgdHJ1ZSkpOwogCQlh
-bWRncHVfdm1fYm9fcm12KGFkZXYsIGZwcml2LT5jc2FfdmEpOwotLSAKMi43LjQKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBs
-aXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+This is a multi-part message in MIME format.
+--===============1747236445==
+Content-Type: multipart/alternative;
+ boundary="------------0FB2303EDAFD7566FB4DA1EA"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------0FB2303EDAFD7566FB4DA1EA
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hello,
+
+I experience a bug that prevents me from setting the MCLK of my Vega 64 
+LC above 1107MHz.
+
+I am using Unigine Superposition 1.1 in "Game"-mode to check the 
+performance by watching the FPS.
+
+
+*Behaviour with a single monitor:*
+
+First I set the MCLK to a known stable value below 1108MHz:
+
+/$ echo "m 3 1100 950" > 
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage 
+/
+
+In Unigine Superposition the FPS increase as expected.
+
+pp_dpm_mclk also confirms the change.
+
+/$ watch cat 
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_dpm_mclk/
+
+    0: 167Mhz
+    1: 500Mhz
+    2: 800Mhz
+    3: 1100Mhz *
+
+
+After that I set the MCLK to a stable value above 1107MHz:
+
+/$ echo "m 3 1200 950" > 
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage 
+/
+
+In Unigine Superposition the FPS drop drastically.
+
+pp_dpm_mclk indicates that the MCLK is stuck in state 0 (167MHz):
+
+    0: 167Mhz *
+    1: 500Mhz
+    2: 800Mhz
+    3: 1200Mhz
+
+
+*Behaviour with multiple monitors that have different refresh rates:*
+
+My monitors have different refresh rates. This causes the MCLK to stay 
+in state 3 (945MHz stock) which is the expected behaviour as I 
+understand it.
+
+
+Now I try to set the MCLK to a value above 1107MHz:
+
+/$ echo "m 3 1200 950" > 
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage 
+/
+
+The FPS in Unigine Superposition remain the same as they were with 945MHz.
+
+pp_dpm_mclk shows however that the value was set:
+
+    0: 167Mhz
+    1: 500Mhz
+    2: 800Mhz
+    3: 1200Mhz *
+
+
+Then I set the MCLK to a value of 1107MHz or lower:
+
+/$ echo "m 3 1100 950" > 
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage 
+/
+
+The FPS in Unigine Superposition *increase*.
+
+pp_dpm_mclk again confirms the set value:
+
+    0: 167Mhz
+    1: 500Mhz
+    2: 800Mhz
+    3: 1100Mhz *
+
+
+Finally I increase MCLK to a known unstable value:
+
+/$ echo "m 3 1300 950" > 
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage 
+/
+
+The FPS in Unigine Superposition remain the same. I therefore believe 
+the value was not actually applied.
+
+However pp_dpm_mclk shows that it was:
+
+    0: 167Mhz
+    1: 500Mhz
+    2: 800Mhz
+    3: 1300Mhz *
+
+
+amdgpu_pm_info also claims that the value was set:
+
+/$ sudo watch cat /sys/kernel/debug/dri/1/amdgpu_pm_info/
+
+    GFX Clocks and Power:
+             1300 MHz (MCLK)
+             27 MHz (SCLK)
+             1348 MHz (PSTATE_SCLK)
+             800 MHz (PSTATE_MCLK)
+             825 mV (VDDGFX)
+             4.0 W (average GPU)
+
+Again, I think the displayed MCLK is false and the memory still runs at 
+1100MHz because the performance in Unigine Superposition indicates this 
+and 1300MHz would cause a crash immediately.
+
+A stable value (e.g. 1200MHz) causes the same behaviour. I just chose 
+1300MHz to be sure.
+
+
+
+Tested on these Kernels:
+
+    Arch-Linux 5.0.9 (Arch)
+
+    Linux 5.1-rc6 (Ubuntu)
+
+    Linux 5.0 with amd-staging-drm-next (Ubuntu)
+    (https://github.com/M-Bab/linux-kernel-amdgpu-binaries)
+
+(Same behaviour on every kernel.)
+
+
+Tested on this hardware:
+
+    CPU: Intel i7-8700k
+
+    Motherboard: MSI Z370 Gaming Pro Carbon
+
+    GPU: Powercolor Vega 64 Liquid Cooled (Memory stable below 1220MHz,
+    tested on Windows 10 with Wattman and Unigine Superposition)
+
+
+Unigine Superposition "Game"-Mode settings:
+
+    Preset: Custom
+
+    Fullscreen: Disabled
+
+    Resolution: 3840x2160 (4K UHD)
+
+    Shaders Quality: Extreme
+
+    Textures Quality: High
+
+    Vsync: Off
+
+    Depth of Field: On
+
+    Motion Blur: On
+
+
+I hope this helps.
+
+Yanik Yiannakis
+
+
+--------------0FB2303EDAFD7566FB4DA1EA
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hello,<br>
+    </p>
+    <p>I experience a bug that prevents me from setting the MCLK of my
+      Vega 64 LC above 1107MHz. <br>
+    </p>
+    <p>I am using Unigine Superposition 1.1 in "Game"-mode to check the
+      performance by watching the FPS.</p>
+    <br>
+    <p><b>Behaviour with a single monitor:</b></p>
+    <p>First I set the MCLK to a known stable value below 1108MHz:</p>
+    <p><i>$ echo "m 3 1100 950" &gt;
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage
+      </i><br>
+    </p>
+    <p>In Unigine Superposition the FPS increase as expected. <br>
+    </p>
+    <p>pp_dpm_mclk also confirms the change.
+    </p>
+    <p><i>$ watch cat
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_dpm_mclk</i><br>
+    </p>
+    <blockquote>
+      <p>0: 167Mhz<br>
+        1: 500Mhz<br>
+        2: 800Mhz<br>
+        3: 1100Mhz *</p>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>After that I set the MCLK to a stable value above 1107MHz:<br>
+    </p>
+    <p><i>$ echo "m 3 1200 950" &gt;
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage
+      </i><br>
+    </p>
+    <p>In Unigine Superposition the FPS drop drastically.<br>
+    </p>
+    <p>pp_dpm_mclk indicates that the MCLK is stuck in state 0 (167MHz):<br>
+    </p>
+    <blockquote>
+      <p>0: 167Mhz *<br>
+        1: 500Mhz<br>
+        2: 800Mhz<br>
+        3: 1200Mhz</p>
+    </blockquote>
+    <p><br>
+    </p>
+    <p><b>Behaviour with multiple monitors that have different refresh
+        rates:</b><br>
+    </p>
+    <p>My monitors have different refresh rates. This causes the MCLK to
+      stay in state 3 (945MHz stock) which is the expected behaviour as
+      I understand it.</p>
+    <p><br>
+    </p>
+    <p>Now I try to set the MCLK to a value above 1107MHz:<br>
+    </p>
+    <p><i>$ echo "m 3 1200 950" &gt;
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage
+      </i></p>
+    <p>The FPS in Unigine Superposition remain the same as they were
+      with 945MHz.<br>
+    </p>
+    <p>pp_dpm_mclk shows however that the value was set:<br>
+    </p>
+    <blockquote>
+      <p>0: 167Mhz<br>
+        1: 500Mhz<br>
+        2: 800Mhz<br>
+        3: 1200Mhz *<br>
+      </p>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Then I set the MCLK to a value of 1107MHz or lower:<br>
+    </p>
+    <p><i>$ echo "m 3 1100 950" &gt;
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage
+      </i></p>
+    <p>The FPS in Unigine Superposition <b>increase</b>.<br>
+    </p>
+    <p>pp_dpm_mclk again confirms the set value:<br>
+    </p>
+    <blockquote>
+      <p>0: 167Mhz<br>
+        1: 500Mhz<br>
+        2: 800Mhz<br>
+        3: 1100Mhz *</p>
+    </blockquote>
+    <p><br>
+    </p>
+    Finally I increase MCLK to a known unstable value:<br>
+    <p><i>$ echo "m 3 1300 950" &gt;
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage
+      </i></p>
+    <p>The FPS in Unigine Superposition remain the same. I therefore
+      believe the value was not actually applied.<br>
+    </p>
+    <p>However pp_dpm_mclk shows that it was:<br>
+    </p>
+    <blockquote>
+      <p>0: 167Mhz<br>
+        1: 500Mhz<br>
+        2: 800Mhz<br>
+        3: 1300Mhz *</p>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>amdgpu_pm_info also claims that the value was set:<br>
+    </p>
+    <p><i>$ sudo watch cat /sys/kernel/debug/dri/1/amdgpu_pm_info</i><br>
+    </p>
+    <blockquote>
+      <p>GFX Clocks and Power:<br>
+                1300 MHz (MCLK)<br>
+                27 MHz (SCLK)<br>
+                1348 MHz (PSTATE_SCLK)<br>
+                800 MHz (PSTATE_MCLK)<br>
+                825 mV (VDDGFX)<br>
+                4.0 W (average GPU)<br>
+      </p>
+    </blockquote>
+    <p>Again, I think the displayed MCLK is false and the memory still
+      runs at 1100MHz because the performance in Unigine Superposition
+      indicates this and 1300MHz would cause a crash immediately.</p>
+    <p>A stable value (e.g. 1200MHz) causes the same behaviour. I just
+      chose 1300MHz to be sure.<br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p>Tested on these Kernels:</p>
+    <blockquote>
+      <p>Arch-Linux 5.0.9 (Arch)<br>
+      </p>
+      <p>Linux 5.1-rc6 (Ubuntu)<br>
+      </p>
+      <p>Linux 5.0 with amd-staging-drm-next (Ubuntu)
+        (<a class="moz-txt-link-freetext" href="https://github.com/M-Bab/linux-kernel-amdgpu-binaries">https://github.com/M-Bab/linux-kernel-amdgpu-binaries</a>)<br>
+      </p>
+    </blockquote>
+    <p>(Same behaviour on every kernel.)<br>
+    </p>
+    <p><br>
+    </p>
+    <p>Tested on this hardware:</p>
+    <blockquote>
+      <p>CPU: Intel i7-8700k</p>
+      <p>Motherboard: MSI Z370 Gaming Pro Carbon<br>
+      </p>
+      <p>GPU: Powercolor Vega 64 Liquid Cooled (Memory stable below
+        1220MHz, tested on Windows 10 with Wattman and Unigine
+        Superposition)<br>
+      </p>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Unigine Superposition "Game"-Mode settings: <br>
+    </p>
+    <blockquote>
+      <p>Preset: Custom<br>
+      </p>
+      <p>Fullscreen: Disabled</p>
+      <p>Resolution: 3840x2160 (4K UHD)</p>
+      <p>Shaders Quality: Extreme</p>
+      <p>Textures Quality: High</p>
+      <p>Vsync: Off</p>
+      <p>Depth of Field: On</p>
+      <p>Motion Blur: On</p>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>I hope this helps.</p>
+    <p>Yanik Yiannakis<br>
+    </p>
+  </body>
+</html>
+
+--------------0FB2303EDAFD7566FB4DA1EA--
+
+--===============1747236445==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1747236445==--
