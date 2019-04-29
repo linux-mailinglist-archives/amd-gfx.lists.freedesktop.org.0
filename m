@@ -1,70 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9AAE229
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2019 14:22:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F994E2BD
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2019 14:35:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D076D892CD;
-	Mon, 29 Apr 2019 12:22:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE9E489381;
+	Mon, 29 Apr 2019 12:35:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
- [IPv6:2a00:1450:4864:20::335])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB10D892CD
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2019 12:22:06 +0000 (UTC)
-Received: by mail-wm1-x335.google.com with SMTP id y5so14521141wma.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2019 05:22:06 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95C8A89381
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2019 12:35:03 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id n25so531901wmk.4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2019 05:35:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:reply-to:subject:to:cc:references:from
  :message-id:date:user-agent:mime-version:in-reply-to
- :content-language;
- bh=cOsXRmmQgdJeHZxXAM7gv9i/Mji4Uq5I7/BhZiGunTQ=;
- b=pTyruQ/StCZEaj9uyaeOmyNsmsXsSRhpf97a4qRSkAlMO8QgflHA1S9Vus7wZAr0qK
- LeXahYaDEIAmPFSY3yBT5DpWTTNHgY8P2z3RNRbPHQ1orpzue9kSivVyHAK9B9IDv55X
- l1UXaDKofP8bep/PIw4M6EZHbGVzbz6yqRTu0Mc76182BUJlzUUL4apVS8jBuX+KDJgc
- HMvnUOit9p/3iPxWS6Qqox4LfmHxBVMA2HkIvDZU50l0KdhaHUaeH/2nf7yspy7KGeXT
- KxsAhjpgkm8rTrsNoAZnSFdLkT7P89SZyrRUeU2hd+2yf7fhrSaQiIPRU2es13ETsXnY
- 4Oiw==
-X-Gm-Message-State: APjAAAW2Jn7eMcRRioBM2L9rGwZg3HIbdRvXdbJfljWpqpYUelh03A18
- U1VbVB22gPcY58rJ6gnFi2uI4U0G
-X-Google-Smtp-Source: APXvYqxojuz3mJ68+jF04OSVOVD/gXistgYWcSgEWv7VeOBOhLS2MCcboDyo0iwQRU4bwYw1T+U9cw==
-X-Received: by 2002:a1c:9c97:: with SMTP id
- f145mr17798786wme.139.1556540525647; 
- Mon, 29 Apr 2019 05:22:05 -0700 (PDT)
+ :content-transfer-encoding:content-language;
+ bh=b0ELGwO249uJKSO74zsOV/5Vg7G2RrhL59eDSXzS9Gs=;
+ b=BUihRwD3OeKTzsg3kySlaZoOUM3Fh0icOQ4zmdyKxmL/C0cWtAaosW27hOYpI7pcfe
+ GvDqYLV8xDUM6sgRS12ywdKey0I0J1QwotOz1/NXoteW5L34EkhZOJC57HxjPIC8IJaA
+ r/0gHX3SkH4aFL4Fmx3kVT/9J2eG+w0A66APgxjf+JHNKDWRFr4bpRWgaseuknA9AWoh
+ onmEFTN0xjrGGV3yMqB3PW4LHZFtBAseio2Fd0hw7gYn0N6Im5y9ilZYQoaprsPte359
+ eQor0kkttdXVnCKcbQ03QciU9nJzmXpALPWFyLsezONKXKXrLyJWu/o0n2S3n+YhSJWt
+ MI1Q==
+X-Gm-Message-State: APjAAAUV6BLhhzB6oYYK3QbAh/bSQlZjTMXyclA7HlDkKevumOONvHq0
+ SFI+oz3wd6T+PCLRBqfYHqVjy1hk
+X-Google-Smtp-Source: APXvYqzKYQLfojk3VWUDWfmnMH/DGefi19wM/VoFBEbKVyUZNALr4p7dWGc/NhKc1Pw7jArZBhrrCQ==
+X-Received: by 2002:a1c:346:: with SMTP id 67mr8971024wmd.3.1556541302312;
+ Mon, 29 Apr 2019 05:35:02 -0700 (PDT)
 Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
  ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id s16sm5188861wrg.71.2019.04.29.05.22.03
+ by smtp.gmail.com with ESMTPSA id e6sm24052594wrc.96.2019.04.29.05.34.59
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 29 Apr 2019 05:22:04 -0700 (PDT)
-Subject: Re: print firmware versions on amdgpu sysfs
-To: "Russell, Kent" <Kent.Russell@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Lin, Amber" <Amber.Lin@amd.com>,
+ Mon, 29 Apr 2019 05:35:01 -0700 (PDT)
+Subject: Re: [PATCH 27/27] drm/amdgpu: Fix GTT size calculation
+To: "Kuehling, Felix" <Felix.Kuehling@amd.com>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <355c6cb6-ccf7-ef6f-4f34-0e978b9effe2@amd.com>
- <CY4PR12MB18136C9A3F7719CFD0C50D60F73E0@CY4PR12MB1813.namprd12.prod.outlook.com>
- <BN6PR12MB1618CE8C21ED572094D9BB10853E0@BN6PR12MB1618.namprd12.prod.outlook.com>
+References: <20190428074331.30107-1-Felix.Kuehling@amd.com>
+ <20190428074331.30107-28-Felix.Kuehling@amd.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <d6c60e91-4311-069b-0612-03337830481d@gmail.com>
-Date: Mon, 29 Apr 2019 14:22:03 +0200
+Message-ID: <86fa9fc3-7a8f-9855-ae1d-5c7ccf2b5260@gmail.com>
+Date: Mon, 29 Apr 2019 14:34:58 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <BN6PR12MB1618CE8C21ED572094D9BB10853E0@BN6PR12MB1618.namprd12.prod.outlook.com>
+In-Reply-To: <20190428074331.30107-28-Felix.Kuehling@amd.com>
 Content-Language: en-US
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
  h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language;
- bh=cOsXRmmQgdJeHZxXAM7gv9i/Mji4Uq5I7/BhZiGunTQ=;
- b=k7nRlAXY2WClrEwwCmgGPcANYSwQTrWnpK732Si2aGFhPY8oMlTBOH2+2OP4DlFv1X
- HuIjPE4Hf3cS+CNFnP+QA7epI+4dTSkRP3bhQTLUVFzHeGSKDWXnuDeidhQuKYKn0zCA
- dSImf+VQYK20QXJPEL0G46A8kB030akNPB/sIZ540SSxtsmaDe5l3hqpMbggJ/k5tuxD
- 7Kp7pkh3AWP9aBEK7OtMfMT5rVhw2hjCoNUU6TYv7rj39PwfLtAlxOl1Z8Eu5ljPyAmA
- a+aFBtrUACXpX/gH8y95TKHHtQXvSV6vD3199htnFUxqaxdnPQEIzJYLK19xir9BMr+f
- S3DA==
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=b0ELGwO249uJKSO74zsOV/5Vg7G2RrhL59eDSXzS9Gs=;
+ b=rVHKdoxN5YhZZ41LvHT/7jMk3XclUyG9zpwq7MzaDq3iYKU5Y1jAXnR9DH0/otOmZo
+ zSaleS46z59C9dU+9ygAdYmybF4b5SrpZ7IcCcb/d64zOoFN+MH/MH+JDRvX7oZ35wru
+ sfg+R1v5oQFUnD/8ZjdY8hzauURdmkCu1xdYO2A65vr5QjDSSq0mKmoaW4sFL0zj36RX
+ lK6q0ltuqUL3vnxBLFBSFKiiIFjmJfThMVDdebHvGMKVy6YcbTVeiyDPkB4QTe5dpFQ2
+ Dp58mIauo8f3qsCOG7LADSxCICXGtswykZ/RnAi/6Nm5CGZIzwiMWVvTyestob0hPbnp
+ M3ew==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -77,205 +73,45 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: christian.koenig@amd.com
-Cc: "Freehill, Chris" <Chris.Freehill@amd.com>
-Content-Type: multipart/mixed; boundary="===============0456384584=="
+Cc: "Russell, Kent" <Kent.Russell@amd.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============0456384584==
-Content-Type: multipart/alternative;
- boundary="------------56D911CAFF7E38DEC613DAD3"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------56D911CAFF7E38DEC613DAD3
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-
-We just need to keep in mind that sysfs has more restrictions than debugfs.
-
-E.g. one value per file, backward compatibility etc...
-
-Apart from that I don't see any reason to not do it in sysfs.
-
-Christian.
-
-Am 26.04.19 um 20:35 schrieb Russell, Kent:
-> The main reasoning and use case for sysfs would be the SMI CLI, since 
-> unfortunately there is no ioctl support in there.
->
-> Kent
->
-> KENT RUSSELL
-> Sr. Software Engineer | Linux Compute Kernel
-> 1 Commerce Valley Drive East
-> Markham, ON L3T 7X6
-> O +(1) 289-695-2122 | Ext 72122
-> ------------------------------------------------------------------------
-> *From:* amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of 
-> Deucher, Alexander <Alexander.Deucher@amd.com>
-> *Sent:* Friday, April 26, 2019 12:18:22 PM
-> *To:* Lin, Amber; amd-gfx@lists.freedesktop.org
-> *Cc:* Freehill, Chris
-> *Subject:* Re: print firmware versions on amdgpu sysfs
-> We also expose the firmware versions via ioctl which is what the UMDs 
-> uses.  If you'd prefer it in sysfs, we could do that too.
->
-> Alex
->
-> ------------------------------------------------------------------------
-> *From:* amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of 
-> Lin, Amber <Amber.Lin@amd.com>
-> *Sent:* Friday, April 26, 2019 10:14 AM
-> *To:* amd-gfx@lists.freedesktop.org
-> *Cc:* Freehill, Chris
-> *Subject:* print firmware versions on amdgpu sysfs
-> Hi Alex,
->
-> Currently we retrieve firmware versions from /sys/kernel/debug but this
-> requires debugfs being enabled and superuser privilege. Do you see a
-> concern we add firmware versions to amdgpu sysfs at
-> /sys/class/drm/cardX/device like vbios_version?
->
-> Regards,
-> Amber
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
-
---------------56D911CAFF7E38DEC613DAD3
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;
-      charset=windows-1252">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">We just need to keep in mind that sysfs
-      has more restrictions than debugfs.<br>
-      <br>
-      E.g. one value per file, backward compatibility etc...<br>
-      <br>
-      Apart from that I don't see any reason to not do it in sysfs.<br>
-      <br>
-      Christian. <br>
-      <br>
-      Am 26.04.19 um 20:35 schrieb Russell, Kent:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:BN6PR12MB1618CE8C21ED572094D9BB10853E0@BN6PR12MB1618.namprd12.prod.outlook.com">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      The main reasoning and use case for sysfs would be the SMI CLI,
-      since unfortunately there is no ioctl support in there.
-      <br>
-      <br>
-      Kent<br>
-      <br>
-      KENT RUSSELL<br>
-      Sr. Software Engineer | Linux Compute Kernel<br>
-      1 Commerce Valley Drive East<br>
-      Markham, ON L3T 7X6<br>
-      O +(1) 289-695-2122 | Ext 72122<br>
-      <hr style="display:inline-block;width:98%" tabindex="-1">
-      <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
-          face="Calibri, sans-serif" color="#000000"><b>From:</b>
-          amd-gfx <a class="moz-txt-link-rfc2396E" href="mailto:amd-gfx-bounces@lists.freedesktop.org">&lt;amd-gfx-bounces@lists.freedesktop.org&gt;</a> on
-          behalf of Deucher, Alexander <a class="moz-txt-link-rfc2396E" href="mailto:Alexander.Deucher@amd.com">&lt;Alexander.Deucher@amd.com&gt;</a><br>
-          <b>Sent:</b> Friday, April 26, 2019 12:18:22 PM<br>
-          <b>To:</b> Lin, Amber; <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><br>
-          <b>Cc:</b> Freehill, Chris<br>
-          <b>Subject:</b> Re: print firmware versions on amdgpu sysfs</font>
-        <div> </div>
-      </div>
-      <style type="text/css" style="display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-      <div dir="ltr">
-        <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-          font-size:12pt; color:rgb(0,0,0)">
-          We also expose the firmware versions via ioctl which is what
-          the UMDs uses.  If you'd prefer it in sysfs, we could do that
-          too.<br>
-        </div>
-        <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-          font-size:12pt; color:rgb(0,0,0)">
-          <br>
-        </div>
-        <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-          font-size:12pt; color:rgb(0,0,0)">
-          Alex</div>
-        <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-          font-size:12pt; color:rgb(0,0,0)">
-          <br>
-        </div>
-        <hr tabindex="-1" style="display:inline-block; width:98%">
-        <div id="x_divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
-            face="Calibri, sans-serif" color="#000000"><b>From:</b>
-            amd-gfx <a class="moz-txt-link-rfc2396E" href="mailto:amd-gfx-bounces@lists.freedesktop.org">&lt;amd-gfx-bounces@lists.freedesktop.org&gt;</a> on
-            behalf of Lin, Amber <a class="moz-txt-link-rfc2396E" href="mailto:Amber.Lin@amd.com">&lt;Amber.Lin@amd.com&gt;</a><br>
-            <b>Sent:</b> Friday, April 26, 2019 10:14 AM<br>
-            <b>To:</b> <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><br>
-            <b>Cc:</b> Freehill, Chris<br>
-            <b>Subject:</b> print firmware versions on amdgpu sysfs</font>
-          <div> </div>
-        </div>
-        <div class="x_BodyFragment"><font size="2"><span
-              style="font-size:11pt">
-              <div class="x_PlainText">Hi Alex,<br>
-                <br>
-                Currently we retrieve firmware versions from
-                /sys/kernel/debug but this <br>
-                requires debugfs being enabled and superuser privilege.
-                Do you see a <br>
-                concern we add firmware versions to amdgpu sysfs at <br>
-                /sys/class/drm/cardX/device like vbios_version?<br>
-                <br>
-                Regards,<br>
-                Amber<br>
-                _______________________________________________<br>
-                amd-gfx mailing list<br>
-                <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><br>
-                <a
-                  href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx"
-                  moz-do-not-send="true">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-            </span></font></div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-amd-gfx mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a></pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------56D911CAFF7E38DEC613DAD3--
-
---===============0456384584==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0456384584==--
+QW0gMjguMDQuMTkgdW0gMDk6NDQgc2NocmllYiBLdWVobGluZywgRmVsaXg6Cj4gRnJvbTogS2Vu
+dCBSdXNzZWxsIDxrZW50LnJ1c3NlbGxAYW1kLmNvbT4KPgo+IEdUVCBzaXplIGlzIGN1cnJlbnRs
+eSBsaW1pdGVkIHRvIHRoZSBtaW5pbXVtIG9mIFZSQU0gc2l6ZSBvciAzLzQgb2YKPiBzeXN0ZW0g
+bWVtb3J5LiBUaGlzIHNldmVyZWx5IGxpbWl0cyB0aGUgcXVhbml0aXR5IG9mIHN5c3RlbSBtZW1v
+cnkKPiB0aGF0IGNhbiBiZSB1c2VkIGJ5IFJPQ20gYXBwbGljYXRpb24uCj4KPiBJbmNyZWFzZSBH
+VFQgc2l6ZSB0byB0aGUgbWF4aW11bSBvZiBWUkFNIHNpemUgb3Igc3lzdGVtIG1lbW9yeSBzaXpl
+LgoKV2VsbCwgTkFLLgoKVGhpcyBsaW1pdCB3YXMgZG9uZSBvbiBwdXJwb3NlIGJlY2F1c2Ugd2Ug
+b3RoZXJ3aXNlIHRoZSBtYXgtdGV4dHVyZS1zaXplIAp3b3VsZCBiZSBjcmFzaGluZyB0aGUgc3lz
+dGVtIGJlY2F1c2UgdGhlIE9PTSBraWxsZXIgd291bGQgYmUgY2F1c2luZyBhIApzeXN0ZW0gcGFu
+aWMuCgpVc2luZyBtb3JlIHRoYW4gNzUlIG9mIHN5c3RlbSBtZW1vcnkgYnkgdGhlIEdQVSBhdCB0
+aGUgc2FtZSB0aW1lIG1ha2VzIAp0aGUgc3lzdGVtIHVuc3RhYmxlIGFuZCBzbyB3ZSBjYW4ndCBh
+bGxvdyB0aGF0IGJ5IGRlZmF1bHQuCgpXaGF0IGNvdWxkIG1heWJlIHdvcmsgaXMgdG8gcmVkdWNl
+IGFtb3VudCBvZiBzeXN0ZW0gbWVtb3J5IGJ5IGEgZml4ZWQgCmZhY3RvciwgYnV0IEkgb2YgaGFu
+ZCBkb24ndCBzZWUgYSB3YXkgb2YgZml4aW5nIHRoaXMgaW4gZ2VuZXJhbC4KClJlZ2FyZHMsCkNo
+cmlzdGlhbi4KCj4KPiBTaWduZWQtb2ZmLWJ5OiBLZW50IFJ1c3NlbGwgPGtlbnQucnVzc2VsbEBh
+bWQuY29tPgo+IFJldmlld2VkLWJ5OiBGZWxpeCBLdWVobGluZyA8RmVsaXguS3VlaGxpbmdAYW1k
+LmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBGZWxpeCBLdWVobGluZyA8RmVsaXguS3VlaGxpbmdAYW1k
+LmNvbT4KPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyB8
+IDkgKysrKy0tLS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCA1IGRlbGV0
+aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
+dV90dG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwo+IGluZGV4
+IGMxNDE5ODczN2RjZC4uZTllY2MzOTUzNjczIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV90dG0uYwo+IEBAIC0xNzQwLDExICsxNzQwLDEwIEBAIGludCBhbWRncHVfdHRt
+X2luaXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gICAJCXN0cnVjdCBzeXNpbmZvIHNp
+Owo+ICAgCj4gICAJCXNpX21lbWluZm8oJnNpKTsKPiAtCQlndHRfc2l6ZSA9IG1pbihtYXgoKEFN
+REdQVV9ERUZBVUxUX0dUVF9TSVpFX01CIDw8IDIwKSwKPiAtCQkJICAgICAgIGFkZXYtPmdtYy5t
+Y192cmFtX3NpemUpLAo+IC0JCQkgICAgICAgKCh1aW50NjRfdClzaS50b3RhbHJhbSAqIHNpLm1l
+bV91bml0ICogMy80KSk7Cj4gLQl9Cj4gLQllbHNlCj4gKwkJZ3R0X3NpemUgPSBtYXgzKChBTURH
+UFVfREVGQVVMVF9HVFRfU0laRV9NQiA8PCAyMCksCj4gKwkJCQlhZGV2LT5nbWMubWNfdnJhbV9z
+aXplLAo+ICsJCQkJKCh1aW50NjRfdClzaS50b3RhbHJhbSAqIHNpLm1lbV91bml0KSk7Cj4gKwl9
+IGVsc2UKPiAgIAkJZ3R0X3NpemUgPSAodWludDY0X3QpYW1kZ3B1X2d0dF9zaXplIDw8IDIwOwo+
+ICAgCj4gICAJLyogSW5pdGlhbGl6ZSBHVFQgbWVtb3J5IHBvb2wgKi8KCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFt
+ZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
