@@ -1,78 +1,78 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CADE711B4B
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 May 2019 16:22:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E9512004
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 May 2019 18:22:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60B7B8924C;
-	Thu,  2 May 2019 14:22:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA47B89709;
+	Thu,  2 May 2019 16:22:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr740070.outbound.protection.outlook.com [40.107.74.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F9FB8924C
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 May 2019 14:22:51 +0000 (UTC)
-Received: from MWHPR12MB1311.namprd12.prod.outlook.com (10.169.205.136) by
- MWHPR12MB1471.namprd12.prod.outlook.com (10.172.55.140) with Microsoft SMTP
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770059.outbound.protection.outlook.com [40.107.77.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8253B8970B
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 May 2019 16:22:08 +0000 (UTC)
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
+ BN6PR12MB1299.namprd12.prod.outlook.com (10.168.227.149) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Thu, 2 May 2019 14:22:49 +0000
-Received: from MWHPR12MB1311.namprd12.prod.outlook.com
- ([fe80::755c:8135:708e:b345]) by MWHPR12MB1311.namprd12.prod.outlook.com
- ([fe80::755c:8135:708e:b345%12]) with mapi id 15.20.1856.008; Thu, 2 May 2019
- 14:22:49 +0000
-From: "StDenis, Tom" <Tom.StDenis@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/amdgpu: Add MEM_LOAD to amdgpu_pm_info debugfs file
+ 15.20.1856.11; Thu, 2 May 2019 16:22:07 +0000
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::bc5b:de68:25b7:d853]) by BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::bc5b:de68:25b7:d853%12]) with mapi id 15.20.1856.012; Thu, 2 May 2019
+ 16:22:07 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "StDenis, Tom" <Tom.StDenis@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amd/amdgpu: Add MEM_LOAD to amdgpu_pm_info debugfs
+ file
 Thread-Topic: [PATCH] drm/amd/amdgpu: Add MEM_LOAD to amdgpu_pm_info debugfs
  file
-Thread-Index: AQHVAPKFFI/V0ZP6BEeAQBURfoIthw==
-Date: Thu, 2 May 2019 14:22:49 +0000
-Message-ID: <20190502142239.22322-1-tom.stdenis@amd.com>
+Thread-Index: AQHVAPKFFI/V0ZP6BEeAQBURfoIth6ZYBGaz
+Date: Thu, 2 May 2019 16:22:06 +0000
+Message-ID: <BN6PR12MB1809FEF89618A0D8DCC656E8F7340@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <20190502142239.22322-1-tom.stdenis@amd.com>
+In-Reply-To: <20190502142239.22322-1-tom.stdenis@amd.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: BL0PR0102CA0019.prod.exchangelabs.com
- (2603:10b6:207:18::32) To MWHPR12MB1311.namprd12.prod.outlook.com
- (2603:10b6:300:11::8)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.20.1
-x-originating-ip: [165.204.84.11]
+x-originating-ip: [71.219.84.143]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 34144ff3-ae54-4c67-36ad-08d6cf09a76f
+x-ms-office365-filtering-correlation-id: b6e0d46d-9de6-4a45-6413-08d6cf1a51f2
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
- SRVR:MWHPR12MB1471; 
-x-ms-traffictypediagnostic: MWHPR12MB1471:
-x-microsoft-antispam-prvs: <MWHPR12MB1471D7AC615B5C9D9BD3ED89F7340@MWHPR12MB1471.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:115;
+ SRVR:BN6PR12MB1299; 
+x-ms-traffictypediagnostic: BN6PR12MB1299:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BN6PR12MB1299C9BDB789CC83168EAA62F7340@BN6PR12MB1299.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:79;
 x-forefront-prvs: 0025434D2D
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(39860400002)(346002)(136003)(396003)(376002)(366004)(199004)(189003)(99286004)(66446008)(6512007)(66556008)(64756008)(66476007)(5660300002)(6916009)(81156014)(25786009)(3846002)(8936002)(53936002)(2351001)(7736002)(6116002)(305945005)(478600001)(186003)(2906002)(6506007)(6436002)(4326008)(6486002)(26005)(68736007)(72206003)(316002)(14454004)(50226002)(36756003)(102836004)(256004)(1076003)(71200400001)(2501003)(81166006)(86362001)(5640700003)(71190400001)(52116002)(66066001)(4744005)(486006)(66946007)(73956011)(2616005)(476003)(8676002)(386003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1471;
- H:MWHPR12MB1311.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(39860400002)(136003)(346002)(376002)(396003)(366004)(199004)(189003)(55016002)(6506007)(53546011)(26005)(186003)(33656002)(102836004)(105004)(229853002)(74316002)(25786009)(316002)(6436002)(8676002)(3846002)(64756008)(73956011)(66946007)(66446008)(6116002)(8936002)(66476007)(66556008)(76116006)(81156014)(81166006)(5660300002)(2501003)(2906002)(6246003)(606006)(446003)(11346002)(9686003)(6306002)(486006)(236005)(19627405001)(54896002)(86362001)(476003)(52536014)(71200400001)(71190400001)(478600001)(76176011)(7696005)(7736002)(72206003)(966005)(110136005)(14454004)(99286004)(68736007)(53936002)(66066001)(256004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1299;
+ H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: eyuAlc6EYNjs+CZK0P3Np/kWoWnZrIi5qFXUU+wilI2z6pLFTOZ0PRHfUkr1ZjmPmV8thd4bCORg5Qxl/XsV6hbKIPwIiZEAAwf/PBQV4o3+oVy8671wQX2VlfPHKEkD/keR0AzlGpqoWk0VcnIowdvDJpi1UN10Oq3+81sP0QfGpWL031ftQs0IfIIgWucDa0nWtXIxzSCUlPFVO2DpygepM/EHIyWTVTlX0BkEfb2JhFVzesAGGiISPnDWAoBgcn7rFnjby0YZKPZAf3TcWn7zkZX/vlpBpauDFGBxtGUamG61l0rt+LQAK52LG5bXt61Hkuh52wGSrDEZa1k9DvWX/2uaJd3BPv6lSl/gU5UjVzEPkSvURYs1c/juQzcFl1UkSNPcxSQkgPPJCye7gf24Bw707PMlRjDWquueDZk=
+x-microsoft-antispam-message-info: i1C+rGrnr0hRVfhOAG0Bzf8kGK1C7xsmO7Uwa/WFB6tNCQUWhNwJJLc3E0hk9PVnu1k/jqd7E+X9ii+KHE0zeQIWk6WCBLG4E53D5KgKhG5Gq0n1M9ZwVBQRUC/m2p6Tj0skzc2ox0EPMCpOaTOTftpWtx0U5jdYhTCnPNqiCrrDwbP9pzXpX4+B17kWJc+Q8RrGzSI3ykGeQmBHQFASZX9DicQTr6pAiYMXGVk558nysKb32qfCQ71W8icBHwrsu2ku0fYw/M+iybHmx+r82CA7WKY8WTXzjUTSPESPOBPLJnkx/E4HaRsMqwVzUfRlcZoZdIqYxE210K1O7MA87SwdG+BrzP1Nnuq6WU9/l9Pf5Zrzp+0s43mHwwQDZpP5na4326fqfzZ+pdKQR+F9bBT3b8IZUpt0uq3THP0FG7U=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34144ff3-ae54-4c67-36ad-08d6cf09a76f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 May 2019 14:22:49.4966 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6e0d46d-9de6-4a45-6413-08d6cf1a51f2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 May 2019 16:22:06.8381 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1471
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1299
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amd-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BSR8c3Ultbf02QVrLvGb1w1kG8TwwXnfD5cwhldyR64=;
- b=PImgxrqpFGTwJ1FROubNh1yjQKJ7ibDLM0Je3pOPSFQOUIf7LLTWbNq6LaW3FvNMYW+ZUcL4A13BpZnv64mlLbvHW6znQFlK40fUOqtJ91OJJ6hG4WWAQzGSjQgfE6NU0BnkgTWG4x8dIbA1s2YLQK6gkf+3tf/xdIojXr79XGk=
+ bh=paafWaNYuK7+qpPGeJZZKfUCfdvmlv+5YQ4ERDzM7/U=;
+ b=qc8rVOtERrQKmOah/z6cRB+cPRxxRQXwVKinw6DWAWlmKOZfvL3Ylukjh9aRIV23ujC8HR+fo/2nV34z+eRSiJojLMCLB5bxxTbO4COnOxWckFYsBzcMudu4u3Nt7GyLu6Mqtb53J5NzD8TOIAFoGSatxoILuRvqkj+KyjpvXkk=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Tom.StDenis@amd.com; 
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -84,27 +84,146 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "StDenis, Tom" <Tom.StDenis@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0956764291=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-U2lnbmVkLW9mZi1ieTogVG9tIFN0IERlbmlzIDx0b20uc3RkZW5pc0BhbWQuY29tPg0KLS0tDQog
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3BtLmMgfCA0ICsrKysNCiAxIGZpbGUg
-Y2hhbmdlZCwgNCBpbnNlcnRpb25zKCspDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfcG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
-dV9wbS5jDQppbmRleCA1ZTJkMDM5ZTA5YWQuLmUwNzg5ZjBmMjY3MCAxMDA2NDQNCi0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9wbS5jDQorKysgYi9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfcG0uYw0KQEAgLTI5NTUsNiArMjk1NSwxMCBAQCBzdGF0aWMg
-aW50IGFtZGdwdV9kZWJ1Z2ZzX3BtX2luZm9fcHAoc3RydWN0IHNlcV9maWxlICptLCBzdHJ1Y3Qg
-YW1kZ3B1X2RldmljZSAqYQ0KIAkvKiBHUFUgTG9hZCAqLw0KIAlpZiAoIWFtZGdwdV9kcG1fcmVh
-ZF9zZW5zb3IoYWRldiwgQU1ER1BVX1BQX1NFTlNPUl9HUFVfTE9BRCwgKHZvaWQgKikmdmFsdWUs
-ICZzaXplKSkNCiAJCXNlcV9wcmludGYobSwgIkdQVSBMb2FkOiAldSAlJVxuIiwgdmFsdWUpOw0K
-KwkvKiBNRU0gTG9hZCAqLw0KKwlpZiAoIWFtZGdwdV9kcG1fcmVhZF9zZW5zb3IoYWRldiwgQU1E
-R1BVX1BQX1NFTlNPUl9NRU1fTE9BRCwgKHZvaWQgKikmdmFsdWUsICZzaXplKSkNCisJCXNlcV9w
-cmludGYobSwgIk1FTSBMb2FkOiAldSAlJVxuIiwgdmFsdWUpOw0KKw0KIAlzZXFfcHJpbnRmKG0s
-ICJcbiIpOw0KIA0KIAkvKiBTTUMgZmVhdHVyZSBtYXNrICovDQotLSANCjIuMjAuMQ0KDQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxp
-bmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============0956764291==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB1809FEF89618A0D8DCC656E8F7340BN6PR12MB1809namp_"
+
+--_000_BN6PR12MB1809FEF89618A0D8DCC656E8F7340BN6PR12MB1809namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of StDenis,=
+ Tom <Tom.StDenis@amd.com>
+Sent: Thursday, May 2, 2019 10:22 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: StDenis, Tom
+Subject: [PATCH] drm/amd/amdgpu: Add MEM_LOAD to amdgpu_pm_info debugfs fil=
+e
+
+[CAUTION: External Email]
+
+Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_pm.c
+index 5e2d039e09ad..e0789f0f2670 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+@@ -2955,6 +2955,10 @@ static int amdgpu_debugfs_pm_info_pp(struct seq_file=
+ *m, struct amdgpu_device *a
+        /* GPU Load */
+        if (!amdgpu_dpm_read_sensor(adev, AMDGPU_PP_SENSOR_GPU_LOAD, (void =
+*)&value, &size))
+                seq_printf(m, "GPU Load: %u %%\n", value);
++       /* MEM Load */
++       if (!amdgpu_dpm_read_sensor(adev, AMDGPU_PP_SENSOR_MEM_LOAD, (void =
+*)&value, &size))
++               seq_printf(m, "MEM Load: %u %%\n", value);
++
+        seq_printf(m, "\n");
+
+        /* SMC feature mask */
+--
+2.20.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN6PR12MB1809FEF89618A0D8DCC656E8F7340BN6PR12MB1809namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of StDenis, Tom &lt;Tom.StDenis@=
+amd.com&gt;<br>
+<b>Sent:</b> Thursday, May 2, 2019 10:22 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org<br>
+<b>Cc:</b> StDenis, Tom<br>
+<b>Subject:</b> [PATCH] drm/amd/amdgpu: Add MEM_LOAD to amdgpu_pm_info debu=
+gfs file</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">[CAUTION: External Email]<br>
+<br>
+Signed-off-by: Tom St Denis &lt;tom.stdenis@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 4 &#43;&#43;&#43;&#43;<br>
+&nbsp;1 file changed, 4 insertions(&#43;)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_pm.c<br>
+index 5e2d039e09ad..e0789f0f2670 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c<br>
+@@ -2955,6 &#43;2955,10 @@ static int amdgpu_debugfs_pm_info_pp(struct seq_=
+file *m, struct amdgpu_device *a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* GPU Load */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!amdgpu_dpm_read_sensor(adev=
+, AMDGPU_PP_SENSOR_GPU_LOAD, (void *)&amp;value, &amp;size))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; seq_printf(m, &quot;GPU Load: %u %%\n&quot;, value);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* MEM Load */<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!amdgpu_dpm_read_sensor(adev,=
+ AMDGPU_PP_SENSOR_MEM_LOAD, (void *)&amp;value, &amp;size))<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; seq_printf(m, &quot;MEM Load: %u %%\n&quot;, value);<br>
+&#43;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; seq_printf(m, &quot;\n&quot;);<b=
+r>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* SMC feature mask */<br>
+--<br>
+2.20.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN6PR12MB1809FEF89618A0D8DCC656E8F7340BN6PR12MB1809namp_--
+
+--===============0956764291==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0956764291==--
