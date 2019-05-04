@@ -2,65 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87F4513821
-	for <lists+amd-gfx@lfdr.de>; Sat,  4 May 2019 09:33:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD8931395F
+	for <lists+amd-gfx@lfdr.de>; Sat,  4 May 2019 12:51:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C71158954A;
-	Sat,  4 May 2019 07:33:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F500892D8;
+	Sat,  4 May 2019 10:51:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
- [IPv6:2a00:1450:4864:20::42c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA418954A
- for <amd-gfx@lists.freedesktop.org>; Sat,  4 May 2019 07:33:37 +0000 (UTC)
-Received: by mail-wr1-x42c.google.com with SMTP id a12so406120wrn.4
- for <amd-gfx@lists.freedesktop.org>; Sat, 04 May 2019 00:33:37 -0700 (PDT)
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com
+ [IPv6:2607:f8b0:4864:20::d44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8E10892D8
+ for <amd-gfx@lists.freedesktop.org>; Sat,  4 May 2019 10:51:23 +0000 (UTC)
+Received: by mail-io1-xd44.google.com with SMTP id r10so7309550ioc.8
+ for <amd-gfx@lists.freedesktop.org>; Sat, 04 May 2019 03:51:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:references:from:message-id
- :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=ogcfSLSFbMMnp3o3Hos1u22hWyGreKxpEdchs77kkW8=;
- b=WBW8a+tDYf6rgB/K6e2DbV8XJdECFZmbe+vgivnSjtZZvz/CglIO/NkXovWUG5eUV9
- ak3mtRSs5y2oq1DP/zkgAfVJnSpAgMq2zz7mAk4/j7oZnJ0XUCYRJV61HdFb77IGrII4
- zDoKyNhID1RAmjeS4o6V361gIqin8ga0lTvlO/RXHPpX9WJZwogcQQH2cIzt4jUA8vpv
- ljwyDZDcNRSF6SmzE41XJXm2K179iN77VJWUKj0dgsQ5T5bgzEGNCt3D0MsmwBsAl/9+
- 0QbuLcWEA2mPG2atD8TGngn/l96BKPqWgUq1A5JAQpjp3gxDyCqxchgzLeSLw+/QujyD
- MSLg==
-X-Gm-Message-State: APjAAAWK+x4IxcM6ZCzDxSEBbVoMSjmXOSG4p8JHIM3w0VZaRHMStAvX
- z1E85G5hhkO5AwjX/whdos8=
-X-Google-Smtp-Source: APXvYqwuUSD7OanCzJiDUXpP+OATv6wqLbwBONAmVoqCCctqeiBhpdXdi8AIQL4jsvWqCBNgSZ+Fug==
-X-Received: by 2002:a5d:674f:: with SMTP id l15mr9720554wrw.41.1556955216016; 
- Sat, 04 May 2019 00:33:36 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id j71sm4163239wmj.44.2019.05.04.00.33.34
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 04 May 2019 00:33:35 -0700 (PDT)
-Subject: Re: How to dump gfx and waves after GPU reset happened?
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Tom St Denis <tom.stdenis@amd.com>
-References: <CABXGCsMY=LvtCp0V8U8jbARXgapjQe4WP9ss-ui3fHsPQjevXg@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <98231ce0-f29c-df52-1ba3-c9f85a76bcac@gmail.com>
-Date: Sat, 4 May 2019 09:33:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=GVBj4dVEhIKY7iESU7rq+M4XOWcmefYRi5c8rO4Ucsg=;
+ b=hZuh58sUg9JcNeFwB2BVb6r45hhuInyprQpihLJbMarsHDUfAfG+7o2PRaR2y9sxZd
+ Zz25BiQANBNQMqKRF4sy086yylcR2O8KdRJcT785d0tnwtjyvVOZVbCEhj3NC44mcSHW
+ g1btpL6z6Xijdg04OvpVxtqPOoU3oYbJz7fDRWaja6wCGarlXqM4BbyiYyW8blgOeNHn
+ ffm8m6ge6GccEU7gYHvBtR8cMiTxoV35vAhkhfuqTWDyL9ffDyZ58erqQi1HE4L6HXUy
+ nT5wb8wIZ/e4yn6I6qGLovC9SyEonXqq/D1H7TPOdeMEAIIN7gaokx4TYNNEi61/pyBI
+ 9zDg==
+X-Gm-Message-State: APjAAAXbu5R5qgcOQm2TFbAHlHUhsppDwEzWavNMU1KbERDdRjlN/s7n
+ KYLxun08AnVumR1R69fXekidgiXTKDWE0qGn8lM=
+X-Google-Smtp-Source: APXvYqwS0vu0L/Bf4qfTWn4IcR9+VjBrwF9dWldhPFYIUxVt6Je7G2dJmEJfbHgbwaHh3gzMmRmykJX9reqrOrLzzGI=
+X-Received: by 2002:a6b:da0a:: with SMTP id x10mr5161226iob.90.1556967082789; 
+ Sat, 04 May 2019 03:51:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CABXGCsMY=LvtCp0V8U8jbARXgapjQe4WP9ss-ui3fHsPQjevXg@mail.gmail.com>
-Content-Language: en-US
+References: <CABXGCsMY=LvtCp0V8U8jbARXgapjQe4WP9ss-ui3fHsPQjevXg@mail.gmail.com>
+ <98231ce0-f29c-df52-1ba3-c9f85a76bcac@gmail.com>
+In-Reply-To: <98231ce0-f29c-df52-1ba3-c9f85a76bcac@gmail.com>
+From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Date: Sat, 4 May 2019 15:51:11 +0500
+Message-ID: <CABXGCsOXEWS5fUrQZQf0qdH6Wn=h5BC9cPaoQk8hYhvW-nm6AA@mail.gmail.com>
+Subject: Re: How to dump gfx and waves after GPU reset happened?
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=reply-to:subject:to:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=ogcfSLSFbMMnp3o3Hos1u22hWyGreKxpEdchs77kkW8=;
- b=GYK/LcfS7rJVJInPnOfaywJCqNGoYI64E28oFgSet0/ozMBOIMWucV6GkVjK86dHxn
- CXfKy0D8/92u4WyEZHi8IPmFUOmNmrnsk8psaJDYT21PAIXXzM+XRvhoJliyXRdjYp2t
- tTmt4ye6KyvKLxPcLeW6fLwGQsbYM0pI3h4v+KVPQmqT6Ro5Ci/hMZhSgyzQeOE7QYDh
- 1cOIMMwbCI3eOlAHVRLnp5IZE5cGb3Kgs8LL8bpVTg0cl/w6WzHEnXQJ2LPn0SAwxdxs
- c3WnLh4frzIWDA66hECIG60cwfq7toDbMQ2T+30jNb4s1l0GqF9B5vjmfQD3lzHr+IxQ
- by0A==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=GVBj4dVEhIKY7iESU7rq+M4XOWcmefYRi5c8rO4Ucsg=;
+ b=VHa7uATAUTF+hi0Vcpv18Xmuraa71OOiM5fbfnaYRi6UIzJzg1NqdBq0iWM+947tbf
+ vRYcd+6noM0V3xzniXjHTYWClBtFb0AL5Qernu1idHhbMnNZfA9KywSdW4YoyiNE1wzO
+ H8Pd6d7f9bQ8aY0Cf8DNIvtyDn8eNuAMXjdFVqzhf/TdHspnKmVH0sz+agNvjWj3uQD3
+ L2nHltQFrT4GozlGgaRqe1lsWjPo4zyXd+Xh2usP/4whtyM9vk8WBn8/DCM/cpPVWRFh
+ DmA+uVztMCdA+KkO80N8eKM06VL5yVNhA3tRu5bw4SfBB6zf/wBhJSvc4puY+zVy0ZZG
+ Zrww==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -72,59 +62,28 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
+Cc: Tom St Denis <tom.stdenis@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SGkgTWlraGFpbCwKCndlbGwgc2hvcnQgYW5zd2VyIGlzIG5vdCBhdCBhbGwgOikKCkFmdGVyIHRo
-ZSBHUFUgcmVzZXQgaGFwcGVuZWQgYWxsIHdhdmVzIHNob3VsZCBiZSBnb25lIGFuZCB0aGUgZ2Z4
-IGJsb2NrIAppbiBhIGNsZWFuIHN0YXRlIGFnYWluLgoKV2hhdCB5b3UgbmVlZCB0byBkbyBpcyB0
-byBkaXNhYmxlIGF1dG9tYXRpYyByZXNldCBieSBzZXR0aW5nIAphbWRncHUubG9ja3VwX3RpbWVv
-dXQ9LTEgb24gdGhlIGtlcm5lbCBjb21tYW5kIGxpbmUgYW5kIHRoZW4gaW5zcGVjdCB0aGUgCnN5
-c3RlbSBvdmVyIHNzaC4KClJlZ2FyZHMsCkNocmlzdGlhbi4KCkFtIDAzLjA1LjE5IHVtIDE2OjIw
-IHNjaHJpZWIgTWlraGFpbCBHYXZyaWxvdjoKPiBIaSBmb2xrcy4KPiBJIHRyaWVzIHBsYXkgaW4g
-UmVzaWRlbnQgRXZpbCAyIHJlbWFrZSB2aWEgc3RlYW0gcGxheSBhbmQgbXkgUmFkZW9uIDcKPiAo
-VmVnYSAyMCkgY2FyZCBpcyBleHBlcmllbmNlZCAicmluZyBnZnggdGltZW91dCIgcHJvYmxlbSBl
-dmVyeSB0aW1lCj4gd2hlbiBJIHNlbGVjdCAiU3RvcnkiIGluIHRoZSBtYWluIGdhbWUgbWVudS4K
-PiBTaW5jZSBJIGFtIHNpdHRpbmcgb24gNS4xIGtlcm5lbCBub3cgR1BVIHJlc2V0IG9jY3VycmVk
-IGV2ZXJ5IHRpbWUKPiB3aGVuIGhhcHBlbmVkICJyaW5nIGdmeCB0aW1lb3V0Ii4KPiBTbyBteSBx
-dWVzdGlvbjogSG93IHRvIGR1bXAgZ2Z4IGFuZCB3YXZlcyBhZnRlciBHUFUgcmVzZXQgaGFwcGVu
-ZWQ/IEkKPiBzZWUgdGhhdCBhZnRlciBHUFUgcmVzZXQgaXMgbm90aGluZyB0byBkdW1wLgo+Cj4g
-IyAuL3VtciAtTyBoYWx0X3dhdmVzIC13YQo+IFtXQVJOSU5HXTogUmluZ3MgYXJlIG5vdCBoYWx0
-ZWQhICBVc2UgJy1PIGRpc2FzbV9hbnl3YXlzJyB0byBlbmFibGUKPiBkaXNhc3NlbWJseSB3aXRo
-b3V0IGhhbHRlZCByaW5ncwo+IE5vIGFjdGl2ZSB3YXZlcyEKPgo+ICMgLi91bXIgLVIgZ2Z4Wy5d
-Cj4KPiB2ZWdhMjAuZ2Z4LnJwdHIgPT0gMjU2Cj4gdmVnYTIwLmdmeC53cHRyID09IDI1Ngo+IHZl
-Z2EyMC5nZnguZHJ2X3dwdHIgPT0gMjU2Cj4gdmVnYTIwLmdmeC5yaW5nWyAyMjVdID09IDB4ZmZm
-ZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyMjZdID09IDB4ZmZmZjEwMDAgICAgLi4u
-Cj4gdmVnYTIwLmdmeC5yaW5nWyAyMjddID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdm
-eC5yaW5nWyAyMjhdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyMjld
-ID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyMzBdID09IDB4ZmZmZjEw
-MDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyMzFdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4g
-dmVnYTIwLmdmeC5yaW5nWyAyMzJdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5y
-aW5nWyAyMzNdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyMzRdID09
-IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyMzVdID09IDB4ZmZmZjEwMDAg
-ICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyMzZdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVn
-YTIwLmdmeC5yaW5nWyAyMzddID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5n
-WyAyMzhdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyMzldID09IDB4
-ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNDBdID09IDB4ZmZmZjEwMDAgICAg
-Li4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNDFdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIw
-LmdmeC5yaW5nWyAyNDJdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAy
-NDNdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNDRdID09IDB4ZmZm
-ZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNDVdID09IDB4ZmZmZjEwMDAgICAgLi4u
-Cj4gdmVnYTIwLmdmeC5yaW5nWyAyNDZdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdm
-eC5yaW5nWyAyNDddID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNDhd
-ID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNDldID09IDB4ZmZmZjEw
-MDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNTBdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4g
-dmVnYTIwLmdmeC5yaW5nWyAyNTFdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5y
-aW5nWyAyNTJdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNTNdID09
-IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNTRdID09IDB4ZmZmZjEwMDAg
-ICAgLi4uCj4gdmVnYTIwLmdmeC5yaW5nWyAyNTVdID09IDB4ZmZmZjEwMDAgICAgLi4uCj4gdmVn
-YTIwLmdmeC5yaW5nWyAyNTZdID09IDB4YzAwMzIyMDAgICAgcndECj4KPgo+IC0tCj4gQmVzdCBS
-ZWdhcmRzLAo+IE1pa2UgR2F2cmlsb3YuCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KPiBhbWQtZ2Z4IG1haWxpbmcgbGlzdAo+IGFtZC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9hbWQtZ2Z4CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+T24gU2F0LCA0IE1heSAyMDE5IGF0IDEyOjMzLCBDaHJpc3RpYW4gS8O2bmlnCjxja29lbmlnLmxl
+aWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBIaSBNaWtoYWlsLAo+Cj4gd2VsbCBz
+aG9ydCBhbnN3ZXIgaXMgbm90IGF0IGFsbCA6KQo+Cj4gQWZ0ZXIgdGhlIEdQVSByZXNldCBoYXBw
+ZW5lZCBhbGwgd2F2ZXMgc2hvdWxkIGJlIGdvbmUgYW5kIHRoZSBnZnggYmxvY2sKPiBpbiBhIGNs
+ZWFuIHN0YXRlIGFnYWluLgo+Cj4gV2hhdCB5b3UgbmVlZCB0byBkbyBpcyB0byBkaXNhYmxlIGF1
+dG9tYXRpYyByZXNldCBieSBzZXR0aW5nCj4gYW1kZ3B1LmxvY2t1cF90aW1lb3V0PS0xIG9uIHRo
+ZSBrZXJuZWwgY29tbWFuZCBsaW5lIGFuZCB0aGVuIGluc3BlY3QgdGhlCj4gc3lzdGVtIG92ZXIg
+c3NoLgo+CgpUaGlzIGlzIG5vdCBjb252ZW5pZW50LCBiZWNhdXNlOgotIHJlcXVpcmVzIGFuIGFk
+ZGl0aW9uYWwgY29tcHV0ZXIuCi0gYWZ0ZXIgdGhlIEdQVSBmcmVlemVzLCB0aGUgY2hhbmNlcyBv
+ZiBjb3JyZWN0bHkgcmVzdGFydGluZyB0aGUKY29tcHV0ZXIgdGVuZCB0byB6ZXJvLgpGb3IgbWUs
+IGFzIGEgYnVnIGh1bnRlciwgaXQgd291bGQgYmUgbW9yZSBjb252ZW5pZW50IGlmIGFsbCB0aGUg
+ZHVtcHMKd2VyZSBhdXRvbWF0aWNhbGx5IGRyb3BwZWQgYmVmb3JlIHJlc2V0dGluZyB0aGUgR1BV
+IHRvIHNwZWNpZmllZApkaXJlY3RvcnkuCgpCdXQgdGhhbmtzIGFueXdheS4KSGVyZSBpcyBhIG5l
+dyBidWcgcmVwb3J0OiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
+ZD0xMTA2MDUKCi0tCkJlc3QgUmVnYXJkcywKTWlrZSBHYXZyaWxvdi4KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1k
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
