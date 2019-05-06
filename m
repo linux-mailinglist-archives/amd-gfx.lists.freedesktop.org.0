@@ -1,53 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D1ED14AB2
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2019 15:16:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1993A148DC
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2019 13:24:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3128489915;
-	Mon,  6 May 2019 13:16:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62A8A89831;
+	Mon,  6 May 2019 11:24:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mo6-p00-ob.smtp.rzone.de (mo6-p00-ob.smtp.rzone.de
- [IPv6:2a01:238:20a:202:5300::9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF54896E5
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 May 2019 10:55:46 +0000 (UTC)
-X-RZG-AUTH: ":NW0KfEuIYvY/xzctq0OeiE2W912UUs5cb1akLvZ1gZCDX/4R8MPEtkdPv9gBMpSDcbb1tQ=="
-X-RZG-CLASS-ID: mo01
-Received: from [10.170.101.216] by smtp.strato.de (RZmta 44.18 AUTH)
- with ESMTPSA id U0a003v46AtdyBz
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with
- 521 ECDH bits, eq. 15360 bits RSA))
- (Client did not present a certificate);
- Mon, 6 May 2019 12:55:39 +0200 (CEST)
-Subject: Re: Bug Report: [PowerPlay] MCLK can't be set above 1107MHz on Vega 64
-To: "Quan, Evan" <Evan.Quan@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <f0312882-75cf-f79e-9fe8-fd95adf739b9@yiannakis.de>
- <MN2PR12MB3344B68A267771FF8D12C0ECE4300@MN2PR12MB3344.namprd12.prod.outlook.com>
-From: Yanik Yiannakis <yanik@yiannakis.de>
-Message-ID: <077d0738-d545-b1f1-bfa4-f242288047c3@yiannakis.de>
-Date: Mon, 6 May 2019 12:55:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03CC489831
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 May 2019 11:24:26 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id o189so4323669wmb.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 06 May 2019 04:24:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=zw3rlTki6XMG/zhXaWC9bsVYd4/Vo+xyRomYILR6sy0=;
+ b=t4HrLiaFP3NbTyvIDWxlrTS8FJxBomAtIAUZZpfO3abRL81BqUCgJy5HdwXtySRLQx
+ DJJ0p03KPpDIb48SzLJWOLOtg3zylwzcxfPQ3CXf8P3M/ns6f6tjEfoYCc7jPeFpVYBH
+ ry0Cpk+Y8vsoc12TR6N1gNgv1YVc9Xn+vB7ByLQntLLLbD9nI30hCGs8HNJDkdpgnmJ/
+ x49J1dYgS36PaGN0s9kge5InqRTzfjzeUMUwZfqIKlpP00Ey1YT/0Lsf5CqutpRa4wk4
+ dCpZDZJtVdantnSk8PM7IG1gSsaQFI2LNuLSZeA915pn89gF70/MAoDWiqxVmHH5HItF
+ RaCg==
+X-Gm-Message-State: APjAAAWwsvE9bCO0eO+hqSddqJE5jsDFsvfC561K4BM321HrDGq9x9By
+ xCWcU65CvlF0YuAD/vscAsbQF0ZO
+X-Google-Smtp-Source: APXvYqyTSdxWD9pIzw9c1QLkv/VcNB6w0POVp27evSNHEbByzYZpk6CcwRsm4lS+an9BxRiBqPOV1Q==
+X-Received: by 2002:a1c:4d04:: with SMTP id o4mr6362956wmh.126.1557141864286; 
+ Mon, 06 May 2019 04:24:24 -0700 (PDT)
+Received: from abel.fritz.box ([2a02:908:1252:fb60:d5a7:5d5b:f274:e2b1])
+ by smtp.gmail.com with ESMTPSA id u14sm7818313wrr.1.2019.05.06.04.24.23
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 06 May 2019 04:24:23 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: rename amdgpu_prime.[ch] into amdgpu_dma_buf.[ch]
+Date: Mon,  6 May 2019 13:24:22 +0200
+Message-Id: <20190506112422.65639-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <MN2PR12MB3344B68A267771FF8D12C0ECE4300@MN2PR12MB3344.namprd12.prod.outlook.com>
-Content-Language: en-US
-X-Mailman-Approved-At: Mon, 06 May 2019 13:16:30 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- t=1557140144; 
- l=4664; s=strato-dkim-0002; d=yiannakis.de;
- h=In-Reply-To:Date:Message-ID:From:References:To:Subject:
- X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
- bh=28SRTQ83TeDk4bWtUeK9cnfr2qaR5JbMCDe5IuIt750=;
- b=kaLANNVLKX+x4FSML3ZJOwDx7ewCU3UB4Sgyzq8fSB6G0iHkH3gymDXt3iW7WauLgB
- VSqteCRGBSy3C90vSBQz/sUrawATo5HfAKoKZ59Gd13NZfWrPuWIH3S5zgY7inqPZk5g
- gwHiHLU05jjCDGGDX8CsxWI+d6HJzMt5U+aSHdwwMrrqOocE+upPDqFwIebFJoMXPDvO
- HWJqF9EI4Fd7aU0YLBgNKnZPwgVwCdxm57jAAIdJIcbPsF3daNLwZpitdiVw4FLSfVxh
- MiiplYizEyVsRSpVabZj6NaskeegHvgkbBv8glLTL7GjXzSylqnBUl572MNg2/KBEhPX
- dDXQ==
+ d=gmail.com; s=20161025;
+ h=from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=zw3rlTki6XMG/zhXaWC9bsVYd4/Vo+xyRomYILR6sy0=;
+ b=tgoSfPTTTNasWoqqXYBW/NnS0nZkjTL0qG/YPU8DwMfC0x7iOYT1vI1tZnyWYmNXrZ
+ 4p9io9vunQa1Rl2tncaukY8U5DiOyZfWtOjcAv1RBUBcfx6G058BDcxM5aZAKjYPA/dK
+ wyywhmsOw0LUIiLDmhfNFgu2g7G7bxTSqyK/OFjwlsy1rC1fjnH6LXbn7TBQh/Fk7pcL
+ EKogxFC0izpBAyYMsq0eREp0ARLuRjMeQFGFFb/LLoqqLs2MoEKt+5z+4bQFCg3q2BF0
+ mPShioNBJpMRediVpN0rwQELodKSwmA1TsP0nMwbiYBA//Xlomzt/z/j582Gvky9uX+4
+ os7g==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -59,510 +67,252 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2035051631=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============2035051631==
-Content-Type: multipart/alternative;
- boundary="------------85638EB5C2B8B837063CE18B"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------85638EB5C2B8B837063CE18B
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Hello Evan,
-
-Yes I always used that command to commit my changes. I also have 
-amdgpu.ppfeaturemask=0xffffffff as a boot parameter and I set 
-power_dpm_force_performance_level to manual. Sorry for omitting that I 
-assumed it was evident.
-
-I have heard that the MCLK can only be as high as the SOCCLK. That would 
-make sense because the SOCCLK of my Vega 64 is 1107MHz in its highest 
-state. I noticed that on Windows the SOCCLK is raised automatically if 
-the user sets the MCLK high enough through Wattman.
-
-To replicate this on Linux I manually edited the pp_table to change the 
-MCLK to 1175MHz and the SOCCLK to 1180MHz. The new SOCCLK was displayed 
-in pp_dpm_socclk and in Unigine Superposition the FPS increased as 
-expected (compared to an MCLK of 1107MHz). As a final test I edited the 
-pp_table to set the MCLK to 1220MHz (this was unstable on Windows) and 
-the SOCCLK to 1250MHz. This resulted in a crash (just like on Windows) 
-which indicates that the MCLK really was set to 1220MHz.
-
-My understanding of the situation is that powerplay doesn't 
-automatically raise the SOCCLK like Wattman.
-It would be cool if the user had the ability to overclock the SOCCLK 
-through powerplay.
-
-Greetings,
-Yanik
-
-
-On 06.05.19 10:13, Quan, Evan wrote:
->
-> +Alex,
->
-> Hi Yanik,
->
-> Did you ever run the following command to let your OD settings take 
-> effect (before running games)? Otherwise, they did not take effect 
-> actually.
->
-> echo "c" > 
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage
->
-> Regards,
->
-> Evan
->
-> *From:*Yanik Yiannakis <yanik@yiannakis.de>
-> *Sent:* Monday, April 29, 2019 7:44 AM
-> *To:* rex.zhu@amd.com; Quan, Evan <Evan.Quan@amd.com>; 
-> amd-gfx@lists.freedesktop.org
-> *Subject:* Bug Report: [PowerPlay] MCLK can't be set above 1107MHz on 
-> Vega 64
->
-> Hello,
->
-> I experience a bug that prevents me from setting the MCLK of my Vega 
-> 64 LC above 1107MHz.
->
-> I am using Unigine Superposition 1.1 in "Game"-mode to check the 
-> performance by watching the FPS.
->
-> *Behaviour with a single monitor:*
->
-> First I set the MCLK to a known stable value below 1108MHz:
->
-> /$ echo "m 3 1100 950" > 
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage/
->
-> In Unigine Superposition the FPS increase as expected.
->
-> pp_dpm_mclk also confirms the change.
->
-> /$ watch cat 
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_dpm_mclk/
->
->     0: 167Mhz
->     1: 500Mhz
->     2: 800Mhz
->     3: 1100Mhz *
->
-> After that I set the MCLK to a stable value above 1107MHz:
->
-> /$ echo "m 3 1200 950" > 
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage/
->
-> In Unigine Superposition the FPS drop drastically.
->
-> pp_dpm_mclk indicates that the MCLK is stuck in state 0 (167MHz):
->
->     0: 167Mhz *
->     1: 500Mhz
->     2: 800Mhz
->     3: 1200Mhz
->
-> *Behaviour with multiple monitors that have different refresh rates:*
->
-> My monitors have different refresh rates. This causes the MCLK to stay 
-> in state 3 (945MHz stock) which is the expected behaviour as I 
-> understand it.
->
-> Now I try to set the MCLK to a value above 1107MHz:
->
-> /$ echo "m 3 1200 950" > 
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage/
->
-> The FPS in Unigine Superposition remain the same as they were with 945MHz.
->
-> pp_dpm_mclk shows however that the value was set:
->
->     0: 167Mhz
->     1: 500Mhz
->     2: 800Mhz
->     3: 1200Mhz *
->
-> Then I set the MCLK to a value of 1107MHz or lower:
->
-> /$ echo "m 3 1100 950" > 
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage/
->
-> The FPS in Unigine Superposition *increase*.
->
-> pp_dpm_mclk again confirms the set value:
->
->     0: 167Mhz
->     1: 500Mhz
->     2: 800Mhz
->     3: 1100Mhz *
->
-> Finally I increase MCLK to a known unstable value:
->
-> /$ echo "m 3 1300 950" > 
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage/
->
-> The FPS in Unigine Superposition remain the same. I therefore believe 
-> the value was not actually applied.
->
-> However pp_dpm_mclk shows that it was:
->
->     0: 167Mhz
->     1: 500Mhz
->     2: 800Mhz
->     3: 1300Mhz *
->
-> amdgpu_pm_info also claims that the value was set:
->
-> /$ sudo watch cat /sys/kernel/debug/dri/1/amdgpu_pm_info/
->
->     GFX Clocks and Power:
->             1300 MHz (MCLK)
->             27 MHz (SCLK)
->             1348 MHz (PSTATE_SCLK)
->             800 MHz (PSTATE_MCLK)
->             825 mV (VDDGFX)
->             4.0 W (average GPU)
->
-> Again, I think the displayed MCLK is false and the memory still runs 
-> at 1100MHz because the performance in Unigine Superposition indicates 
-> this and 1300MHz would cause a crash immediately.
->
-> A stable value (e.g. 1200MHz) causes the same behaviour. I just chose 
-> 1300MHz to be sure.
->
-> Tested on these Kernels:
->
->     Arch-Linux 5.0.9 (Arch)
->
->     Linux 5.1-rc6 (Ubuntu)
->
->     Linux 5.0 with amd-staging-drm-next (Ubuntu)
->     (https://github.com/M-Bab/linux-kernel-amdgpu-binaries)
->
-> (Same behaviour on every kernel.)
->
-> Tested on this hardware:
->
->     CPU: Intel i7-8700k
->
->     Motherboard: MSI Z370 Gaming Pro Carbon
->
->     GPU: Powercolor Vega 64 Liquid Cooled (Memory stable below
->     1220MHz, tested on Windows 10 with Wattman and Unigine Superposition)
->
-> Unigine Superposition "Game"-Mode settings:
->
->     Preset: Custom
->
->     Fullscreen: Disabled
->
->     Resolution: 3840x2160 (4K UHD)
->
->     Shaders Quality: Extreme
->
->     Textures Quality: High
->
->     Vsync: Off
->
->     Depth of Field: On
->
->     Motion Blur: On
->
-> I hope this helps.
->
-> Yanik Yiannakis
->
-
---------------85638EB5C2B8B837063CE18B
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hello Evan,<br>
-      <br>
-      Yes I always used that command to commit my changes. I also have
-      amdgpu.ppfeaturemask=0xffffffff as a boot parameter and I set
-      power_dpm_force_performance_level to manual. Sorry for omitting
-      that I assumed it was evident.<br>
-      <br>
-      I have heard that the MCLK can only be as high as the SOCCLK. That
-      would make sense because the SOCCLK of my Vega 64 is 1107MHz in
-      its highest state. I noticed that on Windows the SOCCLK is raised
-      automatically if the user sets the MCLK high enough through
-      Wattman.<br>
-      <br>
-      To replicate this on Linux I manually edited the pp_table to
-      change the MCLK to 1175MHz and the SOCCLK to 1180MHz. The new
-      SOCCLK was displayed in pp_dpm_socclk and in Unigine Superposition
-      the FPS increased as expected (compared to an MCLK of 1107MHz). As
-      a final test I edited the pp_table to set the MCLK to 1220MHz
-      (this was unstable on Windows) and the SOCCLK to 1250MHz. This
-      resulted in a crash (just like on Windows) which indicates that
-      the MCLK really was set to 1220MHz.<br>
-      <br>
-      My understanding of the situation is that powerplay doesn't
-      automatically raise the SOCCLK like Wattman. <br>
-      It would be cool if the user had the ability to overclock the
-      SOCCLK through powerplay.<br>
-      <br>
-      Greetings,<br>
-      Yanik</p>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 06.05.19 10:13, Quan, Evan wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:MN2PR12MB3344B68A267771FF8D12C0ECE4300@MN2PR12MB3344.namprd12.prod.outlook.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:宋体;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@宋体";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	color:black;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	color:black;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal"><span style="color:windowtext">+Alex,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:windowtext"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:windowtext">Hi Yanik,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:windowtext"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:windowtext">Did you ever
-            run the following command to let your OD settings take
-            effect (before running games)? Otherwise, they did not take
-            effect actually.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:windowtext">echo "c"
-            &gt;
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:windowtext"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:windowtext">Regards,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:windowtext">Evan<o:p></o:p></span></p>
-        <div style="border:none;border-left:solid blue 1.5pt;padding:0in
-          0in 0in 4.0pt">
-          <div>
-            <div style="border:none;border-top:solid #E1E1E1
-              1.0pt;padding:3.0pt 0in 0in 0in">
-              <p class="MsoNormal"><b><span style="color:windowtext">From:</span></b><span
-                  style="color:windowtext"> Yanik Yiannakis
-                  <a class="moz-txt-link-rfc2396E" href="mailto:yanik@yiannakis.de">&lt;yanik@yiannakis.de&gt;</a>
-                  <br>
-                  <b>Sent:</b> Monday, April 29, 2019 7:44 AM<br>
-                  <b>To:</b> <a class="moz-txt-link-abbreviated" href="mailto:rex.zhu@amd.com">rex.zhu@amd.com</a>; Quan, Evan
-                  <a class="moz-txt-link-rfc2396E" href="mailto:Evan.Quan@amd.com">&lt;Evan.Quan@amd.com&gt;</a>;
-                  <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><br>
-                  <b>Subject:</b> Bug Report: [PowerPlay] MCLK can't be
-                  set above 1107MHz on Vega 64<o:p></o:p></span></p>
-            </div>
-          </div>
-          <p class="MsoNormal"><o:p> </o:p></p>
-          <p>Hello,<o:p></o:p></p>
-          <p>I experience a bug that prevents me from setting the MCLK
-            of my Vega 64 LC above 1107MHz.
-            <o:p></o:p></p>
-          <p>I am using Unigine Superposition 1.1 in "Game"-mode to
-            check the performance by watching the FPS.<o:p></o:p></p>
-          <p class="MsoNormal"><o:p> </o:p></p>
-          <p><b>Behaviour with a single monitor:</b><o:p></o:p></p>
-          <p>First I set the MCLK to a known stable value below 1108MHz:<o:p></o:p></p>
-          <p><i>$ echo "m 3 1100 950" &gt;
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage</i><o:p></o:p></p>
-          <p>In Unigine Superposition the FPS increase as expected. <o:p></o:p></p>
-          <p>pp_dpm_mclk also confirms the change. <o:p></o:p></p>
-          <p><i>$ watch cat
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_dpm_mclk</i><o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p>0: 167Mhz<br>
-              1: 500Mhz<br>
-              2: 800Mhz<br>
-              3: 1100Mhz *<o:p></o:p></p>
-          </blockquote>
-          <p><o:p> </o:p></p>
-          <p>After that I set the MCLK to a stable value above 1107MHz:<o:p></o:p></p>
-          <p><i>$ echo "m 3 1200 950" &gt;
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage</i><o:p></o:p></p>
-          <p>In Unigine Superposition the FPS drop drastically.<o:p></o:p></p>
-          <p>pp_dpm_mclk indicates that the MCLK is stuck in state 0
-            (167MHz):<o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p>0: 167Mhz *<br>
-              1: 500Mhz<br>
-              2: 800Mhz<br>
-              3: 1200Mhz<o:p></o:p></p>
-          </blockquote>
-          <p><o:p> </o:p></p>
-          <p><b>Behaviour with multiple monitors that have different
-              refresh rates:</b><o:p></o:p></p>
-          <p>My monitors have different refresh rates. This causes the
-            MCLK to stay in state 3 (945MHz stock) which is the expected
-            behaviour as I understand it.<o:p></o:p></p>
-          <p><o:p> </o:p></p>
-          <p>Now I try to set the MCLK to a value above 1107MHz:<o:p></o:p></p>
-          <p><i>$ echo "m 3 1200 950" &gt;
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage</i><o:p></o:p></p>
-          <p>The FPS in Unigine Superposition remain the same as they
-            were with 945MHz.<o:p></o:p></p>
-          <p>pp_dpm_mclk shows however that the value was set:<o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p>0: 167Mhz<br>
-              1: 500Mhz<br>
-              2: 800Mhz<br>
-              3: 1200Mhz *<o:p></o:p></p>
-          </blockquote>
-          <p><o:p> </o:p></p>
-          <p>Then I set the MCLK to a value of 1107MHz or lower:<o:p></o:p></p>
-          <p><i>$ echo "m 3 1100 950" &gt;
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage</i><o:p></o:p></p>
-          <p>The FPS in Unigine Superposition <b>increase</b>.<o:p></o:p></p>
-          <p>pp_dpm_mclk again confirms the set value:<o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p>0: 167Mhz<br>
-              1: 500Mhz<br>
-              2: 800Mhz<br>
-              3: 1100Mhz *<o:p></o:p></p>
-          </blockquote>
-          <p><o:p> </o:p></p>
-          <p class="MsoNormal">Finally I increase MCLK to a known
-            unstable value:<o:p></o:p></p>
-          <p><i>$ echo "m 3 1300 950" &gt;
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/pp_od_clk_voltage</i><o:p></o:p></p>
-          <p>The FPS in Unigine Superposition remain the same. I
-            therefore believe the value was not actually applied.<o:p></o:p></p>
-          <p>However pp_dpm_mclk shows that it was:<o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p>0: 167Mhz<br>
-              1: 500Mhz<br>
-              2: 800Mhz<br>
-              3: 1300Mhz *<o:p></o:p></p>
-          </blockquote>
-          <p><o:p> </o:p></p>
-          <p>amdgpu_pm_info also claims that the value was set:<o:p></o:p></p>
-          <p><i>$ sudo watch cat /sys/kernel/debug/dri/1/amdgpu_pm_info</i><o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p>GFX Clocks and Power:<br>
-                      1300 MHz (MCLK)<br>
-                      27 MHz (SCLK)<br>
-                      1348 MHz (PSTATE_SCLK)<br>
-                      800 MHz (PSTATE_MCLK)<br>
-                      825 mV (VDDGFX)<br>
-                      4.0 W (average GPU)<o:p></o:p></p>
-          </blockquote>
-          <p>Again, I think the displayed MCLK is false and the memory
-            still runs at 1100MHz because the performance in Unigine
-            Superposition indicates this and 1300MHz would cause a crash
-            immediately.<o:p></o:p></p>
-          <p>A stable value (e.g. 1200MHz) causes the same behaviour. I
-            just chose 1300MHz to be sure.<o:p></o:p></p>
-          <p><o:p> </o:p></p>
-          <p><o:p> </o:p></p>
-          <p>Tested on these Kernels:<o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p>Arch-Linux 5.0.9 (Arch)<o:p></o:p></p>
-            <p>Linux 5.1-rc6 (Ubuntu)<o:p></o:p></p>
-            <p>Linux 5.0 with amd-staging-drm-next (Ubuntu) (<a
-                href="https://github.com/M-Bab/linux-kernel-amdgpu-binaries"
-                moz-do-not-send="true">https://github.com/M-Bab/linux-kernel-amdgpu-binaries</a>)<o:p></o:p></p>
-          </blockquote>
-          <p>(Same behaviour on every kernel.)<o:p></o:p></p>
-          <p><o:p> </o:p></p>
-          <p>Tested on this hardware:<o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p>CPU: Intel i7-8700k<o:p></o:p></p>
-            <p>Motherboard: MSI Z370 Gaming Pro Carbon<o:p></o:p></p>
-            <p>GPU: Powercolor Vega 64 Liquid Cooled (Memory stable
-              below 1220MHz, tested on Windows 10 with Wattman and
-              Unigine Superposition)<o:p></o:p></p>
-          </blockquote>
-          <p><o:p> </o:p></p>
-          <p>Unigine Superposition "Game"-Mode settings: <o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <p>Preset: Custom<o:p></o:p></p>
-            <p>Fullscreen: Disabled<o:p></o:p></p>
-            <p>Resolution: 3840x2160 (4K UHD)<o:p></o:p></p>
-            <p>Shaders Quality: Extreme<o:p></o:p></p>
-            <p>Textures Quality: High<o:p></o:p></p>
-            <p>Vsync: Off<o:p></o:p></p>
-            <p>Depth of Field: On<o:p></o:p></p>
-            <p>Motion Blur: On<o:p></o:p></p>
-          </blockquote>
-          <p><o:p> </o:p></p>
-          <p>I hope this helps.<o:p></o:p></p>
-          <p>Yanik Yiannakis<o:p></o:p></p>
-        </div>
-      </div>
-    </blockquote>
-  </body>
-</html>
-
---------------85638EB5C2B8B837063CE18B--
-
---===============2035051631==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============2035051631==--
+V2UgYXJlIGdldHRpbmcgYSBkbWEtYnVmIGltcGxlbWVudGF0aW9uIGNvbXBsZXRlbHkgc2VwYXJh
+dGUgZnJvbSBkcm0gcHJpbWUsCnNvIHJlbmFtZSB0aGUgZmlsZXMgbm93IGFuZCBjbGVhbnVwIHRo
+ZSBjb2RlIGEgYml0LgoKTm8gZnVuY3Rpb25hbCBjaGFuZ2UuCgpTaWduZWQtb2ZmLWJ5OiBDaHJp
+c3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvTWFrZWZpbGUgICAgICAgICAgIHwgICAyICstCiBkcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkLmMgICAgfCAgIDEgKwogLi4uL2dwdS9kcm0vYW1k
+L2FtZGdwdS9hbWRncHVfYW1ka2ZkX2dwdXZtLmMgIHwgICAxICsKIC4uLi97YW1kZ3B1X3ByaW1l
+LmMgPT4gYW1kZ3B1X2RtYV9idWYuY30gICAgICB8IDEzMSArKysrKysrKystLS0tLS0tLS0KIGRy
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kbWFfYnVmLmggICB8ICA0NiArKysrKysK
+IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYyAgICAgICB8ICAgMiArLQog
+ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2dlbS5oICAgICAgIHwgIDE2IC0tLQog
+NyBmaWxlcyBjaGFuZ2VkLCAxMTYgaW5zZXJ0aW9ucygrKSwgODMgZGVsZXRpb25zKC0pCiByZW5h
+bWUgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUve2FtZGdwdV9wcmltZS5jID0+IGFtZGdwdV9k
+bWFfYnVmLmN9ICg5MyUpCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X2RtYV9idWYuaAoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L01ha2VmaWxlIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvTWFrZWZpbGUKaW5k
+ZXggN2Q1MzliYTY0MDBkLi4xMWE2NTFmZjdmMGQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L01ha2VmaWxlCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L01h
+a2VmaWxlCkBAIC00OSw3ICs0OSw3IEBAIGFtZGdwdS15ICs9IGFtZGdwdV9kZXZpY2UubyBhbWRn
+cHVfa21zLm8gXAogCWFtZGdwdV9jcy5vIGFtZGdwdV9iaW9zLm8gYW1kZ3B1X2JlbmNobWFyay5v
+IGFtZGdwdV90ZXN0Lm8gXAogCWFtZGdwdV9wbS5vIGF0b21iaW9zX2RwLm8gYW1kZ3B1X2FmbXQu
+byBhbWRncHVfdHJhY2VfcG9pbnRzLm8gXAogCWF0b21iaW9zX2VuY29kZXJzLm8gYW1kZ3B1X3Nh
+Lm8gYXRvbWJpb3NfaTJjLm8gXAotCWFtZGdwdV9wcmltZS5vIGFtZGdwdV92bS5vIGFtZGdwdV9p
+Yi5vIGFtZGdwdV9wbGwubyBcCisJYW1kZ3B1X2RtYV9idWYubyBhbWRncHVfdm0ubyBhbWRncHVf
+aWIubyBhbWRncHVfcGxsLm8gXAogCWFtZGdwdV91Y29kZS5vIGFtZGdwdV9ib19saXN0Lm8gYW1k
+Z3B1X2N0eC5vIGFtZGdwdV9zeW5jLm8gXAogCWFtZGdwdV9ndHRfbWdyLm8gYW1kZ3B1X3ZyYW1f
+bWdyLm8gYW1kZ3B1X3ZpcnQubyBhbWRncHVfYXRvbWZpcm13YXJlLm8gXAogCWFtZGdwdV92Zl9l
+cnJvci5vIGFtZGdwdV9zY2hlZC5vIGFtZGdwdV9kZWJ1Z2ZzLm8gYW1kZ3B1X2lkcy5vIFwKZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9hbWRrZmQuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9hbWRrZmQuYwppbmRleCBhZWVhZDA3MmZh
+NzkuLmU4MjljNTNhY2NmNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2FtZGtmZC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9h
+bWRrZmQuYwpAQCAtMjUsNiArMjUsNyBAQAogI2luY2x1ZGUgPGRybS9kcm1QLmg+CiAjaW5jbHVk
+ZSAiYW1kZ3B1LmgiCiAjaW5jbHVkZSAiYW1kZ3B1X2dmeC5oIgorI2luY2x1ZGUgImFtZGdwdV9k
+bWFfYnVmLmgiCiAjaW5jbHVkZSA8bGludXgvbW9kdWxlLmg+CiAjaW5jbHVkZSA8bGludXgvZG1h
+LWJ1Zi5oPgogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
+YW1ka2ZkX2dwdXZtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2Zk
+X2dwdXZtLmMKaW5kZXggMDQ3YmJhOGM2MmQ2Li4yYmM4MDk0MmU1ZDUgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9hbWRrZmRfZ3B1dm0uYworKysgYi9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkX2dwdXZtLmMKQEAgLTMwLDYgKzMw
+LDcgQEAKICNpbmNsdWRlICJhbWRncHVfb2JqZWN0LmgiCiAjaW5jbHVkZSAiYW1kZ3B1X3ZtLmgi
+CiAjaW5jbHVkZSAiYW1kZ3B1X2FtZGtmZC5oIgorI2luY2x1ZGUgImFtZGdwdV9kbWFfYnVmLmgi
+CiAKIC8qIFNwZWNpYWwgVk0gYW5kIEdBUlQgYWRkcmVzcyBhbGlnbm1lbnQgbmVlZGVkIGZvciBW
+SSBwcmUtRmlqaSBkdWUgdG8KICAqIGEgSFcgYnVnLgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ByaW1lLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9hbWRncHVfZG1hX2J1Zi5jCnNpbWlsYXJpdHkgaW5kZXggOTMlCnJlbmFtZSBmcm9tIGRyaXZl
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9wcmltZS5jCnJlbmFtZSB0byBkcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5jCmluZGV4IGEzOGUwZmI0YTZmZS4uNDcx
+MWNmMWI1YmQyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
+cHJpbWUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5j
+CkBAIC0xLDUgKzEsNSBAQAogLyoKLSAqIENvcHlyaWdodCAyMDEyIEFkdmFuY2VkIE1pY3JvIERl
+dmljZXMsIEluYy4KKyAqIENvcHlyaWdodCAyMDE5IEFkdmFuY2VkIE1pY3JvIERldmljZXMsIElu
+Yy4KICAqCiAgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwg
+dG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQogICogY29weSBvZiB0aGlzIHNvZnR3YXJlIGFuZCBh
+c3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdhcmUiKSwKQEAgLTEwMyw3
+ICsxMDMsOCBAQCB2b2lkIGFtZGdwdV9nZW1fcHJpbWVfdnVubWFwKHN0cnVjdCBkcm1fZ2VtX29i
+amVjdCAqb2JqLCB2b2lkICp2YWRkcikKICAqIFJldHVybnM6CiAgKiAwIG9uIHN1Y2Nlc3Mgb3Ig
+YSBuZWdhdGl2ZSBlcnJvciBjb2RlIG9uIGZhaWx1cmUuCiAgKi8KLWludCBhbWRncHVfZ2VtX3By
+aW1lX21tYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosIHN0cnVjdCB2bV9hcmVhX3N0cnVj
+dCAqdm1hKQoraW50IGFtZGdwdV9nZW1fcHJpbWVfbW1hcChzdHJ1Y3QgZHJtX2dlbV9vYmplY3Qg
+Km9iaiwKKwkJCSAgc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEpCiB7CiAJc3RydWN0IGFtZGdw
+dV9ibyAqYm8gPSBnZW1fdG9fYW1kZ3B1X2JvKG9iaik7CiAJc3RydWN0IGFtZGdwdV9kZXZpY2Ug
+KmFkZXYgPSBhbWRncHVfdHRtX2FkZXYoYm8tPnRiby5iZGV2KTsKQEAgLTEzNyw1NyArMTM4LDYg
+QEAgaW50IGFtZGdwdV9nZW1fcHJpbWVfbW1hcChzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwg
+c3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEKIAlyZXR1cm4gcmV0OwogfQogCi0vKioKLSAqIGFt
+ZGdwdV9nZW1fcHJpbWVfaW1wb3J0X3NnX3RhYmxlIC0gJmRybV9kcml2ZXIuZ2VtX3ByaW1lX2lt
+cG9ydF9zZ190YWJsZQotICogaW1wbGVtZW50YXRpb24KLSAqIEBkZXY6IERSTSBkZXZpY2UKLSAq
+IEBhdHRhY2g6IERNQS1idWYgYXR0YWNobWVudAotICogQHNnOiBTY2F0dGVyL2dhdGhlciB0YWJs
+ZQotICoKLSAqIEltcG9ydHMgc2hhcmVkIERNQSBidWZmZXIgbWVtb3J5IGV4cG9ydGVkIGJ5IGFu
+b3RoZXIgZGV2aWNlLgotICoKLSAqIFJldHVybnM6Ci0gKiBBIG5ldyBHRU0gQk8gb2YgdGhlIGdp
+dmVuIERSTSBkZXZpY2UsIHJlcHJlc2VudGluZyB0aGUgbWVtb3J5Ci0gKiBkZXNjcmliZWQgYnkg
+dGhlIGdpdmVuIERNQS1idWYgYXR0YWNobWVudCBhbmQgc2NhdHRlci9nYXRoZXIgdGFibGUuCi0g
+Ki8KLXN0cnVjdCBkcm1fZ2VtX29iamVjdCAqCi1hbWRncHVfZ2VtX3ByaW1lX2ltcG9ydF9zZ190
+YWJsZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAotCQkJCSBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2ht
+ZW50ICphdHRhY2gsCi0JCQkJIHN0cnVjdCBzZ190YWJsZSAqc2cpCi17Ci0Jc3RydWN0IHJlc2Vy
+dmF0aW9uX29iamVjdCAqcmVzdiA9IGF0dGFjaC0+ZG1hYnVmLT5yZXN2OwotCXN0cnVjdCBhbWRn
+cHVfZGV2aWNlICphZGV2ID0gZGV2LT5kZXZfcHJpdmF0ZTsKLQlzdHJ1Y3QgYW1kZ3B1X2JvICpi
+bzsKLQlzdHJ1Y3QgYW1kZ3B1X2JvX3BhcmFtIGJwOwotCWludCByZXQ7Ci0KLQltZW1zZXQoJmJw
+LCAwLCBzaXplb2YoYnApKTsKLQlicC5zaXplID0gYXR0YWNoLT5kbWFidWYtPnNpemU7Ci0JYnAu
+Ynl0ZV9hbGlnbiA9IFBBR0VfU0laRTsKLQlicC5kb21haW4gPSBBTURHUFVfR0VNX0RPTUFJTl9D
+UFU7Ci0JYnAuZmxhZ3MgPSAwOwotCWJwLnR5cGUgPSB0dG1fYm9fdHlwZV9zZzsKLQlicC5yZXN2
+ID0gcmVzdjsKLQl3d19tdXRleF9sb2NrKCZyZXN2LT5sb2NrLCBOVUxMKTsKLQlyZXQgPSBhbWRn
+cHVfYm9fY3JlYXRlKGFkZXYsICZicCwgJmJvKTsKLQlpZiAocmV0KQotCQlnb3RvIGVycm9yOwot
+Ci0JYm8tPnRiby5zZyA9IHNnOwotCWJvLT50Ym8udHRtLT5zZyA9IHNnOwotCWJvLT5hbGxvd2Vk
+X2RvbWFpbnMgPSBBTURHUFVfR0VNX0RPTUFJTl9HVFQ7Ci0JYm8tPnByZWZlcnJlZF9kb21haW5z
+ID0gQU1ER1BVX0dFTV9ET01BSU5fR1RUOwotCWlmIChhdHRhY2gtPmRtYWJ1Zi0+b3BzICE9ICZh
+bWRncHVfZG1hYnVmX29wcykKLQkJYm8tPnByaW1lX3NoYXJlZF9jb3VudCA9IDE7Ci0KLQl3d19t
+dXRleF91bmxvY2soJnJlc3YtPmxvY2spOwotCXJldHVybiAmYm8tPmdlbV9iYXNlOwotCi1lcnJv
+cjoKLQl3d19tdXRleF91bmxvY2soJnJlc3YtPmxvY2spOwotCXJldHVybiBFUlJfUFRSKHJldCk7
+Ci19Ci0KIHN0YXRpYyBpbnQKIF9fcmVzZXJ2YXRpb25fb2JqZWN0X21ha2VfZXhjbHVzaXZlKHN0
+cnVjdCByZXNlcnZhdGlvbl9vYmplY3QgKm9iaikKIHsKQEAgLTIzMSw3ICsxODEsNyBAQCBfX3Jl
+c2VydmF0aW9uX29iamVjdF9tYWtlX2V4Y2x1c2l2ZShzdHJ1Y3QgcmVzZXJ2YXRpb25fb2JqZWN0
+ICpvYmopCiB9CiAKIC8qKgotICogYW1kZ3B1X2dlbV9tYXBfYXR0YWNoIC0gJmRtYV9idWZfb3Bz
+LmF0dGFjaCBpbXBsZW1lbnRhdGlvbgorICogYW1kZ3B1X2RtYV9idWZfbWFwX2F0dGFjaCAtICZk
+bWFfYnVmX29wcy5hdHRhY2ggaW1wbGVtZW50YXRpb24KICAqIEBkbWFfYnVmOiBTaGFyZWQgRE1B
+IGJ1ZmZlcgogICogQGF0dGFjaDogRE1BLWJ1ZiBhdHRhY2htZW50CiAgKgpAQCAtMjQyLDggKzE5
+Miw4IEBAIF9fcmVzZXJ2YXRpb25fb2JqZWN0X21ha2VfZXhjbHVzaXZlKHN0cnVjdCByZXNlcnZh
+dGlvbl9vYmplY3QgKm9iaikKICAqIFJldHVybnM6CiAgKiAwIG9uIHN1Y2Nlc3Mgb3IgYSBuZWdh
+dGl2ZSBlcnJvciBjb2RlIG9uIGZhaWx1cmUuCiAgKi8KLXN0YXRpYyBpbnQgYW1kZ3B1X2dlbV9t
+YXBfYXR0YWNoKHN0cnVjdCBkbWFfYnVmICpkbWFfYnVmLAotCQkJCSBzdHJ1Y3QgZG1hX2J1Zl9h
+dHRhY2htZW50ICphdHRhY2gpCitzdGF0aWMgaW50IGFtZGdwdV9kbWFfYnVmX21hcF9hdHRhY2go
+c3RydWN0IGRtYV9idWYgKmRtYV9idWYsCisJCQkJICAgICBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2ht
+ZW50ICphdHRhY2gpCiB7CiAJc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmogPSBkbWFfYnVmLT5w
+cml2OwogCXN0cnVjdCBhbWRncHVfYm8gKmJvID0gZ2VtX3RvX2FtZGdwdV9ibyhvYmopOwpAQCAt
+MjkxLDE1ICsyNDEsMTUgQEAgc3RhdGljIGludCBhbWRncHVfZ2VtX21hcF9hdHRhY2goc3RydWN0
+IGRtYV9idWYgKmRtYV9idWYsCiB9CiAKIC8qKgotICogYW1kZ3B1X2dlbV9tYXBfZGV0YWNoIC0g
+JmRtYV9idWZfb3BzLmRldGFjaCBpbXBsZW1lbnRhdGlvbgorICogYW1kZ3B1X2RtYV9idWZfbWFw
+X2RldGFjaCAtICZkbWFfYnVmX29wcy5kZXRhY2ggaW1wbGVtZW50YXRpb24KICAqIEBkbWFfYnVm
+OiBTaGFyZWQgRE1BIGJ1ZmZlcgogICogQGF0dGFjaDogRE1BLWJ1ZiBhdHRhY2htZW50CiAgKgog
+ICogVGhpcyBpcyBjYWxsZWQgd2hlbiBhIHNoYXJlZCBETUEgYnVmZmVyIG5vIGxvbmdlciBuZWVk
+cyB0byBiZSBhY2Nlc3NpYmxlIGJ5CiAgKiBhbm90aGVyIGRldmljZS4gRm9yIG5vdywgc2ltcGx5
+IHVucGlucyB0aGUgYnVmZmVyIGZyb20gR1RULgogICovCi1zdGF0aWMgdm9pZCBhbWRncHVfZ2Vt
+X21hcF9kZXRhY2goc3RydWN0IGRtYV9idWYgKmRtYV9idWYsCi0JCQkJICBzdHJ1Y3QgZG1hX2J1
+Zl9hdHRhY2htZW50ICphdHRhY2gpCitzdGF0aWMgdm9pZCBhbWRncHVfZG1hX2J1Zl9tYXBfZGV0
+YWNoKHN0cnVjdCBkbWFfYnVmICpkbWFfYnVmLAorCQkJCSAgICAgIHN0cnVjdCBkbWFfYnVmX2F0
+dGFjaG1lbnQgKmF0dGFjaCkKIHsKIAlzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiA9IGRtYV9i
+dWYtPnByaXY7CiAJc3RydWN0IGFtZGdwdV9ibyAqYm8gPSBnZW1fdG9fYW1kZ3B1X2JvKG9iaik7
+CkBAIC0zMzQsNyArMjg0LDcgQEAgc3RydWN0IHJlc2VydmF0aW9uX29iamVjdCAqYW1kZ3B1X2dl
+bV9wcmltZV9yZXNfb2JqKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqKQogfQogCiAvKioKLSAq
+IGFtZGdwdV9nZW1fYmVnaW5fY3B1X2FjY2VzcyAtICZkbWFfYnVmX29wcy5iZWdpbl9jcHVfYWNj
+ZXNzIGltcGxlbWVudGF0aW9uCisgKiBhbWRncHVfZG1hX2J1Zl9iZWdpbl9jcHVfYWNjZXNzIC0g
+JmRtYV9idWZfb3BzLmJlZ2luX2NwdV9hY2Nlc3MgaW1wbGVtZW50YXRpb24KICAqIEBkbWFfYnVm
+OiBTaGFyZWQgRE1BIGJ1ZmZlcgogICogQGRpcmVjdGlvbjogRGlyZWN0aW9uIG9mIERNQSB0cmFu
+c2ZlcgogICoKQEAgLTM0NSw4ICsyOTUsOCBAQCBzdHJ1Y3QgcmVzZXJ2YXRpb25fb2JqZWN0ICph
+bWRncHVfZ2VtX3ByaW1lX3Jlc19vYmooc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmopCiAgKiBS
+ZXR1cm5zOgogICogMCBvbiBzdWNjZXNzIG9yIGEgbmVnYXRpdmUgZXJyb3IgY29kZSBvbiBmYWls
+dXJlLgogICovCi1zdGF0aWMgaW50IGFtZGdwdV9nZW1fYmVnaW5fY3B1X2FjY2VzcyhzdHJ1Y3Qg
+ZG1hX2J1ZiAqZG1hX2J1ZiwKLQkJCQkgICAgICAgZW51bSBkbWFfZGF0YV9kaXJlY3Rpb24gZGly
+ZWN0aW9uKQorc3RhdGljIGludCBhbWRncHVfZG1hX2J1Zl9iZWdpbl9jcHVfYWNjZXNzKHN0cnVj
+dCBkbWFfYnVmICpkbWFfYnVmLAorCQkJCQkgICBlbnVtIGRtYV9kYXRhX2RpcmVjdGlvbiBkaXJl
+Y3Rpb24pCiB7CiAJc3RydWN0IGFtZGdwdV9ibyAqYm8gPSBnZW1fdG9fYW1kZ3B1X2JvKGRtYV9i
+dWYtPnByaXYpOwogCXN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gYW1kZ3B1X3R0bV9hZGV2
+KGJvLT50Ym8uYmRldik7CkBAIC0zNzQsMTIgKzMyNCwxMiBAQCBzdGF0aWMgaW50IGFtZGdwdV9n
+ZW1fYmVnaW5fY3B1X2FjY2VzcyhzdHJ1Y3QgZG1hX2J1ZiAqZG1hX2J1ZiwKIH0KIAogY29uc3Qg
+c3RydWN0IGRtYV9idWZfb3BzIGFtZGdwdV9kbWFidWZfb3BzID0gewotCS5hdHRhY2ggPSBhbWRn
+cHVfZ2VtX21hcF9hdHRhY2gsCi0JLmRldGFjaCA9IGFtZGdwdV9nZW1fbWFwX2RldGFjaCwKKwku
+YXR0YWNoID0gYW1kZ3B1X2RtYV9idWZfbWFwX2F0dGFjaCwKKwkuZGV0YWNoID0gYW1kZ3B1X2Rt
+YV9idWZfbWFwX2RldGFjaCwKIAkubWFwX2RtYV9idWYgPSBkcm1fZ2VtX21hcF9kbWFfYnVmLAog
+CS51bm1hcF9kbWFfYnVmID0gZHJtX2dlbV91bm1hcF9kbWFfYnVmLAogCS5yZWxlYXNlID0gZHJt
+X2dlbV9kbWFidWZfcmVsZWFzZSwKLQkuYmVnaW5fY3B1X2FjY2VzcyA9IGFtZGdwdV9nZW1fYmVn
+aW5fY3B1X2FjY2VzcywKKwkuYmVnaW5fY3B1X2FjY2VzcyA9IGFtZGdwdV9kbWFfYnVmX2JlZ2lu
+X2NwdV9hY2Nlc3MsCiAJLm1tYXAgPSBkcm1fZ2VtX2RtYWJ1Zl9tbWFwLAogCS52bWFwID0gZHJt
+X2dlbV9kbWFidWZfdm1hcCwKIAkudnVubWFwID0gZHJtX2dlbV9kbWFidWZfdnVubWFwLApAQCAt
+NDE3LDYgKzM2Nyw1NyBAQCBzdHJ1Y3QgZG1hX2J1ZiAqYW1kZ3B1X2dlbV9wcmltZV9leHBvcnQo
+c3RydWN0IGRybV9kZXZpY2UgKmRldiwKIAlyZXR1cm4gYnVmOwogfQogCisvKioKKyAqIGFtZGdw
+dV9nZW1fcHJpbWVfaW1wb3J0X3NnX3RhYmxlIC0gJmRybV9kcml2ZXIuZ2VtX3ByaW1lX2ltcG9y
+dF9zZ190YWJsZQorICogaW1wbGVtZW50YXRpb24KKyAqIEBkZXY6IERSTSBkZXZpY2UKKyAqIEBh
+dHRhY2g6IERNQS1idWYgYXR0YWNobWVudAorICogQHNnOiBTY2F0dGVyL2dhdGhlciB0YWJsZQor
+ICoKKyAqIEltcG9ydHMgc2hhcmVkIERNQSBidWZmZXIgbWVtb3J5IGV4cG9ydGVkIGJ5IGFub3Ro
+ZXIgZGV2aWNlLgorICoKKyAqIFJldHVybnM6CisgKiBBIG5ldyBHRU0gQk8gb2YgdGhlIGdpdmVu
+IERSTSBkZXZpY2UsIHJlcHJlc2VudGluZyB0aGUgbWVtb3J5CisgKiBkZXNjcmliZWQgYnkgdGhl
+IGdpdmVuIERNQS1idWYgYXR0YWNobWVudCBhbmQgc2NhdHRlci9nYXRoZXIgdGFibGUuCisgKi8K
+K3N0cnVjdCBkcm1fZ2VtX29iamVjdCAqCithbWRncHVfZ2VtX3ByaW1lX2ltcG9ydF9zZ190YWJs
+ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAorCQkJCSBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2htZW50
+ICphdHRhY2gsCisJCQkJIHN0cnVjdCBzZ190YWJsZSAqc2cpCit7CisJc3RydWN0IHJlc2VydmF0
+aW9uX29iamVjdCAqcmVzdiA9IGF0dGFjaC0+ZG1hYnVmLT5yZXN2OworCXN0cnVjdCBhbWRncHVf
+ZGV2aWNlICphZGV2ID0gZGV2LT5kZXZfcHJpdmF0ZTsKKwlzdHJ1Y3QgYW1kZ3B1X2JvICpibzsK
+KwlzdHJ1Y3QgYW1kZ3B1X2JvX3BhcmFtIGJwOworCWludCByZXQ7CisKKwltZW1zZXQoJmJwLCAw
+LCBzaXplb2YoYnApKTsKKwlicC5zaXplID0gYXR0YWNoLT5kbWFidWYtPnNpemU7CisJYnAuYnl0
+ZV9hbGlnbiA9IFBBR0VfU0laRTsKKwlicC5kb21haW4gPSBBTURHUFVfR0VNX0RPTUFJTl9DUFU7
+CisJYnAuZmxhZ3MgPSAwOworCWJwLnR5cGUgPSB0dG1fYm9fdHlwZV9zZzsKKwlicC5yZXN2ID0g
+cmVzdjsKKwl3d19tdXRleF9sb2NrKCZyZXN2LT5sb2NrLCBOVUxMKTsKKwlyZXQgPSBhbWRncHVf
+Ym9fY3JlYXRlKGFkZXYsICZicCwgJmJvKTsKKwlpZiAocmV0KQorCQlnb3RvIGVycm9yOworCisJ
+Ym8tPnRiby5zZyA9IHNnOworCWJvLT50Ym8udHRtLT5zZyA9IHNnOworCWJvLT5hbGxvd2VkX2Rv
+bWFpbnMgPSBBTURHUFVfR0VNX0RPTUFJTl9HVFQ7CisJYm8tPnByZWZlcnJlZF9kb21haW5zID0g
+QU1ER1BVX0dFTV9ET01BSU5fR1RUOworCWlmIChhdHRhY2gtPmRtYWJ1Zi0+b3BzICE9ICZhbWRn
+cHVfZG1hYnVmX29wcykKKwkJYm8tPnByaW1lX3NoYXJlZF9jb3VudCA9IDE7CisKKwl3d19tdXRl
+eF91bmxvY2soJnJlc3YtPmxvY2spOworCXJldHVybiAmYm8tPmdlbV9iYXNlOworCitlcnJvcjoK
+Kwl3d19tdXRleF91bmxvY2soJnJlc3YtPmxvY2spOworCXJldHVybiBFUlJfUFRSKHJldCk7Cit9
+CisKIC8qKgogICogYW1kZ3B1X2dlbV9wcmltZV9pbXBvcnQgLSAmZHJtX2RyaXZlci5nZW1fcHJp
+bWVfaW1wb3J0IGltcGxlbWVudGF0aW9uCiAgKiBAZGV2OiBEUk0gZGV2aWNlCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5oIGIvZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuaApuZXcgZmlsZSBtb2RlIDEwMDY0NApp
+bmRleCAwMDAwMDAwMDAwMDAuLmM3MDU2Y2JlODY4NQotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kbWFfYnVmLmgKQEAgLTAsMCArMSw0NiBAQAor
+LyoKKyAqIENvcHlyaWdodCAyMDE5IEFkdmFuY2VkIE1pY3JvIERldmljZXMsIEluYy4KKyAqCisg
+KiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBl
+cnNvbiBvYnRhaW5pbmcgYQorICogY29weSBvZiB0aGlzIHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVk
+IGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdhcmUiKSwKKyAqIHRvIGRlYWwgaW4gdGhl
+IFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRp
+b24KKyAqIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBk
+aXN0cmlidXRlLCBzdWJsaWNlbnNlLAorICogYW5kL29yIHNlbGwgY29waWVzIG9mIHRoZSBTb2Z0
+d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJzb25zIHRvIHdob20gdGhlCisgKiBTb2Z0d2FyZSBpcyBm
+dXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgor
+ICoKKyAqIFRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90
+aWNlIHNoYWxsIGJlIGluY2x1ZGVkIGluCisgKiBhbGwgY29waWVzIG9yIHN1YnN0YW50aWFsIHBv
+cnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KKyAqCisgKiBUSEUgU09GVFdBUkUgSVMgUFJPVklERUQg
+IkFTIElTIiwgV0lUSE9VVCBXQVJSQU5UWSBPRiBBTlkgS0lORCwgRVhQUkVTUyBPUgorICogSU1Q
+TElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBUTyBUSEUgV0FSUkFOVElFUyBPRiBNRVJD
+SEFOVEFCSUxJVFksCisgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9O
+SU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKKyAqIFRIRSBDT1BZUklHSFQgSE9MREVS
+KFMpIE9SIEFVVEhPUihTKSBCRSBMSUFCTEUgRk9SIEFOWSBDTEFJTSwgREFNQUdFUyBPUgorICog
+T1RIRVIgTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFDVCwgVE9SVCBP
+UiBPVEhFUldJU0UsCisgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJ
+VEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IKKyAqIE9USEVSIERFQUxJTkdTIElOIFRIRSBT
+T0ZUV0FSRS4KKyAqCisgKi8KKyNpZm5kZWYgX19BTURHUFVfRE1BX0JVRl9IX18KKyNkZWZpbmUg
+X19BTURHUFVfRE1BX0JVRl9IX18KKworI2luY2x1ZGUgPGRybS9kcm1fZ2VtLmg+CisKK3N0cnVj
+dCBzZ190YWJsZSAqYW1kZ3B1X2dlbV9wcmltZV9nZXRfc2dfdGFibGUoc3RydWN0IGRybV9nZW1f
+b2JqZWN0ICpvYmopOworc3RydWN0IGRybV9nZW1fb2JqZWN0ICoKK2FtZGdwdV9nZW1fcHJpbWVf
+aW1wb3J0X3NnX3RhYmxlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCisJCQkJIHN0cnVjdCBkbWFf
+YnVmX2F0dGFjaG1lbnQgKmF0dGFjaCwKKwkJCQkgc3RydWN0IHNnX3RhYmxlICpzZyk7CitzdHJ1
+Y3QgZG1hX2J1ZiAqYW1kZ3B1X2dlbV9wcmltZV9leHBvcnQoc3RydWN0IGRybV9kZXZpY2UgKmRl
+diwKKwkJCQkJc3RydWN0IGRybV9nZW1fb2JqZWN0ICpnb2JqLAorCQkJCQlpbnQgZmxhZ3MpOwor
+c3RydWN0IGRybV9nZW1fb2JqZWN0ICphbWRncHVfZ2VtX3ByaW1lX2ltcG9ydChzdHJ1Y3QgZHJt
+X2RldmljZSAqZGV2LAorCQkJCQkgICAgc3RydWN0IGRtYV9idWYgKmRtYV9idWYpOworc3RydWN0
+IHJlc2VydmF0aW9uX29iamVjdCAqYW1kZ3B1X2dlbV9wcmltZV9yZXNfb2JqKHN0cnVjdCBkcm1f
+Z2VtX29iamVjdCAqKTsKK3ZvaWQgKmFtZGdwdV9nZW1fcHJpbWVfdm1hcChzdHJ1Y3QgZHJtX2dl
+bV9vYmplY3QgKm9iaik7Cit2b2lkIGFtZGdwdV9nZW1fcHJpbWVfdnVubWFwKHN0cnVjdCBkcm1f
+Z2VtX29iamVjdCAqb2JqLCB2b2lkICp2YWRkcik7CitpbnQgYW1kZ3B1X2dlbV9wcmltZV9tbWFw
+KHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqLAorCQkJICBzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3Qg
+KnZtYSk7CisKK2V4dGVybiBjb25zdCBzdHJ1Y3QgZG1hX2J1Zl9vcHMgYW1kZ3B1X2RtYWJ1Zl9v
+cHM7CisKKyNlbmRpZgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jCmluZGV4
+IDEzYTY4ZjYyYmNjOC4uZjRiYzJkNWU4MWIxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfZHJ2LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2Rydi5jCkBAIC0zNiw3ICszNiw3IEBACiAKICNpbmNsdWRlICJhbWRncHUuaCIKICNp
+bmNsdWRlICJhbWRncHVfaXJxLmgiCi0jaW5jbHVkZSAiYW1kZ3B1X2dlbS5oIgorI2luY2x1ZGUg
+ImFtZGdwdV9kbWFfYnVmLmgiCiAKICNpbmNsdWRlICJhbWRncHVfYW1ka2ZkLmgiCiAKZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nZW0uaCBiL2RyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nZW0uaAppbmRleCBmMWRkZmM1MGJjYzcuLmI4YmE2
+ZTI3YzYxZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2dl
+bS5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nZW0uaApAQCAtMzks
+MjIgKzM5LDYgQEAgaW50IGFtZGdwdV9nZW1fb2JqZWN0X29wZW4oc3RydWN0IGRybV9nZW1fb2Jq
+ZWN0ICpvYmosCiB2b2lkIGFtZGdwdV9nZW1fb2JqZWN0X2Nsb3NlKHN0cnVjdCBkcm1fZ2VtX29i
+amVjdCAqb2JqLAogCQkJCXN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2KTsKIHVuc2lnbmVkIGxv
+bmcgYW1kZ3B1X2dlbV90aW1lb3V0KHVpbnQ2NF90IHRpbWVvdXRfbnMpOwotc3RydWN0IHNnX3Rh
+YmxlICphbWRncHVfZ2VtX3ByaW1lX2dldF9zZ190YWJsZShzdHJ1Y3QgZHJtX2dlbV9vYmplY3Qg
+Km9iaik7Ci1zdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKgotYW1kZ3B1X2dlbV9wcmltZV9pbXBvcnRf
+c2dfdGFibGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKLQkJCQkgc3RydWN0IGRtYV9idWZfYXR0
+YWNobWVudCAqYXR0YWNoLAotCQkJCSBzdHJ1Y3Qgc2dfdGFibGUgKnNnKTsKLXN0cnVjdCBkbWFf
+YnVmICphbWRncHVfZ2VtX3ByaW1lX2V4cG9ydChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAotCQkJ
+CQlzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKmdvYmosCi0JCQkJCWludCBmbGFncyk7Ci1zdHJ1Y3Qg
+ZHJtX2dlbV9vYmplY3QgKmFtZGdwdV9nZW1fcHJpbWVfaW1wb3J0KHN0cnVjdCBkcm1fZGV2aWNl
+ICpkZXYsCi0JCQkJCSAgICBzdHJ1Y3QgZG1hX2J1ZiAqZG1hX2J1Zik7Ci1zdHJ1Y3QgcmVzZXJ2
+YXRpb25fb2JqZWN0ICphbWRncHVfZ2VtX3ByaW1lX3Jlc19vYmooc3RydWN0IGRybV9nZW1fb2Jq
+ZWN0ICopOwotdm9pZCAqYW1kZ3B1X2dlbV9wcmltZV92bWFwKHN0cnVjdCBkcm1fZ2VtX29iamVj
+dCAqb2JqKTsKLXZvaWQgYW1kZ3B1X2dlbV9wcmltZV92dW5tYXAoc3RydWN0IGRybV9nZW1fb2Jq
+ZWN0ICpvYmosIHZvaWQgKnZhZGRyKTsKLWludCBhbWRncHVfZ2VtX3ByaW1lX21tYXAoc3RydWN0
+IGRybV9nZW1fb2JqZWN0ICpvYmosIHN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hKTsKLQotZXh0
+ZXJuIGNvbnN0IHN0cnVjdCBkbWFfYnVmX29wcyBhbWRncHVfZG1hYnVmX29wczsKIAogLyoKICAq
+IEdFTSBvYmplY3RzLgotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2FtZC1nZng=
