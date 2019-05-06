@@ -2,75 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE4A14D63
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2019 16:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C3414F7D
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2019 17:11:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 771B0899F3;
-	Mon,  6 May 2019 14:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99DA089A56;
+	Mon,  6 May 2019 15:11:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com
- (mail-eopbgr780058.outbound.protection.outlook.com [40.107.78.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B90789950
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 May 2019 14:51:48 +0000 (UTC)
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1380.namprd12.prod.outlook.com (10.168.228.138) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Mon, 6 May 2019 14:51:47 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::bc5b:de68:25b7:d853]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::bc5b:de68:25b7:d853%12]) with mapi id 15.20.1856.012; Mon, 6 May 2019
- 14:51:47 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Huang, Trigger" <Trigger.Huang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF MM
-Thread-Topic: [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF MM
-Thread-Index: AQHVAOaApbtd92TlxUajYfd0c+kW6aZeNFnj
-Date: Mon, 6 May 2019 14:51:46 +0000
-Message-ID: <BN6PR12MB180932785D60B6BFAD3E2DD6F7300@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <1556801791-8460-1-git-send-email-Trigger.Huang@amd.com>
-In-Reply-To: <1556801791-8460-1-git-send-email-Trigger.Huang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [71.219.84.143]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fcd0999b-8887-41af-8161-08d6d2325d14
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1380; 
-x-ms-traffictypediagnostic: BN6PR12MB1380:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BN6PR12MB1380369A5555BD4F8533BB65F7300@BN6PR12MB1380.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:241;
-x-forefront-prvs: 0029F17A3F
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(376002)(346002)(366004)(39860400002)(396003)(136003)(199004)(189003)(3846002)(6116002)(66066001)(5660300002)(966005)(72206003)(81166006)(81156014)(478600001)(71190400001)(19627405001)(55016002)(316002)(6506007)(11346002)(2501003)(53546011)(52536014)(8936002)(606006)(68736007)(14454004)(86362001)(66446008)(64756008)(66556008)(66476007)(73956011)(66946007)(76116006)(76176011)(446003)(33656002)(476003)(256004)(74316002)(229853002)(71200400001)(6436002)(2906002)(8676002)(486006)(25786009)(53936002)(26005)(7696005)(186003)(6306002)(54896002)(110136005)(105004)(7736002)(99286004)(6246003)(236005)(102836004)(9686003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1380;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 8BC4ga/ZrroNV1iy5fD03QUDLnJqaskb+6r1+hyffmQawPY8rZkNALsrfFrWm3VT69y1CXXUzKWw6/RCW4nlL65hsTr2o7N4ysPJ1EaFxwbBMP5YvvCOkZCWGaAt5GDGfIl+CaMWbByEdS5f/x2ywxaK3Eg3qCK7iReTz4FBXi3jojv2oYAP1bfe17qEYDZj8m05PCQwnQu4hJrhDJJ/9Ac9S3xjyg7+Uw9wRp9mJPiE9iw7xBx9addPbtBQhBVC8kZKh8zh2RrkTFDglajL5Hu+VEvEOcFTz2By0k09BjsS3r9VIOzx4iiBX71kMtIGodLwFsIL5FHTGibtAftSP1MFeD46xMgDQ/GjvtznGHIXFuJRUU7JpyvswicAJPj6ZePoCwZNBEPOO9Yu9Ckpy7TZ2U/0T6/fJxJhdvZAkrI=
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D37C89A56
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 May 2019 15:11:30 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id k16so17752517wrn.5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 06 May 2019 08:11:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=zehthMwDdemSVZX+yKQjVuOexb/v8U+fN5UFmvBJIEQ=;
+ b=fSkTHKhgE66Fz+ro+FsWsYq7bZ5aYw2O5cn2kYWCsPSSZBvs51wwma1A6JAR761wWM
+ U9D3AjtpkJB0HqW3yKTpGvIND4u3i+XV8MjPJ+uE/JJNiBxYI1myU7JbVpS1MORNutLr
+ FuDSMT+KpEXWcX6h5nqa+0uw4aezpaky45ChyutnBBDRcPnRd2cJPjF/K4rwe/HVcJjs
+ xR5RApxzmEIke86XCuhn8LkEhDNgUYjPnLddRlwSzQyEBrMw8CTfLYlH0APnrm8lxzeb
+ 2ERaWS74s/X6IRbJlWJ97wvzOvmgWeVX6Rv305SWJLN2SM8cF9Rc1QO3chnkW7RkWiqm
+ scDw==
+X-Gm-Message-State: APjAAAWGEtVclI6bwnC9nHmTLZDWxiOZk87H/y3nfGmHDjtXBf7Dwq5v
+ BY1fbA+xIHkoI6DCHS9Rk5+EGeFH5UAIsOsWxwJBMiO9
+X-Google-Smtp-Source: APXvYqwvI7jYqXArKX4HdpJ/6V7c7sOOYNI+8BJm10HGKBSWHAhS+oabeG5G1ER8XKne60974JToJlA9jG4TCzvAOk8=
+X-Received: by 2002:adf:dc8a:: with SMTP id r10mr2385663wrj.15.1557155489029; 
+ Mon, 06 May 2019 08:11:29 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcd0999b-8887-41af-8161-08d6d2325d14
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2019 14:51:46.9014 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1380
+References: <20190506112422.65639-1-christian.koenig@amd.com>
+In-Reply-To: <20190506112422.65639-1-christian.koenig@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 6 May 2019 11:11:16 -0400
+Message-ID: <CADnq5_PA4KRrKe-oYjMpTOcQRQ_Axs=A9gDR+sr+tOGAXSBjXA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: rename amdgpu_prime.[ch] into
+ amdgpu_dma_buf.[ch]
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amd-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EogpWNTGffiffXQOnEYrhKSYK3SxDemlrlto6B+LxFY=;
- b=V7bp9kNngD66fKCA+RClgbA2LEK1Rvw/nUVr5nP7j9mB3vukSS7TiWbS4R8YID9wjx5lbQo0tCLh1jPRIIROQlvsEXDLhNy+FZyDlBSK9g8PrihRv+8jmanl/c4DNtdrQ+Z8oDug0L5AO5Wu0SLKB8RGTrtyuyUZs5iR2payjzE=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=zehthMwDdemSVZX+yKQjVuOexb/v8U+fN5UFmvBJIEQ=;
+ b=tucOmOsr2Hcl/KCQB1EMi2BqnTIbltMI3UhfqsBtNBMzihFJkkbG6JA6qoHvb/GMPH
+ HvC577euYaAJioz/uBaymDcHMkd98tk553ZBGyPww+mtoDVgeteR1UXMqtYJQVLeL5/n
+ eQ0RsSkhBZK08aTWALuzl2O5QQsrI1EK8CqvtuuOYS+GcC7qYzhyZ4RzjGsYj26/I7q3
+ 4MBqaTafrQnfzpDKYtKHJd5in673hnhmtjp7W2lgtRAXpXjXj1nF1fiRcPFKSX2ie/TC
+ I62UeKSMi0ycLaxbLhfq9oohLa89fCmo5dBCOX4jl7hkPYLzM5JK6IN1CcY36kqv/h88
+ xeUw==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -82,540 +62,291 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1788300712=="
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1788300712==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB180932785D60B6BFAD3E2DD6F7300BN6PR12MB1809namp_"
-
---_000_BN6PR12MB180932785D60B6BFAD3E2DD6F7300BN6PR12MB1809namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-As long as this doesn't break bare metal, I'm ok with it.
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Trigger =
-Huang <Trigger.Huang@amd.com>
-Sent: Thursday, May 2, 2019 8:56 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Huang, Trigger
-Subject: [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF MM
-
-[CAUTION: External Email]
-
-One Vega10 SR-IOV VF, the FW address returned by PSP should be
-set into the init table, while not the original BO mc address.
-otherwise, UVD and VCE IB test will fail under Vega10 SR-IOV
-
-reference:
-        commit bfcea5204287 ("drm/amdgpu:change VEGA booting with firmware =
-loaded by PSP")
-        commit aa5873dca463 ("drm/amdgpu: Change VCE booting with firmware =
-loaded by PSP")
-
-Signed-off-by: Trigger Huang <Trigger.Huang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c | 16 ++++++++++------
- drivers/gpu/drm/amd/amdgpu/vce_v4_0.c | 17 +++++++++++------
- 2 files changed, 21 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c b/drivers/gpu/drm/amd/am=
-dgpu/uvd_v7_0.c
-index dc461df..2191d3d 100644
---- a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
-@@ -787,10 +787,13 @@ static int uvd_v7_0_sriov_start(struct amdgpu_device =
-*adev)
-                                                           0xFFFFFFFF, 0x00=
-000004);
-                        /* mc resume*/
-                        if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_=
-PSP) {
--                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),
--                                                           lower_32_bits(a=
-dev->firmware.ucode[AMDGPU_UCODE_ID_UVD].mc_addr));
--                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),
--                                                           upper_32_bits(a=
-dev->firmware.ucode[AMDGPU_UCODE_ID_UVD].mc_addr));
-+                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, i,
-+                                                       mmUVD_LMI_VCPU_CACH=
-E_64BIT_BAR_LOW),
-+                                                       adev->firmware.ucod=
-e[AMDGPU_UCODE_ID_UVD].tmr_mc_addr_lo);
-+                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, i,
-+                                                       mmUVD_LMI_VCPU_CACH=
-E_64BIT_BAR_HIGH),
-+                                                       adev->firmware.ucod=
-e[AMDGPU_UCODE_ID_UVD].tmr_mc_addr_hi);
-+                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, 0, mmUVD_VCPU_CACHE_OFFSET0), 0);
-                                offset =3D 0;
-                        } else {
-                                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),
-@@ -798,10 +801,11 @@ static int uvd_v7_0_sriov_start(struct amdgpu_device =
-*adev)
-                                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),
-                                                            upper_32_bits(a=
-dev->uvd.inst[i].gpu_addr));
-                                offset =3D size;
-+                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, 0, mmUVD_VCPU_CACHE_OFFSET0),
-+                                                       AMDGPU_UVD_FIRMWARE=
-_OFFSET >> 3);
-+
-                        }
-
--                       MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i=
-, mmUVD_VCPU_CACHE_OFFSET0),
--                                                   AMDGPU_UVD_FIRMWARE_OFF=
-SET >> 3);
-                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i=
-, mmUVD_VCPU_CACHE_SIZE0), size);
-
-                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i=
-, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_LOW),
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c b/drivers/gpu/drm/amd/am=
-dgpu/vce_v4_0.c
-index f3f5938..c0ec279 100644
---- a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
-@@ -244,13 +244,18 @@ static int vce_v4_0_sriov_start(struct amdgpu_device =
-*adev)
-                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
-LMI_SWAP_CNTL1), 0);
-                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
-LMI_VM_CTRL), 0);
-
-+               offset =3D AMDGPU_VCE_FIRMWARE_OFFSET;
-                if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {
-+                       uint32_t low =3D adev->firmware.ucode[AMDGPU_UCODE_=
-ID_VCE].tmr_mc_addr_lo;
-+                       uint32_t hi =3D adev->firmware.ucode[AMDGPU_UCODE_I=
-D_VCE].tmr_mc_addr_hi;
-+                       uint64_t tmr_mc_addr =3D (uint64_t)(hi) << 32 | low=
-;
-+
-                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
-,
--                                               mmVCE_LMI_VCPU_CACHE_40BIT_=
-BAR0),
--                                               adev->firmware.ucode[AMDGPU=
-_UCODE_ID_VCE].mc_addr >> 8);
-+                                               mmVCE_LMI_VCPU_CACHE_40BIT_=
-BAR0), tmr_mc_addr >> 8);
-                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
-,
-                                                mmVCE_LMI_VCPU_CACHE_64BIT_=
-BAR0),
--                                               (adev->firmware.ucode[AMDGP=
-U_UCODE_ID_VCE].mc_addr >> 40) & 0xff);
-+                                               (tmr_mc_addr >> 40) & 0xff)=
-;
-+                       MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
-, mmVCE_VCPU_CACHE_OFFSET0), 0);
-                } else {
-                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
-,
-                                                mmVCE_LMI_VCPU_CACHE_40BIT_=
-BAR0),
-@@ -258,6 +263,9 @@ static int vce_v4_0_sriov_start(struct amdgpu_device *a=
-dev)
-                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
-,
-                                                mmVCE_LMI_VCPU_CACHE_64BIT_=
-BAR0),
-                                                (adev->vce.gpu_addr >> 40) =
-& 0xff);
-+                       MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
-, mmVCE_VCPU_CACHE_OFFSET0),
-+                                               offset & ~0x0f000000);
-+
-                }
-                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,
-                                                mmVCE_LMI_VCPU_CACHE_40BIT_=
-BAR1),
-@@ -272,10 +280,7 @@ static int vce_v4_0_sriov_start(struct amdgpu_device *=
-adev)
-                                                mmVCE_LMI_VCPU_CACHE_64BIT_=
-BAR2),
-                                                (adev->vce.gpu_addr >> 40) =
-& 0xff);
-
--               offset =3D AMDGPU_VCE_FIRMWARE_OFFSET;
-                size =3D VCE_V4_0_FW_SIZE;
--               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
-VCPU_CACHE_OFFSET0),
--                                       offset & ~0x0f000000);
-                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
-VCPU_CACHE_SIZE0), size);
-
-                offset =3D (adev->firmware.load_type !=3D AMDGPU_FW_LOAD_PS=
-P) ? offset + size : 0;
---
-2.7.4
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_BN6PR12MB180932785D60B6BFAD3E2DD6F7300BN6PR12MB1809namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-As long as this doesn't break bare metal, I'm ok with it.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Trigger Huang &lt;Trigger.Hua=
-ng@amd.com&gt;<br>
-<b>Sent:</b> Thursday, May 2, 2019 8:56 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> Huang, Trigger<br>
-<b>Subject:</b> [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF MM</=
-font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">[CAUTION: External Email]<br>
-<br>
-One Vega10 SR-IOV VF, the FW address returned by PSP should be<br>
-set into the init table, while not the original BO mc address.<br>
-otherwise, UVD and VCE IB test will fail under Vega10 SR-IOV<br>
-<br>
-reference:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; commit bfcea5204287 (&quot;drm/a=
-mdgpu:change VEGA booting with firmware loaded by PSP&quot;)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; commit aa5873dca463 (&quot;drm/a=
-mdgpu: Change VCE booting with firmware loaded by PSP&quot;)<br>
-<br>
-Signed-off-by: Trigger Huang &lt;Trigger.Huang@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c | 16 &#43;&#43;&#43;&#43;&#43;&=
-#43;&#43;&#43;&#43;&#43;------<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/vce_v4_0.c | 17 &#43;&#43;&#43;&#43;&#43;&=
-#43;&#43;&#43;&#43;&#43;&#43;------<br>
-&nbsp;2 files changed, 21 insertions(&#43;), 12 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c b/drivers/gpu/drm/amd/am=
-dgpu/uvd_v7_0.c<br>
-index dc461df..2191d3d 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c<br>
-@@ -787,10 &#43;787,13 @@ static int uvd_v7_0_sriov_start(struct amdgpu_dev=
-ice *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0xFFFFFFFF, 0x00000004);<b=
-r>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* mc resum=
-e*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&g=
-t;firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lower_32_bits(adev-&gt;fi=
-rmware.ucode[AMDGPU_UCODE_ID_UVD].mc_addr));<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
-T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; upper_32_bits(adev-&gt;fi=
-rmware.ucode[AMDGPU_UCODE_ID_UVD].mc_addr));<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_O=
-FFSET(UVD, i,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;firmware.ucode[AMDGPU_UCODE_ID_UVD].=
-tmr_mc_addr_lo);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_O=
-FFSET(UVD, i,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;firmware.ucode[AMDGPU_UCODE_ID_UVD].=
-tmr_mc_addr_hi);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_O=
-FFSET(UVD, 0, mmUVD_VCPU_CACHE_OFFSET0), 0);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset =3D 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_=
-OFFSET(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),<br>
-@@ -798,10 &#43;801,11 @@ static int uvd_v7_0_sriov_start(struct amdgpu_dev=
-ice *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_=
-OFFSET(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; upper_32_bits(adev-&=
-gt;uvd.inst[i].gpu_addr));<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset =3D size;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_O=
-FFSET(UVD, 0, mmUVD_VCPU_CACHE_OFFSET0),<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_UVD_FIRMWARE_OFFSET &gt;&gt; 3);<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSER=
-T_DIRECT_WT(SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_OFFSET0),<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; AMDGPU_UVD_FIRMWARE_OFFSET &gt;&gt; 3);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
-INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_SIZE0), size);<b=
-r>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
-INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_L=
-OW),<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c b/drivers/gpu/drm/amd/am=
-dgpu/vce_v4_0.c<br>
-index f3f5938..c0ec279 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c<br>
-@@ -244,13 &#43;244,18 @@ static int vce_v4_0_sriov_start(struct amdgpu_dev=
-ice *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
-LMI_SWAP_CNTL1), 0);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
-LMI_VM_CTRL), 0);<br>
-<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; offset =3D AMDGPU_VCE_FIRMWARE_OFFSET;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (adev-&gt;firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) =
-{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t low=
- =3D adev-&gt;firmware.ucode[AMDGPU_UCODE_ID_VCE].tmr_mc_addr_lo;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t hi =
-=3D adev-&gt;firmware.ucode[AMDGPU_UCODE_ID_VCE].tmr_mc_addr_hi;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t tmr=
-_mc_addr =3D (uint64_t)(hi) &lt;&lt; 32 | low;<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
-INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CACHE_4=
-0BIT_BAR0),<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;firmware.ucod=
-e[AMDGPU_UCODE_ID_VCE].mc_addr &gt;&gt; 8);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CAC=
-HE_40BIT_BAR0), tmr_mc_addr &gt;&gt; 8);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
-INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
-CHE_64BIT_BAR0),<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (adev-&gt;firmware.uco=
-de[AMDGPU_UCODE_ID_VCE].mc_addr &gt;&gt; 40) &amp; 0xff);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (tmr_mc_addr &gt;&=
-gt; 40) &amp; 0xff);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_I=
-NSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_VCPU_CACHE_OFFSET0), 0);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; } else {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
-INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
-CHE_40BIT_BAR0),<br>
-@@ -258,6 &#43;263,9 @@ static int vce_v4_0_sriov_start(struct amdgpu_devic=
-e *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
-INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
-CHE_64BIT_BAR0),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (adev-&gt;vce.gpu=
-_addr &gt;&gt; 40) &amp; 0xff);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_I=
-NSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_VCPU_CACHE_OFFSET0),<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset &amp; ~0x0f=
-000000);<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
-CHE_40BIT_BAR1),<br>
-@@ -272,10 &#43;280,7 @@ static int vce_v4_0_sriov_start(struct amdgpu_devi=
-ce *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
-CHE_64BIT_BAR2),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (adev-&gt;vce.gpu=
-_addr &gt;&gt; 40) &amp; 0xff);<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; offset =3D AMDGPU_VCE_FIRMWARE_OFFSET;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; size =3D VCE_V4_0_FW_SIZE;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_VCPU_=
-CACHE_OFFSET0),<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; offset &amp; ~0x0f000000);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
-VCPU_CACHE_SIZE0), size);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; offset =3D (adev-&gt;firmware.load_type !=3D AMDGPU_FW_LOAD=
-_PSP) ? offset &#43; size : 0;<br>
---<br>
-2.7.4<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_BN6PR12MB180932785D60B6BFAD3E2DD6F7300BN6PR12MB1809namp_--
-
---===============1788300712==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1788300712==--
+T24gTW9uLCBNYXkgNiwgMjAxOSBhdCA3OjI0IEFNIENocmlzdGlhbiBLw7ZuaWcKPGNrb2VuaWcu
+bGVpY2h0enVtZXJrZW5AZ21haWwuY29tPiB3cm90ZToKPgo+IFdlIGFyZSBnZXR0aW5nIGEgZG1h
+LWJ1ZiBpbXBsZW1lbnRhdGlvbiBjb21wbGV0ZWx5IHNlcGFyYXRlIGZyb20gZHJtIHByaW1lLAo+
+IHNvIHJlbmFtZSB0aGUgZmlsZXMgbm93IGFuZCBjbGVhbnVwIHRoZSBjb2RlIGEgYml0Lgo+Cj4g
+Tm8gZnVuY3Rpb25hbCBjaGFuZ2UuCj4KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RpYW4gS8O2bmln
+IDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+CgpBY2tlZC1ieTogQWxleCBEZXVjaGVyIDxhbGV4
+YW5kZXIuZGV1Y2hlckBhbWQuY29tPgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvTWFrZWZpbGUgICAgICAgICAgIHwgICAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV9hbWRrZmQuYyAgICB8ICAgMSArCj4gIC4uLi9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2FtZGtmZF9ncHV2bS5jICB8ICAgMSArCj4gIC4uLi97YW1kZ3B1X3ByaW1lLmMgPT4g
+YW1kZ3B1X2RtYV9idWYuY30gICAgICB8IDEzMSArKysrKysrKystLS0tLS0tLS0KPiAgZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuaCAgIHwgIDQ2ICsrKysrKwo+ICBk
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2LmMgICAgICAgfCAgIDIgKy0KPiAg
+ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2dlbS5oICAgICAgIHwgIDE2IC0tLQo+
+ICA3IGZpbGVzIGNoYW5nZWQsIDExNiBpbnNlcnRpb25zKCspLCA4MyBkZWxldGlvbnMoLSkKPiAg
+cmVuYW1lIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3thbWRncHVfcHJpbWUuYyA9PiBhbWRn
+cHVfZG1hX2J1Zi5jfSAoOTMlKQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuaAo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L01ha2VmaWxlIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvTWFr
+ZWZpbGUKPiBpbmRleCA3ZDUzOWJhNjQwMGQuLjExYTY1MWZmN2YwZCAxMDA2NDQKPiAtLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9NYWtlZmlsZQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L01ha2VmaWxlCj4gQEAgLTQ5LDcgKzQ5LDcgQEAgYW1kZ3B1LXkgKz0gYW1k
+Z3B1X2RldmljZS5vIGFtZGdwdV9rbXMubyBcCj4gICAgICAgICBhbWRncHVfY3MubyBhbWRncHVf
+Ymlvcy5vIGFtZGdwdV9iZW5jaG1hcmsubyBhbWRncHVfdGVzdC5vIFwKPiAgICAgICAgIGFtZGdw
+dV9wbS5vIGF0b21iaW9zX2RwLm8gYW1kZ3B1X2FmbXQubyBhbWRncHVfdHJhY2VfcG9pbnRzLm8g
+XAo+ICAgICAgICAgYXRvbWJpb3NfZW5jb2RlcnMubyBhbWRncHVfc2EubyBhdG9tYmlvc19pMmMu
+byBcCj4gLSAgICAgICBhbWRncHVfcHJpbWUubyBhbWRncHVfdm0ubyBhbWRncHVfaWIubyBhbWRn
+cHVfcGxsLm8gXAo+ICsgICAgICAgYW1kZ3B1X2RtYV9idWYubyBhbWRncHVfdm0ubyBhbWRncHVf
+aWIubyBhbWRncHVfcGxsLm8gXAo+ICAgICAgICAgYW1kZ3B1X3Vjb2RlLm8gYW1kZ3B1X2JvX2xp
+c3QubyBhbWRncHVfY3R4Lm8gYW1kZ3B1X3N5bmMubyBcCj4gICAgICAgICBhbWRncHVfZ3R0X21n
+ci5vIGFtZGdwdV92cmFtX21nci5vIGFtZGdwdV92aXJ0Lm8gYW1kZ3B1X2F0b21maXJtd2FyZS5v
+IFwKPiAgICAgICAgIGFtZGdwdV92Zl9lcnJvci5vIGFtZGdwdV9zY2hlZC5vIGFtZGdwdV9kZWJ1
+Z2ZzLm8gYW1kZ3B1X2lkcy5vIFwKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X2FtZGtmZC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+X2FtZGtmZC5jCj4gaW5kZXggYWVlYWQwNzJmYTc5Li5lODI5YzUzYWNjZjUgMTAwNjQ0Cj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5jCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5jCj4gQEAgLTI1LDYgKzI1LDcg
+QEAKPiAgI2luY2x1ZGUgPGRybS9kcm1QLmg+Cj4gICNpbmNsdWRlICJhbWRncHUuaCIKPiAgI2lu
+Y2x1ZGUgImFtZGdwdV9nZnguaCIKPiArI2luY2x1ZGUgImFtZGdwdV9kbWFfYnVmLmgiCj4gICNp
+bmNsdWRlIDxsaW51eC9tb2R1bGUuaD4KPiAgI2luY2x1ZGUgPGxpbnV4L2RtYS1idWYuaD4KPgo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkX2dw
+dXZtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkX2dwdXZtLmMK
+PiBpbmRleCAwNDdiYmE4YzYyZDYuLjJiYzgwOTQyZTVkNSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkX2dwdXZtLmMKPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkX2dwdXZtLmMKPiBAQCAtMzAsNiArMzAs
+NyBAQAo+ICAjaW5jbHVkZSAiYW1kZ3B1X29iamVjdC5oIgo+ICAjaW5jbHVkZSAiYW1kZ3B1X3Zt
+LmgiCj4gICNpbmNsdWRlICJhbWRncHVfYW1ka2ZkLmgiCj4gKyNpbmNsdWRlICJhbWRncHVfZG1h
+X2J1Zi5oIgo+Cj4gIC8qIFNwZWNpYWwgVk0gYW5kIEdBUlQgYWRkcmVzcyBhbGlnbm1lbnQgbmVl
+ZGVkIGZvciBWSSBwcmUtRmlqaSBkdWUgdG8KPiAgICogYSBIVyBidWcuCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9wcmltZS5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuYwo+IHNpbWlsYXJpdHkgaW5kZXggOTMlCj4g
+cmVuYW1lIGZyb20gZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ByaW1lLmMKPiBy
+ZW5hbWUgdG8gZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuYwo+IGlu
+ZGV4IGEzOGUwZmI0YTZmZS4uNDcxMWNmMWI1YmQyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9wcmltZS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuYwo+IEBAIC0xLDUgKzEsNSBAQAo+ICAvKgo+IC0gKiBD
+b3B5cmlnaHQgMjAxMiBBZHZhbmNlZCBNaWNybyBEZXZpY2VzLCBJbmMuCj4gKyAqIENvcHlyaWdo
+dCAyMDE5IEFkdmFuY2VkIE1pY3JvIERldmljZXMsIEluYy4KPiAgICoKPiAgICogUGVybWlzc2lv
+biBpcyBoZXJlYnkgZ3JhbnRlZCwgZnJlZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gb2J0YWlu
+aW5nIGEKPiAgICogY29weSBvZiB0aGlzIHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50
+YXRpb24gZmlsZXMgKHRoZSAiU29mdHdhcmUiKSwKPiBAQCAtMTAzLDcgKzEwMyw4IEBAIHZvaWQg
+YW1kZ3B1X2dlbV9wcmltZV92dW5tYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosIHZvaWQg
+KnZhZGRyKQo+ICAgKiBSZXR1cm5zOgo+ICAgKiAwIG9uIHN1Y2Nlc3Mgb3IgYSBuZWdhdGl2ZSBl
+cnJvciBjb2RlIG9uIGZhaWx1cmUuCj4gICAqLwo+IC1pbnQgYW1kZ3B1X2dlbV9wcmltZV9tbWFw
+KHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqLCBzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSkK
+PiAraW50IGFtZGdwdV9nZW1fcHJpbWVfbW1hcChzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwK
+PiArICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hKQo+
+ICB7Cj4gICAgICAgICBzdHJ1Y3QgYW1kZ3B1X2JvICpibyA9IGdlbV90b19hbWRncHVfYm8ob2Jq
+KTsKPiAgICAgICAgIHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gYW1kZ3B1X3R0bV9hZGV2
+KGJvLT50Ym8uYmRldik7Cj4gQEAgLTEzNyw1NyArMTM4LDYgQEAgaW50IGFtZGdwdV9nZW1fcHJp
+bWVfbW1hcChzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwgc3RydWN0IHZtX2FyZWFfc3RydWN0
+ICp2bWEKPiAgICAgICAgIHJldHVybiByZXQ7Cj4gIH0KPgo+IC0vKioKPiAtICogYW1kZ3B1X2dl
+bV9wcmltZV9pbXBvcnRfc2dfdGFibGUgLSAmZHJtX2RyaXZlci5nZW1fcHJpbWVfaW1wb3J0X3Nn
+X3RhYmxlCj4gLSAqIGltcGxlbWVudGF0aW9uCj4gLSAqIEBkZXY6IERSTSBkZXZpY2UKPiAtICog
+QGF0dGFjaDogRE1BLWJ1ZiBhdHRhY2htZW50Cj4gLSAqIEBzZzogU2NhdHRlci9nYXRoZXIgdGFi
+bGUKPiAtICoKPiAtICogSW1wb3J0cyBzaGFyZWQgRE1BIGJ1ZmZlciBtZW1vcnkgZXhwb3J0ZWQg
+YnkgYW5vdGhlciBkZXZpY2UuCj4gLSAqCj4gLSAqIFJldHVybnM6Cj4gLSAqIEEgbmV3IEdFTSBC
+TyBvZiB0aGUgZ2l2ZW4gRFJNIGRldmljZSwgcmVwcmVzZW50aW5nIHRoZSBtZW1vcnkKPiAtICog
+ZGVzY3JpYmVkIGJ5IHRoZSBnaXZlbiBETUEtYnVmIGF0dGFjaG1lbnQgYW5kIHNjYXR0ZXIvZ2F0
+aGVyIHRhYmxlLgo+IC0gKi8KPiAtc3RydWN0IGRybV9nZW1fb2JqZWN0ICoKPiAtYW1kZ3B1X2dl
+bV9wcmltZV9pbXBvcnRfc2dfdGFibGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiAtICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2htZW50ICphdHRh
+Y2gsCj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IHNnX3RhYmxlICpz
+ZykKPiAtewo+IC0gICAgICAgc3RydWN0IHJlc2VydmF0aW9uX29iamVjdCAqcmVzdiA9IGF0dGFj
+aC0+ZG1hYnVmLT5yZXN2Owo+IC0gICAgICAgc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSBk
+ZXYtPmRldl9wcml2YXRlOwo+IC0gICAgICAgc3RydWN0IGFtZGdwdV9ibyAqYm87Cj4gLSAgICAg
+ICBzdHJ1Y3QgYW1kZ3B1X2JvX3BhcmFtIGJwOwo+IC0gICAgICAgaW50IHJldDsKPiAtCj4gLSAg
+ICAgICBtZW1zZXQoJmJwLCAwLCBzaXplb2YoYnApKTsKPiAtICAgICAgIGJwLnNpemUgPSBhdHRh
+Y2gtPmRtYWJ1Zi0+c2l6ZTsKPiAtICAgICAgIGJwLmJ5dGVfYWxpZ24gPSBQQUdFX1NJWkU7Cj4g
+LSAgICAgICBicC5kb21haW4gPSBBTURHUFVfR0VNX0RPTUFJTl9DUFU7Cj4gLSAgICAgICBicC5m
+bGFncyA9IDA7Cj4gLSAgICAgICBicC50eXBlID0gdHRtX2JvX3R5cGVfc2c7Cj4gLSAgICAgICBi
+cC5yZXN2ID0gcmVzdjsKPiAtICAgICAgIHd3X211dGV4X2xvY2soJnJlc3YtPmxvY2ssIE5VTEwp
+Owo+IC0gICAgICAgcmV0ID0gYW1kZ3B1X2JvX2NyZWF0ZShhZGV2LCAmYnAsICZibyk7Cj4gLSAg
+ICAgICBpZiAocmV0KQo+IC0gICAgICAgICAgICAgICBnb3RvIGVycm9yOwo+IC0KPiAtICAgICAg
+IGJvLT50Ym8uc2cgPSBzZzsKPiAtICAgICAgIGJvLT50Ym8udHRtLT5zZyA9IHNnOwo+IC0gICAg
+ICAgYm8tPmFsbG93ZWRfZG9tYWlucyA9IEFNREdQVV9HRU1fRE9NQUlOX0dUVDsKPiAtICAgICAg
+IGJvLT5wcmVmZXJyZWRfZG9tYWlucyA9IEFNREdQVV9HRU1fRE9NQUlOX0dUVDsKPiAtICAgICAg
+IGlmIChhdHRhY2gtPmRtYWJ1Zi0+b3BzICE9ICZhbWRncHVfZG1hYnVmX29wcykKPiAtICAgICAg
+ICAgICAgICAgYm8tPnByaW1lX3NoYXJlZF9jb3VudCA9IDE7Cj4gLQo+IC0gICAgICAgd3dfbXV0
+ZXhfdW5sb2NrKCZyZXN2LT5sb2NrKTsKPiAtICAgICAgIHJldHVybiAmYm8tPmdlbV9iYXNlOwo+
+IC0KPiAtZXJyb3I6Cj4gLSAgICAgICB3d19tdXRleF91bmxvY2soJnJlc3YtPmxvY2spOwo+IC0g
+ICAgICAgcmV0dXJuIEVSUl9QVFIocmV0KTsKPiAtfQo+IC0KPiAgc3RhdGljIGludAo+ICBfX3Jl
+c2VydmF0aW9uX29iamVjdF9tYWtlX2V4Y2x1c2l2ZShzdHJ1Y3QgcmVzZXJ2YXRpb25fb2JqZWN0
+ICpvYmopCj4gIHsKPiBAQCAtMjMxLDcgKzE4MSw3IEBAIF9fcmVzZXJ2YXRpb25fb2JqZWN0X21h
+a2VfZXhjbHVzaXZlKHN0cnVjdCByZXNlcnZhdGlvbl9vYmplY3QgKm9iaikKPiAgfQo+Cj4gIC8q
+Kgo+IC0gKiBhbWRncHVfZ2VtX21hcF9hdHRhY2ggLSAmZG1hX2J1Zl9vcHMuYXR0YWNoIGltcGxl
+bWVudGF0aW9uCj4gKyAqIGFtZGdwdV9kbWFfYnVmX21hcF9hdHRhY2ggLSAmZG1hX2J1Zl9vcHMu
+YXR0YWNoIGltcGxlbWVudGF0aW9uCj4gICAqIEBkbWFfYnVmOiBTaGFyZWQgRE1BIGJ1ZmZlcgo+
+ICAgKiBAYXR0YWNoOiBETUEtYnVmIGF0dGFjaG1lbnQKPiAgICoKPiBAQCAtMjQyLDggKzE5Miw4
+IEBAIF9fcmVzZXJ2YXRpb25fb2JqZWN0X21ha2VfZXhjbHVzaXZlKHN0cnVjdCByZXNlcnZhdGlv
+bl9vYmplY3QgKm9iaikKPiAgICogUmV0dXJuczoKPiAgICogMCBvbiBzdWNjZXNzIG9yIGEgbmVn
+YXRpdmUgZXJyb3IgY29kZSBvbiBmYWlsdXJlLgo+ICAgKi8KPiAtc3RhdGljIGludCBhbWRncHVf
+Z2VtX21hcF9hdHRhY2goc3RydWN0IGRtYV9idWYgKmRtYV9idWYsCj4gLSAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgc3RydWN0IGRtYV9idWZfYXR0YWNobWVudCAqYXR0YWNoKQo+ICtz
+dGF0aWMgaW50IGFtZGdwdV9kbWFfYnVmX21hcF9hdHRhY2goc3RydWN0IGRtYV9idWYgKmRtYV9i
+dWYsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBkbWFfYnVm
+X2F0dGFjaG1lbnQgKmF0dGFjaCkKPiAgewo+ICAgICAgICAgc3RydWN0IGRybV9nZW1fb2JqZWN0
+ICpvYmogPSBkbWFfYnVmLT5wcml2Owo+ICAgICAgICAgc3RydWN0IGFtZGdwdV9ibyAqYm8gPSBn
+ZW1fdG9fYW1kZ3B1X2JvKG9iaik7Cj4gQEAgLTI5MSwxNSArMjQxLDE1IEBAIHN0YXRpYyBpbnQg
+YW1kZ3B1X2dlbV9tYXBfYXR0YWNoKHN0cnVjdCBkbWFfYnVmICpkbWFfYnVmLAo+ICB9Cj4KPiAg
+LyoqCj4gLSAqIGFtZGdwdV9nZW1fbWFwX2RldGFjaCAtICZkbWFfYnVmX29wcy5kZXRhY2ggaW1w
+bGVtZW50YXRpb24KPiArICogYW1kZ3B1X2RtYV9idWZfbWFwX2RldGFjaCAtICZkbWFfYnVmX29w
+cy5kZXRhY2ggaW1wbGVtZW50YXRpb24KPiAgICogQGRtYV9idWY6IFNoYXJlZCBETUEgYnVmZmVy
+Cj4gICAqIEBhdHRhY2g6IERNQS1idWYgYXR0YWNobWVudAo+ICAgKgo+ICAgKiBUaGlzIGlzIGNh
+bGxlZCB3aGVuIGEgc2hhcmVkIERNQSBidWZmZXIgbm8gbG9uZ2VyIG5lZWRzIHRvIGJlIGFjY2Vz
+c2libGUgYnkKPiAgICogYW5vdGhlciBkZXZpY2UuIEZvciBub3csIHNpbXBseSB1bnBpbnMgdGhl
+IGJ1ZmZlciBmcm9tIEdUVC4KPiAgICovCj4gLXN0YXRpYyB2b2lkIGFtZGdwdV9nZW1fbWFwX2Rl
+dGFjaChzdHJ1Y3QgZG1hX2J1ZiAqZG1hX2J1ZiwKPiAtICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgc3RydWN0IGRtYV9idWZfYXR0YWNobWVudCAqYXR0YWNoKQo+ICtzdGF0aWMgdm9p
+ZCBhbWRncHVfZG1hX2J1Zl9tYXBfZGV0YWNoKHN0cnVjdCBkbWFfYnVmICpkbWFfYnVmLAo+ICsg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRtYV9idWZfYXR0YWNo
+bWVudCAqYXR0YWNoKQo+ICB7Cj4gICAgICAgICBzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiA9
+IGRtYV9idWYtPnByaXY7Cj4gICAgICAgICBzdHJ1Y3QgYW1kZ3B1X2JvICpibyA9IGdlbV90b19h
+bWRncHVfYm8ob2JqKTsKPiBAQCAtMzM0LDcgKzI4NCw3IEBAIHN0cnVjdCByZXNlcnZhdGlvbl9v
+YmplY3QgKmFtZGdwdV9nZW1fcHJpbWVfcmVzX29iaihzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9i
+aikKPiAgfQo+Cj4gIC8qKgo+IC0gKiBhbWRncHVfZ2VtX2JlZ2luX2NwdV9hY2Nlc3MgLSAmZG1h
+X2J1Zl9vcHMuYmVnaW5fY3B1X2FjY2VzcyBpbXBsZW1lbnRhdGlvbgo+ICsgKiBhbWRncHVfZG1h
+X2J1Zl9iZWdpbl9jcHVfYWNjZXNzIC0gJmRtYV9idWZfb3BzLmJlZ2luX2NwdV9hY2Nlc3MgaW1w
+bGVtZW50YXRpb24KPiAgICogQGRtYV9idWY6IFNoYXJlZCBETUEgYnVmZmVyCj4gICAqIEBkaXJl
+Y3Rpb246IERpcmVjdGlvbiBvZiBETUEgdHJhbnNmZXIKPiAgICoKPiBAQCAtMzQ1LDggKzI5NSw4
+IEBAIHN0cnVjdCByZXNlcnZhdGlvbl9vYmplY3QgKmFtZGdwdV9nZW1fcHJpbWVfcmVzX29iaihz
+dHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaikKPiAgICogUmV0dXJuczoKPiAgICogMCBvbiBzdWNj
+ZXNzIG9yIGEgbmVnYXRpdmUgZXJyb3IgY29kZSBvbiBmYWlsdXJlLgo+ICAgKi8KPiAtc3RhdGlj
+IGludCBhbWRncHVfZ2VtX2JlZ2luX2NwdV9hY2Nlc3Moc3RydWN0IGRtYV9idWYgKmRtYV9idWYs
+Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZW51bSBkbWFfZGF0YV9k
+aXJlY3Rpb24gZGlyZWN0aW9uKQo+ICtzdGF0aWMgaW50IGFtZGdwdV9kbWFfYnVmX2JlZ2luX2Nw
+dV9hY2Nlc3Moc3RydWN0IGRtYV9idWYgKmRtYV9idWYsCj4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIGVudW0gZG1hX2RhdGFfZGlyZWN0aW9uIGRpcmVjdGlvbikK
+PiAgewo+ICAgICAgICAgc3RydWN0IGFtZGdwdV9ibyAqYm8gPSBnZW1fdG9fYW1kZ3B1X2JvKGRt
+YV9idWYtPnByaXYpOwo+ICAgICAgICAgc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSBhbWRn
+cHVfdHRtX2FkZXYoYm8tPnRiby5iZGV2KTsKPiBAQCAtMzc0LDEyICszMjQsMTIgQEAgc3RhdGlj
+IGludCBhbWRncHVfZ2VtX2JlZ2luX2NwdV9hY2Nlc3Moc3RydWN0IGRtYV9idWYgKmRtYV9idWYs
+Cj4gIH0KPgo+ICBjb25zdCBzdHJ1Y3QgZG1hX2J1Zl9vcHMgYW1kZ3B1X2RtYWJ1Zl9vcHMgPSB7
+Cj4gLSAgICAgICAuYXR0YWNoID0gYW1kZ3B1X2dlbV9tYXBfYXR0YWNoLAo+IC0gICAgICAgLmRl
+dGFjaCA9IGFtZGdwdV9nZW1fbWFwX2RldGFjaCwKPiArICAgICAgIC5hdHRhY2ggPSBhbWRncHVf
+ZG1hX2J1Zl9tYXBfYXR0YWNoLAo+ICsgICAgICAgLmRldGFjaCA9IGFtZGdwdV9kbWFfYnVmX21h
+cF9kZXRhY2gsCj4gICAgICAgICAubWFwX2RtYV9idWYgPSBkcm1fZ2VtX21hcF9kbWFfYnVmLAo+
+ICAgICAgICAgLnVubWFwX2RtYV9idWYgPSBkcm1fZ2VtX3VubWFwX2RtYV9idWYsCj4gICAgICAg
+ICAucmVsZWFzZSA9IGRybV9nZW1fZG1hYnVmX3JlbGVhc2UsCj4gLSAgICAgICAuYmVnaW5fY3B1
+X2FjY2VzcyA9IGFtZGdwdV9nZW1fYmVnaW5fY3B1X2FjY2VzcywKPiArICAgICAgIC5iZWdpbl9j
+cHVfYWNjZXNzID0gYW1kZ3B1X2RtYV9idWZfYmVnaW5fY3B1X2FjY2VzcywKPiAgICAgICAgIC5t
+bWFwID0gZHJtX2dlbV9kbWFidWZfbW1hcCwKPiAgICAgICAgIC52bWFwID0gZHJtX2dlbV9kbWFi
+dWZfdm1hcCwKPiAgICAgICAgIC52dW5tYXAgPSBkcm1fZ2VtX2RtYWJ1Zl92dW5tYXAsCj4gQEAg
+LTQxNyw2ICszNjcsNTcgQEAgc3RydWN0IGRtYV9idWYgKmFtZGdwdV9nZW1fcHJpbWVfZXhwb3J0
+KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gICAgICAgICByZXR1cm4gYnVmOwo+ICB9Cj4KPiAr
+LyoqCj4gKyAqIGFtZGdwdV9nZW1fcHJpbWVfaW1wb3J0X3NnX3RhYmxlIC0gJmRybV9kcml2ZXIu
+Z2VtX3ByaW1lX2ltcG9ydF9zZ190YWJsZQo+ICsgKiBpbXBsZW1lbnRhdGlvbgo+ICsgKiBAZGV2
+OiBEUk0gZGV2aWNlCj4gKyAqIEBhdHRhY2g6IERNQS1idWYgYXR0YWNobWVudAo+ICsgKiBAc2c6
+IFNjYXR0ZXIvZ2F0aGVyIHRhYmxlCj4gKyAqCj4gKyAqIEltcG9ydHMgc2hhcmVkIERNQSBidWZm
+ZXIgbWVtb3J5IGV4cG9ydGVkIGJ5IGFub3RoZXIgZGV2aWNlLgo+ICsgKgo+ICsgKiBSZXR1cm5z
+Ogo+ICsgKiBBIG5ldyBHRU0gQk8gb2YgdGhlIGdpdmVuIERSTSBkZXZpY2UsIHJlcHJlc2VudGlu
+ZyB0aGUgbWVtb3J5Cj4gKyAqIGRlc2NyaWJlZCBieSB0aGUgZ2l2ZW4gRE1BLWJ1ZiBhdHRhY2ht
+ZW50IGFuZCBzY2F0dGVyL2dhdGhlciB0YWJsZS4KPiArICovCj4gK3N0cnVjdCBkcm1fZ2VtX29i
+amVjdCAqCj4gK2FtZGdwdV9nZW1fcHJpbWVfaW1wb3J0X3NnX3RhYmxlKHN0cnVjdCBkcm1fZGV2
+aWNlICpkZXYsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRtYV9i
+dWZfYXR0YWNobWVudCAqYXR0YWNoLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHN0cnVjdCBzZ190YWJsZSAqc2cpCj4gK3sKPiArICAgICAgIHN0cnVjdCByZXNlcnZhdGlvbl9v
+YmplY3QgKnJlc3YgPSBhdHRhY2gtPmRtYWJ1Zi0+cmVzdjsKPiArICAgICAgIHN0cnVjdCBhbWRn
+cHVfZGV2aWNlICphZGV2ID0gZGV2LT5kZXZfcHJpdmF0ZTsKPiArICAgICAgIHN0cnVjdCBhbWRn
+cHVfYm8gKmJvOwo+ICsgICAgICAgc3RydWN0IGFtZGdwdV9ib19wYXJhbSBicDsKPiArICAgICAg
+IGludCByZXQ7Cj4gKwo+ICsgICAgICAgbWVtc2V0KCZicCwgMCwgc2l6ZW9mKGJwKSk7Cj4gKyAg
+ICAgICBicC5zaXplID0gYXR0YWNoLT5kbWFidWYtPnNpemU7Cj4gKyAgICAgICBicC5ieXRlX2Fs
+aWduID0gUEFHRV9TSVpFOwo+ICsgICAgICAgYnAuZG9tYWluID0gQU1ER1BVX0dFTV9ET01BSU5f
+Q1BVOwo+ICsgICAgICAgYnAuZmxhZ3MgPSAwOwo+ICsgICAgICAgYnAudHlwZSA9IHR0bV9ib190
+eXBlX3NnOwo+ICsgICAgICAgYnAucmVzdiA9IHJlc3Y7Cj4gKyAgICAgICB3d19tdXRleF9sb2Nr
+KCZyZXN2LT5sb2NrLCBOVUxMKTsKPiArICAgICAgIHJldCA9IGFtZGdwdV9ib19jcmVhdGUoYWRl
+diwgJmJwLCAmYm8pOwo+ICsgICAgICAgaWYgKHJldCkKPiArICAgICAgICAgICAgICAgZ290byBl
+cnJvcjsKPiArCj4gKyAgICAgICBiby0+dGJvLnNnID0gc2c7Cj4gKyAgICAgICBiby0+dGJvLnR0
+bS0+c2cgPSBzZzsKPiArICAgICAgIGJvLT5hbGxvd2VkX2RvbWFpbnMgPSBBTURHUFVfR0VNX0RP
+TUFJTl9HVFQ7Cj4gKyAgICAgICBiby0+cHJlZmVycmVkX2RvbWFpbnMgPSBBTURHUFVfR0VNX0RP
+TUFJTl9HVFQ7Cj4gKyAgICAgICBpZiAoYXR0YWNoLT5kbWFidWYtPm9wcyAhPSAmYW1kZ3B1X2Rt
+YWJ1Zl9vcHMpCj4gKyAgICAgICAgICAgICAgIGJvLT5wcmltZV9zaGFyZWRfY291bnQgPSAxOwo+
+ICsKPiArICAgICAgIHd3X211dGV4X3VubG9jaygmcmVzdi0+bG9jayk7Cj4gKyAgICAgICByZXR1
+cm4gJmJvLT5nZW1fYmFzZTsKPiArCj4gK2Vycm9yOgo+ICsgICAgICAgd3dfbXV0ZXhfdW5sb2Nr
+KCZyZXN2LT5sb2NrKTsKPiArICAgICAgIHJldHVybiBFUlJfUFRSKHJldCk7Cj4gK30KPiArCj4g
+IC8qKgo+ICAgKiBhbWRncHVfZ2VtX3ByaW1lX2ltcG9ydCAtICZkcm1fZHJpdmVyLmdlbV9wcmlt
+ZV9pbXBvcnQgaW1wbGVtZW50YXRpb24KPiAgICogQGRldjogRFJNIGRldmljZQo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5oIGIvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuaAo+IG5ldyBmaWxlIG1vZGUgMTAw
+NjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi5jNzA1NmNiZTg2ODUKPiAtLS0gL2Rldi9udWxsCj4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuaAo+IEBAIC0w
+LDAgKzEsNDYgQEAKPiArLyoKPiArICogQ29weXJpZ2h0IDIwMTkgQWR2YW5jZWQgTWljcm8gRGV2
+aWNlcywgSW5jLgo+ICsgKgo+ICsgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVl
+IG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQo+ICsgKiBjb3B5IG9mIHRoaXMg
+c29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlICJTb2Z0d2Fy
+ZSIpLAo+ICsgKiB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJlc3RyaWN0aW9uLCBp
+bmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uCj4gKyAqIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5
+LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAo+ICsgKiBh
+bmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNvbnMg
+dG8gd2hvbSB0aGUKPiArICogU29mdHdhcmUgaXMgZnVybmlzaGVkIHRvIGRvIHNvLCBzdWJqZWN0
+IHRvIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKPiArICoKPiArICogVGhlIGFib3ZlIGNvcHly
+aWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hhbGwgYmUgaW5jbHVkZWQg
+aW4KPiArICogYWxsIGNvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUgU29mdHdh
+cmUuCj4gKyAqCj4gKyAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAiQVMgSVMiLCBXSVRIT1VU
+IFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCj4gKyAqIElNUExJRUQsIElOQ0xVRElO
+RyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVSQ0hBTlRBQklMSVRZLAo+
+ICsgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5U
+LiAgSU4gTk8gRVZFTlQgU0hBTEwKPiArICogVEhFIENPUFlSSUdIVCBIT0xERVIoUykgT1IgQVVU
+SE9SKFMpIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlNLCBEQU1BR0VTIE9SCj4gKyAqIE9USEVSIExJ
+QUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0YgQ09OVFJBQ1QsIFRPUlQgT1IgT1RIRVJX
+SVNFLAo+ICsgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEggVEhF
+IFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IKPiArICogT1RIRVIgREVBTElOR1MgSU4gVEhFIFNPRlRX
+QVJFLgo+ICsgKgo+ICsgKi8KPiArI2lmbmRlZiBfX0FNREdQVV9ETUFfQlVGX0hfXwo+ICsjZGVm
+aW5lIF9fQU1ER1BVX0RNQV9CVUZfSF9fCj4gKwo+ICsjaW5jbHVkZSA8ZHJtL2RybV9nZW0uaD4K
+PiArCj4gK3N0cnVjdCBzZ190YWJsZSAqYW1kZ3B1X2dlbV9wcmltZV9nZXRfc2dfdGFibGUoc3Ry
+dWN0IGRybV9nZW1fb2JqZWN0ICpvYmopOwo+ICtzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKgo+ICth
+bWRncHVfZ2VtX3ByaW1lX2ltcG9ydF9zZ190YWJsZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBkbWFfYnVmX2F0dGFjaG1l
+bnQgKmF0dGFjaCwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3Qgc2df
+dGFibGUgKnNnKTsKPiArc3RydWN0IGRtYV9idWYgKmFtZGdwdV9nZW1fcHJpbWVfZXhwb3J0KHN0
+cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqZ29iaiwKPiArICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgaW50IGZsYWdzKTsKPiArc3RydWN0IGRybV9nZW1fb2JqZWN0
+ICphbWRncHVfZ2VtX3ByaW1lX2ltcG9ydChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRtYV9idWYgKmRt
+YV9idWYpOwo+ICtzdHJ1Y3QgcmVzZXJ2YXRpb25fb2JqZWN0ICphbWRncHVfZ2VtX3ByaW1lX3Jl
+c19vYmooc3RydWN0IGRybV9nZW1fb2JqZWN0ICopOwo+ICt2b2lkICphbWRncHVfZ2VtX3ByaW1l
+X3ZtYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmopOwo+ICt2b2lkIGFtZGdwdV9nZW1fcHJp
+bWVfdnVubWFwKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqLCB2b2lkICp2YWRkcik7Cj4gK2lu
+dCBhbWRncHVfZ2VtX3ByaW1lX21tYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosCj4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSk7Cj4gKwo+
+ICtleHRlcm4gY29uc3Qgc3RydWN0IGRtYV9idWZfb3BzIGFtZGdwdV9kbWFidWZfb3BzOwo+ICsK
+PiArI2VuZGlmCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
+dV9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYwo+IGluZGV4
+IDEzYTY4ZjYyYmNjOC4uZjRiYzJkNWU4MWIxIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV9kcnYuYwo+IEBAIC0zNiw3ICszNiw3IEBACj4KPiAgI2luY2x1ZGUgImFtZGdw
+dS5oIgo+ICAjaW5jbHVkZSAiYW1kZ3B1X2lycS5oIgo+IC0jaW5jbHVkZSAiYW1kZ3B1X2dlbS5o
+Igo+ICsjaW5jbHVkZSAiYW1kZ3B1X2RtYV9idWYuaCIKPgo+ICAjaW5jbHVkZSAiYW1kZ3B1X2Ft
+ZGtmZC5oIgo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
+dV9nZW0uaCBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nZW0uaAo+IGluZGV4
+IGYxZGRmYzUwYmNjNy4uYjhiYTZlMjdjNjFmIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2FtZGdwdV9nZW0uaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV9nZW0uaAo+IEBAIC0zOSwyMiArMzksNiBAQCBpbnQgYW1kZ3B1X2dlbV9vYmpl
+Y3Rfb3BlbihzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwKPiAgdm9pZCBhbWRncHVfZ2VtX29i
+amVjdF9jbG9zZShzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwKPiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2KTsKPiAgdW5zaWduZWQg
+bG9uZyBhbWRncHVfZ2VtX3RpbWVvdXQodWludDY0X3QgdGltZW91dF9ucyk7Cj4gLXN0cnVjdCBz
+Z190YWJsZSAqYW1kZ3B1X2dlbV9wcmltZV9nZXRfc2dfdGFibGUoc3RydWN0IGRybV9nZW1fb2Jq
+ZWN0ICpvYmopOwo+IC1zdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKgo+IC1hbWRncHVfZ2VtX3ByaW1l
+X2ltcG9ydF9zZ190YWJsZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+IC0gICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIHN0cnVjdCBkbWFfYnVmX2F0dGFjaG1lbnQgKmF0dGFjaCwKPiAt
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3Qgc2dfdGFibGUgKnNnKTsKPiAt
+c3RydWN0IGRtYV9idWYgKmFtZGdwdV9nZW1fcHJpbWVfZXhwb3J0KHN0cnVjdCBkcm1fZGV2aWNl
+ICpkZXYsCj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBk
+cm1fZ2VtX29iamVjdCAqZ29iaiwKPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgaW50IGZsYWdzKTsKPiAtc3RydWN0IGRybV9nZW1fb2JqZWN0ICphbWRncHVfZ2VtX3By
+aW1lX2ltcG9ydChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+IC0gICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRtYV9idWYgKmRtYV9idWYpOwo+IC1zdHJ1
+Y3QgcmVzZXJ2YXRpb25fb2JqZWN0ICphbWRncHVfZ2VtX3ByaW1lX3Jlc19vYmooc3RydWN0IGRy
+bV9nZW1fb2JqZWN0ICopOwo+IC12b2lkICphbWRncHVfZ2VtX3ByaW1lX3ZtYXAoc3RydWN0IGRy
+bV9nZW1fb2JqZWN0ICpvYmopOwo+IC12b2lkIGFtZGdwdV9nZW1fcHJpbWVfdnVubWFwKHN0cnVj
+dCBkcm1fZ2VtX29iamVjdCAqb2JqLCB2b2lkICp2YWRkcik7Cj4gLWludCBhbWRncHVfZ2VtX3By
+aW1lX21tYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosIHN0cnVjdCB2bV9hcmVhX3N0cnVj
+dCAqdm1hKTsKPiAtCj4gLWV4dGVybiBjb25zdCBzdHJ1Y3QgZG1hX2J1Zl9vcHMgYW1kZ3B1X2Rt
+YWJ1Zl9vcHM7Cj4KPiAgLyoKPiAgICogR0VNIG9iamVjdHMuCj4gLS0KPiAyLjE3LjEKPgo+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKPiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeApfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAph
+bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
