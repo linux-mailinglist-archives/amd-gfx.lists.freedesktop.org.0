@@ -1,78 +1,77 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86BBC15768
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 May 2019 03:48:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 539A41577B
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 May 2019 04:00:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 218C589C52;
-	Tue,  7 May 2019 01:48:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B7BF899BB;
+	Tue,  7 May 2019 02:00:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr740059.outbound.protection.outlook.com [40.107.74.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBC5A89C52
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 May 2019 01:48:23 +0000 (UTC)
-Received: from MN2PR12MB3344.namprd12.prod.outlook.com (20.178.241.74) by
- MN2PR12MB3712.namprd12.prod.outlook.com (10.255.236.25) with Microsoft SMTP
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700083.outbound.protection.outlook.com [40.107.70.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4BEB8990D
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 May 2019 02:00:39 +0000 (UTC)
+Received: from MN2PR12MB3408.namprd12.prod.outlook.com (20.178.243.85) by
+ MN2PR12MB3088.namprd12.prod.outlook.com (20.178.241.29) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.10; Tue, 7 May 2019 01:48:20 +0000
-Received: from MN2PR12MB3344.namprd12.prod.outlook.com
- ([fe80::c93d:cf5d:3f72:aff6]) by MN2PR12MB3344.namprd12.prod.outlook.com
- ([fe80::c93d:cf5d:3f72:aff6%2]) with mapi id 15.20.1856.012; Tue, 7 May 2019
- 01:48:20 +0000
-From: "Quan, Evan" <Evan.Quan@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>,
+ 15.20.1856.12; Tue, 7 May 2019 02:00:38 +0000
+Received: from MN2PR12MB3408.namprd12.prod.outlook.com
+ ([fe80::7042:de63:ed77:13b4]) by MN2PR12MB3408.namprd12.prod.outlook.com
+ ([fe80::7042:de63:ed77:13b4%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
+ 02:00:38 +0000
+From: "Huang, Trigger" <Trigger.Huang@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: treat negative lockup timeout as 'infinite
- timeout'
-Thread-Topic: [PATCH] drm/amdgpu: treat negative lockup timeout as 'infinite
- timeout'
-Thread-Index: AQHVA04vUXNS+6SheEicHxkh/FfquaZd9nqAgADvalA=
-Date: Tue, 7 May 2019 01:48:20 +0000
-Message-ID: <MN2PR12MB3344ED1CC8D0C5ABCB935135E4310@MN2PR12MB3344.namprd12.prod.outlook.com>
-References: <20190505142353.30369-1-evan.quan@amd.com>
- <03378dca-c0bb-443e-818a-3a01b69dcccb@gmail.com>
-In-Reply-To: <03378dca-c0bb-443e-818a-3a01b69dcccb@gmail.com>
-Accept-Language: en-US, zh-CN
+Subject: RE: [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF MM
+Thread-Topic: [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF MM
+Thread-Index: AQHVAOZ7cZh9oVEEUkeAiAfIgpGMdqZeNKYAgAC6guA=
+Date: Tue, 7 May 2019 02:00:37 +0000
+Message-ID: <MN2PR12MB340866D1683DBC7592BC93E3FE310@MN2PR12MB3408.namprd12.prod.outlook.com>
+References: <1556801791-8460-1-git-send-email-Trigger.Huang@amd.com>
+ <BN6PR12MB180932785D60B6BFAD3E2DD6F7300@BN6PR12MB1809.namprd12.prod.outlook.com>
+In-Reply-To: <BN6PR12MB180932785D60B6BFAD3E2DD6F7300@BN6PR12MB1809.namprd12.prod.outlook.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [210.13.97.164]
+x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 353320cb-51f4-4ed8-656c-08d6d28e154e
+x-ms-office365-filtering-correlation-id: 60ce6700-4f87-4cca-c4d4-08d6d28fccfc
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB3712; 
-x-ms-traffictypediagnostic: MN2PR12MB3712:
-x-microsoft-antispam-prvs: <MN2PR12MB37120858626F1912A2074CF3E4310@MN2PR12MB3712.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+ SRVR:MN2PR12MB3088; 
+x-ms-traffictypediagnostic: MN2PR12MB3088:
+x-ms-exchange-purlcount: 3
+x-microsoft-antispam-prvs: <MN2PR12MB3088D65883C9CF82DF976943FE310@MN2PR12MB3088.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:346;
 x-forefront-prvs: 0030839EEE
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(346002)(396003)(136003)(39860400002)(376002)(366004)(189003)(199004)(13464003)(6246003)(6436002)(229853002)(25786009)(6116002)(3846002)(66574012)(8676002)(66556008)(53936002)(99286004)(81156014)(55016002)(66476007)(8936002)(76176011)(76116006)(66946007)(66446008)(7696005)(73956011)(68736007)(64756008)(81166006)(52536014)(256004)(72206003)(5660300002)(446003)(478600001)(9686003)(11346002)(476003)(316002)(486006)(33656002)(6506007)(102836004)(86362001)(2501003)(53546011)(71190400001)(71200400001)(66066001)(2906002)(26005)(186003)(14454004)(305945005)(110136005)(7736002)(74316002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3712;
- H:MN2PR12MB3344.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ SFS:(10009020)(39860400002)(396003)(136003)(366004)(376002)(346002)(199004)(189003)(966005)(7696005)(53546011)(99286004)(25786009)(71200400001)(66476007)(71190400001)(66556008)(64756008)(66446008)(53936002)(72206003)(478600001)(6246003)(110136005)(9686003)(6506007)(6306002)(54896002)(236005)(7736002)(8936002)(81156014)(81166006)(74316002)(256004)(86362001)(2501003)(8676002)(606006)(102836004)(26005)(316002)(33656002)(446003)(476003)(11346002)(486006)(6116002)(790700001)(186003)(55016002)(6436002)(5660300002)(3846002)(68736007)(52536014)(14454004)(73956011)(66946007)(76116006)(76176011)(229853002)(2906002)(66066001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3088;
+ H:MN2PR12MB3408.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 33JjKKSMVspL0vQeI8aXgXJk8til3/tV/KTU0WbycZ0jStnJeKPnw5PVzut27XOGwIh/FBudjFIInBSeUAQ6pR7Rc5yMSEzM0WwQfpkII/OLyzDsut2fmzI2ohGZzLbq+gGQVOcTL898dZ0b9hGk8qfg3rsVW8TllvfHE3RsQGOshM6ZjcbC86dvMDZ//hRlBmQDWgpXwdIJ/4GNIzyVI7csO0DNTLTcDYzRVWEGunMMz+hqxmCC40B3iVHwxvHhQLAykWXj92BTUQUMrGWrPK6DarnGYf68wMgiugk3pC+cQ0DqepqGZQgZqUg7KNKHbk1obxyR++mbELV8u85VeFtIFI0uWpZyRXQcoHZ3e2ke1KplG36wsYQMZpbpNdkhVZvZWGXoJuM5ZUs3dQ/LtoKHVYivm4DFEF4T1DLKpfk=
+x-microsoft-antispam-message-info: 4airyxQpLEeiCzD76hTSX+UcF9Z8bGsEheHxJgUnTX12cQovKXjfov9reZWzZjT/yyWjSvMEK40KBFXS1+a4lkH/+PnAYQxsAxmEgROD9HJ/9/KoGKNFJK/kftKWCZw0fn6WQ6Sg01kK4oXV/raqSUnHtKjeAL8uxqVT2a0Z1GDv+CNWQdZjoYF7Rs7jN/Hsvl1SxJvCY0k6cXRQq9bR7BT41U/C7pQxOyE2OfZm3qjf/861okYRxjgHGi5YkmCPLZwo2n1eizxtR93L1zPUOosl6u6a2vZFEed2sCX1VlBaMRq+nHBuP+K3kN8HykB2XHDpawsMAPNCX5vGAcjpzfPPSZ7LtF4X5XOCygDQu0JbeKAdRalGoY6iI/rjn6Coel7TXt5Bvo6SeWiilJfPXDc06NjLbniu6W9oBYN4OgA=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 353320cb-51f4-4ed8-656c-08d6d28e154e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 01:48:20.3001 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60ce6700-4f87-4cca-c4d4-08d6d28fccfc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 02:00:37.8245 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3712
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3088
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amd-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Wntf9kSnICnoepX9ruB0j/iOfi/1zwQil6Q2iL8W2qE=;
- b=rAFKYATZ+luRXzjXvbgja4u53UXz96VOGt+IhTtEzIk3UdjiwV4Nvjj5m8ZEOjTPbHztMkUJmlkJZpZxLBV922FIY1z2pkeII67o5PKZcewp1aA0cWzMvCww+9+/kEuQyiMX+B24g06bZRSq2pUwV18zwIvwgG+OH0o8EJ0YUpk=
+ bh=bDUD+xOh3mgTHjnyk3F2g09pY7CSulDC1oFi6b8YNB0=;
+ b=uQaWyTfDAdrZi7VoDRR+oiOb42smB1xN8dBEgjwXhgz/MzQnLe5ZA8DXrc/kGzRLe5cZWiuI9F7Vzcf2n/o6/5HW2lRdhTk37MvP0JVnFJEfykWkxFpcA84OWtGbDRIvgPFzp+7hn1Bck9RjpQgbR8cT4DUgAUhxXAylEH4kW+Q=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Evan.Quan@amd.com; 
+ smtp.mailfrom=Trigger.Huang@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -84,70 +83,650 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1613825150=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VGhhbmtzISBKdXN0IHNlbnQgb3V0IGEgVjIgdmVyc2lvbiB3aXRoIHRoaXMgYWRkcmVzc2VkLg0K
-DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IENocmlzdGlhbiBLw7ZuaWcg
-PGNrb2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwuY29tPg0KPiBTZW50OiAyMDE55bm0NeaciDbm
-l6UgMTk6MjYNCj4gVG86IFF1YW4sIEV2YW4gPEV2YW4uUXVhbkBhbWQuY29tPjsgYW1kLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IEtvZW5pZywgQ2hyaXN0aWFuIDxDaHJpc3RpYW4u
-S29lbmlnQGFtZC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0hdIGRybS9hbWRncHU6IHRyZWF0
-IG5lZ2F0aXZlIGxvY2t1cCB0aW1lb3V0IGFzICdpbmZpbml0ZQ0KPiB0aW1lb3V0Jw0KPiANCj4g
-W0NBVVRJT046IEV4dGVybmFsIEVtYWlsXQ0KPiANCj4gQW0gMDUuMDUuMTkgdW0gMTY6MjMgc2No
-cmllYiBFdmFuIFF1YW46DQo+ID4gTmVnYXRpdmUgbG9ja3VwIHRpbWVvdXQgaXMgdmFsaWQgYW5k
-IHdpbGwgYmUgdHJlYXRlZCBhcyAnaW5maW5pdGUNCj4gPiB0aW1lb3V0Jy4NCj4gPg0KPiA+IENo
-YW5nZS1JZDogSTBkODM4Nzk1NmE5Yzc0NDA3M2MwMjgxZWYyZTFhNTQ3ZDRmMTZkZWMNCj4gPiBT
-aWduZWQtb2ZmLWJ5OiBFdmFuIFF1YW4gPGV2YW4ucXVhbkBhbWQuY29tPg0KPiA+IC0tLQ0KPiA+
-ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jIHwgMTQgKysrKysrKysr
-Ky0tLS0NCj4gPiAgIDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9u
-cygtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
-ZGdwdV9kcnYuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5j
-DQo+ID4gaW5kZXggNWIwM2UxN2U2ZTA2Li40ZDZkZmY2ODU1ZjggMTAwNjQ0DQo+ID4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jDQo+ID4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jDQo+ID4gQEAgLTIzMywxMyArMjMzLDE0
-IEBAIG1vZHVsZV9wYXJhbV9uYW1lZChtc2ksIGFtZGdwdV9tc2ksIGludCwNCj4gMDQ0NCk7DQo+
-ID4gICAgKiBTZXQgR1BVIHNjaGVkdWxlciB0aW1lb3V0IHZhbHVlIGluIG1zLg0KPiA+ICAgICoN
-Cj4gPiAgICAqIFRoZSBmb3JtYXQgY2FuIGJlIFtOb24tQ29tcHV0ZV0gb3IgW0dGWCxDb21wdXRl
-LFNETUEsVmlkZW9dLg0KPiBUaGF0DQo+ID4gaXMgdGhlcmUgY2FuIGJlIG9uZSBvcg0KPiA+IC0g
-KiBtdWx0aXBsZSB2YWx1ZXMgc3BlY2lmaWVkLiAwIGFuZCBuZWdhdGl2ZSB2YWx1ZXMgYXJlIGlu
-dmFsaWRhdGVkLg0KPiA+IFRoZXkgd2lsbCBiZSBhZGp1c3RlZA0KPiA+IC0gKiB0byBkZWZhdWx0
-IHRpbWVvdXQuDQo+ID4gKyAqIG11bHRpcGxlIHZhbHVlcyBzcGVjaWZpZWQuDQo+ID4gICAgKiAg
-LSBXaXRoIG9uZSB2YWx1ZSBzcGVjaWZpZWQsIHRoZSBzZXR0aW5nIHdpbGwgYXBwbHkgdG8gYWxs
-IG5vbi1jb21wdXRlDQo+IGpvYnMuDQo+ID4gICAgKiAgLSBXaXRoIG11bHRpcGxlIHZhbHVlcyBz
-cGVjaWZpZWQsIHRoZSBmaXJzdCBvbmUgd2lsbCBiZSBmb3IgR0ZYLiBUaGUNCj4gc2Vjb25kIG9u
-ZSBpcyBmb3IgQ29tcHV0ZS4NCj4gPiAgICAqICAgIEFuZCB0aGUgdGhpcmQgYW5kIGZvdXJ0aCBv
-bmVzIGFyZSBmb3IgU0RNQSBhbmQgVmlkZW8uDQo+ID4gICAgKiBCeSBkZWZhdWx0KHdpdGggbm8g
-bG9ja3VwX3RpbWVvdXQgc2V0dGluZ3MpLCB0aGUgdGltZW91dCBmb3IgYWxsIG5vbi0NCj4gY29t
-cHV0ZShHRlgsIFNETUEgYW5kIFZpZGVvKQ0KPiA+ICAgICogam9icyBpcyAxMDAwMC4gQW5kIHRo
-ZXJlIGlzIG5vIHRpbWVvdXQgZW5mb3JjZWQgb24gY29tcHV0ZSBqb2JzLg0KPiA+ICsgKiBWYWx1
-ZSAwIGlzIGludmFsaWRhdGVkLCB3aWxsIGJlIGFkanVzdGVkIHRvIGRlZmF1bHQgdGltZW91dCBz
-ZXR0aW5ncy4NCj4gPiArICogTmVnYXRpdmUgdmFsdWVzIG1lYW4gJ2luZmluaXRlIHRpbWVvdXQn
-IChNQVhfSklGRllfT0ZGU0VUKS4NCj4gPiAgICAqLw0KPiA+ICAgTU9EVUxFX1BBUk1fREVTQyhs
-b2NrdXBfdGltZW91dCwgIkdQVSBsb2NrdXAgdGltZW91dCBpbiBtcw0KPiAoZGVmYXVsdDogMTAw
-MDAgZm9yIG5vbi1jb21wdXRlIGpvYnMgYW5kIG5vIHRpbWVvdXQgZm9yIGNvbXB1dGUgam9icyks
-ICINCj4gPiAgICAgICAgICAgICAgICJmb3JtYXQgaXMgW05vbi1Db21wdXRlXSBvciBbR0ZYLENv
-bXB1dGUsU0RNQSxWaWRlb10iKTsNCj4gPiBAQCAtMTI0OCwxMSArMTI0OSwxNiBAQCBpbnQNCj4g
-YW1kZ3B1X2RldmljZV9nZXRfam9iX3RpbWVvdXRfc2V0dGluZ3Moc3RydWN0IGFtZGdwdV9kZXZp
-Y2UgKmFkZXYpDQo+ID4gICAgICAgICAgICAgICAgICAgICAgIGlmIChyZXQpDQo+ID4gICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPg0KPiA+IC0gICAgICAgICAg
-ICAgICAgICAgICAvKiBJbnZhbGlkYXRlIDAgYW5kIG5lZ2F0aXZlIHZhbHVlcyAqLw0KPiA+IC0g
-ICAgICAgICAgICAgICAgICAgICBpZiAodGltZW91dCA8PSAwKSB7DQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgIC8qDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAqIFZhbHVlIDAgd2lsbCBi
-ZSBhZGp1c3RlZCB0byBkZWZhdWx0IHRpbWVvdXQgc2V0dGluZ3MuDQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAqIE5lZ2F0aXZlIHZhbHVlcyBtZWFuICdpbmZpbml0ZSB0aW1lb3V0JyAoTUFY
-X0pJRkZZX09GRlNFVCkuDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAqLw0KPiA+ICsgICAg
-ICAgICAgICAgICAgICAgICBpZiAoIXRpbWVvdXQpIHsNCj4gPiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBpbmRleCsrOw0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNv
-bnRpbnVlOw0KPiA+ICAgICAgICAgICAgICAgICAgICAgICB9DQo+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgIGlmICh0aW1lb3V0IDwgMCkNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICB0aW1lb3V0ID0gTUFYX0pJRkZZX09GRlNFVDsNCj4gDQo+IFRoaXMgaXMgc3VwZXJmbHVvdXMg
-YW5kIG1heWJlIGV2ZW4gaGFybWZ1bCwgbXNlY3NfdG9famlmZmllcygpIHNob3VsZCB0YWtlDQo+
-IGNhcmUgb2YgdGhpcyBjb252ZXJzaW9uLg0KPiANCj4gTWF5YmUgZXZlbiBjb252ZXJ0IHRoZSB2
-YWx1ZXMgZGlyZWN0bHkgaGVyZS4NCj4gDQo+IENocmlzdGlhbi4NCj4gDQo+ID4NCj4gPiAgICAg
-ICAgICAgICAgICAgICAgICAgc3dpdGNoIChpbmRleCsrKSB7DQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgIGNhc2UgMDoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+--===============1613825150==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB340866D1683DBC7592BC93E3FE310MN2PR12MB3408namp_"
+
+--_000_MN2PR12MB340866D1683DBC7592BC93E3FE310MN2PR12MB3408namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks Alex's comments
+
+Yes, they are only in the SR-IOV HW initialization path of UVD/VCE.
+Thanks & Best Wishes,
+Trigger Huang
+
+From: Deucher, Alexander <Alexander.Deucher@amd.com>
+Sent: Monday, May 06, 2019 10:52 PM
+To: Huang, Trigger <Trigger.Huang@amd.com>; amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF MM
+
+As long as this doesn't break bare metal, I'm ok with it.
+Acked-by: Alex Deucher <alexander.deucher@amd.com<mailto:alexander.deucher@=
+amd.com>>
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
+@lists.freedesktop.org>> on behalf of Trigger Huang <Trigger.Huang@amd.com<=
+mailto:Trigger.Huang@amd.com>>
+Sent: Thursday, May 2, 2019 8:56 AM
+To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+Cc: Huang, Trigger
+Subject: [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF MM
+
+[CAUTION: External Email]
+
+One Vega10 SR-IOV VF, the FW address returned by PSP should be
+set into the init table, while not the original BO mc address.
+otherwise, UVD and VCE IB test will fail under Vega10 SR-IOV
+
+reference:
+        commit bfcea5204287 ("drm/amdgpu:change VEGA booting with firmware =
+loaded by PSP")
+        commit aa5873dca463 ("drm/amdgpu: Change VCE booting with firmware =
+loaded by PSP")
+
+Signed-off-by: Trigger Huang <Trigger.Huang@amd.com<mailto:Trigger.Huang@am=
+d.com>>
+---
+ drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c | 16 ++++++++++------
+ drivers/gpu/drm/amd/amdgpu/vce_v4_0.c | 17 +++++++++++------
+ 2 files changed, 21 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c b/drivers/gpu/drm/amd/am=
+dgpu/uvd_v7_0.c
+index dc461df..2191d3d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
+@@ -787,10 +787,13 @@ static int uvd_v7_0_sriov_start(struct amdgpu_device =
+*adev)
+                                                           0xFFFFFFFF, 0x00=
+000004);
+                        /* mc resume*/
+                        if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_=
+PSP) {
+-                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),
+-                                                           lower_32_bits(a=
+dev->firmware.ucode[AMDGPU_UCODE_ID_UVD].mc_addr));
+-                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),
+-                                                           upper_32_bits(a=
+dev->firmware.ucode[AMDGPU_UCODE_ID_UVD].mc_addr));
++                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, i,
++                                                       mmUVD_LMI_VCPU_CACH=
+E_64BIT_BAR_LOW),
++                                                       adev->firmware.ucod=
+e[AMDGPU_UCODE_ID_UVD].tmr_mc_addr_lo);
++                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, i,
++                                                       mmUVD_LMI_VCPU_CACH=
+E_64BIT_BAR_HIGH),
++                                                       adev->firmware.ucod=
+e[AMDGPU_UCODE_ID_UVD].tmr_mc_addr_hi);
++                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, 0, mmUVD_VCPU_CACHE_OFFSET0), 0);
+                                offset =3D 0;
+                        } else {
+                                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),
+@@ -798,10 +801,11 @@ static int uvd_v7_0_sriov_start(struct amdgpu_device =
+*adev)
+                                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),
+                                                            upper_32_bits(a=
+dev->uvd.inst[i].gpu_addr));
+                                offset =3D size;
++                               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, 0, mmUVD_VCPU_CACHE_OFFSET0),
++                                                       AMDGPU_UVD_FIRMWARE=
+_OFFSET >> 3);
++
+                        }
+
+-                       MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i=
+, mmUVD_VCPU_CACHE_OFFSET0),
+-                                                   AMDGPU_UVD_FIRMWARE_OFF=
+SET >> 3);
+                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i=
+, mmUVD_VCPU_CACHE_SIZE0), size);
+
+                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i=
+, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_LOW),
+diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c b/drivers/gpu/drm/amd/am=
+dgpu/vce_v4_0.c
+index f3f5938..c0ec279 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
+@@ -244,13 +244,18 @@ static int vce_v4_0_sriov_start(struct amdgpu_device =
+*adev)
+                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
+LMI_SWAP_CNTL1), 0);
+                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
+LMI_VM_CTRL), 0);
+
++               offset =3D AMDGPU_VCE_FIRMWARE_OFFSET;
+                if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {
++                       uint32_t low =3D adev->firmware.ucode[AMDGPU_UCODE_=
+ID_VCE].tmr_mc_addr_lo;
++                       uint32_t hi =3D adev->firmware.ucode[AMDGPU_UCODE_I=
+D_VCE].tmr_mc_addr_hi;
++                       uint64_t tmr_mc_addr =3D (uint64_t)(hi) << 32 | low=
+;
++
+                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
+,
+-                                               mmVCE_LMI_VCPU_CACHE_40BIT_=
+BAR0),
+-                                               adev->firmware.ucode[AMDGPU=
+_UCODE_ID_VCE].mc_addr >> 8);
++                                               mmVCE_LMI_VCPU_CACHE_40BIT_=
+BAR0), tmr_mc_addr >> 8);
+                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
+,
+                                                mmVCE_LMI_VCPU_CACHE_64BIT_=
+BAR0),
+-                                               (adev->firmware.ucode[AMDGP=
+U_UCODE_ID_VCE].mc_addr >> 40) & 0xff);
++                                               (tmr_mc_addr >> 40) & 0xff)=
+;
++                       MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
+, mmVCE_VCPU_CACHE_OFFSET0), 0);
+                } else {
+                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
+,
+                                                mmVCE_LMI_VCPU_CACHE_40BIT_=
+BAR0),
+@@ -258,6 +263,9 @@ static int vce_v4_0_sriov_start(struct amdgpu_device *a=
+dev)
+                        MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
+,
+                                                mmVCE_LMI_VCPU_CACHE_64BIT_=
+BAR0),
+                                                (adev->vce.gpu_addr >> 40) =
+& 0xff);
++                       MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0=
+, mmVCE_VCPU_CACHE_OFFSET0),
++                                               offset & ~0x0f000000);
++
+                }
+                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,
+                                                mmVCE_LMI_VCPU_CACHE_40BIT_=
+BAR1),
+@@ -272,10 +280,7 @@ static int vce_v4_0_sriov_start(struct amdgpu_device *=
+adev)
+                                                mmVCE_LMI_VCPU_CACHE_64BIT_=
+BAR2),
+                                                (adev->vce.gpu_addr >> 40) =
+& 0xff);
+
+-               offset =3D AMDGPU_VCE_FIRMWARE_OFFSET;
+                size =3D VCE_V4_0_FW_SIZE;
+-               MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
+VCPU_CACHE_OFFSET0),
+-                                       offset & ~0x0f000000);
+                MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
+VCPU_CACHE_SIZE0), size);
+
+                offset =3D (adev->firmware.load_type !=3D AMDGPU_FW_LOAD_PS=
+P) ? offset + size : 0;
+--
+2.7.4
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_MN2PR12MB340866D1683DBC7592BC93E3FE310MN2PR12MB3408namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Thanks <span style=3D"font-size:12.0pt;color:black">=
+Alex&#8217;s comments</span><span style=3D"font-size:12.0pt;color:black"><o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Yes, they are only in the SR-IOV HW initialization p=
+ath of UVD/VCE.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">Thanks &amp; Best Wishes,<o:p></o:p></p>
+<p class=3D"MsoNormal">Trigger Huang<o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Deucher, Alexander &lt;Alexander.Deuche=
+r@amd.com&gt; <br>
+<b>Sent:</b> Monday, May 06, 2019 10:52 PM<br>
+<b>To:</b> Huang, Trigger &lt;Trigger.Huang@amd.com&gt;; amd-gfx@lists.free=
+desktop.org<br>
+<b>Subject:</b> Re: [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF =
+MM<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">As long=
+ as this doesn't break bare metal, I'm ok with it.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Acked-b=
+y: Alex Deucher &lt;<a href=3D"mailto:alexander.deucher@amd.com">alexander.=
+deucher@amd.com</a>&gt;<o:p></o:p></span></p>
+</div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span style=3D"color:black">From:</span></b><span=
+ style=3D"color:black"> amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists=
+.freedesktop.org">amd-gfx-bounces@lists.freedesktop.org</a>&gt; on behalf o=
+f Trigger Huang &lt;<a href=3D"mailto:Trigger.Huang@amd.com">Trigger.Huang@=
+amd.com</a>&gt;<br>
+<b>Sent:</b> Thursday, May 2, 2019 8:56 AM<br>
+<b>To:</b> <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.f=
+reedesktop.org</a><br>
+<b>Cc:</b> Huang, Trigger<br>
+<b>Subject:</b> [PATCH] drm/amdgpu: Use FW addr returned by PSP for VF MM</=
+span> <o:p>
+</o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">[CAUTION: External Email]<br>
+<br>
+One Vega10 SR-IOV VF, the FW address returned by PSP should be<br>
+set into the init table, while not the original BO mc address.<br>
+otherwise, UVD and VCE IB test will fail under Vega10 SR-IOV<br>
+<br>
+reference:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; commit bfcea5204287 (&quot;drm/a=
+mdgpu:change VEGA booting with firmware loaded by PSP&quot;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; commit aa5873dca463 (&quot;drm/a=
+mdgpu: Change VCE booting with firmware loaded by PSP&quot;)<br>
+<br>
+Signed-off-by: Trigger Huang &lt;<a href=3D"mailto:Trigger.Huang@amd.com">T=
+rigger.Huang@amd.com</a>&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c | 16 &#43;&#43;&#43;&#43;&#43;&=
+#43;&#43;&#43;&#43;&#43;------<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/vce_v4_0.c | 17 &#43;&#43;&#43;&#43;&#43;&=
+#43;&#43;&#43;&#43;&#43;&#43;------<br>
+&nbsp;2 files changed, 21 insertions(&#43;), 12 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c b/drivers/gpu/drm/amd/am=
+dgpu/uvd_v7_0.c<br>
+index dc461df..2191d3d 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c<br>
+@@ -787,10 &#43;787,13 @@ static int uvd_v7_0_sriov_start(struct amdgpu_dev=
+ice *adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0xFFFFFFFF, 0x00000004);<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* mc resum=
+e*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&g=
+t;firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lower_32_bits(adev-&gt;fi=
+rmware.ucode[AMDGPU_UCODE_ID_UVD].mc_addr));<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSE=
+T(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; upper_32_bits(adev-&gt;fi=
+rmware.ucode[AMDGPU_UCODE_ID_UVD].mc_addr));<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_O=
+FFSET(UVD, i,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;firmware.ucode[AMDGPU_UCODE_ID_UVD].=
+tmr_mc_addr_lo);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_O=
+FFSET(UVD, i,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;firmware.ucode[AMDGPU_UCODE_ID_UVD].=
+tmr_mc_addr_hi);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_O=
+FFSET(UVD, 0, mmUVD_VCPU_CACHE_OFFSET0), 0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset =3D 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_=
+OFFSET(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),<br>
+@@ -798,10 &#43;801,11 @@ static int uvd_v7_0_sriov_start(struct amdgpu_dev=
+ice *adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_=
+OFFSET(UVD, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; upper_32_bits(adev-&=
+gt;uvd.inst[i].gpu_addr));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset =3D size;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_O=
+FFSET(UVD, 0, mmUVD_VCPU_CACHE_OFFSET0),<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_UVD_FIRMWARE_OFFSET &gt;&gt; 3);<br>
+&#43;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_INSER=
+T_DIRECT_WT(SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_OFFSET0),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; AMDGPU_UVD_FIRMWARE_OFFSET &gt;&gt; 3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
+INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i, mmUVD_VCPU_CACHE_SIZE0), size);<b=
+r>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
+INSERT_DIRECT_WT(SOC15_REG_OFFSET(UVD, i, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_L=
+OW),<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c b/drivers/gpu/drm/amd/am=
+dgpu/vce_v4_0.c<br>
+index f3f5938..c0ec279 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c<br>
+@@ -244,13 &#43;244,18 @@ static int vce_v4_0_sriov_start(struct amdgpu_dev=
+ice *adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
+LMI_SWAP_CNTL1), 0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
+LMI_VM_CTRL), 0);<br>
+<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; offset =3D AMDGPU_VCE_FIRMWARE_OFFSET;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; if (adev-&gt;firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) =
+{<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t low=
+ =3D adev-&gt;firmware.ucode[AMDGPU_UCODE_ID_VCE].tmr_mc_addr_lo;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t hi =
+=3D adev-&gt;firmware.ucode[AMDGPU_UCODE_ID_VCE].tmr_mc_addr_hi;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t tmr=
+_mc_addr =3D (uint64_t)(hi) &lt;&lt; 32 | low;<br>
+&#43;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
+INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CACHE_4=
+0BIT_BAR0),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;firmware.ucod=
+e[AMDGPU_UCODE_ID_VCE].mc_addr &gt;&gt; 8);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CAC=
+HE_40BIT_BAR0), tmr_mc_addr &gt;&gt; 8);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
+INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
+CHE_64BIT_BAR0),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (adev-&gt;firmware.uco=
+de[AMDGPU_UCODE_ID_VCE].mc_addr &gt;&gt; 40) &amp; 0xff);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (tmr_mc_addr &gt;&=
+gt; 40) &amp; 0xff);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_I=
+NSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_VCPU_CACHE_OFFSET0), 0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; } else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
+INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
+CHE_40BIT_BAR0),<br>
+@@ -258,6 &#43;263,9 @@ static int vce_v4_0_sriov_start(struct amdgpu_devic=
+e *adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_=
+INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
+CHE_64BIT_BAR0),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (adev-&gt;vce.gpu=
+_addr &gt;&gt; 40) &amp; 0xff);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MMSCH_V1_0_I=
+NSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_VCPU_CACHE_OFFSET0),<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset &amp; ~0x0f=
+000000);<br>
+&#43;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
+CHE_40BIT_BAR1),<br>
+@@ -272,10 &#43;280,7 @@ static int vce_v4_0_sriov_start(struct amdgpu_devi=
+ce *adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmVCE_LMI_VCPU_CA=
+CHE_64BIT_BAR2),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (adev-&gt;vce.gpu=
+_addr &gt;&gt; 40) &amp; 0xff);<br>
+<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; offset =3D AMDGPU_VCE_FIRMWARE_OFFSET;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; size =3D VCE_V4_0_FW_SIZE;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_VCPU_=
+CACHE_OFFSET0),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; offset &amp; ~0x0f000000);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_=
+VCPU_CACHE_SIZE0), size);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; offset =3D (adev-&gt;firmware.load_type !=3D AMDGPU_FW_LOAD=
+_PSP) ? offset &#43; size : 0;<br>
+--<br>
+2.7.4<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a><o:p></o:p></p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_MN2PR12MB340866D1683DBC7592BC93E3FE310MN2PR12MB3408namp_--
+
+--===============1613825150==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1613825150==--
