@@ -1,81 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FDA61CEF4
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 May 2019 20:21:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A99181CFFA
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 May 2019 21:34:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFFA0892FA;
-	Tue, 14 May 2019 18:20:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79C478930B;
+	Tue, 14 May 2019 19:34:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750040.outbound.protection.outlook.com [40.107.75.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00AF7892D4
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 May 2019 18:20:57 +0000 (UTC)
-Received: from BYAPR12MB3560.namprd12.prod.outlook.com (20.178.197.10) by
- BYAPR12MB3544.namprd12.prod.outlook.com (20.179.94.154) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1878.22; Tue, 14 May 2019 18:20:55 +0000
-Received: from BYAPR12MB3560.namprd12.prod.outlook.com
- ([fe80::e07e:24e5:eb8f:199e]) by BYAPR12MB3560.namprd12.prod.outlook.com
- ([fe80::e07e:24e5:eb8f:199e%6]) with mapi id 15.20.1878.024; Tue, 14 May 2019
- 18:20:55 +0000
-From: "Kazlauskas, Nicholas" <Nicholas.Kazlauskas@amd.com>
-To: "Wentland, Harry" <Harry.Wentland@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 1/3] drm/amd/display: Add ASICREV_IS_PICASSO
-Thread-Topic: [PATCH 1/3] drm/amd/display: Add ASICREV_IS_PICASSO
-Thread-Index: AQHVCn19oAuc5ZNYWUyvbJnfVxrvGqZq7osA
-Date: Tue, 14 May 2019 18:20:55 +0000
-Message-ID: <387c6572-f872-44e1-3b41-de6ae957646d@amd.com>
-References: <20190514174935.28605-1-harry.wentland@amd.com>
-In-Reply-To: <20190514174935.28605-1-harry.wentland@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: YTOPR0101CA0048.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::25) To BYAPR12MB3560.namprd12.prod.outlook.com
- (2603:10b6:a03:ae::10)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [165.204.55.250]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: acea06b6-9984-4570-acaa-08d6d898e75e
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
- SRVR:BYAPR12MB3544; 
-x-ms-traffictypediagnostic: BYAPR12MB3544:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BYAPR12MB3544E87CB5C1FBD093B3EBF5EC080@BYAPR12MB3544.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1468;
-x-forefront-prvs: 0037FD6480
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(136003)(376002)(39860400002)(346002)(366004)(396003)(189003)(199004)(486006)(53936002)(186003)(31686004)(14454004)(66556008)(66476007)(476003)(6512007)(66066001)(6436002)(54906003)(8676002)(66446008)(66946007)(2616005)(64756008)(73956011)(11346002)(86362001)(6306002)(5660300002)(110136005)(446003)(2906002)(31696002)(966005)(71190400001)(71200400001)(102836004)(26005)(256004)(81166006)(8936002)(52116002)(76176011)(6246003)(99286004)(316002)(478600001)(305945005)(25786009)(68736007)(4326008)(229853002)(2501003)(53546011)(6506007)(7736002)(386003)(36756003)(6486002)(72206003)(6116002)(3846002)(81156014);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BYAPR12MB3544;
- H:BYAPR12MB3560.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: uMlOXhtsiCtZkfG1eV7W7zelAvAuZm88Vfp4IRpuznTzvuauDP/kkJSsgROR3PgA45KCGTAQjiVLWFTQ4UsFWmTjed/CIppWI1G9kM+Cih//KQ4vfDJScB1uf6PUsLz+ZkylNi8av7zj2QqyQbqneAnbvXqErorOsIbyENIXlUhGuoj5q5t76KjD8xm5To/VJpB6zpfvKJf7IYa+L9+CG0onL4OFRQ/w/W6uRKJ8iLPG0x86oNGEos1gQMPAYgnRZc/va9vHdTnMs7fL4wRmoXifFuWZ9KF4LWVqhTVJkdPvnDNfjnXnnwJ60aZxNCqMbtBqTx9HCdHSGZm5h9uDJlUDCMgftSn6uw0HeoTyGH28p5M5DP9QDUqa7Y+8JCW30utFsXO0Yl4xMucnjlJ34hbvHe9HztryBDzC8SQeLNg=
-Content-ID: <E8705F7AAC245B498F962270154345F9@namprd12.prod.outlook.com>
+Received: from mail-it1-x144.google.com (mail-it1-x144.google.com
+ [IPv6:2607:f8b0:4864:20::144])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28D0E89307;
+ Tue, 14 May 2019 19:34:02 +0000 (UTC)
+Received: by mail-it1-x144.google.com with SMTP id i10so809349ite.0;
+ Tue, 14 May 2019 12:34:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3WLgm2Em04I4luWIrAv6bovSRqJAq2VSMtxrYKLrOrs=;
+ b=TkVZ6NXZqdNbJlAqjcopQpsarqMewWqrAPl0P+zefMfC+oaPqpjCEKOBAFOhwqoEA4
+ V8LF4lA9y8ovZPXXc3/nN6UfDsJEBj33qHx5aZcQvpVFs+rUrbfaRsesFMQpMwGnylNq
+ RS8HpdSakhG1V9kbIelebUICYbi3ApETeDzRdbFcJlTOOu+uXtDIXxKYZLuZqFyneqDi
+ TdfjtfQC6UFW9Uyx9NYNA8UDPnpTijlSyqq4hA7BOxSNsP1EKgDh5TyiIWKKPgRLeRxh
+ +RrahlTK8Gtm4ACJtQKa0FJUmL+aBJbYHZzUuYWPMe0Tu4YyLCexyRZoo4kgMGxsoh2c
+ XwRg==
+X-Gm-Message-State: APjAAAU/cYGLGwuHfc/ObzoaLBjwRQ7/pIfoLu4pFUyMmO5Q0iB0ia1v
+ 62wRDr4aUjaB8ewmnCPpt18tmoyi7kxPyymk6pM=
+X-Google-Smtp-Source: APXvYqxHZG+OGVoEb+qXkp4B7jg2P1cQ4hIwyDcKNchxp8r2zn2GhEjDjftxAQwSdR02o7W4lEZYBD7pHLntcLtLyTY=
+X-Received: by 2002:a24:19cd:: with SMTP id b196mr4787709itb.74.1557862441417; 
+ Tue, 14 May 2019 12:34:01 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: acea06b6-9984-4570-acaa-08d6d898e75e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2019 18:20:55.4350 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3544
+References: <20190514123127.1650-1-christian.koenig@amd.com>
+ <20190514123127.1650-11-christian.koenig@amd.com>
+In-Reply-To: <20190514123127.1650-11-christian.koenig@amd.com>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Tue, 14 May 2019 15:33:25 -0400
+Message-ID: <CAAxE2A6Z45NCy7v5fPqmo5o5ZEnmvv_f=qax0uoDS9amMFEB7w@mail.gmail.com>
+Subject: Re: [PATCH 11/11] drm/amdgpu: stop removing BOs from the LRU during CS
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amd-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZGN76Iv0VhnW+uggr3A5bBu0JL5mBwbu96AH/YpIxfQ=;
- b=SRtKIYgEoDWgAkm+QAqTUVYslADz64w7TqXHT1SH8irgxoPOYjIsMM7TfUEqq7kOhex9OPtl1t40ALtcX71Wh1Ko3Dd8v233CMJuTZ4Ycl0iGaYurkBt/AmvlGBd4hJE9QhGlfP7y+G/HDl+MC1dvbNgnq1iK5ucUiduVzxdoGM=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Nicholas.Kazlauskas@amd.com; 
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=3WLgm2Em04I4luWIrAv6bovSRqJAq2VSMtxrYKLrOrs=;
+ b=tjQr2IhPk9soQC4J4k4A7Gz09bOic+1/7c3+NZ0mX67pj9W6oUMStL00Zohgj3dTmD
+ s+CWZSGvYIvM4SCpajC55FyFX7EXKKQPaJ9ccHjD1Vo9YCGWf9FH9+MkxPTFCL7rBN7a
+ 3mmeBJWJtQ6efAidG3hloXqWD176H0yXjNqWwj/wthk1KEp/hpcY+ytGTpKe22JTo9A0
+ zRYfOghGK3+yecHpfQWjepY+69PC7Q2HpUYobJ8QXgO5LvRAiAGgl6JSBlxrGGr/yVwl
+ 7Yd1dvn6ROj5791d8Keb6HTsA1TITn7iZYIdrqq/gWSpRVSu0HCf/fNWCrjIU1RqqyP4
+ oBEA==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -87,45 +62,130 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Cheng,
- Tony" <Tony.Cheng@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: zhoucm1 <David1.Zhou@amd.com>, Prike.Liang@amd.com,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0148917609=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gNS8xNC8xOSAxOjQ5IFBNLCBIYXJyeSBXZW50bGFuZCB3cm90ZToNCj4gDQo+IFtXSFldDQo+
-IFdlIG9ubHkgd2FudCB0byBsb2FkIERNQ1UgRlcgb24gUGljYXNzbyBhbmQgUmF2ZW4gMiwgbm90
-IG9uIFJhdmVuIDEuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBIYXJyeSBXZW50bGFuZCA8aGFycnku
-d2VudGxhbmRAYW1kLmNvbT4NCj4gLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5
-L2luY2x1ZGUvZGFsX2FzaWNfaWQuaCB8IDcgKysrKy0tLQ0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA0
-IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2FtZC9kaXNwbGF5L2luY2x1ZGUvZGFsX2FzaWNfaWQuaCBiL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvZGlzcGxheS9pbmNsdWRlL2RhbF9hc2ljX2lkLmgNCj4gaW5kZXggMWE5Yjc1MDc3
-ODRmLi4wNzJkOGQ3ZGViZjUgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlz
-cGxheS9pbmNsdWRlL2RhbF9hc2ljX2lkLmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9k
-aXNwbGF5L2luY2x1ZGUvZGFsX2FzaWNfaWQuaA0KPiBAQCAtMTM5LDEzICsxMzksMTQgQEANCj4g
-ICAjZGVmaW5lIFJBVkVOMV9GMCAweEYwDQo+ICAgI2RlZmluZSBSQVZFTl9VTktOT1dOIDB4RkYN
-Cj4gDQo+IC0jaWYgZGVmaW5lZChDT05GSUdfRFJNX0FNRF9EQ19EQ04xXzAxKQ0KPiAtI2RlZmlu
-ZSBBU0lDUkVWX0lTX1JBVkVOMihlQ2hpcFJldikgKChlQ2hpcFJldiA+PSBSQVZFTjJfQTApICYm
-IChlQ2hpcFJldiA8IDB4RjApKQ0KPiAtI2VuZGlmIC8qIERDTjFfMDEgKi8NCj4gICAjZGVmaW5l
-IEFTSUNfUkVWX0lTX1JBVkVOKGVDaGlwUmV2KSAoKGVDaGlwUmV2ID49IFJBVkVOX0EwKSAmJiBl
-Q2hpcFJldiA8IFJBVkVOX1VOS05PV04pDQo+ICAgI2RlZmluZSBSQVZFTjFfRjAgMHhGMA0KPiAg
-ICNkZWZpbmUgQVNJQ1JFVl9JU19SVjFfRjAoZUNoaXBSZXYpICgoZUNoaXBSZXYgPj0gUkFWRU4x
-X0YwKSAmJiAoZUNoaXBSZXYgPCBSQVZFTl9VTktOT1dOKSkNCj4gDQo+ICsjaWYgZGVmaW5lZChD
-T05GSUdfRFJNX0FNRF9EQ19EQ04xXzAxKQ0KPiArI2RlZmluZSBBU0lDUkVWX0lTX1BJQ0FTU08o
-ZUNoaXBSZXYpICgoZUNoaXBSZXYgPj0gUElDQVNTT19BMCkgJiYgKGVDaGlwUmV2IDwgUkFWRU4y
-X0EwKSkNCj4gKyNkZWZpbmUgQVNJQ1JFVl9JU19SQVZFTjIoZUNoaXBSZXYpICgoZUNoaXBSZXYg
-Pj0gUkFWRU4yX0EwKSAmJiAoZUNoaXBSZXYgPCAweEYwKSkNCj4gKyNlbmRpZiAvKiBEQ04xXzAx
-ICovDQoNCkFjdHVhbGx5LCBJIGp1c3QgcmVhbGl6ZWQgYSBwcm9ibGVtIHdpdGggZG9pbmcgdGhp
-cy4gWW91J2xsIGJyZWFrIGJ1aWxkcyANCnRoYXQgZG9uJ3QgaGF2ZSBEQ04gZW5hYmxlZCB3aXRo
-IHRoZSBzZWNvbmQgcGF0Y2ggYmVjYXVzZSB5b3UncmUgDQpndWFyZGluZyB0aGVzZSBiZWhpbmQg
-dGhlIGRlZmluZSBhbmQgdGhlIHNlY29uZCBwYXRjaCBjaGVja3MgDQpBU0lDUkVWX0lTX1BJQ0FT
-U08gb3V0c2lkZSBvZiBhbnkgZ3VhcmQgYXQgYWxsLg0KDQpOaWNob2xhcyBLYXpsYXVza2FzDQoN
-Cj4gDQo+ICAgI2RlZmluZSBGQU1JTFlfUlYgMTQyIC8qIERDTiAxKi8NCj4gDQo+IC0tDQo+IDIu
-MjEuMA0KPiANCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18NCj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QNCj4gYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcNCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQt
-Z2Z4DQo+IA0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============0148917609==
+Content-Type: multipart/alternative; boundary="0000000000006e01d50588de1d61"
+
+--0000000000006e01d50588de1d61
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This series fixes the OOM errors. However, if I torture the kernel driver
+more, I can get it to deadlock and end up with unkillable processes. I can
+also get an OOM error. I just ran the test 5 times:
+
+AMD_DEBUG=3Dtestgdsmm glxgears & AMD_DEBUG=3Dtestgdsmm glxgears &
+AMD_DEBUG=3Dtestgdsmm glxgears & AMD_DEBUG=3Dtestgdsmm glxgears &
+AMD_DEBUG=3Dtestgdsmm glxgears
+
+Marek
+
+On Tue, May 14, 2019 at 8:31 AM Christian K=C3=B6nig <
+ckoenig.leichtzumerken@gmail.com> wrote:
+
+> This avoids OOM situations when we have lots of threads
+> submitting at the same time.
+>
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> index fff558cf385b..f9240a94217b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> @@ -648,7 +648,7 @@ static int amdgpu_cs_parser_bos(struct
+> amdgpu_cs_parser *p,
+>         }
+>
+>         r =3D ttm_eu_reserve_buffers(&p->ticket, &p->validated, true,
+> -                                  &duplicates, true);
+> +                                  &duplicates, false);
+>         if (unlikely(r !=3D 0)) {
+>                 if (r !=3D -ERESTARTSYS)
+>                         DRM_ERROR("ttm_eu_reserve_buffers failed.\n");
+> --
+> 2.17.1
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--0000000000006e01d50588de1d61
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div>This series fixes the OOM errors. Ho=
+wever, if I torture the kernel driver more, I can get it to deadlock and en=
+d up with unkillable processes. I can also get an OOM error. I just ran the=
+ test 5 times:</div><div><br></div><div>AMD_DEBUG=3Dtestgdsmm glxgears &amp=
+; AMD_DEBUG=3Dtestgdsmm glxgears &amp; AMD_DEBUG=3Dtestgdsmm glxgears &amp;=
+ AMD_DEBUG=3Dtestgdsmm glxgears &amp; AMD_DEBUG=3Dtestgdsmm glxgears</div><=
+div></div><br><div>Marek<br></div></div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 14, 2019 at 8:31 AM Chr=
+istian K=C3=B6nig &lt;<a href=3D"mailto:ckoenig.leichtzumerken@gmail.com">c=
+koenig.leichtzumerken@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">This avoids OOM situations when we have lo=
+ts of threads<br>
+submitting at the same time.<br>
+<br>
+Signed-off-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koenig@=
+amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;<br>
+---<br>
+=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-<br>
+=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_cs.c<br>
+index fff558cf385b..f9240a94217b 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
+@@ -648,7 +648,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser=
+ *p,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 r =3D ttm_eu_reserve_buffers(&amp;p-&gt;ticket,=
+ &amp;p-&gt;validated, true,<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &amp;duplicates, true);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &amp;duplicates, false);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (unlikely(r !=3D 0)) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (r !=3D -ERESTAR=
+TSYS)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 DRM_ERROR(&quot;ttm_eu_reserve_buffers failed.\n&quot;);<br>
+-- <br>
+2.17.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd-gfx@=
+lists.freedesktop.org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx" rel=3D"n=
+oreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/listinfo=
+/amd-gfx</a></blockquote></div>
+
+--0000000000006e01d50588de1d61--
+
+--===============0148917609==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0148917609==--
