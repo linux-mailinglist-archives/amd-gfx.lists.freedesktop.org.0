@@ -2,84 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 894231F671
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 May 2019 16:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9451F674
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 May 2019 16:22:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC91489292;
-	Wed, 15 May 2019 14:21:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A20738929B;
+	Wed, 15 May 2019 14:22:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM01-BY2-obe.outbound.protection.outlook.com
- (mail-eopbgr810048.outbound.protection.outlook.com [40.107.81.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94BC889291;
- Wed, 15 May 2019 14:21:11 +0000 (UTC)
-Received: from MN2PR12MB2910.namprd12.prod.outlook.com (20.179.81.219) by
- MN2PR12MB3213.namprd12.prod.outlook.com (20.179.81.218) with Microsoft SMTP
+ (mail-eopbgr810083.outbound.protection.outlook.com [40.107.81.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09F2F89291;
+ Wed, 15 May 2019 14:22:41 +0000 (UTC)
+Received: from DM5PR12MB1546.namprd12.prod.outlook.com (10.172.36.23) by
+ DM5PR12MB1707.namprd12.prod.outlook.com (10.175.86.21) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.17; Wed, 15 May 2019 14:21:09 +0000
-Received: from MN2PR12MB2910.namprd12.prod.outlook.com
- ([fe80::9daa:c9ea:c94e:ae45]) by MN2PR12MB2910.namprd12.prod.outlook.com
- ([fe80::9daa:c9ea:c94e:ae45%3]) with mapi id 15.20.1878.024; Wed, 15 May 2019
- 14:21:09 +0000
-From: "Zhou, David(ChunMing)" <David1.Zhou@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>, "Zhou, David(ChunMing)"
- <David1.Zhou@amd.com>, "Olsak, Marek" <Marek.Olsak@amd.com>, "Liang, Prike"
- <Prike.Liang@amd.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re:[PATCH 11/11] drm/amdgpu: stop removing BOs from the LRU during CS
-Thread-Topic: Re:[PATCH 11/11] drm/amdgpu: stop removing BOs from the LRU
- during CS
-Thread-Index: AQHVCyjlrMQDyDF/S0ihK50raO9Jw6ZsPJAp
-Date: Wed, 15 May 2019 14:21:09 +0000
-Message-ID: <-z5t5bc-r0qydowvgp2jfwhsru6hathty0w6tmefo8lvfrqj4298bq6-53859k-e09jr8-7uhi4m-ne8q5-er44kbg5jt6sh5lbep35sue0-8jf289-u3ez2g-1jbf4vwi8mtu-b26by3izukbi-qq632i.1557930062576@email.android.com>
+ 15.20.1900.16; Wed, 15 May 2019 14:22:37 +0000
+Received: from DM5PR12MB1546.namprd12.prod.outlook.com
+ ([fe80::e1b1:5b6f:b2df:afa5]) by DM5PR12MB1546.namprd12.prod.outlook.com
+ ([fe80::e1b1:5b6f:b2df:afa5%7]) with mapi id 15.20.1878.024; Wed, 15 May 2019
+ 14:22:37 +0000
+From: "Koenig, Christian" <Christian.Koenig@amd.com>
+To: "Zhou, David(ChunMing)" <David1.Zhou@amd.com>, "Olsak, Marek"
+ <Marek.Olsak@amd.com>, "Liang, Prike" <Prike.Liang@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 11/11] drm/amdgpu: stop removing BOs from the LRU during CS
+Thread-Topic: [PATCH 11/11] drm/amdgpu: stop removing BOs from the LRU during
+ CS
+Thread-Index: AQHVCyml1YAv4ZwYk0eTCM4vlldemg==
+Date: Wed, 15 May 2019 14:22:36 +0000
+Message-ID: <67f0f0d0-7ec1-8737-8216-f7613e99d874@amd.com>
 References: <20190514123127.1650-1-christian.koenig@amd.com>
  <20190514123127.1650-11-christian.koenig@amd.com>
  <-vf7xt3-qgf5mz-veq8ih-okgxtz-9ehg3tx8dyemoidihe-fwj066fntvvx-x3y4nh-bn07hl-82anfo4oofx-4di7gg-3nkfhtbcgh58-yj9ws0-pthytc-oq9qcxd40s4g-249dv8-x6wbfujry6xi-mu2nvl.1557839540398@email.android.com>
  <f9017911-b08a-1f98-3fc9-98121bbde78a@gmail.com>
- <-wsx1tz-kxfbz1yns7x33sra134gl11xhlux4lx3izissqr2httt4mb1vleyxgj8i7k6-q6ze8ub3ff8c4o0fxmx7niu76yg4-ybakue-3v14jw-ed5ol8ybh6o9-1ze886-hbstfi448pvq3pwhkj.1557844282594@email.android.com>,
+ <-wsx1tz-kxfbz1yns7x33sra134gl11xhlux4lx3izissqr2httt4mb1vleyxgj8i7k6-q6ze8ub3ff8c4o0fxmx7niu76yg4-ybakue-3v14jw-ed5ol8ybh6o9-1ze886-hbstfi448pvq3pwhkj.1557844282594@email.android.com>
  <451e8757-b509-c0f7-eced-6ccedc45117b@gmail.com>
-In-Reply-To: <451e8757-b509-c0f7-eced-6ccedc45117b@gmail.com>
-Accept-Language: en-US
+ <-z5t5bc-r0qydowvgp2jfwhsru6hathty0w6tmefo8lvfrqj4298bq6-53859k-e09jr8-7uhi4m-ne8q5-er44kbg5jt6sh5lbep35sue0-8jf289-u3ez2g-1jbf4vwi8mtu-b26by3izukbi-qq632i.1557930062576@email.android.com>
+In-Reply-To: <-z5t5bc-r0qydowvgp2jfwhsru6hathty0w6tmefo8lvfrqj4298bq6-53859k-e09jr8-7uhi4m-ne8q5-er44kbg5jt6sh5lbep35sue0-8jf289-u3ez2g-1jbf4vwi8mtu-b26by3izukbi-qq632i.1557930062576@email.android.com>
+Accept-Language: de-DE, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [101.86.234.22]
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+x-originating-ip: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+x-clientproxiedby: AM6PR0402CA0024.eurprd04.prod.outlook.com
+ (2603:10a6:209::37) To DM5PR12MB1546.namprd12.prod.outlook.com
+ (2603:10b6:4:8::23)
+x-ms-exchange-messagesentrepresentingtype: 1
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fc3dc44d-fc7e-4a81-fc80-08d6d9409387
+x-ms-office365-filtering-correlation-id: 5370718c-09c1-4444-5e91-08d6d940c746
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB3213; 
-x-ms-traffictypediagnostic: MN2PR12MB3213:
+ SRVR:DM5PR12MB1707; 
+x-ms-traffictypediagnostic: DM5PR12MB1707:
 x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <MN2PR12MB3213F9EBD54D45799068AA70B4090@MN2PR12MB3213.namprd12.prod.outlook.com>
+x-microsoft-antispam-prvs: <DM5PR12MB1707C646DAD088D780AC470483090@DM5PR12MB1707.namprd12.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 0038DE95A2
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(346002)(376002)(366004)(396003)(39860400002)(136003)(13464003)(189003)(199004)(25786009)(316002)(14444005)(256004)(7736002)(8936002)(81166006)(81156014)(64756008)(66556008)(450100002)(8676002)(53936002)(66476007)(73956011)(66946007)(110136005)(86362001)(2906002)(5660300002)(91956017)(76116006)(66446008)(66574012)(102836004)(99286004)(6506007)(606006)(2201001)(76176011)(6116002)(3846002)(71190400001)(71200400001)(478600001)(26005)(72206003)(966005)(6486002)(6436002)(14454004)(6306002)(476003)(9686003)(236005)(6512007)(54896002)(186003)(68736007)(11346002)(486006)(446003)(2501003)(66066001)(921003)(1121003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3213;
- H:MN2PR12MB2910.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(346002)(39860400002)(396003)(136003)(376002)(366004)(13464003)(189003)(199004)(25786009)(68736007)(450100002)(64126003)(2501003)(486006)(46003)(2906002)(446003)(2616005)(31686004)(316002)(229853002)(476003)(53936002)(6116002)(36756003)(6246003)(11346002)(8676002)(14444005)(256004)(6486002)(86362001)(71200400001)(71190400001)(606006)(76176011)(110136005)(2201001)(65826007)(6436002)(7736002)(81156014)(72206003)(81166006)(31696002)(65956001)(65806001)(478600001)(6506007)(64756008)(66574012)(236005)(966005)(73956011)(386003)(5660300002)(14454004)(66446008)(102836004)(6512007)(66476007)(66556008)(6306002)(54896002)(66946007)(52116002)(8936002)(99286004)(186003)(58126008);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1707;
+ H:DM5PR12MB1546.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 8Jv0XsIxd94N0zHeNt7PIpBdX9O3UzLNJkeA5sT/FaEfOI1iwc29zlp1BnpKmeexXGIaaOQw5ixbkXfpmsuSpdqYqyf8lRpTHiBeJMybbtIon2cfzE8vXC7piDDgUmMYW6OXu3pT/euWVWO1YPBf05ozZjmRJ91tqv2Sq22nCbi0frrepSx8b8fJw35200sn+ciMx3FdgiOnoRz76B2dEJCiTvehQGmzttJ1JPHMdjg7QDcCZyoExxH91kJETU6GcLQ6MBp/55YkapQr10wqrwJP050j7+7Y/EBxiS/h9qugToBcY1OFWTwaoRK4er5GRSvV3gITc8lRqpewv6tzQTkrzgVdpM2x68KB7NCqtW2af5E/Dx4pF3IIEm8YlAgEPtwJazjAyuYSdZ0tQghWfihOWi+ti1KHL1+5D90kchI=
+x-microsoft-antispam-message-info: ye25NcQe/s6aurb5eh/9KWxi/+slqbdbkzJHUnEo7oJeowtnDi7qpWAGyNUNJVV38HJWD5Ax0DexyV+KoX3ba8Kc87XBeYLlKqy12Rj7gDED0N/koe/Y9fOAD0NG3krv91Z8FRGFxKF2fsYmzE6fLqe5GaDn2wvtoZINyy9z+d5BQpWHYMDbQmhTiwhhIrFQ2SzkTWA1+rFLNRbwgdodtQd1ly/ysAysKIVW8dwEtnGTNOS5uXFAXLCPUHVMLjUdUJNb7hPLi6p7XsSGYDiDpaz/S/SdZB4UIhYAGEpZdZvtyiNy/dkMMN4zUAp7pUl8Hvrrk0JFXwSsBHNLYaVMS4tM5lVg+FeHF2vCvyncKnG/pB1JAew6lzhSY0l7eXwgvpj22kEBOFmcbLVl9WaizFPdL9CD/dhCmeoW8l1lInE=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc3dc44d-fc7e-4a81-fc80-08d6d9409387
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2019 14:21:09.3819 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5370718c-09c1-4444-5e91-08d6d940c746
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2019 14:22:37.0951 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3213
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1707
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5c98RrsSmzZQMS5HqEjATzD+Dh6vGthUJ766u/hFon8=;
- b=JSFgQMt9o71vvF5oxB6H1L21fPVqJY6NQU9illkuTrdN20a7FQE0D/5xrLxIO4ca8V6yiOSub9VhzUwZWpD4vbpGyReISy8ZU2TBNdZ8ESEvGXqpwQ2//qrn3SQx5NhFO/Z9Ix6GHl++otGrAukd3SE4yMXe/bpXgDOaccG73S4=
+ bh=LnoX/fl5KwtU4wBxSTiFknSfo06djnfovxINIVkJpzk=;
+ b=mPLg/7y7rXritRxxOpd3jvaEGct4QVFIaX5hqIy6Vfa93u/tjAH1ugThzlyYFjspj93OwDXpGQnjev2gVFuhjgp98d3elu3TPFYJuvyKq5qaX7pjq7SB0rzZUqMz3p+9efa7ycsYPh6uacjhwBJqtRGZ0JOpMvxCUm2XNFPqy5E=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=David1.Zhou@amd.com; 
+ smtp.mailfrom=Christian.Koenig@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -91,19 +97,26 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1894761688=="
+Content-Type: multipart/mixed; boundary="===============0907638463=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1894761688==
+--===============0907638463==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_z5t5bcr0qydowvgp2jfwhsru6hathty0w6tmefo8lvfrqj4298bq653_"
+	boundary="_000_67f0f0d07ec187378216f7613e99d874amdcom_"
 
---_000_z5t5bcr0qydowvgp2jfwhsru6hathty0w6tmefo8lvfrqj4298bq653_
+--_000_67f0f0d07ec187378216f7613e99d874amdcom_
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
+BO list? No, we stop removing them from the LRU.
+
+But we still move them to the end of the LRU before releasing them.
+
+Christian.
+
+Am 15.05.19 um 16:21 schrieb Zhou, David(ChunMing):
 Isn't this patch trying to stop removing for all BOs  from bo list?
 
 -David
@@ -113,7 +126,8 @@ Subject: Re: [PATCH 11/11] drm/amdgpu: stop removing BOs from the LRU durin=
 g CS
 From: Christian K=F6nig
 To: "Zhou, David(ChunMing)" ,"Koenig, Christian" ,"Olsak, Marek" ,"Liang, P=
-rike" ,dri-devel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org
+rike" ,dri-devel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org<mailto=
+:dri-devel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org>
 CC:
 
 [CAUTION: External Email]
@@ -207,17 +221,32 @@ amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
 
---_000_z5t5bcr0qydowvgp2jfwhsru6hathty0w6tmefo8lvfrqj4298bq653_
+
+--_000_67f0f0d07ec187378216f7613e99d874amdcom_
 Content-Type: text/html; charset="Windows-1252"
+Content-ID: <FF6E9BF95658424D8A466EA89E196960@namprd12.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
 252">
-<meta content=3D"text/html; charset=3DWindows-1252">
 </head>
-<body bgcolor=3D"#FFFFFF">
+<body text=3D"#000000" bgcolor=3D"#FFFFFF">
+<div class=3D"moz-cite-prefix">BO list? No, we stop removing them from the =
+LRU.<br>
+<br>
+But we still move them to the end of the LRU before releasing them.<br>
+<br>
+Christian.<br>
+<br>
+Am 15.05.19 um 16:21 schrieb Zhou, David(ChunMing):<br>
+</div>
+<blockquote type=3D"cite" cite=3D"mid:-z5t5bc-r0qydowvgp2jfwhsru6hathty0w6t=
+mefo8lvfrqj4298bq6-53859k-e09jr8-7uhi4m-ne8q5-er44kbg5jt6sh5lbep35sue0-8jf2=
+89-u3ez2g-1jbf4vwi8mtu-b26by3izukbi-qq632i.1557930062576@email.android.com"=
+>
+<meta content=3D"text/html; charset=3DWindows-1252">
 Isn't this patch trying to stop removing for all BOs&nbsp; from bo list?<br=
 >
 <br>
@@ -228,8 +257,10 @@ Subject: Re: [PATCH 11/11] drm/amdgpu: stop removing BOs from the LRU durin=
 g CS<br>
 From: Christian K=F6nig <br>
 To: &quot;Zhou, David(ChunMing)&quot; ,&quot;Koenig, Christian&quot; ,&quot=
-;Olsak, Marek&quot; ,&quot;Liang, Prike&quot; ,dri-devel@lists.freedesktop.=
-org,amd-gfx@lists.freedesktop.org<br>
+;Olsak, Marek&quot; ,&quot;Liang, Prike&quot; ,<a class=3D"moz-txt-link-abb=
+reviated" href=3D"mailto:dri-devel@lists.freedesktop.org,amd-gfx@lists.free=
+desktop.org">dri-devel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org<=
+/a><br>
 CC: <br>
 <br>
 <div>[CAUTION: External Email]
@@ -276,8 +307,9 @@ g CS<br>
 From: Christian K=F6nig <br>
 To: &quot;Zhou, David(ChunMing)&quot; ,&quot;Olsak, Marek&quot; ,&quot;Lian=
 g, Prike&quot; ,<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:dri-de=
-vel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org">dri-devel@lists.fr=
-eedesktop.org,amd-gfx@lists.freedesktop.org</a><br>
+vel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org" moz-do-not-send=3D=
+"true">dri-devel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org</a><br=
+>
 CC: <br>
 <br>
 <div>[CAUTION: External Email]
@@ -289,7 +321,8 @@ Christian.<br>
 Am 14.05.19 um 15:12 schrieb Zhou, David(ChunMing):<br>
 </div>
 <blockquote type=3D"cite">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<meta name=3D"Generator" content=3D"Microsoft Exchange
+                    Server">
 <style>
 <!--
 .EmailQuote
@@ -308,8 +341,9 @@ Subject: [PATCH 11/11] drm/amdgpu: stop removing BOs from the LRU during CS=
 From: Christian K=F6nig <br>
 To: &quot;Olsak, Marek&quot; ,&quot;Zhou, David(ChunMing)&quot; ,&quot;Lian=
 g, Prike&quot; ,<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:dri-de=
-vel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org">dri-devel@lists.fr=
-eedesktop.org,amd-gfx@lists.freedesktop.org</a><br>
+vel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org" moz-do-not-send=3D=
+"true">dri-devel@lists.freedesktop.org,amd-gfx@lists.freedesktop.org</a><br=
+>
 CC: <br>
 <br>
 </div>
@@ -320,7 +354,7 @@ This avoids OOM situations when we have lots of threads<br>
 submitting at the same time.<br>
 <br>
 Signed-off-by: Christian K=F6nig <a class=3D"moz-txt-link-rfc2396E" href=3D=
-"mailto:christian.koenig@amd.com">
+"mailto:christian.koenig@amd.com" moz-do-not-send=3D"true">
 &lt;christian.koenig@amd.com&gt;</a><br>
 ---<br>
 &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 &#43;-<br>
@@ -365,20 +399,22 @@ quot;ttm_eu_reserve_buffers failed.\n&quot;);<br>
 _
 amd-gfx mailing list
 <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:amd-gfx@lists.freedesk=
-top.org">amd-gfx@lists.freedesktop.org</a>
+top.org" moz-do-not-send=3D"true">amd-gfx@lists.freedesktop.org</a>
 <a class=3D"moz-txt-link-freetext" href=3D"https://lists.freedesktop.org/ma=
-ilman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-=
-gfx</a></pre>
+ilman/listinfo/amd-gfx" moz-do-not-send=3D"true">https://lists.freedesktop.=
+org/mailman/listinfo/amd-gfx</a></pre>
 </blockquote>
 <br>
 </div>
 </div>
+</blockquote>
+<br>
 </body>
 </html>
 
---_000_z5t5bcr0qydowvgp2jfwhsru6hathty0w6tmefo8lvfrqj4298bq653_--
+--_000_67f0f0d07ec187378216f7613e99d874amdcom_--
 
---===============1894761688==
+--===============0907638463==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -388,4 +424,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1894761688==--
+--===============0907638463==--
