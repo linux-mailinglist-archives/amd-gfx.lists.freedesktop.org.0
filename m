@@ -1,54 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 742C91FCDF
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 May 2019 02:33:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C4B81FCEF
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 May 2019 03:43:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A45948921B;
-	Thu, 16 May 2019 00:33:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7923389247;
+	Thu, 16 May 2019 01:43:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
- [IPv6:2607:f8b0:4864:20::843])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D37D8921B
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 May 2019 00:33:50 +0000 (UTC)
-Received: by mail-qt1-x843.google.com with SMTP id h1so1987254qtp.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 May 2019 17:33:50 -0700 (PDT)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8681489247
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 May 2019 01:43:25 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id h4so1449922wre.7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 May 2019 18:43:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=Uhk2S2vtiPOBwtSr7c5CeQyfly0jG7o3aO07MTSo0pA=;
- b=Qx4HUTr/MzJ8etYhOh/CDT3IC7Gl0MwkTSd1IAC6usRopl2ZxGdMx88+PEbo79OxiK
- Z5p5JNoNsg2hn9XxRN+0K+geRyRnyJ2yvTTegvsb2SsHxoQewp75p3vbHwhEnB/DIoaA
- pIVzFJrNM9NZvB7Njl2Mdu3ZjwZTzmGdX2o2DySTd9onIk6blQZo9P2TdfNYv6MNYpoH
- GXqqFzzMGWjNf7zKRHhUHZTg3wM6LjIYFHZNC6L3lk8j37widujj55RawaGG5HS0SbAQ
- AWf0ws4K5Jyf/rh+zKvkJwsrCczAJdoULHMVU51voLOT6WZWIxOEoR0I2dbW5vuKK0cB
- lFaQ==
-X-Gm-Message-State: APjAAAWb95nI93QHmFynPJFPXMPXxrjHSTPC7bnfIjT2syPpuXiPSDzc
- uyD3KMFr4wXKg6mKJR7MP8zQnBl+PYPWOkwzJOGULZmC
-X-Google-Smtp-Source: APXvYqxh8OyhWuLtlXpd6LFxw5frduoO9PraYaX5rKjzAWykEfBEuYoOUu+H0TJRV05fBalcaFSH5LKNv3lcR47oZjA=
-X-Received: by 2002:ac8:1aa9:: with SMTP id x38mr38950728qtj.172.1557966829318; 
- Wed, 15 May 2019 17:33:49 -0700 (PDT)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=v2jLRUvpZ9mdaWhTACf60QVuTI8qwiP+MbrFS7gDyrs=;
+ b=tMlYT3MrflLY+PdAfaJ93eSwW7iE5kb+N+9/SZ5o6XAxp6YvWdBsm5eIoZYjNTyrsI
+ lSw8gh/80KWg7g+MkBo0M26rt5KKBrkiQM8dsSfETKI4hmv5/vfr2ypw8ccgZ8cholX0
+ AkqPbW2RFe1m/7gSHVqu3rJ1fUG0J4HxoEXwkjrq66i6aam1NFCb0RKEwdGpgOuaLBBt
+ v3pVBQdnCJm5rDmHjg3HjnXSiYnTC4VQb2D80xiw4pG4GxFWyu+/ScglEC5TqpJBEZvw
+ iYvAnNrCrtUkj6OQ7C6bHV5pKJBhGoMBIoRC0C6rXq9a9qHgZVdifCMBi7ByeBJe9es5
+ jegg==
+X-Gm-Message-State: APjAAAXNgldhjog+QUU8Po47xHfEs53MjoS/CAb2HUK3t7sZaCnpQocD
+ rWjX4dxKNXikzd/Gfp9H/KoYGvWDD67mHWjUHJ0=
+X-Google-Smtp-Source: APXvYqwgeq+IDGs67Ps2fxiM827gR+Wr5VqxASRfXfRTUHsFQdBh1NUgw8DIfpzLPsDdMTUCAQ5jLln1PmZ03raIBQ8=
+X-Received: by 2002:adf:b641:: with SMTP id i1mr854700wre.288.1557971004056;
+ Wed, 15 May 2019 18:43:24 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAF73Y=QuYq3ALtP6xiPyqS+jm_TJCQQDyQ+WA5ZJG8EhWSKiTw@mail.gmail.com>
-In-Reply-To: <CAF73Y=QuYq3ALtP6xiPyqS+jm_TJCQQDyQ+WA5ZJG8EhWSKiTw@mail.gmail.com>
-From: Daniel Kasak <d.j.kasak.dk@gmail.com>
-Date: Thu, 16 May 2019 10:33:03 +1000
-Message-ID: <CAF73Y=R96zUxCAEKopSvGReqB+sEFWcHhXSKnR98rpetMbKf4Q@mail.gmail.com>
+ <CAF73Y=R96zUxCAEKopSvGReqB+sEFWcHhXSKnR98rpetMbKf4Q@mail.gmail.com>
+In-Reply-To: <CAF73Y=R96zUxCAEKopSvGReqB+sEFWcHhXSKnR98rpetMbKf4Q@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 15 May 2019 21:43:12 -0400
+Message-ID: <CADnq5_OOEP+YsQx12cOBaM3NdjM=eGAbbbudEusqf5rNRz8C2Q@mail.gmail.com>
 Subject: Re: Hard lockups with ROCM
-To: amd-gfx@lists.freedesktop.org
+To: Daniel Kasak <d.j.kasak.dk@gmail.com>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=Uhk2S2vtiPOBwtSr7c5CeQyfly0jG7o3aO07MTSo0pA=;
- b=BR46hiQEi67OCCweoHm3LojRcWy6qk2BfEMC5YJ00bkcurRcAw8+JFjjkWq6nBmT3R
- tdXTDAyYwMvzU7tX9vNGdbzLy1AuQdyDTHBJv6dz9O1yLdCcDKY0n2TYykNmQlqmuOPw
- gMym7HxeM0pae/wRhtLUE//OoaUhepv1qh1LXmIAphZ+KF0gT54rnY7s0v6Aoq1In8DF
- SZjnrcs2ZexLTCec29AQXF8hcCJ0A7fMu1BxbmATRinRzsSGWDtOoF7QwU7YBGEMVwaK
- w1FRPr1e6iLsZXm8x+uC/9x34JdeDmbiiy9ZHsXUEBO7UkLF3hjGdiwTGkwneonEwOej
- lAaA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=v2jLRUvpZ9mdaWhTACf60QVuTI8qwiP+MbrFS7gDyrs=;
+ b=qm9WihJSrX3npcubAWE0PXwGRf2bfb+zm8079v2CABkMwbq/JkSftjZyq6h7+EIsGV
+ Z3wEijC5fEmZ1R7jHONM64U+TAPygEASib37XWYFSpu5ZL48cErrnSzxw/ctQVXvXAJz
+ 027O+EcYFgDMhJCflhdMuzD4HsfAj21LdQmx5gyv9oRoP+x9rC7Qimxj4MgDIlkG160A
+ bZMLoP2Y/p2pVZpaokVlzW4j7dbcWTLjSqGVPaJ+zm34sa2yiudetggB3H9W1QOcvQt/
+ F666b6kgN6/o2JosiPKSKj2/6hZWlluPnCdhTIKa8MtfjtASrrJrWtnT0YnAgiHEWRDb
+ E9VQ==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -60,79 +62,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0940686179=="
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0940686179==
-Content-Type: multipart/alternative; boundary="0000000000006ef8540588f66b81"
-
---0000000000006ef8540588f66b81
-Content-Type: text/plain; charset="UTF-8"
-
-On Mon, May 13, 2019 at 11:44 AM Daniel Kasak <d.j.kasak.dk@gmail.com>
-wrote:
-
-> Hi all. I had version 2.2.0 of the ROCM stack running on a 5.0.x and 5.1.0
-> kernel. Things were going great with various boinc GPU tasks. But there is
-> a setiathome GPU task which reliably gives me a hard lockup within about 30
-> minutes of running. I actually had to do *two* emergency re-installs over
-> the past week. Perhaps part of this was my fault ( running btrfs with lzo
-> compression on my root partition ... ). But absolutely part of this was the
-> hard lockups. I've tested all kinds of other things ( eg rebuilding lots of
-> stuff under Gentoo ) ... I don't have a general stability issue even under
-> hours of high load. But after restarting boinc with that same setiathome
-> task ... <bang>!
->
-> If someone wants me to sacrifice another installation, they can point me
-> to instructions for trying to gather more information.
->
-> Anyway ... perhaps more work around detecting and recovering from GPU
-> lockups is in order?
->
-> Dan
->
-
-<sigh>
-
-That's what I was afraid of :(
-
---0000000000006ef8540588f66b81
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Mon, May 13, 2019 at 11:44 AM Daniel Kasak &lt;<a href=3D"mailto:=
-d.j.kasak.dk@gmail.com">d.j.kasak.dk@gmail.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi all.=
- I had version 2.2.0 of the ROCM stack running on a 5.0.x and 5.1.0 kernel.=
- Things were going great with various boinc GPU tasks. But there is a setia=
-thome GPU task which reliably gives me a hard lockup within about 30 minute=
-s of running. I actually had to do *two* emergency re-installs over the pas=
-t week. Perhaps part of this was my fault ( running btrfs with lzo compress=
-ion on my root partition ... ). But absolutely part of this was the hard lo=
-ckups. I&#39;ve tested all kinds of other things ( eg rebuilding lots of st=
-uff under Gentoo ) ... I don&#39;t have a general stability issue even unde=
-r hours of high load. But after restarting boinc with that same setiathome =
-task ... &lt;bang&gt;!</div><div><br></div><div>If someone wants me to sacr=
-ifice another installation, they can point me to instructions for trying to=
- gather more information.</div><div><br></div><div>Anyway ... perhaps more =
-work around detecting and recovering from GPU lockups is in order?</div><di=
-v><br></div><div>Dan<br></div></div></blockquote><div><br></div><div>&lt;si=
-gh&gt;</div><div><br></div><div>That&#39;s what I was afraid of :(<br></div=
-></div></div>
-
---0000000000006ef8540588f66b81--
-
---===============0940686179==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0940686179==--
+T24gV2VkLCBNYXkgMTUsIDIwMTkgYXQgODozMyBQTSBEYW5pZWwgS2FzYWsgPGQuai5rYXNhay5k
+a0BnbWFpbC5jb20+IHdyb3RlOgo+Cj4gT24gTW9uLCBNYXkgMTMsIDIwMTkgYXQgMTE6NDQgQU0g
+RGFuaWVsIEthc2FrIDxkLmoua2FzYWsuZGtAZ21haWwuY29tPiB3cm90ZToKPj4KPj4gSGkgYWxs
+LiBJIGhhZCB2ZXJzaW9uIDIuMi4wIG9mIHRoZSBST0NNIHN0YWNrIHJ1bm5pbmcgb24gYSA1LjAu
+eCBhbmQgNS4xLjAga2VybmVsLiBUaGluZ3Mgd2VyZSBnb2luZyBncmVhdCB3aXRoIHZhcmlvdXMg
+Ym9pbmMgR1BVIHRhc2tzLiBCdXQgdGhlcmUgaXMgYSBzZXRpYXRob21lIEdQVSB0YXNrIHdoaWNo
+IHJlbGlhYmx5IGdpdmVzIG1lIGEgaGFyZCBsb2NrdXAgd2l0aGluIGFib3V0IDMwIG1pbnV0ZXMg
+b2YgcnVubmluZy4gSSBhY3R1YWxseSBoYWQgdG8gZG8gKnR3byogZW1lcmdlbmN5IHJlLWluc3Rh
+bGxzIG92ZXIgdGhlIHBhc3Qgd2Vlay4gUGVyaGFwcyBwYXJ0IG9mIHRoaXMgd2FzIG15IGZhdWx0
+ICggcnVubmluZyBidHJmcyB3aXRoIGx6byBjb21wcmVzc2lvbiBvbiBteSByb290IHBhcnRpdGlv
+biAuLi4gKS4gQnV0IGFic29sdXRlbHkgcGFydCBvZiB0aGlzIHdhcyB0aGUgaGFyZCBsb2NrdXBz
+LiBJJ3ZlIHRlc3RlZCBhbGwga2luZHMgb2Ygb3RoZXIgdGhpbmdzICggZWcgcmVidWlsZGluZyBs
+b3RzIG9mIHN0dWZmIHVuZGVyIEdlbnRvbyApIC4uLiBJIGRvbid0IGhhdmUgYSBnZW5lcmFsIHN0
+YWJpbGl0eSBpc3N1ZSBldmVuIHVuZGVyIGhvdXJzIG9mIGhpZ2ggbG9hZC4gQnV0IGFmdGVyIHJl
+c3RhcnRpbmcgYm9pbmMgd2l0aCB0aGF0IHNhbWUgc2V0aWF0aG9tZSB0YXNrIC4uLiA8YmFuZz4h
+Cj4+Cj4+IElmIHNvbWVvbmUgd2FudHMgbWUgdG8gc2FjcmlmaWNlIGFub3RoZXIgaW5zdGFsbGF0
+aW9uLCB0aGV5IGNhbiBwb2ludCBtZSB0byBpbnN0cnVjdGlvbnMgZm9yIHRyeWluZyB0byBnYXRo
+ZXIgbW9yZSBpbmZvcm1hdGlvbi4KPj4KPj4gQW55d2F5IC4uLiBwZXJoYXBzIG1vcmUgd29yayBh
+cm91bmQgZGV0ZWN0aW5nIGFuZCByZWNvdmVyaW5nIGZyb20gR1BVIGxvY2t1cHMgaXMgaW4gb3Jk
+ZXI/Cj4+Cj4+IERhbgo+Cj4KPiA8c2lnaD4KPgo+IFRoYXQncyB3aGF0IEkgd2FzIGFmcmFpZCBv
+ZiA6KAoKTm90IHN1cmUgd2hhdCB5b3Ugd2VyZSBhZnJhaWQgb2YuICBJIGRvbid0IHRoaW5rIGFu
+eW9uZSBoYXMgbG9va2VkIGF0CnNldGlhdGhvbWUgb24gUk9DbS4gIEknZCBzdWdnZXN0IGZpbGlu
+ZyBhIGJ1ZwooaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZykgYW5kIGF0dGFjaGluZyB5b3Vy
+IGRtZXNnIG91dHB1dCBhbmQKeG9yZyBsb2cgKGlmIHVzaW5nIFgpLiAgSWYgdGhlcmUgaXMgYSBH
+UFUgcmVzZXQsIG5vdGUgdGhhdCB5b3Ugd2lsbApuZWVkIHRvIHJlc3RhcnQgeW91ciBkZXNrdG9w
+IGVudmlyb25tZW50IGJlY2F1c2UgY3VycmVudGx5IG5laXRoZXIKZ2xhbW9yIG9yIGFueSBjb21w
+b3NpdG9ycyBzdXBwb3J0IEdMIHJvYnVzdG5lc3MgZXh0ZW5zaW9ucyB0byByZXNldAp0aGVpciBj
+b250ZXh0cyBhZnRlciBhIEdQVSByZXNldC4KCkFsZXgKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9hbWQtZ2Z4
