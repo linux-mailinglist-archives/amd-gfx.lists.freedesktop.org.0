@@ -2,56 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0224320FAF
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 May 2019 22:40:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 602D120FF2
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 May 2019 23:19:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3803A89208;
-	Thu, 16 May 2019 20:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD24E897D0;
+	Thu, 16 May 2019 21:19:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9038389208
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 May 2019 20:40:00 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id y3so4916853wmm.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 May 2019 13:40:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=sv6E+Y2zdzwfbL+kilwGZbD4tBE7UDiD/NSonOiHdGA=;
- b=h5Eb+a9MVF1pbPynHMCWnjQJxNRLrN3xo0mWmIUUqhsIUoL8dXo+kA65fVPqyuCrui
- Tfzzxs2B0QCxDYTdevBuqCjMUtocPxy4BpwYSkNlUZEcJ3iyN1OZ+Xj3R4+JHc7l0KLV
- rne0pxjaHUnzOQ+PXjrrodanMJED/N5/7gjNaW2nzTph64drVZv+pf+kf9n2XnDvPG9C
- 7WRNDbT/AakxcfDlwmZ3FPreq7bvZyVGUd8eCrdx0G1rrkHSpdDeizzDoFEcFaKpOMT7
- TgVGIy6Dccl5aGYfOmw3/PhlpZkNrTtwpJ9y9ZS/j+qJCPk5qcI5US99Nr/DTNOCuvTv
- owYw==
-X-Gm-Message-State: APjAAAXswnc72eNhbkqBpzKb1T5Iu6eW/ze3m/F+5je/7pxEgZC7QUyr
- RYJNTec+XcY1n5vDzi/eep4FCPaCSG/3cUjYkhU=
-X-Google-Smtp-Source: APXvYqyxfOnM12p2bdnF3ekiBTiDBCvQakQxPBigYZMByjOcBjEmKkyD5dnDc6PRuPRWz0UXJ5mGIS8DO9HlAiEfeIc=
-X-Received: by 2002:a1c:6c1a:: with SMTP id h26mr27547315wmc.89.1558039199222; 
- Thu, 16 May 2019 13:39:59 -0700 (PDT)
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr780047.outbound.protection.outlook.com [40.107.78.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4D9989780
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 May 2019 21:19:55 +0000 (UTC)
+Received: from BN6PR12MB1409.namprd12.prod.outlook.com (10.168.228.21) by
+ BN6PR12MB1251.namprd12.prod.outlook.com (10.168.226.19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.22; Thu, 16 May 2019 21:19:54 +0000
+Received: from BN6PR12MB1409.namprd12.prod.outlook.com
+ ([fe80::f8a6:2fe1:735e:694a]) by BN6PR12MB1409.namprd12.prod.outlook.com
+ ([fe80::f8a6:2fe1:735e:694a%3]) with mapi id 15.20.1878.022; Thu, 16 May 2019
+ 21:19:54 +0000
+From: "Abramov, Slava" <Slava.Abramov@amd.com>
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: cast to unsigned int for 32-bit portability
+Thread-Topic: [PATCH] drm/amdgpu: cast to unsigned int for 32-bit portability
+Thread-Index: AQHVDCz2R8rLbwu8F0iCTl4o6PQmvQ==
+Date: Thu, 16 May 2019 21:19:54 +0000
+Message-ID: <BN6PR12MB14097E1091DBF08BEFCB547BFE0A0@BN6PR12MB1409.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [165.204.55.251]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 34c8aa23-a9f4-447b-0dac-08d6da443d67
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1251; 
+x-ms-traffictypediagnostic: BN6PR12MB1251:
+x-microsoft-antispam-prvs: <BN6PR12MB12513AB899698137BE69B22CFE0A0@BN6PR12MB1251.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:296;
+x-forefront-prvs: 0039C6E5C5
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(346002)(39860400002)(396003)(366004)(136003)(376002)(189003)(199004)(476003)(14444005)(2906002)(256004)(3846002)(486006)(74316002)(71190400001)(66066001)(66946007)(71200400001)(86362001)(76116006)(5660300002)(66476007)(66446008)(6116002)(73956011)(2501003)(66556008)(64756008)(4326008)(53936002)(6916009)(6436002)(6506007)(33656002)(68736007)(53336002)(26005)(81156014)(8936002)(72206003)(9686003)(102836004)(5640700003)(7736002)(55016002)(316002)(478600001)(54906003)(186003)(54896002)(19627405001)(7696005)(52536014)(8676002)(81166006)(14454004)(6606003)(25786009)(2351001)(99286004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1251;
+ H:BN6PR12MB1409.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: UkJPHLgYSNaQg/F/6tXoCLyrzegZs0J3LscrIQhepYhxGxl3uPiGe0H/GTLRbk3co1uAXXk0pJO60WqzVNoxDI0pCUg5RfZvv96BpPaSGZhL4wUYlAQzfvgMqvusNYUnvw6YTMjnIRK13s+A8yfxOoHTQ2ERXF4x2oJhERKUHkWZKLNyCyFu9W/3m/WYMosFYwlvsXCN4dqJTdBecD66KTUfVzysTHePREbpXR9DBsy3jZJmc8Muqa4LUJ2qbH2URHH0f972MUJe3IQORbXh86jqFbogfS+pymxFEllxH/aWsc8R+mW7S6ypi+QDOlyUdpTa2rW+hD3vO9Td8NGqI5mmf2g1zAC3AMqB3CgIUA29Y8yxE4ZC6XZ4dYgC4Dhymd+kWXTYJfqCYVuTbNBCYWP/WF9mOAPEbwYQCjjz5Pc=
 MIME-Version: 1.0
-References: <CAJ-EccO1ue5hTtJ8m4utQp+8dSsWm60JFA5YOT1gCODnYcFUog@mail.gmail.com>
- <CADnq5_N=-cWz99T4ma_=6-_bu-Ty2twsFt=KGtzTdWn1hcDSrA@mail.gmail.com>
- <CAJ-EccOH2dXPD+XeHQcqZYD+xa2eB6SVp6oFk4AD0vy=H+9+0w@mail.gmail.com>
-In-Reply-To: <CAJ-EccOH2dXPD+XeHQcqZYD+xa2eB6SVp6oFk4AD0vy=H+9+0w@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 16 May 2019 16:39:47 -0400
-Message-ID: <CADnq5_OTk4nE4G6FHmSRmvNLNO4hJbVC9cuxAiGEZk1_b2C=9w@mail.gmail.com>
-Subject: Re: GPU passthrough support for Stoney [Radeon R2/R3/R4/R5 Graphics]?
-To: Micah Morton <mortonm@chromium.org>
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34c8aa23-a9f4-447b-0dac-08d6da443d67
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 May 2019 21:19:54.0677 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1251
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=sv6E+Y2zdzwfbL+kilwGZbD4tBE7UDiD/NSonOiHdGA=;
- b=fMqXvuxmx0Tsfv8pWepFUoMdhu6+5of0SJAdu4D0+isbYhxU9NJ7BEK2TEhFrYxmod
- c81fr5cGpduLhzOM/oBl2AWcslcZsneGFuNaZCNVCQ3pzGdhxQUOWY2jmFBaQB874anq
- /9T0HtrFFpinKXcsGPVnquTM8nNFtR14LfKx153IWUO0ehSoVJ/Wqlnmksj3h49rmGKk
- Vb3m/fSdawuwGrDhuYZlhW5o/9HRlny07EMFikROfUClgAT883EunGJAPezQOEZ+1eXU
- nFVFj8TJ6aEJPaXsSS9yNV/sRsM58Dec415sBRfN9alNqPILNt8FSORVG8rpFMdcRb9s
- 1D9g==
+ d=amdcloud.onmicrosoft.com; s=selector1-amd-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fJBi0mrg0TbWMt55BXPSLwTB/E14dyzsCSV3n8VJdvY=;
+ b=fZxgb/9nPUlETV0G6JWVouAIL0Z38ElrCOK68SuELw5llYhg3hgNGrEXhpAQlu/tJabnMCEL4VaYZkujyrhgOZQmrv5GJ5TuhBSN+8WIE2fuUoFNKpu9sb71raBGHlAzN9dGRN77OrNthTcKJF9Vc5O36nv//xeP/6Gp7btzUSg=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Slava.Abramov@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -63,53 +78,127 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>
+Content-Type: multipart/mixed; boundary="===============0968547537=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBNYXkgMTYsIDIwMTkgYXQgNDowNyBQTSBNaWNhaCBNb3J0b24gPG1vcnRvbm1AY2hy
-b21pdW0ub3JnPiB3cm90ZToKPgo+IE9uIFdlZCwgTWF5IDE1LCAyMDE5IGF0IDc6MTkgUE0gQWxl
-eCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5jb20+IHdyb3RlOgo+ID4KPiA+IE9uIFdlZCwg
-TWF5IDE1LCAyMDE5IGF0IDI6MjYgUE0gTWljYWggTW9ydG9uIDxtb3J0b25tQGNocm9taXVtLm9y
-Zz4gd3JvdGU6Cj4gPiA+Cj4gPiA+IEhpIGZvbGtzLAo+ID4gPgo+ID4gPiBJJ20gaW50ZXJlc3Rl
-ZCBpbiBydW5uaW5nIGEgVk0gb24gYSBzeXN0ZW0gd2l0aCBhbiBpbnRlZ3JhdGVkIFN0b25leQo+
-ID4gPiBbUmFkZW9uIFIyL1IzL1I0L1I1IEdyYXBoaWNzXSBjYXJkIGFuZCBwYXNzaW5nIHRocm91
-Z2ggdGhlIGdyYXBoaWNzCj4gPiA+IGNhcmQgdG8gdGhlIFZNIHVzaW5nIHRoZSBJT01NVS4gSSdt
-IHdvbmRlcmluZyB3aGV0aGVyIHRoaXMgaXMgZmVhc2libGUKPiA+ID4gYW5kIHN1cHBvc2VkIHRv
-IGJlIGRvYWJsZSB3aXRoIHRoZSByaWdodCBzZXR1cCAoYXMgb3Bwb3NlZCB0byBwYXNzaW5nCj4g
-PiA+IGEgZGlzY3JldGUgR1BVIHRvIHRoZSBWTSwgd2hpY2ggSSB0aGluayBpcyBkZWZpbml0ZWx5
-IGRvYWJsZT8pLgo+ID4gPgo+ID4gPiBTbyBmYXIsIEkgY2FuIGRvIGFsbCB0aGUgcWVtdS9rdm0v
-dmZpby9pb21tdSBzdHVmZiB0byBydW4gdGhlIFZNIGFuZAo+ID4gPiBwYXNzIHRoZSBpbnRlZ3Jh
-dGVkIEdQVSB0byBpdCwgYnV0IHRoZSBkcm0gZHJpdmVyIGluIHRoZSBWTSBmYWlscwo+ID4gPiBk
-dXJpbmcgYW1kZ3B1X2RldmljZV9pbml0KCkuIFNwZWNpZmljYWxseSwgdGhlIGxvZ3Mgc2hvdyB0
-aGUgU01VIGJlaW5nCj4gPiA+IHVucmVzcG9uc2l2ZSwgd2hpY2ggbGVhZHMgdG8gYSAnU01VIGZp
-cm13YXJlIGxvYWQgZmFpbGVkJyBlcnJvcgo+ID4gPiBtZXNzYWdlIGFuZCBrZXJuZWwgcGFuaWMu
-IEkgY2FuIHNoYXJlIFZNIGxvZ3MgYW5kIHRoZSBpbnZvY2F0aW9uIG9mCj4gPiA+IHFlbXUgYW5k
-IHN1Y2ggaWYgaGVscGZ1bCwgYnV0IGZpcnN0IHdhbnRlZCB0byBrbm93IGF0IGEgaGlnaCBsZXZl
-bCBpZgo+ID4gPiB0aGlzIHNob3VsZCBiZSBmZWFzaWJsZT8KPiA+ID4KPiA+ID4gUC5TLjogSSdt
-IG5vdCBpbml0aWFsaXppbmcgdGhlIEdQVSBpbiB0aGUgaG9zdCBiaW9zIG9yIGhvc3Qga2VybmVs
-IGF0Cj4gPiA+IGFsbCwgc28gSSBzaG91bGQgYmUgcGFzc2luZyBhIGZyZXNoIEdQVSB0byB0aGUg
-Vk0uIEFsc28sIEknbSBwcmV0dHkKPiA+ID4gc3VyZSBJJ20gcnVubmluZyB0aGUgY29ycmVjdCBW
-R0EgYmlvcyBmb3IgdGhpcyBHUFUgaW4gdGhlIGd1ZXN0IFZNCj4gPiA+IGJpb3MgYmVmb3JlIGd1
-ZXN0IGJvb3QuCj4gPiA+Cj4gPiA+IEFueSBjb21tZW50cy9zdWdnZXN0aW9ucyB3b3VsZCBiZSBh
-cHByZWNpYXRlZCEKPiA+Cj4gPiBJdCBzaG91bGQgd29yayBpbiBhdCBsZWFzdCBvbmNlIGFzIGxv
-bmcgYXMgeW91ciB2bSBpcyBwcm9wZXJseSBzZXQgdXAuCj4KPiBJcyB0aGVyZSBhbnkgcmVhc29u
-IHJ1bm5pbmcgY29yZWJvb3QgdnMgVUVGSSBhdCBob3N0IGJvb3Qgd291bGQgbWFrZSBhCj4gZGlm
-ZmVyZW5jZT8gSSB3YXMgcnVubmluZyBhIG1vZGlmaWVkIHZlcnNpb24gb2YgY29yZWJvb3QgdGhh
-dCBhdm9pZHMKPiBkb2luZyBhbnkgR1BVIGluaXRpYWxpemF0aW9uIGluIGZpcm13YXJlIC0tIHNv
-IHRoZSBmaXJzdCBQT1NUIGhhcHBlbnMKPiBpbnNpZGUgdGhlIGd1ZXN0LgoKVGhlIEdQVSBvbiBB
-UFVzIHNoYXJlcyBhIGJ1bmNoIG9mIHJlc291cmNlcyB3aXRoIHRoZSBDUFUuICBUaGVyZSBhcmUg
-YQpidW5jaCBvZiBibG9ja3Mgd2hpY2ggYXJlIHNoYXJlZCBhbmQgbmVlZCB0byBiZSBpbml0aWFs
-aXplZCBvbiBib3RoCmZvciBldmVyeXRoaW5nIHRvIHdvcmsgcHJvcGVybHkuCgo+Cj4gPiBOb3Rl
-IHRoYXQgdGhlIGRyaXZlciBuZWVkcyBhY2Nlc3MgdG8gdGhlIHZiaW9zIGltYWdlIGluIHRoZSBn
-dWVzdCB0bwo+ID4gZ2V0IGRldmljZSBzcGVjaWZpYyBjb25maWd1cmF0aW9uIGRldGFpbHMgKGNs
-b2NrcywgZGlzcGxheSBjb25uZWN0b3IKPiA+IGNvbmZpZ3VyYXRpb24sIGV0Yy4pLgo+Cj4gSXMg
-dGhlcmUgYW55dGhpbmcgSSBuZWVkIHRvIGRvIHRvIGVuc3VyZSB0aGlzIGJlc2lkZXMgcGFzc2lu
-ZyAnLWRldmljZQo+IHZmaW8tcGNpLC4uLixyb21maWxlPS9wYXRoL3RvL3ZnYXJvbScgdG8gcWVt
-dT8KCllvdSBuZWVkIHRoZSBhY3R1YWwgdmJpb3Mgcm9tIGltYWdlIGZyb20geW91ciBzeXN0ZW0u
-ICBUaGUgaW1hZ2UgaXMKYm9hcmQgc3BlY2lmaWMuCgpBbGV4Cl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============0968547537==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB14097E1091DBF08BEFCB547BFE0A0BN6PR12MB1409namp_"
+
+--_000_BN6PR12MB14097E1091DBF08BEFCB547BFE0A0BN6PR12MB1409namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Without casting, 64-bit division is used implicitly causing DEPMOD
+failure when building 32-bit kernel.
+
+Signed-off-by: Slava Abramov <slava.abramov@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_ras.c
+index da1dc40b9b14..0499620ec972 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -764,8 +764,9 @@ static ssize_t amdgpu_ras_sysfs_badpages_read(struct fi=
+le *f,
+  struct amdgpu_device *adev =3D con->adev;
+  const unsigned int element_size =3D
+  sizeof("0xabcdabcd : 0x12345678 : R\n") - 1;
+- unsigned int start =3D (ppos + element_size - 1) / element_size;
+- unsigned int end =3D (ppos + count - 1) / element_size;
++ unsigned int start =3D
++ (unsigned int) (ppos + element_size - 1) / element_size;
++ unsigned int end =3D (unsigned int) (ppos + count - 1) / element_size;
+  ssize_t s =3D 0;
+  struct ras_badpage *bps =3D NULL;
+  unsigned int bps_count =3D 0;
+--
+2.17.1
+
+
+
+--_000_BN6PR12MB14097E1091DBF08BEFCB547BFE0A0BN6PR12MB1409namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0"></p>
+<div>Without casting, 64-bit division is used implicitly causing DEPMOD</di=
+v>
+<div>failure when building 32-bit kernel.</div>
+<div><br>
+</div>
+<div>Signed-off-by: Slava Abramov &lt;slava.abramov@amd.com&gt;</div>
+<div>---</div>
+<div>&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 5 &#43;&#43;&#43;--</d=
+iv>
+<div>&nbsp;1 file changed, 3 insertions(&#43;), 2 deletions(-)</div>
+<div><br>
+</div>
+<div>diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_ras.c</div>
+<div>index da1dc40b9b14..0499620ec972 100644</div>
+<div>--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c</div>
+<div>&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c</div>
+<div>@@ -764,8 &#43;764,9 @@ static ssize_t amdgpu_ras_sysfs_badpages_read(=
+struct file *f,</div>
+<div>&nbsp;<span style=3D"white-space:pre"> </span>struct amdgpu_device *ad=
+ev =3D con-&gt;adev;</div>
+<div>&nbsp;<span style=3D"white-space:pre"> </span>const unsigned int eleme=
+nt_size =3D</div>
+<div>&nbsp;<span style=3D"white-space:pre"> </span>sizeof(&quot;0xabcdabcd =
+: 0x12345678 : R\n&quot;) - 1;</div>
+<div>-<span style=3D"white-space:pre"> </span>unsigned int start =3D (ppos =
+&#43; element_size - 1) / element_size;</div>
+<div>-<span style=3D"white-space:pre"> </span>unsigned int end =3D (ppos &#=
+43; count - 1) / element_size;</div>
+<div>&#43;<span style=3D"white-space:pre"> </span>unsigned int start =3D</d=
+iv>
+<div>&#43;<span style=3D"white-space:pre"> </span>(unsigned int) (ppos &#43=
+; element_size - 1) / element_size;</div>
+<div>&#43;<span style=3D"white-space:pre"> </span>unsigned int end =3D (uns=
+igned int) (ppos &#43; count - 1) / element_size;</div>
+<div>&nbsp;<span style=3D"white-space:pre"> </span>ssize_t s =3D 0;</div>
+<div>&nbsp;<span style=3D"white-space:pre"> </span>struct ras_badpage *bps =
+=3D NULL;</div>
+<div>&nbsp;<span style=3D"white-space:pre"> </span>unsigned int bps_count =
+=3D 0;</div>
+<div>--&nbsp;</div>
+<div>2.17.1</div>
+<div><br>
+</div>
+<br>
+<p></p>
+</div>
+</body>
+</html>
+
+--_000_BN6PR12MB14097E1091DBF08BEFCB547BFE0A0BN6PR12MB1409namp_--
+
+--===============0968547537==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0968547537==--
