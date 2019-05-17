@@ -1,63 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4828214F7
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 May 2019 09:55:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748A72141E
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 May 2019 09:21:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D1AB898F5;
-	Fri, 17 May 2019 07:54:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 048738986D;
+	Fri, 17 May 2019 07:21:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
- [IPv6:2a00:1450:4864:20::544])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBF4D89862
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2019 07:19:08 +0000 (UTC)
-Received: by mail-ed1-x544.google.com with SMTP id b8so9024469edm.11
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2019 00:19:08 -0700 (PDT)
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA5488986D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2019 07:21:03 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id j187so8639063wma.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2019 00:21:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=MC6V0dNSR/rrKnpn0HJccVcwRYvTyUmBhQYHSdlItSM=;
- b=pIYnxUvDsRvqmlDol5jQBWibtj2E4CV820R4KF4XK2cJ7gBGM/SeI47egRnDQxy9IX
- 6m9vbgwYxqj5zMaGmqRA/7TCP6dUhKmA8+3cNR/TkOZqFlLz19rb9XUucXPqHdfn2oef
- 8XtfmzaNoin0q4/iB2Do4Ciafv2m/SzfJEBkawlqf7yE19dAll7BthyDjMQEFRZ+OEh6
- tG2++DekLSA+7s7tOhOHY7O/608uZcx5zhAh/p9J7yXINZK7Q9z0632H5jc1aSTxQklc
- 80H4Zp24W5SaIARoA49MAC8TmQgBQAjorCgcKZ5Es6FDN8dEqnL4zzvdYThNHqhXzaj8
- 7qlA==
-X-Gm-Message-State: APjAAAUhcV7PuOwBzidXYT4MvfQF++HMO/Xw6GKhkxiUlCDJ8+M8KeW5
- 4hP6RdO7ZXTlM5V9DxEMc54DIHRL8Zw=
-X-Google-Smtp-Source: APXvYqxRE42PjiOno6tVqRZ+X+PnrICOeu1codTEzrepqQ+hyuteXvUOZN71qKaIIrvofO4uDVgtXg==
-X-Received: by 2002:a17:906:7388:: with SMTP id
- f8mr8738757ejl.231.1558077547448; 
- Fri, 17 May 2019 00:19:07 -0700 (PDT)
-Received: from archlinux-epyc ([2a01:4f9:2b:2b15::2])
- by smtp.gmail.com with ESMTPSA id h9sm1803588edb.80.2019.05.17.00.19.06
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Fri, 17 May 2019 00:19:06 -0700 (PDT)
-Date: Fri, 17 May 2019 00:19:05 -0700
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-Subject: Re: [v3] drm/amdgpu: add badpages sysfs interafce
-Message-ID: <20190517071905.GA108126@archlinux-epyc>
-References: <SN6PR12MB280055871BC84DB8396BDAFB87330@SN6PR12MB2800.namprd12.prod.outlook.com>
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language;
+ bh=O3fGGL36hsGFgbxjCBH2zXTMPsDL1gynjjFmGmaajCk=;
+ b=tyIBWeD0bsD6gFwKoCXClHp/tsdeysXh8roSbS2gkbJDjbHbx6jDual88VGEt45aAd
+ oXKCtShrrDVeMcv654R4EJRtPpEEzhHcnN/ze/su4C5yMVVjliKJ88VAsNvPJkxgpTBE
+ vxrF0yLduhSTjRVuzJ9hlcib+N7t9P979tYaXE2SURLN8Pf1VAeGPr5jdM9vpz/F2iiy
+ HFi31xgXhY/nXsqA2t5wA0cns7c4cGkudGvH2BVdXTG0WQ2/y/xlmpM6/UR0zHFTGI1U
+ x0hnrbdbCTLYhRd8wr+WT6Y+Racxt0+2ezk+gC5v8DI5F5k0Tgn/6MyAnbwLR657rqhK
+ d0LQ==
+X-Gm-Message-State: APjAAAWUq4LHegrdOCFYc/KSAmyDkcITV2KnQo9isDEs2BnGQAJutfYV
+ rJeTuRSeDILFtdqFmNZzKTgEH3K2
+X-Google-Smtp-Source: APXvYqw5NF/dxg73GyAmebdW3/58YpcS78E2+obT6DoYyLSebGYXpFD2jHK0ZPDV4uKQhAd0SJbBEw==
+X-Received: by 2002:a1c:6206:: with SMTP id w6mr1096084wmb.56.1558077662665;
+ Fri, 17 May 2019 00:21:02 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id w13sm11098283wmk.0.2019.05.17.00.21.00
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 17 May 2019 00:21:02 -0700 (PDT)
+Subject: =?UTF-8?B?UmU6IOetlOWkjTogW1BBVENIXSBkcm0vYW1kZ3B1OiBza2lwIGZ3IHBy?=
+ =?UTF-8?Q?i_bo_alloc_for_SRIOV?=
+To: "Tao, Yintian" <Yintian.Tao@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>
+References: <1558007618-24482-1-git-send-email-yttao@amd.com>
+ <MN2PR12MB3039EAC37D6BB17BD3582D77E50B0@MN2PR12MB3039.namprd12.prod.outlook.com>
+ <f77131be-9a53-789d-0f1e-c743c80dc11a@amd.com>
+ <MN2PR12MB30390AB5467D6A7080AD45C6E50B0@MN2PR12MB3039.namprd12.prod.outlook.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <0f307e3d-3f5f-3766-6db8-e51ab6c2562e@gmail.com>
+Date: Fri, 17 May 2019 09:20:54 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <SN6PR12MB280055871BC84DB8396BDAFB87330@SN6PR12MB2800.namprd12.prod.outlook.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
-X-Mailman-Approved-At: Fri, 17 May 2019 07:54:58 +0000
+In-Reply-To: <MN2PR12MB30390AB5467D6A7080AD45C6E50B0@MN2PR12MB3039.namprd12.prod.outlook.com>
+Content-Language: en-US
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=MC6V0dNSR/rrKnpn0HJccVcwRYvTyUmBhQYHSdlItSM=;
- b=VyW01k/ucwC2xb7S8/ZvCbuuyIxZ/vtFfFjhLcIDMK6lv2omcfxQpytjdIuFqwT4pR
- tt7Nhnq8tLi0uXmz8jiq1YftP5hY8k8d97YgU1nKlDu98bDxBGtkpIfhdOLjsig27xUY
- SpnsYh6H2KAQnNoydLAVbER+R9NHvUnQwsIIdyzbGhst127YdkrMHqppVSgNBsgSoErp
- kl8QTABKmMb+mWKjRyS3Qo9naudR2bMhgo+LrQf6XxTVuMDx+ZXksYw6imopn+ixNCiT
- 1soM1djEYhE505MsTZKrKmRgMtVeAs5xVIVfiJ0NP8dXuqNezIqiBsHsoOvNix1gD6O0
- kLFg==
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language;
+ bh=O3fGGL36hsGFgbxjCBH2zXTMPsDL1gynjjFmGmaajCk=;
+ b=fBGHtVMSguq15BzAIoQZvurmKMZsNgZsB0i1X7DVE+V0QSsNJiWw2+TAYoIglzaejU
+ VkUTIorkNX8vyN20sTcj6YrxyueZyoTuo3A7laxR22egZtTd2LCNqmpc+Is4i49fC8Z3
+ Dk8Qv8mirf9AnevewU+DL6NuYw0N1mhTrlPVvvQmHhyqFqHEA9D83xcmacK8YHOMJ1F0
+ 2EyelBug/8FtqUh+OzaBJJalVqK/QfXNU6eL3MDWWIOdRqWO1ExFI9E1doIV+C613wC3
+ tSkL1neTUbLO0QEZSw9ERak4IXpt2LFwVtWKWH8F0RcnrFGo14VN3tfNT2XUKfkYmAOE
+ IlXQ==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -69,145 +75,300 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+Reply-To: christian.koenig@amd.com
+Cc: "Liu, Monk" <Monk.Liu@amd.com>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1388032840=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBNYXkgMDksIDIwMTkgYXQgMTA6MzE6MDVBTSArMDAwMCwgUGFuLCBYaW5odWkgd3Jv
-dGU6Cj4gYWRkIGJhZHBhZ2VzIG5vZGUuCj4gaXQgd2lsbCBvdXRwdXQgYmFkcGFnZXMgbGlzdCBp
-biBmb3JtYXQKPiBncHUgcGZuIDogZ3B1IHBhZ2Ugc2l6ZSA6IGZsYWdzCj4gCj4gZXhhbXBsZQo+
-IDB4MDAwMDAwMDAgOiAweDAwMDAxMDAwIDogUgo+IDB4MDAwMDAwMDEgOiAweDAwMDAxMDAwIDog
-Ugo+IDB4MDAwMDAwMDIgOiAweDAwMDAxMDAwIDogUgo+IDB4MDAwMDAwMDMgOiAweDAwMDAxMDAw
-IDogUgo+IDB4MDAwMDAwMDQgOiAweDAwMDAxMDAwIDogUgo+IDB4MDAwMDAwMDUgOiAweDAwMDAx
-MDAwIDogUgo+IDB4MDAwMDAwMDYgOiAweDAwMDAxMDAwIDogUgo+IDB4MDAwMDAwMDcgOiAweDAw
-MDAxMDAwIDogUAo+IDB4MDAwMDAwMDggOiAweDAwMDAxMDAwIDogUAo+IDB4MDAwMDAwMDkgOiAw
-eDAwMDAxMDAwIDogUAo+IAo+IGZsYWdzIGNhbiBiZSBvbmUgb2YgYmVsb3cgY2hhcmFjdGVycwo+
-IFI6IHJlc2VydmVkLgo+IFA6IHBlbmRpbmcgZm9yIHJlc2VydmUuCj4gRjogZmFpbGVkIHRvIHJl
-c2VydmUgZm9yIHNvbWUgcmVhc29ucy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiB4aW5odWkgcGFuIDx4
-aW5odWkucGFuQGFtZC5jb20+Cj4gUmV2aWV3ZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVy
-LmRldWNoZXJAYW1kLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X3Jhcy5jIHwgMTQ2ICsrKysrKysrKysrKysrKysrKysrKysrKwo+ICBkcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmggfCAgIDEgKwo+ICAyIGZpbGVzIGNoYW5nZWQsIDE0
-NyBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2FtZGdwdV9yYXMuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9yYXMu
-Ywo+IGluZGV4IGM2MGQ1ZjgxMzgwMS4uYzllMjRmNjA5MzhlIDEwMDY0NAo+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9yYXMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV9yYXMuYwo+IEBAIC05MCw2ICs5MCwxMiBAQCBzdHJ1Y3QgcmFz
-X21hbmFnZXIgewo+ICAJc3RydWN0IHJhc19lcnJfZGF0YSBlcnJfZGF0YTsKPiAgfTsKPiAgCj4g
-K3N0cnVjdCByYXNfYmFkcGFnZSB7Cj4gKwl1bnNpZ25lZCBpbnQgYnA7Cj4gKwl1bnNpZ25lZCBp
-bnQgc2l6ZTsKPiArCXVuc2lnbmVkIGludCBmbGFnczsKPiArfTsKPiArCj4gIGNvbnN0IGNoYXIg
-KnJhc19lcnJvcl9zdHJpbmdbXSA9IHsKPiAgCSJub25lIiwKPiAgCSJwYXJpdHkiLAo+IEBAIC03
-MTAsNiArNzE2LDc3IEBAIGludCBhbWRncHVfcmFzX3F1ZXJ5X2Vycm9yX2NvdW50KHN0cnVjdCBh
-bWRncHVfZGV2aWNlICphZGV2LAo+ICAKPiAgLyogc3lzZnMgYmVnaW4gKi8KPiAgCj4gK3N0YXRp
-YyBpbnQgYW1kZ3B1X3Jhc19iYWRwYWdlc19yZWFkKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2
-LAo+ICsJCXN0cnVjdCByYXNfYmFkcGFnZSAqKmJwcywgdW5zaWduZWQgaW50ICpjb3VudCk7Cj4g
-Kwo+ICtzdGF0aWMgY2hhciAqYW1kZ3B1X3Jhc19iYWRwYWdlX2ZsYWdzX3N0cih1bnNpZ25lZCBp
-bnQgZmxhZ3MpCj4gK3sKPiArCXN3aXRjaCAoZmxhZ3MpIHsKPiArCWNhc2UgMDoKPiArCQlyZXR1
-cm4gIlIiOwo+ICsJY2FzZSAxOgo+ICsJCXJldHVybiAiUCI7Cj4gKwljYXNlIDI6Cj4gKwlkZWZh
-dWx0Ogo+ICsJCXJldHVybiAiRiI7Cj4gKwl9Owo+ICt9Cj4gKwo+ICsvKgo+ICsgKiBET0M6IHJh
-cyBzeXNmcyBncHVfdnJhbV9iYWRfcGFnZXMgaW50ZXJmYWNlCj4gKyAqCj4gKyAqIEl0IGFsbG93
-cyB1c2VyIHRvIHJlYWQgdGhlIGJhZCBwYWdlcyBvZiB2cmFtIG9uIHRoZSBncHUgdGhyb3VnaAo+
-ICsgKiAvc3lzL2NsYXNzL2RybS9jYXJkWzAvMS8yLi4uXS9kZXZpY2UvcmFzL2dwdV92cmFtX2Jh
-ZF9wYWdlcwo+ICsgKgo+ICsgKiBJdCBvdXRwdXRzIG11bHRpcGxlIGxpbmVzLCBhbmQgZWFjaCBs
-aW5lIHN0YW5kcyBmb3Igb25lIGdwdSBwYWdlLgo+ICsgKgo+ICsgKiBUaGUgZm9ybWF0IG9mIG9u
-ZSBsaW5lIGlzIGJlbG93LAo+ICsgKiBncHUgcGZuIDogZ3B1IHBhZ2Ugc2l6ZSA6IGZsYWdzCj4g
-KyAqCj4gKyAqIGdwdSBwZm4gYW5kIGdwdSBwYWdlIHNpemUgYXJlIHByaW50ZWQgaW4gaGV4IGZv
-cm1hdC4KPiArICogZmxhZ3MgY2FuIGJlIG9uZSBvZiBiZWxvdyBjaGFyYWN0ZXIsCj4gKyAqIFI6
-IHJlc2VydmVkLCB0aGlzIGdwdSBwYWdlIGlzIHJlc2VydmVkIGFuZCBub3QgYWJsZSB0byB1c2Uu
-Cj4gKyAqIFA6IHBlbmRpbmcgZm9yIHJlc2VydmUsIHRoaXMgZ3B1IHBhZ2UgaXMgbWFya2VkIGFz
-IGJhZCwgd2lsbCBiZSByZXNlcnZlZAo+ICsgKiAgICBpbiBuZXh0IHdpbmRvdyBvZiBwYWdlX3Jl
-c2VydmUuCj4gKyAqIEY6IHVuYWJsZSB0byByZXNlcnZlLiB0aGlzIGdwdSBwYWdlIGNhbid0IGJl
-IHJlc2VydmVkIGR1ZSB0byBzb21lIHJlYXNvbnMuCj4gKyAqCj4gKyAqIGV4YW1wbGVzOgo+ICsg
-KiAweDAwMDAwMDAxIDogMHgwMDAwMTAwMCA6IFIKPiArICogMHgwMDAwMDAwMiA6IDB4MDAwMDEw
-MDAgOiBQCj4gKyAqLwo+ICsKPiArc3RhdGljIHNzaXplX3QgYW1kZ3B1X3Jhc19zeXNmc19iYWRw
-YWdlc19yZWFkKHN0cnVjdCBmaWxlICpmLAo+ICsJCXN0cnVjdCBrb2JqZWN0ICprb2JqLCBzdHJ1
-Y3QgYmluX2F0dHJpYnV0ZSAqYXR0ciwKPiArCQljaGFyICpidWYsIGxvZmZfdCBwcG9zLCBzaXpl
-X3QgY291bnQpCj4gK3sKPiArCXN0cnVjdCBhbWRncHVfcmFzICpjb24gPQo+ICsJCWNvbnRhaW5l
-cl9vZihhdHRyLCBzdHJ1Y3QgYW1kZ3B1X3JhcywgYmFkcGFnZXNfYXR0cik7Cj4gKwlzdHJ1Y3Qg
-YW1kZ3B1X2RldmljZSAqYWRldiA9IGNvbi0+YWRldjsKPiArCWNvbnN0IHVuc2lnbmVkIGludCBl
-bGVtZW50X3NpemUgPQo+ICsJCXNpemVvZigiMHhhYmNkYWJjZCA6IDB4MTIzNDU2NzggOiBSXG4i
-KSAtIDE7Cj4gKwl1bnNpZ25lZCBpbnQgc3RhcnQgPSAocHBvcyArIGVsZW1lbnRfc2l6ZSAtIDEp
-IC8gZWxlbWVudF9zaXplOwo+ICsJdW5zaWduZWQgaW50IGVuZCA9IChwcG9zICsgY291bnQgLSAx
-KSAvIGVsZW1lbnRfc2l6ZTsKCkkgYmVsaWV2ZSB0aGVzZSB0d28gbGluZXMgY2F1c2UgYSBsaW5r
-IHRpbWUgZXJyb3Igd2l0aCBhcm0zMiBkZWZjb25maWcgKwpDT05GSUdfRFJNX0FNREdQVSAoZmls
-dGVyZWQgZG93biBmcm9tIGFsbHllc2NvbmZpZyk6Cgphcm0tbGludXgtZ251ZWFiaS1sZDogZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhcy5vOiBpbiBmdW5jdGlvbiBgYW1kZ3B1
-X3Jhc19zeXNmc19iYWRwYWdlc19yZWFkJzoKYW1kZ3B1X3Jhcy5jOigudGV4dCsweDgwNCk6IHVu
-ZGVmaW5lZCByZWZlcmVuY2UgdG8gYF9fYWVhYmlfbGRpdm1vZCcKYXJtLWxpbnV4LWdudWVhYmkt
-bGQ6IGFtZGdwdV9yYXMuYzooLnRleHQrMHg4MzApOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBf
-X2FlYWJpX2xkaXZtb2QnCgpUaGUgYXNzaWdubWVudHMgb2Ygc3RhcnQgYW5kIGVuZCBpbnZvbHZl
-IGEgNjQtYml0IGRpdmlkZW5kIGJlY2F1c2UgbG9mZl90CmlzIGRlZmluZWQgYXMgbG9uZyBsb25n
-LCBtZWFuaW5nIG9uZSBvZiB0aGUgNjQtYml0IGRpdmlzaW9uIGZ1bmN0aW9ucwpmcm9tIGluY2x1
-ZGUvbGludXgvbWF0aDY0Lmggc2hvdWxkIGJlIHVzZWQuIEkgYW0gbm90IHN1cmUgb2Ygd2hpY2gg
-b25lCm90aGVyd2lzZSBJIHdvdWxkIGhhdmUgc2VudCBhIHBhdGNoIDopCgpDaGVlcnMsCk5hdGhh
-bgoKPiArCXNzaXplX3QgcyA9IDA7Cj4gKwlzdHJ1Y3QgcmFzX2JhZHBhZ2UgKmJwcyA9IE5VTEw7
-Cj4gKwl1bnNpZ25lZCBpbnQgYnBzX2NvdW50ID0gMDsKPiArCj4gKwltZW1zZXQoYnVmLCAwLCBj
-b3VudCk7Cj4gKwo+ICsJaWYgKGFtZGdwdV9yYXNfYmFkcGFnZXNfcmVhZChhZGV2LCAmYnBzLCAm
-YnBzX2NvdW50KSkKPiArCQlyZXR1cm4gMDsKPiArCj4gKwlmb3IgKDsgc3RhcnQgPCBlbmQgJiYg
-c3RhcnQgPCBicHNfY291bnQ7IHN0YXJ0KyspCj4gKwkJcyArPSBzY25wcmludGYoJmJ1ZltzXSwg
-ZWxlbWVudF9zaXplICsgMSwKPiArCQkJCSIweCUwOHggOiAweCUwOHggOiAlMXNcbiIsCj4gKwkJ
-CQlicHNbc3RhcnRdLmJwLAo+ICsJCQkJYnBzW3N0YXJ0XS5zaXplLAo+ICsJCQkJYW1kZ3B1X3Jh
-c19iYWRwYWdlX2ZsYWdzX3N0cihicHNbc3RhcnRdLmZsYWdzKSk7Cj4gKwo+ICsJa2ZyZWUoYnBz
-KTsKPiArCj4gKwlyZXR1cm4gczsKPiArfQo+ICsKPiAgc3RhdGljIHNzaXplX3QgYW1kZ3B1X3Jh
-c19zeXNmc19mZWF0dXJlc19yZWFkKHN0cnVjdCBkZXZpY2UgKmRldiwKPiAgCQlzdHJ1Y3QgZGV2
-aWNlX2F0dHJpYnV0ZSAqYXR0ciwgY2hhciAqYnVmKQo+ICB7Cj4gQEAgLTc1MCw5ICs4MjcsMTQg
-QEAgc3RhdGljIGludCBhbWRncHVfcmFzX3N5c2ZzX2NyZWF0ZV9mZWF0dXJlX25vZGUoc3RydWN0
-IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gIAkJJmNvbi0+ZmVhdHVyZXNfYXR0ci5hdHRyLAo+ICAJ
-CU5VTEwKPiAgCX07Cj4gKwlzdHJ1Y3QgYmluX2F0dHJpYnV0ZSAqYmluX2F0dHJzW10gPSB7Cj4g
-KwkJJmNvbi0+YmFkcGFnZXNfYXR0ciwKPiArCQlOVUxMCj4gKwl9Owo+ICAJc3RydWN0IGF0dHJp
-YnV0ZV9ncm91cCBncm91cCA9IHsKPiAgCQkubmFtZSA9ICJyYXMiLAo+ICAJCS5hdHRycyA9IGF0
-dHJzLAo+ICsJCS5iaW5fYXR0cnMgPSBiaW5fYXR0cnMsCj4gIAl9Owo+ICAKPiAgCWNvbi0+ZmVh
-dHVyZXNfYXR0ciA9IChzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSkgewo+IEBAIC03NjIsNyArODQ0
-LDE5IEBAIHN0YXRpYyBpbnQgYW1kZ3B1X3Jhc19zeXNmc19jcmVhdGVfZmVhdHVyZV9ub2RlKHN0
-cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQo+ICAJCX0sCj4gIAkJCS5zaG93ID0gYW1kZ3B1X3Jh
-c19zeXNmc19mZWF0dXJlc19yZWFkLAo+ICAJfTsKPiArCj4gKwljb24tPmJhZHBhZ2VzX2F0dHIg
-PSAoc3RydWN0IGJpbl9hdHRyaWJ1dGUpIHsKPiArCQkuYXR0ciA9IHsKPiArCQkJLm5hbWUgPSAi
-Z3B1X3ZyYW1fYmFkX3BhZ2VzIiwKPiArCQkJLm1vZGUgPSBTX0lSVUdPLAo+ICsJCX0sCj4gKwkJ
-LnNpemUgPSAwLAo+ICsJCS5wcml2YXRlID0gTlVMTCwKPiArCQkucmVhZCA9IGFtZGdwdV9yYXNf
-c3lzZnNfYmFkcGFnZXNfcmVhZCwKPiArCX07Cj4gKwo+ICAJc3lzZnNfYXR0cl9pbml0KGF0dHJz
-WzBdKTsKPiArCXN5c2ZzX2Jpbl9hdHRyX2luaXQoYmluX2F0dHJzWzBdKTsKPiAgCj4gIAlyZXR1
-cm4gc3lzZnNfY3JlYXRlX2dyb3VwKCZhZGV2LT5kZXYtPmtvYmosICZncm91cCk7Cj4gIH0KPiBA
-QCAtNzc0LDkgKzg2OCwxNCBAQCBzdGF0aWMgaW50IGFtZGdwdV9yYXNfc3lzZnNfcmVtb3ZlX2Zl
-YXR1cmVfbm9kZShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKPiAgCQkmY29uLT5mZWF0dXJl
-c19hdHRyLmF0dHIsCj4gIAkJTlVMTAo+ICAJfTsKPiArCXN0cnVjdCBiaW5fYXR0cmlidXRlICpi
-aW5fYXR0cnNbXSA9IHsKPiArCQkmY29uLT5iYWRwYWdlc19hdHRyLAo+ICsJCU5VTEwKPiArCX07
-Cj4gIAlzdHJ1Y3QgYXR0cmlidXRlX2dyb3VwIGdyb3VwID0gewo+ICAJCS5uYW1lID0gInJhcyIs
-Cj4gIAkJLmF0dHJzID0gYXR0cnMsCj4gKwkJLmJpbl9hdHRycyA9IGJpbl9hdHRycywKPiAgCX07
-Cj4gIAo+ICAJc3lzZnNfcmVtb3ZlX2dyb3VwKCZhZGV2LT5kZXYtPmtvYmosICZncm91cCk7Cj4g
-QEAgLTExMDgsNiArMTIwNyw1MyBAQCBzdGF0aWMgaW50IGFtZGdwdV9yYXNfaW50ZXJydXB0X3Jl
-bW92ZV9hbGwoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gIC8qIGloIGVuZCAqLwo+ICAK
-PiAgLyogcmVjb3ZlcnkgYmVnaW4gKi8KPiArCj4gKy8qIHJldHVybiAwIG9uIHN1Y2Nlc3MuCj4g
-KyAqIGNhbGxlciBuZWVkIGZyZWUgYnBzLgo+ICsgKi8KPiArc3RhdGljIGludCBhbWRncHVfcmFz
-X2JhZHBhZ2VzX3JlYWQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsCj4gKwkJc3RydWN0IHJh
-c19iYWRwYWdlICoqYnBzLCB1bnNpZ25lZCBpbnQgKmNvdW50KQo+ICt7Cj4gKwlzdHJ1Y3QgYW1k
-Z3B1X3JhcyAqY29uID0gYW1kZ3B1X3Jhc19nZXRfY29udGV4dChhZGV2KTsKPiArCXN0cnVjdCBy
-YXNfZXJyX2hhbmRsZXJfZGF0YSAqZGF0YTsKPiArCWludCBpID0gMDsKPiArCWludCByZXQgPSAw
-Owo+ICsKPiArCWlmICghY29uIHx8ICFjb24tPmVoX2RhdGEgfHwgIWJwcyB8fCAhY291bnQpCj4g
-KwkJcmV0dXJuIC1FSU5WQUw7Cj4gKwo+ICsJbXV0ZXhfbG9jaygmY29uLT5yZWNvdmVyeV9sb2Nr
-KTsKPiArCWRhdGEgPSBjb24tPmVoX2RhdGE7Cj4gKwlpZiAoIWRhdGEgfHwgZGF0YS0+Y291bnQg
-PT0gMCkgewo+ICsJCSpicHMgPSBOVUxMOwo+ICsJCWdvdG8gb3V0Owo+ICsJfQo+ICsKPiArCSpi
-cHMgPSBrbWFsbG9jKHNpemVvZihzdHJ1Y3QgcmFzX2JhZHBhZ2UpICogZGF0YS0+Y291bnQsIEdG
-UF9LRVJORUwpOwo+ICsJaWYgKCEqYnBzKSB7Cj4gKwkJcmV0ID0gLUVOT01FTTsKPiArCQlnb3Rv
-IG91dDsKPiArCX0KPiArCj4gKwlmb3IgKDsgaSA8IGRhdGEtPmNvdW50OyBpKyspIHsKPiArCQko
-KmJwcylbaV0gPSAoc3RydWN0IHJhc19iYWRwYWdlKXsKPiArCQkJLmJwID0gZGF0YS0+YnBzW2ld
-LmJwLAo+ICsJCQkuc2l6ZSA9IEFNREdQVV9HUFVfUEFHRV9TSVpFLAo+ICsJCQkuZmxhZ3MgPSAw
-LAo+ICsJCX07Cj4gKwo+ICsJCWlmIChkYXRhLT5sYXN0X3Jlc2VydmVkIDw9IGkpCj4gKwkJCSgq
-YnBzKVtpXS5mbGFncyA9IDE7Cj4gKwkJZWxzZSBpZiAoZGF0YS0+YnBzW2ldLmJvID09IE5VTEwp
-Cj4gKwkJCSgqYnBzKVtpXS5mbGFncyA9IDI7Cj4gKwl9Cj4gKwo+ICsJKmNvdW50ID0gZGF0YS0+
-Y291bnQ7Cj4gK291dDoKPiArCW11dGV4X3VubG9jaygmY29uLT5yZWNvdmVyeV9sb2NrKTsKPiAr
-CXJldHVybiByZXQ7Cj4gK30KPiArCj4gIHN0YXRpYyB2b2lkIGFtZGdwdV9yYXNfZG9fcmVjb3Zl
-cnkoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQo+ICB7Cj4gIAlzdHJ1Y3QgYW1kZ3B1X3JhcyAq
-cmFzID0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jh
-cy5oIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhcy5oCj4gaW5kZXggMDY1
-YzY2YmFmOTQ3Li5lMmRmZjAwYjhkMWMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvYW1kZ3B1X3Jhcy5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-YW1kZ3B1X3Jhcy5oCj4gQEAgLTkzLDYgKzkzLDcgQEAgc3RydWN0IGFtZGdwdV9yYXMgewo+ICAJ
-c3RydWN0IGRlbnRyeSAqZW50Owo+ICAJLyogc3lzZnMgKi8KPiAgCXN0cnVjdCBkZXZpY2VfYXR0
-cmlidXRlIGZlYXR1cmVzX2F0dHI7Cj4gKwlzdHJ1Y3QgYmluX2F0dHJpYnV0ZSBiYWRwYWdlc19h
-dHRyOwo+ICAJLyogYmxvY2sgYXJyYXkgKi8KPiAgCXN0cnVjdCByYXNfbWFuYWdlciAqb2JqczsK
-PiAgCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1n
-ZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+This is a multi-part message in MIME format.
+--===============1388032840==
+Content-Type: multipart/alternative;
+ boundary="------------963F868BC249EFA50224614C"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------963F868BC249EFA50224614C
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hi Yintian,
+
+please add this as a code comment to the patch.
+
+Christian.
+
+Am 17.05.19 um 09:17 schrieb Tao, Yintian:
+>
+> Hi  Christian
+>
+>
+> Many thanks for your review.
+>
+>
+> The background is that this bo is to let psp load sos and sysdrv but 
+> under sriov, sos and sysdrv is loaded by VBIOS or hypervisor driver.
+>
+>
+> The reason why not let guest driver to load it under SRIOV is that it 
+> is not safe.
+>
+>
+>
+> Best Regards
+>
+> Yintian Tao
+>
+> ------------------------------------------------------------------------
+> *发件人:* Koenig, Christian
+> *发送时间:* 2019年5月17日 14:53:35
+> *收件人:* Tao, Yintian
+> *抄送:* Liu, Monk; amd-gfx@lists.freedesktop.org
+> *主题:* Re: [PATCH] drm/amdgpu: skip fw pri bo alloc for SRIOV
+> Looks good to me now, but I don't know the technical background why this
+> BO is not needed under SRIOV.
+>
+> So this patch is Acked-by: Christian König <christian.koenig@amd.com>.
+>
+> Regards,
+> Christian.
+>
+> Am 17.05.19 um 04:41 schrieb Tao, Yintian:
+> > Hi Christian
+> >
+> >
+> > I have modified it according to your suggestion. Can you help review 
+> this again? Thanks in advance.
+> >
+> >
+> > Best Regards
+> > Yintian Tao
+> >
+> > -----Original Message-----
+> > From: Yintian Tao <yttao@amd.com>
+> > Sent: Thursday, May 16, 2019 7:54 PM
+> > To: amd-gfx@lists.freedesktop.org
+> > Cc: Tao, Yintian <Yintian.Tao@amd.com>; Liu, Monk <Monk.Liu@amd.com>
+> > Subject: [PATCH] drm/amdgpu: skip fw pri bo alloc for SRIOV
+> >
+> > PSP fw primary buffer is not used under SRIOV.
+> > Therefore, we don't need to allocate memory for it.
+> >
+> > v2: remove superfluous check for amdgpu_bo_free_kernel().
+> >
+> > Signed-off-by: Yintian Tao <yttao@amd.com>
+> > Signed-off-by: Monk Liu <Monk.Liu@amd.com>
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 17 ++++++++++-------
+> >   1 file changed, 10 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c 
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > index c567a55..af9835c 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > @@ -905,13 +905,16 @@ static int psp_load_fw(struct amdgpu_device *adev)
+> >        if (!psp->cmd)
+> >                return -ENOMEM;
+> >
+> > -     ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG, PSP_1_MEG,
+> > - AMDGPU_GEM_DOMAIN_GTT,
+> > - &psp->fw_pri_bo,
+> > - &psp->fw_pri_mc_addr,
+> > - &psp->fw_pri_buf);
+> > -     if (ret)
+> > -             goto failed;
+> > +     /* this fw pri bo is not used under SRIOV */
+> > +     if (!amdgpu_sriov_vf(psp->adev)) {
+> > +             ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG, PSP_1_MEG,
+> > + AMDGPU_GEM_DOMAIN_GTT,
+> > + &psp->fw_pri_bo,
+> > + &psp->fw_pri_mc_addr,
+> > + &psp->fw_pri_buf);
+> > +             if (ret)
+> > +                     goto failed;
+> > +     }
+> >
+> >        ret = amdgpu_bo_create_kernel(adev, PSP_FENCE_BUFFER_SIZE, 
+> PAGE_SIZE,
+> > AMDGPU_GEM_DOMAIN_VRAM,
+>
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+
+--------------963F868BC249EFA50224614C
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Hi Yintian,<br>
+      <br>
+      please add this as a code comment to the patch.<br>
+      <br>
+      Christian.<br>
+      <br>
+      Am 17.05.19 um 09:17 schrieb Tao, Yintian:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:MN2PR12MB30390AB5467D6A7080AD45C6E50B0@MN2PR12MB3039.namprd12.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <style type="text/css" style="display:none;"><!-- P {margin-top:0;margin-bottom:0;} --></style>
+      <div id="divtagdefaultwrapper"
+style="font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-serif;"
+        dir="ltr">
+        <p style="margin-top:0;margin-bottom:0">Hi  Christian</p>
+        <p style="margin-top:0;margin-bottom:0"><br>
+        </p>
+        <p style="margin-top:0;margin-bottom:0">Many thanks for your
+          review.</p>
+        <p style="margin-top:0;margin-bottom:0"><br>
+        </p>
+        <p style="margin-top:0;margin-bottom:0">The background is that
+          this bo is to let psp load sos and sysdrv but under sriov, sos
+          and sysdrv is loaded by VBIOS or hypervisor driver.</p>
+        <p style="margin-top:0;margin-bottom:0"><br>
+        </p>
+        <p style="margin-top:0;margin-bottom:0">The reason why not let
+          guest driver to load it under SRIOV is that it is not safe.</p>
+        <p style="margin-top:0;margin-bottom:0"><br>
+        </p>
+        <p style="margin-top:0;margin-bottom:0"><br>
+        </p>
+        <p style="margin-top:0;margin-bottom:0">Best Regards</p>
+        <p style="margin-top:0;margin-bottom:0">Yintian Tao</p>
+      </div>
+      <hr style="display:inline-block;width:98%" tabindex="-1">
+      <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
+          face="Calibri, sans-serif" color="#000000"><b>发件人:</b> Koenig,
+          Christian<br>
+          <b>发送时间:</b> 2019年5月17日 14:53:35<br>
+          <b>收件人:</b> Tao, Yintian<br>
+          <b>抄送:</b> Liu, Monk; <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><br>
+          <b>主题:</b> Re: [PATCH] drm/amdgpu: skip fw pri bo alloc for
+          SRIOV</font>
+        <div> </div>
+      </div>
+      <div class="BodyFragment"><font size="2"><span
+            style="font-size:11pt;">
+            <div class="PlainText">Looks good to me now, but I don't
+              know the technical background why this
+              <br>
+              BO is not needed under SRIOV.<br>
+              <br>
+              So this patch is Acked-by: Christian König
+              <a class="moz-txt-link-rfc2396E" href="mailto:christian.koenig@amd.com">&lt;christian.koenig@amd.com&gt;</a>.<br>
+              <br>
+              Regards,<br>
+              Christian.<br>
+              <br>
+              Am 17.05.19 um 04:41 schrieb Tao, Yintian:<br>
+              &gt; Hi Christian<br>
+              &gt;<br>
+              &gt;<br>
+              &gt; I have modified it according to your suggestion. Can
+              you help review this again? Thanks in advance.<br>
+              &gt;<br>
+              &gt;<br>
+              &gt; Best Regards<br>
+              &gt; Yintian Tao<br>
+              &gt;<br>
+              &gt; -----Original Message-----<br>
+              &gt; From: Yintian Tao <a class="moz-txt-link-rfc2396E" href="mailto:yttao@amd.com">&lt;yttao@amd.com&gt;</a><br>
+              &gt; Sent: Thursday, May 16, 2019 7:54 PM<br>
+              &gt; To: <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><br>
+              &gt; Cc: Tao, Yintian <a class="moz-txt-link-rfc2396E" href="mailto:Yintian.Tao@amd.com">&lt;Yintian.Tao@amd.com&gt;</a>; Liu,
+              Monk <a class="moz-txt-link-rfc2396E" href="mailto:Monk.Liu@amd.com">&lt;Monk.Liu@amd.com&gt;</a><br>
+              &gt; Subject: [PATCH] drm/amdgpu: skip fw pri bo alloc for
+              SRIOV<br>
+              &gt;<br>
+              &gt; PSP fw primary buffer is not used under SRIOV.<br>
+              &gt; Therefore, we don't need to allocate memory for it.<br>
+              &gt;<br>
+              &gt; v2: remove superfluous check for
+              amdgpu_bo_free_kernel().<br>
+              &gt;<br>
+              &gt; Signed-off-by: Yintian Tao <a class="moz-txt-link-rfc2396E" href="mailto:yttao@amd.com">&lt;yttao@amd.com&gt;</a><br>
+              &gt; Signed-off-by: Monk Liu <a class="moz-txt-link-rfc2396E" href="mailto:Monk.Liu@amd.com">&lt;Monk.Liu@amd.com&gt;</a><br>
+              &gt; ---<br>
+              &gt;   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 17
+              ++++++++++-------<br>
+              &gt;   1 file changed, 10 insertions(+), 7 deletions(-)<br>
+              &gt;<br>
+              &gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+              b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c<br>
+              &gt; index c567a55..af9835c 100644<br>
+              &gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c<br>
+              &gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c<br>
+              &gt; @@ -905,13 +905,16 @@ static int psp_load_fw(struct
+              amdgpu_device *adev)<br>
+              &gt;        if (!psp-&gt;cmd)<br>
+              &gt;                return -ENOMEM;<br>
+              &gt;   <br>
+              &gt; -     ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG,
+              PSP_1_MEG,<br>
+              &gt; -                                    
+              AMDGPU_GEM_DOMAIN_GTT,<br>
+              &gt; -                                    
+              &amp;psp-&gt;fw_pri_bo,<br>
+              &gt; -                                    
+              &amp;psp-&gt;fw_pri_mc_addr,<br>
+              &gt; -                                    
+              &amp;psp-&gt;fw_pri_buf);<br>
+              &gt; -     if (ret)<br>
+              &gt; -             goto failed;<br>
+              &gt; +     /* this fw pri bo is not used under SRIOV */<br>
+              &gt; +     if (!amdgpu_sriov_vf(psp-&gt;adev)) {<br>
+              &gt; +             ret = amdgpu_bo_create_kernel(adev,
+              PSP_1_MEG, PSP_1_MEG,<br>
+              &gt; +                                          
+              AMDGPU_GEM_DOMAIN_GTT,<br>
+              &gt; +                                          
+              &amp;psp-&gt;fw_pri_bo,<br>
+              &gt; +                                          
+              &amp;psp-&gt;fw_pri_mc_addr,<br>
+              &gt; +                                          
+              &amp;psp-&gt;fw_pri_buf);<br>
+              &gt; +             if (ret)<br>
+              &gt; +                     goto failed;<br>
+              &gt; +     }<br>
+              &gt;   <br>
+              &gt;        ret = amdgpu_bo_create_kernel(adev,
+              PSP_FENCE_BUFFER_SIZE, PAGE_SIZE,<br>
+              &gt;                                       
+              AMDGPU_GEM_DOMAIN_VRAM,<br>
+              <br>
+            </div>
+          </span></font></div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+amd-gfx mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a></pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------963F868BC249EFA50224614C--
+
+--===============1388032840==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1388032840==--
