@@ -2,105 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 832E8240A5
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 May 2019 20:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 521B1243C1
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 May 2019 00:54:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76A1D89258;
-	Mon, 20 May 2019 18:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D44589258;
+	Mon, 20 May 2019 22:54:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1287 seconds by postgrey-1.36 at gabe;
- Mon, 20 May 2019 18:42:47 UTC
-Received: from gateway24.websitewelcome.com (gateway24.websitewelcome.com
- [192.185.51.228])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9334389248
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 May 2019 18:42:47 +0000 (UTC)
-Received: from cm13.websitewelcome.com (cm13.websitewelcome.com [100.42.49.6])
- by gateway24.websitewelcome.com (Postfix) with ESMTP id 6E15A2FB63
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 May 2019 13:21:19 -0500 (CDT)
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
- id SmuVhVNqlYTGMSmuVhWWOM; Mon, 20 May 2019 13:21:19 -0500
-X-Authority-Reason: nr=8
-Received: from [189.250.71.100] (port=36326 helo=[192.168.1.76])
- by gator4166.hostgator.com with esmtpsa
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.91)
- (envelope-from <gustavo@embeddedor.com>)
- id 1hSmuS-002cjf-EH; Mon, 20 May 2019 13:21:18 -0500
-To: xiaolinkui <xiaolinkui@kylinos.cn>
-References: <1558082760-4915-1-git-send-email-xiaolinkui@kylinos.cn>
- <CADnq5_PE-mvW2zwNeHn6prvTQvh-en9E9F7VE-hCS=a8jJWhAQ@mail.gmail.com>
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=gustavo@embeddedor.com; keydata=
- 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
- VtSixD1uOgytAP7RWS474w==
+Received: from NAM05-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr710069.outbound.protection.outlook.com [40.107.71.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9B2789193;
+ Mon, 20 May 2019 22:54:49 +0000 (UTC)
+Received: from SN6PR12MB2800.namprd12.prod.outlook.com (52.135.107.150) by
+ SN6PR12MB2687.namprd12.prod.outlook.com (52.135.103.28) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.16; Mon, 20 May 2019 22:54:47 +0000
+Received: from SN6PR12MB2800.namprd12.prod.outlook.com
+ ([fe80::4df8:270e:c062:6f8c]) by SN6PR12MB2800.namprd12.prod.outlook.com
+ ([fe80::4df8:270e:c062:6f8c%7]) with mapi id 15.20.1900.020; Mon, 20 May 2019
+ 22:54:47 +0000
+From: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+To: Daniel Vetter <daniel@ffwll.ch>
 Subject: Re: [PATCH] gpu: drm: use struct_size() in kmalloc()
-Message-ID: <f17d994b-c498-4002-dd72-2999574d84ec@embeddedor.com>
-Date: Mon, 20 May 2019 13:21:14 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <CADnq5_PE-mvW2zwNeHn6prvTQvh-en9E9F7VE-hCS=a8jJWhAQ@mail.gmail.com>
+Thread-Topic: [PATCH] gpu: drm: use struct_size() in kmalloc()
+Thread-Index: AQHVDI2qe/CUJDlUrE6nllhDkI7lB6ZvhnyWgASya4CAAGwJhg==
+Date: Mon, 20 May 2019 22:54:47 +0000
+Message-ID: <SN6PR12MB2800A78EC520C616CCCF387787060@SN6PR12MB2800.namprd12.prod.outlook.com>
+References: <1558082760-4915-1-git-send-email-xiaolinkui@kylinos.cn>
+ <SN6PR12MB2800A7AEC22121C8704CBB09870B0@SN6PR12MB2800.namprd12.prod.outlook.com>,
+ <20190520162807.GE21222@phenom.ffwll.local>
+In-Reply-To: <20190520162807.GE21222@phenom.ffwll.local>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 189.250.71.100
-X-Source-L: No
-X-Exim-ID: 1hSmuS-002cjf-EH
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.1.76]) [189.250.71.100]:36326
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 10
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-Mailman-Approved-At: Mon, 20 May 2019 18:48:21 +0000
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [40.67.189.246]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: eb739a5f-b3c6-46ab-2f52-08d6dd76287f
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
+ SRVR:SN6PR12MB2687; 
+x-ms-traffictypediagnostic: SN6PR12MB2687:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <SN6PR12MB26879872D6F99F7750E7B86B87060@SN6PR12MB2687.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2000;
+x-forefront-prvs: 004395A01C
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(136003)(366004)(376002)(39860400002)(346002)(396003)(199004)(189003)(8676002)(71200400001)(71190400001)(8936002)(81166006)(81156014)(52536014)(478600001)(72206003)(966005)(66946007)(14454004)(91956017)(66476007)(66556008)(64756008)(66446008)(73956011)(76116006)(76176011)(7736002)(26005)(6916009)(606006)(25786009)(102836004)(4326008)(316002)(68736007)(53546011)(6506007)(186003)(7696005)(229853002)(53386004)(74316002)(256004)(6246003)(6436002)(66066001)(86362001)(6116002)(33656002)(53936002)(99286004)(11346002)(5660300002)(54906003)(55016002)(9686003)(6306002)(54896002)(3846002)(236005)(486006)(446003)(476003)(2906002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:SN6PR12MB2687;
+ H:SN6PR12MB2800.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: TQH5TZ0/RgVv0IYLs0SbnJC3YlF15Ndyux/vSzfZGGL4f1kQ/VKx+YCgyumjT30ypk0E15Y6g6JLqF6OcsbEYIjlkdumw4lfA4EJcZojDN3X16J77Q2twA39vtUsteC5vwtN4D4vwXSr490L8T1L9/xUJdntu0cDMuwU3vczDuDE6TjHLt8iItIZa1bdb99jZTryU8s4Zelr+rLwQHaPDOlkw3yAjJky/jerTsW1KsMR+42VS69kP472nXuzJcwD5DDruXPODOGvF9WF7l8KAUAfsIiLj4Bz05oJlJTTaGErcqxbDmuwz1ptk0bLkHhZTzni/jaSqXIkJHxULhMrOiJDW1fdNgAOhuzSem4rbJDNqqQqGxkjUomABbzmJlweCHAHmoU0+MaSHV3bS30QBfD1/yNtI0FUPmjjpZrTAkg=
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb739a5f-b3c6-46ab-2f52-08d6dd76287f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2019 22:54:47.3547 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2687
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H2TWubYjkc69OBspMW7gK03HQ60JxakjH/GgfaQJU18=;
+ b=KV0qMVHCKZsUpMY2li/GWuV5ad2tO4OhTI/LNSa5y3p9rjLdLjDmqz//aWmSSuGPPnkbaQ+7qSwNGuM8U9YYWQ8QuOqhtO2/1+uE2FsqF9ulpS8pMD0a1z4cIPJJ9jGBLSkU751Ld5zh5lAwKr9kcbaEhObNI7buPAioaIpS7Lo=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Xinhui.Pan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -112,80 +83,220 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chunming Zhou <David1.Zhou@amd.com>, Dave Airlie <airlied@linux.ie>,
- xinhui pan <xinhui.pan@amd.com>, LKML <linux-kernel@vger.kernel.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexdeucher@gmail.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- "Deucher, Alexander" <alexander.deucher@amd.com>, "Quan,
- Evan" <evan.quan@amd.com>, Christian Koenig <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>,
+ "airlied@linux.ie" <airlied@linux.ie>, xiaolinkui <xiaolinkui@kylinos.cn>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============0745261450=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiA1LzIwLzE5IDEyOjQxIFBNLCBBbGV4IERldWNoZXIgd3JvdGU6Cj4gT24gRnJpLCBNYXkg
-MTcsIDIwMTkgYXQgODo0MyBBTSB4aWFvbGlua3VpIDx4aWFvbGlua3VpQGt5bGlub3MuY24+IHdy
-b3RlOgo+Pgo+PiBVc2Ugc3RydWN0X3NpemUoKSBoZWxwZXIgdG8ga2VlcCBjb2RlIHNpbXBsZS4K
-Pj4KCkFnYWluLCB0aGlzIGlzIG5vdCB0aGUgcmVhc29uIHdoeSB0aGlzIGhlbHBlciB3YXMgY3Jl
-YXRlZC4KCj4+IFNpZ25lZC1vZmYtYnk6IHhpYW9saW5rdWkgPHhpYW9saW5rdWlAa3lsaW5vcy5j
-bj4KPj4gLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMgfCAz
-ICstLQo+PiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAyIGRlbGV0aW9ucygtKQo+
-IAo+IFRoaXMgcGF0Y2ggcmVzdWx0cyBpbiB0aGUgZm9sbG93aW5nIGJ1aWxkIGVycm9yOgo+ICAg
-REVTQ0VORCAgb2JqdG9vbAo+ICAgQ0FMTCAgICBzY3JpcHRzL2NoZWNrc3lzY2FsbHMuc2gKPiAg
-IENISyAgICAgaW5jbHVkZS9nZW5lcmF0ZWQvY29tcGlsZS5oCj4gICBDQyBbTV0gIGRyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9yYXMubwo+IEluIGZpbGUgaW5jbHVkZWQgZnJvbSAu
-L2luY2x1ZGUvbGludXgva2VybmVsLmg6MTUsCj4gICAgICAgICAgICAgICAgICBmcm9tIC4vaW5j
-bHVkZS9saW51eC9saXN0Lmg6OSwKPiAgICAgICAgICAgICAgICAgIGZyb20gLi9pbmNsdWRlL2xp
-bnV4L3dhaXQuaDo3LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAuL2luY2x1ZGUvbGludXgvd2Fp
-dF9iaXQuaDo4LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAuL2luY2x1ZGUvbGludXgvZnMuaDo2
-LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAuL2luY2x1ZGUvbGludXgvZGVidWdmcy5oOjE1LAo+
-ICAgICAgICAgICAgICAgICAgZnJvbSBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-cmFzLmM6MjQ6Cj4gZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhcy5jOiBJbiBm
-dW5jdGlvbiDigJhhbWRncHVfcmFzX2luaXTigJk6Cj4gLi9pbmNsdWRlL2xpbnV4L2J1aWxkX2J1
-Zy5oOjE2OjQ1OiBlcnJvcjogbmVnYXRpdmUgd2lkdGggaW4gYml0LWZpZWxkCj4g4oCYPGFub255
-bW91cz7igJkKPiAgI2RlZmluZSBCVUlMRF9CVUdfT05fWkVSTyhlKSAoc2l6ZW9mKHN0cnVjdCB7
-IGludDooLSEhKGUpKTsgfSkpCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgXgo+IC4vaW5jbHVkZS9saW51eC9jb21waWxlci5oOjM0OToyODogbm90ZTogaW4g
-ZXhwYW5zaW9uIG9mIG1hY3JvCj4g4oCYQlVJTERfQlVHX09OX1pFUk/igJkKPiAgI2RlZmluZSBf
-X211c3RfYmVfYXJyYXkoYSkgQlVJTERfQlVHX09OX1pFUk8oX19zYW1lX3R5cGUoKGEpLCAmKGEp
-WzBdKSkKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn4KPiAu
-L2luY2x1ZGUvbGludXgvb3ZlcmZsb3cuaDozMDY6MzA6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBt
-YWNybyDigJhfX211c3RfYmVfYXJyYXnigJkKPiAgICAgICAgc2l6ZW9mKCoocCktPm1lbWJlcikg
-KyBfX211c3RfYmVfYXJyYXkoKHApLT5tZW1iZXIpLFwKPiAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBefn5+fn5+fn5+fn5+fn4KPiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfcmFzLmM6MTU1NjoxNjogbm90ZTogaW4gZXhwYW5zaW9uIG9mCj4gbWFjcm8g4oCYc3RydWN0
-X3NpemXigJkKPiAgIGNvbiA9IGttYWxsb2Moc3RydWN0X3NpemUoY29uLCBvYmpzLCBBTURHUFVf
-UkFTX0JMT0NLX0NPVU5UKSwKPiAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn4KPiBtYWtlWzRd
-OiAqKiogW3NjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6Mjc2Ogo+IGRyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9yYXMub10gRXJyb3IgMQo+IG1ha2VbNF06ICoqKiBXYWl0aW5nIGZvciB1
-bmZpbmlzaGVkIGpvYnMuLi4uCj4gbWFrZVszXTogKioqIFtzY3JpcHRzL01ha2VmaWxlLmJ1aWxk
-OjQ5MjogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHVdIEVycm9yIDIKPiBtYWtlWzNdOiAqKiog
-V2FpdGluZyBmb3IgdW5maW5pc2hlZCBqb2JzLi4uLgo+IG1ha2VbMl06ICoqKiBbc2NyaXB0cy9N
-YWtlZmlsZS5idWlsZDo0OTI6IGRyaXZlcnMvZ3B1L2RybV0gRXJyb3IgMgo+IG1ha2VbMV06ICoq
-KiBbc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo0OTI6IGRyaXZlcnMvZ3B1XSBFcnJvciAyCj4gbWFr
-ZTogKioqIFtNYWtlZmlsZToxMDQyOiBkcml2ZXJzXSBFcnJvciAyCj4gCj4gQWxleAo+IAoKWW91
-IGNvbnRpbnVlWzFdWzJdIHNlbmRpbmcgdGhlc2Ugc29ydHMgb2YgcGF0Y2hlcyB3aXRob3V0IHJl
-YWxseSB1bmRlcnN0YW5kaW5nIHdoYXQKeW91IGFyZSBkb2luZy4gQW5kIHlvdSBkb24ndCBldmVu
-IGNvbXBpbGUgdGhlbS4gV2h5PwoKLS0KR3VzdGF2bwoKWzFdIGh0dHBzOi8vbG9yZS5rZXJuZWwu
-b3JnL2xrbWwvZDgzMzkwYTktMzNiZS0zZDc2LTNlMjMtYjk3ZjBhMDViNzJmQGtlcm5lbC5kay8K
-WzJdIGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xrbWwvYjRkMzMxMDctNzVkNS1mYTE4LTUzNmUt
-NmQyMWM5NmU0OTcyQGtlcm5lbC5kay8KCj4gCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9hbWRncHVfcmFzLmMKPj4gaW5kZXggMjJiZDIxZS4uNDcxN2E2NCAxMDA2NDQKPj4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhcy5jCj4+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9yYXMuYwo+PiBAQCAtMTM3NSw4ICsxMzc1LDcgQEAg
-aW50IGFtZGdwdV9yYXNfaW5pdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKPj4gICAgICAg
-ICBpZiAoY29uKQo+PiAgICAgICAgICAgICAgICAgcmV0dXJuIDA7Cj4+Cj4+IC0gICAgICAgY29u
-ID0ga21hbGxvYyhzaXplb2Yoc3RydWN0IGFtZGdwdV9yYXMpICsKPj4gLSAgICAgICAgICAgICAg
-ICAgICAgICAgc2l6ZW9mKHN0cnVjdCByYXNfbWFuYWdlcikgKiBBTURHUFVfUkFTX0JMT0NLX0NP
-VU5ULAo+PiArICAgICAgIGNvbiA9IGttYWxsb2Moc3RydWN0X3NpemUoY29uLCBvYmpzLCBBTURH
-UFVfUkFTX0JMT0NLX0NPVU5UKSwKPj4gICAgICAgICAgICAgICAgICAgICAgICAgR0ZQX0tFUk5F
-THxfX0dGUF9aRVJPKTsKPj4gICAgICAgICBpZiAoIWNvbikKPj4gICAgICAgICAgICAgICAgIHJl
-dHVybiAtRU5PTUVNOwo+PiAtLQo+PiAyLjcuNAo+Pgo+Pgo+Pgo+PiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBhbWQtZ2Z4IG1haWxpbmcgbGlzdAo+
-PiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9hbWQtZ2Z4
+--===============0745261450==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SN6PR12MB2800A78EC520C616CCCF387787060SN6PR12MB2800namp_"
+
+--_000_SN6PR12MB2800A78EC520C616CCCF387787060SN6PR12MB2800namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Daniel, your idea is obviously and totally wrong. There can NOT be more tha=
+n one zero-size array in a struct.
+
+Nack for them all.
+________________________________
+From: Daniel Vetter <daniel.vetter@ffwll.ch> on behalf of Daniel Vetter <da=
+niel@ffwll.ch>
+Sent: Tuesday, May 21, 2019 12:28:07 AM
+To: Pan, Xinhui
+Cc: Deucher, Alexander; Koenig, Christian; Zhou, David(ChunMing); airlied@l=
+inux.ie; daniel@ffwll.ch; Quan, Evan; xiaolinkui; amd-gfx@lists.freedesktop=
+.org; dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] gpu: drm: use struct_size() in kmalloc()
+
+[CAUTION: External Email]
+
+On Fri, May 17, 2019 at 04:44:30PM +0000, Pan, Xinhui wrote:
+> I am going to put more members which are also array after this struct,
+> not only obj[].  Looks like this struct_size did not help on multiple
+> array case. Thanks anyway.  ________________________________
+
+You can then add them up, e.g. kmalloc(struct_size()+struct_size(),
+GFP_KERNEL), so this patch here still looks like a good idea.
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+Cheers, Daniel
+
+> From: xiaolinkui <xiaolinkui@kylinos.cn>
+> Sent: Friday, May 17, 2019 4:46:00 PM
+> To: Deucher, Alexander; Koenig, Christian; Zhou, David(ChunMing); airlied=
+@linux.ie; daniel@ffwll.ch; Pan, Xinhui; Quan, Evan
+> Cc: amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux=
+-kernel@vger.kernel.org; xiaolinkui@kylinos.cn
+> Subject: [PATCH] gpu: drm: use struct_size() in kmalloc()
+>
+> [CAUTION: External Email]
+>
+> Use struct_size() helper to keep code simple.
+>
+> Signed-off-by: xiaolinkui <xiaolinkui@kylinos.cn>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ras.c
+> index 22bd21e..4717a64 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> @@ -1375,8 +1375,7 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
+>         if (con)
+>                 return 0;
+>
+> -       con =3D kmalloc(sizeof(struct amdgpu_ras) +
+> -                       sizeof(struct ras_manager) * AMDGPU_RAS_BLOCK_COU=
+NT,
+> +       con =3D kmalloc(struct_size(con, objs, AMDGPU_RAS_BLOCK_COUNT),
+>                         GFP_KERNEL|__GFP_ZERO);
+>         if (!con)
+>                 return -ENOMEM;
+> --
+> 2.7.4
+>
+>
+>
+
+--
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+
+--_000_SN6PR12MB2800A78EC520C616CCCF387787060SN6PR12MB2800namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<div>
+<div dir=3D"auto" style=3D"direction:ltr; margin:0; padding:0; font-family:=
+sans-serif; font-size:11pt; color:black">
+Daniel, your idea is obviously and totally wrong. There can NOT be more tha=
+n one zero-size array in a struct.<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction:ltr; margin:0; padding:0; font-family:=
+sans-serif; font-size:11pt; color:black">
+Nack for them all.</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Daniel Vetter &lt;d=
+aniel.vetter@ffwll.ch&gt; on behalf of Daniel Vetter &lt;daniel@ffwll.ch&gt=
+;<br>
+<b>Sent:</b> Tuesday, May 21, 2019 12:28:07 AM<br>
+<b>To:</b> Pan, Xinhui<br>
+<b>Cc:</b> Deucher, Alexander; Koenig, Christian; Zhou, David(ChunMing); ai=
+rlied@linux.ie; daniel@ffwll.ch; Quan, Evan; xiaolinkui; amd-gfx@lists.free=
+desktop.org; dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org<=
+br>
+<b>Subject:</b> Re: [PATCH] gpu: drm: use struct_size() in kmalloc()</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:11pt;">
+<div class=3D"PlainText">[CAUTION: External Email]<br>
+<br>
+On Fri, May 17, 2019 at 04:44:30PM &#43;0000, Pan, Xinhui wrote:<br>
+&gt; I am going to put more members which are also array after this struct,=
+<br>
+&gt; not only obj[].&nbsp; Looks like this struct_size did not help on mult=
+iple<br>
+&gt; array case. Thanks anyway.&nbsp; ________________________________<br>
+<br>
+You can then add them up, e.g. kmalloc(struct_size()&#43;struct_size(),<br>
+GFP_KERNEL), so this patch here still looks like a good idea.<br>
+<br>
+Reviewed-by: Daniel Vetter &lt;daniel.vetter@ffwll.ch&gt;<br>
+<br>
+Cheers, Daniel<br>
+<br>
+&gt; From: xiaolinkui &lt;xiaolinkui@kylinos.cn&gt;<br>
+&gt; Sent: Friday, May 17, 2019 4:46:00 PM<br>
+&gt; To: Deucher, Alexander; Koenig, Christian; Zhou, David(ChunMing); airl=
+ied@linux.ie; daniel@ffwll.ch; Pan, Xinhui; Quan, Evan<br>
+&gt; Cc: amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; li=
+nux-kernel@vger.kernel.org; xiaolinkui@kylinos.cn<br>
+&gt; Subject: [PATCH] gpu: drm: use struct_size() in kmalloc()<br>
+&gt;<br>
+&gt; [CAUTION: External Email]<br>
+&gt;<br>
+&gt; Use struct_size() helper to keep code simple.<br>
+&gt;<br>
+&gt; Signed-off-by: xiaolinkui &lt;xiaolinkui@kylinos.cn&gt;<br>
+&gt; ---<br>
+&gt;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 3 &#43;--<br>
+&gt;&nbsp; 1 file changed, 1 insertion(&#43;), 2 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_ras.c<br>
+&gt; index 22bd21e..4717a64 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c<br>
+&gt; @@ -1375,8 &#43;1375,7 @@ int amdgpu_ras_init(struct amdgpu_device *ad=
+ev)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (con)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&gt;<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; con =3D kmalloc(sizeof(struct am=
+dgpu_ras) &#43;<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sizeof(stru=
+ct ras_manager) * AMDGPU_RAS_BLOCK_COUNT,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; con =3D kmalloc(struct_size(=
+con, objs, AMDGPU_RAS_BLOCK_COUNT),<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; G=
+FP_KERNEL|__GFP_ZERO);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!con)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; return -ENOMEM;<br>
+&gt; --<br>
+&gt; 2.7.4<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+<br>
+--<br>
+Daniel Vetter<br>
+Software Engineer, Intel Corporation<br>
+<a href=3D"http://blog.ffwll.ch">http://blog.ffwll.ch</a><br>
+</div>
+</span></font>
+</body>
+</html>
+
+--_000_SN6PR12MB2800A78EC520C616CCCF387787060SN6PR12MB2800namp_--
+
+--===============0745261450==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0745261450==--
