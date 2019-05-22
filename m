@@ -2,78 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E6B6266D5
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2019 17:23:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A41F268C2
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2019 18:59:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADF4689A4E;
-	Wed, 22 May 2019 15:23:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C5DE89C54;
+	Wed, 22 May 2019 16:59:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
- (mail-eopbgr800052.outbound.protection.outlook.com [40.107.80.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4562989A4E
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 May 2019 15:23:54 +0000 (UTC)
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1651.namprd12.prod.outlook.com (10.172.18.7) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.15; Wed, 22 May 2019 15:23:52 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::bc5b:de68:25b7:d853]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::bc5b:de68:25b7:d853%12]) with mapi id 15.20.1900.020; Wed, 22 May
- 2019 15:23:52 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Kazlauskas, Nicholas" <Nicholas.Kazlauskas@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 2/2] drm/amd/display: Use new connector state when getting
- color depth
-Thread-Topic: [PATCH 2/2] drm/amd/display: Use new connector state when
- getting color depth
-Thread-Index: AQHVELC1TsaDRPTYR0yTyrlqIDQyYqZ3Q0Lq
-Date: Wed, 22 May 2019 15:23:52 +0000
-Message-ID: <BN6PR12MB1809C8BC406BE615527D6362F7000@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <20190522151116.22916-1-nicholas.kazlauskas@amd.com>,
- <20190522151116.22916-2-nicholas.kazlauskas@amd.com>
-In-Reply-To: <20190522151116.22916-2-nicholas.kazlauskas@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [71.219.72.228]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3983a7ca-bf6a-4815-4092-08d6dec97f4c
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1651; 
-x-ms-traffictypediagnostic: BN6PR12MB1651:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BN6PR12MB1651265788032E5CB1F6A3CDF7000@BN6PR12MB1651.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:873;
-x-forefront-prvs: 0045236D47
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(346002)(396003)(39860400002)(366004)(376002)(136003)(189003)(199004)(74316002)(26005)(256004)(186003)(66476007)(236005)(52536014)(66556008)(5660300002)(73956011)(66946007)(25786009)(66446008)(64756008)(76116006)(6436002)(316002)(14444005)(81166006)(81156014)(8676002)(68736007)(66066001)(4326008)(476003)(446003)(11346002)(105004)(486006)(55016002)(54896002)(9686003)(6306002)(33656002)(102836004)(6506007)(76176011)(53546011)(8936002)(3846002)(229853002)(7736002)(2906002)(86362001)(6116002)(19627405001)(2501003)(6246003)(110136005)(54906003)(606006)(99286004)(71190400001)(53936002)(14454004)(7696005)(478600001)(71200400001)(966005)(72206003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1651;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 886vnHwV0ZlKFycCpAsHvthxkr+SFsMO3dgN76qkJ+lnJQx7QLlsHuwQ8akDg0kN7q4EKJqqdZ0zWqgWa+bvUno5jXhsu2c+Y41NmA2koPlgoELc/qpw3ybZ0JfqMI+MwrtziZHMYI1h8PG0tO5zg+NiaLqdCTzGSZ0to6uiSlXoQGBGp2iP/pCuZDqWkrYXHFg7vocdXLBXVFAs3LCKs2pQji8JXCT+vG1RM/UoaTbdHinScwW+FBM0dsqum5AGih09vDKIswzFiEv7r6NP9LWZNAi7lfRbZe9VWGvDhYWkxy/2G7fATBcpePGg8ZyE5R/47xFI3byH7w9U7lc0JmiP9kzQ/8EMuxAo6CEqogvxFd69uvkc66L7oNsKNvMatXiJecIgtht7v68KhZV5rwWAmkLmwxfT5FOpbE3TFT4=
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
+ [IPv6:2a00:1450:4864:20::242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B123F89A4F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 May 2019 15:30:35 +0000 (UTC)
+Received: by mail-lj1-x242.google.com with SMTP id z5so2486467lji.10
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 May 2019 08:30:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=RM2Vs3BpRvxchuOeBY/wop/PzNSZzl64F2EeK+wEZZM=;
+ b=mH3LNg1aKR0mKXEeiX1iEoPmLPSy2zAEpoL4KImLp8uflxCce8u5NsNvFIi3zLGrdP
+ XfoEgw8M25uC+ufhhAw2lLt1QMgLxsp5FR2n3VgEUsmX7fy8TEWAS1Prl0WTRNVeU59d
+ jVI7+UHBjw/laD/51MI1Cz5ORVT0RYGVBtFvP0C3eH94Jjj5bX4n1sjbke88RLNH5A4a
+ 95zP6VJjiDxeAc1PMo1DzWVMey+KJ28LCtZtJWP6XiJFiNsJRl1IkFB3uoc87E36khcl
+ Xu2cCCqcxQrGKKJ65GtagSnbvp/6pbj0SX+GWIi/YApvlvpyr11aBa5nN/HS4gH5mjpI
+ gtWQ==
+X-Gm-Message-State: APjAAAX/z9sJEYy890mkj16q8k7IN8uW4PpFVV6Pq1mPQ8fp5IYEHLGD
+ Zr5wihla56rX20snZKchR2NzFFMTw/gFrdhPv8C87g==
+X-Google-Smtp-Source: APXvYqyXSCxhB+3RVGWUi2lXqAnCXVjRJMmGDtSQwaSdaunD3RrP1dCFavWCgkEVu7tMxmxxgJ5X4QeZFUMwuOfrpVg=
+X-Received: by 2002:a2e:9601:: with SMTP id v1mr22163816ljh.60.1558539033496; 
+ Wed, 22 May 2019 08:30:33 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3983a7ca-bf6a-4815-4092-08d6dec97f4c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2019 15:23:52.3398 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1651
+References: <cover.1557160186.git.andreyknvl@google.com>
+ <20190517144931.GA56186@arrakis.emea.arm.com>
+ <CAFKCwrj6JEtp4BzhqO178LFJepmepoMx=G+YdC8sqZ3bcBp3EQ@mail.gmail.com>
+ <20190521182932.sm4vxweuwo5ermyd@mbp> <201905211633.6C0BF0C2@keescook>
+ <20190522101110.m2stmpaj7seezveq@mbp>
+In-Reply-To: <20190522101110.m2stmpaj7seezveq@mbp>
+From: enh <enh@google.com>
+Date: Wed, 22 May 2019 08:30:21 -0700
+Message-ID: <CAJgzZoosKBwqXRyA6fb8QQSZXFqfHqe9qO9je5TogHhzuoGXJQ@mail.gmail.com>
+Subject: Re: [PATCH v15 00/17] arm64: untag user pointers passed to the kernel
+To: Catalin Marinas <catalin.marinas@arm.com>
+X-Mailman-Approved-At: Wed, 22 May 2019 16:59:26 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0heEO7dEk65hJIqp/6eihVlJJhXrwDA6gUkvWiA2BDo=;
- b=JNL8JF57TyHa5eVfL1D4xE3Tu2Tr+HnG6loSUXrSq+WwtVfH1WFJOr5mJ7lbiYbZbCLaMJA+6Wn0yVutBIjjLJs7YQwbcMXVjwJX6l29eNlZTLI0ZKoOaVwdpmFHOeeesJXaDbFjrHZyufaKuuDaWQUTPfiSZr5GEoEwJxNMxo0=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+ d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=RM2Vs3BpRvxchuOeBY/wop/PzNSZzl64F2EeK+wEZZM=;
+ b=YY6JA+LoUtjEOO757K58wra7rdXirZ4AlTHpmSQ+decwKFXSNcixrW+Od3xAIfHhzc
+ E31pVzZHa1k0N1eBsu/pwx/4gJOY/Z23T1KlGxD+A3kg2G2nUjg2KBJXZgrs4NREuNVs
+ TYlUYYtdAekOg5uSt0naDgODEcL0YeodFYzgZ2kMgQbeYv13wJLMpmBWE0SyYa3YKKBJ
+ Ky8EOr/z31g0owz/7VlcdxKTQPp3/9K5jFnQ5GWfggZi2OZBL5soMXgy15fr5y5CKPxC
+ m0te1S3imaMe8QwTNQlrTPoiVAA5L9886WXf4f0IGaQNg3NN+dFLYS9ofr5e9wU3GA29
+ mQlA==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -85,367 +66,217 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Li, Sun peng \(Leo\)" <Sunpeng.Li@amd.com>, "Wentland,
- Harry" <Harry.Wentland@amd.com>
-Content-Type: multipart/mixed; boundary="===============0904119368=="
+Cc: Mark Rutland <mark.rutland@arm.com>, kvm@vger.kernel.org,
+ Szabolcs Nagy <Szabolcs.Nagy@arm.com>, Will Deacon <will.deacon@arm.com>,
+ dri-devel@lists.freedesktop.org,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Khalid Aziz <khalid.aziz@oracle.com>,
+ "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
+ Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ Jacob Bramley <Jacob.Bramley@arm.com>, Leon Romanovsky <leon@kernel.org>,
+ linux-rdma@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Dmitry Vyukov <dvyukov@google.com>, Dave Martin <Dave.Martin@arm.com>,
+ Evgenii Stepanov <eugenis@google.com>, linux-media@vger.kernel.org,
+ Kevin Brodsky <kevin.brodsky@arm.com>, Kees Cook <keescook@chromium.org>,
+ Ruben Ayrapetyan <Ruben.Ayrapetyan@arm.com>,
+ Andrey Konovalov <andreyknvl@google.com>,
+ Ramana Radhakrishnan <Ramana.Radhakrishnan@arm.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Yishai Hadas <yishaih@mellanox.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Kostya Serebryany <kcc@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, LKML <linux-kernel@vger.kernel.org>,
+ Jens Wiklander <jens.wiklander@linaro.org>, Lee Smith <Lee.Smith@arm.com>,
+ Alexander Deucher <Alexander.Deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Robin Murphy <robin.murphy@arm.com>,
+ Christian Koenig <Christian.Koenig@amd.com>,
+ Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0904119368==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB1809C8BC406BE615527D6362F7000BN6PR12MB1809namp_"
-
---_000_BN6PR12MB1809C8BC406BE615527D6362F7000BN6PR12MB1809namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Series is:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Nicholas=
- Kazlauskas <nicholas.kazlauskas@amd.com>
-Sent: Wednesday, May 22, 2019 11:11 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Li, Sun peng (Leo); Wentland, Harry; Kazlauskas, Nicholas
-Subject: [PATCH 2/2] drm/amd/display: Use new connector state when getting =
-color depth
-
-[CAUTION: External Email]
-
-[Why]
-The current state on the connector is queried when getting the max bpc
-rather than the new state. This means that a new max bpc value can only
-currently take effect on the commit *after* it changes.
-
-The new state should be passed in instead.
-
-[How]
-Pass down the dm_state as drm state to where we do color depth lookup.
-
-The passed in state can still be NULL when called from
-amdgpu_dm_connector_mode_valid, so make sure that we have reasonable
-defaults in place. That should probably be addressed at some point.
-
-This change now (correctly) causes a modeset to occur when changing the
-max bpc for a connector.
-
-Cc: Leo Li <sunpeng.li@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 26 +++++++++++--------
- 1 file changed, 15 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
-u/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index a7a9e4d81a17..580c324891fd 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3038,13 +3038,14 @@ static void update_stream_scaling_settings(const st=
-ruct drm_display_mode *mode,
- }
-
- static enum dc_color_depth
--convert_color_depth_from_display_info(const struct drm_connector *connecto=
-r)
-+convert_color_depth_from_display_info(const struct drm_connector *connecto=
-r,
-+                                     const struct drm_connector_state *sta=
-te)
- {
-        uint32_t bpc =3D 8;
-
-        /* TODO: Use passed in state instead of the current state. */
--       if (connector->state) {
--               bpc =3D connector->state->max_bpc;
-+       if (state) {
-+               bpc =3D state->max_bpc;
-                /* Round down to the nearest even number. */
-                bpc =3D bpc - (bpc & 1);
-        }
-@@ -3165,11 +3166,12 @@ static void adjust_colour_depth_from_display_info(s=
-truct dc_crtc_timing *timing_
-
- }
-
--static void
--fill_stream_properties_from_drm_display_mode(struct dc_stream_state *strea=
-m,
--                                            const struct drm_display_mode =
-*mode_in,
--                                            const struct drm_connector *co=
-nnector,
--                                            const struct dc_stream_state *=
-old_stream)
-+static void fill_stream_properties_from_drm_display_mode(
-+       struct dc_stream_state *stream,
-+       const struct drm_display_mode *mode_in,
-+       const struct drm_connector *connector,
-+       const struct drm_connector_state *connector_state,
-+       const struct dc_stream_state *old_stream)
- {
-        struct dc_crtc_timing *timing_out =3D &stream->timing;
-        const struct drm_display_info *info =3D &connector->display_info;
-@@ -3192,7 +3194,7 @@ fill_stream_properties_from_drm_display_mode(struct d=
-c_stream_state *stream,
-
-        timing_out->timing_3d_format =3D TIMING_3D_FORMAT_NONE;
-        timing_out->display_color_depth =3D convert_color_depth_from_displa=
-y_info(
--                       connector);
-+               connector, connector_state);
-        timing_out->scan_type =3D SCANNING_TYPE_NODATA;
-        timing_out->hdmi_vic =3D 0;
-
-@@ -3389,6 +3391,8 @@ create_stream_for_sink(struct amdgpu_dm_connector *ac=
-onnector,
- {
-        struct drm_display_mode *preferred_mode =3D NULL;
-        struct drm_connector *drm_connector;
-+       const struct drm_connector_state *con_state =3D
-+               dm_state ? &dm_state->base : NULL;
-        struct dc_stream_state *stream =3D NULL;
-        struct drm_display_mode mode =3D *drm_mode;
-        bool native_mode_found =3D false;
-@@ -3461,10 +3465,10 @@ create_stream_for_sink(struct amdgpu_dm_connector *=
-aconnector,
-        */
-        if (!scale || mode_refresh !=3D preferred_refresh)
-                fill_stream_properties_from_drm_display_mode(stream,
--                       &mode, &aconnector->base, NULL);
-+                       &mode, &aconnector->base, con_state, NULL);
-        else
-                fill_stream_properties_from_drm_display_mode(stream,
--                       &mode, &aconnector->base, old_stream);
-+                       &mode, &aconnector->base, con_state, old_stream);
-
-        update_stream_scaling_settings(&mode, dm_state, stream);
-
---
-2.17.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_BN6PR12MB1809C8BC406BE615527D6362F7000BN6PR12MB1809namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Series is:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Nicholas Kazlauskas &lt;nicho=
-las.kazlauskas@amd.com&gt;<br>
-<b>Sent:</b> Wednesday, May 22, 2019 11:11 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> Li, Sun peng (Leo); Wentland, Harry; Kazlauskas, Nicholas<br>
-<b>Subject:</b> [PATCH 2/2] drm/amd/display: Use new connector state when g=
-etting color depth</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">[CAUTION: External Email]<br>
-<br>
-[Why]<br>
-The current state on the connector is queried when getting the max bpc<br>
-rather than the new state. This means that a new max bpc value can only<br>
-currently take effect on the commit *after* it changes.<br>
-<br>
-The new state should be passed in instead.<br>
-<br>
-[How]<br>
-Pass down the dm_state as drm state to where we do color depth lookup.<br>
-<br>
-The passed in state can still be NULL when called from<br>
-amdgpu_dm_connector_mode_valid, so make sure that we have reasonable<br>
-defaults in place. That should probably be addressed at some point.<br>
-<br>
-This change now (correctly) causes a modeset to occur when changing the<br>
-max bpc for a connector.<br>
-<br>
-Cc: Leo Li &lt;sunpeng.li@amd.com&gt;<br>
-Cc: Harry Wentland &lt;harry.wentland@amd.com&gt;<br>
-Signed-off-by: Nicholas Kazlauskas &lt;nicholas.kazlauskas@amd.com&gt;<br>
----<br>
-&nbsp;.../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 26 &#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;--------<br>
-&nbsp;1 file changed, 15 insertions(&#43;), 11 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
-u/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
-index a7a9e4d81a17..580c324891fd 100644<br>
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
-@@ -3038,13 &#43;3038,14 @@ static void update_stream_scaling_settings(cons=
-t struct drm_display_mode *mode,<br>
-&nbsp;}<br>
-<br>
-&nbsp;static enum dc_color_depth<br>
--convert_color_depth_from_display_info(const struct drm_connector *connecto=
-r)<br>
-&#43;convert_color_depth_from_display_info(const struct drm_connector *conn=
-ector,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; con=
-st struct drm_connector_state *state)<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t bpc =3D 8;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* TODO: Use passed in state ins=
-tead of the current state. */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (connector-&gt;state) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; bpc =3D connector-&gt;state-&gt;max_bpc;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (state) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; bpc =3D state-&gt;max_bpc;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; /* Round down to the nearest even number. */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; bpc =3D bpc - (bpc &amp; 1);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-@@ -3165,11 &#43;3166,12 @@ static void adjust_colour_depth_from_display_in=
-fo(struct dc_crtc_timing *timing_<br>
-<br>
-&nbsp;}<br>
-<br>
--static void<br>
--fill_stream_properties_from_drm_display_mode(struct dc_stream_state *strea=
-m,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct drm_display_mode *mode_in,<=
-br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct drm_connector *connector,<b=
-r>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct dc_stream_state *old_stream=
-)<br>
-&#43;static void fill_stream_properties_from_drm_display_mode(<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dc_stream_state *stream,<b=
-r>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct drm_display_mode *mo=
-de_in,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct drm_connector *conne=
-ctor,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct drm_connector_state =
-*connector_state,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct dc_stream_state *old=
-_stream)<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dc_crtc_timing *timing_ou=
-t =3D &amp;stream-&gt;timing;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct drm_display_info *i=
-nfo =3D &amp;connector-&gt;display_info;<br>
-@@ -3192,7 &#43;3194,7 @@ fill_stream_properties_from_drm_display_mode(stru=
-ct dc_stream_state *stream,<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; timing_out-&gt;timing_3d_format =
-=3D TIMING_3D_FORMAT_NONE;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; timing_out-&gt;display_color_dep=
-th =3D convert_color_depth_from_display_info(<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; connector);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; connector, connector_state);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; timing_out-&gt;scan_type =3D SCA=
-NNING_TYPE_NODATA;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; timing_out-&gt;hdmi_vic =3D 0;<b=
-r>
-<br>
-@@ -3389,6 &#43;3391,8 @@ create_stream_for_sink(struct amdgpu_dm_connector=
- *aconnector,<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_display_mode *preferr=
-ed_mode =3D NULL;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_connector *drm_connec=
-tor;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct drm_connector_state =
-*con_state =3D<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; dm_state ? &amp;dm_state-&gt;base : NULL;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dc_stream_state *stream =
-=3D NULL;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_display_mode mode =3D=
- *drm_mode;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool native_mode_found =3D false=
-;<br>
-@@ -3461,10 &#43;3465,10 @@ create_stream_for_sink(struct amdgpu_dm_connect=
-or *aconnector,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!scale || mode_refresh !=3D =
-preferred_refresh)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; fill_stream_properties_from_drm_display_mode(stream,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;mode, &amp;=
-aconnector-&gt;base, NULL);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;mode, &=
-amp;aconnector-&gt;base, con_state, NULL);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; fill_stream_properties_from_drm_display_mode(stream,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;mode, &amp;=
-aconnector-&gt;base, old_stream);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;mode, &=
-amp;aconnector-&gt;base, con_state, old_stream);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; update_stream_scaling_settings(&=
-amp;mode, dm_state, stream);<br>
-<br>
---<br>
-2.17.1<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_BN6PR12MB1809C8BC406BE615527D6362F7000BN6PR12MB1809namp_--
-
---===============0904119368==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0904119368==--
+T24gV2VkLCBNYXkgMjIsIDIwMTkgYXQgMzoxMSBBTSBDYXRhbGluIE1hcmluYXMgPGNhdGFsaW4u
+bWFyaW5hc0Bhcm0uY29tPiB3cm90ZToKPgo+IEhpIEtlZXMsCj4KPiBUaGFua3MgZm9yIGpvaW5p
+bmcgdGhlIHRocmVhZCA7KS4KPgo+IE9uIFR1ZSwgTWF5IDIxLCAyMDE5IGF0IDA1OjA0OjM5UE0g
+LTA3MDAsIEtlZXMgQ29vayB3cm90ZToKPiA+IE9uIFR1ZSwgTWF5IDIxLCAyMDE5IGF0IDA3OjI5
+OjMzUE0gKzAxMDAsIENhdGFsaW4gTWFyaW5hcyB3cm90ZToKPiA+ID4gT24gTW9uLCBNYXkgMjAs
+IDIwMTkgYXQgMDQ6NTM6MDdQTSAtMDcwMCwgRXZnZW5paSBTdGVwYW5vdiB3cm90ZToKPiA+ID4g
+PiBPbiBGcmksIE1heSAxNywgMjAxOSBhdCA3OjQ5IEFNIENhdGFsaW4gTWFyaW5hcyA8Y2F0YWxp
+bi5tYXJpbmFzQGFybS5jb20+IHdyb3RlOgo+ID4gPiA+ID4gSU1PIChSRkMgZm9yIG5vdyksIEkg
+c2VlIHR3byB3YXlzIGZvcndhcmQ6Cj4gPiA+ID4gPiBbLi4uXQo+ID4gPiA+ID4gMi4gU2ltaWxh
+ciBzaGltIHRvIHRoZSBhYm92ZSBsaWJjIHdyYXBwZXIgYnV0IGluc2lkZSB0aGUga2VybmVsCj4g
+PiA+ID4gPiAgICAoYXJjaC9hcm02NCBvbmx5OyBtb3N0IHBvaW50ZXIgYXJndW1lbnRzIGNvdWxk
+IGJlIGNvdmVyZWQgd2l0aCBhbgo+ID4gPiA+ID4gICAgX19TQ19DQVNUIHNpbWlsYXIgdG8gdGhl
+IHMzOTAgb25lKS4gVGhlcmUgYXJlIHR3byBkaWZmZXJlbmNlcyBmcm9tCj4gPiA+ID4gPiAgICB3
+aGF0IHdlJ3ZlIGRpc2N1c3NlZCBpbiB0aGUgcGFzdDoKPiA+ID4gPiA+Cj4gPiA+ID4gPiAgICBh
+KSB0aGlzIGlzIGFuIG9wdC1pbiBieSB0aGUgdXNlciB3aGljaCB3b3VsZCBoYXZlIHRvIGV4cGxp
+Y2l0bHkgY2FsbAo+ID4gPiA+ID4gICAgICAgcHJjdGwoKS4gSWYgaXQgcmV0dXJucyAtRU5PVFNV
+UFAgZXRjLiwgdGhlIHVzZXIgd29uJ3QgYmUgYWxsb3dlZAo+ID4gPiA+ID4gICAgICAgdG8gcGFz
+cyB0YWdnZWQgcG9pbnRlcnMgdG8gdGhlIGtlcm5lbC4gVGhpcyB3b3VsZCBwcm9iYWJseSBiZSB0
+aGUKPiA+ID4gPiA+ICAgICAgIHJlc3BvbnNpYmlsaXR5IG9mIHRoZSBDIGxpYiB0byBtYWtlIHN1
+cmUgaXQgZG9lc24ndCB0YWcgaGVhcAo+ID4gPiA+ID4gICAgICAgYWxsb2NhdGlvbnMuIElmIHRo
+ZSB1c2VyIGRpZCBub3Qgb3B0LWluLCB0aGUgc3lzY2FsbHMgYXJlIHJvdXRlZAo+ID4gPiA+ID4g
+ICAgICAgdGhyb3VnaCB0aGUgbm9ybWFsIHBhdGggKG5vIHVudGFnZ2luZyBhZGRyZXNzIHNoaW0p
+Lgo+ID4gPiA+ID4KPiA+ID4gPiA+ICAgIGIpIGlvY3RsKCkgYW5kIG90aGVyIGJsYWNrbGlzdGVk
+IHN5c2NhbGxzIChwcmN0bCkgd2lsbCBub3QgYWNjZXB0Cj4gPiA+ID4gPiAgICAgICB0YWdnZWQg
+cG9pbnRlcnMgKHRvIGJlIGRvY3VtZW50ZWQgaW4gVmljZW56bydzIEFCSSBwYXRjaGVzKS4KPiA+
+ID4gPgo+ID4gPiA+IFRoZSB3YXkgSSBzZWUgaXQsIGEgcGF0Y2ggdGhhdCBicmVha3MgaGFuZGxp
+bmcgb2YgdGFnZ2VkIHBvaW50ZXJzIGlzCj4gPiA+ID4gbm90IHRoYXQgZGlmZmVyZW50IGZyb20s
+IHNheSwgYSBwYXRjaCB0aGF0IGFkZHMgYSB3aWxkIHBvaW50ZXIKPiA+ID4gPiBkZXJlZmVyZW5j
+ZS4gQm90aCBhcmUgYnVnczsgdGhlIGRpZmZlcmVuY2UgaXMgdGhhdCAoYSkgdGhlIGZvcm1lcgo+
+ID4gPiA+IGJyZWFrcyBhIHJlbGF0aXZlbHkgdW5jb21tb24gdGFyZ2V0IGFuZCAoYikgaXQncyBh
+cmd1YWJseSBhbiBlYXNpZXIKPiA+ID4gPiBtaXN0YWtlIHRvIG1ha2UuIElmIE1URSBhZG9wdGlv
+biBnb2VzIHdlbGwsIChhKSB3aWxsIG5vdCBiZSB0aGUgY2FzZQo+ID4gPiA+IGZvciBsb25nLgo+
+ID4gPgo+ID4gPiBJdCdzIGFsc28gdGhlIGZhY3Qgc3VjaCBwYXRjaCB3b3VsZCBnbyB1bm5vdGlj
+ZWQgZm9yIGEgbG9uZyB0aW1lIHVudGlsCj4gPiA+IHNvbWVvbmUgZXhlcmNpc2VzIHRoYXQgY29k
+ZSBwYXRoLiBBbmQgd2hlbiB0aGV5IGRvLCB0aGUgdXNlciB3b3VsZCBiZQo+ID4gPiBwcmV0dHkg
+bXVjaCBpbiB0aGUgZGFyayB0cnlpbmcgdG8gZmlndXJlIHdoYXQgd2hhdCB3ZW50IHdyb25nLCB3
+aHkgYQo+ID4gPiBTSUdTRUdWIG9yIC1FRkFVTFQgaGFwcGVuZWQuIFdoYXQncyB3b3JzZSwgd2Ug
+Y2FuJ3QgZXZlbiBzYXkgd2UgZml4ZWQKPiA+ID4gYWxsIHRoZSBwbGFjZXMgd2hlcmUgaXQgbWF0
+dGVycyBpbiB0aGUgY3VycmVudCBrZXJuZWwgY29kZWJhc2UgKGlnbm9yaW5nCj4gPiA+IGZ1dHVy
+ZSBwYXRjaGVzKS4KPiA+Cj4gPiBTbywgbG9va2luZyBmb3J3YXJkIGEgYml0LCB0aGlzIGlzbid0
+IGdvaW5nIHRvIGJlIGFuIEFSTS1zcGVjaWZpYyBpc3N1ZQo+ID4gZm9yIGxvbmcuCj4KPiBJIGRv
+IGhvcGUgc28uCj4KPiA+IEluIGZhY3QsIEkgdGhpbmsgd2Ugc2hvdWxkbid0IGhhdmUgYXJtLXNw
+ZWNpZmljIHN5c2NhbGwgd3JhcHBlcnMKPiA+IGluIHRoaXMgc2VyaWVzOiBJIHRoaW5rIHVudGFn
+Z2VkX2FkZHIoKSBzaG91bGQgbGlrZWx5IGJlIGFkZGVkIGF0IHRoZQo+ID4gdG9wLWxldmVsIGFu
+ZCBoYXZlIGl0IGJlIGEgbm8tb3AgZm9yIG90aGVyIGFyY2hpdGVjdHVyZXMuCj4KPiBUaGF0J3Mg
+d2hhdCB0aGUgY3VycmVudCBwYXRjaHNldCBkb2VzLCBzbyB3ZSBoYXZlIHRoaXMgYXMgYSBzdGFy
+dGluZwo+IHBvaW50LiBLb3N0eWEgcmFpc2VkIGFub3RoZXIgcG90ZW50aWFsIGlzc3VlIHdpdGgg
+dGhlIHN5c2NhbGwgd3JhcHBlcnM6Cj4gd2l0aCBNVEUgdGhlIGtlcm5lbCB3aWxsIGJlIGZvcmNl
+ZCB0byBlbmFibGUgdGhlIG1hdGNoLWFsbCAod2lsZGNhcmQpCj4gcG9pbnRlcnMgZm9yIHVzZXIg
+c3BhY2UgYWNjZXNzZXMgc2luY2UgY29weV9mcm9tX3VzZXIoKSB3b3VsZCBvbmx5IGdldCBhCj4g
+MCB0YWcuIFNvIGl0IGhhcyB3aWRlciBpbXBsaWNhdGlvbnMgdGhhbiBqdXN0IHVhY2Nlc3Mgcm91
+dGluZXMgbm90Cj4gY2hlY2tpbmcgdGhlIGNvbG91ci4KPgo+ID4gU28gZ2l2ZW4gdGhpcyBiZWNv
+bWluZyBhIGtlcm5lbC13aWRlIG11bHRpLWFyY2hpdGVjdHVyZSBpc3N1ZSAodW5kZXIKPiA+IHRo
+ZSBhc3N1bXB0aW9uIHRoYXQgeDg2LCBSSVNDLVYsIGFuZCBvdGhlcnMgd2lsbCBnYWluIHNpbWls
+YXIgVEJJIG9yCj4gPiBNVEUgdGhpbmdzKSwgd2Ugc2hvdWxkIHNvbHZlIGl0IGluIGEgd2F5IHRo
+YXQgd2UgY2FuIHJlLXVzZS4KPgo+IENhbiB3ZSBkbyBhbnkgYmV0dGVyIHRvIGFpZCB0aGUgdW50
+YWdnZWRfYWRkcigpIHBsYWNlbWVudCAoZS5nLiBiZXR0ZXIKPiB0eXBlIGFubm90YXRpb25zLCBi
+ZXR0ZXIgc3RhdGljIGFuYWx5c2lzKT8gV2UgaGF2ZSB0byBkaXN0aW5ndWlzaAo+IGJldHdlZW4g
+dXNlciBwb2ludGVycyB0aGF0IG1heSBiZSBkZXJlZmVyZW5jZWQgYnkgdGhlIGtlcm5lbCAoSSB0
+aGluawo+IGFsbW9zdCBmdWxseSBjb3ZlcmVkIHdpdGggdGhpcyBwYXRjaHNldCkgYW5kIHVzZXIg
+YWRkcmVzc2VzIHJlcHJlc2VudGVkCj4gYXMgdWxvbmcgdGhhdCBtYXk6Cj4KPiBhKSBiZSBjb252
+ZXJ0ZWQgdG8gYSB1c2VyIHBvaW50ZXIgYW5kIGRlcmVmZXJlbmNlZDsgSSB0aGluayB0aGF0J3Mg
+dGhlCj4gICAgY2FzZSBmb3IgbWFueSBvdmVybG9hZGVkIHVsb25nL3U2NCBhcmd1bWVudHMKPgo+
+IGIpIHVzZWQgZm9yIGFkZHJlc3Mgc3BhY2UgbWFuYWdlbWVudCwgcmJ0cmVlIGxvb2stdXBzIGV0
+Yy4gd2hlcmUgdGhlIHRhZwo+ICAgIGlzIG5vIGxvbmdlciByZWxldmFudCBhbmQgaXQgZXZlbiBn
+ZXRzIGluIHRoZSB3YXkKPgo+IFdlIHRyaWVkIGxhc3QgeWVhciB0byBpZGVudGlmeSB2b2lkIF9f
+dXNlciAqIGNhc3RzIHRvIHVuc2lnbmVkIGxvbmcKPiB1c2luZyBzcGFyc2Ugb24gdGhlIGFzc3Vt
+cHRpb24gdGhhdCBwb2ludGVycyBjYW4gYmUgdGFnZ2VkIHdoaWxlIHVsb25nCj4gaXMgYWJvdXQg
+YWRkcmVzcyBzcGFjZSBtYW5hZ2VtZW50IGFuZCBuZWVkcyB0byBsb3NlIHN1Y2ggdGFnLiBJIHRo
+aW5rIHdlCj4gY291bGQgaGF2ZSBwdXNoZWQgdGhpcyBmdXJ0aGVyLiBGb3IgZXhhbXBsZSwgZ2V0
+X3VzZXJfcGFnZXMoKSB0YWtlcyBhbgo+IHVuc2lnbmVkIGxvbmcgYnV0IGl0IGlzIHBlcmZlY3Rs
+eSBjYXBhYmxlIG9mIHVudGFnZ2luZyB0aGUgYWRkcmVzcwo+IGl0c2VsZi4gU2hhbGwgd2UgY2hh
+bmdlIGl0cyBmaXJzdCBhcmd1bWVudCB0byB2b2lkIF9fdXNlciAqICh0b2dldGhlcgo+IHdpdGgg
+YWxsIGl0cyBjYWxsZXJzKT8KPgo+IGZpbmRfdm1hKCksIE9UT0gsIGNvdWxkIHVudGFnIHRoZSBh
+ZGRyZXNzIGJ1dCBpdCBkb2Vzbid0IGhlbHAgc2luY2UKPiB2bV9zdGFydC9lbmQgZG9uJ3QgaGF2
+ZSBzdWNoIGluZm9ybWF0aW9uICh0aGF0J3MgbW9yZSBhYm91dCB0aGUgY29udGVudAo+IG9yIHR5
+cGUgdGhhdCB0aGUgdXNlciBkZWNpZGVkKSBhbmQgdGhlIGNhbGxlcnMgY2hlY2sgYWdhaW5zdCBp
+dC4KPgo+IEFyZSB0aGVyZSBhbnkgb3RoZXIgcGxhY2VzIHdoZXJlIHRoaXMgbWF0dGVycz8gVGhl
+c2UgcGF0Y2hlcyB0cmFja2VkCj4gZG93biBmaW5kX3ZtYSgpIGFzIHNvbWUgaGV1cmlzdGljcyBi
+dXQgd2UgbWF5IG5lZWQgYmV0dGVyIHN0YXRpYwo+IGFuYWx5c2lzIHRvIGlkZW50aWZ5IG90aGVy
+IGNhc2VzLgo+Cj4gPiBXZSBuZWVkIHNvbWV0aGluZyB0aGF0IGlzIGdvaW5nIHRvIHdvcmsgZXZl
+cnl3aGVyZS4gQW5kIGl0IG5lZWRzIHRvIGJlCj4gPiBzdXBwb3J0ZWQgYnkgdGhlIGtlcm5lbCBm
+b3IgdGhlIHNpbXBsZSByZWFzb24gdGhhdCB0aGUga2VybmVsIG5lZWRzIHRvCj4gPiBkbyBNVEUg
+Y2hlY2tzIGR1cmluZyBjb3B5X2Zyb21fdXNlcigpOiBoYXZpbmcgdGhhdCBpbmZvcm1hdGlvbiBz
+dHJpcHBlZAo+ID4gbWVhbnMgd2UgbG9zZSBhbnkgdXNlcnNwYWNlLWFzc2lnbmVkIE1URSBwcm90
+ZWN0aW9ucyBpZiB0aGV5IGdldCBoYW5kbGVkCj4gPiBieSB0aGUga2VybmVsLCB3aGljaCBpcyBh
+IHRvdGFsIG5vbi1zdGFydGVyLCBJTU8uCj4KPiBTdWNoIGZlZWRiYWNrIGlzIHdlbGNvbWVkIDsp
+Lgo+Cj4gPiBBcyBhbiBhc2lkZTogSSB0aGluayBTcGFyYyBBREkgc3VwcG9ydCBpbiBMaW51eCBh
+Y3R1YWxseSBzaWRlLXN0ZXBwZWQKPiA+IHRoaXNbMV0gKGkuZS4gY2hvc2UgInNvbHV0aW9uIDEi
+KTogIkFsbCBhZGRyZXNzZXMgcGFzc2VkIHRvIGtlcm5lbCBtdXN0Cj4gPiBiZSBub24tQURJIHRh
+Z2dlZCBhZGRyZXNzZXMuIiAoQW5kIHNhZGx5LCAiS2VybmVsIGRvZXMgbm90IGVuYWJsZSBBREkK
+PiA+IGZvciBrZXJuZWwgY29kZS4iKSBJIHRoaW5rIHRoaXMgd2FzIGEgbWlzdGFrZSB3ZSBzaG91
+bGQgbm90IHJlcGVhdCBmb3IKPiA+IGFybTY0ICh3ZSBkbyBzZWVtIHRvIGJlIGF0IGxlYXN0IGlu
+IGFncmVlbWVudCBhYm91dCB0aGlzLCBJIHRoaW5rKS4KPiA+Cj4gPiBbMV0gaHR0cHM6Ly9sb3Jl
+Lmtlcm5lbC5vcmcvcGF0Y2h3b3JrL3BhdGNoLzY1NDQ4MS8KPgo+IEkgdHJpZWQgdG8gZHJhZyB0
+aGUgU1BBUkMgZ3V5cyBpbnRvIHRoaXMgZGlzY3Vzc2lvbiBidXQgd2l0aG91dCBtdWNoCj4gc3Vj
+Y2Vzcy4KPgo+ID4gPiA+IFRoaXMgaXMgYSBiaXQgb2YgYSBjaGlja2VuLWFuZC1lZ2cgcHJvYmxl
+bS4gSW4gYSB3b3JsZCB3aGVyZSBtZW1vcnkKPiA+ID4gPiBhbGxvY2F0b3JzIG9uIG9uZSBvciBz
+ZXZlcmFsIHBvcHVsYXIgcGxhdGZvcm1zIGdlbmVyYXRlIHBvaW50ZXJzIHdpdGgKPiA+ID4gPiBu
+b24temVybyB0YWdzLCBhbnkgc3VjaCBicmVha2FnZSB3aWxsIGJlIGNhdWdodCBpbiB0ZXN0aW5n
+Lgo+ID4gPiA+IFVuZm9ydHVuYXRlbHkgdG8gcmVhY2ggdGhhdCBzdGF0ZSB3ZSBuZWVkIHRoZSBr
+ZXJuZWwgdG8gc3RhcnQKPiA+ID4gPiBhY2NlcHRpbmcgdGFnZ2VkIHBvaW50ZXJzIGZpcnN0LCBh
+bmQgdGhlbiBob2xkIG9uIGZvciBhIGNvdXBsZSBvZgo+ID4gPiA+IHllYXJzIHVudGlsIHVzZXJz
+cGFjZSBjYXRjaGVzIHVwLgo+ID4gPgo+ID4gPiBXb3VsZCB0aGUga2VybmVsIGFsc28gY2F0Y2gg
+dXAgd2l0aCBwcm92aWRpbmcgYSBzdGFibGUgQUJJPyBCZWNhdXNlIHdlCj4gPiA+IGhhdmUgdHdv
+IG1vdmluZyB0YXJnZXRzLgo+ID4gPgo+ID4gPiBPbiBvbmUgaGFuZCwgeW91IGhhdmUgQW5kcm9p
+ZCBvciBzb21lIExpbnV4IGRpc3RybyB0aGF0IHN0aWNrIHRvIGEKPiA+ID4gc3RhYmxlIGtlcm5l
+bCB2ZXJzaW9uIGZvciBzb21lIHRpbWUsIHNvIHRoZXkgaGF2ZSBiZXR0ZXIgY2hhbmNlIG9mCj4g
+PiA+IGNsZWFyaW5nIG1vc3Qgb2YgdGhlIHByb2JsZW1zLiBPbiB0aGUgb3RoZXIgaGFuZCwgd2Ug
+aGF2ZSBtYWlubGluZQo+ID4gPiBrZXJuZWwgdGhhdCBnZXRzIG92ZXIgNTAwSyBsaW5lcyBldmVy
+eSByZWxlYXNlLiBBcyBtYWludGFpbmVyLCBJIGNhbid0Cj4gPiA+IHJlbHkgb24gbXkgdGVzdGlu
+ZyBhbG9uZSBhcyB0aGlzIGlzIG9uIGEgbGltaXRlZCBudW1iZXIgb2YgcGxhdGZvcm1zLiBTbwo+
+ID4gPiBteSBjb25jZXJuIGlzIHRoYXQgZXZlcnkga2VybmVsIHJlbGVhc2UgaGFzIGEgc2lnbmlm
+aWNhbnQgY2hhbmNlIG9mCj4gPiA+IGJyZWFraW5nIHRoZSBBQkksIHVubGVzcyB3ZSBoYXZlIGEg
+YmV0dGVyIHdheSBvZiBpZGVudGlmeWluZyBwb3RlbnRpYWwKPiA+ID4gaXNzdWVzLgo+ID4KPiA+
+IEkganVzdCB3YW50IHRvIG1ha2Ugc3VyZSBJIGZ1bGx5IHVuZGVyc3RhbmQgeW91ciBjb25jZXJu
+IGFib3V0IHRoaXMKPiA+IGJlaW5nIGFuIEFCSSBicmVhaywgYW5kIEkgd29yayBiZXN0IHdpdGgg
+ZXhhbXBsZXMuIFRoZSBjbG9zZXN0IHNpdHVhdGlvbgo+ID4gSSBjYW4gc2VlIHdvdWxkIGJlOgo+
+ID4KPiA+IC0gc29tZSBwcm9ncmFtIGhhcyBubyBpZGVhIGFib3V0IE1URQo+Cj4gQXBhcnQgZnJv
+bSBzb21lIGxpYnJhcmllcyBsaWtlIGxpYmMgKGFuZCBtYXliZSB0aG9zZSB0aGF0IGhhbmRsZQo+
+IHNwZWNpZmljIGRldmljZSBpb2N0bHMpLCBJIHRoaW5rIG1vc3QgcHJvZ3JhbXMgc2hvdWxkIGhh
+dmUgbm8gaWRlYSBhYm91dAo+IE1URS4gSSB3b3VsZG4ndCBleHBlY3QgcHJvZ3JhbW1lcnMgdG8g
+aGF2ZSB0byBjaGFuZ2UgdGhlaXIgYXBwIGp1c3QKPiBiZWNhdXNlIHdlIGhhdmUgYSBuZXcgZmVh
+dHVyZSB0aGF0IGNvbG91cnMgaGVhcCBhbGxvY2F0aW9ucy4KCm9idmlvdXNseSBpJ20gYmlhc2Vk
+IGFzIGEgbGliYyBtYWludGFpbmVyLCBidXQuLi4KCmkgZG9uJ3QgdGhpbmsgaXQgaGVscHMgdG8g
+bW92ZSB0aGlzIHRvIGxpYmMgLS0tIG5vdyB5b3UganVzdCBoYXZlIGFuCmV4dHJhIGRlcGVuZGVu
+Y3kgd2hlcmUgdG8gaGF2ZSBhIGd1YXJhbnRlZWQgd29ya2luZyBzeXN0ZW0geW91IG5lZWQgdG8K
+dXBkYXRlIHlvdXIga2VybmVsIGFuZCBsaWJjIHRvZ2V0aGVyLiAob3IgYXQgbGVhc3QgdXBkYXRl
+IHlvdXIgbGliYyB0bwp1bmRlcnN0YW5kIG5ldyBpb2N0bHMgZXRjIF9iZWZvcmVfIHlvdSBjYW4g
+dXBkYXRlIHlvdXIga2VybmVsLikKCj4gPiAtIG1hbGxvYygpIHN0YXJ0cyByZXR1cm5pbmcgTVRF
+LXRhZ2dlZCBhZGRyZXNzZXMKPiA+IC0gcHJvZ3JhbSBkb2Vzbid0IGJyZWFrIGZyb20gdGhhdCBj
+aGFuZ2UKPiA+IC0gcHJvZ3JhbSB1c2VzIHNvbWUgc3lzY2FsbCB0aGF0IGlzIG1pc3NpbmcgdW50
+YWdnZWRfYWRkcigpIGFuZCBmYWlscwo+ID4gLSBrZXJuZWwgaGFzIG5vdyBicm9rZW4gdXNlcnNw
+YWNlIHRoYXQgdXNlZCB0byB3b3JrCj4KPiBUaGF0J3Mgb25lIGFzcGVjdCB0aG91Z2ggcHJvYmFi
+bHkgbW9yZSBvZiBhIGNhc2Ugb2YgcGx1Z2dpbmcgaW4gYSBuZXcKPiBkZXZpY2UgKGdyYXBoaWNz
+IGNhcmQsIG5ldHdvcmsgZXRjLikgYW5kIHRoZSBpb2N0bCB0byB0aGUgbmV3IGRldmljZQo+IGRv
+ZXNuJ3Qgd29yay4KPgo+IFRoZSBvdGhlciBpcyB0aGF0LCBhc3N1bWluZyB3ZSByZWFjaCBhIHBv
+aW50IHdoZXJlIHRoZSBrZXJuZWwgZW50aXJlbHkKPiBzdXBwb3J0cyB0aGlzIHJlbGF4ZWQgQUJJ
+LCBjYW4gd2UgZ3VhcmFudGVlIHRoYXQgaXQgd29uJ3QgYnJlYWsgaW4gdGhlCj4gZnV0dXJlLiBM
+ZXQncyBzYXkgc29tZSBzdWJzZXF1ZW50IGtlcm5lbCBjaGFuZ2UgKHNvbWUgcmVmYWN0b3Jpbmcp
+Cj4gbWlzc2VzIG91dCBhbiB1bnRhZ2dlZF9hZGRyKCkuIFRoaXMgcmVuZGVycyBhIHByZXZpb3Vz
+bHkgVEJJL01URS1jYXBhYmxlCj4gc3lzY2FsbCB1bnVzYWJsZS4gQ2FuIHdlIHJlbHkgb25seSBv
+biB0ZXN0aW5nPwo+Cj4gPiBUaGUgdHJvdWJsZSBJIHNlZSB3aXRoIHRoaXMgaXMgdGhhdCBpdCBp
+cyBsYXJnZWx5IHRoZW9yZXRpY2FsIGFuZAo+ID4gcmVxdWlyZXMgcGFydCBvZiB1c2Vyc3BhY2Ug
+dG8gY29sbHVkZSB0byBzdGFydCB1c2luZyBhIG5ldyBDUFUgZmVhdHVyZQo+ID4gdGhhdCB0aWNr
+bGVzIGEgYnVnIGluIHRoZSBrZXJuZWwuIEFzIEkgdW5kZXJzdGFuZCB0aGUgZ29sZGVuIHJ1bGUs
+Cj4gPiB0aGlzIGlzIGEgYnVnIGluIHRoZSBrZXJuZWwgKGEgbWlzc2VkIGlvY3RsKCkgb3Igc3Vj
+aCkgdG8gYmUgZml4ZWQsCj4gPiBub3QgYSBnbG9iYWwgYnJlYWtpbmcgb2Ygc29tZSB1c2Vyc3Bh
+Y2UgYmVoYXZpb3IuCj4KPiBZZXMsIHdlIHNob3VsZCBmb2xsb3cgdGhlIHJ1bGUgdGhhdCBpdCdz
+IGEga2VybmVsIGJ1ZyBidXQgaXQgZG9lc24ndAo+IGhlbHAgdGhlIHVzZXIgdGhhdCBhIG5ld2x5
+IGluc3RhbGxlZCBrZXJuZWwgY2F1c2VzIHVzZXIgc3BhY2UgdG8gbm8KPiBsb25nZXIgcmVhY2gg
+YSBwcm9tcHQuIEhlbmNlIHRoZSBwcm9wb3NhbCBvZiBhbiBvcHQtaW4gdmlhIHBlcnNvbmFsaXR5
+Cj4gKGZvciBNVEUgd2Ugd291bGQgbmVlZCBhbiBleHBsaWNpdCBvcHQtaW4gYnkgdGhlIHVzZXIg
+YW55d2F5IHNpbmNlIHRoZQo+IHRvcCBieXRlIGlzIG5vIGxvbmdlciBpZ25vcmVkIGJ1dCBjaGVj
+a2VkIGFnYWluc3QgdGhlIGFsbG9jYXRpb24gdGFnKS4KCmJ1dCByZWFsaXN0aWNhbGx5IHdvdWxk
+IHRoaXMgYWN0dWFsbHkgZ2V0IHVzZWQgaW4gdGhpcyB3YXk/IG9yIHdvdWxkCmFueSBnaXZlbiBz
+eXN0ZW0gZWl0aGVyIGJlIE1URSBvciBub24tTVRFLiBpbiB3aGljaCBjYXNlIGEga2VybmVsCmNv
+bmZpZ3VyYXRpb24gb3B0aW9uIHdvdWxkIHNlZW0gdG8gbWFrZSBtb3JlIHNlbnNlLiAoYmVjYXVz
+ZSBlaXRoZXIKd2F5LCB0aGUgaHlwb3RoZXRpY2FsIHVzZXIgYmFzaWNhbGx5IG5lZWRzIHRvIHJl
+Y29tcGlsZSB0aGUga2VybmVsIHRvCmdldCBiYWNrIG9uIHRoZWlyIGZlZXQuIG9yIGFsbCBvZiB1
+c2Vyc3BhY2UuKQoKaSdtIG5vdCBzdXJlIGkgc2VlIHRoaXMgbmV3IHdheSBmb3IgYSBrZXJuZWwg
+dXBkYXRlIHRvIGJyZWFrIG15IHN5c3RlbQphbmQgbmVlZCB0byBiZSBmaXhlZCBmb3J3YXJkL3Jv
+bGxlZCBiYWNrIGFzIGFueSBkaWZmZXJlbnQgZnJvbSBhbnkgb2YKdGhlIGV4aXN0aW5nIHdheXMg
+aW4gd2hpY2ggdGhpcyBjYW4gaGFwcGVuIDotKSBhcyBhbiBlbmQtdXNlciBpIGhhdmUKdG8gcmVs
+eSBvbiB3aG9ldmVyJ3Mgc2VuZGluZyBtZSBzb2Z0d2FyZSB1cGRhdGVzIHRvIHRlc3QgYWRlcXVh
+dGVseQplbm91Z2ggdGhhdCB0aGV5IGZpbmQgdGhlIHByb2JsZW1zLiBhcyBhbiBlbmQgdXNlciwg
+dGhlcmUgaXNuJ3QgYW55CmRpZmZlcmVuY2UgYmV0d2VlbiAibXkgcGhvbmUgcmVib290ZWQgd2hl
+biBpIHRyaWVkIHRvIHRha2UgYSBwaG90bwpiZWNhdXNlIG9mIGEga2VybmVsL2RyaXZlciBsZWFr
+Iiwgc2F5LCBhbmQgIm15IHBob25lIHJlYm9vdGVkIHdoZW4gaQp0cmllZCB0byB0YWtlIGEgcGhv
+dG8gYmVjYXVzZSBvZiBtaXNzaW5nIHVudGFnZ2luZyBvZiBhIHBvaW50ZXIgcGFzc2VkCnZpYSBp
+b2N0bCIuCgppIHN1c3BlY3QgeW91IGFuZCBpIGhhdmUgdmVyeSBkaWZmZXJlbnQgcGVvcGxlIGlu
+IG1pbmQgd2hlbiB3ZSBzYXkgInVzZXIiIDotKQoKPiA+IEkgZmVlbCBsaWtlIEknbSBtaXNzaW5n
+IHNvbWV0aGluZyBhYm91dCB0aGlzIGJlaW5nIHNlZW4gYXMgYW4gQUJJCj4gPiBicmVhay4gVGhl
+IGtlcm5lbCBhbHJlYWR5IGZhaWxzIG9uIHVzZXJzcGFjZSBhZGRyZXNzZXMgdGhhdCBoYXZlIGhp
+Z2gKPiA+IGJpdHMgc2V0IC0tIGFyZSB0aGVyZSB0aGluZ3MgdGhhdCBfZGVwZW5kXyBvbiB0aGlz
+IGZhaWx1cmUgdG8gb3BlcmF0ZT8KPgo+IEl0J3MgYWJvdXQgcHJvdmlkaW5nIGEgcmVsYXhlZCBB
+Qkkgd2hpY2ggYWxsb3dzIG5vbi16ZXJvIHRvcCBieXRlIGFuZAo+IGJyZWFraW5nIGl0IGxhdGVy
+IGluYWR2ZXJ0ZW50bHkgd2l0aG91dCBoYXZpbmcgc29tZXRoaW5nIGJldHRlciBpbiBwbGFjZQo+
+IHRvIGFuYWx5c2UgdGhlIGtlcm5lbCBjaGFuZ2VzLgo+Cj4gVGhhbmtzLgo+Cj4gLS0KPiBDYXRh
+bGluCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1n
+ZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
