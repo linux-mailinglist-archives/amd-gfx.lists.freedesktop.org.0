@@ -2,32 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D5526574
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2019 16:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E75826571
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2019 16:12:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FC4589A9F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC6789AAD;
 	Wed, 22 May 2019 14:12:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from foss.arm.com (usa-sjc-mx-foss1.foss.arm.com [217.140.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0EEEB898C2;
- Wed, 22 May 2019 11:57:02 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9A4F5899DB;
+ Wed, 22 May 2019 12:09:16 +0000 (UTC)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9F0680D;
- Wed, 22 May 2019 04:57:01 -0700 (PDT)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 74CBF80D;
+ Wed, 22 May 2019 05:09:16 -0700 (PDT)
 Received: from mbp (usa-sjc-mx-foss1.foss.arm.com [217.140.101.70])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D80033F575;
- Wed, 22 May 2019 04:56:55 -0700 (PDT)
-Date: Wed, 22 May 2019 12:56:53 +0100
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AA7D73F575;
+ Wed, 22 May 2019 05:09:10 -0700 (PDT)
+Date: Wed, 22 May 2019 13:09:07 +0100
 From: Catalin Marinas <catalin.marinas@arm.com>
 To: Andrey Konovalov <andreyknvl@google.com>
-Subject: Re: [PATCH v15 07/17] mm, arm64: untag user pointers in mm/gup.c
-Message-ID: <20190522115652.nf2r5j6xydywmccw@mbp>
+Subject: Re: [PATCH v15 09/17] fs, arm64: untag user pointers in
+ copy_mount_options
+Message-ID: <20190522120907.tf3tb3h5oxhfokgw@mbp>
 References: <cover.1557160186.git.andreyknvl@google.com>
- <d234cd71774f35229bdfc0a793c34d6712b73093.1557160186.git.andreyknvl@google.com>
+ <ac2ca3454b1ae8856ea2e29a1316fea50a30c788.1557160186.git.andreyknvl@google.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <d234cd71774f35229bdfc0a793c34d6712b73093.1557160186.git.andreyknvl@google.com>
+In-Reply-To: <ac2ca3454b1ae8856ea2e29a1316fea50a30c788.1557160186.git.andreyknvl@google.com>
 User-Agent: NeoMutt/20170113 (1.7.2)
 X-Mailman-Approved-At: Wed, 22 May 2019 14:12:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -68,18 +69,19 @@ Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBNYXkgMDYsIDIwMTkgYXQgMDY6MzA6NTNQTSArMDIwMCwgQW5kcmV5IEtvbm92YWxv
+T24gTW9uLCBNYXkgMDYsIDIwMTkgYXQgMDY6MzA6NTVQTSArMDIwMCwgQW5kcmV5IEtvbm92YWxv
 diB3cm90ZToKPiBUaGlzIHBhdGNoIGlzIGEgcGFydCBvZiBhIHNlcmllcyB0aGF0IGV4dGVuZHMg
 YXJtNjQga2VybmVsIEFCSSB0byBhbGxvdyB0bwo+IHBhc3MgdGFnZ2VkIHVzZXIgcG9pbnRlcnMg
 KHdpdGggdGhlIHRvcCBieXRlIHNldCB0byBzb21ldGhpbmcgZWxzZSBvdGhlcgo+IHRoYW4gMHgw
-MCkgYXMgc3lzY2FsbCBhcmd1bWVudHMuCj4gCj4gbW0vZ3VwLmMgcHJvdmlkZXMgYSBrZXJuZWwg
-aW50ZXJmYWNlIHRoYXQgYWNjZXB0cyB1c2VyIGFkZHJlc3NlcyBhbmQKPiBtYW5pcHVsYXRlcyB1
-c2VyIHBhZ2VzIGRpcmVjdGx5IChmb3IgZXhhbXBsZSBnZXRfdXNlcl9wYWdlcywgdGhhdCBpcyB1
-c2VkCj4gYnkgdGhlIGZ1dGV4IHN5c2NhbGwpLiBTaW5jZSBhIHVzZXIgY2FuIHByb3ZpZGVkIHRh
-Z2dlZCBhZGRyZXNzZXMsIHdlIG5lZWQKPiB0byBoYW5kbGUgdGhpcyBjYXNlLgo+IAo+IEFkZCB1
-bnRhZ2dpbmcgdG8gZ3VwLmMgZnVuY3Rpb25zIHRoYXQgdXNlIHVzZXIgYWRkcmVzc2VzIGZvciB2
-bWEgbG9va3Vwcy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBBbmRyZXkgS29ub3ZhbG92IDxhbmRyZXlr
-bnZsQGdvb2dsZS5jb20+CgpSZXZpZXdlZC1ieTogQ2F0YWxpbiBNYXJpbmFzIDxjYXRhbGluLm1h
-cmluYXNAYXJtLmNvbT4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+MCkgYXMgc3lzY2FsbCBhcmd1bWVudHMuCj4gCj4gSW4gY29weV9tb3VudF9vcHRpb25zIGEgdXNl
+ciBhZGRyZXNzIGlzIGJlaW5nIHN1YnRyYWN0ZWQgZnJvbSBUQVNLX1NJWkUuCj4gSWYgdGhlIGFk
+ZHJlc3MgaXMgbG93ZXIgdGhhbiBUQVNLX1NJWkUsIHRoZSBzaXplIGlzIGNhbGN1bGF0ZWQgdG8g
+bm90Cj4gYWxsb3cgdGhlIGV4YWN0X2NvcHlfZnJvbV91c2VyKCkgY2FsbCB0byBjcm9zcyBUQVNL
+X1NJWkUgYm91bmRhcnkuCj4gSG93ZXZlciBpZiB0aGUgYWRkcmVzcyBpcyB0YWdnZWQsIHRoZW4g
+dGhlIHNpemUgd2lsbCBiZSBjYWxjdWxhdGVkCj4gaW5jb3JyZWN0bHkuCj4gCj4gVW50YWcgdGhl
+IGFkZHJlc3MgYmVmb3JlIHN1YnRyYWN0aW5nLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEFuZHJleSBL
+b25vdmFsb3YgPGFuZHJleWtudmxAZ29vZ2xlLmNvbT4KClJldmlld2VkLWJ5OiBDYXRhbGluIE1h
+cmluYXMgPGNhdGFsaW4ubWFyaW5hc0Bhcm0uY29tPgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2FtZC1nZng=
