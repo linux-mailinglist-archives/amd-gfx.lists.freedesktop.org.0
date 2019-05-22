@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F4926575
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2019 16:12:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 050A226570
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2019 16:12:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8051289AB2;
-	Wed, 22 May 2019 14:12:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D34D389A9B;
+	Wed, 22 May 2019 14:12:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from foss.arm.com (foss.arm.com [217.140.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3EFD08825B;
- Wed, 22 May 2019 10:41:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E269E8996E;
+ Wed, 22 May 2019 10:56:18 +0000 (UTC)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 10655341;
- Wed, 22 May 2019 03:41:12 -0700 (PDT)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7F9AA341;
+ Wed, 22 May 2019 03:56:18 -0700 (PDT)
 Received: from mbp (usa-sjc-mx-foss1.foss.arm.com [217.140.101.70])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3F3C13F575;
- Wed, 22 May 2019 03:41:06 -0700 (PDT)
-Date: Wed, 22 May 2019 11:41:03 +0100
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AD2E53F575;
+ Wed, 22 May 2019 03:56:12 -0700 (PDT)
+Date: Wed, 22 May 2019 11:56:10 +0100
 From: Catalin Marinas <catalin.marinas@arm.com>
 To: Andrey Konovalov <andreyknvl@google.com>
-Subject: Re: [PATCH v15 03/17] lib, arm64: untag user pointers in strn*_user
-Message-ID: <20190522104103.r5any4us4zz7gwvg@mbp>
+Subject: Re: [PATCH v15 04/17] mm: add ksys_ wrappers to memory syscalls
+Message-ID: <20190522105609.jpmaiq3adyh6apx2@mbp>
 References: <cover.1557160186.git.andreyknvl@google.com>
- <861418ff7ed7253356cb8267de5ee2d4bd84196d.1557160186.git.andreyknvl@google.com>
+ <55496bc72542ec14c4c8de23a4df235644013911.1557160186.git.andreyknvl@google.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <861418ff7ed7253356cb8267de5ee2d4bd84196d.1557160186.git.andreyknvl@google.com>
+In-Reply-To: <55496bc72542ec14c4c8de23a4df235644013911.1557160186.git.andreyknvl@google.com>
 User-Agent: NeoMutt/20170113 (1.7.2)
 X-Mailman-Approved-At: Wed, 22 May 2019 14:12:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -68,22 +68,22 @@ Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBNYXkgMDYsIDIwMTkgYXQgMDY6MzA6NDlQTSArMDIwMCwgQW5kcmV5IEtvbm92YWxv
+T24gTW9uLCBNYXkgMDYsIDIwMTkgYXQgMDY6MzA6NTBQTSArMDIwMCwgQW5kcmV5IEtvbm92YWxv
 diB3cm90ZToKPiBUaGlzIHBhdGNoIGlzIGEgcGFydCBvZiBhIHNlcmllcyB0aGF0IGV4dGVuZHMg
 YXJtNjQga2VybmVsIEFCSSB0byBhbGxvdyB0bwo+IHBhc3MgdGFnZ2VkIHVzZXIgcG9pbnRlcnMg
 KHdpdGggdGhlIHRvcCBieXRlIHNldCB0byBzb21ldGhpbmcgZWxzZSBvdGhlcgo+IHRoYW4gMHgw
-MCkgYXMgc3lzY2FsbCBhcmd1bWVudHMuCj4gCj4gc3RybmNweV9mcm9tX3VzZXIgYW5kIHN0cm5s
-ZW5fdXNlciBhY2NlcHQgdXNlciBhZGRyZXNzZXMgYXMgYXJndW1lbnRzLCBhbmQKPiBkbyBub3Qg
-Z28gdGhyb3VnaCB0aGUgc2FtZSBwYXRoIGFzIGNvcHlfZnJvbV91c2VyIGFuZCBvdGhlcnMsIHNv
-IGhlcmUgd2UKPiBuZWVkIHRvIGhhbmRsZSB0aGUgY2FzZSBvZiB0YWdnZWQgdXNlciBhZGRyZXNz
-ZXMgc2VwYXJhdGVseS4KPiAKPiBVbnRhZyB1c2VyIHBvaW50ZXJzIHBhc3NlZCB0byB0aGVzZSBm
-dW5jdGlvbnMuCj4gCj4gTm90ZSwgdGhhdCB0aGlzIHBhdGNoIG9ubHkgdGVtcG9yYXJpbHkgdW50
-YWdzIHRoZSBwb2ludGVycyB0byBwZXJmb3JtCj4gdmFsaWRpdHkgY2hlY2tzLCBidXQgdGhlbiB1
-c2VzIHRoZW0gYXMgaXMgdG8gcGVyZm9ybSB1c2VyIG1lbW9yeSBhY2Nlc3Nlcy4KPiAKPiBTaWdu
-ZWQtb2ZmLWJ5OiBBbmRyZXkgS29ub3ZhbG92IDxhbmRyZXlrbnZsQGdvb2dsZS5jb20+CgpKdXN0
-IHRvIGtlZXAgdHJhY2sgb2Ygd2hlcmUgSSBhbSB3aXRoIHRoZSByZXZpZXdzIHdoaWxlIHRoZSBB
-QkkKZGlzY3Vzc2lvbiBjb250aW51ZXM6CgpSZXZpZXdlZC1ieTogQ2F0YWxpbiBNYXJpbmFzIDxj
-YXRhbGluLm1hcmluYXNAYXJtLmNvbT4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
-bWQtZ2Z4
+MCkgYXMgc3lzY2FsbCBhcmd1bWVudHMuCj4gCj4gVGhpcyBwYXRjaCBhZGRzIGtzeXNfIHdyYXBw
+ZXJzIHRvIHRoZSBmb2xsb3dpbmcgbWVtb3J5IHN5c2NhbGxzOgo+IAo+IGJyaywgZ2V0X21lbXBv
+bGljeSAocmVuYW1lZCBrZXJuZWxfZ2V0X21lbXBvbGljeSAtPiBrc3lzX2dldF9tZW1wb2xpY3kp
+LAo+IG1hZHZpc2UsIG1iaW5kIChyZW5hbWVkIGtlcm5lbF9tYmluZCAtPiBrc3lzX21iaW5kKSwg
+bWluY29yZSwKPiBtbG9jayAocmVuYW1lZCBkb19tbG9jayAtPiBrc3lzX21sb2NrKSwgbWxvY2sy
+LCBtbWFwX3Bnb2ZmLAo+IG1wcm90ZWN0IChyZW5hbWVkIGRvX21wcm90ZWN0X3BrZXkgLT4ga3N5
+c19tcHJvdGVjdF9wa2V5KSwgbXJlbWFwLCBtc3luYywKPiBtdW5sb2NrLCBtdW5tYXAsIHJlbWFw
+X2ZpbGVfcGFnZXMsIHNobWF0LCBzaG1kdC4KPiAKPiBUaGUgbmV4dCBwYXRjaCBpbiB0aGlzIHNl
+cmllcyB3aWxsIGFkZCBhIGN1c3RvbSBpbXBsZW1lbnRhdGlvbiBmb3IgdGhlc2UKPiBzeXNjYWxs
+cyB0aGF0IG1ha2VzIHRoZW0gYWNjZXB0IHRhZ2dlZCBwb2ludGVycyBvbiBhcm02NC4KPiAKPiBT
+aWduZWQtb2ZmLWJ5OiBBbmRyZXkgS29ub3ZhbG92IDxhbmRyZXlrbnZsQGdvb2dsZS5jb20+CgpS
+ZXZpZXdlZC1ieTogQ2F0YWxpbiBNYXJpbmFzIDxjYXRhbGluLm1hcmluYXNAYXJtLmNvbT4KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWls
+aW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
