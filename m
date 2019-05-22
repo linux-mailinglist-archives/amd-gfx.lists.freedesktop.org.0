@@ -1,94 +1,80 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E8025C1E
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2019 05:21:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5B6C26163
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2019 12:07:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D77289654;
-	Wed, 22 May 2019 03:21:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 915C3898C8;
+	Wed, 22 May 2019 10:07:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-BY2-obe.outbound.protection.outlook.com
- (mail-eopbgr810047.outbound.protection.outlook.com [40.107.81.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED2E89654;
- Wed, 22 May 2019 03:21:21 +0000 (UTC)
-Received: from DM6PR12MB2778.namprd12.prod.outlook.com (20.176.114.145) by
- DM6PR12MB3418.namprd12.prod.outlook.com (20.178.198.153) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.18; Wed, 22 May 2019 03:21:16 +0000
-Received: from DM6PR12MB2778.namprd12.prod.outlook.com
- ([fe80::2c9b:7930:7865:78bd]) by DM6PR12MB2778.namprd12.prod.outlook.com
- ([fe80::2c9b:7930:7865:78bd%6]) with mapi id 15.20.1900.020; Wed, 22 May 2019
- 03:21:16 +0000
-From: "Zhao, Yong" <Yong.Zhao@amd.com>
-To: syzbot <syzbot+94cc2a66fc228b23f360@syzkaller.appspotmail.com>,
- "airlied@linux.ie" <airlied@linux.ie>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "ast@kernel.org" <ast@kernel.org>,
- "bpf@vger.kernel.org" <bpf@vger.kernel.org>, "Koenig, Christian"
- <Christian.Koenig@amd.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "daniel@iogearbox.net" <daniel@iogearbox.net>, "davem@davemloft.net"
- <davem@davemloft.net>, "Zhou, David(ChunMing)" <David1.Zhou@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Quan,
- Evan" <Evan.Quan@amd.com>, "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- "Wentland, Harry" <Harry.Wentland@amd.com>, "kafai@fb.com" <kafai@fb.com>,
- "kuznet@ms2.inr.ac.ru" <kuznet@ms2.inr.ac.ru>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
- <netdev@vger.kernel.org>, "Zeng, Oak" <Oak.Zeng@amd.com>, "Huang, Ray"
- <Ray.Huang@amd.com>, "rex.zhu@amd.com" <rex.zhu@amd.com>,
- "songliubraving@fb.com" <songliubraving@fb.com>,
- "syzkaller-bugs@googlegroups.com" <syzkaller-bugs@googlegroups.com>,
- "yhs@fb.com" <yhs@fb.com>, "yoshfuji@linux-ipv6.org"
- <yoshfuji@linux-ipv6.org>
-Subject: Re: WARNING: locking bug in inet_autobind
-Thread-Topic: WARNING: locking bug in inet_autobind
-Thread-Index: AQHVEEyxr8BJKSjlPU2LqA8J24j7dKZ2edYB
-Date: Wed, 22 May 2019 03:21:15 +0000
-Message-ID: <DM6PR12MB27788B3B39A41027C62CEF5EF0000@DM6PR12MB2778.namprd12.prod.outlook.com>
-References: <00000000000033a0120588fac894@google.com>,
- <0000000000008b645c058971629b@google.com>
-In-Reply-To: <0000000000008b645c058971629b@google.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [165.204.54.211]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dc6d9e58-5bec-48a6-7471-08d6de648ce7
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
- SRVR:DM6PR12MB3418; 
-x-ms-traffictypediagnostic: DM6PR12MB3418:
-x-ms-exchange-purlcount: 7
-x-microsoft-antispam-prvs: <DM6PR12MB3418EA0394235FCD2EB6B85BF0000@DM6PR12MB3418.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:660;
-x-forefront-prvs: 0045236D47
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(366004)(136003)(346002)(396003)(39860400002)(376002)(199004)(189003)(26005)(86362001)(33656002)(186003)(105004)(7736002)(8676002)(66066001)(68736007)(8936002)(81156014)(81166006)(19627405001)(316002)(2501003)(6506007)(53546011)(110136005)(76176011)(606006)(102836004)(6116002)(7696005)(236005)(478600001)(966005)(72206003)(3846002)(2906002)(229853002)(99286004)(9686003)(2201001)(25786009)(446003)(14444005)(71200400001)(256004)(7416002)(71190400001)(66946007)(486006)(5660300002)(76116006)(53936002)(55016002)(476003)(66476007)(66556008)(74316002)(54896002)(64756008)(52536014)(6246003)(14454004)(6436002)(66446008)(6306002)(73956011)(11346002)(921003)(99710200001)(1121003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3418;
- H:DM6PR12MB2778.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
+Received: from NAM01-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr740070.outbound.protection.outlook.com [40.107.74.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8941898C8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 May 2019 10:07:08 +0000 (UTC)
+Received: from DM6PR12CA0015.namprd12.prod.outlook.com (2603:10b6:5:1c0::28)
+ by CY4PR1201MB0053.namprd12.prod.outlook.com (2603:10b6:910:23::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1900.19; Wed, 22 May
+ 2019 10:07:06 +0000
+Received: from BY2NAM03FT054.eop-NAM03.prod.protection.outlook.com
+ (2a01:111:f400:7e4a::205) by DM6PR12CA0015.outlook.office365.com
+ (2603:10b6:5:1c0::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1922.16 via Frontend
+ Transport; Wed, 22 May 2019 10:07:06 +0000
+Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: PiQrcbLfzCHeF3omThaKe+orqtlvogRD3R239X1Zu8KM3Lu4BdnmPLv6ahgEMLE/FyPTFIxadLtIH7yarlExrzfsDr0TVWGEJca9PEGGRko77QPGejBb5UDy3x8pShxcAcfX0G5pFfEe1ZmEKmzvw9hOJf7i4kFz0WfLl60vW42sEmxtowDUzDGdK6X08eSZtp7osL+Zj1On1zdaQIMWd2/iVvWhGvJHTF+iuFBu28WUGyR+jWZESQyDrCQmannIz0zi/vuJnOUB+FJaB6/DBkxPq5DHsBIhfpdgCngRcHLg+nobAYzQLv0E0xwgR78rNglOZjesqzRZIznr9oJTCBoNucvT4BnXM4ID/UoWPsu3VmUH/CmTd3kmfVsijJRAjQF9iJLWz0uJ46x4I7qrwhtX8ORQ1F+lJWvi/RFp2xs=
+Received: from SATLEXCHOV01.amd.com (165.204.84.17) by
+ BY2NAM03FT054.mail.protection.outlook.com (10.152.85.30) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.1922.16 via Frontend Transport; Wed, 22 May 2019 10:07:06 +0000
+Received: from build-machine.amd.com (10.34.1.3) by SATLEXCHOV01.amd.com
+ (10.181.40.71) with Microsoft SMTP Server id 14.3.389.1; Wed, 22 May 2019
+ 05:06:36 -0500
+From: Emily Deng <Emily.Deng@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: Need to set the baco cap before baco reset
+Date: Wed, 22 May 2019 18:06:31 +0800
+Message-ID: <1558519591-30349-1-git-send-email-Emily.Deng@amd.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(979002)(396003)(136003)(376002)(346002)(39860400002)(2980300002)(428003)(199004)(189003)(316002)(16586007)(26005)(47776003)(77096007)(2351001)(478600001)(356004)(476003)(6666004)(126002)(53936002)(426003)(305945005)(50466002)(48376002)(4326008)(68736007)(2616005)(2906002)(72206003)(7696005)(51416003)(50226002)(486006)(86362001)(70206006)(70586007)(5660300002)(53416004)(8676002)(81156014)(81166006)(8936002)(36756003)(336012)(186003)(6916009)(969003)(989001)(999001)(1009001)(1019001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR1201MB0053; H:SATLEXCHOV01.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ddfae197-a94b-4e30-fa80-08d6de9d3ea6
+X-Microsoft-Antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328);
+ SRVR:CY4PR1201MB0053; 
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0053:
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB0053BB9202E23C273E701DE68F000@CY4PR1201MB0053.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-Forefront-PRVS: 0045236D47
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: eDGSyDgv6dXRZvGLmD1Wfs441unAeP+M1z820TG/g2dWvoPDN42+MnVoW2Ed0JBfx1tc0so+VA6mkY46PDnDadwR3Mhp+qDA7/Q6FGlsGZld+d/0+d1lxdREsjkEwTMC6FCJS93B3BF3LLmsH8LvXNZcjjmBMXRSD8pCbIt22pllE6+PqEglQinJfmvOcYqecxkRLKVzGi+e14QBTNUzpeYd4o8M4jNPAwFmRYgAiJsVljbYLWssi0DSgfPe1YFxpoB3VH6E7wT+xxSoPGm/qMqAK0D+PcimDXKkfmOk8dKVn2/tIoyej7LKE3fJuJNCAVD1Sediue4sdBiP3q27raz+S2A0jStaU9qXhZQ/v5u1FjRFIDiY9uK4i/0W7y0vfdTTNhdfFLAZom9QVVrILMdD2k/elBrXN32deG3DrZU=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc6d9e58-5bec-48a6-7471-08d6de648ce7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2019 03:21:15.8830 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3418
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2019 10:07:06.0184 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ddfae197-a94b-4e30-fa80-08d6de9d3ea6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXCHOV01.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0053
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZbkbfdceHizFRC2hgkRWgB8wkIUSqfJ3Ob/rhqlOyYc=;
- b=iDvDsyS4w6XeuVFEhOHfGObq6eZIofVs3DKDgBgpyZ/LzXROR4/1TskcmG+9f9q02VLhVHw0VceqvW+RCeSmnmOlPvpB5jd2rr0ZVPyh0ilApr4JS2i1Yms5hcLYonAf7tNsl5GQtxWB44sOMsG0fa+rVHvkoWqZME7zk20PRk0=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Yong.Zhao@amd.com; 
+ bh=XGSL8Rtge7eTDZ5mJlOb9YZemyZKADXaFZEo/CXhdU0=;
+ b=1TCEKy27mQTVNSr314gF9Shc//v5GdmHdlhm/uIVRoRh12jC6HqbmobGOV2nJlf4WPwWumtbnBlXSSyLfwHi79c4KqR0xYmli8dBoAg/tbcntOfu/YHhusWob7jf5UUaKAWkzJpo9ZYLvg2NdoIstVbJQzbhKFIV9WmBMMVtkW8=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is
+ 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -100,169 +86,130 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1655426836=="
+Cc: Emily Deng <Emily.Deng@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1655426836==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM6PR12MB27788B3B39A41027C62CEF5EF0000DM6PR12MB2778namp_"
-
---_000_DM6PR12MB27788B3B39A41027C62CEF5EF0000DM6PR12MB2778namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-This commit was reverted later. I guess the revert was probably not picked =
-up properly.
-
-Regards,
-Yong
-________________________________
-From: syzbot <syzbot+94cc2a66fc228b23f360@syzkaller.appspotmail.com>
-Sent: Tuesday, May 21, 2019 11:16 PM
-To: Zhao, Yong; airlied@linux.ie; Deucher, Alexander; amd-gfx@lists.freedes=
-ktop.org; ast@kernel.org; bpf@vger.kernel.org; Koenig, Christian; daniel@ff=
-wll.ch; daniel@iogearbox.net; davem@davemloft.net; Zhou, David(ChunMing); d=
-ri-devel@lists.freedesktop.org; Quan, Evan; Kuehling, Felix; Wentland, Harr=
-y; kafai@fb.com; kuznet@ms2.inr.ac.ru; linux-kernel@vger.kernel.org; netdev=
-@vger.kernel.org; Zeng, Oak; Huang, Ray; rex.zhu@amd.com; songliubraving@fb=
-.com; syzkaller-bugs@googlegroups.com; yhs@fb.com; Zhao, Yong; yoshfuji@lin=
-ux-ipv6.org
-Subject: Re: WARNING: locking bug in inet_autobind
-
-[CAUTION: External Email]
-
-syzbot has bisected this bug to:
-
-commit c0d9271ecbd891cdeb0fad1edcdd99ee717a655f
-Author: Yong Zhao <Yong.Zhao@amd.com>
-Date:   Fri Feb 1 23:36:21 2019 +0000
-
-     drm/amdgpu: Delete user queue doorbell variables
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=3D1433ece4a000=
-00
-start commit:   f49aa1de Merge tag 'for-5.2-rc1-tag' of git://git.kernel.o.=
-.
-git tree:       net-next
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=3D1633ece4a000=
-00
-console output: https://syzkaller.appspot.com/x/log.txt?x=3D1233ece4a00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=3Dfc045131472947d=
-7
-dashboard link: https://syzkaller.appspot.com/bug?extid=3D94cc2a66fc228b23f=
-360
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=3D163731f8a0000=
-0
-
-Reported-by: syzbot+94cc2a66fc228b23f360@syzkaller.appspotmail.com
-Fixes: c0d9271ecbd8 ("drm/amdgpu: Delete user queue doorbell variables")
-
-For information about bisection process see: https://goo.gl/tpsmEJ#bisectio=
-n
-
---_000_DM6PR12MB27788B3B39A41027C62CEF5EF0000DM6PR12MB2778namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-This commit was reverted later. I guess the revert was probably not picked =
-up properly.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Regards,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Yong</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> syzbot &lt;syzbot&#43=
-;94cc2a66fc228b23f360@syzkaller.appspotmail.com&gt;<br>
-<b>Sent:</b> Tuesday, May 21, 2019 11:16 PM<br>
-<b>To:</b> Zhao, Yong; airlied@linux.ie; Deucher, Alexander; amd-gfx@lists.=
-freedesktop.org; ast@kernel.org; bpf@vger.kernel.org; Koenig, Christian; da=
-niel@ffwll.ch; daniel@iogearbox.net; davem@davemloft.net; Zhou, David(ChunM=
-ing); dri-devel@lists.freedesktop.org;
- Quan, Evan; Kuehling, Felix; Wentland, Harry; kafai@fb.com; kuznet@ms2.inr=
-.ac.ru; linux-kernel@vger.kernel.org; netdev@vger.kernel.org; Zeng, Oak; Hu=
-ang, Ray; rex.zhu@amd.com; songliubraving@fb.com; syzkaller-bugs@googlegrou=
-ps.com; yhs@fb.com; Zhao, Yong;
- yoshfuji@linux-ipv6.org<br>
-<b>Subject:</b> Re: WARNING: locking bug in inet_autobind</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">[CAUTION: External Email]<br>
-<br>
-syzbot has bisected this bug to:<br>
-<br>
-commit c0d9271ecbd891cdeb0fad1edcdd99ee717a655f<br>
-Author: Yong Zhao &lt;Yong.Zhao@amd.com&gt;<br>
-Date:&nbsp;&nbsp; Fri Feb 1 23:36:21 2019 &#43;0000<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp; drm/amdgpu: Delete user queue doorbell variables<b=
-r>
-<br>
-bisection log:&nbsp; <a href=3D"https://syzkaller.appspot.com/x/bisect.txt?=
-x=3D1433ece4a00000">
-https://syzkaller.appspot.com/x/bisect.txt?x=3D1433ece4a00000</a><br>
-start commit:&nbsp;&nbsp; f49aa1de Merge tag 'for-5.2-rc1-tag' of git://git=
-.kernel.o..<br>
-git tree:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; net-next<br>
-final crash:&nbsp;&nbsp;&nbsp; <a href=3D"https://syzkaller.appspot.com/x/r=
-eport.txt?x=3D1633ece4a00000">
-https://syzkaller.appspot.com/x/report.txt?x=3D1633ece4a00000</a><br>
-console output: <a href=3D"https://syzkaller.appspot.com/x/log.txt?x=3D1233=
-ece4a00000">
-https://syzkaller.appspot.com/x/log.txt?x=3D1233ece4a00000</a><br>
-kernel config:&nbsp; <a href=3D"https://syzkaller.appspot.com/x/.config?x=
-=3Dfc045131472947d7">
-https://syzkaller.appspot.com/x/.config?x=3Dfc045131472947d7</a><br>
-dashboard link: <a href=3D"https://syzkaller.appspot.com/bug?extid=3D94cc2a=
-66fc228b23f360">
-https://syzkaller.appspot.com/bug?extid=3D94cc2a66fc228b23f360</a><br>
-syz repro:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=3D"https://syzkaller.appsp=
-ot.com/x/repro.syz?x=3D163731f8a00000">
-https://syzkaller.appspot.com/x/repro.syz?x=3D163731f8a00000</a><br>
-<br>
-Reported-by: syzbot&#43;94cc2a66fc228b23f360@syzkaller.appspotmail.com<br>
-Fixes: c0d9271ecbd8 (&quot;drm/amdgpu: Delete user queue doorbell variables=
-&quot;)<br>
-<br>
-For information about bisection process see: <a href=3D"https://goo.gl/tpsm=
-EJ#bisection">
-https://goo.gl/tpsmEJ#bisection</a><br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_DM6PR12MB27788B3B39A41027C62CEF5EF0000DM6PR12MB2778namp_--
-
---===============1655426836==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1655426836==--
+Rm9yIHBhc3N0aHJvdWdoLCBhZnRlciByZWJvb3RlZCB0aGUgVk0sIGRyaXZlciB3aWxsIGRvCmEg
+YmFjbyByZXNldCBiZWZvcmUgZG9pbmcgb3RoZXIgZHJpdmVyIGluaXRpYWxpemF0aW9uIGR1cmlu
+ZyBsb2FkaW5nCiBkcml2ZXIuIEZvciBkb2luZyB0aGUgYmFjbyByZXNldCwgaXQgd2lsbCBmaXJz
+dApjaGVjayB0aGUgYmFjbyByZXNldCBjYXBhYmlsaXR5LiBTbyBmaXJzdCBuZWVkIHRvIHNldCB0
+aGUKY2FwIGZyb20gdGhlIHZiaW9zIGluZm9ybWF0aW9uIG9yIGJhY28gcmVzZXQgd29uJ3QgYmUK
+ZW5hYmxlZC4KClNpZ25lZC1vZmYtYnk6IEVtaWx5IERlbmcgPEVtaWx5LkRlbmdAYW1kLmNvbT4K
+LS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMgICAgICAgICB8
+ICA4ICsrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2luY2x1ZGUva2dkX3BwX2ludGVyZmFj
+ZS5oICAgICB8ICAxICsKIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2FtZF9wb3dlcnBs
+YXkuYyAgICAgIHwgMTYgKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dl
+cnBsYXkvaHdtZ3IvdmVnYTEwX2h3bWdyLmMgfCAgMSArCiAuLi4vYW1kL3Bvd2VycGxheS9od21n
+ci92ZWdhMTBfcHJvY2Vzc3BwdGFibGVzLmMgICB8IDIyICsrKysrKysrKysrKysrKysrKysrKysK
+IC4uLi9hbWQvcG93ZXJwbGF5L2h3bWdyL3ZlZ2ExMF9wcm9jZXNzcHB0YWJsZXMuaCAgIHwgIDEg
+KwogZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaW5jL2h3bWdyLmggICAgICAgICAgfCAg
+MSArCiA3IGZpbGVzIGNoYW5nZWQsIDUwIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMKaW5kZXggZDYyODZlZC4uMTQ0MTViMyAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RldmljZS5jCisrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwpAQCAtMjYwNiw2ICsyNjA2
+LDE0IEBAIGludCBhbWRncHVfZGV2aWNlX2luaXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYs
+CiAJICogIEUuZy4sIGRyaXZlciB3YXMgbm90IGNsZWFubHkgdW5sb2FkZWQgcHJldmlvdXNseSwg
+ZXRjLgogCSAqLwogCWlmICghYW1kZ3B1X3NyaW92X3ZmKGFkZXYpICYmIGFtZGdwdV9hc2ljX25l
+ZWRfcmVzZXRfb25faW5pdChhZGV2KSkgeworCQlpZiAoYWRldi0+cG93ZXJwbGF5LnBwX2Z1bmNz
+ICYmIGFkZXYtPnBvd2VycGxheS5wcF9mdW5jcy0+c2V0X2FzaWNfYmFjb19jYXApIHsKKwkJCXIg
+PSBhZGV2LT5wb3dlcnBsYXkucHBfZnVuY3MtPnNldF9hc2ljX2JhY29fY2FwKGFkZXYtPnBvd2Vy
+cGxheS5wcF9oYW5kbGUpOworCQkJaWYgKHIpIHsKKwkJCQlkZXZfZXJyKGFkZXYtPmRldiwgInNl
+dCBiYWNvIGNhcGFiaWxpdHkgZmFpbGVkXG4iKTsKKwkJCQlnb3RvIGZhaWxlZDsKKwkJCX0KKwkJ
+fQorCiAJCXIgPSBhbWRncHVfYXNpY19yZXNldChhZGV2KTsKIAkJaWYgKHIpIHsKIAkJCWRldl9l
+cnIoYWRldi0+ZGV2LCAiYXNpYyByZXNldCBvbiBpbml0IGZhaWxlZFxuIik7CmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2luY2x1ZGUva2dkX3BwX2ludGVyZmFjZS5oIGIvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9pbmNsdWRlL2tnZF9wcF9pbnRlcmZhY2UuaAppbmRleCAyYjU3OWJhLi4w
+ZGNjMThkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2luY2x1ZGUva2dkX3BwX2lu
+dGVyZmFjZS5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvaW5jbHVkZS9rZ2RfcHBfaW50ZXJm
+YWNlLmgKQEAgLTI4NSw2ICsyODUsNyBAQCBzdHJ1Y3QgYW1kX3BtX2Z1bmNzIHsKIAlpbnQgKCpz
+ZXRfaGFyZF9taW5fZmNsa19ieV9mcmVxKSh2b2lkICpoYW5kbGUsIHVpbnQzMl90IGNsb2NrKTsK
+IAlpbnQgKCpzZXRfbWluX2RlZXBfc2xlZXBfZGNlZmNsaykodm9pZCAqaGFuZGxlLCB1aW50MzJf
+dCBjbG9jayk7CiAJaW50ICgqZ2V0X2FzaWNfYmFjb19jYXBhYmlsaXR5KSh2b2lkICpoYW5kbGUs
+IGJvb2wgKmNhcCk7CisJaW50ICgqc2V0X2FzaWNfYmFjb19jYXApKHZvaWQgKmhhbmRsZSk7CiAJ
+aW50ICgqZ2V0X2FzaWNfYmFjb19zdGF0ZSkodm9pZCAqaGFuZGxlLCBpbnQgKnN0YXRlKTsKIAlp
+bnQgKCpzZXRfYXNpY19iYWNvX3N0YXRlKSh2b2lkICpoYW5kbGUsIGludCBzdGF0ZSk7CiAJaW50
+ICgqZ2V0X3BwZmVhdHVyZV9zdGF0dXMpKHZvaWQgKmhhbmRsZSwgY2hhciAqYnVmKTsKZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2FtZF9wb3dlcnBsYXkuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2FtZF9wb3dlcnBsYXkuYwppbmRleCBiZWExNTg3
+Li45ODU2NzYwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9hbWRf
+cG93ZXJwbGF5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvYW1kX3Bvd2Vy
+cGxheS5jCkBAIC0xNDA0LDYgKzE0MDQsMjEgQEAgc3RhdGljIGludCBwcF9zZXRfYWN0aXZlX2Rp
+c3BsYXlfY291bnQodm9pZCAqaGFuZGxlLCB1aW50MzJfdCBjb3VudCkKIAlyZXR1cm4gcmV0Owog
+fQogCitzdGF0aWMgaW50IHBwX3NldF9hc2ljX2JhY29fY2FwKHZvaWQgKmhhbmRsZSkKK3sKKwlz
+dHJ1Y3QgcHBfaHdtZ3IgKmh3bWdyID0gaGFuZGxlOworCisJaWYgKCFod21ncikKKwkJcmV0dXJu
+IC1FSU5WQUw7CisKKwlpZiAoIWh3bWdyLT5wbV9lbiB8fCAhaHdtZ3ItPmh3bWdyX2Z1bmMtPnNl
+dF9hc2ljX2JhY29fY2FwKQorCQlyZXR1cm4gMDsKKworCWh3bWdyLT5od21ncl9mdW5jLT5zZXRf
+YXNpY19iYWNvX2NhcChod21ncik7CisKKwlyZXR1cm4gMDsKK30KKwogc3RhdGljIGludCBwcF9n
+ZXRfYXNpY19iYWNvX2NhcGFiaWxpdHkodm9pZCAqaGFuZGxlLCBib29sICpjYXApCiB7CiAJc3Ry
+dWN0IHBwX2h3bWdyICpod21nciA9IGhhbmRsZTsKQEAgLTE1NDYsNiArMTU2MSw3IEBAIHN0YXRp
+YyBjb25zdCBzdHJ1Y3QgYW1kX3BtX2Z1bmNzIHBwX2RwbV9mdW5jcyA9IHsKIAkuc2V0X2hhcmRf
+bWluX2RjZWZjbGtfYnlfZnJlcSA9IHBwX3NldF9oYXJkX21pbl9kY2VmY2xrX2J5X2ZyZXEsCiAJ
+LnNldF9oYXJkX21pbl9mY2xrX2J5X2ZyZXEgPSBwcF9zZXRfaGFyZF9taW5fZmNsa19ieV9mcmVx
+LAogCS5nZXRfYXNpY19iYWNvX2NhcGFiaWxpdHkgPSBwcF9nZXRfYXNpY19iYWNvX2NhcGFiaWxp
+dHksCisJLnNldF9hc2ljX2JhY29fY2FwID0gcHBfc2V0X2FzaWNfYmFjb19jYXAsCiAJLmdldF9h
+c2ljX2JhY29fc3RhdGUgPSBwcF9nZXRfYXNpY19iYWNvX3N0YXRlLAogCS5zZXRfYXNpY19iYWNv
+X3N0YXRlID0gcHBfc2V0X2FzaWNfYmFjb19zdGF0ZSwKIAkuZ2V0X3BwZmVhdHVyZV9zdGF0dXMg
+PSBwcF9nZXRfcHBmZWF0dXJlX3N0YXR1cywKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvcG93ZXJwbGF5L2h3bWdyL3ZlZ2ExMF9od21nci5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9w
+b3dlcnBsYXkvaHdtZ3IvdmVnYTEwX2h3bWdyLmMKaW5kZXggZWQ2YzYzOC4uOGRjMjNlYiAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvdmVnYTEwX2h3bWdy
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvdmVnYTEwX2h3bWdy
+LmMKQEAgLTUxNzEsNiArNTE3MSw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcHBfaHdtZ3JfZnVu
+YyB2ZWdhMTBfaHdtZ3JfZnVuY3MgPSB7CiAJLm9kbl9lZGl0X2RwbV90YWJsZSA9IHZlZ2ExMF9v
+ZG5fZWRpdF9kcG1fdGFibGUsCiAJLmdldF9wZXJmb3JtYW5jZV9sZXZlbCA9IHZlZ2ExMF9nZXRf
+cGVyZm9ybWFuY2VfbGV2ZWwsCiAJLmdldF9hc2ljX2JhY29fY2FwYWJpbGl0eSA9IHNtdTlfYmFj
+b19nZXRfY2FwYWJpbGl0eSwKKwkuc2V0X2FzaWNfYmFjb19jYXAgPSB2ZWdhMTBfYmFjb19zZXRf
+Y2FwLAogCS5nZXRfYXNpY19iYWNvX3N0YXRlID0gc211OV9iYWNvX2dldF9zdGF0ZSwKIAkuc2V0
+X2FzaWNfYmFjb19zdGF0ZSA9IHZlZ2ExMF9iYWNvX3NldF9zdGF0ZSwKIAkuZW5hYmxlX21ncHVf
+ZmFuX2Jvb3N0ID0gdmVnYTEwX2VuYWJsZV9tZ3B1X2Zhbl9ib29zdCwKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3ZlZ2ExMF9wcm9jZXNzcHB0YWJsZXMu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3ZlZ2ExMF9wcm9jZXNzcHB0
+YWJsZXMuYwppbmRleCBiNjc2N2Q3Li44ZmRlYjIzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vYW1kL3Bvd2VycGxheS9od21nci92ZWdhMTBfcHJvY2Vzc3BwdGFibGVzLmMKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvdmVnYTEwX3Byb2Nlc3NwcHRhYmxlcy5j
+CkBAIC0xMzcxLDMgKzEzNzEsMjUgQEAgaW50IHZlZ2ExMF9nZXRfcG93ZXJwbGF5X3RhYmxlX2Vu
+dHJ5KHN0cnVjdCBwcF9od21nciAqaHdtZ3IsCiAKIAlyZXR1cm4gcmVzdWx0OwogfQorCitpbnQg
+dmVnYTEwX2JhY29fc2V0X2NhcChzdHJ1Y3QgcHBfaHdtZ3IgKmh3bWdyKQoreworCWludCByZXN1
+bHQgPSAwOworCWNvbnN0IEFUT01fVmVnYTEwX1BPV0VSUExBWVRBQkxFICpwb3dlcnBsYXlfdGFi
+bGU7CisKKwlwb3dlcnBsYXlfdGFibGUgPSBnZXRfcG93ZXJwbGF5X3RhYmxlKGh3bWdyKTsKKwor
+CVBQX0FTU0VSVF9XSVRIX0NPREUoKHBvd2VycGxheV90YWJsZSAhPSBOVUxMKSwKKwkJIk1pc3Np
+bmcgUG93ZXJQbGF5IFRhYmxlISIsIHJldHVybiAtMSk7CisKKwlyZXN1bHQgPSBjaGVja19wb3dl
+cnBsYXlfdGFibGVzKGh3bWdyLCBwb3dlcnBsYXlfdGFibGUpOworCisJUFBfQVNTRVJUX1dJVEhf
+Q09ERSgocmVzdWx0ID09IDApLAorCQkJICAgICJjaGVja19wb3dlcnBsYXlfdGFibGVzIGZhaWxl
+ZCIsIHJldHVybiByZXN1bHQpOworCisJc2V0X2h3X2NhcCgKKwkJCWh3bWdyLAorCQkJMCAhPSAo
+bGUzMl90b19jcHUocG93ZXJwbGF5X3RhYmxlLT51bFBsYXRmb3JtQ2FwcykgJiBBVE9NX1ZFR0Ex
+MF9QUF9QTEFURk9STV9DQVBfQkFDTyksCisJCQlQSE1fUGxhdGZvcm1DYXBzX0JBQ08pOworCXJl
+dHVybiByZXN1bHQ7Cit9ClwgTm8gbmV3bGluZSBhdCBlbmQgb2YgZmlsZQpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvdmVnYTEwX3Byb2Nlc3NwcHRhYmxl
+cy5oIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvdmVnYTEwX3Byb2Nlc3Nw
+cHRhYmxlcy5oCmluZGV4IGQ4M2VkMmEuLmRhNWZiZWMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3ZlZ2ExMF9wcm9jZXNzcHB0YWJsZXMuaAorKysgYi9k
+cml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9od21nci92ZWdhMTBfcHJvY2Vzc3BwdGFibGVz
+LmgKQEAgLTU5LDQgKzU5LDUgQEAgZXh0ZXJuIGludCB2ZWdhMTBfZ2V0X251bWJlcl9vZl9wb3dl
+cnBsYXlfdGFibGVfZW50cmllcyhzdHJ1Y3QgcHBfaHdtZ3IgKmh3bWdyKTsKIGV4dGVybiBpbnQg
+dmVnYTEwX2dldF9wb3dlcnBsYXlfdGFibGVfZW50cnkoc3RydWN0IHBwX2h3bWdyICpod21nciwg
+dWludDMyX3QgZW50cnlfaW5kZXgsCiAJCXN0cnVjdCBwcF9wb3dlcl9zdGF0ZSAqcG93ZXJfc3Rh
+dGUsIGludCAoKmNhbGxfYmFja19mdW5jKShzdHJ1Y3QgcHBfaHdtZ3IgKiwgdm9pZCAqLAogCQkJ
+CXN0cnVjdCBwcF9wb3dlcl9zdGF0ZSAqLCB2b2lkICosIHVpbnQzMl90KSk7CitleHRlcm4gaW50
+IHZlZ2ExMF9iYWNvX3NldF9jYXAoc3RydWN0IHBwX2h3bWdyICpod21ncik7CiAjZW5kaWYKZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2luYy9od21nci5oIGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaW5jL2h3bWdyLmgKaW5kZXggYmFjM2Q4NS4uMTQ0
+ODBhZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaW5jL2h3bWdy
+LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaW5jL2h3bWdyLmgKQEAgLTMz
+OSw2ICszMzksNyBAQCBzdHJ1Y3QgcHBfaHdtZ3JfZnVuYyB7CiAJaW50ICgqc2V0X2hhcmRfbWlu
+X2RjZWZjbGtfYnlfZnJlcSkoc3RydWN0IHBwX2h3bWdyICpod21nciwgdWludDMyX3QgY2xvY2sp
+OwogCWludCAoKnNldF9oYXJkX21pbl9mY2xrX2J5X2ZyZXEpKHN0cnVjdCBwcF9od21nciAqaHdt
+Z3IsIHVpbnQzMl90IGNsb2NrKTsKIAlpbnQgKCpnZXRfYXNpY19iYWNvX2NhcGFiaWxpdHkpKHN0
+cnVjdCBwcF9od21nciAqaHdtZ3IsIGJvb2wgKmNhcCk7CisJaW50ICgqc2V0X2FzaWNfYmFjb19j
+YXApKHN0cnVjdCBwcF9od21nciAqaHdtZ3IpOwogCWludCAoKmdldF9hc2ljX2JhY29fc3RhdGUp
+KHN0cnVjdCBwcF9od21nciAqaHdtZ3IsIGVudW0gQkFDT19TVEFURSAqc3RhdGUpOwogCWludCAo
+KnNldF9hc2ljX2JhY29fc3RhdGUpKHN0cnVjdCBwcF9od21nciAqaHdtZ3IsIGVudW0gQkFDT19T
+VEFURSBzdGF0ZSk7CiAJaW50ICgqZ2V0X3BwZmVhdHVyZV9zdGF0dXMpKHN0cnVjdCBwcF9od21n
+ciAqaHdtZ3IsIGNoYXIgKmJ1Zik7Ci0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9hbWQtZ2Z4
