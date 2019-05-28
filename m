@@ -2,85 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 525BF2BFDB
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 May 2019 09:03:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 878BC2C005
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 May 2019 09:23:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5E5689BAB;
-	Tue, 28 May 2019 07:03:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7CFF89BBE;
+	Tue, 28 May 2019 07:23:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760087.outbound.protection.outlook.com [40.107.76.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07B8689BAB
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 May 2019 07:03:39 +0000 (UTC)
-Received: from DM5PR12MB1546.namprd12.prod.outlook.com (10.172.36.23) by
- DM5PR12MB1436.namprd12.prod.outlook.com (10.168.239.7) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.20; Tue, 28 May 2019 07:03:36 +0000
-Received: from DM5PR12MB1546.namprd12.prod.outlook.com
- ([fe80::e1b1:5b6f:b2df:afa5]) by DM5PR12MB1546.namprd12.prod.outlook.com
- ([fe80::e1b1:5b6f:b2df:afa5%7]) with mapi id 15.20.1922.021; Tue, 28 May 2019
- 07:03:36 +0000
-From: "Koenig, Christian" <Christian.Koenig@amd.com>
-To: "Quan, Evan" <Evan.Quan@amd.com>, "Deng, Emily" <Emily.Deng@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu: Don't need to call csb_vram_unpin
-Thread-Topic: [PATCH] drm/amdgpu: Don't need to call csb_vram_unpin
-Thread-Index: AQHVFGgBi9fHbs1R+UCq4weXpQUTlqZ+zoCAgAD1l1CAAFoCAA==
-Date: Tue, 28 May 2019 07:03:36 +0000
-Message-ID: <82dfcb34-109c-b7d6-c511-404008589869@amd.com>
-References: <1558946487-18034-1-git-send-email-Emily.Deng@amd.com>
- <e15ac75c-fb1a-2a05-b857-d3761f5c905e@gmail.com>
- <MN2PR12MB3344714A52B709FCE058F48DE41E0@MN2PR12MB3344.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB3344714A52B709FCE058F48DE41E0@MN2PR12MB3344.namprd12.prod.outlook.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06AFD89BBE
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 May 2019 07:23:44 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id v19so1552331wmh.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 May 2019 00:23:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language;
+ bh=EKc8GdL+TS0X9WWPiLYxtlJXJ6dGElaywK7XBXJyD0o=;
+ b=OiRmUlHanErPntDhnjjtqQBbUWwgpAM/ZB2opOENEwkREWx/Ti5tVEcKwV11cSM/lu
+ OFzuR8NrzlXILT3FQKaDfSy+zYmQdmkqVDq+egQi6Oh6S6UB92K7uRuAV7P9fh9LrpbK
+ k22DRcs3lB5wg/fRqUPCIdd+qjXid2eeirSYIuQ2u3yeT7jJBWkV9/K8S14XsI0ybXbW
+ nvbDeZb6Jf4b/sz9iP/lW0gd3iBeXZvQx8KwGvOfFVrYPSEcsvkvwh0ZQndApXySW9Nb
+ M92EVuJW6rxWxnNjIJr1cN0RYvnxbHmBKZXomkSUSQJLHBYThYymLCxKnKqBKUiBKKDs
+ WxZg==
+X-Gm-Message-State: APjAAAWe2p0gPKAOHdbQsYPpcPOBNzwG5WCwtHFV2UZ3x/8JT9wy3eje
+ n/8DZKeG40Z6UbpbWoYeAdPSQ4/n
+X-Google-Smtp-Source: APXvYqyuGce5MlZlbbYZHuxai1KJiGLfmrQk8p+wVqXZIEYJqz8B/lZcecimSsFNdDseK3fRtXK/Iw==
+X-Received: by 2002:a1c:e3c3:: with SMTP id a186mr2008871wmh.5.1559028222411; 
+ Tue, 28 May 2019 00:23:42 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id s11sm26159065wrb.71.2019.05.28.00.23.41
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 28 May 2019 00:23:41 -0700 (PDT)
+Subject: Re: [PATCH] drm/amdgpu: fix ring test failure issue during s3 in vce
+ 3.0
+To: "Li, Ching-shih (Louis)" <Ching-shih.Li@amd.com>,
+ "Liu, Leo" <Leo.Liu@amd.com>, "S, Shirish" <Shirish.S@amd.com>,
+ "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>,
+ "Zhang, Jerry" <Jerry.Zhang@amd.com>, "Deng, Emily" <Emily.Deng@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <1558942936-16519-1-git-send-email-shirish.s@amd.com>
+ <c2e96ff1-522f-4d1d-f312-9209a63e58ce@amd.com>
+ <MN2PR12MB34398CEE701707E25781E9A2AA1D0@MN2PR12MB3439.namprd12.prod.outlook.com>
+ <70c3ff3e-1f14-fcd6-e533-8e224fe0b976@amd.com>
+ <MN2PR12MB3439645C85B84D0382352D04AA1D0@MN2PR12MB3439.namprd12.prod.outlook.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <3763ca45-b90e-dac9-f2a7-35aee4dc2548@gmail.com>
+Date: Tue, 28 May 2019 09:23:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
-x-originating-ip: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-x-clientproxiedby: AM6PR0202CA0006.eurprd02.prod.outlook.com
- (2603:10a6:209:15::19) To DM5PR12MB1546.namprd12.prod.outlook.com
- (2603:10b6:4:8::23)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 43e25409-673d-4b0a-d468-08d6e33a9a9e
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:DM5PR12MB1436; 
-x-ms-traffictypediagnostic: DM5PR12MB1436:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: <DM5PR12MB14366B0583F3D073E6C54CF7831E0@DM5PR12MB1436.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1265;
-x-forefront-prvs: 00514A2FE6
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(136003)(396003)(346002)(39860400002)(366004)(376002)(189003)(199004)(13464003)(53936002)(73956011)(6246003)(305945005)(5660300002)(64126003)(71200400001)(966005)(65826007)(229853002)(65956001)(66556008)(66946007)(86362001)(6512007)(66476007)(6306002)(66446008)(65806001)(76176011)(64756008)(31696002)(68736007)(81156014)(6436002)(8676002)(7736002)(6486002)(81166006)(25786009)(2906002)(8936002)(478600001)(6116002)(110136005)(52116002)(14454004)(102836004)(99286004)(446003)(11346002)(72206003)(2616005)(476003)(486006)(186003)(14444005)(256004)(71190400001)(31686004)(46003)(386003)(6506007)(53546011)(36756003)(316002)(58126008)(2501003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1436;
- H:DM5PR12MB1546.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 98joeK8cOEyIC29DZxbRY8zqZrbHGXrGbifAD42b6OIwbpBSGhhTF1E7q9h/y0uCSYRcRbxENDrLniUUp9HNrXVpZajF74TGT8/sXJCaPpQFk7TDrS9NV9G3eS6IT8StAtNy6YR8f5Hpu7IiK3M1w77ncaq2DMXGosUiI0Z3IlBM8amNjY+J6O7xzBzKPe6kdkpWqrmCouddI5syxs7D6vaTELNTxhOJP+jfKodZvhDBrfATHy+0ogWtXmdQMBmJdoa4JVB9EQb4RvJBqP+gjRh+grC9P9RYw6gOD6WQu85lc7P0yu0t9QfspoLqwhofSBESGTqZRzd/m+ddoQDfCkyEe1xDN7ANBCFmTcXHKRb2Vx4NHkAZHOOXJTODpq0Q81KAAg7AoFcY7WjcHNr+/wPXrbXZwcjhon15teD1n58=
-Content-ID: <8206F439B877154B946F884D02C62AAB@namprd12.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43e25409-673d-4b0a-d468-08d6e33a9a9e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 May 2019 07:03:36.4275 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ckoenig@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1436
+In-Reply-To: <MN2PR12MB3439645C85B84D0382352D04AA1D0@MN2PR12MB3439.namprd12.prod.outlook.com>
+Content-Language: en-US
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aw/FLE68wSjUTqOyPhuqgZcRqEvc6bucQzQ5cmW8rTY=;
- b=MUQSGLAtgdza45XrES88+w4RvW+XK+3MBC654RUVZD9VliC2FCAjnIFmlLmB+w4mQ06wIacl08qn4bH11ZL9MB2P5GlGRJZ5l5v63YleR7Vmn1bU/K+HXciCSXf9YBNIBCyMjBNT/jx/0iskXzjutvCzg7GHqqqmJ49xeU0SIiA=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Christian.Koenig@amd.com; 
+ d=gmail.com; s=20161025;
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language;
+ bh=EKc8GdL+TS0X9WWPiLYxtlJXJ6dGElaywK7XBXJyD0o=;
+ b=qU+kpqC0YarZTvGDhBaDUj0EN/Hi0BlvB5lgtGb/UAVS7iekR16ytILUoh5H6ejb70
+ CmBJfRo9GnLeviYdrGnh7gU+0bhw5kQrYwyKmvIxo39olfr3RUwmokPKaK7SOOUisr9i
+ hquwQFJ5YU+xrUA191zUYZgh+I0pReqy35O0b7ICsLnW7fodk/lEw+Gg1W3WuQ4TnA3a
+ IgUHLaIf0yV8axGUPtnT7MJSJFoTaBSFSufPOI+jurcVpnJAIuo4x9WOFKuhX4UAc32N
+ +A4VfBt34/Vosc7NxI3r8Xzq8mqkHqn1KpuJTHNNWHSJKTHhRuRMf/raRPxdqzsMkBBa
+ XKSg==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -92,48 +79,540 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: christian.koenig@amd.com
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0781689964=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T2sgaW4gdGhpcyBjYXNlIHRoZSBwYXRjaCBpcyBhIE5BSy4NCg0KVGhlIGNvcnJlY3Qgc29sdXRp
-b24gaXMgdG8gc3RvcCB1c2luZyBhbWRncHVfYm9fZnJlZV9rZXJuZWwgaW4gDQpnZnhfdjlfMF9z
-d19maW5pLg0KDQpCVFc6IEFyZSB3ZSB1c2luZyB0aGUga2VybmVsIHBvaW50ZXIgc29tZXdoZXJl
-PyBDYXVzZSB0aGF0IG9uZSBiZWNhbWUgDQpjb21wbGV0ZWx5IGludmFsaWQgYmVjYXVzZSBvZiBw
-YXRjaCAiZHJtL2FtZGdwdTogcGluIHRoZSBjc2IgYnVmZmVyIG9uIA0KaHcgaW5pdCIuDQoNCkNo
-cmlzdGlhbi4NCg0KQW0gMjguMDUuMTkgdW0gMDM6NDIgc2NocmllYiBRdWFuLCBFdmFuOg0KPiBU
-aGUgb3JpZ2luYWwgdW5waW4gaW4gaHdfZmluaSB3YXMgaW50cm9kdWNlZCBieQ0KPiBodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9hbWQtZ2Z4LzIwMTgtSnVseS8wMjM2ODEu
-aHRtbA0KPg0KPiBFdmFuDQo+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPj4gRnJvbTog
-YW1kLWdmeCA8YW1kLWdmeC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxm
-IE9mDQo+PiBDaHJpc3RpYW4gSz9uaWcNCj4+IFNlbnQ6IE1vbmRheSwgTWF5IDI3LCAyMDE5IDc6
-MDIgUE0NCj4+IFRvOiBEZW5nLCBFbWlseSA8RW1pbHkuRGVuZ0BhbWQuY29tPjsgYW1kLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcNCj4+IFN1YmplY3Q6IFJlOiBbUEFUQ0hdIGRybS9hbWRncHU6
-IERvbid0IG5lZWQgdG8gY2FsbCBjc2JfdnJhbV91bnBpbg0KPj4NCj4+IEFtIDI3LjA1LjE5IHVt
-IDEwOjQxIHNjaHJpZWIgRW1pbHkgRGVuZzoNCj4+PiBBcyBpdCB3aWxsIGRlc3Ryb3kgY2xlYXJf
-c3RhdGVfb2JqLCBhbmQgYWxzbyB3aWxsIHVucGluIGl0IGluIHRoZQ0KPj4+IGdmeF92OV8wX3N3
-X2ZpbmksIHNvIGRvbid0IG5lZWQgdG8gY2FsbCBjc2JfdnJhbSB1bnBpbiBpbg0KPj4+IGdmeF92
-OV8wX2h3X2ZpbmksIG9yIGl0IHdpbGwgaGF2ZSB1bnBpbiB3YXJuaW5nLg0KPj4+DQo+Pj4gdjI6
-IEZvciBzdXNwZW5kLCBzdGlsbCBuZWVkIHRvIGRvIHVucGluDQo+Pj4NCj4+PiBTaWduZWQtb2Zm
-LWJ5OiBFbWlseSBEZW5nIDxFbWlseS5EZW5nQGFtZC5jb20+DQo+Pj4gLS0tDQo+Pj4gICAgZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYyB8IDMgKystDQo+Pj4gICAgMSBmaWxl
-IGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPj4+DQo+Pj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OV8wLmMNCj4+PiBiL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OV8wLmMNCj4+PiBpbmRleCA1ZWI3MGU4Li41YjFm
-ZjQ4IDEwMDY0NA0KPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OV8w
-LmMNCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jDQo+Pj4g
-QEAgLTMzOTUsNyArMzM5NSw4IEBAIHN0YXRpYyBpbnQgZ2Z4X3Y5XzBfaHdfZmluaSh2b2lkICpo
-YW5kbGUpDQo+Pj4gICAgCWdmeF92OV8wX2NwX2VuYWJsZShhZGV2LCBmYWxzZSk7DQo+Pj4gICAg
-CWFkZXYtPmdmeC5ybGMuZnVuY3MtPnN0b3AoYWRldik7DQo+Pj4NCj4+PiAtCWdmeF92OV8wX2Nz
-Yl92cmFtX3VucGluKGFkZXYpOw0KPj4+ICsJaWYgKGFkZXYtPmluX3N1c3BlbmQpDQo+Pj4gKwkJ
-Z2Z4X3Y5XzBfY3NiX3ZyYW1fdW5waW4oYWRldik7DQo+PiBUaGF0IGRvZXNuJ3QgbG9va3MgbGlr
-ZSBhIGdvb2QgaWRlYSB0byBtZS4NCj4+DQo+PiBXaHkgZG8gd2UgaGF2ZSB1bnBpbiBib3RoIGlu
-IHRoZSBzd19maW5pIGFzIHdlbGwgYXMgdGhlIGh3X2ZpbmkgY29kZSBwYXRocz8NCj4+DQo+PiBS
-ZWdhcmRzLA0KPj4gQ2hyaXN0aWFuLg0KPj4NCj4+PiAgICAJcmV0dXJuIDA7DQo+Pj4gICAgfQ0K
-Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+IGFt
-ZC1nZnggbWFpbGluZyBsaXN0DQo+PiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPj4g
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4DQoN
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZngg
-bWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+This is a multi-part message in MIME format.
+--===============0781689964==
+Content-Type: multipart/alternative;
+ boundary="------------DE0E2CF00C82A2CFA063BC64"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------DE0E2CF00C82A2CFA063BC64
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Wow, really good catch!
+
+The underlying problem is most likely that VCE block is either power or 
+clock gated and because of this the readptr read always returns zero.
+
+Now amdgpu_ring_alloc() informs the power management code that the block 
+is about to be used and so the gating is turned off.
+
+Mhm, that is probably wrong at a hole bunch of other places, at least 
+the UVD and VCN code comes to mind.
+
+I agree with Leo that you should remove the original read (so to not 
+read twice) and it would be realy nice if you could double check the 
+other code (UVD/VCN) for similar problems as well.
+
+Regards,
+Christian.
+
+Am 27.05.19 um 19:20 schrieb Li, Ching-shih (Louis):
+>
+> I don’t mean to read it twice. The solution is to make first read 
+> later. I didn’t modify the original code to make code difference less 
+> and simple. I guess it should work to remove the original read there.
+>
+> *From:*Liu, Leo <Leo.Liu@amd.com>
+> *Sent:* Tuesday, May 28, 2019 12:40 AM
+> *To:* Li, Ching-shih (Louis) <Ching-shih.Li@amd.com>; S, Shirish 
+> <Shirish.S@amd.com>; Grodzovsky, Andrey <Andrey.Grodzovsky@amd.com>; 
+> Zhang, Jerry <Jerry.Zhang@amd.com>; Deng, Emily <Emily.Deng@amd.com>; 
+> Deucher, Alexander <Alexander.Deucher@amd.com>
+> *Cc:* amd-gfx@lists.freedesktop.org
+> *Subject:* Re: [PATCH] drm/amdgpu: fix ring test failure issue during 
+> s3 in vce 3.0
+>
+> int amdgpu_vce_ring_test_ring(struct amdgpu_ring *ring)
+> {
+>     struct amdgpu_device *adev = ring->adev;
+>
+>     uint32_t rptr = amdgpu_ring_get_rptr(ring);
+>
+>     unsigned i;
+>     int r, timeout = adev->usec_timeout;
+>
+>     /* skip ring test for sriov*/
+>     if (amdgpu_sriov_vf(adev))
+>         return 0;
+>
+>     r = amdgpu_ring_alloc(ring, 16);
+>     if (r)
+>         return r;
+>
+>     amdgpu_ring_write(ring, VCE_CMD_END);
+>     amdgpu_ring_commit(ring);
+>
+> Above is original code, rptr is updated when called, and below is your 
+> patch, my question is why do you need to get rptr twice?
+>
+> @@ -1084,6 +1084,8 @@ int amdgpu_vce_ring_test_ring(struct amdgpu_ring *ring)
+>          if (r)
+>                 return r;
+>   
+> +       rptr = amdgpu_ring_get_rptr(ring);
+> +
+>          amdgpu_ring_write(ring, VCE_CMD_END);
+>          amdgpu_ring_commit(ring);
+>   
+>
+> On 5/27/19 12:22 PM, Li, Ching-shih (Louis) wrote:
+>
+>     Hi Leo,
+>
+>     Yes, I confirm it is the root cause *for the Chrome S3 issue*.
+>     Whenever system is resumed, the original instruction always gets
+>     zero. However, I have no idea why it fails, and didn’t verify this
+>     problem on CRB or any other Linux platform yet.
+>
+>     Although I think the ideal solution is an indicator, e.g. a
+>     register, for driver to check if related firmware and hardware are
+>     ready to work. So driver can make sure it is ok to read rptr.
+>     Without any reference document, I can only try to solve the
+>     problem by modifying driver. Debug traces reveal that only first
+>     rptr read fails, but the read in check loop is ok. Therefore, a
+>     solution comes to mind: to update rptr later for initial rptr
+>     value. Tests prove it working in Chrome platforms. Fyi~
+>
+>     BR,
+>
+>     Louis
+>
+>     *From:*Liu, Leo <Leo.Liu@amd.com> <mailto:Leo.Liu@amd.com>
+>     *Sent:* Monday, May 27, 2019 9:01 PM
+>     *To:* S, Shirish <Shirish.S@amd.com> <mailto:Shirish.S@amd.com>;
+>     Grodzovsky, Andrey <Andrey.Grodzovsky@amd.com>
+>     <mailto:Andrey.Grodzovsky@amd.com>; Zhang, Jerry
+>     <Jerry.Zhang@amd.com> <mailto:Jerry.Zhang@amd.com>; Deng, Emily
+>     <Emily.Deng@amd.com> <mailto:Emily.Deng@amd.com>; Deucher,
+>     Alexander <Alexander.Deucher@amd.com>
+>     <mailto:Alexander.Deucher@amd.com>
+>     *Cc:* amd-gfx@lists.freedesktop.org
+>     <mailto:amd-gfx@lists.freedesktop.org>; Li, Ching-shih (Louis)
+>     <Ching-shih.Li@amd.com> <mailto:Ching-shih.Li@amd.com>
+>     *Subject:* Re: [PATCH] drm/amdgpu: fix ring test failure issue
+>     during s3 in vce 3.0
+>
+>     On 5/27/19 3:42 AM, S, Shirish wrote:
+>
+>         From: Louis Li<Ching-shih.Li@amd.com>  <mailto:Ching-shih.Li@amd.com>
+>
+>           
+>
+>         [What]
+>
+>         vce ring test fails consistently during resume in s3 cycle, due to
+>
+>         mismatch read & write pointers.
+>
+>         On debug/analysis its found that rptr to be compared is not being
+>
+>         correctly updated/read, which leads to this failure.
+>
+>         Below is the failure signature:
+>
+>            [drm:amdgpu_vce_ring_test_ring] *ERROR* amdgpu: ring 12 test failed
+>
+>            [drm:amdgpu_device_ip_resume_phase2] *ERROR* resume of IP block <vce_v3_0> failed -110
+>
+>            [drm:amdgpu_device_resume] *ERROR* amdgpu_device_ip_resume failed (-110).
+>
+>           
+>
+>         [How]
+>
+>         fetch rptr appropriately, meaning move its read location further down
+>
+>         in the code flow.
+>
+>         With this patch applied the s3 failure is no more seen for >5k s3 cycles,
+>
+>         which otherwise is pretty consistent.
+>
+>           
+>
+>         Signed-off-by: Louis Li<Ching-shih.Li@amd.com>  <mailto:Ching-shih.Li@amd.com>
+>
+>         ---
+>
+>           drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 2 ++
+>
+>           1 file changed, 2 insertions(+)
+>
+>           
+>
+>         diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+>
+>         index c021b11..92f9d46 100644
+>
+>         --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+>
+>         +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+>
+>         @@ -1084,6 +1084,8 @@ int amdgpu_vce_ring_test_ring(struct amdgpu_ring *ring)
+>
+>            if (r)
+>
+>                   return r;
+>
+>           
+>
+>         + rptr = amdgpu_ring_get_rptr(ring);
+>
+>         +
+>
+>     The rptr update is there:
+>
+>     |        uint32_t rptr = amdgpu_ring_get_rptr(ring);|
+>
+>     ||
+>
+>     |Are you sure this is the root cause?|
+>
+>     ||
+>
+>     |Regards,|
+>
+>     |Leo|
+>
+>     ||
+>
+>           
+>
+>            amdgpu_ring_write(ring, VCE_CMD_END);
+>
+>            amdgpu_ring_commit(ring);
+>
+>           
+>
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+
+--------------DE0E2CF00C82A2CFA063BC64
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Wow, really good catch!<br>
+      <br>
+      The underlying problem is most likely that VCE block is either
+      power or clock gated and because of this the readptr read always
+      returns zero.<br>
+      <br>
+      Now amdgpu_ring_alloc() informs the power management code that the
+      block is about to be used and so the gating is turned off.<br>
+      <br>
+      Mhm, that is probably wrong at a hole bunch of other places, at
+      least the UVD and VCN code comes to mind.<br>
+      <br>
+      I agree with Leo that you should remove the original read (so to
+      not read twice) and it would be realy nice if you could double
+      check the other code (UVD/VCN) for similar problems as well.<br>
+      <br>
+      Regards,<br>
+      Christian.<br>
+      <br>
+      Am 27.05.19 um 19:20 schrieb Li, Ching-shih (Louis):<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:MN2PR12MB3439645C85B84D0382352D04AA1D0@MN2PR12MB3439.namprd12.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:新細明體;
+	panose-1:2 2 5 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@新細明體";
+	panose-1:2 1 6 1 0 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+code
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	color:black;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;
+	color:black;}
+span.EmailStyle22
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle23
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span style="color:windowtext">I don’t mean
+            to read it twice. The solution is to make first read later.
+            I didn’t modify the original code to make code difference
+            less and simple. I guess it should work to remove the
+            original read there.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:windowtext"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="color:windowtext"><o:p> </o:p></span></p>
+        <div>
+          <div style="border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0in 0in 0in">
+            <p class="MsoNormal"><b><span style="color:windowtext">From:</span></b><span
+                style="color:windowtext"> Liu, Leo
+                <a class="moz-txt-link-rfc2396E" href="mailto:Leo.Liu@amd.com">&lt;Leo.Liu@amd.com&gt;</a>
+                <br>
+                <b>Sent:</b> Tuesday, May 28, 2019 12:40 AM<br>
+                <b>To:</b> Li, Ching-shih (Louis)
+                <a class="moz-txt-link-rfc2396E" href="mailto:Ching-shih.Li@amd.com">&lt;Ching-shih.Li@amd.com&gt;</a>; S, Shirish
+                <a class="moz-txt-link-rfc2396E" href="mailto:Shirish.S@amd.com">&lt;Shirish.S@amd.com&gt;</a>; Grodzovsky, Andrey
+                <a class="moz-txt-link-rfc2396E" href="mailto:Andrey.Grodzovsky@amd.com">&lt;Andrey.Grodzovsky@amd.com&gt;</a>; Zhang, Jerry
+                <a class="moz-txt-link-rfc2396E" href="mailto:Jerry.Zhang@amd.com">&lt;Jerry.Zhang@amd.com&gt;</a>; Deng, Emily
+                <a class="moz-txt-link-rfc2396E" href="mailto:Emily.Deng@amd.com">&lt;Emily.Deng@amd.com&gt;</a>; Deucher, Alexander
+                <a class="moz-txt-link-rfc2396E" href="mailto:Alexander.Deucher@amd.com">&lt;Alexander.Deucher@amd.com&gt;</a><br>
+                <b>Cc:</b> <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><br>
+                <b>Subject:</b> Re: [PATCH] drm/amdgpu: fix ring test
+                failure issue during s3 in vce 3.0<o:p></o:p></span></p>
+          </div>
+        </div>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p>int amdgpu_vce_ring_test_ring(struct amdgpu_ring *ring)<br>
+          {<br>
+              struct amdgpu_device *adev = ring-&gt;adev;<o:p></o:p></p>
+        <p><span style="color:red">    uint32_t rptr =
+            amdgpu_ring_get_rptr(ring);</span><o:p></o:p></p>
+        <p>    unsigned i;<br>
+              int r, timeout = adev-&gt;usec_timeout;<br>
+          <br>
+              /* skip ring test for sriov*/<br>
+              if (amdgpu_sriov_vf(adev))<br>
+                  return 0;<br>
+          <br>
+              r = amdgpu_ring_alloc(ring, 16);<br>
+              if (r)<br>
+                  return r;<br>
+          <br>
+              amdgpu_ring_write(ring, VCE_CMD_END);<br>
+              amdgpu_ring_commit(ring);<o:p></o:p></p>
+        <p><o:p> </o:p></p>
+        <p>Above is original code, rptr is updated when called, and
+          below is your patch, my question is why do you need to get
+          rptr twice?<o:p></o:p></p>
+        <pre>@@ -1084,6 +1084,8 @@ int amdgpu_vce_ring_test_ring(struct amdgpu_ring *ring)<o:p></o:p></pre>
+        <pre>        if (r)<o:p></o:p></pre>
+        <pre>               return r;<o:p></o:p></pre>
+        <pre> <o:p></o:p></pre>
+        <pre>+       rptr = amdgpu_ring_get_rptr(ring);<o:p></o:p></pre>
+        <pre>+<o:p></o:p></pre>
+        <pre>        amdgpu_ring_write(ring, VCE_CMD_END);<o:p></o:p></pre>
+        <pre>        amdgpu_ring_commit(ring);<o:p></o:p></pre>
+        <pre> <o:p></o:p></pre>
+        <p><o:p> </o:p></p>
+        <div>
+          <p class="MsoNormal">On 5/27/19 12:22 PM, Li, Ching-shih
+            (Louis) wrote:<o:p></o:p></p>
+        </div>
+        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+          <p class="MsoNormal"><span style="color:windowtext">Hi Leo,</span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="color:windowtext"> </span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="color:windowtext">Yes, I
+              confirm it is the root cause
+              <b>for the Chrome S3 issue</b>. Whenever system is
+              resumed, the original instruction always gets zero.
+              However, I have no idea why it fails, and didn’t verify
+              this problem on CRB or any other Linux platform yet.</span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="color:windowtext">Although I
+              think the ideal solution is an indicator, e.g. a register,
+              for driver to check if related firmware and hardware are
+              ready to work. So driver can make sure it is ok to read
+              rptr. Without any reference document, I can only try to
+              solve the problem by modifying driver. Debug traces reveal
+              that only first rptr read fails, but the read in check
+              loop is ok. Therefore, a solution comes to mind: to update
+              rptr later for initial rptr value. Tests prove it working
+              in Chrome platforms. Fyi~</span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="color:windowtext"> </span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="color:windowtext">BR,</span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="color:windowtext">Louis</span><o:p></o:p></p>
+          <p class="MsoNormal"><span style="color:windowtext"> </span><o:p></o:p></p>
+          <div>
+            <div style="border:none;border-top:solid #E1E1E1
+              1.0pt;padding:3.0pt 0in 0in 0in">
+              <p class="MsoNormal"><b><span style="color:windowtext">From:</span></b><span
+                  style="color:windowtext"> Liu, Leo
+                  <a href="mailto:Leo.Liu@amd.com"
+                    moz-do-not-send="true">&lt;Leo.Liu@amd.com&gt;</a> <br>
+                  <b>Sent:</b> Monday, May 27, 2019 9:01 PM<br>
+                  <b>To:</b> S, Shirish <a
+                    href="mailto:Shirish.S@amd.com"
+                    moz-do-not-send="true">&lt;Shirish.S@amd.com&gt;</a>;
+                  Grodzovsky, Andrey
+                  <a href="mailto:Andrey.Grodzovsky@amd.com"
+                    moz-do-not-send="true">&lt;Andrey.Grodzovsky@amd.com&gt;</a>;
+                  Zhang, Jerry
+                  <a href="mailto:Jerry.Zhang@amd.com"
+                    moz-do-not-send="true">&lt;Jerry.Zhang@amd.com&gt;</a>;
+                  Deng, Emily <a href="mailto:Emily.Deng@amd.com"
+                    moz-do-not-send="true">
+                    &lt;Emily.Deng@amd.com&gt;</a>; Deucher, Alexander <a
+                    href="mailto:Alexander.Deucher@amd.com"
+                    moz-do-not-send="true">
+                    &lt;Alexander.Deucher@amd.com&gt;</a><br>
+                  <b>Cc:</b> <a
+                    href="mailto:amd-gfx@lists.freedesktop.org"
+                    moz-do-not-send="true">amd-gfx@lists.freedesktop.org</a>;
+                  Li, Ching-shih (Louis)
+                  <a href="mailto:Ching-shih.Li@amd.com"
+                    moz-do-not-send="true">&lt;Ching-shih.Li@amd.com&gt;</a><br>
+                  <b>Subject:</b> Re: [PATCH] drm/amdgpu: fix ring test
+                  failure issue during s3 in vce 3.0</span><o:p></o:p></p>
+            </div>
+          </div>
+          <p class="MsoNormal"> <o:p></o:p></p>
+          <p> <o:p></o:p></p>
+          <div>
+            <p class="MsoNormal">On 5/27/19 3:42 AM, S, Shirish wrote:<o:p></o:p></p>
+          </div>
+          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+            <pre>From: Louis Li <a href="mailto:Ching-shih.Li@amd.com" moz-do-not-send="true">&lt;Ching-shih.Li@amd.com&gt;</a><o:p></o:p></pre>
+            <pre> <o:p></o:p></pre>
+            <pre>[What]<o:p></o:p></pre>
+            <pre>vce ring test fails consistently during resume in s3 cycle, due to<o:p></o:p></pre>
+            <pre>mismatch read &amp; write pointers.<o:p></o:p></pre>
+            <pre>On debug/analysis its found that rptr to be compared is not being<o:p></o:p></pre>
+            <pre>correctly updated/read, which leads to this failure.<o:p></o:p></pre>
+            <pre>Below is the failure signature:<o:p></o:p></pre>
+            <pre>  [drm:amdgpu_vce_ring_test_ring] *ERROR* amdgpu: ring 12 test failed<o:p></o:p></pre>
+            <pre>  [drm:amdgpu_device_ip_resume_phase2] *ERROR* resume of IP block &lt;vce_v3_0&gt; failed -110<o:p></o:p></pre>
+            <pre>  [drm:amdgpu_device_resume] *ERROR* amdgpu_device_ip_resume failed (-110).<o:p></o:p></pre>
+            <pre> <o:p></o:p></pre>
+            <pre>[How]<o:p></o:p></pre>
+            <pre>fetch rptr appropriately, meaning move its read location further down<o:p></o:p></pre>
+            <pre>in the code flow.<o:p></o:p></pre>
+            <pre>With this patch applied the s3 failure is no more seen for &gt;5k s3 cycles,<o:p></o:p></pre>
+            <pre>which otherwise is pretty consistent.<o:p></o:p></pre>
+            <pre> <o:p></o:p></pre>
+            <pre>Signed-off-by: Louis Li <a href="mailto:Ching-shih.Li@amd.com" moz-do-not-send="true">&lt;Ching-shih.Li@amd.com&gt;</a><o:p></o:p></pre>
+            <pre>---<o:p></o:p></pre>
+            <pre> drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 2 ++<o:p></o:p></pre>
+            <pre> 1 file changed, 2 insertions(+)<o:p></o:p></pre>
+            <pre> <o:p></o:p></pre>
+            <pre>diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c<o:p></o:p></pre>
+            <pre>index c021b11..92f9d46 100644<o:p></o:p></pre>
+            <pre>--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c<o:p></o:p></pre>
+            <pre>+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c<o:p></o:p></pre>
+            <pre>@@ -1084,6 +1084,8 @@ int amdgpu_vce_ring_test_ring(struct amdgpu_ring *ring)<o:p></o:p></pre>
+            <pre>  if (r)<o:p></o:p></pre>
+            <pre>         return r;<o:p></o:p></pre>
+            <pre> <o:p></o:p></pre>
+            <pre>+ rptr = amdgpu_ring_get_rptr(ring);<o:p></o:p></pre>
+            <pre>+<o:p></o:p></pre>
+          </blockquote>
+          <p>The rptr update is there:<o:p></o:p></p>
+          <pre><code>        uint32_t rptr = amdgpu_ring_get_rptr(ring);</code><o:p></o:p></pre>
+          <pre><code> </code><o:p></o:p></pre>
+          <pre><code>Are you sure this is the root cause?</code><o:p></o:p></pre>
+          <pre><code> </code><o:p></o:p></pre>
+          <pre><code>Regards,</code><o:p></o:p></pre>
+          <pre><code>Leo</code><o:p></o:p></pre>
+          <pre><code> </code><o:p></o:p></pre>
+          <p> <o:p></o:p></p>
+          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+            <pre> <o:p></o:p></pre>
+            <pre>  amdgpu_ring_write(ring, VCE_CMD_END);<o:p></o:p></pre>
+            <pre>  amdgpu_ring_commit(ring);<o:p></o:p></pre>
+            <pre> <o:p></o:p></pre>
+          </blockquote>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+amd-gfx mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a></pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------DE0E2CF00C82A2CFA063BC64--
+
+--===============0781689964==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0781689964==--
