@@ -2,65 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6DA310B1
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2019 16:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9EC03112C
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2019 17:21:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 794848959D;
-	Fri, 31 May 2019 14:56:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B29E48932B;
+	Fri, 31 May 2019 15:21:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com
- [IPv6:2607:f8b0:4864:20::644])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A68289503
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2019 14:29:22 +0000 (UTC)
-Received: by mail-pl1-x644.google.com with SMTP id s24so3953818plr.8
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2019 07:29:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=evy368hWiI+gBYUbtpZ/Z/NwaFGt0gP/Ku0Se7jRDIs=;
- b=PYshz0Ry4QUfoOuFysw47EHY7/gqdrha5pgxiU8QB9u2vWvawB863L9XaHQYlzqwi1
- G2gQJBCdAaijtMF7goQrQkAReD1vs6v+WNxbEK6HVsuDNxJUhIDtTSMSbF9l66CV1YIB
- ah/Fzcu7RvVRLV+NS43hfJhP+y5eU4FTnUC3CH2K/F4JIEqgeYt8CfRcek9ufAK0XxiN
- +ikoKZN/+tzX51M4cSCf+aLyt7d1fvkMOqwdrB0XlX7Dr85UENnpZ2lEYxp1KHAUTXEJ
- v3wgBJHvoq7OJEYs7HFnkgNb2HcqtvLfta+XzcMe+Qc6dedpdo+U6nx/yfvbnU+qWhqv
- JZ6g==
-X-Gm-Message-State: APjAAAWSBDISCamqiS1f7eaxrrFk4ngL8IK63WOb0gUXGTYQGwEQ6wQp
- aNDE5oVeas0hBk9glPusFHiwig/PF4ZEw8L9fq89bg==
-X-Google-Smtp-Source: APXvYqzZNq7ZmlghEU+anyWYnwjjhfBSO821IIVYI0unmJhzupp13rZUJ7jf2s8ZHPUTRKkSRgHsOXgkfcRcIwbO8eo=
-X-Received: by 2002:a17:902:8609:: with SMTP id
- f9mr9244481plo.252.1559312961740; 
- Fri, 31 May 2019 07:29:21 -0700 (PDT)
+Received: from mx0-35.i-mecca.net (mx0-35.i-mecca.net [76.74.184.203])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 112EB892EA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2019 15:21:42 +0000 (UTC)
+Received: from mx0.ehosting.ca (localhost [127.0.0.1])
+ by mx0.i-mecca.net (Postfix) with ESMTP id 6CBBB5660F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2019 08:21:41 -0700 (PDT)
+Received: from ns14.i-mecca.net (unknown [192.168.1.14])
+ by mx0.i-mecca.net (Postfix) with ESMTP id 669E556625
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2019 08:21:40 -0700 (PDT)
+X-MES: 1.0
+Received: from [192.168.1.73] (d75-155-248-241.bchsia.telus.net
+ [75.155.248.241])
+ by ns14.i-mecca.net (Postfix) with ESMTPSA id 141AF1405DE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2019 08:21:39 -0700 (PDT)
+Subject: Re: Quick question for the mobile Raven Ridge auto-rotate function
+To: amd-gfx@lists.freedesktop.org
+References: <887af196-43f2-558c-452c-eb2e1d6b6ef6@fedoraproject.org>
+ <BN6PR12MB180917AF61EFC6D23B09AB60F71E0@BN6PR12MB1809.namprd12.prod.outlook.com>
+From: Luya Tshimbalanga <luya@fedoraproject.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=luya@fedoraproject.org; prefer-encrypt=mutual; keydata=
+ mQENBE80KckBCADCg3mex8NGgBsSbFwZsgSoeyuvCAgDWojZKDvJFJUCjtkAXXIG3Xs9pL9X
+ x3nOLK6/FTudl47gSK9Fp0OHLpDmYaNtgYLx2sS9jEsZK4eDaluy3rVV+QJmLhICn5oflaFN
+ x8+hZAVrW6t5cHfoKPfI8lljyBqISLx01cdF1fG71vXsNhiiw1laD1Ys/k3oq3mVYROP7j3O
+ y9tq0cPGdlj6VZ9YjuqGnGkKTrzF6LJnyDcDjeAqFafIFdRqtYP2CM8R9uzpVXz2qPIBIZkb
+ uSz2b4TUI+jA1UF0JpcXI18/nx4WQievtQjWGhF/md1KFa+EnI+he0Eg3Z6oOEYpeKK5ABEB
+ AAG0XEx1eWEgVHNoaW1iYWxhbmdhIChDb250cmlidXRvciBzcGVjaWFsaXplZCBpbiBkZXNp
+ Z24gYW5kIHBhY2thZ2luZykgPGx1eWFAZmVkb3JhcHJvamVjdC5vcmc+iQE7BBMBAgAlAhsD
+ BgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAUCTzQsUAIZAQAKCRBeUoF02KJgmpW4CACWN9qu
+ iuyfwAEQXlzXiZNOixqyUnxANxGkWcjt7sjtBTE5dKlxMe3pLy6nIu1ko/S1f6qEw2vtL8hY
+ syq8L+hFFLT+UShwKNaO9zDFwcn7IU4BN+vgS8gFgo5T8C93v4l9AnqPFhlpRayiKrE9j4oG
+ lTXcyMhy2vRVT7K68Th5N1Ar5BlaTgeVyzW6Af8YIk/QnQA1d3GnX3K8T4Qo/rZy0KAjrWFZ
+ NdU6jjxv8HCpx7s6+nuf4Ftp0Vj/9XbcYaT+N7r54xlFxgmpjkBQNmwW44Md+UaXUTFICGWP
+ ayAzTsdHAXd1yP/0aFJDmvpHz6Q3vQlrLnquwwm3UwRsS3DjuQENBE80KckBCADgBWArvFlK
+ rjcywh011r6nezQbHtGbDkTbmFMQrmR0oPrEa8vUdUx2NFL8VwIj9rMyvznhbga/ACdZVEnJ
+ 8NB5jBmLGdjGX9uTBE6sKzlxMi/noZls09gG29R8V4VOAHez0GcjRA5jl62mfxm2uVY3kbh5
+ TSQhBYAQy/8vTfhMDSnBdxriyyWGo9E5Ix2dWMDuk5UW2P2EwokxgfGsV/Oi7of1zLvrBBnd
+ 8ciTYC7izajbqJzRzDYRfy4zU83N8LAx145gXsagn+nxXX95p+O8SXw01XHImryIMg+yuAVt
+ 04dSj7vpD1/mdwPFcI/l3KLyOY7+e4ZyYnp3o11YweMXABEBAAGJAR8EGAECAAkFAk80KckC
+ GwwACgkQXlKBdNiiYJq6TQf/edJgvv/zX8TusNNm6PsR6NZVF91HbVhUDcdA1JDptme2svKy
+ evkxraSDd7yATbNoJFFyMENMqV6tO6GUf0m8KsWqDQMjgQRldNghDBEpn5e3TmeI/4ZUGtw/
+ KEm/rcaGSEHpLAVkMB6+BwI+a4F8id/6nSzo9se6NSCMxfLLMfj7ILRR99nvt7vzHgPopWdu
+ s98MI8jr7P7I6AXhC5Hs3p61awseQWn/OohySBPftZ9XNv6WrHNwfeCr1BF7+C0K4uzKfzsd
+ Ez3JVX6tKWJEuRNM5YiMe/MPUoC+lRJxWI3OTGU1/v35SYjVFmL9iV6U0NlzU2/Wan/UCDus
+ xDHSCQ==
+Message-ID: <36ebf17a-7273-fd95-8501-61ac514b44a2@fedoraproject.org>
+Date: Fri, 31 May 2019 08:21:39 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190517144931.GA56186@arrakis.emea.arm.com>
- <CAFKCwrj6JEtp4BzhqO178LFJepmepoMx=G+YdC8sqZ3bcBp3EQ@mail.gmail.com>
- <20190521182932.sm4vxweuwo5ermyd@mbp> <201905211633.6C0BF0C2@keescook>
- <6049844a-65f5-f513-5b58-7141588fef2b@oracle.com>
- <20190523201105.oifkksus4rzcwqt4@mbp>
- <ffe58af3-7c70-d559-69f6-1f6ebcb0fec6@oracle.com>
- <20190524101139.36yre4af22bkvatx@mbp>
- <c6dd53d8-142b-3d8d-6a40-d21c5ee9d272@oracle.com>
- <CAAeHK+yAUsZWhp6xPAbWewX5Nbw+-G3svUyPmhXu5MVeEDKYvA@mail.gmail.com>
- <20190530171540.GD35418@arrakis.emea.arm.com>
-In-Reply-To: <20190530171540.GD35418@arrakis.emea.arm.com>
-From: Andrey Konovalov <andreyknvl@google.com>
-Date: Fri, 31 May 2019 16:29:10 +0200
-Message-ID: <CAAeHK+y34+SNz3Vf+_378bOxrPaj_3GaLCeC2Y2rHAczuaSz1A@mail.gmail.com>
-Subject: Re: [PATCH v15 00/17] arm64: untag user pointers passed to the kernel
-To: Catalin Marinas <catalin.marinas@arm.com>
-X-Mailman-Approved-At: Fri, 31 May 2019 14:56:47 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=evy368hWiI+gBYUbtpZ/Z/NwaFGt0gP/Ku0Se7jRDIs=;
- b=sQG2/gyFbhvQgnnYVMoq8Kda68VVztjS6NpVGpn+TJ/0x1CnUPLFGI7CfwhDx4Acpv
- +b2SfJPlJiXKHOPX0vraeScgQBz7b7Nl6PyJKu6e145lCoysI0y6J5myuuCSNlucfPw4
- OziFqAsvBRMmxzPBSxXT6y9ZOWT1qftFo2UhubNHkIM+xAKIuSxRN1IDkqLlB5D+IEDh
- 9Lbkk942zOUUnqGLz1d6wvbTAZV2QEf8AYds1RPyvHK7XFYBgL+gUTiPMyMH1+mL85z0
- rHLvvgL9h/d8SCsWwDzjC1mOEMEITHFigTDJGZoVkvgiZ6th+Bg/aZrVlKENNn6Dl+G9
- 3qvw==
+In-Reply-To: <BN6PR12MB180917AF61EFC6D23B09AB60F71E0@BN6PR12MB1809.namprd12.prod.outlook.com>
+Content-Language: en-CA
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -72,69 +72,141 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, kvm@vger.kernel.org,
- Szabolcs Nagy <Szabolcs.Nagy@arm.com>, Will Deacon <will.deacon@arm.com>,
- dri-devel@lists.freedesktop.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- Khalid Aziz <khalid.aziz@oracle.com>,
- "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
- Vincenzo Frascino <vincenzo.frascino@arm.com>,
- Jacob Bramley <Jacob.Bramley@arm.com>, Leon Romanovsky <leon@kernel.org>,
- linux-rdma@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Dmitry Vyukov <dvyukov@google.com>, Dave Martin <Dave.Martin@arm.com>,
- Evgenii Stepanov <eugenis@google.com>, linux-media@vger.kernel.org,
- Kevin Brodsky <kevin.brodsky@arm.com>, Kees Cook <keescook@chromium.org>,
- Ruben Ayrapetyan <Ruben.Ayrapetyan@arm.com>,
- Ramana Radhakrishnan <Ramana.Radhakrishnan@arm.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Yishai Hadas <yishaih@mellanox.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Kostya Serebryany <kcc@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>, LKML <linux-kernel@vger.kernel.org>,
- Jens Wiklander <jens.wiklander@linaro.org>, Lee Smith <Lee.Smith@arm.com>,
- Alexander Deucher <Alexander.Deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>, Elliott Hughes <enh@google.com>,
- Robin Murphy <robin.murphy@arm.com>,
- Christian Koenig <Christian.Koenig@amd.com>,
- Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1832820560=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBNYXkgMzAsIDIwMTkgYXQgNzoxNSBQTSBDYXRhbGluIE1hcmluYXMgPGNhdGFsaW4u
-bWFyaW5hc0Bhcm0uY29tPiB3cm90ZToKPgo+IE9uIFR1ZSwgTWF5IDI4LCAyMDE5IGF0IDA0OjE0
-OjQ1UE0gKzAyMDAsIEFuZHJleSBLb25vdmFsb3Ygd3JvdGU6Cj4gPiBUaGFua3MgZm9yIGEgbG90
-IG9mIHZhbHVhYmxlIGlucHV0ISBJJ3ZlIHJlYWQgdGhyb3VnaCBhbGwgdGhlIHJlcGxpZXMKPiA+
-IGFuZCBnb3Qgc29tZXdoYXQgbG9zdC4gV2hhdCBhcmUgdGhlIGNoYW5nZXMgSSBuZWVkIHRvIGRv
-IHRvIHRoaXMKPiA+IHNlcmllcz8KPiA+Cj4gPiAxLiBTaG91bGQgSSBtb3ZlIHVudGFnZ2luZyBm
-b3IgbWVtb3J5IHN5c2NhbGxzIGJhY2sgdG8gdGhlIGdlbmVyaWMKPiA+IGNvZGUgc28gb3RoZXIg
-YXJjaGVzIHdvdWxkIG1ha2UgdXNlIG9mIGl0IGFzIHdlbGwsIG9yIHNob3VsZCBJIGtlZXAKPiA+
-IHRoZSBhcm02NCBzcGVjaWZpYyBtZW1vcnkgc3lzY2FsbHMgd3JhcHBlcnMgYW5kIGFkZHJlc3Mg
-dGhlIGNvbW1lbnRzCj4gPiBvbiB0aGF0IHBhdGNoPwo+Cj4gS2VlcCB0aGVtIGdlbmVyaWMgYWdh
-aW4gYnV0IG1ha2Ugc3VyZSB3ZSBnZXQgYWdyZWVtZW50IHdpdGggS2hhbGlkIG9uCj4gdGhlIGFj
-dHVhbCBBQkkgaW1wbGljYXRpb25zIGZvciBzcGFyYy4KCk9LLCB3aWxsIGRvLiBJIGZpbmQgaXQg
-aGFyZCB0byB1bmRlcnN0YW5kIHdoYXQgdGhlIEFCSSBpbXBsaWNhdGlvbnMKYXJlLiBJJ2xsIHBv
-c3QgdGhlIG5leHQgdmVyc2lvbiB3aXRob3V0IHVudGFnZ2luZyBpbiBicmssIG1tYXAsCm11bm1h
-cCwgbXJlbWFwIChmb3IgbmV3X2FkZHJlc3MpLCBtbWFwX3Bnb2ZmLCByZW1hcF9maWxlX3BhZ2Vz
-LCBzaG1hdAphbmQgc2htZHQuCgo+Cj4gPiAyLiBTaG91bGQgSSBtYWtlIHVudGFnZ2luZyBvcHQt
-aW4gYW5kIGNvbnRyb2xsZWQgYnkgYSBjb21tYW5kIGxpbmUgYXJndW1lbnQ/Cj4KPiBPcHQtaW4s
-IHllcywgYnV0IHBlciB0YXNrIHJhdGhlciB0aGFuIGtlcm5lbCBjb21tYW5kIGxpbmUgb3B0aW9u
-Lgo+IHByY3RsKCkgaXMgYSBwb3NzaWJpbGl0eSBvZiBvcHRpbmcgaW4uCgpPSy4gU2hvdWxkIEkg
-c3RvcmUgYSBmbGFnIHNvbWV3aGVyZSBpbiB0YXNrX3N0cnVjdD8gU2hvdWxkIGl0IGJlCmluaGVy
-aXRhYmxlIG9uIGNsb25lPwoKPgo+ID4gMy4gU2hvdWxkIEkgImFkZCBEb2N1bWVudGF0aW9uL2Nv
-cmUtYXBpL3VzZXItYWRkcmVzc2VzLnJzdCB0byBkZXNjcmliZQo+ID4gcHJvcGVyIGNhcmUgYW5k
-IGhhbmRsaW5nIG9mIHVzZXIgc3BhY2UgcG9pbnRlcnMgd2l0aCB1bnRhZ2dlZF9hZGRyKCksCj4g
-PiB3aXRoIGV4YW1wbGVzIGJhc2VkIG9uIGFsbCB0aGUgY2FzZXMgc2VlbiBzbyBmYXIgaW4gdGhp
-cyBzZXJpZXMiPwo+ID4gV2hpY2ggZXhhbXBsZXMgc3BlY2lmaWNhbGx5IHNob3VsZCBpdCBjb3Zl
-cj8KPgo+IEkgdGhpbmsgd2UgY2FuIGxlYXZlIDMgZm9yIG5vdyBhcyBub3QgdG9vIHVyZ2VudC4g
-V2hhdCBJJ2QgbGlrZSBpcyBmb3IKPiBWaW5jZW56bydzIFRCSSB1c2VyIEFCSSBkb2N1bWVudCB0
-byBnbyBpbnRvIGEgbW9yZSBjb21tb24gcGxhY2Ugc2luY2Ugd2UKPiBjYW4gZXhwYW5kIGl0IHRv
-IGNvdmVyIGJvdGggc3BhcmMgYW5kIGFybTY0LiBXZSdkIG5lZWQgYW4gYXJtNjQtc3BlY2lmaWMK
-PiBkb2MgYXMgd2VsbCBmb3IgdGhpbmdzIGxpa2UgcHJjdGwoKSBhbmQgbGF0ZXIgTVRFIHRoYXQg
-c3BhcmMgbWF5IHN1cHBvcnQKPiBkaWZmZXJlbnRseS4KCk9LLgoKPgo+IC0tCj4gQ2F0YWxpbgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1h
-aWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+This is a multi-part message in MIME format.
+--===============1832820560==
+Content-Type: multipart/alternative;
+ boundary="------------B68E19868D0EC54848F42661"
+Content-Language: en-CA
+
+This is a multi-part message in MIME format.
+--------------B68E19868D0EC54848F42661
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Hello Alex,
+
+Thank you for the update. I will look forward testing that driver on August.
+
+Luya Tshimbalanga
+Fedora Design Team
+
+> Hello team, > > Thank for you making mobile Raven Ridge nearly fully functional
+with the > open source driver for multiple devices like HP Envy x360
+Ryzen 2500u. > However, missing is the ability to auto-rotate the screen
+when switching > from landscape to portrait in tablet mode. > > Which
+channel will be better to request enabling that function in open >
+source driver? See the related issue below: > > Red Hat bug report:
+https://bugzilla.redhat.com/show_bug.cgi?id=1651886 > > Linux kernel
+report: https://bugzilla.kernel.org/show_bug.cgi?id=199715 > > I will be
+willing to test such driver to report the functionality. > > > Thanks in
+advance, > > Luya Tshimbalanga > Fedora Design Team > > >
+_______________________________________________ > amd-gfx mailing list >
+amd-gfx@lists.freedesktop.org >
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx > >
+_______________________________________________ > amd-gfx mailing list >
+amd-gfx@lists.freedesktop.org >
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEWyB+BQtYiFz4GUNDXlKBdNiiYJoFAlzxRn8ACgkQXlKBdNii
+YJrmmwf/ZwkRhYKCctBB+C3eT9dGpGt6WYxu432k0c+UZ+Z+qQtc//S+Yl4MvcNq
+/fZFZaLaUT03P0GJ3GBftuV98b+cyYHTAdeoiasS4uf1mQoh2VWGbppMa8bjERe0
+dSCezqpbyLWucumzgYNsaZtfEExlgf73kwRdXtuoEwVdD9esGEr1LoKVbhuvlmYg
+bzU1WZ8+3Y6MJx1nq783p2kRk5M7z9j20/eYYLYq6dCJNvogwxkR7a0/IAAD8HTs
+2iDjr3jO/9/3zXShpXzkM17Z3Qe1pYHJZbaRzRlchpmc3Xx3N7z4JB/R22UiQAh/
+DDSe1wtybxoD5wi6IOQeqUFrjZP4ww==
+=uYus
+-----END PGP SIGNATURE-----
+
+
+--------------B68E19868D0EC54848F42661
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <br>
+    -----BEGIN PGP SIGNED MESSAGE-----<br>
+    Hash: SHA256<br>
+    <br>
+    Hello Alex,<br>
+    <br>
+    Thank you for the update. I will look forward testing that driver on
+    August.<br>
+    <br>
+    Luya Tshimbalanga<br>
+    Fedora Design Team<br>
+    <br>
+    <span style="white-space: pre-wrap; display: block; width: 98vw;">&gt; Hello team,
+&gt;
+&gt; Thank for you making mobile Raven Ridge nearly fully functional with the
+&gt; open source driver for multiple devices like HP Envy x360 Ryzen 2500u.
+&gt; However, missing is the ability to auto-rotate the screen when switching
+&gt; from landscape to portrait in tablet mode.
+&gt;
+&gt; Which channel will be better to request enabling that function in open
+&gt; source driver? See the related issue below:
+&gt;
+&gt; Red Hat bug report: <a class="moz-txt-link-freetext" href="https://bugzilla.redhat.com/show_bug.cgi?id=1651886">https://bugzilla.redhat.com/show_bug.cgi?id=1651886</a>
+&gt;
+&gt; Linux kernel report: <a class="moz-txt-link-freetext" href="https://bugzilla.kernel.org/show_bug.cgi?id=199715">https://bugzilla.kernel.org/show_bug.cgi?id=199715</a>
+&gt;
+&gt; I will be willing to test such driver to report the functionality.
+&gt;
+&gt;
+&gt; Thanks in advance,
+&gt;
+&gt; Luya Tshimbalanga
+&gt; Fedora Design Team
+&gt;
+&gt;
+&gt; _______________________________________________
+&gt; amd-gfx mailing list
+&gt; <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
+&gt; <a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a>
+&gt;
+&gt; _______________________________________________
+&gt; amd-gfx mailing list
+&gt; <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
+&gt; <a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a>
+</span><br>
+    -----BEGIN PGP SIGNATURE-----<br>
+    <br>
+    iQEzBAEBCAAdFiEEWyB+BQtYiFz4GUNDXlKBdNiiYJoFAlzxRn8ACgkQXlKBdNii<br>
+    YJrmmwf/ZwkRhYKCctBB+C3eT9dGpGt6WYxu432k0c+UZ+Z+qQtc//S+Yl4MvcNq<br>
+    /fZFZaLaUT03P0GJ3GBftuV98b+cyYHTAdeoiasS4uf1mQoh2VWGbppMa8bjERe0<br>
+    dSCezqpbyLWucumzgYNsaZtfEExlgf73kwRdXtuoEwVdD9esGEr1LoKVbhuvlmYg<br>
+    bzU1WZ8+3Y6MJx1nq783p2kRk5M7z9j20/eYYLYq6dCJNvogwxkR7a0/IAAD8HTs<br>
+    2iDjr3jO/9/3zXShpXzkM17Z3Qe1pYHJZbaRzRlchpmc3Xx3N7z4JB/R22UiQAh/<br>
+    DDSe1wtybxoD5wi6IOQeqUFrjZP4ww==<br>
+    =uYus<br>
+    -----END PGP SIGNATURE-----<br>
+    <br>
+  </body>
+</html>
+
+--------------B68E19868D0EC54848F42661--
+
+--===============1832820560==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1832820560==--
