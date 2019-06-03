@@ -1,60 +1,79 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3225E33E52
-	for <lists+amd-gfx@lfdr.de>; Tue,  4 Jun 2019 07:23:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA90633E51
+	for <lists+amd-gfx@lfdr.de>; Tue,  4 Jun 2019 07:23:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5532894C1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6305C8949C;
 	Tue,  4 Jun 2019 05:23:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com
- [IPv6:2607:f8b0:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB62B892AC
- for <amd-gfx@lists.freedesktop.org>; Mon,  3 Jun 2019 17:06:26 +0000 (UTC)
-Received: by mail-pf1-x443.google.com with SMTP id a23so10982321pff.4
- for <amd-gfx@lists.freedesktop.org>; Mon, 03 Jun 2019 10:06:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=HYJoR/zfyv70Em+OIILglCe3XWuiH6p+K727C24pDAs=;
- b=LhcLO2gQIaJNZvaZ7CqRmIZMmMBT+OjVg+N+ziRB3oEwvuJjJv1jEwXup1SQq1pDWO
- hSGJfs3bp5sKpQ+kRb0S47/MKm1u7fe6md/1lzRil+yZII6eDShB6+7pKWaskHCUQoqR
- xMJFwQjX28EMwEPqmxNmJ0zcZs/1+XCZntVJz7WbJCBqza923NHOiw4u5OPZ9d5H7Wzf
- 98XpTFerIzI4Z6/M7rF7FVeSPecyUkTYlo1LQtTL5CkDkk1BPm47tWrwX0YvEqCYnJPq
- 9N6qNA0XBNb7HoSBUBiL8koQf3ujPUrnmFottT/H1X/ODJ99yIBUoJ/GM71EiIBJ+6Ir
- jaEw==
-X-Gm-Message-State: APjAAAV/sc8F0Q/Z5StHHbwYN3KTZyHiL4araybnYhy1i9vD02dvtJkm
- gVX00V+y691w4ja1VcdE2wHagTeLS3E8vWRvRVUg+Q==
-X-Google-Smtp-Source: APXvYqzVD08oLbUBv5TB7pQev79oUx9XvjbFqir2kEseCZEnF7+ERZIlVyBSOpSgKKJ3rEYpDIEwDIElz1nyAoYLJGY=
-X-Received: by 2002:a17:90a:2488:: with SMTP id
- i8mr23649149pje.123.1559581585869; 
- Mon, 03 Jun 2019 10:06:25 -0700 (PDT)
-MIME-Version: 1.0
+Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCF098926B;
+ Mon,  3 Jun 2019 17:25:12 +0000 (UTC)
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x53HJ84U105594;
+ Mon, 3 Jun 2019 17:24:43 GMT
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+ by userp2130.oracle.com with ESMTP id 2sugst8dvs-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 03 Jun 2019 17:24:42 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+ by aserp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x53HO5Kt055049;
+ Mon, 3 Jun 2019 17:24:42 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+ by aserp3030.oracle.com with ESMTP id 2supp77yt1-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 03 Jun 2019 17:24:42 +0000
+Received: from abhmp0013.oracle.com (abhmp0013.oracle.com [141.146.116.19])
+ by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id x53HOdQw028642;
+ Mon, 3 Jun 2019 17:24:39 GMT
+Received: from [192.168.1.16] (/24.9.64.241)
+ by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Mon, 03 Jun 2019 10:24:38 -0700
+Subject: Re: [PATCH v16 01/16] uaccess: add untagged_addr definition for other
+ arches
+To: Andrey Konovalov <andreyknvl@google.com>
 References: <cover.1559580831.git.andreyknvl@google.com>
  <097bc300a5c6554ca6fd1886421bb2e0adb03420.1559580831.git.andreyknvl@google.com>
  <8ff5b0ff-849a-1e0b-18da-ccb5be85dd2b@oracle.com>
-In-Reply-To: <8ff5b0ff-849a-1e0b-18da-ccb5be85dd2b@oracle.com>
-From: Andrey Konovalov <andreyknvl@google.com>
-Date: Mon, 3 Jun 2019 19:06:14 +0200
-Message-ID: <CAAeHK+xX2538e674Pz25unkdFPCO_SH0pFwFu=8+DS7RzfYnLQ@mail.gmail.com>
-Subject: Re: [PATCH v16 01/16] uaccess: add untagged_addr definition for other
- arches
-To: Khalid Aziz <khalid.aziz@oracle.com>
+ <CAAeHK+xX2538e674Pz25unkdFPCO_SH0pFwFu=8+DS7RzfYnLQ@mail.gmail.com>
+From: Khalid Aziz <khalid.aziz@oracle.com>
+Organization: Oracle Corp
+Message-ID: <f6711d31-e52c-473a-d7ad-b2d63131d7a5@oracle.com>
+Date: Mon, 3 Jun 2019 11:24:35 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <CAAeHK+xX2538e674Pz25unkdFPCO_SH0pFwFu=8+DS7RzfYnLQ@mail.gmail.com>
+Content-Language: en-US
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9277
+ signatures=668687
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=800
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1810050000 definitions=main-1906030120
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9277
+ signatures=668687
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ priorityscore=1501 malwarescore=0
+ suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
+ lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=813 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
+ definitions=main-1906030120
 X-Mailman-Approved-At: Tue, 04 Jun 2019 05:23:00 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=HYJoR/zfyv70Em+OIILglCe3XWuiH6p+K727C24pDAs=;
- b=XymoGc7JWCRKHtM+wd/9hGi9VWGsUM72Lwa90KnvQJ358uEmtUgcHoKdtU9g/YH4UJ
- 5u34zZdjU4FRJazo1vFuW3Ni1y1DNZVh/alS1ECRtC3BF7TZUH+GUyZUoEV1ZTcu35tt
- nObul5i9lrx30r8a/e6JYyssLeymB2ctqES0N7//YxV4uMKqEsaUeN3+PzxtLJVdrwsh
- Z/k985v/01dgnrGjVh59cUp9Nom/0K7l3TgAT4n5WZQPD1vgp3vkfuUimZ+Xh+PsD+fW
- QdzcgoJaWOtWSqcWc9IK1QohrHJZ7wW5wsfUIytyUhIb0Cs9PUborvrLgVelRcAz9JGB
- usaQ==
+ d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2018-07-02;
+ bh=oT/Qbn3UCsmi4yHa5dCSEdLGPezhKqW3sHyFd1k2UMQ=;
+ b=2LE6GvdF1Spn4zQDJ/S+Y7Lhctbk5tePOYyaCmnqsyOr3uLvhrds+WPbVc6hPXAu9sIP
+ B0Y1nU/oFPg6ixsYXCZSDZnvxtWWQNi0j+MRjf0CBoAknHC52G/m4p1P8MrAI990VZia
+ 8ujGe7kWSRf7xAIGevSgKmBC3Wct5lXwvZ7qokhMwnYkhd63Cundz/Zl5pnAreMOjiWl
+ HWG+ViIH0FjQ4gxddvAi59ghuxHj+MdKKsrJR6n36wSKJyN/Ok8+n4Cy2uvBvd+9a3r5
+ V3Zqu7KeEDVK/adkgGrKlbvS/ddKrXPyTWM+bUnf/xQW/+CSelKEJwh4J3SpjWi5HA+8 Jg== 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -99,33 +118,17 @@ Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBKdW4gMywgMjAxOSBhdCA3OjA0IFBNIEtoYWxpZCBBeml6IDxraGFsaWQuYXppekBv
-cmFjbGUuY29tPiB3cm90ZToKPgo+IE9uIDYvMy8xOSAxMDo1NSBBTSwgQW5kcmV5IEtvbm92YWxv
-diB3cm90ZToKPiA+IFRvIGFsbG93IGFybTY0IHN5c2NhbGxzIHRvIGFjY2VwdCB0YWdnZWQgcG9p
-bnRlcnMgZnJvbSB1c2Vyc3BhY2UsIHdlIG11c3QKPiA+IHVudGFnIHRoZW0gd2hlbiB0aGV5IGFy
-ZSBwYXNzZWQgdG8gdGhlIGtlcm5lbC4gU2luY2UgdW50YWdnaW5nIGlzIGRvbmUgaW4KPiA+IGdl
-bmVyaWMgcGFydHMgb2YgdGhlIGtlcm5lbCwgdGhlIHVudGFnZ2VkX2FkZHIgbWFjcm8gbmVlZHMg
-dG8gYmUgZGVmaW5lZAo+ID4gZm9yIGFsbCBhcmNoaXRlY3R1cmVzLgo+ID4KPiA+IERlZmluZSBp
-dCBhcyBhIG5vb3AgZm9yIGFyY2hpdGVjdHVyZXMgb3RoZXIgdGhhbiBhcm02NC4KPiA+Cj4gPiBB
-Y2tlZC1ieTogQ2F0YWxpbiBNYXJpbmFzIDxjYXRhbGluLm1hcmluYXNAYXJtLmNvbT4KPiA+IFJl
-dmlld2VkLWJ5OiBLaGFsaWQgQXppeiA8a2hhbGlkLmF6aXpAb3JhY2xlLmNvbT4KPiA+IFNpZ25l
-ZC1vZmYtYnk6IEFuZHJleSBLb25vdmFsb3YgPGFuZHJleWtudmxAZ29vZ2xlLmNvbT4KPiA+IC0t
-LQo+ID4gIGluY2x1ZGUvbGludXgvbW0uaCB8IDQgKysrKwo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA0
-IGluc2VydGlvbnMoKykKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9tbS5oIGIv
-aW5jbHVkZS9saW51eC9tbS5oCj4gPiBpbmRleCAwZTg4MzRhYzMyYjcuLjk0OWQ0M2U5YzBiNiAx
-MDA2NDQKPiA+IC0tLSBhL2luY2x1ZGUvbGludXgvbW0uaAo+ID4gKysrIGIvaW5jbHVkZS9saW51
-eC9tbS5oCj4gPiBAQCAtOTksNiArOTksMTAgQEAgZXh0ZXJuIGludCBtbWFwX3JuZF9jb21wYXRf
-Yml0cyBfX3JlYWRfbW9zdGx5Owo+ID4gICNpbmNsdWRlIDxhc20vcGd0YWJsZS5oPgo+ID4gICNp
-bmNsdWRlIDxhc20vcHJvY2Vzc29yLmg+Cj4gPgo+ID4gKyNpZm5kZWYgdW50YWdnZWRfYWRkcgo+
-ID4gKyNkZWZpbmUgdW50YWdnZWRfYWRkcihhZGRyKSAoYWRkcikKPiA+ICsjZW5kaWYKPiA+ICsK
-PiA+ICAjaWZuZGVmIF9fcGFfc3ltYm9sCj4gPiAgI2RlZmluZSBfX3BhX3N5bWJvbCh4KSAgX19w
-YShSRUxPQ19ISURFKCh1bnNpZ25lZCBsb25nKSh4KSwgMCkpCj4gPiAgI2VuZGlmCj4gPgo+Cj4g
-QW5kcmV5LAo+Cj4gVGhpcyBwYXRjaCBoYXMgbm93IGJlY29tZSBwYXJ0IG9mIHRoZSBvdGhlciBw
-YXRjaCBzZXJpZXMgQ2hyaXMgSGVsbHdpZwo+IGhhcyBzZW50IG91dCAtCj4gPGh0dHBzOi8vbG9y
-ZS5rZXJuZWwub3JnL2xrbWwvMjAxOTA2MDEwNzQ5NTkuMTQwMzYtMS1oY2hAbHN0LmRlLz4uIENh
-bgo+IHlvdSBjb29yZGluYXRlIHdpdGggdGhhdCBwYXRjaCBzZXJpZXM/CgpIaSEKClllcywgSSd2
-ZSBzZWVuIGl0LiBIb3cgc2hvdWxkIEkgY29vcmRpbmF0ZT8gUmViYXNlIHRoaXMgc2VyaWVzIG9u
-IHRvcApvZiB0aGF0IG9uZT8KClRoYW5rcyEKCj4KPiAtLQo+IEtoYWxpZAo+Cl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0
-CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+T24gNi8zLzE5IDExOjA2IEFNLCBBbmRyZXkgS29ub3ZhbG92IHdyb3RlOgo+IE9uIE1vbiwgSnVu
+IDMsIDIwMTkgYXQgNzowNCBQTSBLaGFsaWQgQXppeiA8a2hhbGlkLmF6aXpAb3JhY2xlLmNvbT4g
+d3JvdGU6Cj4+IEFuZHJleSwKPj4KPj4gVGhpcyBwYXRjaCBoYXMgbm93IGJlY29tZSBwYXJ0IG9m
+IHRoZSBvdGhlciBwYXRjaCBzZXJpZXMgQ2hyaXMgSGVsbHdpZwo+PiBoYXMgc2VudCBvdXQgLQo+
+PiA8aHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC8yMDE5MDYwMTA3NDk1OS4xNDAzNi0xLWhj
+aEBsc3QuZGUvPi4gQ2FuCj4+IHlvdSBjb29yZGluYXRlIHdpdGggdGhhdCBwYXRjaCBzZXJpZXM/
+Cj4gCj4gSGkhCj4gCj4gWWVzLCBJJ3ZlIHNlZW4gaXQuIEhvdyBzaG91bGQgSSBjb29yZGluYXRl
+PyBSZWJhc2UgdGhpcyBzZXJpZXMgb24gdG9wCj4gb2YgdGhhdCBvbmU/CgpUaGF0IHdvdWxkIGJl
+IG9uZSB3YXkgdG8gZG8gaXQuIEJldHRlciB5ZXQsIHNlcGFyYXRlIHRoaXMgcGF0Y2ggZnJvbQpi
+b3RoIHBhdGNoIHNlcmllcywgbWFrZSBpdCBzdGFuZGFsb25lIGFuZCB0aGVuIHJlYmFzZSB0aGUg
+dHdvIHBhdGNoCnNlcmllcyBvbiB0b3Agb2YgaXQuCgotLQpLaGFsaWQKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFt
+ZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
