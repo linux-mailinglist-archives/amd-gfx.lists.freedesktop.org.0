@@ -2,84 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A291437796
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2019 17:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 042893786F
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2019 17:46:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4422D89624;
-	Thu,  6 Jun 2019 15:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9858589805;
+	Thu,  6 Jun 2019 15:46:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690068.outbound.protection.outlook.com [40.107.69.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 600FE89624
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2019 15:16:01 +0000 (UTC)
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1268.namprd12.prod.outlook.com (10.168.226.13) with Microsoft SMTP
+Received: from NAM05-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr720082.outbound.protection.outlook.com [40.107.72.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5B4489805
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2019 15:46:39 +0000 (UTC)
+Received: from BN8PR12MB3217.namprd12.prod.outlook.com (20.179.65.149) by
+ BN8PR12MB3107.namprd12.prod.outlook.com (20.178.210.19) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.12; Thu, 6 Jun 2019 15:15:59 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::11ea:d6bc:d2fa:e6d]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::11ea:d6bc:d2fa:e6d%9]) with mapi id 15.20.1965.011; Thu, 6 Jun 2019
- 15:15:59 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>, "Liu, Monk"
- <Monk.Liu@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: FW: [PATCH] drm/ttm: fix ttm client driver (e.g. amdgpu) reload
- issue
-Thread-Topic: FW: [PATCH] drm/ttm: fix ttm client driver (e.g. amdgpu) reload
- issue
-Thread-Index: AQHVG2o1oK4ym/lSLEGLTLW9U8b33qaMqd8AgAA93wCAADu7gIAAOa2AgAFMU4CAABQI8A==
-Date: Thu, 6 Jun 2019 15:15:59 +0000
-Message-ID: <BN6PR12MB1809F73FCA1AC3CA8B91CD1AF7170@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <1559717076-25471-1-git-send-email-Monk.Liu@amd.com>
- <MN2PR12MB393308FE408E9E41EF0D615184160@MN2PR12MB3933.namprd12.prod.outlook.com>
- <8dbf96e5-056f-b2bb-b0d3-9376b92b0140@amd.com>
- <MN2PR12MB39334AC8143DDBC1AA7587E884160@MN2PR12MB3933.namprd12.prod.outlook.com>
- <bb88e890-84c4-5405-85c6-59f02d5a7a61@amd.com>,
- <1ef221b9-f29e-cbd2-488a-d5d0b349e45f@gmail.com>
-In-Reply-To: <1ef221b9-f29e-cbd2-488a-d5d0b349e45f@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
+ 15.20.1965.13; Thu, 6 Jun 2019 15:46:37 +0000
+Received: from BN8PR12MB3217.namprd12.prod.outlook.com
+ ([fe80::e504:4ec4:c1c3:a9f8]) by BN8PR12MB3217.namprd12.prod.outlook.com
+ ([fe80::e504:4ec4:c1c3:a9f8%5]) with mapi id 15.20.1965.011; Thu, 6 Jun 2019
+ 15:46:37 +0000
+From: "Francis, David" <David.Francis@amd.com>
+To: "Kazlauskas, Nicholas" <Nicholas.Kazlauskas@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 2/2] drm/amd/display: Set default ABM level to module
+ parameter
+Thread-Topic: [PATCH 2/2] drm/amd/display: Set default ABM level to module
+ parameter
+Thread-Index: AQHVHGgwPxBA2akei0ecBqhWQyQh9aaOxRwC
+Date: Thu, 6 Jun 2019 15:46:36 +0000
+Message-ID: <BN8PR12MB3217258D94A399DCB6A52536EF170@BN8PR12MB3217.namprd12.prod.outlook.com>
+References: <20190606130213.29249-1-nicholas.kazlauskas@amd.com>,
+ <20190606130213.29249-2-nicholas.kazlauskas@amd.com>
+In-Reply-To: <20190606130213.29249-2-nicholas.kazlauskas@amd.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-CA
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [71.51.161.233]
+x-originating-ip: [165.204.55.250]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0cf4dcbf-4b4b-4f1c-ad81-08d6ea91e1d2
+x-ms-office365-filtering-correlation-id: 17c69daa-5d0f-4a7b-863d-08d6ea9628df
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1268; 
-x-ms-traffictypediagnostic: BN6PR12MB1268:
-x-ms-exchange-purlcount: 4
-x-microsoft-antispam-prvs: <BN6PR12MB1268E6D0626ACAC274615C04F7170@BN6PR12MB1268.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4303;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
+ SRVR:BN8PR12MB3107; 
+x-ms-traffictypediagnostic: BN8PR12MB3107:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BN8PR12MB31076D3F253EC36B586576A3EF170@BN8PR12MB3107.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
 x-forefront-prvs: 00603B7EEF
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(136003)(396003)(376002)(366004)(346002)(39860400002)(13464003)(189003)(199004)(606006)(102836004)(7736002)(478600001)(229853002)(33656002)(11346002)(72206003)(54896002)(9686003)(6116002)(74316002)(8936002)(66946007)(6506007)(446003)(25786009)(53546011)(19627405001)(256004)(6436002)(55016002)(236005)(105004)(71190400001)(6306002)(76176011)(66556008)(966005)(110136005)(186003)(26005)(14454004)(99286004)(71200400001)(7696005)(86362001)(52536014)(76116006)(6246003)(3846002)(81156014)(53936002)(14444005)(66066001)(66446008)(81166006)(64756008)(5660300002)(66574012)(73956011)(476003)(68736007)(2501003)(8676002)(2906002)(316002)(486006)(66476007);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1268;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(376002)(346002)(39860400002)(366004)(136003)(396003)(189003)(199004)(8936002)(66446008)(76116006)(99286004)(102836004)(446003)(486006)(476003)(11346002)(2501003)(91956017)(66476007)(53936002)(33656002)(81156014)(76176011)(5660300002)(66066001)(68736007)(7696005)(2906002)(7736002)(110136005)(6246003)(81166006)(66556008)(73956011)(66946007)(316002)(186003)(64756008)(6506007)(53546011)(8676002)(26005)(4326008)(74316002)(606006)(14454004)(86362001)(6606003)(52536014)(229853002)(3846002)(6436002)(6116002)(25786009)(236005)(55016002)(72206003)(966005)(9686003)(478600001)(54896002)(6306002)(71200400001)(71190400001)(256004)(14444005)(19627405001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB3107;
+ H:BN8PR12MB3217.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: vXkTLNyPGytm8zWxKrhSvum1/FUKxqN2trCwYpTLxUvkhLOgTzLVVxXnWCVpcIE4llv3YxH6bRmywN3xcboj6mqp4Tz2CFGq32PuMnDZC9N+957bLyYLo1ocuYYfItUcweulCtIu8I7Z1CfSRA0VLUuvqsvK3DKyRHHoYsrvXo2mvJVD0O94mJSHA8SMkhrgJtDlEi91+BJOOIsxgVfevZIPjCPQXAcIGsY2KPFaatBzqlP9EOb0HcwLQPltlnBhXzLzCY/qFEJgTYHl9CiEZ+SeV99DUaoPwqckQkHvU0OfUdK/6qAqMgQqkI56OGxUF5kF+RgYDH4YiwsOoqAPTC5GQ0gF1qiNWYlwBZK3zkFW6EGUMGYzg9GHmiSDcv0nhgSVmc9LNUwB4MdWY1jreRWaQEezAT8071cV1CoqD7Q=
+x-microsoft-antispam-message-info: EjTp4ZUecJrewMws8qNt02c0fJKtsI0OqNV4vlcv6NRfAWnvvkKt0btzfrFpJlIqLZ0F5NIT4o6E9GZAQNjNhl5KGVnCmRg59YsiOk0SgnXU+eRuneARlM5Zr802RrwDIrCb/4yvYwY90neU+WRCAtNsCbPxv3hbaEVbNApoIWTLirCCdX0MWU85u9Gr2giXfjBAcC4bl0dzimijHaMmj0tjkKgiT3wsun83vu6GNrW+H1bfH+w0wsQNBcA9kVIokWIkgk8E6xUWSbNU6A1L7tMShC2ESuRlfhmGXPNJUcREY2xXxAjn9GBkVKJwDni+VGl2OoVA7mMcMvRu0HSl1XGc7h5kRzHkNpN8yfxZQULQ/udipTIfkTJZfMHxC0HV88X/J+jYCuWmCMVcEbJgCfkbhRQ5sp9UXmZNfio6hds=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0cf4dcbf-4b4b-4f1c-ad81-08d6ea91e1d2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 15:15:59.8481 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 17c69daa-5d0f-4a7b-863d-08d6ea9628df
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2019 15:46:36.9786 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1268
+X-MS-Exchange-CrossTenant-userprincipalname: fdavid@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3107
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GGe7kfXfEZ2gUo3gjj8pynstQGoQvvC6ofSqWv0D+L8=;
- b=QS0Uu9x0sR4nXw+AfVlcDnIIv3hMiScEX2jcHzsjVM+X13b6feJMU9L3W2v67UjCi4hP6pwxnwrFbkD637BZVPdW2OfScI9xpBR5XTVbMn6SvXnG+2pW8nVVIB2D/Msq5d1uGjALCgCSqe3qdXQqUVnMCrZjq84vdTVFgGqCL9M=
+ bh=SmJoigExOMDvFFK2MJMUitxdhgyqhEkZuTQNBmVmSZY=;
+ b=FF+rWcx/H0l/zPKhpNm/5qqbu8Vm+moxgVzJNfuPbvCNGhA/B9mMDF1MWXy5jG4o8+892rcm6MlPBtTnW/c535xQYCGRHaeC5vtd61EX1RnE7zKjgVqO/mNmYGoK9PBqiOYqqygLjblqq78Fcir3/kiIBnR1l3ObAZYx3aR6E4k=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+ smtp.mailfrom=David.Francis@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -91,144 +86,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1266127080=="
+Cc: "Wentland, Harry" <Harry.Wentland@amd.com>
+Content-Type: multipart/mixed; boundary="===============1388970173=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1266127080==
-Content-Language: en-US
+--===============1388970173==
+Content-Language: en-CA
 Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB1809F73FCA1AC3CA8B91CD1AF7170BN6PR12MB1809namp_"
+	boundary="_000_BN8PR12MB3217258D94A399DCB6A52536EF170BN8PR12MB3217namp_"
 
---_000_BN6PR12MB1809F73FCA1AC3CA8B91CD1AF7170BN6PR12MB1809namp_
+--_000_BN8PR12MB3217258D94A399DCB6A52536EF170BN8PR12MB3217namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-It's upstream:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-id=3Dbd4264112f93045704731850c5e4d85db981cd85
-and in drm-next:
-https://cgit.freedesktop.org/drm/drm/commit/?id=3Dbd4264112f93045704731850c=
-5e4d85db981cd85
-and in amd-staging-drm-next:
-https://cgit.freedesktop.org/~agd5f/linux/commit/?h=3Damd-staging-drm-next&=
-id=3Dbd4264112f93045704731850c5e4d85db981cd85
+Series is
 
-Where are you seeing it missing?
+Reviewed-by: David Francis <David.Francis@amd.com>
 
-Alex
 ________________________________
-From: Christian K?nig <ckoenig.leichtzumerken@gmail.com>
-Sent: Thursday, June 6, 2019 10:00 AM
-To: Koenig, Christian; Liu, Monk; amd-gfx@lists.freedesktop.org; Deucher, A=
-lexander
-Subject: Re: FW: [PATCH] drm/ttm: fix ttm client driver (e.g. amdgpu) reloa=
-d issue
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Nicholas=
+ Kazlauskas <nicholas.kazlauskas@amd.com>
+Sent: June 6, 2019 9:02:13 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Francis, David; Wentland, Harry; Kazlauskas, Nicholas
+Subject: [PATCH 2/2] drm/amd/display: Set default ABM level to module param=
+eter
 
-It is part of amd-staging-drm-next and has Alex Signed-of by tag.
+[Why]
+The module parameter to specify the default ABM level is now defined,
+so hook it up in DM.
 
-So it should definitely be upstream, Alex any idea why that patch isn't
-in drm-next?
+[How]
+On connector reset specify the default level. DC will program this as
+part of the modeset since it gets passed onto the stream in
+dm_update_crtc_state.
 
-Christian.
+It's only set for eDP connectors, but it doesn't matter if this is
+specified for connectors or hardware that doesn't support ABM.
 
-Am 05.06.19 um 20:10 schrieb Koenig, Christian:
-> Mhm, looks like that somehow got dropped during rebase.
->
-> Going to dig up where that actually ended up tomorrow.
->
-> Christian.
->
-> Am 05.06.19 um 16:44 schrieb Liu, Monk:
->> Strange, I get the latest "drm-next" branch and didn't see the change la=
-nded ....
->>
->> /Monk
->>
->> -----Original Message-----
->> From: Koenig, Christian
->> Sent: Wednesday, June 5, 2019 7:11 PM
->> To: Liu, Monk <Monk.Liu@amd.com>; amd-gfx@lists.freedesktop.org
->> Subject: Re: FW: [PATCH] drm/ttm: fix ttm client driver (e.g. amdgpu) re=
-load issue
->>
->> This should already be fixed by patch "drm/ttm: fix re-init of global st=
-ructures".
->>
->> Christian.
->>
->> Am 05.06.19 um 09:29 schrieb Liu, Monk:
->>> -----Original Message-----
->>> From: Monk Liu <Monk.Liu@amd.com>
->>> Sent: Wednesday, June 5, 2019 2:45 PM
->>> To: amd-gfx@lists.freedesktop.org
->>> Cc: Liu, Monk <Monk.Liu@amd.com>
->>> Subject: [PATCH] drm/ttm: fix ttm client driver (e.g. amdgpu) reload
->>> issue
->>>
->>> need to clear bo glob and mem glob during their release otherwise their=
- member value would be wrongly used in the next glob init stage and lead to=
- wild pointer access problems:
->>>
->>> 1) kobj.state_initialized is 1
->>> 2) ttm_bo_glob.bo_count isn't cleared and referenced via it
->>>       on member "swap_lru" would hit out of bound array accessing
->>>       bug
->>>
->>> Signed-off-by: Monk Liu <Monk.Liu@amd.com>
->>> ---
->>>     drivers/gpu/drm/ttm/ttm_bo.c     | 2 ++
->>>     drivers/gpu/drm/ttm/ttm_memory.c | 8 ++++++++
->>>     2 files changed, 10 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
->>> b/drivers/gpu/drm/ttm/ttm_bo.c index c7de667..6434eac 100644
->>> --- a/drivers/gpu/drm/ttm/ttm_bo.c
->>> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
->>> @@ -1604,6 +1604,8 @@ static void ttm_bo_global_kobj_release(struct kob=
-ject *kobj)
->>>              container_of(kobj, struct ttm_bo_global, kobj);
->>>
->>>      __free_page(glob->dummy_read_page);
->>> +
->>> +   memset(glob, 0, sizeof(*glob));
->>>     }
->>>
->>>     static void ttm_bo_global_release(void) diff --git
->>> a/drivers/gpu/drm/ttm/ttm_memory.c b/drivers/gpu/drm/ttm/ttm_memory.c
->>> index 8617958..7128bbf 100644
->>> --- a/drivers/gpu/drm/ttm/ttm_memory.c
->>> +++ b/drivers/gpu/drm/ttm/ttm_memory.c
->>> @@ -229,9 +229,17 @@ static const struct sysfs_ops ttm_mem_global_ops =
-=3D {
->>>      .store =3D &ttm_mem_global_store,
->>>     };
->>>
->>> +void ttm_mem_glob_kobj_release(struct kobject *kobj) {
->>> +   struct ttm_mem_global *glob =3D container_of(kobj, struct
->>> +ttm_mem_global, kobj);
->>> +
->>> +   memset(glob, 0, sizeof(*glob));
->>> +}
->>> +
->>>     static struct kobj_type ttm_mem_glob_kobj_type =3D {
->>>      .sysfs_ops =3D &ttm_mem_global_ops,
->>>      .default_attrs =3D ttm_mem_global_attrs,
->>> +   .release =3D ttm_mem_glob_kobj_release,
->>>     };
->>>
->>>     static bool ttm_zones_above_swap_target(struct ttm_mem_global *glob=
-,
->>> --
->>> 2.7.4
->>>
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+It's DC's responsibility to check that ABM can be set or adjusted, and
+DC does check that the DMCU firmware is running and if there's backlight
+control available.
 
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: David Francis <david.francis@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
---_000_BN6PR12MB1809F73FCA1AC3CA8B91CD1AF7170BN6PR12MB1809namp_
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
+u/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index a698c8f272ed..f0c216d78a07 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3821,6 +3821,9 @@ void amdgpu_dm_connector_funcs_reset(struct drm_conne=
+ctor *connector)
+                 state->underscan_hborder =3D 0;
+                 state->underscan_vborder =3D 0;
+
++               if (connector->connector_type =3D=3D DRM_MODE_CONNECTOR_eDP=
+)
++                       state->abm_level =3D amdgpu_dm_abm_level;
++
+                 __drm_atomic_helper_connector_reset(connector, &state->bas=
+e);
+         }
+ }
+--
+2.17.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN8PR12MB3217258D94A399DCB6A52536EF170BN8PR12MB3217namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -236,196 +170,94 @@ Content-Transfer-Encoding: quoted-printable
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
 <body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-It's upstream:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
-it/commit/?id=3Dbd4264112f93045704731850c5e4d85db981cd85" id=3D"LPlnk109861=
-">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
-/?id=3Dbd4264112f93045704731850c5e4d85db981cd85</a></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-and in drm-next:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<a href=3D"https://cgit.freedesktop.org/drm/drm/commit/?id=3Dbd4264112f9304=
-5704731850c5e4d85db981cd85" id=3D"LPlnk491710">https://cgit.freedesktop.org=
-/drm/drm/commit/?id=3Dbd4264112f93045704731850c5e4d85db981cd85</a></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-and in amd-staging-drm-next:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<a href=3D"https://cgit.freedesktop.org/~agd5f/linux/commit/?h=3Damd-stagin=
-g-drm-next&amp;id=3Dbd4264112f93045704731850c5e4d85db981cd85" id=3D"LPlnk78=
-0545">https://cgit.freedesktop.org/~agd5f/linux/commit/?h=3Damd-staging-drm=
--next&amp;id=3Dbd4264112f93045704731850c5e4d85db981cd85</a></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">Series is</p>
+<p style=3D"margin-top:0;margin-bottom:0">Reviewed-by: David Francis &lt;Da=
+vid.Francis@amd.com&gt;</p>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Where are you seeing it missing?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Alex<br>
-</div>
-<div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Christian K&ouml;nig =
-&lt;ckoenig.leichtzumerken@gmail.com&gt;<br>
-<b>Sent:</b> Thursday, June 6, 2019 10:00 AM<br>
-<b>To:</b> Koenig, Christian; Liu, Monk; amd-gfx@lists.freedesktop.org; Deu=
-cher, Alexander<br>
-<b>Subject:</b> Re: FW: [PATCH] drm/ttm: fix ttm client driver (e.g. amdgpu=
-) reload issue</font>
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Nicholas Kazlauskas &lt;nicho=
+las.kazlauskas@amd.com&gt;<br>
+<b>Sent:</b> June 6, 2019 9:02:13 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org<br>
+<b>Cc:</b> Francis, David; Wentland, Harry; Kazlauskas, Nicholas<br>
+<b>Subject:</b> [PATCH 2/2] drm/amd/display: Set default ABM level to modul=
+e parameter</font>
 <div>&nbsp;</div>
 </div>
 <div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
 ">
-<div class=3D"PlainText">It is part of amd-staging-drm-next and has Alex Si=
-gned-of by tag.<br>
+<div class=3D"PlainText">[Why]<br>
+The module parameter to specify the default ABM level is now defined,<br>
+so hook it up in DM.<br>
 <br>
-So it should definitely be upstream, Alex any idea why that patch isn't <br=
+[How]<br>
+On connector reset specify the default level. DC will program this as<br>
+part of the modeset since it gets passed onto the stream in<br>
+dm_update_crtc_state.<br>
+<br>
+It's only set for eDP connectors, but it doesn't matter if this is<br>
+specified for connectors or hardware that doesn't support ABM.<br>
+<br>
+It's DC's responsibility to check that ABM can be set or adjusted, and<br>
+DC does check that the DMCU firmware is running and if there's backlight<br=
 >
-in drm-next?<br>
+control available.<br>
 <br>
-Christian.<br>
+Cc: Harry Wentland &lt;harry.wentland@amd.com&gt;<br>
+Cc: David Francis &lt;david.francis@amd.com&gt;<br>
+Signed-off-by: Nicholas Kazlauskas &lt;nicholas.kazlauskas@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 &#43;&#43;&#43;=
 <br>
-Am 05.06.19 um 20:10 schrieb Koenig, Christian:<br>
-&gt; Mhm, looks like that somehow got dropped during rebase.<br>
-&gt;<br>
-&gt; Going to dig up where that actually ended up tomorrow.<br>
-&gt;<br>
-&gt; Christian.<br>
-&gt;<br>
-&gt; Am 05.06.19 um 16:44 schrieb Liu, Monk:<br>
-&gt;&gt; Strange, I get the latest &quot;drm-next&quot; branch and didn't s=
-ee the change landed ....<br>
-&gt;&gt;<br>
-&gt;&gt; /Monk<br>
-&gt;&gt;<br>
-&gt;&gt; -----Original Message-----<br>
-&gt;&gt; From: Koenig, Christian<br>
-&gt;&gt; Sent: Wednesday, June 5, 2019 7:11 PM<br>
-&gt;&gt; To: Liu, Monk &lt;Monk.Liu@amd.com&gt;; amd-gfx@lists.freedesktop.=
-org<br>
-&gt;&gt; Subject: Re: FW: [PATCH] drm/ttm: fix ttm client driver (e.g. amdg=
-pu) reload issue<br>
-&gt;&gt;<br>
-&gt;&gt; This should already be fixed by patch &quot;drm/ttm: fix re-init o=
-f global structures&quot;.<br>
-&gt;&gt;<br>
-&gt;&gt; Christian.<br>
-&gt;&gt;<br>
-&gt;&gt; Am 05.06.19 um 09:29 schrieb Liu, Monk:<br>
-&gt;&gt;&gt; -----Original Message-----<br>
-&gt;&gt;&gt; From: Monk Liu &lt;Monk.Liu@amd.com&gt;<br>
-&gt;&gt;&gt; Sent: Wednesday, June 5, 2019 2:45 PM<br>
-&gt;&gt;&gt; To: amd-gfx@lists.freedesktop.org<br>
-&gt;&gt;&gt; Cc: Liu, Monk &lt;Monk.Liu@amd.com&gt;<br>
-&gt;&gt;&gt; Subject: [PATCH] drm/ttm: fix ttm client driver (e.g. amdgpu) =
-reload<br>
-&gt;&gt;&gt; issue<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; need to clear bo glob and mem glob during their release otherw=
-ise their member value would be wrongly used in the next glob init stage an=
-d lead to wild pointer access problems:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; 1) kobj.state_initialized is 1<br>
-&gt;&gt;&gt; 2) ttm_bo_glob.bo_count isn't cleared and referenced via it<br=
->
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; on member &quot;swap_lru&q=
-uot; would hit out of bound array accessing<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bug<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Signed-off-by: Monk Liu &lt;Monk.Liu@amd.com&gt;<br>
-&gt;&gt;&gt; ---<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; drivers/gpu/drm/ttm/ttm_bo.c&nbsp;&nbs=
-p;&nbsp;&nbsp; | 2 &#43;&#43;<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; drivers/gpu/drm/ttm/ttm_memory.c | 8 &=
-#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; 2 files changed, 10 insertions(&#43;)<=
-br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; diff --git a/drivers/gpu/drm/ttm/ttm_bo.c<br>
-&gt;&gt;&gt; b/drivers/gpu/drm/ttm/ttm_bo.c index c7de667..6434eac 100644<b=
-r>
-&gt;&gt;&gt; --- a/drivers/gpu/drm/ttm/ttm_bo.c<br>
-&gt;&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/ttm/ttm_bo.c<br>
-&gt;&gt;&gt; @@ -1604,6 &#43;1604,8 @@ static void ttm_bo_global_kobj_relea=
-se(struct kobject *kobj)<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; container_of(kobj, struct ttm_bo_global, kobj);<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __free_page(glob-&gt;dummy_read_=
-page);<br>
-&gt;&gt;&gt; &#43;<br>
-&gt;&gt;&gt; &#43;&nbsp;&nbsp; memset(glob, 0, sizeof(*glob));<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; static void ttm_bo_global_release(void=
-) diff --git<br>
-&gt;&gt;&gt; a/drivers/gpu/drm/ttm/ttm_memory.c b/drivers/gpu/drm/ttm/ttm_m=
-emory.c<br>
-&gt;&gt;&gt; index 8617958..7128bbf 100644<br>
-&gt;&gt;&gt; --- a/drivers/gpu/drm/ttm/ttm_memory.c<br>
-&gt;&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/ttm/ttm_memory.c<br>
-&gt;&gt;&gt; @@ -229,9 &#43;229,17 @@ static const struct sysfs_ops ttm_mem=
-_global_ops =3D {<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .store =3D &amp;ttm_mem_global_s=
-tore,<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-&gt;&gt;&gt; &#43;void ttm_mem_glob_kobj_release(struct kobject *kobj) {<br=
->
-&gt;&gt;&gt; &#43;&nbsp;&nbsp; struct ttm_mem_global *glob =3D container_of=
-(kobj, struct<br>
-&gt;&gt;&gt; &#43;ttm_mem_global, kobj);<br>
-&gt;&gt;&gt; &#43;<br>
-&gt;&gt;&gt; &#43;&nbsp;&nbsp; memset(glob, 0, sizeof(*glob));<br>
-&gt;&gt;&gt; &#43;}<br>
-&gt;&gt;&gt; &#43;<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; static struct kobj_type ttm_mem_glob_k=
-obj_type =3D {<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .sysfs_ops =3D &amp;ttm_mem_glob=
-al_ops,<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .default_attrs =3D ttm_mem_globa=
-l_attrs,<br>
-&gt;&gt;&gt; &#43;&nbsp;&nbsp; .release =3D ttm_mem_glob_kobj_release,<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; static bool ttm_zones_above_swap_targe=
-t(struct ttm_mem_global *glob,<br>
-&gt;&gt;&gt; --<br>
-&gt;&gt;&gt; 2.7.4<br>
-&gt;&gt;&gt;<br>
-&gt; _______________________________________________<br>
-&gt; amd-gfx mailing list<br>
-&gt; amd-gfx@lists.freedesktop.org<br>
-&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">htt=
-ps://lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
+&nbsp;1 file changed, 3 insertions(&#43;)<br>
 <br>
-</div>
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
+u/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+index a698c8f272ed..f0c216d78a07 100644<br>
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+@@ -3821,6 &#43;3821,9 @@ void amdgpu_dm_connector_funcs_reset(struct drm_c=
+onnector *connector)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; state-&gt;underscan_hborder =3D 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; state-&gt;underscan_vborder =3D 0;<br>
+&nbsp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (connector-&gt;connector_type =3D=3D DRM_MODE_CONNECTOR_e=
+DP)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; state-&gt;ab=
+m_level =3D amdgpu_dm_abm_level;<br>
+&#43;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; __drm_atomic_helper_connector_reset(connector, &amp;s=
+tate-&gt;base);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;}<br>
+-- <br>
+2.17.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
 </span></font></div>
 </body>
 </html>
 
---_000_BN6PR12MB1809F73FCA1AC3CA8B91CD1AF7170BN6PR12MB1809namp_--
+--_000_BN8PR12MB3217258D94A399DCB6A52536EF170BN8PR12MB3217namp_--
 
---===============1266127080==
+--===============1388970173==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -435,4 +267,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1266127080==--
+--===============1388970173==--
