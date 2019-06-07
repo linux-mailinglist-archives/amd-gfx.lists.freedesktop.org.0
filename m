@@ -2,80 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F59B38EC3
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Jun 2019 17:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 137A338F7A
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Jun 2019 17:42:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3727892BB;
-	Fri,  7 Jun 2019 15:17:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40BF789AE6;
+	Fri,  7 Jun 2019 15:42:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr700083.outbound.protection.outlook.com [40.107.70.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EFB1892BB
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 Jun 2019 15:17:01 +0000 (UTC)
-Received: from BN4PR12CA0021.namprd12.prod.outlook.com (2603:10b6:403:2::31)
- by DM5PR1201MB0058.namprd12.prod.outlook.com (2603:10b6:4:50::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1943.22; Fri, 7 Jun
- 2019 15:16:59 +0000
-Received: from DM3NAM03FT061.eop-NAM03.prod.protection.outlook.com
- (2a01:111:f400:7e49::206) by BN4PR12CA0021.outlook.office365.com
- (2603:10b6:403:2::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1965.15 via Frontend
- Transport; Fri, 7 Jun 2019 15:16:59 +0000
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXCHOV02.amd.com (165.204.84.17) by
- DM3NAM03FT061.mail.protection.outlook.com (10.152.83.123) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.1965.12 via Frontend Transport; Fri, 7 Jun 2019 15:16:59 +0000
-Received: from kazbox.amd.com (10.180.168.240) by SATLEXCHOV02.amd.com
- (10.181.40.72) with Microsoft SMTP Server id 14.3.389.1; Fri, 7 Jun 2019
- 10:16:58 -0500
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: Enable fast plane updates when
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr780052.outbound.protection.outlook.com [40.107.78.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B040289AE6
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 Jun 2019 15:42:16 +0000 (UTC)
+Received: from BN8PR12MB3217.namprd12.prod.outlook.com (20.179.65.149) by
+ BN8PR12MB3153.namprd12.prod.outlook.com (20.178.223.154) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1943.21; Fri, 7 Jun 2019 15:42:14 +0000
+Received: from BN8PR12MB3217.namprd12.prod.outlook.com
+ ([fe80::e504:4ec4:c1c3:a9f8]) by BN8PR12MB3217.namprd12.prod.outlook.com
+ ([fe80::e504:4ec4:c1c3:a9f8%5]) with mapi id 15.20.1965.011; Fri, 7 Jun 2019
+ 15:42:14 +0000
+From: "Francis, David" <David.Francis@amd.com>
+To: "Kazlauskas, Nicholas" <Nicholas.Kazlauskas@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amd/display: Enable fast plane updates when
  state->allow_modeset = true
-Date: Fri, 7 Jun 2019 11:16:55 -0400
-Message-ID: <20190607151655.7991-1-nicholas.kazlauskas@amd.com>
-X-Mailer: git-send-email 2.17.1
+Thread-Topic: [PATCH] drm/amd/display: Enable fast plane updates when
+ state->allow_modeset = true
+Thread-Index: AQHVHUQQPA9ZJUHFFUOJlOai6yaEFKaQVGqb
+Date: Fri, 7 Jun 2019 15:42:14 +0000
+Message-ID: <BN8PR12MB32175DF8FD6509F800439BF3EF100@BN8PR12MB3217.namprd12.prod.outlook.com>
+References: <20190607151655.7991-1-nicholas.kazlauskas@amd.com>
+In-Reply-To: <20190607151655.7991-1-nicholas.kazlauskas@amd.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-CA
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [165.204.55.250]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: db35484c-f2e3-4460-ee34-08d6eb5eb6bd
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN8PR12MB3153; 
+x-ms-traffictypediagnostic: BN8PR12MB3153:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BN8PR12MB31532255DD9D73BCB06EC71CEF100@BN8PR12MB3153.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-forefront-prvs: 0061C35778
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(39860400002)(346002)(136003)(366004)(396003)(376002)(199004)(189003)(64756008)(53936002)(76116006)(73956011)(316002)(486006)(606006)(55016002)(6246003)(66066001)(26005)(5660300002)(72206003)(9686003)(3846002)(6436002)(66946007)(236005)(8676002)(102836004)(66476007)(110136005)(11346002)(186003)(2501003)(6606003)(54896002)(99286004)(14444005)(229853002)(6116002)(446003)(6306002)(71200400001)(74316002)(8936002)(6506007)(81156014)(66556008)(66446008)(25786009)(2906002)(81166006)(53546011)(7736002)(966005)(33656002)(15650500001)(71190400001)(68736007)(52536014)(476003)(76176011)(4326008)(19627405001)(7696005)(14454004)(478600001)(91956017)(86362001)(256004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB3153;
+ H:BN8PR12MB3217.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: dkl0OIUXbYi4fGFoYYxP1FX42xTgbJjD4+1gF0l2kTj/vDPd8uhwhU/M4xdn+m4jrbBX/9/Rug/61pGOx4QnWep75P3lX4nWrh0Ub9nTHHZ6qSwe2IMJbzuEj6LTgTnPexONscPK1fMuWfGcvfC5eKpI0z1PKsm9ovXMfeRk5cJN/LGf0tvI5PjL3RvlYdY+6rH5uKhZfF0//IBl0M0ejBwdD7whm+zEYVELUsOpGBMQUklfHOrWkTJuOYrdewVt1HSa+WTpGuNJGNJQMOFNzaRojn987c7fyfldNC9yZ359TZLp2CK6SnhypOZOd4Lg7MN2sp/xXyZivhrjZntjB6Y7Ii9iQhg8i2jI2S2jotBAa9ljA2cB5vkZYnV2+91rcuZoTiUjbyHc++5A7anrei5TE68YKXZga2OD4nHobVo=
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(39860400002)(346002)(376002)(396003)(136003)(2980300002)(428003)(199004)(189003)(70206006)(316002)(7696005)(70586007)(51416003)(186003)(478600001)(15650500001)(50226002)(54906003)(336012)(126002)(53416004)(68736007)(2351001)(81166006)(8936002)(81156014)(36756003)(86362001)(6666004)(356004)(50466002)(72206003)(8676002)(5660300002)(305945005)(6916009)(1076003)(44832011)(16586007)(476003)(53936002)(2906002)(486006)(26005)(48376002)(77096007)(47776003)(14444005)(426003)(2616005)(4326008);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR1201MB0058; H:SATLEXCHOV02.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2d5a639b-0fb3-4743-e68a-08d6eb5b2fa9
-X-Microsoft-Antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328);
- SRVR:DM5PR1201MB0058; 
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0058:
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB0058C18263BA294B2EF6AEE8EC100@DM5PR1201MB0058.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-Forefront-PRVS: 0061C35778
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: sdS/hy8IefYXWsKgHvz1OdQ9wP9xznZBt8ppXleZmJwXV2uYAP7OP5OgrZVage4ENEq0O35guAwA2F3sw3uj/VGX3t0M75dDPZbLiSxxPBj7NPzQS6bn8l9x3ERtTapoT8qdoPp+e5WMrwYLR+lydDqegTRgoqyjfJn6z6RlMvNU66y1qA5UY6TULQVc2c5+19Xg0/czXq4eHu4VviBSgE5tE4EMz70SdP2OxgDbT55XGKAF2FWTyvVz4Kx77/KR8EsPCLVIYsazr3IwFef8/VXF3iCkF5YtLBL4W6EKGvFr779sKIgfJzrMIjzUzYaHsyTSsmhx1RgvKQD5D1zp82bAtP5A45zQnlpiNluJ+/VzyAbGZ0mASXZgKysaWKlafmoQbM21FkR4CXRAlLbX/SlFkoc6mISBn8BUG+BQVN8=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2019 15:16:59.2628 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d5a639b-0fb3-4743-e68a-08d6eb5b2fa9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXCHOV02.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0058
+X-MS-Exchange-CrossTenant-Network-Message-Id: db35484c-f2e3-4460-ee34-08d6eb5eb6bd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2019 15:42:14.4507 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fdavid@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3153
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=go/UCvAHLM6kGJG+wLK6OuiJyIYDkeO0WOjCSKJZoF0=;
- b=k8XNqk4zznauQeEi8ppMrOa/lqTo07mIq+5KR30suv2fbV17hnpuRfcC1JTTv2KeDAm0xftUOh5MmOPIetg5DO6RUGz1ZM48n56Soc1ezUlJJoKeH/fnas/9PHdKAT47aGT3/71lW50Apu4Lk/9AG+kXerADcizMhAsUc2UNumA=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is
- 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
+ bh=UIxsfujgGNqYWAQg25e+gsr5SGOyaRJifnjUT2D6Zek=;
+ b=FhLOlkS1KU0//HEzm8PDN9CAjlblXDM9Ua4xmdRCvJ6uzDHfaKS8NpiCvIzsi6pNLV5aMJprOpGlMBEvzQOCQs0CeBlGz9siGmaT74q9Qktj3QEXLzeKBGWtXYp55VRYup8u2o00DAkoSBbedoHrZsVbqk3GGqwVRvyKXCp0Gf0=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=David.Francis@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -87,50 +85,213 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Francis <david.francis@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Wentland, Harry" <Harry.Wentland@amd.com>
+Content-Type: multipart/mixed; boundary="===============1016457185=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W1doeV0KV2hlbmV2ZXIgdGhlIGEgbW9kZXNldCBpcyBhbGxvd2VkIChidXQgbm90IG5lY2Nlc3Nh
-cmlseSByZXF1aXJlZCkgd2UKY3VycmVudGx5IHJlY3JlYXRlIGFsbCB0aGUgcGxhbmVzIGluIHRo
-ZSBzdGF0ZS4gTW9zdCBJR1QgdGVzdHMgYW5kCmxlZ2FjeSBJT0NUTHMgY3JlYXRlIGF0b21pYyBj
-b21taXRzIHdpdGggdGhpcyBmbGFnIHNldCwgc28gdGhlIHBpcGVzCmFyZSBvZnRlbiB1bm5lY2Vz
-c2FyaWx5IHJlcHJvZ3JhbW1lZC4KClBvb3IgcGVyZm9ybWFuY2UgYW5kIHN0dXR0ZXJpbmcgY2Fu
-IG9jY3VyIHdoZW4gbWFueSBvZiB0aGVzZSBjb21taXRzCmFyZSBmcmVxdWVudGx5IGlzc3VlZC4K
-ClRoaXMgZmxhZyB3YXMgbmVlZGVkIHdoZW4gdGhlIGFwcHJvcHJpYXRlIGNvbmRpdGlvbnMgZm9y
-IGNoZWNraW5nCndoZXRoZXIgdGhlIHBsYW5lcyBuZWVkZWQgYSByZXNldCB3ZXJlIG5vdCBpbiBw
-bGFjZSwgYnV0CnNob3VsZF9yZXNldF9wbGFuZSBzaG91bGQgY292ZXIgZXZlcnl0aGluZyBuZWVk
-ZWQgbm93LgoKW0hvd10KRHJvcCB0aGUgY2hlY2sgZm9yIHN0YXRlLT5hbGxvd19tb2Rlc2V0IGlu
-IHNob3VsZF9yZXNldF9wbGFuZS4KCkFsbCBwbGFuZXMgb24gYSBDUlRDIHNob3VsZCByZXNldCBp
-biB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6Ci0gVGhlIENSVEMgbmVlZHMgYSBtb2Rlc2V0Ci0g
-VGhlIENSVEMgZGVnYW1tYSBjaGFuZ2VzCi0gUGxhbmVzIGFyZSBhZGRlZCBvciByZW1vdmVkIHRv
-IHRoZSBDUlRDCgpUaGVzZSBjb25kaXRpb25zIGFyZSBhbGwgY292ZXJlZCBpbiBzaG91bGRfcmVz
-ZXRfcGxhbmUuCgpXZSBzdGlsbCBjYW4ndCBkcm9wIHRoZSBmb3JtYXQgY2hhbmdlIGNoZWNrIGlu
-IHNob3VsZF9yZXNldF9wbGFuZSBzaW5jZQpmaWxsX2RjX3BsYW5lX2luZm9fYW5kX2FkZHIgaXNu
-J3QgY2FsbGVkIHdoZW4gdmFsaWRhdGluZyB0aGUgc3RhdGUsIHNvCndlIGNhbid0IHRlbGwgaWYg
-YSBGVUxMIHVwZGF0ZSBpcyBuZWVkZWQgb3Igbm90LgoKQ2M6IERhdmlkIEZyYW5jaXMgPGRhdmlk
-LmZyYW5jaXNAYW1kLmNvbT4KQ2M6IEhhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQu
-Y29tPgpTaWduZWQtb2ZmLWJ5OiBOaWNob2xhcyBLYXpsYXVza2FzIDxuaWNob2xhcy5rYXpsYXVz
-a2FzQGFtZC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9h
-bWRncHVfZG0uYyB8IDggLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA4IGRlbGV0aW9ucygtKQoK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1
-X2RtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5j
-CmluZGV4IGE2OThjOGYyNzJlZC4uNDVmMGQ1YjZjNDY4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKQEAgLTY0NDYsMTQgKzY0NDYs
-NiBAQCBzdGF0aWMgYm9vbCBzaG91bGRfcmVzZXRfcGxhbmUoc3RydWN0IGRybV9hdG9taWNfc3Rh
-dGUgKnN0YXRlLAogCXN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGU7CiAJaW50
-IGk7CiAKLQkvKgotCSAqIFRPRE86IFJlbW92ZSB0aGlzIGhhY2sgb25jZSB0aGUgY2hlY2tzIGJl
-bG93IGFyZSBzdWZmaWNpZW50Ci0JICogZW5vdWdoIHRvIGRldGVybWluZSB3aGVuIHdlIG5lZWQg
-dG8gcmVzZXQgYWxsIHRoZSBwbGFuZXMgb24KLQkgKiB0aGUgc3RyZWFtLgotCSAqLwotCWlmIChz
-dGF0ZS0+YWxsb3dfbW9kZXNldCkKLQkJcmV0dXJuIHRydWU7Ci0KIAkvKiBFeGl0IGVhcmx5IGlm
-IHdlIGtub3cgdGhhdCB3ZSdyZSBhZGRpbmcgb3IgcmVtb3ZpbmcgdGhlIHBsYW5lLiAqLwogCWlm
-IChvbGRfcGxhbmVfc3RhdGUtPmNydGMgIT0gbmV3X3BsYW5lX3N0YXRlLT5jcnRjKQogCQlyZXR1
-cm4gdHJ1ZTsKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQt
-Z2Z4
+--===============1016457185==
+Content-Language: en-CA
+Content-Type: multipart/alternative;
+	boundary="_000_BN8PR12MB32175DF8FD6509F800439BF3EF100BN8PR12MB3217namp_"
+
+--_000_BN8PR12MB32175DF8FD6509F800439BF3EF100BN8PR12MB3217namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Patch is
+
+Reviewed-by: David Francis <David.Francis@amd.com>
+
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Nicholas=
+ Kazlauskas <nicholas.kazlauskas@amd.com>
+Sent: June 7, 2019 11:16:55 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Francis, David; Wentland, Harry; Kazlauskas, Nicholas
+Subject: [PATCH] drm/amd/display: Enable fast plane updates when state->all=
+ow_modeset =3D true
+
+[Why]
+Whenever the a modeset is allowed (but not neccessarily required) we
+currently recreate all the planes in the state. Most IGT tests and
+legacy IOCTLs create atomic commits with this flag set, so the pipes
+are often unnecessarily reprogrammed.
+
+Poor performance and stuttering can occur when many of these commits
+are frequently issued.
+
+This flag was needed when the appropriate conditions for checking
+whether the planes needed a reset were not in place, but
+should_reset_plane should cover everything needed now.
+
+[How]
+Drop the check for state->allow_modeset in should_reset_plane.
+
+All planes on a CRTC should reset in the following conditions:
+- The CRTC needs a modeset
+- The CRTC degamma changes
+- Planes are added or removed to the CRTC
+
+These conditions are all covered in should_reset_plane.
+
+We still can't drop the format change check in should_reset_plane since
+fill_dc_plane_info_and_addr isn't called when validating the state, so
+we can't tell if a FULL update is needed or not.
+
+Cc: David Francis <david.francis@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
+u/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index a698c8f272ed..45f0d5b6c468 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6446,14 +6446,6 @@ static bool should_reset_plane(struct drm_atomic_sta=
+te *state,
+         struct drm_crtc_state *new_crtc_state;
+         int i;
+
+-       /*
+-        * TODO: Remove this hack once the checks below are sufficient
+-        * enough to determine when we need to reset all the planes on
+-        * the stream.
+-        */
+-       if (state->allow_modeset)
+-               return true;
+-
+         /* Exit early if we know that we're adding or removing the plane. =
+*/
+         if (old_plane_state->crtc !=3D new_plane_state->crtc)
+                 return true;
+--
+2.17.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN8PR12MB32175DF8FD6509F800439BF3EF100BN8PR12MB3217namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">Patch is</p>
+<p style=3D"margin-top:0;margin-bottom:0">Reviewed-by: David Francis &lt;Da=
+vid.Francis@amd.com&gt;</p>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Nicholas Kazlauskas &lt;nicho=
+las.kazlauskas@amd.com&gt;<br>
+<b>Sent:</b> June 7, 2019 11:16:55 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org<br>
+<b>Cc:</b> Francis, David; Wentland, Harry; Kazlauskas, Nicholas<br>
+<b>Subject:</b> [PATCH] drm/amd/display: Enable fast plane updates when sta=
+te-&gt;allow_modeset =3D true</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">[Why]<br>
+Whenever the a modeset is allowed (but not neccessarily required) we<br>
+currently recreate all the planes in the state. Most IGT tests and<br>
+legacy IOCTLs create atomic commits with this flag set, so the pipes<br>
+are often unnecessarily reprogrammed.<br>
+<br>
+Poor performance and stuttering can occur when many of these commits<br>
+are frequently issued.<br>
+<br>
+This flag was needed when the appropriate conditions for checking<br>
+whether the planes needed a reset were not in place, but<br>
+should_reset_plane should cover everything needed now.<br>
+<br>
+[How]<br>
+Drop the check for state-&gt;allow_modeset in should_reset_plane.<br>
+<br>
+All planes on a CRTC should reset in the following conditions:<br>
+- The CRTC needs a modeset<br>
+- The CRTC degamma changes<br>
+- Planes are added or removed to the CRTC<br>
+<br>
+These conditions are all covered in should_reset_plane.<br>
+<br>
+We still can't drop the format change check in should_reset_plane since<br>
+fill_dc_plane_info_and_addr isn't called when validating the state, so<br>
+we can't tell if a FULL update is needed or not.<br>
+<br>
+Cc: David Francis &lt;david.francis@amd.com&gt;<br>
+Cc: Harry Wentland &lt;harry.wentland@amd.com&gt;<br>
+Signed-off-by: Nicholas Kazlauskas &lt;nicholas.kazlauskas@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 --------<br>
+&nbsp;1 file changed, 8 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
+u/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+index a698c8f272ed..45f0d5b6c468 100644<br>
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+@@ -6446,14 &#43;6446,6 @@ static bool should_reset_plane(struct drm_atomic=
+_state *state,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_crtc_state *new=
+_crtc_state;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * TODO: Remove this hack once t=
+he checks below are sufficient<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * enough to determine when we n=
+eed to reset all the planes on<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * the stream.<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (state-&gt;allow_modeset)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; return true;<br>
+-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Exit early if we know t=
+hat we're adding or removing the plane. */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (old_plane_state-&gt;cr=
+tc !=3D new_plane_state-&gt;crtc)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return true;<br>
+-- <br>
+2.17.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN8PR12MB32175DF8FD6509F800439BF3EF100BN8PR12MB3217namp_--
+
+--===============1016457185==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1016457185==--
