@@ -1,84 +1,78 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D7C43B6E7
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jun 2019 16:08:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 010DA39FAA
+	for <lists+amd-gfx@lfdr.de>; Sat,  8 Jun 2019 14:27:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDDB4891E2;
-	Mon, 10 Jun 2019 14:08:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF4FB892A4;
+	Sat,  8 Jun 2019 12:27:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com
- (mail-he1eur01on0601.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe1e::601])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A3F2891B3;
- Sat,  8 Jun 2019 11:50:22 +0000 (UTC)
-Received: from VI1PR05MB4141.eurprd05.prod.outlook.com (10.171.182.144) by
- VI1PR05MB4640.eurprd05.prod.outlook.com (20.176.3.149) with Microsoft SMTP
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr790084.outbound.protection.outlook.com [40.107.79.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64863892A1;
+ Sat,  8 Jun 2019 12:27:49 +0000 (UTC)
+Received: from SN6PR12MB2800.namprd12.prod.outlook.com (52.135.107.150) by
+ SN6PR12MB2719.namprd12.prod.outlook.com (52.135.103.140) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.12; Sat, 8 Jun 2019 11:50:16 +0000
-Received: from VI1PR05MB4141.eurprd05.prod.outlook.com
- ([fe80::c16d:129:4a40:9ba1]) by VI1PR05MB4141.eurprd05.prod.outlook.com
- ([fe80::c16d:129:4a40:9ba1%6]) with mapi id 15.20.1965.017; Sat, 8 Jun 2019
- 11:50:16 +0000
-From: Jason Gunthorpe <jgg@mellanox.com>
-To: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [RFC] mm/hmm: pass mmu_notifier_range to
- sync_cpu_device_pagetables
-Thread-Topic: [RFC] mm/hmm: pass mmu_notifier_range to
- sync_cpu_device_pagetables
-Thread-Index: AQHVHY87cnj6rYaF00uB6DOqwK5J5aaRpYiA
-Date: Sat, 8 Jun 2019 11:50:16 +0000
-Message-ID: <20190608115011.GB14873@mellanox.com>
-References: <20190608001452.7922-1-rcampbell@nvidia.com>
-In-Reply-To: <20190608001452.7922-1-rcampbell@nvidia.com>
-Accept-Language: en-US
+ 15.20.1965.14; Sat, 8 Jun 2019 12:27:47 +0000
+Received: from SN6PR12MB2800.namprd12.prod.outlook.com
+ ([fe80::4df8:270e:c062:6f8c]) by SN6PR12MB2800.namprd12.prod.outlook.com
+ ([fe80::4df8:270e:c062:6f8c%7]) with mapi id 15.20.1965.011; Sat, 8 Jun 2019
+ 12:27:47 +0000
+From: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>, Dan Carpenter
+ <dan.carpenter@oracle.com>
+Subject: Re: [PATCH] drm/amdgpu: Fix bounds checking in
+ amdgpu_ras_is_supported()
+Thread-Topic: [PATCH] drm/amdgpu: Fix bounds checking in
+ amdgpu_ras_is_supported()
+Thread-Index: AQHVHdvwIU1iOu4Bn0uxPLo47uuVcqaRr3Dw
+Date: Sat, 8 Jun 2019 12:27:47 +0000
+Message-ID: <SN6PR12MB2800185519D425526956EDA687110@SN6PR12MB2800.namprd12.prod.outlook.com>
+References: <20190608092357.GB28890@mwanda>
+In-Reply-To: <20190608092357.GB28890@mwanda>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: MN2PR05CA0031.namprd05.prod.outlook.com
- (2603:10b6:208:c0::44) To VI1PR05MB4141.eurprd05.prod.outlook.com
- (2603:10a6:803:4d::16)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [156.34.55.100]
+x-originating-ip: [40.67.186.46]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: edc48025-f763-4577-de12-08d6ec07794d
+x-ms-office365-filtering-correlation-id: 9f7136a2-0cf4-4f88-5add-08d6ec0cb727
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:VI1PR05MB4640; 
-x-ms-traffictypediagnostic: VI1PR05MB4640:
-x-microsoft-antispam-prvs: <VI1PR05MB4640E6E5C556BD7AC7C67023CF110@VI1PR05MB4640.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+ SRVR:SN6PR12MB2719; 
+x-ms-traffictypediagnostic: SN6PR12MB2719:
+x-microsoft-antispam-prvs: <SN6PR12MB2719F0E272352A323EAD0BA987110@SN6PR12MB2719.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5236;
 x-forefront-prvs: 0062BDD52C
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(376002)(366004)(346002)(396003)(136003)(39850400004)(189003)(199004)(54906003)(8936002)(14444005)(256004)(4326008)(81166006)(33656002)(81156014)(8676002)(66476007)(66556008)(64756008)(66446008)(66946007)(14454004)(53936002)(478600001)(73956011)(68736007)(71190400001)(71200400001)(305945005)(1076003)(5660300002)(7736002)(6246003)(6916009)(6486002)(26005)(102836004)(86362001)(6506007)(486006)(386003)(6436002)(476003)(66066001)(2906002)(76176011)(6116002)(316002)(36756003)(446003)(3846002)(2616005)(186003)(99286004)(25786009)(6512007)(11346002)(52116002)(229853002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR05MB4640;
- H:VI1PR05MB4141.eurprd05.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: mellanox.com does not designate
+ SFS:(10009020)(376002)(136003)(396003)(366004)(346002)(39860400002)(199004)(189003)(186003)(2906002)(3846002)(476003)(81156014)(26005)(72206003)(11346002)(446003)(71190400001)(71200400001)(6116002)(486006)(74316002)(8676002)(8936002)(5660300002)(55016002)(66476007)(64756008)(81166006)(7736002)(76116006)(86362001)(91956017)(53936002)(73956011)(66946007)(6246003)(9686003)(54896002)(66556008)(66446008)(110136005)(102836004)(68736007)(76176011)(54906003)(229853002)(478600001)(14444005)(316002)(25786009)(6436002)(256004)(7696005)(6506007)(53546011)(4326008)(33656002)(66066001)(14454004)(52536014)(99286004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:SN6PR12MB2719;
+ H:SN6PR12MB2800.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: +VwPesywDgHRN0jdIeuczqBIXBOd/OVuRFCqrqEpoCSMFT+51CERrYGw/Z9+8904LsVFQ8qZXMju0Ks+gcnYjDu6YtXebt8hfL44RSKkP/BZvaFUxq2E2EhHz5pVmYjk4SSGNhBEXw+cJJa6N9C9hLYmlgTsPN7outySzS3RvouRPaB1H3XhV5Z6ssO3Cqx+ips+EVtP+ha86ldjHbpVojFMWlelATanBNEN40qPWivu34aCYmgHNbH141IlOciv5Z78ek6HIABubWiNN618yhnb5rbcK4BtT+KXak7+l6ogfjLCWWoVanrU8UHa6n9sG0XLqN/R0ZdYIULjZv55qJ7ShLucOn73fqSb0ZqBJr8ZCB2c4ZHbHp+whIDa7TTolGX0CJ0UjZIqmf138994PeTmJOUR8hYzB08wkmvSJSk=
-Content-ID: <FFF05C274A0A8E44B62AD3BAF4C55A80@eurprd05.prod.outlook.com>
+x-microsoft-antispam-message-info: IIfVquj8Gc8SPCxIGDUNzhrzXiH0s5xyrZy01oqbk3qhYcgalRgVODDufZbCWg0Io4Rff8+3WPmtfGVEXCmOUHc0cYjrZSpusVLF+qhd6c4838FLaRxbihK2ggoTVpDmcNtfeLWnh3LX00Z0Gked5fsOBTVzAJvtbQi0lfSAti1MiN0Woe+wc2DpL3Xxrd7E7k9bW0/N9A/bwn9McI9VeJX1U8m8ZNiAa4ZLjEtWuQUHWVozMb6gHX6DQ7JhmL59147MwGbFizI0+/eF1FWXyB2ZFlE3SRpYOYzGpxMpnwpVtJD8cLTZEU5sZ4Bg/Z7kHqqJSov71oIVyw4mnfkYz6PdNLGRAsXh+SBGx1Er4AsMTEefmC2fO+SwDWDqRE0vMKj0pDXxlrfeopyUuG7r9lDVou+jlVyE6hgZEu5/fkE=
 MIME-Version: 1.0
-X-OriginatorOrg: Mellanox.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: edc48025-f763-4577-de12-08d6ec07794d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jun 2019 11:50:16.6934 (UTC)
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f7136a2-0cf4-4f88-5add-08d6ec0cb727
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jun 2019 12:27:47.5106 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a652971c-7d2e-4d9b-a6a4-d149256f461b
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jgg@mellanox.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB4640
-X-Mailman-Approved-At: Mon, 10 Jun 2019 14:08:04 +0000
+X-MS-Exchange-CrossTenant-userprincipalname: xpan@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2719
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Mellanox.com; s=selector2;
+ d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/FIZowsz6D/XhCq6y6QUaZfZqiox1Wi8qIhgTH/IWz8=;
- b=qo1Xa4SbtqdIDnb8uGBzY0sK3lMcd8McYgqlAZyQLVmp3wEaURKAxgatSJ3ScriFrwwV1WxLdUaoHMN8BJ/NaHGi+VTTWxrfW99yyNc6H0zh94KTVnqo9cvQ4Jp6JK8vNc3OIskl5hx5cFrz/Kd0zwZ0qfW33j1bo2fNvByFL4o=
+ bh=Q7gUKRidPAmIpyWxSCKgjOZB+LACRWvZi8odeDRoEMU=;
+ b=cxHj/NUChdsijTfMzsQSIAgzz/BFJeGVaCqsaCXPkZHdPIpTQ0dv7mBC2XlKsB2B/bg4DM/N4lRDPgeYEZpLTzi26RKiIzlzwkcQqDrvhDYgQkiJfmkj+O3CYQWV1f4SEtdeqc7IeP0HVkve/5b92mDo6Vlp9W8a9ZEu//ZajFc=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=jgg@mellanox.com; 
+ smtp.mailfrom=Xinhui.Pan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -90,40 +84,158 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrea Arcangeli <aarcange@redhat.com>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- John Hubbard <jhubbard@nvidia.com>,
- "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>, "Quan,
+ Evan" <Evan.Quan@amd.com>, David Airlie <airlied@linux.ie>,
+ "kernel-janitors@vger.kernel.org" <kernel-janitors@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
  "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>, Jerome Glisse <jglisse@redhat.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Daniel Vetter <daniel@ffwll.ch>, "Zhu, James" <James.Zhu@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============0955856027=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBKdW4gMDcsIDIwMTkgYXQgMDU6MTQ6NTJQTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
-d3JvdGU6Cj4gSE1NIGRlZmluZXMgaXRzIG93biBzdHJ1Y3QgaG1tX3VwZGF0ZSB3aGljaCBpcyBw
-YXNzZWQgdG8gdGhlCj4gc3luY19jcHVfZGV2aWNlX3BhZ2V0YWJsZXMoKSBjYWxsYmFjayBmdW5j
-dGlvbi4gVGhpcyBpcwo+IHN1ZmZpY2llbnQgd2hlbiB0aGUgb25seSBhY3Rpb24gaXMgdG8gaW52
-YWxpZGF0ZS4gSG93ZXZlciwKPiBhIGRldmljZSBtYXkgd2FudCB0byBrbm93IHRoZSByZWFzb24g
-Zm9yIHRoZSBpbnZhbGlkYXRpb24gYW5kCj4gYmUgYWJsZSB0byBzZWUgdGhlIG5ldyBwZXJtaXNz
-aW9ucyBvbiBhIHJhbmdlLCB1cGRhdGUgZGV2aWNlIGFjY2Vzcwo+IHJpZ2h0cyBvciByYW5nZSBz
-dGF0aXN0aWNzLiBTaW5jZSBzeW5jX2NwdV9kZXZpY2VfcGFnZXRhYmxlcygpCj4gY2FuIGJlIGNh
-bGxlZCBmcm9tIHRyeV90b191bm1hcCgpLCB0aGUgbW1hcF9zZW0gbWF5IG5vdCBiZSBoZWxkCj4g
-YW5kIGZpbmRfdm1hKCkgaXMgbm90IHNhZmUgdG8gYmUgY2FsbGVkLgo+IFBhc3MgdGhlIHN0cnVj
-dCBtbXVfbm90aWZpZXJfcmFuZ2UgdG8gc3luY19jcHVfZGV2aWNlX3BhZ2V0YWJsZXMoKQo+IHRv
-IGFsbG93IHRoZSBmdWxsIGludmFsaWRhdGlvbiBpbmZvcm1hdGlvbiB0byBiZSB1c2VkLgo+IAo+
-IFNpZ25lZC1vZmYtYnk6IFJhbHBoIENhbXBiZWxsIDxyY2FtcGJlbGxAbnZpZGlhLmNvbT4KPiAt
-LS0KPiAKPiBJJ20gc2VuZGluZyB0aGlzIG91dCBub3cgc2luY2Ugd2UgYXJlIHVwZGF0aW5nIG1h
-bnkgb2YgdGhlIEhNTSBBUElzCj4gYW5kIEkgdGhpbmsgaXQgd2lsbCBiZSB1c2VmdWwuCgpJIGFn
-cmVlIHdpdGggQ0ggdGhhdCBzdHJ1Y3QgaG1tX3VwZGF0ZSBzZWVtcyBwYXJ0aWN1bGFybHkgcG9p
-bnRsZXNzCmFuZCB3ZSByZWFsbHkgc2hvdWxkIGp1c3QgdXNlIG1tdV9ub3RpZmllcl9yYW5nZSBk
-aXJlY3RseS4KCldlIG5lZWQgdG8gZmluZCBvdXQgZnJvbSB0aGUgRFJNIGZvbGtzIGlmIHdlIGNh
-biBtZXJnZSB0aGlzIGtpbmQgb2YKc3R1ZmYgdGhyb3VnaCBobW0uZ2l0IGFuZCB0aGVuIHJlc29s
-dmUgYW55IGNvbmZsaWN0cyB0aGF0IG1pZ2h0IGFyaXNlCmluIERSTSB0cmVlIG9yIGluIG5vdXZl
-YXUgdHJlZT8KCkJ1dCBJIHdvdWxkIGxpa2UgdG8gc2VlIHRoaXMgcGF0Y2ggZ28gaW4gdGhpcyBj
-eWNsZSwgdGhhbmtzCgpKYXNvbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1n
-Zng=
+--===============0955856027==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SN6PR12MB2800185519D425526956EDA687110SN6PR12MB2800namp_"
+
+--_000_SN6PR12MB2800185519D425526956EDA687110SN6PR12MB2800namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+do you mean that something like 1<<65 might be a none zero value?
+________________________________
+From: Dan Carpenter <dan.carpenter@oracle.com>
+Sent: Saturday, June 8, 2019 5:23:57 PM
+To: Deucher, Alexander; Pan, Xinhui
+Cc: Koenig, Christian; Zhou, David(ChunMing); David Airlie; Daniel Vetter; =
+Quan, Evan; Zhu, James; amd-gfx@lists.freedesktop.org; dri-devel@lists.free=
+desktop.org; kernel-janitors@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: Fix bounds checking in amdgpu_ras_is_supported=
+()
+
+The "block" variable can be set by the user through debugfs, so it can
+be quite large which leads to shift wrapping here.  This means we report
+a "block" as supported when it's not, and that leads to array overflows
+later on.
+
+This bug is not really a security issue in real life, because debugfs is
+generally root only.
+
+Fixes: 36ea1bd2d084 ("drm/amdgpu: add debugfs ctrl node")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_ras.h
+index c6b34fbd695f..94c652f5265a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+@@ -173,6 +173,8 @@ static inline int amdgpu_ras_is_supported(struct amdgpu=
+_device *adev,
+ {
+         struct amdgpu_ras *ras =3D amdgpu_ras_get_context(adev);
+
++       if (block >=3D AMDGPU_RAS_BLOCK_COUNT)
++               return 0;
+         return ras && (ras->supported & (1 << block));
+ }
+
+--
+2.20.1
+
+
+--_000_SN6PR12MB2800185519D425526956EDA687110SN6PR12MB2800namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<div>
+<div dir=3D"auto" style=3D"direction:ltr; margin:0; padding:0; font-family:=
+sans-serif; font-size:11pt; color:black">
+do you mean that something like 1&lt;&lt;65 might be a none zero value?</di=
+v>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Dan Carpenter &lt;d=
+an.carpenter@oracle.com&gt;<br>
+<b>Sent:</b> Saturday, June 8, 2019 5:23:57 PM<br>
+<b>To:</b> Deucher, Alexander; Pan, Xinhui<br>
+<b>Cc:</b> Koenig, Christian; Zhou, David(ChunMing); David Airlie; Daniel V=
+etter; Quan, Evan; Zhu, James; amd-gfx@lists.freedesktop.org; dri-devel@lis=
+ts.freedesktop.org; kernel-janitors@vger.kernel.org<br>
+<b>Subject:</b> [PATCH] drm/amdgpu: Fix bounds checking in amdgpu_ras_is_su=
+pported()</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:11pt;">
+<div class=3D"PlainText">The &quot;block&quot; variable can be set by the u=
+ser through debugfs, so it can<br>
+be quite large which leads to shift wrapping here.&nbsp; This means we repo=
+rt<br>
+a &quot;block&quot; as supported when it's not, and that leads to array ove=
+rflows<br>
+later on.<br>
+<br>
+This bug is not really a security issue in real life, because debugfs is<br=
+>
+generally root only.<br>
+<br>
+Fixes: 36ea1bd2d084 (&quot;drm/amdgpu: add debugfs ctrl node&quot;)<br>
+Signed-off-by: Dan Carpenter &lt;dan.carpenter@oracle.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h | 2 &#43;&#43;<br>
+&nbsp;1 file changed, 2 insertions(&#43;)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_ras.h<br>
+index c6b34fbd695f..94c652f5265a 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h<br>
+@@ -173,6 &#43;173,8 @@ static inline int amdgpu_ras_is_supported(struct am=
+dgpu_device *adev,<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_ras *ras =3D=
+ amdgpu_ras_get_context(adev);<br>
+&nbsp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (block &gt;=3D AMDGPU_RAS_BLOC=
+K_COUNT)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; return 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ras &amp;&amp; (ras=
+-&gt;supported &amp; (1 &lt;&lt; block));<br>
+&nbsp;}<br>
+&nbsp;<br>
+-- <br>
+2.20.1<br>
+<br>
+</div>
+</span></font>
+</body>
+</html>
+
+--_000_SN6PR12MB2800185519D425526956EDA687110SN6PR12MB2800namp_--
+
+--===============0955856027==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0955856027==--
