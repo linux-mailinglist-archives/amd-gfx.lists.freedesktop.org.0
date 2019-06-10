@@ -1,77 +1,85 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A0743B7CF
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jun 2019 16:53:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D6C83B928
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jun 2019 18:15:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CBCA890F7;
-	Mon, 10 Jun 2019 14:53:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 563FB890BF;
+	Mon, 10 Jun 2019 16:15:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760052.outbound.protection.outlook.com [40.107.76.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2C76890F7
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jun 2019 14:53:53 +0000 (UTC)
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1460.namprd12.prod.outlook.com (10.172.24.137) with Microsoft SMTP
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com
+ (mail-eopbgr130079.outbound.protection.outlook.com [40.107.13.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5C089183;
+ Mon, 10 Jun 2019 16:02:59 +0000 (UTC)
+Received: from AM0PR05MB4130.eurprd05.prod.outlook.com (52.134.90.143) by
+ AM0PR05MB4387.eurprd05.prod.outlook.com (52.134.93.146) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1965.12; Mon, 10 Jun 2019 14:53:50 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::11ea:d6bc:d2fa:e6d]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::11ea:d6bc:d2fa:e6d%9]) with mapi id 15.20.1965.011; Mon, 10 Jun 2019
- 14:53:50 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Liu, Monk" <Monk.Liu@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu: drop the incorrect soft_reset for SRIOV
-Thread-Topic: [PATCH] drm/amdgpu: drop the incorrect soft_reset for SRIOV
-Thread-Index: AQHVH1cVQeI8SOBjsE+oYDnVon4q26aU+eLU
-Date: Mon, 10 Jun 2019 14:53:50 +0000
-Message-ID: <BN6PR12MB1809F4E306574660D711EB8BF7130@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <1560148666-6338-1-git-send-email-Monk.Liu@amd.com>
-In-Reply-To: <1560148666-6338-1-git-send-email-Monk.Liu@amd.com>
+ 15.20.1965.13; Mon, 10 Jun 2019 16:02:56 +0000
+Received: from AM0PR05MB4130.eurprd05.prod.outlook.com
+ ([fe80::4825:8958:8055:def7]) by AM0PR05MB4130.eurprd05.prod.outlook.com
+ ([fe80::4825:8958:8055:def7%3]) with mapi id 15.20.1965.017; Mon, 10 Jun 2019
+ 16:02:56 +0000
+From: Jason Gunthorpe <jgg@mellanox.com>
+To: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH v2 hmm 11/11] mm/hmm: Remove confusing comment and logic
+ from hmm_release
+Thread-Topic: [PATCH v2 hmm 11/11] mm/hmm: Remove confusing comment and logic
+ from hmm_release
+Thread-Index: AQHVHJft+otwZ8rUPEekfSi3CzR0ZqaQuR+AgARZmwA=
+Date: Mon, 10 Jun 2019 16:02:56 +0000
+Message-ID: <20190610160252.GH18446@mellanox.com>
+References: <20190606184438.31646-1-jgg@ziepe.ca>
+ <20190606184438.31646-12-jgg@ziepe.ca>
+ <61ea869d-43d2-d1e5-dc00-cf5e3e139169@nvidia.com>
+In-Reply-To: <61ea869d-43d2-d1e5-dc00-cf5e3e139169@nvidia.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [71.51.161.233]
+x-clientproxiedby: YTXPR0101CA0057.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:1::34) To AM0PR05MB4130.eurprd05.prod.outlook.com
+ (2603:10a6:208:57::15)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [156.34.55.100]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ab5957cc-a9a8-494d-8d31-08d6edb3731b
+x-ms-office365-filtering-correlation-id: e0456bf9-5aef-4511-cd81-08d6edbd19d8
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1460; 
-x-ms-traffictypediagnostic: BN6PR12MB1460:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BN6PR12MB1460569DDF2B1171637BD038F7130@BN6PR12MB1460.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3173;
+ SRVR:AM0PR05MB4387; 
+x-ms-traffictypediagnostic: AM0PR05MB4387:
+x-microsoft-antispam-prvs: <AM0PR05MB4387F54CE3B8303BBA27A817CF130@AM0PR05MB4387.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-forefront-prvs: 0064B3273C
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(366004)(346002)(376002)(396003)(136003)(39860400002)(199004)(189003)(478600001)(966005)(72206003)(6116002)(71200400001)(71190400001)(2906002)(55016002)(6306002)(54896002)(9686003)(3846002)(102836004)(76176011)(476003)(26005)(186003)(33656002)(68736007)(53546011)(7696005)(53936002)(25786009)(6506007)(105004)(76116006)(256004)(229853002)(14444005)(11346002)(73956011)(236005)(66556008)(64756008)(6436002)(99286004)(19627405001)(66946007)(446003)(66446008)(66476007)(6246003)(486006)(2501003)(5660300002)(606006)(66066001)(74316002)(81166006)(8676002)(8936002)(7736002)(86362001)(52536014)(316002)(14454004)(81156014)(110136005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1460;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
+ SFS:(10009020)(136003)(366004)(346002)(396003)(39860400002)(376002)(189003)(199004)(316002)(25786009)(2616005)(476003)(486006)(99286004)(76176011)(4326008)(66066001)(478600001)(52116002)(36756003)(11346002)(446003)(66946007)(186003)(6512007)(66476007)(26005)(6486002)(229853002)(66446008)(64756008)(386003)(6506007)(66556008)(53936002)(53546011)(102836004)(73956011)(68736007)(54906003)(6916009)(6436002)(305945005)(256004)(81166006)(7736002)(8936002)(2906002)(8676002)(81156014)(6246003)(71190400001)(71200400001)(6116002)(3846002)(86362001)(33656002)(1076003)(5660300002)(14454004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:AM0PR05MB4387;
+ H:AM0PR05MB4130.eurprd05.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: mellanox.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: uaWNr17JRv1cxN+upVowVSbSDLHFUMbVbNZe8bZbb1JoYLl4nCuYvebgPvbZwOJ45866eoyV1Vd11gkBOyaTbcnS+gYtyI6Pv1vkHxd+V31WIN74W+pFSujtMTfwmZwYeq78ROtudVlnuc5sGaVpMUfe3/QOpRBmsZ+v9RcPH9i07c4TPDfEAhUbyD3RuHci7UpzLljppPJVTcI+jaZgD1ORLvxvqugNgFwwgj0jdfo4JQqNynxzM+mSNXWeoJemyvyRC2msOXxdMF5K6wywBxduHSXBjKwgnedJVccrOSTaLvqvxyNMSfdh7E0qYjm7cZicTcWmSV1mcfUmwbn9VEvsOznZQAsF4EbjQ7LaYUrdLM6WA66th0qqavXCkR5Lx/c3Y4WxT01Q/ZnNL9L0m19X8+aw7Ur+PIe02sHrncA=
+x-microsoft-antispam-message-info: /XoWWl7DXZHkqt6HlSb0h/i3876cDXvgZJD7FRjHmDVQJC4j32FplncqgEl42kFVAZ21UO5yMzo+9aUjSa9MzSgERb4OdeF6NABWEWh/jDwuKvVK5u/M4s5Jh9QycDt00d5E7+4den8XeFui3NEzowflwyR0J7EMuzZlxv5H9SmfVBxXX7y3lRhXvxpQn7DsMvL6VWpVEFYQW/btyyTiGbNTEtZaIh9f7hOdCPkcydvKezjQzAkH6VVR6f4JWrfhZYjFEUE+7O6hLsAscYlbEhtitIzT5oEE9f3RQY3LfF2dRIt1hw5pX2pz7fpHYZQHrCg+AKpe6DI+ZcMrc/SDd497dYSniuK4axUed942M+cEUsmmB90jlgxxYQus0vGmdJULi6YnrC0pX08C3xggWhmm2Ii4hZwucXEF5wcBoPg=
+Content-ID: <8C3BE8F336B51E4C8608A9C4C971BE76@eurprd05.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab5957cc-a9a8-494d-8d31-08d6edb3731b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2019 14:53:50.5157 (UTC)
+X-OriginatorOrg: Mellanox.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0456bf9-5aef-4511-cd81-08d6edbd19d8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2019 16:02:56.0642 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-id: a652971c-7d2e-4d9b-a6a4-d149256f461b
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1460
+X-MS-Exchange-CrossTenant-userprincipalname: jgg@mellanox.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR05MB4387
+X-Mailman-Approved-At: Mon, 10 Jun 2019 16:15:44 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
+ d=Mellanox.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yVW+u5oUITbmsRKXL4Vk1eWhjoLiosGLhE5BbYnKyMA=;
- b=tFE3nEl8jgsPNxjijmSC6FpK7jVFZURzaikQ+wCW6NQvI6/msQW5M0xH7zECwQfPBxq/w0hn2xpnAWzQxbKgOwqhQCXmX4e+qtGJQFAzmezS8dMY8s75q3FTRfpzPr/sEysBcFoUolo2RlzswcC9Jk6h4fcmOc1Klo7AJvOfhN0=
+ bh=450d2MXVWodpENJheLwYn0Z7xWvqO7wr3qF4QWDO8sY=;
+ b=kctyDxIfUDvoSeIPOePSVT3oHbQ3/3dDtOXCbB4D4/GE+Nai0EpzR0b+7w2Lgude1EulJskY2cIwuXFF5tBkBX5EUAVcsM+IjNX+2gkqkFTUIYjaLSkHD08hPwPRVxDe/K2VxSMq0wfuqMKyZmCVusOGejBp6nJo+eIvS0Izl14=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+ smtp.mailfrom=jgg@mellanox.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -83,148 +91,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1184636433=="
+Cc: Andrea Arcangeli <aarcange@redhat.com>,
+ "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
+ John Hubbard <jhubbard@nvidia.com>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>, Jerome Glisse <jglisse@redhat.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1184636433==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB1809F4E306574660D711EB8BF7130BN6PR12MB1809namp_"
-
---_000_BN6PR12MB1809F4E306574660D711EB8BF7130BN6PR12MB1809namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Monk Liu=
- <Monk.Liu@amd.com>
-Sent: Monday, June 10, 2019 2:37 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Liu, Monk
-Subject: [PATCH] drm/amdgpu: drop the incorrect soft_reset for SRIOV
-
-It's incorrect to do soft reset for SRIOV, when GFX
-hang the WREG would stuck there becuase it goes KIQ way.
-
-the GPU reset counter is incorrect: always increase twice
-for each timedout
-
-Signed-off-by: Monk Liu <Monk.Liu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_ring.c
-index 8f5026c..ff6976e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -399,7 +399,7 @@ bool amdgpu_ring_soft_recovery(struct amdgpu_ring *ring=
-, unsigned int vmid,
- {
-         ktime_t deadline =3D ktime_add_us(ktime_get(), 10000);
-
--       if (!ring->funcs->soft_recovery || !fence)
-+       if (amdgpu_sriov_vf(ring->adev) || !ring->funcs->soft_recovery || !=
-fence)
-                 return false;
-
-         atomic_inc(&ring->adev->gpu_reset_counter);
---
-2.7.4
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_BN6PR12MB1809F4E306574660D711EB8BF7130BN6PR12MB1809namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Monk Liu &lt;Monk.Liu@amd.com=
-&gt;<br>
-<b>Sent:</b> Monday, June 10, 2019 2:37 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> Liu, Monk<br>
-<b>Subject:</b> [PATCH] drm/amdgpu: drop the incorrect soft_reset for SRIOV=
-</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">It's incorrect to do soft reset for SRIOV, when GF=
-X<br>
-hang the WREG would stuck there becuase it goes KIQ way.<br>
-<br>
-the GPU reset counter is incorrect: always increase twice<br>
-for each timedout<br>
-<br>
-Signed-off-by: Monk Liu &lt;Monk.Liu@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 2 &#43;-<br>
-&nbsp;1 file changed, 1 insertion(&#43;), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_ring.c<br>
-index 8f5026c..ff6976e 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c<br>
-@@ -399,7 &#43;399,7 @@ bool amdgpu_ring_soft_recovery(struct amdgpu_ring *=
-ring, unsigned int vmid,<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ktime_t deadline =3D ktime=
-_add_us(ktime_get(), 10000);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!ring-&gt;funcs-&gt;soft_recovery=
- || !fence)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(ring-&gt;adev=
-) || !ring-&gt;funcs-&gt;soft_recovery || !fence)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return false;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; atomic_inc(&amp;ring-&gt;a=
-dev-&gt;gpu_reset_counter);<br>
--- <br>
-2.7.4<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-</span></font></div>
-</body>
-</html>
-
---_000_BN6PR12MB1809F4E306574660D711EB8BF7130BN6PR12MB1809namp_--
-
---===============1184636433==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1184636433==--
+T24gRnJpLCBKdW4gMDcsIDIwMTkgYXQgMDI6Mzc6MDdQTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
+d3JvdGU6Cj4gCj4gT24gNi82LzE5IDExOjQ0IEFNLCBKYXNvbiBHdW50aG9ycGUgd3JvdGU6Cj4g
+PiBGcm9tOiBKYXNvbiBHdW50aG9ycGUgPGpnZ0BtZWxsYW5veC5jb20+Cj4gPiAKPiA+IGhtbV9y
+ZWxlYXNlKCkgaXMgY2FsbGVkIGV4YWN0bHkgb25jZSBwZXIgaG1tLiBvcHMtPnJlbGVhc2UoKSBj
+YW5ub3QKPiA+IGFjY2lkZW50YWxseSB0cmlnZ2VyIGFueSBhY3Rpb24gdGhhdCB3b3VsZCByZWN1
+cnNlIGJhY2sgb250bwo+ID4gaG1tLT5taXJyb3JzX3NlbS4KPiA+IAo+ID4gVGhpcyBmaXhlcyBh
+IHVzZSBhZnRlci1mcmVlIHJhY2Ugb2YgdGhlIGZvcm06Cj4gPiAKPiA+ICAgICAgICAgQ1BVMCAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgQ1BVMQo+ID4gICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBobW1fcmVsZWFzZSgpCj4gPiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdXBfd3JpdGUoJmhtbS0+bWlycm9y
+c19zZW0pOwo+ID4gICBobW1fbWlycm9yX3VucmVnaXN0ZXIobWlycm9yKQo+ID4gICAgZG93bl93
+cml0ZSgmaG1tLT5taXJyb3JzX3NlbSk7Cj4gPiAgICB1cF93cml0ZSgmaG1tLT5taXJyb3JzX3Nl
+bSk7Cj4gPiAgICBrZnJlZShtaXJyb3IpCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgbWlycm9yLT5vcHMtPnJlbGVhc2UobWlycm9yKQo+ID4gCj4gPiBU
+aGUgb25seSB1c2VyIHdlIGhhdmUgdG9kYXkgZm9yIG9wcy0+cmVsZWFzZSBpcyBhbiBlbXB0eSBm
+dW5jdGlvbiwgc28gdGhpcwo+ID4gaXMgdW5hbWJpZ3VvdXNseSBzYWZlLgo+ID4gCj4gPiBBcyBh
+IGNvbnNlcXVlbmNlIG9mIHBsdWdnaW5nIHRoaXMgcmFjZSBkcml2ZXJzIGFyZSBub3QgYWxsb3dl
+ZCB0bwo+ID4gcmVnaXN0ZXIvdW5yZWdpc3RlciBtaXJyb3JzIGZyb20gd2l0aGluIGEgcmVsZWFz
+ZSBvcC4KPiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogSmFzb24gR3VudGhvcnBlIDxqZ2dAbWVsbGFu
+b3guY29tPgo+IAo+IEkgYWdyZWUgd2l0aCB0aGUgYW5hbHlzaXMgYWJvdmUgYnV0IEknbSBub3Qg
+c3VyZSB0aGF0IHJlbGVhc2UoKSB3aWxsCj4gYWx3YXlzIGJlIGFuIGVtcHR5IGZ1bmN0aW9uLiBJ
+dCBtaWdodCBiZSBtb3JlIGVmZmljaWVudCB0byB3cml0ZSBiYWNrCj4gYWxsIGRhdGEgbWlncmF0
+ZWQgdG8gYSBkZXZpY2UgImluIG9uZSBwYXNzIiBpbnN0ZWFkIG9mIHJlbHlpbmcKPiBvbiB1bm1h
+cF92bWFzKCkgY2FsbGluZyBobW1fc3RhcnRfcmFuZ2VfaW52YWxpZGF0ZSgpIHBlciBWTUEuCgpJ
+IHRoaW5rIHdlIGhhdmUgdG8gZm9jdXMgb24gdGhlICpjdXJyZW50KiBrZXJuZWwgLSBhbmQgd2Ug
+aGF2ZSB0d28KdXNlcnMgb2YgcmVsZWFzZSwgbm91dmVhdV9zdm0uYyBpcyBlbXB0eSBhbmQgYW1k
+Z3B1X21uLmMgZG9lcwpzY2hlZHVsZV93b3JrKCkgLSBzbyBJIGJlbGlldmUgd2Ugc2hvdWxkIGdv
+IGFoZWFkIHdpdGggdGhpcyBzaW1wbGUKc29sdXRpb24gdG8gdGhlIGFjdHVhbCByYWNlIHRvZGF5
+IHRoYXQgYm90aCBvZiB0aG9zZSB3aWxsIHN1ZmZlciBmcm9tLgoKSWYgd2UgZmluZCBhIG5lZWQg
+Zm9yIGEgbW9yZSBjb21wbGV4IHZlcnNpb24gdGhlbiBpdCBjYW4gYmUgZGViYXRlZAphbmQganVz
+dGlmaWVkIHdpdGggcHJvcGVyIGNvbnRleHQuLi4KCk9rPwoKSmFzb24KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1k
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
