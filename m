@@ -2,49 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D16242736
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jun 2019 15:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F8FD41DA0
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jun 2019 09:26:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 576B389668;
-	Wed, 12 Jun 2019 13:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2B4189241;
+	Wed, 12 Jun 2019 07:26:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9D9E8933D;
- Wed, 12 Jun 2019 07:12:39 +0000 (UTC)
-Received: from hch by bombadil.infradead.org with local (Exim 4.92 #3 (Red Hat
- Linux)) id 1haxQw-0000fi-5q; Wed, 12 Jun 2019 07:12:34 +0000
-Date: Wed, 12 Jun 2019 00:12:34 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH v2 hmm 02/11] mm/hmm: Use hmm_mirror not mm as an
- argument for hmm_range_register
-Message-ID: <20190612071234.GA20306@infradead.org>
-References: <20190606184438.31646-1-jgg@ziepe.ca>
- <20190606184438.31646-3-jgg@ziepe.ca>
- <20190608085425.GB32185@infradead.org>
- <20190611194431.GC29375@ziepe.ca>
+Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 16D808931D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jun 2019 07:26:03 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by netline-mail3.netline.ch (Postfix) with ESMTP id 1A9F12A604A;
+ Wed, 12 Jun 2019 09:26:02 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
+Received: from netline-mail3.netline.ch ([127.0.0.1])
+ by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 40jVa8mezvlP; Wed, 12 Jun 2019 09:26:01 +0200 (CEST)
+Received: from thor (116.245.63.188.dynamic.wline.res.cust.swisscom.ch
+ [188.63.245.116])
+ by netline-mail3.netline.ch (Postfix) with ESMTPSA id 4C27B2A6048;
+ Wed, 12 Jun 2019 09:26:01 +0200 (CEST)
+Received: from localhost ([::1]) by thor with esmtp (Exim 4.92)
+ (envelope-from <michel@daenzer.net>)
+ id 1haxdw-0004Kn-So; Wed, 12 Jun 2019 09:26:00 +0200
+Subject: Re: [PATCH] drm/amd/amdgpu: Bail out of BO node creation if not
+ enough VRAM (v2)
+To: "StDenis, Tom" <Tom.StDenis@amd.com>
+References: <20190611165444.17841-1-tom.stdenis@amd.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Openpgp: preference=signencrypt
+Autocrypt: addr=michel@daenzer.net; prefer-encrypt=mutual; keydata=
+ mQGiBDsehS8RBACbsIQEX31aYSIuEKxEnEX82ezMR8z3LG8ktv1KjyNErUX9Pt7AUC7W3W0b
+ LUhu8Le8S2va6hi7GfSAifl0ih3k6Bv1Itzgnd+7ZmSrvCN8yGJaHNQfAevAuEboIb+MaVHo
+ 9EMJj4ikOcRZCmQWw7evu/D9uQdtkCnRY9iJiAGxbwCguBHtpoGMxDOINCr5UU6qt+m4O+UD
+ /355ohBBzzyh49lTj0kTFKr0Ozd20G2FbcqHgfFL1dc1MPyigej2gLga2osu2QY0ObvAGkOu
+ WBi3LTY8Zs8uqFGDC4ZAwMPoFy3yzu3ne6T7d/68rJil0QcdQjzzHi6ekqHuhst4a+/+D23h
+ Za8MJBEcdOhRhsaDVGAJSFEQB1qLBACOs0xN+XblejO35gsDSVVk8s+FUUw3TSWJBfZa3Imp
+ V2U2tBO4qck+wqbHNfdnU/crrsHahjzBjvk8Up7VoY8oT+z03sal2vXEonS279xN2B92Tttr
+ AgwosujguFO/7tvzymWC76rDEwue8TsADE11ErjwaBTs8ZXfnN/uAANgPLQjTWljaGVsIERh
+ ZW56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD6IXgQTEQIAHgUCQFXxJgIbAwYLCQgHAwIDFQID
+ AxYCAQIeAQIXgAAKCRBaga+OatuyAIrPAJ9ykonXI3oQcX83N2qzCEStLNW47gCeLWm/QiPY
+ jqtGUnnSbyuTQfIySkK5AQ0EOx6FRRAEAJZkcvklPwJCgNiw37p0GShKmFGGqf/a3xZZEpjI
+ qNxzshFRFneZze4f5LhzbX1/vIm5+ZXsEWympJfZzyCmYPw86QcFxyZflkAxHx9LeD+89Elx
+ bw6wT0CcLvSv8ROfU1m8YhGbV6g2zWyLD0/naQGVb8e4FhVKGNY2EEbHgFBrAAMGA/0VktFO
+ CxFBdzLQ17RCTwCJ3xpyP4qsLJH0yCoA26rH2zE2RzByhrTFTYZzbFEid3ddGiHOBEL+bO+2
+ GNtfiYKmbTkj1tMZJ8L6huKONaVrASFzLvZa2dlc2zja9ZSksKmge5BOTKWgbyepEc5qxSju
+ YsYrX5xfLgTZC5abhhztpYhGBBgRAgAGBQI7HoVFAAoJEFqBr45q27IAlscAn2Ufk2d6/3p4
+ Cuyz/NX7KpL2dQ8WAJ9UD5JEakhfofed8PSqOM7jOO3LCA==
+Message-ID: <fd4c5152-2670-8ac5-e6cc-fff6f260f3ed@daenzer.net>
+Date: Wed, 12 Jun 2019 09:26:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190611194431.GC29375@ziepe.ca>
-User-Agent: Mutt/1.11.4 (2019-03-13)
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Mailman-Approved-At: Wed, 12 Jun 2019 13:12:31 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
- c=relaxed/relaxed; 
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=gHyPffJSXLCM57JngMARDMldvmmJZW1qdq4MDpyHoRk=; b=LZFWfvDwFrroFnYyekMIs/UyE
- bnMyL5wiF6a4qOXH5Y6D53f6fcxweVVJulxgbYu1K/IdrKLLafhSvY4xRz/tsyEb1jMuRSPbF8Rnl
- 2jgdlWDjFI2AFrwtJTWCwY7ypwwqq20Wfwdyjg6YBYwVPLrqZcVIAuIDcFv3wcwesz87rKWLcwF6Q
- uIyxuROlw9E3tQxn18S6MXz8HOLuV0akpHIPz5eAdK34NQGGATa54Jl7DFM8Z4t77COuq4Y8dcdsL
- IybD7Zm7ngdxABfUQaFBZFD1S2V2tOJ6I6k+Q28wmxvewZONusKYFagqQ8kY+0GS9kfk6C3OEwpSE
- VocdDksgg==;
+In-Reply-To: <20190611165444.17841-1-tom.stdenis@amd.com>
+Content-Language: en-CA
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -56,38 +68,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrea Arcangeli <aarcange@redhat.com>,
- Ralph Campbell <rcampbell@nvidia.com>, linux-rdma@vger.kernel.org,
- John Hubbard <jhubbard@nvidia.com>, Felix.Kuehling@amd.com,
- dri-devel@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>,
- linux-mm@kvack.org, Jerome Glisse <jglisse@redhat.com>,
- amd-gfx@lists.freedesktop.org
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBKdW4gMTEsIDIwMTkgYXQgMDQ6NDQ6MzFQTSAtMDMwMCwgSmFzb24gR3VudGhvcnBl
-IHdyb3RlOgo+IE9uIFNhdCwgSnVuIDA4LCAyMDE5IGF0IDAxOjU0OjI1QU0gLTA3MDAsIENocmlz
-dG9waCBIZWxsd2lnIHdyb3RlOgo+ID4gRllJLCBJIHZlcnkgbXVjaCBkaXNhZ3JlZSB3aXRoIHRo
-ZSBkaXJlY3Rpb24gdGhpcyBpcyBtb3ZpbmcuCj4gPiAKPiA+IHN0cnVjdCBobW1fbWlycm9yIGxp
-dGVyYWxseSBpcyBhIHRyaXZpYWwgZHVwbGljYXRpb24gb2YgdGhlCj4gPiBtbXVfbm90aWZpZXJz
-LiAgQWxsIHRoZXNlIGRyaXZlcnMgc2hvdWxkIGp1c3QgdXNlIHRoZSBtbXVfbm90aWZpZXJzCj4g
-PiBkaXJlY3RseSBmb3IgdGhlIG1pcnJvcmluZyBwYXJ0IGluc3RlYWQgb2YgYnVpbGRpbmcgYSB0
-aGluZyB3cmFwcGVyCj4gPiB0aGF0IGFkZHMgbm90aGluZyBidXQgaGVscGluZyB0byBtYW5hZ2Ug
-dGhlIGxpZmV0aW1lIG9mIHN0cnVjdCBobW0sCj4gPiB3aGljaCBzaG91bGRuJ3QgZXhpc3QgdG8g
-c3RhcnQgd2l0aC4KPiAKPiBDaHJpc3RvcGg6IFdoYXQgZG8geW91IHRoaW5rIGFib3V0IHRoaXMg
-c2tldGNoIGJlbG93Pwo+IAo+IEl0IHdvdWxkIHJlcGxhY2UgdGhlIGhtbV9yYW5nZS9taXJyb3Iv
-ZXRjIHdpdGggYSBkaWZmZXJlbnQgd2F5IHRvCj4gYnVpbGQgdGhlIHNhbWUgbG9ja2luZyBzY2hl
-bWUgdXNpbmcgc29tZSBvcHRpb25hbCBoZWxwZXJzIGxpbmtlZCB0bwo+IHRoZSBtbXUgbm90aWZp
-ZXI/Cj4gCj4gKGp1c3QgYSBza2V0Y2gsIHN0aWxsIG5lZWRzIGEgbG90IG1vcmUgdGhpbmtpbmcp
-CgpJIGxpa2UgdGhlIGlkZWEuICBBIGZldyBuaXRwaWNrczogIENhbiB3ZSBhdm9pZCBoYXZpbmcg
-dG8gc3RvcmUKdGhlIG1tIGluIHN0cnVjdCBtbXVfbm90aWZpZXI/ICBJIHRoaW5rIHdlIGNvdWxk
-IGp1c3QgZWFzaWx5IHBhc3MKaXQgYXMgYSBwYXJhbWV0ZXIgdG8gdGhlIGhlbHBlcnMuICBUaGUg
-d3JpdGUgbG9jayBjYXNlIG9mCm1tX2ludmxvY2tfc3RhcnRfd3JpdGVfYW5kX2xvY2sgaXMgcHJv
-YmFibHkgd29ydGggZmFjdG9yaW5nIGludG8Kc2VwYXJhdGUgaGVscGVyPyBJIGNhbiBzZWUgY2Fz
-ZXMgd2hlcmUgZHJpdmVycyB3YW50IHRvIGp1c3QgdXNlCml0IGRpcmVjdGx5IGlmIHRoZXkgbmVl
-ZCB0byBmb3JjZSBnZXR0aW5nIHRoZSBsb2NrIHdpdGhvdXQgdGhlIGNoYW5jZQpvZiBhIGxvbmcg
-d2FpdC4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFt
-ZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+T24gMjAxOS0wNi0xMSA2OjU0IHAubS4sIFN0RGVuaXMsIFRvbSB3cm90ZToKPiAodjIpOiBSZXR1
+cm4gMCBhbmQgc2V0IG1lbS0+bW1fbm9kZSB0byBOVUxMLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFRv
+bSBTdCBEZW5pcyA8dG9tLnN0ZGVuaXNAYW1kLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvYW1kZ3B1X3ZyYW1fbWdyLmMgfCAxOCArKysrKysrKysrKysrLS0tLS0KPiAg
+MSBmaWxlIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCj4gCj4gWy4u
+Ll0KPiAgCj4gQEAgLTI4NCw2ICsyODQsMTQgQEAgc3RhdGljIGludCBhbWRncHVfdnJhbV9tZ3Jf
+bmV3KHN0cnVjdCB0dG1fbWVtX3R5cGVfbWFuYWdlciAqbWFuLAo+ICAJaWYgKCFscGZuKQo+ICAJ
+CWxwZm4gPSBtYW4tPnNpemU7Cj4gIAo+ICsJLyogYmFpbCBvdXQgcXVpY2tseSBpZiB0aGVyZSdz
+IGxpa2VseSBub3QgZW5vdWdoIFZSQU0gZm9yIHRoaXMgQk8gKi8KPiArCWF0b21pYzY0X2FkZCht
+ZW0tPm51bV9wYWdlcyA8PCBQQUdFX1NISUZULCAmbWdyLT51c2FnZSk7Cj4gKwlpZiAoYXRvbWlj
+NjRfcmVhZCgmbWdyLT51c2FnZSkgPiBhZGV2LT5nbWMubWNfdnJhbV9zaXplKSB7CgpTaG91bGQg
+cHJvYmFibHkgdXNlIGF0b21pYzY0X2FkZF9yZXR1cm4gaW5zdGVhZCBvZiBhdG9taWM2NF9hZGQg
+KwphdG9taWM2NF9yZWFkLgoKQWxzbywgQUZBSUNUIHRoaXMgZG9lc24ndCBhbGxvdyBhbnkgVlJB
+TSBvdmVyY29tbWl0LCB3aGljaCBzZWVtcyBhIGJpdApjb25zZXJ2YXRpdmU/CgoKLS0gCkVhcnRo
+bGluZyBNaWNoZWwgRMOkbnplciAgICAgICAgICAgICAgIHwgICAgICAgICAgICAgIGh0dHBzOi8v
+d3d3LmFtZC5jb20KTGlicmUgc29mdHdhcmUgZW50aHVzaWFzdCAgICAgICAgICAgICB8ICAgICAg
+ICAgICAgIE1lc2EgYW5kIFggZGV2ZWxvcGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vYW1kLWdmeA==
