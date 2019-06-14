@@ -1,86 +1,77 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF4C245D34
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jun 2019 14:55:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7CBA45D9A
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jun 2019 15:13:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFE54892B4;
-	Fri, 14 Jun 2019 12:55:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 175D489249;
+	Fri, 14 Jun 2019 13:13:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770051.outbound.protection.outlook.com [40.107.77.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CBF389294;
- Fri, 14 Jun 2019 12:55:36 +0000 (UTC)
-Received: from DM5PR12MB1546.namprd12.prod.outlook.com (10.172.36.23) by
- DM5PR12MB1755.namprd12.prod.outlook.com (10.175.85.137) with Microsoft SMTP
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr690079.outbound.protection.outlook.com [40.107.69.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 612A989249
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jun 2019 13:13:38 +0000 (UTC)
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
+ BN6PR12MB1875.namprd12.prod.outlook.com (10.175.99.151) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.11; Fri, 14 Jun 2019 12:55:35 +0000
-Received: from DM5PR12MB1546.namprd12.prod.outlook.com
- ([fe80::7d27:3c4d:aed6:2935]) by DM5PR12MB1546.namprd12.prod.outlook.com
- ([fe80::7d27:3c4d:aed6:2935%6]) with mapi id 15.20.1987.013; Fri, 14 Jun 2019
- 12:55:35 +0000
-From: "Koenig, Christian" <Christian.Koenig@amd.com>
-To: Emil Velikov <emil.l.velikov@gmail.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH 01/13] drm/amdgpu: introduce and honour DRM_FORCE_AUTH
- workaround
-Thread-Topic: [PATCH 01/13] drm/amdgpu: introduce and honour DRM_FORCE_AUTH
- workaround
-Thread-Index: AQHVFGTgR+jNVTHnhkq6fR69g1cCsaabKzyAgAAM3YA=
-Date: Fri, 14 Jun 2019 12:55:34 +0000
-Message-ID: <9dbdda6c-8916-e5ae-1676-86828b9890e7@amd.com>
-References: <20190527081741.14235-1-emil.l.velikov@gmail.com>
- <20190614120927.GA32412@arch-x1c3>
-In-Reply-To: <20190614120927.GA32412@arch-x1c3>
-Accept-Language: de-DE, en-US
+ 15.20.1987.11; Fri, 14 Jun 2019 13:13:36 +0000
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::11ea:d6bc:d2fa:e6d]) by BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::11ea:d6bc:d2fa:e6d%9]) with mapi id 15.20.1987.012; Fri, 14 Jun 2019
+ 13:13:36 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Liang, Prike" <Prike.Liang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amd/powerplay: detect version of smu backend
+Thread-Topic: [PATCH] drm/amd/powerplay: detect version of smu backend
+Thread-Index: AQHVIn8KZ/U1XAfn8k2SxNtVYR7JyKabIOH3
+Date: Fri, 14 Jun 2019 13:13:35 +0000
+Message-ID: <BN6PR12MB18098EE94146CE430C417DB1F7EE0@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <1560495689-12881-1-git-send-email-Prike.Liang@amd.com>
+In-Reply-To: <1560495689-12881-1-git-send-email-Prike.Liang@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-x-originating-ip: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-x-clientproxiedby: PR0P264CA0232.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:100:1e::28) To DM5PR12MB1546.namprd12.prod.outlook.com
- (2603:10b6:4:8::23)
-x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [71.219.5.136]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d9d8e0fb-d17f-4181-bd86-08d6f0c7973c
+x-ms-office365-filtering-correlation-id: 4a8355cc-e6c3-4537-a8f2-08d6f0ca1bd0
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:DM5PR12MB1755; 
-x-ms-traffictypediagnostic: DM5PR12MB1755:
-x-microsoft-antispam-prvs: <DM5PR12MB1755E7688E2A8741A27CAF9C83EE0@DM5PR12MB1755.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
+ SRVR:BN6PR12MB1875; 
+x-ms-traffictypediagnostic: BN6PR12MB1875:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BN6PR12MB18754E42992A9EFBB7538FCDF7EE0@BN6PR12MB1875.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:31;
 x-forefront-prvs: 0068C7E410
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(346002)(396003)(136003)(366004)(376002)(39860400002)(189003)(199004)(46003)(6116002)(102836004)(229853002)(6436002)(316002)(99286004)(58126008)(256004)(14444005)(71190400001)(31696002)(71200400001)(186003)(6506007)(386003)(11346002)(446003)(476003)(2616005)(68736007)(86362001)(5660300002)(486006)(6486002)(65956001)(65806001)(2501003)(6512007)(65826007)(73956011)(66946007)(25786009)(36756003)(14454004)(52116002)(7736002)(305945005)(66476007)(76176011)(64126003)(4326008)(53936002)(2906002)(54906003)(110136005)(8936002)(6246003)(31686004)(66446008)(64756008)(66556008)(8676002)(561944003)(72206003)(81156014)(81166006)(478600001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1755;
- H:DM5PR12MB1546.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ SFS:(10009020)(39860400002)(376002)(136003)(346002)(396003)(366004)(199004)(189003)(74316002)(236005)(7736002)(9686003)(6246003)(186003)(3846002)(53936002)(7696005)(486006)(52536014)(33656002)(55016002)(8936002)(6306002)(26005)(6506007)(105004)(99286004)(54896002)(53546011)(446003)(102836004)(5660300002)(66066001)(76176011)(11346002)(6436002)(72206003)(76116006)(81166006)(4326008)(966005)(19627405001)(68736007)(8676002)(64756008)(229853002)(2906002)(86362001)(66476007)(66446008)(476003)(6116002)(73956011)(66946007)(256004)(71190400001)(14454004)(66556008)(2501003)(14444005)(110136005)(606006)(316002)(81156014)(54906003)(71200400001)(478600001)(25786009);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1875;
+ H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: mrfXt82Jeo0d/1C8DYGGFQzPgLChSw5ljhl5UKP6w/moD3uclvL37URnXaepo84IJWP3n7YdC84iiFVtXnsh5yXoOi8lk5Sh+xhD6+ES4szuRl3Gno9eAfb0ng6hKZLqC7hEJWb5dxtxqW/A0/SutKGkGy6sqY5CNagWYMijwbbMqqcxgA/OxaSTSv1Ngn5p49kcOboSYqK57Nria6/cTDw8FMSvNRDRz2O6TiY7iL0e7MglCQULxGMdgdL1INgBK1D/r+SH898wDVsQKZxdnS+wWd3sniICHEcuZNbmhfRBxisebKwtTsCpftbXBU2tAKFweOXks8DpTiPmkyKYq+5iQ+rBZsuEzmaFR7kyk+V0B313hnWPPzxQMaM9KrLtv5MnQaCr7wrUJWSsEYDaVeingJ3If0Ad5CVsLV+o+Vk=
-Content-ID: <C5B6A6E61C7FBA42B1DD89C547EBC258@namprd12.prod.outlook.com>
+x-microsoft-antispam-message-info: Ox8iAzHs5fO0/KAsrCQBO0Bv4uox2GH7kV05aZIG71QF6cQp0LHoDago9bXiZnfxSQImjdhUeqczpbHLFMiCi9T+rWlvTlCb9FlT134hFNKjT1pmrXPaPpviUGEmDXD56MOAYl0PIZ2L60LuI2Q8JrRJQvJdR0kPhJJQTg640j/lqRNbNMqNAIhBT8RRIXJgk8y6FCb1sitYfUxfjitXG01UV6cUpsitjtH+k5L4yZX6/P9Hk1+W0yCSOmDv+AB+SoNXelI0cQw8hYvhLwawJZmHBKcgW4iL+CTvD9qLvbC5pbo0QLOhCa21fOoP1I9gTTSVoNlf9kgMbAHb2/J7QZR0G77+wHx7wM3K1MbPCWndUlaM63ZOXpVy4CBDLu2tGe10Pb6eNOLaMPdJeGlUUoCalGAcaZQxOhkhk5ilKdQ=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9d8e0fb-d17f-4181-bd86-08d6f0c7973c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2019 12:55:34.9875 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a8355cc-e6c3-4537-a8f2-08d6f0ca1bd0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2019 13:13:35.7621 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ckoenig@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1755
+X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1875
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GyvTOEfdmyKuqAoO7gydoWP6uwz0QfIWRN4yJrvW8j0=;
- b=rZ/Guj/CkzQ0V85gZSAkJ+lzqKZeqsf7MehOKfA0bp3s9hz0Stx1Vx94cAaUGLsHM6ISzVci30TCZ+wBmd9u72PSlpz/ZBWgV7xrEjT3ZqiAxea3Qpje0ueFyvE9a7Fh828LivF/+367ZYZbYJdtbPguDBUgvEqpu3hkWblC2Yw=
+ bh=20sd8EvLlXoJAXryVD/jYXlks1BJhuB8HruRFrkjBrQ=;
+ b=Tzd1amnLkHvW2IVXyQKjyw6Qm1FZk8RzP+OjFb+ky9GKx/uugw+3q3d7oKsJFVJHzjbTZK4BKJY0iED/3d4mhS4aMcbiH4gXX6izEbbDjcjIt80fFEKX5rALynBVj3HjC5r1CiUXJ26eSkbaixRF2+I9MkOLR7VrQ2pHrN4LAu8=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Christian.Koenig@amd.com; 
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -92,87 +83,551 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Huang, Ray" <Ray.Huang@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>,
+ "Quan, Evan" <Evan.Quan@amd.com>
+Content-Type: multipart/mixed; boundary="===============0368821962=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMTQuMDYuMTkgdW0gMTQ6MDkgc2NocmllYiBFbWlsIFZlbGlrb3Y6DQo+IE9uIDIwMTkvMDUv
-MjcsIEVtaWwgVmVsaWtvdiB3cm90ZToNCj4gW1NOSVBdDQo+IEhpIENocmlzdGlhbiwNCj4NCj4N
-Cj4gSW4gdGhlIGZvbGxvd2luZywgSSB3b3VsZCBsaWtlIHRvIHN1bW1hcmlzZSBhbmQgZW1waGFz
-aXplIHRoZSBuZWVkIGZvcg0KPiBEUk1fQVVUSCByZW1vdmFsLiBJIHdvdWxkIGtpbmRseSBhc2sg
-eW91IHRvIHNwZW5kIGEgY291cGxlIG9mIG1pbnV0ZXMNCj4gZXh0cmEgcmVhZGluZyBpdC4NCj4N
-Cj4NCj4gVG9kYXkgRFJNIGRyaXZlcnMqIGRvIG5vdCBtYWtlIGFueSBkaXN0aW5jdGlvbiBiZXR3
-ZWVuIHByaW1hcnkgYW5kDQo+IHJlbmRlciBub2RlIGNsaWVudHMuDQoNClRoYXQgaXMgYWN0dWFs
-bHkgbm90IDEwMCUgY29ycmVjdC4gV2UgaGF2ZSBhIHNwZWNpYWwgY2FzZSB3aGVyZSBhIERSTSAN
-Cm1hc3RlciBpcyBhbGxvd2VkIHRvIGNoYW5nZSB0aGUgcHJpb3JpdHkgb2YgcmVuZGVyIG5vZGUg
-Y2xpZW50cy4NCg0KPiBUaHVzIGZvciBhIHJlbmRlciBjYXBhYmxlIGRyaXZlciwgYW55IHByZW1p
-c2Ugb2YNCj4gc2VwYXJhdGlvbiwgc2VjdXJpdHkgb3Igb3RoZXJ3aXNlIGltcG9zZWQgdmlhIERS
-TV9BVVRIIGlzIGEgZmFsbGFjeS4NCg0KWWVhaCwgdGhhdCdzIHdoYXQgSSBhZ3JlZSBvbi4gSSBq
-dXN0IGRvbid0IHRoaW5rIHRoYXQgcmVtb3ZpbmcgRFJNX0FVVEggDQpub3cgaXMgdGhlIHJpZ2h0
-IGRpcmVjdGlvbiB0byB0YWtlLg0KDQo+IENvbnNpZGVyaW5nIHRoZSBleGFtcGxlcyBvZiBmbGFr
-eSBvciBvdXRyaWdodCBtaXNzaW5nIGRybUF1dGggaW4gcHJpbWUNCj4gb3Blbi1zb3VyY2UgcHJv
-amVjdHMgKG1lc2EsIGttc2N1YmUsIGxpYnZhKSB3ZSBjYW4gcmVhc29uYWJseSBhc3N1bWUNCj4g
-b3RoZXIgcHJvamVjdHMgZXhiaWJpdCB0aGUgc2FtZSBwcm9ibGVtLg0KPg0KPiBGb3IgdGhlc2Ug
-YW5kL29yIG90aGVyIHJlYXNvbnMsIHR3byBEUk0gZHJpdmVycyBoYXZlIGRyb3BwZWQgRFJNX0FV
-VEgNCj4gc2luY2UgZGF5IG9uZS4NCj4NCj4gU2luY2Ugd2UgYXJlIGludGVyZXN0ZWQgaW4gcHJv
-dmlkaW5nIGNvbnNpc3RlbnQgYW5kIHByZWRpY3RhYmxlDQo+IGJlaGF2aW91ciB0byB1c2VyLXNw
-YWNlLCBkcm9wcGluZyBEUk1fQVVUSCBzZWVtcyB0byBiZSB0aGUgbW9zdA0KPiBlZmZlY3RpdmUg
-d2F5IGZvcndhcmQuDQoNCldlbGwgYW5kIHdoYXQgZG8geW91IGRvIHdpdGggZHJpdmVycyB3aGlj
-aCBkb2Vzbid0IGltcGxlbWVudCByZW5kZXIgbm9kZXM/DQoNCj4gT2YgY291cnNlLCBJJ2QgYmUg
-bW9yZSB0aGFuIGhhcHB5IHRvIGhlYXIgZm9yIGFueSBvdGhlciB3YXkgdG8gYWNoaWV2ZQ0KPiB0
-aGUgZ29hbCBvdXRsaW5lZC4NCj4NCj4gQmFzZWQgb24gdGhlIHNlcmllcywgb3RoZXIgbWFpbnRh
-aW5lcnMgYWdyZWUgd2l0aCB0aGUgaWRlYS9nb2FsIGhlcmUuDQo+IEFtZGdwdSBub3QgZm9sbG93
-aW5nIHRoZSBzYW1lIHBhdHRlcm4gd291bGQgY29tcHJvbWlzZSBwcmVkaWN0YWJpbGl0eQ0KPiBh
-Y3Jvc3MgZHJpdmVycyBhbmQgY29tcGxpY2F0ZSB1c2Vyc3BhY2UsIHNvIEkgd291bGQga2luZGx5
-IGFzayB5b3UgdG8NCj4gcmVjb25zaWRlci4NCj4NCj4gQWx0ZXJuYXRpdmVseSwgSSBzZWUgdHdv
-IHdheXMgdG8gc3BlY2lhbCBjYXNlOg0KPiAgIC0gTmV3IGZsYWcgYW5ub3RhdGluZyBhbWRncHUv
-cmFkZW9uIC0gYWtpbiB0byB0aGUgb25lIHByb3Bvc2VkIGVhcmxpZXINCj4gICAtIENoZWNrIGZv
-ciBhbWRncHUvcmFkZW9uIGluIGNvcmUgRFJNDQoNCkkgcGVyZmVjdGx5IGFncmVlIHRoYXQgSSBk
-b24ndCB3YW50IGFueSBzcGVjaWFsIGhhbmRsaW5nIGZvciBhbWRncHUvcmFkZW9uLg0KDQpNeSBr
-ZXkgcG9pbnQgaXMgdGhhdCB3aXRoIERSTV9BVVRIIHdlIGNyZWF0ZWQgYW4gYXV0aG9yaXphdGlv
-biBhbmQgDQphdXRoZW50aWNhdGlvbiBtZXNzIGluIERSTSB3aGljaCBpcyBmdW5jdGlvbmFsaXR5
-IHdoaWNoIGRvZXNuJ3QgYmVsb25nIA0KaW50byB0aGUgRFJNIHN1YnN5c3RlbSBpbiB0aGUgZmly
-c3QgcGxhY2UuDQoNCj4gTm93IG9uIHlvdXIgcGFpbiBwb2ludCAtIG5vdCBhbGxvd2luZyByZW5k
-ZXIgaW9jdHMgdmlhIHRoZSBwcmltYXJ5IG5vZGUsDQo+IGFuZCBob3cgdGhpcyBwYXRjaCBjb3Vs
-ZCBtYWtlIGl0IGhhcmRlciB0byBhY2hpZXZlIHRoYXQgZ29hbC4NCj4NCj4gV2hpbGUgSSBsb3Zl
-IHRoZSBpZGVhLCB0aGVyZSBhcmUgbnVtYmVyIG9mIG9ic3RhY2xlcyB0aGF0IHByZXZlbnQgdXMN
-Cj4gZnJvbSBkb2luZyBzbyBhdCB0aGlzIHRpbWU6DQo+ICAgLSBFbnN1cmluZyBib3RoIG9sZCBh
-bmQgbmV3IHVzZXJzcGFjZSBkb2VzIG5vdCByZWdyZXNzDQoNClllYWgsIGFncmVlIHRvdGFsbHku
-IFRoYXQncyB3aHkgSSBzYWlkIHdlIHNob3VsZCBwcm9iYWJseSBzdGFydCBkb2luZyANCnRoaXMg
-Zm9yIG9ubHkgZm9yIHVwY29taW5nIGhhcmR3YXJlIGdlbmVyYXRpb25zLg0KDQo+ICAgLSBEcml2
-ZXJzIChRWEwsIG90aGVycz8pIGRvIG5vdCBleHBvc2UgYSByZW5kZXIgbm9kZQ0KDQpXZWxsIGlz
-bid0IHRoYXQgaXMgYSByYXRoZXIgYmlnIHByb2JsZW0gZm9yIHRoZSByZW1vdmFsIG9mIERSTV9B
-VVRIIGluIA0KZ2VuZXJhbD8NCg0KRS5nLiBhdCBsZWFzdCBRWEwgd291bGQgdGhlbiBleHBvc2Ug
-ZnVuY3Rpb25hbGl0eSBvbiB0aGUgcHJpbWFyeSBub2RlIA0Kd2l0aG91dCBhdXRoZW50aWNhdGlv
-bi4NCg0KPiAgIC0gV2Ugd2FudCB0byBhdm9pZCBkcml2ZXIgc3BlY2lmaWMgYmVoYXZpb3VyDQo+
-DQo+IFRoZSBvbmx5IHdheSBmb3J3YXJkIHRoYXQgSSBjYW4gc2VlIGlzOg0KPiAgIC0gQWRkcmVz
-cyBRWEwvb3RoZXJzIHRvIGV4cG9zZSByZW5kZXIgbm9kZXMNCj4gICAtIEFkZCBhIEtjb25maWcg
-dG9nZ2xlIHRvIGRpc2FibGUgIUtNUyBpb2N0bHMgdmlhIHRoZSBwcmltYXJ5IG5vZGUNCj4gICAt
-IEp1bXAtc3RhcnQgXl4gd2l0aCBkaXN0cmlidXRpb24gWA0KPiAgIC0gRml4IHVzZXItc3BhY2Ug
-ZmFsbG91dHMNCj4gICAtIFggbW9udGhzIGRvd24gdGhlIGxpbmUsIGZsaXAgdGhlIEtjb25maWcN
-Cj4gICAtIEluIGNhc2Ugb2YgcmVncmVzc2lvbnMgLSByZXZlcnQgdGhlIEtDb25maWcsIGdvdG8g
-Rml4IHVzZXItc3BhY2UuLi4NCg0KV2VsbCB0aGF0IGF0IGxlYXN0IHNvdW5kcyBsaWtlIGEgcGxh
-biA6KSBMZXQncyB0byB0aGlzIQ0KDQo+IFRoYXQgc2FpZCwgdGhlIHByb3Bvc2FsIHdpbGwgbm90
-IGNvbmZsaWN0IHdpdGggdGhlIERSTV9BVVRIIHJlbW92YWwuIElmDQo+IGFueXRoaW5nIGl0IGlz
-IHN0ZXAgMC41IG9mIHRoZSBncmFuZCBtYXN0ZXIgcGxhbi4NCg0KVGhhdCdzIHRoZSBwb2ludCBJ
-IHN0cm9uZ2x5IGRpc2FncmVlIG9uLg0KDQpCeSBsb3dlcmluZyB0aGUgRFJNX0FVVEggcmVzdHJp
-Y3Rpb24geW91IGFyZSBlbmNvdXJhZ2luZyB1c2Vyc3BhY2UgdG8gDQp1c2UgdGhlIHNob3J0Y3V0
-IGFuZCB1c2UgdGhlIHByaW1hcnkgbm9kZSBmb3IgcmVuZGVyaW5nIGluc3RlYWQgb2YgDQpmaXhp
-bmcgdGhlIGNvZGUgYW5kIHVzaW5nIHRoZSByZW5kZXIgbm9kZS4NCg0KU28gYXQgdGhlIGVuZCBv
-ZiB0aGUgZGF5IHVzZXJzcGFjZSB3aWxsIG1vc3QgbGlrZWx5IGNvbXBsZXRlbHkgZHJvcCANCnN1
-cHBvcnQgZm9yIHRoZSByZW5kZXIgbm9kZSwgc2ltcGx5IGZvciB0aGUgcmVhc29uIHRoYXQgaXQg
-YmVjYW1lIA0Kc3VwZXJmbHVvdXMuIFlvdSBjYW4ganVzdCBvcGVuIHVwIHRoZSBwcmltYXJ5IG5v
-ZGUgYW5kIGdldCB0aGUgc2FtZSANCmZ1bmN0aW9uYWxpdHkuDQoNCkkgYWJzb2x1dGVseSBjYW4n
-dCB1bmRlcnN0YW5kIGhvdyB5b3UgY2FuIGFyZ3VlIHRoYXQgdGhpcyB3b24ndCBtYWtlIGl0IA0K
-aGFyZGVyIHRvIGNsZWFubHkgc2VwYXJhdGUgcmVuZGVyaW5nIGFuZCBwcmltYXJ5IG5vZGUgZnVu
-Y3Rpb25hbGl0eS4NCg0KUmVnYXJkcywNCkNocmlzdGlhbi4NCg0KPg0KPg0KPiBUbDtEcjogUmVt
-b3ZpbmcgRFJNX0FVVEggaXMgb3J0aG9nb25hbCB0byBub3QgYWxsb3dpbmcgcmVuZGVyIGlvY3Rz
-IHZpYQ0KPiB0aGUgcHJpbWFyeSBub2RlLiBIZXJlJ3MgYW4gaWRlYSBob3cgdG8gYWNoaWV2ZSB0
-aGUgbGF0dGVyLg0KPg0KPg0KPiBUaGFua3MNCj4gRW1pbA0KDQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============0368821962==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB18098EE94146CE430C417DB1F7EE0BN6PR12MB1809namp_"
+
+--_000_BN6PR12MB18098EE94146CE430C417DB1F7EE0BN6PR12MB1809namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Prike Li=
+ang <Prike.Liang@amd.com>
+Sent: Friday, June 14, 2019 3:01 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Liang, Prike; Huang, Ray; Feng, Kenneth; Quan, Evan
+Subject: [PATCH] drm/amd/powerplay: detect version of smu backend
+
+Change-Id: Ib050c8cf0c2c5af4c1f747cf596860f9be01a2d3
+Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+---
+ drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c             | 1 +
+ drivers/gpu/drm/amd/powerplay/inc/hwmgr.h               | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c        | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/fiji_smumgr.c      | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c   | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c     | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/smu8_smumgr.c      | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c     | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c    | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c    | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c    | 1 +
+ drivers/gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c     | 1 +
+ 13 files changed, 13 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c b/drivers/gpu/drm/=
+amd/powerplay/hwmgr/hwmgr.c
+index f1d326c..b996819 100644
+--- a/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c
++++ b/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c
+@@ -194,6 +194,7 @@ int hwmgr_sw_init(struct pp_hwmgr *hwmgr)
+                 return -EINVAL;
+
+         phm_register_irq_handlers(hwmgr);
++       pr_info("hwmgr_sw_init smu backed is %s\n",hwmgr->smumgr_funcs->nam=
+e);
+
+         return hwmgr->smumgr_funcs->smu_init(hwmgr);
+ }
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/hwmgr.h b/drivers/gpu/drm/am=
+d/powerplay/inc/hwmgr.h
+index c92999a..47dbecc 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/hwmgr.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/hwmgr.h
+@@ -190,6 +190,7 @@ struct phm_vce_clock_voltage_dependency_table {
+ };
+
+ struct pp_smumgr_func {
++       char *name;
+         int (*smu_init)(struct pp_hwmgr  *hwmgr);
+         int (*smu_fini)(struct pp_hwmgr  *hwmgr);
+         int (*start_smu)(struct pp_hwmgr  *hwmgr);
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c b/drivers/gpu=
+/drm/amd/powerplay/smumgr/ci_smumgr.c
+index 9ef57fc..022f3c8 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c
+@@ -2935,6 +2935,7 @@ static int ci_update_smc_table(struct pp_hwmgr *hwmgr=
+, uint32_t type)
+ }
+
+ const struct pp_smumgr_func ci_smu_funcs =3D {
++       .name =3D "ci_smu",
+         .smu_init =3D ci_smu_init,
+         .smu_fini =3D ci_smu_fini,
+         .start_smu =3D ci_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/fiji_smumgr.c b/drivers/g=
+pu/drm/amd/powerplay/smumgr/fiji_smumgr.c
+index 0ce85b7..da025b1 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/fiji_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/fiji_smumgr.c
+@@ -2643,6 +2643,7 @@ static int fiji_update_dpm_settings(struct pp_hwmgr *=
+hwmgr,
+ }
+
+ const struct pp_smumgr_func fiji_smu_funcs =3D {
++       .name =3D "fiji_smu",
+         .smu_init =3D &fiji_smu_init,
+         .smu_fini =3D &smu7_smu_fini,
+         .start_smu =3D &fiji_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c b/driver=
+s/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c
+index f24f13d..f414f22 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c
+@@ -2661,6 +2661,7 @@ static bool iceland_is_dpm_running(struct pp_hwmgr *h=
+wmgr)
+ }
+
+ const struct pp_smumgr_func iceland_smu_funcs =3D {
++       .name =3D "iceland_smu",
+         .smu_init =3D &iceland_smu_init,
+         .smu_fini =3D &smu7_smu_fini,
+         .start_smu =3D &iceland_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c b/driv=
+ers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c
+index 0d8958e..fbac2d3 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c
+@@ -2550,6 +2550,7 @@ static int polaris10_update_dpm_settings(struct pp_hw=
+mgr *hwmgr,
+ }
+
+ const struct pp_smumgr_func polaris10_smu_funcs =3D {
++       .name =3D "polaris10_smu",
+         .smu_init =3D polaris10_smu_init,
+         .smu_fini =3D smu7_smu_fini,
+         .start_smu =3D polaris10_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c b/drivers/=
+gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c
+index 6d11076a..ca66035 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c
+@@ -291,6 +291,7 @@ static int smu10_smc_table_manager(struct pp_hwmgr *hwm=
+gr, uint8_t *table, uint1
+
+
+ const struct pp_smumgr_func smu10_smu_funcs =3D {
++       .name =3D "smu10_smu",
+         .smu_init =3D &smu10_smu_init,
+         .smu_fini =3D &smu10_smu_fini,
+         .start_smu =3D &smu10_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/smu8_smumgr.c b/drivers/g=
+pu/drm/amd/powerplay/smumgr/smu8_smumgr.c
+index e2787e1..8189fe4 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/smu8_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/smu8_smumgr.c
+@@ -881,6 +881,7 @@ static bool smu8_is_dpm_running(struct pp_hwmgr *hwmgr)
+ }
+
+ const struct pp_smumgr_func smu8_smu_funcs =3D {
++       .name =3D "smu8_smu",
+         .smu_init =3D smu8_smu_init,
+         .smu_fini =3D smu8_smu_fini,
+         .start_smu =3D smu8_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c b/drivers/=
+gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c
+index 060c0f7..be5b7df 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c
+@@ -3240,6 +3240,7 @@ static int tonga_update_dpm_settings(struct pp_hwmgr =
+*hwmgr,
+ }
+
+ const struct pp_smumgr_func tonga_smu_funcs =3D {
++       .name =3D "tonga_smu",
+         .smu_init =3D &tonga_smu_init,
+         .smu_fini =3D &smu7_smu_fini,
+         .start_smu =3D &tonga_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c b/drivers=
+/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c
+index c81acc3..7bfef8d 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c
+@@ -346,6 +346,7 @@ static int vega10_smc_table_manager(struct pp_hwmgr *hw=
+mgr, uint8_t *table,
+ }
+
+ const struct pp_smumgr_func vega10_smu_funcs =3D {
++       .name =3D "vega10_smu",
+         .smu_init =3D &vega10_smu_init,
+         .smu_fini =3D &vega10_smu_fini,
+         .start_smu =3D &vega10_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c b/drivers=
+/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c
+index 1eaf0fa..9ad07a91c 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c
+@@ -386,6 +386,7 @@ static int vega12_smc_table_manager(struct pp_hwmgr *hw=
+mgr, uint8_t *table,
+ }
+
+ const struct pp_smumgr_func vega12_smu_funcs =3D {
++       .name =3D"vega12_smu",
+         .smu_init =3D &vega12_smu_init,
+         .smu_fini =3D &vega12_smu_fini,
+         .start_smu =3D &vega12_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c b/drivers=
+/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c
+index f301a73..957446c 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c
+@@ -592,6 +592,7 @@ static int vega20_smc_table_manager(struct pp_hwmgr *hw=
+mgr, uint8_t *table,
+ }
+
+ const struct pp_smumgr_func vega20_smu_funcs =3D {
++       .name =3D "vega20_smu",
+         .smu_init =3D &vega20_smu_init,
+         .smu_fini =3D &vega20_smu_fini,
+         .start_smu =3D &vega20_start_smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c b/drivers/=
+gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c
+index d499204..7c960b0 100644
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c
++++ b/drivers/gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c
+@@ -2279,6 +2279,7 @@ static int vegam_thermal_setup_fan_table(struct pp_hw=
+mgr *hwmgr)
+ }
+
+ const struct pp_smumgr_func vegam_smu_funcs =3D {
++       .name =3D "vegam_smu",
+         .smu_init =3D vegam_smu_init,
+         .smu_fini =3D smu7_smu_fini,
+         .start_smu =3D vegam_start_smu,
+--
+2.7.4
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN6PR12MB18098EE94146CE430C417DB1F7EE0BN6PR12MB1809namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Prike Liang &lt;Prike.Liang@a=
+md.com&gt;<br>
+<b>Sent:</b> Friday, June 14, 2019 3:01 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org<br>
+<b>Cc:</b> Liang, Prike; Huang, Ray; Feng, Kenneth; Quan, Evan<br>
+<b>Subject:</b> [PATCH] drm/amd/powerplay: detect version of smu backend</f=
+ont>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Change-Id: Ib050c8cf0c2c5af4c1f747cf596860f9be01a2=
+d3<br>
+Signed-off-by: Prike Liang &lt;Prike.Liang@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/inc/hwmgr.h&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/fiji_smumgr.c&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c&nbsp;&nbsp; | 1=
+ &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c&nbsp;&nbsp;&nbsp;=
+&nbsp; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/smu8_smumgr.c&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c&nbsp;&nbsp;&nbsp;=
+&nbsp; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c&nbsp;&nbsp;&nbsp=
+; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c&nbsp;&nbsp;&nbsp=
+; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c&nbsp;&nbsp;&nbsp=
+; | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c&nbsp;&nbsp;&nbsp;=
+&nbsp; | 1 &#43;<br>
+&nbsp;13 files changed, 13 insertions(&#43;)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c b/drivers/gpu/drm/=
+amd/powerplay/hwmgr/hwmgr.c<br>
+index f1d326c..b996819 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c<br>
+@@ -194,6 &#43;194,7 @@ int hwmgr_sw_init(struct pp_hwmgr *hwmgr)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; phm_register_irq_handlers(=
+hwmgr);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_info(&quot;hwmgr_sw_init smu b=
+acked is %s\n&quot;,hwmgr-&gt;smumgr_funcs-&gt;name);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return hwmgr-&gt;smumgr_fu=
+ncs-&gt;smu_init(hwmgr);<br>
+&nbsp;}<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/hwmgr.h b/drivers/gpu/drm/am=
+d/powerplay/inc/hwmgr.h<br>
+index c92999a..47dbecc 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/inc/hwmgr.h<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/inc/hwmgr.h<br>
+@@ -190,6 &#43;190,7 @@ struct phm_vce_clock_voltage_dependency_table {<br>
+&nbsp;};<br>
+&nbsp;<br>
+&nbsp;struct pp_smumgr_func {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char *name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int (*smu_init)(struct pp_=
+hwmgr&nbsp; *hwmgr);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int (*smu_fini)(struct pp_=
+hwmgr&nbsp; *hwmgr);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int (*start_smu)(struct pp=
+_hwmgr&nbsp; *hwmgr);<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c b/drivers/gpu=
+/drm/amd/powerplay/smumgr/ci_smumgr.c<br>
+index 9ef57fc..022f3c8 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c<br>
+@@ -2935,6 &#43;2935,7 @@ static int ci_update_smc_table(struct pp_hwmgr *h=
+wmgr, uint32_t type)<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func ci_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;ci_smu&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D ci_smu_init,=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D ci_smu_fini,=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D ci_start_sm=
+u,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/fiji_smumgr.c b/drivers/g=
+pu/drm/amd/powerplay/smumgr/fiji_smumgr.c<br>
+index 0ce85b7..da025b1 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/fiji_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/fiji_smumgr.c<br>
+@@ -2643,6 &#43;2643,7 @@ static int fiji_update_dpm_settings(struct pp_hwm=
+gr *hwmgr,<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func fiji_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;fiji_smu&quot;,<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D &amp;fiji_sm=
+u_init,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D &amp;smu7_sm=
+u_fini,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D &amp;fiji_s=
+tart_smu,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c b/driver=
+s/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c<br>
+index f24f13d..f414f22 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/iceland_smumgr.c<br>
+@@ -2661,6 &#43;2661,7 @@ static bool iceland_is_dpm_running(struct pp_hwmg=
+r *hwmgr)<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func iceland_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;iceland_smu&quot;=
+,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D &amp;iceland=
+_smu_init,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D &amp;smu7_sm=
+u_fini,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D &amp;icelan=
+d_start_smu,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c b/driv=
+ers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c<br>
+index 0d8958e..fbac2d3 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c<b=
+r>
+@@ -2550,6 &#43;2550,7 @@ static int polaris10_update_dpm_settings(struct p=
+p_hwmgr *hwmgr,<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func polaris10_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;polaris10_smu&quo=
+t;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D polaris10_sm=
+u_init,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D smu7_smu_fin=
+i,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D polaris10_s=
+tart_smu,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c b/drivers/=
+gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c<br>
+index 6d11076a..ca66035 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c<br>
+@@ -291,6 &#43;291,7 @@ static int smu10_smc_table_manager(struct pp_hwmgr =
+*hwmgr, uint8_t *table, uint1<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func smu10_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;smu10_smu&quot;,<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D &amp;smu10_s=
+mu_init,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D &amp;smu10_s=
+mu_fini,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D &amp;smu10_=
+start_smu,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/smu8_smumgr.c b/drivers/g=
+pu/drm/amd/powerplay/smumgr/smu8_smumgr.c<br>
+index e2787e1..8189fe4 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/smu8_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/smu8_smumgr.c<br>
+@@ -881,6 &#43;881,7 @@ static bool smu8_is_dpm_running(struct pp_hwmgr *hw=
+mgr)<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func smu8_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;smu8_smu&quot;,<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D smu8_smu_ini=
+t,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D smu8_smu_fin=
+i,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D smu8_start_=
+smu,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c b/drivers/=
+gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c<br>
+index 060c0f7..be5b7df 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/tonga_smumgr.c<br>
+@@ -3240,6 &#43;3240,7 @@ static int tonga_update_dpm_settings(struct pp_hw=
+mgr *hwmgr,<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func tonga_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;tonga_smu&quot;,<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D &amp;tonga_s=
+mu_init,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D &amp;smu7_sm=
+u_fini,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D &amp;tonga_=
+start_smu,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c b/drivers=
+/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c<br>
+index c81acc3..7bfef8d 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/vega10_smumgr.c<br>
+@@ -346,6 &#43;346,7 @@ static int vega10_smc_table_manager(struct pp_hwmgr=
+ *hwmgr, uint8_t *table,<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func vega10_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;vega10_smu&quot;,=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D &amp;vega10_=
+smu_init,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D &amp;vega10_=
+smu_fini,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D &amp;vega10=
+_start_smu,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c b/drivers=
+/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c<br>
+index 1eaf0fa..9ad07a91c 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/vega12_smumgr.c<br>
+@@ -386,6 &#43;386,7 @@ static int vega12_smc_table_manager(struct pp_hwmgr=
+ *hwmgr, uint8_t *table,<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func vega12_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D&quot;vega12_smu&quot;,<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D &amp;vega12_=
+smu_init,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D &amp;vega12_=
+smu_fini,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D &amp;vega12=
+_start_smu,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c b/drivers=
+/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c<br>
+index f301a73..957446c 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c<br>
+@@ -592,6 &#43;592,7 @@ static int vega20_smc_table_manager(struct pp_hwmgr=
+ *hwmgr, uint8_t *table,<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func vega20_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;vega20_smu&quot;,=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D &amp;vega20_=
+smu_init,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D &amp;vega20_=
+smu_fini,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D &amp;vega20=
+_start_smu,<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c b/drivers/=
+gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c<br>
+index d499204..7c960b0 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smumgr/vegam_smumgr.c<br>
+@@ -2279,6 &#43;2279,7 @@ static int vegam_thermal_setup_fan_table(struct p=
+p_hwmgr *hwmgr)<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;const struct pp_smumgr_func vegam_smu_funcs =3D {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .name =3D &quot;vegam_smu&quot;,<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_init =3D vegam_smu_in=
+it,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .smu_fini =3D smu7_smu_fin=
+i,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .start_smu =3D vegam_start=
+_smu,<br>
+-- <br>
+2.7.4<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN6PR12MB18098EE94146CE430C417DB1F7EE0BN6PR12MB1809namp_--
+
+--===============0368821962==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0368821962==--
