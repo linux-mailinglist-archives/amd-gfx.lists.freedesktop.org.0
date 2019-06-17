@@ -2,61 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3BC948AE9
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jun 2019 19:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDBFA48BD2
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jun 2019 20:21:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6ABD892D5;
-	Mon, 17 Jun 2019 17:58:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A0FC89381;
+	Mon, 17 Jun 2019 18:21:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6181E892BB;
- Mon, 17 Jun 2019 17:58:20 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id h19so513248wme.0;
- Mon, 17 Jun 2019 10:58:20 -0700 (PDT)
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com
+ [IPv6:2a00:1450:4864:20::142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 668BF8937C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jun 2019 18:21:45 +0000 (UTC)
+Received: by mail-lf1-x142.google.com with SMTP id y17so7293178lfe.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jun 2019 11:21:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=RA99XH++ZeHo9lFJDfpQ1th6xBYVyCVIO6aT2ccvLfQ=;
- b=N9TePG3l/RgsXRKp6a5Mhfjv28rF03x6aYZULT+l1d+dNrbopjYIWl45iDFpR30dKp
- UlJmwAx7s4Sm0VNtmQip7N/mOd+cmjBB9usU/3efRziWHv7byETFHx7lySCKjfIfaCjl
- mKGvkG0BPo5u5v2MzIqkotnoPpdKIuiPPHvWslLgf4bV/vSAlppYYD9aifPb8rW2tH1Y
- b8/i84jwSuYuMX7M6J+pN2nC/0sO8gJl4lUEVU5Fbc3s51MBGcO18prO4dXjJ76gEd7i
- 6u9zuWduzNWorLjcw1mB2ZqAEImGqxg99BWPX0/iVSHvqF+Bm1K4VK87eZ8/7NVQ+ZyG
- ArSg==
-X-Gm-Message-State: APjAAAXpTGarPYS2J8irQ9r/UgPFH50bOOzZXqis4+Tt09Mkwb9XFDuN
- EKcalSYsht6dowkzTWy2GgR9mAUk
-X-Google-Smtp-Source: APXvYqxzwMRI3pC9nLxx+cmi8fX06IrtlUhdDEcmz2BcTfXpaVk8v0SGvmPS+vZF06+nGUJcsaBAYg==
-X-Received: by 2002:a1c:343:: with SMTP id 64mr21050453wmd.116.1560794289646; 
- Mon, 17 Jun 2019 10:58:09 -0700 (PDT)
-Received: from arch-x1c3 ([2a00:5f00:102:0:9665:9cff:feee:aa4d])
- by smtp.gmail.com with ESMTPSA id s188sm13333537wmf.40.2019.06.17.10.58.07
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 17 Jun 2019 10:58:08 -0700 (PDT)
-Date: Mon, 17 Jun 2019 18:56:06 +0100
-From: Emil Velikov <emil.l.velikov@gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [PATCH 06/59] drm/prime: Actually remove DRIVER_PRIME everywhere
-Message-ID: <20190617175606.GE26766@arch-x1c3>
-References: <20190614203615.12639-1-daniel.vetter@ffwll.ch>
- <20190614203615.12639-7-daniel.vetter@ffwll.ch>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=g7nt+yVD9upwCn0+sayfnVUL7l1+1KQjEltEk3HuMbs=;
+ b=ra7kCHqXyIKNYVed7Qe62Sg/RB/7kxPCcJUwI85L3IfxyUJDzqLKHTxI9o4I3KENpp
+ 86Wir4ASv0AsFUZShuiZsWK1eGQvPcOQP9df6SaloC4HrvXBekrKPUJwu1aFefrp/Vgi
+ mQIaCVNUDjVeyJIjmQkyg9b7W9PITIERBSO8BZzNdSmrKJXwgODPv4aJ4HYlxeXL2iRa
+ BEYeVtqWFWhpL3i+ktQ7+mrWusxWcumWUNaUA1IxCN2hwUE3n55Ko73+1oeJR0hjO5Hf
+ SrKpPOmI2Q+iXVffjdTfnGGuTHM508mIpS5T1fmOO7y9/q6uhaOPSFH5RRkTq6ej7xLF
+ uZEw==
+X-Gm-Message-State: APjAAAUo4ot2u/FbONnFQxeGX2y5tUkDmsH9bj0s0w220KJDA6mndsUH
+ tDbFXsHg+sVj4hnVlXlgry9WQrIafHhK3twZPANVHE27
+X-Google-Smtp-Source: APXvYqzRruL93xVaSxsw404siQt4fsKu0C5gte6U1YwDGp6Mn9rWX8BIxikDAP+ArmHGYVMDQpI9QqhUx87tzpPSNb8=
+X-Received: by 2002:ac2:4312:: with SMTP id l18mr48834278lfh.139.1560795703462; 
+ Mon, 17 Jun 2019 11:21:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190614203615.12639-7-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <20190614165108.23011-1-tom.stdenis@amd.com>
+In-Reply-To: <20190614165108.23011-1-tom.stdenis@amd.com>
+From: Tom St Denis <tstdenis82@gmail.com>
+Date: Mon, 17 Jun 2019 14:21:32 -0400
+Message-ID: <CAAzXoRK9vy-qC36mSzJ3aJr6YB8kuWMujxfuNFAqAzbWEk+gTA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/amdgpu: cast mem->num_pages to 64-bits when
+ shifting
+To: amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=RA99XH++ZeHo9lFJDfpQ1th6xBYVyCVIO6aT2ccvLfQ=;
- b=iir/cwro3Uo0pydX2p6MssHcUcKCWLi3F0aRNfT9oiuPoCu3KzQi3D++TfCMCA5kbq
- UhdVsSno+MyWwqU7UMla2YRrjl3vooBFlx0nKtYTh44mvlxTjTeU/ZMsoTFT3Na0Nbo8
- zbXVWPc9pfLCEz8akgJpe2z9seqCP2z2haWgAfsi9/bgn50zH7bOZc5jW9vXW8SMk4Rt
- tx2lTCVIciiKlEe6uGemUYOgLdxEayja9E1N+noF29tOg7VjKlKwytO7pxFuV7oS4QEN
- rJlpCllgKrwVj7eJfedrwSjRfOJSjzakYsBlPrwpP8+Cypssx+Hl6JwcIa7W9QWRzmBt
- BA8g==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=g7nt+yVD9upwCn0+sayfnVUL7l1+1KQjEltEk3HuMbs=;
+ b=oII31MVKbKgjuOO+9Nx95G/vjasgPnZvG+gH899qD7jW+d7GESF+UQuJ27TdMtTN/Z
+ /xpaQk7vLIFaAdbxBqxwrxvAWmx++5R+/hZKoauOHujf1IEQ/qu1Dt6aJ2GIlSeSTjOV
+ EOuFSWcm+Wa2J1kJsLvynzp56F052bReMyIdjtw2AlREXo3sXr+RApPa3+QXVf4ccGGG
+ UnEcbhTviYkR0MHW8TQq5E9HeuJNADQH0coIh/5vvzDWbGDOPH8CastIrpqNHzHcCWWT
+ 3BJzwPcXQgPHll/LszTUMtm7AEWpbFgUcruqDUf/QD2dqT/uBVF3mYt+v+o8BZQDpUqr
+ WOMQ==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -68,31 +61,160 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
- DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org,
- Daniel Vetter <daniel.vetter@intel.com>,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- lima@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- NXP Linux Team <linux-imx@nxp.com>, xen-devel@lists.xenproject.org,
- linux-arm-msm@vger.kernel.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- etnaviv@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1277517907=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAxOS8wNi8xNCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiBTcGxpdCBvdXQgdG8gbWFrZSB0
-aGUgZnVuY3Rpb25hbCBjaGFuZ2VzIHN0aWNrIG91dCBtb3JlLgo+IApTaW5jZSB0aGlzIHBhdGNo
-IGZsZXctYnksIGFzIHN0YW5kYWxvbmUgb25lIChpbnRlbnRpb25hbGx5IG9yIG5vdCkgSSdkCmFk
-ZCwgYW55dGhpbmcgdmFndWVseSBsaWtlOgoKIkNvcmUgdXNlcnMgb2YgRFJJVkVSX1BSSU1FIHdl
-cmUgcmVtb3ZlZCBmcm9tIGNvcmUgd2l0aCBwcmlvciBwYXRjaGVzLiIKCkhUSApFbWlsCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGlu
-ZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============1277517907==
+Content-Type: multipart/alternative; boundary="00000000000078d28d058b891157"
+
+--00000000000078d28d058b891157
+Content-Type: text/plain; charset="UTF-8"
+
+ping?
+
+On Fri, Jun 14, 2019 at 12:51 PM StDenis, Tom <Tom.StDenis@amd.com> wrote:
+
+> On 32-bit hosts mem->num_pages is 32-bits and can overflow
+> when shifted.  Add a cast to avoid this.
+>
+> Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> index c963ad86072e..31895d3c33de 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> @@ -279,14 +279,16 @@ static int amdgpu_vram_mgr_new(struct
+> ttm_mem_type_manager *man,
+>         uint64_t vis_usage = 0;
+>         unsigned i;
+>         int r;
+> +       uint64_t mem_bytes;
+>
+>         lpfn = place->lpfn;
+>         if (!lpfn)
+>                 lpfn = man->size;
+>
+>         /* bail out quickly if there's likely not enough VRAM for this BO
+> */
+> -       if (atomic64_add_return(mem->num_pages << PAGE_SHIFT, &mgr->usage)
+> > adev->gmc.mc_vram_size) {
+> -               atomic64_sub(mem->num_pages << PAGE_SHIFT, &mgr->usage);
+> +       mem_bytes = (u64)mem->num_pages << PAGE_SHIFT;
+> +       if (atomic64_add_return(mem_bytes, &mgr->usage) >
+> adev->gmc.mc_vram_size) {
+> +               atomic64_sub(mem_bytes, &mgr->usage);
+>                 mem->mm_node = NULL;
+>                 return 0;
+>         }
+> @@ -308,7 +310,7 @@ static int amdgpu_vram_mgr_new(struct
+> ttm_mem_type_manager *man,
+>         nodes = kvmalloc_array((uint32_t)num_nodes, sizeof(*nodes),
+>                                GFP_KERNEL | __GFP_ZERO);
+>         if (!nodes) {
+> -               atomic64_sub(mem->num_pages << PAGE_SHIFT, &mgr->usage);
+> +               atomic64_sub(mem_bytes, &mgr->usage);
+>                 return -ENOMEM;
+>         }
+>
+> --
+> 2.21.0
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--00000000000078d28d058b891157
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">ping?</div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Fri, Jun 14, 2019 at 12:51 PM StDenis, Tom &lt;<a =
+href=3D"mailto:Tom.StDenis@amd.com">Tom.StDenis@amd.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex">On 32-bit hosts mem-=
+&gt;num_pages is 32-bits and can overflow<br>
+when shifted.=C2=A0 Add a cast to avoid this.<br>
+<br>
+Signed-off-by: Tom St Denis &lt;<a href=3D"mailto:tom.stdenis@amd.com" targ=
+et=3D"_blank">tom.stdenis@amd.com</a>&gt;<br>
+---<br>
+=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 8 +++++---<br>
+=C2=A01 file changed, 5 insertions(+), 3 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_vram_mgr.c<br>
+index c963ad86072e..31895d3c33de 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c<br>
+@@ -279,14 +279,16 @@ static int amdgpu_vram_mgr_new(struct ttm_mem_type_ma=
+nager *man,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 uint64_t vis_usage =3D 0;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 unsigned i;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 int r;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t mem_bytes;<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 lpfn =3D place-&gt;lpfn;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!lpfn)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 lpfn =3D man-&gt;si=
+ze;<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /* bail out quickly if there&#39;s likely not e=
+nough VRAM for this BO */<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0if (atomic64_add_return(mem-&gt;num_pages &lt;&=
+lt; PAGE_SHIFT, &amp;mgr-&gt;usage) &gt; adev-&gt;gmc.mc_vram_size) {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0atomic64_sub(mem-&g=
+t;num_pages &lt;&lt; PAGE_SHIFT, &amp;mgr-&gt;usage);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0mem_bytes =3D (u64)mem-&gt;num_pages &lt;&lt; P=
+AGE_SHIFT;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if (atomic64_add_return(mem_bytes, &amp;mgr-&gt=
+;usage) &gt; adev-&gt;gmc.mc_vram_size) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0atomic64_sub(mem_by=
+tes, &amp;mgr-&gt;usage);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 mem-&gt;mm_node =3D=
+ NULL;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return 0;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+@@ -308,7 +310,7 @@ static int amdgpu_vram_mgr_new(struct ttm_mem_type_mana=
+ger *man,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 nodes =3D kvmalloc_array((uint32_t)num_nodes, s=
+izeof(*nodes),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0GFP_KERNEL | __GFP_ZERO);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!nodes) {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0atomic64_sub(mem-&g=
+t;num_pages &lt;&lt; PAGE_SHIFT, &amp;mgr-&gt;usage);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0atomic64_sub(mem_by=
+tes, &amp;mgr-&gt;usage);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return -ENOMEM;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
+-- <br>
+2.21.0<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd-gfx@=
+lists.freedesktop.org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx" rel=3D"n=
+oreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/listinfo=
+/amd-gfx</a></blockquote></div>
+
+--00000000000078d28d058b891157--
+
+--===============1277517907==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1277517907==--
