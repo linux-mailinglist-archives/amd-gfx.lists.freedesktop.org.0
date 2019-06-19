@@ -2,49 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B0FA4C853
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jun 2019 09:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 240174C84C
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jun 2019 09:22:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 077E26E530;
-	Thu, 20 Jun 2019 07:22:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6330D6E546;
+	Thu, 20 Jun 2019 07:22:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from bombadil.infradead.org (bombadil.infradead.org
  [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA4396E2BE;
- Wed, 19 Jun 2019 08:19:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC83F6E2BE;
+ Wed, 19 Jun 2019 08:19:51 +0000 (UTC)
 Received: from hch by bombadil.infradead.org with local (Exim 4.92 #3 (Red Hat
- Linux)) id 1hdVo2-0000Z1-N3; Wed, 19 Jun 2019 08:18:58 +0000
-Date: Wed, 19 Jun 2019 01:18:58 -0700
+ Linux)) id 1hdVoq-0000mV-EN; Wed, 19 Jun 2019 08:19:48 +0000
+Date: Wed, 19 Jun 2019 01:19:48 -0700
 From: Christoph Hellwig <hch@infradead.org>
 To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH v3 hmm 06/12] mm/hmm: Hold on to the mmget for the
- lifetime of the range
-Message-ID: <20190619081858.GB24900@infradead.org>
+Subject: Re: [PATCH v3 hmm 08/12] mm/hmm: Remove racy protection against
+ double-unregistration
+Message-ID: <20190619081948.GC24900@infradead.org>
 References: <20190614004450.20252-1-jgg@ziepe.ca>
- <20190614004450.20252-7-jgg@ziepe.ca>
- <20190615141435.GF17724@infradead.org>
- <20190618151100.GI6961@ziepe.ca>
+ <20190614004450.20252-9-jgg@ziepe.ca>
+ <20190615141612.GH17724@infradead.org>
+ <20190618131324.GF6961@ziepe.ca>
+ <20190618132722.GA1633@infradead.org>
+ <20190618185757.GP6961@ziepe.ca>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190618151100.GI6961@ziepe.ca>
+In-Reply-To: <20190618185757.GP6961@ziepe.ca>
 User-Agent: Mutt/1.11.4 (2019-03-13)
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
  bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Mailman-Approved-At: Thu, 20 Jun 2019 07:22:38 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
  c=relaxed/relaxed; 
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Transfer-Encoding
- :Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=gJX7HuiaCgGHU1tdXgWOcBNZy61GCc1VlLrp6/M8Mfw=; b=F790NaadzLyX7kysrjoApfm8RL
- 4B1qNTBJfA0dl3N2JFg7SkdFf/LV7qaQII9PBdIa20bkjqtxcmGUwf+IuWcV2ibWAgsqDFtgZ10h3
- RmDk6y3Jz8+Gq/K8bwcRJ82kfshQD98z9+21iRI1lhYdvFPXMWHI2KrNHEW9Zp4fz+eddphLaeKmK
- 7YKDKbdhA2jVqdoHJ2IwfWMe8r3oyhcU8AeQcHnGgGUETxIzdZ41ILhG+33dgEOu49ViOMsWHeo8G
- IUy9pHZKLxnzdOSeyWXtSPzsK7Po1H4f4mu7rgQNltggATnslxmZYgJ4TgX6agsLnNAyjvYsFfIno
- WBSAPrTg==;
+ d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Oj2mVxSa+2J+fkcSLZJgmIgirExhWFgh1cb5vCMP3vI=; b=tf5cAthDjPtD5dgpkrrmWm6iX
+ hJT+iCl3LI50nk+ly+ZUajqlu/ZYu5I81HuuxxEoOqgz7cy6G/879N+lqH8TGVpEIzKb8gY3RWEH3
+ spycirx2fT31SjuibyhyqizZP8JiXuZ7DC4RaFSjwiDEGgpm42e6/0HTM69qw1BUen2f8789MSOfC
+ 3BFfTed174q1HfdzIVms/k2iwj1c/fqiYCnF/5TegT2vD/aAyWCTylC372dVxF67j6a4/CwjOm3IO
+ /J6MW7+6GXoWPYd0XJsHHz0VI9rAa4XLWjR2isQ4WJ9LmCy9LcN2FEXjp26JXuspZegFhyO4rNb9S
+ ZStiJlmvw==;
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -67,13 +69,15 @@ Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-PiAgCW11dGV4X2xvY2soJmhtbS0+bG9jayk7Cj4gLQlsaXN0X2RlbCgmcmFuZ2UtPmxpc3QpOwo+
-ICsJbGlzdF9kZWxfaW5pdCgmcmFuZ2UtPmxpc3QpOwo+ICAJbXV0ZXhfdW5sb2NrKCZobW0tPmxv
-Y2spOwoKSSBkb24ndCBzZWUgdGhlIHBvaW50IHdoeSB0aGlzIGlzIGEgbGlzdF9kZWxfaW5pdCAt
-IHRoYXQganVzdApyZWluaXRpYWxpemXRlSByYW5nZS0+bGlzdCwgYnV0IGRvZXNuJ3QgY2hhbmdl
-IGFueXRoaW5nIGZvciB0aGUgbGlzdApoZWFkIGl0IHdhcyByZW1vdmVkIGZyb20uICAoYW5kIGlm
-IHRoZSBsaXN0X2RlbF9pbml0IHdhcyBpbnRlbmRlZAphIGxhdGVyIHBhdGNoIGluIHlvdXIgYnJh
-bmNoIHJldmVydHMgaXQgdG8gcGxhaW4gbGlzdF9kZWwuLikKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9hbWQtZ2Z4
+T24gVHVlLCBKdW4gMTgsIDIwMTkgYXQgMDM6NTc6NTdQTSAtMDMwMCwgSmFzb24gR3VudGhvcnBl
+IHdyb3RlOgo+IFdpdGggdGhlIHByZXZpb3VzIGxvb3NlIGNvdXBsaW5nIG9mIHRoZSBtaXJyb3Ig
+YW5kIHRoZSByYW5nZSBzb21lIGNvZGUKPiBtaWdodCByYW5jZSB0byB0cnkgdG8gY3JlYXRlIGEg
+cmFuZ2Ugd2l0aG91dCBhIG1pcnJvciwgd2hpY2ggd2lsbCBub3cKPiByZWxpYWJseSBjcmFzaCB3
+aXRoIHRoZSBwb2lzb24uCj4gCj4gSXQgaXNuJ3Qgc28gbXVjaCB0aGUgZG91YmxlIHVucmVnaXN0
+ZXIgdGhhdCB3b3JyaWVzIG1lLCBidXQgcmFjaW5nCj4gdW5yZWdpc3RlciB3aXRoIHJhbmdlIGZ1
+bmN0aW9ucy4KCk9oIHdlbGwuICBJdCB3YXMganVzdCBhIG5pdHBpY2sgZm9yIHRoZSBoaWdobHkg
+dW51c3VhbCBjb2RlIHBhdHRlcm5zCmluIHRoZSB0d28gdW5yZWdpc3RlciByb3V0aW5lcywgcHJv
+YmFibHkgbm90IHdvcnRoIGZpZ2h0aW5nIG92ZXIgZXZlbgppZiBJIHN0aWxsIGRvbid0IHNlZSB0
+aGUgcG9pbnQuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
