@@ -1,54 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8F34C84B
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jun 2019 09:22:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E49524B8AA
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Jun 2019 14:34:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FDDE6E542;
-	Thu, 20 Jun 2019 07:22:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A3356E3A4;
+	Wed, 19 Jun 2019 12:34:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCABE6E378;
- Wed, 19 Jun 2019 12:03:54 +0000 (UTC)
-Received: from hch by bombadil.infradead.org with local (Exim 4.92 #3 (Red Hat
- Linux)) id 1hdZJg-0000AR-8n; Wed, 19 Jun 2019 12:03:52 +0000
-Date: Wed, 19 Jun 2019 05:03:52 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH v3 hmm 11/12] mm/hmm: Remove confusing comment and logic
- from hmm_release
-Message-ID: <20190619120352.GA31563@infradead.org>
-References: <20190614004450.20252-1-jgg@ziepe.ca>
- <20190614004450.20252-12-jgg@ziepe.ca>
- <20190615142106.GK17724@infradead.org>
- <20190618004509.GE30762@ziepe.ca>
- <20190618053733.GA25048@infradead.org>
- <be4f8573-6284-04a6-7862-23bb357bfe3c@amd.com>
- <20190619080705.GA5164@infradead.org>
- <20190619115632.GC9360@ziepe.ca>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190619115632.GC9360@ziepe.ca>
-User-Agent: Mutt/1.11.4 (2019-03-13)
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Mailman-Approved-At: Thu, 20 Jun 2019 07:22:38 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
- c=relaxed/relaxed; 
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=rpMV7cbut4s+IQIkL5i+Lot01IcGhFHyq5nHVaZpyng=; b=A3pdiP1QbGW7j1ii05qxyfW2d
- z2qWT3JMlbvwTaaGM6TU/h2nYOMIvaXje6Q6y4HsvNBZc0iGHnfDo+NQ+G0p6dmIxFeBGpgH6qk94
- Qz8DrSDN+V1whr/dlswoX96DK23SXFL9fT7XsSjbiwXmAy95IK66enm+Ch1PvM7tn+mByWUHILn5t
- 7+3TE7IgkaNMpg25l4tHj+JHg5MHS3C+ZGVeA1WZoGfjO+BBNSq5pFAl385pU0bkwQkM0g0LWFXoq
- opbr1HMuE4YnTZ1cNQkIBJSa1mkUsWPaDzcEFkaIEBG6o4aSkJJ93fstPOWzbSe/gISzlgPwN0WGz
- qh7SYpIgA==;
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADB166E3A6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Jun 2019 12:34:17 +0000 (UTC)
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from Computer111.attlocal.net ([99.116.190.167]) by mail.gmx.com
+ (mrgmx104 [212.227.17.174]) with ESMTPSA (Nemesis) id
+ 1N95iR-1iiaVJ3xsF-0165zN; Wed, 19 Jun 2019 14:29:07 +0200
+From: Kevin Brace <kevinbrace@gmx.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 0/4] Removing unnecessary initialization of drm_plane struct
+ type
+Date: Wed, 19 Jun 2019 07:28:53 -0500
+Message-Id: <20190619122857.12603-1-kevinbrace@gmx.com>
+X-Mailer: git-send-email 2.17.1
+X-Provags-ID: V03:K1:XfU2EhZhIx16NCdKxHS79Rb2+uVJnZJlw/Im95PrF8/+dVN/mGd
+ M5cB7s1w3cx+bjc4riO4cMYv+3QiuqYbRXFdOWOAU4U3GIJmO5CTziL1qnPveVs6ahQiifF
+ XfP49FkxGIDGjqcIPAvH3s7oS+sa+f2mzae6WQry3ZJX+B05lCl7p5f9DhIzBKWrF9TNRF+
+ Sj4k2FxpbH6Y8IX867iwA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ppHRBbOcl0c=:8CkxXNKL/SsIjS5qwpkCIq
+ 6K4Y78pGMzButgfYZDqT+5adyUVKyNbCXUKG7KL9bCYjGjMovSrPLqWqM+bQm3Fg4ZLIDmoEI
+ ZRfe4yoNKJno/0Wzvh80+Z9m1/rSkqSuEQ5vNddFxjj/b3uKL2UOScEdFKbrxgPmNywcKRDpC
+ yqbddXxro/JsVpFPfGHoI1T/ZAw9uyRY2iPaWbMHQ87DjqDC5qIDD8ujAGRN1CnjDe3aZFE3p
+ Fu+a6h5PFq2vTWi38vAGHfxothdUnD7atM35PpvuZfpvGyu/GpY8tGJvH6Ty4tLSCehDFpjMY
+ nWBvBmVmBXp7oWpUx136Ie5bUUtuMspD5AB6APNHyIFf9ENnXjcXm0c6DdyjvoUdderlSBGsJ
+ u68Wag0xe2LI6OlPq64s47Eu7dYsjSl3WV8HeMQrjb514HTN/D26HON56+yAcLpi+xV8KIRbm
+ mfDvd8Ba7qNTar7pGTmDLic/7Z1/u+GfAx011ax8wU221WBvIPZIw1/25NrzEexCc5lAvJ+G5
+ kTvDEBNlPjYHnf/kzXzafmrAgoIKUhBD++mwYiPgEG1gDbIsojuz2EwHcQ4udlldOr/Fc5DUC
+ bxIyjVAlsnxAzpsQW+IdESF3GfO0stcGwxl0l2R//Ede6abBnonRxKwOX53ez+ejGRA3pXYI8
+ Or+wPr8DDHpkCQSD5GxkkwR5D7iAjM9h03Q982qFMR9LNC0gxQ6VTJsS45EkT4FHZSfHg4YfJ
+ 3YdIAyulu4Qt9qWJGd51ixUV9nT3SQgYHdcwJDWa7BjLty/zaBkeyNiwhtTxOzDPz0SuV2RST
+ Ss2krVAkCF8sKI26LDkPp9cewNre/h4fNAMwqIkhhqgia7EKkdg/sPV784V8DFxCuDky8ke74
+ VpFWcOaiCBAL2DVvtHqj92TmYU6bM3gaa/p8S6NN48+KNrn5oIYXdkFmWD3dggCTh4U7BnHeB
+ aemPa0MwJ78LugJRQttE1+Ad+lAWxEGM=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=gmx.net; s=badeba3b8450; t=1560947656;
+ bh=r+iaUhXYBGYF5Vj/PywvKX5VE+SPkVAT6pAPeJfg3CQ=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+ b=MXIf2cSf+/Spcrf7Lkbpw0lYFWfwSmELVuK1autBWGzXEH+ly+EeBC0gdHNl+WLRu
+ 3b9Mnp20D2D4yxY3Rd3eWsL0KCrceIrchT6NacWb87H0Y/OBGHzCCGr8D9u0d6F138
+ zn0p5od93ORZf9hHJMMhaJskKs7gm4jjNJ8FfwBw=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -60,45 +61,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrea Arcangeli <aarcange@redhat.com>, "Yang,
- Philip" <Philip.Yang@amd.com>, Ralph Campbell <rcampbell@nvidia.com>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- John Hubbard <jhubbard@nvidia.com>, "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Christoph Hellwig <hch@infradead.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>, Jerome Glisse <jglisse@redhat.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Ben Skeggs <bskeggs@redhat.com>
+Cc: Kevin Brace <kevinbrace@bracecomputerlab.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBKdW4gMTksIDIwMTkgYXQgMDg6NTY6MzJBTSAtMDMwMCwgSmFzb24gR3VudGhvcnBl
-IHdyb3RlOgo+IFRoaXMgbG9va3MgYSBsb3QgbGlrZSB0aGUgT0RQIGNvZGUgKGFtZGdwdV9tbl9u
-b2RlID09IGliX3VtZW1fb2RwKQo+IAo+IFRoZSBpbnRlcnZhbCB0cmVlIGlzIHRvIHF1aWNrbHkg
-ZmluZCB0aGUgZHJpdmVyIG9iamVjdChzKSB0aGF0IGhhdmUKPiB0aGUgdmlydHVhbCBwYWdlcyBk
-dXJpbmcgaW52YWxpZGF0aW9uOgo+IAo+IHN0YXRpYyBpbnQgYW1kZ3B1X21uX3N5bmNfcGFnZXRh
-Ymxlc19nZngoc3RydWN0IGhtbV9taXJyb3IgKm1pcnJvciwKPiAgICAgICAgICAgICAgICAgICAg
-ICAgICBjb25zdCBzdHJ1Y3QgaG1tX3VwZGF0ZSAqdXBkYXRlKQo+IHsKPiAgICAgICAgIGl0ID0g
-aW50ZXJ2YWxfdHJlZV9pdGVyX2ZpcnN0KCZhbW4tPm9iamVjdHMsIHN0YXJ0LCBlbmQpOwo+ICAg
-ICAgICAgd2hpbGUgKGl0KSB7Cj4gICAgICAgICAgICAgICAgIFsuLl0KPiAgICAgICAgICAgICAg
-ICAgYW1kZ3B1X21uX2ludmFsaWRhdGVfbm9kZShub2RlLCBzdGFydCwgZW5kKTsKPiAKPiBBbmQg
-Zm9sbG93aW5nIHRoZSBPRFAgbW9kZWwgdGhlcmUgc2hvdWxkIGJlIGEgc2luZ2xlIGhtbV9taXJy
-b3IgcGVyLW1tCj4gKHVzZXIgY2FuIGZvcmsgYW5kIHN0dWZmLCB0aGlzIGlzIHNvbWV0aGluZyBJ
-IHdhbnQgdG8gaGF2ZSBjb3JlIGNvZGUKPiBoZWxwIHdpdGgpLiAKClRoYXQgbWFrZXMgdGhlIGht
-bV9taXJyb3Igb2JqZWN0IHByZXR0eSBzaWxseSwgdGhvdWdoIGFzIHRoZSBzY29wZQppcyB0aGVu
-IGV4YWN0bHkgdGhlIHNhbWUgYXMgdGhlIG1tdV9ub3RpZmllciBpdHNlbGYuCgo+IFRoZSBobW1f
-bWlycm9yIGNhbiBlaXRoZXIgZXhpc3Qgc28gbG9uZyBhcyBvYmplY3RzIGV4aXN0LCBvciBpdCBj
-YW4KPiBleGlzdCB1bnRpbCB0aGUgY2hhcmRldiBpcyBjbG9zZWQgLSBidXQgbmV2ZXIgbG9uZ2Vy
-IHRoYW4gdGhlCj4gY2hhcmRldidzIGxpZmV0aW1lLgo+IAo+IE1heWJlIHdlIHNob3VsZCBiZSBj
-b25zaWRlcmluZyBwcm92aWRpbmcgYSBtbXUgbm90aWZpZXIgJiBpbnRlcnZhbAo+IHRyZWUgJiBs
-b2NrIGFic3RyYWN0aW9uIHNpbmNlIE9EUCAmIEFNRCBhcmUgdmVyeSBzaW1pbGFyIGhlcmUuLgoK
-SXQgZGVmaW50aXZlbHkgc291bmRzIGxpa2UgYSBnb29kIGlkZWEgdG8gbW92ZSB0aGlzIGtpbmQg
-b2Ygb2JqZWN0Cm1hbmFnZW1lbnQgaW50byBjb21tb24gY29kZS4gIE5vdXZlYSBhY3R1YWxseSBz
-ZWVtcyBsaWtlIHRoZSBvZGQgb25lCm91dCBoZXJlIGJ5IG5vdCBoYXZpbmcgYSBsaXN0IG9mIG9i
-amVjdHMgYmVsb3cgdGhlIG1pcnJvciwgYnV0IHRoZW4KYWdhaW4gYW5kIGludGVydmFsIHRyZWUg
-d2l0aCBhIHNpbmdsZSBlbnRyeSB3b3VsZG4ndCByZWFsbHkgaHVydCBpdAplaXRoZXIuCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGlu
-ZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+RnJvbTogS2V2aW4gQnJhY2UgPGtldmluYnJhY2VAYnJhY2Vjb21wdXRlcmxhYi5jb20+CgpQYXRj
+aCAxIGlzIHRvIHVzZSB1aW50MzJfdCB0eXBlIGZvciBwb3NzaWJsZV9jcnRjcy4gIFBhdGNoIDIg
+dGhyb3VnaCA0CnJlbW92ZXMgdW5uZWNlc3Nhcnkgd3JpdGUgdG8gdHlwZSBmaWVsZCBvZiBkcm1f
+cGxhbmUgc3RydWN0Lgpkcm1fdW5pdmVyc2FsX3BsYW5lX2luaXQoKSBpbml0aWFsaXplcyB0eXBl
+IGZpZWxkLCBzbyBpbml0aWFsaXppbmcgaXQKb3V0c2lkZSBvZiBEUk0gY29yZSBpcyB1bm5lY2Vz
+c2FyeS4gIEkgaGF2ZSBub3QgdGVzdGVkIHRoZSBwYXRjaGVzCm15c2VsZiBzaW5jZSBJIGRvIG5v
+dCBoYXZlIHRoZSBlcXVpcG1lbnQgc2V0IHVwIHRvIHJ1biBBTURHUFUgRFJNLgpJIGhvcGUgc29t
+ZW9uZSBmcm9tIEFNRCBjYW4gdGVzdCB0aGUgcGF0Y2hlcy4gIFBhdGNoIDIgdGhyb3VnaCA0IGRv
+CmRlcGVuZCBvbiBwYXRjaCAxLgoKLS0KS2V2aW4gQnJhY2UgKDQpOgogIGRybS9hbWRncHU6IHVp
+bnQzMl90IGZvciBhbWRncHVfZG1fcGxhbmVfaW5pdCgpIHBvc3NpYmxlX2NydGNzCiAgICBwYXJh
+bWV0ZXIKICBkcm0vYW1kZ3B1OiBSZW5hbWUgcGxhbmVfdHlwZSBwYXJhbWV0ZXIgb2YgaW5pdGlh
+bGl6ZV9wbGFuZSgpIHRvIHR5cGUKICBkcm0vYW1kZ3B1OiBBZGQgdHlwZSBwYXJhbWV0ZXIgdG8g
+YW1kZ3B1X2RtX3BsYW5lX2luaXQoKQogIGRybS9hbWRncHU6IFJlbW92ZSB1bm5lY2Vzc2FyeSB3
+cml0ZSB0byB0eXBlIGZpZWxkIG9mIGRybV9wbGFuZSBzdHJ1Y3QKCiAuLi4vZ3B1L2RybS9hbWQv
+ZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMgfCAyMCArKysrKysrKysrLS0tLS0tLS0tCiAx
+IGZpbGUgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkKCi0tCjIuMTcu
+MQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdm
+eCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
