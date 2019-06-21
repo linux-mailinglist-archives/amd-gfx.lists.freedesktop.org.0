@@ -1,75 +1,77 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE774EA09
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Jun 2019 15:58:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8B914EA6D
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Jun 2019 16:18:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 051596E8BC;
-	Fri, 21 Jun 2019 13:58:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FAEA6E8C4;
+	Fri, 21 Jun 2019 14:18:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr820059.outbound.protection.outlook.com [40.107.82.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 338B16E8BC
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jun 2019 13:58:25 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760070.outbound.protection.outlook.com [40.107.76.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DBF76E8C4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jun 2019 14:18:43 +0000 (UTC)
 Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1186.namprd12.prod.outlook.com (10.168.227.8) with Microsoft SMTP
+ BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1987.13; Fri, 21 Jun 2019 13:58:21 +0000
+ 15.20.1987.12; Fri, 21 Jun 2019 14:18:41 +0000
 Received: from BN6PR12MB1809.namprd12.prod.outlook.com
  ([fe80::11ea:d6bc:d2fa:e6d]) by BN6PR12MB1809.namprd12.prod.outlook.com
  ([fe80::11ea:d6bc:d2fa:e6d%9]) with mapi id 15.20.1987.014; Fri, 21 Jun 2019
- 13:58:21 +0000
+ 14:18:41 +0000
 From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Kim, Jonathan" <Jonathan.Kim@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu:  add sw_init to df_v1_7
-Thread-Topic: [PATCH] drm/amdgpu:  add sw_init to df_v1_7
-Thread-Index: AQHVKBYWSuS+hJfp2kyLUqe6OjfIX6amImhw
-Date: Fri, 21 Jun 2019 13:58:21 +0000
-Message-ID: <BN6PR12MB180927B186CB19A7D5F17008F7E70@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <20190621094526.96749-1-jonathan.kim@amd.com>
-In-Reply-To: <20190621094526.96749-1-jonathan.kim@amd.com>
+To: "Russell, Kent" <Kent.Russell@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amd/powerplay: no memory activity support on Vega10
+Thread-Topic: [PATCH] drm/amd/powerplay: no memory activity support on Vega10
+Thread-Index: AQHVJ9YWZR5/JxMFs0SdKyQ3qd7J8KamHkJvgAADwwCAAAapHA==
+Date: Fri, 21 Jun 2019 14:18:41 +0000
+Message-ID: <BN6PR12MB1809B49FC5D6A613D7CEFA0BF7E70@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <20190621020709.24778-1-evan.quan@amd.com>
+ <BN6PR12MB1809E4116699CD2B418B0763F7E70@BN6PR12MB1809.namprd12.prod.outlook.com>,
+ <BN6PR12MB16181A32A5AA5FCCC1972B1E85E70@BN6PR12MB1618.namprd12.prod.outlook.com>
+In-Reply-To: <BN6PR12MB16181A32A5AA5FCCC1972B1E85E70@BN6PR12MB1618.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [71.219.5.136]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 81518820-4fa6-43f8-43c2-08d6f65085a3
+x-ms-office365-filtering-correlation-id: 641ce130-dacb-4f72-c6af-08d6f6535cb0
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:BN6PR12MB1186; 
-x-ms-traffictypediagnostic: BN6PR12MB1186:
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1809; 
+x-ms-traffictypediagnostic: BN6PR12MB1809:
 x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BN6PR12MB1186EF2E4A0CA8C21F496640F7E70@BN6PR12MB1186.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:390;
+x-microsoft-antispam-prvs: <BN6PR12MB18098451EDC3E41542786390F7E70@BN6PR12MB1809.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
 x-forefront-prvs: 0075CB064E
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(346002)(136003)(366004)(376002)(396003)(39860400002)(189003)(199004)(256004)(73956011)(66946007)(66446008)(76116006)(64756008)(486006)(9686003)(54896002)(606006)(11346002)(66556008)(99286004)(446003)(105004)(66476007)(236005)(6306002)(6246003)(7696005)(2906002)(26005)(478600001)(966005)(6506007)(53546011)(55016002)(14454004)(76176011)(66066001)(6436002)(33656002)(6116002)(3846002)(186003)(72206003)(102836004)(53936002)(8936002)(229853002)(5660300002)(316002)(81166006)(8676002)(476003)(25786009)(7736002)(86362001)(68736007)(74316002)(2501003)(81156014)(52536014)(71190400001)(71200400001)(110136005)(19627405001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1186;
+ SFS:(10009020)(39860400002)(346002)(136003)(366004)(396003)(376002)(199004)(189003)(55016002)(486006)(81166006)(72206003)(68736007)(73956011)(186003)(14454004)(25786009)(8676002)(6116002)(256004)(476003)(110136005)(7736002)(74316002)(52536014)(6506007)(66946007)(446003)(2906002)(76116006)(5660300002)(8936002)(2501003)(53936002)(66556008)(54896002)(6306002)(26005)(966005)(81156014)(76176011)(66476007)(66446008)(236005)(6436002)(9686003)(53546011)(478600001)(7696005)(6246003)(64756008)(606006)(3846002)(105004)(66066001)(229853002)(33656002)(19627235002)(99286004)(316002)(71200400001)(19627405001)(102836004)(11346002)(86362001)(71190400001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1809;
  H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: p+XAgCOFFkK6RTbwuFQSu4yapMXFgkcrHpoKNql/01OnEHioNuRc/vuu4tBf9FdKosHxDW2Z2P4kPd6fQJ9iMhshDmu2773tS/5qgUCN+Z8giPeMK8nMzrBFjQt9mCXE9LL6WCbxnSmNtv4oKL6R94a8HYmHdk7OTOWm5pO7JSH52YLxyTd5fObJQqxjOuuvFyj3/MSzxW7FOAxKWY6IkZ6HQhl1LZOPy11N7ZRhi6nduq7nvadGPWOKY8DIVGZChYWkF+f4YeFIyE/jGhYVLdojCm/lVkEo1nFFMNds5UPVcTHQQTXhLbwiymrQExkzB+pSrWUYqiZx5kaDQn6/C8AA4ikdvBzICVVceq99FIo47Y02Mid6l4SarJybzYKG1DaKW0F4Ocgq2uRiCjprbBXaE1IyLroKg9K90otXohc=
+x-microsoft-antispam-message-info: 3FIf/S5e9hyudrGHHDCb8BlqSWA1mr3BGqjXQg538Mie/Z/gC3h60VtQkbyvnn9gpQ8sO2VHI8VIUf+CBeNLV3tX6O0wcLqUPaCget9kKM2YWnWYaJW/Fee2jLkwza5KPa+3TiH8WQ1O8JlSgJTRu0aHZqUlq0QS1vR6kFwofgnfSVQHx8OhPJq6zbKUoa8xBRRS+bKk/rd2+ogQGkRIRclO7aivn+CFVe6Gigu0C0AJ9K4DrsFOcr8GISASC4665UvlzchUZoiGfscfD2bOY5MkBouoTg/dwAtLzWplrcl0jgLa1AjW00G/C5KuCRsUVTexwnJ8jG8o6P//jfTDrsPtztAHdVgGATclgRevPkplnLJqTIvpeCoAFu7Vi27wdbXRJrcT5qdfz8CCav6I+DtM4/io1xXwBmxvPuBxAAg=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81518820-4fa6-43f8-43c2-08d6f65085a3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jun 2019 13:58:21.7768 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 641ce130-dacb-4f72-c6af-08d6f6535cb0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jun 2019 14:18:41.6040 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
 X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1186
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1809
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b4hFzZXtiQhzZr4xDlqRh8Zshb8v9oI2PXEkwWD9HNY=;
- b=LmGhWJlQugPmT6yaMTSun+2E0KB2l6L8Z4adJH6fcoEft25igA+snGUkDkFVm8GgtTwXgMsmbmYpIIWVuwVFY9a2vKQA6sEh8wbquJizd/WCDvzKEUFX4AvRZ4PsRDOk58nObwFwZ8CdtsbAmc0V4aq7gYcf6ZJgvsjLTSpRT0o=
+ bh=2ZGQNfCaEf+Y7fh96MZhF6cPOJNsR0xKjBuL0cY9TYE=;
+ b=UDOMoDNQn7QUiuVlYiju4NOQP0iQE96MAcbDHtv7wlTzF8i6OnxTLzuf8Z6XlZDk8PlY0IBXbwlA92UKrQi1aJIaXxsg1p7oHuBhJLe3Pfxpx9bsTLe+HXaPVGtvv1Fj4N9GHdf2+ZjuRJypRrpNgj/rmAdW6Y/8fkp413oU1DE=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -83,75 +85,109 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1393051745=="
+Content-Type: multipart/mixed; boundary="===============0814850249=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1393051745==
+--===============0814850249==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB180927B186CB19A7D5F17008F7E70BN6PR12MB1809namp_"
+	boundary="_000_BN6PR12MB1809B49FC5D6A613D7CEFA0BF7E70BN6PR12MB1809namp_"
 
---_000_BN6PR12MB180927B186CB19A7D5F17008F7E70BN6PR12MB1809namp_
+--_000_BN6PR12MB1809B49FC5D6A613D7CEFA0BF7E70BN6PR12MB1809namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-If both init and sw_init are empty, we don't need both.  Just rename the in=
-it callback to sw_init.
+Maybe it's dependent on the SMU firwmare version?
 
 Alex
 ________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Kim, Jon=
-athan <Jonathan.Kim@amd.com>
-Sent: Friday, June 21, 2019 5:45 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Kim, Jonathan
-Subject: [PATCH] drm/amdgpu: add sw_init to df_v1_7
-
-add df sw init to df 1.7 function to prevent regression issues on pre-vega2=
+From: Russell, Kent
+Sent: Friday, June 21, 2019 9:54 AM
+To: Deucher, Alexander; Quan, Evan; amd-gfx@lists.freedesktop.org
+Subject: RE: [PATCH] drm/amd/powerplay: no memory activity support on Vega1=
 0
-products.
 
-Change-Id: I4941003ea4a99ba0ea736c7ecc8800148423c379
-Signed-off-by: Jonathan Kim <Jonathan.Kim@amd.com>
+
+It works on my Fiji card. Maybe Vega10 functionality is just broken in this=
+ regard?
+
+
+
+Kent
+
+
+
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Deucher,=
+ Alexander
+Sent: Friday, June 21, 2019 9:42 AM
+To: Quan, Evan <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/amd/powerplay: no memory activity support on Vega1=
+0
+
+
+
+Is this supported on smu7 parts as well?  Might be better to just enable it=
+ on the specific asics that support it.  I think it might just be vega20.
+
+
+
+Alex
+
+________________________________
+
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
+@lists.freedesktop.org>> on behalf of Evan Quan <evan.quan@amd.com<mailto:e=
+van.quan@amd.com>>
+Sent: Thursday, June 20, 2019 10:07 PM
+To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+Cc: Quan, Evan
+Subject: [PATCH] drm/amd/powerplay: no memory activity support on Vega10
+
+
+
+Make mem_busy_percent sysfs interface invisible on Vega10.
+
+Change-Id: Ie39c3217b497a110b0b16e1b08033029bdcf2fc8
+Signed-off-by: Evan Quan <evan.quan@amd.com<mailto:evan.quan@amd.com>>
 ---
- drivers/gpu/drm/amd/amdgpu/df_v1_7.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/df_v1_7.c b/drivers/gpu/drm/amd/amd=
-gpu/df_v1_7.c
-index 9935371db7ce..335f2c02878f 100644
---- a/drivers/gpu/drm/amd/amdgpu/df_v1_7.c
-+++ b/drivers/gpu/drm/amd/amdgpu/df_v1_7.c
-@@ -33,6 +33,10 @@ static void df_v1_7_init (struct amdgpu_device *adev)
- {
- }
-
-+static void df_v1_7_sw_init(struct amdgpu_device *adev)
-+{
-+}
-+
- static void df_v1_7_enable_broadcast_mode(struct amdgpu_device *adev,
-                                           bool enable)
- {
-@@ -111,6 +115,7 @@ static void df_v1_7_enable_ecc_force_par_wr_rmw(struct =
-amdgpu_device *adev,
-
- const struct amdgpu_df_funcs df_v1_7_funcs =3D {
-         .init =3D df_v1_7_init,
-+       .sw_init =3D df_v1_7_sw_init,
-         .enable_broadcast_mode =3D df_v1_7_enable_broadcast_mode,
-         .get_fb_channel_number =3D df_v1_7_get_fb_channel_number,
-         .get_hbm_channel_number =3D df_v1_7_get_hbm_channel_number,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_pm.c
+index 7ed84736ccc9..bcf6e089dc2e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+@@ -2945,7 +2945,8 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *adev)
+                 return ret;
+         }
+         /* APU does not have its own dedicated memory */
+-       if (!(adev->flags & AMD_IS_APU)) {
++       if (!(adev->flags & AMD_IS_APU) &&
++            (adev->asic_type !=3D CHIP_VEGA10)) {
+                 ret =3D device_create_file(adev->dev,
+                                 &dev_attr_mem_busy_percent);
+                 if (ret) {
+@@ -3025,7 +3026,8 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device *adev)
+                 device_remove_file(adev->dev,
+                                 &dev_attr_pp_od_clk_voltage);
+         device_remove_file(adev->dev, &dev_attr_gpu_busy_percent);
+-       if (!(adev->flags & AMD_IS_APU))
++       if (!(adev->flags & AMD_IS_APU) &&
++            (adev->asic_type !=3D CHIP_VEGA10))
+                 device_remove_file(adev->dev, &dev_attr_mem_busy_percent);
+         if (!(adev->flags & AMD_IS_APU))
+                 device_remove_file(adev->dev, &dev_attr_pcie_bw);
 --
-2.17.1
+2.21.0
 
 _______________________________________________
 amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
+amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
---_000_BN6PR12MB180927B186CB19A7D5F17008F7E70BN6PR12MB1809namp_
+--_000_BN6PR12MB1809B49FC5D6A613D7CEFA0BF7E70BN6PR12MB1809namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -165,8 +201,7 @@ ttom:0;} </style>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-If both init and sw_init are empty, we don't need both.&nbsp; Just rename t=
-he init callback to sw_init.</div>
+Maybe it's dependent on the SMU firwmare version?</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
 <br>
@@ -178,77 +213,183 @@ Alex<br>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Kim, Jonathan &lt;Jonathan.Ki=
-m@amd.com&gt;<br>
-<b>Sent:</b> Friday, June 21, 2019 5:45 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> Kim, Jonathan<br>
-<b>Subject:</b> [PATCH] drm/amdgpu: add sw_init to df_v1_7</font>
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Russell, Kent<br>
+<b>Sent:</b> Friday, June 21, 2019 9:54 AM<br>
+<b>To:</b> Deucher, Alexander; Quan, Evan; amd-gfx@lists.freedesktop.org<br=
+>
+<b>Subject:</b> RE: [PATCH] drm/amd/powerplay: no memory activity support o=
+n Vega10</font>
 <div>&nbsp;</div>
 </div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">add df sw init to df 1.7 function to prevent regre=
-ssion issues on pre-vega20<br>
-products.<br>
+<style>
+<!--
+@font-face
+	{font-family:"Cambria Math"}
+@font-face
+	{font-family:Calibri}
+p.x_MsoNormal, li.x_MsoNormal, div.x_MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif}
+a:link, span.x_MsoHyperlink
+	{color:blue;
+	text-decoration:underline}
+a:visited, span.x_MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline}
+p.x_msonormal0, li.x_msonormal0, div.x_msonormal0
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif}
+span.x_EmailStyle20
+	{font-family:"Calibri",sans-serif;
+	color:windowtext}
+.x_MsoChpDefault
+	{font-size:10.0pt}
+@page WordSection1
+	{margin:1.0in 1.0in 1.0in 1.0in}
+div.x_WordSection1
+	{}
+-->
+</style>
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"x_WordSection1">
+<p class=3D"x_MsoNormal">It works on my Fiji card. Maybe Vega10 functionali=
+ty is just broken in this regard?</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal">Kent</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<div>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0i=
+n 0in 0in">
+<p class=3D"x_MsoNormal"><b>From:</b> amd-gfx &lt;amd-gfx-bounces@lists.fre=
+edesktop.org&gt;
+<b>On Behalf Of </b>Deucher, Alexander<br>
+<b>Sent:</b> Friday, June 21, 2019 9:42 AM<br>
+<b>To:</b> Quan, Evan &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.=
+org<br>
+<b>Subject:</b> Re: [PATCH] drm/amd/powerplay: no memory activity support o=
+n Vega10</p>
+</div>
+</div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Is t=
+his supported on smu7 parts as well?&nbsp; Might be better to just enable i=
+t on the specific asics that support it.&nbsp; I think it might just be veg=
+a20.</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Alex=
+</span></p>
+</div>
+<div class=3D"x_MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"x_divRplyFwdMsg">
+<p class=3D"x_MsoNormal"><b><span style=3D"color:black">From:</span></b><sp=
+an style=3D"color:black"> amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lis=
+ts.freedesktop.org">amd-gfx-bounces@lists.freedesktop.org</a>&gt; on behalf=
+ of Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.quan@amd.com</a=
+>&gt;<br>
+<b>Sent:</b> Thursday, June 20, 2019 10:07 PM<br>
+<b>To:</b> <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.f=
+reedesktop.org</a><br>
+<b>Cc:</b> Quan, Evan<br>
+<b>Subject:</b> [PATCH] drm/amd/powerplay: no memory activity support on Ve=
+ga10</span>
+</p>
+<div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"x_MsoNormal">Make mem_busy_percent sysfs interface invisible on=
+ Vega10.<br>
 <br>
-Change-Id: I4941003ea4a99ba0ea736c7ecc8800148423c379<br>
-Signed-off-by: Jonathan Kim &lt;Jonathan.Kim@amd.com&gt;<br>
+Change-Id: Ie39c3217b497a110b0b16e1b08033029bdcf2fc8<br>
+Signed-off-by: Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.quan=
+@amd.com</a>&gt;<br>
 ---<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/df_v1_7.c | 5 &#43;&#43;&#43;&#43;&#43;<br=
->
-&nbsp;1 file changed, 5 insertions(&#43;)<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 6 &#43;&#43;&#43;&#43;--<br>
+&nbsp;1 file changed, 4 insertions(&#43;), 2 deletions(-)<br>
 <br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/df_v1_7.c b/drivers/gpu/drm/amd/amd=
-gpu/df_v1_7.c<br>
-index 9935371db7ce..335f2c02878f 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/df_v1_7.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/df_v1_7.c<br>
-@@ -33,6 &#43;33,10 @@ static void df_v1_7_init (struct amdgpu_device *adev=
-)<br>
-&nbsp;{<br>
-&nbsp;}<br>
-&nbsp;<br>
-&#43;static void df_v1_7_sw_init(struct amdgpu_device *adev)<br>
-&#43;{<br>
-&#43;}<br>
-&#43;<br>
-&nbsp;static void df_v1_7_enable_broadcast_mode(struct amdgpu_device *adev,=
-<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_pm.c<br>
+index 7ed84736ccc9..bcf6e089dc2e 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c<br>
+@@ -2945,7 &#43;2945,8 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *ad=
+ev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* APU does not have its o=
+wn dedicated memory */<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!(adev-&gt;flags &amp; AMD_IS_APU=
+)) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!(adev-&gt;flags &amp; AMD_IS=
+_APU) &amp;&amp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ad=
+ev-&gt;asic_type !=3D CHIP_VEGA10)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; ret =3D device_create_file(adev-&gt;dev,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
 sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;dev_attr_mem_busy_percent);=
+<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; bool enable)<br>
-&nbsp;{<br>
-@@ -111,6 &#43;115,7 @@ static void df_v1_7_enable_ecc_force_par_wr_rmw(str=
-uct amdgpu_device *adev,<br>
-&nbsp;<br>
-&nbsp;const struct amdgpu_df_funcs df_v1_7_funcs =3D {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .init =3D df_v1_7_init,<br=
->
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .sw_init =3D df_v1_7_sw_init,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .enable_broadcast_mode =3D=
- df_v1_7_enable_broadcast_mode,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_fb_channel_number =3D=
- df_v1_7_get_fb_channel_number,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_hbm_channel_number =
-=3D df_v1_7_get_hbm_channel_number,<br>
+sp;&nbsp;&nbsp;&nbsp; if (ret) {<br>
+@@ -3025,7 &#43;3026,8 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device *a=
+dev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&gt;dev,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;dev_attr_pp_od_clk_voltage)=
+;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&g=
+t;dev, &amp;dev_attr_gpu_busy_percent);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!(adev-&gt;flags &amp; AMD_IS_APU=
+))<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!(adev-&gt;flags &amp; AMD_IS=
+_APU) &amp;&amp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ad=
+ev-&gt;asic_type !=3D CHIP_VEGA10))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&gt;dev, &amp;dev_attr_mem_bu=
+sy_percent);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!(adev-&gt;flags &amp;=
+ AMD_IS_APU))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&gt;dev, &amp;dev_attr_pcie_b=
+w);<br>
 -- <br>
-2.17.1<br>
+2.21.0<br>
 <br>
 _______________________________________________<br>
 amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a><br>
 <a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-</span></font></div>
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></p>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
---_000_BN6PR12MB180927B186CB19A7D5F17008F7E70BN6PR12MB1809namp_--
+--_000_BN6PR12MB1809B49FC5D6A613D7CEFA0BF7E70BN6PR12MB1809namp_--
 
---===============1393051745==
+--===============0814850249==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -258,4 +399,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1393051745==--
+--===============0814850249==--
