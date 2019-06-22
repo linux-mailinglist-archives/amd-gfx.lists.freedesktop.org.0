@@ -2,36 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 136764F634
-	for <lists+amd-gfx@lfdr.de>; Sat, 22 Jun 2019 16:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C67A4F9A8
+	for <lists+amd-gfx@lfdr.de>; Sun, 23 Jun 2019 05:40:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 408226E038;
-	Sat, 22 Jun 2019 14:34:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F9A789D42;
+	Sun, 23 Jun 2019 03:40:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14FF76E032
- for <amd-gfx@lists.freedesktop.org>; Sat, 22 Jun 2019 14:00:31 +0000 (UTC)
-X-IronPort-AV: E=Sophos;i="5.63,404,1557180000"; d="scan'208";a="311073839"
-Received: from abo-12-105-68.mrs.modulonet.fr (HELO hadrien) ([85.68.105.12])
- by mail3-relais-sop.national.inria.fr with
- ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Jun 2019 16:00:29 +0200
-Date: Sat, 22 Jun 2019 16:00:29 +0200 (CEST)
-From: Julia Lawall <julia.lawall@lip6.fr>
-X-X-Sender: jll@hadrien
-To: maowenan <maowenan@huawei.com>
+X-Greylist: delayed 561 seconds by postgrey-1.36 at gabe;
+ Sat, 22 Jun 2019 18:22:52 UTC
+Received: from smtprelay.hostedemail.com (smtprelay0184.hostedemail.com
+ [216.40.44.184])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88FE46E8E8
+ for <amd-gfx@lists.freedesktop.org>; Sat, 22 Jun 2019 18:22:52 +0000 (UTC)
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
+ [10.5.19.251])
+ by smtpgrave03.hostedemail.com (Postfix) with ESMTP id EC7001801DBE9
+ for <amd-gfx@lists.freedesktop.org>; Sat, 22 Jun 2019 18:13:31 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay07.hostedemail.com (Postfix) with ESMTP id 90855181D33FC;
+ Sat, 22 Jun 2019 18:13:29 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com,
+ :::::::::::::::::::::::,
+ RULES_HIT:41:152:355:379:599:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2198:2199:2393:2559:2562:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:3871:3872:3873:4321:4605:5007:7903:10004:10400:10848:11026:11232:11233:11473:11657:11658:11914:12043:12048:12296:12297:12438:12679:12740:12895:13069:13161:13229:13311:13357:13894:14659:14721:21063:21080:21451:21627:30012:30054:30070:30091,
+ 0,
+ RBL:23.242.196.136:@perches.com:.lbl8.mailshell.net-62.8.0.180 64.201.201.201,
+ CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none, DomainCache:0,
+ MSF:not bulk, SPF:fn, MSBL:0, DNSBL:neutral, Custom_rules:0:0:0, LFtime:24,
+ LUA_SUMMARY:none
+X-HE-Tag: guide54_1e3a390309d01
+X-Filterd-Recvd-Size: 2148
+Received: from XPS-9350.home (cpe-23-242-196-136.socal.res.rr.com
+ [23.242.196.136]) (Authenticated sender: joe@perches.com)
+ by omf08.hostedemail.com (Postfix) with ESMTPA;
+ Sat, 22 Jun 2019 18:13:27 +0000 (UTC)
+Message-ID: <0ab82cdb0bec30e7e431f106f8e0e9d141491555.camel@perches.com>
 Subject: Re: [PATCH -next v2] drm/amdgpu: return 'ret' in amdgpu_pmu_init
-In-Reply-To: <063c9726-8f16-f9b7-2d16-bc87a99085bb@huawei.com>
-Message-ID: <alpine.DEB.2.21.1906221559060.3253@hadrien>
+From: Joe Perches <joe@perches.com>
+To: Mao Wenan <maowenan@huawei.com>, airlied@linux.ie, daniel@ffwll.ch, 
+ alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, 
+ dan.carpenter@oracle.com, julia.lawall@lip6.fr
+Date: Sat, 22 Jun 2019 11:13:26 -0700
+In-Reply-To: <20190622130527.182022-1-maowenan@huawei.com>
 References: <20190622104318.GT28859@kadam>
  <20190622130527.182022-1-maowenan@huawei.com>
- <alpine.DEB.2.21.1906221504110.3253@hadrien>
- <063c9726-8f16-f9b7-2d16-bc87a99085bb@huawei.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+User-Agent: Evolution 3.30.5-0ubuntu0.18.10.1 
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-716062006-1561212030=:3253"
-X-Mailman-Approved-At: Sat, 22 Jun 2019 14:34:27 +0000
+X-Mailman-Approved-At: Sun, 23 Jun 2019 03:40:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -43,107 +62,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David1.Zhou@amd.com, airlied@linux.ie, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, daniel@ffwll.ch,
- alexander.deucher@amd.com, christian.koenig@amd.com, dan.carpenter@oracle.com
+Cc: Jonathan Kim <jonathan.kim@amd.com>, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-716062006-1561212030=:3253
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-
-
-
-On Sat, 22 Jun 2019, maowenan wrote:
-
->
->
-> On 2019/6/22 21:06, Julia Lawall wrote:
-> >
-> >
-> > On Sat, 22 Jun 2019, Mao Wenan wrote:
-> >
-> >> There is one warning:
-> >> drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c: In function ‘amdgpu_pmu_init’:
-> >> drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c:249:6: warning: variable ‘ret’ set but not used [-Wunused-but-set-variable]
-> >>   int ret = 0;
-> >>       ^
-> >> amdgpu_pmu_init() is called by amdgpu_device_init() in drivers/gpu/drm/amd/amdgpu/amdgpu_device.c,
-> >> which will use the return value. So it returns 'ret' for caller.
-> >> amdgpu_device_init()
-> >> 	r = amdgpu_pmu_init(adev);
-> >>
-> >> Fixes: 9c7c85f7ea1f ("drm/amdgpu: add pmu counters")
-> >>
-> >> Signed-off-by: Mao Wenan <maowenan@huawei.com>
-> >> ---
-> >>  v1->v2: change the subject for this patch; change the indenting when it calls init_pmu_by_type; use the value 'ret' in
-> >>  amdgpu_pmu_init().
-> >>  drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c | 6 +++---
-> >>  1 file changed, 3 insertions(+), 3 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
-> >> index 0e6dba9..145e720 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
-> >> @@ -252,8 +252,8 @@ int amdgpu_pmu_init(struct amdgpu_device *adev)
-> >>  	case CHIP_VEGA20:
-> >>  		/* init df */
-> >>  		ret = init_pmu_by_type(adev, df_v3_6_attr_groups,
-> >> -				       "DF", "amdgpu_df", PERF_TYPE_AMDGPU_DF,
-> >> -				       DF_V3_6_MAX_COUNTERS);
-> >> +							   "DF", "amdgpu_df", PERF_TYPE_AMDGPU_DF,
-> >> +							   DF_V3_6_MAX_COUNTERS);
-> >>
-> >>  		/* other pmu types go here*/
-> >
-> > I don't know what is the impact of the other pmu types that are planned
-> > for the future.  Perhaps it would be better to abort the function
-> > immediately in the case of a failure.
->
-> I guess it would be better to use new function or new switch case clause to process different PMU types
-> in future.
-
-I don't know.  But normally when an error may occur it is checked for
-immediately, rather than just letting it go until the end of the function.
-But maybe the developer know what is planned for the future for this
-function.
-
-julia
-
->
-> >
-> > julia
-> >
-> >>  		break;
-> >> @@ -261,7 +261,7 @@ int amdgpu_pmu_init(struct amdgpu_device *adev)
-> >>  		return 0;
-> >>  	}
-> >>
-> >> -	return 0;
-> >> +	return ret;
-> >>  }
-> >>
-> >>
-> >> --
-> >> 2.7.4
-> >>
-> >>
-> >
->
->
---8323329-716062006-1561212030=:3253
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---8323329-716062006-1561212030=:3253--
+T24gU2F0LCAyMDE5LTA2LTIyIGF0IDIxOjA1ICswODAwLCBNYW8gV2VuYW4gd3JvdGU6Cj4gVGhl
+cmUgaXMgb25lIHdhcm5pbmc6Cj4gZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Bt
+dS5jOiBJbiBmdW5jdGlvbiDigJhhbWRncHVfcG11X2luaXTigJk6Cj4gZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvYW1kZ3B1X3BtdS5jOjI0OTo2OiB3YXJuaW5nOiB2YXJpYWJsZSDigJhyZXTi
+gJkgc2V0IGJ1dCBub3QgdXNlZCBbLVd1bnVzZWQtYnV0LXNldC12YXJpYWJsZV0KPiAgIGludCBy
+ZXQgPSAwOwpbXQo+ICB2MS0+djI6IGNoYW5nZSB0aGUgc3ViamVjdCBmb3IgdGhpcyBwYXRjaDsg
+Y2hhbmdlIHRoZSBpbmRlbnRpbmcgd2hlbiBpdCBjYWxscyBpbml0X3BtdV9ieV90eXBlOyB1c2Ug
+dGhlIHZhbHVlICdyZXQnIGluCj4gIGFtZGdwdV9wbXVfaW5pdCgpLgpbXQo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcG11LmMgYi9kcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS9hbWRncHVfcG11LmMKW10KPiBAQCAtMjUyLDggKzI1Miw4IEBAIGludCBh
+bWRncHVfcG11X2luaXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gIAljYXNlIENISVBf
+VkVHQTIwOgo+ICAJCS8qIGluaXQgZGYgKi8KPiAgCQlyZXQgPSBpbml0X3BtdV9ieV90eXBlKGFk
+ZXYsIGRmX3YzXzZfYXR0cl9ncm91cHMsCj4gLQkJCQkgICAgICAgIkRGIiwgImFtZGdwdV9kZiIs
+IFBFUkZfVFlQRV9BTURHUFVfREYsCj4gLQkJCQkgICAgICAgREZfVjNfNl9NQVhfQ09VTlRFUlMp
+Owo+ICsJCQkJCQkJICAgIkRGIiwgImFtZGdwdV9kZiIsIFBFUkZfVFlQRV9BTURHUFVfREYsCj4g
+KwkJCQkJCQkgICBERl9WM182X01BWF9DT1VOVEVSUyk7Cgp0cml2aWE6CgpUaGUgaW5kZW50YXRp
+b24gY2hhbmdlIHNlZW1zIHN1cGVyZmx1b3VzIGFuZAphcHBlYXJzIHRvIG1ha2UgdGhlIGNvZGUg
+aGFyZGVyIHRvIHJlYWQuCgpZb3UgY291bGQgYWxzbyBjYyBKb25hdGhhbiBLaW0gd2hvIHdyb3Rl
+IGFsbCBvZiB0aGlzLgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
