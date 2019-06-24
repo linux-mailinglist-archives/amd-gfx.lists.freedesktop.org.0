@@ -1,82 +1,79 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26CE451A24
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jun 2019 19:58:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45A2251A30
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jun 2019 20:00:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9260D89DA2;
-	Mon, 24 Jun 2019 17:58:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7CCB89B5F;
+	Mon, 24 Jun 2019 18:00:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam03on060a.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe49::60a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54BC989DA2
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jun 2019 17:58:52 +0000 (UTC)
-Received: from DM3PR12CA0099.namprd12.prod.outlook.com (2603:10b6:0:55::19) by
- CY4PR1201MB0053.namprd12.prod.outlook.com (2603:10b6:910:23::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2008.16; Mon, 24 Jun
- 2019 17:58:50 +0000
-Received: from BY2NAM03FT019.eop-NAM03.prod.protection.outlook.com
- (2a01:111:f400:7e4a::203) by DM3PR12CA0099.outlook.office365.com
- (2603:10b6:0:55::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2008.16 via Frontend
- Transport; Mon, 24 Jun 2019 17:58:49 +0000
-Received-SPF: None (protection.outlook.com: amd.com does not designate
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680041.outbound.protection.outlook.com [40.107.68.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65F2889B5F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jun 2019 18:00:24 +0000 (UTC)
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
+ BN6PR12MB1363.namprd12.prod.outlook.com (10.168.228.143) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.16; Mon, 24 Jun 2019 18:00:21 +0000
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::11ea:d6bc:d2fa:e6d]) by BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::11ea:d6bc:d2fa:e6d%9]) with mapi id 15.20.2008.014; Mon, 24 Jun 2019
+ 18:00:21 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Kazlauskas, Nicholas" <Nicholas.Kazlauskas@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v2] drm/amd/display: update infoframe after dig fe is
+ turned on (v2)
+Thread-Topic: [PATCH v2] drm/amd/display: update infoframe after dig fe is
+ turned on (v2)
+Thread-Index: AQHVKrZ+k64eX6xTVEKgmw//x/FBTKarF+F7
+Date: Mon, 24 Jun 2019 18:00:21 +0000
+Message-ID: <BN6PR12MB18091CE5FB4DD0A59853D849F7E00@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <20190624175847.26253-1-nicholas.kazlauskas@amd.com>
+In-Reply-To: <20190624175847.26253-1-nicholas.kazlauskas@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [71.219.5.136]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8520139d-76a8-4d7c-6a52-08d6f8cdd306
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1363; 
+x-ms-traffictypediagnostic: BN6PR12MB1363:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BN6PR12MB1363AC6962BA77816F101658F7E00@BN6PR12MB1363.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4502;
+x-forefront-prvs: 007814487B
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(396003)(346002)(366004)(376002)(39860400002)(136003)(189003)(199004)(25786009)(14454004)(186003)(66476007)(4326008)(2906002)(5660300002)(15650500001)(71190400001)(53936002)(7736002)(11346002)(476003)(966005)(86362001)(236005)(6306002)(6246003)(73956011)(71200400001)(8936002)(316002)(66556008)(478600001)(76116006)(2501003)(6116002)(486006)(105004)(66066001)(26005)(66946007)(606006)(74316002)(6436002)(6506007)(53546011)(3846002)(64756008)(8676002)(229853002)(14444005)(256004)(76176011)(66446008)(54896002)(68736007)(81166006)(19627405001)(81156014)(55016002)(99286004)(33656002)(102836004)(9686003)(72206003)(446003)(52536014)(54906003)(7696005)(110136005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1363;
+ H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXCHOV01.amd.com (165.204.84.17) by
- BY2NAM03FT019.mail.protection.outlook.com (10.152.84.221) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2008.13 via Frontend Transport; Mon, 24 Jun 2019 17:58:49 +0000
-Received: from kazbox.amd.com (10.180.168.240) by SATLEXCHOV01.amd.com
- (10.181.40.71) with Microsoft SMTP Server id 14.3.389.1; Mon, 24 Jun 2019
- 12:58:48 -0500
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2] drm/amd/display: update infoframe after dig fe is turned
- on (v2)
-Date: Mon, 24 Jun 2019 13:58:47 -0400
-Message-ID: <20190624175847.26253-1-nicholas.kazlauskas@amd.com>
-X-Mailer: git-send-email 2.17.1
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: u+27s8uM3dqqFsLRhz0njC6UodqG33iPXdIDO8XgXnkmXXWONQHELVJh/U1OFjwYxWczWuOzcuj2TFOL5QaNodrpyB2cZsupiYYikZzZqumBifRZTapGn8wZeIY4hDNHTAamFVpylatpFPY/PicQpXNueW8pBIK980Xs4Tv/u7gdtvQNdhth95ZpIZJHT5Uj9M5+2pX2vLRT1AbipZL+h3dKpDH5Tcg1wQayPBtaMqG6cdjqcr+d30zr4bEQJkjngInqNC5C7I1jI8LA5ibOlXhqgorxBNTd/4MJ0qOSWV2EtM/AX27fCDzNH7fGWov464x0xQUcy1PeAnFpOZKBNrtl5mhTKtmBV4MTs/CtQwPm2j3ZALQGOU+NHmItvUSsokp9sPkRzw7cKA8YkMPb2hwsslGxgkq3657G+1Vfy7o=
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(396003)(39860400002)(376002)(346002)(136003)(2980300002)(428003)(199004)(189003)(14444005)(68736007)(50466002)(486006)(356004)(426003)(2616005)(86362001)(72206003)(81166006)(336012)(77096007)(81156014)(186003)(26005)(15650500001)(51416003)(8936002)(7696005)(305945005)(2906002)(2351001)(8676002)(478600001)(6916009)(50226002)(47776003)(53936002)(476003)(5660300002)(53416004)(54906003)(70586007)(70206006)(1076003)(36756003)(16586007)(316002)(48376002)(4326008)(126002)(44832011);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR1201MB0053; H:SATLEXCHOV01.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ee6605c-cf2c-48b5-211c-08d6f8cd9c86
-X-Microsoft-Antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328);
- SRVR:CY4PR1201MB0053; 
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB0053:
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB00539CAAFCCD7784A5729FC6ECE00@CY4PR1201MB0053.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
-X-Forefront-PRVS: 007814487B
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: zE3AVKVnvdx0xt0zBI5HqRZxaGCGoI/OAj9lITFHLiJuJTgVdOMhimYKxaycwhLlxYFB1G3F6sJtkl45JnxGttZr8bXXnqodn5oOx7jkXluOUFVeuyurHeKVqgkhZY2kb6Fk97TQV/H3I6wTgwfjZ+mhX32u5gS4Ph7hEMlNz7IJ/jDuhb5FqZf521V84HF6XbUe5tQWy28bAf0ZPyeXz9pl2dGfVmy1etXBdRp6cPnWzSsvw4qrcNNNfgU4+rWYe0e6bS+d0mZJ29woqdYGD7hM1iOJajfpoqSjseg2fQEP2t+d5lSkK/EL8X5RvwQmuZb699CE4aP6KiIfORJ5RUVoJRR7USJ+zr0mXeILQXC4O2GFS/5uxrUC1QXnAIaezaDyf/85oJpdnsRIE5FU9HXEN2wixrfyy1U7DI+LhBA=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2019 17:58:49.4301 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ee6605c-cf2c-48b5-211c-08d6f8cd9c86
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXCHOV01.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0053
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8520139d-76a8-4d7c-6a52-08d6f8cdd306
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2019 18:00:21.1340 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1363
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JBuLgwZTOw8N3Ev9aDKA13pUoC9y4wGn+eq44mCkYpo=;
- b=OxgfCY01cIAuJEAncih88VfcHWaETEIvo5svJKBRxi4F9SgqMMA97wX+EycEiRPM986cJh+BqBBUqIjyCQL0++WXrwUZP/55Ngmt/A6VUNUXZ9/OxQmrmM/UzJh5wik/SNBpYvNdFWH5Ev9Lyu3YKrhKat+aNhdKAp1CEmgBdcU=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is
- 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
+ bh=7X7Om6XM1JTMLKYZGS27zdyqY//hROV2mg0KItJ9ZsU=;
+ b=KPXtEMehSYPlRO8Cx3DGWl0IMUysF6LIZsjcyDsju46UPHasPoLjDAQzw+WAQ17tWB2cLU/O8ZCoOtjOZr0nVXwfCQqoZdOv0FaOiHVdcDss5mQSV/owXM5hWRBuIaslJ875yFjpKbxluWulNNFjTpX0RTFuW0JUGDcLozkXfjk=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -88,39 +85,186 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, Roman Li <roman.li@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Li, Sun peng \(Leo\)" <Sunpeng.Li@amd.com>, "Wentland,
+ Harry" <Harry.Wentland@amd.com>, "Li, Roman" <Roman.Li@amd.com>
+Content-Type: multipart/mixed; boundary="===============0507749674=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W1doeV0KVGhlIEFWSSBpbmZvZnJhbWUgaXMgaW5jb3JyZWN0bHkgcHJvZ3JhbW1lZCBvbiBEQ04x
-LzIgd2hlbiBlbmFibGluZyBhCnN0cmVhbSAtIGNhdXNpbmcgdGhlIHdyb25nIHBpeGVsIGVuY29k
-aW5nIHRvIGJlIHVzZWQgZm9yIGRpc3BsYXkuCgpUaGlzIGlzIGJlY2F1c2UgdGhlIEFWSSBpbmZv
-ZnJhbWUgaXMgcHJvZ3JhbW1lZCBiZWZvcmUgdGhlIERJRyBCRSBpcwpjb25uZWN0ZWQgdG8gdGhl
-IEZFIGFuZCB0dXJuZWQgb24sIHNvIGVuYWJsaW5nIHRoZSBBRk1UIGJsb2NrIGRvZXNuJ3QKYWN0
-dWFsbHkgd29yayBhbmQgdGhlIHJlZ2lzdGVycyBzdWJzZXF1ZW50bHkgY2FuJ3QgYmUgd3JpdHRl
-biB0by4KCltIb3ddClByb2dyYW0gdGhlIGluZm9mcmFtZSAqYWZ0ZXIqIHR1cm5pbmcgb24gdGhl
-IERJRyBGRS4gVGhpcyB3YXMgdGhlCmJlaGF2aW9yIHByZXZpb3VzbHkgdXNlZCBidXQgaXQgd2Fz
-IGluY29ycmVjdGx5IHJldmVydGVkCndoZW4gYWRkaW5nIHRoZSBEQ04yIEhXIHNlcXVlbmNlciBj
-b2RlLgoKdjI6IERvbid0IGNhbGwgdXBkYXRlX2luZm9fZnJhbWUgdHdpY2UKCkZpeGVzOiA1NGZm
-MzU5MTU5NDggKCJkcm0vYW1kL2Rpc3BsYXk6IEFkZCBEQ04yIEhXIFNlcXVlbmNlciBhbmQgUmVz
-b3VyY2UiKQoKQ2M6IEhhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPgpDYzog
-Um9tYW4gTGkgPHJvbWFuLmxpQGFtZC5jb20+CkNjOiBMZW8gTGkgPHN1bnBlbmcubGlAYW1kLmNv
-bT4KU2lnbmVkLW9mZi1ieTogTmljaG9sYXMgS2F6bGF1c2thcyA8bmljaG9sYXMua2F6bGF1c2th
-c0BhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY2UxMTAvZGNl
-MTEwX2h3X3NlcXVlbmNlci5jIHwgMSArCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTEwL2RjZTEx
-MF9od19zZXF1ZW5jZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY2UxMTAv
-ZGNlMTEwX2h3X3NlcXVlbmNlci5jCmluZGV4IDk0MGU3NGI3ZDJjNi4uODRkOTBiNDc1ZTJhIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTEwL2RjZTExMF9o
-d19zZXF1ZW5jZXIuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTEw
-L2RjZTExMF9od19zZXF1ZW5jZXIuYwpAQCAtNjg2LDYgKzY4Niw3IEBAIHZvaWQgZGNlMTEwX2Vu
-YWJsZV9zdHJlYW0oc3RydWN0IHBpcGVfY3R4ICpwaXBlX2N0eCkKIAkJCQkJCQlkbWRhdGFfZHAg
-OiBkbWRhdGFfaGRtaSk7CiAJfQogI2VuZGlmCisJZGNlMTEwX3VwZGF0ZV9pbmZvX2ZyYW1lKHBp
-cGVfY3R4KTsKIAogCS8qIGVuYWJsZSBlYXJseSBjb250cm9sIHRvIGF2b2lkIGNvcnJ1cHRpb24g
-b24gRFAgbW9uaXRvciovCiAJYWN0aXZlX3RvdGFsX3dpdGhfYm9yZGVycyA9Ci0tIAoyLjE3LjEK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZngg
-bWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============0507749674==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB18091CE5FB4DD0A59853D849F7E00BN6PR12MB1809namp_"
+
+--_000_BN6PR12MB18091CE5FB4DD0A59853D849F7E00BN6PR12MB1809namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Nicholas=
+ Kazlauskas <nicholas.kazlauskas@amd.com>
+Sent: Monday, June 24, 2019 1:58 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Li, Sun peng (Leo); Wentland, Harry; Kazlauskas, Nicholas; Li, Roman
+Subject: [PATCH v2] drm/amd/display: update infoframe after dig fe is turne=
+d on (v2)
+
+[Why]
+The AVI infoframe is incorrectly programmed on DCN1/2 when enabling a
+stream - causing the wrong pixel encoding to be used for display.
+
+This is because the AVI infoframe is programmed before the DIG BE is
+connected to the FE and turned on, so enabling the AFMT block doesn't
+actually work and the registers subsequently can't be written to.
+
+[How]
+Program the infoframe *after* turning on the DIG FE. This was the
+behavior previously used but it was incorrectly reverted
+when adding the DCN2 HW sequencer code.
+
+v2: Don't call update_info_frame twice
+
+Fixes: 54ff35915948 ("drm/amd/display: Add DCN2 HW Sequencer and Resource")
+
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Roman Li <roman.li@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/=
+drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+index 940e74b7d2c6..84d90b475e2a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+@@ -686,6 +686,7 @@ void dce110_enable_stream(struct pipe_ctx *pipe_ctx)
+                                                         dmdata_dp : dmdata=
+_hdmi);
+         }
+ #endif
++       dce110_update_info_frame(pipe_ctx);
+
+         /* enable early control to avoid corruption on DP monitor*/
+         active_total_with_borders =3D
+--
+2.17.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN6PR12MB18091CE5FB4DD0A59853D849F7E00BN6PR12MB1809namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
+=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx=
+-bounces@lists.freedesktop.org&gt; on behalf of Nicholas Kazlauskas &lt;nic=
+holas.kazlauskas@amd.com&gt;<br>
+<b>Sent:</b> Monday, June 24, 2019 1:58 PM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org<br>
+<b>Cc:</b> Li, Sun peng (Leo); Wentland, Harry; Kazlauskas, Nicholas; Li, R=
+oman<br>
+<b>Subject:</b> [PATCH v2] drm/amd/display: update infoframe after dig fe i=
+s turned on (v2)</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+>
+<div class=3D"PlainText">[Why]<br>
+The AVI infoframe is incorrectly programmed on DCN1/2 when enabling a<br>
+stream - causing the wrong pixel encoding to be used for display.<br>
+<br>
+This is because the AVI infoframe is programmed before the DIG BE is<br>
+connected to the FE and turned on, so enabling the AFMT block doesn't<br>
+actually work and the registers subsequently can't be written to.<br>
+<br>
+[How]<br>
+Program the infoframe *after* turning on the DIG FE. This was the<br>
+behavior previously used but it was incorrectly reverted<br>
+when adding the DCN2 HW sequencer code.<br>
+<br>
+v2: Don't call update_info_frame twice<br>
+<br>
+Fixes: 54ff35915948 (&quot;drm/amd/display: Add DCN2 HW Sequencer and Resou=
+rce&quot;)<br>
+<br>
+Cc: Harry Wentland &lt;harry.wentland@amd.com&gt;<br>
+Cc: Roman Li &lt;roman.li@amd.com&gt;<br>
+Cc: Leo Li &lt;sunpeng.li@amd.com&gt;<br>
+Signed-off-by: Nicholas Kazlauskas &lt;nicholas.kazlauskas@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c | 1 &#43;=
+<br>
+&nbsp;1 file changed, 1 insertion(&#43;)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/=
+drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c<br>
+index 940e74b7d2c6..84d90b475e2a 100644<br>
+--- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer=
+.c<br>
+@@ -686,6 &#43;686,7 @@ void dce110_enable_stream(struct pipe_ctx *pipe_ctx=
+)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dmdata_dp : dmdata_hdmi);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;#endif<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dce110_update_info_frame(pipe_ctx=
+);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* enable early control to=
+ avoid corruption on DP monitor*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active_total_with_borders =
+=3D<br>
+-- <br>
+2.17.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN6PR12MB18091CE5FB4DD0A59853D849F7E00BN6PR12MB1809namp_--
+
+--===============0507749674==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0507749674==--
