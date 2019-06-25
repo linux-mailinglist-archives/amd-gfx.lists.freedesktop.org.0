@@ -1,73 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E7752023
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jun 2019 02:49:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD97E52170
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jun 2019 05:59:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2069489E47;
-	Tue, 25 Jun 2019 00:49:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BBAC89BF6;
+	Tue, 25 Jun 2019 03:59:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B647189E47
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jun 2019 00:49:47 +0000 (UTC)
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
- by userp2120.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x5P0iHv6102655;
- Tue, 25 Jun 2019 00:49:44 GMT
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
- by userp2120.oracle.com with ESMTP id 2t9cyq9451-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 25 Jun 2019 00:49:44 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
- by userp3020.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x5P0nNRZ098918;
- Tue, 25 Jun 2019 00:49:44 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
- by userp3020.oracle.com with ESMTP id 2tat7bxatv-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 25 Jun 2019 00:49:44 +0000
-Received: from abhmp0014.oracle.com (abhmp0014.oracle.com [141.146.116.20])
- by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id x5P0nhNK005758;
- Tue, 25 Jun 2019 00:49:43 GMT
-Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Mon, 24 Jun 2019 17:49:42 -0700
-Date: Tue, 25 Jun 2019 03:49:35 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: "Russell, Kent" <Kent.Russell@amd.com>
-Subject: Re: [bug report] drm/amdkfd: Add procfs-style information for KFD
- processes
-Message-ID: <20190625004935.GU18776@kadam>
-References: <20190624122630.GA30487@mwanda>
- <BN6PR12MB16181F76E1F385E999A2219585E00@BN6PR12MB1618.namprd12.prod.outlook.com>
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com
+ [IPv6:2a00:1450:4864:20::144])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7712C89BF6;
+ Tue, 25 Jun 2019 03:59:31 +0000 (UTC)
+Received: by mail-lf1-x144.google.com with SMTP id j29so11539528lfk.10;
+ Mon, 24 Jun 2019 20:59:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Ne8A2cDgNm1H+XBCR1KqEC3IC1t0ovKTdfCojlwi1ao=;
+ b=WxAkf8VbvU+0J1tJWH7uuvLThBfJfk8nA6+QEg1ICVfNV+87wAQOdOWSCZN5CpI7Is
+ 8XqqODI6vi9pStlaRyhZvRolN5zbBg4QwPONFmmMNeCEYe+7OSz+zQoDHBLseben4OWU
+ M1oFeFep3cLeQE0yJDpSye8+SSm1djQi7Dujve4aJ9psoQdOj8vyXkjLxiGAY5WlAUrs
+ +pCm54/zTom91nfnl4iSskDBO3vd8t8cjCIPfLlKdinVZEY7HPfPtUe1R/QVRNS61n/t
+ beWEfmLXXyLtDiwQC6MURcqt9uW/QRfW92dA+NaWMyD7iv0bWLUz4IT/tl5DluwvtvrN
+ DeJw==
+X-Gm-Message-State: APjAAAUCuN+NWfjcSoPM1XbKYs1orCWOoWd35gBlXs0ooH98HjxV5jkQ
+ owlULXmGRBMG9iFM9WHBNk2lMuhYjI/BnN9Tp/U=
+X-Google-Smtp-Source: APXvYqz66C0jiYfrR4IdvROVdrfJ3yjlWkj559yXVop6JDKW+edQk+UMJIr3y6QOSGaTpOV6lwg0OsD6BCsKmnlg4AU=
+X-Received: by 2002:ac2:44c5:: with SMTP id d5mr28686575lfm.134.1561435169542; 
+ Mon, 24 Jun 2019 20:59:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <BN6PR12MB16181F76E1F385E999A2219585E00@BN6PR12MB1618.namprd12.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9298
- signatures=668687
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1906250004
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9298
- signatures=668687
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
- priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
- definitions=main-1906250004
+References: <20190618011124.GA67760@archlinux-epyc>
+In-Reply-To: <20190618011124.GA67760@archlinux-epyc>
+From: Dave Airlie <airlied@gmail.com>
+Date: Tue, 25 Jun 2019 13:59:17 +1000
+Message-ID: <CAPM=9txaQ43GwOzXSE3prTRLbMt+ip=s_ssmFzWsfsTYdLssaw@mail.gmail.com>
+Subject: Re: arm32 build failure after abe882a39a9c ("drm/amd/display: fix
+ issue with eDP not detected on driver load")
+To: Nathan Chancellor <natechancellor@gmail.com>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2018-07-02;
- bh=LD4pIwiSAH6VlumMX5GBn3WXRQYzAlsURVf9zv2ZZkY=;
- b=oeHqFP1ZjObjoOMpevch6EyFbzo3JDBwnuZe+zPjiO36n5GOAe4skjXmw+0ooP6GJFzv
- F1+RyNSirHDa+1DqtmdvD0oSboV5GgHqCC9JqvASNkEARpFSwmEIJQtiSMFkuSTufdYW
- EtloItFEphcS5xHdSZvISxDqxUKFgYtw47NBqvinD9qhk6Ue0gvCqmFFLEsPcaQX7nzS
- RYG+mM4O+VsAuB/3pLv1KwACSaX9StbeLR7Sh46XtfXvMPsMZ9fyQuDlWg8Y5dISYri9
- 4InhFd3aNI5Ccm8kpkz8PiLpA/AYr0gIWz7OdvbP4xNvhW4sB+E8VNzcqQR9QnYoJxhW 4A== 
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=Ne8A2cDgNm1H+XBCR1KqEC3IC1t0ovKTdfCojlwi1ao=;
+ b=uId4Cc6JusYfOzWPJIQyRNt9AB/zfpsO9gUP1iUtpXZ89/cmzWc7lekj6i8nwz2M0A
+ bkV802nW55R0ILIr7vIXoFFlip7GHgYo6ZNlQjiViz5HWzJq4PxZog4vDFA1POQ0lj5U
+ rVtOEFngdrWHOcSm3y9vtMsnD9W9K8rDlzl/2uG40E8Jpm+vLiGMewqeLyEiqafgPcTg
+ PjrYoSZ2A1xFy78Ya5+GQqIX4OIY0CpYYasoE9JFGUFlP+chhHyNr3m3dX4/ZCtbhdMT
+ bgIGjDX56mZndI1QxLfoigpNapdl4i5vp8Mb4w0hyrViVcNIH+aUilzy1h7kXD8j10WC
+ xelg==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -79,27 +62,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Anthony Koo <Anthony.Koo@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Jun Lei <Jun.Lei@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBKdW4gMjQsIDIwMTkgYXQgMDY6MDY6MzZQTSArMDAwMCwgUnVzc2VsbCwgS2VudCB3
-cm90ZToKPiBISSBEYW4sCj4gCj4gSSdsbCBjb21tZW50IGlubGluZSB3aXRoIFtLUl0gZm9yIHRo
-ZSBtb3N0IHBhcnQuCj4gCj4gTW9zdCBvZiB0aGVzZSBjb21lIGZyb20gdGhlIGZhY3QgdGhhdCAi
-ZmFpbHVyZSIgaGVyZSBpcyBub3QgY3JpdGljYWwuIElmIHdlIGNhbid0IG1ha2UgdGhlIHByb2Nm
-cywgd2UganVzdCBjb21tZW50IGFib3V0IGl0IGluIGRtZXNnIGFuZCBjYXJyeSBvbi4gSWYgd2Ug
-ZmFpbCB0byBtYWtlIHRoZSBwcm9jZnMgc3RydWN0dXJlIGhlcmUsIHdlIGp1c3QgcmVwb3J0IGFu
-ZCBjYXJyeSBvbi4gVGhlIHJlc3Qgb2YgdGhlIGtlcm5lbCBjYW4gZnVuY3Rpb24gd2l0aG91dCBp
-dCwgc28gZmFpbHVyZSBpc24ndCBjcml0aWNhbC4gQnV0IEkgc2hvdWxkIG1ha2UgdGhpcyBjbGVh
-ciBpbiB0aGUgY29tbWVudHMuIFRoZXJlIGlzIG5vIHJlYWwgZXJyb3IgaGFuZGxpbmcgcmVxdWly
-ZWQsIGJ1dCB3ZSBjYW4gY2xhcmlmeSB0aGF0IHdpdGggY29tbWVudHMuIEknbGwgdHJ5IHRvIGFk
-ZHJlc3MgdGhpcyBpbiBhIGNvbWluZyBwYXRjaC4KPiAKClBhcnQgb2YgdGhlIHJlYXNvbiBmb3Ig
-ZXJyb3IgaGFuZGxpbmcgaXMganVzdCB0byBzaWxlbmNlIHN0YXRpYyBjaGVja2VyCndhcm5pbmdz
-IGJlY2F1c2Ugb3RoZXJ3aXNlIGV2ZXJ5b25lIGhhcyB0byByZXZpZXcgaXQgdG8gc2VlIGlmIHRo
-ZQpyZXNvdXJjZSBsZWFrcyBhcmUgaW1wb3J0YW50LiAgSXQncyBlYXNpZXIgaW4gdGhlIGxvbmcg
-cnVuIHRvIGp1c3QgZml4CmV2ZXJ5dGhpbmcgbm8gbWF0dGVyIGhvdyB0cml2aWFsLgoKcmVnYXJk
-cywKZGFuIGNhcnBlbnRlcgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+SGkgQWxleCwKCnBsZWFzZSByZXNvbHZlIHRoaXMgQVNBUCwgSSBjYW5ub3QgcHVsbCB5b3VyIHRy
+ZWUgd2l0aG91dCB0aGlzIGZpeGVkCmFzIGl0IGJyZWFrcyBteSBhcm0gYnVpbGRzIGhlcmUuCgph
+biA4IHNlY29uZCBkZWxheSB0aGVyZSBzZWVtcyBwb2ludGxlc3MgYW5kIGFyYml0YXJ5LCBhbiA4
+IHNlYyBkZWxheQp0aGVyZSB3aXRob3V0IGEgY29tbWVudCwgc2VlbXMgbGlrZSBhIGxhY2sgb2Yg
+cmV2aWV3LgoKRGF2ZS4KCk9uIFR1ZSwgMTggSnVuIDIwMTkgYXQgMTE6MTIsIE5hdGhhbiBDaGFu
+Y2VsbG9yCjxuYXRlY2hhbmNlbGxvckBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gSGkgYWxsLAo+Cj4g
+QWZ0ZXIgY29tbWl0IGFiZTg4MmEzOWE5YyAoImRybS9hbWQvZGlzcGxheTogZml4IGlzc3VlIHdp
+dGggZURQIG5vdAo+IGRldGVjdGVkIG9uIGRyaXZlciBsb2FkIikgaW4gLW5leHQsIGFybTMyIGFs
+bHllc2NvbmZpZyBidWlsZHMgc3RhcnQKPiBmYWlsaW5nIGF0IGxpbmsgdGltZToKPgo+IGFybS1s
+aW51eC1nbnVlYWJpLWxkOiBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvY29yZS9kY19s
+aW5rLm86IGluCj4gZnVuY3Rpb24gYGRjX2xpbmtfZGV0ZWN0JzoKPiBkY19saW5rLmM6KC50ZXh0
+KzB4MjYwYyk6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYF9fYmFkX3VkZWxheScKPgo+IGFybTMy
+IG9ubHkgYWxsb3dzIGEgdWRlbGF5IHZhbHVlIG9mIHVwIHRvIDIwMDAsIHNlZQo+IGFyY2gvYXJt
+L2luY2x1ZGUvYXNtL2RlbGF5LmggZm9yIG1vcmUgaW5mby4KPgo+IFBsZWFzZSBsb29rIGludG8g
+dGhpcyB3aGVuIHlvdSBoYXZlIGEgY2hhbmNlIQo+IE5hdGhhbgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2FtZC1nZng=
