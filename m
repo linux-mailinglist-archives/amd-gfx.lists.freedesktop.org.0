@@ -2,57 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D8C5A5F5
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jun 2019 22:36:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A37A85B5AD
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jul 2019 09:23:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 108DD6E8C4;
-	Fri, 28 Jun 2019 20:36:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D31D389F69;
+	Mon,  1 Jul 2019 07:23:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com
- [IPv6:2607:f8b0:4864:20::d42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 479F26E8C4
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jun 2019 20:36:01 +0000 (UTC)
-Received: by mail-io1-xd42.google.com with SMTP id s7so15158906iob.11
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jun 2019 13:36:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=5BTgN3Fd1aOydco92Er9dH5IWG+8FFeEzKi0hlIbtpM=;
- b=c2Hoba8mEjXcpA/HhQxiZEk3MZIGCA4wpWPYOagfxq0zDDTPmem9Zi+d4ahlwOrlCs
- swo8IGhoLlvX9EnQJp2QIU4YYWu7dFUxi/NWWyMUHv1dL1JZbvfLLWd8EwFok/KNZqhP
- mSiJdfvkkC3I4A5DqhrXkCcCuKRiFiOsClVUDSnWwsesSdNTXrHbz8628J+GQJbznjco
- J9II/8HBlXI9uIVotGVzC6xPSeFMNIQjvdiCbIL0M1qJWXgPFjxPU8To8tmTCL6OQKYh
- VJ6Ky/Y7kxPa+VM9CsC15b6dM34NlK3BjqW68WOmQG02lIFMiZKEju2NvtNFOzUFG+Qj
- mPaw==
-X-Gm-Message-State: APjAAAXUzyfbzBagFJmRaeHrqKmsTZzS5OJ8U3k7jAW4HbfZHYNuSmha
- U5dasSKLhGT/oRWdAYjLLq8w3rgaKJSn9kh77R8icQ==
-X-Google-Smtp-Source: APXvYqy1JXbITbIDkP4ieOG0JZxqGIoWIwFcoMLpotkZSvHLdCQRMMS40XUb3zgddQ/Cj0hh1PmUjqA7/ap4bfjwGcU=
-X-Received: by 2002:a5d:9e48:: with SMTP id i8mr2302712ioi.51.1561754160394;
- Fri, 28 Jun 2019 13:36:00 -0700 (PDT)
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com
+ (mail-eopbgr00055.outbound.protection.outlook.com [40.107.0.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 752A46E993;
+ Sat, 29 Jun 2019 01:26:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=testarcselector01; d=microsoft.com; cv=none;
+ b=dVU6EjM1E6sxjJV1Gh08uUh3hZgW2aEc3e8MWgnCa9z6NxRGFGvtE7dWjc9FxlA/7ipboaqtDXPFEFThrX4PxN5qxzddkagn8ddx1o5zIMzfdghpojVylG2Om7rg7DnxYSxLS6Xl/KfP1nZyIOEIPifQI53fHKgyz1bmOKJ+5/o=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=testarcselector01;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ag+6jEF+F6+OokBA0HD2aBHg7vs3K7kaRFcBJ0RKsFU=;
+ b=gLDGta1UziHzN+lOtMnklHQ0EMwk4eYGvLcbFeEPT5xSQi3/iPL576mUPDvv+iYx2ljTU16wD9cbdliG2Dx4BDn7CETMKLq+VUMUp0Yk0y3DlOjIz0uHLbxxx/c2p+PGR/AvgPRk549l9iF9JyuvPxQDJdXsk7R1wX0HVbxN3r8=
+ARC-Authentication-Results: i=1; test.office365.com
+ 1;spf=none;dmarc=none;dkim=none;arc=none
+Received: from DB7PR05MB4138.eurprd05.prod.outlook.com (52.135.129.16) by
+ DB7PR05MB5448.eurprd05.prod.outlook.com (20.177.123.217) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.16; Sat, 29 Jun 2019 01:26:51 +0000
+Received: from DB7PR05MB4138.eurprd05.prod.outlook.com
+ ([fe80::9115:7752:2368:e7ec]) by DB7PR05MB4138.eurprd05.prod.outlook.com
+ ([fe80::9115:7752:2368:e7ec%4]) with mapi id 15.20.2008.017; Sat, 29 Jun 2019
+ 01:26:51 +0000
+From: Jason Gunthorpe <jgg@mellanox.com>
+To: Jerome Glisse <jglisse@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>, 
+ John Hubbard <jhubbard@nvidia.com>, "Felix.Kuehling@amd.com"
+ <Felix.Kuehling@amd.com>
+Subject: Re: [PATCH v4 hmm 00/12]
+Thread-Topic: [PATCH v4 hmm 00/12]
+Thread-Index: AQHVKtAUPOKL68Liy0elJQpXS2vDJqax3ckA
+Date: Sat, 29 Jun 2019 01:26:51 +0000
+Message-ID: <20190629012642.GA22386@mellanox.com>
+References: <20190624210110.5098-1-jgg@ziepe.ca>
+In-Reply-To: <20190624210110.5098-1-jgg@ziepe.ca>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: YTXPR0101CA0061.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:1::38) To DB7PR05MB4138.eurprd05.prod.outlook.com
+ (2603:10a6:5:23::16)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [207.164.2.174]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f3cd0919-d863-4e93-f241-08d6fc30dc17
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:DB7PR05MB5448; 
+x-ms-traffictypediagnostic: DB7PR05MB5448:
+x-microsoft-antispam-prvs: <DB7PR05MB5448226E2534D95BB92B52B0CFFF0@DB7PR05MB5448.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0083A7F08A
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(396003)(366004)(376002)(39850400004)(136003)(346002)(54164003)(189003)(199004)(7416002)(11346002)(66066001)(36756003)(68736007)(25786009)(26005)(4326008)(71190400001)(446003)(6506007)(14444005)(33656002)(256004)(486006)(316002)(478600001)(2616005)(54906003)(2501003)(102836004)(110136005)(66556008)(99286004)(71200400001)(386003)(2906002)(66446008)(305945005)(73956011)(3846002)(64756008)(86362001)(476003)(8936002)(14454004)(66476007)(52116002)(6246003)(7736002)(229853002)(81156014)(6486002)(81166006)(53936002)(5660300002)(8676002)(66946007)(76176011)(6116002)(6512007)(1076003)(6436002)(186003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DB7PR05MB5448;
+ H:DB7PR05MB4138.eurprd05.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: mellanox.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: uNvFoRmVGDVSHhDEFJZzAgE/XcB/C+Ez+jYnevegu9gBRMSBrlSAD+espuT54aQNqZA97MiUgQoBSQAgl7WGN2tX5rEpdQ96Is1Pz2p9HZmhKMg98vQjAcPXCmOV882cuwrIEIG7qpZ4WGaJsOQ9dSpdFtCA9ODIWadC3lwLDUR/eRWpNOcAs2DFnvz2HTONoOkTA8aXwOBQ57O5cvYS7/DoDtZR0V1eYh++iVVUHMJVh3DXAwoBEYEF3I2pbO4/nVsUK7FmvB/BWEOOOujyX1eLttwYF9w8vhgJpLgLCsB7oyBhMdFJj/UgTrgPXJUrTbfpS1uca3TgeXNSyH5QjVCYvBymRtS91AkpT5mg8T5Yivan29Dwpm5C21eA5OoKL/5HL1g9cjXhDxUmD6y1qXLKOuOQBL9gT3T60TFI02U=
+Content-ID: <381E97B2C5DFB24EBF1D7DB5781C70C6@eurprd05.prod.outlook.com>
 MIME-Version: 1.0
-References: <20190626223521.14347-1-maraeo@gmail.com>
- <20190626223521.14347-2-maraeo@gmail.com>
- <b789da4a-2e31-31eb-4706-ea9b6fbc45c1@amd.com>
-In-Reply-To: <b789da4a-2e31-31eb-4706-ea9b6fbc45c1@amd.com>
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Fri, 28 Jun 2019 16:35:23 -0400
-Message-ID: <CAAxE2A6+wQ+ZGE5TLO7Ed8dPxgHaNdGdx54-GeLU2z5hdTTz2w@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amdgpu: handle
- AMDGPU_IB_FLAG_RESET_GDS_MAX_WAVE_ID on gfx10
-To: zhoucm1 <zhoucm1@amd.com>
+X-OriginatorOrg: Mellanox.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3cd0919-d863-4e93-f241-08d6fc30dc17
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jun 2019 01:26:51.2633 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a652971c-7d2e-4d9b-a6a4-d149256f461b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jgg@mellanox.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR05MB5448
+X-Mailman-Approved-At: Mon, 01 Jul 2019 07:23:28 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=5BTgN3Fd1aOydco92Er9dH5IWG+8FFeEzKi0hlIbtpM=;
- b=ll6I1gfmHnBDJvBwuueWjRDwpKqOmx+/q0lLXng5CT8MaUuLtve8NlgnOlsnImCefc
- gwL0L5MqHzqsy8LB3dOodMzb7p9iUjp/siByT4ffeBLWDPJbw6ZwUU7gSljnN5XghIz2
- gHriJTdn2jJlSbw7kEvytiZmqb2kE7oGAfCCc/WLeNFyVQtc30ZLm43t05eYU+QCfpYH
- 5JnN/Bwc22qkUR7qMssccc6i8tHC8lIK4XsvLcbxxu+h866+jynNutcQxRdCMx9zA3GB
- i5K8vW3QdxOEhebIZGwWbCEBQ4XS26hxAsLEv9UoHy3yqbQGbWv2kLV3jTp07WaC63Dp
- lL/w==
+ d=Mellanox.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ag+6jEF+F6+OokBA0HD2aBHg7vs3K7kaRFcBJ0RKsFU=;
+ b=MPuo611VLENAsSCMac887wZ1q0uSeQOnghN9SEksR5gFupwSEJ2wwRL4Ls5ezorPjSn6v8AsZL/38HHQSaI4P/Gj44T0KFJMh4Ui1GYOTWBmgG7cwtOsDlMLo+i2RxpYJM6y4Hycvx1E0vcUeSwXcpmwi09TElAmHUVDagX7Afk=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=jgg@mellanox.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -64,254 +98,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0683580359=="
+Cc: Andrea Arcangeli <aarcange@redhat.com>, Philip Yang <Philip.Yang@amd.com>,
+ "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Ira Weiny <ira.weiny@intel.com>, Christoph Hellwig <hch@lst.de>,
+ Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0683580359==
-Content-Type: multipart/alternative; boundary="000000000000f4f95e058c683937"
-
---000000000000f4f95e058c683937
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks. I'll push both patches with emit_ib_size updated for this patch.
-
-Marek
-
-On Thu, Jun 27, 2019 at 3:50 AM zhoucm1 <zhoucm1@amd.com> wrote:
-
-> any reason for not care .emit_ib_size in this one?
->
-> -David
->
->
-> On 2019=E5=B9=B406=E6=9C=8827=E6=97=A5 06:35, Marek Ol=C5=A1=C3=A1k wrote=
-:
-> > From: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
-> >
-> > Signed-off-by: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 17 +++++++++++++++++
-> >   1 file changed, 17 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> > index 6baaa65a1daa..5b807a19bbbf 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> > @@ -4257,20 +4257,36 @@ static void gfx_v10_0_ring_emit_ib_gfx(struct
-> amdgpu_ring *ring,
-> >   }
-> >
-> >   static void gfx_v10_0_ring_emit_ib_compute(struct amdgpu_ring *ring,
-> >                                          struct amdgpu_job *job,
-> >                                          struct amdgpu_ib *ib,
-> >                                          uint32_t flags)
-> >   {
-> >       unsigned vmid =3D AMDGPU_JOB_GET_VMID(job);
-> >       u32 control =3D INDIRECT_BUFFER_VALID | ib->length_dw | (vmid << =
-24);
-> >
-> > +     /* Currently, there is a high possibility to get wave ID mismatch
-> > +      * between ME and GDS, leading to a hw deadlock, because ME
-> generates
-> > +      * different wave IDs than the GDS expects. This situation happen=
-s
-> > +      * randomly when at least 5 compute pipes use GDS ordered append.
-> > +      * The wave IDs generated by ME are also wrong after
-> suspend/resume.
-> > +      * Those are probably bugs somewhere else in the kernel driver.
-> > +      *
-> > +      * Writing GDS_COMPUTE_MAX_WAVE_ID resets wave ID counters in ME
-> and
-> > +      * GDS to 0 for this ring (me/pipe).
-> > +      */
-> > +     if (ib->flags & AMDGPU_IB_FLAG_RESET_GDS_MAX_WAVE_ID) {
-> > +             amdgpu_ring_write(ring, PACKET3(PACKET3_SET_CONFIG_REG,
-> 1));
-> > +             amdgpu_ring_write(ring, mmGDS_COMPUTE_MAX_WAVE_ID);
-> > +             amdgpu_ring_write(ring,
-> ring->adev->gds.gds_compute_max_wave_id);
-> > +     }
-> > +
-> >       amdgpu_ring_write(ring, PACKET3(PACKET3_INDIRECT_BUFFER, 2));
-> >       BUG_ON(ib->gpu_addr & 0x3); /* Dword align */
-> >       amdgpu_ring_write(ring,
-> >   #ifdef __BIG_ENDIAN
-> >                               (2 << 0) |
-> >   #endif
-> >                               lower_32_bits(ib->gpu_addr));
-> >       amdgpu_ring_write(ring, upper_32_bits(ib->gpu_addr));
-> >       amdgpu_ring_write(ring, control);
-> >   }
-> > @@ -5103,20 +5119,21 @@ static void gfx_v10_0_set_rlc_funcs(struct
-> amdgpu_device *adev)
-> >       }
-> >   }
-> >
-> >   static void gfx_v10_0_set_gds_init(struct amdgpu_device *adev)
-> >   {
-> >       /* init asic gds info */
-> >       switch (adev->asic_type) {
-> >       case CHIP_NAVI10:
-> >       default:
-> >               adev->gds.gds_size =3D 0x10000;
-> > +             adev->gds.gds_compute_max_wave_id =3D 0x4ff;
-> >               adev->gds.vgt_gs_max_wave_id =3D 0x3ff;
-> >               break;
-> >       }
-> >
-> >       adev->gds.gws_size =3D 64;
-> >       adev->gds.oa_size =3D 16;
-> >   }
-> >
-> >   static void gfx_v10_0_set_user_wgp_inactive_bitmap_per_sh(struct
-> amdgpu_device *adev,
-> >                                                         u32 bitmap)
->
->
-
---000000000000f4f95e058c683937
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Thanks. I&#39;ll push both patches with emit_ib_size =
-updated for this patch.<br></div><div><br></div><div>Marek<br></div><div><b=
-r></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Thu, Jun 27, 2019 at 3:50 AM zhoucm1 &lt;<a href=3D"mailto:zhoucm1@amd.com=
-">zhoucm1@amd.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex">any reason for not care .emit_ib_size in this one?<br>
-<br>
--David<br>
-<br>
-<br>
-On 2019=E5=B9=B406=E6=9C=8827=E6=97=A5 06:35, Marek Ol=C5=A1=C3=A1k wrote:<=
-br>
-&gt; From: Marek Ol=C5=A1=C3=A1k &lt;<a href=3D"mailto:marek.olsak@amd.com"=
- target=3D"_blank">marek.olsak@amd.com</a>&gt;<br>
-&gt;<br>
-&gt; Signed-off-by: Marek Ol=C5=A1=C3=A1k &lt;<a href=3D"mailto:marek.olsak=
-@amd.com" target=3D"_blank">marek.olsak@amd.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 17 ++++++++++++++=
-+++<br>
-&gt;=C2=A0 =C2=A01 file changed, 17 insertions(+)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/=
-amd/amdgpu/gfx_v10_0.c<br>
-&gt; index 6baaa65a1daa..5b807a19bbbf 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-&gt; @@ -4257,20 +4257,36 @@ static void gfx_v10_0_ring_emit_ib_gfx(struct =
-amdgpu_ring *ring,<br>
-&gt;=C2=A0 =C2=A0}<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0static void gfx_v10_0_ring_emit_ib_compute(struct amdgpu_r=
-ing *ring,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 struct amdgpu_job *job,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 struct amdgpu_ib *ib,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 uint32_t flags)<br>
-&gt;=C2=A0 =C2=A0{<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0unsigned vmid =3D AMDGPU_JOB_GET_VMID(job);<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0u32 control =3D INDIRECT_BUFFER_VALID | ib-&=
-gt;length_dw | (vmid &lt;&lt; 24);<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0/* Currently, there is a high possibility to get =
-wave ID mismatch<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 * between ME and GDS, leading to a hw deadlock, =
-because ME generates<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 * different wave IDs than the GDS expects. This =
-situation happens<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 * randomly when at least 5 compute pipes use GDS=
- ordered append.<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 * The wave IDs generated by ME are also wrong af=
-ter suspend/resume.<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 * Those are probably bugs somewhere else in the =
-kernel driver.<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 *<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 * Writing GDS_COMPUTE_MAX_WAVE_ID resets wave ID=
- counters in ME and<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 * GDS to 0 for this ring (me/pipe).<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 */<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0if (ib-&gt;flags &amp; AMDGPU_IB_FLAG_RESET_GDS_M=
-AX_WAVE_ID) {<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_ring_write(rin=
-g, PACKET3(PACKET3_SET_CONFIG_REG, 1));<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_ring_write(rin=
-g, mmGDS_COMPUTE_MAX_WAVE_ID);<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_ring_write(rin=
-g, ring-&gt;adev-&gt;gds.gds_compute_max_wave_id);<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
-&gt; +<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_ring_write(ring, PACKET3(PACKET3_INDI=
-RECT_BUFFER, 2));<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0BUG_ON(ib-&gt;gpu_addr &amp; 0x3); /* Dword =
-align */<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_ring_write(ring,<br>
-&gt;=C2=A0 =C2=A0#ifdef __BIG_ENDIAN<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(2 &lt;&lt; 0) |<br>
-&gt;=C2=A0 =C2=A0#endif<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0lower_32_bits(ib-&gt;gpu_addr));<b=
-r>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_ring_write(ring, upper_32_bits(ib-&gt=
-;gpu_addr));<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_ring_write(ring, control);<br>
-&gt;=C2=A0 =C2=A0}<br>
-&gt; @@ -5103,20 +5119,21 @@ static void gfx_v10_0_set_rlc_funcs(struct amd=
-gpu_device *adev)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;=C2=A0 =C2=A0}<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0static void gfx_v10_0_set_gds_init(struct amdgpu_device *a=
-dev)<br>
-&gt;=C2=A0 =C2=A0{<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* init asic gds info */<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (adev-&gt;asic_type) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0case CHIP_NAVI10:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gds=
-_size =3D 0x10000;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gds_comp=
-ute_max_wave_id =3D 0x4ff;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.vgt=
-_gs_max_wave_id =3D 0x3ff;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gws_size =3D 64;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.oa_size =3D 16;<br>
-&gt;=C2=A0 =C2=A0}<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0static void gfx_v10_0_set_user_wgp_inactive_bitmap_per_sh(=
-struct amdgpu_device *adev,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u32 bitmap)<br>
-<br>
-</blockquote></div></div>
-
---000000000000f4f95e058c683937--
-
---===============0683580359==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0683580359==--
+T24gTW9uLCBKdW4gMjQsIDIwMTkgYXQgMDY6MDA6NThQTSAtMDMwMCwgSmFzb24gR3VudGhvcnBl
+IHdyb3RlOgo+IEZyb206IEphc29uIEd1bnRob3JwZSA8amdnQG1lbGxhbm94LmNvbT4KPiAKPiBU
+aGlzIHBhdGNoIHNlcmllcyBhcmlzZWQgb3V0IG9mIGRpc2N1c3Npb25zIHdpdGggSmVyb21lIHdo
+ZW4gbG9va2luZyBhdCB0aGUKPiBPRFAgY2hhbmdlcywgcGFydGljdWxhcmx5IGluZm9ybWVkIGJ5
+IHVzZSBhZnRlciBmcmVlIHJhY2VzIHdlIGhhdmUgYWxyZWFkeQo+IGZvdW5kIGFuZCBmaXhlZCBp
+biB0aGUgT0RQIGNvZGUgKHRoYW5rcyB0byBzeXprYWxsZXIpIHdvcmtpbmcgd2l0aCBtbXUKPiBu
+b3RpZmllcnMsIGFuZCB0aGUgZGlzY3Vzc2lvbiB3aXRoIFJhbHBoIG9uIGhvdyB0byByZXNvbHZl
+IHRoZSBsaWZldGltZSBtb2RlbC4KPiAKPiBPdmVyYWxsIHRoaXMgYnJpbmdzIGluIGEgc2ltcGxp
+ZmllZCBsb2NraW5nIHNjaGVtZSBhbmQgZWFzeSB0byBleHBsYWluCj4gbGlmZXRpbWUgbW9kZWw6
+Cj4gCj4gIElmIGEgaG1tX3JhbmdlIGlzIHZhbGlkLCB0aGVuIHRoZSBobW0gaXMgdmFsaWQsIGlm
+IGEgaG1tIGlzIHZhbGlkIHRoZW4gdGhlIG1tCj4gIGlzIGFsbG9jYXRlZCBtZW1vcnkuCj4gCj4g
+IElmIHRoZSBtbSBuZWVkcyB0byBzdGlsbCBiZSBhbGl2ZSAoaWUgdG8gbG9jayB0aGUgbW1hcF9z
+ZW0sIGZpbmQgYSB2bWEsIGV0YykKPiAgdGhlbiB0aGUgbW1nZXQgbXVzdCBiZSBvYnRhaW5lZCB2
+aWEgbW1nZXRfbm90X3plcm8oKS4KPiAKPiBUaGUgdXNlIG9mIHVubG9ja2VkIHJlYWRzIG9uICdo
+bW0tPmRlYWQnIGFyZSBhbHNvIGVsaW1pbmF0ZWQgaW4gZmF2b3VyIG9mCj4gdXNpbmcgc3RhbmRh
+cmQgbW1nZXQoKSBsb2NraW5nIHRvIHByZXZlbnQgdGhlIG1tIGZyb20gYmVpbmcgcmVsZWFzZWQu
+IE1hbnkgb2YKPiB0aGUgZGVidWdnaW5nIGNoZWNrcyBvZiAhcmFuZ2UtPmhtbSBhbmQgIWhtbS0+
+bW0gYXJlIGRyb3BwZWQgaW4gZmF2b3VyIG9mCj4gcG9pc29uIC0gd2hpY2ggaXMgbXVjaCBjbGVh
+cmVyIGFzIHRvIHRoZSBsaWZldGltZSBpbnRlbnQuCj4gCj4gVGhlIHRyYWlsaW5nIHBhdGNoZXMg
+YXJlIGp1c3Qgc29tZSByYW5kb20gY2xlYW51cHMgSSBub3RpY2VkIHdoZW4gcmV2aWV3aW5nCj4g
+dGhpcyBjb2RlLgo+IAo+IEknbGwgYXBwbHkgdGhpcyBpbiB0aGUgbmV4dCBmZXcgZGF5cyAtIHRo
+ZSBvbmx5IHBhdGNoIHRoYXQgZG9lc24ndCBoYXZlIGVub3VnaAo+IFJldmlld2VkLWJ5cyBpcyAn
+bW0vaG1tOiBSZW1vdmUgY29uZnVzaW5nIGNvbW1lbnQgYW5kIGxvZ2ljIGZyb20gaG1tX3JlbGVh
+c2UnLAo+IHdoaWNoIGhhZCBhbG90IG9mIHF1ZXN0aW9ucywgSSBzdGlsbCB0aGluayBpdCBpcyBn
+b29kLiBJZiBwZW9wbGUgcmVhbGx5IGRvbid0Cj4gbGlrZSBpdCBJJ2xsIGRyb3AgaXQuCj4gCj4g
+VGhhbmtzIHRvIGV2ZXJ5b25lIHdobyB0b29rIHRpbWUgdG8gbG9vayBhdCB0aGlzIQo+IAo+IEph
+c29uIEd1bnRob3JwZSAoMTIpOgo+ICAgbW0vaG1tOiBmaXggdXNlIGFmdGVyIGZyZWUgd2l0aCBz
+dHJ1Y3QgaG1tIGluIHRoZSBtbXUgbm90aWZpZXJzCj4gICBtbS9obW06IFVzZSBobW1fbWlycm9y
+IG5vdCBtbSBhcyBhbiBhcmd1bWVudCBmb3IgaG1tX3JhbmdlX3JlZ2lzdGVyCj4gICBtbS9obW06
+IEhvbGQgYSBtbWdyYWIgZnJvbSBobW0gdG8gbW0KPiAgIG1tL2htbTogU2ltcGxpZnkgaG1tX2dl
+dF9vcl9jcmVhdGUgYW5kIG1ha2UgaXQgcmVsaWFibGUKPiAgIG1tL2htbTogUmVtb3ZlIGR1cGxp
+Y2F0ZSBjb25kaXRpb24gdGVzdCBiZWZvcmUgd2FpdF9ldmVudF90aW1lb3V0Cj4gICBtbS9obW06
+IERvIG5vdCB1c2UgbGlzdCpfcmN1KCkgZm9yIGhtbS0+cmFuZ2VzCj4gICBtbS9obW06IEhvbGQg
+b24gdG8gdGhlIG1tZ2V0IGZvciB0aGUgbGlmZXRpbWUgb2YgdGhlIHJhbmdlCj4gICBtbS9obW06
+IFVzZSBsb2NrZGVwIGluc3RlYWQgb2YgY29tbWVudHMKPiAgIG1tL2htbTogUmVtb3ZlIHJhY3kg
+cHJvdGVjdGlvbiBhZ2FpbnN0IGRvdWJsZS11bnJlZ2lzdHJhdGlvbgo+ICAgbW0vaG1tOiBQb2lz
+b24gaG1tX3JhbmdlIGR1cmluZyB1bnJlZ2lzdGVyCj4gICBtbS9obW06IFJlbW92ZSBjb25mdXNp
+bmcgY29tbWVudCBhbmQgbG9naWMgZnJvbSBobW1fcmVsZWFzZQo+ICAgbW0vaG1tOiBGaXggZXJy
+b3IgZmxvd3MgaW4gaG1tX2ludmFsaWRhdGVfcmFuZ2Vfc3RhcnQKCkkgdGhpbmsgd2UgYXJlIGRv
+bmUgbm93LCBzbyBhcHBsaWVkIHRvIGhtbS5naXQsIHRoYW5rIHlvdSB0byBldmVyeW9uZS4KCkkg
+ZXhwZWN0IHNvbWUgY29uZmxpY3RzIGluIGxpbnV4LW5leHQgd2l0aCB0aGUgQU1EIERSTSBkcml2
+ZXIsIHdlIG5lZWQKdG8gZGVjaWRlIGhvdyB0byBoYW5kbGUgdGhlbS4KCkphc29uCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBs
+aXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
