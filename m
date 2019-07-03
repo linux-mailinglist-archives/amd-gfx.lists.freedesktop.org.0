@@ -2,58 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855765E178
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Jul 2019 11:55:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD275E50C
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Jul 2019 15:15:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 187E16E10F;
-	Wed,  3 Jul 2019 09:55:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E98BD6E131;
+	Wed,  3 Jul 2019 13:15:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
- [IPv6:2a00:1450:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEDFB6E110
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Jul 2019 09:54:58 +0000 (UTC)
-Received: by mail-ed1-x543.google.com with SMTP id m10so1452691edv.6
- for <amd-gfx@lists.freedesktop.org>; Wed, 03 Jul 2019 02:54:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to:user-agent;
- bh=Uk3Ch3YDbbsqM+pKnGRUL9+3WRRG3D2+E1fyTpSzOR0=;
- b=AcJQt1ZJGqO1TIRoFBfqzDchKswUqNh1R58+bQz14LvxKby8j58vmNr242xK+jDTKl
- wei8VNubFIoSx5BbCkTwLc52YMb9xN9TrDp/Z1lB4Tsz/n/Yt1ATvFw1x/8pga/uAMo7
- YGnNVvjAm4XuW+C1JxJvSF3qqJyAdFK0RMKkgHWAy/bVc/7Femd/j1j49unyWqcTeH2f
- UUlc5qKFxAben/n3D/YdOcD4j9/QS+ADlDjCu3WmqU4jOCsyy9LWSKgP9YaWnblbxvRx
- QyQXfLdGp09B1LcDPbY3mQiGZWDbYSb7TQRoZ5p85aWDMSOYLTjQx3Hq8IqyzzpgsAbe
- ogHQ==
-X-Gm-Message-State: APjAAAXJ7VqUmXvqoOX8OapY3sAhvParAaIrMzAMNm9//qJBH0jru0R+
- 0Yg48leTqAgQ+LWbdKCc9sCdNA==
-X-Google-Smtp-Source: APXvYqxKTZ3mcipeAwzIvV1eoDXZzinZ8Pl/unoIm4iDh9cFbrYPdL1D5e/s3w8CvMEQ7Nt93QEiAw==
-X-Received: by 2002:a50:d1c6:: with SMTP id i6mr40763749edg.110.1562147697354; 
- Wed, 03 Jul 2019 02:54:57 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
- by smtp.gmail.com with ESMTPSA id w14sm533145eda.69.2019.07.03.02.54.56
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Wed, 03 Jul 2019 02:54:56 -0700 (PDT)
-Date: Wed, 3 Jul 2019 11:54:53 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [pull] amdgpu drm-fixes-5.2
-Message-ID: <20190703095453.GE15868@phenom.ffwll.local>
-References: <20190703015705.3162-1-alexander.deucher@amd.com>
+Received: from sonic310-13.consmr.mail.bf2.yahoo.com
+ (sonic310-13.consmr.mail.bf2.yahoo.com [74.6.135.123])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97F3989FE8
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Jul 2019 07:57:14 +0000 (UTC)
+X-YMail-OSG: fCfKyQsVM1mM0R8OWV5P5b2HwRAVrzrYLm8WGqmMaFtSuD5N6MudN8G40skP0He
+ HoR9nV41FR2RB_LWf6Nj4qQexI3.s2KAPCti9Skexe4jI5dAX3rKyKTdo7sOEzaHXZzsa_zB..lB
+ QyytaWPD17.IdLX1jfKWR2grTL2hhd5XwCkSOano6QpwRVE_TUI6yU5KXBczcMWbBSicwDlhUoce
+ eb7m2izJSTZ.AJlEb9Udhq6mpcBneq3vK6oSRndZVfDB72WLCqIP4kxWoRYRaWX7KksFDKojmiPb
+ 1scivwFRy..yRV6125aGYazJgTFsMOd1D6l3QZGPwr_P_d1_L4dnfMqLtdVhNdTBw7TZzy.Kz2Pd
+ hcb7F3HIo26cyN_hYw5A5VD3k3p.M0JD4cP_Y6KFXGLWs9Xlhzxfs0KR.pG0tokDlLe2RzPhOHJl
+ QEWcb2jKGZY9P5kUPkNnXLPy07auCsPGab6BMEIRvgcPZyC94lMzuxndeFMPuX7fpwBiHjCjVt7r
+ DlmikXuBONr1sHo03C4SjzvBKlUmGkzyo5_l9U9jtpzYe4mHX8NKz8JAhJi2EThyQtHRM_icYeue
+ qxyB9XiqBPHCfmvW09C_EMAY1hDUe7wPmVSlKJIoPhINR3A0l9q9nAT0Zj6RKOL0xgYybv2ckRvr
+ hV0SDEPsy_1QvbGlw8Cug.msUKKYfo6lpRNznCHtjdmLgNeSh9aqJpCLJRTKxx_ns5YZ9rX.zf78
+ cjWY5n9RkRlrR0Ua8hFPIf6.lOBknhGF3gTtcwvMHsGtIosifCs8KETPmxZw3MX7BPFlBtgDeE0E
+ Ogm6l_0xRJ645KzIqeZ5_UlcBxubmC6yF91c8fF0A.up3OZfHtD06ez4x_49_NBUI0sv1N9zLdXQ
+ df.KywdfwGAgLo3SFZj9qom_dCgaSgqU4pJNPSgIbeImeRSSmOSYEHv.GqXWqo5heXngURxr3T3x
+ _3o4FV8gKQvGaF2Oa9fyGrrMXYE3RrG4VW8O66tMqDYUqEcPCq4FpGGzvUjlZlUIqUC1w9AGLRjp
+ HV.LFTeyw.Q3LUIG7Pjqb_Kq7oTuitaN8iG9lIt4Zu7t8l0uP94_clQnYLtEcDEKD1t1oSck7iKf
+ mVM9cIV9ZEjVoxaqOJ6.2Bwa82BNyl_QYc9i5SntuTyoPlN2.PIPjpCQz1VJcfHXlCRI85NIh_j1
+ _wsQPnN5lGAkkeg--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic310.consmr.mail.bf2.yahoo.com with HTTP; Wed, 3 Jul 2019 07:57:13 +0000
+Date: Wed, 3 Jul 2019 07:57:11 +0000 (UTC)
+From: =?UTF-8?B?0JzQuNGF0LDQuNC7INCR0L7Qs9C00LDQvdC+0LI=?=
+ <max.kammerer@yahoo.com>
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Message-ID: <1441784245.1474829.1562140631783@mail.yahoo.com>
+Subject: Which changes in graphic stack could cause eye strain problems
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190703015705.3162-1-alexander.deucher@amd.com>
-X-Operating-System: Linux phenom 4.19.0-5-amd64 
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1441784245.1474829.1562140631783.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.13913 YMailNorrin Mozilla/5.0 (X11; Ubuntu;
+ Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0
+X-Mailman-Approved-At: Wed, 03 Jul 2019 13:15:22 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=Uk3Ch3YDbbsqM+pKnGRUL9+3WRRG3D2+E1fyTpSzOR0=;
- b=ZNZ0cWlsipBtqO7aUEOI9vuCkOhaQIv+sa8xvzTfS3SJamkbit8srC7yWFNB6mF+tr
- 5ZkmtZAqlr937xK+1rysRlR2spyp/j7kURLdAOTU0ESmhO8V0N2by+To9AqgoX29wD54
- wsH5SRuft2K0xNA3dmmz1kTlfNfCxCscY2/Ss=
+ d=yahoo.com; s=s2048; t=1562140633;
+ bh=6ssJj5Udgdg3QwWsIWrWOTeki3mvYghSRBmqx5dfztM=;
+ h=Date:From:To:Subject:References:From:Subject;
+ b=A3WgQodsLTK3A/F7gPvFxN5bw5aLlhn5fknD73E9JwrL7Jc2xsa6+KGe7wVFHRBOoChr9smHWyQoaIFFt4lBHxqYUuJcxlAJ5HcIEHPdKrOB3oUp7jkAJfEgeRZNwMR8dsIbHKZPC9pJ5cIUt2JorFVZbB1Z4euDHSqA3BS8wd4qDjz1pCYcJBUxSJz9dbXk4t/6qFZoXIKfoiSPPXPaaDu+hN/k1Sadc9iZi8eUDo2DSpbB/6S5E2dtHDG+ByHUys36aVZ87JOW4xjTYcSlKtfYfGz7K8lxIiSW2iZESvjrlnEpipJOMmaE2eRX+wBiryFyjc9WdBB/PfY5y3GIQw==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -65,54 +59,117 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, daniel.vetter@ffwll.ch,
- airlied@gmail.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1090547162=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBKdWwgMDIsIDIwMTkgYXQgMDg6NTc6MDVQTSAtMDUwMCwgQWxleCBEZXVjaGVyIHdy
-b3RlOgo+IEhpIERhdmUsIERhbmllbCwKPiAKPiAzIGZpeGVzIGFsbCBjYydlZCB0byBzdGFibGUu
-ICBOb3RlIHRoYXQgZGltIGNvbXBsYWlucyBhYm91dCB0aGUgRml4ZXMgdGFnCj4gaW4gb25lIG9m
-IHRoZSBwYXRjaGVzLiAgVGhlIHBhdGNoIGhhczoKPiBGaXhlczogOTIxOTM1ZGM2NDA0ICgiZHJt
-L2FtZC9wb3dlcnBsYXk6IGVuZm9yY2UgZGlzcGxheSByZWxhdGVkIHNldHRpbmdzIG9ubHkgb24g
-bmVlZGVkIikKPiB3aGlsZSBkaW0gcmVjb21tZW5kczoKClRoaXMgaXMgdGhlIHJpZ2h0IGZvcm1h
-dC4KCj4gRml4ZXM6IGNvbW1pdCA5MjE5MzVkYzY0MDQgKCJkcm0vYW1kL3Bvd2VycGxheTogZW5m
-b3JjZSBkaXNwbGF5IHJlbGF0ZWQgc2V0dGluZ3Mgb25seSBvbiBuZWVkZWQiKQoKQWRkaW5nIGEg
-ImNvbW1pdCIgaXMgd3JvbmcuIEFuZCBhdCBsZWFzdCBteSBkaW0gaGVyZSBkb2Vzbid0IGNvbXBs
-YWluCmFib3V0IHlvdXIgcHVsbC4gSG93IGRpZCB5b3UgdGVzdCB0aGlzPwotRGFuaWVsCgo+IEkg
-ZmVlbCBsaWtlIHRoZSBmb3JtZXIgaXMgdGhlIG1vcmUgY29tbW9uIG5vbWVuY2xldHVyZSAoYXQg
-bGVhc3QgaGlzdG9yaWNhbGx5KSwKPiBidXQgSSdtIGhhcHB5IHRvIHJlc3BpbiBpZiB5b3UnZCBw
-cmVmZXIuCj4gCj4gVGhlIGZvbGxvd2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1pdCA2NjVkNmQ0ZTMy
-MzEzYTc5NTJiYjMzMzk2NDdmNzRjM2E2YjBkNzhhOgo+IAo+ICAgTWVyZ2UgdGFnICdkcm0tbWlz
-Yy1maXhlcy0yMDE5LTA2LTI2JyBvZiBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9kcm0v
-ZHJtLW1pc2MgaW50byBkcm0tZml4ZXMgKDIwMTktMDYtMjcgMTE6MzQ6NTIgKzEwMDApCj4gCj4g
-YXJlIGF2YWlsYWJsZSBpbiB0aGUgR2l0IHJlcG9zaXRvcnkgYXQ6Cj4gCj4gICBnaXQ6Ly9wZW9w
-bGUuZnJlZWRlc2t0b3Aub3JnL35hZ2Q1Zi9saW51eCB0YWdzL2RybS1maXhlcy01LjItMjAxOS0w
-Ny0wMgo+IAo+IGZvciB5b3UgdG8gZmV0Y2ggY2hhbmdlcyB1cCB0byAyNWYwOWY4NTg4MzViMGU5
-YTA2MjEzODExMDMxMTkwYTE3ZDhhYjc4Ogo+IAo+ICAgZHJtL2FtZGdwdS9nZng5OiB1c2UgcmVz
-ZXQgZGVmYXVsdCBmb3IgUEFfU0NfRklGT19TSVpFICgyMDE5LTA3LTAxIDEyOjE2OjI2IC0wNTAw
-KQo+IAo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0KPiBkcm0tZml4ZXMtNS4yLTIwMTktMDctMDI6Cj4gCj4gRml4ZXMgZm9y
-IHN0YWJsZQo+IAo+IGFtZGdwdToKPiAtIHN0YWJpbGl0eSBmaXggZm9yIGdmeDkKPiAtIHJlZ3Jl
-c3Npb24gZml4IGZvciBIRyBvbiBzb21lIHBvbGFyaXMgYm9hcmRzCj4gLSBjcmFzaCBmaXggZm9y
-IHNvbWUgbmV3IE9FTSBib2FyZHMKPiAKPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gQWxleCBEZXVjaGVyICgxKToKPiAg
-ICAgICBkcm0vYW1kZ3B1L2dmeDk6IHVzZSByZXNldCBkZWZhdWx0IGZvciBQQV9TQ19GSUZPX1NJ
-WkUKPiAKPiBFdmFuIFF1YW4gKDEpOgo+ICAgICAgIGRybS9hbWQvcG93ZXJwbGF5OiB1c2UgaGFy
-ZHdhcmUgZmFuIGNvbnRyb2wgaWYgbm8gcG93ZXJwbGF5IGZhbiB0YWJsZQo+IAo+IEx5dWRlIFBh
-dWwgKDEpOgo+ICAgICAgIGRybS9hbWRncHU6IERvbid0IHNraXAgZGlzcGxheSBzZXR0aW5ncyBp
-biBod21ncl9yZXN1bWUoKQo+IAo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlf
-MC5jICAgICAgICAgICAgICAgICB8IDE5IC0tLS0tLS0tLS0tLS0tLS0tLS0KPiAgZHJpdmVycy9n
-cHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvaHdtZ3IuYyAgICAgICAgICAgfCAgMiArLQo+ICAu
-Li4vZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvcHJvY2Vzc19wcHRhYmxlc192MV8wLmMgICB8ICA0
-ICsrKy0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaW5jL2h3bWdyLmggICAgICAg
-ICAgICAgfCAgMSArCj4gIC4uLi9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211bWdyL3BvbGFyaXMx
-MF9zbXVtZ3IuYyAgIHwgIDQgKysrKwo+ICA1IGZpbGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygr
-KSwgMjEgZGVsZXRpb25zKC0pCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwg
-SW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9hbWQtZ2Z4
+--===============1090547162==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1474828_907294812.1562140631781"
+
+------=_Part_1474828_907294812.1562140631781
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ I've been using Ubuntu 14.4.0 (with updates) for many years and can't swit=
+ch to any newer Linux distribution.
+Actually on attempt to upgrade to anything newer I got problems with eyes a=
+nd head (actually problem feelings are started in muscle at my right head s=
+ide and then in eyes - irritation, burn, discomfort and so on, then i got a=
+ weakness in my full body).=20
+My hardware configuration is same during attempt of upgrade and I have simi=
+lar filing regardless of used driver (opensource or proprietary).Problem fe=
+elings doesn't depends on used graphic card: AMD/ATI, Nvidia or Intel.
+The hardness of feelings just depends on distribution: the hardest ones on =
+Ubuntu 19.04 and less ones on Mint 19.1
+
+I think that some relevant for my story changes was added to graphic stack =
+around 2014 year=20
+or maybe even before 2014 and default=C2=A0 behaviour was switched to them =
+around 2014.
+There are several report of same problem with intel graphic made in 2014:ht=
+tps://lists.freedesktop.org/archives/intel-gfx/2014-January/038104.html
+https://lists.freedesktop.org/archives/intel-gfx/2014-March/042689.html
+Actually I can't use any display with LED backlight and still using one wit=
+h CCFL. Maybe this changes are related to LED display support.
+
+There is also report on ledstrain site:https://ledstrain.org/d/384-linux-us=
+ers-any-known-good-distro-de/15
+
+Could you suggest which changes could be related to described problem?Could=
+ it be some hidden dithering in graphics stack or something else?My attempt=
+ to play with different configuration options doesn't give me any result (i=
+ncluding dithering disabling in graphic card driver)?
+Best regards,=C2=A0=C2=A0 Mike
+
+
+
+
+
+
+------=_Part_1474828_907294812.1562140631781
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp9255c4beyahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div dir=3D"ltr" data-setdir=3D"false"><span> <span>I've been using Ubun=
+tu 14.4.0 (with updates) for many years and can't switch to any newer Linux=
+ distribution.</span><br></span></div><div dir=3D"ltr" data-setdir=3D"false=
+"><span>Actually on attempt to upgrade to anything newer I got problems wit=
+h eyes and head (actually problem feelings are started in muscle at my righ=
+t head side and then in eyes - irritation, burn, discomfort and so on, then=
+ i got a weakness in my full body). <br></span></div><div dir=3D"ltr" data-=
+setdir=3D"false"><span>My hardware configuration is same during attempt of =
+upgrade and I have similar filing <span><span class=3D"ydp813558b8tlid-tran=
+slation ydp813558b8translation" lang=3D"en"><span title=3D"">regardless</sp=
+an></span></span> of used driver (opensource or proprietary).</span></div><=
+div dir=3D"ltr" data-setdir=3D"false"><span>Problem feelings doesn't depend=
+s on used graphic card: AMD/ATI, Nvidia or Intel.<br></span></div><div dir=
+=3D"ltr" data-setdir=3D"false"><span>The hardness of feelings just depends =
+on distribution: the hardest ones on Ubuntu 19.04 and less ones on Mint 19.=
+1<br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span><br></span><=
+/div><div dir=3D"ltr" data-setdir=3D"false"><span>I think that some relevan=
+t for my story changes was added to graphic stack around 2014 year <br></sp=
+an></div><div dir=3D"ltr" data-setdir=3D"false"><span>or maybe even before =
+2014 and default&nbsp; <span>behaviour</span> was switched to them around 2=
+014.<br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span>There are=
+ several report of same problem with intel graphic made in 2014:</span></di=
+v><div dir=3D"ltr" data-setdir=3D"false"><div><span><a href=3D"https://list=
+s.freedesktop.org/archives/intel-gfx/2014-January/038104.html" rel=3D"nofol=
+low" target=3D"_blank">https://lists.freedesktop.org/archives/intel-gfx/201=
+4-January/038104.html</a><br></span></div><div dir=3D"ltr" data-setdir=3D"f=
+alse"><div><a href=3D"https://lists.freedesktop.org/archives/intel-gfx/2014=
+-March/042689.html" rel=3D"nofollow" target=3D"_blank">https://lists.freede=
+sktop.org/archives/intel-gfx/2014-March/042689.html</a></div><div><br></div=
+><div dir=3D"ltr" data-setdir=3D"false">Actually I can't use any display wi=
+th LED backlight and still using one with CCFL. Maybe this changes are rela=
+ted to LED display support.<br></div><div><br></div><div dir=3D"ltr" data-s=
+etdir=3D"false">There is also report on ledstrain site:</div><div dir=3D"lt=
+r" data-setdir=3D"false"><a href=3D"https://ledstrain.org/d/384-linux-users=
+-any-known-good-distro-de/15" rel=3D"nofollow" target=3D"_blank">https://le=
+dstrain.org/d/384-linux-users-any-known-good-distro-de/15</a></div><div><br=
+></div><div><br></div><div dir=3D"ltr" data-setdir=3D"false">Could you sugg=
+est which changes could be related to described problem?</div><div dir=3D"l=
+tr" data-setdir=3D"false">Could it be some hidden dithering in graphics sta=
+ck or something else?</div><div dir=3D"ltr" data-setdir=3D"false">My attemp=
+t to play with different configuration options doesn't give me any result (=
+including dithering disabling in graphic card driver)?</div><div dir=3D"ltr=
+" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Be=
+st regards,</div><div dir=3D"ltr" data-setdir=3D"false">&nbsp;&nbsp; Mike<b=
+r></div><div><br></div><div><br></div><span></span></div><div><br></div><di=
+v><br></div><div><br></div></div><div dir=3D"ltr" data-setdir=3D"false"><sp=
+an></span></div></div></body></html>
+------=_Part_1474828_907294812.1562140631781--
+
+--===============1090547162==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1090547162==--
