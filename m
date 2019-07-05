@@ -1,79 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0945260C4D
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jul 2019 22:22:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80A5E60C66
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jul 2019 22:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F5866E53C;
-	Fri,  5 Jul 2019 20:22:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B66486E544;
+	Fri,  5 Jul 2019 20:32:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr740042.outbound.protection.outlook.com [40.107.74.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEE756E53C
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jul 2019 20:22:32 +0000 (UTC)
-Received: from BN6PR12MB1618.namprd12.prod.outlook.com (10.172.21.149) by
- BN6PR12MB1345.namprd12.prod.outlook.com (10.168.225.19) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2032.20; Fri, 5 Jul 2019 20:22:30 +0000
-Received: from BN6PR12MB1618.namprd12.prod.outlook.com
- ([fe80::45c9:2de0:833f:98f4]) by BN6PR12MB1618.namprd12.prod.outlook.com
- ([fe80::45c9:2de0:833f:98f4%9]) with mapi id 15.20.2052.019; Fri, 5 Jul 2019
- 20:22:30 +0000
-From: "Russell, Kent" <Kent.Russell@amd.com>
-To: "Kuehling, Felix" <Felix.Kuehling@amd.com>, Alex Deucher
- <alexdeucher@gmail.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu/ttm: make some functions static
-Thread-Topic: [PATCH] drm/amdgpu/ttm: make some functions static
-Thread-Index: AQHVM1TZZtDzHxaAUEi8JsvfCyo+IKa8YOSAgAAW6eY=
-Date: Fri, 5 Jul 2019 20:22:30 +0000
-Message-ID: <BN6PR12MB161810373183A43F8FE1AB7085F50@BN6PR12MB1618.namprd12.prod.outlook.com>
-References: <20190705171227.21009-1-alexander.deucher@amd.com>,
- <f4c1f72f-9dfa-da35-eb1f-5f58dbabdc3f@amd.com>
-In-Reply-To: <f4c1f72f-9dfa-da35-eb1f-5f58dbabdc3f@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [2607:fea8:1ca0:3f2:cd79:f422:7b2e:f082]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9df152ad-f66c-4783-409c-08d701868185
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:BN6PR12MB1345; 
-x-ms-traffictypediagnostic: BN6PR12MB1345:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BN6PR12MB134595E567E8E108A39B694985F50@BN6PR12MB1345.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 008960E8EC
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(376002)(396003)(366004)(39860400002)(136003)(189003)(199004)(68736007)(11346002)(476003)(86362001)(446003)(7736002)(72206003)(14454004)(966005)(33656002)(256004)(5660300002)(606006)(2501003)(478600001)(74316002)(110136005)(2906002)(25786009)(316002)(4326008)(486006)(102836004)(6116002)(76176011)(7696005)(6436002)(52536014)(55016002)(53546011)(229853002)(186003)(99286004)(6506007)(46003)(6246003)(73956011)(66946007)(66476007)(64756008)(66556008)(66446008)(71190400001)(236005)(9686003)(54896002)(6306002)(81166006)(81156014)(8676002)(53936002)(8936002)(71200400001)(76116006);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1345;
- H:BN6PR12MB1618.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: BtZrwRdbqzkJpBKPT8OdFVLnEqQu004tZz31unAUDyDNBhe8TGOo5fFUuqy9pfglbmoA1UgBDddtN81XQCWgFci6YIEXXe2ocbN9FlXxJ/dE1T3lMx0Kl9je+NfRRfu/kjzFiqG9kCQy9/itiTRpi3wfXPmbKBrmq+agwprVwyPChizhAhEzWLJ1yfHC1qX8lgLZZwzkBLTToSTEjFKDdeFLeCZGZkNkMY/rKROzEDAVbtxJoXrF6SnFny7InXil3UMAA2E7Pt1Xqp64Mi6X1zRmnkgB4ShWjNOZp9NBVJCdhu0eVzjYH0j6Jw+gh7XWpq28tXNmYIkQtLTzUyTdL/BH+qgbnFupvtfUz0Pwyk5gBIZzPQW8nesgbZqtUDgSGq2TkA8BxfkZn2EYwInbDp+mT5sFm43Y2YfBClokDNU=
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6046E544;
+ Fri,  5 Jul 2019 20:32:52 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id h19so8307520wme.0;
+ Fri, 05 Jul 2019 13:32:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=yoxxCJSZxSTE9St2leMIv+/L5lNU4jc2bI6FtTm18Vo=;
+ b=BfolKt3TZyWQAPwakMc7L7j54WIpCJhT0hkZHjrcejhErh7JgFavVmeu92mmMdI8AF
+ B9Gx/IbwVytUVYhNEEQnz6INgeWu30oby2ZUn0Lkt0sQGnZs79CcQjCvDQa0BI8qKhkn
+ jB+tBEaA6xoc87jI4su74NTX4VR5prhx0ScgIvJktwdhF7bu/Hiad0iAyDmXoZLMBzp3
+ DZg8vrIuXt/2iQj41Fi1CeNNZZD3tpOtWpDAW9EFNX2+ENRWe3j+XaffpZnLLWc3ghNd
+ zf7gqHZUhDLv87tF5dcY/x2TBVUdopGm/SUST7ZKf0t17xIUJr7TgbwoLTfk8fBpZhi9
+ 1/sw==
+X-Gm-Message-State: APjAAAXlOcNrBjwUUNsh8xrpq1B6VWhBDKigw4TTkCs2lR7L7lsllat1
+ YFpXn38ZwTzcdBc0eM0L0i9jtkkypauPLHcOhA8=
+X-Google-Smtp-Source: APXvYqwfDP/THUkpCtIM4cUZw/Yfty+ps9KY+d54LP6mdlU+haOrDt6MQjz6RaQlZues5DSTJFl6119KvB99/4BPxqU=
+X-Received: by 2002:a05:600c:20d:: with SMTP id
+ 13mr4557378wmi.141.1562358770831; 
+ Fri, 05 Jul 2019 13:32:50 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9df152ad-f66c-4783-409c-08d701868185
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2019 20:22:30.5364 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: krussell@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1345
+References: <20190703162718.32184-1-huangfq.daxian@gmail.com>
+In-Reply-To: <20190703162718.32184-1-huangfq.daxian@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 5 Jul 2019 16:32:39 -0400
+Message-ID: <CADnq5_Pr1=69rwce-bkDA7y-16MgYwCg8z2ghOvDqooMMj3r6A@mail.gmail.com>
+Subject: Re: [PATCH v2 07/35] drm/amdgpu: Use kmemdup rather than duplicating
+ its implementation
+To: Fuqian Huang <huangfq.daxian@gmail.com>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=st2ZmFOlC6p8sIe0OQYLfL38CdHzGJX3huEEZBHpcms=;
- b=crmIvnD37Ls7PMk+ZuKvkoQJJhGsmyEYl0beDllgXIFx/1scf3D5jCcGQCkixzFdiBRMYt7haFtx6YKOpKzUN6eUUdrUxqKNM91wg+gOzGMCzwQmhZ8o95L9h2N7tuDVlx/OXPbEbCFBMz3xMqXHqF8M/hZwhVptCa58vsVj8wg=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Kent.Russell@amd.com; 
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=yoxxCJSZxSTE9St2leMIv+/L5lNU4jc2bI6FtTm18Vo=;
+ b=YWlp+1ux3L09iNQ+B6wbqMHO1Z6hMUvH3hk6l+IfauxLlrkkzcX6VUSLGaV00RpJfQ
+ b3bD+R5XvH6BRa9VK7j/hWmKsUPd/AV58VVBvKGmIz4jeqjGuHKqISQcnpWo+Pa2dBuq
+ 4hVoqp9NsQpM2qdEgyE4iQEBUAAQTLkvgBfly0agOg8JzaJuugzRMMhCTZtUh1iVfsuQ
+ BSQA9/CeTA5mP29J7aP3QzqAvrkRK13l+2Lc9lnkIITQhAnFbHXonCFlipvKFwXJHC5D
+ b7bIhUUCgfrss1m/lu3T+K1N4wI/9nod/TAILbLI/pH/cYPyjbDcwiH9YJ1oBTVvpYiS
+ PQ3g==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -85,300 +63,104 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Content-Type: multipart/mixed; boundary="===============1676091810=="
+Cc: David Zhou <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
+ LKML <linux-kernel@vger.kernel.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Leo Li <sunpeng.li@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1676091810==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB161810373183A43F8FE1AB7085F50BN6PR12MB1618namp_"
-
---_000_BN6PR12MB161810373183A43F8FE1AB7085F50BN6PR12MB1618namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-How would we handle that? Having a revert on amd-kfd-staging? We can ensure=
- that amd-staging-dkms doesn't cherrypick it in, but since KFD merges, it w=
-ould be more complicated.
-
-Kent
-
-KENT RUSSELL
-Sr. Software Engineer | Linux Compute Kernel
-1 Commerce Valley Drive East
-Markham, ON L3T 7X6
-O +(1) 289-695-2122 | Ext 72122
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Kuehling=
-, Felix <Felix.Kuehling@amd.com>
-Sent: Friday, July 5, 2019 2:59:31 PM
-To: Alex Deucher; amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander
-Subject: Re: [PATCH] drm/amdgpu/ttm: make some functions static
-
-On 2019-07-05 1:12 p.m., Alex Deucher wrote:
-> Noticed while reviewing the code.
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
-
-We'll need to be careful not to merge this change on amd-kfd-staging and
-amd-staging-dkms. On those branches, this function is called from
-amdgpu_amdkfd_gpuvm.c.
-
-Regards,
-   Felix
-
-
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 14 +++++++-------
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |  6 ------
->   2 files changed, 7 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_ttm.c
-> index c9faa69cd677..d090106ef23b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> @@ -299,12 +299,12 @@ static struct drm_mm_node *amdgpu_find_mm_node(stru=
-ct ttm_mem_reg *mem,
->    *
->    * @f: Returns the last fence if multiple jobs are submitted.
->    */
-> -int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
-> -                            struct amdgpu_copy_mem *src,
-> -                            struct amdgpu_copy_mem *dst,
-> -                            uint64_t size,
-> -                            struct reservation_object *resv,
-> -                            struct dma_fence **f)
-> +static int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
-> +                                   struct amdgpu_copy_mem *src,
-> +                                   struct amdgpu_copy_mem *dst,
-> +                                   uint64_t size,
-> +                                   struct reservation_object *resv,
-> +                                   struct dma_fence **f)
->   {
->        struct amdgpu_ring *ring =3D adev->mman.buffer_funcs_ring;
->        struct drm_mm_node *src_mm, *dst_mm;
-> @@ -949,7 +949,7 @@ static void amdgpu_ttm_tt_unpin_userptr(struct ttm_tt=
- *ttm)
->   #endif
->   }
->
-> -int amdgpu_ttm_gart_bind(struct amdgpu_device *adev,
-> +static int amdgpu_ttm_gart_bind(struct amdgpu_device *adev,
->                                struct ttm_buffer_object *tbo,
->                                uint64_t flags)
->   {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_ttm.h
-> index c2b7669004ba..de89c218db26 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> @@ -86,12 +86,6 @@ int amdgpu_copy_buffer(struct amdgpu_ring *ring, uint6=
-4_t src_offset,
->                       struct reservation_object *resv,
->                       struct dma_fence **fence, bool direct_submit,
->                       bool vm_needs_flush);
-> -int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
-> -                            struct amdgpu_copy_mem *src,
-> -                            struct amdgpu_copy_mem *dst,
-> -                            uint64_t size,
-> -                            struct reservation_object *resv,
-> -                            struct dma_fence **f);
->   int amdgpu_fill_buffer(struct amdgpu_bo *bo,
->                        uint32_t src_data,
->                        struct reservation_object *resv,
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_BN6PR12MB161810373183A43F8FE1AB7085F50BN6PR12MB1618namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body>
-How would we handle that? Having a revert on amd-kfd-staging? We can ensure=
- that amd-staging-dkms doesn't cherrypick it in, but since KFD merges, it w=
-ould be more complicated.<br>
-<br>
-Kent<br>
-<br>
-KENT RUSSELL<br>
-Sr. Software Engineer | Linux Compute Kernel<br>
-1 Commerce Valley Drive East<br>
-Markham, ON L3T 7X6<br>
-O &#43;(1) 289-695-2122 | Ext 72122<br>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Kuehling, Felix &lt;Felix.Kue=
-hling@amd.com&gt;<br>
-<b>Sent:</b> Friday, July 5, 2019 2:59:31 PM<br>
-<b>To:</b> Alex Deucher; amd-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> Deucher, Alexander<br>
-<b>Subject:</b> Re: [PATCH] drm/amdgpu/ttm: make some functions static</fon=
-t>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">On 2019-07-05 1:12 p.m., Alex Deucher wrote:<br>
-&gt; Noticed while reviewing the code.<br>
-&gt;<br>
-&gt; Signed-off-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-Reviewed-by: Felix Kuehling &lt;Felix.Kuehling@amd.com&gt;<br>
-<br>
-We'll need to be careful not to merge this change on amd-kfd-staging and <b=
-r>
-amd-staging-dkms. On those branches, this function is called from <br>
-amdgpu_amdkfd_gpuvm.c.<br>
-<br>
-Regards,<br>
-&nbsp;&nbsp; Felix<br>
-<br>
-<br>
-&gt; ---<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 14 &#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;-------<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |&nbsp; 6 ------<b=
-r>
-&gt;&nbsp;&nbsp; 2 files changed, 7 insertions(&#43;), 13 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_ttm.c<br>
-&gt; index c9faa69cd677..d090106ef23b 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
-&gt; @@ -299,12 &#43;299,12 @@ static struct drm_mm_node *amdgpu_find_mm_no=
-de(struct ttm_mem_reg *mem,<br>
-&gt;&nbsp;&nbsp;&nbsp; *<br>
-&gt;&nbsp;&nbsp;&nbsp; * @f: Returns the last fence if multiple jobs are su=
-bmitted.<br>
-&gt;&nbsp;&nbsp;&nbsp; */<br>
-&gt; -int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; struct amdgpu_copy_mem *src,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; struct amdgpu_copy_mem *dst,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; uint64_t size,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; struct reservation_object *resv,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; struct dma_fence **f)<br>
-&gt; &#43;static int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,=
-<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amd=
-gpu_copy_mem *src,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amd=
-gpu_copy_mem *dst,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t s=
-ize,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct res=
-ervation_object *resv,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma=
-_fence **f)<br>
-&gt;&nbsp;&nbsp; {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_ring *ring =3D=
- adev-&gt;mman.buffer_funcs_ring;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_mm_node *src_mm, =
-*dst_mm;<br>
-&gt; @@ -949,7 &#43;949,7 @@ static void amdgpu_ttm_tt_unpin_userptr(struct=
- ttm_tt *ttm)<br>
-&gt;&nbsp;&nbsp; #endif<br>
-&gt;&nbsp;&nbsp; }<br>
-&gt;&nbsp;&nbsp; <br>
-&gt; -int amdgpu_ttm_gart_bind(struct amdgpu_device *adev,<br>
-&gt; &#43;static int amdgpu_ttm_gart_bind(struct amdgpu_device *adev,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct ttm_buffer_object *tbo,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t flags)<br>
-&gt;&nbsp;&nbsp; {<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_ttm.h<br>
-&gt; index c2b7669004ba..de89c218db26 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h<br>
-&gt; @@ -86,12 &#43;86,6 @@ int amdgpu_copy_buffer(struct amdgpu_ring *ring=
-, uint64_t src_offset,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct reserv=
-ation_object *resv,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fe=
-nce **fence, bool direct_submit,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool vm_needs=
-_flush);<br>
-&gt; -int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; struct amdgpu_copy_mem *src,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; struct amdgpu_copy_mem *dst,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; uint64_t size,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; struct reservation_object *resv,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; struct dma_fence **f);<br>
-&gt;&nbsp;&nbsp; int amdgpu_fill_buffer(struct amdgpu_bo *bo,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_=
-t src_data,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct =
-reservation_object *resv,<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-</span></font></div>
-</body>
-</html>
-
---_000_BN6PR12MB161810373183A43F8FE1AB7085F50BN6PR12MB1618namp_--
-
---===============1676091810==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1676091810==--
+T24gV2VkLCBKdWwgMywgMjAxOSBhdCAxOjEzIFBNIEZ1cWlhbiBIdWFuZyA8aHVhbmdmcS5kYXhp
+YW5AZ21haWwuY29tPiB3cm90ZToKPgo+IGttZW1kdXAgaXMgaW50cm9kdWNlZCB0byBkdXBsaWNh
+dGUgYSByZWdpb24gb2YgbWVtb3J5IGluIGEgbmVhdCB3YXkuCj4gUmF0aGVyIHRoYW4ga21hbGxv
+Yy9remFsbG9jICsgbWVtY3B5LCB3aGljaCB0aGUgcHJvZ3JhbW1lciBuZWVkcyB0bwo+IHdyaXRl
+IHRoZSBzaXplIHR3aWNlIChzb21ldGltZXMgbGVhZCB0byBtaXN0YWtlcyksIGttZW1kdXAgaW1w
+cm92ZXMKPiByZWFkYWJpbGl0eSwgbGVhZHMgdG8gc21hbGxlciBjb2RlIGFuZCBhbHNvIHJlZHVj
+ZSB0aGUgY2hhbmNlcyBvZiBtaXN0YWtlcy4KPiBTdWdnZXN0aW9uIHRvIHVzZSBrbWVtZHVwIHJh
+dGhlciB0aGFuIHVzaW5nIGttYWxsb2Mva3phbGxvYyArIG1lbWNweS4KPgo+IFJldmlld2VkLWJ5
+OiBFbWlsIFZlbGlrb3YgPGVtaWwudmVsaWtvdkBjb2xsYWJvcmEuY29tPgo+IFNpZ25lZC1vZmYt
+Ynk6IEZ1cWlhbiBIdWFuZyA8aHVhbmdmcS5kYXhpYW5AZ21haWwuY29tPgo+IC0tLQo+IENoYW5n
+ZXMgaW4gdjI6Cj4gICAtIEZpeCBhIHR5cG8gaW4gY29tbWl0IG1lc3NhZ2UgKG1lbXNldCAtPiBt
+ZW1jcHkpCj4KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y4XzAuYyAgICAgICAg
+ICAgfCA1ICsrLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OV8wLmMgICAg
+ICAgICAgIHwgNSArKy0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvY29yZS9k
+Yy5jICAgICAgICB8IDYgKystLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9j
+b3JlL2RjX3N0cmVhbS5jIHwgNCArLS0tCj4gIDQgZmlsZXMgY2hhbmdlZCwgNyBpbnNlcnRpb25z
+KCspLCAxMyBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9nZnhfdjhfMC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y4XzAu
+Ywo+IGluZGV4IDAyOTU1ZTZlOWRkOS4uNDhlMzg0NzlkNjM0IDEwMDY0NAo+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OF8wLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9nZnhfdjhfMC5jCj4gQEAgLTM5MjUsMTEgKzM5MjUsMTAgQEAgc3RhdGljIGlu
+dCBnZnhfdjhfMF9pbml0X3NhdmVfcmVzdG9yZV9saXN0KHN0cnVjdCBhbWRncHVfZGV2aWNlICph
+ZGV2KQo+Cj4gICAgICAgICBpbnQgbGlzdF9zaXplOwo+ICAgICAgICAgdW5zaWduZWQgaW50ICpy
+ZWdpc3Rlcl9saXN0X2Zvcm1hdCA9Cj4gLSAgICAgICAgICAgICAgIGttYWxsb2MoYWRldi0+Z2Z4
+LnJsYy5yZWdfbGlzdF9mb3JtYXRfc2l6ZV9ieXRlcywgR0ZQX0tFUk5FTCk7Cj4gKyAgICAgICAg
+ICAgICAgIGttZW1kdXAoYWRldi0+Z2Z4LnJsYy5yZWdpc3Rlcl9saXN0X2Zvcm1hdCwKPiArICAg
+ICAgICAgICAgICAgICAgICAgICBhZGV2LT5nZngucmxjLnJlZ19saXN0X2Zvcm1hdF9zaXplX2J5
+dGVzLCBHRlBfS0VSTkVMKTsKPiAgICAgICAgIGlmICghcmVnaXN0ZXJfbGlzdF9mb3JtYXQpCj4g
+ICAgICAgICAgICAgICAgIHJldHVybiAtRU5PTUVNOwo+IC0gICAgICAgbWVtY3B5KHJlZ2lzdGVy
+X2xpc3RfZm9ybWF0LCBhZGV2LT5nZngucmxjLnJlZ2lzdGVyX2xpc3RfZm9ybWF0LAo+IC0gICAg
+ICAgICAgICAgICAgICAgICAgIGFkZXYtPmdmeC5ybGMucmVnX2xpc3RfZm9ybWF0X3NpemVfYnl0
+ZXMpOwo+Cj4gICAgICAgICBnZnhfdjhfMF9wYXJzZV9pbmRfcmVnX2xpc3QocmVnaXN0ZXJfbGlz
+dF9mb3JtYXQsCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBSTENfRm9ybWF0RGly
+ZWN0UmVnTGlzdExlbmd0aCwKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvZ2Z4X3Y5XzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OV8wLmMKPiBp
+bmRleCBiNjEwZTNiMzBkOTUuLjA5ZDkwMWVmMjE2ZCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvZ2Z4X3Y5XzAuYwo+IEBAIC0yMDkyLDExICsyMDkyLDEwIEBAIHN0YXRpYyBpbnQgZ2Z4
+X3Y5XzFfaW5pdF9ybGNfc2F2ZV9yZXN0b3JlX2xpc3Qoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFk
+ZXYpCj4gICAgICAgICB1MzIgdG1wID0gMDsKPgo+ICAgICAgICAgdTMyICpyZWdpc3Rlcl9saXN0
+X2Zvcm1hdCA9Cj4gLSAgICAgICAgICAgICAgIGttYWxsb2MoYWRldi0+Z2Z4LnJsYy5yZWdfbGlz
+dF9mb3JtYXRfc2l6ZV9ieXRlcywgR0ZQX0tFUk5FTCk7Cj4gKyAgICAgICAgICAgICAgIGttZW1k
+dXAoYWRldi0+Z2Z4LnJsYy5yZWdpc3Rlcl9saXN0X2Zvcm1hdCwKPiArICAgICAgICAgICAgICAg
+ICAgICAgICBhZGV2LT5nZngucmxjLnJlZ19saXN0X2Zvcm1hdF9zaXplX2J5dGVzLCBHRlBfS0VS
+TkVMKTsKPiAgICAgICAgIGlmICghcmVnaXN0ZXJfbGlzdF9mb3JtYXQpCj4gICAgICAgICAgICAg
+ICAgIHJldHVybiAtRU5PTUVNOwo+IC0gICAgICAgbWVtY3B5KHJlZ2lzdGVyX2xpc3RfZm9ybWF0
+LCBhZGV2LT5nZngucmxjLnJlZ2lzdGVyX2xpc3RfZm9ybWF0LAo+IC0gICAgICAgICAgICAgICBh
+ZGV2LT5nZngucmxjLnJlZ19saXN0X2Zvcm1hdF9zaXplX2J5dGVzKTsKPgo+ICAgICAgICAgLyog
+c2V0dXAgdW5pcXVlX2luZGlyZWN0X3JlZ3MgYXJyYXkgYW5kIGluZGlyZWN0X3N0YXJ0X29mZnNl
+dHMgYXJyYXkgKi8KPiAgICAgICAgIHVuaXF1ZV9pbmRpcmVjdF9yZWdfY291bnQgPSBBUlJBWV9T
+SVpFKHVuaXF1ZV9pbmRpcmVjdF9yZWdzKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9kaXNwbGF5L2RjL2NvcmUvZGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9k
+Yy9jb3JlL2RjLmMKPiBpbmRleCAxOGM3NzVhOTUwY2MuLjZjZWQzYjljZGNlMiAxMDA2NDQKPiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvY29yZS9kYy5jCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2NvcmUvZGMuYwo+IEBAIC0xMjYzLDE0ICsxMjYz
+LDEyIEBAIHN0cnVjdCBkY19zdGF0ZSAqZGNfY3JlYXRlX3N0YXRlKHN0cnVjdCBkYyAqZGMpCj4g
+IHN0cnVjdCBkY19zdGF0ZSAqZGNfY29weV9zdGF0ZShzdHJ1Y3QgZGNfc3RhdGUgKnNyY19jdHgp
+Cj4gIHsKPiAgICAgICAgIGludCBpLCBqOwo+IC0gICAgICAgc3RydWN0IGRjX3N0YXRlICpuZXdf
+Y3R4ID0ga3phbGxvYyhzaXplb2Yoc3RydWN0IGRjX3N0YXRlKSwKPiAtICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgR0ZQX0tFUk5FTCk7Cj4gKyAgICAgICBzdHJ1Y3Qg
+ZGNfc3RhdGUgKm5ld19jdHggPSBrbWVtZHVwKHNyY19jdHgsCj4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgc2l6ZW9mKHN0cnVjdCBkY19zdGF0ZSksIEdGUF9LRVJORUwpOwo+Cj4gICAgICAgICBp
+ZiAoIW5ld19jdHgpCj4gICAgICAgICAgICAgICAgIHJldHVybiBOVUxMOwo+Cj4gLSAgICAgICBt
+ZW1jcHkobmV3X2N0eCwgc3JjX2N0eCwgc2l6ZW9mKHN0cnVjdCBkY19zdGF0ZSkpOwo+IC0KPiAg
+ICAgICAgIGZvciAoaSA9IDA7IGkgPCBNQVhfUElQRVM7IGkrKykgewo+ICAgICAgICAgICAgICAg
+ICAgICAgICAgIHN0cnVjdCBwaXBlX2N0eCAqY3VyX3BpcGUgPSAmbmV3X2N0eC0+cmVzX2N0eC5w
+aXBlX2N0eFtpXTsKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkv
+ZGMvY29yZS9kY19zdHJlYW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9jb3Jl
+L2RjX3N0cmVhbS5jCj4gaW5kZXggOTZlOTdkMjVkNjM5Li5kNGI1NjNhMmUyMjAgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2NvcmUvZGNfc3RyZWFtLmMKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvY29yZS9kY19zdHJlYW0uYwo+IEBA
+IC0xNjcsMTIgKzE2NywxMCBAQCBzdHJ1Y3QgZGNfc3RyZWFtX3N0YXRlICpkY19jb3B5X3N0cmVh
+bShjb25zdCBzdHJ1Y3QgZGNfc3RyZWFtX3N0YXRlICpzdHJlYW0pCj4gIHsKPiAgICAgICAgIHN0
+cnVjdCBkY19zdHJlYW1fc3RhdGUgKm5ld19zdHJlYW07Cj4KPiAtICAgICAgIG5ld19zdHJlYW0g
+PSBremFsbG9jKHNpemVvZihzdHJ1Y3QgZGNfc3RyZWFtX3N0YXRlKSwgR0ZQX0tFUk5FTCk7Cj4g
+KyAgICAgICBuZXdfc3RyZWFtID0ga3phbGxvYyhzdHJlYW0sIHNpemVvZihzdHJ1Y3QgZGNfc3Ry
+ZWFtX3N0YXRlKSwgR0ZQX0tFUk5FTCk7CgpUaGlzIGRvZXNuJ3QgY29tcGlsZS4gIEkndmUgZ29u
+ZSBhaGVhZCBhbmQgZml4ZWQgaXQgdXAgbG9jYWxseSBhbmQKYXBwbGllZCBpdC4gIFBsZWFzZSBj
+aGVjayB0aGF0IHlvdXIgcGF0Y2hlcyBjb21waWxlIGJlZm9yZSBzZW5kaW5nCnRoZW0gb3V0LgoK
+VGhhbmtzLAoKQWxleAoKPiAgICAgICAgIGlmICghbmV3X3N0cmVhbSkKPiAgICAgICAgICAgICAg
+ICAgcmV0dXJuIE5VTEw7Cj4KPiAtICAgICAgIG1lbWNweShuZXdfc3RyZWFtLCBzdHJlYW0sIHNp
+emVvZihzdHJ1Y3QgZGNfc3RyZWFtX3N0YXRlKSk7Cj4gLQo+ICAgICAgICAgaWYgKG5ld19zdHJl
+YW0tPnNpbmspCj4gICAgICAgICAgICAgICAgIGRjX3NpbmtfcmV0YWluKG5ld19zdHJlYW0tPnNp
+bmspOwo+Cj4gLS0KPiAyLjExLjAKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPiBhbWQtZ2Z4QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vYW1kLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
