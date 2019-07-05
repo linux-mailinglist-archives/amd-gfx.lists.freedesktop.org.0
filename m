@@ -2,59 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BD7B60C32
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jul 2019 22:17:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0945260C4D
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jul 2019 22:22:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52ADF6E53E;
-	Fri,  5 Jul 2019 20:17:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F5866E53C;
+	Fri,  5 Jul 2019 20:22:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D08A66E53C;
- Fri,  5 Jul 2019 20:17:40 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id f17so10789244wme.2;
- Fri, 05 Jul 2019 13:17:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=D/iTpIGfcdfMflHMyEWbw4EdjqMFQEqZQGAIiD0MIao=;
- b=kj1r26Yygh+ZU51D1Aau23bLZ8DIj4TUwbRc8j1+MStSzwtJLP4wvzEylKBCc6bG4i
- REa9jAK6qz7TXlmZQRiF2y0r+rsNmpT5/pa0Y5nMoUEamzyuMAeCJqmHnjTY8oFevLaY
- TGWj7h6bzPQYtXxIYU5EPRkysTtfpstPF5q7aPU95Q9sS7LLtp2LWaGQF37CblfLPTUp
- tbBNdvIfFRqAfZEsVipLMTTvmj1KQwbxpYuA6S4d2OcFMQEciXIALYSRgsJDKmfNt5Ha
- cfNGNrunrzug30/eaycpg7NkuX7WvS991MPPMeXhpWn+8af65V5exxmwVg7qGDxmraQw
- 6thA==
-X-Gm-Message-State: APjAAAVbTkgzmWksWXyxIvQ5c6LJ/rlItXLwRrWqNQUlARO871tuzIwB
- ctfRIIKK7UanYfzK+2SC2xZvKSYz33aUqoSDURE=
-X-Google-Smtp-Source: APXvYqxtncXSNQsuqv+XBX4ubNNyHvajFyBwC9MK90SlQRArdnj3y199piB6SReYqNtKwbqfabUsfhSnoa5sJps0UxU=
-X-Received: by 2002:a1c:9e90:: with SMTP id h138mr4823424wme.67.1562357859403; 
- Fri, 05 Jul 2019 13:17:39 -0700 (PDT)
+Received: from NAM01-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr740042.outbound.protection.outlook.com [40.107.74.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEE756E53C
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jul 2019 20:22:32 +0000 (UTC)
+Received: from BN6PR12MB1618.namprd12.prod.outlook.com (10.172.21.149) by
+ BN6PR12MB1345.namprd12.prod.outlook.com (10.168.225.19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2032.20; Fri, 5 Jul 2019 20:22:30 +0000
+Received: from BN6PR12MB1618.namprd12.prod.outlook.com
+ ([fe80::45c9:2de0:833f:98f4]) by BN6PR12MB1618.namprd12.prod.outlook.com
+ ([fe80::45c9:2de0:833f:98f4%9]) with mapi id 15.20.2052.019; Fri, 5 Jul 2019
+ 20:22:30 +0000
+From: "Russell, Kent" <Kent.Russell@amd.com>
+To: "Kuehling, Felix" <Felix.Kuehling@amd.com>, Alex Deucher
+ <alexdeucher@gmail.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu/ttm: make some functions static
+Thread-Topic: [PATCH] drm/amdgpu/ttm: make some functions static
+Thread-Index: AQHVM1TZZtDzHxaAUEi8JsvfCyo+IKa8YOSAgAAW6eY=
+Date: Fri, 5 Jul 2019 20:22:30 +0000
+Message-ID: <BN6PR12MB161810373183A43F8FE1AB7085F50@BN6PR12MB1618.namprd12.prod.outlook.com>
+References: <20190705171227.21009-1-alexander.deucher@amd.com>,
+ <f4c1f72f-9dfa-da35-eb1f-5f58dbabdc3f@amd.com>
+In-Reply-To: <f4c1f72f-9dfa-da35-eb1f-5f58dbabdc3f@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2607:fea8:1ca0:3f2:cd79:f422:7b2e:f082]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9df152ad-f66c-4783-409c-08d701868185
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1345; 
+x-ms-traffictypediagnostic: BN6PR12MB1345:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BN6PR12MB134595E567E8E108A39B694985F50@BN6PR12MB1345.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 008960E8EC
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(346002)(376002)(396003)(366004)(39860400002)(136003)(189003)(199004)(68736007)(11346002)(476003)(86362001)(446003)(7736002)(72206003)(14454004)(966005)(33656002)(256004)(5660300002)(606006)(2501003)(478600001)(74316002)(110136005)(2906002)(25786009)(316002)(4326008)(486006)(102836004)(6116002)(76176011)(7696005)(6436002)(52536014)(55016002)(53546011)(229853002)(186003)(99286004)(6506007)(46003)(6246003)(73956011)(66946007)(66476007)(64756008)(66556008)(66446008)(71190400001)(236005)(9686003)(54896002)(6306002)(81166006)(81156014)(8676002)(53936002)(8936002)(71200400001)(76116006);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1345;
+ H:BN6PR12MB1618.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: BtZrwRdbqzkJpBKPT8OdFVLnEqQu004tZz31unAUDyDNBhe8TGOo5fFUuqy9pfglbmoA1UgBDddtN81XQCWgFci6YIEXXe2ocbN9FlXxJ/dE1T3lMx0Kl9je+NfRRfu/kjzFiqG9kCQy9/itiTRpi3wfXPmbKBrmq+agwprVwyPChizhAhEzWLJ1yfHC1qX8lgLZZwzkBLTToSTEjFKDdeFLeCZGZkNkMY/rKROzEDAVbtxJoXrF6SnFny7InXil3UMAA2E7Pt1Xqp64Mi6X1zRmnkgB4ShWjNOZp9NBVJCdhu0eVzjYH0j6Jw+gh7XWpq28tXNmYIkQtLTzUyTdL/BH+qgbnFupvtfUz0Pwyk5gBIZzPQW8nesgbZqtUDgSGq2TkA8BxfkZn2EYwInbDp+mT5sFm43Y2YfBClokDNU=
 MIME-Version: 1.0
-References: <3fb19371-db7d-f9dc-31a7-1ccd126f6784@collabora.com>
- <cover.1561735433.git.andrzej.p@collabora.com>
- <5e355b8bec8fb3907566a741db8cc3e356246a32.1561735433.git.andrzej.p@collabora.com>
- <CADnq5_MrVoScVFgj3TP2Z+Ky8_32k=Cou5jebuMT5gE1+GZ0cA@mail.gmail.com>
- <fc26ac17-dc18-f995-53cf-42b50754c916@collabora.com>
-In-Reply-To: <fc26ac17-dc18-f995-53cf-42b50754c916@collabora.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 5 Jul 2019 16:17:28 -0400
-Message-ID: <CADnq5_MT58vOop65dOSK95R2khChAAzkWfsO9-RYYvJ37XbPug@mail.gmail.com>
-Subject: Re: [PATCH v3 21/22] drm/amdgpu: Provide ddc symlink in connector
- sysfs directory
-To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9df152ad-f66c-4783-409c-08d701868185
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2019 20:22:30.5364 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: krussell@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1345
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=D/iTpIGfcdfMflHMyEWbw4EdjqMFQEqZQGAIiD0MIao=;
- b=eDiOfIOLjT4rkhyi+kYllYkUYaclNQGbFElvDThHvjkc4Xs+f5p+s4DA/I9sTI7Ter
- MyasGPxqa1gPF8s6Dp0i7R//AuhT8MhZhqirXLK4O3z0PcpKb7nKUkBpz28mx3SAE4Bu
- b55KZE8THFi1KZq8f6ZRQdDb9jtBEDB0mD1BBbr9lVw4vTHV20vpH71HUobjrnRLihbD
- eUgLhS8AvFakMSn/2KzLgNzl8lbWqMpJTl/D8D34h/fOCNKFn6jgrDrCgEUF0fGt0fgw
- qJ8pueVxoRXBij0UO8EG5WgkO2NqQZY5byyDrG/oDJ+bYXcr9XKjv4SOUxsEKR2BuQTI
- PAQw==
+ d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=st2ZmFOlC6p8sIe0OQYLfL38CdHzGJX3huEEZBHpcms=;
+ b=crmIvnD37Ls7PMk+ZuKvkoQJJhGsmyEYl0beDllgXIFx/1scf3D5jCcGQCkixzFdiBRMYt7haFtx6YKOpKzUN6eUUdrUxqKNM91wg+gOzGMCzwQmhZ8o95L9h2N7tuDVlx/OXPbEbCFBMz3xMqXHqF8M/hZwhVptCa58vsVj8wg=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Kent.Russell@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -66,84 +85,300 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Y.C. Chen" <yc_chen@aspeedtech.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Maxime Ripard <maxime.ripard@bootlin.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Sandy Huang <hjc@rock-chips.com>, Andrzej Hajda <a.hajda@samsung.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Shawn Guo <shawnguo@kernel.org>, kernel@collabora.com,
- Fabio Estevam <festevam@gmail.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- linux-samsung-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
- Sam Ravnborg <sam@ravnborg.org>, Kyungmin Park <kyungmin.park@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- linux-rockchip@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
- Kukjin Kim <kgene@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- NXP Linux Team <linux-imx@nxp.com>, CK Hu <ck.hu@mediatek.com>,
- Dave Airlie <airlied@redhat.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Daniel Vetter <daniel@ffwll.ch>,
- Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jyri Sarha <jsarha@ti.com>, Inki Dae <inki.dae@samsung.com>,
- Alexios Zavras <alexios.zavras@intel.com>,
- Mamta Shukla <mamtashukla555@gmail.com>, linux-mediatek@lists.infradead.org,
- linux-tegra@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
- Vincent Abriou <vincent.abriou@st.com>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Sean Paul <sean@poorly.run>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>, Eric Anholt <eric@anholt.net>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Douglas Anderson <dianders@chromium.org>, LKML <linux-kernel@vger.kernel.org>,
- Todor Tomov <todor.tomov@linaro.org>, Rob Clark <robdclark@gmail.com>,
- Huang Rui <ray.huang@amd.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- freedreno <freedreno@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Gerd Hoffmann <kraxel@redhat.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Content-Type: multipart/mixed; boundary="===============1676091810=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBKdWwgNCwgMjAxOSBhdCA5OjE3IEFNIEFuZHJ6ZWogUGlldHJhc2lld2ljego8YW5k
-cnplai5wQGNvbGxhYm9yYS5jb20+IHdyb3RlOgo+Cj4gVyBkbml1IDAyLjA3LjIwMTkgbyAyMjo1
-NCwgQWxleCBEZXVjaGVyIHBpc3plOgo+ID4gT24gRnJpLCBKdW4gMjgsIDIwMTkgYXQgMTI6MzEg
-UE0gQW5kcnplaiBQaWV0cmFzaWV3aWN6Cj4gPiA8YW5kcnplai5wQGNvbGxhYm9yYS5jb20+IHdy
-b3RlOgo+ID4+Cj4gPj4gVXNlIHRoZSBkZGMgcG9pbnRlciBwcm92aWRlZCBieSB0aGUgZ2VuZXJp
-YyBjb25uZWN0b3IuCj4gPj4KPiA+PiBTaWduZWQtb2ZmLWJ5OiBBbmRyemVqIFBpZXRyYXNpZXdp
-Y3ogPGFuZHJ6ZWoucEBjb2xsYWJvcmEuY29tPgo+ID4+IC0tLQo+ID4+ICAgLi4uL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfY29ubmVjdG9ycy5jICAgIHwgNzAgKysrKysrKysrKysrKystLS0t
-LQo+ID4+ICAgMSBmaWxlIGNoYW5nZWQsIDUxIGluc2VydGlvbnMoKyksIDE5IGRlbGV0aW9ucygt
-KQo+ID4+Cj4gPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
-dV9jb25uZWN0b3JzLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfY29ubmVj
-dG9ycy5jCj4gPj4gaW5kZXggNzNiMmVkZTc3M2QzLi41ZjhhN2UzODE4YjkgMTAwNjQ0Cj4gPj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Nvbm5lY3RvcnMuYwo+ID4+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9jb25uZWN0b3JzLmMKPiA+
-PiBAQCAtMTU3MywxMSArMTU3MywxNSBAQCBhbWRncHVfY29ubmVjdG9yX2FkZChzdHJ1Y3QgYW1k
-Z3B1X2RldmljZSAqYWRldiwKPiA+PiAgICAgICAgICAgICAgICAgICAgICAgICAgZ290byBmYWls
-ZWQ7Cj4gPj4gICAgICAgICAgICAgICAgICBhbWRncHVfY29ubmVjdG9yLT5jb25fcHJpdiA9IGFt
-ZGdwdV9kaWdfY29ubmVjdG9yOwo+ID4+ICAgICAgICAgICAgICAgICAgaWYgKGkyY19idXMtPnZh
-bGlkKSB7Cj4gPj4gLSAgICAgICAgICAgICAgICAgICAgICAgYW1kZ3B1X2Nvbm5lY3Rvci0+ZGRj
-X2J1cyA9IGFtZGdwdV9pMmNfbG9va3VwKGFkZXYsIGkyY19idXMpOwo+ID4+IC0gICAgICAgICAg
-ICAgICAgICAgICAgIGlmIChhbWRncHVfY29ubmVjdG9yLT5kZGNfYnVzKQo+ID4+ICsgICAgICAg
-ICAgICAgICAgICAgICAgIHN0cnVjdCBhbWRncHVfY29ubmVjdG9yICphY24gPSBhbWRncHVfY29u
-bmVjdG9yOwo+ID4+ICsKPiA+PiArICAgICAgICAgICAgICAgICAgICAgICBhY24tPmRkY19idXMg
-PSBhbWRncHVfaTJjX2xvb2t1cChhZGV2LCBpMmNfYnVzKTsKPiA+PiArICAgICAgICAgICAgICAg
-ICAgICAgICBpZiAoYWNuLT5kZGNfYnVzKSB7Cj4gPgo+ID4gVGhpcyBodW5rIHNlZW1zIHBvaW50
-bGVzcyB1bmxlc3MgSSdtIG1pc3Npbmcgc29tZXRoaW5nLiAgQ2FuIHlvdSBkcm9wCj4gPiB0aGlz
-IGh1bms/ICBTYW1lIGNvbW1lbnQgb24gZWFjaCBpbnN0YW5jZSBvZiB0aGlzIGJlbG93LiAgVGhp
-cyBhbHNvCj4gPiBvbmx5IGNvdmVycyB0aGUgbGVnYWN5IG1vZGVzZXR0aW5nIGNvZGUgd2hpY2gg
-aXMgbm90IHVzZWQgYnkgZGVmYXVsdAo+ID4gb24gbW9zdCBjaGlwcy4gIFRoZSBEQyBjb2RlIGlu
-IGFtZC9kaXNwbGF5LyBpcyBwcm9iYWJseSBtb3JlIHJlbGV2YW50Lgo+ID4KPgo+IElmIEkgZG9u
-J3QgZG8gdGhhdCBjaGVja3BhdGNoIHJlcG9ydHMgdGhhdCBsaW5lcyBJIGNyZWF0ZWQgZXhjZWVk
-IDgwIGNoYXJhY3RlcnMuCgpEb24ndCB3b3JyeSBhYm91dCB0aGF0LgoKQWxleApfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlz
-dAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============1676091810==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB161810373183A43F8FE1AB7085F50BN6PR12MB1618namp_"
+
+--_000_BN6PR12MB161810373183A43F8FE1AB7085F50BN6PR12MB1618namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+How would we handle that? Having a revert on amd-kfd-staging? We can ensure=
+ that amd-staging-dkms doesn't cherrypick it in, but since KFD merges, it w=
+ould be more complicated.
+
+Kent
+
+KENT RUSSELL
+Sr. Software Engineer | Linux Compute Kernel
+1 Commerce Valley Drive East
+Markham, ON L3T 7X6
+O +(1) 289-695-2122 | Ext 72122
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Kuehling=
+, Felix <Felix.Kuehling@amd.com>
+Sent: Friday, July 5, 2019 2:59:31 PM
+To: Alex Deucher; amd-gfx@lists.freedesktop.org
+Cc: Deucher, Alexander
+Subject: Re: [PATCH] drm/amdgpu/ttm: make some functions static
+
+On 2019-07-05 1:12 p.m., Alex Deucher wrote:
+> Noticed while reviewing the code.
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+
+We'll need to be careful not to merge this change on amd-kfd-staging and
+amd-staging-dkms. On those branches, this function is called from
+amdgpu_amdkfd_gpuvm.c.
+
+Regards,
+   Felix
+
+
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 14 +++++++-------
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |  6 ------
+>   2 files changed, 7 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ttm.c
+> index c9faa69cd677..d090106ef23b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -299,12 +299,12 @@ static struct drm_mm_node *amdgpu_find_mm_node(stru=
+ct ttm_mem_reg *mem,
+>    *
+>    * @f: Returns the last fence if multiple jobs are submitted.
+>    */
+> -int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
+> -                            struct amdgpu_copy_mem *src,
+> -                            struct amdgpu_copy_mem *dst,
+> -                            uint64_t size,
+> -                            struct reservation_object *resv,
+> -                            struct dma_fence **f)
+> +static int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
+> +                                   struct amdgpu_copy_mem *src,
+> +                                   struct amdgpu_copy_mem *dst,
+> +                                   uint64_t size,
+> +                                   struct reservation_object *resv,
+> +                                   struct dma_fence **f)
+>   {
+>        struct amdgpu_ring *ring =3D adev->mman.buffer_funcs_ring;
+>        struct drm_mm_node *src_mm, *dst_mm;
+> @@ -949,7 +949,7 @@ static void amdgpu_ttm_tt_unpin_userptr(struct ttm_tt=
+ *ttm)
+>   #endif
+>   }
+>
+> -int amdgpu_ttm_gart_bind(struct amdgpu_device *adev,
+> +static int amdgpu_ttm_gart_bind(struct amdgpu_device *adev,
+>                                struct ttm_buffer_object *tbo,
+>                                uint64_t flags)
+>   {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ttm.h
+> index c2b7669004ba..de89c218db26 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> @@ -86,12 +86,6 @@ int amdgpu_copy_buffer(struct amdgpu_ring *ring, uint6=
+4_t src_offset,
+>                       struct reservation_object *resv,
+>                       struct dma_fence **fence, bool direct_submit,
+>                       bool vm_needs_flush);
+> -int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
+> -                            struct amdgpu_copy_mem *src,
+> -                            struct amdgpu_copy_mem *dst,
+> -                            uint64_t size,
+> -                            struct reservation_object *resv,
+> -                            struct dma_fence **f);
+>   int amdgpu_fill_buffer(struct amdgpu_bo *bo,
+>                        uint32_t src_data,
+>                        struct reservation_object *resv,
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN6PR12MB161810373183A43F8FE1AB7085F50BN6PR12MB1618namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+How would we handle that? Having a revert on amd-kfd-staging? We can ensure=
+ that amd-staging-dkms doesn't cherrypick it in, but since KFD merges, it w=
+ould be more complicated.<br>
+<br>
+Kent<br>
+<br>
+KENT RUSSELL<br>
+Sr. Software Engineer | Linux Compute Kernel<br>
+1 Commerce Valley Drive East<br>
+Markham, ON L3T 7X6<br>
+O &#43;(1) 289-695-2122 | Ext 72122<br>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Kuehling, Felix &lt;Felix.Kue=
+hling@amd.com&gt;<br>
+<b>Sent:</b> Friday, July 5, 2019 2:59:31 PM<br>
+<b>To:</b> Alex Deucher; amd-gfx@lists.freedesktop.org<br>
+<b>Cc:</b> Deucher, Alexander<br>
+<b>Subject:</b> Re: [PATCH] drm/amdgpu/ttm: make some functions static</fon=
+t>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">On 2019-07-05 1:12 p.m., Alex Deucher wrote:<br>
+&gt; Noticed while reviewing the code.<br>
+&gt;<br>
+&gt; Signed-off-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+Reviewed-by: Felix Kuehling &lt;Felix.Kuehling@amd.com&gt;<br>
+<br>
+We'll need to be careful not to merge this change on amd-kfd-staging and <b=
+r>
+amd-staging-dkms. On those branches, this function is called from <br>
+amdgpu_amdkfd_gpuvm.c.<br>
+<br>
+Regards,<br>
+&nbsp;&nbsp; Felix<br>
+<br>
+<br>
+&gt; ---<br>
+&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 14 &#43;&#43;&#4=
+3;&#43;&#43;&#43;&#43;-------<br>
+&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |&nbsp; 6 ------<b=
+r>
+&gt;&nbsp;&nbsp; 2 files changed, 7 insertions(&#43;), 13 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_ttm.c<br>
+&gt; index c9faa69cd677..d090106ef23b 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
+&gt; @@ -299,12 &#43;299,12 @@ static struct drm_mm_node *amdgpu_find_mm_no=
+de(struct ttm_mem_reg *mem,<br>
+&gt;&nbsp;&nbsp;&nbsp; *<br>
+&gt;&nbsp;&nbsp;&nbsp; * @f: Returns the last fence if multiple jobs are su=
+bmitted.<br>
+&gt;&nbsp;&nbsp;&nbsp; */<br>
+&gt; -int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; struct amdgpu_copy_mem *src,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; struct amdgpu_copy_mem *dst,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; uint64_t size,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; struct reservation_object *resv,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; struct dma_fence **f)<br>
+&gt; &#43;static int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,=
+<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amd=
+gpu_copy_mem *src,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amd=
+gpu_copy_mem *dst,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t s=
+ize,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct res=
+ervation_object *resv,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma=
+_fence **f)<br>
+&gt;&nbsp;&nbsp; {<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_ring *ring =3D=
+ adev-&gt;mman.buffer_funcs_ring;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_mm_node *src_mm, =
+*dst_mm;<br>
+&gt; @@ -949,7 &#43;949,7 @@ static void amdgpu_ttm_tt_unpin_userptr(struct=
+ ttm_tt *ttm)<br>
+&gt;&nbsp;&nbsp; #endif<br>
+&gt;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp; <br>
+&gt; -int amdgpu_ttm_gart_bind(struct amdgpu_device *adev,<br>
+&gt; &#43;static int amdgpu_ttm_gart_bind(struct amdgpu_device *adev,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct ttm_buffer_object *tbo,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t flags)<br>
+&gt;&nbsp;&nbsp; {<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_ttm.h<br>
+&gt; index c2b7669004ba..de89c218db26 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h<br>
+&gt; @@ -86,12 &#43;86,6 @@ int amdgpu_copy_buffer(struct amdgpu_ring *ring=
+, uint64_t src_offset,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct reserv=
+ation_object *resv,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fe=
+nce **fence, bool direct_submit,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool vm_needs=
+_flush);<br>
+&gt; -int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; struct amdgpu_copy_mem *src,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; struct amdgpu_copy_mem *dst,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; uint64_t size,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; struct reservation_object *resv,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; struct dma_fence **f);<br>
+&gt;&nbsp;&nbsp; int amdgpu_fill_buffer(struct amdgpu_bo *bo,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_=
+t src_data,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct =
+reservation_object *resv,<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN6PR12MB161810373183A43F8FE1AB7085F50BN6PR12MB1618namp_--
+
+--===============1676091810==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1676091810==--
