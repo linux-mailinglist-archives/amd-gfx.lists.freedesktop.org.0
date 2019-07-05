@@ -2,81 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41B08607EB
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jul 2019 16:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05CBB609DD
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jul 2019 18:01:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6F3F6E4D2;
-	Fri,  5 Jul 2019 14:32:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C7A76E4F4;
+	Fri,  5 Jul 2019 16:01:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750050.outbound.protection.outlook.com [40.107.75.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 336356E4D2;
- Fri,  5 Jul 2019 14:32:30 +0000 (UTC)
-Received: from DM3PR12CA0068.namprd12.prod.outlook.com (2603:10b6:0:57::12) by
- DM5PR12MB1196.namprd12.prod.outlook.com (2603:10b6:3:74::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2032.20; Fri, 5 Jul 2019 14:32:27 +0000
-Received: from DM3NAM03FT032.eop-NAM03.prod.protection.outlook.com
- (2a01:111:f400:7e49::201) by DM3PR12CA0068.outlook.office365.com
- (2603:10b6:0:57::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2052.19 via Frontend
- Transport; Fri, 5 Jul 2019 14:32:27 +0000
-Received-SPF: None (protection.outlook.com: amd.com does not designate
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770078.outbound.protection.outlook.com [40.107.77.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7263B6E4F4
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jul 2019 16:01:33 +0000 (UTC)
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
+ BN6PR12MB1603.namprd12.prod.outlook.com (10.172.21.151) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2052.19; Fri, 5 Jul 2019 16:01:30 +0000
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::689d:2dcb:e0f7:bd8c]) by BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::689d:2dcb:e0f7:bd8c%4]) with mapi id 15.20.2052.010; Fri, 5 Jul 2019
+ 16:01:30 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: Kai-Heng Feng <kai.heng.feng@canonical.com>, amd-gfx list
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: Where do I file AMDGPU bugs nowadays?
+Thread-Topic: Where do I file AMDGPU bugs nowadays?
+Thread-Index: AQHVMw2Kb5wn7KS+/UCTYX4VjTQRkKa8L1qJ
+Date: Fri, 5 Jul 2019 16:01:30 +0000
+Message-ID: <BN6PR12MB18093D3F8EA565ED95B256CEF7F50@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <F62DB80F-3151-405A-BF14-A5B04831115A@canonical.com>
+In-Reply-To: <F62DB80F-3151-405A-BF14-A5B04831115A@canonical.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [71.219.77.97]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 96c3f5be-c9af-465d-5c70-08d701620b8d
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1603; 
+x-ms-traffictypediagnostic: BN6PR12MB1603:
+x-ms-exchange-purlcount: 2
+x-microsoft-antispam-prvs: <BN6PR12MB1603506AA0D3601B65DF32B2F7F50@BN6PR12MB1603.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2043;
+x-forefront-prvs: 008960E8EC
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(396003)(136003)(39860400002)(346002)(366004)(376002)(54094003)(199004)(189003)(229853002)(72206003)(55016002)(6116002)(9686003)(966005)(54896002)(6306002)(486006)(11346002)(6436002)(478600001)(446003)(476003)(25786009)(110136005)(33656002)(3846002)(2906002)(316002)(68736007)(14454004)(606006)(256004)(71190400001)(71200400001)(74316002)(26005)(102836004)(66446008)(105004)(186003)(64756008)(66476007)(66556008)(76116006)(73956011)(66946007)(52536014)(4744005)(66066001)(6246003)(7696005)(53936002)(76176011)(99286004)(8676002)(19627405001)(81156014)(81166006)(86362001)(53546011)(6506007)(7736002)(236005)(8936002)(5660300002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1603;
+ H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXCHOV01.amd.com (165.204.84.17) by
- DM3NAM03FT032.mail.protection.outlook.com (10.152.82.202) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2052.18 via Frontend Transport; Fri, 5 Jul 2019 14:32:27 +0000
-Received: from localhost.localdomain (10.180.168.240) by SATLEXCHOV01.amd.com
- (10.181.40.71) with Microsoft SMTP Server id 14.3.389.1;
- Fri, 5 Jul 2019 09:32:27 -0500
-From: <sunpeng.li@amd.com>
-To: <ville.syrjala@linux.intel.com>, <lyude@redhat.com>
-Subject: [PATCH v2] drm/sysfs: Add mstpath attribute to connector devices
-Date: Fri, 5 Jul 2019 10:32:20 -0400
-Message-ID: <20190705143220.11109-1-sunpeng.li@amd.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190704190519.29525-4-sunpeng.li@amd.com>
-References: <20190704190519.29525-4-sunpeng.li@amd.com>
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Fv7EU1aaKy633NXdNa/YllnqhLQMn8Nm6qp76Rp/1Vz68G3RsQ5ul6BA3uBVTDa7ILr0ssyqIIZidMILTPqMgqOEcQVsSpeSCpxyROdSg7a5dJHW1QxrTwMUsWWP5zopYeRYgn4TXtIX4tvYGYjZI+ydcK6wngeJ1uR9HfzQbwBHRB/QNG3v5yAxAt1wp6HaMf3FvS1wOlOaz4KTNWUmEQD/jrxYQ6sMMJntTuUaA/rHBBvyMsRbe1HMil+7TRMmjt97/gXroWd35vPj/U/F1XpmzH39ufLtHua6ecXNaIYDqh1xQCUoS2qKQRoOdX/JRjQGRgsv21jGvU/mNcsd7GDnnH7FQaPiOE+1cWaoKWw2LPQueyYFLUETHBIJOdCzyHZOVKy8DMHru6jozfVzuxbxcCPJMN8/6iBv84Fnb+I=
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(396003)(376002)(136003)(346002)(2980300002)(428003)(199004)(189003)(81166006)(8676002)(68736007)(81156014)(8936002)(72206003)(305945005)(478600001)(54906003)(110136005)(53936002)(36756003)(1076003)(356004)(6666004)(316002)(4326008)(2876002)(486006)(476003)(2616005)(11346002)(446003)(426003)(126002)(86362001)(47776003)(49486002)(186003)(77096007)(2906002)(48376002)(70206006)(26005)(50466002)(70586007)(5660300002)(51416003)(76176011)(50226002)(336012)(2870700001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1196; H:SATLEXCHOV01.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 201367c0-4a52-45cf-bd18-08d701559ad1
-X-Microsoft-Antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328);
- SRVR:DM5PR12MB1196; 
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1196:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB11962456B7FB76140F65B7D082F50@DM5PR12MB1196.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-Forefront-PRVS: 008960E8EC
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: bQVhTU+hehHk0rPbU1RD+Eqoy37/ZDPNAHGnzP1oeKsoj67CvV/A/mnSwuNNEiPOeQRu7JbpBJK8P38YGHDf57EAzoTxcDl0/vUxj6ESedvCav1IOnle92riNh6JLmwX8zWC7vVzDYA4JutqpvA4x7JHs7kEpcw6mgQTJ8VwiVFRBiKTRp83qVKPUxN3oNMpQr2duslVXZlGWk2EhZO5b1Wkdvl2MypQ1q/1zZ26vDQfzuVLTHcKCpGLPkZedA42oyTXDMRYm/9Gp4XaMpReUFPxRJV9vngW7mLpsviynYu3UpPhq/FxJSP0AuQ97YqJAYNqPAsAG2iEi4J2fAhm6rUlE+0+iAqJPprnJeWqOT0wWcmS0LejpRtX64pNhib9jAfZgaQq4s3703u0a761xbBvNRx2sBBBzmFtY+4J+Ig=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2019 14:32:27.4186 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 201367c0-4a52-45cf-bd18-08d701559ad1
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXCHOV01.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1196
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96c3f5be-c9af-465d-5c70-08d701620b8d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2019 16:01:30.5972 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1603
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+uuFFoZE5k4n9xlDyOehYNZgegiCNzVKaqSPx8AC7RE=;
- b=yvIDM7ZiTrpOA6lRVXaeg9sLgMEtDoXATEer4hj2aW637sefxQiT8GMJyI6GFpa2IA01e4Ux1w8fMtbD950X58l4RJ8HfAQCb2hOYDi8mrPd2FtmbsyE9LUxaeM+QlwfZaq07Q6QRRgjzFlti9kY4yMOjDY+vGZ73RvS4GQ8zIA=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is
- 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
+ bh=cSuIZ9IXXdO6phZQ6+sCLRVVNr2g8JbcrwCcGJdR3H4=;
+ b=U6ZS13X0E9cV5cBzWw2kUp+JUpTCEz/Nc/fHgjLsZ79dl1l7hYvwFSUZ06OCg2cxEEl7j7lBd1RFHnJggRngADKjFEbm+lqdTZv9xamEnwKCWTYwdHsMMy65OSpX1DwxhMjoTkeKKMukUb1ZDoX6C0dLZwVqa/ju5Xy+VI5cvRU=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -88,43 +83,117 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0165849242=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTGVvIExpIDxzdW5wZW5nLmxpQGFtZC5jb20+CgpUaGlzIGNhbiBiZSB1c2VkIHRvIGNy
-ZWF0ZSBtb3JlIGRlc2NyaXB0aXZlIHN5bWxpbmtzIGZvciBNU1QgYXV4CmRldmljZXMuIENvbnNp
-ZGVyIHRoZSBmb2xsb3dpbmcgdWRldiBydWxlOgoKU1VCU1lTVEVNPT0iZHJtX2RwX2F1eF9kZXYi
-LCBTVUJTWVNURU1TPT0iZHJtIiwgQVRUUlN7bXN0cGF0aH09PSI/KiIsCglTWU1MSU5LKz0iZHJt
-X2RwX2F1eC9ieS1wYXRoLyRhdHRye21zdHBhdGh9IgoKVGhlIGZvbGxvd2luZyBzeW1saW5rcyB3
-aWxsIGJlIGNyZWF0ZWQgKGRlcGVuZGluZyBvbiB5b3VyIE1TVCB0b3BvbG9neSk6CgokIGxzIC9k
-ZXYvZHJtX2RwX2F1eC9ieS1wYXRoLwpjYXJkMC1tc3Q6MC0xICBjYXJkMC1tc3Q6MC0xLTEgIGNh
-cmQwLW1zdDowLTEtOCAgY2FyZDAtbXN0OjAtOAoKdjI6IHJlbW92ZSB1bm5lY2Vzc2FyeSBsb2Nr
-aW5nIG9mIG1vZGVfY29uZmlnLm11dGV4CgpTaWduZWQtb2ZmLWJ5OiBMZW8gTGkgPHN1bnBlbmcu
-bGlAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJtX3N5c2ZzLmMgfCAyMCArKysrKysr
-KysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDIwIGluc2VydGlvbnMoKykKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3N5c2ZzLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX3N5
-c2ZzLmMKaW5kZXggYWQxMDgxMGJjOTcyLi43ZDQ4M2FiNjg0YTAgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9kcm1fc3lzZnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX3N5c2ZzLmMK
-QEAgLTIzNiwxNiArMjM2LDM2IEBAIHN0YXRpYyBzc2l6ZV90IG1vZGVzX3Nob3coc3RydWN0IGRl
-dmljZSAqZGV2aWNlLAogCXJldHVybiB3cml0dGVuOwogfQogCitzdGF0aWMgc3NpemVfdCBtc3Rw
-YXRoX3Nob3coc3RydWN0IGRldmljZSAqZGV2aWNlLAorCQkJICAgIHN0cnVjdCBkZXZpY2VfYXR0
-cmlidXRlICphdHRyLAorCQkJICAgIGNoYXIgKmJ1ZikKK3sKKwlzdHJ1Y3QgZHJtX2Nvbm5lY3Rv
-ciAqY29ubmVjdG9yID0gdG9fZHJtX2Nvbm5lY3RvcihkZXZpY2UpOworCXNzaXplX3QgcmV0ID0g
-MDsKKwljaGFyICpwYXRoOworCisJaWYgKCFjb25uZWN0b3ItPnBhdGhfYmxvYl9wdHIpCisJCXJl
-dHVybiByZXQ7CisKKwlwYXRoID0gY29ubmVjdG9yLT5wYXRoX2Jsb2JfcHRyLT5kYXRhOworCXJl
-dCA9IHNucHJpbnRmKGJ1ZiwgUEFHRV9TSVpFLCAiY2FyZCVkLSVzXG4iLAorCQkgICAgICAgY29u
-bmVjdG9yLT5kZXYtPnByaW1hcnktPmluZGV4LCBwYXRoKTsKKworCXJldHVybiByZXQ7Cit9CisK
-IHN0YXRpYyBERVZJQ0VfQVRUUl9SVyhzdGF0dXMpOwogc3RhdGljIERFVklDRV9BVFRSX1JPKGVu
-YWJsZWQpOwogc3RhdGljIERFVklDRV9BVFRSX1JPKGRwbXMpOwogc3RhdGljIERFVklDRV9BVFRS
-X1JPKG1vZGVzKTsKK3N0YXRpYyBERVZJQ0VfQVRUUl9STyhtc3RwYXRoKTsKIAogc3RhdGljIHN0
-cnVjdCBhdHRyaWJ1dGUgKmNvbm5lY3Rvcl9kZXZfYXR0cnNbXSA9IHsKIAkmZGV2X2F0dHJfc3Rh
-dHVzLmF0dHIsCiAJJmRldl9hdHRyX2VuYWJsZWQuYXR0ciwKIAkmZGV2X2F0dHJfZHBtcy5hdHRy
-LAogCSZkZXZfYXR0cl9tb2Rlcy5hdHRyLAorCSZkZXZfYXR0cl9tc3RwYXRoLmF0dHIsCiAJTlVM
-TAogfTsKIAotLSAKMi4yMi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1n
-Zng=
+--===============0165849242==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB18093D3F8EA565ED95B256CEF7F50BN6PR12MB1809namp_"
+
+--_000_BN6PR12MB18093D3F8EA565ED95B256CEF7F50BN6PR12MB1809namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+That is the correct bug tracker.
+
+Thanks,
+
+Alex
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Kai-Heng=
+ Feng <kai.heng.feng@canonical.com>
+Sent: Thursday, July 4, 2019 4:05 AM
+To: amd-gfx list
+Subject: Where do I file AMDGPU bugs nowadays?
+
+Hi AMDGPU folks,
+
+I=92ve filed a bug [1] a while back, but no response so far.
+I wonder if you still use BFO? Or do you migrate to another bug tracking
+system?
+
+[1]https://bugs.freedesktop.org/show_bug.cgi?id=3D110886
+
+Kai-Heng
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN6PR12MB18093D3F8EA565ED95B256CEF7F50BN6PR12MB1809namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+That is the correct bug tracker.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thanks,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Alex<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Kai-Heng Feng &lt;kai.heng.fe=
+ng@canonical.com&gt;<br>
+<b>Sent:</b> Thursday, July 4, 2019 4:05 AM<br>
+<b>To:</b> amd-gfx list<br>
+<b>Subject:</b> Where do I file AMDGPU bugs nowadays?</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Hi AMDGPU folks,<br>
+<br>
+I=92ve filed a bug [1] a while back, but no response so far.<br>
+I wonder if you still use BFO? Or do you migrate to another bug tracking&nb=
+sp; <br>
+system?<br>
+<br>
+[1]https://bugs.freedesktop.org/show_bug.cgi?id=3D110886<br>
+<br>
+Kai-Heng<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN6PR12MB18093D3F8EA565ED95B256CEF7F50BN6PR12MB1809namp_--
+
+--===============0165849242==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0165849242==--
