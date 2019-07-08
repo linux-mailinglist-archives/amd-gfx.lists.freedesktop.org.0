@@ -2,79 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCCB623BF
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jul 2019 17:38:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A09624C4
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jul 2019 17:45:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E33A89E1A;
-	Mon,  8 Jul 2019 15:38:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A028B89E2B;
+	Mon,  8 Jul 2019 15:45:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770074.outbound.protection.outlook.com [40.107.77.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9058189E1A
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jul 2019 15:38:34 +0000 (UTC)
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1476.namprd12.prod.outlook.com (10.172.24.141) with Microsoft SMTP
+Received: from NAM05-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam05on0630.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe51::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBAB389E2B
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jul 2019 15:45:54 +0000 (UTC)
+Received: from BN8PR12MB3602.namprd12.prod.outlook.com (20.178.212.86) by
+ BN8PR12MB3377.namprd12.prod.outlook.com (20.178.211.78) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2052.18; Mon, 8 Jul 2019 15:38:30 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::689d:2dcb:e0f7:bd8c]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::689d:2dcb:e0f7:bd8c%4]) with mapi id 15.20.2052.020; Mon, 8 Jul 2019
- 15:38:30 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>, Alex Deucher
+ 15.20.2052.19; Mon, 8 Jul 2019 15:45:53 +0000
+Received: from BN8PR12MB3602.namprd12.prod.outlook.com
+ ([fe80::8d31:f3d2:a080:9a9c]) by BN8PR12MB3602.namprd12.prod.outlook.com
+ ([fe80::8d31:f3d2:a080:9a9c%5]) with mapi id 15.20.2052.020; Mon, 8 Jul 2019
+ 15:45:53 +0000
+From: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>, Alex Deucher
  <alexdeucher@gmail.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
 Subject: Re: [PATCH 2/2] drm/amdgpu: enable IP discovery by default on navi
 Thread-Topic: [PATCH 2/2] drm/amdgpu: enable IP discovery by default on navi
-Thread-Index: AQHVMbHtZ500r20vQEyS1Hly2nkk36bA4QiAgAABVsA=
-Date: Mon, 8 Jul 2019 15:38:29 +0000
-Message-ID: <BN6PR12MB180928A19CDDBF2845F07BA7F7F60@BN6PR12MB1809.namprd12.prod.outlook.com>
+Thread-Index: AQHVMbHuvmy66w4KPUSTEx2XBe+5kqbA3wnIgAAD9ICAAAHHWw==
+Date: Mon, 8 Jul 2019 15:45:53 +0000
+Message-ID: <BN8PR12MB36023928F4E9E4EDFB0E93DF89F60@BN8PR12MB3602.namprd12.prod.outlook.com>
 References: <20190703151341.5916-1-alexander.deucher@amd.com>,
  <20190703151341.5916-2-alexander.deucher@amd.com>,
- <BN8PR12MB36027C3FF20B1FAD06119E2D89F60@BN8PR12MB3602.namprd12.prod.outlook.com>
-In-Reply-To: <BN8PR12MB36027C3FF20B1FAD06119E2D89F60@BN8PR12MB3602.namprd12.prod.outlook.com>
+ <BN8PR12MB36027C3FF20B1FAD06119E2D89F60@BN8PR12MB3602.namprd12.prod.outlook.com>,
+ <BN6PR12MB180928A19CDDBF2845F07BA7F7F60@BN6PR12MB1809.namprd12.prod.outlook.com>
+In-Reply-To: <BN6PR12MB180928A19CDDBF2845F07BA7F7F60@BN6PR12MB1809.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [71.219.77.97]
+x-originating-ip: [180.167.199.185]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5b275825-bf6b-4d3e-43b8-08d703ba53c3
+x-ms-office365-filtering-correlation-id: c9a46509-cf8f-437c-3849-08d703bb5be0
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1476; 
-x-ms-traffictypediagnostic: BN6PR12MB1476:
+ SRVR:BN8PR12MB3377; 
+x-ms-traffictypediagnostic: BN8PR12MB3377:
 x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BN6PR12MB1476BA116D76604539885CCAF7F60@BN6PR12MB1476.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-microsoft-antispam-prvs: <BN8PR12MB33779B4FEE7EB64E5C486ED089F60@BN8PR12MB3377.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-forefront-prvs: 00922518D8
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(396003)(136003)(346002)(366004)(39860400002)(199004)(189003)(53936002)(66556008)(52536014)(54896002)(74316002)(2906002)(6306002)(236005)(6246003)(5660300002)(9686003)(66066001)(71200400001)(72206003)(606006)(966005)(81156014)(81166006)(68736007)(25786009)(71190400001)(8936002)(478600001)(8676002)(64756008)(53546011)(76116006)(256004)(11346002)(55016002)(66946007)(476003)(486006)(6436002)(73956011)(446003)(66446008)(3846002)(6116002)(229853002)(14444005)(66476007)(186003)(26005)(2501003)(86362001)(105004)(316002)(110136005)(102836004)(7736002)(7696005)(6506007)(99286004)(76176011)(14454004)(19627405001)(33656002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1476;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(346002)(366004)(39860400002)(136003)(396003)(376002)(51914003)(199004)(189003)(186003)(86362001)(3846002)(102836004)(53936002)(6246003)(316002)(2501003)(26005)(110136005)(6116002)(33656002)(53546011)(229853002)(7696005)(76176011)(71190400001)(71200400001)(99286004)(256004)(68736007)(6506007)(66066001)(14444005)(476003)(6306002)(7736002)(5660300002)(52536014)(305945005)(9686003)(478600001)(2906002)(486006)(8676002)(72206003)(6436002)(966005)(81166006)(81156014)(55016002)(66556008)(64756008)(66446008)(66946007)(66476007)(76116006)(73956011)(11346002)(25786009)(14454004)(8936002)(446003)(74316002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB3377;
+ H:BN8PR12MB3602.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: tecwvlvIjmCTsnQAcVjyQpgWfQtN0DMC2TSDP4gTjJMFFRlDgiXhgw7rr7OQwooKNiQC0pqZVyvBQv0HYSKcdVGxDC90vQPbC7zdx5HbxFR1d7Z/xBIC4lK9gLbtC9XDEl/PYKZ/zjQlzwZSGJhYvcnr9cV7iu7SfilWKbhj/kVYeyjBOCDaMlG/yfwSJu87KuiOeTfdcdgvBalG3hvDSMC3b36I5GISsU/Fjs1GWLHMGJu3tTJkWuvSLNzoRStiKGR0J6seYH+YdjiRS3JiQcFnOfFwblyUyw8bplu4csonPvQfYQqT+ILDzEchIsBni5ZzYty+4yzUlO6PGvh98ZOgJAks2dTNiycNtEAYYA2N0hb+y7IKKHCz7Evgiy69BDcwv5BDHHLPkUzOd73vcSOxg7INN8/VeG+2bTt+clw=
+x-microsoft-antispam-message-info: O4hQRTfeY+T2Ciu2z6ByzMUMmMFs81OHVMMAmyvJdQPV1JDHe1scEbUys3YqXEZe4nHNJHac1vL7ruF0w2O8NXsohyDaAY9XM80rKFlne82G3rYmmhtQto9pD7Bhbueuu+NERR2VaKAxoDYE/rjKTlXnrhDRF8uRjq1tTZXetUZOIXj/5UO7sMfyyH66dLOfW9sTcFogkOZqypfNbaJPdKZ3/30b6rVO+Dwx4hkWK9GsPF4AZJXwZYEvo8De3gyo9mc90W1bVPlwJkSCZUSdl9qLp0JNklI/5VDA/4jVG0XYgtpBqG5JwHwRNsiCd9oF7EZp4MPQUStxu0hhgqylI6f8VD37zCh2MFwOsSfXavu1frM0QAGNlpkeGE7BZ/F1/WZGdyVmAvEUrhEbIHUHEXj1PTeY9IQbsXNw11pgRWo=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b275825-bf6b-4d3e-43b8-08d703ba53c3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2019 15:38:29.9141 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9a46509-cf8f-437c-3849-08d703bb5be0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2019 15:45:53.0353 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1476
+X-MS-Exchange-CrossTenant-userprincipalname: xiyuan@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3377
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dvC+Uo3Tc4uzsC83RkFq17Ptpy74P7S8+Nt1wUTTrF8=;
- b=fCSMFkXAHFTIW8xSzGvQPcjce3INEl9IVv6afI2/lIDVnAZBcJ32+NJ9Bd/yLVPIdruZDrwYwyb04bDZLi9UUP8ImER2wuaMQJBPiYT53QI9YZSI1tklPZ7pfryr5QeIX0NQtfemPOXPIwlXdj/F5+Aumj6StxFBZRzIaSvQ8/M=
+ bh=0WB4NRWECXwcHBCxW5ReUkDSZ10nA9NHdik8YJAJ/oQ=;
+ b=iSQVIBBIgCj2xflSkqCKS0Hpt83CsU7qHNWCW/RLz8Yzgt6g1x/Dg63f78gksyKRoUEJ9CNoofuod6KY5fNNPMRd3P+PS0/+eU7OH2v27T7LlC7ndGixYg1hO149EGzRUdEF94WAXfiQ+3Lx/CAIRVVyj6IG+drbmSX8q6T72yU=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+ smtp.mailfrom=Xiaojie.Yuan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -86,205 +88,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0800446377=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0800446377==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB180928A19CDDBF2845F07BA7F7F60BN6PR12MB1809namp_"
-
---_000_BN6PR12MB180928A19CDDBF2845F07BA7F7F60BN6PR12MB1809namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-auto just means do the right thing for each asic.  For example, if there is=
- a new asic program and the discovery tables are not available yet, for tha=
-t program, auto means don't use the discovery table.  For other programs wh=
-ere the table is available (e.g., navi10 and 14), then auto means use the t=
-able.
-
-Alex
-________________________________
-From: Yuan, Xiaojie
-Sent: Monday, July 8, 2019 11:31 AM
-To: Alex Deucher; amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander
-Subject: Re: [PATCH 2/2] drm/amdgpu: enable IP discovery by default on navi
-
-Hi Alex,
-
-I see there are many 'auto' module params for amdgpu, could you please expl=
-ain about the historical intention of using value '-1'?
-and shall we check 'amdgpu_discovery' against '-1' for all the code paths i=
-n amdgpu_device.c and navi10_reg_init.c?
-
-BR,
-Xiaojie
-
-________________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Alex Deu=
-cher <alexdeucher@gmail.com>
-Sent: Wednesday, July 3, 2019 11:13 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander
-Subject: [PATCH 2/2] drm/amdgpu: enable IP discovery by default on navi
-
-Use the IP discovery table rather than hardcoding the
-settings in the driver.
-
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_drv.c
-index 7941a5368fb5..6f7772eeeb78 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -140,7 +140,7 @@ uint amdgpu_smu_memory_pool_size =3D 0;
- uint amdgpu_dc_feature_mask =3D 0;
- int amdgpu_async_gfx_ring =3D 1;
- int amdgpu_mcbp =3D 0;
--int amdgpu_discovery =3D 0;
-+int amdgpu_discovery =3D -1;
- int amdgpu_mes =3D 0;
-
- struct amdgpu_mgpu_info mgpu_info =3D {
-@@ -592,6 +592,7 @@ module_param_named(mcbp, amdgpu_mcbp, int, 0444);
- /**
-  * DOC: discovery (int)
-  * Allow driver to discover hardware IP information from IP Discovery tabl=
-e at the top of VRAM.
-+ * (-1 =3D auto (default), 0 =3D disabled, 1 =3D enabled)
-  */
- MODULE_PARM_DESC(discovery,
-        "Allow driver to discover hardware IPs from IP Discovery table at t=
-he top of VRAM");
---
-2.20.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_BN6PR12MB180928A19CDDBF2845F07BA7F7F60BN6PR12MB1809namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-auto just means do the right thing for each asic.&nbsp; For example, if the=
-re is a new asic program and the discovery tables are not available yet, fo=
-r that program, auto means don't use the discovery table.&nbsp; For other p=
-rograms where the table is available (e.g.,
- navi10 and 14), then auto means use the table.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Alex<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Yuan, Xiaojie<br>
-<b>Sent:</b> Monday, July 8, 2019 11:31 AM<br>
-<b>To:</b> Alex Deucher; amd-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> Deucher, Alexander<br>
-<b>Subject:</b> Re: [PATCH 2/2] drm/amdgpu: enable IP discovery by default =
-on navi</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Hi Alex,<br>
-<br>
-I see there are many 'auto' module params for amdgpu, could you please expl=
-ain about the historical intention of using value '-1'?<br>
-and shall we check 'amdgpu_discovery' against '-1' for all the code paths i=
-n amdgpu_device.c and navi10_reg_init.c?<br>
-<br>
-BR,<br>
-Xiaojie<br>
-<br>
-________________________________________<br>
-From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; on behalf of Al=
-ex Deucher &lt;alexdeucher@gmail.com&gt;<br>
-Sent: Wednesday, July 3, 2019 11:13 PM<br>
-To: amd-gfx@lists.freedesktop.org<br>
-Cc: Deucher, Alexander<br>
-Subject: [PATCH 2/2] drm/amdgpu: enable IP discovery by default on navi<br>
-<br>
-Use the IP discovery table rather than hardcoding the<br>
-settings in the driver.<br>
-<br>
-Signed-off-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 3 &#43;&#43;-<br>
-&nbsp;1 file changed, 2 insertions(&#43;), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_drv.c<br>
-index 7941a5368fb5..6f7772eeeb78 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c<br>
-@@ -140,7 &#43;140,7 @@ uint amdgpu_smu_memory_pool_size =3D 0;<br>
-&nbsp;uint amdgpu_dc_feature_mask =3D 0;<br>
-&nbsp;int amdgpu_async_gfx_ring =3D 1;<br>
-&nbsp;int amdgpu_mcbp =3D 0;<br>
--int amdgpu_discovery =3D 0;<br>
-&#43;int amdgpu_discovery =3D -1;<br>
-&nbsp;int amdgpu_mes =3D 0;<br>
-<br>
-&nbsp;struct amdgpu_mgpu_info mgpu_info =3D {<br>
-@@ -592,6 &#43;592,7 @@ module_param_named(mcbp, amdgpu_mcbp, int, 0444);<b=
-r>
-&nbsp;/**<br>
-&nbsp; * DOC: discovery (int)<br>
-&nbsp; * Allow driver to discover hardware IP information from IP Discovery=
- table at the top of VRAM.<br>
-&#43; * (-1 =3D auto (default), 0 =3D disabled, 1 =3D enabled)<br>
-&nbsp; */<br>
-&nbsp;MODULE_PARM_DESC(discovery,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;Allow driver to discover h=
-ardware IPs from IP Discovery table at the top of VRAM&quot;);<br>
---<br>
-2.20.1<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_BN6PR12MB180928A19CDDBF2845F07BA7F7F60BN6PR12MB1809namp_--
-
---===============0800446377==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0800446377==--
+R290IGl0LiBUaGFua3MgZm9yIHRoZSBleHBsYW5hdGlvbi4KUGF0Y2ggaXMgUmV2aWV3ZWQtYnk6
+IFhpYW9qaWUgWXVhbiA8eGlhb2ppZS55dWFuQGFtZC5jb20+CgpCUiwKWGlhb2ppZQoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpGcm9tOiBEZXVjaGVyLCBBbGV4YW5k
+ZXIKU2VudDogTW9uZGF5LCBKdWx5IDgsIDIwMTkgMTE6MzggUE0KVG86IFl1YW4sIFhpYW9qaWU7
+IEFsZXggRGV1Y2hlcjsgYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKU3ViamVjdDogUmU6
+IFtQQVRDSCAyLzJdIGRybS9hbWRncHU6IGVuYWJsZSBJUCBkaXNjb3ZlcnkgYnkgZGVmYXVsdCBv
+biBuYXZpCgphdXRvIGp1c3QgbWVhbnMgZG8gdGhlIHJpZ2h0IHRoaW5nIGZvciBlYWNoIGFzaWMu
+ICBGb3IgZXhhbXBsZSwgaWYgdGhlcmUgaXMgYSBuZXcgYXNpYyBwcm9ncmFtIGFuZCB0aGUgZGlz
+Y292ZXJ5IHRhYmxlcyBhcmUgbm90IGF2YWlsYWJsZSB5ZXQsIGZvciB0aGF0IHByb2dyYW0sIGF1
+dG8gbWVhbnMgZG9uJ3QgdXNlIHRoZSBkaXNjb3ZlcnkgdGFibGUuICBGb3Igb3RoZXIgcHJvZ3Jh
+bXMgd2hlcmUgdGhlIHRhYmxlIGlzIGF2YWlsYWJsZSAoZS5nLiwgbmF2aTEwIGFuZCAxNCksIHRo
+ZW4gYXV0byBtZWFucyB1c2UgdGhlIHRhYmxlLgoKQWxleApfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpGcm9tOiBZdWFuLCBYaWFvamllClNlbnQ6IE1vbmRheSwgSnVseSA4LCAyMDE5
+IDExOjMxIEFNClRvOiBBbGV4IERldWNoZXI7IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+CkNjOiBEZXVjaGVyLCBBbGV4YW5kZXIKU3ViamVjdDogUmU6IFtQQVRDSCAyLzJdIGRybS9hbWRn
+cHU6IGVuYWJsZSBJUCBkaXNjb3ZlcnkgYnkgZGVmYXVsdCBvbiBuYXZpCgpIaSBBbGV4LAoKSSBz
+ZWUgdGhlcmUgYXJlIG1hbnkgJ2F1dG8nIG1vZHVsZSBwYXJhbXMgZm9yIGFtZGdwdSwgY291bGQg
+eW91IHBsZWFzZSBleHBsYWluIGFib3V0IHRoZSBoaXN0b3JpY2FsIGludGVudGlvbiBvZiB1c2lu
+ZyB2YWx1ZSAnLTEnPwphbmQgc2hhbGwgd2UgY2hlY2sgJ2FtZGdwdV9kaXNjb3ZlcnknIGFnYWlu
+c3QgJy0xJyBmb3IgYWxsIHRoZSBjb2RlIHBhdGhzIGluIGFtZGdwdV9kZXZpY2UuYyBhbmQgbmF2
+aTEwX3JlZ19pbml0LmM/CgpCUiwKWGlhb2ppZQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpGcm9tOiBhbWQtZ2Z4IDxhbWQtZ2Z4LWJvdW5jZXNAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnPiBvbiBiZWhhbGYgb2YgQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5j
+b20+ClNlbnQ6IFdlZG5lc2RheSwgSnVseSAzLCAyMDE5IDExOjEzIFBNClRvOiBhbWQtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogRGV1Y2hlciwgQWxleGFuZGVyClN1YmplY3Q6IFtQQVRD
+SCAyLzJdIGRybS9hbWRncHU6IGVuYWJsZSBJUCBkaXNjb3ZlcnkgYnkgZGVmYXVsdCBvbiBuYXZp
+CgpVc2UgdGhlIElQIGRpc2NvdmVyeSB0YWJsZSByYXRoZXIgdGhhbiBoYXJkY29kaW5nIHRoZQpz
+ZXR0aW5ncyBpbiB0aGUgZHJpdmVyLgoKU2lnbmVkLW9mZi1ieTogQWxleCBEZXVjaGVyIDxhbGV4
+YW5kZXIuZGV1Y2hlckBhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
+ZGdwdV9kcnYuYyB8IDMgKystCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRl
+bGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jCmluZGV4IDc5
+NDFhNTM2OGZiNS4uNmY3NzcyZWVlYjc4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9hbWRncHVfZHJ2LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X2Rydi5jCkBAIC0xNDAsNyArMTQwLDcgQEAgdWludCBhbWRncHVfc211X21lbW9yeV9wb29s
+X3NpemUgPSAwOwogdWludCBhbWRncHVfZGNfZmVhdHVyZV9tYXNrID0gMDsKIGludCBhbWRncHVf
+YXN5bmNfZ2Z4X3JpbmcgPSAxOwogaW50IGFtZGdwdV9tY2JwID0gMDsKLWludCBhbWRncHVfZGlz
+Y292ZXJ5ID0gMDsKK2ludCBhbWRncHVfZGlzY292ZXJ5ID0gLTE7CiBpbnQgYW1kZ3B1X21lcyA9
+IDA7Cgogc3RydWN0IGFtZGdwdV9tZ3B1X2luZm8gbWdwdV9pbmZvID0gewpAQCAtNTkyLDYgKzU5
+Miw3IEBAIG1vZHVsZV9wYXJhbV9uYW1lZChtY2JwLCBhbWRncHVfbWNicCwgaW50LCAwNDQ0KTsK
+IC8qKgogICogRE9DOiBkaXNjb3ZlcnkgKGludCkKICAqIEFsbG93IGRyaXZlciB0byBkaXNjb3Zl
+ciBoYXJkd2FyZSBJUCBpbmZvcm1hdGlvbiBmcm9tIElQIERpc2NvdmVyeSB0YWJsZSBhdCB0aGUg
+dG9wIG9mIFZSQU0uCisgKiAoLTEgPSBhdXRvIChkZWZhdWx0KSwgMCA9IGRpc2FibGVkLCAxID0g
+ZW5hYmxlZCkKICAqLwogTU9EVUxFX1BBUk1fREVTQyhkaXNjb3ZlcnksCiAgICAgICAgIkFsbG93
+IGRyaXZlciB0byBkaXNjb3ZlciBoYXJkd2FyZSBJUHMgZnJvbSBJUCBEaXNjb3ZlcnkgdGFibGUg
+YXQgdGhlIHRvcCBvZiBWUkFNIik7Ci0tCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9hbWQtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
