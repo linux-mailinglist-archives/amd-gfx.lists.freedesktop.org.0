@@ -2,78 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B1C2627AC
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jul 2019 19:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1900A6284C
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jul 2019 20:20:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9D789DB0;
-	Mon,  8 Jul 2019 17:51:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 432FB6E048;
+	Mon,  8 Jul 2019 18:20:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr820085.outbound.protection.outlook.com [40.107.82.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B99C89DB0
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jul 2019 17:51:55 +0000 (UTC)
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1188.namprd12.prod.outlook.com (10.168.225.139) with Microsoft SMTP
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-cys01nam02on0612.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe45::612])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57B3D6E03C;
+ Mon,  8 Jul 2019 18:20:23 +0000 (UTC)
+Received: from DM6PR12MB3209.namprd12.prod.outlook.com (20.179.105.33) by
+ DM6PR12MB3820.namprd12.prod.outlook.com (10.255.173.85) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2052.19; Mon, 8 Jul 2019 17:51:53 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::689d:2dcb:e0f7:bd8c]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::689d:2dcb:e0f7:bd8c%4]) with mapi id 15.20.2052.020; Mon, 8 Jul 2019
- 17:51:53 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: =?Windows-1252?Q?Marek_Ol=9A=E1k?= <maraeo@gmail.com>, amd-gfx mailing
- list <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu: don't invalidate caches in RELEASE_MEM, only
- do the writeback
-Thread-Topic: [PATCH] drm/amdgpu: don't invalidate caches in RELEASE_MEM, only
- do the writeback
-Thread-Index: AQHVMQQMdbk1yA446ECvBMoBR727rqbBBA4AgAAFe9k=
-Date: Mon, 8 Jul 2019 17:51:53 +0000
-Message-ID: <BN6PR12MB180974B4A10C0862544AEF25F7F60@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <20190702182901.22491-1-maraeo@gmail.com>,
- <CAAxE2A5FUU-TukfWC0-Od9u_deQKV3JZjPXCbwin=ccx-dOx-g@mail.gmail.com>
-In-Reply-To: <CAAxE2A5FUU-TukfWC0-Od9u_deQKV3JZjPXCbwin=ccx-dOx-g@mail.gmail.com>
+ 15.20.2052.18; Mon, 8 Jul 2019 18:20:20 +0000
+Received: from DM6PR12MB3209.namprd12.prod.outlook.com
+ ([fe80::c81d:7f4a:415:991]) by DM6PR12MB3209.namprd12.prod.outlook.com
+ ([fe80::c81d:7f4a:415:991%3]) with mapi id 15.20.2052.020; Mon, 8 Jul 2019
+ 18:20:20 +0000
+From: "Abramov, Slava" <Slava.Abramov@amd.com>
+To: Arnd Bergmann <arnd@arndb.de>, "Wentland, Harry" <Harry.Wentland@amd.com>, 
+ "Li, Sun peng (Leo)" <Sunpeng.Li@amd.com>, "Deucher, Alexander"
+ <Alexander.Deucher@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "Zhou, David(ChunMing)" <David1.Zhou@amd.com>, David Airlie
+ <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH] drm/amd/display: avoid 64-bit division
+Thread-Topic: [PATCH] drm/amd/display: avoid 64-bit division
+Thread-Index: AQHVNZWUrBhvhFUvTEex/+izX/206KbBCAs5
+Date: Mon, 8 Jul 2019 18:20:20 +0000
+Message-ID: <DM6PR12MB3209EA0481059F3970CF5D83FEF60@DM6PR12MB3209.namprd12.prod.outlook.com>
+References: <20190708135238.651483-1-arnd@arndb.de>
+In-Reply-To: <20190708135238.651483-1-arnd@arndb.de>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [71.219.77.97]
+x-originating-ip: [165.204.55.251]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 248b2d29-99c0-4540-8bb2-08d703ccf63c
+x-ms-office365-filtering-correlation-id: e0dda01a-17c6-4f4f-176d-08d703d0ef7a
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1188; 
-x-ms-traffictypediagnostic: BN6PR12MB1188:
-x-microsoft-antispam-prvs: <BN6PR12MB1188F99E8011E93B83B71DB5F7F60@BN6PR12MB1188.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+ SRVR:DM6PR12MB3820; 
+x-ms-traffictypediagnostic: DM6PR12MB3820:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <DM6PR12MB3820EF17CE78DA67A035CA94FEF60@DM6PR12MB3820.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3968;
 x-forefront-prvs: 00922518D8
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(136003)(346002)(376002)(366004)(39860400002)(199004)(189003)(53936002)(236005)(54896002)(6436002)(9686003)(25786009)(229853002)(66066001)(6506007)(99286004)(55016002)(72206003)(478600001)(7696005)(3846002)(6116002)(76176011)(53546011)(26005)(68736007)(6246003)(52536014)(110136005)(105004)(33656002)(102836004)(186003)(19627405001)(316002)(71190400001)(5660300002)(74316002)(7736002)(2906002)(71200400001)(86362001)(446003)(476003)(486006)(8676002)(66476007)(64756008)(66556008)(256004)(66446008)(81166006)(8936002)(11346002)(14454004)(76116006)(66946007)(81156014)(73956011);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1188;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(346002)(366004)(376002)(396003)(136003)(39860400002)(199004)(189003)(99286004)(53546011)(14444005)(68736007)(486006)(7696005)(76176011)(2906002)(102836004)(3846002)(5660300002)(8676002)(26005)(6506007)(6116002)(33656002)(186003)(52536014)(256004)(110136005)(54906003)(19627405001)(81166006)(6436002)(66066001)(476003)(55016002)(81156014)(86362001)(446003)(966005)(11346002)(8936002)(229853002)(478600001)(74316002)(72206003)(316002)(66946007)(73956011)(9686003)(64756008)(66556008)(54896002)(66446008)(236005)(71190400001)(53936002)(76116006)(6606003)(4326008)(14454004)(25786009)(606006)(7736002)(71200400001)(6246003)(6306002)(66476007)(921003)(1121003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3820;
+ H:DM6PR12MB3209.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 3ZVKP4AbrhjJLD8+lfVnb+fsSJJGJMltncpEgRgBJH4P+6BNuXBptY9JvCDj6tA3ZA5VjPbGzajIL/qpoEXHabPQyaB57P8UyJ+52lhuJ6b1ARSIMURXtqKlmHe21euQuiXET2cv4Vr2qz4GrL16yxU4flo9bcZnAa2gLchTgu4vBUNopA/eX8nLdxFYjxKiP0SlV7DOi2VhF6MP2UwJQ0TVpIhKIbaVb1gfA1AO+9PaaFabNOBlAn0Mf641qzXQgEqFh/1PuIT5enaOAK2VULR/Tj4SDnwS8leijDquda1Knek9/LJLFCUNpwUSxAqgaPJcvVLQZc6n6U/jF3I7F30tUOqrkzhiPfn1FtrGuHacYqchaJFAJmuI85B1EI3iq0/umg6UTjvIBuwNgPBTHoS+wvDm3w1S7TxFi0mNYHM=
+x-microsoft-antispam-message-info: MZDZHlnFXj/lw/OMUeua+IlT4gq/AUebQqV8u7nUCqoJ3WqHadZ0fn20d/Ug1mvnEKYCgJNMkfT62ICQppAUeag+QbDdAXseArgABIHlozUtn8rlHU/0pRDIDrljoMAg5Wo+x76f1jAwWNScRWgCHBxqtOdIUKCrDp0PHId1PAlgr4veKVHpzYSZBCKMNIPTQjufDvwiNzQXvJQ7ZENDSmmPSVU5I5d1PkO46Q8K2I2X5XC3NW/RH2Br14/DU5pL/Div80PFKEHqQsfIjdcjoAAAJ9b2RvXSqnqMupTMdjYesgpOyCQS18QwZ5jJZtK1P5nJMQhsAADRjOzjuMp8/K6ZVgC5wqELpqcVZ+2dyBFxK8FlsasB2a+irbgrnphC1yX3CstgGkAN1z3W6FJngmtyktwuWRCXtNNDzcDSe6o=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 248b2d29-99c0-4540-8bb2-08d703ccf63c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2019 17:51:53.3520 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0dda01a-17c6-4f4f-176d-08d703d0ef7a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2019 18:20:20.0412 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1188
+X-MS-Exchange-CrossTenant-userprincipalname: sabramov@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3820
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1HYo+LUeOUF+TB0U6nuJUUUXB9xZhQoqM9NdOhYlNi4=;
- b=CUrrsXoqA1YyQrJlVQ1+ARh+hztvbrNcRAw2hTuRwZUnuI1PeJO0earH01topuyqSk4f3h3xEbD/LaxI0CGEpB99v5vc82VG7pYeyAtCps2JSeqnmJu/pX4ZEaiICsj5mcAN08geEtWNovjGiZ8BKSFMlgf/QTK09w54nAsZGKo=
+ bh=CEI5Gfqm3lCnt6hbGKgLt/k3Si98gb0mI7jqKfY+x+E=;
+ b=bBJNKo8xyfkEHsmoIodO2cI9wg20p9jAxRqlhz/qt8wq1U4iA5Vg3FoCgp9cLA4ZKtTlShR4hPhJAacDdVLLDyhsK1gzR525YaieSw4jvOPCg3qSMFFVfNh5obG67zGoq3IHkv3LF4GFdghB5OpdaRIQBDPA7yJvHyEZYmwdNjg=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+ smtp.mailfrom=Slava.Abramov@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -85,232 +87,243 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1077736329=="
+Cc: "Liu, Charlene" <Charlene.Liu@amd.com>, "Park, Chris" <Chris.Park@amd.com>,
+ "Lakha, Bhawanpreet" <Bhawanpreet.Lakha@amd.com>, "Francis,
+ David" <David.Francis@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Cornij,
+ Nikola" <Nikola.Cornij@amd.com>, "Laktyushkin,
+ Dmytro" <Dmytro.Laktyushkin@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Lei, 
+ Jun" <Jun.Lei@amd.com>, "Cheng, Tony" <Tony.Cheng@amd.com>, "Koo,
+ Anthony" <Anthony.Koo@amd.com>
+Content-Type: multipart/mixed; boundary="===============2126326096=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1077736329==
+--===============2126326096==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB180974B4A10C0862544AEF25F7F60BN6PR12MB1809namp_"
+	boundary="_000_DM6PR12MB3209EA0481059F3970CF5D83FEF60DM6PR12MB3209namp_"
 
---_000_BN6PR12MB180974B4A10C0862544AEF25F7F60BN6PR12MB1809namp_
-Content-Type: text/plain; charset="Windows-1252"
+--_000_DM6PR12MB3209EA0481059F3970CF5D83FEF60DM6PR12MB3209namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Acked-by: Slava Abramov <slava.abramov@amd.com>
+
+Tested-by: Slava Abramov <slava.abramov@amd.com>
+
 ________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Marek Ol=
-=9A=E1k <maraeo@gmail.com>
-Sent: Monday, July 8, 2019 1:31 PM
-To: amd-gfx mailing list
-Subject: Re: [PATCH] drm/amdgpu: don't invalidate caches in RELEASE_MEM, on=
-ly do the writeback
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Arnd Ber=
+gmann <arnd@arndb.de>
+Sent: Monday, July 8, 2019 9:52:08 AM
+To: Wentland, Harry; Li, Sun peng (Leo); Deucher, Alexander; Koenig, Christ=
+ian; Zhou, David(ChunMing); David Airlie; Daniel Vetter
+Cc: Liu, Charlene; Park, Chris; Arnd Bergmann; Cheng, Tony; Francis, David;=
+ linux-kernel@vger.kernel.org; amd-gfx@lists.freedesktop.org; Cornij, Nikol=
+a; Laktyushkin, Dmytro; dri-devel@lists.freedesktop.org; Lei, Jun; Lakha, B=
+hawanpreet; Koo, Anthony
+Subject: [PATCH] drm/amd/display: avoid 64-bit division
 
-ping
+On 32-bit architectures, dividing a 64-bit integer in the kernel
+leads to a link error:
 
-On Tue, Jul 2, 2019 at 2:29 PM Marek Ol=9A=E1k <maraeo@gmail.com<mailto:mar=
-aeo@gmail.com>> wrote:
-From: Marek Ol=9A=E1k <marek.olsak@amd.com<mailto:marek.olsak@amd.com>>
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: "__divdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
 
-This RELEASE_MEM use has the Release semantic, which means we should write
-back but not invalidate. Invalidations only make sense with the Acquire
-semantic (ACQUIRE_MEM), or when RELEASE_MEM is used to do the combined
-Acquire-Release semantic, which is a barrier, not a fence.
+Change the two recently introduced instances to a multiply+shift
+operation that is also much cheaper on 32-bit architectures.
+We can do that here, since both of them are really 32-bit numbers
+that change a few percent.
 
-The undesirable side effect of doing invalidations for the Release semantic
-is that it invalidates caches while shaders are running, because the Releas=
-e
-can execute in the middle of the next IB.
-
-UMDs should use ACQUIRE_MEM at the beginning of IBs. Doing cache
-invalidations for a fence (like in this case) doesn't do anything
-for correctness.
-
-Signed-off-by: Marek Ol=9A=E1k <marek.olsak@amd.com<mailto:marek.olsak@amd.=
-com>>
+Fixes: bedbbe6af4be ("drm/amd/display: Move link functions from dc to dc_li=
+nk")
+Fixes: f18bc4e53ad6 ("drm/amd/display: update calculated bounding box logic=
+ for NV")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c         | 4 ++--
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v10_0.c
-index 210d24511dc6..a30f5d4913b9 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -4296,25 +4296,21 @@ static void gfx_v10_0_ring_emit_fence(struct amdgpu=
-_ring *ring, u64 addr,
-        bool int_sel =3D flags & AMDGPU_FENCE_FLAG_INT;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/dr=
+m/amd/display/dc/core/dc_link.c
+index c17db5c144aa..8dbf759eba45 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -3072,8 +3072,8 @@ uint32_t dc_link_bandwidth_kbps(
+                  * but the difference is minimal and is in a safe directio=
+n,
+                  * which all works well around potential ambiguity of DP 1=
+.4a spec.
+                  */
+-               long long fec_link_bw_kbps =3D link_bw_kbps * 970LL;
+-               link_bw_kbps =3D (uint32_t)(fec_link_bw_kbps / 1000LL);
++               link_bw_kbps =3D mul_u64_u32_shr(BIT_ULL(32) * 970LL / 1000=
+,
++                                              link_bw_kbps, 32);
+         }
+ #endif
 
-        /* Interrupt not work fine on GFX10.1 model yet. Use fallback inste=
-ad */
-        if (adev->pdev->device =3D=3D 0x50)
-                int_sel =3D false;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/driver=
+s/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index b35327bafbc5..70ac8a95d2db 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -2657,7 +2657,7 @@ static void update_bounding_box(struct dc *dc, struct=
+ _vcs_dpi_soc_bounding_box_
+                 calculated_states[i].dram_speed_mts =3D uclk_states[i] * 1=
+6 / 1000;
 
-        /* RELEASE_MEM - flush caches, send int */
-        amdgpu_ring_write(ring, PACKET3(PACKET3_RELEASE_MEM, 6));
-        amdgpu_ring_write(ring, (PACKET3_RELEASE_MEM_GCR_SEQ |
-                                 PACKET3_RELEASE_MEM_GCR_GL2_WB |
--                                PACKET3_RELEASE_MEM_GCR_GL2_INV |
--                                PACKET3_RELEASE_MEM_GCR_GL2_US |
--                                PACKET3_RELEASE_MEM_GCR_GL1_INV |
--                                PACKET3_RELEASE_MEM_GCR_GLV_INV |
--                                PACKET3_RELEASE_MEM_GCR_GLM_INV |
-+                                PACKET3_RELEASE_MEM_GCR_GLM_INV | /* must =
-be set with GLM_WB */
-                                 PACKET3_RELEASE_MEM_GCR_GLM_WB |
-                                 PACKET3_RELEASE_MEM_CACHE_POLICY(3) |
-                                 PACKET3_RELEASE_MEM_EVENT_TYPE(CACHE_FLUSH=
-_AND_INV_TS_EVENT) |
-                                 PACKET3_RELEASE_MEM_EVENT_INDEX(5)));
-        amdgpu_ring_write(ring, (PACKET3_RELEASE_MEM_DATA_SEL(write64bit ? =
-2 : 1) |
-                                 PACKET3_RELEASE_MEM_INT_SEL(int_sel ? 2 : =
-0)));
+                 // FCLK:UCLK ratio is 1.08
+-               min_fclk_required_by_uclk =3D ((unsigned long long)uclk_sta=
+tes[i]) * 1080 / 1000000;
++               min_fclk_required_by_uclk =3D mul_u64_u32_shr(BIT_ULL(32) *=
+ 1080 / 1000000, uclk_states[i], 32);
 
-        /*
-         * the address should be Qword aligned if 64bit write, Dword
-         * aligned if only send 32bit data low (discard data high)
+                 calculated_states[i].fabricclk_mhz =3D (min_fclk_required_=
+by_uclk < min_dcfclk) ?
+                                 min_dcfclk : min_fclk_required_by_uclk;
 --
-2.17.1
+2.20.0
 
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
---_000_BN6PR12MB180974B4A10C0862544AEF25F7F60BN6PR12MB1809namp_
-Content-Type: text/html; charset="Windows-1252"
+--_000_DM6PR12MB3209EA0481059F3970CF5D83FEF60DM6PR12MB3209namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
 <body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">Acked-by: Slava Abramov &lt;slava=
+.abramov@amd.com&gt;</p>
+<p style=3D"margin-top:0;margin-bottom:0">Tested-by: Slava Abramov &lt;slav=
+a.abramov@amd.com&gt;</p>
 </div>
-<div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
 yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Marek Ol=9A=E1k &lt;maraeo@gm=
-ail.com&gt;<br>
-<b>Sent:</b> Monday, July 8, 2019 1:31 PM<br>
-<b>To:</b> amd-gfx mailing list<br>
-<b>Subject:</b> Re: [PATCH] drm/amdgpu: don't invalidate caches in RELEASE_=
-MEM, only do the writeback</font>
+ounces@lists.freedesktop.org&gt; on behalf of Arnd Bergmann &lt;arnd@arndb.=
+de&gt;<br>
+<b>Sent:</b> Monday, July 8, 2019 9:52:08 AM<br>
+<b>To:</b> Wentland, Harry; Li, Sun peng (Leo); Deucher, Alexander; Koenig,=
+ Christian; Zhou, David(ChunMing); David Airlie; Daniel Vetter<br>
+<b>Cc:</b> Liu, Charlene; Park, Chris; Arnd Bergmann; Cheng, Tony; Francis,=
+ David; linux-kernel@vger.kernel.org; amd-gfx@lists.freedesktop.org; Cornij=
+, Nikola; Laktyushkin, Dmytro; dri-devel@lists.freedesktop.org; Lei, Jun; L=
+akha, Bhawanpreet; Koo, Anthony<br>
+<b>Subject:</b> [PATCH] drm/amd/display: avoid 64-bit division</font>
 <div>&nbsp;</div>
 </div>
-<div>
-<div dir=3D"ltr">ping<br>
-</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">On 32-bit architectures, dividing a 64-bit integer=
+ in the kernel<br>
+leads to a link error:<br>
 <br>
-<div class=3D"x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail_attr">On Tue, Jul 2, 2019 at 2:29 PM Mare=
-k Ol=9A=E1k &lt;<a href=3D"mailto:maraeo@gmail.com">maraeo@gmail.com</a>&gt=
-; wrote:<br>
-</div>
-<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
-er-left:1px solid rgb(204,204,204); padding-left:1ex">
-From: Marek Ol=9A=E1k &lt;<a href=3D"mailto:marek.olsak@amd.com" target=3D"=
-_blank">marek.olsak@amd.com</a>&gt;<br>
+ERROR: &quot;__udivdi3&quot; [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefin=
+ed!<br>
+ERROR: &quot;__divdi3&quot; [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefine=
+d!<br>
 <br>
-This RELEASE_MEM use has the Release semantic, which means we should write<=
-br>
-back but not invalidate. Invalidations only make sense with the Acquire<br>
-semantic (ACQUIRE_MEM), or when RELEASE_MEM is used to do the combined<br>
-Acquire-Release semantic, which is a barrier, not a fence.<br>
+Change the two recently introduced instances to a multiply&#43;shift<br>
+operation that is also much cheaper on 32-bit architectures.<br>
+We can do that here, since both of them are really 32-bit numbers<br>
+that change a few percent.<br>
 <br>
-The undesirable side effect of doing invalidations for the Release semantic=
-<br>
-is that it invalidates caches while shaders are running, because the Releas=
-e<br>
-can execute in the middle of the next IB.<br>
-<br>
-UMDs should use ACQUIRE_MEM at the beginning of IBs. Doing cache<br>
-invalidations for a fence (like in this case) doesn't do anything<br>
-for correctness.<br>
-<br>
-Signed-off-by: Marek Ol=9A=E1k &lt;<a href=3D"mailto:marek.olsak@amd.com" t=
-arget=3D"_blank">marek.olsak@amd.com</a>&gt;<br>
+Fixes: bedbbe6af4be (&quot;drm/amd/display: Move link functions from dc to =
+dc_link&quot;)<br>
+Fixes: f18bc4e53ad6 (&quot;drm/amd/display: update calculated bounding box =
+logic for NV&quot;)<br>
+Signed-off-by: Arnd Bergmann &lt;arnd@arndb.de&gt;<br>
 ---<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 6 &#43;-----<br>
-&nbsp;1 file changed, 1 insertion(&#43;), 5 deletions(-)<br>
+&nbsp;drivers/gpu/drm/amd/display/dc/core/dc_link.c&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; | 4 &#43;&#43;--<br>
+&nbsp;drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 2 &#43;-<br>
+&nbsp;2 files changed, 3 insertions(&#43;), 3 deletions(-)<br>
 <br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v10_0.c<br>
-index 210d24511dc6..a30f5d4913b9 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-@@ -4296,25 &#43;4296,21 @@ static void gfx_v10_0_ring_emit_fence(struct am=
-dgpu_ring *ring, u64 addr,<br>
-&nbsp; &nbsp; &nbsp; &nbsp; bool int_sel =3D flags &amp; AMDGPU_FENCE_FLAG_=
-INT;<br>
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/dr=
+m/amd/display/dc/core/dc_link.c<br>
+index c17db5c144aa..8dbf759eba45 100644<br>
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/display/dc/core/dc_link.c<br>
+@@ -3072,8 &#43;3072,8 @@ uint32_t dc_link_bandwidth_kbps(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; * but the difference is minimal and is in a saf=
+e direction,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; * which all works well around potential ambigui=
+ty of DP 1.4a spec.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; long long fec_link_bw_kbps =3D link_bw_kbps * 970LL;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; link_bw_kbps =3D (uint32_t)(fec_link_bw_kbps / 1000LL);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; link_bw_kbps =3D mul_u64_u32_shr(BIT_ULL(32) * 970LL / 1000,=
 <br>
-&nbsp; &nbsp; &nbsp; &nbsp; /* Interrupt not work fine on GFX10.1 model yet=
-. Use fallback instead */<br>
-&nbsp; &nbsp; &nbsp; &nbsp; if (adev-&gt;pdev-&gt;device =3D=3D 0x50)<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int_sel =3D false;<=
-br>
-<br>
-&nbsp; &nbsp; &nbsp; &nbsp; /* RELEASE_MEM - flush caches, send int */<br>
-&nbsp; &nbsp; &nbsp; &nbsp; amdgpu_ring_write(ring, PACKET3(PACKET3_RELEASE=
-_MEM, 6));<br>
-&nbsp; &nbsp; &nbsp; &nbsp; amdgpu_ring_write(ring, (PACKET3_RELEASE_MEM_GC=
-R_SEQ |<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PACKET3_RELEASE_MEM_GCR_GL2_WB |=
-<br>
--&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PACKET3_RELEASE_MEM_GCR_GL2_INV |<br>
--&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PACKET3_RELEASE_MEM_GCR_GL2_US |<br>
--&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PACKET3_RELEASE_MEM_GCR_GL1_INV |<br>
--&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PACKET3_RELEASE_MEM_GCR_GLV_INV |<br>
--&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PACKET3_RELEASE_MEM_GCR_GLM_INV |<br>
-&#43;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PACKET3_RELEASE_MEM_GCR_GLM_INV |=
- /* must be set with GLM_WB */<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PACKET3_RELEASE_MEM_GCR_GLM_WB |=
-<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PACKET3_RELEASE_MEM_CACHE_POLICY=
-(3) |<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PACKET3_RELEASE_MEM_EVENT_TYPE(C=
-ACHE_FLUSH_AND_INV_TS_EVENT) |<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PACKET3_RELEASE_MEM_EVENT_INDEX(=
-5)));<br>
-&nbsp; &nbsp; &nbsp; &nbsp; amdgpu_ring_write(ring, (PACKET3_RELEASE_MEM_DA=
-TA_SEL(write64bit ? 2 : 1) |<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PACKET3_RELEASE_MEM_INT_SEL(int_=
-sel ? 2 : 0)));<br>
-<br>
-&nbsp; &nbsp; &nbsp; &nbsp; /*<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* the address should be Qword aligned if =
-64bit write, Dword<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* aligned if only send 32bit data low (di=
-scard data high)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; link_bw_kbps, 32);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;#endif<br>
+&nbsp;<br>
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/driver=
+s/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c<br>
+index b35327bafbc5..70ac8a95d2db 100644<br>
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c<br>
+@@ -2657,7 &#43;2657,7 @@ static void update_bounding_box(struct dc *dc, st=
+ruct _vcs_dpi_soc_bounding_box_<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; calculated_states[i].dram_speed_mts =3D uclk_states[i=
+] * 16 / 1000;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; // FCLK:UCLK ratio is 1.08<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; min_fclk_required_by_uclk =3D ((unsigned long long)uclk_states[i=
+]) * 1080 / 1000000;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; min_fclk_required_by_uclk =3D mul_u64_u32_shr(BIT_ULL(32) * =
+1080 / 1000000, uclk_states[i], 32);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; calculated_states[i].fabricclk_mhz =3D (min_fclk_requ=
+ired_by_uclk &lt; min_dcfclk) ?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min_dcfclk : min_fclk_required_b=
+y_uclk;<br>
 -- <br>
-2.17.1<br>
+2.20.0<br>
 <br>
-</blockquote>
-</div>
-</div>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
 </body>
 </html>
 
---_000_BN6PR12MB180974B4A10C0862544AEF25F7F60BN6PR12MB1809namp_--
+--_000_DM6PR12MB3209EA0481059F3970CF5D83FEF60DM6PR12MB3209namp_--
 
---===============1077736329==
+--===============2126326096==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -320,4 +333,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1077736329==--
+--===============2126326096==--
