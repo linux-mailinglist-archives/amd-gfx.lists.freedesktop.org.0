@@ -2,62 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F93E6363E
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jul 2019 14:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 432ED6363D
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jul 2019 14:55:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4E59897DC;
-	Tue,  9 Jul 2019 12:55:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B33CE89701;
+	Tue,  9 Jul 2019 12:55:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDF706E04A;
- Tue,  9 Jul 2019 07:22:50 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id f9so19745791wre.12;
- Tue, 09 Jul 2019 00:22:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=eTTGtdAf9D8hMWA6RdwU6DYctiL/OmG776vwkKDwCdY=;
- b=UcJVAXCvYm0pqJUl95t2yA7ML6KPVjkZHda7ZZv2TFGm/erb4ifx9vDcvI+nKX9cMq
- g2c5nSzCq9yp1MKtJAJgif+2z/Ny2RBO6CcTar0Q1pGMkSgJ1iU/cih1wbK9iIK9hwad
- DYD6qCgoSzhZ5bYIYxAjhl5v5zOIQHKlTnddDY04v8muRuezQvo7zU1wuViA/dhWtQxr
- ODMI29BzTFedli5U0Adf4GNY0AEH6PNe/Yxel18WaAAtq5J0J8PDxi6HToKvuYkE1o2H
- BJpdGnJwyh7rtUAtAioB+wpFRSQH32o4X7fINi8psYAC6LDRZCA+7O5r0m5jeg1KNJ7d
- LnYw==
-X-Gm-Message-State: APjAAAUC0ldapnFjZC8qzDjDHh3O7o7YuwDbzykkWtt1y0ZV6pF7IZ6h
- y6f5gXqVjsdBCaI+lxnZkUE=
-X-Google-Smtp-Source: APXvYqwpHuI9CWOWbco5N6jY+5LAeHjro1s1YTciZRy3YWL+F5Pp3hdmj4NAX2bBfyJX0mNGYk9vdQ==
-X-Received: by 2002:adf:e28a:: with SMTP id v10mr23876027wri.178.1562656969476; 
- Tue, 09 Jul 2019 00:22:49 -0700 (PDT)
-Received: from archlinux-threadripper ([2a01:4f8:222:2f1b::2])
- by smtp.gmail.com with ESMTPSA id l8sm32824144wrg.40.2019.07.09.00.22.48
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 09 Jul 2019 00:22:48 -0700 (PDT)
-Date: Tue, 9 Jul 2019 00:22:47 -0700
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH 0/7] amdgpu clang warning fixes on next-20190703
-Message-ID: <20190709072247.GA92551@archlinux-threadripper>
-References: <20190704055217.45860-1-natechancellor@gmail.com>
- <CADnq5_MGzLLMNPSQXpdxwrBpvsp7Fd1KdExS-K4yNeDBQYEGMg@mail.gmail.com>
+Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53F7D89FCA;
+ Tue,  9 Jul 2019 09:11:16 +0000 (UTC)
+Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id 63CBFAB9524C5EBB45FF;
+ Tue,  9 Jul 2019 17:11:10 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS405-HUB.china.huawei.com
+ (10.3.19.205) with Microsoft SMTP Server id 14.3.439.0; Tue, 9 Jul 2019
+ 17:11:01 +0800
+From: YueHaibing <yuehaibing@huawei.com>
+To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <David1.Zhou@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <Philip.Yang@amd.com>, <Felix.Kuehling@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix build without CONFIG_HMM_MIRROR
+Date: Tue, 9 Jul 2019 17:10:48 +0800
+Message-ID: <20190709091048.35260-1-yuehaibing@huawei.com>
+X-Mailer: git-send-email 2.10.2.windows.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CADnq5_MGzLLMNPSQXpdxwrBpvsp7Fd1KdExS-K4yNeDBQYEGMg@mail.gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+X-Originating-IP: [10.133.213.239]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 09 Jul 2019 12:55:07 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=eTTGtdAf9D8hMWA6RdwU6DYctiL/OmG776vwkKDwCdY=;
- b=D9zLoQTk2FJgkaohPSj2m1p1zwZI89NM//MF5PYnexgpgf4SiMH++rB5G5zVRxXhKr
- kYMteY2oyg2s8jY63/dsh9yMpX9CH7oYiLuARTVAqyvfM6mPxUEMXqwp6gJcF5qkCL1M
- 1uCTJTTO+JhaYlbZ3q1P641qfafCLT3h+eVzHQkSA0iib/gyjCM884tf0Lp+lMFILUg4
- 2ktc9iGkbEddgkAadHYi4SXOYsJOY2Jsh029gb4Ngmj8WpSmj+J69E2/ZuauZirjIO4t
- 4ZqbT+H3xpjVasdiStsr8xD/UOZZKphkpHkshKaRkYKSC1l/3jT3N5m7Q7QMTM7l/c1v
- lVww==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -69,27 +41,30 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- clang-built-linux@googlegroups.com, Leo Li <sunpeng.li@amd.com>,
- Rex Zhu <rex.zhu@amd.com>, LKML <linux-kernel@vger.kernel.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, YueHaibing <yuehaibing@huawei.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBKdWwgMDgsIDIwMTkgYXQgMTE6NTU6NTBBTSAtMDQwMCwgQWxleCBEZXVjaGVyIHdy
-b3RlOgo+IEFwcGxpZWQgdGhlIHNlcmllcy4gIHRoYW5rcyEKPiAKPiBBbGV4CgpUaGFuayB5b3Ug
-OikKCkkgZG9uJ3Qgc2VlIHRoZSBlbnVtIGNvbnZlcnNpb24gb25lcyBpbiB5b3VyIGN1cnJlbnQg
-dHJlZS4gSWYgdGhleQppbmRlZWQgY2F1c2VkIGlzc3VlcywgY291bGQgeW91IGd1eXMgcGxlYXNl
-IGxvb2sgaW50byBmaXhpbmcgdGhlCndhcm5pbmdzIHByb3Blcmx5IHlvdXJzZWx2ZXMgKG1heWJl
-IHNvbWV0aGluZyBsaWtlIEFybmQncyBwYXRjaD8pCm9yIGxldCBtZSBrbm93IGhvdyB5b3Ugd291
-bGQgbGlrZSB0aGVtIGZpeGVkIChleHBsaWNpdCBjYXN0cywgY2hhbmdpbmcKdHlwZSB0byBpbnQs
-IGV0Yyk/CgpodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvMzE2NDY2LwoK
-Q2hlZXJzLApOYXRoYW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+SWYgQ09ORklHX0hNTV9NSVJST1IgaXMgbm90IHNldCwgYnVpbGRpbmcgbWF5IGZhaWxzOgoKSW4g
+ZmlsZSBpbmNsdWRlZCBmcm9tIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdS5oOjcy
+OjAsCiAgICAgICAgICAgICAgICAgZnJvbSBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
+cHVfZGV2aWNlLmM6NDA6CmRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9tbi5oOjY5
+OjIwOiBlcnJvcjogZmllbGQgbWlycm9yIGhhcyBpbmNvbXBsZXRlIHR5cGUKICBzdHJ1Y3QgaG1t
+X21pcnJvciBtaXJyb3I7CgpGaXhlczogNzU5MGY2ZDIxMWVjICgiZHJtL2FtZGdwdTogUHJlcGFy
+ZSBmb3IgaG1tX3JhbmdlX3JlZ2lzdGVyIEFQSSBjaGFuZ2UiKQpTaWduZWQtb2ZmLWJ5OiBZdWVI
+YWliaW5nIDx5dWVoYWliaW5nQGh1YXdlaS5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X21uLmggfCAyICsrCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCsp
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X21uLmggYi9k
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW4uaAppbmRleCAyODFmZDlmLi5iMTRm
+MTc1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW4uaAor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW4uaApAQCAtNjUsOCArNjUs
+MTAgQEAgc3RydWN0IGFtZGdwdV9tbiB7CiAJc3RydWN0IHJ3X3NlbWFwaG9yZQlsb2NrOwogCXN0
+cnVjdCByYl9yb290X2NhY2hlZAlvYmplY3RzOwogCisjaWYgZGVmaW5lZChDT05GSUdfSE1NX01J
+UlJPUikKIAkvKiBITU0gbWlycm9yICovCiAJc3RydWN0IGhtbV9taXJyb3IJbWlycm9yOworI2Vu
+ZGlmCiB9OwogCiAjaWYgZGVmaW5lZChDT05GSUdfSE1NX01JUlJPUikKLS0gCjIuNy40CgoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWls
+aW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
