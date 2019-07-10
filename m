@@ -1,64 +1,80 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2260063F7B
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2019 05:03:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90D0C63EE1
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2019 03:17:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27E6389622;
-	Wed, 10 Jul 2019 03:03:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D804898CE;
+	Wed, 10 Jul 2019 01:17:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE88D6E061;
- Tue,  9 Jul 2019 20:21:54 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id n9so173204wru.0;
- Tue, 09 Jul 2019 13:21:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=BqI5outTIh2mJn+SptLleo59V8v3BzRwFRtZPJVwOgQ=;
- b=pN5Llwq/LKkwAyiQ0c0O65TseiiXguz2ijbLi9jnTfcVUxaFHadoPceFjcT9Te2ljX
- R1I69InfPQpgPcrWqFZP9OgnOENkbY0O8Uz8ypVbSWQwBfIzQ4uRfAkvE0b+Lw74l0i0
- 6LiQ3PcYT0vGSvaN9YOQw62n3cDJ83FyUXlLKsBkpmot7GJjlvRgV5y2GteVst0RrEXE
- pl8tKG+p6Rk/HA5ln9bRJu3ED2DX065WCbZv+CO13DhmMysEPAs4IDXd4jO7xrZ6HmLy
- mXRRGtqbFcSXNKZ3bmcbPZJdZ/sPdT54zVM1GUakSrap8AWKzYkT4cINpqjf4wWE9Dyj
- I27Q==
-X-Gm-Message-State: APjAAAWFEoOmPYMDBcAFh/ExJM4x+q/wgbidYmt3E7PABXTf+PMHUi0R
- 2rdAw+VnCiNVlvW5HE5q2s4=
-X-Google-Smtp-Source: APXvYqyyg9ffu3I2DUs4oDtP0JbKuVnQZDgZxqg1ttyjXVjkFyhhdUXslaD72h3W+yVXC0DikmuOKA==
-X-Received: by 2002:a5d:62c1:: with SMTP id o1mr26819925wrv.293.1562703713114; 
- Tue, 09 Jul 2019 13:21:53 -0700 (PDT)
-Received: from archlinux-threadripper ([2a01:4f8:222:2f1b::2])
- by smtp.gmail.com with ESMTPSA id w24sm16601wmc.30.2019.07.09.13.21.52
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 09 Jul 2019 13:21:52 -0700 (PDT)
-Date: Tue, 9 Jul 2019 13:21:50 -0700
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH 5/7] drm/amd/display: Use proper enum conversion functions
-Message-ID: <20190709202150.GB96242@archlinux-threadripper>
-References: <20190704055217.45860-1-natechancellor@gmail.com>
- <20190704055217.45860-6-natechancellor@gmail.com>
- <CAK8P3a1vEtrS7SbhCPVxoYBcroT+Hr3Q4LFs6AJJ8G8GVw5SVA@mail.gmail.com>
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770082.outbound.protection.outlook.com [40.107.77.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E29E898CE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2019 01:17:02 +0000 (UTC)
+Received: from BN8PR12MB3329.namprd12.prod.outlook.com (20.178.210.206) by
+ BN8PR12MB2962.namprd12.prod.outlook.com (20.178.208.84) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2052.18; Wed, 10 Jul 2019 01:16:59 +0000
+Received: from BN8PR12MB3329.namprd12.prod.outlook.com
+ ([fe80::347f:8a8d:c0d4:823c]) by BN8PR12MB3329.namprd12.prod.outlook.com
+ ([fe80::347f:8a8d:c0d4:823c%7]) with mapi id 15.20.2052.020; Wed, 10 Jul 2019
+ 01:16:59 +0000
+From: "Quan, Evan" <Evan.Quan@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amd/powerplay: increase the SMU msg response waiting
+ time
+Thread-Topic: [PATCH] drm/amd/powerplay: increase the SMU msg response waiting
+ time
+Thread-Index: AQHVNhkB8fKrHx6yIkyZsQjQB3y7vqbCOtmAgADQoJA=
+Date: Wed, 10 Jul 2019 01:16:59 +0000
+Message-ID: <BN8PR12MB33290CA144CF8883E42E8E0FE4F00@BN8PR12MB3329.namprd12.prod.outlook.com>
+References: <20190709054111.11433-1-evan.quan@amd.com>
+ <BN6PR12MB180934CC91BC9A2A3C393AC2F7F10@BN6PR12MB1809.namprd12.prod.outlook.com>
+In-Reply-To: <BN6PR12MB180934CC91BC9A2A3C393AC2F7F10@BN6PR12MB1809.namprd12.prod.outlook.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [180.167.199.189]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 179ff0b7-3566-4995-5f57-08d704d44ed5
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN8PR12MB2962; 
+x-ms-traffictypediagnostic: BN8PR12MB2962:
+x-ms-exchange-purlcount: 3
+x-microsoft-antispam-prvs: <BN8PR12MB2962E87A119110E56A4B0D3DE4F00@BN8PR12MB2962.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-forefront-prvs: 0094E3478A
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(376002)(136003)(346002)(366004)(39860400002)(396003)(189003)(199004)(14444005)(2501003)(52536014)(486006)(74316002)(256004)(25786009)(5660300002)(6436002)(9326002)(478600001)(68736007)(7736002)(33656002)(66066001)(966005)(186003)(446003)(53936002)(26005)(11346002)(86362001)(476003)(99286004)(81166006)(81156014)(8676002)(236005)(76176011)(102836004)(6246003)(6506007)(53546011)(64756008)(71190400001)(66446008)(2906002)(66946007)(14454004)(9686003)(66556008)(229853002)(66476007)(4326008)(606006)(7696005)(76116006)(71200400001)(6306002)(55016002)(54906003)(6116002)(3846002)(54896002)(110136005)(790700001)(8936002)(316002)(69900200001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB2962;
+ H:BN8PR12MB3329.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: lcBbixx7SEW/UyZx5HnHWWXRFBJPz/+CwjZQJaZFd0D4odUU+8yxluKC2SI+k/My4uHZswjBtSyILQrIz60O3dKATCzP9/fmcJ3nMOLiNyKj1tRDAueNXh+y79zyGsPX8Z2Y3Hnz8xbjDRdRBXUDbiASILjRpdhnGpzMNexZ+Zk5PGxVvao27JVUD7s8VlIu3IxqmfOgstpGSsGuclGxvC+QWaKs7UIj/NTCJLhiFHP3sa+WRRyoibucjOmcnJoxeSsRUEQ91pElAXJQCa9DWIFL40YlGIl5UGuYWFQLekBVqsl/UluklCKe7KxSVL4HrBgbkk8FpNSit2u5l4ezSJaJ4aIf4BZZZ+GDFToYDZRwSi7dJgjSecpSh0NUyZ6kamMat3hyzzpx+ZBVV88p7GKCf9yUQIgK420CyH7uLA8=
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAK8P3a1vEtrS7SbhCPVxoYBcroT+Hr3Q4LFs6AJJ8G8GVw5SVA@mail.gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-X-Mailman-Approved-At: Wed, 10 Jul 2019 03:03:32 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 179ff0b7-3566-4995-5f57-08d704d44ed5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jul 2019 01:16:59.7379 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: equan@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2962
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=BqI5outTIh2mJn+SptLleo59V8v3BzRwFRtZPJVwOgQ=;
- b=lDfy0y1VmUYZm1hrtwGJCJEuJGPi7rFi+/pbmnmsrMTVoUFkUnGonIB13rNvMQlRPC
- SlkpU3JCozmm5fbgcDROoEPRMZ5bAyGGUWPZo9RHq0Q+xILn0PujWqDPjN4mxZPzh/mI
- 0ShwBlUjnW89bm/kFkjgkNpTnGNvR+Xm0ZkLzU9YBmTUxsBrGFznL/9FrU7vXsrmL1TF
- Cao+XoJGkMy5CunOwQ/qAUX2SzT+3Os7R71/kJTxxB9R8En3qINQIEGYnkeVJEmAYrsw
- qMAN62Gr8MExsOpPuF+wRVhymwl4te7xnNP/M2QomcFItK9FHaNrtLJhxtbRloWUVD2a
- yCmg==
+ d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ex1tNKdhszn9LK2dmT968B+srdAv3m2zL/+1RajZ0kE=;
+ b=G6yNMJVZMI65zMRtuNSM0tSrnI2TbxBLD9zwCbaKbF3QgUk7gRdOWmg9w27+pWneZ3V99EsBHF0UDzcOXSkhPSzGFKiKaVc880G54vQ4REXl5ADYVIaptwFCRTlbOxS+YYcb7xY9FyjUQcuQC5+chcKMuQdQ9MJ4+1+bOwfc7vY=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Evan.Quan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -70,57 +86,296 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- Leo Li <sunpeng.li@amd.com>, Rex Zhu <rex.zhu@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
- dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>, "Wu,
+ Xiaowei" <Xiaowei.Wu@amd.com>
+Content-Type: multipart/mixed; boundary="===============1805878101=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBKdWwgMDksIDIwMTkgYXQgMDg6NTE6MzNQTSArMDIwMCwgQXJuZCBCZXJnbWFubiB3
-cm90ZToKPiBPbiBUaHUsIEp1bCA0LCAyMDE5IGF0IDc6NTIgQU0gTmF0aGFuIENoYW5jZWxsb3IK
-PiA8bmF0ZWNoYW5jZWxsb3JAZ21haWwuY29tPiB3cm90ZToKPiA+Cj4gPiBjbGFuZyB3YXJuczoK
-PiA+Cj4gPiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2FtZGdwdV9kbS9h
-bWRncHVfZG1fcHBfc211LmM6MzM2Ojg6Cj4gPiB3YXJuaW5nOiBpbXBsaWNpdCBjb252ZXJzaW9u
-IGZyb20gZW51bWVyYXRpb24gdHlwZSAnZW51bSBzbXVfY2xrX3R5cGUnCj4gPiB0byBkaWZmZXJl
-bnQgZW51bWVyYXRpb24gdHlwZSAnZW51bSBhbWRfcHBfY2xvY2tfdHlwZScKPiA+IFstV2VudW0t
-Y29udmVyc2lvbl0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBk
-Y190b19zbXVfY2xvY2tfdHlwZShjbGtfdHlwZSksCj4gPiAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgo+ID4gZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX3Bw
-X3NtdS5jOjQyMToxNDoKPiA+IHdhcm5pbmc6IGltcGxpY2l0IGNvbnZlcnNpb24gZnJvbSBlbnVt
-ZXJhdGlvbiB0eXBlICdlbnVtCj4gPiBhbWRfcHBfY2xvY2tfdHlwZScgdG8gZGlmZmVyZW50IGVu
-dW1lcmF0aW9uIHR5cGUgJ2VudW0gc211X2Nsa190eXBlJwo+ID4gWy1XZW51bS1jb252ZXJzaW9u
-XQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRjX3RvX3BwX2Ns
-b2NrX3R5cGUoY2xrX3R5cGUpLAo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgo+ID4KPiA+IFRoZXJlIGFyZSBm
-dW5jdGlvbnMgdG8gcHJvcGVybHkgY29udmVydCBiZXR3ZWVuIGFsbCBvZiB0aGVzZSB0eXBlcywg
-dXNlCj4gPiB0aGVtIHNvIHRoZXJlIGFyZSBubyBsb25nZXIgYW55IHdhcm5pbmdzLgo+IAo+IEkg
-aGFkIGEgZGlmZmVyZW50IHNvbHV0aW9uIGZvciB0aGlzIG9uZSBhcyB3ZWxsLiBUaGUgZGlmZmVy
-ZW5jZSBpcyB0aGF0IHlvdXIKPiBwYXRjaCBrZWVwcyB0aGUgdHlwZXMgYW5kIGFzc3VtZXMgdGhh
-dCB0aGUgZnVuY3Rpb25zIGRvIHRoZSByaWdodCB0aGluZwo+IChpLmUuIHRoZSB3YXJuaW5nIHdh
-cyBjb3JyZWN0KSwgd2hpbGUgbXkgdmVyc2lvbiBhc3N1bWVzIHRoYXQgdGhlIGNvZGUKPiB3b3Jr
-cyBjb3JyZWN0bHksIGJ1dCB0aGUgdHlwZXMgYXJlIHdyb25nIChhIGZhbHNlIHBvc2l0aXZlIHdh
-cm5pbmcpLgo+IAo+IE9uZSBvZiB0aGUgdHdvIHBhdGNoZXMgaXMgY29ycmVjdCwgdGhlIG90aGVy
-IG9uZSBpcyBicm9rZW4sIGJ1dCBJIGhhdmUKPiBubyBpZGVhIHdoaWNoIG9uZS4KPiAKPiAgICAg
-ICBBcm5kCgpJbmRlZWQuIEkgd291bGQgcGVyc29uYWxseSBhcmd1ZSB0aGF0IGlmIHVzaW5nIHRo
-ZSBjb3JyZWN0IGNvbnZlcnNpb24KZnVuY3Rpb25zICh3aGljaCBhcmUgaGVyZSB0byBzcGVjaWZp
-Y2FsbHkgYXZvaWQgdGhpcyB0eXBlIG9mIHdhcm5pbmcpCmNhdXNlcyBpc3N1ZXMsIHRoaXMgY29k
-ZSBzaG91bGQgcHJvYmFibHkgbm90IGJlIHVzaW5nIGVudW1lcmF0ZWQgdHlwZXMKYXQgYWxsIHNp
-bmNlIHRoZSBlbnRpcmUgcG9pbnQgaXMgdG8gZW5mb3JjZSBzZW1hbnRpYyBjb3JyZWN0bmVzcywg
-bm90Cmp1c3QgYmUgYSBzcGVjaWFsIHdheSB0byByZXByZXNlbnQgc21hbGwgaW50ZWdlciB2YWx1
-ZXMsIGVzcGVjaWFsbHkgaW4KdGhlIGNhc2Ugd2hlcmUgdGhlIENMSyB2YWx1ZXMgYXJlIGNvbXBs
-ZXRlbHkgZGlmZmVyZW50IG51bWVyaWNhbCB2YWx1ZXMKaW4gdmFyaW91cyBlbnVtZXJhdGVkIHR5
-cGVzLiBJIHRoaW5rIGVudW1lcmF0ZWQgdHlwZSBjYXN0cyBhcmUgdWdseSBhbmQKZGVmZWF0IHRo
-ZSBwdXJwb3NlIG9mIHRoZW0gYnV0IHRoYXQncyBvYnZpb3VzbHkganVzdCBteSBvcGluaW9uIDop
-CgpIb3BlZnVsbHkgd2UgY2FuIGdldCBzb21lIGNsYXJpdHkgb24gdGhpcyBzb29uLgoKQ2hlZXJz
-LApOYXRoYW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-YW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+--===============1805878101==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN8PR12MB33290CA144CF8883E42E8E0FE4F00BN8PR12MB3329namp_"
+
+--_000_BN8PR12MB33290CA144CF8883E42E8E0FE4F00BN8PR12MB3329namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Alex,
+
+There are actually two MAX_USEC_TIMEOUT related macros.
+AMD_MAX_USEC_TIMEOUT is used for SMU and AMDGPU_MAX_USEC_TIMEOUT is used wi=
+dely in other parts.
+Maybe you mistreated it as  AMDGPU_MAX_USEC_TIMEOUT. I was confused by them=
+ too.
+
+drivers/gpu/drm/amd/include/amd_shared.h:29:#define AMD_MAX_USEC_TIMEOUT   =
+             200000  /* 200 ms */
+drivers/gpu/drm/amd/amdgpu/amdgpu.h:179:#define AMDGPU_MAX_USEC_TIMEOUT    =
+             100000  /* 100 ms */
+
+I'm considering to sort these timeout settings up later. Maybe to combine t=
+hem as one or give them differentiated names.
+
+Regards,
+Evan
+From: Deucher, Alexander <Alexander.Deucher@amd.com>
+Sent: Tuesday, July 09, 2019 8:41 PM
+To: Quan, Evan <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org
+Cc: Grodzovsky, Andrey <Andrey.Grodzovsky@amd.com>; Wu, Xiaowei <Xiaowei.Wu=
+@amd.com>
+Subject: Re: [PATCH] drm/amd/powerplay: increase the SMU msg response waiti=
+ng time
+
+If this is just for the SMU, maybe it would be better to add a separate tim=
+eout for the SMU since this will increase the timeout for lots of things, u=
+nless we need an overall timeout increase for mode1 reset.
+
+Alex
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
+@lists.freedesktop.org>> on behalf of Evan Quan <evan.quan@amd.com<mailto:e=
+van.quan@amd.com>>
+Sent: Tuesday, July 9, 2019 1:41 AM
+To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+Cc: Deucher, Alexander; Grodzovsky, Andrey; Quan, Evan; Wu, Xiaowei
+Subject: [PATCH] drm/amd/powerplay: increase the SMU msg response waiting t=
+ime
+
+Increase the waiting time to 1s from 200ms. This is expected
+to fix some mode1 reset failures.
+
+Change-Id: I4c11996628cd40d559c6edea97d092f397122d78
+Signed-off-by: Evan Quan <evan.quan@amd.com<mailto:evan.quan@amd.com>>
+---
+ drivers/gpu/drm/amd/include/amd_shared.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd=
+/include/amd_shared.h
+index 447bc4d..779c9e7 100644
+--- a/drivers/gpu/drm/amd/include/amd_shared.h
++++ b/drivers/gpu/drm/amd/include/amd_shared.h
+@@ -28,7 +28,7 @@
+ #endif
+
+
+-#define AMD_MAX_USEC_TIMEOUT           200000  /* 200 ms */
++#define AMD_MAX_USEC_TIMEOUT           1000000  /* 1000 ms */
+
+ /*
+  * Chip flags
+--
+2.7.4
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN8PR12MB33290CA144CF8883E42E8E0FE4F00BN8PR12MB3329namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Alex,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">There are actually two MAX_USEC_TIMEOUT related macr=
+os.<o:p></o:p></p>
+<p class=3D"MsoNormal">AMD_MAX_USEC_TIMEOUT is used for SMU and AMDGPU_MAX_=
+USEC_TIMEOUT is used widely in other parts.<o:p></o:p></p>
+<p class=3D"MsoNormal">Maybe you mistreated it as &nbsp;AMDGPU_MAX_USEC_TIM=
+EOUT. I was confused by them too.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">drivers/gpu/drm/amd/include/amd_shared.h:29:#define =
+AMD_MAX_USEC_TIMEOUT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 200000&nbsp; /* 200 ms */<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">drivers/gpu/drm/amd/amdgpu/amdgpu.h:179:#define AMDG=
+PU_MAX_USEC_TIMEOUT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100000&nbsp; /* 100 ms */<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m considering to sort these timeout settings=
+ up later. Maybe to combine them as one or give them differentiated names.<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Evan<o:p></o:p></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Deucher, Alexander &lt;Alexander.Deuche=
+r@amd.com&gt; <br>
+<b>Sent:</b> Tuesday, July 09, 2019 8:41 PM<br>
+<b>To:</b> Quan, Evan &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.=
+org<br>
+<b>Cc:</b> Grodzovsky, Andrey &lt;Andrey.Grodzovsky@amd.com&gt;; Wu, Xiaowe=
+i &lt;Xiaowei.Wu@amd.com&gt;<br>
+<b>Subject:</b> Re: [PATCH] drm/amd/powerplay: increase the SMU msg respons=
+e waiting time<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">If this=
+ is just for the SMU, maybe it would be better to add a separate timeout fo=
+r the SMU since this will increase the timeout for lots of things, unless w=
+e need an overall timeout increase for
+ mode1 reset.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
+bsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Alex<o:=
+p></o:p></span></p>
+</div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span style=3D"color:black">From:</span></b><span=
+ style=3D"color:black"> amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists=
+.freedesktop.org">amd-gfx-bounces@lists.freedesktop.org</a>&gt; on behalf o=
+f Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.quan@amd.com</a>&=
+gt;<br>
+<b>Sent:</b> Tuesday, July 9, 2019 1:41 AM<br>
+<b>To:</b> <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.f=
+reedesktop.org</a><br>
+<b>Cc:</b> Deucher, Alexander; Grodzovsky, Andrey; Quan, Evan; Wu, Xiaowei<=
+br>
+<b>Subject:</b> [PATCH] drm/amd/powerplay: increase the SMU msg response wa=
+iting time</span>
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Increase the waiting time to 1s from 200ms. This is =
+expected<br>
+to fix some mode1 reset failures.<br>
+<br>
+Change-Id: I4c11996628cd40d559c6edea97d092f397122d78<br>
+Signed-off-by: Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.quan=
+@amd.com</a>&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/include/amd_shared.h | 2 &#43;-<br>
+&nbsp;1 file changed, 1 insertion(&#43;), 1 deletion(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd=
+/include/amd_shared.h<br>
+index 447bc4d..779c9e7 100644<br>
+--- a/drivers/gpu/drm/amd/include/amd_shared.h<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/include/amd_shared.h<br>
+@@ -28,7 &#43;28,7 @@<br>
+&nbsp;#endif<br>
+&nbsp;<br>
+&nbsp;<br>
+-#define AMD_MAX_USEC_TIMEOUT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; 200000&nbsp; /* 200 ms */<br>
+&#43;#define AMD_MAX_USEC_TIMEOUT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; 1000000&nbsp; /* 1000 ms */<br>
+&nbsp;<br>
+&nbsp;/*<br>
+&nbsp; * Chip flags<br>
+-- <br>
+2.7.4<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a><o:p></o:p></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_BN8PR12MB33290CA144CF8883E42E8E0FE4F00BN8PR12MB3329namp_--
+
+--===============1805878101==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1805878101==--
