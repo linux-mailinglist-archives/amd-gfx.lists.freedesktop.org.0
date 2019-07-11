@@ -1,80 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0FD65344
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jul 2019 10:38:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF4865348
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jul 2019 10:44:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C61B76E160;
-	Thu, 11 Jul 2019 08:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8D8A88F0D;
+	Thu, 11 Jul 2019 08:44:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr790044.outbound.protection.outlook.com [40.107.79.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61DE16E160
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jul 2019 08:37:57 +0000 (UTC)
-Received: from MN2PR12MB2974.namprd12.prod.outlook.com (20.178.240.140) by
- MN2PR12MB2944.namprd12.prod.outlook.com (20.179.81.138) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2052.18; Thu, 11 Jul 2019 08:37:55 +0000
-Received: from MN2PR12MB2974.namprd12.prod.outlook.com
- ([fe80::6936:7406:cb91:95c9]) by MN2PR12MB2974.namprd12.prod.outlook.com
- ([fe80::6936:7406:cb91:95c9%3]) with mapi id 15.20.2052.020; Thu, 11 Jul 2019
- 08:37:55 +0000
-From: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>
-To: "Xu, Feifei" <Feifei.Xu@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu/discovery: fix DCE_HWIP mapping error in
- hw_id_map array
-Thread-Topic: [PATCH] drm/amdgpu/discovery: fix DCE_HWIP mapping error in
- hw_id_map array
-Thread-Index: AQHVN77Y/66d5guktkaQz+211xHt96bFFcEAgAACe6c=
-Date: Thu, 11 Jul 2019 08:37:55 +0000
-Message-ID: <MN2PR12MB2974F5A73CFA2BC7106E8C9C95F30@MN2PR12MB2974.namprd12.prod.outlook.com>
-References: <1562832050-28203-1-git-send-email-tianci.yin@amd.com>,
- <CH2PR12MB3767908A917424D54CDC6CDAFEF30@CH2PR12MB3767.namprd12.prod.outlook.com>
-In-Reply-To: <CH2PR12MB3767908A917424D54CDC6CDAFEF30@CH2PR12MB3767.namprd12.prod.outlook.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 028a2ade-9280-4ba0-e028-08d705db1214
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB2944; 
-x-ms-traffictypediagnostic: MN2PR12MB2944:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <MN2PR12MB2944192232A9A2771641CFF395F30@MN2PR12MB2944.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2512;
-x-forefront-prvs: 0095BCF226
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(136003)(346002)(376002)(366004)(39860400002)(199004)(13464003)(189003)(229853002)(8936002)(2501003)(54906003)(53936002)(54896002)(68736007)(316002)(3846002)(6436002)(105004)(6116002)(6306002)(11346002)(14444005)(99286004)(478600001)(74316002)(446003)(256004)(7736002)(110136005)(102836004)(71200400001)(33656002)(476003)(66946007)(6246003)(86362001)(8676002)(66446008)(81166006)(966005)(81156014)(4326008)(19627405001)(26005)(76116006)(52536014)(5660300002)(91956017)(14454004)(64756008)(9686003)(186003)(66066001)(71190400001)(55016002)(53546011)(76176011)(486006)(7696005)(236005)(6506007)(66556008)(2906002)(25786009)(66476007)(606006);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB2944;
- H:MN2PR12MB2974.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 9wGoue0oAoydvmtyw9wvLkNUELwCijM08am2IZ13BYT1sjRGxcLSeGi0EXewY1k4yqm+hBHkEukZ4HBVs5mRm6ZSmIg8AXZN4x0W1/CbJ/WT9cM3eNDvMeiOpUxHBdtWDaBQaEltvnmBdSX88t8C8mgdc35FrP9Yg6R/7qE8Vg/Bj/bvF6yPlS50cVoS5rP0m2a/2SAKeMsWCWGhS1ZIB5la7UTD6m6PwyxLAkjRqbDtzQda2zpCDe7Ctp6sjdRI0msi2TMQqLaQ3TYSohUf4n8XHDLYF6xLpysTePZhynAG9sN35iVcPNohFeoyYsmWAAfOOHOmOsUJreG3t3xRY9WIWWyre9ebFqq6ItZv5FPFkdqcx0dgCzS2N77ZTqOn3oaI25fVtW02PJOdiJXp7v9cfkgkEiFvq/ex9nSK1AA=
+Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B84766E161
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jul 2019 08:44:18 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by netline-mail3.netline.ch (Postfix) with ESMTP id C900A2B200F;
+ Thu, 11 Jul 2019 10:44:17 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
+Received: from netline-mail3.netline.ch ([127.0.0.1])
+ by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id YOCxTFFf1r2n; Thu, 11 Jul 2019 10:44:17 +0200 (CEST)
+Received: from thor (116.245.63.188.dynamic.wline.res.cust.swisscom.ch
+ [188.63.245.116])
+ by netline-mail3.netline.ch (Postfix) with ESMTPSA id 37F252AA047;
+ Thu, 11 Jul 2019 10:44:17 +0200 (CEST)
+Received: from localhost ([::1]) by thor with esmtp (Exim 4.92)
+ (envelope-from <michel@daenzer.net>)
+ id 1hlUgU-0006LM-LD; Thu, 11 Jul 2019 10:44:10 +0200
+Subject: Re: [PATCH 1/3] drm/amdgpu: Add flag for allocating memory for
+ sensitive data
+To: "Kuehling, Felix" <Felix.Kuehling@amd.com>
+References: <20190709053222.22588-1-Felix.Kuehling@amd.com>
+ <b1a0638a-4be3-0a7b-7d29-309942f24263@daenzer.net>
+ <da90e4c0-067b-2ffe-01df-f59c2b7ec556@amd.com>
+ <519e26e8-c363-2b4c-756c-d87fbe2543d9@daenzer.net>
+ <11769749-a0de-e121-e0f6-eeba7bae58e2@amd.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Openpgp: preference=signencrypt
+Autocrypt: addr=michel@daenzer.net; prefer-encrypt=mutual; keydata=
+ mQGiBDsehS8RBACbsIQEX31aYSIuEKxEnEX82ezMR8z3LG8ktv1KjyNErUX9Pt7AUC7W3W0b
+ LUhu8Le8S2va6hi7GfSAifl0ih3k6Bv1Itzgnd+7ZmSrvCN8yGJaHNQfAevAuEboIb+MaVHo
+ 9EMJj4ikOcRZCmQWw7evu/D9uQdtkCnRY9iJiAGxbwCguBHtpoGMxDOINCr5UU6qt+m4O+UD
+ /355ohBBzzyh49lTj0kTFKr0Ozd20G2FbcqHgfFL1dc1MPyigej2gLga2osu2QY0ObvAGkOu
+ WBi3LTY8Zs8uqFGDC4ZAwMPoFy3yzu3ne6T7d/68rJil0QcdQjzzHi6ekqHuhst4a+/+D23h
+ Za8MJBEcdOhRhsaDVGAJSFEQB1qLBACOs0xN+XblejO35gsDSVVk8s+FUUw3TSWJBfZa3Imp
+ V2U2tBO4qck+wqbHNfdnU/crrsHahjzBjvk8Up7VoY8oT+z03sal2vXEonS279xN2B92Tttr
+ AgwosujguFO/7tvzymWC76rDEwue8TsADE11ErjwaBTs8ZXfnN/uAANgPLQjTWljaGVsIERh
+ ZW56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD6IXgQTEQIAHgUCQFXxJgIbAwYLCQgHAwIDFQID
+ AxYCAQIeAQIXgAAKCRBaga+OatuyAIrPAJ9ykonXI3oQcX83N2qzCEStLNW47gCeLWm/QiPY
+ jqtGUnnSbyuTQfIySkK5AQ0EOx6FRRAEAJZkcvklPwJCgNiw37p0GShKmFGGqf/a3xZZEpjI
+ qNxzshFRFneZze4f5LhzbX1/vIm5+ZXsEWympJfZzyCmYPw86QcFxyZflkAxHx9LeD+89Elx
+ bw6wT0CcLvSv8ROfU1m8YhGbV6g2zWyLD0/naQGVb8e4FhVKGNY2EEbHgFBrAAMGA/0VktFO
+ CxFBdzLQ17RCTwCJ3xpyP4qsLJH0yCoA26rH2zE2RzByhrTFTYZzbFEid3ddGiHOBEL+bO+2
+ GNtfiYKmbTkj1tMZJ8L6huKONaVrASFzLvZa2dlc2zja9ZSksKmge5BOTKWgbyepEc5qxSju
+ YsYrX5xfLgTZC5abhhztpYhGBBgRAgAGBQI7HoVFAAoJEFqBr45q27IAlscAn2Ufk2d6/3p4
+ Cuyz/NX7KpL2dQ8WAJ9UD5JEakhfofed8PSqOM7jOO3LCA==
+Message-ID: <3e85390b-1512-d504-26da-780afd84c8a8@daenzer.net>
+Date: Thu, 11 Jul 2019 10:44:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 028a2ade-9280-4ba0-e028-08d705db1214
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jul 2019 08:37:55.3680 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tiancyin@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB2944
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+0puilyZir9b9x9TElc6FjRLh1o29yHjIaLRZBeEGdo=;
- b=o4ULQKe0+4n+wHlRjIS+i9bPmNw8GGUiW+QrxBH2JHKMzUL1wuUv9SvjTJ5JCcq4PA4BLVrLYx2Qxo/bxbSJAPWv0yAQ/0bOciPXfsANRMIClWIS89jFY+DUvS317KsfpT20X14yBFSk/GCAkEgrcFHVbclCoBnl82kPWAugTjU=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Tianci.Yin@amd.com; 
+In-Reply-To: <11769749-a0de-e121-e0f6-eeba7bae58e2@amd.com>
+Content-Language: en-CA
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -86,182 +72,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Xiao, Jack" <Jack.Xiao@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>,
- "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
-Content-Type: multipart/mixed; boundary="===============0507021710=="
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0507021710==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB2974F5A73CFA2BC7106E8C9C95F30MN2PR12MB2974namp_"
-
---_000_MN2PR12MB2974F5A73CFA2BC7106E8C9C95F30MN2PR12MB2974namp_
-Content-Type: text/plain; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks Feifei and Xiaojie!
-________________________________
-From: Xu, Feifei
-Sent: Thursday, July 11, 2019 16:28
-To: Yin, Tianci (Rico); amd-gfx@lists.freedesktop.org
-Cc: Xiao, Jack; Yuan, Xiaojie; Yin, Tianci (Rico); Zhang, Hawking
-Subject: RE: [PATCH] drm/amdgpu/discovery: fix DCE_HWIP mapping error in hw=
-_id_map array
-
-Reviewed-by: Feifei Xu <Feifei.Xu@amd.com>
-
-Regards,
-Feifei
-
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Tianci Y=
-in
-Sent: 2019=1B$BG/=1B(B7=1B$B7n=1B(B11=1B$BF|=1B(B 16:01
-To: amd-gfx@lists.freedesktop.org
-Cc: Xiao, Jack <Jack.Xiao@amd.com>; Yuan, Xiaojie <Xiaojie.Yuan@amd.com>; Y=
-in, Tianci (Rico) <Tianci.Yin@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.c=
-om>
-Subject: [PATCH] drm/amdgpu/discovery: fix DCE_HWIP mapping error in hw_id_=
-map array
-
-From: tiancyin <tianci.yin@amd.com>
-
-ID of DCE_HWIP from vbios is DMU_HWID,
-mismatch cause null pointer crash in navi10 modprobe.
-
-Change-Id: I3be363cf5248de904b3bdae2f34d3bbe0bbbc07d
-Signed-off-by: tiancyin <tianci.yin@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_discovery.c
-index e049ae6..1481899 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -123,7 +123,7 @@ static int hw_id_map[MAX_HWIP] =3D {
-         [UVD_HWIP]      =3D UVD_HWID,
-         [VCE_HWIP]      =3D VCE_HWID,
-         [DF_HWIP]       =3D DF_HWID,
--       [DCE_HWIP]      =3D DCEAZ_HWID,
-+       [DCE_HWIP]      =3D DMU_HWID,
-         [OSSSYS_HWIP]   =3D OSSSYS_HWID,
-         [SMUIO_HWIP]    =3D SMUIO_HWID,
-         [PWR_HWIP]      =3D PWR_HWID,
---
-2.7.4
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_MN2PR12MB2974F5A73CFA2BC7106E8C9C95F30MN2PR12MB2974namp_
-Content-Type: text/html; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-2022-=
-jp">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks Feifei and Xiaojie!<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Xu, Feifei<br>
-<b>Sent:</b> Thursday, July 11, 2019 16:28<br>
-<b>To:</b> Yin, Tianci (Rico); amd-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> Xiao, Jack; Yuan, Xiaojie; Yin, Tianci (Rico); Zhang, Hawking<br=
->
-<b>Subject:</b> RE: [PATCH] drm/amdgpu/discovery: fix DCE_HWIP mapping erro=
-r in hw_id_map array</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Reviewed-by: Feifei Xu &lt;Feifei.Xu@amd.com&gt;<b=
-r>
-<br>
-Regards,<br>
-Feifei<br>
-<br>
------Original Message-----<br>
-From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; On Behalf Of Ti=
-anci Yin<br>
-Sent: 2019=1B$BG/=1B(B7=1B$B7n=1B(B11=1B$BF|=1B(B 16:01<br>
-To: amd-gfx@lists.freedesktop.org<br>
-Cc: Xiao, Jack &lt;Jack.Xiao@amd.com&gt;; Yuan, Xiaojie &lt;Xiaojie.Yuan@am=
-d.com&gt;; Yin, Tianci (Rico) &lt;Tianci.Yin@amd.com&gt;; Zhang, Hawking &l=
-t;Hawking.Zhang@amd.com&gt;<br>
-Subject: [PATCH] drm/amdgpu/discovery: fix DCE_HWIP mapping error in hw_id_=
-map array<br>
-<br>
-From: tiancyin &lt;tianci.yin@amd.com&gt;<br>
-<br>
-ID of DCE_HWIP from vbios is DMU_HWID,<br>
-mismatch cause null pointer crash in navi10 modprobe.<br>
-<br>
-Change-Id: I3be363cf5248de904b3bdae2f34d3bbe0bbbc07d<br>
-Signed-off-by: tiancyin &lt;tianci.yin@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 &#43;-<br>
-&nbsp;1 file changed, 1 insertion(&#43;), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_discovery.c<br>
-index e049ae6..1481899 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
-@@ -123,7 &#43;123,7 @@ static int hw_id_map[MAX_HWIP] =3D {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [UVD_HWIP]&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; =3D UVD_HWID,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [VCE_HWIP]&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; =3D VCE_HWID,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DF_HWIP]&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; =3D DF_HWID,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DCE_HWIP]&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; =3D DCEAZ_HWID,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DCE_HWIP]&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; =3D DMU_HWID,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [OSSSYS_HWIP]&nbsp;&nbsp; =
-=3D OSSSYS_HWID,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [SMUIO_HWIP]&nbsp;&nbsp;&n=
-bsp; =3D SMUIO_HWID,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [PWR_HWIP]&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; =3D PWR_HWID,<br>
--- <br>
-2.7.4<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_MN2PR12MB2974F5A73CFA2BC7106E8C9C95F30MN2PR12MB2974namp_--
-
---===============0507021710==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0507021710==--
+T24gMjAxOS0wNy0xMCA4OjU4IHAubS4sIEt1ZWhsaW5nLCBGZWxpeCB3cm90ZToKPiBPbiAyMDE5
+LTA3LTEwIDM6MjIgYS5tLiwgTWljaGVsIETDpG56ZXIgd3JvdGU6Cj4+IE9uIDIwMTktMDctMDkg
+OTowMCBwLm0uLCBLdWVobGluZywgRmVsaXggd3JvdGU6Cj4+PiBPbiAyMDE5LTA3LTA5IDY6MzQg
+YS5tLiwgTWljaGVsIETDpG56ZXIgd3JvdGU6Cj4+Pj4gT24gMjAxOS0wNy0wOSA3OjMyIGEubS4s
+IEt1ZWhsaW5nLCBGZWxpeCB3cm90ZToKPj4+Pj4gVGhpcyBtZW1vcnkgYWxsb2NhdGlvbiBmbGFn
+IHdpbGwgYmUgdXNlZCB0byBpbmRpY2F0ZSBCT3MgY29udGFpbmluZwo+Pj4+PiBzZW5zaXRpdmUg
+ZGF0YSB0aGF0IHNob3VsZCBub3QgYmUgbGVha2VkIHRvIG90aGVyIHByb2Nlc3Nlcy4KPj4+Pj4K
+Pj4+Pj4gU2lnbmVkLW9mZi1ieTogRmVsaXggS3VlaGxpbmcgPEZlbGl4Lkt1ZWhsaW5nQGFtZC5j
+b20+Cj4+Pj4+IC0tLQo+Pj4+PiAgICBpbmNsdWRlL3VhcGkvZHJtL2FtZGdwdV9kcm0uaCB8IDQg
+KysrKwo+Pj4+PiAgICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspCj4+Pj4+Cj4+Pj4+
+IGRpZmYgLS1naXQgYS9pbmNsdWRlL3VhcGkvZHJtL2FtZGdwdV9kcm0uaCBiL2luY2x1ZGUvdWFw
+aS9kcm0vYW1kZ3B1X2RybS5oCj4+Pj4+IGluZGV4IDYxODcwNDc4YmM5Yy4uNTg2NTljMjhjMjZl
+IDEwMDY0NAo+Pj4+PiAtLS0gYS9pbmNsdWRlL3VhcGkvZHJtL2FtZGdwdV9kcm0uaAo+Pj4+PiAr
+KysgYi9pbmNsdWRlL3VhcGkvZHJtL2FtZGdwdV9kcm0uaAo+Pj4+PiBAQCAtMTMxLDYgKzEzMSwx
+MCBAQCBleHRlcm4gIkMiIHsKPj4+Pj4gICAgICogZm9yIHRoZSBzZWNvbmQgcGFnZSBvbndhcmQg
+c2hvdWxkIGJlIHNldCB0byBOQy4KPj4+Pj4gICAgICovCj4+Pj4+ICAgICNkZWZpbmUgQU1ER1BV
+X0dFTV9DUkVBVEVfTVFEX0dGWDkJCSgxIDw8IDgpCj4+Pj4+ICsvKiBGbGFnIHRoYXQgQk8gbWF5
+IGNvbnRhaW4gc2Vuc2l0aXZlIGRhdGEgdGhhdCBtdXN0IGJlIGNsZWFyZWQgYmVmb3JlCj4+Pj4+
+ICsgKiByZWxlYXNpbmcgdGhlIG1lbW9yeQo+Pj4+PiArICovCj4+Pj4+ICsjZGVmaW5lIEFNREdQ
+VV9HRU1fQ1JFQVRFX1ZSQU1fU0VOU0lUSVZFCSgxIDw8IDkpCj4+Pj4+ICAgIAo+Pj4+PiAgICBz
+dHJ1Y3QgZHJtX2FtZGdwdV9nZW1fY3JlYXRlX2luICB7Cj4+Pj4+ICAgIAkvKiogdGhlIHJlcXVl
+c3RlZCBtZW1vcnkgc2l6ZSAqLwo+Pj4+Pgo+Pj4+IFRoaXMgZmxhZyBlc3NlbnRpYWxseSBtZWFu
+cyAiUGxlYXNlIGRvbid0IGxlYWsgbXkgQk8gY29udGVudHMiLgo+Pj4+IFNpbWlsYXJseSwgQU1E
+R1BVX0dFTV9DUkVBVEVfVlJBTV9DTEVBUkVEIGVzc2VudGlhbGx5IG1lYW5zICJQbGVhc2UKPj4+
+PiBkb24ndCBsZXQgbWUgc2VlIHByZXZpb3VzIG1lbW9yeSBjb250ZW50cyIuCj4+Pj4KPj4+PiBJ
+J2QgYXJndWUgdGhhdCBuZWl0aGVyIGZsYWcgc2hvdWxkIHJlYWxseSBiZSBuZWVkZWQ7IEJPIGNv
+bnRlbnRzCj4+Pj4gc2hvdWxkbid0IGJlIGxlYWtlZCBieSBkZWZhdWx0Lgo+Pj4gTXkgY29uY2x1
+c2lvbiBmcm9tIHByZXZpb3VzIGRpc2N1c3Npb25zIHdhcyB0aGF0IENSRUFURV9WUkFNX0NMRUFS
+RUQgaGFzCj4+PiBubyBzZWN1cml0eSBpbXBsaWNhdGlvbnMuIEl0J3MgYmFzaWNhbGx5IGNvbXBs
+ZXRlbHkgaW5lZmZlY3RpdmUgYXMgYQo+Pj4gc2VjdXJpdHkgbWVhc3VyZS4KPj4gQWJzb2x1dGVs
+eSwgd2hpY2ggaXMgd2h5IEkgYXJndWVkIGFnYWluc3QgaXQgd2hlbiBpdCB3YXMgcHJvcG9zZWQu
+Cj4+Cj4+PiBJdCdzIG1vcmUgYSBjb252ZW5pZW5jZSBmZWF0dXJlLiBUaGVyZWZvcmUgSSB0aGlu
+ayBpdCBzdGlsbCBoYXMgYSBwbGFjZQo+Pj4gYXMgdGhhdC4KPj4gSXQnZCBiZSBhIG5vLW9wIGlm
+IG1lbW9yeSB3YXMgYWx3YXlzIGNsZWFyZWQuIDopCj4+Cj4+Cj4+PiBJJ2QgYWdyZWUgb24gcHJp
+bmNpcGxlIHRoYXQgZGF0YSBzaG91bGRuJ3QgYmUgbGVha2VkIGJ5IGRlZmF1bHQsIGJ1dCBpdAo+
+Pj4gaGFzIGJlZW4gdGhlIGRlZmF1bHQgZm9yIGEgbG9uZyB0aW1lLiBNeSBpbXByZXNzaW9uIHdh
+cyB0aGF0IGdyYXBoaWNzCj4+PiBndXlzIGNhcmVkIG1vcmUgYWJvdXQgcGVyZm9ybWFuY2UgdGhh
+biBzZWN1cml0eS4gU28gY2hhbmdpbmcgdGhlIGRlZmF1bHQKPj4+IG1heSBiZSBhIGhhcmQgc2Vs
+bC4gT24gdGhlIGNvbXB1dGUgc2lkZSB3ZSBhbHJlYWR5IHRvb2sgYSBiaWcKPj4+IHBlcmZvcm1h
+bmNlIGhpdCBieSBjbGVhcmluZyBhbGwgb3VyIFZSQU0sIHNvIHRoaXMgY2hhbmdlIHdvdWxkIGJl
+IGFuCj4+PiBpbXByb3ZlbWVudCBmb3IgdXMuIFRoZXJlZm9yZSBJIHRoaW5rIGl0IHN0aWxsIG1h
+a2VzIHNlbnNlIHRvIGxldCB0aGUKPj4+IGFwcGxpY2F0aW9uIGNob29zZS4KPj4gV2hhdCBleGFj
+dGx5IGNvdWxkIHVzZXJzcGFjZSBiZSBhbGxvd2VkIHRvIGNob29zZSB0aG91Z2g/IEkgY2FuIG9u
+bHkKPj4gdGhpbmsgb2YgZGlzYWJsaW5nIHRoZSBjbGVhcmluZyBvZiBtZW1vcnkgaXQgYWxsb2Nh
+dGVzICgiUGxlYXNlIGxlYWsgbXkKPj4gQk8gY29udGVudHMiKSwgd2hpY2ggc2VlbXMgb2YgcmF0
+aGVyIGR1YmlvdXMgdmFsdWUuCj4gCj4gSSdtIG5vdCBpbnNpc3RpbmcgdG8gbGVhdmUgaXQgdG8g
+dXNlciBtb2RlLiBCdXQgSSB0aGluayBpdCBtYWtlcyBzZW5zZSAKPiB0byBoYXZlIHRoZSBjaG9p
+Y2UgcGVyIEJPLiBUaGUgR0VNIGlvY3RsIGNvdWxkIHNldCB0aGUgZmxhZyBieSBkZWZhdWx0IAo+
+IGZvciBhbGwgdXNlciBtb2RlIGFsbG9jYXRpb25zLiBCdXQgc29tZSBrZXJuZWwgbW9kZSBCT3Mg
+bWF5IG5vdCBuZWVkIGl0LiAKPiBFLmcuIGZpcm13YXJlLCBwYWdlIHRhYmxlcywgZXRjLgoKTGVh
+a2luZyBwYWdlIHRhYmxlIGNvbnRlbnRzIHNvdW5kcyByaXNreSB0byBtZS4gVGhlcmUgbWF5IGJl
+IG90aGVyIGNhc2VzCndoZXJlIGl0J3MgcmVhbGx5IG5vdCBuZWVkZWQsIGJ1dCBpdCB0ZW5kcyB0
+byBiZSBoYXJkIHRvIHByZWRpY3QgaG93CmxlYWtlZCBkYXRhIGNvdWxkIGJlIGV4cGxvaXRlZC4K
+Cgo+IFRoZXJlIGFyZSBvdGhlciBBTURHUFVfR0VNX0NSRUFURV8gZmxhZ3MgdGhhdCBkb24ndCBt
+YWtlIHNlbnNlIGZvciB1c2VyIAo+IG1vZGUgdG8gY2hvb3NlLiBUaGlzIGp1c3QgYWRkcyBvbmUg
+bW9yZS4KCkFzIGEgZ2VuZXJhbCBub3RlIG5vdCBzcGVjaWZpYyB0byB0aGlzIHBhdGNoLCBpdCB3
+b3VsZCBiZSBiZXR0ZXIgaWYgc3VjaApmbGFncyB3ZXJlbid0IGluIHRoZSBVQVBJIGhlYWRlciAo
+YW5kIG1heWJlIG5vdCBuYW1lZCBBTURHUFVfR0VNXyopLgoKCi0tIApFYXJ0aGxpbmcgTWljaGVs
+IETDpG56ZXIgICAgICAgICAgICAgICB8ICAgICAgICAgICAgICBodHRwczovL3d3dy5hbWQuY29t
+CkxpYnJlIHNvZnR3YXJlIGVudGh1c2lhc3QgICAgICAgICAgICAgfCAgICAgICAgICAgICBNZXNh
+IGFuZCBYIGRldmVsb3BlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
