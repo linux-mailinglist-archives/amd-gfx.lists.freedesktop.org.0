@@ -2,35 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B585968A3F
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jul 2019 15:10:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA27692D5
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jul 2019 16:40:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D682895B5;
-	Mon, 15 Jul 2019 13:10:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A74089919;
+	Mon, 15 Jul 2019 14:40:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11735894E7
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jul 2019 13:10:24 +0000 (UTC)
-Received: from rabammel.molgen.mpg.de (rabammel.molgen.mpg.de [141.14.30.220])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128
- bits)) (No client certificate requested)
- (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 05B0E206695B3;
- Mon, 15 Jul 2019 15:10:22 +0200 (CEST)
-Subject: Re: [PATCH] drm/amd/display: Remove check for 0 kHz clock values
-To: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
- Alexander Deucher <Alexander.Deucher@amd.com>,
- Christian Koenig <Christian.Koenig@amd.com>
-References: <32619ed4-8a27-4e9c-5b99-ba826f1d163e@molgen.mpg.de>
- <36b486b8-05e6-afb3-f544-5ec1d32a4aa2@amd.com>
-From: Paul Menzel <pmenzel+amd-gfx@molgen.mpg.de>
-Message-ID: <f7e7e5c8-79d5-ec96-08f9-d37a86a5a876@molgen.mpg.de>
-Date: Mon, 15 Jul 2019 15:10:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+ (mail-eopbgr800080.outbound.protection.outlook.com [40.107.80.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B09589919
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jul 2019 14:40:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bPJBo5kRPSglr+KONa9Zs7Xv6BFc4swnZJm+a41CNCn+uTlltOZpI3Avsc1Xgp1GjRBMt7yMpTa45Z5+CFsRtesS60OK6rq7DyjEKBNBggoGgft7+youNtQJDNn4BdNVDWJ4UpEhqR7iql1oUHp4Zos3KXfFwfJQtl6fB+LNbBsotNFKSYcCfWvwqmWjDdYfmuYcwUvyIaw+eGkGeVPIhwauMRgDhAcSogA+k/3dvd0tcKd5v9J1reoxlIDyr+uvmiJWa+9zMcTqNBse8XXc9kKna9KcURA3NtfzmXPHAn43MZNazYRbu0d3G7AYGo7gKLlD/04nnKEutVW7Qi6AuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SfYktkw2creDWQDpziZgf7hu0Q7R7UnwhrFV8PKakpg=;
+ b=b4YLGhEy/LGO31ZIWDxoGVM+09/t+2BPcjzA2icrUjPocoMefe3+vXwNfkAviL/JvrCLXg7UXkmv8ElkaMeRPsDAsOQeOYIVVT0F5ayT5yhVuEN67zYC4jbUpeHfiJLjPYkUFNZDSIJxd4NYk9EEdYO0oBWQsKmm48VHdNel72uz/qu9XTyNY+uth3Tg9Ges5WhjPiadnRU7sjTc2XUtM/0cmsy4FnsZqqH0MZP0XPAvnk1D4nH3Aw6OGNdwBgwEpvvbTKijVfF/Ar69maULBKNsNo2lTyNr7srITaZ6vm6kvnneuMJEdZxjlfoo9lUeVGiu/U79ADf4BawUFNzsUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
+ header.d=amd.com;arc=none
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
+ BN6PR12MB1315.namprd12.prod.outlook.com (10.168.228.136) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2073.14; Mon, 15 Jul 2019 14:40:25 +0000
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::689d:2dcb:e0f7:bd8c]) by BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::689d:2dcb:e0f7:bd8c%4]) with mapi id 15.20.2073.012; Mon, 15 Jul 2019
+ 14:40:25 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Russell, Kent" <Kent.Russell@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu: Fix Vega20 Perf counter for pcie_bw
+Thread-Topic: [PATCH] drm/amdgpu: Fix Vega20 Perf counter for pcie_bw
+Thread-Index: AQHVOwx95KoFcK6U40SzCiGlQLiCGabLwE2k
+Date: Mon, 15 Jul 2019 14:40:25 +0000
+Message-ID: <BN6PR12MB1809FE31C670FE490CDCE46FF7CF0@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <20190715125423.30613-1-kent.russell@amd.com>
+In-Reply-To: <20190715125423.30613-1-kent.russell@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [71.219.21.119]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a8315721-8d10-4949-47cf-08d709325fce
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1315; 
+x-ms-traffictypediagnostic: BN6PR12MB1315:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BN6PR12MB1315FA18E21D3E86C1801F3EF7CF0@BN6PR12MB1315.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3968;
+x-forefront-prvs: 00997889E7
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(376002)(346002)(366004)(39860400002)(396003)(189003)(199004)(8936002)(53936002)(71200400001)(76176011)(71190400001)(476003)(7696005)(606006)(102836004)(186003)(486006)(256004)(2906002)(52536014)(8676002)(6506007)(66066001)(53546011)(99286004)(6246003)(25786009)(316002)(446003)(6436002)(14454004)(86362001)(229853002)(19627405001)(74316002)(5660300002)(110136005)(26005)(54896002)(6306002)(6116002)(66446008)(66476007)(66556008)(64756008)(9686003)(2501003)(11346002)(3846002)(55016002)(236005)(76116006)(66946007)(7736002)(68736007)(33656002)(81156014)(81166006)(966005)(478600001)(105004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1315;
+ H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: tWXgXx48PLn73HP/9rEPMe3u3m4wdj5l8bB0zjOVudu+RYdjeDaeS7Ew9O7mUZFv/BhlJ+74vPw9WcHDkuuZxyD2cgxMedjPqXd8wjPW0L3dz5rl+gnWoo7ggGNjraScnx3Ei8wE9aFXqBP7S0oWcGX8lKGsYZzyrOk8Jm0nbtwfSsQYIM+z6C/Rge5gNp5y+Bjy67hct3VK9ln6StQYiCWYmpLPX54msfrtjtgkc46TPBSoGrzQm/g7L3A6pSIApzzef/095FMhAKMqf7DUCKoNOKr71Sr8VKAYRSYYcjhDZTr+b5oOqKuwb2sYuXu4d3htY+4McK5r5ghAzNhAd1sItPlpoV3Cp9Y4KS+xwPyvuGomWeBNoUuRlgFWTlARYfKztubFRl70yR61mVOLeBfliyj3phWy4zbAeBTqCSA=
 MIME-Version: 1.0
-In-Reply-To: <36b486b8-05e6-afb3-f544-5ec1d32a4aa2@amd.com>
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a8315721-8d10-4949-47cf-08d709325fce
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2019 14:40:25.4914 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1315
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SfYktkw2creDWQDpziZgf7hu0Q7R7UnwhrFV8PKakpg=;
+ b=y7qK5kJKKZ6HTsXYPEAuztJzqbJKVU0hkLQV07AYSDRP6pQ/BrNk0sjoiD5Grw4XLBDLbB0C89lsPI7cAxGagFPbqtbTm7ZuFWoUZZAGknzuluuriFENiFMOykLIjgzH8OBTyEopyotpusY6QkZqnGRVd29OVotRMCH6wx/+q5g=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -42,216 +93,172 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harry Wentland <Harry.Wentland@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0625068374=="
+Content-Type: multipart/mixed; boundary="===============1709233919=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a cryptographically signed message in MIME format.
-
---===============0625068374==
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256; boundary="------------ms060706010304050202040608"
-
-This is a cryptographically signed message in MIME format.
-
---------------ms060706010304050202040608
-Content-Type: text/plain; charset=utf-8
+--===============1709233919==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB1809FE31C670FE490CDCE46FF7CF0BN6PR12MB1809namp_"
+
+--_000_BN6PR12MB1809FE31C670FE490CDCE46FF7CF0BN6PR12MB1809namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Dear Nicholas,
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Russell,=
+ Kent <Kent.Russell@amd.com>
+Sent: Monday, July 15, 2019 8:54 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Russell, Kent
+Subject: [PATCH] drm/amdgpu: Fix Vega20 Perf counter for pcie_bw
 
+The perf counter for Vega20 is 108, instead of 104 which it was on all
+previous GPUs, so add a check to use the appropriate value.
 
-On 7/15/19 2:57 PM, Kazlauskas, Nicholas wrote:
-> On 7/15/19 6:34 AM, Paul Menzel wrote:
->> From 09c1952466752033722b02d9c7e5532e1982f6d9 Mon Sep 17 00:00:00 2001=
+Change-Id: Id5b5026a03b09d8b9d52dda85e17ed5acd818912
+Signed-off-by: Kent Russell <kent.russell@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/soc15.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
->> From: Paul Menzel <pmenzel@molgen.mpg.de>
->> Date: Sat, 13 Jul 2019 20:33:49 +0200
->>
->> This basically reverts commit 00893681a0ff4 (drm/amd/display: Reject
->> PPLib clock values if they are invalid).
->>
->> 0 kHz values are a thing on at least the boards below.
->>
->> 1.  MSI MS-7A37/B350M MORTAR (MS-7A37), BIOS 1.G1 05/17/2018
->> 2.  MSI B450M Mortar, 2400G on 4.19.8
->> 3.  Gigabyte Technology Co., Ltd. X470 AORUS ULTRA GAMING/X470 AORUS
->>      ULTRA GAMING-CF, BIOS F30 04/16/2019
->>
->> Asserting instead of giving a useful error message to the user, so the=
-y
->> can understand what is going on and how to possible fix things, might =
-be
->> good for development, but is a bad user experience, so should not be o=
-n
->> production systems. So, remove the check for now.
->>
->> Fixes: https://bugs.freedesktop.org/show_bug.cgi?id=3D107296
->> Tested: MSI MS-7A37/B350M MORTAR (MS-7A37)
->> Signed-off-by: Paul Menzel <pmenzel@molgen.mpg.de>
->=20
-> The two assertions should probably just be replaced with=20
-> DC_LOG_DEBUG(...) instead - this will drop the callstack on boot for=20
-> production systems.
->=20
-> Dropping the whole validation also means that we're going to be taking =
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgp=
+u/soc15.c
+index 1e424d918334..852ad0a07995 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -716,9 +716,15 @@ static void soc15_get_pcie_usage(struct amdgpu_device =
+*adev, uint64_t *count0,
+                 return;
 
-> the table as-is and overriding the defaults - which isn't something we'=
-d=20
-> actually want to do.
->=20
-> I do think it's fine to just reduce this to a debug message since you'd=
-=20
-> see this on any 2400G/AM4 (as far as I'm aware), and only for the fCLK =
+         /* Set the 2 events that we wish to watch, defined above */
+-       /* Reg 40 is # received msgs, Reg 104 is # of posted requests sent =
+*/
++       /* Reg 40 is # received msgs */
+         perfctr =3D REG_SET_FIELD(perfctr, PCIE_PERF_CNTL_TXCLK, EVENT0_SE=
+L, 40);
+-       perfctr =3D REG_SET_FIELD(perfctr, PCIE_PERF_CNTL_TXCLK, EVENT1_SEL=
+, 104);
++       /* Pre-VG20, Reg 104 is # of posted requests sent. On VG20 it's 108=
+ */
++       if (adev->asic_type =3D=3D CHIP_VEGA20)
++               perfctr =3D REG_SET_FIELD(perfctr, PCIE_PERF_CNTL_TXCLK,
++                                       EVENT1_SEL, 108);
++       else
++               perfctr =3D REG_SET_FIELD(perfctr, PCIE_PERF_CNTL_TXCLK,
++                                       EVENT1_SEL, 104);
 
-> table (the tables always come from PPLIB/SMU).
+         /* Write to enable desired perf counters */
+         WREG32_PCIE(smnPCIE_PERF_CNTL_TXCLK, perfctr);
+--
+2.17.1
 
-Where can I find more information on this for 2400G/AM4? What about
-2200(?) and so on?
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
-If it=E2=80=99s expected, that there is 0 kHz values in there, the code s=
-hould
-deal with that, and filter that out. I do not understand, that the whole
-table is invalidated and default values are used instead. That sounds
-buggy.
+--_000_BN6PR12MB1809FE31C670FE490CDCE46FF7CF0BN6PR12MB1809namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Russell, Kent &lt;Kent.Russel=
+l@amd.com&gt;<br>
+<b>Sent:</b> Monday, July 15, 2019 8:54 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org<br>
+<b>Cc:</b> Russell, Kent<br>
+<b>Subject:</b> [PATCH] drm/amdgpu: Fix Vega20 Perf counter for pcie_bw</fo=
+nt>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">The perf counter for Vega20 is 108, instead of 104=
+ which it was on all<br>
+previous GPUs, so add a check to use the appropriate value.<br>
+<br>
+Change-Id: Id5b5026a03b09d8b9d52dda85e17ed5acd818912<br>
+Signed-off-by: Kent Russell &lt;kent.russell@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/soc15.c | 10 &#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;--<br>
+&nbsp;1 file changed, 8 insertions(&#43;), 2 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgp=
+u/soc15.c<br>
+index 1e424d918334..852ad0a07995 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+@@ -716,9 &#43;716,15 @@ static void soc15_get_pcie_usage(struct amdgpu_dev=
+ice *adev, uint64_t *count0,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Set the 2 events that w=
+e wish to watch, defined above */<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Reg 40 is # received msgs, Reg 104=
+ is # of posted requests sent */<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Reg 40 is # received msgs */<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perfctr =3D REG_SET_FIELD(=
+perfctr, PCIE_PERF_CNTL_TXCLK, EVENT0_SEL, 40);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; perfctr =3D REG_SET_FIELD(perfctr, PC=
+IE_PERF_CNTL_TXCLK, EVENT1_SEL, 104);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Pre-VG20, Reg 104 is # of post=
+ed requests sent. On VG20 it's 108 */<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;asic_type =3D=3D CHI=
+P_VEGA20)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; perfctr =3D REG_SET_FIELD(perfctr, PCIE_PERF_CNTL_TXCLK,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; EVENT1_SEL, 108);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; perfctr =3D REG_SET_FIELD(perfctr, PCIE_PERF_CNTL_TXCLK,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; EVENT1_SEL, 104);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Write to enable desired=
+ perf counters */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_PCIE(smnPCIE_PERF_C=
+NTL_TXCLK, perfctr);<br>
+-- <br>
+2.17.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
+</body>
+</html>
 
-Kind regards,
+--_000_BN6PR12MB1809FE31C670FE490CDCE46FF7CF0BN6PR12MB1809namp_--
 
-Paul
-
-
->> ---
->>   drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c | 5 -----
->>   1 file changed, 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c b/driver=
-s/gpu/drm/amd/display/dc/calcs/dcn_calcs.c
->> index 1b4b51657f5e..edaaae5754fe 100644
->> --- a/drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c
->> +++ b/drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c
->> @@ -1362,11 +1362,6 @@ static bool verify_clock_values(struct dm_pp_cl=
-ock_levels_with_voltage *clks)
->>   	if (clks->num_levels =3D=3D 0)
->>   		return false;
->>  =20
->> -	for (i =3D 0; i < clks->num_levels; i++)
->> -		/* Ensure that the result is sane */
->> -		if (clks->data[i].clocks_in_khz =3D=3D 0)
->> -			return false;
->> -
->>   	return true;
->>   }
-
-
---------------ms060706010304050202040608
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCC
-EFowggUSMIID+qADAgECAgkA4wvV+K8l2YEwDQYJKoZIhvcNAQELBQAwgYIxCzAJBgNVBAYT
-AkRFMSswKQYDVQQKDCJULVN5c3RlbXMgRW50ZXJwcmlzZSBTZXJ2aWNlcyBHbWJIMR8wHQYD
-VQQLDBZULVN5c3RlbXMgVHJ1c3QgQ2VudGVyMSUwIwYDVQQDDBxULVRlbGVTZWMgR2xvYmFs
-Um9vdCBDbGFzcyAyMB4XDTE2MDIyMjEzMzgyMloXDTMxMDIyMjIzNTk1OVowgZUxCzAJBgNV
-BAYTAkRFMUUwQwYDVQQKEzxWZXJlaW4genVyIEZvZXJkZXJ1bmcgZWluZXMgRGV1dHNjaGVu
-IEZvcnNjaHVuZ3NuZXR6ZXMgZS4gVi4xEDAOBgNVBAsTB0RGTi1QS0kxLTArBgNVBAMTJERG
-Ti1WZXJlaW4gQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkgMjCCASIwDQYJKoZIhvcNAQEBBQAD
-ggEPADCCAQoCggEBAMtg1/9moUHN0vqHl4pzq5lN6mc5WqFggEcVToyVsuXPztNXS43O+FZs
-FVV2B+pG/cgDRWM+cNSrVICxI5y+NyipCf8FXRgPxJiZN7Mg9mZ4F4fCnQ7MSjLnFp2uDo0p
-eQcAIFTcFV9Kltd4tjTTwXS1nem/wHdN6r1ZB+BaL2w8pQDcNb1lDY9/Mm3yWmpLYgHurDg0
-WUU2SQXaeMpqbVvAgWsRzNI8qIv4cRrKO+KA3Ra0Z3qLNupOkSk9s1FcragMvp0049ENF4N1
-xDkesJQLEvHVaY4l9Lg9K7/AjsMeO6W/VRCrKq4Xl14zzsjz9AkH4wKGMUZrAcUQDBHHWekC
-AwEAAaOCAXQwggFwMA4GA1UdDwEB/wQEAwIBBjAdBgNVHQ4EFgQUk+PYMiba1fFKpZFK4OpL
-4qIMz+EwHwYDVR0jBBgwFoAUv1kgNgB5oKAia4zV8mHSuCzLgkowEgYDVR0TAQH/BAgwBgEB
-/wIBAjAzBgNVHSAELDAqMA8GDSsGAQQBga0hgiwBAQQwDQYLKwYBBAGBrSGCLB4wCAYGZ4EM
-AQICMEwGA1UdHwRFMEMwQaA/oD2GO2h0dHA6Ly9wa2kwMzM2LnRlbGVzZWMuZGUvcmwvVGVs
-ZVNlY19HbG9iYWxSb290X0NsYXNzXzIuY3JsMIGGBggrBgEFBQcBAQR6MHgwLAYIKwYBBQUH
-MAGGIGh0dHA6Ly9vY3NwMDMzNi50ZWxlc2VjLmRlL29jc3ByMEgGCCsGAQUFBzAChjxodHRw
-Oi8vcGtpMDMzNi50ZWxlc2VjLmRlL2NydC9UZWxlU2VjX0dsb2JhbFJvb3RfQ2xhc3NfMi5j
-ZXIwDQYJKoZIhvcNAQELBQADggEBAIcL/z4Cm2XIVi3WO5qYi3FP2ropqiH5Ri71sqQPrhE4
-eTizDnS6dl2e6BiClmLbTDPo3flq3zK9LExHYFV/53RrtCyD2HlrtrdNUAtmB7Xts5et6u5/
-MOaZ/SLick0+hFvu+c+Z6n/XUjkurJgARH5pO7917tALOxrN5fcPImxHhPalR6D90Bo0fa3S
-PXez7vTXTf/D6OWST1k+kEcQSrCFWMBvf/iu7QhCnh7U3xQuTY+8npTD5+32GPg8SecmqKc2
-2CzeIs2LgtjZeOJVEqM7h0S2EQvVDFKvaYwPBt/QolOLV5h7z/0HJPT8vcP9SpIClxvyt7bP
-ZYoaorVyGTkwggWNMIIEdaADAgECAgwcOtRQhH7u81j4jncwDQYJKoZIhvcNAQELBQAwgZUx
-CzAJBgNVBAYTAkRFMUUwQwYDVQQKEzxWZXJlaW4genVyIEZvZXJkZXJ1bmcgZWluZXMgRGV1
-dHNjaGVuIEZvcnNjaHVuZ3NuZXR6ZXMgZS4gVi4xEDAOBgNVBAsTB0RGTi1QS0kxLTArBgNV
-BAMTJERGTi1WZXJlaW4gQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkgMjAeFw0xNjExMDMxNTI0
-NDhaFw0zMTAyMjIyMzU5NTlaMGoxCzAJBgNVBAYTAkRFMQ8wDQYDVQQIDAZCYXllcm4xETAP
-BgNVBAcMCE11ZW5jaGVuMSAwHgYDVQQKDBdNYXgtUGxhbmNrLUdlc2VsbHNjaGFmdDEVMBMG
-A1UEAwwMTVBHIENBIC0gRzAyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnhx4
-59Lh4WqgOs/Md04XxU2yFtfM15ZuJV0PZP7BmqSJKLLPyqmOrADfNdJ5PIGBto2JBhtRRBHd
-G0GROOvTRHjzOga95WOTeura79T21FWwwAwa29OFnD3ZplQs6HgdwQrZWNi1WHNJxn/4mA19
-rNEBUc5urSIpZPvZi5XmlF3v3JHOlx3KWV7mUteB4pwEEfGTg4npPAJbp2o7arxQdoIq+Pu2
-OsvqhD7Rk4QeaX+EM1QS4lqd1otW4hE70h/ODPy1xffgbZiuotWQLC6nIwa65Qv6byqlIX0q
-Zuu99Vsu+r3sWYsL5SBkgecNI7fMJ5tfHrjoxfrKl/ErTAt8GQIDAQABo4ICBTCCAgEwEgYD
-VR0TAQH/BAgwBgEB/wIBATAOBgNVHQ8BAf8EBAMCAQYwKQYDVR0gBCIwIDANBgsrBgEEAYGt
-IYIsHjAPBg0rBgEEAYGtIYIsAQEEMB0GA1UdDgQWBBTEiKUH7rh7qgwTv9opdGNSG0lwFjAf
-BgNVHSMEGDAWgBST49gyJtrV8UqlkUrg6kviogzP4TCBjwYDVR0fBIGHMIGEMECgPqA8hjpo
-dHRwOi8vY2RwMS5wY2EuZGZuLmRlL2dsb2JhbC1yb290LWcyLWNhL3B1Yi9jcmwvY2Fjcmwu
-Y3JsMECgPqA8hjpodHRwOi8vY2RwMi5wY2EuZGZuLmRlL2dsb2JhbC1yb290LWcyLWNhL3B1
-Yi9jcmwvY2FjcmwuY3JsMIHdBggrBgEFBQcBAQSB0DCBzTAzBggrBgEFBQcwAYYnaHR0cDov
-L29jc3AucGNhLmRmbi5kZS9PQ1NQLVNlcnZlci9PQ1NQMEoGCCsGAQUFBzAChj5odHRwOi8v
-Y2RwMS5wY2EuZGZuLmRlL2dsb2JhbC1yb290LWcyLWNhL3B1Yi9jYWNlcnQvY2FjZXJ0LmNy
-dDBKBggrBgEFBQcwAoY+aHR0cDovL2NkcDIucGNhLmRmbi5kZS9nbG9iYWwtcm9vdC1nMi1j
-YS9wdWIvY2FjZXJ0L2NhY2VydC5jcnQwDQYJKoZIhvcNAQELBQADggEBABLpeD5FygzqOjj+
-/lAOy20UQOGWlx0RMuPcI4nuyFT8SGmK9lD7QCg/HoaJlfU/r78ex+SEide326evlFAoJXIF
-jVyzNltDhpMKrPIDuh2N12zyn1EtagqPL6hu4pVRzcBpl/F2HCvtmMx5K4WN1L1fmHWLcSap
-dhXLvAZ9RG/B3rqyULLSNN8xHXYXpmtvG0VGJAndZ+lj+BH7uvd3nHWnXEHC2q7iQlDUqg0a
-wIqWJgdLlx1Q8Dg/sodv0m+LN0kOzGvVDRCmowBdWGhhusD+duKV66pBl+qhC+4LipariWaM
-qK5ppMQROATjYeNRvwI+nDcEXr2vDaKmdbxgDVwwggWvMIIEl6ADAgECAgweKlJIhfynPMVG
-/KIwDQYJKoZIhvcNAQELBQAwajELMAkGA1UEBhMCREUxDzANBgNVBAgMBkJheWVybjERMA8G
-A1UEBwwITXVlbmNoZW4xIDAeBgNVBAoMF01heC1QbGFuY2stR2VzZWxsc2NoYWZ0MRUwEwYD
-VQQDDAxNUEcgQ0EgLSBHMDIwHhcNMTcxMTE0MTEzNDE2WhcNMjAxMTEzMTEzNDE2WjCBizEL
-MAkGA1UEBhMCREUxIDAeBgNVBAoMF01heC1QbGFuY2stR2VzZWxsc2NoYWZ0MTQwMgYDVQQL
-DCtNYXgtUGxhbmNrLUluc3RpdHV0IGZ1ZXIgbW9sZWt1bGFyZSBHZW5ldGlrMQ4wDAYDVQQL
-DAVNUElNRzEUMBIGA1UEAwwLUGF1bCBNZW56ZWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw
-ggEKAoIBAQDIh/UR/AX/YQ48VWWDMLTYtXjYJyhRHMc81ZHMMoaoG66lWB9MtKRTnB5lovLZ
-enTIUyPsCrMhTqV9CWzDf6v9gOTWVxHEYqrUwK5H1gx4XoK81nfV8oGV4EKuVmmikTXiztGz
-peyDmOY8o/EFNWP7YuRkY/lPQJQBeBHYq9AYIgX4StuXu83nusq4MDydygVOeZC15ts0tv3/
-6WmibmZd1OZRqxDOkoBbY3Djx6lERohs3IKS6RKiI7e90rCSy9rtidJBOvaQS9wvtOSKPx0a
-+2pAgJEVzZFjOAfBcXydXtqXhcpOi2VCyl+7+LnnTz016JJLsCBuWEcB3kP9nJYNAgMBAAGj
-ggIxMIICLTAJBgNVHRMEAjAAMA4GA1UdDwEB/wQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcD
-AgYIKwYBBQUHAwQwHQYDVR0OBBYEFHM0Mc3XjMLlhWpp4JufRELL4A/qMB8GA1UdIwQYMBaA
-FMSIpQfuuHuqDBO/2il0Y1IbSXAWMCAGA1UdEQQZMBeBFXBtZW56ZWxAbW9sZ2VuLm1wZy5k
-ZTB9BgNVHR8EdjB0MDigNqA0hjJodHRwOi8vY2RwMS5wY2EuZGZuLmRlL21wZy1nMi1jYS9w
-dWIvY3JsL2NhY3JsLmNybDA4oDagNIYyaHR0cDovL2NkcDIucGNhLmRmbi5kZS9tcGctZzIt
-Y2EvcHViL2NybC9jYWNybC5jcmwwgc0GCCsGAQUFBwEBBIHAMIG9MDMGCCsGAQUFBzABhido
-dHRwOi8vb2NzcC5wY2EuZGZuLmRlL09DU1AtU2VydmVyL09DU1AwQgYIKwYBBQUHMAKGNmh0
-dHA6Ly9jZHAxLnBjYS5kZm4uZGUvbXBnLWcyLWNhL3B1Yi9jYWNlcnQvY2FjZXJ0LmNydDBC
-BggrBgEFBQcwAoY2aHR0cDovL2NkcDIucGNhLmRmbi5kZS9tcGctZzItY2EvcHViL2NhY2Vy
-dC9jYWNlcnQuY3J0MEAGA1UdIAQ5MDcwDwYNKwYBBAGBrSGCLAEBBDARBg8rBgEEAYGtIYIs
-AQEEAwYwEQYPKwYBBAGBrSGCLAIBBAMGMA0GCSqGSIb3DQEBCwUAA4IBAQCQs6bUDROpFO2F
-Qz2FMgrdb39VEo8P3DhmpqkaIMC5ZurGbbAL/tAR6lpe4af682nEOJ7VW86ilsIJgm1j0ueY
-aOuL8jrN4X7IF/8KdZnnNnImW3QVni6TCcc+7+ggci9JHtt0IDCj5vPJBpP/dKXLCN4M+exl
-GXYpfHgxh8gclJPY1rquhQrihCzHfKB01w9h9tWZDVMtSoy9EUJFhCXw7mYUsvBeJwZesN2B
-fndPkrXx6XWDdU3S1LyKgHlLIFtarLFm2Hb5zAUR33h+26cN6ohcGqGEEzgIG8tXS8gztEaj
-1s2RyzmKd4SXTkKR3GhkZNVWy+gM68J7jP6zzN+cMYIDmjCCA5YCAQEwejBqMQswCQYDVQQG
-EwJERTEPMA0GA1UECAwGQmF5ZXJuMREwDwYDVQQHDAhNdWVuY2hlbjEgMB4GA1UECgwXTWF4
-LVBsYW5jay1HZXNlbGxzY2hhZnQxFTATBgNVBAMMDE1QRyBDQSAtIEcwMgIMHipSSIX8pzzF
-RvyiMA0GCWCGSAFlAwQCAQUAoIIB8TAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqG
-SIb3DQEJBTEPFw0xOTA3MTUxMzEwMjFaMC8GCSqGSIb3DQEJBDEiBCAYokpZ1nUTZcWCZP/p
-ZAttM83VMpjH6ygOgPbYghi3TzBsBgkqhkiG9w0BCQ8xXzBdMAsGCWCGSAFlAwQBKjALBglg
-hkgBZQMEAQIwCgYIKoZIhvcNAwcwDgYIKoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcG
-BSsOAwIHMA0GCCqGSIb3DQMCAgEoMIGJBgkrBgEEAYI3EAQxfDB6MGoxCzAJBgNVBAYTAkRF
-MQ8wDQYDVQQIDAZCYXllcm4xETAPBgNVBAcMCE11ZW5jaGVuMSAwHgYDVQQKDBdNYXgtUGxh
-bmNrLUdlc2VsbHNjaGFmdDEVMBMGA1UEAwwMTVBHIENBIC0gRzAyAgweKlJIhfynPMVG/KIw
-gYsGCyqGSIb3DQEJEAILMXygejBqMQswCQYDVQQGEwJERTEPMA0GA1UECAwGQmF5ZXJuMREw
-DwYDVQQHDAhNdWVuY2hlbjEgMB4GA1UECgwXTWF4LVBsYW5jay1HZXNlbGxzY2hhZnQxFTAT
-BgNVBAMMDE1QRyBDQSAtIEcwMgIMHipSSIX8pzzFRvyiMA0GCSqGSIb3DQEBAQUABIIBACCZ
-mHQnkKN2HHMCgWNsLbWXplJsQhw9ASy3q4fujiKPChX+k4bVtDorxARvIsWcvHttvHFDN4iL
-WEBaXfBXrtZH8ZhRHfE1Yw63u2krlwg6iXM8pnY6cmH9TuOqrZZPmn2bbVgVHOXI/d0u4CIt
-SqFV0onmgV1so8G7YWoRvr4jKmfVT+/72MZNh71xwUnsfdYzz/ou/1CjtymWAdmsNLHgE5kN
-U+zVtRkzOfgUAXTcH0EZbGSEq2JJAvvZ7PjJShdIRpJp7JNG5cuBw7D5aUkJnvDTSEnU4R+l
-VnhAjw/L/qWqAODkpfTObXcE5R1BPLeS1g7dzZ9wSZL0XoY3eXoAAAAAAAA=
---------------ms060706010304050202040608--
-
---===============0625068374==
+--===============1709233919==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -261,4 +268,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============0625068374==--
+--===============1709233919==--
