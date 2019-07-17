@@ -1,92 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A6AF6BDA5
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2019 15:51:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77C956BE33
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2019 16:27:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB876E1B2;
-	Wed, 17 Jul 2019 13:50:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9A096E1CE;
+	Wed, 17 Jul 2019 14:27:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr790057.outbound.protection.outlook.com [40.107.79.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA5E76E1B2
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 13:50:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e7vG4BPcqjcgY7gaoqnqEKPtWeICeN1JfmfsfnSEartrXq8wRxoPSLghLWE1ZOrDRmcaLW+G7wo9Cz0ITz5TkjXmnX+t8tOf4QYjo31qHxXI//8RMqpFax8dov0gs0am9VvwVbt08imrGkL3TnsawEeCCGonx9a3widyGvgsJvW9RKMqQirMKUmG9Lk/emc0nyPeQL8UtbiEbOtkammemb/S1f9u6T11LSB1mTbCrxSxcoDTPSSk+I2WlPZWOBjqnxRxcKQuSLO1bZI8ZeCk9hcWXvL4MPSHBWR0FP/7eoDH6Dn7D9zL7ytNrCXtkz31S9ZJ8TfSFiTzcP7Kz5UxQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rUNqq8dDJ1nVg0PkcO7nzvLCt+pAgMwuMVuPJHp/WWE=;
- b=g0zSthvfm7BYt110i9r3djluhi0w3eE2zaLm8hbnwP0FYv2ZbWjcbqojK1Xk0C2qwHNDBGFiqVtNt5JOTWxQoDbTYGoGFsKXYIeQT4bYVVcBgM1zyyjE0eKyBtf1r3f8tmWB2nNaQ6jB3ovVy8AwMNPVJdBo7dZuyKayvGwf9FPh3N80FX/nrZfL/EHhN5Fpnc4TC98KAFqoYw51+ly6lZzHkFDVXSMQHFYfHCGJvMGcQe/LpSs+5B625Xxy6f6y8eF5/efcatDPJQ3kjcUupcwbqCophgl4K0GvU0Bld+LFXMkFro5L0EPQah019zb6VBN91lSAxrwN82y3GQ+bpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
- header.d=amd.com;arc=none
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1937.namprd12.prod.outlook.com (10.175.102.19) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2073.14; Wed, 17 Jul 2019 13:50:48 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::689d:2dcb:e0f7:bd8c]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::689d:2dcb:e0f7:bd8c%4]) with mapi id 15.20.2073.012; Wed, 17 Jul 2019
- 13:50:48 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "StDenis, Tom" <Tom.StDenis@amd.com>, "Koenig, Christian"
- <Christian.Koenig@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amd/amdgpu: Fix offset for vmid selection in debugfs
- interface
-Thread-Topic: [PATCH] drm/amd/amdgpu: Fix offset for vmid selection in debugfs
- interface
-Thread-Index: AQHVO8kRvSSqzqpVH0SqsBcjPPwln6bNHEsAgAGmxACAABKamA==
-Date: Wed, 17 Jul 2019 13:50:47 +0000
-Message-ID: <BN6PR12MB1809B374579E8D82EBFCC151F7C90@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <20190716112434.29017-1-tom.stdenis@amd.com>
- <e6bc6d43-d4ac-467f-22b3-2be79619b93e@gmail.com>,
- <4d8fb065-f31b-d730-04d0-6c6e83b3a171@amd.com>
-In-Reply-To: <4d8fb065-f31b-d730-04d0-6c6e83b3a171@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [71.219.21.119]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8a4ed1b2-f17f-47a2-8383-08d70abdc5d5
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1937; 
-x-ms-traffictypediagnostic: BN6PR12MB1937:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BN6PR12MB1937621E6A2A19DE4B0B215BF7C90@BN6PR12MB1937.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3173;
-x-forefront-prvs: 01018CB5B3
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(346002)(366004)(396003)(39860400002)(376002)(189003)(199004)(606006)(3846002)(110136005)(74316002)(7736002)(76176011)(53936002)(66574012)(2906002)(76116006)(54896002)(71190400001)(6306002)(71200400001)(476003)(105004)(8676002)(6116002)(55016002)(446003)(14454004)(316002)(9686003)(11346002)(256004)(64756008)(66476007)(14444005)(66066001)(966005)(6506007)(53546011)(5660300002)(8936002)(66946007)(6246003)(66556008)(19627405001)(52536014)(33656002)(66446008)(236005)(25786009)(478600001)(6436002)(7696005)(86362001)(186003)(229853002)(26005)(486006)(68736007)(102836004)(2501003)(81156014)(99286004)(81166006);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1937;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: zt8dGxwPR95kvf+Hp0oPmHrlXh3f5L4U7cablf5nrq9m0srdzncBRcG8fo0U0nSiiuV5ZkJeulbUtkT8ZUggDmAoIxNhs4dy7q6x1uv4j0oUyWwq9ixYV7pVkY8JBNyneBsr1MjFBaBfGUyD5ZSOPDg/4gPan/k2/AJg9fLw8RgGmypjt+efWbu+/gtQR2M1tZnHl6ZHnFB2bZHd2f/cCvRRb9/AOFsWLszeeeNiWnguyHsk1QZCiVfmhxgCM8Op2upTwdTxO9girC7xJ9H0btLJ5yZkKVjkCUmAm6GnMeeSz84pwCMDA70NNhXpCx1rPj2wzyMqLpyP3Mp/yo1af2hmznX/0yOkAIA3D/epg/XF8hACfKuNk9Z4YYGlOyxy9FL/z5qWkRvlDa+sHFJNkm+yk9LDZaBy6vR0kbb/sZY=
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
+ [IPv6:2a00:1450:4864:20::241])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD69D6E1CE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 14:27:32 +0000 (UTC)
+Received: by mail-lj1-x241.google.com with SMTP id h10so23860579ljg.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 07:27:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2uyupmf17jgRh3W2nkd7xyklpN5ZWlQESrQtcec0CYU=;
+ b=arhVrI8/gODRwXQk6swNTe1hxKX4CmTPiLcp2MTHRxJ8mtmylrMrNCJ8/xDzKpbhdw
+ lF45rzx4hAmM1MZIh+tkCKeXJptvnGlXifxRKdtR4CdOd3X6J2sU408pV9IcKa1LHaK1
+ M6T/791RRHutMXwXWcj6SJBvtecYacK9l2PKiNYhtqTlYasIZW6JDbvn0U0U0Fzmr3sq
+ KyBxEmexgkZASxc/FDjHRN3P1rZBYw2/9OAC0C7iPvYbBbqHxjn7NTReuAuu5MEEBWDH
+ aUQ3KuEHaAIFVeDrjgOxNvVAe5BEkDYnbnBdBHEt1cOZfmzKxq1mAvjWNEYakfsw84yf
+ XI6Q==
+X-Gm-Message-State: APjAAAUxhu9tHe/Yo6XqTrxnrx7D+gFWrSXPhU9ARltITGnG9EvxMJ5/
+ s6cnfljgRFBNCRMQVD7VDUlTW5w4Ts+Bu9/kbr4o6A==
+X-Google-Smtp-Source: APXvYqxXuLv+TCcUmjhhQtlnj2dbcz3xMY/s0MjwoQeHLFY9riBgdlceMpVkf76nvWQvp9rPRTgKHCcO0XcoMrjF6Vg=
+X-Received: by 2002:a2e:b0d0:: with SMTP id g16mr20783202ljl.161.1563373651087; 
+ Wed, 17 Jul 2019 07:27:31 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a4ed1b2-f17f-47a2-8383-08d70abdc5d5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2019 13:50:47.8566 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1937
+References: <20190717000606.7181-1-maraeo@gmail.com>
+ <26330d7e-3cc0-f460-b7e0-b234597f382d@gmail.com>
+In-Reply-To: <26330d7e-3cc0-f460-b7e0-b234597f382d@gmail.com>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Wed, 17 Jul 2019 10:27:18 -0400
+Message-ID: <CAAxE2A6s2SOhqhkZydtN7kzzFRzHKwRnSG-JgYGy_GceofHAsQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: reserve GDS resources on the gfx ring for
+ gfx10
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rUNqq8dDJ1nVg0PkcO7nzvLCt+pAgMwuMVuPJHp/WWE=;
- b=IR2ZELKWFzIXL1mSzzXPbg7cMFrFd4LBGkUasRlTQV+Dh4KWeNbGzBXIVqGOHv31yDTN5U0f8Kj/fUJUbgR2+8xF1hxsVFDLOcufTgZCDErtR+eBXQTbVg8FjcImYtcQk4sv2JbZszmdOi3e7zsMC0tF72pV0ellSKqrGKOI3Hc=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=2uyupmf17jgRh3W2nkd7xyklpN5ZWlQESrQtcec0CYU=;
+ b=pLNQ0gOdYtqufAo/2wNls8i9RG+Qq36kFc1BUgBMUrcGr6XFT203KWzt1OJ5x8kkOE
+ J7+436Y18JNN6FxBczzIMzFb784ITfJPyC1jVVPbVnEGnHswy5rEjeuYdvFt5gY5uR0q
+ b2F2DkfUNYmip68WWJApd54FwlXKnpqHnPs6IiZtHQW2VJxvLbSU9pc4ebPtvmWBaJa5
+ CGvQz7Uf/9EtMRWWPJ8vN27v1EgmwBaMwntp6ZE2NEtlBFxv6EI+V726TM8/94khhs+4
+ mmGmrpXG1oRvm0EU3+dN9NULUEl571BUR/+J1Iqf8VXdzHox2xnZA3Eik6ORRX/50hzB
+ 2raA==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -98,177 +63,639 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0516494687=="
+Cc: Felix Kuehling <felix.kuehling@amd.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1285146538=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0516494687==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB1809B374579E8D82EBFCC151F7C90BN6PR12MB1809namp_"
+--===============1285146538==
+Content-Type: multipart/alternative; boundary="0000000000001fd657058de14ba0"
 
---_000_BN6PR12MB1809B374579E8D82EBFCC151F7C90BN6PR12MB1809namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--0000000000001fd657058de14ba0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-RB,
+On Wed., Jul. 17, 2019, 03:15 Christian K=C3=B6nig, <
+ckoenig.leichtzumerken@gmail.com> wrote:
 
-thanks,
-
-Alex
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of StDenis,=
- Tom <Tom.StDenis@amd.com>
-Sent: Wednesday, July 17, 2019 8:44 AM
-To: Koenig, Christian; amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/amd/amdgpu: Fix offset for vmid selection in debug=
-fs interface
-
-Thanks.
-
-
-Alex can I grab an R-b please?
-
-
-Cheers,
-
-Tom
-
-On 2019-07-16 7:30 a.m., Christian K=F6nig wrote:
-> Am 16.07.19 um 13:24 schrieb StDenis, Tom:
->> The register debugfs interface was using the wrong bitmask for vmid
->> selection for GFX_CNTL.
->>
->> Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
+> Am 17.07.19 um 02:06 schrieb Marek Ol=C5=A1=C3=A1k:
+> > From: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
+> >
+> > Hopefully we'll only use 1 gfx ring, because otherwise we'd have to hav=
+e
+> > separate GDS buffers for each gfx ring.
+> >
+> > This is a workaround to ensure stability of transform feedback. Shaders
+> hang
+> > waiting for a GDS instruction (ds_sub, not ds_ordered_count).
+> >
+> > The disadvantage is that compute IBs might get a different VMID,
+> > because now gfx always has GDS and compute doesn't.
 >
-> Acked-by: Christian K=F6nig <christian.koenig@amd.com>
+> So far compute is only using GWS, but I don't think that those
+> reservations are a good idea in general.
 >
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> index 87b32873046f..59849ed9797d 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> @@ -132,7 +132,7 @@ static int amdgpu_debugfs_process_reg_op(bool
->> read, struct file *f,
->>           me =3D (*pos & GENMASK_ULL(33, 24)) >> 24;
->>           pipe =3D (*pos & GENMASK_ULL(43, 34)) >> 34;
->>           queue =3D (*pos & GENMASK_ULL(53, 44)) >> 44;
->> -        vmid =3D (*pos & GENMASK_ULL(48, 45)) >> 54;
->> +        vmid =3D (*pos & GENMASK_ULL(58, 54)) >> 54;
->>             use_ring =3D 1;
->>       } else {
+> How severe is the ENOMEM problem you see with using an explicit GWS
+> allocation?
 >
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
---_000_BN6PR12MB1809B374579E8D82EBFCC151F7C90BN6PR12MB1809namp_
-Content-Type: text/html; charset="iso-8859-1"
+I guess you mean GDS or OA.
+
+There is no ENOMEM, it just hangs. I don't know why. The shader is waiting
+for ds_sub and can't continue, but GDS is idle.
+
+Marek
+
+
+> Regards,
+> Christian.
+>
+> >
+> > Signed-off-by: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  1 +
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c  | 10 ++++++++++
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h |  6 ++++++
+> >   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 20 ++++++++++++++++++++
+> >   4 files changed, 37 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > index 4b514a44184c..cbd55d061b72 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -456,20 +456,21 @@ struct amdgpu_cs_parser {
+> >       struct drm_file         *filp;
+> >       struct amdgpu_ctx       *ctx;
+> >
+> >       /* chunks */
+> >       unsigned                nchunks;
+> >       struct amdgpu_cs_chunk  *chunks;
+> >
+> >       /* scheduler job object */
+> >       struct amdgpu_job       *job;
+> >       struct drm_sched_entity *entity;
+> > +     unsigned                hw_ip;
+> >
+> >       /* buffer objects */
+> >       struct ww_acquire_ctx           ticket;
+> >       struct amdgpu_bo_list           *bo_list;
+> >       struct amdgpu_mn                *mn;
+> >       struct amdgpu_bo_list_entry     vm_pd;
+> >       struct list_head                validated;
+> >       struct dma_fence                *fence;
+> >       uint64_t                        bytes_moved_threshold;
+> >       uint64_t                        bytes_moved_vis_threshold;
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> > index c691df6f7a57..9125cd69a124 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> > @@ -678,20 +678,28 @@ static int amdgpu_cs_parser_bos(struct
+> amdgpu_cs_parser *p,
+> >       if (r)
+> >               goto error_validate;
+> >
+> >       amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
+> >                                    p->bytes_moved_vis);
+> >
+> >       gds =3D p->bo_list->gds_obj;
+> >       gws =3D p->bo_list->gws_obj;
+> >       oa =3D p->bo_list->oa_obj;
+> >
+> > +     if (p->hw_ip =3D=3D AMDGPU_HW_IP_GFX) {
+> > +             /* Only gfx10 allocates these. */
+> > +             if (!gds)
+> > +                     gds =3D p->adev->gds.gds_gfx_bo;
+> > +             if (!oa)
+> > +                     oa =3D p->adev->gds.oa_gfx_bo;
+> > +     }
+> > +
+> >       amdgpu_bo_list_for_each_entry(e, p->bo_list) {
+> >               struct amdgpu_bo *bo =3D ttm_to_amdgpu_bo(e->tv.bo);
+> >
+> >               /* Make sure we use the exclusive slot for shared BOs */
+> >               if (bo->prime_shared_count)
+> >                       e->tv.num_shared =3D 0;
+> >               e->bo_va =3D amdgpu_vm_bo_find(vm, bo);
+> >       }
+> >
+> >       if (gds) {
+> > @@ -954,20 +962,22 @@ static int amdgpu_cs_ib_fill(struct amdgpu_device
+> *adev,
+> >               struct drm_amdgpu_cs_chunk_ib *chunk_ib;
+> >               struct drm_sched_entity *entity;
+> >
+> >               chunk =3D &parser->chunks[i];
+> >               ib =3D &parser->job->ibs[j];
+> >               chunk_ib =3D (struct drm_amdgpu_cs_chunk_ib *)chunk->kdat=
+a;
+> >
+> >               if (chunk->chunk_id !=3D AMDGPU_CHUNK_ID_IB)
+> >                       continue;
+> >
+> > +             parser->hw_ip =3D chunk_ib->ip_type;
+> > +
+> >               if (chunk_ib->ip_type =3D=3D AMDGPU_HW_IP_GFX &&
+> >                   (amdgpu_mcbp || amdgpu_sriov_vf(adev))) {
+> >                       if (chunk_ib->flags & AMDGPU_IB_FLAG_PREEMPT) {
+> >                               if (chunk_ib->flags & AMDGPU_IB_FLAG_CE)
+> >                                       ce_preempt++;
+> >                               else
+> >                                       de_preempt++;
+> >                       }
+> >
+> >                       /* each GFX command submit allows 0 or 1 IB
+> preemptible for CE & DE */
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h
+> > index df8a23554831..0943b8e1d97e 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h
+> > @@ -26,20 +26,26 @@
+> >
+> >   struct amdgpu_ring;
+> >   struct amdgpu_bo;
+> >
+> >   struct amdgpu_gds {
+> >       uint32_t gds_size;
+> >       uint32_t gws_size;
+> >       uint32_t oa_size;
+> >       uint32_t gds_compute_max_wave_id;
+> >       uint32_t vgt_gs_max_wave_id;
+> > +
+> > +     /* Reserved OA for the gfx ring. (gfx10) */
+> > +     uint32_t gds_gfx_reservation_size;
+> > +     uint32_t oa_gfx_reservation_size;
+> > +     struct amdgpu_bo *gds_gfx_bo;
+> > +     struct amdgpu_bo *oa_gfx_bo;
+> >   };
+> >
+> >   struct amdgpu_gds_reg_offset {
+> >       uint32_t        mem_base;
+> >       uint32_t        mem_size;
+> >       uint32_t        gws;
+> >       uint32_t        oa;
+> >   };
+> >
+> >   #endif /* __AMDGPU_GDS_H__ */
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> > index 618291df659b..3952754c04ff 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> > @@ -1314,20 +1314,33 @@ static int gfx_v10_0_sw_init(void *handle)
+> >
+> >       kiq =3D &adev->gfx.kiq;
+> >       r =3D amdgpu_gfx_kiq_init_ring(adev, &kiq->ring, &kiq->irq);
+> >       if (r)
+> >               return r;
+> >
+> >       r =3D amdgpu_gfx_mqd_sw_init(adev, sizeof(struct v10_compute_mqd)=
+);
+> >       if (r)
+> >               return r;
+> >
+> > +     /* allocate reserved GDS resources for transform feedback */
+> > +     r =3D amdgpu_bo_create_kernel(adev,
+> adev->gds.gds_gfx_reservation_size,
+> > +                                 4, AMDGPU_GEM_DOMAIN_GDS,
+> > +                                 &adev->gds.gds_gfx_bo, NULL, NULL);
+> > +     if (r)
+> > +             return r;
+> > +
+> > +     r =3D amdgpu_bo_create_kernel(adev,
+> adev->gds.oa_gfx_reservation_size,
+> > +                                 1, AMDGPU_GEM_DOMAIN_OA,
+> > +                                 &adev->gds.oa_gfx_bo, NULL, NULL);
+> > +     if (r)
+> > +             return r;
+> > +
+> >       /* allocate visible FB for rlc auto-loading fw */
+> >       if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_RLC_BACKDOOR_A=
+UTO) {
+> >               r =3D gfx_v10_0_rlc_backdoor_autoload_buffer_init(adev);
+> >               if (r)
+> >                       return r;
+> >       }
+> >
+> >       adev->gfx.ce_ram_size =3D F32_CE_PROGRAM_RAM_SIZE;
+> >
+> >       gfx_v10_0_gpu_early_init(adev);
+> > @@ -1354,20 +1367,23 @@ static void gfx_v10_0_me_fini(struct
+> amdgpu_device *adev)
+> >       amdgpu_bo_free_kernel(&adev->gfx.me.me_fw_obj,
+> >                             &adev->gfx.me.me_fw_gpu_addr,
+> >                             (void **)&adev->gfx.me.me_fw_ptr);
+> >   }
+> >
+> >   static int gfx_v10_0_sw_fini(void *handle)
+> >   {
+> >       int i;
+> >       struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
+> >
+> > +     amdgpu_bo_free_kernel(&adev->gds.gds_gfx_bo, NULL, NULL);
+> > +     amdgpu_bo_free_kernel(&adev->gds.oa_gfx_bo, NULL, NULL);
+> > +
+> >       for (i =3D 0; i < adev->gfx.num_gfx_rings; i++)
+> >               amdgpu_ring_fini(&adev->gfx.gfx_ring[i]);
+> >       for (i =3D 0; i < adev->gfx.num_compute_rings; i++)
+> >               amdgpu_ring_fini(&adev->gfx.compute_ring[i]);
+> >
+> >       amdgpu_gfx_mqd_sw_fini(adev);
+> >       amdgpu_gfx_kiq_free_ring(&adev->gfx.kiq.ring, &adev->gfx.kiq.irq)=
+;
+> >       amdgpu_gfx_kiq_fini(adev);
+> >
+> >       gfx_v10_0_pfp_fini(adev);
+> > @@ -5181,20 +5197,24 @@ static void gfx_v10_0_set_gds_init(struct
+> amdgpu_device *adev)
+> >       case CHIP_NAVI10:
+> >       default:
+> >               adev->gds.gds_size =3D 0x10000;
+> >               adev->gds.gds_compute_max_wave_id =3D 0x4ff;
+> >               adev->gds.vgt_gs_max_wave_id =3D 0x3ff;
+> >               break;
+> >       }
+> >
+> >       adev->gds.gws_size =3D 64;
+> >       adev->gds.oa_size =3D 16;
+> > +
+> > +     /* Reserved for transform feedback. */
+> > +     adev->gds.gds_gfx_reservation_size =3D 256;
+> > +     adev->gds.oa_gfx_reservation_size =3D 4;
+> >   }
+> >
+> >   static void gfx_v10_0_set_user_wgp_inactive_bitmap_per_sh(struct
+> amdgpu_device *adev,
+> >                                                         u32 bitmap)
+> >   {
+> >       u32 data;
+> >
+> >       if (!bitmap)
+> >               return;
+> >
+>
+>
+
+--0000000000001fd657058de14ba0
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-RB,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-thanks,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Alex<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of StDenis, Tom &lt;Tom.StDenis@=
-amd.com&gt;<br>
-<b>Sent:</b> Wednesday, July 17, 2019 8:44 AM<br>
-<b>To:</b> Koenig, Christian; amd-gfx@lists.freedesktop.org<br>
-<b>Subject:</b> Re: [PATCH] drm/amd/amdgpu: Fix offset for vmid selection i=
-n debugfs interface</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Thanks.<br>
-<br>
-<br>
-Alex can I grab an R-b please?<br>
-<br>
-<br>
-Cheers,<br>
-<br>
-Tom<br>
-<br>
-On 2019-07-16 7:30 a.m., Christian K=F6nig wrote:<br>
-&gt; Am 16.07.19 um 13:24 schrieb StDenis, Tom:<br>
-&gt;&gt; The register debugfs interface was using the wrong bitmask for vmi=
-d<br>
-&gt;&gt; selection for GFX_CNTL.<br>
-&gt;&gt;<br>
-&gt;&gt; Signed-off-by: Tom St Denis &lt;tom.stdenis@amd.com&gt;<br>
+<div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Wed., Jul. 17, 2019, 03:15 Christian K=C3=B6nig, &l=
+t;<a href=3D"mailto:ckoenig.leichtzumerken@gmail.com">ckoenig.leichtzumerke=
+n@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Am 17.07=
+.19 um 02:06 schrieb Marek Ol=C5=A1=C3=A1k:<br>
+&gt; From: Marek Ol=C5=A1=C3=A1k &lt;<a href=3D"mailto:marek.olsak@amd.com"=
+ target=3D"_blank" rel=3D"noreferrer">marek.olsak@amd.com</a>&gt;<br>
 &gt;<br>
-&gt; Acked-by: Christian K=F6nig &lt;christian.koenig@amd.com&gt;<br>
+&gt; Hopefully we&#39;ll only use 1 gfx ring, because otherwise we&#39;d ha=
+ve to have<br>
+&gt; separate GDS buffers for each gfx ring.<br>
 &gt;<br>
-&gt;&gt; ---<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 2 &#43;-<br>
-&gt;&gt; &nbsp; 1 file changed, 1 insertion(&#43;), 1 deletion(-)<br>
-&gt;&gt;<br>
-&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c<br>
-&gt;&gt; index 87b32873046f..59849ed9797d 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c<br>
-&gt;&gt; @@ -132,7 &#43;132,7 @@ static int amdgpu_debugfs_process_reg_op(b=
-ool <br>
-&gt;&gt; read, struct file *f,<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; me =3D (*po=
-s &amp; GENMASK_ULL(33, 24)) &gt;&gt; 24;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pipe =3D (*=
-pos &amp; GENMASK_ULL(43, 34)) &gt;&gt; 34;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queue =3D (=
-*pos &amp; GENMASK_ULL(53, 44)) &gt;&gt; 44;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vmid =3D (*pos &amp; G=
-ENMASK_ULL(48, 45)) &gt;&gt; 54;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vmid =3D (*pos &am=
-p; GENMASK_ULL(58, 54)) &gt;&gt; 54;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use_=
-ring =3D 1;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+&gt; This is a workaround to ensure stability of transform feedback. Shader=
+s hang<br>
+&gt; waiting for a GDS instruction (ds_sub, not ds_ordered_count).<br>
 &gt;<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-</span></font></div>
-</body>
-</html>
+&gt; The disadvantage is that compute IBs might get a different VMID,<br>
+&gt; because now gfx always has GDS and compute doesn&#39;t.<br>
+<br>
+So far compute is only using GWS, but I don&#39;t think that those <br>
+reservations are a good idea in general.<br>
+<br>
+How severe is the ENOMEM problem you see with using an explicit GWS <br>
+allocation?<br></blockquote></div></div><div dir=3D"auto"><br></div><div di=
+r=3D"auto">I guess you mean GDS or OA.</div><div dir=3D"auto"><br></div><di=
+v dir=3D"auto">There is no ENOMEM, it just hangs. I don&#39;t know why. The=
+ shader is waiting for ds_sub and can&#39;t continue, but GDS is idle.</div=
+><div dir=3D"auto"><br></div><div dir=3D"auto">Marek</div><div dir=3D"auto"=
+><br></div><div dir=3D"auto"><div class=3D"gmail_quote"><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex">
+<br>
+Regards,<br>
+Christian.<br>
+<br>
+&gt;<br>
+&gt; Signed-off-by: Marek Ol=C5=A1=C3=A1k &lt;<a href=3D"mailto:marek.olsak=
+@amd.com" target=3D"_blank" rel=3D"noreferrer">marek.olsak@amd.com</a>&gt;<=
+br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu.h=C2=A0 =C2=A0 =C2=A0|=
+=C2=A0 1 +<br>
+&gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0 | 10 ++++++++=
+++<br>
+&gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h |=C2=A0 6 ++++++<b=
+r>
+&gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c=C2=A0 | 20 ++++++++=
+++++++++++++<br>
+&gt;=C2=A0 =C2=A04 files changed, 37 insertions(+)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd=
+/amdgpu/amdgpu.h<br>
+&gt; index 4b514a44184c..cbd55d061b72 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
+&gt; @@ -456,20 +456,21 @@ struct amdgpu_cs_parser {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_file=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0*filp;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgpu_ctx=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+*ctx;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* chunks */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0unsigned=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 nchunks;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgpu_cs_chunk=C2=A0 *chunks;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* scheduler job object */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgpu_job=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+*job;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_sched_entity *entity;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0unsigned=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 hw_ip;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* buffer objects */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct ww_acquire_ctx=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0ticket;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgpu_bo_list=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0*bo_list;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgpu_mn=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *mn;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgpu_bo_list_entry=C2=A0 =C2=A0 =C2=
+=A0vm_pd;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct list_head=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 validated;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct dma_fence=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *fence;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bytes_moved_threshold;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bytes_moved_vis_threshold;=
+<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_cs.c<br>
+&gt; index c691df6f7a57..9125cd69a124 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
+&gt; @@ -678,20 +678,28 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs=
+_parser *p,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (r)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0goto error_valid=
+ate;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_cs_report_moved_bytes(p-&gt;adev, p-&=
+gt;bytes_moved,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 p-&gt;bytes_moved_v=
+is);<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0gds =3D p-&gt;bo_list-&gt;gds_obj;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0gws =3D p-&gt;bo_list-&gt;gws_obj;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0oa =3D p-&gt;bo_list-&gt;oa_obj;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (p-&gt;hw_ip =3D=3D AMDGPU_HW_IP_GFX) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/* Only gfx10 allocat=
+es these. */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!gds)<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0gds =3D p-&gt;adev-&gt;gds.gds_gfx_bo;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!oa)<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0oa =3D p-&gt;adev-&gt;gds.oa_gfx_bo;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_bo_list_for_each_entry(e, p-&gt;bo_li=
+st) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgpu_bo=
+ *bo =3D ttm_to_amdgpu_bo(e-&gt;<a href=3D"http://tv.bo" rel=3D"noreferrer =
+noreferrer" target=3D"_blank">tv.bo</a>);<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/* Make sure we =
+use the exclusive slot for shared BOs */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (bo-&gt;prime=
+_shared_count)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0e-&gt;tv.num_shared =3D 0;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0e-&gt;bo_va =3D =
+amdgpu_vm_bo_find(vm, bo);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (gds) {<br>
+&gt; @@ -954,20 +962,22 @@ static int amdgpu_cs_ib_fill(struct amdgpu_devic=
+e *adev,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_amdgp=
+u_cs_chunk_ib *chunk_ib;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_sched=
+_entity *entity;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0chunk =3D &amp;p=
+arser-&gt;chunks[i];<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ib =3D &amp;pars=
+er-&gt;job-&gt;ibs[j];<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0chunk_ib =3D (st=
+ruct drm_amdgpu_cs_chunk_ib *)chunk-&gt;kdata;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (chunk-&gt;ch=
+unk_id !=3D AMDGPU_CHUNK_ID_IB)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0continue;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0parser-&gt;hw_ip =3D =
+chunk_ib-&gt;ip_type;<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (chunk_ib-&gt=
+;ip_type =3D=3D AMDGPU_HW_IP_GFX &amp;&amp;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(a=
+mdgpu_mcbp || amdgpu_sriov_vf(adev))) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0if (chunk_ib-&gt;flags &amp; AMDGPU_IB_FLAG_PREEMPT) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (chunk_ib-&gt;flags &amp; AMDGP=
+U_IB_FLAG_CE)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ce_pre=
+empt++;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0else<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0de_pre=
+empt++;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0/* each GFX command submit allows 0 or 1 IB preemptible for CE=
+ &amp; DE */<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_gds.h<br>
+&gt; index df8a23554831..0943b8e1d97e 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h<br>
+&gt; @@ -26,20 +26,26 @@<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0struct amdgpu_ring;<br>
+&gt;=C2=A0 =C2=A0struct amdgpu_bo;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0struct amdgpu_gds {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t gds_size;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t gws_size;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t oa_size;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t gds_compute_max_wave_id;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t vgt_gs_max_wave_id;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0/* Reserved OA for the gfx ring. (gfx10) */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0uint32_t gds_gfx_reservation_size;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0uint32_t oa_gfx_reservation_size;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0struct amdgpu_bo *gds_gfx_bo;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0struct amdgpu_bo *oa_gfx_bo;<br>
+&gt;=C2=A0 =C2=A0};<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0struct amdgpu_gds_reg_offset {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0 =C2=A0 mem_base=
+;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0 =C2=A0 mem_size=
+;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0 =C2=A0 gws;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0 =C2=A0 oa;<br>
+&gt;=C2=A0 =C2=A0};<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0#endif /* __AMDGPU_GDS_H__ */<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/=
+amd/amdgpu/gfx_v10_0.c<br>
+&gt; index 618291df659b..3952754c04ff 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
+&gt; @@ -1314,20 +1314,33 @@ static int gfx_v10_0_sw_init(void *handle)<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0kiq =3D &amp;adev-&gt;gfx.kiq;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D amdgpu_gfx_kiq_init_ring(adev, &amp;ki=
+q-&gt;ring, &amp;kiq-&gt;irq);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (r)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return r;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D amdgpu_gfx_mqd_sw_init(adev, sizeof(st=
+ruct v10_compute_mqd));<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (r)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return r;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0/* allocate reserved GDS resources for transform =
+feedback */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0r =3D amdgpu_bo_create_kernel(adev, adev-&gt;gds.=
+gds_gfx_reservation_size,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04, AMDGPU_GEM_DOMAIN_GDS,<=
+br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&amp;adev-&gt;gds.gds_gfx_=
+bo, NULL, NULL);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (r)<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return r;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0r =3D amdgpu_bo_create_kernel(adev, adev-&gt;gds.=
+oa_gfx_reservation_size,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01, AMDGPU_GEM_DOMAIN_OA,<b=
+r>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&amp;adev-&gt;gds.oa_gfx_b=
+o, NULL, NULL);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (r)<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return r;<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* allocate visible FB for rlc auto-loading =
+fw */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (adev-&gt;firmware.load_type =3D=3D AMDGP=
+U_FW_LOAD_RLC_BACKDOOR_AUTO) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D gfx_v10_0_=
+rlc_backdoor_autoload_buffer_init(adev);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (r)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0return r;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gfx.ce_ram_size =3D F32_CE_PROGRAM_=
+RAM_SIZE;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0gfx_v10_0_gpu_early_init(adev);<br>
+&gt; @@ -1354,20 +1367,23 @@ static void gfx_v10_0_me_fini(struct amdgpu_de=
+vice *adev)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_bo_free_kernel(&amp;adev-&gt;gfx.me.m=
+e_fw_obj,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&amp;adev-&gt;gfx.me.me_fw_gpu_addr,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(void **)&amp;adev-&gt;gfx.me.me_fw_ptr);=
+<br>
+&gt;=C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0static int gfx_v10_0_sw_fini(void *handle)<br>
+&gt;=C2=A0 =C2=A0{<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0int i;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgpu_device *adev =3D (struct amdgp=
+u_device *)handle;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0amdgpu_bo_free_kernel(&amp;adev-&gt;gds.gds_gfx_b=
+o, NULL, NULL);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0amdgpu_bo_free_kernel(&amp;adev-&gt;gds.oa_gfx_bo=
+, NULL, NULL);<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0for (i =3D 0; i &lt; adev-&gt;gfx.num_gfx_ri=
+ngs; i++)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_ring_fini=
+(&amp;adev-&gt;gfx.gfx_ring[i]);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0for (i =3D 0; i &lt; adev-&gt;gfx.num_comput=
+e_rings; i++)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_ring_fini=
+(&amp;adev-&gt;gfx.compute_ring[i]);<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_gfx_mqd_sw_fini(adev);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_gfx_kiq_free_ring(&amp;adev-&gt;gfx.k=
+iq.ring, &amp;adev-&gt;gfx.kiq.irq);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0amdgpu_gfx_kiq_fini(adev);<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0gfx_v10_0_pfp_fini(adev);<br>
+&gt; @@ -5181,20 +5197,24 @@ static void gfx_v10_0_set_gds_init(struct amdg=
+pu_device *adev)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0case CHIP_NAVI10:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gds=
+_size =3D 0x10000;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gds=
+_compute_max_wave_id =3D 0x4ff;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.vgt=
+_gs_max_wave_id =3D 0x3ff;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gws_size =3D 64;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.oa_size =3D 16;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0/* Reserved for transform feedback. */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gds_gfx_reservation_size =3D 256;<br=
+>
+&gt; +=C2=A0 =C2=A0 =C2=A0adev-&gt;gds.oa_gfx_reservation_size =3D 4;<br>
+&gt;=C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0static void gfx_v10_0_set_user_wgp_inactive_bitmap_per_sh(=
+struct amdgpu_device *adev,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u32 bitmap)<br>
+&gt;=C2=A0 =C2=A0{<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0u32 data;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (!bitmap)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
+&gt;=C2=A0 =C2=A0<br>
+<br>
+</blockquote></div></div></div>
 
---_000_BN6PR12MB1809B374579E8D82EBFCC151F7C90BN6PR12MB1809namp_--
+--0000000000001fd657058de14ba0--
 
---===============0516494687==
+--===============1285146538==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -278,4 +705,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============0516494687==--
+--===============1285146538==--
