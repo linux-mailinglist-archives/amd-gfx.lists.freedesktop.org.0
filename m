@@ -2,60 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E751B6BE5E
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2019 16:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF9996BE78
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2019 16:43:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBC7D89E1D;
-	Wed, 17 Jul 2019 14:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 542086E0AC;
+	Wed, 17 Jul 2019 14:43:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
- [IPv6:2607:f8b0:4864:20::841])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9511189E1D
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 14:35:55 +0000 (UTC)
-Received: by mail-qt1-x841.google.com with SMTP id d23so23574704qto.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 07:35:55 -0700 (PDT)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EF8F6E0AC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 14:43:19 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id n9so25191411wru.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 07:43:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=pKLxVxNqrsf8jwONHS9xvR9fvl7LBW+hB7jc0nyg230=;
- b=gaSDxBdDIRZl46DlG12xGw620cgQcrp0uIi81LJxBd8JSWvWPjXrK/wXHaasuNsvX0
- xRdHIjgeo41XMO/Lqcr8rEr9axAKY3Cw1/5pReEt71keiOxP05gu5Card7AFd5K8GlMS
- IeKvseBVpZJEaFCGNeKHJwUydEvEm5V8CBdvpgkkzJD6txdkHEzOhe9ef+jK0+EqgDA0
- K01QQNfiQcXBML/BQDbFkwbMLPat6PkkjJbozMlSAF8RclqEdl/DngQfcbPkmVoVSWb3
- yyl59c+RFWafRl7vtBxPXjxjLqtbkEucQ01iiMwTmqhwX3XHgQosC46fDMRyfvzvVSfu
- 3U0Q==
-X-Gm-Message-State: APjAAAUAMZcJaMkXrO5Ki0XwLyYLLX3+ECxdvMXkKizz/dO5cL1hYpV5
- Uobq1K/xcsE2G8qE69ardfvqVRCT
-X-Google-Smtp-Source: APXvYqzwxXYRHPwIU0AJOU6Jp0sbTioi7W226rvUeuhexcvwwszGDSRR1mLXoftZHIF94cuy+RtwMg==
-X-Received: by 2002:a0c:8b49:: with SMTP id d9mr28480136qvc.178.1563374154489; 
- Wed, 17 Jul 2019 07:35:54 -0700 (PDT)
-Received: from localhost.localdomain ([71.219.21.119])
- by smtp.gmail.com with ESMTPSA id l19sm14739828qtb.6.2019.07.17.07.35.53
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Wed, 17 Jul 2019 07:35:54 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdgpu: add sclk/uclk sensor support for vega20
-Date: Wed, 17 Jul 2019 09:35:40 -0500
-Message-Id: <20190717143540.30090-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190717143540.30090-1-alexander.deucher@amd.com>
-References: <20190717143540.30090-1-alexander.deucher@amd.com>
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language;
+ bh=gSgIW+fG1LvvO814gMYBfOimjwEYdmuB1u3rRcMW730=;
+ b=NaegopLYy7XVU8qAMhPbuggJm9ZU7XSLkAJatblYqJKbXE63uID72eXpKQCOaIq2Bl
+ VsRQ+sPOgkOcF88zaYRojo0BWDW3kWngS8BJNV1Wg7NThqP8IWbaIzAC6Rg8pcU4Ehkm
+ rRTg+B0F+XjEHZMAAYAnL9voHMkohgcoksFF/Y7n4FBJuE0MlhENYRVLRv/u7XlJ5Srs
+ uSJG/cVYCoB92rnCxwt5Dnb7lYofaouAiu3xF1d4B9AT+po5Unvs4t4O7XiJ2Vc8CLEL
+ Ajgo94jv7OsgtoondSQn81UBzrq5Xn7NI6dRjiaMa8MHgiP6g7l7mC1ecATUudDgyOqd
+ 3ong==
+X-Gm-Message-State: APjAAAUaCAD3/VVEJdb376QTiPInmJ/Ff2ptnkm0iGZFy4wpCihua9Jw
+ AcBrQy8TfG8l4JdWlGujiV0X4C8t
+X-Google-Smtp-Source: APXvYqwUUaQE6ds/p01zObR5z4CItD6SqzyPpZPPLJPA61i9B6cxT0FrhqnpTK0yP8TvIIGRfBzi6Q==
+X-Received: by 2002:a05:6000:12c2:: with SMTP id
+ l2mr14020081wrx.65.1563374597628; 
+ Wed, 17 Jul 2019 07:43:17 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id r15sm24564622wrj.68.2019.07.17.07.43.16
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 17 Jul 2019 07:43:17 -0700 (PDT)
+Subject: Re: [PATCH] drm/amdgpu: reserve GDS resources on the gfx ring for
+ gfx10
+To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20190717000606.7181-1-maraeo@gmail.com>
+ <26330d7e-3cc0-f460-b7e0-b234597f382d@gmail.com>
+ <CAAxE2A6s2SOhqhkZydtN7kzzFRzHKwRnSG-JgYGy_GceofHAsQ@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <57de127c-a6ac-c459-fc77-4da8578a41ae@gmail.com>
+Date: Wed, 17 Jul 2019 16:43:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
+In-Reply-To: <CAAxE2A6s2SOhqhkZydtN7kzzFRzHKwRnSG-JgYGy_GceofHAsQ@mail.gmail.com>
+Content-Language: en-US
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=pKLxVxNqrsf8jwONHS9xvR9fvl7LBW+hB7jc0nyg230=;
- b=u0AbQXkKTpCCzQZ1m5bTwaTvj/fwH9OujS7cYy6VXnFu7GlznQtIsyUiAjpVSfdD5Y
- Zj9CimyDE6IsZhGsiEDu79/LJ90bAEjJKnCV/v2UbAoj7qMsMzujxwJqzi1fR3ftwj8E
- UqSvCEL/B+KuYFMNM27ca0hEgHjxtareG4AKOxLRpyw/9bLi0pE4Yu2vTN06crvFClZ2
- +bwKzaizKLmhhMwEoWCdMhoL6QKZeRrKmOBFGdjlAkU+5Y+VEoAixsJmnEt4r/bGo0Ct
- P95OUA2//Amj0qjxOxchpoQrm20Kxn6My1Oqa8cdYj6FE61fNPrDLpBnXhHg1+ERRCRX
- LPBg==
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language;
+ bh=gSgIW+fG1LvvO814gMYBfOimjwEYdmuB1u3rRcMW730=;
+ b=U3B1/dT275Q6NQaT5BPkhQ28RvTt4A9WFSPlpjoPhClVjMAGb7WiKuvgpkOUGMlYTZ
+ Q2VG1OE7Qd7FOMEiEf8tuUq8+hsYfv6Zm7uPOVMtlyUlfCpx+Hzc6i+jYijb5cWtuhim
+ qgrpeZPf2Pnt/juwuck6yq/9XIpX2ol/NiWHU2zuzfO2bafPtg8Bw85XHWMx1TQlqxgV
+ mhBNv0kFaOHcTBHvP4HPaJ0Ial1QCDtuXkvdJwe/2tOy0gh4Pk04fixajDO3GZKiwEku
+ eJ+LpFA6ZpWMdJI4FKZe1QieUXwKMy6WEIUbhfmCsGWBFevCTpT8nZf52EuMmVipjNQx
+ Bf5A==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -67,42 +75,710 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: christian.koenig@amd.com
+Cc: Felix Kuehling <felix.kuehling@amd.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0383041703=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-UXVlcnkgdGhlIG1ldHJpY3MgdGFibGUgdG8gZ2V0IHRoZSBhdmVyYWdlIHNjbGsgYW5kIHVjbGsu
-CgpTaWduZWQtb2ZmLWJ5OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+
-Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvdmVnYTIwX3BwdC5jIHwgMzUgKysr
-KysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDM1IGluc2VydGlvbnMoKykKCmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS92ZWdhMjBfcHB0LmMgYi9k
-cml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS92ZWdhMjBfcHB0LmMKaW5kZXggOTIwNGU0ZTUw
-ZDA5Li43NjNkNzNhZjZjZDEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJw
-bGF5L3ZlZ2EyMF9wcHQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS92ZWdh
-MjBfcHB0LmMKQEAgLTMxMTcsNiArMzExNywzNiBAQCBzdGF0aWMgaW50IHZlZ2EyMF90aGVybWFs
-X2dldF90ZW1wZXJhdHVyZShzdHJ1Y3Qgc211X2NvbnRleHQgKnNtdSwKIAogCXJldHVybiAwOwog
-fQorCitzdGF0aWMgaW50IHZlZ2EyMF9nZXRfYXZnX2Nsb2NrcyhzdHJ1Y3Qgc211X2NvbnRleHQg
-KnNtdSwKKwkJCQkgZW51bSBhbWRfcHBfc2Vuc29ycyBzZW5zb3IsCisJCQkJIHVpbnQzMl90ICp2
-YWx1ZSkKK3sKKwlTbXVNZXRyaWNzX3QgbWV0cmljczsKKwlpbnQgcmV0ID0gMDsKKworCWlmICgh
-dmFsdWUpCisJCXJldHVybiAtRUlOVkFMOworCisJcmV0ID0gc211X3VwZGF0ZV90YWJsZShzbXUs
-IFNNVV9UQUJMRV9TTVVfTUVUUklDUywgKHZvaWQgKikmbWV0cmljcywgZmFsc2UpOworCWlmIChy
-ZXQpCisJCXJldHVybiByZXQ7CisKKwlzd2l0Y2ggKHNlbnNvcikgeworCWNhc2UgQU1ER1BVX1BQ
-X1NFTlNPUl9HRlhfU0NMSzoKKwkJKnZhbHVlID0gbWV0cmljcy5BdmVyYWdlR2Z4Y2xrRnJlcXVl
-bmN5ICogMTAwOworCQlicmVhazsKKwljYXNlIEFNREdQVV9QUF9TRU5TT1JfR0ZYX01DTEs6CisJ
-CSp2YWx1ZSA9IG1ldHJpY3MuQXZlcmFnZVVjbGtGcmVxdWVuY3kgKiAxMDA7CisJCWJyZWFrOwor
-CWRlZmF1bHQ6CisJCXByX2VycigiSW52YWxpZCBzZW5zb3IgZm9yIHJldHJpZXZpbmcgYXZnIGNs
-b2NrXG4iKTsKKwkJcmV0dXJuIC1FSU5WQUw7CisJfQorCisJcmV0dXJuIDA7Cit9CisKIHN0YXRp
-YyBpbnQgdmVnYTIwX3JlYWRfc2Vuc29yKHN0cnVjdCBzbXVfY29udGV4dCAqc211LAogCQkJCSBl
-bnVtIGFtZF9wcF9zZW5zb3JzIHNlbnNvciwKIAkJCQkgdm9pZCAqZGF0YSwgdWludDMyX3QgKnNp
-emUpCkBAIC0zMTQ3LDYgKzMxNzcsMTEgQEAgc3RhdGljIGludCB2ZWdhMjBfcmVhZF9zZW5zb3Io
-c3RydWN0IHNtdV9jb250ZXh0ICpzbXUsCiAJCXJldCA9IHZlZ2EyMF90aGVybWFsX2dldF90ZW1w
-ZXJhdHVyZShzbXUsIHNlbnNvciwgKHVpbnQzMl90ICopZGF0YSk7CiAJCSpzaXplID0gNDsKIAkJ
-YnJlYWs7CisJY2FzZSBBTURHUFVfUFBfU0VOU09SX0dGWF9TQ0xLOgorCWNhc2UgQU1ER1BVX1BQ
-X1NFTlNPUl9HRlhfTUNMSzoKKwkJcmV0ID0gdmVnYTIwX2dldF9hdmdfY2xvY2tzKHNtdSwgc2Vu
-c29yLCAodWludDMyX3QgKilkYXRhKTsKKwkJKnNpemUgPSA0OworCQlicmVhazsKIAlkZWZhdWx0
-OgogCQlyZXR1cm4gLUVJTlZBTDsKIAl9Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vYW1kLWdmeA==
+This is a multi-part message in MIME format.
+--===============0383041703==
+Content-Type: multipart/alternative;
+ boundary="------------E7C45430DCCF3D702BAA8703"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------E7C45430DCCF3D702BAA8703
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Am 17.07.19 um 16:27 schrieb Marek Olšák:
+>
+>
+> On Wed., Jul. 17, 2019, 03:15 Christian König, 
+> <ckoenig.leichtzumerken@gmail.com 
+> <mailto:ckoenig.leichtzumerken@gmail.com>> wrote:
+>
+>     Am 17.07.19 um 02:06 schrieb Marek Olšák:
+>     > From: Marek Olšák <marek.olsak@amd.com <mailto:marek.olsak@amd.com>>
+>     >
+>     > Hopefully we'll only use 1 gfx ring, because otherwise we'd have
+>     to have
+>     > separate GDS buffers for each gfx ring.
+>     >
+>     > This is a workaround to ensure stability of transform feedback.
+>     Shaders hang
+>     > waiting for a GDS instruction (ds_sub, not ds_ordered_count).
+>     >
+>     > The disadvantage is that compute IBs might get a different VMID,
+>     > because now gfx always has GDS and compute doesn't.
+>
+>     So far compute is only using GWS, but I don't think that those
+>     reservations are a good idea in general.
+>
+>     How severe is the ENOMEM problem you see with using an explicit GWS
+>     allocation?
+>
+>
+> I guess you mean GDS or OA.
+
+Yeah, just a typo. Compute is using GWS and we want to use GDS and OA here.
+
+> There is no ENOMEM, it just hangs. I don't know why. The shader is 
+> waiting for ds_sub and can't continue, but GDS is idle.
+
+Well could it be because we don't correctly handle non zero offsets or 
+stuff like that?
+
+Does it work with this hack when you don't allocate GDS/OA from the 
+start? (Just allocate it twice or something like this).
+
+Christian.
+
+>
+> Marek
+>
+>
+>     Regards,
+>     Christian.
+>
+>     >
+>     > Signed-off-by: Marek Olšák <marek.olsak@amd.com
+>     <mailto:marek.olsak@amd.com>>
+>     > ---
+>     >   drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  1 +
+>     >   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c  | 10 ++++++++++
+>     >   drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h |  6 ++++++
+>     >   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 20 ++++++++++++++++++++
+>     >   4 files changed, 37 insertions(+)
+>     >
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>     b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>     > index 4b514a44184c..cbd55d061b72 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>     > @@ -456,20 +456,21 @@ struct amdgpu_cs_parser {
+>     >       struct drm_file         *filp;
+>     >       struct amdgpu_ctx       *ctx;
+>     >
+>     >       /* chunks */
+>     >       unsigned                nchunks;
+>     >       struct amdgpu_cs_chunk  *chunks;
+>     >
+>     >       /* scheduler job object */
+>     >       struct amdgpu_job       *job;
+>     >       struct drm_sched_entity *entity;
+>     > +     unsigned                hw_ip;
+>     >
+>     >       /* buffer objects */
+>     >       struct ww_acquire_ctx           ticket;
+>     >       struct amdgpu_bo_list           *bo_list;
+>     >       struct amdgpu_mn                *mn;
+>     >       struct amdgpu_bo_list_entry     vm_pd;
+>     >       struct list_head                validated;
+>     >       struct dma_fence                *fence;
+>     >       uint64_t bytes_moved_threshold;
+>     >       uint64_t bytes_moved_vis_threshold;
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+>     b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+>     > index c691df6f7a57..9125cd69a124 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+>     > @@ -678,20 +678,28 @@ static int amdgpu_cs_parser_bos(struct
+>     amdgpu_cs_parser *p,
+>     >       if (r)
+>     >               goto error_validate;
+>     >
+>     >       amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
+>     > p->bytes_moved_vis);
+>     >
+>     >       gds = p->bo_list->gds_obj;
+>     >       gws = p->bo_list->gws_obj;
+>     >       oa = p->bo_list->oa_obj;
+>     >
+>     > +     if (p->hw_ip == AMDGPU_HW_IP_GFX) {
+>     > +             /* Only gfx10 allocates these. */
+>     > +             if (!gds)
+>     > +                     gds = p->adev->gds.gds_gfx_bo;
+>     > +             if (!oa)
+>     > +                     oa = p->adev->gds.oa_gfx_bo;
+>     > +     }
+>     > +
+>     >       amdgpu_bo_list_for_each_entry(e, p->bo_list) {
+>     >               struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo
+>     <http://tv.bo>);
+>     >
+>     >               /* Make sure we use the exclusive slot for shared
+>     BOs */
+>     >               if (bo->prime_shared_count)
+>     >                       e->tv.num_shared = 0;
+>     >               e->bo_va = amdgpu_vm_bo_find(vm, bo);
+>     >       }
+>     >
+>     >       if (gds) {
+>     > @@ -954,20 +962,22 @@ static int amdgpu_cs_ib_fill(struct
+>     amdgpu_device *adev,
+>     >               struct drm_amdgpu_cs_chunk_ib *chunk_ib;
+>     >               struct drm_sched_entity *entity;
+>     >
+>     >               chunk = &parser->chunks[i];
+>     >               ib = &parser->job->ibs[j];
+>     >               chunk_ib = (struct drm_amdgpu_cs_chunk_ib
+>     *)chunk->kdata;
+>     >
+>     >               if (chunk->chunk_id != AMDGPU_CHUNK_ID_IB)
+>     >                       continue;
+>     >
+>     > +             parser->hw_ip = chunk_ib->ip_type;
+>     > +
+>     >               if (chunk_ib->ip_type == AMDGPU_HW_IP_GFX &&
+>     >                   (amdgpu_mcbp || amdgpu_sriov_vf(adev))) {
+>     >                       if (chunk_ib->flags &
+>     AMDGPU_IB_FLAG_PREEMPT) {
+>     >                               if (chunk_ib->flags &
+>     AMDGPU_IB_FLAG_CE)
+>     >                                       ce_preempt++;
+>     >                               else
+>     >                                       de_preempt++;
+>     >                       }
+>     >
+>     >                       /* each GFX command submit allows 0 or 1
+>     IB preemptible for CE & DE */
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h
+>     b/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h
+>     > index df8a23554831..0943b8e1d97e 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h
+>     > @@ -26,20 +26,26 @@
+>     >
+>     >   struct amdgpu_ring;
+>     >   struct amdgpu_bo;
+>     >
+>     >   struct amdgpu_gds {
+>     >       uint32_t gds_size;
+>     >       uint32_t gws_size;
+>     >       uint32_t oa_size;
+>     >       uint32_t gds_compute_max_wave_id;
+>     >       uint32_t vgt_gs_max_wave_id;
+>     > +
+>     > +     /* Reserved OA for the gfx ring. (gfx10) */
+>     > +     uint32_t gds_gfx_reservation_size;
+>     > +     uint32_t oa_gfx_reservation_size;
+>     > +     struct amdgpu_bo *gds_gfx_bo;
+>     > +     struct amdgpu_bo *oa_gfx_bo;
+>     >   };
+>     >
+>     >   struct amdgpu_gds_reg_offset {
+>     >       uint32_t        mem_base;
+>     >       uint32_t        mem_size;
+>     >       uint32_t        gws;
+>     >       uint32_t        oa;
+>     >   };
+>     >
+>     >   #endif /* __AMDGPU_GDS_H__ */
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>     b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>     > index 618291df659b..3952754c04ff 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>     > @@ -1314,20 +1314,33 @@ static int gfx_v10_0_sw_init(void *handle)
+>     >
+>     >       kiq = &adev->gfx.kiq;
+>     >       r = amdgpu_gfx_kiq_init_ring(adev, &kiq->ring, &kiq->irq);
+>     >       if (r)
+>     >               return r;
+>     >
+>     >       r = amdgpu_gfx_mqd_sw_init(adev, sizeof(struct
+>     v10_compute_mqd));
+>     >       if (r)
+>     >               return r;
+>     >
+>     > +     /* allocate reserved GDS resources for transform feedback */
+>     > +     r = amdgpu_bo_create_kernel(adev,
+>     adev->gds.gds_gfx_reservation_size,
+>     > +                                 4, AMDGPU_GEM_DOMAIN_GDS,
+>     > +  &adev->gds.gds_gfx_bo, NULL, NULL);
+>     > +     if (r)
+>     > +             return r;
+>     > +
+>     > +     r = amdgpu_bo_create_kernel(adev,
+>     adev->gds.oa_gfx_reservation_size,
+>     > +                                 1, AMDGPU_GEM_DOMAIN_OA,
+>     > +  &adev->gds.oa_gfx_bo, NULL, NULL);
+>     > +     if (r)
+>     > +             return r;
+>     > +
+>     >       /* allocate visible FB for rlc auto-loading fw */
+>     >       if (adev->firmware.load_type ==
+>     AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO) {
+>     >               r = gfx_v10_0_rlc_backdoor_autoload_buffer_init(adev);
+>     >               if (r)
+>     >                       return r;
+>     >       }
+>     >
+>     >       adev->gfx.ce_ram_size = F32_CE_PROGRAM_RAM_SIZE;
+>     >
+>     >       gfx_v10_0_gpu_early_init(adev);
+>     > @@ -1354,20 +1367,23 @@ static void gfx_v10_0_me_fini(struct
+>     amdgpu_device *adev)
+>     >  amdgpu_bo_free_kernel(&adev->gfx.me.me_fw_obj,
+>     >  &adev->gfx.me.me_fw_gpu_addr,
+>     >                             (void **)&adev->gfx.me.me_fw_ptr);
+>     >   }
+>     >
+>     >   static int gfx_v10_0_sw_fini(void *handle)
+>     >   {
+>     >       int i;
+>     >       struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+>     >
+>     > +  amdgpu_bo_free_kernel(&adev->gds.gds_gfx_bo, NULL, NULL);
+>     > +  amdgpu_bo_free_kernel(&adev->gds.oa_gfx_bo, NULL, NULL);
+>     > +
+>     >       for (i = 0; i < adev->gfx.num_gfx_rings; i++)
+>     >  amdgpu_ring_fini(&adev->gfx.gfx_ring[i]);
+>     >       for (i = 0; i < adev->gfx.num_compute_rings; i++)
+>     >  amdgpu_ring_fini(&adev->gfx.compute_ring[i]);
+>     >
+>     >       amdgpu_gfx_mqd_sw_fini(adev);
+>     >  amdgpu_gfx_kiq_free_ring(&adev->gfx.kiq.ring, &adev->gfx.kiq.irq);
+>     >       amdgpu_gfx_kiq_fini(adev);
+>     >
+>     >       gfx_v10_0_pfp_fini(adev);
+>     > @@ -5181,20 +5197,24 @@ static void
+>     gfx_v10_0_set_gds_init(struct amdgpu_device *adev)
+>     >       case CHIP_NAVI10:
+>     >       default:
+>     >               adev->gds.gds_size = 0x10000;
+>     >               adev->gds.gds_compute_max_wave_id = 0x4ff;
+>     >               adev->gds.vgt_gs_max_wave_id = 0x3ff;
+>     >               break;
+>     >       }
+>     >
+>     >       adev->gds.gws_size = 64;
+>     >       adev->gds.oa_size = 16;
+>     > +
+>     > +     /* Reserved for transform feedback. */
+>     > +     adev->gds.gds_gfx_reservation_size = 256;
+>     > +     adev->gds.oa_gfx_reservation_size = 4;
+>     >   }
+>     >
+>     >   static void
+>     gfx_v10_0_set_user_wgp_inactive_bitmap_per_sh(struct amdgpu_device
+>     *adev,
+>     >    u32 bitmap)
+>     >   {
+>     >       u32 data;
+>     >
+>     >       if (!bitmap)
+>     >               return;
+>     >
+>
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+
+--------------E7C45430DCCF3D702BAA8703
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Am 17.07.19 um 16:27 schrieb Marek
+      Olšák:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAAxE2A6s2SOhqhkZydtN7kzzFRzHKwRnSG-JgYGy_GceofHAsQ@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="auto">
+        <div><br>
+          <br>
+          <div class="gmail_quote">
+            <div dir="ltr" class="gmail_attr">On Wed., Jul. 17, 2019,
+              03:15 Christian König, &lt;<a
+                href="mailto:ckoenig.leichtzumerken@gmail.com"
+                moz-do-not-send="true">ckoenig.leichtzumerken@gmail.com</a>&gt;
+              wrote:<br>
+            </div>
+            <blockquote class="gmail_quote" style="margin:0 0 0
+              .8ex;border-left:1px #ccc solid;padding-left:1ex">Am
+              17.07.19 um 02:06 schrieb Marek Olšák:<br>
+              &gt; From: Marek Olšák &lt;<a
+                href="mailto:marek.olsak@amd.com" target="_blank"
+                rel="noreferrer" moz-do-not-send="true">marek.olsak@amd.com</a>&gt;<br>
+              &gt;<br>
+              &gt; Hopefully we'll only use 1 gfx ring, because
+              otherwise we'd have to have<br>
+              &gt; separate GDS buffers for each gfx ring.<br>
+              &gt;<br>
+              &gt; This is a workaround to ensure stability of transform
+              feedback. Shaders hang<br>
+              &gt; waiting for a GDS instruction (ds_sub, not
+              ds_ordered_count).<br>
+              &gt;<br>
+              &gt; The disadvantage is that compute IBs might get a
+              different VMID,<br>
+              &gt; because now gfx always has GDS and compute doesn't.<br>
+              <br>
+              So far compute is only using GWS, but I don't think that
+              those <br>
+              reservations are a good idea in general.<br>
+              <br>
+              How severe is the ENOMEM problem you see with using an
+              explicit GWS <br>
+              allocation?<br>
+            </blockquote>
+          </div>
+        </div>
+        <div dir="auto"><br>
+        </div>
+        <div dir="auto">I guess you mean GDS or OA.</div>
+      </div>
+    </blockquote>
+    <br>
+    Yeah, just a typo. Compute is using GWS and we want to use GDS and
+    OA here.<br>
+    <br>
+    <blockquote type="cite"
+cite="mid:CAAxE2A6s2SOhqhkZydtN7kzzFRzHKwRnSG-JgYGy_GceofHAsQ@mail.gmail.com">
+      <div dir="auto">
+        <div dir="auto">There is no ENOMEM, it just hangs. I don't know
+          why. The shader is waiting for ds_sub and can't continue, but
+          GDS is idle.</div>
+      </div>
+    </blockquote>
+    <br>
+    Well could it be because we don't correctly handle non zero offsets
+    or stuff like that?<br>
+    <br>
+    Does it work with this hack when you don't allocate GDS/OA from the
+    start? (Just allocate it twice or something like this).<br>
+    <br>
+    Christian.<br>
+    <br>
+    <blockquote type="cite"
+cite="mid:CAAxE2A6s2SOhqhkZydtN7kzzFRzHKwRnSG-JgYGy_GceofHAsQ@mail.gmail.com">
+      <div dir="auto">
+        <div dir="auto"><br>
+        </div>
+        <div dir="auto">Marek</div>
+        <div dir="auto"><br>
+        </div>
+        <div dir="auto">
+          <div class="gmail_quote">
+            <blockquote class="gmail_quote" style="margin:0 0 0
+              .8ex;border-left:1px #ccc solid;padding-left:1ex">
+              <br>
+              Regards,<br>
+              Christian.<br>
+              <br>
+              &gt;<br>
+              &gt; Signed-off-by: Marek Olšák &lt;<a
+                href="mailto:marek.olsak@amd.com" target="_blank"
+                rel="noreferrer" moz-do-not-send="true">marek.olsak@amd.com</a>&gt;<br>
+              &gt; ---<br>
+              &gt;   drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  1 +<br>
+              &gt;   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c  | 10
+              ++++++++++<br>
+              &gt;   drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h |  6 ++++++<br>
+              &gt;   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 20
+              ++++++++++++++++++++<br>
+              &gt;   4 files changed, 37 insertions(+)<br>
+              &gt;<br>
+              &gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+              b/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
+              &gt; index 4b514a44184c..cbd55d061b72 100644<br>
+              &gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
+              &gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
+              &gt; @@ -456,20 +456,21 @@ struct amdgpu_cs_parser {<br>
+              &gt;       struct drm_file         *filp;<br>
+              &gt;       struct amdgpu_ctx       *ctx;<br>
+              &gt;   <br>
+              &gt;       /* chunks */<br>
+              &gt;       unsigned                nchunks;<br>
+              &gt;       struct amdgpu_cs_chunk  *chunks;<br>
+              &gt;   <br>
+              &gt;       /* scheduler job object */<br>
+              &gt;       struct amdgpu_job       *job;<br>
+              &gt;       struct drm_sched_entity *entity;<br>
+              &gt; +     unsigned                hw_ip;<br>
+              &gt;   <br>
+              &gt;       /* buffer objects */<br>
+              &gt;       struct ww_acquire_ctx           ticket;<br>
+              &gt;       struct amdgpu_bo_list           *bo_list;<br>
+              &gt;       struct amdgpu_mn                *mn;<br>
+              &gt;       struct amdgpu_bo_list_entry     vm_pd;<br>
+              &gt;       struct list_head                validated;<br>
+              &gt;       struct dma_fence                *fence;<br>
+              &gt;       uint64_t                       
+              bytes_moved_threshold;<br>
+              &gt;       uint64_t                       
+              bytes_moved_vis_threshold;<br>
+              &gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+              b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
+              &gt; index c691df6f7a57..9125cd69a124 100644<br>
+              &gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
+              &gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
+              &gt; @@ -678,20 +678,28 @@ static int
+              amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,<br>
+              &gt;       if (r)<br>
+              &gt;               goto error_validate;<br>
+              &gt;   <br>
+              &gt;       amdgpu_cs_report_moved_bytes(p-&gt;adev,
+              p-&gt;bytes_moved,<br>
+              &gt;                                   
+              p-&gt;bytes_moved_vis);<br>
+              &gt;   <br>
+              &gt;       gds = p-&gt;bo_list-&gt;gds_obj;<br>
+              &gt;       gws = p-&gt;bo_list-&gt;gws_obj;<br>
+              &gt;       oa = p-&gt;bo_list-&gt;oa_obj;<br>
+              &gt;   <br>
+              &gt; +     if (p-&gt;hw_ip == AMDGPU_HW_IP_GFX) {<br>
+              &gt; +             /* Only gfx10 allocates these. */<br>
+              &gt; +             if (!gds)<br>
+              &gt; +                     gds =
+              p-&gt;adev-&gt;gds.gds_gfx_bo;<br>
+              &gt; +             if (!oa)<br>
+              &gt; +                     oa =
+              p-&gt;adev-&gt;gds.oa_gfx_bo;<br>
+              &gt; +     }<br>
+              &gt; +<br>
+              &gt;       amdgpu_bo_list_for_each_entry(e, p-&gt;bo_list)
+              {<br>
+              &gt;               struct amdgpu_bo *bo =
+              ttm_to_amdgpu_bo(e-&gt;<a href="http://tv.bo"
+                rel="noreferrer noreferrer" target="_blank"
+                moz-do-not-send="true">tv.bo</a>);<br>
+              &gt;   <br>
+              &gt;               /* Make sure we use the exclusive slot
+              for shared BOs */<br>
+              &gt;               if (bo-&gt;prime_shared_count)<br>
+              &gt;                       e-&gt;tv.num_shared = 0;<br>
+              &gt;               e-&gt;bo_va = amdgpu_vm_bo_find(vm,
+              bo);<br>
+              &gt;       }<br>
+              &gt;   <br>
+              &gt;       if (gds) {<br>
+              &gt; @@ -954,20 +962,22 @@ static int
+              amdgpu_cs_ib_fill(struct amdgpu_device *adev,<br>
+              &gt;               struct drm_amdgpu_cs_chunk_ib
+              *chunk_ib;<br>
+              &gt;               struct drm_sched_entity *entity;<br>
+              &gt;   <br>
+              &gt;               chunk = &amp;parser-&gt;chunks[i];<br>
+              &gt;               ib = &amp;parser-&gt;job-&gt;ibs[j];<br>
+              &gt;               chunk_ib = (struct
+              drm_amdgpu_cs_chunk_ib *)chunk-&gt;kdata;<br>
+              &gt;   <br>
+              &gt;               if (chunk-&gt;chunk_id !=
+              AMDGPU_CHUNK_ID_IB)<br>
+              &gt;                       continue;<br>
+              &gt;   <br>
+              &gt; +             parser-&gt;hw_ip =
+              chunk_ib-&gt;ip_type;<br>
+              &gt; +<br>
+              &gt;               if (chunk_ib-&gt;ip_type ==
+              AMDGPU_HW_IP_GFX &amp;&amp;<br>
+              &gt;                   (amdgpu_mcbp ||
+              amdgpu_sriov_vf(adev))) {<br>
+              &gt;                       if (chunk_ib-&gt;flags &amp;
+              AMDGPU_IB_FLAG_PREEMPT) {<br>
+              &gt;                               if (chunk_ib-&gt;flags
+              &amp; AMDGPU_IB_FLAG_CE)<br>
+              &gt;                                       ce_preempt++;<br>
+              &gt;                               else<br>
+              &gt;                                       de_preempt++;<br>
+              &gt;                       }<br>
+              &gt;   <br>
+              &gt;                       /* each GFX command submit
+              allows 0 or 1 IB preemptible for CE &amp; DE */<br>
+              &gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h
+              b/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h<br>
+              &gt; index df8a23554831..0943b8e1d97e 100644<br>
+              &gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h<br>
+              &gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gds.h<br>
+              &gt; @@ -26,20 +26,26 @@<br>
+              &gt;   <br>
+              &gt;   struct amdgpu_ring;<br>
+              &gt;   struct amdgpu_bo;<br>
+              &gt;   <br>
+              &gt;   struct amdgpu_gds {<br>
+              &gt;       uint32_t gds_size;<br>
+              &gt;       uint32_t gws_size;<br>
+              &gt;       uint32_t oa_size;<br>
+              &gt;       uint32_t gds_compute_max_wave_id;<br>
+              &gt;       uint32_t vgt_gs_max_wave_id;<br>
+              &gt; +<br>
+              &gt; +     /* Reserved OA for the gfx ring. (gfx10) */<br>
+              &gt; +     uint32_t gds_gfx_reservation_size;<br>
+              &gt; +     uint32_t oa_gfx_reservation_size;<br>
+              &gt; +     struct amdgpu_bo *gds_gfx_bo;<br>
+              &gt; +     struct amdgpu_bo *oa_gfx_bo;<br>
+              &gt;   };<br>
+              &gt;   <br>
+              &gt;   struct amdgpu_gds_reg_offset {<br>
+              &gt;       uint32_t        mem_base;<br>
+              &gt;       uint32_t        mem_size;<br>
+              &gt;       uint32_t        gws;<br>
+              &gt;       uint32_t        oa;<br>
+              &gt;   };<br>
+              &gt;   <br>
+              &gt;   #endif /* __AMDGPU_GDS_H__ */<br>
+              &gt; diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+              b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
+              &gt; index 618291df659b..3952754c04ff 100644<br>
+              &gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
+              &gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
+              &gt; @@ -1314,20 +1314,33 @@ static int
+              gfx_v10_0_sw_init(void *handle)<br>
+              &gt;   <br>
+              &gt;       kiq = &amp;adev-&gt;gfx.kiq;<br>
+              &gt;       r = amdgpu_gfx_kiq_init_ring(adev,
+              &amp;kiq-&gt;ring, &amp;kiq-&gt;irq);<br>
+              &gt;       if (r)<br>
+              &gt;               return r;<br>
+              &gt;   <br>
+              &gt;       r = amdgpu_gfx_mqd_sw_init(adev, sizeof(struct
+              v10_compute_mqd));<br>
+              &gt;       if (r)<br>
+              &gt;               return r;<br>
+              &gt;   <br>
+              &gt; +     /* allocate reserved GDS resources for
+              transform feedback */<br>
+              &gt; +     r = amdgpu_bo_create_kernel(adev,
+              adev-&gt;gds.gds_gfx_reservation_size,<br>
+              &gt; +                                 4,
+              AMDGPU_GEM_DOMAIN_GDS,<br>
+              &gt; +                               
+               &amp;adev-&gt;gds.gds_gfx_bo, NULL, NULL);<br>
+              &gt; +     if (r)<br>
+              &gt; +             return r;<br>
+              &gt; +<br>
+              &gt; +     r = amdgpu_bo_create_kernel(adev,
+              adev-&gt;gds.oa_gfx_reservation_size,<br>
+              &gt; +                                 1,
+              AMDGPU_GEM_DOMAIN_OA,<br>
+              &gt; +                               
+               &amp;adev-&gt;gds.oa_gfx_bo, NULL, NULL);<br>
+              &gt; +     if (r)<br>
+              &gt; +             return r;<br>
+              &gt; +<br>
+              &gt;       /* allocate visible FB for rlc auto-loading fw
+              */<br>
+              &gt;       if (adev-&gt;firmware.load_type ==
+              AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO) {<br>
+              &gt;               r =
+              gfx_v10_0_rlc_backdoor_autoload_buffer_init(adev);<br>
+              &gt;               if (r)<br>
+              &gt;                       return r;<br>
+              &gt;       }<br>
+              &gt;   <br>
+              &gt;       adev-&gt;gfx.ce_ram_size =
+              F32_CE_PROGRAM_RAM_SIZE;<br>
+              &gt;   <br>
+              &gt;       gfx_v10_0_gpu_early_init(adev);<br>
+              &gt; @@ -1354,20 +1367,23 @@ static void
+              gfx_v10_0_me_fini(struct amdgpu_device *adev)<br>
+              &gt;     
+               amdgpu_bo_free_kernel(&amp;adev-&gt;gfx.me.me_fw_obj,<br>
+              &gt;                           
+               &amp;adev-&gt;gfx.me.me_fw_gpu_addr,<br>
+              &gt;                             (void
+              **)&amp;adev-&gt;gfx.me.me_fw_ptr);<br>
+              &gt;   }<br>
+              &gt;   <br>
+              &gt;   static int gfx_v10_0_sw_fini(void *handle)<br>
+              &gt;   {<br>
+              &gt;       int i;<br>
+              &gt;       struct amdgpu_device *adev = (struct
+              amdgpu_device *)handle;<br>
+              &gt;   <br>
+              &gt; +   
+               amdgpu_bo_free_kernel(&amp;adev-&gt;gds.gds_gfx_bo, NULL,
+              NULL);<br>
+              &gt; +   
+               amdgpu_bo_free_kernel(&amp;adev-&gt;gds.oa_gfx_bo, NULL,
+              NULL);<br>
+              &gt; +<br>
+              &gt;       for (i = 0; i &lt; adev-&gt;gfx.num_gfx_rings;
+              i++)<br>
+              &gt;             
+               amdgpu_ring_fini(&amp;adev-&gt;gfx.gfx_ring[i]);<br>
+              &gt;       for (i = 0; i &lt;
+              adev-&gt;gfx.num_compute_rings; i++)<br>
+              &gt;             
+               amdgpu_ring_fini(&amp;adev-&gt;gfx.compute_ring[i]);<br>
+              &gt;   <br>
+              &gt;       amdgpu_gfx_mqd_sw_fini(adev);<br>
+              &gt;     
+               amdgpu_gfx_kiq_free_ring(&amp;adev-&gt;gfx.kiq.ring,
+              &amp;adev-&gt;gfx.kiq.irq);<br>
+              &gt;       amdgpu_gfx_kiq_fini(adev);<br>
+              &gt;   <br>
+              &gt;       gfx_v10_0_pfp_fini(adev);<br>
+              &gt; @@ -5181,20 +5197,24 @@ static void
+              gfx_v10_0_set_gds_init(struct amdgpu_device *adev)<br>
+              &gt;       case CHIP_NAVI10:<br>
+              &gt;       default:<br>
+              &gt;               adev-&gt;gds.gds_size = 0x10000;<br>
+              &gt;               adev-&gt;gds.gds_compute_max_wave_id =
+              0x4ff;<br>
+              &gt;               adev-&gt;gds.vgt_gs_max_wave_id =
+              0x3ff;<br>
+              &gt;               break;<br>
+              &gt;       }<br>
+              &gt;   <br>
+              &gt;       adev-&gt;gds.gws_size = 64;<br>
+              &gt;       adev-&gt;gds.oa_size = 16;<br>
+              &gt; +<br>
+              &gt; +     /* Reserved for transform feedback. */<br>
+              &gt; +     adev-&gt;gds.gds_gfx_reservation_size = 256;<br>
+              &gt; +     adev-&gt;gds.oa_gfx_reservation_size = 4;<br>
+              &gt;   }<br>
+              &gt;   <br>
+              &gt;   static void
+              gfx_v10_0_set_user_wgp_inactive_bitmap_per_sh(struct
+              amdgpu_device *adev,<br>
+              &gt;                                                     
+                 u32 bitmap)<br>
+              &gt;   {<br>
+              &gt;       u32 data;<br>
+              &gt;   <br>
+              &gt;       if (!bitmap)<br>
+              &gt;               return;<br>
+              &gt;   <br>
+              <br>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+amd-gfx mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a></pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------E7C45430DCCF3D702BAA8703--
+
+--===============0383041703==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0383041703==--
