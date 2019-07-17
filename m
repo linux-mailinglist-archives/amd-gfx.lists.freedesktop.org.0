@@ -2,36 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB60F6BF1B
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2019 17:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0F416BF21
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2019 17:29:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C4AF6E1DE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECF466E248;
 	Wed, 17 Jul 2019 15:29:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com
- [IPv6:2607:f8b0:4864:20::643])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9AF06E116
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 11:43:02 +0000 (UTC)
-Received: by mail-pl1-x643.google.com with SMTP id a93so11824917pla.7
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 04:43:02 -0700 (PDT)
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com
+ [IPv6:2607:f8b0:4864:20::541])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44F5C88EBA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 11:44:19 +0000 (UTC)
+Received: by mail-pg1-x541.google.com with SMTP id o13so11026299pgp.12
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 04:44:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Grx9Ph9cpPxnp5U6FBRGOs65Gt1iaoMhcGq5W71SZXw=;
- b=Tr1SjIuVgmWQLJVoLlj65HN3zCDgFobKxNzl1GNNS6p/+olF0Yl0+LPU3hkGWOFVsU
- +KMDVVR4Pz07K/LT7aFCpeTvLMAXU+JIt8siGLZAEyY2r/AofFH9PWHRMl+xsslCNpVo
- 06wVX8bLj68cYJ0NN6rppJr62HL/pm9lsrUuEGPC7QyJbvbhRtf9+Bq1t+gXI+kkSsIc
- u6Xlbx+QR59YE2tSZBfo3iKs3UXV1EEaZJcZyLjgXPh3tdyvo5c06/Q4k4grLNQNbHkW
- KXe4bnfiEKc1QYdI5RKO/i7DBd7wWNA7mjCGfvFQ9F/e4udHMZliycOYo1Fmcx6NsDQg
- movA==
-X-Gm-Message-State: APjAAAU5SMpkWN6vacNsqsiGbwuow5mrSCPnCEk8+I8fRHkH6F/UGEO7
- bcZdeQ5Ltv5ozRJYw881LncpzHeA/FqEeJt5MbiG/w==
-X-Google-Smtp-Source: APXvYqwmLG+YoWbUJiFaN+0PkmRQxPro9175aUMwlEodu495a+iL+q6DhBuBElFNfaLl03HSknMS7Mny75X+YTtbitI=
-X-Received: by 2002:a17:902:8689:: with SMTP id
- g9mr39719354plo.252.1563363782037; 
- Wed, 17 Jul 2019 04:43:02 -0700 (PDT)
+ bh=s96tbUHAJa/3W+S33QuecksVNxzPE4B+rwrtGBTPIRg=;
+ b=HIgKjaIsPfyYO67WzP/gAhW0uthQ4M0OE6Ghn7mZ7YPAJIH5jm5INRIPBMUsi5+Eod
+ hvx9f4lftLDfZjmjLuqNcY+FOQ7Wnp6y/lv4irzVUpYfPBLAN2E5+x0O61UyzueUGqAm
+ GtuATxV0vIzaFLwQOZCXkeeOjNPjqsohDWZJrjr36UKdpMmACj9VaMIj9+Mh7qKUC0qw
+ RBhAvpldzz3JHnO+bz723T1tWcMHZmQLmncAKR83ZvGheADYqbYrTQo4QrhrMCFSAGBV
+ zHu+CMd37FoCTMLDUlBU4gMw67KWEPDu57NN3ZX7e/uv0/bMl+8hRIw2TV+LR9VtH71X
+ 2AOw==
+X-Gm-Message-State: APjAAAWMD32k5ZL2kqcDaVqXzFPCOscAHTJ/4PHpuEnpfFVdVG0vaThY
+ N0ze+/XpKK9IQ4fZKQ01ueUn0uYdtccXpCZZncTsbw==
+X-Google-Smtp-Source: APXvYqxCr99MNxoD8F3ipCKfGH5Ic+wArEB2kJiBZjN+Ft8BlSUogLYhlY5cWCf0y3NDyGKfQgFMQFiKtGoY4M7YZGQ=
+X-Received: by 2002:a63:c442:: with SMTP id m2mr41068862pgg.286.1563363858315; 
+ Wed, 17 Jul 2019 04:44:18 -0700 (PDT)
 MIME-Version: 1.0
 References: <cover.1561386715.git.andreyknvl@google.com>
  <ea0ff94ef2b8af12ea6c222c5ebd970e0849b6dd.1561386715.git.andreyknvl@google.com>
@@ -42,8 +41,8 @@ References: <cover.1561386715.git.andreyknvl@google.com>
  <20190716120624.GA29727@ziepe.ca>
 In-Reply-To: <20190716120624.GA29727@ziepe.ca>
 From: Andrey Konovalov <andreyknvl@google.com>
-Date: Wed, 17 Jul 2019 13:42:50 +0200
-Message-ID: <CAAeHK+xGfCSNgJ1FA1Bi3-6iVZNa5-cPJF54SY9rETqSqnrOTw@mail.gmail.com>
+Date: Wed, 17 Jul 2019 13:44:07 +0200
+Message-ID: <CAAeHK+xPPQ9QjAksbfWG-Zmnawt-cdw9eO_6GVxjEYcaDGvaRA@mail.gmail.com>
 Subject: Re: [PATCH v18 11/15] IB/mlx4: untag user pointers in mlx4_get_umem_mr
 To: Jason Gunthorpe <jgg@ziepe.ca>
 X-Mailman-Approved-At: Wed, 17 Jul 2019 15:29:17 +0000
@@ -51,13 +50,13 @@ X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=google.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
  :cc;
- bh=Grx9Ph9cpPxnp5U6FBRGOs65Gt1iaoMhcGq5W71SZXw=;
- b=dPqGbc0mQ4L1HVZkSH8ToVI8fJKg/9UNHDO/j/ERbXAicYMzOFznsbpKlaHUysv6li
- HI+ov6aZkI81aTTtxCqQqgB/bUVOpQn9oyTV62JlPhH7/hgOpXEwCdWu9ddqQHOpZpdv
- vvSbjVE/k6KiaC4iA854H6gt6BntwHIeZhW6TlwY6wZ/6+elD6DGPCHZxZrxLz2uCTHc
- 8iFhpa9H1Y4EYvcxgufIOEc+0j2fY1DuwRMYeLwfiF/zvSCA0YG2Xctd4B7QhffRyXW7
- 79B+/AUSAWe5ZZuaO+yAHuZlFSQxsBpNhxsDDOkk9SiW6k2AqHelqnkNry2oBYROn4ta
- qk0g==
+ bh=s96tbUHAJa/3W+S33QuecksVNxzPE4B+rwrtGBTPIRg=;
+ b=YNTzEvLokDKfBiND0F2uTRtNbbscQoeYlRAIZ4D4gm+fPunaVpSxT9yFu1P0pJ6lio
+ xWTqHSLTx3ZiQsVVIdfvcsAEZX+UwZ3GwnRk6z/9j+jj49uvH9o3OWPLDccY+IbVHGze
+ VX/w7SlL3Vzx+t0xrwbctuweCHGIlBKbcd05Q0zBlUJIzL3VkiYxJwnzmtUL5R2SnxIl
+ RhMYnRo7T8e4Wl/4YHx7n44SfOzOXvvpPCN5gZKipQVyiczav3qSb50tsdB3ZZ0CfrCh
+ dofC27Pihb8FLt/R6YXAogt8ZfxAC6UrwAQzPlEU0+w5SGEaRflsRUqY/qTdnOsoVA2h
+ liiA==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -131,7 +130,11 @@ IHdhcyB3ZSB3aG8gbG9zdCBpdC4gVGhhbmtzIQo+ID4KPiA+ID4gWW91IHdpbGwgc2VuZCBpdD8K
 PiA+Cj4gPiBJIHdpbGwgcmVzZW5kIHRoZSBwYXRjaHNldCBvbmNlIHRoZSBtZXJnZSB3aW5kb3cg
 aXMgY2xvc2VkLCBpZiB0aGF0J3MKPiA+IHdoYXQgeW91IG1lYW4uCj4KPiBOby4uIEkgbWVhbiB3
 aG8gc2VuZCBpdCB0byBMaW51cydzIHRyZWU/IGllIGRvIHlvdSB3YW50IG1lIHRvIHRha2UKPiB0
-aGlzIHBhdGNoIGludG8gcmRtYT8KPgo+IEphc29uCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vYW1kLWdmeA==
+aGlzIHBhdGNoIGludG8gcmRtYT8KCkkgdGhpbmsgdGhlIHBsYW4gd2FzIHRvIG1lcmdlIHRoZSB3
+aG9sZSBzZXJpZXMgdGhyb3VnaCB0aGUgbW0gdHJlZS4KQnV0IEkgZG9uJ3QgbWluZCBpZiB5b3Ug
+d2FudCB0byB0YWtlIHRoaXMgcGF0Y2ggaW50byB5b3VyIHRyZWUuIEl0J3MKanVzdCB0aGF0IHRo
+aXMgcGF0Y2ggZG9lc24ndCBtYWtlIG11Y2ggc2Vuc2Ugd2l0aG91dCB0aGUgcmVzdCBvZiB0aGUK
+c2VyaWVzLgoKPgo+IEphc29uCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdm
+eA==
