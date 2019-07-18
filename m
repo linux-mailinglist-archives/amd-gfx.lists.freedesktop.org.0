@@ -1,89 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC34E6CC8C
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2019 12:09:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 409176CCCB
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2019 12:32:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C7596E372;
-	Thu, 18 Jul 2019 10:09:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6982689FA6;
+	Thu, 18 Jul 2019 10:32:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM05-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam05on062e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe50::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04E6B6E372
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jul 2019 10:09:39 +0000 (UTC)
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr820051.outbound.protection.outlook.com [40.107.82.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0115189FA6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jul 2019 10:32:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TiYh7nuxkIGuxToyKaU/xaW0wa79MtBFZqYvur5NHvqaz/ih1Ngkp/7wRY/Jo8pdhf4s3bBME8eLoTllB8jWCVeR5W9ctahwYUmH5FzS5SRADcvz/8IEuJihpNM/A+Gh44VoqSc29zt5gpokFdc1PbZMt3T2MjQ3v8/m1WK7o0zhBVUnCBa+g+mH5HtQBuG1qgmvmv63dig0JNIBRiBKTQ/JBoCWkZColjb0iinYFUWlqt+GJe/Ai+5The20jhn6nzw/yMpcaaa16+XQ3UV9tgPcvB6cIhU4L0k6I8PEh0DB96+URWfid9dxkiygS5nZOI4KyhXAoaBpng9nYkyscQ==
+ b=KPxrVThe4Z5/rqoyoYTjg48j/0B63f/j0A/+s9pomICuuApZeQmM85i1VJK0EcP7tW5U7D1WCYnRaBtJdh4aTyKbQdvSLGzJXyCLq/4S132buDI71Li6Hl4UXu87opT6hO5OcggjC04YlQ3iusZCs9yUiFEZfCFWTEQiGY9ph8wGreP0est5aJVIXnhFRLhP0BxRiydRFKUr5V3+Y1FCeVD5cnCUljt6+rxVP3d+lqtfICRXEV5GvxQUKag8zqty+2+/V4m449dQRfQhesgHguieNRtGmIBB2bVL4g1sfpIgwoZp/PFSJF7cBBxRmer9RH0b1E5dSZCbXvOHgCB5Hw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ySkf+TbQiDDU/HvVANqBUUW6POyyNCzBV4VQA4x3n1M=;
- b=QWKXc1ZGxfOqvBLT6uIDLZ6Iu5PxppE0UYDXpB6e5a9xBQDXay30xOfZwPRszf/nnV8rdDaTYB0koIxoa+S0OJsuFpjuL8Am9dIicovrrfZM8zuM/wig/4W4XNAr+zDtbeGgD7YUiyqAK1Bv/8fuM5B3k5WX4Ai/hI3NDA9fL+HvoEKrtUY6+5MljfbolJU61qLqxsR8cvcyhyH0wWWOeuMcHDNyfy2pV9f5MGpDTad0Qz0HS1B7PckcT+1/Lrk5b1kg+91Oms6i8gkfhbk2PGmChGyEYQ8qfEQK3WHosUsLqoD95f19ZKQD/AdB/ldHn+T6L+A4mzw4auw7AyjWrA==
+ bh=bdl5bnSsRO1jy+WzJpALIEP3aQ0b8rK8bqs4Qv6PXtg=;
+ b=hIRtfEzaU8S/P5yYahxBY6TYzsRIEZh1+feZSp05Vid7iNXRycVAzHv3OB35WP+WTfgyZv375+fsUxcZ1glZb9eC5a6kxNOelqsYQal+Do2xUOpsan1blcuB2HeOH3XY9h8dtueuJK0YpfPjA+reNT2XdVvcuiG5mo6BDiwjN+Y33kftcvM4BW74/DWrNcXP+NDtjKJY5qbEGTYeYkZw2CRTRI1xByCS3bN0TzMvYYjNyA0caCg44INA3J3yjFRQeqiYZ+E7kBQnyq0oRqpUfqOJiMW5txXsLKsnx7Gq7o7i9pCcAzTIPrdnnADdN88woD97D1Cdy0kbeldVYYuN2g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
  smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
  header.d=amd.com;arc=none
-Received: from MN2PR12MB3309.namprd12.prod.outlook.com (20.179.83.157) by
- MN2SPR01MB0034.namprd12.prod.outlook.com (20.178.250.97) with Microsoft SMTP
+Received: from MN2PR12MB3344.namprd12.prod.outlook.com (20.178.241.74) by
+ MN2PR12MB3758.namprd12.prod.outlook.com (10.255.236.151) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2073.14; Thu, 18 Jul 2019 10:09:35 +0000
-Received: from MN2PR12MB3309.namprd12.prod.outlook.com
- ([fe80::f821:f3f7:3ee3:8c5e]) by MN2PR12MB3309.namprd12.prod.outlook.com
- ([fe80::f821:f3f7:3ee3:8c5e%7]) with mapi id 15.20.2073.012; Thu, 18 Jul 2019
- 10:09:35 +0000
-From: "Huang, Ray" <Ray.Huang@amd.com>
-To: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ 15.20.2073.14; Thu, 18 Jul 2019 10:32:08 +0000
+Received: from MN2PR12MB3344.namprd12.prod.outlook.com
+ ([fe80::9170:5b18:b195:24b1]) by MN2PR12MB3344.namprd12.prod.outlook.com
+ ([fe80::9170:5b18:b195:24b1%3]) with mapi id 15.20.2094.011; Thu, 18 Jul 2019
+ 10:32:08 +0000
+From: "Quan, Evan" <Evan.Quan@amd.com>
+To: "Gui, Jack" <Jack.Gui@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH v2] drm/amd/powerplay: change sysfs pp_dpm_xxx format for
- navi10
-Thread-Topic: [PATCH v2] drm/amd/powerplay: change sysfs pp_dpm_xxx format for
- navi10
-Thread-Index: AQHVPU0zi/IEJ0Yhq0yFgHm+keJTNabQJxYg
-Date: Thu, 18 Jul 2019 10:09:35 +0000
-Message-ID: <MN2PR12MB33099DE054352C64133BAD2BECC80@MN2PR12MB3309.namprd12.prod.outlook.com>
-References: <20190718094249.22234-1-kevin1.wang@amd.com>
-In-Reply-To: <20190718094249.22234-1-kevin1.wang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
+Subject: Re: [PATCH 2/3] drm/amd/powerplay: force sclk limit for peak profile
+Thread-Topic: [PATCH 2/3] drm/amd/powerplay: force sclk limit for peak profile
+Thread-Index: AQHVPU/++TWQFLd+TUCZkltNx9k/3qbQLL3V
+Date: Thu, 18 Jul 2019 10:32:08 +0000
+Message-ID: <MN2PR12MB3344FFA5D4975E0D66F98301E4C80@MN2PR12MB3344.namprd12.prod.outlook.com>
+References: <1563444138-23948-1-git-send-email-Jack.Gui@amd.com>,
+ <1563444138-23948-2-git-send-email-Jack.Gui@amd.com>
+In-Reply-To: <1563444138-23948-2-git-send-email-Jack.Gui@amd.com>
+Accept-Language: en-US, zh-CN
+Content-Language: zh-CN
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [180.167.199.189]
+x-originating-ip: [114.87.102.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 277029ee-f99b-489b-d155-08d70b680966
+x-ms-office365-filtering-correlation-id: 061b6be1-a89a-4551-0dc3-08d70b6b2f74
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MN2SPR01MB0034; 
-x-ms-traffictypediagnostic: MN2SPR01MB0034:
-x-microsoft-antispam-prvs: <MN2SPR01MB0034C5FFE82DC6707C6CB5BAECC80@MN2SPR01MB0034.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:293;
+ SRVR:MN2PR12MB3758; 
+x-ms-traffictypediagnostic: MN2PR12MB3758:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <MN2PR12MB37584F264DCBE5AEDD6C4799E4C80@MN2PR12MB3758.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1850;
 x-forefront-prvs: 01026E1310
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(136003)(39860400002)(366004)(396003)(346002)(189003)(199004)(13464003)(8936002)(53936002)(68736007)(26005)(7736002)(2906002)(229853002)(3846002)(6246003)(316002)(86362001)(54906003)(5660300002)(6506007)(33656002)(52536014)(2501003)(110136005)(446003)(486006)(14454004)(6436002)(81166006)(76176011)(305945005)(476003)(66556008)(8676002)(74316002)(186003)(66946007)(7696005)(81156014)(71200400001)(4326008)(66446008)(76116006)(25786009)(66476007)(55016002)(11346002)(99286004)(6116002)(9686003)(53546011)(256004)(102836004)(478600001)(66066001)(71190400001)(64756008)(21314003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2SPR01MB0034;
- H:MN2PR12MB3309.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(366004)(396003)(376002)(136003)(39860400002)(346002)(189003)(199004)(26005)(2906002)(606006)(186003)(14454004)(4326008)(25786009)(14444005)(11346002)(256004)(3846002)(236005)(6246003)(71190400001)(71200400001)(6116002)(476003)(446003)(6436002)(76176011)(86362001)(7696005)(102836004)(6506007)(9686003)(91956017)(55016002)(6306002)(54896002)(66556008)(66946007)(66446008)(2501003)(99286004)(52536014)(53936002)(110136005)(8676002)(229853002)(7736002)(8936002)(81166006)(74316002)(316002)(66066001)(68736007)(5660300002)(33656002)(966005)(64756008)(66476007)(81156014)(76116006)(478600001)(486006);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3758;
+ H:MN2PR12MB3344.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 1CpOh/RgVWFXpmmzL9xC5J1LnAC6rVv31a6ATCif26PG+NDquHeTLK/41vJqdMj0Y7QarINM1/JiSlYzt1BdRD0CsI5OIWPCVttXOO6/ayxnr/d9JBC1wPrvXAZydzY6c6wVz1SlFrrKBSl2kwLVL9be8Iiw36Fxm6PcDoJEQ7k53dLyu7HQdKe3cSuoSNYacwaOL1R6xCUk4J83RUbWTluCH/b/eDwe6PzYY4JOgRRCBXKzzdxFhM4r2AY8mIYe9NYdocyNfS2H2GXEkTt1LJljDwJJt5vXpGbB155+FW8Q76Ps0YPU3eRPzGtIZVx9HXr17ItSMwlQ33x0GWS/Ojp0doHVzP3qNAWN3D6RPKiIRvnukBTYunWYweAcmqY2i3gquwZIBER9Db7ZvPziInNUbbE1An0U4s37AyRWlkU=
+x-microsoft-antispam-message-info: azaMw9utezeZ72sx51zF7irajflKgrk55u+iwqTxwgyoeSdXZgEjIurLR1MMr6NW8xQhjIMfRm1Pj0/BidFMllF4Sa9KKYQA++EnbXDR1e/B45w88UTC5VY7w7b+ciV/xUKFexjYJNEDZywpG6NLBks0iYpaIQLvSDJEE0QN5xdzHvT/KFi8I/TpZ6OcDielfWGh0mjOSf+IRNt0t13X/aHWC25zgqQoy2fIvnX1LwEZ4VEZmn1A2Cfsvh7pPcPcHPPqYZb3KQUX1SFwKf11zByskpo1qdMc1FquyGVHIRtxwqywYnh4tflaO8YqLyYiWsvsipLsWBZwxrIpCL1qvLV2Rnc6o7wlCZt1QPODqwvwqJM3ZQu3BZaktR1NuyW46sya/Xl+7Rc7L4ul87hMHGuSo2coZOiSK/tZTp0yLNI=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 277029ee-f99b-489b-d155-08d70b680966
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jul 2019 10:09:35.6992 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 061b6be1-a89a-4551-0dc3-08d70b6b2f74
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jul 2019 10:32:08.0396 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ruihuang@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2SPR01MB0034
+X-MS-Exchange-CrossTenant-userprincipalname: equan@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3758
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ySkf+TbQiDDU/HvVANqBUUW6POyyNCzBV4VQA4x3n1M=;
- b=p6gcOtom2bOQmZHUX6eLDMFk+PkXJp4InppzCHqF2RaUDOjChG8CPS+/+e/ohUuEVmsXpZtZFGx0GAQw/T3GoCrroppabgHeFcoGdaIenrRlAhDvTDh5Ed4MUM5gyplBvbSZfaQvb1ubqpijoyW1bdSXCgH3LT2AitW86HXMQQc=
+ bh=bdl5bnSsRO1jy+WzJpALIEP3aQ0b8rK8bqs4Qv6PXtg=;
+ b=ECWWiC6tapPL/1hB7py9lLm4NmndelrbcumgTZP/dadxuhYtdiL6O0ioj7fv4i2eCclo34dCebf8OfpjZarq9cFhVLx1VhBkTU0cAZyv1ezwQ835WQCSWauILr12s23lOlbUJyjmDJFYgmlLlgBc4gaC7Dq1mxsH403UF0q2D/k=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Ray.Huang@amd.com; 
+ smtp.mailfrom=Evan.Quan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -95,78 +94,536 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Xu, Feifei" <Feifei.Xu@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>, "Feng,
- Kenneth" <Kenneth.Feng@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Gui, Jack" <Jack.Gui@amd.com>
+Content-Type: multipart/mixed; boundary="===============2063220756=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+IEZyb206IFdhbmcsIEtldmluKFlhbmcpIDxL
-ZXZpbjEuV2FuZ0BhbWQuY29tPgo+IFNlbnQ6IFRodXJzZGF5LCBKdWx5IDE4LCAyMDE5IDU6NDMg
-UE0KPiBUbzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogRmVuZywgS2VubmV0
-aCA8S2VubmV0aC5GZW5nQGFtZC5jb20+OyBRdWFuLCBFdmFuCj4gPEV2YW4uUXVhbkBhbWQuY29t
-PjsgSHVhbmcsIFJheSA8UmF5Lkh1YW5nQGFtZC5jb20+OyBYdSwgRmVpZmVpCj4gPEZlaWZlaS5Y
-dUBhbWQuY29tPjsgV2FuZywgS2V2aW4oWWFuZykgPEtldmluMS5XYW5nQGFtZC5jb20+Cj4gU3Vi
-amVjdDogW1BBVENIIHYyXSBkcm0vYW1kL3Bvd2VycGxheTogY2hhbmdlIHN5c2ZzIHBwX2RwbV94
-eHggZm9ybWF0Cj4gZm9yIG5hdmkxMAo+IAo+IHYyOgo+IHNldCBhdmVyYWdlIGNsb2NrIHZhbHVl
-IG9uIGxldmVsIDEgd2hlbiBjdXJyZW50IGNsb2NrIGVxdWFsIG1pbiBvciBtYXggY2xvY2sKPiAo
-ZmluZSBncmFpbmVkIGRwbSBzdXBwb3J0KS4KPiAKPiB0aGUgbmF2aTEwIGdmeGNsayAoc2Nsaykg
-c3VwcG9ydCBmaW5lIGdyYWluZWQgRFBNLCBzbyB1c2UgbGV2ZWwgMSB0byBzaG93Cj4gY3VycmVu
-dCBkcG0gZnJlcSBpbiBzeXNmcyBwcF9kcG1feHh4Cj4gCj4gQ2hhbmdlLUlkOiBJMTRkYWE2ZTMw
-YzUyYzg5Nzk1NzA4ZWMwNjY2MDg2MmJiNDU5MTAzNgo+IFNpZ25lZC1vZmYtYnk6IEtldmluIFdh
-bmcgPGtldmluMS53YW5nQGFtZC5jb20+CgpBY2tlZC1ieTogSHVhbmcgUnVpIDxyYXkuaHVhbmdA
-YW1kLmNvbT4KCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L25hdmkxMF9w
-cHQuYyB8IDQ3ICsrKysrKysrKysrKysrKysrKystCj4gLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDQx
-IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvcG93ZXJwbGF5L25hdmkxMF9wcHQuYwo+IGIvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9wb3dlcnBsYXkvbmF2aTEwX3BwdC5jCj4gaW5kZXggODk1YTRlNTkyZDVhLi4xZjcyMWI4NWMw
-ZjYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvbmF2aTEwX3Bw
-dC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvbmF2aTEwX3BwdC5jCj4g
-QEAgLTYyNywxMSArNjI3LDI2IEBAIHN0YXRpYyBpbnQKPiBuYXZpMTBfZ2V0X2N1cnJlbnRfY2xr
-X2ZyZXFfYnlfdGFibGUoc3RydWN0IHNtdV9jb250ZXh0ICpzbXUsCj4gIAlyZXR1cm4gcmV0Owo+
-ICB9Cj4gCj4gK3N0YXRpYyBib29sIG5hdmkxMF9pc19zdXBwb3J0X2ZpbmVfZ3JhaW5lZF9kcG0o
-c3RydWN0IHNtdV9jb250ZXh0ICpzbXUsCj4gK2VudW0gc211X2Nsa190eXBlIGNsa190eXBlKSB7
-Cj4gKwlQUFRhYmxlX3QgKnBwdGFibGUgPSBzbXUtPnNtdV90YWJsZS5kcml2ZXJfcHB0YWJsZTsK
-PiArCURwbURlc2NyaXB0b3JfdCAqZHBtX2Rlc2MgPSBOVUxMOwo+ICsJdWludDMyX3QgY2xrX2lu
-ZGV4ID0gMDsKPiArCj4gKwljbGtfaW5kZXggPSBzbXVfY2xrX2dldF9pbmRleChzbXUsIGNsa190
-eXBlKTsKPiArCWRwbV9kZXNjID0gJnBwdGFibGUtPkRwbURlc2NyaXB0b3JbY2xrX2luZGV4XTsK
-PiArCj4gKwkvKiAwIC0gRmluZSBncmFpbmVkIERQTSwgMSAtIERpc2NyZXRlIERQTSAqLwo+ICsJ
-cmV0dXJuIGRwbV9kZXNjLT5TbmFwVG9EaXNjcmV0ZSA9PSAwID8gdHJ1ZSA6IGZhbHNlOyB9Cj4g
-Kwo+ICBzdGF0aWMgaW50IG5hdmkxMF9wcmludF9jbGtfbGV2ZWxzKHN0cnVjdCBzbXVfY29udGV4
-dCAqc211LAo+ICAJCQllbnVtIHNtdV9jbGtfdHlwZSBjbGtfdHlwZSwgY2hhciAqYnVmKSAgewo+
-ICAJaW50IGksIHNpemUgPSAwLCByZXQgPSAwOwo+ICAJdWludDMyX3QgY3VyX3ZhbHVlID0gMCwg
-dmFsdWUgPSAwLCBjb3VudCA9IDA7Cj4gKwl1aW50MzJfdCBmcmVxX3ZhbHVlc1szXSA9IHswfTsK
-PiArCXVpbnQzMl90IG1hcmtfaW5kZXggPSAwOwo+IAo+ICAJc3dpdGNoIChjbGtfdHlwZSkgewo+
-ICAJY2FzZSBTTVVfR0ZYQ0xLOgo+IEBAIC02NDQsMjIgKzY1OSw0MiBAQCBzdGF0aWMgaW50IG5h
-dmkxMF9wcmludF9jbGtfbGV2ZWxzKHN0cnVjdAo+IHNtdV9jb250ZXh0ICpzbXUsCj4gIAkJcmV0
-ID0gc211X2dldF9jdXJyZW50X2Nsa19mcmVxKHNtdSwgY2xrX3R5cGUsICZjdXJfdmFsdWUpOwo+
-ICAJCWlmIChyZXQpCj4gIAkJCXJldHVybiBzaXplOwo+ICsKPiAgCQkvKiAxMEtIeiAtPiBNSHog
-Ki8KPiAgCQljdXJfdmFsdWUgPSBjdXJfdmFsdWUgLyAxMDA7Cj4gCj4gLQkJc2l6ZSArPSBzcHJp
-bnRmKGJ1ZiwgImN1cnJlbnQgY2xrOiAldU1oelxuIiwgY3VyX3ZhbHVlKTsKPiAtCj4gIAkJcmV0
-ID0gc211X2dldF9kcG1fbGV2ZWxfY291bnQoc211LCBjbGtfdHlwZSwgJmNvdW50KTsKPiAgCQlp
-ZiAocmV0KQo+ICAJCQlyZXR1cm4gc2l6ZTsKPiAKPiAtCQlmb3IgKGkgPSAwOyBpIDwgY291bnQ7
-IGkrKykgewo+IC0JCQlyZXQgPSBzbXVfZ2V0X2RwbV9mcmVxX2J5X2luZGV4KHNtdSwgY2xrX3R5
-cGUsIGksCj4gJnZhbHVlKTsKPiArCQlpZiAoIW5hdmkxMF9pc19zdXBwb3J0X2ZpbmVfZ3JhaW5l
-ZF9kcG0oc211LCBjbGtfdHlwZSkpIHsKPiArCQkJZm9yIChpID0gMDsgaSA8IGNvdW50OyBpKysp
-IHsKPiArCQkJCXJldCA9IHNtdV9nZXRfZHBtX2ZyZXFfYnlfaW5kZXgoc211LAo+IGNsa190eXBl
-LCBpLCAmdmFsdWUpOwo+ICsJCQkJaWYgKHJldCkKPiArCQkJCQlyZXR1cm4gc2l6ZTsKPiArCj4g
-KwkJCQlzaXplICs9IHNwcmludGYoYnVmICsgc2l6ZSwgIiVkOiAldU1oeiAlc1xuIiwKPiBpLCB2
-YWx1ZSwKPiArCQkJCQkJY3VyX3ZhbHVlID09IHZhbHVlID8gIioiIDogIiIpOwo+ICsJCQl9Cj4g
-KwkJfSBlbHNlIHsKPiArCQkJcmV0ID0gc211X2dldF9kcG1fZnJlcV9ieV9pbmRleChzbXUsIGNs
-a190eXBlLCAwLAo+ICZmcmVxX3ZhbHVlc1swXSk7Cj4gKwkJCWlmIChyZXQpCj4gKwkJCQlyZXR1
-cm4gc2l6ZTsKPiArCQkJcmV0ID0gc211X2dldF9kcG1fZnJlcV9ieV9pbmRleChzbXUsIGNsa190
-eXBlLAo+IGNvdW50IC0gMSwKPiArJmZyZXFfdmFsdWVzWzJdKTsKPiAgCQkJaWYgKHJldCkKPiAg
-CQkJCXJldHVybiBzaXplOwo+IAo+IC0JCQlzaXplICs9IHNwcmludGYoYnVmICsgc2l6ZSwgIiVk
-OiAldU1oeiAlc1xuIiwgaSwgdmFsdWUsCj4gLQkJCQkJY3VyX3ZhbHVlID09IHZhbHVlID8gIioi
-IDogIiIpOwo+ICsJCQlmcmVxX3ZhbHVlc1sxXSA9IGN1cl92YWx1ZTsKPiArCQkJbWFya19pbmRl
-eCA9IGN1cl92YWx1ZSA9PSBmcmVxX3ZhbHVlc1swXSA/IDAgOgo+ICsJCQkJICAgICBjdXJfdmFs
-dWUgPT0gZnJlcV92YWx1ZXNbMl0gPyAyIDogMTsKPiArCQkJaWYgKG1hcmtfaW5kZXggIT0gMSkK
-PiArCQkJCWZyZXFfdmFsdWVzWzFdID0gKGZyZXFfdmFsdWVzWzBdICsKPiBmcmVxX3ZhbHVlc1sy
-XSkgLyAyOwo+ICsKPiArCQkJZm9yIChpID0gMDsgaSA8IDM7IGkrKykgewo+ICsJCQkJc2l6ZSAr
-PSBzcHJpbnRmKGJ1ZiArIHNpemUsICIlZDogJXVNaHogJXNcbiIsCj4gaSwgZnJlcV92YWx1ZXNb
-aV0sCj4gKwkJCQkJCWkgPT0gbWFya19pbmRleCA/ICIqIiA6ICIiKTsKPiArCQkJfQo+ICsKPiAg
-CQl9Cj4gIAkJYnJlYWs7Cj4gIAlkZWZhdWx0Ogo+IC0tCj4gMi4yMi4wCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAph
-bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============2063220756==
+Content-Language: zh-CN
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB3344FFA5D4975E0D66F98301E4C80MN2PR12MB3344namp_"
+
+--_000_MN2PR12MB3344FFA5D4975E0D66F98301E4C80MN2PR12MB3344namp_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
+
+MS4gSW4gbmF2aTEwX2ZvcmNlX2Nsa19sZXZlbHMsIGkgdGhpbmsgeW91IG5lZWQgdG8gY29tcGFy
+ZSB0aGUgbWF4IGxldmVsIHVzZXIgcmVxdWVzdGVkIHdpdGggdGhlIHBlYWsgbGltaXQgYW5kIHNl
+dCB0aGUgc21hbGxlciBvbmUuDQoyLiBjYW4geW91IGhlbHAgbWUgdG8gdW5kZXJzdGFuZCB3aHkg
+dGhlIGNoYW5nZSBpbiBhcHBseV9jbG9ja19ydWxlcyBpcyBuZWVkZWQ/DQoNCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQq3orz+yMs6IGFtZC1nZnggPGFtZC1nZngtYm91bmNlc0Bs
+aXN0cy5mcmVlZGVza3RvcC5vcmc+ILT6se0gQ2hlbmdtaW5nIEd1aSA8SmFjay5HdWlAYW1kLmNv
+bT4NCreiy83KsbzkOiBUaHVyc2RheSwgSnVseSAxOCwgMjAxOSA2OjAyOjE3IFBNDQrK1bz+yMs6
+IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIDxhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZz4NCrOty806IEd1aSwgSmFjayA8SmFjay5HdWlAYW1kLmNvbT4NCtb3zOI6IFtQQVRDSCAy
+LzNdIGRybS9hbWQvcG93ZXJwbGF5OiBmb3JjZSBzY2xrIGxpbWl0IGZvciBwZWFrIHByb2ZpbGUN
+Cg0KZm9yY2UgZGlmZmVyZW50IEdGWCBjbG9ja3Mgd2l0aCBkaWZmZXJlbnQgU0tVcyBmb3IgbmF2
+aTEwOg0KWEwgIChvdGhlciByZXZfaWQpOiAgMTYyNU1Ieg0KWFQgICAgICAgICAoRjEvQzEpOiAg
+MTc1NU1Ieg0KWFRYICAgICAgICAoRjAvQzApOiAgMTgzME1Ieg0KDQpTaWduZWQtb2ZmLWJ5OiBD
+aGVuZ21pbmcgR3VpIDxKYWNrLkd1aUBhbWQuY29tPg0KLS0tDQogZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9wb3dlcnBsYXkvYW1kZ3B1X3NtdS5jICAgICB8ICAyICsNCiBkcml2ZXJzL2dwdS9kcm0vYW1k
+L3Bvd2VycGxheS9pbmMvYW1kZ3B1X3NtdS5oIHwgIDIgKw0KIGRyaXZlcnMvZ3B1L2RybS9hbWQv
+cG93ZXJwbGF5L25hdmkxMF9wcHQuYyAgICAgfCA2NiArKysrKysrKysrKysrKysrKysrKysrKysr
+LQ0KIDMgZmlsZXMgY2hhbmdlZCwgNjggaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCg0K
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2FtZGdwdV9zbXUuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2FtZGdwdV9zbXUuYw0KaW5kZXggMTIyOTg1
+Yy4uNjkzNDE0ZiAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2Ft
+ZGdwdV9zbXUuYw0KKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvYW1kZ3B1X3Nt
+dS5jDQpAQCAtNjY0LDYgKzY2NCw4IEBAIHN0YXRpYyBpbnQgc211X3N3X2luaXQodm9pZCAqaGFu
+ZGxlKQ0KICAgICAgICAgc211LT53YXRlcm1hcmtzX2JpdG1hcCA9IDA7DQogICAgICAgICBzbXUt
+PnBvd2VyX3Byb2ZpbGVfbW9kZSA9IFBQX1NNQ19QT1dFUl9QUk9GSUxFX0JPT1RVUF9ERUZBVUxU
+Ow0KICAgICAgICAgc211LT5kZWZhdWx0X3Bvd2VyX3Byb2ZpbGVfbW9kZSA9IFBQX1NNQ19QT1dF
+Ul9QUk9GSUxFX0JPT1RVUF9ERUZBVUxUOw0KKyAgICAgICBzbXUtPnNtdV9kcG0uZGVmYXVsdF9z
+Y2xrX2xpbWl0ID0gMDsNCisgICAgICAgc211LT5zbXVfZHBtLnBlYWtfc2Nsa19saW1pdCA9IDA7
+DQoNCiAgICAgICAgIHNtdS0+d29ya2xvYWRfbWFzayA9IDEgPDwgc211LT53b3JrbG9hZF9wcm9y
+aXR5W1BQX1NNQ19QT1dFUl9QUk9GSUxFX0JPT1RVUF9ERUZBVUxUXTsNCiAgICAgICAgIHNtdS0+
+d29ya2xvYWRfcHJvcml0eVtQUF9TTUNfUE9XRVJfUFJPRklMRV9CT09UVVBfREVGQVVMVF0gPSAw
+Ow0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2luYy9hbWRncHVf
+c211LmggYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9pbmMvYW1kZ3B1X3NtdS5oDQpp
+bmRleCAxMzVhMzIzLi5hY2I1MjJiIDEwMDY0NA0KLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9w
+b3dlcnBsYXkvaW5jL2FtZGdwdV9zbXUuaA0KKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dl
+cnBsYXkvaW5jL2FtZGdwdV9zbXUuaA0KQEAgLTQ0MSw2ICs0NDEsOCBAQCBzdHJ1Y3Qgc211X2Rw
+bV9jb250ZXh0IHsNCiAgICAgICAgIHZvaWQgKmRwbV9jb250ZXh0Ow0KICAgICAgICAgdm9pZCAq
+Z29sZGVuX2RwbV9jb250ZXh0Ow0KICAgICAgICAgYm9vbCBlbmFibGVfdW1kX3BzdGF0ZTsNCisg
+ICAgICAgdWludDMyX3QgZGVmYXVsdF9zY2xrX2xpbWl0Ow0KKyAgICAgICB1aW50MzJfdCBwZWFr
+X3NjbGtfbGltaXQ7DQogICAgICAgICBlbnVtIGFtZF9kcG1fZm9yY2VkX2xldmVsIGRwbV9sZXZl
+bDsNCiAgICAgICAgIGVudW0gYW1kX2RwbV9mb3JjZWRfbGV2ZWwgc2F2ZWRfZHBtX2xldmVsOw0K
+ICAgICAgICAgZW51bSBhbWRfZHBtX2ZvcmNlZF9sZXZlbCByZXF1ZXN0ZWRfZHBtX2xldmVsOw0K
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L25hdmkxMF9wcHQuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L25hdmkxMF9wcHQuYw0KaW5kZXggODk1YTRl
+NS4uYjRkZWI5ZSAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L25h
+dmkxMF9wcHQuYw0KKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvbmF2aTEwX3Bw
+dC5jDQpAQCAtMzcsNiArMzcsMTUgQEANCg0KICNpbmNsdWRlICJhc2ljX3JlZy9tcC9tcF8xMV8w
+X3NoX21hc2suaCINCg0KKyNkZWZpbmUgTlZfTlYxMF9GMCAweEYwDQorI2RlZmluZSBOVl9OVjEw
+X0MwIDB4QzANCisjZGVmaW5lIE5WX05WMTBfRjEgMHhGMQ0KKyNkZWZpbmUgTlZfTlYxMF9DMSAw
+eEMxDQorDQorI2RlZmluZSBOVl9OVjEwX1BFQUtfU0NMS19YVFggMTgzMA0KKyNkZWZpbmUgTlZf
+TlYxMF9QRUFLX1NDTEtfWFQgIDE3NTUNCisjZGVmaW5lIE5WX05WMTBfUEVBS19TQ0xLX1hMICAx
+NjI1DQorDQogI2RlZmluZSBGRUFUVVJFX01BU0soZmVhdHVyZSkgKDFVTEwgPDwgZmVhdHVyZSkN
+CiAjZGVmaW5lIFNNQ19EUE1fRkVBVFVSRSAoIFwNCiAgICAgICAgIEZFQVRVUkVfTUFTSyhGRUFU
+VVJFX0RQTV9QUkVGRVRDSEVSX0JJVCkgfCBcDQpAQCAtNjc1LDYgKzY4NCw3IEBAIHN0YXRpYyBp
+bnQgbmF2aTEwX2ZvcmNlX2Nsa19sZXZlbHMoc3RydWN0IHNtdV9jb250ZXh0ICpzbXUsDQoNCiAg
+ICAgICAgIGludCByZXQgPSAwLCBzaXplID0gMDsNCiAgICAgICAgIHVpbnQzMl90IHNvZnRfbWlu
+X2xldmVsID0gMCwgc29mdF9tYXhfbGV2ZWwgPSAwLCBtaW5fZnJlcSA9IDAsIG1heF9mcmVxID0g
+MDsNCisgICAgICAgc3RydWN0IHNtdV9kcG1fY29udGV4dCAqc211X2RwbV9jdHggPSAmKHNtdS0+
+c211X2RwbSk7DQoNCiAgICAgICAgIHNvZnRfbWluX2xldmVsID0gbWFzayA/IChmZnMobWFzaykg
+LSAxKSA6IDA7DQogICAgICAgICBzb2Z0X21heF9sZXZlbCA9IG1hc2sgPyAoZmxzKG1hc2spIC0g
+MSkgOiAwOw0KQEAgLTY4Miw2ICs2OTIsMjMgQEAgc3RhdGljIGludCBuYXZpMTBfZm9yY2VfY2xr
+X2xldmVscyhzdHJ1Y3Qgc211X2NvbnRleHQgKnNtdSwNCiAgICAgICAgIHN3aXRjaCAoY2xrX3R5
+cGUpIHsNCiAgICAgICAgIGNhc2UgU01VX0dGWENMSzoNCiAgICAgICAgIGNhc2UgU01VX1NDTEs6
+DQorICAgICAgICAgICAgICAgaWYgKHNtdV9kcG1fY3R4LT5wZWFrX3NjbGtfbGltaXQpIHsNCisg
+ICAgICAgICAgICAgICAgICAgICAgIG1heF9mcmVxID0gc211X2RwbV9jdHgtPnBlYWtfc2Nsa19s
+aW1pdDsNCisgICAgICAgICAgICAgICAgICAgICAgIHJldCA9IHNtdV9nZXRfZHBtX2ZyZXFfYnlf
+aW5kZXgoc211LCBjbGtfdHlwZSwgc29mdF9taW5fbGV2ZWwsICZtaW5fZnJlcSk7DQorICAgICAg
+ICAgICAgICAgICAgICAgICBpZiAocmV0KQ0KKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICByZXR1cm4gc2l6ZTsNCisgICAgICAgICAgICAgICB9IGVsc2Ugew0KKyAgICAgICAgICAgICAg
+ICAgICAgICAgcmV0ID0gc211X2dldF9kcG1fZnJlcV9ieV9pbmRleChzbXUsIGNsa190eXBlLCBz
+b2Z0X21pbl9sZXZlbCwgJm1pbl9mcmVxKTsNCisgICAgICAgICAgICAgICAgICAgICAgIGlmIChy
+ZXQpDQorICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBzaXplOw0KKyAgICAg
+ICAgICAgICAgICAgICAgICAgcmV0ID0gc211X2dldF9kcG1fZnJlcV9ieV9pbmRleChzbXUsIGNs
+a190eXBlLCBzb2Z0X21heF9sZXZlbCwgJm1heF9mcmVxKTsNCisgICAgICAgICAgICAgICAgICAg
+ICAgIGlmIChyZXQpDQorICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBzaXpl
+Ow0KKyAgICAgICAgICAgICAgIH0NCisgICAgICAgICAgICAgICByZXQgPSBzbXVfc2V0X3NvZnRf
+ZnJlcV9yYW5nZShzbXUsIGNsa190eXBlLCBtaW5fZnJlcSwgbWF4X2ZyZXEpOw0KKyAgICAgICAg
+ICAgICAgIGlmIChyZXQpDQorICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gc2l6ZTsNCisg
+ICAgICAgICAgICAgICBicmVhazsNCiAgICAgICAgIGNhc2UgU01VX1NPQ0NMSzoNCiAgICAgICAg
+IGNhc2UgU01VX01DTEs6DQogICAgICAgICBjYXNlIFNNVV9VQ0xLOg0KQEAgLTY5MCwxMSArNzE3
+LDkgQEAgc3RhdGljIGludCBuYXZpMTBfZm9yY2VfY2xrX2xldmVscyhzdHJ1Y3Qgc211X2NvbnRl
+eHQgKnNtdSwNCiAgICAgICAgICAgICAgICAgcmV0ID0gc211X2dldF9kcG1fZnJlcV9ieV9pbmRl
+eChzbXUsIGNsa190eXBlLCBzb2Z0X21pbl9sZXZlbCwgJm1pbl9mcmVxKTsNCiAgICAgICAgICAg
+ICAgICAgaWYgKHJldCkNCiAgICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gc2l6ZTsNCi0N
+CiAgICAgICAgICAgICAgICAgcmV0ID0gc211X2dldF9kcG1fZnJlcV9ieV9pbmRleChzbXUsIGNs
+a190eXBlLCBzb2Z0X21heF9sZXZlbCwgJm1heF9mcmVxKTsNCiAgICAgICAgICAgICAgICAgaWYg
+KHJldCkNCiAgICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gc2l6ZTsNCi0NCiAgICAgICAg
+ICAgICAgICAgcmV0ID0gc211X3NldF9zb2Z0X2ZyZXFfcmFuZ2Uoc211LCBjbGtfdHlwZSwgbWlu
+X2ZyZXEsIG1heF9mcmVxKTsNCiAgICAgICAgICAgICAgICAgaWYgKHJldCkNCiAgICAgICAgICAg
+ICAgICAgICAgICAgICByZXR1cm4gc2l6ZTsNCkBAIC04MzgsNiArODYzLDcgQEAgc3RhdGljIGlu
+dCBuYXZpMTBfdW5mb3JjZV9kcG1fbGV2ZWxzKHN0cnVjdCBzbXVfY29udGV4dCAqc211KQ0KICAg
+ICAgICAgaW50IHJldCA9IDAsIGkgPSAwOw0KICAgICAgICAgdWludDMyX3QgbWluX2ZyZXEsIG1h
+eF9mcmVxOw0KICAgICAgICAgZW51bSBzbXVfY2xrX3R5cGUgY2xrX3R5cGU7DQorICAgICAgIHN0
+cnVjdCBzbXVfZHBtX2NvbnRleHQgKnNtdV9kcG1fY3R4ID0gJihzbXUtPnNtdV9kcG0pOw0KDQog
+ICAgICAgICBlbnVtIHNtdV9jbGtfdHlwZSBjbGtzW10gPSB7DQogICAgICAgICAgICAgICAgIFNN
+VV9HRlhDTEssDQpAQCAtODUxLDEwICs4NzcsMTggQEAgc3RhdGljIGludCBuYXZpMTBfdW5mb3Jj
+ZV9kcG1fbGV2ZWxzKHN0cnVjdCBzbXVfY29udGV4dCAqc211KQ0KICAgICAgICAgICAgICAgICBp
+ZiAocmV0KQ0KICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiByZXQ7DQoNCisgICAgICAg
+ICAgICAgICBpZiAoY2xrX3R5cGUgPT0gU01VX0dGWENMSyAmJiBzbXVfZHBtX2N0eC0+ZGVmYXVs
+dF9zY2xrX2xpbWl0ICE9IDApIHsNCisgICAgICAgICAgICAgICAgICAgICAgIG1heF9mcmVxID0g
+c211X2RwbV9jdHgtPmRlZmF1bHRfc2Nsa19saW1pdDsNCisgICAgICAgICAgICAgICAgICAgICAg
+IHJldCA9IHNtdV9nZXRfZHBtX2ZyZXFfcmFuZ2Uoc211LCBTTVVfR0ZYQ0xLLA0KKyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAmbWluX2ZyZXEsIE5V
+TEwpOw0KKyAgICAgICAgICAgICAgICAgICAgICAgaWYgKHJldCkNCisgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCisgICAgICAgICAgICAgICB9DQogICAgICAgICAg
+ICAgICAgIHJldCA9IHNtdV9zZXRfc29mdF9mcmVxX3JhbmdlKHNtdSwgY2xrX3R5cGUsIG1pbl9m
+cmVxLCBtYXhfZnJlcSk7DQogICAgICAgICAgICAgICAgIGlmIChyZXQpDQogICAgICAgICAgICAg
+ICAgICAgICAgICAgcmV0dXJuIHJldDsNCiAgICAgICAgIH0NCisgICAgICAgc211X2RwbV9jdHgt
+PnBlYWtfc2Nsa19saW1pdCA9IDA7DQoNCiAgICAgICAgIHJldHVybiByZXQ7DQogfQ0KQEAgLTE1
+MzEsNiArMTU2NSwzMyBAQCBzdGF0aWMgaW50IG5hdmkxMF9zZXRfcHBmZWF0dXJlX3N0YXR1cyhz
+dHJ1Y3Qgc211X2NvbnRleHQgKnNtdSwNCiAgICAgICAgIHJldHVybiAwOw0KIH0NCg0KK3N0YXRp
+YyBpbnQgbmF2aTEwX2FwcGx5X2Nsb2Nrc19hZGp1c3RfcnVsZXMoc3RydWN0IHNtdV9jb250ZXh0
+ICpzbXUpDQorew0KKyAgICAgICBpbnQgcmV0ID0gMDsNCisgICAgICAgc3RydWN0IHNtdV9kcG1f
+Y29udGV4dCAqc211X2RwbV9jdHggPSAmKHNtdS0+c211X2RwbSk7DQorICAgICAgIHN0cnVjdCBh
+bWRncHVfZGV2aWNlICphZGV2ID0gc211LT5hZGV2Ow0KKw0KKyAgICAgICBpZiAoc211X2RwbV9j
+dHgtPmRlZmF1bHRfc2Nsa19saW1pdCA9PSAwKSB7DQorICAgICAgICAgICAgICAgcmV0ID0gc211
+X2dldF9kcG1fZnJlcV9yYW5nZShzbXUsIFNNVV9TQ0xLLCBOVUxMLA0KKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJnNtdV9kcG1fY3R4LT5kZWZhdWx0X3NjbGtf
+bGltaXQpOw0KKyAgICAgICAgICAgICAgIHJldHVybiByZXQ7DQorICAgICAgIH0NCisNCisgICAg
+ICAgaWYgKHNtdV9kcG1fY3R4LT5kcG1fbGV2ZWwgPT0gQU1EX0RQTV9GT1JDRURfTEVWRUxfUFJP
+RklMRV9QRUFLICYmDQorICAgICAgICAgICBzbXVfZHBtX2N0eC0+ZHBtX2xldmVsICE9IHNtdV9k
+cG1fY3R4LT5zYXZlZF9kcG1fbGV2ZWwpIHsNCisgICAgICAgICAgICAgICBpZiAoYWRldi0+cmV2
+X2lkID09IE5WX05WMTBfRjAgfHwgYWRldi0+cmV2X2lkID09IE5WX05WMTBfQzApDQorICAgICAg
+ICAgICAgICAgICAgICAgICBzbXVfZHBtX2N0eC0+cGVha19zY2xrX2xpbWl0ID0gTlZfTlYxMF9Q
+RUFLX1NDTEtfWFRYOw0KKyAgICAgICAgICAgICAgIGVsc2UgaWYgKGFkZXYtPnJldl9pZCA9PSBO
+Vl9OVjEwX0YxIHx8IGFkZXYtPnJldl9pZCA9PSBOVl9OVjEwX0MxKQ0KKyAgICAgICAgICAgICAg
+ICAgICAgICAgc211X2RwbV9jdHgtPnBlYWtfc2Nsa19saW1pdCA9IE5WX05WMTBfUEVBS19TQ0xL
+X1hUOw0KKyAgICAgICAgICAgICAgIGVsc2UNCisgICAgICAgICAgICAgICAgICAgICAgIHNtdV9k
+cG1fY3R4LT5wZWFrX3NjbGtfbGltaXQgPSBOVl9OVjEwX1BFQUtfU0NMS19YTDsNCisgICAgICAg
+fSBlbHNlIGlmIChzbXVfZHBtX2N0eC0+ZHBtX2xldmVsICE9IEFNRF9EUE1fRk9SQ0VEX0xFVkVM
+X1BST0ZJTEVfUEVBSyAmJiBzbXVfZHBtX2N0eC0+cGVha19zY2xrX2xpbWl0ICE9IDApIHsNCisg
+ICAgICAgICAgICAgICBzbXVfZHBtX2N0eC0+cGVha19zY2xrX2xpbWl0ID0gMDsNCisgICAgICAg
+fQ0KKw0KKyAgICAgICByZXR1cm4gMDsNCit9DQorDQogc3RhdGljIGNvbnN0IHN0cnVjdCBwcHRh
+YmxlX2Z1bmNzIG5hdmkxMF9wcHRfZnVuY3MgPSB7DQogICAgICAgICAudGFibGVzX2luaXQgPSBu
+YXZpMTBfdGFibGVzX2luaXQsDQogICAgICAgICAuYWxsb2NfZHBtX2NvbnRleHQgPSBuYXZpMTBf
+YWxsb2NhdGVfZHBtX2NvbnRleHQsDQpAQCAtMTU2Niw2ICsxNjI3LDcgQEAgc3RhdGljIGNvbnN0
+IHN0cnVjdCBwcHRhYmxlX2Z1bmNzIG5hdmkxMF9wcHRfZnVuY3MgPSB7DQogICAgICAgICAuZ2V0
+X3VjbGtfZHBtX3N0YXRlcyA9IG5hdmkxMF9nZXRfdWNsa19kcG1fc3RhdGVzLA0KICAgICAgICAg
+LmdldF9wcGZlYXR1cmVfc3RhdHVzID0gbmF2aTEwX2dldF9wcGZlYXR1cmVfc3RhdHVzLA0KICAg
+ICAgICAgLnNldF9wcGZlYXR1cmVfc3RhdHVzID0gbmF2aTEwX3NldF9wcGZlYXR1cmVfc3RhdHVz
+LA0KKyAgICAgICAuYXBwbHlfY2xvY2tzX2FkanVzdF9ydWxlcyA9IG5hdmkxMF9hcHBseV9jbG9j
+a3NfYWRqdXN0X3J1bGVzLA0KIH07DQoNCiB2b2lkIG5hdmkxMF9zZXRfcHB0X2Z1bmNzKHN0cnVj
+dCBzbXVfY29udGV4dCAqc211KQ0KLS0NCjIuNy40DQoNCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fDQphbWQtZ2Z4IG1haWxpbmcgbGlzdA0KYW1kLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcNCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vYW1kLWdmeA0K
+
+--_000_MN2PR12MB3344FFA5D4975E0D66F98301E4C80MN2PR12MB3344namp_
+Content-Type: text/html; charset="gb2312"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<div>
+<div>
+<div>
+<div style=3D"direction:ltr">1. In navi10_force_clk_levels, i think you nee=
+d to compare the max level user requested with the peak limit and set the s=
+maller one.</div>
+<div style=3D"direction:ltr">2. can you help me to understand why the chang=
+e in apply_clock_rules is needed?</div>
+</div>
+<div><br>
+</div>
+<div class=3D"x_ms-outlook-ios-signature"></div>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>=B7=A2=BC=FE=C8=CB:</b> amd-g=
+fx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; =B4=FA=B1=ED Chengming Gui=
+ &lt;Jack.Gui@amd.com&gt;<br>
+<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> Thursday, July 18, 2019 6:02:17 PM<br>
+<b>=CA=D5=BC=FE=C8=CB:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.=
+freedesktop.org&gt;<br>
+<b>=B3=AD=CB=CD:</b> Gui, Jack &lt;Jack.Gui@amd.com&gt;<br>
+<b>=D6=F7=CC=E2:</b> [PATCH 2/3] drm/amd/powerplay: force sclk limit for pe=
+ak profile</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:11pt;">
+<div class=3D"PlainText">force different GFX clocks with different SKUs for=
+ navi10:<br>
+XL&nbsp; (other rev_id):&nbsp; 1625MHz<br>
+XT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (F1/C1):&nbsp; 1755MHz<b=
+r>
+XTX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (F0/C0):&nbsp; 1830MHz<br>
+<br>
+Signed-off-by: Chengming Gui &lt;Jack.Gui@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/amdgpu_smu.c&nbsp;&nbsp;&nbsp;&nbsp; |&=
+nbsp; 2 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h |&nbsp; 2 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/navi10_ppt.c&nbsp;&nbsp;&nbsp;&nbsp; | =
+66 &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#=
+43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;-<br>
+&nbsp;3 files changed, 68 insertions(&#43;), 2 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/a=
+md/powerplay/amdgpu_smu.c<br>
+index 122985c..693414f 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+@@ -664,6 &#43;664,8 @@ static int smu_sw_init(void *handle)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;watermarks_bitmap =
+=3D 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;power_profile_mode=
+ =3D PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;default_power_prof=
+ile_mode =3D PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;smu_dpm.default_sclk_limi=
+t =3D 0;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;smu_dpm.peak_sclk_limit =
+=3D 0;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;workload_mask =3D =
+1 &lt;&lt; smu-&gt;workload_prority[PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT];<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;workload_prority[P=
+P_SMC_POWER_PROFILE_BOOTUP_DEFAULT] =3D 0;<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/d=
+rm/amd/powerplay/inc/amdgpu_smu.h<br>
+index 135a323..acb522b 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
+@@ -441,6 &#43;441,8 @@ struct smu_dpm_context {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *dpm_context;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *golden_dpm_context;<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool enable_umd_pstate;<br=
+>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t default_sclk_limit;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t peak_sclk_limit;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enum amd_dpm_forced_level =
+dpm_level;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enum amd_dpm_forced_level =
+saved_dpm_level;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enum amd_dpm_forced_level =
+requested_dpm_level;<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
+md/powerplay/navi10_ppt.c<br>
+index 895a4e5..b4deb9e 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+@@ -37,6 &#43;37,15 @@<br>
+&nbsp;<br>
+&nbsp;#include &quot;asic_reg/mp/mp_11_0_sh_mask.h&quot;<br>
+&nbsp;<br>
+&#43;#define NV_NV10_F0 0xF0<br>
+&#43;#define NV_NV10_C0 0xC0<br>
+&#43;#define NV_NV10_F1 0xF1<br>
+&#43;#define NV_NV10_C1 0xC1<br>
+&#43;<br>
+&#43;#define NV_NV10_PEAK_SCLK_XTX 1830<br>
+&#43;#define NV_NV10_PEAK_SCLK_XT&nbsp; 1755<br>
+&#43;#define NV_NV10_PEAK_SCLK_XL&nbsp; 1625<br>
+&#43;<br>
+&nbsp;#define FEATURE_MASK(feature) (1ULL &lt;&lt; feature)<br>
+&nbsp;#define SMC_DPM_FEATURE ( \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FEATURE_MASK(FEATURE_DPM_P=
+REFETCHER_BIT) | \<br>
+@@ -675,6 &#43;684,7 @@ static int navi10_force_clk_levels(struct smu_conte=
+xt *smu,<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0, size =3D 0;=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t soft_min_level =
+=3D 0, soft_max_level =3D 0, min_freq =3D 0, max_freq =3D 0;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_dpm_context *smu_dpm_c=
+tx =3D &amp;(smu-&gt;smu_dpm);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft_min_level =3D mask ? =
+(ffs(mask) - 1) : 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft_max_level =3D mask ? =
+(fls(mask) - 1) : 0;<br>
+@@ -682,6 &#43;692,23 @@ static int navi10_force_clk_levels(struct smu_cont=
+ext *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (clk_type) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case SMU_GFXCLK:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case SMU_SCLK:<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (smu_dpm_ctx-&gt;peak_sclk_limit) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max_freq =3D=
+ smu_dpm_ctx-&gt;peak_sclk_limit;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_=
+get_dpm_freq_by_index(smu, clk_type, soft_min_level, &amp;min_freq);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return size;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; } else {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_=
+get_dpm_freq_by_index(smu, clk_type, soft_min_level, &amp;min_freq);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return size;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_=
+get_dpm_freq_by_index(smu, clk_type, soft_max_level, &amp;max_freq);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return size;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; }<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; ret =3D smu_set_soft_freq_range(smu, clk_type, min_freq, max=
+_freq);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (ret)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return size;=
+<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case SMU_SOCCLK:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case SMU_MCLK:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case SMU_UCLK:<br>
+@@ -690,11 &#43;717,9 @@ static int navi10_force_clk_levels(struct smu_cont=
+ext *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; ret =3D smu_get_dpm_freq_by_index(smu, clk_type, soft=
+_min_level, &amp;min_freq);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n size;<br>
+-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; ret =3D smu_get_dpm_freq_by_index(smu, clk_type, soft=
+_max_level, &amp;max_freq);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n size;<br>
+-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; ret =3D smu_set_soft_freq_range(smu, clk_type, min_fr=
+eq, max_freq);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n size;<br>
+@@ -838,6 &#43;863,7 @@ static int navi10_unforce_dpm_levels(struct smu_con=
+text *smu)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0, i =3D 0;<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t min_freq, max_fre=
+q;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enum smu_clk_type clk_type=
+;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_dpm_context *smu_dpm_c=
+tx =3D &amp;(smu-&gt;smu_dpm);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enum smu_clk_type clks[] =
+=3D {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; SMU_GFXCLK,<br>
+@@ -851,10 &#43;877,18 @@ static int navi10_unforce_dpm_levels(struct smu_c=
+ontext *smu)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n ret;<br>
+&nbsp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (clk_type =3D=3D SMU_GFXCLK &amp;&amp; smu_dpm_ctx-&gt;de=
+fault_sclk_limit !=3D 0) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max_freq =3D=
+ smu_dpm_ctx-&gt;default_sclk_limit;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_=
+get_dpm_freq_range(smu, SMU_GFXCLK,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; &amp;min_freq, NULL);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; ret =3D smu_set_soft_freq_range(smu, clk_type, min_fr=
+eq, max_freq);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n ret;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_dpm_ctx-&gt;peak_sclk_limit =
+=3D 0;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;}<br>
+@@ -1531,6 &#43;1565,33 @@ static int navi10_set_ppfeature_status(struct sm=
+u_context *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&nbsp;}<br>
+&nbsp;<br>
+&#43;static int navi10_apply_clocks_adjust_rules(struct smu_context *smu)<b=
+r>
+&#43;{<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_dpm_context *smu_dpm_c=
+tx =3D &amp;(smu-&gt;smu_dpm);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D sm=
+u-&gt;adev;<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (smu_dpm_ctx-&gt;default_sclk_=
+limit =3D=3D 0) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; ret =3D smu_get_dpm_freq_range(smu, SMU_SCLK, NULL,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;smu_dpm_ctx-&gt;default_sclk_li=
+mit);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; return ret;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (smu_dpm_ctx-&gt;dpm_level =3D=
+=3D AMD_DPM_FORCED_LEVEL_PROFILE_PEAK &amp;&amp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_dpm_c=
+tx-&gt;dpm_level !=3D smu_dpm_ctx-&gt;saved_dpm_level) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (adev-&gt;rev_id =3D=3D NV_NV10_F0 || adev-&gt;rev_id =3D=
+=3D NV_NV10_C0)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_dpm_ctx-=
+&gt;peak_sclk_limit =3D NV_NV10_PEAK_SCLK_XTX;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; else if (adev-&gt;rev_id =3D=3D NV_NV10_F1 || adev-&gt;rev_i=
+d =3D=3D NV_NV10_C1)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_dpm_ctx-=
+&gt;peak_sclk_limit =3D NV_NV10_PEAK_SCLK_XT;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; else<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_dpm_ctx-=
+&gt;peak_sclk_limit =3D NV_NV10_PEAK_SCLK_XL;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (smu_dpm_ctx-&gt;dpm_le=
+vel !=3D AMD_DPM_FORCED_LEVEL_PROFILE_PEAK &amp;&amp; smu_dpm_ctx-&gt;peak_=
+sclk_limit !=3D 0) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; smu_dpm_ctx-&gt;peak_sclk_limit =3D 0;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&#43;}<br>
+&#43;<br>
+&nbsp;static const struct pptable_funcs navi10_ppt_funcs =3D {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .tables_init =3D navi10_ta=
+bles_init,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .alloc_dpm_context =3D nav=
+i10_allocate_dpm_context,<br>
+@@ -1566,6 &#43;1627,7 @@ static const struct pptable_funcs navi10_ppt_func=
+s =3D {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_uclk_dpm_states =3D n=
+avi10_get_uclk_dpm_states,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_ppfeature_status =3D =
+navi10_get_ppfeature_status,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .set_ppfeature_status =3D =
+navi10_set_ppfeature_status,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .apply_clocks_adjust_rules =3D na=
+vi10_apply_clocks_adjust_rules,<br>
+&nbsp;};<br>
+&nbsp;<br>
+&nbsp;void navi10_set_ppt_funcs(struct smu_context *smu)<br>
+-- <br>
+2.7.4<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font>
+</body>
+</html>
+
+--_000_MN2PR12MB3344FFA5D4975E0D66F98301E4C80MN2PR12MB3344namp_--
+
+--===============2063220756==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============2063220756==--
