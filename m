@@ -2,75 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 634A46D150
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2019 17:47:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFEB6D161
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2019 17:50:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8B0E6E40C;
-	Thu, 18 Jul 2019 15:47:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CCBC6E415;
+	Thu, 18 Jul 2019 15:50:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750080.outbound.protection.outlook.com [40.107.75.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B5796E40C
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jul 2019 15:46:59 +0000 (UTC)
+ (mail-eopbgr750058.outbound.protection.outlook.com [40.107.75.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66FD46E415
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jul 2019 15:50:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cb4fI66sP9mShpw1PEsx4gJ3jBQfimuAQP5EBiwbZIZXlp5Soqlz2PQk0lH4TwpPA1+t4l7dF1ftnjdcu6x04RapajokHB8POzS1CEmXWnMH76B2vKWA1J3GJQteXJTw76w2bP8qd78QR3cpdwQn8efuaVb0e7uU/vJG31vwMGWB8F3yAo22yHZWqc6otD6op/c+t1B38m5bq8vWGbKq6Y5kmVprJOOjN6qH2VgkoHYPwKqmO9CIwvIUON5xs1+4oWQmWpDVkSHpX3C2WhzxxvjguI43K8Od81etvbtAD0P9lUf2pni7RAzKPbWVqDudqVFBVrdGMvMvYc6RSzb8XQ==
+ b=ba7ftKhnzh4i5S0vamCp5BUXtwe+pW7+wbNpeWRGBtgkcIRRcO039F1k1S1JjBMdEHD/ubuP77R1zAFlaKu8Aa6ZalEQWekI+C+nBWQd/sU+uKWGOTEkaBXNljzVw30B5EsmPE1FerSnWsBWSvi+YVFAx28YtS3GNmnCmo6N2xenhZbIc0QwLZVt43ZlaPZZrRgOoQiO1PrMKkBF1c3VBVsognuV4qkgnSl+r2GNfknlhAgDZYiXfI0gRR44Uh9zvsfMWFOEwzZ9AQrDMU8RuYH82f87YBh/vhON5AX9b4J2umsScD2FxRAk+WRlJ+24zZe5Q62pm8iGphr/Lc5cew==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
  bh=QKSZo4w2K+RlgQFjRTLHfRN94cwKZveZceJvNLhssh0=;
- b=eStWBHogfbqz7mck+yJ/w0x2C+Im4/ZuE/C70L60E4OlELKr8BfKZBGks016Dzw9B25TBXa3rHGtaQ1vKqeCSpptjctDdW7cOBNOJX8/9qLQWa1xWtW/y2vulBmO8sDBC8ahP0kj+TcHf9Hm07/SoCeJxm2bRghmBLtCnmhROcYRA9ERfedOPjsQmdN+DuToN1m2iTZTw4I64f3W3f9E8KQCPhCiEqHk4Vvw88qCSwmdm2oAppc4qvDaULanhPM8ZnbtQIZ7TM5zV24NaxFlg5I41mpC1dKgsspk+XzBeVz7BFALKQ9BqudJPepiEPz2TqxBMM77UkszooqxyTnhmQ==
+ b=j3jt1SouqVhWY4Z2g4201WTKs6UusetEkDgWGnAkX5BGsPj1Ucs2EM4+BPXbo9NQtfDBK7n5gearWNu5tZFJy2+zPbdRD75ZLvVCCcAHTuf4HgX8MfGdM1PJCsPxWTw25rfLcRSN86QIMj1lz71N1HINd17L2tumJfdNt2a517b+qre8K8lQA7XUpaeNo83r+4GXFqRIasM3a9jCQ2gMQALJArxhQVQ3bMUdiR9d8Hb7WUYhuQkSNq+YTxiTwNTCGNh7giwyHzxqbzuDQWVS9rStTf19cLhxnQfkCXeZIiQ3Y0/xTNbdjYKPJ0umqhcSe5uHneA404mI3qgNAyUnTQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
  smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
  header.d=amd.com;arc=none
 Received: from DM5PR12MB2456.namprd12.prod.outlook.com (52.132.141.37) by
  DM5PR12MB2454.namprd12.prod.outlook.com (52.132.141.35) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2073.14; Thu, 18 Jul 2019 15:46:57 +0000
+ 15.20.2073.14; Thu, 18 Jul 2019 15:49:57 +0000
 Received: from DM5PR12MB2456.namprd12.prod.outlook.com
  ([fe80::2882:d83f:bf0:8cb2]) by DM5PR12MB2456.namprd12.prod.outlook.com
  ([fe80::2882:d83f:bf0:8cb2%5]) with mapi id 15.20.2073.012; Thu, 18 Jul 2019
- 15:46:57 +0000
+ 15:49:57 +0000
 From: "Liu, Leo" <Leo.Liu@amd.com>
 To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu/: use VCN firmware offset for cache window
-Thread-Topic: [PATCH] drm/amdgpu/: use VCN firmware offset for cache window
-Thread-Index: AQHVPYAIY2DyjDQpR0yOJu+nufuNTQ==
-Date: Thu, 18 Jul 2019 15:46:57 +0000
-Message-ID: <20190718154616.14841-1-leo.liu@amd.com>
+Subject: [PATCH] drm/amdgpu: use VCN firmware offset for cache window
+Thread-Topic: [PATCH] drm/amdgpu: use VCN firmware offset for cache window
+Thread-Index: AQHVPYBz0WLQFyXr9Uu9U/fPBVdzfg==
+Date: Thu, 18 Jul 2019 15:49:57 +0000
+Message-ID: <20190718154945.15004-1-leo.liu@amd.com>
+References: <20190718154616.14841-1-leo.liu@amd.com>
+In-Reply-To: <20190718154616.14841-1-leo.liu@amd.com>
 Accept-Language: en-CA, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [165.204.55.251]
-x-clientproxiedby: YTXPR0101CA0021.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00::34) To DM5PR12MB2456.namprd12.prod.outlook.com
+x-clientproxiedby: YT1PR01CA0034.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::47)
+ To DM5PR12MB2456.namprd12.prod.outlook.com
  (2603:10b6:4:b4::37)
 x-ms-exchange-messagesentrepresentingtype: 1
 x-mailer: git-send-email 2.20.1
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ee376365-e415-4c56-ec83-08d70b972a69
+x-ms-office365-filtering-correlation-id: 0ed027a5-9809-432c-bb78-08d70b979575
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
  SRVR:DM5PR12MB2454; 
 x-ms-traffictypediagnostic: DM5PR12MB2454:
-x-microsoft-antispam-prvs: <DM5PR12MB2454F33FE788EE38EBEB640FE5C80@DM5PR12MB2454.namprd12.prod.outlook.com>
+x-microsoft-antispam-prvs: <DM5PR12MB245449B570674B6F6D7CE460E5C80@DM5PR12MB2454.namprd12.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:4941;
 x-forefront-prvs: 01026E1310
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(136003)(39860400002)(396003)(346002)(376002)(199004)(189003)(81156014)(4744005)(99286004)(476003)(66476007)(6512007)(386003)(26005)(2616005)(2906002)(186003)(36756003)(305945005)(6436002)(3846002)(2501003)(64756008)(66556008)(5660300002)(81166006)(14454004)(71200400001)(66066001)(71190400001)(66946007)(66446008)(6916009)(6116002)(50226002)(1076003)(7736002)(8936002)(256004)(6506007)(53936002)(6486002)(4326008)(68736007)(2351001)(316002)(478600001)(5640700003)(486006)(25786009)(52116002)(102836004)(8676002)(86362001);
+ SFS:(10009020)(4636009)(376002)(346002)(396003)(39860400002)(136003)(366004)(199004)(189003)(53936002)(6506007)(4326008)(6486002)(6116002)(50226002)(76176011)(6916009)(256004)(7736002)(1076003)(8936002)(52116002)(8676002)(102836004)(86362001)(68736007)(25786009)(486006)(5640700003)(2351001)(478600001)(316002)(6512007)(446003)(66476007)(476003)(11346002)(305945005)(36756003)(186003)(6436002)(26005)(386003)(2906002)(2616005)(4744005)(81156014)(99286004)(71190400001)(14454004)(71200400001)(66066001)(66446008)(66946007)(3846002)(2501003)(81166006)(5660300002)(66556008)(64756008);
  DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2454;
  H:DM5PR12MB2456.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: R42/mh8L3P4Fp4n/2Wxs+yK4tYNOcd4dA8bRT0uOTD8eFagCTIgDDNPVERxURRvcudWFSrmfVivbJL6Sg4sXTOxY+xO4VhUpsSDlAyH814IjcbjRx4loLyg6xX1hSWX1RqXJJ8A8V5nhwtnD/Z+NEcduWpgoIAbf273/KY2tCEZm4Xq7U7cExqzZCmUR9JcR0nJZQRN4Da6gMbzOiioVF6/RJ1v7/JoZQKtchZT3uWOt+RrMew/vlzmL92IdoWd1WPutA4AIjZcULoIKE80Jl1lMT5dcFDDEmfPmXOkCV4QRteEmS9sFd8TyF21z5VGehlxNJvcJJe1O2e+hBrCsROorSTx1NMdsYuflSHhUy0nBaSgkHtt+YRCcvwTqkuq/I4kiITAggodnreNrGSHGQ1qYkegnepiCnk9lqtTcNQQ=
+x-microsoft-antispam-message-info: I/5rGo4S6II/G17niLHZ52w1ZdQ8CUfUucsgrV28wNT4a0qlqCorPtQL6BKgQo1ybEKta/PcDnaKXVFLT30rLqNgUlTe9zqGfkGtnE2Rlz+zKtfMksaaT6OSeDSt5wTMmeCV+/IQUGDpIhXj9q0N/kwo7epy09xK+H0xQfxt0kMBhNMvcN2zkXVRqCJEkWGjpvRmzRJHqrGL5D3NF6K4qAbcZfxLx3gRTyVMmtDu8m+YH13qMlvShhvzntID49jk+bmvczzsVsUeXs+i5ncqIrLtBPGTGHueVchj442S/nI+QL06ce1MRVGcFmS41S5W4vph4hi4TPkk9K78NXdJCb6kucxz3IdD3Kvw2nce6D6qEaKm/sExLLlSCYIH1kYtHLFP9O6voS2mbfdIj/ug6QvED/A9C2NiHinHbLuDquE=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee376365-e415-4c56-ec83-08d70b972a69
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jul 2019 15:46:57.7975 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ed027a5-9809-432c-bb78-08d70b979575
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jul 2019 15:49:57.3591 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
@@ -80,7 +82,7 @@ X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
  bh=QKSZo4w2K+RlgQFjRTLHfRN94cwKZveZceJvNLhssh0=;
- b=LXhfCzecsPHSi9OHD6+2U2ZuEccA2VEOjKZGsopOLTiYPYdbFF3u3QXUfdcPbjA+zbkF+1iBRv4XkWThCFcp6JOce3E3dlg4I9qQN9sPJc16uaSZoUetNtZQb9f12oX8oVs5bPxV9nkL02ylxho8lYDqFKDSOj0yovagrfZNbEo=
+ b=y4Rg5Id86lbiE25lXpwI9FdJ4RM3FM/Dv6DgVdMqEyMc0PtnR8ssq8ZRwOEGi99LEvV7H/hnkyqhAh0jGo0gzWlkFY0szk3sHRaG4PHiEyjDcbbCOb8BtbbkM2c0fBvHHBWJ4qHkgc4gangODrCVTaRmtT9EC2F/0Lzglz6oQz0=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Leo.Liu@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
