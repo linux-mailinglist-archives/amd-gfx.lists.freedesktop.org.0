@@ -1,87 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F156ECCC
-	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jul 2019 01:46:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0AC26ED65
+	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jul 2019 04:58:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA976E876;
-	Fri, 19 Jul 2019 23:46:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1A8F6E882;
+	Sat, 20 Jul 2019 02:58:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr790054.outbound.protection.outlook.com [40.107.79.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F18C16E876
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jul 2019 23:46:53 +0000 (UTC)
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680071.outbound.protection.outlook.com [40.107.68.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D27F66E882
+ for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jul 2019 02:58:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kI6F+Fs784YO/AjfEO5VmTC8eDrAZh29WhOw0zvx7jE8ZcQf6TNCrhaBX+G7/0AhcbOLkaNg4xGLKFeQg7ngD7wUXwnQoWmrYWWxF0wSjBdKXJJe0E1I4P42agdFBpHXw7LT5uJY830L1Sbtn5Ib/J/WaR2IpKE/YNdWy+vUxegNT7YuaMFdXJzFxCn4VNqv/bf/bSvSxiP6KCottVEMJ1/ORrOEcfBWUQtLPo6dCMcezKeBlszxVMfO0iJit2+dZ8J9VO9uh52sNRwsC3fq3zEMMKuZxptO9XJ5vDYDgqPyIhQF7TvldBnaLt8dAzGAJciBbjkpQYosd3fbEaegmQ==
+ b=GykTBw80zqZ7O9bvu8/PzKsLAtsfm4iXtN9F8XG4LwaP7DPTFcgWWoVzfLfo9vlgv8MQz64gqQm3d4S6bN3jmi3XqgH3wmQfsnDkYH12SBsZQBx36OMS+S1bXjlCQArhqfYixqeIZ9ujZ5TjMmLpFN7CyIhVeKI+Gw4AGN5e1X57FDrJfMTeGaZBOOXIuQvNeYxF25MfzF7ZBnhYfaAmY/Xgy7V74DJiS862aBIB223RK9jItOYDxDuNMVYj3ma07z3NIJ/Fe0RD75L38aDUiO7YDmEqmlSFKV71mBQPOqEQ2OXAXMyt8D/7GcyGtbUrileB2lnHqctcYfevCerYvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jl03GTJridag3vjdnSlV2R7TexWJsnQmJ5s4XBPqLpQ=;
- b=N32M7epurUi33UlJCBcFnZ/SXV5i05/foa5k7TgrqaEYrElEBaXhNv6I63rbVjZ/xGg/O266d07rwQLa/9NPki+XnP6nEI/dhN/eNVc7ohhjabBUMUgbaAN2j1ThM2FE1qpYHEAb933humcnXe2oUv11LRihOSHqd37NbivggftbUdUyH4nfqwJF7xXPFQDOrqeMlO8VLe99nzguppgeizEOMR8na5EGFIwhrgCBwbCFQtCaooNo59GSH8ryUOwBzKW2QaAM0TcmtpVFncrw+kjzA4E4ltZn9BA2zkmFLyP0qy8cHqhgpaHWfvRyNspc9YD1kT48pi6PwWRJBiD1oQ==
+ bh=ArQgWBaxWqYSvAYN6G2uJ8EupO5s4sd/Cwa+PP0zdLs=;
+ b=QvPRojYJxaQ3ifbsozEXIPVZK20HzV2CcpX9qEsVUjAc626URHkiEET6xjW5W385oYQTAvrpv3+gMu1aBXSyEcpUYQ3dlGu8QxnHaKhEoEKIMqxhSwvJEbAzZD2CIAZq8e321zuuwmWkaCpcoc6dgmSXB4NvwJ3FzQNL+q9CfBFj9MR56amptHigdGx8wiOhfBP9+y/uxZwu3XpSDnUfDLzyJQosW7y68DkOc4jwItgWrhkjQeaxTOK91ttptlYB0ix/q15Lylk8eAIZQETwTHzJoNJb+3D0M7lINDmJPaXLrMs8oH2OWwi93DWi1i0WZCeZldPwX0x4AMeSoqFwXg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
  smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
  header.d=amd.com;arc=none
-Received: from CY4PR12MB1767.namprd12.prod.outlook.com (10.175.62.137) by
- CY4PR12MB1942.namprd12.prod.outlook.com (10.175.82.19) with Microsoft SMTP
+Received: from MN2PR12MB3296.namprd12.prod.outlook.com (20.179.80.139) by
+ MN2PR12MB4031.namprd12.prod.outlook.com (10.255.239.80) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2073.14; Fri, 19 Jul 2019 23:46:51 +0000
-Received: from CY4PR12MB1767.namprd12.prod.outlook.com
- ([fe80::9d27:7add:4f59:7269]) by CY4PR12MB1767.namprd12.prod.outlook.com
- ([fe80::9d27:7add:4f59:7269%5]) with mapi id 15.20.2073.012; Fri, 19 Jul 2019
- 23:46:51 +0000
-From: "Greathouse, Joseph" <Joseph.Greathouse@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: Default disable GDS for compute+gfx
-Thread-Topic: [PATCH] drm/amdgpu: Default disable GDS for compute+gfx
-Thread-Index: AQHVPow8+o4E5wJXREyPAXXyKoQMZw==
-Date: Fri, 19 Jul 2019 23:46:51 +0000
-Message-ID: <20190719234612.8198-1-Joseph.Greathouse@amd.com>
-Accept-Language: en-US
+ 15.20.2094.14; Sat, 20 Jul 2019 02:58:01 +0000
+Received: from MN2PR12MB3296.namprd12.prod.outlook.com
+ ([fe80::ad59:f055:2417:660f]) by MN2PR12MB3296.namprd12.prod.outlook.com
+ ([fe80::ad59:f055:2417:660f%6]) with mapi id 15.20.2094.013; Sat, 20 Jul 2019
+ 02:58:01 +0000
+From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH] drm/amd/powerplay: change smu_read_sensor sequence in smu
+Thread-Topic: [PATCH] drm/amd/powerplay: change smu_read_sensor sequence in smu
+Thread-Index: AQHVPiRSk9MGWtLBPEK88r6x15MBV6bSDcOAgAAG1faAAAk9AIAADaeYgAAN64CAAJfesg==
+Date: Sat, 20 Jul 2019 02:58:01 +0000
+Message-ID: <MN2PR12MB3296D05AA1EB26B988AB75EFA2CA0@MN2PR12MB3296.namprd12.prod.outlook.com>
+References: <20190719112232.28485-1-kevin1.wang@amd.com>
+ <CADnq5_P2UVmm4P1myih0UOQ2nvLDB01zdaFN9v7p423QeLASKg@mail.gmail.com>
+ <MN2PR12MB329684D6E227BE0132F67A8EA2CB0@MN2PR12MB3296.namprd12.prod.outlook.com>
+ <CADnq5_PDRyxDNn3TK40L0w2KGDUcahrZge7+q_Z06DX3q-xFWw@mail.gmail.com>
+ <A2EC6125-E08F-4FD2-A56C-E9D48CD3F95F@amd.com>,
+ <CADnq5_ODiK_pyMZsUmw0T2ivG=_-j5h3ky9vouE-ACEJV+fddQ@mail.gmail.com>
+In-Reply-To: <CADnq5_ODiK_pyMZsUmw0T2ivG=_-j5h3ky9vouE-ACEJV+fddQ@mail.gmail.com>
+Accept-Language: en-US, zh-CN
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.19.1
-x-clientproxiedby: SN2PR01CA0041.prod.exchangelabs.com (2603:10b6:804:2::51)
- To CY4PR12MB1767.namprd12.prod.outlook.com (2603:10b6:903:121::9)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [165.204.78.2]
+x-originating-ip: [58.246.140.195]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d5fbb432-0159-41f6-84d8-08d70ca35f11
+x-ms-office365-filtering-correlation-id: 8787424a-a1d8-484e-367f-08d70cbe140f
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:CY4PR12MB1942; 
-x-ms-traffictypediagnostic: CY4PR12MB1942:
-x-microsoft-antispam-prvs: <CY4PR12MB19427484BE1A7F84A851D79AF9CB0@CY4PR12MB1942.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4303;
-x-forefront-prvs: 01039C93E4
+ SRVR:MN2PR12MB4031; 
+x-ms-traffictypediagnostic: MN2PR12MB4031:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <MN2PR12MB40312CAC5AFB9D64570FB68EA2CA0@MN2PR12MB4031.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0104247462
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(376002)(396003)(39860400002)(366004)(346002)(199004)(189003)(6436002)(5660300002)(256004)(2616005)(66066001)(6116002)(4326008)(3846002)(478600001)(52116002)(102836004)(186003)(26005)(6512007)(53936002)(14444005)(6506007)(5640700003)(2351001)(6486002)(476003)(99286004)(2906002)(71190400001)(305945005)(71200400001)(7736002)(36756003)(2501003)(486006)(25786009)(6916009)(81156014)(81166006)(50226002)(14454004)(54906003)(386003)(1076003)(316002)(8676002)(8936002)(66446008)(64756008)(68736007)(66556008)(66946007)(66476007)(86362001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR12MB1942;
- H:CY4PR12MB1767.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
+ SFS:(10009020)(979002)(4636009)(396003)(136003)(376002)(366004)(39860400002)(346002)(189003)(199004)(51444003)(3846002)(25786009)(19627405001)(86362001)(14444005)(6116002)(256004)(446003)(11346002)(6606003)(186003)(14454004)(6916009)(229853002)(476003)(74316002)(102836004)(26005)(606006)(81156014)(76176011)(2906002)(7696005)(81166006)(6506007)(53546011)(486006)(33656002)(5660300002)(52536014)(66446008)(71200400001)(71190400001)(64756008)(68736007)(66476007)(6246003)(66556008)(8936002)(4326008)(53936002)(7736002)(66066001)(30864003)(1411001)(76116006)(66946007)(99286004)(478600001)(6436002)(1015004)(966005)(8676002)(55016002)(236005)(6306002)(54896002)(9686003)(316002)(54906003)(21314003)(969003)(989001)(999001)(1009001)(1019001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4031;
+ H:MN2PR12MB3296.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: yQQvnxZlk5z4BmK1jRVfHezilVjdd7fo0gfOQgnbXHkznr9dqEhlPComrcXNwWoJdfimmWqimEpdIscmOEEVfLfO5Qn3HnIRcNvZ2ZEbcQmmwx7inBrhHEFlogjq1dnVvDVh4zlGrOduUWdqu+94wBPc8rkv9OkVOPPGFbqlrFCQeXYBJhgwnWBKkyN8AVxp6KuqNBNWHl3G/usaNzMYqxvnCT+1DnNg7ZRqhIYO9nIvxjBCVepsRu01KFW0FH8Way86HfU8tPA1Cc9Q4DgJ6m3w/I424hW6nRJW6NGlGnpqPy+QWMarVlZcpsxROr4QIWiAdC0u2+01SZkDEMea9hFMX3ehb/bbQPGB/lJasM85dGhaAYD7E6rFJJTL1umorgw96pIB2JIeL65yGiWJRMDAxI+TSYA8Y5XZbxqlsUk=
+x-microsoft-antispam-message-info: uF3NvpwVzqEtncS1rsbHTk2Victd+iWbyBZScMqA7AQNGxdGBxMqtuUznPtTVglkgenMPR9/hkit1vK2Z79pN23D30dBvJk2MLQmY3xv6ksQ4A/BO6+J68Xa37mLrBlicSV0mBpV18aADPSXUfJbwiHzTzHVB2/ZTKqjH2/ocNUlgUH5VRan4BG/5WF1m2HWytQEf/az63oFmbUJGQHtevQH973NlNj9yBcbEwitx3MXEPAaxnbrcgehVIu2rWDYv+FH3wdpMPImEBDoaUOgHh+s/M8M1GjCe1LBYzdGM5TZgtejMcM1j/BDBsPHnoatnHh1Q970N1o1xeXwZsVQMkU4gFM5DgTQrUn2plImVlC0HzKsN1dEyR/EU5vEz2OcZpgERGfNYp9/n7vBfRjBh85Hu7MyMtsDkscvkXxoqXE=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5fbb432-0159-41f6-84d8-08d70ca35f11
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2019 23:46:51.4388 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8787424a-a1d8-484e-367f-08d70cbe140f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jul 2019 02:58:01.4436 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jgreatho@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1942
+X-MS-Exchange-CrossTenant-userprincipalname: kevwa@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4031
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jl03GTJridag3vjdnSlV2R7TexWJsnQmJ5s4XBPqLpQ=;
- b=0yibD4WsaeNxsCe7iZwgmos2fmx9f+cuHDoyFCK/W4Ertpm5zeDF4TMizQByPv77rP2iyoRBVoNWuPBG+7OSuNJEIl91PuRidwXVDmI1flW1Lp7e+9o1JlBGXUBmHQU7LRyY1XRvZZf0KqMujjsTANZFTj4xw3+fnxWQLa8VQZM=
+ bh=ArQgWBaxWqYSvAYN6G2uJ8EupO5s4sd/Cwa+PP0zdLs=;
+ b=hhJxP20FxMnUffoU3Pl0U2rjf9SRlinU5slsoDn/1GVhdIwZQLqV6s0Nxip6GJdONECR6QYUVbT1LJKkGBN1UPsBVtgTcNrZGH3ZIsJCH4ppLCLwpr5IGtPaC13cRCHwYGbQdYm8XnVXzXOTwitiAGCIj2M6oXMEszx+4zL20dk=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Joseph.Greathouse@amd.com; 
+ smtp.mailfrom=Kevin1.Wang@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -93,147 +97,864 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Olsak, Marek" <Marek.Olsak@amd.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, "Greathouse,
- Joseph" <Joseph.Greathouse@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Huang, Ray" <Ray.Huang@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1134797384=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VW5pdHMgaW4gdGhlIEdEUyBibG9jayBkZWZhdWx0IHRvIGFsbG93aW5nIGFsbCBWTUlEcyBhY2Nl
-c3MKdG8gYWxsIGVudHJpZXMuIERpc2FibGUgc2hhZGVyIGFjY2VzcyB0byB0aGUgR0RTLCBHV1Ms
-IGFuZCBPQQpibG9ja3MgZnJvbSBhbGwgY29tcHV0ZSBhbmQgZ2Z4IFZNSURzIGJ5IGRlZmF1bHQu
-IEZvciBjb21wdXRlLApIV1MgZmlybXdhcmUgd2lsbCBzZXQgdXAgdGhlIGFjY2VzcyBiaXRzIGZv
-ciB0aGUgYXBwcm9wcmlhdGUKVk1JRCB3aGVuIGEgY29tcHV0ZSBxdWV1ZSByZXF1aXJlcyBhY2Nl
-c3MgdG8gdGhlc2UgYmxvY2tzLgpUaGUgZHJpdmVyIHdpbGwgaGFuZGxlIGVuYWJsaW5nIGFjY2Vz
-cyBvbi1kZW1hbmQgZm9yIGdyYXBoaWNzClZNSURzLgoKTGVhdmluZyBWTUlEMCB3aXRoIGZ1bGwg
-YWNjZXNzIGJlY2F1c2Ugb3RoZXJ3aXNlIEhXUyBjYW5ub3Qgc2F2ZQpvciByZXN0b3JlIHZhbHVl
-cyBkdXJpbmcgdGFzayBzd2l0Y2guCgpTaWduZWQtb2ZmLWJ5OiBKb3NlcGggR3JlYXRob3VzZSA8
-Sm9zZXBoLkdyZWF0aG91c2VAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9nZnhfdjEwXzAuYyB8IDIyICsrKysrKysrKysrKysrKy0tLS0tLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2dmeF92N18wLmMgIHwgMjEgKysrKysrKysrKysrKystLS0tLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjhfMC5jICB8IDIxICsrKysrKysrKysrKysrLS0t
-LS0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYyAgfCAyMSArKysrKysr
-KysrKysrKy0tLS0tLS0KIDQgZmlsZXMgY2hhbmdlZCwgNTcgaW5zZXJ0aW9ucygrKSwgMjggZGVs
-ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Yx
-MF8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYwppbmRleCA3M2Rj
-YjYzMmEzY2UuLjYxNTgzOGE1NWU4ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvZ2Z4X3YxMF8wLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Yx
-MF8wLmMKQEAgLTE1MTYsMTcgKzE1MTYsMjQgQEAgc3RhdGljIHZvaWQgZ2Z4X3YxMF8wX2luaXRf
-Y29tcHV0ZV92bWlkKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogCX0KIAludl9ncmJtX3Nl
-bGVjdChhZGV2LCAwLCAwLCAwLCAwKTsKIAltdXRleF91bmxvY2soJmFkZXYtPnNyYm1fbXV0ZXgp
-OworfQogCi0JLyogSW5pdGlhbGl6ZSBhbGwgY29tcHV0ZSBWTUlEcyB0byBoYXZlIG5vIEdEUywg
-R1dTLCBvciBPQQotCSAgIGFjY2Nlc3MuIFRoZXNlIHNob3VsZCBiZSBlbmFibGVkIGJ5IEZXIGZv
-ciB0YXJnZXQgVk1JRHMuICovCi0JZm9yIChpID0gRklSU1RfQ09NUFVURV9WTUlEOyBpIDwgTEFT
-VF9DT01QVVRFX1ZNSUQ7IGkrKykgewotCQlXUkVHMzJfU09DMTVfT0ZGU0VUKEdDLCAwLCBtbUdE
-U19WTUlEMF9CQVNFLCAyICogaSwgMCk7Ci0JCVdSRUczMl9TT0MxNV9PRkZTRVQoR0MsIDAsIG1t
-R0RTX1ZNSUQwX1NJWkUsIDIgKiBpLCAwKTsKLQkJV1JFRzMyX1NPQzE1X09GRlNFVChHQywgMCwg
-bW1HRFNfR1dTX1ZNSUQwLCBpLCAwKTsKLQkJV1JFRzMyX1NPQzE1X09GRlNFVChHQywgMCwgbW1H
-RFNfT0FfVk1JRDAsIGksIDApOworc3RhdGljIHZvaWQgZ2Z4X3YxMF8wX2luaXRfZ2RzX3ZtaWQo
-c3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCit7CisJaW50IHZtaWQ7CisJLyogSW5pdGlhbGl6
-ZSBhbGwgY29tcHV0ZSBhbmQgdXNlci1nZnggVk1JRHMgdG8gaGF2ZSBubyBHRFMsIEdXUywgb3Ig
-T0EKKwkgICBhY2NjZXNzLiBDb21wdXRlIFZNSURzIHNob3VsZCBiZSBlbmFibGVkIGJ5IEZXIGZv
-ciB0YXJnZXQgVk1JRHMsCisJICAgdGhlIGRyaXZlciBjYW4gZW5hYmxlIHRoZW0gZm9yIGdyYXBo
-aWNzLiBWTUlEMCBzaG91bGQgbWFpbnRhaW4KKwkgICBhY2Nlc3Mgc28gdGhhdCBIV1MgZmlybXdh
-cmUgY2FuIHNhdmUvcmVzdG9yZSBlbnRyaWVzLiAqLworCWZvciAodm1pZCA9IDE7IHZtaWQgPCAx
-Njsgdm1pZCsrKSB7CisJCVdSRUczMl9TT0MxNV9PRkZTRVQoR0MsIDAsIG1tR0RTX1ZNSUQwX0JB
-U0UsIDIgKiB2bWlkLCAwKTsKKwkJV1JFRzMyX1NPQzE1X09GRlNFVChHQywgMCwgbW1HRFNfVk1J
-RDBfU0laRSwgMiAqIHZtaWQsIDApOworCQlXUkVHMzJfU09DMTVfT0ZGU0VUKEdDLCAwLCBtbUdE
-U19HV1NfVk1JRDAsIHZtaWQsIDApOworCQlXUkVHMzJfU09DMTVfT0ZGU0VUKEdDLCAwLCBtbUdE
-U19PQV9WTUlEMCwgdm1pZCwgMCk7CiAJfQogfQogCisKIHN0YXRpYyB2b2lkIGdmeF92MTBfMF90
-Y3BfaGFydmVzdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKIHsKIAlpbnQgaSwgaiwgazsK
-QEAgLTE2MjksNiArMTYzNiw3IEBAIHN0YXRpYyB2b2lkIGdmeF92MTBfMF9jb25zdGFudHNfaW5p
-dChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKIAltdXRleF91bmxvY2soJmFkZXYtPnNyYm1f
-bXV0ZXgpOwogCiAJZ2Z4X3YxMF8wX2luaXRfY29tcHV0ZV92bWlkKGFkZXYpOworCWdmeF92MTBf
-MF9pbml0X2dkc192bWlkKGFkZXYpOwogCiB9CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2dmeF92N18wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhf
-djdfMC5jCmluZGV4IDNmOTg2MjQ3NzJhNC4uMDRlNTJmN2UwNGFlIDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjdfMC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1L2dmeF92N18wLmMKQEAgLTE4NzcsMTQgKzE4NzcsMjAgQEAgc3RhdGljIHZvaWQg
-Z2Z4X3Y3XzBfaW5pdF9jb21wdXRlX3ZtaWQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCiAJ
-fQogCWNpa19zcmJtX3NlbGVjdChhZGV2LCAwLCAwLCAwLCAwKTsKIAltdXRleF91bmxvY2soJmFk
-ZXYtPnNyYm1fbXV0ZXgpOworfQogCi0JLyogSW5pdGlhbGl6ZSBhbGwgY29tcHV0ZSBWTUlEcyB0
-byBoYXZlIG5vIEdEUywgR1dTLCBvciBPQQotCSAgIGFjY2Nlc3MuIFRoZXNlIHNob3VsZCBiZSBl
-bmFibGVkIGJ5IEZXIGZvciB0YXJnZXQgVk1JRHMuICovCi0JZm9yIChpID0gRklSU1RfQ09NUFVU
-RV9WTUlEOyBpIDwgTEFTVF9DT01QVVRFX1ZNSUQ7IGkrKykgewotCQlXUkVHMzIoYW1kZ3B1X2dk
-c19yZWdfb2Zmc2V0W2ldLm1lbV9iYXNlLCAwKTsKLQkJV1JFRzMyKGFtZGdwdV9nZHNfcmVnX29m
-ZnNldFtpXS5tZW1fc2l6ZSwgMCk7Ci0JCVdSRUczMihhbWRncHVfZ2RzX3JlZ19vZmZzZXRbaV0u
-Z3dzLCAwKTsKLQkJV1JFRzMyKGFtZGdwdV9nZHNfcmVnX29mZnNldFtpXS5vYSwgMCk7CitzdGF0
-aWMgdm9pZCBnZnhfdjdfMF9pbml0X2dkc192bWlkKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2
-KQoreworCWludCB2bWlkOworCS8qIEluaXRpYWxpemUgYWxsIGNvbXB1dGUgYW5kIHVzZXItZ2Z4
-IFZNSURzIHRvIGhhdmUgbm8gR0RTLCBHV1MsIG9yIE9BCisJICAgYWNjY2Vzcy4gQ29tcHV0ZSBW
-TUlEcyBzaG91bGQgYmUgZW5hYmxlZCBieSBGVyBmb3IgdGFyZ2V0IFZNSURzLAorCSAgIHRoZSBk
-cml2ZXIgY2FuIGVuYWJsZSB0aGVtIGZvciBncmFwaGljcy4gVk1JRDAgc2hvdWxkIG1haW50YWlu
-CisJICAgYWNjZXNzIHNvIHRoYXQgSFdTIGZpcm13YXJlIGNhbiBzYXZlL3Jlc3RvcmUgZW50cmll
-cy4gKi8KKwlmb3IgKHZtaWQgPSAxOyB2bWlkIDwgMTY7IHZtaWQrKykgeworCQlXUkVHMzIoYW1k
-Z3B1X2dkc19yZWdfb2Zmc2V0W3ZtaWRdLm1lbV9iYXNlLCAwKTsKKwkJV1JFRzMyKGFtZGdwdV9n
-ZHNfcmVnX29mZnNldFt2bWlkXS5tZW1fc2l6ZSwgMCk7CisJCVdSRUczMihhbWRncHVfZ2RzX3Jl
-Z19vZmZzZXRbdm1pZF0uZ3dzLCAwKTsKKwkJV1JFRzMyKGFtZGdwdV9nZHNfcmVnX29mZnNldFt2
-bWlkXS5vYSwgMCk7CiAJfQogfQogCkBAIC0xOTY2LDYgKzE5NzIsNyBAQCBzdGF0aWMgdm9pZCBn
-ZnhfdjdfMF9jb25zdGFudHNfaW5pdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKIAltdXRl
-eF91bmxvY2soJmFkZXYtPnNyYm1fbXV0ZXgpOwogCiAJZ2Z4X3Y3XzBfaW5pdF9jb21wdXRlX3Zt
-aWQoYWRldik7CisJZ2Z4X3Y3XzBfaW5pdF9nZHNfdm1pZChhZGV2KTsKIAogCVdSRUczMihtbVNY
-X0RFQlVHXzEsIDB4MjApOwogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9nZnhfdjhfMC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y4XzAuYwppbmRl
-eCBlNDAyOGQ1NGY4ZjcuLjhkYzAzZGY0OGUwNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvZ2Z4X3Y4XzAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9n
-ZnhfdjhfMC5jCkBAIC0zNzAyLDE0ICszNzAyLDIwIEBAIHN0YXRpYyB2b2lkIGdmeF92OF8wX2lu
-aXRfY29tcHV0ZV92bWlkKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogCX0KIAl2aV9zcmJt
-X3NlbGVjdChhZGV2LCAwLCAwLCAwLCAwKTsKIAltdXRleF91bmxvY2soJmFkZXYtPnNyYm1fbXV0
-ZXgpOworfQogCi0JLyogSW5pdGlhbGl6ZSBhbGwgY29tcHV0ZSBWTUlEcyB0byBoYXZlIG5vIEdE
-UywgR1dTLCBvciBPQQotCSAgIGFjY2Nlc3MuIFRoZXNlIHNob3VsZCBiZSBlbmFibGVkIGJ5IEZX
-IGZvciB0YXJnZXQgVk1JRHMuICovCi0JZm9yIChpID0gRklSU1RfQ09NUFVURV9WTUlEOyBpIDwg
-TEFTVF9DT01QVVRFX1ZNSUQ7IGkrKykgewotCQlXUkVHMzIoYW1kZ3B1X2dkc19yZWdfb2Zmc2V0
-W2ldLm1lbV9iYXNlLCAwKTsKLQkJV1JFRzMyKGFtZGdwdV9nZHNfcmVnX29mZnNldFtpXS5tZW1f
-c2l6ZSwgMCk7Ci0JCVdSRUczMihhbWRncHVfZ2RzX3JlZ19vZmZzZXRbaV0uZ3dzLCAwKTsKLQkJ
-V1JFRzMyKGFtZGdwdV9nZHNfcmVnX29mZnNldFtpXS5vYSwgMCk7CitzdGF0aWMgdm9pZCBnZnhf
-djhfMF9pbml0X2dkc192bWlkKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQoreworCWludCB2
-bWlkOworCS8qIEluaXRpYWxpemUgYWxsIGNvbXB1dGUgYW5kIHVzZXItZ2Z4IFZNSURzIHRvIGhh
-dmUgbm8gR0RTLCBHV1MsIG9yIE9BCisJICAgYWNjY2Vzcy4gQ29tcHV0ZSBWTUlEcyBzaG91bGQg
-YmUgZW5hYmxlZCBieSBGVyBmb3IgdGFyZ2V0IFZNSURzLAorCSAgIHRoZSBkcml2ZXIgY2FuIGVu
-YWJsZSB0aGVtIGZvciBncmFwaGljcy4gVk1JRDAgc2hvdWxkIG1haW50YWluCisJICAgYWNjZXNz
-IHNvIHRoYXQgSFdTIGZpcm13YXJlIGNhbiBzYXZlL3Jlc3RvcmUgZW50cmllcy4gKi8KKwlmb3Ig
-KHZtaWQgPSAxOyB2bWlkIDwgMTY7IHZtaWQrKykgeworICAgICAgICAgICAgICAgIFdSRUczMihh
-bWRncHVfZ2RzX3JlZ19vZmZzZXRbdm1pZF0ubWVtX2Jhc2UsIDApOworICAgICAgICAgICAgICAg
-IFdSRUczMihhbWRncHVfZ2RzX3JlZ19vZmZzZXRbdm1pZF0ubWVtX3NpemUsIDApOworICAgICAg
-ICAgICAgICAgIFdSRUczMihhbWRncHVfZ2RzX3JlZ19vZmZzZXRbdm1pZF0uZ3dzLCAwKTsKKyAg
-ICAgICAgICAgICAgICBXUkVHMzIoYW1kZ3B1X2dkc19yZWdfb2Zmc2V0W3ZtaWRdLm9hLCAwKTsK
-IAl9CiB9CiAKQEAgLTM3NzksNiArMzc4NSw3IEBAIHN0YXRpYyB2b2lkIGdmeF92OF8wX2NvbnN0
-YW50c19pbml0KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogCW11dGV4X3VubG9jaygmYWRl
-di0+c3JibV9tdXRleCk7CiAKIAlnZnhfdjhfMF9pbml0X2NvbXB1dGVfdm1pZChhZGV2KTsKKwln
-ZnhfdjhfMF9pbml0X2dkc192bWlkKGFkZXYpOwogCiAJbXV0ZXhfbG9jaygmYWRldi0+Z3JibV9p
-ZHhfbXV0ZXgpOwogCS8qCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9n
-ZnhfdjlfMC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYwppbmRleCAy
-NTlhMzUzOTVmZWMuLmUwZjE0NWZmZDU5NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvZ2Z4X3Y5XzAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhf
-djlfMC5jCkBAIC0yMDI1LDE0ICsyMDI1LDIwIEBAIHN0YXRpYyB2b2lkIGdmeF92OV8wX2luaXRf
-Y29tcHV0ZV92bWlkKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogCX0KIAlzb2MxNV9ncmJt
-X3NlbGVjdChhZGV2LCAwLCAwLCAwLCAwKTsKIAltdXRleF91bmxvY2soJmFkZXYtPnNyYm1fbXV0
-ZXgpOworfQogCi0JLyogSW5pdGlhbGl6ZSBhbGwgY29tcHV0ZSBWTUlEcyB0byBoYXZlIG5vIEdE
-UywgR1dTLCBvciBPQQotCSAgIGFjY2Nlc3MuIFRoZXNlIHNob3VsZCBiZSBlbmFibGVkIGJ5IEZX
-IGZvciB0YXJnZXQgVk1JRHMuICovCi0JZm9yIChpID0gRklSU1RfQ09NUFVURV9WTUlEOyBpIDwg
-TEFTVF9DT01QVVRFX1ZNSUQ7IGkrKykgewotCQlXUkVHMzJfU09DMTVfT0ZGU0VUKEdDLCAwLCBt
-bUdEU19WTUlEMF9CQVNFLCAyICogaSwgMCk7Ci0JCVdSRUczMl9TT0MxNV9PRkZTRVQoR0MsIDAs
-IG1tR0RTX1ZNSUQwX1NJWkUsIDIgKiBpLCAwKTsKLQkJV1JFRzMyX1NPQzE1X09GRlNFVChHQywg
-MCwgbW1HRFNfR1dTX1ZNSUQwLCBpLCAwKTsKLQkJV1JFRzMyX1NPQzE1X09GRlNFVChHQywgMCwg
-bW1HRFNfT0FfVk1JRDAsIGksIDApOworc3RhdGljIHZvaWQgZ2Z4X3Y5XzBfaW5pdF9nZHNfdm1p
-ZChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKK3sKKwlpbnQgdm1pZDsKKwkvKiBJbml0aWFs
-aXplIGFsbCBjb21wdXRlIGFuZCB1c2VyLWdmeCBWTUlEcyB0byBoYXZlIG5vIEdEUywgR1dTLCBv
-ciBPQQorCSAgIGFjY2Nlc3MuIENvbXB1dGUgVk1JRHMgc2hvdWxkIGJlIGVuYWJsZWQgYnkgRlcg
-Zm9yIHRhcmdldCBWTUlEcywKKwkgICB0aGUgZHJpdmVyIGNhbiBlbmFibGUgdGhlbSBmb3IgZ3Jh
-cGhpY3MuIFZNSUQwIHNob3VsZCBtYWludGFpbgorCSAgIGFjY2VzcyBzbyB0aGF0IEhXUyBmaXJt
-d2FyZSBjYW4gc2F2ZS9yZXN0b3JlIGVudHJpZXMuICovCisJZm9yICh2bWlkID0gMTsgdm1pZCA8
-IDE2OyB2bWlkKyspIHsKKwkJV1JFRzMyX1NPQzE1X09GRlNFVChHQywgMCwgbW1HRFNfVk1JRDBf
-QkFTRSwgMiAqIHZtaWQsIDApOworCQlXUkVHMzJfU09DMTVfT0ZGU0VUKEdDLCAwLCBtbUdEU19W
-TUlEMF9TSVpFLCAyICogdm1pZCwgMCk7CisJCVdSRUczMl9TT0MxNV9PRkZTRVQoR0MsIDAsIG1t
-R0RTX0dXU19WTUlEMCwgdm1pZCwgMCk7CisJCVdSRUczMl9TT0MxNV9PRkZTRVQoR0MsIDAsIG1t
-R0RTX09BX1ZNSUQwLCB2bWlkLCAwKTsKIAl9CiB9CiAKQEAgLTIwODAsNiArMjA4Niw3IEBAIHN0
-YXRpYyB2b2lkIGdmeF92OV8wX2NvbnN0YW50c19pbml0KHN0cnVjdCBhbWRncHVfZGV2aWNlICph
-ZGV2KQogCW11dGV4X3VubG9jaygmYWRldi0+c3JibV9tdXRleCk7CiAKIAlnZnhfdjlfMF9pbml0
-X2NvbXB1dGVfdm1pZChhZGV2KTsKKwlnZnhfdjlfMF9pbml0X2dkc192bWlkKGFkZXYpOwogfQog
-CiBzdGF0aWMgdm9pZCBnZnhfdjlfMF93YWl0X2Zvcl9ybGNfc2VyZGVzKHN0cnVjdCBhbWRncHVf
-ZGV2aWNlICphZGV2KQotLSAKMi4xOS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2FtZC1nZng=
+--===============1134797384==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB3296D05AA1EB26B988AB75EFA2CA0MN2PR12MB3296namp_"
+
+--_000_MN2PR12MB3296D05AA1EB26B988AB75EFA2CA0MN2PR12MB3296namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+
+________________________________
+From: Alex Deucher <alexdeucher@gmail.com>
+Sent: Saturday, July 20, 2019 1:53 AM
+To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Huang, R=
+ay <Ray.Huang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+Subject: Re: [PATCH] drm/amd/powerplay: change smu_read_sensor sequence in =
+smu
+
+On Fri, Jul 19, 2019 at 1:03 PM Wang, Kevin(Yang) <Kevin1.Wang@amd.com> wro=
+te:
+>
+> The read sensor function is not same as other one, this function should b=
+e handle many different sensor type,  I don=92t want to handle all sensor t=
+ype in asic file, because some sensor is very simple, only should be send a=
+ message to smc, and  some sensor should be parse Table with firmware.
+>
+> Eg: get gfx clk,
+> Only need send message to get value.
+> Because the message already mapped on each asic, so this sensor should be=
+ handled in smu_v11.c.
+>
+> Eg: get gpu load,
+> this sensor should be get value from firmware table, so should must be ha=
+ndled in xxx_ppt.c
+>
+> Eg: get pstate clock,
+> It is full software sensor, so it is handled in amdgpu_smu.c
+>
+> In this patch, the smu only want to public one api of smu_read_sensor, an=
+d the other sensor macro is helper in smu internally.
+>
+> I want to reduce duplicate code in smu, it will be let bring up new asic =
+easy.
+
+I think it's still pretty straight forward.  E.g., in the asic
+specific read_sensor() callback you do something like this:
+
+switch (sensor) {
+case SENSOR1:
+case SENSOR2:
+case SENSOR3:
+      ret =3D smu_v11_read_sensor_helper(smu, sensor, value);
+      breakl
+case SENSOR4:
+     ret =3D vega20_get_sensor4(smu, value);
+     break;
+default:
+    ...
+}
+
+That way there is less confusion about following callbacks.
+
+Alex
+
+[kevin]:
+I will improve the logic of this part of code according to your suggestion.=
+ thanks.
+
+>
+> Thanks
+>
+> > On Jul 20, 2019, at 12:14 AM, Alex Deucher <alexdeucher@gmail.com> wrot=
+e:
+> >
+> >> On Fri, Jul 19, 2019 at 12:01 PM Wang, Kevin(Yang) <Kevin1.Wang@amd.co=
+m> wrote:
+> >>
+> >>
+> >> ________________________________
+> >> From: Alex Deucher <alexdeucher@gmail.com>
+> >> Sent: Friday, July 19, 2019 11:17 PM
+> >> To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
+> >> Cc: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Hua=
+ng, Ray <Ray.Huang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+> >> Subject: Re: [PATCH] drm/amd/powerplay: change smu_read_sensor sequenc=
+e in smu
+> >>
+> >>> On Fri, Jul 19, 2019 at 7:23 AM Wang, Kevin(Yang) <Kevin1.Wang@amd.co=
+m> wrote:
+> >>>
+> >>> each asic maybe has different read sensor method.
+> >>> so change read sensor sequence in smu.
+> >>>
+> >>> read sensor sequence:
+> >>> asic sensor --> smc sensor (smu 11...) --> default_sensor (common)
+> >>
+> >> I think this makes sense.  That said, the current swSMU callback
+> >> structures are really confusing.  I think we should switch to a single
+> >> set of per asic callbacks and then add common helpers.  Then for asics
+> >> where it makes sense we can just use the helper as the callback for
+> >> all relevant asics.  If they need something asic specific, use the
+> >> asic specific function.  That should avoid the current mix of
+> >> callbacks and make it clearer what code gets used when.
+> >>
+> >> Alex
+> >>
+> >> [kevin]:
+> >>
+> >> thanks review, in current code, the read sensor related function is no=
+t very clear, so i want to refine them.
+> >> but I'm not sure which way to write good code logic.
+> >>
+> >> way 1:
+> >>
+> >> provide a puiblic function named smu_read_sensor as public smu api for=
+ other kenel module, like this patch.
+> >> this function will try to get value from asic or smu ip level or commo=
+n, call them in turn according to the rules.
+> >>
+> >> way 2:
+> >>
+> >> define a maco named smu_read_sensor as public api, implement it in xxx=
+_ppt.c file,
+> >> if can't handle sensor type in xxx_ppt.c, then call helper in smu_v11_=
+0.c,  then call amdgpu_smu.c helper.
+> >>
+> >> in this way, it means we must implement this callback function in xxx_=
+ppt.c.
+> >> if need to support new asic, we should add some dulicated code in xxx_=
+ppt.c, if not the smu_read_sensor api is not work well.
+> >> in smu module, use many macros as module public api, it is impossible =
+to tell at what level these macros implement specific code logic.
+> >> so i want to refine them.
+> >>
+> >> do you think which way is good for this case?
+> >
+> > I personally prefer way 2.  With way 1, the common functions would
+> > just be a wrapper around the asic specific callbacks.  The older
+> > powerplay code worked that way.  If there is something common that
+> > needs to be done for all asics, I think that would make sense, but I
+> > don't know that we have any cases like that.  If we do end up needing
+> > something like that, we can always revisit this.
+> >
+> > I was thinking something like the following:
+> >
+> > struct smu_asic_funcs {
+> >    int (*get_current_clock_freq)();
+> >    int (*get_fan_speed_rpm)();
+> >    ...
+> > }
+> >
+> > Then for cases where two asics use the same SMU interface, you can
+> > create a common function.  So for vega20, it might look like:
+> >
+> > static const struct smu_asic_funcs vega20_smu_asic_funcs =3D
+> > {
+> >    .get_current_clock_freq =3D smu_v11_0_get_current_clock_freq,
+> >    .get_fan_speed_rpm =3D vega20_get_fan_speed_rpm,
+> >    ...
+> > };
+> >
+> > and navi10 would look like:
+> >
+> > static const struct smu_asic_funcs navi10_smu_asic_funcs =3D
+> > {
+> >    .get_current_clock_freq =3D smu_v11_0_get_current_clock_freq,
+> >    .get_fan_speed_rpm =3D navi10_get_fan_speed_rpm,
+> >    ...
+> > };
+> >
+> > Alex
+> >
+> >
+> >> thanks.
+> >>
+> >>>
+> >>> Signed-off-by: Kevin Wang <kevin1.wang@amd.com>
+> >>> ---
+> >>> drivers/gpu/drm/amd/powerplay/amdgpu_smu.c    | 26 +++++++++++++++++-=
+-
+> >>> .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h    |  9 ++++---
+> >>> drivers/gpu/drm/amd/powerplay/navi10_ppt.c    |  3 +++
+> >>> drivers/gpu/drm/amd/powerplay/smu_v11_0.c | 10 +++----
+> >>> drivers/gpu/drm/amd/powerplay/vega20_ppt.c    |  3 +++
+> >>> 5 files changed, 40 insertions(+), 11 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu=
+/drm/amd/powerplay/amdgpu_smu.c
+> >>> index 05b91bc5054c..85269f86cae2 100644
+> >>> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> >>> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> >>> @@ -284,11 +284,14 @@ int smu_get_power_num_states(struct smu_context=
+ *smu,
+> >>>        return 0;
+> >>> }
+> >>>
+> >>> -int smu_common_read_sensor(struct smu_context *smu, enum amd_pp_sens=
+ors sensor,
+> >>> -                          void *data, uint32_t *size)
+> >>> +int smu_default_read_sensor(struct smu_context *smu, enum amd_pp_sen=
+sors sensor,
+> >>> +                           void *data, uint32_t *size)
+> >>> {
+> >>>        int ret =3D 0;
+> >>>
+> >>> +       if (!data || !size)
+> >>> +               return -EINVAL;
+> >>> +
+> >>>        switch (sensor) {
+> >>>        case AMDGPU_PP_SENSOR_STABLE_PSTATE_SCLK:
+> >>>                *((uint32_t *)data) =3D smu->pstate_sclk;
+> >>> @@ -321,6 +324,25 @@ int smu_common_read_sensor(struct smu_context *s=
+mu, enum amd_pp_sensors sensor,
+> >>>        return ret;
+> >>> }
+> >>>
+> >>> +int smu_read_sensor(struct smu_context *smu, enum amd_pp_sensors sen=
+sor,
+> >>> +                   void *data, uint32_t *size)
+> >>> +{
+> >>> +       int ret =3D 0;
+> >>> +
+> >>> +       if (!data || !size)
+> >>> +               return -EINVAL;
+> >>> +
+> >>> +       /* handle sensor sequence: asic --> ip level -->  default */
+> >>> +       ret =3D smu_asic_read_sensor(smu, sensor, data, size);
+> >>> +       if (ret) {
+> >>> +               ret =3D smu_smc_read_sensor(smu, sensor, data, size);
+> >>> +               if (ret)
+> >>> +                       ret =3D smu_default_read_sensor(smu, sensor, =
+data, size);
+> >>> +       }
+> >>> +
+> >>> +       return ret;
+> >>> +}
+> >>> +
+> >>> int smu_update_table(struct smu_context *smu, enum smu_table_id table=
+_index, int argument,
+> >>>                     void *table_data, bool drv2smu)
+> >>> {
+> >>> diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers=
+/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+> >>> index 34093ddca105..462bae8d62aa 100644
+> >>> --- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+> >>> +++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+> >>> @@ -820,10 +820,10 @@ struct smu_funcs
+> >>>        ((smu)->ppt_funcs->set_thermal_fan_table ? (smu)->ppt_funcs->s=
+et_thermal_fan_table((smu)) : 0)
+> >>> #define smu_start_thermal_control(smu) \
+> >>>        ((smu)->funcs->start_thermal_control? (smu)->funcs->start_ther=
+mal_control((smu)) : 0)
+> >>> -#define smu_read_sensor(smu, sensor, data, size) \
+> >>> -       ((smu)->funcs->read_sensor? (smu)->funcs->read_sensor((smu), =
+(sensor), (data), (size)) : 0)
+> >>> +#define smu_smc_read_sensor(smu, sensor, data, size) \
+> >>> +       ((smu)->funcs->read_sensor? (smu)->funcs->read_sensor((smu), =
+(sensor), (data), (size)) : -EINVAL)
+> >>> #define smu_asic_read_sensor(smu, sensor, data, size) \
+> >>> -       ((smu)->ppt_funcs->read_sensor? (smu)->ppt_funcs->read_sensor=
+((smu), (sensor), (data), (size)) : 0)
+> >>> +       ((smu)->ppt_funcs->read_sensor? (smu)->ppt_funcs->read_sensor=
+((smu), (sensor), (data), (size)) : -EINVAL)
+> >>> #define smu_get_power_profile_mode(smu, buf) \
+> >>>        ((smu)->ppt_funcs->get_power_profile_mode ? (smu)->ppt_funcs->=
+get_power_profile_mode((smu), buf) : 0)
+> >>> #define smu_set_power_profile_mode(smu, param, param_size) \
+> >>> @@ -989,5 +989,6 @@ enum amd_dpm_forced_level smu_get_performance_lev=
+el(struct smu_context *smu);
+> >>> int smu_force_performance_level(struct smu_context *smu, enum amd_dpm=
+_forced_level level);
+> >>> int smu_set_display_count(struct smu_context *smu, uint32_t count);
+> >>> bool smu_clk_dpm_is_enabled(struct smu_context *smu, enum smu_clk_typ=
+e clk_type);
+> >>> -
+> >>> +int smu_read_sensor(struct smu_context *smu, enum amd_pp_sensors sen=
+sor,
+> >>> +                   void *data, uint32_t *size);
+> >>> #endif
+> >>> diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu=
+/drm/amd/powerplay/navi10_ppt.c
+> >>> index 46e2913e4af4..0a53695785b6 100644
+> >>> --- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+> >>> +++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+> >>> @@ -1365,6 +1365,9 @@ static int navi10_read_sensor(struct smu_contex=
+t *smu,
+> >>>        struct smu_table_context *table_context =3D &smu->smu_table;
+> >>>        PPTable_t *pptable =3D table_context->driver_pptable;
+> >>>
+> >>> +       if (!data || !size)
+> >>> +               return -EINVAL;
+> >>> +
+> >>>        switch (sensor) {
+> >>>        case AMDGPU_PP_SENSOR_MAX_FAN_RPM:
+> >>>                *(uint32_t *)data =3D pptable->FanMaximumRpm;
+> >>> diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/=
+drm/amd/powerplay/smu_v11_0.c
+> >>> index 76bc157525d0..2679b6ff6ca3 100644
+> >>> --- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
+> >>> +++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
+> >>> @@ -1267,6 +1267,10 @@ static int smu_v11_0_read_sensor(struct smu_co=
+ntext *smu,
+> >>>                                 void *data, uint32_t *size)
+> >>> {
+> >>>        int ret =3D 0;
+> >>> +
+> >>> +       if (!data || !size)
+> >>> +               return -EINVAL;
+> >>> +
+> >>>        switch (sensor) {
+> >>>        case AMDGPU_PP_SENSOR_GFX_MCLK:
+> >>>                ret =3D smu_get_current_clk_freq(smu, SMU_UCLK, (uint3=
+2_t *)data);
+> >>> @@ -1285,14 +1289,10 @@ static int smu_v11_0_read_sensor(struct smu_c=
+ontext *smu,
+> >>>                *size =3D 4;
+> >>>                break;
+> >>>        default:
+> >>> -               ret =3D smu_common_read_sensor(smu, sensor, data, siz=
+e);
+> >>> +               ret =3D -EINVAL;
+> >>>                break;
+> >>>        }
+> >>>
+> >>> -       /* try get sensor data by asic */
+> >>> -       if (ret)
+> >>> -               ret =3D smu_asic_read_sensor(smu, sensor, data, size)=
+;
+> >>> -
+> >>>        if (ret)
+> >>>                *size =3D 0;
+> >>>
+> >>> diff --git a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c b/drivers/gpu=
+/drm/amd/powerplay/vega20_ppt.c
+> >>> index bcd0efaf7bbd..b44ec7c670c5 100644
+> >>> --- a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
+> >>> +++ b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
+> >>> @@ -3146,6 +3146,9 @@ static int vega20_read_sensor(struct smu_contex=
+t *smu,
+> >>>        struct smu_table_context *table_context =3D &smu->smu_table;
+> >>>        PPTable_t *pptable =3D table_context->driver_pptable;
+> >>>
+> >>> +       if (!data || !size)
+> >>> +               return -EINVAL;
+> >>> +
+> >>>        switch (sensor) {
+> >>>        case AMDGPU_PP_SENSOR_MAX_FAN_RPM:
+> >>>                *(uint32_t *)data =3D pptable->FanMaximumRpm;
+> >>> --
+> >>> 2.22.0
+> >>>
+> >>> _______________________________________________
+> >>> amd-gfx mailing list
+> >>> amd-gfx@lists.freedesktop.org
+> >>> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_MN2PR12MB3296D05AA1EB26B988AB75EFA2CA0MN2PR12MB3296namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size: 12pt; color: rgb(0, 0,=
+ 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, &quot;Apple Co=
+lor Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI=
+ Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<div style=3D"color: rgb(0, 0, 0);">
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Alex Deucher &lt;alex=
+deucher@gmail.com&gt;<br>
+<b>Sent:</b> Saturday, July 20, 2019 1:53 AM<br>
+<b>To:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;<br>
+<b>Cc:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;; Huang, Ray &lt;Ray.Huang@amd.com&gt;; Feng, Kenneth &lt;Kenneth.Feng@a=
+md.com&gt;<br>
+<b>Subject:</b> Re: [PATCH] drm/amd/powerplay: change smu_read_sensor seque=
+nce in smu</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">On Fri, Jul 19, 2019 at 1:03 PM Wang, Kevin(Yang) =
+&lt;Kevin1.Wang@amd.com&gt; wrote:<br>
+&gt;<br>
+&gt; The read sensor function is not same as other one, this function shoul=
+d be handle many different sensor type,&nbsp; I don=92t want to handle all =
+sensor type in asic file, because some sensor is very simple, only should b=
+e send a message to smc, and&nbsp; some sensor
+ should be parse Table with firmware.<br>
+&gt;<br>
+&gt; Eg: get gfx clk,<br>
+&gt; Only need send message to get value.<br>
+&gt; Because the message already mapped on each asic, so this sensor should=
+ be handled in smu_v11.c.<br>
+&gt;<br>
+&gt; Eg: get gpu load,<br>
+&gt; this sensor should be get value from firmware table, so should must be=
+ handled in xxx_ppt.c<br>
+&gt;<br>
+&gt; Eg: get pstate clock,<br>
+&gt; It is full software sensor, so it is handled in amdgpu_smu.c<br>
+&gt;<br>
+&gt; In this patch, the smu only want to public one api of smu_read_sensor,=
+ and the other sensor macro is helper in smu internally.<br>
+&gt;<br>
+&gt; I want to reduce duplicate code in smu, it will be let bring up new as=
+ic easy.<br>
+<br>
+I think it's still pretty straight forward.&nbsp; E.g., in the asic<br>
+specific read_sensor() callback you do something like this:<br>
+<br>
+switch (sensor) {<br>
+case SENSOR1:<br>
+case SENSOR2:<br>
+case SENSOR3:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_v11_read_sensor_helper(smu, sens=
+or, value);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; breakl<br>
+case SENSOR4:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ret =3D vega20_get_sensor4(smu, value);<br>
+&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+default:<br>
+&nbsp;&nbsp;&nbsp; ...<br>
+}<br>
+<br>
+That way there is less confusion about following callbacks.<br>
+<br>
+Alex</div>
+<div class=3D"PlainText"><br>
+</div>
+<div class=3D"PlainText">[kevin]:</div>
+<div class=3D"PlainText">
+<div>I will improve the logic of this part of code according to your sugges=
+tion. thanks.</div>
+<br>
+&gt;<br>
+&gt; Thanks<br>
+&gt;<br>
+&gt; &gt; On Jul 20, 2019, at 12:14 AM, Alex Deucher &lt;alexdeucher@gmail.=
+com&gt; wrote:<br>
+&gt; &gt;<br>
+&gt; &gt;&gt; On Fri, Jul 19, 2019 at 12:01 PM Wang, Kevin(Yang) &lt;Kevin1=
+.Wang@amd.com&gt; wrote:<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; ________________________________<br>
+&gt; &gt;&gt; From: Alex Deucher &lt;alexdeucher@gmail.com&gt;<br>
+&gt; &gt;&gt; Sent: Friday, July 19, 2019 11:17 PM<br>
+&gt; &gt;&gt; To: Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;<br>
+&gt; &gt;&gt; Cc: amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedeskt=
+op.org&gt;; Huang, Ray &lt;Ray.Huang@amd.com&gt;; Feng, Kenneth &lt;Kenneth=
+.Feng@amd.com&gt;<br>
+&gt; &gt;&gt; Subject: Re: [PATCH] drm/amd/powerplay: change smu_read_senso=
+r sequence in smu<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;&gt; On Fri, Jul 19, 2019 at 7:23 AM Wang, Kevin(Yang) &lt;Kev=
+in1.Wang@amd.com&gt; wrote:<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; each asic maybe has different read sensor method.<br>
+&gt; &gt;&gt;&gt; so change read sensor sequence in smu.<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; read sensor sequence:<br>
+&gt; &gt;&gt;&gt; asic sensor --&gt; smc sensor (smu 11...) --&gt; default_=
+sensor (common)<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; I think this makes sense.&nbsp; That said, the current swSMU =
+callback<br>
+&gt; &gt;&gt; structures are really confusing.&nbsp; I think we should swit=
+ch to a single<br>
+&gt; &gt;&gt; set of per asic callbacks and then add common helpers.&nbsp; =
+Then for asics<br>
+&gt; &gt;&gt; where it makes sense we can just use the helper as the callba=
+ck for<br>
+&gt; &gt;&gt; all relevant asics.&nbsp; If they need something asic specifi=
+c, use the<br>
+&gt; &gt;&gt; asic specific function.&nbsp; That should avoid the current m=
+ix of<br>
+&gt; &gt;&gt; callbacks and make it clearer what code gets used when.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; Alex<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; [kevin]:<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; thanks review, in current code, the read sensor related funct=
+ion is not very clear, so i want to refine them.<br>
+&gt; &gt;&gt; but I'm not sure which way to write good code logic.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; way 1:<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; provide a puiblic function named smu_read_sensor as public sm=
+u api for other kenel module, like this patch.<br>
+&gt; &gt;&gt; this function will try to get value from asic or smu ip level=
+ or common, call them in turn according to the rules.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; way 2:<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; define a maco named smu_read_sensor as public api, implement =
+it in xxx_ppt.c file,<br>
+&gt; &gt;&gt; if can't handle sensor type in xxx_ppt.c, then call helper in=
+ smu_v11_0.c,&nbsp; then call amdgpu_smu.c helper.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; in this way, it means we must implement this callback functio=
+n in xxx_ppt.c.<br>
+&gt; &gt;&gt; if need to support new asic, we should add some dulicated cod=
+e in xxx_ppt.c, if not the smu_read_sensor api is not work well.<br>
+&gt; &gt;&gt; in smu module, use many macros as module public api, it is im=
+possible to tell at what level these macros implement specific code logic.<=
+br>
+&gt; &gt;&gt; so i want to refine them.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; do you think which way is good for this case?<br>
+&gt; &gt;<br>
+&gt; &gt; I personally prefer way 2.&nbsp; With way 1, the common functions=
+ would<br>
+&gt; &gt; just be a wrapper around the asic specific callbacks.&nbsp; The o=
+lder<br>
+&gt; &gt; powerplay code worked that way.&nbsp; If there is something commo=
+n that<br>
+&gt; &gt; needs to be done for all asics, I think that would make sense, bu=
+t I<br>
+&gt; &gt; don't know that we have any cases like that.&nbsp; If we do end u=
+p needing<br>
+&gt; &gt; something like that, we can always revisit this.<br>
+&gt; &gt;<br>
+&gt; &gt; I was thinking something like the following:<br>
+&gt; &gt;<br>
+&gt; &gt; struct smu_asic_funcs {<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp; int (*get_current_clock_freq)();<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp; int (*get_fan_speed_rpm)();<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp; ...<br>
+&gt; &gt; }<br>
+&gt; &gt;<br>
+&gt; &gt; Then for cases where two asics use the same SMU interface, you ca=
+n<br>
+&gt; &gt; create a common function.&nbsp; So for vega20, it might look like=
+:<br>
+&gt; &gt;<br>
+&gt; &gt; static const struct smu_asic_funcs vega20_smu_asic_funcs =3D<br>
+&gt; &gt; {<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp; .get_current_clock_freq =3D smu_v11_0_get_curre=
+nt_clock_freq,<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp; .get_fan_speed_rpm =3D vega20_get_fan_speed_rpm=
+,<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp; ...<br>
+&gt; &gt; };<br>
+&gt; &gt;<br>
+&gt; &gt; and navi10 would look like:<br>
+&gt; &gt;<br>
+&gt; &gt; static const struct smu_asic_funcs navi10_smu_asic_funcs =3D<br>
+&gt; &gt; {<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp; .get_current_clock_freq =3D smu_v11_0_get_curre=
+nt_clock_freq,<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp; .get_fan_speed_rpm =3D navi10_get_fan_speed_rpm=
+,<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp; ...<br>
+&gt; &gt; };<br>
+&gt; &gt;<br>
+&gt; &gt; Alex<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt;&gt; thanks.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; Signed-off-by: Kevin Wang &lt;kevin1.wang@amd.com&gt;<br>
+&gt; &gt;&gt;&gt; ---<br>
+&gt; &gt;&gt;&gt; drivers/gpu/drm/amd/powerplay/amdgpu_smu.c&nbsp;&nbsp;&nb=
+sp; | 26 &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&=
+#43;&#43;&#43;&#43;--<br>
+&gt; &gt;&gt;&gt; .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h&nbsp;&nbsp;&nb=
+sp; |&nbsp; 9 &#43;&#43;&#43;&#43;---<br>
+&gt; &gt;&gt;&gt; drivers/gpu/drm/amd/powerplay/navi10_ppt.c&nbsp;&nbsp;&nb=
+sp; |&nbsp; 3 &#43;&#43;&#43;<br>
+&gt; &gt;&gt;&gt; drivers/gpu/drm/amd/powerplay/smu_v11_0.c | 10 &#43;&#43;=
+&#43;----<br>
+&gt; &gt;&gt;&gt; drivers/gpu/drm/amd/powerplay/vega20_ppt.c&nbsp;&nbsp;&nb=
+sp; |&nbsp; 3 &#43;&#43;&#43;<br>
+&gt; &gt;&gt;&gt; 5 files changed, 40 insertions(&#43;), 11 deletions(-)<br=
+>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b=
+/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&gt; &gt;&gt;&gt; index 05b91bc5054c..85269f86cae2 100644<br>
+&gt; &gt;&gt;&gt; --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&gt; &gt;&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/amdgpu_sm=
+u.c<br>
+&gt; &gt;&gt;&gt; @@ -284,11 &#43;284,14 @@ int smu_get_power_num_states(st=
+ruct smu_context *smu,<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&gt; &gt;&gt;&gt; }<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; -int smu_common_read_sensor(struct smu_context *smu, enum=
+ amd_pp_sensors sensor,<br>
+&gt; &gt;&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; void *data, uint32_t *size)<br>
+&gt; &gt;&gt;&gt; &#43;int smu_default_read_sensor(struct smu_context *smu,=
+ enum amd_pp_sensors sensor,<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *data, uint32_t *size)<br>
+&gt; &gt;&gt;&gt; {<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<=
+br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!data || !s=
+ize)<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&gt; &gt;&gt;&gt; &#43;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor)=
+ {<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_=
+SENSOR_STABLE_PSTATE_SCLK:<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *((uint32_t *)data) =3D smu-&gt;pstate_scl=
+k;<br>
+&gt; &gt;&gt;&gt; @@ -321,6 &#43;324,25 @@ int smu_common_read_sensor(struc=
+t smu_context *smu, enum amd_pp_sensors sensor,<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&gt; &gt;&gt;&gt; }<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; &#43;int smu_read_sensor(struct smu_context *smu, enum am=
+d_pp_sensors sensor,<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *data, uint32=
+_t *size)<br>
+&gt; &gt;&gt;&gt; &#43;{<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<=
+br>
+&gt; &gt;&gt;&gt; &#43;<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!data || !s=
+ize)<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&gt; &gt;&gt;&gt; &#43;<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* handle senso=
+r sequence: asic --&gt; ip level --&gt;&nbsp; default */<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_asi=
+c_read_sensor(smu, sensor, data, size);<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret) {<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_smc_read_sensor(smu, sensor, d=
+ata, size);<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; ret =3D smu_default_read_sensor(smu, sensor, data, size);<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt; &gt;&gt;&gt; &#43;<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&gt; &gt;&gt;&gt; &#43;}<br>
+&gt; &gt;&gt;&gt; &#43;<br>
+&gt; &gt;&gt;&gt; int smu_update_table(struct smu_context *smu, enum smu_ta=
+ble_id table_index, int argument,<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *table_=
+data, bool drv2smu)<br>
+&gt; &gt;&gt;&gt; {<br>
+&gt; &gt;&gt;&gt; diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu=
+.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
+&gt; &gt;&gt;&gt; index 34093ddca105..462bae8d62aa 100644<br>
+&gt; &gt;&gt;&gt; --- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
+&gt; &gt;&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/inc/amdgp=
+u_smu.h<br>
+&gt; &gt;&gt;&gt; @@ -820,10 &#43;820,10 @@ struct smu_funcs<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;ppt_=
+funcs-&gt;set_thermal_fan_table ? (smu)-&gt;ppt_funcs-&gt;set_thermal_fan_t=
+able((smu)) : 0)<br>
+&gt; &gt;&gt;&gt; #define smu_start_thermal_control(smu) \<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;func=
+s-&gt;start_thermal_control? (smu)-&gt;funcs-&gt;start_thermal_control((smu=
+)) : 0)<br>
+&gt; &gt;&gt;&gt; -#define smu_read_sensor(smu, sensor, data, size) \<br>
+&gt; &gt;&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;funcs-&g=
+t;read_sensor? (smu)-&gt;funcs-&gt;read_sensor((smu), (sensor), (data), (si=
+ze)) : 0)<br>
+&gt; &gt;&gt;&gt; &#43;#define smu_smc_read_sensor(smu, sensor, data, size)=
+ \<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;func=
+s-&gt;read_sensor? (smu)-&gt;funcs-&gt;read_sensor((smu), (sensor), (data),=
+ (size)) : -EINVAL)<br>
+&gt; &gt;&gt;&gt; #define smu_asic_read_sensor(smu, sensor, data, size) \<b=
+r>
+&gt; &gt;&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;ppt_func=
+s-&gt;read_sensor? (smu)-&gt;ppt_funcs-&gt;read_sensor((smu), (sensor), (da=
+ta), (size)) : 0)<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;ppt_=
+funcs-&gt;read_sensor? (smu)-&gt;ppt_funcs-&gt;read_sensor((smu), (sensor),=
+ (data), (size)) : -EINVAL)<br>
+&gt; &gt;&gt;&gt; #define smu_get_power_profile_mode(smu, buf) \<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;ppt_=
+funcs-&gt;get_power_profile_mode ? (smu)-&gt;ppt_funcs-&gt;get_power_profil=
+e_mode((smu), buf) : 0)<br>
+&gt; &gt;&gt;&gt; #define smu_set_power_profile_mode(smu, param, param_size=
+) \<br>
+&gt; &gt;&gt;&gt; @@ -989,5 &#43;989,6 @@ enum amd_dpm_forced_level smu_get=
+_performance_level(struct smu_context *smu);<br>
+&gt; &gt;&gt;&gt; int smu_force_performance_level(struct smu_context *smu, =
+enum amd_dpm_forced_level level);<br>
+&gt; &gt;&gt;&gt; int smu_set_display_count(struct smu_context *smu, uint32=
+_t count);<br>
+&gt; &gt;&gt;&gt; bool smu_clk_dpm_is_enabled(struct smu_context *smu, enum=
+ smu_clk_type clk_type);<br>
+&gt; &gt;&gt;&gt; -<br>
+&gt; &gt;&gt;&gt; &#43;int smu_read_sensor(struct smu_context *smu, enum am=
+d_pp_sensors sensor,<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *data, uint32=
+_t *size);<br>
+&gt; &gt;&gt;&gt; #endif<br>
+&gt; &gt;&gt;&gt; diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b=
+/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+&gt; &gt;&gt;&gt; index 46e2913e4af4..0a53695785b6 100644<br>
+&gt; &gt;&gt;&gt; --- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+&gt; &gt;&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/navi10_pp=
+t.c<br>
+&gt; &gt;&gt;&gt; @@ -1365,6 &#43;1365,9 @@ static int navi10_read_sensor(s=
+truct smu_context *smu,<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_tabl=
+e_context *table_context =3D &amp;smu-&gt;smu_table;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PPTable_t *ppta=
+ble =3D table_context-&gt;driver_pptable;<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!data || !s=
+ize)<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&gt; &gt;&gt;&gt; &#43;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor)=
+ {<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_=
+SENSOR_MAX_FAN_RPM:<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *(uint32_t *)data =3D pptable-&gt;FanMaxim=
+umRpm;<br>
+&gt; &gt;&gt;&gt; diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/=
+drivers/gpu/drm/amd/powerplay/smu_v11_0.c<br>
+&gt; &gt;&gt;&gt; index 76bc157525d0..2679b6ff6ca3 100644<br>
+&gt; &gt;&gt;&gt; --- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c<br>
+&gt; &gt;&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smu_v11_0=
+.c<br>
+&gt; &gt;&gt;&gt; @@ -1267,6 &#43;1267,10 @@ static int smu_v11_0_read_sens=
+or(struct smu_context *smu,<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *data, uin=
+t32_t *size)<br>
+&gt; &gt;&gt;&gt; {<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<=
+br>
+&gt; &gt;&gt;&gt; &#43;<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!data || !s=
+ize)<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&gt; &gt;&gt;&gt; &#43;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor)=
+ {<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_=
+SENSOR_GFX_MCLK:<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_get_current_clk_freq(smu, SMU_=
+UCLK, (uint32_t *)data);<br>
+&gt; &gt;&gt;&gt; @@ -1285,14 &#43;1289,10 @@ static int smu_v11_0_read_sen=
+sor(struct smu_context *smu,<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *size =3D 4;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+&gt; &gt;&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_common_read_sensor(smu, sensor, da=
+ta, size);<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D -EINVAL;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* try get sensor d=
+ata by asic */<br>
+&gt; &gt;&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&gt; &gt;&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_asic_read_sensor(smu, sensor, data=
+, size);<br>
+&gt; &gt;&gt;&gt; -<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *size =3D 0;<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; diff --git a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c b=
+/drivers/gpu/drm/amd/powerplay/vega20_ppt.c<br>
+&gt; &gt;&gt;&gt; index bcd0efaf7bbd..b44ec7c670c5 100644<br>
+&gt; &gt;&gt;&gt; --- a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c<br>
+&gt; &gt;&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/vega20_pp=
+t.c<br>
+&gt; &gt;&gt;&gt; @@ -3146,6 &#43;3146,9 @@ static int vega20_read_sensor(s=
+truct smu_context *smu,<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_tabl=
+e_context *table_context =3D &amp;smu-&gt;smu_table;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PPTable_t *ppta=
+ble =3D table_context-&gt;driver_pptable;<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!data || !s=
+ize)<br>
+&gt; &gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&gt; &gt;&gt;&gt; &#43;<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor)=
+ {<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_=
+SENSOR_MAX_FAN_RPM:<br>
+&gt; &gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *(uint32_t *)data =3D pptable-&gt;FanMaxim=
+umRpm;<br>
+&gt; &gt;&gt;&gt; --<br>
+&gt; &gt;&gt;&gt; 2.22.0<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; _______________________________________________<br>
+&gt; &gt;&gt;&gt; amd-gfx mailing list<br>
+&gt; &gt;&gt;&gt; amd-gfx@lists.freedesktop.org<br>
+&gt; &gt;&gt;&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo=
+/amd-gfx" id=3D"LPlnk641870" class=3D"OWAAutoLink" previewremoved=3D"true">
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
+</div>
+</span></font></div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_MN2PR12MB3296D05AA1EB26B988AB75EFA2CA0MN2PR12MB3296namp_--
+
+--===============1134797384==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1134797384==--
