@@ -1,36 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B07A70A77
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jul 2019 22:14:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD6970ABD
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jul 2019 22:33:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18BC189E43;
-	Mon, 22 Jul 2019 20:14:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 040F689EB4;
+	Mon, 22 Jul 2019 20:33:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1500 seconds by postgrey-1.36 at gabe;
- Mon, 22 Jul 2019 20:05:23 UTC
-Received: from gateway20.websitewelcome.com (gateway20.websitewelcome.com
- [192.185.62.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BA7E89E15
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jul 2019 20:05:23 +0000 (UTC)
-Received: from cm13.websitewelcome.com (cm13.websitewelcome.com [100.42.49.6])
- by gateway20.websitewelcome.com (Postfix) with ESMTP id 67EBC400CD8B7
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jul 2019 13:16:49 -0500 (CDT)
+X-Greylist: delayed 1502 seconds by postgrey-1.36 at gabe;
+ Mon, 22 Jul 2019 20:32:54 UTC
+Received: from gateway36.websitewelcome.com (gateway36.websitewelcome.com
+ [192.185.199.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30E5089EAC
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jul 2019 20:32:54 +0000 (UTC)
+Received: from cm17.websitewelcome.com (cm17.websitewelcome.com [100.42.49.20])
+ by gateway36.websitewelcome.com (Postfix) with ESMTP id C851B400C6F2D
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jul 2019 14:11:03 -0500 (CDT)
 Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
- id pdqmhW2MoYTGMpdqmhLOzV; Mon, 22 Jul 2019 14:19:56 -0500
+ id peHKhGeaY90onpeHKh9Z5t; Mon, 22 Jul 2019 14:47:22 -0500
 X-Authority-Reason: nr=8
 Received: from cablelink149-185.telefonia.intercable.net
- ([201.172.149.185]:47848 helo=[192.168.1.79])
+ ([201.172.149.185]:48504 helo=[192.168.1.79])
  by gator4166.hostgator.com with esmtpsa
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92)
  (envelope-from <gustavo@embeddedor.com>)
- id 1hpdql-002j3v-Sa; Mon, 22 Jul 2019 14:19:55 -0500
+ id 1hpeHK-002xHf-9Y; Mon, 22 Jul 2019 14:47:22 -0500
 Subject: Re: [PATCH] drm/amdkfd: Fix missing break in switch statement
 To: Alex Deucher <alexdeucher@gmail.com>
 References: <20190721214935.GA910@embeddedor>
  <CADnq5_OTmx==m+1fJbf1PxPhPM0H0O8GRjq4eWeX6sw889YPrA@mail.gmail.com>
+ <181c1bc9-4cf9-057f-a6e6-e6d62ddbc347@embeddedor.com>
+ <CADnq5_NRDy1jpa2MGefo7KbUB2vejuLwpnJh=vsqyp56yY31Sg@mail.gmail.com>
 From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=gustavo@embeddedor.com; keydata=
@@ -76,12 +78,12 @@ Autocrypt: addr=gustavo@embeddedor.com; keydata=
  YJWH93PN+ZUh6i6Rd2U/i8jH5WvzR57UeWxE4P8bQc0hNGrUsHQH6bpHV2lbuhDdqo+cM9eh
  GZEO3+gCDFmKrjspZjkJbB5Gadzvts5fcWGOXEvuT8uQSvl+vEL0g6vczsyPBtqoBLa9SNrS
  VtSixD1uOgytAP7RWS474w==
-Message-ID: <181c1bc9-4cf9-057f-a6e6-e6d62ddbc347@embeddedor.com>
-Date: Mon, 22 Jul 2019 14:19:53 -0500
+Message-ID: <f9b47ccc-d8e8-e03b-dc0c-6c8f1fd36477@embeddedor.com>
+Date: Mon, 22 Jul 2019 14:47:21 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CADnq5_OTmx==m+1fJbf1PxPhPM0H0O8GRjq4eWeX6sw889YPrA@mail.gmail.com>
+In-Reply-To: <CADnq5_NRDy1jpa2MGefo7KbUB2vejuLwpnJh=vsqyp56yY31Sg@mail.gmail.com>
 Content-Language: en-US
 X-AntiAbuse: This header was added to track abuse,
  please include it with any abuse report
@@ -92,17 +94,17 @@ X-AntiAbuse: Sender Address Domain - embeddedor.com
 X-BWhitelist: no
 X-Source-IP: 201.172.149.185
 X-Source-L: No
-X-Exim-ID: 1hpdql-002j3v-Sa
+X-Exim-ID: 1hpeHK-002xHf-9Y
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
 X-Source-Sender: cablelink149-185.telefonia.intercable.net ([192.168.1.79])
- [201.172.149.185]:47848
+ [201.172.149.185]:48504
 X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 22
+X-Email-Count: 34
 X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
 X-Local-Domain: yes
-X-Mailman-Approved-At: Mon, 22 Jul 2019 20:14:14 +0000
+X-Mailman-Approved-At: Mon, 22 Jul 2019 20:33:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -128,22 +130,17 @@ Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiA3LzIyLzE5IDI6MTAgUE0sIEFsZXggRGV1Y2hlciB3cm90ZToKPiBPbiBTdW4sIEp1bCAy
-MSwgMjAxOSBhdCA2OjEyIFBNIEd1c3Rhdm8gQS4gUi4gU2lsdmEKPiA8Z3VzdGF2b0BlbWJlZGRl
-ZG9yLmNvbT4gd3JvdGU6Cj4+Cj4+IEFkZCBtaXNzaW5nIGJyZWFrIHN0YXRlbWVudCBpbiBvcmRl
-ciB0byBwcmV2ZW50IHRoZSBjb2RlIGZyb20gZmFsbGluZwo+PiB0aHJvdWdoIHRvIGNhc2UgQ0hJ
-UF9OQVZJMTAuCj4+Cj4+IFRoaXMgYnVnIHdhcyBmb3VuZCB0aGFua3MgdG8gdGhlIG9uZ29pbmcg
-ZWZmb3J0cyB0byBlbmFibGUKPj4gLVdpbXBsaWNpdC1mYWxsdGhyb3VnaC4KPj4KPj4gRml4ZXM6
-IDE0MzI4YWE1OGNlNSAoImRybS9hbWRrZmQ6IEFkZCBuYXZpMTAgc3VwcG9ydCB0byBhbWRrZmQu
-ICh2MykiKQo+PiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwo+PiBTaWduZWQtb2ZmLWJ5OiBH
-dXN0YXZvIEEuIFIuIFNpbHZhIDxndXN0YXZvQGVtYmVkZGVkb3IuY29tPgo+IAo+IEFwcGxpZWQu
-ICBUaGFua3MhCj4gCgpCeSB0aGUgd2F5LCBBbGV4LCBJJ20gcGxhbm5pbmcgdG8gYWRkIHRoZXNl
-IGZpeGVzIHRvIG15IHRyZWUuIEkgd2FudAp0byBzZW5kIGEgcHVsbC1yZXF1ZXN0IHRvIExpbnVz
-IGZvciB2NS4zLXJjMiB0aGlzIGFmdGVybm9vbi4gV2Ugd2FudAp0byBoYXZlIHRoZSAtV2ltcGxp
-Y2l0LWZhbGx0aHJvdWdoIG9wdGlvbiBnbG9iYWxseSBlbmFibGVkIGluIHY1LjMsCmFuZCB0aGVz
-ZSBhcmUgc29tZSBvZiB0aGUgbGFzdCBmYWxsLXRocm91Z2ggd2FybmluZ3MgcmVtYWluaW5nIGlu
-CnRoZSBrZXJuZWwuCgpDYW4gSSBoYXZlIHlvdXIgQWNrIG9yIFNpZ25lZC1vZmYtYnkgZm9yIGFs
-bCB0aGVzZSBkcm0gcGF0Y2hlcz8KClRoYW5rcyEKLS0KR3VzdGF2bwpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+CgpPbiA3LzIyLzE5IDI6NDUgUE0sIEFsZXggRGV1Y2hlciB3cm90ZToKCj4+Cj4+IEJ5IHRoZSB3
+YXksIEFsZXgsIEknbSBwbGFubmluZyB0byBhZGQgdGhlc2UgZml4ZXMgdG8gbXkgdHJlZS4gSSB3
+YW50Cj4+IHRvIHNlbmQgYSBwdWxsLXJlcXVlc3QgdG8gTGludXMgZm9yIHY1LjMtcmMyIHRoaXMg
+YWZ0ZXJub29uLiBXZSB3YW50Cj4+IHRvIGhhdmUgdGhlIC1XaW1wbGljaXQtZmFsbHRocm91Z2gg
+b3B0aW9uIGdsb2JhbGx5IGVuYWJsZWQgaW4gdjUuMywKPj4gYW5kIHRoZXNlIGFyZSBzb21lIG9m
+IHRoZSBsYXN0IGZhbGwtdGhyb3VnaCB3YXJuaW5ncyByZW1haW5pbmcgaW4KPj4gdGhlIGtlcm5l
+bC4KPj4KPj4gQ2FuIEkgaGF2ZSB5b3VyIEFjayBvciBTaWduZWQtb2ZmLWJ5IGZvciBhbGwgdGhl
+c2UgZHJtIHBhdGNoZXM/Cj4gCj4gSSBkaWRuJ3QgcmVhbGl6ZSB5b3Ugd2VyZSBzZW5kaW5nIHRo
+ZXNlIHlvdXJzZWxmLiBJIHdhcyBnb2luZyB0bwo+IGluY2x1ZGUgdGhlbSBpbiBteSB1cGNvbWlu
+ZyAtZml4ZXMgcHVsbC4gIEZlZWwgZnJlZSB0byBhZGQgbXkgUkIgdG8KPiBhbGwgdGhyZWUuCj4g
+CgpBd2Vzb21lISA6KQoKVGhhbmtzCi0tCkd1c3Rhdm8KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9hbWQtZ2Z4
