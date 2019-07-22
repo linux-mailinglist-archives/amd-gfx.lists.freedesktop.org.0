@@ -2,90 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE40B6F8EF
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jul 2019 07:38:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5E206F993
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jul 2019 08:34:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE73689ADC;
-	Mon, 22 Jul 2019 05:38:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4435189915;
+	Mon, 22 Jul 2019 06:34:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM05-BY2-obe.outbound.protection.outlook.com
- (mail-eopbgr710089.outbound.protection.outlook.com [40.107.71.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B63B89ADC
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jul 2019 05:38:36 +0000 (UTC)
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+ (mail-eopbgr800087.outbound.protection.outlook.com [40.107.80.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C31989915
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jul 2019 06:34:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IjwzFizTNlmHYHMPus3Ga2nV2cDzFxaQWuGNpWJxcII4qvX68heW8iDXO6XZEdDBdd6e8SyXvP++smENFYUEr7yGMvBt2kkhxBsxErblZ7vgnamnKRgFjTfqWtTaZA25TGh/skQXPf47rdee2SHDAAPNYrtxx5q3CwVM3ds/2YVEQEHNMGEf09APWIHBrp0mVUKzGV/LwCMthoHa0SxE9krWDfpue+SiHck79w7/OR5ldfp0dKXuQfpXZtUvW3FmY2md/N/k9uzW4w9ZRO3yq04szdNIsCZU+RcOcUoter/gORiTz5hlWlpdtPxQwXv22CwK9JOnMD3F9BEuFCdFHw==
+ b=U0zo1NCp2UuO5W8rE6icOfqfRswxVrix5mUqFM19XyFtlxYdOeR2mT/I3xseTx8fx4ZZ/naoU9Sue6VX/Z2eY06A0Qqv4jeeYd1pLXMbii69+myLqvohBiRbAZJkaJ+C82DwymNgq4SItw4itM6RL/DO1nCixwjSzGT/kpD48pYtHU6M2wdIKcjL66X8W9yUlZAQnKAArbGRg71mfyukSGQkGx+JRa45CK+NcxnNBQDUjCkSacn5tU7CUp0rApRZlaShIZ1SqxeRQEJBBLhB/pl6hbOf04D0BPeHqQg03wEciYoUQQYb9k4MFIkdMThEfXc55RzpOJOrPh4D/3kWVQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ORD7CgDwxPoDi9amk1iyr0hxtKmEpv0h0UD4kBthPMY=;
- b=guWqfzK3zYBGjQXON9EwgzX/Ldmv2ako8ORAj93y/STCqby664JQBIBbc8kY6mCQwcYblvRN2xHsMcdBzQiXO7u+/9ug/7v6XoBIl8X6nlIkXIBVUEb/vEtGqa94e6OnmpZt8IBHFK5izF51Jtq25D3vjmQkXQVNbLUvn27D/zZO/Ttcia/Bs5pO7MnG3kJSk6zm8q0spappiAUn2YRiyk+EkVg6HPvt2i5coim4M1/1Jl3CeCzMct94QXqNGUUQMW5WzWazP2J7OhP7iCkEKrJDjSpDqYeeJj+7m/TAFGPWmkeBmACYo99GjBgtw2DYv00XhbmzcvKxkAuFA5cFwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
- header.d=amd.com;arc=none
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com (20.179.80.139) by
- MN2PR12MB2895.namprd12.prod.outlook.com (20.179.82.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2094.16; Mon, 22 Jul 2019 05:38:34 +0000
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::ad59:f055:2417:660f]) by MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::ad59:f055:2417:660f%6]) with mapi id 15.20.2094.013; Mon, 22 Jul 2019
- 05:38:34 +0000
-From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
-To: "Feng, Kenneth" <Kenneth.Feng@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 4/5] drm/amd/powerplay: correct Navi10 VCN powergate
- control
-Thread-Topic: [PATCH 4/5] drm/amd/powerplay: correct Navi10 VCN powergate
- control
-Thread-Index: AQHVQDvUVJFTAN8Ka0iVBI04I9wOlabWC2gAgAATFL8=
-Date: Mon, 22 Jul 2019 05:38:34 +0000
-Message-ID: <MN2PR12MB3296FAF9BF4C2FBAF12C2496A2C40@MN2PR12MB3296.namprd12.prod.outlook.com>
-References: <20190722031531.23437-1-evan.quan@amd.com>
- <20190722031531.23437-5-evan.quan@amd.com>,
- <MN2PR12MB359851CA088A334EC52E36DE8EC40@MN2PR12MB3598.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB359851CA088A334EC52E36DE8EC40@MN2PR12MB3598.namprd12.prod.outlook.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 299620c6-1764-43c9-b70c-08d70e66d6c4
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB2895; 
-x-ms-traffictypediagnostic: MN2PR12MB2895:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <MN2PR12MB289591F3AA928A4284884169A2C40@MN2PR12MB2895.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:651;
-x-forefront-prvs: 01068D0A20
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(366004)(346002)(396003)(136003)(376002)(199004)(189003)(13464003)(66066001)(110136005)(316002)(2906002)(256004)(7736002)(74316002)(6436002)(2501003)(86362001)(229853002)(102836004)(966005)(76176011)(19627405001)(7696005)(26005)(486006)(99286004)(186003)(478600001)(6506007)(53546011)(6606003)(476003)(25786009)(33656002)(11346002)(446003)(6116002)(55016002)(8676002)(66446008)(3846002)(64756008)(606006)(14454004)(66476007)(8936002)(4326008)(76116006)(66556008)(66946007)(81166006)(81156014)(5660300002)(52536014)(53936002)(236005)(68736007)(71200400001)(9686003)(6246003)(71190400001)(54896002)(6306002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB2895;
- H:MN2PR12MB3296.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
+ bh=wr2t8v5GXKq9VAsugHuijlCQoO8u9yBovJBqRBAQkKg=;
+ b=Mm9K5n5kH03UnBeYNVvN2Dbt9TzM/xx+llkfbyhT7Ez8445SU/P1LfwG7AS5Jv/w1Fe+kSjUCdmSILD6KbJadV9UmtFdEGc9ER0aQLHCeTNDsSocTVlm+6qRUQfRR53yZ/wQ7vqaWa60lHa79Thz+QQQR+ogYzxQ+6e/om0oQd5H+C/kj6c4V5agaPadyNbb1POgW1+y7g9sO9mAWpIK7qlJpPAljrV+VuH50sBmnJinb6YkTx/B7+uPXTauEu3R4Losv1CZt3q3w3jSVIVN7vKUkMVgXctd91rptqwgpITb7WDFkxk7Ac35qTEoqv67KSbORQTsmtHdxg5xDL6mjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=amd.com;dmarc=permerror action=none
+ header.from=amd.com;dkim=none (message not signed);arc=none
+Received: from BN6PR12CA0033.namprd12.prod.outlook.com (2603:10b6:405:70::19)
+ by DM5PR1201MB2491.namprd12.prod.outlook.com (2603:10b6:3:eb::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2094.16; Mon, 22 Jul
+ 2019 06:34:41 +0000
+Received: from DM3NAM03FT036.eop-NAM03.prod.protection.outlook.com
+ (2a01:111:f400:7e49::207) by BN6PR12CA0033.outlook.office365.com
+ (2603:10b6:405:70::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2094.12 via Frontend
+ Transport; Mon, 22 Jul 2019 06:34:41 +0000
+Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: wJ2kid84XRGxVI2mxiZ2aJhXYsf6oE7dFQhidf8s9x9R78fBqRwpL7cW+7HMwI+Gbof96V2g/fJcw80aYjP5gVbJdi/AyJfqARJbCKEPC6iEG+pW523Fq8rNEClOja9X7tN8qu7/jOTpwK5qZJouwHROO3G8lH1BESHIPyJdpfPSljuqqVszMI/nSfjvogrwilDd6ADZOYJkJ1bZAhUdXsOBh57EbDJ+ebk0FsXrD/henz9nvXClgqLMnqYDpaODn5LcKOsMPrsmT7ACwIVv9FJ4ezganVmSmPwPy+IF42Y9jB/0lFlAmiF5m6OMyR5q0sbdIDt2kT3q54aVQ+60zBy/Z+AujjiOsKEexLOEQya5UudGLlB1KqbR1KAvQFwzJ9C5YGcbY1gLwI2IwHp70crPEnxZ3KruWBoMw87YdZ4=
+Received: from SATLEXCHOV01.amd.com (165.204.84.17) by
+ DM3NAM03FT036.mail.protection.outlook.com (10.152.82.189) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2052.18 via Frontend Transport; Mon, 22 Jul 2019 06:34:40 +0000
+Received: from equan-buildpc.amd.com (10.34.1.3) by SATLEXCHOV01.amd.com
+ (10.181.40.71) with Microsoft SMTP Server id 14.3.389.1; Mon, 22 Jul 2019
+ 01:34:38 -0500
+From: Evan Quan <evan.quan@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd/powerplay: correct confusing naming for
+ smu_feature_set_enabled
+Date: Mon, 22 Jul 2019 14:34:26 +0800
+Message-ID: <20190722063426.19597-1-evan.quan@amd.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(39850400004)(376002)(346002)(396003)(136003)(2980300002)(428003)(199004)(189003)(1076003)(70206006)(70586007)(47776003)(53936002)(53416004)(48376002)(6666004)(356004)(2870700001)(2906002)(81166006)(86362001)(36756003)(6916009)(44832011)(426003)(26005)(8936002)(305945005)(486006)(81156014)(8676002)(50226002)(186003)(5660300002)(68736007)(4326008)(50466002)(2351001)(14444005)(126002)(336012)(51416003)(478600001)(2616005)(7696005)(476003)(316002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR1201MB2491; H:SATLEXCHOV01.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 49212271-ea20-4d18-7c0d-08d70e6eacd4
+X-Microsoft-Antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328);
+ SRVR:DM5PR1201MB2491; 
+X-MS-TrafficTypeDiagnostic: DM5PR1201MB2491:
+X-Microsoft-Antispam-PRVS: <DM5PR1201MB2491806889254E7665577E9FE4C40@DM5PR1201MB2491.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:425;
+X-Forefront-PRVS: 01068D0A20
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: d8gOutVXuwLjzoawC9WTBYYOkpvWLEee0FjdW0rALdoBp1TIXuAIo2mwZi3VcpzVELqrvvZRcgHkitzlAIDgKMul75E9tSTN9huxtApOrZqxG4lovDYvEhZg+t0RlTR9ZRpEfzoAOSpXZZx+w430pWXmimlVg6r0hpvA7wSppsNtlhhbRlbh+LWTjXIWEkmyGKFQ5qTtak9nQIKXTDPqkF43xZgPTIvyi/fT/TZ8kivNHgN0/qNmvNEMusDPJBeRDzK9UZ5GUjPI0pKbhQ9afimhAqy9a6dl7tHGlRBGltQpjK+2dLS6bj9TronBuZqzlTxH92dYCPIRKpCS7VIIrx+wZU4gi9AU3zwfzgAy5Rn1jg26jD2Nk7y7LRjTiLTNjqibVeo4sStK2lstwhajMm/ur8oEuktVhS8tKe7uCIw=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 299620c6-1764-43c9-b70c-08d70e66d6c4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2019 05:38:34.4626 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kevwa@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB2895
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2019 06:34:40.1022 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49212271-ea20-4d18-7c0d-08d70e6eacd4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXCHOV01.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB2491
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ORD7CgDwxPoDi9amk1iyr0hxtKmEpv0h0UD4kBthPMY=;
- b=vmycOl/+BRRbOeY5UaUwy8Mas4gSPo6LrbETeTINd/5monOPt36krbigR12pXWv14gLiOkuahqb32asLUUOYaVUjYDGUQSRBxZc2874AowdQiG9hE7ZbFqlR6isCUamMvf6QcfAbKrLZLJQGkH16Zar4X6BObTB8+DrZMWBw2S4=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Kevin1.Wang@amd.com; 
+ bh=wr2t8v5GXKq9VAsugHuijlCQoO8u9yBovJBqRBAQkKg=;
+ b=uMzDdccLYUOHEtJLQyBRL0wIwGELonLZ5Ii4M+0uGnUhdiLMnuSe/yf7G5McCXURCiFIEYqnbiZRH7zOTgnxPCSLX4ih42Yrgo6QP0Y/z3cnp68g6Nn28fuXX6tia2+QGhJeKd+FjPqUH3gq5/OXYjg5/gKDk8Bk5iYdJRFMDDg=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is
+ 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -97,313 +98,97 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Content-Type: multipart/mixed; boundary="===============0355109316=="
+Cc: Evan Quan <evan.quan@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0355109316==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB3296FAF9BF4C2FBAF12C2496A2C40MN2PR12MB3296namp_"
-
---_000_MN2PR12MB3296FAF9BF4C2FBAF12C2496A2C40MN2PR12MB3296namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-you should check return value in smu anytime.
-
-
-+       smu_feature_set_enabled(smu, SMU_FEATURE_VCN_PG_BIT, enable);
-+
-
-
-Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
-
-
-Best Regards,
-kevin
-
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Feng, Ke=
-nneth <Kenneth.Feng@amd.com>
-Sent: Monday, July 22, 2019 12:28:40 PM
-To: Quan, Evan <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org <amd-gfx@=
-lists.freedesktop.org>
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Quan, Evan <Evan.Quan@a=
-md.com>
-Subject: RE: [PATCH 4/5] drm/amd/powerplay: correct Navi10 VCN powergate co=
-ntrol
-
-Reviewed-by: Kenneth Feng <kenneth.feng@amd.com>
-
-
------Original Message-----
-From: amd-gfx [mailto:amd-gfx-bounces@lists.freedesktop.org] On Behalf Of E=
-van Quan
-Sent: Monday, July 22, 2019 11:16 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Quan, Evan <Evan.Quan@a=
-md.com>
-Subject: [PATCH 4/5] drm/amd/powerplay: correct Navi10 VCN powergate contro=
-l
-
-[CAUTION: External Email]
-
-No VCN DPM bit check as that's different from VCN PG. Also no extra check f=
-or possible double enablement/disablement as that's already done by VCN.
-
-Change-Id: I59c63829cf4dcb8093fde1ca8245b613ab2d90df
-Signed-off-by: Evan Quan <evan.quan@amd.com>
----
- drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 26 ++++++++--------------
- 1 file changed, 9 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/navi10_ppt.c
-index c8ce9bbae276..2198d373d38c 100644
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-@@ -591,27 +591,19 @@ static int navi10_set_default_dpm_table(struct smu_co=
-ntext *smu)  static int navi10_dpm_set_uvd_enable(struct smu_context *smu, =
-bool enable)  {
-        int ret =3D 0;
--       struct smu_power_context *smu_power =3D &smu->smu_power;
--       struct smu_power_gate *power_gate =3D &smu_power->power_gate;
-
--       if (enable && power_gate->uvd_gated) {
--               if (smu_feature_is_enabled(smu, SMU_FEATURE_DPM_UVD_BIT)) {
--                       ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_Po=
-werUpVcn, 1);
--                       if (ret)
--                               return ret;
--               }
--               power_gate->uvd_gated =3D false;
-+       if (enable) {
-+               ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_PowerUpVcn=
-, 1);
-+               if (ret)
-+                       return ret;
-        } else {
--               if (!enable && !power_gate->uvd_gated) {
--                       if (smu_feature_is_enabled(smu, SMU_FEATURE_DPM_UVD=
-_BIT)) {
--                               ret =3D smu_send_smc_msg(smu, SMU_MSG_Power=
-DownVcn);
--                               if (ret)
--                                       return ret;
--                       }
--                       power_gate->uvd_gated =3D true;
--               }
-+               ret =3D smu_send_smc_msg(smu, SMU_MSG_PowerDownVcn);
-+               if (ret)
-+                       return ret;
-        }
-
-+       smu_feature_set_enabled(smu, SMU_FEATURE_VCN_PG_BIT, enable);
-+
-        return 0;
- }
-
---
-2.22.0
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_MN2PR12MB3296FAF9BF4C2FBAF12C2496A2C40MN2PR12MB3296namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">you should check return value in =
-smu anytime.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0"><span style=3D"color: rgb(33, 33,=
- 33); font-family: wf_segoe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP=
-&quot;, Tahoma, Arial, sans-serif, serif, EmojiFont; font-size: 14.6667px;"=
->&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_feature_set_enabled(smu, SMU=
-_FEATURE_VCN_PG_BIT,
- enable);</span><br style=3D"color: rgb(33, 33, 33); font-family: wf_segoe-=
-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-=
-serif, serif, EmojiFont; font-size: 14.6667px;">
-<span style=3D"color: rgb(33, 33, 33); font-family: wf_segoe-ui_normal, &qu=
-ot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif, serif, =
-EmojiFont; font-size: 14.6667px;">&#43;</span><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Reviewed-by: Kevin Wang &lt;kevin=
-1.wang@amd.com&gt;</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Best Regards,<br>
-kevin</p>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Feng, Kenneth &lt;Kenneth.Fen=
-g@amd.com&gt;<br>
-<b>Sent:</b> Monday, July 22, 2019 12:28:40 PM<br>
-<b>To:</b> Quan, Evan &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.=
-org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Quan, Evan=
- &lt;Evan.Quan@amd.com&gt;<br>
-<b>Subject:</b> RE: [PATCH 4/5] drm/amd/powerplay: correct Navi10 VCN power=
-gate control</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Reviewed-by: Kenneth Feng &lt;kenneth.feng@amd.com=
-&gt;<br>
-<br>
-<br>
------Original Message-----<br>
-From: amd-gfx [<a href=3D"mailto:amd-gfx-bounces@lists.freedesktop.org">mai=
-lto:amd-gfx-bounces@lists.freedesktop.org</a>] On Behalf Of Evan Quan<br>
-Sent: Monday, July 22, 2019 11:16 AM<br>
-To: amd-gfx@lists.freedesktop.org<br>
-Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Quan, Evan &lt;Ev=
-an.Quan@amd.com&gt;<br>
-Subject: [PATCH 4/5] drm/amd/powerplay: correct Navi10 VCN powergate contro=
-l<br>
-<br>
-[CAUTION: External Email]<br>
-<br>
-No VCN DPM bit check as that's different from VCN PG. Also no extra check f=
-or possible double enablement/disablement as that's already done by VCN.<br=
->
-<br>
-Change-Id: I59c63829cf4dcb8093fde1ca8245b613ab2d90df<br>
-Signed-off-by: Evan Quan &lt;evan.quan@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 26 &#43;&#43;&#43;&#43;&=
-#43;&#43;&#43;&#43;--------------<br>
-&nbsp;1 file changed, 9 insertions(&#43;), 17 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/navi10_ppt.c<br>
-index c8ce9bbae276..2198d373d38c 100644<br>
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
-@@ -591,27 &#43;591,19 @@ static int navi10_set_default_dpm_table(struct sm=
-u_context *smu)&nbsp; static int navi10_dpm_set_uvd_enable(struct smu_conte=
-xt *smu, bool enable)&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_power_context *smu_power =
-=3D &amp;smu-&gt;smu_power;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_power_gate *power_gate =3D=
- &amp;smu_power-&gt;power_gate;<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (enable &amp;&amp; power_gate-&gt;=
-uvd_gated) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (smu_feature_is_enabled(smu, SMU_FEATURE_DPM_UVD_BIT)) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_send=
-_smc_msg_with_param(smu, SMU_MSG_PowerUpVcn, 1);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; power_gate-&gt;uvd_gated =3D false;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (enable) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_PowerUpVcn,=
- 1);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; if (ret)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (!enable &amp;&amp; !power_gate-&gt;uvd_gated) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (smu_feature_=
-is_enabled(smu, SMU_FEATURE_DPM_UVD_BIT)) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_send_smc_msg(smu, SMU_MSG_Power=
-DownVcn);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; return ret;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; power_gate-&gt;u=
-vd_gated =3D true;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ret =3D smu_send_smc_msg(smu, SMU_MSG_PowerDownVcn);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; if (ret)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_feature_set_enabled(smu, SMU_=
-FEATURE_VCN_PG_BIT, enable);<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-<br>
---<br>
-2.22.0<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-</span></font></div>
-</body>
-</html>
-
---_000_MN2PR12MB3296FAF9BF4C2FBAF12C2496A2C40MN2PR12MB3296namp_--
-
---===============0355109316==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0355109316==--
+SXQgZG9lcyBtb3JlIHRoYW4gdXBkYXRpbmcgdGhlIGJpdG1hc2suIEluIGZhY3QgaXQgZW5hYmxl
+cyBhbHNvIHRoZQpmZWF0dXJlLiBUaGF0J3MgY29uZnVzaW5nLiBBcyBmb3IgdGhpcywgYSBuZXcg
+QVBJIGlzIGFkZGVkIGZvciB0aGUKZmVhdHVyZSBlbmFibGVtZW50IGpvYi4gQW5kIHNtdV9mZWF0
+dXJlX3NldF9lbmFibGVkIGlzIHVwZGF0ZWQgdG8Kc2V0dGluZyB0aGUgYml0bWFzayBvbmx5KGFz
+IHNtdV9mZWF0dXJlX3NldF9zdXBwb3J0ZWQpLgoKQ2hhbmdlLUlkOiBJNzU4ZTQ0NjFiZTM0YzBm
+Y2JkZjE5NDQ4ZTM0MTgwYTUyNTE5MjZjNApTaWduZWQtb2ZmLWJ5OiBFdmFuIFF1YW4gPGV2YW4u
+cXVhbkBhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2FtZGdwdV9z
+bXUuYyAgICB8IDI5ICsrKysrKysrKysrKystLS0tLS0KIC4uLi9ncHUvZHJtL2FtZC9wb3dlcnBs
+YXkvaW5jL2FtZGdwdV9zbXUuaCAgICB8ICAyICsrCiBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2Vy
+cGxheS9zbXVfdjExXzAuYyAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBs
+YXkvdmVnYTIwX3BwdC5jICAgIHwgIDQgKy0tCiA0IGZpbGVzIGNoYW5nZWQsIDI1IGluc2VydGlv
+bnMoKyksIDEyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+cG93ZXJwbGF5L2FtZGdwdV9zbXUuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2Ft
+ZGdwdV9zbXUuYwppbmRleCA0ZTE4ZjMzYTFiYWIuLjkyNjI4ODNkNDAzMSAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvYW1kZ3B1X3NtdS5jCisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9hbWQvcG93ZXJwbGF5L2FtZGdwdV9zbXUuYwpAQCAtNTExLDI4ICs1MTEsMzkgQEAg
+aW50IHNtdV9mZWF0dXJlX3NldF9lbmFibGVkKHN0cnVjdCBzbXVfY29udGV4dCAqc211LCBlbnVt
+IHNtdV9mZWF0dXJlX21hc2sgbWFzaywKIHsKIAlzdHJ1Y3Qgc211X2ZlYXR1cmUgKmZlYXR1cmUg
+PSAmc211LT5zbXVfZmVhdHVyZTsKIAlpbnQgZmVhdHVyZV9pZDsKLQlpbnQgcmV0ID0gMDsKIAog
+CWZlYXR1cmVfaWQgPSBzbXVfZmVhdHVyZV9nZXRfaW5kZXgoc211LCBtYXNrKTsKIAlpZiAoZmVh
+dHVyZV9pZCA8IDApCiAJCXJldHVybiAtRUlOVkFMOwogCi0JV0FSTl9PTihmZWF0dXJlX2lkID4g
+ZmVhdHVyZS0+ZmVhdHVyZV9udW0pOwotCiAJbXV0ZXhfbG9jaygmZmVhdHVyZS0+bXV0ZXgpOwot
+CXJldCA9IHNtdV9mZWF0dXJlX3VwZGF0ZV9lbmFibGVfc3RhdGUoc211LCBmZWF0dXJlX2lkLCBl
+bmFibGUpOwotCWlmIChyZXQpCi0JCWdvdG8gZmFpbGVkOwogCiAJaWYgKGVuYWJsZSkKIAkJdGVz
+dF9hbmRfc2V0X2JpdChmZWF0dXJlX2lkLCBmZWF0dXJlLT5lbmFibGVkKTsKIAllbHNlCiAJCXRl
+c3RfYW5kX2NsZWFyX2JpdChmZWF0dXJlX2lkLCBmZWF0dXJlLT5lbmFibGVkKTsKIAotZmFpbGVk
+OgogCW11dGV4X3VubG9jaygmZmVhdHVyZS0+bXV0ZXgpOwogCi0JcmV0dXJuIHJldDsKKwlyZXR1
+cm4gMDsKK30KKworaW50IHNtdV9lbmFibGVfc21jX2ZlYXR1cmUoc3RydWN0IHNtdV9jb250ZXh0
+ICpzbXUsCisJCQkgICBlbnVtIHNtdV9mZWF0dXJlX21hc2sgbWFzaywKKwkJCSAgIGJvb2wgZW5h
+YmxlKQoreworCWludCBmZWF0dXJlX2lkOworCWludCByZXQgPSAwOworCisJZmVhdHVyZV9pZCA9
+IHNtdV9mZWF0dXJlX2dldF9pbmRleChzbXUsIG1hc2spOworCWlmIChmZWF0dXJlX2lkIDwgMCkK
+KwkJcmV0dXJuIC1FSU5WQUw7CisKKwlyZXQgPSBzbXVfZmVhdHVyZV91cGRhdGVfZW5hYmxlX3N0
+YXRlKHNtdSwgZmVhdHVyZV9pZCwgZW5hYmxlKTsKKwlpZiAocmV0KQorCQlyZXR1cm4gcmV0Owor
+CisJcmV0dXJuIHNtdV9mZWF0dXJlX3NldF9lbmFibGVkKHNtdSwgbWFzaywgZW5hYmxlKTsKIH0K
+IAogaW50IHNtdV9mZWF0dXJlX2lzX3N1cHBvcnRlZChzdHJ1Y3Qgc211X2NvbnRleHQgKnNtdSwg
+ZW51bSBzbXVfZmVhdHVyZV9tYXNrIG1hc2spCkBAIC0xMTg2LDcgKzExOTcsNyBAQCBzdGF0aWMg
+aW50IHNtdV9zdXNwZW5kKHZvaWQgKmhhbmRsZSkKIAkJcmV0dXJuIHJldDsKIAogCWlmIChhZGV2
+LT5pbl9ncHVfcmVzZXQgJiYgYmFjb19mZWF0dXJlX2lzX2VuYWJsZWQpIHsKLQkJcmV0ID0gc211
+X2ZlYXR1cmVfc2V0X2VuYWJsZWQoc211LCBTTVVfRkVBVFVSRV9CQUNPX0JJVCwgdHJ1ZSk7CisJ
+CXJldCA9IHNtdV9lbmFibGVfc21jX2ZlYXR1cmUoc211LCBTTVVfRkVBVFVSRV9CQUNPX0JJVCwg
+dHJ1ZSk7CiAJCWlmIChyZXQpIHsKIAkJCXByX3dhcm4oInNldCBCQUNPIGZlYXR1cmUgZW5hYmxl
+ZCBmYWlsZWQsIHJldHVybiAlZFxuIiwgcmV0KTsKIAkJCXJldHVybiByZXQ7CmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9pbmMvYW1kZ3B1X3NtdS5oIGIvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaW5jL2FtZGdwdV9zbXUuaAppbmRleCBiNzAyYzllZTk3
+NWYuLjI2N2I4Nzk3OTZmOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBs
+YXkvaW5jL2FtZGdwdV9zbXUuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9p
+bmMvYW1kZ3B1X3NtdS5oCkBAIC05NDYsNiArOTQ2LDggQEAgZXh0ZXJuIGludCBzbXVfZmVhdHVy
+ZV9pc19lbmFibGVkKHN0cnVjdCBzbXVfY29udGV4dCAqc211LAogCQkJCSAgZW51bSBzbXVfZmVh
+dHVyZV9tYXNrIG1hc2spOwogZXh0ZXJuIGludCBzbXVfZmVhdHVyZV9zZXRfZW5hYmxlZChzdHJ1
+Y3Qgc211X2NvbnRleHQgKnNtdSwKIAkJCQkgICBlbnVtIHNtdV9mZWF0dXJlX21hc2sgbWFzaywg
+Ym9vbCBlbmFibGUpOworZXh0ZXJuIGludCBzbXVfZW5hYmxlX3NtY19mZWF0dXJlKHN0cnVjdCBz
+bXVfY29udGV4dCAqc211LAorCQkJCSAgIGVudW0gc211X2ZlYXR1cmVfbWFzayBtYXNrLCBib29s
+IGVuYWJsZSk7CiBleHRlcm4gaW50IHNtdV9mZWF0dXJlX2lzX3N1cHBvcnRlZChzdHJ1Y3Qgc211
+X2NvbnRleHQgKnNtdSwKIAkJCQkgICAgZW51bSBzbXVfZmVhdHVyZV9tYXNrIG1hc2spOwogZXh0
+ZXJuIGludCBzbXVfZmVhdHVyZV9zZXRfc3VwcG9ydGVkKHN0cnVjdCBzbXVfY29udGV4dCAqc211
+LApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211X3YxMV8wLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9zbXVfdjExXzAuYwppbmRleCBlM2ExNzg0
+MDM1NDYuLjBmNTlkMjE3OGQwMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dl
+cnBsYXkvc211X3YxMV8wLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211
+X3YxMV8wLmMKQEAgLTE0MTksNyArMTQxOSw3IEBAIHNtdV92MTFfMF9zbWNfZmFuX2NvbnRyb2wo
+c3RydWN0IHNtdV9jb250ZXh0ICpzbXUsIGJvb2wgc3RhcnQpCiAJaWYgKHNtdV9mZWF0dXJlX2lz
+X3N1cHBvcnRlZChzbXUsIFNNVV9GRUFUVVJFX0ZBTl9DT05UUk9MX0JJVCkpCiAJCXJldHVybiAw
+OwogCi0JcmV0ID0gc211X2ZlYXR1cmVfc2V0X2VuYWJsZWQoc211LCBTTVVfRkVBVFVSRV9GQU5f
+Q09OVFJPTF9CSVQsIHN0YXJ0KTsKKwlyZXQgPSBzbXVfZW5hYmxlX3NtY19mZWF0dXJlKHNtdSwg
+U01VX0ZFQVRVUkVfRkFOX0NPTlRST0xfQklULCBzdGFydCk7CiAJaWYgKHJldCkKIAkJcHJfZXJy
+KCJbJXNdJXMgc21jIEZBTiBDT05UUk9MIGZlYXR1cmUgZmFpbGVkISIsCiAJCSAgICAgICBfX2Z1
+bmNfXywgKHN0YXJ0ID8gIlN0YXJ0IiA6ICJTdG9wIikpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2FtZC9wb3dlcnBsYXkvdmVnYTIwX3BwdC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9w
+b3dlcnBsYXkvdmVnYTIwX3BwdC5jCmluZGV4IDllYWQzNjE5Mjc4Ny4uNTM2ZmY4ODRkZGNhIDEw
+MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS92ZWdhMjBfcHB0LmMKKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvdmVnYTIwX3BwdC5jCkBAIC0yODQ1LDcg
+KzI4NDUsNyBAQCBzdGF0aWMgaW50IHZlZ2EyMF9kcG1fc2V0X3V2ZF9lbmFibGUoc3RydWN0IHNt
+dV9jb250ZXh0ICpzbXUsIGJvb2wgZW5hYmxlKQogCWlmIChlbmFibGUgPT0gc211X2ZlYXR1cmVf
+aXNfZW5hYmxlZChzbXUsIFNNVV9GRUFUVVJFX0RQTV9VVkRfQklUKSkKIAkJcmV0dXJuIDA7CiAK
+LQlyZXR1cm4gc211X2ZlYXR1cmVfc2V0X2VuYWJsZWQoc211LCBTTVVfRkVBVFVSRV9EUE1fVVZE
+X0JJVCwgZW5hYmxlKTsKKwlyZXR1cm4gc211X2VuYWJsZV9zbWNfZmVhdHVyZShzbXUsIFNNVV9G
+RUFUVVJFX0RQTV9VVkRfQklULCBlbmFibGUpOwogfQogCiBzdGF0aWMgaW50IHZlZ2EyMF9kcG1f
+c2V0X3ZjZV9lbmFibGUoc3RydWN0IHNtdV9jb250ZXh0ICpzbXUsIGJvb2wgZW5hYmxlKQpAQCAt
+Mjg1Niw3ICsyODU2LDcgQEAgc3RhdGljIGludCB2ZWdhMjBfZHBtX3NldF92Y2VfZW5hYmxlKHN0
+cnVjdCBzbXVfY29udGV4dCAqc211LCBib29sIGVuYWJsZSkKIAlpZiAoZW5hYmxlID09IHNtdV9m
+ZWF0dXJlX2lzX2VuYWJsZWQoc211LCBTTVVfRkVBVFVSRV9EUE1fVkNFX0JJVCkpCiAJCXJldHVy
+biAwOwogCi0JcmV0dXJuIHNtdV9mZWF0dXJlX3NldF9lbmFibGVkKHNtdSwgU01VX0ZFQVRVUkVf
+RFBNX1ZDRV9CSVQsIGVuYWJsZSk7CisJcmV0dXJuIHNtdV9lbmFibGVfc21jX2ZlYXR1cmUoc211
+LCBTTVVfRkVBVFVSRV9EUE1fVkNFX0JJVCwgZW5hYmxlKTsKIH0KIAogc3RhdGljIGludCB2ZWdh
+MjBfZ2V0X2VuYWJsZWRfc21jX2ZlYXR1cmVzKHN0cnVjdCBzbXVfY29udGV4dCAqc211LAotLSAK
+Mi4yMi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwph
+bWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
