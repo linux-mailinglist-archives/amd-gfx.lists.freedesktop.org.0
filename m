@@ -2,91 +2,114 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEFA5704B8
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jul 2019 17:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64CF77075E
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jul 2019 19:34:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFB0089CD9;
-	Mon, 22 Jul 2019 15:58:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4CD89D6C;
+	Mon, 22 Jul 2019 17:34:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr790070.outbound.protection.outlook.com [40.107.79.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDAD889CBA;
- Mon, 22 Jul 2019 15:58:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EuotYYWr/EIBqXvcvXdujYY8JahiM9GQYvG8HmSsc4HNX4HBfn4o7cjsuJDd3LTnYjmlFaR/LIkPt+4/U1ZMJ4MHdM6jrGxkp4S9kKnWA0Rta9EZNTOn0gePxFQJhiBf5p4LdpAXQLBv1D94SDCW5XPk4S2udshmxEupJL9eTZzbSI3qjHyOK3uEfFoUyQkkCgEuu7/RZ7FzbKtMLbaim1LnnrfjW/FJO0sy4uvIzU3ELHbKsxFGf7DrcZSKP9j2b2erp22WXQo2lmultzJgJvvHc+V0WfcfBDbYMTJxeHkDGZTcqsw4+4kl1xIR+3Idl+ebW6w+be094UBN/o3Iyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/jjTyn7cKMfGUINt6YZ+8YojoRGT0rIgYwY11MMd/ZA=;
- b=dSCVDQm0TMNjCrkuwPdBlFXKRfdhsd4jnoETdaJUpRrourqOpQcjh85yqzMdXD47DItpKLKT4hlloWtvqLIX4tsoyWVNpbYm+CnASNpp3Miot3ktEAquISFer/0ymSZVdt3MuFgykLxaCHEHgxqmu05syfamWB6se6D/WrOOWysTCr10FzLAIK8jW+QaS02JkPEUY4NwKFxX4U95JEDVr6jVLFJgVfK/2q9NJDbm+zKSrGEPAItR97abxG1YhbfsYoF2yTQ1nBryWlIBEHharlHB5+cRijnbfVZ4+8xp68Spkn2c8gxBCnQ0KdD99h4kkkLcAuET7hk4ob5hNIRJKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
- header.d=amd.com;arc=none
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1123.namprd12.prod.outlook.com (10.168.226.137) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2094.14; Mon, 22 Jul 2019 15:58:00 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::b90e:dd82:7384:5b7b]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::b90e:dd82:7384:5b7b%11]) with mapi id 15.20.2094.013; Mon, 22 Jul
- 2019 15:58:00 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Liu, Shaoyun" <Shaoyun.Liu@amd.com>, "Gustavo A. R. Silva"
- <gustavo@embeddedor.com>, "Cox, Philip" <Philip.Cox@amd.com>, Oded Gabbay
- <oded.gabbay@gmail.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
- "Zhou, David(ChunMing)" <David1.Zhou@amd.com>, David Airlie
- <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+X-Greylist: delayed 1500 seconds by postgrey-1.36 at gabe;
+ Mon, 22 Jul 2019 17:03:44 UTC
+Received: from gateway33.websitewelcome.com (gateway33.websitewelcome.com
+ [192.185.147.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13EB489D4B
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jul 2019 17:03:44 +0000 (UTC)
+Received: from cm11.websitewelcome.com (cm11.websitewelcome.com [100.42.49.5])
+ by gateway33.websitewelcome.com (Postfix) with ESMTP id 50873324BF
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jul 2019 11:13:48 -0500 (CDT)
+Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
+ id pawdhWcwIdnCepawdh1KfA; Mon, 22 Jul 2019 11:13:48 -0500
+X-Authority-Reason: nr=8
+Received: from cablelink-187-160-61-189.pcs.intercable.net
+ ([187.160.61.189]:42688 helo=[192.168.0.2])
+ by gator4166.hostgator.com with esmtpsa
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92)
+ (envelope-from <gustavo@embeddedor.com>)
+ id 1hpawc-001Asa-Vt; Mon, 22 Jul 2019 11:13:47 -0500
 Subject: Re: [PATCH] drm/amdkfd/kfd_mqd_manager_v10: Fix missing break in
  switch statement
-Thread-Topic: [PATCH] drm/amdkfd/kfd_mqd_manager_v10: Fix missing break in
- switch statement
-Thread-Index: AQHVQBfxxNiwQ0nPYEC0334ceAIpMabWwAIAgAAMMmM=
-Date: Mon, 22 Jul 2019 15:58:00 +0000
-Message-ID: <BN6PR12MB18098741A081711936563597F7C40@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <20190721225920.GA18099@embeddedor>,
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Liu, Shaoyun" <Shaoyun.Liu@amd.com>, "Cox, Philip" <Philip.Cox@amd.com>,
+ Oded Gabbay <oded.gabbay@gmail.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "Zhou, David(ChunMing)" <David1.Zhou@amd.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+References: <20190721225920.GA18099@embeddedor>
  <c735a1cc-a545-50fb-44e7-c0ad93ee8ee7@amd.com>
-In-Reply-To: <c735a1cc-a545-50fb-44e7-c0ad93ee8ee7@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [71.51.160.180]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d3579c8c-14fd-4350-82b0-08d70ebd5f1a
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1123; 
-x-ms-traffictypediagnostic: BN6PR12MB1123:
-x-microsoft-antispam-prvs: <BN6PR12MB1123BA68B7BAF858F5E28923F7C40@BN6PR12MB1123.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:257;
-x-forefront-prvs: 01068D0A20
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(136003)(396003)(366004)(376002)(39860400002)(189003)(199004)(52536014)(446003)(105004)(11346002)(66066001)(26005)(6506007)(7736002)(74316002)(3846002)(76176011)(7696005)(102836004)(53546011)(186003)(110136005)(33656002)(54906003)(6116002)(14444005)(81156014)(81166006)(256004)(316002)(229853002)(8936002)(68736007)(55016002)(99286004)(71190400001)(4326008)(71200400001)(6246003)(9686003)(76116006)(64756008)(66556008)(66476007)(66946007)(66446008)(8676002)(2906002)(54896002)(486006)(86362001)(53936002)(6436002)(476003)(25786009)(5660300002)(478600001)(19627405001)(14454004)(921003)(1121003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1123;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: TEKTXhR75cabAcq5zuZYOufxH7iTqtQTMsqQXkPB5wWfaLZd+lQdxsmk7T/gdRBU9lKeefBR0hFef8DNGo37uuhbbEBXei07Usgv16VepOW/k5pL+jEAdmeyrS/LNfeazkUVHCyOMTsCMrT0Nq7ljh4BbrEENxg+abf8D6KIxL6CjHzQ8JMtkLM9K/3BXOmR8KFl53dyMGv7R6poipbCjTQ3lKtkotogwJ5b7Nh6ozqG2CfPkqa9uYbks+uzjzTVkuO4ofzS7wo9Ui0dG+0U7l8fgO2DoRBWeAFj/KVI+duvHKiXhEZbQx/SjwIEmyqcgPYSo3lq2+3wwGa4W967guUeoMzwmzeg050bkhD7vBaRTuWCNbzwLe0nj2r8IZpa5DbK9hNJD/eww0sLpf9Rv4TW3sFn9/q09//PmIAgsO0=
+ <BN6PR12MB18098741A081711936563597F7C40@BN6PR12MB1809.namprd12.prod.outlook.com>
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=gustavo@embeddedor.com; keydata=
+ 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
+ VtSixD1uOgytAP7RWS474w==
+Message-ID: <b1feb7e5-bd52-ef1b-b72e-b98b2c954b89@embeddedor.com>
+Date: Mon, 22 Jul 2019 11:13:45 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3579c8c-14fd-4350-82b0-08d70ebd5f1a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2019 15:58:00.1745 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: adeucher@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1123
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/jjTyn7cKMfGUINt6YZ+8YojoRGT0rIgYwY11MMd/ZA=;
- b=T24pTkCzSeqnkIIuDKG9LzbuMt1XVmwBl+owPO1sXMWc675feLyrmcPyo2lGIJEU5KGRShUYbPCou91OGwK1SVR8Y7sNC3u7K3xoCAfQ+91oCxLaWK3ZEsc10kDdmCVWI+diOTxfwS25RgQB93ypFSCZOWyUSevq9ecicZddDoQ=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+In-Reply-To: <BN6PR12MB18098741A081711936563597F7C40@BN6PR12MB1809.namprd12.prod.outlook.com>
+Content-Language: en-US
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - embeddedor.com
+X-BWhitelist: no
+X-Source-IP: 187.160.61.189
+X-Source-L: No
+X-Exim-ID: 1hpawc-001Asa-Vt
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: cablelink-187-160-61-189.pcs.intercable.net ([192.168.0.2])
+ [187.160.61.189]:42688
+X-Source-Auth: gustavo@embeddedor.com
+X-Email-Count: 9
+X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+X-Mailman-Approved-At: Mon, 22 Jul 2019 17:34:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -101,177 +124,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============1749919304=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1749919304==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB18098741A081711936563597F7C40BN6PR12MB1809namp_"
-
---_000_BN6PR12MB18098741A081711936563597F7C40BN6PR12MB1809namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-We need to add a /*fall through */ comment then.
-
-Alex
-________________________________
-From: Liu, Shaoyun <Shaoyun.Liu@amd.com>
-Sent: Monday, July 22, 2019 11:14 AM
-To: Gustavo A. R. Silva <gustavo@embeddedor.com>; Cox, Philip <Philip.Cox@a=
-md.com>; Oded Gabbay <oded.gabbay@gmail.com>; Deucher, Alexander <Alexander=
-.Deucher@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Zhou, Davi=
-d(ChunMing) <David1.Zhou@amd.com>; David Airlie <airlied@linux.ie>; Daniel =
-Vetter <daniel@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; dri-deve=
-l@lists.freedesktop.org <dri-devel@lists.freedesktop.org>; linux-kernel@vge=
-r.kernel.org <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] drm/amdkfd/kfd_mqd_manager_v10: Fix missing break in s=
-witch statement
-
-This one properly in purpose , The mqd init for CP and  COMPUTE will
-have the same  routine .
-
-Regard
-
-sshaoyun.liu
-
-On 2019-07-21 6:59 p.m., Gustavo A. R. Silva wrote:
-> Add missing break statement in order to prevent the code from falling
-> through to case KFD_MQD_TYPE_COMPUTE.
->
-> This bug was found thanks to the ongoing efforts to enable
-> -Wimplicit-fallthrough.
->
-> Fixes: 14328aa58ce5 ("drm/amdkfd: Add navi10 support to amdkfd. (v3)")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
-> ---
->   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c | 1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/drivers/g=
-pu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-> index 4f8a6ffc5775..1d8b13ad46f9 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-> @@ -430,6 +430,7 @@ struct mqd_manager *mqd_manager_init_v10(enum KFD_MQD=
-_TYPE type,
->        switch (type) {
->        case KFD_MQD_TYPE_CP:
->                pr_debug("%s@%i\n", __func__, __LINE__);
-> +             break;
->        case KFD_MQD_TYPE_COMPUTE:
->                pr_debug("%s@%i\n", __func__, __LINE__);
->                mqd->allocate_mqd =3D allocate_mqd;
-
---_000_BN6PR12MB18098741A081711936563597F7C40BN6PR12MB1809namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-We need to add a /*fall through */ comment then.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Alex<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Liu, Shaoyun &lt;Shao=
-yun.Liu@amd.com&gt;<br>
-<b>Sent:</b> Monday, July 22, 2019 11:14 AM<br>
-<b>To:</b> Gustavo A. R. Silva &lt;gustavo@embeddedor.com&gt;; Cox, Philip =
-&lt;Philip.Cox@amd.com&gt;; Oded Gabbay &lt;oded.gabbay@gmail.com&gt;; Deuc=
-her, Alexander &lt;Alexander.Deucher@amd.com&gt;; Koenig, Christian &lt;Chr=
-istian.Koenig@amd.com&gt;; Zhou, David(ChunMing) &lt;David1.Zhou@amd.com&gt=
-;;
- David Airlie &lt;airlied@linux.ie&gt;; Daniel Vetter &lt;daniel@ffwll.ch&g=
-t;<br>
-<b>Cc:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;; dri-devel@lists.freedesktop.org &lt;dri-devel@lists.freedesktop.org&gt=
-;; linux-kernel@vger.kernel.org &lt;linux-kernel@vger.kernel.org&gt;<br>
-<b>Subject:</b> Re: [PATCH] drm/amdkfd/kfd_mqd_manager_v10: Fix missing bre=
-ak in switch statement</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">This one properly in purpose , The mqd init for CP=
- and&nbsp; COMPUTE will
-<br>
-have the same&nbsp; routine .<br>
-<br>
-Regard<br>
-<br>
-sshaoyun.liu<br>
-<br>
-On 2019-07-21 6:59 p.m., Gustavo A. R. Silva wrote:<br>
-&gt; Add missing break statement in order to prevent the code from falling<=
-br>
-&gt; through to case KFD_MQD_TYPE_COMPUTE.<br>
-&gt;<br>
-&gt; This bug was found thanks to the ongoing efforts to enable<br>
-&gt; -Wimplicit-fallthrough.<br>
-&gt;<br>
-&gt; Fixes: 14328aa58ce5 (&quot;drm/amdkfd: Add navi10 support to amdkfd. (=
-v3)&quot;)<br>
-&gt; Cc: stable@vger.kernel.org<br>
-&gt; Signed-off-by: Gustavo A. R. Silva &lt;gustavo@embeddedor.com&gt;<br>
-&gt; ---<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c | 1 &#43;=
-<br>
-&gt;&nbsp;&nbsp; 1 file changed, 1 insertion(&#43;)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/driver=
-s/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c<br>
-&gt; index 4f8a6ffc5775..1d8b13ad46f9 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c<br>
-&gt; @@ -430,6 &#43;430,7 @@ struct mqd_manager *mqd_manager_init_v10(enum =
-KFD_MQD_TYPE type,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (type) {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case KFD_MQD_TYPE_CP:<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; pr_debug(&quot;%s@%i\n&quot;, __func__, __LINE__);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; break;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case KFD_MQD_TYPE_COMPUTE:<b=
-r>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; pr_debug(&quot;%s@%i\n&quot;, __func__, __LINE__);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; mqd-&gt;allocate_mqd =3D allocate_mqd;<br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_BN6PR12MB18098741A081711936563597F7C40BN6PR12MB1809namp_--
-
---===============1749919304==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1749919304==--
+CgpPbiA3LzIyLzE5IDEwOjU4IEFNLCBEZXVjaGVyLCBBbGV4YW5kZXIgd3JvdGU6Cj4gV2UgbmVl
+ZCB0byBhZGQgYSAvKmZhbGwgdGhyb3VnaCAqLyBjb21tZW50IHRoZW4uCj4gCgpJdCBtaWdodCBi
+ZSBiZXR0ZXIgdG8gcmVtb3ZlIHRoZSBjYWxsIHRvIHByX2RlYnVnKCkgaW4gS0ZEX01RRF9UWVBF
+X0NQOgoKCWNhc2UgS0ZEX01RRF9UWVBFX0NQOgogICAgICAgCWNhc2UgS0ZEX01RRF9UWVBFX0NP
+TVBVVEU6CgkJcHJfZGVidWcoIiVzQCVpXG4iLCBfX2Z1bmNfXywgX19MSU5FX18pOwoJCW1xZC0+
+YWxsb2NhdGVfbXFkID0gYWxsb2NhdGVfbXFkOwoKVGhhbmtzCi0tCkd1c3Rhdm8KCgo+IEFsZXgK
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IEZyb206IExpdSwgU2hhb3l1biA8
+U2hhb3l1bi5MaXVAYW1kLmNvbT4KPiBTZW50OiBNb25kYXksIEp1bHkgMjIsIDIwMTkgMTE6MTQg
+QU0KPiBUbzogR3VzdGF2byBBLiBSLiBTaWx2YSA8Z3VzdGF2b0BlbWJlZGRlZG9yLmNvbT47IENv
+eCwgUGhpbGlwIDxQaGlsaXAuQ294QGFtZC5jb20+OyBPZGVkIEdhYmJheSA8b2RlZC5nYWJiYXlA
+Z21haWwuY29tPjsgRGV1Y2hlciwgQWxleGFuZGVyIDxBbGV4YW5kZXIuRGV1Y2hlckBhbWQuY29t
+PjsgS29lbmlnLCBDaHJpc3RpYW4gPENocmlzdGlhbi5Lb2VuaWdAYW1kLmNvbT47IFpob3UsIERh
+dmlkKENodW5NaW5nKSA8RGF2aWQxLlpob3VAYW1kLmNvbT47IERhdmlkIEFpcmxpZSA8YWlybGll
+ZEBsaW51eC5pZT47IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPiBDYzogYW1kLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcgPGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPjsg
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZyA8ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZz47IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcgPGxpbnV4LWtlcm5lbEB2Z2Vy
+Lmtlcm5lbC5vcmc+Cj4gU3ViamVjdDogUmU6IFtQQVRDSF0gZHJtL2FtZGtmZC9rZmRfbXFkX21h
+bmFnZXJfdjEwOiBGaXggbWlzc2luZyBicmVhayBpbiBzd2l0Y2ggc3RhdGVtZW50Cj4gCj4gVGhp
+cyBvbmUgcHJvcGVybHkgaW4gcHVycG9zZSAsIFRoZSBtcWQgaW5pdCBmb3IgQ1AgYW5kICBDT01Q
+VVRFIHdpbGwKPiBoYXZlIHRoZSBzYW1lICByb3V0aW5lIC4KPiAKPiBSZWdhcmQKPiAKPiBzc2hh
+b3l1bi5saXUKPiAKPiBPbiAyMDE5LTA3LTIxIDY6NTkgcC5tLiwgR3VzdGF2byBBLiBSLiBTaWx2
+YSB3cm90ZToKPj4gQWRkIG1pc3NpbmcgYnJlYWsgc3RhdGVtZW50IGluIG9yZGVyIHRvIHByZXZl
+bnQgdGhlIGNvZGUgZnJvbSBmYWxsaW5nCj4+IHRocm91Z2ggdG8gY2FzZSBLRkRfTVFEX1RZUEVf
+Q09NUFVURS4KPj4KPj4gVGhpcyBidWcgd2FzIGZvdW5kIHRoYW5rcyB0byB0aGUgb25nb2luZyBl
+ZmZvcnRzIHRvIGVuYWJsZQo+PiAtV2ltcGxpY2l0LWZhbGx0aHJvdWdoLgo+Pgo+PiBGaXhlczog
+MTQzMjhhYTU4Y2U1ICgiZHJtL2FtZGtmZDogQWRkIG5hdmkxMCBzdXBwb3J0IHRvIGFtZGtmZC4g
+KHYzKSIpCj4+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCj4+IFNpZ25lZC1vZmYtYnk6IEd1
+c3Rhdm8gQS4gUi4gU2lsdmEgPGd1c3Rhdm9AZW1iZWRkZWRvci5jb20+Cj4+IC0tLQo+PiAgIGRy
+aXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9tcWRfbWFuYWdlcl92MTAuYyB8IDEgKwo+PiAg
+IDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX21xZF9tYW5hZ2VyX3YxMC5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRrZmQva2ZkX21xZF9tYW5hZ2VyX3YxMC5jCj4+IGluZGV4IDRmOGE2ZmZjNTc3
+NS4uMWQ4YjEzYWQ0NmY5IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtm
+ZC9rZmRfbXFkX21hbmFnZXJfdjEwLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRr
+ZmQva2ZkX21xZF9tYW5hZ2VyX3YxMC5jCj4+IEBAIC00MzAsNiArNDMwLDcgQEAgc3RydWN0IG1x
+ZF9tYW5hZ2VyICptcWRfbWFuYWdlcl9pbml0X3YxMChlbnVtIEtGRF9NUURfVFlQRSB0eXBlLAo+
+PiAgICAgICAgc3dpdGNoICh0eXBlKSB7Cj4+ICAgICAgICBjYXNlIEtGRF9NUURfVFlQRV9DUDoK
+Pj4gICAgICAgICAgICAgICAgcHJfZGVidWcoIiVzQCVpXG4iLCBfX2Z1bmNfXywgX19MSU5FX18p
+Owo+PiArICAgICAgICAgICAgIGJyZWFrOwo+PiAgICAgICAgY2FzZSBLRkRfTVFEX1RZUEVfQ09N
+UFVURToKPj4gICAgICAgICAgICAgICAgcHJfZGVidWcoIiVzQCVpXG4iLCBfX2Z1bmNfXywgX19M
+SU5FX18pOwo+PiAgICAgICAgICAgICAgICBtcWQtPmFsbG9jYXRlX21xZCA9IGFsbG9jYXRlX21x
+ZDsKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1k
+LWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
