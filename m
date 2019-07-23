@@ -2,46 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD31971572
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jul 2019 11:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C39716C8
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jul 2019 13:16:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C38889FDB;
-	Tue, 23 Jul 2019 09:43:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B3286E178;
+	Tue, 23 Jul 2019 11:16:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM05-BY2-obe.outbound.protection.outlook.com
- (mail-eopbgr710087.outbound.protection.outlook.com [40.107.71.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1329689FDB
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jul 2019 09:43:53 +0000 (UTC)
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr790047.outbound.protection.outlook.com [40.107.79.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 751A16E188
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jul 2019 11:16:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PxjFZhoPp5yoe5Yg72/FXDPdH3Zm0VNtz7EKbcSt0LlqJDYtWrlP86Qkqgyjx/g2jlj6zky7s1PBteCxVHKMSZXTyTaTQJeeA4/I1hBBdhqdHdAA9mxH1Ua6hmSURiA2qfCcxYwgfaN1qL46yU4stfHrTM/1fluxn1sXx+ecONBaM3uTIuA14oQHAz17j/iItLrNqpZL6yLidQh+QwgSj87DrAK9iA3BLIkugciou13Q1vuvf6W67KlaTJxh3RtkZ79wzxeQYispiuHurWgupBAXYUlXzxvOyrfCbsD7cOMyH7ADEIsr8ra55tFnMBIGnjehCmfgrXNUEvWjyhKExw==
+ b=dfZoElw39nrhs+zOKlwv19INH635f6kxVJBxzO0QgahcEERxCv5xKi6Csc8DwbbXaCe7t0VIlcFIpgJpdD3PZXSUUj2bV3UtY80UtWDDxLLoj64Gx05kC69Iw4sdlCklwVjz3olcM/Mzl30PXwRR/tbVZumfbBH0A6GpigMFsEhNgXwV0G8pErSNOxUVnKcvoHx5mrcSiPRPulvaAtloR22chfoQwI5t/RiYhPhlF1x/CdnYWvAKLHXsfZ0CCOr7srKCKkkBX6zXXPZLnl02GDaykcQRgQ4qrafSvklegFvakaaFzS0fg91QiQa+SVkBuX+opJh7ozii3ty309DAFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qPwvDWnYsDZJ7B+/g/ph9XWBOYSJHOVfneTGZJS5/VA=;
- b=P1Npqc9/gdWW86FKPNJVrZQ8Iqw1GpFyrT36jAqXSjO6NS0feRG47Dxz6Jc9RFY9ZrAt8JhAx3pkkjAxoNipyC+97Ij8MwRN26uiOBEKFXkvxoaQBKA9cm3oinGOxNY6VFWQj6U2m8rPq/D0e6eLf6VHDSXm/BzMvFYD4nidgEaPXjiPDaqRBuis/uRn+6OFhQvwhwAdtZ8XhJedbb68nCLuiG6Y3AdyK8xOW/IeAYN9XCAnikoCGKAD7IkoVEMwB1ykFD9xIVYC+p92fRwyTRI63Pd02zFfaL9qUlDRzMoeMrj6dpLnJvD3dQD4DzC1eEkHX4nSsLZWZxMTJVvMEg==
+ bh=qN/IS3+hzrBHdxGWhaxDj002p7psfTT3XN8WSoRkNoM=;
+ b=Om8jfMC5tseGX7eGac/S39AJ5Ernypmh5uQqUsa8JpI5ZA/+ih3CuOdrPDN0KLZr9ctkYgTRxNATV/PxcUzhK2xxp1KaT8fKN0h2FHP6u0aEZe0QogptY6IWzie5+0QET33ofyDDcKEihDEDypUneEy/Tm5in0DvavpJ8V8+sI6c0Sx/LUYgoQKLxyRSwVVytFNt7137DPbFwOJkOF8ypJ/gnp0+bGhlA7nFsB6djzKJWiuc6DpARAfRDxZ1SoRhBxnbsSULssjb9kBssHvRdL2HFUURG4m0/SvF8ZkhnLeE7RaOFsMY0CQs9Ny16fjZhaXzAhZf5S8hZseewAA9Dw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
  smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
  header.d=amd.com;arc=none
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com (20.179.80.139) by
- MN2PR12MB3662.namprd12.prod.outlook.com (10.255.86.19) with Microsoft SMTP
+Received: from BN8PR12MB3329.namprd12.prod.outlook.com (20.178.210.206) by
+ BN8PR12MB2930.namprd12.prod.outlook.com (20.179.66.77) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2094.12; Tue, 23 Jul 2019 09:43:50 +0000
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::ad59:f055:2417:660f]) by MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::ad59:f055:2417:660f%6]) with mapi id 15.20.2094.013; Tue, 23 Jul 2019
- 09:43:50 +0000
-From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
-To: "Feng, Kenneth" <Kenneth.Feng@amd.com>, "amd-gfx@lists.freedesktop.org"
+ 15.20.2094.16; Tue, 23 Jul 2019 11:15:59 +0000
+Received: from BN8PR12MB3329.namprd12.prod.outlook.com
+ ([fe80::347f:8a8d:c0d4:823c]) by BN8PR12MB3329.namprd12.prod.outlook.com
+ ([fe80::347f:8a8d:c0d4:823c%7]) with mapi id 15.20.2094.017; Tue, 23 Jul 2019
+ 11:15:59 +0000
+From: "Quan, Evan" <Evan.Quan@amd.com>
+To: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>, "Deucher, Alexander"
  <Alexander.Deucher@amd.com>
-Subject: Re: [PATCH] drm/amd/powerplay: change smu_read_sensor sequence in smu
-Thread-Topic: [PATCH] drm/amd/powerplay: change smu_read_sensor sequence in smu
-Thread-Index: AQHVQTqGJo84cqbU1USb8tfj+Nt5SabX82+1
-Date: Tue, 23 Jul 2019 09:43:49 +0000
-Message-ID: <MN2PR12MB3296043F281A9E7345179AE1A2C70@MN2PR12MB3296.namprd12.prod.outlook.com>
-References: <1563874746-6318-1-git-send-email-kenneth.feng@amd.com>
-In-Reply-To: <1563874746-6318-1-git-send-email-kenneth.feng@amd.com>
+Subject: RE: [PATCH] drm/amd/powerplay: add callback function of
+ get_thermal_temperature_range
+Thread-Topic: [PATCH] drm/amd/powerplay: add callback function of
+ get_thermal_temperature_range
+Thread-Index: AQHVQTlyjZ5kvroa60KvH7CerObgK6bYDG9A
+Date: Tue, 23 Jul 2019 11:15:59 +0000
+Message-ID: <BN8PR12MB33290D4E7F1743C60EA4CCB4E4C70@BN8PR12MB3329.namprd12.prod.outlook.com>
+References: <20190723093109.2701-1-kevin1.wang@amd.com>
+In-Reply-To: <20190723093109.2701-1-kevin1.wang@amd.com>
 Accept-Language: en-US, zh-CN
 Content-Language: en-US
 X-Mentions: Alexander.Deucher@amd.com
@@ -49,41 +51,41 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1ac43cf4-1a17-4a38-619c-08d70f524414
+x-ms-office365-filtering-correlation-id: 0ce57f66-1c21-4e35-2ce6-08d70f5f23df
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB3662; 
-x-ms-traffictypediagnostic: MN2PR12MB3662:
+ SRVR:BN8PR12MB2930; 
+x-ms-traffictypediagnostic: BN8PR12MB2930:
 x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <MN2PR12MB3662B21BC3746A174B418F52A2C70@MN2PR12MB3662.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-microsoft-antispam-prvs: <BN8PR12MB29303602DC420A437018DE81E4C70@BN8PR12MB2930.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-forefront-prvs: 0107098B6C
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(136003)(376002)(366004)(39860400002)(396003)(199004)(189003)(256004)(7696005)(8936002)(26005)(68736007)(76116006)(1015004)(186003)(102836004)(86362001)(76176011)(478600001)(606006)(14444005)(6506007)(53546011)(33656002)(74316002)(2501003)(476003)(81166006)(25786009)(8676002)(7736002)(81156014)(14454004)(19627405001)(66066001)(236005)(966005)(11346002)(53936002)(6606003)(52536014)(3846002)(316002)(9686003)(6636002)(55016002)(6246003)(6306002)(54896002)(6116002)(5660300002)(2906002)(110136005)(486006)(6436002)(66556008)(66946007)(64756008)(66446008)(71190400001)(71200400001)(99286004)(229853002)(446003)(66476007);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3662;
- H:MN2PR12MB3296.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(136003)(396003)(376002)(366004)(39860400002)(346002)(199004)(189003)(13464003)(33656002)(66066001)(486006)(66476007)(76116006)(66556008)(64756008)(66446008)(76176011)(66946007)(7696005)(6436002)(6506007)(6306002)(53546011)(68736007)(9686003)(99286004)(102836004)(86362001)(71200400001)(55016002)(71190400001)(26005)(229853002)(478600001)(6246003)(74316002)(81156014)(305945005)(3846002)(54906003)(81166006)(25786009)(2906002)(110136005)(256004)(316002)(14444005)(6116002)(4326008)(53936002)(52536014)(446003)(6636002)(476003)(966005)(2501003)(7736002)(11346002)(14454004)(8936002)(5660300002)(186003)(8676002)(21314003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB2930;
+ H:BN8PR12MB3329.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: MjihUcFPDXW9N0fmANoYeI3mYYBDkfDRmIEnH5YYWXF2TNDRa0RifbpResGxIKCvbMClR54bb9JZJbywTGkxUQCvcr78DwjJU+ECRnh9gIrsg9pJqIkSaVIBzfm4rJcCSFr2AjUfQvRqb7YDOn5TTdM/pNtkaaJ7k1kg1cSVLuv53a4RGTXW8IoeTuJRdIjQ+FW1obHu21k6l5UghZMLKn5V6Vrb7kqU3i5UuCRQmAFvYhLImDDuJR/32QKQ7PwR9IFZapsDfsVCvg88zpdDIYbV6dIUGnO3s3eUKTzXOUAC+KDC/fcIGuXNKVvZc5w41/rqX44CgkTEj0k8Dtcg40rrGzrvr8Pm5QHiM5TMDHyV4J3go2liZE9Gt0gcBBNSXUKaSGz6boRtLQmSnCGYjL1rqXLwHKkNg0wfXeKZvSc=
+x-microsoft-antispam-message-info: bqSDJavK4km0VcmvZbdK6pj+P8oBWPSwKEfdmfJ6ejesRQ5JKfphIkLIuEJyomDBsqhhMDUBFculIuf0jqgk+MpwLkjHVtHwHvzfxdfVOPQuWOvsEtSYEP868qcdGVsFR8uhpZjS4T2bdPv8JIN6PnnBmeT1Fw9x9BJ9ZKqmgUfGj7Mq1oVt/S06XG5sSHqSwckTwGfNP2XbHoJ9PVpxQFfVxHTf2ncuiP6JO3UpqK/J/RlBKCbw1avAgEU3gi0fvrBsqy9B3ZAHFwi1ZtbVAWu7JlRaz249Aj/qqBj/xCuE76iopYeKpLnatlNAuHHA9FjcRNF81iTA6vEDqQj6eHxZlpVdNDCuCwPk4rf3t4eJ4ouoWV+w+e6K/m8Jy6LZ94pVgJAFm2KLBS1iOU7t411GQ+yCpfRg61Wesvz4O7I=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ac43cf4-1a17-4a38-619c-08d70f524414
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jul 2019 09:43:49.8526 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ce57f66-1c21-4e35-2ce6-08d70f5f23df
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jul 2019 11:15:59.2663 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kevwa@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3662
+X-MS-Exchange-CrossTenant-userprincipalname: equan@amd.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2930
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qPwvDWnYsDZJ7B+/g/ph9XWBOYSJHOVfneTGZJS5/VA=;
- b=T/QVbg+Mb7yrPaClzDAqb2c8Zuls2di0298WKQynB557xo/PFgRj3nCUNaSHYmTejaG4lbBJ2PK71C2VQqlp5Y0h8DMBYpcgr5s+EM6uPNj52pCrGEpxLq2ojzWxk8h1+szfi9H2jPQsnbPHUeCgGb7LVcuzrNNvHIxjLQVLIyk=
+ bh=qN/IS3+hzrBHdxGWhaxDj002p7psfTT3XN8WSoRkNoM=;
+ b=LqJxdGR33zHmuzM8AEv00LML5nDkBYmbtepLUlKRTMPtu9+AEajS1mBrMs1lM71RGWUl18jxj5N7p5p2Q/nV8DhFtFCgceRCuMuNtqTMLoQe1jd/La7wsWHK2DM7yyZBHhrBAN8VaIKd7ai8KqkpnnYUIHjD8fL/0zuEDZCX6Vg=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Kevin1.Wang@amd.com; 
+ smtp.mailfrom=Evan.Quan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -95,471 +97,188 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2099513554=="
+Cc: "Huang, Ray" <Ray.Huang@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>,
+ "Wang, Kevin\(Yang\)" <Kevin1.Wang@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============2099513554==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB3296043F281A9E7345179AE1A2C70MN2PR12MB3296namp_"
-
---_000_MN2PR12MB3296043F281A9E7345179AE1A2C70MN2PR12MB3296namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-it looks fine for me,
-
-please @Deucher, Alexander<mailto:Alexander.Deucher@amd.com> double check c=
-onfirm.
-
-Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
-
-Best Regards,
-Kevin
-
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Kenneth =
-Feng <kenneth.feng@amd.com>
-Sent: Tuesday, July 23, 2019 5:39 PM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Feng, Kenneth <Kenneth.Feng@amd.com>
-Subject: [PATCH] drm/amd/powerplay: change smu_read_sensor sequence in smu
-
-change the smu_read_sensor sequence to:
-
-asic specific sensor read -> smu v11 specific sensor read -> smu v11 common=
- sensor read
-
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
----
- drivers/gpu/drm/amd/powerplay/amdgpu_smu.c     | 3 +++
- drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h | 4 ++--
- drivers/gpu/drm/amd/powerplay/navi10_ppt.c     | 5 ++++-
- drivers/gpu/drm/amd/powerplay/smu_v11_0.c      | 8 ++++----
- drivers/gpu/drm/amd/powerplay/vega20_ppt.c     | 5 ++++-
- 5 files changed, 17 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/a=
-md/powerplay/amdgpu_smu.c
-index 416f9a8..8ff18c8 100644
---- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-@@ -315,6 +315,9 @@ int smu_common_read_sensor(struct smu_context *smu, enu=
-m amd_pp_sensors sensor,
- {
-         int ret =3D 0;
-
-+       if(!data || !size)
-+               return -EINVAL;
-+
-         switch (sensor) {
-         case AMDGPU_PP_SENSOR_STABLE_PSTATE_SCLK:
-                 *((uint32_t *)data) =3D smu->pstate_sclk;
-diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/d=
-rm/amd/powerplay/inc/amdgpu_smu.h
-index b702c9e..fabb373 100644
---- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-@@ -819,9 +819,9 @@ struct smu_funcs
- #define smu_start_thermal_control(smu) \
-         ((smu)->funcs->start_thermal_control? (smu)->funcs->start_thermal_=
-control((smu)) : 0)
- #define smu_read_sensor(smu, sensor, data, size) \
--       ((smu)->funcs->read_sensor? (smu)->funcs->read_sensor((smu), (senso=
-r), (data), (size)) : 0)
--#define smu_asic_read_sensor(smu, sensor, data, size) \
-         ((smu)->ppt_funcs->read_sensor? (smu)->ppt_funcs->read_sensor((smu=
-), (sensor), (data), (size)) : 0)
-+#define smu_smc_read_sensor(smu, sensor, data, size) \
-+       ((smu)->funcs->read_sensor? (smu)->funcs->read_sensor((smu), (senso=
-r), (data), (size)) : -EINVAL)
- #define smu_get_power_profile_mode(smu, buf) \
-         ((smu)->ppt_funcs->get_power_profile_mode ? (smu)->ppt_funcs->get_=
-power_profile_mode((smu), buf) : 0)
- #define smu_set_power_profile_mode(smu, param, param_size) \
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/navi10_ppt.c
-index c8ce9bb..6409718 100644
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-@@ -1366,6 +1366,9 @@ static int navi10_read_sensor(struct smu_context *smu=
-,
-         struct smu_table_context *table_context =3D &smu->smu_table;
-         PPTable_t *pptable =3D table_context->driver_pptable;
-
-+       if(!data || !size)
-+               return -EINVAL;
-+
-         switch (sensor) {
-         case AMDGPU_PP_SENSOR_MAX_FAN_RPM:
-                 *(uint32_t *)data =3D pptable->FanMaximumRpm;
-@@ -1387,7 +1390,7 @@ static int navi10_read_sensor(struct smu_context *smu=
-,
-                 *size =3D 4;
-                 break;
-         default:
--               return -EINVAL;
-+               ret =3D smu_smc_read_sensor(smu, sensor, data, size);
-         }
-
-         return ret;
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/am=
-d/powerplay/smu_v11_0.c
-index e3a1784..5267b68 100644
---- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-@@ -1267,6 +1267,10 @@ static int smu_v11_0_read_sensor(struct smu_context =
-*smu,
-                                  void *data, uint32_t *size)
- {
-         int ret =3D 0;
-+
-+       if(!data || !size)
-+               return -EINVAL;
-+
-         switch (sensor) {
-         case AMDGPU_PP_SENSOR_GFX_MCLK:
-                 ret =3D smu_get_current_clk_freq(smu, SMU_UCLK, (uint32_t =
-*)data);
-@@ -1289,10 +1293,6 @@ static int smu_v11_0_read_sensor(struct smu_context =
-*smu,
-                 break;
-         }
-
--       /* try get sensor data by asic */
--       if (ret)
--               ret =3D smu_asic_read_sensor(smu, sensor, data, size);
--
-         if (ret)
-                 *size =3D 0;
-
-diff --git a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/vega20_ppt.c
-index 9ead361..e864a54 100644
---- a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
-@@ -3163,6 +3163,9 @@ static int vega20_read_sensor(struct smu_context *smu=
-,
-         struct smu_table_context *table_context =3D &smu->smu_table;
-         PPTable_t *pptable =3D table_context->driver_pptable;
-
-+       if(!data || !size)
-+               return -EINVAL;
-+
-         switch (sensor) {
-         case AMDGPU_PP_SENSOR_MAX_FAN_RPM:
-                 *(uint32_t *)data =3D pptable->FanMaximumRpm;
-@@ -3186,7 +3189,7 @@ static int vega20_read_sensor(struct smu_context *smu=
-,
-                 *size =3D 4;
-                 break;
-         default:
--               return -EINVAL;
-+               ret =3D smu_smc_read_sensor(smu, sensor, data, size);
-         }
-
-         return ret;
---
-2.7.4
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-amd-gfx Info Page - freedesktop.org<https://lists.freedesktop.org/mailman/l=
-istinfo/amd-gfx>
-lists.freedesktop.org
-To see the collection of prior postings to the list, visit the amd-gfx Arch=
-ives.. Using amd-gfx: To post a message to all the list members, send email=
- to amd-gfx@lists.freedesktop.org. You can subscribe to the list, or change=
- your existing subscription, in the sections below.
-
-
---_000_MN2PR12MB3296043F281A9E7345179AE1A2C70MN2PR12MB3296namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0"><span style=3D"font-size: 12pt;">=
-it looks fine for me,&nbsp;</span><br>
-</p>
-<div>please <a class=3D"mention ms-bgc-nlr ms-fcl-b" id=3D"OWAAM928179" hre=
-f=3D"mailto:Alexander.Deucher@amd.com">
-@Deucher, Alexander</a>&nbsp;double check confirm.</div>
-<div><br>
-</div>
-<div>Reviewed-by: Kevin Wang &lt;kevin1.wang@amd.com&gt;</div>
-<div><br>
-</div>
-<div>Best Regards,<br>
-Kevin<br>
-<br>
-<div style=3D"color: rgb(0, 0, 0);">
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Kenneth Feng &lt;kenneth.feng=
-@amd.com&gt;<br>
-<b>Sent:</b> Tuesday, July 23, 2019 5:39 PM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Feng, Kenneth &lt;Kenneth.Feng@amd.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amd/powerplay: change smu_read_sensor sequence =
-in smu</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">change the smu_read_sensor sequence to:<br>
-<br>
-asic specific sensor read -&gt; smu v11 specific sensor read -&gt; smu v11 =
-common sensor read<br>
-<br>
-Signed-off-by: Kenneth Feng &lt;kenneth.feng@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/powerplay/amdgpu_smu.c&nbsp;&nbsp;&nbsp;&nbsp; | =
-3 &#43;&#43;&#43;<br>
-&nbsp;drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h | 4 &#43;&#43;--<br>
-&nbsp;drivers/gpu/drm/amd/powerplay/navi10_ppt.c&nbsp;&nbsp;&nbsp;&nbsp; | =
-5 &#43;&#43;&#43;&#43;-<br>
-&nbsp;drivers/gpu/drm/amd/powerplay/smu_v11_0.c&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; | 8 &#43;&#43;&#43;&#43;----<br>
-&nbsp;drivers/gpu/drm/amd/powerplay/vega20_ppt.c&nbsp;&nbsp;&nbsp;&nbsp; | =
-5 &#43;&#43;&#43;&#43;-<br>
-&nbsp;5 files changed, 17 insertions(&#43;), 8 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/a=
-md/powerplay/amdgpu_smu.c<br>
-index 416f9a8..8ff18c8 100644<br>
---- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
-@@ -315,6 &#43;315,9 @@ int smu_common_read_sensor(struct smu_context *smu,=
- enum amd_pp_sensors sensor,<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&nbsp;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(!data || !size)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; return -EINVAL;<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_SENSOR_STAB=
-LE_PSTATE_SCLK:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; *((uint32_t *)data) =3D smu-&gt;pstate_sclk;<br>
-diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/d=
-rm/amd/powerplay/inc/amdgpu_smu.h<br>
-index b702c9e..fabb373 100644<br>
---- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
-@@ -819,9 &#43;819,9 @@ struct smu_funcs<br>
-&nbsp;#define smu_start_thermal_control(smu) \<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;funcs-&gt;start=
-_thermal_control? (smu)-&gt;funcs-&gt;start_thermal_control((smu)) : 0)<br>
-&nbsp;#define smu_read_sensor(smu, sensor, data, size) \<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;funcs-&gt;read_sensor? (sm=
-u)-&gt;funcs-&gt;read_sensor((smu), (sensor), (data), (size)) : 0)<br>
--#define smu_asic_read_sensor(smu, sensor, data, size) \<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;ppt_funcs-&gt;r=
-ead_sensor? (smu)-&gt;ppt_funcs-&gt;read_sensor((smu), (sensor), (data), (s=
-ize)) : 0)<br>
-&#43;#define smu_smc_read_sensor(smu, sensor, data, size) \<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;funcs-&gt;read_sensor?=
- (smu)-&gt;funcs-&gt;read_sensor((smu), (sensor), (data), (size)) : -EINVAL=
-)<br>
-&nbsp;#define smu_get_power_profile_mode(smu, buf) \<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((smu)-&gt;ppt_funcs-&gt;g=
-et_power_profile_mode ? (smu)-&gt;ppt_funcs-&gt;get_power_profile_mode((smu=
-), buf) : 0)<br>
-&nbsp;#define smu_set_power_profile_mode(smu, param, param_size) \<br>
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/navi10_ppt.c<br>
-index c8ce9bb..6409718 100644<br>
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
-@@ -1366,6 &#43;1366,9 @@ static int navi10_read_sensor(struct smu_context =
-*smu,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_table_context *=
-table_context =3D &amp;smu-&gt;smu_table;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PPTable_t *pptable =3D tab=
-le_context-&gt;driver_pptable;<br>
-&nbsp;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(!data || !size)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; return -EINVAL;<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_SENSOR_MAX_=
-FAN_RPM:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; *(uint32_t *)data =3D pptable-&gt;FanMaximumRpm;<br>
-@@ -1387,7 &#43;1390,7 @@ static int navi10_read_sensor(struct smu_context =
-*smu,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; *size =3D 4;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; break;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; return -EINVAL;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ret =3D smu_smc_read_sensor(smu, sensor, data, size);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/am=
-d/powerplay/smu_v11_0.c<br>
-index e3a1784..5267b68 100644<br>
---- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c<br>
-@@ -1267,6 &#43;1267,10 @@ static int smu_v11_0_read_sensor(struct smu_cont=
-ext *smu,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *data, uint32_t *size=
-)<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(!data || !size)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; return -EINVAL;<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_SENSOR_GFX_=
-MCLK:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; ret =3D smu_get_current_clk_freq(smu, SMU_UCLK, (uint=
-32_t *)data);<br>
-@@ -1289,10 &#43;1293,6 @@ static int smu_v11_0_read_sensor(struct smu_cont=
-ext *smu,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; break;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* try get sensor data by asic */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D smu_asic_read_sensor(smu, sensor, data, size);<br>
--<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; *size =3D 0;<br>
-&nbsp;<br>
-diff --git a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/vega20_ppt.c<br>
-index 9ead361..e864a54 100644<br>
---- a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c<br>
-@@ -3163,6 &#43;3163,9 @@ static int vega20_read_sensor(struct smu_context =
-*smu,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_table_context *=
-table_context =3D &amp;smu-&gt;smu_table;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PPTable_t *pptable =3D tab=
-le_context-&gt;driver_pptable;<br>
-&nbsp;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(!data || !size)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; return -EINVAL;<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_SENSOR_MAX_=
-FAN_RPM:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; *(uint32_t *)data =3D pptable-&gt;FanMaximumRpm;<br>
-@@ -3186,7 &#43;3189,7 @@ static int vega20_read_sensor(struct smu_context =
-*smu,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; *size =3D 4;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; break;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; return -EINVAL;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ret =3D smu_smc_read_sensor(smu, sensor, data, size);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
--- <br>
-2.7.4<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx" id=3D"LP=
-lnk308364" class=3D"OWAAutoLink" previewremoved=3D"true">https://lists.free=
-desktop.org/mailman/listinfo/amd-gfx</a></div>
-<div id=3D"LPBorder_GT_15638749518470.02267473158651634" style=3D"margin-bo=
-ttom: 20px; overflow: auto; width: 100%; text-indent: 0px;">
-<table id=3D"LPContainer_15638749518450.8626503153022167" role=3D"presentat=
-ion" cellspacing=3D"0" style=3D"width: 90%; background-color: rgb(255, 255,=
- 255); position: relative; overflow: auto; padding-top: 20px; padding-botto=
-m: 20px; margin-top: 20px; border-top: 1px dotted rgb(200, 200, 200); borde=
-r-bottom: 1px dotted rgb(200, 200, 200);">
-<tbody>
-<tr valign=3D"top" style=3D"border-spacing: 0px;">
-<td id=3D"TextCell_15638749518460.7609342713450393" colspan=3D"2" style=3D"=
-vertical-align: top; position: relative; padding: 0px; display: table-cell;=
-">
-<div id=3D"LPRemovePreviewContainer_15638749518460.24310328073303422"></div=
->
-<div id=3D"LPTitle_15638749518460.7214757521911543" style=3D"top: 0px; colo=
-r: rgb(0, 120, 215); font-weight: 400; font-size: 21px; font-family: wf_seg=
-oe-ui_light, &quot;Segoe UI Light&quot;, &quot;Segoe WP Light&quot;, &quot;=
-Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; line-heigh=
-t: 21px;">
-<a id=3D"LPUrlAnchor_15638749518460.9823406329165418" href=3D"https://lists=
-.freedesktop.org/mailman/listinfo/amd-gfx" target=3D"_blank" style=3D"text-=
-decoration: none;">amd-gfx Info Page - freedesktop.org</a></div>
-<div id=3D"LPMetadata_15638749518470.8057760659421027" style=3D"margin: 10p=
-x 0px 16px; color: rgb(102, 102, 102); font-weight: 400; font-family: wf_se=
-goe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, s=
-ans-serif; font-size: 14px; line-height: 14px;">
-lists.freedesktop.org</div>
-<div id=3D"LPDescription_15638749518470.6436677658830974" style=3D"display:=
- block; color: rgb(102, 102, 102); font-weight: 400; font-family: wf_segoe-=
-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-=
-serif; font-size: 14px; line-height: 20px; max-height: 100px; overflow: hid=
-den;">
-To see the collection of prior postings to the list, visit the amd-gfx Arch=
-ives.. Using amd-gfx: To post a message to all the list members, send email=
- to amd-gfx@lists.freedesktop.org. You can subscribe to the list, or change=
- your existing subscription, in
- the sections below.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<br>
-</span></font></div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_MN2PR12MB3296043F281A9E7345179AE1A2C70MN2PR12MB3296namp_--
-
---===============2099513554==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============2099513554==--
+UGxlYXNlIGRvIG5vdCBjaGFuZ2UgdGhlIG91dHB1dCB0ZW1wZXJhdHVyZSBncmFudWxhcml0eS4N
+CkFsdGhvdWdoIGl0IHNlZW1zIGEgbGl0dGxlIHdlaXJkLiBJdCdzIHJlcXVpcmVkIGJ5IGh3bW9u
+IGludGVyZmFjZXMgZGVzaWduICBhbmQgaGFzIHRvIGJlIGluIG1pbGxpZGVncmVlcyBDZWxzaXVz
+IChARGV1Y2hlciwgQWxleGFuZGVyLCByaWdodD8pLg0KDQoqIGh3bW9uIGludGVyZmFjZXMgZm9y
+IEdQVSB0ZW1wZXJhdHVyZToNCiAqDQogKiAtIHRlbXBbMS0zXV9pbnB1dDogdGhlIG9uIGRpZSBH
+UFUgdGVtcGVyYXR1cmUgaW4gbWlsbGlkZWdyZWVzIENlbHNpdXMNCiAqICAgLSB0ZW1wMl9pbnB1
+dCBhbmQgdGVtcDNfaW5wdXQgYXJlIHN1cHBvcnRlZCBvbiBTT0MxNSBkR1BVcyBvbmx5DQogKg0K
+ICogLSB0ZW1wWzEtM11fbGFiZWw6IHRlbXBlcmF0dXJlIGNoYW5uZWwgbGFiZWwNCiAqICAgLSB0
+ZW1wMl9sYWJlbCBhbmQgdGVtcDNfbGFiZWwgYXJlIHN1cHBvcnRlZCBvbiBTT0MxNSBkR1BVcyBv
+bmx5DQogKg0KICogLSB0ZW1wWzEtM11fY3JpdDogdGVtcGVyYXR1cmUgY3JpdGljYWwgbWF4IHZh
+bHVlIGluIG1pbGxpZGVncmVlcyBDZWxzaXVzDQogKiAgIC0gdGVtcDJfY3JpdCBhbmQgdGVtcDNf
+Y3JpdCBhcmUgc3VwcG9ydGVkIG9uIFNPQzE1IGRHUFVzIG9ubHkNCiAqDQogKiAtIHRlbXBbMS0z
+XV9jcml0X2h5c3Q6IHRlbXBlcmF0dXJlIGh5c3RlcmVzaXMgZm9yIGNyaXRpY2FsIGxpbWl0IGlu
+IG1pbGxpZGVncmVlcyBDZWxzaXVzDQogKiAgIC0gdGVtcDJfY3JpdF9oeXN0IGFuZCB0ZW1wM19j
+cml0X2h5c3QgYXJlIHN1cHBvcnRlZCBvbiBTT0MxNSBkR1BVcyBvbmx5DQogKg0KICogLSB0ZW1w
+WzEtM11fZW1lcmdlbmN5OiB0ZW1wZXJhdHVyZSBlbWVyZ2VuY3kgbWF4IHZhbHVlKGFzaWMgc2h1
+dGRvd24pIGluIG1pbGxpZGVncmVlcyBDZWxzaXVzDQogKiAgIC0gdGhlc2UgYXJlIHN1cHBvcnRl
+ZCBvbiBTT0MxNSBkR1BVcyBvbmx5DQoNClJlZ2FyZHMsDQpFdmFuDQo+IC0tLS0tT3JpZ2luYWwg
+TWVzc2FnZS0tLS0tDQo+IEZyb206IGFtZC1nZnggPGFtZC1nZngtYm91bmNlc0BsaXN0cy5mcmVl
+ZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZg0KPiBXYW5nLCBLZXZpbihZYW5nKQ0KPiBTZW50OiBU
+dWVzZGF5LCBKdWx5IDIzLCAyMDE5IDU6MzIgUE0NCj4gVG86IGFtZC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnDQo+IENjOiBIdWFuZywgUmF5IDxSYXkuSHVhbmdAYW1kLmNvbT47IEZlbmcsIEtl
+bm5ldGgNCj4gPEtlbm5ldGguRmVuZ0BhbWQuY29tPjsgV2FuZywgS2V2aW4oWWFuZykgPEtldmlu
+MS5XYW5nQGFtZC5jb20+DQo+IFN1YmplY3Q6IFtQQVRDSF0gZHJtL2FtZC9wb3dlcnBsYXk6IGFk
+ZCBjYWxsYmFjayBmdW5jdGlvbiBvZg0KPiBnZXRfdGhlcm1hbF90ZW1wZXJhdHVyZV9yYW5nZQ0K
+PiANCj4gMS4gdGhlIHRoZXJtYWwgdGVtcGVyYXR1cmUgaXMgYXNpYyByZWxhdGVkIGRhdGEsIG1v
+dmUgdGhlIGNvZGUgbG9naWMgdG8NCj4geHh4X3BwdC5jLg0KPiAyLiByZXBsYWNlIGRhdGEgc3Ry
+dWN0dXJlIFBQX1RlbXBlcmF0dXJlUmFuZ2Ugd2l0aA0KPiBzbXVfdGVtcGVyYXR1cmVfcmFuZ2Uu
+DQo+IDMuIGNoYW5nZSB0ZW1wZXJhdHVyZSB1aW50IGZyb20gdGVtcCoxMDAwIHRvIHRlbXAgKHRl
+bXBlcmF0dXJlIHVpbnQpLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogS2V2aW4gV2FuZyA8a2V2aW4x
+LndhbmdAYW1kLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogS2VubmV0aCBGZW5nIDxrZW5uZXRoLmZl
+bmdAYW1kLmNvbT4NCj4gQWNrZWQtYnk6IEh1YW5nIFJ1aSA8cmF5Lmh1YW5nQGFtZC5jb20+DQo+
+IC0tLQ0KPiAgLi4uL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9pbmMvYW1kZ3B1X3NtdS5oICAgIHwg
+IDEgLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvbmF2aTEwX3BwdC5jICAgIHwg
+MTcgKysrKysrKysrKw0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211X3YxMV8w
+LmMgICAgIHwgMTggKysrKysrLS0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkv
+dmVnYTIwX3BwdC5jICAgIHwgMzQgKysrKysrLS0tLS0tLS0tLS0tLQ0KPiAgNCBmaWxlcyBjaGFu
+Z2VkLCA0MCBpbnNlcnRpb25zKCspLCAzMCBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9pbmMvYW1kZ3B1X3NtdS5oDQo+IGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaW5jL2FtZGdwdV9zbXUuaA0KPiBpbmRleCAzNDA5
+M2RkY2ExMDUuLjcxMDVmODA0MTA4OCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9wb3dlcnBsYXkvaW5jL2FtZGdwdV9zbXUuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
+L3Bvd2VycGxheS9pbmMvYW1kZ3B1X3NtdS5oDQo+IEBAIC00MzksNyArNDM5LDYgQEAgc3RydWN0
+IHNtdV90YWJsZV9jb250ZXh0DQo+ICAJc3RydWN0IHNtdV90YWJsZQkJKnRhYmxlczsNCj4gIAl1
+aW50MzJfdAkJCXRhYmxlX2NvdW50Ow0KPiAgCXN0cnVjdCBzbXVfdGFibGUJCW1lbW9yeV9wb29s
+Ow0KPiAtCXVpbnQxNl90ICAgICAgICAgICAgICAgICAgICAgICAgc29mdHdhcmVfc2h1dGRvd25f
+dGVtcDsNCj4gIAl1aW50OF90ICAgICAgICAgICAgICAgICAgICAgICAgIHRoZXJtYWxfY29udHJv
+bGxlcl90eXBlOw0KPiAgCXVpbnQxNl90CQkJVERQT0RMaW1pdDsNCj4gDQo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9uYXZpMTBfcHB0LmMNCj4gYi9kcml2ZXJz
+L2dwdS9kcm0vYW1kL3Bvd2VycGxheS9uYXZpMTBfcHB0LmMNCj4gaW5kZXggNDZlMjkxM2U0YWY0
+Li5hNGM0ZDQ5OTcxODkgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJw
+bGF5L25hdmkxMF9wcHQuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9u
+YXZpMTBfcHB0LmMNCj4gQEAgLTE2MzgsNiArMTYzOCwyMiBAQCBzdGF0aWMgaW50IG5hdmkxMF9z
+ZXRfcGVyZm9ybWFuY2VfbGV2ZWwoc3RydWN0DQo+IHNtdV9jb250ZXh0ICpzbXUsIGVudW0gYW1k
+X2RwbV9mbw0KPiAgCXJldHVybiByZXQ7DQo+ICB9DQo+IA0KPiArc3RhdGljIGludCBuYXZpMTBf
+Z2V0X3RoZXJtYWxfdGVtcGVyYXR1cmVfcmFuZ2Uoc3RydWN0IHNtdV9jb250ZXh0DQo+ICpzbXUs
+DQo+ICsJCQkJCQlzdHJ1Y3QNCj4gc211X3RlbXBlcmF0dXJlX3JhbmdlICpyYW5nZSkgew0KPiAr
+CXN0cnVjdCBzbXVfdGFibGVfY29udGV4dCAqdGFibGVfY29udGV4dCA9ICZzbXUtPnNtdV90YWJs
+ZTsNCj4gKwlzdHJ1Y3Qgc211XzExXzBfcG93ZXJwbGF5X3RhYmxlICpwb3dlcnBsYXlfdGFibGUg
+PQ0KPiArdGFibGVfY29udGV4dC0+cG93ZXJfcGxheV90YWJsZTsNCj4gKw0KPiArCWlmICghcmFu
+Z2UgfHwgIXBvd2VycGxheV90YWJsZSkNCj4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ICsNCj4gKwkv
+KiBUaGUgdW5pdCBpcyB0ZW1wZXJhdHVyZSAqLw0KPiArCXJhbmdlLT5taW4gPSAwOw0KPiArCXJh
+bmdlLT5tYXggPSBwb3dlcnBsYXlfdGFibGUtPnNvZnR3YXJlX3NodXRkb3duX3RlbXA7DQo+ICsN
+Cj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gKw0KPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBwcHRhYmxl
+X2Z1bmNzIG5hdmkxMF9wcHRfZnVuY3MgPSB7DQo+ICAJLnRhYmxlc19pbml0ID0gbmF2aTEwX3Rh
+Ymxlc19pbml0LA0KPiAgCS5hbGxvY19kcG1fY29udGV4dCA9IG5hdmkxMF9hbGxvY2F0ZV9kcG1f
+Y29udGV4dCwgQEAgLTE2NzQsNg0KPiArMTY5MCw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcHB0
+YWJsZV9mdW5jcyBuYXZpMTBfcHB0X2Z1bmNzID0gew0KPiAgCS5nZXRfcHBmZWF0dXJlX3N0YXR1
+cyA9IG5hdmkxMF9nZXRfcHBmZWF0dXJlX3N0YXR1cywNCj4gIAkuc2V0X3BwZmVhdHVyZV9zdGF0
+dXMgPSBuYXZpMTBfc2V0X3BwZmVhdHVyZV9zdGF0dXMsDQo+ICAJLnNldF9wZXJmb3JtYW5jZV9s
+ZXZlbCA9IG5hdmkxMF9zZXRfcGVyZm9ybWFuY2VfbGV2ZWwsDQo+ICsJLmdldF90aGVybWFsX3Rl
+bXBlcmF0dXJlX3JhbmdlID0NCj4gbmF2aTEwX2dldF90aGVybWFsX3RlbXBlcmF0dXJlX3Jhbmdl
+LA0KPiAgfTsNCj4gDQo+ICB2b2lkIG5hdmkxMF9zZXRfcHB0X2Z1bmNzKHN0cnVjdCBzbXVfY29u
+dGV4dCAqc211KSBkaWZmIC0tZ2l0DQo+IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkv
+c211X3YxMV8wLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9zbXVfdjExXzAu
+Yw0KPiBpbmRleCA3NmJjMTU3NTI1ZDAuLjRhZDllMGM1YTYzNyAxMDA2NDQNCj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211X3YxMV8wLmMNCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2FtZC9wb3dlcnBsYXkvc211X3YxMV8wLmMNCj4gQEAgLTExNDcsMTAgKzExNDcsOCBA
+QCBzdGF0aWMgaW50IHNtdV92MTFfMF9zZXRfdGhlcm1hbF9yYW5nZShzdHJ1Y3QNCj4gc211X2Nv
+bnRleHQgKnNtdSwNCj4gIAkJCQkgICAgICAgc3RydWN0IHNtdV90ZW1wZXJhdHVyZV9yYW5nZSAq
+cmFuZ2UpICB7DQo+ICAJc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSBzbXUtPmFkZXY7DQo+
+IC0JaW50IGxvdyA9IFNNVV9USEVSTUFMX01JTklNVU1fQUxFUlRfVEVNUCAqDQo+IC0JCVNNVV9U
+RU1QRVJBVFVSRV9VTklUU19QRVJfQ0VOVElHUkFERVM7DQo+IC0JaW50IGhpZ2ggPSBTTVVfVEhF
+Uk1BTF9NQVhJTVVNX0FMRVJUX1RFTVAgKg0KPiAtCQlTTVVfVEVNUEVSQVRVUkVfVU5JVFNfUEVS
+X0NFTlRJR1JBREVTOw0KPiArCWludCBsb3cgPSBTTVVfVEhFUk1BTF9NSU5JTVVNX0FMRVJUX1RF
+TVA7DQo+ICsJaW50IGhpZ2ggPSBTTVVfVEhFUk1BTF9NQVhJTVVNX0FMRVJUX1RFTVA7DQo+ICAJ
+dWludDMyX3QgdmFsOw0KPiANCj4gIAlpZiAoIXJhbmdlKQ0KPiBAQCAtMTE2MSw2ICsxMTU5LDkg
+QEAgc3RhdGljIGludCBzbXVfdjExXzBfc2V0X3RoZXJtYWxfcmFuZ2Uoc3RydWN0DQo+IHNtdV9j
+b250ZXh0ICpzbXUsDQo+ICAJaWYgKGhpZ2ggPiByYW5nZS0+bWF4KQ0KPiAgCQloaWdoID0gcmFu
+Z2UtPm1heDsNCj4gDQo+ICsJbG93ID0gbWF4KFNNVV9USEVSTUFMX01JTklNVU1fQUxFUlRfVEVN
+UCwgcmFuZ2UtPm1pbik7DQo+ICsJaGlnaCA9IG1pbihTTVVfVEhFUk1BTF9NQVhJTVVNX0FMRVJU
+X1RFTVAsIHJhbmdlLT5tYXgpOw0KPiArDQo+ICAJaWYgKGxvdyA+IGhpZ2gpDQo+ICAJCXJldHVy
+biAtRUlOVkFMOw0KPiANCj4gQEAgLTExNjksOCArMTE3MCw4IEBAIHN0YXRpYyBpbnQgc211X3Yx
+MV8wX3NldF90aGVybWFsX3JhbmdlKHN0cnVjdA0KPiBzbXVfY29udGV4dCAqc211LA0KPiAgCXZh
+bCA9IFJFR19TRVRfRklFTEQodmFsLCBUSE1fVEhFUk1BTF9JTlRfQ1RSTCwNCj4gVEhFUk1fSUhf
+SFdfRU5BLCAxKTsNCj4gIAl2YWwgPSBSRUdfU0VUX0ZJRUxEKHZhbCwgVEhNX1RIRVJNQUxfSU5U
+X0NUUkwsDQo+IFRIRVJNX0lOVEhfTUFTSywgMCk7DQo+ICAJdmFsID0gUkVHX1NFVF9GSUVMRCh2
+YWwsIFRITV9USEVSTUFMX0lOVF9DVFJMLA0KPiBUSEVSTV9JTlRMX01BU0ssIDApOw0KPiAtCXZh
+bCA9IFJFR19TRVRfRklFTEQodmFsLCBUSE1fVEhFUk1BTF9JTlRfQ1RSTCwNCj4gRElHX1RIRVJN
+X0lOVEgsIChoaWdoIC8NCj4gU01VX1RFTVBFUkFUVVJFX1VOSVRTX1BFUl9DRU5USUdSQURFUykp
+Ow0KPiAtCXZhbCA9IFJFR19TRVRfRklFTEQodmFsLCBUSE1fVEhFUk1BTF9JTlRfQ1RSTCwNCj4g
+RElHX1RIRVJNX0lOVEwsIChsb3cgLyBTTVVfVEVNUEVSQVRVUkVfVU5JVFNfUEVSX0NFTlRJR1JB
+REVTKSk7DQo+ICsJdmFsID0gUkVHX1NFVF9GSUVMRCh2YWwsIFRITV9USEVSTUFMX0lOVF9DVFJM
+LA0KPiBESUdfVEhFUk1fSU5USCwgKGhpZ2ggJiAweGZmKSk7DQo+ICsJdmFsID0gUkVHX1NFVF9G
+SUVMRCh2YWwsIFRITV9USEVSTUFMX0lOVF9DVFJMLA0KPiBESUdfVEhFUk1fSU5UTCwgKGxvdyAm
+DQo+ICsweGZmKSk7DQo+ICAJdmFsID0gdmFsICYNCj4gKH5USE1fVEhFUk1BTF9JTlRfQ1RSTF9f
+VEhFUk1fVFJJR0dFUl9NQVNLX01BU0spOw0KPiANCj4gIAlXUkVHMzJfU09DMTUoVEhNLCAwLCBt
+bVRITV9USEVSTUFMX0lOVF9DVFJMLCB2YWwpOyBAQCAtDQo+IDEyMDksNyArMTIxMCwxMCBAQCBz
+dGF0aWMgaW50IHNtdV92MTFfMF9zdGFydF90aGVybWFsX2NvbnRyb2woc3RydWN0DQo+IHNtdV9j
+b250ZXh0ICpzbXUpDQo+IA0KPiAgCWlmICghc211LT5wbV9lbmFibGVkKQ0KPiAgCQlyZXR1cm4g
+cmV0Ow0KPiArDQo+ICAJcmV0ID0gc211X2dldF90aGVybWFsX3RlbXBlcmF0dXJlX3JhbmdlKHNt
+dSwgJnJhbmdlKTsNCj4gKwlpZiAocmV0KQ0KPiArCQlyZXR1cm4gcmV0Ow0KPiANCj4gIAlpZiAo
+c211LT5zbXVfdGFibGUudGhlcm1hbF9jb250cm9sbGVyX3R5cGUpIHsNCj4gIAkJcmV0ID0gc211
+X3YxMV8wX3NldF90aGVybWFsX3JhbmdlKHNtdSwgJnJhbmdlKTsgQEAgLQ0KPiAxMjM0LDYgKzEy
+MzgsOCBAQCBzdGF0aWMgaW50IHNtdV92MTFfMF9zdGFydF90aGVybWFsX2NvbnRyb2woc3RydWN0
+DQo+IHNtdV9jb250ZXh0ICpzbXUpDQo+ICAJYWRldi0+cG0uZHBtLnRoZXJtYWwubWluX21lbV90
+ZW1wID0gcmFuZ2UubWVtX21pbjsNCj4gIAlhZGV2LT5wbS5kcG0udGhlcm1hbC5tYXhfbWVtX2Ny
+aXRfdGVtcCA9DQo+IHJhbmdlLm1lbV9jcml0X21heDsNCj4gIAlhZGV2LT5wbS5kcG0udGhlcm1h
+bC5tYXhfbWVtX2VtZXJnZW5jeV90ZW1wID0NCj4gcmFuZ2UubWVtX2VtZXJnZW5jeV9tYXg7DQo+
+ICsJYWRldi0+cG0uZHBtLnRoZXJtYWwubWluX3RlbXAgPSByYW5nZS5taW4gKg0KPiBTTVVfVEVN
+UEVSQVRVUkVfVU5JVFNfUEVSX0NFTlRJR1JBREVTOw0KPiArCWFkZXYtPnBtLmRwbS50aGVybWFs
+Lm1heF90ZW1wID0gcmFuZ2UubWF4ICoNCj4gK1NNVV9URU1QRVJBVFVSRV9VTklUU19QRVJfQ0VO
+VElHUkFERVM7DQo+IA0KPiAgCXJldHVybiByZXQ7DQo+ICB9DQo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS92ZWdhMjBfcHB0LmMNCj4gYi9kcml2ZXJzL2dwdS9k
+cm0vYW1kL3Bvd2VycGxheS92ZWdhMjBfcHB0LmMNCj4gaW5kZXggYmNkMGVmYWY3YmJkLi5kZWIx
+MDJmZmVkYzIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L3Zl
+Z2EyMF9wcHQuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS92ZWdhMjBf
+cHB0LmMNCj4gQEAgLTQ2Myw3ICs0NjMsNiBAQCBzdGF0aWMgaW50IHZlZ2EyMF9zdG9yZV9wb3dl
+cnBsYXlfdGFibGUoc3RydWN0DQo+IHNtdV9jb250ZXh0ICpzbXUpDQo+ICAJbWVtY3B5KHRhYmxl
+X2NvbnRleHQtPmRyaXZlcl9wcHRhYmxlLCAmcG93ZXJwbGF5X3RhYmxlLQ0KPiA+c21jUFBUYWJs
+ZSwNCj4gIAkgICAgICAgc2l6ZW9mKFBQVGFibGVfdCkpOw0KPiANCj4gLQl0YWJsZV9jb250ZXh0
+LT5zb2Z0d2FyZV9zaHV0ZG93bl90ZW1wID0gcG93ZXJwbGF5X3RhYmxlLQ0KPiA+dXNTb2Z0d2Fy
+ZVNodXRkb3duVGVtcDsNCj4gIAl0YWJsZV9jb250ZXh0LT50aGVybWFsX2NvbnRyb2xsZXJfdHlw
+ZSA9IHBvd2VycGxheV90YWJsZS0NCj4gPnVjVGhlcm1hbENvbnRyb2xsZXJUeXBlOw0KPiAgCXRh
+YmxlX2NvbnRleHQtPlREUE9ETGltaXQgPSBsZTMyX3RvX2NwdShwb3dlcnBsYXlfdGFibGUtDQo+
+ID5PdmVyRHJpdmU4VGFibGUuT0RTZXR0aW5nc01heFtBVE9NX1ZFR0EyMF9PRFNFVFRJTkdfUE9X
+RVJQRVINCj4gQ0VOVEFHRV0pOw0KPiANCj4gQEAgLTMyMzUsMzUgKzMyMzQsMjQgQEAgc3RhdGlj
+IGludCB2ZWdhMjBfc2V0X3dhdGVybWFya3NfdGFibGUoc3RydWN0DQo+IHNtdV9jb250ZXh0ICpz
+bXUsDQo+ICAJcmV0dXJuIDA7DQo+ICB9DQo+IA0KPiAtc3RhdGljIGNvbnN0IHN0cnVjdCBzbXVf
+dGVtcGVyYXR1cmVfcmFuZ2UgdmVnYTIwX3RoZXJtYWxfcG9saWN5W10gPSAtew0KPiAtCXstMjcz
+MTUwLCAgOTkwMDAsIDk5MDAwLCAtMjczMTUwLCA5OTAwMCwgOTkwMDAsIC0yNzMxNTAsIDk5MDAw
+LCA5OTAwMH0sDQo+IC0JeyAxMjAwMDAsIDEyMDAwMCwgMTIwMDAwLCAxMjAwMDAsIDEyMDAwMCwg
+MTIwMDAwLCAxMjAwMDAsIDEyMDAwMCwNCj4gMTIwMDAwfSwNCj4gLX07DQo+IC0NCj4gIHN0YXRp
+YyBpbnQgdmVnYTIwX2dldF90aGVybWFsX3RlbXBlcmF0dXJlX3JhbmdlKHN0cnVjdCBzbXVfY29u
+dGV4dA0KPiAqc211LA0KPiAgCQkJCQkJc3RydWN0DQo+IHNtdV90ZW1wZXJhdHVyZV9yYW5nZSpy
+YW5nZSkgIHsNCj4gLQ0KPiArCXN0cnVjdCBzbXVfdGFibGVfY29udGV4dCAqdGFibGVfY29udGV4
+dCA9ICZzbXUtPnNtdV90YWJsZTsNCj4gKwlBVE9NX1ZlZ2EyMF9QT1dFUlBMQVlUQUJMRSAqcG93
+ZXJwbGF5X3RhYmxlID0NCj4gK3RhYmxlX2NvbnRleHQtPnBvd2VyX3BsYXlfdGFibGU7DQo+ICAJ
+UFBUYWJsZV90ICpwcHRhYmxlID0gc211LT5zbXVfdGFibGUuZHJpdmVyX3BwdGFibGU7DQo+IA0K
+PiAtCWlmICghcmFuZ2UpDQo+ICsJaWYgKCFyYW5nZSB8fCAhcG93ZXJwbGF5X3RhYmxlKQ0KPiAg
+CQlyZXR1cm4gLUVJTlZBTDsNCj4gDQo+IC0JbWVtY3B5KHJhbmdlLCAmdmVnYTIwX3RoZXJtYWxf
+cG9saWN5WzBdLCBzaXplb2Yoc3RydWN0DQo+IHNtdV90ZW1wZXJhdHVyZV9yYW5nZSkpOw0KPiAt
+DQo+IC0JcmFuZ2UtPm1heCA9IHBwdGFibGUtPlRlZGdlTGltaXQgKg0KPiAtCQlTTVVfVEVNUEVS
+QVRVUkVfVU5JVFNfUEVSX0NFTlRJR1JBREVTOw0KPiAtCXJhbmdlLT5lZGdlX2VtZXJnZW5jeV9t
+YXggPSAocHB0YWJsZS0+VGVkZ2VMaW1pdCArDQo+IENURl9PRkZTRVRfRURHRSkgKg0KPiAtCQlT
+TVVfVEVNUEVSQVRVUkVfVU5JVFNfUEVSX0NFTlRJR1JBREVTOw0KPiAtCXJhbmdlLT5ob3RzcG90
+X2NyaXRfbWF4ID0gcHB0YWJsZS0+VGhvdHNwb3RMaW1pdCAqDQo+IC0JCVNNVV9URU1QRVJBVFVS
+RV9VTklUU19QRVJfQ0VOVElHUkFERVM7DQo+IC0JcmFuZ2UtPmhvdHNwb3RfZW1lcmdlbmN5X21h
+eCA9IChwcHRhYmxlLT5UaG90c3BvdExpbWl0ICsNCj4gQ1RGX09GRlNFVF9IT1RTUE9UKSAqDQo+
+IC0JCVNNVV9URU1QRVJBVFVSRV9VTklUU19QRVJfQ0VOVElHUkFERVM7DQo+IC0JcmFuZ2UtPm1l
+bV9jcml0X21heCA9IHBwdGFibGUtPlRoYm1MaW1pdCAqDQo+IC0JCVNNVV9URU1QRVJBVFVSRV9V
+TklUU19QRVJfQ0VOVElHUkFERVM7DQo+IC0JcmFuZ2UtPm1lbV9lbWVyZ2VuY3lfbWF4ID0gKHBw
+dGFibGUtPlRoYm1MaW1pdCArDQo+IENURl9PRkZTRVRfSEJNKSoNCj4gLQkJU01VX1RFTVBFUkFU
+VVJFX1VOSVRTX1BFUl9DRU5USUdSQURFUzsNCj4gKwkvKiBUaGUgdW5pdCBpcyB0ZW1wZXJhdHVy
+ZSAqLw0KPiArCXJhbmdlLT5taW4gPSAwOw0KPiArCXJhbmdlLT5tYXggPSBwb3dlcnBsYXlfdGFi
+bGUtPnVzU29mdHdhcmVTaHV0ZG93blRlbXA7DQo+ICsJcmFuZ2UtPmVkZ2VfZW1lcmdlbmN5X21h
+eCA9IChwcHRhYmxlLT5UZWRnZUxpbWl0ICsNCj4gQ1RGX09GRlNFVF9FREdFKTsNCj4gKwlyYW5n
+ZS0+aG90c3BvdF9jcml0X21heCA9IHBwdGFibGUtPlRob3RzcG90TGltaXQ7DQo+ICsJcmFuZ2Ut
+PmhvdHNwb3RfZW1lcmdlbmN5X21heCA9IChwcHRhYmxlLT5UaG90c3BvdExpbWl0ICsNCj4gQ1RG
+X09GRlNFVF9IT1RTUE9UKTsNCj4gKwlyYW5nZS0+bWVtX2NyaXRfbWF4ID0gcHB0YWJsZS0+VGhi
+bUxpbWl0Ow0KPiArCXJhbmdlLT5tZW1fZW1lcmdlbmN5X21heCA9IChwcHRhYmxlLT5UaGJtTGlt
+aXQgKw0KPiBDVEZfT0ZGU0VUX0hCTSk7DQo+IA0KPiANCj4gIAlyZXR1cm4gMDsNCj4gLS0NCj4g
+Mi4yMi4wDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXw0KPiBhbWQtZ2Z4IG1haWxpbmcgbGlzdA0KPiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZw0KPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ft
+ZC1nZngNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFt
+ZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
