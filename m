@@ -1,86 +1,75 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC97476B9A
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jul 2019 16:27:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD8E76BA1
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jul 2019 16:29:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF106ED8B;
-	Fri, 26 Jul 2019 14:27:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 140E06ED8F;
+	Fri, 26 Jul 2019 14:29:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690048.outbound.protection.outlook.com [40.107.69.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C7666ED8B
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jul 2019 14:27:35 +0000 (UTC)
+ (mail-eopbgr690088.outbound.protection.outlook.com [40.107.69.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E09BE6ED8F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jul 2019 14:29:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RKWrJfca0awv48AoMkvPyEKK/IN09whXRV+jYTDDH1kvrSpi1vdMc0Dc36qmfxRtJgIHdB5abNZQ8oLsPVuh2yie7HU3YyepZ/YQ9HYKPLnYmdZ92SwjqSejMB1rmhBcYB4alIgmpuq2DWMkPaPaFJj53OD70d4/KOLOPTP/OsrLoKPIZpEfq0brUf7i4Utr14xSF3YcbZo81S9JllEnlDNjNQraNWW14l+WDPceR9fYfzojpA9szM1+THrtVUnTGuLLYxwYFeC3ffrAGSIbWBazSsB/m1vI1MdU7p8+HuxEfclLbRO6OeyqCVOCPBJagzjtEHkMUeMFXJ529J1IgA==
+ b=l4+CHEx2UJeovZZ2gdalrmqGprPvUE6ITB6ax86zL3j5IpJ2NYO94VsF9LikKRgflWsWrp7b09RRG2JSARdzMyATlhdrkZPGswGY5VpnOjtemr75ZujqjY4bagJEzlhKMFRJgUGhwq/oUul5sAP9ai/teYBMtjAAjU+X9hzVBjbXgoDtnqDZSxpNWYNrgjRUVRGbRPsNTeUHYSNYk82ENVHgHk9hts4xkPOKV3bgdi5PbjTpAWxnMGJL7PqG7Av5ou460sSdDC4GSH8IH1h3/qPOSGZhiAEDAwoF3DmYpzVez7Y3kUoIjKF4koq69X0k0qudWvczj2XX/TXNA599rA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2sDB/nYMCtOxbIaxNMejrFVIL/M705ppYiZVmLhEyds=;
- b=VQzlSGFcP4/vU2B5p39tnnVECV80CcQYMMUggtCn45qw+XrzP5HQR1+bPuxL/EtZl9yQBjWmSs+R/KVn+16E56C/Mu6tAvnvSPBEqIAuqSX7DiS3TvWbYtbwagxDzgyrhszToHD6e7qUpwznorg8Toqq78XrHhqH9dLwu/mlfqVy1c2oKCPWz7bR3a2N/EmZwxs1JRV4hzYkpmR8LDQZ2wTe+hs4YRhGFUv7pMqfJkaloouNi8sYL35eIgy2yt5SwwEiWUZoXBM1dJ4P0BOHxUGRGvvy6qSmTfP4eVjwM1P9hIiVDiPp4MGRAb/FoaaOlYaquv1Os4lp8/eNodJMrQ==
+ bh=1pjnWCLfz6VNQSdiLRhPKvA+nCMdlF5r4P+5ZgMFMwk=;
+ b=GXgUqTjp+Ip/kmlTVYO1hTV/rM8w/5vNANJpUM24Wz4NJlpXA9SzhgbmTaLFjWJ2VX03XFhwzbnHc03pTYRbUlnKFeMVRI9kOqGV23y92mQZA5a884mBN8pqqwrWoO+m8xVrJ0HlwIDZ8VcTnGULtNnxiVe/2j4dZhFLcz4gUGQ64wazjPYmpntBAGikSTPTgjXBj/bq486KiHK20uECaRv9cn2DXudFFlGyk7zHrRjgSRRW1LdyvhiVZAW75wpkmf/HEQXSH96n9aGm47Gj8guoacANrEjeaDpG3MMl9wL3I3ZJ0uRDm3TK+ZtHBfnBvtRfe3gQpBaq5topfsmx1g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
  smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
  header.d=amd.com;arc=none
 Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
  BN6PR12MB1651.namprd12.prod.outlook.com (10.172.18.7) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2094.16; Fri, 26 Jul 2019 14:27:33 +0000
+ 15.20.2094.16; Fri, 26 Jul 2019 14:29:31 +0000
 Received: from BN6PR12MB1809.namprd12.prod.outlook.com
  ([fe80::b90e:dd82:7384:5b7b]) by BN6PR12MB1809.namprd12.prod.outlook.com
  ([fe80::b90e:dd82:7384:5b7b%11]) with mapi id 15.20.2094.013; Fri, 26 Jul
- 2019 14:27:33 +0000
+ 2019 14:29:31 +0000
 From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>, "StDenis, Tom"
- <Tom.StDenis@amd.com>, "Huang, Ray" <Ray.Huang@amd.com>, "Quan, Evan"
- <Evan.Quan@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
-Subject: Re: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature status
- function in smu
-Thread-Topic: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature status
- function in smu
-Thread-Index: AQHVQqdmKN41sX7zIUG9CyX4fGSKDKba+4aAgAAFgwCAAAQAgIAAAUcAgABGdOCAAAOtgIABTLYAgABaChg=
-Date: Fri, 26 Jul 2019 14:27:33 +0000
-Message-ID: <BN6PR12MB18093323D92A6EC4123E46BBF7C00@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <20190725051057.28862-1-kevin1.wang@amd.com>
- <20190725051057.28862-5-kevin1.wang@amd.com>
- <MN2PR12MB32966C19A3EF83A1E868B25CA2C10@MN2PR12MB3296.namprd12.prod.outlook.com>
- <MN2PR12MB334476A964852FD3B092B385E4C10@MN2PR12MB3344.namprd12.prod.outlook.com>
- <MN2PR12MB32968D539CA68CCE3E4AFFB6A2C10@MN2PR12MB3296.namprd12.prod.outlook.com>
- <MN2PR12MB33098222156F946AA7EABB26ECC10@MN2PR12MB3309.namprd12.prod.outlook.com>
- <BN6PR12MB1809E62D6BFE3224637F25D9F7C10@BN6PR12MB1809.namprd12.prod.outlook.com>,
- <f76aeb2d-01be-d629-72e9-a96f702a73e0@amd.com>,
- <BN8PR12MB3283A9239266F64A93F2E3DDA2C00@BN8PR12MB3283.namprd12.prod.outlook.com>
-In-Reply-To: <BN8PR12MB3283A9239266F64A93F2E3DDA2C00@BN8PR12MB3283.namprd12.prod.outlook.com>
+To: "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu: Fix amdgpu_display_supported_domains logic.
+Thread-Topic: [PATCH] drm/amdgpu: Fix amdgpu_display_supported_domains logic.
+Thread-Index: AQHVQ7YaEZ8ScgoSrkC1uMtnkBqn06bc9ZbO
+Date: Fri, 26 Jul 2019 14:29:31 +0000
+Message-ID: <BN6PR12MB1809FAA22170477E1BE42CBFF7C00@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <1564147692-13880-1-git-send-email-andrey.grodzovsky@amd.com>
+In-Reply-To: <1564147692-13880-1-git-send-email-andrey.grodzovsky@amd.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [71.51.160.180]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e7945d50-9cc7-4c6a-8323-08d711d56629
+x-ms-office365-filtering-correlation-id: 8c9c4055-9ba2-4ccd-ead7-08d711d5ac44
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
  SRVR:BN6PR12MB1651; 
 x-ms-traffictypediagnostic: BN6PR12MB1651:
-x-microsoft-antispam-prvs: <BN6PR12MB165171A8AE41CA94D60C1D9EF7C00@BN6PR12MB1651.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3968;
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <BN6PR12MB16512213A72792BBFC083684F7C00@BN6PR12MB1651.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-forefront-prvs: 01106E96F6
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(39860400002)(376002)(136003)(346002)(366004)(199004)(189003)(316002)(19627405001)(6506007)(229853002)(81156014)(53936002)(105004)(102836004)(68736007)(8936002)(53546011)(110136005)(25786009)(55016002)(9686003)(81166006)(446003)(8676002)(86362001)(30864003)(478600001)(236005)(54896002)(33656002)(486006)(11346002)(14454004)(186003)(2906002)(2501003)(76176011)(476003)(6636002)(6116002)(64756008)(66476007)(66446008)(256004)(26005)(66946007)(4326008)(3846002)(7736002)(53946003)(5660300002)(71190400001)(74316002)(7696005)(6246003)(71200400001)(99286004)(6436002)(66556008)(66066001)(76116006)(52536014)(14444005)(921003)(1121003)(569006);
+ SFS:(10009020)(979002)(4636009)(39850400004)(396003)(376002)(136003)(346002)(366004)(199004)(189003)(316002)(19627405001)(6506007)(229853002)(81156014)(53936002)(105004)(102836004)(68736007)(8936002)(53546011)(110136005)(25786009)(55016002)(9686003)(81166006)(446003)(8676002)(86362001)(478600001)(236005)(54896002)(33656002)(486006)(11346002)(14454004)(186003)(2906002)(2501003)(76176011)(476003)(6116002)(64756008)(66476007)(54906003)(966005)(66446008)(256004)(26005)(66946007)(4326008)(3846002)(7736002)(6306002)(5660300002)(71190400001)(74316002)(7696005)(6246003)(606006)(71200400001)(99286004)(6436002)(66556008)(66066001)(76116006)(52536014)(14444005)(969003)(989001)(999001)(1009001)(1019001);
  DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1651;
  H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: MFBxY8DvzrXfugA7aNMO/1q1Qnrk4OLq5F1hUm5cQkJbzyyZAJowjaQI+v2fibeD+husdIrieLpcxMDMX3G1ytPSCc8Jsvr4JOA+MhR88bDop32FyMTwD6mtLZpw6KjqwhvR4p0gVJyqkI3EGdi17wu5wHCSHyr7pcUNwhTgdK/LueeQkk9mDd1UUeJWsGl4xgC2+dvPlC5oFku3gQzGGMsEjgOEZlK99JpreHUCcbvH41hHs9j5k+SpAgeFTh06OhLWEHZ4wpQwJdRWCFp5pQeOwk8thYqfUZ3irDvmyB1DHPojl73K2lv8UhH3z3hbPkCLQ8/23MZhpj+vTf5ZFtGl6IKrmP4hrz9FynYXDTdHNtTZT5EX7CS6KWSs2+QkTWotJbKbAH8CT7CSs3uOEKhrmCe5ZKbCn0gGaJat4H4=
+x-microsoft-antispam-message-info: gHXC/dNQavix9dg5RBYMAFbnJJUOryusatxSRzLhMFi/HXlOL0D1EGW0QFNSv7SNdRlG/AP6g3mr0FXLqFYnjWNZ8/8ptHnnGBnSoOltwLQ2WON+5q7CevMr3XPVGTGFkwA8EoDYOt5xUrO0AlByJY5Cu0N1rcdCDB1nPJku+g2l99aR6Axfw25syYIuIx7GJzSbO7bZM08XKHEnfAlZJZzL6DS8X3qlznRTAxrSbpmP7/JU/nTrqmRgH/1ADqdix06F6Wk25SP3pab5xxm7T9pIo0KTgf1fqouUilOrORF9Utuq9GG9mk96O47q/YXNW2x/PcvOKjgw2PND9zmzt6YAwQhw8RDEclTWV+JzZ8+30KzLdJ03cTBoX568U0UxgVfPFe3kcSheeSNBIeri7itzxQ3eQnDWb6VmwvyrnFg=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7945d50-9cc7-4c6a-8323-08d711d56629
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2019 14:27:33.3838 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c9c4055-9ba2-4ccd-ead7-08d711d5ac44
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2019 14:29:31.0799 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
@@ -89,8 +78,8 @@ X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1651
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2sDB/nYMCtOxbIaxNMejrFVIL/M705ppYiZVmLhEyds=;
- b=xkqzo0u2jaPpjoWUt4Ok5Qjdh6tn2BYPQjOBk/a/drWF/uJv9EfFIB2Ncd5WBM2McKzxVf3LFDwU1eDQYfvN8xbfWIsGKupYcbTPUMoEMtkMrwUA8TuFw1RtcGAwBz4jFE8Z94y15y/u81vXJHifJrbrImsIC6QNl2m9E6e/Gho=
+ bh=1pjnWCLfz6VNQSdiLRhPKvA+nCMdlF5r4P+5ZgMFMwk=;
+ b=MLSClF5tTVKJKOF5UdtyhSTWaA1TGXG1VCvWSBp59fP4ZJuJx4Q5dS/8vYD84ZXsjLEb31yYHzDLJITYKjyl0ih0fcu08NtvVQKEbvx8YTag5m3tZ3EwEeerstrwozFOgWa9OMXqW+fgzHEC87R3h4kzVVASKQeiNO9gmqOn6h4=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -104,2374 +93,537 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-Content-Type: multipart/mixed; boundary="===============0874468739=="
+Cc: "michel@daenzer.net" <michel@daenzer.net>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>, "S, Shirish" <Shirish.S@amd.com>
+Content-Type: multipart/mixed; boundary="===============0352988890=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0874468739==
+--===============0352988890==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB18093323D92A6EC4123E46BBF7C00BN6PR12MB1809namp_"
+	boundary="_000_BN6PR12MB1809FAA22170477E1BE42CBFF7C00BN6PR12MB1809namp_"
 
---_000_BN6PR12MB18093323D92A6EC4123E46BBF7C00BN6PR12MB1809namp_
-Content-Type: text/plain; charset="Windows-1252"
+--_000_BN6PR12MB1809FAA22170477E1BE42CBFF7C00BN6PR12MB1809namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Sure.
-
-Alex
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 ________________________________
-From: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
-Sent: Friday, July 26, 2019 5:05 AM
-To: StDenis, Tom <Tom.StDenis@amd.com>; Deucher, Alexander <Alexander.Deuch=
-er@amd.com>; Huang, Ray <Ray.Huang@amd.com>; Quan, Evan <Evan.Quan@amd.com>=
-; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Zhang, Haw=
-king <Hawking.Zhang@amd.com>
-Cc: Feng, Kenneth <Kenneth.Feng@amd.com>
-Subject: Re: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature status f=
-unction in smu
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Andrey G=
+rodzovsky <andrey.grodzovsky@amd.com>
+Sent: Friday, July 26, 2019 9:28 AM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Grodzovsky, Andrey <And=
+rey.Grodzovsky@amd.com>; michel@daenzer.net <michel@daenzer.net>; Koenig, C=
+hristian <Christian.Koenig@amd.com>; S, Shirish <Shirish.S@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix amdgpu_display_supported_domains logic.
 
-@Deucher, Alexander<mailto:Alexander.Deucher@amd.com>
+Add restriction to dissallow GTT domain if the relevant BO
+doesn't have USWC flag set to avoid the APU hang scenario.
 
-Hi Alex,
+Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c       | 16 +++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.h       |  3 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c            | 12 ++++++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c           |  2 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +-
+ 6 files changed, 22 insertions(+), 15 deletions(-)
 
-it seems not application will use this sysfs, can we rename it from "ppfeat=
-ures" to "pp_features"?
-this patch sets is pending.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_display.c
+index 73045a3..4a8b1b1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -189,7 +189,8 @@ int amdgpu_display_crtc_page_flip_target(struct drm_crt=
+c *crtc,
+         }
 
-Best Regards,
-Kevin
-________________________________
-From: StDenis, Tom <Tom.StDenis@amd.com>
-Sent: Thursday, July 25, 2019 9:14 PM
-To: Deucher, Alexander <Alexander.Deucher@amd.com>; Huang, Ray <Ray.Huang@a=
-md.com>; Wang, Kevin(Yang) <Kevin1.Wang@amd.com>; Quan, Evan <Evan.Quan@amd=
-.com>; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Zhang=
-, Hawking <Hawking.Zhang@amd.com>
-Cc: Feng, Kenneth <Kenneth.Feng@amd.com>
-Subject: Re: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature status f=
-unction in smu
+         if (!adev->enable_virtual_display) {
+-               r =3D amdgpu_bo_pin(new_abo, amdgpu_display_supported_domai=
+ns(adev));
++               r =3D amdgpu_bo_pin(new_abo,
++                                 amdgpu_display_supported_domains(adev, ne=
+w_abo->flags));
+                 if (unlikely(r !=3D 0)) {
+                         DRM_ERROR("failed to pin new abo buffer before fli=
+p\n");
+                         goto unreserve;
+@@ -493,20 +494,25 @@ static const struct drm_framebuffer_funcs amdgpu_fb_f=
+uncs =3D {
+         .create_handle =3D drm_gem_fb_create_handle,
+ };
 
-No it doesn't.  We get clocks for --top from the sensors interface.
+-uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev)
++uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
++                                         uint64_t bo_flags)
+ {
+         uint32_t domain =3D AMDGPU_GEM_DOMAIN_VRAM;
 
+ #if defined(CONFIG_DRM_AMD_DC)
+         /*
+-        * if amdgpu_bo_validate_uswc returns false it means that USWC mapp=
+ings
++        * if amdgpu_bo_support_uswc returns false it means that USWC mappi=
+ngs
+          * is not supported for this board. But this mapping is required
+          * to avoid hang caused by placement of scanout BO in GTT on certa=
+in
+          * APUs. So force the BO placement to VRAM in case this architectu=
+re
+          * will not allow USWC mappings.
++        * Also, don't allow GTT domain if the BO doens't have USWC falg se=
+t.
+          */
+-       if (adev->asic_type >=3D CHIP_CARRIZO && adev->asic_type <=3D CHIP_=
+RAVEN &&
+-           adev->flags & AMD_IS_APU && amdgpu_bo_support_uswc(0) &&
++       if (adev->asic_type >=3D CHIP_CARRIZO &&
++           adev->asic_type <=3D CHIP_RAVEN &&
++           (adev->flags & AMD_IS_APU) &&
++           (bo_flags & AMDGPU_GEM_CREATE_CPU_GTT_USWC) &&
++           amdgpu_bo_support_uswc(bo_flags) &&
+             amdgpu_device_asic_has_dc_support(adev->asic_type))
+                 domain |=3D AMDGPU_GEM_DOMAIN_GTT;
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_display.h
+index 06b922f..3620b24 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h
+@@ -38,7 +38,8 @@
+ int amdgpu_display_freesync_ioctl(struct drm_device *dev, void *data,
+                                   struct drm_file *filp);
+ void amdgpu_display_update_priority(struct amdgpu_device *adev);
+-uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev);
++uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
++                                         uint64_t bo_flags);
+ struct drm_framebuffer *
+ amdgpu_display_user_framebuffer_create(struct drm_device *dev,
+                                        struct drm_file *file_priv,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_dma_buf.c
+index 4711cf1..6770eb3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+@@ -301,7 +301,7 @@ static int amdgpu_dma_buf_begin_cpu_access(struct dma_b=
+uf *dma_buf,
+         struct amdgpu_bo *bo =3D gem_to_amdgpu_bo(dma_buf->priv);
+         struct amdgpu_device *adev =3D amdgpu_ttm_adev(bo->tbo.bdev);
+         struct ttm_operation_ctx ctx =3D { true, false };
+-       u32 domain =3D amdgpu_display_supported_domains(adev);
++       u32 domain =3D amdgpu_display_supported_domains(adev, bo->flags);
+         int ret;
+         bool reads =3D (direction =3D=3D DMA_BIDIRECTIONAL ||
+                       direction =3D=3D DMA_FROM_DEVICE);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c b/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_fb.c
+index bf0c61b..4a6f29e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
+@@ -130,21 +130,21 @@ static int amdgpufb_create_pinned_object(struct amdgp=
+u_fbdev *rfbdev,
+         int aligned_size, size;
+         int height =3D mode_cmd->height;
+         u32 cpp;
++       u64 flags =3D AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED |
++                              AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS     |
++                              AMDGPU_GEM_CREATE_VRAM_CLEARED          |
++                              AMDGPU_GEM_CREATE_CPU_GTT_USWC;
 
-On 2019-07-25 9:01 a.m., Deucher, Alexander wrote:
-> Tom, does umr use it?
->
-> Alex
-> ------------------------------------------------------------------------
-> *From:* Huang, Ray <Ray.Huang@amd.com>
-> *Sent:* Thursday, July 25, 2019 4:49 AM
-> *To:* Wang, Kevin(Yang) <Kevin1.Wang@amd.com>; Quan, Evan
-> <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org
-> <amd-gfx@lists.freedesktop.org>; Zhang, Hawking
-> <Hawking.Zhang@amd.com>; Deucher, Alexander <Alexander.Deucher@amd.com>
-> *Cc:* Feng, Kenneth <Kenneth.Feng@amd.com>
-> *Subject:* RE: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature
-> status function in smu
->
-> Any other user mode tool use the =93ppfeature=94 sysfs interface?
->
-> Thanks,
->
-> Ray
->
-> *From:* Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
-> *Sent:* Thursday, July 25, 2019 4:44 PM
-> *To:* Quan, Evan <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org;
-> Zhang, Hawking <Hawking.Zhang@amd.com>; Deucher, Alexander
-> <Alexander.Deucher@amd.com>
-> *Cc:* Huang, Ray <Ray.Huang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com=
->
-> *Subject:* Re: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature
-> status function in smu
->
-> in fact, i don't want to change this sysfs name from "ppfeatures" to
-> "pp_features",
->
-> but it seems that don't have same name format with other pp sysfs node.
->
-> the other powerplay sysfs name have "pp_" prefix, i think we'd better
-> to change it name to "pp_features"
->
-> eg:
->
-> pp_cur_state    pp_dpm_fclk  pp_dpm_pcie  pp_dpm_socclk
->  pp_force_state  pp_num_states  pp_sclk_od
-> pp_dpm_dcefclk  pp_dpm_mclk  pp_dpm_sclk  pp_features    pp_mclk_od
->    pp_power_profile_mode  pp_table
->
-> @Deucher, Alexander <mailto:Alexander.Deucher@amd.com> @Zhang, Hawking
-> <mailto:Hawking.Zhang@amd.com>
->
-> Could you give us some idea about it,
->
-> Thanks.
->
-> Best Regards,
-> Kevin
->
-> ------------------------------------------------------------------------
->
-> *From:*Quan, Evan <Evan.Quan@amd.com <mailto:Evan.Quan@amd.com>>
-> *Sent:* Thursday, July 25, 2019 4:30 PM
-> *To:* Wang, Kevin(Yang) <Kevin1.Wang@amd.com
-> <mailto:Kevin1.Wang@amd.com>>; amd-gfx@lists.freedesktop.org
-> <mailto:amd-gfx@lists.freedesktop.org> <amd-gfx@lists.freedesktop.org
-> <mailto:amd-gfx@lists.freedesktop.org>>
-> *Cc:* Deucher, Alexander <Alexander.Deucher@amd.com
-> <mailto:Alexander.Deucher@amd.com>>; Huang, Ray <Ray.Huang@amd.com
-> <mailto:Ray.Huang@amd.com>>; Feng, Kenneth <Kenneth.Feng@amd.com
-> <mailto:Kenneth.Feng@amd.com>>
-> *Subject:* RE: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature
-> status function in smu
->
-> To keep backward compatibility, we cannot change the sysfs file naming.
->
-> But it=92s a good idea to summarize these as common APIs.
->
-> Regards,
->
-> Evan
->
-> *From:* amd-gfx <amd-gfx-bounces@lists.freedesktop.org
-> <mailto:amd-gfx-bounces@lists.freedesktop.org>> *On Behalf Of *Wang,
-> Kevin(Yang)
-> *Sent:* Thursday, July 25, 2019 4:10 PM
-> *To:* amd-gfx@lists.freedesktop.org <mailto:amd-gfx@lists.freedesktop.org=
->
-> *Cc:* Deucher, Alexander <Alexander.Deucher@amd.com
-> <mailto:Alexander.Deucher@amd.com>>; Huang, Ray <Ray.Huang@amd.com
-> <mailto:Ray.Huang@amd.com>>; Feng, Kenneth <Kenneth.Feng@amd.com
-> <mailto:Kenneth.Feng@amd.com>>
-> *Subject:* Re: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature
-> status function in smu
->
-> add sample data from sysfs pp_features with this patch.
->
-> print format:
->
-> index. feature name (Hardware Message ID): state
->
-> /sudo find /sys -name "pp_features" -exec cat {} \;/
->
-> features high: 0x00000623 low: 0xb3cdaffb
->
-> 00. DPM_PREFETCHER       ( 0) : enabeld
->
-> 01. DPM_GFXCLK           ( 1) : enabeld
->
-> 02. DPM_UCLK             ( 3) : enabeld
->
-> 03. DPM_SOCCLK           ( 4) : enabeld
->
-> 04. DPM_MP0CLK           ( 5) : enabeld
->
-> 05. DPM_LINK             ( 6) : enabeld
->
-> 06. DPM_DCEFCLK          ( 7) : enabeld
->
-> 07. DS_GFXCLK            (10) : enabeld
->
-> 08. DS_SOCCLK            (11) : enabeld
->
-> 09. DS_LCLK              (12) : disabled
->
-> 10. PPT                (23) : enabeld
->
-> 11. TDC                (24) : enabeld
->
-> 12. THERMAL              (33) : enabeld
->
-> 13. RM                 (35) : disabled
->
-> 14. DS_DCEFCLK           (13) : enabeld
->
-> 15. ACDC                 (28) : enabeld
->
-> 16. VR0HOT               (29) : enabeld
->
-> 17. VR1HOT               (30) : disabled
->
-> 18. FW_CTF               (31) : enabeld
->
-> 19. LED_DISPLAY          (36) : disabled
->
-> 20. FAN_CONTROL          (32) : enabeld
->
-> 21. GFX_EDC              (25) : enabeld
->
-> 22. GFXOFF               (17) : disabled
->
-> 23. DPM_GFX_PACE         ( 2) : disabled
->
-> 24. MEM_VDDCI_SCALING    ( 8) : enabeld
->
-> 25. MEM_MVDD_SCALING     ( 9) : enabeld
->
-> 26. DS_UCLK              (14) : disabled
->
-> 27. GFX_ULV              (15) : enabeld
->
-> 28. FW_DSTATE            (16) : enabeld
->
-> 29. BACO                 (18) : enabeld
->
-> 30. VCN_PG               (19) : enabeld
->
-> 31. JPEG_PG              (20) : disabled
->
-> 32. USB_PG               (21) : disabled
->
-> 33. RSMU_SMN_CG          (22) : enabeld
->
-> 34. APCC_PLUS            (26) : disabled
->
-> 35. GTHR                 (27) : disabled
->
-> 36. GFX_DCS              (34) : disabled
->
-> 37. GFX_SS               (37) : enabeld
->
-> 38. OUT_OF_BAND_MONITOR  (38) : disabled
->
-> 39. TEMP_DEPENDENT_VMIN  (39) : disabled
->
-> 40. MMHUB_PG             (40) : disabled
->
-> 41. ATHUB_PG             (41) : enabeld
->
-> ------------------------------------------------------------------------
->
-> *From:*Wang, Kevin(Yang) <Kevin1.Wang@amd.com
-> <mailto:Kevin1.Wang@amd.com>>
-> *Sent:* Thursday, July 25, 2019 1:11 PM
-> *To:* amd-gfx@lists.freedesktop.org
-> <mailto:amd-gfx@lists.freedesktop.org> <amd-gfx@lists.freedesktop.org
-> <mailto:amd-gfx@lists.freedesktop.org>>
-> *Cc:* Feng, Kenneth <Kenneth.Feng@amd.com
-> <mailto:Kenneth.Feng@amd.com>>; Huang, Ray <Ray.Huang@amd.com
-> <mailto:Ray.Huang@amd.com>>; Deucher, Alexander
-> <Alexander.Deucher@amd.com <mailto:Alexander.Deucher@amd.com>>; Wang,
-> Kevin(Yang) <Kevin1.Wang@amd.com <mailto:Kevin1.Wang@amd.com>>
-> *Subject:* [PATCH 5/5] drm/amd/powerplay: implment sysfs feature
-> status function in smu
->
-> 1. Unified feature enable status format in sysfs
-> 2. Rename ppfeature to pp_features to adapt other pp sysfs node name
-> 3. this function support all asic, not asic related function.
->
-> Signed-off-by: Kevin Wang <kevin1.wang@amd.com
-> <mailto:kevin1.wang@amd.com>>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c |  24 +--
->  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c |  61 +++++++
->  .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h |   8 +-
->  drivers/gpu/drm/amd/powerplay/navi10_ppt.c    | 165 ------------------
->  drivers/gpu/drm/amd/powerplay/vega20_ppt.c    | 153 ----------------
->  5 files changed, 75 insertions(+), 336 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-> index 866097d5cf26..9e8e8a65d9bf 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-> @@ -788,10 +788,10 @@ static ssize_t
-> amdgpu_get_pp_od_clk_voltage(struct device *dev,
->  }
->
->  /**
-> - * DOC: ppfeatures
-> + * DOC: pp_features
->   *
->   * The amdgpu driver provides a sysfs API for adjusting what powerplay
-> - * features to be enabled. The file ppfeatures is used for this. And
-> + * features to be enabled. The file pp_features is used for this. And
->   * this is only available for Vega10 and later dGPUs.
->   *
->   * Reading back the file will show you the followings:
-> @@ -803,7 +803,7 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(struct
-> device *dev,
->   * the corresponding bit from original ppfeature masks and input the
->   * new ppfeature masks.
->   */
-> -static ssize_t amdgpu_set_ppfeature_status(struct device *dev,
-> +static ssize_t amdgpu_set_pp_feature_status(struct device *dev,
->                  struct device_attribute *attr,
->                  const char *buf,
->                  size_t count)
-> @@ -820,7 +820,7 @@ static ssize_t amdgpu_set_ppfeature_status(struct
-> device *dev,
->          pr_debug("featuremask =3D 0x%llx\n", featuremask);
->
->          if (is_support_sw_smu(adev)) {
-> -               ret =3D smu_set_ppfeature_status(&adev->smu, featuremask)=
-;
-> +               ret =3D smu_sys_set_pp_feature_mask(&adev->smu,
-> featuremask);
->                  if (ret)
->                          return -EINVAL;
->          } else if (adev->powerplay.pp_funcs->set_ppfeature_status) {
-> @@ -832,7 +832,7 @@ static ssize_t amdgpu_set_ppfeature_status(struct
-> device *dev,
->          return count;
->  }
->
-> -static ssize_t amdgpu_get_ppfeature_status(struct device *dev,
-> +static ssize_t amdgpu_get_pp_feature_status(struct device *dev,
->                  struct device_attribute *attr,
->                  char *buf)
->  {
-> @@ -840,7 +840,7 @@ static ssize_t amdgpu_get_ppfeature_status(struct
-> device *dev,
->          struct amdgpu_device *adev =3D ddev->dev_private;
->
->          if (is_support_sw_smu(adev)) {
-> -               return smu_get_ppfeature_status(&adev->smu, buf);
-> +               return smu_sys_get_pp_feature_mask(&adev->smu, buf);
->          } else if (adev->powerplay.pp_funcs->get_ppfeature_status)
->                  return amdgpu_dpm_get_ppfeature_status(adev, buf);
->
-> @@ -1500,9 +1500,9 @@ static DEVICE_ATTR(gpu_busy_percent, S_IRUGO,
->  static DEVICE_ATTR(mem_busy_percent, S_IRUGO,
->                  amdgpu_get_memory_busy_percent, NULL);
->  static DEVICE_ATTR(pcie_bw, S_IRUGO, amdgpu_get_pcie_bw, NULL);
-> -static DEVICE_ATTR(ppfeatures, S_IRUGO | S_IWUSR,
-> -               amdgpu_get_ppfeature_status,
-> -               amdgpu_set_ppfeature_status);
-> +static DEVICE_ATTR(pp_features, S_IRUGO | S_IWUSR,
-> +               amdgpu_get_pp_feature_status,
-> +               amdgpu_set_pp_feature_status);
->  static DEVICE_ATTR(unique_id, S_IRUGO, amdgpu_get_unique_id, NULL);
->
->  static ssize_t amdgpu_hwmon_show_temp(struct device *dev,
-> @@ -2960,10 +2960,10 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device
-> *adev)
->          if ((adev->asic_type >=3D CHIP_VEGA10) &&
->              !(adev->flags & AMD_IS_APU)) {
->                  ret =3D device_create_file(adev->dev,
-> - &dev_attr_ppfeatures);
-> + &dev_attr_pp_features);
->                  if (ret) {
->                          DRM_ERROR("failed to create device file "
-> - "ppfeatures\n");
-> + "pp_features\n");
->                          return ret;
->                  }
->          }
-> @@ -3017,7 +3017,7 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device
-> *adev)
-> device_remove_file(adev->dev, &dev_attr_unique_id);
->          if ((adev->asic_type >=3D CHIP_VEGA10) &&
->              !(adev->flags & AMD_IS_APU))
-> -               device_remove_file(adev->dev, &dev_attr_ppfeatures);
-> +               device_remove_file(adev->dev, &dev_attr_pp_features);
->  }
->
->  void amdgpu_pm_compute_clocks(struct amdgpu_device *adev)
-> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> index e881de955388..90833ff2fe00 100644
-> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> @@ -55,6 +55,67 @@ const char *smu_get_feature_name(struct smu_context
-> *smu, enum smu_feature_mask
->          return __smu_feature_names[feature];
->  }
->
-> +size_t smu_sys_get_pp_feature_mask(struct smu_context *smu, char *buf)
-> +{
-> +       size_t size =3D 0;
-> +       int ret =3D 0, i =3D 0;
-> +       uint32_t feature_mask[2] =3D { 0 };
-> +       int32_t feature_index =3D 0;
-> +       uint32_t count =3D 0;
-> +
-> +       ret =3D smu_feature_get_enabled_mask(smu, feature_mask, 2);
-> +       if (ret)
-> +               goto failed;
-> +
-> +       size =3D  sprintf(buf + size, "features high: 0x%08x low: 0x%08x\=
-n",
-> +                       feature_mask[1], feature_mask[0]);
-> +
-> +       for (i =3D 0; i < SMU_FEATURE_COUNT; i++) {
-> +               feature_index =3D smu_feature_get_index(smu, i);
-> +               if (feature_index < 0)
-> +                       continue;
-> +               size +=3D sprintf(buf + size, "%02d. %-20s (%2d) : %s\n",
-> +                              count++,
-> + smu_get_feature_name(smu, i),
-> +                              feature_index,
-> + !!smu_feature_is_enabled(smu, i) ? "enabeld" : "disabled");
-> +       }
-> +
-> +failed:
-> +       return size;
-> +}
-> +
-> +int smu_sys_set_pp_feature_mask(struct smu_context *smu, uint64_t
-> new_mask)
-> +{
-> +       int ret =3D 0;
-> +       uint32_t feature_mask[2] =3D { 0 };
-> +       uint64_t feature_2_enabled =3D 0;
-> +       uint64_t feature_2_disabled =3D 0;
-> +       uint64_t feature_enables =3D 0;
-> +
-> +       ret =3D smu_feature_get_enabled_mask(smu, feature_mask, 2);
-> +       if (ret)
-> +               return ret;
-> +
-> +       feature_enables =3D ((uint64_t)feature_mask[1] << 32 |
-> (uint64_t)feature_mask[0]);
-> +
-> +       feature_2_enabled  =3D ~feature_enables & new_mask;
-> +       feature_2_disabled =3D feature_enables & ~new_mask;
-> +
-> +       if (feature_2_enabled) {
-> +               ret =3D smu_feature_update_enable_state(smu,
-> feature_2_enabled, true);
-> +               if (ret)
-> +                       ret;
-> +       }
-> +       if (feature_2_disabled) {
-> +               ret =3D smu_feature_update_enable_state(smu,
-> feature_2_disabled, false);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       return ret;
-> +}
-> +
->  int smu_get_smc_version(struct smu_context *smu, uint32_t
-> *if_version, uint32_t *smu_version)
->  {
->          int ret =3D 0;
-> diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-> b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-> index abc2644b4c07..ac9e9d5d8a5c 100644
-> --- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-> +++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-> @@ -432,8 +432,6 @@ struct pptable_funcs {
->                                        uint32_t *mclk_mask,
->                                        uint32_t *soc_mask);
->          int (*set_cpu_power_state)(struct smu_context *smu);
-> -       int (*set_ppfeature_status)(struct smu_context *smu, uint64_t
-> ppfeatures);
-> -       int (*get_ppfeature_status)(struct smu_context *smu, char *buf);
->          bool (*is_dpm_running)(struct smu_context *smu);
->          int (*tables_init)(struct smu_context *smu, struct smu_table
-> *tables);
->          int (*set_thermal_fan_table)(struct smu_context *smu);
-> @@ -713,10 +711,6 @@ struct smu_funcs
-> ((smu)->ppt_funcs->dpm_set_vce_enable ?
-> (smu)->ppt_funcs->dpm_set_vce_enable((smu), (enable)) : 0)
->  #define smu_set_xgmi_pstate(smu, pstate) \
-> ((smu)->funcs->set_xgmi_pstate ? (smu)->funcs->set_xgmi_pstate((smu),
-> (pstate)) : 0)
-> -#define smu_set_ppfeature_status(smu, ppfeatures) \
-> - ((smu)->ppt_funcs->set_ppfeature_status ?
-> (smu)->ppt_funcs->set_ppfeature_status((smu), (ppfeatures)) : -EINVAL)
-> -#define smu_get_ppfeature_status(smu, buf) \
-> - ((smu)->ppt_funcs->get_ppfeature_status ?
-> (smu)->ppt_funcs->get_ppfeature_status((smu), (buf)) : -EINVAL)
->  #define smu_set_watermarks_table(smu, tab, clock_ranges) \
-> ((smu)->ppt_funcs->set_watermarks_table ?
-> (smu)->ppt_funcs->set_watermarks_table((smu), (tab), (clock_ranges)) : 0)
->  #define smu_get_current_clk_freq_by_table(smu, clk_type, value) \
-> @@ -804,5 +798,7 @@ bool smu_clk_dpm_is_enabled(struct smu_context
-> *smu, enum smu_clk_type clk_type)
->  int smu_feature_update_enable_state(struct smu_context *smu, uint64_t
-> feature_mask, bool enabled);
->  const char *smu_get_message_name(struct smu_context *smu, enum
-> smu_message_type type);
->  const char *smu_get_feature_name(struct smu_context *smu, enum
-> smu_feature_mask feature);
-> +size_t smu_sys_get_pp_feature_mask(struct smu_context *smu, char *buf);
-> +int smu_sys_set_pp_feature_mask(struct smu_context *smu, uint64_t
-> new_mask);
->
->  #endif
-> diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> index c873228bf05f..cd0920093a5e 100644
-> --- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> +++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> @@ -1422,169 +1422,6 @@ static int navi10_get_uclk_dpm_states(struct
-> smu_context *smu, uint32_t *clocks_
->          return 0;
->  }
->
-> -static int navi10_get_ppfeature_status(struct smu_context *smu,
-> -                                      char *buf)
-> -{
-> -       static const char *ppfeature_name[] =3D {
-> - "DPM_PREFETCHER",
-> -                               "DPM_GFXCLK",
-> -                               "DPM_GFX_PACE",
-> -                               "DPM_UCLK",
-> -                               "DPM_SOCCLK",
-> -                               "DPM_MP0CLK",
-> -                               "DPM_LINK",
-> -                               "DPM_DCEFCLK",
-> - "MEM_VDDCI_SCALING",
-> - "MEM_MVDD_SCALING",
-> -                               "DS_GFXCLK",
-> -                               "DS_SOCCLK",
-> -                               "DS_LCLK",
-> -                               "DS_DCEFCLK",
-> -                               "DS_UCLK",
-> -                               "GFX_ULV",
-> -                               "FW_DSTATE",
-> -                               "GFXOFF",
-> -                               "BACO",
-> -                               "VCN_PG",
-> -                               "JPEG_PG",
-> -                               "USB_PG",
-> -                               "RSMU_SMN_CG",
-> -                               "PPT",
-> -                               "TDC",
-> -                               "GFX_EDC",
-> -                               "APCC_PLUS",
-> -                               "GTHR",
-> -                               "ACDC",
-> -                               "VR0HOT",
-> -                               "VR1HOT",
-> -                               "FW_CTF",
-> -                               "FAN_CONTROL",
-> -                               "THERMAL",
-> -                               "GFX_DCS",
-> -                               "RM",
-> -                               "LED_DISPLAY",
-> -                               "GFX_SS",
-> - "OUT_OF_BAND_MONITOR",
-> - "TEMP_DEPENDENT_VMIN",
-> -                               "MMHUB_PG",
-> -                               "ATHUB_PG"};
-> -       static const char *output_title[] =3D {
-> -                               "FEATURES",
-> -                               "BITMASK",
-> -                               "ENABLEMENT"};
-> -       uint64_t features_enabled;
-> -       uint32_t feature_mask[2];
-> -       int i;
-> -       int ret =3D 0;
-> -       int size =3D 0;
-> -
-> -       ret =3D smu_feature_get_enabled_mask(smu, feature_mask, 2);
-> -       PP_ASSERT_WITH_CODE(!ret,
-> -                       "[GetPPfeatureStatus] Failed to get enabled
-> smc features!",
-> -                       return ret);
-> -       features_enabled =3D (uint64_t)feature_mask[0] |
-> - (uint64_t)feature_mask[1] << 32;
-> -
-> -       size +=3D sprintf(buf + size, "Current ppfeatures: 0x%016llx\n",
-> features_enabled);
-> -       size +=3D sprintf(buf + size, "%-19s %-22s %s\n",
-> -                               output_title[0],
-> -                               output_title[1],
-> - output_title[2]);
-> -       for (i =3D 0; i < (sizeof(ppfeature_name) /
-> sizeof(ppfeature_name[0])); i++) {
-> -               size +=3D sprintf(buf + size, "%-19s 0x%016llx %6s\n",
-> - ppfeature_name[i],
-> -                                       1ULL << i,
-> - (features_enabled & (1ULL << i)) ? "Y" : "N");
-> -       }
-> -
-> -       return size;
-> -}
-> -
-> -static int navi10_enable_smc_features(struct smu_context *smu,
-> -                                     bool enabled,
-> -                                     uint64_t feature_masks)
-> -{
-> -       struct smu_feature *feature =3D &smu->smu_feature;
-> -       uint32_t feature_low, feature_high;
-> -       uint32_t feature_mask[2];
-> -       int ret =3D 0;
-> -
-> -       feature_low =3D (uint32_t)(feature_masks & 0xFFFFFFFF);
-> -       feature_high =3D (uint32_t)((feature_masks &
-> 0xFFFFFFFF00000000ULL) >> 32);
-> -
-> -       if (enabled) {
-> -               ret =3D smu_send_smc_msg_with_param(smu,
-> SMU_MSG_EnableSmuFeaturesLow,
-> -                                                 feature_low);
-> -               if (ret)
-> -                       return ret;
-> -               ret =3D smu_send_smc_msg_with_param(smu,
-> SMU_MSG_EnableSmuFeaturesHigh,
-> -                                                 feature_high);
-> -               if (ret)
-> -                       return ret;
-> -       } else {
-> -               ret =3D smu_send_smc_msg_with_param(smu,
-> SMU_MSG_DisableSmuFeaturesLow,
-> -                                                 feature_low);
-> -               if (ret)
-> -                       return ret;
-> -               ret =3D smu_send_smc_msg_with_param(smu,
-> SMU_MSG_DisableSmuFeaturesHigh,
-> -                                                 feature_high);
-> -               if (ret)
-> -                       return ret;
-> -       }
-> -
-> -       ret =3D smu_feature_get_enabled_mask(smu, feature_mask, 2);
-> -       if (ret)
-> -               return ret;
-> -
-> -       mutex_lock(&feature->mutex);
-> -       bitmap_copy(feature->enabled, (unsigned long *)&feature_mask,
-> -                   feature->feature_num);
-> -       mutex_unlock(&feature->mutex);
-> -
-> -       return 0;
-> -}
-> -
-> -static int navi10_set_ppfeature_status(struct smu_context *smu,
-> -                                      uint64_t new_ppfeature_masks)
-> -{
-> -       uint64_t features_enabled;
-> -       uint32_t feature_mask[2];
-> -       uint64_t features_to_enable;
-> -       uint64_t features_to_disable;
-> -       int ret =3D 0;
-> -
-> -       ret =3D smu_feature_get_enabled_mask(smu, feature_mask, 2);
-> -       PP_ASSERT_WITH_CODE(!ret,
-> -                       "[SetPPfeatureStatus] Failed to get enabled
-> smc features!",
-> -                       return ret);
-> -       features_enabled =3D (uint64_t)feature_mask[0] |
-> - (uint64_t)feature_mask[1] << 32;
-> -
-> -       features_to_disable =3D
-> -               features_enabled & ~new_ppfeature_masks;
-> -       features_to_enable =3D
-> -               ~features_enabled & new_ppfeature_masks;
-> -
-> -       pr_debug("features_to_disable 0x%llx\n", features_to_disable);
-> -       pr_debug("features_to_enable 0x%llx\n", features_to_enable);
-> -
-> -       if (features_to_disable) {
-> -               ret =3D navi10_enable_smc_features(smu, false,
-> features_to_disable);
-> -               PP_ASSERT_WITH_CODE(!ret,
-> - "[SetPPfeatureStatus] Failed to disable smc features!",
-> -                               return ret);
-> -       }
-> -
-> -       if (features_to_enable) {
-> -               ret =3D navi10_enable_smc_features(smu, true,
-> features_to_enable);
-> -               PP_ASSERT_WITH_CODE(!ret,
-> - "[SetPPfeatureStatus] Failed to enable smc features!",
-> -                               return ret);
-> -       }
-> -
-> -       return 0;
-> -}
-> -
->  static int navi10_set_peak_clock_by_device(struct smu_context *smu)
->  {
->          struct amdgpu_device *adev =3D smu->adev;
-> @@ -1689,8 +1526,6 @@ static const struct pptable_funcs
-> navi10_ppt_funcs =3D {
->          .set_watermarks_table =3D navi10_set_watermarks_table,
->          .read_sensor =3D navi10_read_sensor,
->          .get_uclk_dpm_states =3D navi10_get_uclk_dpm_states,
-> -       .get_ppfeature_status =3D navi10_get_ppfeature_status,
-> -       .set_ppfeature_status =3D navi10_set_ppfeature_status,
->          .set_performance_level =3D navi10_set_performance_level,
->          .get_thermal_temperature_range =3D
-> navi10_get_thermal_temperature_range,
->  };
-> diff --git a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
-> b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
-> index c06a9472c3b2..52c8fc9f1ff4 100644
-> --- a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
-> +++ b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
-> @@ -2858,157 +2858,6 @@ static int vega20_dpm_set_vce_enable(struct
-> smu_context *smu, bool enable)
->          return smu_feature_set_enabled(smu, SMU_FEATURE_DPM_VCE_BIT,
-> enable);
->  }
->
-> -static int vega20_get_enabled_smc_features(struct smu_context *smu,
-> -               uint64_t *features_enabled)
-> -{
-> -       uint32_t feature_mask[2] =3D {0, 0};
-> -       int ret =3D 0;
-> -
-> -       ret =3D smu_feature_get_enabled_mask(smu, feature_mask, 2);
-> -       if (ret)
-> -               return ret;
-> -
-> -       *features_enabled =3D ((((uint64_t)feature_mask[0] <<
-> SMU_FEATURES_LOW_SHIFT) & SMU_FEATURES_LOW_MASK) |
-> - (((uint64_t)feature_mask[1] << SMU_FEATURES_HIGH_SHIFT) &
-> SMU_FEATURES_HIGH_MASK));
-> -
-> -       return ret;
-> -}
-> -
-> -static int vega20_enable_smc_features(struct smu_context *smu,
-> -               bool enable, uint64_t feature_mask)
-> -{
-> -       uint32_t smu_features_low, smu_features_high;
-> -       int ret =3D 0;
-> -
-> -       smu_features_low =3D (uint32_t)((feature_mask &
-> SMU_FEATURES_LOW_MASK) >> SMU_FEATURES_LOW_SHIFT);
-> -       smu_features_high =3D (uint32_t)((feature_mask &
-> SMU_FEATURES_HIGH_MASK) >> SMU_FEATURES_HIGH_SHIFT);
-> -
-> -       if (enable) {
-> -               ret =3D smu_send_smc_msg_with_param(smu,
-> SMU_MSG_EnableSmuFeaturesLow,
-> -                                                 smu_features_low);
-> -               if (ret)
-> -                       return ret;
-> -               ret =3D smu_send_smc_msg_with_param(smu,
-> SMU_MSG_EnableSmuFeaturesHigh,
-> -                                                 smu_features_high);
-> -               if (ret)
-> -                       return ret;
-> -       } else {
-> -               ret =3D smu_send_smc_msg_with_param(smu,
-> SMU_MSG_DisableSmuFeaturesLow,
-> -                                                 smu_features_low);
-> -               if (ret)
-> -                       return ret;
-> -               ret =3D smu_send_smc_msg_with_param(smu,
-> SMU_MSG_DisableSmuFeaturesHigh,
-> -                                                 smu_features_high);
-> -               if (ret)
-> -                       return ret;
-> -       }
-> -
-> -       return 0;
-> -
-> -}
-> -
-> -static int vega20_get_ppfeature_status(struct smu_context *smu, char
-> *buf)
-> -{
-> -       static const char *ppfeature_name[] =3D {
-> - "DPM_PREFETCHER",
-> -                               "GFXCLK_DPM",
-> -                               "UCLK_DPM",
-> -                               "SOCCLK_DPM",
-> -                               "UVD_DPM",
-> -                               "VCE_DPM",
-> -                               "ULV",
-> -                               "MP0CLK_DPM",
-> -                               "LINK_DPM",
-> -                               "DCEFCLK_DPM",
-> -                               "GFXCLK_DS",
-> -                               "SOCCLK_DS",
-> -                               "LCLK_DS",
-> -                               "PPT",
-> -                               "TDC",
-> -                               "THERMAL",
-> -                               "GFX_PER_CU_CG",
-> -                               "RM",
-> -                               "DCEFCLK_DS",
-> -                               "ACDC",
-> -                               "VR0HOT",
-> -                               "VR1HOT",
-> -                               "FW_CTF",
-> -                               "LED_DISPLAY",
-> -                               "FAN_CONTROL",
-> -                               "GFX_EDC",
-> -                               "GFXOFF",
-> -                               "CG",
-> -                               "FCLK_DPM",
-> -                               "FCLK_DS",
-> -                               "MP1CLK_DS",
-> -                               "MP0CLK_DS",
-> -                               "XGMI",
-> -                               "ECC"};
-> -       static const char *output_title[] =3D {
-> -                               "FEATURES",
-> -                               "BITMASK",
-> -                               "ENABLEMENT"};
-> -       uint64_t features_enabled;
-> -       int i;
-> -       int ret =3D 0;
-> -       int size =3D 0;
-> -
-> -       ret =3D vega20_get_enabled_smc_features(smu, &features_enabled);
-> -       if (ret)
-> -               return ret;
-> -
-> -       size +=3D sprintf(buf + size, "Current ppfeatures: 0x%016llx\n",
-> features_enabled);
-> -       size +=3D sprintf(buf + size, "%-19s %-22s %s\n",
-> -                               output_title[0],
-> -                               output_title[1],
-> - output_title[2]);
-> -       for (i =3D 0; i < GNLD_FEATURES_MAX; i++) {
-> -               size +=3D sprintf(buf + size, "%-19s 0x%016llx %6s\n",
-> - ppfeature_name[i],
-> -                                       1ULL << i,
-> - (features_enabled & (1ULL << i)) ? "Y" : "N");
-> -       }
-> -
-> -       return size;
-> -}
-> -
-> -static int vega20_set_ppfeature_status(struct smu_context *smu,
-> uint64_t new_ppfeature_masks)
-> -{
-> -       uint64_t features_enabled;
-> -       uint64_t features_to_enable;
-> -       uint64_t features_to_disable;
-> -       int ret =3D 0;
-> -
-> -       if (new_ppfeature_masks >=3D (1ULL << GNLD_FEATURES_MAX))
-> -               return -EINVAL;
-> -
-> -       ret =3D vega20_get_enabled_smc_features(smu, &features_enabled);
-> -       if (ret)
-> -               return ret;
-> -
-> -       features_to_disable =3D
-> -               features_enabled & ~new_ppfeature_masks;
-> -       features_to_enable =3D
-> -               ~features_enabled & new_ppfeature_masks;
-> -
-> -       pr_debug("features_to_disable 0x%llx\n", features_to_disable);
-> -       pr_debug("features_to_enable 0x%llx\n", features_to_enable);
-> -
-> -       if (features_to_disable) {
-> -               ret =3D vega20_enable_smc_features(smu, false,
-> features_to_disable);
-> -               if (ret)
-> -                       return ret;
-> -       }
-> -
-> -       if (features_to_enable) {
-> -               ret =3D vega20_enable_smc_features(smu, true,
-> features_to_enable);
-> -               if (ret)
-> -                       return ret;
-> -       }
-> -
-> -       return 0;
-> -}
-> -
->  static bool vega20_is_dpm_running(struct smu_context *smu)
->  {
->          int ret =3D 0;
-> @@ -3311,8 +3160,6 @@ static const struct pptable_funcs
-> vega20_ppt_funcs =3D {
->          .force_dpm_limit_value =3D vega20_force_dpm_limit_value,
->          .unforce_dpm_levels =3D vega20_unforce_dpm_levels,
->          .get_profiling_clk_mask =3D vega20_get_profiling_clk_mask,
-> -       .set_ppfeature_status =3D vega20_set_ppfeature_status,
-> -       .get_ppfeature_status =3D vega20_get_ppfeature_status,
->          .is_dpm_running =3D vega20_is_dpm_running,
->          .set_thermal_fan_table =3D vega20_set_thermal_fan_table,
->          .get_fan_speed_percent =3D vega20_get_fan_speed_percent,
-> --
-> 2.22.0
->
+         cpp =3D drm_format_plane_cpp(mode_cmd->pixel_format, 0);
 
---_000_BN6PR12MB18093323D92A6EC4123E46BBF7C00BN6PR12MB1809namp_
-Content-Type: text/html; charset="Windows-1252"
+         /* need to align pitch with crtc limits */
+         mode_cmd->pitches[0] =3D amdgpu_align_pitch(adev, mode_cmd->width,=
+ cpp,
+                                                   fb_tiled);
+-       domain =3D amdgpu_display_supported_domains(adev);
++       domain =3D amdgpu_display_supported_domains(adev, flags);
+         height =3D ALIGN(mode_cmd->height, 8);
+         size =3D mode_cmd->pitches[0] * height;
+         aligned_size =3D ALIGN(size, PAGE_SIZE);
+-       ret =3D amdgpu_gem_object_create(adev, aligned_size, 0, domain,
+-                                      AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRE=
+D |
+-                                      AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS   =
+  |
+-                                      AMDGPU_GEM_CREATE_VRAM_CLEARED      =
+    |
+-                                      AMDGPU_GEM_CREATE_CPU_GTT_USWC,
++       ret =3D amdgpu_gem_object_create(adev, aligned_size, 0, domain, fla=
+gs,
+                                        ttm_bo_type_kernel, NULL, &gobj);
+         if (ret) {
+                 pr_err("failed to allocate framebuffer (%d)\n", aligned_si=
+ze);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_gem.c
+index eeed089..e7af35c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -761,7 +761,7 @@ int amdgpu_mode_dumb_create(struct drm_file *file_priv,
+         args->size =3D (u64)args->pitch * args->height;
+         args->size =3D ALIGN(args->size, PAGE_SIZE);
+         domain =3D amdgpu_bo_get_preferred_pin_domain(adev,
+-                               amdgpu_display_supported_domains(adev));
++                               amdgpu_display_supported_domains(adev, flag=
+s));
+         r =3D amdgpu_gem_object_create(adev, args->size, 0, domain, flags,
+                                      ttm_bo_type_device, NULL, &gobj);
+         if (r)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
+u/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 066f04b..0401691 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -4414,7 +4414,7 @@ static int dm_plane_helper_prepare_fb(struct drm_plan=
+e *plane,
+         }
+
+         if (plane->type !=3D DRM_PLANE_TYPE_CURSOR)
+-               domain =3D amdgpu_display_supported_domains(adev);
++               domain =3D amdgpu_display_supported_domains(adev, rbo->flag=
+s);
+         else
+                 domain =3D AMDGPU_GEM_DOMAIN_VRAM;
+
+--
+2.7.4
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN6PR12MB1809FAA22170477E1BE42CBFF7C00BN6PR12MB1809namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
 <style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
 ttom:0;} </style>
 </head>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Sure.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Alex<br>
+Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
 </div>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Wang, Kevin(Yang) &lt=
-;Kevin1.Wang@amd.com&gt;<br>
-<b>Sent:</b> Friday, July 26, 2019 5:05 AM<br>
-<b>To:</b> StDenis, Tom &lt;Tom.StDenis@amd.com&gt;; Deucher, Alexander &lt=
-;Alexander.Deucher@amd.com&gt;; Huang, Ray &lt;Ray.Huang@amd.com&gt;; Quan,=
- Evan &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.org &lt;amd-gfx@=
-lists.freedesktop.org&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;<br>
-<b>Cc:</b> Feng, Kenneth &lt;Kenneth.Feng@amd.com&gt;<br>
-<b>Subject:</b> Re: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature s=
-tatus function in smu</font>
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Andrey Grodzovsky &lt;andrey.=
+grodzovsky@amd.com&gt;<br>
+<b>Sent:</b> Friday, July 26, 2019 9:28 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Grodzovsky=
+, Andrey &lt;Andrey.Grodzovsky@amd.com&gt;; michel@daenzer.net &lt;michel@d=
+aenzer.net&gt;; Koenig, Christian &lt;Christian.Koenig@amd.com&gt;; S, Shir=
+ish &lt;Shirish.S@amd.com&gt;<br>
+<b>Subject:</b> [PATCH] drm/amdgpu: Fix amdgpu_display_supported_domains lo=
+gic.</font>
 <div>&nbsp;</div>
 </div>
-<style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<a id=3D"OWAAM237161" class=3D"x__1OtrSZdhKXVv3UhaivrdJ4 x_mention x_ms-bgc=
--nlr x_ms-fcl-b" href=3D"mailto:Alexander.Deucher@amd.com">@Deucher, Alexan=
-der</a></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Add restriction to dissallow GTT domain if the rel=
+evant BO<br>
+doesn't have USWC flag set to avoid the APU hang scenario.<br>
 <br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Hi Alex,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-it seems not application will use this sysfs, can we rename it from &quot;p=
-pfeatures&quot; to &quot;pp_features&quot;?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span style=3D"color:rgb(0,0,0); font-family:Calibri,Arial,Helvetica,sans-s=
-erif; font-size:12pt">this patch sets is pending.</span><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Best Regards,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Kevin</div>
-<div id=3D"x_appendonsend"></div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> StDenis, Tom &lt;To=
-m.StDenis@amd.com&gt;<br>
-<b>Sent:</b> Thursday, July 25, 2019 9:14 PM<br>
-<b>To:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Huang, Ray=
- &lt;Ray.Huang@amd.com&gt;; Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;; =
-Quan, Evan &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.org &lt;amd=
--gfx@lists.freedesktop.org&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt=
-;<br>
-<b>Cc:</b> Feng, Kenneth &lt;Kenneth.Feng@amd.com&gt;<br>
-<b>Subject:</b> Re: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature s=
-tatus function in smu</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"x_BodyFragment"><font size=3D"2"><span style=3D"font-size:11p=
-t">
-<div class=3D"x_PlainText">No it doesn't.&nbsp; We get clocks for --top fro=
-m the sensors interface.<br>
-<br>
-<br>
-On 2019-07-25 9:01 a.m., Deucher, Alexander wrote:<br>
-&gt; Tom, does umr use it?<br>
-&gt;<br>
-&gt; Alex<br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; *From:* Huang, Ray &lt;Ray.Huang@amd.com&gt;<br>
-&gt; *Sent:* Thursday, July 25, 2019 4:49 AM<br>
-&gt; *To:* Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;; Quan, Evan <br>
-&gt; &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.org <br>
-&gt; &lt;amd-gfx@lists.freedesktop.org&gt;; Zhang, Hawking <br>
-&gt; &lt;Hawking.Zhang@amd.com&gt;; Deucher, Alexander &lt;Alexander.Deuche=
-r@amd.com&gt;<br>
-&gt; *Cc:* Feng, Kenneth &lt;Kenneth.Feng@amd.com&gt;<br>
-&gt; *Subject:* RE: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature <=
-br>
-&gt; status function in smu<br>
-&gt;<br>
-&gt; Any other user mode tool use the =93ppfeature=94 sysfs interface?<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt;<br>
-&gt; Ray<br>
-&gt;<br>
-&gt; *From:* Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;<br>
-&gt; *Sent:* Thursday, July 25, 2019 4:44 PM<br>
-&gt; *To:* Quan, Evan &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.=
-org; <br>
-&gt; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;; Deucher, Alexander <br>
-&gt; &lt;Alexander.Deucher@amd.com&gt;<br>
-&gt; *Cc:* Huang, Ray &lt;Ray.Huang@amd.com&gt;; Feng, Kenneth &lt;Kenneth.=
-Feng@amd.com&gt;<br>
-&gt; *Subject:* Re: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature <=
-br>
-&gt; status function in smu<br>
-&gt;<br>
-&gt; in fact, i don't want to change this sysfs name from &quot;ppfeatures&=
-quot; to <br>
-&gt; &quot;pp_features&quot;,<br>
-&gt;<br>
-&gt; but it seems that don't have same name format with other pp sysfs node=
-.<br>
-&gt;<br>
-&gt; the other powerplay sysfs name have &quot;pp_&quot; prefix, i think we=
-'d&nbsp;better <br>
-&gt; to change it name to &quot;pp_features&quot;<br>
-&gt;<br>
-&gt; eg:<br>
-&gt;<br>
-&gt; pp_cur_state &nbsp; &nbsp;pp_dpm_fclk &nbsp;pp_dpm_pcie &nbsp;pp_dpm_s=
-occlk <br>
-&gt; &nbsp;pp_force_state &nbsp;pp_num_states &nbsp;pp_sclk_od<br>
-&gt; pp_dpm_dcefclk &nbsp;pp_dpm_mclk &nbsp;pp_dpm_sclk &nbsp;pp_features &=
-nbsp; &nbsp;pp_mclk_od &nbsp; <br>
-&gt; &nbsp; &nbsp;pp_power_profile_mode &nbsp;pp_table<br>
-&gt;<br>
-&gt; @Deucher, Alexander &lt;<a href=3D"mailto:Alexander.Deucher@amd.com">m=
-ailto:Alexander.Deucher@amd.com</a>&gt; @Zhang, Hawking
-<br>
-&gt; &lt;<a href=3D"mailto:Hawking.Zhang@amd.com">mailto:Hawking.Zhang@amd.=
-com</a>&gt;<br>
-&gt;<br>
-&gt; Could you give us some idea about it,<br>
-&gt;<br>
-&gt; Thanks.<br>
-&gt;<br>
-&gt; Best Regards,<br>
-&gt; Kevin<br>
-&gt;<br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt;<br>
-&gt; *From:*Quan, Evan &lt;Evan.Quan@amd.com &lt;<a href=3D"mailto:Evan.Qua=
-n@amd.com">mailto:Evan.Quan@amd.com</a>&gt;&gt;<br>
-&gt; *Sent:* Thursday, July 25, 2019 4:30 PM<br>
-&gt; *To:* Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com <br>
-&gt; &lt;<a href=3D"mailto:Kevin1.Wang@amd.com">mailto:Kevin1.Wang@amd.com<=
-/a>&gt;&gt;; amd-gfx@lists.freedesktop.org
-<br>
-&gt; &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">mailto:amd-gfx@li=
-sts.freedesktop.org</a>&gt; &lt;amd-gfx@lists.freedesktop.org
-<br>
-&gt; &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">mailto:amd-gfx@li=
-sts.freedesktop.org</a>&gt;&gt;<br>
-&gt; *Cc:* Deucher, Alexander &lt;Alexander.Deucher@amd.com <br>
-&gt; &lt;<a href=3D"mailto:Alexander.Deucher@amd.com">mailto:Alexander.Deuc=
-her@amd.com</a>&gt;&gt;; Huang, Ray &lt;Ray.Huang@amd.com
-<br>
-&gt; &lt;<a href=3D"mailto:Ray.Huang@amd.com">mailto:Ray.Huang@amd.com</a>&=
-gt;&gt;; Feng, Kenneth &lt;Kenneth.Feng@amd.com
-<br>
-&gt; &lt;<a href=3D"mailto:Kenneth.Feng@amd.com">mailto:Kenneth.Feng@amd.co=
-m</a>&gt;&gt;<br>
-&gt; *Subject:* RE: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature <=
-br>
-&gt; status function in smu<br>
-&gt;<br>
-&gt; To keep backward compatibility, we cannot change the sysfs file naming=
-.<br>
-&gt;<br>
-&gt; But it=92s a good idea to summarize these as common APIs.<br>
-&gt;<br>
-&gt; Regards,<br>
-&gt;<br>
-&gt; Evan<br>
-&gt;<br>
-&gt; *From:* amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org <br>
-&gt; &lt;<a href=3D"mailto:amd-gfx-bounces@lists.freedesktop.org">mailto:am=
-d-gfx-bounces@lists.freedesktop.org</a>&gt;&gt; *On Behalf Of *Wang,
-<br>
-&gt; Kevin(Yang)<br>
-&gt; *Sent:* Thursday, July 25, 2019 4:10 PM<br>
-&gt; *To:* amd-gfx@lists.freedesktop.org &lt;<a href=3D"mailto:amd-gfx@list=
-s.freedesktop.org">mailto:amd-gfx@lists.freedesktop.org</a>&gt;<br>
-&gt; *Cc:* Deucher, Alexander &lt;Alexander.Deucher@amd.com <br>
-&gt; &lt;<a href=3D"mailto:Alexander.Deucher@amd.com">mailto:Alexander.Deuc=
-her@amd.com</a>&gt;&gt;; Huang, Ray &lt;Ray.Huang@amd.com
-<br>
-&gt; &lt;<a href=3D"mailto:Ray.Huang@amd.com">mailto:Ray.Huang@amd.com</a>&=
-gt;&gt;; Feng, Kenneth &lt;Kenneth.Feng@amd.com
-<br>
-&gt; &lt;<a href=3D"mailto:Kenneth.Feng@amd.com">mailto:Kenneth.Feng@amd.co=
-m</a>&gt;&gt;<br>
-&gt; *Subject:* Re: [PATCH 5/5] drm/amd/powerplay: implment sysfs feature <=
-br>
-&gt; status function in smu<br>
-&gt;<br>
-&gt; add sample data from sysfs pp_features with this patch.<br>
-&gt;<br>
-&gt; print format:<br>
-&gt;<br>
-&gt; index. feature name (Hardware Message ID): state<br>
-&gt;<br>
-&gt; /sudo find /sys -name &quot;pp_features&quot; -exec cat {} \;/<br>
-&gt;<br>
-&gt; features high: 0x00000623 low: 0xb3cdaffb<br>
-&gt;<br>
-&gt; 00. DPM_PREFETCHER &nbsp; &nbsp; &nbsp; ( 0) : enabeld<br>
-&gt;<br>
-&gt; 01. DPM_GFXCLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( 1) : enabeld<br>
-&gt;<br>
-&gt; 02. DPM_UCLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( 3) : enabeld<=
-br>
-&gt;<br>
-&gt; 03. DPM_SOCCLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( 4) : enabeld<br>
-&gt;<br>
-&gt; 04. DPM_MP0CLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( 5) : enabeld<br>
-&gt;<br>
-&gt; 05. DPM_LINK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( 6) : enabeld<=
-br>
-&gt;<br>
-&gt; 06. DPM_DCEFCLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;( 7) : enabeld<br>
-&gt;<br>
-&gt; 07. DS_GFXCLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(10) : enabeld<=
-br>
-&gt;<br>
-&gt; 08. DS_SOCCLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(11) : enabeld<=
-br>
-&gt;<br>
-&gt; 09. DS_LCLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(12) : dis=
-abled<br>
-&gt;<br>
-&gt; 10. PPT &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(23) : =
-enabeld<br>
-&gt;<br>
-&gt; 11. TDC &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(24) : =
-enabeld<br>
-&gt;<br>
-&gt; 12. THERMAL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(33) : ena=
-beld<br>
-&gt;<br>
-&gt; 13. RM &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (35) : =
-disabled<br>
-&gt;<br>
-&gt; 14. DS_DCEFCLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (13) : enabeld<br>
-&gt;<br>
-&gt; 15. ACDC &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (28) =
-: enabeld<br>
-&gt;<br>
-&gt; 16. VR0HOT &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (29) : ena=
-beld<br>
-&gt;<br>
-&gt; 17. VR1HOT &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (30) : dis=
-abled<br>
-&gt;<br>
-&gt; 18. FW_CTF &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (31) : ena=
-beld<br>
-&gt;<br>
-&gt; 19. LED_DISPLAY &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(36) : disabled<br>
-&gt;<br>
-&gt; 20. FAN_CONTROL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(32) : enabeld<br>
-&gt;<br>
-&gt; 21. GFX_EDC &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(25) : ena=
-beld<br>
-&gt;<br>
-&gt; 22. GFXOFF &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (17) : dis=
-abled<br>
-&gt;<br>
-&gt; 23. DPM_GFX_PACE &nbsp; &nbsp; &nbsp; &nbsp; ( 2) : disabled<br>
-&gt;<br>
-&gt; 24. MEM_VDDCI_SCALING &nbsp; &nbsp;( 8) : enabeld<br>
-&gt;<br>
-&gt; 25. MEM_MVDD_SCALING &nbsp; &nbsp; ( 9) : enabeld<br>
-&gt;<br>
-&gt; 26. DS_UCLK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(14) : dis=
-abled<br>
-&gt;<br>
-&gt; 27. GFX_ULV &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(15) : ena=
-beld<br>
-&gt;<br>
-&gt; 28. FW_DSTATE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(16) : enabeld<=
-br>
-&gt;<br>
-&gt; 29. BACO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (18) =
-: enabeld<br>
-&gt;<br>
-&gt; 30. VCN_PG &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (19) : ena=
-beld<br>
-&gt;<br>
-&gt; 31. JPEG_PG &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(20) : dis=
-abled<br>
-&gt;<br>
-&gt; 32. USB_PG &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (21) : dis=
-abled<br>
-&gt;<br>
-&gt; 33. RSMU_SMN_CG &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(22) : enabeld<br>
-&gt;<br>
-&gt; 34. APCC_PLUS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(26) : disabled=
-<br>
-&gt;<br>
-&gt; 35. GTHR &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (27) =
-: disabled<br>
-&gt;<br>
-&gt; 36. GFX_DCS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(34) : dis=
-abled<br>
-&gt;<br>
-&gt; 37. GFX_SS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (37) : ena=
-beld<br>
-&gt;<br>
-&gt; 38. OUT_OF_BAND_MONITOR &nbsp;(38) : disabled<br>
-&gt;<br>
-&gt; 39. TEMP_DEPENDENT_VMIN &nbsp;(39) : disabled<br>
-&gt;<br>
-&gt; 40. MMHUB_PG &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (40) : disabled=
-<br>
-&gt;<br>
-&gt; 41. ATHUB_PG &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (41) : enabeld<=
-br>
-&gt;<br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt;<br>
-&gt; *From:*Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com <br>
-&gt; &lt;<a href=3D"mailto:Kevin1.Wang@amd.com">mailto:Kevin1.Wang@amd.com<=
-/a>&gt;&gt;<br>
-&gt; *Sent:* Thursday, July 25, 2019 1:11 PM<br>
-&gt; *To:* amd-gfx@lists.freedesktop.org <br>
-&gt; &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">mailto:amd-gfx@li=
-sts.freedesktop.org</a>&gt; &lt;amd-gfx@lists.freedesktop.org
-<br>
-&gt; &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">mailto:amd-gfx@li=
-sts.freedesktop.org</a>&gt;&gt;<br>
-&gt; *Cc:* Feng, Kenneth &lt;Kenneth.Feng@amd.com <br>
-&gt; &lt;<a href=3D"mailto:Kenneth.Feng@amd.com">mailto:Kenneth.Feng@amd.co=
-m</a>&gt;&gt;; Huang, Ray &lt;Ray.Huang@amd.com
-<br>
-&gt; &lt;<a href=3D"mailto:Ray.Huang@amd.com">mailto:Ray.Huang@amd.com</a>&=
-gt;&gt;; Deucher, Alexander
-<br>
-&gt; &lt;Alexander.Deucher@amd.com &lt;<a href=3D"mailto:Alexander.Deucher@=
-amd.com">mailto:Alexander.Deucher@amd.com</a>&gt;&gt;; Wang,
-<br>
-&gt; Kevin(Yang) &lt;Kevin1.Wang@amd.com &lt;<a href=3D"mailto:Kevin1.Wang@=
-amd.com">mailto:Kevin1.Wang@amd.com</a>&gt;&gt;<br>
-&gt; *Subject:* [PATCH 5/5] drm/amd/powerplay: implment sysfs feature <br>
-&gt; status function in smu<br>
-&gt;<br>
-&gt; 1. Unified feature enable status format in sysfs<br>
-&gt; 2. Rename ppfeature to pp_features to adapt other pp sysfs node name<b=
-r>
-&gt; 3. this function support all asic, not asic related function.<br>
-&gt;<br>
-&gt; Signed-off-by: Kevin Wang &lt;kevin1.wang@amd.com <br>
-&gt; &lt;<a href=3D"mailto:kevin1.wang@amd.com">mailto:kevin1.wang@amd.com<=
-/a>&gt;&gt;<br>
-&gt; ---<br>
-&gt; &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c |&nbsp; 24 &#43;--<br>
-&gt; &nbsp;drivers/gpu/drm/amd/powerplay/amdgpu_smu.c |&nbsp; 61 &#43;&#43;=
-&#43;&#43;&#43;&#43;&#43;<br>
-&gt; &nbsp;.../gpu/drm/amd/powerplay/inc/amdgpu_smu.h |&nbsp;&nbsp; 8 &#43;=
+Signed-off-by: Andrey Grodzovsky &lt;andrey.grodzovsky@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_display.c&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; | 16 &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;----=
 -<br>
-&gt; &nbsp;drivers/gpu/drm/amd/powerplay/navi10_ppt.c&nbsp;&nbsp;&nbsp; | 1=
-65 ------------------<br>
-&gt; &nbsp;drivers/gpu/drm/amd/powerplay/vega20_ppt.c&nbsp;&nbsp;&nbsp; | 1=
-53 ----------------<br>
-&gt; &nbsp;5 files changed, 75 insertions(&#43;), 336 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c <br>
-&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c<br>
-&gt; index 866097d5cf26..9e8e8a65d9bf 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c<br>
-&gt; @@ -788,10 &#43;788,10 @@ static ssize_t <br>
-&gt; amdgpu_get_pp_od_clk_voltage(struct device *dev,<br>
-&gt; &nbsp;}<br>
-&gt;<br>
-&gt; &nbsp;/**<br>
-&gt; - * DOC: ppfeatures<br>
-&gt; &#43; * DOC: pp_features<br>
-&gt; &nbsp; *<br>
-&gt; &nbsp; * The amdgpu driver provides a sysfs API for adjusting what pow=
-erplay<br>
-&gt; - * features to be enabled. The file ppfeatures is used for this. And<=
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_display.h&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; |&nbsp; 3 &#43;&#43;-<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; |&nbsp; 2 &#43;-<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 12 &#43;&#43;&#43;&#43;&#43;&#43;----=
+--<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 2 &#43;-<br>
+&nbsp;drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |&nbsp; 2 &#43;-<br=
+>
+&nbsp;6 files changed, 22 insertions(&#43;), 15 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_display.c<br>
+index 73045a3..4a8b1b1 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c<br>
+@@ -189,7 &#43;189,8 @@ int amdgpu_display_crtc_page_flip_target(struct drm=
+_crtc *crtc,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!adev-&gt;enable_virtu=
+al_display) {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; r =3D amdgpu_bo_pin(new_abo, amdgpu_display_supported_domains(ad=
+ev));<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; r =3D amdgpu_bo_pin(new_abo,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_display_supported_do=
+mains(adev, new_abo-&gt;flags));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (unlikely(r !=3D 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_E=
+RROR(&quot;failed to pin new abo buffer before flip\n&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto =
+unreserve;<br>
+@@ -493,20 &#43;494,25 @@ static const struct drm_framebuffer_funcs amdgpu_=
+fb_funcs =3D {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .create_handle =3D drm_gem=
+_fb_create_handle,<br>
+&nbsp;};<br>
+&nbsp;<br>
+-uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev)<br>
+&#43;uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,<=
 br>
-&gt; &#43; * features to be enabled. The file pp_features is used for this.=
- And<br>
-&gt; &nbsp; * this is only available for Vega10 and later dGPUs.<br>
-&gt; &nbsp; *<br>
-&gt; &nbsp; * Reading back the file will show you the followings:<br>
-&gt; @@ -803,7 &#43;803,7 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(st=
-ruct <br>
-&gt; device *dev,<br>
-&gt; &nbsp; * the corresponding bit from original ppfeature masks and input=
- the<br>
-&gt; &nbsp; * new ppfeature masks.<br>
-&gt; &nbsp; */<br>
-&gt; -static ssize_t amdgpu_set_ppfeature_status(struct device *dev,<br>
-&gt; &#43;static ssize_t amdgpu_set_pp_feature_status(struct device *dev,<b=
-r>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; struct device_attribute *attr,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; const char *buf,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; size_t count)<br>
-&gt; @@ -820,7 &#43;820,7 @@ static ssize_t amdgpu_set_ppfeature_status(str=
-uct <br>
-&gt; device *dev,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;featur=
-emask =3D 0x%llx\n&quot;, featuremask);<br>
-&gt;<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (is_support_sw_smu=
-(adev)) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D smu_set_ppfeature_status(&amp;adev-&gt;smu, feature=
-mask);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; ret =3D smu_sys_set_pp_feature_mask(&amp;adev-&gt;smu, =
-<br>
-&gt; featuremask);<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-return -EINVAL;<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (adev-&gt;p=
-owerplay.pp_funcs-&gt;set_ppfeature_status) {<br>
-&gt; @@ -832,7 &#43;832,7 @@ static ssize_t amdgpu_set_ppfeature_status(str=
-uct <br>
-&gt; device *dev,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return count;<br>
-&gt; &nbsp;}<br>
-&gt;<br>
-&gt; -static ssize_t amdgpu_get_ppfeature_status(struct device *dev,<br>
-&gt; &#43;static ssize_t amdgpu_get_pp_feature_status(struct device *dev,<b=
-r>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; struct device_attribute *attr,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; char *buf)<br>
-&gt; &nbsp;{<br>
-&gt; @@ -840,7 &#43;840,7 @@ static ssize_t amdgpu_get_ppfeature_status(str=
-uct <br>
-&gt; device *dev,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device =
-*adev =3D ddev-&gt;dev_private;<br>
-&gt;<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (is_support_sw_smu=
-(adev)) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return smu_get_ppfeature_status(&amp;adev-&gt;smu, buf);<br=
->
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; return smu_sys_get_pp_feature_mask(&amp;adev-&gt;smu, b=
-uf);<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (adev-&gt;p=
-owerplay.pp_funcs-&gt;get_ppfeature_status)<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; return amdgpu_dpm_get_ppfeature_status(adev, buf=
-);<br>
-&gt;<br>
-&gt; @@ -1500,9 &#43;1500,9 @@ static DEVICE_ATTR(gpu_busy_percent, S_IRUGO=
-,<br>
-&gt; &nbsp;static DEVICE_ATTR(mem_busy_percent, S_IRUGO,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_get_memory_busy_percent, NULL);<br>
-&gt; &nbsp;static DEVICE_ATTR(pcie_bw, S_IRUGO, amdgpu_get_pcie_bw, NULL);<=
-br>
-&gt; -static DEVICE_ATTR(ppfeatures, S_IRUGO | S_IWUSR,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; amdgpu_get_ppfeature_status,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; amdgpu_set_ppfeature_status);<br>
-&gt; &#43;static DEVICE_ATTR(pp_features, S_IRUGO | S_IWUSR,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; amdgpu_get_pp_feature_status,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; amdgpu_set_pp_feature_status);<br>
-&gt; &nbsp;static DEVICE_ATTR(unique_id, S_IRUGO, amdgpu_get_unique_id, NUL=
-L);<br>
-&gt;<br>
-&gt; &nbsp;static ssize_t amdgpu_hwmon_show_temp(struct device *dev,<br>
-&gt; @@ -2960,10 &#43;2960,10 @@ int amdgpu_pm_sysfs_init(struct amdgpu_dev=
-ice <br>
-&gt; *adev)<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((adev-&gt;asic_ty=
-pe &gt;=3D CHIP_VEGA10) &amp;&amp;<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; !(adev-&gt;flags &amp; AMD_IS_APU)) {<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D device_create_file(adev-&gt;dev,<br>
-&gt; - &amp;dev_attr_ppfeatures);<br>
-&gt; &#43; &amp;dev_attr_pp_features);<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; if (ret) {<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-DRM_ERROR(&quot;failed to create device file &quot;<br>
-&gt; - &quot;ppfeatures\n&quot;);<br>
-&gt; &#43; &quot;pp_features\n&quot;);<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-return ret;<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; @@ -3017,7 &#43;3017,7 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_devi=
-ce <br>
-&gt; *adev)<br>
-&gt; device_remove_file(adev-&gt;dev, &amp;dev_attr_unique_id);<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((adev-&gt;asic_ty=
-pe &gt;=3D CHIP_VEGA10) &amp;&amp;<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; !(adev-&gt;flags &amp; AMD_IS_APU))<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; device_remove_file(adev-&gt;dev, &amp;dev_attr_ppfeatures);=
-<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&gt;dev, &amp;dev_attr_pp_featu=
-res);<br>
-&gt; &nbsp;}<br>
-&gt;<br>
-&gt; &nbsp;void amdgpu_pm_compute_clocks(struct amdgpu_device *adev)<br>
-&gt; diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c <br>
-&gt; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
-&gt; index e881de955388..90833ff2fe00 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
-&gt; @@ -55,6 &#43;55,67 @@ const char *smu_get_feature_name(struct smu_con=
-text <br>
-&gt; *smu, enum smu_feature_mask<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return __smu_feature_=
-names[feature];<br>
-&gt; &nbsp;}<br>
-&gt;<br>
-&gt; &#43;size_t smu_sys_get_pp_feature_mask(struct smu_context *smu, char =
-*buf)<br>
-&gt; &#43;{<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size_t size =3D 0;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0, i =3D 0;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_mask[2] =3D=
- { 0 };<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int32_t feature_index =3D 0;=
-<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t count =3D 0;<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_get_enab=
-led_mask(smu, feature_mask, 2);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; goto failed;<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D&nbsp; sprintf(buf &=
-#43; size, &quot;features high: 0x%08x low: 0x%08x\n&quot;,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature=
-_mask[1], feature_mask[0]);<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; SMU_FEA=
-TURE_COUNT; i&#43;&#43;) {<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; feature_index =3D smu_feature_get_index(smu, i);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; if (feature_index &lt; 0)<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; continu=
-e;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; size &#43;=3D sprintf(buf &#43; size, &quot;%02d. %-20s=
- (%2d) : %s\n&quot;,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count&#43;&#43;,<br>
-&gt; &#43; smu_get_feature_name(smu, i),<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_index,<br>
-&gt; &#43; !!smu_feature_is_enabled(smu, i) ? &quot;enabeld&quot; : &quot;d=
-isabled&quot;);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; &#43;<br>
-&gt; &#43;failed:<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return size;<br>
-&gt; &#43;}<br>
-&gt; &#43;<br>
-&gt; &#43;int smu_sys_set_pp_feature_mask(struct smu_context *smu, uint64_t=
- <br>
-&gt; new_mask)<br>
-&gt; &#43;{<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_mask[2] =3D=
- { 0 };<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t feature_2_enabled =
-=3D 0;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t feature_2_disabled =
-=3D 0;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t feature_enables =3D=
- 0;<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_get_enab=
-led_mask(smu, feature_mask, 2);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; return ret;<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_enables =3D ((uint64=
-_t)feature_mask[1] &lt;&lt; 32 | <br>
-&gt; (uint64_t)feature_mask[0]);<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_2_enabled&nbsp; =3D =
-~feature_enables &amp; new_mask;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_2_disabled =3D featu=
-re_enables &amp; ~new_mask;<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (feature_2_enabled) {<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_update_enable_state(smu, <br>
-&gt; feature_2_enabled, true);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret;<br=
->
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (feature_2_disabled) {<br=
->
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_update_enable_state(smu, <br>
-&gt; feature_2_disabled, false);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return =
-ret;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&gt; &#43;}<br>
-&gt; &#43;<br>
-&gt; &nbsp;int smu_get_smc_version(struct smu_context *smu, uint32_t <br>
-&gt; *if_version, uint32_t *smu_version)<br>
-&gt; &nbsp;{<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h <br>
-&gt; b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
-&gt; index abc2644b4c07..ac9e9d5d8a5c 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
-&gt; @@ -432,8 &#43;432,6 @@ struct pptable_funcs {<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
 p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
 nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; uint32_t *mclk_mask,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; uint64_t bo_flags)<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t domain =3D AMDGPU=
+_GEM_DOMAIN_VRAM;<br>
+&nbsp;<br>
+&nbsp;#if defined(CONFIG_DRM_AMD_DC)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * if amdgpu_bo_validate_uswc re=
+turns false it means that USWC mappings<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * if amdgpu_bo_support_uswc=
+ returns false it means that USWC mappings<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * is not supported f=
+or this board. But this mapping is required<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * to avoid hang caus=
+ed by placement of scanout BO in GTT on certain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * APUs. So force the=
+ BO placement to VRAM in case this architecture<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * will not allow USW=
+C mappings.<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Also, don't allow GTT dom=
+ain if the BO doens't have USWC falg set.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;asic_type &gt;=3D CHIP_C=
+ARRIZO &amp;&amp; adev-&gt;asic_type &lt;=3D CHIP_RAVEN &amp;&amp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;flag=
+s &amp; AMD_IS_APU &amp;&amp; amdgpu_bo_support_uswc(0) &amp;&amp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;asic_type &gt;=3D CH=
+IP_CARRIZO &amp;&amp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;=
+asic_type &lt;=3D CHIP_RAVEN &amp;&amp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (adev-&gt=
+;flags &amp; AMD_IS_APU) &amp;&amp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (bo_flags=
+ &amp; AMDGPU_GEM_CREATE_CPU_GTT_USWC) &amp;&amp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo=
+_support_uswc(bo_flags) &amp;&amp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; am=
+dgpu_device_asic_has_dc_support(adev-&gt;asic_type))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; domain |=3D AMDGPU_GEM_DOMAIN_GTT;<br>
+&nbsp;#endif<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_display.h<br>
+index 06b922f..3620b24 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h<br>
+@@ -38,7 &#43;38,8 @@<br>
+&nbsp;int amdgpu_display_freesync_ioctl(struct drm_device *dev, void *data,=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_file *fil=
+p);<br>
+&nbsp;void amdgpu_display_update_priority(struct amdgpu_device *adev);<br>
+-uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev);<br>
+&#43;uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,<=
+br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
 p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
 nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; uint32_t *soc_mask);<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int (*set_cpu_power_s=
-tate)(struct smu_context *smu);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int (*set_ppfeature_status)(stru=
-ct smu_context *smu, uint64_t <br>
-&gt; ppfeatures);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int (*get_ppfeature_status)(stru=
-ct smu_context *smu, char *buf);<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool (*is_dpm_running=
-)(struct smu_context *smu);<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int (*tables_init)(st=
-ruct smu_context *smu, struct smu_table <br>
-&gt; *tables);<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int (*set_thermal_fan=
-_table)(struct smu_context *smu);<br>
-&gt; @@ -713,10 &#43;711,6 @@ struct smu_funcs<br>
-&gt; ((smu)-&gt;ppt_funcs-&gt;dpm_set_vce_enable ? <br>
-&gt; (smu)-&gt;ppt_funcs-&gt;dpm_set_vce_enable((smu), (enable)) : 0)<br>
-&gt; &nbsp;#define smu_set_xgmi_pstate(smu, pstate) \<br>
-&gt; ((smu)-&gt;funcs-&gt;set_xgmi_pstate ? (smu)-&gt;funcs-&gt;set_xgmi_ps=
-tate((smu), <br>
-&gt; (pstate)) : 0)<br>
-&gt; -#define smu_set_ppfeature_status(smu, ppfeatures) \<br>
-&gt; - ((smu)-&gt;ppt_funcs-&gt;set_ppfeature_status ? <br>
-&gt; (smu)-&gt;ppt_funcs-&gt;set_ppfeature_status((smu), (ppfeatures)) : -E=
-INVAL)<br>
-&gt; -#define smu_get_ppfeature_status(smu, buf) \<br>
-&gt; - ((smu)-&gt;ppt_funcs-&gt;get_ppfeature_status ? <br>
-&gt; (smu)-&gt;ppt_funcs-&gt;get_ppfeature_status((smu), (buf)) : -EINVAL)<=
-br>
-&gt; &nbsp;#define smu_set_watermarks_table(smu, tab, clock_ranges) \<br>
-&gt; ((smu)-&gt;ppt_funcs-&gt;set_watermarks_table ? <br>
-&gt; (smu)-&gt;ppt_funcs-&gt;set_watermarks_table((smu), (tab), (clock_rang=
-es)) : 0)<br>
-&gt; &nbsp;#define smu_get_current_clk_freq_by_table(smu, clk_type, value) =
-\<br>
-&gt; @@ -804,5 &#43;798,7 @@ bool smu_clk_dpm_is_enabled(struct smu_context=
- <br>
-&gt; *smu, enum smu_clk_type clk_type)<br>
-&gt; &nbsp;int smu_feature_update_enable_state(struct smu_context *smu, uin=
-t64_t <br>
-&gt; feature_mask, bool enabled);<br>
-&gt; &nbsp;const char *smu_get_message_name(struct smu_context *smu, enum <=
-br>
-&gt; smu_message_type type);<br>
-&gt; &nbsp;const char *smu_get_feature_name(struct smu_context *smu, enum <=
-br>
-&gt; smu_feature_mask feature);<br>
-&gt; &#43;size_t smu_sys_get_pp_feature_mask(struct smu_context *smu, char =
-*buf);<br>
-&gt; &#43;int smu_sys_set_pp_feature_mask(struct smu_context *smu, uint64_t=
- <br>
-&gt; new_mask);<br>
-&gt;<br>
-&gt; &nbsp;#endif<br>
-&gt; diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c <br>
-&gt; b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
-&gt; index c873228bf05f..cd0920093a5e 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
-&gt; @@ -1422,169 &#43;1422,6 @@ static int navi10_get_uclk_dpm_states(stru=
-ct <br>
-&gt; smu_context *smu, uint32_t *clocks_<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&gt; &nbsp;}<br>
-&gt;<br>
-&gt; -static int navi10_get_ppfeature_status(struct smu_context *smu,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+p;&nbsp;&nbsp;&nbsp; uint64_t bo_flags);<br>
+&nbsp;struct drm_framebuffer *<br>
+&nbsp;amdgpu_display_user_framebuffer_create(struct drm_device *dev,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
 sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; char *buf)<br>
-&gt; -{<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static const char *ppfeature_nam=
-e[] =3D {<br>
-&gt; - &quot;DPM_PREFETCHER&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DPM_GFXCLK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DPM_GFX_PACE&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DPM_UCLK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DPM_SOCCLK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DPM_MP0CLK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DPM_LINK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DPM_DCEFCLK&quot;,<br>
-&gt; - &quot;MEM_VDDCI_SCALING&quot;,<br>
-&gt; - &quot;MEM_MVDD_SCALING&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DS_GFXCLK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DS_SOCCLK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DS_LCLK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DS_DCEFCLK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DS_UCLK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFX_ULV&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;FW_DSTATE&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFXOFF&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;BACO&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;VCN_PG&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;JPEG_PG&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;USB_PG&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;RSMU_SMN_CG&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;PPT&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;TDC&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFX_EDC&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;APCC_PLUS&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GTHR&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;ACDC&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;VR0HOT&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;VR1HOT&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;FW_CTF&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;FAN_CONTROL&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;THERMAL&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFX_DCS&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;RM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;LED_DISPLAY&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFX_SS&quot;,<br>
-&gt; - &quot;OUT_OF_BAND_MONITOR&quot;,<br>
-&gt; - &quot;TEMP_DEPENDENT_VMIN&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;MMHUB_PG&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;ATHUB_PG&quot;};<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static const char *output_title[=
-] =3D {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;FEATURES&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;BITMASK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;ENABLEMENT&quot;};<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t features_enabled;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_mask[2];<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int size =3D 0;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_get_enabled_=
-mask(smu, feature_mask, 2);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PP_ASSERT_WITH_CODE(!ret,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;[GetP=
-PfeatureStatus] Failed to get enabled <br>
-&gt; smc features!&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret)=
-;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; features_enabled =3D (uint64_t)f=
-eature_mask[0] |<br>
-&gt; - (uint64_t)feature_mask[1] &lt;&lt; 32;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size &#43;=3D sprintf(buf &#43; =
-size, &quot;Current ppfeatures: 0x%016llx\n&quot;, <br>
-&gt; features_enabled);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size &#43;=3D sprintf(buf &#43; =
-size, &quot;%-19s %-22s %s\n&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output_title[0],<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output_title[1],<br>
-&gt; - output_title[2]);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; (sizeof(ppf=
-eature_name) / <br>
-&gt; sizeof(ppfeature_name[0])); i&#43;&#43;) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; size &#43;=3D sprintf(buf &#43; size, &quot;%-19s 0x%016llx=
- %6s\n&quot;,<br>
-&gt; - ppfeature_name[i],<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+sp;&nbsp; struct drm_file *file_priv,<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_dma_buf.c<br>
+index 4711cf1..6770eb3 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c<br>
+@@ -301,7 &#43;301,7 @@ static int amdgpu_dma_buf_begin_cpu_access(struct d=
+ma_buf *dma_buf,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_bo *bo =3D g=
+em_to_amdgpu_bo(dma_buf-&gt;priv);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev=
+ =3D amdgpu_ttm_adev(bo-&gt;tbo.bdev);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct ttm_operation_ctx c=
+tx =3D { true, false };<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u32 domain =3D amdgpu_display_support=
+ed_domains(adev);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u32 domain =3D amdgpu_display_sup=
+ported_domains(adev, bo-&gt;flags);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool reads =3D (direction =
+=3D=3D DMA_BIDIRECTIONAL ||<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; 1ULL &lt;&lt; i,<br>
-&gt; - (features_enabled &amp; (1ULL &lt;&lt; i)) ? &quot;Y&quot; : &quot;N=
-&quot;);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return size;<br>
-&gt; -}<br>
-&gt; -<br>
-&gt; -static int navi10_enable_smc_features(struct smu_context *smu,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bo=
-ol enabled,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ui=
-nt64_t feature_masks)<br>
-&gt; -{<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_feature *feature =3D =
-&amp;smu-&gt;smu_feature;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_low, feature_hi=
-gh;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_mask[2];<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_low =3D (uint32_t)(featu=
-re_masks &amp; 0xFFFFFFFF);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_high =3D (uint32_t)((fea=
-ture_masks &amp; <br>
-&gt; 0xFFFFFFFF00000000ULL) &gt;&gt; 32);<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (enabled) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, <br>
-&gt; SMU_MSG_EnableSmuFeaturesLow,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; featu=
-re_low);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, <br>
-&gt; SMU_MSG_EnableSmuFeaturesHigh,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; featu=
-re_high);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, <br>
-&gt; SMU_MSG_DisableSmuFeaturesLow,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; featu=
-re_low);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, <br>
-&gt; SMU_MSG_DisableSmuFeaturesHigh,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; featu=
-re_high);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_get_enabled_=
-mask(smu, feature_mask, 2);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return ret;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;feature-&gt;mute=
-x);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bitmap_copy(feature-&gt;enabled,=
- (unsigned long *)&amp;feature_mask,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature-&gt;feature_num);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;feature-&gt;mu=
-tex);<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&gt; -}<br>
-&gt; -<br>
-&gt; -static int navi10_set_ppfeature_status(struct smu_context *smu,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; uint64_t new_ppfeature_masks)<br>
-&gt; -{<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t features_enabled;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_mask[2];<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t features_to_enable;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t features_to_disable;<br=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; direction =3D=3D =
+DMA_FROM_DEVICE);<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c b/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_fb.c<br>
+index bf0c61b..4a6f29e 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c<br>
+@@ -130,21 &#43;130,21 @@ static int amdgpufb_create_pinned_object(struct a=
+mdgpu_fbdev *rfbdev,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int aligned_size, size;<br=
 >
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_get_enabled_=
-mask(smu, feature_mask, 2);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PP_ASSERT_WITH_CODE(!ret,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;[SetP=
-PfeatureStatus] Failed to get enabled <br>
-&gt; smc features!&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret)=
-;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; features_enabled =3D (uint64_t)f=
-eature_mask[0] |<br>
-&gt; - (uint64_t)feature_mask[1] &lt;&lt; 32;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; features_to_disable =3D<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; features_enabled &amp; ~new_ppfeature_masks;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; features_to_enable =3D<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ~features_enabled &amp; new_ppfeature_masks;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;features_to_disab=
-le 0x%llx\n&quot;, features_to_disable);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;features_to_enabl=
-e 0x%llx\n&quot;, features_to_enable);<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (features_to_disable) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D navi10_enable_smc_features(smu, false, <br>
-&gt; features_to_disable);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; PP_ASSERT_WITH_CODE(!ret,<br>
-&gt; - &quot;[SetPPfeatureStatus] Failed to disable smc features!&quot;,<br=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int height =3D mode_cmd-&g=
+t;height;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u32 cpp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u64 flags =3D AMDGPU_GEM_CREATE_C=
+PU_ACCESS_REQUIRED |<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS&nbsp;&nbsp;=
+&nbsp;&nbsp; |<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_GEM_CREATE_VRAM_CLEARED&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_GEM_CREATE_CPU_GTT_USWC;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cpp =3D drm_format_plane_c=
+pp(mode_cmd-&gt;pixel_format, 0);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* need to align pitch wit=
+h crtc limits */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mode_cmd-&gt;pitches[0] =
+=3D amdgpu_align_pitch(adev, mode_cmd-&gt;width, cpp,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ fb_tiled);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; domain =3D amdgpu_display_supported_d=
+omains(adev);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; domain =3D amdgpu_display_support=
+ed_domains(adev, flags);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height =3D ALIGN(mode_cmd-=
+&gt;height, 8);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D mode_cmd-&gt;pitc=
+hes[0] * height;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aligned_size =3D ALIGN(siz=
+e, PAGE_SIZE);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D amdgpu_gem_object_create(adev=
+, aligned_size, 0, domain,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A=
+MDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED |<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A=
+MDGPU_GEM_CREATE_VRAM_CONTIGUOUS&nbsp;&nbsp;&nbsp;&nbsp; |<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A=
+MDGPU_GEM_CREATE_VRAM_CLEARED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; |<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A=
+MDGPU_GEM_CREATE_CPU_GTT_USWC,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D amdgpu_gem_object_create(=
+adev, aligned_size, 0, domain, flags,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; ttm_bo_type_kernel, NULL, &amp;gobj);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; pr_err(&quot;failed to allocate framebuffer (%d)\n&qu=
+ot;, aligned_size);<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_gem.c<br>
+index eeed089..e7af35c 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c<br>
+@@ -761,7 &#43;761,7 @@ int amdgpu_mode_dumb_create(struct drm_file *file_p=
+riv,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; args-&gt;size =3D (u64)arg=
+s-&gt;pitch * args-&gt;height;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; args-&gt;size =3D ALIGN(ar=
+gs-&gt;size, PAGE_SIZE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; domain =3D amdgpu_bo_get_p=
+referred_pin_domain(adev,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_display_supported_domains(adev));<br=
 >
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (features_to_enable) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D navi10_enable_smc_features(smu, true, <br>
-&gt; features_to_enable);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; PP_ASSERT_WITH_CODE(!ret,<br>
-&gt; - &quot;[SetPPfeatureStatus] Failed to enable smc features!&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&gt; -}<br>
-&gt; -<br>
-&gt; &nbsp;static int navi10_set_peak_clock_by_device(struct smu_context *s=
-mu)<br>
-&gt; &nbsp;{<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device =
-*adev =3D smu-&gt;adev;<br>
-&gt; @@ -1689,8 &#43;1526,6 @@ static const struct pptable_funcs <br>
-&gt; navi10_ppt_funcs =3D {<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .set_watermarks_table=
- =3D navi10_set_watermarks_table,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .read_sensor =3D navi=
-10_read_sensor,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_uclk_dpm_states =
-=3D navi10_get_uclk_dpm_states,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_ppfeature_status =3D navi10=
-_get_ppfeature_status,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .set_ppfeature_status =3D navi10=
-_set_ppfeature_status,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .set_performance_leve=
-l =3D navi10_set_performance_level,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_thermal_temperat=
-ure_range =3D <br>
-&gt; navi10_get_thermal_temperature_range,<br>
-&gt; &nbsp;};<br>
-&gt; diff --git a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c <br>
-&gt; b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c<br>
-&gt; index c06a9472c3b2..52c8fc9f1ff4 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c<br>
-&gt; @@ -2858,157 &#43;2858,6 @@ static int vega20_dpm_set_vce_enable(struc=
-t <br>
-&gt; smu_context *smu, bool enable)<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return smu_feature_se=
-t_enabled(smu, SMU_FEATURE_DPM_VCE_BIT, <br>
-&gt; enable);<br>
-&gt; &nbsp;}<br>
-&gt;<br>
-&gt; -static int vega20_get_enabled_smc_features(struct smu_context *smu,<b=
-r>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; uint64_t *features_enabled)<br>
-&gt; -{<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_mask[2] =3D {0,=
- 0};<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_get_enabled_=
-mask(smu, feature_mask, 2);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return ret;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *features_enabled =3D ((((uint64=
-_t)feature_mask[0] &lt;&lt; <br>
-&gt; SMU_FEATURES_LOW_SHIFT) &amp; SMU_FEATURES_LOW_MASK) |<br>
-&gt; - (((uint64_t)feature_mask[1] &lt;&lt; SMU_FEATURES_HIGH_SHIFT) &amp; =
-<br>
-&gt; SMU_FEATURES_HIGH_MASK));<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&gt; -}<br>
-&gt; -<br>
-&gt; -static int vega20_enable_smc_features(struct smu_context *smu,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; bool enable, uint64_t feature_mask)<br>
-&gt; -{<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t smu_features_low, smu_f=
-eatures_high;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_features_low =3D (uint32_t)(=
-(feature_mask &amp; <br>
-&gt; SMU_FEATURES_LOW_MASK) &gt;&gt; SMU_FEATURES_LOW_SHIFT);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_features_high =3D (uint32_t)=
-((feature_mask &amp; <br>
-&gt; SMU_FEATURES_HIGH_MASK) &gt;&gt; SMU_FEATURES_HIGH_SHIFT);<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (enable) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, <br>
-&gt; SMU_MSG_EnableSmuFeaturesLow,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_display_supported_domains(adev, =
+flags));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_gem_object_cr=
+eate(adev, args-&gt;size, 0, domain, flags,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_f=
-eatures_low);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, <br>
-&gt; SMU_MSG_EnableSmuFeaturesHigh,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
 sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tt=
+m_bo_type_device, NULL, &amp;gobj);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
+u/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+index 066f04b..0401691 100644<br>
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+@@ -4414,7 &#43;4414,7 @@ static int dm_plane_helper_prepare_fb(struct drm_=
+plane *plane,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (plane-&gt;type !=3D DR=
+M_PLANE_TYPE_CURSOR)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; domain =3D amdgpu_display_supported_domains(adev);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; domain =3D amdgpu_display_supported_domains(adev, rbo-&gt;fl=
+ags);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_f=
-eatures_high);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
+sp;&nbsp;&nbsp;&nbsp; domain =3D AMDGPU_GEM_DOMAIN_VRAM;<br>
+&nbsp;<br>
+-- <br>
+2.7.4<br>
 <br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, <br>
-&gt; SMU_MSG_DisableSmuFeaturesLow,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_f=
-eatures_low);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, <br>
-&gt; SMU_MSG_DisableSmuFeaturesHigh,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_f=
-eatures_high);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&gt; -<br>
-&gt; -}<br>
-&gt; -<br>
-&gt; -static int vega20_get_ppfeature_status(struct smu_context *smu, char =
-<br>
-&gt; *buf)<br>
-&gt; -{<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static const char *ppfeature_nam=
-e[] =3D {<br>
-&gt; - &quot;DPM_PREFETCHER&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFXCLK_DPM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;UCLK_DPM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;SOCCLK_DPM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;UVD_DPM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;VCE_DPM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;ULV&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;MP0CLK_DPM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;LINK_DPM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DCEFCLK_DPM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFXCLK_DS&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;SOCCLK_DS&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;LCLK_DS&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;PPT&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;TDC&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;THERMAL&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFX_PER_CU_CG&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;RM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;DCEFCLK_DS&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;ACDC&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;VR0HOT&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;VR1HOT&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;FW_CTF&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;LED_DISPLAY&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;FAN_CONTROL&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFX_EDC&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;GFXOFF&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;CG&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;FCLK_DPM&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;FCLK_DS&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;MP1CLK_DS&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;MP0CLK_DS&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;XGMI&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;ECC&quot;};<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static const char *output_title[=
-] =3D {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;FEATURES&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;BITMASK&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;ENABLEMENT&quot;};<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t features_enabled;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int size =3D 0;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D vega20_get_enabled_smc_f=
-eatures(smu, &amp;features_enabled);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return ret;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size &#43;=3D sprintf(buf &#43; =
-size, &quot;Current ppfeatures: 0x%016llx\n&quot;, <br>
-&gt; features_enabled);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size &#43;=3D sprintf(buf &#43; =
-size, &quot;%-19s %-22s %s\n&quot;,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output_title[0],<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output_title[1],<br>
-&gt; - output_title[2]);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; GNLD_FEATUR=
-ES_MAX; i&#43;&#43;) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; size &#43;=3D sprintf(buf &#43; size, &quot;%-19s 0x%016llx=
- %6s\n&quot;,<br>
-&gt; - ppfeature_name[i],<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; 1ULL &lt;&lt; i,<br>
-&gt; - (features_enabled &amp; (1ULL &lt;&lt; i)) ? &quot;Y&quot; : &quot;N=
-&quot;);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return size;<br>
-&gt; -}<br>
-&gt; -<br>
-&gt; -static int vega20_set_ppfeature_status(struct smu_context *smu, <br>
-&gt; uint64_t new_ppfeature_masks)<br>
-&gt; -{<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t features_enabled;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t features_to_enable;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t features_to_disable;<br=
->
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (new_ppfeature_masks &gt;=3D =
-(1ULL &lt;&lt; GNLD_FEATURES_MAX))<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return -EINVAL;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D vega20_get_enabled_smc_f=
-eatures(smu, &amp;features_enabled);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return ret;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; features_to_disable =3D<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; features_enabled &amp; ~new_ppfeature_masks;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; features_to_enable =3D<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ~features_enabled &amp; new_ppfeature_masks;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;features_to_disab=
-le 0x%llx\n&quot;, features_to_disable);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;features_to_enabl=
-e 0x%llx\n&quot;, features_to_enable);<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (features_to_disable) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D vega20_enable_smc_features(smu, false, <br>
-&gt; features_to_disable);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (features_to_enable) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D vega20_enable_smc_features(smu, true, <br>
-&gt; features_to_enable);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&gt; -}<br>
-&gt; -<br>
-&gt; &nbsp;static bool vega20_is_dpm_running(struct smu_context *smu)<br>
-&gt; &nbsp;{<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; @@ -3311,8 &#43;3160,6 @@ static const struct pptable_funcs <br>
-&gt; vega20_ppt_funcs =3D {<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .force_dpm_limit_valu=
-e =3D vega20_force_dpm_limit_value,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .unforce_dpm_levels =
-=3D vega20_unforce_dpm_levels,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_profiling_clk_ma=
-sk =3D vega20_get_profiling_clk_mask,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .set_ppfeature_status =3D vega20=
-_set_ppfeature_status,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_ppfeature_status =3D vega20=
-_get_ppfeature_status,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .is_dpm_running =3D v=
-ega20_is_dpm_running,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .set_thermal_fan_tabl=
-e =3D vega20_set_thermal_fan_table,<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_fan_speed_percen=
-t =3D vega20_get_fan_speed_percent,<br>
-&gt; -- <br>
-&gt; 2.22.0<br>
-&gt;<br>
-</div>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
 </span></font></div>
-</div>
 </body>
 </html>
 
---_000_BN6PR12MB18093323D92A6EC4123E46BBF7C00BN6PR12MB1809namp_--
+--_000_BN6PR12MB1809FAA22170477E1BE42CBFF7C00BN6PR12MB1809namp_--
 
---===============0874468739==
+--===============0352988890==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -2481,4 +633,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============0874468739==--
+--===============0352988890==--
