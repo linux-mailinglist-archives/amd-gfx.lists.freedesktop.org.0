@@ -1,61 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31D12771EF
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jul 2019 21:16:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8809677229
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jul 2019 21:29:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B10DC6EE3B;
-	Fri, 26 Jul 2019 19:16:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B8426EE44;
+	Fri, 26 Jul 2019 19:29:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
- [IPv6:2607:f8b0:4864:20::842])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4F8F6EE3B
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jul 2019 19:16:25 +0000 (UTC)
-Received: by mail-qt1-x842.google.com with SMTP id h18so53693834qtm.9
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jul 2019 12:16:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=KxqSnjlzgJpZFBk/1bUn24nluanm+fCH6EADKKG6szw=;
- b=RWgObb+hM57ns+soVUuqc5wf7If+ziNGffxxSDQQthDPLk1eNPsWzagYvkZQW4IG+A
- 28nI4GT5AsSRgjCrKdPzk6wh44f/XjR4Ldr5fPVwbysORVKVVyU+CJ32Ly0gycpURJIC
- OdxKqkTQwY0Hb2WiabIcKaUf29zZ/qs5HG5hGiJN3KuK3+mvKnHrYwQ0FYu/sMOzmEY+
- Wfd0btQLJel3iKyEMI/IYLsmGye2Y/X/UErkWffp6becyO4xX/PVlXr2XF5/guWMmsdc
- ZoFiHrMF6Ex7UcA/fZFHXvxN/LuEjsPt4IwaDbsQ79HHugL0UDwuGzuFMrHQQ63NzSQQ
- zZKg==
-X-Gm-Message-State: APjAAAW4niNIHHBOr+PGuojR9eoX42FAb7xzy/4n0vHBd7AtwF6hovgl
- XdE197DD/ZmlkMm93qqf3OXHI7mk
-X-Google-Smtp-Source: APXvYqwvOPcRHixZz/SSAVd2NNcxLJWdZRSfzUh4MVbA1BNWle50IpNu1ermAG41+FlxVV3RQGX1nA==
-X-Received: by 2002:a0c:ba0b:: with SMTP id w11mr69436365qvf.71.1564168584604; 
- Fri, 26 Jul 2019 12:16:24 -0700 (PDT)
-Received: from localhost.localdomain ([71.51.160.180])
- by smtp.gmail.com with ESMTPSA id r14sm25836243qke.47.2019.07.26.12.16.23
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Fri, 26 Jul 2019 12:16:24 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdkfd: enable KFD support for navi14
-Date: Fri, 26 Jul 2019 14:16:15 -0500
-Message-Id: <20190726191615.20351-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190726191615.20351-1-alexander.deucher@amd.com>
-References: <20190726191615.20351-1-alexander.deucher@amd.com>
+X-Greylist: delayed 571 seconds by postgrey-1.36 at gabe;
+ Fri, 26 Jul 2019 19:28:40 UTC
+Received: from mail.siol.net (mailoutvs10.siol.net [185.57.226.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E4C96EE3E;
+ Fri, 26 Jul 2019 19:28:40 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.siol.net (Postfix) with ESMTP id 69D62522FAD;
+ Fri, 26 Jul 2019 21:19:06 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+ by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new,
+ port 10032)
+ with ESMTP id yannSpSAHOqL; Fri, 26 Jul 2019 21:19:06 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+ by mail.siol.net (Postfix) with ESMTPS id B632A522FAA;
+ Fri, 26 Jul 2019 21:19:05 +0200 (CEST)
+Received: from jernej-laptop.localnet (cpe-194-152-11-237.cable.triera.net
+ [194.152.11.237]) (Authenticated sender: jernej.skrabec@siol.net)
+ by mail.siol.net (Postfix) with ESMTPA id A3E9D522FA9;
+ Fri, 26 Jul 2019 21:18:59 +0200 (CEST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Subject: Re: [PATCH v6 20/24] drm/bridge: dw-hdmi: Provide ddc symlink in
+ connector sysfs directory
+Date: Fri, 26 Jul 2019 21:18:58 +0200
+Message-ID: <2759414.3aNxrjZxYY@jernej-laptop>
+In-Reply-To: <4bcf0f154c683c9787fa34f911ebc52de6b4a7a1.1564161140.git.andrzej.p@collabora.com>
+References: <cover.1564161140.git.andrzej.p@collabora.com>
+ <4bcf0f154c683c9787fa34f911ebc52de6b4a7a1.1564161140.git.andrzej.p@collabora.com>
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=KxqSnjlzgJpZFBk/1bUn24nluanm+fCH6EADKKG6szw=;
- b=lgkgijXvqdYMOITIUi0ZjFRZGpZHuQl987C4K7unAtZZkSPJSAVeXyWmkwMWekUEKw
- QpP4dWckCPSexM8Q7NQpOELs+aCsd2xgiL48mLmZBJDtUH9eQGKnPfvaIQAvK3v3v+PS
- r5/rgJMXoTc1FUV3wCAS3CWSd5taUXTTX8KoASWNWmJ/p9QlIvIl7AU8dRQieqT3YFCR
- 6OLN2vD78Abfrs+Feg/oiPEXDfiKePgX38sFZIvh4rNBsjBrI3YMu2E9N56jeRZh/hRo
- jZ9rE7Q1i0a3GVCOkKJ5FWTOI0+2cb93N5EHGxH4TZql0RrgRnrfx9k7k0cdQ/WmbRJf
- cnRw==
+X-Mailman-Approved-At: Fri, 26 Jul 2019 19:29:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -67,24 +51,87 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: , "Y.C. Chen" <yc_chen@aspeedtech.com>,
+	Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	David Airlie <airlied@linux.ie>,
+	Ramalingam C <ramalingam.c@intel.com>,
+	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+	dri-devel@lists.freedesktop.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Andrzej Hajda <a.hajda@samsung.com>,
+	Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linu>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+	kernel@collabora.com, Fabio Estevam <festevam@gmail.com>,
+	"David (ChunMing) Zhou" <David1.Zhou@amd.com>,
+	linux-samsung-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Joonyoung Shim <jy0922.shim@samsung.com>, Jyri Sarha <jsarha@ti.com>,
+	Vincent Abriou <vincent.abriou@st.com>,
+	Rob Clark <robdclark@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>, x.intel.com@freedesktop.org,
+	Chen-Yu Tsai <wens@csie.org>, Kukjin Kim <kgene@kernel.org>,
+	NXP Linux Team <linux-imx@nxp.com>, CK Hu <ck.hu@mediatek.com>,
+	Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
+	Shashank Sharma <shashank.sharma@intel.com>,
+	freedreno@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>, Inki Dae <inki.dae@samsung.com>,
+	Alexios Zavras <alexios.zavras@intel.com>,
+	Mamta Shukla <mamtashukla555@gmail.com>,
+	linux-mediatek@lists.infradead.org,
+	Jani Nikula <jani.nikula@linux.intel.com>,
+	Rodrigo Vivi <rodrigo.vivi@intel.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Chris Wilson <chris@chris-wilson.co.uk>, Sean Paul <sean@poorly.run>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	Enrico Weigelt <info@metux.net>, amd-gfx@lists.freedesktop.org,
+	Tomi Valkeinen <tomi.valkeinen@ti.com>,
+	Eric Anholt <eric@anholt.net>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Sandy Huang <hjc@rock-chips.com>, linux-kernel@vger.kernel.org,
+	Todor Tomov <todor.tomov@linaro.org>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Huang Rui <ray.huang@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Alex Deucher <alexander.deucher@amd.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Gerd Hoffmann <kraxel@redhat.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-U2FtZSBhcyBuYXZpMTAuCgpTaWduZWQtb2ZmLWJ5OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5k
-ZXVjaGVyQGFtZC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Ft
-ZGtmZC5jIHwgMSArCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkLmMKaW5kZXggZjA1MmM3MGU0NjU5Li45N2Y3
-YzUyMzVjYzkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9h
-bWRrZmQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkLmMK
-QEAgLTkxLDYgKzkxLDcgQEAgdm9pZCBhbWRncHVfYW1ka2ZkX2RldmljZV9wcm9iZShzdHJ1Y3Qg
-YW1kZ3B1X2RldmljZSAqYWRldikKIAkJa2ZkMmtnZCA9IGFtZGdwdV9hbWRrZmRfYXJjdHVydXNf
-Z2V0X2Z1bmN0aW9ucygpOwogCQlicmVhazsKIAljYXNlIENISVBfTkFWSTEwOgorCWNhc2UgQ0hJ
-UF9OQVZJMTQ6CiAJCWtmZDJrZ2QgPSBhbWRncHVfYW1ka2ZkX2dmeF8xMF8wX2dldF9mdW5jdGlv
-bnMoKTsKIAkJYnJlYWs7CiAJZGVmYXVsdDoKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9hbWQtZ2Z4
+SGkhCgpEbmUgcGV0ZWssIDI2LiBqdWxpaiAyMDE5IG9iIDE5OjIzOjE0IENFU1QgamUgQW5kcnpl
+aiBQaWV0cmFzaWV3aWN6IApuYXBpc2FsKGEpOgo+IFVzZSB0aGUgZGRjIHBvaW50ZXIgcHJvdmlk
+ZWQgYnkgdGhlIGdlbmVyaWMgY29ubmVjdG9yLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEFuZHJ6ZWog
+UGlldHJhc2lld2ljeiA8YW5kcnplai5wQGNvbGxhYm9yYS5jb20+CgpBY2tlZC1ieTogSmVybmVq
+IFNrcmFiZWMgPGplcm5lai5za3JhYmVjQHNpb2wubmV0PgoKVGhhbmtzIQoKQmVzdCByZWdhcmRz
+LApKZXJuZWoKCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRt
+aS5jIHwgNiArKysrLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMiBkZWxl
+dGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5
+cy9kdy1oZG1pLmMKPiBiL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5j
+IGluZGV4Cj4gMjE4YTdiMjMwOGY3Li44M2I5NGI2NmU0NjQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9kdy1oZG1pLmMKPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vYnJpZGdlL3N5bm9wc3lzL2R3LWhkbWkuYwo+IEBAIC0yMjAwLDggKzIyMDAsMTAgQEAgc3Rh
+dGljIGludCBkd19oZG1pX2JyaWRnZV9hdHRhY2goc3RydWN0IGRybV9icmlkZ2UKPiAqYnJpZGdl
+KQo+IAo+ICAJZHJtX2Nvbm5lY3Rvcl9oZWxwZXJfYWRkKGNvbm5lY3RvciwgCiZkd19oZG1pX2Nv
+bm5lY3Rvcl9oZWxwZXJfZnVuY3MpOwo+IAo+IC0JZHJtX2Nvbm5lY3Rvcl9pbml0KGJyaWRnZS0+
+ZGV2LCBjb25uZWN0b3IsIAomZHdfaGRtaV9jb25uZWN0b3JfZnVuY3MsCj4gLQkJCSAgIERSTV9N
+T0RFX0NPTk5FQ1RPUl9IRE1JQSk7Cj4gKwlkcm1fY29ubmVjdG9yX2luaXRfd2l0aF9kZGMoYnJp
+ZGdlLT5kZXYsIGNvbm5lY3RvciwKPiArCQkJCSAgICAmZHdfaGRtaV9jb25uZWN0b3JfZnVuY3Ms
+Cj4gKwkJCQkgICAgRFJNX01PREVfQ09OTkVDVE9SX0hETUlBLAo+ICsJCQkJICAgIGhkbWktPmRk
+Yyk7Cj4gCj4gIAlkcm1fY29ubmVjdG9yX2F0dGFjaF9lbmNvZGVyKGNvbm5lY3RvciwgZW5jb2Rl
+cik7CgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwph
+bWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
