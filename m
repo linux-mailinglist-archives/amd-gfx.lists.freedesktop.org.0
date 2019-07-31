@@ -2,25 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E07D7C971
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jul 2019 18:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 727097C97A
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jul 2019 18:59:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8794D6E11E;
-	Wed, 31 Jul 2019 16:59:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B876789A88;
+	Wed, 31 Jul 2019 16:59:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE9C86E0B8;
- Wed, 31 Jul 2019 16:59:16 +0000 (UTC)
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0A7B89503;
+ Wed, 31 Jul 2019 16:59:25 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: andrzej.p) with ESMTPSA id 432B128BF23
+ (Authenticated sender: andrzej.p) with ESMTPSA id 77C3D28BF23
 From: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 04/13] drm: rockchip: Provide ddc symlink in rk3066_hdmi sysfs
+Subject: [PATCH 05/13] drm: rockchip: Provide ddc symlink in inno_hdmi sysfs
  directory
-Date: Wed, 31 Jul 2019 18:58:13 +0200
-Message-Id: <e3058e1973c9c7649a0818450188b5c3db442b3e.1564591626.git.andrzej.p@collabora.com>
+Date: Wed, 31 Jul 2019 18:58:14 +0200
+Message-Id: <52272b8ebf403361ff96e04bf14f5a7389116f73.1564591626.git.andrzej.p@collabora.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1564591626.git.andrzej.p@collabora.com>
 References: <65481afa-1104-4ee9-e53d-f2732a10d4b9@baylibre.com>
@@ -39,8 +38,7 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
- Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@linux.ie>,
- Ramalingam C <ramalingam.c@intel.com>,
+ David Airlie <airlied@linux.ie>, Ramalingam C <ramalingam.c@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Chris Wilson <chris@chris-wilson.co.uk>,
  Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, Eric Anholt <eric@anholt.net>,
@@ -57,10 +55,9 @@ Cc: =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
  linux-rockchip@lists.infradead.org, Kukjin Kim <kgene@kernel.org>,
  linux-arm-msm@vger.kernel.org, CK Hu <ck.hu@mediatek.com>,
  Harry Wentland <harry.wentland@amd.com>,
- Shashank Sharma <shashank.sharma@intel.com>, freedreno@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
- Leo Li <sunpeng.li@amd.com>, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org,
+ Shashank Sharma <shashank.sharma@intel.com>, linux-tegra@vger.kernel.org,
+ Philipp Zabel <p.zabel@pengutronix.de>, Leo Li <sunpeng.li@amd.com>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Jani Nikula <jani.nikula@linux.intel.com>, Inki Dae <inki.dae@samsung.com>,
  linux-mediatek@lists.infradead.org, Jyri Sarha <jsarha@ti.com>,
@@ -68,7 +65,7 @@ Cc: =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  Thomas Gleixner <tglx@linutronix.de>, Sean Paul <sean@poorly.run>,
  linux-arm-kernel@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- Enrico Weigelt <info@metux.net>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ freedreno@lists.freedesktop.org, Seung-Woo Kim <sw0312.kim@samsung.com>,
  Sandy Huang <hjc@rock-chips.com>,
  Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
  Todor Tomov <todor.tomov@linaro.org>, Rob Clark <robdclark@gmail.com>,
@@ -85,21 +82,21 @@ VXNlIHRoZSBkZGMgcG9pbnRlciBwcm92aWRlZCBieSB0aGUgZ2VuZXJpYyBjb25uZWN0b3IuCgpT
 aWduZWQtb2ZmLWJ5OiBBbmRyemVqIFBpZXRyYXNpZXdpY3ogPGFuZHJ6ZWoucEBjb2xsYWJvcmEu
 Y29tPgpBY2tlZC1ieTogU2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgpSZXZpZXdlZC1i
 eTogRW1pbCBWZWxpa292IDxlbWlsLnZlbGlrb3ZAY29sbGFib3JhLmNvbT4KLS0tCiBkcml2ZXJz
-L2dwdS9kcm0vcm9ja2NoaXAvcmszMDY2X2hkbWkuYyB8IDcgKysrKy0tLQogMSBmaWxlIGNoYW5n
-ZWQsIDQgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vcm9ja2NoaXAvcmszMDY2X2hkbWkuYyBiL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hp
-cC9yazMwNjZfaGRtaS5jCmluZGV4IDg1ZmM1ZjAxZjc2MS4uZTg3NGY1ZmRlZWM0IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvcmszMDY2X2hkbWkuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vcm9ja2NoaXAvcmszMDY2X2hkbWkuYwpAQCAtNTY0LDkgKzU2NCwxMCBAQCByazMw
-NjZfaGRtaV9yZWdpc3RlcihzdHJ1Y3QgZHJtX2RldmljZSAqZHJtLCBzdHJ1Y3QgcmszMDY2X2hk
-bWkgKmhkbWkpCiAKIAlkcm1fY29ubmVjdG9yX2hlbHBlcl9hZGQoJmhkbWktPmNvbm5lY3RvciwK
-IAkJCQkgJnJrMzA2Nl9oZG1pX2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3MpOwotCWRybV9jb25uZWN0
-b3JfaW5pdChkcm0sICZoZG1pLT5jb25uZWN0b3IsCi0JCQkgICAmcmszMDY2X2hkbWlfY29ubmVj
-dG9yX2Z1bmNzLAotCQkJICAgRFJNX01PREVfQ09OTkVDVE9SX0hETUlBKTsKKwlkcm1fY29ubmVj
-dG9yX2luaXRfd2l0aF9kZGMoZHJtLCAmaGRtaS0+Y29ubmVjdG9yLAorCQkJCSAgICAmcmszMDY2
-X2hkbWlfY29ubmVjdG9yX2Z1bmNzLAorCQkJCSAgICBEUk1fTU9ERV9DT05ORUNUT1JfSERNSUEs
-CisJCQkJICAgIGhkbWktPmRkYyk7CiAKIAlkcm1fY29ubmVjdG9yX2F0dGFjaF9lbmNvZGVyKCZo
-ZG1pLT5jb25uZWN0b3IsIGVuY29kZXIpOwogCi0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+L2dwdS9kcm0vcm9ja2NoaXAvaW5ub19oZG1pLmMgfCA2ICsrKystLQogMSBmaWxlIGNoYW5nZWQs
+IDQgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vcm9ja2NoaXAvaW5ub19oZG1pLmMgYi9kcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvaW5u
+b19oZG1pLmMKaW5kZXggZWQzNDRhNzk1YjRkLi5lNTg2NGU4MjMwMjAgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9pbm5vX2hkbWkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+cm9ja2NoaXAvaW5ub19oZG1pLmMKQEAgLTYyNCw4ICs2MjQsMTAgQEAgc3RhdGljIGludCBpbm5v
+X2hkbWlfcmVnaXN0ZXIoc3RydWN0IGRybV9kZXZpY2UgKmRybSwgc3RydWN0IGlubm9faGRtaSAq
+aGRtaSkKIAogCWRybV9jb25uZWN0b3JfaGVscGVyX2FkZCgmaGRtaS0+Y29ubmVjdG9yLAogCQkJ
+CSAmaW5ub19oZG1pX2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3MpOwotCWRybV9jb25uZWN0b3JfaW5p
+dChkcm0sICZoZG1pLT5jb25uZWN0b3IsICZpbm5vX2hkbWlfY29ubmVjdG9yX2Z1bmNzLAotCQkJ
+ICAgRFJNX01PREVfQ09OTkVDVE9SX0hETUlBKTsKKwlkcm1fY29ubmVjdG9yX2luaXRfd2l0aF9k
+ZGMoZHJtLCAmaGRtaS0+Y29ubmVjdG9yLAorCQkJCSAgICAmaW5ub19oZG1pX2Nvbm5lY3Rvcl9m
+dW5jcywKKwkJCQkgICAgRFJNX01PREVfQ09OTkVDVE9SX0hETUlBLAorCQkJCSAgICBoZG1pLT5k
+ZGMpOwogCiAJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigmaGRtaS0+Y29ubmVjdG9yLCBl
+bmNvZGVyKTsKIAotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ft
+ZC1nZng=
