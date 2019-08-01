@@ -1,64 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A0D7E1D9
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 Aug 2019 20:01:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D194B7E1DE
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 Aug 2019 20:01:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1FD86E314;
-	Thu,  1 Aug 2019 18:00:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB4E46E75E;
+	Thu,  1 Aug 2019 18:01:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFA006E30D
- for <amd-gfx@lists.freedesktop.org>; Wed, 31 Jul 2019 22:10:55 +0000 (UTC)
-Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
- x6VM1rOP041038; Wed, 31 Jul 2019 18:10:53 -0400
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com
- [169.55.85.253])
- by mx0a-001b2d01.pphosted.com with ESMTP id 2u3h7pnbxd-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 31 Jul 2019 18:10:53 -0400
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
- by ppma01wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x6VM54vU021360;
- Wed, 31 Jul 2019 22:10:52 GMT
-Received: from b03cxnp08026.gho.boulder.ibm.com
- (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
- by ppma01wdc.us.ibm.com with ESMTP id 2u0e86rb7e-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 31 Jul 2019 22:10:52 +0000
-Received: from b03ledav004.gho.boulder.ibm.com
- (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
- by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- x6VMApwX59376076
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 31 Jul 2019 22:10:51 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 6FAE778115;
- Wed, 31 Jul 2019 22:10:51 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 16B4678114;
- Wed, 31 Jul 2019 22:10:50 +0000 (GMT)
-Received: from oc6220003374.ibm.com (unknown [9.40.45.99])
- by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTPS;
- Wed, 31 Jul 2019 22:10:50 +0000 (GMT)
-From: KyleMahlkuch <kmahlkuc@linux.vnet.ibm.com>
-To: 
-Subject: [PATCH v2] drm/radeon: Fix EEH during kexec
-Date: Wed, 31 Jul 2019 17:10:14 -0500
-Message-Id: <1564611032-10016-1-git-send-email-kmahlkuc@linux.vnet.ibm.com>
-X-Mailer: git-send-email 1.8.3.1
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
- definitions=2019-07-31_11:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=715 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1906280000 definitions=main-1907310221
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38E246E390;
+ Thu,  1 Aug 2019 06:49:19 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id A602568B05; Thu,  1 Aug 2019 08:49:14 +0200 (CEST)
+Date: Thu, 1 Aug 2019 08:49:14 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Jason Gunthorpe <jgg@mellanox.com>
+Subject: Re: [PATCH 07/13] mm: remove the page_shift member from struct
+ hmm_range
+Message-ID: <20190801064914.GA15404@lst.de>
+References: <20190730055203.28467-1-hch@lst.de>
+ <20190730055203.28467-8-hch@lst.de> <20190730125512.GF24038@mellanox.com>
+ <20190730131430.GC4566@lst.de> <20190730175011.GL24038@mellanox.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20190730175011.GL24038@mellanox.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Thu, 01 Aug 2019 18:00:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -71,34 +39,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David1.Zhou@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, KyleMahlkuch <kmahlkuc@linux.vnet.ibm.com>,
- alexander.deucher@amd.com, christian.koenig@amd.com
-MIME-Version: 1.0
+Cc: Ralph Campbell <rcampbell@nvidia.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RHVyaW5nIGtleGVjIHNvbWUgYWRhcHRlcnMgaGl0IGFuIEVFSCBzaW5jZSB0aGV5IGFyZSBub3Qg
-cHJvcGVybHkKc2h1dCBkb3duIGluIHRoZSByYWRlb25fcGNpX3NodXRkb3duKCkgZnVuY3Rpb24u
-IEFkZGluZwpyYWRlb25fc3VzcGVuZF9rbXMoKSBmaXhlcyB0aGlzIGlzc3VlLgoKU2lnbmVkLW9m
-Zi1ieTogS3lsZSBNYWhsa3VjaCA8S3lsZS5NYWhsa3VjaCBhdCBpYm0uY29tPgotLS0KIGRyaXZl
-cnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5jIHwgOCArKysrKysrKwogMSBmaWxlIGNoYW5n
-ZWQsIDggaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24v
-cmFkZW9uX2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZHJ2LmMKaW5kZXgg
-YTZjYmUxMS4uMTVkN2JlYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRl
-b25fZHJ2LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZHJ2LmMKQEAgLTM0
-OSwxMSArMzQ5LDE5IEBAIHN0YXRpYyBpbnQgcmFkZW9uX3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2Rl
-diAqcGRldiwKIHN0YXRpYyB2b2lkCiByYWRlb25fcGNpX3NodXRkb3duKHN0cnVjdCBwY2lfZGV2
-ICpwZGV2KQogeworCXN0cnVjdCBkcm1fZGV2aWNlICpkZGV2ID0gcGNpX2dldF9kcnZkYXRhKHBk
-ZXYpOworCiAJLyogaWYgd2UgYXJlIHJ1bm5pbmcgaW4gYSBWTSwgbWFrZSBzdXJlIHRoZSBkZXZp
-Y2UKIAkgKiB0b3JuIGRvd24gcHJvcGVybHkgb24gcmVib290L3NodXRkb3duCiAJICovCiAJaWYg
-KHJhZGVvbl9kZXZpY2VfaXNfdmlydHVhbCgpKQogCQlyYWRlb25fcGNpX3JlbW92ZShwZGV2KTsK
-KworCS8qIFNvbWUgYWRhcHRlcnMgbmVlZCB0byBiZSBzdXNwZW5kZWQgYmVmb3JlIGEKKwkqIHNo
-dXRkb3duIG9jY3VycyBpbiBvcmRlciB0byBwcmV2ZW50IGFuIGVycm9yCisJKiBkdXJpbmcga2V4
-ZWMuCisJKi8KKwlyYWRlb25fc3VzcGVuZF9rbXMoZGRldiwgdHJ1ZSwgdHJ1ZSwgZmFsc2UpOwog
-fQogCiBzdGF0aWMgaW50IHJhZGVvbl9wbW9wc19zdXNwZW5kKHN0cnVjdCBkZXZpY2UgKmRldikK
-LS0gCjEuOC4zLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+T24gVHVlLCBKdWwgMzAsIDIwMTkgYXQgMDU6NTA6MTZQTSArMDAwMCwgSmFzb24gR3VudGhvcnBl
+IHdyb3RlOgo+IFRoZSB3YXkgT0RQIHNlZW1zIHRvIHdvcmsgaXMgb25jZSBpbiBodWdldGxiIG1v
+ZGUgdGhlIGRtYSBhZGRyZXNzZXMKPiBtdXN0IGdpdmUgaHVnZSBwYWdlcyBvciB0aGUgcGFnZSBm
+YXVsdCB3aWxsIGJlIGZhaWxlZC4gSSB0aGluayB0aGF0IGlzCj4gYSB0ZXJyaWJsZSBkZXNpZ24s
+IGJ1dCB0aGlzIGlzIGhvdyB0aGUgZHJpdmVyIGlzIC4uCj4gCj4gU28sIGZyb20gdGhpcyBITU0g
+cGVyc3BlY3RpdmUgaWYgdGhlIGNhbGxlciBhc2tlZCBmb3IgaHVnZSBwYWdlcyB0aGVuCj4gdGhl
+IHJlc3VsdHMgaGF2ZSB0byBiZSBhbGwgaHVnZSBwYWdlcyBvciBhIGhhcmQgZmFpbHVyZS4KCldo
+aWNoIGlzbid0IGhvdyB0aGUgcGFnZV9zaGlmdCBtZW1iZXIgd29ya3MgYXQgbW9tZW50LiAgSXQg
+c3RpbGwKYWxsb3dzIG5vbi1odWdldGxiIG1hcHBpbmdzIGV2ZW4gd2l0aCB0aGUgbWVtYmVyLgoK
+PiBJdCBpcyBub3QgbmVnb3RpYXRlZCBhcyBhbiBvcHRpbWl6YXRpb24gbGlrZSB5b3UgYXJlIHRo
+aW5raW5nLgo+IAo+IFtub3RlLCBJIGhhdmVuJ3QgeWV0IGNoZWNrZWQgY2FyZWZ1bGx5IGhvdyB0
+aGlzIHdvcmtzIGluIE9EUCwgZXZlcnkKPiAgdGltZSBJIGxvb2sgYXQgcGFydHMgb2YgaXQgdGhl
+IHRoaW5nIHNlZW1zIGNyYXp5XQoKVGhpcyBzZWVtcyBwcmV0dHkgY3JhenkuICBFc3BlY2lhbGx5
+IGFzIGh1Z2V0bGIgdXNlIGluIGFwcGxpY2F0aW9ucwpzZWVtcyB0byBmYWRlIGluIGZhdm91ciBv
+ZiBUSFAsIGZvciB3aGljaCB0aGlzIE9EUCBzY2hlbWUgZG9lcyBub3Qgc2VlbQp0byB3b3JrIGF0
+IGFsbC4KCj4gPiBUaGUgYmVzdCBBUEkgZm9yIG1seDQgd291bGQgb2YgY291cnNlIGJlIHRvIHBh
+c3MgYSBiaW92ZWMtc3R5bGUKPiA+IHZhcmlhYmxlIGxlbmd0aCBzdHJ1Y3R1cmUgdGhhdCBobW1f
+ZmF1bHQgY291bGQgZmlsbCBvdXQsIGJ1dCB0aGF0IHdvdWxkCj4gPiBiZSBhIG1ham9yIHJlc3Ry
+dWN0dXJlLgo+IAo+IEl0IHdvdWxkIHdvcmssIGJ1dCB0aGUgZHJpdmVyIGhhcyB0byBleHBhbmQg
+dGhhdCBpbnRvIGEgcGFnZSBsaXN0Cj4gcmlnaHQgYXdheWhvdy4KPiAKPiBXZSBjYW4ndCBldmVu
+IGRtYSBtYXAgdGhlIGJpb3ZlYyB3aXRoIHRvZGF5J3MgZG1hIEFQSSBhcyBpdCBuZWVkcyB0aGUK
+PiBhYmlsaXR5IHRvIHJlbWFwIG9uIGEgcGFnZSBncmFudWxhcml0eS4KCldlIGNhbiBkbyBkbWFf
+bWFwX3BhZ2UgbG9vcHMgb3ZlciBlYWNoIGJpb3ZlYyBlbnRyeSBwcmV0dHkgdHJpdmlhbGx5LAph
+bmQgdGhhdCB3b24ndCBiZSBhbnkgd29yc2UgdGhhbiB0aGUgY3VycmVudCBsb29wIG92ZXIgZWFj
+aCBwYWdlIGluCnRoZSBobW0gZG1hIGhlbHBlcnMuICBPbmNlIEkgZ2V0IGFyb3VuZCB0aGUgd29y
+ayB0byBoYXZlIGEgYmV0dGVyCkFQSSBmb3IgaW9tbXUgbWFwcGluZ3MgZm9yIGJpb192ZWNzIHdl
+IGNvdWxkIGNvYWxlc2NlIGl0IHNpbWlsYXIgdG8KaG93IHdlIGRvIGl0IHdpdGggc2NhdHRlcmxp
+c3QgKGJ1dCB3aXRob3V0IGFsbCB0aGUgbWVzcyBvZiBhIG5ldwpzdHJ1Y3R1cmUpLiAgVGhhdCB3
+b3JrIGlzIGdvaW5nIHRvIHRha2UgYSBsaXR0bGUgbG9uZ2VyIHRocm91Z2gsIGFzCml0IG5lZWRz
+IHRoZSBhbWQgYW5kIGludGVsbCBpb21tdSBkcml2ZXJzIHRvIGJlIGNvbnZlcmVkIHRvIGRtYS1p
+b21tdQp3aGljaCBpc24ndCBtYWtpbmcgcHJvZ3Jlc3MgYXMgZmFyIGFzIEkgaG9wZWQuCgpMZXQg
+bWUga25vdyBpZiB5b3Ugd2FudCB0byBrZWVwIHRoaXMgY29kZSBmb3Igbm93IGRlc3BpdGUgdGhl
+IGlzc3VlcywKb3IgaWYgd2UnZCByYXRoZXIgcmVpbXBsZW1lbnQgaXQgb25jZSB5b3UndmUgbWFk
+ZSBzZW5zZSBvZiB0aGUgT0RQCmNvZGUuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+YW1kLWdmeA==
