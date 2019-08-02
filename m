@@ -1,35 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB5E7F9E4
-	for <lists+amd-gfx@lfdr.de>; Fri,  2 Aug 2019 15:31:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 673237FC65
+	for <lists+amd-gfx@lfdr.de>; Fri,  2 Aug 2019 16:39:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 519886EE08;
-	Fri,  2 Aug 2019 13:31:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F11CC6EE81;
+	Fri,  2 Aug 2019 14:39:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01D856EDE8;
- Fri,  2 Aug 2019 12:41:49 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id 20E6FAF94;
- Fri,  2 Aug 2019 12:41:48 +0000 (UTC)
-Received: by quack2.suse.cz (Postfix, from userid 1000)
- id F40A51E3F4D; Fri,  2 Aug 2019 14:41:46 +0200 (CEST)
-Date: Fri, 2 Aug 2019 14:41:46 +0200
-From: Jan Kara <jack@suse.cz>
-To: Michal Hocko <mhocko@kernel.org>
-Subject: Re: [PATCH 00/34] put_user_pages(): miscellaneous call sites
-Message-ID: <20190802124146.GL25064@quack2.suse.cz>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD3EA6EE79;
+ Fri,  2 Aug 2019 14:22:32 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2019 07:22:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,338,1559545200"; d="scan'208";a="167245949"
+Received: from unknown (HELO localhost.localdomain) ([10.232.112.69])
+ by orsmga008.jf.intel.com with ESMTP; 02 Aug 2019 07:22:29 -0700
+Date: Fri, 2 Aug 2019 08:19:52 -0600
+From: Keith Busch <keith.busch@intel.com>
+To: john.hubbard@gmail.com
+Subject: Re: [PATCH 26/34] mm/gup_benchmark.c: convert put_page() to
+ put_user_page*()
+Message-ID: <20190802141952.GA18214@localhost.localdomain>
 References: <20190802022005.5117-1-jhubbard@nvidia.com>
- <20190802091244.GD6461@dhcp22.suse.cz>
+ <20190802022005.5117-27-jhubbard@nvidia.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190802091244.GD6461@dhcp22.suse.cz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Mailman-Approved-At: Fri, 02 Aug 2019 13:31:15 +0000
+In-Reply-To: <20190802022005.5117-27-jhubbard@nvidia.com>
+User-Agent: Mutt/1.9.1 (2017-09-22)
+X-Mailman-Approved-At: Fri, 02 Aug 2019 14:39:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -42,50 +47,55 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-fbdev@vger.kernel.org, Jan Kara <jack@suse.cz>, kvm@vger.kernel.org,
+ "Michael S . Tsirkin" <mst@redhat.com>,
  Dave Hansen <dave.hansen@linux.intel.com>, Dave Chinner <david@fromorbit.com>,
  dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- sparclinux@vger.kernel.org, Ira Weiny <ira.weiny@intel.com>,
- Dan Williams <dan.j.williams@intel.com>, devel@driverdev.osuosl.org,
- rds-devel@oss.oracle.com, linux-rdma@vger.kernel.org, x86@kernel.org,
+ sparclinux@vger.kernel.org, Dan Carpenter <dan.carpenter@oracle.com>,
+ Ira Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>,
+ devel@driverdev.osuosl.org, rds-devel@oss.oracle.com,
+ linux-rdma@vger.kernel.org, x86@kernel.org, YueHaibing <yuehaibing@huawei.com>,
  amd-gfx@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>,
  Jason Gunthorpe <jgg@ziepe.ca>, xen-devel@lists.xenproject.org,
  devel@lists.orangefs.org, linux-media@vger.kernel.org,
  John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org,
- john.hubbard@gmail.com, linux-block@vger.kernel.org,
+ linux-block@vger.kernel.org,
  =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
  linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
  netdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
  linux-xfs@vger.kernel.org, linux-crypto@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-fsdevel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpIDAyLTA4LTE5IDExOjEyOjQ0LCBNaWNoYWwgSG9ja28gd3JvdGU6Cj4gT24gVGh1IDAx
-LTA4LTE5IDE5OjE5OjMxLCBqb2huLmh1YmJhcmRAZ21haWwuY29tIHdyb3RlOgo+IFsuLi5dCj4g
-PiAyKSBDb252ZXJ0IGFsbCBvZiB0aGUgY2FsbCBzaXRlcyBmb3IgZ2V0X3VzZXJfcGFnZXMqKCks
-IHRvCj4gPiBpbnZva2UgcHV0X3VzZXJfcGFnZSooKSwgaW5zdGVhZCBvZiBwdXRfcGFnZSgpLiBU
-aGlzIGludm9sdmVzIGRvemVucyBvZgo+ID4gY2FsbCBzaXRlcywgYW5kIHdpbGwgdGFrZSBzb21l
-IHRpbWUuCj4gCj4gSG93IGRvIHdlIG1ha2Ugc3VyZSB0aGlzIGlzIHRoZSBjYXNlIGFuZCBpdCB3
-aWxsIHJlbWFpbiB0aGUgY2FzZSBpbiB0aGUKPiBmdXR1cmU/IFRoZXJlIG11c3QgYmUgc29tZSBh
-dXRvbWFnaWMgdG8gZW5mb3JjZS9jaGVjayB0aGF0LiBJdCBpcyBzaW1wbHkKPiBub3QgbWFuYWdl
-YWJsZSB0byBkbyBpdCBldmVyeSBub3cgYW5kIHRoZW4gYmVjYXVzZSB0aGVuIDMpIHdpbGwgc2lt
-cGx5Cj4gYmUgbmV2ZXIgc2FmZS4KPiAKPiBIYXZlIHlvdSBjb25zaWRlcmVkIGNvY2NpbmVsZSBv
-ciBzb21lIG90aGVyIHNjcmlwdGVkIHdheSB0byBkbyB0aGUKPiB0cmFuc2l0aW9uPyBJIGhhdmUg
-bm8gaWRlYSBob3cgdG8gZGVhbCB3aXRoIGZ1dHVyZSBjaGFuZ2VzIHRoYXQgd291bGQKPiBicmVh
-ayB0aGUgYmFsYW5jZSB0aG91Z2guCgpZZWFoLCB0aGF0J3Mgd2h5IEkndmUgYmVlbiBzdWdnZXN0
-aW5nIGF0IExTRi9NTSB0aGF0IHdlIG1heSBuZWVkIHRvIGNyZWF0ZQphIGd1cCB3cmFwcGVyIC0g
-c2F5IHZhZGRyX3Bpbl9wYWdlcygpIC0gYW5kIHRyYWNrIHdoaWNoIHNpdGVzIGRyb3BwaW5nCnJl
-ZmVyZW5jZXMgZ290IGNvbnZlcnRlZCBieSB1c2luZyB0aGlzIHdyYXBwZXIgaW5zdGVhZCBvZiBn
-dXAuIFRoZQpjb3VudGVycGFydCB3b3VsZCB0aGVuIGJlIG1vcmUgbG9naWNhbGx5IG5hbWVkIGFz
-IHVucGluX3BhZ2UoKSBvciB3aGF0ZXZlcgppbnN0ZWFkIG9mIHB1dF91c2VyX3BhZ2UoKS4gIFN1
-cmUgdGhpcyBpcyBub3QgY29tcGxldGVseSBmb29scHJvb2YgKHlvdSBjYW4KY3JlYXRlIG5ldyBj
-YWxsc2l0ZSB1c2luZyB2YWRkcl9waW5fcGFnZXMoKSBhbmQgdGhlbiBqdXN0IGRyb3AgcmVmcyB1
-c2luZwpwdXRfcGFnZSgpKSBidXQgSSBzdXBwb3NlIGl0IHdvdWxkIGJlIGEgaGlnaCBlbm91Z2gg
-YmFycmllciBmb3IgbWlzc2VkCmNvbnZlcnNpb25zLi4uIFRob3VnaHRzPwoKCQkJCQkJCQlIb256
-YQoKLS0gCkphbiBLYXJhIDxqYWNrQHN1c2UuY29tPgpTVVNFIExhYnMsIENSCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0
-CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+T24gVGh1LCBBdWcgMDEsIDIwMTkgYXQgMDc6MTk6NTdQTSAtMDcwMCwgam9obi5odWJiYXJkQGdt
+YWlsLmNvbSB3cm90ZToKPiBGcm9tOiBKb2huIEh1YmJhcmQgPGpodWJiYXJkQG52aWRpYS5jb20+
+Cj4gCj4gRm9yIHBhZ2VzIHRoYXQgd2VyZSByZXRhaW5lZCB2aWEgZ2V0X3VzZXJfcGFnZXMqKCks
+IHJlbGVhc2UgdGhvc2UgcGFnZXMKPiB2aWEgdGhlIG5ldyBwdXRfdXNlcl9wYWdlKigpIHJvdXRp
+bmVzLCBpbnN0ZWFkIG9mIHZpYSBwdXRfcGFnZSgpIG9yCj4gcmVsZWFzZV9wYWdlcygpLgo+IAo+
+IFRoaXMgaXMgcGFydCBhIHRyZWUtd2lkZSBjb252ZXJzaW9uLCBhcyBkZXNjcmliZWQgaW4gY29t
+bWl0IGZjMWQ4ZTdjY2EyZAo+ICgibW06IGludHJvZHVjZSBwdXRfdXNlcl9wYWdlKigpLCBwbGFj
+ZWhvbGRlciB2ZXJzaW9ucyIpLgo+IAo+IENjOiBEYW4gQ2FycGVudGVyIDxkYW4uY2FycGVudGVy
+QG9yYWNsZS5jb20+Cj4gQ2M6IEdyZWcgS3JvYWgtSGFydG1hbiA8Z3JlZ2toQGxpbnV4Zm91bmRh
+dGlvbi5vcmc+Cj4gQ2M6IEtlaXRoIEJ1c2NoIDxrZWl0aC5idXNjaEBpbnRlbC5jb20+Cj4gQ2M6
+IEtpcmlsbCBBLiBTaHV0ZW1vdiA8a2lyaWxsLnNodXRlbW92QGxpbnV4LmludGVsLmNvbT4KPiBD
+YzogTWljaGFlbCBTLiBUc2lya2luIDxtc3RAcmVkaGF0LmNvbT4KPiBDYzogWXVlSGFpYmluZyA8
+eXVlaGFpYmluZ0BodWF3ZWkuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEpvaG4gSHViYmFyZCA8amh1
+YmJhcmRAbnZpZGlhLmNvbT4KCkxvb2tzIGZpbmUuCgpSZXZpZXdlZC1ieTogS2VpdGggQnVzY2gg
+PGtlaXRoLmJ1c2NoQGludGVsLmNvbT4KCj4gIG1tL2d1cF9iZW5jaG1hcmsuYyB8IDIgKy0KPiAg
+MSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAt
+LWdpdCBhL21tL2d1cF9iZW5jaG1hcmsuYyBiL21tL2d1cF9iZW5jaG1hcmsuYwo+IGluZGV4IDdk
+ZDYwMmQ3ZjhkYi4uNTE1YWM4ZWViNmVlIDEwMDY0NAo+IC0tLSBhL21tL2d1cF9iZW5jaG1hcmsu
+Ywo+ICsrKyBiL21tL2d1cF9iZW5jaG1hcmsuYwo+IEBAIC03OSw3ICs3OSw3IEBAIHN0YXRpYyBp
+bnQgX19ndXBfYmVuY2htYXJrX2lvY3RsKHVuc2lnbmVkIGludCBjbWQsCj4gIAlmb3IgKGkgPSAw
+OyBpIDwgbnJfcGFnZXM7IGkrKykgewo+ICAJCWlmICghcGFnZXNbaV0pCj4gIAkJCWJyZWFrOwo+
+IC0JCXB1dF9wYWdlKHBhZ2VzW2ldKTsKPiArCQlwdXRfdXNlcl9wYWdlKHBhZ2VzW2ldKTsKPiAg
+CX0KPiAgCWVuZF90aW1lID0ga3RpbWVfZ2V0KCk7Cj4gIAlndXAtPnB1dF9kZWx0YV91c2VjID0g
+a3RpbWVfdXNfZGVsdGEoZW5kX3RpbWUsIHN0YXJ0X3RpbWUpOwo+IC0tIApfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAph
+bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
