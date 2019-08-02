@@ -2,86 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262317E798
-	for <lists+amd-gfx@lfdr.de>; Fri,  2 Aug 2019 03:45:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C5F7E7A4
+	for <lists+amd-gfx@lfdr.de>; Fri,  2 Aug 2019 03:47:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD11389269;
-	Fri,  2 Aug 2019 01:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 501826E85C;
+	Fri,  2 Aug 2019 01:47:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr790042.outbound.protection.outlook.com [40.107.79.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A62389269;
- Fri,  2 Aug 2019 01:45:51 +0000 (UTC)
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+ (mail-eopbgr750085.outbound.protection.outlook.com [40.107.75.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 011196E85C
+ for <amd-gfx@lists.freedesktop.org>; Fri,  2 Aug 2019 01:47:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XgYfjJPwVUAOmtvJjWVisI5lWkJCvldY1we2Mypfkta242r3QRrIqJEgHJxPJfcPArViD95+skyC6M5z09nP2+ajDBmBD9GJSDVAL+rNzclmnpuWThjApcN5SpcbUksN4OK2I84jteVONGpMFouZWXTZNxmJJCkBW+tEAC8/+hBa/gVZ6GaOpQuDfkfpaAAC2VbjMp5x+Debch9JH5J8Qd3/vYxWHlZSHv1tFk/Qg7f/9AyYZfI+HcrB7/eD6pKUnE4u6bo+JVltnqAwe9PshMrHcirpE4sX5ft0WtUMd3aqbQvkYAneX1xGiDfKPRQl6rKR9FJKJzzxkAG6N2SZyw==
+ b=QSIr6WL1CzV5AhDobfKrd6Glokb0dhzqiFD8TJsY77OWiqkYS4gy7aYSAf+44vEoVXRLhPbdHzEnpTC07OVr/O+nzehWWY1JsVz3XjpMEIVKCAdCcowguhCiPmfnd9EHYSVomuSDmYDi9mFP3PspE3QuSvrhqLrloPKValFG3s0W51hnjR7deluOEQRHWvjyjKEnMcGkrXkMYB1RcJ/zYXRlvGsM3iM/GHXbQxydO6klXsP1/qBPE8cvZiJwRym+mLK4n40/ixuauIcu3HjfpZOFZkFbu1p1DGiAJCUsPrDa9kjbGa2hGBD7toocG2oNB0VOCoNLDGvgAhIPfNbXnA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Oy6GhjxSMv+1jf6mo3smD9//vC8sp1v/x2t2HJwu5n4=;
- b=L5A7YyrL830HISNk3w0VCau9C2N87RBXwJ8Ni2kVEfTmNac71uKKOD3K04yWJunC8cl1Br/fRq2UzAjx4MPOQxJuTVXSpYT0AZOIL2n4lW1fZkb6AWSIeS/xZNuJJOLVmR9nsIIRoyYHxvgJHBJLNuT7GTh6W0kDSmgzuRJK9F/Y/vLgs8PaMBsE5OkoV1Uh4/syghK99Hqjd2L6o5wfTY8KoWVo9gs32l0JJ+Q1TejvLsHPNKM8u6GYSa0kYNgvTRKlLXIHiHaTHS3rs5GfzdaxOpntgJpQCE0iB6aUkU7r4k5oOf0yWP9kJ2vFdukCmd62Z8tcnyVQTUo4z7tnKw==
+ bh=26C4vvDg99Lw4h0IGjdG1PRDgiLRJ7829k1CTDSwwW0=;
+ b=iZVE686yanxGcGF/f3VUqSlBO56U3Kz2MkvDPJh51YOJ49fW5X9gWoB0AaRAxgCMxyJD4ajKhnBoB8h2pp98e8eqUl7bw0QvQCZarax0VNPgqZVz3WLmHc5mHAHYpuH62Il33b5YWW/wkdrr0UEO97KTC7FZzDq7LiRFAAUSLG9HX6m5oqyDiYpfOp63s+EApv/fRmuk0FvQn2hTxoi1iFjkX/miCWrPBRW4UfNYmEKY3oda80CkFV0QPECKZQ80sO1AhN0mUXcLIT2DOHoOfJrEDs70Mb0rKUsA4hFHDUv2jM2KlP29DXkr01Ol95c+aSP2n2rkrht1iJV008JPyQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
  smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
  header.d=amd.com;arc=none
 Received: from BN8PR12MB3283.namprd12.prod.outlook.com (20.179.67.152) by
- BN8PR12MB2913.namprd12.prod.outlook.com (20.179.65.33) with Microsoft SMTP
+ BN8PR12MB3123.namprd12.prod.outlook.com (20.178.210.75) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.15; Fri, 2 Aug 2019 01:45:49 +0000
+ 15.20.2136.14; Fri, 2 Aug 2019 01:47:18 +0000
 Received: from BN8PR12MB3283.namprd12.prod.outlook.com
  ([fe80::3892:6912:f663:6236]) by BN8PR12MB3283.namprd12.prod.outlook.com
  ([fe80::3892:6912:f663:6236%7]) with mapi id 15.20.2115.005; Fri, 2 Aug 2019
- 01:45:49 +0000
+ 01:47:18 +0000
 From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
-To: Alex Deucher <alexdeucher@gmail.com>, Colin King <colin.king@canonical.com>
-Subject: Re: [PATCH][drm-next] drm/amd/powerplay: fix off-by-one upper bounds
- limit checks
-Thread-Topic: [PATCH][drm-next] drm/amd/powerplay: fix off-by-one upper bounds
- limit checks
-Thread-Index: AQHVSFp4EPwz9ULVj0K3SuHck3c+RqbmpBoAgABy8Y0=
-Date: Fri, 2 Aug 2019 01:45:49 +0000
-Message-ID: <BN8PR12MB3283A2B485985BF91F21760CA2D90@BN8PR12MB3283.namprd12.prod.outlook.com>
-References: <20190801111541.13627-1-colin.king@canonical.com>,
- <CADnq5_OqLtvBWXJhT9c=kxK3HeXSEDdfYS1N7Dh68kbiiLk5+w@mail.gmail.com>
-In-Reply-To: <CADnq5_OqLtvBWXJhT9c=kxK3HeXSEDdfYS1N7Dh68kbiiLk5+w@mail.gmail.com>
+To: Alex Deucher <alexdeucher@gmail.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 25/36] drm/amdgpu/smu11: add smu support for navi12
+Thread-Topic: [PATCH 25/36] drm/amdgpu/smu11: add smu support for navi12
+Thread-Index: AQHVSKf4FyHZiPvH2UqpwcHr9Ii9EKbnFvES
+Date: Fri, 2 Aug 2019 01:47:17 +0000
+Message-ID: <BN8PR12MB32833822ACBA58C095AE4D0FA2D90@BN8PR12MB3283.namprd12.prod.outlook.com>
+References: <20190801202957.29791-1-alexander.deucher@amd.com>,
+ <20190801202957.29791-26-alexander.deucher@amd.com>
+In-Reply-To: <20190801202957.29791-26-alexander.deucher@amd.com>
 Accept-Language: en-US, zh-CN
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9a147bab-52c7-4340-163a-08d716eb2555
+x-ms-office365-filtering-correlation-id: aa999b9e-6a91-463d-b0f3-08d716eb5a10
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BN8PR12MB2913; 
-x-ms-traffictypediagnostic: BN8PR12MB2913:
+ SRVR:BN8PR12MB3123; 
+x-ms-traffictypediagnostic: BN8PR12MB3123:
 x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BN8PR12MB29133F6F6A446BE17CBCD95EA2D90@BN8PR12MB2913.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:283;
+x-microsoft-antispam-prvs: <BN8PR12MB31235B2ACFA52541E54500E2A2D90@BN8PR12MB3123.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:660;
 x-forefront-prvs: 011787B9DD
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(136003)(396003)(366004)(376002)(346002)(189003)(199004)(71190400001)(71200400001)(53936002)(236005)(6306002)(54896002)(9686003)(6436002)(55016002)(11346002)(6116002)(3846002)(476003)(446003)(6246003)(229853002)(86362001)(2906002)(486006)(74316002)(105004)(25786009)(8936002)(186003)(81156014)(52536014)(478600001)(102836004)(53546011)(81166006)(7736002)(7696005)(14454004)(76176011)(19627405001)(4326008)(26005)(606006)(33656002)(6506007)(76116006)(91956017)(966005)(66946007)(316002)(66446008)(99286004)(54906003)(14444005)(5660300002)(68736007)(110136005)(256004)(66066001)(8676002)(66476007)(64756008)(66556008);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB2913;
+ SFS:(10009020)(4636009)(39860400002)(376002)(346002)(366004)(396003)(136003)(199004)(189003)(105004)(486006)(9686003)(11346002)(7696005)(256004)(102836004)(53546011)(446003)(6506007)(19627405001)(71200400001)(71190400001)(81156014)(81166006)(8936002)(2906002)(99286004)(4326008)(478600001)(14444005)(55016002)(33656002)(25786009)(236005)(7736002)(54896002)(6306002)(8676002)(3846002)(68736007)(6116002)(74316002)(476003)(110136005)(316002)(2501003)(966005)(14454004)(76176011)(66476007)(64756008)(66446008)(54906003)(91956017)(66556008)(66946007)(6246003)(229853002)(86362001)(76116006)(5660300002)(6436002)(52536014)(26005)(53936002)(606006)(186003)(66066001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB3123;
  H:BN8PR12MB3283.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: byrr50RUr0jKbgWws+ZEUvuUFwV5BUrTg2kp/PIaE6iuqMbhOPdbb+bn+qWAfP3NKBxvTpF1Tt+UjU03AddMwltzHy9i6+j8k/usVgO6DLVDpTzDaSPuFq1kWWrLWgsk3jPbmY21owb5LcptkHnfDvq61RWN/ArHZFh53CSNxBqSgfFwfkSqbNgPbS4BCJ51w1oIpEmFDhs26cGQIWIldcUMnMI7xeZz0Lffeha9SxAA+HWMKwXjYAdAcSbfXu7SduDsd/9X78CNtXR+4mk0TQsBMxMHfv3yLsbBBt5A036y8Y+WTHZYcLzwysSO5H2CgaRY61UBk+/YC6z0oeMvgbYOdMwXvLjFqLxPV3Q5khG3hzRBL1ian/c+RZnA4dtO7I2Ki4Je4gxnUxsyfC6+4J5vYTFvrGc5J4zx936K1js=
+x-microsoft-antispam-message-info: gR9kaj4QeuFFRUVRvsFus08O0eJInjznQnLr9DEtjq6EGZYVel74lYiPganJTnI1sDQbEet0UeC3sGaa1JN+/M77Yga0SwS9aVGqAymB5dHPxFCyYf4BaCwPJogeTTGJkyzFMBN4FxKa5Zl+T09Dys9Wo3Ofm/M4XqFOkHv3rR4Gl2bLv2QPKASaUfLGhIr+E0KparGFka32vItrLJWrVKNUKjYnTrQE80WnXyw9c4eR3f9pVA5c/Kkbr783i4UYnRVoRWLV5Y/x6jXaM2Orzs3Lg4VNa3+FS5QweJ9motQVhG4ZWzAwJyiR5y6kmsSGUVXEZ3R5vVKBhVhZ6gRitZL4HoqXx2n41vIuFD38U3dRnA7bGWifn6w1edBtd0usub41XETcUYCNlkRecPUbSe0xCgleuNRFgosarCGV4Xo=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a147bab-52c7-4340-163a-08d716eb2555
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2019 01:45:49.4494 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa999b9e-6a91-463d-b0f3-08d716eb5a10
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2019 01:47:17.8524 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
 X-MS-Exchange-CrossTenant-userprincipalname: kevwa@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2913
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3123
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Oy6GhjxSMv+1jf6mo3smD9//vC8sp1v/x2t2HJwu5n4=;
- b=TmD1tEp7RWCQUfpSv8jX/UQM+EwING3HSpyfIvtgUhFqrh4Hen2aJ4rFn/Ia/oeOPLEcsm4IKjg6TTpxGJzYXZM30IWCS87ZMfaDJIdkUsHykvE90bY8JKpKBPWnQ8KfYagF4/8DyMDn2isjDvTnLywWc6TQMuSJSS5PaFbQ0VI=
+ bh=26C4vvDg99Lw4h0IGjdG1PRDgiLRJ7829k1CTDSwwW0=;
+ b=PEAoSn+b3a4iSCnq8kDHHivd7N+3I97r/Celp3E5xp+76obdphpHfVtEOksML+O0C46kEVMuPRJVPPRdX8ESVecyCWNItv9zvMy88h0I2xX1GNtc+yKYSfS9xHsVx061DxG92E194HLDEhQzkIvYPE8Rmh3Lige4IzTjTITL6Ss=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Kevin1.Wang@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -95,102 +94,113 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>,
- David Airlie <airlied@linux.ie>,
- "kernel-janitors@vger.kernel.org" <kernel-janitors@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, "Deucher, 
- Alexander" <Alexander.Deucher@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>,
- Rex Zhu <rex.zhu@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>
-Content-Type: multipart/mixed; boundary="===============0973367979=="
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Quan,
+ Evan" <Evan.Quan@amd.com>, "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>, "Zhang,
+ Hawking" <Hawking.Zhang@amd.com>
+Content-Type: multipart/mixed; boundary="===============2079485385=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0973367979==
+--===============2079485385==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BN8PR12MB3283A2B485985BF91F21760CA2D90BN8PR12MB3283namp_"
+	boundary="_000_BN8PR12MB32833822ACBA58C095AE4D0FA2D90BN8PR12MB3283namp_"
 
---_000_BN8PR12MB3283A2B485985BF91F21760CA2D90BN8PR12MB3283namp_
+--_000_BN8PR12MB32833822ACBA58C095AE4D0FA2D90BN8PR12MB3283namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+Reviewed-by: Kevin Wang <kevni1.wang@amd.com>
+
+Best Regards,
+Kevin
 
 ________________________________
-From: Alex Deucher <alexdeucher@gmail.com>
-Sent: Friday, August 2, 2019 2:53 AM
-To: Colin King <colin.king@canonical.com>
-Cc: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>; Rex Zhu <rex.zhu@amd.com>; Qua=
-n, Evan <Evan.Quan@amd.com>; Deucher, Alexander <Alexander.Deucher@amd.com>=
-; Koenig, Christian <Christian.Koenig@amd.com>; Zhou, David(ChunMing) <Davi=
-d1.Zhou@amd.com>; David Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ff=
-wll.ch>; amd-gfx list <amd-gfx@lists.freedesktop.org>; Maling list - DRI de=
-velopers <dri-devel@lists.freedesktop.org>; kernel-janitors@vger.kernel.org=
- <kernel-janitors@vger.kernel.org>; LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH][drm-next] drm/amd/powerplay: fix off-by-one upper boun=
-ds limit checks
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Alex Deu=
+cher <alexdeucher@gmail.com>
+Sent: Friday, August 2, 2019 4:29 AM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking=
+.Zhang@amd.com>; Quan, Evan <Evan.Quan@amd.com>; Yuan, Xiaojie <Xiaojie.Yua=
+n@amd.com>
+Subject: [PATCH 25/36] drm/amdgpu/smu11: add smu support for navi12
 
-On Thu, Aug 1, 2019 at 7:15 AM Colin King <colin.king@canonical.com> wrote:
->
-> From: Colin Ian King <colin.king@canonical.com>
->
-> There are two occurrances of off-by-one upper bound checking of indexes
-> causing potential out-of-bounds array reads. Fix these.
->
-> Addresses-Coverity: ("Out-of-bounds read")
-> Fixes: cb33363d0e85 ("drm/amd/powerplay: add smu feature name support")
-> Fixes: 6b294793e384 ("drm/amd/powerplay: add smu message name support")
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+From: Xiaojie Yuan <xiaojie.yuan@amd.com>
 
-Applied.  thanks!
+Same as other Navi asics.
 
-Alex
+Signed-off-by: Xiaojie Yuan <xiaojie.yuan@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Reviewed-by: Evan Quan <evan.quan@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 1 +
+ drivers/gpu/drm/amd/powerplay/smu_v11_0.c  | 6 ++++++
+ 2 files changed, 7 insertions(+)
 
-> ---
->  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm=
-/amd/powerplay/amdgpu_smu.c
-> index d029a99e600e..b64113740eb5 100644
-> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> @@ -38,7 +38,7 @@ static const char* __smu_message_names[] =3D {
->
->  const char *smu_get_message_name(struct smu_context *smu, enum smu_messa=
-ge_type type)
->  {
-> -       if (type < 0 || type > SMU_MSG_MAX_COUNT)
-> +       if (type < 0 || type >=3D SMU_MSG_MAX_COUNT)
->                 return "unknown smu message";
->         return __smu_message_names[type];
->  }
-> @@ -51,7 +51,7 @@ static const char* __smu_feature_names[] =3D {
->
->  const char *smu_get_feature_name(struct smu_context *smu, enum smu_featu=
-re_mask feature)
->  {
-> -       if (feature < 0 || feature > SMU_FEATURE_COUNT)
-> +       if (feature < 0 || feature >=3D SMU_FEATURE_COUNT)
->                 return "unknown smu feature";
->         return __smu_feature_names[feature];
->  }
-[kevin]:
-thanks correct it.
-Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
-BR
-Kevin
-> --
-> 2.20.1
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/a=
+md/powerplay/amdgpu_smu.c
+index 46976c90843b..5a613df174e6 100644
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+@@ -720,6 +720,7 @@ static int smu_set_funcs(struct amdgpu_device *adev)
+         case CHIP_VEGA20:
+         case CHIP_NAVI10:
+         case CHIP_NAVI14:
++       case CHIP_NAVI12:
+         case CHIP_ARCTURUS:
+                 if (adev->pm.pp_feature & PP_OVERDRIVE_MASK)
+                         smu->od_enabled =3D true;
+diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/am=
+d/powerplay/smu_v11_0.c
+index 43fcbdbba630..84eb14a6650f 100644
+--- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
++++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
+@@ -46,6 +46,7 @@ MODULE_FIRMWARE("amdgpu/vega20_smc.bin");
+ MODULE_FIRMWARE("amdgpu/arcturus_smc.bin");
+ MODULE_FIRMWARE("amdgpu/navi10_smc.bin");
+ MODULE_FIRMWARE("amdgpu/navi14_smc.bin");
++MODULE_FIRMWARE("amdgpu/navi12_smc.bin");
 
---_000_BN8PR12MB3283A2B485985BF91F21760CA2D90BN8PR12MB3283namp_
+ #define SMU11_VOLTAGE_SCALE 4
+
+@@ -163,6 +164,9 @@ static int smu_v11_0_init_microcode(struct smu_context =
+*smu)
+         case CHIP_NAVI14:
+                 chip_name =3D "navi14";
+                 break;
++       case CHIP_NAVI12:
++               chip_name =3D "navi12";
++               break;
+         default:
+                 BUG();
+         }
+@@ -1331,6 +1335,7 @@ static int smu_v11_0_gfx_off_control(struct smu_conte=
+xt *smu, bool enable)
+                 break;
+         case CHIP_NAVI10:
+         case CHIP_NAVI14:
++       case CHIP_NAVI12:
+                 if (!(adev->pm.pp_feature & PP_GFXOFF_MASK))
+                         return 0;
+                 mutex_lock(&smu->mutex);
+@@ -1754,6 +1759,7 @@ void smu_v11_0_set_smu_funcs(struct smu_context *smu)
+                 break;
+         case CHIP_NAVI10:
+         case CHIP_NAVI14:
++       case CHIP_NAVI12:
+                 navi10_set_ppt_funcs(smu);
+                 break;
+         default:
+--
+2.20.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN8PR12MB32833822ACBA58C095AE4D0FA2D90BN8PR12MB3283namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -204,112 +214,142 @@ ttom:0;} </style>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
+Reviewed-by: Kevin Wang &lt;kevni1.wang@amd.com&gt;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Best Regards,<br>
+Kevin</div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
 <hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Alex Deucher &lt;alex=
-deucher@gmail.com&gt;<br>
-<b>Sent:</b> Friday, August 2, 2019 2:53 AM<br>
-<b>To:</b> Colin King &lt;colin.king@canonical.com&gt;<br>
-<b>Cc:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;; Rex Zhu &lt;rex.z=
-hu@amd.com&gt;; Quan, Evan &lt;Evan.Quan@amd.com&gt;; Deucher, Alexander &l=
-t;Alexander.Deucher@amd.com&gt;; Koenig, Christian &lt;Christian.Koenig@amd=
-.com&gt;; Zhou, David(ChunMing) &lt;David1.Zhou@amd.com&gt;; David Airlie
- &lt;airlied@linux.ie&gt;; Daniel Vetter &lt;daniel@ffwll.ch&gt;; amd-gfx l=
-ist &lt;amd-gfx@lists.freedesktop.org&gt;; Maling list - DRI developers &lt=
-;dri-devel@lists.freedesktop.org&gt;; kernel-janitors@vger.kernel.org &lt;k=
-ernel-janitors@vger.kernel.org&gt;; LKML &lt;linux-kernel@vger.kernel.org&g=
-t;<br>
-<b>Subject:</b> Re: [PATCH][drm-next] drm/amd/powerplay: fix off-by-one upp=
-er bounds limit checks</font>
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Alex Deucher &lt;alexdeucher@=
+gmail.com&gt;<br>
+<b>Sent:</b> Friday, August 2, 2019 4:29 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Zhang, Haw=
+king &lt;Hawking.Zhang@amd.com&gt;; Quan, Evan &lt;Evan.Quan@amd.com&gt;; Y=
+uan, Xiaojie &lt;Xiaojie.Yuan@amd.com&gt;<br>
+<b>Subject:</b> [PATCH 25/36] drm/amdgpu/smu11: add smu support for navi12<=
+/font>
 <div>&nbsp;</div>
 </div>
 <div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
 >
-<div class=3D"PlainText">On Thu, Aug 1, 2019 at 7:15 AM Colin King &lt;coli=
-n.king@canonical.com&gt; wrote:<br>
-&gt;<br>
-&gt; From: Colin Ian King &lt;colin.king@canonical.com&gt;<br>
-&gt;<br>
-&gt; There are two occurrances of off-by-one upper bound checking of indexe=
-s<br>
-&gt; causing potential out-of-bounds array reads. Fix these.<br>
-&gt;<br>
-&gt; Addresses-Coverity: (&quot;Out-of-bounds read&quot;)<br>
-&gt; Fixes: cb33363d0e85 (&quot;drm/amd/powerplay: add smu feature name sup=
-port&quot;)<br>
-&gt; Fixes: 6b294793e384 (&quot;drm/amd/powerplay: add smu message name sup=
-port&quot;)<br>
-&gt; Signed-off-by: Colin Ian King &lt;colin.king@canonical.com&gt;<br>
+<div class=3D"PlainText">From: Xiaojie Yuan &lt;xiaojie.yuan@amd.com&gt;<br=
+>
 <br>
-Applied.&nbsp; thanks!<br>
+Same as other Navi asics.<br>
 <br>
-Alex<br>
+Signed-off-by: Xiaojie Yuan &lt;xiaojie.yuan@amd.com&gt;<br>
+Reviewed-by: Hawking Zhang &lt;Hawking.Zhang@amd.com&gt;<br>
+Reviewed-by: Evan Quan &lt;evan.quan@amd.com&gt;<br>
+Signed-off-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/smu_v11_0.c&nbsp; | 6 &#43;&#43;&#43;&#=
+43;&#43;&#43;<br>
+&nbsp;2 files changed, 7 insertions(&#43;)<br>
 <br>
-&gt; ---<br>
-&gt;&nbsp; drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 4 &#43;&#43;--<br>
-&gt;&nbsp; 1 file changed, 2 insertions(&#43;), 2 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/=
-drm/amd/powerplay/amdgpu_smu.c<br>
-&gt; index d029a99e600e..b64113740eb5 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
-&gt; @@ -38,7 &#43;38,7 @@ static const char* __smu_message_names[] =3D {<b=
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/a=
+md/powerplay/amdgpu_smu.c<br>
+index 46976c90843b..5a613df174e6 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+@@ -720,6 &#43;720,7 @@ static int smu_set_funcs(struct amdgpu_device *adev=
+)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_VEGA20:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI10:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI14:<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI12:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_ARCTURUS:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (adev-&gt;pm.pp_feature &amp; PP_OVERDRIVE_MASK)<b=
 r>
-&gt;<br>
-&gt;&nbsp; const char *smu_get_message_name(struct smu_context *smu, enum s=
-mu_message_type type)<br>
-&gt;&nbsp; {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (type &lt; 0 || type &gt; SMU=
-_MSG_MAX_COUNT)<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (type &lt; 0 || type &gt;=
-=3D SMU_MSG_MAX_COUNT)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; return &quot;unknown smu message&quot;;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return __smu_message_n=
-ames[type];<br>
-&gt;&nbsp; }<br>
-&gt; @@ -51,7 &#43;51,7 @@ static const char* __smu_feature_names[] =3D {<b=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&=
+gt;od_enabled =3D true;<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/am=
+d/powerplay/smu_v11_0.c<br>
+index 43fcbdbba630..84eb14a6650f 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c<br>
+@@ -46,6 &#43;46,7 @@ MODULE_FIRMWARE(&quot;amdgpu/vega20_smc.bin&quot;);<b=
 r>
-&gt;<br>
-&gt;&nbsp; const char *smu_get_feature_name(struct smu_context *smu, enum s=
-mu_feature_mask feature)<br>
-&gt;&nbsp; {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (feature &lt; 0 || feature &g=
-t; SMU_FEATURE_COUNT)<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (feature &lt; 0 || featur=
-e &gt;=3D SMU_FEATURE_COUNT)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; return &quot;unknown smu feature&quot;;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return __smu_feature_n=
-ames[feature];<br>
-&gt;&nbsp; }</div>
-<div class=3D"PlainText">[kevin]:</div>
-<div class=3D"PlainText">thanks correct it.<br>
-</div>
-<div class=3D"PlainText">Reviewed-by: Kevin Wang &lt;kevin1.wang@amd.com&gt=
-;</div>
-<div class=3D"PlainText">BR<br>
-</div>
-<div class=3D"PlainText">Kevin</div>
-<div class=3D"PlainText">&gt; --<br>
-&gt; 2.20.1<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; dri-devel mailing list<br>
-&gt; dri-devel@lists.freedesktop.org<br>
-&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/dri-devel">h=
-ttps://lists.freedesktop.org/mailman/listinfo/dri-devel</a><br>
-</div>
+&nbsp;MODULE_FIRMWARE(&quot;amdgpu/arcturus_smc.bin&quot;);<br>
+&nbsp;MODULE_FIRMWARE(&quot;amdgpu/navi10_smc.bin&quot;);<br>
+&nbsp;MODULE_FIRMWARE(&quot;amdgpu/navi14_smc.bin&quot;);<br>
+&#43;MODULE_FIRMWARE(&quot;amdgpu/navi12_smc.bin&quot;);<br>
+&nbsp;<br>
+&nbsp;#define SMU11_VOLTAGE_SCALE 4<br>
+&nbsp;<br>
+@@ -163,6 &#43;164,9 @@ static int smu_v11_0_init_microcode(struct smu_cont=
+ext *smu)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI14:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; chip_name =3D &quot;navi14&quot;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI12:<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; chip_name =3D &quot;navi12&quot;;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; BUG();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+@@ -1331,6 &#43;1335,7 @@ static int smu_v11_0_gfx_off_control(struct smu_c=
+ontext *smu, bool enable)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI10:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI14:<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI12:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (!(adev-&gt;pm.pp_feature &amp; PP_GFXOFF_MASK))<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;smu-&gt;mutex);<br>
+@@ -1754,6 &#43;1759,7 @@ void smu_v11_0_set_smu_funcs(struct smu_context *=
+smu)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI10:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI14:<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI12:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; navi10_set_ppt_funcs(smu);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+-- <br>
+2.20.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
 </span></font></div>
 </body>
 </html>
 
---_000_BN8PR12MB3283A2B485985BF91F21760CA2D90BN8PR12MB3283namp_--
+--_000_BN8PR12MB32833822ACBA58C095AE4D0FA2D90BN8PR12MB3283namp_--
 
---===============0973367979==
+--===============2079485385==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -319,4 +359,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============0973367979==--
+--===============2079485385==--
