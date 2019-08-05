@@ -2,88 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C721816BB
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Aug 2019 12:16:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CF9E8184B
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Aug 2019 13:38:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6AA06E2C1;
-	Mon,  5 Aug 2019 10:16:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6593F6E3F9;
+	Mon,  5 Aug 2019 11:38:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr820054.outbound.protection.outlook.com [40.107.82.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9FE6E2C1
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Aug 2019 10:16:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i4cdiP0XhrcJEk4OS61UoqmUvh7s1O8L1F2Ar4huJ3w1i+ZPAaAqa0SQJ5jv2lp7lOuPsuMwmLZakK65Piv2wzPeXQqgFssY9HnS1Omvy9i/XltHWpKWj+35deQL8Y8l8VM82L8jO4nXye2UlfgrfVvb9/qx8oP5uF23Ql8W7t0avBBbA87cjMA9Z2rhDyVf55jym0pGPgk1s2wPcIihIBp/UH7dkLPv37sldp86H8M07kC3nQSicdtvxb65jQa3BqOFL2atsAJFiChXrYrs6tFxN3GyhQKfDE/kGamx5VcaxMdOFGT+K6YL8zdOoHlk91XL9hmCtQY8UsulUeYAkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3kzTf5FohuH7yE3hL9Wfaz/lFbtbfciNnZrBwsbhg2Q=;
- b=cb5oj/jLTYcQH7Z93pwh4Z0zJ7u1X23mtaEvBF7VwlG5TdEW0oPmoDQNgeUCX3x3Q6Cl5oA5TkE8XvmIlrEyHb0X5ZgNwXb1+qEwPdUaAfaJM7EkNkKJ/lb55BtjwbLv4MnN1bnoK6ZP0Mur91bLagacs+ddXubvS91ljjtotqJ/0MFA45sdFi9bXiZUhXQtSyuXmwK9tcw1W0oq2Gvja41Bov1EjgW3RPjxJc+hMYMrjXMD7UiD7P26qke2h/X+4QVv1Uzvq5LYUhwBEihB8LHAjaUePLTXR8nUowNAkqELmqF952cjwuZmA//Iy7DdWnH9FoA4mTuJT8LFo3rdcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
- header.d=amd.com;arc=none
-Received: from MN2PR12MB2974.namprd12.prod.outlook.com (20.178.240.140) by
- MN2PR12MB3629.namprd12.prod.outlook.com (20.178.242.221) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.13; Mon, 5 Aug 2019 10:16:44 +0000
-Received: from MN2PR12MB2974.namprd12.prod.outlook.com
- ([fe80::d97d:73f6:5f7b:b10]) by MN2PR12MB2974.namprd12.prod.outlook.com
- ([fe80::d97d:73f6:5f7b:b10%5]) with mapi id 15.20.2136.018; Mon, 5 Aug 2019
- 10:16:44 +0000
-From: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>
-To: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu/soc15: fix external_rev_id for navi14
-Thread-Topic: [PATCH] drm/amdgpu/soc15: fix external_rev_id for navi14
-Thread-Index: AQHVS3Eka+Rjt5l6IUGO1CTR58Z1JqbsTgMAgAAA+4CAAAdXEA==
-Date: Mon, 5 Aug 2019 10:16:44 +0000
-Message-ID: <MN2PR12MB2974C716EB4864E4727A1E8795DA0@MN2PR12MB2974.namprd12.prod.outlook.com>
-References: <1564997723-3737-1-git-send-email-tianci.yin@amd.com>
- <DM5PR12MB1418EE05F666713D1B599859FCDA0@DM5PR12MB1418.namprd12.prod.outlook.com>
- <DM5PR12MB14182C295C686901E22911A1FCDA0@DM5PR12MB1418.namprd12.prod.outlook.com>
-In-Reply-To: <DM5PR12MB14182C295C686901E22911A1FCDA0@DM5PR12MB1418.namprd12.prod.outlook.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b035cde1-b763-44bd-fb70-08d7198e047e
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:MN2PR12MB3629; 
-x-ms-traffictypediagnostic: MN2PR12MB3629:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <MN2PR12MB362986106976967A6C62ABB295DA0@MN2PR12MB3629.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-forefront-prvs: 01208B1E18
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(136003)(366004)(376002)(346002)(396003)(13464003)(189003)(199004)(43544003)(186003)(5660300002)(446003)(229853002)(6436002)(68736007)(7736002)(53936002)(8676002)(66946007)(64756008)(71200400001)(66476007)(66446008)(66556008)(476003)(71190400001)(76116006)(8936002)(11346002)(52536014)(86362001)(2906002)(81166006)(26005)(81156014)(486006)(110136005)(6506007)(55016002)(54906003)(3846002)(7696005)(76176011)(74316002)(6306002)(6246003)(33656002)(66066001)(9686003)(102836004)(14444005)(316002)(2501003)(6116002)(256004)(99286004)(53546011)(478600001)(305945005)(14454004)(25786009)(4326008)(966005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3629;
- H:MN2PR12MB2974.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: H6oSb89E+bcG7KT2qHIjFs0t7AgcGMUqbkD5Tm/zOOJKEYuzJb7VIZdff6RqWlDxrmgWk39OelQH7vjHFYSIsvx3zNnRwIhfXGlzxeQUkuFAXbcNASRHJwFTNqfw01BBIWUFiYS5HvBMx4W+bGGV5M5kkHVfZ3eGJcWY0khGdVQhn4OoGrtDag4AdcqzdKup8OCuGDxORqbgW978N8+zH1iK0Ll7gs4N0YRUE46fYmRIjX3BWsPjcFsD8O4Rn+m53UDKPM48AGx1NVC6QG6x4xUR/tRN/fbZFdimFwGZJGZ2d/PaxlX2JnY+EksP9VfcLKewApH9wZpSv8DKOd/kIgx1TXEApGjLI9ZxMEgn+aWjsHyfZK4/dkuiNEThSgyfi35GdMP7PzT/47aSU8AwdivmuF1eol2MdCzQj2DzRS8=
+X-Greylist: delayed 1597 seconds by postgrey-1.36 at gabe;
+ Mon, 05 Aug 2019 11:38:47 UTC
+Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk
+ [IPv6:2a01:7e01::f03c:91ff:fed4:a3b6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A9056E406
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Aug 2019 11:38:47 +0000 (UTC)
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+ by heliosphere.sirena.org.uk with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <broonie@sirena.org.uk>)
+ id 1huauM-0008IA-Rb; Mon, 05 Aug 2019 11:12:06 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+ id C258A2742D06; Mon,  5 Aug 2019 12:12:05 +0100 (BST)
+Date: Mon, 5 Aug 2019 12:12:05 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Zhou <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Tao Zhou <tao.zhou1@amd.com>,
+ Dennis Li <dennis.li@amd.com>
+Subject: Re: next/master build: 230 builds: 5 failed, 225 passed, 6 errors,
+ 1344 warnings (next-20190805)
+Message-ID: <20190805111205.GB6432@sirena.org.uk>
+References: <5d47f990.1c69fb81.a5d88.ee1f@mx.google.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b035cde1-b763-44bd-fb70-08d7198e047e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Aug 2019 10:16:44.6016 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tiancyin@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3629
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3kzTf5FohuH7yE3hL9Wfaz/lFbtbfciNnZrBwsbhg2Q=;
- b=TaAmrZp3x3GEw6LzVePwCzGSs5wA1skvNU9VAxnblszZS0il1ArVJP9oFIjnTrpowEp8UrGISL//IN3l0keN6FVbG6EIuQM6NHzk/0GFNXkzonwkFkGqydF4YyImEbGMom8SBTz/GEI26bB69i2pvua/FEHeMmBBAH1FnX6KFY4=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Tianci.Yin@amd.com; 
+In-Reply-To: <5d47f990.1c69fb81.a5d88.ee1f@mx.google.com>
+X-Cookie: Place stamp here.
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
+ c=relaxed/relaxed; 
+ d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=K4Aat8AT+6tYW8UP9Bp0lYfZhLOGe429fHYIBSshOXA=; b=i+hQmhPyAnXuKrxgrdyNGvu5Z
+ rdXYA9jTPHqEhzd0yklVGCUut72A3c3rjaKnylc58wr0k/GyqUaGyC23VXXP07OGiEKKcyIZvkUzx
+ vfFVK1K7F6hftZ+zGhPbDefsvqhjSDu2jN91D/IKG/CydHqgNUjUglKribqQ3cuYiYiUY=;
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -95,54 +58,68 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Xiao, Jack" <Jack.Xiao@amd.com>, "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-next@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ kernel-build-reports@lists.linaro.org
+Content-Type: multipart/mixed; boundary="===============1522405714=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VGhhbmtzIEhhd2tpbmcsIEknbGwgdGFrZSBjYXJlIG9mIHRoZSBkaWZmZXJlbmNlIG9uIHRvcGlj
-IGJyYW5jaCBhbmQgZHJtLW5leHQuDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZy
-b206IFpoYW5nLCBIYXdraW5nIDxIYXdraW5nLlpoYW5nQGFtZC5jb20+IA0KU2VudDogTW9uZGF5
-LCBBdWd1c3QgNSwgMjAxOSA1OjQ5IFBNDQpUbzogWmhhbmcsIEhhd2tpbmcgPEhhd2tpbmcuWmhh
-bmdAYW1kLmNvbT47IFlpbiwgVGlhbmNpIChSaWNvKSA8VGlhbmNpLllpbkBhbWQuY29tPjsgYW1k
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCkNjOiBYaWFvLCBKYWNrIDxKYWNrLlhpYW9AYW1k
-LmNvbT47IFlpbiwgVGlhbmNpIChSaWNvKSA8VGlhbmNpLllpbkBhbWQuY29tPjsgWXVhbiwgWGlh
-b2ppZSA8WGlhb2ppZS5ZdWFuQGFtZC5jb20+DQpTdWJqZWN0OiBSRTogW1BBVENIXSBkcm0vYW1k
-Z3B1L3NvYzE1OiBmaXggZXh0ZXJuYWxfcmV2X2lkIGZvciBuYXZpMTQNCg0KQlRXLCBwbGVhc2Ug
-bWFrZSBzdXJlIHlvdSBoYXZlIHRoZSBsYXRlc3QgZHJtLW5leHQgY29kZSBiYXNlLiBUaGUgZGVs
-ZXRlZCBjb2RlIHNlZW1zIGxpa2UgaW4gc29tZSB0b3BpYyBicmFuY2guDQoNClJlZ2FyZHMsDQpI
-YXdraW5nDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBhbWQtZ2Z4IDxhbWQt
-Z2Z4LWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhhbGYgT2YgWmhhbmcsIEhh
-d2tpbmcNClNlbnQ6IDIwMTnlubQ45pyINeaXpSAxNzo0NQ0KVG86IFlpbiwgVGlhbmNpIChSaWNv
-KSA8VGlhbmNpLllpbkBhbWQuY29tPjsgYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCkNj
-OiBYaWFvLCBKYWNrIDxKYWNrLlhpYW9AYW1kLmNvbT47IFlpbiwgVGlhbmNpIChSaWNvKSA8VGlh
-bmNpLllpbkBhbWQuY29tPjsgWXVhbiwgWGlhb2ppZSA8WGlhb2ppZS5ZdWFuQGFtZC5jb20+DQpT
-dWJqZWN0OiBSRTogW1BBVENIXSBkcm0vYW1kZ3B1L3NvYzE1OiBmaXggZXh0ZXJuYWxfcmV2X2lk
-IGZvciBuYXZpMTQNCg0KUmV2aWV3ZWQtYnk6IEhhd2tpbmcgWmhhbmcgPEhhd2tpbmcuWmhhbmdA
-YW1kLmNvbT4NCg0KUmVnYXJkcywNCkhhd2tpbmcNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
-DQpGcm9tOiBUaWFuY2kgWWluIDx0aWFuY2kueWluQGFtZC5jb20+IA0KU2VudDogMjAxOeW5tDjm
-nIg15pelIDE3OjM1DQpUbzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCkNjOiBaaGFu
-ZywgSGF3a2luZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPjsgWGlhbywgSmFjayA8SmFjay5YaWFv
-QGFtZC5jb20+OyBZdWFuLCBYaWFvamllIDxYaWFvamllLll1YW5AYW1kLmNvbT47IFlpbiwgVGlh
-bmNpIChSaWNvKSA8VGlhbmNpLllpbkBhbWQuY29tPg0KU3ViamVjdDogW1BBVENIXSBkcm0vYW1k
-Z3B1L3NvYzE1OiBmaXggZXh0ZXJuYWxfcmV2X2lkIGZvciBuYXZpMTQNCg0KRnJvbTogdGlhbmN5
-aW4gPHRpYW5jaS55aW5AYW1kLmNvbT4NCg0KZml4IHRoZSBoYXJkIGNvZGUgZXh0ZXJuYWxfcmV2
-X2lkLg0KDQpDaGFuZ2UtSWQ6IEk3YjQ2ZjdiNDliNmQwNTg2ZDFmYTI4MmQ0OTYxODE1ZmIxMjQz
-NzliDQpTaWduZWQtb2ZmLWJ5OiB0aWFuY3lpbiA8dGlhbmNpLnlpbkBhbWQuY29tPg0KLS0tDQog
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbnYuYyB8IDIgKy0NCiAxIGZpbGUgY2hhbmdlZCwg
-MSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L252LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9udi5jIGlu
-ZGV4IDliY2U2YTEuLjJmNDViZjIgMTAwNjQ0DQotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS9udi5jDQorKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9udi5jDQpAQCAtNTQ2
-LDcgKzU0Niw3IEBAIHN0YXRpYyBpbnQgbnZfY29tbW9uX2Vhcmx5X2luaXQodm9pZCAqaGFuZGxl
-KQ0KIAkJCUFNRF9DR19TVVBQT1JUX0JJRl9MUzsNCiAJCWFkZXYtPnBnX2ZsYWdzID0gQU1EX1BH
-X1NVUFBPUlRfVkNOIHwNCiAJCQlBTURfUEdfU1VQUE9SVF9WQ05fRFBHOw0KLQkJYWRldi0+ZXh0
-ZXJuYWxfcmV2X2lkID0gMjA7DQorCQlhZGV2LT5leHRlcm5hbF9yZXZfaWQgPSBhZGV2LT5yZXZf
-aWQgKyAyMDsNCiAJCWJyZWFrOw0KIAlkZWZhdWx0Og0KIAkJLyogRklYTUU6IG5vdCBzdXBwb3J0
-ZWQgeWV0ICovDQotLQ0KMi43LjQNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18NCmFtZC1nZnggbWFpbGluZyBsaXN0DQphbWQtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZw0KaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9hbWQtZ2Z4DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+
+--===============1522405714==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qcHopEYAB45HaUaB"
+Content-Disposition: inline
+
+
+--qcHopEYAB45HaUaB
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Aug 05, 2019 at 02:40:32AM -0700, kernelci.org bot wrote:
+
+Today's -next fails to build an arm allmodconfig due to:
+
+> allmodconfig (arm, gcc-8) =E2=80=94 FAIL, 2 errors, 16 warnings, 0 sectio=
+n mismatches
+>=20
+> Errors:
+>     drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:279:9: error: implicit dec=
+laration of function 'readq'; did you mean 'readb'? [-Werror=3Dimplicit-fun=
+ction-declaration]
+>     drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:298:3: error: implicit dec=
+laration of function 'writeq'; did you mean 'writeb'? [-Werror=3Dimplicit-f=
+unction-declaration]
+
+due to 4fa1c6a679bb0 (drm/amdgpu: add RREG64/WREG64(_PCIE) operations)
+which introduces use of readq() and writeq().
+
+--qcHopEYAB45HaUaB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1IDwQACgkQJNaLcl1U
+h9ARMQf8CpKTcEPj9AoJAXRS0EO8wCrctRVwqRqJ4Vb13LXHkmNV9a15IgiKoEM7
+OHHTwl/t/mBlajYsyoghxsgB0aIXckM5rJ77d+GEFQln4rkjx3ZmxFwZKhUNNbcE
+3Jn5jYj3B37pbnzB7aYJK1ESO9lKOHY45ZcywGG+cvgqWuRHu8jdCuQXE3xFbNBM
+CdDJh3JK5ihmP97JCGSUvGZCJS8StLHsLzJ0G2/K7wCYM86N3NxIYKeDuwYtXgna
+tWl6ZwwsnV70LLjGueAHIUC3kk/2vi9UHpjLpUr8PZI9f3WKJZfibW+7JqqYgp/5
+S6J7mggMrr4WljGwRgLwbuKFDmPKkw==
+=mwnn
+-----END PGP SIGNATURE-----
+
+--qcHopEYAB45HaUaB--
+
+--===============1522405714==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1522405714==--
