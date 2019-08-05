@@ -1,71 +1,28 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24AE48253D
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Aug 2019 21:01:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2224482624
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Aug 2019 22:38:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F76F89F4F;
-	Mon,  5 Aug 2019 19:01:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4864289BF1;
+	Mon,  5 Aug 2019 20:38:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
- [IPv6:2607:f8b0:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54A4789CB5;
- Mon,  5 Aug 2019 17:33:05 +0000 (UTC)
-Received: by mail-pf1-x444.google.com with SMTP id g2so39998280pfq.0;
- Mon, 05 Aug 2019 10:33:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:mime-version
- :content-disposition:user-agent;
- bh=GegYP27ap/p3G8SBviHV6N7Vu1ERd/zMPfU/qhoNIeM=;
- b=fCKNDFgcB/0G40dKJBE0vCr2XNjGc4HoiudeR9+uetCCyvxmU+kwOJO6y6HN94atqK
- WWH7QNBzzeyw5DE+ceja1S2ec+o0Cg7KIDWQloHaQ1X2w9bHd9pQcGxf4Kr6BNBExhO3
- KkOUiHXYTsLIJuGBoktWDuFSku+Ibae0OZWvpiXuAutMQwk6ZIVmUoBzkWU5pky/Ggex
- TKeFUHeaNKgiR/ShjuQjQ2Y73//Q02gA0rVJN3Ce6VqUguWc6Z2Ptv3DwfbWoH+9lTDO
- Z4GZcgNR6DXkjf9dVUdQCsaWBraMEjKgEQRdXwsVWezDQ5EW2cF5A1ir/o0BESwE3Efq
- gCqA==
-X-Gm-Message-State: APjAAAWV7JgkffrtcRdmMFvDOoWbd2vHMur2DIkL/B1PMxAjt7eE+Ub7
- lRugA/qCNC9ZBEt5LellNUI=
-X-Google-Smtp-Source: APXvYqxqvm7FgDQ1x++fGRcjQMdeFmTM30hDs1BBABrx91EDQH/aSmG9K1fXdGnpuyOOGnebdinUuA==
-X-Received: by 2002:a63:fb14:: with SMTP id
- o20mr124551233pgh.136.1565026384871; 
- Mon, 05 Aug 2019 10:33:04 -0700 (PDT)
-Received: from hari-Inspiron-1545 ([183.83.86.126])
- by smtp.gmail.com with ESMTPSA id m4sm97624308pgs.71.2019.08.05.10.33.00
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 05 Aug 2019 10:33:04 -0700 (PDT)
-Date: Mon, 5 Aug 2019 23:02:57 +0530
-From: Hariprasad Kelam <hariprasad.kelam@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "David (ChunMing) Zhou" <David1.Zhou@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Nikola Cornij <nikola.cornij@amd.com>,
- Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- Colin Ian King <colin.king@canonical.com>,
- Hariprasad Kelam <hariprasad.kelam@gmail.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] gpu: drm: amd: display: dc: dcn20: Remove redudant condition
-Message-ID: <20190805173257.GA4917@hari-Inspiron-1545>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4BC36E13B
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Aug 2019 19:19:04 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: mfilion) with ESMTPSA id 0230228B034
+Message-ID: <2faac62c6646de788c09f0b06862ee00911be861.camel@collabora.com>
+Subject: XDC 2019: Schedule published & Workshops CfP reopened!
+From: Mark Filion <mark.filion@collabora.com>
+To: amd-gfx@lists.freedesktop.org
+Date: Mon, 05 Aug 2019 15:18:58 -0400
+Organization: Collabora Ltd.
+User-Agent: Evolution 3.32.3 (3.32.3-1.fc30) 
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Mailman-Approved-At: Mon, 05 Aug 2019 19:01:42 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:subject:message-id:mime-version:content-disposition
- :user-agent;
- bh=GegYP27ap/p3G8SBviHV6N7Vu1ERd/zMPfU/qhoNIeM=;
- b=Mkc2Y5wggfORlrTPCazdsbmper2mckVyD1fzbvQlbTLOBW/BQq8jfRuuM5veDF4vGS
- 89CNGVXCiXDw5+f4gfZsrLGDurVw0votGH54MQ4P+vkBuSqsBh2oXQai2/EYd8j5kjP7
- zm/DfXKRnnz5ztFVAG16Sjfubr93w6/VvijekvPdKxn/TX2aXaHMcYJgujdS2CycGPMP
- Co58bTxjW3+jbRVvnnildIPPTXXQwOhuihD2I9R/DW+iOGRBVE1+wkaKl71p/JvAy01d
- arZ0H/pjzvRrIomAvJXcbLpRuXrNgn/azP3WHQB2Ac0Um4bmNbJetzCRBw7Otm8ol54p
- 7foA==
+X-Mailman-Approved-At: Mon, 05 Aug 2019 20:38:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -77,32 +34,132 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1160558348=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-UmVtb3ZlIHJlZHVkYW50IGNvZGl0aW9uICJkc2NfY2ZnLT5kY19kc2NfY2ZnLm51bV9zbGljZXNf
-diIuCgpmaXhlcyBjb3Zlcml0eSBkZWZlY3QgMTQ1MTg1MwoKU2lnbmVkLW9mZi1ieTogSGFyaXBy
-YXNhZCBLZWxhbSA8aGFyaXByYXNhZC5rZWxhbUBnbWFpbC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
-ZHJtL2FtZC9kaXNwbGF5L2RjL2RjbjIwL2RjbjIwX2RzYy5jIHwgMiArLQogMSBmaWxlIGNoYW5n
-ZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjbjIwL2RjbjIwX2RzYy5jIGIvZHJpdmVycy9ncHUvZHJt
-L2FtZC9kaXNwbGF5L2RjL2RjbjIwL2RjbjIwX2RzYy5jCmluZGV4IGU4NzBjYWEuLjQyMTMzYmQg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY24yMC9kY24yMF9k
-c2MuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNuMjAvZGNuMjBfZHNj
-LmMKQEAgLTMwMiw3ICszMDIsNyBAQCBzdGF0aWMgYm9vbCBkc2NfcHJlcGFyZV9jb25maWcoc3Ry
-dWN0IGRpc3BsYXlfc3RyZWFtX2NvbXByZXNzb3IgKmRzYywgY29uc3Qgc3RydQogCQkgICAgZHNj
-X2NmZy0+ZGNfZHNjX2NmZy5saW5lYnVmX2RlcHRoID09IDApKSk7CiAJQVNTRVJUKDk2IDw9IGRz
-Y19jZmctPmRjX2RzY19jZmcuYml0c19wZXJfcGl4ZWwgJiYgZHNjX2NmZy0+ZGNfZHNjX2NmZy5i
-aXRzX3Blcl9waXhlbCA8PSAweDNmZik7IC8vIDYuMCA8PSBiaXRzX3Blcl9waXhlbCA8PSA2My45
-Mzc1CiAKLQlpZiAoIWRzY19jZmctPmRjX2RzY19jZmcubnVtX3NsaWNlc192IHx8ICFkc2NfY2Zn
-LT5kY19kc2NfY2ZnLm51bV9zbGljZXNfdiB8fAorCWlmICghZHNjX2NmZy0+ZGNfZHNjX2NmZy5u
-dW1fc2xpY2VzX3YgfHwKIAkJIShkc2NfY2ZnLT5kY19kc2NfY2ZnLnZlcnNpb25fbWlub3IgPT0g
-MSB8fCBkc2NfY2ZnLT5kY19kc2NfY2ZnLnZlcnNpb25fbWlub3IgPT0gMikgfHwKIAkJIWRzY19j
-ZmctPnBpY193aWR0aCB8fCAhZHNjX2NmZy0+cGljX2hlaWdodCB8fAogCQkhKChkc2NfY2ZnLT5k
-Y19kc2NfY2ZnLnZlcnNpb25fbWlub3IgPT0gMSAmJiAvLyB2MS4xIGxpbmUgYnVmZmVyIGRlcHRo
-IHJhbmdlOgotLSAKMi43LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdm
-eA==
+
+--===============1160558348==
+Content-Type: multipart/alternative; boundary="=-YxhGZ+Vc/o7vzYBW/vkU"
+
+
+--=-YxhGZ+Vc/o7vzYBW/vkU
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+Hello,
+
+The preliminary schedule for XDC 2019 has been published!
+
+https://xdc2019.x.org/event/5/timetable/#20191002.detailed
+
+XDC 2019 will take place at the Concordia University Conference Centre
+in Montréal, Canada on October 2-4, 2019. If you haven't already done
+so, now is the time to book your travel!
+
+In addition to publishing the schedule, the CfP for workshops has been
+reopened. If you ave an idea for a workshop discussion, please sent it
+in!
+    
+https://xdc2019.x.org/event/5/abstracts/
+
+We are looking forward to seeing you (and sharing a poutine!) in
+beautiful Montréal! If you have any questions, please send me an email
+to mark.filion@collabora.com, adding on CC the X.org board (board at
+foundation.x.org).
+
+And don't forget, you can follow us on Twitter for all the latest
+updates and to stay connected:
+
+    https://twitter.com/xdc2019
+
+Best,
+
+Mark
+
+--=-YxhGZ+Vc/o7vzYBW/vkU
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr"><head></head><body style=3D"text-align:left; direction:lt=
+r;"><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fon=
+t-family: monospace; font-size: 13.333333015441895px; width: 71ch;">Hello,<=
+/div><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fo=
+nt-family: monospace; font-size: 13.333333015441895px; width: 71ch;"><br></=
+div><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fon=
+t-family: monospace; font-size: 13.333333015441895px; width: 71ch;">The pre=
+liminary schedule for XDC 2019 has been published!</div><div style=3D"caret=
+-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: monospace; fo=
+nt-size: 13.333333015441895px; width: 71ch;"><br></div><div style=3D"caret-=
+color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: monospace; fon=
+t-size: 13.333333015441895px; width: 71ch;"><a href=3D"https://xdc2019.x.or=
+g/event/5/timetable/#20191002.detailed">https://xdc2019.x.org/event/5/timet=
+able/#20191002.detailed</a></div><div style=3D"caret-color: rgb(46, 52, 54)=
+; color: rgb(46, 52, 54); font-family: monospace; font-size: 13.33333301544=
+1895px; width: 71ch;"><br></div><div style=3D"caret-color: rgb(46, 52, 54);=
+ color: rgb(46, 52, 54); font-family: monospace; font-size: 13.333333015441=
+895px; width: 71ch;">XDC 2019 will&nbsp;take place at the Concordia Univers=
+ity Conference Centre<br>in Montr=C3=A9al, Canada on October 2-4, 2019. If =
+you haven't already done so, now is the time to book your travel!</div><div=
+ style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family=
+: monospace; font-size: 13.333333015441895px; width: 71ch;"><br></div><div =
+style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family:=
+ monospace; font-size: 13.333333015441895px; width: 71ch;">In addition to p=
+ublishing the schedule, the CfP for workshops has been reopened. If you ave=
+ an idea for a workshop discussion, please sent it in!</div><div style=3D"c=
+aret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: monospace=
+; font-size: 13.333333015441895px; width: 71ch;">&nbsp;&nbsp;&nbsp;&nbsp;</=
+div><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fon=
+t-family: monospace; font-size: 13.333333015441895px; width: 71ch;"><a href=
+=3D"https://xdc2019.x.org/event/5/abstracts/">https://xdc2019.x.org/event/5=
+/abstracts/</a></div><div style=3D"caret-color: rgb(46, 52, 54); color: rgb=
+(46, 52, 54); font-family: monospace; font-size: 13.333333015441895px; widt=
+h: 71ch;"><br></div><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(=
+46, 52, 54); font-family: monospace; font-size: 13.333333015441895px; width=
+: 71ch;">We are looking forward to seeing you (and sharing a poutine!) in</=
+div><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fon=
+t-family: monospace; font-size: 13.333333015441895px; width: 71ch;">beautif=
+ul Montr=C3=A9al! If you have any questions, please send me an email</div><=
+div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-fam=
+ily: monospace; font-size: 13.333333015441895px; width: 71ch;">to&nbsp;<a h=
+ref=3D"mailto:mark.filion@collabora.com">mark.filion@collabora.com</a>, add=
+ing on CC the X.org board (board at</div><div style=3D"caret-color: rgb(46,=
+ 52, 54); color: rgb(46, 52, 54); font-family: monospace; font-size: 13.333=
+333015441895px; width: 71ch;">foundation.x.org).</div><div style=3D"caret-c=
+olor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: monospace; font=
+-size: 13.333333015441895px; width: 71ch;"><br></div><div style=3D"caret-co=
+lor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: monospace; font-=
+size: 13.333333015441895px; width: 71ch;">And don't forget, you can follow =
+us on Twitter for all the latest</div><div style=3D"caret-color: rgb(46, 52=
+, 54); color: rgb(46, 52, 54); font-family: monospace; font-size: 13.333333=
+015441895px; width: 71ch;">updates and to stay connected:</div><div style=
+=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: mono=
+space; font-size: 13.333333015441895px; width: 71ch;"><br></div><div style=
+=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: mono=
+space; font-size: 13.333333015441895px; width: 71ch;">&nbsp;&nbsp;&nbsp;&nb=
+sp;<a href=3D"https://twitter.com/xdc2019">https://twitter.com/xdc2019</a><=
+/div><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fo=
+nt-family: monospace; font-size: 13.333333015441895px; width: 71ch;"><br></=
+div><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fon=
+t-family: monospace; font-size: 13.333333015441895px; width: 71ch;">Best,</=
+div><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fon=
+t-family: monospace; font-size: 13.333333015441895px; width: 71ch;"><br></d=
+iv><div style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font=
+-family: monospace; font-size: 13.333333015441895px; width: 71ch;">Mark</di=
+v></body></html>
+
+--=-YxhGZ+Vc/o7vzYBW/vkU--
+
+
+--===============1160558348==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1160558348==--
+
