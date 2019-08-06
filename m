@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D0C883B4E
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Aug 2019 23:34:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C9983B7E
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Aug 2019 23:35:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C357889160;
-	Tue,  6 Aug 2019 21:34:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 764C76E56A;
+	Tue,  6 Aug 2019 21:35:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30DFC6E566;
- Tue,  6 Aug 2019 21:34:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 679806E56A;
+ Tue,  6 Aug 2019 21:35:53 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 25953216F4;
- Tue,  6 Aug 2019 21:34:23 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 64A09217D9;
+ Tue,  6 Aug 2019 21:35:52 +0000 (UTC)
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.2 32/59] drm/amdgpu: fix a potential information
+Subject: [PATCH AUTOSEL 4.19 16/32] drm/amdgpu: fix a potential information
  leaking bug
-Date: Tue,  6 Aug 2019 17:32:52 -0400
-Message-Id: <20190806213319.19203-32-sashal@kernel.org>
+Date: Tue,  6 Aug 2019 17:35:04 -0400
+Message-Id: <20190806213522.19859-16-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190806213319.19203-1-sashal@kernel.org>
-References: <20190806213319.19203-1-sashal@kernel.org>
+In-Reply-To: <20190806213522.19859-1-sashal@kernel.org>
+References: <20190806213522.19859-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=kernel.org; s=default; t=1565127264;
- bh=5ZvQzk9R5TI5bGpVv5L8Rn41Krgjr3O3/iejLxZa8a0=;
+ d=kernel.org; s=default; t=1565127353;
+ bh=sLYG0LYrflSu3iY1UZXemJUKsxG0IIDikOYOm9YDNvs=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=GOlXEax/8r6MqxapX+EGFiRhVcSaJRgPHWBzCQQ/hjK9n2SKnrTm4Trbiw1lBQsIe
- BQsS7LiQUgwQG0NR/W4xNQkaHetpzr2rOsa6u3QYszT8+iJTSBUov6foxXnf26TKUn
- x+FpUsANjEAnuua7Gd2N12nsTsED358APp02PnS4=
+ b=KMMmFy8XC/J/tEMHtzMrhMXmTnLGjJ03h8RYOSRoFlKexginBnoG9E/ZU+jIS1rEJ
+ mR3eiKZCAnUhSk7ezmdkt8hHtKAEOInUayDhQaJ4kuEcvbfxqP1idoh888lRfvbTyv
+ i0LyxVjlJByMAhfSniJW+s8eyxeVMe6Ah8vgUnMA=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -78,10 +78,10 @@ ZXVjaGVyQGFtZC5jb20+ClNpZ25lZC1vZmYtYnk6IFNhc2hhIExldmluIDxzYXNoYWxAa2VybmVs
 Lm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGVidWdmcy5jIHwg
 MiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZm
 IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RlYnVnZnMuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZWJ1Z2ZzLmMKaW5kZXggODkzMGQ2NmYy
-MjA0MC4uOTFiZmIyNGY5NjNlNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZWJ1Z2ZzLmMKaW5kZXggZjVmYjkzNzk1
+YTY5YS4uNjVjZWNmZGQ5YjQ1NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
 cHUvYW1kZ3B1X2RlYnVnZnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfZGVidWdmcy5jCkBAIC03MDMsNyArNzAzLDcgQEAgc3RhdGljIHNzaXplX3QgYW1kZ3B1X2Rl
+cHVfZGVidWdmcy5jCkBAIC03MDcsNyArNzA3LDcgQEAgc3RhdGljIHNzaXplX3QgYW1kZ3B1X2Rl
 YnVnZnNfZ3ByX3JlYWQoc3RydWN0IGZpbGUgKmYsIGNoYXIgX191c2VyICpidWYsCiAJdGhyZWFk
 ID0gKCpwb3MgJiBHRU5NQVNLX1VMTCg1OSwgNTIpKSA+PiA1MjsKIAliYW5rID0gKCpwb3MgJiBH
 RU5NQVNLX1VMTCg2MSwgNjApKSA+PiA2MDsKIAotCWRhdGEgPSBrbWFsbG9jX2FycmF5KDEwMjQs
