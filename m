@@ -2,50 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860A884D8E
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2019 15:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD1D84E31
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2019 16:06:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2853A6E02D;
-	Wed,  7 Aug 2019 13:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95BE66E707;
+	Wed,  7 Aug 2019 14:06:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 2351 seconds by postgrey-1.36 at gabe;
- Wed, 07 Aug 2019 13:38:47 UTC
-Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk
- [IPv6:2a01:7e01::f03c:91ff:fed4:a3b6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 703926E02D
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Aug 2019 13:38:47 +0000 (UTC)
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
- by heliosphere.sirena.org.uk with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <broonie@sirena.co.uk>)
- id 1hvLXN-0007bN-UR; Wed, 07 Aug 2019 12:59:30 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id C26F62742B9E; Wed,  7 Aug 2019 13:59:28 +0100 (BST)
-Date: Wed, 7 Aug 2019 13:59:28 +0100
-From: Mark Brown <broonie@kernel.org>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>
-Subject: Re: [PATCH] drm/amdgpu: replace readq/writeq with atomic64 operations
-Message-ID: <20190807125928.GC4048@sirena.co.uk>
-References: <20190807025640.682-1-tao.zhou1@amd.com>
- <20190807070834.GA24792@infradead.org>
- <daff9fc7-ead8-40e0-9a16-cb3b90b01722@amd.com>
- <20190807104104.GA18773@infradead.org>
- <18cd9fa5-2d87-2f41-b5fa-927b9790287d@amd.com>
+X-Greylist: delayed 428 seconds by postgrey-1.36 at gabe;
+ Wed, 07 Aug 2019 08:14:25 UTC
+Received: from lb2-smtp-cloud9.xs4all.net (lb2-smtp-cloud9.xs4all.net
+ [194.109.24.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA2B89007;
+ Wed,  7 Aug 2019 08:14:25 +0000 (UTC)
+Received: from [IPv6:2001:983:e9a7:1:8cc6:9015:1548:23f3]
+ ([IPv6:2001:983:e9a7:1:8cc6:9015:1548:23f3])
+ by smtp-cloud9.xs4all.net with ESMTPA
+ id vGyNhjeHgAffAvGyOh7CoE; Wed, 07 Aug 2019 10:07:15 +0200
+Subject: Re: [PATCH v3 11/41] media/v4l2-core/mm: convert put_page() to
+ put_user_page*()
+To: john.hubbard@gmail.com, Andrew Morton <akpm@linux-foundation.org>
+References: <20190807013340.9706-1-jhubbard@nvidia.com>
+ <20190807013340.9706-12-jhubbard@nvidia.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <8a02b10a-507b-2eb3-19aa-1cb498c1a4af@xs4all.nl>
+Date: Wed, 7 Aug 2019 10:07:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <18cd9fa5-2d87-2f41-b5fa-927b9790287d@amd.com>
-X-Cookie: Dammit Jim, I'm an actor, not a doctor.
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
- c=relaxed/relaxed; 
- d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wO5NtNRERzh7xvd86GGhasPsQj248MwA/stZlw0W4Os=; b=vJN9o7BxNRkQwIDbfeMY0hbqy
- vVzB4U/6FhTa42TmrzQQY139F64O//tfg+2zHj6zXrjvVKB4yErcho/floCwzxvcwJyOiql1+VUwj
- IED1CT1OVj4jbuBuEd45j3dEckaHzKTiDsn77LDNEtLdsXfLXApvu+dkZRiua6nkcj7gE=;
+In-Reply-To: <20190807013340.9706-12-jhubbard@nvidia.com>
+Content-Language: en-US
+X-CMAE-Envelope: MS4wfLtFI4ThDBFuoSwFqT380PxkcC6q3XCYC9HO7bxya62SPesHUoWCzd0ksBMTGkppOn75d+WBKCLiUJL1JCKKzueS8vA20zMfsb357SuvaUy4TtJTFapt
+ x/bWCTcScAJNoSAViYa6NSlEx2FKBMG1ub01wuczTnbJurUSOB+vxv+m9yWKJM94dHdvARuWMkXZdmUldHpi22HuFtGEBhfQsDY52cLv9SRNbWMy30DrEJ0t
+ IZpNWziFzZ3evJ7mzLCVhbiK2kiOOXAk37J1rrkYGH2YtOIVmpGPTJw+iPQnS41ERf+BCjbaTp9dtSr4qdKvpCtCTPfnpCYMb9QEG7YIv4Bkl6jCBTx7G7/4
+ E+/Gcs1gOswCkbsVZkXHiYav454A3NZryrYeXwugbZcaQXzdLwQKX8vixuVBgbqFmyjLnuKfL1+c17HvE7YGvrxNLgEJHTveu7qGFUgiDp8Kxm2qaSU6Ln+T
+ ElUIz8bygLmP/ZaLM0W02XHdcvoF3n3t59CNY87n3tR3oXUf8LBXliPMUlUaTsd4sTe3FnbfHAUNwVeklfrjO7mwx/ZtuvdypniGohclf+1bp5fAUTyCCCrQ
+ 2HyNedUvC2lDdYTRuhJr04fafwrpC9JLhSLKJeMRBVwa4n0gqjUnzFBrEoDnP692PfkgpqcUzLJ3ou9bn9SXymgnoZ/su+Qto3UpDDWJiMsSJM83gtLeDDPU
+ 2LAMy4jSsugrfD7VC1dmYwzG8OWIPHuvJ7Tu8XU7oActSpAZS3c9skTdMjLehhV+5MHeC8g3tQLGrW2WL0nM2XSwHbo4mwTDcXTASOqE5niPTgs0jd+PPxdD
+ 6xGBJo3u/QbyQ3ajYSHTR7/iYO7MKvqve0YwbtTNR57pWM38fmVObjBWJ2Qb5+GQ3v2MdIxvVfz42j69SfAzoN+qm5pqDcKBwXhfBdG1NM3xlepenmsR9xg5
+ 62RVbClfekDh1mdFfuyj4KBmVBX0v1np3JjJ4vNebVx2IyoyHonzCgI/VeK3Xg6+xvyxhVW0lz7O9WmdlxWKcql5t0Yb5f0zsKtS1NvNqjdoMQPPDLlgqBkJ
+ zSwzmxMfYBhUca00uKQBlssFsG5QNKIC7fFgqtDFBmNtn6ipJvZKRC79Cw4QS6qRNMXKSaUQOSPYCvM4KmrZVW9w5s8hot0TfDYbj+oHiuzjCO1jmdtzXAbt
+ gWocxcFwf55hNfAhTODtYnIcQTTBxC/fmKLTijSmU3lfUSSSsnl8ef0xn1zUtoXXnyzz6mcZVljhvITEJx0jnOlTUGnl6EnAeCVrfPoD4WCRmPS4tIKMb0Sn
+ DjxDBO/HszoKfvVJZYTfTvPxU+6WAyaIoLGRNQX6ew6/T19LTZ7M+CVC1zczygV1hOTQJzIdJnWdrI7AWTB8dFsFHEUTylMp921VegrittBprwtssRQSETDt
+ w+WAy7sK++9/GONtwbizNl49IwU+D0GMpL0NbybeY6J7lGNNM2UtsFttBraN5pO3M9SU3xDoE5SqJiulL8VfDzJKyah60WIfPdhLbN00mLGEveLuRT0YQNVO
+ Ve41rvqKpgWWp9HPZO7QwGGi4muzZFJs6F8sgGua1ktJvh99nm3LVZHEV++X5Bous3oUMbzF6ihXBdgtubshPp+ElhOLvWLff7DQNQVzst9h3eqqPREvSJlB
+ 0+CfDkY+tvaCm6YXmIbg/FxzMGySzi98TfrQYNsvylv4MWX8pxKCyY/xfBN6o8zPRNMJNc0PX0kAdkxIJbJSRls4hOcOInlZ
+X-Mailman-Approved-At: Wed, 07 Aug 2019 14:06:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -57,65 +59,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "kernel-build-reports@lists.linaro.org"
- <kernel-build-reports@lists.linaro.org>, "Zhou1, Tao" <Tao.Zhou1@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Christoph Hellwig <hch@infradead.org>,
- "linux-next@vger.kernel.org" <linux-next@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "akpm@linux-foundation.org" <akpm@linux-foundation.org>, "Li,
- Dennis" <Dennis.Li@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
-Content-Type: multipart/mixed; boundary="===============0866333107=="
+Cc: linux-fbdev@vger.kernel.org, Jan Kara <jack@suse.cz>, kvm@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, Dave Chinner <david@fromorbit.com>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ sparclinux@vger.kernel.org, Ira Weiny <ira.weiny@intel.com>,
+ ceph-devel@vger.kernel.org, devel@driverdev.osuosl.org,
+ rds-devel@oss.oracle.com, linux-rdma@vger.kernel.org, x86@kernel.org,
+ amd-gfx@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Hans Verkuil <hans.verkuil@cisco.com>,
+ xen-devel@lists.xenproject.org, devel@lists.orangefs.org,
+ linux-media@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+ John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ linux-block@vger.kernel.org,
+ =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
+ linux-rpi-kernel@lists.infradead.org, Dan Williams <dan.j.williams@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
+ netdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Souptick Joarder <jrdr.linux@gmail.com>, linux-xfs@vger.kernel.org,
+ linux-crypto@vger.kernel.org, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ linux-fsdevel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
---===============0866333107==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xo44VMWPx7vlQ2+2"
-Content-Disposition: inline
-
-
---xo44VMWPx7vlQ2+2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Aug 07, 2019 at 10:55:01AM +0000, Koenig, Christian wrote:
-> Am 07.08.19 um 12:41 schrieb Christoph Hellwig:
-
-> > writeq/readq are provided whenever the CPU actually supports 64-bit
-> > atomic loads and stores.
-
-> Is there a config option which we can make the driver depend on?
-
-64BIT should do the trick.
-
---xo44VMWPx7vlQ2+2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1Kyy8ACgkQJNaLcl1U
-h9CSUAf/bUrGApOJ4TloFKZSBONMJdqKqen4pcxRQYHBdRMyb9jNWyeJTqP+Wj0g
-aQ7WrZb9af6U1NxFXjpCokpLd5UjEslDiLT2PCo2BR2TMgxFqLE9QTw+HdMNMoPX
-lxWI6uQYnj6xQu3tmPJ870gFcKKjFkCE7Q2NH1FNjSRxg9ApAAb333sFf2viaBEo
-1YgDTlRCGBxejDRhW0fR8GwJUU/CSF77zV2HFGJtBGhhBfeZ72mp8gmfOtX0AUaj
-cPWaZOHrOhZN89rRC65g1NagTRK6kB5Sr+rhBcQj/b2R5Rmynj414ZjO0l2ENmlq
-MfX/UcsY6twsldvz7Sng1BUk9WsUxg==
-=TBn7
------END PGP SIGNATURE-----
-
---xo44VMWPx7vlQ2+2--
-
---===============0866333107==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0866333107==--
+T24gOC83LzE5IDM6MzMgQU0sIGpvaG4uaHViYmFyZEBnbWFpbC5jb20gd3JvdGU6Cj4gRnJvbTog
+Sm9obiBIdWJiYXJkIDxqaHViYmFyZEBudmlkaWEuY29tPgo+IAo+IEZvciBwYWdlcyB0aGF0IHdl
+cmUgcmV0YWluZWQgdmlhIGdldF91c2VyX3BhZ2VzKigpLCByZWxlYXNlIHRob3NlIHBhZ2VzCj4g
+dmlhIHRoZSBuZXcgcHV0X3VzZXJfcGFnZSooKSByb3V0aW5lcywgaW5zdGVhZCBvZiB2aWEgcHV0
+X3BhZ2UoKSBvcgo+IHJlbGVhc2VfcGFnZXMoKS4KPiAKPiBUaGlzIGlzIHBhcnQgYSB0cmVlLXdp
+ZGUgY29udmVyc2lvbiwgYXMgZGVzY3JpYmVkIGluIGNvbW1pdCBmYzFkOGU3Y2NhMmQKPiAoIm1t
+OiBpbnRyb2R1Y2UgcHV0X3VzZXJfcGFnZSooKSwgcGxhY2Vob2xkZXIgdmVyc2lvbnMiKS4KPiAK
+PiBDYzogTWF1cm8gQ2FydmFsaG8gQ2hlaGFiIDxtY2hlaGFiQGtlcm5lbC5vcmc+Cj4gQ2M6IEtl
+ZXMgQ29vayA8a2Vlc2Nvb2tAY2hyb21pdW0ub3JnPgo+IENjOiBIYW5zIFZlcmt1aWwgPGhhbnMu
+dmVya3VpbEBjaXNjby5jb20+Cj4gQ2M6IFNha2FyaSBBaWx1cyA8c2FrYXJpLmFpbHVzQGxpbnV4
+LmludGVsLmNvbT4KPiBDYzogSmFuIEthcmEgPGphY2tAc3VzZS5jej4KPiBDYzogUm9iaW4gTXVy
+cGh5IDxyb2Jpbi5tdXJwaHlAYXJtLmNvbT4KPiBDYzogU291cHRpY2sgSm9hcmRlciA8anJkci5s
+aW51eEBnbWFpbC5jb20+Cj4gQ2M6IERhbiBXaWxsaWFtcyA8ZGFuLmoud2lsbGlhbXNAaW50ZWwu
+Y29tPgo+IENjOiBsaW51eC1tZWRpYUB2Z2VyLmtlcm5lbC5vcmcKPiBTaWduZWQtb2ZmLWJ5OiBK
+b2huIEh1YmJhcmQgPGpodWJiYXJkQG52aWRpYS5jb20+CgpBY2tlZC1ieTogSGFucyBWZXJrdWls
+IDxodmVya3VpbC1jaXNjb0B4czRhbGwubmw+Cgo+IC0tLQo+ICBkcml2ZXJzL21lZGlhL3Y0bDIt
+Y29yZS92aWRlb2J1Zi1kbWEtc2cuYyB8IDMgKy0tCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2Vy
+dGlvbigrKSwgMiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRpYS92
+NGwyLWNvcmUvdmlkZW9idWYtZG1hLXNnLmMgYi9kcml2ZXJzL21lZGlhL3Y0bDItY29yZS92aWRl
+b2J1Zi1kbWEtc2cuYwo+IGluZGV4IDY2YTZjNmMyMzZhNy4uZDZlZWI0MzdlYzE5IDEwMDY0NAo+
+IC0tLSBhL2RyaXZlcnMvbWVkaWEvdjRsMi1jb3JlL3ZpZGVvYnVmLWRtYS1zZy5jCj4gKysrIGIv
+ZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdmlkZW9idWYtZG1hLXNnLmMKPiBAQCAtMzQ5LDggKzM0
+OSw3IEBAIGludCB2aWRlb2J1Zl9kbWFfZnJlZShzdHJ1Y3QgdmlkZW9idWZfZG1hYnVmICpkbWEp
+Cj4gIAlCVUdfT04oZG1hLT5zZ2xlbik7Cj4gIAo+ICAJaWYgKGRtYS0+cGFnZXMpIHsKPiAtCQlm
+b3IgKGkgPSAwOyBpIDwgZG1hLT5ucl9wYWdlczsgaSsrKQo+IC0JCQlwdXRfcGFnZShkbWEtPnBh
+Z2VzW2ldKTsKPiArCQlwdXRfdXNlcl9wYWdlcyhkbWEtPnBhZ2VzLCBkbWEtPm5yX3BhZ2VzKTsK
+PiAgCQlrZnJlZShkbWEtPnBhZ2VzKTsKPiAgCQlkbWEtPnBhZ2VzID0gTlVMTDsKPiAgCX0KPiAK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZngg
+bWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
