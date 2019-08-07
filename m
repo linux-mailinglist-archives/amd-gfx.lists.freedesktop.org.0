@@ -1,46 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C1E845FF
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2019 09:29:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76444845EC
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2019 09:28:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77D496E658;
-	Wed,  7 Aug 2019 07:27:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E52B76E667;
+	Wed,  7 Aug 2019 07:27:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 516AE6E36B
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Aug 2019 07:08:36 +0000 (UTC)
-Received: from hch by bombadil.infradead.org with local (Exim 4.92 #3 (Red Hat
- Linux)) id 1hvG3m-0007yE-Qu; Wed, 07 Aug 2019 07:08:34 +0000
-Date: Wed, 7 Aug 2019 00:08:34 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Tao Zhou <tao.zhou1@amd.com>
-Subject: Re: [PATCH] drm/amdgpu: replace readq/writeq with atomic64 operations
-Message-ID: <20190807070834.GA24792@infradead.org>
-References: <20190807025640.682-1-tao.zhou1@amd.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12CF06E61F;
+ Wed,  7 Aug 2019 07:19:43 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2019 00:19:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,356,1559545200"; d="scan'208";a="176880179"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+ by orsmga003.jf.intel.com with ESMTP; 07 Aug 2019 00:19:32 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+ id 9980B202CC; Wed,  7 Aug 2019 10:20:07 +0300 (EEST)
+Date: Wed, 7 Aug 2019 10:20:07 +0300
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: john.hubbard@gmail.com
+Subject: Re: [PATCH v3 11/41] media/v4l2-core/mm: convert put_page() to
+ put_user_page*()
+Message-ID: <20190807072007.GG21370@paasikivi.fi.intel.com>
+References: <20190807013340.9706-1-jhubbard@nvidia.com>
+ <20190807013340.9706-12-jhubbard@nvidia.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190807025640.682-1-tao.zhou1@amd.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
+In-Reply-To: <20190807013340.9706-12-jhubbard@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Mailman-Approved-At: Wed, 07 Aug 2019 07:26:35 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
- c=relaxed/relaxed; 
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6oMBJ81nXRB0KFK8KufiKsptCeJsMRRDmyRxvUsPSkQ=; b=G/pio6E5CwweDYTkjY9WyrZyx
- 99Og40vF25oNzLL1D4O5lJXOoKtPMSBDBW4UM44fi1NFlerY07eGBN8LZy1Fk7l0osC4S/3hNaI5/
- YkbMubYPzOZfO0zW3EroHHlcanjeqQGDWkHcE81nxYlTVqMKgB3X6xNicXZ3bqTA4KOR+pQRTCIIQ
- BSDpW/THFBljSd46XrrghAsf7Q26y6OeCtqa8fBX2oVeIk5xA5H9gPgVW6eDJ29R9cM/4DGLicTbR
- a+lxRJtA/fV5nMT+E6+h005dvSSAv0Ef8D1r0Wr5LbKgC3xLu4FimAkoc+tsJS2/v/vTgD8Dsttmh
- qsRpkAJ/Q==;
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -52,18 +48,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, kernel-build-reports@lists.linaro.org,
- amd-gfx@lists.freedesktop.org, broonie@kernel.org, linux-next@vger.kernel.org,
- alexander.deucher@amd.com, akpm@linux-foundation.org, christian.koenig@amd.com,
- dennis.li@amd.com, hawking.zhang@amd.com
+Cc: linux-fbdev@vger.kernel.org, Jan Kara <jack@suse.cz>, kvm@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, Dave Chinner <david@fromorbit.com>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ sparclinux@vger.kernel.org, Ira Weiny <ira.weiny@intel.com>,
+ Dan Williams <dan.j.williams@intel.com>, devel@driverdev.osuosl.org,
+ rds-devel@oss.oracle.com, linux-rdma@vger.kernel.org, x86@kernel.org,
+ amd-gfx@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Hans Verkuil <hans.verkuil@cisco.com>,
+ xen-devel@lists.xenproject.org, devel@lists.orangefs.org,
+ linux-media@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+ John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ linux-block@vger.kernel.org,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
+ netdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Souptick Joarder <jrdr.linux@gmail.com>, linux-xfs@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBBdWcgMDcsIDIwMTkgYXQgMTA6NTY6NDBBTSArMDgwMCwgVGFvIFpob3Ugd3JvdGU6
-Cj4gcmVhZHEvd3JpdGVxIGFyZSBub3Qgc3VwcG9ydGVkIG9uIGFsbCBhcmNoaXRlY3R1cmVzCgpO
-QUsuICBZb3UgbXVzdCBub3QgdXNlIGF0b21pY18qIG9uIF9faW9tZW0gKE1NSU8pIG1lbW9yeS4K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+T24gVHVlLCBBdWcgMDYsIDIwMTkgYXQgMDY6MzM6MTBQTSAtMDcwMCwgam9obi5odWJiYXJkQGdt
+YWlsLmNvbSB3cm90ZToKPiBGcm9tOiBKb2huIEh1YmJhcmQgPGpodWJiYXJkQG52aWRpYS5jb20+
+Cj4gCj4gRm9yIHBhZ2VzIHRoYXQgd2VyZSByZXRhaW5lZCB2aWEgZ2V0X3VzZXJfcGFnZXMqKCks
+IHJlbGVhc2UgdGhvc2UgcGFnZXMKPiB2aWEgdGhlIG5ldyBwdXRfdXNlcl9wYWdlKigpIHJvdXRp
+bmVzLCBpbnN0ZWFkIG9mIHZpYSBwdXRfcGFnZSgpIG9yCj4gcmVsZWFzZV9wYWdlcygpLgo+IAo+
+IFRoaXMgaXMgcGFydCBhIHRyZWUtd2lkZSBjb252ZXJzaW9uLCBhcyBkZXNjcmliZWQgaW4gY29t
+bWl0IGZjMWQ4ZTdjY2EyZAo+ICgibW06IGludHJvZHVjZSBwdXRfdXNlcl9wYWdlKigpLCBwbGFj
+ZWhvbGRlciB2ZXJzaW9ucyIpLgo+IAo+IENjOiBNYXVybyBDYXJ2YWxobyBDaGVoYWIgPG1jaGVo
+YWJAa2VybmVsLm9yZz4KPiBDYzogS2VlcyBDb29rIDxrZWVzY29va0BjaHJvbWl1bS5vcmc+Cj4g
+Q2M6IEhhbnMgVmVya3VpbCA8aGFucy52ZXJrdWlsQGNpc2NvLmNvbT4KPiBDYzogU2FrYXJpIEFp
+bHVzIDxzYWthcmkuYWlsdXNAbGludXguaW50ZWwuY29tPgo+IENjOiBKYW4gS2FyYSA8amFja0Bz
+dXNlLmN6Pgo+IENjOiBSb2JpbiBNdXJwaHkgPHJvYmluLm11cnBoeUBhcm0uY29tPgo+IENjOiBT
+b3VwdGljayBKb2FyZGVyIDxqcmRyLmxpbnV4QGdtYWlsLmNvbT4KPiBDYzogRGFuIFdpbGxpYW1z
+IDxkYW4uai53aWxsaWFtc0BpbnRlbC5jb20+Cj4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVs
+Lm9yZwo+IFNpZ25lZC1vZmYtYnk6IEpvaG4gSHViYmFyZCA8amh1YmJhcmRAbnZpZGlhLmNvbT4K
+CkFja2VkLWJ5OiBTYWthcmkgQWlsdXMgPHNha2FyaS5haWx1c0BsaW51eC5pbnRlbC5jb20+Cgot
+LSAKU2FrYXJpIEFpbHVzCnNha2FyaS5haWx1c0BsaW51eC5pbnRlbC5jb20KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QK
+YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
