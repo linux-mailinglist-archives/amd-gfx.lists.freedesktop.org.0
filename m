@@ -2,96 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE5884C42
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2019 15:03:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 860A884D8E
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2019 15:38:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD0E26E6C7;
-	Wed,  7 Aug 2019 13:03:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2853A6E02D;
+	Wed,  7 Aug 2019 13:38:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com
- (mail-eopbgr780088.outbound.protection.outlook.com [40.107.78.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50C086E6C7
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Aug 2019 13:03:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OmTfZKjRV7zn55ctbiVj1DWjofMow68CvEoYer8K2mXmfhzaat0rFFk4WVTDfPRxbUq0Ll+LcmNa9x14+KT0sfhEMupUW+BUSS4icRZjZ11M9doGrAsEmlvRTHFwJ9rzyCPzt3+3CQECOpqd8bfMt0i5qCyGXDpEhCJaQcyySTKlu3cN1ZuvzDR51YLoeD/RIaDdbyltoO8NuKlF6bBXy7lyxxua52PnhIKGJUK2M4gzAe/HxJ/WSrnw5pdbnjy+dBYRUKVBMOwfQlyLX/hUzffvVN43PDukhOuYc/E0RKWb9wkCxynqgQPc6ISVHfOdmXYo5TG/eTnexrGD+PSddw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q2XtwSZInIso1Lu1ApmcV8ZoHr/M/pfw5F332XjUE+0=;
- b=S7Ymr90ApaqkKBMxwsOqnORAZMz2VA5P12UiN2KHM+jhXmE91jwK+KXmfUwp4AytRzNIHv1KUIz0Ul4r87p3ScRVXl6mihAxsXc6mEwZUXSRsPsC4TCzeCiexwuQaic+uAZQwJF9XTJ1IMJQfe83e5W4CLxAvgA0NpJsqynvh9kZc6ZnB9b+WlLr+LWhd5L+EdkBi74iwaY0oD9O+M3FWPf3Mv9tJ8DHcIrvKSD2R5u11tfNQRS3o8VNSNNqSZvhJImzydJXihd/6KQH6xAklk+Ct0qdqE1/Pr85H15xf0J5dPTu4ZkSia70PNnaS4rNEsPU+3gD2nsB/v/bXomzUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
- header.d=amd.com;arc=none
-Received: from DM5PR12MB1546.namprd12.prod.outlook.com (10.172.36.23) by
- DM5PR12MB1532.namprd12.prod.outlook.com (10.172.35.23) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.16; Wed, 7 Aug 2019 13:03:00 +0000
-Received: from DM5PR12MB1546.namprd12.prod.outlook.com
- ([fe80::fc5f:ce01:e8c8:db89]) by DM5PR12MB1546.namprd12.prod.outlook.com
- ([fe80::fc5f:ce01:e8c8:db89%12]) with mapi id 15.20.2136.018; Wed, 7 Aug 2019
- 13:03:00 +0000
-From: "Koenig, Christian" <Christian.Koenig@amd.com>
-To: Christoph Hellwig <hch@infradead.org>
+X-Greylist: delayed 2351 seconds by postgrey-1.36 at gabe;
+ Wed, 07 Aug 2019 13:38:47 UTC
+Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk
+ [IPv6:2a01:7e01::f03c:91ff:fed4:a3b6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 703926E02D
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Aug 2019 13:38:47 +0000 (UTC)
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+ by heliosphere.sirena.org.uk with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <broonie@sirena.co.uk>)
+ id 1hvLXN-0007bN-UR; Wed, 07 Aug 2019 12:59:30 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+ id C26F62742B9E; Wed,  7 Aug 2019 13:59:28 +0100 (BST)
+Date: Wed, 7 Aug 2019 13:59:28 +0100
+From: Mark Brown <broonie@kernel.org>
+To: "Koenig, Christian" <Christian.Koenig@amd.com>
 Subject: Re: [PATCH] drm/amdgpu: replace readq/writeq with atomic64 operations
-Thread-Topic: [PATCH] drm/amdgpu: replace readq/writeq with atomic64 operations
-Thread-Index: AQHVTMvE140hqrZvSkOTllezqlrDj6bvREIAgAAdQoCAAB4dAIAAA9yAgAAjKYCAAACbgA==
-Date: Wed, 7 Aug 2019 13:03:00 +0000
-Message-ID: <c613ca25-4443-f275-ea8d-6d55af10ac77@amd.com>
+Message-ID: <20190807125928.GC4048@sirena.co.uk>
 References: <20190807025640.682-1-tao.zhou1@amd.com>
  <20190807070834.GA24792@infradead.org>
  <daff9fc7-ead8-40e0-9a16-cb3b90b01722@amd.com>
  <20190807104104.GA18773@infradead.org>
  <18cd9fa5-2d87-2f41-b5fa-927b9790287d@amd.com>
- <20190807130043.GA6023@infradead.org>
-In-Reply-To: <20190807130043.GA6023@infradead.org>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-x-originating-ip: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-x-clientproxiedby: PR0P264CA0139.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:100:1a::31) To DM5PR12MB1546.namprd12.prod.outlook.com
- (2603:10b6:4:8::23)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0d52bfc9-9f3c-4fd2-f9a5-08d71b379304
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:DM5PR12MB1532; 
-x-ms-traffictypediagnostic: DM5PR12MB1532:
-x-microsoft-antispam-prvs: <DM5PR12MB1532FC2449104408BF32B6A183D40@DM5PR12MB1532.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 01221E3973
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(376002)(396003)(346002)(366004)(39860400002)(199004)(189003)(486006)(256004)(2906002)(6116002)(6506007)(81156014)(186003)(81166006)(65826007)(64126003)(7736002)(8936002)(71200400001)(36756003)(71190400001)(8676002)(305945005)(476003)(46003)(11346002)(446003)(14454004)(2616005)(31686004)(4326008)(478600001)(66476007)(65956001)(25786009)(102836004)(58126008)(54906003)(66556008)(64756008)(66446008)(53936002)(6246003)(6916009)(386003)(6436002)(5660300002)(86362001)(99286004)(31696002)(68736007)(6486002)(316002)(76176011)(6512007)(229853002)(52116002)(66946007)(65806001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1532;
- H:DM5PR12MB1546.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: zHbxM2ddq0XAWqKFvzaWjAjiqKTGgz2BVi/gb5lhsnzoAVvLjR/80gKcmBWqEg2jj5g51b9tmwbfOPBcQWfj0uDBNETa9cvdIIL6vM/sQmEvXl0vxjPW+7fx0C9pzri0RoYNFAemDa/YiSPfLUQrHTY1r5PjDUg6MnQ+5LA7pg9nQVesaHFmf4p6SkiRMMn24PSoQIyVTErWH5dl5u9+qpkFFMW2v+Yp2waV27XGjJAAuxpaLKcuAuZnjqO6Ls1BhXs/xTxI3dehG12dmGD/iVWFhXdfxorY0dQi3np4jH0JXC0lQGwhi34eAW7IMcAKmVRsjIWpt+fL4zBUiqd1VYheLyNCjx5xWOPozZ7SuSLISGuGKivkATwOLgMlBYfAklh69PL+tCJ4lycu0dZzfRb9ljNfl3sWoEgVwfOtPv4=
-Content-ID: <94B9D56BFBAC0F478C55FC9E5310D657@namprd12.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d52bfc9-9f3c-4fd2-f9a5-08d71b379304
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2019 13:03:00.2201 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ckoenig@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1532
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q2XtwSZInIso1Lu1ApmcV8ZoHr/M/pfw5F332XjUE+0=;
- b=HWhjbpo+fc0OefqyDFMOK/ZLKEzSnMWoGW4IvFO9mYOkGou70tWZyy29KXHFZ2XD8zOI6VcmDMEc8YtvzDcOHz+ZGL+Uuk76DHgzUx2nx8W6L1Xi1S0AU3+7bK6I6Et0lPgqfvHX9lsSD1qwwf8n+nngEMWSXMz5/tncyawqK4Q=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Christian.Koenig@amd.com; 
+In-Reply-To: <18cd9fa5-2d87-2f41-b5fa-927b9790287d@amd.com>
+X-Cookie: Dammit Jim, I'm an actor, not a doctor.
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
+ c=relaxed/relaxed; 
+ d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=wO5NtNRERzh7xvd86GGhasPsQj248MwA/stZlw0W4Os=; b=vJN9o7BxNRkQwIDbfeMY0hbqy
+ vVzB4U/6FhTa42TmrzQQY139F64O//tfg+2zHj6zXrjvVKB4yErcho/floCwzxvcwJyOiql1+VUwj
+ IED1CT1OVj4jbuBuEd45j3dEckaHzKTiDsn77LDNEtLdsXfLXApvu+dkZRiua6nkcj7gE=;
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -103,42 +57,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "kernel-build-reports@lists.linaro.org"
+Cc: "kernel-build-reports@lists.linaro.org"
  <kernel-build-reports@lists.linaro.org>, "Zhou1, Tao" <Tao.Zhou1@amd.com>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "linux-next@vger.kernel.org" <linux-next@vger.kernel.org>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>,
- "akpm@linux-foundation.org" <akpm@linux-foundation.org>, "Li, 
+ Christoph Hellwig <hch@infradead.org>,
+ "linux-next@vger.kernel.org" <linux-next@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "akpm@linux-foundation.org" <akpm@linux-foundation.org>, "Li,
  Dennis" <Dennis.Li@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0866333107=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMDcuMDguMTkgdW0gMTU6MDAgc2NocmllYiBDaHJpc3RvcGggSGVsbHdpZzoNCj4gT24gV2Vk
-LCBBdWcgMDcsIDIwMTkgYXQgMTA6NTU6MDFBTSArMDAwMCwgS29lbmlnLCBDaHJpc3RpYW4gd3Jv
-dGU6DQo+Pj4+IEVzc2VudGlhbGx5IHdyaXRlcS9yZWFkcSBkb2Vzbid0IHNlZW1zIHRvIGJlIGF2
-YWlsYWJsZSBvbiBhbGwNCj4+Pj4gYXJjaGl0ZWN0dXJlcyBlaXRoZXIuDQo+Pj4gd3JpdGVxL3Jl
-YWRxIGFyZSBwcm92aWRlZCB3aGVuZXZlciB0aGUgQ1BVIGFjdHVhbGx5IHN1cHBvcnRzIDY0LWJp
-dA0KPj4+IGF0b21pYyBsb2FkcyBhbmQgc3RvcmVzLg0KPj4gSXMgdGhlcmUgYSBjb25maWcgb3B0
-aW9uIHdoaWNoIHdlIGNhbiBtYWtlIHRoZSBkcml2ZXIgZGVwZW5kIG9uPw0KPj4NCj4+IEkgbWVh
-biB0aGF0IEFSTSBkb2Vzbid0IHN1cHBvcnQgNjRiaXQgYXRvbWljIGxvYWRzIGFuZCBzdG9yZXMg
-b24gTU1JTyBpcw0KPj4gcXVpdGUgYSBib29tZXIgZm9yIHVzLg0KPiBUaGUgbW9kZWwgaXMgdG8g
-Y2hlYWNrIGlmIHJlYWRxL3dyaXRlcSBhcmUgZGVmaW5lZCwgYW5kIGlmIG5vdCB0bw0KPiBpbmNs
-dWRlIHRoZSBvbmUgb2YgaW8tNjQtbm9uYXRvbWljLWhpLWxvLmggb3IgaW8tNjQtbm9uYXRvbWlj
-LWxvLWhpLmguDQo+IFRoZSByZWFzb24gZm9yIHRoYXQgaXMgdGhhdCBoYXJkd2FyZSBpcyBzdXBw
-b3NlZCB0byBiZSBhYmxlIHRvIGRlYWwgd2l0aA0KPiB0d28gMzItYml0IHdyaXRlcywgYnV0IGl0
-IGRlcGVuZHMgb24gdGhlIGhhcmR3YXJlIGlmIHRoZSBsb3dlciBvciB1cHBlcg0KPiBoYWxmIGlz
-IHdoYXQgY29tbWl0cyB0aGUgd3JpdGUuDQoNClJlYWQsIGJ1dCBhcyBJIHVuZGVyc3Rvb2QgVGFv
-IGNoYW5nZSB0aGlzIGlzIG5vdCB0aGUgY2FzZSBoZXJlLiANCk90aGVyd2lzZSB3ZSB3b3VsZCBq
-dXN0IHVzZSBvdXIgV1JFRzMyL1JSRUczMiBtYWNyb3MgaW4gdGhlIGRyaXZlci4NCg0KVGFvLCBw
-bGVhc2UgZXhwbGFpbiB3aHkgZXhhY3RseSB3ZSBuZWVkIHRoZSBXUkVHNjQvUlJFRzY0IGNoYW5n
-ZSB3aGljaCANCmNhdXNlZCB0aGlzLg0KDQpDaHJpc3RpYW4uDQoNCj4NCj4gVGhlIG9ubHkgMzIt
-Yml0IHBsYXRmb3JtIHRoYXQgY2xhaW1zIHN1cHBvcnQgZm9yIHJlYWRxL3dyaXRlcSBpcyBzaCwN
-Cj4gYW5kIEkgaGF2ZSBkb3VidHMgaWYgdGhhdCBhY3R1YWxseSB3b3JrcyBhcyBleHBlY3RlZC4N
-Cg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdm
-eCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0866333107==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xo44VMWPx7vlQ2+2"
+Content-Disposition: inline
+
+
+--xo44VMWPx7vlQ2+2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Aug 07, 2019 at 10:55:01AM +0000, Koenig, Christian wrote:
+> Am 07.08.19 um 12:41 schrieb Christoph Hellwig:
+
+> > writeq/readq are provided whenever the CPU actually supports 64-bit
+> > atomic loads and stores.
+
+> Is there a config option which we can make the driver depend on?
+
+64BIT should do the trick.
+
+--xo44VMWPx7vlQ2+2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1Kyy8ACgkQJNaLcl1U
+h9CSUAf/bUrGApOJ4TloFKZSBONMJdqKqen4pcxRQYHBdRMyb9jNWyeJTqP+Wj0g
+aQ7WrZb9af6U1NxFXjpCokpLd5UjEslDiLT2PCo2BR2TMgxFqLE9QTw+HdMNMoPX
+lxWI6uQYnj6xQu3tmPJ870gFcKKjFkCE7Q2NH1FNjSRxg9ApAAb333sFf2viaBEo
+1YgDTlRCGBxejDRhW0fR8GwJUU/CSF77zV2HFGJtBGhhBfeZ72mp8gmfOtX0AUaj
+cPWaZOHrOhZN89rRC65g1NagTRK6kB5Sr+rhBcQj/b2R5Rmynj414ZjO0l2ENmlq
+MfX/UcsY6twsldvz7Sng1BUk9WsUxg==
+=TBn7
+-----END PGP SIGNATURE-----
+
+--xo44VMWPx7vlQ2+2--
+
+--===============0866333107==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0866333107==--
