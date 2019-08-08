@@ -1,94 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 316C0866ED
-	for <lists+amd-gfx@lfdr.de>; Thu,  8 Aug 2019 18:24:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 530EF86713
+	for <lists+amd-gfx@lfdr.de>; Thu,  8 Aug 2019 18:28:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C450C6E899;
-	Thu,  8 Aug 2019 16:24:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7AE46E897;
+	Thu,  8 Aug 2019 16:28:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM05-BY2-obe.outbound.protection.outlook.com
- (mail-by2nam05on060e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe52::60e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9DA46E899
- for <amd-gfx@lists.freedesktop.org>; Thu,  8 Aug 2019 16:23:59 +0000 (UTC)
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr820089.outbound.protection.outlook.com [40.107.82.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6006F6E897
+ for <amd-gfx@lists.freedesktop.org>; Thu,  8 Aug 2019 16:28:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iowHktqzHe0u+xEyCZwXZDOeU9ulz85pwm7/qr84fkJlmudgOcMsUq4hy1ec7zokhpd3n5km80NOGVsqaG1RHDSrHOFU55nFvM1DBWPu/Wmtij4V+yLNc/ymhASAg6SPxeBDt1jR3fxqt/NhK2Lo50g4Oeg60kbJ0wlwO4QoKfQM88blNZYjWmTLimMw4kNjVpuKL5LSqJqusVlmppfS1LXU9xvrHI/gdG5V0uurmqrvR1ymqIlDC4UkwhSU7XncYPCPU3bbcFjSfY0JMnEkHYMj7MM25VGEe79ghBV3iaQu2MAwUeBUUZCJGKHSRV+S+415ZlqHNlGjKX97wcx4Dg==
+ b=jj2gDALtw3bgUacI0uB9OmuX/6MUCjrySFiqhRXMKGiuPtBtvWDV0yyUTzUXxlLpVucyu8R/3lMesX5W7iP4wjpJo3Y57bxIm2e4mW45wNMrJFdIOZJ6QHtfTT7Y3UQuaBc+8f4Q6tkR9uA5kqVrg/c2l1dHP0ZYyodRjOtP+PeTnLgBgGqWAZst+jAefh3f1Eki6NXpt7NHKrbeWoSlEZ9emwr/nO9wxuNEV+1tR22oVYJwWnjvcHPkjwpAGtNLk10cDBkRdOKfP1J9U1EIY2rgAVcobVYr8GsOR8l4BOQhwt3Zh//ndmuog2CLp4DbNYo7pX7Z/klxlWNzbm9vuA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zsA8MkME+nLEsajA4kbzwy3GwkWEieE6tD65+IRA+Yk=;
- b=TtrIRIoqXNqol94A+9O9MbQnyxcivYjff6y2b2Xag4mEraCFwSCb0+kYyoYqWzVTOXdMXfR9mDGMTYTzHX1RBKMNfpwWJcUtwJF83bbU016rQpmyUL+9pcNgBvS8POqFDxKJDTZPet6q00ZIsImBT4tf+pFKEovxp+0fYmmCkcQ+42Oj/kgN9ut7VM1klIT8tUsuN43mwi0IxLPKvUG2LyyU0Ntju3n7Sl2K1I0PAMl2g0V/u/chVBk/YuTNu+dw4xghXQ4LpkqB8IF6ObwvOeXt+4X6c35lNhY+cHjmAh5ZXgX133lp0OiCqIXeN62ITQAxARrTcHQGOA88bfkVjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from BL0PR12MB2580.namprd12.prod.outlook.com (52.132.27.147) by
- BL0PR12MB2500.namprd12.prod.outlook.com (52.132.11.151) with Microsoft SMTP
+ bh=89zJcTzEbL6I6hhEo/11DIzXQVmb4X4MAvVvza46Kgg=;
+ b=U1KZ/VoRBYcGDRqa0OOQ8YmYrvFtQLpcSYV0jKw0G3JUMFGHCGA3flxlRN3xlvjqD3xDmgPo42lY4ER9NDSbytRiTFwWzED8BFsRzIrJnhuuBowr21sBUMfw/lhBJq9Sgw712jmiIlfpYJsZ+cdAggnOzZrTbH1nxP5hNZ6BxMalKEk73L5NUqfz67fuF2EYifCBLraqTPVowxT6qxjho/FPaUYdGn/UfUvTYKSswApgshTAy2cvERK0iHZ9Gbq2EQnDZdhYkxhSgloXnJ7k2MeAKB9gN5WrWZsfxVHAgPLZu6Nuz9kSS+Y1w/w+c4CqWqD8Ql8UpZjxngHVZWo//Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=amd.com;dmarc=pass action=none header.from=amd.com;dkim=pass
+ header.d=amd.com;arc=none
+Received: from DM5PR12MB1546.namprd12.prod.outlook.com (10.172.36.23) by
+ DM5PR12MB1836.namprd12.prod.outlook.com (10.175.92.22) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.14; Thu, 8 Aug 2019 16:23:58 +0000
-Received: from BL0PR12MB2580.namprd12.prod.outlook.com
- ([fe80::718c:48e0:4e04:5543]) by BL0PR12MB2580.namprd12.prod.outlook.com
- ([fe80::718c:48e0:4e04:5543%7]) with mapi id 15.20.2157.015; Thu, 8 Aug 2019
- 16:23:58 +0000
-From: "Zeng, Oak" <Oak.Zeng@amd.com>
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig, Christian"
- <Christian.Koenig@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Mirza, Jimshed" <Jimshed.Mirza@amd.com>
-Subject: RE: [PATCH 1/5] drm/amdgpu: Extends amdgpu vm definitions
+ 15.20.2136.16; Thu, 8 Aug 2019 16:28:47 +0000
+Received: from DM5PR12MB1546.namprd12.prod.outlook.com
+ ([fe80::fc5f:ce01:e8c8:db89]) by DM5PR12MB1546.namprd12.prod.outlook.com
+ ([fe80::fc5f:ce01:e8c8:db89%12]) with mapi id 15.20.2157.015; Thu, 8 Aug 2019
+ 16:28:47 +0000
+From: "Koenig, Christian" <Christian.Koenig@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zeng, Oak"
+ <Oak.Zeng@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 1/5] drm/amdgpu: Extends amdgpu vm definitions
 Thread-Topic: [PATCH 1/5] drm/amdgpu: Extends amdgpu vm definitions
-Thread-Index: AQHVTMgrPTJV6Fs0ek65dn0x+UgRKabvXkUAgAIJ+RCAAATcmYAAA//A
-Date: Thu, 8 Aug 2019 16:23:58 +0000
-Message-ID: <BL0PR12MB2580C9220232DA47486E5E0080D70@BL0PR12MB2580.namprd12.prod.outlook.com>
+Thread-Index: AQHVTMgrPTJV6Fs0ek65dn0x+UgRKabvXkUAgAIJ+RCAAATcmYAABgQA
+Date: Thu, 8 Aug 2019 16:28:47 +0000
+Message-ID: <7525d869-18ef-ee5a-b80f-cb986a1e5aa2@amd.com>
 References: <1565145062-16674-1-git-send-email-Oak.Zeng@amd.com>
- <3e4f2f68-8840-d85c-052e-fc54dbf45fd4@gmail.com>,
+ <3e4f2f68-8840-d85c-052e-fc54dbf45fd4@gmail.com>
  <BL0PR12MB2580601F44DB50051768070080D70@BL0PR12MB2580.namprd12.prod.outlook.com>
  <BN6PR12MB1809D2F0A97155733CA3FC6EF7D70@BN6PR12MB1809.namprd12.prod.outlook.com>
 In-Reply-To: <BN6PR12MB1809D2F0A97155733CA3FC6EF7D70@BN6PR12MB1809.namprd12.prod.outlook.com>
-Accept-Language: en-US
+Accept-Language: de-DE, en-US
 Content-Language: en-US
-X-Mentions: Jimshed.Mirza@amd.com
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [99.228.209.96]
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+x-originating-ip: [2a02:908:1252:fb60:5835:dd9d:cf16:f23f]
+x-clientproxiedby: PR2P264CA0025.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:101:1::13) To DM5PR12MB1546.namprd12.prod.outlook.com
+ (2603:10b6:4:8::23)
+x-ms-exchange-messagesentrepresentingtype: 1
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 086d93c3-6e4a-4641-a25f-08d71c1cd0d9
+x-ms-office365-filtering-correlation-id: 0c7b94da-7ecc-44af-384c-08d71c1d7ce1
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BL0PR12MB2500; 
-x-ms-traffictypediagnostic: BL0PR12MB2500:
-x-ms-exchange-purlcount: 3
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BL0PR12MB2500068E16DD5E69E083C96880D70@BL0PR12MB2500.namprd12.prod.outlook.com>
+ RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
+ SRVR:DM5PR12MB1836; 
+x-ms-traffictypediagnostic: DM5PR12MB1836:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <DM5PR12MB1836E7DC86628A3FFF7819DF83D70@DM5PR12MB1836.namprd12.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:7219;
 x-forefront-prvs: 012349AD1C
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(376002)(346002)(396003)(39860400002)(366004)(13464003)(199004)(189003)(110136005)(446003)(478600001)(53936002)(54896002)(6306002)(86362001)(9686003)(55016002)(71200400001)(4326008)(64756008)(71190400001)(66446008)(8936002)(256004)(81156014)(66556008)(33656002)(81166006)(74316002)(14444005)(6246003)(53546011)(6506007)(790700001)(236005)(66476007)(76176011)(52536014)(66066001)(5660300002)(7696005)(229853002)(6436002)(14454004)(102836004)(606006)(26005)(2906002)(11346002)(476003)(6636002)(66946007)(966005)(486006)(7736002)(186003)(76116006)(66574012)(316002)(3846002)(6116002)(54906003)(8676002)(2501003)(25786009)(99286004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BL0PR12MB2500;
- H:BL0PR12MB2580.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
+ SFS:(10009020)(4636009)(366004)(189003)(199004)(13464003)(71190400001)(236005)(110136005)(71200400001)(58126008)(7736002)(2501003)(66946007)(76176011)(53936002)(256004)(86362001)(14454004)(36756003)(52116002)(386003)(53546011)(31696002)(6506007)(102836004)(105004)(46003)(966005)(486006)(2616005)(476003)(446003)(11346002)(65826007)(186003)(19627405001)(6246003)(2906002)(25786009)(229853002)(8676002)(54906003)(64126003)(65806001)(81156014)(5660300002)(81166006)(65956001)(6116002)(66574012)(6486002)(66446008)(64756008)(606006)(6306002)(66476007)(6512007)(14444005)(99286004)(66556008)(54896002)(6436002)(31686004)(4326008)(498600001)(8936002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1836;
+ H:DM5PR12MB1546.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: rkWzY16a73WBuD/BMVr34kX2WxvhyygDzkznrTdjMx7IyjbIBGIuO11GSKEWDqtu7EsG2Ocq+EtKiddkv6zbkKklAtErdD2Pdyj96yqNoHANGGpfMDzdMIQ0nN4OVuzlUt1Qim/vBE5wE/xZyaKM1JNlibshxBGP0F8+/LL7QaQJaCz+oJaJVNBs8v6xnH1deilQOhK8wLJAsBFxGpJBCYCxw1ygKvbTBdCgzBSPdX0EosajqEfPAACi1tXhwLumZa5kSpUbNTORc6Pq0kNvzuO8tQrwT2hYuUWQEmgzmgGbeNPpKSzxrWQ7IuxORUGX9Bbi6VHUMiPBRjnl7yexG3WwI7vP2Cr5YvchCYUUpV0F44bgSNEmVaLktV2ASWh1SZX3h+jWwd2LJKpropmGTEcTF8MgjpaROSASdCXkFOo=
+x-microsoft-antispam-message-info: DUnNTHVWQsOoYhSmB4eVZIjI1noSahuF4YVnNFpFgwsNnFgKuEh7h4Nr7jA6RrnlY1qW+2mlD2NQVeBg+VDNYdaMFUpmsEsjXhpjJYD9vmUDAyhMIWFo7edrmG0NI/8Kjds0PJ+YwqvSifbYs6E1cQ4kuG7wbZ0FH6tp3OFuzzO0lXIibEt5utE+F+b8eqkmqi1NaN22hZm9RHt9+caMPWSk8hWRR0arwyhM9UBHYHi/OF2mjSBL/XSSqFxmcieNfzBmeOJM+xgc6V2TYwRmQix5GWEP5wIlcM90/YE2wg/bqC94WKOk5e90kMBRCf0oljKM/484O/g28BdLRuwe5x83w4xDTkepvSpByCrN8pEEQOcdrOSfhAxw3uXYfMvM4QgMXGzeC3r+8gP/LgRBNtx9X7Pi9swg6d1Xw8aOcUE=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 086d93c3-6e4a-4641-a25f-08d71c1cd0d9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Aug 2019 16:23:58.1302 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c7b94da-7ecc-44af-384c-08d71c1d7ce1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Aug 2019 16:28:47.3217 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VA+IxEd20bQ2nhROa659N2W5GSMi3v73MuRtJZxkEZ3O/+cQPyHUPZhnaT8IdMnl
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2500
+X-MS-Exchange-CrossTenant-userprincipalname: Lv+c0App5OuvdbeXd1hvQNkTtFIXaTkoDBppl2jds+zuVj0/m0UXWoS+ppy9dGje
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1836
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zsA8MkME+nLEsajA4kbzwy3GwkWEieE6tD65+IRA+Yk=;
- b=YoMxhVq9ORZ1GsqEY7wYW/wsuvUsQYwOFYsCRv/BEFk1pne1nbVCg40FkGLDaofe3qran5QUc7fTe/a/SdR5a8dVHsp+n0CazOmNHobYfna92vydsIdHhpl0noNXM/6n4CmlYYd6M5ISNSgjyDanEKB4C6FOLU0HSUD2p13aq7M=
+ bh=89zJcTzEbL6I6hhEo/11DIzXQVmb4X4MAvVvza46Kgg=;
+ b=ZXuvQwToksHGuQK+wsvMU41/ukv76vgZfg52YrOwI55gMimDDVjRlA8X3nHq1IgJPYqhw17J+eUTr8A5/jBKV1EUotQYYtgWvjuqGpKEy2DGdZvcIL1oPDSK83nMHQjyVcqBCHtWn+dIK/FG8YgvCvGheNVm+Q+e2bIZOWfoXWk=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Oak.Zeng@amd.com; 
+ smtp.mailfrom=Christian.Koenig@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -102,397 +105,254 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: "Kuehling, Felix" <Felix.Kuehling@amd.com>, "Keely,
  Sean" <Sean.Keely@amd.com>
-Content-Type: multipart/mixed; boundary="===============1317560450=="
+Content-Type: multipart/mixed; boundary="===============2057379550=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1317560450==
+--===============2057379550==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BL0PR12MB2580C9220232DA47486E5E0080D70BL0PR12MB2580namp_"
+	boundary="_000_7525d86918efee5ab80fcb986a1e5aa2amdcom_"
 
---_000_BL0PR12MB2580C9220232DA47486E5E0080D70BL0PR12MB2580namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--_000_7525d86918efee5ab80fcb986a1e5aa2amdcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-+@Mirza, Jimshed<mailto:Jimshed.Mirza@amd.com>: do we have the ability to s=
-noop another GPU's cache, in a multiple GPU system?
+WWVhaCwgZXhhY3RseS4gVGhpcyBpcyBjb250cm9sbGluZyBQQ0llIGJ1cyByZXF1ZXN0IGJlaGF2
+aW9yIGFuZCByb3V0aW5nLg0KDQpUaGF0IGlzIHNvbWV0aGluZyB3ZSBuZXZlciBldmVyIHdhbnQg
+dG8gZXhwb3NlIHRvIHVzZXJzcGFjZS4NCg0KQ2hyaXN0aWFuLg0KDQpBbSAwOC4wOC4xOSB1bSAx
+ODowOSBzY2hyaWViIERldWNoZXIsIEFsZXhhbmRlcjoNClRoZSBzbm9vcCBiaXQgaXMgZm9yIHNu
+b29waW5nIHRoZSBDUFUgY2FjaGUgYnkgdGhlIEdQVSB3aGVuIGRvaW5nIHN5c3RlbSBtZW1vcnkg
+bWFwcGluZ3MuDQoNCkFsZXgNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9t
+OiBhbWQtZ2Z4IDxhbWQtZ2Z4LWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPjxtYWlsdG86
+YW1kLWdmeC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gb24gYmVoYWxmIG9mIFplbmcs
+IE9hayA8T2FrLlplbmdAYW1kLmNvbT48bWFpbHRvOk9hay5aZW5nQGFtZC5jb20+DQpTZW50OiBU
+aHVyc2RheSwgQXVndXN0IDgsIDIwMTkgMTI6MDIgUE0NClRvOiBLb2VuaWcsIENocmlzdGlhbiA8
+Q2hyaXN0aWFuLktvZW5pZ0BhbWQuY29tPjxtYWlsdG86Q2hyaXN0aWFuLktvZW5pZ0BhbWQuY29t
+PjsgYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc8bWFpbHRvOmFtZC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnPiA8YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+PG1haWx0bzphbWQt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4NCkNjOiBLdWVobGluZywgRmVsaXggPEZlbGl4Lkt1
+ZWhsaW5nQGFtZC5jb20+PG1haWx0bzpGZWxpeC5LdWVobGluZ0BhbWQuY29tPjsgS2VlbHksIFNl
+YW4gPFNlYW4uS2VlbHlAYW1kLmNvbT48bWFpbHRvOlNlYW4uS2VlbHlAYW1kLmNvbT4NClN1Ympl
+Y3Q6IFJFOiBbUEFUQ0ggMS81XSBkcm0vYW1kZ3B1OiBFeHRlbmRzIGFtZGdwdSB2bSBkZWZpbml0
+aW9ucw0KDQpIaSBDaHJpc3RpYW4sDQoNCk15IHVuZGVyc3RhbmRpbmcgb2YgdGhlIHNub29wIGJp
+dCAoQyBiaXQgaW4gdGhlIFBURSBkZWZpbml0aW9uKSBpcyB0byBwcm9iZSByZW1vdGUgZ3B1J3Mg
+TDIgY2FjaGUgYWZ0ZXIgdGhpcyBncHUgd3JpdGUgcmVtb3RlIGdwdSdzIHZyYW0uIElzIHRoaXMg
+Y29ycmVjdD8gSSBhbSBzdGlsbCBjaGVja2luZyB0aGlzIHBvaW50IHdpdGggSFcgZW5naW5lZXIu
+DQoNCklmIHRoaXMgaXMgY29ycmVjdCwgdGhlbiB0aGUgc25vb3BpbmcgKG9yIHByb2JpbmcpIGlz
+IGEgd2F5IHRvIG1haW50YWluIGNlcnRhaW4gY2FjaGUgY29oZXJlbmN5IHdoZW4gb25lIG1lbW9y
+eSBpcyBhY2Nlc3MgYnkgdHdvIG1hc3RlcnMgKGZvciBleGFtcGxlIHR3byBncHUpLiBXaXRoIGV4
+aXN0aW5nIEFNREdQVV9WTV8gZGVmaW5pdGlvbnMgaW4gYW1kZ3B1X2RybS5oLCBob3cgZG9lcyBh
+IHVzZXIgaW1wbGVtZW50IHRoZSByZXF1ZXN0IGxpa2U6IEkgd2FudCBhIHRydW5rIG9mIHZyYW0g
+cGh5c2ljYWxseSBpbiBhIHJlbW90ZSBncHUsIEkgd2FudCB0byBhY2Nlc3MgaXQgaW4gYSB1bmNh
+Y2hlZCB3YXkgKEFNREdQVV9WTV9NVFlQRV9VQykgYnV0IEkgd2FudCB0byBwcm9iZSByZW1vdGUg
+Z3B1J3MgY2FjaGUgd2hlbiBJIG1vZGlmeSB0aGlzIHZyYW0uDQoNCkZyb20gUFRFJ3MgZGVmaW5p
+dGlvbiwgYm90aCBDIGJpdCBhbmQgbXR5cGUgYW5kIFIvVy9YIGJpdHMgYXJlIGp1c3QgZmxhZ3Mg
+dG8gZW5hYmxlIHVzZXIgdG8gcHJvZ3JhbSBwYWdlIGFjY2VzcyBiZWhhdmlvci4gQW55IGRldGFp
+bCByZWFzb24gd2h5IHdlIHNob3VsZG4ndCBleHBvc2UgdGhlIHNub29wIGJpdD8NCg0KUmVnYXJk
+cywNCk9haw0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogQ2hyaXN0aWFuIEvD
+tm5pZyA8Y2tvZW5pZy5sZWljaHR6dW1lcmtlbkBnbWFpbC5jb20+PG1haWx0bzpja29lbmlnLmxl
+aWNodHp1bWVya2VuQGdtYWlsLmNvbT4NClNlbnQ6IFdlZG5lc2RheSwgQXVndXN0IDcsIDIwMTkg
+NDo0MiBBTQ0KVG86IFplbmcsIE9hayA8T2FrLlplbmdAYW1kLmNvbT48bWFpbHRvOk9hay5aZW5n
+QGFtZC5jb20+OyBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzxtYWlsdG86YW1kLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmc+DQpDYzogS3VlaGxpbmcsIEZlbGl4IDxGZWxpeC5LdWVobGlu
+Z0BhbWQuY29tPjxtYWlsdG86RmVsaXguS3VlaGxpbmdAYW1kLmNvbT47IEtvZW5pZywgQ2hyaXN0
+aWFuIDxDaHJpc3RpYW4uS29lbmlnQGFtZC5jb20+PG1haWx0bzpDaHJpc3RpYW4uS29lbmlnQGFt
+ZC5jb20+OyBLZWVseSwgU2VhbiA8U2Vhbi5LZWVseUBhbWQuY29tPjxtYWlsdG86U2Vhbi5LZWVs
+eUBhbWQuY29tPg0KU3ViamVjdDogUmU6IFtQQVRDSCAxLzVdIGRybS9hbWRncHU6IEV4dGVuZHMg
+YW1kZ3B1IHZtIGRlZmluaXRpb25zDQoNCkFtIDA3LjA4LjE5IHVtIDA0OjMxIHNjaHJpZWIgWmVu
+ZywgT2FrOg0KPiBBZGQgZGVmaW5pdGlvbiBvZiBhbGwgc3VwcG9ydGVkIG10eXBlcy4gVGhlIFJX
+IG10eXBlIGlzIHJlY2VudGx5DQo+IGludHJvZHVjZWQgZm9yIGFyY3R1cnVzLiBBbHNvIGFkZCBk
+ZWZpbml0aW9uIGZvciB0aGUNCj4gY2FjaGFibGUvc25vb3BhYmxlIGJpdCwgd2hpY2ggd2lsbCBi
+ZSB1c2VkIGxhdGVyIGluIHRoaXMgc2VyaWVzLg0KPg0KPiBDaGFuZ2UtSWQ6IEk5NmZjOWJiNGI2
+YjFlNjJiZGMxMGI2MDBkOGFhYTZhODAyMTI4ZDZkDQo+IFNpZ25lZC1vZmYtYnk6IE9hayBaZW5n
+IDxPYWsuWmVuZ0BhbWQuY29tPjxtYWlsdG86T2FrLlplbmdAYW1kLmNvbT4NCj4gLS0tDQo+ICAg
+ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmggfCA5ICsrKysrKystLQ0KPiAg
+IGluY2x1ZGUvdWFwaS9kcm0vYW1kZ3B1X2RybS5oICAgICAgICAgIHwgNCArKysrDQo+ICAgMiBm
+aWxlcyBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPg0KPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmgNCj4gYi9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uaA0KPiBpbmRleCAyZWRhM2E4Li43YTc3
+NDc3IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0u
+aA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uaA0KPiBAQCAt
+ODAsOCArODAsMTMgQEAgc3RydWN0IGFtZGdwdV9ib19saXN0X2VudHJ5Ow0KPiAgICNkZWZpbmUg
+QU1ER1BVX1BURV9NVFlQRV9WRzEwKGEpICAgICgodWludDY0X3QpKGEpIDw8IDU3KQ0KPiAgICNk
+ZWZpbmUgQU1ER1BVX1BURV9NVFlQRV9WRzEwX01BU0sgIEFNREdQVV9QVEVfTVRZUEVfVkcxMCgz
+VUxMKQ0KPg0KPiAtI2RlZmluZSBBTURHUFVfTVRZUEVfTkMgMA0KPiAtI2RlZmluZSBBTURHUFVf
+TVRZUEVfQ0MgMg0KPiArZW51bSBhbWRncHVfbXR5cGUgew0KPiArICAgICBBTURHUFVfTVRZUEVf
+TkMgPSAwLA0KPiArICAgICBBTURHUFVfTVRZUEVfV0MgPSAxLA0KPiArICAgICBBTURHUFVfTVRZ
+UEVfQ0MgPSAyLA0KPiArICAgICBBTURHUFVfTVRZUEVfVUMgPSAzLA0KPiArICAgICBBTURHUFVf
+TVRZUEVfUlcgPSA0LA0KPiArfTsNCj4NCj4gICAjZGVmaW5lIEFNREdQVV9QVEVfREVGQVVMVF9B
+VEMgIChBTURHUFVfUFRFX1NZU1RFTSAgICAgIFwNCj4gICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIHwgQU1ER1BVX1BURV9TTk9PUEVEICAgIFwNCj4gZGlmZiAtLWdpdCBhL2luY2x1
+ZGUvdWFwaS9kcm0vYW1kZ3B1X2RybS5oDQo+IGIvaW5jbHVkZS91YXBpL2RybS9hbWRncHVfZHJt
+LmggaW5kZXggY2E5N2I2OC4uMjg4OTY2MyAxMDA2NDQNCj4gLS0tIGEvaW5jbHVkZS91YXBpL2Ry
+bS9hbWRncHVfZHJtLmgNCj4gKysrIGIvaW5jbHVkZS91YXBpL2RybS9hbWRncHVfZHJtLmgNCj4g
+QEAgLTUwMyw2ICs1MDMsMTAgQEAgc3RydWN0IGRybV9hbWRncHVfZ2VtX29wIHsNCj4gICAjZGVm
+aW5lIEFNREdQVV9WTV9NVFlQRV9DQyAgICAgICAgICAoMyA8PCA1KQ0KPiAgIC8qIFVzZSBVQyBN
+VFlQRSBpbnN0ZWFkIG9mIGRlZmF1bHQgTVRZUEUgKi8NCj4gICAjZGVmaW5lIEFNREdQVV9WTV9N
+VFlQRV9VQyAgICAgICAgICAoNCA8PCA1KQ0KPiArLyogVXNlIFJXIE1UWVBFIGluc3RlYWQgb2Yg
+ZGVmYXVsdCBNVFlQRSAqLw0KPiArI2RlZmluZSBBTURHUFVfVk1fTVRZUEVfUlcgICAgICAgICAg
+ICg1IDw8IDUpDQoNCj4gKy8qIENhY2hlYWJsZS9zbm9vcGFibGUgKi8NCj4gKyNkZWZpbmUgQU1E
+R1BVX1ZNX1BBR0VfU05PT1BFRCAgICAgICAgICAgICAgICgxIDw8IDkpDQoNClRoYXQncyBhIHJh
+dGhlciBiaWcgTkFLLiBDYWNoZSBzbm9vcGluZyBpcyBub3Qgc29tZXRoaW5nIHVzZXJzcGFjZSBp
+cyBhbGxvd2VkIHRvIGJlIGF3YXJlIG9mLg0KDQpDaHJpc3RpYW4uDQoNCj4NCj4gICBzdHJ1Y3Qg
+ZHJtX2FtZGdwdV9nZW1fdmEgew0KPiAgICAgICAgLyoqIEdFTSBvYmplY3QgaGFuZGxlICovDQoN
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQphbWQtZ2Z4
+IG1haWxpbmcgbGlzdA0KYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc8bWFpbHRvOmFtZC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPg0KaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4DQoNCg==
 
-Regards,
-Oak
+--_000_7525d86918efee5ab80fcb986a1e5aa2amdcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <F8C9CF6A2B159F40AE6D81A5B5D5E2A0@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-From: Deucher, Alexander <Alexander.Deucher@amd.com>
-Sent: Thursday, August 8, 2019 12:10 PM
-To: Zeng, Oak <Oak.Zeng@amd.com>; Koenig, Christian <Christian.Koenig@amd.c=
-om>; amd-gfx@lists.freedesktop.org
-Cc: Kuehling, Felix <Felix.Kuehling@amd.com>; Keely, Sean <Sean.Keely@amd.c=
-om>
-Subject: Re: [PATCH 1/5] drm/amdgpu: Extends amdgpu vm definitions
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHRleHQ9IiMwMDAwMDAi
+IGJnY29sb3I9IiNGRkZGRkYiPg0KPGRpdiBjbGFzcz0ibW96LWNpdGUtcHJlZml4Ij5ZZWFoLCBl
+eGFjdGx5LiBUaGlzIGlzIGNvbnRyb2xsaW5nIFBDSWUgYnVzIHJlcXVlc3QgYmVoYXZpb3IgYW5k
+IHJvdXRpbmcuPGJyPg0KPGJyPg0KVGhhdCBpcyBzb21ldGhpbmcgd2UgbmV2ZXIgZXZlciB3YW50
+IHRvIGV4cG9zZSB0byB1c2Vyc3BhY2UuPGJyPg0KPGJyPg0KQ2hyaXN0aWFuLjxicj4NCjxicj4N
+CkFtIDA4LjA4LjE5IHVtIDE4OjA5IHNjaHJpZWIgRGV1Y2hlciwgQWxleGFuZGVyOjxicj4NCjwv
+ZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSIgY2l0ZT0ibWlkOkJONlBSMTJNQjE4MDlEMkYw
+QTk3MTU1NzMzQ0EzRkM2RUY3RDcwQEJONlBSMTJNQjE4MDkubmFtcHJkMTIucHJvZC5vdXRsb29r
+LmNvbSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiIHN0eWxlPSJkaXNwbGF5Om5vbmU7Ij4gUCB7
+bWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDt9IDwvc3R5bGU+DQo8ZGl2IHN0eWxlPSJmb250
+LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsNCiAgICAgICAg
+Zm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpUaGUgc25vb3AgYml0IGlz
+IGZvciBzbm9vcGluZyB0aGUgQ1BVIGNhY2hlIGJ5IHRoZSBHUFUgd2hlbiBkb2luZyBzeXN0ZW0g
+bWVtb3J5IG1hcHBpbmdzLjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENh
+bGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7DQogICAgICAgIGZvbnQtc2l6ZTog
+MTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJm
+b250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsNCiAgICAg
+ICAgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpBbGV4PGJyPg0KPC9k
+aXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOjk4JSIgdGFiaW5kZXg9
+Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBzdHlsZT0iZm9u
+dC1zaXplOjExcHQiIGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIGNvbG9yPSIjMDAwMDAwIj48
+Yj5Gcm9tOjwvYj4gYW1kLWdmeA0KPGEgY2xhc3M9Im1vei10eHQtbGluay1yZmMyMzk2RSIgaHJl
+Zj0ibWFpbHRvOmFtZC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmciPg0KJmx0O2Ft
+ZC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmcmZ3Q7PC9hPiBvbiBiZWhhbGYgb2Yg
+WmVuZywgT2FrIDxhIGNsYXNzPSJtb3otdHh0LWxpbmstcmZjMjM5NkUiIGhyZWY9Im1haWx0bzpP
+YWsuWmVuZ0BhbWQuY29tIj4NCiZsdDtPYWsuWmVuZ0BhbWQuY29tJmd0OzwvYT48YnI+DQo8Yj5T
+ZW50OjwvYj4gVGh1cnNkYXksIEF1Z3VzdCA4LCAyMDE5IDEyOjAyIFBNPGJyPg0KPGI+VG86PC9i
+PiBLb2VuaWcsIENocmlzdGlhbiA8YSBjbGFzcz0ibW96LXR4dC1saW5rLXJmYzIzOTZFIiBocmVm
+PSJtYWlsdG86Q2hyaXN0aWFuLktvZW5pZ0BhbWQuY29tIj4NCiZsdDtDaHJpc3RpYW4uS29lbmln
+QGFtZC5jb20mZ3Q7PC9hPjsgPGEgY2xhc3M9Im1vei10eHQtbGluay1hYmJyZXZpYXRlZCIgaHJl
+Zj0ibWFpbHRvOmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIj4NCmFtZC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnPC9hPiA8YSBjbGFzcz0ibW96LXR4dC1saW5rLXJmYzIzOTZFIiBocmVm
+PSJtYWlsdG86YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmciPg0KJmx0O2FtZC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnJmd0OzwvYT48YnI+DQo8Yj5DYzo8L2I+IEt1ZWhsaW5nLCBGZWxp
+eCA8YSBjbGFzcz0ibW96LXR4dC1saW5rLXJmYzIzOTZFIiBocmVmPSJtYWlsdG86RmVsaXguS3Vl
+aGxpbmdAYW1kLmNvbSI+DQombHQ7RmVsaXguS3VlaGxpbmdAYW1kLmNvbSZndDs8L2E+OyBLZWVs
+eSwgU2VhbiA8YSBjbGFzcz0ibW96LXR4dC1saW5rLXJmYzIzOTZFIiBocmVmPSJtYWlsdG86U2Vh
+bi5LZWVseUBhbWQuY29tIj4NCiZsdDtTZWFuLktlZWx5QGFtZC5jb20mZ3Q7PC9hPjxicj4NCjxi
+PlN1YmplY3Q6PC9iPiBSRTogW1BBVENIIDEvNV0gZHJtL2FtZGdwdTogRXh0ZW5kcyBhbWRncHUg
+dm0gZGVmaW5pdGlvbnM8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGNs
+YXNzPSJCb2R5RnJhZ21lbnQiPjxmb250IHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTFwdDsiPg0KPGRpdiBjbGFzcz0iUGxhaW5UZXh0Ij5IaSBDaHJpc3RpYW4sPGJyPg0KPGJyPg0K
+TXkgdW5kZXJzdGFuZGluZyBvZiB0aGUgc25vb3AgYml0IChDIGJpdCBpbiB0aGUgUFRFIGRlZmlu
+aXRpb24pIGlzIHRvIHByb2JlIHJlbW90ZSBncHUncyBMMiBjYWNoZSBhZnRlciB0aGlzIGdwdSB3
+cml0ZSByZW1vdGUgZ3B1J3MgdnJhbS4gSXMgdGhpcyBjb3JyZWN0PyBJIGFtIHN0aWxsIGNoZWNr
+aW5nIHRoaXMgcG9pbnQgd2l0aCBIVyBlbmdpbmVlci48YnI+DQo8YnI+DQpJZiB0aGlzIGlzIGNv
+cnJlY3QsIHRoZW4gdGhlIHNub29waW5nIChvciBwcm9iaW5nKSBpcyBhIHdheSB0byBtYWludGFp
+biBjZXJ0YWluIGNhY2hlIGNvaGVyZW5jeSB3aGVuIG9uZSBtZW1vcnkgaXMgYWNjZXNzIGJ5IHR3
+byBtYXN0ZXJzIChmb3IgZXhhbXBsZSB0d28gZ3B1KS4gV2l0aCBleGlzdGluZyBBTURHUFVfVk1f
+IGRlZmluaXRpb25zIGluIGFtZGdwdV9kcm0uaCwgaG93IGRvZXMgYSB1c2VyIGltcGxlbWVudCB0
+aGUgcmVxdWVzdCBsaWtlOg0KIEkgd2FudCBhIHRydW5rIG9mIHZyYW0gcGh5c2ljYWxseSBpbiBh
+IHJlbW90ZSBncHUsIEkgd2FudCB0byBhY2Nlc3MgaXQgaW4gYSB1bmNhY2hlZCB3YXkgKEFNREdQ
+VV9WTV9NVFlQRV9VQykgYnV0IEkgd2FudCB0byBwcm9iZSByZW1vdGUgZ3B1J3MgY2FjaGUgd2hl
+biBJIG1vZGlmeSB0aGlzIHZyYW0uPGJyPg0KPGJyPg0KRnJvbSBQVEUncyBkZWZpbml0aW9uLCBi
+b3RoIEMgYml0IGFuZCBtdHlwZSBhbmQgUi9XL1ggYml0cyBhcmUganVzdCBmbGFncyB0byBlbmFi
+bGUgdXNlciB0byBwcm9ncmFtIHBhZ2UgYWNjZXNzIGJlaGF2aW9yLiBBbnkgZGV0YWlsIHJlYXNv
+biB3aHkgd2Ugc2hvdWxkbid0IGV4cG9zZSB0aGUgc25vb3AgYml0Pzxicj4NCjxicj4NClJlZ2Fy
+ZHMsPGJyPg0KT2FrPGJyPg0KPGJyPg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS08YnI+DQpG
+cm9tOiBDaHJpc3RpYW4gS8O2bmlnIDxhIGNsYXNzPSJtb3otdHh0LWxpbmstcmZjMjM5NkUiIGhy
+ZWY9Im1haWx0bzpja29lbmlnLmxlaWNodHp1bWVya2VuQGdtYWlsLmNvbSI+DQombHQ7Y2tvZW5p
+Zy5sZWljaHR6dW1lcmtlbkBnbWFpbC5jb20mZ3Q7PC9hPiA8YnI+DQpTZW50OiBXZWRuZXNkYXks
+IEF1Z3VzdCA3LCAyMDE5IDQ6NDIgQU08YnI+DQpUbzogWmVuZywgT2FrIDxhIGNsYXNzPSJtb3ot
+dHh0LWxpbmstcmZjMjM5NkUiIGhyZWY9Im1haWx0bzpPYWsuWmVuZ0BhbWQuY29tIj4mbHQ7T2Fr
+LlplbmdAYW1kLmNvbSZndDs8L2E+Ow0KPGEgY2xhc3M9Im1vei10eHQtbGluay1hYmJyZXZpYXRl
+ZCIgaHJlZj0ibWFpbHRvOmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIj5hbWQtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZzwvYT48YnI+DQpDYzogS3VlaGxpbmcsIEZlbGl4IDxhIGNsYXNz
+PSJtb3otdHh0LWxpbmstcmZjMjM5NkUiIGhyZWY9Im1haWx0bzpGZWxpeC5LdWVobGluZ0BhbWQu
+Y29tIj4NCiZsdDtGZWxpeC5LdWVobGluZ0BhbWQuY29tJmd0OzwvYT47IEtvZW5pZywgQ2hyaXN0
+aWFuIDxhIGNsYXNzPSJtb3otdHh0LWxpbmstcmZjMjM5NkUiIGhyZWY9Im1haWx0bzpDaHJpc3Rp
+YW4uS29lbmlnQGFtZC5jb20iPg0KJmx0O0NocmlzdGlhbi5Lb2VuaWdAYW1kLmNvbSZndDs8L2E+
+OyBLZWVseSwgU2VhbiA8YSBjbGFzcz0ibW96LXR4dC1saW5rLXJmYzIzOTZFIiBocmVmPSJtYWls
+dG86U2Vhbi5LZWVseUBhbWQuY29tIj4NCiZsdDtTZWFuLktlZWx5QGFtZC5jb20mZ3Q7PC9hPjxi
+cj4NClN1YmplY3Q6IFJlOiBbUEFUQ0ggMS81XSBkcm0vYW1kZ3B1OiBFeHRlbmRzIGFtZGdwdSB2
+bSBkZWZpbml0aW9uczxicj4NCjxicj4NCkFtIDA3LjA4LjE5IHVtIDA0OjMxIHNjaHJpZWIgWmVu
+ZywgT2FrOjxicj4NCiZndDsgQWRkIGRlZmluaXRpb24gb2YgYWxsIHN1cHBvcnRlZCBtdHlwZXMu
+IFRoZSBSVyBtdHlwZSBpcyByZWNlbnRseSA8YnI+DQomZ3Q7IGludHJvZHVjZWQgZm9yIGFyY3R1
+cnVzLiBBbHNvIGFkZCBkZWZpbml0aW9uIGZvciB0aGUgPGJyPg0KJmd0OyBjYWNoYWJsZS9zbm9v
+cGFibGUgYml0LCB3aGljaCB3aWxsIGJlIHVzZWQgbGF0ZXIgaW4gdGhpcyBzZXJpZXMuPGJyPg0K
+Jmd0Ozxicj4NCiZndDsgQ2hhbmdlLUlkOiBJOTZmYzliYjRiNmIxZTYyYmRjMTBiNjAwZDhhYWE2
+YTgwMjEyOGQ2ZDxicj4NCiZndDsgU2lnbmVkLW9mZi1ieTogT2FrIFplbmcgPGEgY2xhc3M9Im1v
+ei10eHQtbGluay1yZmMyMzk2RSIgaHJlZj0ibWFpbHRvOk9hay5aZW5nQGFtZC5jb20iPg0KJmx0
+O09hay5aZW5nQGFtZC5jb20mZ3Q7PC9hPjxicj4NCiZndDsgLS0tPGJyPg0KJmd0OyZuYnNwOyZu
+YnNwOyBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uaCB8IDkgJiM0MzsmIzQz
+OyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzstLTxicj4NCiZndDsmbmJzcDsmbmJzcDsgaW5jbHVk
+ZS91YXBpL2RybS9hbWRncHVfZHJtLmgmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsgfCA0ICYjNDM7JiM0MzsmIzQzOyYjNDM7PGJyPg0KJmd0OyZu
+YnNwOyZuYnNwOyAyIGZpbGVzIGNoYW5nZWQsIDExIGluc2VydGlvbnMoJiM0MzspLCAyIGRlbGV0
+aW9ucygtKTxicj4NCiZndDs8YnI+DQomZ3Q7IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfdm0uaCA8YnI+DQomZ3Q7IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X3ZtLmg8YnI+DQomZ3Q7IGluZGV4IDJlZGEzYTguLjdhNzc0NzcgMTAwNjQ0
+PGJyPg0KJmd0OyAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uaDxi
+cj4NCiZndDsgJiM0MzsmIzQzOyYjNDM7IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X3ZtLmg8YnI+DQomZ3Q7IEBAIC04MCw4ICYjNDM7ODAsMTMgQEAgc3RydWN0IGFtZGdwdV9i
+b19saXN0X2VudHJ5Ozxicj4NCiZndDsmbmJzcDsmbmJzcDsgI2RlZmluZSBBTURHUFVfUFRFX01U
+WVBFX1ZHMTAoYSkmbmJzcDsmbmJzcDsmbmJzcDsgKCh1aW50NjRfdCkoYSkgJmx0OyZsdDsgNTcp
+PGJyPg0KJmd0OyZuYnNwOyZuYnNwOyAjZGVmaW5lIEFNREdQVV9QVEVfTVRZUEVfVkcxMF9NQVNL
+Jm5ic3A7IEFNREdQVV9QVEVfTVRZUEVfVkcxMCgzVUxMKTxicj4NCiZndDsmbmJzcDsmbmJzcDsg
+PGJyPg0KJmd0OyAtI2RlZmluZSBBTURHUFVfTVRZUEVfTkMgMDxicj4NCiZndDsgLSNkZWZpbmUg
+QU1ER1BVX01UWVBFX0NDIDI8YnI+DQomZ3Q7ICYjNDM7ZW51bSBhbWRncHVfbXR5cGUgezxicj4N
+CiZndDsgJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgQU1ER1BVX01UWVBFX05DID0gMCw8
+YnI+DQomZ3Q7ICYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IEFNREdQVV9NVFlQRV9XQyA9
+IDEsPGJyPg0KJmd0OyAmIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBBTURHUFVfTVRZUEVf
+Q0MgPSAyLDxicj4NCiZndDsgJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgQU1ER1BVX01U
+WVBFX1VDID0gMyw8YnI+DQomZ3Q7ICYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IEFNREdQ
+VV9NVFlQRV9SVyA9IDQsPGJyPg0KJmd0OyAmIzQzO307PGJyPg0KJmd0OyZuYnNwOyZuYnNwOyA8
+YnI+DQomZ3Q7Jm5ic3A7Jm5ic3A7ICNkZWZpbmUgQU1ER1BVX1BURV9ERUZBVUxUX0FUQyZuYnNw
+OyAoQU1ER1BVX1BURV9TWVNURU0mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgXDxicj4N
+CiZndDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgfCBBTURHUFVfUFRFX1NOT09Q
+RUQmbmJzcDsmbmJzcDsmbmJzcDsgXDxicj4NCiZndDsgZGlmZiAtLWdpdCBhL2luY2x1ZGUvdWFw
+aS9kcm0vYW1kZ3B1X2RybS5oIDxicj4NCiZndDsgYi9pbmNsdWRlL3VhcGkvZHJtL2FtZGdwdV9k
+cm0uaCBpbmRleCBjYTk3YjY4Li4yODg5NjYzIDEwMDY0NDxicj4NCiZndDsgLS0tIGEvaW5jbHVk
+ZS91YXBpL2RybS9hbWRncHVfZHJtLmg8YnI+DQomZ3Q7ICYjNDM7JiM0MzsmIzQzOyBiL2luY2x1
+ZGUvdWFwaS9kcm0vYW1kZ3B1X2RybS5oPGJyPg0KJmd0OyBAQCAtNTAzLDYgJiM0Mzs1MDMsMTAg
+QEAgc3RydWN0IGRybV9hbWRncHVfZ2VtX29wIHs8YnI+DQomZ3Q7Jm5ic3A7Jm5ic3A7ICNkZWZp
+bmUgQU1ER1BVX1ZNX01UWVBFX0NDJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7ICgzICZsdDsmbHQ7IDUpPGJyPg0KJmd0OyZuYnNwOyZuYnNwOyAv
+KiBVc2UgVUMgTVRZUEUgaW5zdGVhZCBvZiBkZWZhdWx0IE1UWVBFICovPGJyPg0KJmd0OyZuYnNw
+OyZuYnNwOyAjZGVmaW5lIEFNREdQVV9WTV9NVFlQRV9VQyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyAoNCAmbHQ7Jmx0OyA1KTxicj4NCiZndDsg
+JiM0MzsvKiBVc2UgUlcgTVRZUEUgaW5zdGVhZCBvZiBkZWZhdWx0IE1UWVBFICovPGJyPg0KJmd0
+OyAmIzQzOyNkZWZpbmUgQU1ER1BVX1ZNX01UWVBFX1JXJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICg1ICZsdDsmbHQ7IDUpPGJyPg0K
+PGJyPg0KJmd0OyAmIzQzOy8qIENhY2hlYWJsZS9zbm9vcGFibGUgKi88YnI+DQomZ3Q7ICYjNDM7
+I2RlZmluZSBBTURHUFVfVk1fUEFHRV9TTk9PUEVEJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+ICgxICZsdDsmbHQ7IDkpPGJyPg0KPGJyPg0KVGhhdCdzIGEgcmF0aGVyIGJpZyBOQUsuIENhY2hl
+IHNub29waW5nIGlzIG5vdCBzb21ldGhpbmcgdXNlcnNwYWNlIGlzIGFsbG93ZWQgdG8gYmUgYXdh
+cmUgb2YuPGJyPg0KPGJyPg0KQ2hyaXN0aWFuLjxicj4NCjxicj4NCiZndDsmbmJzcDsmbmJzcDsg
+PGJyPg0KJmd0OyZuYnNwOyZuYnNwOyBzdHJ1Y3QgZHJtX2FtZGdwdV9nZW1fdmEgezxicj4NCiZn
+dDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgLyoqIEdFTSBvYmpl
+Y3QgaGFuZGxlICovPGJyPg0KPGJyPg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX188YnI+DQphbWQtZ2Z4IG1haWxpbmcgbGlzdDxicj4NCjxhIGNsYXNzPSJt
+b3otdHh0LWxpbmstYWJicmV2aWF0ZWQiIGhyZWY9Im1haWx0bzphbWQtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZyI+YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc8L2E+PGJyPg0KPGEgaHJl
+Zj0iaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+IiBtb3otZG8tbm90LXNlbmQ9InRydWUiPmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vYW1kLWdmeDwvYT48L2Rpdj4NCjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8
+L2Jsb2NrcXVvdGU+DQo8YnI+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-The snoop bit is for snooping the CPU cache by the GPU when doing system me=
-mory mappings.
+--_000_7525d86918efee5ab80fcb986a1e5aa2amdcom_--
 
-Alex
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
-@lists.freedesktop.org>> on behalf of Zeng, Oak <Oak.Zeng@amd.com<mailto:Oa=
-k.Zeng@amd.com>>
-Sent: Thursday, August 8, 2019 12:02 PM
-To: Koenig, Christian <Christian.Koenig@amd.com<mailto:Christian.Koenig@amd=
-.com>>; amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>=
- <amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>>
-Cc: Kuehling, Felix <Felix.Kuehling@amd.com<mailto:Felix.Kuehling@amd.com>>=
-; Keely, Sean <Sean.Keely@amd.com<mailto:Sean.Keely@amd.com>>
-Subject: RE: [PATCH 1/5] drm/amdgpu: Extends amdgpu vm definitions
-
-Hi Christian,
-
-My understanding of the snoop bit (C bit in the PTE definition) is to probe=
- remote gpu's L2 cache after this gpu write remote gpu's vram. Is this corr=
-ect? I am still checking this point with HW engineer.
-
-If this is correct, then the snooping (or probing) is a way to maintain cer=
-tain cache coherency when one memory is access by two masters (for example =
-two gpu). With existing AMDGPU_VM_ definitions in amdgpu_drm.h, how does a =
-user implement the request like: I want a trunk of vram physically in a rem=
-ote gpu, I want to access it in a uncached way (AMDGPU_VM_MTYPE_UC) but I w=
-ant to probe remote gpu's cache when I modify this vram.
-
-From PTE's definition, both C bit and mtype and R/W/X bits are just flags t=
-o enable user to program page access behavior. Any detail reason why we sho=
-uldn't expose the snoop bit?
-
-Regards,
-Oak
-
------Original Message-----
-From: Christian K=F6nig <ckoenig.leichtzumerken@gmail.com<mailto:ckoenig.le=
-ichtzumerken@gmail.com>>
-Sent: Wednesday, August 7, 2019 4:42 AM
-To: Zeng, Oak <Oak.Zeng@amd.com<mailto:Oak.Zeng@amd.com>>; amd-gfx@lists.fr=
-eedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
-Cc: Kuehling, Felix <Felix.Kuehling@amd.com<mailto:Felix.Kuehling@amd.com>>=
-; Koenig, Christian <Christian.Koenig@amd.com<mailto:Christian.Koenig@amd.c=
-om>>; Keely, Sean <Sean.Keely@amd.com<mailto:Sean.Keely@amd.com>>
-Subject: Re: [PATCH 1/5] drm/amdgpu: Extends amdgpu vm definitions
-
-Am 07.08.19 um 04:31 schrieb Zeng, Oak:
-> Add definition of all supported mtypes. The RW mtype is recently
-> introduced for arcturus. Also add definition for the
-> cachable/snoopable bit, which will be used later in this series.
->
-> Change-Id: I96fc9bb4b6b1e62bdc10b600d8aaa6a802128d6d
-> Signed-off-by: Oak Zeng <Oak.Zeng@amd.com<mailto:Oak.Zeng@amd.com>>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h | 9 +++++++--
->   include/uapi/drm/amdgpu_drm.h          | 4 ++++
->   2 files changed, 11 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> index 2eda3a8..7a77477 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> @@ -80,8 +80,13 @@ struct amdgpu_bo_list_entry;
->   #define AMDGPU_PTE_MTYPE_VG10(a)    ((uint64_t)(a) << 57)
->   #define AMDGPU_PTE_MTYPE_VG10_MASK  AMDGPU_PTE_MTYPE_VG10(3ULL)
->
-> -#define AMDGPU_MTYPE_NC 0
-> -#define AMDGPU_MTYPE_CC 2
-> +enum amdgpu_mtype {
-> +     AMDGPU_MTYPE_NC =3D 0,
-> +     AMDGPU_MTYPE_WC =3D 1,
-> +     AMDGPU_MTYPE_CC =3D 2,
-> +     AMDGPU_MTYPE_UC =3D 3,
-> +     AMDGPU_MTYPE_RW =3D 4,
-> +};
->
->   #define AMDGPU_PTE_DEFAULT_ATC  (AMDGPU_PTE_SYSTEM      \
->                                   | AMDGPU_PTE_SNOOPED    \
-> diff --git a/include/uapi/drm/amdgpu_drm.h
-> b/include/uapi/drm/amdgpu_drm.h index ca97b68..2889663 100644
-> --- a/include/uapi/drm/amdgpu_drm.h
-> +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -503,6 +503,10 @@ struct drm_amdgpu_gem_op {
->   #define AMDGPU_VM_MTYPE_CC          (3 << 5)
->   /* Use UC MTYPE instead of default MTYPE */
->   #define AMDGPU_VM_MTYPE_UC          (4 << 5)
-> +/* Use RW MTYPE instead of default MTYPE */
-> +#define AMDGPU_VM_MTYPE_RW           (5 << 5)
-
-> +/* Cacheable/snoopable */
-> +#define AMDGPU_VM_PAGE_SNOOPED               (1 << 9)
-
-That's a rather big NAK. Cache snooping is not something userspace is allow=
-ed to be aware of.
-
-Christian.
-
->
->   struct drm_amdgpu_gem_va {
->        /** GEM object handle */
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_BL0PR12MB2580C9220232DA47486E5E0080D70BL0PR12MB2580namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">&#43;<a id=3D"OWAAM94D75218BDAB4D8080182546162D8937"=
- href=3D"mailto:Jimshed.Mirza@amd.com"><span style=3D"font-family:&quot;Cal=
-ibri&quot;,sans-serif;text-decoration:none">@Mirza, Jimshed</span></a>: do =
-we have the ability to snoop another GPU&#8217;s cache, in a
- multiple GPU system?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Oak<o:p></o:p></p>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Deucher, Alexander &lt;Alexander.Deuche=
-r@amd.com&gt; <br>
-<b>Sent:</b> Thursday, August 8, 2019 12:10 PM<br>
-<b>To:</b> Zeng, Oak &lt;Oak.Zeng@amd.com&gt;; Koenig, Christian &lt;Christ=
-ian.Koenig@amd.com&gt;; amd-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> Kuehling, Felix &lt;Felix.Kuehling@amd.com&gt;; Keely, Sean &lt;=
-Sean.Keely@amd.com&gt;<br>
-<b>Subject:</b> Re: [PATCH 1/5] drm/amdgpu: Extends amdgpu vm definitions<o=
-:p></o:p></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">The sno=
-op bit is for snooping the CPU cache by the GPU when doing system memory ma=
-ppings.<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Alex<o:=
-p></o:p></span></p>
-</div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"color:black">From:</span></b><span=
- style=3D"color:black"> amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists=
-.freedesktop.org">amd-gfx-bounces@lists.freedesktop.org</a>&gt; on behalf o=
-f Zeng, Oak &lt;<a href=3D"mailto:Oak.Zeng@amd.com">Oak.Zeng@amd.com</a>&gt=
-;<br>
-<b>Sent:</b> Thursday, August 8, 2019 12:02 PM<br>
-<b>To:</b> Koenig, Christian &lt;<a href=3D"mailto:Christian.Koenig@amd.com=
-">Christian.Koenig@amd.com</a>&gt;;
-<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
-org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.=
-freedesktop.org</a>&gt;<br>
-<b>Cc:</b> Kuehling, Felix &lt;<a href=3D"mailto:Felix.Kuehling@amd.com">Fe=
-lix.Kuehling@amd.com</a>&gt;; Keely, Sean &lt;<a href=3D"mailto:Sean.Keely@=
-amd.com">Sean.Keely@amd.com</a>&gt;<br>
-<b>Subject:</b> RE: [PATCH 1/5] drm/amdgpu: Extends amdgpu vm definitions</=
-span> <o:p>
-</o:p></p>
-<div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal">Hi Christian,<br>
-<br>
-My understanding of the snoop bit (C bit in the PTE definition) is to probe=
- remote gpu's L2 cache after this gpu write remote gpu's vram. Is this corr=
-ect? I am still checking this point with HW engineer.<br>
-<br>
-If this is correct, then the snooping (or probing) is a way to maintain cer=
-tain cache coherency when one memory is access by two masters (for example =
-two gpu). With existing AMDGPU_VM_ definitions in amdgpu_drm.h, how does a =
-user implement the request like:
- I want a trunk of vram physically in a remote gpu, I want to access it in =
-a uncached way (AMDGPU_VM_MTYPE_UC) but I want to probe remote gpu's cache =
-when I modify this vram.<br>
-<br>
-From PTE's definition, both C bit and mtype and R/W/X bits are just flags t=
-o enable user to program page access behavior. Any detail reason why we sho=
-uldn't expose the snoop bit?<br>
-<br>
-Regards,<br>
-Oak<br>
-<br>
------Original Message-----<br>
-From: Christian K=F6nig &lt;<a href=3D"mailto:ckoenig.leichtzumerken@gmail.=
-com">ckoenig.leichtzumerken@gmail.com</a>&gt;
-<br>
-Sent: Wednesday, August 7, 2019 4:42 AM<br>
-To: Zeng, Oak &lt;<a href=3D"mailto:Oak.Zeng@amd.com">Oak.Zeng@amd.com</a>&=
-gt;; <a href=3D"mailto:amd-gfx@lists.freedesktop.org">
-amd-gfx@lists.freedesktop.org</a><br>
-Cc: Kuehling, Felix &lt;<a href=3D"mailto:Felix.Kuehling@amd.com">Felix.Kue=
-hling@amd.com</a>&gt;; Koenig, Christian &lt;<a href=3D"mailto:Christian.Ko=
-enig@amd.com">Christian.Koenig@amd.com</a>&gt;; Keely, Sean &lt;<a href=3D"=
-mailto:Sean.Keely@amd.com">Sean.Keely@amd.com</a>&gt;<br>
-Subject: Re: [PATCH 1/5] drm/amdgpu: Extends amdgpu vm definitions<br>
-<br>
-Am 07.08.19 um 04:31 schrieb Zeng, Oak:<br>
-&gt; Add definition of all supported mtypes. The RW mtype is recently <br>
-&gt; introduced for arcturus. Also add definition for the <br>
-&gt; cachable/snoopable bit, which will be used later in this series.<br>
-&gt;<br>
-&gt; Change-Id: I96fc9bb4b6b1e62bdc10b600d8aaa6a802128d6d<br>
-&gt; Signed-off-by: Oak Zeng &lt;<a href=3D"mailto:Oak.Zeng@amd.com">Oak.Ze=
-ng@amd.com</a>&gt;<br>
-&gt; ---<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h | 9 &#43;&#43;&#43;=
-&#43;&#43;&#43;&#43;--<br>
-&gt;&nbsp;&nbsp; include/uapi/drm/amdgpu_drm.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; | 4 &#43;&#43;&#43;&#43;<br>
-&gt;&nbsp;&nbsp; 2 files changed, 11 insertions(&#43;), 2 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h <br>
-&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h<br>
-&gt; index 2eda3a8..7a77477 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h<br>
-&gt; @@ -80,8 &#43;80,13 @@ struct amdgpu_bo_list_entry;<br>
-&gt;&nbsp;&nbsp; #define AMDGPU_PTE_MTYPE_VG10(a)&nbsp;&nbsp;&nbsp; ((uint6=
-4_t)(a) &lt;&lt; 57)<br>
-&gt;&nbsp;&nbsp; #define AMDGPU_PTE_MTYPE_VG10_MASK&nbsp; AMDGPU_PTE_MTYPE_=
-VG10(3ULL)<br>
-&gt;&nbsp;&nbsp; <br>
-&gt; -#define AMDGPU_MTYPE_NC 0<br>
-&gt; -#define AMDGPU_MTYPE_CC 2<br>
-&gt; &#43;enum amdgpu_mtype {<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_MTYPE_NC =3D 0,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_MTYPE_WC =3D 1,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_MTYPE_CC =3D 2,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_MTYPE_UC =3D 3,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_MTYPE_RW =3D 4,<br>
-&gt; &#43;};<br>
-&gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp; #define AMDGPU_PTE_DEFAULT_ATC&nbsp; (AMDGPU_PTE_SYSTEM&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; \<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | AMDGPU_PTE_SNO=
-OPED&nbsp;&nbsp;&nbsp; \<br>
-&gt; diff --git a/include/uapi/drm/amdgpu_drm.h <br>
-&gt; b/include/uapi/drm/amdgpu_drm.h index ca97b68..2889663 100644<br>
-&gt; --- a/include/uapi/drm/amdgpu_drm.h<br>
-&gt; &#43;&#43;&#43; b/include/uapi/drm/amdgpu_drm.h<br>
-&gt; @@ -503,6 &#43;503,10 @@ struct drm_amdgpu_gem_op {<br>
-&gt;&nbsp;&nbsp; #define AMDGPU_VM_MTYPE_CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; (3 &lt;&lt; 5)<br>
-&gt;&nbsp;&nbsp; /* Use UC MTYPE instead of default MTYPE */<br>
-&gt;&nbsp;&nbsp; #define AMDGPU_VM_MTYPE_UC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; (4 &lt;&lt; 5)<br>
-&gt; &#43;/* Use RW MTYPE instead of default MTYPE */<br>
-&gt; &#43;#define AMDGPU_VM_MTYPE_RW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; (5 &lt;&lt; 5)<br>
-<br>
-&gt; &#43;/* Cacheable/snoopable */<br>
-&gt; &#43;#define AMDGPU_VM_PAGE_SNOOPED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (1 &lt;&lt; 9)<br>
-<br>
-That's a rather big NAK. Cache snooping is not something userspace is allow=
-ed to be aware of.<br>
-<br>
-Christian.<br>
-<br>
-&gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp; struct drm_amdgpu_gem_va {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /** GEM object handle */<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
-org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a><o:p></o:p></p>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_BL0PR12MB2580C9220232DA47486E5E0080D70BL0PR12MB2580namp_--
-
---===============1317560450==
+--===============2057379550==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -502,4 +362,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1317560450==--
+--===============2057379550==--
