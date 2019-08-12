@@ -2,92 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B3A889A77
-	for <lists+amd-gfx@lfdr.de>; Mon, 12 Aug 2019 11:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92FEB8A2FD
+	for <lists+amd-gfx@lfdr.de>; Mon, 12 Aug 2019 18:09:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 401CD6E40A;
-	Mon, 12 Aug 2019 09:52:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7C6089CB5;
+	Mon, 12 Aug 2019 16:09:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam03on061e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe48::61e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEFC36E40A
- for <amd-gfx@lists.freedesktop.org>; Mon, 12 Aug 2019 09:52:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=corzPas73gNaVow3RicAuz02z/KxK6uwVEjieVEXePWgEeLYqMP49K3/ng/Y9d2f6kDdk2FEgpiFjXNko945+2ZXmBQCoVauh4nNUpv2nnxMxl6L0kVlCYpfOAYTiANAi8XziZo+HOhK90euOq+305X0Oy2nn0rjTecSEturxCxqMieBhvKMcportCbPnCDDc+STUlYK/77IDDeLVZ56hVlugd89fxzMgvp/+dnPAu2mK901x6yCs6pGkP8GghP1PJGc6QuKe2FfVB5HIz11Yo8mS4RAG2VE+W4zXY3qiEaii9p4wWw6AnDHQ5SbOfChD9hQQiKE16WZG3rbqUHb8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0FkOdLJA3uH/kexPhSiglLwjYzYOV5atCSraesjozDg=;
- b=G7Cv77uW6T3yug+QfnAiCl2JfsoqGIExQkTrXp46eCe7+8zzLtv1AuyP2BuUIER49nhIQ1ofMDtMnzVbwtBh+KCXO4rMbCkLGPt6YKyxnI2f7zi6zMPSCbKI+qlLycECWRJsM9PTPKjVYeQA/wIIpqwUxpFwK1EMfagCErQjHC/0NAT5nadSsJUmNY2VsmwefwPrH51w3ZsYiTYo5czV4xZL+D2VcZflAVXfdf9cI1c6agpHKaJp5ww1jbwUA8fVY+gYoFzx9YSORBSnI2ROROJ8OyPoU2bEZwXFjnLAXgUNLL7U1qqvvBD5nRdZnlqfHICLkCFuVC4H3tx01CwShg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com (20.179.80.139) by
- MN2PR12MB4222.namprd12.prod.outlook.com (10.255.125.85) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.14; Mon, 12 Aug 2019 09:52:15 +0000
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::7490:549a:479d:f716]) by MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::7490:549a:479d:f716%6]) with mapi id 15.20.2157.022; Mon, 12 Aug 2019
- 09:52:15 +0000
-From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
-To: "Quan, Evan" <Evan.Quan@amd.com>, "Gui, Jack" <Jack.Gui@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 2/2] drm/amd/powerplay: add arcturus_is_dpm_running
- function for arcturus
-Thread-Topic: [PATCH 2/2] drm/amd/powerplay: add arcturus_is_dpm_running
- function for arcturus
-Thread-Index: AQHVUOcfn4jDEWsNQ0ef3SVSz6eLbKb3QbcAgAABvoQ=
-Date: Mon, 12 Aug 2019 09:52:15 +0000
-Message-ID: <MN2PR12MB3296807CB0DAC9F94D795E56A2D30@MN2PR12MB3296.namprd12.prod.outlook.com>
-References: <1565598138-13844-1-git-send-email-Jack.Gui@amd.com>
- <1565598138-13844-2-git-send-email-Jack.Gui@amd.com>,
- <MN2PR12MB33441DEDEEB00F8F321F72BBE4D30@MN2PR12MB3344.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB33441DEDEEB00F8F321F72BBE4D30@MN2PR12MB3344.namprd12.prod.outlook.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3576894d-63d2-4087-78cb-08d71f0ac1ba
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB4222; 
-x-ms-traffictypediagnostic: MN2PR12MB4222:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB422212BC62183644BF8A5577A2D30@MN2PR12MB4222.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-forefront-prvs: 012792EC17
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(366004)(396003)(346002)(376002)(39860400002)(13464003)(199004)(189003)(74316002)(5660300002)(6246003)(256004)(14444005)(66066001)(19627405001)(7736002)(71190400001)(81166006)(66476007)(64756008)(66446008)(76116006)(66556008)(8936002)(71200400001)(81156014)(8676002)(52536014)(25786009)(606006)(7696005)(2906002)(110136005)(229853002)(55016002)(486006)(186003)(446003)(53936002)(26005)(476003)(6506007)(102836004)(53546011)(11346002)(33656002)(105004)(9686003)(316002)(6306002)(54896002)(236005)(6116002)(3846002)(966005)(6436002)(14454004)(99286004)(76176011)(2501003)(86362001)(478600001)(66946007);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4222;
- H:MN2PR12MB3296.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: GoXkhkvUl92SBWvU7gKXD9UpcBLOqPQr7M381vjSGqWB6obiNyvCDWQGPq3CguWkaR4VBJSs52P7/7oh20/kXS2YvqKBY/n/GC2FPmuJhLT52TvyVawnZCcKXGJ09Vqnb3rO8lX5YKXGCEQJP9XStcdmilnK/LrrPkmm+laNXLMKPmRmGfnjeBIxOoeJdES0dWiTfAArudaykEayV3Bt6K3ESZfA6Rmr4I+SMH+clbbR9LovUtRvJ8vNJa4YrF9z/38L4vPtYDkuxGnR26QjlOoJSfETsTrF2RyM9IUpASi+X6x1CPoZ6Iirkg0dqYYBH58t7JCOGVep4I1xsG/8kRsFxmXxaH55c5LA0PzVtPSV/2TkyvTOxKHDbrkxDPH4bFzOWq3uDs8G3e2iEN4K+6DlsbE0eZFM79lJAUiRu0k=
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3BF589364;
+ Mon, 12 Aug 2019 16:09:28 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id q12so14794209wrj.12;
+ Mon, 12 Aug 2019 09:09:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=wQDudG+kkcGbnnVsgirExeE5TJAvPH8BcoTOdSWcbpI=;
+ b=Rm0c1zTen9I27A8UzLyMS4IE1ZD5+++nMATull3GLHtogE/RusCZXxrO0upLRZ4Ruq
+ n9b1X/65/c9Rk3hWSeris9/BRLqtAKLXSh/Kn6pH6Kx82PVxYdBJounIUYMZSMlgW36M
+ ssa9p2xKkwl1FqkxNiefEGY1qGU/9zDViI3M03LCY4IGdIiGVZw+wLqzzRhiah732uXT
+ Ui6sbMPZtnyVu5iQRKdqZh3ZsETzJeSTzgnwLPX/3rAuKRDFSK4gweB66eTAyoqlFl87
+ Id7zqZF6VLVFuWBO9hHt2cBajtEexnOjMVcSE32UBY7cuHeQBL+MxU7x+qbuUr7dOThc
+ xPwA==
+X-Gm-Message-State: APjAAAXMzGPDX9k2Azl9CggYTmUyFmIkcP0ETOJctTx5Nk3NxzACucy1
+ QNiIszSLZfi0VSeTQeSZWE9mmg4x1p4sPCL0M/w=
+X-Google-Smtp-Source: APXvYqwA2G8KxSDLIpB4nxWCDIea1NkkIuXIaaINWUZGHpReKkV/2DiRLL1Z+7KsLbL587UFZjosbhgZI5JlzwcNhts=
+X-Received: by 2002:a5d:6b11:: with SMTP id v17mr41041362wrw.323.1565626167467; 
+ Mon, 12 Aug 2019 09:09:27 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3576894d-63d2-4087-78cb-08d71f0ac1ba
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Aug 2019 09:52:15.5412 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pL7jvZYMg7zhy8EO5N7JIMqhg813HEu1L1BH1moIt2bsFRRrnDcesO5cf1UC2rrj
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4222
+References: <20190809201219.629-1-christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20190809201219.629-1-christophe.jaillet@wanadoo.fr>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 12 Aug 2019 12:09:14 -0400
+Message-ID: <CADnq5_MM+ojG+jmuW-FpdusYzsa2BW_pguGPoMYSQFo4d5z72g@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Fix a typo - dce_aduio_mask -->
+ dce_audio_mask
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0FkOdLJA3uH/kexPhSiglLwjYzYOV5atCSraesjozDg=;
- b=QMMptNrLvHP5bY2w+DHl9ArWnl2P+jOAOssv5EtuhyyYjVzSlPGzRtUHlRIYnxYWCzSV52FkAZ+Qw/oyQdmAgPtXf3VhLdZtZydrW6e+VCtAeT+1acObdz/tejzI5UvhGya4TtL3upjDttvI7eUFrr6Y8q8ZYMTlYaVFffYwTCk=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Kevin1.Wang@amd.com; 
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=wQDudG+kkcGbnnVsgirExeE5TJAvPH8BcoTOdSWcbpI=;
+ b=S8w048S1FiKQE4kpcxrfsH1AMpFzduSfYRNTLKhJQ33pc5ebJvNltMcUkH0DUI2KUC
+ GBpYcFZXNQAecONLobNZh0QOHG+SWeo8/o7i2ESVFGOdVT3KslXL3kji4+j/iPVF0VyK
+ oTYq2yQONkIYbJqOa9idUujLRIXE6gn+fk6SbWcM9HZBu49I84Y3v7MNXmN8cEsgvfJQ
+ OoUyyBUwEHP3jXMgBdbvxG3yJS6a/4CefRHgSYpUdJS/T5bmUTpHgh946lfyXiRxqHaZ
+ 41hAs9WPHvaV6FrF9K7DZ8Wqg7s4M60kVkfNjtCKoxTW2BccrWx1YzVp8dVpncDdV5Yx
+ ZisQ==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -99,294 +62,132 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1464525492=="
+Cc: Chunming Zhou <David1.Zhou@amd.com>,
+ "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>, kernel-janitors@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Dave Airlie <airlied@linux.ie>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>, "Wentland,
+ Harry" <harry.wentland@amd.com>, Christian Koenig <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1464525492==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB3296807CB0DAC9F94D795E56A2D30MN2PR12MB3296namp_"
-
---_000_MN2PR12MB3296807CB0DAC9F94D795E56A2D30MN2PR12MB3296namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-if any DPM feature is enabled, then DPM is running, return true.
-if all DPM feature is disabled, the DPM is not running, return false.
-so the macro of  "SMC_DPM_FEATURE" should be include all dpm feature, wheth=
-er is enabled or supported.
-i think the @Gui, Jack<mailto:Jack.Gui@amd.com>'s patch is right.
-
-Best Regards,
-Kevin
-
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Quan, Ev=
-an <Evan.Quan@amd.com>
-Sent: Monday, August 12, 2019 5:38 PM
-To: Gui, Jack <Jack.Gui@amd.com>; amd-gfx@lists.freedesktop.org <amd-gfx@li=
-sts.freedesktop.org>
-Cc: Gui, Jack <Jack.Gui@amd.com>
-Subject: RE: [PATCH 2/2] drm/amd/powerplay: add arcturus_is_dpm_running fun=
-ction for arcturus
-
-Please set FEATURE_DPM_PREFETCHER_MASK | FEATURE_DPM_GFXCLK_MASK only. For =
-now, only these two are enabled on arcturus.
-
-With that fixed, the patch is reviewed-by: Evan Quan <evan.quan@amd.com>
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Chengming Gui
-> Sent: Monday, August 12, 2019 4:22 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Gui, Jack <Jack.Gui@amd.com>
-> Subject: [PATCH 2/2] drm/amd/powerplay: add arcturus_is_dpm_running
-> function for arcturus
->
-> add arcturus_is_dpm_running function
->
-> Signed-off-by: Chengming Gui <Jack.Gui@amd.com>
-> ---
->  drivers/gpu/drm/amd/powerplay/arcturus_ppt.c | 21
-> +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-> b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-> index 03ce871..9107beb 100644
-> --- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-> +++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-> @@ -51,6 +51,15 @@
->  #define SMU_FEATURES_HIGH_MASK       0xFFFFFFFF00000000
->  #define SMU_FEATURES_HIGH_SHIFT      32
->
-> +#define SMC_DPM_FEATURE ( \
-> +     FEATURE_DPM_PREFETCHER_MASK | \
-> +     FEATURE_DPM_GFXCLK_MASK | \
-> +     FEATURE_DPM_UCLK_MASK | \
-> +     FEATURE_DPM_SOCCLK_MASK | \
-> +     FEATURE_DPM_MP0CLK_MASK | \
-> +     FEATURE_DPM_FCLK_MASK | \
-> +     FEATURE_DPM_XGMI_MASK)
-> +
->  /* possible frequency drift (1Mhz) */
->  #define EPSILON                              1
->
-> @@ -1873,6 +1882,17 @@ static void arcturus_dump_pptable(struct
-> smu_context *smu)
->
->  }
->
-> +static bool arcturus_is_dpm_running(struct smu_context *smu) {
-> +     int ret =3D 0;
-> +     uint32_t feature_mask[2];
-> +     unsigned long feature_enabled;
-> +     ret =3D smu_feature_get_enabled_mask(smu, feature_mask, 2);
-> +     feature_enabled =3D (unsigned long)((uint64_t)feature_mask[0] |
-> +                        ((uint64_t)feature_mask[1] << 32));
-> +     return !!(feature_enabled & SMC_DPM_FEATURE); }
-> +
->  static const struct pptable_funcs arcturus_ppt_funcs =3D {
->        /* translate smu index into arcturus specific index */
->        .get_smu_msg_index =3D arcturus_get_smu_msg_index, @@ -1910,6
-> +1930,7 @@ static const struct pptable_funcs arcturus_ppt_funcs =3D {
->        /* debug (internal used) */
->        .dump_pptable =3D arcturus_dump_pptable,
->        .get_power_limit =3D arcturus_get_power_limit,
-> +     .is_dpm_running =3D arcturus_is_dpm_running,
->  };
->
->  void arcturus_set_ppt_funcs(struct smu_context *smu)
-> --
-> 2.7.4
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_MN2PR12MB3296807CB0DAC9F94D795E56A2D30MN2PR12MB3296namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span>if any DPM feature is enabled, then DPM is running, return true.</spa=
-n></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span>if all DPM feature is disabled, the DPM is not running, return false.=
-</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"color: rgb(0, 0, 0); font-family: Calibri, Arial, Helvetica,=
- sans-serif; font-size: 12pt;">so the macro of&nbsp; &quot;</span><i style=
-=3D"font-size: 12pt; font-variant-ligatures: inherit; font-variant-caps: in=
-herit; font-weight: inherit;">SMC_DPM_FEATURE</i><span style=3D"color: rgb(=
-0, 0, 0); font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 12=
-pt;">&quot;
- should be include all dpm feature, whether is enabled or supported.</span>=
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span>i think the&nbsp;<a id=3D"OWAAM823302" class=3D"_1OtrSZdhKXVv3Uhaivrd=
-J4 mention ms-bgc-nlr ms-fcl-b" href=3D"mailto:Jack.Gui@amd.com">@Gui, Jack=
-</a>'s patch is right.</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span><br>
-</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span>Best Regards,<br>
-Kevin<br>
-</span><span></span><br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Quan, Evan &lt;Evan.Quan@amd.=
-com&gt;<br>
-<b>Sent:</b> Monday, August 12, 2019 5:38 PM<br>
-<b>To:</b> Gui, Jack &lt;Jack.Gui@amd.com&gt;; amd-gfx@lists.freedesktop.or=
-g &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Cc:</b> Gui, Jack &lt;Jack.Gui@amd.com&gt;<br>
-<b>Subject:</b> RE: [PATCH 2/2] drm/amd/powerplay: add arcturus_is_dpm_runn=
-ing function for arcturus</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Please set FEATURE_DPM_PREFETCHER_MASK | FEATURE_D=
-PM_GFXCLK_MASK only. For now, only these two are enabled on arcturus.<br>
-<br>
-With that fixed, the patch is reviewed-by: Evan Quan &lt;evan.quan@amd.com&=
-gt;<br>
-&gt; -----Original Message-----<br>
-&gt; From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; On Behalf =
-Of<br>
-&gt; Chengming Gui<br>
-&gt; Sent: Monday, August 12, 2019 4:22 PM<br>
-&gt; To: amd-gfx@lists.freedesktop.org<br>
-&gt; Cc: Gui, Jack &lt;Jack.Gui@amd.com&gt;<br>
-&gt; Subject: [PATCH 2/2] drm/amd/powerplay: add arcturus_is_dpm_running<br=
->
-&gt; function for arcturus<br>
-&gt; <br>
-&gt; add arcturus_is_dpm_running function<br>
-&gt; <br>
-&gt; Signed-off-by: Chengming Gui &lt;Jack.Gui@amd.com&gt;<br>
-&gt; ---<br>
-&gt;&nbsp; drivers/gpu/drm/amd/powerplay/arcturus_ppt.c | 21<br>
-&gt; &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;=
-&#43;&#43;&#43;&#43;&#43;&#43;&#43;<br>
-&gt;&nbsp; 1 file changed, 21 insertions(&#43;)<br>
-&gt; <br>
-&gt; diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c<br>
-&gt; b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c<br>
-&gt; index 03ce871..9107beb 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c<br>
-&gt; @@ -51,6 &#43;51,15 @@<br>
-&gt;&nbsp; #define SMU_FEATURES_HIGH_MASK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; 0xFFFFFFFF00000000<br>
-&gt;&nbsp; #define SMU_FEATURES_HIGH_SHIFT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32=
-<br>
-&gt; <br>
-&gt; &#43;#define SMC_DPM_FEATURE ( \<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; FEATURE_DPM_PREFETCHER_MASK | \<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; FEATURE_DPM_GFXCLK_MASK | \<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; FEATURE_DPM_UCLK_MASK | \<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; FEATURE_DPM_SOCCLK_MASK | \<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; FEATURE_DPM_MP0CLK_MASK | \<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; FEATURE_DPM_FCLK_MASK | \<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; FEATURE_DPM_XGMI_MASK)<br>
-&gt; &#43;<br>
-&gt;&nbsp; /* possible frequency drift (1Mhz) */<br>
-&gt;&nbsp; #define EPSILON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
-&gt; <br>
-&gt; @@ -1873,6 &#43;1882,17 @@ static void arcturus_dump_pptable(struct<br=
->
-&gt; smu_context *smu)<br>
-&gt; <br>
-&gt;&nbsp; }<br>
-&gt; <br>
-&gt; &#43;static bool arcturus_is_dpm_running(struct smu_context *smu) {<br=
->
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_mask[2];<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; unsigned long feature_enabled;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_get_enabled_mask(smu=
-, feature_mask, 2);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; feature_enabled =3D (unsigned long)((uin=
-t64_t)feature_mask[0] |<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (=
-(uint64_t)feature_mask[1] &lt;&lt; 32));<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; return !!(feature_enabled &amp; SMC_DPM_=
-FEATURE); }<br>
-&gt; &#43;<br>
-&gt;&nbsp; static const struct pptable_funcs arcturus_ppt_funcs =3D {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* translate smu index into =
-arcturus specific index */<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_smu_msg_index =3D arctu=
-rus_get_smu_msg_index, @@ -1910,6<br>
-&gt; &#43;1930,7 @@ static const struct pptable_funcs arcturus_ppt_funcs =
-=3D {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* debug (internal used) */<=
-br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .dump_pptable =3D arcturus_d=
-ump_pptable,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_power_limit =3D arcturu=
-s_get_power_limit,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; .is_dpm_running =3D arcturus_is_dpm_runn=
-ing,<br>
-&gt;&nbsp; };<br>
-&gt; <br>
-&gt;&nbsp; void arcturus_set_ppt_funcs(struct smu_context *smu)<br>
-&gt; --<br>
-&gt; 2.7.4<br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; amd-gfx mailing list<br>
-&gt; amd-gfx@lists.freedesktop.org<br>
-&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">htt=
-ps://lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-</span></font></div>
-</body>
-</html>
-
---_000_MN2PR12MB3296807CB0DAC9F94D795E56A2D30MN2PR12MB3296namp_--
-
---===============1464525492==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1464525492==--
+QXBwbGllZC4gIHRoYW5rcyEKCkFsZXgKCk9uIFNhdCwgQXVnIDEwLCAyMDE5IGF0IDk6NTUgQU0g
+Q2hyaXN0b3BoZSBKQUlMTEVUCjxjaHJpc3RvcGhlLmphaWxsZXRAd2FuYWRvby5mcj4gd3JvdGU6
+Cj4KPiBUaGlzIHNob3VsZCBiZSAnZGNlX2F1ZGlvX21hc2snLCBub3QgJ2RjZV9hZHVpb19tYXNr
+Jy4KPgo+IFNpZ25lZC1vZmYtYnk6IENocmlzdG9waGUgSkFJTExFVCA8Y2hyaXN0b3BoZS5qYWls
+bGV0QHdhbmFkb28uZnI+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9k
+Y2UvZGNlX2F1ZGlvLmMgICAgICAgICAgfCAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvZGlz
+cGxheS9kYy9kY2UvZGNlX2F1ZGlvLmggICAgICAgICAgfCA2ICsrKy0tLQo+ICBkcml2ZXJzL2dw
+dS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTAwL2RjZTEwMF9yZXNvdXJjZS5jIHwgMiArLQo+ICBk
+cml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTEwL2RjZTExMF9yZXNvdXJjZS5jIHwg
+MiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTEyL2RjZTExMl9yZXNv
+dXJjZS5jIHwgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTIwL2Rj
+ZTEyMF9yZXNvdXJjZS5jIHwgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMv
+ZGNlODAvZGNlODBfcmVzb3VyY2UuYyAgIHwgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rp
+c3BsYXkvZGMvZGNuMTAvZGNuMTBfcmVzb3VyY2UuYyAgIHwgMiArLQo+ICA4IGZpbGVzIGNoYW5n
+ZWQsIDEwIGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY2UvZGNlX2F1ZGlvLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlL2RjZV9hdWRpby5jCj4gaW5kZXggNTQ5NzA0OTk4Zjg0
+Li4xZTg4YzVmNDZiZTcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5
+L2RjL2RjZS9kY2VfYXVkaW8uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9k
+Yy9kY2UvZGNlX2F1ZGlvLmMKPiBAQCAtOTM3LDcgKzkzNyw3IEBAIHN0cnVjdCBhdWRpbyAqZGNl
+X2F1ZGlvX2NyZWF0ZSgKPiAgICAgICAgICAgICAgICAgdW5zaWduZWQgaW50IGluc3QsCj4gICAg
+ICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBkY2VfYXVkaW9fcmVnaXN0ZXJzICpyZWcsCj4gICAg
+ICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBkY2VfYXVkaW9fc2hpZnQgKnNoaWZ0cywKPiAtICAg
+ICAgICAgICAgICAgY29uc3Qgc3RydWN0IGRjZV9hZHVpb19tYXNrICptYXNrcwo+ICsgICAgICAg
+ICAgICAgICBjb25zdCBzdHJ1Y3QgZGNlX2F1ZGlvX21hc2sgKm1hc2tzCj4gICAgICAgICAgICAg
+ICAgICkKPiAgewo+ICAgICAgICAgc3RydWN0IGRjZV9hdWRpbyAqYXVkaW8gPSBremFsbG9jKHNp
+emVvZigqYXVkaW8pLCBHRlBfS0VSTkVMKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9kaXNwbGF5L2RjL2RjZS9kY2VfYXVkaW8uaCBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlz
+cGxheS9kYy9kY2UvZGNlX2F1ZGlvLmgKPiBpbmRleCBhMGQ1NzI0YWFiMzEuLjEzOTJmYWIwODYw
+YiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlL2RjZV9h
+dWRpby5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjZS9kY2VfYXVk
+aW8uaAo+IEBAIC0xMDEsNyArMTAxLDcgQEAgc3RydWN0IGRjZV9hdWRpb19zaGlmdCB7Cj4gICAg
+ICAgICB1aW50MzJfdCBEQ0NHX0FVRElPX0RUTzFfVVNFXzUxMkZCUl9EVE87Cj4gIH07Cj4KPiAt
+c3RydWN0IGRjZV9hZHVpb19tYXNrIHsKPiArc3RydWN0IGRjZV9hdWRpb19tYXNrIHsKPiAgICAg
+ICAgIHVpbnQzMl90IEFaQUxJQV9FTkRQT0lOVF9SRUdfSU5ERVg7Cj4gICAgICAgICB1aW50MzJf
+dCBBWkFMSUFfRU5EUE9JTlRfUkVHX0RBVEE7Cj4KPiBAQCAtMTI1LDcgKzEyNSw3IEBAIHN0cnVj
+dCBkY2VfYXVkaW8gewo+ICAgICAgICAgc3RydWN0IGF1ZGlvIGJhc2U7Cj4gICAgICAgICBjb25z
+dCBzdHJ1Y3QgZGNlX2F1ZGlvX3JlZ2lzdGVycyAqcmVnczsKPiAgICAgICAgIGNvbnN0IHN0cnVj
+dCBkY2VfYXVkaW9fc2hpZnQgKnNoaWZ0czsKPiAtICAgICAgIGNvbnN0IHN0cnVjdCBkY2VfYWR1
+aW9fbWFzayAqbWFza3M7Cj4gKyAgICAgICBjb25zdCBzdHJ1Y3QgZGNlX2F1ZGlvX21hc2sgKm1h
+c2tzOwo+ICB9Owo+Cj4gIHN0cnVjdCBhdWRpbyAqZGNlX2F1ZGlvX2NyZWF0ZSgKPiBAQCAtMTMz
+LDcgKzEzMyw3IEBAIHN0cnVjdCBhdWRpbyAqZGNlX2F1ZGlvX2NyZWF0ZSgKPiAgICAgICAgICAg
+ICAgICAgdW5zaWduZWQgaW50IGluc3QsCj4gICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBk
+Y2VfYXVkaW9fcmVnaXN0ZXJzICpyZWcsCj4gICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBk
+Y2VfYXVkaW9fc2hpZnQgKnNoaWZ0cywKPiAtICAgICAgICAgICAgICAgY29uc3Qgc3RydWN0IGRj
+ZV9hZHVpb19tYXNrICptYXNrcyk7Cj4gKyAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBkY2Vf
+YXVkaW9fbWFzayAqbWFza3MpOwo+Cj4gIHZvaWQgZGNlX2F1ZF9kZXN0cm95KHN0cnVjdCBhdWRp
+byAqKmF1ZGlvKTsKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkv
+ZGMvZGNlMTAwL2RjZTEwMF9yZXNvdXJjZS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5
+L2RjL2RjZTEwMC9kY2UxMDBfcmVzb3VyY2UuYwo+IGluZGV4IDYyNDhjODQ1NTMxNC4uODExMTYy
+ODZiMTViIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY2Ux
+MDAvZGNlMTAwX3Jlc291cmNlLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkv
+ZGMvZGNlMTAwL2RjZTEwMF9yZXNvdXJjZS5jCj4gQEAgLTMwNCw3ICszMDQsNyBAQCBzdGF0aWMg
+Y29uc3Qgc3RydWN0IGRjZV9hdWRpb19zaGlmdCBhdWRpb19zaGlmdCA9IHsKPiAgICAgICAgICAg
+ICAgICAgQVVEX0NPTU1PTl9NQVNLX1NIX0xJU1QoX19TSElGVCkKPiAgfTsKPgo+IC1zdGF0aWMg
+Y29uc3Qgc3RydWN0IGRjZV9hZHVpb19tYXNrIGF1ZGlvX21hc2sgPSB7Cj4gK3N0YXRpYyBjb25z
+dCBzdHJ1Y3QgZGNlX2F1ZGlvX21hc2sgYXVkaW9fbWFzayA9IHsKPiAgICAgICAgICAgICAgICAg
+QVVEX0NPTU1PTl9NQVNLX1NIX0xJU1QoX01BU0spCj4gIH07Cj4KPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTExMC9kY2UxMTBfcmVzb3VyY2UuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY2UxMTAvZGNlMTEwX3Jlc291cmNlLmMKPiBp
+bmRleCA3NjQzMjkyNjRjM2IuLjc2NWUyNjQ1NGExOCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTEwL2RjZTExMF9yZXNvdXJjZS5jCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTExMC9kY2UxMTBfcmVzb3VyY2UuYwo+IEBA
+IC0zMzEsNyArMzMxLDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBkY2VfYXVkaW9fc2hpZnQgYXVk
+aW9fc2hpZnQgPSB7Cj4gICAgICAgICAgICAgICAgIEFVRF9DT01NT05fTUFTS19TSF9MSVNUKF9f
+U0hJRlQpCj4gIH07Cj4KPiAtc3RhdGljIGNvbnN0IHN0cnVjdCBkY2VfYWR1aW9fbWFzayBhdWRp
+b19tYXNrID0gewo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRjZV9hdWRpb19tYXNrIGF1ZGlvX21h
+c2sgPSB7Cj4gICAgICAgICAgICAgICAgIEFVRF9DT01NT05fTUFTS19TSF9MSVNUKF9NQVNLKQo+
+ICB9Owo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY2Ux
+MTIvZGNlMTEyX3Jlc291cmNlLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNl
+MTEyL2RjZTExMl9yZXNvdXJjZS5jCj4gaW5kZXggYzYxMzZlMGVkMWE0Li4zYWM0YzdlNzMwNTAg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTExMi9kY2Ux
+MTJfcmVzb3VyY2UuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY2Ux
+MTIvZGNlMTEyX3Jlc291cmNlLmMKPiBAQCAtMzM3LDcgKzMzNyw3IEBAIHN0YXRpYyBjb25zdCBz
+dHJ1Y3QgZGNlX2F1ZGlvX3NoaWZ0IGF1ZGlvX3NoaWZ0ID0gewo+ICAgICAgICAgICAgICAgICBB
+VURfQ09NTU9OX01BU0tfU0hfTElTVChfX1NISUZUKQo+ICB9Owo+Cj4gLXN0YXRpYyBjb25zdCBz
+dHJ1Y3QgZGNlX2FkdWlvX21hc2sgYXVkaW9fbWFzayA9IHsKPiArc3RhdGljIGNvbnN0IHN0cnVj
+dCBkY2VfYXVkaW9fbWFzayBhdWRpb19tYXNrID0gewo+ICAgICAgICAgICAgICAgICBBVURfQ09N
+TU9OX01BU0tfU0hfTElTVChfTUFTSykKPiAgfTsKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTIwL2RjZTEyMF9yZXNvdXJjZS5jIGIvZHJpdmVycy9n
+cHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTEyMC9kY2UxMjBfcmVzb3VyY2UuYwo+IGluZGV4IDU0
+YmU3YWIzNzBkZi4uOWE5MjJjZDM5Y2YyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvZGlzcGxheS9kYy9kY2UxMjAvZGNlMTIwX3Jlc291cmNlLmMKPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlMTIwL2RjZTEyMF9yZXNvdXJjZS5jCj4gQEAgLTM1Miw3
+ICszNTIsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRjZV9hdWRpb19zaGlmdCBhdWRpb19zaGlm
+dCA9IHsKPiAgICAgICAgICAgICAgICAgRENFMTIwX0FVRF9DT01NT05fTUFTS19TSF9MSVNUKF9f
+U0hJRlQpCj4gIH07Cj4KPiAtc3RhdGljIGNvbnN0IHN0cnVjdCBkY2VfYWR1aW9fbWFzayBhdWRp
+b19tYXNrID0gewo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRjZV9hdWRpb19tYXNrIGF1ZGlvX21h
+c2sgPSB7Cj4gICAgICAgICAgICAgICAgIERDRTEyMF9BVURfQ09NTU9OX01BU0tfU0hfTElTVChf
+TUFTSykKPiAgfTsKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkv
+ZGMvZGNlODAvZGNlODBfcmVzb3VyY2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9k
+Yy9kY2U4MC9kY2U4MF9yZXNvdXJjZS5jCj4gaW5kZXggODYwYTUyNGViY2ZhLi4yYTFjZTllY2M2
+NmUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTgwL2Rj
+ZTgwX3Jlc291cmNlLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNl
+ODAvZGNlODBfcmVzb3VyY2UuYwo+IEBAIC0zMjIsNyArMzIyLDcgQEAgc3RhdGljIGNvbnN0IHN0
+cnVjdCBkY2VfYXVkaW9fc2hpZnQgYXVkaW9fc2hpZnQgPSB7Cj4gICAgICAgICAgICAgICAgIEFV
+RF9DT01NT05fTUFTS19TSF9MSVNUKF9fU0hJRlQpCj4gIH07Cj4KPiAtc3RhdGljIGNvbnN0IHN0
+cnVjdCBkY2VfYWR1aW9fbWFzayBhdWRpb19tYXNrID0gewo+ICtzdGF0aWMgY29uc3Qgc3RydWN0
+IGRjZV9hdWRpb19tYXNrIGF1ZGlvX21hc2sgPSB7Cj4gICAgICAgICAgICAgICAgIEFVRF9DT01N
+T05fTUFTS19TSF9MSVNUKF9NQVNLKQo+ICB9Owo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvZGlzcGxheS9kYy9kY24xMC9kY24xMF9yZXNvdXJjZS5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9kaXNwbGF5L2RjL2RjbjEwL2RjbjEwX3Jlc291cmNlLmMKPiBpbmRleCAxYTIwNDYx
+YzI5MzcuLjFjNTgzNTk3NTkzNSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rp
+c3BsYXkvZGMvZGNuMTAvZGNuMTBfcmVzb3VyY2UuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvZGlzcGxheS9kYy9kY24xMC9kY24xMF9yZXNvdXJjZS5jCj4gQEAgLTI3MCw3ICsyNzAsNyBA
+QCBzdGF0aWMgY29uc3Qgc3RydWN0IGRjZV9hdWRpb19zaGlmdCBhdWRpb19zaGlmdCA9IHsKPiAg
+ICAgICAgICAgICAgICAgRENFMTIwX0FVRF9DT01NT05fTUFTS19TSF9MSVNUKF9fU0hJRlQpCj4g
+IH07Cj4KPiAtc3RhdGljIGNvbnN0IHN0cnVjdCBkY2VfYWR1aW9fbWFzayBhdWRpb19tYXNrID0g
+ewo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRjZV9hdWRpb19tYXNrIGF1ZGlvX21hc2sgPSB7Cj4g
+ICAgICAgICAgICAgICAgIERDRTEyMF9BVURfQ09NTU9OX01BU0tfU0hfTElTVChfTUFTSykKPiAg
+fTsKPgo+IC0tCj4gMi4yMC4xCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9kcmktZGV2ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
