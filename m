@@ -2,56 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE7BE8E279
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2019 03:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA99A8E27B
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2019 03:42:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2151F6E888;
-	Thu, 15 Aug 2019 01:42:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55DBB6E88B;
+	Thu, 15 Aug 2019 01:42:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 605 seconds by postgrey-1.36 at gabe;
- Wed, 14 Aug 2019 17:28:22 UTC
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com
- [148.163.143.35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FAB56E79D;
- Wed, 14 Aug 2019 17:28:22 +0000 (UTC)
-Received: from pps.filterd (m0150244.ppops.net [127.0.0.1])
- by mx0b-002e3701.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
- x7EGvC4f020879; Wed, 14 Aug 2019 17:18:09 GMT
-Received: from g9t5008.houston.hpe.com (g9t5008.houston.hpe.com [15.241.48.72])
- by mx0b-002e3701.pphosted.com with ESMTP id 2ucm0vh8y6-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 14 Aug 2019 17:18:09 +0000
-Received: from g4t3433.houston.hpecorp.net (g4t3433.houston.hpecorp.net
- [16.208.49.245])
- by g9t5008.houston.hpe.com (Postfix) with ESMTP id 92E2768;
- Wed, 14 Aug 2019 17:18:07 +0000 (UTC)
-Received: from hpe.com (teo-eag.americas.hpqcorp.net [10.33.152.10])
- by g4t3433.houston.hpecorp.net (Postfix) with ESMTP id 4CB6F45;
- Wed, 14 Aug 2019 17:18:06 +0000 (UTC)
-Date: Wed, 14 Aug 2019 12:18:06 -0500
-From: Dimitri Sivanich <sivanich@hpe.com>
-To: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: [PATCH v3 hmm 04/11] misc/sgi-gru: use mmu_notifier_get/put for
- struct gru_mm_struct
-Message-ID: <20190814171806.GA14680@hpe.com>
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
+ [IPv6:2607:f8b0:4864:20::743])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FBC66E879
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Aug 2019 00:13:21 +0000 (UTC)
+Received: by mail-qk1-x743.google.com with SMTP id m2so549792qkd.10
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Aug 2019 17:13:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=qzhD8inHCWGPsSExfxoS4FMI+7+fcQwlxaBDgT12qb4=;
+ b=pYJxYarepDSTBV3Y+NLE/NDB4q//GGFr6096npd+bqnB/XjGTIHxgpgyaFSurngjjy
+ coysOTaHSTe3mbdwjJsqGK/7lr+SJHwuOj7nPGGLwtAlHSSy97pzo0rROs/N2bkCsIG8
+ U/BXGzH6MJzciMy4dfjuWbpso+KkI7pcexrvB4wWhjRlx3Km42xKPpV5Fxfip4UF1AHV
+ FmT3AWd3mZASic8P0Hp82gdp1RSzDAQWjSTbydWfmrHk+vxJYlnx7IrHY6pNEYe8DrAJ
+ ygNejPWx3t5D347a9c/69XKAaQ1pzrWAMETS81Jf4lATCC3bVIvYVwJ1WQ/FE4Td1/NR
+ AMJw==
+X-Gm-Message-State: APjAAAWFxFfMI6AXSVilA4F+tDttzzBqDqfp7bFTf2WWyLffzS3W+g1I
+ RxeKQtCNgrUVrmS7X5heAOyN/Q==
+X-Google-Smtp-Source: APXvYqxctXlgOtCTuI+nHfly9zVzKydMCFWuaFknzokpvDUX3JdzMaNu+TsBvuyQsnsSgXcVbMLc+w==
+X-Received: by 2002:a05:620a:130d:: with SMTP id
+ o13mr1851841qkj.285.1565828000618; 
+ Wed, 14 Aug 2019 17:13:20 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-156-34-55-100.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [156.34.55.100])
+ by smtp.gmail.com with ESMTPSA id i5sm756517qti.0.2019.08.14.17.13.20
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 14 Aug 2019 17:13:20 -0700 (PDT)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+ (envelope-from <jgg@ziepe.ca>)
+ id 1hy3OJ-0003bl-SN; Wed, 14 Aug 2019 21:13:19 -0300
+Date: Wed, 14 Aug 2019 21:13:19 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH v3 hmm 03/11] mm/mmu_notifiers: add a get/put scheme for
+ the registration
+Message-ID: <20190815001319.GF11200@ziepe.ca>
 References: <20190806231548.25242-1-jgg@ziepe.ca>
- <20190806231548.25242-5-jgg@ziepe.ca> <20190808102556.GB648@lst.de>
- <20190814155830.GO13756@mellanox.com>
+ <20190806231548.25242-4-jgg@ziepe.ca>
+ <0a23adb8-b827-cd90-503e-bfa84166c67e@nvidia.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190814155830.GO13756@mellanox.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
- definitions=2019-08-14_06:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- malwarescore=0 suspectscore=2 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=636 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1906280000 definitions=main-1908140158
+In-Reply-To: <0a23adb8-b827-cd90-503e-bfa84166c67e@nvidia.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Mailman-Approved-At: Thu, 15 Aug 2019 01:42:26 +0000
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=qzhD8inHCWGPsSExfxoS4FMI+7+fcQwlxaBDgT12qb4=;
+ b=kQ7rO4RrHFSZ6MZuuxxoF8VbnBnjRycJLb07elyvEnUiIa4wJgsVinEba3cE2MqTB9
+ fJulQuWx6Y5tYTxlddWTc11PBfISadqD+ExfUHnpoPQON92Ku+S5Y/WG1rnAqUDmFm/t
+ sZdh11B/5WH1wkWaQw580ROrmY5paRB/mKD6yO6YRdOAjXFOKeMa/lNRNHsDHR11a2YM
+ fH5CrO9kz+3OETBgm2cIOfKwCC5iyZs6YtbJwN/rErrCwql6u7WwlNfS1W19r/IYCdLa
+ OB/xGbNt8+DZYg3Zcz43LE9VgkFuylrF77Y+9lVNSAp5BzomHMMBV2AknnHcgTQXagXw
+ j3Dg==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -65,31 +79,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Andrea Arcangeli <aarcange@redhat.com>,
  "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- Ralph Campbell <rcampbell@nvidia.com>, Gavin Shan <shangw@linux.vnet.ibm.com>,
- Andrea Righi <andrea@betterlinux.com>, Dimitri Sivanich <sivanich@hpe.com>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
+ Dimitri Sivanich <sivanich@sgi.com>, Gavin Shan <shangw@linux.vnet.ibm.com>,
+ Andrea Righi <andrea@betterlinux.com>, linux-rdma@vger.kernel.org,
  John Hubbard <jhubbard@nvidia.com>, "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Christoph Hellwig <hch@infradead.org>, linux-mm@kvack.org,
+ =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>,
+ iommu@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org,
  Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBBdWcgMTQsIDIwMTkgYXQgMDM6NTg6MzRQTSArMDAwMCwgSmFzb24gR3VudGhvcnBl
-IHdyb3RlOgo+IE9uIFRodSwgQXVnIDA4LCAyMDE5IGF0IDEyOjI1OjU2UE0gKzAyMDAsIENocmlz
-dG9waCBIZWxsd2lnIHdyb3RlOgo+ID4gTG9va3MgZ29vZCwKPiA+IAo+ID4gUmV2aWV3ZWQtYnk6
-IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgo+IAo+IERpbWl0cmksIGFyZSB5b3UgT0sg
-d2l0aCB0aGlzIHBhdGNoPwo+CgpJIHRoaW5rIHRoaXMgbG9va3MgT0suCgpSZXZpZXdlZC1ieTog
-RGltaXRyaSBTaXZhbmljaCA8c2l2YW5pY2hAaHBlLmNvbT4KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9hbWQtZ2Z4
+T24gV2VkLCBBdWcgMTQsIDIwMTkgYXQgMDI6MjA6MzFQTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
+d3JvdGU6Cj4gCj4gT24gOC82LzE5IDQ6MTUgUE0sIEphc29uIEd1bnRob3JwZSB3cm90ZToKPiA+
+IEZyb206IEphc29uIEd1bnRob3JwZSA8amdnQG1lbGxhbm94LmNvbT4KPiA+IAo+ID4gTWFueSBw
+bGFjZXMgaW4gdGhlIGtlcm5lbCBoYXZlIGEgZmxvdyB3aGVyZSB1c2Vyc3BhY2Ugd2lsbCBjcmVh
+dGUgc29tZQo+ID4gb2JqZWN0IGFuZCB0aGF0IG9iamVjdCB3aWxsIG5lZWQgdG8gY29ubmVjdCB0
+byB0aGUgc3Vic3lzdGVtJ3MKPiA+IG1tdV9ub3RpZmllciBzdWJzY3JpcHRpb24gZm9yIHRoZSBk
+dXJhdGlvbiBvZiBpdHMgbGlmZXRpbWUuCj4gPiAKPiA+IEluIHRoaXMgY2FzZSB0aGUgc3Vic3lz
+dGVtIGlzIHVzdWFsbHkgdHJhY2tpbmcgbXVsdGlwbGUgbW1fc3RydWN0cyBhbmQgaXQKPiA+IGlz
+IGRpZmZpY3VsdCB0byBrZWVwIHRyYWNrIG9mIHdoYXQgc3RydWN0IG1tdV9ub3RpZmllcidzIGhh
+dmUgYmVlbgo+ID4gYWxsb2NhdGVkIGZvciB3aGF0IG1tJ3MuCj4gPiAKPiA+IFNpbmNlIHRoaXMg
+aGFzIGJlZW4gb3BlbiBjb2RlZCBpbiBhIHZhcmlldHkgb2YgZXhjaXRpbmcgd2F5cywgcHJvdmlk
+ZSBjb3JlCj4gPiBmdW5jdGlvbmFsaXR5IHRvIGRvIHRoaXMgc2FmZWx5Lgo+ID4gCj4gPiBUaGlz
+IGFwcHJvYWNoIHVzZXMgdGhlIHN0cmN0IG1tdV9ub3RpZmllcl9vcHMgKiBhcyBhIGtleSB0byBk
+ZXRlcm1pbmUgaWYKPiAKPiBzL3N0cmN0L3N0cnVjdAoKWWVzLCB0aGFua3MgZm9yIGFsbCBvZiB0
+aGlzLCBJIGxpa2UgaGF2aW5nIGNvbW1lbnRzLCBidXQgSSdtIGEKdGVycmlibGUgcHJvb2ZyZWFk
+ZXIgOigKCkphc29uCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
