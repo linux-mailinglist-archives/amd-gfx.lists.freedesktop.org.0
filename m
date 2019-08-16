@@ -1,87 +1,90 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9546F8FCA5
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Aug 2019 09:44:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E438FCC5
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Aug 2019 09:52:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDD176EB05;
-	Fri, 16 Aug 2019 07:44:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4478E6EB0F;
+	Fri, 16 Aug 2019 07:52:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680059.outbound.protection.outlook.com [40.107.68.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB486EB05
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Aug 2019 07:44:17 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770089.outbound.protection.outlook.com [40.107.77.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DEEF6EB0F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Aug 2019 07:52:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J3yrjIi5PwKfy1JkLvKgmr1UIKEGbvLSvR5BgkmRV3VVvZZLkATfOjrdaSDpV0wAx74B/msvva1BXiYCijdwxh5X6yRpFV1ajP9Fnbq66s6htCu+z6ivIj4jrZGxr2dIBdDSEH9QLvPThcndhcuRwCgYcSYLgrSPAmSfQVvUgZoM359EwYODeEMIim7tFhHtPxdeJSsg38NtALwa0dGeeJiT9IyHX8zNuBw9Y95vszjnXGMB6pTEHvn9JMTeXVlVbvVzd4Q2iVdLfaswgjCWEEBMBTrMvZO98V+se4wOU54ohFuJ2AQLEgdDnaOQBLp+ATezphWfAz19F6lVJHAEJg==
+ b=FWFHiea9vJp3HeiPkY7KocAbl63uw1bWbpfoK6ARFYvuorgxmL4LXyzrEavCschz9TiCdvHltMfdSkqa3wSvYRuAqKHNGh/TP87PPurZppiKvSRZHGXVSnif22nnzbEnNmXCCsEAhXapYHrapMy5DNkY67ZcbfmZTtdtXo9gn4DeLFx7f+bCgxSpNQsxGGXJd5SBsKuBVQ5yHllHQLgo3VCvq2TIWgpvRJAJgfLlgAn3LxYG9eJkObc4YE9zxH6izXiu5ySl7ix4QHOVVesaknDp/7mLywtniY5bXMmrUIK+lMxoNwPXJdpGp9ENAoKY4CzIVHH1xxEbkuAR5CfV2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WrjEMQ0OVKFxfhzioflGWoJ800OlUv+BQOFVqhpBXAU=;
- b=JM6H/VlVWz/bcqHriL6tn1aGpiBIabxVlvFO2MXAOGOdQovSUb49+m3S6z9HUIGhctPpxSpXZim26FJ0TBX0tMnDiUwdkNWAhMEp1RieiRYkcw0n7HjGwK7XBKdibwToA7Z3ytnW7bENFZ+FL/1S1ixUPwOGYrTe5mCwb76QNyJKlKGPE5sXP0K+jl/4nmZWuWoAZqTfyob0ZI543Y+W1R1lBAWn4vHTEsALexNlK8HyX47w+QRplEzm/ZzTaEbW1utWuhYIE8wKZ51Lpi3ZbH4UI7EI50oY6mtWJvgeaJS66ctIGsEunnCnAS2tHLZXaFK1AlLhWlNz3NJl4B3BvQ==
+ bh=25xQuR2oqqFY+rT5LodfH/XVunxOdww7eMMAs/csCow=;
+ b=cTQZvqqZIH6UoNGCEYpAgU357u2xdWXgzPcOApCczE0P/Cv4igencX8ai3qkrwv45TpxUTFrMKewjbBybUlLqTAe5aNwrNUvw3rdEPlOSmsSXYKyIrogqYzErA9cPxouB8mfTUru0WMR2diQ0yVZkPwBdXTfcUA7yO/IHSUS90tsu3+3iR5MoFS/R5RPqN2c+hZgGQiZUneBzwgmfu3ckMa8CxKDTc6Q1Gjfqhfnd9z4KhOeljRscUFUsW8LaoxJXm5f9WA25FecV1GLKGQ4oTpRTTxoGJwVghVjDwEcKIIQKaPsqZwu1eOxC3TgdyajKyhC5jK04uWg1zaRimmMfA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 Received: from MN2PR12MB3344.namprd12.prod.outlook.com (20.178.241.74) by
- MN2PR12MB3600.namprd12.prod.outlook.com (20.178.241.140) with Microsoft SMTP
+ MN2PR12MB4240.namprd12.prod.outlook.com (52.135.48.142) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.16; Fri, 16 Aug 2019 07:44:14 +0000
+ 15.20.2157.16; Fri, 16 Aug 2019 07:52:13 +0000
 Received: from MN2PR12MB3344.namprd12.prod.outlook.com
  ([fe80::6cae:3314:7799:3077]) by MN2PR12MB3344.namprd12.prod.outlook.com
  ([fe80::6cae:3314:7799:3077%6]) with mapi id 15.20.2157.022; Fri, 16 Aug 2019
- 07:44:14 +0000
+ 07:52:13 +0000
 From: "Quan, Evan" <Evan.Quan@amd.com>
 To: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amd/powerplay: add smu_smc_read_sensor support for
- arcturus
-Thread-Topic: [PATCH] drm/amd/powerplay: add smu_smc_read_sensor support for
- arcturus
-Thread-Index: AQHVVANX9qrnAkbKrEyyuQuMRJcat6b9Y9wQ
-Date: Fri, 16 Aug 2019 07:44:14 +0000
-Message-ID: <MN2PR12MB3344E68E5D3285594A36845EE4AF0@MN2PR12MB3344.namprd12.prod.outlook.com>
-References: <20190816072200.21833-1-kevin1.wang@amd.com>
-In-Reply-To: <20190816072200.21833-1-kevin1.wang@amd.com>
+Subject: RE: [PATCH 2/4] drm/amd/powerplay: expose supported clock domains
+ only through sysfs
+Thread-Topic: [PATCH 2/4] drm/amd/powerplay: expose supported clock domains
+ only through sysfs
+Thread-Index: AQHVU/kQHJuc6DP6u02S4aGfQ2PYPqb9XOEAgAAJJGA=
+Date: Fri, 16 Aug 2019 07:52:13 +0000
+Message-ID: <MN2PR12MB3344559C0257D2BB3DB68832E4AF0@MN2PR12MB3344.namprd12.prod.outlook.com>
+References: <20190816060807.11922-1-evan.quan@amd.com>,
+ <20190816060807.11922-2-evan.quan@amd.com>
+ <MN2PR12MB329617CB0EF329673FB44F77A2AF0@MN2PR12MB3296.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB329617CB0EF329673FB44F77A2AF0@MN2PR12MB3296.namprd12.prod.outlook.com>
 Accept-Language: en-US, zh-CN
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bdc958f1-8f23-46e3-fbe9-08d7221d8935
+x-ms-office365-filtering-correlation-id: 4023bd64-9722-40a9-9846-08d7221ea68e
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB3600; 
-x-ms-traffictypediagnostic: MN2PR12MB3600:
+ SRVR:MN2PR12MB4240; 
+x-ms-traffictypediagnostic: MN2PR12MB4240:
+x-ms-exchange-purlcount: 3
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB3600C35BBE2015EA2774F1EAE4AF0@MN2PR12MB3600.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-microsoft-antispam-prvs: <MN2PR12MB4240B956EBF3674243D44811E4AF0@MN2PR12MB4240.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-forefront-prvs: 0131D22242
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(39860400002)(396003)(366004)(136003)(376002)(13464003)(189003)(199004)(26005)(66946007)(74316002)(7696005)(102836004)(81166006)(6506007)(99286004)(53546011)(5660300002)(316002)(110136005)(54906003)(86362001)(76176011)(14454004)(52536014)(8936002)(53936002)(6246003)(229853002)(8676002)(81156014)(9686003)(55016002)(7736002)(3846002)(71190400001)(305945005)(66066001)(6116002)(2906002)(6436002)(71200400001)(4326008)(486006)(66446008)(476003)(64756008)(66476007)(11346002)(446003)(478600001)(66556008)(25786009)(76116006)(2501003)(33656002)(14444005)(186003)(256004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3600;
+ SFS:(10009020)(4636009)(366004)(39860400002)(376002)(346002)(396003)(136003)(199004)(189003)(81166006)(7736002)(8936002)(81156014)(99286004)(53546011)(236005)(102836004)(66066001)(26005)(446003)(2906002)(76176011)(6436002)(7696005)(476003)(6306002)(9686003)(486006)(54896002)(229853002)(55016002)(2501003)(25786009)(71200400001)(71190400001)(53936002)(14444005)(86362001)(6246003)(256004)(66476007)(52536014)(66946007)(316002)(76116006)(478600001)(6506007)(790700001)(11346002)(66556008)(3846002)(966005)(6116002)(33656002)(8676002)(186003)(110136005)(606006)(66446008)(14454004)(64756008)(74316002)(5660300002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4240;
  H:MN2PR12MB3344.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 97mU2vQivub7LmZoPP1oWrcGXjuLx3S4RuiWmZGtBJT1EKYIn0tFtsYcOc1WlKJJnymhPIXIlMkgycLwTl/3WM44eUB+wdJDESt27fpaxC5fyXtsl/yTCHMZOVhJlxdwSd5tuIeAPr9sqXJUnZkq8J2RhELeyxzkL87dIaso7hvAi1BDGomQ34WQej3R9OBLb4inpUNwN6gyzmDkeic21nNM3b+7FH8dV1FtR39ISkY3cgvGoxAwURf6LdiAqluuL+KzXPGZUyDuLVYUzNXd9JHMP9nUWVPS6QDU0nVjunih1AntjnD7oyM8sRG2ZE7ImJ64VvnV4S6ZNhNPDbCkYdg43AUFX6XWakqzgsayvo79qG3vWx/0Y99Q0z1xYDyEaHcmsFJA1xJhiO4Pyq+hrRLmz+N0Bc7759M7ACPSfwo=
+x-microsoft-antispam-message-info: p5HUJ/Lx8za1iaQ3w5uM+ttbQlaHCjACE72zmKCvj7Ba/J8A8GR4MaGzS25lO0GrgHM/bwLcPnogS6GA6M/S1GU0nW8l1rWmbAtR4PjuRs/deMM2pzZSENWqNiFHBdFY7uIuRzf+2hbffY0hlm3nzD1hIaghTGJ9MANvljp9r+OtT2ANXzqIV+Dxfb50UzNGEYMvN58xc8XJRGCa20dzX1ra7htysaPCTPV8pe2h6K334cU6LGnw9JwH3UWO6WgpWbyY0hnPMHSIkR656HkzRH3RQjHzlQM7mGhDliNo7s6c88yavL+Y63deDc0ASNBfnWhCl2KaTLZf0FrkIf8VH1ILZGisSD48NO4Lvwg6pEhH3owBh4pI5A2eLOpKTEcq0l2LbnPwLBxAPcascRd5/q4Ccdr1lGP/grX+qI9CYy0=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bdc958f1-8f23-46e3-fbe9-08d7221d8935
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2019 07:44:14.4618 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4023bd64-9722-40a9-9846-08d7221ea68e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2019 07:52:13.3981 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 55e1I23qT4f14v6uSoWh3pF8ktyv+u8EKGs6BDgBFxSc/u/Jpptj3lH9RA0KwdfU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3600
+X-MS-Exchange-CrossTenant-userprincipalname: ciWfcrl4NmtmKpF0CCyXGNtmWLctCTgUNuG+pm+HUt7xbuHqL743QX/KsGQ6LdjN
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4240
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WrjEMQ0OVKFxfhzioflGWoJ800OlUv+BQOFVqhpBXAU=;
- b=iwity0o/J2smFxk/cFrmwYr2PZaQaa9abPH8jfELj3t0uhVWiEz2pIQF9z5EQtR0vzR81SS1cvZsoS+M281nIiHyLQjRRwPGHRKXz4dFPKhFLzSstdxGE364EfqLSZrb67gh1zTPmmatXwPpHV7Ktp69xzw9N4pttAqC260LfHk=
+ bh=25xQuR2oqqFY+rT5LodfH/XVunxOdww7eMMAs/csCow=;
+ b=j/QcaS4d+DFaAD9uxFR6CMFjXm2hAgl4YxUPvvhYhFSTFi+ylyknsPpmBMA0t2+83cvcEJGVZ/3xUray6hheGhVHpEP+tVga5VXfVzJhIg+Q63wa4HFrPjFCaoZAVZZedOX3UOA5nCY09yfNlkH1EwLhbKSRlmHyicDScvrlgxs=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Evan.Quan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -95,43 +98,427 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Huang, Ray" <Ray.Huang@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1104608637=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-V2l0aG91dCB0aGlzIHBhdGNoLCB0aGVyZSB3aWxsIGJlIG1pc3NpbmcgbWFueSBzZW5zb3Igc3Vw
-cG9ydCBvbiBhcmN0dXJ1cy4KQmV0dGVyIHRvIGRlY2xhcmUgdGhpcyBpbiBkZXNjcmlwdGlvbnMg
-b3IgcGF0Y2ggaGVhZGVyLgpXaXRoIHRoYXQgZml4ZWQsIHRoZSBwYXRjaCBpcyByZXZpZXdlZC1i
-eTogRXZhbiBRdWFuIDxldmFuLnF1YW5AYW1kLmNvbT4KClJlZ2FyZHMsCkV2YW4KPiAtLS0tLU9y
-aWdpbmFsIE1lc3NhZ2UtLS0tLQo+IEZyb206IFdhbmcsIEtldmluKFlhbmcpIDxLZXZpbjEuV2Fu
-Z0BhbWQuY29tPgo+IFNlbnQ6IEZyaWRheSwgQXVndXN0IDE2LCAyMDE5IDM6MjIgUE0KPiBUbzog
-YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogUXVhbiwgRXZhbiA8RXZhbi5RdWFu
-QGFtZC5jb20+OyBIdWFuZywgUmF5Cj4gPFJheS5IdWFuZ0BhbWQuY29tPjsgRmVuZywgS2VubmV0
-aCA8S2VubmV0aC5GZW5nQGFtZC5jb20+OyBXYW5nLAo+IEtldmluKFlhbmcpIDxLZXZpbjEuV2Fu
-Z0BhbWQuY29tPgo+IFN1YmplY3Q6IFtQQVRDSF0gZHJtL2FtZC9wb3dlcnBsYXk6IGFkZCBzbXVf
-c21jX3JlYWRfc2Vuc29yIHN1cHBvcnQKPiBmb3IgYXJjdHVydXMKPiAKPiB0aGUgYmVsbG93IHBh
-dGNoIHJlZmluZSB0aGUgc2Vuc29yIHJlYWQgc2VxdWVuY2UsCj4gYnV0IG1pc3NlZCB0byBhZGQg
-YXJjdXR1cnMgc3VwcG9ydC4gKGFyY3V0dXJzX3BwdC5jKQo+IAo+IGRybS9hbWQvcG93ZXJwbGF5
-OiBjaGFuZ2Ugc211X3JlYWRfc2Vuc29yIHNlcXVlbmNlIGluIHNtdQo+IAo+IFNpZ25lZC1vZmYt
-Ynk6IEtldmluIFdhbmcgPGtldmluMS53YW5nQGFtZC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1
-L2RybS9hbWQvcG93ZXJwbGF5L2FyY3R1cnVzX3BwdC5jIHwgNSArKysrLQo+ICAxIGZpbGUgY2hh
-bmdlZCwgNCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2FyY3R1cnVzX3BwdC5jCj4gYi9kcml2ZXJzL2dw
-dS9kcm0vYW1kL3Bvd2VycGxheS9hcmN0dXJ1c19wcHQuYwo+IGluZGV4IGZjZjYyM2NmNWQyYy4u
-ODUwYjJhMWVmMzI5IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5
-L2FyY3R1cnVzX3BwdC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvYXJj
-dHVydXNfcHB0LmMKPiBAQCAtMTAxMiw2ICsxMDEyLDkgQEAgc3RhdGljIGludCBhcmN0dXJ1c19y
-ZWFkX3NlbnNvcihzdHJ1Y3Qgc211X2NvbnRleHQKPiAqc211LAo+ICAJUFBUYWJsZV90ICpwcHRh
-YmxlID0gdGFibGVfY29udGV4dC0+ZHJpdmVyX3BwdGFibGU7Cj4gIAlpbnQgcmV0ID0gMDsKPiAK
-PiArCWlmKCFkYXRhIHx8ICFzaXplKQo+ICsJCXJldHVybiAtRUlOVkFMOwo+ICsKPiAgCXN3aXRj
-aCAoc2Vuc29yKSB7Cj4gIAljYXNlIEFNREdQVV9QUF9TRU5TT1JfTUFYX0ZBTl9SUE06Cj4gIAkJ
-Kih1aW50MzJfdCAqKWRhdGEgPSBwcHRhYmxlLT5GYW5NYXhpbXVtUnBtOwo+IEBAIC0xMDM2LDcg
-KzEwMzksNyBAQCBzdGF0aWMgaW50IGFyY3R1cnVzX3JlYWRfc2Vuc29yKHN0cnVjdCBzbXVfY29u
-dGV4dAo+ICpzbXUsCj4gIAkJKnNpemUgPSA0Owo+ICAJCWJyZWFrOwo+ICAJZGVmYXVsdDoKPiAt
-CQlyZXR1cm4gLUVJTlZBTDsKPiArCQlyZXQgPSBzbXVfc21jX3JlYWRfc2Vuc29yKHNtdSwgc2Vu
-c29yLCBkYXRhLCBzaXplKTsKPiAgCX0KPiAKPiAgCXJldHVybiByZXQ7Cj4gLS0KPiAyLjIyLjAK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZngg
-bWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============1104608637==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB3344559C0257D2BB3DB68832E4AF0MN2PR12MB3344namp_"
+
+--_000_MN2PR12MB3344559C0257D2BB3DB68832E4AF0MN2PR12MB3344namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Bascially, we should not expose the sysfs interface for those features not =
+supported by the ASIC.
+As, there are some tools/tests which judges whether the feature is supporte=
+d by the existence of the file.
+This can fix some test failure in rocm test suit.
+
+Regards,
+Evan
+From: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
+Sent: Friday, August 16, 2019 3:16 PM
+To: Quan, Evan <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/4] drm/amd/powerplay: expose supported clock domains =
+only through sysfs
+
+I don't recommend it. What's the problem if we keep it the way it is?
+maybe other asic also has same problems, if do it, the other asic should  a=
+dd a condition in there too.
+eg: navi10 don't support sensor of  "pp_dpm_pcie".
+
+Best Regards,
+Kevin
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
+@lists.freedesktop.org>> on behalf of Evan Quan <evan.quan@amd.com<mailto:e=
+van.quan@amd.com>>
+Sent: Friday, August 16, 2019 2:08 PM
+To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org> <am=
+d-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>>
+Cc: Quan, Evan <Evan.Quan@amd.com<mailto:Evan.Quan@amd.com>>
+Subject: [PATCH 2/4] drm/amd/powerplay: expose supported clock domains only=
+ through sysfs
+
+Do not expose those unsupported clock domains through sysfs on
+Arcturus.
+
+Change-Id: I526e7bd457fdcd8c79d4581bb9b77e5cb57f5844
+Signed-off-by: Evan Quan <evan.quan@amd.com<mailto:evan.quan@amd.com>>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 26 ++++++++++++++++----------
+ 1 file changed, 16 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_pm.c
+index c5642be9b44b..7accf2c7f8cd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+@@ -2879,10 +2879,12 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *adev=
+)
+                         DRM_ERROR("failed to create device file pp_dpm_soc=
+clk\n");
+                         return ret;
+                 }
+-               ret =3D device_create_file(adev->dev, &dev_attr_pp_dpm_dcef=
+clk);
+-               if (ret) {
+-                       DRM_ERROR("failed to create device file pp_dpm_dcef=
+clk\n");
+-                       return ret;
++               if (adev->asic_type !=3D CHIP_ARCTURUS) {
++                       ret =3D device_create_file(adev->dev, &dev_attr_pp_=
+dpm_dcefclk);
++                       if (ret) {
++                               DRM_ERROR("failed to create device file pp_=
+dpm_dcefclk\n");
++                               return ret;
++                       }
+                 }
+         }
+         if (adev->asic_type >=3D CHIP_VEGA20) {
+@@ -2892,10 +2894,12 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *adev=
+)
+                         return ret;
+                 }
+         }
+-       ret =3D device_create_file(adev->dev, &dev_attr_pp_dpm_pcie);
+-       if (ret) {
+-               DRM_ERROR("failed to create device file pp_dpm_pcie\n");
+-               return ret;
++       if (adev->asic_type !=3D CHIP_ARCTURUS) {
++               ret =3D device_create_file(adev->dev, &dev_attr_pp_dpm_pcie=
+);
++               if (ret) {
++                       DRM_ERROR("failed to create device file pp_dpm_pcie=
+\n");
++                       return ret;
++               }
+         }
+         ret =3D device_create_file(adev->dev, &dev_attr_pp_sclk_od);
+         if (ret) {
+@@ -2999,9 +3003,11 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device *adev=
+)
+         device_remove_file(adev->dev, &dev_attr_pp_dpm_mclk);
+         if (adev->asic_type >=3D CHIP_VEGA10) {
+                 device_remove_file(adev->dev, &dev_attr_pp_dpm_socclk);
+-               device_remove_file(adev->dev, &dev_attr_pp_dpm_dcefclk);
++               if (adev->asic_type !=3D CHIP_ARCTURUS)
++                       device_remove_file(adev->dev, &dev_attr_pp_dpm_dcef=
+clk);
+         }
+-       device_remove_file(adev->dev, &dev_attr_pp_dpm_pcie);
++       if (adev->asic_type !=3D CHIP_ARCTURUS)
++               device_remove_file(adev->dev, &dev_attr_pp_dpm_pcie);
+         if (adev->asic_type >=3D CHIP_VEGA20)
+                 device_remove_file(adev->dev, &dev_attr_pp_dpm_fclk);
+         device_remove_file(adev->dev, &dev_attr_pp_sclk_od);
+--
+2.22.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_MN2PR12MB3344559C0257D2BB3DB68832E4AF0MN2PR12MB3344namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Bascially, we should not expose the sysfs interface =
+for those features not supported by the ASIC.<o:p></o:p></p>
+<p class=3D"MsoNormal">As, there are some tools/tests which judges whether =
+the feature is supported by the existence of the file.<o:p></o:p></p>
+<p class=3D"MsoNormal">This can fix some test failure in rocm test suit.<o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Evan<o:p></o:p></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.c=
+om&gt; <br>
+<b>Sent:</b> Friday, August 16, 2019 3:16 PM<br>
+<b>To:</b> Quan, Evan &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.=
+org<br>
+<b>Subject:</b> Re: [PATCH 2/4] drm/amd/powerplay: expose supported clock d=
+omains only through sysfs<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">I don't=
+ recommend it. What's the problem if we keep it the way it is?<o:p></o:p></=
+span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">maybe o=
+ther asic also has same problems, if do it, the other asic should&nbsp; add=
+ a condition in there too.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">eg: nav=
+i10 don't support sensor of&nbsp; &quot;pp_dpm_pcie&quot;.<o:p></o:p></span=
+></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
+bsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Best Re=
+gards,<br>
+Kevin<o:p></o:p></span></p>
+</div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span style=3D"color:black">From:</span></b><span=
+ style=3D"color:black"> amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists=
+.freedesktop.org">amd-gfx-bounces@lists.freedesktop.org</a>&gt; on behalf o=
+f Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.quan@amd.com</a>&=
+gt;<br>
+<b>Sent:</b> Friday, August 16, 2019 2:08 PM<br>
+<b>To:</b> <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.f=
+reedesktop.org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd=
+-gfx@lists.freedesktop.org</a>&gt;<br>
+<b>Cc:</b> Quan, Evan &lt;<a href=3D"mailto:Evan.Quan@amd.com">Evan.Quan@am=
+d.com</a>&gt;<br>
+<b>Subject:</b> [PATCH 2/4] drm/amd/powerplay: expose supported clock domai=
+ns only through sysfs</span>
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Do not expose those unsupported clock domains throug=
+h sysfs on<br>
+Arcturus.<br>
+<br>
+Change-Id: I526e7bd457fdcd8c79d4581bb9b77e5cb57f5844<br>
+Signed-off-by: Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.quan=
+@amd.com</a>&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 26 &#43;&#43;&#43;&#43;&#43;=
+&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;----------<br>
+&nbsp;1 file changed, 16 insertions(&#43;), 10 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_pm.c<br>
+index c5642be9b44b..7accf2c7f8cd 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c<br>
+@@ -2879,10 &#43;2879,12 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *=
+adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_E=
+RROR(&quot;failed to create device file pp_dpm_socclk\n&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n ret;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; }<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D device_create_file(adev-&gt;dev, &amp;dev_attr_pp_dpm_dc=
+efclk);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (ret) {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_ERROR(&quot;=
+failed to create device file pp_dpm_dcefclk\n&quot;);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (adev-&gt;asic_type !=3D CHIP_ARCTURUS) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D devi=
+ce_create_file(adev-&gt;dev, &amp;dev_attr_pp_dpm_dcefclk);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret) {<b=
+r>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_ERROR(&quot;failed to create device=
+ file pp_dpm_dcefclk\n&quot;);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;asic_type &gt=
+;=3D CHIP_VEGA20) {<br>
+@@ -2892,10 &#43;2894,12 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *=
+adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n ret;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D device_create_file(adev-&gt;d=
+ev, &amp;dev_attr_pp_dpm_pcie);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret) {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; DRM_ERROR(&quot;failed to create device file pp_dpm_pcie\n&quot;=
+);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; return ret;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;asic_type !=3D CHIP_=
+ARCTURUS) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; ret =3D device_create_file(adev-&gt;dev, &amp;dev_attr_pp_dp=
+m_pcie);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (ret) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_ERROR(&q=
+uot;failed to create device file pp_dpm_pcie\n&quot;);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<=
+br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D device_create_file=
+(adev-&gt;dev, &amp;dev_attr_pp_sclk_od);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret) {<br>
+@@ -2999,9 &#43;3003,11 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device *=
+adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&g=
+t;dev, &amp;dev_attr_pp_dpm_mclk);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;asic_type &gt=
+;=3D CHIP_VEGA10) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&gt;dev, &amp;dev_attr_pp_dpm=
+_socclk);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; device_remove_file(adev-&gt;dev, &amp;dev_attr_pp_dpm_dcefclk);<=
+br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (adev-&gt;asic_type !=3D CHIP_ARCTURUS)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; device_remov=
+e_file(adev-&gt;dev, &amp;dev_attr_pp_dpm_dcefclk);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&gt;dev, &amp=
+;dev_attr_pp_dpm_pcie);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;asic_type !=3D CHIP_=
+ARCTURUS)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; device_remove_file(adev-&gt;dev, &amp;dev_attr_pp_dpm_pcie);=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;asic_type &gt=
+;=3D CHIP_VEGA20)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&gt;dev, &amp;dev_attr_pp_dpm=
+_fclk);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&g=
+t;dev, &amp;dev_attr_pp_sclk_od);<br>
+-- <br>
+2.22.0<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a><o:p></o:p></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_MN2PR12MB3344559C0257D2BB3DB68832E4AF0MN2PR12MB3344namp_--
+
+--===============1104608637==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1104608637==--
