@@ -2,91 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC4F991C41
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2019 07:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D481991C7B
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2019 07:26:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6DDD6E090;
-	Mon, 19 Aug 2019 05:11:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 454486E093;
+	Mon, 19 Aug 2019 05:26:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr740081.outbound.protection.outlook.com [40.107.74.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE7D6E090
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Aug 2019 05:11:41 +0000 (UTC)
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr780072.outbound.protection.outlook.com [40.107.78.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16CB16E091
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Aug 2019 05:26:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P9R3u3Uh96K2ZBpKdzwDzervT2VzXklnIrli2wwYD8y+7rEPxS23WAtK5aoMRA3HVsIMG1AxwzpvAX0f4F71IUsosWGwzPrMK9x7U2k4cK3nsaANe20AT87sEcm7SHEesvmF+NILjj9qguk7dy+mfszCW1NELI+9OWm/sHi5OYdN9KD6knB/dsy03hnl6lPSPPvO3gZJuB6dHZ6N39vrSCLKaQHql3SbGAR8eY6G/LPqoK+Zb31ydVlfz5pFuuDKoorOuq2MqW3jpP/wo+UP38j4zAkBmfMhLDJshA+Aik42Kc36qT+Zu/hzhaFSSj7WDdT6g8jCYDQ/n+fVQGIO9A==
+ b=i+K8W5y+/YkVrdzgWocaDwm2WQqp7Pe7JNNXuk0skkBlBzEYKUi1Bo3QB7aUdTHbbvEc15p6fW4wvTZIvwv2Y62xlTm2H3J3QOUG2Z3gOzcExxIYwFNdbU1Ye85dYSd8ZPi2HT+cN3lc8wAPb9LwheLZEYJUeXnguYeMUwcrPmHFdMoFiGJihV15YN8tNPHdsLmwxH/o6sRPT5VzRKW88CCd9rlvuztBBagxDOy9lFKo0vtK8EcH2Pv+zs7EWchBrtG5DZ9QV1HAa2PERiBWdl9bthVAT+hDOJcMuTOF2O7ksm5I7DRzA9bGCYfZlL5b4wJsdyh7sMZnZPMi0DUfdA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7onPy6+mMpzzrIZvkQ0HlJ5WF5sE0HT6M94Z2hu88as=;
- b=mU3cCT1Lwn6nbcT7Gk+bJPkmuvXadQ62TtcuOttpxEp79ixkLJHBsz7HfTWWQfi2t+mtRrdlQj6i/NSCa+4IA/hznj1YKUX1zwONErqW3ULANvr/aXBolKViAvgrr6hVYubIT3lzTK3BIBrlFhO1EPMnGu0fppZItgJvDayQw628H9sRyBlkSHeiHk7rNF1pNN0U73ecXdO4EJNPXU0NjqSsQAAHCjiCORWVDv7wW5PxPnEx2cb9QEXXiNJ9xOdV9llzAeR/FoyIxg32Xsr+1Y2FAulZTvymC1LERGIGy9CDPlqTGdqpqyDs6YHi/Yk1GMzgH+F/25CFXoWeacT7Sg==
+ bh=7ODMeGVDn5febs85gi/iXvQREs7NH3RE2IUTcyr+G1k=;
+ b=QuLtJ7EM2JdHaWk4P0pGJn4/MPbDV/j+eQ1oIsi5RFVGVKkZdmMVpCeqZf/NHmHKPuvc7oCjO6QMeu3zUQ43cgMFhcVoXdXTsGSEL1IB/k1/v9BfCo2Pr7oxaxJVZMLdGYk2PBgdP+GEjc3Ok6xD28nJ8hLDXxzo+InGpDIp+pQgTHj9+n/C3ZloufkNY8+2s/lS5V/gP/4i6NF0ziRMRi0h1lv7OQQcUPp8E7NaxbeLSdcFwo2Cx11kCSIzr4kAx3W8aG6BrEcFaV7NelvmssBaAst4iqdStAvcZpL/DEvp1xDOjqopv3xFuXydzunjk8QPN4ZwLKVTvW5iHi4Huw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from MN2PR12MB3598.namprd12.prod.outlook.com (20.178.244.84) by
- MN2PR12MB3264.namprd12.prod.outlook.com (20.179.83.23) with Microsoft SMTP
+Received: from MN2PR12MB3344.namprd12.prod.outlook.com (20.178.241.74) by
+ MN2PR12MB4206.namprd12.prod.outlook.com (52.135.49.18) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2178.18; Mon, 19 Aug 2019 05:11:39 +0000
-Received: from MN2PR12MB3598.namprd12.prod.outlook.com
- ([fe80::a556:ef17:e8e:2037]) by MN2PR12MB3598.namprd12.prod.outlook.com
- ([fe80::a556:ef17:e8e:2037%7]) with mapi id 15.20.2178.018; Mon, 19 Aug 2019
- 05:11:39 +0000
-From: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-To: "Quan, Evan" <Evan.Quan@amd.com>, "Wang, Kevin(Yang)"
+ 15.20.2178.16; Mon, 19 Aug 2019 05:26:49 +0000
+Received: from MN2PR12MB3344.namprd12.prod.outlook.com
+ ([fe80::6cae:3314:7799:3077]) by MN2PR12MB3344.namprd12.prod.outlook.com
+ ([fe80::6cae:3314:7799:3077%6]) with mapi id 15.20.2157.024; Mon, 19 Aug 2019
+ 05:26:49 +0000
+From: "Quan, Evan" <Evan.Quan@amd.com>
+To: "Feng, Kenneth" <Kenneth.Feng@amd.com>, "Wang, Kevin(Yang)"
  <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
 Subject: RE: [PATCH] drm/amd/powerplay: correct SW smu11 thermal range settings
 Thread-Topic: [PATCH] drm/amd/powerplay: correct SW smu11 thermal range
  settings
-Thread-Index: AQHVVBV1Knd5mroCCUi8EfSf4XT7k6b9nJKAgAQje4CAADBo4A==
-Date: Mon, 19 Aug 2019 05:11:39 +0000
-Message-ID: <MN2PR12MB35981C5C1B0A12B8C8C1CD468EA80@MN2PR12MB3598.namprd12.prod.outlook.com>
+Thread-Index: AQHVVBV56Mbt9/JSSkWz1iuNI8/hMKb9nJKAgAQiHbCAADJPgIAAAwwQ
+Date: Mon, 19 Aug 2019 05:26:49 +0000
+Message-ID: <MN2PR12MB334468A94B93D7D848596611E4A80@MN2PR12MB3344.namprd12.prod.outlook.com>
 References: <20190816093144.21892-1-evan.quan@amd.com>
  <MN2PR12MB3296E3E1C79504DD56058410A2AF0@MN2PR12MB3296.namprd12.prod.outlook.com>
  <MN2PR12MB3344E88B19DF4DA83279BBF2E4A80@MN2PR12MB3344.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB3344E88B19DF4DA83279BBF2E4A80@MN2PR12MB3344.namprd12.prod.outlook.com>
-Accept-Language: zh-CN, en-US
+ <MN2PR12MB35981C5C1B0A12B8C8C1CD468EA80@MN2PR12MB3598.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB35981C5C1B0A12B8C8C1CD468EA80@MN2PR12MB3598.namprd12.prod.outlook.com>
+Accept-Language: en-US, zh-CN
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5b39529b-3d45-48be-3e3d-08d72463b7c6
+x-ms-office365-filtering-correlation-id: a42e37bb-1073-4a03-36bf-08d72465d5d5
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB3264; 
-x-ms-traffictypediagnostic: MN2PR12MB3264:
+ SRVR:MN2PR12MB4206; 
+x-ms-traffictypediagnostic: MN2PR12MB4206:
 x-ms-exchange-purlcount: 3
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB326436B3F0CA5C6CDAA9BDE78EA80@MN2PR12MB3264.namprd12.prod.outlook.com>
+x-microsoft-antispam-prvs: <MN2PR12MB4206351B5A9E0BEC67306247E4A80@MN2PR12MB4206.namprd12.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:6108;
 x-forefront-prvs: 0134AD334F
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(396003)(366004)(136003)(39860400002)(199004)(189003)(66066001)(256004)(229853002)(110136005)(6506007)(53546011)(316002)(8676002)(25786009)(6436002)(14444005)(55016002)(53936002)(9326002)(236005)(9686003)(54896002)(81166006)(81156014)(7736002)(74316002)(8936002)(52536014)(6246003)(6306002)(5660300002)(66946007)(66556008)(64756008)(66446008)(66476007)(606006)(76116006)(966005)(14454004)(478600001)(86362001)(30864003)(2906002)(33656002)(2501003)(790700001)(6116002)(3846002)(486006)(76176011)(26005)(476003)(7696005)(186003)(102836004)(71190400001)(71200400001)(99286004)(11346002)(446003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3264;
- H:MN2PR12MB3598.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
+ SFS:(10009020)(4636009)(346002)(376002)(396003)(366004)(136003)(39860400002)(189003)(199004)(71190400001)(7736002)(186003)(76116006)(606006)(81166006)(8676002)(74316002)(66946007)(5660300002)(6116002)(33656002)(256004)(25786009)(53546011)(6506007)(476003)(6306002)(54896002)(66476007)(66556008)(64756008)(66446008)(52536014)(81156014)(6246003)(55016002)(446003)(102836004)(9686003)(26005)(486006)(53936002)(236005)(11346002)(14444005)(2906002)(66066001)(478600001)(86362001)(966005)(71200400001)(316002)(99286004)(7696005)(2501003)(229853002)(6436002)(30864003)(8936002)(14454004)(3846002)(110136005)(790700001)(76176011);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4206;
+ H:MN2PR12MB3344.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: EJ6jFzg/kkR48HMSvNCqiX3tjrTyDxy3FED8j6WWnx87EzXXGurodflJWKSdf3hbpaYlTxkXT0G+QIrZwrjU5AnL91AI2RXnVgn36CefkG9lI6cATGEZ5Zyxr1bYlK9Yw1nfSjSQgE3Bd0ZcguIe562Fkmroee7J2vix+mC5X7pmEWshNnaLwg2bSCNKx7+IgN2SO0dhKxXJY7c8d9LGVPmPKazq23RxSS3fDLDx8TQZhOPtrunbbPmtQ0mUXsPFCXb6OM+NBfStFxG1tNVyrAyVcHLvYKbGEZEVaZPqnN6kXD11KVjzM7i7nZIn83e+T46nJNUh9TN4QRmknY8a2ETaEwUWCABXEJihrKyw4D2F/qMj7JZg0O1cMD+6SHIIvzPbdQonnL34jwVMDsQvRM/PW+yUZ/TVRrvIcpIYU0A=
+x-microsoft-antispam-message-info: H3Zi6HkqsY+2tDII2RQ3emwb8OHKe+Q6rhbvdlxQwwQGTlBT2M51LaHIcbiU1tbOSnP/3Yrr6+DRo3l+a8kqaUztHnAqKykfAh3hE3Ejd8YoySbBsMeWTu3r56/MkDS/A+d2cJlr+DOgYyXRl46cA9rlK01hyeJFTRUV0Gpe87ZiwKcHgOGo+SqyLwA/DS31O6ThZ+/5+6gq3UaYASwrW+qmERIGR8+b+G1UK4dYzSvvn4/DVPIa5W36Xt6r3dcjLL32qdwEeBRKeZA/XMBt5QpYQqRne+CLrdzt8I9zKHoOy6EP9FosaSwkAQJnVauZqtHzxqsJ4O9+9pc0GdVLOPnPK9Tg5d5wiiW/sswcVWlnziN6wyzpnCowG7rmSznNRIdC/6s9A4GVyP34KaPicqwoMNTr6DohwWiGjby43II=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b39529b-3d45-48be-3e3d-08d72463b7c6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2019 05:11:39.7450 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a42e37bb-1073-4a03-36bf-08d72465d5d5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2019 05:26:49.2952 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: f1pXSLEe4iI5ZUjln/xN27Gi+ul/8HU6tq5DC/sAgWQB5dw78rCLehVNm6avb8a1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3264
+X-MS-Exchange-CrossTenant-userprincipalname: n2YbQQHP47DQ3kpTyimCRfPA+XErZoBo9Ps4OqPqRCSsMpfWyLcRDxUptLGPLoo5
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4206
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7onPy6+mMpzzrIZvkQ0HlJ5WF5sE0HT6M94Z2hu88as=;
- b=tSlgTMpTb0n/c9ilCzAFRKWTXkL0zWdNXWJlsA5TxE/vaJF9FCynnJVScx3qSfFiwH3gG+t9zQoCvdjl3IzyvTPu2MDWUvnVJGxTxwHXwg/6i3EqQdOabfrWrNqx+vAaKznCR8Q8Z/3WUr30Ku63WryOe5v5JI0ortMiz867PFQ=
+ bh=7ODMeGVDn5febs85gi/iXvQREs7NH3RE2IUTcyr+G1k=;
+ b=wQzDaW20ZF2x/Ye4cLH1d/g9tzjyTWG/xU5wBfaxTJE7WpwpppELWyYd/46/z2AOdobM0qpUCiES2iKDOwem6WPoJKlCGU0LzMUNOxtIIUKIuSJGbbfPVuShe3dXQlIygBCG1SCynGgz++IZ7PVMnU62RizNplDzXTZLm5E59ew=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Kenneth.Feng@amd.com; 
+ smtp.mailfrom=Evan.Quan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -98,18 +99,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1952200750=="
+Content-Type: multipart/mixed; boundary="===============0751370153=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1952200750==
+--===============0751370153==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB35981C5C1B0A12B8C8C1CD468EA80MN2PR12MB3598namp_"
+	boundary="_000_MN2PR12MB334468A94B93D7D848596611E4A80MN2PR12MB3344namp_"
 
---_000_MN2PR12MB35981C5C1B0A12B8C8C1CD468EA80MN2PR12MB3598namp_
+--_000_MN2PR12MB334468A94B93D7D848596611E4A80MN2PR12MB3344namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Yes, the lowest settings for thermal controller is 0.
+
+Regards
+Evan
+From: Feng, Kenneth <Kenneth.Feng@amd.com>
+Sent: Monday, August 19, 2019 1:12 PM
+To: Quan, Evan <Evan.Quan@amd.com>; Wang, Kevin(Yang) <Kevin1.Wang@amd.com>=
+; amd-gfx@lists.freedesktop.org
+Subject: RE: [PATCH] drm/amd/powerplay: correct SW smu11 thermal range sett=
+ings
 
 Hi Evan,
 So due to the below code, we don't get a chance to set -273.15, right?
@@ -118,11 +130,11 @@ So due to the below code, we don't get a chance to set -273.15, right?
 +       high =3D min(SMU_THERMAL_MAXIMUM_ALERT_TEMP,
 +                       range.max / SMU_TEMPERATURE_UNITS_PER_CENTIGRADES);
 
-
 From: amd-gfx [mailto:amd-gfx-bounces@lists.freedesktop.org] On Behalf Of Q=
 uan, Evan
 Sent: Monday, August 19, 2019 10:16 AM
-To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>; amd-gfx@lists.freedesktop.org
+To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com<mailto:Kevin1.Wang@amd.com>>; am=
+d-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
 Subject: RE: [PATCH] drm/amd/powerplay: correct SW smu11 thermal range sett=
 ings
 
@@ -422,7 +434,7 @@ amd-gfx mailing list
 amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
---_000_MN2PR12MB35981C5C1B0A12B8C8C1CD468EA80MN2PR12MB3598namp_
+--_000_MN2PR12MB334468A94B93D7D848596611E4A80MN2PR12MB3344namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -477,9 +489,13 @@ span.EmailStyle18
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 span.EmailStyle19
-	{mso-style-type:personal-reply;
+	{mso-style-type:personal;
 	font-family:"Calibri",sans-serif;
 	color:#1F497D;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
 	font-size:10.0pt;}
@@ -497,13 +513,33 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal">Yes, the lowest settings for thermal controller is 0=
+.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards<o:p></o:p></p>
+<p class=3D"MsoNormal">Evan<o:p></o:p></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Feng, Kenneth &lt;Kenneth.Feng@amd.com&=
+gt; <br>
+<b>Sent:</b> Monday, August 19, 2019 1:12 PM<br>
+<b>To:</b> Quan, Evan &lt;Evan.Quan@amd.com&gt;; Wang, Kevin(Yang) &lt;Kevi=
+n1.Wang@amd.com&gt;; amd-gfx@lists.freedesktop.org<br>
+<b>Subject:</b> RE: [PATCH] drm/amd/powerplay: correct SW smu11 thermal ran=
+ge settings<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi Evan,<o:p></o:p></s=
 pan></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D">So due to the below co=
 de, we don&#8217;t get a chance to set -273.15, right?<o:p></o:p></span></p=
 >
-<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; low =3D ma=
-x(SMU_THERMAL_MINIMUM_ALERT_TEMP,<br>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">&#43;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; low =3D max(SMU_THERMAL_MINIMUM_ALERT_TEMP,<br>
 &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
 p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; range.min / =
 SMU_TEMPERATURE_UNITS_PER_CENTIGRADES);<br>
@@ -511,20 +547,22 @@ SMU_TEMPERATURE_UNITS_PER_CENTIGRADES);<br>
 ALERT_TEMP,<br>
 &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
 p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; range.max / =
-SMU_TEMPERATURE_UNITS_PER_CENTIGRADES);<br>
-<br>
-<span style=3D"color:#1F497D"><o:p></o:p></span></p>
+SMU_TEMPERATURE_UNITS_PER_CENTIGRADES);<span style=3D"color:#1F497D"><o:p><=
+/o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
 n></p>
 <div>
 <div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
 0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> amd-gfx [mailto:amd-gfx-bounces@lists.f=
-reedesktop.org]
+<p class=3D"MsoNormal"><b>From:</b> amd-gfx [<a href=3D"mailto:amd-gfx-boun=
+ces@lists.freedesktop.org">mailto:amd-gfx-bounces@lists.freedesktop.org</a>=
+]
 <b>On Behalf Of </b>Quan, Evan<br>
 <b>Sent:</b> Monday, August 19, 2019 10:16 AM<br>
-<b>To:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;; amd-gfx@lists.fre=
-edesktop.org<br>
+<b>To:</b> Wang, Kevin(Yang) &lt;<a href=3D"mailto:Kevin1.Wang@amd.com">Kev=
+in1.Wang@amd.com</a>&gt;;
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a><br>
 <b>Subject:</b> RE: [PATCH] drm/amd/powerplay: correct SW smu11 thermal ran=
 ge settings<o:p></o:p></p>
 </div>
@@ -995,12 +1033,13 @@ lists.freedesktop.org/mailman/listinfo/amd-gfx</a><o:p></o:p></p>
 </div>
 </div>
 </div>
+</div>
 </body>
 </html>
 
---_000_MN2PR12MB35981C5C1B0A12B8C8C1CD468EA80MN2PR12MB3598namp_--
+--_000_MN2PR12MB334468A94B93D7D848596611E4A80MN2PR12MB3344namp_--
 
---===============1952200750==
+--===============0751370153==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -1010,4 +1049,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1952200750==--
+--===============0751370153==--
