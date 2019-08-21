@@ -2,90 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB4E2980C9
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Aug 2019 18:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 401D7981A2
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Aug 2019 19:43:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A8D6E35F;
-	Wed, 21 Aug 2019 16:57:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B247C6E36D;
+	Wed, 21 Aug 2019 17:43:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr790053.outbound.protection.outlook.com [40.107.79.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2167E6E35F
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2019 16:57:28 +0000 (UTC)
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr780078.outbound.protection.outlook.com [40.107.78.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A63E6E36D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2019 17:43:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OwSwWHw8VTPWZRkxFljV2pa6SbkfPR/hD0tRJxCF/yrFrtihkZuAw1ksiSiTxSSx++Zg1ciwtxL8S9cOISSiRM8T65nKsfLfM43XFMigxPlL0GbA7LEhLIto+v8n8rfem2ZOqU6rvnmDjUvzuQ8AkNDIThXA1mQ8bsB/mk9BpT+MlHYUeBpnpJ2GiB2M9OG2FW7GBeIUK0U/7+ndJSkKo2J69g7pAdOwGwn2tb0VCHxEOosxCRB69U4GHuASB9VH3wMKFhFBM9nnLCm9G6lQO+V6yEiTrfRa7rmJIWSsNgS2GWoi0NRhnhqL6E4DSz/Becv3sJQMfStyKoTLM2d4aA==
+ b=SZIP6MBq4BgCNLwOTq5XfdEHemaHnae029Bi5F1RF/5dX8fbEG3D/NPxHL8zd6poVRxC5HEZUFretPEiCPbq7VO6WLJC2zP/wE1OEFxBL/ijQsM4wz+cOp90amHpGRgaZRLaBiaqa0cZtW7lwziPPTBUyoM8fD/N1cAJW9oZ2cqVj91ALsRXWqrNRURs77kRYgxl83a9XhKq+F8Exj18FbfbcOgqe8DLfj/iNMPHHyw8yaDRVObgcy4GY+2Q+qtsA83wE4wCBcHyXRnTcuuYC9zTlttpp2vymftaxfahtrmldPXvs8gIydnwUecGYjf7sFSwP1ASm/V6G4RYDrD6sA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4ZpsrN339CFBVVGsksuZ1of2vHIUE8aEE94gCdOqf9c=;
- b=ND/uW/6FinZGTbYFO/wc5TjL+B7h+zCCEd8CVfPZng8vSf5XakUYde+b5jj7FWkK63+vZKyCLz89zSWrFXtKURpNDEnNLxql5NZf9o5zLRE3kASxv4X5e1JxHI/iZll8HF25UmUfRJFae7wA8GDRwC3W8UiQNEA9l4yHHTw1w+W8ShHa/qVfiiyQLA68y4v9ayMbnEC2mF0Ab3/kWJJxG8Je8J5dQ+OWWrZUPn60pb0VoWWQhNRmKq9JGXNMGxoYn7fpreLWluO9+m1G8jbW33CQTGsT/Crf8qmvCiGjkbKhEP7b8ZnX436YVV7ERgYQGq33KOcjeBiLi4rkJJmyKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-Received: from CY4PR12CA0041.namprd12.prod.outlook.com (2603:10b6:903:129::27)
- by BN7PR12MB2705.namprd12.prod.outlook.com (2603:10b6:408:25::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2178.18; Wed, 21 Aug
- 2019 16:57:26 +0000
-Received: from BY2NAM03FT008.eop-NAM03.prod.protection.outlook.com
- (2a01:111:f400:7e4a::204) by CY4PR12CA0041.outlook.office365.com
- (2603:10b6:903:129::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2178.16 via Frontend
- Transport; Wed, 21 Aug 2019 16:57:26 +0000
-Received-SPF: None (protection.outlook.com: amd.com does not designate
+ bh=zLXGrHh1ycO3SPZLy/8sFBXSN+KKsQL7nFwY/xYSqEE=;
+ b=UcntIaGcOthE8bdr5901u/eap98pxcsBe6o/cZhpLWSH4CrJlEdB5yQSw8KUgySMUi82JrNS24MoGY9KZThMMJ/xgye3D/iQUFBgoehVAaACb5oL8OrTWtXUGFQ1qWh/EXZWtPtKpxFnZPUOD+Hs8tbMqmQKaEi22Ai8XGO5Dik7cHfA9UEgz+Ch842FSFuCR+3LKJRIAEh9Ex3qBOLzAVEqNuy8vCvTzJqtDsfbqjb92j0ktRWm7bDKuNttyJlHhi3hb1JjCGhqKe4fy/7Xivx7/eVKLenSbFzEdlQZxOfRKHl7/DlOQQYSKtrSRBbi0hpDtro6OCtSrYWqQh1Z5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
+ BN6PR12MB1442.namprd12.prod.outlook.com (10.172.23.136) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2178.18; Wed, 21 Aug 2019 17:43:19 +0000
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::8542:935:262c:53d1]) by BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::8542:935:262c:53d1%10]) with mapi id 15.20.2178.018; Wed, 21 Aug 2019
+ 17:43:19 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu/sdma5: fix number of sdma5 trap irq types for
+ navi1x
+Thread-Topic: [PATCH] drm/amdgpu/sdma5: fix number of sdma5 trap irq types for
+ navi1x
+Thread-Index: AQHVWCezWij0Zb7cGU+M6XDBxgPMUqcF32m6
+Date: Wed, 21 Aug 2019 17:43:19 +0000
+Message-ID: <BN6PR12MB18092E70EEF7E6DEB2A2C3CEF7AA0@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <20190821135226.16967-1-xiaojie.yuan@amd.com>
+In-Reply-To: <20190821135226.16967-1-xiaojie.yuan@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [71.219.73.178]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 988dacd2-787e-4b33-fa2a-08d7265f0ddf
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1442; 
+x-ms-traffictypediagnostic: BN6PR12MB1442:
+x-ms-exchange-purlcount: 1
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BN6PR12MB1442800A84FCEAE83FAEDE54F7AA0@BN6PR12MB1442.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:327;
+x-forefront-prvs: 0136C1DDA4
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(396003)(376002)(346002)(39860400002)(366004)(189003)(199004)(11346002)(66066001)(6436002)(606006)(4326008)(33656002)(53546011)(6506007)(229853002)(102836004)(256004)(14444005)(2906002)(478600001)(71190400001)(66946007)(66476007)(66556008)(64756008)(66446008)(76116006)(99286004)(6246003)(74316002)(5660300002)(52536014)(8676002)(446003)(110136005)(53936002)(7696005)(54906003)(316002)(76176011)(71200400001)(9686003)(55016002)(19627405001)(54896002)(6306002)(105004)(486006)(3846002)(186003)(86362001)(8936002)(14454004)(26005)(6116002)(476003)(7736002)(2501003)(25786009)(966005)(81166006)(81156014)(236005)(32563001)(357404004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1442;
+ H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXCHOV01.amd.com (165.204.84.17) by
- BY2NAM03FT008.mail.protection.outlook.com (10.152.84.101) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2178.16 via Frontend Transport; Wed, 21 Aug 2019 16:57:25 +0000
-Received: from kazbox.amd.com (10.180.168.240) by SATLEXCHOV01.amd.com
- (10.181.40.71) with Microsoft SMTP Server id 14.3.389.1; Wed, 21 Aug 2019
- 11:57:24 -0500
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: Calculate bpc based on max_requested_bpc
-Date: Wed, 21 Aug 2019 12:57:11 -0400
-Message-ID: <20190821165711.4031-1-nicholas.kazlauskas@amd.com>
-X-Mailer: git-send-email 2.17.1
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: iB+ahb5NxakDy8SfHigGvU1DQZjLM4pCHyM+/pvbw2MVw5xqvSD7FQ/gXEANGoMghqo4deKzRQOP3OfmNvqOc3LkK6dey5WqcWvQh7SipCSnp79yQqlOaFmOucrddPEUpLYud+FPv9OPGle6SiqAhgtWIdndqsZB3fN4adY1frk2cqtPjpgcKkCNDmG7LkkDtWgWgw567FeVwMID09Xv8tSCKY9S3EVic0Prj8Q8U07d9Iv8DRHD84smP7JkjlDaL4Jq2Uszi5vJ5+sbCgo3tSP8o1wYUpYYsCruC1CqcuEORfrk7+KAZlWd+dWimwv5T1lA/5MrFqR6UxNaxn1Kvy48AwTE40B6J0fRNtW+AHS9pV2yHVjhY0FJDHd22fNEeRm2laRoOIAR0jciXuWGLQ9aZVGx0xiMaFGkM0Oljsw=
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(39860400002)(346002)(136003)(396003)(2980300002)(428003)(189003)(199004)(1076003)(53936002)(48376002)(478600001)(2616005)(476003)(336012)(126002)(426003)(305945005)(2351001)(50466002)(316002)(5660300002)(16586007)(186003)(486006)(44832011)(54906003)(53416004)(47776003)(6916009)(4326008)(6666004)(356004)(8936002)(81166006)(81156014)(70586007)(70206006)(8676002)(26005)(36756003)(50226002)(2906002)(51416003)(7696005)(86362001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN7PR12MB2705; H:SATLEXCHOV01.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1c0cfa4f-f030-454c-5ef1-08d72658a4b5
-X-Microsoft-Antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328);
- SRVR:BN7PR12MB2705; 
-X-MS-TrafficTypeDiagnostic: BN7PR12MB2705:
-X-Microsoft-Antispam-PRVS: <BN7PR12MB27057AA8D648E9689C6E37D6ECAA0@BN7PR12MB2705.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-Forefront-PRVS: 0136C1DDA4
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: kB8CQ4+E6bny3sw0Z4L1AQawICyp8YtkbJIMcGJKqI8NcEzpxtuYuPm3L6ecQfEGYYQSHhAI8rlVFRhaTe1B7eu1chZXckI+26bgBwGfqGSXRo4HguiqGZnK3e+CBUt3+bwcCk7i6a/e16DoyiAKHwuhyGdn+lmB3pnO2lB7mbnwRxyhL1GAG3yZk23eDxAadYQkfJMt6MZ0YhUNlvObMTfbh7+GgDYK69egPKK244vaYSvAWwASWmj5LfkpegiCVxlCvwU3FE8f09/ManA2VmLME31XuR10tkgsY0XiH6XRXiKd4iiVejS5FpfMETyvgIGXwtQU6UsdQzJLylS+rngUcueINsZJepGItYZfu0iukIsujVMPn8TsJ4Z2EQyjUV8Z0PXs/0cRsKlT2evVBW02AcygIMC5aEUWyDK97hs=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2019 16:57:25.7040 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c0cfa4f-f030-454c-5ef1-08d72658a4b5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXCHOV01.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2705
+X-MS-Exchange-CrossTenant-Network-Message-Id: 988dacd2-787e-4b33-fa2a-08d7265f0ddf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Aug 2019 17:43:19.1036 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: d/nY6zdYVbKSWrPC/rqIsHN9wzm5nxrlvuyAeonJrI2BvlrtWr9m0jVX0uNg+3ESeKm4mSrWToYSeX3+u3WHzg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1442
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4ZpsrN339CFBVVGsksuZ1of2vHIUE8aEE94gCdOqf9c=;
- b=T7PFq81c42NJQprhT67RTSq8+j1PAr8bMvgVbegLtobjqNfqw3yuuyQVDvQ56tN54ENcK2d1V/xAUfucRQnSryvALdwa8aFo8ynAEt2bbgX10dxnUppzdAQlFHu8XwE4Idyne9tasWAuuBJixFID8p+DDr9hvm7GUcmAA8nntwI=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is
- 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
+ bh=zLXGrHh1ycO3SPZLy/8sFBXSN+KKsQL7nFwY/xYSqEE=;
+ b=15snRR4S3KY3ni7MaIuhro7tawnE8JmvrPYHbo+/jno5Ufjmk7EjRAXMgsJyzV5ml0CWIx5zRVabdEXFSAsb8VMS30+EwAERDHqQ3EHVEeJb4nbQ4HCDj5TbACh8ZqzqCVRbYM7HgW2XA01a5/Yuu5fkKtF2pK7P8asRjbTbgnI=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -97,50 +96,179 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, David Francis <David.Francis@amd.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "alexdeucher@gmail.com" <alexdeucher@gmail.com>, "Xiao,
+ Jack" <Jack.Xiao@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Content-Type: multipart/mixed; boundary="===============0685397713=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W1doeV0KVGhlIG9ubHkgcGxhY2Ugd2hlcmUgc3RhdGUtPm1heF9icGMgaXMgdXBkYXRlZCBvbiB0
-aGUgY29ubmVjdG9yIGlzCmF0IHRoZSBzdGFydCBvZiBhdG9taWMgY2hlY2sgZHVyaW5nIGRybV9h
-dG9taWNfY29ubmVjdG9yX2NoZWNrLiBJdAppc24ndCB1cGRhdGVkIHdoZW4gYWRkaW5nIHRoZSBj
-b25uZWN0b3JzIHRvIHRoZSBhdG9taWMgc3RhdGUgYWZ0ZXIKdGhlIGZhY3QuIEl0IGFsc28gZG9l
-c24ndCBuZWNlc3NhcmlseSByZWZsZWN0IHRoZSByaWdodCB2YWx1ZSB3aGVuCmNhbGxlZCBpbiBh
-bWRncHUgZHVyaW5nIG1vZGUgdmFsaWRhdGlvbiBvdXRzaWRlIG9mIGF0b21pYyBjaGVjay4KClRo
-aXMgY2FuIGNhdXNlIHRoZSB3cm9uZyBicGMgdG8gYmUgdXNlZCBldmVuIGlmIHRoZSBtYXhfcmVx
-dWVzdGVkX2JwYwppcyB0aGUgY29ycmVjdCB2YWx1ZS4KCltIb3ddCkRvbid0IHJlbHkgb24gc3Rh
-dGUtPm1heF9icGMgcmVmbGVjdGluZyB0aGUgcmVhbCBicGMgdmFsdWUgYW5kIGp1c3QKZG8gdGhl
-IG1pbiguLi4pIGJhc2VkIG9uIGRpc3BsYXkgaW5mbyBicGMgYW5kIG1heF9yZXF1ZXN0ZWRfYnBj
-LgoKQ2M6IERhdmlkIEZyYW5jaXMgPERhdmlkLkZyYW5jaXNAYW1kLmNvbT4KQ2M6IEJoYXdhbnBy
-ZWV0IExha2hhIDxCaGF3YW5wcmVldC5MYWtoYUBhbWQuY29tPgpDYzogTGVvIExpIDxzdW5wZW5n
-LmxpQGFtZC5jb20+ClNpZ25lZC1vZmYtYnk6IE5pY2hvbGFzIEthemxhdXNrYXMgPG5pY2hvbGFz
-LmthemxhdXNrYXNAYW1kLmNvbT4KLS0tCiAuLi4vZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVf
-ZG0vYW1kZ3B1X2RtLmMgICAgfCAxNiArKysrKysrKysrKysrKy0tCiAxIGZpbGUgY2hhbmdlZCwg
-MTQgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jIGIvZHJpdmVycy9ncHUvZHJt
-L2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYwppbmRleCA3Y2Y4ZGJjY2NlOTUuLjcz
-ZWQ3YjZiZDhkMyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdw
-dV9kbS9hbWRncHVfZG0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1
-X2RtL2FtZGdwdV9kbS5jCkBAIC0zMjE2LDEzICszMjE2LDI1IEBAIHN0YXRpYyBlbnVtIGRjX2Nv
-bG9yX2RlcHRoCiBjb252ZXJ0X2NvbG9yX2RlcHRoX2Zyb21fZGlzcGxheV9pbmZvKGNvbnN0IHN0
-cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCiAJCQkJICAgICAgY29uc3Qgc3RydWN0IGRy
-bV9jb25uZWN0b3Jfc3RhdGUgKnN0YXRlKQogewotCXVpbnQzMl90IGJwYyA9IGNvbm5lY3Rvci0+
-ZGlzcGxheV9pbmZvLmJwYzsKKwl1aW50OF90IGJwYyA9ICh1aW50OF90KWNvbm5lY3Rvci0+ZGlz
-cGxheV9pbmZvLmJwYzsKKworCS8qIEFzc3VtZSA4IGJwYyBieSBkZWZhdWx0IGlmIG5vIGJwYyBp
-cyBzcGVjaWZpZWQuICovCisJYnBjID0gYnBjID8gYnBjIDogODsKIAogCWlmICghc3RhdGUpCiAJ
-CXN0YXRlID0gY29ubmVjdG9yLT5zdGF0ZTsKIAogCWlmIChzdGF0ZSkgewotCQlicGMgPSBzdGF0
-ZS0+bWF4X2JwYzsKKwkJLyoKKwkJICogQ2FwIGRpc3BsYXkgYnBjIGJhc2VkIG9uIHRoZSB1c2Vy
-IHJlcXVlc3RlZCB2YWx1ZS4KKwkJICoKKwkJICogVGhlIHZhbHVlIGZvciBzdGF0ZS0+bWF4X2Jw
-YyBtYXkgbm90IGNvcnJlY3RseSB1cGRhdGVkCisJCSAqIGRlcGVuZGluZyBvbiB3aGVuIHRoZSBj
-b25uZWN0b3IgZ2V0cyBhZGRlZCB0byB0aGUgc3RhdGUKKwkJICogb3IgaWYgdGhpcyB3YXMgY2Fs
-bGVkIG91dHNpZGUgb2YgYXRvbWljIGNoZWNrLCBzbyBpdAorCQkgKiBjYW4ndCBiZSB1c2VkIGRp
-cmVjdGx5LgorCQkgKi8KKwkJYnBjID0gbWluKGJwYywgc3RhdGUtPm1heF9yZXF1ZXN0ZWRfYnBj
-KTsKKwogCQkvKiBSb3VuZCBkb3duIHRvIHRoZSBuZWFyZXN0IGV2ZW4gbnVtYmVyLiAqLwogCQli
-cGMgPSBicGMgLSAoYnBjICYgMSk7CiAJfQotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============0685397713==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB18092E70EEF7E6DEB2A2C3CEF7AA0BN6PR12MB1809namp_"
+
+--_000_BN6PR12MB18092E70EEF7E6DEB2A2C3CEF7AA0BN6PR12MB1809namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Yuan, Xi=
+aojie <Xiaojie.Yuan@amd.com>
+Sent: Wednesday, August 21, 2019 9:52 AM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: alexdeucher@gmail.com <alexdeucher@gmail.com>; Xiao, Jack <Jack.Xiao@am=
+d.com>; Yuan, Xiaojie <Xiaojie.Yuan@amd.com>; Zhang, Hawking <Hawking.Zhang=
+@amd.com>
+Subject: [PATCH] drm/amdgpu/sdma5: fix number of sdma5 trap irq types for n=
+avi1x
+
+v2: set num_types based on num_instances
+
+navi1x has 2 sdma engines but commit
+"e7b58d03b678 drm/amdgpu: reorganize sdma v4 code to support more instances=
+"
+changes the max number of sdma irq types (AMDGPU_SDMA_IRQ_LAST) from 2 to 8
+which causes amdgpu_irq_gpu_reset_resume_helper() to recover irq of sdma
+engines with following logic:
+
+(enable irq for sdma0) * 1 time
+(enable irq for sdma1) * 1 time
+(disable irq for sdma1) * 6 times
+
+as a result, after gpu reset, interrupt for sdma1 is lost.
+
+Signed-off-by: Xiaojie Yuan <xiaojie.yuan@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/sdma_v5_0.c
+index 41932d8b88c3..89174e778d2f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
+@@ -1625,7 +1625,8 @@ static const struct amdgpu_irq_src_funcs sdma_v5_0_il=
+legal_inst_irq_funcs =3D {
+
+ static void sdma_v5_0_set_irq_funcs(struct amdgpu_device *adev)
+ {
+-       adev->sdma.trap_irq.num_types =3D AMDGPU_SDMA_IRQ_LAST;
++       adev->sdma.trap_irq.num_types =3D AMDGPU_SDMA_IRQ_INSTANCE0 +
++                                       adev->sdma.num_instances;
+         adev->sdma.trap_irq.funcs =3D &sdma_v5_0_trap_irq_funcs;
+         adev->sdma.illegal_inst_irq.funcs =3D &sdma_v5_0_illegal_inst_irq_=
+funcs;
+ }
+--
+2.20.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN6PR12MB18092E70EEF7E6DEB2A2C3CEF7AA0BN6PR12MB1809namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Yuan, Xiaojie &lt;Xiaojie.Yua=
+n@amd.com&gt;<br>
+<b>Sent:</b> Wednesday, August 21, 2019 9:52 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> alexdeucher@gmail.com &lt;alexdeucher@gmail.com&gt;; Xiao, Jack =
+&lt;Jack.Xiao@amd.com&gt;; Yuan, Xiaojie &lt;Xiaojie.Yuan@amd.com&gt;; Zhan=
+g, Hawking &lt;Hawking.Zhang@amd.com&gt;<br>
+<b>Subject:</b> [PATCH] drm/amdgpu/sdma5: fix number of sdma5 trap irq type=
+s for navi1x</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">v2: set num_types based on num_instances<br>
+<br>
+navi1x has 2 sdma engines but commit<br>
+&quot;e7b58d03b678 drm/amdgpu: reorganize sdma v4 code to support more inst=
+ances&quot;<br>
+changes the max number of sdma irq types (AMDGPU_SDMA_IRQ_LAST) from 2 to 8=
+<br>
+which causes amdgpu_irq_gpu_reset_resume_helper() to recover irq of sdma<br=
+>
+engines with following logic:<br>
+<br>
+(enable irq for sdma0) * 1 time<br>
+(enable irq for sdma1) * 1 time<br>
+(disable irq for sdma1) * 6 times<br>
+<br>
+as a result, after gpu reset, interrupt for sdma1 is lost.<br>
+<br>
+Signed-off-by: Xiaojie Yuan &lt;xiaojie.yuan@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c | 3 &#43;&#43;-<br>
+&nbsp;1 file changed, 2 insertions(&#43;), 1 deletion(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/sdma_v5_0.c<br>
+index 41932d8b88c3..89174e778d2f 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c<br>
+@@ -1625,7 &#43;1625,8 @@ static const struct amdgpu_irq_src_funcs sdma_v5_=
+0_illegal_inst_irq_funcs =3D {<br>
+&nbsp;<br>
+&nbsp;static void sdma_v5_0_set_irq_funcs(struct amdgpu_device *adev)<br>
+&nbsp;{<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;sdma.trap_irq.num_types =3D =
+AMDGPU_SDMA_IRQ_LAST;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;sdma.trap_irq.num_types =
+=3D AMDGPU_SDMA_IRQ_INSTANCE0 &#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; adev-&gt;sdma.num_instances;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;sdma.trap_irq.fun=
+cs =3D &amp;sdma_v5_0_trap_irq_funcs;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;sdma.illegal_inst=
+_irq.funcs =3D &amp;sdma_v5_0_illegal_inst_irq_funcs;<br>
+&nbsp;}<br>
+-- <br>
+2.20.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN6PR12MB18092E70EEF7E6DEB2A2C3CEF7AA0BN6PR12MB1809namp_--
+
+--===============0685397713==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0685397713==--
