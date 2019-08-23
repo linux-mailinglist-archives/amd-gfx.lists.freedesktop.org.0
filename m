@@ -2,89 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E45E9A72E
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Aug 2019 07:38:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BA0A9A746
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Aug 2019 07:53:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 701566EBBA;
-	Fri, 23 Aug 2019 05:38:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CED5F6E037;
+	Fri, 23 Aug 2019 05:53:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr740045.outbound.protection.outlook.com [40.107.74.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4890C89CDB
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 05:38:31 +0000 (UTC)
+Received: from NAM05-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr720061.outbound.protection.outlook.com [40.107.72.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A32186E037
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 05:52:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZLcDzZmMZsKLeW8sFi/kwe0OBjTjhRVHDsPMLFlle1wPhmtBIjbyiNxejWaXwlT6QPuTtAt9wbZu55z4tYagHYSVFjUaTCisJv1zmGcsX7nmSDazvseYW27sjUSyJEPSYhAM39UYJhd9IOIhDygf2uRo+GQejVD7nZPCJI6EXn8mHIwla7iefNFdFIJ9eFf6QJhMXkSD6LFFGH8ghHrbnE/acIj99J2oHRQbINQxEK8WG3iI07GWCOYgBRIcYns3tWrYkb5hpjTJGiS6SNRot1njcAOYqFcDpFe8xNdztgpNTZeIYMN23J7tNQJAanNGb8I9lIkcr0s1B42pH50TiQ==
+ b=SyNvSA5KVeRWjsC5MHvSMZPRMTzA0kZCh78jZYIO7OxWMKLmIsPu1fnVSJ2ygdHMV9DaYMpxdpdu7TMw0dV+A9sM7lSiOPmc2mKYdjzq4sBaK7g8nLn+2fQOjTT8mY3UkPw75esXTdCyzcmTO8WBBi3Diz+6LYUNlco263xbtgjqLgt0veYomqs797eM5J69mqy5p5bdYwIV2MTMexbasficN5/GoncHGiv7SppVP/VC7NTyWHHj1qRULueFNCq4btspZy5eIOqvomFGpskEWXWRJVqVuwumGQNyReRejNS9ip2IIOwrCJXuAgOMEzDK17gx97ulOXypn5kZU1q1/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rCg8O3dUgEN3YZHPOHjZpSt17boDko8dWrGSaIIivqA=;
- b=e5UgwG2qiiM5X39O41JGhUDOmUg+ww5C6ZEidLCY/lxwHZq3+Qz3ov8AzCFmgJPsOs/u2oFMfqEOChVZspiY0mqlBQzVWnBkdWWSgeNBiniIdfsV5yLPKFcRGhqmYP6sLbZfhztjpOhJryJLNBlAcvUmiHRB3UuXpwsTtmC6w+eEe6gojgjQQZU2USVsGwgodUK1GiBP1ffi3rCTxrrY+kAu7nEZT1vyFBG9vSOnPFqHGDKVT7b0gMka0dGdlgzINttoiDBPYhp2B+LPfB5375KvTQolKNSsZcL/D7J7sCScdLFEvLcwAm3AHOKJa54np78EtOQUDhOBBPpRnaGOFg==
+ bh=ivABFj2rDQ/JRHb/iQtBfiKWLSpyzIH24rZp3E81Bas=;
+ b=Om+BZjS8qNABzHZwhBzDv7/Iihoc3WTihwp3aIvRAIG8sOdRF8uf/Pvftz8SIqYMTdL/64HLjAxVnhbwTL3zPxHj0xBF/PFgeFtyLuHre/gAZO6mkTnmW7t4SOBwhpaWoijyqdFiN8pgT9mgGG4kmBep3Lb/EoxWNUyLwi+GwseqBfVgP9bNmSgbHHqNvh2HLhltFzrQLcPlnSCaR/Tt6QRladGiDuQ0u5uvUeIncmcDkwVFZ9kOA7I6oSe6YRdSK9nWK4BcjdwHFLMFBdOXFKnuJRnCeaG0M3JvfBPZFfLbFPfp/DNiGA84kS6zYx990yE2NKvtIx77vUpOCxonBQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from MN2PR12MB3344.namprd12.prod.outlook.com (20.178.241.74) by
- MN2PR12MB4064.namprd12.prod.outlook.com (52.135.48.145) with Microsoft SMTP
+Received: from MN2PR12MB3296.namprd12.prod.outlook.com (20.179.80.139) by
+ MN2PR12MB3583.namprd12.prod.outlook.com (20.178.241.76) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2178.16; Fri, 23 Aug 2019 05:38:29 +0000
-Received: from MN2PR12MB3344.namprd12.prod.outlook.com
- ([fe80::6cae:3314:7799:3077]) by MN2PR12MB3344.namprd12.prod.outlook.com
- ([fe80::6cae:3314:7799:3077%6]) with mapi id 15.20.2178.020; Fri, 23 Aug 2019
- 05:38:29 +0000
-From: "Quan, Evan" <Evan.Quan@amd.com>
-To: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ 15.20.2199.19; Fri, 23 Aug 2019 05:52:57 +0000
+Received: from MN2PR12MB3296.namprd12.prod.outlook.com
+ ([fe80::7490:549a:479d:f716]) by MN2PR12MB3296.namprd12.prod.outlook.com
+ ([fe80::7490:549a:479d:f716%6]) with mapi id 15.20.2178.018; Fri, 23 Aug 2019
+ 05:52:57 +0000
+From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
+To: "Quan, Evan" <Evan.Quan@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amd/powerplay: update cached feature enablement
+Subject: Re: [PATCH] drm/amd/powerplay: update cached feature enablement
  status V2
 Thread-Topic: [PATCH] drm/amd/powerplay: update cached feature enablement
  status V2
-Thread-Index: AQHVWXPJ3igwnjMaREWZiIvuowS5m6cINq8w
-Date: Fri, 23 Aug 2019 05:38:29 +0000
-Message-ID: <MN2PR12MB3344F4BCEB15A0A817B9A6A0E4A40@MN2PR12MB3344.namprd12.prod.outlook.com>
-References: <MN2PR12MB32969ABC3F90939200C01E64A2A40@MN2PR12MB3296.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB32969ABC3F90939200C01E64A2A40@MN2PR12MB3296.namprd12.prod.outlook.com>
+Thread-Index: AQHVWXPJ3igwnjMaREWZiIvuowS5m6cINq8wgAABr+0=
+Date: Fri, 23 Aug 2019 05:52:57 +0000
+Message-ID: <MN2PR12MB32964C9C3DC3919188759C4EA2A40@MN2PR12MB3296.namprd12.prod.outlook.com>
+References: <MN2PR12MB32969ABC3F90939200C01E64A2A40@MN2PR12MB3296.namprd12.prod.outlook.com>,
+ <MN2PR12MB3344F4BCEB15A0A817B9A6A0E4A40@MN2PR12MB3344.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB3344F4BCEB15A0A817B9A6A0E4A40@MN2PR12MB3344.namprd12.prod.outlook.com>
 Accept-Language: en-US, zh-CN
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f79d918d-1d91-4c7f-b385-08d7278c20b4
+x-ms-office365-filtering-correlation-id: 41cec178-505c-4f4d-ade5-08d7278e260a
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600166)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:MN2PR12MB4064; 
-x-ms-traffictypediagnostic: MN2PR12MB4064:
-x-ms-exchange-purlcount: 3
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:MN2PR12MB3583; 
+x-ms-traffictypediagnostic: MN2PR12MB3583:
+x-ms-exchange-purlcount: 1
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB4064BF0E4CD329466B26798DE4A40@MN2PR12MB4064.namprd12.prod.outlook.com>
+x-microsoft-antispam-prvs: <MN2PR12MB35830D17FFAB2B4974E79DA2A2A40@MN2PR12MB3583.namprd12.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 0138CD935C
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(39860400002)(376002)(366004)(396003)(136003)(189003)(199004)(76116006)(2501003)(54896002)(9686003)(71200400001)(53936002)(102836004)(236005)(186003)(25786009)(71190400001)(6306002)(8676002)(81156014)(110136005)(81166006)(99286004)(8936002)(6246003)(55016002)(478600001)(229853002)(15650500001)(2420400007)(966005)(76176011)(606006)(486006)(790700001)(6116002)(53546011)(11346002)(3846002)(86362001)(446003)(33656002)(52536014)(64756008)(66556008)(66446008)(7696005)(66476007)(66066001)(66946007)(26005)(7736002)(316002)(256004)(6436002)(2906002)(5660300002)(14444005)(74316002)(14454004)(6506007)(7110500001)(476003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4064;
- H:MN2PR12MB3344.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ SFS:(10009020)(4636009)(366004)(346002)(376002)(396003)(136003)(39860400002)(199004)(189003)(110136005)(316002)(33656002)(102836004)(26005)(6246003)(53546011)(6506007)(53936002)(105004)(446003)(186003)(76176011)(3846002)(6116002)(54896002)(6306002)(55016002)(9686003)(7696005)(236005)(99286004)(6436002)(71190400001)(5660300002)(19627405001)(71200400001)(2501003)(19627235002)(14444005)(256004)(52536014)(86362001)(66066001)(66556008)(8676002)(66446008)(64756008)(81156014)(81166006)(66476007)(76116006)(66946007)(966005)(15650500001)(8936002)(14454004)(2906002)(478600001)(476003)(229853002)(606006)(25786009)(7736002)(486006)(11346002)(74316002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3583;
+ H:MN2PR12MB3296.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: lUaunR2MkGtGM7CMWOKcNNzqRC2TJAcZ1zR+cT9ODbUwFetzhJJUAaZy4KKVs4Gse/i/QLnk9GCZzvoY4cDRDDxtyGKipRvBiCe+H3Jj5q5la5GpcuYtFy6QnATV1Q+qVafNDJlIMpM9BAaqX3cPILDqWbm57HV/UrJrX054ONzc/gi5EYlWGHkk4aclQSrTeEXmKTaqRVsSm6Dh3bDcj8bM8qDl54BHwbVJPVyT421efYDASgTNxNxnnKIWQY66Qz6GKQ0QdZzdGvyHPXiGA4+Df6BHuOa0C8wPx3LxGtWXAl6RY43HDC6xpoL+rc4TtAn3DJLqVzPN7Y8y8UUCsvPCTOqBxKt3EBHtzU1xcH7Zn4MH0M6S/mmmaP5LMLQ0lxosyp9MiXqDk/6sRqiTvyf3QcajdpFoh5lAofX5uRs=
+x-microsoft-antispam-message-info: B1wJi/juUJlWp6AP4IZ4IjQeDMebhd5LtrO1tbrfd0pzvD5pdNTztf2gUlwW04jyyBjcdjpfW0kcnlNkqvUpRQ2AJOjqKInuUtPlJzrceM5KEk7GaZi8zDu147IeJb6V9mjmn0ag3sTWKzGL6CSvT9GM2eO6sO2+7El/pTsaC/VbMJdXLp7PSeoF52b3UWW1QYL8Y3/PIh200Ac1BLqzLUFDIUJEFinqYYXkZ12+7YsgY4dno+3K2DxYb/8h/xuJJD9DmREGO37+sLHIbzIEGnSgeGp+Pvgv2/5IxUln0TdSI24pT5HJI8KcThJPNM/5rBv+27GBSZ+gEVoxxzE/iIUgyLaLc/pw/30LsPTMkejlWmP/yofvLpAW0VrCzVA9aIsIHif58fTNXiUZZPAKL0FIatnqOzVojhN/WOeCAow=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f79d918d-1d91-4c7f-b385-08d7278c20b4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2019 05:38:29.2703 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41cec178-505c-4f4d-ade5-08d7278e260a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2019 05:52:57.1898 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kuaWyJcXNPVm8aNCXrn2aKiTw9ANELAMEWB9XRR+/SAE5u8Ti4e85XUrhYC0tgh7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4064
+X-MS-Exchange-CrossTenant-userprincipalname: aCtRphNnWjciI8VfZP9ynagNwMwk8GqvRzUdUwCdE0ewCOZMNJV/R6PVc23D96ft
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3583
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rCg8O3dUgEN3YZHPOHjZpSt17boDko8dWrGSaIIivqA=;
- b=2r7QGQ3anAAjehGjmiWJeRJInoQeKhrXB4HU+Gi+wEoNABPfCsbSjyXTXllwpfDPWr7YCy9AcRqrUcezT+gZ5zSADELP4q6z0OA11AkJdK89WajWT8Eo+hk4cirZXqr0lWwbr7A+pBD6WhvOiCDWzs9BS0sf8EKC2SjZT4OR8j0=
+ bh=ivABFj2rDQ/JRHb/iQtBfiKWLSpyzIH24rZp3E81Bas=;
+ b=saLHOL1SdlTqgcUhiFoORauA1N7nBgaMKggIsy+KRyna+jZwz4XRaFQcP9IaAoSd9ypZ9tsOGfrOw+0bRM4GcucmHyBMBPdKG37uDRxTegaQ8lEHI5vCmwAvK93DuGW188DrGuoF9tY2KPDTNZlB0XiNbLxGXy6vzLByRk5k9ww=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Evan.Quan@amd.com; 
+ smtp.mailfrom=Kevin1.Wang@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -96,32 +97,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1577624429=="
+Content-Type: multipart/mixed; boundary="===============0155635703=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1577624429==
+--===============0155635703==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB3344F4BCEB15A0A817B9A6A0E4A40MN2PR12MB3344namp_"
+	boundary="_000_MN2PR12MB32964C9C3DC3919188759C4EA2A40MN2PR12MB3296namp_"
 
---_000_MN2PR12MB3344F4BCEB15A0A817B9A6A0E4A40MN2PR12MB3344namp_
-Content-Type: text/plain; charset="us-ascii"
+--_000_MN2PR12MB32964C9C3DC3919188759C4EA2A40MN2PR12MB3296namp_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
+a patch does only one thing.
+in this patch,it will do 2 things:
+
+  1.  fixed feature bitmap cached issue.
+  2.  make api of smu_feature_update_enabled_state as static function.
+
+for reason#2:
+the driver has other apis which only used in amdgpu_smu.c, but it still dec=
+laration in amdgpu_smu.h.
+the intent is to make this a public API.
+if you want to make it is a static function, please split it 2 patches. and=
+ indicate the reason.
+
+Best Regards,
+Kevin
+________________________________
+From: Quan, Evan <Evan.Quan@amd.com>
+Sent: Friday, August 23, 2019 1:38 PM
+To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>; amd-gfx@lists.freedesktop.org =
+<amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amd/powerplay: update cached feature enablement st=
+atus V2
+
+
 smu_feature_update_enable_state() is used only in amdgpu_smu.c.
-As a common sense, these APIs should be declared as 'static'.
+
+As a common sense, these APIs should be declared as =91static=92.
+
+
 
 Regards,
+
 Evan
+
 From: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
 Sent: Friday, August 23, 2019 1:30 PM
 To: Quan, Evan <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org
 Subject: Re: [PATCH] drm/amd/powerplay: update cached feature enablement st=
 atus V2
 
+
+
 comment inline
+
 ________________________________
+
 From: Quan, Evan <Evan.Quan@amd.com<mailto:Evan.Quan@amd.com>>
 Sent: Friday, August 23, 2019 12:50 PM
 To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com<mailto:Kevin1.Wang@amd.com>>; am=
@@ -129,6 +163,7 @@ d-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org> <amd-gfx@=
 lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>>
 Subject: RE: [PATCH] drm/amd/powerplay: update cached feature enablement st=
 atus V2
+
 
 
 Comment inline
@@ -295,7 +330,7 @@ thanks.
 
 
 
-[Quan, Evan] Move the API before the place it's called. No problem here.
+[Quan, Evan] Move the API before the place it=92s called. No problem here.
 
 
 
@@ -314,6 +349,7 @@ so i don't want to you adjust the function order and make it is static funt=
 ion in this patch.
 
 except you have other reason for it.
+
 
 
 -int smu_feature_update_enable_state(struct smu_context *smu, uint64_t feat=
@@ -425,120 +461,140 @@ amd-gfx mailing list
 amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
---_000_MN2PR12MB3344F4BCEB15A0A817B9A6A0E4A40MN2PR12MB3344namp_
-Content-Type: text/html; charset="us-ascii"
+--_000_MN2PR12MB32964C9C3DC3919188759C4EA2A40MN2PR12MB3296namp_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(0, 0, 0); font-family: Calibri, Arial, Helvetica,=
+ sans-serif; font-size: 12pt;">a patch does only one thing.</span><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+in this patch,it will do 2 things:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<ol>
+<li>fixed feature bitmap cached issue.</li><li>make api of smu_feature_upda=
+te_enabled_state as static function.</li></ol>
+<div>for reason#2:</div>
+<div>the driver has other apis which only used in amdgpu_smu.c, but it stil=
+l declaration in amdgpu_smu.h.</div>
+<div><span>the intent is to make this a public API.</span></div>
+<div>if you want to make it is a static function, please split it 2 patches=
+. a<span>nd indicate the reason.<br>
+</span></div>
+<div><br>
+</div>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Best Regards,<br>
+Kevin</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Quan, Evan &lt;Evan.Q=
+uan@amd.com&gt;<br>
+<b>Sent:</b> Friday, August 23, 2019 1:38 PM<br>
+<b>To:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;; amd-gfx@lists.fre=
+edesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
+<b>Subject:</b> RE: [PATCH] drm/amd/powerplay: update cached feature enable=
+ment status V2</font>
+<div>&nbsp;</div>
+</div>
+<style>
+<!--
 @font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
+	{font-family:SimSun}
 @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
+	{font-family:"Cambria Math"}
 @font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
+	{font-family:Calibri}
 @font-face
-	{font-family:"Segoe UI";
-	panose-1:2 11 5 2 4 2 4 2 2 3;}
+	{font-family:"Segoe UI"}
 @font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{font-family:SimSun}
+p.x_MsoNormal, li.x_MsoNormal, div.x_MsoNormal
 	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	margin:0in;
+	font-family:"Calibri",sans-serif}
+a:link, span.x_MsoHyperlink
+	{color:blue;
+	text-decoration:underline}
+a:visited, span.x_MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline}
+p.x_msonormal0, li.x_msonormal0, div.x_msonormal0
+	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-p.xmsonormal, li.xmsonormal, div.xmsonormal
-	{mso-style-name:x_msonormal;
-	margin:0in;
+	font-family:"Calibri",sans-serif}
+p.x_xmsonormal, li.x_xmsonormal, div.x_xmsonormal
+	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle21
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri",sans-serif}
+span.x_EmailStyle21
+	{font-family:"Calibri",sans-serif;
+	color:windowtext}
+.x_MsoChpDefault
+	{font-size:10.0pt}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">smu_feature_update_enable_state() is used only in am=
-dgpu_smu.c.
-<o:p></o:p></p>
-<p class=3D"MsoNormal">As a common sense, these APIs should be declared as =
-&#8216;static&#8217;.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Evan<o:p></o:p></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
+	{margin:1.0in 1.25in 1.0in 1.25in}
+div.x_WordSection1
+	{}
+-->
+</style>
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"x_WordSection1">
+<p class=3D"x_MsoNormal">smu_feature_update_enable_state() is used only in =
+amdgpu_smu.c.
+</p>
+<p class=3D"x_MsoNormal">As a common sense, these APIs should be declared a=
+s =91static=92.</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal">Regards,</p>
+<p class=3D"x_MsoNormal">Evan</p>
+<div style=3D"border:none; border-left:solid blue 1.5pt; padding:0in 0in 0i=
+n 4.0pt">
 <div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.c=
-om&gt; <br>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0i=
+n 0in 0in">
+<p class=3D"x_MsoNormal"><b>From:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd=
+.com&gt; <br>
 <b>Sent:</b> Friday, August 23, 2019 1:30 PM<br>
 <b>To:</b> Quan, Evan &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.=
 org<br>
 <b>Subject:</b> Re: [PATCH] drm/amd/powerplay: update cached feature enable=
-ment status V2<o:p></o:p></p>
+ment status V2</p>
 </div>
 </div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">comment=
- inline<o:p></o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">comm=
+ent inline</span></p>
 </div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<div class=3D"x_MsoNormal" align=3D"center" style=3D"text-align:center">
 <hr size=3D"2" width=3D"98%" align=3D"center">
 </div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"color:black">From:</span></b><span=
- style=3D"color:black"> Quan, Evan &lt;<a href=3D"mailto:Evan.Quan@amd.com"=
->Evan.Quan@amd.com</a>&gt;<br>
+<div id=3D"x_divRplyFwdMsg">
+<p class=3D"x_MsoNormal"><b><span style=3D"color:black">From:</span></b><sp=
+an style=3D"color:black"> Quan, Evan &lt;<a href=3D"mailto:Evan.Quan@amd.co=
+m">Evan.Quan@amd.com</a>&gt;<br>
 <b>Sent:</b> Friday, August 23, 2019 12:50 PM<br>
 <b>To:</b> Wang, Kevin(Yang) &lt;<a href=3D"mailto:Kevin1.Wang@amd.com">Kev=
 in1.Wang@amd.com</a>&gt;;
@@ -547,22 +603,22 @@ org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.=
 freedesktop.org</a>&gt;<br>
 <b>Subject:</b> RE: [PATCH] drm/amd/powerplay: update cached feature enable=
 ment status V2</span>
-<o:p></o:p></p>
+</p>
 <div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
 </div>
 </div>
 <div>
 <div>
-<p class=3D"xmsonormal">Comment inline<o:p></o:p></p>
-<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
+<p class=3D"x_xmsonormal">Comment inline</p>
+<p class=3D"x_xmsonormal">&nbsp;</p>
+<div style=3D"border:none; border-left:solid blue 1.5pt; padding:0in 0in 0i=
+n 4.0pt">
 <div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"xmsonormal"><b>From:</b> Wang, Kevin(Yang) &lt;<a href=3D"mailt=
-o:Kevin1.Wang@amd.com">Kevin1.Wang@amd.com</a>&gt;
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0i=
+n 0in 0in">
+<p class=3D"x_xmsonormal"><b>From:</b> Wang, Kevin(Yang) &lt;<a href=3D"mai=
+lto:Kevin1.Wang@amd.com">Kevin1.Wang@amd.com</a>&gt;
 <br>
 <b>Sent:</b> Thursday, August 22, 2019 8:00 PM<br>
 <b>To:</b> Quan, Evan &lt;<a href=3D"mailto:Evan.Quan@amd.com">Evan.Quan@am=
@@ -570,23 +626,23 @@ d.com</a>&gt;;
 <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
 org</a><br>
 <b>Subject:</b> Re: [PATCH] drm/amd/powerplay: update cached feature enable=
-ment status V2<o:p></o:p></p>
+ment status V2</p>
 </div>
 </div>
-<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"x_xmsonormal">&nbsp;</p>
 <div>
-<p class=3D"xmsonormal"><span style=3D"font-size:12.0pt;color:black">commen=
-t inline.</span><o:p></o:p></p>
+<p class=3D"x_xmsonormal"><span style=3D"font-size:12.0pt; color:black">com=
+ment inline.</span></p>
 </div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<div class=3D"x_MsoNormal" align=3D"center" style=3D"text-align:center">
 <hr size=3D"2" width=3D"98%" align=3D"center">
 </div>
-<div id=3D"x_divRplyFwdMsg">
-<p class=3D"xmsonormal"><b><span style=3D"color:black">From:</span></b><spa=
-n style=3D"color:black"> amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@list=
-s.freedesktop.org">amd-gfx-bounces@lists.freedesktop.org</a>&gt; on behalf =
-of Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.quan@amd.com</a>=
-&gt;<br>
+<div id=3D"x_x_divRplyFwdMsg">
+<p class=3D"x_xmsonormal"><b><span style=3D"color:black">From:</span></b><s=
+pan style=3D"color:black"> amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@li=
+sts.freedesktop.org">amd-gfx-bounces@lists.freedesktop.org</a>&gt; on behal=
+f of Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.quan@amd.com</=
+a>&gt;<br>
 <b>Sent:</b> Thursday, August 22, 2019 6:18 PM<br>
 <b>To:</b> <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.f=
 reedesktop.org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd=
@@ -595,29 +651,28 @@ reedesktop.org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd=
 d.com</a>&gt;<br>
 <b>Subject:</b> [PATCH] drm/amd/powerplay: update cached feature enablement=
  status V2</span>
-<o:p></o:p></p>
+</p>
 <div>
-<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"x_xmsonormal">&nbsp;</p>
 </div>
 </div>
 <div>
 <div>
-<p class=3D"xmsonormal">Need to update in cache feature enablement status a=
-fter pp_feature<br>
+<p class=3D"x_xmsonormal">Need to update in cache feature enablement status=
+ after pp_feature<br>
 settings. Another fix for the commit below:<br>
 drm/amd/powerplay: implment sysfs feature status function in smu<br>
 <br>
 V2: update smu_feature_update_enable_state() and relates<br>
 <br>
-<b>Change-Id: I90e29b0d839df26825d5993212f6097c7ad4bebf&nbsp;</b><o:p></o:p=
-></p>
+<b>Change-Id: I90e29b0d839df26825d5993212f6097c7ad4bebf&nbsp;</b></p>
 </div>
 <div>
-<p class=3D"xmsonormal"><b>[kevin]: this information is not neccessary for =
-public, please remove it.</b><o:p></o:p></p>
+<p class=3D"x_xmsonormal"><b>[kevin]: this information is not neccessary fo=
+r public, please remove it.</b></p>
 </div>
 <div>
-<p class=3D"xmsonormal"><b>git config gerrit.createchangeid=3Dfalse<br>
+<p class=3D"x_xmsonormal"><b>git config gerrit.createchangeid=3Dfalse<br>
 </b>Signed-off-by: Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.=
 quan@amd.com</a>&gt;<br>
 ---<br>
@@ -741,55 +796,52 @@ nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; test_and_clear_bit(feature_id, feature-=
 &gt;enabled);<br>
 &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
 p;&nbsp;&nbsp; }<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></p>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
 </div>
 <div>
-<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"x_xmsonormal">&nbsp;</p>
 </div>
 <div>
-<p class=3D"xmsonormal">//[kevin]: the code logic is a little redundant.<o:=
-p></o:p></p>
+<p class=3D"x_xmsonormal">//[kevin]: the code logic is a little redundant.<=
+/p>
 </div>
 <div>
-<p class=3D"xmsonormal">could you use bellow macro to replace that?<o:p></o=
-:p></p>
+<p class=3D"x_xmsonormal">could you use bellow macro to replace that?</p>
 </div>
 <div>
-<p class=3D"xmsonormal">header :&nbsp;<span style=3D"font-family:&quot;Sego=
-e UI&quot;,sans-serif;color:black;background:white">linux/bitmap.h</span><o=
-:p></o:p></p>
+<p class=3D"x_xmsonormal">header :&nbsp;<span style=3D"font-family:&quot;Se=
+goe UI&quot;,sans-serif; color:black; background:white">linux/bitmap.h</spa=
+n></p>
 </div>
 <div>
-<p class=3D"xmsonormal">&nbsp;* &nbsp;bitmap_and(dst, src1, src2, nbits) &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp;*dst =3D *src1 &amp; *src2<o:p></o:p></p>
+<p class=3D"x_xmsonormal">&nbsp;* &nbsp;bitmap_and(dst, src1, src2, nbits) =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*dst =3D *src1 &amp; *src2</p>
 <div>
-<p class=3D"xmsonormal">&nbsp;* &nbsp;<b>bitmap_or</b>(dst, src1, src2, nbi=
-ts) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *dst =3D *src1 | *src2<o:p></o:p></p=
->
+<p class=3D"x_xmsonormal">&nbsp;* &nbsp;<b>bitmap_or</b>(dst, src1, src2, n=
+bits) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *dst =3D *src1 | *src2</p>
 </div>
 <div>
-<p class=3D"xmsonormal">&nbsp;* &nbsp;bitmap_xor(dst, src1, src2, nbits) &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp;*dst =3D *src1 ^ *src2<o:p></o:p></p>
+<p class=3D"x_xmsonormal">&nbsp;* &nbsp;bitmap_xor(dst, src1, src2, nbits) =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*dst =3D *src1 ^ *src2</p>
 </div>
-<p class=3D"xmsonormal">&nbsp;* &nbsp;<b>bitmap_andnot</b>(dst, src1, src2,=
- nbits) &nbsp; &nbsp; &nbsp; *dst =3D *src1 &amp; ~(*src2)<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"x_xmsonormal">&nbsp;* &nbsp;<b>bitmap_andnot</b>(dst, src1, src=
+2, nbits) &nbsp; &nbsp; &nbsp; *dst =3D *src1 &amp; ~(*src2)</p>
 </div>
 <div>
-<p class=3D"xmsonormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unl=
-ock(&amp;feature-&gt;mutex);<br>
+<p class=3D"x_xmsonormal">&nbsp;</p>
+</div>
+<div>
+<p class=3D"x_xmsonormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_u=
+nlock(&amp;feature-&gt;mutex);<br>
 &#43;<br>
 &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
 &#43;}<br>
-&#43;<o:p></o:p></p>
+&#43;</p>
 </div>
 <div>
-<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
-<p class=3D"xmsonormal"><b><i>[Quan, Evan] updated in v3.</i></b><o:p></o:p=
-></p>
-<p class=3D"xmsonormal"><br>
+<p class=3D"x_xmsonormal">&nbsp;</p>
+<p class=3D"x_xmsonormal"><b><i>[Quan, Evan] updated in v3.</i></b></p>
+<p class=3D"x_xmsonormal"><br>
 &nbsp;int smu_sys_set_pp_feature_mask(struct smu_context *smu, uint64_t new=
 _mask)<br>
 &nbsp;{<br>
@@ -798,60 +850,59 @@ _mask)<br>
 br>
 &nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;}<o:p></o:p></p>
+&nbsp;}</p>
 </div>
 <div>
-<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"x_xmsonormal">&nbsp;</p>
 </div>
 <div>
-<p class=3D"xmsonormal">[kevin]:<o:p></o:p></p>
+<p class=3D"x_xmsonormal">[kevin]:</p>
 </div>
 <div>
-<p class=3D"xmsonormal">in this patch, i know you only want to fix not cach=
-ed feature cache issue,<o:p></o:p></p>
+<p class=3D"x_xmsonormal">in this patch, i know you only want to fix not ca=
+ched feature cache issue,</p>
 </div>
 <div>
-<p class=3D"xmsonormal">but in v2 patch,<o:p></o:p></p>
+<p class=3D"x_xmsonormal">but in v2 patch,</p>
 </div>
 <div>
-<p class=3D"xmsonormal">the patch adjust the order of code functions, it se=
-ems that this is a brand new function,<o:p></o:p></p>
+<p class=3D"x_xmsonormal">the patch adjust the order of code functions, it =
+seems that this is a brand new function,</p>
 </div>
 <div>
-<p class=3D"xmsonormal">I don't think it is necessary,<o:p></o:p></p>
+<p class=3D"x_xmsonormal">I don't think it is necessary,</p>
 </div>
 <div>
-<p class=3D"xmsonormal">could you just reflect the <b>modified content</b> =
-in the patch, which can facilitate us to trace
-<b>problems </b>and <b>review</b>.<o:p></o:p></p>
+<p class=3D"x_xmsonormal">could you just reflect the <b>modified content</b=
+> in the patch, which can facilitate us to trace
+<b>problems </b>and <b>review</b>.</p>
 </div>
 <div>
-<p class=3D"xmsonormal">thanks.<o:p></o:p></p>
+<p class=3D"x_xmsonormal">thanks.</p>
 <div>
-<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
-<p class=3D"xmsonormal"><b><i>[Quan, Evan] Move the API before the place it=
-&#8217;s called. No problem here.</i></b><o:p></o:p></p>
-<p class=3D"xmsonormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"xmsonormal"><b><i>[kevin]: in this patch, you don't need to adj=
-ust function order in this file,</i></b><o:p></o:p></p>
-<p class=3D"xmsonormal"><b><i>because the driver is already export this fun=
-ction in amdgpu_smu.h.</i></b><o:p></o:p></p>
-<p class=3D"xmsonormal"><b><i>int smu_feature_update_enable_state(struct sm=
-u_context *smu, uint64_t feature_mask, bool enabled);</i></b><o:p></o:p></p=
->
-<p class=3D"xmsonormal"><b><i>and in this patch, it make it is static funct=
-ion, but&nbsp;the declaration section remains in the amdgpu_smu.h file.</i>=
-</b><o:p></o:p></p>
-<p class=3D"xmsonormal"><b><i>so i don't want to you adjust the function or=
-der and make it is static funtion in this patch.</i></b><o:p></o:p></p>
-<p class=3D"xmsonormal"><b><i>except you have other reason for it.<o:p></o:=
-p></i></b></p>
+<p class=3D"x_xmsonormal">&nbsp;</p>
+<p class=3D"x_xmsonormal"><b><i>[Quan, Evan] Move the API before the place =
+it=92s called. No problem here.</i></b></p>
+<p class=3D"x_xmsonormal">&nbsp;</p>
+<p class=3D"x_xmsonormal"><b><i>[kevin]: in this patch, you don't need to a=
+djust function order in this file,</i></b></p>
+<p class=3D"x_xmsonormal"><b><i>because the driver is already export this f=
+unction in amdgpu_smu.h.</i></b></p>
+<p class=3D"x_xmsonormal"><b><i>int smu_feature_update_enable_state(struct =
+smu_context *smu, uint64_t feature_mask, bool enabled);</i></b></p>
+<p class=3D"x_xmsonormal"><b><i>and in this patch, it make it is static fun=
+ction, but&nbsp;the declaration section remains in the amdgpu_smu.h file.</=
+i></b></p>
+<p class=3D"x_xmsonormal"><b><i>so i don't want to you adjust the function =
+order and make it is static funtion in this patch.</i></b></p>
+<p class=3D"x_xmsonormal"><b><i>except you have other reason for it.</i></b=
+></p>
 <div>
-<p class=3D"MsoNormal"><b><i><o:p>&nbsp;</o:p></i></b></p>
+<p class=3D"x_MsoNormal"><b><i>&nbsp;</i></b></p>
 </div>
 </div>
-<p class=3D"xmsonormal">-int smu_feature_update_enable_state(struct smu_con=
-text *smu, uint64_t feature_mask, bool enabled)<br>
+<p class=3D"x_xmsonormal">-int smu_feature_update_enable_state(struct smu_c=
+ontext *smu, uint64_t feature_mask, bool enabled)<br>
 -{<br>
 -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_low =3D 0, feature_h=
 igh =3D 0;<br>
@@ -1012,7 +1063,8 @@ amd-gfx mailing list<br>
 <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
 org</a><br>
 <a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a><o:p></o:p></p>
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></p>
+</div>
 </div>
 </div>
 </div>
@@ -1023,9 +1075,9 @@ lists.freedesktop.org/mailman/listinfo/amd-gfx</a><o:p></o:p></p>
 </body>
 </html>
 
---_000_MN2PR12MB3344F4BCEB15A0A817B9A6A0E4A40MN2PR12MB3344namp_--
+--_000_MN2PR12MB32964C9C3DC3919188759C4EA2A40MN2PR12MB3296namp_--
 
---===============1577624429==
+--===============0155635703==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -1035,4 +1087,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1577624429==--
+--===============0155635703==--
