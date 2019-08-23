@@ -2,90 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8310F9A6DA
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Aug 2019 06:49:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C393F9A6DD
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Aug 2019 06:50:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD8526E56A;
-	Fri, 23 Aug 2019 04:49:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AEEC6EBBB;
+	Fri, 23 Aug 2019 04:50:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr740042.outbound.protection.outlook.com [40.107.74.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 901AF6E56A
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 04:49:02 +0000 (UTC)
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr780051.outbound.protection.outlook.com [40.107.78.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07B246EBBB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 04:50:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e18piBoeTRL6J/NOC7tTNSUnEu/Xz/YE41uTjROw2GzJydZLuxkboqMaUuRomgCPrJOiJaP6lzTbmFr6OVX8OPTKcY8D6HIV42FrmBCg7CR8HQTuH3pSO//CqpgFswtp5gXO7q+65LfG3MWO0KYQP7xA/QH0Lzj6ekqbXIKaAZ5hbrTwKFah4th0rgYpdcJg5pP2AzDWZfbXKpuEMNTqCds6mtvLdqzxUyORaN+Swcaeg07rH+pbjZy86iiTra4IUUQVGN0ulOV36tB1aUDdNTqwpue9SkW5Ifl1xxb+mTTWabV7LxfKvkmjZ0gb4inMCynRXMZLzvvzRIjviPTx9A==
+ b=XXwpEfVm+IxCfYfxJPSQHzCdt2ks3OiRRZjWOhvmc0OsY6mE1J1K52EoqG63cELENWA/JVCcTymxSaHExbtAk6uL9BX6Sb/Vxa61TJUy/PdYgDIbxbCG5XZo+TiLPV6krrB6Fjikns07ZNIShD2Sj+SIdWW2RDiBg4qbwBT9zYAWxe7vfahUOn3V3qBWCiw2H9VLsUcvG76+29srXsx33uHkWlt17oMI060Tg9x4S+8VYZxvFGq8Z5xOx00Qg3Mkd8DfG+888RzGJe9oi7BDH42bpz5b0o35ABefzr7IbEmJWBTTAsusnYxUz9f1x8NzhRaRCtpQTtlmigtCv4WCyg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bfDyRXl4Eca9dsnoZ2+5WFxWen4ZtvAGp+xIN4OXhds=;
- b=aLpGOMO2xo9NnLTENIfL5rznIbCevU/IAIp2DyEuQdWD+e+hTYAUvcnNWZ77oKP/HgI8hg4OUygBlxaor4mcYbDdEXG7R0qTAOI2bYitxv20OIOoAglHew/j93RTCtHxd8jHhJxa0NnRLo2xTD3ewCImo6DkiKa7wrhiIQqSrp9usRPE3f9uudqV7kdXqTmv+wPBNFVnB90YCEUUU34wnXqiOP4mrYgxKnbxksvtUn3Cy3LVRVKXJT/hzFQAYlOIJZXZjcI3WoTERYSN3mxNPActsq0zU1KEeu2C3FKaTiTfLBbd2ZeUBJgcsHYl+hQ2fu/dXz0RmLrflyHqSUZyHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-Received: from BN8PR12CA0017.namprd12.prod.outlook.com (2603:10b6:408:60::30)
- by MWHPR12MB1535.namprd12.prod.outlook.com (2603:10b6:301:5::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2178.18; Fri, 23 Aug
- 2019 04:48:59 +0000
-Received: from CO1NAM03FT055.eop-NAM03.prod.protection.outlook.com
- (2a01:111:f400:7e48::205) by BN8PR12CA0017.outlook.office365.com
- (2603:10b6:408:60::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2199.15 via Frontend
- Transport; Fri, 23 Aug 2019 04:48:58 +0000
-Received-SPF: None (protection.outlook.com: amd.com does not designate
+ bh=sHGOxR+e4hyGTjkLW5jNWxr8OLfLSB4LdycxpBIW6/w=;
+ b=mbO7MbRs0Gsblpm0PMSpXWbDSISfmJnYy/37iUV9I5QdctAre1EUfqZ1i7l93FHo+MoU/eEgQQ8TVGjNKdqBWdl7rMu33HyYh+7XfVmip0WUnPjBQiuT0LxIp3d71ASmt6zzlHBUaufDnmuac7U2bj4NkagrjsPsWIdENqsKPxI754EdlLeq/USgfWxXGjW2DJZso7ZWcWyicYvkHrKwfSh6UZUoQiVOAFV6+iVZMe66BaH4Vn7xmDyDO/3ly8bKP59KDAE6IWz19noovWjSyt5r+BdUG3p3gNkGJxF1Mgqn0977ITd1OnDVTV83spnDNS7U0K7BkWDPNEc+EYLzWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+Received: from MN2PR12MB3344.namprd12.prod.outlook.com (20.178.241.74) by
+ MN2PR12MB3901.namprd12.prod.outlook.com (10.255.238.22) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2178.16; Fri, 23 Aug 2019 04:50:49 +0000
+Received: from MN2PR12MB3344.namprd12.prod.outlook.com
+ ([fe80::6cae:3314:7799:3077]) by MN2PR12MB3344.namprd12.prod.outlook.com
+ ([fe80::6cae:3314:7799:3077%6]) with mapi id 15.20.2178.020; Fri, 23 Aug 2019
+ 04:50:49 +0000
+From: "Quan, Evan" <Evan.Quan@amd.com>
+To: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amd/powerplay: update cached feature enablement
+ status V2
+Thread-Topic: [PATCH] drm/amd/powerplay: update cached feature enablement
+ status V2
+Thread-Index: AQHVWNLpOWfQocHsnUadImdFxbRGw6cHELeAgAEZ0aA=
+Date: Fri, 23 Aug 2019 04:50:49 +0000
+Message-ID: <MN2PR12MB33449FC7151536C90957FE64E4A40@MN2PR12MB3344.namprd12.prod.outlook.com>
+References: <20190822101806.11651-1-evan.quan@amd.com>
+ <MN2PR12MB32964130A7A33074F69384EEA2A50@MN2PR12MB3296.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB32964130A7A33074F69384EEA2A50@MN2PR12MB3296.namprd12.prod.outlook.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [180.167.199.189]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5f6b9d19-e7dd-49ce-fc2c-08d727857816
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(5600166)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
+ SRVR:MN2PR12MB3901; 
+x-ms-traffictypediagnostic: MN2PR12MB3901:
+x-ms-exchange-purlcount: 3
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MN2PR12MB39014C816BD2DE2F8F7C16E3E4A40@MN2PR12MB3901.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0138CD935C
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(396003)(376002)(346002)(366004)(136003)(189003)(199004)(186003)(71190400001)(76176011)(71200400001)(99286004)(53936002)(110136005)(53546011)(6506007)(74316002)(2501003)(256004)(14444005)(478600001)(606006)(26005)(102836004)(14454004)(316002)(52536014)(66066001)(3846002)(5660300002)(446003)(7110500001)(6246003)(7736002)(66946007)(6116002)(790700001)(33656002)(11346002)(229853002)(476003)(2420400007)(15650500001)(86362001)(2906002)(966005)(25786009)(8936002)(66556008)(64756008)(66446008)(8676002)(81166006)(66476007)(81156014)(7696005)(236005)(6306002)(54896002)(6436002)(486006)(55016002)(76116006)(9686003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3901;
+ H:MN2PR12MB3344.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXCHOV02.amd.com (165.204.84.17) by
- CO1NAM03FT055.mail.protection.outlook.com (10.152.81.162) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2178.16 via Frontend Transport; Fri, 23 Aug 2019 04:48:58 +0000
-Received: from equan-buildpc.amd.com (10.34.1.3) by SATLEXCHOV02.amd.com
- (10.181.40.72) with Microsoft SMTP Server id 14.3.389.1; Thu, 22 Aug 2019
- 23:48:54 -0500
-From: Evan Quan <evan.quan@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/powerplay: update cached feature enablement status V3
-Date: Fri, 23 Aug 2019 12:48:51 +0800
-Message-ID: <20190823044851.8133-1-evan.quan@amd.com>
-X-Mailer: git-send-email 2.23.0
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: aifJTBBxMIlL4RLt9CTuFyX95QWtI2GI4FZUCImxH+7VI3kNFji2a3kFTFEbKQK04cfmecc8PuRyAJwu3UY4e4vtyxcS1m5+VngSn/kqN25UM87gniTEgw3u9pM6JXf40hAuojYvG36rqKLwBbW4/8OHBJbUiYPUmUV5Fr5yLchfiO9CzJTMtauMT4+tGT/KxasxqFHcvHVTmw23kEqq1JaHH8XhrfYn1upnDY41UN0HIn3xNbj3vufDLZRn9ZzScFO8lziFDYLSlPrwLs+nOi5chdaS+qTUnL1DA2a3qHcKTTv3A0LMDEVNXE/I6gTMjyaQAE1W36mjRC6J5b4IhVOnol1kvmNfCnHia9wTmgnP/7AYCUusv4JvGff0ZhY5sJ3JTI/bs3zooaYGPR/RFHT3lgR0/7bX+vmkXiUUDB0=
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(39860400002)(346002)(136003)(376002)(2980300002)(428003)(199004)(189003)(2351001)(305945005)(1076003)(6666004)(7696005)(51416003)(356004)(70206006)(126002)(476003)(2616005)(44832011)(486006)(426003)(47776003)(336012)(26005)(53416004)(6916009)(478600001)(316002)(86362001)(53936002)(50226002)(81166006)(81156014)(186003)(8676002)(14444005)(50466002)(48376002)(4326008)(2870700001)(5660300002)(70586007)(2906002)(8936002)(36756003)(15650500001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1535; H:SATLEXCHOV02.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a3068613-c343-4e04-9075-08d7278535ea
-X-Microsoft-Antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600166)(711020)(4605104)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328);
- SRVR:MWHPR12MB1535; 
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1535:
-X-Microsoft-Antispam-PRVS: <MWHPR12MB1535218567C02128FBD94076E4A40@MWHPR12MB1535.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:364;
-X-Forefront-PRVS: 0138CD935C
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: 9s893YTNPm0dUEEHlhYLrf5sSqUvnqu9GQdF8SvL9dT8fBevqYGNveQ/Jb9QU5230L4nigrQoKnrq+9F32IZEbIgkc3zWBZxUgUU8PwQND7FFS22uZ4m4jrByaLLfDPb6Ph8XkiTstjqyqo1+kRe94sU6wSAI295ABr3Ajkv14J2B8PnrEQ4Fdq6LB7Pk61w1UZHPFSIFMAOo/OS0/twpWu7GipbndDw0J8mxkxjpW3xIltN1zxd4D/yRqU/eKK1Xjk0XpKfVLqFcgBjffCVgp/MYK0tSC3K1RGoCmVjwj+iFO2NYmf+5z+7x/0VpxJR6ys9GQj8CTIWHw7zCinP1zxndH3QWzyF41DkZWkjsFrunVchn9uewjWx7qnDfcT2F2dhmgQZpUb3TPjj/E4ff0p5KxpvJLI4gRBneYYq9J4=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2019 04:48:58.2199 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3068613-c343-4e04-9075-08d7278535ea
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXCHOV02.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1535
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f6b9d19-e7dd-49ce-fc2c-08d727857816
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2019 04:50:49.3901 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TcLVfzaDtWPyQSWiw1WljquZWPd1XgP8+8iqD/09pZHCJBb4TTp7n9O4sKSjgGuJ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3901
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bfDyRXl4Eca9dsnoZ2+5WFxWen4ZtvAGp+xIN4OXhds=;
- b=CEUIndsPaoEh2EMHg2+ZKXypxGPom46Fl7PXGTuWGDroZjCdTXxE+fLWqPobYEaSyh0UIftE5tNxZ/6Oy/a4YM3LOkXa5u5yddHiZFkWGXKNf3GBmLtrqLN5KnKIp4l8M44E9hmZQABO/u4h0Z8JJO9YRF6Pwxp/qpNgoqSFmWs=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is
- 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
+ bh=sHGOxR+e4hyGTjkLW5jNWxr8OLfLSB4LdycxpBIW6/w=;
+ b=yu/nJKT5kIPpyUSQ3eQkvFJkLw72L7SAwgirI7LwMmDBn/7AWMRMEf9uy68QVLYCyoWH1maHT77Okr4nHu2Lei4m004UfXmsEfmJsZ0Nkt6QGoPV1XlKdknJMalUDusGrhGGZtPmyzvqEochQTvOSBZGz3F81z8bQrPfwHcLt9M=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Evan.Quan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -97,104 +97,788 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Evan Quan <evan.quan@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0164750990=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-TmVlZCB0byB1cGRhdGUgaW4gY2FjaGUgZmVhdHVyZSBlbmFibGVtZW50IHN0YXR1cyBhZnRlciBw
-cF9mZWF0dXJlCnNldHRpbmdzLiBBbm90aGVyIGZpeCBmb3IgdGhlIGNvbW1pdCBiZWxvdzoKZHJt
-L2FtZC9wb3dlcnBsYXk6IGltcGxtZW50IHN5c2ZzIGZlYXR1cmUgc3RhdHVzIGZ1bmN0aW9uIGlu
-IHNtdQoKVjI6IHVwZGF0ZSBzbXVfZmVhdHVyZV91cGRhdGVfZW5hYmxlX3N0YXRlKCkgYW5kIHJl
-bGF0ZXMKVjM6IHVzZSBiaXRtYXBfb3IgYW5kIGJpdG1hcF9hbmRub3QKCkNoYW5nZS1JZDogSTkw
-ZTI5YjBkODM5ZGYyNjgyNWQ1OTkzMjEyZjYwOTdjN2FkNGJlYmYKU2lnbmVkLW9mZi1ieTogRXZh
-biBRdWFuIDxldmFuLnF1YW5AYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2Vy
-cGxheS9hbWRncHVfc211LmMgICAgfCAxMDEgKysrKysrKysrLS0tLS0tLS0tCiAuLi4vZ3B1L2Ry
-bS9hbWQvcG93ZXJwbGF5L2luYy9hbWRncHVfc211LmggICAgfCAgIDEgLQogMiBmaWxlcyBjaGFu
-Z2VkLCA0OSBpbnNlcnRpb25zKCspLCA1MyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9hbWRncHVfc211LmMgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL3Bvd2VycGxheS9hbWRncHVfc211LmMKaW5kZXggNGRmN2ZiNmVhZjNjLi5jOGMwMDk2NmE2
-MjEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2FtZGdwdV9zbXUu
-YworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9hbWRncHVfc211LmMKQEAgLTk0
-LDYgKzk0LDUyIEBAIHNpemVfdCBzbXVfc3lzX2dldF9wcF9mZWF0dXJlX21hc2soc3RydWN0IHNt
-dV9jb250ZXh0ICpzbXUsIGNoYXIgKmJ1ZikKIAlyZXR1cm4gc2l6ZTsKIH0KIAorc3RhdGljIGlu
-dCBzbXVfZmVhdHVyZV91cGRhdGVfZW5hYmxlX3N0YXRlKHN0cnVjdCBzbXVfY29udGV4dCAqc211
-LAorCQkJCQkgICB1aW50NjRfdCBmZWF0dXJlX21hc2ssCisJCQkJCSAgIGJvb2wgZW5hYmxlZCkK
-K3sKKwlzdHJ1Y3Qgc211X2ZlYXR1cmUgKmZlYXR1cmUgPSAmc211LT5zbXVfZmVhdHVyZTsKKwl1
-aW50MzJfdCBmZWF0dXJlX2xvdyA9IDAsIGZlYXR1cmVfaGlnaCA9IDA7CisJaW50IHJldCA9IDA7
-CisKKwlpZiAoIXNtdS0+cG1fZW5hYmxlZCkKKwkJcmV0dXJuIHJldDsKKworCWZlYXR1cmVfbG93
-ID0gKGZlYXR1cmVfbWFzayA+PiAwICkgJiAweGZmZmZmZmZmOworCWZlYXR1cmVfaGlnaCA9IChm
-ZWF0dXJlX21hc2sgPj4gMzIpICYgMHhmZmZmZmZmZjsKKworCWlmIChlbmFibGVkKSB7CisJCXJl
-dCA9IHNtdV9zZW5kX3NtY19tc2dfd2l0aF9wYXJhbShzbXUsIFNNVV9NU0dfRW5hYmxlU211RmVh
-dHVyZXNMb3csCisJCQkJCQkgIGZlYXR1cmVfbG93KTsKKwkJaWYgKHJldCkKKwkJCXJldHVybiBy
-ZXQ7CisJCXJldCA9IHNtdV9zZW5kX3NtY19tc2dfd2l0aF9wYXJhbShzbXUsIFNNVV9NU0dfRW5h
-YmxlU211RmVhdHVyZXNIaWdoLAorCQkJCQkJICBmZWF0dXJlX2hpZ2gpOworCQlpZiAocmV0KQor
-CQkJcmV0dXJuIHJldDsKKwl9IGVsc2UgeworCQlyZXQgPSBzbXVfc2VuZF9zbWNfbXNnX3dpdGhf
-cGFyYW0oc211LCBTTVVfTVNHX0Rpc2FibGVTbXVGZWF0dXJlc0xvdywKKwkJCQkJCSAgZmVhdHVy
-ZV9sb3cpOworCQlpZiAocmV0KQorCQkJcmV0dXJuIHJldDsKKwkJcmV0ID0gc211X3NlbmRfc21j
-X21zZ193aXRoX3BhcmFtKHNtdSwgU01VX01TR19EaXNhYmxlU211RmVhdHVyZXNIaWdoLAorCQkJ
-CQkJICBmZWF0dXJlX2hpZ2gpOworCQlpZiAocmV0KQorCQkJcmV0dXJuIHJldDsKKwl9CisKKwlt
-dXRleF9sb2NrKCZmZWF0dXJlLT5tdXRleCk7CisJaWYgKGVuYWJsZWQpCisJCWJpdG1hcF9vcihm
-ZWF0dXJlLT5lbmFibGVkLCBmZWF0dXJlLT5lbmFibGVkLAorCQkJCSh1bnNpZ25lZCBsb25nICop
-KCZmZWF0dXJlX21hc2spLCBTTVVfRkVBVFVSRV9NQVgpOworCWVsc2UKKwkJYml0bWFwX2FuZG5v
-dChmZWF0dXJlLT5lbmFibGVkLCBmZWF0dXJlLT5lbmFibGVkLAorCQkJCSh1bnNpZ25lZCBsb25n
-ICopKCZmZWF0dXJlX21hc2spLCBTTVVfRkVBVFVSRV9NQVgpOworCW11dGV4X3VubG9jaygmZmVh
-dHVyZS0+bXV0ZXgpOworCisJcmV0dXJuIHJldDsKK30KKwogaW50IHNtdV9zeXNfc2V0X3BwX2Zl
-YXR1cmVfbWFzayhzdHJ1Y3Qgc211X2NvbnRleHQgKnNtdSwgdWludDY0X3QgbmV3X21hc2spCiB7
-CiAJaW50IHJldCA9IDA7CkBAIC01OTEsNDEgKzYzNyw3IEBAIGludCBzbXVfZmVhdHVyZV9pbml0
-X2RwbShzdHJ1Y3Qgc211X2NvbnRleHQgKnNtdSkKIAogCXJldHVybiByZXQ7CiB9Ci1pbnQgc211
-X2ZlYXR1cmVfdXBkYXRlX2VuYWJsZV9zdGF0ZShzdHJ1Y3Qgc211X2NvbnRleHQgKnNtdSwgdWlu
-dDY0X3QgZmVhdHVyZV9tYXNrLCBib29sIGVuYWJsZWQpCi17Ci0JdWludDMyX3QgZmVhdHVyZV9s
-b3cgPSAwLCBmZWF0dXJlX2hpZ2ggPSAwOwotCWludCByZXQgPSAwOwotCi0JaWYgKCFzbXUtPnBt
-X2VuYWJsZWQpCi0JCXJldHVybiByZXQ7Ci0KLQlmZWF0dXJlX2xvdyA9IChmZWF0dXJlX21hc2sg
-Pj4gMCApICYgMHhmZmZmZmZmZjsKLQlmZWF0dXJlX2hpZ2ggPSAoZmVhdHVyZV9tYXNrID4+IDMy
-KSAmIDB4ZmZmZmZmZmY7Ci0KLQlpZiAoZW5hYmxlZCkgewotCQlyZXQgPSBzbXVfc2VuZF9zbWNf
-bXNnX3dpdGhfcGFyYW0oc211LCBTTVVfTVNHX0VuYWJsZVNtdUZlYXR1cmVzTG93LAotCQkJCQkJ
-ICBmZWF0dXJlX2xvdyk7Ci0JCWlmIChyZXQpCi0JCQlyZXR1cm4gcmV0OwotCQlyZXQgPSBzbXVf
-c2VuZF9zbWNfbXNnX3dpdGhfcGFyYW0oc211LCBTTVVfTVNHX0VuYWJsZVNtdUZlYXR1cmVzSGln
-aCwKLQkJCQkJCSAgZmVhdHVyZV9oaWdoKTsKLQkJaWYgKHJldCkKLQkJCXJldHVybiByZXQ7Ci0K
-LQl9IGVsc2UgewotCQlyZXQgPSBzbXVfc2VuZF9zbWNfbXNnX3dpdGhfcGFyYW0oc211LCBTTVVf
-TVNHX0Rpc2FibGVTbXVGZWF0dXJlc0xvdywKLQkJCQkJCSAgZmVhdHVyZV9sb3cpOwotCQlpZiAo
-cmV0KQotCQkJcmV0dXJuIHJldDsKLQkJcmV0ID0gc211X3NlbmRfc21jX21zZ193aXRoX3BhcmFt
-KHNtdSwgU01VX01TR19EaXNhYmxlU211RmVhdHVyZXNIaWdoLAotCQkJCQkJICBmZWF0dXJlX2hp
-Z2gpOwotCQlpZiAocmV0KQotCQkJcmV0dXJuIHJldDsKIAotCX0KLQotCXJldHVybiByZXQ7Ci19
-CiAKIGludCBzbXVfZmVhdHVyZV9pc19lbmFibGVkKHN0cnVjdCBzbXVfY29udGV4dCAqc211LCBl
-bnVtIHNtdV9mZWF0dXJlX21hc2sgbWFzaykKIHsKQEAgLTY1MSw4ICs2NjMsNiBAQCBpbnQgc211
-X2ZlYXR1cmVfc2V0X2VuYWJsZWQoc3RydWN0IHNtdV9jb250ZXh0ICpzbXUsIGVudW0gc211X2Zl
-YXR1cmVfbWFzayBtYXNrLAogewogCXN0cnVjdCBzbXVfZmVhdHVyZSAqZmVhdHVyZSA9ICZzbXUt
-PnNtdV9mZWF0dXJlOwogCWludCBmZWF0dXJlX2lkOwotCXVpbnQ2NF90IGZlYXR1cmVfbWFzayA9
-IDA7Ci0JaW50IHJldCA9IDA7CiAKIAlmZWF0dXJlX2lkID0gc211X2ZlYXR1cmVfZ2V0X2luZGV4
-KHNtdSwgbWFzayk7CiAJaWYgKGZlYXR1cmVfaWQgPCAwKQpAQCAtNjYwLDIyICs2NzAsOSBAQCBp
-bnQgc211X2ZlYXR1cmVfc2V0X2VuYWJsZWQoc3RydWN0IHNtdV9jb250ZXh0ICpzbXUsIGVudW0g
-c211X2ZlYXR1cmVfbWFzayBtYXNrLAogCiAJV0FSTl9PTihmZWF0dXJlX2lkID4gZmVhdHVyZS0+
-ZmVhdHVyZV9udW0pOwogCi0JZmVhdHVyZV9tYXNrID0gMVVMTCA8PCBmZWF0dXJlX2lkOwotCi0J
-bXV0ZXhfbG9jaygmZmVhdHVyZS0+bXV0ZXgpOwotCXJldCA9IHNtdV9mZWF0dXJlX3VwZGF0ZV9l
-bmFibGVfc3RhdGUoc211LCBmZWF0dXJlX21hc2ssIGVuYWJsZSk7Ci0JaWYgKHJldCkKLQkJZ290
-byBmYWlsZWQ7Ci0KLQlpZiAoZW5hYmxlKQotCQl0ZXN0X2FuZF9zZXRfYml0KGZlYXR1cmVfaWQs
-IGZlYXR1cmUtPmVuYWJsZWQpOwotCWVsc2UKLQkJdGVzdF9hbmRfY2xlYXJfYml0KGZlYXR1cmVf
-aWQsIGZlYXR1cmUtPmVuYWJsZWQpOwotCi1mYWlsZWQ6Ci0JbXV0ZXhfdW5sb2NrKCZmZWF0dXJl
-LT5tdXRleCk7Ci0KLQlyZXR1cm4gcmV0OworCXJldHVybiBzbXVfZmVhdHVyZV91cGRhdGVfZW5h
-YmxlX3N0YXRlKHNtdSwKKwkJCQkJICAgICAgIDFVTEwgPDwgZmVhdHVyZV9pZCwKKwkJCQkJICAg
-ICAgIGVuYWJsZSk7CiB9CiAKIGludCBzbXVfZmVhdHVyZV9pc19zdXBwb3J0ZWQoc3RydWN0IHNt
-dV9jb250ZXh0ICpzbXUsIGVudW0gc211X2ZlYXR1cmVfbWFzayBtYXNrKQpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaW5jL2FtZGdwdV9zbXUuaCBiL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvcG93ZXJwbGF5L2luYy9hbWRncHVfc211LmgKaW5kZXggZTgwYzgxNTUyZDI5
-Li5mYmY2OGZkNDJiOTMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5
-L2luYy9hbWRncHVfc211LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaW5j
-L2FtZGdwdV9zbXUuaApAQCAtODA3LDcgKzgwNyw2IEBAIGVudW0gYW1kX2RwbV9mb3JjZWRfbGV2
-ZWwgc211X2dldF9wZXJmb3JtYW5jZV9sZXZlbChzdHJ1Y3Qgc211X2NvbnRleHQgKnNtdSk7CiBp
-bnQgc211X2ZvcmNlX3BlcmZvcm1hbmNlX2xldmVsKHN0cnVjdCBzbXVfY29udGV4dCAqc211LCBl
-bnVtIGFtZF9kcG1fZm9yY2VkX2xldmVsIGxldmVsKTsKIGludCBzbXVfc2V0X2Rpc3BsYXlfY291
-bnQoc3RydWN0IHNtdV9jb250ZXh0ICpzbXUsIHVpbnQzMl90IGNvdW50KTsKIGJvb2wgc211X2Ns
-a19kcG1faXNfZW5hYmxlZChzdHJ1Y3Qgc211X2NvbnRleHQgKnNtdSwgZW51bSBzbXVfY2xrX3R5
-cGUgY2xrX3R5cGUpOwotaW50IHNtdV9mZWF0dXJlX3VwZGF0ZV9lbmFibGVfc3RhdGUoc3RydWN0
-IHNtdV9jb250ZXh0ICpzbXUsIHVpbnQ2NF90IGZlYXR1cmVfbWFzaywgYm9vbCBlbmFibGVkKTsK
-IGNvbnN0IGNoYXIgKnNtdV9nZXRfbWVzc2FnZV9uYW1lKHN0cnVjdCBzbXVfY29udGV4dCAqc211
-LCBlbnVtIHNtdV9tZXNzYWdlX3R5cGUgdHlwZSk7CiBjb25zdCBjaGFyICpzbXVfZ2V0X2ZlYXR1
-cmVfbmFtZShzdHJ1Y3Qgc211X2NvbnRleHQgKnNtdSwgZW51bSBzbXVfZmVhdHVyZV9tYXNrIGZl
-YXR1cmUpOwogc2l6ZV90IHNtdV9zeXNfZ2V0X3BwX2ZlYXR1cmVfbWFzayhzdHJ1Y3Qgc211X2Nv
-bnRleHQgKnNtdSwgY2hhciAqYnVmKTsKLS0gCjIuMjMuMAoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9hbWQtZ2Z4
+--===============0164750990==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB33449FC7151536C90957FE64E4A40MN2PR12MB3344namp_"
+
+--_000_MN2PR12MB33449FC7151536C90957FE64E4A40MN2PR12MB3344namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Comment inline
+
+From: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
+Sent: Thursday, August 22, 2019 8:00 PM
+To: Quan, Evan <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/amd/powerplay: update cached feature enablement st=
+atus V2
+
+comment inline.
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
+@lists.freedesktop.org>> on behalf of Evan Quan <evan.quan@amd.com<mailto:e=
+van.quan@amd.com>>
+Sent: Thursday, August 22, 2019 6:18 PM
+To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org> <am=
+d-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>>
+Cc: Quan, Evan <Evan.Quan@amd.com<mailto:Evan.Quan@amd.com>>
+Subject: [PATCH] drm/amd/powerplay: update cached feature enablement status=
+ V2
+
+Need to update in cache feature enablement status after pp_feature
+settings. Another fix for the commit below:
+drm/amd/powerplay: implment sysfs feature status function in smu
+
+V2: update smu_feature_update_enable_state() and relates
+
+Change-Id: I90e29b0d839df26825d5993212f6097c7ad4bebf
+[kevin]: this information is not neccessary for public, please remove it.
+git config gerrit.createchangeid=3Dfalse
+Signed-off-by: Evan Quan <evan.quan@amd.com<mailto:evan.quan@amd.com>>
+---
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c    | 104 +++++++++---------
+ .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h    |   1 -
+ 2 files changed, 52 insertions(+), 53 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/a=
+md/powerplay/amdgpu_smu.c
+index 4df7fb6eaf3c..3e1cd5d9c29e 100644
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+@@ -94,6 +94,55 @@ size_t smu_sys_get_pp_feature_mask(struct smu_context *s=
+mu, char *buf)
+         return size;
+ }
+
++static int smu_feature_update_enable_state(struct smu_context *smu,
++                                          uint64_t feature_mask,
++                                          bool enabled)
++{
++       struct smu_feature *feature =3D &smu->smu_feature;
++       uint32_t feature_low =3D 0, feature_high =3D 0;
++       uint64_t feature_id;
++       int ret =3D 0;
++
++       if (!smu->pm_enabled)
++               return ret;
++
++       feature_low =3D (feature_mask >> 0 ) & 0xffffffff;
++       feature_high =3D (feature_mask >> 32) & 0xffffffff;
++
++       if (enabled) {
++               ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuF=
+eaturesLow,
++                                                 feature_low);
++               if (ret)
++                       return ret;
++               ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuF=
+eaturesHigh,
++                                                 feature_high);
++               if (ret)
++                       return ret;
++       } else {
++               ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmu=
+FeaturesLow,
++                                                 feature_low);
++               if (ret)
++                       return ret;
++               ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmu=
+FeaturesHigh,
++                                                 feature_high);
++               if (ret)
++                       return ret;
++       }
++
++       mutex_lock(&feature->mutex);
++       for (feature_id =3D 0; feature_id < 64; feature_id++) {
++               if (feature_mask & (1ULL << feature_id)) {
++                       if (enabled)
++                               test_and_set_bit(feature_id, feature->enabl=
+ed);
++                       else
++                               test_and_clear_bit(feature_id, feature->ena=
+bled);
++               }
++       }
+
+//[kevin]: the code logic is a little redundant.
+could you use bellow macro to replace that?
+header : linux/bitmap.h
+ *  bitmap_and(dst, src1, src2, nbits)          *dst =3D *src1 & *src2
+ *  bitmap_or(dst, src1, src2, nbits)           *dst =3D *src1 | *src2
+ *  bitmap_xor(dst, src1, src2, nbits)          *dst =3D *src1 ^ *src2
+ *  bitmap_andnot(dst, src1, src2, nbits)       *dst =3D *src1 & ~(*src2)
+
++       mutex_unlock(&feature->mutex);
++
++       return ret;
++}
++
+
+[Quan, Evan] updated in v3.
+
+ int smu_sys_set_pp_feature_mask(struct smu_context *smu, uint64_t new_mask=
+)
+ {
+         int ret =3D 0;
+@@ -591,41 +640,7 @@ int smu_feature_init_dpm(struct smu_context *smu)
+
+         return ret;
+ }
+
+[kevin]:
+in this patch, i know you only want to fix not cached feature cache issue,
+but in v2 patch,
+the patch adjust the order of code functions, it seems that this is a brand=
+ new function,
+I don't think it is necessary,
+could you just reflect the modified content in the patch, which can facilit=
+ate us to trace problems and review.
+thanks.
+
+[Quan, Evan] Move the API before the place it's called. No problem here.
+-int smu_feature_update_enable_state(struct smu_context *smu, uint64_t feat=
+ure_mask, bool enabled)
+-{
+-       uint32_t feature_low =3D 0, feature_high =3D 0;
+-       int ret =3D 0;
+
+-       if (!smu->pm_enabled)
+-               return ret;
+-
+-       feature_low =3D (feature_mask >> 0 ) & 0xffffffff;
+-       feature_high =3D (feature_mask >> 32) & 0xffffffff;
+-
+-       if (enabled) {
+-               ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuF=
+eaturesLow,
+-                                                 feature_low);
+-               if (ret)
+-                       return ret;
+-               ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuF=
+eaturesHigh,
+-                                                 feature_high);
+-               if (ret)
+-                       return ret;
+-
+-       } else {
+-               ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmu=
+FeaturesLow,
+-                                                 feature_low);
+-               if (ret)
+-                       return ret;
+-               ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmu=
+FeaturesHigh,
+-                                                 feature_high);
+-               if (ret)
+-                       return ret;
+-
+-       }
+-
+-       return ret;
+-}
+
+ int smu_feature_is_enabled(struct smu_context *smu, enum smu_feature_mask =
+mask)
+ {
+@@ -651,8 +666,6 @@ int smu_feature_set_enabled(struct smu_context *smu, en=
+um smu_feature_mask mask,
+ {
+         struct smu_feature *feature =3D &smu->smu_feature;
+         int feature_id;
+-       uint64_t feature_mask =3D 0;
+-       int ret =3D 0;
+
+         feature_id =3D smu_feature_get_index(smu, mask);
+         if (feature_id < 0)
+@@ -660,22 +673,9 @@ int smu_feature_set_enabled(struct smu_context *smu, e=
+num smu_feature_mask mask,
+
+         WARN_ON(feature_id > feature->feature_num);
+
+-       feature_mask =3D 1ULL << feature_id;
+-
+-       mutex_lock(&feature->mutex);
+-       ret =3D smu_feature_update_enable_state(smu, feature_mask, enable);
+-       if (ret)
+-               goto failed;
+-
+-       if (enable)
+-               test_and_set_bit(feature_id, feature->enabled);
+-       else
+-               test_and_clear_bit(feature_id, feature->enabled);
+-
+-failed:
+-       mutex_unlock(&feature->mutex);
+-
+-       return ret;
++       return smu_feature_update_enable_state(smu,
++                                              1ULL << feature_id,
++                                              enable);
+ }
+
+ int smu_feature_is_supported(struct smu_context *smu, enum smu_feature_mas=
+k mask)
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/d=
+rm/amd/powerplay/inc/amdgpu_smu.h
+index e80c81552d29..fbf68fd42b93 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+@@ -807,7 +807,6 @@ enum amd_dpm_forced_level smu_get_performance_level(str=
+uct smu_context *smu);
+ int smu_force_performance_level(struct smu_context *smu, enum amd_dpm_forc=
+ed_level level);
+ int smu_set_display_count(struct smu_context *smu, uint32_t count);
+ bool smu_clk_dpm_is_enabled(struct smu_context *smu, enum smu_clk_type clk=
+_type);
+-int smu_feature_update_enable_state(struct smu_context *smu, uint64_t feat=
+ure_mask, bool enabled);
+ const char *smu_get_message_name(struct smu_context *smu, enum smu_message=
+_type type);
+ const char *smu_get_feature_name(struct smu_context *smu, enum smu_feature=
+_mask feature);
+ size_t smu_sys_get_pp_feature_mask(struct smu_context *smu, char *buf);
+--
+2.23.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_MN2PR12MB33449FC7151536C90957FE64E4A40MN2PR12MB3344namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Comment inline<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.c=
+om&gt; <br>
+<b>Sent:</b> Thursday, August 22, 2019 8:00 PM<br>
+<b>To:</b> Quan, Evan &lt;Evan.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.=
+org<br>
+<b>Subject:</b> Re: [PATCH] drm/amd/powerplay: update cached feature enable=
+ment status V2<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">comment=
+ inline.<o:p></o:p></span></p>
+</div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span style=3D"color:black">From:</span></b><span=
+ style=3D"color:black"> amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists=
+.freedesktop.org">amd-gfx-bounces@lists.freedesktop.org</a>&gt; on behalf o=
+f Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.quan@amd.com</a>&=
+gt;<br>
+<b>Sent:</b> Thursday, August 22, 2019 6:18 PM<br>
+<b>To:</b> <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.f=
+reedesktop.org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd=
+-gfx@lists.freedesktop.org</a>&gt;<br>
+<b>Cc:</b> Quan, Evan &lt;<a href=3D"mailto:Evan.Quan@amd.com">Evan.Quan@am=
+d.com</a>&gt;<br>
+<b>Subject:</b> [PATCH] drm/amd/powerplay: update cached feature enablement=
+ status V2</span>
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Need to update in cache feature enablement status af=
+ter pp_feature<br>
+settings. Another fix for the commit below:<br>
+drm/amd/powerplay: implment sysfs feature status function in smu<br>
+<br>
+V2: update smu_feature_update_enable_state() and relates<br>
+<br>
+<b>Change-Id: I90e29b0d839df26825d5993212f6097c7ad4bebf&nbsp;</b><o:p></o:p=
+></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b>[kevin]: this information is not neccessary for p=
+ublic, please remove it.</b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b>git config gerrit.createchangeid=3Dfalse<br>
+</b>Signed-off-by: Evan Quan &lt;<a href=3D"mailto:evan.quan@amd.com">evan.=
+quan@amd.com</a>&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/amdgpu_smu.c&nbsp;&nbsp;&nbsp; | 104 &#=
+43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;---------<br>
+&nbsp;.../gpu/drm/amd/powerplay/inc/amdgpu_smu.h&nbsp;&nbsp;&nbsp; |&nbsp;&=
+nbsp; 1 -<br>
+&nbsp;2 files changed, 52 insertions(&#43;), 53 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/a=
+md/powerplay/amdgpu_smu.c<br>
+index 4df7fb6eaf3c..3e1cd5d9c29e 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+@@ -94,6 &#43;94,55 @@ size_t smu_sys_get_pp_feature_mask(struct smu_contex=
+t *smu, char *buf)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return size;<br>
+&nbsp;}<br>
+&nbsp;<br>
+&#43;static int smu_feature_update_enable_state(struct smu_context *smu,<br=
+>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t feature_mask,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; bool enabled)<br>
+&#43;{<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_feature *feature =3D &=
+amp;smu-&gt;smu_feature;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_low =3D 0, featu=
+re_high =3D 0;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t feature_id;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!smu-&gt;pm_enabled)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; return ret;<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_low =3D (feature_mask &gt=
+;&gt; 0 ) &amp; 0xffffffff;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_high =3D (feature_mask &g=
+t;&gt; 32) &amp; 0xffffffff;<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (enabled) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuFe=
+aturesLow,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; featur=
+e_low);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (ret)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<=
+br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuFe=
+aturesHigh,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; featur=
+e_high);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (ret)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<=
+br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmuF=
+eaturesLow,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; featur=
+e_low);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (ret)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<=
+br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmuF=
+eaturesHigh,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; featur=
+e_high);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (ret)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<=
+br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;feature-&gt;mutex=
+);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (feature_id =3D 0; feature_id=
+ &lt; 64; feature_id&#43;&#43;) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (feature_mask &amp; (1ULL &lt;&lt; feature_id)) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (enabled)=
+<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; test_and_set_bit(feature_id, feature-&g=
+t;enabled);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; test_and_clear_bit(feature_id, feature-=
+&gt;enabled);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; }<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">//[kevin]: the code logic is a little redundant.<o:p=
+></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">could you use bellow macro to replace that?<o:p></o:=
+p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">header :&nbsp;<span style=3D"font-family:&quot;Segoe=
+ UI&quot;,sans-serif;color:black;background:white">linux/bitmap.h</span><o:=
+p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">&nbsp;* &nbsp;bitmap_and(dst, src1, src2, nbits) &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp;*dst =3D *src1 &amp; *src2<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;* &nbsp;<b>bitmap_or</b>(dst, src1, src2, nbit=
+s) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *dst =3D *src1 | *src2<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">&nbsp;* &nbsp;bitmap_xor(dst, src1, src2, nbits) &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp;*dst =3D *src1 ^ *src2<o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal">&nbsp;* &nbsp;<b>bitmap_andnot</b>(dst, src1, src2, =
+nbits) &nbsp; &nbsp; &nbsp; *dst =3D *src1 &amp; ~(*src2)<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlo=
+ck(&amp;feature-&gt;mutex);<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&#43;}<br>
+&#43;<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><i>[Quan, Evan] updated in v3.<o:p></o:p></i></b>=
+</p>
+<p class=3D"MsoNormal"><br>
+&nbsp;int smu_sys_set_pp_feature_mask(struct smu_context *smu, uint64_t new=
+_mask)<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
+@@ -591,41 &#43;640,7 @@ int smu_feature_init_dpm(struct smu_context *smu)<=
+br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;}<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">[kevin]:<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">in this patch, i know you only want to fix not cache=
+d feature cache issue,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">but in v2 patch,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">the patch adjust the order of code functions, it see=
+ms that this is a brand new function,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I don't think it is necessary,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">could you just reflect the <b>modified content</b> i=
+n the patch, which can facilitate us to trace
+<b>problems </b>and <b>review</b>.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">thanks.<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><i>[Quan, Evan] Move the API before the place it&=
+#8217;s called. No problem here.</i></b><o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal">-int smu_feature_update_enable_state(struct smu_cont=
+ext *smu, uint64_t feature_mask, bool enabled)<br>
+-{<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t feature_low =3D 0, feature_h=
+igh =3D 0;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!smu-&gt;pm_enabled)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; return ret;<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_low =3D (feature_mask &gt;&gt=
+; 0 ) &amp; 0xffffffff;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_high =3D (feature_mask &gt;&g=
+t; 32) &amp; 0xffffffff;<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (enabled) {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuFeatur=
+esLow,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_lo=
+w);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (ret)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuFeatur=
+esHigh,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_hi=
+gh);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (ret)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmuFeatu=
+resLow,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_lo=
+w);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (ret)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmuFeatu=
+resHigh,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_hi=
+gh);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (ret)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+-}<br>
+&nbsp;<br>
+&nbsp;int smu_feature_is_enabled(struct smu_context *smu, enum smu_feature_=
+mask mask)<br>
+&nbsp;{<br>
+@@ -651,8 &#43;666,6 @@ int smu_feature_set_enabled(struct smu_context *smu=
+, enum smu_feature_mask mask,<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_feature *featur=
+e =3D &amp;smu-&gt;smu_feature;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int feature_id;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t feature_mask =3D 0;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_id =3D smu_feature=
+_get_index(smu, mask);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (<span style=3D"font-fa=
+mily:&quot;Arial&quot;,sans-serif">feature_id </span>&lt; 0)<br>
+@@ -660,22 &#43;673,9 @@ int smu_feature_set_enabled(struct smu_context *sm=
+u, enum smu_feature_mask mask,<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WARN_ON(feature_id &gt; fe=
+ature-&gt;feature_num);<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; feature_mask =3D 1ULL &lt;&lt; featur=
+e_id;<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;feature-&gt;mutex);<b=
+r>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_feature_update_enable_sta=
+te(smu, feature_mask, enable);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; goto failed;<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (enable)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; test_and_set_bit(feature_id, feature-&gt;enabled);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; test_and_clear_bit(feature_id, feature-&gt;enabled);<br>
+-<br>
+-failed:<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;feature-&gt;mutex);=
+<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return smu_feature_update_enable_=
+state(smu,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1ULL &lt;&lt; feature_id=
+,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enable);<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;int smu_feature_is_supported(struct smu_context *smu, enum smu_featur=
+e_mask mask)<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/d=
+rm/amd/powerplay/inc/amdgpu_smu.h<br>
+index e80c81552d29..fbf68fd42b93 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
+@@ -807,7 &#43;807,6 @@ enum amd_dpm_forced_level smu_get_performance_level=
+(struct smu_context *smu);<br>
+&nbsp;int smu_force_performance_level(struct smu_context *smu, enum amd_dpm=
+_forced_level level);<br>
+&nbsp;int smu_set_display_count(struct smu_context *smu, uint32_t count);<b=
+r>
+&nbsp;bool smu_clk_dpm_is_enabled(struct smu_context *smu, enum smu_clk_typ=
+e clk_type);<br>
+-int smu_feature_update_enable_state(struct smu_context *smu, uint64_t feat=
+ure_mask, bool enabled);<br>
+&nbsp;const char *smu_get_message_name(struct smu_context *smu, enum smu_me=
+ssage_type type);<br>
+&nbsp;const char *smu_get_feature_name(struct smu_context *smu, enum smu_fe=
+ature_mask feature);<br>
+&nbsp;size_t smu_sys_get_pp_feature_mask(struct smu_context *smu, char *buf=
+);<br>
+-- <br>
+2.23.0<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a><o:p></o:p></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_MN2PR12MB33449FC7151536C90957FE64E4A40MN2PR12MB3344namp_--
+
+--===============0164750990==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0164750990==--
