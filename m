@@ -2,56 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAE829F26D
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Aug 2019 20:35:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4584C9F2A6
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Aug 2019 20:51:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 482C589B51;
-	Tue, 27 Aug 2019 18:35:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B25D89829;
+	Tue, 27 Aug 2019 18:51:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com
- [IPv6:2a00:1450:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0EA89B51
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 Aug 2019 18:35:41 +0000 (UTC)
-Received: by mail-wm1-x32f.google.com with SMTP id i63so127051wmg.4
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 Aug 2019 11:35:41 -0700 (PDT)
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
+ [IPv6:2607:f8b0:4864:20::841])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 364CA89BB0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Aug 2019 18:41:58 +0000 (UTC)
+Received: by mail-qt1-x841.google.com with SMTP id t12so34367qtp.9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Aug 2019 11:41:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=L6jFvr0V4xkPL7jvnWXOJ9yF2KXADvhxs3mP2Zn6UjU=;
- b=KRMb1kfRQu0vAs1LXRRy1rfa3OdDWYnDY5MUpL65Nx53/c8Ev+TFksZ23A76Oh9AAX
- lQk+2hSkRHAmiA2j76PxDn/fXdNyJKN5zb5vJTKden1hjH/d0Bxhxf6SLdjmZFdqD1Yt
- xH5338T4ERKLbT49Tt8YSFQoS7sBeVWPcgaeO/M8wGTtYvgis+sTXiF9aSLgyn64MXxu
- DMhCsi+/ZOb3dYU/yvaGeP8wBw0cBDfmJuROOj59RKhLzVg3uH88dtjVYbVApWB9cAh+
- i9CSauCnJF8LpCEjrV0JKbgHSBHppFbLOMk2ahyHZiw66Q9fHbdD2zdFkfYUl0x4RP+q
- yDRg==
-X-Gm-Message-State: APjAAAX2BrYb7KtDbuhi4RM1pWvX4g1bxHp0+wgml9iVROxdwbtzbQXD
- XKXTv1cwamd/OGttoiQdov6Ww61/u1ggGAmnh84=
-X-Google-Smtp-Source: APXvYqwd3w6f3r3TC8C8ZgV/uRtiORODTsi700u54wh4hCaHSVX1r67HOScKzt9jCLwuZmJpvbES5dapRuN/DG40qe4=
-X-Received: by 2002:a05:600c:352:: with SMTP id
- u18mr350018wmd.141.1566930940034; 
- Tue, 27 Aug 2019 11:35:40 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=9ceAN/Yoez35TeAjbDhFK5DksMbw1eL2zoww/c7DDSE=;
+ b=SClLb6n9QoUTKt8plDyNdsR2ALOAxv13aYa5KCVu/N+POnthk4txzpocMmXjYSVYRq
+ Q9xVFd6497KyS7JDepgiSHZ5WSt7b1AFPHBGGSitJ05AZPyQ7mIZTY+yWZVJNIItoMOg
+ J12D5bJ0K7a2t8nEX2wrh0itN9A5qx4MXODPQwl55pe2HZm3NLU3okjgDhxS+JvHPNVL
+ vY57BYffNfnX+w7+JK+ELqciTZ7Ax7CfEYh/2XKx56Kmepv46sc6Qqi9C2YCywFSVz4j
+ unixvO7v2YAAJViTXRyMnRuCsK6hcOs0V0XHTBPDuoYYegBH96oEUcL4FHpKwPCXFRH7
+ NWGw==
+X-Gm-Message-State: APjAAAWXVBIe/xFpdo3vPQDLaNRgwEZvdZSXSS/m6lRTrPg677Tj38pK
+ bNubeFUcFuTw7nJDF8Jc5E3yMg==
+X-Google-Smtp-Source: APXvYqxGsIEH37K7EHHZpDcbxKJ2Zt/WeLY+aot3NzZQz1/QF/DaeFShLNUpqkv0bACqFBQq4QCy2g==
+X-Received: by 2002:ac8:23cf:: with SMTP id r15mr242835qtr.97.1566931317969;
+ Tue, 27 Aug 2019 11:41:57 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-167-216-168.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.167.216.168])
+ by smtp.gmail.com with ESMTPSA id x28sm9926373qtk.8.2019.08.27.11.41.57
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 27 Aug 2019 11:41:57 -0700 (PDT)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+ (envelope-from <jgg@ziepe.ca>)
+ id 1i2gPl-0006d2-1c; Tue, 27 Aug 2019 15:41:57 -0300
+Date: Tue, 27 Aug 2019 15:41:57 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH 2/2] mm/hmm: hmm_range_fault() infinite loop
+Message-ID: <20190827184157.GA24929@ziepe.ca>
+References: <20190823221753.2514-1-rcampbell@nvidia.com>
+ <20190823221753.2514-3-rcampbell@nvidia.com>
 MIME-Version: 1.0
-References: <20190827071941.23862-1-xiaojie.yuan@amd.com>
- <20190827071941.23862-3-xiaojie.yuan@amd.com>
-In-Reply-To: <20190827071941.23862-3-xiaojie.yuan@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 27 Aug 2019 14:35:28 -0400
-Message-ID: <CADnq5_NX5G5s4fpLTYYaTuqK=j3Um4z5RQsCZZ_6gQaKyG4GAw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm/amd/powerplay: enable jpeg powergating for navi1x
-To: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
+Content-Disposition: inline
+In-Reply-To: <20190823221753.2514-3-rcampbell@nvidia.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Mailman-Approved-At: Tue, 27 Aug 2019 18:51:01 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=L6jFvr0V4xkPL7jvnWXOJ9yF2KXADvhxs3mP2Zn6UjU=;
- b=rz11hwe0lQ7JNgYwO5HXSKzfMLhJ+08lV+vPTht4POP129JSFnYWjagaEux6aW4C+z
- iabbMRBdITQbkVvfMhgCenqBoXmtoaBy64Lg5DUFNn/GMB7fBXiIM00LEIGv3Zs/9LU9
- tnTocJ/QxV6KR5f/YD5pLkR62JsJPV0IWgRcDZckVI4AC6k6tj8OdkPiNfG3EHNha4P4
- b+vdHG3Ej/zCanFEgjlkQwzusiI2PYhlaSG305NG/O7qjz5nWW3z5yU3L07OHY4QGO5T
- 0WG5tZtLtrlqPf+G6wKJdDUkdQFN5PrgomzUcDaEH0BVPWuInz4j19RzMjL4VUfpitkk
- reow==
+ d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=9ceAN/Yoez35TeAjbDhFK5DksMbw1eL2zoww/c7DDSE=;
+ b=Tg3wAqzKDb2Nvtp5xnTJu8Zd7Xoskps6KbP7KGSG2mXkHL1YpVlpacJxibryLDlNJw
+ 179cDfjV75KnOnbO786z8kq561zwavu/nufenfX6VMltb+S29UuroexvGBTlW43jXQmu
+ BnfnPJVVYk2s3RHioNaSV2iGEh7jX3UBGoPb1YLczXEMrlSdBRwoauSdVh1dnk3odz81
+ 5DTC0TRiSs3uSv6gH+zLxmF3Fs8g9ISCjSxPwwihfMHKeWeF5bYqA+q9TtOOx2nNKZ8P
+ Zp8VHkM7RZiKWOrFRQbrnX0L3PbEWZuZHj7c02SuCN1iqneJHz/alYfeQVVF1tfTWxVj
+ JRYw==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -63,39 +74,27 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Xiao, Jack" <Jack.Xiao@amd.com>, "Wang,
- Kevin\(Yang\)" <Kevin1.Wang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Quan,
- Evan" <Evan.Quan@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>,
+ amd-gfx@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>,
+ Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-U2VyaWVzIGlzOgpSZXZpZXdlZC1ieTogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBh
-bWQuY29tPgoKT24gVHVlLCBBdWcgMjcsIDIwMTkgYXQgMzoyMCBBTSBZdWFuLCBYaWFvamllIDxY
-aWFvamllLll1YW5AYW1kLmNvbT4gd3JvdGU6Cj4KPiBqcGVnIHBnIGRlcGVuZHMgb24gdmNuIHBn
-Cj4KPiBTaWduZWQtb2ZmLWJ5OiBYaWFvamllIFl1YW4gPHhpYW9qaWUueXVhbkBhbWQuY29tPgo+
-IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9uYXZpMTBfcHB0LmMgfCAzICsr
-LQo+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4KPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvbmF2aTEwX3BwdC5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvbmF2aTEwX3BwdC5jCj4gaW5kZXggMmQ5MDhh
-ZmJmNTI1Li4xOTcwODQzZjIyNWYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9w
-b3dlcnBsYXkvbmF2aTEwX3BwdC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBs
-YXkvbmF2aTEwX3BwdC5jCj4gQEAgLTM2OCw3ICszNjgsOCBAQCBuYXZpMTBfZ2V0X2FsbG93ZWRf
-ZmVhdHVyZV9tYXNrKHN0cnVjdCBzbXVfY29udGV4dCAqc211LAo+ICAgICAgICAgICAgICAgICAq
-KHVpbnQ2NF90ICopZmVhdHVyZV9tYXNrIHw9IEZFQVRVUkVfTUFTSyhGRUFUVVJFX0FUSFVCX1BH
-X0JJVCk7Cj4KPiAgICAgICAgIGlmIChzbXUtPmFkZXYtPnBnX2ZsYWdzICYgQU1EX1BHX1NVUFBP
-UlRfVkNOKQo+IC0gICAgICAgICAgICAgICAqKHVpbnQ2NF90ICopZmVhdHVyZV9tYXNrIHw9IEZF
-QVRVUkVfTUFTSyhGRUFUVVJFX1ZDTl9QR19CSVQpOwo+ICsgICAgICAgICAgICAgICAqKHVpbnQ2
-NF90ICopZmVhdHVyZV9tYXNrIHw9IEZFQVRVUkVfTUFTSyhGRUFUVVJFX1ZDTl9QR19CSVQpCj4g
-KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8IEZFQVRVUkVfTUFTSyhGRUFUVVJFX0pQ
-RUdfUEdfQklUKTsKPgo+ICAgICAgICAgLyogZGlzYWJsZSBEUE0gVUNMSyBhbmQgRFMgU09DQ0xL
-IG9uIG5hdmkxMCBBMCBzZWN1cmUgYm9hcmQgKi8KPiAgICAgICAgIGlmIChpc19hc2ljX3NlY3Vy
-ZShzbXUpKSB7Cj4gLS0KPiAyLjIwLjEKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPiBhbWQtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vYW1kLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+T24gRnJpLCBBdWcgMjMsIDIwMTkgYXQgMDM6MTc6NTNQTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
+d3JvdGU6Cgo+IFNpZ25lZC1vZmYtYnk6IFJhbHBoIENhbXBiZWxsIDxyY2FtcGJlbGxAbnZpZGlh
+LmNvbT4KPiAgbW0vaG1tLmMgfCAzICsrKwo+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25z
+KCspCj4gCj4gZGlmZiAtLWdpdCBhL21tL2htbS5jIGIvbW0vaG1tLmMKPiBpbmRleCAyOTM3MTQ4
+NWZlOTQuLjQ4ODJiODNhZWNjYiAxMDA2NDQKPiArKysgYi9tbS9obW0uYwo+IEBAIC0yOTIsNiAr
+MjkyLDkgQEAgc3RhdGljIGludCBobW1fdm1hX3dhbGtfaG9sZV8odW5zaWduZWQgbG9uZyBhZGRy
+LCB1bnNpZ25lZCBsb25nIGVuZCwKPiAgCWhtbV92bWFfd2Fsay0+bGFzdCA9IGFkZHI7Cj4gIAlp
+ID0gKGFkZHIgLSByYW5nZS0+c3RhcnQpID4+IFBBR0VfU0hJRlQ7Cj4gIAo+ICsJaWYgKHdyaXRl
+X2ZhdWx0ICYmIHdhbGstPnZtYSAmJiAhKHdhbGstPnZtYS0+dm1fZmxhZ3MgJiBWTV9XUklURSkp
+Cj4gKwkJcmV0dXJuIC1FUEVSTTsKCkNhbiB3YWxrLT52bWEgYmUgTlVMTCBoZXJlPyBobW1fdm1h
+X2RvX2ZhdWx0KCkgdG91Y2hlcyBpdAp1bmNvbmRpdGlvbmFsbHkuCgpKYXNvbgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlz
+dAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
