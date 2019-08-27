@@ -2,46 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D319DEC0
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Aug 2019 09:29:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B19729DEC5
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Aug 2019 09:30:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED463898CE;
-	Tue, 27 Aug 2019 07:29:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72621898E8;
+	Tue, 27 Aug 2019 07:30:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 401 seconds by postgrey-1.36 at gabe;
- Tue, 27 Aug 2019 07:01:07 UTC
-Received: from condef-01.nifty.com (condef-01.nifty.com [202.248.20.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 828B289862
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 Aug 2019 07:01:07 +0000 (UTC)
-Received: from conuserg-10.nifty.com ([10.126.8.73])by condef-01.nifty.com
- with ESMTP id x7R6jVBe030014
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 Aug 2019 15:45:31 +0900
-Received: from localhost.localdomain (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp
- [153.142.97.92]) (authenticated)
- by conuserg-10.nifty.com with ESMTP id x7R6iVgg003740;
- Tue, 27 Aug 2019 15:44:32 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-10.nifty.com x7R6iVgg003740
-X-Nifty-SrcIP: [153.142.97.92]
-From: Masahiro Yamada <yamada.masahiro@socionext.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=8F=AB=D3nig?= <christian.koenig@amd.com>,
- David Zhou <David1.Zhou@amd.com>, amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd: remove meaningless descending into amd/amdkfd/
-Date: Tue, 27 Aug 2019 15:44:25 +0900
-Message-Id: <20190827064425.19627-1-yamada.masahiro@socionext.com>
-X-Mailer: git-send-email 2.17.1
+Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA11488071;
+ Tue, 27 Aug 2019 07:09:57 +0000 (UTC)
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id 1E48B97A03B8D482BE85;
+ Tue, 27 Aug 2019 15:09:45 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS402-HUB.china.huawei.com
+ (10.3.19.202) with Microsoft SMTP Server id 14.3.439.0; Tue, 27 Aug 2019
+ 15:09:38 +0800
+From: YueHaibing <yuehaibing@huawei.com>
+To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
+ <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <David1.Zhou@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <Bhawanpreet.Lakha@amd.com>, <Anthony.Koo@amd.com>, <ahmad.othman@amd.com>,
+ <eric.bernstein@amd.com>, <yuehaibing@huawei.com>, <aric.cyr@amd.com>,
+ <alvin.lee3@amd.com>, <Harmanprit.Tatla@amd.com>
+Subject: [PATCH 2/3] drm/amd/display: remove unused function setFieldWithMask
+Date: Tue, 27 Aug 2019 15:09:25 +0800
+Message-ID: <20190827070925.16080-1-yuehaibing@huawei.com>
+X-Mailer: git-send-email 2.10.2.windows.1
+MIME-Version: 1.0
+X-Originating-IP: [10.133.213.239]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 27 Aug 2019 07:29:47 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nifty.com; s=dec2015msa; t=1566888272;
- bh=vtbPJHn0Vac34GPikbOgs/qob9Pq0CHTDp4qvL1XFlo=;
- h=From:To:Cc:Subject:Date:From;
- b=odUrtGTgUKVvn/e47CAlTb7EfjZQ+pO+YtzeQ21jiuv7rQKSg4p5msQlk1IMNcPgU
- X7Z3YVtWNIAgTRZr3gGI+9Ye1UY0kd7yywz3nqNA9IOfNTzW9WggETCWdpHWK0KZiF
- N1utLwn2WDulFNNXxY8rppRAxm1zqNEpa04XTSo493hguwrHStzdldgd8V7O/SrJnM
- OsiqiCa/EtBRU4kDTbtLjmQ8BhX0nbKaLOVJ2LAwoArMxs915oGGg7nfjCV0ebUwYk
- 71GQLQPbhyT0MOCfVzczq5qwcFeTsMsnbqRUArVyEAvHYgLaTOGjVcYEK679MmDL6h
- OUPGx+N4rR6HQ==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -53,31 +44,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <maxime.ripard@bootlin.com>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Daniel Vetter <daniel@ffwll.ch>, Sean Paul <sean@poorly.run>
-MIME-Version: 1.0
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-U2luY2UgY29tbWl0IDA0ZDVlMjc2NTgwMiAoImRybS9hbWRncHU6IE1lcmdlIGFtZGtmZCBpbnRv
-IGFtZGdwdSIpLApkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9NYWtlZmlsZSBkb2VzIG5vdCBj
-b250YWluIGFueSBzeW50YXggdGhhdAppcyB1bmRlcnN0b29kIGJ5IHRoZSBidWlsZCBzeXN0ZW0u
-CgpTaWduZWQtb2ZmLWJ5OiBNYXNhaGlybyBZYW1hZGEgPHlhbWFkYS5tYXNhaGlyb0Bzb2Npb25l
-eHQuY29tPgotLS0KCiBkcml2ZXJzL2dwdS9kcm0vTWFrZWZpbGUgfCAxIC0KIDEgZmlsZSBjaGFu
-Z2VkLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL01ha2VmaWxl
-IGIvZHJpdmVycy9ncHUvZHJtL01ha2VmaWxlCmluZGV4IDlmMGQyZWUzNTc5NC4uM2Y5MTk1Yjdh
-ZDEzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vTWFrZWZpbGUKKysrIGIvZHJpdmVycy9n
-cHUvZHJtL01ha2VmaWxlCkBAIC02Miw3ICs2Miw2IEBAIG9iai0kKENPTkZJR19EUk1fVFRNKQkr
-PSB0dG0vCiBvYmotJChDT05GSUdfRFJNX1NDSEVEKQkrPSBzY2hlZHVsZXIvCiBvYmotJChDT05G
-SUdfRFJNX1RERlgpCSs9IHRkZngvCiBvYmotJChDT05GSUdfRFJNX1IxMjgpCSs9IHIxMjgvCi1v
-YmotJChDT05GSUdfSFNBX0FNRCkgKz0gYW1kL2FtZGtmZC8KIG9iai0kKENPTkZJR19EUk1fUkFE
-RU9OKSs9IHJhZGVvbi8KIG9iai0kKENPTkZJR19EUk1fQU1ER1BVKSs9IGFtZC9hbWRncHUvCiBv
-YmotJChDT05GSUdfRFJNX01HQSkJKz0gbWdhLwotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+QWZ0ZXIgY29tbWl0IGE5ZjU0Y2UzYzYwMyAoImRybS9hbWQvZGlzcGxheTogUmVmYWN0b3Jpbmcg
+VlRFTSIpLAp0aGVyZSBpcyBubyBjYWxsZXIgaW4gdHJlZS4KClJlcG9ydGVkLWJ5OiBIdWxrIFJv
+Ym90IDxodWxrY2lAaHVhd2VpLmNvbT4KU2lnbmVkLW9mZi1ieTogWXVlSGFpYmluZyA8eXVlaGFp
+YmluZ0BodWF3ZWkuY29tPgotLS0KIC4uLi9kcm0vYW1kL2Rpc3BsYXkvbW9kdWxlcy9pbmZvX3Bh
+Y2tldC9pbmZvX3BhY2tldC5jIHwgMTkgLS0tLS0tLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5n
+ZWQsIDE5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlz
+cGxheS9tb2R1bGVzL2luZm9fcGFja2V0L2luZm9fcGFja2V0LmMgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2Rpc3BsYXkvbW9kdWxlcy9pbmZvX3BhY2tldC9pbmZvX3BhY2tldC5jCmluZGV4IDVmNGI5
+OGQuLmQ4ODVkNjQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9tb2R1
+bGVzL2luZm9fcGFja2V0L2luZm9fcGFja2V0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9k
+aXNwbGF5L21vZHVsZXMvaW5mb19wYWNrZXQvaW5mb19wYWNrZXQuYwpAQCAtMTE0LDI1ICsxMTQs
+NiBAQCBlbnVtIENvbG9yaW1ldHJ5WUNDRFAgewogCUNvbG9yaW1ldHJ5WUNDX0RQX0lUVTIwMjBZ
+Q2JDciAgPSA3LAogfTsKIAotdm9pZCBzZXRGaWVsZFdpdGhNYXNrKHVuc2lnbmVkIGNoYXIgKmRl
+c3QsIHVuc2lnbmVkIGludCBtYXNrLCB1bnNpZ25lZCBpbnQgdmFsdWUpCi17Ci0JdW5zaWduZWQg
+aW50IHNoaWZ0ID0gMDsKLQotCWlmICghbWFzayB8fCAhZGVzdCkKLQkJcmV0dXJuOwotCi0Jd2hp
+bGUgKCEoKG1hc2sgPj4gc2hpZnQpICYgMSkpCi0JCXNoaWZ0Kys7Ci0KLQkvL3Jlc2V0Ci0JKmRl
+c3QgPSAqZGVzdCAmIH5tYXNrOwotCS8vc2V0Ci0JLy9kb250IGxldCB2YWx1ZSBzcGFuIHBhc3Qg
+bWFzawotCXZhbHVlID0gdmFsdWUgJiAobWFzayA+PiBzaGlmdCk7Ci0JLy9pbnNlcnQgdmFsdWUK
+LQkqZGVzdCA9ICpkZXN0IHwgKHZhbHVlIDw8IHNoaWZ0KTsKLX0KLQogdm9pZCBtb2RfYnVpbGRf
+dnNjX2luZm9wYWNrZXQoY29uc3Qgc3RydWN0IGRjX3N0cmVhbV9zdGF0ZSAqc3RyZWFtLAogCQlz
+dHJ1Y3QgZGNfaW5mb19wYWNrZXQgKmluZm9fcGFja2V0KQogewotLSAKMi43LjQKCgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcg
+bGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
