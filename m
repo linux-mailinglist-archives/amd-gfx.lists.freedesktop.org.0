@@ -1,64 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2983F9FEFE
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Aug 2019 11:57:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 612CD9FFA4
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Aug 2019 12:22:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2741F89817;
-	Wed, 28 Aug 2019 09:57:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DADB689A1A;
+	Wed, 28 Aug 2019 10:22:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 423B589817
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 09:57:43 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id z11so1842643wrt.4
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 02:57:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=+5iTRs8VGak71rUCxkupq02gzVxP0Uuc+hdYF4bwbbg=;
- b=m1fVd8Egcl47GKxQ75DO6Oh43WhJBXGQlUTVi1jgoapK6F1SWel4l3PA/XnYbrDjex
- pyOzq83Mc9hyimOZGh29sJRpOpS4wEVHjrrenVZfM5VYrCsFOfzAla4WtDoccUvczC/S
- PaaLjc7ufreEX2Qmf4AM8N9qWSCnH4Iec/VsgFJjWRo6hgwFYJjnYW1d3QaTULKeILvX
- H3kDZeuQskpSqvMjpzXfb0Pkfez83qIy4f7fcvDf4DWXgemN2lOpoq4n/feaEldWF4hM
- 2G3+P0ajGs49wnyjwPycip8fsIYbbIqWkT9eycYkW/UJ02yxFDqmdkAD1BCnR6rTMUhz
- Hxig==
-X-Gm-Message-State: APjAAAX4a9Sb5Jo2Ae4Kb1GWvRxJE354K9RAK4jcpzVGkDcMQdnwrwBW
- ItX461kNM1/5ykZZLx/6gdp5XV5/
-X-Google-Smtp-Source: APXvYqxaaN59p/MkLU814owiAST8EJu96R61gz+Wrw5MCpzl0L4Sj6QnilW92PnWZWC59sHU/7h4zQ==
-X-Received: by 2002:a5d:6307:: with SMTP id i7mr3615454wru.144.1566986261891; 
- Wed, 28 Aug 2019 02:57:41 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id o9sm2061132wrj.17.2019.08.28.02.57.40
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 28 Aug 2019 02:57:41 -0700 (PDT)
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr690062.outbound.protection.outlook.com [40.107.69.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49B2789A1A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 10:22:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FUd6DTI9N7jtClv0g60DuJG2qR15SDR9REJPiEQwPt7dcpaP5hUIXDK4/YSIZiUs+5pKuSUAMbg7dRHZUOI+BbNIKSXbpHCJHMmGw3jD80yUL4AVXfhpZKbnsgG/KavQGn9tXPhQSFMwvJM/pn19Rh0hW43c1nFj/jRFb7lP9nTpakZf5XUVD6ETnRtf1+Aw90jsM1g1TEk4IDmW5jsOSzU9iOUZAJoHcrrFUZhSy3j3ckTN1aiBPIOFpnNSERAKFE+gEo4xE3IUZy72nDSSlpnCmL9k5rBVo0AYKmtJh+TSUhcFhk5KTCm7z3qSGzWSbBajOo8C4Th4tTj5ApGPqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JC92N+u6vW4u0PBmD5kDfW3GzBfX3N2qTWws+4RXRyE=;
+ b=UY6XO2hOZBaI9tZ5rSuRA545yf0QR+Fsvz5yLOtju07z66k/ScRQIISCqRp5rrwM52fROrMfPtCkzfbA6L9CrnWrenUTwiEVdCP8QUmtuPljzIIoMYsyf36XxRvQdALBEJEXU2mTqLF1YaC+g5afU7iLarrAOV6EcYYJvAZeeIMCuPr15FwOSEYjwJRqqOQq3Jae/7UMZdA9j6sTeBbD9UZ7+QKoxXP0zvMXrMpriW77lQJE6wRxpTWU7oM4505VVoWJakJ28AFKr1H5/DinjEGoLEXlYYEHkGBCtlRq/69MYOpzTSreXR8fvH05f0e6XX1ZqGk73MK0vdxiNEBVKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+Received: from DM5PR12MB2535.namprd12.prod.outlook.com (52.132.141.154) by
+ DM5PR12MB1818.namprd12.prod.outlook.com (10.175.92.13) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.21; Wed, 28 Aug 2019 10:21:59 +0000
+Received: from DM5PR12MB2535.namprd12.prod.outlook.com
+ ([fe80::e56c:45ad:7bdb:cd11]) by DM5PR12MB2535.namprd12.prod.outlook.com
+ ([fe80::e56c:45ad:7bdb:cd11%7]) with mapi id 15.20.2199.021; Wed, 28 Aug 2019
+ 10:21:59 +0000
+From: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Koenig, 
+ Christian" <Christian.Koenig@amd.com>
 Subject: Re: [PATCH] drm/amdgpu/psp: keep TMR in visible vram region for SRIOV
-To: Tianci Yin <tianci.yin@amd.com>, amd-gfx@lists.freedesktop.org
-References: <1566984335-14830-1-git-send-email-tianci.yin@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <45fe6586-a53a-6f02-0e5f-b6224b159e12@gmail.com>
-Date: Wed, 28 Aug 2019 11:57:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <1566984335-14830-1-git-send-email-tianci.yin@amd.com>
+Thread-Topic: [PATCH] drm/amdgpu/psp: keep TMR in visible vram region for SRIOV
+Thread-Index: AQHVXYKRMbQy1E3cckynw5Xqd+AOmKcQUwkAgAAD6jo=
+Date: Wed, 28 Aug 2019 10:21:59 +0000
+Message-ID: <DM5PR12MB253547988B61E7D401C6FADC95A30@DM5PR12MB2535.namprd12.prod.outlook.com>
+References: <1566984335-14830-1-git-send-email-tianci.yin@amd.com>,
+ <45fe6586-a53a-6f02-0e5f-b6224b159e12@gmail.com>
+In-Reply-To: <45fe6586-a53a-6f02-0e5f-b6224b159e12@gmail.com>
+Accept-Language: en-US, zh-CN
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [180.167.199.189]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5afe0767-75ab-41e6-d69d-08d72ba18fa1
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:DM5PR12MB1818; 
+x-ms-traffictypediagnostic: DM5PR12MB1818:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM5PR12MB1818EC5BBEADBF4F9918899095A30@DM5PR12MB1818.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 014304E855
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(346002)(136003)(376002)(366004)(396003)(189003)(199004)(2501003)(54906003)(99286004)(8676002)(5660300002)(14444005)(256004)(316002)(478600001)(446003)(11346002)(6436002)(54896002)(86362001)(7696005)(476003)(81156014)(81166006)(9686003)(110136005)(7736002)(53936002)(66066001)(6246003)(8936002)(105004)(55016002)(2906002)(52536014)(91956017)(4326008)(53546011)(6506007)(102836004)(229853002)(486006)(76116006)(66446008)(74316002)(64756008)(66556008)(66476007)(66946007)(33656002)(3846002)(6116002)(66574012)(6636002)(25786009)(71190400001)(26005)(14454004)(19627405001)(71200400001)(76176011)(186003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1818;
+ H:DM5PR12MB2535.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: FBoQrJLfXZ4rx/Vmq7HC0MCHHMh6Am9GsBoNOS9yx9e54HzEk/7vC4TD5zpNVtvQedgFuH+42R0c7aH7ACVA4SHvHYEi8ZnQx2pyeYL9WOR4goOpw3ROkwbcBKE3D3XwZ/0RHGIpjG9fFyb+CLblEGXByrrx5j/qMYu158Gw77PdHrXMgydahMMZhJBYSHkB308VnZ5Y/72PqZS0wWbGfH/Xm73TM9Vl4cetCO7rVh6mboFsvTL/wluCrl5PGlnxBjLlspLBklC0mCsBijENjEoexVb6L45Ejdb9voPXvQRpMECub+u4RwfRRyVckUcd52w7M6y0yyhC3DcStQqDg9f9WhuCE9ilwAbNfmf5zQKf78lcYgodDMG24QId0hYapMXiVgffMUq3klJuL7kLwu7G+1gf6N/lT5WXlUm4kvw=
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5afe0767-75ab-41e6-d69d-08d72ba18fa1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2019 10:21:59.4152 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: J0iDDh72bbXHr0RfHbo7PNKlaNvCErTC0ao369U0tGEvjqKu2l7XWEXInV0lm7FdElCj0EetGeNDRlF0jXjkdg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1818
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=+5iTRs8VGak71rUCxkupq02gzVxP0Uuc+hdYF4bwbbg=;
- b=SuTwoXNuxLcDMTBn0fj6v4zvQzZn6wYm+3XhLh5faUTI68cNDnNtNIwkfnnEgJiBpU
- /TDhEXFCvJ53A9o1aNZy8GhY9NnPWCvqkuHYrN/xSnJRVBVilsk7yzbkTTSQA72TigC6
- N8pHTisL+do3TbXnCe9wirufCHkDAdUowkoUzM4bQC7P0kuTRzhao1gkGOGdE9eDHPzX
- d5hFpmxjL7SVI6pCdkq6bUsBzq+IRSry1cEBFySI2s3tuEFniNhrGTZwwGTWS9W5OrPY
- aosEfoC9Ygom7y47ITBtfYTfSmyDCD1nyLIG43XQ5Whkxjjr2TIunMnqUjvHIRAiIMdd
- S6qw==
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JC92N+u6vW4u0PBmD5kDfW3GzBfX3N2qTWws+4RXRyE=;
+ b=ctx9PKovTkYYwVTARzCzA+AjU+RsIVZwHp4RmVxoqwK/xxgzI1cBfh3PxJbPCar12Cx2HcRJJcNcmGCKSKENF214aGjFKq8XUdBv7MgKchRrmebd2b41DHSvsmGFuT5jDEGKFlC4ha2Q1PZY59XTBi4PPQY0+9saZTaWnGu+9kw=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Tianci.Yin@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -70,55 +94,316 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: Feifei Xu <Feifei.Xu@amd.com>, Jack Xiao <Jack.Xiao@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>, "Le . Ma" <Le.Ma@amd.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "Xu, Feifei" <Feifei.Xu@amd.com>, "Xiao, Jack" <Jack.Xiao@amd.com>, "Zhang,
+ Hawking" <Hawking.Zhang@amd.com>, "Ma, Le" <Le.Ma@amd.com>
+Content-Type: multipart/mixed; boundary="===============0853497536=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjguMDguMTkgdW0gMTE6MjUgc2NocmllYiBUaWFuY2kgWWluOgo+IEZyb206ICJUaWFuY2ku
-WWluIiA8dGlhbmNpLnlpbkBhbWQuY29tPgo+Cj4gRml4IGNvbXB1dGUgcmluZyB0ZXN0IGZhaWx1
-cmUgaW4gc3Jpb3Ygc2NlbmFyaW8uCj4KPiBTaWduZWQtb2ZmLWJ5OiBUaWFuY2kuWWluIDx0aWFu
-Y2kueWluQGFtZC5jb20+Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfcHNwLmMgfCAxNCArKysrKysrKysrLS0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X3BzcC5oIHwgIDEgKwo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAxMSBpbnNlcnRpb25z
-KCspLCA0IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9wc3AuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9w
-c3AuYwo+IGluZGV4IDlmN2NjNWIuLjkyYzY4YzkgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3BzcC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvYW1kZ3B1X3BzcC5jCj4gQEAgLTI2MSw5ICsyNjEsMTUgQEAgc3RhdGljIGludCBwc3Bf
-dG1yX2luaXQoc3RydWN0IHBzcF9jb250ZXh0ICpwc3ApCj4gICAJCX0KPiAgIAl9Cj4gICAKPiAt
-CXJldCA9IGFtZGdwdV9ib19jcmVhdGVfa2VybmVsKHBzcC0+YWRldiwgdG1yX3NpemUsIFBTUF9U
-TVJfU0laRSwKPiAtCQkJCSAgICAgIEFNREdQVV9HRU1fRE9NQUlOX1ZSQU0sCj4gLQkJCQkgICAg
-ICAmcHNwLT50bXJfYm8sICZwc3AtPnRtcl9tY19hZGRyLCBOVUxMKTsKPiArCXBzcC0+dG1yX2J1
-ZiA9IE5VTEw7Cj4gKwlpZiAoIWFtZGdwdV9zcmlvdl92Zihwc3AtPmFkZXYpKQo+ICsJCXJldCA9
-IGFtZGdwdV9ib19jcmVhdGVfa2VybmVsKHBzcC0+YWRldiwgdG1yX3NpemUsIFBTUF9UTVJfU0la
-RSwKPiArCQkJCQkgICAgICBBTURHUFVfR0VNX0RPTUFJTl9WUkFNLAo+ICsJCQkJCSAgICAgICZw
-c3AtPnRtcl9ibywgJnBzcC0+dG1yX21jX2FkZHIsIE5VTEwpOwo+ICsJZWxzZQo+ICsJCXJldCA9
-IGFtZGdwdV9ib19jcmVhdGVfa2VybmVsKHBzcC0+YWRldiwgdG1yX3NpemUsIFBTUF9UTVJfU0la
-RSwKPiArCQkJCQkgICAgICBBTURHUFVfR0VNX0RPTUFJTl9WUkFNLAo+ICsJCQkJCSAgICAgICZw
-c3AtPnRtcl9ibywgJnBzcC0+dG1yX21jX2FkZHIsICZwc3AtPnRtcl9idWYpOwoKTWlnaHQgYmUg
-YmV0dGVyIHRvIHVzZSBhIGxvY2FsIHZhcmlhYmxlIGZvciB0aGUgQ1BVIHBvaW50ZXIgaW5zdGVh
-ZCBvZiAKZHVwbGljYXRpbmcgdGhlIGNhbGxpbmcgcGFyYW1ldGVycy4KCkJUVzogSG93IGRpZCB5
-b3Ugc29sdmVkIHRoZSBzdG9sZW5fdmdhX21lbW9yeSBwcm9ibGVtIEkgcG9pbnRlZCBvdXQgaW4g
-CnRoZSBvcmlnaW5hbCBwYXRjaCBzZXQ/CgpDaHJpc3RpYW4uCgo+ICAgCj4gICAJcmV0dXJuIHJl
-dDsKPiAgIH0KPiBAQCAtMTIxNiw3ICsxMjIyLDcgQEAgc3RhdGljIGludCBwc3BfaHdfZmluaSh2
-b2lkICpoYW5kbGUpCj4gICAKPiAgIAlwc3BfcmluZ19kZXN0cm95KHBzcCwgUFNQX1JJTkdfVFlQ
-RV9fS00pOwo+ICAgCj4gLQlhbWRncHVfYm9fZnJlZV9rZXJuZWwoJnBzcC0+dG1yX2JvLCAmcHNw
-LT50bXJfbWNfYWRkciwgTlVMTCk7Cj4gKwlhbWRncHVfYm9fZnJlZV9rZXJuZWwoJnBzcC0+dG1y
-X2JvLCAmcHNwLT50bXJfbWNfYWRkciwgJnBzcC0+dG1yX2J1Zik7Cj4gICAJYW1kZ3B1X2JvX2Zy
-ZWVfa2VybmVsKCZwc3AtPmZ3X3ByaV9ibywKPiAgIAkJCSAgICAgICZwc3AtPmZ3X3ByaV9tY19h
-ZGRyLCAmcHNwLT5md19wcmlfYnVmKTsKPiAgIAlhbWRncHVfYm9fZnJlZV9rZXJuZWwoJnBzcC0+
-ZmVuY2VfYnVmX2JvLAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
-bWRncHVfcHNwLmggYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcHNwLmgKPiBp
-bmRleCBiYzA5NDdmLi5iNzNkNGFhIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9wc3AuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
-ZGdwdV9wc3AuaAo+IEBAIC0xNzEsNiArMTcxLDcgQEAgc3RydWN0IHBzcF9jb250ZXh0Cj4gICAJ
-LyogdG1yIGJ1ZmZlciAqLwo+ICAgCXN0cnVjdCBhbWRncHVfYm8JCSp0bXJfYm87Cj4gICAJdWlu
-dDY0X3QJCQl0bXJfbWNfYWRkcjsKPiArCXZvaWQJCQkJKnRtcl9idWY7Cj4gICAKPiAgIAkvKiBh
-c2QgZmlybXdhcmUgYW5kIGJ1ZmZlciAqLwo+ICAgCWNvbnN0IHN0cnVjdCBmaXJtd2FyZQkJKmFz
-ZF9mdzsKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFt
-ZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============0853497536==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM5PR12MB253547988B61E7D401C6FADC95A30DM5PR12MB2535namp_"
+
+--_000_DM5PR12MB253547988B61E7D401C6FADC95A30DM5PR12MB2535namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Christian,
+
+I have just realized the stolen_vga_memory problem,
+I have ever thought that no one really use the stolen_vga_memory BO in KMD =
+code, so it should be safe.
+
+It seems we have to add a new parameter for amdgpu_bo_create_kernel() to pa=
+ss the prefer region.
+
+Thanks!
+
+Rico
+________________________________
+From: Christian K?nig <ckoenig.leichtzumerken@gmail.com>
+Sent: Wednesday, August 28, 2019 17:57
+To: Yin, Tianci (Rico) <Tianci.Yin@amd.com>; amd-gfx@lists.freedesktop.org =
+<amd-gfx@lists.freedesktop.org>
+Cc: Xu, Feifei <Feifei.Xu@amd.com>; Ma, Le <Le.Ma@amd.com>; Xiao, Jack <Jac=
+k.Xiao@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
+Subject: Re: [PATCH] drm/amdgpu/psp: keep TMR in visible vram region for SR=
+IOV
+
+Am 28.08.19 um 11:25 schrieb Tianci Yin:
+> From: "Tianci.Yin" <tianci.yin@amd.com>
+>
+> Fix compute ring test failure in sriov scenario.
+>
+> Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 14 ++++++++++----
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |  1 +
+>   2 files changed, 11 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_psp.c
+> index 9f7cc5b..92c68c9 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> @@ -261,9 +261,15 @@ static int psp_tmr_init(struct psp_context *psp)
+>                }
+>        }
+>
+> -     ret =3D amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_SIZE,
+> -                                   AMDGPU_GEM_DOMAIN_VRAM,
+> -                                   &psp->tmr_bo, &psp->tmr_mc_addr, NULL=
+);
+> +     psp->tmr_buf =3D NULL;
+> +     if (!amdgpu_sriov_vf(psp->adev))
+> +             ret =3D amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TM=
+R_SIZE,
+> +                                           AMDGPU_GEM_DOMAIN_VRAM,
+> +                                           &psp->tmr_bo, &psp->tmr_mc_ad=
+dr, NULL);
+> +     else
+> +             ret =3D amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TM=
+R_SIZE,
+> +                                           AMDGPU_GEM_DOMAIN_VRAM,
+> +                                           &psp->tmr_bo, &psp->tmr_mc_ad=
+dr, &psp->tmr_buf);
+
+Might be better to use a local variable for the CPU pointer instead of
+duplicating the calling parameters.
+
+BTW: How did you solved the stolen_vga_memory problem I pointed out in
+the original patch set?
+
+Christian.
+
+>
+>        return ret;
+>   }
+> @@ -1216,7 +1222,7 @@ static int psp_hw_fini(void *handle)
+>
+>        psp_ring_destroy(psp, PSP_RING_TYPE__KM);
+>
+> -     amdgpu_bo_free_kernel(&psp->tmr_bo, &psp->tmr_mc_addr, NULL);
+> +     amdgpu_bo_free_kernel(&psp->tmr_bo, &psp->tmr_mc_addr, &psp->tmr_bu=
+f);
+>        amdgpu_bo_free_kernel(&psp->fw_pri_bo,
+>                              &psp->fw_pri_mc_addr, &psp->fw_pri_buf);
+>        amdgpu_bo_free_kernel(&psp->fence_buf_bo,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_psp.h
+> index bc0947f..b73d4aa 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+> @@ -171,6 +171,7 @@ struct psp_context
+>        /* tmr buffer */
+>        struct amdgpu_bo                *tmr_bo;
+>        uint64_t                        tmr_mc_addr;
+> +     void                            *tmr_buf;
+>
+>        /* asd firmware and buffer */
+>        const struct firmware           *asd_fw;
+
+
+--_000_DM5PR12MB253547988B61E7D401C6FADC95A30DM5PR12MB2535namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi Christian,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I have just realized the <font size=3D"2"><span style=3D"font-size:11pt"><s=
+pan>stolen_vga_memory</span></span></font> problem,
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I have ever thought that no one really use the <font size=3D"2"><span style=
+=3D"font-size:11pt"><span>stolen_vga_memory BO in KMD code, so it should be=
+ safe.</span></span></font></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<font size=3D"2"><span style=3D"font-size:11pt"><span><br>
+</span></span></font></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<font size=3D"2"><span style=3D"font-size:11pt"><span>It seems we have to a=
+dd a new parameter for amdgpu_bo_create_kernel</span></span></font>() to pa=
+ss the prefer region.<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thanks!</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Rico<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Christian K&ouml;nig =
+&lt;ckoenig.leichtzumerken@gmail.com&gt;<br>
+<b>Sent:</b> Wednesday, August 28, 2019 17:57<br>
+<b>To:</b> Yin, Tianci (Rico) &lt;Tianci.Yin@amd.com&gt;; amd-gfx@lists.fre=
+edesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
+<b>Cc:</b> Xu, Feifei &lt;Feifei.Xu@amd.com&gt;; Ma, Le &lt;Le.Ma@amd.com&g=
+t;; Xiao, Jack &lt;Jack.Xiao@amd.com&gt;; Zhang, Hawking &lt;Hawking.Zhang@=
+amd.com&gt;<br>
+<b>Subject:</b> Re: [PATCH] drm/amdgpu/psp: keep TMR in visible vram region=
+ for SRIOV</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Am 28.08.19 um 11:25 schrieb Tianci Yin:<br>
+&gt; From: &quot;Tianci.Yin&quot; &lt;tianci.yin@amd.com&gt;<br>
+&gt;<br>
+&gt; Fix compute ring test failure in sriov scenario.<br>
+&gt;<br>
+&gt; Signed-off-by: Tianci.Yin &lt;tianci.yin@amd.com&gt;<br>
+&gt; ---<br>
+&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 14 &#43;&#43;&#4=
+3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;----<br>
+&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |&nbsp; 1 &#43;<br=
+>
+&gt;&nbsp;&nbsp; 2 files changed, 11 insertions(&#43;), 4 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_psp.c<br>
+&gt; index 9f7cc5b..92c68c9 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c<br>
+&gt; @@ -261,9 &#43;261,15 @@ static int psp_tmr_init(struct psp_context *p=
+sp)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp; <br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp; ret =3D amdgpu_bo_create_kernel(psp-&gt;adev=
+, tmr_size, PSP_TMR_SIZE,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_GEM_DOM=
+AIN_VRAM,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;t=
+mr_bo, &amp;psp-&gt;tmr_mc_addr, NULL);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; psp-&gt;tmr_buf =3D NULL;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; if (!amdgpu_sriov_vf(psp-&gt;adev))<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; ret =3D amdgpu_bo_create_kernel(psp-&gt;adev, tmr_size, PSP_TMR_SIZ=
+E,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_GEM_DOMAIN_VRAM,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;tmr_bo, &amp;psp-&gt;tmr=
+_mc_addr, NULL);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; ret =3D amdgpu_bo_create_kernel(psp-&gt;adev, tmr_size, PSP_TMR_SIZ=
+E,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_GEM_DOMAIN_VRAM,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;tmr_bo, &amp;psp-&gt;tmr=
+_mc_addr, &amp;psp-&gt;tmr_buf);<br>
+<br>
+Might be better to use a local variable for the CPU pointer instead of <br>
+duplicating the calling parameters.<br>
+<br>
+BTW: How did you solved the stolen_vga_memory problem I pointed out in <br>
+the original patch set?<br>
+<br>
+Christian.<br>
+<br>
+&gt;&nbsp;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&gt;&nbsp;&nbsp; }<br>
+&gt; @@ -1216,7 &#43;1222,7 @@ static int psp_hw_fini(void *handle)<br>
+&gt;&nbsp;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; psp_ring_destroy(psp, PSP_RI=
+NG_TYPE__KM);<br>
+&gt;&nbsp;&nbsp; <br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;tmr_bo, &=
+amp;psp-&gt;tmr_mc_addr, NULL);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;tmr_b=
+o, &amp;psp-&gt;tmr_mc_addr, &amp;psp-&gt;tmr_buf);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;p=
+sp-&gt;fw_pri_bo,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;fw_pri_mc_addr, &amp;psp-&gt;fw_p=
+ri_buf);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;p=
+sp-&gt;fence_buf_bo,<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_psp.h<br>
+&gt; index bc0947f..b73d4aa 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h<br>
+&gt; @@ -171,6 &#43;171,7 @@ struct psp_context<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* tmr buffer */<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_bo&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; *tmr_bo;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmr_mc_addr;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *tmr_buf;<br>
+&gt;&nbsp;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* asd firmware and buffer *=
+/<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct firmware&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *asd_fw;<br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_DM5PR12MB253547988B61E7D401C6FADC95A30DM5PR12MB2535namp_--
+
+--===============0853497536==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0853497536==--
