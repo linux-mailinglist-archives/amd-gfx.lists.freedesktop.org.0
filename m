@@ -1,58 +1,90 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E1C6A0826
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Aug 2019 19:09:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 060BEA0868
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Aug 2019 19:29:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBA9789DC0;
-	Wed, 28 Aug 2019 17:09:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D41A89DFA;
+	Wed, 28 Aug 2019 17:29:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com
- [IPv6:2607:f8b0:4864:20::d44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 397D089DBF
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 17:08:59 +0000 (UTC)
-Received: by mail-io1-xd44.google.com with SMTP id j4so941256iog.11
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 10:08:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8KlV/jy06a4d7UrRjhaJyE3lxz5U3uy6EUNKd4uhTFw=;
- b=OmWYqANhHlSBrcQN7FOOnKU8P3b/JAh8Y02FjnUE4jkxcWA4x11tuBF5tnyIdYQ8Vg
- zPdMZN9fqJEJ/J0gTnwsuZP0ZWI+o4i0fDHjKXtzI9LZPKCn0WKtGuswj0va39TAGos+
- AaIrCEbhcOKOmQY3kgfY+fU3k4rNNhsfg+qDQAaJL3VZIIvuLqrzg2nFjt5ae3cTnbQV
- Sevwa8JuV1Jwx5smsoGJkF2jYCSItnJuC2Pvutfb8ox/MFqRjfD85KIqb5hMwqf/p0SR
- 5j+9szWLKLPOPGUYsbQWwhAgtrjkL2Xj9jOIhTGEwHuq+TlxStBC+E0TbGzd8gu+MutO
- 0R0w==
-X-Gm-Message-State: APjAAAUjOOwncyVRciWLUbLQjINJ74st88HLIJirpzfI1QMTgx0hFEH1
- NP8mOXBKZpZ7g6Ke1KGdB9zHQ04SSZi2lsR0WaM=
-X-Google-Smtp-Source: APXvYqwHwpQpLYlKLKFjhlyhBC6LF7tTIYDEZ3i+oIoUB2KDwdt1YcRytY3JA1xn3DlUAGhwodvt9SWwHro9u6seV6Q=
-X-Received: by 2002:a6b:7e07:: with SMTP id i7mr5837707iom.254.1567012138404; 
- Wed, 28 Aug 2019 10:08:58 -0700 (PDT)
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr810059.outbound.protection.outlook.com [40.107.81.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB29989DFA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 17:29:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cbgQ/EtW54Ui34UlItuauJppYwyVSaPu4MCHLnQ9zys1s5FRD0z7XRKz8pKkN7cOznBw7+6z1e3zZGoOTc5e89gujKLSNeqDOYuRQsidGuuyRZK7N6WpGHXBO2J2lWpfFlXZAaTpDnSX55qlG9Wc4BIq8+TKTeZDNmFyOXv3GnG5mf6xklUqralIpArYzYMOiEcry6Dhy/IdCSzX3ezfvVay3PZoX0PjEFZUGLHU1R6lGyYTitqw7BJZyVfvO2JsNlLRj/e4Gq9kOPewlO2Kd1WtukVfAeA7KXNck4flYhMuQqsklHM5B1O82hNQTh8wWAaWnnUgE1IhxtlubOFx0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SUbgj+c2SUwsq7vgS3d5j4vLtjn98IGzYPqGSgMndH0=;
+ b=NuZCerAJpqt1noyPyeFJ0/crh0MkuNrxmWio91rB9YNpDtahi8fl8+tFNWTNwVZeb1GP8RodsJOW623DGq/sKP+6g4Ivatr2j+F4bp0mUsA/4CQ2E8rlsfRnJWiqL2akNdfhCutjHT99QSVvBIND1vJg97X+BUb3sIZj1WeKKIbl7DRdo37i4Of58sFB+ZPIC97EIhOo68sKk2+UwyYP7dbNNuC/82p845lrk4Lw2pg4R1vNZ4vzczw5Evxbozb74XI7lB+I12ucn5vF8vX8VzlpEm9peqJ5qxkSUSiHgWCSfUJEnJ/s2bGWDMyQChSm/tkbpFFwylH4Ik31hoYRfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
+ BN6PR12MB1588.namprd12.prod.outlook.com (10.172.19.151) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2220.18; Wed, 28 Aug 2019 17:29:17 +0000
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::8542:935:262c:53d1]) by BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::8542:935:262c:53d1%10]) with mapi id 15.20.2178.023; Wed, 28 Aug 2019
+ 17:29:17 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "Zhou1, Tao" <Tao.Zhou1@amd.com>
+Subject: Re: [PATCH 7/7] drm/amdgpu: switch to ras_late_init callback for nbio
+ v7_4
+Thread-Topic: [PATCH 7/7] drm/amdgpu: switch to ras_late_init callback for
+ nbio v7_4
+Thread-Index: AQHVXaEcOmBuPOVN20CzfNnvibJNLqcQ0N3u
+Date: Wed, 28 Aug 2019 17:29:16 +0000
+Message-ID: <BN6PR12MB18096E343DD1229240C24BF1F7A30@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <1566997395-7185-1-git-send-email-Hawking.Zhang@amd.com>,
+ <1566997395-7185-7-git-send-email-Hawking.Zhang@amd.com>
+In-Reply-To: <1566997395-7185-7-git-send-email-Hawking.Zhang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [71.219.73.178]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f225fd5d-8617-4d33-e755-08d72bdd40c7
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1588; 
+x-ms-traffictypediagnostic: BN6PR12MB1588:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BN6PR12MB1588DEB42EF97C07D909EE6BF7A30@BN6PR12MB1588.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:506;
+x-forefront-prvs: 014304E855
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(376002)(366004)(396003)(346002)(39860400002)(136003)(189003)(199004)(66066001)(486006)(9686003)(256004)(54896002)(7696005)(7736002)(14444005)(74316002)(11346002)(6636002)(476003)(446003)(76176011)(55016002)(52536014)(66446008)(76116006)(66476007)(6436002)(316002)(6246003)(2906002)(66556008)(64756008)(66946007)(5660300002)(478600001)(33656002)(2501003)(71190400001)(99286004)(6116002)(19627405001)(229853002)(8936002)(14454004)(81166006)(53936002)(81156014)(102836004)(8676002)(186003)(71200400001)(105004)(25786009)(110136005)(53546011)(6506007)(26005)(86362001)(3846002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1588;
+ H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 8OkcUUJx7MZxFgx6V/Vd+LY7HJSoDwzckIa8Ye0CLfmn31CmtuGgi9sAH5noSPxVXry2K3eRz3vVJAmsIsM+cw5Ylc/xJlzOfsTHqdLK8kt+04RxhV3y9S6fPsT3Nx0PDllnTUb0BKdCUuqqWDckQuyakWMKewIWrKn41b9MexObCFfKyR9SrP7Wj1rGlin8OP+vN0dHziSgvTfr4GS4MbSCA4G6gF8+a/w3XS4e4C0Nf0ejDsn49TMN7Dd6MiAGkPolZer+p/L9JqqxdeghArrBGLjxpWAT76cjUlS3QWTlnPKX5OA6b8C4zrXFnAl+JkVDbF0qxeKA1gu3quzXDthLC/aaWF7TqIw+NJ8dQHEvKM2N7yh/V9Zvyfue2xNCKbOnUJ4q1H4cygjAH7+hGUSOg0fCNxePDxnokUKj3Bs=
 MIME-Version: 1.0
-References: <7002f783-2223-a524-2c60-03447377bd28@amd.com>
- <20190722153350.29339-1-Joseph.Greathouse@amd.com>
- <c4856ea0-3cd3-1628-54e9-9660be334054@gmail.com>
- <36885047-8915-fb90-fcaa-04f98b4519b1@amd.com>
-In-Reply-To: <36885047-8915-fb90-fcaa-04f98b4519b1@amd.com>
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Wed, 28 Aug 2019 13:08:22 -0400
-Message-ID: <CAAxE2A5MgKswdeHg1YrDs_G7hCuoZAVFuPyoHoA+DbUjA32eHg@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/amdgpu: Default disable GDS for compute+gfx
-To: zhoucm1 <zhoucm1@amd.com>
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f225fd5d-8617-4d33-e755-08d72bdd40c7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2019 17:29:16.9454 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Z0JCeTBQ5uvFMe8R5nnRx8kDiEVZ4kcrx+iocgNh4rBbiiKD9fO53qOvy7mj1wyk9BwRPF97GKSCbtwKS9mnpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1588
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=8KlV/jy06a4d7UrRjhaJyE3lxz5U3uy6EUNKd4uhTFw=;
- b=n74F42KAyI0aPLUItZ5eNvqYxiNA0jPH6QGBKQamYFBPyk0DBZaG3uFvztHepvk8KK
- eZ99QFKKXC6Azgt2WXWLdaO4a6IIT4dRux1GQIEnA0Tx2uutNjhGLzL2xmMM+O1HOTG8
- sJwSyhhmz3Ds4fyrDUHlhdwB+59yF/1/zpBpu3n4UnxqI3RfE3OnFjVRDkaq2whlXjU+
- jBRjlnGFGnR8+Zawx/6awUL3J8IOI3a0TqDOUq5Ba5ewQ6hMKcKXd1CujZWWQ+pMiv20
- 3S1f5sND7E4ejUiTsgl1r8hZRYne92yjnoF+QmUHXouXro6r3K1LbolTs5AOeDN1pG2W
- 7UnA==
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SUbgj+c2SUwsq7vgS3d5j4vLtjn98IGzYPqGSgMndH0=;
+ b=oU1QMOLExgkqDBSTeQYk2skLtu0p7J1P4TylLdX/SfuGo/YePuwL9oAsbppcoZNaTVDZPzoS1pkmzulxjGsCctAYujMXfgrehfMo7ekTwMvmJZwe3ymv1DAnrGlIs//xEme+4AJAtJJ4ybZ6B9IvdC/hbMPtqapjPxx5hz5WsCM=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -64,611 +96,188 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Greathouse,
- Joseph" <Joseph.Greathouse@amd.com>
-Content-Type: multipart/mixed; boundary="===============1510991042=="
+Content-Type: multipart/mixed; boundary="===============1886288912=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1510991042==
-Content-Type: multipart/alternative; boundary="000000000000de525a05913071c7"
+--===============1886288912==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB18096E343DD1229240C24BF1F7A30BN6PR12MB1809namp_"
 
---000000000000de525a05913071c7
-Content-Type: text/plain; charset="UTF-8"
+--_000_BN6PR12MB18096E343DD1229240C24BF1F7A30BN6PR12MB1809namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-It can't break an older driver, because there is no older driver that
-requires the static allocation.
+Nice clean up.  Series is:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: Hawking Zhang <Hawking.Zhang@amd.com>
+Sent: Wednesday, August 28, 2019 9:03 AM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Zhou1, T=
+ao <Tao.Zhou1@amd.com>; Deucher, Alexander <Alexander.Deucher@amd.com>
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>
+Subject: [PATCH 7/7] drm/amdgpu: switch to ras_late_init callback for nbio =
+v7_4
 
-Note that closed source drivers don't count, because they don't need
-backward compatibility.
+invoke nbio ras_late_init callback function to do nbio ras init
 
-Marek
+Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/soc15.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-On Wed, Aug 28, 2019 at 2:44 AM zhoucm1 <zhoucm1@amd.com> wrote:
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgp=
+u/soc15.c
+index e7f2539..f53bd59 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -1206,11 +1206,15 @@ static int soc15_common_early_init(void *handle)
+ static int soc15_common_late_init(void *handle)
+ {
+         struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
++       int r;
 
->
-> On 2019/7/23 =E4=B8=8A=E5=8D=883:08, Christian K=C3=B6nig wrote:
-> > Am 22.07.19 um 17:34 schrieb Greathouse, Joseph:
-> >> Units in the GDS block default to allowing all VMIDs access to all
-> >> entries. Disable shader access to the GDS, GWS, and OA blocks from all
-> >> compute and gfx VMIDs by default. For compute, HWS firmware will set
-> >> up the access bits for the appropriate VMID when a compute queue
-> >> requires access to these blocks.
-> >> The driver will handle enabling access on-demand for graphics VMIDs.
->
-> gds_switch is depending on job->gds/gws/oa/_base/size.
->
-> "[PATCH] drm/amdgpu: remove static GDS, GWS and OA allocation", the
-> default allocations in kernel were removed. If some UMD stacks don't
-> pass gds/gws/oa allocation to bo_list, then kernel will not enable
-> access of them, that will break previous driver.
->
-> do we need revert "[PATCH] drm/amdgpu: remove static GDS, GWS and OA
-> allocation" ?
->
-> -David
->
-> >>
-> >> Leaving VMID0 with full access because otherwise HWS cannot save or
-> >> restore values during task switch.
-> >>
-> >> v2: Fixed code and comment styling.
-> >>
-> >> Change-Id: I3d768a96935d2ed1dff09b02c995090f4fbfa539
-> >> Signed-off-by: Joseph Greathouse <Joseph.Greathouse@amd.com>
-> >
-> > Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >
-> >> ---
-> >>   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 25 ++++++++++++++++++------=
--
-> >>   drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c  | 24 +++++++++++++++++-------
-> >>   drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c  | 24 +++++++++++++++++-------
-> >>   drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c  | 24 +++++++++++++++++-------
-> >>   4 files changed, 69 insertions(+), 28 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> >> b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> >> index 73dcb632a3ce..2a9692bc34b4 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> >> @@ -1516,17 +1516,27 @@ static void
-> >> gfx_v10_0_init_compute_vmid(struct amdgpu_device *adev)
-> >>       }
-> >>       nv_grbm_select(adev, 0, 0, 0, 0);
-> >>       mutex_unlock(&adev->srbm_mutex);
-> >> +}
-> >>   -    /* Initialize all compute VMIDs to have no GDS, GWS, or OA
-> >> -       acccess. These should be enabled by FW for target VMIDs. */
-> >> -    for (i =3D FIRST_COMPUTE_VMID; i < LAST_COMPUTE_VMID; i++) {
-> >> -        WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_BASE, 2 * i, 0);
-> >> -        WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_SIZE, 2 * i, 0);
-> >> -        WREG32_SOC15_OFFSET(GC, 0, mmGDS_GWS_VMID0, i, 0);
-> >> -        WREG32_SOC15_OFFSET(GC, 0, mmGDS_OA_VMID0, i, 0);
-> >> +static void gfx_v10_0_init_gds_vmid(struct amdgpu_device *adev)
-> >> +{
-> >> +    int vmid;
-> >> +
-> >> +    /*
-> >> +     * Initialize all compute and user-gfx VMIDs to have no GDS,
-> >> GWS, or OA
-> >> +     * access. Compute VMIDs should be enabled by FW for target VMIDs=
-,
-> >> +     * the driver can enable them for graphics. VMID0 should maintain
-> >> +     * access so that HWS firmware can save/restore entries.
-> >> +     */
-> >> +    for (vmid =3D 1; vmid < 16; vmid++) {
-> >> +        WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_BASE, 2 * vmid, 0);
-> >> +        WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_SIZE, 2 * vmid, 0);
-> >> +        WREG32_SOC15_OFFSET(GC, 0, mmGDS_GWS_VMID0, vmid, 0);
-> >> +        WREG32_SOC15_OFFSET(GC, 0, mmGDS_OA_VMID0, vmid, 0);
-> >>       }
-> >>   }
-> >>   +
-> >>   static void gfx_v10_0_tcp_harvest(struct amdgpu_device *adev)
-> >>   {
-> >>       int i, j, k;
-> >> @@ -1629,6 +1639,7 @@ static void gfx_v10_0_constants_init(struct
-> >> amdgpu_device *adev)
-> >>       mutex_unlock(&adev->srbm_mutex);
-> >>         gfx_v10_0_init_compute_vmid(adev);
-> >> +    gfx_v10_0_init_gds_vmid(adev);
-> >>     }
-> >>   diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-> >> b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-> >> index 3f98624772a4..48796b6824cf 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-> >> @@ -1877,14 +1877,23 @@ static void gfx_v7_0_init_compute_vmid(struct
-> >> amdgpu_device *adev)
-> >>       }
-> >>       cik_srbm_select(adev, 0, 0, 0, 0);
-> >>       mutex_unlock(&adev->srbm_mutex);
-> >> +}
-> >>   -    /* Initialize all compute VMIDs to have no GDS, GWS, or OA
-> >> -       acccess. These should be enabled by FW for target VMIDs. */
-> >> -    for (i =3D FIRST_COMPUTE_VMID; i < LAST_COMPUTE_VMID; i++) {
-> >> -        WREG32(amdgpu_gds_reg_offset[i].mem_base, 0);
-> >> -        WREG32(amdgpu_gds_reg_offset[i].mem_size, 0);
-> >> -        WREG32(amdgpu_gds_reg_offset[i].gws, 0);
-> >> -        WREG32(amdgpu_gds_reg_offset[i].oa, 0);
-> >> +static void gfx_v7_0_init_gds_vmid(struct amdgpu_device *adev)
-> >> +{
-> >> +    int vmid;
-> >> +
-> >> +    /*
-> >> +     * Initialize all compute and user-gfx VMIDs to have no GDS,
-> >> GWS, or OA
-> >> +     * access. Compute VMIDs should be enabled by FW for target VMIDs=
-,
-> >> +     * the driver can enable them for graphics. VMID0 should maintain
-> >> +     * access so that HWS firmware can save/restore entries.
-> >> +     */
-> >> +    for (vmid =3D 1; vmid < 16; vmid++) {
-> >> +        WREG32(amdgpu_gds_reg_offset[vmid].mem_base, 0);
-> >> +        WREG32(amdgpu_gds_reg_offset[vmid].mem_size, 0);
-> >> +        WREG32(amdgpu_gds_reg_offset[vmid].gws, 0);
-> >> +        WREG32(amdgpu_gds_reg_offset[vmid].oa, 0);
-> >>       }
-> >>   }
-> >>   @@ -1966,6 +1975,7 @@ static void gfx_v7_0_constants_init(struct
-> >> amdgpu_device *adev)
-> >>       mutex_unlock(&adev->srbm_mutex);
-> >>         gfx_v7_0_init_compute_vmid(adev);
-> >> +    gfx_v7_0_init_gds_vmid(adev);
-> >>         WREG32(mmSX_DEBUG_1, 0x20);
-> >>   diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-> >> b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-> >> index e4028d54f8f7..d2907186bb24 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-> >> @@ -3702,14 +3702,23 @@ static void gfx_v8_0_init_compute_vmid(struct
-> >> amdgpu_device *adev)
-> >>       }
-> >>       vi_srbm_select(adev, 0, 0, 0, 0);
-> >>       mutex_unlock(&adev->srbm_mutex);
-> >> +}
-> >>   -    /* Initialize all compute VMIDs to have no GDS, GWS, or OA
-> >> -       acccess. These should be enabled by FW for target VMIDs. */
-> >> -    for (i =3D FIRST_COMPUTE_VMID; i < LAST_COMPUTE_VMID; i++) {
-> >> -        WREG32(amdgpu_gds_reg_offset[i].mem_base, 0);
-> >> -        WREG32(amdgpu_gds_reg_offset[i].mem_size, 0);
-> >> -        WREG32(amdgpu_gds_reg_offset[i].gws, 0);
-> >> -        WREG32(amdgpu_gds_reg_offset[i].oa, 0);
-> >> +static void gfx_v8_0_init_gds_vmid(struct amdgpu_device *adev)
-> >> +{
-> >> +    int vmid;
-> >> +
-> >> +    /*
-> >> +     * Initialize all compute and user-gfx VMIDs to have no GDS,
-> >> GWS, or OA
-> >> +     * access. Compute VMIDs should be enabled by FW for target VMIDs=
-,
-> >> +     * the driver can enable them for graphics. VMID0 should maintain
-> >> +     * access so that HWS firmware can save/restore entries.
-> >> +     */
-> >> +    for (vmid =3D 1; vmid < 16; vmid++) {
-> >> +        WREG32(amdgpu_gds_reg_offset[vmid].mem_base, 0);
-> >> +        WREG32(amdgpu_gds_reg_offset[vmid].mem_size, 0);
-> >> +        WREG32(amdgpu_gds_reg_offset[vmid].gws, 0);
-> >> +        WREG32(amdgpu_gds_reg_offset[vmid].oa, 0);
-> >>       }
-> >>   }
-> >>   @@ -3779,6 +3788,7 @@ static void gfx_v8_0_constants_init(struct
-> >> amdgpu_device *adev)
-> >>       mutex_unlock(&adev->srbm_mutex);
-> >>         gfx_v8_0_init_compute_vmid(adev);
-> >> +    gfx_v8_0_init_gds_vmid(adev);
-> >>         mutex_lock(&adev->grbm_idx_mutex);
-> >>       /*
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> >> b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> >> index 259a35395fec..bd7f431a24d9 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> >> @@ -2025,14 +2025,23 @@ static void gfx_v9_0_init_compute_vmid(struct
-> >> amdgpu_device *adev)
-> >>       }
-> >>       soc15_grbm_select(adev, 0, 0, 0, 0);
-> >>       mutex_unlock(&adev->srbm_mutex);
-> >> +}
-> >>   -    /* Initialize all compute VMIDs to have no GDS, GWS, or OA
-> >> -       acccess. These should be enabled by FW for target VMIDs. */
-> >> -    for (i =3D FIRST_COMPUTE_VMID; i < LAST_COMPUTE_VMID; i++) {
-> >> -        WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_BASE, 2 * i, 0);
-> >> -        WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_SIZE, 2 * i, 0);
-> >> -        WREG32_SOC15_OFFSET(GC, 0, mmGDS_GWS_VMID0, i, 0);
-> >> -        WREG32_SOC15_OFFSET(GC, 0, mmGDS_OA_VMID0, i, 0);
-> >> +static void gfx_v9_0_init_gds_vmid(struct amdgpu_device *adev)
-> >> +{
-> >> +    int vmid;
-> >> +
-> >> +    /*
-> >> +     * Initialize all compute and user-gfx VMIDs to have no GDS,
-> >> GWS, or OA
-> >> +     * access. Compute VMIDs should be enabled by FW for target VMIDs=
-,
-> >> +     * the driver can enable them for graphics. VMID0 should maintain
-> >> +     * access so that HWS firmware can save/restore entries.
-> >> +     */
-> >> +    for (vmid =3D 1; vmid < 16; vmid++) {
-> >> +        WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_BASE, 2 * vmid, 0);
-> >> +        WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_SIZE, 2 * vmid, 0);
-> >> +        WREG32_SOC15_OFFSET(GC, 0, mmGDS_GWS_VMID0, vmid, 0);
-> >> +        WREG32_SOC15_OFFSET(GC, 0, mmGDS_OA_VMID0, vmid, 0);
-> >>       }
-> >>   }
-> >>   @@ -2080,6 +2089,7 @@ static void gfx_v9_0_constants_init(struct
-> >> amdgpu_device *adev)
-> >>       mutex_unlock(&adev->srbm_mutex);
-> >>         gfx_v9_0_init_compute_vmid(adev);
-> >> +    gfx_v9_0_init_gds_vmid(adev);
-> >>   }
-> >>     static void gfx_v9_0_wait_for_rlc_serdes(struct amdgpu_device *ade=
-v)
-> >
-> > _______________________________________________
-> > amd-gfx mailing list
-> > amd-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+         if (amdgpu_sriov_vf(adev))
+                 xgpu_ai_mailbox_get_irq(adev);
 
---000000000000de525a05913071c7
-Content-Type: text/html; charset="UTF-8"
+-       return 0;
++       if (adev->nbio.funcs->ras_late_init)
++               r =3D adev->nbio.funcs->ras_late_init(adev);
++
++       return r;
+ }
+
+ static int soc15_common_sw_init(void *handle)
+@@ -1287,6 +1291,13 @@ static int soc15_common_hw_fini(void *handle)
+         if (amdgpu_sriov_vf(adev))
+                 xgpu_ai_mailbox_put_irq(adev);
+
++       if (amdgpu_ras_is_supported(adev, adev->nbio.ras_if->block)) {
++               if (adev->nbio.funcs->init_ras_controller_interrupt)
++                       amdgpu_irq_put(adev, &adev->nbio.ras_controller_irq=
+, 0);
++               if (adev->nbio.funcs->init_ras_err_event_athub_interrupt)
++                       amdgpu_irq_put(adev, &adev->nbio.ras_err_event_athu=
+b_irq, 0);
++       }
++
+         return 0;
+ }
+
+--
+2.7.4
+
+
+--_000_BN6PR12MB18096E343DD1229240C24BF1F7A30BN6PR12MB1809namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>It can&#39;t break an older driver, because there is =
-no older driver that requires the static allocation.</div><div><br></div><d=
-iv>Note that closed source drivers don&#39;t count, because they don&#39;t =
-need backward compatibility.</div><div><br></div><div>Marek<br></div></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed=
-, Aug 28, 2019 at 2:44 AM zhoucm1 &lt;<a href=3D"mailto:zhoucm1@amd.com">zh=
-oucm1@amd.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><br>
-On 2019/7/23 =E4=B8=8A=E5=8D=883:08, Christian K=C3=B6nig wrote:<br>
-&gt; Am 22.07.19 um 17:34 schrieb Greathouse, Joseph:<br>
-&gt;&gt; Units in the GDS block default to allowing all VMIDs access to all=
-<br>
-&gt;&gt; entries. Disable shader access to the GDS, GWS, and OA blocks from=
- all<br>
-&gt;&gt; compute and gfx VMIDs by default. For compute, HWS firmware will s=
-et<br>
-&gt;&gt; up the access bits for the appropriate VMID when a compute queue<b=
-r>
-&gt;&gt; requires access to these blocks.<br>
-&gt;&gt; The driver will handle enabling access on-demand for graphics VMID=
-s.<br>
-<br>
-gds_switch is depending on job-&gt;gds/gws/oa/_base/size.<br>
-<br>
-&quot;[PATCH] drm/amdgpu: remove static GDS, GWS and OA allocation&quot;, t=
-he <br>
-default allocations in kernel were removed. If some UMD stacks don&#39;t <b=
-r>
-pass gds/gws/oa allocation to bo_list, then kernel will not enable <br>
-access of them, that will break previous driver.<br>
-<br>
-do we need revert &quot;[PATCH] drm/amdgpu: remove static GDS, GWS and OA <=
-br>
-allocation&quot; ?<br>
-<br>
--David<br>
-<br>
-&gt;&gt;<br>
-&gt;&gt; Leaving VMID0 with full access because otherwise HWS cannot save o=
-r<br>
-&gt;&gt; restore values during task switch.<br>
-&gt;&gt;<br>
-&gt;&gt; v2: Fixed code and comment styling.<br>
-&gt;&gt;<br>
-&gt;&gt; Change-Id: I3d768a96935d2ed1dff09b02c995090f4fbfa539<br>
-&gt;&gt; Signed-off-by: Joseph Greathouse &lt;<a href=3D"mailto:Joseph.Grea=
-thouse@amd.com" target=3D"_blank">Joseph.Greathouse@amd.com</a>&gt;<br>
-&gt;<br>
-&gt; Reviewed-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koen=
-ig@amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;<br>
-&gt;<br>
-&gt;&gt; ---<br>
-&gt;&gt; =C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 25 +++++++++++++++=
-+++-------<br>
-&gt;&gt; =C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c=C2=A0 | 24 ++++++++++=
-+++++++-------<br>
-&gt;&gt; =C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c=C2=A0 | 24 ++++++++++=
-+++++++-------<br>
-&gt;&gt; =C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c=C2=A0 | 24 ++++++++++=
-+++++++-------<br>
-&gt;&gt; =C2=A0 4 files changed, 69 insertions(+), 28 deletions(-)<br>
-&gt;&gt;<br>
-&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-&gt;&gt; index 73dcb632a3ce..2a9692bc34b4 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-&gt;&gt; @@ -1516,17 +1516,27 @@ static void <br>
-&gt;&gt; gfx_v10_0_init_compute_vmid(struct amdgpu_device *adev)<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nv_grbm_select(adev, 0, 0, 0, 0);<b=
-r>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&amp;adev-&gt;srbm_mut=
-ex);<br>
-&gt;&gt; +}<br>
-&gt;&gt; =C2=A0 -=C2=A0=C2=A0=C2=A0 /* Initialize all compute VMIDs to have=
- no GDS, GWS, or OA<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 acccess. These should be ena=
-bled by FW for target VMIDs. */<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0 for (i =3D FIRST_COMPUTE_VMID; i &lt; LAST_COM=
-PUTE_VMID; i++) {<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_VMID0_BASE, 2 * i, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_VMID0_SIZE, 2 * i, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_GWS_VMID0, i, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_OA_VMID0, i, 0);<br>
-&gt;&gt; +static void gfx_v10_0_init_gds_vmid(struct amdgpu_device *adev)<b=
-r>
-&gt;&gt; +{<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 int vmid;<br>
-&gt;&gt; +<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 /*<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * Initialize all compute and user-gfx VM=
-IDs to have no GDS, <br>
-&gt;&gt; GWS, or OA<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * access. Compute VMIDs should be enable=
-d by FW for target VMIDs,<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * the driver can enable them for graphic=
-s. VMID0 should maintain<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * access so that HWS firmware can save/r=
-estore entries.<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 */<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 for (vmid =3D 1; vmid &lt; 16; vmid++) {<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_VMID0_BASE, 2 * vmid, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_VMID0_SIZE, 2 * vmid, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_GWS_VMID0, vmid, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_OA_VMID0, vmid, 0);<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }<br>
-&gt;&gt; =C2=A0 }<br>
-&gt;&gt; =C2=A0 +<br>
-&gt;&gt; =C2=A0 static void gfx_v10_0_tcp_harvest(struct amdgpu_device *ade=
-v)<br>
-&gt;&gt; =C2=A0 {<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int i, j, k;<br>
-&gt;&gt; @@ -1629,6 +1639,7 @@ static void gfx_v10_0_constants_init(struct =
-<br>
-&gt;&gt; amdgpu_device *adev)<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&amp;adev-&gt;srbm_mut=
-ex);<br>
-&gt;&gt; =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfx_v10_0_init_compute_vmid(=
-adev);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 gfx_v10_0_init_gds_vmid(adev);<br>
-&gt;&gt; =C2=A0 =C2=A0 }<br>
-&gt;&gt; =C2=A0 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c<br>
-&gt;&gt; index 3f98624772a4..48796b6824cf 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c<br>
-&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c<br>
-&gt;&gt; @@ -1877,14 +1877,23 @@ static void gfx_v7_0_init_compute_vmid(str=
-uct <br>
-&gt;&gt; amdgpu_device *adev)<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cik_srbm_select(adev, 0, 0, 0, 0);<=
-br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&amp;adev-&gt;srbm_mut=
-ex);<br>
-&gt;&gt; +}<br>
-&gt;&gt; =C2=A0 -=C2=A0=C2=A0=C2=A0 /* Initialize all compute VMIDs to have=
- no GDS, GWS, or OA<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 acccess. These should be ena=
-bled by FW for target VMIDs. */<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0 for (i =3D FIRST_COMPUTE_VMID; i &lt; LAST_COM=
-PUTE_VMID; i++) {<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[i].mem_base, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[i].mem_size, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[i].gws, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[i].oa, 0);<br>
-&gt;&gt; +static void gfx_v7_0_init_gds_vmid(struct amdgpu_device *adev)<br=
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-&gt;&gt; +{<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 int vmid;<br>
-&gt;&gt; +<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 /*<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * Initialize all compute and user-gfx VM=
-IDs to have no GDS, <br>
-&gt;&gt; GWS, or OA<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * access. Compute VMIDs should be enable=
-d by FW for target VMIDs,<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * the driver can enable them for graphic=
-s. VMID0 should maintain<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * access so that HWS firmware can save/r=
-estore entries.<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 */<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 for (vmid =3D 1; vmid &lt; 16; vmid++) {<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[vmid].mem_base, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[vmid].mem_size, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[vmid].gws, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[vmid].oa, 0);<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }<br>
-&gt;&gt; =C2=A0 }<br>
-&gt;&gt; =C2=A0 @@ -1966,6 +1975,7 @@ static void gfx_v7_0_constants_init(s=
-truct <br>
-&gt;&gt; amdgpu_device *adev)<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&amp;adev-&gt;srbm_mut=
-ex);<br>
-&gt;&gt; =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfx_v7_0_init_compute_vmid(a=
-dev);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 gfx_v7_0_init_gds_vmid(adev);<br>
-&gt;&gt; =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(mmSX_DEBUG_1, 0x20);<=
-br>
-&gt;&gt; =C2=A0 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c<br>
-&gt;&gt; index e4028d54f8f7..d2907186bb24 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c<br>
-&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c<br>
-&gt;&gt; @@ -3702,14 +3702,23 @@ static void gfx_v8_0_init_compute_vmid(str=
-uct <br>
-&gt;&gt; amdgpu_device *adev)<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vi_srbm_select(adev, 0, 0, 0, 0);<b=
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Nice clean up.&nbsp; Series is:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Hawking Zhang &lt;Haw=
+king.Zhang@amd.com&gt;<br>
+<b>Sent:</b> Wednesday, August 28, 2019 9:03 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;; Zhou1, Tao &lt;Tao.Zhou1@amd.com&gt;; Deucher, Alexander &lt;Alexander=
+.Deucher@amd.com&gt;<br>
+<b>Cc:</b> Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;<br>
+<b>Subject:</b> [PATCH 7/7] drm/amdgpu: switch to ras_late_init callback fo=
+r nbio v7_4</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">invoke nbio ras_late_init callback function to do =
+nbio ras init<br>
+<br>
+Signed-off-by: Hawking Zhang &lt;Hawking.Zhang@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/soc15.c | 13 &#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;-<br>
+&nbsp;1 file changed, 12 insertions(&#43;), 1 deletion(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgp=
+u/soc15.c<br>
+index e7f2539..f53bd59 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+@@ -1206,11 &#43;1206,15 @@ static int soc15_common_early_init(void *handle=
+)<br>
+&nbsp;static int soc15_common_late_init(void *handle)<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev=
+ =3D (struct amdgpu_device *)handle;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(adev))=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; xgpu_ai_mailbox_get_irq(adev);<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;nbio.funcs-&gt;ras_l=
+ate_init)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; r =3D adev-&gt;nbio.funcs-&gt;ras_late_init(adev);<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;static int soc15_common_sw_init(void *handle)<br>
+@@ -1287,6 &#43;1291,13 @@ static int soc15_common_hw_fini(void *handle)<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(adev))=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; xgpu_ai_mailbox_put_irq(adev);<br>
+&nbsp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_ras_is_supported(adev,=
+ adev-&gt;nbio.ras_if-&gt;block)) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (adev-&gt;nbio.funcs-&gt;init_ras_controller_interrupt)<b=
 r>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&amp;adev-&gt;srbm_mut=
-ex);<br>
-&gt;&gt; +}<br>
-&gt;&gt; =C2=A0 -=C2=A0=C2=A0=C2=A0 /* Initialize all compute VMIDs to have=
- no GDS, GWS, or OA<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 acccess. These should be ena=
-bled by FW for target VMIDs. */<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0 for (i =3D FIRST_COMPUTE_VMID; i &lt; LAST_COM=
-PUTE_VMID; i++) {<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[i].mem_base, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[i].mem_size, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[i].gws, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[i].oa, 0);<br>
-&gt;&gt; +static void gfx_v8_0_init_gds_vmid(struct amdgpu_device *adev)<br=
->
-&gt;&gt; +{<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 int vmid;<br>
-&gt;&gt; +<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 /*<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * Initialize all compute and user-gfx VM=
-IDs to have no GDS, <br>
-&gt;&gt; GWS, or OA<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * access. Compute VMIDs should be enable=
-d by FW for target VMIDs,<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * the driver can enable them for graphic=
-s. VMID0 should maintain<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * access so that HWS firmware can save/r=
-estore entries.<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 */<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 for (vmid =3D 1; vmid &lt; 16; vmid++) {<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[vmid].mem_base, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[vmid].mem_size, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[vmid].gws, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32(amdgpu_gds_reg_=
-offset[vmid].oa, 0);<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }<br>
-&gt;&gt; =C2=A0 }<br>
-&gt;&gt; =C2=A0 @@ -3779,6 +3788,7 @@ static void gfx_v8_0_constants_init(s=
-truct <br>
-&gt;&gt; amdgpu_device *adev)<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&amp;adev-&gt;srbm_mut=
-ex);<br>
-&gt;&gt; =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfx_v8_0_init_compute_vmid(a=
-dev);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 gfx_v8_0_init_gds_vmid(adev);<br>
-&gt;&gt; =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_lock(&amp;adev-&gt;grb=
-m_idx_mutex);<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*<br>
-&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c<br>
-&gt;&gt; index 259a35395fec..bd7f431a24d9 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c<br>
-&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c<br>
-&gt;&gt; @@ -2025,14 +2025,23 @@ static void gfx_v9_0_init_compute_vmid(str=
-uct <br>
-&gt;&gt; amdgpu_device *adev)<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 soc15_grbm_select(adev, 0, 0, 0, 0)=
-;<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&amp;adev-&gt;srbm_mut=
-ex);<br>
-&gt;&gt; +}<br>
-&gt;&gt; =C2=A0 -=C2=A0=C2=A0=C2=A0 /* Initialize all compute VMIDs to have=
- no GDS, GWS, or OA<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 acccess. These should be ena=
-bled by FW for target VMIDs. */<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0 for (i =3D FIRST_COMPUTE_VMID; i &lt; LAST_COM=
-PUTE_VMID; i++) {<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_VMID0_BASE, 2 * i, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_VMID0_SIZE, 2 * i, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_GWS_VMID0, i, 0);<br>
-&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_OA_VMID0, i, 0);<br>
-&gt;&gt; +static void gfx_v9_0_init_gds_vmid(struct amdgpu_device *adev)<br=
->
-&gt;&gt; +{<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 int vmid;<br>
-&gt;&gt; +<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 /*<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * Initialize all compute and user-gfx VM=
-IDs to have no GDS, <br>
-&gt;&gt; GWS, or OA<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * access. Compute VMIDs should be enable=
-d by FW for target VMIDs,<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * the driver can enable them for graphic=
-s. VMID0 should maintain<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 * access so that HWS firmware can save/r=
-estore entries.<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0 */<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 for (vmid =3D 1; vmid &lt; 16; vmid++) {<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_VMID0_BASE, 2 * vmid, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_VMID0_SIZE, 2 * vmid, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_GWS_VMID0, vmid, 0);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WREG32_SOC15_OFFSET(GC=
-, 0, mmGDS_OA_VMID0, vmid, 0);<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }<br>
-&gt;&gt; =C2=A0 }<br>
-&gt;&gt; =C2=A0 @@ -2080,6 +2089,7 @@ static void gfx_v9_0_constants_init(s=
-truct <br>
-&gt;&gt; amdgpu_device *adev)<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&amp;adev-&gt;srbm_mut=
-ex);<br>
-&gt;&gt; =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfx_v9_0_init_compute_vmid(a=
-dev);<br>
-&gt;&gt; +=C2=A0=C2=A0=C2=A0 gfx_v9_0_init_gds_vmid(adev);<br>
-&gt;&gt; =C2=A0 }<br>
-&gt;&gt; =C2=A0 =C2=A0 static void gfx_v9_0_wait_for_rlc_serdes(struct amdg=
-pu_device *adev)<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; amd-gfx mailing list<br>
-&gt; <a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd=
--gfx@lists.freedesktop.org</a><br>
-&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/lis=
-tinfo/amd-gfx</a><br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-<a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd-gfx@=
-lists.freedesktop.org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/listinfo=
-/amd-gfx</a></blockquote></div>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_irq_p=
+ut(adev, &amp;adev-&gt;nbio.ras_controller_irq, 0);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (adev-&gt;nbio.funcs-&gt;init_ras_err_event_athub_interru=
+pt)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_irq_p=
+ut(adev, &amp;adev-&gt;nbio.ras_err_event_athub_irq, 0);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&#43;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&nbsp;}<br>
+&nbsp;<br>
+-- <br>
+2.7.4<br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
 
---000000000000de525a05913071c7--
+--_000_BN6PR12MB18096E343DD1229240C24BF1F7A30BN6PR12MB1809namp_--
 
---===============1510991042==
+--===============1886288912==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -678,4 +287,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1510991042==--
+--===============1886288912==--
