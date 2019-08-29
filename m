@@ -2,93 +2,99 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CC2EA1EB5
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Aug 2019 17:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BC0A20A2
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Aug 2019 18:18:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABE1B6E12C;
-	Thu, 29 Aug 2019 15:18:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4509B6E130;
+	Thu, 29 Aug 2019 16:18:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr700079.outbound.protection.outlook.com [40.107.70.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B52C6E12C;
- Thu, 29 Aug 2019 15:18:15 +0000 (UTC)
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr790071.outbound.protection.outlook.com [40.107.79.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 966986E12B
+ for <amd-gfx@lists.freedesktop.org>; Thu, 29 Aug 2019 16:18:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=niUca7fjSi4Pj9OJpJclXQYy0aaMvgxbh3rSylmQjd1hKva94Rknee3XloJsIjC8GXlMpddxaJcbUl31DE9tV7P5C/eifhNBqqTvNZjFzR98SwpByB+7QDkfWM7ngqZYGHprxPoWZwupqVI4xSdjr+CSKp59zxp8trJcK3RCUQ1WTn2cb2YUQUQxANkkUqzdMqV5eRCElDc6NS5k90edp8hjzWrvco399hwO2zn3WTmKqGflHqrcYfvow0xBgi9Kl6aseuTh8Tk57D99r6cEkmv8FsMFnI55UVPiIDruFi4OqHnFoXtUlHQG6F0WoMQ4CHey1+8uHFifcW39WgEssQ==
+ b=Sl4mW+o3IsqZcArINKTnainzj6u3XJUDtSiL6FnQgQ+1xHIXMOuJ9cy8+XEssNgGaOv87oMRxGvaPyX21TAsRZgQFYi5c+TmORESmxkkze78NM8aVTLf871N2Zgnly1b0vT4vNtc7Y/RWCFQ8B0ygbCgANmXI/iaQKzk4RxVZEQ56jrm5sGRZPVlcDjaT2ANHohvBPGUBhqNgDzCfq/hNbx3KE0N2evqFyieM2CqcvzKGny03y79HT6nGnj/zoSbvPkRjcV7V9/sGId+V072RzA+uVffrA4JPp3jFOw314b99omFgi2DAhOFgmaOo2OQ4pKyPzvYwZaC8PVL+oR3Eg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kwGCoUrEa9qRo97So+YkGhwolEqC4E8w/5mq9yMDb9U=;
- b=isancnb77ny4TFB1eE1Ov6B7exCH0dQ7nNCQGaXTAKl3qUdEdyyzc13b667q21j2TfG2YBt5yBL5fG04niHSsHNM7kBIlJVZp+EGLnaVghZaglhnjuQ+e61BT0JtjtEb7/Qvbu6R9mxcWJkj5CBmLvuKrMEamuY/dFuCOIPzC3jy1/rda7LQfdugQ58Qh5Ji7MyiQkev5C7bEzFsuNCV3fzpwClvHnLj1cO6mtvLpAh6VpriWveTnZNvdk2pN5cNbWvUyDBSkVceyYPWgvLB6q8Ls1lPvvl1e4BZ4IbGAzxWPf80MyW7AwUghYq4EWXCJGmvdL5iMLhffsl9lo4o0A==
+ bh=p2xoNOkST/A5lPWPkxD22u1RIHdSa8/sugrItTULX5Y=;
+ b=UHgu4dNUT1eBHdb4LzGHrBFpNfBS8LH3eAZ6dbWfAB51Myhw2SuYRVRaP9foZvaEMK1pbwZIGPU15cE1A2m3Ns++ScMuKG5CBi6sqnZhbFqJLoiG4M5oj7g80rjVFXafjzmNZYy+1nJj4cXAqg81eDCoxQMaUWVkzMFnGW90Y/vYySpZ2HKcuwKlKFN28ZkeoGt//2dnBA+6W5UDu2SdVxcJHqdG2yWeLLZx1W149reepyQ7bSwctC2yX0rUDnguC6tAphD1+zn4WhQUhRoWe/sMdZZ7ozsF++HgXyYInan7MZqBmFHrQ4AXYGayqycf8imL8vjSKbFYjJXpGPzzNQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from CY4PR1201MB0230.namprd12.prod.outlook.com (10.172.79.7) by
- CY4PR1201MB0182.namprd12.prod.outlook.com (10.172.76.8) with Microsoft SMTP
+Received: from DM6PR12MB3947.namprd12.prod.outlook.com (10.255.174.156) by
+ DM6PR12MB2860.namprd12.prod.outlook.com (20.179.71.25) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.21; Thu, 29 Aug 2019 15:18:13 +0000
-Received: from CY4PR1201MB0230.namprd12.prod.outlook.com
- ([fe80::708e:c826:5b05:e3f0]) by CY4PR1201MB0230.namprd12.prod.outlook.com
- ([fe80::708e:c826:5b05:e3f0%11]) with mapi id 15.20.2199.021; Thu, 29 Aug
- 2019 15:18:13 +0000
-From: Harry Wentland <hwentlan@amd.com>
-To: "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH V3] drm: Add LTTPR defines for DP 1.4a
-Thread-Topic: [PATCH V3] drm: Add LTTPR defines for DP 1.4a
-Thread-Index: AQHVXdokkKgVCkf48k68itapbcTb5acSPjYA
-Date: Thu, 29 Aug 2019 15:18:13 +0000
-Message-ID: <31113782-7302-2ff4-21ba-7e3c64105b3b@amd.com>
-References: <20190828195243.w6mq7gdv22ggums7@outlook.office365.com>
-In-Reply-To: <20190828195243.w6mq7gdv22ggums7@outlook.office365.com>
+ 15.20.2220.18; Thu, 29 Aug 2019 16:18:13 +0000
+Received: from DM6PR12MB3947.namprd12.prod.outlook.com
+ ([fe80::3d2a:29d4:df8:4d5]) by DM6PR12MB3947.namprd12.prod.outlook.com
+ ([fe80::3d2a:29d4:df8:4d5%2]) with mapi id 15.20.2199.021; Thu, 29 Aug 2019
+ 16:18:13 +0000
+From: "Kuehling, Felix" <Felix.Kuehling@amd.com>
+To: "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 1/2] dmr/amdgpu: Avoid HW GPU reset for RAS.
+Thread-Topic: [PATCH 1/2] dmr/amdgpu: Avoid HW GPU reset for RAS.
+Thread-Index: AQHVXdtIbt+c9wcLM02KYbAzIAaCdqcRu5gAgABt3gCAAACwAIAAAIeAgAAkUIA=
+Date: Thu, 29 Aug 2019 16:18:13 +0000
+Message-ID: <3a39a720-ae2d-0019-aecc-422f0e3f27bb@amd.com>
+References: <1567022426-6612-1-git-send-email-andrey.grodzovsky@amd.com>
+ <85798da5-a4f1-28d3-c80f-9f262743cac9@gmail.com>
+ <9a46188b-b528-0d1f-8c3f-b6ce5b73649f@amd.com>
+ <8c2b0bf3-47ff-ea3b-a682-7ec76240be4d@amd.com>
+ <1444ae5f-0997-d1ce-3e1e-23fea8822c88@amd.com>
+In-Reply-To: <1444ae5f-0997-d1ce-3e1e-23fea8822c88@amd.com>
 Accept-Language: en-US
 Content-Language: en-US
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [165.204.55.250]
+x-originating-ip: [165.204.55.251]
 user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
-x-clientproxiedby: YT1PR01CA0034.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::47)
- To CY4PR1201MB0230.namprd12.prod.outlook.com
- (2603:10b6:910:1e::7)
+x-clientproxiedby: YTXPR0101CA0055.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:1::32) To DM6PR12MB3947.namprd12.prod.outlook.com
+ (2603:10b6:5:1cb::28)
 x-ms-exchange-messagesentrepresentingtype: 1
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0c22b70f-d8f2-4f44-2c6e-08d72c941bef
+x-ms-office365-filtering-correlation-id: 54f416cb-83a6-4870-43ea-08d72c9c7dac
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(49563074)(7193020);
- SRVR:CY4PR1201MB0182; 
-x-ms-traffictypediagnostic: CY4PR1201MB0182:
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:DM6PR12MB2860; 
+x-ms-traffictypediagnostic: DM6PR12MB2860:
+x-ms-exchange-purlcount: 1
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CY4PR1201MB01823DEB4B0B34132C2DBB728CA20@CY4PR1201MB0182.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-microsoft-antispam-prvs: <DM6PR12MB28608D3F9077C6B5B4C6B6AC92A20@DM6PR12MB2860.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4502;
 x-forefront-prvs: 0144B30E41
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(39860400002)(396003)(346002)(366004)(376002)(189003)(199004)(478600001)(25786009)(81166006)(476003)(8676002)(110136005)(2201001)(14454004)(66476007)(65806001)(5660300002)(316002)(36756003)(58126008)(66556008)(64756008)(6116002)(71190400001)(71200400001)(3846002)(54906003)(65956001)(31696002)(66446008)(66066001)(66616009)(66946007)(2616005)(102836004)(6506007)(386003)(14444005)(52116002)(305945005)(76176011)(256004)(8936002)(229853002)(2501003)(446003)(486006)(26005)(53936002)(99936001)(6512007)(4326008)(7736002)(6486002)(6436002)(31686004)(53546011)(2906002)(11346002)(99286004)(6246003)(81156014)(186003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR1201MB0182;
- H:CY4PR1201MB0230.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(366004)(39860400002)(376002)(396003)(346002)(136003)(189003)(199004)(6116002)(66946007)(966005)(66556008)(66476007)(2501003)(14454004)(8936002)(65956001)(86362001)(65806001)(66066001)(36756003)(64756008)(66446008)(81156014)(81166006)(31686004)(6436002)(71200400001)(71190400001)(6512007)(6306002)(110136005)(5660300002)(52116002)(486006)(476003)(54906003)(6246003)(58126008)(14444005)(53936002)(102836004)(99286004)(6506007)(6486002)(2906002)(31696002)(8676002)(478600001)(446003)(11346002)(2616005)(26005)(386003)(53546011)(186003)(7736002)(305945005)(4326008)(76176011)(3846002)(229853002)(25786009)(256004)(316002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB2860;
+ H:DM6PR12MB3947.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: a9LsZpbWixNEQwMU59K0/fbz4OqlUXOdf+ltmD+nhty2MnH3XD75yr3xZ5rijwHYSFQUmwrg+9AcFIqJysqNRATVxfQBZH0nvx3pb078ZFkRiqSlyEAJGqVP8pbz+RGv7/AcddhzZetTOfGpdXFIz3s33aGTShd4YICj8x579THHCFaI4J323zf3VUpc1t92htaMo+sjWSUZ/Nh6LxGD/UOlI9DlO1Ck2rMKTeyIBQ0+wR2f9kkS6T4vVdSErpqMmPy3gQg/5OSzXTuCJIiATh0fzt7aQ7qOcUv7a7hpgMxpIOPzUNqQXNmgND6QEmL/OB1jNJoHykmZ8ZNAn7IZZ/u5FAOFf1TBDAO/9LfkQSoETk+kJJedwBD5aW4ACHWdg/odibm+Flwg9s+NgIQR3OxG+Q+2SKDCsP+oVEMU90A=
+x-microsoft-antispam-message-info: /kje9NBes1BvMzHwNddz9lwQzDUgCnRrOCPlRIgmqD4J345DPN3CqZ44SJBPlhSVLH5wmTFs+nr5p7u6hLIsWZ8SHibB1jkzcf4Hx6Fci+0/i9HzDKTtq366GPBe9td67jtJeaauNWKizshlSiUgI7RVld9Y9W0Efv8s6kgPsZ5Gc6Ru3y77ZYs6LZE9c1mkDCxKmATBXQPRci1wmZvsN6eS1fF40+D0j2JZY5iJ8MavpZ3kS/VUk3qMireoul88zWsY3QJiWBQMpSDKNv8aezMJTHI1eCC0l1MIDCA3W+Kb6mk2M+0ZFPDojr+hPRDWhBYDCvXXtn8W1bXULuUtmYIU3x/ZSm7xAlY6jqFkwvJfh+RdvrbWssafydJbUqr29YpDppXpov2jGKZFwDj7mQ9euP+1PkKcBrwLqmT5+yw=
+Content-ID: <3AE7E444C0782243A98360C4EB515655@namprd12.prod.outlook.com>
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c22b70f-d8f2-4f44-2c6e-08d72c941bef
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Aug 2019 15:18:13.3814 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54f416cb-83a6-4870-43ea-08d72c9c7dac
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Aug 2019 16:18:13.3185 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CXX2yv5jlDAdhSDgN6Ru8GzDRwgV5TPwpE7UOuaU3hp/gRXfAQCSw25O6Y/X/vi1h2UAUXnn649Fx0KApSp2yQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0182
+X-MS-Exchange-CrossTenant-userprincipalname: gqE12Pdppn8YvccLiDMyKfwabLs+/5W+8Y9NOduG0RQ1TjXvpmW5KW/Ly92bbO+sTVK2cBcq4BtSwmhhu71cJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2860
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kwGCoUrEa9qRo97So+YkGhwolEqC4E8w/5mq9yMDb9U=;
- b=RjKQK4rKlpbDDkEQ5DbuTvrqd2TXBY09UcRdAahvF4Q0VwIDhksyU4sIFlBoRVPS94XJP9qzAMGfW349hENs0eWcY/HftRhWWNTmDddNOn4H/9pAFGkgekTmSAs9yzljHmiJU9B49x5CXfXfiTziFq6gXEhuIO+6VAHKhUOuF68=
+ bh=p2xoNOkST/A5lPWPkxD22u1RIHdSa8/sugrItTULX5Y=;
+ b=OlCc7lIqFeXwFssgyD8yj7McfvXwdFitLg201gltM+U/ct1zXYK6v1I1kr/N+t784H2KCTCXhQeD3t/EV6rickWbjfIWwxlVDZefJsbpXpjNLf5oKwFydpJL/TyHjmMCGSjz+vRmRwT3IPRCLpPIHvaOCZ/lK38bgZtpiZjYLGk=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Harry.Wentland@amd.com; 
+ smtp.mailfrom=Felix.Kuehling@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -100,137 +106,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Li, Sun peng \(Leo\)" <Sunpeng.Li@amd.com>, "Berthe,
- Abdoulaye" <Abdoulaye.Berthe@amd.com>, "Wentland,
- Harry" <Harry.Wentland@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>
-Content-Type: multipart/mixed; boundary="===============2037837042=="
+Cc: "alexdeucher@gmail.com" <alexdeucher@gmail.com>, "Zhang,
+ Hawking" <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============2037837042==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="A12RtjfXdtjHE8pdHhgp76XeTZvC0ffBd"
-
---A12RtjfXdtjHE8pdHhgp76XeTZvC0ffBd
-Content-Type: multipart/mixed; boundary="Qc4Hj7GMrj4BcB42TciGwvMRhpgVJPR1u";
- protected-headers="v1"
-From: Harry Wentland <hwentlan@amd.com>
-To: "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: "Berthe, Abdoulaye" <Abdoulaye.Berthe@amd.com>,
- "Wentland, Harry" <Harry.Wentland@amd.com>,
- "Li, Sun peng (Leo)" <Sunpeng.Li@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <31113782-7302-2ff4-21ba-7e3c64105b3b@amd.com>
-Subject: Re: [PATCH V3] drm: Add LTTPR defines for DP 1.4a
-References: <20190828195243.w6mq7gdv22ggums7@outlook.office365.com>
-In-Reply-To: <20190828195243.w6mq7gdv22ggums7@outlook.office365.com>
-
---Qc4Hj7GMrj4BcB42TciGwvMRhpgVJPR1u
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-On 2019-08-28 3:52 p.m., Siqueira, Rodrigo wrote:
-> DP 1.4a specification defines Link Training Tunable PHY Repeater (LTTPR=
-)
-> which is required to add support for systems with Thunderbolt or other
-> repeater devices.
->=20
-> Changes since V2:
-> - Drop the kernel-doc comment
-> - Reorder LTTPR according to register offset
-> Changes since V1:
-> - Adjusts registers names to be aligned with spec and the rest of the
->   file
-> - Update spec comment from 1.4 to 1.4a
->=20
-> Cc: Abdoulaye Berthe <Abdoulaye.Berthe@amd.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Leo Li <sunpeng.li@amd.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> Signed-off-by: Abdoulaye Berthe <Abdoulaye.Berthe@amd.com>
-
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-
-Harry
-
-> ---
->  include/drm/drm_dp_helper.h | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
->=20
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 8364502f92cf..67f9121d781d 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -989,6 +989,31 @@
->  #define HDCP_2_2_DP_RXSTATUS_REAUTH_REQ(x)	((x) & BIT(3))
->  #define HDCP_2_2_DP_RXSTATUS_LINK_FAILED(x)	((x) & BIT(4))
-> =20
-> +/* Link Training (LT)-tunable Physical Repeaters - DP 1.4a */
-> +#define DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV 0xf0000
-> +#define DP_MAX_LINK_RATE_PHY_REPEATER                       0xf0001
-> +#define DP_PHY_REPEATER_CNT                                 0xf0002
-> +#define DP_PHY_REPEATER_MODE                                0xf0003
-> +#define DP_MAX_LANE_COUNT_PHY_REPEATER                      0xf0004
-> +#define DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT               0xf0005
-> +#define DP_TRAINING_PATTERN_SET_PHY_REPEATER1               0xf0010
-> +#define DP_TRAINING_LANE0_SET_PHY_REPEATER1                 0xf0011
-> +#define DP_TRAINING_LANE1_SET_PHY_REPEATER1                 0xf0012
-> +#define DP_TRAINING_LANE2_SET_PHY_REPEATER1                 0xf0013
-> +#define DP_TRAINING_LANE3_SET_PHY_REPEATER1                 0xf0014
-> +#define DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1           0xf0020
-> +#define DP_TRANSMITTER_CAPABILITY_PHY_REPEATER1             0xf0021
-> +#define DP_LANE0_1_STATUS_PHY_REPEATER1                     0xf0030
-> +#define DP_LANE2_3_STATUS_PHY_REPEATER1                     0xf0031
-> +#define DP_LANE_ALIGN_STATUS_UPDATED_PHY_REPEATER1          0xf0032
-> +#define DP_ADJUST_REQUEST_LANE0_1_PHY_REPEATER1             0xf0033
-> +#define DP_ADJUST_REQUEST_LANE2_3_PHY_REPEATER1             0xf0034
-> +#define DP_SYMBOL_ERROR_COUNT_LANE0_PHY_REPEATER1           0xf0035
-> +#define DP_SYMBOL_ERROR_COUNT_LANE1_PHY_REPEATER1           0xf0037
-> +#define DP_SYMBOL_ERROR_COUNT_LANE2_PHY_REPEATER1           0xf0039
-> +#define DP_SYMBOL_ERROR_COUNT_LANE3_PHY_REPEATER1           0xf003b
-> +#define DP_FEC_STATUS_PHY_REPEATER1                         0xf0290
-> +
->  /* DP 1.2 Sideband message defines */
->  /* peer device type - DP 1.2a Table 2-92 */
->  #define DP_PEER_DEVICE_NONE		0x0
->=20
-
-
---Qc4Hj7GMrj4BcB42TciGwvMRhpgVJPR1u--
-
---A12RtjfXdtjHE8pdHhgp76XeTZvC0ffBd
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEkiEcMSFhcOGNLtE6LVgVyYwUtuMFAl1n7LMACgkQLVgVyYwU
-tuPnWwgAiHoXl+2IZquOWeIZZCShLIgq8aL9RUl0VGvHuFsoq9rFkbdPk95f3xmy
-fMpfcPj1d+WKGW+LXnZoXuXnUgwv+O0foT008sjilMpPxmmjW7deb4sAaLeQJbiq
-EQkXdzhqGKd/l7COlOQwWl7xFsorx9pYZUJqOmNL+n9HqmhmySkFfwrgTamAJEfb
-tPA3cJwly02xAuSSPG+5Nja8x8kIsMhEf6j6MvginoOT5RdiwG5pbSwf+oU2HDno
-eT0Iqv+WDyy1ZzPHmfeqCcvDm4aV/iqL5/0TPrnEfJa4nL6QQGDiiEVJY3NCNN8E
-EWhxYRJHhuewTjsjMA4nEpl9Z//rLg==
-=pOTW
------END PGP SIGNATURE-----
-
---A12RtjfXdtjHE8pdHhgp76XeTZvC0ffBd--
-
---===============2037837042==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============2037837042==--
+T24gMjAxOS0wOC0yOSAxMDowOCBhLm0uLCBHcm9kem92c2t5LCBBbmRyZXkgd3JvdGU6DQo+DQo+
+IEFncmVlLCB0aGUgcGxhY2VtZW50IG9mIGFtZGdwdV9hbWRrZmRfcHJlL3Bvc3QgX3Jlc2V0IGlu
+IA0KPiBhbWRncHVfZGV2aWNlX2xvY2svdW5sb2NrX2FkZXYgaXMgYSBiaXQgd2llcmQuDQo+DQph
+bWRncHVfZGV2aWNlX3Jlc2V0X3NyaW92IGFscmVhZHkgY2FsbHMgYW1kZ3B1X2FtZGtmZF9wcmUv
+cG9zdF9yZXNldCANCml0c2VsZiB3aGlsZSBpdCBoYXMgZXhjbHVzaXZlIGFjY2VzcyB0byB0aGUg
+R1BVLiBJdCB3b3VsZCBtYWtlIHNlbnNlIHRvIA0KbW92ZSB0aGUgc2FtZSBjYWxscyBpbnRvIGFt
+ZGdwdV9kb19hc2ljX3Jlc2V0IGZvciB0aGUgYmFyZS1tZXRhbCBjYXNlLg0KDQpSZWdhcmRzLA0K
+IMKgIEZlbGl4DQoNCg0KPiBBbmRyZXkNCj4NCj4gT24gOC8yOS8xOSAxMDowNiBBTSwgS29lbmln
+LCBDaHJpc3RpYW4gd3JvdGU6DQo+Pj4gRmVsaXggYWR2aXNlZCB0aGF0IHRoZSB3YXkgdG8gc3Rv
+cCBhbGwgS0ZEIGFjdGl2aXR5IGlzIHNpbXBseSB0byBOT1QNCj4+PiBjYWxsIGFtZGdwdV9hbWRr
+ZmRfcG9zdF9yZXNldCBzbyB0aGF0IHdoeSBJIGFkZGVkIHRoaXMuIERvIHlvdSBtZWFuIHlvdQ0K
+Pj4+IHByZWZlciBhbWRncHVfYW1ka2ZkX3Bvc3RfcmVzZXQgdG8gYmUgb3V0c2lkZSBvZiBhbWRn
+cHVfZGV2aWNlX3VubG9ja19hZGV2ID8NCj4+IFllcywgZXhhY3RseS4gSXQgZG9lc24ndCBzZWVt
+cyB0byBiZSByZWxhdGVkIHRvIHRoZSB1bmxvY2sgb3BlcmF0aW9uIGluDQo+PiB0aGUgZmlyc3Qg
+cGxhY2UsIGJ1dCByYXRoZXIgb25seSBzaWduYWxzIHRoZSBLRkQgdGhhdCB0aGUgcmVzZXQgaXMN
+Cj4+IGNvbXBsZXRlZC4NCj4+DQo+PiBDaHJpc3RpYW4uDQo+Pg0KPg0KPiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBhbWQtZ2Z4IG1haWxpbmcgbGlz
+dA0KPiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngNCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vYW1kLWdmeA==
