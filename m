@@ -1,35 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9291A7C84
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Sep 2019 09:17:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C5DBA7C85
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Sep 2019 09:17:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C338B89307;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7F8F892FA;
 	Wed,  4 Sep 2019 07:16:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from r3-23.sinamail.sina.com.cn (r3-23.sinamail.sina.com.cn
- [202.108.3.23])
- by gabe.freedesktop.org (Postfix) with SMTP id 64D2689117
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Sep 2019 08:31:20 +0000 (UTC)
-Received: from unknown (HELO [IPv6:::ffff:192.168.199.155])([114.254.173.51])
- by sina.com with ESMTP
- id 5D6E2292000328FE; Tue, 3 Sep 2019 16:21:43 +0800 (CST)
-X-Sender: hdanton@sina.com
-X-Auth-ID: hdanton@sina.com
-X-SMAIL-MID: 35238354926319
-MIME-Version: 1.0
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-From: Hillf Danton <hdanton@sina.com>
-Subject: Re: gnome-shell stuck because of amdgpu driver [5.3 RC5]
-Date: Tue, 3 Sep 2019 16:21:42 +0800
-Importance: normal
+X-Greylist: delayed 3277 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Sep 2019 08:27:41 UTC
+Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28834897B5
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Sep 2019 08:27:40 +0000 (UTC)
+X-QQ-FEAT: 6yy8z3Ghh4Fx3L4AaS5Ck6ga9/Z4uUQ6wVFrKSbOSBj5n7o/HnwbsQUg1KMJ+
+ ggUUTuDvtFsEp2PuEKQV8/GrP5tv1meYujfPbqqA2sehktLKkc2pz6yGeQrRxDRedA2viJc
+ KKIBRpNqReEz52lsmtd4KkqremKcMHLVRNtXKb1saOwMzgM/NvG/jQPpTKsMUOGctTREB9J
+ kb1RVE/uK2LDaujbBh107GjMrDALGkB/+cy+mFtXHCgKUM2nZ0Msns+GMVvV6hEd6m/FJDZ
+ AOYELimn+Sx9CA5ddB45WuSm/gb3r3Lp2T+w==
+X-QQ-SSF: 00000000000000F000000000000000V
+X-HAS-ATTACH: no
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 117.27.69.205
+In-Reply-To: <f761fec0-c0cc-426c-6bcb-c3fd23808888@amd.com>
+References: <tencent_4DEABBEB3BB4C6A6D84CA9F0DB225FBF5809@qq.com>
+ <f761fec0-c0cc-426c-6bcb-c3fd23808888@amd.com>
+X-QQ-STYLE: 
+X-QQ-mid: webmail447t1567499254t4983391
+From: "=?gb18030?B?Nzg2NjY2Nzk=?=" <78666679@qq.com>
+To: "=?gb18030?B?S29lbmlnLCBDaHJpc3RpYW4=?=" <Christian.Koenig@amd.com>,
+ "=?gb18030?B?YW1kLWdmeA==?=" <amd-gfx@lists.freedesktop.org>
+Subject: =?gb18030?B?u9i4tKO6IEJ1ZzogYW1kZ3B1IGRybSBkcml2ZXIg?=
+ =?gb18030?B?Y2F1c2UgcHJvY2VzcyBpbnRvIERpc2sgc2xlZXAg?=
+ =?gb18030?B?c3RhdGU=?=
+Mime-Version: 1.0
+Date: Tue, 3 Sep 2019 16:27:33 +0800
 X-Priority: 3
-In-Reply-To: <CABXGCsNywbo90+wgiZ64Srm-KexypTbjiviwTW_BsO9Pm11GKQ@mail.gmail.com>
-References: <20190830032948.13516-1-hdanton@sina.com>
- <CABXGCsNywbo90+wgiZ64Srm-KexypTbjiviwTW_BsO9Pm11GKQ@mail.gmail.com>
+Message-ID: <tencent_D6F0ED2383BF6AEA01EA5BB4F6A6A24D2D09@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+X-QQ-ReplyHash: 42845168
+X-QQ-SENDSIZE: 520
+Received: from qq.com (unknown [127.0.0.1]) by smtp.qq.com (ESMTP) with SMTP
+ id ; Tue, 03 Sep 2019 16:27:34 +0800 (CST)
+Feedback-ID: webmail:qq.com:bgforeign:bgforeign4
+X-QQ-Bgrelay: 1
 X-Mailman-Approved-At: Wed, 04 Sep 2019 07:16:56 +0000
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=qq.com; s=s201512; 
+ t=1567499255; bh=a4KPvovQHSGMy0+Ra3F0kMruMMMRnyJZsoH63sXmGHM=;
+ h=From:To:Subject:Mime-Version:Date:Message-ID;
+ b=yJQOM1AIj+AfqUdx0S4ix1ycd9tMFEnDDEaM431sv7gU3ILkFtFWmYyZjdEiydoNE
+ xWrHCrg0R5xPE84pIN/8KHKCkG30xesvCuT7HF02msyCzAJofQndHRAwpMMI7CIHIt
+ fciM6sqzuIkboUH49kBHzFZuOHwSTMrZPEhvQaWY=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -41,136 +66,147 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- Linux kernel <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============0156928893=="
+Cc: =?gb18030?B?RGV1Y2hlciwgQWxleGFuZGVy?= <Alexander.Deucher@amd.com>
+Content-Type: multipart/mixed; boundary="===============0231442569=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-Message-Id: <20190904071657.C338B89307@gabe.freedesktop.org>
 
+This is a multi-part message in MIME format.
 
---===============0156928893==
+--===============0231442569==
 Content-Type: multipart/alternative;
-	boundary="_32C85ED2-0338-4B2A-A8C8-E35FD2FB74F0_"
+	boundary="----=_NextPart_5D6E23F6_0A8134A8_6C64C0F2"
+Content-Transfer-Encoding: 8Bit
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_5D6E23F6_0A8134A8_6C64C0F2
+Content-Type: text/plain;
+	charset="gb18030"
+Content-Transfer-Encoding: base64
+
+SGksIENocmlzdGlhbjoNCiAgICAgVGhhbmtzIHZlcnkgbXVjaCBmb3IgeW91IHNvIGZhc3Qg
+cmVwbHkuIEkgd2lsbCB0cnkgdGhpcyBjb21taXQgcGF0Y2ggZmlyc3QuIE15IGtlcm5lbCB2
+ZXJzaW9uIGlzIDQuMTkuMzYoZm9yIHNvbWUgcmVhc29ucywgIHRoaXMgdmVyc2lvbiBzaG91
+bGQgbm90IGJlIHVwZ3JhZGVkKS4NCg0KDQoNCg0KDQotLS0tDQp5YW5odWENCg0KLS0tLS0t
+LS0tLS0tLS0tLS0tINStyrzTyrz+IC0tLS0tLS0tLS0tLS0tLS0tLQ0Kt6K8/sjLOiAiS29l
+bmlnLCBDaHJpc3RpYW4iPENocmlzdGlhbi5Lb2VuaWdAYW1kLmNvbT47DQq3osvNyrG85Dog
+MjAxOcTqOdTCM8jVKNDHxtq2/ikgz8LO5zQ6MjENCsrVvP7IyzogIiI8Nzg2NjY2NzlAcXEu
+Y29tPjsiYW1kLWdmeCI8YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Ow0Ks63LzTog
+IkRldWNoZXIsIEFsZXhhbmRlciI8QWxleGFuZGVyLkRldWNoZXJAYW1kLmNvbT47DQrW98zi
+OiBSZTogQnVnOiBhbWRncHUgZHJtIGRyaXZlciBjYXVzZSBwcm9jZXNzIGludG8gRGlzayBz
+bGVlcCBzdGF0ZQ0KDQoNCg0KSGkgWWFuaHVhLA0KDQpwbGVhc2UgdXBkYXRlIHlvdXIga2Vy
+bmVsIGZpcnN0LCBjYXVzZSB0aGF0IGxvb2tzIGxpa2UgYSBrbm93biBpc3N1ZSANCndoaWNo
+IHdhcyByZWNlbnRseSBmaXhlZCBieSBwYXRjaCAiZHJtL3NjaGVkdWxlcjogdXNlIGpvYiBj
+b3VudCBpbnN0ZWFkIA0Kb2YgcGVlayIuDQoNClByb2JhYmx5IGJlc3QgdG8gdHJ5IHRoZSBs
+YXRlc3QgYmxlZWRpbmcgZWRnZSBrZXJuZWwgYW5kIGlmIHRoYXQgZG9lc24ndCANCmhlbHAg
+cGxlYXNlIG9wZW4gdXAgYSBidWcgcmVwb3J0IG9uIGh0dHBzOi8vYnVncy5mcmVlZGVza3Rv
+cC5vcmcvLg0KDQpSZWdhcmRzLA0KQ2hyaXN0aWFuLg0KDQpBbSAwMy4wOS4xOSB1bSAwOToz
+NSBzY2hyaWViIDc4NjY2Njc5Og0KPiBIaSwgU2lyczoNCj4gICAgICAgICBJIGhhdmUgYSB3
+eDUxMDAgYW1kZ3B1IGNhcmQsIEl0IHJhbmRvbWx5IGNvbWUgaW50byBmYWlsdXJlLiAgc29t
+ZXRpbWVzLCBpdCB3aWxsIGNhdXNlIHByb2Nlc3NlcyBpbnRvIHVuaW50ZXJydXB0aWJsZSB3
+YWl0IHN0YXRlLg0KPg0KPg0KPiBjcHMtbmV3LW9uZGVtYW5kLTA1ODc6fiAjIHBzIGF1eHxn
+cmVwIC13IEQNCj4gcm9vdCAgICAgIDExMjY4ICAwLjAgIDAuMCAyNjA2MjggIDM1MTYgPyAg
+ICAgICAgU3NsICA41MIyNiAgIDA6MDAgL3Vzci9zYmluL2dzc3Byb3h5IC1EDQo+IHJvb3Qg
+ICAgIDEzNjQ4MiAgMC4wICAwLjAgMjEyNTAwICAgNTcyIHB0cy8wICAgIFMrICAgMTU6MjUg
+ICAwOjAwIGdyZXAgLS1jb2xvcj1hdXRvIC13IEQNCj4gcm9vdCAgICAgMzcwNjg0ICAwLjAg
+IDAuMCAgMTc5NzIgIDc0MjggPyAgICAgICAgU3MgICA51MIwMiAgIDA6MDQgL3Vzci9zYmlu
+L3NzaGQgLUQNCj4gMTAwNjYgICAgNDMyOTUxICAwLjAgIDAuMCAgICAgIDAgICAgIDAgPyAg
+ICAgICAgRCAgICA51MIwMiAgIDA6MDAgW0Zha2VGaW5hbGl6ZXJEYV0NCj4gcm9vdCAgICAg
+NDk2Nzc0ICAwLjAgIDAuMCAgICAgIDAgICAgIDAgPyAgICAgICAgRCAgICA51MIwMiAgIDA6
+MTcgW2t3b3JrZXIvODoxK2V2ZV0NCj4gY3BzLW5ldy1vbmRlbWFuZC0wNTg3On4gIyBjYXQg
+L3Byb2MvNDk2Nzc0L3N0YWNrDQo+IFs8MD5dIF9fc3dpdGNoX3RvKzB4OTQvMHhlOA0KPiBb
+PDA+XSBkcm1fc2NoZWRfZW50aXR5X2ZsdXNoKzB4ZjgvMHgyNDggW2dwdV9zY2hlZF0NCj4g
+WzwwPl0gYW1kZ3B1X2N0eF9tZ3JfZW50aXR5X2ZsdXNoKzB4YWMvMHgxNDggW2FtZGdwdV0N
+Cj4gWzwwPl0gYW1kZ3B1X2ZsdXNoKzB4MmMvMHg1MCBbYW1kZ3B1XQ0KPiBbPDA+XSBmaWxw
+X2Nsb3NlKzB4NDAvMHhhMA0KPiBbPDA+XSBwdXRfZmlsZXNfc3RydWN0KzB4MTE4LzB4MTIw
+DQo+IFs8MD5dIHB1dF9maWxlc19zdHJ1Y3QrMHgzMC8weDY4IFtiaW5kZXJfbGludXhdDQo+
+IFs8MD5dIGJpbmRlcl9kZWZlcnJlZF9mdW5jKzB4NGQ0LzB4NjU4IFtiaW5kZXJfbGludXhd
+DQo+IFs8MD5dIHByb2Nlc3Nfb25lX3dvcmsrMHgxYjQvMHgzZjgNCj4gWzwwPl0gd29ya2Vy
+X3RocmVhZCsweDU0LzB4NDcwDQo+IFs8MD5dIGt0aHJlYWQrMHgxMzQvMHgxMzgNCj4gWzww
+Pl0gcmV0X2Zyb21fZm9yaysweDEwLzB4MTgNCj4gWzwwPl0gMHhmZmZmZmZmZmZmZmZmZmZm
+DQo+DQo+DQo+DQo+IFRoaXMgaXNzdWUgdHJvdWJsZWQgbWUgYSBsb25nIHRpbWUuICBsb29r
+aW5nIGVhZ2VybHkgdG8gZ2V0IGhlbHAgZnJvbSB5b3UhDQo+DQo+DQo+IC0tLS0tDQo+IFlh
+bmh1YQ==
+
+------=_NextPart_5D6E23F6_0A8134A8_6C64C0F2
+Content-Type: text/html;
+	charset="gb18030"
+Content-Transfer-Encoding: base64
+
+PGRpdj5IaSwgQ2hyaXN0aWFuOjwvZGl2PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+IFRoYW5rcyB2ZXJ5IG11Y2ggZm9yIHlvdSBzbyBmYXN0IHJlcGx5LiBJIHdpbGwgdHJ5IHRo
+aXMgY29tbWl0IHBhdGNoIGZpcnN0LiBNeSBrZXJuZWwgdmVyc2lvbiBpcyA0LjE5LjM2KGZv
+ciBzb21lIHJlYXNvbnMsJm5ic3A7IHRoaXMgdmVyc2lvbiBzaG91bGQgbm90IGJlIHVwZ3Jh
+ZGVkKS48YnI+PC9kaXY+PGRpdj48ZGl2Pjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
+Pi0tLS08L2Rpdj48ZGl2Pnlhbmh1YTxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6
+IDEycHg7Zm9udC1mYW1pbHk6IEFyaWFsIE5hcnJvdztwYWRkaW5nOjJweCAwIDJweCAwOyI+
+LS0tLS0tLS0tLS0tLS0tLS0tJm5ic3A71K3KvNPKvP4mbmJzcDstLS0tLS0tLS0tLS0tLS0t
+LS08L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6IDEycHg7YmFja2dyb3VuZDojZWZlZmVm
+O3BhZGRpbmc6OHB4OyI+PGRpdj48Yj63orz+yMs6PC9iPiZuYnNwOyJLb2VuaWcsIENocmlz
+dGlhbiImbHQ7Q2hyaXN0aWFuLktvZW5pZ0BhbWQuY29tJmd0Ozs8L2Rpdj48ZGl2PjxiPrei
+y83KsbzkOjwvYj4mbmJzcDsyMDE5xOo51MIzyNUo0MfG2rb+KSDPws7nNDoyMTwvZGl2Pjxk
+aXY+PGI+ytW8/sjLOjwvYj4mbmJzcDsiIiZsdDs3ODY2NjY3OUBxcS5jb20mZ3Q7OyJhbWQt
+Z2Z4IiZsdDthbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyZndDs7PHdicj48L2Rpdj48
+ZGl2PjxiPrOty806PC9iPiZuYnNwOyJEZXVjaGVyLCBBbGV4YW5kZXIiJmx0O0FsZXhhbmRl
+ci5EZXVjaGVyQGFtZC5jb20mZ3Q7Ozx3YnI+PC9kaXY+PGRpdj48Yj7W98ziOjwvYj4mbmJz
+cDtSZTogQnVnOiBhbWRncHUgZHJtIGRyaXZlciBjYXVzZSBwcm9jZXNzIGludG8gRGlzayBz
+bGVlcCBzdGF0ZTwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2PkhpIFlhbmh1YSw8YnI+PGJy
+PnBsZWFzZSB1cGRhdGUgeW91ciBrZXJuZWwgZmlyc3QsIGNhdXNlIHRoYXQgbG9va3MgbGlr
+ZSBhIGtub3duIGlzc3VlIDxicj53aGljaCB3YXMgcmVjZW50bHkgZml4ZWQgYnkgcGF0Y2gg
+ImRybS9zY2hlZHVsZXI6IHVzZSBqb2IgY291bnQgaW5zdGVhZCA8YnI+b2YgcGVlayIuPGJy
+Pjxicj5Qcm9iYWJseSBiZXN0IHRvIHRyeSB0aGUgbGF0ZXN0IGJsZWVkaW5nIGVkZ2Uga2Vy
+bmVsIGFuZCBpZiB0aGF0IGRvZXNuJ3QgPGJyPmhlbHAgcGxlYXNlIG9wZW4gdXAgYSBidWcg
+cmVwb3J0IG9uIGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvLjxicj48YnI+UmVnYXJk
+cyw8YnI+Q2hyaXN0aWFuLjxicj48YnI+QW0gMDMuMDkuMTkgdW0gMDk6MzUgc2NocmllYiA3
+ODY2NjY3OTo8YnI+Jmd0OyBIaSwgU2lyczo8YnI+Jmd0OyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBJIGhhdmUgYSB3eDUxMDAgYW1kZ3B1IGNh
+cmQsIEl0IHJhbmRvbWx5IGNvbWUgaW50byBmYWlsdXJlLiZuYnNwOyBzb21ldGltZXMsIGl0
+IHdpbGwgY2F1c2UgcHJvY2Vzc2VzIGludG8gdW5pbnRlcnJ1cHRpYmxlIHdhaXQgc3RhdGUu
+PGJyPiZndDs8YnI+Jmd0Ozxicj4mZ3Q7IGNwcy1uZXctb25kZW1hbmQtMDU4Nzp+ICMgcHMg
+YXV4fGdyZXAgLXcgRDxicj4mZ3Q7IHJvb3QmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsgMTEyNjgmbmJzcDsgMC4wJm5ic3A7IDAuMCAyNjA2MjgmbmJzcDsgMzUxNiA/Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFNzbCZuYnNwOyA41MIyNiZu
+YnNwOyZuYnNwOyAwOjAwIC91c3Ivc2Jpbi9nc3Nwcm94eSAtRDxicj4mZ3Q7IHJvb3QmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsgMTM2NDgyJm5ic3A7IDAuMCZuYnNwOyAwLjAgMjEyNTAw
+Jm5ic3A7Jm5ic3A7IDU3MiBwdHMvMCZuYnNwOyZuYnNwOyZuYnNwOyBTKyZuYnNwOyZuYnNw
+OyAxNToyNSZuYnNwOyZuYnNwOyAwOjAwIGdyZXAgLS1jb2xvcj1hdXRvIC13IEQ8YnI+Jmd0
+OyByb290Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDM3MDY4NCZuYnNwOyAwLjAmbmJzcDsg
+MC4wJm5ic3A7IDE3OTcyJm5ic3A7IDc0MjggPyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyBTcyZuYnNwOyZuYnNwOyA51MIwMiZuYnNwOyZuYnNwOyAwOjA0
+IC91c3Ivc2Jpbi9zc2hkIC1EPGJyPiZndDsgMTAwNjYmbmJzcDsmbmJzcDsmbmJzcDsgNDMy
+OTUxJm5ic3A7IDAuMCZuYnNwOyAwLjAmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsg
+MCZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyAwID8mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsgRCZuYnNwOyZuYnNwOyZuYnNwOyA51MIwMiZuYnNwOyZuYnNw
+OyAwOjAwIFtGYWtlRmluYWxpemVyRGFdPGJyPiZndDsgcm9vdCZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyA0OTY3NzQmbmJzcDsgMC4wJm5ic3A7IDAuMCZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyAwJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDAgPyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBEJm5ic3A7Jm5ic3A7Jm5ic3A7IDnUwjAy
+Jm5ic3A7Jm5ic3A7IDA6MTcgW2t3b3JrZXIvODoxK2V2ZV08YnI+Jmd0OyBjcHMtbmV3LW9u
+ZGVtYW5kLTA1ODc6fiAjIGNhdCAvcHJvYy80OTY3NzQvc3RhY2s8YnI+Jmd0OyBbJmx0OzAm
+Z3Q7XSBfX3N3aXRjaF90bysweDk0LzB4ZTg8YnI+Jmd0OyBbJmx0OzAmZ3Q7XSBkcm1fc2No
+ZWRfZW50aXR5X2ZsdXNoKzB4ZjgvMHgyNDggW2dwdV9zY2hlZF08YnI+Jmd0OyBbJmx0OzAm
+Z3Q7XSBhbWRncHVfY3R4X21ncl9lbnRpdHlfZmx1c2grMHhhYy8weDE0OCBbYW1kZ3B1XTxi
+cj4mZ3Q7IFsmbHQ7MCZndDtdIGFtZGdwdV9mbHVzaCsweDJjLzB4NTAgW2FtZGdwdV08YnI+
+Jmd0OyBbJmx0OzAmZ3Q7XSBmaWxwX2Nsb3NlKzB4NDAvMHhhMDxicj4mZ3Q7IFsmbHQ7MCZn
+dDtdIHB1dF9maWxlc19zdHJ1Y3QrMHgxMTgvMHgxMjA8YnI+Jmd0OyBbJmx0OzAmZ3Q7XSBw
+dXRfZmlsZXNfc3RydWN0KzB4MzAvMHg2OCBbYmluZGVyX2xpbnV4XTxicj4mZ3Q7IFsmbHQ7
+MCZndDtdIGJpbmRlcl9kZWZlcnJlZF9mdW5jKzB4NGQ0LzB4NjU4IFtiaW5kZXJfbGludXhd
+PGJyPiZndDsgWyZsdDswJmd0O10gcHJvY2Vzc19vbmVfd29yaysweDFiNC8weDNmODxicj4m
+Z3Q7IFsmbHQ7MCZndDtdIHdvcmtlcl90aHJlYWQrMHg1NC8weDQ3MDxicj4mZ3Q7IFsmbHQ7
+MCZndDtdIGt0aHJlYWQrMHgxMzQvMHgxMzg8YnI+Jmd0OyBbJmx0OzAmZ3Q7XSByZXRfZnJv
+bV9mb3JrKzB4MTAvMHgxODxicj4mZ3Q7IFsmbHQ7MCZndDtdIDB4ZmZmZmZmZmZmZmZmZmZm
+Zjxicj4mZ3Q7PGJyPiZndDs8YnI+Jmd0Ozxicj4mZ3Q7IFRoaXMgaXNzdWUgdHJvdWJsZWQg
+bWUgYSBsb25nIHRpbWUuJm5ic3A7IGxvb2tpbmcgZWFnZXJseSB0byBnZXQgaGVscCBmcm9t
+IHlvdSE8YnI+Jmd0Ozxicj4mZ3Q7PGJyPiZndDsgLS0tLS08YnI+Jmd0OyBZYW5odWE8YnI+
+PGJyPjwvZGl2Pg==
+
+------=_NextPart_5D6E23F6_0A8134A8_6C64C0F2--
 
 
---_32C85ED2-0338-4B2A-A8C8-E35FD2FB74F0_
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-
-On Tue, 3 Sep 2019 11:48:12 +0500 From:   Mikhail Gavrilov <mikhail.v.gavri=
-lov@gmail.com>
-> On Fri, 30 Aug 2019 at 08:30, Hillf Danton <hdanton@sina.com> wrote:
-> >
-> > Add a warning to show if it makes sense in field: neither regression no=
-r
-> > problem will have been observed with the warning printed.
->
-> I caught the problem.
->=20
->
-> [21793.094289] ------------[ cut here ]------------
-> [21793.094296] gnome shell stuck warning
-> [21793.094391] WARNING: CPU: 14 PID: 1768 at
-> drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:332
->
-Thanks Mike.
-
-Describe the problems you are experiencing please.
-Say is the screen locked up? Machine lockedup?=20
-Anything unnormal after you see the warning?
-
-Hillf
-
---_32C85ED2-0338-4B2A-A8C8-E35FD2FB74F0_
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset="utf-8"
-
-<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
-hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
-fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta ht=
-tp-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta name=
-=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	font-size:10.5pt;
-	font-family:DengXian;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.DefaultFontHxMailStyle
-	{mso-style-name:"Default Font HxMail Style";
-	font-family:DengXian;
-	color:windowtext;
-	font-weight:normal;
-	font-style:normal;
-	text-decoration:none none;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style></head><body lang=3DZH-CN link=3Dblue vlink=3D"#954F72"><div cla=
-ss=3DWordSection1><p class=3DMsoNormal><span class=3DDefaultFontHxMailStyle=
-><span lang=3DEN-US>On Tue, 3 Sep 2019 11:48:12 +0500 From:=C2=A0=C2=A0 Mik=
-hail Gavrilov &lt;mikhail.v.gavrilov@gmail.com&gt;<o:p></o:p></span></span>=
-</p><p class=3DMsoNormal><span lang=3DEN-US>&gt; On Fri, 30 Aug 2019 at 08:=
-30, Hillf Danton &lt;hdanton@sina.com&gt; wrote:</span></p><p class=3DMsoNo=
-rmal><span lang=3DEN-US>&gt; &gt;</span></p><p class=3DMsoNormal><span lang=
-=3DEN-US>&gt; &gt; Add a warning to show if it makes sense in field: neithe=
-r regression nor</span></p><p class=3DMsoNormal><span lang=3DEN-US>&gt; &gt=
-; problem will have been observed with the warning printed.</span></p><p cl=
-ass=3DMsoNormal><span lang=3DEN-US>&gt;<o:p>&nbsp;</o:p></span></p><p class=
-=3DMsoNormal><span lang=3DEN-US>&gt; I caught the problem.</span></p><p cla=
-ss=3DMsoNormal><span lang=3DEN-US>&gt; </span></p><p class=3DMsoNormal><spa=
-n lang=3DEN-US>&gt;<o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span l=
-ang=3DEN-US>&gt; [21793.094289] ------------[ cut here ]------------</span>=
-</p><p class=3DMsoNormal><span lang=3DEN-US>&gt; [21793.094296] gnome shell=
- stuck warning</span></p><p class=3DMsoNormal><span lang=3DEN-US>&gt; [2179=
-3.094391] WARNING: CPU: 14 PID: 1768 at</span></p><p class=3DMsoNormal><spa=
-n lang=3DEN-US>&gt; drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:332</span></p=
-><p class=3DMsoNormal><span lang=3DEN-US>&gt;<o:p>&nbsp;</o:p></span></p><p=
- class=3DMsoNormal><span lang=3DEN-US>Thanks Mike.</span></p><p class=3DMso=
-Normal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal>=
-<span class=3DDefaultFontHxMailStyle><span lang=3DEN-US>Describe the proble=
-ms you are experiencing please.<o:p></o:p></span></span></p><p class=3DMsoN=
-ormal><span class=3DDefaultFontHxMailStyle><span lang=3DEN-US>Say is the sc=
-reen locked up? Machine lockedup? <o:p></o:p></span></span></p><p class=3DM=
-soNormal><span class=3DDefaultFontHxMailStyle><span lang=3DEN-US>Anything u=
-nnormal after you see the warning?<o:p></o:p></span></span></p><p class=3DM=
-soNormal><span class=3DDefaultFontHxMailStyle><span lang=3DEN-US><o:p>&nbsp=
-;</o:p></span></span></p><p class=3DMsoNormal><span class=3DDefaultFontHxMa=
-ilStyle><span lang=3DEN-US>Hillf<o:p></o:p></span></span></p></div></body><=
-/html>=
-
---_32C85ED2-0338-4B2A-A8C8-E35FD2FB74F0_--
 
 
-
---===============0156928893==
+--===============0231442569==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -180,6 +216,7 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============0156928893==--
+--===============0231442569==--
+
 
 
