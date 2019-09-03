@@ -1,53 +1,35 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12771A7C82
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Sep 2019 09:16:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9291A7C84
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Sep 2019 09:17:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC6B89206;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C338B89307;
 	Wed,  4 Sep 2019 07:16:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 430 seconds by postgrey-1.36 at gabe;
- Tue, 03 Sep 2019 07:43:15 UTC
-Received: from qq.com (smtpbg403.qq.com [113.96.223.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29986896A3
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Sep 2019 07:43:14 +0000 (UTC)
-X-QQ-FEAT: wQjLNy5F2LEdw3PONwfLCjyNQeAo+F1W7XIVBBmEXNUyeUFZFETB4S9lYUMhZ
- FJXDZ0LqBEWwEf1Y4uu4kl5OJ/qTP575b431xDtXzIyYEJ2Hv6OVN+RKXqzUD4B3Yo7FQsi
- 7rWhFTm/J0RAevgcFWw1BNKZ8hlDrUrnWFNc/JBw5o7s1L2FCcUlnwj/fhsWe4nXUcdbxb6
- vwQF+qeu4BFXVkjE+F8Li3tl/vn3p4/ISP+X2FBKUavicD43r7U97U79VtUhCtf+Iu5VsKB
- d6KQHD60mBt2BP
-X-QQ-SSF: 00000000000000F000000000000000V
-X-HAS-ATTACH: no
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 117.27.69.205
-X-QQ-STYLE: 
-X-QQ-mid: webmail447t1567496125t590481
-From: "=?gb18030?B?Nzg2NjY2Nzk=?=" <78666679@qq.com>
-To: "=?gb18030?B?YW1kLWdmeA==?=" <amd-gfx@lists.freedesktop.org>
-Subject: Bug: amdgpu drm driver cause process into Disk sleep state
-Mime-Version: 1.0
-Date: Tue, 3 Sep 2019 15:35:25 +0800
+Received: from r3-23.sinamail.sina.com.cn (r3-23.sinamail.sina.com.cn
+ [202.108.3.23])
+ by gabe.freedesktop.org (Postfix) with SMTP id 64D2689117
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Sep 2019 08:31:20 +0000 (UTC)
+Received: from unknown (HELO [IPv6:::ffff:192.168.199.155])([114.254.173.51])
+ by sina.com with ESMTP
+ id 5D6E2292000328FE; Tue, 3 Sep 2019 16:21:43 +0800 (CST)
+X-Sender: hdanton@sina.com
+X-Auth-ID: hdanton@sina.com
+X-SMAIL-MID: 35238354926319
+MIME-Version: 1.0
+To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+From: Hillf Danton <hdanton@sina.com>
+Subject: Re: gnome-shell stuck because of amdgpu driver [5.3 RC5]
+Date: Tue, 3 Sep 2019 16:21:42 +0800
+Importance: normal
 X-Priority: 3
-Message-ID: <tencent_4DEABBEB3BB4C6A6D84CA9F0DB225FBF5809@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-X-QQ-SENDSIZE: 520
-Received: from qq.com (unknown [127.0.0.1]) by smtp.qq.com (ESMTP) with SMTP
- id ; Tue, 03 Sep 2019 15:35:27 +0800 (CST)
-Feedback-ID: webmail:qq.com:bgforeign:bgforeign4
-X-QQ-Bgrelay: 1
+In-Reply-To: <CABXGCsNywbo90+wgiZ64Srm-KexypTbjiviwTW_BsO9Pm11GKQ@mail.gmail.com>
+References: <20190830032948.13516-1-hdanton@sina.com>
+ <CABXGCsNywbo90+wgiZ64Srm-KexypTbjiviwTW_BsO9Pm11GKQ@mail.gmail.com>
 X-Mailman-Approved-At: Wed, 04 Sep 2019 07:16:56 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=qq.com; s=s201512; 
- t=1567496127; bh=Mm96JDKtDJJcdTbsfR5CVY9PDLzgS0qmk/YRCGgQijk=;
- h=From:To:Subject:Mime-Version:Date:Message-ID;
- b=R9/NRN3+ANifVBIWassfn1OD43+VGQ5RAtnlvAA97a6GP5xhx6kUiyVDKFBy3Poo9
- abUdTiSWycFDA3fQ5CXz+E/zaPLV6GZQJudoI1zQQTDNkYeJlhLYZ3J/nVzyGosgI0
- qVdtFNC2vzuWj5lQHhdq7t6fh4W8ouhS+we756Ys=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -59,35 +41,145 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?gb18030?B?YWxleGFuZGVyLmRldWNoZXI=?= <alexander.deucher@amd.com>,
- =?gb18030?B?Q2hyaXN0aWFuIEuBMIsybmln?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Linux kernel <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0156928893=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
+Message-Id: <20190904071657.C338B89307@gabe.freedesktop.org>
 
-SGksIFNpcnM6CiAgICAgICBJIGhhdmUgYSB3eDUxMDAgYW1kZ3B1IGNhcmQsIEl0IHJhbmRvbWx5
-IGNvbWUgaW50byBmYWlsdXJlLiAgc29tZXRpbWVzLCBpdCB3aWxsIGNhdXNlIHByb2Nlc3NlcyBp
-bnRvIHVuaW50ZXJydXB0aWJsZSB3YWl0IHN0YXRlLgoKCmNwcy1uZXctb25kZW1hbmQtMDU4Nzp+
-ICMgcHMgYXV4fGdyZXAgLXcgRApyb290ICAgICAgMTEyNjggIDAuMCAgMC4wIDI2MDYyOCAgMzUx
-NiA/ICAgICAgICBTc2wgIDjmnIgyNiAgIDA6MDAgL3Vzci9zYmluL2dzc3Byb3h5IC1ECnJvb3Qg
-ICAgIDEzNjQ4MiAgMC4wICAwLjAgMjEyNTAwICAgNTcyIHB0cy8wICAgIFMrICAgMTU6MjUgICAw
-OjAwIGdyZXAgLS1jb2xvcj1hdXRvIC13IEQKcm9vdCAgICAgMzcwNjg0ICAwLjAgIDAuMCAgMTc5
-NzIgIDc0MjggPyAgICAgICAgU3MgICA55pyIMDIgICAwOjA0IC91c3Ivc2Jpbi9zc2hkIC1ECjEw
-MDY2ICAgIDQzMjk1MSAgMC4wICAwLjAgICAgICAwICAgICAwID8gICAgICAgIEQgICAgOeaciDAy
-ICAgMDowMCBbRmFrZUZpbmFsaXplckRhXQpyb290ICAgICA0OTY3NzQgIDAuMCAgMC4wICAgICAg
-MCAgICAgMCA/ICAgICAgICBEICAgIDnmnIgwMiAgIDA6MTcgW2t3b3JrZXIvODoxK2V2ZV0KY3Bz
-LW5ldy1vbmRlbWFuZC0wNTg3On4gIyBjYXQgL3Byb2MvNDk2Nzc0L3N0YWNrIApbPDA+XSBfX3N3
-aXRjaF90bysweDk0LzB4ZTgKWzwwPl0gZHJtX3NjaGVkX2VudGl0eV9mbHVzaCsweGY4LzB4MjQ4
-IFtncHVfc2NoZWRdCls8MD5dIGFtZGdwdV9jdHhfbWdyX2VudGl0eV9mbHVzaCsweGFjLzB4MTQ4
-IFthbWRncHVdCls8MD5dIGFtZGdwdV9mbHVzaCsweDJjLzB4NTAgW2FtZGdwdV0KWzwwPl0gZmls
-cF9jbG9zZSsweDQwLzB4YTAKWzwwPl0gcHV0X2ZpbGVzX3N0cnVjdCsweDExOC8weDEyMApbPDA+
-XSBwdXRfZmlsZXNfc3RydWN0KzB4MzAvMHg2OCBbYmluZGVyX2xpbnV4XQpbPDA+XSBiaW5kZXJf
-ZGVmZXJyZWRfZnVuYysweDRkNC8weDY1OCBbYmluZGVyX2xpbnV4XQpbPDA+XSBwcm9jZXNzX29u
-ZV93b3JrKzB4MWI0LzB4M2Y4Cls8MD5dIHdvcmtlcl90aHJlYWQrMHg1NC8weDQ3MApbPDA+XSBr
-dGhyZWFkKzB4MTM0LzB4MTM4Cls8MD5dIHJldF9mcm9tX2ZvcmsrMHgxMC8weDE4Cls8MD5dIDB4
-ZmZmZmZmZmZmZmZmZmZmZgoKCgpUaGlzIGlzc3VlIHRyb3VibGVkIG1lIGEgbG9uZyB0aW1lLiAg
-bG9va2luZyBlYWdlcmx5IHRvIGdldCBoZWxwIGZyb20geW91IQoKCi0tLS0tCllhbmh1YQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxp
-bmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+
+--===============0156928893==
+Content-Type: multipart/alternative;
+	boundary="_32C85ED2-0338-4B2A-A8C8-E35FD2FB74F0_"
+
+
+--_32C85ED2-0338-4B2A-A8C8-E35FD2FB74F0_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+On Tue, 3 Sep 2019 11:48:12 +0500 From:   Mikhail Gavrilov <mikhail.v.gavri=
+lov@gmail.com>
+> On Fri, 30 Aug 2019 at 08:30, Hillf Danton <hdanton@sina.com> wrote:
+> >
+> > Add a warning to show if it makes sense in field: neither regression no=
+r
+> > problem will have been observed with the warning printed.
+>
+> I caught the problem.
+>=20
+>
+> [21793.094289] ------------[ cut here ]------------
+> [21793.094296] gnome shell stuck warning
+> [21793.094391] WARNING: CPU: 14 PID: 1768 at
+> drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:332
+>
+Thanks Mike.
+
+Describe the problems you are experiencing please.
+Say is the screen locked up? Machine lockedup?=20
+Anything unnormal after you see the warning?
+
+Hillf
+
+--_32C85ED2-0338-4B2A-A8C8-E35FD2FB74F0_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta ht=
+tp-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta name=
+=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:DengXian;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.DefaultFontHxMailStyle
+	{mso-style-name:"Default Font HxMail Style";
+	font-family:DengXian;
+	color:windowtext;
+	font-weight:normal;
+	font-style:normal;
+	text-decoration:none none;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+/* Page Definitions */
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style></head><body lang=3DZH-CN link=3Dblue vlink=3D"#954F72"><div cla=
+ss=3DWordSection1><p class=3DMsoNormal><span class=3DDefaultFontHxMailStyle=
+><span lang=3DEN-US>On Tue, 3 Sep 2019 11:48:12 +0500 From:=C2=A0=C2=A0 Mik=
+hail Gavrilov &lt;mikhail.v.gavrilov@gmail.com&gt;<o:p></o:p></span></span>=
+</p><p class=3DMsoNormal><span lang=3DEN-US>&gt; On Fri, 30 Aug 2019 at 08:=
+30, Hillf Danton &lt;hdanton@sina.com&gt; wrote:</span></p><p class=3DMsoNo=
+rmal><span lang=3DEN-US>&gt; &gt;</span></p><p class=3DMsoNormal><span lang=
+=3DEN-US>&gt; &gt; Add a warning to show if it makes sense in field: neithe=
+r regression nor</span></p><p class=3DMsoNormal><span lang=3DEN-US>&gt; &gt=
+; problem will have been observed with the warning printed.</span></p><p cl=
+ass=3DMsoNormal><span lang=3DEN-US>&gt;<o:p>&nbsp;</o:p></span></p><p class=
+=3DMsoNormal><span lang=3DEN-US>&gt; I caught the problem.</span></p><p cla=
+ss=3DMsoNormal><span lang=3DEN-US>&gt; </span></p><p class=3DMsoNormal><spa=
+n lang=3DEN-US>&gt;<o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span l=
+ang=3DEN-US>&gt; [21793.094289] ------------[ cut here ]------------</span>=
+</p><p class=3DMsoNormal><span lang=3DEN-US>&gt; [21793.094296] gnome shell=
+ stuck warning</span></p><p class=3DMsoNormal><span lang=3DEN-US>&gt; [2179=
+3.094391] WARNING: CPU: 14 PID: 1768 at</span></p><p class=3DMsoNormal><spa=
+n lang=3DEN-US>&gt; drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:332</span></p=
+><p class=3DMsoNormal><span lang=3DEN-US>&gt;<o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span lang=3DEN-US>Thanks Mike.</span></p><p class=3DMso=
+Normal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal>=
+<span class=3DDefaultFontHxMailStyle><span lang=3DEN-US>Describe the proble=
+ms you are experiencing please.<o:p></o:p></span></span></p><p class=3DMsoN=
+ormal><span class=3DDefaultFontHxMailStyle><span lang=3DEN-US>Say is the sc=
+reen locked up? Machine lockedup? <o:p></o:p></span></span></p><p class=3DM=
+soNormal><span class=3DDefaultFontHxMailStyle><span lang=3DEN-US>Anything u=
+nnormal after you see the warning?<o:p></o:p></span></span></p><p class=3DM=
+soNormal><span class=3DDefaultFontHxMailStyle><span lang=3DEN-US><o:p>&nbsp=
+;</o:p></span></span></p><p class=3DMsoNormal><span class=3DDefaultFontHxMa=
+ilStyle><span lang=3DEN-US>Hillf<o:p></o:p></span></span></p></div></body><=
+/html>=
+
+--_32C85ED2-0338-4B2A-A8C8-E35FD2FB74F0_--
+
+
+
+--===============0156928893==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0156928893==--
+
+
