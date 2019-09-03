@@ -1,33 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDEF8A62E9
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D935A62E7
 	for <lists+amd-gfx@lfdr.de>; Tue,  3 Sep 2019 09:43:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ABC5896D8;
-	Tue,  3 Sep 2019 07:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7872B896AF;
+	Tue,  3 Sep 2019 07:43:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D124D890D2;
- Mon,  2 Sep 2019 11:55:15 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id 30DC1ACA5;
- Mon,  2 Sep 2019 11:55:14 +0000 (UTC)
-Date: Mon, 2 Sep 2019 13:55:21 +0200
-From: Jean Delvare <jdelvare@suse.de>
-To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 3/3] drm/edid: no CEA extension is not an error
-Message-ID: <20190902135521.274c0fbf@endymion>
-In-Reply-To: <20190902114651.GS7482@intel.com>
-References: <20190830181423.4f31a28f@endymion>
- <20190830181652.5b58727b@endymion>
- <20190902114651.GS7482@intel.com>
-Organization: SUSE Linux
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
+Received: from huawei.com (szxga05-in.huawei.com [45.249.212.191])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0B118975F
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Sep 2019 06:18:08 +0000 (UTC)
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.59])
+ by Forcepoint Email with ESMTP id 92518136F1EDB68BA3F9;
+ Tue,  3 Sep 2019 14:18:05 +0800 (CST)
+Received: from linux-ibm.site (10.175.102.37) by
+ DGGEMS414-HUB.china.huawei.com (10.3.19.214) with Microsoft SMTP Server id
+ 14.3.439.0; Tue, 3 Sep 2019 14:17:59 +0800
+From: zhong jiang <zhongjiang@huawei.com>
+To: <airlied@linux.ie>, <daniel@ffwll.ch>
+Subject: [PATCH] drm/amdgpu: remove the redundant null check
+Date: Tue, 3 Sep 2019 14:15:05 +0800
+Message-ID: <1567491305-18320-1-git-send-email-zhongjiang@huawei.com>
+X-Mailer: git-send-email 1.7.12.4
 MIME-Version: 1.0
+X-Originating-IP: [10.175.102.37]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 03 Sep 2019 07:43:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -40,48 +39,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <maxime.ripard@bootlin.com>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, amd-gfx@lists.freedesktop.org,
- Leo Li <sunpeng.li@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Sean Paul <sean@poorly.run>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: David1.Zhou@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ zhongjiang@huawei.com, christian.koenig@amd.com
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyIFNlcCAyMDE5IDE0OjQ2OjUxICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-Cj4gT24gRnJpLCBBdWcgMzAsIDIwMTkgYXQgMDY6MTY6NTJQTSArMDIwMCwgSmVhbiBEZWx2YXJl
-IHdyb3RlOgo+ID4gSXQgaXMgZmluZSBmb3IgZGlzcGxheXMgd2l0aG91dCBhdWRpbyBmdW5jdGlv
-bmFsaXR5IHRvIG5vdCBpbXBsZW1lbnQKPiA+IENFQSBleHRlbnNpb24gaW4gdGhlaXIgRURJRC4g
-RG8gbm90IHJldHVybiBhbiBlcnJvciBpbiB0aGF0IGNhc2UsCj4gPiBpbnN0ZWFkIHJldHVybiAw
-IGFzIGlmIHRoZXJlIHdhcyBhIENFQSBleHRlbnNpb24gd2l0aCBubyBhdWRpbyBvcgo+ID4gc3Bl
-YWtlciBibG9jay4KPiA+IAo+ID4gVGhpcyBmaXhlcyBoYWxmIG9mIGJ1ZyBmZG8jMTA3ODI1Ogo+
-ID4gaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA3ODI1Cj4g
-PiAKPiA+IFNpZ25lZC1vZmYtYnk6IEplYW4gRGVsdmFyZSA8amRlbHZhcmVAc3VzZS5kZT4KPiA+
-IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29t
-Pgo+ID4gQ2M6IE1heGltZSBSaXBhcmQgPG1heGltZS5yaXBhcmRAYm9vdGxpbi5jb20+Cj4gPiBD
-YzogU2VhbiBQYXVsIDxzZWFuQHBvb3JseS5ydW4+Cj4gPiBDYzogRGF2aWQgQWlybGllIDxhaXJs
-aWVkQGxpbnV4LmllPgo+ID4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPiA+
-IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jIHwgICAgNCArKy0tCj4gPiAgMSBm
-aWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiA+IAo+ID4gLS0t
-IGxpbnV4LTUuMi5vcmlnL2RyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jCTIwMTktMDgtMzAgMTc6
-NTc6MzguMTk5OTkwOTk1ICswMjAwCj4gPiArKysgbGludXgtNS4yL2RyaXZlcnMvZ3B1L2RybS9k
-cm1fZWRpZC5jCTIwMTktMDgtMzAgMTg6MDQ6MzYuODQwMzMzODM0ICswMjAwCj4gPiBAQCAtNDEz
-MCw3ICs0MTMwLDcgQEAgaW50IGRybV9lZGlkX3RvX3NhZChzdHJ1Y3QgZWRpZCAqZWRpZCwgcwo+
-ID4gIAljZWEgPSBkcm1fZmluZF9jZWFfZXh0ZW5zaW9uKGVkaWQpOwo+ID4gIAlpZiAoIWNlYSkg
-ewo+ID4gIAkJRFJNX0RFQlVHX0tNUygiU0FEOiBubyBDRUEgRXh0ZW5zaW9uIGZvdW5kXG4iKTsK
-PiA+IC0JCXJldHVybiAtRU5PRU5UOwo+ID4gKwkJcmV0dXJuIDA7Cj4gPiAgCX0gIAo+IAo+IFNl
-ZW1zIHJlYXNvbmFibGUuIE1heWJlIHRoZSBjZWFfcmV2aXNpb248MyBicmFuY2hlcyBzaG91bGQg
-YWxzZSByZXR1cm4gMD8KCkkgd2Fzbid0IHN1cmUgYWJvdXQgdGhhdCBvbmUsIGFzIEknbSBub3Qg
-ZmFtaWxpYXIgd2l0aCB0aGlzIENFQQpleHRlbnNpb24gdGhpbmcuCgpJZiByZXZpc2lvbiA8IDMg
-bWVhbnMgdGhlIGRhdGEgaXMgaW52YWxpZCB0aGVuIHJldHVybmluZyBhbiBlcnJvciBpcwpmaW5l
-LiBJZiBvbiB0aGUgb3RoZXIgaGFuZCByZXZpc2lvbiA8IDMgc2ltcGx5IG1lYW5zIHRoYXQgdGhl
-IGJsb2NrCnR5cGVzIHdlIGFyZSBsb29raW5nIGZvciB3ZXJlIG5vdCBkZWZpbmVkIGJhY2sgdGhl
-biB5ZXMgcmV0dXJuaW5nIDAKaW5zdGVhZCB3b3VsZCBiZSBiZXR0ZXIuCgpJJ2xsIGRvIHdoYXRl
-dmVyIGRldmVsb3BlcnMgbW9yZSBmYW1pbGlhciB3aXRoIHRoaXMgdG9waWMgdGhpbmsgaXMKYmV0
-dGVyLgoKPiBFaXRoZXIgd2F5Cj4gUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+CgpUaGFua3MsCi0tIApKZWFuIERlbHZhcmUKU1VTRSBM
-MyBTdXBwb3J0Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+ZGVidWdmc19yZW1vdmUgYW5kIGtmcmVlIGhhcyB0YWtlbiB0aGUgbnVsbCBjaGVjayBpbiBhY2Nv
+dW50LgpoZW5jZSBpdCBpcyB1bm5lY2Vzc2FyeSB0byBjaGVjayBpdC4gSnVzdCByZW1vdmUgdGhl
+IGNvbmRpdGlvbi4KTm8gZnVuY3Rpb25hbCBjaGFuZ2UuCgpTaWduZWQtb2ZmLWJ5OiB6aG9uZyBq
+aWFuZyA8emhvbmdqaWFuZ0BodWF3ZWkuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV9kZWJ1Z2ZzLmMgfCA2ICsrLS0tLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0
+aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9hbWRncHVfZGVidWdmcy5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X2RlYnVnZnMuYwppbmRleCA1NjUyY2M3Li5jYjk0NjI3IDEwMDY0NAotLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGVidWdmcy5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2FtZGdwdV9kZWJ1Z2ZzLmMKQEAgLTEwNzcsOCArMTA3Nyw3IEBAIHN0YXRp
+YyBpbnQgYW1kZ3B1X2RlYnVnZnNfaWJfcHJlZW1wdCh2b2lkICpkYXRhLCB1NjQgdmFsKQogCiAJ
+dHRtX2JvX3VubG9ja19kZWxheWVkX3dvcmtxdWV1ZSgmYWRldi0+bW1hbi5iZGV2LCByZXNjaGVk
+KTsKIAotCWlmIChmZW5jZXMpCi0JCWtmcmVlKGZlbmNlcyk7CisJa2ZyZWUoZmVuY2VzKTsKIAog
+CXJldHVybiAwOwogfQpAQCAtMTEwMyw4ICsxMTAyLDcgQEAgaW50IGFtZGdwdV9kZWJ1Z2ZzX2lu
+aXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCiAKIHZvaWQgYW1kZ3B1X2RlYnVnZnNfcHJl
+ZW1wdF9jbGVhbnVwKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogewotCWlmIChhZGV2LT5k
+ZWJ1Z2ZzX3ByZWVtcHQpCi0JCWRlYnVnZnNfcmVtb3ZlKGFkZXYtPmRlYnVnZnNfcHJlZW1wdCk7
+CisJZGVidWdmc19yZW1vdmUoYWRldi0+ZGVidWdmc19wcmVlbXB0KTsKIH0KIAogI2Vsc2UKLS0g
+CjEuNy4xMi40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
