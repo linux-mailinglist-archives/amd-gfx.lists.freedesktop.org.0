@@ -2,48 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DCB0A6958
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Sep 2019 15:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2197AA6992
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Sep 2019 15:19:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9063689449;
-	Tue,  3 Sep 2019 13:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4B0C89083;
+	Tue,  3 Sep 2019 13:19:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680069.outbound.protection.outlook.com [40.107.68.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1797889449
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Sep 2019 13:07:28 +0000 (UTC)
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr820051.outbound.protection.outlook.com [40.107.82.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 970F889083
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Sep 2019 13:19:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i9WbXKB4OKRccgcwd6mByNOPNZi3sHPY3hJ1c5qJ0rj72Bk2HjxHsOdGjzmva4MussInOwMbF8yVri8pHksQFbeHFj9dxlBwZRb2LsWAvWu83y4PqkR7JDpjeKjCFp2w9yfLYJOCU0/b3uZF2xqGeY/D3BjuVo6RRmZhRLVDSzI9XRj30X+MZoNrzVjI58Yx4nAJzSSceUyHQO1UhcKZncO7MJ51DpTBH7AjT+xnzpxlD+S812/oDumBrw9ebQ945y060T/V0vuYQCTncNrNLgiUpHcvrcy4sijhQEADrV2OOfILPjCDDXR28JXT9ihOgnAELsCY9p7naFeV+BXiJQ==
+ b=V0aL+h9KkQr6EoVd/qXEXSoS63tzAqLUDR4d7ReCqMvCi3lDHLDj6qwSbP6YP9zWIwLMxRMOPbqoGSVFQ0ARKLN2/l32anXE7CkTISLj3KOZWNcx8bJCKb2CMYND0xgaFygOO2116XPdRh0W1wRimbKsgpXNdCGZ1/mWVSIX4sQ+0m/Xj994gmR2s838x3jGH0bMgdxA4uscPDG7QuegLG7EtEaxp4x1saKiahBap4VRX+GWqMteBTmabhY2JLYoJsz/rCgCge+0aDFj0YrUPDEdfo5q8c34r781js+71EJxMtW60wFOPrDgqhOs+gT0U3N6kT6oAoPdQh6YpGIJ2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jT1VefNlFFSmETLpbEWxOSi4sFbtxqGzavq7S3yZuzQ=;
- b=MAld56ErSGuZkb5NULvsAhG5MN96orKqBGb2RjHpseIhqMD1z3B7rWNPXUkQo7DyGIfHaner7272hzCWsvW36H/OSefY5rPxW56BP/xw+IDsPoveW7dyRP080Aw3ndO+1SXyuTQiGrtivcgIpRMPXLw+a19/rZRpGIZTOWXS/71kR+4dhLFoc2gjcKxTI072tL6i2m2pzuuRwNDyuyqEnqbNzGsNnChRfSMmy7niolunnC6vekQt20PhKg0LFHvG4fKuEs6eppJxLMdOpCqwaSCG5eqjCiKSwSEKFriSxNvljfDFYvRJ3kAfqGxrYIQqZfKcf4pW+AdV4Q7TUsl8PA==
+ bh=RPlfhCyXabl+NVZWZw9BsihBSK5U6tlM47lF2LhA66Y=;
+ b=as45knMiC5ZF3JQbo01M/gnDkR3ivOhcAFGKtnwa1RD75EjSnAcyMWyc9+v5ikHDyA9Y6dn1dHQqpE2y/EuBi8QdGtcTpIU1/BjNMemWVzhIilIYm7zhtcrdXCcjAgL7feH05NTKGOAe5yYzf/ud/8ad1re/dsASig2++uh3O21N8BV5hnovhHAmrAJLCNz+7DCvgMTxo+kjhL574py7PqyPbZSluJTO27hXWGtORD2FRRB3GlQVqmiyYdkSCIq88/iNlpQrIB4TDzcbjmYiggMIgOuxrR39g02KTMUXHj2k1OuGrzIIRaKIfXmMfQQrMdHqpFxXrv67txFVPMxDIA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 Received: from DM5PR12MB1705.namprd12.prod.outlook.com (10.175.88.22) by
- DM5PR12MB1244.namprd12.prod.outlook.com (10.168.236.143) with Microsoft SMTP
+ DM5PR12MB2551.namprd12.prod.outlook.com (52.132.141.158) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2220.20; Tue, 3 Sep 2019 13:07:27 +0000
+ 15.20.2220.21; Tue, 3 Sep 2019 13:19:47 +0000
 Received: from DM5PR12MB1705.namprd12.prod.outlook.com
  ([fe80::9d43:b3d4:9ef:29fc]) by DM5PR12MB1705.namprd12.prod.outlook.com
  ([fe80::9d43:b3d4:9ef:29fc%8]) with mapi id 15.20.2220.022; Tue, 3 Sep 2019
- 13:07:27 +0000
+ 13:19:47 +0000
 From: "Koenig, Christian" <Christian.Koenig@amd.com>
 To: 78666679 <78666679@qq.com>, amd-gfx <amd-gfx@lists.freedesktop.org>
-Subject: =?GB18030?B?UmU6ILvYuLSjuiBCdWc6IGFtZGdwdSBkcm0gZHJpdmVyIGNhdXNlIHByb2Nl?=
- =?GB18030?B?c3MgaW50byBEaXNrIHNsZWVwIHN0YXRl?=
-Thread-Topic: =?GB18030?B?u9i4tKO6IEJ1ZzogYW1kZ3B1IGRybSBkcml2ZXIgY2F1c2UgcHJvY2VzcyBp?=
- =?GB18030?B?bnRvIERpc2sgc2xlZXAgc3RhdGU=?=
-Thread-Index: AQHVYior7LFqNiJ5HU6M6kt7SCAvu6cZnOyAgABLCoCAAATAgA==
-Date: Tue, 3 Sep 2019 13:07:27 +0000
-Message-ID: <2162676e-dbfa-a67d-248c-98e9eb2099c2@amd.com>
+Subject: =?GB18030?B?UmU6ILvYuLSjuiC72Li0o7ogQnVnOiBhbWRncHUgZHJtIGRyaXZlciBjYXVz?=
+ =?GB18030?B?ZSBwcm9jZXNzIGludG8gRGlzayBzbGVlcCBzdGF0ZQ==?=
+Thread-Topic: =?GB18030?B?u9i4tKO6ILvYuLSjuiBCdWc6IGFtZGdwdSBkcm0gZHJpdmVyIGNhdXNlIHBy?=
+ =?GB18030?B?b2Nlc3MgaW50byBEaXNrIHNsZWVwIHN0YXRl?=
+Thread-Index: AQHVYior7LFqNiJ5HU6M6kt7SCAvu6cZnOyAgABLCoCAAATAgIAAAqqAgAAAyQA=
+Date: Tue, 3 Sep 2019 13:19:47 +0000
+Message-ID: <88a08dcc-2e95-9379-693f-2d3fd928aa11@amd.com>
 References: <tencent_4DEABBEB3BB4C6A6D84CA9F0DB225FBF5809@qq.com>
  <f761fec0-c0cc-426c-6bcb-c3fd23808888@amd.com>
  <tencent_7DC9F5195A4D538FA626F85991875FC5F508@qq.com>
-In-Reply-To: <tencent_7DC9F5195A4D538FA626F85991875FC5F508@qq.com>
+ <2162676e-dbfa-a67d-248c-98e9eb2099c2@amd.com>
+ <tencent_DFCD5A0853FDA639F81F91375F8DF55AF508@qq.com>
+In-Reply-To: <tencent_DFCD5A0853FDA639F81F91375F8DF55AF508@qq.com>
 Accept-Language: de-DE, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -51,45 +53,45 @@ X-MS-TNEF-Correlator:
 user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 x-originating-ip: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-x-clientproxiedby: PR0P264CA0001.FRAP264.PROD.OUTLOOK.COM (2603:10a6:100::13)
- To DM5PR12MB1705.namprd12.prod.outlook.com
+x-clientproxiedby: PR0P264CA0056.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:100:1d::20) To DM5PR12MB1705.namprd12.prod.outlook.com
  (2603:10b6:3:10c::22)
 x-ms-exchange-messagesentrepresentingtype: 1
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 30a58737-90a2-4f13-8dda-08d7306fab36
+x-ms-office365-filtering-correlation-id: 6aa8245b-1c63-4654-73f8-08d7307164b8
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:DM5PR12MB1244; 
-x-ms-traffictypediagnostic: DM5PR12MB1244:
+ SRVR:DM5PR12MB2551; 
+x-ms-traffictypediagnostic: DM5PR12MB2551:
 x-ms-exchange-purlcount: 1
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR12MB12446C548E4D3AF6335D850583B90@DM5PR12MB1244.namprd12.prod.outlook.com>
+x-microsoft-antispam-prvs: <DM5PR12MB2551899A9F3B69D7EC6AC4FB83B90@DM5PR12MB2551.namprd12.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-forefront-prvs: 01494FA7F7
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(136003)(39860400002)(366004)(396003)(376002)(189003)(199004)(71200400001)(316002)(71190400001)(46003)(6246003)(6436002)(76176011)(2906002)(31696002)(6306002)(54896002)(25786009)(52116002)(102836004)(66556008)(66946007)(66446008)(66476007)(6512007)(64756008)(386003)(236005)(86362001)(110136005)(58126008)(6506007)(53936002)(36756003)(6116002)(186003)(99286004)(476003)(8936002)(606006)(966005)(31686004)(65956001)(65806001)(486006)(7736002)(14444005)(81156014)(5660300002)(81166006)(224303003)(446003)(478600001)(229853002)(11346002)(4326008)(14454004)(256004)(6486002)(2616005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1244;
+ SFS:(10009020)(4636009)(39860400002)(366004)(136003)(396003)(346002)(376002)(189003)(199004)(446003)(478600001)(11346002)(186003)(66556008)(66946007)(66476007)(81156014)(81166006)(14444005)(256004)(5024004)(99286004)(6506007)(386003)(65806001)(65956001)(5660300002)(476003)(76176011)(966005)(46003)(224303003)(102836004)(486006)(2616005)(2906002)(14454004)(6116002)(316002)(229853002)(236005)(6306002)(606006)(53936002)(8936002)(4326008)(6512007)(54896002)(36756003)(52116002)(6436002)(71190400001)(71200400001)(7736002)(110136005)(31696002)(6246003)(25786009)(31686004)(58126008)(6486002)(66446008)(86362001)(64756008);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2551;
  H:DM5PR12MB1705.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 1Y50Ca3o5lMc20F5HewHPjP8Lm7ysQvVc2RgVDJac2euV6e93kr2y+VOW7G3v5E4AkahIvZnb3qeNKagsXXslSHBFPtRLvGT93CPVpinCMwlERUm2KQQkvoImNP13WSSA+I7vkgnPmL5NnFnSMulAImfPSL7r8YkydwLvc55iYXuAMdPZpXMqPyc6oiqALRz/LciKH163BDXrRIFW6XIY72D5epitbElr/mF9LQ/M24zJ9pmoFX1VJbbC+KNqBAs92DB+bS7XRFgUhQp5hoYaENY091jTab2nBCv8CJ09fl31+2F4wPs+YvSxTAS7RMUGBY+stPJRxqrDOG7gCRKpImUotF2mZbhtdpYznOzFBFc64PM2mUtvcVnSlyCxdfgUNYzNSmKLc1vbK+ECaLoVHGGGQrIfs2+lNgY5+wEwFE=
+x-microsoft-antispam-message-info: e9sQoCuqXkxvjYrykq2mFkkJDyaO+FTMPERMdgLD7yA/StSDp9Czf7qJ/IxRSMdIEbcMY3DV6+RaSmYlrE0xACYFV5DeHM8A3fd1JiojtCoSXK8GCmV79Wz14mi8J96rn6xWbWzjh52OsPi8+PwXn/1o09CBuoo6HVvtWcVHEEbJdMmZvG67P6O4NAD1OAxVV1z8rG9ypWIClGCk18HSFP7cKGx0g8igSDKFKmoAay6UDhe808iJl1GtxVaiEFSfg2yS3uA10WtiCkEzW/nxh4r4yUjaXRtehln/S3b3lc9slI67lIDfYqcJnqvilh05SFNgI0DalQV+xMNks8wGqfZm6SUznWOxD+KRhbmEnDVDYoTF8wCN0kHWF4/EKlPRURZnuM99SkGi2YFbvdKOkjBQqA0i+4T3FdkEx/49lH8=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30a58737-90a2-4f13-8dda-08d7306fab36
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 13:07:27.0885 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6aa8245b-1c63-4654-73f8-08d7307164b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 13:19:47.7501 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yDmiw7xxBA+Y4W0+UxvylnHvma5R8enZ5pkm6FunSgTX2hEw0RFwS2dj8EKhqI+y
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1244
+X-MS-Exchange-CrossTenant-userprincipalname: kdYOJdxYaVxT0bt4tncIUpkqQwcD4UR1UnrPF58BNZimyDwhMiGz1A66WGX0SYvL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2551
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jT1VefNlFFSmETLpbEWxOSi4sFbtxqGzavq7S3yZuzQ=;
- b=hwzwXFLD4hM1lifNhh9NK0QYHzMwlbacf2mgQEweKSJOBVqJ1g/EdFyTWvBNFZ6a3nbxa/f9JNeZkecYn17lpCibDceBYXrP1N68xSj1SU7HMtLl+O3c71LLLjzbCah9lXSGgq2+jxo0p7Nqf7TKrGWsqjdjx5NHdCd+vGofNTQ=
+ bh=RPlfhCyXabl+NVZWZw9BsihBSK5U6tlM47lF2LhA66Y=;
+ b=c7qzNeQfZhaT3LaqNtbTavTjBjCIaNp+lYk8strg4p6Hk+wMDLRna4jojlM3nxz13XD3rymyQiD5aAKZteoAecKQejzuYGq6VrX39wApeH5yog2b7LBWqnKu/frOcpspIAwGKfVIlHP9kFZldDOnizbc3h9+AQyUIZJPNPcvjmo=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Christian.Koenig@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -104,18 +106,43 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Content-Type: multipart/mixed; boundary="===============1386558522=="
+Content-Type: multipart/mixed; boundary="===============1538350944=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1386558522==
+--===============1538350944==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_2162676edbfaa67d248c98e9eb2099c2amdcom_"
+	boundary="_000_88a08dcc2e959379693f2d3fd928aa11amdcom_"
 
---_000_2162676edbfaa67d248c98e9eb2099c2amdcom_
+--_000_88a08dcc2e959379693f2d3fd928aa11amdcom_
 Content-Type: text/plain; charset="GB18030"
 Content-Transfer-Encoding: quoted-printable
+
+This is just a GPU lock, please open up a bug report on freedesktop.org and=
+ attach the full dmesg and which version of Mesa you are using.
+
+Regards,
+Christian.
+
+Am 03.09.19 um 15:16 schrieb 78666679:
+Yes, with dmesg|grep drm ,  I get following.
+
+348571.880718] [drm:amdgpu_job_timedout [amdgpu]] *ERROR* ring sdma1 timeou=
+t, signaled seq=3D24423862, emitted seq=3D24423865
+
+
+------------------ =D4=AD=CA=BC=D3=CA=BC=FE ------------------
+=B7=A2=BC=FE=C8=CB: "Koenig, Christian"<Christian.Koenig@amd.com><mailto:Ch=
+ristian.Koenig@amd.com>;
+=B7=A2=CB=CD=CA=B1=BC=E4: 2019=C4=EA9=D4=C23=C8=D5(=D0=C7=C6=DA=B6=FE) =CD=
+=ED=C9=CF9:07
+=CA=D5=BC=FE=C8=CB: ""<78666679@qq.com><mailto:78666679@qq.com>;"amd-gfx"<a=
+md-gfx@lists.freedesktop.org><mailto:amd-gfx@lists.freedesktop.org>;
+=B3=AD=CB=CD: "Deucher, Alexander"<Alexander.Deucher@amd.com><mailto:Alexan=
+der.Deucher@amd.com>;
+=D6=F7=CC=E2: Re: =BB=D8=B8=B4=A3=BA Bug: amdgpu drm driver cause process i=
+nto Disk sleep state
 
 Well that looks like the hardware got stuck.
 
@@ -223,9 +250,10 @@ orker/8:1+eve]
 
 
 
---_000_2162676edbfaa67d248c98e9eb2099c2amdcom_
+
+--_000_88a08dcc2e959379693f2d3fd928aa11amdcom_
 Content-Type: text/html; charset="GB18030"
-Content-ID: <C3646AD8AADB734C9852A11123ED6993@namprd12.prod.outlook.com>
+Content-ID: <DC824461C7FF174FA1A0A52AB86F45B2@namprd12.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 
 <html>
@@ -233,6 +261,49 @@ Content-Transfer-Encoding: quoted-printable
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DGB18030">
 </head>
 <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+<div class=3D"moz-cite-prefix">This is just a GPU lock, please open up a bu=
+g report on freedesktop.org and attach the full dmesg and which version of =
+Mesa you are using.<br>
+<br>
+Regards,<br>
+Christian.<br>
+<br>
+Am 03.09.19 um 15:16 schrieb 78666679:<br>
+</div>
+<blockquote type=3D"cite" cite=3D"mid:tencent_DFCD5A0853FDA639F81F91375F8DF=
+55AF508@qq.com">
+<div>Yes, with dmesg|grep drm ,&nbsp; I get following.</div>
+<div><br>
+</div>
+<div>348571.880718] [drm:amdgpu_job_timedout [amdgpu]] *ERROR* ring sdma1 t=
+imeout, signaled seq=3D24423862, emitted seq=3D24423865</div>
+<div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div style=3D"font-size: 12px;font-family: Arial
+          Narrow;padding:2px 0 2px 0;">
+------------------&nbsp;=D4=AD=CA=BC=D3=CA=BC=FE&nbsp;------------------</d=
+iv>
+<div style=3D"font-size: 12px;background:#efefef;padding:8px;">
+<div><b>=B7=A2=BC=FE=C8=CB:</b>&nbsp;&quot;Koenig, Christian&quot;<a class=
+=3D"moz-txt-link-rfc2396E" href=3D"mailto:Christian.Koenig@amd.com">&lt;Chr=
+istian.Koenig@amd.com&gt;</a>;</div>
+<div><b>=B7=A2=CB=CD=CA=B1=BC=E4:</b>&nbsp;2019=C4=EA9=D4=C23=C8=D5(=D0=C7=
+=C6=DA=B6=FE) =CD=ED=C9=CF9:07</div>
+<div><b>=CA=D5=BC=FE=C8=CB:</b>&nbsp;&quot;&quot;<a class=3D"moz-txt-link-r=
+fc2396E" href=3D"mailto:78666679@qq.com">&lt;78666679@qq.com&gt;</a>;&quot;=
+amd-gfx&quot;<a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:amd-gfx@list=
+s.freedesktop.org">&lt;amd-gfx@lists.freedesktop.org&gt;</a>;<wbr></div>
+<div><b>=B3=AD=CB=CD:</b>&nbsp;&quot;Deucher, Alexander&quot;<a class=3D"mo=
+z-txt-link-rfc2396E" href=3D"mailto:Alexander.Deucher@amd.com">&lt;Alexande=
+r.Deucher@amd.com&gt;</a>;<wbr></div>
+<div><b>=D6=F7=CC=E2:</b>&nbsp;Re: =BB=D8=B8=B4=A3=BA Bug: amdgpu drm drive=
+r cause process into Disk sleep state</div>
+</div>
+<div><br>
+</div>
 <div class=3D"moz-cite-prefix">Well that looks like the hardware got stuck.=
 <br>
 <br>
@@ -246,10 +317,10 @@ Am 03.09.19 um 14:50 schrieb 78666679:<br>
 <blockquote type=3D"cite" cite=3D"mid:tencent_7DC9F5195A4D538FA626F85991875=
 FC5F508@qq.com">
 <div>Hi Christian,</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sometimes the thread blocked&nbsp=
-; disk sleeping in call to amdgpu_sa_bo_new. following is the stack trace.&=
-nbsp; it seems the sa bo is used up ,&nbsp; so&nbsp; the caller blocked wai=
-ting someone to free sa resources.
+<div>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; Sometimes the thread blocked&nbsp; dis=
+k sleeping in call to amdgpu_sa_bo_new. following is the stack trace.&nbsp;=
+ it seems the sa bo is used up ,&nbsp; so&nbsp; the caller blocked waiting =
+someone to free sa resources.
 <br>
 </div>
 <div><br>
@@ -287,22 +358,22 @@ ting someone to free sa resources.
 <div><br>
 </div>
 <div style=3D"font-size: 12px;font-family: Arial
-          Narrow;padding:2px 0 2px 0;">
-------------------&nbsp;=D4=AD=CA=BC=D3=CA=BC=FE&nbsp;------------------</d=
-iv>
+              Narrow;padding:2px 0 2px 0;">
+------------------ =D4=AD=CA=BC=D3=CA=BC=FE ------------------</div>
 <div style=3D"font-size: 12px;background:#efefef;padding:8px;">
 <div><b>=B7=A2=BC=FE=C8=CB:</b>&nbsp;&quot;Koenig, Christian&quot;<a class=
-=3D"moz-txt-link-rfc2396E" href=3D"mailto:Christian.Koenig@amd.com">&lt;Chr=
-istian.Koenig@amd.com&gt;</a>;</div>
+=3D"moz-txt-link-rfc2396E" href=3D"mailto:Christian.Koenig@amd.com" moz-do-=
+not-send=3D"true">&lt;Christian.Koenig@amd.com&gt;</a>;</div>
 <div><b>=B7=A2=CB=CD=CA=B1=BC=E4:</b>&nbsp;2019=C4=EA9=D4=C23=C8=D5(=D0=C7=
 =C6=DA=B6=FE) =CF=C2=CE=E74:21</div>
 <div><b>=CA=D5=BC=FE=C8=CB:</b>&nbsp;&quot;&quot;<a class=3D"moz-txt-link-r=
-fc2396E" href=3D"mailto:78666679@qq.com">&lt;78666679@qq.com&gt;</a>;&quot;=
-amd-gfx&quot;<a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:amd-gfx@list=
-s.freedesktop.org">&lt;amd-gfx@lists.freedesktop.org&gt;</a>;<wbr></div>
+fc2396E" href=3D"mailto:78666679@qq.com" moz-do-not-send=3D"true">&lt;78666=
+679@qq.com&gt;</a>;&quot;amd-gfx&quot;<a class=3D"moz-txt-link-rfc2396E" hr=
+ef=3D"mailto:amd-gfx@lists.freedesktop.org" moz-do-not-send=3D"true">&lt;am=
+d-gfx@lists.freedesktop.org&gt;</a>;<wbr></div>
 <div><b>=B3=AD=CB=CD:</b>&nbsp;&quot;Deucher, Alexander&quot;<a class=3D"mo=
-z-txt-link-rfc2396E" href=3D"mailto:Alexander.Deucher@amd.com">&lt;Alexande=
-r.Deucher@amd.com&gt;</a>;<wbr></div>
+z-txt-link-rfc2396E" href=3D"mailto:Alexander.Deucher@amd.com" moz-do-not-s=
+end=3D"true">&lt;Alexander.Deucher@amd.com&gt;</a>;<wbr></div>
 <div><b>=D6=F7=CC=E2:</b>&nbsp;Re: Bug: amdgpu drm driver cause process int=
 o Disk sleep state</div>
 </div>
@@ -318,7 +389,7 @@ of peek&quot;.<br>
 Probably best to try the latest bleeding edge kernel and if that doesn't <b=
 r>
 help please open up a bug report on <a class=3D"moz-txt-link-freetext" href=
-=3D"https://bugs.freedesktop.org/">
+=3D"https://bugs.freedesktop.org/" moz-do-not-send=3D"true">
 https://bugs.freedesktop.org/</a>.<br>
 <br>
 Regards,<br>
@@ -326,29 +397,27 @@ Christian.<br>
 <br>
 Am 03.09.19 um 09:35 schrieb 78666679:<br>
 &gt; Hi, Sirs:<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have a wx5100 amdgpu=
- card, It randomly come into failure.&nbsp; sometimes, it will cause proces=
-ses into uninterruptible wait state.<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; I have a wx5100 amdgpu card=
+, It randomly come into failure.&nbsp; sometimes, it will cause processes i=
+nto uninterruptible wait state.<br>
 &gt;<br>
 &gt;<br>
 &gt; cps-new-ondemand-0587:~ # ps aux|grep -w D<br>
-&gt; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11268&nbsp; 0.0&nbsp; 0.0 260628&nb=
-sp; 3516 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ssl&nbsp; 8=D4=C226&nb=
-sp;&nbsp; 0:00 /usr/sbin/gssproxy -D<br>
-&gt; root&nbsp;&nbsp;&nbsp;&nbsp; 136482&nbsp; 0.0&nbsp; 0.0 212500&nbsp;&n=
-bsp; 572 pts/0&nbsp;&nbsp;&nbsp; S&#43;&nbsp;&nbsp; 15:25&nbsp;&nbsp; 0:00 =
-grep --color=3Dauto -w D<br>
-&gt; root&nbsp;&nbsp;&nbsp;&nbsp; 370684&nbsp; 0.0&nbsp; 0.0&nbsp; 17972&nb=
-sp; 7428 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ss&nbsp;&nbsp; 9=D4=C2=
-02&nbsp;&nbsp; 0:04 /usr/sbin/sshd -D<br>
-&gt; 10066&nbsp;&nbsp;&nbsp; 432951&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; D&nbsp;&nbsp;&nbsp; 9=D4=C202&nbsp;&nbsp; 0:00 [FakeFinalizerDa]<br=
->
-&gt; root&nbsp;&nbsp;&nbsp;&nbsp; 496774&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; D&nbsp;&nbsp;&nbsp; 9=D4=C202&nbsp;&nbsp; 0:17 [kworker/8:1&#4=
-3;eve]<br>
+&gt; root&nbsp;&nbsp;&nbsp; &nbsp; 11268&nbsp; 0.0&nbsp; 0.0 260628&nbsp; 3=
+516 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; Ssl&nbsp; 8=D4=C226 &nbsp; 0:00 =
+/usr/sbin/gssproxy -D<br>
+&gt; root&nbsp;&nbsp; &nbsp; 136482&nbsp; 0.0&nbsp; 0.0 212500 &nbsp; 572 p=
+ts/0&nbsp; &nbsp; S&#43; &nbsp; 15:25 &nbsp; 0:00 grep --color=3Dauto -w D<=
+br>
+&gt; root&nbsp;&nbsp; &nbsp; 370684&nbsp; 0.0&nbsp; 0.0&nbsp; 17972&nbsp; 7=
+428 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; Ss &nbsp; 9=D4=C202 &nbsp; 0:04 =
+/usr/sbin/sshd -D<br>
+&gt; 10066&nbsp; &nbsp; 432951&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp;&nbsp; &nbsp;=
+ 0&nbsp;&nbsp; &nbsp; 0 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; D&nbsp; &nbs=
+p; 9=D4=C202 &nbsp; 0:00 [FakeFinalizerDa]<br>
+&gt; root&nbsp;&nbsp; &nbsp; 496774&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp;&nbsp; &=
+nbsp; 0&nbsp;&nbsp; &nbsp; 0 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; D&nbsp;=
+ &nbsp; 9=D4=C202 &nbsp; 0:17 [kworker/8:1&#43;eve]<br>
 &gt; cps-new-ondemand-0587:~ # cat /proc/496774/stack<br>
 &gt; [&lt;0&gt;] __switch_to&#43;0x94/0xe8<br>
 &gt; [&lt;0&gt;] drm_sched_entity_flush&#43;0xf8/0x248 [gpu_sched]<br>
@@ -376,12 +445,15 @@ from you!<br>
 </div>
 </blockquote>
 <br>
+</div>
+</blockquote>
+<br>
 </body>
 </html>
 
---_000_2162676edbfaa67d248c98e9eb2099c2amdcom_--
+--_000_88a08dcc2e959379693f2d3fd928aa11amdcom_--
 
---===============1386558522==
+--===============1538350944==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -391,4 +463,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1386558522==--
+--===============1538350944==--
