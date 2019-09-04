@@ -2,43 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E0B9A7C86
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Sep 2019 09:17:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F083A7C8B
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Sep 2019 09:17:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DBAE8920F;
-	Wed,  4 Sep 2019 07:16:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F315489B4D;
+	Wed,  4 Sep 2019 07:17:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD5D989568;
- Tue,  3 Sep 2019 17:03:49 +0000 (UTC)
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
- [83.86.89.107])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 0D5D420870;
- Tue,  3 Sep 2019 17:03:48 +0000 (UTC)
-Date: Tue, 3 Sep 2019 19:03:47 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>
-Subject: Re: [PATCH AUTOSEL 4.19 044/167] drm/amdgpu: validate user pitch
- alignment
-Message-ID: <20190903170347.GA24357@kroah.com>
-References: <20190903162519.7136-1-sashal@kernel.org>
- <20190903162519.7136-44-sashal@kernel.org>
- <7957107d-634f-4771-327e-99fdd5e6474e@daenzer.net>
+Received: from mail3-165.sinamail.sina.com.cn (mail3-165.sinamail.sina.com.cn
+ [202.108.3.165])
+ by gabe.freedesktop.org (Postfix) with SMTP id 361FC893CD
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Sep 2019 01:17:18 +0000 (UTC)
+Received: from unknown (HELO [IPv6:::ffff:192.168.199.155])([114.254.173.51])
+ by sina.com with ESMTP
+ id 5D6F109B00037295; Wed, 4 Sep 2019 09:17:17 +0800 (CST)
+X-Sender: hdanton@sina.com
+X-Auth-ID: hdanton@sina.com
+X-SMAIL-MID: 294774676470
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <7957107d-634f-4771-327e-99fdd5e6474e@daenzer.net>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+To: Daniel Vetter <daniel@ffwll.ch>, 
+ Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+From: Hillf Danton <hdanton@sina.com>
+Subject: Re: gnome-shell stuck because of amdgpu driver [5.3 RC5]
+Date: Wed, 4 Sep 2019 09:17:16 +0800
+Importance: normal
+X-Priority: 3
+In-Reply-To: <CAKMK7uH9q09XadTV5Ezm=9aODErD=w_+8feujviVnF5LO_fggA@mail.gmail.com>
+References: <20190830032948.13516-1-hdanton@sina.com>
+ <CABXGCsNywbo90+wgiZ64Srm-KexypTbjiviwTW_BsO9Pm11GKQ@mail.gmail.com>
+ <5d6e2298.1c69fb81.b5532.8395SMTPIN_ADDED_MISSING@mx.google.com>
+ <CABXGCsMG2YrybO4_5jHaFQQxy2ywB53pY63qRfXK=ZKx5qc2Bw@mail.gmail.com>
+ <CAKMK7uH9q09XadTV5Ezm=9aODErD=w_+8feujviVnF5LO_fggA@mail.gmail.com>
 X-Mailman-Approved-At: Wed, 04 Sep 2019 07:16:56 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=kernel.org; s=default; t=1567530229;
- bh=bUxrgGlb8IHuXCYAMMq77/WS81cga4wFl4/4NHV4vUY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=OHKxoV8KAhi5j/+jXWiyEvFrA4baZFbh5q/p80iksz40TIwAQH7c/RXWhKo52vBlJ
- 896IW37U3vdTzP4AddqJjMiST0edVTl3lJX1xhlGZi0AtwvLaNZE3PbT2TwVVgP6sH
- U74lxkE6ropWeeWaoWiaRHE3jgt9Sub63wsQyZAg=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -50,29 +45,133 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Yu Zhao <yuzhao@google.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Linux kernel <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0602678665=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
+Message-Id: <20190904071704.F315489B4D@gabe.freedesktop.org>
 
-T24gVHVlLCBTZXAgMDMsIDIwMTkgYXQgMDY6NDA6NDNQTSArMDIwMCwgTWljaGVsIETDpG56ZXIg
-d3JvdGU6Cj4gT24gMjAxOS0wOS0wMyA2OjIzIHAubS4sIFNhc2hhIExldmluIHdyb3RlOgo+ID4g
-RnJvbTogWXUgWmhhbyA8eXV6aGFvQGdvb2dsZS5jb20+Cj4gPiAKPiA+IFsgVXBzdHJlYW0gY29t
-bWl0IDg5ZjIzYjZlZmVmNTU0NzY2MTc3YmY1MWFhNzU0YmNlMTRjM2U3ZGEgXQo+IAo+IEhvbGQg
-eW91ciBob3JzZXMhCj4gCj4gVGhpcyBjb21taXQgYW5kIGM0YTMyYjI2NmRhN2JiNzAyZTYwMzgx
-Y2EwYzM1ZWFkZGJjODlhNmMgaGFkIHRvIGJlCj4gcmV2ZXJ0ZWQsIGFzIHRoZXkgY2F1c2VkIHJl
-Z3Jlc3Npb25zLiBTZWUgY29tbWl0cwo+IDI1ZWM0MjllODZiYjc5MGU0MDM4N2E1NTBmMDUwMWQw
-YWM1NWE0N2MgJgo+IDkyYjA3MzBlYWYyZDU0OWZkZmIxMGVjYzhiNzFmMzRiOWY0NzJjMTIgLgo+
-IAo+IAo+IFRoaXMgaXNuJ3QgYm9sc3RlcmluZyBjb25maWRlbmNlIGluIGhvdyB0aGVzZSBwYXRj
-aGVzIGFyZSBzZWxlY3RlZC4uLgoKVGhlIHBhdGNoIF9pdHNlbGZfIHNhaWQgdG8gYmUgYmFja3Bv
-cnRlZCB0byB0aGUgc3RhYmxlIHRyZWVzIGZyb20gNC4yCmFuZCBuZXdlci4gIFdoeSB3b3VsZG4n
-dCB3ZSBiZSBjb25maWRlbnQgaW4gZG9pbmcgdGhpcz8KCklmIHRoZSBwYXRjaCBkb2Vzbid0IHdh
-bnQgdG8gYmUgYmFja3BvcnRlZCwgdGhlbiBkbyBub3QgYWRkIHRoZSBjYzoKc3RhYmxlIGxpbmUg
-dG8gaXQuLi4KCmdyZWcgay1oCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdm
-eA==
+
+--===============0602678665==
+Content-Type: multipart/alternative;
+	boundary="_FEA7D873-6F97-49AA-B05D-696E54FDDE7C_"
+
+
+--_FEA7D873-6F97-49AA-B05D-696E54FDDE7C_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+Daniel Vetter <daniel@ffwll.ch>
+>>
+>> Now 11:01pm and "gnome shell stuck warning" not appear since 19:17. So
+>> looks like issue happens only when computer blocked and monitor in
+>> power save mode.
+>
+> I'd bet on runtime pm or some other power saving feature in amdgpu
+> shutting the interrupt handling down before we've handled all the
+> interrupts. That would then result in a stuck fence.
+>
+> Do we already know which fence is stuck?
+
+It is welcomed to shed a thread of light on how to collect/print that info.
+Say line:xxx-yyy in path/to/amdgpu/zzz.c
+
+Thanks
+Hillf
+
+
+--_FEA7D873-6F97-49AA-B05D-696E54FDDE7C_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta ht=
+tp-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta name=
+=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:DengXian;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.DefaultFontHxMailStyle
+	{mso-style-name:"Default Font HxMail Style";
+	font-family:DengXian;
+	color:windowtext;
+	font-weight:normal;
+	font-style:normal;
+	text-decoration:none none;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+/* Page Definitions */
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style></head><body lang=3DZH-CN link=3Dblue vlink=3D"#954F72"><div cla=
+ss=3DWordSection1><p class=3DMsoNormal><span class=3DDefaultFontHxMailStyle=
+><span lang=3DEN-US>Daniel Vetter &lt;daniel@ffwll.ch&gt;<o:p></o:p></span>=
+</span></p><p class=3DMsoNormal><span lang=3DEN-US>&gt;&gt;<o:p>&nbsp;</o:p=
+></span></p><p class=3DMsoNormal><span lang=3DEN-US>&gt;&gt; Now 11:01pm an=
+d &quot;gnome shell stuck warning&quot; not appear since 19:17. So</span></=
+p><p class=3DMsoNormal><span lang=3DEN-US>&gt;&gt; looks like issue happens=
+ only when computer blocked and monitor in</span></p><p class=3DMsoNormal><=
+span lang=3DEN-US>&gt;&gt; power save mode.</span></p><p class=3DMsoNormal>=
+<span lang=3DEN-US>&gt;<o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><sp=
+an lang=3DEN-US>&gt; I'd bet on runtime pm or some other power saving featu=
+re in amdgpu</span></p><p class=3DMsoNormal><span lang=3DEN-US>&gt; shuttin=
+g the interrupt handling down before we've handled all the</span></p><p cla=
+ss=3DMsoNormal><span lang=3DEN-US>&gt; interrupts. That would then result i=
+n a stuck fence.</span></p><p class=3DMsoNormal><span lang=3DEN-US>&gt;<o:p=
+>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>&gt; Do we =
+already know which fence is stuck?</span></p><p class=3DMsoNormal><span lan=
+g=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-=
+US>It is welcomed to shed a thread of light on how to collect/print that in=
+fo.</span></p><p class=3DMsoNormal><span lang=3DEN-US>Say line:xxx-yyy in p=
+ath/to/amdgpu/zzz.c</span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>=
+&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Thanks</span=
+></p><p class=3DMsoNormal><span lang=3DEN-US>Hillf</span></p><p class=3DMso=
+Normal><span class=3DDefaultFontHxMailStyle><span lang=3DEN-US><o:p>&nbsp;<=
+/o:p></span></span></p></div></body></html>=
+
+--_FEA7D873-6F97-49AA-B05D-696E54FDDE7C_--
+
+
+
+--===============0602678665==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0602678665==--
+
+
