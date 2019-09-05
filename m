@@ -1,92 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1A0EAA55E
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2019 16:03:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93E24AA69B
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2019 16:59:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32C2B6E0FB;
-	Thu,  5 Sep 2019 14:03:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D0A2890DB;
+	Thu,  5 Sep 2019 14:59:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770050.outbound.protection.outlook.com [40.107.77.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99EF26E0D2
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Sep 2019 14:03:26 +0000 (UTC)
+Received: from NAM01-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr740072.outbound.protection.outlook.com [40.107.74.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 815BD890DB;
+ Thu,  5 Sep 2019 14:59:55 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nAF1tc5YklPoNizGBG76ETw0mf7cVGjg0u7+tbOUntNk28cZqE/BBkKqNzCNiZB9pRFg/Tnjyf/804mmAJlb/WbR3W5LpTJVWO04LMg7h1Wz8WSJ0VdAUcbPuvYFvnbJAqNGQhEhPYC/ko/YFkqDuADV9GgPxJC/JkLwBoCy6q6QpVtMwr5urSCEC7b8rjizooSA8KDTOP1xLvBm1MGnKuxjZvKs3/mQTAsWEX8Oss1DL5qZq5vb1C0WNJdMQAxnRsRAlIQ5aZcAK+gtKTTJzkE9v/koMPb8jAR/ME7lxoeiJ6czuI6+tHTq+v7Za+wzRvbMzmbrCndqrQucoKOp4w==
+ b=KvAoFw6rYpsqxZyEMIC2aIyETGOYYcxNV81r2Ga/Gyx+yjcOagQ7Yyc8//7Bqyidezh/05AdihXZ1QUUeubOZv7yWCtOFcERw+JNEwgdZ0tppg1GFhVm43oMXB3R05WxpBXeDq7f4gyPAKgc0fWMspvKvpPb85PVdN9ckjxaoLwhhwu3tcjOMQAJACzHchcllM0nnwEqxlyj80g8d5torasBIzMa8eQfiOVh5KDohBX9O+jCKCxuctq/idinjndT5KJN3i5fZ2b9XZlhnxgVizRc8mFh73hx+dWJbnXk9DQOUFa9AKydI1RfxfPk7LxYp70EkVqG8VPKB6QufJ35mQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lZA4Zs0YzYwId55cyTZLP0IFGIctoYePJKrEU40zTv4=;
- b=DUwogugwXOgIK8+1lCs4786mOpl7EuyY8RvVrVolw1Pcr2csxtjTE5QdzofcRCEkHJT+D9WiAMtVaoHqYsL0vmqd51Q3L7ORKLSfab9LoSB/0NDvpwSdwa6PxgbNj6aAP49WllRVOJ6siYwPTg3v3lKvo4vAGgq6ct94xJ07I7LN+m53wQqrTjtAgSom2Hjdi7JqOWru58Q+te4dw6C2ykkTJjIFeHfvhqED7BDGhGAz1lBkUKelbGDuqKIP7ej+YyNkF4qZBTL119SAF0buhC9/oepxo3zqU1qFjR1giNBF/1uH1PB/1JlhjPfsjJyW1KiZS6duI7OXnM09JMdzkg==
+ bh=mozSrYgszcZBaQXP39uOY5VrFJieKy8wc5iKVRI52cY=;
+ b=W5Z2VbC92ykLLTqPfD1QBeRaeF/tephmpOR31w+do1hCkWrhNokNWTtIla8WPp/pQdc5okVwJDjt74cGrNjd696Na61CQxiGxeNDM8zCkj7gNsPhS74CSloqOgKOjzwbq8uAbJBzGmXK7ALINWFJZh+7rLi7EB/NvVKl+2Z+RiEOliI+Aqz9+SANTwv6V7QewLk7YUqUWCRMvZ6Ok4jXUxBYJe6XPTpelVe9lQpOcIT/BSrSzKFHr4OSCx0cvX5ra/dpex9xLu0Es+fkP9to9uEElLjFIw3UgUVcvJ48ijpgFTUx3PpIrH9EuzxG0xFwk+lho7c+5uBJOXtUb/yanQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from MWHPR12MB1374.namprd12.prod.outlook.com (10.169.206.9) by
- MWHPR12MB1405.namprd12.prod.outlook.com (10.169.206.146) with Microsoft SMTP
+Received: from MN2PR12MB2941.namprd12.prod.outlook.com (20.179.80.76) by
+ MN2PR12MB4047.namprd12.prod.outlook.com (52.135.51.84) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2220.21; Thu, 5 Sep 2019 14:03:25 +0000
-Received: from MWHPR12MB1374.namprd12.prod.outlook.com
- ([fe80::d1d4:fdff:728e:833b]) by MWHPR12MB1374.namprd12.prod.outlook.com
- ([fe80::d1d4:fdff:728e:833b%4]) with mapi id 15.20.2220.022; Thu, 5 Sep 2019
- 14:03:24 +0000
-From: "Yang, Philip" <Philip.Yang@amd.com>
-To: "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 1/1] drm/amdgpu: Disable retry faults in VMID0
-Thread-Topic: [PATCH 1/1] drm/amdgpu: Disable retry faults in VMID0
-Thread-Index: AQHVY3jVRndyicN57kSyNNfIH3Ofq6cdHmkA
-Date: Thu, 5 Sep 2019 14:03:24 +0000
-Message-ID: <1eaaaa3d-5862-6315-4b6c-bafeac975301@amd.com>
-References: <20190904233053.9767-1-Felix.Kuehling@amd.com>
-In-Reply-To: <20190904233053.9767-1-Felix.Kuehling@amd.com>
-Accept-Language: en-ZA, en-US
+ 15.20.2220.21; Thu, 5 Sep 2019 14:59:53 +0000
+Received: from MN2PR12MB2941.namprd12.prod.outlook.com
+ ([fe80::646d:2496:3b2:1d02]) by MN2PR12MB2941.namprd12.prod.outlook.com
+ ([fe80::646d:2496:3b2:1d02%4]) with mapi id 15.20.2220.022; Thu, 5 Sep 2019
+ 14:59:53 +0000
+From: "Lin, Wayne" <Wayne.Lin@amd.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH] drm/drm_connector: add additional aspect ratio values
+Thread-Topic: [PATCH] drm/drm_connector: add additional aspect ratio values
+Thread-Index: AQHVWTQFLCn4IG3160aA/P5G2T3Y5qcJEmaAgAYOWCE=
+Date: Thu, 5 Sep 2019 14:59:53 +0000
+Message-ID: <MN2PR12MB2941AFD5BE06C7B10E01B3C1FCA00@MN2PR12MB2941.namprd12.prod.outlook.com>
+References: <20190822215002.17836-1-waynelin@amd.com>,
+ <20190823184141.GW5942@intel.com>
+In-Reply-To: <20190823184141.GW5942@intel.com>
+Accept-Language: en-US, zh-TW
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: YTOPR0101CA0057.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::34) To MWHPR12MB1374.namprd12.prod.outlook.com
- (2603:10b6:300:12::9)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [165.204.55.251]
+x-originating-ip: [165.204.55.250]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5c8d49fa-b1a7-4332-375e-08d73209d170
+x-ms-office365-filtering-correlation-id: c5ab7946-7cf5-4cf3-9f41-08d73211b57e
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MWHPR12MB1405; 
-x-ms-traffictypediagnostic: MWHPR12MB1405:
+ SRVR:MN2PR12MB4047; 
+x-ms-traffictypediagnostic: MN2PR12MB4047:
+x-ms-exchange-purlcount: 1
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR12MB1405511AEB6CCAD6061846A1E6BB0@MWHPR12MB1405.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:580;
+x-microsoft-antispam-prvs: <MN2PR12MB40477402D7EC74B6EA9DF10AFCBB0@MN2PR12MB4047.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 015114592F
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(346002)(366004)(376002)(396003)(136003)(189003)(199004)(6246003)(6486002)(86362001)(66066001)(81166006)(81156014)(476003)(8676002)(36756003)(486006)(186003)(2906002)(256004)(8936002)(7736002)(305945005)(31696002)(478600001)(53936002)(71190400001)(25786009)(71200400001)(4326008)(5660300002)(2501003)(31686004)(6116002)(3846002)(11346002)(110136005)(316002)(6512007)(229853002)(6436002)(6506007)(99286004)(53546011)(76176011)(102836004)(386003)(52116002)(446003)(66446008)(66946007)(14454004)(64756008)(66476007)(66556008)(2616005)(26005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1405;
- H:MWHPR12MB1374.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ SFS:(10009020)(4636009)(346002)(376002)(136003)(366004)(396003)(39860400002)(199004)(189003)(6916009)(6116002)(3846002)(229853002)(53936002)(25786009)(26005)(606006)(71190400001)(7696005)(6436002)(86362001)(74316002)(256004)(446003)(236005)(5660300002)(6306002)(54896002)(7736002)(9686003)(102836004)(11346002)(54906003)(52536014)(99286004)(6246003)(476003)(55016002)(4326008)(186003)(486006)(33656002)(8936002)(66066001)(81166006)(81156014)(8676002)(105004)(76176011)(53546011)(478600001)(66476007)(19627405001)(76116006)(66446008)(66946007)(64756008)(66556008)(966005)(91956017)(2906002)(14454004)(71200400001)(316002)(6506007);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4047;
+ H:MN2PR12MB2941.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: V6iylXyY01ElFgJT/6WfQTlYROXtz3HW9I9vrXHRAq9l9AHTXq3ZSEM5+ex0kNzfkoYvI6x/zNiuvTc0ezQevNldNq/Cb24R9v6KZCNFQ47E8mtps5l9ztF8Fu3oscPI4umc6PgclmCfCf5X6X48zOTMFPC9z/IHs1d0GNtN7yLXppTOMR6Rqv2v9YuS9UU0IgVuHSUmhuijM6cml3S9PzGpMS+w8x1GbSzKfqeL12JiVUUXPIcUw4nuVG4GhP070y+n/lMgHgLBoCI4iTgXkcv/lFPXRTjqbWvAzJWClpH+0pD38k7mkNAj0TwYuk9TM9oJ11r8DPYr6mhCKuHMdiO6UMJqLQ0QeIbOp/XHh3uiZIYKrcVJvsPcffdMSyEI143FQs9cBARi6u7hUaWO6WGREollT7QBRjnASMWjt/Y=
-Content-ID: <9B35D67BE68DED44A370BEC48F6AC1EB@namprd12.prod.outlook.com>
+x-microsoft-antispam-message-info: sKyWhHhZ7ymTNXdLvT1t28XUavdUKPXLEN5Zob8vWMpFRKt44Sd0sNfdKxvoyXDEtEFsMAWcqBI8p1ioSBtYBBXZ1aSnB9bV+TN+VDILj71LkgK170boe+Fp+Fj9KSzvoGaMMlXRduwozhBmd91DSCZcvLpn8dQsaSUiaTWvCvD4jlT4hAycrJGJuFglxkEsnnX9MGGiRV4TZv5D2Gl/JTdkYEpaW2fZqtl2wvhSCNsPUg2qhpPVFtTQ0qLpNSh3RUPNnrbW4yCgxigiamz+c3nGq5AZeuUAzCSbPswJeItU0wU7Y4b5tk52SKaigvv+CZVFVcb4Pd/mo3EadI77nMuSUICco7vkWdlN1/xwbdHEHhS9/egrUUhKPEkcgr0I/lhndztJR3N32ynKlkd3woMIk+Pyw2Gn9N1PUHlGe6U=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c8d49fa-b1a7-4332-375e-08d73209d170
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2019 14:03:24.8510 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c5ab7946-7cf5-4cf3-9f41-08d73211b57e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2019 14:59:53.5782 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TIjuG9QjTeMos/y7JuAnaDQdqWAIH4q6sJIcNeTocXyMrWDjXzU6fGfyh/A/Zrx8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1405
+X-MS-Exchange-CrossTenant-userprincipalname: yufX519CoNrz5id4Qh+MArxbXN+psZMuzIqEJM777+gp8MnKjM3nQanBxu0sPlz3deF7aJR3BorU2VkDxgcnSw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4047
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lZA4Zs0YzYwId55cyTZLP0IFGIctoYePJKrEU40zTv4=;
- b=HHZMNdVfvDgnIKXiaMuMfTYGz0qay98JCBL4XREG0wFnCsZoxZ9j11EtdSFlZPThh/F1a8F2f0cUkWtVxlrUmkQBcM9W6LhB0Dl1N6FTM2PF93JH+dg4RkWrTL1RgijQwIgT7PJaHZmTbiRGMqqk8fDc4+0ebQeVfaosdvHlo6M=
+ bh=mozSrYgszcZBaQXP39uOY5VrFJieKy8wc5iKVRI52cY=;
+ b=ZOXXiraU3e39LkcAa+rZMhie8FyoGFVWUw1lb3RccqG6ECGlW7wvuD4nH/PBLsVAjZUz2zPWgL4lfejNahEdmb38iov4qtwtQBSW3QIDR9X/EXflPzfptNBZA38IKsA6Nndb1gTRPYbPv07u/iZ+NyjqMsdb+tIfALcpT52QRrs=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Philip.Yang@amd.com; 
+ smtp.mailfrom=Wayne.Lin@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -98,87 +94,233 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Huang, Ray" <Ray.Huang@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Li, Sun peng \(Leo\)" <Sunpeng.Li@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Kazlauskas, Nicholas" <Nicholas.Kazlauskas@amd.com>
+Content-Type: multipart/mixed; boundary="===============1015931045=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Vk1JRDAgaW5pdCBwYXRoIHdhcyBtaXNzZWQgd2hlbiBlbmFibGluZyBhbWRncHVfbm9yZXRyeSBv
-cHRpb24uIEdvb2QgDQpjYXRjaCBhbmQgZml4Lg0KDQpSZXZpZXdlZC1ieTogUGhpbGlwIFlhbmcg
-PHBoaWxpcC55YW5nQGFtZC5jb20+DQoNCk9uIDIwMTktMDktMDQgNzozMSBwLm0uLCBLdWVobGlu
-ZywgRmVsaXggd3JvdGU6DQo+IFRoZXJlIGlzIG5vIHBvaW50IHJldHJ5aW5nIHBhZ2UgZmF1bHRz
-IGluIFZNSUQwLiBUaG9zZSBmYXVsdHMgYXJlDQo+IGFsd2F5cyBmYXRhbC4NCj4gDQo+IFNpZ25l
-ZC1vZmYtYnk6IEZlbGl4IEt1ZWhsaW5nIDxGZWxpeC5LdWVobGluZ0BhbWQuY29tPg0KPiAtLS0N
-Cj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhodWJfdjFfMC5jIHwgMiArKw0KPiAg
-IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeGh1Yl92Ml8wLmMgfCAyICsrDQo+ICAgZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbW1odWJfdjFfMC5jICB8IDIgKysNCj4gICBkcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92Ml8wLmMgIHwgMiArKw0KPiAgIGRyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L21taHViX3Y5XzQuYyAgfCAyICsrDQo+ICAgNSBmaWxlcyBjaGFuZ2Vk
-LCAxMCBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvZ2Z4aHViX3YxXzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeGh1
-Yl92MV8wLmMNCj4gaW5kZXggNmNlMzdjZTc3ZDE0Li45ZWM0Mjk3ZTYxZTUgMTAwNjQ0DQo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeGh1Yl92MV8wLmMNCj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4aHViX3YxXzAuYw0KPiBAQCAtMTc4LDYgKzE3OCw4
-IEBAIHN0YXRpYyB2b2lkIGdmeGh1Yl92MV8wX2VuYWJsZV9zeXN0ZW1fZG9tYWluKHN0cnVjdCBh
-bWRncHVfZGV2aWNlICphZGV2KQ0KPiAgIAl0bXAgPSBSUkVHMzJfU09DMTUoR0MsIDAsIG1tVk1f
-Q09OVEVYVDBfQ05UTCk7DQo+ICAgCXRtcCA9IFJFR19TRVRfRklFTEQodG1wLCBWTV9DT05URVhU
-MF9DTlRMLCBFTkFCTEVfQ09OVEVYVCwgMSk7DQo+ICAgCXRtcCA9IFJFR19TRVRfRklFTEQodG1w
-LCBWTV9DT05URVhUMF9DTlRMLCBQQUdFX1RBQkxFX0RFUFRILCAwKTsNCj4gKwl0bXAgPSBSRUdf
-U0VUX0ZJRUxEKHRtcCwgVk1fQ09OVEVYVDBfQ05UTCwNCj4gKwkJCSAgICBSRVRSWV9QRVJNSVNT
-SU9OX09SX0lOVkFMSURfUEFHRV9GQVVMVCwgMCk7DQo+ICAgCVdSRUczMl9TT0MxNShHQywgMCwg
-bW1WTV9DT05URVhUMF9DTlRMLCB0bXApOw0KPiAgIH0NCj4gICANCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeGh1Yl92Ml8wLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9nZnhodWJfdjJfMC5jDQo+IGluZGV4IDhiNzg5Zjc1MGI3Mi4uYTkyMzg3MzVk
-MzYxIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhodWJfdjJf
-MC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeGh1Yl92Ml8wLmMNCj4g
-QEAgLTE2Niw2ICsxNjYsOCBAQCBzdGF0aWMgdm9pZCBnZnhodWJfdjJfMF9lbmFibGVfc3lzdGVt
-X2RvbWFpbihzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikNCj4gICAJdG1wID0gUlJFRzMyX1NP
-QzE1KEdDLCAwLCBtbUdDVk1fQ09OVEVYVDBfQ05UTCk7DQo+ICAgCXRtcCA9IFJFR19TRVRfRklF
-TEQodG1wLCBHQ1ZNX0NPTlRFWFQwX0NOVEwsIEVOQUJMRV9DT05URVhULCAxKTsNCj4gICAJdG1w
-ID0gUkVHX1NFVF9GSUVMRCh0bXAsIEdDVk1fQ09OVEVYVDBfQ05UTCwgUEFHRV9UQUJMRV9ERVBU
-SCwgMCk7DQo+ICsJdG1wID0gUkVHX1NFVF9GSUVMRCh0bXAsIEdDVk1fQ09OVEVYVDBfQ05UTCwN
-Cj4gKwkJCSAgICBSRVRSWV9QRVJNSVNTSU9OX09SX0lOVkFMSURfUEFHRV9GQVVMVCwgMCk7DQo+
-ICAgCVdSRUczMl9TT0MxNShHQywgMCwgbW1HQ1ZNX0NPTlRFWFQwX0NOVEwsIHRtcCk7DQo+ICAg
-fQ0KPiAgIA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbW1odWJf
-djFfMC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbW1odWJfdjFfMC5jDQo+IGluZGV4
-IGI5ZDZjMGJmYTU5NC4uNGM3ZThjNjRhOTRlIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9tbWh1Yl92MV8wLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvbW1odWJfdjFfMC5jDQo+IEBAIC0yMDcsNiArMjA3LDggQEAgc3RhdGljIHZvaWQgbW1o
-dWJfdjFfMF9lbmFibGVfc3lzdGVtX2RvbWFpbihzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikN
-Cj4gICAJdG1wID0gUlJFRzMyX1NPQzE1KE1NSFVCLCAwLCBtbVZNX0NPTlRFWFQwX0NOVEwpOw0K
-PiAgIAl0bXAgPSBSRUdfU0VUX0ZJRUxEKHRtcCwgVk1fQ09OVEVYVDBfQ05UTCwgRU5BQkxFX0NP
-TlRFWFQsIDEpOw0KPiAgIAl0bXAgPSBSRUdfU0VUX0ZJRUxEKHRtcCwgVk1fQ09OVEVYVDBfQ05U
-TCwgUEFHRV9UQUJMRV9ERVBUSCwgMCk7DQo+ICsJdG1wID0gUkVHX1NFVF9GSUVMRCh0bXAsIFZN
-X0NPTlRFWFQwX0NOVEwsDQo+ICsJCQkgICAgUkVUUllfUEVSTUlTU0lPTl9PUl9JTlZBTElEX1BB
-R0VfRkFVTFQsIDApOw0KPiAgIAlXUkVHMzJfU09DMTUoTU1IVUIsIDAsIG1tVk1fQ09OVEVYVDBf
-Q05UTCwgdG1wKTsNCj4gICB9DQo+ICAgDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9tbWh1Yl92Ml8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1
-Yl92Ml8wLmMNCj4gaW5kZXggMzU0MmMyMDNjM2M4Li44NmVkOGNiOTE1YTggMTAwNjQ0DQo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L21taHViX3YyXzAuYw0KPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92Ml8wLmMNCj4gQEAgLTE1Miw2ICsxNTIsOCBA
-QCBzdGF0aWMgdm9pZCBtbWh1Yl92Ml8wX2VuYWJsZV9zeXN0ZW1fZG9tYWluKHN0cnVjdCBhbWRn
-cHVfZGV2aWNlICphZGV2KQ0KPiAgIAl0bXAgPSBSUkVHMzJfU09DMTUoTU1IVUIsIDAsIG1tTU1W
-TV9DT05URVhUMF9DTlRMKTsNCj4gICAJdG1wID0gUkVHX1NFVF9GSUVMRCh0bXAsIE1NVk1fQ09O
-VEVYVDBfQ05UTCwgRU5BQkxFX0NPTlRFWFQsIDEpOw0KPiAgIAl0bXAgPSBSRUdfU0VUX0ZJRUxE
-KHRtcCwgTU1WTV9DT05URVhUMF9DTlRMLCBQQUdFX1RBQkxFX0RFUFRILCAwKTsNCj4gKwl0bXAg
-PSBSRUdfU0VUX0ZJRUxEKHRtcCwgTU1WTV9DT05URVhUMF9DTlRMLA0KPiArCQkJICAgIFJFVFJZ
-X1BFUk1JU1NJT05fT1JfSU5WQUxJRF9QQUdFX0ZBVUxULCAwKTsNCj4gICAJV1JFRzMyX1NPQzE1
-KE1NSFVCLCAwLCBtbU1NVk1fQ09OVEVYVDBfQ05UTCwgdG1wKTsNCj4gICB9DQo+ICAgDQo+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92OV80LmMgYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92OV80LmMNCj4gaW5kZXggMGNmN2VmNDRiNGI1
-Li42NTc5NzBmOWViZmIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
-L21taHViX3Y5XzQuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92
-OV80LmMNCj4gQEAgLTI0MCw2ICsyNDAsOCBAQCBzdGF0aWMgdm9pZCBtbWh1Yl92OV80X2VuYWJs
-ZV9zeXN0ZW1fZG9tYWluKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LA0KPiAgIAkJCQkgIGh1
-YmlkICogTU1IVUJfSU5TVEFOQ0VfUkVHSVNURVJfT0ZGU0VUKTsNCj4gICAJdG1wID0gUkVHX1NF
-VF9GSUVMRCh0bXAsIFZNTDJWQzBfVk1fQ09OVEVYVDBfQ05UTCwgRU5BQkxFX0NPTlRFWFQsIDEp
-Ow0KPiAgIAl0bXAgPSBSRUdfU0VUX0ZJRUxEKHRtcCwgVk1MMlZDMF9WTV9DT05URVhUMF9DTlRM
-LCBQQUdFX1RBQkxFX0RFUFRILCAwKTsNCj4gKwl0bXAgPSBSRUdfU0VUX0ZJRUxEKHRtcCwgVk1M
-MlZDMF9WTV9DT05URVhUMF9DTlRMLA0KPiArCQkJICAgIFJFVFJZX1BFUk1JU1NJT05fT1JfSU5W
-QUxJRF9QQUdFX0ZBVUxULCAwKTsNCj4gICAJV1JFRzMyX1NPQzE1X09GRlNFVChNTUhVQiwgMCwg
-bW1WTUwyVkMwX1ZNX0NPTlRFWFQwX0NOVEwsDQo+ICAgCQkJICAgIGh1YmlkICogTU1IVUJfSU5T
-VEFOQ0VfUkVHSVNURVJfT0ZGU0VULCB0bXApOw0KPiAgIH0NCj4gDQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============1015931045==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB2941AFD5BE06C7B10E01B3C1FCA00MN2PR12MB2941namp_"
+
+--_000_MN2PR12MB2941AFD5BE06C7B10E01B3C1FCA00MN2PR12MB2941namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+
+
+________________________________
+From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Sent: Saturday, August 24, 2019 02:41
+To: Lin, Wayne <Wayne.Lin@amd.com>
+Cc: dri-devel@lists.freedesktop.org <dri-devel@lists.freedesktop.org>; amd-=
+gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Li, Sun peng (Le=
+o) <Sunpeng.Li@amd.com>; Kazlauskas, Nicholas <Nicholas.Kazlauskas@amd.com>
+Subject: Re: [PATCH] drm/drm_connector: add additional aspect ratio values
+
+On Thu, Aug 22, 2019 at 05:50:02PM -0400, Wayne Lin wrote:
+> For HDMI2.0 CTS item - HF1-35, it verifies if the source generates
+> video timing "64:27" video format correctly.
+>
+> eg: (vic-76) 1920x1080p@60Hz,24bpp
+>
+> This patch add on "64:27" and "256:135" to drm_aspect_ratio_enum_list.
+> Thereafter, one can specify the aspect ratio to "64:27" or "256:135"
+> after creating aspect ratio property.
+>
+> Change-Id: Ifc9df54e8e8f78e70960fcd737a3a57e49c81152
+> Signed-off-by: Wayne Lin <waynelin@amd.com>
+> ---
+>  drivers/gpu/drm/drm_connector.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
+tor.c
+> index 3a0cacb71235..c0629a01d08e 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -772,6 +772,8 @@ static const struct drm_prop_enum_list drm_aspect_rat=
+io_enum_list[] =3D {
+>        { DRM_MODE_PICTURE_ASPECT_NONE, "Automatic" },
+>        { DRM_MODE_PICTURE_ASPECT_4_3, "4:3" },
+>        { DRM_MODE_PICTURE_ASPECT_16_9, "16:9" },
+> +     { DRM_MODE_PICTURE_ASPECT_64_27, "64:27" },
+> +     { DRM_MODE_PICTURE_ASPECT_256_135, "256:135" },
+
+> Not 100% sure we want to expose these via the property because the
+> infoframe can't convey these independently from the VIC.
+
+Agree with that it can't be independent from the VIC.
+When building up hdmi avi infoframe by using "drm_hdmi_avi_infoframe_from_d=
+isplay_mode" in drm_edid,
+it will refer to the VIC to set up the aspect ratio if the aspect ratio is =
+not specified in mode.
+However, if the aspect ratio is specified to a value other than none, curre=
+nt logic of code will use the specified value.
+
+The main reason of this patch is for capable indicating the exact VIC wante=
+d.
+There are some modes defined in CTA-861 with same timing but different aspe=
+ct ratio.
+eg: VIC 103 & VIC 93
+Without these new definitions, we cannot distinguish these different modes =
+and might set a wrong VIC in AVI infoframe.
+
+>  };
+>
+>  static const struct drm_prop_enum_list drm_content_type_enum_list[] =3D =
+{
+> --
+> 2.17.1
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+--
+Ville Syrj=E4l=E4
+Intel
+
+--_000_MN2PR12MB2941AFD5BE06C7B10E01B3C1FCA00MN2PR12MB2941namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+</div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Ville Syrj=E4l=E4 &lt=
+;ville.syrjala@linux.intel.com&gt;<br>
+<b>Sent:</b> Saturday, August 24, 2019 02:41<br>
+<b>To:</b> Lin, Wayne &lt;Wayne.Lin@amd.com&gt;<br>
+<b>Cc:</b> dri-devel@lists.freedesktop.org &lt;dri-devel@lists.freedesktop.=
+org&gt;; amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&gt=
+;; Li, Sun peng (Leo) &lt;Sunpeng.Li@amd.com&gt;; Kazlauskas, Nicholas &lt;=
+Nicholas.Kazlauskas@amd.com&gt;<br>
+<b>Subject:</b> Re: [PATCH] drm/drm_connector: add additional aspect ratio =
+values</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+>
+<div class=3D"PlainText">On Thu, Aug 22, 2019 at 05:50:02PM -0400, Wayne Li=
+n wrote:<br>
+&gt; For HDMI2.0 CTS item - HF1-35, it verifies if the source generates<br>
+&gt; video timing &quot;64:27&quot; video format correctly.<br>
+&gt; <br>
+&gt; eg: (vic-76) 1920x1080p@60Hz,24bpp<br>
+&gt; <br>
+&gt; This patch add on &quot;64:27&quot; and &quot;256:135&quot; to drm_asp=
+ect_ratio_enum_list.<br>
+&gt; Thereafter, one can specify the aspect ratio to &quot;64:27&quot; or &=
+quot;256:135&quot;<br>
+&gt; after creating aspect ratio property.<br>
+&gt; <br>
+&gt; Change-Id: Ifc9df54e8e8f78e70960fcd737a3a57e49c81152<br>
+&gt; Signed-off-by: Wayne Lin &lt;waynelin@amd.com&gt;<br>
+&gt; ---<br>
+&gt;&nbsp; drivers/gpu/drm/drm_connector.c | 2 &#43;&#43;<br>
+&gt;&nbsp; 1 file changed, 2 insertions(&#43;)<br>
+&gt; <br>
+&gt; diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_con=
+nector.c<br>
+&gt; index 3a0cacb71235..c0629a01d08e 100644<br>
+&gt; --- a/drivers/gpu/drm/drm_connector.c<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/drm_connector.c<br>
+&gt; @@ -772,6 &#43;772,8 @@ static const struct drm_prop_enum_list drm_asp=
+ect_ratio_enum_list[] =3D {<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { DRM_MODE_PICTURE_ASPECT_NO=
+NE, &quot;Automatic&quot; },<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { DRM_MODE_PICTURE_ASPECT_4_=
+3, &quot;4:3&quot; },<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { DRM_MODE_PICTURE_ASPECT_16=
+_9, &quot;16:9&quot; },<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; { DRM_MODE_PICTURE_ASPECT_64_27, &quot;6=
+4:27&quot; },<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; { DRM_MODE_PICTURE_ASPECT_256_135, &quot=
+;256:135&quot; },<br>
+<br>
+&gt; Not 100% sure we want to expose these via the property because the<br>
+&gt; infoframe can't convey these independently from the VIC.</div>
+<div class=3D"PlainText"><br>
+</div>
+<div class=3D"PlainText">Agree with that it can't be independent from the V=
+IC.&nbsp;</div>
+<div class=3D"PlainText">When building up hdmi avi infoframe by using &quot=
+;drm_hdmi_avi_infoframe_from_display_mode&quot; in drm_edid,&nbsp;</div>
+<div class=3D"PlainText">it will refer to the VIC to set up the aspect rati=
+o if the aspect ratio is not specified in mode.</div>
+<div class=3D"PlainText">However, if the aspect ratio is specified to a val=
+ue other than none, current logic of code will use the specified value.&nbs=
+p;</div>
+<div class=3D"PlainText"><br>
+</div>
+<div class=3D"PlainText">The main reason of this patch is for capable indic=
+ating the exact VIC wanted.&nbsp;</div>
+<div class=3D"PlainText">There are some modes defined in CTA-861 with same =
+timing but different aspect ratio.</div>
+<div class=3D"PlainText">eg: VIC 103 &amp; VIC 93</div>
+<div class=3D"PlainText">Without these new definitions, we cannot distingui=
+sh these different modes and might set a wrong VIC in AVI infoframe.</div>
+<div class=3D"PlainText"><br>
+</div>
+<div class=3D"PlainText">&gt;&nbsp; };<br>
+&gt;&nbsp; <br>
+&gt;&nbsp; static const struct drm_prop_enum_list drm_content_type_enum_lis=
+t[] =3D {<br>
+&gt; -- <br>
+&gt; 2.17.1<br>
+&gt; <br>
+&gt; _______________________________________________<br>
+&gt; dri-devel mailing list<br>
+&gt; dri-devel@lists.freedesktop.org<br>
+&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/dri-devel">h=
+ttps://lists.freedesktop.org/mailman/listinfo/dri-devel</a><br>
+<br>
+-- <br>
+Ville Syrj=E4l=E4<br>
+Intel<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_MN2PR12MB2941AFD5BE06C7B10E01B3C1FCA00MN2PR12MB2941namp_--
+
+--===============1015931045==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1015931045==--
