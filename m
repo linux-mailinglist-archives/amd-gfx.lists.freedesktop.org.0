@@ -1,91 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD679AAA7D
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2019 20:01:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B86FBAAAE4
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2019 20:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AEE189208;
-	Thu,  5 Sep 2019 18:01:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07E616E0E6;
+	Thu,  5 Sep 2019 18:27:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM05-BY2-obe.outbound.protection.outlook.com
- (mail-by2nam05on0631.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe52::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1173E89208
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Sep 2019 18:01:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GbE78yexYYXnpBrObOfb5Er+kyq7K+YdtrzEWNgIUmslZtvENhxk0mIlUcOO1iKdsTnjSYFbIG0eaE3GOQQaH3AJyBUigjmQb/PNocaDtArI1rqS6FOeR0bkqJz2mpRSQhEbzeR7E9CZmCGQ9Xxjd529YxPHwvkTPg9G4/dxQpFiEsxxMpsylvSwm8Bp3Ls9b6cedGe1ffaJW/noAyxlHkdY2LfpGRxly/UaClRtX2c5Fke4iYUPIO8ZTF/8odBqIkCT+z2mbovgLHqCqPF+LIN43bSciJASUksIxKsuMWPoG2hq+HplFIW8VpYMath/slw9K1+pmqFIhMNrDoUKyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xwRj4wgeFoaBX3hAV1sFFOaMjJwOzsIZ8OW2GNgtfB0=;
- b=MtcODaQ+VfvbLpdwx1sqRRHQGZKuXW/0tqHIUPVYQk6wggCvDUNLyObtjwJzHgsc9mlOkdpqon+ITJkOrtesy1hLVQr5dpKrIdt5mhLqwrIpEc/wtEV2QX5urri/bg0auCui1Ck6B3TBweFAHDt2EDEHg7e/RxluSRRT81zt20PmUSV1V+ck3zD2MQ1UOUzrtbdqEu2F2zdYw1GxUIp3PewMpwL2KLm7cTFRK8bx0Lcrfy455cLogsuxPqxute1ulSEBMJjQri4wFmZleWbIYyjTpPIIUTJITlyIs1p5qSit6TVJefiBYeHSSpkM6BVUlrKP9lGyj9yZ/woSnhI43w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from MN2PR12MB3309.namprd12.prod.outlook.com (20.179.83.157) by
- MN2PR12MB3408.namprd12.prod.outlook.com (20.178.243.85) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2241.15; Thu, 5 Sep 2019 18:01:17 +0000
-Received: from MN2PR12MB3309.namprd12.prod.outlook.com
- ([fe80::d923:13e5:46f4:6e77]) by MN2PR12MB3309.namprd12.prod.outlook.com
- ([fe80::d923:13e5:46f4:6e77%3]) with mapi id 15.20.2220.022; Thu, 5 Sep 2019
- 18:01:17 +0000
-From: "Huang, Ray" <Ray.Huang@amd.com>
-To: "Kuehling, Felix" <Felix.Kuehling@amd.com>
-Subject: Re: [PATCH 1/1] drm/amdgpu: Disable retry faults in VMID0
-Thread-Topic: [PATCH 1/1] drm/amdgpu: Disable retry faults in VMID0
-Thread-Index: AQHVY3jVRndyicN57kSyNNfIH3Ofq6cd5t+A
-Date: Thu, 5 Sep 2019 18:01:17 +0000
-Message-ID: <MN2PR12MB33090DAF207C0D9EE5E46776ECBB0@MN2PR12MB3309.namprd12.prod.outlook.com>
-References: <20190904233053.9767-1-Felix.Kuehling@amd.com>
-In-Reply-To: <20190904233053.9767-1-Felix.Kuehling@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-imapappendstamp: MN2PR12MB3309.namprd12.prod.outlook.com
- (15.20.2220.007)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [165.204.55.251]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6bd33737-7662-47b4-775f-08d7322b0cd2
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB3408; 
-x-ms-traffictypediagnostic: MN2PR12MB3408:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB340854EA9BD21192259E719EECBB0@MN2PR12MB3408.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:935;
-x-forefront-prvs: 015114592F
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(136003)(396003)(346002)(366004)(376002)(199004)(189003)(9686003)(7696005)(6436002)(99286004)(476003)(11346002)(7736002)(486006)(2906002)(305945005)(26005)(186003)(74316002)(14454004)(6246003)(53936002)(478600001)(76116006)(66946007)(66476007)(66556008)(64756008)(66446008)(55016002)(33656002)(229853002)(71200400001)(316002)(6636002)(71190400001)(3846002)(256004)(4326008)(6862004)(446003)(6116002)(25786009)(52536014)(8936002)(76176011)(66066001)(8676002)(6506007)(81166006)(81156014)(86362001)(102836004)(5660300002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3408;
- H:MN2PR12MB3309.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: /6/I+tuHCwYxk1q686lvhAeNM77zShtY02EGKY9tv7DiLTgXPB9BnwX9mnwx74OVJzp6n6TWG9xqAOJCcNFF+Qx3W1tKx+Q0v1cpkPoiQ9hHs/UzZtQwVt3qxM3xohKkwLUCtvzlVOLlqkCIctTxRwQuTjjVbMgu8TIv5TGmfy32r+jauC0FIJl6EYoHT2lq68EoX9PwpeyUT+WPnAO3Rjlh/5D5eZtFQi4t4fy9tkgK7kXx8KNP+7LGwJRCKdUBuTjQag0yQh2N7zYxZxFZN3uRscrWCaKLNVVG07jp+pUD8vMoU+J+JnGbYEeJ9U9yzYDEUIxh0vnz5HcD7EtSzJYhtnL0g674acY3xOKzbLCBOURu+HU2uoIH1yCQtQZXEiRZCYa+t9AAxng5Ng8EA99ECQ2tqjA5FZuSwpnWRfo=
-Content-ID: <106CE6794A69EE44AB6DCD0F0F07FC32@amdcloud.onmicrosoft.com>
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DD026E0E6;
+ Thu,  5 Sep 2019 18:27:13 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id k2so3876437wmj.4;
+ Thu, 05 Sep 2019 11:27:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=vZDM2pISdzhnQ9Et4SjDnGA1JMVwyVVkbNbR7yMYAns=;
+ b=SbNNQXRi3P8NNnN0VrwVJ2M810rfvuZVsR6Fin56PT9QDPvLNCt+8I2bCiJa6G2Msw
+ U5v7NBlZbFG2Y0XzTkr8DWnhHf/PZMTMHtfuA6hwStvQF/NSY9RAUFq/9OxdcI0UWv+p
+ ml7T2l17HWmdADTXyJysnfPsaSl8CMY1xQ3s9M9D2kOwkBLPf/La+25ojtZxYwYWc6mc
+ qGXIsrhOYUD42pGIV2VW52qSmFf/pvCzcoAtfvFNjFRPAcSYHaDgQJlFdo58ux1mOn+o
+ FiDA9A+bUq6MVW7Eu68bQV7ZXs4P34ibe+Zj4UC9RVorg+WoA86zS5/4dmzaGZ6lGgJR
+ Adrg==
+X-Gm-Message-State: APjAAAVTv9C3MY0+sBe4OOixgLMj8wYie1EYOI8PTyxnBI8VAK6DXHjJ
+ Xy7FhRukEsxI1vmxzczNirVvMvxye+m7UPTts9s=
+X-Google-Smtp-Source: APXvYqyN20YQReGXEkbcLpqzEhKhOGBZPvjaDBMlkwRARPW977LU71uvRq3jcYe73qlucVy5+9JWRx/JLWtbymt264Y=
+X-Received: by 2002:a05:600c:2105:: with SMTP id
+ u5mr4401364wml.150.1567708031709; 
+ Thu, 05 Sep 2019 11:27:11 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6bd33737-7662-47b4-775f-08d7322b0cd2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2019 18:01:17.4387 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: n3zFU1WVKuMSj6HhMLAcpXcXl0M75Ffu7LG4damjzI5M+vtAlIsE2d0fKSv+EhbFRRCNarRNH/cLGjeNt98zDg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3408
+References: <20190829060533.32315-1-Kenny.Ho@amd.com>
+ <20190829060533.32315-2-Kenny.Ho@amd.com>
+ <20190903075719.GK2112@phenom.ffwll.local>
+ <CAOWid-dxxDhyxP2+0R0oKAk29rR-1TbMyhshR1+gbcpGJCAW6g@mail.gmail.com>
+ <CAKMK7uEofjdVURu+meonh_YdV5eX8vfNALkW3A_+kLapCV8j+w@mail.gmail.com>
+ <CAOWid-eUVztW4hNVpznnJRcwHcjCirGL2aS75p4OY8XoGuJqUg@mail.gmail.com>
+ <20190904085434.GF2112@phenom.ffwll.local>
+In-Reply-To: <20190904085434.GF2112@phenom.ffwll.local>
+From: Kenny Ho <y2kenny@gmail.com>
+Date: Thu, 5 Sep 2019 14:27:00 -0400
+Message-ID: <CAOWid-e9t910p2ikKn+S5XG+txyAej=n2YDTYrd9vpm34urTQg@mail.gmail.com>
+Subject: Re: [PATCH RFC v4 01/16] drm: Add drm_minor_for_each
+To: Daniel Vetter <daniel@ffwll.ch>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xwRj4wgeFoaBX3hAV1sFFOaMjJwOzsIZ8OW2GNgtfB0=;
- b=M7JiW3dvB5xYfrprP9nkw+qjGRhg2h/ROATXMfTK/f8WMqtfObzPhhpsvzn9HheDF+yyRdW4Tvtuh3seCrXQJyBgOycDHchOb3+uubSY2CuZ0EkfesFDagD4qhmr0fwtd3Cl17fX079xr8VyanhJs8ilGjyWIBoPbsS17sgJO+E=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Ray.Huang@amd.com; 
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=vZDM2pISdzhnQ9Et4SjDnGA1JMVwyVVkbNbR7yMYAns=;
+ b=lveYbyoVYNAgUUTDJ6dnxSgz3JRQFU18aZFWAgOo566HHLUVdGkokzpXbVNnLU1m4Y
+ 4a+pgbb8sgWRSVN3kAOAEZrgNwMQ66EHxoN1XduGJmBWgjozX26xjqatVYxov0gcPCVW
+ FlR4DEL4XOCSrX86vyzqosc0ulH8AQE3/si2AuPT1jI58mEIjgQHgOwPHjr8MQbXaZay
+ Z+wCygwP9bj2isJXZmWEDJEHgwddG2RPOxNVxTnpH2LgpoQPzYGtfQHXq6+RMe8SmMwV
+ vMUgV/uZs+Pa9XdHbpxx8T3zWtdwBi9btgo4m7oe6yyiBqEd22bCyAKjzTUdesPM94IZ
+ 3uXQ==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -97,85 +68,507 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Kenny Ho <Kenny.Ho@amd.com>, "Kuehling, Felix" <felix.kuehling@amd.com>,
+ jsparks@cray.com, amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ lkaplan@cray.com, Alex Deucher <alexander.deucher@amd.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, "Greathouse,
+ Joseph" <joseph.greathouse@amd.com>, Tejun Heo <tj@kernel.org>,
+ cgroups@vger.kernel.org,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============1304886654=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBTZXAgMDUsIDIwMTkgYXQgMDc6MzE6MTFBTSArMDgwMCwgS3VlaGxpbmcsIEZlbGl4
-IHdyb3RlOgo+IFRoZXJlIGlzIG5vIHBvaW50IHJldHJ5aW5nIHBhZ2UgZmF1bHRzIGluIFZNSUQw
-LiBUaG9zZSBmYXVsdHMgYXJlCj4gYWx3YXlzIGZhdGFsLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEZl
-bGl4IEt1ZWhsaW5nIDxGZWxpeC5LdWVobGluZ0BhbWQuY29tPgoKVGhhbmtzISBJIGhhdmUgdmVy
-aWZpZWQgaXQgaW4gbXkgcGxhdGZvcm0uCgpSZXZpZXdlZC1hbmQtVGVzdGVkLWJ5OiBIdWFuZyBS
-dWkgPHJheS5odWFuZ0BhbWQuY29tPgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvZ2Z4aHViX3YxXzAuYyB8IDIgKysKPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4
-aHViX3YyXzAuYyB8IDIgKysKPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbW1odWJfdjFf
-MC5jICB8IDIgKysKPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbW1odWJfdjJfMC5jICB8
-IDIgKysKPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbW1odWJfdjlfNC5jICB8IDIgKysK
-PiAgNSBmaWxlcyBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeGh1Yl92MV8wLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9nZnhodWJfdjFfMC5jCj4gaW5kZXggNmNlMzdjZTc3ZDE0Li45ZWM0Mjk3ZTYx
-ZTUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4aHViX3YxXzAu
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeGh1Yl92MV8wLmMKPiBAQCAt
-MTc4LDYgKzE3OCw4IEBAIHN0YXRpYyB2b2lkIGdmeGh1Yl92MV8wX2VuYWJsZV9zeXN0ZW1fZG9t
-YWluKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQo+ICAJdG1wID0gUlJFRzMyX1NPQzE1KEdD
-LCAwLCBtbVZNX0NPTlRFWFQwX0NOVEwpOwo+ICAJdG1wID0gUkVHX1NFVF9GSUVMRCh0bXAsIFZN
-X0NPTlRFWFQwX0NOVEwsIEVOQUJMRV9DT05URVhULCAxKTsKPiAgCXRtcCA9IFJFR19TRVRfRklF
-TEQodG1wLCBWTV9DT05URVhUMF9DTlRMLCBQQUdFX1RBQkxFX0RFUFRILCAwKTsKPiArCXRtcCA9
-IFJFR19TRVRfRklFTEQodG1wLCBWTV9DT05URVhUMF9DTlRMLAo+ICsJCQkgICAgUkVUUllfUEVS
-TUlTU0lPTl9PUl9JTlZBTElEX1BBR0VfRkFVTFQsIDApOwo+ICAJV1JFRzMyX1NPQzE1KEdDLCAw
-LCBtbVZNX0NPTlRFWFQwX0NOVEwsIHRtcCk7Cj4gIH0KPiAgCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeGh1Yl92Ml8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
-L2FtZGdwdS9nZnhodWJfdjJfMC5jCj4gaW5kZXggOGI3ODlmNzUwYjcyLi5hOTIzODczNWQzNjEg
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4aHViX3YyXzAuYwo+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeGh1Yl92Ml8wLmMKPiBAQCAtMTY2
-LDYgKzE2Niw4IEBAIHN0YXRpYyB2b2lkIGdmeGh1Yl92Ml8wX2VuYWJsZV9zeXN0ZW1fZG9tYWlu
-KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQo+ICAJdG1wID0gUlJFRzMyX1NPQzE1KEdDLCAw
-LCBtbUdDVk1fQ09OVEVYVDBfQ05UTCk7Cj4gIAl0bXAgPSBSRUdfU0VUX0ZJRUxEKHRtcCwgR0NW
-TV9DT05URVhUMF9DTlRMLCBFTkFCTEVfQ09OVEVYVCwgMSk7Cj4gIAl0bXAgPSBSRUdfU0VUX0ZJ
-RUxEKHRtcCwgR0NWTV9DT05URVhUMF9DTlRMLCBQQUdFX1RBQkxFX0RFUFRILCAwKTsKPiArCXRt
-cCA9IFJFR19TRVRfRklFTEQodG1wLCBHQ1ZNX0NPTlRFWFQwX0NOVEwsCj4gKwkJCSAgICBSRVRS
-WV9QRVJNSVNTSU9OX09SX0lOVkFMSURfUEFHRV9GQVVMVCwgMCk7Cj4gIAlXUkVHMzJfU09DMTUo
-R0MsIDAsIG1tR0NWTV9DT05URVhUMF9DTlRMLCB0bXApOwo+ICB9Cj4gIAo+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92MV8wLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9tbWh1Yl92MV8wLmMKPiBpbmRleCBiOWQ2YzBiZmE1OTQuLjRjN2U4YzY0
-YTk0ZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92MV8w
-LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92MV8wLmMKPiBAQCAt
-MjA3LDYgKzIwNyw4IEBAIHN0YXRpYyB2b2lkIG1taHViX3YxXzBfZW5hYmxlX3N5c3RlbV9kb21h
-aW4oc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gIAl0bXAgPSBSUkVHMzJfU09DMTUoTU1I
-VUIsIDAsIG1tVk1fQ09OVEVYVDBfQ05UTCk7Cj4gIAl0bXAgPSBSRUdfU0VUX0ZJRUxEKHRtcCwg
-Vk1fQ09OVEVYVDBfQ05UTCwgRU5BQkxFX0NPTlRFWFQsIDEpOwo+ICAJdG1wID0gUkVHX1NFVF9G
-SUVMRCh0bXAsIFZNX0NPTlRFWFQwX0NOVEwsIFBBR0VfVEFCTEVfREVQVEgsIDApOwo+ICsJdG1w
-ID0gUkVHX1NFVF9GSUVMRCh0bXAsIFZNX0NPTlRFWFQwX0NOVEwsCj4gKwkJCSAgICBSRVRSWV9Q
-RVJNSVNTSU9OX09SX0lOVkFMSURfUEFHRV9GQVVMVCwgMCk7Cj4gIAlXUkVHMzJfU09DMTUoTU1I
-VUIsIDAsIG1tVk1fQ09OVEVYVDBfQ05UTCwgdG1wKTsKPiAgfQo+ICAKPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbW1odWJfdjJfMC5jIGIvZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvbW1odWJfdjJfMC5jCj4gaW5kZXggMzU0MmMyMDNjM2M4Li44NmVkOGNiOTE1
-YTggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbW1odWJfdjJfMC5j
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbW1odWJfdjJfMC5jCj4gQEAgLTE1
-Miw2ICsxNTIsOCBAQCBzdGF0aWMgdm9pZCBtbWh1Yl92Ml8wX2VuYWJsZV9zeXN0ZW1fZG9tYWlu
-KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQo+ICAJdG1wID0gUlJFRzMyX1NPQzE1KE1NSFVC
-LCAwLCBtbU1NVk1fQ09OVEVYVDBfQ05UTCk7Cj4gIAl0bXAgPSBSRUdfU0VUX0ZJRUxEKHRtcCwg
-TU1WTV9DT05URVhUMF9DTlRMLCBFTkFCTEVfQ09OVEVYVCwgMSk7Cj4gIAl0bXAgPSBSRUdfU0VU
-X0ZJRUxEKHRtcCwgTU1WTV9DT05URVhUMF9DTlRMLCBQQUdFX1RBQkxFX0RFUFRILCAwKTsKPiAr
-CXRtcCA9IFJFR19TRVRfRklFTEQodG1wLCBNTVZNX0NPTlRFWFQwX0NOVEwsCj4gKwkJCSAgICBS
-RVRSWV9QRVJNSVNTSU9OX09SX0lOVkFMSURfUEFHRV9GQVVMVCwgMCk7Cj4gIAlXUkVHMzJfU09D
-MTUoTU1IVUIsIDAsIG1tTU1WTV9DT05URVhUMF9DTlRMLCB0bXApOwo+ICB9Cj4gIAo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92OV80LmMgYi9kcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92OV80LmMKPiBpbmRleCAwY2Y3ZWY0NGI0YjUuLjY1
-Nzk3MGY5ZWJmYiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1
-Yl92OV80LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tbWh1Yl92OV80LmMK
-PiBAQCAtMjQwLDYgKzI0MCw4IEBAIHN0YXRpYyB2b2lkIG1taHViX3Y5XzRfZW5hYmxlX3N5c3Rl
-bV9kb21haW4oc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsCj4gIAkJCQkgIGh1YmlkICogTU1I
-VUJfSU5TVEFOQ0VfUkVHSVNURVJfT0ZGU0VUKTsKPiAgCXRtcCA9IFJFR19TRVRfRklFTEQodG1w
-LCBWTUwyVkMwX1ZNX0NPTlRFWFQwX0NOVEwsIEVOQUJMRV9DT05URVhULCAxKTsKPiAgCXRtcCA9
-IFJFR19TRVRfRklFTEQodG1wLCBWTUwyVkMwX1ZNX0NPTlRFWFQwX0NOVEwsIFBBR0VfVEFCTEVf
-REVQVEgsIDApOwo+ICsJdG1wID0gUkVHX1NFVF9GSUVMRCh0bXAsIFZNTDJWQzBfVk1fQ09OVEVY
-VDBfQ05UTCwKPiArCQkJICAgIFJFVFJZX1BFUk1JU1NJT05fT1JfSU5WQUxJRF9QQUdFX0ZBVUxU
-LCAwKTsKPiAgCVdSRUczMl9TT0MxNV9PRkZTRVQoTU1IVUIsIDAsIG1tVk1MMlZDMF9WTV9DT05U
-RVhUMF9DTlRMLAo+ICAJCQkgICAgaHViaWQgKiBNTUhVQl9JTlNUQU5DRV9SRUdJU1RFUl9PRkZT
-RVQsIHRtcCk7Cj4gIH0KPiAtLSAKPiAyLjE3LjEKPiAKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9hbWQtZ2Z4
+--===============1304886654==
+Content-Type: multipart/alternative; boundary="0000000000005776e70591d27847"
+
+--0000000000005776e70591d27847
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Daniel,
+
+This is the previous patch relevant to this discussion:
+https://patchwork.freedesktop.org/patch/314343/
+
+So before I refactored the code to leverage drm_minor, I kept my own list
+of "known" drm_device inside the controller and have explicit register and
+unregister function to init per device cgroup defaults.  For v4, I
+refactored the per device cgroup properties and embedded them into the
+drm_device and continue to only use the primary minor as a way to index the
+device as v3.
+
+Regards,
+Kenny
+
+On Wed, Sep 4, 2019 at 4:54 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+
+> On Tue, Sep 03, 2019 at 04:43:45PM -0400, Kenny Ho wrote:
+> > On Tue, Sep 3, 2019 at 4:12 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+> > > On Tue, Sep 3, 2019 at 9:45 PM Kenny Ho <y2kenny@gmail.com> wrote:
+> > > > On Tue, Sep 3, 2019 at 3:57 AM Daniel Vetter <daniel@ffwll.ch>
+> wrote:
+> > > > > Iterating over minors for cgroups sounds very, very wrong. Why do
+> we care
+> > > > > whether a buffer was allocated through kms dumb vs render nodes?
+> > > > >
+> > > > > I'd expect all the cgroup stuff to only work on drm_device, if it
+> does
+> > > > > care about devices.
+> > > > >
+> > > > > (I didn't look through the patch series to find out where exactly
+> you're
+> > > > > using this, so maybe I'm off the rails here).
+> > > >
+> > > > I am exposing this to remove the need to keep track of a separate
+> list
+> > > > of available drm_device in the system (to remove the registering and
+> > > > unregistering of drm_device to the cgroup subsystem and just use
+> > > > drm_minor as the single source of truth.)  I am only filtering out
+> the
+> > > > render nodes minor because they point to the same drm_device and is
+> > > > confusing.
+> > > >
+> > > > Perhaps I missed an obvious way to list the drm devices without
+> > > > iterating through the drm_minors?  (I probably jumped to the minors
+> > > > because $major:$minor is the convention to address devices in
+> cgroup.)
+> > >
+> > > Create your own if there's nothing, because you need to anyway:
+> > > - You need special locking anyway, we can't just block on the idr lock
+> > > for everything.
+> > > - This needs to refcount drm_device, no the minors.
+> > >
+> > > Iterating over stuff still feels kinda wrong still, because normally
+> > > the way we register/unregister userspace api (and cgroups isn't
+> > > anything else from a drm driver pov) is by adding more calls to
+> > > drm_dev_register/unregister. If you put a drm_cg_register/unregister
+> > > call in there we have a clean separation, and you can track all the
+> > > currently active devices however you want. Iterating over objects that
+> > > can be hotunplugged any time tends to get really complicated really
+> > > quickly.
+> >
+> > Um... I thought this is what I had previously.  Did I misunderstood
+> > your feedback from v3?  Doesn't drm_minor already include all these
+> > facilities so isn't creating my own kind of reinventing the wheel?
+> > (as I did previously?)  drm_minor_register is called inside
+> > drm_dev_register so isn't leveraging existing drm_minor facilities
+> > much better solution?
+>
+> Hm the previous version already dropped out of my inbox, so hard to find
+> it again. And I couldn't find this in archieves. Do you have pointers?
+>
+> I thought the previous version did cgroup init separately from drm_device
+> setup, and I guess I suggested that it should be moved int
+> drm_dev_register/unregister?
+>
+> Anyway, I don't think reusing the drm_minor registration makes sense,
+> since we want to be on the drm_device, not on the minor. Which is a bit
+> awkward for cgroups, which wants to identify devices using major.minor
+> pairs. But I guess drm is the first subsystem where 1 device can be
+> exposed through multiple minors ...
+>
+> Tejun, any suggestions on this?
+>
+> Anyway, I think just leveraging existing code because it can be abused to
+> make it fit for us doesn't make sense. E.g. for the kms side we also don't
+> piggy-back on top of drm_minor_register (it would be technically
+> possible), but instead we have drm_modeset_register_all().
+> -Daniel
+>
+> >
+> > Kenny
+> >
+> > >
+> > >
+> > > >
+> > > > Kenny
+> > > >
+> > > > > -Daniel
+> > > > >
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/drm_drv.c      | 19 +++++++++++++++++++
+> > > > > >  drivers/gpu/drm/drm_internal.h |  4 ----
+> > > > > >  include/drm/drm_drv.h          |  4 ++++
+> > > > > >  3 files changed, 23 insertions(+), 4 deletions(-)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/drm_drv.c
+> b/drivers/gpu/drm/drm_drv.c
+> > > > > > index 862621494a93..000cddabd970 100644
+> > > > > > --- a/drivers/gpu/drm/drm_drv.c
+> > > > > > +++ b/drivers/gpu/drm/drm_drv.c
+> > > > > > @@ -254,11 +254,13 @@ struct drm_minor
+> *drm_minor_acquire(unsigned int minor_id)
+> > > > > >
+> > > > > >       return minor;
+> > > > > >  }
+> > > > > > +EXPORT_SYMBOL(drm_minor_acquire);
+> > > > > >
+> > > > > >  void drm_minor_release(struct drm_minor *minor)
+> > > > > >  {
+> > > > > >       drm_dev_put(minor->dev);
+> > > > > >  }
+> > > > > > +EXPORT_SYMBOL(drm_minor_release);
+> > > > > >
+> > > > > >  /**
+> > > > > >   * DOC: driver instance overview
+> > > > > > @@ -1078,6 +1080,23 @@ int drm_dev_set_unique(struct drm_device
+> *dev, const char *name)
+> > > > > >  }
+> > > > > >  EXPORT_SYMBOL(drm_dev_set_unique);
+> > > > > >
+> > > > > > +/**
+> > > > > > + * drm_minor_for_each - Iterate through all stored DRM minors
+> > > > > > + * @fn: Function to be called for each pointer.
+> > > > > > + * @data: Data passed to callback function.
+> > > > > > + *
+> > > > > > + * The callback function will be called for each @drm_minor
+> entry, passing
+> > > > > > + * the minor, the entry and @data.
+> > > > > > + *
+> > > > > > + * If @fn returns anything other than %0, the iteration stops
+> and that
+> > > > > > + * value is returned from this function.
+> > > > > > + */
+> > > > > > +int drm_minor_for_each(int (*fn)(int id, void *p, void *data),
+> void *data)
+> > > > > > +{
+> > > > > > +     return idr_for_each(&drm_minors_idr, fn, data);
+> > > > > > +}
+> > > > > > +EXPORT_SYMBOL(drm_minor_for_each);
+> > > > > > +
+> > > > > >  /*
+> > > > > >   * DRM Core
+> > > > > >   * The DRM core module initializes all global DRM objects and
+> makes them
+> > > > > > diff --git a/drivers/gpu/drm/drm_internal.h
+> b/drivers/gpu/drm/drm_internal.h
+> > > > > > index e19ac7ca602d..6bfad76f8e78 100644
+> > > > > > --- a/drivers/gpu/drm/drm_internal.h
+> > > > > > +++ b/drivers/gpu/drm/drm_internal.h
+> > > > > > @@ -54,10 +54,6 @@ void drm_prime_destroy_file_private(struct
+> drm_prime_file_private *prime_fpriv);
+> > > > > >  void drm_prime_remove_buf_handle_locked(struct
+> drm_prime_file_private *prime_fpriv,
+> > > > > >                                       struct dma_buf *dma_buf);
+> > > > > >
+> > > > > > -/* drm_drv.c */
+> > > > > > -struct drm_minor *drm_minor_acquire(unsigned int minor_id);
+> > > > > > -void drm_minor_release(struct drm_minor *minor);
+> > > > > > -
+> > > > > >  /* drm_vblank.c */
+> > > > > >  void drm_vblank_disable_and_save(struct drm_device *dev,
+> unsigned int pipe);
+> > > > > >  void drm_vblank_cleanup(struct drm_device *dev);
+> > > > > > diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> > > > > > index 68ca736c548d..24f8d054c570 100644
+> > > > > > --- a/include/drm/drm_drv.h
+> > > > > > +++ b/include/drm/drm_drv.h
+> > > > > > @@ -799,5 +799,9 @@ static inline bool
+> drm_drv_uses_atomic_modeset(struct drm_device *dev)
+> > > > > >
+> > > > > >  int drm_dev_set_unique(struct drm_device *dev, const char
+> *name);
+> > > > > >
+> > > > > > +int drm_minor_for_each(int (*fn)(int id, void *p, void *data),
+> void *data);
+> > > > > > +
+> > > > > > +struct drm_minor *drm_minor_acquire(unsigned int minor_id);
+> > > > > > +void drm_minor_release(struct drm_minor *minor);
+> > > > > >
+> > > > > >  #endif
+> > > > > > --
+> > > > > > 2.22.0
+> > > > > >
+> > > > >
+> > > > > --
+> > > > > Daniel Vetter
+> > > > > Software Engineer, Intel Corporation
+> > > > > http://blog.ffwll.ch
+> > >
+> > >
+> > >
+> > > --
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > +41 (0) 79 365 57 48 - http://blog.ffwll.ch
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+>
+
+--0000000000005776e70591d27847
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Daniel,<br><br>This is the previous patch relevant to t=
+his discussion:<br><a href=3D"https://patchwork.freedesktop.org/patch/31434=
+3/">https://patchwork.freedesktop.org/patch/314343/</a><br><br>So before I =
+refactored the code to leverage drm_minor, I kept my own list of &quot;know=
+n&quot; drm_device inside the controller and have explicit register and unr=
+egister function to init per device cgroup defaults.=C2=A0 For v4, I refact=
+ored the per device cgroup properties and embedded them into the drm_device=
+ and continue to only use the primary minor as a way to index the device as=
+ v3.<div><br></div><div>Regards,<br>Kenny</div></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep 4, 2019 at 4:54 =
+AM Daniel Vetter &lt;<a href=3D"mailto:daniel@ffwll.ch">daniel@ffwll.ch</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On T=
+ue, Sep 03, 2019 at 04:43:45PM -0400, Kenny Ho wrote:<br>
+&gt; On Tue, Sep 3, 2019 at 4:12 PM Daniel Vetter &lt;<a href=3D"mailto:dan=
+iel@ffwll.ch" target=3D"_blank">daniel@ffwll.ch</a>&gt; wrote:<br>
+&gt; &gt; On Tue, Sep 3, 2019 at 9:45 PM Kenny Ho &lt;<a href=3D"mailto:y2k=
+enny@gmail.com" target=3D"_blank">y2kenny@gmail.com</a>&gt; wrote:<br>
+&gt; &gt; &gt; On Tue, Sep 3, 2019 at 3:57 AM Daniel Vetter &lt;<a href=3D"=
+mailto:daniel@ffwll.ch" target=3D"_blank">daniel@ffwll.ch</a>&gt; wrote:<br=
+>
+&gt; &gt; &gt; &gt; Iterating over minors for cgroups sounds very, very wro=
+ng. Why do we care<br>
+&gt; &gt; &gt; &gt; whether a buffer was allocated through kms dumb vs rend=
+er nodes?<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; I&#39;d expect all the cgroup stuff to only work on drm=
+_device, if it does<br>
+&gt; &gt; &gt; &gt; care about devices.<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; (I didn&#39;t look through the patch series to find out=
+ where exactly you&#39;re<br>
+&gt; &gt; &gt; &gt; using this, so maybe I&#39;m off the rails here).<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; I am exposing this to remove the need to keep track of a sep=
+arate list<br>
+&gt; &gt; &gt; of available drm_device in the system (to remove the registe=
+ring and<br>
+&gt; &gt; &gt; unregistering of drm_device to the cgroup subsystem and just=
+ use<br>
+&gt; &gt; &gt; drm_minor as the single source of truth.)=C2=A0 I am only fi=
+ltering out the<br>
+&gt; &gt; &gt; render nodes minor because they point to the same drm_device=
+ and is<br>
+&gt; &gt; &gt; confusing.<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Perhaps I missed an obvious way to list the drm devices with=
+out<br>
+&gt; &gt; &gt; iterating through the drm_minors?=C2=A0 (I probably jumped t=
+o the minors<br>
+&gt; &gt; &gt; because $major:$minor is the convention to address devices i=
+n cgroup.)<br>
+&gt; &gt;<br>
+&gt; &gt; Create your own if there&#39;s nothing, because you need to anywa=
+y:<br>
+&gt; &gt; - You need special locking anyway, we can&#39;t just block on the=
+ idr lock<br>
+&gt; &gt; for everything.<br>
+&gt; &gt; - This needs to refcount drm_device, no the minors.<br>
+&gt; &gt;<br>
+&gt; &gt; Iterating over stuff still feels kinda wrong still, because norma=
+lly<br>
+&gt; &gt; the way we register/unregister userspace api (and cgroups isn&#39=
+;t<br>
+&gt; &gt; anything else from a drm driver pov) is by adding more calls to<b=
+r>
+&gt; &gt; drm_dev_register/unregister. If you put a drm_cg_register/unregis=
+ter<br>
+&gt; &gt; call in there we have a clean separation, and you can track all t=
+he<br>
+&gt; &gt; currently active devices however you want. Iterating over objects=
+ that<br>
+&gt; &gt; can be hotunplugged any time tends to get really complicated real=
+ly<br>
+&gt; &gt; quickly.<br>
+&gt; <br>
+&gt; Um... I thought this is what I had previously.=C2=A0 Did I misundersto=
+od<br>
+&gt; your feedback from v3?=C2=A0 Doesn&#39;t drm_minor already include all=
+ these<br>
+&gt; facilities so isn&#39;t creating my own kind of reinventing the wheel?=
+<br>
+&gt; (as I did previously?)=C2=A0 drm_minor_register is called inside<br>
+&gt; drm_dev_register so isn&#39;t leveraging existing drm_minor facilities=
+<br>
+&gt; much better solution?<br>
+<br>
+Hm the previous version already dropped out of my inbox, so hard to find<br=
+>
+it again. And I couldn&#39;t find this in archieves. Do you have pointers?<=
+br>
+<br>
+I thought the previous version did cgroup init separately from drm_device<b=
+r>
+setup, and I guess I suggested that it should be moved int<br>
+drm_dev_register/unregister?<br>
+<br>
+Anyway, I don&#39;t think reusing the drm_minor registration makes sense,<b=
+r>
+since we want to be on the drm_device, not on the minor. Which is a bit<br>
+awkward for cgroups, which wants to identify devices using major.minor<br>
+pairs. But I guess drm is the first subsystem where 1 device can be<br>
+exposed through multiple minors ...<br>
+<br>
+Tejun, any suggestions on this?<br>
+<br>
+Anyway, I think just leveraging existing code because it can be abused to<b=
+r>
+make it fit for us doesn&#39;t make sense. E.g. for the kms side we also do=
+n&#39;t<br>
+piggy-back on top of drm_minor_register (it would be technically<br>
+possible), but instead we have drm_modeset_register_all().<br>
+-Daniel<br>
+<br>
+&gt; <br>
+&gt; Kenny<br>
+&gt; <br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Kenny<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; -Daniel<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; ---<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 drivers/gpu/drm/drm_drv.c=C2=A0 =C2=A0 =C2=
+=A0 | 19 +++++++++++++++++++<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 drivers/gpu/drm/drm_internal.h |=C2=A0 4 ---=
+-<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 include/drm/drm_drv.h=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 |=C2=A0 4 ++++<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 3 files changed, 23 insertions(+), 4 deletio=
+ns(-)<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/g=
+pu/drm/drm_drv.c<br>
+&gt; &gt; &gt; &gt; &gt; index 862621494a93..000cddabd970 100644<br>
+&gt; &gt; &gt; &gt; &gt; --- a/drivers/gpu/drm/drm_drv.c<br>
+&gt; &gt; &gt; &gt; &gt; +++ b/drivers/gpu/drm/drm_drv.c<br>
+&gt; &gt; &gt; &gt; &gt; @@ -254,11 +254,13 @@ struct drm_minor *drm_minor_=
+acquire(unsigned int minor_id)<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return minor;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 }<br>
+&gt; &gt; &gt; &gt; &gt; +EXPORT_SYMBOL(drm_minor_acquire);<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 void drm_minor_release(struct drm_minor *min=
+or)<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 {<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0drm_dev_put(minor-&gt;de=
+v);<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 }<br>
+&gt; &gt; &gt; &gt; &gt; +EXPORT_SYMBOL(drm_minor_release);<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 /**<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0* DOC: driver instance overview<br>
+&gt; &gt; &gt; &gt; &gt; @@ -1078,6 +1080,23 @@ int drm_dev_set_unique(stru=
+ct drm_device *dev, const char *name)<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 }<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 EXPORT_SYMBOL(drm_dev_set_unique);<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; +/**<br>
+&gt; &gt; &gt; &gt; &gt; + * drm_minor_for_each - Iterate through all store=
+d DRM minors<br>
+&gt; &gt; &gt; &gt; &gt; + * @fn: Function to be called for each pointer.<b=
+r>
+&gt; &gt; &gt; &gt; &gt; + * @data: Data passed to callback function.<br>
+&gt; &gt; &gt; &gt; &gt; + *<br>
+&gt; &gt; &gt; &gt; &gt; + * The callback function will be called for each =
+@drm_minor entry, passing<br>
+&gt; &gt; &gt; &gt; &gt; + * the minor, the entry and @data.<br>
+&gt; &gt; &gt; &gt; &gt; + *<br>
+&gt; &gt; &gt; &gt; &gt; + * If @fn returns anything other than %0, the ite=
+ration stops and that<br>
+&gt; &gt; &gt; &gt; &gt; + * value is returned from this function.<br>
+&gt; &gt; &gt; &gt; &gt; + */<br>
+&gt; &gt; &gt; &gt; &gt; +int drm_minor_for_each(int (*fn)(int id, void *p,=
+ void *data), void *data)<br>
+&gt; &gt; &gt; &gt; &gt; +{<br>
+&gt; &gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0return idr_for_each(&amp;drm_=
+minors_idr, fn, data);<br>
+&gt; &gt; &gt; &gt; &gt; +}<br>
+&gt; &gt; &gt; &gt; &gt; +EXPORT_SYMBOL(drm_minor_for_each);<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 /*<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0* DRM Core<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0* The DRM core module initializes all =
+global DRM objects and makes them<br>
+&gt; &gt; &gt; &gt; &gt; diff --git a/drivers/gpu/drm/drm_internal.h b/driv=
+ers/gpu/drm/drm_internal.h<br>
+&gt; &gt; &gt; &gt; &gt; index e19ac7ca602d..6bfad76f8e78 100644<br>
+&gt; &gt; &gt; &gt; &gt; --- a/drivers/gpu/drm/drm_internal.h<br>
+&gt; &gt; &gt; &gt; &gt; +++ b/drivers/gpu/drm/drm_internal.h<br>
+&gt; &gt; &gt; &gt; &gt; @@ -54,10 +54,6 @@ void drm_prime_destroy_file_pri=
+vate(struct drm_prime_file_private *prime_fpriv);<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 void drm_prime_remove_buf_handle_locked(stru=
+ct drm_prime_file_private *prime_fpriv,<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0struct dma_buf *dma_buf);<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; -/* drm_drv.c */<br>
+&gt; &gt; &gt; &gt; &gt; -struct drm_minor *drm_minor_acquire(unsigned int =
+minor_id);<br>
+&gt; &gt; &gt; &gt; &gt; -void drm_minor_release(struct drm_minor *minor);<=
+br>
+&gt; &gt; &gt; &gt; &gt; -<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 /* drm_vblank.c */<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 void drm_vblank_disable_and_save(struct drm_=
+device *dev, unsigned int pipe);<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 void drm_vblank_cleanup(struct drm_device *d=
+ev);<br>
+&gt; &gt; &gt; &gt; &gt; diff --git a/include/drm/drm_drv.h b/include/drm/d=
+rm_drv.h<br>
+&gt; &gt; &gt; &gt; &gt; index 68ca736c548d..24f8d054c570 100644<br>
+&gt; &gt; &gt; &gt; &gt; --- a/include/drm/drm_drv.h<br>
+&gt; &gt; &gt; &gt; &gt; +++ b/include/drm/drm_drv.h<br>
+&gt; &gt; &gt; &gt; &gt; @@ -799,5 +799,9 @@ static inline bool drm_drv_use=
+s_atomic_modeset(struct drm_device *dev)<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 int drm_dev_set_unique(struct drm_device *de=
+v, const char *name);<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt; +int drm_minor_for_each(int (*fn)(int id, void *p,=
+ void *data), void *data);<br>
+&gt; &gt; &gt; &gt; &gt; +<br>
+&gt; &gt; &gt; &gt; &gt; +struct drm_minor *drm_minor_acquire(unsigned int =
+minor_id);<br>
+&gt; &gt; &gt; &gt; &gt; +void drm_minor_release(struct drm_minor *minor);<=
+br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; &gt;=C2=A0 #endif<br>
+&gt; &gt; &gt; &gt; &gt; --<br>
+&gt; &gt; &gt; &gt; &gt; 2.22.0<br>
+&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; --<br>
+&gt; &gt; &gt; &gt; Daniel Vetter<br>
+&gt; &gt; &gt; &gt; Software Engineer, Intel Corporation<br>
+&gt; &gt; &gt; &gt; <a href=3D"http://blog.ffwll.ch" rel=3D"noreferrer" tar=
+get=3D"_blank">http://blog.ffwll.ch</a><br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt; --<br>
+&gt; &gt; Daniel Vetter<br>
+&gt; &gt; Software Engineer, Intel Corporation<br>
+&gt; &gt; +41 (0) 79 365 57 48 - <a href=3D"http://blog.ffwll.ch" rel=3D"no=
+referrer" target=3D"_blank">http://blog.ffwll.ch</a><br>
+<br>
+-- <br>
+Daniel Vetter<br>
+Software Engineer, Intel Corporation<br>
+<a href=3D"http://blog.ffwll.ch" rel=3D"noreferrer" target=3D"_blank">http:=
+//blog.ffwll.ch</a><br>
+</blockquote></div>
+
+--0000000000005776e70591d27847--
+
+--===============1304886654==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1304886654==--
