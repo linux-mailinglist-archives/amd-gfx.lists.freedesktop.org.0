@@ -1,51 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26239ACA46
-	for <lists+amd-gfx@lfdr.de>; Sun,  8 Sep 2019 03:59:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88B0AD00C
+	for <lists+amd-gfx@lfdr.de>; Sun,  8 Sep 2019 18:58:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 047C789D73;
-	Sun,  8 Sep 2019 01:59:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 545BF895C8;
+	Sun,  8 Sep 2019 16:58:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-vs1-f67.google.com (mail-vs1-f67.google.com
- [209.85.217.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2D0A89D49;
- Sun,  8 Sep 2019 01:58:58 +0000 (UTC)
-Received: by mail-vs1-f67.google.com with SMTP id g11so6190326vsr.8;
- Sat, 07 Sep 2019 18:58:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=9wvcp3nV7La4YoI+ieadHx02sDBCIHvis3wKPKJAabs=;
- b=IKDAZoUJSksUTckWv2HFSdQx4O9ft0kR8GtF3+lrPOVaAOjcwI6+gJ9bY6ZzaeJ8TC
- HL4qxDlsSil4mCJVt9KTR4Mr8vlxI8REI7qutmmUxywTfbjGtU7XbHHL1D5x/9zRtT43
- UewO1lQVwi5IkifpFZ/+Fxc2FjVu5ilBx2lCXZQmD5hbjYOQkWCXB6ycOv4hCoeJFDsZ
- mg8UZjd0QERP+th7WvuxXiiZjHxp/niokOgy9yvpZEoKs5R1FtvXcA315kqmIDnB5jFq
- 1CqnYhL3Op0IvG4zPQqKkOHYXgD/plPZsoxAnQQpNtLinSaLWBpc3DNuZqVAexUVS3oz
- up7Q==
-X-Gm-Message-State: APjAAAWSLJ175T8e1hlnp9o5SnhAbKtiJACgqnWlT956D8Q7gtvh4DsO
- z185qfbKLHvnZWrQVte0yZUp0z6hi00gerr/Nro=
-X-Google-Smtp-Source: APXvYqylZV390V/V1oizqnab5+4dm12EOj8yZUV8cYoKWUvOfP7UehtT5iz9+JYf89ReeVrKsPeKsLwhqt0H+c6F8EM=
-X-Received: by 2002:a67:db12:: with SMTP id z18mr7697263vsj.18.1567907937861; 
- Sat, 07 Sep 2019 18:58:57 -0700 (PDT)
+X-Greylist: delayed 372 seconds by postgrey-1.36 at gabe;
+ Sat, 07 Sep 2019 15:56:51 UTC
+Received: from smtprelay.hostedemail.com (smtprelay0131.hostedemail.com
+ [216.40.44.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88C1A89D4D;
+ Sat,  7 Sep 2019 15:56:51 +0000 (UTC)
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
+ [10.5.19.251])
+ by smtpgrave03.hostedemail.com (Postfix) with ESMTP id 3A68C180357DB;
+ Sat,  7 Sep 2019 15:50:39 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay04.hostedemail.com (Postfix) with ESMTP id CD557180A884B;
+ Sat,  7 Sep 2019 15:50:37 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com,
+ :::::::::::::::::::::,
+ RULES_HIT:41:355:379:599:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1537:1560:1593:1594:1711:1714:1730:1747:1777:1792:2393:2559:2562:2828:3138:3139:3140:3141:3142:3622:3865:3866:3867:3872:3874:4321:5007:8531:10004:10400:10848:11658:11914:12297:12740:12760:12895:13069:13311:13357:13439:14659:21080:21627:30051:30054:30060:30069:30091,
+ 0,
+ RBL:47.151.152.152:@perches.com:.lbl8.mailshell.net-62.8.0.100 64.201.201.201,
+ CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none, DomainCache:0,
+ MSF:not bulk, SPF:fn, MSBL:0, DNSBL:neutral, Custom_rules:0:0:0, LFtime:27,
+ LUA_SUMMARY:none
+X-HE-Tag: rake73_3f7a51a030944
+X-Filterd-Recvd-Size: 1669
+Received: from XPS-9350.home (unknown [47.151.152.152])
+ (Authenticated sender: joe@perches.com)
+ by omf04.hostedemail.com (Postfix) with ESMTPA;
+ Sat,  7 Sep 2019 15:50:36 +0000 (UTC)
+Message-ID: <b387b7ea498eb96d94f47b22ac4b11c75518513a.camel@perches.com>
+Subject: Re: [PATCH AUTOSEL 4.19 044/167] drm/amdgpu: validate user pitch
+ alignment
+From: Joe Perches <joe@perches.com>
+To: Sasha Levin <sashal@kernel.org>, Michel =?ISO-8859-1?Q?D=E4nzer?=
+ <michel@daenzer.net>
+Date: Sat, 07 Sep 2019 08:50:34 -0700
+In-Reply-To: <20190904120823.GW5281@sasha-vm>
+References: <20190903162519.7136-1-sashal@kernel.org>
+ <20190903162519.7136-44-sashal@kernel.org>
+ <7957107d-634f-4771-327e-99fdd5e6474e@daenzer.net>
+ <20190903170347.GA24357@kroah.com> <20190903200139.GJ5281@sasha-vm>
+ <CAKMK7uFpBnkF4xABdkDMZ8TYhL4jg6ZuGyHGyVeBxc9rkyUtXQ@mail.gmail.com>
+ <829c5912-cf80-81d0-7400-d01d286861fc@daenzer.net>
+ <20190904120823.GW5281@sasha-vm>
+User-Agent: Evolution 3.32.1-2 
 MIME-Version: 1.0
-References: <20190805140119.7337-1-kraxel@redhat.com>
- <20190805140119.7337-9-kraxel@redhat.com>
- <20190813151115.GA29955@ulmo>
- <20190814055827.6hrxj6daovxxnnvw@sirius.home.kraxel.org>
- <20190814093524.GA31345@ulmo>
- <20190814101411.lj3p6zjzbjvnnjf4@sirius.home.kraxel.org>
- <CACAvsv5Rar9F=Wf-9HBpndY4QaQZcGCx05j0esvV9pitM=JoGg@mail.gmail.com>
- <20190821115523.GA21839@ulmo>
-In-Reply-To: <20190821115523.GA21839@ulmo>
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Date: Sat, 7 Sep 2019 21:58:46 -0400
-Message-ID: <CAKb7UvjXq0ptiPYu5EGH6sJAbbRjN3X4f_knrxyOHD1Zi7P1BA@mail.gmail.com>
-Subject: Re: [Nouveau] [Intel-gfx] [PATCH v6 08/17] drm/ttm: use gem vma_node
-To: Thierry Reding <thierry.reding@gmail.com>
+X-Mailman-Approved-At: Sun, 08 Sep 2019 16:57:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -57,46 +67,21 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ben Skeggs <skeggsb@gmail.com>, ML nouveau <nouveau@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Ben Skeggs <bskeggs@redhat.com>, linux-graphics-maintainer@vmware.com,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- spice-devel@lists.freedesktop.org, Gerd Hoffmann <kraxel@redhat.com>
+Cc: Yu Zhao <yuzhao@google.com>, Dave Airlie <airlied@linux.ie>,
+ Greg KH <gregkh@linuxfoundation.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, stable <stable@vger.kernel.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBBdWcgMjEsIDIwMTkgYXQgNzo1NSBBTSBUaGllcnJ5IFJlZGluZyA8dGhpZXJyeS5y
-ZWRpbmdAZ21haWwuY29tPiB3cm90ZToKPgo+IE9uIFdlZCwgQXVnIDIxLCAyMDE5IGF0IDA0OjMz
-OjU4UE0gKzEwMDAsIEJlbiBTa2VnZ3Mgd3JvdGU6Cj4gPiBPbiBXZWQsIDE0IEF1ZyAyMDE5IGF0
-IDIwOjE0LCBHZXJkIEhvZmZtYW5uIDxrcmF4ZWxAcmVkaGF0LmNvbT4gd3JvdGU6Cj4gPiA+Cj4g
-PiA+ICAgSGksCj4gPiA+Cj4gPiA+ID4gPiBDaGFuZ2luZyB0aGUgb3JkZXIgZG9lc24ndCBsb29r
-IGhhcmQuICBQYXRjaCBhdHRhY2hlZCAodW50ZXN0ZWQsIGhhdmUgbm8KPiA+ID4gPiA+IHRlc3Qg
-aGFyZHdhcmUpLiAgQnV0IG1heWJlIEkgbWlzc2VkIHNvbWUgZGV0YWlsIC4uLgo+ID4gPiA+Cj4g
-PiA+ID4gSSBjYW1lIHVwIHdpdGggc29tZXRoaW5nIHZlcnkgc2ltaWxhciBieSBzcGxpdHRpbmcg
-dXAgbm91dmVhdV9ib19uZXcoKQo+ID4gPiA+IGludG8gYWxsb2NhdGlvbiBhbmQgaW5pdGlhbGl6
-YXRpb24gc3RlcHMsIHNvIHRoYXQgd2hlbiBuZWNlc3NhcnkgdGhlIEdFTQo+ID4gPiA+IG9iamVj
-dCBjYW4gYmUgaW5pdGlhbGl6ZWQgaW4gYmV0d2Vlbi4gSSB0aGluayB0aGF0J3Mgc2xpZ2h0bHkg
-bW9yZQo+ID4gPiA+IGZsZXhpYmxlIGFuZCBlYXNpZXIgdG8gdW5kZXJzdGFuZCB0aGFuIGEgYm9v
-bGVhbiBmbGFnLgo+ID4gPgo+ID4gPiBZZXMsIHRoYXQgc2hvdWxkIHdvcmsgdG9vLgo+ID4gPgo+
-ID4gPiBBY2tlZC1ieTogR2VyZCBIb2ZmbWFubiA8a3JheGVsQHJlZGhhdC5jb20+Cj4gPiBBY2tl
-ZC1ieTogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+Cj4gVGhhbmtzIGd1eXMsIGFw
-cGxpZWQgdG8gZHJtLW1pc2MtbmV4dC4KCkhpIFRoaWVycnksCgpJbml0aWFsIGludmVzdGlnYXRp
-b25zIHN1Z2dlc3QgdGhhdCB0aGlzIGNvbW1pdCBjdXJyZW50bHkgaW4gZHJtLW5leHQKCmNvbW1p
-dCAwMTljYmQ0YTRmZWIzYWEzYTkxN2Q3OGU3MTEwZTMwMTFiYmZmNmQ1CkF1dGhvcjogVGhpZXJy
-eSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KRGF0ZTogICBXZWQgQXVnIDE0IDExOjAwOjQ4
-IDIwMTkgKzAyMDAKCiAgICBkcm0vbm91dmVhdTogSW5pdGlhbGl6ZSBHRU0gb2JqZWN0IGJlZm9y
-ZSBUVE0gb2JqZWN0CgpicmVha3Mgbm91dmVhdSB1c2Vyc3BhY2Ugd2hpY2ggdHJpZXMgdG8gYWxs
-b2NhdGUgR0VNIG9iamVjdHMgd2l0aCBhCm5vbi1wYWdlLWFsaWduZWQgc2l6ZS4gUHJldmlvdXNs
-eSBub3V2ZWF1X2dlbV9uZXcgd291bGQganVzdCBjYWxsCm5vdXZlYXVfYm9faW5pdCB3aGljaCB3
-b3VsZCBjYWxsIG5vdXZlYXVfYm9fZml4dXBfYWxpZ24gYmVmb3JlCmluaXRpYWxpemluZyB0aGUg
-R0VNIG9iamVjdC4gV2l0aCB0aGlzIGNoYW5nZSwgaXQgaXMgZG9uZSBhZnRlci4gV2hhdApkbyB5
-b3UgdGhpbmsgLS0gT0sgdG8ganVzdCBtb3ZlIHRoYXQgYml0IG9mIGxvZ2ljIGludG8gdGhlIG5l
-dwpub3V2ZWF1X2JvX2FsbG9jKCkgKGFuZCBtYWtlIHNpemUvYWxpZ24gYmUgcG9pbnRlcnMgc28g
-dGhhdCB0aGV5IGNhbgpiZSBmaXhlZCB1cD8pCgpDaGVlcnMsCgogIC1pbGlhCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0
-CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+T24gV2VkLCAyMDE5LTA5LTA0IGF0IDA4OjA4IC0wNDAwLCBTYXNoYSBMZXZpbiB3cm90ZToKPiBp
+dCdzIGJldHRlciB0byBnZXQKPiBpdCByaWdodCByYXRoZXIgdGhhbiB0byBiZSBkb25lIHF1aWNr
+bHkgOikKClRoYXQgYWxzbyBhcHBsaWVzIHRvIHRoZSBpbml0aWFsIHNlbGVjdGlvbiBvZgpwYXRj
+aGVzIGZvciB0aGUgc3RhYmxlIHRyZWVzLgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vYW1kLWdmeA==
