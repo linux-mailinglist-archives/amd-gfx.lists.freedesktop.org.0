@@ -1,90 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866C2AF21D
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Sep 2019 21:59:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D52BAF2B4
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Sep 2019 23:53:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B05726E990;
-	Tue, 10 Sep 2019 19:59:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4284B6E9C2;
+	Tue, 10 Sep 2019 21:53:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770057.outbound.protection.outlook.com [40.107.77.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 514406E990
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Sep 2019 19:59:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DlxAtIAGHg/mYyrfq8BB9/v7xKxYjFlo0yAbYCPNDEpsf91expAiXAySG2QH4olkC4jk4gWf0qyP4EGVR4GSKbZym31+LupxCaSZkls9A1W9g19IHnmhxl7dHf48o6WV3SLySx8Vi/RSpuy7cpxxScZyv9jxmXH92uJDSDR4vrU2QgDuWeBUV/rMmlffUV9DucdAXJ/oysa6gP/Ct9qQRkUpawDgdeocP25q23qc5GpQv+WXnHUOORPVmnmTpy6OnpQICwUi8buYX7skAbwFcNQhr7c1FxFoqa2PHEe5py1nDbPuFA4/v5zuiBG/7CKtaBOp6L4VoFy3LTtl0dGYNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FhIX+TbBD+MIaq448oyOujpP6Xt/Q/kS88Ov4wBhA74=;
- b=VpiNmLGq76GUe082UzTj2zCVK3O8BA5x3bJ9Q6kuKCCy3ZfcqeMThlLC7HueAIrXMP2TXa7dp18O1ZU5yNMl5ZzFVom/GHHvmojxOBeSAEtTzUMHujxOhxBGRrhoCm6cOx/gSiJRCpbFoXwmxdQGd2i1oHovsbD0FA7FpyL/bHwPMtIRRWwYKwakXoEyICBmQ4MT2VagTJrSjzGAZznpkVeo207sW2gXiM6QIXM6NYsv4gwJLo5Rr8OsTdLtFcZMxXf50oeGmDYzjviWj1W3hI6bguzpXlbHXc48k4Vkw71C5KaDtFu/jCXeR6+pfUg0/0uSALHYJcHWDTAmAz9y/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from BN6PR12MB1618.namprd12.prod.outlook.com (10.172.21.149) by
- BN6PR12MB1425.namprd12.prod.outlook.com (10.168.228.147) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2263.13; Tue, 10 Sep 2019 19:59:33 +0000
-Received: from BN6PR12MB1618.namprd12.prod.outlook.com
- ([fe80::ad7c:d010:4f5a:b3c4]) by BN6PR12MB1618.namprd12.prod.outlook.com
- ([fe80::ad7c:d010:4f5a:b3c4%7]) with mapi id 15.20.2241.018; Tue, 10 Sep 2019
- 19:59:33 +0000
-From: "Russell, Kent" <Kent.Russell@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] Revert "drm/amdgpu/nbio7.4: add hw bug workaround for vega20"
-Thread-Topic: [PATCH] Revert "drm/amdgpu/nbio7.4: add hw bug workaround for
- vega20"
-Thread-Index: AQHVaBJDF4GqjrdwA0WExLetwhZyTQ==
-Date: Tue, 10 Sep 2019 19:59:33 +0000
-Message-ID: <20190910195922.16898-1-kent.russell@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [165.204.55.251]
-x-clientproxiedby: YTXPR0101CA0014.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00::27) To BN6PR12MB1618.namprd12.prod.outlook.com
- (2603:10b6:405:b::21)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ae98d676-d8c3-44e3-426e-08d736296615
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1425; 
-x-ms-traffictypediagnostic: BN6PR12MB1425:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN6PR12MB1425BDC8D5462852F5E7A31885B60@BN6PR12MB1425.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:556;
-x-forefront-prvs: 01565FED4C
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(366004)(396003)(346002)(136003)(376002)(189003)(199004)(52116002)(25786009)(6486002)(86362001)(6436002)(99286004)(36756003)(478600001)(6916009)(53936002)(7736002)(3846002)(14454004)(6512007)(2501003)(6116002)(5640700003)(2906002)(66476007)(64756008)(66946007)(66556008)(66446008)(256004)(8936002)(14444005)(50226002)(486006)(2616005)(476003)(6506007)(8676002)(71200400001)(1076003)(71190400001)(102836004)(305945005)(81156014)(2351001)(386003)(5660300002)(26005)(4326008)(316002)(66066001)(186003)(81166006);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1425;
- H:BN6PR12MB1618.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: RNkvermu85DZ9JmQz9IWdy4/DWAd13AXGVjBwEKum8iCuQPvo+nvzRO8keUPq8y6qtl5IdVn/fVJiN8+NFEvmkTlbqYx04UuyS8SYkIUTYOGfgGr4aiaK0K28stwNYPEHrcZ58k/TXemFph3sFWXw5Twkz/vhauKzKksSXxh1tnCwe+OauEd2Q6vMbbV8PUOWzl4PxDBsu28NaGY4jNZs6EbWTzAyRamXXlxu54UfpcOk+T08WVeYpyh87N8GNrUW7voKokR91PsDQ7NW/N3aPA27AP+NnrmMDBU4GZjfYQH4KES0Koc6U7dd8IYFLFA+iwt5Yb3RLkfJC1SvpH15vJ3ob3IWIU2p7cQD+0daomdd9In3NoxUrYEpk382P0LrDholW1NcPe6hwzERdDWra4uop1o9P7SIk34ajGg0GU=
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 680F86E9B0;
+ Tue, 10 Sep 2019 21:53:04 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id q12so1176431wmj.4;
+ Tue, 10 Sep 2019 14:53:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=NvJlS5ikUdPI/fZAaUQffiLfVy94vmRlMhwKBmuW7cs=;
+ b=dehg/fdGKfcPxzgp9ydInmaqthA1q9G2ATo25n6/oIlzWb7iwt9z6lfYEgPMTb1Aor
+ BZSWkBaz2wqxMpyG/hsk2ayVRBY2fF20atv6HU+Ed9aUaFggJ+qnkNWkVFAvzjQCWTJl
+ xl+pR37+PUONP56fB+pIXTdTBDeGFe25vSEE4IqXPQMBjXIcZF89OsHBX7DKly7eCdRA
+ uWFO0nHpHDbGUB/xdgRyFLESl2pQbUPu/MfkHth9rj9E71amiuzso8l3ELbb6Xkd6iW3
+ sIZxH/f/q2QggNxYffSrt1SV51MIpepkQ/3BJV2NisX33IQdEjv0UkZLVGCD3bMxkhkP
+ Kd3Q==
+X-Gm-Message-State: APjAAAW/wvS1qnBZ++vOgrKaeCwm9+dSjS6I8nzNtyrX9OAyiczvheSP
+ 5JbFu4bsalH8SCPL67DOv6Y=
+X-Google-Smtp-Source: APXvYqwRW8lD8TokS+XmDOMTDJjpwDAu9rz22Ulrf8cU2S3mkWjpkpjlkMKWDtea7RPu7Fe2XLxKEA==
+X-Received: by 2002:a1c:6c09:: with SMTP id h9mr1131662wmc.36.1568152382751;
+ Tue, 10 Sep 2019 14:53:02 -0700 (PDT)
+Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
+ by smtp.gmail.com with ESMTPSA id d18sm23344617wra.91.2019.09.10.14.53.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Sep 2019 14:53:00 -0700 (PDT)
+Date: Tue, 10 Sep 2019 23:52:59 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [Nouveau] [Intel-gfx] [PATCH v6 08/17] drm/ttm: use gem vma_node
+Message-ID: <20190910215259.GA7525@ulmo>
+References: <20190805140119.7337-1-kraxel@redhat.com>
+ <20190805140119.7337-9-kraxel@redhat.com>
+ <20190813151115.GA29955@ulmo>
+ <20190814055827.6hrxj6daovxxnnvw@sirius.home.kraxel.org>
+ <20190814093524.GA31345@ulmo>
+ <20190814101411.lj3p6zjzbjvnnjf4@sirius.home.kraxel.org>
+ <CACAvsv5Rar9F=Wf-9HBpndY4QaQZcGCx05j0esvV9pitM=JoGg@mail.gmail.com>
+ <20190821115523.GA21839@ulmo>
+ <CAKb7UvjXq0ptiPYu5EGH6sJAbbRjN3X4f_knrxyOHD1Zi7P1BA@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae98d676-d8c3-44e3-426e-08d736296615
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Sep 2019 19:59:33.3561 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5Emf1H37f1A5b2RqRrUpTOY/0iATxLcnZn0KAzUE8x9kuvAFdO5QuM4Opmg0SDd1ZnlcRsXPw5Oyj7/Pohm9tQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1425
+In-Reply-To: <CAKb7UvjXq0ptiPYu5EGH6sJAbbRjN3X4f_knrxyOHD1Zi7P1BA@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FhIX+TbBD+MIaq448oyOujpP6Xt/Q/kS88Ov4wBhA74=;
- b=WIi9eSZH48U5kmWWE/fl6hfYHBoTHngVL5bQ5+9dzHIjbzLQ2Uk5lQp6E0DZjR6DE/HKB4COHEuKcvMOT6zgiz96tftsfzO5iRW/fkkQKwxjALE/7wc5SEosYFD7Y+Byu12bqXPHyCZLnBNZjcCVIyl1achFzAgDF5Ozdzo0Nvs=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Kent.Russell@amd.com; 
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=NvJlS5ikUdPI/fZAaUQffiLfVy94vmRlMhwKBmuW7cs=;
+ b=IjiJ3+9Y6r0xaDsm9uuuG6az+m05Tq7/J3/URwGiVxxirDgfueGWC8A3BL4Ki8aARX
+ thcMCbMKdoQrMtyrhk6QZ3n3ej5bHf4JnAcDDhUZRnNFd5Py4cSg702UBD5qCAsdaGrE
+ 9rfsWbj/FWAWlO6iuKOfLcjAeG9LCrFLmaLPee5kHmm697xoaQwUvM/AOtGy0dC4loLU
+ NaFBnwHLYIDs9C5uD8jqtsFvG9PyxpgcvtYvnZPc6N9ZJe1sqyQ82uO5EUpOqSMOEC0K
+ gh6KxGQNr17l50W5KN4FaRyNekYtvNeI/Ey1cxeOsrzzC8Tf8EQLctuXmsvTlI9LBzOn
+ rZ3g==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -96,32 +74,261 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Russell, Kent" <Kent.Russell@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Ben Skeggs <skeggsb@gmail.com>, ML nouveau <nouveau@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Ben Skeggs <bskeggs@redhat.com>, linux-graphics-maintainer@vmware.com,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ spice-devel@lists.freedesktop.org, Gerd Hoffmann <kraxel@redhat.com>
+Content-Type: multipart/mixed; boundary="===============0207875490=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyByZXZlcnRzIGNvbW1pdCBlMDFmMmQ0MTg5NTEwMmQ4MjRjNmI4ZjVlMDExZGQ1ZTI4NmQ1
-ZThiLgoKVkcyMCBkaWQgbm90IHJlcXVpcmUgdGhpcyB3b3JrYXJvdW5kLCBhcyB0aGUgZml4IGlz
-IGluIHRoZSBWQklPUy4KTGVhdmUgVkcxMC8xMiB3b3JrYXJvdW5kIGFzIHNvbWUgb2xkZXIgc2hp
-cHBlZCBjYXJkcyBkbyBub3QgaGF2ZSB0aGUKVkJJT1MgZml4IGluIHBsYWNlLCBhbmQgdGhlIGtl
-cm5lbCB3b3JrYXJvdW5kIGlzIHJlcXVpcmVkIGluIHRob3NlCnNpdHVhdGlvbnMKCkNoYW5nZS1J
-ZDogSTJkN2MzOTRjZTlkMjA1ZDk3YmU2YWNmYTVlZGM0NjM1OTUxZmRhZGYKU2lnbmVkLW9mZi1i
-eTogS2VudCBSdXNzZWxsIDxrZW50LnJ1c3NlbGxAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9uYmlvX3Y3XzQuYyB8IDYgLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNiBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9uYmlv
-X3Y3XzQuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L25iaW9fdjdfNC5jCmluZGV4IDJk
-MTcxYmYwN2FkNS4uZGFmZDliN2QzMWQzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1k
-L2FtZGdwdS9uYmlvX3Y3XzQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9uYmlv
-X3Y3XzQuYwpAQCAtMzA4LDEzICszMDgsNyBAQCBzdGF0aWMgdm9pZCBuYmlvX3Y3XzRfZGV0ZWN0
-X2h3X3ZpcnQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCiAKIHN0YXRpYyB2b2lkIG5iaW9f
-djdfNF9pbml0X3JlZ2lzdGVycyhzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKIHsKLQl1aW50
-MzJfdCBkZWYsIGRhdGE7Ci0KLQlkZWYgPSBkYXRhID0gUlJFRzMyX1BDSUUoc21uUENJRV9DSV9D
-TlRMKTsKLQlkYXRhID0gUkVHX1NFVF9GSUVMRChkYXRhLCBQQ0lFX0NJX0NOVEwsIENJX1NMVl9P
-UkRFUklOR19ESVMsIDEpOwogCi0JaWYgKGRlZiAhPSBkYXRhKQotCQlXUkVHMzJfUENJRShzbW5Q
-Q0lFX0NJX0NOVEwsIGRhdGEpOwogfQogCiBzdGF0aWMgdm9pZCBuYmlvX3Y3XzRfaGFuZGxlX3Jh
-c19jb250cm9sbGVyX2ludHJfbm9fYmlmcmluZyhzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikK
-LS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0207875490==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="J/dobhs11T7y2rNN"
+Content-Disposition: inline
+
+
+--J/dobhs11T7y2rNN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Sep 07, 2019 at 09:58:46PM -0400, Ilia Mirkin wrote:
+> On Wed, Aug 21, 2019 at 7:55 AM Thierry Reding <thierry.reding@gmail.com>=
+ wrote:
+> >
+> > On Wed, Aug 21, 2019 at 04:33:58PM +1000, Ben Skeggs wrote:
+> > > On Wed, 14 Aug 2019 at 20:14, Gerd Hoffmann <kraxel@redhat.com> wrote:
+> > > >
+> > > >   Hi,
+> > > >
+> > > > > > Changing the order doesn't look hard.  Patch attached (untested=
+, have no
+> > > > > > test hardware).  But maybe I missed some detail ...
+> > > > >
+> > > > > I came up with something very similar by splitting up nouveau_bo_=
+new()
+> > > > > into allocation and initialization steps, so that when necessary =
+the GEM
+> > > > > object can be initialized in between. I think that's slightly more
+> > > > > flexible and easier to understand than a boolean flag.
+> > > >
+> > > > Yes, that should work too.
+> > > >
+> > > > Acked-by: Gerd Hoffmann <kraxel@redhat.com>
+> > > Acked-by: Ben Skeggs <bskeggs@redhat.com>
+> >
+> > Thanks guys, applied to drm-misc-next.
+>=20
+> Hi Thierry,
+>=20
+> Initial investigations suggest that this commit currently in drm-next
+>=20
+> commit 019cbd4a4feb3aa3a917d78e7110e3011bbff6d5
+> Author: Thierry Reding <treding@nvidia.com>
+> Date:   Wed Aug 14 11:00:48 2019 +0200
+>=20
+>     drm/nouveau: Initialize GEM object before TTM object
+>=20
+> breaks nouveau userspace which tries to allocate GEM objects with a
+> non-page-aligned size. Previously nouveau_gem_new would just call
+> nouveau_bo_init which would call nouveau_bo_fixup_align before
+> initializing the GEM object. With this change, it is done after. What
+> do you think -- OK to just move that bit of logic into the new
+> nouveau_bo_alloc() (and make size/align be pointers so that they can
+> be fixed up?)
+
+Hi Ilia,
+
+sorry, got side-tracked earlier and forgot to send this out. I'll turn
+this into a proper patch, but if you manage to find the time to test
+this while I work out the userspace issues that are preventing me from
+testing this more thoroughly, that'd be great.
+
+Thierry
+
+--- >8 ---
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau=
+/nouveau_bo.c
+index e918b437af17..7d5ede756711 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -186,8 +186,8 @@ nouveau_bo_fixup_align(struct nouveau_bo *nvbo, u32 fla=
+gs,
+ }
+=20
+ struct nouveau_bo *
+-nouveau_bo_alloc(struct nouveau_cli *cli, u64 size, u32 flags, u32 tile_mo=
+de,
+-		 u32 tile_flags)
++nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 flags,
++		 u32 tile_mode, u32 tile_flags)
+ {
+ 	struct nouveau_drm *drm =3D cli->drm;
+ 	struct nouveau_bo *nvbo;
+@@ -195,8 +195,8 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 size, u32=
+ flags, u32 tile_mode,
+ 	struct nvif_vmm *vmm =3D cli->svm.cli ? &cli->svm.vmm : &cli->vmm.vmm;
+ 	int i, pi =3D -1;
+=20
+-	if (!size) {
+-		NV_WARN(drm, "skipped size %016llx\n", size);
++	if (!*size) {
++		NV_WARN(drm, "skipped size %016llx\n", *size);
+ 		return ERR_PTR(-EINVAL);
+ 	}
+=20
+@@ -266,7 +266,7 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 size, u32=
+ flags, u32 tile_mode,
+ 			pi =3D i;
+=20
+ 		/* Stop once the buffer is larger than the current page size. */
+-		if (size >=3D 1ULL << vmm->page[i].shift)
++		if (*size >=3D 1ULL << vmm->page[i].shift)
+ 			break;
+ 	}
+=20
+@@ -281,6 +281,8 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 size, u32=
+ flags, u32 tile_mode,
+ 	}
+ 	nvbo->page =3D vmm->page[pi].shift;
+=20
++	nouveau_bo_fixup_align(nvbo, flags, align, size);
++
+ 	return nvbo;
+ }
+=20
+@@ -292,12 +294,11 @@ nouveau_bo_init(struct nouveau_bo *nvbo, u64 size, in=
+t align, u32 flags,
+ 	size_t acc_size;
+ 	int ret;
+=20
+-	acc_size =3D ttm_bo_dma_acc_size(nvbo->bo.bdev, size, sizeof(*nvbo));
+-
+-	nouveau_bo_fixup_align(nvbo, flags, &align, &size);
+ 	nvbo->bo.mem.num_pages =3D size >> PAGE_SHIFT;
+ 	nouveau_bo_placement_set(nvbo, flags, 0);
+=20
++	acc_size =3D ttm_bo_dma_acc_size(nvbo->bo.bdev, size, sizeof(*nvbo));
++
+ 	ret =3D ttm_bo_init(nvbo->bo.bdev, &nvbo->bo, size, type,
+ 			  &nvbo->placement, align >> PAGE_SHIFT, false,
+ 			  acc_size, sg, robj, nouveau_bo_del_ttm);
+@@ -318,7 +319,8 @@ nouveau_bo_new(struct nouveau_cli *cli, u64 size, int a=
+lign,
+ 	struct nouveau_bo *nvbo;
+ 	int ret;
+=20
+-	nvbo =3D nouveau_bo_alloc(cli, size, flags, tile_mode, tile_flags);
++	nvbo =3D nouveau_bo_alloc(cli, &size, &align, flags, tile_mode,
++				tile_flags);
+ 	if (IS_ERR(nvbo))
+ 		return PTR_ERR(nvbo);
+=20
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau=
+/nouveau_bo.h
+index 62930d834fba..38f9d8350963 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.h
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
+@@ -71,8 +71,8 @@ nouveau_bo_ref(struct nouveau_bo *ref, struct nouveau_bo =
+**pnvbo)
+ extern struct ttm_bo_driver nouveau_bo_driver;
+=20
+ void nouveau_bo_move_init(struct nouveau_drm *);
+-struct nouveau_bo *nouveau_bo_alloc(struct nouveau_cli *, u64 size, u32 fl=
+ags,
+-				    u32 tile_mode, u32 tile_flags);
++struct nouveau_bo *nouveau_bo_alloc(struct nouveau_cli *, u64 *size, int *=
+align,
++				    u32 flags, u32 tile_mode, u32 tile_flags);
+ int  nouveau_bo_init(struct nouveau_bo *, u64 size, int align, u32 flags,
+ 		     struct sg_table *sg, struct dma_resv *robj);
+ int  nouveau_bo_new(struct nouveau_cli *, u64 size, int align, u32 flags,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouvea=
+u/nouveau_gem.c
+index c2bfc0591909..1bdffd714456 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -188,7 +188,8 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int =
+align, uint32_t domain,
+ 	if (domain & NOUVEAU_GEM_DOMAIN_COHERENT)
+ 		flags |=3D TTM_PL_FLAG_UNCACHED;
+=20
+-	nvbo =3D nouveau_bo_alloc(cli, size, flags, tile_mode, tile_flags);
++	nvbo =3D nouveau_bo_alloc(cli, &size, &align, flags, tile_mode,
++				tile_flags);
+ 	if (IS_ERR(nvbo))
+ 		return PTR_ERR(nvbo);
+=20
+diff --git a/drivers/gpu/drm/nouveau/nouveau_prime.c b/drivers/gpu/drm/nouv=
+eau/nouveau_prime.c
+index 84658d434225..656c334ee7d9 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_prime.c
++++ b/drivers/gpu/drm/nouveau/nouveau_prime.c
+@@ -62,14 +62,15 @@ struct drm_gem_object *nouveau_gem_prime_import_sg_tabl=
+e(struct drm_device *dev,
+ 	struct nouveau_drm *drm =3D nouveau_drm(dev);
+ 	struct nouveau_bo *nvbo;
+ 	struct dma_resv *robj =3D attach->dmabuf->resv;
+-	size_t size =3D attach->dmabuf->size;
++	u64 size =3D attach->dmabuf->size;
+ 	u32 flags =3D 0;
++	int align =3D 0;
+ 	int ret;
+=20
+ 	flags =3D TTM_PL_FLAG_TT;
+=20
+ 	dma_resv_lock(robj, NULL);
+-	nvbo =3D nouveau_bo_alloc(&drm->client, size, flags, 0, 0);
++	nvbo =3D nouveau_bo_alloc(&drm->client, &size, &align, flags, 0, 0);
+ 	dma_resv_unlock(robj);
+ 	if (IS_ERR(nvbo))
+ 		return ERR_CAST(nvbo);
+@@ -84,7 +85,7 @@ struct drm_gem_object *nouveau_gem_prime_import_sg_table(=
+struct drm_device *dev,
+ 		return ERR_PTR(-ENOMEM);
+ 	}
+=20
+-	ret =3D nouveau_bo_init(nvbo, size, 0, flags, sg, robj);
++	ret =3D nouveau_bo_init(nvbo, size, align, flags, sg, robj);
+ 	if (ret) {
+ 		nouveau_bo_ref(NULL, &nvbo);
+ 		return ERR_PTR(ret);
+
+--J/dobhs11T7y2rNN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl14GzgACgkQ3SOs138+
+s6GnHA/+I0E/b1ne3feG2PlDXK9oEYO+3hCx/6F/K5oyCkKbKo+Ouy8MOcRFMRIc
+QljEQ7c9FJDfJOBUa6Emjbe0oBZ0DmAPJITJjeUN3M8A3MOqoF9hsUHU0j9AHHy4
+ZULuvei7oEKv+TxeLNOmS1h5TVqsDJ3+J0SvNrGbG0c3giWewZYFQYi1jYwxSmap
+FR4agswIPivk/92ngcYOdrBNiOM4ElVHPPCzHtValO8Zo3Nh3ISwH8CLnxo4mmsB
+Yh9OE9MT7BHqnqbppHvwPCq/1VpIhshYRZZT7XSbe0kzIdKb6BEmkuzAZa7dVLo6
+4SedYtPuod9q6U9yeqEJDJ7w2E62PHy/Zs8Sv0uh3Gz0oaWEbL7rM+ZWXQ8kdnoL
+TKsgjIiPpfuQ0z7+d+lGt0683HysZc3zh0jLKfHovg6GaHZ2I4LBPaW6zHIdJJ8n
+7b8JARU2wTf9bnjYZxaO36sECRzdDbEUY7wD83+DrQH+2OBD7wsoboTjnDdvj6g0
+Np7XQ8Qjwg3YBJ2x4h+sCx2TR1keN1njmyzSw5UqyiSXm1VG7ivPJwVjo1cco9OR
+mB32SfJ1zskJrd20re5vkV8PwcRGKb8q2qTMYt9IJaQ5XhDE2Zo0gDVM/J7Y+IEr
+5wFQ0PhMdr0uMNat3btNpJKU4CaDrm/Bzou8Y2fkTlar+/zdAVs=
+=NYiz
+-----END PGP SIGNATURE-----
+
+--J/dobhs11T7y2rNN--
+
+--===============0207875490==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0207875490==--
