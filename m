@@ -1,89 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 214F2B23B6
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Sep 2019 17:57:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25C54B23DB
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Sep 2019 18:09:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A69C6F408;
-	Fri, 13 Sep 2019 15:57:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF0486F412;
+	Fri, 13 Sep 2019 16:09:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680041.outbound.protection.outlook.com [40.107.68.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30D296F408
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Sep 2019 15:57:47 +0000 (UTC)
+Received: from NAM05-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr720057.outbound.protection.outlook.com [40.107.72.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73B216F412
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Sep 2019 16:09:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PpCpo6l6jmDfpw+9jtAaxqIij7bKH9/t/IEiuvFy1xDURA7MT4MCGNiny+9G+e6iPV7cAsCNem0cb9ax5qdepLL3/UHUYcRE9pDlOZh/VbJP7sca/079yZq+tQFI6F9+S0aCkyhKxfofMjPDX5nk3rlpy/xVYjenaGDXKT6vuvZqEiCpnm081YZp76ARZHJF6uzLBU7K+Z4sWliHKyMRGa/K403p/Zj4JGsnOXZVpiVQiZlmjPo7npb5DHGfarCzWXMvf1zmdkZOSyhYOmOs4kG56vJCqZFfJ+VRDYEk+c/YmMZi2P4d9K3stEbPjhTafnS+MzPkwqkVmPgJ1iCotA==
+ b=Mv1cj3H5s/Kw8M/7DFi4aE0VA5ePYRSXnUi6F4gZ0Lmk1652jmBDDSy8GyFt6hfowaqHmS5wLkcwHbLLGO+p0b69epK7hzOUz5uI2TcOVHnV/9InmVxuwa2/T/V22Oi241B4r6JY0ZM2y5N2gl5g1FNFnoJR+t6jbLNy1QaVPDv7OQ4odATfxMS7cVcpnylofVUfTM0QCEly5NySeSeAzT/OiqxIxHqtGPnRSo8qyJzOGSOgEY+mNSwmsTFhA7jt+FAhzh30rbsTDSmTgHfAwRPMWnJ8seM2OrcPuAzl0xdBv9KL47VL8dPDVAYqhG7CsRWtLQdDdF6I20aDbXEHYw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eNz+73HdcbJYUe/lVggpBUcRHGUzYzO0NOOXGyKu/fk=;
- b=Kp8SgMg2UY4N6ikqpF5/46USboEvsGHbQO4Jtcalg/GWAhYBL3qE6qJvu2Rfmp5l8abdB1eQCQx12AjRKAyTTgETiXpQ8+tdzItuOf+NXbanzyMMjaAakUW6Cc6kzugZ5JOBgUIzs+sLuBZOUPEQxqTyktzFJtimVjHQvd0P80xXez2d5dk/3887VZD7N2GNnwSuwJ/6CJ3eIH8Bql0SRm5Z+2cn1jhSgyAZutHdgLj1jpVEmQQ1EDornK2i8H8NX2YCjkdVxBm4SUAkaPFYLpX+1elIh8/6PDbGiyAv8hJVEz7GLNOYKEIn3EmOVvF8I8xOiNqgMk0iBVu+wmlI5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1394.namprd12.prod.outlook.com (10.168.228.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2263.17; Fri, 13 Sep 2019 15:57:45 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::f0e0:63fb:5af:5e1f]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::f0e0:63fb:5af:5e1f%8]) with mapi id 15.20.2241.022; Fri, 13 Sep 2019
- 15:57:45 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: =?iso-8859-1?Q?Christian_K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 3/3] drm/amdgpu: trace if a PD/PT update is done directly
-Thread-Topic: [PATCH 3/3] drm/amdgpu: trace if a PD/PT update is done directly
-Thread-Index: AQHVai1PLjt6TCkQ80mgAcWFaZ1Z4Kcpw4q5
-Date: Fri, 13 Sep 2019 15:57:44 +0000
-Message-ID: <BN6PR12MB18096F1BC80E66293A954307F7B30@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <20190913121801.96728-1-christian.koenig@amd.com>,
- <20190913121801.96728-3-christian.koenig@amd.com>
-In-Reply-To: <20190913121801.96728-3-christian.koenig@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [71.219.73.178]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5f96b4a8-6cba-41bc-04cf-08d738631de4
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:BN6PR12MB1394; 
-x-ms-traffictypediagnostic: BN6PR12MB1394:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BN6PR12MB1394BB4CD01D0BC1BA3252C2F7B30@BN6PR12MB1394.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:121;
-x-forefront-prvs: 0159AC2B97
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(366004)(396003)(136003)(39860400002)(189003)(199004)(606006)(7736002)(86362001)(66946007)(66476007)(76116006)(25786009)(64756008)(53936002)(9686003)(54896002)(6306002)(966005)(74316002)(52536014)(6246003)(66556008)(66446008)(71200400001)(14454004)(66574012)(15650500001)(71190400001)(236005)(6436002)(229853002)(8936002)(55016002)(33656002)(2906002)(3846002)(81166006)(81156014)(8676002)(6116002)(99286004)(5660300002)(19627405001)(7696005)(102836004)(53546011)(76176011)(110136005)(316002)(6506007)(105004)(26005)(478600001)(66066001)(256004)(2501003)(486006)(476003)(14444005)(186003)(446003)(11346002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1394;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
+ bh=FEiOduIk2bPlBzAvGsx5qUoLIRXhI5T2D9bMpTSxBV4=;
+ b=g2aUcTlesO2MEFhnrmPUWrEgT8Vba+MxljY4rWiKIxgXP9eP1hniZEUfXli3wiSOsonXlaW/YRgkSxSMSg9KkIIGLM5OF6r1NdX1kHTpDOJycT0RvVohFtTGJ4A6EKep2LF1QFL89fUvIFuvFv9sAeyhwGTnTdPVD2rgF725L2Lpv8mBXou8YFH2eHawO2FVynsHmsN+bJWrlb6tl3x+Vv+ZX5I9H3kpqNIlVK+MUnMePC2Zn02r5at97jXkcj8PGQmGl3PPZpDsSMmv/whmDhpv+O/+bSe5U9w4ZbZNELRYXp3mGjdGH1yslKTgwfaQ16HqTPg2E5CM/ze7z+jAKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+Received: from CY4PR12CA0041.namprd12.prod.outlook.com (2603:10b6:903:129::27)
+ by DM5PR12MB1178.namprd12.prod.outlook.com (2603:10b6:3:6c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2241.20; Fri, 13 Sep
+ 2019 16:09:26 +0000
+Received: from CO1NAM03FT021.eop-NAM03.prod.protection.outlook.com
+ (2a01:111:f400:7e48::201) by CY4PR12CA0041.outlook.office365.com
+ (2603:10b6:903:129::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2263.17 via Frontend
+ Transport; Fri, 13 Sep 2019 16:09:25 +0000
+Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 0LaTX0GLRQNCB5u/f6VgTTFdYogXixYM0BAa3BaXUdmnHkqiIOAqnISh9XGz22fUloLuRWQ1yDtsdELYH9EtbO0u/fK2iLHfn2f/eKEYtNRxartEh5T0y7sGDw7iyXqYzAz87ZxFON7r3Pe+s0BkjXiBIAQcAP9+zq5waKMkFgq4Bo37P5N5+rU8GRULB2j+kGWSnBKmQBkCsjIFkegbdTjgRoscznImKvXzDw3tGBNBeF6rYrqpBR+UyGGjYnBpU4s8AAvgv7F5ht0aa5LJdzCSFezLPIbc2sf50OWONKI0EoK9XKynRDr+SiQN9649jUHGg+3wCcjoNE+bK7cxqDhFriuWjJr4SS0o1HY/b3AfT7lqCsUBYj9TB05DUCBziFf8t1rbUWNnpBCywfDOwYfIUmF90fhMw3Ok37p9sUQ=
-x-ms-exchange-transport-forked: True
+Received: from SATLEXCHOV02.amd.com (165.204.84.17) by
+ CO1NAM03FT021.mail.protection.outlook.com (10.152.80.180) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2263.14 via Frontend Transport; Fri, 13 Sep 2019 16:09:25 +0000
+Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
+ SATLEXCHOV02.amd.com (10.181.40.72) with Microsoft SMTP Server id 14.3.389.1; 
+ Fri, 13 Sep 2019 11:09:22 -0500
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: Fix EEPROM checksum calculation.
+Date: Fri, 13 Sep 2019 12:09:16 -0400
+Message-ID: <1568390956-3601-1-git-send-email-andrey.grodzovsky@amd.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(346002)(136003)(376002)(39860400002)(396003)(428003)(199004)(189003)(186003)(44832011)(4326008)(2906002)(53936002)(8936002)(5660300002)(2870700001)(81156014)(305945005)(70206006)(5820100001)(50226002)(8676002)(50466002)(126002)(336012)(6666004)(47776003)(356004)(36756003)(6916009)(14444005)(70586007)(86362001)(81166006)(476003)(316002)(478600001)(426003)(2616005)(23676004)(7696005)(486006)(2351001)(53416004)(54906003)(26005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1178; H:SATLEXCHOV02.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 63418ff6-63d4-432d-8592-08d73864bf9d
+X-Microsoft-Antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328);
+ SRVR:DM5PR12MB1178; 
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1178:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1178C0F039614904B1DA8B8BEAB30@DM5PR12MB1178.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
+X-Forefront-PRVS: 0159AC2B97
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: sA6pokZmj2n1Brpf+2g+eEvIJCzvuGjsgt7gFnUUKhglIgtrr8WOAhWX6QZOu350jxgjUBPsCIK+wCBZDkRUXU9PiGxtuHmGkF4KXl/gKWLCn736Gimj2Dn/hLSK7S0hJHgi9nXTk3f0zJ+SyIq2W1M5dFD2oWAAXxwjJOK6XtgBTqQn1egmC523q5Z1s8HaAhrGpnZ8fWNMxGcYkZAISl+7X/uYKjUkgP5q7DzjVsZ1n1DbNyAezOmXEUjxwexziyGGbV+PeuRQutxzAHQ6fU4jYB9VggpHVhOYN9rIJYsOZeqb8ERm/9RHa/iFKyKgkVjRVlcfN1/ODq1T3zh+EteCrOB2m9mmj9z0IxtbGriQoc3SUWEr7DSOnX8zt+KZE7YZZDmm3nulFO9Iw55be8dP/WNve6GljOJipcoAJAs=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f96b4a8-6cba-41bc-04cf-08d738631de4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2019 15:57:44.9615 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1HPx+TGjtSj8ZtojKU1wywSzvdmA8A9PfGGVwV5x4zPrAXYPNvics9mpraJYo8W7BeEu41rF6+Rd5VzVuqCW4w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1394
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2019 16:09:25.6959 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63418ff6-63d4-432d-8592-08d73864bf9d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXCHOV02.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1178
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eNz+73HdcbJYUe/lVggpBUcRHGUzYzO0NOOXGyKu/fk=;
- b=J++53/PO/FQCYHoxBTLdzwSf0pjJOWpp6Jbp3ldOg/b9jG0UTa3EJSxDeMkHJq2tRZnSGqg6vutN1HKWTugCQOX/eima1IocjI7Vi+Qty2tMxCmZd1/jxX7vARN2I9us9YbLzhjvNW2XBc8F3kQzOYEN3hprbpzB7iIa3Kd3afw=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+ bh=FEiOduIk2bPlBzAvGsx5qUoLIRXhI5T2D9bMpTSxBV4=;
+ b=nBpJrk80ARov5oJwRspdAlBwig1jpxCrr+qSQ6pEJx5Gpd1TQwvX4RBPXiR3gZvKYBHd7dJGMYcBP6QCwDnlUu7c2TofZ9E7j2MTNLiNxLcw3Ja1qT+0KH7jfxCT7RuNRZHji6EFEtPlHuAAkPv2T1QXtK1N+zDzJ6Iws8vTS+0=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is
+ 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -95,420 +97,134 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0246877218=="
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>, Tao.Zhou1@amd.com,
+ Guchun.Chen@amd.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0246877218==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB18096F1BC80E66293A954307F7B30BN6PR12MB1809namp_"
-
---_000_BN6PR12MB18096F1BC80E66293A954307F7B30BN6PR12MB1809namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Series is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Christia=
-n K=F6nig <ckoenig.leichtzumerken@gmail.com>
-Sent: Friday, September 13, 2019 8:18 AM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amdgpu: trace if a PD/PT update is done directly
-
-This is usfull for debugging.
-
-Signed-off-by: Christian K=F6nig <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h   | 23 +++++++++++++--------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c  |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c |  4 ++--
- 3 files changed, 17 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_trace.h
-index d3ca2424b5fe..e9feb5a8fb9d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-@@ -325,14 +325,15 @@ DEFINE_EVENT(amdgpu_vm_mapping, amdgpu_vm_bo_cs,
-
- TRACE_EVENT(amdgpu_vm_set_ptes,
-             TP_PROTO(uint64_t pe, uint64_t addr, unsigned count,
--                    uint32_t incr, uint64_t flags),
--           TP_ARGS(pe, addr, count, incr, flags),
-+                    uint32_t incr, uint64_t flags, bool direct),
-+           TP_ARGS(pe, addr, count, incr, flags, direct),
-             TP_STRUCT__entry(
-                              __field(u64, pe)
-                              __field(u64, addr)
-                              __field(u32, count)
-                              __field(u32, incr)
-                              __field(u64, flags)
-+                            __field(bool, direct)
-                              ),
-
-             TP_fast_assign(
-@@ -341,28 +342,32 @@ TRACE_EVENT(amdgpu_vm_set_ptes,
-                            __entry->count =3D count;
-                            __entry->incr =3D incr;
-                            __entry->flags =3D flags;
-+                          __entry->direct =3D direct;
-                            ),
--           TP_printk("pe=3D%010Lx, addr=3D%010Lx, incr=3D%u, flags=3D%llx,=
- count=3D%u",
--                     __entry->pe, __entry->addr, __entry->incr,
--                     __entry->flags, __entry->count)
-+           TP_printk("pe=3D%010Lx, addr=3D%010Lx, incr=3D%u, flags=3D%llx,=
- count=3D%u, "
-+                     "direct=3D%d", __entry->pe, __entry->addr, __entry->i=
-ncr,
-+                     __entry->flags, __entry->count, __entry->direct)
- );
-
- TRACE_EVENT(amdgpu_vm_copy_ptes,
--           TP_PROTO(uint64_t pe, uint64_t src, unsigned count),
--           TP_ARGS(pe, src, count),
-+           TP_PROTO(uint64_t pe, uint64_t src, unsigned count, bool direct=
-),
-+           TP_ARGS(pe, src, count, direct),
-             TP_STRUCT__entry(
-                              __field(u64, pe)
-                              __field(u64, src)
-                              __field(u32, count)
-+                            __field(bool, direct)
-                              ),
-
-             TP_fast_assign(
-                            __entry->pe =3D pe;
-                            __entry->src =3D src;
-                            __entry->count =3D count;
-+                          __entry->direct =3D direct;
-                            ),
--           TP_printk("pe=3D%010Lx, src=3D%010Lx, count=3D%u",
--                     __entry->pe, __entry->src, __entry->count)
-+           TP_printk("pe=3D%010Lx, src=3D%010Lx, count=3D%u, direct=3D%d",
-+                     __entry->pe, __entry->src, __entry->count,
-+                     __entry->direct)
- );
-
- TRACE_EVENT(amdgpu_vm_flush,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_vm_cpu.c
-index a2daeadd770f..73fec7a0ced5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c
-@@ -89,7 +89,7 @@ static int amdgpu_vm_cpu_update(struct amdgpu_vm_update_p=
-arams *p,
-
-         pe +=3D (unsigned long)amdgpu_bo_kptr(bo);
-
--       trace_amdgpu_vm_set_ptes(pe, addr, count, incr, flags);
-+       trace_amdgpu_vm_set_ptes(pe, addr, count, incr, flags, p->direct);
-
-         for (i =3D 0; i < count; i++) {
-                 value =3D p->pages_addr ?
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_vm_sdma.c
-index 38c966cedc26..e8db1467a71d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
-@@ -143,7 +143,7 @@ static void amdgpu_vm_sdma_copy_ptes(struct amdgpu_vm_u=
-pdate_params *p,
-         src +=3D p->num_dw_left * 4;
-
-         pe +=3D amdgpu_bo_gpu_offset(bo);
--       trace_amdgpu_vm_copy_ptes(pe, src, count);
-+       trace_amdgpu_vm_copy_ptes(pe, src, count, p->direct);
-
-         amdgpu_vm_copy_pte(p->adev, ib, pe, src, count);
- }
-@@ -170,7 +170,7 @@ static void amdgpu_vm_sdma_set_ptes(struct amdgpu_vm_up=
-date_params *p,
-         struct amdgpu_ib *ib =3D p->job->ibs;
-
-         pe +=3D amdgpu_bo_gpu_offset(bo);
--       trace_amdgpu_vm_set_ptes(pe, addr, count, incr, flags);
-+       trace_amdgpu_vm_set_ptes(pe, addr, count, incr, flags, p->direct);
-         if (count < 3) {
-                 amdgpu_vm_write_pte(p->adev, ib, pe, addr | flags,
-                                     count, incr);
---
-2.17.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_BN6PR12MB18096F1BC80E66293A954307F7B30BN6PR12MB1809namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Series is:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Christian K=F6nig &lt;ckoenig=
-.leichtzumerken@gmail.com&gt;<br>
-<b>Sent:</b> Friday, September 13, 2019 8:18 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Subject:</b> [PATCH 3/3] drm/amdgpu: trace if a PD/PT update is done dir=
-ectly</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">This is usfull for debugging.<br>
-<br>
-Signed-off-by: Christian K=F6nig &lt;christian.koenig@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h&nbsp;&nbsp; | 23 &#43;&#43;=
-&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;--------<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c&nbsp; |&nbsp; 2 &#43;-<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c |&nbsp; 4 &#43;&#43;--<br=
->
-&nbsp;3 files changed, 17 insertions(&#43;), 12 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_trace.h<br>
-index d3ca2424b5fe..e9feb5a8fb9d 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h<br>
-@@ -325,14 &#43;325,15 @@ DEFINE_EVENT(amdgpu_vm_mapping, amdgpu_vm_bo_cs,<=
-br>
-&nbsp;<br>
-&nbsp;TRACE_EVENT(amdgpu_vm_set_ptes,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP=
-_PROTO(uint64_t pe, uint64_t addr, unsigned count,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t incr, uint64_t flags),<br=
->
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_ARGS(pe, a=
-ddr, count, incr, flags),<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t incr, uint64_t flags,=
- bool direct),<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_ARGS(p=
-e, addr, count, incr, flags, direct),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP=
-_STRUCT__entry(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; __field(u64, pe)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; __field(u64, addr)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; __field(u32, count)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; __field(u32, incr)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; __field(u64, flags)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; __field(bool, direct)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; ),<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP=
-_fast_assign(<br>
-@@ -341,28 &#43;342,32 @@ TRACE_EVENT(amdgpu_vm_set_ptes,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; __entry-&gt;count =3D count;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; __entry-&gt;incr =3D incr;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; __entry-&gt;flags =3D flags;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; __entry-&gt;direct =3D direct;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; ),<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_printk(&qu=
-ot;pe=3D%010Lx, addr=3D%010Lx, incr=3D%u, flags=3D%llx, count=3D%u&quot;,<b=
-r>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __entry-&gt;pe, __entry-&gt;=
-addr, __entry-&gt;incr,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __entry-&gt;flags, __entry-&=
-gt;count)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_printk=
-(&quot;pe=3D%010Lx, addr=3D%010Lx, incr=3D%u, flags=3D%llx, count=3D%u, &qu=
-ot;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;direct=3D%d&quot;,=
- __entry-&gt;pe, __entry-&gt;addr, __entry-&gt;incr,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __entry-&gt;flags, __ent=
-ry-&gt;count, __entry-&gt;direct)<br>
-&nbsp;);<br>
-&nbsp;<br>
-&nbsp;TRACE_EVENT(amdgpu_vm_copy_ptes,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_PROTO(uint=
-64_t pe, uint64_t src, unsigned count),<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_ARGS(pe, s=
-rc, count),<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_PROTO(=
-uint64_t pe, uint64_t src, unsigned count, bool direct),<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_ARGS(p=
-e, src, count, direct),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP=
-_STRUCT__entry(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; __field(u64, pe)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; __field(u64, src)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; __field(u32, count)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; __field(bool, direct)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; ),<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP=
-_fast_assign(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; __entry-&gt;pe =3D pe;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; __entry-&gt;src =3D src;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; __entry-&gt;count =3D count;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; __entry-&gt;direct =3D direct;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; ),<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_printk(&qu=
-ot;pe=3D%010Lx, src=3D%010Lx, count=3D%u&quot;,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __entry-&gt;pe, __entry-&gt;=
-src, __entry-&gt;count)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TP_printk=
-(&quot;pe=3D%010Lx, src=3D%010Lx, count=3D%u, direct=3D%d&quot;,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __entry-&gt;pe, __entry-=
-&gt;src, __entry-&gt;count,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __entry-&gt;direct)<br>
-&nbsp;);<br>
-&nbsp;<br>
-&nbsp;TRACE_EVENT(amdgpu_vm_flush,<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_vm_cpu.c<br>
-index a2daeadd770f..73fec7a0ced5 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c<br>
-@@ -89,7 &#43;89,7 @@ static int amdgpu_vm_cpu_update(struct amdgpu_vm_upda=
-te_params *p,<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pe &#43;=3D (unsigned long=
-)amdgpu_bo_kptr(bo);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trace_amdgpu_vm_set_ptes(pe, addr, co=
-unt, incr, flags);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trace_amdgpu_vm_set_ptes(pe, addr=
-, count, incr, flags, p-&gt;direct);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; count=
-; i&#43;&#43;) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; value =3D p-&gt;pages_addr ?<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_vm_sdma.c<br>
-index 38c966cedc26..e8db1467a71d 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c<br>
-@@ -143,7 &#43;143,7 @@ static void amdgpu_vm_sdma_copy_ptes(struct amdgpu_=
-vm_update_params *p,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; src &#43;=3D p-&gt;num_dw_=
-left * 4;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pe &#43;=3D amdgpu_bo_gpu_=
-offset(bo);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trace_amdgpu_vm_copy_ptes(pe, src, co=
-unt);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trace_amdgpu_vm_copy_ptes(pe, src=
-, count, p-&gt;direct);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_vm_copy_pte(p-&gt;a=
-dev, ib, pe, src, count);<br>
-&nbsp;}<br>
-@@ -170,7 &#43;170,7 @@ static void amdgpu_vm_sdma_set_ptes(struct amdgpu_v=
-m_update_params *p,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_ib *ib =3D p=
--&gt;job-&gt;ibs;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pe &#43;=3D amdgpu_bo_gpu_=
-offset(bo);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trace_amdgpu_vm_set_ptes(pe, addr, co=
-unt, incr, flags);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trace_amdgpu_vm_set_ptes(pe, addr=
-, count, incr, flags, p-&gt;direct);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (count &lt; 3) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; amdgpu_vm_write_pte(p-&gt;adev, ib, pe, addr | flags,=
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count, i=
-ncr);<br>
--- <br>
-2.17.1<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-</span></font></div>
-</body>
-</html>
-
---_000_BN6PR12MB18096F1BC80E66293A954307F7B30BN6PR12MB1809namp_--
-
---===============0246877218==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0246877218==--
+Rml4IGNoZWNrc3VtIGNhbGN1bGF0aW9uIGFmdGVyIG1hbnVhbGx5IHJlc2V0dGluZyB0aGUgdGFi
+bGUuClVuaWZ5IHJlc2V0IGFuZCBlbXB0eSBFRVBST00gaW5pdCBmbG93LgpQcm90ZWN0IHRoZSB0
+YWJsZSByZXNldCB3aXRoIGxvY2suCgpTaWduZWQtb2ZmLWJ5OiBBbmRyZXkgR3JvZHpvdnNreSA8
+YW5kcmV5Lmdyb2R6b3Zza3lAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9hbWRncHVfcmFzX2VlcHJvbS5jIHwgMTY0ICsrKysrKysrKysrKystLS0tLS0tLS0tLS0KIDEg
+ZmlsZSBjaGFuZ2VkLCA4NiBpbnNlcnRpb25zKCspLCA3OCBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzX2VlcHJvbS5jIGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhc19lZXByb20uYwppbmRleCAxMWE4NDQ1
+Li5kMGUwMjBlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
+cmFzX2VlcHJvbS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9yYXNf
+ZWVwcm9tLmMKQEAgLTEwMCwyMiArMTAwLDEwMCBAQCBzdGF0aWMgaW50IF9fdXBkYXRlX3RhYmxl
+X2hlYWRlcihzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCwKIAlyZXR1
+cm4gcmV0OwogfQogCi1zdGF0aWMgdWludDMyX3QgIF9fY2FsY19oZHJfYnl0ZV9zdW0oc3RydWN0
+IGFtZGdwdV9yYXNfZWVwcm9tX2NvbnRyb2wgKmNvbnRyb2wpOworCisKK3N0YXRpYyB1aW50MzJf
+dCAgX19jYWxjX2hkcl9ieXRlX3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAq
+Y29udHJvbCkKK3sKKwlpbnQgaTsKKwl1aW50MzJfdCB0Ymxfc3VtID0gMDsKKworCS8qIEhlYWRl
+ciBjaGVja3N1bSwgc2tpcCBjaGVja3N1bSBmaWVsZCBpbiB0aGUgY2FsY3VsYXRpb24gKi8KKwlm
+b3IgKGkgPSAwOyBpIDwgc2l6ZW9mKGNvbnRyb2wtPnRibF9oZHIpIC0gc2l6ZW9mKGNvbnRyb2wt
+PnRibF9oZHIuY2hlY2tzdW0pOyBpKyspCisJCXRibF9zdW0gKz0gKigoKHVuc2lnbmVkIGNoYXIg
+KikmY29udHJvbC0+dGJsX2hkcikgKyBpKTsKKworCXJldHVybiB0Ymxfc3VtOworfQorCitzdGF0
+aWMgdWludDMyX3QgIF9fY2FsY19yZWNzX2J5dGVfc3VtKHN0cnVjdCBlZXByb21fdGFibGVfcmVj
+b3JkICpyZWNvcmRzLAorCQkJCSAgICAgIGludCBudW0pCit7CisJaW50IGksIGo7CisJdWludDMy
+X3QgdGJsX3N1bSA9IDA7CisKKwkvKiBSZWNvcmRzIGNoZWNrc3VtICovCisJZm9yIChpID0gMDsg
+aSA8IG51bTsgaSsrKSB7CisJCXN0cnVjdCBlZXByb21fdGFibGVfcmVjb3JkICpyZWNvcmQgPSAm
+cmVjb3Jkc1tpXTsKKworCQlmb3IgKGogPSAwOyBqIDwgc2l6ZW9mKCpyZWNvcmQpOyBqKyspIHsK
+KwkJCXRibF9zdW0gKz0gKigoKHVuc2lnbmVkIGNoYXIgKilyZWNvcmQpICsgaik7CisJCX0KKwl9
+CisKKwlyZXR1cm4gdGJsX3N1bTsKK30KKworc3RhdGljIGlubGluZSB1aW50MzJfdCAgX19jYWxj
+X3RibF9ieXRlX3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCwK
+KwkJCQkgIHN0cnVjdCBlZXByb21fdGFibGVfcmVjb3JkICpyZWNvcmRzLCBpbnQgbnVtKQorewor
+CXJldHVybiBfX2NhbGNfaGRyX2J5dGVfc3VtKGNvbnRyb2wpICsgX19jYWxjX3JlY3NfYnl0ZV9z
+dW0ocmVjb3JkcywgbnVtKTsKK30KKworLyogQ2hlY2tzdW0gPSAyNTYgLSgoc3VtIG9mIGFsbCB0
+YWJsZSBlbnRyaWVzKSBtb2QgMjU2KcKgKi8KK3N0YXRpYyB2b2lkIF9fdXBkYXRlX3RibF9jaGVj
+a3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCwKKwkJCQkgIHN0
+cnVjdCBlZXByb21fdGFibGVfcmVjb3JkICpyZWNvcmRzLCBpbnQgbnVtLAorCQkJCSAgdWludDMy
+X3Qgb2xkX2hkcl9ieXRlX3N1bSkKK3sKKwkvKgorCSAqIFRoaXMgd2lsbCB1cGRhdGUgdGhlIHRh
+YmxlIHN1bSB3aXRoIG5ldyByZWNvcmRzLgorCSAqCisJICogVE9ETzogV2hhdCBoYXBwZW5zIHdo
+ZW4gdGhlIEVFUFJPTSB0YWJsZSBpcyB0byBiZSB3cmFwcGVkIGFyb3VuZAorCSAqIGFuZCBvbGQg
+cmVjb3JkcyBmcm9tIHN0YXJ0IHdpbGwgZ2V0IG92ZXJyaWRkZW4uCisJICovCisKKwkvKiBuZWVk
+IHRvIHJlY2FsY3VsYXRlIHVwZGF0ZWQgaGVhZGVyIGJ5dGUgc3VtICovCisJY29udHJvbC0+dGJs
+X2J5dGVfc3VtIC09IG9sZF9oZHJfYnl0ZV9zdW07CisJY29udHJvbC0+dGJsX2J5dGVfc3VtICs9
+IF9fY2FsY190YmxfYnl0ZV9zdW0oY29udHJvbCwgcmVjb3JkcywgbnVtKTsKKworCWNvbnRyb2wt
+PnRibF9oZHIuY2hlY2tzdW0gPSAyNTYgLSAoY29udHJvbC0+dGJsX2J5dGVfc3VtICUgMjU2KTsK
+K30KKworLyogdGFibGUgc3VtIG1vZCAyNTYgKyBjaGVja3N1bSBtdXN0IGVxdWFscyAyNTYgKi8K
+K3N0YXRpYyBib29sIF9fdmFsaWRhdGVfdGJsX2NoZWNrc3VtKHN0cnVjdCBhbWRncHVfcmFzX2Vl
+cHJvbV9jb250cm9sICpjb250cm9sLAorCQkJICAgIHN0cnVjdCBlZXByb21fdGFibGVfcmVjb3Jk
+ICpyZWNvcmRzLCBpbnQgbnVtKQoreworCWNvbnRyb2wtPnRibF9ieXRlX3N1bSA9IF9fY2FsY190
+YmxfYnl0ZV9zdW0oY29udHJvbCwgcmVjb3JkcywgbnVtKTsKKworCWlmIChjb250cm9sLT50Ymxf
+aGRyLmNoZWNrc3VtICsgKGNvbnRyb2wtPnRibF9ieXRlX3N1bSAlIDI1NikgIT0gMjU2KSB7CisJ
+CURSTV9XQVJOKCJDaGVja3N1bSBtaXNtYXRjaCwgY2hlY2tzdW06ICV1ICIsIGNvbnRyb2wtPnRi
+bF9oZHIuY2hlY2tzdW0pOworCQlyZXR1cm4gZmFsc2U7CisJfQorCisJcmV0dXJuIHRydWU7Cit9
+CiAKIGludCBhbWRncHVfcmFzX2VlcHJvbV9yZXNldF90YWJsZShzdHJ1Y3QgYW1kZ3B1X3Jhc19l
+ZXByb21fY29udHJvbCAqY29udHJvbCkKIHsKIAl1bnNpZ25lZCBjaGFyIGJ1ZmZbRUVQUk9NX0FE
+RFJFU1NfU0laRSArIEVFUFJPTV9UQUJMRV9IRUFERVJfU0laRV0gPSB7IDAgfTsKLQlzdHJ1Y3Qg
+YW1kZ3B1X2RldmljZSAqYWRldiA9IHRvX2FtZGdwdV9kZXZpY2UoY29udHJvbCk7CiAJc3RydWN0
+IGFtZGdwdV9yYXNfZWVwcm9tX3RhYmxlX2hlYWRlciAqaGRyID0gJmNvbnRyb2wtPnRibF9oZHI7
+CisJaW50IHJldCA9IDA7CisKKwltdXRleF9sb2NrKCZjb250cm9sLT50YmxfbXV0ZXgpOwogCiAJ
+aGRyLT5oZWFkZXIgPSBFRVBST01fVEFCTEVfSERSX1ZBTDsKIAloZHItPnZlcnNpb24gPSBFRVBS
+T01fVEFCTEVfVkVSOwogCWhkci0+Zmlyc3RfcmVjX29mZnNldCA9IEVFUFJPTV9SRUNPUkRfU1RB
+UlQ7CiAJaGRyLT50Ymxfc2l6ZSA9IEVFUFJPTV9UQUJMRV9IRUFERVJfU0laRTsKIAotCWFkZXYt
+PnBzcC5yYXMucmFzLT5lZXByb21fY29udHJvbC50YmxfYnl0ZV9zdW0gPQotCQkJX19jYWxjX2hk
+cl9ieXRlX3N1bSgmYWRldi0+cHNwLnJhcy5yYXMtPmVlcHJvbV9jb250cm9sKTsKLQlyZXR1cm4g
+X191cGRhdGVfdGFibGVfaGVhZGVyKGNvbnRyb2wsIGJ1ZmYpOworCWNvbnRyb2wtPnRibF9ieXRl
+X3N1bSA9IDA7CisJX191cGRhdGVfdGJsX2NoZWNrc3VtKGNvbnRyb2wsIE5VTEwsIDAsIDApOwor
+CWNvbnRyb2wtPm5leHRfYWRkciA9IEVFUFJPTV9SRUNPUkRfU1RBUlQ7CisKKwlyZXQgPSBfX3Vw
+ZGF0ZV90YWJsZV9oZWFkZXIoY29udHJvbCwgYnVmZik7CisKKwltdXRleF91bmxvY2soJmNvbnRy
+b2wtPnRibF9tdXRleCk7CisKKwlyZXR1cm4gcmV0OworCiB9CiAKIGludCBhbWRncHVfcmFzX2Vl
+cHJvbV9pbml0KHN0cnVjdCBhbWRncHVfcmFzX2VlcHJvbV9jb250cm9sICpjb250cm9sKQpAQCAt
+MTU5LDYgKzIzNyw5IEBAIGludCBhbWRncHVfcmFzX2VlcHJvbV9pbml0KHN0cnVjdCBhbWRncHVf
+cmFzX2VlcHJvbV9jb250cm9sICpjb250cm9sKQogCWlmIChoZHItPmhlYWRlciA9PSBFRVBST01f
+VEFCTEVfSERSX1ZBTCkgewogCQljb250cm9sLT5udW1fcmVjcyA9IChoZHItPnRibF9zaXplIC0g
+RUVQUk9NX1RBQkxFX0hFQURFUl9TSVpFKSAvCiAJCQkJICAgIEVFUFJPTV9UQUJMRV9SRUNPUkRf
+U0laRTsKKwkJY29udHJvbC0+dGJsX2J5dGVfc3VtID0gX19jYWxjX2hkcl9ieXRlX3N1bShjb250
+cm9sKTsKKwkJY29udHJvbC0+bmV4dF9hZGRyID0gRUVQUk9NX1JFQ09SRF9TVEFSVDsKKwogCQlE
+Uk1fREVCVUdfRFJJVkVSKCJGb3VuZCBleGlzdGluZyBFRVBST00gdGFibGUgd2l0aCAlZCByZWNv
+cmRzIiwKIAkJCQkgY29udHJvbC0+bnVtX3JlY3MpOwogCkBAIC0xNjgsOSArMjQ5LDYgQEAgaW50
+IGFtZGdwdV9yYXNfZWVwcm9tX2luaXQoc3RydWN0IGFtZGdwdV9yYXNfZWVwcm9tX2NvbnRyb2wg
+KmNvbnRyb2wpCiAJCXJldCA9IGFtZGdwdV9yYXNfZWVwcm9tX3Jlc2V0X3RhYmxlKGNvbnRyb2wp
+OwogCX0KIAotCS8qIFN0YXJ0IGluc2VydGluZyByZWNvcmRzIGZyb20gaGVyZSAqLwotCWFkZXYt
+PnBzcC5yYXMucmFzLT5lZXByb21fY29udHJvbC5uZXh0X2FkZHIgPSBFRVBST01fUkVDT1JEX1NU
+QVJUOwotCiAJcmV0dXJuIHJldCA9PSAxID8gMCA6IC1FSU87CiB9CiAKQEAgLTI3NSw3NiArMzUz
+LDYgQEAgc3RhdGljIHVpbnQzMl90IF9fY29ycmVjdF9lZXByb21fZGVzdF9hZGRyZXNzKHVpbnQz
+Ml90IGN1cnJfYWRkcmVzcykKIAlyZXR1cm4gY3Vycl9hZGRyZXNzOwogfQogCi0KLXN0YXRpYyB1
+aW50MzJfdCAgX19jYWxjX2hkcl9ieXRlX3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29u
+dHJvbCAqY29udHJvbCkKLXsKLQlpbnQgaTsKLQl1aW50MzJfdCB0Ymxfc3VtID0gMDsKLQotCS8q
+IEhlYWRlciBjaGVja3N1bSwgc2tpcCBjaGVja3N1bSBmaWVsZCBpbiB0aGUgY2FsY3VsYXRpb24g
+Ki8KLQlmb3IgKGkgPSAwOyBpIDwgc2l6ZW9mKGNvbnRyb2wtPnRibF9oZHIpIC0gc2l6ZW9mKGNv
+bnRyb2wtPnRibF9oZHIuY2hlY2tzdW0pOyBpKyspCi0JCXRibF9zdW0gKz0gKigoKHVuc2lnbmVk
+IGNoYXIgKikmY29udHJvbC0+dGJsX2hkcikgKyBpKTsKLQotCXJldHVybiB0Ymxfc3VtOwotfQot
+Ci1zdGF0aWMgdWludDMyX3QgIF9fY2FsY19yZWNzX2J5dGVfc3VtKHN0cnVjdCBlZXByb21fdGFi
+bGVfcmVjb3JkICpyZWNvcmRzLAotCQkJCSAgICAgIGludCBudW0pCi17Ci0JaW50IGksIGo7Ci0J
+dWludDMyX3QgdGJsX3N1bSA9IDA7Ci0KLQkvKiBSZWNvcmRzIGNoZWNrc3VtICovCi0JZm9yIChp
+ID0gMDsgaSA8IG51bTsgaSsrKSB7Ci0JCXN0cnVjdCBlZXByb21fdGFibGVfcmVjb3JkICpyZWNv
+cmQgPSAmcmVjb3Jkc1tpXTsKLQotCQlmb3IgKGogPSAwOyBqIDwgc2l6ZW9mKCpyZWNvcmQpOyBq
+KyspIHsKLQkJCXRibF9zdW0gKz0gKigoKHVuc2lnbmVkIGNoYXIgKilyZWNvcmQpICsgaik7Ci0J
+CX0KLQl9Ci0KLQlyZXR1cm4gdGJsX3N1bTsKLX0KLQotc3RhdGljIGlubGluZSB1aW50MzJfdCAg
+X19jYWxjX3RibF9ieXRlX3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29u
+dHJvbCwKLQkJCQkgIHN0cnVjdCBlZXByb21fdGFibGVfcmVjb3JkICpyZWNvcmRzLCBpbnQgbnVt
+KQotewotCXJldHVybiBfX2NhbGNfaGRyX2J5dGVfc3VtKGNvbnRyb2wpICsgX19jYWxjX3JlY3Nf
+Ynl0ZV9zdW0ocmVjb3JkcywgbnVtKTsKLX0KLQotLyogQ2hlY2tzdW0gPSAyNTYgLSgoc3VtIG9m
+IGFsbCB0YWJsZSBlbnRyaWVzKSBtb2QgMjU2KcKgKi8KLXN0YXRpYyB2b2lkIF9fdXBkYXRlX3Ri
+bF9jaGVja3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCwKLQkJ
+CQkgIHN0cnVjdCBlZXByb21fdGFibGVfcmVjb3JkICpyZWNvcmRzLCBpbnQgbnVtLAotCQkJCSAg
+dWludDMyX3Qgb2xkX2hkcl9ieXRlX3N1bSkKLXsKLQkvKgotCSAqIFRoaXMgd2lsbCB1cGRhdGUg
+dGhlIHRhYmxlIHN1bSB3aXRoIG5ldyByZWNvcmRzLgotCSAqCi0JICogVE9ETzogV2hhdCBoYXBw
+ZW5zIHdoZW4gdGhlIEVFUFJPTSB0YWJsZSBpcyB0byBiZSB3cmFwcGVkIGFyb3VuZAotCSAqIGFu
+ZCBvbGQgcmVjb3JkcyBmcm9tIHN0YXJ0IHdpbGwgZ2V0IG92ZXJyaWRkZW4uCi0JICovCi0KLQkv
+KiBuZWVkIHRvIHJlY2FsY3VsYXRlIHVwZGF0ZWQgaGVhZGVyIGJ5dGUgc3VtICovCi0JY29udHJv
+bC0+dGJsX2J5dGVfc3VtIC09IG9sZF9oZHJfYnl0ZV9zdW07Ci0JY29udHJvbC0+dGJsX2J5dGVf
+c3VtICs9IF9fY2FsY190YmxfYnl0ZV9zdW0oY29udHJvbCwgcmVjb3JkcywgbnVtKTsKLQotCWNv
+bnRyb2wtPnRibF9oZHIuY2hlY2tzdW0gPSAyNTYgLSAoY29udHJvbC0+dGJsX2J5dGVfc3VtICUg
+MjU2KTsKLX0KLQotLyogdGFibGUgc3VtIG1vZCAyNTYgKyBjaGVja3N1bSBtdXN0IGVxdWFscyAy
+NTYgKi8KLXN0YXRpYyBib29sIF9fdmFsaWRhdGVfdGJsX2NoZWNrc3VtKHN0cnVjdCBhbWRncHVf
+cmFzX2VlcHJvbV9jb250cm9sICpjb250cm9sLAotCQkJICAgIHN0cnVjdCBlZXByb21fdGFibGVf
+cmVjb3JkICpyZWNvcmRzLCBpbnQgbnVtKQotewotCWNvbnRyb2wtPnRibF9ieXRlX3N1bSA9IF9f
+Y2FsY190YmxfYnl0ZV9zdW0oY29udHJvbCwgcmVjb3JkcywgbnVtKTsKLQotCWlmIChjb250cm9s
+LT50YmxfaGRyLmNoZWNrc3VtICsgKGNvbnRyb2wtPnRibF9ieXRlX3N1bSAlIDI1NikgIT0gMjU2
+KSB7Ci0JCURSTV9XQVJOKCJDaGVja3N1bSBtaXNtYXRjaCwgY2hlY2tzdW06ICV1ICIsIGNvbnRy
+b2wtPnRibF9oZHIuY2hlY2tzdW0pOwotCQlyZXR1cm4gZmFsc2U7Ci0JfQotCi0JcmV0dXJuIHRy
+dWU7Ci19Ci0KIGludCBhbWRncHVfcmFzX2VlcHJvbV9wcm9jZXNzX3JlY29kcyhzdHJ1Y3QgYW1k
+Z3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCwKIAkJCQkJICAgIHN0cnVjdCBlZXByb21f
+dGFibGVfcmVjb3JkICpyZWNvcmRzLAogCQkJCQkgICAgYm9vbCB3cml0ZSwKLS0gCjIuNy40Cgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1h
+aWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
