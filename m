@@ -2,45 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B2D8B4006
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Sep 2019 20:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41100B403B
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Sep 2019 20:22:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 771B86EA20;
-	Mon, 16 Sep 2019 18:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA4806EA29;
+	Mon, 16 Sep 2019 18:22:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk
- [IPv6:2a01:7e01::f03c:91ff:fed4:a3b6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1148F6EA20;
- Mon, 16 Sep 2019 18:08:24 +0000 (UTC)
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
- by heliosphere.sirena.org.uk with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <broonie@sirena.co.uk>)
- id 1i9vQ9-0005Jy-2b; Mon, 16 Sep 2019 18:08:17 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id 24F432741A0D; Mon, 16 Sep 2019 19:08:16 +0100 (BST)
-Date: Mon, 16 Sep 2019 19:08:16 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Masahiro Yamada <yamada.masahiro@socionext.com>
-Subject: Re: [PATCH] drm/amd/display: Fix compile error due to 'endif' missing
-Message-ID: <20190916180815.GK4352@sirena.co.uk>
-References: <20190916044651.GA72121@LGEARND20B15>
- <CAK7LNARZMr5ZKGufi63GZrZ45k60faAiXr4mBB_mU9h_QifjxQ@mail.gmail.com>
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
+ [IPv6:2607:f8b0:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 053B86EA27
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Sep 2019 18:22:39 +0000 (UTC)
+Received: by mail-pf1-x444.google.com with SMTP id q12so403441pff.9
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Sep 2019 11:22:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=wCWmQrUdC4+yidolvtodOAbWEg6K9IbAqOG50vb4hkU=;
+ b=mvmaInaswilw90yzKcCRLfgFEt+grAD9asgAlFo92DLzhMOW+YQNHceBTwgUYUP+wk
+ qV7T0uuayJV4XVmaqPrxFvd682zcLsAUagHp1rXfDR/IiGjeCHAGZkiX4aOG/RhIjDbd
+ PUJles4MSH6upTtAUnbKL98DluI7Z/C09V475stpZPnlNEavlEW81jZEbeSWFAkViP1B
+ xciPtP1y2FqAxx0lAl0BX3nNqdMOArfIb8B71hOxSBuKyA7wLuQ5vEsft/sWs+BPOE05
+ vidbvYlGfCS9zLKnUkCkiFK2ady8IseM2FmFrb4eW3F8wzhY7oi6hXTbLbs6YOBdPVDA
+ r72g==
+X-Gm-Message-State: APjAAAWxOz3FpOdiFVHHjCDYLugIBdb8U3lxVsaCiUPG2vZVhsO6dhov
+ +90SV4an2v5OwtQGBjObjQTAPcCo
+X-Google-Smtp-Source: APXvYqyHHNqEBc7GKFnN9F9ga+x5ub+tJCX0eSfdCqncr29pz1GWaDDtHXHHtuqy0hSoWZdqrP2/Zg==
+X-Received: by 2002:a17:90a:9f4a:: with SMTP id
+ q10mr547250pjv.77.1568658158043; 
+ Mon, 16 Sep 2019 11:22:38 -0700 (PDT)
+Received: from localhost.localdomain ([71.219.73.178])
+ by smtp.gmail.com with ESMTPSA id 16sm11887436pgp.23.2019.09.16.11.22.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 16 Sep 2019 11:22:37 -0700 (PDT)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu/vm: fix documentation for amdgpu_vm_bo_param
+Date: Mon, 16 Sep 2019 13:22:28 -0500
+Message-Id: <20190916182228.11860-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <CAK7LNARZMr5ZKGufi63GZrZ45k60faAiXr4mBB_mU9h_QifjxQ@mail.gmail.com>
-X-Cookie: Man and wife make one fool.
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
- c=relaxed/relaxed; 
- d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=IhH8eG5jrmv5K+PdK/jRPJRJORLMPGfQ9Mu0yZDLXao=; b=KwzTtsFTbybFw474V6VBrCeXi
- EQ9ZNyYUDVea3mWV6fDFsK7Aanb7ZWj+GzYrXbtDNgrInzYj4Z9kpuBIILVqS/XXkS7RAK0ITFjG+
- MSwdIU5caaopv9HF1cI5CDtZ1RF6vVqZUNH1Qlq8+A8Qbs46wi4iy0WP3ydsbUpI9zHLw=;
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=wCWmQrUdC4+yidolvtodOAbWEg6K9IbAqOG50vb4hkU=;
+ b=NUpeRlUS59HZk6VWFs4kRQcV5zYTcMHyTHzQC81Fu2sMjTudq/hVlnJHAkPSy2j8t8
+ C+v1+bcvuTNcynTL3g3wLbq2jKh0smOGLTnL+240/o/DwbM3/qKP24OZCjTscgJHSOVl
+ 2YD3DplxQsiM/cGpCIDrHN6VojIuoTFQg5pWg0AVdVtKrYCQ4ZlHKJHa3IyDn8X8y8Om
+ HMTDoWjJRLyb5uvYN9lfUiNQr+6xAq++rpbjjrjZPyJFGso7WBCPl7VXTaTW4voDu+HP
+ TapYYPWl1rDJW9WMb9AWINaWq/qH80Ib94ETfShncHe3OQ0diDSpZ0mtKSTjkwCmf+d8
+ VbgA==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -52,79 +66,25 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>, David Airlie <airlied@linux.ie>,
- Austin Kim <austindh.kim@gmail.com>, Roman.Li@amd.com,
- amd-gfx@lists.freedesktop.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>
-Content-Type: multipart/mixed; boundary="===============1939559157=="
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
---===============1939559157==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="IKC1RK7+nRZ8SZaO"
-Content-Disposition: inline
-
-
---IKC1RK7+nRZ8SZaO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Sep 17, 2019 at 02:46:48AM +0900, Masahiro Yamada wrote:
-> (+CC Stephen Rothwell, Mark Brown)
->=20
-> On Mon, Sep 16, 2019 at 1:46 PM Austin Kim <austindh.kim@gmail.com> wrote:
-> >
-> > gcc throws compile error with below message:
->=20
-> GNU Make throws ...
->=20
->=20
-
-I don't have the original patch so I don't know what the issue being
-reported is :/  Whatever it is it wasn't caught by any of the builds
-done during the process of building -next and nothing is jumping out at
-me on KernelCI.
-
-> This is probably a merge mistake in linux-next.
-
-> If so, this should be directly fixed in the linux-next.
-
-> If it is not fixed in time,
-> please inform Linus to *not* follow the linux-next.
-
-It's probably worth coordinating this merge with DRM, it's not *super*
-complex but clearly there's some potential for error here and it was
-definitely annoyingly fiddly.
-
---IKC1RK7+nRZ8SZaO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1/z48ACgkQJNaLcl1U
-h9BEtAf8Cg6gsw4Wr7G6vas1AyCCbY8RUAsjUmUecWcXXaUrxAlhZINRy+3tV8pB
-1+uxPZZbpbrAtrb7GATiJZAEmCbazZP5PlHWivEgTfqSUQiHSDoX/5gvtaGdfQoq
-fEosO5kiJ1Z7uEjKLgqfdIotR0oGxYYBRAhMPs5Q+KDheHdNDVVkWjKkqfLGBMvc
-QxAbEbCfF3mk0MziIFmI4rmsREpvVE3YqWZFcp/u0dUbg/+hAf9/MKH2W1EK7qi4
-L45PCcnI9vR5hivC8iNYZnvFtg1IugOgX7kM/6Wp8g4jxvTPeZGqYG4LFfdRU2lx
-wMBC2pjSApPd0pdO0uUyA7Cjn9Tg/A==
-=cbJO
------END PGP SIGNATURE-----
-
---IKC1RK7+nRZ8SZaO--
-
---===============1939559157==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1939559157==--
+QWRkIG5ldyBwYXJhbWV0ZXJzLgoKU2lnbmVkLW9mZi1ieTogQWxleCBEZXVjaGVyIDxhbGV4YW5k
+ZXIuZGV1Y2hlckBhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
+dV92bS5jIHwgMiArKwogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMKaW5kZXggZjExNzVmOWY0YjgwLi41NDU0OWEyNmVl
+MDEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jCkBAIC04MjUsNiArODI1
+LDggQEAgc3RhdGljIGludCBhbWRncHVfdm1fY2xlYXJfYm8oc3RydWN0IGFtZGdwdV9kZXZpY2Ug
+KmFkZXYsCiAgKgogICogQGFkZXY6IGFtZGdwdV9kZXZpY2UgcG9pbnRlcgogICogQHZtOiByZXF1
+ZXN0aW5nIHZtCisgKiBAbGV2ZWw6IHRoZSBwYWdlIHRhYmxlIGxldmVsCisgKiBAZGlyZWN0OiB1
+c2UgYSBkaXJlY3QgdXBkYXRlCiAgKiBAYnA6IHJlc3VsdGluZyBCTyBhbGxvY2F0aW9uIHBhcmFt
+ZXRlcnMKICAqLwogc3RhdGljIHZvaWQgYW1kZ3B1X3ZtX2JvX3BhcmFtKHN0cnVjdCBhbWRncHVf
+ZGV2aWNlICphZGV2LCBzdHJ1Y3QgYW1kZ3B1X3ZtICp2bSwKLS0gCjIuMjAuMQoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxp
+c3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
