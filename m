@@ -2,67 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69693B48B7
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Sep 2019 10:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA2EB48C9
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Sep 2019 10:09:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA6E76EB31;
-	Tue, 17 Sep 2019 08:03:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4445C89C85;
+	Tue, 17 Sep 2019 08:09:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D83086EB31
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Sep 2019 08:03:35 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id r17so1800625wme.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Sep 2019 01:03:35 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82CF189C85
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Sep 2019 08:09:24 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id l3so2046966wru.7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Sep 2019 01:09:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:references:from:message-id
- :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=sKdorh0+cRYKT/XhPE+XVcsVFpPCcMqxjaPQFk9HUe8=;
- b=rlOsg249NbRCnXfPYWm2wyvWIb0mtUVLFJJg+bvihFGjqiUHz+31i2eNRzi9fRpKNn
- rYXz5nRhrVGliD6nsSnQ2zPxvHWAuDi4QuSS8Ev56x11NevpTY4u1a97hWW01CKwLuP9
- qXbaFdxM64LisxOL0sNACsqgVyk5WJKrjZwNYRA5anO1L6oAMcTMd4n2F/Ri29VXjKFj
- RB1tqMkPHgy1rTSZrk/H4sDVli6v4M9GWQ+ac/qTbuDx/Vz8ycwMcQcbwNLoc8YweP0l
- uQWPWQg8A97ayb9RCVNHSOYvwmT+yNTLqd3yn+eSb0by9Tiqmd9ZRJqVaRFTxKdC0IGS
- B1DA==
-X-Gm-Message-State: APjAAAW1PUX5goqQ8MZvwXpEk45ftiMqq98ZDqfXJNWJPM3wcrWKXjs2
- s8FDzyyVjYWkt0r7JSFCfaE=
-X-Google-Smtp-Source: APXvYqz28+bOp8to9xXJzQEf3QU/dc8tcJrTPoQpnWDnzM3luchT5mveKgDF1mdKIQhNB8iR3E+zkg==
-X-Received: by 2002:a1c:a617:: with SMTP id p23mr2338697wme.166.1568707414487; 
- Tue, 17 Sep 2019 01:03:34 -0700 (PDT)
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=8IthkYK1OyD4+6C/GBjH94h+m5k4IXQNFNyo8QEp1QM=;
+ b=mcXogTgF1SZJNg162VaBlxtmcG4tNddE1DVEX+GrFfPAsLax4Yn/Z60LNWr1SqlAPj
+ Guopez0/ejzZTjBkf8Hjt0zO3tz7iKSbbuRcBQELBfB3B8VmDXTAU78/BSCHWqBvQ4WK
+ eOwNSY17B6M/UNufb8ccnS4BrPpmbGfd9/ixhDggjSMVp0ZYVY1uoLhtaReo7JymyCuG
+ 4EmQZJSwLGbXb9nqUgMM9k2Yz1jpBL4/MXM8DhYhaZhv9xvTc98wfdup7u28Ah6yAKHV
+ hMlMBy+HsyurhUjjoqdioO5WUXc4AbhOmUh9WKYETAFlAwZjXdsLKOBWnqjyRbpaku7V
+ S9OQ==
+X-Gm-Message-State: APjAAAXBD66CRBaq5BIAO2NYNuNiJ89gUBoeGFVV4ynGAAnJEXUpH4bo
+ 9WWh8NuCv0bVYGJTyoPvCeToJVls
+X-Google-Smtp-Source: APXvYqwLAMKkySLjwl0lDc1vZtdPfPQmngilQo/0+zqCegX9vZVyK+AfPs6nTvbBvy2BT/yGv204Eg==
+X-Received: by 2002:a5d:678a:: with SMTP id v10mr1824502wru.145.1568707763198; 
+ Tue, 17 Sep 2019 01:09:23 -0700 (PDT)
 Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
  ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id f8sm1440792wmb.37.2019.09.17.01.03.33
+ by smtp.gmail.com with ESMTPSA id q10sm4198864wrd.39.2019.09.17.01.09.22
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 17 Sep 2019 01:03:33 -0700 (PDT)
-Subject: Re: [PATCH 1/2] drm/amdgpu: initialize bo in ras_reserve_bad_pages
-To: "Zhou1, Tao" <Tao.Zhou1@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Chen, Guchun" <Guchun.Chen@amd.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- "Zhang, Hawking" <Hawking.Zhang@amd.com>
-References: <20190917061643.29367-1-tao.zhou1@amd.com>
+ Tue, 17 Sep 2019 01:09:22 -0700 (PDT)
+Subject: Re: [PATCH] drm/amdgpu/ras: use GPU PAGE_SIZE/SHIFT for reserving
+ pages
+To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
+References: <20190916195052.29281-1-alexander.deucher@amd.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <a33e79a2-d269-6fe2-a564-f71c637a459a@gmail.com>
-Date: Tue, 17 Sep 2019 10:03:29 +0200
+Message-ID: <c233de22-2e5d-385f-6164-e35f51e439e0@gmail.com>
+Date: Tue, 17 Sep 2019 10:09:21 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190917061643.29367-1-tao.zhou1@amd.com>
+In-Reply-To: <20190916195052.29281-1-alexander.deucher@amd.com>
 Content-Language: en-US
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=reply-to:subject:to:references:from:message-id:date:user-agent
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
  :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=sKdorh0+cRYKT/XhPE+XVcsVFpPCcMqxjaPQFk9HUe8=;
- b=Aht5oXwpXzDUJtBH71VpvFucJrVcGP43TIoOslUKRZUM9Hb7B67B5iR+eBuSZToONn
- 9WwGOLGG3ozMhxCc3EUYdZZ50Cqzlk+UHlHMMGPYzWyvXshVjBMQJVNz7nYcRdl4UMZ7
- SJFIVhH7tonxZDqPz2Yplat5PiS3qAbkAFHwaSxp3tOxRChPMimcKotilPgySWo4LGrf
- Q/SQNWDI8WxiMQLCFBD0b3XI+w8igXy6gWrtcKTJnED5DUHiMTHTbB6T/eCRERGIhnKY
- 4ot8o+TKLdjbwKqwSAjdAL7Xe1NxDvK6IrKtyeuURKrmBow8Hik330eTFQiXAH9ORfpR
- xEZQ==
+ bh=8IthkYK1OyD4+6C/GBjH94h+m5k4IXQNFNyo8QEp1QM=;
+ b=tJrXbd2Qs81JK7jGKEqPzGhTq/HBewGFBDrRsKgGf0sRaERWx6QVdebHrP5vBuSnhS
+ IiK/QduWPCUbqXpo2Chpfy2iS6EXBpdx9hZWm8jTDD+6boL6lv2uvpH1eTT/x/zqZzFh
+ ea8yfaUOuLQOZsPsUmkCu6fEs0CuU3xql8STUUv803bQxan4GrnckUKksHiFlp4kVuIi
+ hk63WZm7atm+lmK/Cnepx9Nn0EJpR/jwB7I8FA0oaDs3mnJoOMIZN7pMM1JAm1JFGmrM
+ NtUr5hLVPx0MiezE1EOetpdgS611udVNBtmz/F7GnHTIFhrdumcVbqB5t8LCYBDr9BVm
+ ZU3A==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -75,25 +72,31 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: christian.koenig@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Transfer-Encoding: base64
 Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMTcuMDkuMTkgdW0gMDg6MTYgc2NocmllYiBaaG91MSwgVGFvOgo+IHRoZSBibyBwb2ludGVy
-IGlzIHJldXNlZCBmb3IgYmFkIHBhZ2VzLCBpbml0aWFsaXplIGl0IGluIGVhY2ggbG9vcAo+Cj4g
-U2lnbmVkLW9mZi1ieTogVGFvIFpob3UgPHRhby56aG91MUBhbWQuY29tPgoKUmV2aWV3ZWQtYnk6
-IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4gZm9yIHRoZSBzZXJp
-ZXMuCgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhcy5jIHwg
-MSArCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKPgo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfcmFzLmMKPiBpbmRleCA1ZjYyM2RhZjUwNzguLjA5MGRhZjU5NTQ2
-OSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMK
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMKPiBAQCAtMTQy
-MSw2ICsxNDIxLDcgQEAgaW50IGFtZGdwdV9yYXNfcmVzZXJ2ZV9iYWRfcGFnZXMoc3RydWN0IGFt
-ZGdwdV9kZXZpY2UgKmFkZXYpCj4gICAKPiAgIAkJZGF0YS0+YnBzX2JvW2ldID0gYm87Cj4gICAJ
-CWRhdGEtPmxhc3RfcmVzZXJ2ZWQgPSBpICsgMTsKPiArCQlibyA9IE5VTEw7Cj4gICAJfQo+ICAg
-Cj4gICAJLyogY29udGludWUgdG8gc2F2ZSBiYWQgcGFnZXMgdG8gZWVwcm9tIGV2ZW4gcmVlc3J2
-ZV92cmFtIGZhaWxzICovCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+QW0gMTYuMDkuMTkgdW0gMjE6NTAgc2NocmllYiBBbGV4IERldWNoZXI6Cj4gV2UgYXJlIHJlc2Vy
+dmluZyB2cmFtIHBhZ2VzIHNvIHRoZXkgc2hvdWxkIGJlIGFsaWduZWQgdG8gdGhlCj4gR1BVIHBh
+Z2Ugc2l6ZS4KPgo+IFNpZ25lZC1vZmYtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNo
+ZXJAYW1kLmNvbT4KClJldmlld2VkLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29l
+bmlnQGFtZC5jb20+Cgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+X3Jhcy5jIHwgMyArKy0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVs
+ZXRpb24oLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
+cHVfcmFzLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMKPiBpbmRl
+eCBmZjFmYzA4NGZmZTEuLjEzMWM1M2ZhOGVmZiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
+ZGdwdS9hbWRncHVfcmFzLmMKPiBAQCAtMTQwOSw3ICsxNDA5LDggQEAgaW50IGFtZGdwdV9yYXNf
+cmVzZXJ2ZV9iYWRfcGFnZXMoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gICAJZm9yIChp
+ID0gZGF0YS0+bGFzdF9yZXNlcnZlZDsgaSA8IGRhdGEtPmNvdW50OyBpKyspIHsKPiAgIAkJYnAg
+PSBkYXRhLT5icHNbaV0ucmV0aXJlZF9wYWdlOwo+ICAgCj4gLQkJaWYgKGFtZGdwdV9ib19jcmVh
+dGVfa2VybmVsX2F0KGFkZXYsIGJwIDw8IFBBR0VfU0hJRlQsIFBBR0VfU0laRSwKPiArCQlpZiAo
+YW1kZ3B1X2JvX2NyZWF0ZV9rZXJuZWxfYXQoYWRldiwgYnAgPDwgQU1ER1BVX0dQVV9QQUdFX1NI
+SUZULAo+ICsJCQkJCSAgICAgICBBTURHUFVfR1BVX1BBR0VfU0laRSwKPiAgIAkJCQkJICAgICAg
+IEFNREdQVV9HRU1fRE9NQUlOX1ZSQU0sCj4gICAJCQkJCSAgICAgICAmYm8sIE5VTEwpKQo+ICAg
+CQkJRFJNX0VSUk9SKCJSQVMgRVJST1I6IHJlc2VydmUgdnJhbSAlbGx4IGZhaWxcbiIsIGJwKTsK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZngg
+bWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
