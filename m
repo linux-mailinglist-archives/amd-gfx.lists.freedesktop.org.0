@@ -1,59 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3194B486B
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Sep 2019 09:42:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69693B48B7
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Sep 2019 10:03:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73E6C6EB23;
-	Tue, 17 Sep 2019 07:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA6E76EB31;
+	Tue, 17 Sep 2019 08:03:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
- [IPv6:2a00:1450:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C07DE6E137
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Sep 2019 06:07:17 +0000 (UTC)
-Received: by mail-ed1-x543.google.com with SMTP id p10so348558edq.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Sep 2019 23:07:17 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D83086EB31
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Sep 2019 08:03:35 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id r17so1800625wme.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Sep 2019 01:03:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=fQkRl7LfYDFXiUR/iAH9ya4lf6U4MhyEmc1OSRuJSVc=;
- b=kCarhG2bnLMU484zxS6VFC03u7bW06bAax29/L4amEzauLwghDVbN4iJtvbphRx62a
- ScAiMk+guHvIvA+2us7FD6qAZHe0TdehCgBr9zstPvlkwcmDJA6qv3JEGrxTBafIPOpu
- lzsww2Q9bCUDyYOiFOnsGyg6fBk0fdj2682+Jfoyqj8ocic2wCDzUFgbuLR1qQtp/G0t
- RXe2zJpm5Tj1wa0+26EdrFaPP6tcRZhOJ3EF7/9NaynjWfbgY/ynH4yU0NLN2hxViKre
- S2NSQQ7tbdZl+x1Utx9dwWJv1D14VyglUEHnsthwrfzDR6Z9Dbv1NrjhBMnl+KpvGlGL
- Ei4A==
-X-Gm-Message-State: APjAAAXKcgIuXJG+YcFtGw4JGDIlJUfxy/p4S5aaYHB+aSJcPU++/+me
- us9tnp1ktz/pZxE0eKWc7s/QZmQ82l7mKjrysrZmoQ==
-X-Google-Smtp-Source: APXvYqyWH/7IfrW4ZNfPIfyE2LY7h9aUKNHH5X9uk+fKgORHi67FXH8L8/4cres48HpmTunJ1oTy0laEqr8YtRuetyM=
-X-Received: by 2002:a17:906:c72d:: with SMTP id
- fj13mr3346891ejb.36.1568700436454; 
- Mon, 16 Sep 2019 23:07:16 -0700 (PDT)
+ h=x-gm-message-state:reply-to:subject:to:references:from:message-id
+ :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=sKdorh0+cRYKT/XhPE+XVcsVFpPCcMqxjaPQFk9HUe8=;
+ b=rlOsg249NbRCnXfPYWm2wyvWIb0mtUVLFJJg+bvihFGjqiUHz+31i2eNRzi9fRpKNn
+ rYXz5nRhrVGliD6nsSnQ2zPxvHWAuDi4QuSS8Ev56x11NevpTY4u1a97hWW01CKwLuP9
+ qXbaFdxM64LisxOL0sNACsqgVyk5WJKrjZwNYRA5anO1L6oAMcTMd4n2F/Ri29VXjKFj
+ RB1tqMkPHgy1rTSZrk/H4sDVli6v4M9GWQ+ac/qTbuDx/Vz8ycwMcQcbwNLoc8YweP0l
+ uQWPWQg8A97ayb9RCVNHSOYvwmT+yNTLqd3yn+eSb0by9Tiqmd9ZRJqVaRFTxKdC0IGS
+ B1DA==
+X-Gm-Message-State: APjAAAW1PUX5goqQ8MZvwXpEk45ftiMqq98ZDqfXJNWJPM3wcrWKXjs2
+ s8FDzyyVjYWkt0r7JSFCfaE=
+X-Google-Smtp-Source: APXvYqz28+bOp8to9xXJzQEf3QU/dc8tcJrTPoQpnWDnzM3luchT5mveKgDF1mdKIQhNB8iR3E+zkg==
+X-Received: by 2002:a1c:a617:: with SMTP id p23mr2338697wme.166.1568707414487; 
+ Tue, 17 Sep 2019 01:03:34 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id f8sm1440792wmb.37.2019.09.17.01.03.33
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 17 Sep 2019 01:03:33 -0700 (PDT)
+Subject: Re: [PATCH 1/2] drm/amdgpu: initialize bo in ras_reserve_bad_pages
+To: "Zhou1, Tao" <Tao.Zhou1@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Chen, Guchun" <Guchun.Chen@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>
+References: <20190917061643.29367-1-tao.zhou1@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <a33e79a2-d269-6fe2-a564-f71c637a459a@gmail.com>
+Date: Tue, 17 Sep 2019 10:03:29 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <1568624607-19067-1-git-send-email-danielliu861@gmail.com>
- <CAKwvOdn8-T3Q=LhiGu6H7dCpwXXrNAjpKJA5z0d+N4qB8bOapQ@mail.gmail.com>
- <20190916221203.GM4352@sirena.co.uk> <20190916223615.GP4352@sirena.co.uk>
-In-Reply-To: <20190916223615.GP4352@sirena.co.uk>
-From: Daniel Liu <danielliu861@gmail.com>
-Date: Tue, 17 Sep 2019 14:07:04 +0800
-Message-ID: <CAADsLEuwzqqoVyR+q_mnj+7H9Bkz-euWi7aCpWeHDypY-3zSzA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: build failed for DCN2.1
-To: Mark Brown <broonie@kernel.org>
-X-Mailman-Approved-At: Tue, 17 Sep 2019 07:41:57 +0000
+In-Reply-To: <20190917061643.29367-1-tao.zhou1@amd.com>
+Content-Language: en-US
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=fQkRl7LfYDFXiUR/iAH9ya4lf6U4MhyEmc1OSRuJSVc=;
- b=d9e2Krk3f9EaU26grZTH40T8JXIUlpruGc21HoVcFTLBamROH45kfCj+YvbfTzI/Pk
- 46Kcf0s07mMgxmLp1Ux9Nb3/Mqz+Q93fWd3hySYYf/XgjtyK7vxQY4hyKGQPm7tY+9u9
- gCkHGbzn2nqaRRpLy37iic0q57YolXGb4Z5cWzY8/iySTfzb7jJAGsm3nrCoT6wsJMjn
- aoGYASFsalbsinLUEmWVXDiPppsoVD8xFkbEngkalQbh5ebegf1B+LKI7OOb+iOc7wgK
- JrktAyw+7naWltCWoVEOmTXafp5xsN/4sWhs87kiksT9k500MsUSR+mgzxQTRnTo17oi
- pthQ==
+ h=reply-to:subject:to:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=sKdorh0+cRYKT/XhPE+XVcsVFpPCcMqxjaPQFk9HUe8=;
+ b=Aht5oXwpXzDUJtBH71VpvFucJrVcGP43TIoOslUKRZUM9Hb7B67B5iR+eBuSZToONn
+ 9WwGOLGG3ozMhxCc3EUYdZZ50Cqzlk+UHlHMMGPYzWyvXshVjBMQJVNz7nYcRdl4UMZ7
+ SJFIVhH7tonxZDqPz2Yplat5PiS3qAbkAFHwaSxp3tOxRChPMimcKotilPgySWo4LGrf
+ Q/SQNWDI8WxiMQLCFBD0b3XI+w8igXy6gWrtcKTJnED5DUHiMTHTbB6T/eCRERGIhnKY
+ 4ot8o+TKLdjbwKqwSAjdAL7Xe1NxDvK6IrKtyeuURKrmBow8Hik330eTFQiXAH9ORfpR
+ xEZQ==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -65,85 +74,26 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>, "Li,
- Sun peng \(Leo\)" <sunpeng.li@amd.com>, Bhawanpreet.Lakha@amd.com,
- Nick Desaulniers <ndesaulniers@google.com>, Roman.Li@amd.com,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Jun.Lei@amd.com, Harry Wentland <harry.wentland@amd.com>, "Koenig,
- Christian" <christian.koenig@amd.com>
-Content-Type: multipart/mixed; boundary="===============1918636147=="
+Reply-To: christian.koenig@amd.com
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1918636147==
-Content-Type: multipart/alternative; boundary="0000000000004623600592b98809"
-
---0000000000004623600592b98809
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Welcome^_^!
-
-Mark Brown <broonie@kernel.org> =E4=BA=8E2019=E5=B9=B49=E6=9C=8817=E6=97=A5=
-=E5=91=A8=E4=BA=8C =E4=B8=8A=E5=8D=886:36=E5=86=99=E9=81=93=EF=BC=9A
-
-> On Mon, Sep 16, 2019 at 11:12:03PM +0100, Mark Brown wrote:
-> > On Mon, Sep 16, 2019 at 01:51:15PM -0700, Nick Desaulniers wrote:
-> >
-> > > + Mark
-> > > I think this was a result of the resolved merge conflict.  See the
-> > > -next only commit titled:
-> > >     Merge remote-tracking branch 'drm/drm-next'
->
-> > Yes, the DRM and the Kbuild people really need to coordinate with each
-> > other here I fear, it's pretty bad that stuff like this has to be done
-> > in a merge at all :/ The fact that make doesn't detect a missing endif
-> > is also concerning.
->
-> Applied now, thanks Xinpeng.
->
-
---0000000000004623600592b98809
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Welcome^_^!</div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">Mark Brown &lt;<a href=3D"mailto:broonie@kern=
-el.org">broonie@kernel.org</a>&gt; =E4=BA=8E2019=E5=B9=B49=E6=9C=8817=E6=97=
-=A5=E5=91=A8=E4=BA=8C =E4=B8=8A=E5=8D=886:36=E5=86=99=E9=81=93=EF=BC=9A<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex">On Mon, Sep 16, 201=
-9 at 11:12:03PM +0100, Mark Brown wrote:<br>
-&gt; On Mon, Sep 16, 2019 at 01:51:15PM -0700, Nick Desaulniers wrote:<br>
-&gt; <br>
-&gt; &gt; + Mark<br>
-&gt; &gt; I think this was a result of the resolved merge conflict.=C2=A0 S=
-ee the<br>
-&gt; &gt; -next only commit titled:<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0Merge remote-tracking branch &#39;drm/drm-next=
-&#39;<br>
-<br>
-&gt; Yes, the DRM and the Kbuild people really need to coordinate with each=
-<br>
-&gt; other here I fear, it&#39;s pretty bad that stuff like this has to be =
-done<br>
-&gt; in a merge at all :/ The fact that make doesn&#39;t detect a missing e=
-ndif<br>
-&gt; is also concerning.<br>
-<br>
-Applied now, thanks Xinpeng.<br>
-</blockquote></div>
-
---0000000000004623600592b98809--
-
---===============1918636147==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1918636147==--
+QW0gMTcuMDkuMTkgdW0gMDg6MTYgc2NocmllYiBaaG91MSwgVGFvOgo+IHRoZSBibyBwb2ludGVy
+IGlzIHJldXNlZCBmb3IgYmFkIHBhZ2VzLCBpbml0aWFsaXplIGl0IGluIGVhY2ggbG9vcAo+Cj4g
+U2lnbmVkLW9mZi1ieTogVGFvIFpob3UgPHRhby56aG91MUBhbWQuY29tPgoKUmV2aWV3ZWQtYnk6
+IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4gZm9yIHRoZSBzZXJp
+ZXMuCgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhcy5jIHwg
+MSArCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKPgo+IGRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfcmFzLmMKPiBpbmRleCA1ZjYyM2RhZjUwNzguLjA5MGRhZjU5NTQ2
+OSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMK
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMKPiBAQCAtMTQy
+MSw2ICsxNDIxLDcgQEAgaW50IGFtZGdwdV9yYXNfcmVzZXJ2ZV9iYWRfcGFnZXMoc3RydWN0IGFt
+ZGdwdV9kZXZpY2UgKmFkZXYpCj4gICAKPiAgIAkJZGF0YS0+YnBzX2JvW2ldID0gYm87Cj4gICAJ
+CWRhdGEtPmxhc3RfcmVzZXJ2ZWQgPSBpICsgMTsKPiArCQlibyA9IE5VTEw7Cj4gICAJfQo+ICAg
+Cj4gICAJLyogY29udGludWUgdG8gc2F2ZSBiYWQgcGFnZXMgdG8gZWVwcm9tIGV2ZW4gcmVlc3J2
+ZV92cmFtIGZhaWxzICovCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
