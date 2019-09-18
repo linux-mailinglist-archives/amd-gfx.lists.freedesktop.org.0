@@ -1,89 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 288A5B5E59
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2019 09:53:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78423B5EA8
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2019 10:08:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A49F86EE21;
-	Wed, 18 Sep 2019 07:53:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D52B6EE44;
+	Wed, 18 Sep 2019 08:08:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr740049.outbound.protection.outlook.com [40.107.74.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1E7A6EE21
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 07:53:35 +0000 (UTC)
+ (mail-eopbgr740059.outbound.protection.outlook.com [40.107.74.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9746EE44
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 08:08:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kfaVWIQu4OW2YtqouXPpU6OoVZFm1RySI/swfWY4J6A3mvPD6L1UH8bEEa3c85x6jrJwhQ0YeXkMhye2AC8Edn8G+znPnZ1IbUsptgJ/JT4uCH5nqzWW2dsN8XDL0CICwhHN+oX2W6IAH/P4zpAuGWWXJYJiNzI0ZvgMPjHoQ8Qu0vSmAOsWH6R54iF59+yYKSS4iPHs/o7PR0FqCFsh6zNdSejU+ZbMuIq10MoKg36SV6/+qSrZLo5AJPrLG+DWau8NEstaExMb2rt/2MwYktncZzUOQodLnsJls1FfZDPKgG4ksAMMlg6iY4RdxX/B+g42OTi6i+2yQn1xJCERgw==
+ b=ktoSEQ4UVT22r6tqwpVE8Ebs18PhB7vApWcM6AGNhMicQ6ZAkwOgFaSP2vRr4bbW/RhbL0S3ATkD8XwTpyWIlUNahlEuv9lSqHjgFARoT4tkVp573KVAe84rmSG6IKwCHZ6Ew5P1pGWwqOhOLFXH77i4PRD6Q82HXRT+Br82TW/1U7DDb19moMx2BQpqr8KsbQJjl+/xKmdWC4E5ZnTs3oq3I0GadvyIeMDPBUxRNkcQuhB0ui7/gKpiMrTCC400Z4whNOt/QMQmwcoTyaj8pGgK7RwvdCH9+7W/kb0Arr7ubIrBF+HEpibkX5kwAXqH7w3dMrozNWOuq5MOdp0WzA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sYNc6bzspiCAbBbOKlo2ind9NeJO2BOfXYUg2hvV+eo=;
- b=BUMRI2CwInf1ZGazzhA1RmEyM1lWEdsS2LLKjlRfvGaSXQTFjHmRhkRRDhZZtzyuH8BIBqTtdjiHG874LS6pLqn0L1Av+Uk4h/pyHPEGo0fULP9jtu3Lg6Q6nLz5dTru92IFZ5XWAuUu1dTrNwr/uFcZtJs5NjE7GpGa4uX3jvpG4CcKSK0iP8P/Yb2laKPIeFl1v+hNx34WGohVQ9f+MAu1egk/vwN2hbMO1QJWMhLGC4kIn4jmYvv3f1jjYdQUmogDOredpsfTmQjGoYNleTgwNOCNAR8lMWVPCMHBVKLsMYJIuXpYbOlCFqDULVsJUtoZzA+ty/QNoFT1L9HiEw==
+ bh=060aB7ldD/O+LcYF9XRm+din/zazRZIUYlIMLP8oZl4=;
+ b=nGEANXFmYGs/CslaemForK+9fAHHA212hJalE5NLHXgqrIHAR20QGKlIxK5q0MqDvRFnF76g0lIkeZlOSxqvN9nQe87338ZEcWsetj7kSS2Jdp2+hLZfrSKz8MWkqIUsxY1u6ea0bSam/9o2NIWx5XBeErhsuUElIvylbrnokB+FyTYETbVIFVd3B4IToLNn7Aucq8D9hph3ApPcivSWdc2C5GLCzXlq1ZXSGBd7koL9tWoCpu1HHtaYKYAtH05DpHFRHjuE+G0LBpH9G40Kql7QaIDSL75TUX1SytM0UBeAkp55TLVbJy+XLvGLCt0VC5UYCdvGPGoyk4Lvpp3FsA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from DM5PR12MB1705.namprd12.prod.outlook.com (10.175.88.22) by
- DM5PR12MB1465.namprd12.prod.outlook.com (10.172.35.149) with Microsoft SMTP
+Received: from MN2PR12MB2975.namprd12.prod.outlook.com (20.178.243.142) by
+ MN2PR12MB3359.namprd12.prod.outlook.com (20.178.241.220) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2263.17; Wed, 18 Sep 2019 07:53:34 +0000
-Received: from DM5PR12MB1705.namprd12.prod.outlook.com
- ([fe80::9d43:b3d4:9ef:29fc]) by DM5PR12MB1705.namprd12.prod.outlook.com
- ([fe80::9d43:b3d4:9ef:29fc%8]) with mapi id 15.20.2263.023; Wed, 18 Sep 2019
- 07:53:34 +0000
-From: "Koenig, Christian" <Christian.Koenig@amd.com>
-To: "Zhang, Jack (Jian)" <Jack.Zhang1@amd.com>
+ 15.20.2263.23; Wed, 18 Sep 2019 08:08:14 +0000
+Received: from MN2PR12MB2975.namprd12.prod.outlook.com
+ ([fe80::3dbc:12f8:fbba:1e7e]) by MN2PR12MB2975.namprd12.prod.outlook.com
+ ([fe80::3dbc:12f8:fbba:1e7e%7]) with mapi id 15.20.2263.023; Wed, 18 Sep 2019
+ 08:08:14 +0000
+From: "Deng, Emily" <Emily.Deng@amd.com>
+To: "Koenig, Christian" <Christian.Koenig@amd.com>, "Zhang, Jack (Jian)"
+ <Jack.Zhang1@amd.com>
 Subject: RE: [PATCH] drm/amdgpu/sriov: omit fbcon error under sriov or
  passthrough
 Thread-Topic: [PATCH] drm/amdgpu/sriov: omit fbcon error under sriov or
  passthrough
-Thread-Index: AQHVbfIsKnOwH2bp1EW50Z76zZ7KZacxCM9wgAAHoyc=
-Date: Wed, 18 Sep 2019 07:53:33 +0000
-Message-ID: <2a7e5c50-7af0-4af1-a46d-834943ab810c@email.android.com>
+Thread-Index: AQHVbfIt4A0vWNSxs0uR7HT9TWLKVKcxCnYAgAAF+4CAAAKQQA==
+Date: Wed, 18 Sep 2019 08:08:13 +0000
+Message-ID: <MN2PR12MB2975F41EE42811399F0016C28F8E0@MN2PR12MB2975.namprd12.prod.outlook.com>
 References: <20190918072445.3559-1-Jack.Zhang1@amd.com>,
  <DM6PR12MB367564A4AAC093F841D88018BB8E0@DM6PR12MB3675.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB367564A4AAC093F841D88018BB8E0@DM6PR12MB3675.namprd12.prod.outlook.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
+ <2a7e5c50-7af0-4af1-a46d-834943ab810c@email.android.com>
+In-Reply-To: <2a7e5c50-7af0-4af1-a46d-834943ab810c@email.android.com>
+Accept-Language: en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [37.201.193.98]
+x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6942d24d-16ed-4839-1cd7-08d73c0d4e3a
+x-ms-office365-filtering-correlation-id: f32c9b5b-450c-4da3-bd7e-08d73c0f5ab2
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:DM5PR12MB1465; 
-x-ms-traffictypediagnostic: DM5PR12MB1465:
+ RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
+ SRVR:MN2PR12MB3359; 
+x-ms-traffictypediagnostic: MN2PR12MB3359:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR12MB1465D1BC5F3A3805A81EB607838E0@DM5PR12MB1465.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-microsoft-antispam-prvs: <MN2PR12MB3359B29785FA19A1E67F741A8F8E0@MN2PR12MB3359.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 01644DCF4A
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(396003)(136003)(366004)(39860400002)(376002)(13464003)(189003)(199004)(4326008)(81166006)(478600001)(81156014)(31686004)(25786009)(316002)(76176011)(66476007)(66446008)(66946007)(64756008)(256004)(6862004)(99286004)(8676002)(66556008)(54896002)(6436002)(66066001)(6512007)(229853002)(6246003)(486006)(14454004)(53546011)(102836004)(91956017)(76116006)(9686003)(71190400001)(31696002)(6636002)(3846002)(6506007)(5660300002)(71200400001)(11346002)(54906003)(446003)(7736002)(86362001)(186003)(6116002)(6486002)(8936002)(476003)(2906002)(26005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1465;
- H:DM5PR12MB1705.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ SFS:(10009020)(4636009)(136003)(346002)(396003)(39860400002)(366004)(376002)(199004)(189003)(13464003)(9686003)(66556008)(6506007)(6636002)(6246003)(81156014)(64756008)(52536014)(26005)(8676002)(99286004)(33656002)(74316002)(8936002)(66066001)(66446008)(76116006)(71190400001)(102836004)(76176011)(66946007)(53546011)(7696005)(54896002)(446003)(476003)(11346002)(5660300002)(86362001)(486006)(256004)(66476007)(236005)(71200400001)(9326002)(81166006)(2906002)(478600001)(7736002)(4326008)(55016002)(6436002)(186003)(6306002)(316002)(790700001)(3846002)(14454004)(229853002)(54906003)(25786009)(110136005)(6116002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3359;
+ H:MN2PR12MB2975.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: o0HpOVEdwSw1pRimMOzE9S2NT+e1+LcNn+HYdq41hJtXzCyW7H1Wm4pJVo3rVCv6KWY6Qu/doOIXhB4Tv9YHy6N0R6eq0nNNbCD5qe5Lcbd/WeuyuChLzseOdqJsgjWHseQcEYDoElcng7X24j1a4a7KNdNTRkDwnRCYT9foRbRtTSr+2nxxjeM35B8VXE7xyLu/p9vCWaUjMkF25igPCCmOSrzNvVUT/tGHNE5bFU0a9pSvSLNwN27bdUBM93OeBfuqANmhTmhmn/4TO95Q6fj20m3hnREENCFu45IHfs0b0ymRH3csXzqygqppqvJY5wXVXW/aGzMWx2VCeMN4MTUU43AuJrbSx8CKvVk+TyqDdrc/Fv30S9Eck645tgML2uEGMBhd6QD6LIaFZ/W6d/miHi60k92Wt09jGAWATHU=
+x-microsoft-antispam-message-info: bdQFr3dgd2iP0LPKMMTwbAsCTGyahdsX0IFD8lxEzvQOQA/C8coWaPSou+7MECKXA3hO/ISamEVZxi4hUoRluOb8ki1pYo97ch+Eps5n9J9bN3nw6PHwA6ym2QwzDfwoCZ/zqJ/IwSYwgS948t3SuTz3MBtQd85FHSbYejV3W/5YjRWQ7iGw8lZJI3RbYUEA1wPsYr5sqyNLGrz/xbFkO3x8cro/8DOEWLKkFIKDj8MU9cQgpIUBY2LzzZWHwguISzImakOdMehP4BUNmt+iUPWDusTjPNGblgkzwOsNIVsTVrvdnynxYPHQUzEkYA9cZaKsFXnflZ2rRoTt70YPzASdOdLXsr9z0cdR2iYxwWJIJkUCJkQwuzepd8y2ooL/WVihE/S5iQkguj3rd+EphaLhMoT8go6GbD/svdRh9Vo=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6942d24d-16ed-4839-1cd7-08d73c0d4e3a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2019 07:53:33.9787 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f32c9b5b-450c-4da3-bd7e-08d73c0f5ab2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2019 08:08:13.8424 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MVe4tN3F3bLlS8agi7t6jF/H5RzHCrNHiejC/qSqUPuTr63JhtEGDG0h4I/K6wlj
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1465
+X-MS-Exchange-CrossTenant-userprincipalname: FwpNvoMseeQeWg49ai8YGjJXWgXyiWGQ6NPoO9HRMcYlIZIbGW/EQ+OEq1rcmkm4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3359
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sYNc6bzspiCAbBbOKlo2ind9NeJO2BOfXYUg2hvV+eo=;
- b=L6GJ1+cDACdSY+zFJNuubsCDKCgtp/JtvDszbYrblX31BkV9C4KrdlJtlVTEa5up/F3ZJAE8rTyJt9+2AQBsic8G/bSyQA7ia0AD1Mmz7rtO0qjMkTA59qR5PFlY2DZr6jvirZJLLk3Jq0p2Hg+cPAzHOVK66/D9P95n/PrKl54=
+ bh=060aB7ldD/O+LcYF9XRm+din/zazRZIUYlIMLP8oZl4=;
+ b=Zx0+NfTFiQfZ7oxiMIS+J908RBXcWOVKstiZYUvHHb+JRK9Z13YaPwTF5uz0BG/MprMeuyx1XaKVgRQVnIdvb0DMOdpgEfw8GqR02FTEUwbAA1RARHz/DyScFelItvo+nmj+0kpaIgwq1dBcLEFL28JkLYQT0NJiqiEnKDUvRd0=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Christian.Koenig@amd.com; 
+ smtp.mailfrom=Emily.Deng@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -95,21 +97,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deng, Emily" <Emily.Deng@amd.com>, "Cui, Flora" <Flora.Cui@amd.com>, "Teng,
- Rui" <Rui.Teng@amd.com>,
+Cc: "Cui, Flora" <Flora.Cui@amd.com>, "Teng, Rui" <Rui.Teng@amd.com>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0393159827=="
+Content-Type: multipart/mixed; boundary="===============1057948386=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0393159827==
-Content-Language: de-DE
+--===============1057948386==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_2a7e5c507af04af1a46d834943ab810cemailandroidcom_"
+	boundary="_000_MN2PR12MB2975F41EE42811399F0016C28F8E0MN2PR12MB2975namp_"
 
---_000_2a7e5c507af04af1a46d834943ab810cemailandroidcom_
+--_000_MN2PR12MB2975F41EE42811399F0016C28F8E0MN2PR12MB2975namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Christian,
+     Before unloading driver, user must sure there is not any userspace to =
+use of amdgpu, if not, it will report driver is in use. And the unloading d=
+river is a feature about amdgpu driver which will be easier to replace driv=
+er without rebooting VM. Do you think it has any issue about driver unloadi=
+ng path?
+
+Best wishes
+Emily Deng
+From: Koenig, Christian <Christian.Koenig@amd.com>
+Sent: Wednesday, September 18, 2019 3:54 PM
+To: Zhang, Jack (Jian) <Jack.Zhang1@amd.com>
+Cc: amd-gfx@lists.freedesktop.org; Teng, Rui <Rui.Teng@amd.com>; Deng, Emil=
+y <Emily.Deng@amd.com>; Cui, Flora <Flora.Cui@amd.com>
+Subject: RE: [PATCH] drm/amdgpu/sriov: omit fbcon error under sriov or pass=
+through
 
 Hi Jack,
 
@@ -126,7 +144,8 @@ Christian.
 
 
 
-Am 18.09.2019 09:32 schrieb "Zhang, Jack (Jian)" <Jack.Zhang1@amd.com>:
+Am 18.09.2019 09:32 schrieb "Zhang, Jack (Jian)" <Jack.Zhang1@amd.com<mailt=
+o:Jack.Zhang1@amd.com>>:
 Hi, Christian and folks,
 
 In virtual machines(such virt-manager), there's always a virtual graphics d=
@@ -140,10 +159,10 @@ Best wishes,
 Jack
 
 -----Original Message-----
-From: Jack Zhang <Jack.Zhang1@amd.com>
+From: Jack Zhang <Jack.Zhang1@amd.com<mailto:Jack.Zhang1@amd.com>>
 Sent: Wednesday, September 18, 2019 3:25 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhang, Jack (Jian) <Jack.Zhang1@amd.com>
+To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+Cc: Zhang, Jack (Jian) <Jack.Zhang1@amd.com<mailto:Jack.Zhang1@amd.com>>
 Subject: [PATCH] drm/amdgpu/sriov: omit fbcon error under sriov or passthro=
 ugh
 
@@ -154,7 +173,7 @@ So for PF(passthrough mode) or SRIOV VF, it is reasonable to unload amdgpu =
 driver. Amdgpu doesn't have to be the only fbcon device under this conditio=
 n.
 
-Signed-off-by: Jack Zhang <Jack.Zhang1@amd.com>
+Signed-off-by: Jack Zhang <Jack.Zhang1@amd.com<mailto:Jack.Zhang1@amd.com>>
 ---
  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
@@ -181,52 +200,165 @@ e of
 --
 2.7.4
 
-
---_000_2a7e5c507af04af1a46d834943ab810cemailandroidcom_
+--_000_MN2PR12MB2975F41EE42811399F0016C28F8E0MN2PR12MB2975namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@DengXian";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.emailquote, li.emailquote, div.emailquote
+	{mso-style-name:emailquote;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:1.0pt;
+	border:none;
+	padding:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Christian,<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; Before unloading driver, us=
+er must sure there is not any userspace to use of amdgpu, if not, it will r=
+eport driver is in use. And the unloading driver is a feature about amdgpu =
+driver which will be easier to replace driver without
+ rebooting VM. Do you think it has any issue about driver unloading path?<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best wishes<o:p></o:p></p>
+<p class=3D"MsoNormal">Emily Deng<o:p></o:p></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
 <div>
-<div dir=3D"auto">Hi Jack,
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto">Well that believe is unfortunately completely wrong.</div=
->
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto">The point is that ANY use of amdgpu by userspace will pre=
-vent correct driver unload, that qxl is used for the fbcon doesn't change a=
-nything here.</div>
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto">So the patch is a clear NAK. Driver unload is not suppose=
-d to work even under SRIOV.</div>
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto">Regards,</div>
-<div dir=3D"auto">Christian.</div>
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto"><br>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Koenig, Christian &lt;Christian.Koenig@=
+amd.com&gt; <br>
+<b>Sent:</b> Wednesday, September 18, 2019 3:54 PM<br>
+<b>To:</b> Zhang, Jack (Jian) &lt;Jack.Zhang1@amd.com&gt;<br>
+<b>Cc:</b> amd-gfx@lists.freedesktop.org; Teng, Rui &lt;Rui.Teng@amd.com&gt=
+;; Deng, Emily &lt;Emily.Deng@amd.com&gt;; Cui, Flora &lt;Flora.Cui@amd.com=
+&gt;<br>
+<b>Subject:</b> RE: [PATCH] drm/amdgpu/sriov: omit fbcon error under sriov =
+or passthrough<o:p></o:p></p>
 </div>
 </div>
-<div class=3D"x_gmail_extra"><br>
-<div class=3D"x_gmail_quote">Am 18.09.2019 09:32 schrieb &quot;Zhang, Jack =
-(Jian)&quot; &lt;Jack.Zhang1@amd.com&gt;:<br type=3D"attribution">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi Jack,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Well that believe is unfortunately completely wrong.=
+<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">The point is that ANY use of amdgpu by userspace wil=
+l prevent correct driver unload, that qxl is used for the fbcon doesn't cha=
+nge anything here.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">So the patch is a clear NAK. Driver unload is not su=
+pposed to work even under SRIOV.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Christian.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">Am 18.09.2019 09:32 schrieb &quot;Zhang, Jack (Jian)=
+&quot; &lt;<a href=3D"mailto:Jack.Zhang1@amd.com">Jack.Zhang1@amd.com</a>&g=
+t;:<o:p></o:p></p>
 </div>
 </div>
 </div>
-<font size=3D"2"><span style=3D"font-size:11pt;">
-<div class=3D"PlainText">Hi, Christian and folks,<br>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Hi, Christian and fol=
+ks,<br>
 <br>
 In virtual machines(such virt-manager), there's always a virtual graphics d=
 evice existed like &quot;qxl&quot; as the default gfx device.<br>
@@ -239,10 +371,13 @@ Best wishes,<br>
 Jack<br>
 <br>
 -----Original Message-----<br>
-From: Jack Zhang &lt;Jack.Zhang1@amd.com&gt; <br>
+From: Jack Zhang &lt;<a href=3D"mailto:Jack.Zhang1@amd.com">Jack.Zhang1@amd=
+.com</a>&gt; <br>
 Sent: Wednesday, September 18, 2019 3:25 PM<br>
-To: amd-gfx@lists.freedesktop.org<br>
-Cc: Zhang, Jack (Jian) &lt;Jack.Zhang1@amd.com&gt;<br>
+To: <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesk=
+top.org</a><br>
+Cc: Zhang, Jack (Jian) &lt;<a href=3D"mailto:Jack.Zhang1@amd.com">Jack.Zhan=
+g1@amd.com</a>&gt;<br>
 Subject: [PATCH] drm/amdgpu/sriov: omit fbcon error under sriov or passthro=
 ugh<br>
 <br>
@@ -253,7 +388,8 @@ So for PF(passthrough mode) or SRIOV VF, it is reasonable to unload amdgpu =
 driver. Amdgpu doesn't have to be the only fbcon device under this conditio=
 n.<br>
 <br>
-Signed-off-by: Jack Zhang &lt;Jack.Zhang1@amd.com&gt;<br>
+Signed-off-by: Jack Zhang &lt;<a href=3D"mailto:Jack.Zhang1@amd.com">Jack.Z=
+hang1@amd.com</a>&gt;<br>
 ---<br>
 &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 5 &#43;&#43;&#43;--<br>
 &nbsp;1 file changed, 3 insertions(&#43;), 2 deletions(-)<br>
@@ -283,16 +419,16 @@ tside of <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pci_disable_device(pdev);<=
 br>
 --<br>
-2.7.4<br>
-<br>
+2.7.4<o:p></o:p></p>
 </div>
-</span></font>
+</div>
+</div>
 </body>
 </html>
 
---_000_2a7e5c507af04af1a46d834943ab810cemailandroidcom_--
+--_000_MN2PR12MB2975F41EE42811399F0016C28F8E0MN2PR12MB2975namp_--
 
---===============0393159827==
+--===============1057948386==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -302,4 +438,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============0393159827==--
+--===============1057948386==--
