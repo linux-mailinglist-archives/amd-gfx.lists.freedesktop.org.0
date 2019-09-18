@@ -2,87 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD04DB5B82
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2019 08:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 888B8B5DAE
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2019 08:57:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5DF6EDFC;
-	Wed, 18 Sep 2019 06:00:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 535586EE01;
+	Wed, 18 Sep 2019 06:57:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690080.outbound.protection.outlook.com [40.107.69.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B82A76EDFC
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 06:00:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kvgHigb1UdBTFg957gb54JIdq3H7BZITxo8VRBQUsgqZMyZ/sPZlBjMRgIlj/eMC2XYp7Q9t0AyD5cRb+c2Ef1lZS+qw4HiUDUYMomS16dyCKs7JmOJbk7PZLKLuq1yZ+Aouat3jU0VH8ns4I4YugfVvIyl+PVlK1cubgmn0JStHGHz8DO26kmHSoVuC9drWJ4kt+m6NjQ1QolqwNrmHf2RbUHwVITbAGoAMcHumW+qYo9M+0yHXXGhGsAe0skNcgAdFJhQjwSm56Emv3fw2tWS6BSehJYMKxWdQlW5u9ucw+j+/pDCC94pvrbq9wyV2Ro1NxNKRY2Inn6Rs+YLvRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BRUSSadkSEu6QQ0ZWPBH9ch6sD7qsvRNkIP4RLJ9woE=;
- b=BSiGafNuPb2dc/mDdP384YWgiVgkZPjWUnWZUdkGI+TMESlLGzaJzh8/QcvhC7S00QtB441mGOJP8Qy+bz4uXA10hGt0/nepepUcKPFoExoYXBIT2eMjgN4C5Ys1xFn6bAF380ZeKVHRgjiOYhw+zwgi9BUq+9ZEJcq8o9zTWobuqoYx7ANDDPjLWcWbvcjyewXdYp6fvkpQi+8VVkMwzR83aZbrzGnpgDg+S2Gu7y9YYwXH1d0XZ2+EmpgG9NsL49uLRTE1l2XiV5gQGefJdAkETqst37xVasRMU/nxYNAuD4qw+jDaMUuiuic+fbVq7erju8Kc+HReurDNuCuXrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from MN2PR12MB3054.namprd12.prod.outlook.com (20.178.244.79) by
- MN2PR12MB3024.namprd12.prod.outlook.com (20.178.242.207) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2263.17; Wed, 18 Sep 2019 06:00:03 +0000
-Received: from MN2PR12MB3054.namprd12.prod.outlook.com
- ([fe80::f8cf:7a84:723c:27d0]) by MN2PR12MB3054.namprd12.prod.outlook.com
- ([fe80::f8cf:7a84:723c:27d0%3]) with mapi id 15.20.2263.023; Wed, 18 Sep 2019
- 06:00:03 +0000
-From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-To: "Chen, Guchun" <Guchun.Chen@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Zhang, Hawking" <Hawking.Zhang@amd.com>,
- "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>
-Subject: RE: [PATCH 1/2] drm/amdgpu: avoid null pointer dereference
-Thread-Topic: [PATCH 1/2] drm/amdgpu: avoid null pointer dereference
-Thread-Index: AQHVbdJwrZgxAhfTiUifG3oXE/GU7acw75Rw
-Date: Wed, 18 Sep 2019 06:00:03 +0000
-Message-ID: <MN2PR12MB3054F8BA6193829B9FFE34C2B08E0@MN2PR12MB3054.namprd12.prod.outlook.com>
-References: <20190918033721.19070-1-guchun.chen@amd.com>
-In-Reply-To: <20190918033721.19070-1-guchun.chen@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 54378f4e-4992-4eb2-b528-08d73bfd7306
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB3024; 
-x-ms-traffictypediagnostic: MN2PR12MB3024:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB30242CDE683575DFD024522FB08E0@MN2PR12MB3024.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1201;
-x-forefront-prvs: 01644DCF4A
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(396003)(366004)(136003)(346002)(39860400002)(13464003)(199004)(189003)(66476007)(14454004)(7736002)(6506007)(26005)(9686003)(8676002)(53546011)(55016002)(81156014)(6116002)(110136005)(476003)(81166006)(486006)(86362001)(229853002)(102836004)(7696005)(5660300002)(8936002)(6636002)(76176011)(256004)(14444005)(6436002)(6246003)(2906002)(2501003)(52536014)(71200400001)(186003)(66446008)(66946007)(76116006)(71190400001)(64756008)(3846002)(25786009)(74316002)(11346002)(33656002)(446003)(66066001)(478600001)(99286004)(305945005)(316002)(66556008);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3024;
- H:MN2PR12MB3054.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: +MaHusVwFhw0MElVA1CxZfpWpt84bzQ5IyzAPzfOnm2xbeI5NVB0Q7n0qBZW32+vxK9BXXp0LL/hePyWlKMuery4gb275z+iC9DLwY0kng7vInVGD1OEE9N7HSnXCoCKu4buTzVqxR9WqWgXL5e/OkOEc2iHayWm6zN10fYtiPME0s0+UlGuWQENiN8YFZGbIN4pHK/UvgTg16lTq8uj2MRy1EAd0xAPIzO+/mibLHwSayEJKn/MjVPAyJB9erGWbZwnmlIca6E7vMygldMkQW7irgiT5Aht1R7FfVq8NmTe9+YXKuKvP8qm+Oi5tr4K/p33LfN2JP99ptdcWvmo7QOBCg44caCRUQ0GlzluBSk6IkYFtdk6GkCpOq4oc2PFQiMWmLdhgE+p+OtQHMEz9uH4gRoca38zfm4Hua55mLU=
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com
+ [IPv6:2a00:1450:4864:20::144])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D67626EE01;
+ Wed, 18 Sep 2019 06:57:45 +0000 (UTC)
+Received: by mail-lf1-x144.google.com with SMTP id q11so4794442lfc.11;
+ Tue, 17 Sep 2019 23:57:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=2SCjPk6PuqdRWJK8MoF2xZuMrxoKhkl/Qv2bMrB+MIc=;
+ b=imKxC4Jx9srrqpT+MzEIySUrPlhg8VYiMmcjKj7Q06uLxxWVKhz2NrENb1OOrX+AXG
+ /tTyuWXMxWnQtQ1tvkb55oVPX5iM8ZXZNRLKJxymH82d3G85MvaRCOIwNcACEan8/eRw
+ lawWVIJtSuxKnMfI5kkZ4BB4X/G+9RJnpAmTQ4qzabvqlfXhwzEp/gjB0iZsgrDpGytZ
+ 1GGAr8myqnfB94PUC4hxqyyagRoLpiIHahEPQwfEjD/3UI8MqjgeLc8WO+AoVRSBNnDB
+ aSbgQBlulVsWf/9ZDJkWd8DCX2JW6wTngqhPocryBJudulylVpWVIhxueatFJcoPPGbF
+ pi0w==
+X-Gm-Message-State: APjAAAUkwXtUqN/IbYbsc6C4c8PNmyslAO60bu1rieR/ah3rF7vL2VF2
+ MhK6rTd/n50+rl2yy86ZyIU=
+X-Google-Smtp-Source: APXvYqz9kyHTkSL5LugR6y+0YvR7QNLDQTq9v/nFG8ufqiLXRRDusmfJGR1K3IIOh+7Nxx+WQ9qItA==
+X-Received: by 2002:ac2:5090:: with SMTP id f16mr1306174lfm.66.1568789863817; 
+ Tue, 17 Sep 2019 23:57:43 -0700 (PDT)
+Received: from eldfell.localdomain ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id e29sm841456ljb.105.2019.09.17.23.57.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Sep 2019 23:57:43 -0700 (PDT)
+Date: Wed, 18 Sep 2019 09:57:39 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH] drm: add drm device name
+Message-ID: <20190918095739.727a9db4@eldfell.localdomain>
+In-Reply-To: <CAKMK7uG54Fa__KR3ytM0h5FTesp=t-eo5Z+E9d5YnFJyjLGaPA@mail.gmail.com>
+References: <20190903214040.2386-1-sonny.jiang@amd.com>
+ <CAAxE2A45N4gMYrcETDpznGKyxLztuwenFasL19a81QQmBkYiww@mail.gmail.com>
+ <CAF6AEGvvUUOGujJC9P3t72N93AJuxiiVt0OAk8zf226Q8WmHvg@mail.gmail.com>
+ <CAKMK7uHFNhdNY4Y9ZFMNuci7gssPWCT5f5y=e4npg8s5r_jBdQ@mail.gmail.com>
+ <CAAxE2A6sESsKAi3K1etAZeCwAPgexn099G6g0aJQnavTkiH+mA@mail.gmail.com>
+ <87woe7eanv.fsf@intel.com>
+ <03d31464-3968-6923-5323-f63060d70f1f@gmail.com>
+ <CAKMK7uEj4FZ3YQqG-cCTa4EEaJoAk09Zaz398F9Hmo+mdXCKiw@mail.gmail.com>
+ <7540df63-e623-19b0-dde5-b89ff2b7fb89@amd.com>
+ <7535dcf4-413f-f06f-b3d1-dcffc86b43e0@daenzer.net>
+ <5d0a8619-7073-fac2-cdd6-83b55221140b@daenzer.net>
+ <CAKMK7uG54Fa__KR3ytM0h5FTesp=t-eo5Z+E9d5YnFJyjLGaPA@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54378f4e-4992-4eb2-b528-08d73bfd7306
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2019 06:00:03.4391 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: q3BR25h50C8W+WLN2b1ax+x3Ad/IrgAwyXbB5FZULx6iuS+4oO8dCzmbWuaxF9nK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3024
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BRUSSadkSEu6QQ0ZWPBH9ch6sD7qsvRNkIP4RLJ9woE=;
- b=Dnt1TELk07XBicLB6w0w+S6Dk/FDZ1+iOyHqLxDv0aHIAinAunHAkhUtQzJstEzLfY4udvVlN50iimJ3DKgktTQaxZyEZjROXD90ZBTdEjHGhnJxxq6no5FcErEXGisPXzmwztZ3jy8b9S/in22UWNznkUMf17US0tBWMuKNQIs=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Tao.Zhou1@amd.com; 
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version;
+ bh=2SCjPk6PuqdRWJK8MoF2xZuMrxoKhkl/Qv2bMrB+MIc=;
+ b=AutvxaUdHagaLXIK6SHVed2MWzeZj4j1iCtR121j7dspJGmQ49WhFt1cvz1a1RqbVg
+ TjwNecCUzMCwrFLm+hMFEVE4cmt1skCUOZtZr9C8W4x4LPThV4zVSk2JyB/YAx20KyX1
+ 56T+R+uKTx8LvJRAhhzvwoy2/jws/BQQHwZsVH1lrYG7qfr+paWuESqsv36ESpAv3036
+ 4ftVmDdmr6RS5XTPz50GlcTvmGyzESP1XqvvTR9LCCQo+SB7QnRkpAfMGNMniKSRBSbP
+ 2oE7umfVXLBsdFlldkfzYa+1WN0NIwoWIpHfWPc54fIWoG/YVbsQdeAggAbvMid1V69e
+ X68A==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -94,40 +77,125 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Jiang, Sonny" <Sonny.Jiang@amd.com>,
+ Michel =?UTF-8?B?RMOkbnplcg==?= <michel@daenzer.net>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1718208650=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-ImNvbnRyb2wgPSAmY29uLT5lZXByb21fY29udHJvbCIgaXMgc3VnZ2VzdGVkLCBhcGFydCBmcm9t
-IHRoaXMsIHRoZSBzZXJpZXMgaXM6DQoNClJldmlld2VkLWJ5OiBUYW8gWmhvdSA8dGFvLnpob3Ux
-QGFtZC5jb20+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQ2hlbiwg
-R3VjaHVuIDxHdWNodW4uQ2hlbkBhbWQuY29tPg0KPiBTZW50OiAyMDE55bm0OeaciDE45pelIDEx
-OjM4DQo+IFRvOiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgWmhhbmcsIEhhd2tpbmcN
-Cj4gPEhhd2tpbmcuWmhhbmdAYW1kLmNvbT47IFpob3UxLCBUYW8gPFRhby5aaG91MUBhbWQuY29t
-PjsNCj4gR3JvZHpvdnNreSwgQW5kcmV5IDxBbmRyZXkuR3JvZHpvdnNreUBhbWQuY29tPg0KPiBD
-YzogQ2hlbiwgR3VjaHVuIDxHdWNodW4uQ2hlbkBhbWQuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0gg
-MS8yXSBkcm0vYW1kZ3B1OiBhdm9pZCBudWxsIHBvaW50ZXIgZGVyZWZlcmVuY2UNCj4gDQo+IG51
-bGwgcHRyIHNob3VsZCBiZSBjaGVja2VkIGZpcnN0IHRvIGF2b2lkIG51bGwgcHRyIGFjY2Vzcw0K
-PiANCj4gQ2hhbmdlLUlkOiBJODVjMGEwOTZlZWY3N2NhZDNhMzQyNjVjOTk1YjE4NDU0NTFlMDRk
-MA0KPiBTaWduZWQtb2ZmLWJ5OiBHdWNodW4gQ2hlbiA8Z3VjaHVuLmNoZW5AYW1kLmNvbT4NCj4g
-LS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzLmMgfCA0ICsrLS0N
-Cj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+IA0K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhcy5jDQo+
-IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhcy5jDQo+IGluZGV4IDA5MGRh
-ZjU5NTQ2OS4uYzMwOTBmMGViNjA0IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1k
-L2FtZGdwdS9hbWRncHVfcmFzLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-YW1kZ3B1X3Jhcy5jDQo+IEBAIC0xMzM0LDEzICsxMzM0LDEzIEBAIHN0YXRpYyBpbnQgYW1kZ3B1
-X3Jhc19zYXZlX2JhZF9wYWdlcyhzdHJ1Y3QNCj4gYW1kZ3B1X2RldmljZSAqYWRldikgIHsNCj4g
-IAlzdHJ1Y3QgYW1kZ3B1X3JhcyAqY29uID0gYW1kZ3B1X3Jhc19nZXRfY29udGV4dChhZGV2KTsN
-Cj4gIAlzdHJ1Y3QgcmFzX2Vycl9oYW5kbGVyX2RhdGEgKmRhdGE7DQo+IC0Jc3RydWN0IGFtZGdw
-dV9yYXNfZWVwcm9tX2NvbnRyb2wgKmNvbnRyb2wgPQ0KPiAtCQkJCQkmYWRldi0+cHNwLnJhcy5y
-YXMtPmVlcHJvbV9jb250cm9sOw0KPiArCXN0cnVjdCBhbWRncHVfcmFzX2VlcHJvbV9jb250cm9s
-ICpjb250cm9sOw0KPiAgCWludCBzYXZlX2NvdW50Ow0KPiANCj4gIAlpZiAoIWNvbiB8fCAhY29u
-LT5laF9kYXRhKQ0KPiAgCQlyZXR1cm4gMDsNCj4gDQo+ICsJY29udHJvbCA9ICZhZGV2LT5wc3Au
-cmFzLnJhcy0+ZWVwcm9tX2NvbnRyb2w7DQo+ICAJZGF0YSA9IGNvbi0+ZWhfZGF0YTsNCj4gIAlz
-YXZlX2NvdW50ID0gZGF0YS0+Y291bnQgLSBjb250cm9sLT5udW1fcmVjczsNCj4gIAkvKiBvbmx5
-IG5ldyBlbnRyaWVzIGFyZSBzYXZlZCAqLw0KPiAtLQ0KPiAyLjE3LjENCg0KX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QK
-YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+--===============1718208650==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/cS6.qu00aBr=DuDBDgIGueK"; protocol="application/pgp-signature"
+
+--Sig_/cS6.qu00aBr=DuDBDgIGueK
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, 17 Sep 2019 13:32:05 +0200
+Daniel Vetter <daniel@ffwll.ch> wrote:
+
+> On Tue, Sep 17, 2019 at 11:27 AM Michel D=C3=A4nzer <michel@daenzer.net> =
+wrote:
+> >
+> > On 2019-09-17 11:23 a.m., Michel D=C3=A4nzer wrote: =20
+> > > On 2019-09-17 10:23 a.m., Koenig, Christian wrote: =20
+> > >> Am 17.09.19 um 10:17 schrieb Daniel Vetter: =20
+> > >>> On Tue, Sep 17, 2019 at 10:12 AM Christian K=C3=B6nig
+> > >>> <ckoenig.leichtzumerken@gmail.com> wrote: =20
+> > >>>> Am 17.09.19 um 07:47 schrieb Jani Nikula: =20
+> > >>>>> On Mon, 16 Sep 2019, Marek Ol=C5=A1=C3=A1k <maraeo@gmail.com> wro=
+te: =20
+> > >>>>>> The purpose is to get rid of all PCI ID tables for all drivers in
+> > >>>>>> userspace. (or at least stop updating them)
+> > >>>>>>
+> > >>>>>> Mesa common code and modesetting will use this. =20
+> > >>>>> I'd think this would warrant a high level description of what you=
+ want
+> > >>>>> to achieve in the commit message. =20
+> > >>>> And maybe explicitly call it uapi_name or even uapi_driver_name. =
+=20
+> > >>> If it's uapi_name, then why do we need a new one for every generati=
+on?
+> > >>> Userspace drivers tend to span a lot more than just 1 generation. A=
+nd
+> > >>> if you want to have per-generation data from the kernel to userspac=
+e,
+> > >>> then imo that's much better suited in some amdgpu ioctl, instead of
+> > >>> trying to encode that into the driver name. =20
+> > >>
+> > >> Well we already have an IOCTL for that, but I thought the intention =
+here
+> > >> was to get rid of the PCI-ID tables in userspace to figure out which
+> > >> driver to load. =20
+> > >
+> > > That's just unrealistic in general, I'm afraid. See e.g. the ongoing
+> > > transition from i965 to iris for recent Intel hardware. How is the
+> > > kernel supposed to know which driver is to be used?
+> > >
+> > >
+> > > For the Xorg modesetting driver, there's a simple solution, see
+> > > https://gitlab.freedesktop.org/xorg/xserver/merge_requests/278 .
+> > > Something similar can probably be done in Mesa as well. =20
+> >
+> > Another possibility might be for Xorg to use
+> > https://www.khronos.org/registry/EGL/extensions/MESA/EGL_MESA_query_dri=
+ver.txt
+> > to determine the driver name. Then only Mesa might need any HW specific
+> > code. =20
+>=20
+> How are other compositors solving this? I don't expect they have a
+> pciid table like modesetting copied to all of them ...
+
+Hi,
+
+other compositors have no driver-specific code at all, so they do not
+need to know what the driver in kernel or Mesa is, or what chip they
+are running. They may report chip name and stuff in logs for the users'
+amusement, but nothing more.
+
+Even the NVIDIA proprietary driver detection happens through EGL
+extension search: no-one else exposes EGLStreams.
+
+Unless maybe if someone needs to quirk around driver bugs.
+
+
+Thanks,
+pq
+
+--Sig_/cS6.qu00aBr=DuDBDgIGueK
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl2B1WMACgkQI1/ltBGq
+qqe9sw/+PxcTpvv0BIYclDwWDRPEqHl1DKJCHJFRkRS7+hn/clw2KYmwAPfmmsDV
+Amr696lcOrYcaeGL1E8C4AFbYVD8Vw5d34IUtCkEN9VXnXEQonR4VSgCcMZR7k4p
+fLSZkT2Gr7DtthwdGUhqkvtbX5NarvW0icHKvLQBYwZKEwqElZ46xsaNIyXJKGT6
+MLzYNVL1yCuBN3pKA4fdtKJ75sJW1VLQzHaRpfZc2Cr7uAymPKKZmZeDntTmUUMT
+padHZDaopV95LCaKKQGLb9aBxSz60YJVRncVd0jg1yAB2qz0OUhb311D5eXxyD02
+N38vYEyFL+9joiRwD3bGfNiSDCyRtSNzHAIsgBNV67xFFU1aJQ5y180fdrkjsunq
+eSec3hDTiMZlKZFG6ITd9HREckWVUL+Jdmy5AOwlu8EXl2PcyxVR3FZoxJ5TxrqH
+wdIDpQZ1PYvUaVKkglPaqLWvA+gJOIqbJxMzUTKruFEvmIeylsTqqPiT5gqc0GZg
+RtshyWzzXqIItRprrLoNNevPhk+0x2t6kEUWFyCZ3O2NdDgoZpMWLH4X92aLvwqo
+Ehm+FBKIL1+3RGtK1y6xZX8ARC2+7rVHZ7ZC3R+5sHk+FApUAFBkPa1wvKL4UnB6
+DgaeV7hbVXzmAgMMtPTd3svP8pqmCbXpluGwITltfQNaMtX/5KY=
+=75T+
+-----END PGP SIGNATURE-----
+
+--Sig_/cS6.qu00aBr=DuDBDgIGueK--
+
+--===============1718208650==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1718208650==--
