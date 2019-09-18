@@ -1,73 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2AAB6F82
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2019 01:01:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13075B7132
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2019 03:48:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DDE17AF91;
-	Wed, 18 Sep 2019 23:01:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2CF6EB93;
+	Thu, 19 Sep 2019 01:48:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
- Wed, 18 Sep 2019 23:01:30 UTC
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 355377AF91
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 23:01:30 +0000 (UTC)
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-214-rRFRg54KORmsGP_wiUxaFA-1; Wed, 18 Sep 2019 18:55:20 -0400
-Received: by mail-qk1-f198.google.com with SMTP id w7so1852135qkf.10
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 15:55:19 -0700 (PDT)
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com
+ [IPv6:2607:f8b0:4864:20::d44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B3FD6F434;
+ Wed, 18 Sep 2019 19:05:06 +0000 (UTC)
+Received: by mail-io1-xd44.google.com with SMTP id q10so1834087iop.2;
+ Wed, 18 Sep 2019 12:05:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=jFt4mIQy1/O4uoE84B2MhzTmYMLv4QygP6QDFf40fuQ=;
- b=EDb1jtDchfffmJze0Lt8tH5m7kHNmpLoMsXWp4p2hmcQw+2mj7RUFssNn/rDaml7VO
- 6uNRA64/g2h68bdwPCSCS3uaGIiCsLOBe3VOZTFHwogXojummcEQoQw6HbVYbuJveAxK
- xrmeSINhxYSgQ5tJS2UqZngT3lTJ2jwVHbrbqbOti/wKpzc6HG2Xfb4By41zHESaT+/n
- eKg7uOOu/G0bQ6yiuho9ZCMo40NrVjrR+htHxJsvPDYvTtM1GmCCfktAEGXUb53QGVcX
- MR9TDClO/JqZMaygj7Cgadkc5+gaTVLeHfyTwA/kj/juDQBeptZOGcLVTJ6wFyHo+NYk
- FZMg==
-X-Gm-Message-State: APjAAAX9oS5N5lNCDUcaFI/nsw+8oO3jfWOhItWTTrcb+Nuhi6UHDC3K
- VWpoS+hzqNaWb+eLxrF0KbP5hggKTSmn/XFqLvkLzz65calUpbttxCcfeDS+GegWpyf/3W93Ax9
- Wmy1u/xIfOlfwmANbrC4zBRXWUA==
-X-Received: by 2002:ae9:ea12:: with SMTP id f18mr6926287qkg.204.1568847318675; 
- Wed, 18 Sep 2019 15:55:18 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqyQ3ACJZe95EAfbPmoGm0THV9YqDxfIjUanCv23y4L0WIPEzjabopn9fPmJzelkUOsbnBAueg==
-X-Received: by 2002:ae9:ea12:: with SMTP id f18mr6926274qkg.204.1568847318392; 
- Wed, 18 Sep 2019 15:55:18 -0700 (PDT)
-Received: from dhcp-10-20-1-34.bss.redhat.com ([144.121.20.162])
- by smtp.gmail.com with ESMTPSA id u27sm3090917qta.90.2019.09.18.15.55.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Sep 2019 15:55:17 -0700 (PDT)
-Message-ID: <098b7e1d4d4491cc7735cb26b499fbc304dc4e24.camel@redhat.com>
-Subject: Re: [PATCH 01/15] drm/amdgpu: Add encoder atomic check
-From: Lyude Paul <lyude@redhat.com>
-To: mikita.lipski@amd.com, amd-gfx@lists.freedesktop.org
-Date: Wed, 18 Sep 2019 18:55:16 -0400
-In-Reply-To: <0dba0e8b72c146cc1d27c8895b1c732e719fc371.1568833906.git.mikita.lipski@amd.com>
-References: <cover.1568833906.git.mikita.lipski@amd.com>
- <0dba0e8b72c146cc1d27c8895b1c732e719fc371.1568833906.git.mikita.lipski@amd.com>
-Organization: Red Hat
-User-Agent: Evolution 3.32.4 (3.32.4-1.fc30)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=YxdYS1JLBCWQ/wgdV/eSCWJBQ5psEESLzConWod1fsY=;
+ b=tGtfuT8HoFLorrEuHzxA3rl4v7olFj48n6aH8XjdoWkRkI2AUjSSajSAVsYz9frHb7
+ dt5qYcfuI7+Uz3oP3YKnpQoEeDxqUKhBKwUJDh4L7SnTM158h0pGsJO36PeXLsEDDuCo
+ 9rUFSPBVIzh4nbvOeN2pF9oXJhjYGZL5r/yW4SvB7P4+JVmHWStjsG5roL0rrkomGdU9
+ nPT4EfDkNwn6kooXgsfhP61MyuDSFY2ssWj/Kq8K1aXCArkWjQ9tKMb9uY91KbyvtXzj
+ fIO38YyBiWyf2gOifIjmxNLD1nLqeuMQ2RXrByRQxn6u3JUurzx4lPbG7QIGd9ZQDYEX
+ 3igw==
+X-Gm-Message-State: APjAAAVnMdf9s/U7YOXeSPmTJkE8UJrQGfgf8sNoKqVcL1A1tLI0hIge
+ onNKqCVv+YTrdYFoVvzvtUTi/yazcKI6AOjAsnM=
+X-Google-Smtp-Source: APXvYqw28HmTogLgA33xanl+pjzTOGhtCLg4U6YzfI9W8hTTqTPZjbraV8rowFxmljuf8oJjv8SiLsDzk0TmW115s4w=
+X-Received: by 2002:a6b:c9d7:: with SMTP id z206mr6837446iof.172.1568833503715; 
+ Wed, 18 Sep 2019 12:05:03 -0700 (PDT)
 MIME-Version: 1.0
-X-MC-Unique: rRFRg54KORmsGP_wiUxaFA-1
-X-Mimecast-Spam-Score: 0
+References: <20190918160943.14105-1-navid.emamdoost@gmail.com>
+ <7bab24ff-ded7-9f76-ba25-efd07cdd30dd@amd.com>
+In-Reply-To: <7bab24ff-ded7-9f76-ba25-efd07cdd30dd@amd.com>
+From: Navid Emamdoost <navid.emamdoost@gmail.com>
+Date: Wed, 18 Sep 2019 14:04:52 -0500
+Message-ID: <CAEkB2ERC-mUq+SHkaZiiZnJTTcOvjUebRSnKACVUUckCC59a7Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: fix multiple memory leaks
+To: "Koenig, Christian" <Christian.Koenig@amd.com>
+X-Mailman-Approved-At: Thu, 19 Sep 2019 01:48:25 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=redhat.com; 
- s=mimecast20190719; t=1568847689;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=DVc86wjMdbNfYRWDFI1PvE0SxScOyKcl4HDBra1o93Y=;
- b=cSzqpjQY2rRCyINT8OzMU1ErNn+fzwJtDwDpLQj+WIzHQ34wANcnuS1NZlEhGFEuh262Xv
- OYC7CTIdBHlANigj/sPHo9PzcMsZF8yWuQfJRjM3etihY5OzHVKdrHdJDL0Bz0dHd9fzTu
- 2B2lcFnulIn6McxIniHliEgpYoDQJ8U=
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=YxdYS1JLBCWQ/wgdV/eSCWJBQ5psEESLzConWod1fsY=;
+ b=S+99aZrsEa4C/qnJNgJb68AFkEcpOkmnASNLEZU0HgCZCkuO12wP7/MkBhmbiExiZj
+ C4bDvQYmPpZHTFhy37raiIOkc8mecBcp+YH0htPPuy6VY9rdVcsua2Zr8LlWpxilK5VQ
+ iZwNuco88+rqal/+CRXyjJOzhnBoHdJGvN6WEnADh/0kMnSUVhrQvZs+tdh7U6iVnZgA
+ urBiGcmVRJt9BCokTIZJghI134GjMV+6orkRAuHnmpIAiu4GUwPEGwuZbZxxQfUJcnuv
+ 7R+bDEFMcy7CiWfdfvybclamARtI6rssx+W6nPM2V3CqgizveP+fPpAiEGGO7JFp+CnT
+ SB2w==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -79,64 +63,211 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>,
+ David Airlie <airlied@linux.ie>, Sam Ravnborg <sam@ravnborg.org>,
+ "kjlu@umn.edu" <kjlu@umn.edu>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "emamd001@umn.edu" <emamd001@umn.edu>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, "smccaman@umn.edu" <smccaman@umn.edu>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>, Rex Zhu <Rex.Zhu@amd.com>
+Content-Type: multipart/mixed; boundary="===============1019409045=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SGF2ZW4ndCBsb29rZWQgYXQgdGhlc2UgcXVpdGUgeWV0LCBidXQgSSBqdXN0IHdhbnRlZCB0byBz
-YXkgYWhlYWQgb2YgdGltZSB0aGF0CmZyb20gYSBxdWljayBnbGFuY2UgdGhlc2UgbG9vayBsaWtl
-IGEgYmlnIHN0ZXAgaW4gdGhlIHJpZ2h0IGRpcmVjdGlvbiA6KS4KQXdlc29tZSB3b3JrIQoKSSB3
-aWxsIHJldmlldyB0aGlzIEFTQVAgCgpPbiBXZWQsIDIwMTktMDktMTggYXQgMTY6MjYgLTA0MDAs
-IG1pa2l0YS5saXBza2lAYW1kLmNvbSB3cm90ZToKPiBGcm9tOiBNaWtpdGEgTGlwc2tpIDxtaWtp
-dGEubGlwc2tpQGFtZC5jb20+Cj4gCj4gW3doeV0KPiBJbiBvcmRlciB0byBjb21wbHkgd2l0aCBu
-ZXcgTVNUIGF0b21pYyBjaGVjawo+IHdlIGhhdmUgdG8gZmluZCBhbmQgYWRkIFZDUEkgc2xvdHMg
-dG8gdGhlIHN0YXRlCj4gZHVyaW5nIGF0b21pYyBjaGVjayB3aGVuZXZlciB0aGVpciBpcyBhIGNo
-YW5nZSBvbgo+IG1vZGUgb3IgY29ubmVjdG9yLgo+IFtob3ddCj4gLSBWZXJpZnkgdGhhdCBpdCBp
-cyBhIE1TVCBjb25uZWN0aW9uCj4gLSBDb252ZXJ0IG5ldyBzdHJlYW0ncyBjbG9jayBhbmQgYnBw
-Cj4gLSBDYWxjdWxhdGUgUEJOIGJhc2VkIG9uIHN0cmVhbSBwYXJhbWV0ZXJzCj4gLSBGaW5kIGFu
-ZCBhZGQgVkNQSSBzbG90cyB0byB0aGUgc3RhdGUKPiAKPiBDYzogTHl1ZGUgUGF1bCA8bHl1ZGVA
-cmVkaGF0LmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBNaWtpdGEgTGlwc2tpIDxtaWtpdGEubGlwc2tp
-QGFtZC5jb20+Cj4gLS0tCj4gIC4uLi9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRn
-cHVfZG0uYyB8IDU5ICsrKysrKysrKysrKysrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDU5IGlu
-c2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5
-L2FtZGdwdV9kbS9hbWRncHVfZG0uYwo+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2Ft
-ZGdwdV9kbS9hbWRncHVfZG0uYwo+IGluZGV4IDdiMGNhMmUxZWQ4Yi4uZDcwMGI5NjJkMzM4IDEw
-MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1
-X2RtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdw
-dV9kbS5jCj4gQEAgLTQ0MzIsNiArNDQzMiw2NSBAQCBzdGF0aWMgaW50IGRtX2VuY29kZXJfaGVs
-cGVyX2F0b21pY19jaGVjayhzdHJ1Y3QKPiBkcm1fZW5jb2RlciAqZW5jb2RlciwKPiAgCQkJCQkg
-IHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPiAgCQkJCQkgIHN0cnVjdCBkcm1f
-Y29ubmVjdG9yX3N0YXRlCj4gKmNvbm5fc3RhdGUpCj4gIHsKPiArCXN0cnVjdCBkcm1fYXRvbWlj
-X3N0YXRlICpzdGF0ZSA9IGNydGNfc3RhdGUtPnN0YXRlOwo+ICsJc3RydWN0IGRybV9jb25uZWN0
-b3IgKmNvbm5lY3RvciA9IGNvbm5fc3RhdGUtPmNvbm5lY3RvcjsKPiArCXN0cnVjdCBhbWRncHVf
-ZG1fY29ubmVjdG9yICphY29ubmVjdG9yID0KPiB0b19hbWRncHVfZG1fY29ubmVjdG9yKGNvbm5l
-Y3Rvcik7Cj4gKwlzdHJ1Y3QgZG1fY3J0Y19zdGF0ZSAqZG1fbmV3X2NydGNfc3RhdGUgPQo+IHRv
-X2RtX2NydGNfc3RhdGUoY3J0Y19zdGF0ZSk7Cj4gKwljb25zdCBzdHJ1Y3QgZHJtX2Rpc3BsYXlf
-bW9kZSAqYWRqdXN0ZWRfbW9kZSA9ICZjcnRjX3N0YXRlLQo+ID5hZGp1c3RlZF9tb2RlOwo+ICsJ
-c3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyICptc3RfbWdyOwo+ICsJc3RydWN0IGRybV9k
-cF9tc3RfcG9ydCAqbXN0X3BvcnQ7Cj4gKwlpbnQgcGJuLCBzbG90cyxjbG9jaywgYnBwID0gMDsK
-PiArCj4gKwlpZiAoIWRtX25ld19jcnRjX3N0YXRlKQo+ICsJCXJldHVybiAwOwo+ICsKPiArCWlm
-ICghYWNvbm5lY3RvciB8fCAhYWNvbm5lY3Rvci0+cG9ydCkKPiArCQlyZXR1cm4gMDsKPiArCj4g
-Kwltc3RfcG9ydCA9IGFjb25uZWN0b3ItPnBvcnQ7Cj4gKwltc3RfbWdyID0gJmFjb25uZWN0b3It
-Pm1zdF9wb3J0LT5tc3RfbWdyOwo+ICsKPiArCWlmICghbXN0X21nci0+bXN0X3N0YXRlKQo+ICsJ
-CXJldHVybiAwOwo+ICsKPiArCWlmICghY3J0Y19zdGF0ZS0+Y29ubmVjdG9yc19jaGFuZ2VkICYm
-ICFjcnRjX3N0YXRlLT5tb2RlX2NoYW5nZWQpCj4gKwkJcmV0dXJuIDA7Cj4gKwo+ICsJc3dpdGNo
-IChjb252ZXJ0X2NvbG9yX2RlcHRoX2Zyb21fZGlzcGxheV9pbmZvKGNvbm5lY3RvciwgY29ubl9z
-dGF0ZSkpCj4gewo+ICsJY2FzZSBDT0xPUl9ERVBUSF82NjY6Cj4gKwkJYnBwID0gNjsKPiArCQli
-cmVhazsKPiArCWNhc2UgQ09MT1JfREVQVEhfODg4Ogo+ICsJCWJwcCA9IDg7Cj4gKwkJYnJlYWs7
-Cj4gKwljYXNlIENPTE9SX0RFUFRIXzEwMTAxMDoKPiArCQlicHAgPSAxMDsKPiArCQlicmVhazsK
-PiArCWNhc2UgQ09MT1JfREVQVEhfMTIxMjEyOgo+ICsJCWJwcCA9IDEyOwo+ICsJCWJyZWFrOwo+
-ICsJY2FzZSBDT0xPUl9ERVBUSF8xNDE0MTQ6Cj4gKwkJYnBwID0gMTQ7Cj4gKwkJYnJlYWs7Cj4g
-KwljYXNlIENPTE9SX0RFUFRIXzE2MTYxNjoKPiArCQlicHAgPSAxNjsKPiArCQlicmVhazsKPiAr
-CWRlZmF1bHQ6Cj4gKwkJQVNTRVJUKGJwcCAhPSAwKTsKPiArCQlicmVhazsKPiArCX0KPiArCj4g
-KwlicHAgKj0gMzsKPiArCWNsb2NrID0gYWRqdXN0ZWRfbW9kZS0+Y2xvY2s7Cj4gKwlwYm4gPSBk
-cm1fZHBfY2FsY19wYm5fbW9kZShjbG9jaywgYnBwKTsKPiArCXNsb3RzID0gZHJtX2RwX2F0b21p
-Y19maW5kX3ZjcGlfc2xvdHMoc3RhdGUsCj4gKwkJCQkJCW1zdF9tZ3IsCj4gKwkJCQkJCW1zdF9w
-b3J0LAo+ICsJCQkJCQlwYm4pOwo+ICsJaWYgKHNsb3RzIDwgMCkgewo+ICsJCURSTV9ERUJVR19L
-TVMoImZhaWxlZCBmaW5kaW5nIHZjcGkgc2xvdHM6JWRcbiIsIHNsb3RzKTsKPiArCQlyZXR1cm4g
-c2xvdHM7Cj4gKwl9Cj4gIAlyZXR1cm4gMDsKPiAgfQo+ICAKLS0gCkNoZWVycywKCUx5dWRlIFBh
-dWwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1n
-ZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============1019409045==
+Content-Type: multipart/alternative; boundary="000000000000b366e40592d8839f"
+
+--000000000000b366e40592d8839f
+Content-Type: text/plain; charset="UTF-8"
+
+Thanks Christian for the feedback, I'll send a v2.
+
+
+
+On Wed, Sep 18, 2019 at 12:31 PM Koenig, Christian <Christian.Koenig@amd.com>
+wrote:
+
+> Am 18.09.19 um 18:09 schrieb Navid Emamdoost:
+> > In acp_hw_init there are some allocations that needs to be released in
+> > case of failure:
+> >
+> > 1- adev->acp.acp_genpd should be released if any allocation attemp for
+> > adev->acp.acp_cell, adev->acp.acp_res or i2s_pdata fails.
+> > 2- all of those allocations should be released if pm_genpd_add_device
+> > fails.
+>
+> Good catch, but please use goto error handling instead of adding more
+> and more kfree calls.
+>
+> Regards,
+> Christian.
+>
+> >
+> > Signed-off-by: Navid Emamdoost <navid.emamdoost@gmail.com>
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c | 10 +++++++++-
+> >   1 file changed, 9 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
+> > index eba42c752bca..dd3fa85b11c5 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
+> > @@ -231,17 +231,21 @@ static int acp_hw_init(void *handle)
+> >       adev->acp.acp_cell = kcalloc(ACP_DEVS, sizeof(struct mfd_cell),
+> >                                                       GFP_KERNEL);
+> >
+> > -     if (adev->acp.acp_cell == NULL)
+> > +     if (adev->acp.acp_cell == NULL) {
+> > +             kfree(adev->acp.acp_genpd);
+> >               return -ENOMEM;
+> > +     }
+> >
+> >       adev->acp.acp_res = kcalloc(5, sizeof(struct resource),
+> GFP_KERNEL);
+> >       if (adev->acp.acp_res == NULL) {
+> > +             kfree(adev->acp.acp_genpd);
+> >               kfree(adev->acp.acp_cell);
+> >               return -ENOMEM;
+> >       }
+> >
+> >       i2s_pdata = kcalloc(3, sizeof(struct i2s_platform_data),
+> GFP_KERNEL);
+> >       if (i2s_pdata == NULL) {
+> > +             kfree(adev->acp.acp_genpd);
+> >               kfree(adev->acp.acp_res);
+> >               kfree(adev->acp.acp_cell);
+> >               return -ENOMEM;
+> > @@ -348,6 +352,10 @@ static int acp_hw_init(void *handle)
+> >               r = pm_genpd_add_device(&adev->acp.acp_genpd->gpd, dev);
+> >               if (r) {
+> >                       dev_err(dev, "Failed to add dev to genpd\n");
+> > +                     kfree(adev->acp.acp_genpd);
+> > +                     kfree(adev->acp.acp_res);
+> > +                     kfree(adev->acp.acp_cell);
+> > +                     kfree(i2s_pdata);
+> >                       return r;
+> >               }
+> >       }
+>
+>
+
+-- 
+Navid.
+
+--000000000000b366e40592d8839f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks=C2=A0Christian for the feedback, I&#39;ll send a v2=
+.<div><br></div><div><br></div></div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Wed, Sep 18, 2019 at 12:31 PM Koenig, Chr=
+istian &lt;<a href=3D"mailto:Christian.Koenig@amd.com">Christian.Koenig@amd=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex">Am 18.09.19 um 18:09 schrieb Navid Emamdoost:<br>
+&gt; In acp_hw_init there are some allocations that needs to be released in=
+<br>
+&gt; case of failure:<br>
+&gt;<br>
+&gt; 1- adev-&gt;acp.acp_genpd should be released if any allocation attemp =
+for<br>
+&gt; adev-&gt;acp.acp_cell, adev-&gt;acp.acp_res or i2s_pdata fails.<br>
+&gt; 2- all of those allocations should be released if pm_genpd_add_device<=
+br>
+&gt; fails.<br>
+<br>
+Good catch, but please use goto error handling instead of adding more <br>
+and more kfree calls.<br>
+<br>
+Regards,<br>
+Christian.<br>
+<br>
+&gt;<br>
+&gt; Signed-off-by: Navid Emamdoost &lt;<a href=3D"mailto:navid.emamdoost@g=
+mail.com" target=3D"_blank">navid.emamdoost@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c | 10 +++++++++-<br=
+>
+&gt;=C2=A0 =C2=A01 file changed, 9 insertions(+), 1 deletion(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_acp.c<br>
+&gt; index eba42c752bca..dd3fa85b11c5 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c<br>
+&gt; @@ -231,17 +231,21 @@ static int acp_hw_init(void *handle)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;acp.acp_cell =3D kcalloc(ACP_DEVS, =
+sizeof(struct mfd_cell),<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0GFP_KERNEL);<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0if (adev-&gt;acp.acp_cell =3D=3D NULL)<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (adev-&gt;acp.acp_cell =3D=3D NULL) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0kfree(adev-&gt;acp.ac=
+p_genpd);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -ENOMEM;<=
+br>
+&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;acp.acp_res =3D kcalloc(5, sizeof(s=
+truct resource), GFP_KERNEL);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (adev-&gt;acp.acp_res =3D=3D NULL) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0kfree(adev-&gt;acp.ac=
+p_genpd);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0kfree(adev-&gt;a=
+cp.acp_cell);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -ENOMEM;<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0i2s_pdata =3D kcalloc(3, sizeof(struct i2s_p=
+latform_data), GFP_KERNEL);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (i2s_pdata =3D=3D NULL) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0kfree(adev-&gt;acp.ac=
+p_genpd);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0kfree(adev-&gt;a=
+cp.acp_res);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0kfree(adev-&gt;a=
+cp.acp_cell);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -ENOMEM;<=
+br>
+&gt; @@ -348,6 +352,10 @@ static int acp_hw_init(void *handle)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D pm_genpd_a=
+dd_device(&amp;adev-&gt;acp.acp_genpd-&gt;gpd, dev);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (r) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0dev_err(dev, &quot;Failed to add dev to genpd\n&quot;);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0kfree(adev-&gt;acp.acp_genpd);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0kfree(adev-&gt;acp.acp_res);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0kfree(adev-&gt;acp.acp_cell);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0kfree(i2s_pdata);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0return r;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><font col=
+or=3D"#666666">Navid.</font></div></div></div></div>
+
+--000000000000b366e40592d8839f--
+
+--===============1019409045==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1019409045==--
