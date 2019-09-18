@@ -2,68 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56070B6EA6
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2019 23:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2AAB6F82
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2019 01:01:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 974D0737B2;
-	Wed, 18 Sep 2019 21:14:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DDE17AF91;
+	Wed, 18 Sep 2019 23:01:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com
- [IPv6:2607:f8b0:4864:20::d44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7E27737AC;
- Wed, 18 Sep 2019 21:14:21 +0000 (UTC)
-Received: by mail-io1-xd44.google.com with SMTP id n197so2558909iod.9;
- Wed, 18 Sep 2019 14:14:21 -0700 (PDT)
+X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
+ Wed, 18 Sep 2019 23:01:30 UTC
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 355377AF91
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 23:01:30 +0000 (UTC)
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-214-rRFRg54KORmsGP_wiUxaFA-1; Wed, 18 Sep 2019 18:55:20 -0400
+Received: by mail-qk1-f198.google.com with SMTP id w7so1852135qkf.10
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 15:55:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=E6bHzPFkF1Cc2cdBwe1HZFDP7kYAvXE6XXDGZDJCZ5k=;
- b=tYtBO0Dyi4wpQCLyQ1+MjleezVsin7CFDmYmnqNgVtMV8HRkfVIRvp1S/qPuwtbaV6
- qAYdXU+96qfD1FkGfet9QH3TCvm8EoJN0SLpxGFsGqAp8h/CQgIviHJRcKx1/hnwuxQV
- vwkNcJ5iL6oIMrVCgZH2ugg4KfBQn39wuQRiGRC/+x+ibG4PYy9wvd2DODMMOrCciDNK
- HgCWa8E/Auc8YtM4EQeNvl0lIhULGS5Z5xNSu0hjGID8ByzPLHp8VUWfd2s2vNqp5nOp
- sUb9rXUeQF540xklMjVXXnfz6XuUBZj+yp0RUJALh/sWfniH5bj2aHDXO7oqqifLa+j5
- Ui7Q==
-X-Gm-Message-State: APjAAAUGt1c6OFzNPZNRp0ZcfbSE/+2NiSGuUyTCEdCohDyHaBYMlyqK
- l7FiJ3F14HRbk2bGHHQFPxQ8RPEdtJMbXM5+Im1BCw==
-X-Google-Smtp-Source: APXvYqz9GVoSL87eQiMRFEo75eSQRaKc0khTwjCy03VYtL7puy5h13URGS1XgzVHT0bGMXjFX74N4A35V6tDKKSDi5Y=
-X-Received: by 2002:a02:245:: with SMTP id 66mr7101933jau.30.1568841261096;
- Wed, 18 Sep 2019 14:14:21 -0700 (PDT)
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=jFt4mIQy1/O4uoE84B2MhzTmYMLv4QygP6QDFf40fuQ=;
+ b=EDb1jtDchfffmJze0Lt8tH5m7kHNmpLoMsXWp4p2hmcQw+2mj7RUFssNn/rDaml7VO
+ 6uNRA64/g2h68bdwPCSCS3uaGIiCsLOBe3VOZTFHwogXojummcEQoQw6HbVYbuJveAxK
+ xrmeSINhxYSgQ5tJS2UqZngT3lTJ2jwVHbrbqbOti/wKpzc6HG2Xfb4By41zHESaT+/n
+ eKg7uOOu/G0bQ6yiuho9ZCMo40NrVjrR+htHxJsvPDYvTtM1GmCCfktAEGXUb53QGVcX
+ MR9TDClO/JqZMaygj7Cgadkc5+gaTVLeHfyTwA/kj/juDQBeptZOGcLVTJ6wFyHo+NYk
+ FZMg==
+X-Gm-Message-State: APjAAAX9oS5N5lNCDUcaFI/nsw+8oO3jfWOhItWTTrcb+Nuhi6UHDC3K
+ VWpoS+hzqNaWb+eLxrF0KbP5hggKTSmn/XFqLvkLzz65calUpbttxCcfeDS+GegWpyf/3W93Ax9
+ Wmy1u/xIfOlfwmANbrC4zBRXWUA==
+X-Received: by 2002:ae9:ea12:: with SMTP id f18mr6926287qkg.204.1568847318675; 
+ Wed, 18 Sep 2019 15:55:18 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyQ3ACJZe95EAfbPmoGm0THV9YqDxfIjUanCv23y4L0WIPEzjabopn9fPmJzelkUOsbnBAueg==
+X-Received: by 2002:ae9:ea12:: with SMTP id f18mr6926274qkg.204.1568847318392; 
+ Wed, 18 Sep 2019 15:55:18 -0700 (PDT)
+Received: from dhcp-10-20-1-34.bss.redhat.com ([144.121.20.162])
+ by smtp.gmail.com with ESMTPSA id u27sm3090917qta.90.2019.09.18.15.55.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 18 Sep 2019 15:55:17 -0700 (PDT)
+Message-ID: <098b7e1d4d4491cc7735cb26b499fbc304dc4e24.camel@redhat.com>
+Subject: Re: [PATCH 01/15] drm/amdgpu: Add encoder atomic check
+From: Lyude Paul <lyude@redhat.com>
+To: mikita.lipski@amd.com, amd-gfx@lists.freedesktop.org
+Date: Wed, 18 Sep 2019 18:55:16 -0400
+In-Reply-To: <0dba0e8b72c146cc1d27c8895b1c732e719fc371.1568833906.git.mikita.lipski@amd.com>
+References: <cover.1568833906.git.mikita.lipski@amd.com>
+ <0dba0e8b72c146cc1d27c8895b1c732e719fc371.1568833906.git.mikita.lipski@amd.com>
+Organization: Red Hat
+User-Agent: Evolution 3.32.4 (3.32.4-1.fc30)
 MIME-Version: 1.0
-References: <20190903214040.2386-1-sonny.jiang@amd.com>
- <CAAxE2A45N4gMYrcETDpznGKyxLztuwenFasL19a81QQmBkYiww@mail.gmail.com>
- <CAF6AEGvvUUOGujJC9P3t72N93AJuxiiVt0OAk8zf226Q8WmHvg@mail.gmail.com>
- <CAKMK7uHFNhdNY4Y9ZFMNuci7gssPWCT5f5y=e4npg8s5r_jBdQ@mail.gmail.com>
- <CAAxE2A6sESsKAi3K1etAZeCwAPgexn099G6g0aJQnavTkiH+mA@mail.gmail.com>
- <87woe7eanv.fsf@intel.com> <03d31464-3968-6923-5323-f63060d70f1f@gmail.com>
- <CAKMK7uEj4FZ3YQqG-cCTa4EEaJoAk09Zaz398F9Hmo+mdXCKiw@mail.gmail.com>
- <7540df63-e623-19b0-dde5-b89ff2b7fb89@amd.com>
- <7535dcf4-413f-f06f-b3d1-dcffc86b43e0@daenzer.net>
- <5d0a8619-7073-fac2-cdd6-83b55221140b@daenzer.net>
- <b61ec704-894d-092a-253c-961ff2ea01a2@gmail.com>
- <4d255e1c-1d4a-a754-afe0-b18776a11a7e@daenzer.net>
- <CAAxE2A7RcsiEsWBtbsDE2Wp+Vx7n-vwM1qL6HX_qKt=KnHCd4g@mail.gmail.com>
- <8c49e2e3-1fa1-35db-7d25-574b4b64cca0@daenzer.net>
- <CAAxE2A5niHWs=VQZO8B6d4tBx6NmYSKb7U=9injNL9087Yi_Kg@mail.gmail.com>
-In-Reply-To: <CAAxE2A5niHWs=VQZO8B6d4tBx6NmYSKb7U=9injNL9087Yi_Kg@mail.gmail.com>
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Wed, 18 Sep 2019 17:13:44 -0400
-Message-ID: <CAAxE2A5Bbs6-+CiA115TyDg=jVoKOHf_7oxZqP2K8GvdBm7d0g@mail.gmail.com>
-Subject: Re: [PATCH] drm: add drm device name
-To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
+X-MC-Unique: rRFRg54KORmsGP_wiUxaFA-1
+X-Mimecast-Spam-Score: 0
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=E6bHzPFkF1Cc2cdBwe1HZFDP7kYAvXE6XXDGZDJCZ5k=;
- b=URuMYhFFcjCUakKdI/u6yvBhq54YBwqcSro1pA/U1z5VSUKo2gzJsEfmnOz+TK7Yc7
- 6bDhflL0kxQvT2BFdn6fgW42itfBk4oEjWMRYClgT91Xcc1W51zSNmpq951F3KJTt9YP
- 3nGwCw9ymIvprAInTKTAneycL+unkqITqVurWTRF5vpwyrNDV+Y7MZ8YmLasPbcOz9LU
- NeN+6DmQMBi/nfDc/YeaOJak2sv8ie4mVdLzqei9Z7heEsySzx+9bx9Afpk8h+vR2y7O
- bpy6k7xig11yLxIBJR2b6i6orPFkxZzbBz65dywzG8xPipEdKFxk27gMNw5rMqLxTzDK
- glbQ==
+ d=redhat.com; 
+ s=mimecast20190719; t=1568847689;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=DVc86wjMdbNfYRWDFI1PvE0SxScOyKcl4HDBra1o93Y=;
+ b=cSzqpjQY2rRCyINT8OzMU1ErNn+fzwJtDwDpLQj+WIzHQ34wANcnuS1NZlEhGFEuh262Xv
+ OYC7CTIdBHlANigj/sPHo9PzcMsZF8yWuQfJRjM3etihY5OzHVKdrHdJDL0Bz0dHd9fzTu
+ 2B2lcFnulIn6McxIniHliEgpYoDQJ8U=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -75,103 +79,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jiang, Sonny" <Sonny.Jiang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: multipart/mixed; boundary="===============0013819000=="
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0013819000==
-Content-Type: multipart/alternative; boundary="00000000000013a4570592da52cd"
-
---00000000000013a4570592da52cd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Let's drop this patch. Mesa will use family_id.
-
-Marek
-
-On Wed, Sep 18, 2019 at 4:10 PM Marek Ol=C5=A1=C3=A1k <maraeo@gmail.com> wr=
-ote:
-
-> On Wed, Sep 18, 2019 at 10:03 AM Michel D=C3=A4nzer <michel@daenzer.net> =
-wrote:
->
->> On 2019-09-18 1:41 a.m., Marek Ol=C5=A1=C3=A1k wrote:
->> > drmVersion::name =3D amdgpu, radeon, intel, etc.
->> > drmVersion::desc =3D vega10, vega12, vega20, ...
->> >
->> > The common Mesa code will use name and desc to select the driver.
->>
->> Like the Xorg modesetting driver, that code doesn't need this kernel
->> functionality or new PCI IDs. It can just select the current driver for
->> all devices which aren't supported by older drivers (which is a fixed
->> set at this point).
->>
->>
->> > The AMD-specific Mesa code will use desc to identify the chip.
->>
->> Doesn't libdrm_amdgpu's struct amdgpu_gpu_info::family_id provide the
->> same information?
->>
->
-> Not for the common code, though I guess common Mesa code could use the
-> INFO ioctl. Is that what you mean?
->
-> Marek
->
-
---00000000000013a4570592da52cd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Let&#39;s drop this patch. Mesa will use family_id.<b=
-r></div><div><br></div><div>Marek<br></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep 18, 2019 at 4:10 PM Marek =
-Ol=C5=A1=C3=A1k &lt;<a href=3D"mailto:maraeo@gmail.com">maraeo@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
-v dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Wed, Sep 18, 2019 at 10:03 AM Michel D=C3=A4nzer &lt;<a href=3D"mail=
-to:michel@daenzer.net" target=3D"_blank">michel@daenzer.net</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 2019-09-18 1:=
-41 a.m., Marek Ol=C5=A1=C3=A1k wrote:<br>
-&gt; drmVersion::name =3D amdgpu, radeon, intel, etc.<br>
-&gt; drmVersion::desc =3D vega10, vega12, vega20, ...<br>
-&gt; <br>
-&gt; The common Mesa code will use name and desc to select the driver.<br>
-<br>
-Like the Xorg modesetting driver, that code doesn&#39;t need this kernel<br=
->
-functionality or new PCI IDs. It can just select the current driver for<br>
-all devices which aren&#39;t supported by older drivers (which is a fixed<b=
-r>
-set at this point).<br>
-<br>
-<br>
-&gt; The AMD-specific Mesa code will use desc to identify the chip.<br>
-<br>
-Doesn&#39;t libdrm_amdgpu&#39;s struct amdgpu_gpu_info::family_id provide t=
-he<br>
-same information?<br></blockquote><div><br></div><div>Not for the common co=
-de, though I guess common Mesa code could use the INFO ioctl. Is that what =
-you mean?<br></div><div><br></div><div>Marek</div></div></div>
-</blockquote></div></div>
-
---00000000000013a4570592da52cd--
-
---===============0013819000==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0013819000==--
+SGF2ZW4ndCBsb29rZWQgYXQgdGhlc2UgcXVpdGUgeWV0LCBidXQgSSBqdXN0IHdhbnRlZCB0byBz
+YXkgYWhlYWQgb2YgdGltZSB0aGF0CmZyb20gYSBxdWljayBnbGFuY2UgdGhlc2UgbG9vayBsaWtl
+IGEgYmlnIHN0ZXAgaW4gdGhlIHJpZ2h0IGRpcmVjdGlvbiA6KS4KQXdlc29tZSB3b3JrIQoKSSB3
+aWxsIHJldmlldyB0aGlzIEFTQVAgCgpPbiBXZWQsIDIwMTktMDktMTggYXQgMTY6MjYgLTA0MDAs
+IG1pa2l0YS5saXBza2lAYW1kLmNvbSB3cm90ZToKPiBGcm9tOiBNaWtpdGEgTGlwc2tpIDxtaWtp
+dGEubGlwc2tpQGFtZC5jb20+Cj4gCj4gW3doeV0KPiBJbiBvcmRlciB0byBjb21wbHkgd2l0aCBu
+ZXcgTVNUIGF0b21pYyBjaGVjawo+IHdlIGhhdmUgdG8gZmluZCBhbmQgYWRkIFZDUEkgc2xvdHMg
+dG8gdGhlIHN0YXRlCj4gZHVyaW5nIGF0b21pYyBjaGVjayB3aGVuZXZlciB0aGVpciBpcyBhIGNo
+YW5nZSBvbgo+IG1vZGUgb3IgY29ubmVjdG9yLgo+IFtob3ddCj4gLSBWZXJpZnkgdGhhdCBpdCBp
+cyBhIE1TVCBjb25uZWN0aW9uCj4gLSBDb252ZXJ0IG5ldyBzdHJlYW0ncyBjbG9jayBhbmQgYnBw
+Cj4gLSBDYWxjdWxhdGUgUEJOIGJhc2VkIG9uIHN0cmVhbSBwYXJhbWV0ZXJzCj4gLSBGaW5kIGFu
+ZCBhZGQgVkNQSSBzbG90cyB0byB0aGUgc3RhdGUKPiAKPiBDYzogTHl1ZGUgUGF1bCA8bHl1ZGVA
+cmVkaGF0LmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBNaWtpdGEgTGlwc2tpIDxtaWtpdGEubGlwc2tp
+QGFtZC5jb20+Cj4gLS0tCj4gIC4uLi9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRn
+cHVfZG0uYyB8IDU5ICsrKysrKysrKysrKysrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDU5IGlu
+c2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5
+L2FtZGdwdV9kbS9hbWRncHVfZG0uYwo+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2Ft
+ZGdwdV9kbS9hbWRncHVfZG0uYwo+IGluZGV4IDdiMGNhMmUxZWQ4Yi4uZDcwMGI5NjJkMzM4IDEw
+MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1
+X2RtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdw
+dV9kbS5jCj4gQEAgLTQ0MzIsNiArNDQzMiw2NSBAQCBzdGF0aWMgaW50IGRtX2VuY29kZXJfaGVs
+cGVyX2F0b21pY19jaGVjayhzdHJ1Y3QKPiBkcm1fZW5jb2RlciAqZW5jb2RlciwKPiAgCQkJCQkg
+IHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPiAgCQkJCQkgIHN0cnVjdCBkcm1f
+Y29ubmVjdG9yX3N0YXRlCj4gKmNvbm5fc3RhdGUpCj4gIHsKPiArCXN0cnVjdCBkcm1fYXRvbWlj
+X3N0YXRlICpzdGF0ZSA9IGNydGNfc3RhdGUtPnN0YXRlOwo+ICsJc3RydWN0IGRybV9jb25uZWN0
+b3IgKmNvbm5lY3RvciA9IGNvbm5fc3RhdGUtPmNvbm5lY3RvcjsKPiArCXN0cnVjdCBhbWRncHVf
+ZG1fY29ubmVjdG9yICphY29ubmVjdG9yID0KPiB0b19hbWRncHVfZG1fY29ubmVjdG9yKGNvbm5l
+Y3Rvcik7Cj4gKwlzdHJ1Y3QgZG1fY3J0Y19zdGF0ZSAqZG1fbmV3X2NydGNfc3RhdGUgPQo+IHRv
+X2RtX2NydGNfc3RhdGUoY3J0Y19zdGF0ZSk7Cj4gKwljb25zdCBzdHJ1Y3QgZHJtX2Rpc3BsYXlf
+bW9kZSAqYWRqdXN0ZWRfbW9kZSA9ICZjcnRjX3N0YXRlLQo+ID5hZGp1c3RlZF9tb2RlOwo+ICsJ
+c3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyICptc3RfbWdyOwo+ICsJc3RydWN0IGRybV9k
+cF9tc3RfcG9ydCAqbXN0X3BvcnQ7Cj4gKwlpbnQgcGJuLCBzbG90cyxjbG9jaywgYnBwID0gMDsK
+PiArCj4gKwlpZiAoIWRtX25ld19jcnRjX3N0YXRlKQo+ICsJCXJldHVybiAwOwo+ICsKPiArCWlm
+ICghYWNvbm5lY3RvciB8fCAhYWNvbm5lY3Rvci0+cG9ydCkKPiArCQlyZXR1cm4gMDsKPiArCj4g
+Kwltc3RfcG9ydCA9IGFjb25uZWN0b3ItPnBvcnQ7Cj4gKwltc3RfbWdyID0gJmFjb25uZWN0b3It
+Pm1zdF9wb3J0LT5tc3RfbWdyOwo+ICsKPiArCWlmICghbXN0X21nci0+bXN0X3N0YXRlKQo+ICsJ
+CXJldHVybiAwOwo+ICsKPiArCWlmICghY3J0Y19zdGF0ZS0+Y29ubmVjdG9yc19jaGFuZ2VkICYm
+ICFjcnRjX3N0YXRlLT5tb2RlX2NoYW5nZWQpCj4gKwkJcmV0dXJuIDA7Cj4gKwo+ICsJc3dpdGNo
+IChjb252ZXJ0X2NvbG9yX2RlcHRoX2Zyb21fZGlzcGxheV9pbmZvKGNvbm5lY3RvciwgY29ubl9z
+dGF0ZSkpCj4gewo+ICsJY2FzZSBDT0xPUl9ERVBUSF82NjY6Cj4gKwkJYnBwID0gNjsKPiArCQli
+cmVhazsKPiArCWNhc2UgQ09MT1JfREVQVEhfODg4Ogo+ICsJCWJwcCA9IDg7Cj4gKwkJYnJlYWs7
+Cj4gKwljYXNlIENPTE9SX0RFUFRIXzEwMTAxMDoKPiArCQlicHAgPSAxMDsKPiArCQlicmVhazsK
+PiArCWNhc2UgQ09MT1JfREVQVEhfMTIxMjEyOgo+ICsJCWJwcCA9IDEyOwo+ICsJCWJyZWFrOwo+
+ICsJY2FzZSBDT0xPUl9ERVBUSF8xNDE0MTQ6Cj4gKwkJYnBwID0gMTQ7Cj4gKwkJYnJlYWs7Cj4g
+KwljYXNlIENPTE9SX0RFUFRIXzE2MTYxNjoKPiArCQlicHAgPSAxNjsKPiArCQlicmVhazsKPiAr
+CWRlZmF1bHQ6Cj4gKwkJQVNTRVJUKGJwcCAhPSAwKTsKPiArCQlicmVhazsKPiArCX0KPiArCj4g
+KwlicHAgKj0gMzsKPiArCWNsb2NrID0gYWRqdXN0ZWRfbW9kZS0+Y2xvY2s7Cj4gKwlwYm4gPSBk
+cm1fZHBfY2FsY19wYm5fbW9kZShjbG9jaywgYnBwKTsKPiArCXNsb3RzID0gZHJtX2RwX2F0b21p
+Y19maW5kX3ZjcGlfc2xvdHMoc3RhdGUsCj4gKwkJCQkJCW1zdF9tZ3IsCj4gKwkJCQkJCW1zdF9w
+b3J0LAo+ICsJCQkJCQlwYm4pOwo+ICsJaWYgKHNsb3RzIDwgMCkgewo+ICsJCURSTV9ERUJVR19L
+TVMoImZhaWxlZCBmaW5kaW5nIHZjcGkgc2xvdHM6JWRcbiIsIHNsb3RzKTsKPiArCQlyZXR1cm4g
+c2xvdHM7Cj4gKwl9Cj4gIAlyZXR1cm4gMDsKPiAgfQo+ICAKLS0gCkNoZWVycywKCUx5dWRlIFBh
+dWwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1n
+ZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
