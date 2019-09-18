@@ -2,60 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 270D8B69C8
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2019 19:43:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDBA4B6D4A
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2019 22:10:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACA036F5B6;
-	Wed, 18 Sep 2019 17:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E4D6FEDC;
+	Wed, 18 Sep 2019 20:10:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CF5C6F5B6
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 17:43:12 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id o18so267818wrv.13
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 10:43:11 -0700 (PDT)
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com
+ [IPv6:2607:f8b0:4864:20::d43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B2D36FECD;
+ Wed, 18 Sep 2019 20:10:45 +0000 (UTC)
+Received: by mail-io1-xd43.google.com with SMTP id q10so2278873iop.2;
+ Wed, 18 Sep 2019 13:10:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=oKkemcMIhQx6GYfFiCoed+BpwH2biJ9nM0vMpAKPtZ4=;
- b=obAAw9EHNMJhJiTEBoSiRwyEDhnamgvcqsH589WE344S2SqY54YR4V7rCDJ3fl3opZ
- 5I8m6u7vlwgJLeEs4kfaDAIKnQtMTEA/QgsVIz4fxzYcR6gCRy8/FtPy50xUrjmywFZG
- oSmmc8OkRf/VJm+MucbIplmbEhzU22FrNYjXNlhkaC0GJK71y3snlktNp8iuhtF2UWbz
- yhetGFiU3ufw7jPhOwafEXf2Pi+HgldtwBiVgyQOydDeLpTuF81JAAqGfoxIM557+d1Z
- Vv6zr3ptPI5byopH9Vz1ZJivWk+Nna8kUl9OJU6VTLcF4dm5MhzTCm740ZuhBPp2JYUF
- T14w==
-X-Gm-Message-State: APjAAAVfPBwLouttoba/en0W4bxWdTuLyuTZ/yF2u5jpPNV8WyPu9VXj
- TigqfMoZYnH+TzwVEx5uM+Bmi1Ta
-X-Google-Smtp-Source: APXvYqwh/Vq+h0SkxdukaZsNtFNVU2jAy1zTC/vGgYHIbtjRp509EMFFTBv+nr6qR1V1f8MxCDG2Kg==
-X-Received: by 2002:adf:ee10:: with SMTP id y16mr3732087wrn.47.1568828590468; 
- Wed, 18 Sep 2019 10:43:10 -0700 (PDT)
-Received: from abel.fritz.box ([2a02:908:1252:fb60:f002:ffad:c852:eff6])
- by smtp.gmail.com with ESMTPSA id a18sm14061517wrh.25.2019.09.18.10.43.09
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Sep 2019 10:43:10 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: fix error handling in amdgpu_bo_list_create
-Date: Wed, 18 Sep 2019 19:43:08 +0200
-Message-Id: <20190918174308.107845-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.17.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=RLF29c8mhk3mL/w9rD964gcAMBKj+jBMrCTSQ1gypw8=;
+ b=frmZCgSTRYYLMxueoTyAyI7JAaOssdw4D191NOPoLqAPVIdGDxKz/rxODstH3fsWAp
+ KOXui+PBguE3UeoE47R87T52El508sI7xwtWDAYlqTl1I2IfzxxLWInRfeqiJEoHVVsY
+ M920J+rTXS/bGfpPCONb8kfdJXBH7LqIOe7FTEnC7peNpABzKiCBsbRsAxbeUaHf54Iu
+ mXg5sIGU6egCj2UIUwT1dTBOUcb7DmfQEvqrliiaVomIv/FXidZwBLzxi5P0WqPRV0BV
+ K2Q5/iByaRBE1SifByJ+lpHhlQ66BXZK85+76vfKzsVv3XnfX5vruttBluadCOfh9ouB
+ sDZg==
+X-Gm-Message-State: APjAAAUD34YgwoADYAWF81z5rcld1ZEzMyhImmxKFsuLabm5mz4z5Z2O
+ IqVuQmUHRyg2y7nQJrmLI7gYoIVz6yW66yldFps=
+X-Google-Smtp-Source: APXvYqwxnYqxWtlhTKZoJOaI7jqQmeAxiwU4g8x/V3WRyi654BHPkSEB+jn0U1U/pjFoEx7mFseTXHA3sg8vP4py7WA=
+X-Received: by 2002:a5d:8a0f:: with SMTP id w15mr7544207iod.239.1568837444539; 
+ Wed, 18 Sep 2019 13:10:44 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190903214040.2386-1-sonny.jiang@amd.com>
+ <CAAxE2A45N4gMYrcETDpznGKyxLztuwenFasL19a81QQmBkYiww@mail.gmail.com>
+ <CAF6AEGvvUUOGujJC9P3t72N93AJuxiiVt0OAk8zf226Q8WmHvg@mail.gmail.com>
+ <CAKMK7uHFNhdNY4Y9ZFMNuci7gssPWCT5f5y=e4npg8s5r_jBdQ@mail.gmail.com>
+ <CAAxE2A6sESsKAi3K1etAZeCwAPgexn099G6g0aJQnavTkiH+mA@mail.gmail.com>
+ <87woe7eanv.fsf@intel.com> <03d31464-3968-6923-5323-f63060d70f1f@gmail.com>
+ <CAKMK7uEj4FZ3YQqG-cCTa4EEaJoAk09Zaz398F9Hmo+mdXCKiw@mail.gmail.com>
+ <7540df63-e623-19b0-dde5-b89ff2b7fb89@amd.com>
+ <7535dcf4-413f-f06f-b3d1-dcffc86b43e0@daenzer.net>
+ <5d0a8619-7073-fac2-cdd6-83b55221140b@daenzer.net>
+ <b61ec704-894d-092a-253c-961ff2ea01a2@gmail.com>
+ <4d255e1c-1d4a-a754-afe0-b18776a11a7e@daenzer.net>
+ <CAAxE2A7RcsiEsWBtbsDE2Wp+Vx7n-vwM1qL6HX_qKt=KnHCd4g@mail.gmail.com>
+ <8c49e2e3-1fa1-35db-7d25-574b4b64cca0@daenzer.net>
+In-Reply-To: <8c49e2e3-1fa1-35db-7d25-574b4b64cca0@daenzer.net>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Wed, 18 Sep 2019 16:10:08 -0400
+Message-ID: <CAAxE2A5niHWs=VQZO8B6d4tBx6NmYSKb7U=9injNL9087Yi_Kg@mail.gmail.com>
+Subject: Re: [PATCH] drm: add drm device name
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=from:to:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=oKkemcMIhQx6GYfFiCoed+BpwH2biJ9nM0vMpAKPtZ4=;
- b=U2ltCkMcd6Fegj+emU1vJEofbQbwRf5XO6BLCIwvnCrbXbfsWzXoGac77m9UU7iTVY
- L3dfMbaOBZdMvIvdC7wotVW4To0Lcr5FKdeVjd8NrL0sD23scrcpvJj4JTbyk2bhomsD
- wzQOJUzewkhMr2icjgWJ3kKkHhv1heqaQul2FEJEIHri1GyF3cCtKnd6dJI6NbMOu0jA
- FPWC1zLRBgKdKKIVPjaoUYGIqWkq9bJkrjmwNb5Kn1IlR6V5eV461LL9t6ZGSiG0+ASZ
- dYFdRFMXx/aoVUkkWf5Ehin2BT8DeZyD8r3YfFbBd4pYcbJ9/d8M48fjyNPz+1vRZnE3
- RD9g==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=RLF29c8mhk3mL/w9rD964gcAMBKj+jBMrCTSQ1gypw8=;
+ b=UwGCHRnUfFMZv9DdSDLL5EIa9mJSYuADhjC4GfSYJGfqKyuUwmQnBR20edDjPqGdBo
+ A7WwTAljHcyn/2elPwZ6qyhQCWYn4ACK8mbGiFyJ2dVBRJfxvWoQdpU67K3del01Yw0P
+ JVe9nc88QF0Y/jqutdrJ+mKmblAbm+gVpKPtfXmuYGYOVaczs99T22iMz1Rb0zi1mVp3
+ NETPIRgeid36JZKZBI/byMj83ZCShn9yRQhIlIhRlrU7alqwFJt4IVjSGBc+xdXuaWVw
+ JZNyN6hr/BVjNMBVhZFAhTGI4+qGQgo62SK+m4Sfj6CB5+o0HRaQxLS/FOiSm6ChScEB
+ ET2w==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -67,27 +74,88 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Jiang, Sonny" <Sonny.Jiang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============2095279776=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-V2UgbmVlZCB0byBkcm9wIG5vcm1hbCBhbmQgdXNlcnB0ciBCT3Mgc2VwYXJhdGVseS4KClNpZ25l
-ZC1vZmYtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KLS0t
-CiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYm9fbGlzdC5jIHwgNyArKysrKyst
-CiAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2JvX2xpc3QuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9ib19saXN0LmMKaW5kZXggZDQ5NzQ2N2I3ZmM2
-Li45NDkwOGJmMjY5YTYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
-ZGdwdV9ib19saXN0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Jv
-X2xpc3QuYwpAQCAtMTM5LDcgKzEzOSwxMiBAQCBpbnQgYW1kZ3B1X2JvX2xpc3RfY3JlYXRlKHN0
-cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LCBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbHAsCiAJcmV0dXJu
-IDA7CiAKIGVycm9yX2ZyZWU6Ci0Jd2hpbGUgKGktLSkgeworCWZvciAoaSA9IDA7IGkgPCBsYXN0
-X2VudHJ5OyArK2kpIHsKKwkJc3RydWN0IGFtZGdwdV9ibyAqYm8gPSB0dG1fdG9fYW1kZ3B1X2Jv
-KGFycmF5W2ldLnR2LmJvKTsKKworCQlhbWRncHVfYm9fdW5yZWYoJmJvKTsKKwl9CisJZm9yIChp
-ID0gZmlyc3RfdXNlcnB0cjsgaSA8IG51bV9lbnRyaWVzOyArK2kpIHsKIAkJc3RydWN0IGFtZGdw
-dV9ibyAqYm8gPSB0dG1fdG9fYW1kZ3B1X2JvKGFycmF5W2ldLnR2LmJvKTsKIAogCQlhbWRncHVf
-Ym9fdW5yZWYoJmJvKTsKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9hbWQtZ2Z4
+--===============2095279776==
+Content-Type: multipart/alternative; boundary="000000000000979d7a0592d96eb0"
+
+--000000000000979d7a0592d96eb0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Sep 18, 2019 at 10:03 AM Michel D=C3=A4nzer <michel@daenzer.net> wr=
+ote:
+
+> On 2019-09-18 1:41 a.m., Marek Ol=C5=A1=C3=A1k wrote:
+> > drmVersion::name =3D amdgpu, radeon, intel, etc.
+> > drmVersion::desc =3D vega10, vega12, vega20, ...
+> >
+> > The common Mesa code will use name and desc to select the driver.
+>
+> Like the Xorg modesetting driver, that code doesn't need this kernel
+> functionality or new PCI IDs. It can just select the current driver for
+> all devices which aren't supported by older drivers (which is a fixed
+> set at this point).
+>
+>
+> > The AMD-specific Mesa code will use desc to identify the chip.
+>
+> Doesn't libdrm_amdgpu's struct amdgpu_gpu_info::family_id provide the
+> same information?
+>
+
+Not for the common code, though I guess common Mesa code could use the INFO
+ioctl. Is that what you mean?
+
+Marek
+
+--000000000000979d7a0592d96eb0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Wed, Sep 18, 2019 at 10:03 AM Michel D=C3=A4nzer &lt;<a href=3D"m=
+ailto:michel@daenzer.net">michel@daenzer.net</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">On 2019-09-18 1:41 a.m., Marek =
+Ol=C5=A1=C3=A1k wrote:<br>
+&gt; drmVersion::name =3D amdgpu, radeon, intel, etc.<br>
+&gt; drmVersion::desc =3D vega10, vega12, vega20, ...<br>
+&gt; <br>
+&gt; The common Mesa code will use name and desc to select the driver.<br>
+<br>
+Like the Xorg modesetting driver, that code doesn&#39;t need this kernel<br=
+>
+functionality or new PCI IDs. It can just select the current driver for<br>
+all devices which aren&#39;t supported by older drivers (which is a fixed<b=
+r>
+set at this point).<br>
+<br>
+<br>
+&gt; The AMD-specific Mesa code will use desc to identify the chip.<br>
+<br>
+Doesn&#39;t libdrm_amdgpu&#39;s struct amdgpu_gpu_info::family_id provide t=
+he<br>
+same information?<br></blockquote><div><br></div><div>Not for the common co=
+de, though I guess common Mesa code could use the INFO ioctl. Is that what =
+you mean?<br></div><div><br></div><div>Marek</div></div></div>
+
+--000000000000979d7a0592d96eb0--
+
+--===============2095279776==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============2095279776==--
