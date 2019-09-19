@@ -1,89 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC155B730B
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2019 08:12:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C57B73C0
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2019 09:12:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0626F48A;
-	Thu, 19 Sep 2019 06:12:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 066326F866;
+	Thu, 19 Sep 2019 07:12:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr820048.outbound.protection.outlook.com [40.107.82.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 207F16F48A
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2019 06:12:16 +0000 (UTC)
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+ (mail-eopbgr750045.outbound.protection.outlook.com [40.107.75.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E7566F866
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2019 07:12:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GKDDkKqpY0dagMhnLaMKviv+GQUIWRTgQA6kZLkVuW6FPCltCbvDux2b6BkKNsFlc3c/HS+a5t2ii6tal1J+6oDm3DCcf/VVrNYaCj3HgmAEhQLq3RUQ0YPN5hEwhX5n/7r5Z9Rp9qVAy6DX7+3oXFSR7JRyByyFOh2GdBJ3DYXWdzriFU8IL1erJvaSGVcj3rlAj9Bu7HnTqmNFonmQJKR62HhfwOeAvZlvPVlixGQjf21iW+rvZsK6fvK8p1HxJam7ncFeC1lffiffezw8UbiEZDPNTHPGdgG65Ewo4JQbdv1r5L1N+yEFPqYE47uC5AzCBjpBSdWa9dDLAjoqqg==
+ b=e/piywL1JvMtRkn9B+yDBinBdQnhZ4Ao6sASVMFQZ1n1YGoYQre0IMFAdCkkznLo4iQb8l8H1PTPe74kugqlDheLWsxEalLyrcPweDVLCJ+4hbZsfZ1upLJE7MdROqeauJERAuRrIBiWcZpMEmtiS6pITB+Dq/iRXcvmtgQLP5sz9z7clEzfQu44JHvzHOMwNG1sGhAFbPQ1vPxQwNra90TE6n+UPnbfDFLHQoxoGbaWARbR5f2cwO515k6PlFRrOl41oj9qqmpNF8NK67v2kdkHEcvQ0pzIvOadKGJzu9PmbeifZi7fLRls9Ryy7BPUdWyJ2Zy5kyv3mNX0Es+/kw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dTNmh1vz/OZnbv1+7G19LCLMV3r1XSw8gToevcbMERM=;
- b=GGR/mv2rJpY94D0fTO0n/ZVMU2n7jxnekclvvsZ3vV8bk8SGCJEpyrD+PW/TpLMM/ksvwkWPyWVkX0ANAGQTuSx+pjZoo+aoi3hvY5On/DqYHzy06elLUKb5F6EQ3DOrkcuUQZ8Biipmg5KPK/yaEFABevlgbNoRQatqOG4c9Ovq7nsJtZj9sT54HC/9Dyf/4LHJxlOXHZx+3VPoEwjoH8o6iOc/nx89M4fJOiyRwPV1goTZeBOGup1csXj0neT0H+E1fYRf7W7EK+5BcPAVWN/LuCqFuWBqbn7hlkoMWXWfpjOI3vg0Nf+pIxyVcf5ii7EwHMeeDuDNuyc5VHbVhg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from DM5PR12MB2535.namprd12.prod.outlook.com (52.132.141.154) by
- DM5PR12MB1241.namprd12.prod.outlook.com (10.168.236.19) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2263.17; Thu, 19 Sep 2019 06:12:15 +0000
-Received: from DM5PR12MB2535.namprd12.prod.outlook.com
- ([fe80::e56c:45ad:7bdb:cd11]) by DM5PR12MB2535.namprd12.prod.outlook.com
- ([fe80::e56c:45ad:7bdb:cd11%7]) with mapi id 15.20.2284.009; Thu, 19 Sep 2019
- 06:12:15 +0000
-From: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>
-To: "Xu, Feifei" <Feifei.Xu@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu/gfx10: add support for wks firmware loading
-Thread-Topic: [PATCH] drm/amdgpu/gfx10: add support for wks firmware loading
-Thread-Index: AQHVbquwjwgi42PZsUmy0MJK8RouUKcygzeAgAABwz4=
-Date: Thu, 19 Sep 2019 06:12:15 +0000
-Message-ID: <DM5PR12MB253586B329B75BAC8D252CE595890@DM5PR12MB2535.namprd12.prod.outlook.com>
-References: <20190919053247.14172-1-tianci.yin@amd.com>,
- <CH2PR12MB37670D6362ADEBD444190252FE890@CH2PR12MB3767.namprd12.prod.outlook.com>
-In-Reply-To: <CH2PR12MB37670D6362ADEBD444190252FE890@CH2PR12MB3767.namprd12.prod.outlook.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c6c5f110-3f64-4873-11a5-08d73cc8514b
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:DM5PR12MB1241; 
-x-ms-traffictypediagnostic: DM5PR12MB1241:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR12MB12415A7E2371DA293FAB57FB95890@DM5PR12MB1241.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:541;
-x-forefront-prvs: 016572D96D
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(136003)(376002)(346002)(39860400002)(366004)(199004)(189003)(13464003)(53546011)(14444005)(476003)(7696005)(256004)(446003)(76116006)(91956017)(105004)(5660300002)(52536014)(11346002)(66946007)(316002)(8936002)(66556008)(64756008)(66446008)(14454004)(478600001)(110136005)(66476007)(33656002)(66066001)(966005)(25786009)(7736002)(102836004)(74316002)(186003)(55016002)(3846002)(81166006)(6506007)(2501003)(8676002)(19627405001)(9686003)(6436002)(54906003)(229853002)(6246003)(236005)(6116002)(71200400001)(71190400001)(4326008)(86362001)(486006)(81156014)(26005)(606006)(54896002)(76176011)(6306002)(2906002)(99286004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1241;
- H:DM5PR12MB2535.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
+ bh=q0de2P1hC2UoDMEu8vKM9+1NOptqCRPIlYT5M88CJzs=;
+ b=n4bVN6VdfIQyRJQXYDI5ae8qoMrKru5Rj1ofoCsqkbR6xK9FQ98GtQmt1T9rp4nUaQKZjBwqngR8av73RXMeDOIBzkAorx1AO9lQs++PtpT9GU/DW8yNwEIngri6AqIEVpo7BLjY5PCdMxvw05P/6ew4N4miB5Y8N5cumSqNUkYObnqxomhiyJX6Rd8HN1zYNPQZ8lXsqm8VFI3z4EO5dWNPOXOgoFXU0khvlhE2e5Tmmbsrf94PuErVBYNlBCjRG8ShKfjLJJ8C+VmtQ1SWVadqx87bLpDmAy0a1V+i+NPS7+L6r8Li0Y/LAeNYlRUur8yuD7BpY++OI+p7yvEKdw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+Received: from BN8PR12CA0010.namprd12.prod.outlook.com (2603:10b6:408:60::23)
+ by DM6PR12MB4042.namprd12.prod.outlook.com (2603:10b6:5:215::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2263.17; Thu, 19 Sep
+ 2019 07:12:02 +0000
+Received: from DM3NAM03FT055.eop-NAM03.prod.protection.outlook.com
+ (2a01:111:f400:7e49::209) by BN8PR12CA0010.outlook.office365.com
+ (2603:10b6:408:60::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2263.14 via Frontend
+ Transport; Thu, 19 Sep 2019 07:12:02 +0000
+Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: OmlVDgidhTcoibodNUgtDjGA/GDI8Ktf0Xwj7wvSjClgwRehEDgfzKFh1fxn/X2M/I7cpUh9yPujD13Ux9Z2Ck26derIaTWbYU3+Dy7wtCW8rDv2tVRyM5sEN/IaBSlz0VQM4iV1OvRuUBLjPBzAmF6QB6ovd1XE6FtUGI5r3A+XdREqtn5YwdeRKGRCUEBzOglhVgasnEnJiAwA7npbqIjco7Ss96Ilpq5UafObFSZEKtgtXUcEAPUfSVdN/DvclpA3z/SeTVFhAawDf/UxYYwxO+pWf4/4fVeyhsftnZlDgUO9gVrp9ctTJ0r7PHPLF2u96sUMwTy+ZW/abtL3KHNBw19FGzvR2XuiVrsQhu1T1o4OkK/xq8xb4exnHuQh3IT+WCysTYWplwCn6cSWw6vMfLLGSOM8rRYKueRhMz0=
+Received: from SATLEXCHOV01.amd.com (165.204.84.17) by
+ DM3NAM03FT055.mail.protection.outlook.com (10.152.83.209) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2284.20 via Frontend Transport; Thu, 19 Sep 2019 07:12:01 +0000
+Received: from Build-machine.amd.com (10.180.168.240) by SATLEXCHOV01.amd.com
+ (10.181.40.71) with Microsoft SMTP Server id 14.3.389.1;
+ Thu, 19 Sep 2019 02:12:01 -0500
+From: Jesse Zhang <zhexi.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v2] drm/amd/amdgpu:Fix compute ring unable to detect hang.
+Date: Thu, 19 Sep 2019 15:08:55 +0800
+Message-ID: <1568876935-18731-2-git-send-email-zhexi.zhang@amd.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(376002)(396003)(39860400002)(136003)(346002)(428003)(199004)(189003)(16586007)(316002)(36756003)(4326008)(53416004)(305945005)(81156014)(81166006)(8676002)(336012)(5660300002)(486006)(2906002)(26005)(14444005)(50226002)(86362001)(2616005)(6916009)(70206006)(476003)(126002)(48376002)(7696005)(478600001)(51416003)(186003)(50466002)(70586007)(2351001)(8936002)(356004)(426003)(47776003)(6666004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB4042; H:SATLEXCHOV01.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f06a9826-5a9a-40c8-7da5-08d73cd0ab2f
+X-Microsoft-Antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328);
+ SRVR:DM6PR12MB4042; 
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4042:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB40428A8993C397A1CCC23749EF890@DM6PR12MB4042.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-Forefront-PRVS: 016572D96D
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: zq49FXTG0uD1N27wn99ibUlSeR4Nupfo4UmuALjMOXwNGcduIPkbXHeNXkGt0xx0sGnaQCDKQ5fwupxavrtsvRb6PaHQm/bw9+W01RU/yGCDX9M+TX858lLM1S56HohnsTycxumGZmbUzen2DrGX0GZKTVFt3NEVnV1IruYMD/sZcrFMYmwbPaMsYlr2VEPtWzJvJBrkjFzewmHRwCH6nD7Emzgl2Om6hmlyFDhMHERxEstzOobjXbNEDqMzlOoJkQup7UEn3G5N3XQjHCkNaM03HUZU3OOvKmqEIVjIvthx5nX821tFmjDKStxBjNzfvX5ba9sCXB0nywyyv67z7b/nlilEjNrgD4wOsjBCcz69wpKyoz5kq4MtHBYPaDSwVe9ej39rxL7LQqnH6qH3+qQdcrmMGKnNFDFV7StyQKc=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6c5f110-3f64-4873-11a5-08d73cc8514b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2019 06:12:15.0345 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: B1DqN07KVkWt67IDymT32f23RvTOtUXRPWMi/r4rVM+eDtj/GmMl430tPp/sX9ZeDinloKN0Q5sNithPyyctkQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1241
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2019 07:12:01.8154 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f06a9826-5a9a-40c8-7da5-08d73cd0ab2f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXCHOV01.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4042
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dTNmh1vz/OZnbv1+7G19LCLMV3r1XSw8gToevcbMERM=;
- b=ba3QmE+g8HJcKJO+YcIxbsO66rkkDG5MbQCIV98X7d8JHmntm3PmxBe60G3a2efgYwLA8civGoTOyhN4mr1ds6mVwuxN0i2D0V7WjgRHVvEwJdTL0TEa954Qqpt8FZ9Wn0r0IfsjBUfLFOSVVXD4z64UMX8fGkcekHU5exCP5Ts=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Tianci.Yin@amd.com; 
+ bh=q0de2P1hC2UoDMEu8vKM9+1NOptqCRPIlYT5M88CJzs=;
+ b=2okDn7fGlN5DDz1hP7b0r6F/iQ31bN3HUGbGPCN8lfADQzbwEAvcO93lnXwPfmi3IDLcbpj5HcaSFUNynLfcUX4kDZz+RmyE9e/OnonXC00U8T7y+zyWzFn7tkVXCQ3qEmvLAU6uvBjXTiSih8SkB/8RY3p4kidUDYWyFGQHorQ=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is
+ 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -95,394 +97,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>
-Content-Type: multipart/mixed; boundary="===============0549686152=="
+Cc: Jesse Zhang <zhexi.zhang@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0549686152==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR12MB253586B329B75BAC8D252CE595890DM5PR12MB2535namp_"
-
---_000_DM5PR12MB253586B329B75BAC8D252CE595890DM5PR12MB2535namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks Feifei!
-________________________________
-From: Xu, Feifei <Feifei.Xu@amd.com>
-Sent: Thursday, September 19, 2019 14:05
-To: Yin, Tianci (Rico) <Tianci.Yin@amd.com>; amd-gfx@lists.freedesktop.org =
-<amd-gfx@lists.freedesktop.org>
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Yin, Tianci (Rico) <Tia=
-nci.Yin@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
-Subject: RE: [PATCH] drm/amdgpu/gfx10: add support for wks firmware loading
-
-
-
-Reviewed-by: Feifei Xu <Feifei.Xu@amd.com>
-
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Tianci Y=
-in
-Sent: Thursday, September 19, 2019 1:33 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Yin, Tianci (Rico) <Tia=
-nci.Yin@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
-Subject: [PATCH] drm/amdgpu/gfx10: add support for wks firmware loading
-
-From: "Tianci.Yin" <tianci.yin@amd.com>
-
-load different cp firmware according to the DID and RID
-
-Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 22 ++++++++++++++++------
- 1 file changed, 16 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v10_0.c
-index 082a0b3298a9..65caf404e7d1 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -66,6 +66,11 @@ MODULE_FIRMWARE("amdgpu/navi10_mec.bin");
- MODULE_FIRMWARE("amdgpu/navi10_mec2.bin");
- MODULE_FIRMWARE("amdgpu/navi10_rlc.bin");
-
-+MODULE_FIRMWARE("amdgpu/navi14_ce_wks.bin");
-+MODULE_FIRMWARE("amdgpu/navi14_pfp_wks.bin");
-+MODULE_FIRMWARE("amdgpu/navi14_me_wks.bin");
-+MODULE_FIRMWARE("amdgpu/navi14_mec_wks.bin");
-+MODULE_FIRMWARE("amdgpu/navi14_mec2_wks.bin");
- MODULE_FIRMWARE("amdgpu/navi14_ce.bin");
- MODULE_FIRMWARE("amdgpu/navi14_pfp.bin");
- MODULE_FIRMWARE("amdgpu/navi14_me.bin");
-@@ -591,7 +596,8 @@ static void gfx_v10_0_check_gfxoff_flag(struct amdgpu_d=
-evice *adev)  static int gfx_v10_0_init_microcode(struct amdgpu_device *ade=
-v)  {
-         const char *chip_name;
--       char fw_name[30];
-+       char fw_name[40];
-+       char wks[10];
-         int err;
-         struct amdgpu_firmware_info *info =3D NULL;
-         const struct common_firmware_header *header =3D NULL; @@ -604,12 +=
-610,16 @@ static int gfx_v10_0_init_microcode(struct amdgpu_device *adev)
-
-         DRM_DEBUG("\n");
-
-+       memset(wks, 0, sizeof(wks));
-         switch (adev->asic_type) {
-         case CHIP_NAVI10:
-                 chip_name =3D "navi10";
-                 break;
-         case CHIP_NAVI14:
-                 chip_name =3D "navi14";
-+               if (!(adev->pdev->device =3D=3D 0x7340 &&
-+                     adev->pdev->revision !=3D 0x00))
-+                       snprintf(wks, sizeof(wks), "_wks");
-                 break;
-         case CHIP_NAVI12:
-                 chip_name =3D "navi12";
-@@ -618,7 +628,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_devic=
-e *adev)
-                 BUG();
-         }
-
--       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_pfp.bin", chip_name);
-+       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_pfp%s.bin", chip_name=
-,
-+wks);
-         err =3D request_firmware(&adev->gfx.pfp_fw, fw_name, adev->dev);
-         if (err)
-                 goto out;
-@@ -629,7 +639,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_devic=
-e *adev)
-         adev->gfx.pfp_fw_version =3D le32_to_cpu(cp_hdr->header.ucode_vers=
-ion);
-         adev->gfx.pfp_feature_version =3D le32_to_cpu(cp_hdr->ucode_featur=
-e_version);
-
--       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_me.bin", chip_name);
-+       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_me%s.bin", chip_name,
-+wks);
-         err =3D request_firmware(&adev->gfx.me_fw, fw_name, adev->dev);
-         if (err)
-                 goto out;
-@@ -640,7 +650,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_devic=
-e *adev)
-         adev->gfx.me_fw_version =3D le32_to_cpu(cp_hdr->header.ucode_versi=
-on);
-         adev->gfx.me_feature_version =3D le32_to_cpu(cp_hdr->ucode_feature=
-_version);
-
--       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_ce.bin", chip_name);
-+       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_ce%s.bin", chip_name,
-+wks);
-         err =3D request_firmware(&adev->gfx.ce_fw, fw_name, adev->dev);
-         if (err)
-                 goto out;
-@@ -705,7 +715,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_devic=
-e *adev)
-         if (adev->gfx.rlc.is_rlc_v2_1)
-                 gfx_v10_0_init_rlc_ext_microcode(adev);
-
--       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_mec.bin", chip_name);
-+       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_mec%s.bin", chip_name=
-,
-+wks);
-         err =3D request_firmware(&adev->gfx.mec_fw, fw_name, adev->dev);
-         if (err)
-                 goto out;
-@@ -716,7 +726,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_devic=
-e *adev)
-         adev->gfx.mec_fw_version =3D le32_to_cpu(cp_hdr->header.ucode_vers=
-ion);
-         adev->gfx.mec_feature_version =3D le32_to_cpu(cp_hdr->ucode_featur=
-e_version);
-
--       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_mec2.bin", chip_name)=
-;
-+       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_mec2%s.bin", chip_nam=
-e,
-+wks);
-         err =3D request_firmware(&adev->gfx.mec2_fw, fw_name, adev->dev);
-         if (!err) {
-                 err =3D amdgpu_ucode_validate(adev->gfx.mec2_fw);
---
-2.17.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_DM5PR12MB253586B329B75BAC8D252CE595890DM5PR12MB2535namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks Feifei!<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Xu, Feifei &lt;Feifei=
-.Xu@amd.com&gt;<br>
-<b>Sent:</b> Thursday, September 19, 2019 14:05<br>
-<b>To:</b> Yin, Tianci (Rico) &lt;Tianci.Yin@amd.com&gt;; amd-gfx@lists.fre=
-edesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Yin, Tianc=
-i (Rico) &lt;Tianci.Yin@amd.com&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.c=
-om&gt;<br>
-<b>Subject:</b> RE: [PATCH] drm/amdgpu/gfx10: add support for wks firmware =
-loading</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText"><br>
-<br>
-Reviewed-by: Feifei Xu &lt;Feifei.Xu@amd.com&gt;<br>
-<br>
------Original Message-----<br>
-From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; On Behalf Of Ti=
-anci Yin<br>
-Sent: Thursday, September 19, 2019 1:33 PM<br>
-To: amd-gfx@lists.freedesktop.org<br>
-Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Yin, Tianci (Rico=
-) &lt;Tianci.Yin@amd.com&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;<=
-br>
-Subject: [PATCH] drm/amdgpu/gfx10: add support for wks firmware loading<br>
-<br>
-From: &quot;Tianci.Yin&quot; &lt;tianci.yin@amd.com&gt;<br>
-<br>
-load different cp firmware according to the DID and RID<br>
-<br>
-Signed-off-by: Tianci.Yin &lt;tianci.yin@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 22 &#43;&#43;&#43;&#43;&#43;=
-&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;------<br>
-&nbsp;1 file changed, 16 insertions(&#43;), 6 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v10_0.c<br>
-index 082a0b3298a9..65caf404e7d1 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-@@ -66,6 &#43;66,11 @@ MODULE_FIRMWARE(&quot;amdgpu/navi10_mec.bin&quot;);<=
-br>
-&nbsp;MODULE_FIRMWARE(&quot;amdgpu/navi10_mec2.bin&quot;);<br>
-&nbsp;MODULE_FIRMWARE(&quot;amdgpu/navi10_rlc.bin&quot;);<br>
-&nbsp;<br>
-&#43;MODULE_FIRMWARE(&quot;amdgpu/navi14_ce_wks.bin&quot;);<br>
-&#43;MODULE_FIRMWARE(&quot;amdgpu/navi14_pfp_wks.bin&quot;);<br>
-&#43;MODULE_FIRMWARE(&quot;amdgpu/navi14_me_wks.bin&quot;);<br>
-&#43;MODULE_FIRMWARE(&quot;amdgpu/navi14_mec_wks.bin&quot;);<br>
-&#43;MODULE_FIRMWARE(&quot;amdgpu/navi14_mec2_wks.bin&quot;);<br>
-&nbsp;MODULE_FIRMWARE(&quot;amdgpu/navi14_ce.bin&quot;);<br>
-&nbsp;MODULE_FIRMWARE(&quot;amdgpu/navi14_pfp.bin&quot;);<br>
-&nbsp;MODULE_FIRMWARE(&quot;amdgpu/navi14_me.bin&quot;);<br>
-@@ -591,7 &#43;596,8 @@ static void gfx_v10_0_check_gfxoff_flag(struct amdg=
-pu_device *adev)&nbsp; static int gfx_v10_0_init_microcode(struct amdgpu_de=
-vice *adev)&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char *chip_name;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char fw_name[30];<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char fw_name[40];<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char wks[10];<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int err;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_firmware_inf=
-o *info =3D NULL;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct common_firmwa=
-re_header *header =3D NULL; @@ -604,12 &#43;610,16 @@ static int gfx_v10_0_=
-init_microcode(struct amdgpu_device *adev)<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_DEBUG(&quot;\n&quot;);=
-<br>
-&nbsp;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; memset(wks, 0, sizeof(wks));<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (adev-&gt;asic_type=
-) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI10:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; chip_name =3D &quot;navi10&quot;;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; break;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI14:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; chip_name =3D &quot;navi14&quot;;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; if (!(adev-&gt;pdev-&gt;device =3D=3D 0x7340 &amp;&amp;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;pdev-&gt;revisi=
-on !=3D 0x00))<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(wks=
-, sizeof(wks), &quot;_wks&quot;);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; break;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI12:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; chip_name =3D &quot;navi12&quot;;<br>
-@@ -618,7 &#43;628,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_d=
-evice *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; BUG();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name), &q=
-uot;amdgpu/%s_pfp.bin&quot;, chip_name);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name)=
-, &quot;amdgpu/%s_pfp%s.bin&quot;, chip_name, <br>
-&#43;wks);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; err =3D request_firmware(&=
-amp;adev-&gt;gfx.pfp_fw, fw_name, adev-&gt;dev);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (err)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; goto out;<br>
-@@ -629,7 &#43;639,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_d=
-evice *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.pfp_fw_versio=
-n =3D le32_to_cpu(cp_hdr-&gt;header.ucode_version);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.pfp_feature_v=
-ersion =3D le32_to_cpu(cp_hdr-&gt;ucode_feature_version);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name), &q=
-uot;amdgpu/%s_me.bin&quot;, chip_name);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name)=
-, &quot;amdgpu/%s_me%s.bin&quot;, chip_name, <br>
-&#43;wks);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; err =3D request_firmware(&=
-amp;adev-&gt;gfx.me_fw, fw_name, adev-&gt;dev);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (err)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; goto out;<br>
-@@ -640,7 &#43;650,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_d=
-evice *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.me_fw_version=
- =3D le32_to_cpu(cp_hdr-&gt;header.ucode_version);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.me_feature_ve=
-rsion =3D le32_to_cpu(cp_hdr-&gt;ucode_feature_version);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name), &q=
-uot;amdgpu/%s_ce.bin&quot;, chip_name);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name)=
-, &quot;amdgpu/%s_ce%s.bin&quot;, chip_name, <br>
-&#43;wks);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; err =3D request_firmware(&=
-amp;adev-&gt;gfx.ce_fw, fw_name, adev-&gt;dev);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (err)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; goto out;<br>
-@@ -705,7 &#43;715,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_d=
-evice *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;gfx.rlc.is_rl=
-c_v2_1)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; gfx_v10_0_init_rlc_ext_microcode(adev);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name), &q=
-uot;amdgpu/%s_mec.bin&quot;, chip_name);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name)=
-, &quot;amdgpu/%s_mec%s.bin&quot;, chip_name, <br>
-&#43;wks);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; err =3D request_firmware(&=
-amp;adev-&gt;gfx.mec_fw, fw_name, adev-&gt;dev);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (err)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; goto out;<br>
-@@ -716,7 &#43;726,7 @@ static int gfx_v10_0_init_microcode(struct amdgpu_d=
-evice *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.mec_fw_versio=
-n =3D le32_to_cpu(cp_hdr-&gt;header.ucode_version);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.mec_feature_v=
-ersion =3D le32_to_cpu(cp_hdr-&gt;ucode_feature_version);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name), &q=
-uot;amdgpu/%s_mec2.bin&quot;, chip_name);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snprintf(fw_name, sizeof(fw_name)=
-, &quot;amdgpu/%s_mec2%s.bin&quot;, chip_name, <br>
-&#43;wks);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; err =3D request_firmware(&=
-amp;adev-&gt;gfx.mec2_fw, fw_name, adev-&gt;dev);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!err) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; err =3D amdgpu_ucode_validate(adev-&gt;gfx.mec2_fw);<=
-br>
---<br>
-2.17.1<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_DM5PR12MB253586B329B75BAC8D252CE595890DM5PR12MB2535namp_--
-
---===============0549686152==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0549686152==--
+V2hlbiBjb21wdXRlIGZlbmNlIGRpZCBzaWduYWwsIGNvbXB1dGUgcmluZyBjYW5ub3QgZGV0ZWN0
+IGhhcmR3YXJlIGhhbmcKYmVjYXVzZSBpdHMgdGltZW91dCB2YWx1ZSBpcyBzZXQgdG8gYmUgaW5m
+aW5pdGUgYnkgZGVmYXVsdC4KCkluIFNSLUlPViBhbmQgcGFzc3Rocm91Z2ggbW9kZSwgaWYgdXNl
+ciBkb2VzIG5vdCBkZWNsYXJlIGN1c3RvbWUgdGltZW91dAp2YWx1ZSBmb3IgY29tcHV0ZSByaW5n
+LCB0aGVuIHVzZSBnZnggcmluZyB0aW1lb3V0IHZhbHVlIGFzIGRlZmF1bHQuIFNvCnRoYXQgd2hl
+biB0aGVyZSBpcyBhIHR1cmUgaGFyZHdhcmUgaGFuZywgY29tcHV0ZSByaW5nIGNhbiBkZXRlY3Qg
+aXQuCgpDaGFuZ2UtSWQ6IEk3OTRlYzA4NjhjNmMwYWFkNDA3NzQ5NDU3MjYwZWNmZWUwNjE3YzEw
+ClNpZ25lZC1vZmYtYnk6IEplc3NlIFpoYW5nIDx6aGV4aS56aGFuZ0BhbWQuY29tPgotLS0KIGRy
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3NvYzE1LmMgfCAxMCArKysrKysrKysrCiAxIGZpbGUg
+Y2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvYW1kZ3B1L3NvYzE1LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zb2MxNS5jCmlu
+ZGV4IDdjN2U5ZjUuLjZjZDU1NDggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L3NvYzE1LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvc29jMTUuYwpAQCAt
+Njg3LDYgKzY4NywxNiBAQCBpbnQgc29jMTVfc2V0X2lwX2Jsb2NrcyhzdHJ1Y3QgYW1kZ3B1X2Rl
+dmljZSAqYWRldikKIAlhZGV2LT5yZXZfaWQgPSBzb2MxNV9nZXRfcmV2X2lkKGFkZXYpOwogCWFk
+ZXYtPm5iaW8uZnVuY3MtPmRldGVjdF9od192aXJ0KGFkZXYpOwogCisJLyoKKwkgKiBJZiBydW5u
+aW5nIHVuZGVyIFNSLUlPViBvciBwYXNzdGhyb3VnaCBtb2RlIGFuZCB1c2VyIGRpZCBub3Qgc2V0
+CisJICogY3VzdG9tIHZhbHVlIGZvciBjb21wdXRlIHJpbmcgdGltZW91dCwgc2V0IHRpbWVvdXQg
+dG8gYmUgdGhlIHNhbWUKKwkgKiBhcyBnZnggcmluZyB0aW1lb3V0IHRvIGF2b2lkIGNvbXB1dGUg
+cmluZyBjYW5ub3QgZGV0ZWN0IGFuIHRydWUKKwkgKiBoYW5nLgorCSAqLworCWlmICgoYW1kZ3B1
+X3NyaW92X3ZmKGFkZXYpIHx8IGFtZGdwdV9wYXNzdGhyb3VnaChhZGV2KSkgJiYKKwkJKGFkZXYt
+PmNvbXB1dGVfdGltZW91dCA9PSBNQVhfU0NIRURVTEVfVElNRU9VVCkpCisJCWFkZXYtPmNvbXB1
+dGVfdGltZW91dCA9IGFkZXYtPmdmeF90aW1lb3V0OworCiAJaWYgKGFtZGdwdV9zcmlvdl92Zihh
+ZGV2KSkKIAkJYWRldi0+dmlydC5vcHMgPSAmeGdwdV9haV92aXJ0X29wczsKIAotLSAKMi43LjQK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZngg
+bWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
