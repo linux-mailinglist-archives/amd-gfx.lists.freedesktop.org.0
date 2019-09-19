@@ -2,46 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E4FB83AE
+	by mail.lfdr.de (Postfix) with ESMTPS id 30329B83AD
 	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2019 23:49:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 812336FBE9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 416256FBE6;
 	Thu, 19 Sep 2019 21:49:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E1816F9EA;
- Thu, 19 Sep 2019 19:28:27 +0000 (UTC)
-Received: from [2601:1c0:6280:3f0::9a1f]
- by bombadil.infradead.org with esmtpsa (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iB26N-0000Nn-4V; Thu, 19 Sep 2019 19:28:27 +0000
-Subject: Re: linux-next: Tree for Sep 19 (amdgpu)
-To: Mark Brown <broonie@kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-References: <20190919160641.GR3642@sirena.co.uk>
-From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <0323499e-9fbd-a707-9713-cb40cc92b6fc@infradead.org>
-Date: Thu, 19 Sep 2019 12:28:26 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
+ [IPv6:2a00:1450:4864:20::529])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F60A6FBE6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2019 21:47:58 +0000 (UTC)
+Received: by mail-ed1-x529.google.com with SMTP id h33so4499545edh.12
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2019 14:47:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=dEP4asvWahvB/ByMxaI4e4W6i3Uh1P6APAc6QuG8yno=;
+ b=tx0vGqRQw6Or5MWP5rwtKgAZYmZHbPAH145n0ddNSWioqS5JIvhOPlJV6cqaZetiE7
+ kWSJ2RwLlVkvgIrBxHyo/FY5semf/bfnc7YkQgu/4PIXKlbD7r0OW7x9Y3dEQUYMx/Uw
+ 4xZis0yBvBzK+cBMeDE0s0xm4hg/+F2IIkbA8pexyWv93zq6Hxu6l15Iwpuir8IRKh5V
+ 6L+JH+vHADXlKjGYjI906vWAv4dihJbtWP3AP8KUcfCXu4VdX0ajHtlvHeH0GNsQhhao
+ 0HAo30qT3KTcb+SILsWclPiF1NzNoxRRl1lWO9qdmZzuFSwOc6Z2S765WfNSEhiCZryC
+ QFKg==
+X-Gm-Message-State: APjAAAVAbDvLcTTuXfGVPYm236w7Kw1+TaUM7DRgJVh5+gzdqdx2AkuN
+ 9hEnkTis0fB+M87yyps0A3aRI3NEj2A=
+X-Google-Smtp-Source: APXvYqynTIRxGcZc4LshXGFYCw3TWlACMMQVaY0VpBrg1kDlMQfmid3KkzXlvm9s+4E5MyT+0Gdp9g==
+X-Received: by 2002:a05:6402:6c6:: with SMTP id
+ n6mr17936160edy.162.1568929677017; 
+ Thu, 19 Sep 2019 14:47:57 -0700 (PDT)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com.
+ [209.85.128.42])
+ by smtp.gmail.com with ESMTPSA id h10sm1867634edf.81.2019.09.19.14.47.56
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 19 Sep 2019 14:47:56 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id i16so51549wmd.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2019 14:47:56 -0700 (PDT)
+X-Received: by 2002:a1c:110:: with SMTP id 16mr27409wmb.88.1568929256997; Thu,
+ 19 Sep 2019 14:40:56 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190919160641.GR3642@sirena.co.uk>
-Content-Language: en-US
+References: <20190828183758.11553-1-rrangel@chromium.org>
+In-Reply-To: <20190828183758.11553-1-rrangel@chromium.org>
+From: Raul Rangel <rrangel@chromium.org>
+Date: Thu, 19 Sep 2019 15:40:45 -0600
+X-Gmail-Original-Message-ID: <CAHQZ30AGSxmjn4q6=bi6dJO1uSdpcG5jPGfUX7R2t2489qt9gw@mail.gmail.com>
+Message-ID: <CAHQZ30AGSxmjn4q6=bi6dJO1uSdpcG5jPGfUX7R2t2489qt9gw@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amd/display: fix struct init in update_bounding_box
+To: amd-gfx@lists.freedesktop.org
 X-Mailman-Approved-At: Thu, 19 Sep 2019 21:49:32 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
- c=relaxed/relaxed; 
- d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
- Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ZQQcCpBlQ0ElB9UbM8suQ0So3al3Np/N814ZFWscUMI=; b=Wk3zRWzJ8RSrEtpxScZC+fOOQ
- wM9ZJVFYHrzS5HCyaWPiyW92Z8wxulYuW5oYW+HLcSwXFSWk29PfjOV6LlObtuXgTByozDV4syuUx
- ss+I6585YVxgQ6WDyfX8CUBl5yuK/WbTcJsP1lpcTEOs1TMH2UHwKtNgPZYlS6FxX/PvA10TJYJSQ
- UBGjnriTR04SGwqORjQ404dDdXBzArIbpLEq5I/bStNakkQ7ZuDOGVCG2tf4aYh/VSa+jR7QzgvHv
- 7ckvVzCFE54QDQTNxF3nlxYv7KIZJdG5wHptPtiroHguLm5ydXVDrxU6jzutXRCUEkG22hCd01ciV
- 2H6HaZTgA==;
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=dEP4asvWahvB/ByMxaI4e4W6i3Uh1P6APAc6QuG8yno=;
+ b=BmDj/yVXQI1xNehGBnaYafRi6EGb9bKgZd31R41qDqeJeU7zMho89QecXC+w2uIsh2
+ 06xxE6KKmvtBFgXmmxpi8gh0LjFMbEHLCkAMiBsQcYWYdDXd6CHyYwfani0b8ENaleZq
+ 5+x/lDA7+CqTzQa8/5dvIrCX9BmVycjFGxTHk=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -53,17 +71,22 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ Charlene Liu <charlene.liu@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ Nikola Cornij <nikola.cornij@amd.com>, David Airlie <airlied@linux.ie>,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ hersen wu <hersenxs.wu@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, Jun Lei <Jun.Lei@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gOS8xOS8xOSA5OjA2IEFNLCBNYXJrIEJyb3duIHdyb3RlOgo+IEhpIGFsbCwKPiAKPiBDaGFu
-Z2VzIHNpbmNlIDIwMTkwOTE4Ogo+IAoKCi4uL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4u
-L2Rpc3BsYXkvZGMvZG1sL01ha2VmaWxlOjcwOiAqKiogbWlzc2luZyAnZW5kaWYnLiAgU3RvcC4K
-CgotLSAKflJhbmR5Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+RnJpZW5kbHkgcGluZyBmb3IgcmV2aWV3LgoKVGhhbmtzCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vYW1kLWdmeA==
