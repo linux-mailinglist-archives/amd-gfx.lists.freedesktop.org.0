@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70FA5BA3FE
-	for <lists+amd-gfx@lfdr.de>; Sun, 22 Sep 2019 20:49:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97185BA414
+	for <lists+amd-gfx@lfdr.de>; Sun, 22 Sep 2019 20:54:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 232B96E85E;
-	Sun, 22 Sep 2019 18:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C45E6E868;
+	Sun, 22 Sep 2019 18:54:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3AD6E109;
- Sun, 22 Sep 2019 18:49:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BACFE6E867;
+ Sun, 22 Sep 2019 18:54:02 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 2738E208C2;
- Sun, 22 Sep 2019 18:49:04 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id AB3AD2190F;
+ Sun, 22 Sep 2019 18:54:01 +0000 (UTC)
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.3 193/203] drm/amd/powerplay/smu7: enforce minimal
+Subject: [PATCH AUTOSEL 5.2 175/185] drm/amd/powerplay/smu7: enforce minimal
  VBITimeout (v2)
-Date: Sun, 22 Sep 2019 14:43:39 -0400
-Message-Id: <20190922184350.30563-193-sashal@kernel.org>
+Date: Sun, 22 Sep 2019 14:49:13 -0400
+Message-Id: <20190922184924.32534-175-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190922184350.30563-1-sashal@kernel.org>
-References: <20190922184350.30563-1-sashal@kernel.org>
+In-Reply-To: <20190922184924.32534-1-sashal@kernel.org>
+References: <20190922184924.32534-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=kernel.org; s=default; t=1569178145;
- bh=s1xHu8LphYSTJupvhJsAxrab1Glumm0UXtfw4+RHFfA=;
+ d=kernel.org; s=default; t=1569178442;
+ bh=8RTrsxUPtiQV8fJJjQUR1PBXXKK19v9iUcCIGPA+was=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=kBvh0k4nHREXXprWD//Q77tWUGmtzp95iYXbOYLCG3Ujle2NYfhlV1DKDJxEZuQ7b
- NTRCz6Tb1aA0UksidO92xGIsTb8AN3/0Tt6oroPLa30skDqXcSQ6EXj8FNHrUBcr0f
- qnODu3aiJh1LmUPZogdqXHqzjocaLt25jEEMsCKo=
+ b=f/+IMPD8l4moNEUc1mUfH9TMtzVOWheIsAZBSqXlnWulxvyita3thhQ56cco+wJ/r
+ 4A+vu/Ya/M4t3ms25xNIaotGGeyS3vU7mAYHOZ2KYoyGnihiJO7H0/mLeFU0IHhj35
+ q8ftte+bWGFr/opRnpTqvVnBM8HRx/60+qvOwock=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -68,10 +68,10 @@ U2lnbmVkLW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3JnPgotLS0KIGRyaXZl
 cnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3NtdTdfaHdtZ3IuYyB8IDUgKysrKysKIDEg
 ZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
 cm0vYW1kL3Bvd2VycGxheS9od21nci9zbXU3X2h3bWdyLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
-L3Bvd2VycGxheS9od21nci9zbXU3X2h3bWdyLmMKaW5kZXggNDg3YWVlZTFjZjhhNS4uM2MxMDg0
-ZGU1ZDU5ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3Iv
+L3Bvd2VycGxheS9od21nci9zbXU3X2h3bWdyLmMKaW5kZXggMDQ4NzU3ZThmNDk0OS4uZDE5MTlk
+MzQzY2NlNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3Iv
 c211N19od21nci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3Nt
-dTdfaHdtZ3IuYwpAQCAtNDA2OCw2ICs0MDY4LDExIEBAIHN0YXRpYyBpbnQgc211N19wcm9ncmFt
+dTdfaHdtZ3IuYwpAQCAtNDA2NCw2ICs0MDY0LDExIEBAIHN0YXRpYyBpbnQgc211N19wcm9ncmFt
 X2Rpc3BsYXlfZ2FwKHN0cnVjdCBwcF9od21nciAqaHdtZ3IpCiAKIAlkYXRhLT5mcmFtZV90aW1l
 X3gyID0gZnJhbWVfdGltZV9pbl91cyAqIDIgLyAxMDA7CiAKKwlpZiAoZGF0YS0+ZnJhbWVfdGlt
 ZV94MiA8IDI4MCkgeworCQlwcl9kZWJ1ZygiJXM6IGVuZm9yY2UgbWluaW1hbCBWQklUaW1lb3V0
