@@ -1,39 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7661BA27C
-	for <lists+amd-gfx@lfdr.de>; Sun, 22 Sep 2019 14:08:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70FA5BA3FE
+	for <lists+amd-gfx@lfdr.de>; Sun, 22 Sep 2019 20:49:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80CAF6E8C1;
-	Sun, 22 Sep 2019 12:05:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 232B96E85E;
+	Sun, 22 Sep 2019 18:49:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 081CB6E075;
- Sat, 21 Sep 2019 17:40:22 +0000 (UTC)
-Subject: Re: [GIT PULL] Please pull hmm related changes
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20190916162350.GA19191@ziepe.ca>
-References: <20190916162350.GA19191@ziepe.ca>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20190916162350.GA19191@ziepe.ca>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
- tags/for-linus-hmm
-X-PR-Tracked-Commit-Id: 62974fc389b364d8af70e044836362222bd3ae53
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 84da111de0b4be15bd500deff773f5116f39f7be
-Message-Id: <156908762129.32622.9253749641256776927.pr-tracker-bot@kernel.org>
-Date: Sat, 21 Sep 2019 17:40:21 +0000
-To: Jason Gunthorpe <jgg@mellanox.com>
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3AD6E109;
+ Sun, 22 Sep 2019 18:49:05 +0000 (UTC)
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 2738E208C2;
+ Sun, 22 Sep 2019 18:49:04 +0000 (UTC)
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.3 193/203] drm/amd/powerplay/smu7: enforce minimal
+ VBITimeout (v2)
+Date: Sun, 22 Sep 2019 14:43:39 -0400
+Message-Id: <20190922184350.30563-193-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190922184350.30563-1-sashal@kernel.org>
+References: <20190922184350.30563-1-sashal@kernel.org>
+MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=kernel.org; s=default; t=1569087621;
- bh=LsJ4KroFpbZgHfIznXa/jo/IJP0ugyfdqLBIjhc8268=;
- h=From:In-Reply-To:References:Date:To:Cc:From;
- b=n6E7JQXe8lfUX+FaNG3J+BYya8cbdUEeLMb5493L7IbpwanV8sKgytc7F7dtJJl+X
- YjHEfN1f8jVJtTyKyC+iccEBHw6eLdZDJyNoYh4DJSM09PrXbKWFTlSE0jE9DKn1Bn
- V5mLYnWP9WTwNf5ger3difRJGdlkUKrHh5JlYecQ=
+ d=kernel.org; s=default; t=1569178145;
+ bh=s1xHu8LphYSTJupvhJsAxrab1Glumm0UXtfw4+RHFfA=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=kBvh0k4nHREXXprWD//Q77tWUGmtzp95iYXbOYLCG3Ujle2NYfhlV1DKDJxEZuQ7b
+ NTRCz6Tb1aA0UksidO92xGIsTb8AN3/0Tt6oroPLa30skDqXcSQ6EXj8FNHrUBcr0f
+ qnODu3aiJh1LmUPZogdqXHqzjocaLt25jEEMsCKo=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,30 +49,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dimitri Sivanich <sivanich@hpe.com>, David Airlie <airlied@linux.ie>,
- "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Christoph Hellwig <hch@lst.de>, "linux-mm@kvack.org" <linux-mm@kvack.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Dan Williams <dan.j.williams@intel.com>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>
-MIME-Version: 1.0
+Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
+ Ahzo <Ahzo@tutanota.com>, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VGhlIHB1bGwgcmVxdWVzdCB5b3Ugc2VudCBvbiBNb24sIDE2IFNlcCAyMDE5IDE2OjIzOjU3ICsw
-MDAwOgoKPiBnaXQ6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvcmRt
-YS9yZG1hLmdpdCB0YWdzL2Zvci1saW51cy1obW0KCmhhcyBiZWVuIG1lcmdlZCBpbnRvIHRvcnZh
-bGRzL2xpbnV4LmdpdDoKaHR0cHM6Ly9naXQua2VybmVsLm9yZy90b3J2YWxkcy9jLzg0ZGExMTFk
-ZTBiNGJlMTViZDUwMGRlZmY3NzNmNTExNmYzOWY3YmUKClRoYW5rIHlvdSEKCi0tIApEZWV0LWRv
-b3QtZG90LCBJIGFtIGEgYm90LgpodHRwczovL2tvcmcud2lraS5rZXJuZWwub3JnL3VzZXJkb2Mv
-cHJ0cmFja2VyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+RnJvbTogQWh6byA8QWh6b0B0dXRhbm90YS5jb20+CgpbIFVwc3RyZWFtIGNvbW1pdCBmNjU5YmI2
+ZGFlNThjMTEzODA1ZjkyODIyZTRjMTZkZGQzMTU2Yjc5IF0KClRoaXMgZml4ZXMgc2NyZWVuIGNv
+cnJ1cHRpb24vZmxpY2tlcmluZyBvbiA3NSBIeiBkaXNwbGF5cy4KCnYyOiBtYWtlIHByaW50IHN0
+YXRlbWVudCBkZWJ1ZyBvbmx5IChBbGV4KQoKQnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVlZGVz
+a3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwMjY0NgpSZXZpZXdlZC1ieTogRXZhbiBRdWFuIDxl
+dmFuLnF1YW5AYW1kLmNvbT4KU2lnbmVkLW9mZi1ieTogQWh6byA8QWh6b0B0dXRhbm90YS5jb20+
+ClNpZ25lZC1vZmYtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4K
+U2lnbmVkLW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3JnPgotLS0KIGRyaXZl
+cnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3NtdTdfaHdtZ3IuYyB8IDUgKysrKysKIDEg
+ZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vYW1kL3Bvd2VycGxheS9od21nci9zbXU3X2h3bWdyLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
+L3Bvd2VycGxheS9od21nci9zbXU3X2h3bWdyLmMKaW5kZXggNDg3YWVlZTFjZjhhNS4uM2MxMDg0
+ZGU1ZDU5ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3Iv
+c211N19od21nci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3Nt
+dTdfaHdtZ3IuYwpAQCAtNDA2OCw2ICs0MDY4LDExIEBAIHN0YXRpYyBpbnQgc211N19wcm9ncmFt
+X2Rpc3BsYXlfZ2FwKHN0cnVjdCBwcF9od21nciAqaHdtZ3IpCiAKIAlkYXRhLT5mcmFtZV90aW1l
+X3gyID0gZnJhbWVfdGltZV9pbl91cyAqIDIgLyAxMDA7CiAKKwlpZiAoZGF0YS0+ZnJhbWVfdGlt
+ZV94MiA8IDI4MCkgeworCQlwcl9kZWJ1ZygiJXM6IGVuZm9yY2UgbWluaW1hbCBWQklUaW1lb3V0
+OiAlZCAtPiAyODBcbiIsIF9fZnVuY19fLCBkYXRhLT5mcmFtZV90aW1lX3gyKTsKKwkJZGF0YS0+
+ZnJhbWVfdGltZV94MiA9IDI4MDsKKwl9CisKIAlkaXNwbGF5X2dhcDIgPSBwcmVfdmJpX3RpbWVf
+aW5fdXMgKiAocmVmX2Nsb2NrIC8gMTAwKTsKIAogCWNnc193cml0ZV9pbmRfcmVnaXN0ZXIoaHdt
+Z3ItPmRldmljZSwgQ0dTX0lORF9SRUdfX1NNQywgaXhDR19ESVNQTEFZX0dBUF9DTlRMMiwgZGlz
+cGxheV9nYXAyKTsKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
+bWQtZ2Z4
