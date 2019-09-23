@@ -1,91 +1,72 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF09BB412
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Sep 2019 14:44:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A15FBB48C
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Sep 2019 14:56:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 136FC6E8A2;
-	Mon, 23 Sep 2019 12:44:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE1296E8E2;
+	Mon, 23 Sep 2019 12:56:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770048.outbound.protection.outlook.com [40.107.77.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D19186E8A2
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Sep 2019 12:44:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GR57GQ7ArEOaBAABXz97Jy5WNketN8IdGL+SdZMJQ9llQ9NoiNG++TbTqZcx03kxfTmZvdJy7bjAhuyjhTpgbX/46jkLSe2APbv9fKFO/zlB5F0Q9KhN+hNSE6l52vADG0sxIp6H3wzRVXcTTQ/rUtCpoKwewePoaRqKTUEYw1/bdOTLbVRae1IMuTLV6ZXMvRCPHgdHnG6txAyA3uaPLEfERWQoVJnORRe5ponfYy3aQmVqfKvBeqYug3DaApF/w19In9xw5Rio/4MTqhtXBXpvgL99P7o2Z/r9OBOBG5sCUBCCryyIaE/03HxLLwTqCw7CmHMsPidg9nRZpDdsPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/zn+SDPG7G+QlVUofnRywpHajT9ZsP0lQGa4dAWb64I=;
- b=FMI1sOBMQNgmpAO2tG0TWuYj+85T96b62TwENATo7PGLI1rL+iIB2rDDwT7cacs/2HyTM2Yoce1ixYXUbh2K07oQjG/y65MDTvLRsvHpvk/G1g6Y3nqpvJuMZCAqOfHpfRhtrzJg74TeUOhk/6g+iOP9LkbtyGkGiNsBDUE/zvNKiZYJGMuwBVcG8QxMlTfhE9jii1LwjEkJzpFAClGqBVuAo9PRwzd7bfVlDmTmJl9N/v20aOXkHCe98FT9cBmS2jon66n1AszKTSgR6KFn9zFFJu2HnqDiwYZ508Oz1DzkJM8loak88vNnWJ+d0H8yd8B/yp480AyVB2WPJGNW6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1841.namprd12.prod.outlook.com (10.175.99.135) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.20; Mon, 23 Sep 2019 12:44:17 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::a930:a648:d4d2:d25c]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::a930:a648:d4d2:d25c%12]) with mapi id 15.20.2263.030; Mon, 23 Sep
- 2019 12:44:17 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Zhao, Yong" <Yong.Zhao@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 3/3] drm/amdkfd: Remove unnecessary pm_init() for non HWS
- mode
-Thread-Topic: [PATCH 3/3] drm/amdkfd: Remove unnecessary pm_init() for non HWS
- mode
-Thread-Index: AQHVcceUia/zHS/1yEGAJhj5TEOFmqc5NZLF
-Date: Mon, 23 Sep 2019 12:44:17 +0000
-Message-ID: <BN6PR12MB18091E46A4C2172BFC14E2ADF7850@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <20190923042944.15314-1-Yong.Zhao@amd.com>,
- <20190923042944.15314-3-Yong.Zhao@amd.com>
-In-Reply-To: <20190923042944.15314-3-Yong.Zhao@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [71.219.73.178]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 84b8f136-ef8f-4579-67d9-08d74023bf77
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:BN6PR12MB1841; 
-x-ms-traffictypediagnostic: BN6PR12MB1841:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN6PR12MB18417A1C489277C1ED11BE0FF7850@BN6PR12MB1841.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1265;
-x-forefront-prvs: 0169092318
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(346002)(376002)(39860400002)(136003)(366004)(199004)(189003)(966005)(606006)(14454004)(2501003)(478600001)(6506007)(99286004)(229853002)(7696005)(33656002)(8936002)(186003)(76176011)(105004)(26005)(5660300002)(6116002)(53546011)(102836004)(19627405001)(76116006)(316002)(66946007)(66476007)(66556008)(64756008)(66446008)(110136005)(446003)(25786009)(74316002)(9686003)(476003)(236005)(55016002)(6306002)(8676002)(256004)(6436002)(486006)(86362001)(11346002)(66066001)(71190400001)(71200400001)(2906002)(3846002)(6246003)(7736002)(52536014)(81166006)(54896002)(81156014);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1841;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: y+0Srj0RbvvQwJAcMvVASSgWQ+qSSMw3MfTAakSZcx/+Uzj7V642Em/nlJags65+oi8TbzfBrwRHKxYCMPnP6//rWkWgng4e6Jt1jqcNhi2BCNE85L2WIXE4tb4ZAKS1d+atkUP48xbx31LLEtjrubZmZPd9trb+LlyhIVs++uVO5A9M3qQ2vOr0qHQbsd2Zbpy+tRF4x7jyEu6VKNLgJtUe2EAOZ9lhEzfoXigkm8RVz+mJK385odDr5kILLaq/YJ/bgrdvzlfTajPqpdqQev53XhHvVYbmW27falPE09jDIiALmPyOoOfm1Dl0NYs6dSHf0A1wGxGLll3ROAw4Ek/8Zv4NO4FzwZJKp7Cchh1FZGi7fhFaXoOQAfM3pmIcgRxMrB1MGZfB1k8knuQRljoTiefEVsss6Nm5L5t9is0=
-MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84b8f136-ef8f-4579-67d9-08d74023bf77
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2019 12:44:17.5311 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ohDbQo5KKivtcdayGV8mvdovbl37TaMkSDOFIsK2XhDp2YTAvSrI1alqbgGBmY3pdO7ca+bkL/Di2/ZiY3bqZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1841
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/zn+SDPG7G+QlVUofnRywpHajT9ZsP0lQGa4dAWb64I=;
- b=zXfdzXVZhEW5wTrfKJ4HHm+bvA8SKis3qY4G6oVj5HOGzSxXXmLFJ7zrqAKXW5ibhMqjefHOdL5ZesL0LS+R471/QGVDQFrIoVuv+qWCDDmmMNmFafKHjZ9hlljkNAxRsG8fKiB2Coo53gX+QH5I9wWdMzeXkSQbnDkeRJ/w3Bw=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
+X-Greylist: delayed 516 seconds by postgrey-1.36 at gabe;
+ Mon, 23 Sep 2019 12:56:46 UTC
+Received: from smtphy.263.net (sg-smtp01.263.net [54.255.195.220])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10FDF6E8E2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Sep 2019 12:56:46 +0000 (UTC)
+Received: from regular2.263xmail.com (unknown [211.157.147.162])
+ by smtphy.263.net (Postfix) with ESMTPS id 52E2884
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Sep 2019 20:48:06 +0800 (CST)
+Received: from regular1.263xmail.com (unknown [192.168.165.111])
+ by regular2.263xmail.com (Postfix) with ESMTP id E5DEE1AA1;
+ Mon, 23 Sep 2019 20:43:45 +0800 (CST)
+Received: from hjc?rock-chips.com (unknown [192.168.167.16])
+ by regular1.263xmail.com (Postfix) with ESMTP id E60AA4A6;
+ Mon, 23 Sep 2019 20:43:41 +0800 (CST)
+X-263anti-spam: KSV:0;BIG:0;
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-KSVirus-check: 0
+X-ADDR-CHECKED4: 1
+X-ABS-CHECKED: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from localhost.localdomain (unknown [58.22.7.114])
+ by smtp.263.net (postfix) whith ESMTP id
+ P3051T140289744058112S1569242621440080_; 
+ Mon, 23 Sep 2019 20:43:43 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <24fd09c575207babae724215753035c6>
+X-RL-SENDER: hjc@rock-chips.com
+X-SENDER: hjc@rock-chips.com
+X-LOGIN-NAME: hjc@rock-chips.com
+X-FST-TO: dri-devel@lists.freedesktop.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+From: Sandy Huang <hjc@rock-chips.com>
+To: dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "David (ChunMing) Zhou" <David1.Zhou@amd.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Maxime Ripard <maxime.ripard@bootlin.com>,
+ Emil Velikov <emil.velikov@collabora.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Sandy Huang <hjc@rock-chips.com>, Huang Rui <ray.huang@amd.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Russell King <rmk+kernel@armlinux.org.uk>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Colin Ian King <colin.king@canonical.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ David Francis <David.Francis@amd.com>,
+ Mario Kleiner <mario.kleiner.de@gmail.com>
+Subject: [PATCH 06/36] drm/amd: use bpp instead of cpp for drm_format_info
+Date: Mon, 23 Sep 2019 20:41:10 +0800
+Message-Id: <1569242500-182337-7-git-send-email-hjc@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -97,180 +78,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1926227398=="
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1926227398==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB18091E46A4C2172BFC14E2ADF7850BN6PR12MB1809namp_"
-
---_000_BN6PR12MB18091E46A4C2172BFC14E2ADF7850BN6PR12MB1809namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Series is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Zhao, Yo=
-ng <Yong.Zhao@amd.com>
-Sent: Monday, September 23, 2019 12:30 AM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Zhao, Yong <Yong.Zhao@amd.com>
-Subject: [PATCH 3/3] drm/amdkfd: Remove unnecessary pm_init() for non HWS m=
-ode
-
-The packet manager is not needed for non HWS mode except Hawaii, so only
-initialize it for Hawaii under non HWS mode. This will simplify debugging
-under non HWS mode for all new asics, because it eliminates one variable
-out of the equation in non HWS mode
-
-Change-Id: Ie2b61b546299a50366b9ab97900f4bb13de33d5b
-Signed-off-by: Yong Zhao <Yong.Zhao@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/driver=
-s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index c47b88987c87..c826634938d2 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -902,12 +902,18 @@ static void uninitialize(struct device_queue_manager =
-*dqm)
- static int start_nocpsch(struct device_queue_manager *dqm)
- {
-         init_interrupts(dqm);
--       return pm_init(&dqm->packets, dqm);
-+
-+       if (dqm->dev->device_info->asic_family =3D=3D CHIP_HAWAII)
-+               return pm_init(&dqm->packets, dqm);
-+
-+       return 0;
- }
-
- static int stop_nocpsch(struct device_queue_manager *dqm)
- {
--       pm_uninit(&dqm->packets);
-+       if (dqm->dev->device_info->asic_family =3D=3D CHIP_HAWAII)
-+               pm_uninit(&dqm->packets);
-+
-         return 0;
- }
-
---
-2.17.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_BN6PR12MB18091E46A4C2172BFC14E2ADF7850BN6PR12MB1809namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Series is:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Zhao, Yong &lt;Yong.Zhao@amd.=
-com&gt;<br>
-<b>Sent:</b> Monday, September 23, 2019 12:30 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Zhao, Yong &lt;Yong.Zhao@amd.com&gt;<br>
-<b>Subject:</b> [PATCH 3/3] drm/amdkfd: Remove unnecessary pm_init() for no=
-n HWS mode</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">The packet manager is not needed for non HWS mode =
-except Hawaii, so only<br>
-initialize it for Hawaii under non HWS mode. This will simplify debugging<b=
-r>
-under non HWS mode for all new asics, because it eliminates one variable<br=
->
-out of the equation in non HWS mode<br>
-<br>
-Change-Id: Ie2b61b546299a50366b9ab97900f4bb13de33d5b<br>
-Signed-off-by: Yong Zhao &lt;Yong.Zhao@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 10 &#43;&#43;=
-&#43;&#43;&#43;&#43;&#43;&#43;--<br>
-&nbsp;1 file changed, 8 insertions(&#43;), 2 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/driver=
-s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c<br>
-index c47b88987c87..c826634938d2 100644<br>
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c<br>
-@@ -902,12 &#43;902,18 @@ static void uninitialize(struct device_queue_mana=
-ger *dqm)<br>
-&nbsp;static int start_nocpsch(struct device_queue_manager *dqm)<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; init_interrupts(dqm);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return pm_init(&amp;dqm-&gt;packets, =
-dqm);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dqm-&gt;dev-&gt;device_info-&=
-gt;asic_family =3D=3D CHIP_HAWAII)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; return pm_init(&amp;dqm-&gt;packets, dqm);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-&nbsp;<br>
-&nbsp;static int stop_nocpsch(struct device_queue_manager *dqm)<br>
-&nbsp;{<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pm_uninit(&amp;dqm-&gt;packets);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dqm-&gt;dev-&gt;device_info-&=
-gt;asic_family =3D=3D CHIP_HAWAII)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; pm_uninit(&amp;dqm-&gt;packets);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-&nbsp;<br>
--- <br>
-2.17.1<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-</span></font></div>
-</body>
-</html>
-
---_000_BN6PR12MB18091E46A4C2172BFC14E2ADF7850BN6PR12MB1809namp_--
-
---===============1926227398==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1926227398==--
+Y3BwW0J5dGVQZXJQbGFuZV0gY2FuJ3QgZGVzY3JpYmUgdGhlIDEwYml0IGRhdGEgZm9ybWF0IGNv
+cnJlY3RseSwKU28gd2UgdXNlIGJwcFtCaXRQZXJQbGFuZV0gdG8gaW5zdGVhZCBjcHAuCgpTaWdu
+ZWQtb2ZmLWJ5OiBTYW5keSBIdWFuZyA8aGpjQHJvY2stY2hpcHMuY29tPgotLS0KIGRyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mYi5jICAgICAgICAgICAgfCAyICstCiBkcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjEwXzAuYyAgICAgICAgICAgIHwgMiArLQogZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3YxMV8wLmMgICAgICAgICAgICB8IDIgKy0KIGRyaXZl
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92Nl8wLmMgICAgICAgICAgICAgfCAyICstCiBkcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjhfMC5jICAgICAgICAgICAgIHwgMiArLQogZHJp
+dmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYyB8IDYgKysrLS0t
+CiA2IGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmIuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mYi5jCmluZGV4IGViMzU2OWIuLjg5NWE1NGMgMTAw
+NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mYi5jCisrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mYi5jCkBAIC0xMzMsNyArMTMzLDcgQEAg
+c3RhdGljIGludCBhbWRncHVmYl9jcmVhdGVfcGlubmVkX29iamVjdChzdHJ1Y3QgYW1kZ3B1X2Zi
+ZGV2ICpyZmJkZXYsCiAJdTMyIGNwcDsKIAogCWluZm8gPSBkcm1fZ2V0X2Zvcm1hdF9pbmZvKGFk
+ZXYtPmRkZXYsIG1vZGVfY21kKTsKLQljcHAgPSBpbmZvLT5jcHBbMF07CisJY3BwID0gaW5mby0+
+YnBwWzBdIC8gODsKIAogCS8qIG5lZWQgdG8gYWxpZ24gcGl0Y2ggd2l0aCBjcnRjIGxpbWl0cyAq
+LwogCW1vZGVfY21kLT5waXRjaGVzWzBdID0gYW1kZ3B1X2FsaWduX3BpdGNoKGFkZXYsIG1vZGVf
+Y21kLT53aWR0aCwgY3BwLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+ZGNlX3YxMF8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjEwXzAuYwppbmRl
+eCAxZmZkMTk2Li5lYmY1NDhjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9kY2VfdjEwXzAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjEwXzAu
+YwpAQCAtMjAzNCw3ICsyMDM0LDcgQEAgc3RhdGljIGludCBkY2VfdjEwXzBfY3J0Y19kb19zZXRf
+YmFzZShzdHJ1Y3QgZHJtX2NydGMgKmNydGMsCiAJV1JFRzMyKG1tR1JQSF9YX0VORCArIGFtZGdw
+dV9jcnRjLT5jcnRjX29mZnNldCwgdGFyZ2V0X2ZiLT53aWR0aCk7CiAJV1JFRzMyKG1tR1JQSF9Z
+X0VORCArIGFtZGdwdV9jcnRjLT5jcnRjX29mZnNldCwgdGFyZ2V0X2ZiLT5oZWlnaHQpOwogCi0J
+ZmJfcGl0Y2hfcGl4ZWxzID0gdGFyZ2V0X2ZiLT5waXRjaGVzWzBdIC8gdGFyZ2V0X2ZiLT5mb3Jt
+YXQtPmNwcFswXTsKKwlmYl9waXRjaF9waXhlbHMgPSB0YXJnZXRfZmItPnBpdGNoZXNbMF0gLyB0
+YXJnZXRfZmItPmZvcm1hdC0+YnBwWzBdIC8gODsKIAlXUkVHMzIobW1HUlBIX1BJVENIICsgYW1k
+Z3B1X2NydGMtPmNydGNfb2Zmc2V0LCBmYl9waXRjaF9waXhlbHMpOwogCiAJZGNlX3YxMF8wX2dy
+cGhfZW5hYmxlKGNydGMsIHRydWUpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvZGNlX3YxMV8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjExXzAu
+YwppbmRleCA5ZTA3ODJiLi40NDAwYTU5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9kY2VfdjExXzAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2Vf
+djExXzAuYwpAQCAtMjA3Niw3ICsyMDc2LDcgQEAgc3RhdGljIGludCBkY2VfdjExXzBfY3J0Y19k
+b19zZXRfYmFzZShzdHJ1Y3QgZHJtX2NydGMgKmNydGMsCiAJV1JFRzMyKG1tR1JQSF9YX0VORCAr
+IGFtZGdwdV9jcnRjLT5jcnRjX29mZnNldCwgdGFyZ2V0X2ZiLT53aWR0aCk7CiAJV1JFRzMyKG1t
+R1JQSF9ZX0VORCArIGFtZGdwdV9jcnRjLT5jcnRjX29mZnNldCwgdGFyZ2V0X2ZiLT5oZWlnaHQp
+OwogCi0JZmJfcGl0Y2hfcGl4ZWxzID0gdGFyZ2V0X2ZiLT5waXRjaGVzWzBdIC8gdGFyZ2V0X2Zi
+LT5mb3JtYXQtPmNwcFswXTsKKwlmYl9waXRjaF9waXhlbHMgPSB0YXJnZXRfZmItPnBpdGNoZXNb
+MF0gLyB0YXJnZXRfZmItPmZvcm1hdC0+YnBwWzBdIC8gODsKIAlXUkVHMzIobW1HUlBIX1BJVENI
+ICsgYW1kZ3B1X2NydGMtPmNydGNfb2Zmc2V0LCBmYl9waXRjaF9waXhlbHMpOwogCiAJZGNlX3Yx
+MV8wX2dycGhfZW5hYmxlKGNydGMsIHRydWUpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvZGNlX3Y2XzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92
+Nl8wLmMKaW5kZXggNGJmNDUzZS4uZmM3NDE1MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvZGNlX3Y2XzAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9k
+Y2VfdjZfMC5jCkBAIC0xOTY5LDcgKzE5NjksNyBAQCBzdGF0aWMgaW50IGRjZV92Nl8wX2NydGNf
+ZG9fc2V0X2Jhc2Uoc3RydWN0IGRybV9jcnRjICpjcnRjLAogCVdSRUczMihtbUdSUEhfWF9FTkQg
+KyBhbWRncHVfY3J0Yy0+Y3J0Y19vZmZzZXQsIHRhcmdldF9mYi0+d2lkdGgpOwogCVdSRUczMiht
+bUdSUEhfWV9FTkQgKyBhbWRncHVfY3J0Yy0+Y3J0Y19vZmZzZXQsIHRhcmdldF9mYi0+aGVpZ2h0
+KTsKIAotCWZiX3BpdGNoX3BpeGVscyA9IHRhcmdldF9mYi0+cGl0Y2hlc1swXSAvIHRhcmdldF9m
+Yi0+Zm9ybWF0LT5jcHBbMF07CisJZmJfcGl0Y2hfcGl4ZWxzID0gdGFyZ2V0X2ZiLT5waXRjaGVz
+WzBdIC8gdGFyZ2V0X2ZiLT5mb3JtYXQtPmJwcFswXSAvIDg7CiAJV1JFRzMyKG1tR1JQSF9QSVRD
+SCArIGFtZGdwdV9jcnRjLT5jcnRjX29mZnNldCwgZmJfcGl0Y2hfcGl4ZWxzKTsKIAogCWRjZV92
+Nl8wX2dycGhfZW5hYmxlKGNydGMsIHRydWUpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvZGNlX3Y4XzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92
+OF8wLmMKaW5kZXggYjIzNDE4Yy4uOTRkZmI0ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvZGNlX3Y4XzAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9k
+Y2VfdjhfMC5jCkBAIC0xOTQzLDcgKzE5NDMsNyBAQCBzdGF0aWMgaW50IGRjZV92OF8wX2NydGNf
+ZG9fc2V0X2Jhc2Uoc3RydWN0IGRybV9jcnRjICpjcnRjLAogCVdSRUczMihtbUdSUEhfWF9FTkQg
+KyBhbWRncHVfY3J0Yy0+Y3J0Y19vZmZzZXQsIHRhcmdldF9mYi0+d2lkdGgpOwogCVdSRUczMiht
+bUdSUEhfWV9FTkQgKyBhbWRncHVfY3J0Yy0+Y3J0Y19vZmZzZXQsIHRhcmdldF9mYi0+aGVpZ2h0
+KTsKIAotCWZiX3BpdGNoX3BpeGVscyA9IHRhcmdldF9mYi0+cGl0Y2hlc1swXSAvIHRhcmdldF9m
+Yi0+Zm9ybWF0LT5jcHBbMF07CisJZmJfcGl0Y2hfcGl4ZWxzID0gdGFyZ2V0X2ZiLT5waXRjaGVz
+WzBdIC8gdGFyZ2V0X2ZiLT5mb3JtYXQtPmJwcFswXSAvIDg7CiAJV1JFRzMyKG1tR1JQSF9QSVRD
+SCArIGFtZGdwdV9jcnRjLT5jcnRjX29mZnNldCwgZmJfcGl0Y2hfcGl4ZWxzKTsKIAogCWRjZV92
+OF8wX2dycGhfZW5hYmxlKGNydGMsIHRydWUpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+ZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKaW5kZXggNzYwYWY2Ni4uZDExYWIxOCAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0u
+YworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5j
+CkBAIC0yNzQ2LDcgKzI3NDYsNyBAQCBmaWxsX3BsYW5lX2J1ZmZlcl9hdHRyaWJ1dGVzKHN0cnVj
+dCBhbWRncHVfZGV2aWNlICphZGV2LAogCQlwbGFuZV9zaXplLT5ncnBoLnN1cmZhY2Vfc2l6ZS53
+aWR0aCA9IGZiLT53aWR0aDsKIAkJcGxhbmVfc2l6ZS0+Z3JwaC5zdXJmYWNlX3NpemUuaGVpZ2h0
+ID0gZmItPmhlaWdodDsKIAkJcGxhbmVfc2l6ZS0+Z3JwaC5zdXJmYWNlX3BpdGNoID0KLQkJCWZi
+LT5waXRjaGVzWzBdIC8gZmItPmZvcm1hdC0+Y3BwWzBdOworCQkJZmItPnBpdGNoZXNbMF0gLyBm
+Yi0+Zm9ybWF0LT5icHBbMF0gLyA4OwogCiAJCWFkZHJlc3MtPnR5cGUgPSBQTE5fQUREUl9UWVBF
+X0dSQVBISUNTOwogCQlhZGRyZXNzLT5ncnBoLmFkZHIubG93X3BhcnQgPSBsb3dlcl8zMl9iaXRz
+KGFmYi0+YWRkcmVzcyk7CkBAIC0yNzU5LDcgKzI3NTksNyBAQCBmaWxsX3BsYW5lX2J1ZmZlcl9h
+dHRyaWJ1dGVzKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LAogCQlwbGFuZV9zaXplLT52aWRl
+by5sdW1hX3NpemUud2lkdGggPSBmYi0+d2lkdGg7CiAJCXBsYW5lX3NpemUtPnZpZGVvLmx1bWFf
+c2l6ZS5oZWlnaHQgPSBmYi0+aGVpZ2h0OwogCQlwbGFuZV9zaXplLT52aWRlby5sdW1hX3BpdGNo
+ID0KLQkJCWZiLT5waXRjaGVzWzBdIC8gZmItPmZvcm1hdC0+Y3BwWzBdOworCQkJZmItPnBpdGNo
+ZXNbMF0gLyBmYi0+Zm9ybWF0LT5icHBbMF0gLyA4OwogCiAJCXBsYW5lX3NpemUtPnZpZGVvLmNo
+cm9tYV9zaXplLnggPSAwOwogCQlwbGFuZV9zaXplLT52aWRlby5jaHJvbWFfc2l6ZS55ID0gMDsK
+QEAgLTI3NjgsNyArMjc2OCw3IEBAIGZpbGxfcGxhbmVfYnVmZmVyX2F0dHJpYnV0ZXMoc3RydWN0
+IGFtZGdwdV9kZXZpY2UgKmFkZXYsCiAJCXBsYW5lX3NpemUtPnZpZGVvLmNocm9tYV9zaXplLmhl
+aWdodCA9IGZiLT5oZWlnaHQgLyAyOwogCiAJCXBsYW5lX3NpemUtPnZpZGVvLmNocm9tYV9waXRj
+aCA9Ci0JCQlmYi0+cGl0Y2hlc1sxXSAvIGZiLT5mb3JtYXQtPmNwcFsxXTsKKwkJCWZiLT5waXRj
+aGVzWzFdIC8gZmItPmZvcm1hdC0+YnBwWzFdIC8gODsKIAogCQlhZGRyZXNzLT50eXBlID0gUExO
+X0FERFJfVFlQRV9WSURFT19QUk9HUkVTU0lWRTsKIAkJYWRkcmVzcy0+dmlkZW9fcHJvZ3Jlc3Np
+dmUubHVtYV9hZGRyLmxvd19wYXJ0ID0KLS0gCjIuNy40CgoKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vYW1kLWdmeA==
