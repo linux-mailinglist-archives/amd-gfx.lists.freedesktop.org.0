@@ -1,91 +1,98 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAAC5BEBA1
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2019 07:25:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31673BEC60
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2019 09:12:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49A726ED59;
-	Thu, 26 Sep 2019 05:25:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 345486EDF4;
+	Thu, 26 Sep 2019 07:12:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM05-BY2-obe.outbound.protection.outlook.com
- (mail-eopbgr710056.outbound.protection.outlook.com [40.107.71.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9346ED59
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2019 05:25:41 +0000 (UTC)
+ (mail-eopbgr710051.outbound.protection.outlook.com [40.107.71.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7126EDF3;
+ Thu, 26 Sep 2019 07:12:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W1ZMrjhfOLoddf6b6tAqrvfUOvBwYiychdNqtxq+tm29mlGgeYEmkL/ugFeH66lV6knRA1O7j7VSE4GdSuDXhsXWW36jz1nzaGoaPXboXjJFGree6iY13HqBfp7DinMicLLsMmtRhlbtI2UCrIXbgUS4PI3cPY+7dJ9beE08OXlDRQZg/gsGq3djhjMy3B96aPK9fPfehMd5rGwnbnfZb5hayr11EasPUeQSQnTaPP4CnQKtFXMet80v1yTG6jcTmxiu2bTisBjpWNixDMKzH5hxixBqcigV4lgYLCF+8Xwn1ooLN3c7ITZ9o5sgiXQ6m5RTFyfPcMIPeshhoaZL4Q==
+ b=SzzpHppHKlFvPO/Nw+2q8Q1YPml3NRxgI1bfnyV2ComyMLL3Yz8uPdyyslO4Ienk65xQw3ERhL4iK2Ktskl9A7hZoKx2SLR1by/qdMqDlo3fgVGg97wBOPytup/HCiO91MLEEkfoK4Y2RK6C4AHb9sl2zN/BVu+c8IzwJstQTjX+wZCZTjVqEupOty4vqW2a64irwQ5sjC7CoxGAsE/zdrTt6k0pPUbDhe4Qvst8ISCAuF0tI9zGKJ63GWh6OE2kdmyw29dC/oG+VQcV84b0HFgX4NmS4qK5wLhLJm2c/v9zxJ1+oB05W9pQWU925HT5fAysXdqXomg02PxLSq7rHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8nLKnMBSmMKPmm6HP7vw2hpmdaF4eRI8i7X9/i/2OUE=;
- b=Dilm/GT+TKNAKHVU2olJRqKREJbMaKvKFyl4lKO/luOyQXhPAo5igPTdOThm1MT4beL+rs5FSfeQBXaqxcXCr1KAjpC9dU9rPpFfYP1E8J3qESLYAhJ6uC3Rjds9lPeyncSFPmqs4RmALb6DrAuVsl6NiyU8jc39FL4bWaWEXgSdUwx6nVXp1p0MdjQsfLZfeNLD6qGuDfrWVii6vxt22l1rUQRuh8PKZ38E6hK0KdXtqu2rVgEk4qFkSMulBB3mbMeMH/8K1V4o8JMRWaosinTIy4znm4TBjhjWvtEQJtLWyv+OzDBqzdhcp7A94KkZdkrwHk5tIoMTp+Dqd+Bqxw==
+ bh=iYuck+EfQLhtQnnS/WY/LCdWDo+ZR/D+3/cDqFHZ3uQ=;
+ b=Vx3NOJWs32R5iBiy9PTbxT9SgPxED+4A7ubYohFRwRw+lVMVPDe9CkfCAIfsuAb/aRHY1q5OJfvUkwie9qo1Y23Zpe5nHMk43gUYsTF3MFoAo0iq1IcUQhLFaf1zbhzx3SVfZ+ST3M5Z6Hnr1ItkHAduFG6kZ17FsfkiCCmB0PbxvXqpttX+T2fB/3W5wvouU+zU9GmKkDRcA1xBFIynXnOiVYQsWAmliqu+6EFftE3gfsGhvLPRLv0CqQsYx2C+o/RAY4glb2uiTyS+LLOuV5hID1LDYHehZb3M8NmuUJOBgUpoWFKwjyc/KEkPXmF6DLTrQ/U16lBDdmoVjRYBJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com (20.179.80.139) by
- MN2PR12MB3424.namprd12.prod.outlook.com (20.178.243.27) with Microsoft SMTP
+Received: from DM5PR12MB1705.namprd12.prod.outlook.com (10.175.88.22) by
+ DM5PR12MB1579.namprd12.prod.outlook.com (10.172.38.21) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.26; Thu, 26 Sep 2019 05:25:39 +0000
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::9929:92fb:f329:a911]) by MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::9929:92fb:f329:a911%7]) with mapi id 15.20.2284.028; Thu, 26 Sep 2019
- 05:25:39 +0000
-From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
-To: "Liang, Prike" <Prike.Liang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 4/8] drm/amd/powerplay: add interface for getting workload
- type
-Thread-Topic: [PATCH 4/8] drm/amd/powerplay: add interface for getting
- workload type
-Thread-Index: AQHVdB2Ba4AhZI7Ci0edFrGqdo5gQqc9bFG0
-Date: Thu, 26 Sep 2019 05:25:39 +0000
-Message-ID: <MN2PR12MB32967F639C9689655C950902A2860@MN2PR12MB3296.namprd12.prod.outlook.com>
-References: <1569469774-16813-1-git-send-email-Prike.Liang@amd.com>,
- <1569469774-16813-4-git-send-email-Prike.Liang@amd.com>
-In-Reply-To: <1569469774-16813-4-git-send-email-Prike.Liang@amd.com>
-Accept-Language: en-US, zh-CN
+ 15.20.2284.26; Thu, 26 Sep 2019 07:12:51 +0000
+Received: from DM5PR12MB1705.namprd12.prod.outlook.com
+ ([fe80::9d43:b3d4:9ef:29fc]) by DM5PR12MB1705.namprd12.prod.outlook.com
+ ([fe80::9d43:b3d4:9ef:29fc%8]) with mapi id 15.20.2284.028; Thu, 26 Sep 2019
+ 07:12:51 +0000
+From: "Koenig, Christian" <Christian.Koenig@amd.com>
+To: "Huang, Ray" <Ray.Huang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "Deucher, Alexander"
+ <Alexander.Deucher@amd.com>
+Subject: Re: [PATCH v3 10/11] drm/amdgpu: job is secure iff CS is secure (v4)
+Thread-Topic: [PATCH v3 10/11] drm/amdgpu: job is secure iff CS is secure (v4)
+Thread-Index: AQHVc67eAOP3HjJHn0i9QUAnxAtta6c8eLkAgAAA+ECAARKJAA==
+Date: Thu, 26 Sep 2019 07:12:51 +0000
+Message-ID: <51436784-ed76-b326-534a-86301382fc59@amd.com>
+References: <1569422279-6609-1-git-send-email-ray.huang@amd.com>
+ <e04af4ef-aa3b-534b-8c5b-e6ee11f677a5@amd.com>
+ <MN2PR12MB3309B9F92121C846639C87ECEC870@MN2PR12MB3309.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB3309B9F92121C846639C87ECEC870@MN2PR12MB3309.namprd12.prod.outlook.com>
+Accept-Language: de-DE, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [180.167.199.189]
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+x-originating-ip: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+x-clientproxiedby: PR0P264CA0107.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:100:19::23) To DM5PR12MB1705.namprd12.prod.outlook.com
+ (2603:10b6:3:10c::22)
+x-ms-exchange-messagesentrepresentingtype: 1
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ef7bbda2-ab38-48a4-b8d2-08d74241f7e1
+x-ms-office365-filtering-correlation-id: 6edcc79e-88ff-49b0-a35d-08d74250f180
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
  RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:MN2PR12MB3424; 
-x-ms-traffictypediagnostic: MN2PR12MB3424:
-x-ms-exchange-purlcount: 1
+ SRVR:DM5PR12MB1579; 
+x-ms-traffictypediagnostic: DM5PR12MB1579:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB3424D45DEF9EDAA8CFA57CE6A2860@MN2PR12MB3424.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2657;
+x-microsoft-antispam-prvs: <DM5PR12MB1579878F98243FE6868E1B6183860@DM5PR12MB1579.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-forefront-prvs: 0172F0EF77
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(376002)(346002)(366004)(39860400002)(396003)(199004)(189003)(229853002)(606006)(7736002)(66066001)(55016002)(33656002)(9686003)(86362001)(54896002)(6306002)(4326008)(74316002)(66476007)(236005)(66556008)(76116006)(91956017)(6436002)(66946007)(66446008)(53546011)(6506007)(2906002)(64756008)(2501003)(26005)(186003)(102836004)(6246003)(3846002)(99286004)(6116002)(476003)(76176011)(7696005)(486006)(5660300002)(11346002)(966005)(14454004)(478600001)(25786009)(446003)(52536014)(105004)(19627405001)(14444005)(256004)(316002)(110136005)(71190400001)(71200400001)(54906003)(81166006)(8936002)(8676002)(81156014);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3424;
- H:MN2PR12MB3296.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
+ SFS:(10009020)(4636009)(376002)(346002)(136003)(396003)(366004)(39860400002)(13464003)(189003)(199004)(478600001)(81166006)(81156014)(6246003)(4326008)(186003)(6116002)(2616005)(316002)(486006)(25786009)(65956001)(65806001)(58126008)(476003)(54906003)(110136005)(256004)(36756003)(86362001)(31696002)(7736002)(6636002)(52116002)(305945005)(99286004)(5660300002)(102836004)(53546011)(2201001)(71190400001)(71200400001)(6506007)(386003)(76176011)(2906002)(66946007)(66476007)(66446008)(14454004)(66556008)(64756008)(46003)(229853002)(6436002)(6486002)(11346002)(31686004)(6512007)(450100002)(446003)(8936002)(8676002)(2501003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1579;
+ H:DM5PR12MB1705.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: pj0bfufoBRCvSl/qIbh1qzNpa8KY94LpeXPobmfviSE8kojCTa8zXZcE71EImVww9Khhf7thsdsBVn2SX9kpCrR3pHYRgrSSfrufgwHboG0vwa1hiw20tOTa+nnkBnw2dNp9v8qJD5SoVB1QAL/zgK8XXkzcHVk/Pe3niGnKpuqH6D8VxCvdCQzyfx0XPfQY+kABNBWkpxou+Y2mPrLqZM3Qx3H7NNx1zjby1gxiHGCWCT6thHwLoflHdkS8otXBmD1zl1aKsyjkGz/MaDn3mb1BTNvOkY3+Tb2U1gqyeE6tcWLCojULZJYts0Q6eABRTEIzhN5xj57NSBw73agjMMo08prML1O7LxjW/3r4dSodHgVdZyW6QGRr8tAMvXoLtoHy1+IK5z+2kx88/TrGwcQfIqNQZMXaksfAXrtpGC9N9YUdhDtc5rVEHFCKsnvuW/tmInT11ydJpV+EhoUp8g==
+x-microsoft-antispam-message-info: y4gegd40jAGZ4MbzN6HYesWJFk5ku3BzUiBP3G4cQ04TA9Vl8IGwyvHbzh7yrxRkZV8Hf8BQFFmeehlkSbVVnBwBRr+MgAY51JySSvz3qO/U0pic69vCFmnj087/1D4fc0crVDMAr8Gxwc4f9QXXS8Qba/w4ccQh71OaWQj85Ztt6uqiNPKoeY92GRHEq/2yMK3nGhXnw9W7cuTsLpgy0aEj6TnDw8afg6WtOdqx37oTw6XI0yLO9w6GDlolgH4sn1TeAz1F9VXzy8/YvtgVe2/8/HgIqDe9use/tWV40t7yyqX2yJfpmblyrRHWZIupymH/j7NgyVOOfXllw9+XCxewXJCTYhKxYZrwXfg4K5CmlIB6xNFqOh5iNcbtEl2WMgXzsvY10/fJrBta0urUA/RefuNb9bhZXv2hpm1v7zo=
+Content-ID: <D56155050BD1204B8769AE67372B0A44@namprd12.prod.outlook.com>
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef7bbda2-ab38-48a4-b8d2-08d74241f7e1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 05:25:39.4317 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6edcc79e-88ff-49b0-a35d-08d74250f180
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 07:12:51.4999 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sxJwaWAz3bO5j2QRywtFSHhj5Sw9oqasieOFblwzHSzmL9hZfk+GLSMBxE0DUtYC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3424
+X-MS-Exchange-CrossTenant-userprincipalname: LT9eNiaaZRXAEIxiRD3lLNSDVy22CxrCdldJvzPhvTfPfXEwaqe6QsXiCnQyQClD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1579
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8nLKnMBSmMKPmm6HP7vw2hpmdaF4eRI8i7X9/i/2OUE=;
- b=3pcySHUjAl1ncd18mUnOaPKdQlYhHQfwkvoG8CAKH8xh/6+JTYzrGQ3Aa8yNYDIT9AD+EUn84sf4R8X9hSWsvfl/8tirlzXIypJgAUN2RHpTV5lYzOvslozQdFjBMgmd/YcxKAJATng6jleSCg2HpWmrpdACakFghEx6Mm2g8TI=
+ bh=iYuck+EfQLhtQnnS/WY/LCdWDo+ZR/D+3/cDqFHZ3uQ=;
+ b=o7sZcfZvyKB/gTIrPFpBVy/jcOFnGiiRHxFILXtvhUAKKAblSfLdTgX3t7qFvUx2xW8YoeeuPOZRekwaiBaPlA2myIxZJMUl0ds5kq57NDo73nLjO+u87lWcfrEWb7dpG0aATE7YRy8c5MwbsCAxKnerDMsIVwZsWi+EKXTSL2k=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Kevin1.Wang@amd.com; 
+ smtp.mailfrom=Christian.Koenig@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -97,274 +104,104 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Quan, Evan" <Evan.Quan@amd.com>, "Huang, Ray" <Ray.Huang@amd.com>,
- "keneth.feng@amd.com" <keneth.feng@amd.com>
-Content-Type: multipart/mixed; boundary="===============1079026764=="
+Cc: "Tuikov, Luben" <Luben.Tuikov@amd.com>, "Liu, Aaron" <Aaron.Liu@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1079026764==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB32967F639C9689655C950902A2860MN2PR12MB3296namp_"
-
---_000_MN2PR12MB32967F639C9689655C950902A2860MN2PR12MB3296namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-this patch, i think the smu driver should be unify the driver code format,
-it is very useful for optimize and maintain smu driver code in the furture.
-
-you can reference the navi10_ppt.c and arcuturs_ppt.c
-funciton: arcturus_get_workload_type
-
-Best Regards,
-Kevin
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Liang, P=
-rike <Prike.Liang@amd.com>
-Sent: Thursday, September 26, 2019 11:50 AM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Liang, Prike <Prike.Liang@amd.com>; Quan, Evan <Evan.Quan@amd.com>; Hua=
-ng, Ray <Ray.Huang@amd.com>; keneth.feng@amd.com <keneth.feng@amd.com>
-Subject: [PATCH 4/8] drm/amd/powerplay: add interface for getting workload =
-type
-
-The workload type was got from the input of power profile mode.
-
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
-Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
-Reviewed-by: Evan Quan <evan.quan@amd.com>
----
- drivers/gpu/drm/amd/powerplay/renoir_ppt.c | 29 ++++++++++++++++++++++++++=
-+++
- 1 file changed, 29 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/powerplay/renoir_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/renoir_ppt.c
-index 8ec3663..dc945b8 100644
---- a/drivers/gpu/drm/amd/powerplay/renoir_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/renoir_ppt.c
-@@ -365,6 +365,34 @@ static int renoir_unforce_dpm_levels(struct smu_contex=
-t *smu) {
-         return ret;
- }
-
-+static int renoir_get_workload_type(struct smu_context *smu, uint32_t prof=
-ile)
-+{
-+
-+       uint32_t  pplib_workload =3D 0;
-+
-+       switch (profile) {
-+       case PP_SMC_POWER_PROFILE_FULLSCREEN3D:
-+               pplib_workload =3D WORKLOAD_PPLIB_FULL_SCREEN_3D_BIT;
-+               break;
-+       case PP_SMC_POWER_PROFILE_CUSTOM:
-+               pplib_workload =3D WORKLOAD_PPLIB_COUNT;
-+               break;
-+       case PP_SMC_POWER_PROFILE_VIDEO:
-+               pplib_workload =3D WORKLOAD_PPLIB_VIDEO_BIT;
-+               break;
-+       case PP_SMC_POWER_PROFILE_VR:
-+               pplib_workload =3D WORKLOAD_PPLIB_VR_BIT;
-+               break;
-+       case PP_SMC_POWER_PROFILE_COMPUTE:
-+               pplib_workload =3D WORKLOAD_PPLIB_COMPUTE_BIT;
-+               break;
-+       default:
-+               return -EINVAL;
-+       }
-+
-+       return pplib_workload;
-+}
-+
- static const struct pptable_funcs renoir_ppt_funcs =3D {
-         .get_smu_msg_index =3D renoir_get_smu_msg_index,
-         .get_smu_table_index =3D renoir_get_smu_table_index,
-@@ -376,6 +404,7 @@ static const struct pptable_funcs renoir_ppt_funcs =3D =
-{
-         .dpm_set_uvd_enable =3D renoir_dpm_set_uvd_enable,
-         .force_dpm_limit_value =3D renoir_force_dpm_limit_value,
-         .unforce_dpm_levels =3D renoir_unforce_dpm_levels,
-+       .get_workload_type =3D renoir_get_workload_type,
- };
-
- void renoir_set_ppt_funcs(struct smu_context *smu)
---
-2.7.4
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---_000_MN2PR12MB32967F639C9689655C950902A2860MN2PR12MB3296namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"appendonsend" style=3D"font-family: Calibri, Arial, Helvetica, s=
-ans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-this patch, i think the smu driver should be unify the driver code format,<=
-/div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-it is very useful for&nbsp;optimize and maintain smu driver code in the fur=
-ture.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-you can reference the navi10_ppt.c and arcuturs_ppt.c<br>
-funciton: arcturus_get_workload_type<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Best Regards,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Kevin</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Liang, Prike &lt;Prike.Liang@=
-amd.com&gt;<br>
-<b>Sent:</b> Thursday, September 26, 2019 11:50 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Liang, Prike &lt;Prike.Liang@amd.com&gt;; Quan, Evan &lt;Evan.Qu=
-an@amd.com&gt;; Huang, Ray &lt;Ray.Huang@amd.com&gt;; keneth.feng@amd.com &=
-lt;keneth.feng@amd.com&gt;<br>
-<b>Subject:</b> [PATCH 4/8] drm/amd/powerplay: add interface for getting wo=
-rkload type</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
->
-<div class=3D"PlainText">The workload type was got from the input of power =
-profile mode.<br>
-<br>
-Signed-off-by: Prike Liang &lt;Prike.Liang@amd.com&gt;<br>
-Reviewed-by: Kevin Wang &lt;kevin1.wang@amd.com&gt;<br>
-Reviewed-by: Evan Quan &lt;evan.quan@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/powerplay/renoir_ppt.c | 29 &#43;&#43;&#43;&#43;&=
-#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&=
-#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<br>
-&nbsp;1 file changed, 29 insertions(&#43;)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/powerplay/renoir_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/renoir_ppt.c<br>
-index 8ec3663..dc945b8 100644<br>
---- a/drivers/gpu/drm/amd/powerplay/renoir_ppt.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/renoir_ppt.c<br>
-@@ -365,6 &#43;365,34 @@ static int renoir_unforce_dpm_levels(struct smu_co=
-ntext *smu) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;}<br>
-&nbsp;<br>
-&#43;static int renoir_get_workload_type(struct smu_context *smu, uint32_t =
-profile)<br>
-&#43;{<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t&nbsp; pplib_workload =3D=
- 0;<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (profile) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case PP_SMC_POWER_PROFILE_FULLSCR=
-EEN3D:<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; pplib_workload =3D WORKLOAD_PPLIB_FULL_SCREEN_3D_BIT;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; break;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case PP_SMC_POWER_PROFILE_CUSTOM:=
-<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; pplib_workload =3D WORKLOAD_PPLIB_COUNT;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; break;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case PP_SMC_POWER_PROFILE_VIDEO:<=
-br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; pplib_workload =3D WORKLOAD_PPLIB_VIDEO_BIT;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; break;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case PP_SMC_POWER_PROFILE_VR:<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; pplib_workload =3D WORKLOAD_PPLIB_VR_BIT;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; break;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case PP_SMC_POWER_PROFILE_COMPUTE=
-:<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; pplib_workload =3D WORKLOAD_PPLIB_COMPUTE_BIT;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; break;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; return -EINVAL;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return pplib_workload;<br>
-&#43;}<br>
-&#43;<br>
-&nbsp;static const struct pptable_funcs renoir_ppt_funcs =3D {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_smu_msg_index =3D ren=
-oir_get_smu_msg_index,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_smu_table_index =3D r=
-enoir_get_smu_table_index,<br>
-@@ -376,6 &#43;404,7 @@ static const struct pptable_funcs renoir_ppt_funcs =
-=3D {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .dpm_set_uvd_enable =3D re=
-noir_dpm_set_uvd_enable,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .force_dpm_limit_value =3D=
- renoir_force_dpm_limit_value,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .unforce_dpm_levels =3D re=
-noir_unforce_dpm_levels,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .get_workload_type =3D renoir_get=
-_workload_type,<br>
-&nbsp;};<br>
-&nbsp;<br>
-&nbsp;void renoir_set_ppt_funcs(struct smu_context *smu)<br>
--- <br>
-2.7.4<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
-lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-</span></font></div>
-</body>
-</html>
-
---_000_MN2PR12MB32967F639C9689655C950902A2860MN2PR12MB3296namp_--
-
---===============1079026764==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1079026764==--
+QW0gMjUuMDkuMTkgdW0gMTY6NTQgc2NocmllYiBIdWFuZywgUmF5Og0KPj4gLS0tLS1PcmlnaW5h
+bCBNZXNzYWdlLS0tLS0NCj4+IEZyb206IEtvZW5pZywgQ2hyaXN0aWFuIDxDaHJpc3RpYW4uS29l
+bmlnQGFtZC5jb20+DQo+PiBTZW50OiBXZWRuZXNkYXksIFNlcHRlbWJlciAyNSwgMjAxOSAxMDo0
+NyBQTQ0KPj4gVG86IEh1YW5nLCBSYXkgPFJheS5IdWFuZ0BhbWQuY29tPjsgYW1kLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmc7IGRyaS0NCj4+IGRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsg
+RGV1Y2hlciwgQWxleGFuZGVyDQo+PiA8QWxleGFuZGVyLkRldWNoZXJAYW1kLmNvbT4NCj4+IENj
+OiBUdWlrb3YsIEx1YmVuIDxMdWJlbi5UdWlrb3ZAYW1kLmNvbT47IExpdSwgQWFyb24NCj4+IDxB
+YXJvbi5MaXVAYW1kLmNvbT4NCj4+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjMgMTAvMTFdIGRybS9h
+bWRncHU6IGpvYiBpcyBzZWN1cmUgaWZmIENTIGlzIHNlY3VyZSAodjQpDQo+Pg0KPj4gQW0gMjUu
+MDkuMTkgdW0gMTY6Mzggc2NocmllYiBIdWFuZywgUmF5Og0KPj4+IE1hcmsgYSBqb2IgYXMgc2Vj
+dXJlLCBpZiBhbmQgb25seSBpZiB0aGUgY29tbWFuZCBzdWJtaXNzaW9uIGZsYWcgaGFzDQo+Pj4g
+dGhlIHNlY3VyZSBmbGFnIHNldC4NCj4+Pg0KPj4+IHYyOiBmaXggdGhlIG51bGwgam9iIHBvaW50
+ZXIgd2hpbGUgaW4gdm1pZCAwIHN1Ym1pc3Npb24uDQo+Pj4gdjM6IENvbnRleHQgLS0+IENvbW1h
+bmQgc3VibWlzc2lvbi4NCj4+PiB2NDogZmlsbGluZyBjcyBwYXJzZXIgd2l0aCBjcy0+aW4uZmxh
+Z3MNCj4+Pg0KPj4+IFNpZ25lZC1vZmYtYnk6IEh1YW5nIFJ1aSA8cmF5Lmh1YW5nQGFtZC5jb20+
+DQo+Pj4gQ28tZGV2ZWxvcGVkLWJ5OiBMdWJlbiBUdWlrb3YgPGx1YmVuLnR1aWtvdkBhbWQuY29t
+Pg0KPj4+IFNpZ25lZC1vZmYtYnk6IEx1YmVuIFR1aWtvdiA8bHViZW4udHVpa292QGFtZC5jb20+
+DQo+Pj4gUmV2aWV3ZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNv
+bT4NCj4+PiAtLS0NCj4+PiAgICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHUuaCAg
+ICAgfCAgMyArKysNCj4+PiAgICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfY3Mu
+YyAgfCAxMSArKysrKysrKysrLQ0KPj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
+ZGdwdV9pYi5jICB8ICA0ICsrLS0NCj4+PiAgICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
+bWRncHVfam9iLmggfCAgMiArKw0KPj4+ICAgIDQgZmlsZXMgY2hhbmdlZCwgMTcgaW5zZXJ0aW9u
+cygrKSwgMyBkZWxldGlvbnMoLSkNCj4+Pg0KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS9hbWRncHUuaA0KPj4+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1LmgNCj4+PiBpbmRleCA2OTdlOGU1Li5mZDYwNjk1IDEwMDY0NA0KPj4+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdS5oDQo+Pj4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvYW1kZ3B1LmgNCj4+PiBAQCAtNDg1LDYgKzQ4NSw5IEBAIHN0cnVjdCBh
+bWRncHVfY3NfcGFyc2VyIHsNCj4+PiAgICAJdWludDY0X3QJCQlieXRlc19tb3ZlZDsNCj4+PiAg
+ICAJdWludDY0X3QJCQlieXRlc19tb3ZlZF92aXM7DQo+Pj4NCj4+PiArCS8qIHNlY3VyZSBjcyAq
+Lw0KPj4+ICsJYm9vbAkJCQlpc19zZWN1cmU7DQo+Pj4gKw0KPj4+ICAgIAkvKiB1c2VyIGZlbmNl
+ICovDQo+Pj4gICAgCXN0cnVjdCBhbWRncHVfYm9fbGlzdF9lbnRyeQl1Zl9lbnRyeTsNCj4+Pg0K
+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfY3MuYw0K
+Pj4+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2NzLmMNCj4+PiBpbmRleCA1
+MWYzZGIwLi45MDM4ZGMxIDEwMDY0NA0KPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV9jcy5jDQo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X2NzLmMNCj4+PiBAQCAtMTMzLDYgKzEzMywxNCBAQCBzdGF0aWMgaW50IGFtZGdwdV9jc19w
+YXJzZXJfaW5pdChzdHJ1Y3QNCj4+IGFtZGdwdV9jc19wYXJzZXIgKnAsIHVuaW9uIGRybV9hbWRn
+cHVfY3MNCj4+PiAgICAJCWdvdG8gZnJlZV9jaHVuazsNCj4+PiAgICAJfQ0KPj4+DQo+Pj4gKwkv
+KioNCj4+PiArCSAqIFRoZSBjb21tYW5kIHN1Ym1pc3Npb24gKGNzKSBpcyBhIHVuaW9uLCBzbyBh
+biBhc3NpZ25tZW50IHRvDQo+Pj4gKwkgKiAnb3V0JyBpcyBkZXN0cnVjdGl2ZSB0byB0aGUgY3Mg
+KGF0IGxlYXN0IHRoZSBmaXJzdCA4DQo+Pj4gKwkgKiBieXRlcykuIEZvciB0aGlzIHJlYXNvbiwg
+aW5xdWlyZSBhYm91dCB0aGUgZmxhZ3MgYmVmb3JlIHRoZQ0KPj4+ICsJICogYXNzaWdubWVudCB0
+byAnb3V0Jy4NCj4+PiArCSAqLw0KPj4+ICsJcC0+aXNfc2VjdXJlID0gY3MtPmluLmZsYWdzICYg
+QU1ER1BVX0NTX0ZMQUdTX1NFQ1VSRTsNCj4+PiArDQo+Pj4gICAgCS8qIGdldCBjaHVua3MgKi8N
+Cj4+PiAgICAJY2h1bmtfYXJyYXlfdXNlciA9IHU2NF90b191c2VyX3B0cihjcy0+aW4uY2h1bmtz
+KTsNCj4+PiAgICAJaWYgKGNvcHlfZnJvbV91c2VyKGNodW5rX2FycmF5LCBjaHVua19hcnJheV91
+c2VyLCBAQCAtMTI1Miw4DQo+Pj4gKzEyNjAsOSBAQCBzdGF0aWMgaW50IGFtZGdwdV9jc19zdWJt
+aXQoc3RydWN0IGFtZGdwdV9jc19wYXJzZXIgKnAsDQo+Pj4gICAgCQlwLT5jdHgtPnByZWFtYmxl
+X3ByZXNlbnRlZCA9IHRydWU7DQo+Pj4gICAgCX0NCj4+Pg0KPj4+IC0JY3MtPm91dC5oYW5kbGUg
+PSBzZXE7DQo+Pj4gKwlqb2ItPnNlY3VyZSA9IHAtPmlzX3NlY3VyZTsNCj4+PiAgICAJam9iLT51
+Zl9zZXF1ZW5jZSA9IHNlcTsNCj4+PiArCWNzLT5vdXQuaGFuZGxlID0gc2VxOw0KPj4gQXQgbGVh
+c3QgaXQgaXMgbm8gbG9uZ2VyIGFjY2Vzc2luZyBjcy0+aW4sIGJ1dCB0aGF0IHN0aWxsIGxvb2tz
+IGxpa2UgdGhlIHdyb25nIHBsYWNlDQo+PiB0byBpbml0aWFsaXplIHRoZSBqb2IuDQo+Pg0KPj4g
+V2h5IGNhbid0IHdlIGZpbGwgdGhhdCBpbiBkaXJlY3RseSBhZnRlciBhbWRncHVfam9iX2FsbG9j
+KCkgPw0KPiBUaGVyZSBpcyBub3QgaW5wdXQgbWVtYmVyIHRoYXQgaXMgc2VjdXJlIHJlbGF0ZWQg
+aW4gYW1kZ3B1X2pvYl9hbGxvYygpIGV4Y2VwdCBhZGQgYW4gb25lOg0KPiAgIA0KPiBhbWRncHVf
+am9iX2FsbG9jKGFkZXYsIG51bV9pYnMsIGpvYiwgdm0sIHNlY3VyZSkNCj4NCj4gSXQgbG9va3Mg
+dG9vIG11Y2gsIGlzbid0IGl0Pw0KDQpZb3Ugc2hvdWxkIG5vdCBhZGQgYSBuZXcgcGFyYW1ldGVy
+LCBidXQgcmF0aGVyIHNldCB0aGUgbWVtYmVyIGluIA0KYW1kZ3B1X2NzX3BhcnNlcl9pbml0KCkg
+YWZ0ZXIgYW1kZ3B1X2pvYl9hbGxvYygpLg0KDQpPciBtYXliZSBldmVuIGJldHRlciBhZGQgdGhh
+dCBpbnRvIGFtZGdwdV9jc19pYl9maWxsKCksIGNhdXNlIGhlcmUgaXMgDQp3aGVyZSB3ZSBmaWxs
+IGluIG1vc3Qgb2YgdGhlIGpvYiBkZXNjcmlwdGlvbi4NCg0KUmVnYXJkcywNCkNocmlzdGlhbi4N
+Cg0KPg0KPiBUaGFua3MsDQo+IFJheQ0KPg0KPj4gUmVnYXJkcywNCj4+IENocmlzdGlhbi4NCj4+
+DQo+Pj4gICAgCWFtZGdwdV9qb2JfZnJlZV9yZXNvdXJjZXMoam9iKTsNCj4+Pg0KPj4+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfaWIuYw0KPj4+IGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2liLmMNCj4+PiBpbmRleCBlMWRjMjI5Li5j
+YjliNjUwIDEwMDY0NA0KPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
+dV9pYi5jDQo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2liLmMN
+Cj4+PiBAQCAtMjEwLDcgKzIxMCw3IEBAIGludCBhbWRncHVfaWJfc2NoZWR1bGUoc3RydWN0IGFt
+ZGdwdV9yaW5nICpyaW5nLA0KPj4gdW5zaWduZWQgbnVtX2licywNCj4+PiAgICAJaWYgKGpvYiAm
+JiByaW5nLT5mdW5jcy0+ZW1pdF9jbnR4Y250bCkgew0KPj4+ICAgIAkJc3RhdHVzIHw9IGpvYi0+
+cHJlYW1ibGVfc3RhdHVzOw0KPj4+ICAgIAkJc3RhdHVzIHw9IGpvYi0+cHJlZW1wdGlvbl9zdGF0
+dXM7DQo+Pj4gLQkJYW1kZ3B1X3JpbmdfZW1pdF9jbnR4Y250bChyaW5nLCBzdGF0dXMsIGZhbHNl
+KTsNCj4+PiArCQlhbWRncHVfcmluZ19lbWl0X2NudHhjbnRsKHJpbmcsIHN0YXR1cywgam9iLT5z
+ZWN1cmUpOw0KPj4+ICAgIAl9DQo+Pj4NCj4+PiAgICAJZm9yIChpID0gMDsgaSA8IG51bV9pYnM7
+ICsraSkgew0KPj4+IEBAIC0yMjksNyArMjI5LDcgQEAgaW50IGFtZGdwdV9pYl9zY2hlZHVsZShz
+dHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmcsDQo+PiB1bnNpZ25lZCBudW1faWJzLA0KPj4+ICAgIAl9
+DQo+Pj4NCj4+PiAgICAJaWYgKHJpbmctPmZ1bmNzLT5lbWl0X3RteikNCj4+PiAtCQlhbWRncHVf
+cmluZ19lbWl0X3RteihyaW5nLCBmYWxzZSwgZmFsc2UpOw0KPj4+ICsJCWFtZGdwdV9yaW5nX2Vt
+aXRfdG16KHJpbmcsIGZhbHNlLCBqb2IgPyBqb2ItPnNlY3VyZSA6IGZhbHNlKTsNCj4+Pg0KPj4+
+ICAgICNpZmRlZiBDT05GSUdfWDg2XzY0DQo+Pj4gICAgCWlmICghKGFkZXYtPmZsYWdzICYgQU1E
+X0lTX0FQVSkpDQo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
+ZGdwdV9qb2IuaA0KPj4+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2pvYi5o
+DQo+Pj4gaW5kZXggZGM3ZWU5My4uYWEwZTM3NSAxMDA2NDQNCj4+PiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfam9iLmgNCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfam9iLmgNCj4+PiBAQCAtNjMsNiArNjMsOCBAQCBzdHJ1Y3QgYW1k
+Z3B1X2pvYiB7DQo+Pj4gICAgCXVpbnQ2NF90CQl1Zl9hZGRyOw0KPj4+ICAgIAl1aW50NjRfdAkJ
+dWZfc2VxdWVuY2U7DQo+Pj4NCj4+PiArCS8qIHRoZSBqb2IgaXMgZHVlIHRvIGEgc2VjdXJlIGNv
+bW1hbmQgc3VibWlzc2lvbiAqLw0KPj4+ICsJYm9vbAkJCXNlY3VyZTsNCj4+PiAgICB9Ow0KPj4+
+DQo+Pj4gICAgaW50IGFtZGdwdV9qb2JfYWxsb2Moc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYs
+IHVuc2lnbmVkIG51bV9pYnMsDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1k
+LWdmeA==
