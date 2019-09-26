@@ -2,88 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA66BED09
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2019 10:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2301DBED0B
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2019 10:09:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52CEB6EE46;
-	Thu, 26 Sep 2019 08:08:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A02F36EE47;
+	Thu, 26 Sep 2019 08:09:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM05-DM3-obe.outbound.protection.outlook.com
- (mail-eopbgr730068.outbound.protection.outlook.com [40.107.73.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 539A36EE46
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2019 08:08:10 +0000 (UTC)
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr780044.outbound.protection.outlook.com [40.107.78.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB3D76EE47
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2019 08:09:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BagEzdZrEemwAOu6C00R1eL5qknogxrsoFZrxvPzzeRxXe2OnUyrxdF10sbE331ldTNcFIg6k4a8aAHTOqBE/+TtxS0SI1PNrjyIUIJbq1ylwY+pAqZarUl2fQTETTAm/hw83JUG3cJ4DL7V2yd7L/Jac5G0FfE0sX9K0XM+6w4VtyPHkwCXRgeouUOauW/dtxrtJqsULaSpaj6QVo8UKmG1+sIcueHq6Kgmo6vPMegVcaTb98vwDsneiQb3TBulkPCb/3jbJX6V/ibUU4wQNr2MePtcpzb5UnvzKOk9f381Tdn2S0mFvotXW0z7Sp8KprqM0TgTsoqx75VX90pFAQ==
+ b=YuIWuMpZF2o/NrGIY6U1osQ42VzOIsMX2IsxaHQV+lsOeJyvets41dvZYQtw3BQqNxU+VvkbCP/uNFxo2nlEDXDBXkeSwjZ7LPGVAno0opnZwNExiKKwDngoj/zS2lFkD/+6jz9hGQh2N0flgNLtujWf6n0nIYu4v7WPYER0rNb3Q4dC4Zpy6mr71R6O8C6a87UFIeOurEDLXX8xJdeDkJsE/0Ev73jxcjN3tE8h1fjy1zFQHzJVNeTtJYVyaA4gmkZBdZYD3Zc4HBcbEWAYHO4BD2/R1oAXhgMJXyPG6vgs6o3NtVhmPkHDv26Tc2NE8WZXjIIKdRyzyMUCkYZa4g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=trLWx/46oGQDa4byawj6cd2flS0h+W5JkEHBWNYEeYc=;
- b=X88qRe8x9UOV5qik39L2tXfI3acWxD60FJAU5BV1hg4mOZyvXd6ynoRXESjB8akA07BTSZ/pzT2xgVk5Zxfz0Nzvm3QeiJXCCaZGxuvyaIHmzLlRpHgymCV6jhWeOqzwZ48NlDckWhFk6GHQq+r/Di1QbkQjIr++LczS2pj38VVp4k5R9ZbZDJtIk7fWr5GxMKlUC9VTc59uRHBeIZ/ZEKOMf/9IXlpT80hRUwppuUnq8lxNI+yZ9yasDYpikbFkldsbA3DTrK87wmN/LQ1Mu+kod2d6CXoF5TlyA3f+ALGSM+Fg5zDUCoTUT4zg9UXUDgkfhWM0S5F5PSK1PH/LZA==
+ bh=dB0SQfVWjWDqfjysVGkpCxsBDH+x9nzp1sYEzuQDShk=;
+ b=f4cq3kCYOIZYboNcYqrBx/9sCWsWiLe/l7OHFJXzsWbt3vCEQHglAEnsNYKdYpDaMBWNKcNcnWit1hT/moalZuGxffXAlInjpmQn9diQCuMg/VAnXmIOmwpLzs4g0h5e/N0BDEMUnaaY7sH2qEvL4yHj8gDew9sMoEiI6siRf/HDFQ0jGtgVmPMgcfGWomacjkKKwpQvAcoZRxcYx2UGQZUHJ7ZBYGIW/rp/GZsArGrfzTUgICS7uG9OFOzenumHVjXmyXH7mItKfd4a/zz35zpf9B5ktfN4P54vfDQbJ6+tIAoGN2V97epS3P0ejpvFraTLTT8Yawiyod6CY20BeA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 Received: from BN8PR12MB3602.namprd12.prod.outlook.com (20.178.212.86) by
- BN8PR12MB3267.namprd12.prod.outlook.com (20.179.65.148) with Microsoft SMTP
+ BN8PR12MB3572.namprd12.prod.outlook.com (20.178.211.204) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.20; Thu, 26 Sep 2019 08:08:08 +0000
+ 15.20.2284.21; Thu, 26 Sep 2019 08:09:25 +0000
 Received: from BN8PR12MB3602.namprd12.prod.outlook.com
  ([fe80::55d8:90a7:d1dc:e9e3]) by BN8PR12MB3602.namprd12.prod.outlook.com
  ([fe80::55d8:90a7:d1dc:e9e3%7]) with mapi id 15.20.2305.016; Thu, 26 Sep 2019
- 08:08:08 +0000
+ 08:09:25 +0000
 From: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
 To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu/gmc10: apply the 'invalidation from sdma'
+Subject: Re: [PATCH] drm/amdgpu/gmc10: apply the 'invalidation from sdma'
  workaround for navi
 Thread-Topic: [PATCH] drm/amdgpu/gmc10: apply the 'invalidation from sdma'
  workaround for navi
-Thread-Index: AQHVdEGHm0iocdCUOEuYheblhNg2qw==
-Date: Thu, 26 Sep 2019 08:08:08 +0000
-Message-ID: <20190926080746.20765-1-xiaojie.yuan@amd.com>
+Thread-Index: AQHVdEGHm0iocdCUOEuYheblhNg2q6c9mpfz
+Date: Thu, 26 Sep 2019 08:09:24 +0000
+Message-ID: <BN8PR12MB36027CA5662543E7F956657589860@BN8PR12MB3602.namprd12.prod.outlook.com>
+References: <20190926080746.20765-1-xiaojie.yuan@amd.com>
+In-Reply-To: <20190926080746.20765-1-xiaojie.yuan@amd.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: HK0PR01CA0060.apcprd01.prod.exchangelabs.com
- (2603:1096:203:a6::24) To BN8PR12MB3602.namprd12.prod.outlook.com
- (2603:10b6:408:49::22)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.20.1
 x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d3ec4f55-7765-4364-8d6b-08d74258aa37
+x-ms-office365-filtering-correlation-id: 946b1b6f-d841-49ba-0c3d-08d74258d868
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:BN8PR12MB3267; 
-x-ms-traffictypediagnostic: BN8PR12MB3267:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN8PR12MB326745DDCFD0BB2BF3B2920089860@BN8PR12MB3267.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1303;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN8PR12MB3572; 
+x-ms-traffictypediagnostic: BN8PR12MB3572:
+x-microsoft-antispam-prvs: <BN8PR12MB3572445AC1ADA5848454D09489860@BN8PR12MB3572.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4941;
 x-forefront-prvs: 0172F0EF77
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(366004)(39860400002)(136003)(346002)(396003)(199004)(189003)(36756003)(54906003)(66476007)(64756008)(66556008)(66446008)(66946007)(6486002)(476003)(2616005)(486006)(99286004)(4744005)(86362001)(3846002)(386003)(478600001)(6436002)(6116002)(6506007)(316002)(26005)(186003)(14444005)(256004)(102836004)(6512007)(1076003)(81156014)(8676002)(81166006)(14454004)(50226002)(25786009)(2351001)(66066001)(5660300002)(5640700003)(305945005)(2906002)(8936002)(4326008)(2501003)(71200400001)(6916009)(7736002)(52116002)(71190400001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB3267;
+ SFS:(10009020)(4636009)(39860400002)(366004)(346002)(376002)(396003)(136003)(189003)(199004)(478600001)(2906002)(14444005)(7736002)(316002)(25786009)(66066001)(256004)(2501003)(99286004)(6916009)(52536014)(26005)(7696005)(76176011)(102836004)(4326008)(14454004)(186003)(5660300002)(6116002)(3846002)(53546011)(33656002)(6506007)(476003)(19627405001)(105004)(8936002)(446003)(11346002)(71200400001)(6246003)(55016002)(66556008)(66476007)(64756008)(9686003)(54896002)(486006)(2351001)(66446008)(66946007)(5640700003)(91956017)(76116006)(6436002)(86362001)(229853002)(8676002)(74316002)(81156014)(81166006)(71190400001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB3572;
  H:BN8PR12MB3602.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
+ PTR:InfoNoRecords; MX:1; A:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: nwqIwJsrRRWEt88CAbOs9Ah4krLwDeAoq00Nm2Z6dS4VLgnRLBucEIX+5J88bYJjJKNrQoS1OUGijfW5VyJw4vxlOw/lZRmDK5WeJYhJrPtfAADEKpkD4oGllow5seTMUmibuAxG7saiIRhvcgrZr0Ovv38HhQroWJtCyeG4228nW7eh0M6HV7Af5i0RVga3BT9VwwBAfshwRrMiIeKtHGtMNhASmzEULNTwZ48lCIar9exUTCLH2lU/sE/UnTIVSk7N9y55Qxw2VU3IrgApv/YnvXgRxOA1cMg5pcCyVUxZIzl4+GKVk0GI/bAOK21LA4cs2+UiIdLR5UdyJbTBsV9or7wibiWu1O7xuRTbqpHml8eKrsJOrEGAcuoPBArq3jVWR0HGZ9mhCku8irl7T2QJfH2z5uvsr8FHV7Mixrc=
+x-microsoft-antispam-message-info: JOjfZ2+mNVbHkqGYpygJ10DdfgL6nciqoBPUHEAUuYTR6y4ld1EbfEozsz1eitvUoFKtfYHWwfK1/uIo2M500oTocieZhIBZqMBQgL9il1be5h0nzlj6+VZGZ7H4dZuw+Kzm3B46b/27XNaLId1dD5+7SJHkLe7RgVTYjHJfX2xWUBeMxwShfZjQKrd+YM5vu6GiOjoqtSpjiUfaY2jbm0F3RkSkoQ3jFYB+Ot3IiC4W+61qIOZDa6L3HPD/VlLYesovnV/yAp1WS69mdJRKXSG2UvC/wZygncSlzynHRiVrqT0vaEqNIsj05PsJ1RiB4ebppSHz58diQ4nhpJh4YduE+Fi6xmHyPGJyNn238GTnqljhDBPtwxIVKxWiKs8wCea9x+u80XS61AG9Z+klHXoLPL+X9quAYYx1D9nVzmg=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3ec4f55-7765-4364-8d6b-08d74258aa37
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 08:08:08.1504 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 946b1b6f-d841-49ba-0c3d-08d74258d868
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 08:09:24.9748 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: H2DEJOK7w0hv2t0tIEMkP7OXnG/+p0KTPCnD/nxRXGL8SdDe5qzIJ8s1xxe1Wpyd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3267
+X-MS-Exchange-CrossTenant-userprincipalname: uiPQ4HkfbEfqci2goBO7rxvQ+CoSAzlqTII3Ri+9ccHHtMSPIEmyMOFfmZ3iXhuo
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3572
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=trLWx/46oGQDa4byawj6cd2flS0h+W5JkEHBWNYEeYc=;
- b=j2SNyQJswMkwqUZd5Wvz3/dEw+i709dDDrAJwI/GhgjQLnXGys0OgPM4+LJImkV5T1jDXL2SS5J2PxQZT3qnRYYvASgQoPs7cSeugKhI1pCUkDnJtCJ8ikd0FjQydH3hy6U5oZz2Lf0VYYEV6yzOjsIA4JpJwh7mNXXmkWkVg/Q=
+ bh=dB0SQfVWjWDqfjysVGkpCxsBDH+x9nzp1sYEzuQDShk=;
+ b=QFpjefWt6gkreZrhH3sikOFq2/4yb/c9AQIgMTPkb+ALV2KZwVpUUNqPTkeR53Gq09+uC2ksYPjE3+wFsSc+fImkgi8e/CV+bBBrBFHK1qZNBLNDTiAb/6FR5PBKGpBx/NfHhfU/lsv33INTVWrF0hqBp6JDswxH1oisMG17Vbk=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Xiaojie.Yuan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -97,28 +94,159 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "alexdeucher@gmail.com" <alexdeucher@gmail.com>, "Yuan,
- Xiaojie" <Xiaojie.Yuan@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "alexdeucher@gmail.com" <alexdeucher@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1863776100=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXM6IDc2N2FjYWJkYWM4MSAoImRybS9hbWQvcG93ZXJwbGF5OiBhZGQgYmFjbyBzbXUgcmVz
-ZXQgZnVuY3Rpb24gZm9yIHNtdTExIikKU2lnbmVkLW9mZi1ieTogWGlhb2ppZSBZdWFuIDx4aWFv
-amllLnl1YW5AYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nbWNfdjEw
-XzAuYyB8IDEgKwogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ21jX3YxMF8wLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9nbWNfdjEwXzAuYwppbmRleCBjYjNmNjE4NzNiYWEuLmRjMmU2OGUwMTllYiAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ21jX3YxMF8wLmMKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ21jX3YxMF8wLmMKQEAgLTI5Miw2ICsyOTIsNyBA
-QCBzdGF0aWMgdm9pZCBnbWNfdjEwXzBfZmx1c2hfZ3B1X3RsYihzdHJ1Y3QgYW1kZ3B1X2Rldmlj
-ZSAqYWRldiwgdWludDMyX3Qgdm1pZCwKIAogCWlmICghYWRldi0+bW1hbi5idWZmZXJfZnVuY3Nf
-ZW5hYmxlZCB8fAogCSAgICAhYWRldi0+aWJfcG9vbF9yZWFkeSB8fAorCSAgICAhKGFkZXYtPmFz
-aWNfdHlwZSA+PSBDSElQX05BVkkxMCAmJiBhZGV2LT5hc2ljX3R5cGUgPD0gQ0hJUF9OQVZJMTIp
-IHx8CiAJICAgIGFkZXYtPmluX2dwdV9yZXNldCkgewogCQlnbWNfdjEwXzBfZmx1c2hfdm1faHVi
-KGFkZXYsIHZtaWQsIEFNREdQVV9HRlhIVUJfMCwgMCk7CiAJCW11dGV4X3VubG9jaygmYWRldi0+
-bW1hbi5ndHRfd2luZG93X2xvY2spOwotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2FtZC1nZng=
+--===============1863776100==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN8PR12MB36027CA5662543E7F956657589860BN8PR12MB3602namp_"
+
+--_000_BN8PR12MB36027CA5662543E7F956657589860BN8PR12MB3602namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Alex,
+
+This patch is to add the asic_type check which is missing after drm-next br=
+anch rebase.
+
+BR,
+Xiaojie
+________________________________
+From: Yuan, Xiaojie <Xiaojie.Yuan@amd.com>
+Sent: Thursday, September 26, 2019 4:08 PM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: alexdeucher@gmail.com <alexdeucher@gmail.com>; Yuan, Xiaojie <Xiaojie.Y=
+uan@amd.com>
+Subject: [PATCH] drm/amdgpu/gmc10: apply the 'invalidation from sdma' worka=
+round for navi
+
+Fixes: 767acabdac81 ("drm/amd/powerplay: add baco smu reset function for sm=
+u11")
+Signed-off-by: Xiaojie Yuan <xiaojie.yuan@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/gmc_v10_0.c
+index cb3f61873baa..dc2e68e019eb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -292,6 +292,7 @@ static void gmc_v10_0_flush_gpu_tlb(struct amdgpu_devic=
+e *adev, uint32_t vmid,
+
+         if (!adev->mman.buffer_funcs_enabled ||
+             !adev->ib_pool_ready ||
++           !(adev->asic_type >=3D CHIP_NAVI10 && adev->asic_type <=3D CHIP=
+_NAVI12) ||
+             adev->in_gpu_reset) {
+                 gmc_v10_0_flush_vm_hub(adev, vmid, AMDGPU_GFXHUB_0, 0);
+                 mutex_unlock(&adev->mman.gtt_window_lock);
+--
+2.20.1
+
+
+--_000_BN8PR12MB36027CA5662543E7F956657589860BN8PR12MB3602namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+Hi Alex,</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+This patch is to add the asic_type check which is missing after drm-next br=
+anch rebase.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+BR,</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+Xiaojie<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Yuan, Xiaojie &lt;Xia=
+ojie.Yuan@amd.com&gt;<br>
+<b>Sent:</b> Thursday, September 26, 2019 4:08 PM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> alexdeucher@gmail.com &lt;alexdeucher@gmail.com&gt;; Yuan, Xiaoj=
+ie &lt;Xiaojie.Yuan@amd.com&gt;<br>
+<b>Subject:</b> [PATCH] drm/amdgpu/gmc10: apply the 'invalidation from sdma=
+' workaround for navi</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Fixes: 767acabdac81 (&quot;drm/amd/powerplay: add =
+baco smu reset function for smu11&quot;)<br>
+Signed-off-by: Xiaojie Yuan &lt;xiaojie.yuan@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 1 &#43;<br>
+&nbsp;1 file changed, 1 insertion(&#43;)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/gmc_v10_0.c<br>
+index cb3f61873baa..dc2e68e019eb 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c<br>
+@@ -292,6 &#43;292,7 @@ static void gmc_v10_0_flush_gpu_tlb(struct amdgpu_d=
+evice *adev, uint32_t vmid,<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!adev-&gt;mman.buffer_=
+funcs_enabled ||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; !a=
+dev-&gt;ib_pool_ready ||<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; !(adev-&g=
+t;asic_type &gt;=3D CHIP_NAVI10 &amp;&amp; adev-&gt;asic_type &lt;=3D CHIP_=
+NAVI12) ||<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ad=
+ev-&gt;in_gpu_reset) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; gmc_v10_0_flush_vm_hub(adev, vmid, AMDGPU_GFXHUB_0, 0=
+);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;adev-&gt;mman.gtt_window_lock);<br>
+-- <br>
+2.20.1<br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN8PR12MB36027CA5662543E7F956657589860BN8PR12MB3602namp_--
+
+--===============1863776100==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1863776100==--
