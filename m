@@ -1,91 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6F4BBEDC1
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2019 10:47:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C2DBEDE2
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2019 10:54:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0232E6EE54;
-	Thu, 26 Sep 2019 08:47:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1959C6EE8C;
+	Thu, 26 Sep 2019 08:54:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr740083.outbound.protection.outlook.com [40.107.74.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 412026EE54
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2019 08:47:45 +0000 (UTC)
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr820040.outbound.protection.outlook.com [40.107.82.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7291F6EE8C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2019 08:54:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GKOqHGgsXbpk4U5k8I7veudXgx7Jg/+FJHMxgu1egZwuiG78YQ43IaqmDBsEqllwR389Ll4zFknGzuNm/ftTFTxwUuLK7wYZT1i+Zit3+t9DZ7XocSdUSVhOU5I0NkRfPrTgN++J2kicgZ+36AClt40togcm0///59tWr9hmc+wDiYOynmfQ8K8CAH05fF2WIbe3jZdTwd5OKnHu9XuTXDxIzrTrUl/k6+x7aXvi1X7NJe+Z90aUBTKpOZXcgZOhRE/2cnjHAiPFf9X3EBMVnwt5vZ4adLLC7Tz/yz7V84FdlmAOIEwgBiB0VdeID4xyMada7InTZOL15itN0hWXFg==
+ b=hCGnrooboy3MNtB+PNUvfR2lacqiuqujeSypkEwCH234Luskq1BJhwUDhS6JupTHeY6eqRbf+EDSYVQTConNtPPVtOXKaJByNUo5TGiDgoSybD0k9zax9Nm0By/nYJkK2pipaQEsh+z/1n2xMN9KnGwzhh5DMqPy28//rd8mvyM3lBmezHNADwF/0wqaz5jLNi22VHeT6d4QDZ1wWoM123zmRezdeyWxAFMf9Q8nJCZpOcXLAwCwwNX+V9CAcxS0DEdqlH5yBmprgtAbzJRKlVjol+ADq7h4+9jCnkTpLocKPpUU1RZyckJXuKus4+hvZMIRt1IF6EEtrgexLSa6Ow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e7U0Ntx41dNG5VqNM1Dap/rwJOi1wjDCsUMKTWfna84=;
- b=fY0kYSavakR/+OMw6v/dcPy6BaCQUPTCYBN9YtjGZuMcGNmeryfywpqmNdeM2FQ2IQUM8bwTPfm4xlm/KQ3+bcEu/buFlnpBH1+vA6N31DMivxkiR7k3XYaa39or84hGma7SvQBX0DNBgq+NIQ0JcHb6/uH83jTCZcI4SZccZ8rXEQ5ECeWGy/rQUqOTNZ8oALCXcZRQvbtGlTt/F6WtSPSzCwUGrEZss7JNpAXeMnsH3MJyRaWfwwwKQCqwcoqrUEX3D5lBa6Rk23UvT7pnGk9li8GwVJqppQxCz337d70rfo9LIWS6F4AegWZlYosYfk+Jgyk9R+IEhh3mPJdD6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-Received: from MWHPR12CA0062.namprd12.prod.outlook.com (2603:10b6:300:103::24)
- by MN2PR12MB4206.namprd12.prod.outlook.com (2603:10b6:208:1d5::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2284.20; Thu, 26 Sep
- 2019 08:47:43 +0000
-Received: from DM3NAM03FT062.eop-NAM03.prod.protection.outlook.com
- (2a01:111:f400:7e49::202) by MWHPR12CA0062.outlook.office365.com
- (2603:10b6:300:103::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2305.17 via Frontend
- Transport; Thu, 26 Sep 2019 08:47:42 +0000
-Received-SPF: None (protection.outlook.com: amd.com does not designate
+ bh=FSWPo5c92P47yy0ngK6uT8wwt+XvWjmYDaHU9QtABFo=;
+ b=Vjk+YmAGru2QoqhDm9+iASp3N4FA7hJ2+F/kUMSeft0H4LZyR4aSClGq4ux01gzfXv2d11/lDTxvnK72afa2m/Gi0GQseHdOPQPzV/sJknQfIrxH7648t2rbI5l5aPZe+jR45VjbfzuEKUQFmQO3vlsxVxKrl7QxVRK2QReJyROfKcHW8An6nBzuzQlItQ1WLMi1LRkFKOcUQkl4E4nGul9mrIdjD0fkn6OXrLLapv/4tk0CStC0kjq2RWjEKCHZ0LwAuU1eLISXgH9/cFe5Rq02Fp1Va5gGXnvxPoF0Dijt47Cxk3tZY2lKTT+BGsQhTgT5V/uLzvTkE/zigIA0SA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+Received: from MN2PR12MB3296.namprd12.prod.outlook.com (20.179.80.139) by
+ MN2PR12MB3710.namprd12.prod.outlook.com (10.255.236.23) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.20; Thu, 26 Sep 2019 08:54:05 +0000
+Received: from MN2PR12MB3296.namprd12.prod.outlook.com
+ ([fe80::9929:92fb:f329:a911]) by MN2PR12MB3296.namprd12.prod.outlook.com
+ ([fe80::9929:92fb:f329:a911%7]) with mapi id 15.20.2284.028; Thu, 26 Sep 2019
+ 08:54:05 +0000
+From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
+To: "Feng, Kenneth" <Kenneth.Feng@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amd/amdgpu: add IH cg support on soc15 project
+Thread-Topic: [PATCH] drm/amd/amdgpu: add IH cg support on soc15 project
+Thread-Index: AQHVdEcU/2qeYXHQjE2u5KMorxj9cKc9pzcU
+Date: Thu, 26 Sep 2019 08:54:04 +0000
+Message-ID: <MN2PR12MB329667CC068A0E76AE17E199A2860@MN2PR12MB3296.namprd12.prod.outlook.com>
+References: <1569487656-24977-1-git-send-email-kenneth.feng@amd.com>
+In-Reply-To: <1569487656-24977-1-git-send-email-kenneth.feng@amd.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [180.167.199.189]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 21c108db-83c7-413c-4ecf-08d7425f15d8
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
+ SRVR:MN2PR12MB3710; 
+x-ms-traffictypediagnostic: MN2PR12MB3710:
+x-ms-exchange-purlcount: 1
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MN2PR12MB37102BB2FD8C9605DDC29D3DA2860@MN2PR12MB3710.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:238;
+x-forefront-prvs: 0172F0EF77
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(396003)(366004)(376002)(346002)(39860400002)(199004)(189003)(91956017)(606006)(66946007)(19627405001)(8936002)(33656002)(102836004)(26005)(14454004)(8676002)(14444005)(105004)(476003)(81156014)(81166006)(446003)(256004)(7736002)(74316002)(11346002)(486006)(478600001)(7696005)(76176011)(53546011)(5660300002)(229853002)(99286004)(6116002)(3846002)(2501003)(76116006)(966005)(52536014)(55016002)(6506007)(86362001)(6436002)(9686003)(110136005)(186003)(2906002)(236005)(6246003)(6306002)(316002)(54896002)(66066001)(66556008)(25786009)(64756008)(66476007)(71200400001)(71190400001)(66446008);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3710;
+ H:MN2PR12MB3296.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXCHOV01.amd.com (165.204.84.17) by
- DM3NAM03FT062.mail.protection.outlook.com (10.152.83.142) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2305.15 via Frontend Transport; Thu, 26 Sep 2019 08:47:42 +0000
-Received: from lnx-kenneth.amd.com (10.180.168.240) by SATLEXCHOV01.amd.com
- (10.181.40.71) with Microsoft SMTP Server id 14.3.389.1; Thu, 26 Sep 2019
- 03:47:41 -0500
-From: Kenneth Feng <kenneth.feng@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/amdgpu: add IH cg support on soc15 project
-Date: Thu, 26 Sep 2019 16:47:36 +0800
-Message-ID: <1569487656-24977-1-git-send-email-kenneth.feng@amd.com>
-X-Mailer: git-send-email 2.7.4
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: WhwVFtzfq0n3iVIhQl4z1MZESh/ciNOORAchWAOF22yUPS7IvY2Amrva5xikyAewH9ySqxZidOwFlceml8rXXMr1of29jYAPAsttPlN1+hsXRtCgPSwB0osM0EpI3LrlNnU9cD/13vcrq7Y23gq4qs7t+jfH8rbZGXx+mWpOTtNxLM8cBBr1hDAtU4T30d7ZWsHXsAPcvJXfu7DPeTELbXf9ifRvNP+H9pgyphDqKgPTjDrX4i5dyq653jHYhCR9qNrlsbT2eeH6F1YmrJ4o75kcTag/wVcmzR2oJYCRaNoSBgXEoYXQm3uHJFyhVyzV7aCWh0UmLJa/6ltWwU2w8ZbYO6PG5txdid2lmj6fZ7NRLyPKnnVrakCdgbcYvAIA4dwXrWAintwYUt6Fb6wXy8J2SIERxyQ5+durDgqISeFkFClwQR4EmufDfkVr/jggmXvoAOfiV61+AItKFTW/ZQ==
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(376002)(346002)(39860400002)(396003)(428003)(199004)(189003)(186003)(14444005)(16586007)(2351001)(70586007)(70206006)(48376002)(36756003)(305945005)(8676002)(4326008)(47776003)(2906002)(81166006)(81156014)(486006)(44832011)(26005)(426003)(336012)(126002)(2616005)(476003)(8936002)(316002)(6916009)(5660300002)(7696005)(53416004)(51416003)(50466002)(6666004)(356004)(478600001)(50226002)(86362001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4206; H:SATLEXCHOV01.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5316e47b-49e2-474c-e188-08d7425e3199
-X-Microsoft-Antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328);
- SRVR:MN2PR12MB4206; 
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4206:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB420653020B70E376F17063CA8E860@MN2PR12MB4206.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:226;
-X-Forefront-PRVS: 0172F0EF77
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: ymlrEy5tQH7yyK8zjwdsuhjPtYI3GRYxni6F0LRBcBPM66lqhMrYFSFxyAQ1pHRDpwHIobDHFHK5DgXK82IaNOK2hxlBajn+yESWWqh/7D0gR1PUIhdt9shNZEucS3h7i0B8Let1p2PanHxXHrCBDYJz34ammTbg1DbuWBqImMk9NDBP+MWgkxCAGdPq56f8MyeoJHHJqzCavCfayUvzNB07AaKJ02+7YWdZQwW3U8JP28dvq3uC4rau0A3vW/+YwpOPw05BQ0Ona2wqLw9otNyc38szskrJT6ixR9zvdVUMcDTUot4qilONEZwlXgw88MnbakNtoWGJpCV0SkSNPqql6sa1ZR6nx8AUkVjGhDBIG4V0cR0e+qAoZ/dRkd/3arY7i6kXyAik9Vc6yN7Liy6uqbpOk9abKRVWSKw8+7M=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2019 08:47:42.0412 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5316e47b-49e2-474c-e188-08d7425e3199
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXCHOV01.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4206
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21c108db-83c7-413c-4ecf-08d7425f15d8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 08:54:04.9899 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CA4Dye+XS08vlSK9kkoNfSv3qJf+2/RhqMUeK2pCxLVTz4XTkeyw6wWTxCB2GLuI
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3710
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e7U0Ntx41dNG5VqNM1Dap/rwJOi1wjDCsUMKTWfna84=;
- b=qJ2ymXQ4yixCcMz/IvjC5j/7PqfPVz0TNU659v+vijiXgN5oRtjgoo2Bl7FH/yTSUyfX5vJiYzcrbXUvx2gLzf0uHjzPrA++hQRenfnjmjVBxdM1wdwurXmIoEfmmIkQ+YBQLvKaRn/pdt5w5b4I41X3d3Q5z5d4cJa1JJc/Wu4=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is
- 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
+ bh=FSWPo5c92P47yy0ngK6uT8wwt+XvWjmYDaHU9QtABFo=;
+ b=XJhwucZmHJG/+ULL/gBxQW/5ognvTyOIGN9CuGzfSCuLgPx4sspCDmY8By5fAJ3zTAwktTo0FG5uXwTz3TRjCGvorIcrjDgr0OEqFYDIKwkRQZgzI8I1A3cnjWAOA1gKkojpqxIrSWHFpIUMRMqStMydfrVJquLGcFb8MoTyQik=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Kevin1.Wang@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -97,95 +94,474 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenneth Feng <kenneth.feng@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0993931912=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-ZW5hYmxlL2Rpc2FibGUgSUggY2xvY2sgZ2F0aW5nIG9uIHNvYzE1IHByb2plY3RzLgoKU2lnbmVk
-LW9mZi1ieTogS2VubmV0aCBGZW5nIDxrZW5uZXRoLmZlbmdAYW1kLmNvbT4KLS0tCiBkcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS9zb2MxNS5jICAgICAgICAgICAgICAgICB8ICAzICstCiBkcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS92ZWdhMTBfaWguYyAgICAgICAgICAgICB8IDM5ICsrKysr
-KysrKysrKysrKysrKysrKysKIC4uLi9hbWQvaW5jbHVkZS9hc2ljX3JlZy9vc3Mvb3Nzc3lzXzRf
-MF9zaF9tYXNrLmggIHwgIDQgKysrCiAzIGZpbGVzIGNoYW5nZWQsIDQ1IGluc2VydGlvbnMoKyks
-IDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9z
-b2MxNS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvc29jMTUuYwppbmRleCA1ODgxODc2
-MS4uZTQwNDEwZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvc29jMTUu
-YworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zb2MxNS5jCkBAIC0xMTY2LDcgKzEx
-NjYsOCBAQCBzdGF0aWMgaW50IHNvYzE1X2NvbW1vbl9lYXJseV9pbml0KHZvaWQgKmhhbmRsZSkK
-IAkJCUFNRF9DR19TVVBQT1JUX1NETUFfTUdDRyB8CiAJCQlBTURfQ0dfU1VQUE9SVF9TRE1BX0xT
-IHwKIAkJCUFNRF9DR19TVVBQT1JUX01DX01HQ0cgfAotCQkJQU1EX0NHX1NVUFBPUlRfTUNfTFM7
-CisJCQlBTURfQ0dfU1VQUE9SVF9NQ19MUyB8CisJCQlBTURfQ0dfU1VQUE9SVF9JSF9DRzsKIAkJ
-YWRldi0+cGdfZmxhZ3MgPSAwOwogCQlhZGV2LT5leHRlcm5hbF9yZXZfaWQgPSBhZGV2LT5yZXZf
-aWQgKyAweDMyOwogCQlicmVhazsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L3ZlZ2ExMF9paC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvdmVnYTEwX2loLmMK
-aW5kZXggMTRlMGIwNC4uNWNiN2UyMyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvdmVnYTEwX2loLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvdmVnYTEw
-X2loLmMKQEAgLTY3NSwxMCArNjc1LDQ5IEBAIHN0YXRpYyBpbnQgdmVnYTEwX2loX3NvZnRfcmVz
-ZXQodm9pZCAqaGFuZGxlKQogCXJldHVybiAwOwogfQogCitzdGF0aWMgdm9pZCB2ZWdhMTBfaWhf
-dXBkYXRlX2Nsb2NrZ2F0aW5nX3N0YXRlKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LAorCQkJ
-CQkgICAgICAgYm9vbCBlbmFibGUpCit7CisJdWludDMyX3QgZGF0YSwgZGVmLCBmaWVsZF92YWw7
-CisKKwlpZiAoYWRldi0+Y2dfZmxhZ3MgJiBBTURfQ0dfU1VQUE9SVF9JSF9DRykgeworCQlkZWYg
-PSBkYXRhID0gUlJFRzMyX1NPQzE1KE9TU1NZUywgMCwgbW1JSF9DTEtfQ1RSTCk7CisJCWZpZWxk
-X3ZhbCA9IGVuYWJsZSA/IDAgOiAxOworCQkvKioKKwkJICogVmVnYTEwIGRvZXMgbm90IGhhdmUg
-SUhfUkVUUllfSU5UX0NBTV9NRU1fQ0xLX1NPRlRfT1ZFUlJJREUKKwkJICogYW5kIElIX0JVRkZF
-Ul9NRU1fQ0xLX1NPRlRfT1ZFUlJJREUgZmllbGQuCisJCSAqLworCQlpZiAoYWRldi0+YXNpY190
-eXBlID4gQ0hJUF9WRUdBMTApIHsKKwkJCWRhdGEgPSBSRUdfU0VUX0ZJRUxEKGRhdGEsIElIX0NM
-S19DVFJMLAorCQkJCSAgICAgSUhfUkVUUllfSU5UX0NBTV9NRU1fQ0xLX1NPRlRfT1ZFUlJJREUs
-IGZpZWxkX3ZhbCk7CisJCQlkYXRhID0gUkVHX1NFVF9GSUVMRChkYXRhLCBJSF9DTEtfQ1RSTCwK
-KwkJCQkgICAgIElIX0JVRkZFUl9NRU1fQ0xLX1NPRlRfT1ZFUlJJREUsIGZpZWxkX3ZhbCk7CisJ
-CX0KKworCQlkYXRhID0gUkVHX1NFVF9GSUVMRChkYXRhLCBJSF9DTEtfQ1RSTCwKKwkJCQkgICAg
-IERCVVNfTVVYX0NMS19TT0ZUX09WRVJSSURFLCBmaWVsZF92YWwpOworCQlkYXRhID0gUkVHX1NF
-VF9GSUVMRChkYXRhLCBJSF9DTEtfQ1RSTCwKKwkJCQkgICAgIE9TU1NZU19TSEFSRV9DTEtfU09G
-VF9PVkVSUklERSwgZmllbGRfdmFsKTsKKwkJZGF0YSA9IFJFR19TRVRfRklFTEQoZGF0YSwgSUhf
-Q0xLX0NUUkwsCisJCQkJICAgICBMSU1JVF9TTU5fQ0xLX1NPRlRfT1ZFUlJJREUsIGZpZWxkX3Zh
-bCk7CisJCWRhdGEgPSBSRUdfU0VUX0ZJRUxEKGRhdGEsIElIX0NMS19DVFJMLAorCQkJCSAgICAg
-RFlOX0NMS19TT0ZUX09WRVJSSURFLCBmaWVsZF92YWwpOworCQlkYXRhID0gUkVHX1NFVF9GSUVM
-RChkYXRhLCBJSF9DTEtfQ1RSTCwKKwkJCQkgICAgIFJFR19DTEtfU09GVF9PVkVSUklERSwgZmll
-bGRfdmFsKTsKKwkJaWYgKGRlZiAhPSBkYXRhKQorCQkJV1JFRzMyX1NPQzE1KE9TU1NZUywgMCwg
-bW1JSF9DTEtfQ1RSTCwgZGF0YSk7CisJfQorfQorCiBzdGF0aWMgaW50IHZlZ2ExMF9paF9zZXRf
-Y2xvY2tnYXRpbmdfc3RhdGUodm9pZCAqaGFuZGxlLAogCQkJCQkgIGVudW0gYW1kX2Nsb2NrZ2F0
-aW5nX3N0YXRlIHN0YXRlKQogeworCXN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gKHN0cnVj
-dCBhbWRncHVfZGV2aWNlICopaGFuZGxlOworCisJdmVnYTEwX2loX3VwZGF0ZV9jbG9ja2dhdGlu
-Z19zdGF0ZShhZGV2LAorCQkJCXN0YXRlID09IEFNRF9DR19TVEFURV9HQVRFID8gdHJ1ZSA6IGZh
-bHNlKTsKIAlyZXR1cm4gMDsKKwogfQogCiBzdGF0aWMgaW50IHZlZ2ExMF9paF9zZXRfcG93ZXJn
-YXRpbmdfc3RhdGUodm9pZCAqaGFuZGxlLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9pbmNsdWRlL2FzaWNfcmVnL29zcy9vc3NzeXNfNF8wX3NoX21hc2suaCBiL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvaW5jbHVkZS9hc2ljX3JlZy9vc3Mvb3Nzc3lzXzRfMF9zaF9tYXNrLmgKaW5kZXgg
-ZGM5ODk1YS4uMDk2ZDg3OCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9pbmNsdWRl
-L2FzaWNfcmVnL29zcy9vc3NzeXNfNF8wX3NoX21hc2suaAorKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2luY2x1ZGUvYXNpY19yZWcvb3NzL29zc3N5c180XzBfc2hfbWFzay5oCkBAIC01ODgsMTEg
-KzU4OCwxNSBAQAogI2RlZmluZSBJSF9TVE9STV9DTElFTlRfTElTVF9DTlRMX19DTElFTlQzMF9J
-U19TVE9STV9DTElFTlRfTUFTSyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAweDQwMDAwMDAwTAogI2RlZmluZSBJSF9TVE9STV9DTElFTlRfTElTVF9DTlRMX19D
-TElFTlQzMV9JU19TVE9STV9DTElFTlRfTUFTSyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAweDgwMDAwMDAwTAogLy9JSF9DTEtfQ1RSTAorI2RlZmluZSBJSF9D
-TEtfQ1RSTF9fSUhfUkVUUllfSU5UX0NBTV9NRU1fQ0xLX1NPRlRfT1ZFUlJJREVfX1NISUZUICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgxOQorI2RlZmluZSBJ
-SF9DTEtfQ1RSTF9fSUhfQlVGRkVSX01FTV9DTEtfU09GVF9PVkVSUklERV9fU0hJRlQgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAJCSAgMHgxYQogI2RlZmluZSBJ
-SF9DTEtfQ1RSTF9fREJVU19NVVhfQ0xLX1NPRlRfT1ZFUlJJREVfX1NISUZUICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDFiCiAjZGVmaW5l
-IElIX0NMS19DVFJMX19PU1NTWVNfU0hBUkVfQ0xLX1NPRlRfT1ZFUlJJREVfX1NISUZUICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MWMKICNkZWZp
-bmUgSUhfQ0xLX0NUUkxfX0xJTUlUX1NNTl9DTEtfU09GVF9PVkVSUklERV9fU0hJRlQgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgxZAogI2Rl
-ZmluZSBJSF9DTEtfQ1RSTF9fRFlOX0NMS19TT0ZUX09WRVJSSURFX19TSElGVCAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDFlCiAj
-ZGVmaW5lIElIX0NMS19DVFJMX19SRUdfQ0xLX1NPRlRfT1ZFUlJJREVfX1NISUZUICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MWYK
-KyNkZWZpbmUgSUhfQ0xLX0NUUkxfX0lIX1JFVFJZX0lOVF9DQU1fTUVNX0NMS19TT0ZUX09WRVJS
-SURFX01BU0sgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgw
-MjAwMDAwMEwKKyNkZWZpbmUgSUhfQ0xLX0NUUkxfX0lIX0JVRkZFUl9NRU1fQ0xLX1NPRlRfT1ZF
-UlJJREVfTUFTSyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAkJ
-ICAweDA0MDAwMDAwTAogI2RlZmluZSBJSF9DTEtfQ1RSTF9fREJVU19NVVhfQ0xLX1NPRlRfT1ZF
-UlJJREVfTUFTSyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAweDA4MDAwMDAwTAogI2RlZmluZSBJSF9DTEtfQ1RSTF9fT1NTU1lTX1NIQVJF
-X0NMS19TT0ZUX09WRVJSSURFX01BU0sgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAweDEwMDAwMDAwTAogI2RlZmluZSBJSF9DTEtfQ1RSTF9fTElN
-SVRfU01OX0NMS19TT0ZUX09WRVJSSURFX01BU0sgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDIwMDAwMDAwTAotLSAKMi43LjQKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGlu
-ZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============0993931912==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB329667CC068A0E76AE17E199A2860MN2PR12MB3296namp_"
+
+--_000_MN2PR12MB329667CC068A0E76AE17E199A2860MN2PR12MB3296namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
+
+Best Regards,
+Kevin
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Kenneth =
+Feng <kenneth.feng@amd.com>
+Sent: Thursday, September 26, 2019 4:47 PM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Feng, Kenneth <Kenneth.Feng@amd.com>
+Subject: [PATCH] drm/amd/amdgpu: add IH cg support on soc15 project
+
+enable/disable IH clock gating on soc15 projects.
+
+Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/soc15.c                 |  3 +-
+ drivers/gpu/drm/amd/amdgpu/vega10_ih.c             | 39 ++++++++++++++++++=
+++++
+ .../amd/include/asic_reg/oss/osssys_4_0_sh_mask.h  |  4 +++
+ 3 files changed, 45 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgp=
+u/soc15.c
+index 58818761..e40410e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -1166,7 +1166,8 @@ static int soc15_common_early_init(void *handle)
+                         AMD_CG_SUPPORT_SDMA_MGCG |
+                         AMD_CG_SUPPORT_SDMA_LS |
+                         AMD_CG_SUPPORT_MC_MGCG |
+-                       AMD_CG_SUPPORT_MC_LS;
++                       AMD_CG_SUPPORT_MC_LS |
++                       AMD_CG_SUPPORT_IH_CG;
+                 adev->pg_flags =3D 0;
+                 adev->external_rev_id =3D adev->rev_id + 0x32;
+                 break;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c b/drivers/gpu/drm/amd/a=
+mdgpu/vega10_ih.c
+index 14e0b04..5cb7e23 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
+@@ -675,10 +675,49 @@ static int vega10_ih_soft_reset(void *handle)
+         return 0;
+ }
+
++static void vega10_ih_update_clockgating_state(struct amdgpu_device *adev,
++                                              bool enable)
++{
++       uint32_t data, def, field_val;
++
++       if (adev->cg_flags & AMD_CG_SUPPORT_IH_CG) {
++               def =3D data =3D RREG32_SOC15(OSSSYS, 0, mmIH_CLK_CTRL);
++               field_val =3D enable ? 0 : 1;
++               /**
++                * Vega10 does not have IH_RETRY_INT_CAM_MEM_CLK_SOFT_OVERR=
+IDE
++                * and IH_BUFFER_MEM_CLK_SOFT_OVERRIDE field.
++                */
++               if (adev->asic_type > CHIP_VEGA10) {
++                       data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
++                                    IH_RETRY_INT_CAM_MEM_CLK_SOFT_OVERRIDE=
+, field_val);
++                       data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
++                                    IH_BUFFER_MEM_CLK_SOFT_OVERRIDE, field=
+_val);
++               }
++
++               data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
++                                    DBUS_MUX_CLK_SOFT_OVERRIDE, field_val)=
+;
++               data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
++                                    OSSSYS_SHARE_CLK_SOFT_OVERRIDE, field_=
+val);
++               data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
++                                    LIMIT_SMN_CLK_SOFT_OVERRIDE, field_val=
+);
++               data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
++                                    DYN_CLK_SOFT_OVERRIDE, field_val);
++               data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
++                                    REG_CLK_SOFT_OVERRIDE, field_val);
++               if (def !=3D data)
++                       WREG32_SOC15(OSSSYS, 0, mmIH_CLK_CTRL, data);
++       }
++}
++
+ static int vega10_ih_set_clockgating_state(void *handle,
+                                           enum amd_clockgating_state state=
+)
+ {
++       struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
++
++       vega10_ih_update_clockgating_state(adev,
++                               state =3D=3D AMD_CG_STATE_GATE ? true : fal=
+se);
+         return 0;
++
+ }
+
+ static int vega10_ih_set_powergating_state(void *handle,
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_4_0_sh_mask.h =
+b/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_4_0_sh_mask.h
+index dc9895a..096d878 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_4_0_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_4_0_sh_mask.h
+@@ -588,11 +588,15 @@
+ #define IH_STORM_CLIENT_LIST_CNTL__CLIENT30_IS_STORM_CLIENT_MASK          =
+                                    0x40000000L
+ #define IH_STORM_CLIENT_LIST_CNTL__CLIENT31_IS_STORM_CLIENT_MASK          =
+                                    0x80000000L
+ //IH_CLK_CTRL
++#define IH_CLK_CTRL__IH_RETRY_INT_CAM_MEM_CLK_SOFT_OVERRIDE__SHIFT        =
+                                     0x19
++#define IH_CLK_CTRL__IH_BUFFER_MEM_CLK_SOFT_OVERRIDE__SHIFT               =
+                                                0x1a
+ #define IH_CLK_CTRL__DBUS_MUX_CLK_SOFT_OVERRIDE__SHIFT                    =
+                                    0x1b
+ #define IH_CLK_CTRL__OSSSYS_SHARE_CLK_SOFT_OVERRIDE__SHIFT                =
+                                    0x1c
+ #define IH_CLK_CTRL__LIMIT_SMN_CLK_SOFT_OVERRIDE__SHIFT                   =
+                                    0x1d
+ #define IH_CLK_CTRL__DYN_CLK_SOFT_OVERRIDE__SHIFT                         =
+                                    0x1e
+ #define IH_CLK_CTRL__REG_CLK_SOFT_OVERRIDE__SHIFT                         =
+                                    0x1f
++#define IH_CLK_CTRL__IH_RETRY_INT_CAM_MEM_CLK_SOFT_OVERRIDE_MASK          =
+                                    0x02000000L
++#define IH_CLK_CTRL__IH_BUFFER_MEM_CLK_SOFT_OVERRIDE_MASK                 =
+                                        0x04000000L
+ #define IH_CLK_CTRL__DBUS_MUX_CLK_SOFT_OVERRIDE_MASK                      =
+                                    0x08000000L
+ #define IH_CLK_CTRL__OSSSYS_SHARE_CLK_SOFT_OVERRIDE_MASK                  =
+                                    0x10000000L
+ #define IH_CLK_CTRL__LIMIT_SMN_CLK_SOFT_OVERRIDE_MASK                     =
+                                    0x20000000L
+--
+2.7.4
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_MN2PR12MB329667CC068A0E76AE17E199A2860MN2PR12MB3296namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"appendonsend" style=3D"font-family: Calibri, Arial, Helvetica, s=
+ans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Reviewed-by: Kevin Wang &lt;kevin1.wang@amd.com&gt;</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Best Regards,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Kevin</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Kenneth Feng &lt;kenneth.feng=
+@amd.com&gt;<br>
+<b>Sent:</b> Thursday, September 26, 2019 4:47 PM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Feng, Kenneth &lt;Kenneth.Feng@amd.com&gt;<br>
+<b>Subject:</b> [PATCH] drm/amd/amdgpu: add IH cg support on soc15 project<=
+/font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+>
+<div class=3D"PlainText">enable/disable IH clock gating on soc15 projects.<=
+br>
+<br>
+Signed-off-by: Kenneth Feng &lt;kenneth.feng@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/soc15.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 3 &#4=
+3;-<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/vega10_ih.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 39 &#43;&#43;&#43;&#43;&#43;&#4=
+3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#4=
+3;&#43;<br>
+&nbsp;.../amd/include/asic_reg/oss/osssys_4_0_sh_mask.h&nbsp; |&nbsp; 4 &#4=
+3;&#43;&#43;<br>
+&nbsp;3 files changed, 45 insertions(&#43;), 1 deletion(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgp=
+u/soc15.c<br>
+index 58818761..e40410e 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+@@ -1166,7 &#43;1166,8 @@ static int soc15_common_early_init(void *handle)<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMD_C=
+G_SUPPORT_SDMA_MGCG |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMD_C=
+G_SUPPORT_SDMA_LS |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMD_C=
+G_SUPPORT_MC_MGCG |<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMD_CG_SUPPORT_M=
+C_LS;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMD_CG_SUPPO=
+RT_MC_LS |<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMD_CG_SUPPO=
+RT_IH_CG;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; adev-&gt;pg_flags =3D 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; adev-&gt;external_rev_id =3D adev-&gt;rev_id &#43; 0x=
+32;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c b/drivers/gpu/drm/amd/a=
+mdgpu/vega10_ih.c<br>
+index 14e0b04..5cb7e23 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c<br>
+@@ -675,10 &#43;675,49 @@ static int vega10_ih_soft_reset(void *handle)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&nbsp;}<br>
+&nbsp;<br>
+&#43;static void vega10_ih_update_clockgating_state(struct amdgpu_device *a=
+dev,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool enable)<br>
+&#43;{<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t data, def, field_val;<br=
+>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;cg_flags &amp; AMD_C=
+G_SUPPORT_IH_CG) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; def =3D data =3D RREG32_SOC15(OSSSYS, 0, mmIH_CLK_CTRL);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; field_val =3D enable ? 0 : 1;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; /**<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; * Vega10 does not have IH_RETRY_INT_CAM_MEM_CLK_SOFT_O=
+VERRIDE<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; * and IH_BUFFER_MEM_CLK_SOFT_OVERRIDE field.<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; */<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (adev-&gt;asic_type &gt; CHIP_VEGA10) {<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data =3D REG=
+_SET_FIELD(data, IH_CLK_CTRL,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IH_RETRY_=
+INT_CAM_MEM_CLK_SOFT_OVERRIDE, field_val);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data =3D REG=
+_SET_FIELD(data, IH_CLK_CTRL,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IH_BUFFER=
+_MEM_CLK_SOFT_OVERRIDE, field_val);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; }<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; data =3D REG_SET_FIELD(data, IH_CLK_CTRL,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DBUS_MUX_=
+CLK_SOFT_OVERRIDE, field_val);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; data =3D REG_SET_FIELD(data, IH_CLK_CTRL,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OSSSYS_SH=
+ARE_CLK_SOFT_OVERRIDE, field_val);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; data =3D REG_SET_FIELD(data, IH_CLK_CTRL,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LIMIT_SMN=
+_CLK_SOFT_OVERRIDE, field_val);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; data =3D REG_SET_FIELD(data, IH_CLK_CTRL,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DYN_CLK_S=
+OFT_OVERRIDE, field_val);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; data =3D REG_SET_FIELD(data, IH_CLK_CTRL,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; REG_CLK_S=
+OFT_OVERRIDE, field_val);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; if (def !=3D data)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15=
+(OSSSYS, 0, mmIH_CLK_CTRL, data);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&#43;}<br>
+&#43;<br>
+&nbsp;static int vega10_ih_set_clockgating_state(void *handle,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; enum amd_clockgating_state state)<br>
+&nbsp;{<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D (s=
+truct amdgpu_device *)handle;<br>
+&#43;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vega10_ih_update_clockgating_stat=
+e(adev,<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; state =3D=3D AMD_CG_STATE_GATE ? true :=
+ false);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&#43;<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;static int vega10_ih_set_powergating_state(void *handle,<br>
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_4_0_sh_mask.h =
+b/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_4_0_sh_mask.h<br>
+index dc9895a..096d878 100644<br>
+--- a/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_4_0_sh_mask.h<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_4_0_sh_ma=
+sk.h<br>
+@@ -588,11 &#43;588,15 @@<br>
+&nbsp;#define IH_STORM_CLIENT_LIST_CNTL__CLIENT30_IS_STORM_CLIENT_MASK&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x40000000L<br>
+&nbsp;#define IH_STORM_CLIENT_LIST_CNTL__CLIENT31_IS_STORM_CLIENT_MASK&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x80000000L<br>
+&nbsp;//IH_CLK_CTRL<br>
+&#43;#define IH_CLK_CTRL__IH_RETRY_INT_CAM_MEM_CLK_SOFT_OVERRIDE__SHIFT&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x19<br>
+&#43;#define IH_CLK_CTRL__IH_BUFFER_MEM_CLK_SOFT_OVERRIDE__SHIFT&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x1a<br>
+&nbsp;#define IH_CLK_CTRL__DBUS_MUX_CLK_SOFT_OVERRIDE__SHIFT&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; 0x1b<br>
+&nbsp;#define IH_CLK_CTRL__OSSSYS_SHARE_CLK_SOFT_OVERRIDE__SHIFT&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x1c=
+<br>
+&nbsp;#define IH_CLK_CTRL__LIMIT_SMN_CLK_SOFT_OVERRIDE__SHIFT&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; 0x1d<br>
+&nbsp;#define IH_CLK_CTRL__DYN_CLK_SOFT_OVERRIDE__SHIFT&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x1e<br>
+&nbsp;#define IH_CLK_CTRL__REG_CLK_SOFT_OVERRIDE__SHIFT&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x1f<br>
+&#43;#define IH_CLK_CTRL__IH_RETRY_INT_CAM_MEM_CLK_SOFT_OVERRIDE_MASK&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x02000000L<br>
+&#43;#define IH_CLK_CTRL__IH_BUFFER_MEM_CLK_SOFT_OVERRIDE_MASK&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; 0x04000000L<br>
+&nbsp;#define IH_CLK_CTRL__DBUS_MUX_CLK_SOFT_OVERRIDE_MASK&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; 0x08000000L<br>
+&nbsp;#define IH_CLK_CTRL__OSSSYS_SHARE_CLK_SOFT_OVERRIDE_MASK&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; 0x10000000L<br>
+&nbsp;#define IH_CLK_CTRL__LIMIT_SMN_CLK_SOFT_OVERRIDE_MASK&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; 0x20000000L<br>
+-- <br>
+2.7.4<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
+</span></font></div>
+</body>
+</html>
+
+--_000_MN2PR12MB329667CC068A0E76AE17E199A2860MN2PR12MB3296namp_--
+
+--===============0993931912==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0993931912==--
