@@ -2,87 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C93BF7AB
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2019 19:38:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0960BF8A1
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2019 20:02:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCE2A6EDB0;
-	Thu, 26 Sep 2019 17:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AB136ECEE;
+	Thu, 26 Sep 2019 18:02:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr740088.outbound.protection.outlook.com [40.107.74.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D70496ECEE
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2019 17:38:21 +0000 (UTC)
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700074.outbound.protection.outlook.com [40.107.70.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 372A66ECEE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2019 18:02:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EVnnFtaHngm+KNq/WqOdhAa5y2jcCCQUVYT52h+POdYevgYK6mLPfAwqvEpY9Sk4WYLm8+S+T9nxp1j27YgDFAlLw9U9fsvv9+lExbWky5fb52LwSfAiSRCe7rWf2a6L7kngbg0VWH8lorpMe6+meNCWOgNOipyouCDIOKZvRs1SPaheFkeqyfDNk4KbJGBVR+ra8UsYn8WPEJlsgrpLXpid+LP1axAO2jYlkEx3QozV5drMTyk/8pcmff3C4ULD50jAOh6AbCVD1GmfdkHFpmpbJtnaYzvJS7G4TWjlKqW04Y1kcf5bystcl0NRfF99EvGPOq2zN+b9uRKQUbmxTA==
+ b=Q+TXtF6BLAPtfGLhvTJWI/KU3hO6jGHYeot+BCiID0UKuvN3XrYsL4d9mpPH6nytWvx5SJxs64E20jY1j0whHaCYjIMmiz/jJMHbioViJhDIFXKaDv3wiUzS3nlgIV8XV710qTNZuzyoWG1Cjr3zec7KD3Bs/xsoCINPaGzIOk9DD833RJT8Zkum3fYtaZtHHQXAETG71i3tryGY8leiK7m6xVFRepGP4z4LsoR/4uACAKf9zWWEWPLesjK1i3u9TaZHcm92uzT6lW70BgKLeWPfmWgSt5O1QOjU+hw6XngDUskPubblpiD6gP2nCY4fFjn8HC2OBwP1uaajqMDGbA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o+IDvc4+JOAw49YxhpfNnh84hXAQU3uTpFFL2KbORYE=;
- b=c/sfC72pBUDHz12jtgkrSes08U0mzhpvoAv8L56kUiZHCsXB95epwNxkTU1FBty052oHhuCJI7qGwAX+4gcEMcHiHxN+ocCb3zCDoG7GC6E+ct8RRNmOVn6qeG5rkuCHERZIRAi1P3lOWFL3f8VK0l8T5OjOsOHZXzOdGn6cwwRwnGlMxz6qBM9NesQE8J3+5blGNnP5p0p4pn9CocMWfyxV1iGrQdDDk7WtrZv41iTzr3z6B8zjGNGgXA9S+Fuz30QBjuvfB7bbczvcOhDeC2eg35lMPiZTo7y4KPDveLukHg+lRMbEVK2420NRYSalQ9vt9oOdaXPqnLn9L+6l+A==
+ bh=0pb+BaBtLVsBUzLJOUdoi2VoOelL277mGun9dR6miw8=;
+ b=OcuNmolf+HoSlryioA0036lLL3VPsLIwzEekL82pPrSFx/WM/4OmU/b6BwD4GaNsapsdi6Sl61X1hVTqVQF15DYXEvHOx+/4e0C8N512SkXlYIGGNso41EAcmv9kY0T5JlQ3I0SQKTJVT8yLx8RB9QJn3jitjmoohzrMn4OHMeDvoy+AmMuoHAZSIWmWF4QOy84pVUfZ3x2K8Vp+VvbLVf2POPQp1OCSVahsHMU5BDH8OjuPf8TsfGg3NGwgVymmLJzsAr5kcw6JXOnHbt6+b6M/ldxAJuPkW6+4vECUilnhNKfpSGRfWjYZLEW4bziOmBRmRUM5fXCmKT6B+Re3dQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from BN8PR12MB3602.namprd12.prod.outlook.com (20.178.212.86) by
- BN8PR12MB3266.namprd12.prod.outlook.com (20.179.67.145) with Microsoft SMTP
+Received: from DM5PR12MB1705.namprd12.prod.outlook.com (10.175.88.22) by
+ DM5PR12MB2358.namprd12.prod.outlook.com (52.132.140.162) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.17; Thu, 26 Sep 2019 17:38:17 +0000
-Received: from BN8PR12MB3602.namprd12.prod.outlook.com
- ([fe80::55d8:90a7:d1dc:e9e3]) by BN8PR12MB3602.namprd12.prod.outlook.com
- ([fe80::55d8:90a7:d1dc:e9e3%7]) with mapi id 15.20.2305.016; Thu, 26 Sep 2019
- 17:38:17 +0000
-From: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>, Alex Deucher
- <alexdeucher@gmail.com>
+ 15.20.2305.15; Thu, 26 Sep 2019 18:02:23 +0000
+Received: from DM5PR12MB1705.namprd12.prod.outlook.com
+ ([fe80::9d43:b3d4:9ef:29fc]) by DM5PR12MB1705.namprd12.prod.outlook.com
+ ([fe80::9d43:b3d4:9ef:29fc%8]) with mapi id 15.20.2284.028; Thu, 26 Sep 2019
+ 18:02:23 +0000
+From: "Koenig, Christian" <Christian.Koenig@amd.com>
+To: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
 Subject: Re: [PATCH] drm/amdgpu/gmc10: apply the 'invalidation from sdma'
  workaround for navi
 Thread-Topic: [PATCH] drm/amdgpu/gmc10: apply the 'invalidation from sdma'
  workaround for navi
-Thread-Index: AQHVdHV7HvevlndjS0WtCjpuZ5J8mac+ODor
-Date: Thu, 26 Sep 2019 17:38:16 +0000
-Message-ID: <BN8PR12MB3602A7F8546E1C581D47B38B89860@BN8PR12MB3602.namprd12.prod.outlook.com>
-References: <93f9508c-2871-4d48-9407-a0c3a6525bab@email.android.com>
-In-Reply-To: <93f9508c-2871-4d48-9407-a0c3a6525bab@email.android.com>
-Accept-Language: en-US
-Content-Language: en-US
+Thread-Index: AQHVdHV7HvevlndjS0WtCjpuZ5J8mac+ODorgAAH8xI=
+Date: Thu, 26 Sep 2019 18:02:23 +0000
+Message-ID: <6c2ee5a6-8283-4b36-9177-36ddb22a60ad@email.android.com>
+References: <93f9508c-2871-4d48-9407-a0c3a6525bab@email.android.com>,
+ <BN8PR12MB3602A7F8546E1C581D47B38B89860@BN8PR12MB3602.namprd12.prod.outlook.com>
+In-Reply-To: <BN8PR12MB3602A7F8546E1C581D47B38B89860@BN8PR12MB3602.namprd12.prod.outlook.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [112.64.61.23]
+x-originating-ip: [2a02:908:1252:fb60:1d5b:5f2f:1b40:60cc]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9240c748-2fc1-44db-3a20-08d742a850ac
+x-ms-office365-filtering-correlation-id: 391dc19a-3a42-4be9-f0e5-08d742abaebb
 x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: BN8PR12MB3266:
+x-ms-traffictypediagnostic: DM5PR12MB2358:
 x-ms-exchange-purlcount: 1
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN8PR12MB3266960E58BADE6B34FFC8F489860@BN8PR12MB3266.namprd12.prod.outlook.com>
+x-microsoft-antispam-prvs: <DM5PR12MB235875F0FD5745E930A2CBD083860@DM5PR12MB2358.namprd12.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 0172F0EF77
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(346002)(376002)(396003)(39860400002)(136003)(199004)(189003)(8936002)(478600001)(316002)(76116006)(81156014)(81166006)(8676002)(66556008)(66476007)(66946007)(64756008)(91956017)(66446008)(6246003)(4326008)(966005)(54896002)(236005)(55016002)(9686003)(6436002)(6306002)(14444005)(110136005)(229853002)(256004)(105004)(19627405001)(446003)(11346002)(486006)(74316002)(71190400001)(99286004)(71200400001)(33656002)(54906003)(14454004)(76176011)(66066001)(86362001)(52536014)(606006)(5660300002)(66574012)(25786009)(476003)(7736002)(7696005)(26005)(6506007)(102836004)(186003)(53546011)(3846002)(2906002)(6116002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB3266;
- H:BN8PR12MB3602.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(396003)(136003)(366004)(346002)(39860400002)(376002)(199004)(189003)(8936002)(478600001)(25786009)(11346002)(4326008)(76176011)(46003)(31686004)(316002)(2906002)(446003)(54906003)(476003)(966005)(6246003)(186003)(91956017)(81166006)(76116006)(606006)(71190400001)(6116002)(71200400001)(64756008)(66476007)(66446008)(6506007)(53546011)(486006)(6862004)(14454004)(6436002)(19627405001)(66556008)(66946007)(6486002)(6306002)(236005)(9686003)(6512007)(54896002)(86362001)(102836004)(229853002)(31696002)(81156014)(8676002)(6636002)(99286004)(7736002)(256004)(5660300002)(66574012)(14444005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2358;
+ H:DM5PR12MB1705.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 9hgans+vRLEZX9RRdt4Ofjdp8VWjfBczoEeYHvWeiLrCxtdZhDv7/GFxFsYrh1AGAupnQ5pavtH/7bHIZ73EJnZz6MKqW+6EUc3MOudXZQpGYY3X+TOm52s9MFWJPNGrwNJHJqD5AT0HEQ9UdsVPsA4ghqmWNJ4XhhzrbSObm3IpWpnZfbKb/KZzuY1OrwXsfg0koJdSShGqtNHLTd/7uGuBKbHqF5nVK0A2RlWr8rM4PiemcROIHt5TMV5hOhwtfvik3KQ7ArTNxn1oJT0Tm0FEWBmuzuIUo9F6bWjpE3is+IYiUVh3IoyAvkheMrhM1VHw7tZPecZ6n0i2TKId5EOPfDl1cPJ02JNpOiGLkVvG2MFQKk6YIDEy3x2UUCE1u/aAlXszH266yv46CsNcw4IKOJEcEFqQW15cLHHxjjc0bQVpprNJkIsdELAWyx8TPK91tiQoacCQBsfNuRflvA==
+x-microsoft-antispam-message-info: Jb9WNEirkdC1OUCL00VvgytsCZ2vAF7H9JDA5zORcftKBMyDAxB1+Xd56YdwzRmLkbxZrWCm2Kcztb4yvRpyCxY/0trb3hk9jfs/feoWu/x5GTBRMFeRRzYuuSXoAlyRfqkNekqIwIN7Nj1ccUmpnKYXw/HlODgMTBU25z/2bG2VczMCdcnZPJa32HHx53f8HqWsoNeXwo/8qcqkQ75KRQ/1tLdmpwhnLVYxqmaFKdsz8juq2yhxuf/shcfwjDBGfIc6/uPrcKGGGD/PoUti63D2AxO9CWLB4djGuF43yH82cMNRDHwGF+6DsqLNyDdXQWh9lIItVeiuTQ88SWIHC7lx6R+dSZyD75UNWn7OUOZBJMZ+Vd9Fteim+H5vH8xRJzwusdUrPr/Uh0ewcFexCiWHtuZLFN7EX8i2wDQorN55PZ9zfrw/EsQq8uGsjcniaK3aEzVfN3Imt/MdT+/33w==
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9240c748-2fc1-44db-3a20-08d742a850ac
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 17:38:16.8479 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 391dc19a-3a42-4be9-f0e5-08d742abaebb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 18:02:23.2408 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MKzPoKxoAggBdTKRj4bvNZXoNpI8+dTBULOEQO1Dvdnrqt1b/nxClzAeO9RCBMHB
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3266
+X-MS-Exchange-CrossTenant-userprincipalname: 6pg5xl/BOc9QpiSNmRF5NPTAfirZwL6TjVcjgE+hNKgkOScPlNATUH6yKNFf17qW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2358
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o+IDvc4+JOAw49YxhpfNnh84hXAQU3uTpFFL2KbORYE=;
- b=hx9g7EkxHsdG4OpVDfqkv3DtCP3uaRbQe9WUyI8wOZ0Kb2kU8yHRVvqb1+kG/W5YoMP/5MLB8UkPlB6xs3bviLyTAhCUGbmv2OwU+0zMaPJKIAyGZR8HhWiT1WrgIxZVGlfM5h3i6ed7tS4Mfr3iV1eHNnIuIT7XWKMG/nUo1oM=
+ bh=0pb+BaBtLVsBUzLJOUdoi2VoOelL277mGun9dR6miw8=;
+ b=2u17bJYdVAfjyW0YdhDZ9qT88AVdeIs3icSufBMqciNNG1CAlY8E89Lpt5XzNJXIdM7HWt3DEqsFlMzkcdNXrL2jTwS8OYrXdsAPzXFc/4zN8P3C6y9A6mSFD13jfaA6S+4bguWECKrTDTi3IWs/lTSwYmRjej5OonYd1Nvp8EI=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Xiaojie.Yuan@amd.com; 
+ smtp.mailfrom=Christian.Koenig@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -94,21 +94,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+Cc: Alex Deucher <alexdeucher@gmail.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0685562371=="
+Content-Type: multipart/mixed; boundary="===============1396212037=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0685562371==
-Content-Language: en-US
+--===============1396212037==
+Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="_000_BN8PR12MB3602A7F8546E1C581D47B38B89860BN8PR12MB3602namp_"
+	boundary="_000_6c2ee5a682834b36917736ddb22a60ademailandroidcom_"
 
---_000_BN8PR12MB3602A7F8546E1C581D47B38B89860BN8PR12MB3602namp_
+--_000_6c2ee5a682834b36917736ddb22a60ademailandroidcom_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+Well then you didn't figured out the root cause correctly.
+
+This is to avoid data corruption with the SDMA on Navi 10/14 and should def=
+initely not applied to Navi 12.
+
+The hardware team went through quite some work to avoid this.
+
+Christian.
+
+Am 26.09.2019 19:38 schrieb "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>:
  Hi Alex / Christian,
 
 When gfxoff is enabled for Navi12, I observed sdma0 hang while launching de=
@@ -276,7 +287,7 @@ device *adev, uint32_t vmid,
 >
 
 
---_000_BN8PR12MB3602A7F8546E1C581D47B38B89860BN8PR12MB3602namp_
+--_000_6c2ee5a682834b36917736ddb22a60ademailandroidcom_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -284,40 +295,66 @@ Content-Transfer-Encoding: quoted-printable
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
 1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
+<meta content=3D"text/html; charset=3Diso-8859-1">
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
 </head>
 <body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
- color: rgb(0, 0, 0);">
+<div dir=3D"auto">Well then you didn't figured out the root cause correctly=
+.
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">This is to avoid data corruption with the SDMA on Navi 10=
+/14 and should definitely not applied to Navi 12.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">The hardware team went through quite some work to avoid t=
+his.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Christian.</div>
+</div>
+<div class=3D"gmail_extra"><br>
+<div class=3D"gmail_quote">Am 26.09.2019 19:38 schrieb &quot;Yuan, Xiaojie&=
+quot; &lt;Xiaojie.Yuan@amd.com&gt;:<br type=3D"attribution">
+</div>
+</div>
+<div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:11pt; col=
+or:rgb(0,0,0)">
 &nbsp;Hi Alex / Christian,</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:11pt; col=
+or:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:11pt; col=
+or:rgb(0,0,0)">
 When gfxoff is enabled for Navi12, I observed sdma0 hang while launching de=
 sktop. When this workaround is applied, the issue fades away.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:11pt; col=
+or:rgb(0,0,0)">
 That's why I included this workaround for Navi12 as well.<br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:11pt; col=
+or:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:11pt; col=
+or:rgb(0,0,0)">
 BR,</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
- color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:11pt; col=
+or:rgb(0,0,0)">
 Xiaojie<br>
 </div>
 <div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Koenig, Christian &lt=
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Koenig, Christian &lt=
 ;Christian.Koenig@amd.com&gt;<br>
 <b>Sent:</b> Thursday, September 26, 2019 10:20 PM<br>
 <b>To:</b> Alex Deucher &lt;alexdeucher@gmail.com&gt;<br>
@@ -542,12 +579,13 @@ man.gtt_window_lock);<br>
 </div>
 </div>
 </div>
+</div>
 </body>
 </html>
 
---_000_BN8PR12MB3602A7F8546E1C581D47B38B89860BN8PR12MB3602namp_--
+--_000_6c2ee5a682834b36917736ddb22a60ademailandroidcom_--
 
---===============0685562371==
+--===============1396212037==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -557,4 +595,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============0685562371==--
+--===============1396212037==--
