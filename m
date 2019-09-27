@@ -2,95 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 094D2C0724
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Sep 2019 16:18:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 142FDC073E
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Sep 2019 16:25:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E2066E895;
-	Fri, 27 Sep 2019 14:18:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F6B26E8D6;
+	Fri, 27 Sep 2019 14:24:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM05-BY2-obe.outbound.protection.outlook.com
- (mail-eopbgr710067.outbound.protection.outlook.com [40.107.71.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6275A6E895
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Sep 2019 14:18:41 +0000 (UTC)
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+ (mail-eopbgr800045.outbound.protection.outlook.com [40.107.80.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA3E6E8D6
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Sep 2019 14:24:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AaBtEDucPIRaTpAtycdFEVECD2Zq3qpMbv/Jy3PLn+c4rPPtKcjZ8V9EP1k6O+E+kdv4FBvWYUDp2tIjlwNzBBLkdDe8y4kMUNhU/pzbBTakDULshNhTDdvhp7ilUTHhe6hCZdnwIQMaJ9t64UIzOBmHFX1+QT5rO0wjMvevcaaQR6puojpKaek4HAPcmHbOAtDDewIHO4njETLTkYNjMysrvDIxOLo6MJSo3NrDx43kBAPJlmkAmcZ4ny2siGp9Yysa6UmP/VsRT0UuPOOLwqg/THzu9sEqZVjg4U1+47N2AwoyeTH2ZgytASsQU1pp4ryOQQwpFFO/q5Z37BZ7Mw==
+ b=Juv30DLSriv6ftnJfSfBb2HJ3zsL1siRo5oaMQlXiRgSe08mHGKKDKykFalymVSpJomrTIR2ewgg7euu0btMdJ5VXzLM9dHOYSNHfuXSv7PxxvlyclB6RAVOEeR90oz4l2a3iNjBckc+lr8V9Iv5zfMAD6eLiuJtnPehYKdszxWUfwEEsqRbnVbyG/ULafiKK2dosL6MDTcC8nO3cTw73srVmmtbgcNnnHjLeF3mUq5EhZ101KZjB4vE2eG1EoQwtjrc9siNIr0wjCQNby+lzCK9vZtoBIMCkUS/R7NLpsLCsaTsVQiQg+9pnXN4kN0Nm+MAgbcAe4KL5OIZluC1hQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rTzvkdf/opUwm956Is59vrV+pWR94m+QQ9dy8mC2z+0=;
- b=Md1xDaS9sjykeWObhZ3F3sTAd/S07uaT/51ZNwEne4T5YRNsIj6VXMU7fK8MkOpxc8J3SRoX+gA3ZX+fZihrU1pncMhIPnao6XEpV6m+8QfMNlE0ZYe44cXR+1sfss8C+UFO+oB17VPFZuIrWUI6QjVSb7Dov3Ys9IY/A9z6CZDXohAcRJbp4o7gQstmKqOrGQcYQajRjlsW7ivzvO76VneTACIddZqHNCtMS1V641oI/7ymNzxqeMgjRSe67r+QbaXh6OHzPqFRYdjnjbRPCjovZSdn7Q3Zp/Kr5RIbHTDQ3ItqlkCfrM1hHgc7Eh8gJKQrKqsOM+szpKcehu9fvg==
+ bh=aWGrUAWpBBP+BXUaSZJk4wopo2MqduP+epFIlBgkVWY=;
+ b=bGvh4JRXPyf1lXSqT5z5oSwvTFmCfUtn4RLIOZ8YRP3Wp9lGkZnp4SIO3+imbkdfMp0w7OkZhiXFGr8LFYUtqyfjwsPe8LeSza1wdBgRqBVdUd/nm4AzHPZwbs895mck8VXxtb26mISg7aMxY/uXW2G8dRZJRi1kcUeX2UcH+XplJscVsOY6JzlywjmUltsPFVF/0GLLUh14hLWKZGf5s48AohU2jSCP7lFTR1GREGu5uLqo1mtz1J7DXF4fEz/c5xTULqJqTAQiNGrY7oosYRj67K0UoYWyShkzyrE6WFRv2M7gRarX/nf8QxxRh4hjoYCZbH9TQdYuCZWZpMD6dw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from DM6PR12MB3947.namprd12.prod.outlook.com (10.255.174.156) by
- DM6PR12MB3673.namprd12.prod.outlook.com (10.255.76.78) with Microsoft SMTP
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
+ BN6PR12MB1186.namprd12.prod.outlook.com (10.168.227.8) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.20; Fri, 27 Sep 2019 14:18:40 +0000
-Received: from DM6PR12MB3947.namprd12.prod.outlook.com
- ([fe80::3d2a:29d4:df8:4d5]) by DM6PR12MB3947.namprd12.prod.outlook.com
- ([fe80::3d2a:29d4:df8:4d5%2]) with mapi id 15.20.2284.023; Fri, 27 Sep 2019
- 14:18:40 +0000
-From: "Kuehling, Felix" <Felix.Kuehling@amd.com>
-To: "Liang, Prike" <Prike.Liang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ 15.20.2284.26; Fri, 27 Sep 2019 14:24:55 +0000
+Received: from BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::a930:a648:d4d2:d25c]) by BN6PR12MB1809.namprd12.prod.outlook.com
+ ([fe80::a930:a648:d4d2:d25c%12]) with mapi id 15.20.2284.023; Fri, 27 Sep
+ 2019 14:24:55 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Quan, Evan" <Evan.Quan@amd.com>, "Wang, Kevin(Yang)"
+ <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdkfd: fix kgd2kfd_device_init() definition conflict
- error
-Thread-Topic: [PATCH] drm/amdkfd: fix kgd2kfd_device_init() definition
- conflict error
-Thread-Index: AQHVdOy5Gdeati0HikqkW7SHta/wu6c/kw6A
-Date: Fri, 27 Sep 2019 14:18:40 +0000
-Message-ID: <c7587938-62b1-e050-5d0f-073f94827e51@amd.com>
-References: <1569558805-30951-1-git-send-email-Prike.Liang@amd.com>
-In-Reply-To: <1569558805-30951-1-git-send-email-Prike.Liang@amd.com>
+Subject: Re: [PATCH 2/2] drm/amd/powerplay: add sensor lock support for smu
+Thread-Topic: [PATCH 2/2] drm/amd/powerplay: add sensor lock support for smu
+Thread-Index: AQHVdEhKjB9KkPy8+kCbwmdh62pkwac94XiAgAAMQACAACGIYYAAqyoAgADblGQ=
+Date: Fri, 27 Sep 2019 14:24:55 +0000
+Message-ID: <BN6PR12MB1809E0DE29127C6BB82A8967F7810@BN6PR12MB1809.namprd12.prod.outlook.com>
+References: <20190926085607.2510-1-kevin1.wang@amd.com>
+ <20190926085607.2510-2-kevin1.wang@amd.com>,
+ <MN2PR12MB334488D05D2FAEF84C6D550EE4860@MN2PR12MB3344.namprd12.prod.outlook.com>,
+ <MN2PR12MB3296504F830A8D72700D11B1A2860@MN2PR12MB3296.namprd12.prod.outlook.com>
+ <BN6PR12MB180969DC3D8DCB2FBE655DB8F7860@BN6PR12MB1809.namprd12.prod.outlook.com>,
+ <MN2PR12MB334452EBB72B75C0B7A0E870E4810@MN2PR12MB3344.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB334452EBB72B75C0B7A0E870E4810@MN2PR12MB3344.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [165.204.54.211]
-user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-x-clientproxiedby: YTOPR0101CA0024.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:15::37) To DM6PR12MB3947.namprd12.prod.outlook.com
- (2603:10b6:5:1cb::28)
-x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [71.219.73.178]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4be54c1f-9a93-4c51-bd1e-08d743559816
+x-ms-office365-filtering-correlation-id: e703d5b2-7dd3-4c48-725a-08d743567819
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:DM6PR12MB3673; 
-x-ms-traffictypediagnostic: DM6PR12MB3673:
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+ SRVR:BN6PR12MB1186; 
+x-ms-traffictypediagnostic: BN6PR12MB1186:
+x-ms-exchange-purlcount: 1
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR12MB36732D6AA340FAB9544158BF92810@DM6PR12MB3673.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-microsoft-antispam-prvs: <BN6PR12MB1186C71D61B4634C61A0D5F2F7810@BN6PR12MB1186.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-forefront-prvs: 0173C6D4D5
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(376002)(39860400002)(366004)(396003)(346002)(189003)(199004)(64756008)(66446008)(478600001)(66476007)(2906002)(26005)(14454004)(6486002)(53546011)(6436002)(54906003)(14444005)(6512007)(229853002)(99286004)(71190400001)(102836004)(71200400001)(6116002)(186003)(58126008)(110136005)(52116002)(81156014)(81166006)(3846002)(8936002)(256004)(5660300002)(65806001)(386003)(6506007)(446003)(486006)(11346002)(2501003)(476003)(86362001)(76176011)(2616005)(8676002)(65956001)(66066001)(66946007)(316002)(36756003)(31686004)(4326008)(25786009)(305945005)(66556008)(6246003)(31696002)(7736002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3673;
- H:DM6PR12MB3947.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ SFS:(10009020)(4636009)(136003)(366004)(39860400002)(346002)(396003)(376002)(199004)(189003)(13464003)(19627235002)(54906003)(14454004)(316002)(7696005)(236005)(9686003)(110136005)(71190400001)(55016002)(74316002)(71200400001)(76176011)(53546011)(5660300002)(66066001)(6506007)(2906002)(81156014)(2501003)(102836004)(26005)(99286004)(8936002)(54896002)(81166006)(6246003)(6306002)(606006)(8676002)(3846002)(105004)(966005)(186003)(11346002)(478600001)(14444005)(256004)(64756008)(66556008)(66476007)(66446008)(6116002)(446003)(66946007)(76116006)(33656002)(86362001)(52536014)(476003)(4326008)(229853002)(6436002)(486006)(7736002)(19627405001)(25786009);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1186;
+ H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 7bvBZKGkcxILZr/auLgIQ+bRBdJsLj6jhiaZCOuy0xmO3cyfSsdGiM0ua66HZsGs5RKiySIDiWZ5ItBleX1I7k7OOUyHpO9rzzg4x4FbLsxNyxrlAHfOVqr6ja8pEsvEJIxwc9l7KyhVWRuDw1U4KXJzOtiNOjT8lwjFN3NjTYbE60beErRXIy5nwMJnrSY9CpelhKk+AZAMzIXdY19K9xKkc+Rn5fCeI/4l8BkcxcgE4xEerX3GetTH90+3pAUPuQhCe1t9LHxj1gRhBkHYTVUJWvQ9WTWwqqKvNbyI0BA90DpnckTYxL827Hmol8wuUNCtbq+ramBafmotlen3+CcOngGsCLc2HAgolqPG6Ffh7t5m8f5YXTT+Vb/z94dYBFIBkJKBD2sMzbmBRCaA8ICTBpqNPxCK/fJnpf7NFTQ=
-Content-ID: <C3F56431CDC6254BAD0714CAB456A7CB@namprd12.prod.outlook.com>
+x-microsoft-antispam-message-info: Hy4+Cwunqp4tD0lMDWcuPMK9hy0t3VBIrxJP5DQehfmdS9JYqiKYHtyWTikQdqTVxLSfoHtv3jwfs6OE/jlZ6bUkRAcF52XdFjDrCCo/p9uRhCDAZXh8GN7Mi51tk9lB25v74PL1QqxAP9Z8IFwPyDtA2oXXol8fCt8bpiz4+OfBmye8106fTCuQTJDNMMpwIO3LauIvWq2avkB9+5xxc3hH1Q141N3uLEz0TFcC+JSg8RVlFu42HBPvW3QORVgYu0EaW6te6Uket1FSxhh+jyqupofQjUQaxgh+dRzlkeoT5oJdw+NlJttQ8ARPP1TPLrksVJj4JO+XjXh79NZ4E+rQ7mZ6WXeACjlG/cjlZ32lBXokVmhVG3SqZjKh3vj73u4z+Si4PwitXF7OXnvMySm7rKLZVAGxDqQtFJ4luJ4EuI0ZgvR7JhgAV4t7sWaZc+pIX95c5kuV8gZ6h+KdMA==
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4be54c1f-9a93-4c51-bd1e-08d743559816
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2019 14:18:40.0891 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e703d5b2-7dd3-4c48-725a-08d743567819
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2019 14:24:55.6117 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +tL+gN/0C1G0jhDl6C5Z1IdBtOdg3NCF9iQOOT9FW/bSXaTWBcAXc87L3GyC6qORzD5etcX69ANFNiab0EvThA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3673
+X-MS-Exchange-CrossTenant-userprincipalname: inlm9rMQJzR3ct74GzE/zEc9wCuNnrmuzQ/bAhazRmQeWWAyRg5Bvpf7V2RLcop42W+VvbUBGVWgL9LFdxYNzA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1186
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rTzvkdf/opUwm956Is59vrV+pWR94m+QQ9dy8mC2z+0=;
- b=eidzW8PwV6I4MBekPgYRZNo1MPQs2BK3s+8Z4r47e9Au7yJD7KO4LOHDnyzoQDsj34CkfYsL6seBMxSj7LmUy5mB2lxLtT3P6WPwa0x7xTTWW0hic+6oTvCVStN0XYrCddUkekMvjT7kJLkzXjgQnpo3BmQxRfCK/v/yZOIWYtA=
+ bh=aWGrUAWpBBP+BXUaSZJk4wopo2MqduP+epFIlBgkVWY=;
+ b=hzD61/U7rwT2/wtjx2rlp0+WF8tChupRbWN+nMD1XeOZDqgXQrUSVoxY8Is6Qu8LYR3nlPp+5Q9D10QC7hYkJLUCznxOvOsPuETTaksoEyD/1DArj6kHbPfpHHTO47n2jHi5+QgFcadvLSxPKB++cdWki/Kc1fRjcVrSfD9xClI=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Felix.Kuehling@amd.com; 
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -102,43 +100,709 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Huang, Ray" <Ray.Huang@amd.com>, "Kasiviswanathan,
- Harish" <Harish.Kasiviswanathan@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Huang, Ray" <Ray.Huang@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>
+Content-Type: multipart/mixed; boundary="===============0434634501=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAxOS0wOS0yNyAwOjMzLCBMaWFuZywgUHJpa2Ugd3JvdGU6DQo+IFRoZSBwYXRjaCBjNjcw
-NzA3IGRybS9hbWQ6IFBhc3MgZHJtX2RldmljZSB0byBrZmQgaW50cm9kdWNlZCB0aGlzIGlzc3Vl
-IGFuZA0KPiBmaXggdGhlIGZvbGxvd2luZyBjb21waWxlciBlcnJvci4NCj4NCj4gICAgQ0MgW01d
-ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8vLi4vcG93ZXJwbGF5L3NtdW1nci9maWppX3Nt
-dW1nci5vDQo+IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly9hbWRncHVfYW1ka2ZkLmM6NzQ2
-OjY6IGVycm9yOiBjb25mbGljdGluZyB0eXBlcyBmb3Ig4oCYa2dkMmtmZF9kZXZpY2VfaW5pdOKA
-mQ0KPiAgIGJvb2wga2dkMmtmZF9kZXZpY2VfaW5pdChzdHJ1Y3Qga2ZkX2RldiAqa2ZkLA0KPiAg
-ICAgICAgXg0KPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvL2FtZGdwdV9hbWRrZmQuYzoyMzowOg0KPiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8v
-YW1kZ3B1X2FtZGtmZC5oOjI1Mzo2OiBub3RlOiBwcmV2aW91cyBkZWNsYXJhdGlvbiBvZiDigJhr
-Z2Qya2ZkX2RldmljZV9pbml04oCZIHdhcyBoZXJlDQo+ICAgYm9vbCBrZ2Qya2ZkX2RldmljZV9p
-bml0KHN0cnVjdCBrZmRfZGV2ICprZmQsDQo+ICAgICAgICBeDQo+IHNjcmlwdHMvTWFrZWZpbGUu
-YnVpbGQ6MjczOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-L2FtZGdwdV9hbWRrZmQubycgZmFpbGVkDQo+IG1ha2VbMV06ICoqKiBbZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvL2FtZGdwdV9hbWRrZmQub10gRXJyb3IgMQ0KPg0KPiBTaWduZWQtb2ZmLWJ5
-OiBQcmlrZSBMaWFuZyA8UHJpa2UuTGlhbmdAYW1kLmNvbT4NCg0KVGhpcyBmaXggaXMgZm9yIHRo
-ZSBjYXNlIHRoYXQgQ09ORklHX0hTQV9BTUQgaXMgZGlzYWJsZWQuIFNvcnJ5IGZvciANCm1pc3Np
-bmcgdGhhdCB3aGVuIHJldmlld2luZyBIYXJpc2gncyBjb2RlLg0KDQpSZXZpZXdlZC1ieTogRmVs
-aXggS3VlaGxpbmcgPEZlbGl4Lkt1ZWhsaW5nQGFtZC5jb20+DQoNCg0KPiAtLS0NCj4gICBkcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkLmMgfCAxICsNCj4gICAxIGZpbGUg
-Y2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4NCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV9hbWRrZmQuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
-L2FtZGdwdV9hbWRrZmQuYw0KPiBpbmRleCAyMjEwNDdkLi45MjY2NmIxIDEwMDY0NA0KPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkLmMNCj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5jDQo+IEBAIC03NDQsNiArNzQ0
-LDcgQEAgc3RydWN0IGtmZF9kZXYgKmtnZDJrZmRfcHJvYmUoc3RydWN0IGtnZF9kZXYgKmtnZCwg
-c3RydWN0IHBjaV9kZXYgKnBkZXYsDQo+ICAgfQ0KPiAgIA0KPiAgIGJvb2wga2dkMmtmZF9kZXZp
-Y2VfaW5pdChzdHJ1Y3Qga2ZkX2RldiAqa2ZkLA0KPiArCQkJIHN0cnVjdCBkcm1fZGV2aWNlICpk
-ZGV2LA0KPiAgIAkJCSBjb25zdCBzdHJ1Y3Qga2dkMmtmZF9zaGFyZWRfcmVzb3VyY2VzICpncHVf
-cmVzb3VyY2VzKQ0KPiAgIHsNCj4gICAJcmV0dXJuIGZhbHNlOw0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9hbWQtZ2Z4
+--===============0434634501==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR12MB1809E0DE29127C6BB82A8967F7810BN6PR12MB1809namp_"
+
+--_000_BN6PR12MB1809E0DE29127C6BB82A8967F7810BN6PR12MB1809namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+That might be easier for swSMU as well since this is generally not performa=
+nce sensitive.
+
+Alex
+
+________________________________
+From: Quan, Evan <Evan.Quan@amd.com>
+Sent: Thursday, September 26, 2019 9:18 PM
+To: Deucher, Alexander <Alexander.Deucher@amd.com>; Wang, Kevin(Yang) <Kevi=
+n1.Wang@amd.com>; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.=
+org>
+Cc: Huang, Ray <Ray.Huang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+Subject: RE: [PATCH 2/2] drm/amd/powerplay: add sensor lock support for smu
+
+
+There should be no issue with old powerplay routines.
+
+As there is API lock(hwmgr->smu_lock) in amd_powerplay.c.
+
+It=92s quite coarse-grained but working.
+
+
+
+In fact, I=92m considering whether we need to take the same way in swSMU ro=
+utine.
+
+Since for now it=92s hard to define what we are protecting for and thus fin=
+d a better fine-grained mutex.
+
+
+
+Regards,
+
+Evan
+
+From: Deucher, Alexander <Alexander.Deucher@amd.com>
+Sent: Thursday, September 26, 2019 11:06 PM
+To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>; Quan, Evan <Evan.Quan@amd.com>=
+; amd-gfx@lists.freedesktop.org
+Cc: Huang, Ray <Ray.Huang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+Subject: Re: [PATCH 2/2] drm/amd/powerplay: add sensor lock support for smu
+
+
+
+Does the older powerplay code need a similar fix?
+
+
+
+Alex
+
+________________________________
+
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
+@lists.freedesktop.org>> on behalf of Wang, Kevin(Yang) <Kevin1.Wang@amd.co=
+m<mailto:Kevin1.Wang@amd.com>>
+Sent: Thursday, September 26, 2019 9:06 AM
+To: Quan, Evan <Evan.Quan@amd.com<mailto:Evan.Quan@amd.com>>; amd-gfx@lists=
+.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org> <amd-gfx@lists.freed=
+esktop.org<mailto:amd-gfx@lists.freedesktop.org>>
+Cc: Huang, Ray <Ray.Huang@amd.com<mailto:Ray.Huang@amd.com>>; Feng, Kenneth=
+ <Kenneth.Feng@amd.com<mailto:Kenneth.Feng@amd.com>>
+Subject: Re: [PATCH 2/2] drm/amd/powerplay: add sensor lock support for smu
+
+
+
+sure, you are right, the origin design should be add this lock into these f=
+unctions,
+
+but only add these functions can't fix this issue.
+
+eg:
+
+"watch -n 0 /sys/kenel/debug/dri0/amdgpu_pm_info"
+
+16 threads run this command will cause smu error.
+
+
+
+so this is workaound fix about sensor interface.
+
+in fact, the smu driver need more lock to protect smu resource.
+
+but too many locks can easily lead to deadlocks in smu driver.
+solve the problem temporarily first and optimize this part later
+
+  1.  Message + Param =3D=3D> message param lock
+  2.  Message + Message Result =3D=3D> message result lock
+  3.  Message1 + Message2 =3D=3D> message pair lock (eg: SetFeatureLow and =
+SetFeatureHigh)
+
+
+
+Best Regars,
+Kevin
+
+________________________________
+
+From: Quan, Evan <Evan.Quan@amd.com<mailto:Evan.Quan@amd.com>>
+Sent: Thursday, September 26, 2019 8:22 PM
+To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com<mailto:Kevin1.Wang@amd.com>>; am=
+d-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org> <amd-gfx@=
+lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>>
+Cc: Huang, Ray <Ray.Huang@amd.com<mailto:Ray.Huang@amd.com>>; Feng, Kenneth=
+ <Kenneth.Feng@amd.com<mailto:Kenneth.Feng@amd.com>>; Wang, Kevin(Yang) <Ke=
+vin1.Wang@amd.com<mailto:Kevin1.Wang@amd.com>>
+Subject: RE: [PATCH 2/2] drm/amd/powerplay: add sensor lock support for smu
+
+
+
+How about adding the mutex protection in smu_v11_0_send_msg_with_param and =
+smu_v11_0_send_msg?
+That seems able to simplify the code.
+
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
+@lists.freedesktop.org>> On Behalf Of Wang, Kevin(Yang)
+Sent: Thursday, September 26, 2019 4:56 PM
+To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+Cc: Huang, Ray <Ray.Huang@amd.com<mailto:Ray.Huang@amd.com>>; Feng, Kenneth=
+ <Kenneth.Feng@amd.com<mailto:Kenneth.Feng@amd.com>>; Wang, Kevin(Yang) <Ke=
+vin1.Wang@amd.com<mailto:Kevin1.Wang@amd.com>>
+Subject: [PATCH 2/2] drm/amd/powerplay: add sensor lock support for smu
+
+when multithreading access sysfs of amdgpu_pm_info at the sametime.
+the swsmu driver cause smu firmware hang.
+
+eg:
+single thread access:
+Message A + Param A =3D=3D> right
+Message B + Param B =3D=3D> right
+Message C + Param C =3D=3D> right
+multithreading access:
+Message A + Param B =3D=3D> error
+Message B + Param A =3D=3D> error
+Message C + Param C =3D=3D> right
+
+the patch will add sensor lock(mutex) to avoid this error.
+
+Signed-off-by: Kevin Wang <kevin1.wang@amd.com<mailto:kevin1.wang@amd.com>>
+---
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c     | 2 ++
+ drivers/gpu/drm/amd/powerplay/arcturus_ppt.c   | 2 ++
+ drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h | 1 +
+ drivers/gpu/drm/amd/powerplay/navi10_ppt.c     | 2 ++
+ drivers/gpu/drm/amd/powerplay/vega20_ppt.c     | 2 ++
+ 5 files changed, 9 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/a=
+md/powerplay/amdgpu_smu.c
+index 23293e15636b..df510cb86da5 100644
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+@@ -840,6 +840,8 @@ static int smu_sw_init(void *handle)
+         smu->smu_baco.state =3D SMU_BACO_STATE_EXIT;
+         smu->smu_baco.platform_support =3D false;
+
++       mutex_init(&smu->sensor_lock);
++
+         smu->watermarks_bitmap =3D 0;
+         smu->power_profile_mode =3D PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
+         smu->default_power_profile_mode =3D PP_SMC_POWER_PROFILE_BOOTUP_DE=
+FAULT;
+diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm=
+/amd/powerplay/arcturus_ppt.c
+index a047a7ec3698..b9b7b73354a0 100644
+--- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+@@ -1025,6 +1025,7 @@ static int arcturus_read_sensor(struct smu_context *s=
+mu,
+         if (!data || !size)
+                 return -EINVAL;
+
++       mutex_lock(&smu->sensor_lock);
+         switch (sensor) {
+         case AMDGPU_PP_SENSOR_MAX_FAN_RPM:
+                 *(uint32_t *)data =3D pptable->FanMaximumRpm; @@ -1051,6 +=
+1052,7 @@ static int arcturus_read_sensor(struct smu_context *smu,
+         default:
+                 ret =3D smu_smc_read_sensor(smu, sensor, data, size);
+         }
++       mutex_unlock(&smu->sensor_lock);
+
+         return ret;
+ }
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/d=
+rm/amd/powerplay/inc/amdgpu_smu.h
+index 5c898444ff97..bc4b73e0718e 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+@@ -350,6 +350,7 @@ struct smu_context
+         const struct smu_funcs          *funcs;
+         const struct pptable_funcs      *ppt_funcs;
+         struct mutex                    mutex;
++       struct mutex                    sensor_lock;
+         uint64_t pool_size;
+
+         struct smu_table_context        smu_table;
+diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
+md/powerplay/navi10_ppt.c
+index db2e181ba45a..c0b640d8d9e1 100644
+--- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+@@ -1387,6 +1387,7 @@ static int navi10_read_sensor(struct smu_context *smu=
+,
+         if(!data || !size)
+                 return -EINVAL;
+
++       mutex_lock(&smu->sensor_lock);
+         switch (sensor) {
+         case AMDGPU_PP_SENSOR_MAX_FAN_RPM:
+                 *(uint32_t *)data =3D pptable->FanMaximumRpm; @@ -1410,6 +=
+1411,7 @@ static int navi10_read_sensor(struct smu_context *smu,
+         default:
+                 ret =3D smu_smc_read_sensor(smu, sensor, data, size);
+         }
++       mutex_unlock(&smu->sensor_lock);
+
+         return ret;
+ }
+diff --git a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c b/drivers/gpu/drm/a=
+md/powerplay/vega20_ppt.c
+index 9082da1578d1..f655ebd9ba22 100644
+--- a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
+@@ -3017,6 +3017,7 @@ static int vega20_read_sensor(struct smu_context *smu=
+,
+         if(!data || !size)
+                 return -EINVAL;
+
++       mutex_lock(&smu->sensor_lock);
+         switch (sensor) {
+         case AMDGPU_PP_SENSOR_MAX_FAN_RPM:
+                 *(uint32_t *)data =3D pptable->FanMaximumRpm; @@ -3042,6 +=
+3043,7 @@ static int vega20_read_sensor(struct smu_context *smu,
+         default:
+                 ret =3D smu_smc_read_sensor(smu, sensor, data, size);
+         }
++       mutex_unlock(&smu->sensor_lock);
+
+         return ret;
+ }
+--
+2.17.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--_000_BN6PR12MB1809E0DE29127C6BB82A8967F7810BN6PR12MB1809namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+That might be easier for swSMU as well since this is generally not performa=
+nce sensitive.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Alex</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Quan, Evan &lt;Evan.Q=
+uan@amd.com&gt;<br>
+<b>Sent:</b> Thursday, September 26, 2019 9:18 PM<br>
+<b>To:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Wang, Kevi=
+n(Yang) &lt;Kevin1.Wang@amd.com&gt;; amd-gfx@lists.freedesktop.org &lt;amd-=
+gfx@lists.freedesktop.org&gt;<br>
+<b>Cc:</b> Huang, Ray &lt;Ray.Huang@amd.com&gt;; Feng, Kenneth &lt;Kenneth.=
+Feng@amd.com&gt;<br>
+<b>Subject:</b> RE: [PATCH 2/2] drm/amd/powerplay: add sensor lock support =
+for smu</font>
+<div>&nbsp;</div>
+</div>
+<style>
+<!--
+@font-face
+	{font-family:"Cambria Math"}
+@font-face
+	{font-family:DengXian}
+@font-face
+	{font-family:Calibri}
+@font-face
+	{font-family:DengXian}
+p.x_MsoNormal, li.x_MsoNormal, div.x_MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif}
+a:link, span.x_MsoHyperlink
+	{color:blue;
+	text-decoration:underline}
+a:visited, span.x_MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline}
+p.x_msonormal0, li.x_msonormal0, div.x_msonormal0
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif}
+span.x_EmailStyle20
+	{font-family:"Calibri",sans-serif;
+	color:windowtext}
+.x_MsoChpDefault
+	{font-size:10.0pt}
+@page WordSection1
+	{margin:1.0in 1.25in 1.0in 1.25in}
+div.x_WordSection1
+	{}
+ol
+	{margin-bottom:0in}
+ul
+	{margin-bottom:0in}
+-->
+</style>
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"x_WordSection1">
+<p class=3D"x_MsoNormal">There should be no issue with old powerplay routin=
+es. </p>
+<p class=3D"x_MsoNormal">As there is API lock(hwmgr-&gt;smu_lock) in amd_po=
+werplay.c.</p>
+<p class=3D"x_MsoNormal">It=92s quite coarse-grained but working.</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal">In fact, I=92m considering whether we need to take=
+ the same way in swSMU routine.</p>
+<p class=3D"x_MsoNormal">Since for now it=92s hard to define what we are pr=
+otecting for and thus find a better fine-grained mutex.</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal">Regards,</p>
+<p class=3D"x_MsoNormal">Evan</p>
+<div>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0i=
+n 0in 0in">
+<p class=3D"x_MsoNormal"><b>From:</b> Deucher, Alexander &lt;Alexander.Deuc=
+her@amd.com&gt;
+<br>
+<b>Sent:</b> Thursday, September 26, 2019 11:06 PM<br>
+<b>To:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;; Quan, Evan &lt;Ev=
+an.Quan@amd.com&gt;; amd-gfx@lists.freedesktop.org<br>
+<b>Cc:</b> Huang, Ray &lt;Ray.Huang@amd.com&gt;; Feng, Kenneth &lt;Kenneth.=
+Feng@amd.com&gt;<br>
+<b>Subject:</b> Re: [PATCH 2/2] drm/amd/powerplay: add sensor lock support =
+for smu</p>
+</div>
+</div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Does=
+ the older powerplay code need a similar fix?</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Alex=
+</span></p>
+</div>
+<div class=3D"x_MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"x_divRplyFwdMsg">
+<p class=3D"x_MsoNormal"><b><span style=3D"color:black">From:</span></b><sp=
+an style=3D"color:black"> amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lis=
+ts.freedesktop.org">amd-gfx-bounces@lists.freedesktop.org</a>&gt; on behalf=
+ of Wang, Kevin(Yang) &lt;<a href=3D"mailto:Kevin1.Wang@amd.com">Kevin1.Wan=
+g@amd.com</a>&gt;<br>
+<b>Sent:</b> Thursday, September 26, 2019 9:06 AM<br>
+<b>To:</b> Quan, Evan &lt;<a href=3D"mailto:Evan.Quan@amd.com">Evan.Quan@am=
+d.com</a>&gt;;
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.=
+freedesktop.org</a>&gt;<br>
+<b>Cc:</b> Huang, Ray &lt;<a href=3D"mailto:Ray.Huang@amd.com">Ray.Huang@am=
+d.com</a>&gt;; Feng, Kenneth &lt;<a href=3D"mailto:Kenneth.Feng@amd.com">Ke=
+nneth.Feng@amd.com</a>&gt;<br>
+<b>Subject:</b> Re: [PATCH 2/2] drm/amd/powerplay: add sensor lock support =
+for smu</span>
+</p>
+<div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">sure=
+, you are right, the origin design should be add this lock into these funct=
+ions,</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">but =
+only add these functions can't fix this issue.</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">eg:<=
+/span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><i><span style=3D"font-size:12.0pt; color:black; b=
+ackground:white">&quot;watch -n 0 /sys/kenel/debug/dri0/amdgpu_pm_info&quot=
+;</span></i><span style=3D"font-size:12.0pt; color:black"></span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><i><span style=3D"font-size:12.0pt; color:black; b=
+ackground:white">16 threads run this command will cause smu error.</span></=
+i><span style=3D"font-size:12.0pt; color:black"></span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">so t=
+his is workaound fix about sensor interface.</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">in f=
+act, the smu driver need more lock to protect smu resource.</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">but =
+too many locks can easily lead to deadlocks in smu driver.<br>
+solve the problem temporarily first and optimize this part later</span></p>
+</div>
+<div>
+<ol start=3D"1" type=3D"1">
+<li class=3D"x_MsoNormal" style=3D"color:black"><span style=3D"font-size:12=
+.0pt">Message &#43; Param =3D=3D&gt; message param lock</span></li><li clas=
+s=3D"x_MsoNormal" style=3D"color:black"><span style=3D"font-size:12.0pt">Me=
+ssage &#43; Message Result =3D=3D&gt; message result lock</span></li><li cl=
+ass=3D"x_MsoNormal" style=3D"color:black"><span style=3D"font-size:12.0pt">=
+Message1 &#43; Message2 =3D=3D&gt; message pair lock (eg: SetFeatureLow and=
+ SetFeatureHigh)</span></li></ol>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Best=
+ Regars,<br>
+Kevin</span></p>
+</div>
+</div>
+<div class=3D"x_MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"x_x_divRplyFwdMsg">
+<p class=3D"x_MsoNormal"><b><span style=3D"color:black">From:</span></b><sp=
+an style=3D"color:black"> Quan, Evan &lt;<a href=3D"mailto:Evan.Quan@amd.co=
+m">Evan.Quan@amd.com</a>&gt;<br>
+<b>Sent:</b> Thursday, September 26, 2019 8:22 PM<br>
+<b>To:</b> Wang, Kevin(Yang) &lt;<a href=3D"mailto:Kevin1.Wang@amd.com">Kev=
+in1.Wang@amd.com</a>&gt;;
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.=
+freedesktop.org</a>&gt;<br>
+<b>Cc:</b> Huang, Ray &lt;<a href=3D"mailto:Ray.Huang@amd.com">Ray.Huang@am=
+d.com</a>&gt;; Feng, Kenneth &lt;<a href=3D"mailto:Kenneth.Feng@amd.com">Ke=
+nneth.Feng@amd.com</a>&gt;; Wang, Kevin(Yang) &lt;<a href=3D"mailto:Kevin1.=
+Wang@amd.com">Kevin1.Wang@amd.com</a>&gt;<br>
+<b>Subject:</b> RE: [PATCH 2/2] drm/amd/powerplay: add sensor lock support =
+for smu</span>
+</p>
+<div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"x_MsoNormal">How about adding the mutex protection in smu_v11_0=
+_send_msg_with_param and smu_v11_0_send_msg?<br>
+That seems able to simplify the code.<br>
+<br>
+-----Original Message-----<br>
+From: amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists.freedesktop.org">=
+amd-gfx-bounces@lists.freedesktop.org</a>&gt; On Behalf Of Wang, Kevin(Yang=
+)<br>
+Sent: Thursday, September 26, 2019 4:56 PM<br>
+To: <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesk=
+top.org</a><br>
+Cc: Huang, Ray &lt;<a href=3D"mailto:Ray.Huang@amd.com">Ray.Huang@amd.com</=
+a>&gt;; Feng, Kenneth &lt;<a href=3D"mailto:Kenneth.Feng@amd.com">Kenneth.F=
+eng@amd.com</a>&gt;; Wang, Kevin(Yang) &lt;<a href=3D"mailto:Kevin1.Wang@am=
+d.com">Kevin1.Wang@amd.com</a>&gt;<br>
+Subject: [PATCH 2/2] drm/amd/powerplay: add sensor lock support for smu<br>
+<br>
+when multithreading access sysfs of amdgpu_pm_info at the sametime.<br>
+the swsmu driver cause smu firmware hang.<br>
+<br>
+eg:<br>
+single thread access:<br>
+Message A &#43; Param A =3D=3D&gt; right<br>
+Message B &#43; Param B =3D=3D&gt; right<br>
+Message C &#43; Param C =3D=3D&gt; right<br>
+multithreading access:<br>
+Message A &#43; Param B =3D=3D&gt; error<br>
+Message B &#43; Param A =3D=3D&gt; error<br>
+Message C &#43; Param C =3D=3D&gt; right<br>
+<br>
+the patch will add sensor lock(mutex) to avoid this error.<br>
+<br>
+Signed-off-by: Kevin Wang &lt;<a href=3D"mailto:kevin1.wang@amd.com">kevin1=
+.wang@amd.com</a>&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/amdgpu_smu.c&nbsp;&nbsp;&nbsp;&nbsp; | =
+2 &#43;&#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/arcturus_ppt.c&nbsp;&nbsp; | 2 &#43;&#4=
+3;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h | 1 &#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/navi10_ppt.c&nbsp;&nbsp;&nbsp;&nbsp; | =
+2 &#43;&#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/vega20_ppt.c&nbsp;&nbsp;&nbsp;&nbsp; | =
+2 &#43;&#43;<br>
+&nbsp;5 files changed, 9 insertions(&#43;)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/a=
+md/powerplay/amdgpu_smu.c<br>
+index 23293e15636b..df510cb86da5 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+@@ -840,6 &#43;840,8 @@ static int smu_sw_init(void *handle)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;smu_baco.state =3D=
+ SMU_BACO_STATE_EXIT;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;smu_baco.platform_=
+support =3D false;<br>
+&nbsp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_init(&amp;smu-&gt;sensor_lo=
+ck);<br>
+&#43;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;watermarks_bitmap =
+=3D 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;power_profile_mode=
+ =3D PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;default_power_prof=
+ile_mode =3D PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm=
+/amd/powerplay/arcturus_ppt.c<br>
+index a047a7ec3698..b9b7b73354a0 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c<br>
+@@ -1025,6 &#43;1025,7 @@ static int arcturus_read_sensor(struct smu_contex=
+t *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!data || !size)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&nbsp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;smu-&gt;sensor_lo=
+ck);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_SENSOR_MAX_=
+FAN_RPM:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *(uint32_t *)data =3D pptable-&gt;FanMaximumRpm; @@ -=
+1051,6 &#43;1052,7 @@ static int arcturus_read_sensor(struct smu_context *s=
+mu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; ret =3D smu_smc_read_sensor(smu, sensor, data, size);=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;smu-&gt;sensor_=
+lock);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;}<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/d=
+rm/amd/powerplay/inc/amdgpu_smu.h<br>
+index 5c898444ff97..bc4b73e0718e 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h<br>
+@@ -350,6 &#43;350,7 @@ struct smu_context<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct smu_funcs&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *funcs;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct pptable_funcs=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *ppt_funcs;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct mutex&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; mutex;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct mutex&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; sensor_lock;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t pool_size;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_table_context&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu_table;<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
+md/powerplay/navi10_ppt.c<br>
+index db2e181ba45a..c0b640d8d9e1 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+@@ -1387,6 &#43;1387,7 @@ static int navi10_read_sensor(struct smu_context =
+*smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(!data || !size)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&nbsp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;smu-&gt;sensor_lo=
+ck);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_SENSOR_MAX_=
+FAN_RPM:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *(uint32_t *)data =3D pptable-&gt;FanMaximumRpm; @@ -=
+1410,6 &#43;1411,7 @@ static int navi10_read_sensor(struct smu_context *smu=
+,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; ret =3D smu_smc_read_sensor(smu, sensor, data, size);=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;smu-&gt;sensor_=
+lock);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;}<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c b/drivers/gpu/drm/a=
+md/powerplay/vega20_ppt.c<br>
+index 9082da1578d1..f655ebd9ba22 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c<br>
+@@ -3017,6 &#43;3017,7 @@ static int vega20_read_sensor(struct smu_context =
+*smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(!data || !size)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&nbsp;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;smu-&gt;sensor_lo=
+ck);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (sensor) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMDGPU_PP_SENSOR_MAX_=
+FAN_RPM:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *(uint32_t *)data =3D pptable-&gt;FanMaximumRpm; @@ -=
+3042,6 &#43;3043,7 @@ static int vega20_read_sensor(struct smu_context *smu=
+,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; ret =3D smu_smc_read_sensor(smu, sensor, data, size);=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;smu-&gt;sensor_=
+lock);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;}<br>
+--<br>
+2.17.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
+org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://=
+lists.freedesktop.org/mailman/listinfo/amd-gfx</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_BN6PR12MB1809E0DE29127C6BB82A8967F7810BN6PR12MB1809namp_--
+
+--===============0434634501==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0434634501==--
