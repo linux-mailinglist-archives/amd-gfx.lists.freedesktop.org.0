@@ -1,87 +1,89 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ECFEC0178
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Sep 2019 10:50:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F695C01BB
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Sep 2019 11:05:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AAE56EEB3;
-	Fri, 27 Sep 2019 08:50:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6236EEC0;
+	Fri, 27 Sep 2019 09:05:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM05-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr720049.outbound.protection.outlook.com [40.107.72.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A75CE6EEB3
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Sep 2019 08:50:06 +0000 (UTC)
+Received: from NAM05-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam05on061f.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe51::61f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76B5F6EEC0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Sep 2019 09:05:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=leuUWEecBo487fBZCEeCbCtqunsfBlZQs2Tu9cFhgdzHNbvJLnMBep0FAALSyHQkwGEFL0qMOyqOxl7cHTegJu/+xPuaJNwJC5IlApVE9LNbvR+Gic1hoqT+PHJC6AQDA1kbQAXlEkTzYrne58vGTqoIadq3D/DKIJSCHk+WVy22w0TOZ+G1aQMjjbMfN+3XgheBkkJak9cky8wxeIlEKLSycl2ZCdRlWWXg1doz1cWNJoLr8vgLxvdkvIYorNULJrMe1CLLubNcioM2LpCFDp8qVjs87rrYbdRbJ0AeZLrS7XItzN9RCeAHsV7mrvtbOJCWZ4QuFfU5wZn3eCfCFw==
+ b=NYr2rBffWWErEqLkk5JwNCgpinv+p6y6opynCyklI9+7/WNaQ0SlDgEq9w4XPSYls9FFt0xHsYXOrSEiU8AFty/C8pbDcYDTocghqRNPqRnL9Ar6L+Hy/DSO7vQm7B+d7XU6okwwRmQIEojxeq0eg/QrEf93CxlOxiEuaaDtu8U4VaTcqo6ClpWC4DzLmnO16IXQWI3UQjrHuRjTMFc8ZTTNMRuoYe6LsdKB/AyMMB7XSw5MC5g8TFIUoc7ntoLS+MSB0KWeBvQF6aXgZbRxsZ5X06ulZN3hQyssnM/15Tzu6yguMlZsJ2Ht/18zU+cufNBXi9RB5NJ4s73hhhZ4Lw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9nM/rT7JzRVSB1q1rPYdDa23aqIbAj4SpCyXHGe39V8=;
- b=LMtNthjaWtcbD+2mlzZypBSgnWyqgX0qEQLhqLDSXNjgcI0ygcF7Fk/CptEYcRbkpxN3Clf17o8tmezCSIVXVWxkOfwTQgWeR053FQJSnE6DTbDFOlxBY87wuwopRTjFoYlSpgZFvhARGO86lkR/EynW21XWdkfCF1iiDMa+3ry8qFbWcRD8M6fXtCO9jzC1+MiBDcrBrR7fj5pacI53eD05ty6Wh0dg/cif2RdvXSixy/TDpwrVmAEWlWIObArFg5+Fd/U9bCoUrU9i90ohayVkX1UMxP4GJT/yOOuDFPeJruWiYI2QmfkGuQliXFuInn9FG4IdXXCVU6GuZbOmYw==
+ bh=uVWjsjUgyAX2efP81T8bfPPhckGcTqV0rpyQ7/JxJug=;
+ b=dfUrzBl/126Z+Nc+iQY4Jn3xZA5WWeIIMhelFP7UmSS/PjSd76jS2IwPjqIw33Lg7dGmdxa0j/Yu2+5L67gLfAlc2AfuV+drqaF1xF1NPPWSpBxm/s6G6PJgCY+gx1fh3QIWQe6VZO31HujQOEh9CY4kYE/2c0fKPsHLK/ug6Xpl0rI/ZSMIkQLxzCm0AO69mY25iazn4qMtIkKG6eW0C33jEGD9m6gzrfh5OYybHJ+wI7aN9yu4Ih8nps5KAFez58lf6YtC0UCPjkOPuld79/yv0QouJq2qdOToBHnzvbORHVpHSMXsm+25bs/ANfE+UkC1xkGPXjc4jVEvFZrRQg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from MN2PR12MB3598.namprd12.prod.outlook.com (20.178.244.84) by
- MN2PR12MB3951.namprd12.prod.outlook.com (10.255.238.152) with Microsoft SMTP
+Received: from MN2PR12MB3296.namprd12.prod.outlook.com (20.179.80.139) by
+ MN2PR12MB4272.namprd12.prod.outlook.com (52.135.51.78) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.15; Fri, 27 Sep 2019 08:50:05 +0000
-Received: from MN2PR12MB3598.namprd12.prod.outlook.com
- ([fe80::19b5:2b97:5b3c:8b2a]) by MN2PR12MB3598.namprd12.prod.outlook.com
- ([fe80::19b5:2b97:5b3c:8b2a%7]) with mapi id 15.20.2284.023; Fri, 27 Sep 2019
- 08:50:05 +0000
-From: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-To: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ 15.20.2305.20; Fri, 27 Sep 2019 09:05:01 +0000
+Received: from MN2PR12MB3296.namprd12.prod.outlook.com
+ ([fe80::9929:92fb:f329:a911]) by MN2PR12MB3296.namprd12.prod.outlook.com
+ ([fe80::9929:92fb:f329:a911%7]) with mapi id 15.20.2284.028; Fri, 27 Sep 2019
+ 09:05:01 +0000
+From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
+To: "Liang, Prike" <Prike.Liang@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amd/powerplay: initlialize smu->is_apu is false by
+Subject: Re: [PATCH] drm/amd/powerplay: initlialize smu->is_apu is false by
  default
 Thread-Topic: [PATCH] drm/amd/powerplay: initlialize smu->is_apu is false by
  default
-Thread-Index: AQHVdQDkhkSWJCcgM0qXIIQnUawYFqc/Norg
-Date: Fri, 27 Sep 2019 08:50:05 +0000
-Message-ID: <MN2PR12MB359827494153858C7DB76B778E810@MN2PR12MB3598.namprd12.prod.outlook.com>
-References: <20190927065727.22272-1-kevin1.wang@amd.com>
-In-Reply-To: <20190927065727.22272-1-kevin1.wang@amd.com>
-Accept-Language: zh-CN, en-US
+Thread-Index: AQHVdQDkhkSWJCcgM0qXIIQnUawYFqc/MUhAgAAJPjE=
+Date: Fri, 27 Sep 2019 09:05:00 +0000
+Message-ID: <MN2PR12MB329616541147F2B0A31DA62AA2810@MN2PR12MB3296.namprd12.prod.outlook.com>
+References: <20190927065727.22272-1-kevin1.wang@amd.com>,
+ <MN2PR12MB3536BA16A58AE0E5E6424063FB810@MN2PR12MB3536.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB3536BA16A58AE0E5E6424063FB810@MN2PR12MB3536.namprd12.prod.outlook.com>
+Accept-Language: en-US, zh-CN
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fa176f34-bf41-419a-8a25-08d74327b146
+x-ms-office365-filtering-correlation-id: fc2dcd6d-3517-4777-d439-08d74329c731
 x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: MN2PR12MB3951:
+x-ms-traffictypediagnostic: MN2PR12MB4272:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB3951E6ADCE2B59E0D3929F4E8E810@MN2PR12MB3951.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3276;
+x-microsoft-antispam-prvs: <MN2PR12MB4272C08AD0FF6A6BD78F5C98A2810@MN2PR12MB4272.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-forefront-prvs: 0173C6D4D5
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(366004)(346002)(39860400002)(396003)(136003)(13464003)(189003)(199004)(8936002)(7696005)(81156014)(26005)(25786009)(3846002)(6116002)(54906003)(4326008)(478600001)(229853002)(186003)(8676002)(110136005)(14454004)(71200400001)(5660300002)(74316002)(71190400001)(64756008)(66476007)(66446008)(66946007)(7736002)(66556008)(305945005)(76116006)(52536014)(99286004)(55016002)(6246003)(476003)(6506007)(33656002)(2906002)(102836004)(81166006)(486006)(9686003)(66066001)(86362001)(316002)(446003)(256004)(76176011)(6436002)(11346002)(2501003)(53546011)(309714004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3951;
- H:MN2PR12MB3598.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ SFS:(10009020)(4636009)(366004)(396003)(346002)(136003)(39860400002)(376002)(13464003)(199004)(189003)(52314003)(229853002)(74316002)(7696005)(99286004)(52536014)(26005)(7736002)(66556008)(316002)(64756008)(476003)(66446008)(66476007)(4326008)(102836004)(76176011)(33656002)(53546011)(478600001)(186003)(6246003)(6506007)(81166006)(14454004)(8936002)(8676002)(6436002)(110136005)(2906002)(5660300002)(105004)(54906003)(66066001)(6116002)(446003)(19627405001)(9686003)(54896002)(86362001)(66946007)(76116006)(71190400001)(71200400001)(81156014)(2501003)(486006)(25786009)(91956017)(55016002)(256004)(11346002)(3846002)(309714004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4272;
+ H:MN2PR12MB3296.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FpUVinF6CFj7rEdpaQADK+FxgByYGl/KIOT32Xb4C7o1sP3tHroAlx3erDq2l73f4ukMSuIWeMLUjO42RHMFtZc1DTFUXdcKHXZmsZE8+7zw2XmlUKmGHIgYClrDfKGxSJprNI1pSfFX8J+ce+0VRX37LjL79pOBSRZ/w2Y5bR//DBnrOqyNm3eSIYBEfqLS14hoNS3LGO0ukrsHJsnjC1kmqThBy2RY2lySa1dhHoqOXhQEIbYNWCFR/ao8olJkcV0U6L6HAvigZRWVoabnW+wLR5VkeXgQKTC1eWdGkYPjjwv+02UbkVhBKgn4XIBu+r9NEwb4+ruKvVQ4/JWIM2DntXkqm0PnFBWPhC7PAPvQbxNvenKRjptRcss/cv1BJG+JkofgknAqJsaNDieQLLWMWxHEbpPnb9l/MCf1ous=
+x-microsoft-antispam-message-info: c5AFrmLyjOkbOkn5WIDkGIwXYSVvMAT2+1oznlZ1tH08tWYKXfJPLz/l+PF/BP1lm84nlpa1WxKeyp93dOjHoVtURMqGd14xLIrFKZf3OV/t4XKcJkjUwJXDEwDKzbfBSR4bA7s7+kHbQrwi0UkSnvDeP4SNylbWUa5sKk9xqtLkXzaUoI4pBrjhwxdYjNb/zMdhbnzcTmvLXzTjeVKE0CvVU8kI+9AYv6bnZBESWwtiWmroZgLkVU7tNmQRFtd4hHze5kFICJFwCF6bffPFGqPyqnjBpb8WXGWfKj0LWrZcXvE5Z6oWtvJZG+Zz0aO4gEp3OnCDylrHuun4lzDw5ggyJVqI0sUe93qIsaHfaoAoiEYq6FaONnfSHEYUa12p52jQQzEt3jfr7WRZC1YBCx+fW8dpxiMeh44ykGHrVgk=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa176f34-bf41-419a-8a25-08d74327b146
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2019 08:50:05.1321 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc2dcd6d-3517-4777-d439-08d74329c731
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2019 09:05:00.9626 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NW4VW74mAOsil8tjSKUWl/6PtqvXPepT5RTBpFx1X5KPK81wr4rte88Qt2WJrtir
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3951
+X-MS-Exchange-CrossTenant-userprincipalname: nU/vFUtOdtyaEq8gXrM0jy0/f/xN9q6QZMsWnLMg0HKX0nqtIzL64R93R5QQUtGd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4272
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9nM/rT7JzRVSB1q1rPYdDa23aqIbAj4SpCyXHGe39V8=;
- b=SWNVO92ZogzAFe3XtTfwgE0QCnuBX6UgEdbNzifoTd8VJOd4tJahzHwT52E5yFKCc25uxO9hXYP+39lBwwWj7ZcTYg2niiqC3nN9WBYCye5GljN8aH3G/+SJTZraQ1f9dmvxcbhHHDHaMLGjc6Pb8Wse8zdihUjYscFBXaBWn0A=
+ bh=uVWjsjUgyAX2efP81T8bfPPhckGcTqV0rpyQ7/JxJug=;
+ b=OV7GilSqyDumx6tw7yN+L7EU9H7ZyjRp422TdgBeIrqGOvFReyYiRrwAh0+r/wJyVOe2fjHvtdsUOJS08Z3yYGXSUm7n84L/VVX9UC6sNyZCm8r/7Kic0XZRrDkhjUlMk+bgHxYqRMtpe5zMRTEDFSDEBfFh9CJfR5nK7TXkBF8=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Kenneth.Feng@amd.com; 
+ smtp.mailfrom=Kevin1.Wang@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -93,33 +95,199 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Liang, Prike" <Prike.Liang@amd.com>, "Huang, Ray" <Ray.Huang@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Huang, Ray" <Ray.Huang@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>
+Content-Type: multipart/mixed; boundary="===============0121235172=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-UmV2aWV3ZWQtYnk6IEtlbm5ldGggRmVuZyA8a2VubmV0aC5mZW5nQGFtZC5jb20+CgoKLS0tLS1P
-cmlnaW5hbCBNZXNzYWdlLS0tLS0KRnJvbTogV2FuZywgS2V2aW4oWWFuZykgClNlbnQ6IEZyaWRh
-eSwgU2VwdGVtYmVyIDI3LCAyMDE5IDI6NTggUE0KVG86IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCkNjOiBIdWFuZywgUmF5IDxSYXkuSHVhbmdAYW1kLmNvbT47IEZlbmcsIEtlbm5ldGgg
-PEtlbm5ldGguRmVuZ0BhbWQuY29tPjsgTGlhbmcsIFByaWtlIDxQcmlrZS5MaWFuZ0BhbWQuY29t
-PjsgV2FuZywgS2V2aW4oWWFuZykgPEtldmluMS5XYW5nQGFtZC5jb20+ClN1YmplY3Q6IFtQQVRD
-SF0gZHJtL2FtZC9wb3dlcnBsYXk6IGluaXRsaWFsaXplIHNtdS0+aXNfYXB1IGlzIGZhbHNlIGJ5
-IGRlZmF1bHQKCnRoZSBtZW1iZXIgb2YgaXNfYXB1IGluIHNtdV9jb250ZXh0IG5lZWQgdG8gaW5p
-dGxpYWxpemUgYnkgZGVmYXVsdC4KCnNldCBkZWZhdWx0IHZhbHVlIGlzIGZhbHNlIChkR1BVKQoK
-Zm9yIHBhdGNoOgoJZHJtL2FtZC9wb3dlcnBsYXk6IGJ5cGFzcyBkcG1fY29udGV4dCBudWxsIHBv
-aW50ZXIgY2hlY2sgZ3VhcmQKCWZvciBzb21lIHNtdSBzZXJpZXMKClNpZ25lZC1vZmYtYnk6IEtl
-dmluIFdhbmcgPGtldmluMS53YW5nQGFtZC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9w
-b3dlcnBsYXkvYW1kZ3B1X3NtdS5jIHwgMSArCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24o
-KykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9hbWRncHVfc211
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9hbWRncHVfc211LmMKaW5kZXggN2I5
-OTViMDgzNGViLi42YTY0Zjc2NWZjZDQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-cG93ZXJwbGF5L2FtZGdwdV9zbXUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxh
-eS9hbWRncHVfc211LmMKQEAgLTcxMiw2ICs3MTIsNyBAQCBzdGF0aWMgaW50IHNtdV9lYXJseV9p
-bml0KHZvaWQgKmhhbmRsZSkKIAogCXNtdS0+YWRldiA9IGFkZXY7CiAJc211LT5wbV9lbmFibGVk
-ID0gISFhbWRncHVfZHBtOworCXNtdS0+aXNfYXB1ID0gZmFsc2U7CiAJbXV0ZXhfaW5pdCgmc211
-LT5tdXRleCk7CiAKIAlyZXR1cm4gc211X3NldF9mdW5jcyhhZGV2KTsKLS0gCjIuMTcuMQoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWls
-aW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+--===============0121235172==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB329616541147F2B0A31DA62AA2810MN2PR12MB3296namp_"
+
+--_000_MN2PR12MB329616541147F2B0A31DA62AA2810MN2PR12MB3296namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+this member should be initialize in smu driver.
+by default should be set "false".
+
+Best Regards,
+Kevin
+________________________________
+From: Liang, Prike <Prike.Liang@amd.com>
+Sent: Friday, September 27, 2019 4:37 PM
+To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>; amd-gfx@lists.freedesktop.org =
+<amd-gfx@lists.freedesktop.org>
+Cc: Huang, Ray <Ray.Huang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+Subject: RE: [PATCH] drm/amd/powerplay: initlialize smu->is_apu is false by=
+ default
+
+Does use the default value (false) for the Boolean variable of is_apu not e=
+nough for identifying DGPU?
+Anyway, initialize the is_apu during smu early initialize also fine and the=
+ patch is
+
+Reviewed-by: Prike Liang <Prike.Liang@amd.com>
+
+Thanks,
+Prike
+> -----Original Message-----
+> From: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
+> Sent: Friday, September 27, 2019 2:58 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Huang, Ray <Ray.Huang@amd.com>; Feng, Kenneth
+> <Kenneth.Feng@amd.com>; Liang, Prike <Prike.Liang@amd.com>; Wang,
+> Kevin(Yang) <Kevin1.Wang@amd.com>
+> Subject: [PATCH] drm/amd/powerplay: initlialize smu->is_apu is false by
+> default
+>
+> the member of is_apu in smu_context need to initlialize by default.
+>
+> set default value is false (dGPU)
+>
+> for patch:
+>        drm/amd/powerplay: bypass dpm_context null pointer check guard
+>        for some smu series
+>
+> Signed-off-by: Kevin Wang <kevin1.wang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> index 7b995b0834eb..6a64f765fcd4 100644
+> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> @@ -712,6 +712,7 @@ static int smu_early_init(void *handle)
+>
+>        smu->adev =3D adev;
+>        smu->pm_enabled =3D !!amdgpu_dpm;
+> +     smu->is_apu =3D false;
+>        mutex_init(&smu->mutex);
+>
+>        return smu_set_funcs(adev);
+> --
+> 2.17.1
+
+
+--_000_MN2PR12MB329616541147F2B0A31DA62AA2810MN2PR12MB3296namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+this member should be initialize in smu driver.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(0, 0, 0); font-family: Calibri, Arial, Helvetica,=
+ sans-serif; font-size: 12pt;">by default should be set &quot;false&quot;.<=
+/span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Best Regards,<br>
+Kevin</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Liang, Prike &lt;Prik=
+e.Liang@amd.com&gt;<br>
+<b>Sent:</b> Friday, September 27, 2019 4:37 PM<br>
+<b>To:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;; amd-gfx@lists.fre=
+edesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
+<b>Cc:</b> Huang, Ray &lt;Ray.Huang@amd.com&gt;; Feng, Kenneth &lt;Kenneth.=
+Feng@amd.com&gt;<br>
+<b>Subject:</b> RE: [PATCH] drm/amd/powerplay: initlialize smu-&gt;is_apu i=
+s false by default</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Does use the default value (false) for the Boolean=
+ variable of is_apu not enough for identifying DGPU?&nbsp;&nbsp;
+<br>
+Anyway, initialize the is_apu during smu early initialize also fine and the=
+ patch is
+<br>
+<br>
+Reviewed-by: Prike Liang &lt;Prike.Liang@amd.com&gt;<br>
+<br>
+Thanks,<br>
+Prike<br>
+&gt; -----Original Message-----<br>
+&gt; From: Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;<br>
+&gt; Sent: Friday, September 27, 2019 2:58 PM<br>
+&gt; To: amd-gfx@lists.freedesktop.org<br>
+&gt; Cc: Huang, Ray &lt;Ray.Huang@amd.com&gt;; Feng, Kenneth<br>
+&gt; &lt;Kenneth.Feng@amd.com&gt;; Liang, Prike &lt;Prike.Liang@amd.com&gt;=
+; Wang,<br>
+&gt; Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;<br>
+&gt; Subject: [PATCH] drm/amd/powerplay: initlialize smu-&gt;is_apu is fals=
+e by<br>
+&gt; default<br>
+&gt; <br>
+&gt; the member of is_apu in smu_context need to initlialize by default.<br=
+>
+&gt; <br>
+&gt; set default value is false (dGPU)<br>
+&gt; <br>
+&gt; for patch:<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/amd/powerplay: bypass dp=
+m_context null pointer check guard<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for some smu series<br>
+&gt; <br>
+&gt; Signed-off-by: Kevin Wang &lt;kevin1.wang@amd.com&gt;<br>
+&gt; ---<br>
+&gt;&nbsp; drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 1 &#43;<br>
+&gt;&nbsp; 1 file changed, 1 insertion(&#43;)<br>
+&gt; <br>
+&gt; diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&gt; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&gt; index 7b995b0834eb..6a64f765fcd4 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c<br>
+&gt; @@ -712,6 &#43;712,7 @@ static int smu_early_init(void *handle)<br>
+&gt; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;adev =3D adev;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;pm_enabled =3D !!amd=
+gpu_dpm;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;is_apu =3D false;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_init(&amp;smu-&gt;mute=
+x);<br>
+&gt; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return smu_set_funcs(adev);<=
+br>
+&gt; --<br>
+&gt; 2.17.1<br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_MN2PR12MB329616541147F2B0A31DA62AA2810MN2PR12MB3296namp_--
+
+--===============0121235172==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0121235172==--
