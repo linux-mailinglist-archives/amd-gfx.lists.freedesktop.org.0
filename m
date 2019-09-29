@@ -1,66 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB00C1BE3
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2019 09:03:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC77CC1BE4
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2019 09:03:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21FE06E0F9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCBB36E388;
 	Mon, 30 Sep 2019 07:03:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com
- [IPv6:2607:f8b0:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C2716E0DA;
- Sat, 28 Sep 2019 09:07:37 +0000 (UTC)
-Received: by mail-pg1-x543.google.com with SMTP id i30so4728152pgl.0;
- Sat, 28 Sep 2019 02:07:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-disposition:user-agent;
- bh=zxhtropV4cqrvR/Qtgxblo/g2bg2w3CWnLrP6tMU0YE=;
- b=qVf4u2NIt7w+fPSqepOl/R1lYfBwRTmGjHOf4NMghC+rDulWUHvaG25DGqRhAS37f8
- TEch6876V6IONLWjDGkpoyd/Aj9FhYQnF9uerCLNk6lMyNSIHuXNnK3VeiGkjTrZccGm
- yAMnxS7uch5CsMjBzFvZcYSHWIM13pL7zl3lGeMtcOYKwUmx2WdZBkXsl/7tu3kT0fwj
- qTUGWDZNFojL4nIr2fOkuNTnSfEeFc31WHYQAeSCsdOFg73e+8gJ1GokPls/BuVJPT1P
- gLRWwAq2szG7z2nUUwzH2Kun0aiswVrPKP1/CNoy7eo5pq1bxDkfDlyvmh9ji8+eBrPe
- SdOA==
-X-Gm-Message-State: APjAAAW6jok99K5c1dv6yCcVrh+cnmXBFYWlnZmjfRTQTTAc/RR4NqPr
- eZ2HcyyIZSjWAYJdKKyUlUw=
-X-Google-Smtp-Source: APXvYqyjleLFisxCMXhljNopWhR2oO09nKqDFY8LV9PXfX0/5r5ZKezYY4BO0wS/rIA/JIVeJlsQwQ==
-X-Received: by 2002:a17:90a:c214:: with SMTP id e20mr35973pjt.81.1569661656811; 
- Sat, 28 Sep 2019 02:07:36 -0700 (PDT)
-Received: from saurav ([219.91.254.49])
- by smtp.gmail.com with ESMTPSA id e1sm6808223pgd.21.2019.09.28.02.07.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 28 Sep 2019 02:07:36 -0700 (PDT)
-Date: Sat, 28 Sep 2019 14:37:29 +0530
-From: Saurav Girepunje <saurav.girepunje@gmail.com>
-To: alexander.deucher@amd.com;, christian.koenig@amd.com;,
- David1.Zhou@amd.com;, airlied@linux.ie;, daniel@ffwll.ch;,
- saurav.girepunje@gmail.com;, sam@ravnborg.org;,
- michel.daenzer@amd.com;, amd-gfx@lists.freedesktop.org;,
- dri-devel@lists.freedesktop.org;, linux-kernel@vger.kernel.org;,
- gregkh@linuxfoundation.org
-Subject: [PATCH] gpu: drm: amd: amdgpu: Remove call to memset after
- dma_alloc_coherent
-Message-ID: <20190928090725.GA11659@saurav>
+Received: from huawei.com (szxga07-in.huawei.com [45.249.212.35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 455AC6E2F8;
+ Sun, 29 Sep 2019 12:32:00 +0000 (UTC)
+Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.59])
+ by Forcepoint Email with ESMTP id 71EBBF3A29CA4E61AEAA;
+ Sun, 29 Sep 2019 20:31:57 +0800 (CST)
+Received: from huawei.com (10.90.53.225) by DGGEMS413-HUB.china.huawei.com
+ (10.3.19.213) with Microsoft SMTP Server id 14.3.439.0; Sun, 29 Sep 2019
+ 20:31:49 +0800
+From: yu kuai <yukuai3@huawei.com>
+To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <David1.Zhou@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>
+Subject: [PATCH] drm/amdgpu: remove set but not used variable 'pipe'
+Date: Sun, 29 Sep 2019 20:38:43 +0800
+Message-ID: <1569760723-119944-1-git-send-email-yukuai3@huawei.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Originating-IP: [10.90.53.225]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Mon, 30 Sep 2019 07:03:26 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:mime-version:content-disposition
- :user-agent;
- bh=zxhtropV4cqrvR/Qtgxblo/g2bg2w3CWnLrP6tMU0YE=;
- b=Q5y3ZR2SmsfGoiS8Jk4boxoE/zixrTMo93JvHlqDFpZ0ruAkRoHSRHI4vRXwIqamlT
- jrnRfNn2W6uDw+5TOL4FWS652PCo4tt3lBwnDt0OUsaWgmDhCCwlt8NL151nDyuhmMg2
- ZbD5q0Hzz8MzT/HJ/GxbFAoMFK1Wfr/srgKWi0R90doD/TYaPEwLZhFDD2Y6svRenanW
- XwrgzEcJdZjLPNSHl7Vn4Yn1FfnWgHFejULVujf6SZtzQXtxZzqL+qJskym9XPvmXrM1
- Rlc3n37i2GOuG4gGyiRGTFgzmQCj21D2jYeaZx4Tua2Wsb6qOpOCpKKxJmQgJkiOn14K
- ZRIg==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -72,26 +40,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: saurav.girepunje@hotmail.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: yi.zhang@huawei.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, zhengbin13@huawei.com,
+ amd-gfx@lists.freedesktop.org, yukuai3@huawei.com
+Content-Type: multipart/mixed; boundary="===============0051611972=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-ZG1hX2FsbG9jX2NvaGVyZW50IGhhcyBhbHJlYWR5IHplcm9lZCB0aGUgbWVtb3J5LgpTbyBtZW1z
-ZXQgaXMgbm90IG5lZWRlZC4KClNpZ25lZC1vZmYtYnk6IFNhdXJhdiBHaXJlcHVuamUgPHNhdXJh
-di5naXJlcHVuamVAZ21haWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
-ZGdwdV9paC5jIHwgMSAtCiAxIGZpbGUgY2hhbmdlZCwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9paC5jIGIvZHJpdmVycy9ncHUv
-ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2loLmMKaW5kZXggNmQ4ZjA1NTExYWJhLi4xMTFhMzAxY2U4
-NzggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9paC5jCisr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9paC5jCkBAIC02Niw3ICs2Niw2
-IEBAIGludCBhbWRncHVfaWhfcmluZ19pbml0KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LCBz
-dHJ1Y3QgYW1kZ3B1X2loX3JpbmcgKmloLAogCQlpZiAoaWgtPnJpbmcgPT0gTlVMTCkKIAkJCXJl
-dHVybiAtRU5PTUVNOwogCi0JCW1lbXNldCgodm9pZCAqKWloLT5yaW5nLCAwLCBpaC0+cmluZ19z
-aXplICsgOCk7CiAJCWloLT5ncHVfYWRkciA9IGRtYV9hZGRyOwogCQlpaC0+d3B0cl9hZGRyID0g
-ZG1hX2FkZHIgKyBpaC0+cmluZ19zaXplOwogCQlpaC0+d3B0cl9jcHUgPSAmaWgtPnJpbmdbaWgt
-PnJpbmdfc2l6ZSAvIDRdOwotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2FtZC1nZng=
+--===============0051611972==
+Content-Type: text/plain; charset="y"
+Content-Transfer-Encoding: 8bit
+
+Fixes gcc '-Wunused-but-set-variable' warning:
+
+rivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c: In function
+‘amdgpu_gfx_graphics_queue_acquire’:
+drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:234:16: warning:
+variable ‘pipe’ set but not used [-Wunused-but-set-variable]
+
+It is never used, so can be removed.
+
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: yu kuai <yukuai3@huawei.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index f9bef31..c1035a3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -231,12 +231,10 @@ void amdgpu_gfx_compute_queue_acquire(struct amdgpu_device *adev)
+ 
+ void amdgpu_gfx_graphics_queue_acquire(struct amdgpu_device *adev)
+ {
+-	int i, queue, pipe, me;
++	int i, queue, me;
+ 
+ 	for (i = 0; i < AMDGPU_MAX_GFX_QUEUES; ++i) {
+ 		queue = i % adev->gfx.me.num_queue_per_pipe;
+-		pipe = (i / adev->gfx.me.num_queue_per_pipe)
+-			% adev->gfx.me.num_pipe_per_me;
+ 		me = (i / adev->gfx.me.num_queue_per_pipe)
+ 		      / adev->gfx.me.num_pipe_per_me;
+ 
+-- 
+2.7.4
+
+
+--===============0051611972==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0051611972==--
