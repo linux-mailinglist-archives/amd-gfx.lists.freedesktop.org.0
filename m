@@ -1,86 +1,85 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7B0C25E7
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2019 20:05:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26F84C25EA
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2019 20:08:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C158E6E098;
-	Mon, 30 Sep 2019 18:05:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9263C6E4CD;
+	Mon, 30 Sep 2019 18:08:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam04on060b.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe4d::60b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BCC56E098
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Sep 2019 18:05:35 +0000 (UTC)
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr820087.outbound.protection.outlook.com [40.107.82.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 042196E4CD
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Sep 2019 18:08:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nVFgylKI+niCdsEAXAhtnCezZYx43TV8EwXrm7jbkr/GGmRs5cKYJYU4KMP38L4NAUZ02kSCJLw4WGhtFwvsMg/vfXBFExncTiOQorFUxD2vful/q/wqmj6uTGRpYSjAhVqd+NXXDqVyLZk2FWjIs4IdeSEwhq2APvVnupZTHAnjSSXoDS7XHyFmztDrTXlWsYNGaJOnca6aOsWxUEq9tuhUXvbKJLpXq0SQmNUaBeTrFwhgtHdA5WLw4EKZSJTfGlOfqT/b0MzCs5gGSI+BTEZFnvXMqpwAdofDA01UwbqMuWkez4xScQul0Z3cjibRtobb9epXfE3VknnOkKl2Ew==
+ b=k1t4/qg31OIe8TL5tkt4svnzMMKV9YjdbJuVEOfWIbz+nGbhOIqqaxCwVL9Hno915Q2feocwzD8PtnSm+/OvjTwas4vaPTIw9+IgpnBHXMJuGXqNbad1Elyp6RRQytx44zVqOgfSFo5hSWaclNgOmN60cEgBzJ+zvsToMZ/VGApuKw43R/iFKuYVOiqjIJcrh38ipgrr9E4N0Z46rpDRTMiV4E7tFB9f+kAMzlFR6cZm0X8aMGBbLMnJIzQoTUKPtSVapjeYOtbgNdvBcSipJSTL56jGhnwkeOlJ/Nmn/nvGAWJ2/qG22iBTKF/62GV6M8YW9E0EK+kZlKxq//koEw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HEO07SkRp/pNT6vhQhqF/eBBKHLuK1Wc5OtUg6p/wjM=;
- b=YjaF4W2TObEm1qVtaKp+PI0jPd5c02EUHsk/17oNYjxl8eLNC0HtXkJreKGKYp8x++DeMWJTtC73UHHs6Orr19nsCqJGWLq+dNbASpFNyl3cxyvqhyIQvCBjMQnKpfCiBhhQEWtyv4aWlr8sQUhzoBaF1PRXZ8V8NlBvmrHi+d688eQaRbQOMaKGZwUtYiMe5arVIgIIPg/qaEZtUoY+ryK9Z412o4R/zY0kU3p10ZtL94ZCSZuZD8A5per4812jJr5NrXCC+hplKewONi77U7MFIwIemmra3iY2XOXYx7ji+HHY2URsspE5pniW3tVLHlp4Vw7LBzoUJvZueO9Lkg==
+ bh=vewTGd8eIgCHwGNcUE9jb5UdNtts/S3Vz33wFxvFYNc=;
+ b=MpBUaMIdvm2h9Tjk/FEz9/PJsH8CnHDyptbyCXqQ8ynx2koW4HRDK3PDBUsbZnOTxcRMH27bpPxH0cla28FZJbT1SeXzUBF6vLWEGnKqr/oBykoim0QgH5wOritG90dVur2MLGbMqO7fs3WdgwXxhn4IGQgzyGUc6ejOv7twi1l9pVa3hnU/4kYHvDFkbx+NWPUI+g/N4JvDQRFOBRNnQQZNodNuXXa1fw5qxNVNG087iXT4KZAs4k3k1GUF1YKkuUpprEWJq64vL72TgYZWK1BFEc7e5G4hpSmhthj2j8N4aLBdYwN1kh1rLPSiSLoKKD6lMGoOdLs3FKTtfmm8qQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 Received: from DM6PR12MB2778.namprd12.prod.outlook.com (20.176.114.145) by
- DM6PR12MB2713.namprd12.prod.outlook.com (20.176.116.86) with Microsoft SMTP
+ DM6PR12MB3499.namprd12.prod.outlook.com (20.178.199.22) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.17; Mon, 30 Sep 2019 18:05:33 +0000
+ 15.20.2305.20; Mon, 30 Sep 2019 18:08:32 +0000
 Received: from DM6PR12MB2778.namprd12.prod.outlook.com
  ([fe80::b411:7d2c:8848:1f6e]) by DM6PR12MB2778.namprd12.prod.outlook.com
  ([fe80::b411:7d2c:8848:1f6e%7]) with mapi id 15.20.2305.017; Mon, 30 Sep 2019
- 18:05:33 +0000
+ 18:08:32 +0000
 From: "Zhao, Yong" <Yong.Zhao@amd.com>
 To: "Kuehling, Felix" <Felix.Kuehling@amd.com>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 6/6] drm/amdkfd: Improve KFD IOCTL printing
-Thread-Topic: [PATCH 6/6] drm/amdkfd: Improve KFD IOCTL printing
-Thread-Index: AQHVda6nHHAsC5kwB06otUer7ZPNMKdEYXyAgAAmP7g=
-Date: Mon, 30 Sep 2019 18:05:33 +0000
-Message-ID: <DM6PR12MB27786C334D48B9EC6329B68CF0820@DM6PR12MB2778.namprd12.prod.outlook.com>
+Subject: Re: [PATCH 5/6] drm/amdgpu: Add the HDP flush support for Navi
+Thread-Topic: [PATCH 5/6] drm/amdgpu: Add the HDP flush support for Navi
+Thread-Index: AQHVda6nMuaaGGKqQ0611nhju0hSwKdEZBKAgAAkKxk=
+Date: Mon, 30 Sep 2019 18:08:31 +0000
+Message-ID: <DM6PR12MB2778AF2F9B4220E756B3B982F0820@DM6PR12MB2778.namprd12.prod.outlook.com>
 References: <20190928034132.28340-1-Yong.Zhao@amd.com>
- <20190928034132.28340-6-Yong.Zhao@amd.com>,
- <30b9f4d8-0365-27fb-b6b4-ba2d20b9cb81@amd.com>
-In-Reply-To: <30b9f4d8-0365-27fb-b6b4-ba2d20b9cb81@amd.com>
+ <20190928034132.28340-5-Yong.Zhao@amd.com>,
+ <9e4b4889-4937-bb42-d0f9-79766fd87138@amd.com>
+In-Reply-To: <9e4b4889-4937-bb42-d0f9-79766fd87138@amd.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [2607:fea8:209f:ebca:80e2:c472:bf44:ff10]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e42eea8a-0c5e-4a7a-0f2b-08d745d0c9c1
+x-ms-office365-filtering-correlation-id: 002c60ce-fae3-483d-6f1e-08d745d13419
 x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: DM6PR12MB2713:
+x-ms-traffictypediagnostic: DM6PR12MB3499:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR12MB27130ED402ECA3E845D48B73F0820@DM6PR12MB2713.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-microsoft-antispam-prvs: <DM6PR12MB34997ED362154EE8121B6596F0820@DM6PR12MB3499.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4941;
 x-forefront-prvs: 01762B0D64
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(366004)(346002)(396003)(39860400002)(136003)(189003)(199004)(316002)(229853002)(256004)(105004)(46003)(9686003)(54896002)(6246003)(186003)(55016002)(25786009)(33656002)(8936002)(6436002)(52536014)(19627405001)(7696005)(110136005)(99286004)(14444005)(2501003)(102836004)(6506007)(53546011)(86362001)(8676002)(76176011)(81156014)(5660300002)(74316002)(81166006)(478600001)(486006)(7736002)(71190400001)(446003)(11346002)(2906002)(476003)(6116002)(66446008)(64756008)(66556008)(66476007)(14454004)(76116006)(66946007)(71200400001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB2713;
+ SFS:(10009020)(979002)(4636009)(366004)(136003)(396003)(346002)(376002)(39860400002)(52314003)(199004)(189003)(2501003)(11346002)(33656002)(446003)(52536014)(5660300002)(6436002)(229853002)(55016002)(2906002)(105004)(46003)(19627405001)(316002)(8676002)(25786009)(76176011)(6116002)(7736002)(53546011)(110136005)(8936002)(7696005)(74316002)(102836004)(86362001)(256004)(14444005)(14454004)(64756008)(66446008)(54896002)(66556008)(478600001)(66476007)(71200400001)(81156014)(6246003)(66946007)(76116006)(81166006)(186003)(71190400001)(486006)(9686003)(99286004)(476003)(6506007)(969003)(989001)(999001)(1009001)(1019001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3499;
  H:DM6PR12MB2778.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: aGh/5l7GGHa78pd01XiRFKKnDCLr0PylWoMb+eTEheraAsclKa558VChkX4X3hyM9mcLjLMawArmWffo9i/xlKO0Sv9e9koL0/hGg3Y1hd1TmPlI9u/u4sXW4GjSGmTPLAoFwyxvU5Lw6cHhZy66tgLtilbGGtQ8PrbN6JnIANWfwdQaVWCnj5PUFE6zH3iBaNVynIwzXGSDRoS8s4dFrOid045g4GG/v49OnVGYKK/eYSK95T33iTBbMp6gzMPI0CoHiE8+taHmV9l5is+WLrhuc7gLnnRkuXF5peAbBNWgJCmLQr5RJpUI6Ugk2J879BpZT/r0k1TaGujU4zcZ1X7B5lSO1TK6pkAhrEE/iJxwbTt8IrWykYIdvtKyP1UuAoqs67ep0mKSaZosYTwGo/yJ54BkYuj49a79Cg68NR0=
+x-microsoft-antispam-message-info: lJ2sMTeFByu7KowZhcJYw/rJ5TLnqcQIoiZ1GyTtKRo/KiDUdylu7Pc3rJEagawVqBO0UG2ROgtMS8Rk4y/58852V7fk9TS4+8iju4JwM5smAIPJA7elqUS8Gm66DEjb8rHmsSy9dRXRxLWUF9cN2OMpR2a1FOpgQZdpV/ecKgiwzwqtOCyK5eUv4VEVoXf9tLIQJ8HOEJbGoFs9tM/4yfSbm/csqRR60iirJHhN7bFr5/fttAgrp48CKXoLRIZVodOUcx78q18ah7tul1b4xOKOkVaO2fz46aVQy7uSsCXe0Q9JhS5eh0Gwp/dkLxDrHZo+JFOtAxYaWdmBmKKlY5YQrHdBfuv6wWkib920N4R6XsTfbjTlzlVISoH9X8ALPIw2gReFfCLce4xPe2ShXOQsRjtegmkoHGLf7ZwPseI=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e42eea8a-0c5e-4a7a-0f2b-08d745d0c9c1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2019 18:05:33.5072 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 002c60ce-fae3-483d-6f1e-08d745d13419
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2019 18:08:31.9268 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /8l30anzXKCfx6GavToBqW6bcxGcduuvpNmI9YAidYs7Wf5HQwvKpqbO/z3SRAbO
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2713
+X-MS-Exchange-CrossTenant-userprincipalname: 6Ra0Pb3Q0Mj06HrEbIJeAy8DfD6R17lAwZG/mjd44UWP3Qn2TgcnjqbJRBmTss7W
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3499
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HEO07SkRp/pNT6vhQhqF/eBBKHLuK1Wc5OtUg6p/wjM=;
- b=ypqpwl6qWA1CrvNYgRQRzurW8FeELsW374esOJypstBkuYoShYzM55HcYpeHQ3OKmUsX8jxwwW3kW7UuWkCuPsL5iOFFAdVlqftIt3mneT2ojVA6rIUhGCUCF9uZnAeq9vl9cRQnRBx/cbEYxpPkFTJIzDnJiv4JdF/3TBYmuoA=
+ bh=vewTGd8eIgCHwGNcUE9jb5UdNtts/S3Vz33wFxvFYNc=;
+ b=g5clV9Ej5YbSyAuknLb9oZMGbNpeAMiR6JLFMMBMqdqKdI679CdJ6f4zAs6AT5FK1CIzVaq/LdMACP6QA16i0V3xbrege2ld9hbzBge+IySpdQqxMA/8Yq90POose5GgzrZ21ZKL8lLXUgqMmXiox/y8mOLxsEkQWoFP5YrVoIo=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Yong.Zhao@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -94,84 +93,134 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1821909814=="
+Content-Type: multipart/mixed; boundary="===============1462292514=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1821909814==
+--===============1462292514==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_DM6PR12MB27786C334D48B9EC6329B68CF0820DM6PR12MB2778namp_"
+	boundary="_000_DM6PR12MB2778AF2F9B4220E756B3B982F0820DM6PR12MB2778namp_"
 
---_000_DM6PR12MB27786C334D48B9EC6329B68CF0820DM6PR12MB2778namp_
+--_000_DM6PR12MB2778AF2F9B4220E756B3B982F0820DM6PR12MB2778namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Okay, I will change dev_err back to dev_dbg. The hex printing is still very=
- useful.
+Not much relationship between them, except that this functional change is t=
+o fix a IOCTL error printing.
 
 Yong
 ________________________________
 From: Kuehling, Felix <Felix.Kuehling@amd.com>
-Sent: Monday, September 30, 2019 11:47 AM
+Sent: Monday, September 30, 2019 11:57 AM
 To: Zhao, Yong <Yong.Zhao@amd.com>; amd-gfx@lists.freedesktop.org <amd-gfx@=
 lists.freedesktop.org>
-Subject: Re: [PATCH 6/6] drm/amdkfd: Improve KFD IOCTL printing
+Subject: Re: [PATCH 5/6] drm/amdgpu: Add the HDP flush support for Navi
+
+As far as I can tell, this is the only patch with functional changes in
+the patch series. The rest are purely clean-up. Any relation I'm missing?
+
+Anyway, patches 2,3,5 are
+
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 
 On 2019-09-27 11:41 p.m., Zhao, Yong wrote:
-> The code use hex define, so should the printing. Also, printf a message
-> if there is a failure.
+> The HDP flush support code was missing in the nbio and nv files.
 >
-> Change-Id: Ia7cc7690553bb043915b3d8c0157216c64421a60
+> Change-Id: I046ff52567676b56bf16dc1728b02481233acb61
 > Signed-off-by: Yong Zhao <Yong.Zhao@amd.com>
 > ---
->   drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c | 16 +++++++++++++---
+>   drivers/gpu/drm/amd/amdgpu/nv.c        |  9 +++++++++
+>   2 files changed, 22 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/a=
-md/amdkfd/kfd_chardev.c
-> index c28ba0c1d7ac..d1ab09c0f522 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> @@ -1840,7 +1840,7 @@ static long kfd_ioctl(struct file *filep, unsigned =
-int cmd, unsigned long arg)
->        } else
->                goto err_i1;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c b/drivers/gpu/drm/amd=
+/amdgpu/nbio_v2_3.c
+> index e7e36fb6113d..c699cbfe015a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+> @@ -27,11 +27,21 @@
+>   #include "nbio/nbio_2_3_default.h"
+>   #include "nbio/nbio_2_3_offset.h"
+>   #include "nbio/nbio_2_3_sh_mask.h"
+> +#include <uapi/linux/kfd_ioctl.h>
 >
-> -     dev_dbg(kfd_device, "ioctl cmd 0x%x (#%d), arg 0x%lx\n", cmd, nr, a=
-rg);
-> +     dev_dbg(kfd_device, "ioctl cmd 0x%x (#0x%x), arg 0x%lx\n", cmd, nr,=
- arg);
+>   #define smnPCIE_CONFIG_CNTL 0x11180044
+>   #define smnCPM_CONTROL              0x11180460
+>   #define smnPCIE_CNTL2               0x11180070
 >
->        process =3D kfd_get_process(current);
->        if (IS_ERR(process)) {
-> @@ -1895,7 +1895,8 @@ static long kfd_ioctl(struct file *filep, unsigned =
-int cmd, unsigned long arg)
->                kfree(kdata);
->
->        if (retcode)
-> -             dev_dbg(kfd_device, "ret =3D %d\n", retcode);
-> +             dev_err(kfd_device, "ioctl cmd (#0x%x), arg 0x%lx, ret =3D =
-%d\n",
-> +                             nr, arg, retcode);
-
-NAK. We don't want to spam the kernel log with cryptic error messages
-every time ioctl functions fail. Please leave this as a dev_dbg message.
-Failing ioctl functions could be perfectly normal for a number of
-reasons (system call interrupted by signal, running out of event slots,
-timeouts on event waiting, etc). But every bug report will incorrectly
-blame any unrelated problem on those messages if they happen to appear
-in the kernel log.
-
-Regards,
-   Felix
-
-
->
->        return retcode;
+> +
+> +static void nbio_v2_3_remap_hdp_registers(struct amdgpu_device *adev)
+> +{
+> +     WREG32_SOC15(NBIO, 0, mmREMAP_HDP_MEM_FLUSH_CNTL,
+> +             adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH=
+_CNTL);
+> +     WREG32_SOC15(NBIO, 0, mmREMAP_HDP_REG_FLUSH_CNTL,
+> +             adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_REG_FLUSH=
+_CNTL);
+> +}
+> +
+>   static u32 nbio_v2_3_get_rev_id(struct amdgpu_device *adev)
+>   {
+>        u32 tmp =3D RREG32_SOC15(NBIO, 0, mmRCC_DEV0_EPF0_STRAP0);
+> @@ -56,10 +66,9 @@ static void nbio_v2_3_hdp_flush(struct amdgpu_device *=
+adev,
+>                                struct amdgpu_ring *ring)
+>   {
+>        if (!ring || !ring->funcs->emit_wreg)
+> -             WREG32_SOC15_NO_KIQ(NBIO, 0, mmBIF_BX_PF_HDP_MEM_COHERENCY_=
+FLUSH_CNTL, 0);
+> +             WREG32_NO_KIQ((adev->rmmio_remap.reg_offset + KFD_MMIO_REMA=
+P_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+>        else
+> -             amdgpu_ring_emit_wreg(ring, SOC15_REG_OFFSET(
+> -                     NBIO, 0, mmBIF_BX_PF_HDP_MEM_COHERENCY_FLUSH_CNTL),=
+ 0);
+> +             amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset +=
+ KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
 >   }
+>
+>   static u32 nbio_v2_3_get_memsize(struct amdgpu_device *adev)
+> @@ -330,4 +339,5 @@ const struct amdgpu_nbio_funcs nbio_v2_3_funcs =3D {
+>        .ih_control =3D nbio_v2_3_ih_control,
+>        .init_registers =3D nbio_v2_3_init_registers,
+>        .detect_hw_virt =3D nbio_v2_3_detect_hw_virt,
+> +     .remap_hdp_registers =3D nbio_v7_4_remap_hdp_registers,
+>   };
+> diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu=
+/nv.c
+> index b3e7756fcc4b..6699a45b88ec 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/nv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+> @@ -587,8 +587,11 @@ static const struct amdgpu_asic_funcs nv_asic_funcs =
+=3D
+>
+>   static int nv_common_early_init(void *handle)
+>   {
+> +#define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)
+>        struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
+>
+> +     adev->rmmio_remap.reg_offset =3D MMIO_REG_HOLE_OFFSET;
+> +     adev->rmmio_remap.bus_addr =3D adev->rmmio_base + MMIO_REG_HOLE_OFF=
+SET;
+>        adev->smc_rreg =3D NULL;
+>        adev->smc_wreg =3D NULL;
+>        adev->pcie_rreg =3D &nv_pcie_rreg;
+> @@ -714,6 +717,12 @@ static int nv_common_hw_init(void *handle)
+>        nv_program_aspm(adev);
+>        /* setup nbio registers */
+>        adev->nbio.funcs->init_registers(adev);
+> +     /* remap HDP registers to a hole in mmio space,
+> +      * for the purpose of expose those registers
+> +      * to process space
+> +      */
+> +     if (adev->nbio.funcs->remap_hdp_registers)
+> +             adev->nbio.funcs->remap_hdp_registers(adev);
+>        /* enable the doorbell aperture */
+>        nv_enable_doorbell_aperture(adev, true);
+>
 
---_000_DM6PR12MB27786C334D48B9EC6329B68CF0820DM6PR12MB2778namp_
+--_000_DM6PR12MB2778AF2F9B4220E756B3B982F0820DM6PR12MB2778namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -185,106 +234,181 @@ ttom:0;} </style>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Okay, I will change&nbsp;<span style=3D"font-family: &quot;Segoe UI&quot;, =
-&quot;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-syst=
-em, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;, sans-serif; fon=
-t-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !i=
-mportant">dev_err
- back to dev_dbg. The hex printing is still very useful.</span></div>
+Not much relationship between them, except that this functional change is t=
+o fix a IOCTL error printing.&nbsp;</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-<span style=3D"font-family: &quot;Segoe UI&quot;, &quot;Segoe UI Web (West =
-European)&quot;, &quot;Segoe UI&quot;, -apple-system, BlinkMacSystemFont, R=
-oboto, &quot;Helvetica Neue&quot;, sans-serif; font-size: 14.6667px; backgr=
-ound-color: rgb(255, 255, 255); display: inline !important"><br>
-</span></div>
-<div style=3D"color: rgb(0, 0, 0);"><span style=3D"font-size: 14.6667px;">Y=
-ong</span></div>
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Yong</div>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
 yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Kuehling, Felix &lt;F=
 elix.Kuehling@amd.com&gt;<br>
-<b>Sent:</b> Monday, September 30, 2019 11:47 AM<br>
+<b>Sent:</b> Monday, September 30, 2019 11:57 AM<br>
 <b>To:</b> Zhao, Yong &lt;Yong.Zhao@amd.com&gt;; amd-gfx@lists.freedesktop.=
 org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Subject:</b> Re: [PATCH 6/6] drm/amdkfd: Improve KFD IOCTL printing</fon=
-t>
+<b>Subject:</b> Re: [PATCH 5/6] drm/amdgpu: Add the HDP flush support for N=
+avi</font>
 <div>&nbsp;</div>
 </div>
 <div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
 ">
-<div class=3D"PlainText">On 2019-09-27 11:41 p.m., Zhao, Yong wrote:<br>
-&gt; The code use hex define, so should the printing. Also, printf a messag=
-e<br>
-&gt; if there is a failure.<br>
+<div class=3D"PlainText">As far as I can tell, this is the only patch with =
+functional changes in
+<br>
+the patch series. The rest are purely clean-up. Any relation I'm missing?<b=
+r>
+<br>
+Anyway, patches 2,3,5 are<br>
+<br>
+Reviewed-by: Felix Kuehling &lt;Felix.Kuehling@amd.com&gt;<br>
+<br>
+On 2019-09-27 11:41 p.m., Zhao, Yong wrote:<br>
+&gt; The HDP flush support code was missing in the nbio and nv files.<br>
 &gt;<br>
-&gt; Change-Id: Ia7cc7690553bb043915b3d8c0157216c64421a60<br>
+&gt; Change-Id: I046ff52567676b56bf16dc1728b02481233acb61<br>
 &gt; Signed-off-by: Yong Zhao &lt;Yong.Zhao@amd.com&gt;<br>
 &gt; ---<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 5 &#43;&#43;&#4=
-3;--<br>
-&gt;&nbsp;&nbsp; 1 file changed, 3 insertions(&#43;), 2 deletions(-)<br>
+&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c | 16 &#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;---<br>
+&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/nv.c&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; |&nbsp; 9 &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<br>
+&gt;&nbsp;&nbsp; 2 files changed, 22 insertions(&#43;), 3 deletions(-)<br>
 &gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/dr=
-m/amd/amdkfd/kfd_chardev.c<br>
-&gt; index c28ba0c1d7ac..d1ab09c0f522 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c<br>
-&gt; @@ -1840,7 &#43;1840,7 @@ static long kfd_ioctl(struct file *filep, un=
-signed int cmd, unsigned long arg)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; goto err_i1;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c b/drivers/gpu/drm/=
+amd/amdgpu/nbio_v2_3.c<br>
+&gt; index e7e36fb6113d..c699cbfe015a 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c<br>
+&gt; @@ -27,11 &#43;27,21 @@<br>
+&gt;&nbsp;&nbsp; #include &quot;nbio/nbio_2_3_default.h&quot;<br>
+&gt;&nbsp;&nbsp; #include &quot;nbio/nbio_2_3_offset.h&quot;<br>
+&gt;&nbsp;&nbsp; #include &quot;nbio/nbio_2_3_sh_mask.h&quot;<br>
+&gt; &#43;#include &lt;uapi/linux/kfd_ioctl.h&gt;<br>
 &gt;&nbsp;&nbsp; <br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; dev_dbg(kfd_device, &quot;ioctl cmd 0x%x (#%=
-d), arg 0x%lx\n&quot;, cmd, nr, arg);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; dev_dbg(kfd_device, &quot;ioctl cmd 0x%x=
- (#0x%x), arg 0x%lx\n&quot;, cmd, nr, arg);<br>
+&gt;&nbsp;&nbsp; #define smnPCIE_CONFIG_CNTL 0x11180044<br>
+&gt;&nbsp;&nbsp; #define smnCPM_CONTROL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x11180460<br>
+&gt;&nbsp;&nbsp; #define smnPCIE_CNTL2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x11180070<br>
 &gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; process =3D kfd_get_process(=
-current);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (IS_ERR(process)) {<br>
-&gt; @@ -1895,7 &#43;1895,8 @@ static long kfd_ioctl(struct file *filep, un=
-signed int cmd, unsigned long arg)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; kfree(kdata);<br>
-&gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (retcode)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; dev_dbg(kfd_device, &quot;ret =3D %d\n&quot;, retcode);<br>
+&gt; &#43;<br>
+&gt; &#43;static void nbio_v2_3_remap_hdp_registers(struct amdgpu_device *a=
+dev)<br>
+&gt; &#43;{<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(NBIO, 0, mmREMAP_HDP_MEM_FL=
+USH_CNTL,<br>
 &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; dev_err(kfd_device, &quot;ioctl cmd (#0x%x), arg 0x%lx, ret =3D %d\=
-n&quot;,<br>
+;&nbsp; adev-&gt;rmmio_remap.reg_offset &#43; KFD_MMIO_REMAP_HDP_MEM_FLUSH_=
+CNTL);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(NBIO, 0, mmREMAP_HDP_REG_FL=
+USH_CNTL,<br>
 &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; adev-&gt;rmmio_remap.reg_offset &#43; KFD_MMIO_REMAP_HDP_REG_FLUSH_=
+CNTL);<br>
+&gt; &#43;}<br>
+&gt; &#43;<br>
+&gt;&nbsp;&nbsp; static u32 nbio_v2_3_get_rev_id(struct amdgpu_device *adev=
+)<br>
+&gt;&nbsp;&nbsp; {<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u32 tmp =3D RREG32_SOC15(NBI=
+O, 0, mmRCC_DEV0_EPF0_STRAP0);<br>
+&gt; @@ -56,10 &#43;66,9 @@ static void nbio_v2_3_hdp_flush(struct amdgpu_d=
+evice *adev,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
 ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; nr, arg, retcode);<br>
-<br>
-NAK. We don't want to spam the kernel log with cryptic error messages <br>
-every time ioctl functions fail. Please leave this as a dev_dbg message. <b=
-r>
-Failing ioctl functions could be perfectly normal for a number of <br>
-reasons (system call interrupted by signal, running out of event slots, <br=
->
-timeouts on event waiting, etc). But every bug report will incorrectly <br>
-blame any unrelated problem on those messages if they happen to appear <br>
-in the kernel log.<br>
-<br>
-Regards,<br>
-&nbsp;&nbsp; Felix<br>
-<br>
-<br>
-&gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return retcode;<br>
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_ring *ring)<br>
+&gt;&nbsp;&nbsp; {<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!ring || !ring-&gt;funcs=
+-&gt;emit_wreg)<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; WREG32_SOC15_NO_KIQ(NBIO, 0, mmBIF_BX_PF_HDP_MEM_COHERENCY_FLUSH_CNTL, =
+0);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; WREG32_NO_KIQ((adev-&gt;rmmio_remap.reg_offset &#43; KFD_MMIO_REMAP=
+_HDP_MEM_FLUSH_CNTL) &gt;&gt; 2, 0);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; amdgpu_ring_emit_wreg(ring, SOC15_REG_OFFSET(<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NBIO, 0, mmBIF_BX_PF_HD=
+P_MEM_COHERENCY_FLUSH_CNTL), 0);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; amdgpu_ring_emit_wreg(ring, (adev-&gt;rmmio_remap.reg_offset &#43; =
+KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) &gt;&gt; 2, 0);<br>
 &gt;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp; <br>
+&gt;&nbsp;&nbsp; static u32 nbio_v2_3_get_memsize(struct amdgpu_device *ade=
+v)<br>
+&gt; @@ -330,4 &#43;339,5 @@ const struct amdgpu_nbio_funcs nbio_v2_3_funcs=
+ =3D {<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ih_control =3D nbio_v2_3_ih=
+_control,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .init_registers =3D nbio_v2_=
+3_init_registers,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .detect_hw_virt =3D nbio_v2_=
+3_detect_hw_virt,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; .remap_hdp_registers =3D nbio_v7_4_remap=
+_hdp_registers,<br>
+&gt;&nbsp;&nbsp; };<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amd=
+gpu/nv.c<br>
+&gt; index b3e7756fcc4b..6699a45b88ec 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/nv.c<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/nv.c<br>
+&gt; @@ -587,8 &#43;587,11 @@ static const struct amdgpu_asic_funcs nv_asic=
+_funcs =3D<br>
+&gt;&nbsp;&nbsp; <br>
+&gt;&nbsp;&nbsp; static int nv_common_early_init(void *handle)<br>
+&gt;&nbsp;&nbsp; {<br>
+&gt; &#43;#define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =
+=3D (struct amdgpu_device *)handle;<br>
+&gt;&nbsp;&nbsp; <br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.reg_offset =3D MMIO=
+_REG_HOLE_OFFSET;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.bus_addr =3D adev-&=
+gt;rmmio_base &#43; MMIO_REG_HOLE_OFFSET;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;smc_rreg =3D NULL;<=
+br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;smc_wreg =3D NULL;<=
+br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;pcie_rreg =3D &amp;=
+nv_pcie_rreg;<br>
+&gt; @@ -714,6 &#43;717,12 @@ static int nv_common_hw_init(void *handle)<br=
+>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nv_program_aspm(adev);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* setup nbio registers */<b=
+r>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;nbio.funcs-&gt;init=
+_registers(adev);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; /* remap HDP registers to a hole in mmio=
+ space,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * for the purpose of expose those =
+registers<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * to process space<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;nbio.funcs-&gt;remap_hdp_re=
+gisters)<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; adev-&gt;nbio.funcs-&gt;remap_hdp_registers(adev);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* enable the doorbell apert=
+ure */<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nv_enable_doorbell_aperture(=
+adev, true);<br>
+&gt;&nbsp;&nbsp; <br>
 </div>
 </span></font></div>
 </body>
 </html>
 
---_000_DM6PR12MB27786C334D48B9EC6329B68CF0820DM6PR12MB2778namp_--
+--_000_DM6PR12MB2778AF2F9B4220E756B3B982F0820DM6PR12MB2778namp_--
 
---===============1821909814==
+--===============1462292514==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -294,4 +418,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1821909814==--
+--===============1462292514==--
