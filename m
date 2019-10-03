@@ -1,59 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979AACAB77
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Oct 2019 19:30:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2692CAB7C
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Oct 2019 19:33:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D74506E2A3;
-	Thu,  3 Oct 2019 17:30:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C4196EA31;
+	Thu,  3 Oct 2019 17:33:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9C646E2A3
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2019 17:30:03 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id u186so3175100qkc.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 03 Oct 2019 10:30:03 -0700 (PDT)
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
+ [IPv6:2a00:1450:4864:20::242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01A4D6EA31
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2019 17:33:52 +0000 (UTC)
+Received: by mail-lj1-x242.google.com with SMTP id a22so3725043ljd.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 03 Oct 2019 10:33:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=zkk/fll2VvpZrD+qokQJESIIXD61mTEOXOsPo+NYqyI=;
- b=N6f8Zhyc6f7IcUrm2+4pwV+7jJBwiHfUnNNoJYmwbBrkeHylVpmo/Q835lCHxCq2Cz
- wlg1yZaVsT5duCHvIG9GjGV56i8sithoaulxuH7U3lBEwVQ2DfErbcZw3vY9aHZ0GyYF
- MFkOaDM7oQZ/aU2jQch9gc9GDh9IMNEGRaK0+9WDYiisjiIz/q4n9gc3RYaW8dGD4eQJ
- +r6Zu7AxgW0nUSDyVujHNQN1tNjJQRH22fUaA/dx3Jw6PK6r9vsS1In1E+mAy6LzMO7y
- W5fSvIPKZCDIp1nb+QBiKPlKT9zSHcH/X9N53m5WnvjNZ/7qjMv0xqjaRwcz5E+6CquD
- rWZQ==
-X-Gm-Message-State: APjAAAUglG4+3dw7nGyWHYvw2oEYhI5Th4bFld4UdIr2nEXcL3PChX4O
- JxT115ApaKzvGcYyfPYF/UccUGPv
-X-Google-Smtp-Source: APXvYqx0lG5GdsUaBR6cL+jmVUAK4qB1L8Do9AZYNu8g3MqrXNwvGdkyvgZUWEpGwngeB/G/DDnF6w==
-X-Received: by 2002:a37:498f:: with SMTP id w137mr5422017qka.419.1570123802421; 
- Thu, 03 Oct 2019 10:30:02 -0700 (PDT)
-Received: from localhost.localdomain ([71.219.73.178])
- by smtp.gmail.com with ESMTPSA id y4sm1717704qkl.107.2019.10.03.10.30.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Oct 2019 10:30:01 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: improve MSI-X handling (v3)
-Date: Thu,  3 Oct 2019 12:29:51 -0500
-Message-Id: <20191003172951.15866-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=vQRVTDcfkzNK0y53HsVIKYHi3y1xEaaLBWWkoxuxAAI=;
+ b=FImYBKIWIRkogxRehDbhZf0x+AIGVY8U0L1wSYiFyVbNdC8LfOtzmHgMikglvs6oIX
+ lMG6zA4oub/FC6bvYm9dZAruGTK2mxUTDQOgJU6pkMGMgh4OOh4vspbmbaKoFs+9uUfC
+ 3DSyrCTGw4+h9fXUX4SpPsn8f00szHGuGp/MUFQlMs/oRCwHi2wSfrHUQ7pJ6Kn+t9UD
+ Ovpwlc4zt5Sh3QuGJHJcBajfQCj50i61i7ZsGtt/jlJ8MnMMX2ls0PRrSkZOVi2F3biS
+ S0cxRfMtmqkcUnz+ZBQvzmUBzzLAaBDBq8j22GSW9flr6F+teVPeBGHEw5iwh0lQXS/9
+ uNFQ==
+X-Gm-Message-State: APjAAAVzL3/UsfJqijpyL/CVekemLQRBnFRvcHtkZfPWgeEkGoz/Ot1h
+ pJi9qZ7e3GE3LSsSj83uhzIYZepIPCv5d/tMxf0=
+X-Google-Smtp-Source: APXvYqzGxMkN/W1gCv+qh41N5gloI8TaDTPG8tJIE15GgOVKXzqYRGxMm2D9vbmQRByW0e7HslTa+nAcuzl1y/pR0z0=
+X-Received: by 2002:a2e:8857:: with SMTP id z23mr6802247ljj.19.1570124031278; 
+ Thu, 03 Oct 2019 10:33:51 -0700 (PDT)
 MIME-Version: 1.0
+References: <20191003172951.15866-1-alexander.deucher@amd.com>
+In-Reply-To: <20191003172951.15866-1-alexander.deucher@amd.com>
+From: Tom St Denis <tstdenis82@gmail.com>
+Date: Thu, 3 Oct 2019 13:33:40 -0400
+Message-ID: <CAAzXoRKMd2gSrK5GE2Y6UDkbjLifZ5UuAvpTS06eeqB7zJP_Aw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: improve MSI-X handling (v3)
+To: Alex Deucher <alexdeucher@gmail.com>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=zkk/fll2VvpZrD+qokQJESIIXD61mTEOXOsPo+NYqyI=;
- b=g0rmtkEQRfLO4xq78iIqvOcEQ2Jhv8nVt5b6AgyXJ4pz+fvRpq1wjc1huiocPc9FQq
- yMtyTUp1doCSnjRLQjeZN+gC7eseQ2eZbZICRLPUCj4kssAThho1G31FbykcGW+tIbnk
- DxcEBFrkx2GvDuAW61QX9emEdVTj34w00hVSvnJ6yWdP9KRwvUa3LzKJzp5hijqa7Byj
- C88IEPSuFqDFHAZbrYFtM+NfByv2Z6HgruMP6mXX+QODGArGIF2l2pBJXI4243E8v5He
- aRXlfRveBmHGxm6pRRzjK6ijVbNkZkzGeImBoLbHAWPU4BbuS2uDMgDMTRU898XuTPuh
- bdiw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=vQRVTDcfkzNK0y53HsVIKYHi3y1xEaaLBWWkoxuxAAI=;
+ b=W84aQp8x+cNovLHc5U6jBfk/mA4DvtFj3gqyJP2yNKuevuaGiz0XDtryjwWfZcyxOa
+ 1YlgYhviNofyfOQLb77ahnnmznZweFTYVMSCAhegsLnZYdKUWFWrzJp0Upco2ETZbTUN
+ cr3/juyyKl7KCt1ZBn0MdIOFHuUXTdC/IFtO4XSFhZjF8GSN0dcsJCTNDrLiZKAs9sEM
+ H7gTyV6dlk5EtebKfaJQWUyP6M6F6KRIOzGqyagCDk1+BmZxj1S+aiOAdEh2xHeKARb3
+ jckldPKMsYs2mrMN0qQIP1Yz/COialgYtAFQINjq0rkbsGgd1kpoUcvmM/V46xXv3zw8
+ 1r/Q==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -65,42 +61,190 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0569022426=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Q2hlY2sgdGhlIG51bWJlciBvZiBzdXBwb3J0ZWQgdmVjdG9ycyBhbmQgZmFsbCBiYWNrIHRvIE1T
-SSBpZgp3ZSByZXR1cm4gb3IgZXJyb3Igb3IgMCBNU0ktWCB2ZWN0b3JzLgoKdjI6IG9ubHkgYWxs
-b2NhdGUgb25lIHZlY3Rvci4gIFdlIGNhbid0IGN1cnJlbnRseSB1c2UgbW9yZSB0aGFuCm9uZSBh
-bnl3YXkuCgp2MzogaW5zdGFsbCB0aGUgaXJxIG9uIHZlY3RvciAwLgoKU2lnbmVkLW9mZi1ieTog
-QWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9pcnEuYyB8IDE3ICsrKysrKysrKysrKystLS0tCiAxIGZp
-bGUgY2hhbmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfaXJxLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfaXJxLmMKaW5kZXggNTA3NzFiMjc1N2RjLi42ZjNiMDNmNjIy
-NGYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9pcnEuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfaXJxLmMKQEAgLTI0NSwxMSAr
-MjQ1LDE5IEBAIGludCBhbWRncHVfaXJxX2luaXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYp
-CiAJYWRldi0+aXJxLm1zaV9lbmFibGVkID0gZmFsc2U7CiAKIAlpZiAoYW1kZ3B1X21zaV9vayhh
-ZGV2KSkgewotCQlpbnQgbnZlYyA9IHBjaV9hbGxvY19pcnFfdmVjdG9ycyhhZGV2LT5wZGV2LCAx
-LCBwY2lfbXNpeF92ZWNfY291bnQoYWRldi0+cGRldiksCi0JCQkJCVBDSV9JUlFfTVNJIHwgUENJ
-X0lSUV9NU0lYKTsKKwkJaW50IG52ZWMgPSBwY2lfbXNpeF92ZWNfY291bnQoYWRldi0+cGRldik7
-CisJCXVuc2lnbmVkIGludCBmbGFnczsKKworCQlpZiAobnZlYyA8PSAwKSB7CisJCQlmbGFncyA9
-IFBDSV9JUlFfTVNJOworCQl9IGVsc2UgeworCQkJZmxhZ3MgPSBQQ0lfSVJRX01TSSB8IFBDSV9J
-UlFfTVNJWDsKKwkJfQorCQkvKiB3ZSBvbmx5IG5lZWQgb25lIHZlY3RvciAqLworCQludmVjID0g
-cGNpX2FsbG9jX2lycV92ZWN0b3JzKGFkZXYtPnBkZXYsIDEsIDEsIGZsYWdzKTsKIAkJaWYgKG52
-ZWMgPiAwKSB7CiAJCQlhZGV2LT5pcnEubXNpX2VuYWJsZWQgPSB0cnVlOwotCQkJZGV2X2RiZyhh
-ZGV2LT5kZXYsICJhbWRncHU6IHVzaW5nIE1TSS5cbiIpOworCQkJZGV2X2RiZyhhZGV2LT5kZXYs
-ICJhbWRncHU6IHVzaW5nIE1TSS9NU0ktWC5cbiIpOwogCQl9CiAJfQogCkBAIC0yNzIsNyArMjgw
-LDggQEAgaW50IGFtZGdwdV9pcnFfaW5pdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKIAlJ
-TklUX1dPUksoJmFkZXYtPmlycS5paDJfd29yaywgYW1kZ3B1X2lycV9oYW5kbGVfaWgyKTsKIAog
-CWFkZXYtPmlycS5pbnN0YWxsZWQgPSB0cnVlOwotCXIgPSBkcm1faXJxX2luc3RhbGwoYWRldi0+
-ZGRldiwgYWRldi0+ZGRldi0+cGRldi0+aXJxKTsKKwkvKiBVc2UgdmVjdG9yIDAgZm9yIE1TSS1Y
-ICovCisJciA9IGRybV9pcnFfaW5zdGFsbChhZGV2LT5kZGV2LCBwY2lfaXJxX3ZlY3RvcihhZGV2
-LT5wZGV2LCAwKSk7CiAJaWYgKHIpIHsKIAkJYWRldi0+aXJxLmluc3RhbGxlZCA9IGZhbHNlOwog
-CQlpZiAoIWFtZGdwdV9kZXZpY2VfaGFzX2RjX3N1cHBvcnQoYWRldikpCi0tIAoyLjIwLjEKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFp
-bGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============0569022426==
+Content-Type: multipart/alternative; boundary="00000000000023423b059404fdb1"
+
+--00000000000023423b059404fdb1
+Content-Type: text/plain; charset="UTF-8"
+
+Tested-by: Tom St Denis <tom.stdenis@amd.com>
+
+Cheers,
+Tom
+
+On Thu, Oct 3, 2019 at 1:30 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+
+> Check the number of supported vectors and fall back to MSI if
+> we return or error or 0 MSI-X vectors.
+>
+> v2: only allocate one vector.  We can't currently use more than
+> one anyway.
+>
+> v3: install the irq on vector 0.
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 17 +++++++++++++----
+>  1 file changed, 13 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+> index 50771b2757dc..6f3b03f6224f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+> @@ -245,11 +245,19 @@ int amdgpu_irq_init(struct amdgpu_device *adev)
+>         adev->irq.msi_enabled = false;
+>
+>         if (amdgpu_msi_ok(adev)) {
+> -               int nvec = pci_alloc_irq_vectors(adev->pdev, 1,
+> pci_msix_vec_count(adev->pdev),
+> -                                       PCI_IRQ_MSI | PCI_IRQ_MSIX);
+> +               int nvec = pci_msix_vec_count(adev->pdev);
+> +               unsigned int flags;
+> +
+> +               if (nvec <= 0) {
+> +                       flags = PCI_IRQ_MSI;
+> +               } else {
+> +                       flags = PCI_IRQ_MSI | PCI_IRQ_MSIX;
+> +               }
+> +               /* we only need one vector */
+> +               nvec = pci_alloc_irq_vectors(adev->pdev, 1, 1, flags);
+>                 if (nvec > 0) {
+>                         adev->irq.msi_enabled = true;
+> -                       dev_dbg(adev->dev, "amdgpu: using MSI.\n");
+> +                       dev_dbg(adev->dev, "amdgpu: using MSI/MSI-X.\n");
+>                 }
+>         }
+>
+> @@ -272,7 +280,8 @@ int amdgpu_irq_init(struct amdgpu_device *adev)
+>         INIT_WORK(&adev->irq.ih2_work, amdgpu_irq_handle_ih2);
+>
+>         adev->irq.installed = true;
+> -       r = drm_irq_install(adev->ddev, adev->ddev->pdev->irq);
+> +       /* Use vector 0 for MSI-X */
+> +       r = drm_irq_install(adev->ddev, pci_irq_vector(adev->pdev, 0));
+>         if (r) {
+>                 adev->irq.installed = false;
+>                 if (!amdgpu_device_has_dc_support(adev))
+> --
+> 2.20.1
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--00000000000023423b059404fdb1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Tested-by: Tom St Denis &lt;<a href=3D"mailto:tom.stdenis@=
+amd.com">tom.stdenis@amd.com</a>&gt;<div><br></div><div>Cheers,</div><div>T=
+om</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Thu, Oct 3, 2019 at 1:30 PM Alex Deucher &lt;<a href=3D"mailto:a=
+lexdeucher@gmail.com">alexdeucher@gmail.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex">Check the number of supported ve=
+ctors and fall back to MSI if<br>
+we return or error or 0 MSI-X vectors.<br>
+<br>
+v2: only allocate one vector.=C2=A0 We can&#39;t currently use more than<br=
+>
+one anyway.<br>
+<br>
+v3: install the irq on vector 0.<br>
+<br>
+Signed-off-by: Alex Deucher &lt;<a href=3D"mailto:alexander.deucher@amd.com=
+" target=3D"_blank">alexander.deucher@amd.com</a>&gt;<br>
+---<br>
+=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 17 +++++++++++++----<br>
+=C2=A01 file changed, 13 insertions(+), 4 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_irq.c<br>
+index 50771b2757dc..6f3b03f6224f 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c<br>
+@@ -245,11 +245,19 @@ int amdgpu_irq_init(struct amdgpu_device *adev)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 adev-&gt;irq.msi_enabled =3D false;<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (amdgpu_msi_ok(adev)) {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int nvec =3D pci_al=
+loc_irq_vectors(adev-&gt;pdev, 1, pci_msix_vec_count(adev-&gt;pdev),<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PCI_IRQ_M=
+SI | PCI_IRQ_MSIX);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int nvec =3D pci_ms=
+ix_vec_count(adev-&gt;pdev);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0unsigned int flags;=
+<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (nvec &lt;=3D 0)=
+ {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0flags =3D PCI_IRQ_MSI;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0flags =3D PCI_IRQ_MSI | PCI_IRQ_MSIX;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/* we only need one=
+ vector */<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0nvec =3D pci_alloc_=
+irq_vectors(adev-&gt;pdev, 1, 1, flags);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (nvec &gt; 0) {<=
+br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 adev-&gt;irq.msi_enabled =3D true;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0dev_dbg(adev-&gt;dev, &quot;amdgpu: using MSI.\n&quot;);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0dev_dbg(adev-&gt;dev, &quot;amdgpu: using MSI/MSI-X.\n&quot;);<br=
+>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
+@@ -272,7 +280,8 @@ int amdgpu_irq_init(struct amdgpu_device *adev)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 INIT_WORK(&amp;adev-&gt;irq.ih2_work, amdgpu_ir=
+q_handle_ih2);<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 adev-&gt;irq.installed =3D true;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D drm_irq_install(adev-&gt;ddev, adev-&gt;d=
+dev-&gt;pdev-&gt;irq);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Use vector 0 for MSI-X */<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D drm_irq_install(adev-&gt;ddev, pci_irq_ve=
+ctor(adev-&gt;pdev, 0));<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (r) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 adev-&gt;irq.instal=
+led =3D false;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!amdgpu_device_=
+has_dc_support(adev))<br>
+-- <br>
+2.20.1<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd-gfx@=
+lists.freedesktop.org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx" rel=3D"n=
+oreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/listinfo=
+/amd-gfx</a></blockquote></div>
+
+--00000000000023423b059404fdb1--
+
+--===============0569022426==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0569022426==--
