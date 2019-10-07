@@ -1,44 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD36DCE11E
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2019 14:02:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 428D1CE2E0
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2019 15:15:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D5EF6E5BF;
-	Mon,  7 Oct 2019 12:02:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE8D46E5D6;
+	Mon,  7 Oct 2019 13:15:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
+X-Greylist: delayed 385 seconds by postgrey-1.36 at gabe;
+ Mon, 07 Oct 2019 08:24:49 UTC
 Received: from eir.is.scarlet.be (eir.is.scarlet.be [193.74.71.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEFD36E5BF
- for <amd-gfx@lists.freedesktop.org>; Mon,  7 Oct 2019 12:02:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CC0E6E4BB
+ for <amd-gfx@lists.freedesktop.org>; Mon,  7 Oct 2019 08:24:49 +0000 (UTC)
 Received: from webmail.scarlet.be (gresham.is.scarlet.be [193.74.71.215])
- by eir.is.scarlet.be (8.15.2/8.14.9) with ESMTP id x97C1wQq021985
- for <amd-gfx@lists.freedesktop.org>; Mon, 7 Oct 2019 14:01:58 +0200
-X-Scarlet: d=1570449718 c=193.74.71.215
+ by eir.is.scarlet.be (8.15.2/8.14.9) with ESMTP id x978IJCu009446
+ for <amd-gfx@lists.freedesktop.org>; Mon, 7 Oct 2019 10:18:21 +0200
+X-Scarlet: d=1570436301 c=193.74.71.215
 Received: from ip-62-235-214-186.dsl.scarlet.be ([62.235.214.186])
  via ip-62-235-214-186.dsl.scarlet.be ([62.235.214.186])
  by webmail.scarlet.be
- with HTTP (HTTP/1.1 POST); Mon, 07 Oct 2019 14:01:58 +0200
+ with HTTP (HTTP/1.1 POST); Mon, 07 Oct 2019 10:18:20 +0200
 MIME-Version: 1.0
-Date: Mon, 07 Oct 2019 14:01:58 +0200
+Date: Mon, 07 Oct 2019 10:18:20 +0200
 From: Treeve Jelbert <treeve@scarlet.be>
 To: <amd-gfx@lists.freedesktop.org>
 Subject: [BUG] failed to load firmware - AMD Ryzen 5 2500U
-Message-ID: <20ff1d18b132024cc6bb82a16cb896ab@scarlet.be>
+Message-ID: <cef96bc5b5a61ccdc94d67b4014107b5@scarlet.be>
 X-Sender: treeve@scarlet.be
 User-Agent: Scarlet Webmail
 X-DCC-scarlet.be-Metrics: eir; whitelist
 X-Virus-Scanned: clamav-milter 0.98.1-exp at eir
 X-Virus-Status: Clean
+X-Mailman-Approved-At: Mon, 07 Oct 2019 13:15:45 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=scarlet.be; s=scarlet; t=1570449718;
+ d=scarlet.be; s=scarlet; t=1570436301;
  bh=3AcJbxZ4CM1qG0Yw63REZqoGPFQu3V9v4IVtS5fc9KI=;
  h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:
  Subject:Message-ID;
- b=G5G0VJshyShWDmJWxDyemRZkhS7zU3pKjXm5k0Izp8q0Xf8n/Zplapz6j4ltSf+pv
- jTwpW6dKgaGJCJqOVmRggAkiBvvFY8IMfnE56dYu5gQtb4y6EJrzvq5Dkfvjw/0Hyj
- ijwR/nqohEVa3IbOOC3KwDeFl0m5LuPBdxFZ/Mrg=
+ b=P2ozHR4V8Iglp2BmkdOqNTRSbZeBCwZRDxQDVZu0RWvHrixx7NnY0sYUO690XXnCq
+ A6K04QNLF6ah5EXvJQVNRBSFP+uukbyikdGZUI2bom5WnklZAev9/oL7PIP7+rce+f
+ t+wp5V3W55KXHOCar0AVLZmkeYnX+/uHCb1Fjkq8=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
