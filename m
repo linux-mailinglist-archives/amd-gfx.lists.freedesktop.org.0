@@ -1,54 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A87DCEB6A
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2019 20:05:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1DACCEC0B
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2019 20:39:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE7B76E0E6;
-	Mon,  7 Oct 2019 18:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 189F06E14D;
+	Mon,  7 Oct 2019 18:39:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com
- [IPv6:2607:f8b0:4864:20::d41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 571DB6E0E6
- for <amd-gfx@lists.freedesktop.org>; Mon,  7 Oct 2019 18:05:56 +0000 (UTC)
-Received: by mail-io1-xd41.google.com with SMTP id n26so30591672ioj.8
- for <amd-gfx@lists.freedesktop.org>; Mon, 07 Oct 2019 11:05:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=oA1rjXXK+zTWrjinAV/kFqq9e9WFnX3tVpZxzMxIUVs=;
- b=JnTcoMFUZ05ZjdAhbNdj6kiEwXoHWqetHv7pj4Y1Z7hc98XVFhIeNhhYaUfk1WobdZ
- D00gG2rv1ot4OsCrbVsLCg61L4KPGdP0Igtc1neWpKEhSUbZ/Jl8sORLhe1ldhIW/EDr
- rDYjzilvUOfYN95PrY5Sj6u4Kl0/St936PuJhXAbT8kbomcsq8NRsMozQGDESeNefvxP
- QrGRdUVqVnwX8QFxnHEBwxe8fXZQBibVaEOO01ywQC6MNywSbroY5s3Zc9QgmLcRHu94
- lOXNgZgoIoyxAzWQqsiYL6Gm4LDjEMYlWxxizzpe6Ie+k1Xf3Wh1EubLCZDMSjz6tA4z
- a6TA==
-X-Gm-Message-State: APjAAAX5WbzGjO2gKNDBBwJZAgXKrV7cL1ms3dRtLrULrI5hbnojZJe6
- s3LwdXXdz2Y8Lp9R5nXNJIpnCboTDh1Bg8VU1FKBkA==
-X-Google-Smtp-Source: APXvYqw3r45UuaOp4EM1OQUUUv2bTyQCpmL+UlWOZACF1zeU/R6Jao/SjiZbZDzuzfgM8iR0OTwa6OurVPC8S6PDsus=
-X-Received: by 2002:a92:dd87:: with SMTP id g7mr17809087iln.274.1570471555279; 
- Mon, 07 Oct 2019 11:05:55 -0700 (PDT)
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+ (mail-eopbgr810089.outbound.protection.outlook.com [40.107.81.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 232C26E14D;
+ Mon,  7 Oct 2019 18:39:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DjIyEl4vAvPenrV8uVSPOssSFWqJWxLVdm+iX37Ii7c6HlLsSMRHvnu000Mhrek/Mr+26zGJ1or4rGhPLWksCaOeU04J7eTFKAF+8CkPeT2GCKdgWCRiVT2gE4RWtz/mw/3AtWDaf3gayJkJ1YbbHqIcK8gLsoKErh59oIvCiXff7Lf79x+lUA5q6D5jIC3JWA3ObUX0rYPvvTmkv7t+8j6jPlMlf/46O8pzOHKr7Z5K1Ulw5GssXAfYnzddiuaui7Z3HidP0fDiR9J1/P2WHGT1UE2iYQ51NdemrQ/sZNUBYaBLIvD5JptmcAjmVOPrRNJuDBxyuaGsK1+p96x7yQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GvOoufkNTZTMl59dNEqRUMUULZ5QAQ7Hunl22Nf2VfM=;
+ b=bHaSJV1/bqUAy3u/cTrGltlEkrs8IkNjl1jgVc2JUw+HcWfvv8Jtim3vQ1xg9l7TK3DhJf7Ak9oh1wKQOa49pe9x1RK6oC4sKM14UpyHcC4WQwtprjL2hrMSTwwusk3iCL20nXAh9KwfydymTv8q2Y5xrHgJ9d6cIxl/uDmmmIvB5Fe/OkODFKhd1WOBJxVc/G9M0TRSaFSAbn+II2mD27JJswA1HXU8ukkOH/YQMafWd/PskJZGP8v2+3DmKM+TJ9yqqnHl08lIGAoHXvmfGmZ38WX9JAyTHNuHGmrI6OZAeSmjQ4pBIXYaMuZE4Lg/Pwf0nwrUrI9P2Hou7Gqtpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+Received: from DM6PR12MB3947.namprd12.prod.outlook.com (10.255.174.156) by
+ DM6PR12MB3339.namprd12.prod.outlook.com (20.178.31.209) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2327.24; Mon, 7 Oct 2019 18:39:29 +0000
+Received: from DM6PR12MB3947.namprd12.prod.outlook.com
+ ([fe80::e56a:1c63:d6bd:8034]) by DM6PR12MB3947.namprd12.prod.outlook.com
+ ([fe80::e56a:1c63:d6bd:8034%4]) with mapi id 15.20.2327.025; Mon, 7 Oct 2019
+ 18:39:29 +0000
+From: "Kuehling, Felix" <Felix.Kuehling@amd.com>
+To: Alex Deucher <alexdeucher@gmail.com>, Colin King <colin.king@canonical.com>
+Subject: Re: [PATCH] drm/amdkfd: add missing void argument to function
+ kgd2kfd_init
+Thread-Topic: [PATCH] drm/amdkfd: add missing void argument to function
+ kgd2kfd_init
+Thread-Index: AQHVe6Z1JzTC4LKO3024jKtCTzfwUadPW4+AgAAqPIA=
+Date: Mon, 7 Oct 2019 18:39:29 +0000
+Message-ID: <1359556b-3d82-9d51-1e49-ba0f9ae205b9@amd.com>
+References: <20191005175808.32018-1-colin.king@canonical.com>
+ <CADnq5_PkTbzqNfesJt29SaB7=R0x4BdoNmHiNDXrHwqj02JUGg@mail.gmail.com>
+In-Reply-To: <CADnq5_PkTbzqNfesJt29SaB7=R0x4BdoNmHiNDXrHwqj02JUGg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [165.204.55.251]
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+x-clientproxiedby: YT1PR01CA0033.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::46)
+ To DM6PR12MB3947.namprd12.prod.outlook.com
+ (2603:10b6:5:1cb::28)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fa8af876-9c07-4a30-cf2a-08d74b55afc3
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: DM6PR12MB3339:
+x-ms-exchange-purlcount: 1
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR12MB3339756751CB23857B20BA1D929B0@DM6PR12MB3339.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2582;
+x-forefront-prvs: 01834E39B7
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(376002)(136003)(396003)(346002)(366004)(199004)(189003)(6306002)(476003)(2616005)(486006)(14454004)(446003)(11346002)(966005)(58126008)(316002)(54906003)(305945005)(81156014)(81166006)(7736002)(8936002)(229853002)(8676002)(6512007)(110136005)(65806001)(6486002)(65956001)(66066001)(6436002)(36756003)(31696002)(86362001)(66446008)(53546011)(102836004)(26005)(186003)(478600001)(6506007)(386003)(52116002)(76176011)(25786009)(6246003)(4326008)(66476007)(99286004)(64756008)(14444005)(256004)(66946007)(66556008)(5660300002)(71190400001)(71200400001)(3846002)(6116002)(2906002)(31686004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3339;
+ H:DM6PR12MB3947.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: OHLlRND1mfOtMaaZI1TL6ikjqrBzglEZm4ToVppiumng66cXKkiwZR576wuddkuYEeCY/8f9Lr2AfWb4xgbK7qG9vUKjGxf1+tDpRWfXghOjB0ingp+zmdqHK5UF8a256t+WEt5/Vr9E5e2EkdM8Xp8KxMeedK3Xg8mNA0iXrkQFSb734NmCKJzWFOZNnuXRhVP7ODrNc+K+jBmLTfUHUrxphcTrPzcyYSVWHzKTDTE+mkTEyL4caqbAJKNmTf2chOS/6q2OX9mxhk88c9A01DUnWuHF6cvNIuMnYzuwNACZY1epsYF74wFMXvKXyXe3nB+8cT/7ngHZYXwapxFUN9wYcm8pVqaBy1WOMiQFFox+ViD/gxG5OSqDamtDM0HuhEZdrvWBudJkk6cYnHbcbjN7luzxthu5ms9WCQjmnVPJjPtmuF32g5ieHdAS8u0y1pXSA/OzObvBUhWfBzpdBQ==
+Content-ID: <2C5671FF8E63474187A7560A00C39F57@namprd12.prod.outlook.com>
 MIME-Version: 1.0
-References: <20190925203502.30996-1-maraeo@gmail.com>
-In-Reply-To: <20190925203502.30996-1-maraeo@gmail.com>
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Mon, 7 Oct 2019 14:05:18 -0400
-Message-ID: <CAAxE2A7rOodqyZVWCQYcbx6Xsc=XQ_EsVCF+G_tFOWcB7omMmA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: simplify gds_compute_max_wave_id computation
-To: amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa8af876-9c07-4a30-cf2a-08d74b55afc3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2019 18:39:29.1282 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HEGl95SEQbNNxXW/OPyKC6C7Ay7tdvIGQLdzjIcyqwXbVsSdWoi2wknExvdyTwbaicg0lW7yZZGY4U8thFUldw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3339
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=oA1rjXXK+zTWrjinAV/kFqq9e9WFnX3tVpZxzMxIUVs=;
- b=JzU/goRY7rBIC3UxzITLQoSKbsDD0DoxsyI/Z7OVQk5D6X8e0+LBjbZh04T/Bdo9QB
- AXeYulSJIGM7gBVfza/ilhCdB+OIywpqitEfInlrlzWCqYhDTpCgcBYVDUd9tzMkt5e4
- lh4Rtl2xN2GAqHX50y4rv2M5KbNaqPBwoI2kfUWHH+JE9EAgzbyvHdA07PK32x4HHAq5
- e9O6yaQAZ++w39rRM8rK5V16WN9G2Vas7tkxHCDyx5w0Cpi7EvuhjGR+fwaODLdD4zHr
- 1mmuJRHpmrGx7RqvONVi0/T1sK1ydUGDDjskBzg+nH645b7n0wPP/hpOw50J1Z4jUuW/
- ikHA==
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GvOoufkNTZTMl59dNEqRUMUULZ5QAQ7Hunl22Nf2VfM=;
+ b=Vo1Z1FpS5g1mvhwZCgxrLx4QnDc1WfH3tTOAs8PWhU+UwG/tVpu87uuSyhWwzuMnYd4Vn9vzNZXwMhzaNyvO743McVKYZnhwfAx/Qau8NkLR4pi4jd0ruLgJg7Zj1tpZcBXcJ4c75Al/3UPMJ+bBT6rbwCgbJmDYGHmlucCxgZ4=
+X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Felix.Kuehling@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -60,160 +101,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0695047305=="
+Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>,
+ David Airlie <airlied@linux.ie>,
+ "kernel-janitors@vger.kernel.org" <kernel-janitors@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0695047305==
-Content-Type: multipart/alternative; boundary="0000000000002eb187059455e735"
-
---0000000000002eb187059455e735
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-ping
-
-On Wed, Sep 25, 2019 at 4:35 PM Marek Ol=C5=A1=C3=A1k <maraeo@gmail.com> wr=
-ote:
-
-> From: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
->
-> Signed-off-by: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 13 +++++--------
->  1 file changed, 5 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> index ca01643fa0c8..73cd254449b3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -5275,29 +5275,26 @@ static void gfx_v10_0_set_rlc_funcs(struct
-> amdgpu_device *adev)
->         case CHIP_NAVI12:
->                 adev->gfx.rlc.funcs =3D &gfx_v10_0_rlc_funcs;
->                 break;
->         default:
->                 break;
->         }
->  }
->
->  static void gfx_v10_0_set_gds_init(struct amdgpu_device *adev)
->  {
-> -       /* init asic gds info */
-> -       switch (adev->asic_type) {
-> -       case CHIP_NAVI10:
-> -       default:
-> -               adev->gds.gds_size =3D 0x10000;
-> -               adev->gds.gds_compute_max_wave_id =3D 0x4ff;
-> -               break;
-> -       }
-> +       unsigned total_cu =3D adev->gfx.config.max_cu_per_sh *
-> +                           adev->gfx.config.max_sh_per_se *
-> +                           adev->gfx.config.max_shader_engines;
->
-> +       adev->gds.gds_size =3D 0x10000;
-> +       adev->gds.gds_compute_max_wave_id =3D total_cu * 32 - 1;
->         adev->gds.gws_size =3D 64;
->         adev->gds.oa_size =3D 16;
->  }
->
->  static void gfx_v10_0_set_user_wgp_inactive_bitmap_per_sh(struct
-> amdgpu_device *adev,
->                                                           u32 bitmap)
->  {
->         u32 data;
->
->         if (!bitmap)
-> --
-> 2.17.1
->
->
-
---0000000000002eb187059455e735
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">ping<br></div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">On Wed, Sep 25, 2019 at 4:35 PM Marek Ol=C5=A1=C3=
-=A1k &lt;<a href=3D"mailto:maraeo@gmail.com">maraeo@gmail.com</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">From: Marek Ol=
-=C5=A1=C3=A1k &lt;<a href=3D"mailto:marek.olsak@amd.com" target=3D"_blank">=
-marek.olsak@amd.com</a>&gt;<br>
-<br>
-Signed-off-by: Marek Ol=C5=A1=C3=A1k &lt;<a href=3D"mailto:marek.olsak@amd.=
-com" target=3D"_blank">marek.olsak@amd.com</a>&gt;<br>
----<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 13 +++++--------<br>
-=C2=A01 file changed, 5 insertions(+), 8 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v10_0.c<br>
-index ca01643fa0c8..73cd254449b3 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-@@ -5275,29 +5275,26 @@ static void gfx_v10_0_set_rlc_funcs(struct amdgpu_d=
-evice *adev)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 case CHIP_NAVI12:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 adev-&gt;gfx.rlc.fu=
-ncs =3D &amp;gfx_v10_0_rlc_funcs;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 default:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-=C2=A0}<br>
-<br>
-=C2=A0static void gfx_v10_0_set_gds_init(struct amdgpu_device *adev)<br>
-=C2=A0{<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0/* init asic gds info */<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (adev-&gt;asic_type) {<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0case CHIP_NAVI10:<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gds_si=
-ze =3D 0x10000;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gds_co=
-mpute_max_wave_id =3D 0x4ff;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0unsigned total_cu =3D adev-&gt;gfx.config.max_c=
-u_per_sh *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gfx.config.max_sh_per_se *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gfx.config.max_shader_engines;<br>
-<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gds_size =3D 0x10000;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0adev-&gt;gds.gds_compute_max_wave_id =3D total_=
-cu * 32 - 1;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 adev-&gt;gds.gws_size =3D 64;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 adev-&gt;gds.oa_size =3D 16;<br>
-=C2=A0}<br>
-<br>
-=C2=A0static void gfx_v10_0_set_user_wgp_inactive_bitmap_per_sh(struct amdg=
-pu_device *adev,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 u32 bitmap)<br>
-=C2=A0{<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 u32 data;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!bitmap)<br>
--- <br>
-2.17.1<br>
-<br>
-</blockquote></div>
-
---0000000000002eb187059455e735--
-
---===============0695047305==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0695047305==--
+T24gMjAxOS0xMC0wNyAxMjowOCBwLm0uLCBBbGV4IERldWNoZXIgd3JvdGU6DQo+IE9uIFNhdCwg
+T2N0IDUsIDIwMTkgYXQgMTo1OCBQTSBDb2xpbiBLaW5nIDxjb2xpbi5raW5nQGNhbm9uaWNhbC5j
+b20+IHdyb3RlOg0KPj4gRnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2Fs
+LmNvbT4NCj4+DQo+PiBGdW5jdGlvbiBrZ2Qya2ZkX2luaXQgaXMgbWlzc2luZyBhIHZvaWQgYXJn
+dW1lbnQsIGFkZCBpdA0KPj4gdG8gY2xlYW4gdXAgdGhlIG5vbi1BTlNJIGZ1bmN0aW9uIGRlY2xh
+cmF0aW9uLg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5n
+QGNhbm9uaWNhbC5jb20+DQo+IEFwcGxpZWQuICB0aGFua3MhDQoNClRoYW5rIHlvdSENCg0KDQo+
+DQo+IEFsZXgNCj4NCj4+IC0tLQ0KPj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRf
+bW9kdWxlLmMgfCAyICstDQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBk
+ZWxldGlvbigtKQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtm
+ZC9rZmRfbW9kdWxlLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfbW9kdWxlLmMN
+Cj4+IGluZGV4IDk4NmZmNTJkNTc1MC4uZjRiN2Y3ZTZjNDBlIDEwMDY0NA0KPj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX21vZHVsZS5jDQo+PiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGtmZC9rZmRfbW9kdWxlLmMNCj4+IEBAIC04Miw3ICs4Miw3IEBAIHN0YXRp
+YyB2b2lkIGtmZF9leGl0KHZvaWQpDQo+PiAgICAgICAgICBrZmRfY2hhcmRldl9leGl0KCk7DQo+
+PiAgIH0NCj4+DQo+PiAtaW50IGtnZDJrZmRfaW5pdCgpDQo+PiAraW50IGtnZDJrZmRfaW5pdCh2
+b2lkKQ0KPj4gICB7DQo+PiAgICAgICAgICByZXR1cm4ga2ZkX2luaXQoKTsNCj4+ICAgfQ0KPj4g
+LS0NCj4+IDIuMjAuMQ0KPj4NCj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fDQo+PiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0DQo+PiBkcmktZGV2ZWxAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnDQo+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2RyaS1kZXZlbA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
+bWQtZ2Z4
