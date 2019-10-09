@@ -1,89 +1,70 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E102ED0D9E
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2019 13:30:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D02AED0DCE
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2019 13:40:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC69C6E97E;
-	Wed,  9 Oct 2019 11:30:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D47D6E2EC;
+	Wed,  9 Oct 2019 11:40:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr790055.outbound.protection.outlook.com [40.107.79.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6627A6E97C
- for <amd-gfx@lists.freedesktop.org>; Wed,  9 Oct 2019 11:30:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RYwVAA3HKssO02Hun+hN+dONFDDLRhVYix4hcwXrydVx1Q5MVIlojlkII/LBbDGfn2SAl4wQksarcTQDJEBWDE84mLDbcjw1DjClElcWEkMw52K46d/HXV3gr/7/smoVHzwirgxaqXpiYAEpP5ZXXBTnbBzs11ziowBo4v3msvknJo8xIgB679FxUVW1DiUiDeQ4pebnAFIR7KZmFCt/pOAo3sI3xizHTI5IjyhxyXtQ/Q98mQRzvALa7SmrIEFcIefZ912XN0ceX6okVCN6mE+mqDEE4dgTm/P8b1ObPoZnb8AmcrEicJ1Qw49mew0246nyR5yH2eq54l12XQeppw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XRj8LPXgkIImJqCvRFUMvKUbdQfP1tC8MtcyvqE06ng=;
- b=Q+XsCkCXedDizmjGJTptpe8+yFFlRI3M4LZdPt7BbW9xnGG+kVLUo62UTT6KgiPWj7d4vnYaRT/g5Mrqw+EU0wl1FI2dRzFn+ov7uNWV6c31P8wC3VJW8vO8POp8jA4o9tf/epZICQlUZdYBiJPVnNjTPlijJ3ARpfPQGHDbwlxeyZN+GJ6dJqnh/10maaw6OoT3rYugvzyFu7j2rEmcL2MQ9dFuj7kBG3xcsicys95U0W8SIPAlz2/+hfEzcGirLYUGk/cIRofa2qbxm80RxBDOpaU/k1hy4oHkKEgAAKc364ox15a1MChuuHCGbPRYdQz78KWLarqNzkaH7Yrhng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from SN1PR12MB2544.namprd12.prod.outlook.com (52.132.197.144) by
- SN1PR12MB2461.namprd12.prod.outlook.com (52.132.195.152) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Wed, 9 Oct 2019 11:30:09 +0000
-Received: from SN1PR12MB2544.namprd12.prod.outlook.com
- ([fe80::d06a:add5:ae4b:5121]) by SN1PR12MB2544.namprd12.prod.outlook.com
- ([fe80::d06a:add5:ae4b:5121%7]) with mapi id 15.20.2327.025; Wed, 9 Oct 2019
- 11:30:09 +0000
-From: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>
-To: Alex Deucher <alexdeucher@gmail.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Koenig, Christian"
- <Christian.Koenig@amd.com>
-Subject: Re: [PATCH 2/8] drm/amdgpu: add a generic fb accessing helper function
-Thread-Topic: [PATCH 2/8] drm/amdgpu: add a generic fb accessing helper
- function
-Thread-Index: AQHVfg6+dFCqjk5vcEakA9zxSE7YJ6dR+iOAgAAzajQ=
-Date: Wed, 9 Oct 2019 11:30:09 +0000
-Message-ID: <SN1PR12MB2544ECC6BB4C073BCA587E1195950@SN1PR12MB2544.namprd12.prod.outlook.com>
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4950B6E2EC
+ for <amd-gfx@lists.freedesktop.org>; Wed,  9 Oct 2019 11:40:37 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id m18so2220918wmc.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 09 Oct 2019 04:40:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language;
+ bh=Qdk8i/PWMA1GrzCqGoA0Pf7JT3j1/Cwv9WvLZnu03BM=;
+ b=Y9JF9dP3PvabxlgzFVXj9IG3fIaxhCodywEa+SXB+Sctq7dzk/xS4t6O7dtK3GskzP
+ kr3m8iGaFpRHgzINHhmM8LMpHvKIc7kU+Hpq2ooYyNhx3tT5LbCI5LYh2nCm52wQk+YS
+ kTuEM/lXfLibyyj8i8t3nHHK9kZLNzh0rxJ3vbuMBt3wYJdr7UUQ+7Nkb/u6CJZnY7I4
+ QR+75DccHtDGYimsfR9AQ6f1nhJvgCdzmKBxB53I9wkV4lEcpAa6ISvvRBj4KPb4+P6q
+ niq3jeEf6D9W8LdZPoLSOmzI7G8peMxSjBhD00Msc2WU33JEhULG2pZSjseoRJhsRKKN
+ KvOw==
+X-Gm-Message-State: APjAAAXyMpfDfsBSY6H0UwHYGew1aFtlNwLqWYrGMBbFEU9OvI0Qk8sn
+ SpOmId4iyk76b1Iw9XhhThE=
+X-Google-Smtp-Source: APXvYqxHKxJSFLoLPYgLICUB/nMzdLXOAYn2jEkLeNplPamLPsUNwl6pl6//91dZif5X1q8STCD1PQ==
+X-Received: by 2002:a1c:f401:: with SMTP id z1mr2214719wma.66.1570621235858;
+ Wed, 09 Oct 2019 04:40:35 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id n8sm2435229wma.7.2019.10.09.04.40.34
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 09 Oct 2019 04:40:34 -0700 (PDT)
+Subject: Re: [PATCH 7/8] drm/amdgpu: reserve vram for memory training
+To: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>,
+ "Tuikov, Luben" <Luben.Tuikov@amd.com>, Alex Deucher
+ <alexdeucher@gmail.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 References: <20191008192934.5481-1-alexander.deucher@amd.com>
- <20191008192934.5481-3-alexander.deucher@amd.com>,
- <0edeab78-992c-89b2-f2c2-41db101bc5b7@gmail.com>
-In-Reply-To: <0edeab78-992c-89b2-f2c2-41db101bc5b7@gmail.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d2f6bead-5f73-4a17-1ee7-08d74cac0a9b
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: SN1PR12MB2461:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SN1PR12MB24619F8C31EC4481A09B0F7B95950@SN1PR12MB2461.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 018577E36E
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(39860400002)(346002)(366004)(136003)(376002)(189003)(199004)(6436002)(4326008)(99286004)(6636002)(66556008)(66476007)(66446008)(64756008)(74316002)(91956017)(76116006)(66946007)(66066001)(2501003)(52536014)(2906002)(8936002)(229853002)(316002)(110136005)(3846002)(6116002)(66574012)(86362001)(7736002)(81156014)(81166006)(5660300002)(486006)(446003)(33656002)(54896002)(105004)(9686003)(8676002)(102836004)(71190400001)(6506007)(71200400001)(53546011)(26005)(186003)(14444005)(6246003)(7696005)(76176011)(14454004)(25786009)(11346002)(478600001)(256004)(19627405001)(476003)(55016002)(41533002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:SN1PR12MB2461;
- H:SN1PR12MB2544.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FR6XxSYFAJa1sLyKekgcbNagkgJmNbEannlLUYEb4UAaD03akcYiB222WMLl8j3xrhUDv/vY6WEnYlde8dBpTW+IneVI3e4tejt6a7tKAtWUqaqZFKW067Wnauom6nTeMjMrKqr/stB0jM+9V8yzcdLhW7hR5qU/Opctbzjm4EBOJs4oNZNF+quEu4MkicgrXOrnRjDw12Nb1Uv1cVLmn0JGqTQ95y9VdE1n7rcEty7V5v5uodhW7EUzVytFRI4yEI2YmG4pxtFbJo+QUj2gzN8p3xOaW5tIns3WhCxpulQP4Yu/kLhvtnEX3sb6LcTxUBHyuQMqdglBXh5QgwThLfAP8QNNiL1j9CSFpde3qHi2zegWzqk0k7jLseyq9p3tos2WdOSx8hpt9kCsHcz3cJP+f4L/VxCJomjEgt3lv18=
+ <20191008192934.5481-8-alexander.deucher@amd.com>
+ <a9d04519-0ec0-41f6-289f-be156caccf76@amd.com>
+ <SN1PR12MB2544F1BE7D37DEC4721AF95D95950@SN1PR12MB2544.namprd12.prod.outlook.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <045b7cfd-989f-7cff-310f-92d9780e73fe@gmail.com>
+Date: Wed, 9 Oct 2019 13:40:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2f6bead-5f73-4a17-1ee7-08d74cac0a9b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2019 11:30:09.1149 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9jDcqBb7PdnJM4U/nqlzQ9wE7/ZQ0t1Mjw0mhpiS1VCs3fOLV/jr5C7iw2Y2lo5Et78g0+HGmuuYNvosv/ZyTg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2461
+In-Reply-To: <SN1PR12MB2544F1BE7D37DEC4721AF95D95950@SN1PR12MB2544.namprd12.prod.outlook.com>
+Content-Language: en-US
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XRj8LPXgkIImJqCvRFUMvKUbdQfP1tC8MtcyvqE06ng=;
- b=Xj8chDXhI42JZU6zGR3tFk93SOKeQntenRWHBeiGOhunUMgPkOg4vnqhwNuVED3Vz3Rr4ti7QLzSKIViwHWx6SknECnD9cxKHA7/QbbJg5xM9SrVtisIEA4yTMwWKr/Qh/ggZ1MCu47LY+UOAqpZwx7IS4rdk4udcisX+kh2mtg=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Tianci.Yin@amd.com; 
+ d=gmail.com; s=20161025;
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language;
+ bh=Qdk8i/PWMA1GrzCqGoA0Pf7JT3j1/Cwv9WvLZnu03BM=;
+ b=AZk2q4UdMQAq8YlT0TJZF68bkkpqM54wAyoGhmlZHsJ+Ng84eHVND7gjeP8YuQDx6A
+ aCkMw/RwCvHX0k0gFkWUCzxrYMM3Ji6vRMTvvsP1awEbhcHsxV6RrU0Ghadeote0mwCf
+ XLxHhI3TiQTNpkZCR5FpsHrT80h4JZVqDO8ck4eFwynNJK58GgYM/hzsIe3BgAC9jI4C
+ UeB2UOUBGXvDsmwrJ5YEbSjb8sx7DceclaZiZgweXoSKif7rWE0MX8Hd2SiNnSviVO0t
+ O/vCGk3fQ7fIQ3jOdr+NgWhq4qBfhC6cp5yf3FTYWNfceerUeULzqGcDGqmmvyvKjCkf
+ hPcw==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -95,385 +76,549 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: christian.koenig@amd.com
 Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Content-Type: multipart/mixed; boundary="===============0005012269=="
+Content-Type: multipart/mixed; boundary="===============1693187088=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0005012269==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============1693187088==
 Content-Type: multipart/alternative;
-	boundary="_000_SN1PR12MB2544ECC6BB4C073BCA587E1195950SN1PR12MB2544namp_"
+ boundary="------------4B0E7261945FCFA47FAA3ADA"
+Content-Language: en-US
 
---_000_SN1PR12MB2544ECC6BB4C073BCA587E1195950SN1PR12MB2544namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------4B0E7261945FCFA47FAA3ADA
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Ok,
-
-Thanks for your reviewing!
-
-Rico
-________________________________
-From: Christian K?nig <ckoenig.leichtzumerken@gmail.com>
-Sent: Wednesday, October 9, 2019 16:25
-To: Alex Deucher <alexdeucher@gmail.com>; amd-gfx@lists.freedesktop.org <am=
-d-gfx@lists.freedesktop.org>
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Yin, Tianci (Rico) <Tia=
-nci.Yin@amd.com>
-Subject: Re: [PATCH 2/8] drm/amdgpu: add a generic fb accessing helper func=
-tion
-
-Am 08.10.19 um 21:29 schrieb Alex Deucher:
-> From: "Tianci.Yin" <tianci.yin@amd.com>
+Am 09.10.19 um 13:12 schrieb Yin, Tianci (Rico):
+> Here is where you definitively set "ret" so DO NOT preinitialize it to 0,
+> just to avoid "pesky compiler unininitialized variable warnings"--those
+> are helpful to make the code more secure: a variable should be 
+> intentionally
+> initialized in all paths.
 >
-> add a generic helper function for accessing framebuffer via MMIO
->
-> Change-Id: I4baa0aa53c93a94c2eff98c6211a61f369239982
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  2 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 42 +++++++++++++++++++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 13 +-----
->   3 files changed, 45 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/am=
-dgpu/amdgpu.h
-> index 17ccb9015141..0d60c2e6c592 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -985,6 +985,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
->   void amdgpu_device_fini(struct amdgpu_device *adev);
->   int amdgpu_gpu_wait_for_idle(struct amdgpu_device *adev);
->
-> +int amdgpu_device_vram_access(struct amdgpu_device *adev, loff_t pos,
-> +                    uint32_t *buf, size_t size, bool write);
->   uint32_t amdgpu_mm_rreg(struct amdgpu_device *adev, uint32_t reg,
->                        uint32_t acc_flags);
->   void amdgpu_mm_wreg(struct amdgpu_device *adev, uint32_t reg, uint32_t =
-v,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_device.c
-> index f25275abf408..53ce227f759c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -153,6 +153,48 @@ bool amdgpu_device_is_px(struct drm_device *dev)
->        return false;
->   }
->
-> +/**
-> + * VRAM access helper functions.
-> + *
-> + * amdgpu_device_vram_access - read/write a buffer in vram
-> + *
-> + * @adev: amdgpu_device pointer
-> + * @pos: offset of the buffer in vram
-> + * @buf: virtual address of the buffer in system memory
-> + * @size: read/write size, sizeof(@buf) must > @size
-> + * @write: true - write to vram, otherwise - read from vram
-> + *
-> + * Returns 0 on success or an -error on failure.
-> + */
-> +int amdgpu_device_vram_access(struct amdgpu_device *adev, loff_t pos,
-> +                    uint32_t *buf, size_t size, bool write)
+> Rico: Still in confusion, pre-initialization can avoid "uninitialized 
+> variable", why should we can't pre-initialize?
 
-Indentation seems to be incorrect here.
+Because it avoids the uninitialized variable warning :)
 
-> +{
-> +     uint64_t end =3D pos + size;
-> +     unsigned long flags;
-> +
-> +     if (IS_ERR_OR_NULL(buf) ||
-> +         (adev->gmc.mc_vram_size > 0 &&
-> +          end > adev->gmc.mc_vram_size)) {
-> +             DRM_ERROR("parameter error! pos:%llx, buf:%llx, size:%zx.\n=
-",
-> +                       pos, (u64)buf, size);
-> +             return -EINVAL;
-> +     }
-
-Please drop that, this is a purely internal functions and parameter
-checking like this doesn't really make sense.
+See we really want the warning because it means that we have a bug in 
+the code somewhere.
 
 Regards,
 Christian.
 
-> +
-> +     while (pos < end) {
-> +             spin_lock_irqsave(&adev->mmio_idx_lock, flags);
-> +             WREG32_NO_KIQ(mmMM_INDEX, ((uint32_t)pos) | 0x80000000);
-> +             WREG32_NO_KIQ(mmMM_INDEX_HI, pos >> 31);
-> +             if (write)
-> +                     WREG32_NO_KIQ(mmMM_DATA, *buf++);
-> +             else
-> +                     *buf++ =3D RREG32_NO_KIQ(mmMM_DATA);
-> +             spin_unlock_irqrestore(&adev->mmio_idx_lock, flags);
-> +             pos +=3D 4;
-> +     }
-> +
-> +     return 0;
-> +}
-> +
->   /*
->    * MMIO register access helper functions.
->    */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_discovery.c
-> index db2dab3a6dff..324c2d605f54 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -134,21 +134,10 @@ static int hw_id_map[MAX_HWIP] =3D {
+> ------------------------------------------------------------------------
+> *From:* Tuikov, Luben <Luben.Tuikov@amd.com>
+> *Sent:* Wednesday, October 9, 2019 11:44
+> *To:* Alex Deucher <alexdeucher@gmail.com>; 
+> amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+> *Cc:* Deucher, Alexander <Alexander.Deucher@amd.com>; Yin, Tianci 
+> (Rico) <Tianci.Yin@amd.com>
+> *Subject:* Re: [PATCH 7/8] drm/amdgpu: reserve vram for memory training
+> On 2019-10-08 3:29 p.m., Alex Deucher wrote:
+> > From: "Tianci.Yin" <tianci.yin@amd.com>
+> >
+> > memory training using specific fixed vram segment, reserve these
+> > segments before anyone may allocate it.
+> >
+> > Change-Id: I1436755813a565608a2857a683f535377620a637
+> > Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+> > Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 96 +++++++++++++++++++++++++
+> >  1 file changed, 96 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c 
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> > index 74a9bd94f10c..0819721af16e 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> > @@ -1667,6 +1667,93 @@ static int 
+> amdgpu_ttm_fw_reserve_vram_init(struct amdgpu_device *adev)
+> > &adev->fw_vram_usage.va);
+> >  }
+> >
+> > +/*
+> > + * Memoy training reservation functions
+> > + */
 >
->   static int amdgpu_discovery_read_binary(struct amdgpu_device *adev, uin=
-t8_t *binary)
->   {
-> -     uint32_t *p =3D (uint32_t *)binary;
->        uint64_t vram_size =3D (uint64_t)RREG32(mmRCC_CONFIG_MEMSIZE) << 2=
-0;
->        uint64_t pos =3D vram_size - BINARY_MAX_SIZE;
-> -     unsigned long flags;
-> -
-> -     while (pos < vram_size) {
-> -             spin_lock_irqsave(&adev->mmio_idx_lock, flags);
-> -             WREG32_NO_KIQ(mmMM_INDEX, ((uint32_t)pos) | 0x80000000);
-> -             WREG32_NO_KIQ(mmMM_INDEX_HI, pos >> 31);
-> -             *p++ =3D RREG32_NO_KIQ(mmMM_DATA);
-> -             spin_unlock_irqrestore(&adev->mmio_idx_lock, flags);
-> -             pos +=3D 4;
-> -     }
+> Include an empty line between the two comments, just as you would
+> a paragraph in written text.
 >
-> -     return 0;
-> +     return amdgpu_device_vram_access(adev, pos, (uint32_t *)binary, BIN=
-ARY_MAX_SIZE, false);
->   }
+> > +/**
+> > + * amdgpu_ttm_training_reserve_vram_fini - free memory training 
+> reserved vram
+> > + *
+> > + * @adev: amdgpu_device pointer
+> > + *
+> > + * free memory training reserved vram if it has been reserved.
+> > + */
+> > +static int amdgpu_ttm_training_reserve_vram_fini(struct 
+> amdgpu_device *adev)
+> > +{
+> > +     int ret = 0;
+> > +     struct psp_memory_training_context *ctx = 
+> &adev->psp.mem_train_ctx;
+> > +
+> > +     ctx->init = PSP_MEM_TRAIN_NOT_SUPPORT;
+> > +     if(ctx->c2p_bo) {
 >
->   static uint16_t amdgpu_discovery_calculate_checksum(uint8_t *data, uint=
-32_t size)
+> Space after keywords, according to LKCS:
+> if (...)
+>
+> > + amdgpu_bo_free_kernel(&ctx->c2p_bo, NULL, NULL);
+> > +             ctx->c2p_bo = NULL;
+> > +     }
+> > +     if(ctx->p2c_bo) {
+>
+> Space after keywords, according to LKCS:
+> if (...)
+>
+> > + amdgpu_bo_free_kernel(&ctx->p2c_bo, NULL, NULL);
+> > +             ctx->p2c_bo = NULL;
+> > +     }
+> > +
+> > +     return ret;
+> > +}
+>
+> Get rid of "ret" variable altogether as it is not used in this function.
+>
+> > +
+> > +/**
+> > + * amdgpu_ttm_training_reserve_vram_init - create bo vram 
+> reservation from memory training
+> > + *
+> > + * @adev: amdgpu_device pointer
+> > + *
+> > + * create bo vram reservation from memory training.
+> > + */
+> > +static int amdgpu_ttm_training_reserve_vram_init(struct 
+> amdgpu_device *adev)
+> > +{
+> > +     int ret = 0;
+>
+> DO NOT preinitialize ret.
+>
+> > +     struct psp_memory_training_context *ctx = 
+> &adev->psp.mem_train_ctx;
+> > +
+> > +     memset(ctx, 0, sizeof(*ctx));
+> > +     if(!adev->fw_vram_usage.mem_train_support) {
+>
+> Space after keywords: "if (".
+>
+> > +             DRM_DEBUG("memory training does not support!\n");
+> > +             return 0;
+> > +     }
+> > +
+> > +     ctx->c2p_train_data_offset = adev->fw_vram_usage.mem_train_fb_loc;
+> > +     ctx->p2c_train_data_offset = (adev->gmc.mc_vram_size - 
+> GDDR6_MEM_TRAINING_OFFSET);
+> > +     ctx->train_data_size = GDDR6_MEM_TRAINING_DATA_SIZE_IN_BYTES;
+> > +
+> > + 
+> DRM_DEBUG("train_data_size:%llx,p2c_train_data_offset:%llx,c2p_train_data_offset:%llx.\n",
+> > +               ctx->train_data_size,
+> > +               ctx->p2c_train_data_offset,
+> > +               ctx->c2p_train_data_offset);
+> > +
+> > +     ret = amdgpu_bo_create_kernel_at(adev,
+>
+> Here is where you definitively set "ret" so DO NOT preinitialize it to 0,
+> just to avoid "pesky compiler unininitialized variable warnings"--those
+> are helpful to make the code more secure: a variable should be 
+> intentionally
+> initialized in all paths.
+>
+> > + ctx->p2c_train_data_offset,
+> > + ctx->train_data_size,
+> > + AMDGPU_GEM_DOMAIN_VRAM,
+> > + &ctx->p2c_bo,
+> > +                                      NULL);
+> > +     if(ret) {
+>
+> Space after keywords "if (".
+>
+> > +             DRM_ERROR("alloc p2c_bo failed(%d)!\n", ret);
+> > +             ret = -ENOMEM;
+> > +             goto err_out;
+> > +     }
+> > +
+> > +     ret = amdgpu_bo_create_kernel_at(adev,
+> > + ctx->c2p_train_data_offset,
+> > + ctx->train_data_size,
+> > + AMDGPU_GEM_DOMAIN_VRAM,
+> > + &ctx->c2p_bo,
+> > +                                      NULL);
+> > +     if(ret) {
+>
+> Space after keywords: "if (", according to LKCS.
+>
+> Regards,
+> Luben
+>
+> > +             DRM_ERROR("alloc c2p_bo failed(%d)!\n", ret);
+> > +             ret = -ENOMEM;
+> > +             goto err_out;
+> > +     }
+> > +
+> > +     ctx->init = PSP_MEM_TRAIN_RESERVE_SUCCESS;
+> > +     return 0;
+> > +
+> > +err_out:
+> > +     amdgpu_ttm_training_reserve_vram_fini(adev);
+> > +     return ret;
+> > +}
+> > +
+> >  /**
+> >   * amdgpu_ttm_init - Init the memory management (ttm) as well as 
+> various
+> >   * gtt/vram related fields.
+> > @@ -1740,6 +1827,14 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+> >                return r;
+> >        }
+> >
+> > +     /*
+> > +      *The reserved vram for memory training must be pinned to the 
+> specified
+> > +      *place on the VRAM, so reserve it early.
+> > +      */
+> > +     r = amdgpu_ttm_training_reserve_vram_init(adev);
+> > +     if (r)
+> > +             return r;
+> > +
+> >        /* allocate memory as required for VGA
+> >         * This is used for VGA emulation and pre-OS scanout buffers to
+> >         * avoid display artifacts while transitioning between pre-OS
+> > @@ -1825,6 +1920,7 @@ void amdgpu_ttm_fini(struct amdgpu_device *adev)
+> >                return;
+> >
+> >        amdgpu_ttm_debugfs_fini(adev);
+> > +     amdgpu_ttm_training_reserve_vram_fini(adev);
+> >        amdgpu_ttm_fw_reserve_vram_fini(adev);
+> >        if (adev->mman.aper_base_kaddr)
+> > iounmap(adev->mman.aper_base_kaddr);
+> >
+>
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
 
---_000_SN1PR12MB2544ECC6BB4C073BCA587E1195950SN1PR12MB2544namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------4B0E7261945FCFA47FAA3ADA
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Ok, <br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks for your reviewing!</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Rico<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Christian K&ouml;nig =
-&lt;ckoenig.leichtzumerken@gmail.com&gt;<br>
-<b>Sent:</b> Wednesday, October 9, 2019 16:25<br>
-<b>To:</b> Alex Deucher &lt;alexdeucher@gmail.com&gt;; amd-gfx@lists.freede=
-sktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Yin, Tianc=
-i (Rico) &lt;Tianci.Yin@amd.com&gt;<br>
-<b>Subject:</b> Re: [PATCH 2/8] drm/amdgpu: add a generic fb accessing help=
-er function</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Am 08.10.19 um 21:29 schrieb Alex Deucher:<br>
-&gt; From: &quot;Tianci.Yin&quot; &lt;tianci.yin@amd.com&gt;<br>
-&gt;<br>
-&gt; add a generic helper function for accessing framebuffer via MMIO<br>
-&gt;<br>
-&gt; Change-Id: I4baa0aa53c93a94c2eff98c6211a61f369239982<br>
-&gt; Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-&gt; Signed-off-by: Tianci.Yin &lt;tianci.yin@amd.com&gt;<br>
-&gt; ---<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu.h&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 2 &#43;<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_device.c&nbsp;&nbsp;&nbs=
-p; | 42 &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#=
-43;&#43;&#43;&#43;&#43;&#43;<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 13 &#43;--=
----<br>
-&gt;&nbsp;&nbsp; 3 files changed, 45 insertions(&#43;), 12 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu.h<br>
-&gt; index 17ccb9015141..0d60c2e6c592 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
-&gt; @@ -985,6 &#43;985,8 @@ int amdgpu_device_init(struct amdgpu_device *a=
-dev,<br>
-&gt;&nbsp;&nbsp; void amdgpu_device_fini(struct amdgpu_device *adev);<br>
-&gt;&nbsp;&nbsp; int amdgpu_gpu_wait_for_idle(struct amdgpu_device *adev);<=
-br>
-&gt;&nbsp;&nbsp; <br>
-&gt; &#43;int amdgpu_device_vram_access(struct amdgpu_device *adev, loff_t =
-pos,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t *buf, size_t siz=
-e, bool write);<br>
-&gt;&nbsp;&nbsp; uint32_t amdgpu_mm_rreg(struct amdgpu_device *adev, uint32=
-_t reg,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_=
-t acc_flags);<br>
-&gt;&nbsp;&nbsp; void amdgpu_mm_wreg(struct amdgpu_device *adev, uint32_t r=
-eg, uint32_t v,<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_device.c<br>
-&gt; index f25275abf408..53ce227f759c 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br>
-&gt; @@ -153,6 &#43;153,48 @@ bool amdgpu_device_is_px(struct drm_device *d=
-ev)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;<br>
-&gt;&nbsp;&nbsp; }<br>
-&gt;&nbsp;&nbsp; <br>
-&gt; &#43;/**<br>
-&gt; &#43; * VRAM access helper functions.<br>
-&gt; &#43; *<br>
-&gt; &#43; * amdgpu_device_vram_access - read/write a buffer in vram<br>
-&gt; &#43; *<br>
-&gt; &#43; * @adev: amdgpu_device pointer<br>
-&gt; &#43; * @pos: offset of the buffer in vram<br>
-&gt; &#43; * @buf: virtual address of the buffer in system memory<br>
-&gt; &#43; * @size: read/write size, sizeof(@buf) must &gt; @size<br>
-&gt; &#43; * @write: true - write to vram, otherwise - read from vram<br>
-&gt; &#43; *<br>
-&gt; &#43; * Returns 0 on success or an -error on failure.<br>
-&gt; &#43; */<br>
-&gt; &#43;int amdgpu_device_vram_access(struct amdgpu_device *adev, loff_t =
-pos,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t *buf, size_t siz=
-e, bool write)<br>
-<br>
-Indentation seems to be incorrect here.<br>
-<br>
-&gt; &#43;{<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t end =3D pos &#43; size;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; unsigned long flags;<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; if (IS_ERR_OR_NULL(buf) ||<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (adev-&gt;gmc.mc=
-_vram_size &gt; 0 &amp;&amp;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end &gt; a=
-dev-&gt;gmc.mc_vram_size)) {<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; DRM_ERROR(&quot;parameter error! pos:%llx, buf:%llx, size:%zx.\n&qu=
-ot;,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pos, (u=
-64)buf, size);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; return -EINVAL;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-<br>
-Please drop that, this is a purely internal functions and parameter <br>
-checking like this doesn't really make sense.<br>
-<br>
-Regards,<br>
-Christian.<br>
-<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; while (pos &lt; end) {<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; spin_lock_irqsave(&amp;adev-&gt;mmio_idx_lock, flags);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; WREG32_NO_KIQ(mmMM_INDEX, ((uint32_t)pos) | 0x80000000);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; WREG32_NO_KIQ(mmMM_INDEX_HI, pos &gt;&gt; 31);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; if (write)<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_NO_KIQ(mmMM_=
-DATA, *buf&#43;&#43;);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; else<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *buf&#43;&#43; =3D =
-RREG32_NO_KIQ(mmMM_DATA);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; spin_unlock_irqrestore(&amp;adev-&gt;mmio_idx_lock, flags);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; pos &#43;=3D 4;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&gt; &#43;}<br>
-&gt; &#43;<br>
-&gt;&nbsp;&nbsp; /*<br>
-&gt;&nbsp;&nbsp;&nbsp; * MMIO register access helper functions.<br>
-&gt;&nbsp;&nbsp;&nbsp; */<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/g=
-pu/drm/amd/amdgpu/amdgpu_discovery.c<br>
-&gt; index db2dab3a6dff..324c2d605f54 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
-&gt; @@ -134,21 &#43;134,10 @@ static int hw_id_map[MAX_HWIP] =3D {<br>
-&gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp; static int amdgpu_discovery_read_binary(struct amdgpu_devi=
-ce *adev, uint8_t *binary)<br>
-&gt;&nbsp;&nbsp; {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; uint32_t *p =3D (uint32_t *)binary;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t vram_size =3D (uint=
-64_t)RREG32(mmRCC_CONFIG_MEMSIZE) &lt;&lt; 20;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t pos =3D vram_size -=
- BINARY_MAX_SIZE;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; unsigned long flags;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; while (pos &lt; vram_size) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; spin_lock_irqsave(&amp;adev-&gt;mmio_idx_lock, flags);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; WREG32_NO_KIQ(mmMM_INDEX, ((uint32_t)pos) | 0x80000000);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; WREG32_NO_KIQ(mmMM_INDEX_HI, pos &gt;&gt; 31);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; *p&#43;&#43; =3D RREG32_NO_KIQ(mmMM_DATA);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; spin_unlock_irqrestore(&amp;adev-&gt;mmio_idx_lock, flags);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; pos &#43;=3D 4;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&nbsp;&nbsp; <br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; return amdgpu_device_vram_access(adev, p=
-os, (uint32_t *)binary, BINARY_MAX_SIZE, false);<br>
-&gt;&nbsp;&nbsp; }<br>
-&gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp; static uint16_t amdgpu_discovery_calculate_checksum(uint8_=
-t *data, uint32_t size)<br>
-<br>
-</div>
-</span></font></div>
-</body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Am 09.10.19 um 13:12 schrieb Yin,
+      Tianci (Rico):<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:SN1PR12MB2544F1BE7D37DEC4721AF95D95950@SN1PR12MB2544.namprd12.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <font size="2"><span style="font-size:11pt">Here is where you
+            definitively set "ret" so DO NOT preinitialize it to 0,<br>
+          </span></font></div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <font size="2"><span style="font-size:11pt">just to avoid "pesky
+            compiler unininitialized variable warnings"--those<br>
+            are helpful to make the code more secure: a variable should
+            be intentionally<br>
+            initialized in all paths.</span></font></div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <span style="color: rgb(12, 100, 192);">Rico: Still in
+          confusion, pre-initialization can avoid "uninitialized
+          variable", why should we can't pre-initialize?
+        </span><br>
+      </div>
+    </blockquote>
+    <br>
+    Because it avoids the uninitialized variable warning :)<br>
+    <br>
+    See we really want the warning because it means that we have a bug
+    in the code somewhere.<br>
+    <br>
+    Regards,<br>
+    Christian.<br>
+    <br>
+    <blockquote type="cite"
+cite="mid:SN1PR12MB2544F1BE7D37DEC4721AF95D95950@SN1PR12MB2544.namprd12.prod.outlook.com">
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+      </div>
+      <hr style="display:inline-block;width:98%" tabindex="-1">
+      <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
+          face="Calibri, sans-serif" color="#000000"><b>From:</b>
+          Tuikov, Luben <a class="moz-txt-link-rfc2396E" href="mailto:Luben.Tuikov@amd.com">&lt;Luben.Tuikov@amd.com&gt;</a><br>
+          <b>Sent:</b> Wednesday, October 9, 2019 11:44<br>
+          <b>To:</b> Alex Deucher <a class="moz-txt-link-rfc2396E" href="mailto:alexdeucher@gmail.com">&lt;alexdeucher@gmail.com&gt;</a>;
+          <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
+          <a class="moz-txt-link-rfc2396E" href="mailto:amd-gfx@lists.freedesktop.org">&lt;amd-gfx@lists.freedesktop.org&gt;</a><br>
+          <b>Cc:</b> Deucher, Alexander
+          <a class="moz-txt-link-rfc2396E" href="mailto:Alexander.Deucher@amd.com">&lt;Alexander.Deucher@amd.com&gt;</a>; Yin, Tianci (Rico)
+          <a class="moz-txt-link-rfc2396E" href="mailto:Tianci.Yin@amd.com">&lt;Tianci.Yin@amd.com&gt;</a><br>
+          <b>Subject:</b> Re: [PATCH 7/8] drm/amdgpu: reserve vram for
+          memory training</font>
+        <div> </div>
+      </div>
+      <div class="BodyFragment"><font size="2"><span
+            style="font-size:11pt;">
+            <div class="PlainText">On 2019-10-08 3:29 p.m., Alex Deucher
+              wrote:<br>
+              &gt; From: "Tianci.Yin" <a class="moz-txt-link-rfc2396E" href="mailto:tianci.yin@amd.com">&lt;tianci.yin@amd.com&gt;</a><br>
+              &gt; <br>
+              &gt; memory training using specific fixed vram segment,
+              reserve these<br>
+              &gt; segments before anyone may allocate it.<br>
+              &gt; <br>
+              &gt; Change-Id: I1436755813a565608a2857a683f535377620a637<br>
+              &gt; Reviewed-by: Alex Deucher
+              <a class="moz-txt-link-rfc2396E" href="mailto:alexander.deucher@amd.com">&lt;alexander.deucher@amd.com&gt;</a><br>
+              &gt; Signed-off-by: Tianci.Yin <a class="moz-txt-link-rfc2396E" href="mailto:tianci.yin@amd.com">&lt;tianci.yin@amd.com&gt;</a><br>
+              &gt; ---<br>
+              &gt;  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 96
+              +++++++++++++++++++++++++<br>
+              &gt;  1 file changed, 96 insertions(+)<br>
+              &gt; <br>
+              &gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+              b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
+              &gt; index 74a9bd94f10c..0819721af16e 100644<br>
+              &gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
+              &gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
+              &gt; @@ -1667,6 +1667,93 @@ static int
+              amdgpu_ttm_fw_reserve_vram_init(struct amdgpu_device
+              *adev)<br>
+              &gt;                                         
+              &amp;adev-&gt;fw_vram_usage.va);<br>
+              &gt;  }<br>
+              &gt;  <br>
+              &gt; +/*<br>
+              &gt; + * Memoy training reservation functions<br>
+              &gt; + */<br>
+              <br>
+              Include an empty line between the two comments, just as
+              you would<br>
+              a paragraph in written text.<br>
+              <br>
+              &gt; +/**<br>
+              &gt; + * amdgpu_ttm_training_reserve_vram_fini - free
+              memory training reserved vram<br>
+              &gt; + *<br>
+              &gt; + * @adev: amdgpu_device pointer<br>
+              &gt; + *<br>
+              &gt; + * free memory training reserved vram if it has been
+              reserved.<br>
+              &gt; + */<br>
+              &gt; +static int
+              amdgpu_ttm_training_reserve_vram_fini(struct amdgpu_device
+              *adev)<br>
+              &gt; +{<br>
+              &gt; +     int ret = 0;<br>
+              &gt; +     struct psp_memory_training_context *ctx =
+              &amp;adev-&gt;psp.mem_train_ctx;<br>
+              &gt; +<br>
+              &gt; +     ctx-&gt;init = PSP_MEM_TRAIN_NOT_SUPPORT;<br>
+              &gt; +     if(ctx-&gt;c2p_bo) {<br>
+              <br>
+              Space after keywords, according to LKCS:<br>
+              if (...)<br>
+              <br>
+              &gt; +            
+              amdgpu_bo_free_kernel(&amp;ctx-&gt;c2p_bo, NULL, NULL);<br>
+              &gt; +             ctx-&gt;c2p_bo = NULL;<br>
+              &gt; +     }<br>
+              &gt; +     if(ctx-&gt;p2c_bo) {<br>
+              <br>
+              Space after keywords, according to LKCS:<br>
+              if (...)<br>
+              <br>
+              &gt; +            
+              amdgpu_bo_free_kernel(&amp;ctx-&gt;p2c_bo, NULL, NULL);<br>
+              &gt; +             ctx-&gt;p2c_bo = NULL;<br>
+              &gt; +     }<br>
+              &gt; +<br>
+              &gt; +     return ret;<br>
+              &gt; +}<br>
+              <br>
+              Get rid of "ret" variable altogether as it is not used in
+              this function.<br>
+              <br>
+              &gt; +<br>
+              &gt; +/**<br>
+              &gt; + * amdgpu_ttm_training_reserve_vram_init - create bo
+              vram reservation from memory training<br>
+              &gt; + *<br>
+              &gt; + * @adev: amdgpu_device pointer<br>
+              &gt; + *<br>
+              &gt; + * create bo vram reservation from memory training.<br>
+              &gt; + */<br>
+              &gt; +static int
+              amdgpu_ttm_training_reserve_vram_init(struct amdgpu_device
+              *adev)<br>
+              &gt; +{<br>
+              &gt; +     int ret = 0;<br>
+              <br>
+              DO NOT preinitialize ret.<br>
+              <br>
+              &gt; +     struct psp_memory_training_context *ctx =
+              &amp;adev-&gt;psp.mem_train_ctx;<br>
+              &gt; +<br>
+              &gt; +     memset(ctx, 0, sizeof(*ctx));<br>
+              &gt; +     if(!adev-&gt;fw_vram_usage.mem_train_support) {<br>
+              <br>
+              Space after keywords: "if (".<br>
+              <br>
+              &gt; +             DRM_DEBUG("memory training does not
+              support!\n");<br>
+              &gt; +             return 0;<br>
+              &gt; +     }<br>
+              &gt; +<br>
+              &gt; +     ctx-&gt;c2p_train_data_offset =
+              adev-&gt;fw_vram_usage.mem_train_fb_loc;<br>
+              &gt; +     ctx-&gt;p2c_train_data_offset =
+              (adev-&gt;gmc.mc_vram_size - GDDR6_MEM_TRAINING_OFFSET);<br>
+              &gt; +     ctx-&gt;train_data_size =
+              GDDR6_MEM_TRAINING_DATA_SIZE_IN_BYTES;<br>
+              &gt; +<br>
+              &gt; +    
+DRM_DEBUG("train_data_size:%llx,p2c_train_data_offset:%llx,c2p_train_data_offset:%llx.\n",<br>
+              &gt; +               ctx-&gt;train_data_size,<br>
+              &gt; +               ctx-&gt;p2c_train_data_offset,<br>
+              &gt; +               ctx-&gt;c2p_train_data_offset);<br>
+              &gt; +<br>
+              &gt; +     ret = amdgpu_bo_create_kernel_at(adev,<br>
+              <br>
+              Here is where you definitively set "ret" so DO NOT
+              preinitialize it to 0,<br>
+              just to avoid "pesky compiler unininitialized variable
+              warnings"--those<br>
+              are helpful to make the code more secure: a variable
+              should be intentionally<br>
+              initialized in all paths.<br>
+              <br>
+              &gt; +                                     
+              ctx-&gt;p2c_train_data_offset,<br>
+              &gt; +                                     
+              ctx-&gt;train_data_size,<br>
+              &gt; +                                     
+              AMDGPU_GEM_DOMAIN_VRAM,<br>
+              &gt; +                                     
+              &amp;ctx-&gt;p2c_bo,<br>
+              &gt; +                                      NULL);<br>
+              &gt; +     if(ret) {<br>
+              <br>
+              Space after keywords "if (".<br>
+              <br>
+              &gt; +             DRM_ERROR("alloc p2c_bo failed(%d)!\n",
+              ret);<br>
+              &gt; +             ret = -ENOMEM;<br>
+              &gt; +             goto err_out;<br>
+              &gt; +     }<br>
+              &gt; +<br>
+              &gt; +     ret = amdgpu_bo_create_kernel_at(adev,<br>
+              &gt; +                                     
+              ctx-&gt;c2p_train_data_offset,<br>
+              &gt; +                                     
+              ctx-&gt;train_data_size,<br>
+              &gt; +                                     
+              AMDGPU_GEM_DOMAIN_VRAM,<br>
+              &gt; +                                     
+              &amp;ctx-&gt;c2p_bo,<br>
+              &gt; +                                      NULL);<br>
+              &gt; +     if(ret) {<br>
+              <br>
+              Space after keywords: "if (", according to LKCS.<br>
+              <br>
+              Regards,<br>
+              Luben<br>
+              <br>
+              &gt; +             DRM_ERROR("alloc c2p_bo failed(%d)!\n",
+              ret);<br>
+              &gt; +             ret = -ENOMEM;<br>
+              &gt; +             goto err_out;<br>
+              &gt; +     }<br>
+              &gt; +<br>
+              &gt; +     ctx-&gt;init = PSP_MEM_TRAIN_RESERVE_SUCCESS;<br>
+              &gt; +     return 0;<br>
+              &gt; +<br>
+              &gt; +err_out:<br>
+              &gt; +     amdgpu_ttm_training_reserve_vram_fini(adev);<br>
+              &gt; +     return ret;<br>
+              &gt; +}<br>
+              &gt; +<br>
+              &gt;  /**<br>
+              &gt;   * amdgpu_ttm_init - Init the memory management
+              (ttm) as well as various<br>
+              &gt;   * gtt/vram related fields.<br>
+              &gt; @@ -1740,6 +1827,14 @@ int amdgpu_ttm_init(struct
+              amdgpu_device *adev)<br>
+              &gt;                return r;<br>
+              &gt;        }<br>
+              &gt;  <br>
+              &gt; +     /*<br>
+              &gt; +      *The reserved vram for memory training must be
+              pinned to the specified<br>
+              &gt; +      *place on the VRAM, so reserve it early.<br>
+              &gt; +      */<br>
+              &gt; +     r =
+              amdgpu_ttm_training_reserve_vram_init(adev);<br>
+              &gt; +     if (r)<br>
+              &gt; +             return r;<br>
+              &gt; +<br>
+              &gt;        /* allocate memory as required for VGA<br>
+              &gt;         * This is used for VGA emulation and pre-OS
+              scanout buffers to<br>
+              &gt;         * avoid display artifacts while transitioning
+              between pre-OS<br>
+              &gt; @@ -1825,6 +1920,7 @@ void amdgpu_ttm_fini(struct
+              amdgpu_device *adev)<br>
+              &gt;                return;<br>
+              &gt;  <br>
+              &gt;        amdgpu_ttm_debugfs_fini(adev);<br>
+              &gt; +     amdgpu_ttm_training_reserve_vram_fini(adev);<br>
+              &gt;        amdgpu_ttm_fw_reserve_vram_fini(adev);<br>
+              &gt;        if (adev-&gt;mman.aper_base_kaddr)<br>
+              &gt;               
+              iounmap(adev-&gt;mman.aper_base_kaddr);<br>
+              &gt; <br>
+              <br>
+            </div>
+          </span></font></div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+amd-gfx mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a></pre>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_SN1PR12MB2544ECC6BB4C073BCA587E1195950SN1PR12MB2544namp_--
+--------------4B0E7261945FCFA47FAA3ADA--
 
---===============0005012269==
+--===============1693187088==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -483,4 +628,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============0005012269==--
+--===============1693187088==--
