@@ -1,90 +1,84 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB63CD1E12
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Oct 2019 03:43:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D5EBD1E6A
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Oct 2019 04:26:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03DAC6E31E;
-	Thu, 10 Oct 2019 01:43:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 965FF6EA7C;
+	Thu, 10 Oct 2019 02:25:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770078.outbound.protection.outlook.com [40.107.77.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 964EF6E31E
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Oct 2019 01:43:41 +0000 (UTC)
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr790042.outbound.protection.outlook.com [40.107.79.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF07F6EA7C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Oct 2019 02:25:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZWKbUGnL5sMSvx71T3qrEcDcmaYHAh/iBm26rE/vCqjEswa7p0sEqZs6PmakP8UTHV+4cYt7z7VrrYkKnnESF53CwRr3M1wVbTK8MgMtiahoVOuWVdwi0nQKN3NqvMzsIV76Q/7jrk1cyLu0hrJQXJwywSna+X+D4+RzvnSgC0jA0fpMun+g25VtGFUd3I7CiTX4AdkBjwF/Pb43/ARwuj6gqKXs+bYT66fUBg1/KuVYSisg/t6vAAHewzgGuAzzaD2XcuzGoI6l9KLj4e0LpLFUkoQNVQnfZfTh9+D1NcCA5y1+gb66rGqt2LEDTK9LVWvMRqMiW1tcWplaQSuJZQ==
+ b=Kqq60rLy5FtDc5z/wjh4qKdPdvJ7iMXcR2PieN0Mo1OSGPRr0VQ92zbDi4E3db5uGvrCBDhgM/AEdaoOqpZAvNd2rFVxnVyf0eMVUy35IVeoNnz685aAr/x46lTFQ5LxQj3MblECaxkyrV8Ojtr4caaDvWTtH52PFWEMEFQEr7erf4yoJc68vC7n7VX0KPZIVpvC2r68+y7DGD+1qFFyzt+Gozy8iRp4F7KZIor+iX+n45L5Hfnb7xlwfQLd71SZi6szTaKymygRSXemLdUwVXXuxAW2Yn4HO09VQCfhM5k8Q/XTVKxwpowjdewOGB6v7ZnyxfPXCCOMKyHYkCfg3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yjBZpKZjTbDDE7r2V2QgzUjO1oUxOXmMLbTy2PwGInU=;
- b=G24uHCSHTLW0NWdfWT+nZUIanHbK2ytKHabtPhDch4OTZO2kLT7ttZz2RXUeKSbKSvmPrDKj19l7eiY2spNhKni2B2aynUWllgW7ZX/CKF6492tB+lu5gNdttxd4/84AmSj/N+FKyiv2BX8UdglktiVofvvFp6yZ6cM/G+HTJS2iRZ7fAHkmoUD4W8Eby88+Qvhcp1+YH0j5wYzUiDQRVVbmcnvISpZncHDif/0tDEzReT+Bzs5GYG7cWQ5XYunMyb/3Ym+wjbD4+XIDEjnOquUae7KIjjK7e/Mp1gLj0f0UKFJ+eq9CaWxZf7rLSzDYT8nun46krpJg2BDLAr6odA==
+ bh=a1PdHT+DLxZ8t3Ihi/QIPUNR65iMAFZ9H0IPSqAVVuU=;
+ b=N3TSn5mwjMe27Y3BoPUI/Mo3GcQrORcOrTtpXx+fjoty59HKdMv4CFGxD7NY/zrOh5ZPUjqjyrYW9u3pHMNMUhZ++mh1Bp5q8eJHwfDW3L2/C3qm2naV2AmOeFyVY3fDw29xQBy8ITdF9asq867fL7fLJHtBJesjaa/70weDwhS7iResjPMbIPjta1pIE7qzgjwMp5Y3eiQQlHQFV/vGvZfLTDatIS6FJxDEEBb1WQVFPTppo3jYLIVoF2Q1YUX/KElHndav0fFKAaUv19BrolyVZEvjHqePTgAzgeqZG0+rd4egJBrj5eRs9JwSLVx08sQ4ek5WRuyaiDaeLT0HKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com (20.179.80.139) by
- MN2PR12MB4045.namprd12.prod.outlook.com (52.135.49.79) with Microsoft SMTP
+Received: from BN8PR12MB3602.namprd12.prod.outlook.com (20.178.212.86) by
+ BN8PR12MB3074.namprd12.prod.outlook.com (20.178.209.97) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.16; Thu, 10 Oct 2019 01:43:38 +0000
-Received: from MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::9d04:5f9f:eab5:dcd9]) by MN2PR12MB3296.namprd12.prod.outlook.com
- ([fe80::9d04:5f9f:eab5:dcd9%6]) with mapi id 15.20.2347.016; Thu, 10 Oct 2019
- 01:43:38 +0000
-From: Kevin Wang <kevwa@amd.com>
+ 15.20.2327.24; Thu, 10 Oct 2019 02:25:54 +0000
+Received: from BN8PR12MB3602.namprd12.prod.outlook.com
+ ([fe80::e9c9:6668:28ac:821c]) by BN8PR12MB3602.namprd12.prod.outlook.com
+ ([fe80::e9c9:6668:28ac:821c%7]) with mapi id 15.20.2347.016; Thu, 10 Oct 2019
+ 02:25:54 +0000
+From: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
 To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu/swSMU/navi: add feature toggles for more things
-Thread-Topic: [PATCH] drm/amdgpu/swSMU/navi: add feature toggles for more
- things
-Thread-Index: AQHVfqPm0IrBS8xEpE6A25yeGaVXr6dTGvWA
-Date: Thu, 10 Oct 2019 01:43:38 +0000
-Message-ID: <7f3d7579-3d71-cf78-7b24-f84b09a98cbe@amd.com>
-References: <20191009131714.24259-1-alexander.deucher@amd.com>
-In-Reply-To: <20191009131714.24259-1-alexander.deucher@amd.com>
-Accept-Language: en-US, zh-CN
+Subject: Re: [PATCH 1/2] drm/amd/powerplay: add more feature bits
+Thread-Topic: [PATCH 1/2] drm/amd/powerplay: add more feature bits
+Thread-Index: AQHVfpHYv5oONJ+p/UGt6tWDCreN0KdTJuQ2
+Date: Thu, 10 Oct 2019 02:25:54 +0000
+Message-ID: <BN8PR12MB3602BB4F482647F07C325E3A89940@BN8PR12MB3602.namprd12.prod.outlook.com>
+References: <20191009110757.30995-1-xiaojie.yuan@amd.com>
+In-Reply-To: <20191009110757.30995-1-xiaojie.yuan@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: HK2PR02CA0215.apcprd02.prod.outlook.com
- (2603:1096:201:20::27) To MN2PR12MB3296.namprd12.prod.outlook.com
- (2603:10b6:208:aa::11)
-x-ms-exchange-messagesentrepresentingtype: 1
 x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e765f0be-c491-4f8e-19d1-08d74d234577
+x-ms-office365-filtering-correlation-id: 69af9d6c-a5d6-4f66-1b21-08d74d292d1d
 x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: MN2PR12MB4045:
-x-microsoft-antispam-prvs: <MN2PR12MB40454995BF95D5A9C3F69A4EA2940@MN2PR12MB4045.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2958;
+x-ms-traffictypediagnostic: BN8PR12MB3074:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BN8PR12MB3074243D4A2C74F3CEF90F2D89940@BN8PR12MB3074.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:189;
 x-forefront-prvs: 018632C080
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(396003)(376002)(346002)(39860400002)(136003)(199004)(189003)(2616005)(229853002)(6246003)(6116002)(6916009)(25786009)(305945005)(7736002)(11346002)(446003)(36756003)(2351001)(476003)(3846002)(14454004)(486006)(6436002)(5640700003)(31686004)(52116002)(81166006)(8676002)(2906002)(99286004)(71190400001)(76176011)(66446008)(316002)(81156014)(66066001)(71200400001)(66556008)(66476007)(2501003)(6512007)(186003)(31696002)(6506007)(6486002)(256004)(386003)(8936002)(26005)(478600001)(53546011)(5660300002)(66946007)(64756008)(102836004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4045;
- H:MN2PR12MB3296.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(39860400002)(376002)(136003)(396003)(346002)(366004)(199004)(189003)(8936002)(19627405001)(66066001)(8676002)(6116002)(3846002)(4326008)(81156014)(81166006)(478600001)(6506007)(2351001)(33656002)(53546011)(486006)(476003)(91956017)(64756008)(66946007)(66446008)(76116006)(14454004)(52536014)(2501003)(66476007)(66556008)(76176011)(74316002)(5660300002)(256004)(9686003)(99286004)(71190400001)(71200400001)(14444005)(6916009)(54906003)(316002)(7736002)(7696005)(446003)(26005)(55016002)(6436002)(5640700003)(6246003)(54896002)(105004)(25786009)(186003)(2906002)(86362001)(229853002)(102836004)(11346002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB3074;
+ H:BN8PR12MB3602.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: V5d/yUIYfvKOe+sn+GeI6Mm3AV+Ts5GOkOeXiHTrCRmX1W3QbtJbvNv2+fjoVdSepC7tMtvYYAMc1CxVYkPMuRs8uqvuiXrxWkKEoVhwWErpAeACVG1Z0tFpd3YCcGJ7wyjQC/CJ1+y75PDdtQuomMdnF1f/poXFLSzb38jNGmmc2kQPsFbnqimADX4s7FcJI4dqLZ4RIm+DeSZQoFbz1LZgN9NenTk45GYB4FAxgZ40Bzu9lUS6gBuhbZ6u8tMm08GlcYBLY+tAEgsVk2YB5PG2/qFgNXOXf3TSBK5qihKXnm243CGJDv25tf4+ir1EmuZnf2fbbzOgCa/zPCMmzS/SUFuOkFx1m2RiJBcIX/3Xj5glQxGn3oMpPKv7lItcEDUTnyGymSDuvS8hy6hNkJ2GRR6Lx0E05YnyIqjd5mE=
-x-ms-exchange-transport-forked: True
-Content-ID: <66F815567EA2D247977147C96287233D@namprd12.prod.outlook.com>
+x-microsoft-antispam-message-info: WPhw49EZ+auSwVbX4QGW4o/FgBvnkHAnG2m82ytGMyBrYm2idPD1arf5L+dKxd0Xs8aFFeTgSnqrqRtCPSgx21CQ/af9LMl7yPSbSklsJkSMBrGDKREcASdTN92Hij3xv8oMXlZxfEztdiHycEqjWT6X1mTVisev/w3axzif7s3a2fTgv7ReKqi3QPMfD/t3A2+5RlSClVGn1mSvD93y5YU0+xbXqb3aaOEtObFm/Umfvp3me+XhBLE059l5UUeGf5G+k+a4omyxdeTjtSV5v5j1KHrJMcwenbynSlux6K/twkkDM9V+MSRYuo/4IdcZpTONaGQ6QOEXFV3zb6YejHoucCA0H/Gq8mBIvRHJX7pp4WpNHZLmPYmvs1r6jtOsJcLAOhxPg32krr9MvoQKatNJ1UzbnP2qy0jk2b2COGk=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e765f0be-c491-4f8e-19d1-08d74d234577
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2019 01:43:38.4309 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69af9d6c-a5d6-4f66-1b21-08d74d292d1d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2019 02:25:54.0335 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HOOYaoK0vemhx9k8xoXjkneO7Dot9Kgfau31l5+0GlDFQuZcaVNE7V3G1QoJt7Wd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4045
+X-MS-Exchange-CrossTenant-userprincipalname: HH80MTIihZ/qNdgHm0dXFsI76jgKgflw6Wh7qsd2vTBYj1Z3P9cOcIfHEOAcaxi9
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3074
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yjBZpKZjTbDDE7r2V2QgzUjO1oUxOXmMLbTy2PwGInU=;
- b=oGnE7VbBWakic+b5vxJ8F3MjT+mSCi2EGP87zDQdlHxy9hqHmaBOB4rgiPekmH1DfMq1KVhCYNvQQyx2WNf9wDoNcqr1/XnhYkFlQHqQpnYmyzVILALx6OX4w25e9xD9F5hljObI+qHajydHctYPNqvX6VoK7RJkE1hurQhw/ew=
+ bh=a1PdHT+DLxZ8t3Ihi/QIPUNR65iMAFZ9H0IPSqAVVuU=;
+ b=ygiQWNuEvDcP7SxVTNFwAW1WeOaSy1cED2oMuBVEo6Z1xvE0xPpjuxV7o34Mr9VMWU/uErA+9pW49ofNzt7EpjIzkDJdCOm60TMPymEc8Kea4JEGnfuIGtbFIpbevHEx+h0Ap6kFof7410xSsqX+ZH5cqjHrbWAI2Xzp8V1cQfc=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Kevin1.Wang@amd.com; 
+ smtp.mailfrom=Xiaojie.Yuan@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -96,64 +90,234 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Xiao, Jack" <Jack.Xiao@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>, "Feng,
+ Kenneth" <Kenneth.Feng@amd.com>, "Wang, Kevin\(Yang\)" <Kevin1.Wang@amd.com>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Content-Type: multipart/mixed; boundary="===============0916468140=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-UmV2aWV3ZWQtYnk6IEtldmluIFdhbmcgPGtldmluMS53YW5nQGFtZC5jb20+DQoNCkJlc3QgUmVn
-YXJkcywNCktldmluDQoNCk9uIDEwLzkvMTkgOToxNyBQTSwgQWxleCBEZXVjaGVyIHdyb3RlOg0K
-PiBBZGQgdG9nZ2xlcyBmb3IgbW9yZSBwb3dlciBmZWF0dXJlcy4gIEhlbHBmdWwgaW4gZGVidWdn
-aW5nLg0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVy
-QGFtZC5jb20+DQo+IC0tLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L25hdmkx
-MF9wcHQuYyB8IDI0ICsrKysrKysrKysrKysrKystLS0tLS0NCj4gICAxIGZpbGUgY2hhbmdlZCwg
-MTggaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkNCj4NCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L25hdmkxMF9wcHQuYyBiL2RyaXZlcnMvZ3B1L2RybS9h
-bWQvcG93ZXJwbGF5L25hdmkxMF9wcHQuYw0KPiBpbmRleCBhNTgzY2Y4N2I1MTQuLjhlMWYzYmU4
-YmE2ZiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvbmF2aTEw
-X3BwdC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L25hdmkxMF9wcHQu
-Yw0KPiBAQCAtMzI4LDExICszMjgsNyBAQCBuYXZpMTBfZ2V0X2FsbG93ZWRfZmVhdHVyZV9tYXNr
-KHN0cnVjdCBzbXVfY29udGV4dCAqc211LA0KPiAgIAltZW1zZXQoZmVhdHVyZV9tYXNrLCAwLCBz
-aXplb2YodWludDMyX3QpICogbnVtKTsNCj4gICANCj4gICAJKih1aW50NjRfdCAqKWZlYXR1cmVf
-bWFzayB8PSBGRUFUVVJFX01BU0soRkVBVFVSRV9EUE1fUFJFRkVUQ0hFUl9CSVQpDQo+IC0JCQkJ
-fCBGRUFUVVJFX01BU0soRkVBVFVSRV9EUE1fR0ZYQ0xLX0JJVCkNCj4gLQkJCQl8IEZFQVRVUkVf
-TUFTSyhGRUFUVVJFX0RQTV9TT0NDTEtfQklUKQ0KPiAgIAkJCQl8IEZFQVRVUkVfTUFTSyhGRUFU
-VVJFX0RQTV9NUDBDTEtfQklUKQ0KPiAtCQkJCXwgRkVBVFVSRV9NQVNLKEZFQVRVUkVfRFBNX0xJ
-TktfQklUKQ0KPiAtCQkJCXwgRkVBVFVSRV9NQVNLKEZFQVRVUkVfR0ZYX1VMVl9CSVQpDQo+ICAg
-CQkJCXwgRkVBVFVSRV9NQVNLKEZFQVRVUkVfUlNNVV9TTU5fQ0dfQklUKQ0KPiAgIAkJCQl8IEZF
-QVRVUkVfTUFTSyhGRUFUVVJFX0RTX1NPQ0NMS19CSVQpDQo+ICAgCQkJCXwgRkVBVFVSRV9NQVNL
-KEZFQVRVUkVfUFBUX0JJVCkNCj4gQEAgLTM0Miw4ICszMzgsNiBAQCBuYXZpMTBfZ2V0X2FsbG93
-ZWRfZmVhdHVyZV9tYXNrKHN0cnVjdCBzbXVfY29udGV4dCAqc211LA0KPiAgIAkJCQl8IEZFQVRV
-UkVfTUFTSyhGRUFUVVJFX0ZBTl9DT05UUk9MX0JJVCkNCj4gICAJCQkJfCBGRUFUVVJFX01BU0so
-RkVBVFVSRV9USEVSTUFMX0JJVCkNCj4gICAJCQkJfCBGRUFUVVJFX01BU0soRkVBVFVSRV9MRURf
-RElTUExBWV9CSVQpDQo+IC0JCQkJfCBGRUFUVVJFX01BU0soRkVBVFVSRV9EUE1fRENFRkNMS19C
-SVQpDQo+IC0JCQkJfCBGRUFUVVJFX01BU0soRkVBVFVSRV9EU19HRlhDTEtfQklUKQ0KPiAgIAkJ
-CQl8IEZFQVRVUkVfTUFTSyhGRUFUVVJFX0RTX0RDRUZDTEtfQklUKQ0KPiAgIAkJCQl8IEZFQVRV
-UkVfTUFTSyhGRUFUVVJFX0ZXX0RTVEFURV9CSVQpDQo+ICAgCQkJCXwgRkVBVFVSRV9NQVNLKEZF
-QVRVUkVfQkFDT19CSVQpDQo+IEBAIC0zNTIsMTEgKzM0NiwyOSBAQCBuYXZpMTBfZ2V0X2FsbG93
-ZWRfZmVhdHVyZV9tYXNrKHN0cnVjdCBzbXVfY29udGV4dCAqc211LA0KPiAgIAkJCQl8IEZFQVRV
-UkVfTUFTSyhGRUFUVVJFX0FQQ0NfREZMTF9CSVQpDQo+ICAgCQkJCXwgRkVBVFVSRV9NQVNLKEZF
-QVRVUkVfRldfQ1RGX0JJVCk7DQo+ICAgDQo+ICsJaWYgKGFkZXYtPnBtLnBwX2ZlYXR1cmUgJiBQ
-UF9TT0NDTEtfRFBNX01BU0spDQo+ICsJCSoodWludDY0X3QgKilmZWF0dXJlX21hc2sgfD0gRkVB
-VFVSRV9NQVNLKEZFQVRVUkVfRFBNX1NPQ0NMS19CSVQpOw0KPiArDQo+ICsJaWYgKGFkZXYtPnBt
-LnBwX2ZlYXR1cmUgJiBQUF9TQ0xLX0RQTV9NQVNLKQ0KPiArCQkqKHVpbnQ2NF90ICopZmVhdHVy
-ZV9tYXNrIHw9IEZFQVRVUkVfTUFTSyhGRUFUVVJFX0RQTV9HRlhDTEtfQklUKTsNCj4gKw0KPiAr
-CWlmIChhZGV2LT5wbS5wcF9mZWF0dXJlICYgUFBfUENJRV9EUE1fTUFTSykNCj4gKwkJKih1aW50
-NjRfdCAqKWZlYXR1cmVfbWFzayB8PSBGRUFUVVJFX01BU0soRkVBVFVSRV9EUE1fTElOS19CSVQp
-Ow0KPiArDQo+ICsJaWYgKGFkZXYtPnBtLnBwX2ZlYXR1cmUgJiBQUF9EQ0VGQ0xLX0RQTV9NQVNL
-KQ0KPiArCQkqKHVpbnQ2NF90ICopZmVhdHVyZV9tYXNrIHw9IEZFQVRVUkVfTUFTSyhGRUFUVVJF
-X0RQTV9EQ0VGQ0xLX0JJVCk7DQo+ICsNCj4gICAJaWYgKGFkZXYtPnBtLnBwX2ZlYXR1cmUgJiBQ
-UF9NQ0xLX0RQTV9NQVNLKQ0KPiAgIAkJKih1aW50NjRfdCAqKWZlYXR1cmVfbWFzayB8PSBGRUFU
-VVJFX01BU0soRkVBVFVSRV9EUE1fVUNMS19CSVQpDQo+ICAgCQkJCXwgRkVBVFVSRV9NQVNLKEZF
-QVRVUkVfTUVNX1ZERENJX1NDQUxJTkdfQklUKQ0KPiAgIAkJCQl8IEZFQVRVUkVfTUFTSyhGRUFU
-VVJFX01FTV9NVkREX1NDQUxJTkdfQklUKTsNCj4gICANCj4gKwlpZiAoYWRldi0+cG0ucHBfZmVh
-dHVyZSAmIFBQX1VMVl9NQVNLKQ0KPiArCQkqKHVpbnQ2NF90ICopZmVhdHVyZV9tYXNrIHw9IEZF
-QVRVUkVfTUFTSyhGRUFUVVJFX0dGWF9VTFZfQklUKTsNCj4gKw0KPiArCWlmIChhZGV2LT5wbS5w
-cF9mZWF0dXJlICYgUFBfU0NMS19ERUVQX1NMRUVQX01BU0spDQo+ICsJCSoodWludDY0X3QgKilm
-ZWF0dXJlX21hc2sgfD0gRkVBVFVSRV9NQVNLKEZFQVRVUkVfRFNfR0ZYQ0xLX0JJVCk7DQo+ICsN
-Cj4gICAJaWYgKGFkZXYtPnBtLnBwX2ZlYXR1cmUgJiBQUF9HRlhPRkZfTUFTSykgew0KPiAgIAkJ
-Kih1aW50NjRfdCAqKWZlYXR1cmVfbWFzayB8PSBGRUFUVVJFX01BU0soRkVBVFVSRV9HRlhPRkZf
-QklUKTsNCj4gICAJCS8qIFRPRE86IHJlbW92ZSBpdCBvbmNlIGZ3IGZpeCB0aGUgYnVnICovDQpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1h
-aWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+--===============0916468140==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN8PR12MB3602BB4F482647F07C325E3A89940BN8PR12MB3602namp_"
+
+--_000_BN8PR12MB3602BB4F482647F07C325E3A89940BN8PR12MB3602namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Ping ...
+
+BR,
+Xiaojie
+________________________________
+From: Yuan, Xiaojie <Xiaojie.Yuan@amd.com>
+Sent: Wednesday, October 9, 2019 7:08 PM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Xiao, Jack <Jack.Xiao@amd.com>;=
+ Feng, Kenneth <Kenneth.Feng@amd.com>; Quan, Evan <Evan.Quan@amd.com>; Wang=
+, Kevin(Yang) <Kevin1.Wang@amd.com>; Yuan, Xiaojie <Xiaojie.Yuan@amd.com>
+Subject: [PATCH 1/2] drm/amd/powerplay: add more feature bits
+
+Signed-off-by: Xiaojie Yuan <xiaojie.yuan@amd.com>
+---
+ drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
+md/powerplay/navi10_ppt.c
+index 5a34d01f7f7c..44152c1f01c7 100644
+--- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+@@ -337,19 +337,22 @@ navi10_get_allowed_feature_mask(struct smu_context *s=
+mu,
+                                 | FEATURE_MASK(FEATURE_PPT_BIT)
+                                 | FEATURE_MASK(FEATURE_TDC_BIT)
+                                 | FEATURE_MASK(FEATURE_GFX_EDC_BIT)
++                               | FEATURE_MASK(FEATURE_APCC_PLUS_BIT)
+                                 | FEATURE_MASK(FEATURE_VR0HOT_BIT)
+                                 | FEATURE_MASK(FEATURE_FAN_CONTROL_BIT)
+                                 | FEATURE_MASK(FEATURE_THERMAL_BIT)
+                                 | FEATURE_MASK(FEATURE_LED_DISPLAY_BIT)
+                                 | FEATURE_MASK(FEATURE_DPM_DCEFCLK_BIT)
+                                 | FEATURE_MASK(FEATURE_DS_GFXCLK_BIT)
++                               | FEATURE_MASK(FEATURE_DS_LCLK_BIT)
+                                 | FEATURE_MASK(FEATURE_DS_DCEFCLK_BIT)
+                                 | FEATURE_MASK(FEATURE_FW_DSTATE_BIT)
+                                 | FEATURE_MASK(FEATURE_BACO_BIT)
+                                 | FEATURE_MASK(FEATURE_ACDC_BIT)
+                                 | FEATURE_MASK(FEATURE_GFX_SS_BIT)
+                                 | FEATURE_MASK(FEATURE_APCC_DFLL_BIT)
+-                               | FEATURE_MASK(FEATURE_FW_CTF_BIT);
++                               | FEATURE_MASK(FEATURE_FW_CTF_BIT)
++                               | FEATURE_MASK(FEATURE_OUT_OF_BAND_MONITOR_=
+BIT);
+
+         if (adev->pm.pp_feature & PP_MCLK_DPM_MASK)
+                 *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_DPM_UC=
+LK_BIT)
+--
+2.20.1
+
+
+--_000_BN8PR12MB3602BB4F482647F07C325E3A89940BN8PR12MB3602namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+Ping ...</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+BR,</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+Xiaojie<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Yuan, Xiaojie &lt;Xia=
+ojie.Yuan@amd.com&gt;<br>
+<b>Sent:</b> Wednesday, October 9, 2019 7:08 PM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;; Xiao, Jack &lt;Jac=
+k.Xiao@amd.com&gt;; Feng, Kenneth &lt;Kenneth.Feng@amd.com&gt;; Quan, Evan =
+&lt;Evan.Quan@amd.com&gt;; Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;; Y=
+uan, Xiaojie &lt;Xiaojie.Yuan@amd.com&gt;<br>
+<b>Subject:</b> [PATCH 1/2] drm/amd/powerplay: add more feature bits</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Signed-off-by: Xiaojie Yuan &lt;xiaojie.yuan@amd.c=
+om&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 5 &#43;&#43;&#43;&#43;-<=
+br>
+&nbsp;1 file changed, 4 insertions(&#43;), 1 deletion(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
+md/powerplay/navi10_ppt.c<br>
+index 5a34d01f7f7c..44152c1f01c7 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+@@ -337,19 &#43;337,22 @@ navi10_get_allowed_feature_mask(struct smu_contex=
+t *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_PPT_BIT)<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_TDC_BIT)<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_GFX_EDC_B=
+IT)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_APCC_PLUS_BIT)<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_VR0HOT_BI=
+T)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_FAN_CONTR=
+OL_BIT)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_THERMAL_B=
+IT)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_LED_DISPL=
+AY_BIT)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_DPM_DCEFC=
+LK_BIT)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_DS_GFXCLK=
+_BIT)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_DS_LCLK_BIT)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_DS_DCEFCL=
+K_BIT)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_FW_DSTATE=
+_BIT)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_BACO_BIT)=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_ACDC_BIT)=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_GFX_SS_BI=
+T)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_APCC_DFLL=
+_BIT)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_FW_CTF_BIT);<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_FW_CTF_BIT)<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FEATURE_MASK(FEATURE_OUT_OF_BAND_MONI=
+TOR_BIT);<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;pm.pp_feature=
+ &amp; PP_MCLK_DPM_MASK)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_D=
+PM_UCLK_BIT)<br>
+-- <br>
+2.20.1<br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_BN8PR12MB3602BB4F482647F07C325E3A89940BN8PR12MB3602namp_--
+
+--===============0916468140==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0916468140==--
