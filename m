@@ -2,95 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101B2D455E
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Oct 2019 18:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 342E5D45E3
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Oct 2019 18:56:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D13E6EC65;
-	Fri, 11 Oct 2019 16:26:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8C0489A32;
+	Fri, 11 Oct 2019 16:56:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM05-DM3-obe.outbound.protection.outlook.com
- (mail-eopbgr730062.outbound.protection.outlook.com [40.107.73.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37F296EC61;
- Fri, 11 Oct 2019 16:26:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BFtbYT6s00ITKbJXPNNExFoaW0Th7BXHz5WcXQF8OJeINSkXVcnhzt3aXGbbKRvBEACor+iu/mYu/xQufqccDULXyclDEFxbkCs3Yb3lapxUOS9p+WieOd8maTEnPl3bzVEroge/P6m6C9nZ4NElJb14GW02cCJBDsX0I9SGmT4okkrH9Yw438V7Mue6EgKRjrGGtGth2bUxXBcsf2dqwv987AnE2p2RSX9RjFEWkLswfVreNoiuf1mLH1XU9i1zHsuAM7Ia7sFS0uCYL3pbOhrvk/zhw3KZ2fhR38iyelp4NuqsC15BXgOcnwhceqjPAbi9w4PRunzu8Fo/b3PDtg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+UY5E0NrBcr7aWBCcNsV6+1V5lmg6sjuHQj9iRK0HQY=;
- b=koTD4a8/ynpsD8Ejxdncq2Hdp+2p0o86s1snRWZWjiTLQ8Uumk9Vxwoyi+iJZEgVCYMxzxHdq0UeiI+bBN1y2ESJPNh70WvIGKtF1Zutb/ad+Z4pU+QeFmf3k7+d8/doOLlm8EfBe0v+42v9c1OxnhIbChlVViMpC1zAibVOzZMg9A/L/vj5vAk5FTZpIIyeqFJlFwKq7q/qBzTEblJzMbSF01y3vNXRbqYufJ+ScxFFs7SnDn6sAxV5iDc0cW3ZUYWhATxkq9nYiB5NiHT2j5g0N3y2GoDE8BLk2AJZxOeG7GHklVePHnWj93y3blkgsNgzGJq/2tOCdlkGD+nHig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from CY4PR1201MB0230.namprd12.prod.outlook.com (10.172.79.7) by
- CY4PR1201MB0152.namprd12.prod.outlook.com (10.172.77.136) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2347.16; Fri, 11 Oct 2019 16:26:23 +0000
-Received: from CY4PR1201MB0230.namprd12.prod.outlook.com
- ([fe80::5471:f58b:733e:1a61]) by CY4PR1201MB0230.namprd12.prod.outlook.com
- ([fe80::5471:f58b:733e:1a61%7]) with mapi id 15.20.2347.016; Fri, 11 Oct 2019
- 16:26:23 +0000
-From: Harry Wentland <hwentlan@amd.com>
-To: zhengbin <zhengbin13@huawei.com>, "Wentland, Harry"
- <Harry.Wentland@amd.com>, "Li, Sun peng (Leo)" <Sunpeng.Li@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH 0/3] drm/amd/display/dc/dce: remove some not used variables
-Thread-Topic: [PATCH 0/3] drm/amd/display/dc/dce: remove some not used
- variables
-Thread-Index: AQHVfmlUMDA+jOqcgUudjrfx7O/UWKdVpGiA
-Date: Fri, 11 Oct 2019 16:26:23 +0000
-Message-ID: <6910512b-0af9-5c5e-834c-f55e8130307d@amd.com>
-References: <1570602312-49690-1-git-send-email-zhengbin13@huawei.com>
-In-Reply-To: <1570602312-49690-1-git-send-email-zhengbin13@huawei.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [165.204.55.250]
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
-x-clientproxiedby: YTOPR0101CA0069.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::46) To CY4PR1201MB0230.namprd12.prod.outlook.com
- (2603:10b6:910:1e::7)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 973fc1fa-1885-4530-ae86-08d74e67c18b
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: CY4PR1201MB0152:|CY4PR1201MB0152:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CY4PR1201MB015271CB0FEC3388B52D54CE8C970@CY4PR1201MB0152.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 0187F3EA14
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(396003)(346002)(366004)(39860400002)(136003)(51914003)(199004)(189003)(6486002)(31696002)(229853002)(66066001)(11346002)(446003)(486006)(99286004)(76176011)(65956001)(2616005)(476003)(65806001)(81156014)(26005)(81166006)(6506007)(53546011)(186003)(8676002)(386003)(52116002)(66946007)(31686004)(2201001)(36756003)(8936002)(6436002)(6246003)(256004)(110136005)(4744005)(478600001)(2501003)(25786009)(71190400001)(71200400001)(14444005)(66446008)(6512007)(3846002)(6116002)(316002)(14454004)(58126008)(7736002)(305945005)(102836004)(64756008)(66556008)(66476007)(450100002)(2906002)(5660300002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR1201MB0152;
- H:CY4PR1201MB0230.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Vnc4gjX817GH4DQzK+XB1aTOAiaUeR3RVTi/B/0E466xymiw2f5p+ZgDdIzPsXq3arilyc5PGRg5HJyq3RRpwXi1yiu6aFSMTfZ7UqYFOHU6YRVEoaElY5MzTSgaJbbXZ6WXRIU/+4MUbFv1ebuv4SLFty59s/Dp6E6Bcn0ovlL9FSmWVChUfpM4BFTfmzrcg+5Z7+VB92ePpEKtTh3Eug2znCSVztwKV8f1/0aYtyd+6JWHDMVTezsKc97Surxj7bnMrM+uK3jYr+ldzZEhRd4RF+LGzaER3eDVLn5mMU4G8FItQw75wJe5pgsMt7Dyu7RMidEsBMgUiXtYd1/9ToFLyJkuGlPzawkL6dLglRN+lmE/0vwAD8OTRA5GtLDq69+4E0Kvcad/PNz/Xs38TswukG08rQOneBcR/Pwoq8w=
-Content-ID: <3CDB3402C7F5824C89D56655DA06B83B@namprd12.prod.outlook.com>
+X-Greylist: delayed 584 seconds by postgrey-1.36 at gabe;
+ Fri, 11 Oct 2019 16:56:11 UTC
+Received: from mx2a.mailbox.org (mx2a.mailbox.org [80.241.60.219])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A11186EC67
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2019 16:56:11 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
+ (using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
+ (No client certificate requested)
+ by mx2a.mailbox.org (Postfix) with ESMTPS id E0513A2407;
+ Fri, 11 Oct 2019 18:46:25 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp2.mailbox.org ([80.241.60.241])
+ by gerste.heinlein-support.de (gerste.heinlein-support.de [91.198.250.173])
+ (amavisd-new, port 10030)
+ with ESMTP id J158PpCoLgV5; Fri, 11 Oct 2019 18:46:22 +0200 (CEST)
+Message-ID: <d42184a578b143e2205f55dcf370834f0b0cfbab.camel@daenzer.net>
+Subject: [ANNOUNCE] xf86-video-amdgpu 19.1.0
+From: Michel =?ISO-8859-1?Q?D=E4nzer?= <michel@daenzer.net>
+To: xorg-announce@lists.x.org
+Date: Fri, 11 Oct 2019 18:46:13 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 973fc1fa-1885-4530-ae86-08d74e67c18b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Oct 2019 16:26:23.6247 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XLwthuvPDkYZe0DWefJlclBmYAmGUSUzV0NQtgBG5ZN7TkY6ca4Kp5lp8LxivtNHRxGClhSVIPg7ewPVJH02hA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0152
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+UY5E0NrBcr7aWBCcNsV6+1V5lmg6sjuHQj9iRK0HQY=;
- b=gDaKRzknLnJdM1CL2BPJ7ZTb+ftAe7iIeG4ofEHy9n1y5HEMfbilFuYYGZJvMwZAFYxH6sKbhHE/lyE/o91H3Rw9Jl8Bmrrh/LeznzDuZNziPg40fIehRBIIoBUvUF7isLVxvkOBZHqiyeyIokP6WuXpzpuO37BOVUSfZhrbJvA=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Harry.Wentland@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -102,28 +41,117 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: xorg@lists.x.org, amd-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1585935736=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VGhhbmtzIGZvciB0aGUgcGF0Y2hlcy4NCg0KSSB0aGluayBmb3IgYWxsIG9mIHRoZW0gd2Ugc2hv
-dWxkIGp1c3QgZHJvcCB0aGUgUkVHX1JFQUQgY2FsbHMNCmNvbXBsZXRlbHkuIFRoZXkgbG9vayBs
-aWtlIGxlZnRvdmVycyBmcm9tIHdoZW4gd2UgaGFkIGEgZGlmZmVyZW50DQpyZWdpc3RlciB1cGRh
-dGUgc2NoZW1lIHRoYXQgd291bGQgcmVhZCB0aGUgcmVnaXN0ZXIsIHRoZW4gdXBkYXRlIG9yIGdl
-dA0KdGhlIGZpZWxkIHZhbHVlLiBOb3cgd2UganVzdCB1c2UgdGhlIFJFR18gbWFjcm9zIHRoYXQg
-d2lsbCBjb21iaW5lIHRoZQ0KcmVhZCB3aXRoIHRoZSBHRVQgb3IgVVBEQVRFIG9wZXJhdGlvbnMu
-DQoNCkhhcnJ5DQoNCk9uIDIwMTktMTAtMDkgMjoyNSBhLm0uLCB6aGVuZ2JpbiB3cm90ZToNCj4g
-emhlbmdiaW4gKDMpOg0KPiAgIGRybS9hbWQvZGlzcGxheTogUmVtb3ZlIHNldCBidXQgbm90IHVz
-ZWQgdmFyaWFibGVzDQo+ICAgICAnYmxfcHdtX2NudGwnLCdwd21fcGVyaW9kX2NudGwnDQo+ICAg
-ZHJtL2FtZC9kaXNwbGF5OiBSZW1vdmUgc2V0IGJ1dCBub3QgdXNlZCB2YXJpYWJsZSAndmFsdWUw
-Jw0KPiAgIGRybS9hbWQvZGlzcGxheTogUmVtb3ZlIHNldCBidXQgbm90IHVzZWQgdmFyaWFibGVz
-ICdyZWd2YWwnLCdzcGVha2VycycNCj4gDQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkv
-ZGMvZGNlL2RjZV9hYm0uYyAgICAgICAgICAgIHwgOCArKysrLS0tLQ0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2FtZC9kaXNwbGF5L2RjL2RjZS9kY2VfbGlua19lbmNvZGVyLmMgICB8IDMgKy0tDQo+ICBk
-cml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlL2RjZV9zdHJlYW1fZW5jb2Rlci5jIHwg
-NSArLS0tLQ0KPiAgMyBmaWxlcyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9u
-cygtKQ0KPiANCj4gLS0NCj4gMi43LjQNCj4gDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2FtZC1nZng=
+
+--===============1585935736==
+Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
+	boundary="=-nhXDBgXD2LgU3Q/kw0nZ"
+
+
+--=-nhXDBgXD2LgU3Q/kw0nZ
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+
+I'm pleased to announce the 19.1.0 release of xf86-video-amdgpu, the
+Xorg driver for AMD Radeon GPUs supported by the amdgpu kernel driver.
+This release supports xserver versions 1.13-1.20.
+
+There are no big changes in this release, just fixes and other minor
+improvements.
+
+Thanks to everybody who contributed to this release in any way!
+
+
+NOTE:
+
+As of September, I'm no longer working for AMD but for Red Hat's
+graphics infrastructure team. I'm hoping that someone from my former
+team at AMD will step up to maintain this driver.
+
+
+Flora Cui (1):
+      dri2: reply to client for WaitMSC request in any case
+
+Michel D=C3=A4nzer (13):
+      Retry get_fb_ptr in get_fb
+      dri3: Always flush glamor before sharing pixmap storage with clients
+      dri2: Re-use previous CRTC when possible if pick_best_crtc returns NU=
+LL
+      Remove dri2_drawable_crtc parameter consider_disabled
+      present: Check that we can get a KMS FB for flipping
+      Don't disable page flipping completely with SW cursor
+      gitlab-ci: Use templates from wayland/ci-templates
+      present: Also check pixmap pitch in check_flip with current xserver
+      present: Don't check pixmap pitch in check_flip with current DC
+      present: Don't check pixmap pitch in check_flip with non-DC >=3D 3.34
+      Don't set up black scanout buffer if LeaveVT is called from CloseScre=
+en
+      Don't unreference FBs of pixmaps from different screens in LeaveVT
+      Bump version for the 19.1.0 release
+
+git tag: xf86-video-amdgpu-19.1.0
+
+https://xorg.freedesktop.org/archive/individual/driver/xf86-video-amdgpu-19=
+.1.0.tar.bz2
+MD5:  55ad19b858e186a2cf4e91ed832c05e7  xf86-video-amdgpu-19.1.0.tar.bz2
+SHA1: 044a97ea2f36dd3d2d4844bb503dd4e2b2854d56  xf86-video-amdgpu-19.1.0.ta=
+r.bz2
+SHA256: 4f0ea4e0ae61995ac2b7c72433d31deab63b60c78763020aaa1b28696124fe5d  x=
+f86-video-amdgpu-19.1.0.tar.bz2
+SHA512: ccdaa2378492da1a2f3d18fedacd1318c4708da534a8a959276a82730d5420619d8=
+3ad1ec8d7835c55655fe56123cd9bffb44e6223c5a97033c01f598af4a173  xf86-video-a=
+mdgpu-19.1.0.tar.bz2
+PGP:  https://xorg.freedesktop.org/archive/individual/driver/xf86-video-amd=
+gpu-19.1.0.tar.bz2.sig
+
+https://xorg.freedesktop.org/archive/individual/driver/xf86-video-amdgpu-19=
+.1.0.tar.gz
+MD5:  5aec06fed52d09838d0511c59dd2d861  xf86-video-amdgpu-19.1.0.tar.gz
+SHA1: 453ef4c403c1966bb0555057248629a1514ab18e  xf86-video-amdgpu-19.1.0.ta=
+r.gz
+SHA256: 9967435ca5686395375adea503ee774ddb95181505247d164ee3a1a2995a081f  x=
+f86-video-amdgpu-19.1.0.tar.gz
+SHA512: 660bea3ff6c8123ebc7df82b8e90308759c1575a3b28fddc95f0e46b575250991ed=
+a36f0e85d9db9777d712c247dadc8ce1f45541146ac513ec8874b774a440d  xf86-video-a=
+mdgpu-19.1.0.tar.gz
+PGP:  https://xorg.freedesktop.org/archive/individual/driver/xf86-video-amd=
+gpu-19.1.0.tar.gz.sig
+
+--=20
+Earthling Michel D=C3=A4nzer               |               https://redhat.c=
+om
+Libre software enthusiast             |             Mesa and X developer
+
+--=-nhXDBgXD2LgU3Q/kw0nZ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHEEABECADEWIQSwn681vpFFIZgJURRaga+OatuyAAUCXaCx1RMcbWljaGVsQGRh
+ZW56ZXIubmV0AAoJEFqBr45q27IAYgQAn3PGCJ9pv9d3kdWSSM4pw0fQIRExAKCB
+XiWaFB7Mwnn9mf6CiVHzc58lcQ==
+=mc73
+-----END PGP SIGNATURE-----
+
+--=-nhXDBgXD2LgU3Q/kw0nZ--
+
+
+--===============1585935736==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1585935736==--
+
