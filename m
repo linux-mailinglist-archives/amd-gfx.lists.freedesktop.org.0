@@ -2,34 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342E5D45E3
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Oct 2019 18:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34022D45BB
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Oct 2019 18:50:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8C0489A32;
-	Fri, 11 Oct 2019 16:56:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3537E6EC64;
+	Fri, 11 Oct 2019 16:50:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 584 seconds by postgrey-1.36 at gabe;
- Fri, 11 Oct 2019 16:56:11 UTC
-Received: from mx2a.mailbox.org (mx2a.mailbox.org [80.241.60.219])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A11186EC67
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2019 16:56:11 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
- (using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
- (No client certificate requested)
- by mx2a.mailbox.org (Postfix) with ESMTPS id E0513A2407;
- Fri, 11 Oct 2019 18:46:25 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp2.mailbox.org ([80.241.60.241])
- by gerste.heinlein-support.de (gerste.heinlein-support.de [91.198.250.173])
- (amavisd-new, port 10030)
- with ESMTP id J158PpCoLgV5; Fri, 11 Oct 2019 18:46:22 +0200 (CEST)
+Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E5C36EC67
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2019 16:50:50 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by netline-mail3.netline.ch (Postfix) with ESMTP id 2B1E92AA0EF;
+ Fri, 11 Oct 2019 18:50:49 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
+Received: from netline-mail3.netline.ch ([127.0.0.1])
+ by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id nL-YhW_juqQG; Fri, 11 Oct 2019 18:50:48 +0200 (CEST)
+Received: from thor (116.245.63.188.dynamic.wline.res.cust.swisscom.ch
+ [188.63.245.116])
+ by netline-mail3.netline.ch (Postfix) with ESMTPSA id C694A2A6016;
+ Fri, 11 Oct 2019 18:50:48 +0200 (CEST)
+Received: from localhost ([::1]) by thor with esmtp (Exim 4.92.2)
+ (envelope-from <michel@daenzer.net>)
+ id 1iIy7s-0007Mf-Cj; Fri, 11 Oct 2019 18:50:48 +0200
+Resent-From: =?UTF-8?Q?Michel_D=c3=a4nz?= =?UTF-8?Q?er?= <michel@daenzer.net>
+Resent-To: xorg-announce@lists.x.org
+Resent-CC: xorg@lists.x.org,
+ amd-gfx@lists.freedesktop.org
+Resent-Date: Fri, 11 Oct 2019 18:50:48 +0200
+Resent-Message-ID: <4923f143-34dd-6507-ed29-979ae5a382eb@daenzer.net>
 Message-ID: <d42184a578b143e2205f55dcf370834f0b0cfbab.camel@daenzer.net>
 Subject: [ANNOUNCE] xf86-video-amdgpu 19.1.0
 From: Michel =?ISO-8859-1?Q?D=E4nzer?= <michel@daenzer.net>
 To: xorg-announce@lists.x.org
 Date: Fri, 11 Oct 2019 18:46:13 +0200
+User-Agent: Evolution 3.34.1-2 
 MIME-Version: 1.0
+X-Evolution-Identity: ec3ec94d3993f47a87b3d12e094ae9183762c25f
+X-Evolution-Fcc: folder://c16efc246c7fa36ff6ce898e8c09347113402280/Sent
+X-Evolution-Transport: 6df5e5849af737b4b764fcb3068763be810aec4b
+X-Evolution-Source: 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -42,12 +55,12 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: xorg@lists.x.org, amd-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1585935736=="
+Content-Type: multipart/mixed; boundary="===============0621236716=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
---===============1585935736==
+--===============0621236716==
 Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
 	boundary="=-nhXDBgXD2LgU3Q/kw0nZ"
 
@@ -142,8 +155,7 @@ XiWaFB7Mwnn9mf6CiVHzc58lcQ==
 
 --=-nhXDBgXD2LgU3Q/kw0nZ--
 
-
---===============1585935736==
+--===============0621236716==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,5 +165,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
 YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
 
---===============1585935736==--
-
+--===============0621236716==--
