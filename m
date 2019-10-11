@@ -1,68 +1,64 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1B5D3BAB
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Oct 2019 10:53:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D122D3C1D
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Oct 2019 11:19:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01B5B6EBE9;
-	Fri, 11 Oct 2019 08:53:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53BA96EBEC;
+	Fri, 11 Oct 2019 09:18:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 508F86EBE5
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2019 08:53:52 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id a6so9540431wma.5
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2019 01:53:52 -0700 (PDT)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B83FB6EBEC
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2019 09:18:56 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id y18so1577685wrn.5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2019 02:18:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:reply-to:subject:to:cc:references:from
  :message-id:date:user-agent:mime-version:in-reply-to
- :content-language;
- bh=PJZTuQFiE9xpWrX6PrTxJxbTeu8QFJSTdoUdr2Navsw=;
- b=rKBuDPLhYhLt++fL3HJBeZDNk/5AQT7hMropccbs03Khf0dcBsqAAdcbMJpDUvikgb
- x1uJn41Rs8LuK5Pw4W2+Hm5NzTZ7EjUuEy09X8cmHp9KwEXiad/YMwr/xVdFbeJvLdg7
- aAcXHaAao4cZeb8TUa+M1YaXKBwvI0jVE2fFkXk5Ee1+XUX/oOa6F9vY3l4ClC8C1cVL
- RkbN+p/wx/4z0hk0oTll2/gACcgtD+QeseEBMJs0ON9FgRIDNKLIczOh+SHYPc5RWKnv
- PmDA5PIM2C/+EtwNw+grFWKLUXGLpoms2s7DSrU/zsevBwQy++hmV80w0+SYk1PUF5k5
- xT3A==
-X-Gm-Message-State: APjAAAVe0ERtskjdIuPDpyl5LNeHCEZqcjSylYHfH1zcG0b7albcDXtK
- Z3JnLIyl87/Iekw+AoeSsfc=
-X-Google-Smtp-Source: APXvYqxk7e3SRnv2ILXu0oLpZt8KIPi+vd99aehVWqoeHEIoyE5sCqXazpVFwLTg1JY9K91yPQ+nQw==
-X-Received: by 2002:a7b:c395:: with SMTP id s21mr2291453wmj.102.1570784030894; 
- Fri, 11 Oct 2019 01:53:50 -0700 (PDT)
+ :content-transfer-encoding:content-language;
+ bh=6j9D8beg7Ywy3ykESMdBs1cvFaavOezn94Isrfh+pvA=;
+ b=Sa4XSFME6hjxzLEikFsxVx1BLlMMS9pikeAvq11cmKyftOVk34XlUyTwyzHZHjU5K6
+ i2peozyzazgS48kv9Jhl/Tv/9/pOJleoTR8Qwwpfk6ay1jUaRnv2W7b96VhVRO5tXoSe
+ 8TRte7t0xp3dOWfGROHXSheSyX0Ey6N4cQVlyQx6E254TV0iQquSAjBSYgB/SUWlZKQb
+ /g8TKgLXDj1V6uR2xXKfamvy3rxViud2Tzo+TK8qkYz37QKgoB4kXKSz+uWMVm1ucpkC
+ Se5Rk56he1VWzj8vgjn73KRjTRV1YGMQ7tnpuWjtYtLD4czVgrvTlPa2UN5DgsoFiIbF
+ 9KYQ==
+X-Gm-Message-State: APjAAAWeFFfBAFG8c79HiFgw7JUavMkCL9kB9ZzJBVKbb1yh4rrIRG8n
+ 8i/LyHMXbPYbTXR/VTv8zto=
+X-Google-Smtp-Source: APXvYqz2jNYhSDc0SnHGC0QW+VBzrgEDHCh23w/fzFbnHJ0xBDx1VRqjFeHBAMvkTg9u8vPXZATHJQ==
+X-Received: by 2002:a5d:5386:: with SMTP id d6mr11978084wrv.155.1570785535387; 
+ Fri, 11 Oct 2019 02:18:55 -0700 (PDT)
 Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
  ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id z125sm10174469wme.37.2019.10.11.01.53.49
+ by smtp.gmail.com with ESMTPSA id m18sm12414384wrg.97.2019.10.11.02.18.53
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 11 Oct 2019 01:53:50 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu/sdma5: fix mask value of POLL_REGMEM packet
- for pipe sync
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20191009170923.15479-1-xiaojie.yuan@amd.com>
- <DM5PR12MB18207AE8E0DD7CCE9FB23E41F7950@DM5PR12MB1820.namprd12.prod.outlook.com>
+ Fri, 11 Oct 2019 02:18:54 -0700 (PDT)
+Subject: Re: [PATCH 00/15] Add BACO support for CI/VI asics
+To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
+References: <20191011012135.18566-1-alexander.deucher@amd.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <03836bb7-cfdd-b966-d46a-c09dd5eefe9e@gmail.com>
-Date: Fri, 11 Oct 2019 10:53:48 +0200
+Message-ID: <b2d8cfa1-5c18-16b3-73fa-52d818f76c59@gmail.com>
+Date: Fri, 11 Oct 2019 11:18:52 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <DM5PR12MB18207AE8E0DD7CCE9FB23E41F7950@DM5PR12MB1820.namprd12.prod.outlook.com>
+In-Reply-To: <20191011012135.18566-1-alexander.deucher@amd.com>
 Content-Language: en-US
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
  h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language;
- bh=PJZTuQFiE9xpWrX6PrTxJxbTeu8QFJSTdoUdr2Navsw=;
- b=jCMhhKYl1gGpbOQ7AITttcviNf3nA2aYddqhG1CumSF7z7e8MDxt4rTXaxWPxdsoEX
- zmWgvFENG0QPBcM7cPMroZSSZOUEY+sDZ9fdr/vEU4xzfd4KySvw5DEJnOFnYPfnZlAh
- F02fHySeJjRlKIocTNyDY0ntpaCRbh54Ay3ITRTeUHXnV+r3YrJ6vrg47YJAvpZmIGTN
- RIuYFOvB8LNrCwMMmwUSDT0qNRnSCMwt167mmG9aMiPWzIrQvdYYQuJr8ONd3ltS5KwA
- 0VyngmmZhjSEliIsJ5hC8YxSh4HddiaEygUCmIn9+KYFysdKdbzgLXkmSDFHt5HItbMx
- tlJA==
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=6j9D8beg7Ywy3ykESMdBs1cvFaavOezn94Isrfh+pvA=;
+ b=mXicGd/Rmg9K9nGxye/YkvDeBMHDWBB0rtxUEnx+VbBSXc3p3j34nwDU8lSpMM8cBf
+ Q3AE/LZaz7joYKcoP+y7l5y4MZvl5AbOvpDl0sZQbXiblzgcznZoOU6wCe76nYX8Qq8n
+ MZhGDV4IKmIz5ZQTwUx0nan9v/VVVZfhGTmBoTxMLpDA8jTQHU+FucpEDG+Mlh70Vt4Y
+ kPboY6glRPfal7ADCiP1mVm1h3yPqYIk8FpJjvLgBQ0p1LM5w6X00oXlu8z3yTHBhFqp
+ Qqsgy/ZepAoaYNIPbAnt22tMv0WfajvXn32qP54VMS75Pw/5Yv+LjR1l6boiVpwAIfJZ
+ LqQg==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -75,172 +71,86 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: christian.koenig@amd.com
-Cc: "Xiao, Jack" <Jack.Xiao@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
-Content-Type: multipart/mixed; boundary="===============1805723932=="
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============1805723932==
-Content-Type: multipart/alternative;
- boundary="------------41AA3C65EED4B43414EEF479"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------41AA3C65EED4B43414EEF479
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Good catch! Reviewed-by: Christian König <christian.koenig@amd.com>
-
-Am 09.10.19 um 19:11 schrieb Deucher, Alexander:
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-> ------------------------------------------------------------------------
-> *From:* amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of 
-> Yuan, Xiaojie <Xiaojie.Yuan@amd.com>
-> *Sent:* Wednesday, October 9, 2019 1:09 PM
-> *To:* amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-> *Cc:* Xiao, Jack <Jack.Xiao@amd.com>; Yuan, Xiaojie 
-> <Xiaojie.Yuan@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
-> *Subject:* [PATCH] drm/amdgpu/sdma5: fix mask value of POLL_REGMEM 
-> packet for pipe sync
-> sdma will hang once sequence number to be polled reaches 0x1000_0000
->
-> Signed-off-by: Xiaojie Yuan <xiaojie.yuan@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c 
-> b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> index ad5c3566337c..3460c00f3eaa 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> @@ -1126,7 +1126,7 @@ static void 
-> sdma_v5_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
->          amdgpu_ring_write(ring, addr & 0xfffffffc);
->          amdgpu_ring_write(ring, upper_32_bits(addr) & 0xffffffff);
->          amdgpu_ring_write(ring, seq); /* reference */
-> -       amdgpu_ring_write(ring, 0xfffffff); /* mask */
-> +       amdgpu_ring_write(ring, 0xffffffff); /* mask */
->          amdgpu_ring_write(ring, 
-> SDMA_PKT_POLL_REGMEM_DW5_RETRY_COUNT(0xfff) |
-> SDMA_PKT_POLL_REGMEM_DW5_INTERVAL(4)); /* retry count, poll interval */
->  }
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
-
---------------41AA3C65EED4B43414EEF479
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;
-      charset=windows-1252">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">Good catch! Reviewed-by: Christian
-      König <a class="moz-txt-link-rfc2396E" href="mailto:christian.koenig@amd.com">&lt;christian.koenig@amd.com&gt;</a><br>
-      <br>
-      Am 09.10.19 um 19:11 schrieb Deucher, Alexander:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:DM5PR12MB18207AE8E0DD7CCE9FB23E41F7950@DM5PR12MB1820.namprd12.prod.outlook.com">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Reviewed-by: Alex Deucher <a class="moz-txt-link-rfc2396E" href="mailto:alexander.deucher@amd.com">&lt;alexander.deucher@amd.com&gt;</a><br>
-      </div>
-      <hr style="display:inline-block;width:98%" tabindex="-1">
-      <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
-          face="Calibri, sans-serif" color="#000000"><b>From:</b>
-          amd-gfx <a class="moz-txt-link-rfc2396E" href="mailto:amd-gfx-bounces@lists.freedesktop.org">&lt;amd-gfx-bounces@lists.freedesktop.org&gt;</a> on
-          behalf of Yuan, Xiaojie <a class="moz-txt-link-rfc2396E" href="mailto:Xiaojie.Yuan@amd.com">&lt;Xiaojie.Yuan@amd.com&gt;</a><br>
-          <b>Sent:</b> Wednesday, October 9, 2019 1:09 PM<br>
-          <b>To:</b> <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
-          <a class="moz-txt-link-rfc2396E" href="mailto:amd-gfx@lists.freedesktop.org">&lt;amd-gfx@lists.freedesktop.org&gt;</a><br>
-          <b>Cc:</b> Xiao, Jack <a class="moz-txt-link-rfc2396E" href="mailto:Jack.Xiao@amd.com">&lt;Jack.Xiao@amd.com&gt;</a>; Yuan, Xiaojie
-          <a class="moz-txt-link-rfc2396E" href="mailto:Xiaojie.Yuan@amd.com">&lt;Xiaojie.Yuan@amd.com&gt;</a>; Zhang, Hawking
-          <a class="moz-txt-link-rfc2396E" href="mailto:Hawking.Zhang@amd.com">&lt;Hawking.Zhang@amd.com&gt;</a><br>
-          <b>Subject:</b> [PATCH] drm/amdgpu/sdma5: fix mask value of
-          POLL_REGMEM packet for pipe sync</font>
-        <div> </div>
-      </div>
-      <div class="BodyFragment"><font size="2"><span
-            style="font-size:11pt;">
-            <div class="PlainText">sdma will hang once sequence number
-              to be polled reaches 0x1000_0000<br>
-              <br>
-              Signed-off-by: Xiaojie Yuan <a class="moz-txt-link-rfc2396E" href="mailto:xiaojie.yuan@amd.com">&lt;xiaojie.yuan@amd.com&gt;</a><br>
-              ---<br>
-               drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c | 2 +-<br>
-               1 file changed, 1 insertion(+), 1 deletion(-)<br>
-              <br>
-              diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-              b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c<br>
-              index ad5c3566337c..3460c00f3eaa 100644<br>
-              --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c<br>
-              +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c<br>
-              @@ -1126,7 +1126,7 @@ static void
-              sdma_v5_0_ring_emit_pipeline_sync(struct amdgpu_ring
-              *ring)<br>
-                       amdgpu_ring_write(ring, addr &amp; 0xfffffffc);<br>
-                       amdgpu_ring_write(ring, upper_32_bits(addr) &amp;
-              0xffffffff);<br>
-                       amdgpu_ring_write(ring, seq); /* reference */<br>
-              -       amdgpu_ring_write(ring, 0xfffffff); /* mask */<br>
-              +       amdgpu_ring_write(ring, 0xffffffff); /* mask */<br>
-                       amdgpu_ring_write(ring,
-              SDMA_PKT_POLL_REGMEM_DW5_RETRY_COUNT(0xfff) |<br>
-                                        
-              SDMA_PKT_POLL_REGMEM_DW5_INTERVAL(4)); /* retry count,
-              poll interval */<br>
-               }<br>
-              -- <br>
-              2.20.1<br>
-              <br>
-              _______________________________________________<br>
-              amd-gfx mailing list<br>
-              <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><br>
-              <a
-                href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx"
-                moz-do-not-send="true">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a></div>
-          </span></font></div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-amd-gfx mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a></pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------41AA3C65EED4B43414EEF479--
-
---===============1805723932==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1805723932==--
+QW0gMTEuMTAuMTkgdW0gMDM6MjEgc2NocmllYiBBbGV4IERldWNoZXI6Cj4gVGhpcyBwYXRjaCBz
+ZXQgZW5hYmxlcyBCQUNPIENJIGFuZCBWSSBhc2ljcy4gIEJBQ08gaXMKPiBCdXMgQWN0aXZlIENo
+aXAgT2ZmLiAgSXQgYWxsb3dzIHVzIHRvIHR1cm4gb2ZmIHRoZSBHUFUKPiB3aGlsZSBzdGlsbCBr
+ZWVwaW5nIHRoZSBidXMgaW50ZXJmYWNlIHVwLCBzbyB0aGUgZGV2aWNlCj4gZG9lcyBub3QgZGlz
+YXBwZWFyIGZyb20gdGhlIHN5c3RlbS4gIFBvd2VyWHByZXNzIGFuZAo+IEh5YnJpZCBHcmFwaGlj
+cyBsYXB0b3BzIHN1cHBvcnQgQk9DTyAoQnVzIE9mZiBDaGlwIE9mZikKPiB3aGljaCBpcyBjb250
+cm9sbGVkIGJ5IEFDUEkuICBCQUNPIHdhcyBjb25jZWl2ZWQgYXMKPiBhIHBvd2VyIHNhdmluZyBm
+ZWF0dXJlLCBidXQgd2UgYWxzbyB1c2UgaXQgZm9yIHJlc2V0Cj4gc2luY2UgdGhlIGNoaXAgZ2V0
+cyBwb3dlcmVkIGRvd24uICBUaGVzZSBwYXRjaGVzIGFyZQo+IGEgcHJlLXJlcXVpc2l0ZSBmb3Ig
+dXNpbmcgQkFDTyBhcyBhIHBvd2VyIHNhdmluZwo+IGZlYXR1cmUgd2hpY2ggd2lsbCBmb2xsb3cg
+aW4gYW5vdGhlciBwYXRjaCBzZXQuCj4KPiBCQUNPIGlzIHdvcmtpbmcgd2VsbCBvbiBWSSBwYXJ0
+cy4gIEkgaGF2ZW4ndCBnb3R0ZW4KPiBpdCB3b3JraW5nIHlldCBvbiBDSSBwYXJ0cywgYnV0IEkn
+bSBpbmNsdWRpbmcgdGhlCj4gY29kZSBmb3IgcmVmZXJlbmNlIGlmIGFueW9uZSB3YW50cyB0byBw
+bGF5IHdpdGggaXQuCgpBY2tlZC1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5p
+Z0BhbWQuY29tPiBmb3IgdGhlIHNlcmllcy4KClJlZ2FyZHMsCkNocmlzdGlhbi4KCj4KPiBBbGV4
+IERldWNoZXIgKDE1KToKPiAgICBkcm0vYW1kZ3B1OiBhZGQgbmV3IEJJRiA0LjEgcmVnaXN0ZXIg
+Zm9yIEJBQ08KPiAgICBkcm0vYW1kZ3B1OiBhZGQgbmV3IEJJRiA1LjAgcmVnaXN0ZXIgZm9yIEJB
+Q08KPiAgICBkcm0vYW1kZ3B1OiBhZGQgbmV3IFNNVSA3LjAuMSByZWdpc3RlcnMgZm9yIEJBQ08K
+PiAgICBkcm0vYW1kZ3B1OiBhZGQgbmV3IFNNVSA3LjEuMiByZWdpc3RlcnMgZm9yIEJBQ08KPiAg
+ICBkcm0vYW1kZ3B1OiBhZGQgbmV3IFNNVSA3LjEuMyByZWdpc3RlcnMgZm9yIEJBQ08KPiAgICBk
+cm0vYW1kZ3B1L3Bvd2VycGxheTogYWRkIGNvcmUgc3VwcG9ydCBmb3IgcHJlLVNPQzE1IGJhY28K
+PiAgICBkcm0vYW1kZ3B1L3Bvd2VycGxheTogYWRkIHN1cHBvcnQgZm9yIEJBQ08gb24gdG9uZ2EK
+PiAgICBkcm0vYW1kZ3B1L3Bvd2VycGxheTogYWRkIHN1cHBvcnQgZm9yIEJBQ08gb24gSWNlbGFu
+ZAo+ICAgIGRybS9hbWRncHUvcG93ZXJwbGF5OiBhZGQgc3VwcG9ydCBmb3IgQkFDTyBvbiBwb2xh
+cmlzCj4gICAgZHJtL2FtZGdwdS9wb3dlcnBsYXk6IGFkZCBzdXBwb3J0IGZvciBCQUNPIG9uIFZl
+Z2FNCj4gICAgZHJtL2FtZGdwdS9wb3dlcnBsYXk6IGFkZCBzdXBwb3J0IGZvciBCQUNPIG9uIEZp
+amkKPiAgICBkcm0vYW1kZ3B1L3Bvd2VycGxheTogYWRkIHN1cHBvcnQgZm9yIEJBQ08gb24gQ0kK
+PiAgICBkcm0vYW1kZ3B1L3Bvd2VycGxheTogc3BsaXQgb3V0IGNvbW1vbiBzbXU3IEJBQ08gY29k
+ZQo+ICAgIGRybS9hbWRncHUvcG93ZXJwbGF5OiB3aXJlIHVwIEJBQ08gdG8gcG93ZXJwbGF5IEFQ
+SSBmb3Igc211Nwo+ICAgIGRybS9hbWRncHU6IGVuYWJsZSBCQUNPIHJlc2V0IGZvciBTTVU3IGJh
+c2VkIGRHUFVzICh2MikKPgo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvY2lrLmMgICAg
+ICAgICAgICAgIHwgIDQ4ICsrKy0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Npay5o
+ICAgICAgICAgICAgICB8ICAgMyArCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS92aS5j
+ICAgICAgICAgICAgICAgfCAgODQgKysrKysrLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvdmkuaCAgICAgICAgICAgICAgIHwgICAzICsKPiAgIC4uLi9kcm0vYW1kL2luY2x1ZGUvYXNp
+Y19yZWcvYmlmL2JpZl80XzFfZC5oICB8ICAgMSArCj4gICAuLi4vaW5jbHVkZS9hc2ljX3JlZy9i
+aWYvYmlmXzRfMV9zaF9tYXNrLmggICAgfCAgIDIgKwo+ICAgLi4uL2RybS9hbWQvaW5jbHVkZS9h
+c2ljX3JlZy9iaWYvYmlmXzVfMF9kLmggIHwgICAxICsKPiAgIC4uLi9pbmNsdWRlL2FzaWNfcmVn
+L2JpZi9iaWZfNV8wX3NoX21hc2suaCAgICB8ICAgMiArCj4gICAuLi4vYW1kL2luY2x1ZGUvYXNp
+Y19yZWcvc211L3NtdV83XzBfMV9kLmggICAgfCAgIDEgKwo+ICAgLi4uL2luY2x1ZGUvYXNpY19y
+ZWcvc211L3NtdV83XzBfMV9zaF9tYXNrLmggIHwgICAyICsKPiAgIC4uLi9hbWQvaW5jbHVkZS9h
+c2ljX3JlZy9zbXUvc211XzdfMV8yX2QuaCAgICB8ICAgMSArCj4gICAuLi4vaW5jbHVkZS9hc2lj
+X3JlZy9zbXUvc211XzdfMV8yX3NoX21hc2suaCAgfCAgIDIgKwo+ICAgLi4uL2FtZC9pbmNsdWRl
+L2FzaWNfcmVnL3NtdS9zbXVfN18xXzNfZC5oICAgIHwgICAxICsKPiAgIC4uLi9pbmNsdWRlL2Fz
+aWNfcmVnL3NtdS9zbXVfN18xXzNfc2hfbWFzay5oICB8ICAgMiArCj4gICBkcml2ZXJzL2dwdS9k
+cm0vYW1kL3Bvd2VycGxheS9od21nci9NYWtlZmlsZSAgfCAgIDMgKy0KPiAgIGRyaXZlcnMvZ3B1
+L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL2NpX2JhY28uYyB8IDE5NSArKysrKysrKysrKysrKysK
+PiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL2NpX2JhY28uaCB8ICAyOSAr
+KysKPiAgIC4uLi9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvY29tbW9uX2JhY28uYyB8ICAx
+OSArKwo+ICAgLi4uL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9od21nci9jb21tb25fYmFjby5oIHwg
+IDEzICsKPiAgIC4uLi9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvZmlqaV9iYWNvLmMgICB8
+IDE5NiArKysrKysrKysrKysrKysKPiAgIC4uLi9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3Iv
+ZmlqaV9iYWNvLmggICB8ICAyOSArKysKPiAgIC4uLi9kcm0vYW1kL3Bvd2VycGxheS9od21nci9w
+b2xhcmlzX2JhY28uYyAgICB8IDIyMiArKysrKysrKysrKysrKysrKwo+ICAgLi4uL2RybS9hbWQv
+cG93ZXJwbGF5L2h3bWdyL3BvbGFyaXNfYmFjby5oICAgIHwgIDI5ICsrKwo+ICAgLi4uL2dwdS9k
+cm0vYW1kL3Bvd2VycGxheS9od21nci9zbXU3X2JhY28uYyAgIHwgIDkxICsrKysrKysKPiAgIC4u
+Li9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3Ivc211N19iYWNvLmggICB8ICAzMiArKysKPiAg
+IC4uLi9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3Ivc211N19od21nci5jICB8ICAgNCArCj4g
+ICAuLi4vZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3RvbmdhX2JhY28uYyAgfCAyMzEgKysr
+KysrKysrKysrKysrKysrCj4gICAuLi4vZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3Rvbmdh
+X2JhY28uaCAgfCAgMjkgKysrCj4gICAyOCBmaWxlcyBjaGFuZ2VkLCAxMjY0IGluc2VydGlvbnMo
+KyksIDExIGRlbGV0aW9ucygtKQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2Ry
+bS9hbWQvcG93ZXJwbGF5L2h3bWdyL2NpX2JhY28uYwo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRy
+aXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL2NpX2JhY28uaAo+ICAgY3JlYXRlIG1v
+ZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL2ZpamlfYmFjby5j
+Cj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdt
+Z3IvZmlqaV9iYWNvLmgKPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vYW1k
+L3Bvd2VycGxheS9od21nci9wb2xhcmlzX2JhY28uYwo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRy
+aXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3BvbGFyaXNfYmFjby5oCj4gICBjcmVh
+dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3Ivc211N19i
+YWNvLmMKPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxh
+eS9od21nci9zbXU3X2JhY28uaAo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2Ry
+bS9hbWQvcG93ZXJwbGF5L2h3bWdyL3RvbmdhX2JhY28uYwo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0
+IGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3RvbmdhX2JhY28uaAo+CgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxp
+bmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
