@@ -2,39 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491B9D4F6D
-	for <lists+amd-gfx@lfdr.de>; Sat, 12 Oct 2019 13:52:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B165D4F80
+	for <lists+amd-gfx@lfdr.de>; Sat, 12 Oct 2019 14:05:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B846E489;
-	Sat, 12 Oct 2019 11:51:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A0B8905A;
+	Sat, 12 Oct 2019 12:05:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 385 seconds by postgrey-1.36 at gabe;
- Sat, 12 Oct 2019 11:51:57 UTC
-Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net
- [IPv6:2a01:37:1000::53df:5f64:0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35BA06E489
- for <amd-gfx@lists.freedesktop.org>; Sat, 12 Oct 2019 11:51:57 +0000 (UTC)
-Received: from h08.hostsharing.net (h08.hostsharing.net
- [IPv6:2a01:37:1000::53df:5f1c:0])
+X-Greylist: delayed 566 seconds by postgrey-1.36 at gabe;
+ Sat, 12 Oct 2019 12:04:59 UTC
+Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net
+ [IPv6:2a01:37:3000::53df:4ef0:0])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D10C8905A
+ for <amd-gfx@lists.freedesktop.org>; Sat, 12 Oct 2019 12:04:59 +0000 (UTC)
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (Client CN "*.hostsharing.net",
  Issuer "COMODO RSA Domain Validation Secure Server CA" (not verified))
- by bmailout1.hostsharing.net (Postfix) with ESMTPS id E7BB930001EC4;
- Sat, 12 Oct 2019 13:51:55 +0200 (CEST)
+ by bmailout2.hostsharing.net (Postfix) with ESMTPS id 932282800B48B;
+ Sat, 12 Oct 2019 13:55:31 +0200 (CEST)
 Received: by h08.hostsharing.net (Postfix, from userid 100393)
- id BD2F02E7DAE; Sat, 12 Oct 2019 13:51:55 +0200 (CEST)
-Date: Sat, 12 Oct 2019 13:51:55 +0200
+ id 5684240591A; Sat, 12 Oct 2019 13:55:31 +0200 (CEST)
+Date: Sat, 12 Oct 2019 13:55:31 +0200
 From: Lukas Wunner <lukas@wunner.de>
 To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH 08/19] drm/amdgpu: rename amdgpu_device_is_px to
- amdgpu_device_supports_boco
-Message-ID: <20191012115155.4tngjbwxgbehzjdr@wunner.de>
+Subject: Re: [PATCH 09/19] drm/amdgpu: add additional boco checks to runtime
+ suspend/resume
+Message-ID: <20191012115531.7bcdwqoltr2ajp3z@wunner.de>
 References: <20191011014536.10869-1-alexander.deucher@amd.com>
- <20191011014536.10869-9-alexander.deucher@amd.com>
+ <20191011014536.10869-10-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191011014536.10869-9-alexander.deucher@amd.com>
+In-Reply-To: <20191011014536.10869-10-alexander.deucher@amd.com>
 User-Agent: NeoMutt/20170113 (1.7.2)
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -54,17 +53,16 @@ Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBPY3QgMTAsIDIwMTkgYXQgMDg6NDU6MjVQTSAtMDUwMCwgQWxleCBEZXVjaGVyIHdy
-b3RlOgo+IFRvIGJldHRlciBtYXRjaCB3aGF0IHdlIGFyZSBjaGVja2luZyBmb3IgYW5kIHRvIGFs
-aWduIHdpdGgKPiBhbWRncHVfZGV2aWNlX3N1cHBvcnRzX2JhY28uCj4gCj4gQkFDTyAtIEJ1cyBB
-Y3RpdmUsIENoaXAgT2ZmCj4gQk9DTyAtIEJ1cyBPZmYsIENoaXAgT2ZmCgpJdCB3b3VsZCBiZSB1
-c2VmdWwgdG8gc3BlbGwgb3V0IEJBQ08gaW4gdGhlIHByZWNlZGluZyBwYXRjaGVzIGFzIHdlbGwu
-CgoKPiAtICogYW1kZ3B1X2RldmljZV9pc19weCAtIElzIHRoZSBkZXZpY2UgaXMgYSBkR1BVIHdp
-dGggSEcvUFggcG93ZXIgY29udHJvbAo+ICsgKiBhbWRncHVfZGV2aWNlX3N1cHBvcnRzX2JvY28g
-LSBJcyB0aGUgZGV2aWNlIGlzIGEgZEdQVSB3aXRoIEhHL1BYIHBvd2VyIGNvbnRyb2wKCkR1cGxp
-Y2F0ZSB2ZXJiLgoKTXkgcGVyc29uYWwgc3R5bGUgdG8gZG9jdW1lbnQgYm9vbGVhbiByZXR1cm4g
-dmFsdWVzIGlzICJ3aGV0aGVyIC4uLiIsCmkuZS4gIndoZXRoZXIgZGV2aWNlIGlzIGEgZEdQVSB3
-aXRoIEhHL1BYIHBvd2VyIGNvbnRyb2wiLgpCdXQgdGhhdCdzIGp1c3QgbWUuCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0
-CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+T24gVGh1LCBPY3QgMTAsIDIwMTkgYXQgMDg6NDU6MjZQTSAtMDUwMCwgQWxleCBEZXVjaGVyIHdy
+b3RlOgo+ICsJaWYgKGFtZGdwdV9kZXZpY2Vfc3VwcG9ydHNfYm9jbyhkcm1fZGV2KSkKPiArCQlk
+cm1fZGV2LT5zd2l0Y2hfcG93ZXJfc3RhdGUgPSBEUk1fU1dJVENIX1BPV0VSX0NIQU5HSU5HOwo+
+ICAKPiArCWlmIChhbWRncHVfZGV2aWNlX3N1cHBvcnRzX2JvY28oZHJtX2RldikpIHsKPiArCQlp
+ZiAoYW1kZ3B1X2lzX2F0cHhfaHlicmlkKCkgfHwKPiArCQkgICAgIWFtZGdwdV9oYXNfYXRweF9k
+Z3B1X3Bvd2VyX2NudGwoKSkKPiArCQkJcGNpX3NldF9wb3dlcl9zdGF0ZShwZGV2LCBQQ0lfRDAp
+Owo+ICsJCXBjaV9yZXN0b3JlX3N0YXRlKHBkZXYpOwo+ICsJCXJldCA9IHBjaV9lbmFibGVfZGV2
+aWNlKHBkZXYpOwo+ICsJCWlmIChyZXQpCj4gKwkJCXJldHVybiByZXQ7Cj4gKwkJcGNpX3NldF9t
+YXN0ZXIocGRldik7Cj4gKwl9CgpUd28gY29uc2VjdXRpdmUgaWYtY2xhdXNlcyB3aXRoIHNhbWUg
+Y29uZGl0aW9uLCBjYW4gYmUgZm9sZGVkIGludG8gb25lLgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2FtZC1nZng=
