@@ -2,55 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61B22D56BF
-	for <lists+amd-gfx@lfdr.de>; Sun, 13 Oct 2019 18:08:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7341D56E0
+	for <lists+amd-gfx@lfdr.de>; Sun, 13 Oct 2019 18:50:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F5506E149;
-	Sun, 13 Oct 2019 16:08:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D524089CA8;
+	Sun, 13 Oct 2019 16:50:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
  [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 502C26E040
- for <amd-gfx@lists.freedesktop.org>; Sat, 12 Oct 2019 16:12:39 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id y18so5545867wrn.5
- for <amd-gfx@lists.freedesktop.org>; Sat, 12 Oct 2019 09:12:39 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9FF0899E7
+ for <amd-gfx@lists.freedesktop.org>; Sun, 13 Oct 2019 16:50:19 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id j18so16931917wrq.10
+ for <amd-gfx@lists.freedesktop.org>; Sun, 13 Oct 2019 09:50:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Trn3DOybHFE7KlystrCx0F6Gl8pW9FwXqwfT3SwVT08=;
- b=SQPPqD2gUwvd3EsuL8of8GR4693bL+Pjf/YSdPJSUZit7JsF6JYu3OI92k6B0iOzxX
- A13cctgGpW3xYHY1CC1X7alUajkvHjXT4QbYtV7veiSCUqOyyReZrRmBSxYXlV71chKM
- DWeSXUk8gFGke+mFogQYvvEVRCB/VbpGkQAr7GrdgiDNEOU8gbhsmdQtEggJguSsj1zg
- hk1VRYPiUc7JpI4sc6JVJDH/U1SapmfZaiXWYGistcvL0OtrK1mbgEdAkFf9lChIw8P3
- sVOHXm/k4p73eqRkYTyWLnnsswdgSUKkz5+DoxkP697t1wSq/IqkiQJPbRTLxiE7dKTk
- pp+g==
-X-Gm-Message-State: APjAAAVp89IaSyJKmLTa+Y+cB38x8V8xfmwcRvysfA2ZpgTua4P8FDff
- D3RmfErrxLILXX2DULLbx6SMhMnFYSC1GhJAkOVpvLHg
-X-Google-Smtp-Source: APXvYqwV/oLnTOqv8JkJlHZUYbMo9dBQJg4cIav7OZuHwA1hsRz9/igm23RBnw5v58WQFHqh2aLNFbVSD7JZE16l52s=
-X-Received: by 2002:adf:dfce:: with SMTP id q14mr17366305wrn.14.1570896757759; 
- Sat, 12 Oct 2019 09:12:37 -0700 (PDT)
+ bh=VW5uVo8QDGjNJp7vgAn27lqEXKXB/TElGKzDqTI/u9c=;
+ b=qitDbIF4pU9CdBCuuNVrn9GRb2mEA67B8xCVxfN37ik3w9lIuQ1U1yxJw3YVCjLANT
+ aROA6OQJNkY9QW2BDFKTEmNQ5CcDJR4+bg4I1jwf7bFEd1ieVTmVF41FHYPvbMj4splu
+ KdIsO4H7c/3tHZB5SzF0Uv+NKYx+OeCRw5sdlUFKEPPhb05pvLAtIi94iJ4MSmKz5xjY
+ PHjSshVJy3S0rO2dYdIvrVtCxIhVzck+nZJNIH5oBR4iGUBJoxi94PTNsTq4A75Og4Lr
+ kLBagNKFe5wXyqTQDjaRjB6dwtcHcnooehIVFuVPPobip1JRNwXcsaMqDy9uHmrH0dhA
+ EVyQ==
+X-Gm-Message-State: APjAAAXXclMbzmGN6AkQasZJSSShbmTvPTphE5SZTBDBf64+WXDqa1go
+ yIiV1aU1fttOw43wUo+42Sg216u9uLpfmOZK5Eybfg==
+X-Google-Smtp-Source: APXvYqwmC4rFbe7YAw1QRlIHdmp6m7GiUUxaRJemEgwQ2SW+icV78e//U16nhrYUhNdZWR5ykF/7zZ1G546BE1tpYNA=
+X-Received: by 2002:a5d:6ac3:: with SMTP id u3mr3791919wrw.206.1570985418343; 
+ Sun, 13 Oct 2019 09:50:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191011143620.8785-1-Philip.Yang@amd.com>
-In-Reply-To: <20191011143620.8785-1-Philip.Yang@amd.com>
-From: Joe Barnett <thejoe@gmail.com>
-Date: Sat, 12 Oct 2019 09:12:26 -0700
-Message-ID: <CAHpbJO_rJ+WLoGLscJ7YkbEFFJ2VUj_aSTd4UUswi2Y1dKVS4w@mail.gmail.com>
-Subject: Re: [PATCH v3] drm/amdgpu: user pages array memory leak fix
-To: "Yang, Philip" <Philip.Yang@amd.com>
-X-Mailman-Approved-At: Sun, 13 Oct 2019 16:08:00 +0000
+References: <20191011014536.10869-1-alexander.deucher@amd.com>
+ <20191011014536.10869-3-alexander.deucher@amd.com>
+ <20191012114527.akspejxsm3hvrzil@wunner.de>
+In-Reply-To: <20191012114527.akspejxsm3hvrzil@wunner.de>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Sun, 13 Oct 2019 12:50:05 -0400
+Message-ID: <CADnq5_NDvGMNF4dsrP5eEbo-a4EN4qsWaBDv-YJ0gCJZhJPyKQ@mail.gmail.com>
+Subject: Re: [PATCH 02/19] drm/amdgpu: add supports_baco callback for soc15
+ asics.
+To: Lukas Wunner <lukas@wunner.de>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
  :cc;
- bh=Trn3DOybHFE7KlystrCx0F6Gl8pW9FwXqwfT3SwVT08=;
- b=iALyM3dJBsynZhGhld71H4KWNagJZTzIfzN3E8j5wETNHgQByMbIjwz07oDqV/7s84
- yqcUQslxSlKhharMmx3uvuj548MYYZWPEOW7rMM2TY6zQHT+zYX34ru53maS++qNFzu2
- QMxJAo57X5vaiDvd12eAvOVGA4GxJOoA4jq7qwCPlpj5oEcd49xuFVSMNz+8mz0oL2mk
- v0SFepDM8t51KcVdUkOh6ual4rWBvv2FvtXHZgUo6c9ipdaj5srm19Y+4ja+WrG3vaJ0
- qxY1474IN6lazyX95iiZIwNeHmmnik/oM5jMgNgRjQKqEynnXm5PZO73qvmYQsk83iI4
- Bgcg==
+ bh=VW5uVo8QDGjNJp7vgAn27lqEXKXB/TElGKzDqTI/u9c=;
+ b=OnRzwpj2wafniVgchZZgeiLGj5WQUlYNKQuqLGInSpcziOEOxIRU3tyDU/cj+tav2p
+ WYqlsXTf6+a358rdyKVVTG8i1R/xWCWTypl6m36RKFGrVx/aphetoKZkAPT9tX37+0X2
+ zWoAm1q6Bh3yju6aJKyBkAVCCH7yxWRW1RnYWcyZTjJBCdNgD1cScl+OfoncAf/tUwjV
+ P8UjrGM8yw2gd3a7oMYh3cT9cnRRblau8waBh1hURDDIhxDYCBmZ36tTiQgJCmEr8E6n
+ 1IktvJ0ky1/896ZlEnXSRocI79Hb6htQanJz6kleWzLLeA3Cp8HdwewJDszHbE4pmojd
+ sgFA==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -62,177 +64,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Koenig, Christian" <Christian.Koenig@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1161036630=="
+Cc: Takashi Iwai <tiwai@suse.de>, Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1161036630==
-Content-Type: multipart/alternative; boundary="00000000000039a1ee0594b8e7cf"
-
---00000000000039a1ee0594b8e7cf
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Confirming that v3 patch still fixes the bug.
-
-Thanks,
--Joe
-
-On Fri, Oct 11, 2019 at 7:36 AM Yang, Philip <Philip.Yang@amd.com> wrote:
-
-> user_pages array should always be freed after validation regardless if
-> user pages are changed after bo is created because with HMM change parse
-> bo always allocate user pages array to get user pages for userptr bo.
->
-> v2: remove unused local variable and amend commit
->
-> v3: add back get user pages in gem_userptr_ioctl, to detect application
-> bug where an userptr VMA is not ananymous memory and reject it.
->
-> Bugzilla: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1844962
->
-> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
-> Tested-by: Joe Barnett <thejoe@gmail.com>
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> index c18a153b3d2a..e7b39daa22f6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -476,7 +476,6 @@ static int amdgpu_cs_list_validate(struct
-> amdgpu_cs_parser *p,
->
->         list_for_each_entry(lobj, validated, tv.head) {
->                 struct amdgpu_bo *bo =3D ttm_to_amdgpu_bo(lobj->tv.bo);
-> -               bool binding_userptr =3D false;
->                 struct mm_struct *usermm;
->
->                 usermm =3D amdgpu_ttm_tt_get_usermm(bo->tbo.ttm);
-> @@ -493,14 +492,13 @@ static int amdgpu_cs_list_validate(struct
-> amdgpu_cs_parser *p,
->
->                         amdgpu_ttm_tt_set_user_pages(bo->tbo.ttm,
->                                                      lobj->user_pages);
-> -                       binding_userptr =3D true;
->                 }
->
->                 r =3D amdgpu_cs_validate(p, bo);
->                 if (r)
->                         return r;
->
-> -               if (binding_userptr) {
-> +               if (lobj->user_pages) {
->                         kvfree(lobj->user_pages);
->                         lobj->user_pages =3D NULL;
->                 }
-> --
-> 2.17.1
->
->
-
---00000000000039a1ee0594b8e7cf
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Confirming that v3 patch still fixes the bug.</div><d=
-iv><br></div><div>Thanks,</div><div>-Joe<br></div></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 11, 2019 at 7=
-:36 AM Yang, Philip &lt;<a href=3D"mailto:Philip.Yang@amd.com">Philip.Yang@=
-amd.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex">user_pages array should always be freed after validation regardless =
-if<br>
-user pages are changed after bo is created because with HMM change parse<br=
->
-bo always allocate user pages array to get user pages for userptr bo.<br>
-<br>
-v2: remove unused local variable and amend commit<br>
-<br>
-v3: add back get user pages in gem_userptr_ioctl, to detect application<br>
-bug where an userptr VMA is not ananymous memory and reject it.<br>
-<br>
-Bugzilla: <a href=3D"https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1=
-844962" rel=3D"noreferrer" target=3D"_blank">https://bugs.launchpad.net/ubu=
-ntu/+source/linux/+bug/1844962</a><br>
-<br>
-Signed-off-by: Philip Yang &lt;<a href=3D"mailto:Philip.Yang@amd.com" targe=
-t=3D"_blank">Philip.Yang@amd.com</a>&gt;<br>
-Tested-by: Joe Barnett &lt;<a href=3D"mailto:thejoe@gmail.com" target=3D"_b=
-lank">thejoe@gmail.com</a>&gt;<br>
-Reviewed-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koenig@am=
-d.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;<br>
----<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 4 +---<br>
-=C2=A01 file changed, 1 insertion(+), 3 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/a=
-mdgpu/amdgpu_cs.c<br>
-index c18a153b3d2a..e7b39daa22f6 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
-@@ -476,7 +476,6 @@ static int amdgpu_cs_list_validate(struct amdgpu_cs_par=
-ser *p,<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 list_for_each_entry(lobj, validated, tv.head) {=
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct amdgpu_bo *b=
-o =3D ttm_to_amdgpu_bo(lobj-&gt;<a href=3D"http://tv.bo" rel=3D"noreferrer"=
- target=3D"_blank">tv.bo</a>);<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bool binding_userpt=
-r =3D false;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct mm_struct *u=
-sermm;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 usermm =3D amdgpu_t=
-tm_tt_get_usermm(bo-&gt;tbo.ttm);<br>
-@@ -493,14 +492,13 @@ static int amdgpu_cs_list_validate(struct amdgpu_cs_p=
-arser *p,<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 amdgpu_ttm_tt_set_user_pages(bo-&gt;tbo.ttm,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0lobj-&gt;user_pages);<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0binding_userptr =3D true;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 r =3D amdgpu_cs_val=
-idate(p, bo);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (r)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 return r;<br>
-<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (binding_userptr=
-) {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (lobj-&gt;user_p=
-ages) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 kvfree(lobj-&gt;user_pages);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 lobj-&gt;user_pages =3D NULL;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
--- <br>
-2.17.1<br>
-<br>
-</blockquote></div>
-
---00000000000039a1ee0594b8e7cf--
-
---===============1161036630==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1161036630==--
+T24gU2F0LCBPY3QgMTIsIDIwMTkgYXQgNzo0NSBBTSBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5l
+ci5kZT4gd3JvdGU6Cj4KPiBPbiBUaHUsIE9jdCAxMCwgMjAxOSBhdCAwODo0NToxOVBNIC0wNTAw
+LCBBbGV4IERldWNoZXIgd3JvdGU6Cj4gPiBDaGVjayB0aGUgQkFDTyBjYXBhYmlsaXRpZXMgZnJv
+bSB0aGUgcG93ZXJwbGF5IHRhYmxlLgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IEFsZXggRGV1Y2hl
+ciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KPiBbLi4uXQo+ID4gQEAgLTk5Nyw2ICsxMDIw
+LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBhbWRncHVfYXNpY19mdW5jcyB2ZWdhMjBfYXNpY19m
+dW5jcyA9Cj4gPiAgICAgICAucmVhZF9iaW9zX2Zyb21fcm9tID0gJnNvYzE1X3JlYWRfYmlvc19m
+cm9tX3JvbSwKPiA+ICAgICAgIC5yZWFkX3JlZ2lzdGVyID0gJnNvYzE1X3JlYWRfcmVnaXN0ZXIs
+Cj4gPiAgICAgICAucmVzZXQgPSAmc29jMTVfYXNpY19yZXNldCwKPiA+ICsgICAgIC5yZXNldF9t
+ZXRob2QgPSAmc29jMTVfYXNpY19yZXNldF9tZXRob2QsCj4gPiAgICAgICAuc2V0X3ZnYV9zdGF0
+ZSA9ICZzb2MxNV92Z2Ffc2V0X3N0YXRlLAo+ID4gICAgICAgLmdldF94Y2xrID0gJnNvYzE1X2dl
+dF94Y2xrLAo+ID4gICAgICAgLnNldF91dmRfY2xvY2tzID0gJnNvYzE1X3NldF91dmRfY2xvY2tz
+LAo+ID4gQEAgLTEwMDksNyArMTAzMyw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYW1kZ3B1X2Fz
+aWNfZnVuY3MgdmVnYTIwX2FzaWNfZnVuY3MgPQo+ID4gICAgICAgLmdldF9wY2llX3VzYWdlID0g
+JnZlZ2EyMF9nZXRfcGNpZV91c2FnZSwKPiA+ICAgICAgIC5uZWVkX3Jlc2V0X29uX2luaXQgPSAm
+c29jMTVfbmVlZF9yZXNldF9vbl9pbml0LAo+ID4gICAgICAgLmdldF9wY2llX3JlcGxheV9jb3Vu
+dCA9ICZzb2MxNV9nZXRfcGNpZV9yZXBsYXlfY291bnQsCj4gPiAtICAgICAucmVzZXRfbWV0aG9k
+ID0gJnNvYzE1X2FzaWNfcmVzZXRfbWV0aG9kCj4KPiBTZWVtaW5nbHkgdW5yZWxhdGVkIGNoYW5n
+ZSB3aXRob3V0IGV4cGxhbmF0aW9uLgoKSnVzdCBtb3ZlcyB0aGUgc2V0dGluZyBvZiB0aGF0IGNh
+bGxiYWNrIHRvIGJldHRlciBhbGlnbiB3aXRoIHRoZQpzdHJ1Y3QgZGVmaW5pdGlvbiBhbmQgb3Ro
+ZXIgb3RoZXIgc3RydWN0cyBkZWZpbmVkIGluIHRoaXMgZmluZS4gIEkgY2FuCmRyb3AgaXQuCgpB
+bGV4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1n
+ZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
