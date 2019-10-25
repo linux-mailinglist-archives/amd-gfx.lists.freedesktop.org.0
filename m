@@ -1,44 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C005DE510C
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2019 18:20:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50491E544B
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2019 21:24:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9C746EAF5;
-	Fri, 25 Oct 2019 16:20:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C821E6EB67;
+	Fri, 25 Oct 2019 19:24:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
- by gabe.freedesktop.org (Postfix) with ESMTP id DB0D06EAF5;
- Fri, 25 Oct 2019 16:20:02 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id 210712A6046;
- Fri, 25 Oct 2019 18:20:02 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id cDFWOZDoYXzC; Fri, 25 Oct 2019 18:20:01 +0200 (CEST)
-Received: from thor (116.245.63.188.dynamic.wline.res.cust.swisscom.ch
- [188.63.245.116])
- by netline-mail3.netline.ch (Postfix) with ESMTPSA id CC4982A6045;
- Fri, 25 Oct 2019 18:20:01 +0200 (CEST)
-Received: from localhost ([::1]) by thor with esmtp (Exim 4.92.3)
- (envelope-from <michel@daenzer.net>)
- id 1iO2Jl-0005jU-GJ; Fri, 25 Oct 2019 18:20:01 +0200
-Subject: Re: [PATCH] drm/radeon: Handle workqueue allocation failure
-To: Will Deacon <will@kernel.org>
-References: <20191025110450.10474-1-will@kernel.org>
- <5d6a88a2-2719-a859-04df-10b0d893ff39@daenzer.net>
- <20191025161804.GA12335@willie-the-truck>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Message-ID: <e2f87ecc-0a8e-253d-107c-5cf6486c4b6a@daenzer.net>
-Date: Fri, 25 Oct 2019 18:20:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+X-Greylist: delayed 1667 seconds by postgrey-1.36 at gabe;
+ Fri, 25 Oct 2019 15:55:46 UTC
+Received: from deadmen.hmeau.com (helcar.hmeau.com [216.24.177.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 656BF6EAD4;
+ Fri, 25 Oct 2019 15:55:46 +0000 (UTC)
+Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
+ by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
+ id 1iO1Un-0001vM-5Z; Fri, 25 Oct 2019 23:27:21 +0800
+Received: from herbert by gondobar with local (Exim 4.89)
+ (envelope-from <herbert@gondor.apana.org.au>)
+ id 1iO1Ue-0007uU-5p; Fri, 25 Oct 2019 23:27:12 +0800
+Date: Fri, 25 Oct 2019 23:27:12 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH 1/5] crypto: nx - Improve debugfs_create_u{32,64}()
+ handling for atomics
+Message-ID: <20191025152712.26q6s5gbygdxd33j@gondor.apana.org.au>
+References: <20191021145149.31657-1-geert+renesas@glider.be>
+ <20191021145149.31657-2-geert+renesas@glider.be>
 MIME-Version: 1.0
-In-Reply-To: <20191025161804.GA12335@willie-the-truck>
-Content-Language: en-CA
+Content-Disposition: inline
+In-Reply-To: <20191021145149.31657-2-geert+renesas@glider.be>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-Mailman-Approved-At: Fri, 25 Oct 2019 19:24:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -50,34 +44,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Nicolas Waisman <nico@semmle.com>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Nishanth Menon <nm@ti.com>, David Airlie <airlied@linux.ie>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ dri-devel@lists.freedesktop.org, Paulo Flabiano Smorigo <pfsmorigo@gmail.com>,
+ Breno =?iso-8859-1?Q?Leit=E3o?= <leitao@debian.org>, David@rox.of.borg,
+ Kevin Hilman <khilman@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ Nayna Jain <nayna@linux.ibm.com>, amd-gfx@lists.freedesktop.org,
+ Casey Leedom <leedom@chelsio.com>, linux-pm@vger.kernel.org,
+ Pensando Drivers <drivers@pensando.io>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
+ "David S . Miller" <davem@davemloft.net>, linux-crypto@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, netdev@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>, Paul Mackerras <paulus@samba.org>,
+ Shannon Nelson <snelson@pensando.io>, linuxppc-dev@lists.ozlabs.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAxOS0xMC0yNSA2OjE4IHAubS4sIFdpbGwgRGVhY29uIHdyb3RlOgo+IE9uIEZyaSwgT2N0
-IDI1LCAyMDE5IGF0IDA2OjA2OjI2UE0gKzAyMDAsIE1pY2hlbCBEw6RuemVyIHdyb3RlOgo+PiBP
-biAyMDE5LTEwLTI1IDE6MDQgcC5tLiwgV2lsbCBEZWFjb24gd3JvdGU6Cj4+PiBJbiB0aGUgaGln
-aGx5IHVubGlrZWx5IGV2ZW50IHRoYXQgd2UgZmFpbCB0byBhbGxvY2F0ZSB0aGUgInJhZGVvbi1j
-cnRjIgo+Pj4gd29ya3F1ZXVlLCB3ZSBzaG91bGQgYmFpbCBjbGVhbmx5IHJhdGhlciB0aGFuIGJs
-aW5kbHkgbWFyY2ggb24gd2l0aCBhCj4+PiBOVUxMIHBvaW50ZXIgaW5zdGFsbGVkIGZvciB0aGUg
-J2ZsaXBfcXVldWUnIGZpZWxkIG9mIHRoZSAncmFkZW9uX2NydGMnCj4+PiBzdHJ1Y3R1cmUuCj4+
-Pgo+Pj4gVGhpcyB3YXMgcmVwb3J0ZWQgcHJldmlvdXNseSBieSBOaWNvbGFzLCBidXQgSSBkb24n
-dCB0aGluayBoaXMgZml4IHdhcwo+Pj4gY29ycmVjdDoKPj4KPj4gTmVpdGhlciBpcyB0aGlzIG9u
-ZSBJJ20gYWZyYWlkLiBTZWUgbXkgZmVlZGJhY2sgb24KPj4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJl
-ZWRlc2t0b3Aub3JnL3BhdGNoLzMzMTUzNC8gLgo+IAo+IFRoYW5rcy4gQWx0aG91Z2ggSSBhZ3Jl
-ZSB3aXRoIHlvdSB3cnQgdGhlIG9yaWdpbmFsIHBhdGNoLCBJIGRvbid0IHRoaW5rCj4gdGhlIHdv
-cmtxdWV1ZSBhbGxvY2F0aW9uIGZhaWx1cmUgaXMgZGlzdGluZ3Vpc2hhYmxlIGZyb20gdGhlIENS
-VEMgYWxsb2NhdGlvbgo+IGZhaWx1cmUgd2l0aCBteSBwYXRjaC4gQXJlIHlvdSBzYXlpbmcgdGhh
-dCB0aGUgZXJyb3IgcGF0aCB0aGVyZSBpcyBicm9rZW4KPiB0b28/CgpUaGUgZHJpdmVyIHdvbid0
-IGFjdHVhbGx5IHdvcmsgaWYgcmFkZW9uX2NydGNfaW5pdCBiYWlscyBzaWxlbnRseSwgaXQnbGwK
-anVzdCBmYWxsIG92ZXIgYXQgc29tZSBsYXRlciBwb2ludC4KCgotLSAKRWFydGhsaW5nIE1pY2hl
-bCBEw6RuemVyICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgIGh0dHBzOi8vcmVkaGF0LmNv
-bQpMaWJyZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAgICAgICAgICAgIHwgICAgICAgICAgICAgTWVz
-YSBhbmQgWCBkZXZlbG9wZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+T24gTW9uLCBPY3QgMjEsIDIwMTkgYXQgMDQ6NTE6NDVQTSArMDIwMCwgR2VlcnQgVXl0dGVyaG9l
+dmVuIHdyb3RlOgo+IFZhcmlhYmxlcyBvZiB0eXBlIGF0b21pY3ssNjR9X3QgY2FuIGJlIHVzZWQg
+ZmluZSB3aXRoCj4gZGVidWdmc19jcmVhdGVfdXszMiw2NH0sIHdoZW4gcGFzc2luZyBhIHBvaW50
+ZXIgdG8gdGhlIGVtYmVkZGVkIGNvdW50ZXIuCj4gVGhpcyBhbGxvd3MgdG8gZ2V0IHJpZCBvZiB0
+aGUgY2FzdHMsIHdoaWNoIHByZXZlbnRlZCBjb21waWxlciBjaGVja3MuCj4gCj4gU2lnbmVkLW9m
+Zi1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5lc2FzQGdsaWRlci5iZT4KPiAtLS0K
+PiAgZHJpdmVycy9jcnlwdG8vbngvbnhfZGVidWdmcy5jIHwgMTggKysrKysrKysrLS0tLS0tLS0t
+Cj4gIDEgZmlsZSBjaGFuZ2VkLCA5IGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCgpQYXRj
+aCBhcHBsaWVkLiAgVGhhbmtzLgotLSAKRW1haWw6IEhlcmJlcnQgWHUgPGhlcmJlcnRAZ29uZG9y
+LmFwYW5hLm9yZy5hdT4KSG9tZSBQYWdlOiBodHRwOi8vZ29uZG9yLmFwYW5hLm9yZy5hdS9+aGVy
+YmVydC8KUEdQIEtleTogaHR0cDovL2dvbmRvci5hcGFuYS5vcmcuYXUvfmhlcmJlcnQvcHVia2V5
+LnR4dApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQt
+Z2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
