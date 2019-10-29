@@ -2,28 +2,29 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC61FE7FDF
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Oct 2019 06:49:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F03B9E7FE0
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Oct 2019 06:49:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E0ED6E07D;
-	Tue, 29 Oct 2019 05:49:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CD0F6E083;
+	Tue, 29 Oct 2019 05:49:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC8846E07D
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2019 05:49:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33BDD6E083
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2019 05:49:55 +0000 (UTC)
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id 1FC7FB178;
- Tue, 29 Oct 2019 05:49:09 +0000 (UTC)
-Date: Tue, 29 Oct 2019 06:49:08 +0100
-Message-ID: <s5hftjct82z.wl-tiwai@suse.de>
+ by mx1.suse.de (Postfix) with ESMTP id B4CF6B1E0;
+ Tue, 29 Oct 2019 05:49:53 +0000 (UTC)
+Date: Tue, 29 Oct 2019 06:49:53 +0100
+Message-ID: <s5heeywt81q.wl-tiwai@suse.de>
 From: Takashi Iwai <tiwai@suse.de>
 To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH 18/21] ALSA: hda/hdmi - fix vgaswitcheroo detection for AMD
-In-Reply-To: <20191028214216.1508370-19-alexander.deucher@amd.com>
+Subject: Re: [PATCH 19/21] ALSA: hda/hdmi - Add new pci ids for AMD GPU
+ display audio
+In-Reply-To: <20191028214216.1508370-20-alexander.deucher@amd.com>
 References: <20191028214216.1508370-1-alexander.deucher@amd.com>
- <20191028214216.1508370-19-alexander.deucher@amd.com>
+ <20191028214216.1508370-20-alexander.deucher@amd.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
  FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
  (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -40,19 +41,17 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>, alsa-devel@alsa-project.org,
- lukas@wunner.de, Evan Quan <evan.quan@amd.com>, amd-gfx@lists.freedesktop.org
+ lukas@wunner.de, amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyOCBPY3QgMjAxOSAyMjo0MjoxMyArMDEwMCwKQWxleCBEZXVjaGVyIHdyb3RlOgo+
-IAo+IEBAIC0zNSw2ICszNSwxMSBAQAo+ICAjaW5jbHVkZSA8bGludXgvY2xvY2tzb3VyY2UuaD4K
-PiAgI2luY2x1ZGUgPGxpbnV4L3RpbWUuaD4KPiAgI2luY2x1ZGUgPGxpbnV4L2NvbXBsZXRpb24u
-aD4KPiArI2lmZGVmIFNVUFBPUlRfVkdBX1NXSVRDSEVST08KPiArI2lmZGVmIENPTkZJR19BQ1BJ
-Cj4gKyNpbmNsdWRlIDxsaW51eC9hY3BpLmg+Cj4gKyNlbmRpZgo+ICsjZW5kaWYKCkkgZG9uJ3Qg
-dGhpbmsgd2UgbmVlZCBpZmRlZnMgaGVyZS4KT3RoZXIgdGhhbiB0aGF0LAogIFJldmlld2VkLWJ5
-OiBUYWthc2hpIEl3YWkgPHRpd2FpQHN1c2UuZGU+CgoKdGhhbmtzLAoKVGFrYXNoaQpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcg
-bGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+T24gTW9uLCAyOCBPY3QgMjAxOSAyMjo0MjoxNCArMDEwMCwKQWxleCBEZXVjaGVyIHdyb3RlOgo+
+IAo+IFRoZXNlIGFyZSBuZWVkZWQgc28gd2UgY2FuIGVuYWJsZSBydW50aW1lIHBtIGluIGEgc3Vi
+c2VxdWVudAo+IHBhdGNoLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFu
+ZGVyLmRldWNoZXJAYW1kLmNvbT4KClJldmlld2VkLWJ5OiBUYWthc2hpIEl3YWkgPHRpd2FpQHN1
+c2UuZGU+CgoKdGhhbmtzLAoKVGFrYXNoaQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2FtZC1nZng=
