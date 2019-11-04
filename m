@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CD69EE1A5
-	for <lists+amd-gfx@lfdr.de>; Mon,  4 Nov 2019 14:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73CB8EE1A7
+	for <lists+amd-gfx@lfdr.de>; Mon,  4 Nov 2019 14:54:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AEB06E453;
-	Mon,  4 Nov 2019 13:54:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 116976E461;
+	Mon,  4 Nov 2019 13:54:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDF056E430;
- Mon,  4 Nov 2019 13:20:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E866E431;
+ Mon,  4 Nov 2019 13:20:18 +0000 (UTC)
 Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id 96CA5EC37000DD477241;
+ by Forcepoint Email with ESMTP id A4006B8CACFE10F20411;
  Mon,  4 Nov 2019 21:20:14 +0800 (CST)
 Received: from huawei.com (10.90.53.225) by DGGEMS410-HUB.china.huawei.com
  (10.3.19.210) with Microsoft SMTP Server id 14.3.439.0; Mon, 4 Nov 2019
- 21:20:04 +0800
+ 21:20:05 +0800
 From: yu kuai <yukuai3@huawei.com>
 To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
  <David1.Zhou@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
  <Jammy.Zhou@amd.com>, <tianci.yin@amd.com>, <sam@ravnborg.org>,
  <luben.tuikov@amd.com>
-Subject: [PATCH 6/7] drm/amdgpu: remove always false comparison in
- 'amdgpu_atombios_i2c_process_i2c_ch'
-Date: Mon, 4 Nov 2019 21:27:25 +0800
-Message-ID: <1572874046-30996-7-git-send-email-yukuai3@huawei.com>
+Subject: [PATCH 7/7] drm/amdgpu: remove set but not used variable
+ 'mc_shared_chmap'
+Date: Mon, 4 Nov 2019 21:27:26 +0800
+Message-ID: <1572874046-30996-8-git-send-email-yukuai3@huawei.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1572874046-30996-1-git-send-email-yukuai3@huawei.com>
 References: <1572874046-30996-1-git-send-email-yukuai3@huawei.com>
@@ -53,27 +53,29 @@ Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXMgZ2NjICctV3R5cGUtbGltaXRzJyB3YXJuaW5nOgoKZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvYXRvbWJpb3NfaTJjLmM6IEluIGZ1bmN0aW9uCuKAmGFtZGdwdV9hdG9tYmlvc19pMmNf
-cHJvY2Vzc19pMmNfY2jigJk6CmRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2F0b21iaW9zX2ky
-Yy5jOjc5OjExOiB3YXJuaW5nOiBjb21wYXJpc29uIGlzCmFsd2F5cyBmYWxzZSBkdWUgdG8gbGlt
-aXRlZCByYW5nZSBvZiBkYXRhIHR5cGUgWy1XdHlwZS1saW1pdHNdCgonbnVtJyBpcyAndTgnLCBz
-byBpdCB3aWxsIG5ldmVyIGJlIGdyZWF0ZXIgdGhhbiAnVE9NX01BWF9IV19JMkNfUkVBRCcsCndo
-aWNoIGlzIGRlZmluZWQgYXMgMjU1LiBUaGVyZWZvcmUsIHRoZSBjb21wYXJpc29uIGNhbiBiZSBy
-ZW1vdmVkLgoKRml4ZXM6IGQzOGNlYWY5OWVkMCAoImRybS9hbWRncHU6IGFkZCBjb3JlIGRyaXZl
-ciAodjQpIikKU2lnbmVkLW9mZi1ieTogeXUga3VhaSA8eXVrdWFpM0BodWF3ZWkuY29tPgotLS0K
-IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2F0b21iaW9zX2kyYy5jIHwgNSAtLS0tLQogMSBm
-aWxlIGNoYW5nZWQsIDUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvYXRvbWJpb3NfaTJjLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
-dG9tYmlvc19pMmMuYwppbmRleCA5ODBjMzYzLi5iNGNjN2M1IDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS9hdG9tYmlvc19pMmMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hdG9tYmlvc19pMmMuYwpAQCAtNzYsMTEgKzc2LDYgQEAgc3RhdGljIGludCBh
-bWRncHVfYXRvbWJpb3NfaTJjX3Byb2Nlc3NfaTJjX2NoKHN0cnVjdCBhbWRncHVfaTJjX2NoYW4g
-KmNoYW4sCiAJCX0KIAkJYXJncy5scEkyQ0RhdGFPdXQgPSBjcHVfdG9fbGUxNihvdXQpOwogCX0g
-ZWxzZSB7Ci0JCWlmIChudW0gPiBBVE9NX01BWF9IV19JMkNfUkVBRCkgewotCQkJRFJNX0VSUk9S
-KCJodyBpMmM6IHRyaWVkIHRvIHJlYWQgdG9vIG1hbnkgYnl0ZXMgKCVkIHZzIDI1NSlcbiIsIG51
-bSk7Ci0JCQlyID0gLUVJTlZBTDsKLQkJCWdvdG8gZG9uZTsKLQkJfQogCQlhcmdzLnVjUmVnSW5k
-ZXggPSAwOwogCQlhcmdzLmxwSTJDRGF0YU91dCA9IDA7CiAJfQotLSAKMi43LjQKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBs
-aXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+Rml4ZXMgZ2NjICctV3VudXNlZC1idXQtc2V0LXZhcmlhYmxlJyB3YXJuaW5nOgoKZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y4XzAuYzogSW4gZnVuY3Rpb24K4oCYZ2Z4X3Y4XzBfZ3B1
+X2Vhcmx5X2luaXTigJk6CmRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OF8wLmM6MTcx
+Mzo2OiB3YXJuaW5nOiB2YXJpYWJsZQrigJhtY19zaGFyZWRfY2htYXDigJkgc2V0IGJ1dCBub3Qg
+dXNlZCBbLVd1bnVzZWQtYnV0LXNldC12YXJpYWJsZV0KCkZpeGVzOiAwYmRlM2E5NWVhYTkgKCJk
+cm0vYW1kZ3B1OiBzcGxpdCBnZng4IGdwdSBpbml0IGludG8gc3cgYW5kIGh3IHBhcnRzIikKU2ln
+bmVkLW9mZi1ieTogeXUga3VhaSA8eXVrdWFpM0BodWF3ZWkuY29tPgotLS0KIGRyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2dmeF92OF8wLmMgfCAzICstLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5z
+ZXJ0aW9uKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvYW1kZ3B1L2dmeF92OF8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjhf
+MC5jCmluZGV4IGU0YzY0NWQuLjgwYjc5NTggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvYW1kZ3B1L2dmeF92OF8wLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4
+X3Y4XzAuYwpAQCAtMTcxMCw3ICsxNzEwLDcgQEAgc3RhdGljIGludCBnZnhfdjhfMF9kb19lZGNf
+Z3ByX3dvcmthcm91bmRzKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogc3RhdGljIGludCBn
+ZnhfdjhfMF9ncHVfZWFybHlfaW5pdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKIHsKIAl1
+MzIgZ2JfYWRkcl9jb25maWc7Ci0JdTMyIG1jX3NoYXJlZF9jaG1hcCwgbWNfYXJiX3JhbWNmZzsK
+Kwl1MzIgbWNfYXJiX3JhbWNmZzsKIAl1MzIgZGltbTAwX2FkZHJfbWFwLCBkaW1tMDFfYWRkcl9t
+YXAsIGRpbW0xMF9hZGRyX21hcCwgZGltbTExX2FkZHJfbWFwOwogCXUzMiB0bXA7CiAJaW50IHJl
+dDsKQEAgLTE4NTAsNyArMTg1MCw2IEBAIHN0YXRpYyBpbnQgZ2Z4X3Y4XzBfZ3B1X2Vhcmx5X2lu
+aXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCiAJCWJyZWFrOwogCX0KIAotCW1jX3NoYXJl
+ZF9jaG1hcCA9IFJSRUczMihtbU1DX1NIQVJFRF9DSE1BUCk7CiAJYWRldi0+Z2Z4LmNvbmZpZy5t
+Y19hcmJfcmFtY2ZnID0gUlJFRzMyKG1tTUNfQVJCX1JBTUNGRyk7CiAJbWNfYXJiX3JhbWNmZyA9
+IGFkZXYtPmdmeC5jb25maWcubWNfYXJiX3JhbWNmZzsKIAotLSAKMi43LjQKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0
+CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
