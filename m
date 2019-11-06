@@ -1,94 +1,90 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A1CF19DE
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Nov 2019 16:21:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6CEF1981
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Nov 2019 16:05:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C86A6EDA1;
-	Wed,  6 Nov 2019 15:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 034246ED93;
+	Wed,  6 Nov 2019 15:05:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
- (mail-eopbgr00071.outbound.protection.outlook.com [40.107.0.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D00886E199;
- Wed,  6 Nov 2019 13:36:14 +0000 (UTC)
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+ (mail-eopbgr800085.outbound.protection.outlook.com [40.107.80.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9FBE6ED93
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 Nov 2019 15:05:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KNm0HTlMrga0aOIXKkjkw0sx1MzlAmzM6uHJgEKhlDzwUd8APsgixsH/el1nmqfR/or/RoKoALSDdxSLKsUlYUnvtXb2kGMGcqAzUiUj5RSbNqzUQKKs61TZVg0ASYIhlX4hv545UhTeBomoFWcy3fZ5lU2O8KVPvjg7G3n88R1XiktaaqDW/m2zy0CySQ7rzHPrWcVGKsbegAFy6W9QXohTCD3MrjoW1CuKOkbSsXwr6B5b9/3JxXt9msiZN7YmHvGZfVwGfSR3cT+pwUWfGXamSgX1d+Xn0bynrxc5MAvoLKM/W9c51XKvFTYAFrZS5U+YB/5gIT7YcpzVV5zXVQ==
+ b=EYxBk5RiccZi4pn9EvWnthMclo7OR/v9eOAQBLNHJEYd7qblXQ5NMJpTzvLAhxg1hfhurJ/iMGciNVNGJS21fU3gzetemiT6Pi4jF8Jq5oVYlHoTUllrc0I+f9mdvi60sdil1h8fT5SHEcK5IS1RwcoGHZ2Axnj2Dvux4t+WqbAOwwQBOVDrcihymvc/Nw1aIxZiVJJn4K+E1jjLNQ/uDRnLsh2YjQY5sXeupXO36Uy2QMp3DBJyr4GpsF6pzJlCUtleqzDFUzOeo+1/SLlt9n0TKvgHCwuEvV8yYWIBMkvB0njzWVUgtGdAojH8EAmtkXlTBSnD3la5jteR/P+ziw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xSYRMVOxQdiajVHDrB1ZWywWX0yisdKKCsAIbjlbH7M=;
- b=kcFOsXcTqEUYKGkn5z2orUFcoOPlMf3tqhWXQJttZF0j1hROKz4ltdlypZKDJ6qxqAkxXN9voEVyw7TCsEnINpgos9DM1UM/vgONDwud7QLqV9cIxRJCe8HhvTRy8gCV9mkPP2a4PqX9dRFehG7rrkLpcxt94/ToGQT5LRj2nelQxmHrg3RjVIvCAJb9FPBQ9Y8Q3JzRCDToTEID382YgS7M38tMY8NUJ7FWSPT9LvRRxBKmVc4PImFURPTC1S/nSK6+CxuQKk1siBFmpZOQE+/NFYbNuNzIXgLV9b8Xh6zNVQGWtzYQVRfAGFtnpDXySG40JhDM/RF2XCeREjmjNA==
+ bh=cnqLrXQ6YoAvyuptoOO+z5otHh8vAtvkWizYunp91+Y=;
+ b=Ez3FQWa+Wl0fWn9R4y3wiK71jE8bu1z2pjcCe0YwWfVs+MrBV01ch/WQOtkeZYHYSUJQNWthLAKJY7vW8Haouu/YG/UAbbbdLqPqvBhezxZR6mY/cihEcd43Kbi7J9GPExtjnKuAGYmkrmlxkUGYyn/jXcj1zToRP/WW1d6E7S4oXg1C0X2FRt33fUr9psS4I4gErlqJVhFJuwIEslhs7NCYcM/qYcrec1KBRerjEJiTBxrkfzPJl23GCq+w1c6NKTYiNx/9YkSCvl20JHWY3pfy4Tq68nndLjoW0iK3tbjPWWEc9xVgbS4GTwGGY9e0BoR5SF/czF3ii4Du+SRoSw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mellanox.com; dmarc=pass action=none header.from=mellanox.com;
- dkim=pass header.d=mellanox.com; arc=none
-Received: from VI1PR05MB4141.eurprd05.prod.outlook.com (52.133.14.15) by
- VI1PR05MB4142.eurprd05.prod.outlook.com (52.133.12.13) with Microsoft SMTP
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+Received: from CY4PR12MB1813.namprd12.prod.outlook.com (10.175.80.21) by
+ CY4PR12MB1544.namprd12.prod.outlook.com (10.172.68.151) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2408.24; Wed, 6 Nov 2019 13:36:10 +0000
-Received: from VI1PR05MB4141.eurprd05.prod.outlook.com
- ([fe80::b179:e8bf:22d4:bf8d]) by VI1PR05MB4141.eurprd05.prod.outlook.com
- ([fe80::b179:e8bf:22d4:bf8d%5]) with mapi id 15.20.2408.024; Wed, 6 Nov 2019
- 13:36:10 +0000
-From: Jason Gunthorpe <jgg@mellanox.com>
-To: John Hubbard <jhubbard@nvidia.com>
-Subject: Re: [PATCH v2 01/15] mm/mmu_notifier: define the header pre-processor
- parts even if disabled
-Thread-Topic: [PATCH v2 01/15] mm/mmu_notifier: define the header
- pre-processor parts even if disabled
-Thread-Index: AQHVjcvKLi62CBGJ7kWsGjKWZ8qqVqd9IwUAgAEPqwA=
-Date: Wed, 6 Nov 2019 13:36:10 +0000
-Message-ID: <20191106133606.GC22766@mellanox.com>
-References: <20191028201032.6352-1-jgg@ziepe.ca>
- <20191028201032.6352-2-jgg@ziepe.ca>
- <770248ae-efa1-efae-a978-f52d8510f7b1@nvidia.com>
-In-Reply-To: <770248ae-efa1-efae-a978-f52d8510f7b1@nvidia.com>
+ 15.20.2387.23; Wed, 6 Nov 2019 15:05:16 +0000
+Received: from CY4PR12MB1813.namprd12.prod.outlook.com
+ ([fe80::dc23:193b:9619:a4fc]) by CY4PR12MB1813.namprd12.prod.outlook.com
+ ([fe80::dc23:193b:9619:a4fc%4]) with mapi id 15.20.2408.025; Wed, 6 Nov 2019
+ 15:05:16 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Deng, Emily" <Emily.Deng@amd.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu: Need to disable msix when unloading driver
+Thread-Topic: [PATCH] drm/amdgpu: Need to disable msix when unloading driver
+Thread-Index: AQHVlGrE42DO3ap4CkyKrim635Z4O6d9rgMAgAAzLoCAAApwAIAAUqtt
+Date: Wed, 6 Nov 2019 15:05:16 +0000
+Message-ID: <CY4PR12MB18131729CB48513830561F76F7790@CY4PR12MB1813.namprd12.prod.outlook.com>
+References: <1573021419-15518-1-git-send-email-Emily.Deng@amd.com>
+ <MN2PR12MB2975A3DFE6CCED7BB3D6D2748F790@MN2PR12MB2975.namprd12.prod.outlook.com>
+ <6be1e7b9-13a9-f382-ef66-00c284a14a14@gmail.com>,
+ <MN2PR12MB297565CEDAAF6460C71F98F28F790@MN2PR12MB2975.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB297565CEDAAF6460C71F98F28F790@MN2PR12MB2975.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: BN6PR18CA0002.namprd18.prod.outlook.com
- (2603:10b6:404:121::12) To VI1PR05MB4141.eurprd05.prod.outlook.com
- (2603:10a6:803:44::15)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [142.162.113.180]
+x-originating-ip: [71.219.59.120]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 8f06dec5-2715-413b-9b5d-08d762be48c8
-x-ms-traffictypediagnostic: VI1PR05MB4142:
-x-microsoft-antispam-prvs: <VI1PR05MB4142E1A64CB606FD98EDECCDCF790@VI1PR05MB4142.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2803;
+x-ms-office365-filtering-correlation-id: 3bdf4f42-da8c-4970-f4b5-08d762cabba9
+x-ms-traffictypediagnostic: CY4PR12MB1544:
+x-ms-exchange-purlcount: 1
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR12MB15442B6A27B8A7247C9D6038F7790@CY4PR12MB1544.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
 x-forefront-prvs: 02135EB356
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(366004)(346002)(396003)(39860400002)(136003)(189003)(199004)(86362001)(186003)(6916009)(102836004)(26005)(386003)(66066001)(6506007)(53546011)(99286004)(316002)(4326008)(229853002)(66574012)(2906002)(52116002)(76176011)(1076003)(256004)(11346002)(446003)(36756003)(81156014)(2616005)(476003)(8676002)(8936002)(81166006)(54906003)(14444005)(7416002)(66556008)(66476007)(66946007)(33656002)(478600001)(71200400001)(71190400001)(486006)(305945005)(6486002)(7736002)(6512007)(5660300002)(6436002)(25786009)(6116002)(6246003)(3846002)(14454004)(64756008)(66446008);
- DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR05MB4142;
- H:VI1PR05MB4141.eurprd05.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: mellanox.com does not designate
+ SFS:(10009020)(4636009)(396003)(366004)(136003)(39860400002)(376002)(346002)(13464003)(53754006)(199004)(189003)(606006)(236005)(99286004)(966005)(66446008)(66556008)(66476007)(64756008)(9686003)(6246003)(26005)(14444005)(256004)(33656002)(2501003)(6116002)(76116006)(3846002)(6306002)(7696005)(2906002)(19627405001)(54896002)(110136005)(66946007)(66066001)(76176011)(55016002)(66574012)(7736002)(5660300002)(74316002)(6506007)(53546011)(8936002)(52536014)(446003)(476003)(8676002)(316002)(6436002)(81166006)(81156014)(25786009)(11346002)(102836004)(229853002)(486006)(14454004)(105004)(478600001)(186003)(86362001)(71200400001)(71190400001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR12MB1544;
+ H:CY4PR12MB1813.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JPvYlziAVByepieEeLxtpLGPljYV7kW7mQ4jvvUsSEA8JTJotYbtIM6wgq29ga5wlb7rbwkZgWsZLw/VMWQhwwot4M/HQoXUuXIwZzRkZR39cCEv8w3RzAKAdl7zM+Qz188vGp1fgyzBvZKYsUsY86EYcNPkf9GZJIe/V+sQj5v9S9oTpZ3VL2N3iE1zIthGEXZTzGeyy64f/tqF01COUsCGI0EULI74WbQBuHeRzyH2bn/SAiXJ3cxuM14/bE65wTuvVlUvPHicIH4BOFqzaD2lv4oRVGH3J/xbrFc099hUIAPitTYoOz/N86fc35MuOmUtNXsnvo5oyDRvB9wtKOqv2ejjY6dFc26uGh3xkH1pQbwi79UE9++1lMKgp25zKzLPM/cX337YvDhNzPh7z8LJv3wJ0uGngZL5Ofc/+wOjGDbLF5vxEjXvGODRU9Hz
-x-ms-exchange-transport-forked: True
-Content-ID: <79E66DC5C25B0D4EBC7ECCB2D81D0009@eurprd05.prod.outlook.com>
+x-microsoft-antispam-message-info: ZRlEfqr03QnGOWY+mEWU2hTAFVy1GXYauQOKk5EdMnwOwLIQS5oDLDUlCL3v5JUYDEW3mpVG++SKunSoRM5JGnFXlJJ7zP0kkzCzmq1FtS90aV4w+bQ33h9dcHhF8U3/uhv4Y3Df6Y/c+Sw3soZp7Bw/w+MdrGJzQVjhKyiMSRhDPoil5fP24uzFGM07o+gsqeFCyNivR+4ZVNW+0RJ0OPtkX2hmVci82UjNJ0lUl906gcYlp9Tk9gs6zULIHLmHSrOcfsyhSCBYawr8AbN3P9JDtimnP9lmtNqMNVCzCrvceUQfu1mfW2uqJ4v/l4tm+wBVBlK8MtsSyaEXQ/sQrjvUxbZ4OFDKkd2tYPvlXVTmcHKBEnjLPGFDdobmqp/KT7/weAd+i/LjQlld9d+FHpF3dVTrwBuFH8Fkc+YxBT9RU7nw6b5+USbfSrCXX0Jtyg04b2+lzVmapi/Ruwqx+g8d6MVBOi26wZEu10+EPkY=
 MIME-Version: 1.0
-X-OriginatorOrg: Mellanox.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f06dec5-2715-413b-9b5d-08d762be48c8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2019 13:36:10.3537 (UTC)
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3bdf4f42-da8c-4970-f4b5-08d762cabba9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2019 15:05:16.6338 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a652971c-7d2e-4d9b-a6a4-d149256f461b
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9N4VkzBzdqxM27Yj1ihfnzoZc7qLuE2NBf9sEDlemzMa3uI7R1Y5Iq8lTv1KSeoMlH0074TpypzVCgcgOal+2Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB4142
-X-Mailman-Approved-At: Wed, 06 Nov 2019 15:21:34 +0000
+X-MS-Exchange-CrossTenant-userprincipalname: 4n5bGFw9BxLM3imHkGhlE7S8CdnGZqi+a46jzgjOL8HulbX9Gt20zIRjHTQNALanE71fA2ZNy06Em2cGo9rIog==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1544
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Mellanox.com; s=selector2;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xSYRMVOxQdiajVHDrB1ZWywWX0yisdKKCsAIbjlbH7M=;
- b=SmALHb2MWIdvKrq9nUe9UaYAgM8S5ZNBJaRZm5qNgLIQ5HSvFFoeMYdN0rZKzclNckGs00sfeIMa6yDyt7TJAN4XGyp3FUmTob5XFPuARoldvutK50uMJ9KqtycjTLGu5rHCkuxATf9y1Hu+2cPagn6qOyfvmiVJn20XId7ee2s=
+ bh=cnqLrXQ6YoAvyuptoOO+z5otHh8vAtvkWizYunp91+Y=;
+ b=g0SnQ5rfucyO6cK1KS3Rjzcgk5f0JHnpsVlAr+oOfa/D5hlyotA5/Ka/+GnJqlQKiDEya+MRp6U/Dvo9avfrph7dQOqMPFJAg6RLLb9oCJcgKPB+d2kDXWcwCk61VKVAy0cxTHhx6FeLUWKOJa4OuakvsvbbKZVehHgWLBADfOw=
 X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=jgg@mellanox.com; 
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -100,57 +96,242 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>, David Zhou <David1.Zhou@amd.com>,
- Ralph Campbell <rcampbell@nvidia.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- Dennis Dalessandro <dennis.dalessandro@intel.com>,
- "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
- Mike Marciniszyn <mike.marciniszyn@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Christoph Hellwig <hch@infradead.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>, Jerome Glisse <jglisse@redhat.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, Petr Cvek <petrcvekcz@gmail.com>,
- =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>,
- Ben Skeggs <bskeggs@redhat.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0872663815=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBOb3YgMDUsIDIwMTkgYXQgMDE6MjM6NDZQTSAtMDgwMCwgSm9obiBIdWJiYXJkIHdy
-b3RlOg0KPiBPbiAxMC8yOC8xOSAxOjEwIFBNLCBKYXNvbiBHdW50aG9ycGUgd3JvdGU6DQo+ID4g
-RnJvbTogSmFzb24gR3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPg0KPiA+IA0KPiA+IE5vdyB0
-aGF0IHdlIGhhdmUgS0VSTkVMX0hFQURFUl9URVNUIGFsbCBoZWFkZXJzIGFyZSBnZW5lcmFsbHkg
-Y29tcGlsZQ0KPiA+IHRlc3RlZCwgc28gcmVseWluZyBvbiBtYWtlZmlsZSB0cmlja3MgdG8gYXZv
-aWQgY29tcGlsaW5nIGNvZGUgdGhhdCBkZXBlbmRzDQo+ID4gb24gQ09ORklHX01NVV9OT1RJRklF
-UiBpcyBtb3JlIGFubm95aW5nLg0KPiA+IA0KPiA+IEluc3RlYWQgZm9sbG93IHRoZSB1c3VhbCBw
-YXR0ZXJuIGFuZCBwcm92aWRlIG1vc3Qgb2YgdGhlIGhlYWRlciB3aXRoIG9ubHkNCj4gPiB0aGUg
-ZnVuY3Rpb25zIHN0dWJiZWQgb3V0IHdoZW4gQ09ORklHX01NVV9OT1RJRklFUiBpcyBkaXNhYmxl
-ZC4gVGhpcw0KPiA+IGVuc3VyZXMgY29kZSBjb21waWxlcyBubyBtYXR0ZXIgd2hhdCB0aGUgY29u
-ZmlnIHNldHRpbmcgaXMuDQo+ID4gDQo+ID4gV2hpbGUgaGVyZSwgc3RydWN0IG1tdV9ub3RpZmll
-cl9tbSBpcyBwcml2YXRlIHRvIG1tdV9ub3RpZmllci5jLCBtb3ZlIGl0Lg0KPiANCj4gYW5kIGNv
-cnJlY3QgYSBtaW5vciBzcGVsbGluZyBlcnJvciBpbiBhIGNvbW1lbnQuIEdvb2QuIDopDQo+IA0K
-PiA+IA0KPiA+IFJldmlld2VkLWJ5OiBKw6lyw7RtZSBHbGlzc2UgPGpnbGlzc2VAcmVkaGF0LmNv
-bT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBKYXNvbiBHdW50aG9ycGUgPGpnZ0BtZWxsYW5veC5jb20+
-DQo+ID4gIGluY2x1ZGUvbGludXgvbW11X25vdGlmaWVyLmggfCA0NiArKysrKysrKysrKysrLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gPiAgbW0vbW11X25vdGlmaWVyLmMgICAgICAgICAgICB8
-IDEzICsrKysrKysrKysNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAzMCBpbnNlcnRpb25zKCspLCAy
-OSBkZWxldGlvbnMoLSkNCj4gPiANCj4gDQo+IEJlY2F1c2UgdGhpcyBpcyBjb3JyZWN0IGFzLWlz
-LCB5b3UgY2FuIGFkZDoNCj4gDQo+IFJldmlld2VkLWJ5OiBKb2huIEh1YmJhcmQgPGpodWJiYXJk
-QG52aWRpYS5jb20+DQo+IA0KDQpUaGFua3MNCg0KPiBkaWZmIC0tZ2l0IGEvbW0vbW11X25vdGlm
-aWVyLmMgYi9tbS9tbXVfbm90aWZpZXIuYw0KPiBpbmRleCAyYjc0ODU5MTllY2YuLjEwN2Y5NDA2
-YTkyZCAxMDA2NDQNCj4gKysrIGIvbW0vbW11X25vdGlmaWVyLmMNCj4gQEAgLTQ3LDYgKzQ3LDE2
-IEBAIHN0cnVjdCBtbXVfbm90aWZpZXJfbW0gew0KPiAgICAgICAgIHN0cnVjdCBobGlzdF9oZWFk
-IGRlZmVycmVkX2xpc3Q7DQo+ICB9Ow0KPiAgDQo+ICtpbnQgbW1faGFzX25vdGlmaWVycyhzdHJ1
-Y3QgbW1fc3RydWN0ICptbSkNCj4gK3sNCj4gKyAgICAgICByZXR1cm4gdW5saWtlbHkobW0tPm1t
-dV9ub3RpZmllcl9tbSk7DQo+ICt9DQoNClRoaXMgaW5saW5lIGlzIHBlcmZvcm1hbmNlIHNlbnNp
-dGl2ZSwgaXQgbmVlZHMgdG8gc3RheSBpbmxpbmVkLi4NCg0KSmFzb24NCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFt
-ZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============0872663815==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY4PR12MB18131729CB48513830561F76F7790CY4PR12MB1813namp_"
+
+--_000_CY4PR12MB18131729CB48513830561F76F7790CY4PR12MB1813namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: Deng, Emily <Emily.Deng@amd.com>
+Sent: Wednesday, November 6, 2019 5:09 AM
+To: Koenig, Christian <Christian.Koenig@amd.com>; amd-gfx@lists.freedesktop=
+.org <amd-gfx@lists.freedesktop.org>; Deucher, Alexander <Alexander.Deucher=
+@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: Need to disable msix when unloading driver
+
+Hi Christian,
+    We use " pci_alloc_irq_vectors " in amdgpu_irq_init. This patch use " p=
+ci_free_irq_vectors " in amdgpu_irq_fini.
+
+Hi Alex,
+    Could you help to review this?
+
+Best wishes
+Emily Deng
+
+
+
+>-----Original Message-----
+>From: Christian K=F6nig <ckoenig.leichtzumerken@gmail.com>
+>Sent: Wednesday, November 6, 2019 5:32 PM
+>To: Deng, Emily <Emily.Deng@amd.com>; amd-gfx@lists.freedesktop.org
+>Subject: Re: [PATCH] drm/amdgpu: Need to disable msix when unloading
+>driver
+>
+>Not an expert on the PCI IRQ stuff, but from what I know that looks correc=
+t to
+>me.
+>
+>Only question I can see is why don't we use pci_alloc_irq_vectors()?
+>Alex probably needs to take a look.
+>
+>Regards,
+>Christian.
+>
+>Am 06.11.19 um 07:28 schrieb Deng, Emily:
+>> Hi all,
+>>      Please help to review this. This is to fix driver reload issue.
+>>
+>> Best wishes
+>> Emily Deng
+>>
+>>
+>>> -----Original Message-----
+>>> From: Emily Deng <Emily.Deng@amd.com>
+>>> Sent: Wednesday, November 6, 2019 2:24 PM
+>>> To: amd-gfx@lists.freedesktop.org
+>>> Cc: Deng, Emily <Emily.Deng@amd.com>
+>>> Subject: [PATCH] drm/amdgpu: Need to disable msix when unloading
+>>> driver
+>>>
+>>> For driver reload test, it will report "can't enable MSI (MSI-X already
+>enabled)".
+>>>
+>>> Signed-off-by: Emily Deng <Emily.Deng@amd.com>
+>>> ---
+>>> drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 2 +-
+>>> 1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+>>> index 6f3b03f..30d540d 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+>>> @@ -311,7 +311,7 @@ void amdgpu_irq_fini(struct amdgpu_device *adev)
+>>>              drm_irq_uninstall(adev->ddev);
+>>>              adev->irq.installed =3D false;
+>>>              if (adev->irq.msi_enabled)
+>>> -                   pci_disable_msi(adev->pdev);
+>>> +                   pci_free_irq_vectors(adev->pdev);
+>>>              if (!amdgpu_device_has_dc_support(adev))
+>>>                      flush_work(&adev->hotplug_work);
+>>>      }
+>>> --
+>>> 2.7.4
+>> _______________________________________________
+>> amd-gfx mailing list
+>> amd-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+
+--_000_CY4PR12MB18131729CB48513830561F76F7790CY4PR12MB1813namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Deng, Emily &lt;Emily=
+.Deng@amd.com&gt;<br>
+<b>Sent:</b> Wednesday, November 6, 2019 5:09 AM<br>
+<b>To:</b> Koenig, Christian &lt;Christian.Koenig@amd.com&gt;; amd-gfx@list=
+s.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;; Deucher, Alexander=
+ &lt;Alexander.Deucher@amd.com&gt;<br>
+<b>Subject:</b> RE: [PATCH] drm/amdgpu: Need to disable msix when unloading=
+ driver</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Hi Christian,<br>
+&nbsp;&nbsp;&nbsp; We use &quot; pci_alloc_irq_vectors &quot; in amdgpu_irq=
+_init. This patch use &quot; pci_free_irq_vectors &quot; in amdgpu_irq_fini=
+.<br>
+<br>
+Hi Alex,<br>
+&nbsp;&nbsp;&nbsp; Could you help to review this?<br>
+<br>
+Best wishes<br>
+Emily Deng<br>
+<br>
+<br>
+<br>
+&gt;-----Original Message-----<br>
+&gt;From: Christian K=F6nig &lt;ckoenig.leichtzumerken@gmail.com&gt;<br>
+&gt;Sent: Wednesday, November 6, 2019 5:32 PM<br>
+&gt;To: Deng, Emily &lt;Emily.Deng@amd.com&gt;; amd-gfx@lists.freedesktop.o=
+rg<br>
+&gt;Subject: Re: [PATCH] drm/amdgpu: Need to disable msix when unloading<br=
+>
+&gt;driver<br>
+&gt;<br>
+&gt;Not an expert on the PCI IRQ stuff, but from what I know that looks cor=
+rect to<br>
+&gt;me.<br>
+&gt;<br>
+&gt;Only question I can see is why don't we use pci_alloc_irq_vectors()?<br=
+>
+&gt;Alex probably needs to take a look.<br>
+&gt;<br>
+&gt;Regards,<br>
+&gt;Christian.<br>
+&gt;<br>
+&gt;Am 06.11.19 um 07:28 schrieb Deng, Emily:<br>
+&gt;&gt; Hi all,<br>
+&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Please help to review this. This is =
+to fix driver reload issue.<br>
+&gt;&gt;<br>
+&gt;&gt; Best wishes<br>
+&gt;&gt; Emily Deng<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;&gt; -----Original Message-----<br>
+&gt;&gt;&gt; From: Emily Deng &lt;Emily.Deng@amd.com&gt;<br>
+&gt;&gt;&gt; Sent: Wednesday, November 6, 2019 2:24 PM<br>
+&gt;&gt;&gt; To: amd-gfx@lists.freedesktop.org<br>
+&gt;&gt;&gt; Cc: Deng, Emily &lt;Emily.Deng@amd.com&gt;<br>
+&gt;&gt;&gt; Subject: [PATCH] drm/amdgpu: Need to disable msix when unloadi=
+ng<br>
+&gt;&gt;&gt; driver<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; For driver reload test, it will report &quot;can't enable MSI =
+(MSI-X already<br>
+&gt;enabled)&quot;.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Signed-off-by: Emily Deng &lt;Emily.Deng@amd.com&gt;<br>
+&gt;&gt;&gt; ---<br>
+&gt;&gt;&gt; drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 2 &#43;-<br>
+&gt;&gt;&gt; 1 file changed, 1 insertion(&#43;), 1 deletion(-)<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c<br>
+&gt;&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c<br>
+&gt;&gt;&gt; index 6f3b03f..30d540d 100644<br>
+&gt;&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c<br>
+&gt;&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c<br>
+&gt;&gt;&gt; @@ -311,7 &#43;311,7 @@ void amdgpu_irq_fini(struct amdgpu_dev=
+ice *adev)<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; drm_irq_uninstall(adev-&gt;ddev);<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; adev-&gt;irq.installed =3D false;<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; if (adev-&gt;irq.msi_enabled)<br>
+&gt;&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pci_disable_msi(adev-&gt;pd=
+ev);<br>
+&gt;&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pci_free_irq_vectors(ad=
+ev-&gt;pdev);<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; if (!amdgpu_device_has_dc_support(adev))<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flush_work(=
+&amp;adev-&gt;hotplug_work);<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&gt;&gt; --<br>
+&gt;&gt;&gt; 2.7.4<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; amd-gfx mailing list<br>
+&gt;&gt; amd-gfx@lists.freedesktop.org<br>
+&gt;&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx"=
+>https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a><br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_CY4PR12MB18131729CB48513830561F76F7790CY4PR12MB1813namp_--
+
+--===============0872663815==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0872663815==--
