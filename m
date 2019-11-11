@@ -1,38 +1,35 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED69F6F7E
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Nov 2019 09:09:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 311C0F6F77
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Nov 2019 09:09:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 245856E857;
-	Mon, 11 Nov 2019 08:09:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC656E84E;
+	Mon, 11 Nov 2019 08:09:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 598 seconds by postgrey-1.36 at gabe;
- Mon, 11 Nov 2019 00:10:15 UTC
-Received: from universe2.us (65-101-31-211.dia.static.qwest.net
- [65.101.31.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01BA26E0BC
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Nov 2019 00:10:15 +0000 (UTC)
-Received: by universe2.us (Postfix, from userid 1003)
- id CC167385233; Mon, 11 Nov 2019 00:00:15 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on Sceptre
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,HTML_MESSAGE
- autolearn=ham autolearn_force=no version=3.4.2
-Received: from mail.universe2.us (localhost.localdomain [127.0.0.1])
- (Authenticated sender: subsentient@universe2.us)
- by universe2.us (Postfix) with ESMTPA id 18325385226
- for <amd-gfx@lists.freedesktop.org>; Sun, 10 Nov 2019 17:00:14 -0700 (MST)
+Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97AD56E846;
+ Mon, 11 Nov 2019 03:38:44 +0000 (UTC)
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.60])
+ by Forcepoint Email with ESMTP id 8140A395A6F43F11930A;
+ Mon, 11 Nov 2019 11:38:40 +0800 (CST)
+Received: from huawei.com (10.90.53.225) by DGGEMS414-HUB.china.huawei.com
+ (10.3.19.214) with Microsoft SMTP Server id 14.3.439.0; Mon, 11 Nov 2019
+ 11:38:32 +0800
+From: zhengbin <zhengbin13@huawei.com>
+To: <rex.zhu@amd.com>, <evan.quan@amd.com>, <alexander.deucher@amd.com>,
+ <christian.koenig@amd.com>, <David1.Zhou@amd.com>, <airlied@linux.ie>,
+ <daniel@ffwll.ch>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>
+Subject: [PATCH 0/2] remove some set but not used variables in hwmgr
+Date: Mon, 11 Nov 2019 11:45:54 +0800
+Message-ID: <1573443956-76489-1-git-send-email-zhengbin13@huawei.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Date: Sun, 10 Nov 2019 17:00:13 -0700
-From: Subsentient <subsentient@universe2.us>
-To: amd-gfx@lists.freedesktop.org
-Subject: AMDGPU bug
-Message-ID: <8a4cb7112cf6ed44581c838e84306e9c@universe2.us>
-X-Sender: subsentient@universe2.us
-User-Agent: Roundcube Webmail/1.3.6
+X-Originating-IP: [10.90.53.225]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Mon, 11 Nov 2019 08:09:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -45,62 +42,18 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0301415929=="
+Cc: zhengbin13@huawei.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0301415929==
-Content-Type: multipart/alternative;
- boundary="=_cff9e4b02e6db70b83fa734ee10aa7f1"
-
---=_cff9e4b02e6db70b83fa734ee10aa7f1
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=US-ASCII
-
-Hi, I've been experiencing a bug on kernels 5.2 and up that apparently
-is uncommon and/or unimportant enough to have both threads mentioning it
-die. 
-
-On a Ryzen 3 2200G, the amdgpu driver fails upon lightdm login: 
-
-https://bugzilla.redhat.com/show_bug.cgi?id=1752188 
-
-I thought I'd bring this to your attention as the others reporting this
-bug have so far been met with silence, and this has trapped me and
-others on the unsupported kernel 5.1.21. 
-
-Thanks for your time.
---=_cff9e4b02e6db70b83fa734ee10aa7f1
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
-eva,sans-serif'>
-<p>Hi, I've been experiencing a bug on kernels 5.2 and up that apparently i=
-s uncommon and/or unimportant enough to have both threads mentioning it die=
-=2E</p>
-<p>On a Ryzen 3 2200G, the amdgpu driver fails upon lightdm login:</p>
-<p><a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1752188">https:=
-//bugzilla.redhat.com/show_bug.cgi?id=3D1752188</a></p>
-<p>I thought I'd bring this to your attention as the others reporting this =
-bug have so far been met with silence, and this has trapped me and others o=
-n the unsupported kernel 5.1.21.</p>
-<p>Thanks for your time.</p>
-<p><br /></p>
-
-</body></html>
-
---=_cff9e4b02e6db70b83fa734ee10aa7f1--
-
---===============0301415929==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0301415929==--
+emhlbmdiaW4gKDIpOgogIGRybS9hbWQvcG93ZXJwbGF5OiByZW1vdmUgc2V0IGJ1dCBub3QgdXNl
+ZCB2YXJpYWJsZQogICAgJ3ZiaW9zX3ZlcnNpb24nLCdkYXRhJwogIGRybS9hbWQvcG93ZXJwbGF5
+OiByZW1vdmUgc2V0IGJ1dCBub3QgdXNlZCB2YXJpYWJsZSAnZGF0YScKCiBkcml2ZXJzL2dwdS9k
+cm0vYW1kL3Bvd2VycGxheS9od21nci9zbXU3X2h3bWdyLmMgICB8IDQgLS0tLQogZHJpdmVycy9n
+cHUvZHJtL2FtZC9wb3dlcnBsYXkvaHdtZ3IvdmVnYTEwX2h3bWdyLmMgfCAyIC0tCiAyIGZpbGVz
+IGNoYW5nZWQsIDYgZGVsZXRpb25zKC0pCgotLQoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9hbWQtZ2Z4
