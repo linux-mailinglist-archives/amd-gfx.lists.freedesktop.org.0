@@ -2,31 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8D4BFB23E
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2019 15:12:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3C00FB247
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2019 15:12:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF0B46ED25;
-	Wed, 13 Nov 2019 14:12:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD2756ED37;
+	Wed, 13 Nov 2019 14:12:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cloudserver094114.home.pl (cloudserver094114.home.pl
- [79.96.170.134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F08496ECD6;
- Wed, 13 Nov 2019 11:02:54 +0000 (UTC)
-Received: from 79.184.253.153.ipv4.supernova.orange.pl (79.184.253.153) (HELO
- kreacher.localnet)
- by serwer1319399.home.pl (79.96.170.134) with SMTP (IdeaSmtpServer 0.83.292)
- id f9c9ec80f02b64f5; Wed, 13 Nov 2019 12:02:52 +0100
-From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH 4/5] power: avs: smartreflex: Remove superfluous cast in
- debugfs_create_file() call
-Date: Wed, 13 Nov 2019 12:02:51 +0100
-Message-ID: <2168390.66xqsT3ub9@kreacher>
-In-Reply-To: <20191021145149.31657-5-geert+renesas@glider.be>
-References: <20191021145149.31657-1-geert+renesas@glider.be>
- <20191021145149.31657-5-geert+renesas@glider.be>
+Received: from huawei.com (szxga05-in.huawei.com [45.249.212.191])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18E4389836;
+ Wed, 13 Nov 2019 12:37:26 +0000 (UTC)
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id D2414F03F8CB951FDDDD;
+ Wed, 13 Nov 2019 20:37:20 +0800 (CST)
+Received: from huawei.com (10.90.53.225) by DGGEMS414-HUB.china.huawei.com
+ (10.3.19.214) with Microsoft SMTP Server id 14.3.439.0; Wed, 13 Nov 2019
+ 20:37:10 +0800
+From: yu kuai <yukuai3@huawei.com>
+To: <alexander.deucher@amd.com>, <Felix.Kuehling@amd.com>,
+ <christian.koenig@amd.com>, <David1.Zhou@amd.com>, <airlied@linux.ie>,
+ <daniel@ffwll.ch>, <Rex.Zhu@amd.com>, <evan.quan@amd.com>
+Subject: [PATCH 0/7] various '-Wunused-but-set-variable' gcc warning fixes
+Date: Wed, 13 Nov 2019 20:44:27 +0800
+Message-ID: <1573649074-72589-1-git-send-email-yukuai3@huawei.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+X-Originating-IP: [10.90.53.225]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Wed, 13 Nov 2019 14:12:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -39,45 +41,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nishanth Menon <nm@ti.com>, David Airlie <airlied@linux.ie>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- dri-devel@lists.freedesktop.org, Paulo Flabiano Smorigo <pfsmorigo@gmail.com>,
- Breno =?ISO-8859-1?Q?Leit=E3o?= <leitao@debian.org>, David@rox.of.borg,
- Herbert Xu <herbert@gondor.apana.org.au>, Kevin Hilman <khilman@kernel.org>,
- Michael Ellerman <mpe@ellerman.id.au>, Nayna Jain <nayna@linux.ibm.com>,
- amd-gfx@lists.freedesktop.org, Casey Leedom <leedom@chelsio.com>,
- linux-pm@vger.kernel.org, Pensando Drivers <drivers@pensando.io>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- "David S . Miller" <davem@davemloft.net>, linux-crypto@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>, netdev@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>, Paul Mackerras <paulus@samba.org>,
- Shannon Nelson <snelson@pensando.io>, linuxppc-dev@lists.ozlabs.org,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: yi.zhang@huawei.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, zhengbin13@huawei.com,
+ dri-devel@lists.freedesktop.org, yukuai3@huawei.com
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uZGF5LCBPY3RvYmVyIDIxLCAyMDE5IDQ6NTE6NDggUE0gQ0VUIEdlZXJ0IFV5dHRlcmhv
-ZXZlbiB3cm90ZToKPiBUaGVyZSBpcyBubyBuZWVkIHRvIGNhc3QgYSB0eXBlZCBwb2ludGVyIHRv
-IGEgdm9pZCBwb2ludGVyIHdoZW4gY2FsbGluZwo+IGEgZnVuY3Rpb24gdGhhdCBhY2NlcHRzIHRo
-ZSBsYXR0ZXIuICBSZW1vdmUgaXQsIGFzIHRoZSBjYXN0IHByZXZlbnRzCj4gZnVydGhlciBjb21w
-aWxlciBjaGVja3MuCj4gCj4gU2lnbmVkLW9mZi1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVy
-dCtyZW5lc2FzQGdsaWRlci5iZT4KPiAtLS0KPiAgZHJpdmVycy9wb3dlci9hdnMvc21hcnRyZWZs
-ZXguYyB8IDIgKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9u
-KC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcG93ZXIvYXZzL3NtYXJ0cmVmbGV4LmMgYi9k
-cml2ZXJzL3Bvd2VyL2F2cy9zbWFydHJlZmxleC5jCj4gaW5kZXggNDY4NGU3ZGY4MzNhODFlOS4u
-NTM3NmYzZDIyZjMxZWFkZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3Bvd2VyL2F2cy9zbWFydHJl
-ZmxleC5jCj4gKysrIGIvZHJpdmVycy9wb3dlci9hdnMvc21hcnRyZWZsZXguYwo+IEBAIC05MDUs
-NyArOTA1LDcgQEAgc3RhdGljIGludCBvbWFwX3NyX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZp
-Y2UgKnBkZXYpCj4gIAlzcl9pbmZvLT5kYmdfZGlyID0gZGVidWdmc19jcmVhdGVfZGlyKHNyX2lu
-Zm8tPm5hbWUsIHNyX2RiZ19kaXIpOwo+ICAKPiAgCWRlYnVnZnNfY3JlYXRlX2ZpbGUoImF1dG9j
-b21wIiwgU19JUlVHTyB8IFNfSVdVU1IsIHNyX2luZm8tPmRiZ19kaXIsCj4gLQkJCSAgICAodm9p
-ZCAqKXNyX2luZm8sICZwbV9zcl9mb3BzKTsKPiArCQkJICAgIHNyX2luZm8sICZwbV9zcl9mb3Bz
-KTsKPiAgCWRlYnVnZnNfY3JlYXRlX3gzMigiZXJyd2VpZ2h0IiwgU19JUlVHTywgc3JfaW5mby0+
-ZGJnX2RpciwKPiAgCQkJICAgJnNyX2luZm8tPmVycl93ZWlnaHQpOwo+ICAJZGVidWdmc19jcmVh
-dGVfeDMyKCJlcnJtYXhsaW1pdCIsIFNfSVJVR08sIHNyX2luZm8tPmRiZ19kaXIsCj4gCgpBcHBs
-eWluZyBhcyA1LjUgbWF0ZXJpYWwsIHRoYW5rcyEKCgoKCl9fX19fX19fX19fX19fX19fX19fX19f
+VGhpcyBwYXRjaCBzZXQgZml4ZXMgdmFyaW91cyB1bnJlbGF0ZWQgZ2NjICctV3VudXNlZC1idXQt
+c2V0LXZhcmlhYmxlJwp3YXJuaW5ncy4KCnl1IGt1YWkgKDcpOgogIGRybS9hbWRncHU6IHJlbW92
+ZSBzZXQgYnV0IG5vdCB1c2VkIHZhcmlhYmxlICdtY19zaGFyZWRfY2htYXAnIGZyb20KICAgICdn
+ZnhfdjZfMC5jJyBhbmQgJ2dmeF92N18wLmMnCiAgZHJtL2FtZGdwdTogcmVtb3ZlIHNldCBidXQg
+bm90IHVzZWQgdmFyaWFibGUgJ2FtZGdwdV9jb25uZWN0b3InCiAgZHJtL2FtZGdwdTogcmVtb3Zl
+IHNldCBidXQgbm90IHVzZWQgdmFyaWFibGUgJ2NvdW50JwogIGRybS9hbWRncHU6IHJlbW92ZSBz
+ZXQgYnV0IG5vdCB1c2VkIHZhcmlhYmxlICdpbnZhbGlkJwogIGRybS9hbWRncHU6IHJlbW92ZSBz
+ZXQgYnV0IG5vdCB1c2VkIHZhcmlhYmxlICd0aHJlc2hvbGQnCiAgZHJtL2FtZGdwdTogcmVtb3Zl
+IHNldCBidXQgbm90IHVzZWQgdmFyaWFibGUgJ3N0YXRlJwogIGRybS9hbWRncHU6IHJlbW92ZSBz
+ZXQgYnV0IG5vdCB1c2VkIHZhcmlhYmxlICd1c19tdmRkJwoKIGRyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L2FtZGdwdV9hbWRrZmRfZ3B1dm0uYyAgICB8ICA0ICsrLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2FtZGdwdV9kaXNwbGF5LmMgICAgICAgICB8ICAyIC0tCiBkcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGdwdS9nZnhfdjZfMC5jICAgICAgICAgICAgICAgfCAgMyArLS0KIGRyaXZl
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92N18wLmMgICAgICAgICAgICAgICB8ICAzICstLQog
+ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2RldmljZS5jICAgICAgICAgICAgIHwgIDQg
+KystLQogZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211bWdyL2Zpamlfc211bWdyLmMg
+IHwgIDcgKystLS0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211bWdyL3ZlZ2Ft
+X3NtdW1nci5jIHwgMTIgLS0tLS0tLS0tLS0tCiA3IGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9u
+cygrKSwgMjcgZGVsZXRpb25zKC0pCgotLSAKMi43LjQKCl9fX19fX19fX19fX19fX19fX19fX19f
 X19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
 bGlzdGluZm8vYW1kLWdmeA==
