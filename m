@@ -2,53 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71C74FF350
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 Nov 2019 17:25:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F10DFF3D4
+	for <lists+amd-gfx@lfdr.de>; Sat, 16 Nov 2019 17:28:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 922C66E184;
-	Sat, 16 Nov 2019 16:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C53B6E180;
+	Sat, 16 Nov 2019 16:28:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com
- [IPv6:2607:f8b0:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0DCC6E180
- for <amd-gfx@lists.freedesktop.org>; Sat, 16 Nov 2019 16:22:13 +0000 (UTC)
-Received: by mail-ot1-x342.google.com with SMTP id 19so824329otz.1
- for <amd-gfx@lists.freedesktop.org>; Sat, 16 Nov 2019 08:22:13 -0800 (PST)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB3086E180
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Nov 2019 16:28:31 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id r10so14358830wrx.3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Nov 2019 08:28:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=Qej+l/EyujvFjhIzT86Yo6gM1P2Xqkr228ppXC/Ez2E=;
- b=DyD3KT68/snlgb3lczCZqwT8LwhMaH2GMqm3RDIEna1g8b21dQ5I+FbWj/hOcrYZnh
- SI4t3rutvdetAcNnoZUyPxmY3h5M310Y+V/G6So9mAIhdaRL2yek3dZ70R0DIANPS2HB
- cXagunrckYzK98XEAKO0uNc9LAUO0wZLhxKwXFEyQxCvjaaeUKPqvFAHFtf3p/YCmVKA
- sa76IKUzMpYwZiOdlNgSncJsgrloreYz4o7ld84FazCnqMYQRZPzzG2SL1NdpXHNwJNz
- gS8ZSteA6agNob7c+zjFYi7Aw1DL1ofvy0olbkMgDWnOKMF22bQPdEQcjhIr+1xYTf6e
- 3FQw==
-X-Gm-Message-State: APjAAAW8mPCEB1gyrXJz+ZV9I+Z69DZJ+ypgyuXVek8tSDn1uC1Ppw6C
- fnjPi8p6TxoKX7lAPGWomNNUWm0x8cDc4CLDsno=
-X-Google-Smtp-Source: APXvYqyL0NKH2OxK6vowdNdRUDcLolfT43AAHA/grMC8byn2JBqhtgh2R6GeHPyw3F5XEDQpNvpDY3iJ8lkXHNm/NcY=
-X-Received: by 2002:a9d:6f92:: with SMTP id h18mr9169868otq.242.1573921333200; 
- Sat, 16 Nov 2019 08:22:13 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=za3z+X1eZvkcDkdrH+tKgT42RrZGcEEa2bLAvmhyQCI=;
+ b=LWT4rYGvdEdFEp3fr7oV+V4sTgVrCo+ofMKybM2qR8jDop63imVNOHZ3yxoT478uTH
+ eN8NmwZTm62xN2sxZhQr6XQC40L0zDI+WC1nnxaZ3X83GOsiZD6QBpQvueTxH3Vjk00j
+ Q09DmDW8eJQe31d+A3H++TYBPJNo3L1AlPAHeoP1SRTh6tXdNbsWql6KzpUE+oNRSt2s
+ vCj/CSlhW4he/HrAC4QkB+O3iXz9CvWLj7jqD4624YSgVEr+9OjdOJylAqa3IS4wqm92
+ 9sF41mrwZ1FfV/0SctFjz70LfQ/tJiyUnp/u6vVw/4oEqIPB1vUGfBHOPdqJ+mdQiqIT
+ o/FA==
+X-Gm-Message-State: APjAAAVINn15g+0HvAeE77DZUvBvH8KB8X4numF90Ljp6W5paWcZM+Pc
+ tdX5VSQrCOZlnLFUIBLvphJyMcFGjZHY9zmdp/I=
+X-Google-Smtp-Source: APXvYqyllf/ZJp1ZmVfORDrjPICWsatkOUh9QT8/o6LLxGGzR0vTrPkOFbTZqeaJ2mnNEdQHV+sImgrDelaFbUs/SkE=
+X-Received: by 2002:adf:f010:: with SMTP id j16mr22411389wro.206.1573921710518; 
+ Sat, 16 Nov 2019 08:28:30 -0800 (PST)
 MIME-Version: 1.0
-From: Iago Abal <iago.abal@gmail.com>
-Date: Sat, 16 Nov 2019 17:21:37 +0100
-Message-ID: <CAGbDTvpmPfrK=7a=mbnR-gKgi2ah+w6AeGYDU+9M9JOnWTzhBQ@mail.gmail.com>
-Subject: Potential BUG: [PATCH 2/8] drm/amdgpu: add a generic fb accessing
- helper function(v3)
-To: "Tianci.Yin" <tianci.yin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Luben Tuikov <luben.tuikov@amd.com>
-X-Mailman-Approved-At: Sat, 16 Nov 2019 16:25:06 +0000
+References: <54001452.28591.1573888462309@localhost>
+In-Reply-To: <54001452.28591.1573888462309@localhost>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Sat, 16 Nov 2019 11:28:19 -0500
+Message-ID: <CADnq5_O-5qW6o=96iJoBf=0ZjJWA+RjcYiuRuLfWXpsG=m_JpQ@mail.gmail.com>
+Subject: Re: Rebasing of amd-staging-drm-next
+To: "Babutzka, Martin" <martin.babutzka@online.de>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to:cc;
- bh=Qej+l/EyujvFjhIzT86Yo6gM1P2Xqkr228ppXC/Ez2E=;
- b=szL3CmF95u0l7A3p0cRo+EuEJqGW4nAiAlbNNp0C1g/QWxEoIE6rCYo5v6bml0Ro0/
- aOd4rc3T1Z2lbxAJFsJo4Y6SgyFUHkQowQgFfSe/JO+kii2FFckAKFkmdvlWn68XnA+D
- Qomf7aAVCP/uYW9VuLAKfhbltOj9OdEAl1SQrqhSo5EqMWFlyWlqBgzzY5EFjEoaWSAm
- AF0l5No6GHiS8fZLv0SEZowlSN4qqyiWTIzFH0lus9GhwF17Qv9/OamFHGlLE739kzas
- haoLDawzG/s92OFmcv0DceYM1cKDGsyW5PNsNAAHTinMDebv44mYPwJUIMzLbXA6s4w3
- 5anQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=za3z+X1eZvkcDkdrH+tKgT42RrZGcEEa2bLAvmhyQCI=;
+ b=jr4W/pvqWmrCbENeE2Xz2jbPYy8KomXs33NSnG0oua5BtaRTZEAfPeCfWDy4atiZAt
+ H/Aay7+CBaYUJSV0pNxHBesE4E5bNeH5NI/iekg5iaNNYmiaoo/XiMrHJKSg/EBRcxKz
+ NYB3qnH/HL5YCCZY52fkWqRc9LX1apzuYVQV7uXr05NBUi9JYjUcl4LFLwiBKC/IM+5U
+ gsmwnTLYFckRIsojbZHQxt4niTiJxvB2OaLJ6pCLgu4t8cFam7pAIQfVbTsbLBd6Cbc6
+ Wy8D0Q9VdiDsrOmz/a1Jf5hwfdleDKTbB9sBDINYgcmVOhYkxTu2su2YULAZg1qyapKd
+ OMHA==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -60,78 +61,22 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0846713704=="
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0846713704==
-Content-Type: multipart/alternative; boundary="000000000000f84ab90597791de4"
-
---000000000000f84ab90597791de4
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-With the help of a static bug finder (EBA - https://github.com/IagoAbal/eba)
-I have found a potential double lock in Linux Next tag next-20191115, file
-drivers/gpu/drm/amd/amdgpu/amdgpu_device.c.
-
-This bug seems to be introduced by commit
-e35e2b117f4 ("drm/amdgpu: add a generic fb accessing helper function(v3)").
-
-The steps to reproduce it would be:
-
-1. Start in function `amdgpu_device_vram_access`.
-2. Enter for-loop `for (last += pos; pos <= last; pos += 4)`.
-3. First lock: `spin_lock_irqsave(&adev->mmio_idx_lock, flags)`.
-4. Call to `WREG32_NO_KIQ(mmMM_INDEX, ((uint32_t)pos) | 0x80000000)`.
-   5. Note `#define WREG32_NO_KIQ(reg, v) amdgpu_mm_wreg(adev, (reg), (v),
-AMDGPU_REGS_NO_KIQ)`.
-   6. Continue in function `amdgpu_mm_wreg`.
-   7. Take else-branch in the third if-statement.
-   8. Double lock: `spin_lock_irqsave(&adev->mmio_idx_lock, flags)`.
-
-I think the control flow could reach that second lock, but you may know
-better.
-
-Hope it helps!
-
--- iago
-
---000000000000f84ab90597791de4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<br><br>With the help of a static bug finder (EBA - <a =
-href=3D"https://github.com/IagoAbal/eba">https://github.com/IagoAbal/eba</a=
->) I have found a potential double lock in Linux Next tag next-20191115, fi=
-le drivers/gpu/drm/amd/amdgpu/amdgpu_device.c.<br><br>This bug seems to be =
-introduced by commit<br>e35e2b117f4 (&quot;drm/amdgpu: add a generic fb acc=
-essing helper function(v3)&quot;).<br><br>The steps to reproduce it would b=
-e:<br><br>1. Start in function `amdgpu_device_vram_access`.<br>2. Enter for=
--loop `for (last +=3D pos; pos &lt;=3D last; pos +=3D 4)`.<br>3. First lock=
-: `spin_lock_irqsave(&amp;adev-&gt;mmio_idx_lock, flags)`.<br>4. Call to `W=
-REG32_NO_KIQ(mmMM_INDEX, ((uint32_t)pos) | 0x80000000)`.<br>=C2=A0 =C2=A05.=
- Note `#define WREG32_NO_KIQ(reg, v) amdgpu_mm_wreg(adev, (reg), (v), AMDGP=
-U_REGS_NO_KIQ)`.<br>=C2=A0 =C2=A06. Continue in function `amdgpu_mm_wreg`.<=
-div>=C2=A0 =C2=A07. Take else-branch in the third if-statement.<br>=C2=A0 =
-=C2=A08. Double lock: `spin_lock_irqsave(&amp;adev-&gt;mmio_idx_lock, flags=
-)`.<br><br>I think the control flow could reach that second lock, but you m=
-ay know better.</div><div><br>Hope it helps!<br clear=3D"all"><div><div dir=
-=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><br>-=
-- iago</div></div></div></div>
-
---000000000000f84ab90597791de4--
-
---===============0846713704==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============0846713704==--
+SXQgcm91Z2hseSBmb2xsb3dzIGRybS1uZXh0LiAgSWYgeW91IHdhbnQgc29tZXRoaW5nIG1vcmUg
+dXAgdG8gZGF0ZSwKeW91IGNhbiB1c2UgbXkgZHJtLW5leHQgYnJhbmNoOgpodHRwczovL2NnaXQu
+ZnJlZWRlc2t0b3Aub3JnL35hZ2Q1Zi9saW51eC9sb2cvP2g9ZHJtLW5leHQKCkFsZXgKCk9uIFNh
+dCwgTm92IDE2LCAyMDE5IGF0IDExOjI1IEFNIEJhYnV0emthLCBNYXJ0aW4KPG1hcnRpbi5iYWJ1
+dHprYUBvbmxpbmUuZGU+IHdyb3RlOgo+Cj4gRGVhciBBTUQgZGV2ZWxvcGVycywKPgo+IEFyZSB0
+aGVyZSBwbGFucyB0byByZWJhc2UgdGhlIHN0YWdpbmcga2VubmVsIHRvIDUuND8gV291bGQgYmUg
+Z3JlYXQgYmVjYXVzZSA1LjMgZG9lcyBub3QgYnVpbGRzIHByb3Blcmx5IGZvciBtZS4KPgo+IE1h
+bnkgcmVnYXJkcywKPiBNYXJ0aW4KPgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KPiBhbWQtZ2Z4IG1haWxpbmcgbGlzdAo+IGFtZC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9hbWQtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
