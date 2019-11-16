@@ -1,34 +1,52 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F53FFF34F
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 Nov 2019 17:25:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52614FF351
+	for <lists+amd-gfx@lfdr.de>; Sat, 16 Nov 2019 17:25:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C5646E180;
-	Sat, 16 Nov 2019 16:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A46386E187;
+	Sat, 16 Nov 2019 16:25:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga05-in.huawei.com [45.249.212.191])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F6E08957B;
- Sat, 16 Nov 2019 03:36:39 +0000 (UTC)
-Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.58])
- by Forcepoint Email with ESMTP id 459D3232D7737EC5CC9D;
- Sat, 16 Nov 2019 11:36:33 +0800 (CST)
-Received: from localhost.localdomain (10.90.53.225) by
- DGGEMS408-HUB.china.huawei.com (10.3.19.208) with Microsoft SMTP Server id
- 14.3.439.0; Sat, 16 Nov 2019 11:36:27 +0800
-From: Chen Wandun <chenwandun@huawei.com>
-To: <alexander.deucher@amd.com>, <evan.quan@amd.com>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>
-Subject: [PATCH] drm/amd/powerplay: remove variable 'result' set but not used
-Date: Sat, 16 Nov 2019 11:43:19 +0800
-Message-ID: <1573875799-83572-1-git-send-email-chenwandun@huawei.com>
-X-Mailer: git-send-email 2.7.4
+X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
+ Sat, 16 Nov 2019 07:19:28 UTC
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89D026E047
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Nov 2019 07:19:28 +0000 (UTC)
+Received: from oxbsgw74.schlund.de ([172.19.248.120]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MQdtO-1iH7MG2Mw2-00NgMM for <amd-gfx@lists.freedesktop.org>; Sat, 16 Nov
+ 2019 08:14:22 +0100
+X-Header: Open-Xchange USM Mailer (USM Version: 7.10.1-1, EAS Version:
+ 7.10.1-1, Build c4987799f06a2514ed4e083183a70d95864e7f2c)
+Date: Sat, 16 Nov 2019 08:14:20 +0100
+Subject: Rebasing of amd-staging-drm-next
+Message-ID: <54001452.28591.1573888462309@localhost>
+From: "Babutzka, Martin" <martin.babutzka@online.de>
+To: amd-gfx@lists.freedesktop.org
 MIME-Version: 1.0
-X-Originating-IP: [10.90.53.225]
-X-CFilter-Loop: Reflected
+X-Mailer: Open-Xchange Mailer v7.10.1-Rev23
+X-Originating-Client: USM-EAS
+X-Provags-ID: V03:K1:1rO+KH8K6NBBajvVrjPYO/jq3TYmi0kD2Q/iq4zpHgDIpzdzOa0
+ ll/nxHBFhKlKdNrlx4HoPWR6fmcW4xGQ+lBHozgHw11W+PkfeaVetWux/RUTtSO3PYGeuvH
+ IRgGC54u1cLTU3v5aik5FHNK5yoH7hxpajNu/s/ga1ch90kFxhQYKcYkAboTDNKeEr+UG3D
+ RoytVvzrlAo8FND4kyCHQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:hTxcb3C7IEY=:mkvZOh9q1WQwd4mA15Q36E
+ pfPbF8M12XzthSs65ovrvmyRJW+9nyv1rClZF+lzQmByPWGEJM8THVgNGYQmsP28Jc6pMzPFi
+ sOnszZUoJ9J7t6XH+xYRQbIS/FauQOduMdrifwIduglc100INtoN5a1Oc37K7cBSdji7N3P9F
+ dxURxY9y2oUfGiF/ZiMwLvZ3Qu6s/FLU4r4LOjct6O/x3ygm1eY0B5DyYVsU8olm4lZXoe251
+ Hws1yospnCS8kVFUQ4BK18l1niIFgjELSAmkrqgF3XUzcvnuKawsjuNkly79V+uC4Nna0p1LI
+ iMQiqX47V1riy73nNFZf+R69sjUzrcM7wgL8FVAdqFbTjyJ5JwsRkJbEaY17FXLoGjFB+eY5s
+ sN0Vn39btHcr0VXqZhGzUZejAwaT76uFKOD1gIYp1gsXN82ohTvpui8FcAO3Gjv+M3Lh+kJxC
+ ZpGDNEawMfQwiGobxng/iJ+K7R7OMvnpdmRFYIsK681VqmFmOr7e9TkF8WNfpnc7TxQZdyIE8
+ QSRs/TeA2m0x3t2roQDMNBlxrTPqrBGrj53AHroiIWX83YvLyMjhfB7jqXdgc0PJdeYJgHGEe
+ fjQzg9L184RCRZXcJDgM0/NbZWLpKj71WDHuuDnqiAF9MVW6n499YIk2zFOkq4oPuZeRjJ61T
+ HBhFF6s1p4kF2rER/siiiOB2sXVrbKbD84ZwGZYtt2qEZKZTlMIL2Wvc2UgFJyw0RIT/4y6ig
+ ASLtAdvvg7DUZZBsZNJCFOmmnITk9jr2tz7vnW6thPfF6EsxIjk2cVVPPCWA+n7QcbOqDb54D
+ KbAElDLiGCD2b7dic1UlK4WBdXFNhslJfdOz3QMUkHsXH7ueF74EZQcrGf2MZKfBPkj+gU1YA
+ 3Z706a4/ZE539DtoXWsNbExVrCGOca8vWhVQKP558=
 X-Mailman-Approved-At: Sat, 16 Nov 2019 16:25:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -41,44 +59,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chenwandun@huawei.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1787265811=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXMgZ2NjICctV3VudXNlZC1idXQtc2V0LXZhcmlhYmxlJyB3YXJuaW5nOgoKZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvLi4vcG93ZXJwbGF5L3NtdW1nci92ZWdhbV9zbXVtZ3IuYzogSW4g
-ZnVuY3Rpb24gdmVnYW1fcG9wdWxhdGVfc21jX2Jvb3RfbGV2ZWw6CmRyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1Ly4uL3Bvd2VycGxheS9zbXVtZ3IvdmVnYW1fc211bWdyLmM6MTM2NDo2OiB3YXJu
-aW5nOiB2YXJpYWJsZSByZXN1bHQgc2V0IGJ1dCBub3QgdXNlZCBbLVd1bnVzZWQtYnV0LXNldC12
-YXJpYWJsZV0KClNpZ25lZC1vZmYtYnk6IENoZW4gV2FuZHVuIDxjaGVud2FuZHVuQGh1YXdlaS5j
-b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211bWdyL3ZlZ2FtX3NtdW1n
-ci5jIHwgMTMgKysrKysrLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwg
-NyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxh
-eS9zbXVtZ3IvdmVnYW1fc211bWdyLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9z
-bXVtZ3IvdmVnYW1fc211bWdyLmMKaW5kZXggMjA2OGViMC4uZmFkNzhiZiAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211bWdyL3ZlZ2FtX3NtdW1nci5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L3NtdW1nci92ZWdhbV9zbXVtZ3IuYwpAQCAt
-MTM2MSwyMCArMTM2MSwxOSBAQCBzdGF0aWMgaW50IHZlZ2FtX3BvcHVsYXRlX3NtY191dmRfbGV2
-ZWwoc3RydWN0IHBwX2h3bWdyICpod21nciwKIHN0YXRpYyBpbnQgdmVnYW1fcG9wdWxhdGVfc21j
-X2Jvb3RfbGV2ZWwoc3RydWN0IHBwX2h3bWdyICpod21nciwKIAkJc3RydWN0IFNNVTc1X0Rpc2Ny
-ZXRlX0RwbVRhYmxlICp0YWJsZSkKIHsKLQlpbnQgcmVzdWx0ID0gMDsKIAlzdHJ1Y3Qgc211N19o
-d21nciAqZGF0YSA9IChzdHJ1Y3Qgc211N19od21nciAqKShod21nci0+YmFja2VuZCk7CiAKIAl0
-YWJsZS0+R3JhcGhpY3NCb290TGV2ZWwgPSAwOwogCXRhYmxlLT5NZW1vcnlCb290TGV2ZWwgPSAw
-OwogCiAJLyogZmluZCBib290IGxldmVsIGZyb20gZHBtIHRhYmxlICovCi0JcmVzdWx0ID0gcGht
-X2ZpbmRfYm9vdF9sZXZlbCgmKGRhdGEtPmRwbV90YWJsZS5zY2xrX3RhYmxlKSwKLQkJCWRhdGEt
-PnZiaW9zX2Jvb3Rfc3RhdGUuc2Nsa19ib290dXBfdmFsdWUsCi0JCQkodWludDMyX3QgKikmKHRh
-YmxlLT5HcmFwaGljc0Jvb3RMZXZlbCkpOworCXBobV9maW5kX2Jvb3RfbGV2ZWwoJihkYXRhLT5k
-cG1fdGFibGUuc2Nsa190YWJsZSksCisJCQkgICAgZGF0YS0+dmJpb3NfYm9vdF9zdGF0ZS5zY2xr
-X2Jvb3R1cF92YWx1ZSwKKwkJCSAgICAodWludDMyX3QgKikmKHRhYmxlLT5HcmFwaGljc0Jvb3RM
-ZXZlbCkpOwogCi0JcmVzdWx0ID0gcGhtX2ZpbmRfYm9vdF9sZXZlbCgmKGRhdGEtPmRwbV90YWJs
-ZS5tY2xrX3RhYmxlKSwKLQkJCWRhdGEtPnZiaW9zX2Jvb3Rfc3RhdGUubWNsa19ib290dXBfdmFs
-dWUsCi0JCQkodWludDMyX3QgKikmKHRhYmxlLT5NZW1vcnlCb290TGV2ZWwpKTsKKwlwaG1fZmlu
-ZF9ib290X2xldmVsKCYoZGF0YS0+ZHBtX3RhYmxlLm1jbGtfdGFibGUpLAorCQkJICAgIGRhdGEt
-PnZiaW9zX2Jvb3Rfc3RhdGUubWNsa19ib290dXBfdmFsdWUsCisJCQkgICAgKHVpbnQzMl90ICop
-Jih0YWJsZS0+TWVtb3J5Qm9vdExldmVsKSk7CiAKIAl0YWJsZS0+Qm9vdFZkZGMgID0gZGF0YS0+
-dmJpb3NfYm9vdF9zdGF0ZS52ZGRjX2Jvb3R1cF92YWx1ZSAqCiAJCQlWT0xUQUdFX1NDQUxFOwot
-LSAKMi43LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+--===============1787265811==
+Content-Type: multipart/alternative;
+ boundary=--_com.ninefolders.hd3.email_413646434019270_alt
+
+----_com.ninefolders.hd3.email_413646434019270_alt
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+RGVhciBBTUQgZGV2ZWxvcGVycywKCkFyZSB0aGVyZSBwbGFucyB0byByZWJhc2UgdGhlIHN0YWdp
+bmcga2VubmVsIHRvIDUuND8gV291bGQgYmUgZ3JlYXQgYmVjYXVzZSA1LjMgZG9lcyBub3QgYnVp
+bGRzIHByb3Blcmx5IGZvciBtZS4KCk1hbnkgcmVnYXJkcywKTWFydGluCgoK
+----_com.ninefolders.hd3.email_413646434019270_alt
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGJvZHk+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSwgQXJpYWwsIEhlbHZl
+dGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOjEyLjBwdDsgbGluZS1oZWlnaHQ6MS4zOyBjb2xv
+cjojMDAwMDAwIj48IS0tICMjIyMjIE5JTkUgQk9EWSBCRUdJTiAjIyMjIyAtLT5EZWFyIEFNRCBk
+ZXZlbG9wZXJzLDxicj48YnI+QXJlIHRoZXJlIHBsYW5zIHRvIHJlYmFzZSB0aGUgc3RhZ2luZyBr
+ZW5uZWwgdG8gNS40PyBXb3VsZCBiZSBncmVhdCBiZWNhdXNlIDUuMyBkb2VzIG5vdCBidWlsZHMg
+cHJvcGVybHkgZm9yIG1lLjxicj48YnI+TWFueSByZWdhcmRzLDxicj5NYXJ0aW48YnI+PGRpdiBp
+ZD0ic2lnbmF0dXJlLXgiIHN0eWxlPSItd2Via2l0LXVzZXItc2VsZWN0Om5vbmU7IGZvbnQtZmFt
+aWx5OkNhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMi4w
+cHQ7IGNvbG9yOiMwMDAwMDAiIGNsYXNzID0gInNpZ25hdHVyZV9lZGl0b3IiPjxkaXY+PGJyPjwv
+ZGl2PjwvZGl2PjwhLS0gIyMjIyMgTklORSBCT0RZIEVORCAjIyMjIyAtLT48L2Rpdj48ZGl2IGNs
+YXNzPSJxdW90ZWRfb3V0cHV0X2JvZHkiPjxkaXYgaWQ9InF1b3RlZF9oZWFkZXIiIGNsYXNzPSJx
+dW90ZWRfaGVhZGVyX2VkaXRvciIgc3R5bGU9ImNsZWFyOmJvdGg7Ij4gPC9kaXY+PGJyIHR5cGU9
+J2F0dHJpYnV0aW9uJz48ZGl2IGlkPSJxdW90ZWRfYm9keSIgY2xhc3M9InF1b3RlZF9ib2R5X2Vk
+aXRvciI+PC9kaXY+PC9kaXY+PC9ib2R5PjwvaHRtbD4=
+----_com.ninefolders.hd3.email_413646434019270_alt--
+
+--===============1787265811==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1787265811==--
