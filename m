@@ -1,93 +1,64 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6091C114125
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Dec 2019 14:03:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 719E71141EE
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Dec 2019 14:49:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFB766F4E4;
-	Thu,  5 Dec 2019 13:03:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDDA86E02F;
+	Thu,  5 Dec 2019 13:49:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2067.outbound.protection.outlook.com [40.107.94.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7863A6E0CF
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Dec 2019 13:03:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GLnAzwdvULmvbHrRDNfxTq+aqXmJAUIG+0S2O4vWaFmU4FNC2OC8z6vBtE3Jjx84MII23wHBr0L3AvEKkzJlZ/LjAo58Xv2WSo/Eb4Ziz39qNME/DX4kzKegzhDLxsO71OhdIKsGqnfaNZSxCoaiCvo5/Q9ezwWN8YvvZxFFr63wCg8/opsrIKED/7HDhsprUnP0fhDvwnV85YnPG+re6as1fspdVIbUTQ3piTvAe5NbeNJFjamild0WOGn+VsQBlpYOQGtqNnEUglJPL2tTF573lqbQhQTZWeVdzSG/W5aWeNtCTVM4KtC6EUWx/+y9ojshVtc/l8sp3QQ052gJ1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IMWXmO7J+t7WnC3ULcuMv9PEFnSywtkUIDrUxmcjuL4=;
- b=ZsZ+tAGYqRhuhHL+nhJLM/+TkXVRFlxt69PYWiMmp4csztQK2fffQGBXd9n8mq37NmkCS+A/aU7/MHmsbdm9G3zKNaNrn57jAi9UT0JSvLzsvUTligidjhAoVPKDc3XY0bFQ9sljG42LExOH2VzRdVILpaLR1nTN0H4FfC9FOXBCrCo8Uewd/RqmHSUovQfpWUJUoVm+HxGzsm8oiFUJ5bsv32neckzKoQm+fIxJjkrwtENTUP55mZesjBnGBd5ATIEQfCi9CSrvwlpIMP0fbRn7JlKB3ZMDJyRq6BCb5BZ8hZBUBfeFqEyR1NSGO2EN3XIoCi2cSiiVxIbctPpM6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from DM5PR12MB2376.namprd12.prod.outlook.com (52.132.143.139) by
- DM5PR12MB2360.namprd12.prod.outlook.com (52.132.208.149) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2495.20; Thu, 5 Dec 2019 13:03:10 +0000
-Received: from DM5PR12MB2376.namprd12.prod.outlook.com
- ([fe80::b8ee:257d:3a23:ae8a]) by DM5PR12MB2376.namprd12.prod.outlook.com
- ([fe80::b8ee:257d:3a23:ae8a%7]) with mapi id 15.20.2516.014; Thu, 5 Dec 2019
- 13:03:10 +0000
-From: "Das, Nirmoy" <Nirmoy.Das@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>, Nirmoy Das
- <nirmoy.aiemd@gmail.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Ho, Kenny" <Kenny.Ho@amd.com>
-Subject: Re: [RFC PATCH] drm/scheduler: rework entity creation
-Thread-Topic: [RFC PATCH] drm/scheduler: rework entity creation
-Thread-Index: AQHVq1o44R5qBOWs4EWWkm8sTdgD0KerYOQAgAAXxoCAAAj6mQ==
-Date: Thu, 5 Dec 2019 13:03:10 +0000
-Message-ID: <DM5PR12MB23768833C317283FCC25646E8B5C0@DM5PR12MB2376.namprd12.prod.outlook.com>
-References: <20191205105259.78636-1-nirmoy.das@amd.com>
- <6ad43025-72b0-2c94-9406-347856ea26ed@amd.com>,
- <5163725d-f108-25d6-e92f-e10c9663a7f4@amd.com>
-In-Reply-To: <5163725d-f108-25d6-e92f-e10c9663a7f4@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2019-12-05T13:01:56.5291834Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Privileged
-x-originating-ip: [2.247.252.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 4420b942-92cd-4022-3be7-08d779837b01
-x-ms-traffictypediagnostic: DM5PR12MB2360:|DM5PR12MB2360:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR12MB2360D84F62640220893E41778B5C0@DM5PR12MB2360.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-forefront-prvs: 02426D11FE
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(376002)(39860400002)(396003)(136003)(346002)(199004)(189003)(8676002)(33656002)(66476007)(66946007)(71190400001)(6636002)(66556008)(66446008)(14444005)(110136005)(99286004)(71200400001)(76116006)(26005)(186003)(86362001)(91956017)(14454004)(478600001)(64756008)(74316002)(4326008)(81156014)(55016002)(30864003)(8936002)(229853002)(54896002)(25786009)(81166006)(9686003)(2906002)(11346002)(76176011)(53546011)(6506007)(102836004)(7696005)(5660300002)(52536014)(316002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2360;
- H:DM5PR12MB2376.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 9dGegYqxTm86duNYafigTdevyQDlZh3QzZlLEwBC02OPvV1T7aTTMJZ9chJWw13zAgyPo53/nPx2niyuog0r8H56pA7Nj/n56T7Eu3kJJeSYKHYPbF3fAjAluLBibAOVF/WwdWx15g+RZ3Vhnkj+PeNqcGXIAGMA/Oj72GWo9HAgpMFX/+Jzi4VblBLl/xWT0iKiP4QNTtzKuO1XSUZgMQyt3+5vc/D7BBI9/bh1JNP6hog4FKTKeQtdL+Xacnuc8FnGJp4S2csvVZkh7DYO4Gt7U7y0tLqA0DNd7cujv5+LpJYIcLRg6lGQoi7tg54AhaTnrtan6EsoHwF0266soWxZxBKlo67okoKGeJqYZqovNXtvDxMmJFgD7k27nTM98mSoQqsjbC1zTQzY2MYp5BVrc2ffpECLJ2A/LrXlF1B1kpPR1AKDIu/A6UAQmeWx
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 288126F63D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Dec 2019 10:53:22 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id f4so7036135wmj.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 05 Dec 2019 02:53:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DsUut5bhx0rfvXHWoGzhX/XDzj/xtjNfBeBDLungmi0=;
+ b=S6FE1pLKRSmdEcXoJIdEx0Twc8fCwC81GtuRWYtdoB8aIAz6m62p0LElegoFKxcYxp
+ qGoGungZZmR41YGRLM0tVwAErGYebnf1WmxNRth4OfL960yXUPJ+oNCpQK1/1PsRbScf
+ 1zPO7/aGRFdUCH5RwmMg8AeB1DgR7lGh4FtFCa57PqFfsUEGObMysdjsvGNflcv11koB
+ /pncJsto0ofZqWkkrI2MDLuDjUemhg+wpHPuRJC4vdDwxxvyQ++Wg1TPZaSX2crLHzN7
+ o+NU0RESisbpOkjy18YIynGBS8VSXqi3/B5gn1HHxjy2m3Tjf9GIG1/nUMxicqzI5tzs
+ 2+JA==
+X-Gm-Message-State: APjAAAW9SNJos9+qi08zdUYaNlND4YVyrlbKFF+iX126jIRqO/SyemSB
+ SqdQXcBSFsACgRKlm4iZz6s=
+X-Google-Smtp-Source: APXvYqzVEZd8s+FPDoVfFZwX0XmNBt07JjnHDMLeZCwgs265KqAbk0s2vRn7lYzKfE96F/0JOM8Djw==
+X-Received: by 2002:a1c:1dc4:: with SMTP id d187mr4704977wmd.46.1575543200413; 
+ Thu, 05 Dec 2019 02:53:20 -0800 (PST)
+Received: from brihaspati.fritz.box
+ (p200300C58F2D01000D60DB7F8DFB835C.dip0.t-ipconnect.de.
+ [2003:c5:8f2d:100:d60:db7f:8dfb:835c])
+ by smtp.gmail.com with ESMTPSA id f2sm9247215wmh.46.2019.12.05.02.53.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 05 Dec 2019 02:53:19 -0800 (PST)
+From: Nirmoy Das <nirmoy.aiemd@gmail.com>
+X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
+To: alexander.deucher@amd.com,
+	kenny.ho@amd.com,
+	christian.koenig@amd.com
+Subject: [RFC PATCH] drm/scheduler: rework entity creation
+Date: Thu,  5 Dec 2019 11:52:59 +0100
+Message-Id: <20191205105259.78636-1-nirmoy.das@amd.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4420b942-92cd-4022-3be7-08d779837b01
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Dec 2019 13:03:10.6080 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oVRQVP5URoPh1Ot3Dg5JpaBR+AjVdZ2d9l3fdv3vk9sJK4RuEGS7jp+cw7TURjEpJIaxb8BzGsSrXHh5OR2+6A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2360
+X-Mailman-Approved-At: Thu, 05 Dec 2019 13:49:21 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IMWXmO7J+t7WnC3ULcuMv9PEFnSywtkUIDrUxmcjuL4=;
- b=frwxhDKQ8JYfuEwfhuxfwDvyl3oQIAxsw+PCJqr+vIgA64oLaMvq86e4uP1Gqo2UxLCagkLZNLzlGwtLzOZU1coxDi2QaDCSUHR9yPk75b9As+QeFSwZ735/ElcDZh/sa5F6BWjGhIUo/Mtsr7dqOgKOD5wxXKOpN/vYaALSw3s=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Nirmoy.Das@amd.com; 
+ d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DsUut5bhx0rfvXHWoGzhX/XDzj/xtjNfBeBDLungmi0=;
+ b=UUQE9XikJgwM1iaOLbl3A/WjFG0HEpeZkOaT7guclC4QXkzVPPcclBQ/uC5CJMEwBD
+ J/xC0j1pjMAVzzlHpsm6fbXYuT4uDeJUiy4H/t+ZURaZLU1Se+vOHpYx1dBr18DEXng7
+ Jhnzkkxk8455Q6Pavbyo44v7IggE0wieOozjtQmO+b/u9JjNxpdPGYnFvIzwoOTb9Bcw
+ tbTspujZKeysysa238JSvGL/OtqKqSYhxO9sZ+jY+xUpR6/8TzgKdJ3QmBLNKoi9r+ho
+ O4d4beSY6tpQe7WGX3U2vuTtKN0hazzKsfpmCYs3W2QKuafAFVcLg5H6W6FW7GdY9roK
+ dhLw==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -99,1230 +70,275 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1843003548=="
+Cc: nirmoy.das@amd.com, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1843003548==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR12MB23768833C317283FCC25646E8B5C0DM5PR12MB2376namp_"
-
---_000_DM5PR12MB23768833C317283FCC25646E8B5C0DM5PR12MB2376namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-[AMD Official Use Only - Internal Distribution Only]
-
-Thanks Christian,
-
-
-I will modify and resend.
-
-Regards,
-Nirmoy
-________________________________
-From: Koenig, Christian <Christian.Koenig@amd.com>
-Sent: Thursday, December 5, 2019 1:29:49 PM
-To: Das, Nirmoy <Nirmoy.Das@amd.com>; Nirmoy Das <nirmoy.aiemd@gmail.com>; =
-Deucher, Alexander <Alexander.Deucher@amd.com>; Ho, Kenny <Kenny.Ho@amd.com=
->
-Cc: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Das, Nir=
-moy <Nirmoy.Das@amd.com>
-Subject: Re: [RFC PATCH] drm/scheduler: rework entity creation
-
-Am 05.12.19 um 12:04 schrieb Nirmoy:
-> Hi Christian,
->
-> I am not exactly sure about drm_sched_entity_set_priority() I wonder
-> if just changing
->
-> entity->priority  to ctx->override_priority should work. With this
-> change drm_sched_entity_select_rq()
->
-> will chose a rq based on entity->priority which seems to me correct.
-> But is this enough to fix the old bug you were
->
-> talking about which mess up already scheduled job on priority change?
-
-Yes, that should perfectly do it.
-
->
-> okay I just realized I need a lock to make sure
->
-> drm_sched_entity_set_priority() and drm_sched_entity_select_rq()
-> shouldn't happen at the same time.
-
-Yeah, you probably need to grab the lock and make sure that you get the
-priority to use while holding the lock as well.
-
-Regards,
-Christian.
-
->
->
-> Regards,
->
-> Nirmoy
->
->
-> On 12/5/19 11:52 AM, Nirmoy Das wrote:
->> Entity currently keeps a copy of run_queue list and modify it in
->> drm_sched_entity_set_priority(). Entities shouldn't modify run_queue
->> list. Use drm_gpu_scheduler list instead of drm_sched_rq list
->> in drm_sched_entity struct. In this way we can select a runqueue based
->> on entity/ctx's priority for a  drm scheduler.
->>
->> Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c  |  7 +--
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c  |  7 +--
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c  |  7 +--
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c  |  7 +--
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c   | 14 +++--
->>   drivers/gpu/drm/etnaviv/etnaviv_drv.c    |  8 +--
->>   drivers/gpu/drm/lima/lima_sched.c        |  5 +-
->>   drivers/gpu/drm/panfrost/panfrost_job.c  |  7 +--
->>   drivers/gpu/drm/scheduler/sched_entity.c | 65 +++++++++---------------
->>   drivers/gpu/drm/v3d/v3d_drv.c            |  7 +--
->>   include/drm/gpu_scheduler.h              |  9 ++--
->>   11 files changed, 69 insertions(+), 74 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->> index a0d3d7b756eb..e8f46c13d073 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->> @@ -122,7 +122,7 @@ static int amdgpu_ctx_init(struct amdgpu_device
->> *adev,
->>         for (i =3D 0; i < AMDGPU_HW_IP_NUM; ++i) {
->>           struct amdgpu_ring *rings[AMDGPU_MAX_RINGS];
->> -        struct drm_sched_rq *rqs[AMDGPU_MAX_RINGS];
->> +        struct drm_gpu_scheduler *sched_list[AMDGPU_MAX_RINGS];
->>           unsigned num_rings =3D 0;
->>           unsigned num_rqs =3D 0;
->>   @@ -181,12 +181,13 @@ static int amdgpu_ctx_init(struct
->> amdgpu_device *adev,
->>               if (!rings[j]->adev)
->>                   continue;
->>   -            rqs[num_rqs++] =3D &rings[j]->sched.sched_rq[priority];
->> +            sched_list[num_rqs++] =3D &rings[j]->sched;
->>           }
->>             for (j =3D 0; j < amdgpu_ctx_num_entities[i]; ++j)
->>               r =3D drm_sched_entity_init(&ctx->entities[i][j].entity,
->> -                          rqs, num_rqs, &ctx->guilty);
->> +                          sched_list, num_rqs,
->> +                          &ctx->guilty, priority);
->>           if (r)
->>               goto error_cleanup_entities;
->>       }
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> index 19ffe00d9072..a960dd7c0711 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> @@ -1957,11 +1957,12 @@ void
->> amdgpu_ttm_set_buffer_funcs_status(struct amdgpu_device *adev, bool
->> enable)
->>         if (enable) {
->>           struct amdgpu_ring *ring;
->> -        struct drm_sched_rq *rq;
->> +        struct drm_gpu_scheduler *sched;
->>             ring =3D adev->mman.buffer_funcs_ring;
->> -        rq =3D &ring->sched.sched_rq[DRM_SCHED_PRIORITY_KERNEL];
->> -        r =3D drm_sched_entity_init(&adev->mman.entity, &rq, 1, NULL);
->> +        sched =3D &ring->sched;
->> +        r =3D drm_sched_entity_init(&adev->mman.entity, &sched,
->> +                      1, NULL, DRM_SCHED_PRIORITY_KERNEL);
->>           if (r) {
->>               DRM_ERROR("Failed setting up TTM BO move entity (%d)\n",
->>                     r);
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
->> index e324bfe6c58f..b803a8882864 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
->> @@ -330,12 +330,13 @@ int amdgpu_uvd_sw_fini(struct amdgpu_device *adev)
->>   int amdgpu_uvd_entity_init(struct amdgpu_device *adev)
->>   {
->>       struct amdgpu_ring *ring;
->> -    struct drm_sched_rq *rq;
->> +    struct drm_gpu_scheduler *sched;
->>       int r;
->>         ring =3D &adev->uvd.inst[0].ring;
->> -    rq =3D &ring->sched.sched_rq[DRM_SCHED_PRIORITY_NORMAL];
->> -    r =3D drm_sched_entity_init(&adev->uvd.entity, &rq, 1, NULL);
->> +    sched =3D &ring->sched;
->> +    r =3D drm_sched_entity_init(&adev->uvd.entity, &sched,
->> +                  1, NULL, DRM_SCHED_PRIORITY_NORMAL);
->>       if (r) {
->>           DRM_ERROR("Failed setting up UVD kernel entity.\n");
->>           return r;
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
->> index 46b590af2fd2..b44f28d44fb4 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
->> @@ -240,12 +240,13 @@ int amdgpu_vce_sw_fini(struct amdgpu_device *adev)
->>   int amdgpu_vce_entity_init(struct amdgpu_device *adev)
->>   {
->>       struct amdgpu_ring *ring;
->> -    struct drm_sched_rq *rq;
->> +    struct drm_gpu_scheduler *sched;
->>       int r;
->>         ring =3D &adev->vce.ring[0];
->> -    rq =3D &ring->sched.sched_rq[DRM_SCHED_PRIORITY_NORMAL];
->> -    r =3D drm_sched_entity_init(&adev->vce.entity, &rq, 1, NULL);
->> +    sched =3D &ring->sched;
->> +    r =3D drm_sched_entity_init(&adev->vce.entity, &sched,
->> +                  1, NULL, DRM_SCHED_PRIORITY_NORMAL);
->>       if (r !=3D 0) {
->>           DRM_ERROR("Failed setting up VCE run queue.\n");
->>           return r;
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> index a94c4faa5af1..ec6141773a92 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> @@ -2687,6 +2687,7 @@ int amdgpu_vm_init(struct amdgpu_device *adev,
->> struct amdgpu_vm *vm,
->>   {
->>       struct amdgpu_bo_param bp;
->>       struct amdgpu_bo *root;
->> +        struct drm_gpu_scheduler *sched_list[AMDGPU_MAX_RINGS];
->>       int r, i;
->>         vm->va =3D RB_ROOT_CACHED;
->> @@ -2700,14 +2701,19 @@ int amdgpu_vm_init(struct amdgpu_device
->> *adev, struct amdgpu_vm *vm,
->>       spin_lock_init(&vm->invalidated_lock);
->>       INIT_LIST_HEAD(&vm->freed);
->>   +        for (i =3D 0; i < adev->vm_manager.vm_pte_num_rqs; i++)
->> +           sched_list[i] =3D adev->vm_manager.vm_pte_rqs[i]->sched;
->> +
->>       /* create scheduler entities for page table updates */
->> -    r =3D drm_sched_entity_init(&vm->direct, adev->vm_manager.vm_pte_rq=
-s,
->> -                  adev->vm_manager.vm_pte_num_rqs, NULL);
->> +    r =3D drm_sched_entity_init(&vm->direct, sched_list,
->> +                  adev->vm_manager.vm_pte_num_rqs,
->> +                  NULL, DRM_SCHED_PRIORITY_KERNEL);
->>       if (r)
->>           return r;
->>   -    r =3D drm_sched_entity_init(&vm->delayed,
->> adev->vm_manager.vm_pte_rqs,
->> -                  adev->vm_manager.vm_pte_num_rqs, NULL);
->> +    r =3D drm_sched_entity_init(&vm->delayed, sched_list,
->> +                  adev->vm_manager.vm_pte_num_rqs,
->> +                  NULL, DRM_SCHED_PRIORITY_KERNEL);
->>       if (r)
->>           goto error_free_direct;
->>   diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.c
->> b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
->> index 1f9c01be40d7..a65c1e115e35 100644
->> --- a/drivers/gpu/drm/etnaviv/etnaviv_drv.c
->> +++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
->> @@ -65,12 +65,12 @@ static int etnaviv_open(struct drm_device *dev,
->> struct drm_file *file)
->>         for (i =3D 0; i < ETNA_MAX_PIPES; i++) {
->>           struct etnaviv_gpu *gpu =3D priv->gpu[i];
->> -        struct drm_sched_rq *rq;
->> +        struct drm_gpu_scheduler *sched;
->>             if (gpu) {
->> -            rq =3D &gpu->sched.sched_rq[DRM_SCHED_PRIORITY_NORMAL];
->> -            drm_sched_entity_init(&ctx->sched_entity[i],
->> -                          &rq, 1, NULL);
->> +            sched =3D &gpu->sched;
->> +            drm_sched_entity_init(&ctx->sched_entity[i], &sched,
->> +                          1, NULL, DRM_SCHED_PRIORITY_NORMAL);
->>               }
->>       }
->>   diff --git a/drivers/gpu/drm/lima/lima_sched.c
->> b/drivers/gpu/drm/lima/lima_sched.c
->> index f522c5f99729..a7e53878d841 100644
->> --- a/drivers/gpu/drm/lima/lima_sched.c
->> +++ b/drivers/gpu/drm/lima/lima_sched.c
->> @@ -159,9 +159,10 @@ int lima_sched_context_init(struct
->> lima_sched_pipe *pipe,
->>                   struct lima_sched_context *context,
->>                   atomic_t *guilty)
->>   {
->> -    struct drm_sched_rq *rq =3D pipe->base.sched_rq +
->> DRM_SCHED_PRIORITY_NORMAL;
->> +    struct drm_gpu_scheduler *sched =3D &pipe->base;
->>   -    return drm_sched_entity_init(&context->base, &rq, 1, guilty);
->> +    return drm_sched_entity_init(&context->base, &sched,
->> +                     1, guilty, DRM_SCHED_PRIORITY_NORMAL);
->>   }
->>     void lima_sched_context_fini(struct lima_sched_pipe *pipe,
->> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c
->> b/drivers/gpu/drm/panfrost/panfrost_job.c
->> index d411eb6c8eb9..84178bcf35c9 100644
->> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
->> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
->> @@ -542,12 +542,13 @@ int panfrost_job_open(struct panfrost_file_priv
->> *panfrost_priv)
->>   {
->>       struct panfrost_device *pfdev =3D panfrost_priv->pfdev;
->>       struct panfrost_job_slot *js =3D pfdev->js;
->> -    struct drm_sched_rq *rq;
->> +    struct drm_gpu_scheduler *sched;
->>       int ret, i;
->>         for (i =3D 0; i < NUM_JOB_SLOTS; i++) {
->> -        rq =3D &js->queue[i].sched.sched_rq[DRM_SCHED_PRIORITY_NORMAL];
->> -        ret =3D drm_sched_entity_init(&panfrost_priv->sched_entity[i],
->> &rq, 1, NULL);
->> +        sched =3D &js->queue[i].sched;
->> +        ret =3D drm_sched_entity_init(&panfrost_priv->sched_entity[i],
->> +                        &sched, 1, NULL, DRM_SCHED_PRIORITY_NORMAL);
->>           if (WARN_ON(ret))
->>               return ret;
->>       }
->> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
->> b/drivers/gpu/drm/scheduler/sched_entity.c
->> index 461a7a8129f4..e10d37266836 100644
->> --- a/drivers/gpu/drm/scheduler/sched_entity.c
->> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
->> @@ -38,9 +38,9 @@
->>    * submit to HW ring.
->>    *
->>    * @entity: scheduler entity to init
->> - * @rq_list: the list of run queue on which jobs from this
->> + * @sched_list: the list of drm scheds on which jobs from this
->>    *           entity can be submitted
->> - * @num_rq_list: number of run queue in rq_list
->> + * @num_sched_list: number of drm sched in sched_list
->>    * @guilty: atomic_t set to 1 when a job on this queue
->>    *          is found to be guilty causing a timeout
->>    *
->> @@ -50,32 +50,34 @@
->>    * Returns 0 on success or a negative error code on failure.
->>    */
->>   int drm_sched_entity_init(struct drm_sched_entity *entity,
->> -              struct drm_sched_rq **rq_list,
->> -              unsigned int num_rq_list,
->> -              atomic_t *guilty)
->> +              struct drm_gpu_scheduler **sched_list,
->> +              unsigned int num_sched_list,
->> +              atomic_t *guilty, enum drm_sched_priority priority)
->>   {
->>       int i;
->>   -    if (!(entity && rq_list && (num_rq_list =3D=3D 0 || rq_list[0])))
->> +    if (!(entity && sched_list && (num_sched_list =3D=3D 0 ||
->> sched_list[0])))
->>           return -EINVAL;
->>         memset(entity, 0, sizeof(struct drm_sched_entity));
->>       INIT_LIST_HEAD(&entity->list);
->>       entity->rq =3D NULL;
->>       entity->guilty =3D guilty;
->> -    entity->num_rq_list =3D num_rq_list;
->> -    entity->rq_list =3D kcalloc(num_rq_list, sizeof(struct
->> drm_sched_rq *),
->> -                GFP_KERNEL);
->> -    if (!entity->rq_list)
->> +    entity->num_sched_list =3D num_sched_list;
->> +    entity->priority =3D priority;
->> +    entity->sched_list =3D  kcalloc(num_sched_list,
->> +                      sizeof(struct drm_gpu_scheduler *), GFP_KERNEL);
->> +
->> +    if(!entity->sched_list)
->>           return -ENOMEM;
->>         init_completion(&entity->entity_idle);
->>   -    for (i =3D 0; i < num_rq_list; ++i)
->> -        entity->rq_list[i] =3D rq_list[i];
->> +    for (i =3D 0; i < num_sched_list; i++)
->> +        entity->sched_list[i] =3D sched_list[i];
->>   -    if (num_rq_list)
->> -        entity->rq =3D rq_list[0];
->> +    if (num_sched_list)
->> +        entity->rq =3D
->> &entity->sched_list[0]->sched_rq[entity->priority];
->>         entity->last_scheduled =3D NULL;
->>   @@ -139,10 +141,10 @@ drm_sched_entity_get_free_sched(struct
->> drm_sched_entity *entity)
->>       unsigned int min_jobs =3D UINT_MAX, num_jobs;
->>       int i;
->>   -    for (i =3D 0; i < entity->num_rq_list; ++i) {
->> -        struct drm_gpu_scheduler *sched =3D entity->rq_list[i]->sched;
->> +    for (i =3D 0; i < entity->num_sched_list; ++i) {
->> +        struct drm_gpu_scheduler *sched =3D entity->sched_list[i];
->>   -        if (!entity->rq_list[i]->sched->ready) {
->> +        if (!entity->sched_list[i]->ready) {
->>               DRM_WARN("sched%s is not ready, skipping", sched->name);
->>               continue;
->>           }
->> @@ -150,7 +152,7 @@ drm_sched_entity_get_free_sched(struct
->> drm_sched_entity *entity)
->>           num_jobs =3D atomic_read(&sched->num_jobs);
->>           if (num_jobs < min_jobs) {
->>               min_jobs =3D num_jobs;
->> -            rq =3D entity->rq_list[i];
->> +            rq =3D &entity->sched_list[i]->sched_rq[entity->priority];
->>           }
->>       }
->>   @@ -308,7 +310,7 @@ void drm_sched_entity_fini(struct
->> drm_sched_entity *entity)
->>         dma_fence_put(entity->last_scheduled);
->>       entity->last_scheduled =3D NULL;
->> -    kfree(entity->rq_list);
->> +    kfree(entity->sched_list);
->>   }
->>   EXPORT_SYMBOL(drm_sched_entity_fini);
->>   @@ -353,15 +355,6 @@ static void drm_sched_entity_wakeup(struct
->> dma_fence *f,
->>       drm_sched_wakeup(entity->rq->sched);
->>   }
->>   -/**
->> - * drm_sched_entity_set_rq_priority - helper for
->> drm_sched_entity_set_priority
->> - */
->> -static void drm_sched_entity_set_rq_priority(struct drm_sched_rq **rq,
->> -                         enum drm_sched_priority priority)
->> -{
->> -    *rq =3D &(*rq)->sched->sched_rq[priority];
->> -}
->> -
->>   /**
->>    * drm_sched_entity_set_priority - Sets priority of the entity
->>    *
->> @@ -373,20 +366,8 @@ static void
->> drm_sched_entity_set_rq_priority(struct drm_sched_rq **rq,
->>   void drm_sched_entity_set_priority(struct drm_sched_entity *entity,
->>                      enum drm_sched_priority priority)
->>   {
->> -    unsigned int i;
->> -
->> -    spin_lock(&entity->rq_lock);
->>   -    for (i =3D 0; i < entity->num_rq_list; ++i)
->> - drm_sched_entity_set_rq_priority(&entity->rq_list[i], priority);
->> -
->> -    if (entity->rq) {
->> -        drm_sched_rq_remove_entity(entity->rq, entity);
->> -        drm_sched_entity_set_rq_priority(&entity->rq, priority);
->> -        drm_sched_rq_add_entity(entity->rq, entity);
->> -    }
->> -
->> -    spin_unlock(&entity->rq_lock);
->> +    entity->priority =3D priority;
->>   }
->>   EXPORT_SYMBOL(drm_sched_entity_set_priority);
->>   @@ -490,7 +471,7 @@ void drm_sched_entity_select_rq(struct
->> drm_sched_entity *entity)
->>       struct dma_fence *fence;
->>       struct drm_sched_rq *rq;
->>   -    if (spsc_queue_count(&entity->job_queue) ||
->> entity->num_rq_list <=3D 1)
->> +    if (spsc_queue_count(&entity->job_queue) ||
->> entity->num_sched_list <=3D 1)
->>           return;
->>         fence =3D READ_ONCE(entity->last_scheduled);
->> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c
->> b/drivers/gpu/drm/v3d/v3d_drv.c
->> index 1a07462b4528..c6aff1aedd27 100644
->> --- a/drivers/gpu/drm/v3d/v3d_drv.c
->> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
->> @@ -140,7 +140,7 @@ v3d_open(struct drm_device *dev, struct drm_file
->> *file)
->>   {
->>       struct v3d_dev *v3d =3D to_v3d_dev(dev);
->>       struct v3d_file_priv *v3d_priv;
->> -    struct drm_sched_rq *rq;
->> +    struct drm_gpu_scheduler *sched;
->>       int i;
->>         v3d_priv =3D kzalloc(sizeof(*v3d_priv), GFP_KERNEL);
->> @@ -150,8 +150,9 @@ v3d_open(struct drm_device *dev, struct drm_file
->> *file)
->>       v3d_priv->v3d =3D v3d;
->>         for (i =3D 0; i < V3D_MAX_QUEUES; i++) {
->> -        rq =3D &v3d->queue[i].sched.sched_rq[DRM_SCHED_PRIORITY_NORMAL]=
-;
->> - drm_sched_entity_init(&v3d_priv->sched_entity[i], &rq, 1, NULL);
->> +        sched =3D &v3d->queue[i].sched;
->> + drm_sched_entity_init(&v3d_priv->sched_entity[i], &sched,
->> +                      1, NULL, DRM_SCHED_PRIORITY_NORMAL);
->>       }
->>         file->driver_priv =3D v3d_priv;
->> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
->> index 684692a8ed76..9df322dfac30 100644
->> --- a/include/drm/gpu_scheduler.h
->> +++ b/include/drm/gpu_scheduler.h
->> @@ -81,8 +81,9 @@ enum drm_sched_priority {
->>   struct drm_sched_entity {
->>       struct list_head        list;
->>       struct drm_sched_rq        *rq;
->> -    struct drm_sched_rq        **rq_list;
->> -    unsigned int                    num_rq_list;
->> +    unsigned int                    num_sched_list;
->> +    struct drm_gpu_scheduler        **sched_list;
->> +    enum drm_sched_priority         priority;
->>       spinlock_t            rq_lock;
->>         struct spsc_queue        job_queue;
->> @@ -312,9 +313,9 @@ void drm_sched_rq_remove_entity(struct
->> drm_sched_rq *rq,
->>                   struct drm_sched_entity *entity);
->>     int drm_sched_entity_init(struct drm_sched_entity *entity,
->> -              struct drm_sched_rq **rq_list,
->> +              struct drm_gpu_scheduler **sched_list,
->>                 unsigned int num_rq_list,
->> -              atomic_t *guilty);
->> +              atomic_t *guilty, enum drm_sched_priority priority);
->>   long drm_sched_entity_flush(struct drm_sched_entity *entity, long
->> timeout);
->>   void drm_sched_entity_fini(struct drm_sched_entity *entity);
->>   void drm_sched_entity_destroy(struct drm_sched_entity *entity);
-
-
---_000_DM5PR12MB23768833C317283FCC25646E8B5C0DM5PR12MB2376namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body>
-<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
-ign=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
- text-align: left;" dir=3D"auto">
-Thanks Christian,&nbsp;</div>
-<div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
- text-align: left;" dir=3D"auto">
-<br>
-</div>
-<div id=3D"ms-outlook-mobile-signature" dir=3D"auto" style=3D"text-align: l=
-eft;">
-<div><br>
-</div>
-I will modify and resend.</div>
-<div id=3D"ms-outlook-mobile-signature" dir=3D"auto" style=3D"text-align: l=
-eft;"><br>
-</div>
-<div id=3D"ms-outlook-mobile-signature" dir=3D"auto" style=3D"text-align: l=
-eft;">Regards,&nbsp;</div>
-<div id=3D"ms-outlook-mobile-signature" dir=3D"auto" style=3D"text-align: l=
-eft;">Nirmoy&nbsp;</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Koenig, Christian &lt=
-;Christian.Koenig@amd.com&gt;<br>
-<b>Sent:</b> Thursday, December 5, 2019 1:29:49 PM<br>
-<b>To:</b> Das, Nirmoy &lt;Nirmoy.Das@amd.com&gt;; Nirmoy Das &lt;nirmoy.ai=
-emd@gmail.com&gt;; Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Ho=
-, Kenny &lt;Kenny.Ho@amd.com&gt;<br>
-<b>Cc:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;; Das, Nirmoy &lt;Nirmoy.Das@amd.com&gt;<br>
-<b>Subject:</b> Re: [RFC PATCH] drm/scheduler: rework entity creation</font=
->
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Am 05.12.19 um 12:04 schrieb Nirmoy:<br>
-&gt; Hi Christian,<br>
-&gt;<br>
-&gt; I am not exactly sure about drm_sched_entity_set_priority() I wonder <=
-br>
-&gt; if just changing<br>
-&gt;<br>
-&gt; entity-&gt;priority&nbsp; to ctx-&gt;override_priority should work. Wi=
-th this <br>
-&gt; change drm_sched_entity_select_rq()<br>
-&gt;<br>
-&gt; will chose a rq based on entity-&gt;priority which seems to me correct=
-. <br>
-&gt; But is this enough to fix the old bug you were<br>
-&gt;<br>
-&gt; talking about which mess up already scheduled job on priority change?<=
-br>
-<br>
-Yes, that should perfectly do it.<br>
-<br>
-&gt;<br>
-&gt; okay I just realized I need a lock to make sure<br>
-&gt;<br>
-&gt; drm_sched_entity_set_priority() and drm_sched_entity_select_rq() <br>
-&gt; shouldn't happen at the same time.<br>
-<br>
-Yeah, you probably need to grab the lock and make sure that you get the <br=
->
-priority to use while holding the lock as well.<br>
-<br>
-Regards,<br>
-Christian.<br>
-<br>
-&gt;<br>
-&gt;<br>
-&gt; Regards,<br>
-&gt;<br>
-&gt; Nirmoy<br>
-&gt;<br>
-&gt;<br>
-&gt; On 12/5/19 11:52 AM, Nirmoy Das wrote:<br>
-&gt;&gt; Entity currently keeps a copy of run_queue list and modify it in<b=
-r>
-&gt;&gt; drm_sched_entity_set_priority(). Entities shouldn't modify run_que=
-ue<br>
-&gt;&gt; list. Use drm_gpu_scheduler list instead of drm_sched_rq list<br>
-&gt;&gt; in drm_sched_entity struct. In this way we can select a runqueue b=
-ased<br>
-&gt;&gt; on entity/ctx's priority for a&nbsp; drm scheduler.<br>
-&gt;&gt;<br>
-&gt;&gt; Signed-off-by: Nirmoy Das &lt;nirmoy.das@amd.com&gt;<br>
-&gt;&gt; ---<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c&nbsp; |&nbsp; 7 &#4=
-3;--<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c&nbsp; |&nbsp; 7 &#4=
-3;--<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c&nbsp; |&nbsp; 7 &#4=
-3;--<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c&nbsp; |&nbsp; 7 &#4=
-3;--<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c&nbsp;&nbsp; | 14 &#4=
-3;&#43;&#43;--<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/etnaviv/etnaviv_drv.c&nbsp;&nbsp;&nbsp; |&n=
-bsp; 8 &#43;--<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/lima/lima_sched.c&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; |&nbsp; 5 &#43;-<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/panfrost/panfrost_job.c&nbsp; |&nbsp; 7 &#4=
-3;--<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/scheduler/sched_entity.c | 65 &#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;---------------<br>
-&gt;&gt; &nbsp; drivers/gpu/drm/v3d/v3d_drv.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 7 &#43;--<br>
-&gt;&gt; &nbsp; include/drm/gpu_scheduler.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 9 &#43;&#43;--<br>
-&gt;&gt; &nbsp; 11 files changed, 69 insertions(&#43;), 74 deletions(-)<br>
-&gt;&gt;<br>
-&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c<br>
-&gt;&gt; index a0d3d7b756eb..e8f46c13d073 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c<br>
-&gt;&gt; @@ -122,7 &#43;122,7 @@ static int amdgpu_ctx_init(struct amdgpu_d=
-evice <br>
-&gt;&gt; *adev,<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; AMDGPU_=
-HW_IP_NUM; &#43;&#43;i) {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdg=
-pu_ring *rings[AMDGPU_MAX_RINGS];<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_sched_rq *r=
-qs[AMDGPU_MAX_RINGS];<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_gpu_sch=
-eduler *sched_list[AMDGPU_MAX_RINGS];<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned nu=
-m_rings =3D 0;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned nu=
-m_rqs =3D 0;<br>
-&gt;&gt; &nbsp; @@ -181,12 &#43;181,13 @@ static int amdgpu_ctx_init(struct=
- <br>
-&gt;&gt; amdgpu_device *adev,<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; if (!rings[j]-&gt;adev)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; continue;<br>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; rqs[num_rqs&#43;&#43;] =3D &amp;rings[j]-&gt;sched.sched_rq[priori=
-ty];<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; sched_list[num_rqs&#43;&#43;] =3D &amp;rings[j]-&gt;sched;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for =
-(j =3D 0; j &lt; amdgpu_ctx_num_entities[i]; &#43;&#43;j)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; r =3D drm_sched_entity_init(&amp;ctx-&gt;entities[i][j].entity=
-,<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; rqs, num_rqs, &amp;ctx-&gt;guilty);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; sched_list, num_rqs,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; &amp;ctx-&gt;guilty, priority);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; goto error_cleanup_entities;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
-&gt;&gt; index 19ffe00d9072..a960dd7c0711 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
-&gt;&gt; @@ -1957,11 &#43;1957,12 @@ void <br>
-&gt;&gt; amdgpu_ttm_set_buffer_funcs_status(struct amdgpu_device *adev, boo=
-l <br>
-&gt;&gt; enable)<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (enable) {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdg=
-pu_ring *ring;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_sched_rq *r=
-q;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_gpu_sch=
-eduler *sched;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ring=
- =3D adev-&gt;mman.buffer_funcs_ring;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rq =3D &amp;ring-&gt;s=
-ched.sched_rq[DRM_SCHED_PRIORITY_KERNEL];<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D drm_sched_entity=
-_init(&amp;adev-&gt;mman.entity, &amp;rq, 1, NULL);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sched =3D &amp;rin=
-g-&gt;sched;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D drm_sched_en=
-tity_init(&amp;adev-&gt;mman.entity, &amp;sched,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1, NULL, =
-DRM_SCHED_PRIORITY_KERNEL);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r) {<br=
->
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; DRM_ERROR(&quot;Failed setting up TTM BO move entity (%d)\n&qu=
-ot;,<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r);<br>
-&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c<br>
-&gt;&gt; index e324bfe6c58f..b803a8882864 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c<br>
-&gt;&gt; @@ -330,12 &#43;330,13 @@ int amdgpu_uvd_sw_fini(struct amdgpu_dev=
-ice *adev)<br>
-&gt;&gt; &nbsp; int amdgpu_uvd_entity_init(struct amdgpu_device *adev)<br>
-&gt;&gt; &nbsp; {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_ring *ring;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; struct drm_sched_rq *rq;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; struct drm_gpu_scheduler *sched;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ring =3D &amp;adev-&gt;uvd.i=
-nst[0].ring;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; rq =3D &amp;ring-&gt;sched.sched_rq[DRM_SCHED_=
-PRIORITY_NORMAL];<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; r =3D drm_sched_entity_init(&amp;adev-&gt;uvd.=
-entity, &amp;rq, 1, NULL);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; sched =3D &amp;ring-&gt;sched;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; r =3D drm_sched_entity_init(&amp;adev-&gt;=
-uvd.entity, &amp;sched,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1, NULL, DRM_SCHED_PRIORITY_NORMA=
-L);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r) {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_ERROR(&=
-quot;Failed setting up UVD kernel entity.\n&quot;);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<b=
-r>
-&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c<br>
-&gt;&gt; index 46b590af2fd2..b44f28d44fb4 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c<br>
-&gt;&gt; @@ -240,12 &#43;240,13 @@ int amdgpu_vce_sw_fini(struct amdgpu_dev=
-ice *adev)<br>
-&gt;&gt; &nbsp; int amdgpu_vce_entity_init(struct amdgpu_device *adev)<br>
-&gt;&gt; &nbsp; {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_ring *ring;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; struct drm_sched_rq *rq;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; struct drm_gpu_scheduler *sched;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ring =3D &amp;adev-&gt;vce.r=
-ing[0];<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; rq =3D &amp;ring-&gt;sched.sched_rq[DRM_SCHED_=
-PRIORITY_NORMAL];<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; r =3D drm_sched_entity_init(&amp;adev-&gt;vce.=
-entity, &amp;rq, 1, NULL);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; sched =3D &amp;ring-&gt;sched;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; r =3D drm_sched_entity_init(&amp;adev-&gt;=
-vce.entity, &amp;sched,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1, NULL, DRM_SCHED_PRIORITY_NORMA=
-L);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r !=3D 0) {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_ERROR(&=
-quot;Failed setting up VCE run queue.\n&quot;);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<b=
-r>
-&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c <br>
-&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c<br>
-&gt;&gt; index a94c4faa5af1..ec6141773a92 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c<br>
-&gt;&gt; @@ -2687,6 &#43;2687,7 @@ int amdgpu_vm_init(struct amdgpu_device =
-*adev, <br>
-&gt;&gt; struct amdgpu_vm *vm,<br>
-&gt;&gt; &nbsp; {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_bo_param bp;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_bo *root;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_gpu_sch=
-eduler *sched_list[AMDGPU_MAX_RINGS];<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r, i;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vm-&gt;va =3D RB_ROOT_CACHED=
-;<br>
-&gt;&gt; @@ -2700,14 &#43;2701,19 @@ int amdgpu_vm_init(struct amdgpu_devic=
-e <br>
-&gt;&gt; *adev, struct amdgpu_vm *vm,<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spin_lock_init(&amp;vm-&gt;invalida=
-ted_lock);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INIT_LIST_HEAD(&amp;vm-&gt;freed);<=
-br>
-&gt;&gt; &nbsp; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D =
-0; i &lt; adev-&gt;vm_manager.vm_pte_num_rqs; i&#43;&#43;)<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-sched_list[i] =3D adev-&gt;vm_manager.vm_pte_rqs[i]-&gt;sched;<br>
-&gt;&gt; &#43;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* create scheduler entities for pa=
-ge table updates */<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; r =3D drm_sched_entity_init(&amp;vm-&gt;direct=
-, adev-&gt;vm_manager.vm_pte_rqs,<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;vm_manager.vm_pte_num_rqs, N=
-ULL);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; r =3D drm_sched_entity_init(&amp;vm-&gt;di=
-rect, sched_list,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;vm_manager.vm_pte_num_rq=
-s,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NULL, DRM_SCHED_PRIORITY_KERNEL);=
-<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<b=
-r>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; r =3D drm_sched_entity_init(&amp;vm-&gt=
-;delayed, <br>
-&gt;&gt; adev-&gt;vm_manager.vm_pte_rqs,<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;vm_manager.vm_pte_num_rqs, N=
-ULL);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; r =3D drm_sched_entity_init(&amp;vm-&gt;de=
-layed, sched_list,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;vm_manager.vm_pte_num_rq=
-s,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NULL, DRM_SCHED_PRIORITY_KERNEL);=
-<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto error_=
-free_direct;<br>
-&gt;&gt; &nbsp; diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.c <br>
-&gt;&gt; b/drivers/gpu/drm/etnaviv/etnaviv_drv.c<br>
-&gt;&gt; index 1f9c01be40d7..a65c1e115e35 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/etnaviv/etnaviv_drv.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/etnaviv/etnaviv_drv.c<br>
-&gt;&gt; @@ -65,12 &#43;65,12 @@ static int etnaviv_open(struct drm_device =
-*dev, <br>
-&gt;&gt; struct drm_file *file)<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; ETNA_MA=
-X_PIPES; i&#43;&#43;) {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct etna=
-viv_gpu *gpu =3D priv-&gt;gpu[i];<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_sched_rq *r=
-q;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_gpu_sch=
-eduler *sched;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (=
-gpu) {<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; rq =3D &amp;gpu-&gt;sched.sched_rq[DRM_SCHED_PRIORITY_NORMAL];<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; drm_sched_entity_init(&amp;ctx-&gt;sched_entity[i],<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; &amp;rq, 1, NULL);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; sched =3D &amp;gpu-&gt;sched;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; drm_sched_entity_init(&amp;ctx-&gt;sched_entity[i], &amp;sched,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; 1, NULL, DRM_SCHED_PRIORITY_NORMAL);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; }<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt; &nbsp; diff --git a/drivers/gpu/drm/lima/lima_sched.c <br>
-&gt;&gt; b/drivers/gpu/drm/lima/lima_sched.c<br>
-&gt;&gt; index f522c5f99729..a7e53878d841 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/lima/lima_sched.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/lima/lima_sched.c<br>
-&gt;&gt; @@ -159,9 &#43;159,10 @@ int lima_sched_context_init(struct <br>
-&gt;&gt; lima_sched_pipe *pipe,<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct lima_sched_context *context,<br=
->
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; atomic_t *guilty)<br>
-&gt;&gt; &nbsp; {<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; struct drm_sched_rq *rq =3D pipe-&gt;base.sche=
-d_rq &#43; <br>
-&gt;&gt; DRM_SCHED_PRIORITY_NORMAL;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; struct drm_gpu_scheduler *sched =3D &amp;p=
-ipe-&gt;base;<br>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; return drm_sched_entity_init(&amp;conte=
-xt-&gt;base, &amp;rq, 1, guilty);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; return drm_sched_entity_init(&amp;context-=
-&gt;base, &amp;sched,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1, guilty, DRM_=
-SCHED_PRIORITY_NORMAL);<br>
-&gt;&gt; &nbsp; }<br>
-&gt;&gt; &nbsp; &nbsp; void lima_sched_context_fini(struct lima_sched_pipe =
-*pipe,<br>
-&gt;&gt; diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c <br>
-&gt;&gt; b/drivers/gpu/drm/panfrost/panfrost_job.c<br>
-&gt;&gt; index d411eb6c8eb9..84178bcf35c9 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/panfrost/panfrost_job.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/panfrost/panfrost_job.c<br>
-&gt;&gt; @@ -542,12 &#43;542,13 @@ int panfrost_job_open(struct panfrost_fi=
-le_priv <br>
-&gt;&gt; *panfrost_priv)<br>
-&gt;&gt; &nbsp; {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct panfrost_device *pfdev =3D p=
-anfrost_priv-&gt;pfdev;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct panfrost_job_slot *js =3D pf=
-dev-&gt;js;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; struct drm_sched_rq *rq;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; struct drm_gpu_scheduler *sched;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret, i;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; NUM_JOB=
-_SLOTS; i&#43;&#43;) {<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rq =3D &amp;js-&gt;que=
-ue[i].sched.sched_rq[DRM_SCHED_PRIORITY_NORMAL];<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_sched_enti=
-ty_init(&amp;panfrost_priv-&gt;sched_entity[i], <br>
-&gt;&gt; &amp;rq, 1, NULL);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sched =3D &amp;js-=
-&gt;queue[i].sched;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_sched_=
-entity_init(&amp;panfrost_priv-&gt;sched_entity[i],<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; &amp;sched, 1, NULL, DRM_SCHED_PRIORITY_NORMAL);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (WARN_ON=
-(ret))<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; return ret;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt; diff --git a/drivers/gpu/drm/scheduler/sched_entity.c <br>
-&gt;&gt; b/drivers/gpu/drm/scheduler/sched_entity.c<br>
-&gt;&gt; index 461a7a8129f4..e10d37266836 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/scheduler/sched_entity.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/scheduler/sched_entity.c<br>
-&gt;&gt; @@ -38,9 &#43;38,9 @@<br>
-&gt;&gt; &nbsp;&nbsp; * submit to HW ring.<br>
-&gt;&gt; &nbsp;&nbsp; *<br>
-&gt;&gt; &nbsp;&nbsp; * @entity: scheduler entity to init<br>
-&gt;&gt; - * @rq_list: the list of run queue on which jobs from this<br>
-&gt;&gt; &#43; * @sched_list: the list of drm scheds on which jobs from thi=
-s<br>
-&gt;&gt; &nbsp;&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; entity can be submitted<br>
-&gt;&gt; - * @num_rq_list: number of run queue in rq_list<br>
-&gt;&gt; &#43; * @num_sched_list: number of drm sched in sched_list<br>
-&gt;&gt; &nbsp;&nbsp; * @guilty: atomic_t set to 1 when a job on this queue=
-<br>
-&gt;&gt; &nbsp;&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; is found to be guilty causing a timeout<br>
-&gt;&gt; &nbsp;&nbsp; *<br>
-&gt;&gt; @@ -50,32 &#43;50,34 @@<br>
-&gt;&gt; &nbsp;&nbsp; * Returns 0 on success or a negative error code on fa=
-ilure.<br>
-&gt;&gt; &nbsp;&nbsp; */<br>
-&gt;&gt; &nbsp; int drm_sched_entity_init(struct drm_sched_entity *entity,<=
-br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; struct drm_sched_rq **rq_list,<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; unsigned int num_rq_list,<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; atomic_t *guilty)<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; struct drm_gpu_scheduler **sched_list,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; unsigned int num_sched_list,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; atomic_t *guilty, enum drm_sched_priority priority)<br>
-&gt;&gt; &nbsp; {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;<br>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; if (!(entity &amp;&amp; rq_list &amp;&a=
-mp; (num_rq_list =3D=3D 0 || rq_list[0])))<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; if (!(entity &amp;&amp; sched_list &amp;&a=
-mp; (num_sched_list =3D=3D 0 || <br>
-&gt;&gt; sched_list[0])))<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -EIN=
-VAL;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; memset(entity, 0, sizeof(str=
-uct drm_sched_entity));<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INIT_LIST_HEAD(&amp;entity-&gt;list=
-);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entity-&gt;rq =3D NULL;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entity-&gt;guilty =3D guilty;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; entity-&gt;num_rq_list =3D num_rq_list;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; entity-&gt;rq_list =3D kcalloc(num_rq_list, si=
-zeof(struct <br>
-&gt;&gt; drm_sched_rq *),<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; GFP_KERNEL);<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; if (!entity-&gt;rq_list)<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; entity-&gt;num_sched_list =3D num_sched_li=
-st;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; entity-&gt;priority =3D priority;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; entity-&gt;sched_list =3D&nbsp; kcalloc(nu=
-m_sched_list,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sizeof(st=
-ruct drm_gpu_scheduler *), GFP_KERNEL);<br>
-&gt;&gt; &#43;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; if(!entity-&gt;sched_list)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -ENO=
-MEM;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; init_completion(&amp;entity-=
-&gt;entity_idle);<br>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; num_rq_list; &#43;=
-&#43;i)<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entity-&gt;rq_list[i] =
-=3D rq_list[i];<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; num_sched_list; i&#43=
-;&#43;)<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entity-&gt;sched_l=
-ist[i] =3D sched_list[i];<br>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; if (num_rq_list)<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entity-&gt;rq =3D rq_l=
-ist[0];<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; if (num_sched_list)<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entity-&gt;rq =3D =
-<br>
-&gt;&gt; &amp;entity-&gt;sched_list[0]-&gt;sched_rq[entity-&gt;priority];<b=
-r>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entity-&gt;last_scheduled =
-=3D NULL;<br>
-&gt;&gt; &nbsp; @@ -139,10 &#43;141,10 @@ drm_sched_entity_get_free_sched(s=
-truct <br>
-&gt;&gt; drm_sched_entity *entity)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int min_jobs =3D UINT_MAX,=
- num_jobs;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;<br>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; entity-&gt;num_rq_=
-list; &#43;&#43;i) {<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_gpu_schedul=
-er *sched =3D entity-&gt;rq_list[i]-&gt;sched;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; entity-&gt;num_sched_=
-list; &#43;&#43;i) {<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_gpu_sch=
-eduler *sched =3D entity-&gt;sched_list[i];<br>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!entity-&gt=
-;rq_list[i]-&gt;sched-&gt;ready) {<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!entity-&gt;sc=
-hed_list[i]-&gt;ready) {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; DRM_WARN(&quot;sched%s is not ready, skipping&quot;, sched-&gt=
-;name);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; continue;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt; @@ -150,7 &#43;152,7 @@ drm_sched_entity_get_free_sched(struct <br=
->
-&gt;&gt; drm_sched_entity *entity)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num_jobs =
-=3D atomic_read(&amp;sched-&gt;num_jobs);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (num_job=
-s &lt; min_jobs) {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; min_jobs =3D num_jobs;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; rq =3D entity-&gt;rq_list[i];<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; rq =3D &amp;entity-&gt;sched_list[i]-&gt;sched_rq[entity-&gt;priority=
-];<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt; &nbsp; @@ -308,7 &#43;310,7 @@ void drm_sched_entity_fini(struct <=
-br>
-&gt;&gt; drm_sched_entity *entity)<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dma_fence_put(entity-&gt;las=
-t_scheduled);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entity-&gt;last_scheduled =3D NULL;=
-<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; kfree(entity-&gt;rq_list);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; kfree(entity-&gt;sched_list);<br>
-&gt;&gt; &nbsp; }<br>
-&gt;&gt; &nbsp; EXPORT_SYMBOL(drm_sched_entity_fini);<br>
-&gt;&gt; &nbsp; @@ -353,15 &#43;355,6 @@ static void drm_sched_entity_wakeu=
-p(struct <br>
-&gt;&gt; dma_fence *f,<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_sched_wakeup(entity-&gt;rq-&gt;=
-sched);<br>
-&gt;&gt; &nbsp; }<br>
-&gt;&gt; &nbsp; -/**<br>
-&gt;&gt; - * drm_sched_entity_set_rq_priority - helper for <br>
-&gt;&gt; drm_sched_entity_set_priority<br>
-&gt;&gt; - */<br>
-&gt;&gt; -static void drm_sched_entity_set_rq_priority(struct drm_sched_rq =
-**rq,<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; enum drm_sched_priority priority)<br>
-&gt;&gt; -{<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; *rq =3D &amp;(*rq)-&gt;sched-&gt;sched_rq[prio=
-rity];<br>
-&gt;&gt; -}<br>
-&gt;&gt; -<br>
-&gt;&gt; &nbsp; /**<br>
-&gt;&gt; &nbsp;&nbsp; * drm_sched_entity_set_priority - Sets priority of th=
-e entity<br>
-&gt;&gt; &nbsp;&nbsp; *<br>
-&gt;&gt; @@ -373,20 &#43;366,8 @@ static void <br>
-&gt;&gt; drm_sched_entity_set_rq_priority(struct drm_sched_rq **rq,<br>
-&gt;&gt; &nbsp; void drm_sched_entity_set_priority(struct drm_sched_entity =
-*entity,<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enum drm_sched_prior=
-ity priority)<br>
-&gt;&gt; &nbsp; {<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; unsigned int i;<br>
-&gt;&gt; -<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; spin_lock(&amp;entity-&gt;rq_lock);<br>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; entity-&gt;num_rq_=
-list; &#43;&#43;i)<br>
-&gt;&gt; - drm_sched_entity_set_rq_priority(&amp;entity-&gt;rq_list[i], pri=
-ority);<br>
-&gt;&gt; -<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; if (entity-&gt;rq) {<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_sched_rq_remove_en=
-tity(entity-&gt;rq, entity);<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_sched_entity_set_r=
-q_priority(&amp;entity-&gt;rq, priority);<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_sched_rq_add_entit=
-y(entity-&gt;rq, entity);<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt; -<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; spin_unlock(&amp;entity-&gt;rq_lock);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; entity-&gt;priority =3D priority;<br>
-&gt;&gt; &nbsp; }<br>
-&gt;&gt; &nbsp; EXPORT_SYMBOL(drm_sched_entity_set_priority);<br>
-&gt;&gt; &nbsp; @@ -490,7 &#43;471,7 @@ void drm_sched_entity_select_rq(str=
-uct <br>
-&gt;&gt; drm_sched_entity *entity)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fence *fence;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_sched_rq *rq;<br>
-&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; if (spsc_queue_count(&amp;entity-&gt;jo=
-b_queue) || <br>
-&gt;&gt; entity-&gt;num_rq_list &lt;=3D 1)<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; if (spsc_queue_count(&amp;entity-&gt;job_q=
-ueue) || <br>
-&gt;&gt; entity-&gt;num_sched_list &lt;=3D 1)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fence =3D READ_ONCE(entity-&=
-gt;last_scheduled);<br>
-&gt;&gt; diff --git a/drivers/gpu/drm/v3d/v3d_drv.c <br>
-&gt;&gt; b/drivers/gpu/drm/v3d/v3d_drv.c<br>
-&gt;&gt; index 1a07462b4528..c6aff1aedd27 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/v3d/v3d_drv.c<br>
-&gt;&gt; &#43;&#43;&#43; b/drivers/gpu/drm/v3d/v3d_drv.c<br>
-&gt;&gt; @@ -140,7 &#43;140,7 @@ v3d_open(struct drm_device *dev, struct dr=
-m_file <br>
-&gt;&gt; *file)<br>
-&gt;&gt; &nbsp; {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct v3d_dev *v3d =3D to_v3d_dev(=
-dev);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct v3d_file_priv *v3d_priv;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; struct drm_sched_rq *rq;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; struct drm_gpu_scheduler *sched;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v3d_priv =3D kzalloc(sizeof(=
-*v3d_priv), GFP_KERNEL);<br>
-&gt;&gt; @@ -150,8 &#43;150,9 @@ v3d_open(struct drm_device *dev, struct dr=
-m_file <br>
-&gt;&gt; *file)<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v3d_priv-&gt;v3d =3D v3d;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; V3D_MAX=
-_QUEUES; i&#43;&#43;) {<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rq =3D &amp;v3d-&gt;qu=
-eue[i].sched.sched_rq[DRM_SCHED_PRIORITY_NORMAL];<br>
-&gt;&gt; - drm_sched_entity_init(&amp;v3d_priv-&gt;sched_entity[i], &amp;rq=
-, 1, NULL);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sched =3D &amp;v3d=
--&gt;queue[i].sched;<br>
-&gt;&gt; &#43; drm_sched_entity_init(&amp;v3d_priv-&gt;sched_entity[i], &am=
-p;sched,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1, NULL, =
-DRM_SCHED_PRIORITY_NORMAL);<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file-&gt;driver_priv =3D v3d=
-_priv;<br>
-&gt;&gt; diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_schedul=
-er.h<br>
-&gt;&gt; index 684692a8ed76..9df322dfac30 100644<br>
-&gt;&gt; --- a/include/drm/gpu_scheduler.h<br>
-&gt;&gt; &#43;&#43;&#43; b/include/drm/gpu_scheduler.h<br>
-&gt;&gt; @@ -81,8 &#43;81,9 @@ enum drm_sched_priority {<br>
-&gt;&gt; &nbsp; struct drm_sched_entity {<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct list_head&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; list;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_sched_rq&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; *rq;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; struct drm_sched_rq&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; **rq_list;<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; num_rq_list;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; num_sched_list;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; struct drm_gpu_scheduler&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; **sched_list;<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp; enum drm_sched_priority&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; priority;<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spinlock_t&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rq_lock;<br>
-&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct spsc_queue&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; job_queue;<br>
-&gt;&gt; @@ -312,9 &#43;313,9 @@ void drm_sched_rq_remove_entity(struct <br=
->
-&gt;&gt; drm_sched_rq *rq,<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_sched_entity *entity);<br>
-&gt;&gt; &nbsp; &nbsp; int drm_sched_entity_init(struct drm_sched_entity *e=
-ntity,<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; struct drm_sched_rq **rq_list,<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; struct drm_gpu_scheduler **sched_list,<br>
-&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; unsigned int num_rq_list,<br>
-&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; atomic_t *guilty);<br>
-&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; atomic_t *guilty, enum drm_sched_priority priority);<br>
-&gt;&gt; &nbsp; long drm_sched_entity_flush(struct drm_sched_entity *entity=
-, long <br>
-&gt;&gt; timeout);<br>
-&gt;&gt; &nbsp; void drm_sched_entity_fini(struct drm_sched_entity *entity)=
-;<br>
-&gt;&gt; &nbsp; void drm_sched_entity_destroy(struct drm_sched_entity *enti=
-ty);<br>
-<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_DM5PR12MB23768833C317283FCC25646E8B5C0DM5PR12MB2376namp_--
-
---===============1843003548==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-
---===============1843003548==--
+RW50aXR5IGN1cnJlbnRseSBrZWVwcyBhIGNvcHkgb2YgcnVuX3F1ZXVlIGxpc3QgYW5kIG1vZGlm
+eSBpdCBpbgpkcm1fc2NoZWRfZW50aXR5X3NldF9wcmlvcml0eSgpLiBFbnRpdGllcyBzaG91bGRu
+J3QgbW9kaWZ5IHJ1bl9xdWV1ZQpsaXN0LiBVc2UgZHJtX2dwdV9zY2hlZHVsZXIgbGlzdCBpbnN0
+ZWFkIG9mIGRybV9zY2hlZF9ycSBsaXN0CmluIGRybV9zY2hlZF9lbnRpdHkgc3RydWN0LiBJbiB0
+aGlzIHdheSB3ZSBjYW4gc2VsZWN0IGEgcnVucXVldWUgYmFzZWQKb24gZW50aXR5L2N0eCdzIHBy
+aW9yaXR5IGZvciBhICBkcm0gc2NoZWR1bGVyLgoKU2lnbmVkLW9mZi1ieTogTmlybW95IERhcyA8
+bmlybW95LmRhc0BhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
+dV9jdHguYyAgfCAgNyArLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0u
+YyAgfCAgNyArLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV91dmQuYyAgfCAg
+NyArLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92Y2UuYyAgfCAgNyArLS0K
+IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jICAgfCAxNCArKystLQogZHJp
+dmVycy9ncHUvZHJtL2V0bmF2aXYvZXRuYXZpdl9kcnYuYyAgICB8ICA4ICstLQogZHJpdmVycy9n
+cHUvZHJtL2xpbWEvbGltYV9zY2hlZC5jICAgICAgICB8ICA1ICstCiBkcml2ZXJzL2dwdS9kcm0v
+cGFuZnJvc3QvcGFuZnJvc3Rfam9iLmMgIHwgIDcgKy0tCiBkcml2ZXJzL2dwdS9kcm0vc2NoZWR1
+bGVyL3NjaGVkX2VudGl0eS5jIHwgNjUgKysrKysrKysrLS0tLS0tLS0tLS0tLS0tCiBkcml2ZXJz
+L2dwdS9kcm0vdjNkL3YzZF9kcnYuYyAgICAgICAgICAgIHwgIDcgKy0tCiBpbmNsdWRlL2RybS9n
+cHVfc2NoZWR1bGVyLmggICAgICAgICAgICAgIHwgIDkgKystLQogMTEgZmlsZXMgY2hhbmdlZCwg
+NjkgaW5zZXJ0aW9ucygrKSwgNzQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2N0eC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2N0eC5jCmluZGV4IGEwZDNkN2I3NTZlYi4uZThmNDZjMTNkMDczIDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfY3R4LmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2N0eC5jCkBAIC0xMjIsNyArMTIyLDcgQEAgc3Rh
+dGljIGludCBhbWRncHVfY3R4X2luaXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsCiAKIAlm
+b3IgKGkgPSAwOyBpIDwgQU1ER1BVX0hXX0lQX05VTTsgKytpKSB7CiAJCXN0cnVjdCBhbWRncHVf
+cmluZyAqcmluZ3NbQU1ER1BVX01BWF9SSU5HU107Ci0JCXN0cnVjdCBkcm1fc2NoZWRfcnEgKnJx
+c1tBTURHUFVfTUFYX1JJTkdTXTsKKwkJc3RydWN0IGRybV9ncHVfc2NoZWR1bGVyICpzY2hlZF9s
+aXN0W0FNREdQVV9NQVhfUklOR1NdOwogCQl1bnNpZ25lZCBudW1fcmluZ3MgPSAwOwogCQl1bnNp
+Z25lZCBudW1fcnFzID0gMDsKIApAQCAtMTgxLDEyICsxODEsMTMgQEAgc3RhdGljIGludCBhbWRn
+cHVfY3R4X2luaXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsCiAJCQlpZiAoIXJpbmdzW2pd
+LT5hZGV2KQogCQkJCWNvbnRpbnVlOwogCi0JCQlycXNbbnVtX3JxcysrXSA9ICZyaW5nc1tqXS0+
+c2NoZWQuc2NoZWRfcnFbcHJpb3JpdHldOworCQkJc2NoZWRfbGlzdFtudW1fcnFzKytdID0gJnJp
+bmdzW2pdLT5zY2hlZDsKIAkJfQogCiAJCWZvciAoaiA9IDA7IGogPCBhbWRncHVfY3R4X251bV9l
+bnRpdGllc1tpXTsgKytqKQogCQkJciA9IGRybV9zY2hlZF9lbnRpdHlfaW5pdCgmY3R4LT5lbnRp
+dGllc1tpXVtqXS5lbnRpdHksCi0JCQkJCQkgIHJxcywgbnVtX3JxcywgJmN0eC0+Z3VpbHR5KTsK
+KwkJCQkJCSAgc2NoZWRfbGlzdCwgbnVtX3JxcywKKwkJCQkJCSAgJmN0eC0+Z3VpbHR5LCBwcmlv
+cml0eSk7CiAJCWlmIChyKQogCQkJZ290byBlcnJvcl9jbGVhbnVwX2VudGl0aWVzOwogCX0KZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyBiL2RyaXZl
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwppbmRleCAxOWZmZTAwZDkwNzIuLmE5
+NjBkZDdjMDcxMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+X3R0bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwpAQCAt
+MTk1NywxMSArMTk1NywxMiBAQCB2b2lkIGFtZGdwdV90dG1fc2V0X2J1ZmZlcl9mdW5jc19zdGF0
+dXMoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsIGJvb2wgZW5hYmxlKQogCiAJaWYgKGVuYWJs
+ZSkgewogCQlzdHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmc7Ci0JCXN0cnVjdCBkcm1fc2NoZWRfcnEg
+KnJxOworCQlzdHJ1Y3QgZHJtX2dwdV9zY2hlZHVsZXIgKnNjaGVkOwogCiAJCXJpbmcgPSBhZGV2
+LT5tbWFuLmJ1ZmZlcl9mdW5jc19yaW5nOwotCQlycSA9ICZyaW5nLT5zY2hlZC5zY2hlZF9ycVtE
+Uk1fU0NIRURfUFJJT1JJVFlfS0VSTkVMXTsKLQkJciA9IGRybV9zY2hlZF9lbnRpdHlfaW5pdCgm
+YWRldi0+bW1hbi5lbnRpdHksICZycSwgMSwgTlVMTCk7CisJCXNjaGVkID0gJnJpbmctPnNjaGVk
+OworCQlyID0gZHJtX3NjaGVkX2VudGl0eV9pbml0KCZhZGV2LT5tbWFuLmVudGl0eSwgJnNjaGVk
+LAorCQkJCQkgIDEsIE5VTEwsIERSTV9TQ0hFRF9QUklPUklUWV9LRVJORUwpOwogCQlpZiAocikg
+ewogCQkJRFJNX0VSUk9SKCJGYWlsZWQgc2V0dGluZyB1cCBUVE0gQk8gbW92ZSBlbnRpdHkgKCVk
+KVxuIiwKIAkJCQkgIHIpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X3V2ZC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3V2ZC5jCmlu
+ZGV4IGUzMjRiZmU2YzU4Zi4uYjgwM2E4ODgyODY0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS9hbWRncHVfdXZkLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X3V2ZC5jCkBAIC0zMzAsMTIgKzMzMCwxMyBAQCBpbnQgYW1kZ3B1X3V2ZF9zd19m
+aW5pKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogaW50IGFtZGdwdV91dmRfZW50aXR5X2lu
+aXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCiB7CiAJc3RydWN0IGFtZGdwdV9yaW5nICpy
+aW5nOwotCXN0cnVjdCBkcm1fc2NoZWRfcnEgKnJxOworCXN0cnVjdCBkcm1fZ3B1X3NjaGVkdWxl
+ciAqc2NoZWQ7CiAJaW50IHI7CiAKIAlyaW5nID0gJmFkZXYtPnV2ZC5pbnN0WzBdLnJpbmc7Ci0J
+cnEgPSAmcmluZy0+c2NoZWQuc2NoZWRfcnFbRFJNX1NDSEVEX1BSSU9SSVRZX05PUk1BTF07Ci0J
+ciA9IGRybV9zY2hlZF9lbnRpdHlfaW5pdCgmYWRldi0+dXZkLmVudGl0eSwgJnJxLCAxLCBOVUxM
+KTsKKwlzY2hlZCA9ICZyaW5nLT5zY2hlZDsKKwlyID0gZHJtX3NjaGVkX2VudGl0eV9pbml0KCZh
+ZGV2LT51dmQuZW50aXR5LCAmc2NoZWQsCisJCQkJICAxLCBOVUxMLCBEUk1fU0NIRURfUFJJT1JJ
+VFlfTk9STUFMKTsKIAlpZiAocikgewogCQlEUk1fRVJST1IoIkZhaWxlZCBzZXR0aW5nIHVwIFVW
+RCBrZXJuZWwgZW50aXR5LlxuIik7CiAJCXJldHVybiByOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZjZS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X3ZjZS5jCmluZGV4IDQ2YjU5MGFmMmZkMi4uYjQ0ZjI4ZDQ0ZmI0IDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdmNlLmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZjZS5jCkBAIC0yNDAsMTIgKzI0MCwxMyBAQCBp
+bnQgYW1kZ3B1X3ZjZV9zd19maW5pKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogaW50IGFt
+ZGdwdV92Y2VfZW50aXR5X2luaXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCiB7CiAJc3Ry
+dWN0IGFtZGdwdV9yaW5nICpyaW5nOwotCXN0cnVjdCBkcm1fc2NoZWRfcnEgKnJxOworCXN0cnVj
+dCBkcm1fZ3B1X3NjaGVkdWxlciAqc2NoZWQ7CiAJaW50IHI7CiAKIAlyaW5nID0gJmFkZXYtPnZj
+ZS5yaW5nWzBdOwotCXJxID0gJnJpbmctPnNjaGVkLnNjaGVkX3JxW0RSTV9TQ0hFRF9QUklPUklU
+WV9OT1JNQUxdOwotCXIgPSBkcm1fc2NoZWRfZW50aXR5X2luaXQoJmFkZXYtPnZjZS5lbnRpdHks
+ICZycSwgMSwgTlVMTCk7CisJc2NoZWQgPSAmcmluZy0+c2NoZWQ7CisJciA9IGRybV9zY2hlZF9l
+bnRpdHlfaW5pdCgmYWRldi0+dmNlLmVudGl0eSwgJnNjaGVkLAorCQkJCSAgMSwgTlVMTCwgRFJN
+X1NDSEVEX1BSSU9SSVRZX05PUk1BTCk7CiAJaWYgKHIgIT0gMCkgewogCQlEUk1fRVJST1IoIkZh
+aWxlZCBzZXR0aW5nIHVwIFZDRSBydW4gcXVldWUuXG4iKTsKIAkJcmV0dXJuIHI7CmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYyBiL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jCmluZGV4IGE5NGM0ZmFhNWFmMS4uZWM2MTQxNzcz
+YTkyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYwpAQCAtMjY4Nyw2ICsy
+Njg3LDcgQEAgaW50IGFtZGdwdV92bV9pbml0KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LCBz
+dHJ1Y3QgYW1kZ3B1X3ZtICp2bSwKIHsKIAlzdHJ1Y3QgYW1kZ3B1X2JvX3BhcmFtIGJwOwogCXN0
+cnVjdCBhbWRncHVfYm8gKnJvb3Q7CisgICAgICAgIHN0cnVjdCBkcm1fZ3B1X3NjaGVkdWxlciAq
+c2NoZWRfbGlzdFtBTURHUFVfTUFYX1JJTkdTXTsKIAlpbnQgciwgaTsKIAogCXZtLT52YSA9IFJC
+X1JPT1RfQ0FDSEVEOwpAQCAtMjcwMCwxNCArMjcwMSwxOSBAQCBpbnQgYW1kZ3B1X3ZtX2luaXQo
+c3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsIHN0cnVjdCBhbWRncHVfdm0gKnZtLAogCXNwaW5f
+bG9ja19pbml0KCZ2bS0+aW52YWxpZGF0ZWRfbG9jayk7CiAJSU5JVF9MSVNUX0hFQUQoJnZtLT5m
+cmVlZCk7CiAKKyAgICAgICAgZm9yIChpID0gMDsgaSA8IGFkZXYtPnZtX21hbmFnZXIudm1fcHRl
+X251bV9ycXM7IGkrKykKKwkgICAgICAgc2NoZWRfbGlzdFtpXSA9IGFkZXYtPnZtX21hbmFnZXIu
+dm1fcHRlX3Jxc1tpXS0+c2NoZWQ7CisKIAkvKiBjcmVhdGUgc2NoZWR1bGVyIGVudGl0aWVzIGZv
+ciBwYWdlIHRhYmxlIHVwZGF0ZXMgKi8KLQlyID0gZHJtX3NjaGVkX2VudGl0eV9pbml0KCZ2bS0+
+ZGlyZWN0LCBhZGV2LT52bV9tYW5hZ2VyLnZtX3B0ZV9ycXMsCi0JCQkJICBhZGV2LT52bV9tYW5h
+Z2VyLnZtX3B0ZV9udW1fcnFzLCBOVUxMKTsKKwlyID0gZHJtX3NjaGVkX2VudGl0eV9pbml0KCZ2
+bS0+ZGlyZWN0LCBzY2hlZF9saXN0LAorCQkJCSAgYWRldi0+dm1fbWFuYWdlci52bV9wdGVfbnVt
+X3JxcywKKwkJCQkgIE5VTEwsIERSTV9TQ0hFRF9QUklPUklUWV9LRVJORUwpOwogCWlmIChyKQog
+CQlyZXR1cm4gcjsKIAotCXIgPSBkcm1fc2NoZWRfZW50aXR5X2luaXQoJnZtLT5kZWxheWVkLCBh
+ZGV2LT52bV9tYW5hZ2VyLnZtX3B0ZV9ycXMsCi0JCQkJICBhZGV2LT52bV9tYW5hZ2VyLnZtX3B0
+ZV9udW1fcnFzLCBOVUxMKTsKKwlyID0gZHJtX3NjaGVkX2VudGl0eV9pbml0KCZ2bS0+ZGVsYXll
+ZCwgc2NoZWRfbGlzdCwKKwkJCQkgIGFkZXYtPnZtX21hbmFnZXIudm1fcHRlX251bV9ycXMsCisJ
+CQkJICBOVUxMLCBEUk1fU0NIRURfUFJJT1JJVFlfS0VSTkVMKTsKIAlpZiAocikKIAkJZ290byBl
+cnJvcl9mcmVlX2RpcmVjdDsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2V0bmF2aXYv
+ZXRuYXZpdl9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9ldG5hdml2L2V0bmF2aXZfZHJ2LmMKaW5k
+ZXggMWY5YzAxYmU0MGQ3Li5hNjVjMWUxMTVlMzUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ldG5hdml2L2V0bmF2aXZfZHJ2LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2V0bmF2aXYvZXRu
+YXZpdl9kcnYuYwpAQCAtNjUsMTIgKzY1LDEyIEBAIHN0YXRpYyBpbnQgZXRuYXZpdl9vcGVuKHN0
+cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkKIAogCWZvciAoaSA9
+IDA7IGkgPCBFVE5BX01BWF9QSVBFUzsgaSsrKSB7CiAJCXN0cnVjdCBldG5hdml2X2dwdSAqZ3B1
+ID0gcHJpdi0+Z3B1W2ldOwotCQlzdHJ1Y3QgZHJtX3NjaGVkX3JxICpycTsKKwkJc3RydWN0IGRy
+bV9ncHVfc2NoZWR1bGVyICpzY2hlZDsKIAogCQlpZiAoZ3B1KSB7Ci0JCQlycSA9ICZncHUtPnNj
+aGVkLnNjaGVkX3JxW0RSTV9TQ0hFRF9QUklPUklUWV9OT1JNQUxdOwotCQkJZHJtX3NjaGVkX2Vu
+dGl0eV9pbml0KCZjdHgtPnNjaGVkX2VudGl0eVtpXSwKLQkJCQkJICAgICAgJnJxLCAxLCBOVUxM
+KTsKKwkJCXNjaGVkID0gJmdwdS0+c2NoZWQ7CisJCQlkcm1fc2NoZWRfZW50aXR5X2luaXQoJmN0
+eC0+c2NoZWRfZW50aXR5W2ldLCAmc2NoZWQsCisJCQkJCSAgICAgIDEsIE5VTEwsIERSTV9TQ0hF
+RF9QUklPUklUWV9OT1JNQUwpOwogCQkJfQogCX0KIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2xpbWEvbGltYV9zY2hlZC5jIGIvZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9zY2hlZC5j
+CmluZGV4IGY1MjJjNWY5OTcyOS4uYTdlNTM4NzhkODQxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vbGltYS9saW1hX3NjaGVkLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9z
+Y2hlZC5jCkBAIC0xNTksOSArMTU5LDEwIEBAIGludCBsaW1hX3NjaGVkX2NvbnRleHRfaW5pdChz
+dHJ1Y3QgbGltYV9zY2hlZF9waXBlICpwaXBlLAogCQkJICAgIHN0cnVjdCBsaW1hX3NjaGVkX2Nv
+bnRleHQgKmNvbnRleHQsCiAJCQkgICAgYXRvbWljX3QgKmd1aWx0eSkKIHsKLQlzdHJ1Y3QgZHJt
+X3NjaGVkX3JxICpycSA9IHBpcGUtPmJhc2Uuc2NoZWRfcnEgKyBEUk1fU0NIRURfUFJJT1JJVFlf
+Tk9STUFMOworCXN0cnVjdCBkcm1fZ3B1X3NjaGVkdWxlciAqc2NoZWQgPSAmcGlwZS0+YmFzZTsK
+IAotCXJldHVybiBkcm1fc2NoZWRfZW50aXR5X2luaXQoJmNvbnRleHQtPmJhc2UsICZycSwgMSwg
+Z3VpbHR5KTsKKwlyZXR1cm4gZHJtX3NjaGVkX2VudGl0eV9pbml0KCZjb250ZXh0LT5iYXNlLCAm
+c2NoZWQsCisJCQkJICAgICAxLCBndWlsdHksIERSTV9TQ0hFRF9QUklPUklUWV9OT1JNQUwpOwog
+fQogCiB2b2lkIGxpbWFfc2NoZWRfY29udGV4dF9maW5pKHN0cnVjdCBsaW1hX3NjaGVkX3BpcGUg
+KnBpcGUsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcGFuZnJvc3QvcGFuZnJvc3Rfam9i
+LmMgYi9kcml2ZXJzL2dwdS9kcm0vcGFuZnJvc3QvcGFuZnJvc3Rfam9iLmMKaW5kZXggZDQxMWVi
+NmM4ZWI5Li44NDE3OGJjZjM1YzkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9wYW5mcm9z
+dC9wYW5mcm9zdF9qb2IuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vcGFuZnJvc3QvcGFuZnJvc3Rf
+am9iLmMKQEAgLTU0MiwxMiArNTQyLDEzIEBAIGludCBwYW5mcm9zdF9qb2Jfb3BlbihzdHJ1Y3Qg
+cGFuZnJvc3RfZmlsZV9wcml2ICpwYW5mcm9zdF9wcml2KQogewogCXN0cnVjdCBwYW5mcm9zdF9k
+ZXZpY2UgKnBmZGV2ID0gcGFuZnJvc3RfcHJpdi0+cGZkZXY7CiAJc3RydWN0IHBhbmZyb3N0X2pv
+Yl9zbG90ICpqcyA9IHBmZGV2LT5qczsKLQlzdHJ1Y3QgZHJtX3NjaGVkX3JxICpycTsKKwlzdHJ1
+Y3QgZHJtX2dwdV9zY2hlZHVsZXIgKnNjaGVkOwogCWludCByZXQsIGk7CiAKIAlmb3IgKGkgPSAw
+OyBpIDwgTlVNX0pPQl9TTE9UUzsgaSsrKSB7Ci0JCXJxID0gJmpzLT5xdWV1ZVtpXS5zY2hlZC5z
+Y2hlZF9ycVtEUk1fU0NIRURfUFJJT1JJVFlfTk9STUFMXTsKLQkJcmV0ID0gZHJtX3NjaGVkX2Vu
+dGl0eV9pbml0KCZwYW5mcm9zdF9wcml2LT5zY2hlZF9lbnRpdHlbaV0sICZycSwgMSwgTlVMTCk7
+CisJCXNjaGVkID0gJmpzLT5xdWV1ZVtpXS5zY2hlZDsKKwkJcmV0ID0gZHJtX3NjaGVkX2VudGl0
+eV9pbml0KCZwYW5mcm9zdF9wcml2LT5zY2hlZF9lbnRpdHlbaV0sCisJCQkJCSAgICAmc2NoZWQs
+IDEsIE5VTEwsIERSTV9TQ0hFRF9QUklPUklUWV9OT1JNQUwpOwogCQlpZiAoV0FSTl9PTihyZXQp
+KQogCQkJcmV0dXJuIHJldDsKIAl9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vc2NoZWR1
+bGVyL3NjaGVkX2VudGl0eS5jIGIvZHJpdmVycy9ncHUvZHJtL3NjaGVkdWxlci9zY2hlZF9lbnRp
+dHkuYwppbmRleCA0NjFhN2E4MTI5ZjQuLmUxMGQzNzI2NjgzNiAxMDA2NDQKLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL3NjaGVkdWxlci9zY2hlZF9lbnRpdHkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+c2NoZWR1bGVyL3NjaGVkX2VudGl0eS5jCkBAIC0zOCw5ICszOCw5IEBACiAgKiBzdWJtaXQgdG8g
+SFcgcmluZy4KICAqCiAgKiBAZW50aXR5OiBzY2hlZHVsZXIgZW50aXR5IHRvIGluaXQKLSAqIEBy
+cV9saXN0OiB0aGUgbGlzdCBvZiBydW4gcXVldWUgb24gd2hpY2ggam9icyBmcm9tIHRoaXMKKyAq
+IEBzY2hlZF9saXN0OiB0aGUgbGlzdCBvZiBkcm0gc2NoZWRzIG9uIHdoaWNoIGpvYnMgZnJvbSB0
+aGlzCiAgKiAgICAgICAgICAgZW50aXR5IGNhbiBiZSBzdWJtaXR0ZWQKLSAqIEBudW1fcnFfbGlz
+dDogbnVtYmVyIG9mIHJ1biBxdWV1ZSBpbiBycV9saXN0CisgKiBAbnVtX3NjaGVkX2xpc3Q6IG51
+bWJlciBvZiBkcm0gc2NoZWQgaW4gc2NoZWRfbGlzdAogICogQGd1aWx0eTogYXRvbWljX3Qgc2V0
+IHRvIDEgd2hlbiBhIGpvYiBvbiB0aGlzIHF1ZXVlCiAgKiAgICAgICAgICBpcyBmb3VuZCB0byBi
+ZSBndWlsdHkgY2F1c2luZyBhIHRpbWVvdXQKICAqCkBAIC01MCwzMiArNTAsMzQgQEAKICAqIFJl
+dHVybnMgMCBvbiBzdWNjZXNzIG9yIGEgbmVnYXRpdmUgZXJyb3IgY29kZSBvbiBmYWlsdXJlLgog
+ICovCiBpbnQgZHJtX3NjaGVkX2VudGl0eV9pbml0KHN0cnVjdCBkcm1fc2NoZWRfZW50aXR5ICpl
+bnRpdHksCi0JCQkgIHN0cnVjdCBkcm1fc2NoZWRfcnEgKipycV9saXN0LAotCQkJICB1bnNpZ25l
+ZCBpbnQgbnVtX3JxX2xpc3QsCi0JCQkgIGF0b21pY190ICpndWlsdHkpCisJCQkgIHN0cnVjdCBk
+cm1fZ3B1X3NjaGVkdWxlciAqKnNjaGVkX2xpc3QsCisJCQkgIHVuc2lnbmVkIGludCBudW1fc2No
+ZWRfbGlzdCwKKwkJCSAgYXRvbWljX3QgKmd1aWx0eSwgZW51bSBkcm1fc2NoZWRfcHJpb3JpdHkg
+cHJpb3JpdHkpCiB7CiAJaW50IGk7CiAKLQlpZiAoIShlbnRpdHkgJiYgcnFfbGlzdCAmJiAobnVt
+X3JxX2xpc3QgPT0gMCB8fCBycV9saXN0WzBdKSkpCisJaWYgKCEoZW50aXR5ICYmIHNjaGVkX2xp
+c3QgJiYgKG51bV9zY2hlZF9saXN0ID09IDAgfHwgc2NoZWRfbGlzdFswXSkpKQogCQlyZXR1cm4g
+LUVJTlZBTDsKIAogCW1lbXNldChlbnRpdHksIDAsIHNpemVvZihzdHJ1Y3QgZHJtX3NjaGVkX2Vu
+dGl0eSkpOwogCUlOSVRfTElTVF9IRUFEKCZlbnRpdHktPmxpc3QpOwogCWVudGl0eS0+cnEgPSBO
+VUxMOwogCWVudGl0eS0+Z3VpbHR5ID0gZ3VpbHR5OwotCWVudGl0eS0+bnVtX3JxX2xpc3QgPSBu
+dW1fcnFfbGlzdDsKLQllbnRpdHktPnJxX2xpc3QgPSBrY2FsbG9jKG51bV9ycV9saXN0LCBzaXpl
+b2Yoc3RydWN0IGRybV9zY2hlZF9ycSAqKSwKLQkJCQlHRlBfS0VSTkVMKTsKLQlpZiAoIWVudGl0
+eS0+cnFfbGlzdCkKKwllbnRpdHktPm51bV9zY2hlZF9saXN0ID0gbnVtX3NjaGVkX2xpc3Q7CisJ
+ZW50aXR5LT5wcmlvcml0eSA9IHByaW9yaXR5OworCWVudGl0eS0+c2NoZWRfbGlzdCA9ICBrY2Fs
+bG9jKG51bV9zY2hlZF9saXN0LAorCQkJCSAgICAgIHNpemVvZihzdHJ1Y3QgZHJtX2dwdV9zY2hl
+ZHVsZXIgKiksIEdGUF9LRVJORUwpOworCisJaWYoIWVudGl0eS0+c2NoZWRfbGlzdCkKIAkJcmV0
+dXJuIC1FTk9NRU07CiAKIAlpbml0X2NvbXBsZXRpb24oJmVudGl0eS0+ZW50aXR5X2lkbGUpOwog
+Ci0JZm9yIChpID0gMDsgaSA8IG51bV9ycV9saXN0OyArK2kpCi0JCWVudGl0eS0+cnFfbGlzdFtp
+XSA9IHJxX2xpc3RbaV07CisJZm9yIChpID0gMDsgaSA8IG51bV9zY2hlZF9saXN0OyBpKyspCisJ
+CWVudGl0eS0+c2NoZWRfbGlzdFtpXSA9IHNjaGVkX2xpc3RbaV07CiAKLQlpZiAobnVtX3JxX2xp
+c3QpCi0JCWVudGl0eS0+cnEgPSBycV9saXN0WzBdOworCWlmIChudW1fc2NoZWRfbGlzdCkKKwkJ
+ZW50aXR5LT5ycSA9ICZlbnRpdHktPnNjaGVkX2xpc3RbMF0tPnNjaGVkX3JxW2VudGl0eS0+cHJp
+b3JpdHldOwogCiAJZW50aXR5LT5sYXN0X3NjaGVkdWxlZCA9IE5VTEw7CiAKQEAgLTEzOSwxMCAr
+MTQxLDEwIEBAIGRybV9zY2hlZF9lbnRpdHlfZ2V0X2ZyZWVfc2NoZWQoc3RydWN0IGRybV9zY2hl
+ZF9lbnRpdHkgKmVudGl0eSkKIAl1bnNpZ25lZCBpbnQgbWluX2pvYnMgPSBVSU5UX01BWCwgbnVt
+X2pvYnM7CiAJaW50IGk7CiAKLQlmb3IgKGkgPSAwOyBpIDwgZW50aXR5LT5udW1fcnFfbGlzdDsg
+KytpKSB7Ci0JCXN0cnVjdCBkcm1fZ3B1X3NjaGVkdWxlciAqc2NoZWQgPSBlbnRpdHktPnJxX2xp
+c3RbaV0tPnNjaGVkOworCWZvciAoaSA9IDA7IGkgPCBlbnRpdHktPm51bV9zY2hlZF9saXN0OyAr
+K2kpIHsKKwkJc3RydWN0IGRybV9ncHVfc2NoZWR1bGVyICpzY2hlZCA9IGVudGl0eS0+c2NoZWRf
+bGlzdFtpXTsKIAotCQlpZiAoIWVudGl0eS0+cnFfbGlzdFtpXS0+c2NoZWQtPnJlYWR5KSB7CisJ
+CWlmICghZW50aXR5LT5zY2hlZF9saXN0W2ldLT5yZWFkeSkgewogCQkJRFJNX1dBUk4oInNjaGVk
+JXMgaXMgbm90IHJlYWR5LCBza2lwcGluZyIsIHNjaGVkLT5uYW1lKTsKIAkJCWNvbnRpbnVlOwog
+CQl9CkBAIC0xNTAsNyArMTUyLDcgQEAgZHJtX3NjaGVkX2VudGl0eV9nZXRfZnJlZV9zY2hlZChz
+dHJ1Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5KQogCQludW1fam9icyA9IGF0b21pY19yZWFk
+KCZzY2hlZC0+bnVtX2pvYnMpOwogCQlpZiAobnVtX2pvYnMgPCBtaW5fam9icykgewogCQkJbWlu
+X2pvYnMgPSBudW1fam9iczsKLQkJCXJxID0gZW50aXR5LT5ycV9saXN0W2ldOworCQkJcnEgPSAm
+ZW50aXR5LT5zY2hlZF9saXN0W2ldLT5zY2hlZF9ycVtlbnRpdHktPnByaW9yaXR5XTsKIAkJfQog
+CX0KIApAQCAtMzA4LDcgKzMxMCw3IEBAIHZvaWQgZHJtX3NjaGVkX2VudGl0eV9maW5pKHN0cnVj
+dCBkcm1fc2NoZWRfZW50aXR5ICplbnRpdHkpCiAKIAlkbWFfZmVuY2VfcHV0KGVudGl0eS0+bGFz
+dF9zY2hlZHVsZWQpOwogCWVudGl0eS0+bGFzdF9zY2hlZHVsZWQgPSBOVUxMOwotCWtmcmVlKGVu
+dGl0eS0+cnFfbGlzdCk7CisJa2ZyZWUoZW50aXR5LT5zY2hlZF9saXN0KTsKIH0KIEVYUE9SVF9T
+WU1CT0woZHJtX3NjaGVkX2VudGl0eV9maW5pKTsKIApAQCAtMzUzLDE1ICszNTUsNiBAQCBzdGF0
+aWMgdm9pZCBkcm1fc2NoZWRfZW50aXR5X3dha2V1cChzdHJ1Y3QgZG1hX2ZlbmNlICpmLAogCWRy
+bV9zY2hlZF93YWtldXAoZW50aXR5LT5ycS0+c2NoZWQpOwogfQogCi0vKioKLSAqIGRybV9zY2hl
+ZF9lbnRpdHlfc2V0X3JxX3ByaW9yaXR5IC0gaGVscGVyIGZvciBkcm1fc2NoZWRfZW50aXR5X3Nl
+dF9wcmlvcml0eQotICovCi1zdGF0aWMgdm9pZCBkcm1fc2NoZWRfZW50aXR5X3NldF9ycV9wcmlv
+cml0eShzdHJ1Y3QgZHJtX3NjaGVkX3JxICoqcnEsCi0JCQkJCSAgICAgZW51bSBkcm1fc2NoZWRf
+cHJpb3JpdHkgcHJpb3JpdHkpCi17Ci0JKnJxID0gJigqcnEpLT5zY2hlZC0+c2NoZWRfcnFbcHJp
+b3JpdHldOwotfQotCiAvKioKICAqIGRybV9zY2hlZF9lbnRpdHlfc2V0X3ByaW9yaXR5IC0gU2V0
+cyBwcmlvcml0eSBvZiB0aGUgZW50aXR5CiAgKgpAQCAtMzczLDIwICszNjYsOCBAQCBzdGF0aWMg
+dm9pZCBkcm1fc2NoZWRfZW50aXR5X3NldF9ycV9wcmlvcml0eShzdHJ1Y3QgZHJtX3NjaGVkX3Jx
+ICoqcnEsCiB2b2lkIGRybV9zY2hlZF9lbnRpdHlfc2V0X3ByaW9yaXR5KHN0cnVjdCBkcm1fc2No
+ZWRfZW50aXR5ICplbnRpdHksCiAJCQkJICAgZW51bSBkcm1fc2NoZWRfcHJpb3JpdHkgcHJpb3Jp
+dHkpCiB7Ci0JdW5zaWduZWQgaW50IGk7Ci0KLQlzcGluX2xvY2soJmVudGl0eS0+cnFfbG9jayk7
+CiAKLQlmb3IgKGkgPSAwOyBpIDwgZW50aXR5LT5udW1fcnFfbGlzdDsgKytpKQotCQlkcm1fc2No
+ZWRfZW50aXR5X3NldF9ycV9wcmlvcml0eSgmZW50aXR5LT5ycV9saXN0W2ldLCBwcmlvcml0eSk7
+Ci0KLQlpZiAoZW50aXR5LT5ycSkgewotCQlkcm1fc2NoZWRfcnFfcmVtb3ZlX2VudGl0eShlbnRp
+dHktPnJxLCBlbnRpdHkpOwotCQlkcm1fc2NoZWRfZW50aXR5X3NldF9ycV9wcmlvcml0eSgmZW50
+aXR5LT5ycSwgcHJpb3JpdHkpOwotCQlkcm1fc2NoZWRfcnFfYWRkX2VudGl0eShlbnRpdHktPnJx
+LCBlbnRpdHkpOwotCX0KLQotCXNwaW5fdW5sb2NrKCZlbnRpdHktPnJxX2xvY2spOworCWVudGl0
+eS0+cHJpb3JpdHkgPSBwcmlvcml0eTsKIH0KIEVYUE9SVF9TWU1CT0woZHJtX3NjaGVkX2VudGl0
+eV9zZXRfcHJpb3JpdHkpOwogCkBAIC00OTAsNyArNDcxLDcgQEAgdm9pZCBkcm1fc2NoZWRfZW50
+aXR5X3NlbGVjdF9ycShzdHJ1Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5KQogCXN0cnVjdCBk
+bWFfZmVuY2UgKmZlbmNlOwogCXN0cnVjdCBkcm1fc2NoZWRfcnEgKnJxOwogCi0JaWYgKHNwc2Nf
+cXVldWVfY291bnQoJmVudGl0eS0+am9iX3F1ZXVlKSB8fCBlbnRpdHktPm51bV9ycV9saXN0IDw9
+IDEpCisJaWYgKHNwc2NfcXVldWVfY291bnQoJmVudGl0eS0+am9iX3F1ZXVlKSB8fCBlbnRpdHkt
+Pm51bV9zY2hlZF9saXN0IDw9IDEpCiAJCXJldHVybjsKIAogCWZlbmNlID0gUkVBRF9PTkNFKGVu
+dGl0eS0+bGFzdF9zY2hlZHVsZWQpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3YzZC92
+M2RfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vdjNkL3YzZF9kcnYuYwppbmRleCAxYTA3NDYyYjQ1
+MjguLmM2YWZmMWFlZGQyNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3YzZC92M2RfZHJ2
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL3YzZC92M2RfZHJ2LmMKQEAgLTE0MCw3ICsxNDAsNyBA
+QCB2M2Rfb3BlbihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGUp
+CiB7CiAJc3RydWN0IHYzZF9kZXYgKnYzZCA9IHRvX3YzZF9kZXYoZGV2KTsKIAlzdHJ1Y3QgdjNk
+X2ZpbGVfcHJpdiAqdjNkX3ByaXY7Ci0Jc3RydWN0IGRybV9zY2hlZF9ycSAqcnE7CisJc3RydWN0
+IGRybV9ncHVfc2NoZWR1bGVyICpzY2hlZDsKIAlpbnQgaTsKIAogCXYzZF9wcml2ID0ga3phbGxv
+YyhzaXplb2YoKnYzZF9wcml2KSwgR0ZQX0tFUk5FTCk7CkBAIC0xNTAsOCArMTUwLDkgQEAgdjNk
+X29wZW4oc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9maWxlICpmaWxlKQogCXYz
+ZF9wcml2LT52M2QgPSB2M2Q7CiAKIAlmb3IgKGkgPSAwOyBpIDwgVjNEX01BWF9RVUVVRVM7IGkr
+KykgewotCQlycSA9ICZ2M2QtPnF1ZXVlW2ldLnNjaGVkLnNjaGVkX3JxW0RSTV9TQ0hFRF9QUklP
+UklUWV9OT1JNQUxdOwotCQlkcm1fc2NoZWRfZW50aXR5X2luaXQoJnYzZF9wcml2LT5zY2hlZF9l
+bnRpdHlbaV0sICZycSwgMSwgTlVMTCk7CisJCXNjaGVkID0gJnYzZC0+cXVldWVbaV0uc2NoZWQ7
+CisJCWRybV9zY2hlZF9lbnRpdHlfaW5pdCgmdjNkX3ByaXYtPnNjaGVkX2VudGl0eVtpXSwgJnNj
+aGVkLAorCQkJCSAgICAgIDEsIE5VTEwsIERSTV9TQ0hFRF9QUklPUklUWV9OT1JNQUwpOwogCX0K
+IAogCWZpbGUtPmRyaXZlcl9wcml2ID0gdjNkX3ByaXY7CmRpZmYgLS1naXQgYS9pbmNsdWRlL2Ry
+bS9ncHVfc2NoZWR1bGVyLmggYi9pbmNsdWRlL2RybS9ncHVfc2NoZWR1bGVyLmgKaW5kZXggNjg0
+NjkyYThlZDc2Li45ZGYzMjJkZmFjMzAgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvZHJtL2dwdV9zY2hl
+ZHVsZXIuaAorKysgYi9pbmNsdWRlL2RybS9ncHVfc2NoZWR1bGVyLmgKQEAgLTgxLDggKzgxLDkg
+QEAgZW51bSBkcm1fc2NoZWRfcHJpb3JpdHkgewogc3RydWN0IGRybV9zY2hlZF9lbnRpdHkgewog
+CXN0cnVjdCBsaXN0X2hlYWQJCWxpc3Q7CiAJc3RydWN0IGRybV9zY2hlZF9ycQkJKnJxOwotCXN0
+cnVjdCBkcm1fc2NoZWRfcnEJCSoqcnFfbGlzdDsKLQl1bnNpZ25lZCBpbnQgICAgICAgICAgICAg
+ICAgICAgIG51bV9ycV9saXN0OworCXVuc2lnbmVkIGludCAgICAgICAgICAgICAgICAgICAgbnVt
+X3NjaGVkX2xpc3Q7CisJc3RydWN0IGRybV9ncHVfc2NoZWR1bGVyICAgICAgICAqKnNjaGVkX2xp
+c3Q7CisJZW51bSBkcm1fc2NoZWRfcHJpb3JpdHkgICAgICAgICBwcmlvcml0eTsKIAlzcGlubG9j
+a190CQkJcnFfbG9jazsKIAogCXN0cnVjdCBzcHNjX3F1ZXVlCQlqb2JfcXVldWU7CkBAIC0zMTIs
+OSArMzEzLDkgQEAgdm9pZCBkcm1fc2NoZWRfcnFfcmVtb3ZlX2VudGl0eShzdHJ1Y3QgZHJtX3Nj
+aGVkX3JxICpycSwKIAkJCQlzdHJ1Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5KTsKIAogaW50
+IGRybV9zY2hlZF9lbnRpdHlfaW5pdChzdHJ1Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5LAot
+CQkJICBzdHJ1Y3QgZHJtX3NjaGVkX3JxICoqcnFfbGlzdCwKKwkJCSAgc3RydWN0IGRybV9ncHVf
+c2NoZWR1bGVyICoqc2NoZWRfbGlzdCwKIAkJCSAgdW5zaWduZWQgaW50IG51bV9ycV9saXN0LAot
+CQkJICBhdG9taWNfdCAqZ3VpbHR5KTsKKwkJCSAgYXRvbWljX3QgKmd1aWx0eSwgZW51bSBkcm1f
+c2NoZWRfcHJpb3JpdHkgcHJpb3JpdHkpOwogbG9uZyBkcm1fc2NoZWRfZW50aXR5X2ZsdXNoKHN0
+cnVjdCBkcm1fc2NoZWRfZW50aXR5ICplbnRpdHksIGxvbmcgdGltZW91dCk7CiB2b2lkIGRybV9z
+Y2hlZF9lbnRpdHlfZmluaShzdHJ1Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5KTsKIHZvaWQg
+ZHJtX3NjaGVkX2VudGl0eV9kZXN0cm95KHN0cnVjdCBkcm1fc2NoZWRfZW50aXR5ICplbnRpdHkp
+OwotLSAKMi4yMy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
