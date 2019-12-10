@@ -2,36 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC5F1194B6
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:17:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 600D911949F
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:17:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 010266E981;
-	Tue, 10 Dec 2019 21:17:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32B136E977;
+	Tue, 10 Dec 2019 21:17:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E3F26E975;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 626156E96E;
  Tue, 10 Dec 2019 21:17:23 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3080224691;
- Tue, 10 Dec 2019 21:08:01 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7213C20836;
+ Tue, 10 Dec 2019 21:08:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1576012081;
- bh=eS9xvF9rq5NfJcNEJkfhvmpa8K7NKLijEPXsZ/nbijw=;
+ s=default; t=1576012097;
+ bh=6fwUb6MigjWRWv6QEWMWqEYkJGBehiZ+r1aewxVkB0A=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=PZZUJEbmqlgu0VdrBoDEALQomMBux8FUppITGZeExTINrBlHJRwsv1pEekHZfgaD7
- uZFGcaE2TeH9Ksp0LcWiKO3sK/RyYvF45a+pOhrBG5jnS01ssHJA1u2K8MyNJL5rAa
- hhpCRjv9LFtHE/KLjxLwY9Z1ieGZILwT3CPPv7SU=
+ b=2N260DjkA1ZYPqHnoDUUR+Hj26Vw5NsSE1Dv4DY8ubBLz52tpLXN4cVBeeduJvQIb
+ q4XYPdY/OXs7YKn3/2frDQFqVycMOt1SC4YE5iFpAZ8DSLf2BH5gWGEKHO4FkD2yRU
+ 9KnHrXV1PhewCXpL/xoX4fF/TalSjzyq9LqU5GU4=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 060/350] drm/amd/display: fix struct init in
- update_bounding_box
-Date: Tue, 10 Dec 2019 16:02:45 -0500
-Message-Id: <20191210210735.9077-21-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 073/350] drm/amdkfd: Fix MQD size calculation
+Date: Tue, 10 Dec 2019 16:02:58 -0500
+Message-Id: <20191210210735.9077-34-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191210210735.9077-1-sashal@kernel.org>
 References: <20191210210735.9077-1-sashal@kernel.org>
@@ -49,53 +48,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Raul E Rangel <rrangel@chromium.org>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Sasha Levin <sashal@kernel.org>
+Cc: Sasha Levin <sashal@kernel.org>, Jonathan Kim <Jonathan.Kim@amd.com>,
+ Oak Zeng <Oak.Zeng@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Raul E Rangel <rrangel@chromium.org>
+From: Oak Zeng <Oak.Zeng@amd.com>
 
-[ Upstream commit 960b6f4f2d2e96d5f7ffe2854e0040b46cafbd36 ]
+[ Upstream commit 40a9592a26608e16f7545a068ea4165e1869f629 ]
 
-dcn20_resource.c:2636:9: error: missing braces around initializer [-Werror=missing-braces]
-  struct _vcs_dpi_voltage_scaling_st calculated_states[MAX_CLOCK_LIMIT_STATES] = {0};
-         ^
+On device initialization, a chunk of GTT memory is pre-allocated for
+HIQ and all SDMA queues mqd. The size of this allocation was wrong.
+The correct sdma engine number should be PCIe-optimized SDMA engine
+number plus xgmi SDMA engine number.
 
-Fixes: 7ed4e6352c16f ("drm/amd/display: Add DCN2 HW Sequencer and Resource")
-
-Signed-off-by: Raul E Rangel <rrangel@chromium.org>
+Reported-by: Jonathan Kim <Jonathan.Kim@amd.com>
+Signed-off-by: Jonathan Kim <Jonathan.Kim@amd.com>
+Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index ebe67c34dabf6..78b2cc2e122fc 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -3041,7 +3041,7 @@ static void cap_soc_clocks(
- static void update_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_st *bb,
- 		struct pp_smu_nv_clock_table *max_clocks, unsigned int *uclk_states, unsigned int num_states)
- {
--	struct _vcs_dpi_voltage_scaling_st calculated_states[MAX_CLOCK_LIMIT_STATES] = {0};
-+	struct _vcs_dpi_voltage_scaling_st calculated_states[MAX_CLOCK_LIMIT_STATES];
- 	int i;
- 	int num_calculated_states = 0;
- 	int min_dcfclk = 0;
-@@ -3049,6 +3049,8 @@ static void update_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_
- 	if (num_states == 0)
- 		return;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index d985e31fcc1eb..f335f73919d15 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -1676,7 +1676,8 @@ static int allocate_hiq_sdma_mqd(struct device_queue_manager *dqm)
+ 	struct kfd_dev *dev = dqm->dev;
+ 	struct kfd_mem_obj *mem_obj = &dqm->hiq_sdma_mqd;
+ 	uint32_t size = dqm->mqd_mgrs[KFD_MQD_TYPE_SDMA]->mqd_size *
+-		dev->device_info->num_sdma_engines *
++		(dev->device_info->num_sdma_engines +
++		dev->device_info->num_xgmi_sdma_engines) *
+ 		dev->device_info->num_sdma_queues_per_engine +
+ 		dqm->mqd_mgrs[KFD_MQD_TYPE_HIQ]->mqd_size;
  
-+	memset(calculated_states, 0, sizeof(calculated_states));
-+
- 	if (dc->bb_overrides.min_dcfclk_mhz > 0)
- 		min_dcfclk = dc->bb_overrides.min_dcfclk_mhz;
- 	else
 -- 
 2.20.1
 
