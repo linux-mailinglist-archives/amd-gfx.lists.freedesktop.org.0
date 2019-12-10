@@ -1,52 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 279381197D3
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:36:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E001197D6
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:37:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A82AF6E99C;
-	Tue, 10 Dec 2019 21:36:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE8856E9A3;
+	Tue, 10 Dec 2019 21:37:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 308 seconds by postgrey-1.36 at gabe;
- Tue, 10 Dec 2019 20:04:56 UTC
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AFF76E923
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 20:04:56 +0000 (UTC)
+X-Greylist: delayed 770 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Dec 2019 20:44:01 UTC
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 338906E176
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 20:44:01 +0000 (UTC)
 Received: from threadripper.lan ([149.172.19.189]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.129]) with ESMTPA (Nemesis) id
- 1MjSPq-1htqK43Row-00l1Jv; Tue, 10 Dec 2019 20:59:42 +0100
+ (mreue107 [212.227.15.145]) with ESMTPA (Nemesis) id
+ 1Mw8gc-1hpI030rKO-00s44T; Tue, 10 Dec 2019 21:31:03 +0100
 From: Arnd Bergmann <arnd@arndb.de>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  "David (ChunMing) Zhou" <David1.Zhou@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH] drm/amd/display: include linux/slab.h where needed
-Date: Tue, 10 Dec 2019 20:59:24 +0100
-Message-Id: <20191210195941.931745-1-arnd@arndb.de>
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Zhan Liu <zhan.liu@amd.com>
+Subject: [PATCH] drm/amd/display: fix undefined struct member reference
+Date: Tue, 10 Dec 2019 21:30:46 +0100
+Message-Id: <20191210203101.2663341-1-arnd@arndb.de>
 X-Mailer: git-send-email 2.20.0
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:OrcnEQHu5wIVElyPLtj9cM/U8i3tJsEHQqMgWD9iAttxajBL+4Y
- PRozQipVEPM78uWvddh6kjFJP0m9W7Xl2iyfwMr6le8zEOqtUcR3YqBbcY0m8NmbwLj4gij
- nH91rockYuPliucDJPwxBaK0+/s8ZLF4ilxO0+TiyEzKKY8itGLkPD8DVvHiCm1DACaRXts
- wksFhEsGXgNsaguRsbwew==
+X-Provags-ID: V03:K1:6Y2/uQlFVUAl2FLpNaMIEOkGmiPd6/841XgCPxFoFzLNddBwEXH
+ Gv0mA5U4F2XyfY5t7Irv9sGvE7omtf7B7anfrVJBcEa6nJh0oGgFa3a8TjQPfIv9chsmwPT
+ jvm00bAGb9IDmiVsEt/HDimufrl4EuajG0pezWC+Cd9W5Z3cXKjNuVPnbUu6xNF5mo57oYn
+ vjtK9SqzVDqza+VajFYtg==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:BOgTBsXjGhc=:em08V6fo6mQDzI2P/1XnQl
- NYACd6z+rtbrlPACO4rOnJIL93HmbBqc2ef4o8GimHBrcMbiCpmj3swjYzLrkB6uwEsRi/Amg
- yY5paBK6p7ttdviX9bWGmMZz9Q9TRLozNtJdJ22cLbL87keprpN79I388GwOOoZIGYeRBsDIc
- yyhKF61U7zsNfhu6ZmXNSIftM0YLsCEEgwJly6rX7K5Olf2MfKxJ+1UjKC647cqmU1+4kNz+f
- qNhwON3bmrcBdbRttsHpmCZMwlOO7E/9QGfqAh3dcTwVKsuJIBiEE0cQNzgR1u4HZfVDEtxYO
- OeXs8U/qdKlPW2y9Xl1+huNT4X6n8LnMT3fwvdknhA7WNAbcJ9JD2ANShwFOd4kj4bMqZpcpV
- 8BA2xjWDPascHT7GiHQUBLEXTS4ZTBtx00NfwVEZMheRAJ2yjne5sNQVsEHySvFqOoO4QKqg8
- a4ddA9y7sYO6QPjpPiNZpQv3azlTZkc0ZPiFXUoN4uI2JNCj1zNJEvS2kWcmx6tiM6cRlmh5H
- fUMEou0drdbfgIbXqPuQNELCfB6lkFmwHBmQ8mXtPcdkcceLWiLc4jaS1USUaO7pTCnZjFQIL
- c2/4SU0KeKbubWEm7/JsDZj0D5DBthsRveDBXF5i5Rv8KJOIVe5EENgE6VD2j+6xGPT1kiAHv
- tF9XXziHZSHoKlHf5ulJNm0unSodFb0oXsG4HKyaF9/YU6rJl6OCvYOEajGVYPj+CaatdCpaW
- m8tUTCl0HLS5R/2p30PKDFTEhll/muN1O1IEBIXlm8Q4IUpCbKRQxsc0U5/ZC6/XqyXJ0J2OJ
- MPUNQ4R/uDavnS9DApb8qjTQ6HaFnc/Z3nFJQmBpxVWZT89HUSsY3LU5Vx1i1xPX/p8PvN2Qd
- oJyiy1KE19BpAS8W0qKg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:vdsCwXbpzhg=:2/m5Z7ZQQBf3seyl4RgIjA
+ kEgFyOHJByuNzd7+4YEk0taGPGNshYjpBoswGFxCc9SECIhb4FmUjgGEBjHTBoQEWAseRmZLa
+ eSHGC8oaoaFgfHQ2vBTorrXoKwPKb634wEqE1U92NrLaNfSV+1bUDBf0xWyGgFzwL5gPEIh2Q
+ B6n3RT+Zrg14GLvnjX3En0Ji7HP8nuQk4lXzwxHmTFWIxLXgNNq3Qju5xE1daM6ut6e4JATpk
+ 5wQMRYeQ6wf7z1F1V+IgL4LpCYqFshlxwKe6gpafF0JwzKVQxoxFY+FsQI8wXIH1qfK8BWDWU
+ E7dfdOKXSTRFMwlwxxozxebF5bE25OfvCPdbvZBdv6enrzpOmaiGstXcqggQkyUSVR6I4fUGV
+ 45wyWTNqJHOxuO6wS10sJN+3IJ6zrvavEpex+apxGq6z4cyCY8gUOfXoVNW0ohOuwqa7QCD9/
+ xGrA7PSqRusqpjeXtcgvrxxDlf0NoqJYT8iGCiCFd9F+QgNbxSOzTDwiF0H7RNrvqqu3poMKk
+ nIi5jUJK8+Ri/7xN2uxMOTlVtpvugx87AroAKTbRcwhBDovlbntaT/VbTAaW4JKE83Yw5GXWg
+ NYmvHJxC5K1WdV+Ov5NWz3OkVqwJHlfSgXVR5Fn7NIMmPWq2lv+UlfXrZpkua+RDqlQKss0xX
+ ycmDGkhWGIoblsA7wwl8nnupnmNxKjPLkyI+RQejIXCQOAYIu8V+UzRWEHKTlW15vexfArmaI
+ B9CuCd/zJ937l/rYfxkOzDvu9OWHk54wJgxcKEuTxxenU3PBW3Qrdl3TYeZDtaHWVo/8hj3qP
+ +aPeMRhawu4ypdVHhvtZJGSw6UWK13MvQKu4guS3mf40Cc9glcCqtpdCxKNhhQ4oYW5Y75vxZ
+ qe1+jdqi280uRh10rrow==
 X-Mailman-Approved-At: Tue, 10 Dec 2019 21:36:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,43 +60,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eric Yang <Eric.Yang2@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Roman Li <Roman.Li@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Michael Strauss <michael.strauss@amd.com>,
- dri-devel@lists.freedesktop.org, Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Cc: Charlene Liu <charlene.liu@amd.com>, Eric Yang <Eric.Yang2@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Nikola Cornij <nikola.cornij@amd.com>,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ dri-devel@lists.freedesktop.org, Jun Lei <Jun.Lei@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Calling kzalloc() and related functions requires the
-linux/slab.h header to be included:
+An initialization was added for two optional struct members.  One of
+these is always present in the dcn20_resource file, but the other one
+depends on CONFIG_DRM_AMD_DC_DSC_SUPPORT and causes a build failure if
+that is missing:
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c: In function 'dcn21_ipp_create':
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:679:3: error: implicit declaration of function 'kzalloc'; did you mean 'd_alloc'? [-Werror=implicit-function-declaration]
-   kzalloc(sizeof(struct dcn10_ipp), GFP_KERNEL);
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.c:926:14: error: excess elements in struct initializer [-Werror]
+   .num_dsc = 5,
 
-A lot of other headers also miss a direct include in this file,
-but this is the only one that causes a problem for now.
+Add another #ifdef around the assignment.
 
+Fixes: c3d03c5a196f ("drm/amd/display: Include num_vmid and num_dsc within NV14's resource caps")
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 2 ++
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 906c84e6b49b..af57885bbff2 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -23,6 +23,8 @@
-  *
-  */
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index faab89d1e694..fdf93e6edf43 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -923,7 +923,9 @@ static const struct resource_caps res_cap_nv14 = {
+ 		.num_dwb = 1,
+ 		.num_ddc = 5,
+ 		.num_vmid = 16,
++#ifdef CONFIG_DRM_AMD_DC_DSC_SUPPORT
+ 		.num_dsc = 5,
++#endif
+ };
  
-+#include <linux/slab.h>
-+
- #include "dm_services.h"
- #include "dc.h"
- 
+ static const struct dc_debug_options debug_defaults_drv = {
 -- 
 2.20.0
 
