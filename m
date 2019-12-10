@@ -1,37 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11DAA1194B8
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:18:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EC6A1194A5
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:17:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAB4A6E988;
-	Tue, 10 Dec 2019 21:17:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A22D6E979;
+	Tue, 10 Dec 2019 21:17:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 570036E968
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 751CD6E978
  for <amd-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 21:17:23 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id CDEC3246AC;
- Tue, 10 Dec 2019 21:10:09 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 324D4246B9;
+ Tue, 10 Dec 2019 21:11:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1576012210;
- bh=zOQHlGxGlD22dSvYMFWP0Utebo3AOdsp8NUI2OFX6hE=;
+ s=default; t=1576012291;
+ bh=fJPimYsHSwNdeO7CSF+BPyv1bPotHHVu2QO+EXVK0J8=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=sXDrGBeqthkGBjlGUh69UlxOW0lFWJhMpVyVOosAagD3JsbB82cEfOCv2WG6m/zIv
- 5ancxEiEW0g4ThZvGrukmv8QBBKKjFFi6J+Rqa3LrWn1hnTpliR7+6Eif5nuDUldkL
- HBVvfWxSy1BcQa4WXYHVGnAxrNpERda8hQtpuPwM=
+ b=YT2IbqeaQBfTQU9BEmz4tWEqzJi1IFiROQVto2UjYa7XU8WmpAkECLVAIHweyjTWP
+ JFFTl1hLeZ5RBV2MsPdoL9x37M0usaN0fjOxhkfylU3qfGo4gLI+cfC1jSoXy6AAdo
+ FdYS/pA5f7zwvRDJjES/QD7ZYgODeZCOv+yNCUBs=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 162/350] drm/amd/display: correctly populate dpp
- refclk in fpga
-Date: Tue, 10 Dec 2019 16:04:27 -0500
-Message-Id: <20191210210735.9077-123-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 230/350] drm/amdgpu: disallow direct upload save
+ restore list from gfx driver
+Date: Tue, 10 Dec 2019 16:05:35 -0500
+Message-Id: <20191210210735.9077-191-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191210210735.9077-1-sashal@kernel.org>
 References: <20191210210735.9077-1-sashal@kernel.org>
@@ -49,69 +49,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Leo Li <sunpeng.li@amd.com>,
- Anthony Koo <Anthony.Koo@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Tony Cheng <Tony.Cheng@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Candice Li <Candice.Li@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Anthony Koo <Anthony.Koo@amd.com>
+From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-[ Upstream commit 952f6c4b5d72d40f93f3deb61239290b357d434e ]
+[ Upstream commit 58f46d4b65021083ef4b4d49c6e2c58e5783f626 ]
 
-[Why]
-In diags environment we are not programming the DPP DTO
-correctly.
+Direct uploading save/restore list via mmio register writes breaks the security
+policy. Instead, the driver should pass s&r list to psp.
 
-[How]
-Populate the dpp refclk in dccg so it can be used to correctly
-program DPP DTO.
+For all the ASICs that use rlc v2_1 headers, the driver actually upload s&r list
+twice, in non-psp ucode front door loading phase and gfx pg initialization phase.
+The latter is not allowed.
 
-Signed-off-by: Anthony Koo <Anthony.Koo@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
-Acked-by: Leo Li <sunpeng.li@amd.com>
+VG12 is the only exception where the driver still keeps legacy approach for S&R
+list uploading. In theory, this can be elimnated if we have valid srcntl ucode
+for VG12.
+
+Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Reviewed-by: Candice Li <Candice.Li@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c   | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
-index 3e8ac303bd526..23ec283eb07b6 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
-@@ -320,6 +320,8 @@ void dcn2_update_clocks_fpga(struct clk_mgr *clk_mgr,
- 		struct dc_state *context,
- 		bool safe_to_lower)
- {
-+	struct clk_mgr_internal *clk_mgr_int = TO_CLK_MGR_INTERNAL(clk_mgr);
-+
- 	struct dc_clocks *new_clocks = &context->bw_ctx.bw.dcn.clk;
- 	/* Min fclk = 1.2GHz since all the extra scemi logic seems to run off of it */
- 	int fclk_adj = new_clocks->fclk_khz > 1200000 ? new_clocks->fclk_khz : 1200000;
-@@ -357,14 +359,18 @@ void dcn2_update_clocks_fpga(struct clk_mgr *clk_mgr,
- 		clk_mgr->clks.dispclk_khz = new_clocks->dispclk_khz;
- 	}
- 
--	/* Both fclk and dppclk ref are run on the same scemi clock so we
--	 * need to keep the same value for both
-+	/* Both fclk and ref_dppclk run on the same scemi clock.
-+	 * So take the higher value since the DPP DTO is typically programmed
-+	 * such that max dppclk is 1:1 with ref_dppclk.
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 97cf0b5368737..c9ba2ec6d0382 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -2930,7 +2930,8 @@ static void gfx_v9_0_init_pg(struct amdgpu_device *adev)
+ 	 * And it's needed by gfxoff feature.
  	 */
- 	if (clk_mgr->clks.fclk_khz > clk_mgr->clks.dppclk_khz)
- 		clk_mgr->clks.dppclk_khz = clk_mgr->clks.fclk_khz;
- 	if (clk_mgr->clks.dppclk_khz > clk_mgr->clks.fclk_khz)
- 		clk_mgr->clks.fclk_khz = clk_mgr->clks.dppclk_khz;
- 
-+	// Both fclk and ref_dppclk run on the same scemi clock.
-+	clk_mgr_int->dccg->ref_dppclk = clk_mgr->clks.fclk_khz;
-+
- 	dm_set_dcn_clocks(clk_mgr->ctx, &clk_mgr->clks);
- }
+ 	if (adev->gfx.rlc.is_rlc_v2_1) {
+-		gfx_v9_1_init_rlc_save_restore_list(adev);
++		if (adev->asic_type == CHIP_VEGA12)
++			gfx_v9_1_init_rlc_save_restore_list(adev);
+ 		gfx_v9_0_enable_save_restore_machine(adev);
+ 	}
  
 -- 
 2.20.1
