@@ -2,36 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADB8511949A
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11DAA1194B8
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:18:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9FDB6E96C;
-	Tue, 10 Dec 2019 21:17:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAB4A6E988;
+	Tue, 10 Dec 2019 21:17:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60F9A6E96D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 570036E968
  for <amd-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 21:17:23 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 674B8246B6;
- Tue, 10 Dec 2019 21:10:07 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id CDEC3246AC;
+ Tue, 10 Dec 2019 21:10:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1576012208;
- bh=osEMQ+qjmPG568bwq3Y3oZd6+35Cqc6/K7SPM9SAm24=;
+ s=default; t=1576012210;
+ bh=zOQHlGxGlD22dSvYMFWP0Utebo3AOdsp8NUI2OFX6hE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=AYsMBrNUu4O6C739L78hFjOmDIrMbkl1orucS7TJCA0dHrdL34hC7zarEIo9Kuol9
- FRjOier54+NlUano2ImIwidcpO9bdtfaC1xSVIjn7eyGO3+EM03riGZdeJMBo/aaF5
- GWYpyVujBsQ4/+wUY702Nte8YPymU71B8Xz9U2vc=
+ b=sXDrGBeqthkGBjlGUh69UlxOW0lFWJhMpVyVOosAagD3JsbB82cEfOCv2WG6m/zIv
+ 5ancxEiEW0g4ThZvGrukmv8QBBKKjFFi6J+Rqa3LrWn1hnTpliR7+6Eif5nuDUldkL
+ HBVvfWxSy1BcQa4WXYHVGnAxrNpERda8hQtpuPwM=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 160/350] drm/amd/display: setting the DIG_MODE to
- the correct value.
-Date: Tue, 10 Dec 2019 16:04:25 -0500
-Message-Id: <20191210210735.9077-121-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 162/350] drm/amd/display: correctly populate dpp
+ refclk in fpga
+Date: Tue, 10 Dec 2019 16:04:27 -0500
+Message-Id: <20191210210735.9077-123-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191210210735.9077-1-sashal@kernel.org>
 References: <20191210210735.9077-1-sashal@kernel.org>
@@ -49,55 +49,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Zhan liu <zhan.liu@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, Leo Li <sunpeng.li@amd.com>,
+ Anthony Koo <Anthony.Koo@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Tony Cheng <Tony.Cheng@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Zhan liu <zhan.liu@amd.com>
+From: Anthony Koo <Anthony.Koo@amd.com>
 
-[ Upstream commit 967a3b85bac91c55eff740e61bf270c2732f48b2 ]
+[ Upstream commit 952f6c4b5d72d40f93f3deb61239290b357d434e ]
 
 [Why]
-This patch is for fixing Navi14 HDMI display pink screen issue.
+In diags environment we are not programming the DPP DTO
+correctly.
 
 [How]
-Call stream->link->link_enc->funcs->setup twice. This is setting
-the DIG_MODE to the correct value after having been overridden by
-the call to transmitter control.
+Populate the dpp refclk in dccg so it can be used to correctly
+program DPP DTO.
 
-Signed-off-by: Zhan Liu <zhan.liu@amd.com>
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Acked-by: Leo Li <sunpeng.li@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ .../drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c   | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index efc1d30544bb6..067f5579f4523 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -2769,6 +2769,15 @@ void core_link_enable_stream(
- 					CONTROLLER_DP_TEST_PATTERN_VIDEOMODE,
- 					COLOR_DEPTH_UNDEFINED);
- 
-+		/* This second call is needed to reconfigure the DIG
-+		 * as a workaround for the incorrect value being applied
-+		 * from transmitter control.
-+		 */
-+		if (!dc_is_virtual_signal(pipe_ctx->stream->signal))
-+			stream->link->link_enc->funcs->setup(
-+				stream->link->link_enc,
-+				pipe_ctx->stream->signal);
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+index 3e8ac303bd526..23ec283eb07b6 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+@@ -320,6 +320,8 @@ void dcn2_update_clocks_fpga(struct clk_mgr *clk_mgr,
+ 		struct dc_state *context,
+ 		bool safe_to_lower)
+ {
++	struct clk_mgr_internal *clk_mgr_int = TO_CLK_MGR_INTERNAL(clk_mgr);
 +
- #ifdef CONFIG_DRM_AMD_DC_DSC_SUPPORT
- 		if (pipe_ctx->stream->timing.flags.DSC) {
- 			if (dc_is_dp_signal(pipe_ctx->stream->signal) ||
+ 	struct dc_clocks *new_clocks = &context->bw_ctx.bw.dcn.clk;
+ 	/* Min fclk = 1.2GHz since all the extra scemi logic seems to run off of it */
+ 	int fclk_adj = new_clocks->fclk_khz > 1200000 ? new_clocks->fclk_khz : 1200000;
+@@ -357,14 +359,18 @@ void dcn2_update_clocks_fpga(struct clk_mgr *clk_mgr,
+ 		clk_mgr->clks.dispclk_khz = new_clocks->dispclk_khz;
+ 	}
+ 
+-	/* Both fclk and dppclk ref are run on the same scemi clock so we
+-	 * need to keep the same value for both
++	/* Both fclk and ref_dppclk run on the same scemi clock.
++	 * So take the higher value since the DPP DTO is typically programmed
++	 * such that max dppclk is 1:1 with ref_dppclk.
+ 	 */
+ 	if (clk_mgr->clks.fclk_khz > clk_mgr->clks.dppclk_khz)
+ 		clk_mgr->clks.dppclk_khz = clk_mgr->clks.fclk_khz;
+ 	if (clk_mgr->clks.dppclk_khz > clk_mgr->clks.fclk_khz)
+ 		clk_mgr->clks.fclk_khz = clk_mgr->clks.dppclk_khz;
+ 
++	// Both fclk and ref_dppclk run on the same scemi clock.
++	clk_mgr_int->dccg->ref_dppclk = clk_mgr->clks.fclk_khz;
++
+ 	dm_set_dcn_clocks(clk_mgr->ctx, &clk_mgr->clks);
+ }
+ 
 -- 
 2.20.1
 
