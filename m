@@ -1,36 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 600D911949F
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:17:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E288F119498
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:17:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32B136E977;
-	Tue, 10 Dec 2019 21:17:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6286E966;
+	Tue, 10 Dec 2019 21:17:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 626156E96E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A8E6E967;
  Tue, 10 Dec 2019 21:17:23 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 7213C20836;
- Tue, 10 Dec 2019 21:08:16 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 93D2C24684;
+ Tue, 10 Dec 2019 21:08:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1576012097;
- bh=6fwUb6MigjWRWv6QEWMWqEYkJGBehiZ+r1aewxVkB0A=;
+ s=default; t=1576012125;
+ bh=5EhyCug/9vprCrA0ONIhYKS5pO1gYpNAEwSkpe81XlM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=2N260DjkA1ZYPqHnoDUUR+Hj26Vw5NsSE1Dv4DY8ubBLz52tpLXN4cVBeeduJvQIb
- q4XYPdY/OXs7YKn3/2frDQFqVycMOt1SC4YE5iFpAZ8DSLf2BH5gWGEKHO4FkD2yRU
- 9KnHrXV1PhewCXpL/xoX4fF/TalSjzyq9LqU5GU4=
+ b=MXc4yRo0xZT7Ab+373jz10x8xrJCRk575Gs9R3/IDZY0EMZUtoj3vXXF7Wg0MtHtk
+ hDXirvn4TdqQueHeQ06A5Qfucdh0h3VJyQTcxhRS/512CxMrcW+R1L63QSfipFpaCM
+ bqS/+98E+wl8HhTS31uKzWE1J5+UHUw3nmJgazw8=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 073/350] drm/amdkfd: Fix MQD size calculation
-Date: Tue, 10 Dec 2019 16:02:58 -0500
-Message-Id: <20191210210735.9077-34-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 095/350] drm/amd/display: Properly round nominal
+ frequency for SPD
+Date: Tue, 10 Dec 2019 16:03:20 -0500
+Message-Id: <20191210210735.9077-56-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191210210735.9077-1-sashal@kernel.org>
 References: <20191210210735.9077-1-sashal@kernel.org>
@@ -48,48 +49,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Jonathan Kim <Jonathan.Kim@amd.com>,
- Oak Zeng <Oak.Zeng@amd.com>, amd-gfx@lists.freedesktop.org,
+Cc: Sasha Levin <sashal@kernel.org>, Aric Cyr <aric.cyr@amd.com>,
+ Anthony Koo <Anthony.Koo@amd.com>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Oak Zeng <Oak.Zeng@amd.com>
+From: Aric Cyr <aric.cyr@amd.com>
 
-[ Upstream commit 40a9592a26608e16f7545a068ea4165e1869f629 ]
+[ Upstream commit c59802313e84bede954235b3a5dd0dd5325f49c5 ]
 
-On device initialization, a chunk of GTT memory is pre-allocated for
-HIQ and all SDMA queues mqd. The size of this allocation was wrong.
-The correct sdma engine number should be PCIe-optimized SDMA engine
-number plus xgmi SDMA engine number.
+[Why]
+Some displays rely on the SPD verticle frequency maximum value.
+Must round the calculated refresh rate to the nearest integer.
 
-Reported-by: Jonathan Kim <Jonathan.Kim@amd.com>
-Signed-off-by: Jonathan Kim <Jonathan.Kim@amd.com>
-Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+[How]
+Round the nominal calculated refresh rate to the nearest whole
+integer.
+
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/modules/freesync/freesync.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index d985e31fcc1eb..f335f73919d15 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -1676,7 +1676,8 @@ static int allocate_hiq_sdma_mqd(struct device_queue_manager *dqm)
- 	struct kfd_dev *dev = dqm->dev;
- 	struct kfd_mem_obj *mem_obj = &dqm->hiq_sdma_mqd;
- 	uint32_t size = dqm->mqd_mgrs[KFD_MQD_TYPE_SDMA]->mqd_size *
--		dev->device_info->num_sdma_engines *
-+		(dev->device_info->num_sdma_engines +
-+		dev->device_info->num_xgmi_sdma_engines) *
- 		dev->device_info->num_sdma_queues_per_engine +
- 		dqm->mqd_mgrs[KFD_MQD_TYPE_HIQ]->mqd_size;
+diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+index ec70c9b12e1aa..0978c698f0f85 100644
+--- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
++++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+@@ -743,6 +743,10 @@ void mod_freesync_build_vrr_params(struct mod_freesync *mod_freesync,
+ 	nominal_field_rate_in_uhz =
+ 			mod_freesync_calc_nominal_field_rate(stream);
  
++	/* Rounded to the nearest Hz */
++	nominal_field_rate_in_uhz = 1000000ULL *
++			div_u64(nominal_field_rate_in_uhz + 500000, 1000000);
++
+ 	min_refresh_in_uhz = in_config->min_refresh_in_uhz;
+ 	max_refresh_in_uhz = in_config->max_refresh_in_uhz;
+ 
+@@ -996,14 +1000,13 @@ unsigned long long mod_freesync_calc_nominal_field_rate(
+ 			const struct dc_stream_state *stream)
+ {
+ 	unsigned long long nominal_field_rate_in_uhz = 0;
++	unsigned int total = stream->timing.h_total * stream->timing.v_total;
+ 
+-	/* Calculate nominal field rate for stream */
++	/* Calculate nominal field rate for stream, rounded up to nearest integer */
+ 	nominal_field_rate_in_uhz = stream->timing.pix_clk_100hz / 10;
+ 	nominal_field_rate_in_uhz *= 1000ULL * 1000ULL * 1000ULL;
+-	nominal_field_rate_in_uhz = div_u64(nominal_field_rate_in_uhz,
+-						stream->timing.h_total);
+-	nominal_field_rate_in_uhz = div_u64(nominal_field_rate_in_uhz,
+-						stream->timing.v_total);
++
++	nominal_field_rate_in_uhz =	div_u64(nominal_field_rate_in_uhz, total);
+ 
+ 	return nominal_field_rate_in_uhz;
+ }
 -- 
 2.20.1
 
