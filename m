@@ -1,57 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F3291197D5
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:36:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8661D11974A
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2019 22:32:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD2556E9A2;
-	Tue, 10 Dec 2019 21:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22B826E98A;
+	Tue, 10 Dec 2019 21:32:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF6C89B27;
- Tue, 10 Dec 2019 20:52:09 +0000 (UTC)
-Received: from mail-qt1-f177.google.com ([209.85.160.177]) by
- mrelayeu.kundenserver.de (mreue010 [212.227.15.129]) with ESMTPSA (Nemesis)
- id 1N0nzR-1hlB5e22SL-00woj5; Tue, 10 Dec 2019 21:52:07 +0100
-Received: by mail-qt1-f177.google.com with SMTP id p5so4062996qtq.12;
- Tue, 10 Dec 2019 12:52:07 -0800 (PST)
-X-Gm-Message-State: APjAAAVak0bKV9CgZJVefYayKZoS1141QLw7ERQJ0ju0EAaL6aopPFjL
- A6TCvpXHTXkU7gIxRxaVeL/T7wLDezuNx7iDgtw=
-X-Google-Smtp-Source: APXvYqx1uN5tm9eCOzoQBysKWKFpMTzZPxr5PqaW9bDfYB2yfC5l95PFbwxivepFESYFJ8F3qgkDRXUfr5anVcdWFA0=
-X-Received: by 2002:ac8:3a27:: with SMTP id w36mr31351077qte.204.1576011126328; 
- Tue, 10 Dec 2019 12:52:06 -0800 (PST)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBE166E991;
+ Tue, 10 Dec 2019 21:32:28 +0000 (UTC)
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id DA08A21556;
+ Tue, 10 Dec 2019 21:32:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1576013548;
+ bh=rnAF06ciDbzbqruYIqLqTiLgbm5Tt/iFKd+qYBb1bHE=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=pEOY8vLbeXgtzELfETrcZzO6FzgqXaoL8rF6yS2bbvupOPC2CQRwlr27EFrVJqmz+
+ TjGD1KY+UNb9o58Y777yFNqrnhJlL+kOCLR4sZU3iBly1TuLkPcNlP4QGUg45mkuQv
+ 5e5ozPgyR7RMqyKm/La/qVdStd/U0X2PfAm4108c=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 005/177] drm/amdgpu: grab the id mgr lock while
+ accessing passid_mapping
+Date: Tue, 10 Dec 2019 16:29:29 -0500
+Message-Id: <20191210213221.11921-5-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191210213221.11921-1-sashal@kernel.org>
+References: <20191210213221.11921-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <20191210195941.931745-1-arnd@arndb.de>
- <cded03ab-40fe-a904-7b1f-5b3623bb7af4@amd.com>
-In-Reply-To: <cded03ab-40fe-a904-7b1f-5b3623bb7af4@amd.com>
-From: Arnd Bergmann <arnd@arndb.de>
-Date: Tue, 10 Dec 2019 21:51:49 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a3XHWPBOsCpFtdoT8F-pAMXaekDOX1rNjjMWKLN6WSK6w@mail.gmail.com>
-Message-ID: <CAK8P3a3XHWPBOsCpFtdoT8F-pAMXaekDOX1rNjjMWKLN6WSK6w@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: include linux/slab.h where needed
-To: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
-X-Provags-ID: V03:K1:odURU4WPiLkXcucDlfc71UXCfG4jWw1BS+LkraKFiBaJJhf9Fy3
- dI56MMQ925HwgfXKKYKCM5Pv99R82KVx7dqkhkH/UM0ZoTAfKLrwd9xBwGhBPr9dRZDf/dF
- kzk+3LMe/oCEx/tcXRO28SzJQkrsrrHjq2YBgMJBAFazCIUTvuzV7emcIyWtaAINx95yPwB
- VpD1QnZecxkXw2t7jkMnw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:K8n5+XbAx3k=:sInwACHy37zGBlbaLaKCZH
- 8W3et3YlDo17Zy0KMKc4Iya5A4d3gXe9mfxxNQlR50D4zcYAhl8QLdzvw2xChJD3bBfIszU/f
- g3UEsjKG6X/n2RPSk+IjddsPSkiQNRpJIp6isM3f5ejJo/WB/dSHvSnHFToI9pXvZJXo5ef0b
- jA/CxWjrNq4osQeu9OIJieN1aUNU3HW5BJ1I7Hui2X1B1LnDcvuKCIOdko3rPjPXlsA7rAcpg
- OCoLX4TliLWURZWms65CyUyjc4IK3wRDG3jElCpxft8gtuI1QpKrHTRb4/6ZRz52g3QR0+/ZV
- rBPmZb2K93v3JbJbmg7OptuYnpYW6vQod2kwczHDdQTV5vqbecpNl8IZVtEk+46C/MCdqb0OF
- QKfJ4gnWLS7+EtLnZlSocBqqfHK79eTsIgNEcCcUA5zdRT8DAPS3ySc2CEq4MEt7O8CS6mruU
- VqeKiQgFk326Lqq+KxMnheZyYP49lfiCXI3uQDsPvKwN3Ztjl4aMLRAx652tTPIj03pDceeoq
- r7dFlSis+U5OmaTgAmIJMnsesVPP0PJD1Fq0uoeGr5pkCXAa1mcdPqBmEYNKZ0I0aiwdJMMB+
- d87XzQOUFAX+9yeppSySIZhdOEI8M86ofhnfVxT/Lk1mBQ1NPSg22uPPcbaN9fcjylxnxLnsM
- hM0c3Tyy4R6lpZdkmQEiAYsfRHON0mM0HQNUH+0xO7PCZaqAatn2IH4r8FLf6/dbodRXwcc4u
- 9vCl6tQ3DiXDeaMHgL/SajjfidgKnRk/0bUTyC2D2+LifjLFWcXcOQ/A0B4bIDwlvQhGzQEj9
- EE5JwGT51+V0lW1E5WtmJiJoY+dXVGovZsja1jgInAletEJB6Rxqi/EAu5DgF8kbMIonfu7VE
- zz8ZCb+/94nJKovf5bBg==
-X-Mailman-Approved-At: Tue, 10 Dec 2019 21:36:55 +0000
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,57 +49,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- Eric Yang <Eric.Yang2@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, Roman Li <Roman.Li@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- David Airlie <airlied@linux.ie>, Michael Strauss <michael.strauss@amd.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
+Cc: Sasha Levin <sashal@kernel.org>, Chunming Zhou <david1.zhou@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 10, 2019 at 9:30 PM Kazlauskas, Nicholas
-<nicholas.kazlauskas@amd.com> wrote:
->
-> On 2019-12-10 2:59 p.m., Arnd Bergmann wrote:
-> > Calling kzalloc() and related functions requires the
-> > linux/slab.h header to be included:
-> >
-> > drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c: In function 'dcn21_ipp_create':
-> > drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.c:679:3: error: implicit declaration of function 'kzalloc'; did you mean 'd_alloc'? [-Werror=implicit-function-declaration]
-> >     kzalloc(sizeof(struct dcn10_ipp), GFP_KERNEL);
-> >
-> > A lot of other headers also miss a direct include in this file,
-> > but this is the only one that causes a problem for now.
-> >
-> > Signed-off-by: Arnd Bergmann <arnd@arndb.de>
->
-> What version of the kernel are you building?
-
-This is v5.5-rc1, plus some local patches.
-
-> We have:
->
-> #include <linux/slab.h>
->
-> in os_types.h which gets included as part of this file:
->
-> #include <dc.h> -> #include <dc_types.h> -> #include <os_types.h>
-
-I don't see linux/slab.h in os_types.h. I now see that commit
-4fc4dca8320e ("drm/amd: drop use of drmp.h in os_types.h")
-was merged into linux-5.3, which may have caused this.
-
-I also don't see anything in os_types.h that needs linux/slab.h.
-
-    Arnd
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+RnJvbTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgoKWyBVcHN0
+cmVhbSBjb21taXQgNjgxN2JmMjgzYjJiODUxMDk1ODI1ZWM3ZjBlOWYxMDM5OGUwOTEyNSBdCgpO
+ZWVkIHRvIG1ha2Ugc3VyZSB0aGF0IHdlIGFjdHVhbGx5IGRyb3BwaW5nIHRoZSByaWdodCBmZW5j
+ZS4KQ291bGQgYmUgZG9uZSB3aXRoIFJDVSBhcyB3ZWxsLCBidXQgdG8gY29tcGxpY2F0ZWQgZm9y
+IGEgZml4LgoKU2lnbmVkLW9mZi1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5p
+Z0BhbWQuY29tPgpSZXZpZXdlZC1ieTogQ2h1bm1pbmcgWmhvdSA8ZGF2aWQxLnpob3VAYW1kLmNv
+bT4KU2lnbmVkLW9mZi1ieTogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29t
+PgpTaWduZWQtb2ZmLWJ5OiBTYXNoYSBMZXZpbiA8c2FzaGFsQGtlcm5lbC5vcmc+Ci0tLQogZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMgfCAxMiArKysrKysrKystLS0KIDEg
+ZmlsZSBjaGFuZ2VkLCA5IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYwppbmRleCA0OWZlNTA4NGM1M2RkLi42OWZiOTBkOWM0
+ODU1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYwpAQCAtNzAwLDEwICs3
+MDAsOCBAQCBpbnQgYW1kZ3B1X3ZtX2ZsdXNoKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZywgc3Ry
+dWN0IGFtZGdwdV9qb2IgKmpvYiwgYm9vbCBuZWVkXwogCQlpZC0+b2FfYmFzZSAhPSBqb2ItPm9h
+X2Jhc2UgfHwKIAkJaWQtPm9hX3NpemUgIT0gam9iLT5vYV9zaXplKTsKIAlib29sIHZtX2ZsdXNo
+X25lZWRlZCA9IGpvYi0+dm1fbmVlZHNfZmx1c2g7Ci0JYm9vbCBwYXNpZF9tYXBwaW5nX25lZWRl
+ZCA9IGlkLT5wYXNpZCAhPSBqb2ItPnBhc2lkIHx8Ci0JCSFpZC0+cGFzaWRfbWFwcGluZyB8fAot
+CQkhZG1hX2ZlbmNlX2lzX3NpZ25hbGVkKGlkLT5wYXNpZF9tYXBwaW5nKTsKIAlzdHJ1Y3QgZG1h
+X2ZlbmNlICpmZW5jZSA9IE5VTEw7CisJYm9vbCBwYXNpZF9tYXBwaW5nX25lZWRlZDsKIAl1bnNp
+Z25lZCBwYXRjaF9vZmZzZXQgPSAwOwogCWludCByOwogCkBAIC03MTMsNiArNzExLDEyIEBAIGlu
+dCBhbWRncHVfdm1fZmx1c2goc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nLCBzdHJ1Y3QgYW1kZ3B1
+X2pvYiAqam9iLCBib29sIG5lZWRfCiAJCXBhc2lkX21hcHBpbmdfbmVlZGVkID0gdHJ1ZTsKIAl9
+CiAKKwltdXRleF9sb2NrKCZpZF9tZ3ItPmxvY2spOworCWlmIChpZC0+cGFzaWQgIT0gam9iLT5w
+YXNpZCB8fCAhaWQtPnBhc2lkX21hcHBpbmcgfHwKKwkgICAgIWRtYV9mZW5jZV9pc19zaWduYWxl
+ZChpZC0+cGFzaWRfbWFwcGluZykpCisJCXBhc2lkX21hcHBpbmdfbmVlZGVkID0gdHJ1ZTsKKwlt
+dXRleF91bmxvY2soJmlkX21nci0+bG9jayk7CisKIAlnZHNfc3dpdGNoX25lZWRlZCAmPSAhIXJp
+bmctPmZ1bmNzLT5lbWl0X2dkc19zd2l0Y2g7CiAJdm1fZmx1c2hfbmVlZGVkICY9ICEhcmluZy0+
+ZnVuY3MtPmVtaXRfdm1fZmx1c2ggICYmCiAJCQlqb2ItPnZtX3BkX2FkZHIgIT0gQU1ER1BVX0JP
+X0lOVkFMSURfT0ZGU0VUOwpAQCAtNzUyLDkgKzc1NiwxMSBAQCBpbnQgYW1kZ3B1X3ZtX2ZsdXNo
+KHN0cnVjdCBhbWRncHVfcmluZyAqcmluZywgc3RydWN0IGFtZGdwdV9qb2IgKmpvYiwgYm9vbCBu
+ZWVkXwogCX0KIAogCWlmIChwYXNpZF9tYXBwaW5nX25lZWRlZCkgeworCQltdXRleF9sb2NrKCZp
+ZF9tZ3ItPmxvY2spOwogCQlpZC0+cGFzaWQgPSBqb2ItPnBhc2lkOwogCQlkbWFfZmVuY2VfcHV0
+KGlkLT5wYXNpZF9tYXBwaW5nKTsKIAkJaWQtPnBhc2lkX21hcHBpbmcgPSBkbWFfZmVuY2VfZ2V0
+KGZlbmNlKTsKKwkJbXV0ZXhfdW5sb2NrKCZpZF9tZ3ItPmxvY2spOwogCX0KIAlkbWFfZmVuY2Vf
+cHV0KGZlbmNlKTsKIAotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2FtZC1nZngK
