@@ -2,47 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BF2A11B1F1
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:33:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D24D411B1EF
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:33:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30B776EB87;
-	Wed, 11 Dec 2019 15:33:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6221F6EB7E;
+	Wed, 11 Dec 2019 15:33:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750070.outbound.protection.outlook.com [40.107.75.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 391976EB86
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760085.outbound.protection.outlook.com [40.107.76.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F9766EB87
  for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:33:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kURJk8Ua6EnUELfORhPFh32Yy4Z7/vip/2B4o+lWiCmjIPe9CLbHA0M22NpTYWG8rT8VZhwplM101gE6FgBuvsPP4ZXBNkm5n5GJNjwXH35OJHkl5ZgeKp3C8V7RKIMaHNnmrTC46fqB92lEWrHvBQ0nbf/uK0s2LakA5y1dO4cvZoeSXU9xs8ryDywyW4gJonRbiymxY4X3Z2VllJOz9t7iN7OwmuPdc70a5uJmX7LwBMBRIP8tMcl8zJfkvQRPM3cRvNnkXEDqAi8XURmaJNiTTHE0qo6wL0ENmSd2XAek19xnwHu01gMQ61NhMk7J/fGR35AfQcDE7DQVYZFTBA==
+ b=n7sLx9G0+RdC7fit7HC5gT3HD3ZRmYwl09rOc8XOSN2Q2EbJydBb07UlOTEtrTdRkH4RcoRfMtXCqUwuP0k1YjQi3rbPewviXOa1sJseU9SCAKsHrFh7h20KXA9lU62NdBvidc9rcHrK3tzGMCclHCYq7E7VdeNMwmUliAHlQ9B1SJbCVEKvMc/Of1w5pWS78ayCmW/Yf3wm/7RlflGffiqRVWzYXamYciOnx6w2nzGPPJ7fEVNzqoIhIWNLTGYHK4Vb5AlcOVlOTa8Xts1i5Vbl50MLWE4lLDim/ssEc4Hb3S4P4EwNuc1J5MTT8FQsIhIYYoKyx5mVWqEHW6VdyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Uuz/L5UHujiJ1GC+Zh8XbNNzYpAvCrTELcQQqUqHWps=;
- b=G/3sFL/K/b3m2AwAhuEFL0Xj4iV64Uri1pI1c0DTyJehK1eNgP+ll5uV9cXt/85agYWOdEzUkWi03Ox+5D9tgXd+8x3rD6zMn7q0EaHmHgX50ACnnzdwP3QJv+euBaSur0CGrJ9HGLnAwV077ooEi6VJMfignhzSOwYkhHpLYddbNENPkZsdOvQI/sAu5Q1rzUUcQKiLpN87rujvx9KIS8szHLMpYz9XXG2zKjbQjbUjIhbk8mpubSn7CEf8xlwYOvLJKp5a3sEfMDPtgfMrutLddXbv8rEdz+xI8Jedqy1V8U//+VHXUzH0pmDWJCHT0XCsnjkq/JlUZ8fm6+X/2g==
+ bh=VFnTiWHe6ro9wVCuFu7TTFEZREAWLPAAu2jvVdYpIvo=;
+ b=oDA2ETPasYKoUY+VGDR+dg5fVbxq7x0lo6seBS5XlBx/cAxkswLOonhR4pO1N0LJNeHPSe8CO1S5bA9X7hXgYDeGIE10Uzb0n+c7mS353woMJeT55EelW9Sqxp/PV2lrldHSf+FOzSupM8XF6G8BLvxiENlmRhd+Z5SvqiVzFLX/wtRqdLBk9rPrCIB50SGSmgxu30hp3Rb4fH2hjDyQTRFsg0AOkYqfjZ6J/JwYyYpGLj3Y4Vn8pHuAS+LVzkrjgcwtn6/KwwABIlg6fQOTmZsAd1UKzPA082rjqOM61WnMDXVQt/UVpDi496Bp2FRdBKYtvJ0z7wdCiZIFtasNBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Uuz/L5UHujiJ1GC+Zh8XbNNzYpAvCrTELcQQqUqHWps=;
- b=kVTaOg+62+Caiarf0z69TaryhT+gSd4kDEyfahLxZgRy2/eUivPLUl9tpd9LsxNi7v4YGUC0V2w3BlKKNt9ggR4HY2PQIfGwF4CrIID3i5+nYk8Nb31K2zBzU+EQj/fZXDJtiRKkv0apYXc0Qt44Scnji3/QKrZxABrrIqC/5vs=
+ bh=VFnTiWHe6ro9wVCuFu7TTFEZREAWLPAAu2jvVdYpIvo=;
+ b=BVo/Sjg/jhAKNHD2vhV5NUh2nvVf0egaA7F1LYp6i6e/LoGRzsioUKpGFu1wfy0ZH8dsBd1o3ziQyoerpvOZUrlKkdAe3S7s7YDTJyNSHbG7bnkSy6sSUaG7ZpqEH//1AmGSJP0iOLfGO09C6WfDMeEqZTnmpPjLH7A70jXA/CQ=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
- MW2PR12MB2570.namprd12.prod.outlook.com (52.132.181.13) with Microsoft SMTP
+ MW2PR12MB2491.namprd12.prod.outlook.com (52.132.183.158) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.15; Wed, 11 Dec 2019 15:33:29 +0000
+ 15.20.2538.15; Wed, 11 Dec 2019 15:33:30 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69%5]) with mapi id 15.20.2516.018; Wed, 11 Dec 2019
- 15:33:29 +0000
+ 15:33:30 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 14/39] drm/amd/display: Default max bpc to 16 for eDP
-Date: Wed, 11 Dec 2019 10:32:28 -0500
-Message-Id: <20191211153253.2291112-15-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 15/39] drm/amd/display: Enable Seamless Boot Transition for
+ Multiple Streams
+Date: Wed, 11 Dec 2019 10:32:29 -0500
+Message-Id: <20191211153253.2291112-16-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
 References: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
@@ -54,30 +55,30 @@ X-Mailer: git-send-email 2.24.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: e33bfc51-895f-4f74-a085-08d77e4f78bb
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2570:|MW2PR12MB2570:
+X-MS-Office365-Filtering-Correlation-Id: fcec75fd-46b8-4204-dd86-08d77e4f7934
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2491:|MW2PR12MB2491:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB257076E060CB7DB1388EE497985A0@MW2PR12MB2570.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB24915787370A15710BFB1335985A0@MW2PR12MB2491.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:203;
 X-Forefront-PRVS: 024847EE92
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(136003)(376002)(346002)(366004)(39860400002)(189003)(199004)(54906003)(81156014)(81166006)(36756003)(66946007)(4326008)(478600001)(316002)(66476007)(8676002)(186003)(66556008)(6506007)(26005)(1076003)(52116002)(86362001)(8936002)(2616005)(5660300002)(2906002)(6916009)(6486002)(6512007);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2570;
+ SFS:(10009020)(4636009)(396003)(346002)(376002)(39860400002)(366004)(136003)(189003)(199004)(6486002)(6512007)(6916009)(8936002)(5660300002)(2906002)(86362001)(52116002)(2616005)(478600001)(66476007)(316002)(186003)(8676002)(81156014)(81166006)(54906003)(36756003)(4326008)(1076003)(26005)(66946007)(66556008)(6506007);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2491;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jfQ55aqmYtetXHEweVNk2ELyWbqFWo/zpOGbsvDIEm/CU2dO16a5lBtI/lng2h/iC0OpfnVPkjDfkSfLc8l+Q2pm0LTDx40B2Fhaxc9z1b0IyKCYdO0oaj3Fge3ckNwP26YKnmbw76MeBvxFfeK3a4Q/R+r4Q+Ts+FmT+Jj3NpSQxlKSyOp6ZuYNk6/fUo9kphPl7Cl2cKUhKD8utUHDx8OQiWUVfQjVN/s9KKR9uVdl8edTIJ2bZLOou4q3J+cNp2tQEsfP+LQeoqVS0PJ807S5hHM37IEpGFGptbVMJC8fgtVSusBFz7JR8gTIP+6kE2pbqqkhQMRzRzT7Uw8E6A3rhlNYX42evaWh+O1yEPQ9WVLYGGlxi4UgBCm2URZ1CwfAoucdSVAjKiaS8kqlsR4pmKvIUXC1vtOzDx0cusuXIzkdZX+LtEWi5A958yCV
+X-Microsoft-Antispam-Message-Info: pL3EGOOjbveEmNeIMukDHQHIuKcMkdNJP5CEKwB2MmjgNUW1Zu2yt6oM9pegqVMn2xHTBH16VdU+QtMNkt9BMhgBvZt6IE0oIhU9SDI+LKB1pLCfgOIi7sZCDXE6R2FlhRny687nGzVTVh3tvMcnJVfSAdgiqg4qUfSwTYI8J3dCcFIR+VQekgfEmjrsMdoXSGHa4ApxSvDnUl9pfgk0gnJEQsYzK8nDSa6EUj4UZGSpus6J/SBQ9VLqeDFBQ8b0wUdoSbU7Q/hlTVGdEn7zP4UScj8R534nKmsqRYgMTLDCtu66/UVcSLfWjzWfxr5qc2gHwX1VLfKdE6rpnAoAc2oxQuCXq038hj/UehVv9ZelJICHTUzv4VAersjarpolcDjHuO8C9FY7sGl3BEN2W+zG9xiOmP8ezpBnHJliscGzR6FXDCgWw5rcjUqeg7vL
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e33bfc51-895f-4f74-a085-08d77e4f78bb
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:29.1021 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcec75fd-46b8-4204-dd86-08d77e4f7934
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:30.0636 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Y82zQsI2s/5r0cdysX51OzOqHEJVU1OjJaSZEmziYMCBOd0u7DogLxsxNjU2Yy+qURu6aHUf0uNgq/S0fwAWiA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2570
+X-MS-Exchange-CrossTenant-UserPrincipalName: l2ZK8v+sM/6wyGNsPzhy4PddH3yd4mjAm6JvI6KHJ0/Z8ynR3W14YbkVWXlpYIEkR/svTe0PqlUSmB0K80HtGQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2491
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,44 +91,227 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Harry.Wentland@amd.com,
- Roman Li <roman.li@amd.com>, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+ Anthony Koo <Anthony.Koo@amd.com>, Martin Leung <martin.leung@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <roman.li@amd.com>
+From: Martin Leung <martin.leung@amd.com>
 
-[Why]
-Some 10bit eDP panels don't lightup after we cap bpc to 8.
+[why]
+dc previously had bugs that interfered with the ability to inherit a
+timing from a device with multiple streams (without flash/blanking).
+After this fix there is still a dependency on UEFI support.
 
-[How]
-Set default max_bpc to 16 for edp connector type.
+[how]
+fixed 3 bugs: loaded MPC state, changed bw_optimize flag to a counter
+instead of a boolean, and reading dpp/disp clk from HW to ensure we
+don't raise the clock's when we're not supposed to.
 
-Signed-off-by: Roman Li <roman.li@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Signed-off-by: Martin Leung <martin.leung@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c  | 30 +++++++++++++++++++
+ .../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h  |  4 +++
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 21 +++++++------
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 20 ++++++++++++-
+ drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
+ 5 files changed, 66 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 455c51c38720..7972286bac23 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5647,9 +5647,9 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+index 25d7b7c6681c..3ae1d23f7342 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+@@ -27,6 +27,7 @@
+ #include "clk_mgr_internal.h"
  
- 	drm_connector_attach_max_bpc_property(&aconnector->base, 8, 16);
+ #include "dce100/dce_clk_mgr.h"
++#include "dcn20_clk_mgr.h"
+ #include "reg_helper.h"
+ #include "core_types.h"
+ #include "dm_helpers.h"
+@@ -161,6 +162,9 @@ void dcn2_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		dc->debug.force_clock_mode & 0x1) {
+ 		//this is from resume or boot up, if forced_clock cfg option used, we bypass program dispclk and DPPCLK, but need set them for S3.
+ 		force_reset = true;
++
++		dcn2_read_clocks_from_hw_dentist(clk_mgr_base);
++
+ 		//force_clock_mode 0x1:  force reset the clock even it is the same clock as long as it is in Passive level.
+ 	}
+ 	display_count = clk_mgr_helper_get_active_display_cnt(dc, context);
+@@ -339,6 +343,32 @@ void dcn2_enable_pme_wa(struct clk_mgr *clk_mgr_base)
+ 	}
+ }
  
--	/* This defaults to the max in the range, but we want 8bpc. */
--	aconnector->base.state->max_bpc = 8;
--	aconnector->base.state->max_requested_bpc = 8;
-+	/* This defaults to the max in the range, but we want 8bpc for non-edp. */
-+	aconnector->base.state->max_bpc = (connector_type == DRM_MODE_CONNECTOR_eDP) ? 16 : 8;
-+	aconnector->base.state->max_requested_bpc = aconnector->base.state->max_bpc;
++
++void dcn2_read_clocks_from_hw_dentist(struct clk_mgr *clk_mgr_base)
++{
++	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
++	uint32_t dispclk_wdivider;
++	uint32_t dppclk_wdivider;
++	int disp_divider;
++	int dpp_divider;
++
++	REG_GET(DENTIST_DISPCLK_CNTL, DENTIST_DISPCLK_WDIVIDER, &dispclk_wdivider);
++	REG_GET(DENTIST_DISPCLK_CNTL, DENTIST_DPPCLK_WDIVIDER, &dppclk_wdivider);
++
++	disp_divider = dentist_get_divider_from_did(dispclk_wdivider);
++	dpp_divider = dentist_get_divider_from_did(dispclk_wdivider);
++
++	if (disp_divider && dpp_divider) {
++		/* Calculate the current DFS clock, in kHz.*/
++		clk_mgr_base->clks.dispclk_khz = (DENTIST_DIVIDER_RANGE_SCALE_FACTOR
++			* clk_mgr->base.dentist_vco_freq_khz) / disp_divider;
++
++		clk_mgr_base->clks.dppclk_khz = (DENTIST_DIVIDER_RANGE_SCALE_FACTOR
++				* clk_mgr->base.dentist_vco_freq_khz) / dpp_divider;
++	}
++
++}
++
+ void dcn2_get_clock(struct clk_mgr *clk_mgr,
+ 		struct dc_state *context,
+ 			enum dc_clock_type clock_type,
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h
+index c9fd824f3c23..b64a4e9d71d7 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h
+@@ -51,4 +51,8 @@ void dcn2_get_clock(struct clk_mgr *clk_mgr,
+ 			struct dc_clock_config *clock_cfg);
  
- 	if (connector_type == DRM_MODE_CONNECTOR_eDP &&
- 	    dc_is_dmcu_initialized(adev->dm.dc)) {
+ void dcn20_update_clocks_update_dentist(struct clk_mgr_internal *clk_mgr);
++
++void dcn2_read_clocks_from_hw_dentist(struct clk_mgr *clk_mgr_base);
++
++
+ #endif //__DCN20_CLK_MGR_H__
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 879cedd79d9e..2cb31f403b74 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -835,6 +835,7 @@ struct dc *dc_create(const struct dc_init_data *init_params)
+ 			full_pipe_count,
+ 			dc->res_pool->stream_enc_count);
+ 
++	dc->optimize_seamless_boot_streams = 0;
+ 	dc->caps.max_links = dc->link_count;
+ 	dc->caps.max_audios = dc->res_pool->audio_count;
+ 	dc->caps.linear_pitch_alignment = 64;
+@@ -1178,10 +1179,10 @@ static enum dc_status dc_commit_state_no_check(struct dc *dc, struct dc_state *c
+ 
+ 	for (i = 0; i < context->stream_count; i++) {
+ 		if (context->streams[i]->apply_seamless_boot_optimization)
+-			dc->optimize_seamless_boot = true;
++			dc->optimize_seamless_boot_streams++;
+ 	}
+ 
+-	if (!dc->optimize_seamless_boot)
++	if (dc->optimize_seamless_boot_streams == 0)
+ 		dc->hwss.prepare_bandwidth(dc, context);
+ 
+ 	/* re-program planes for existing stream, in case we need to
+@@ -1254,7 +1255,7 @@ static enum dc_status dc_commit_state_no_check(struct dc *dc, struct dc_state *c
+ 
+ 	dc_enable_stereo(dc, context, dc_streams, context->stream_count);
+ 
+-	if (!dc->optimize_seamless_boot) {
++	if (dc->optimize_seamless_boot_streams == 0) {
+ 		/* Must wait for no flips to be pending before doing optimize bw */
+ 		wait_for_no_pipes_pending(dc, context);
+ 		/* pplib is notified if disp_num changed */
+@@ -1300,7 +1301,7 @@ bool dc_post_update_surfaces_to_stream(struct dc *dc)
+ 	int i;
+ 	struct dc_state *context = dc->current_state;
+ 
+-	if (!dc->optimized_required || dc->optimize_seamless_boot)
++	if (!dc->optimized_required || dc->optimize_seamless_boot_streams > 0)
+ 		return true;
+ 
+ 	post_surface_trace(dc);
+@@ -2084,7 +2085,7 @@ static void commit_planes_do_stream_update(struct dc *dc,
+ 
+ 					dc->hwss.optimize_bandwidth(dc, dc->current_state);
+ 				} else {
+-					if (!dc->optimize_seamless_boot)
++					if (dc->optimize_seamless_boot_streams == 0)
+ 						dc->hwss.prepare_bandwidth(dc, dc->current_state);
+ 
+ 					core_link_enable_stream(dc->current_state, pipe_ctx);
+@@ -2125,7 +2126,7 @@ static void commit_planes_for_stream(struct dc *dc,
+ 	int i, j;
+ 	struct pipe_ctx *top_pipe_to_program = NULL;
+ 
+-	if (dc->optimize_seamless_boot && surface_count > 0) {
++	if (dc->optimize_seamless_boot_streams > 0 && surface_count > 0) {
+ 		/* Optimize seamless boot flag keeps clocks and watermarks high until
+ 		 * first flip. After first flip, optimization is required to lower
+ 		 * bandwidth. Important to note that it is expected UEFI will
+@@ -2134,12 +2135,14 @@ static void commit_planes_for_stream(struct dc *dc,
+ 		 */
+ 		if (stream->apply_seamless_boot_optimization) {
+ 			stream->apply_seamless_boot_optimization = false;
+-			dc->optimize_seamless_boot = false;
+-			dc->optimized_required = true;
++			dc->optimize_seamless_boot_streams--;
++
++			if (dc->optimize_seamless_boot_streams == 0)
++				dc->optimized_required = true;
+ 		}
+ 	}
+ 
+-	if (update_type == UPDATE_TYPE_FULL && !dc->optimize_seamless_boot) {
++	if (update_type == UPDATE_TYPE_FULL && dc->optimize_seamless_boot_streams == 0) {
+ 		dc->hwss.prepare_bandwidth(dc, context);
+ 		context_clock_trace(dc, context);
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 4700c785566b..594731182641 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -1910,8 +1910,26 @@ static int acquire_resource_from_hw_enabled_state(
+ 		pipe_ctx->plane_res.dpp = pool->dpps[tg_inst];
+ 		pipe_ctx->stream_res.opp = pool->opps[tg_inst];
+ 
+-		if (pool->dpps[tg_inst])
++		if (pool->dpps[tg_inst]) {
+ 			pipe_ctx->plane_res.mpcc_inst = pool->dpps[tg_inst]->inst;
++
++			// Read DPP->MPCC->OPP Pipe from HW State
++			if (pool->mpc->funcs->read_mpcc_state) {
++				struct mpcc_state s = {0};
++
++				pool->mpc->funcs->read_mpcc_state(pool->mpc, pipe_ctx->plane_res.mpcc_inst, &s);
++
++				if (s.dpp_id < MAX_MPCC)
++					pool->mpc->mpcc_array[pipe_ctx->plane_res.mpcc_inst].dpp_id = s.dpp_id;
++
++				if (s.bot_mpcc_id < MAX_MPCC)
++					pool->mpc->mpcc_array[pipe_ctx->plane_res.mpcc_inst].mpcc_bot =
++							&pool->mpc->mpcc_array[s.bot_mpcc_id];
++
++				if (s.opp_id < MAX_OPP)
++					pipe_ctx->stream_res.opp->mpc_tree_params.opp_id = s.opp_id;
++			}
++		}
+ 		pipe_ctx->pipe_idx = tg_inst;
+ 
+ 		pipe_ctx->stream = stream;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index c24639080371..91b60a549d35 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -513,7 +513,7 @@ struct dc {
+ 	bool optimized_required;
+ 
+ 	/* Require to maintain clocks and bandwidth for UEFI enabled HW */
+-	bool optimize_seamless_boot;
++	int optimize_seamless_boot_streams;
+ 
+ 	/* FBC compressor */
+ 	struct compressor *fbc_compressor;
 -- 
 2.24.0
 
