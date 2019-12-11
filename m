@@ -1,57 +1,81 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED70311AE36
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 15:48:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3219111B1CF
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:33:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 844976EB68;
-	Wed, 11 Dec 2019 14:48:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EA1E6EB70;
+	Wed, 11 Dec 2019 15:33:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4F046EB68
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 14:47:59 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id y17so24348208wrh.5
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 06:47:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=h1cmVhDv8G9w5q+894ympaHIDtuTfy65tz1rQtxh8XM=;
- b=mu1vajVXpHrmzc58Q6Exth55m9LQYSc/Y0I2rnnou2CD7RKI/ydtEf/Qyw9MjKJTIK
- iwrKg5sbpi+db8eX4YPvcvN3mx+4QRggV4f7wkyklwMQJkdwJHFYtX7g8x3Axe2Dixcf
- uYKkWlNIYcx4RlxUcfD/SjGMPli88RS2iJ8luhq2lFvpP6tWY2kz6d4yRgR4aZ06oZKA
- ok3/6fJJxK7PqeeftUlVa2z7GzgNW2rI4JcfqM+QaiMqfLlAeVDlNcQkKeRK5WmtBBpy
- RsR+bBB4oFWrsoFJj6zecnxZbuaL1bmqJtETlKWJ8df0C7TYf+JjjzfXi8z7k0yr1dZ5
- 6Tbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=h1cmVhDv8G9w5q+894ympaHIDtuTfy65tz1rQtxh8XM=;
- b=XJLvhqtZaK7VNvV3RAU2S6y7ZsGXQQsXDTSeAbjEwzLtLUWkEMbMdOTAUs2nuqsgvw
- 7hkFkuJ+NxkcK0I2Zz9ppL6p/2rXe2SoQRZ2MGkQ3ilHcu05i3J+juRL8xrSUK3bj1zs
- f7PDIOkDrgUFxApK3/QxL3g4FR6BUgAvzRJhJ6XjOMyUa+x1Y26LxKzTbSAYk/M1x4pm
- Ve6j49zuz5Hjqr84zf/QMznHlb08lEJgeu3wVM8dicX6SaKdi9Z/GjaWgPVYeCSUl9kN
- kLXYQzxE3DBV2IzeqRiGGyPrPOHKXBDT1f8cjlwJYVvtiXxGsBHXjyESNoY/FyCjOLLR
- OtUQ==
-X-Gm-Message-State: APjAAAXI8st/8Uzu34EQVIvnRAR3UB16AIQxnobaq/WcQxjX9IZdONKo
- 8JZe61B2n870G4Vg5doifM8Su50FAVBulcisX18=
-X-Google-Smtp-Source: APXvYqyNj+K+ZgCqO3nLZWbAVbgZDzU1dnWit1tgncgLY5bjCB9VGEZVCXyKkTsqJSsBwoXr0VEexU7Ir12p9dAm5k4=
-X-Received: by 2002:a5d:46c7:: with SMTP id g7mr157326wrs.11.1576075678208;
- Wed, 11 Dec 2019 06:47:58 -0800 (PST)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2058.outbound.protection.outlook.com [40.107.93.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5492C6EB70
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:33:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IEe9tbUM2HKKaonC7Y9FMUJWpt2inBSSxsW8YWiyuQRk+JXW3LvzHuQ+6dI5lo6VeWMcWSl3PbwUSARhaVmKpygp0PvEFBSTdJ4OUh1sakoMfjCM9ohnn8DL9mWT1pZiMRorBCDfBXnOcwR2YHlu9mVJQ82VPVTRavIkA+ACfpxM5KgxSm44h5zaS3jbIO6lVMlPgLy8NRPP5pApgFS/jmeEwNhMrT0IfjVEx8c+aed/rmPYF1ORwioLj/rvBbqR/MHZ55i5M39dzOPjbRd3M0GMr9qN82ioBxpYGXUAWGfZOZtCyZvQP8hu1qyco2t3S03k3JO+Wv9rxzA3pX3L+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ydgLSgEB+52YbMl4YDdRmR/M8GyjEhunvtPyXPAcpfk=;
+ b=LBMeTFIchcYjDuhL8mL7DYQf3+hx9GkoZbN0sKW0UJrogqfufxSnADkPeEoDEH8XSQr4hmD2p71yaxp4gdEcYVw9pICzPN6zHb0ZqYQeIOfmQ3lHRkGAzEQkpSWjbKqyfZNM3FwdsEoInVF2bHjRyZLYjSVny3ElQ0ozjYPK43hxnqH4HT/Q/8Vpozh0EumKaagxyN4cI+lvkGSWIWYBd5eVeT4ZQRg7qnGJkasXCfFEWNRPKege9QSyZBAd4T6/W6uGTQ0U+7izz56avnYKtPKROUUroCU221yUZjOOEHSaA4TIxMD6jLfNypbkhspV5GPolDq04E+I+ZNmbAOgjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ydgLSgEB+52YbMl4YDdRmR/M8GyjEhunvtPyXPAcpfk=;
+ b=xe1BJvjXbWNtynROzzUswm1Cw06ntJOCgJe19sLoIYRVJYt2vbD//iz67w0/tP5lwKB02zwunD9PGeJFuuwhIIBGIhbW8tGC9GWZHnYuZIez6502Yk0rJhI1bLqzBZB/REpjLwl4Si1QUK6QHHZon1Ebx7QePmhDxoUts6MYL5c=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
+Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
+ MW2PR12MB2570.namprd12.prod.outlook.com (52.132.181.13) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2538.15; Wed, 11 Dec 2019 15:33:16 +0000
+Received: from MW2PR12MB2524.namprd12.prod.outlook.com
+ ([fe80::3d1f:4c20:e980:6e69]) by MW2PR12MB2524.namprd12.prod.outlook.com
+ ([fe80::3d1f:4c20:e980:6e69%5]) with mapi id 15.20.2516.018; Wed, 11 Dec 2019
+ 15:33:15 +0000
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 00/39] DC Patches 11 Dec 2019
+Date: Wed, 11 Dec 2019 10:32:14 -0500
+Message-Id: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
+X-Mailer: git-send-email 2.24.0
+X-ClientProxiedBy: YT1PR01CA0007.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::20)
+ To MW2PR12MB2524.namprd12.prod.outlook.com
+ (2603:10b6:907:9::27)
 MIME-Version: 1.0
-References: <20191210220804.1376829-1-alexander.deucher@amd.com>
- <7c81d222-16d4-ad6f-a8f4-d90855930fc1@amd.com>
- <efcaaa66-c926-af7c-d1f1-4082b989e255@gmail.com>
-In-Reply-To: <efcaaa66-c926-af7c-d1f1-4082b989e255@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 11 Dec 2019 09:47:45 -0500
-Message-ID: <CADnq5_OgZP0kqmeTWP-CrweQGxmyQT9YGF8kvgLpFPv_CBmMig@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: wait for all rings to drain before runtime
- suspending
-To: Christian Koenig <christian.koenig@amd.com>
+X-Mailer: git-send-email 2.24.0
+X-Originating-IP: [165.204.55.250]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: c5ebf160-02c3-474c-a2c7-08d77e4f7084
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2570:|MW2PR12MB2570:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MW2PR12MB25707FD28B48E524BA14429C985A0@MW2PR12MB2570.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-Forefront-PRVS: 024847EE92
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(366004)(189003)(199004)(81156014)(81166006)(36756003)(66946007)(4326008)(66476007)(498600001)(8676002)(186003)(66556008)(6506007)(26005)(1076003)(52116002)(86362001)(8936002)(2616005)(5660300002)(2906002)(6916009)(6486002)(6512007);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2570;
+ H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xZP7rLL/xdZWhCvyiywmqSKrpG31R2NwuLBKUHOplINYoQuxHK2TaSMPtoC1OlYbgg2hMl+rwSsusANXc1SO8q8ZBME6gvB6gp6tmprKZIlLzBuho2dLAlVpTq756OHkRt8yW/QSOr4+Fht9TVELz6MSr5sXVV0XZ6d0PT429JJ30cVPfoExZEidwMrjp8JDsNeRDdgkfgEdI4DBpKCWyKWJdaoODvBCHhVKFBmfu072xUcdUeccYQc4X0VIsyKhBA6QyHLS8TqmJkBLX8GZCijDCBdV0fihHz5ucozf0O2hPLAdnYGC1lwVzJs14ZftW/ozV0d+Fw8CZs9FLC5CqGdoYfZshzCBbxNJaHJIOdlXMV8bZ4ev4RtOuQPTmHK9kLDFyWmkKkxUhZoBDV03EUGkvaCYc8zNu5FXXvfjUUMN73n7Qi48kB8S4BjMGub+
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c5ebf160-02c3-474c-a2c7-08d77e4f7084
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:15.4239 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GqpIZ7Nu9XLo5BASU6yNr1mSNJIMJj1pAgMWkTsYcoMYjdJwB1VwGN/0o9XCuQZZC5Akb8waC2VdBLrxkmbKgw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2570
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,62 +87,158 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, zhoucm1 <david1.zhou@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Harry.Wentland@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBEZWMgMTEsIDIwMTkgYXQgODowNyBBTSBDaHJpc3RpYW4gS8O2bmlnCjxja29lbmln
-LmxlaWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBBbSAxMS4xMi4xOSB1bSAwMzoy
-NiBzY2hyaWViIHpob3VjbTE6Cj4gPgo+ID4gT24gMjAxOS8xMi8xMSDkuIrljYg2OjA4LCBBbGV4
-IERldWNoZXIgd3JvdGU6Cj4gPj4gQWRkIGEgc2FmZXR5IGNoZWNrIHRvIHJ1bnRpbWUgc3VzcGVu
-ZCB0byBtYWtlIHN1cmUgYWxsIG91dHN0YW5kaW5nCj4gPj4gZmVuY2VzIGhhdmUgc2lnbmFsZWQg
-YmVmb3JlIHdlIHN1c3BlbmQuICBEb2Vzbid0IGZpeCBhbnkga25vd24gaXNzdWUuCj4gPj4KPiA+
-PiBXZSBhbHJlYWR5IGRvIHRoaXMgdmlhIHRoZSBmZW5jZSBkcml2ZXIgc3VzcGVuZCBmdW5jdGlv
-biwgYnV0IHdlCj4gPj4ganVzdCBmb3JjZSBjb21wbGV0aW9uIHJhdGhlciB0aGFuIGJhaWxpbmcu
-ICBUaGlzIGJhaWxzIG9uIHJ1bnRpbWUKPiA+PiBzdXNwZW5kIHNvIHdlIGNhbiB0cnkgYWdhaW4g
-bGF0ZXIgb25jZSB0aGUgZmVuY2VzIGFyZSBzaWduYWxlZCB0bwo+ID4+IGF2b2lkIG1pc3Npbmcg
-YW55IG91dHN0YW5kaW5nIHdvcmsuCj4gPgo+ID4gVGhlIGlkZWEgc291bmRzIE9LIHRvIG1lLCBi
-dXQgaWYgeW91IHdhbnQgdG8gZHJhaW4gdGhlIHJpbmdzLCB5b3UKPiA+IHNob3VsZCBtYWtlIHN1
-cmUgbm8gbW9yZSBzdWJtaXNzaW9uLCByaWdodD8KPiA+Cj4gPiBTbyB5b3Ugc2hvdWxkIHBhcmsg
-YWxsIHNjaGVkdWxlcnMgYmVmb3JlIHdhaXRpbmcgZm9yIGFsbCBvdXRzdGFuZGluZwo+ID4gZmVu
-Y2VzIGNvbXBsZXRlZC4KPgo+IEF0IHRoYXQgcG9pbnQgdXNlcnNwYWNlIHNob3VsZCBhbHJlYWR5
-IGJlIHB1dCB0byBob2xkLCBzbyBubyBuZXcKPiBzdWJtaXNzaW9ucy4gQnV0IGl0IHByb2JhYmx5
-IHdvbid0IGh1cnQgc3RvcHBpbmcgdGhlIHNjaGVkdWxlciBhbnl3YXkuCj4KCkFueSBpb2N0bCBj
-YWxscyB3aWxsIHdha2UgdGhlIGh3IGFnYWluIG9yIGluY3JlYXNlIHRoZSB1c2FnZSBjb3VudC4K
-Cj4gQnV0IGFub3RoZXIgaXNzdWUgSSBzZWUgaXMgd2hhdCBoYXBwZW5zIGlmIHdlIGxvY2tlZCB1
-cCB0aGUgaGFyZHdhcmU/Cj4KClJlZ3VsYXIgR1BVIHJlc2V0IHdvdWxkIGtpY2sgaW4gZXZlbnR1
-YWxseS4KCkFsZXgKCj4gQ2hyaXN0aWFuLgo+Cj4gPgo+ID4gLURhdmlkCj4gPgo+ID4+Cj4gPj4g
-U2lnbmVkLW9mZi1ieTogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+
-ID4+IC0tLQo+ID4+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jIHwg
-MTIgKysrKysrKysrKystCj4gPj4gICAxIGZpbGUgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwg
-MSBkZWxldGlvbigtKQo+ID4+Cj4gPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9kcnYuYwo+ID4+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X2Rydi5jCj4gPj4gaW5kZXggMmYzNjcxNDZjNzJjLi44MTMyMmIwYThhY2YgMTAwNjQ0Cj4g
-Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jCj4gPj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jCj4gPj4gQEAgLTEyMTQs
-MTMgKzEyMTQsMjMgQEAgc3RhdGljIGludAo+ID4+IGFtZGdwdV9wbW9wc19ydW50aW1lX3N1c3Bl
-bmQoc3RydWN0IGRldmljZSAqZGV2KQo+ID4+ICAgICAgIHN0cnVjdCBwY2lfZGV2ICpwZGV2ID0g
-dG9fcGNpX2RldihkZXYpOwo+ID4+ICAgICAgIHN0cnVjdCBkcm1fZGV2aWNlICpkcm1fZGV2ID0g
-cGNpX2dldF9kcnZkYXRhKHBkZXYpOwo+ID4+ICAgICAgIHN0cnVjdCBhbWRncHVfZGV2aWNlICph
-ZGV2ID0gZHJtX2Rldi0+ZGV2X3ByaXZhdGU7Cj4gPj4gLSAgICBpbnQgcmV0Owo+ID4+ICsgICAg
-aW50IHJldCwgaTsKPiA+PiAgICAgICAgIGlmICghYWRldi0+cnVucG0pIHsKPiA+PiAgICAgICAg
-ICAgcG1fcnVudGltZV9mb3JiaWQoZGV2KTsKPiA+PiAgICAgICAgICAgcmV0dXJuIC1FQlVTWTsK
-PiA+PiAgICAgICB9Cj4gPj4gICArICAgIC8qIHdhaXQgZm9yIGFsbCByaW5ncyB0byBkcmFpbiBi
-ZWZvcmUgc3VzcGVuZGluZyAqLwo+ID4+ICsgICAgZm9yIChpID0gMDsgaSA8IEFNREdQVV9NQVhf
-UklOR1M7IGkrKykgewo+ID4+ICsgICAgICAgIHN0cnVjdCBhbWRncHVfcmluZyAqcmluZyA9IGFk
-ZXYtPnJpbmdzW2ldOwo+ID4+ICsgICAgICAgIGlmIChyaW5nICYmIHJpbmctPnNjaGVkLnJlYWR5
-KSB7Cj4gPj4gKyAgICAgICAgICAgIHJldCA9IGFtZGdwdV9mZW5jZV93YWl0X2VtcHR5KHJpbmcp
-Owo+ID4+ICsgICAgICAgICAgICBpZiAocmV0KQo+ID4+ICsgICAgICAgICAgICAgICAgcmV0dXJu
-IC1FQlVTWTsKPiA+PiArICAgICAgICB9Cj4gPj4gKyAgICB9Cj4gPj4gKwo+ID4+ICAgICAgIGlm
-IChhbWRncHVfZGV2aWNlX3N1cHBvcnRzX2JvY28oZHJtX2RldikpCj4gPj4gICAgICAgICAgIGRy
-bV9kZXYtPnN3aXRjaF9wb3dlcl9zdGF0ZSA9IERSTV9TV0lUQ0hfUE9XRVJfQ0hBTkdJTkc7Cj4g
-Pj4gICAgICAgZHJtX2ttc19oZWxwZXJfcG9sbF9kaXNhYmxlKGRybV9kZXYpOwo+ID4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IGFtZC1nZnggbWFp
-bGluZyBsaXN0Cj4gPiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cj4KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxp
-c3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+This DC patchset brings improvements in multiple areas. In summary, we
+highlight:
+
+* Fixes on DCN2, bounding box calcs, regamma, and other;
+* Enhancements in DMUB;
+* Improvements on DCN20/21, freesync, DSC and others.
+
+Aidan Yang (1):
+  drm/amd/display: Disable integerscaling for downscale and MPO
+
+Amanda Liu (1):
+  drm/amd/display: Reinstate LFC optimization
+
+Anthony Koo (1):
+  drm/amd/display: Do not handle linkloss for eDP
+
+Aric Cyr (5):
+  drm/amd/display: Remove integer scaling code from DC and fix cursor
+  drm/amd/display: 3.2.63
+  drm/amd/display: scaling changes should also be a full update
+  drm/amd/display: 3.2.64
+  drm/amd/display: Fix manual trigger source for DCN2
+
+Camille Cho (1):
+  drm/amd/display: Add definition for number of backlight data points
+
+Charlene Liu (2):
+  drm/amd/display: HDMI 2.x audio bandwidth check
+  drm/amd/display: Add warmup escape call support
+
+Dale Zhao (1):
+  drm/amd/display: Use absolute time stamp to follow the eDP T7 spec
+    requirement
+
+Derek Lai (1):
+  drm/amd/display: Specified VR patch skip to reset segment to 0
+
+Eric Yang (1):
+  drm/amd/display: update chroma viewport wa
+
+Hugo Hu (1):
+  drm/amd/display: disable lttpr for Navi
+
+Joshua Aberback (1):
+  drm/amd/display: Add interface to adjust DSC max target bpp limit
+
+Josip Pavic (1):
+  drm/amd/display: fix regamma build optimization
+
+Jun Lei (1):
+  drm/amd/display: support virtual DCN
+
+Martin Leung (1):
+  drm/amd/display: Enable Seamless Boot Transition for Multiple Streams
+
+Nicholas Kazlauskas (4):
+  drm/amd/display: Get DMUB registers from ASIC specific structs
+  drm/amd/display: Use physical addressing for DMCUB on both dcn20/21
+  drm/amd/display: Perform DMUB hw_init on resume
+  drm/amd/display: Get cache window sizes from DMCUB firmware
+
+Nikola Cornij (2):
+  drm/amd/display: Map ODM memory correctly when doing ODM combine
+  drm/amd/display: Add debug option to override DSC target bpp increment
+
+Noah Abradjian (4):
+  drm/amd/display: Add wait for flip not pending on pipe unlock
+  drm/amd/display: Use pipe_count for num of opps
+  drm/amd/display: Collapse resource arrays when pipe is disabled
+  drm/amd/display: Remove reliance on pipe indexing
+
+Paul Hsieh (1):
+  drm/amd/display: check link status before disable stream
+
+Qingqing Zhuo (1):
+  drm/amd/display: AVI info package change due to spec update
+
+Roman Li (1):
+  drm/amd/display: Default max bpc to 16 for eDP
+
+Samson Tam (2):
+  drm/amd/display: fix 270 degree rotation for mixed-SLS mode
+  drm/amd/display: fix missing cursor on some rotated SLS displays
+
+Sung Lee (3):
+  drm/amd/display: Fix update_bw_bounding_box Calcs
+  drm/amd/display: Lower DPP DTO only when safe
+  drm/amd/display: Formula refactor for calculating DPP CLK DTO
+
+abdoulaye berthe (2):
+  drm/amd/display: disable lttpr for RN
+  drm/amd/display: Update extended timeout support for DCN20 and DCN21
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 209 +++++++-----
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   7 +
+ .../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c  |  46 ++-
+ .../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h  |   6 +-
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |   8 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 177 ++++++----
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  |  10 +-
+ .../drm/amd/display/dc/core/dc_link_hwss.c    |  13 +-
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 145 ++++++--
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |  59 ++--
+ drivers/gpu/drm/amd/display/dc/dc.h           |   5 +-
+ drivers/gpu/drm/amd/display/dc/dc_dsc.h       |   5 +-
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |   1 +
+ drivers/gpu/drm/amd/display/dc/dc_stream.h    |   7 +
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |  13 +-
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c |   3 +-
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_hubp.h |   4 +-
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  68 ++--
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_dccg.c |  20 +-
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  36 +-
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.h    |   1 -
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_optc.c |  24 +-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_optc.h |   1 +
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c | 314 ++++++++++++++++--
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_hubp.h |   1 +
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c |  31 +-
+ .../drm/amd/display/dc/dm_services_types.h    |   3 +-
+ .../amd/display/dc/dml/display_mode_structs.h |   1 +
+ .../drm/amd/display/dc/dml/display_mode_vba.c |   2 +-
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c   |  33 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/dwb.h   |   3 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |   7 +-
+ .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |   6 +-
+ drivers/gpu/drm/amd/display/dc/inc/resource.h |   2 +
+ .../inc/{dmub_fw_state.h => dmub_fw_meta.h}   |  64 ++--
+ .../gpu/drm/amd/display/dmub/inc/dmub_srv.h   |   7 +-
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn20.c |  84 ++++-
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn20.h | 117 +++++++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn21.c | 107 +-----
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn21.h |  13 +-
+ .../gpu/drm/amd/display/dmub/src/dmub_reg.h   |  10 +-
+ .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |  57 +++-
+ .../gpu/drm/amd/display/include/dal_asic_id.h |   6 +-
+ .../amd/display/modules/color/color_gamma.c   |   6 +-
+ .../amd/display/modules/freesync/freesync.c   |  32 +-
+ .../amd/display/modules/inc/mod_freesync.h    |   1 +
+ 46 files changed, 1261 insertions(+), 514 deletions(-)
+ rename drivers/gpu/drm/amd/display/dmub/inc/{dmub_fw_state.h => dmub_fw_meta.h} (57%)
+
+-- 
+2.24.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
