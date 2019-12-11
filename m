@@ -2,48 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ECD211B1DA
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:33:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B271A11B1E1
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:33:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E06466EB78;
-	Wed, 11 Dec 2019 15:33:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 245526EB75;
+	Wed, 11 Dec 2019 15:33:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
  (mail-bn7nam10on2045.outbound.protection.outlook.com [40.107.92.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7218A6EB75
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDE4E6EB75
  for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:33:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RA+e0Rmjc/SDWuBOZO7bRPpA436+o7YEDOk3szq8G8K6No4F9N5N8hGOUB6hlpsBjLv6/AOrqFTvr50LNxE9bOGtSBvJ/G8HxQxSvJaFIrsHEZnYNW1CuGy1Pmx14xc8+zXWojjINCjP+QZ6h4opPp8mT00csVkADaVxf8ZjQ/3OBkZEt01wQdN/2y+7YEjWlOXtVF1kHZTgpqfMjDyPCshD513Brdpu/xhCe7lpv4TUXL1BssuL74OgyWMKzqnGo6FUTxhYyGr2k+HsgvVOmLjBkDRqdK2rhnz3r4oDxEAZ6QwF7FSeEQz9AvTUdtSsv9CsAcXb+LDMm/kCptzuCg==
+ b=ISFyuHnvkYk3JOLulEr/5TpExjEWFMpplig48vTjljwnYn9/bIqUIGLx5ioBFIQsz+/ThwCy9YyZt3nxJme9AJyBndc4UOi4nBv5JDI1nRUggDAwYzI/3nbvGbjU5lNGL5BsoL+Y31M+63MSfkXSFgJ+1hrH4rpDRr5LuSyfi28Ab74XSjjP+m+ThWJXdQdoOfPboMdCPV4MFy5/RzWD9nQBEjuFAakQQFSFA1c8afQ3F1zdzjwWFiqIJduh4IlcuQY1ra+cN8ohauuxzR/T/ERccbDfP05X2n8MUWHt4enj1WJTsHyAX6bOrtYDY8IU0pv/dQTMVrG3z5bgJjG1DQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cBNnXpx7hTJ2kIt97Pw/6M0upe7GIi53/MXXH2GhkpQ=;
- b=Ltk6If7yM/KZSeauTmOHGFGaOgBG+YMsqze90Yx0kCbsN8Q2KoqPxD9FYpS+qa3yEmaPH2ay1euOTT/tNLOtJmxtTgbjKlxGCVQPSRoRg5EXHotZWcMkeNuyU/7GSoHd6+tc768u2qtQuWk4V33f1HO/X0aPj37WHPbEtuJf+R5KY+rj/X1WlJNQoU+eahF63LmDJ49Ig8hmboZAYhkHfM+79NCJThPbCBOCdxK+9buSBKZkHdxUPQM5BABQ+KMipSUAJYTZQFsK1rDqQ9Mxlb3mfMa+aUdHyR+UinUqx12F3i1Eg8Q1O611cirBiaVb2+mvyRhS58DzPVbLCLcjXA==
+ bh=YNwRtdyFlHksZ0z4ZSBBggyAA91elHyz1i0iT+4BtzY=;
+ b=lYuikhnEE8SXTeutkToAqMRTdKY274kNJijfHEKVe0mawQYGpqkLltOnjA2FHmrLxqaPozCyTINNsheWbuu2vE/edq1jABPPZ9u26lhEg094VQ37ZYEkY5voN3AYy3Qfd2yjVpOfty9PJf6rqfa8cd4fNwhHUWtbei5lpxDk/IwLphP0AUkgyxuWU7mE5861EMvb7OuB5sxJWH+dyQdfKDr0JfO4DYWIcmZ4dsIRvTv19tJDXrJpG+lacnM04vTbwTaJG8/Ve8XL8lC15i9C5+7sD8BtPK0CfK1pO13qwNBehSYLH5G4/IXBfpiuDZV42uThrM/TReEfvLnOYrTx6g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cBNnXpx7hTJ2kIt97Pw/6M0upe7GIi53/MXXH2GhkpQ=;
- b=TGhNCtto2bjPnR4Et3ep1XMfVTLe2zAtcIXmnTA8oVWNTxVTqn+6GkzuFBFx6+GAvJr8BC2avUSTz66zjM4o+8SYr4BuYRW2t2GBlyhsd3/+xzxCtEOZ63xva1hdmFOKzlvTb8mkMd2in4rH34bEeIh4G2WzxK7f3ML9JJ/cvSs=
+ bh=YNwRtdyFlHksZ0z4ZSBBggyAA91elHyz1i0iT+4BtzY=;
+ b=Q5XJHOMExPjiA06Q9nQ8/LqInNAu/I7crZqorYM8FQWKPz9VyXqW1GTBFUVMHNS25rc6OBk9ccJ41hL4cIdMjKQURPl2QpSUAZxvLUo+qDVMGqIvk4F02IbOSELTzgdJAPl8UjsipKrps4G0lyzuVA5gJWIxWl7+NsSHnqDI1Sw=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
  MW2PR12MB2426.namprd12.prod.outlook.com (52.132.184.27) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.15; Wed, 11 Dec 2019 15:33:22 +0000
+ 15.20.2538.15; Wed, 11 Dec 2019 15:33:23 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69%5]) with mapi id 15.20.2516.018; Wed, 11 Dec 2019
- 15:33:22 +0000
+ 15:33:23 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/39] drm/amd/display: Disable integerscaling for downscale
- and MPO
-Date: Wed, 11 Dec 2019 10:32:20 -0500
-Message-Id: <20191211153253.2291112-7-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 07/39] drm/amd/display: Add interface to adjust DSC max target
+ bpp limit
+Date: Wed, 11 Dec 2019 10:32:21 -0500
+Message-Id: <20191211153253.2291112-8-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
 References: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
@@ -55,11 +55,11 @@ X-Mailer: git-send-email 2.24.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 7d3df111-8448-447b-342e-08d77e4f748f
+X-MS-Office365-Filtering-Correlation-Id: e95ab58c-7fe2-4ef3-4d67-08d77e4f7518
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2426:|MW2PR12MB2426:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2426AC8C429DA4555E2B7A14985A0@MW2PR12MB2426.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2449;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2426998B7116040A917F22BF985A0@MW2PR12MB2426.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-Forefront-PRVS: 024847EE92
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(376002)(136003)(346002)(396003)(366004)(39860400002)(199004)(189003)(86362001)(6512007)(1076003)(478600001)(54906003)(4326008)(6486002)(66556008)(66476007)(66946007)(2616005)(316002)(2906002)(81156014)(8676002)(26005)(36756003)(52116002)(8936002)(186003)(6916009)(81166006)(5660300002)(6506007);
@@ -70,14 +70,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: H5zCPthfNPhDp1W5liZ6Y9lo9yYnrXn9ZitMdtFTmdSDlZDMG0qPsnVm1jAsf5jJbzt8OpdyQW5b4DawpMJs7bF95IdFZPqqeIbwrIKREDpR+eKuJp98s1KbZFkDmuKbbc2ASmqt+ihzP1ZcZSwfiIkRZOqGKyOoaKMtcGJ0Y2wa5PEXevi5GPI3180sYbrh28cBCGDta3E0MYFs5Q6s6kcjsxz8n2O9/qQ4B2l60t+yLq/62MDP4kRdbfMNzbqnQj0BbskbsktUUXdkdeWOcKViT4eFYmCAMbE66fiL6ASxHXzt8mTt2fujCNkeKKF8MFMhj4qq5gAnFen4Jtu/ZHdIYCneVw4YdN+Z0ZMv9rwYkWY9OeVxsGBm8W1lOHXJeNBO5XCM8sh8t+/2eUGTeZO+x/gy78iDCsONbIpWSjRumgpq6CBYvlH9A4lH2bgx
+X-Microsoft-Antispam-Message-Info: rTyyWeb8tLx7NvXhQ9rj9rw0ZF3eEia8jx+1aF4RzhISq6KsvMiX5OsCfZGlO9zc79UO8wFsjMcoQq8ozoHu8A1FQ7Ynwor+DVk5U6fyxXzyx1BvFiJL94PwPVE0MM19Q3pijysBfVdQ4mTI682n3iFgJpw27GenDfRkyBkU1iGJuTtINVF6IGSoSQKkw5HRSivUCZbABbr5OmiPVGveOEWEDdWt10w8jt+J6qRJq2EnvZh5WYinto8BsvE75C59wGp3jCUOiPB3D0/8eLxTcfS6vPteIKTF0nDDGt6r/de96YKjtlxQSIIqFzoi/5DUBgVwsd1H2gNZEKxnYioCVfuPRTUosCUxMYeB3/cCu6P/2bCSradmp52KXt6l2UpsblY3/hE6eMnqUGOHwD1e0ZX4Z7td4WhOZZFrokJ8AnxknFfwCs7kmRMuFtugcGs+
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d3df111-8448-447b-342e-08d77e4f748f
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:22.1151 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e95ab58c-7fe2-4ef3-4d67-08d77e4f7518
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:23.0506 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DKt3CEJw4eKp3W/hT8GsH0BRyS1T/P+2gaBJHfJYXe8CODvK5FdQkvnOOuApvyzOFgRAnkPUw+U9vjA3+RYWGQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9Pg3FH7+CUjVU0P/QVc7/m6mSbWelfVjxfROaNZBKFqA70UfdYc18AAu+caPgzafJvuzEjV6k8O9iyLUGBXnAA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2426
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,63 +90,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Aric Cyr <Aric.Cyr@amd.com>,
- Harry.Wentland@amd.com, Aidan Yang <Aidan.Yang@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nikola Cornij <Nikola.Cornij@amd.com>, Harry.Wentland@amd.com,
+ Joshua Aberback <joshua.aberback@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aidan Yang <Aidan.Yang@amd.com>
+From: Joshua Aberback <joshua.aberback@amd.com>
 
 [Why]
-Integer scaling is applied to MPO planes when downscaling,
-MPO planes use variable taps and integer scaling sets taps=1
+For some use cases we need to be able to adjust the maximum target bpp
+allowed by DSC policy.
 
 [How]
-Disable integer scaling on MPO planes,
-Disable integer scaling for downscaling planes
+New interface dc_dsc_policy_set_max_target_bpp_limit
 
-Signed-off-by: Aidan Yang <Aidan.Yang@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+Signed-off-by: Joshua Aberback <joshua.aberback@amd.com>
+Reviewed-by: Nikola Cornij <Nikola.Cornij@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_resource.c  | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dc_dsc.h     |  2 ++
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c | 14 +++++++++++---
+ 2 files changed, 13 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 6c6f5640234c..39cc71bedf69 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -940,11 +940,27 @@ static void calculate_inits_and_adj_vp(struct pipe_ctx *pipe_ctx)
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dsc.h b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
+index 8ec09813ee17..7ece8eb5f48c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dsc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
+@@ -77,4 +77,6 @@ bool dc_dsc_compute_config(
+ void dc_dsc_get_policy_for_timing(const struct dc_crtc_timing *timing,
+ 		struct dc_dsc_policy *policy);
  
- }
++void dc_dsc_policy_set_max_target_bpp_limit(uint32_t limit);
++
+ #endif
+diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+index d2423ad1fac2..71b048363506 100644
+--- a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+@@ -29,6 +29,9 @@
  
-+static bool is_downscaled(const struct rect *src_rect, const struct rect *dst_rect)
-+{
-+        if (src_rect->width > dst_rect->width || src_rect->height > dst_rect->height)
-+		return true;
-+	return false;
-+}
+ /* This module's internal functions */
+ 
++/* default DSC policy target bitrate limit is 16bpp */
++static uint32_t dsc_policy_max_target_bpp_limit = 16;
 +
-+static bool is_mpo(int layer_index)
-+{
-+	if (layer_index > 0)
-+		return true;
-+	return false;
-+}
-+
- static void calculate_integer_scaling(struct pipe_ctx *pipe_ctx)
+ static uint32_t dc_dsc_bandwidth_in_kbps_from_timing(
+ 	const struct dc_crtc_timing *timing)
  {
- 	unsigned int integer_multiple = 1;
- 
--	if (pipe_ctx->plane_state->scaling_quality.integer_scaling) {
-+	if (pipe_ctx->plane_state->scaling_quality.integer_scaling &&
-+	    !is_downscaled(&pipe_ctx->plane_state->src_rect, &pipe_ctx->plane_state->dst_rect) &&
-+	    !is_mpo(pipe_ctx->plane_state->layer_index)) {
- 		// calculate maximum # of replication of src onto addressable
- 		integer_multiple = min(
- 				pipe_ctx->stream->timing.h_addressable / pipe_ctx->stream->src.width,
+@@ -951,7 +954,12 @@ void dc_dsc_get_policy_for_timing(const struct dc_crtc_timing *timing, struct dc
+ 	default:
+ 		return;
+ 	}
+-	/* internal upper limit to 16 bpp */
+-	if (policy->max_target_bpp > 16)
+-		policy->max_target_bpp = 16;
++	/* internal upper limit, default 16 bpp */
++	if (policy->max_target_bpp > dsc_policy_max_target_bpp_limit)
++		policy->max_target_bpp = dsc_policy_max_target_bpp_limit;
++}
++
++void dc_dsc_policy_set_max_target_bpp_limit(uint32_t limit)
++{
++	dsc_policy_max_target_bpp_limit = limit;
+ }
 -- 
 2.24.0
 
