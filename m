@@ -1,48 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E84E611B1CB
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:33:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EB0A11B1D5
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:33:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68EFF6EB71;
-	Wed, 11 Dec 2019 15:33:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A98D66EB74;
+	Wed, 11 Dec 2019 15:33:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2058.outbound.protection.outlook.com [40.107.93.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C682C6EB70
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:33:19 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2057.outbound.protection.outlook.com [40.107.92.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AEB46EB73
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:33:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EKznBBG8XRr4H1GW6Tj5amxsN9bCKEgVW/BJBnFiiWDaFoF6RNbe6Mvfe3CdKQnNL5jPgVrN6blS1ivDc7533SgLUzzV3xH1MW8eIr26Hmvu9hJFcDQGwKlQ0xEK+4z/h/gSmxcJeVU9MFw3ktcTnOmqePc+PnktKYmWfY+G41X9wz1ckK/JxfHYJTgR/C2M7OajyZ/pDblqxlz4RTgVd1kcU6A02oOFB+6BGM2Tq0wm/VM7GdYTjzjSKSzrnyU4lku3+BBVHtEf/8s+KozVyX/cnyLVVBOtNXDXdq3K5jNTUoZLlt0Cito7C53kB+1SujNEpQ/4h74VPsl+L/TuMQ==
+ b=LI6XKLeQ6xHLwjjgz9QvVl5U85VIkXQi8lyFX6RCmWDlEDSnacRNGgnRvT6olYRsbMIS9qMx1ZWxmT/XbXyn50D8Z+UY5i4LtfbgsnoUqJgIGEhvKC9evN3RtRsVpZorfzQOI2k8qhT2etrroNDhZbcESB70K7yz7I3OI+arLdl/W69ersbaqAQwluFRXGh5Xztz/xdYRceLwFoQDRARdOxvMkjH7CzY6gkth62sSH3V02szyiYi1Ut4Jff0wTr49pcYCl5vptUBO1ZrWkAw4HtleWyk86Xw2mSoa/cO5YGOmYpvGE985EN59g/YZvlFOblU7UkY7LuY/aSrXR1AAw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wd7rbZNxeG8+FdJLwIpUbzXMt3GKKzi4p84Onl9ENV8=;
- b=ZycN5WKnrVKBHxGo1W5tiMPA2KYZCz599R12hkZ9GRL7Zdbg3D7/JqmTO15vzbQwyPreTyzgUqvdMKaBgWIQO6jtur+lL/BQTVpjSHeHB8x+Q8zAnS9esW2dPJWSvkjLusIyiFP0AYdt3dbfZUUDN/+Bla+Cc7lx+kmCV5ljp9owBLRnH5B4Amf9G/7O4zR5oIN0Fep7KfEQXrzyKoByv8Wlw2JdHQ9sHzrsPFF+bYz99NxoSAHJuBruk2NWDjx7qMePoJplKp3EIJm+G+wT0nPyJuFP3ifV19ErGzMaG4kx4TAv6SQd3mHp3EQ4//Sy7v+pykcynQdVXd6OTLVUdg==
+ bh=Rip1Wfj4Q10k/32x/htqk7iI1WitA18uAGsxEq78WpI=;
+ b=cmdTazIo/VcV5sJv/0vKPPrqywLptWiyIsoi0K41FYAKTXwnmamhQg+f5sSBqu/GVRvVTlapsCYO5ME6EY/meiVQ7vdv3roifw48svc3zxwmaiN+3+h1ONyDy253LsqvTEVK6OtPeAVxcKz8dUWZReEvGrqbMHQA6EEY+VKv+GO5W1zvA2te0wtOxLqHqyHJrBZyIwqj4QUuAXbnLCBf99k6olV3nM3cbbxsym3+k6DAt+MRFedmVelANykjt0rC94MSIjoPHhn/pXzb9lp9KYmkSY214h0OOk0wXdnPo/vhMKbhtXV18zAGBGVg4E6BDSl6uWHqOu1qU+gponhvQw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wd7rbZNxeG8+FdJLwIpUbzXMt3GKKzi4p84Onl9ENV8=;
- b=YNjSeWhiaNK8yT/8EPG2drxmGPen690c7PacosYPoj7YXOrF5jnEggjbC+VPHMhT21gt9pH6/GeW0jULUya9X5MPKOLiIB0vWIEa9GDghjxR1krjYZFRlhzDRhAroPDnFkkEKNiUold1oS1vLN6lA2lyfvzV6byHHYFfK03v4ME=
+ bh=Rip1Wfj4Q10k/32x/htqk7iI1WitA18uAGsxEq78WpI=;
+ b=APwXCtX2T3gzt+ABa8AfpSK0cWUML/QQgCAp0tq/nBMacXAr44AHRXiBg53Z9XGdGxU3suVdx6yiaFr5uM7VeFpGG6VBqIhfuFsnFk8ChkBhWntDhCT+cv3q3tuEh31Hk1fv2pkWOWLgYXfWUB6H9u/tBjtVDCcWOAuVK6WSvhs=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
- MW2PR12MB2570.namprd12.prod.outlook.com (52.132.181.13) with Microsoft SMTP
+ MW2PR12MB2426.namprd12.prod.outlook.com (52.132.184.27) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.15; Wed, 11 Dec 2019 15:33:17 +0000
+ 15.20.2538.15; Wed, 11 Dec 2019 15:33:18 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69%5]) with mapi id 15.20.2516.018; Wed, 11 Dec 2019
- 15:33:17 +0000
+ 15:33:18 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 02/39] drm/amd/display: disable lttpr for RN
-Date: Wed, 11 Dec 2019 10:32:16 -0500
-Message-Id: <20191211153253.2291112-3-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 03/39] drm/amd/display: Add wait for flip not pending on pipe
+ unlock
+Date: Wed, 11 Dec 2019 10:32:17 -0500
+Message-Id: <20191211153253.2291112-4-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
 References: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
@@ -54,30 +55,30 @@ X-Mailer: git-send-email 2.24.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: d6683a33-fa9e-4dc9-8888-08d77e4f71c1
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2570:|MW2PR12MB2570:
+X-MS-Office365-Filtering-Correlation-Id: 49b01552-b6cc-405b-f46d-08d77e4f7285
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2426:|MW2PR12MB2426:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB25706C489A211A42AC1F9AEB985A0@MW2PR12MB2570.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1303;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB24268787CE002E887B58A834985A0@MW2PR12MB2426.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:138;
 X-Forefront-PRVS: 024847EE92
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(189003)(199004)(54906003)(81156014)(81166006)(36756003)(66946007)(4326008)(66476007)(498600001)(8676002)(186003)(66556008)(6506007)(4744005)(26005)(1076003)(52116002)(86362001)(8936002)(2616005)(5660300002)(2906002)(6916009)(6486002)(6512007);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2570;
+ SFS:(10009020)(4636009)(376002)(136003)(346002)(396003)(366004)(39860400002)(199004)(189003)(86362001)(6512007)(1076003)(478600001)(54906003)(4326008)(6486002)(66556008)(66476007)(66946007)(2616005)(316002)(2906002)(81156014)(8676002)(26005)(36756003)(52116002)(8936002)(186003)(6916009)(81166006)(5660300002)(6506007);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2426;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ PTR:InfoNoRecords; A:1; MX:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3NRa/Uow+riachyxE/ka7xM5zf9ursJvaEmVRgzrn/0xWfxxxSAtS+Npo7PztIF94OSTwaPmsPNon1J8XxtK70feAdO+zrvpAcUFdK0bk/rMbmoNVv5cU0dHz89g8K1sa/+ar8eGQGlxnk8dC6g7Hzig1XzqxHRz7CdWjvaOlgI5EMFvo7jCTPnh5zytT5/LFTI9C4kPhAXa7PBtHzIWePaOfiRXMwjXsTblbIxJ4uHBA22BFv34RMZEEWL10CVCDqNety2AgyKsjMJfLxTde88VA4Ehtbmt6KySPNBAUq9Y8JkVsC0bsYcCnLiqN3QvD8/in5MgiDPH2a+vUVShkGCb0v1vu5XCZ4A7GaHclfV50CeZjeKE6p/Z8s25VXMqIEENTrNWa4586hV7DocfTL1a5iGXxcOTNeyGdZ1fwwB6QbuRcKBXENz0hTSWeZS1
+X-Microsoft-Antispam-Message-Info: nygYvBiEKDd+0wl6mW9pDq2KCWcEuNI1vHGysvyKXxBMPy5VWV2hwvQUWluFJtCGr+4ZtPxV4Jvr0qv1ft/zCZEcNh2nWkRSvMlWAORWEZldIHKmXvHn6HrPWL3V+vMR2SweosdaIeW/wXESH1xhySK1pHQHieQ7Bl6Yrxof/jXDuRKzUq3NZ1IrpYhztjiB/37LMiFsCUzVHkgpyokwmJKZA8yufL+kg4S2V3/0CXIN7JJLDjAzJiWKr6oXVrP4DZwHLUre4HpfS/uiVlMJqKZZCjPh6l/qVpOdG8UxjVU8VK1fQt1u9S/sJEwmIru9spWUDFzkX+J2p3lYX060tS85HBGnLY/BQYEFyf1c6DGva3LA7/p/SsG0UcO3iOVcxcjCg1XCdN+8N2Ob7Wb+nDlPadhLbtfVpiPPWfJX5WcUXjHLNfrcaNZZBfBd4T5H
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6683a33-fa9e-4dc9-8888-08d77e4f71c1
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:17.5097 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49b01552-b6cc-405b-f46d-08d77e4f7285
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:18.7300 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KdmvPbIp996v2pxtQDUBoRornBGrarB4+5QBEIF+ApAZRcMmyp2LSggjV9Nq26KiCOdmfI3SFLKhI69rEOMSew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2570
+X-MS-Exchange-CrossTenant-UserPrincipalName: forOtCRsD4SEvsWqUBvyn+ly6Jn4RX+1LwpYkK5w5kojbzUUgGAhcjVYhCmxfQ+2HyCrje+G4jjmsQBXMigZZg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2426
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,35 +91,93 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- George Shen <George.Shen@amd.com>, Harry.Wentland@amd.com,
- abdoulaye berthe <abdoulaye.berthe@amd.com>
+ Tony Cheng <Tony.Cheng@amd.com>, Harry.Wentland@amd.com,
+ Noah Abradjian <noah.abradjian@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: abdoulaye berthe <abdoulaye.berthe@amd.com>
+From: Noah Abradjian <noah.abradjian@amd.com>
 
-Signed-off-by: abdoulaye berthe <abdoulaye.berthe@amd.com>
-Reviewed-by: George Shen <George.Shen@amd.com>
+[Why]
+Lack of proper timing caused intermittent underflow on unplug external DP.
+A previous fix was invalid and caused S0i3 regression, so had to be reverted.
+
+[How]
+When unlocking pipe, wait for no pipes to have flip pending before unlocking.
+
+Signed-off-by: Noah Abradjian <noah.abradjian@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 39 ++++++++++++++++++++++--
+ 1 file changed, 36 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 8fa63929d3b9..98f0267300a0 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -1677,7 +1677,7 @@ static bool dcn21_resource_construct(
- 	dc->caps.max_slave_planes = 1;
- 	dc->caps.post_blend_color_processing = true;
- 	dc->caps.force_dp_tps4_for_cp2520 = true;
--	dc->caps.extended_aux_timeout_support = true;
-+	dc->caps.extended_aux_timeout_support = false;
- 	dc->caps.dmcub_support = true;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 39fe38cb39b6..879cedd79d9e 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -66,6 +66,9 @@
  
- 	if (dc->ctx->dce_environment == DCE_ENV_PRODUCTION_DRV)
+ #include "dce/dce_i2c.h"
+ 
++#define CTX \
++	dc->ctx
++
+ #define DC_LOGGER \
+ 	dc->ctx->logger
+ 
+@@ -783,6 +786,33 @@ static void disable_dangling_plane(struct dc *dc, struct dc_state *context)
+ 	dc_release_state(current_ctx);
+ }
+ 
++static void wait_for_no_pipes_pending(struct dc *dc, struct dc_state *context)
++{
++	int i;
++	int count = 0;
++	struct pipe_ctx *pipe;
++	PERF_TRACE();
++	for (i = 0; i < MAX_PIPES; i++) {
++		pipe = &context->res_ctx.pipe_ctx[i];
++
++		if (!pipe->plane_state)
++			continue;
++
++		/* Timeout 100 ms */
++		while (count < 100000) {
++			/* Must set to false to start with, due to OR in update function */
++			pipe->plane_state->status.is_flip_pending = false;
++			dc->hwss.update_pending_status(pipe);
++			if (!pipe->plane_state->status.is_flip_pending)
++				break;
++			udelay(1);
++			count++;
++		}
++		ASSERT(!pipe->plane_state->status.is_flip_pending);
++	}
++	PERF_TRACE();
++}
++
+ /*******************************************************************************
+  * Public functions
+  ******************************************************************************/
+@@ -1224,9 +1254,12 @@ static enum dc_status dc_commit_state_no_check(struct dc *dc, struct dc_state *c
+ 
+ 	dc_enable_stereo(dc, context, dc_streams, context->stream_count);
+ 
+-	if (!dc->optimize_seamless_boot)
+-			/* pplib is notified if disp_num changed */
+-			dc->hwss.optimize_bandwidth(dc, context);
++	if (!dc->optimize_seamless_boot) {
++		/* Must wait for no flips to be pending before doing optimize bw */
++		wait_for_no_pipes_pending(dc, context);
++		/* pplib is notified if disp_num changed */
++		dc->hwss.optimize_bandwidth(dc, context);
++	}
+ 
+ 	for (i = 0; i < context->stream_count; i++)
+ 		context->streams[i]->mode_changed = false;
 -- 
 2.24.0
 
