@@ -1,95 +1,64 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 117D011B416
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:46:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C08811B4CB
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:50:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B31B6EB71;
-	Wed, 11 Dec 2019 15:46:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 278376EB75;
+	Wed, 11 Dec 2019 15:50:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2046.outbound.protection.outlook.com [40.107.237.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 884226EB71
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:46:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E0HjV3ObWN4LYlpHEjfngWQ36MvyoLmPafftkdXnQO/pX3Oo7E+b8OkTUGkcK4gu5Qt5FtNe4Z98EwfHzKOwYP+vrrdY2UxFtnaNmr5tTSeo7yasvvKx/vFXrkM/Ht+pSo8i/se1XMzlzIFb31r0d1lJsiqYXN2BweBfDlAm2saSUkqM+dDbe886Hg9/KDftVhZQhhOdno2+G9wwjJE58w/etXGsEHFJEfONuJPikbTaYBUv8ZCokvZPELB+6cG8wWkscYqu2wgWfbEmj8i5AQy9q4Z81KvNQazH1+aIamD4HDv2NjRB37ZDjSI6uhWwZGcalGqbM+30VDLotY2cmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hOyJXGsyQ2tQqHtTydFL9idH4usD/mGfg8uKCf76GhU=;
- b=WCve4FkcG+wOIZC8N+DGpElcMDj90Bvr3HRZuXojrLnYpUgp2EW8ZD/RjKq9OgvFBjAkOABuwJgK5jhBiOjpAhJT0AiPeBQDWyk+Tan1BL2fjWX1xRwfHBs62KHOqLrPj9hDVJUbbVmd4qFkrIZMilPaZKPqNuy5qyDw14Z1GE6kN+H2i4CVJfN0AKey+hdeMRggG2QUTEpEL0ZI5AkCXhYUYKoicZzhB+r0K3sZ7RMZ1+ksGNboOD+0199UNNgIFVu9kWi1UqO7h7IOlAh0ndF10aJkaCel+cvPBU49WoV/9obdQWCX/1ed27FB9LTYFcN0w0dC0fUq4+0SL4WvzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hOyJXGsyQ2tQqHtTydFL9idH4usD/mGfg8uKCf76GhU=;
- b=N3qz1UeWuG5MO4Dews0kV1sOd0oUBR3bunbCuC50fcdguAN2bZe/6erdXQnpmsMP3/dy5AP4b389h0uUvm/oUGG6yxQT0yXWX55okl8AJJg67VnZIBTNUlSH6TWR9MOXEAxsMB+vIt5ob9B9CcVEDLR9p1GNDUrthA/twBsNTCo=
-Received: from DM5PR12CA0056.namprd12.prod.outlook.com (2603:10b6:3:103::18)
- by MN2PR12MB3357.namprd12.prod.outlook.com (2603:10b6:208:d1::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.14; Wed, 11 Dec
- 2019 15:46:04 +0000
-Received: from CO1NAM11FT003.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eab::203) by DM5PR12CA0056.outlook.office365.com
- (2603:10b6:3:103::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.15 via Frontend
- Transport; Wed, 11 Dec 2019 15:46:04 +0000
-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- CO1NAM11FT003.mail.protection.outlook.com (10.13.175.93) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2538.14 via Frontend Transport; Wed, 11 Dec 2019 15:46:04 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 11 Dec
- 2019 09:46:03 -0600
-Received: from roma-lnx-dev.amd.com (10.180.168.240) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Wed, 11 Dec 2019 09:46:03 -0600
-From: <Roman.Li@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>,
- <Tony.Cheng@amd.com>, <harry.wentland@amd.com>
-Subject: [PATCH 3/3] drm/amd/display: add missing dcn link encoder regs
-Date: Wed, 11 Dec 2019 10:45:43 -0500
-Message-ID: <1576079143-5675-3-git-send-email-Roman.Li@amd.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1576079143-5675-1-git-send-email-Roman.Li@amd.com>
-References: <1576079143-5675-1-git-send-email-Roman.Li@amd.com>
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC1F6EB75
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:50:44 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id n9so7654838wmd.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 07:50:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=U3mcyuaxxc1C5VTrZemajTcMPdGkeVdsn1qMmckmPOY=;
+ b=UM3hw+ckg+mTFHs4Vm0DHrBY91Pbo9PCC3w5WnkJReSkbrMV9G8DlkhIoNV5n2O9GD
+ cMcE+3WbMHqGFWm8pno1az6OM4qecEPiX/qhspd6aGsMYRwEppIWwCNwxsRpQ4a2UeFZ
+ Y7HHrwvziMSPJGcWWuwNeE1eKAgaHMUvYQdmS39Gs/8tzTzjEppA5ekVS1yU2vlfC3PG
+ zMy6Z6dA7ZQNQNufIWIPqyKy0f0qRp5Qy9Qga1zGxpizMuabXrzRNoJhhSz/kWzHWPFQ
+ RqsCEAQX5cXFokeYrQe4wH7WMZNcapeiC4QqIu00/8CH0Sdt5reo6KIzCkj+rR+XRfQA
+ bumg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=U3mcyuaxxc1C5VTrZemajTcMPdGkeVdsn1qMmckmPOY=;
+ b=AzQaz3dsFyRLeU/xSQuT5nc9vclL9aSPwwbMan1QUoLTTGDlBWARZqoCctcwfbXrYZ
+ /JcId5EI1jz56iVXEVHOwkEjNQb67knMXCQnBTwUGeVJr5Th2fqVxCsn2fdzVTgZusl5
+ VKfiMreofCeVDjFiJ/TOFSugKmKA8WX81SWMcxDe8ylL+UNTPIuzZGdqDZSNTs6VaZG+
+ pza+V1Rf7MzKe+LjjpXIW9TE+Sa/Cni65mM/tZ517CWR06Re5MJ+n8olmTNOz59RzbzQ
+ GJ5+q5V9scG++x8HL6a07j4N/TDA8qbX5LehEpLeS/Y5bSHRrAPOYCqi2hXiWlCGsfX3
+ mk2A==
+X-Gm-Message-State: APjAAAW/rjEVnHCFdCS3SCAnHgoQrOFTv2d589sns/DilMysQUXr8kKR
+ WhvxlH4exQyhhTO1p15npxw=
+X-Google-Smtp-Source: APXvYqxcesNg8GXHGaHPRXF2/rRqb7j2AbcNDsuWUI+ZJjwSo2xixhPDn2OfQbSeqJFxHAbW98IKvw==
+X-Received: by 2002:a05:600c:22c8:: with SMTP id
+ 8mr489144wmg.178.1576079443022; 
+ Wed, 11 Dec 2019 07:50:43 -0800 (PST)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id b10sm2641020wrt.90.2019.12.11.07.50.42
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 11 Dec 2019 07:50:42 -0800 (PST)
+Subject: Re: [PATCH] drm/amdgpu: fix license on Kconfig and Makefiles
+To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
+References: <20191211153316.1946311-1-alexander.deucher@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <6517eb35-1ee6-7a68-68d0-1f1d24047304@gmail.com>
+Date: Wed, 11 Dec 2019 16:50:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:NLI; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(346002)(136003)(396003)(376002)(428003)(199004)(189003)(7696005)(30864003)(81166006)(8676002)(336012)(8936002)(81156014)(478600001)(426003)(2616005)(2906002)(6666004)(2876002)(356004)(5660300002)(70206006)(54906003)(26005)(6636002)(316002)(110136005)(70586007)(186003)(86362001)(4326008)(36756003)(2101003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3357; H:SATLEXMB02.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ebe970d1-ed2b-4942-14dd-08d77e513b2e
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3357:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB33571A701201FCB33BBE548D895A0@MN2PR12MB3357.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:383;
-X-Forefront-PRVS: 024847EE92
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: l5+wnHQzqMWcYeB1JuI348MpXHRha/D2bo3FlqAt0SqyYzW1FZuw2gzDvfWJIPK9cpkq+pye0MbeAL8Fx56HhpVUnhfmbZe9QhABLxapFJGnPWHLettkSEFHZKi2TPOgu7AP1W/NymGkQvP/NQqX1TxVfGEest+RP1S1iayRiTDqMoKAOO2RxEGuVNmLTovL73FDofMMIbLaxfLfeKMurVagfDqMJr7+J/BzFCgdML7grDi/mdDCXXEM0Fc/rnSLVIGG32HmJsrV3WnwzY/2hHC5SnPXCDJiA3c3Hy3ZnQv55ymTd8i+r199dR+qIZSrGmihrgvHtj7ONbL5zAMpHxr/O2jl+neimzOpNQo2WydIlr7vIJmgChECvpLEIsoFRPOz3TAGlJSUh4WubkHEb7LJYRMjAM6vzlH5jyXWL4TGKaVa+Ku2+dTfCMO/B/A2oWbtJ5pS7IFbU5YKtJJs/Gz+sAA1evqi0Aio/gEwQGc=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:46:04.4899 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ebe970d1-ed2b-4942-14dd-08d77e513b2e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3357
+In-Reply-To: <20191211153316.1946311-1-alexander.deucher@amd.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,392 +70,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, Roman Li <Roman.Li@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: christian.koenig@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <Roman.Li@amd.com>
-
-[Why]
-The earlier change: "check phy dpalt lane count config"
-uses link encoder registers not defined properly.
-That caused regression with mst-enabled display not
-lighting up.
-
-[How]
-Add missing reg definitions.
-
-Signed-off-by: Roman Li <Roman.Li@amd.com>
----
- .../drm/amd/display/dc/dcn10/dcn10_link_encoder.h  |  20 +++
- .../drm/amd/display/dc/dcn20/dcn20_link_encoder.h  | 180 ++++++++++++++++++++-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_resource.c  |   9 +-
- .../drm/amd/display/dc/dcn21/dcn21_link_encoder.h  |  39 +++++
- .../gpu/drm/amd/display/dc/dcn21/dcn21_resource.c  |  11 +-
- 5 files changed, 253 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h
-index 7493a63..eb13589 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h
-@@ -124,6 +124,26 @@ struct dcn10_link_enc_registers {
- 	uint32_t RDPCSTX_PHY_CNTL13;
- 	uint32_t RDPCSTX_PHY_CNTL14;
- 	uint32_t RDPCSTX_PHY_CNTL15;
-+	uint32_t RDPCSTX_CNTL;
-+	uint32_t RDPCSTX_CLOCK_CNTL;
-+	uint32_t RDPCSTX_PHY_CNTL0;
-+	uint32_t RDPCSTX_PHY_CNTL2;
-+	uint32_t RDPCSTX_PLL_UPDATE_DATA;
-+	uint32_t RDPCS_TX_CR_ADDR;
-+	uint32_t RDPCS_TX_CR_DATA;
-+	uint32_t DPCSTX_TX_CLOCK_CNTL;
-+	uint32_t DPCSTX_TX_CNTL;
-+	uint32_t RDPCSTX_INTERRUPT_CONTROL;
-+	uint32_t RDPCSTX_PHY_FUSE0;
-+	uint32_t RDPCSTX_PHY_FUSE1;
-+	uint32_t RDPCSTX_PHY_FUSE2;
-+	uint32_t RDPCSTX_PHY_FUSE3;
-+	uint32_t RDPCSTX_PHY_RX_LD_VAL;
-+	uint32_t DPCSTX_DEBUG_CONFIG;
-+	uint32_t RDPCSTX_DEBUG_CONFIG;
-+	uint32_t RDPCSTX0_RDPCSTX_SCRATCH;
-+	uint32_t RDPCSTX_DMCU_DPALT_DIS_BLOCK_REG;
-+	uint32_t DCIO_SOFT_RESET;
- 	/* indirect registers */
- 	uint32_t RAWLANE0_DIG_PCS_XF_RX_OVRD_IN_2;
- 	uint32_t RAWLANE0_DIG_PCS_XF_RX_OVRD_IN_3;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h
-index 62dfd34..8cab810 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h
-@@ -33,7 +33,142 @@
- 	SRI(AUX_DPHY_TX_CONTROL, DP_AUX, id)
- 
- #define UNIPHY_MASK_SH_LIST(mask_sh)\
--	LE_SF(UNIPHYA_CHANNEL_XBAR_CNTL, UNIPHY_LINK_ENABLE, mask_sh)
-+	LE_SF(SYMCLKA_CLOCK_ENABLE, SYMCLKA_CLOCK_ENABLE, mask_sh),\
-+	LE_SF(UNIPHYA_CHANNEL_XBAR_CNTL, UNIPHY_LINK_ENABLE, mask_sh),\
-+	LE_SF(UNIPHYA_CHANNEL_XBAR_CNTL, UNIPHY_CHANNEL0_XBAR_SOURCE, mask_sh),\
-+	LE_SF(UNIPHYA_CHANNEL_XBAR_CNTL, UNIPHY_CHANNEL1_XBAR_SOURCE, mask_sh),\
-+	LE_SF(UNIPHYA_CHANNEL_XBAR_CNTL, UNIPHY_CHANNEL2_XBAR_SOURCE, mask_sh),\
-+	LE_SF(UNIPHYA_CHANNEL_XBAR_CNTL, UNIPHY_CHANNEL3_XBAR_SOURCE, mask_sh)
-+
-+#define DPCS_MASK_SH_LIST(mask_sh)\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_CLK_RDY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_DATA_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_CLK_RDY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_DATA_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_CLK_RDY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_DATA_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_CLK_RDY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_DATA_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL4, RDPCS_PHY_DP_TX0_TERM_CTRL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL4, RDPCS_PHY_DP_TX1_TERM_CTRL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL4, RDPCS_PHY_DP_TX2_TERM_CTRL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL4, RDPCS_PHY_DP_TX3_TERM_CTRL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL11, RDPCS_PHY_DP_MPLLB_MULTIPLIER, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX0_WIDTH, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX0_RATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX1_WIDTH, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX1_RATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX2_PSTATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX3_PSTATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX2_MPLL_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX3_MPLL_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL7, RDPCS_PHY_DP_MPLLB_FRACN_QUOT, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL7, RDPCS_PHY_DP_MPLLB_FRACN_DEN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL8, RDPCS_PHY_DP_MPLLB_SSC_PEAK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL9, RDPCS_PHY_DP_MPLLB_SSC_UP_SPREAD, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL9, RDPCS_PHY_DP_MPLLB_SSC_STEPSIZE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL10, RDPCS_PHY_DP_MPLLB_FRACN_REM, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL11, RDPCS_PHY_DP_REF_CLK_MPLLB_DIV, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL11, RDPCS_PHY_HDMI_MPLLB_HDMI_DIV, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_SSC_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_DIV5_CLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_TX_CLK_DIV, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_WORD_DIV2_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_STATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL13, RDPCS_PHY_DP_MPLLB_DIV_CLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL13, RDPCS_PHY_DP_MPLLB_DIV_MULTIPLIER, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL14, RDPCS_PHY_DP_MPLLB_FRACN_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL14, RDPCS_PHY_DP_MPLLB_PMIX_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_LANE0_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_LANE1_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_LANE2_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_LANE3_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_RD_START_DELAY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_EXT_REFCLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SRAMCLK_BYPASS, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SRAMCLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SRAMCLK_CLOCK_ON, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SYMCLK_DIV2_CLOCK_ON, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SYMCLK_DIV2_GATE_DIS, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SYMCLK_DIV2_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_REQ, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_REQ, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_REQ, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_REQ, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_ACK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_ACK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_ACK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_ACK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_PHY_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_PHY_CR_MUX_SEL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_PHY_REF_RANGE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_SRAM_BYPASS, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_SRAM_EXT_LD_DONE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_PHY_HDMIMODE_ENABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_SRAM_INIT_DONE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL2, RDPCS_PHY_DP4_POR, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PLL_UPDATE_DATA, RDPCS_PLL_UPDATE_DATA, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_INTERRUPT_CONTROL, RDPCS_REG_FIFO_ERROR_MASK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_INTERRUPT_CONTROL, RDPCS_TX_FIFO_ERROR_MASK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_INTERRUPT_CONTROL, RDPCS_DPALT_DISABLE_TOGGLE_MASK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_INTERRUPT_CONTROL, RDPCS_DPALT_4LANE_TOGGLE_MASK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCS_TX_CR_ADDR, RDPCS_TX_CR_ADDR, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCS_TX_CR_DATA, RDPCS_TX_CR_DATA, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_MPLLB_V2I, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_TX0_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_TX0_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_TX0_EQ_POST, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_MPLLB_FREQ_VCO, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_MPLLB_CP_INT, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_MPLLB_CP_PROP, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_TX1_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_TX1_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_TX1_EQ_POST, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_TX2_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_TX2_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_TX2_EQ_POST, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DP_TX3_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DCO_FINETUNE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DCO_RANGE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DP_TX3_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DP_TX3_EQ_POST, mask_sh),\
-+	LE_SF(DPCSTX0_DPCSTX_TX_CLOCK_CNTL, DPCS_SYMCLK_CLOCK_ON, mask_sh),\
-+	LE_SF(DPCSTX0_DPCSTX_TX_CLOCK_CNTL, DPCS_SYMCLK_GATE_DIS, mask_sh),\
-+	LE_SF(DPCSTX0_DPCSTX_TX_CLOCK_CNTL, DPCS_SYMCLK_EN, mask_sh),\
-+	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_DATA_SWAP, mask_sh),\
-+	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_DATA_ORDER_INVERT, mask_sh),\
-+	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_FIFO_EN, mask_sh),\
-+	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_FIFO_RD_START_DELAY, mask_sh),\
-+	LE_SF(DPCSTX0_DPCSTX_DEBUG_CONFIG, DPCS_DBG_CBUS_DIS, mask_sh)
-+
-+#define DPCS_DCN2_MASK_SH_LIST(mask_sh)\
-+	DPCS_MASK_SH_LIST(mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_RX_LD_VAL, RDPCS_PHY_RX_REF_LD_VAL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_RX_LD_VAL, RDPCS_PHY_RX_VCO_LD_VAL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DISABLE_ACK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX0_PSTATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX1_PSTATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX0_MPLL_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX1_MPLL_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_REF_CLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX2_WIDTH, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX2_RATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX3_WIDTH, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX3_RATE, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYA_SOFT_RESET, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYB_SOFT_RESET, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYC_SOFT_RESET, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYD_SOFT_RESET, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYE_SOFT_RESET, mask_sh)
- 
- #define LINK_ENCODER_MASK_SH_LIST_DCN20(mask_sh)\
- 	LINK_ENCODER_MASK_SH_LIST_DCN10(mask_sh),\
-@@ -63,6 +198,49 @@
- 	SRI(CLOCK_ENABLE, SYMCLK, id), \
- 	SRI(CHANNEL_XBAR_CNTL, UNIPHY, id)
- 
-+#define DPCS_DCN2_CMN_REG_LIST(id) \
-+	SRI(DIG_LANE_ENABLE, DIG, id), \
-+	SRI(TMDS_CTL_BITS, DIG, id), \
-+	SRI(RDPCSTX_PHY_CNTL3, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL4, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL5, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL6, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL7, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL8, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL9, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL10, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL11, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL12, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL13, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL14, RDPCSTX, id), \
-+	SRI(RDPCSTX_CNTL, RDPCSTX, id), \
-+	SRI(RDPCSTX_CLOCK_CNTL, RDPCSTX, id), \
-+	SRI(RDPCSTX_INTERRUPT_CONTROL, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL0, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL2, RDPCSTX, id), \
-+	SRI(RDPCSTX_PLL_UPDATE_DATA, RDPCSTX, id), \
-+	SRI(RDPCS_TX_CR_ADDR, RDPCSTX, id), \
-+	SRI(RDPCS_TX_CR_DATA, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_FUSE0, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_FUSE1, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_FUSE2, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_FUSE3, RDPCSTX, id), \
-+	SRI(DPCSTX_TX_CLOCK_CNTL, DPCSTX, id), \
-+	SRI(DPCSTX_TX_CNTL, DPCSTX, id), \
-+	SRI(DPCSTX_DEBUG_CONFIG, DPCSTX, id), \
-+	SRI(RDPCSTX_DEBUG_CONFIG, RDPCSTX, id), \
-+	SR(RDPCSTX0_RDPCSTX_SCRATCH)
-+
-+
-+#define DPCS_DCN2_REG_LIST(id) \
-+	DPCS_DCN2_CMN_REG_LIST(id), \
-+	SRI(RDPCSTX_PHY_RX_LD_VAL, RDPCSTX, id),\
-+	SRI(RDPCSTX_DMCU_DPALT_DIS_BLOCK_REG, RDPCSTX, id)
-+
-+#define LE_DCN2_REG_LIST(id) \
-+		LE_DCN10_REG_LIST(id), \
-+		SR(DCIO_SOFT_RESET)
-+
- struct mpll_cfg {
- 	uint32_t mpllb_ana_v2i;
- 	uint32_t mpllb_ana_freq_vco;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index cfc6991..186277d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -65,6 +65,8 @@
- 
- #include "dcn/dcn_2_0_0_offset.h"
- #include "dcn/dcn_2_0_0_sh_mask.h"
-+#include "dpcs/dpcs_2_0_0_offset.h"
-+#include "dpcs/dpcs_2_0_0_sh_mask.h"
- 
- #include "nbio/nbio_2_3_offset.h"
- 
-@@ -548,6 +550,7 @@ static const struct dcn10_link_enc_hpd_registers link_enc_hpd_regs[] = {
- [id] = {\
- 	LE_DCN10_REG_LIST(id), \
- 	UNIPHY_DCN2_REG_LIST(phyid), \
-+	DPCS_DCN2_REG_LIST(id), \
- 	SRI(DP_DPHY_INTERNAL_CTRL, DP, id) \
- }
- 
-@@ -561,11 +564,13 @@ static const struct dcn10_link_enc_registers link_enc_regs[] = {
- };
- 
- static const struct dcn10_link_enc_shift le_shift = {
--	LINK_ENCODER_MASK_SH_LIST_DCN20(__SHIFT)
-+	LINK_ENCODER_MASK_SH_LIST_DCN20(__SHIFT),\
-+	DPCS_DCN2_MASK_SH_LIST(__SHIFT)
- };
- 
- static const struct dcn10_link_enc_mask le_mask = {
--	LINK_ENCODER_MASK_SH_LIST_DCN20(_MASK)
-+	LINK_ENCODER_MASK_SH_LIST_DCN20(_MASK),\
-+	DPCS_DCN2_MASK_SH_LIST(_MASK)
- };
- 
- #define ipp_regs(id)\
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_link_encoder.h
-index 1d7a1a5..033d5d7 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_link_encoder.h
-@@ -33,6 +33,45 @@ struct dcn21_link_encoder {
- 	struct dpcssys_phy_seq_cfg phy_seq_cfg;
- };
- 
-+#define DPCS_DCN21_MASK_SH_LIST(mask_sh)\
-+	DPCS_DCN2_MASK_SH_LIST(mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_TX_VBOOST_LVL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_MPLLB_CP_PROP_GS, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_RX_VREF_CTRL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_MPLLB_CP_INT_GS, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_DMCU_DPALT_DIS_BLOCK_REG, RDPCS_DMCU_DPALT_DIS_BLOCK_REG, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL15, RDPCS_PHY_SUP_PRE_HP, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL15, RDPCS_PHY_DP_TX0_VREGDRV_BYP, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL15, RDPCS_PHY_DP_TX1_VREGDRV_BYP, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL15, RDPCS_PHY_DP_TX2_VREGDRV_BYP, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL15, RDPCS_PHY_DP_TX3_VREGDRV_BYP, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DP4, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_TX0_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_TX0_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_TX0_EQ_POST, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_TX1_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_TX1_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_TX1_EQ_POST, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_TX2_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_TX2_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_TX2_EQ_POST, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DP_TX3_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DCO_FINETUNE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DCO_RANGE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DP_TX3_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DP_TX3_EQ_POST, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYA_SOFT_RESET, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYB_SOFT_RESET, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYC_SOFT_RESET, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYD_SOFT_RESET, mask_sh),\
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYE_SOFT_RESET, mask_sh)
-+
-+#define DPCS_DCN21_REG_LIST(id) \
-+	DPCS_DCN2_REG_LIST(id),\
-+	SRI(RDPCSTX_PHY_CNTL15, RDPCSTX, id),\
-+	SRI(RDPCSTX_DMCU_DPALT_DIS_BLOCK_REG, RDPCSTX, id)
-+
- #define LINK_ENCODER_MASK_SH_LIST_DCN21(mask_sh)\
- 	LINK_ENCODER_MASK_SH_LIST_DCN20(mask_sh),\
- 	LE_SF(UNIPHYA_CHANNEL_XBAR_CNTL, UNIPHY_CHANNEL0_XBAR_SOURCE, mask_sh),\
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 8fa6392..caafdc9 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -60,6 +60,8 @@
- 
- #include "dcn20/dcn20_dwb.h"
- #include "dcn20/dcn20_mmhubbub.h"
-+#include "dpcs/dpcs_2_1_0_offset.h"
-+#include "dpcs/dpcs_2_1_0_sh_mask.h"
- 
- #include "renoir_ip_offset.h"
- #include "dcn/dcn_2_1_0_offset.h"
-@@ -1495,8 +1497,9 @@ static const struct encoder_feature_support link_enc_feature = {
- 
- #define link_regs(id, phyid)\
- [id] = {\
--	LE_DCN10_REG_LIST(id), \
-+	LE_DCN2_REG_LIST(id), \
- 	UNIPHY_DCN2_REG_LIST(phyid), \
-+	DPCS_DCN21_REG_LIST(id), \
- 	SRI(DP_DPHY_INTERNAL_CTRL, DP, id) \
- }
- 
-@@ -1535,11 +1538,13 @@ static const struct dcn10_link_enc_hpd_registers link_enc_hpd_regs[] = {
- };
- 
- static const struct dcn10_link_enc_shift le_shift = {
--	LINK_ENCODER_MASK_SH_LIST_DCN20(__SHIFT)
-+	LINK_ENCODER_MASK_SH_LIST_DCN20(__SHIFT),\
-+	DPCS_DCN21_MASK_SH_LIST(__SHIFT)
- };
- 
- static const struct dcn10_link_enc_mask le_mask = {
--	LINK_ENCODER_MASK_SH_LIST_DCN20(_MASK)
-+	LINK_ENCODER_MASK_SH_LIST_DCN20(_MASK),\
-+	DPCS_DCN21_MASK_SH_LIST(_MASK)
- };
- 
- static int map_transmitter_id_to_phy_instance(
--- 
-2.7.4
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+QW0gMTEuMTIuMTkgdW0gMTY6MzMgc2NocmllYiBBbGV4IERldWNoZXI6Cj4gYW1kZ3B1IGlzIE1J
+VCBsaWNlbnNlZC4KPgo+IEZpeGVzOiBlYzhmMjRiN2ZhYWYzZCAoInRyZWV3aWRlOiBBZGQgU1BE
+WCBsaWNlbnNlIGlkZW50aWZpZXIgLSBNYWtlZmlsZS9LY29uZmlnIikKPiBTaWduZWQtb2ZmLWJ5
+OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+CgpSZXZpZXdlZC1ieTog
+Q2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgoKPiAtLS0KPiAgIGRy
+aXZlcnMvZ3B1L2RybS9hbWQvYWNwL0tjb25maWcgICAgICAgICAgICAgICB8IDIgKy0KPiAgIGRy
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L0tjb25maWcgICAgICAgICAgICB8IDIgKy0KPiAgIGRy
+aXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL0tjb25maWcgICAgICAgICAgICB8IDIgKy0KPiAgIGRy
+aXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9LY29uZmlnICAgICAgICAgICB8IDIgKy0KPiAgIGRy
+aXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY24yMC9NYWtlZmlsZSB8IDEgKwo+ICAgZHJp
+dmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjbjIxL01ha2VmaWxlIHwgMSArCj4gICBkcml2
+ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZHNjL01ha2VmaWxlICAgfCAxICsKPiAgIDcgZmls
+ZXMgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYWNwL0tjb25maWcgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FjcC9LY29uZmlnCj4gaW5kZXggMTliYWU5MTAwZGE0Li4xMzM0MGYzNTNlYTggMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hY3AvS2NvbmZpZwo+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvYWNwL0tjb25maWcKPiBAQCAtMSw0ICsxLDQgQEAKPiAtIyBTUERYLUxpY2Vuc2Ut
+SWRlbnRpZmllcjogR1BMLTIuMC1vbmx5Cj4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1J
+VAo+ICAgbWVudSAiQUNQIChBdWRpbyBDb1Byb2Nlc3NvcikgQ29uZmlndXJhdGlvbiIKPiAgIAo+
+ICAgY29uZmlnIERSTV9BTURfQUNQCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L0tjb25maWcgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9LY29uZmlnCj4gaW5k
+ZXggMmU5OGMwMTZjYjQ3Li45Mzc1ZTdmMTI0MjAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvS2NvbmZpZwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
+L0tjb25maWcKPiBAQCAtMSw0ICsxLDQgQEAKPiAtIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
+R1BMLTIuMC1vbmx5Cj4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVAo+ICAgY29uZmln
+IERSTV9BTURHUFVfU0kKPiAgIAlib29sICJFbmFibGUgYW1kZ3B1IHN1cHBvcnQgZm9yIFNJIHBh
+cnRzIgo+ICAgCWRlcGVuZHMgb24gRFJNX0FNREdQVQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGtmZC9LY29uZmlnIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQvS2Nv
+bmZpZwo+IGluZGV4IGJhMGU2ODA1N2E4OS4uYjM2NzJkMTBlYTU0IDEwMDY0NAo+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL0tjb25maWcKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGtmZC9LY29uZmlnCj4gQEAgLTEsNCArMSw0IEBACj4gLSMgU1BEWC1MaWNlbnNlLUlk
+ZW50aWZpZXI6IEdQTC0yLjAtb25seQo+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQK
+PiAgICMKPiAgICMgSGV0ZXJvZ2Vub3VzIHN5c3RlbSBhcmNoaXRlY3R1cmUgY29uZmlndXJhdGlv
+bgo+ICAgIwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvS2NvbmZp
+ZyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9LY29uZmlnCj4gaW5kZXggMmEyZjYyMWMw
+ZDZjLi44Nzg1OGJjNTdlNjQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNw
+bGF5L0tjb25maWcKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvS2NvbmZpZwo+
+IEBAIC0xLDQgKzEsNCBAQAo+IC0jIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9u
+bHkKPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUCj4gICBtZW51ICJEaXNwbGF5IEVu
+Z2luZSBDb25maWd1cmF0aW9uIgo+ICAgCWRlcGVuZHMgb24gRFJNICYmIERSTV9BTURHUFUKPiAg
+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNuMjAvTWFr
+ZWZpbGUgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNuMjAvTWFrZWZpbGUKPiBp
+bmRleCAyZWViMDM4MTgwNzIuLjVmY2FmNzgzMzRmZiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNuMjAvTWFrZWZpbGUKPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vYW1kL2Rpc3BsYXkvZGMvZGNuMjAvTWFrZWZpbGUKPiBAQCAtMSwzICsxLDQgQEAKPiArIyBT
+UERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUCj4gICAjCj4gICAjIE1ha2VmaWxlIGZvciBEQ04u
+Cj4gICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjbjIx
+L01ha2VmaWxlIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjbjIxL01ha2VmaWxl
+Cj4gaW5kZXggYjM2ODg5MDBkMjExLi4wNzY4NGQzZTM3NWEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjbjIxL01ha2VmaWxlCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjbjIxL01ha2VmaWxlCj4gQEAgLTEsMyArMSw0IEBACj4g
+KyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVAo+ICAgIwo+ICAgIyBNYWtlZmlsZSBmb3Ig
+RENOMjEuCj4gICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2Rj
+L2RzYy9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9kYy9kc2MvTWFrZWZp
+bGUKPiBpbmRleCA3NDE1YjhiZjYzMTguLjNmNjY4NjhkZjE3MSAxMDA2NDQKPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZHNjL01ha2VmaWxlCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RzYy9NYWtlZmlsZQo+IEBAIC0xLDMgKzEsNCBAQAo+ICsj
+IFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQKPiAgICMKPiAgICMgTWFrZWZpbGUgZm9yIHRo
+ZSAnZHNjJyBzdWItY29tcG9uZW50IG9mIERBTC4KPiAgIAoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9hbWQtZ2Z4Cg==
