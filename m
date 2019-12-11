@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0425811B202
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:34:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8A3811B205
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:34:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DBE36EB72;
-	Wed, 11 Dec 2019 15:34:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E47C6EB78;
+	Wed, 11 Dec 2019 15:34:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760057.outbound.protection.outlook.com [40.107.76.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3D246EB94
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:34:15 +0000 (UTC)
+ (mail-eopbgr760084.outbound.protection.outlook.com [40.107.76.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 348E96EB74
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:34:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HnEFRtgY95cc9RJK3DS9NdjKDPilncRJ1JwiwZ2KsZ8ntVQSn61y2fPux5yqvobOPV8daubEv5WS50/8wa5DMKHHPK2HkJQMBqwECchdRSkZzEgz1zpZgcvR3QR5j41e4iwnes47VSynEKyVsxNtMK3RtxnPbSPaWom88vePTdxx7VTZFg17apVp6l02IkXAONV6BGvxPAGjxSW9VfeeTigxGtWyb53p4mYSh2K0bwvU1EwBblKDer6Pi71oRtAlw4O8oRcEQUGS3rigrMv55Oj/fmKFZYvriBTQ9HR0AqvK/jC5u+QO5cqJgMJ8sWDh8GVM+uIt8Lnz2TyJ98upDA==
+ b=SYAmDyidGQ8Jbjm6awDGt3w9BNPFWs8w02DxvncwDKDVLOkAUa4MqA6pcyClqoBJoX8dx9GaQOozSeHb7zbV70am3+QRqTZrtB/vusfk/oFSMFcyXW1eZ88Cuj0FVJDgtiWhYlIo6Z5H9ARNaLwQBlmAmqZM0Xd4wROjfbjftR6Bj6QENjENMgcEbXWH7jNTYEXF0kjeX121LJdhN9rXUXwo/YU7whZa3lJNBQxqQUXwAI7N3W41t19HW287dYdbbrREoGSH0rlOXqGsH9D7IlNJSeM958JZVH6KLmMpl5jPu9G0hpvr0YiMjjNFgjcIk3i+bUgwH+VvEogmvmKMrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sd2cKdCkwpaPrlLBdBeEYpOstVB4Tbjn0+b5gcmFiWw=;
- b=XMRkErrHhCPfMeEKz6tfqgjtdMqifx6k5W5TlEa1h/tF0Ev1geqIrELhrrNV13W3NZmwUtS7+FBVJwt4hBg36DQp70FzW1YZUCcWATurzxDuzZUBcY/WG5sXpAkT3Uzs8Ju5OzOEBeRBZyOdrLm0HdHr9D6IRKgxFwB/DI8ObU8DmR6I2mt8RqzWutmeJTMD3DDM7ATZ/xjVIGYbY3qB/gkcKo4m1dMv3aIrKuSVcv5U+PL3CSzUGJU3PPWEaOr3Dsmd6Ue8AYZSLn+CpC4LpMcYxAxkMLpn+Cd+pbkuMzsYLyoGwhK4vKk2XebAZxe1CCrYvkzU6M7ufED11ZswXw==
+ bh=Gv85upyN3RJDOTQSQEOAtZOVQZF8jh4+SrCNeuTGw1s=;
+ b=g+7He4bpghrpW3WjX4AuO/B5qHTd5MDTb1PJhN5Z2s6TICx2CURbtyXlGV5FCMF7GVmuBGbROzshqbRQQWY/Qqm7y9WT31/2vaBTHZy22zpUAFYtwCf7gb5Sj4vlJNX+UTICbR8cjKotXpxbvieEx3C5CYuu/BkHRsRv8X3f+/WNz2WIo51R7MVnEYXyP2K0ad8udpvAIzAPtZz2QBoMmHsaQZLN+1+WSk5dgCROUC6rDG9rSNCF0FX/DFybTY9HBTOf2vjCJyFouATpbinN/kUEpJfHjGdMnPG3RcB3N5uIUm8EgOMrJlU+vYSi2PFQG5Akq0rf4KzssXmyzGbWGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sd2cKdCkwpaPrlLBdBeEYpOstVB4Tbjn0+b5gcmFiWw=;
- b=ArazrNRQmhgXXvhufVVBYriyiJXhFvaVc6PkF8NJ+JUzVEbGQNAYMeICgvYjxqZEGsePLZSVggDLlcOOYpZZzgTEsCw0paInbsIvhZcfea3xdJg6lCs06gkfMi201LRIVtR1i1DUkadDTEioLf5nzKEvs47q+YZjf2KolstRQs8=
+ bh=Gv85upyN3RJDOTQSQEOAtZOVQZF8jh4+SrCNeuTGw1s=;
+ b=KM+D5tGKZcGZP2yN8Urt68DlF6Oc3jVjxk35rRRDZcrSKJ92YwLBGIgDYk6WA6AfS7QYAsB9fC/C6YqoP2QK01XXOkf3HbVX73/e03Z7tRzztSzmkQwuicikdKDaWdycMoSH/L8b0+uM2PiKUqdl8TxiF6Ooic93DWzoGk1LngQ=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
@@ -40,9 +40,9 @@ Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  15:34:15 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 33/39] drm/amd/display: Fix manual trigger source for DCN2
-Date: Wed, 11 Dec 2019 10:32:47 -0500
-Message-Id: <20191211153253.2291112-34-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 34/39] drm/amd/display: support virtual DCN
+Date: Wed, 11 Dec 2019 10:32:48 -0500
+Message-Id: <20191211153253.2291112-35-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
 References: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
@@ -54,11 +54,11 @@ X-Mailer: git-send-email 2.24.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: cea4fa6d-3abc-46ba-8a8c-08d77e4f82c9
+X-MS-Office365-Filtering-Correlation-Id: 053713c6-bb39-4ca0-d83d-08d77e4f834c
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2491:|MW2PR12MB2491:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB24919AF284B32FD16B37F592985A0@MW2PR12MB2491.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1303;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2491A8ACF5BE0A5C272C22F4985A0@MW2PR12MB2491.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-Forefront-PRVS: 024847EE92
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(396003)(346002)(376002)(39860400002)(366004)(136003)(189003)(199004)(6486002)(6512007)(6916009)(8936002)(5660300002)(2906002)(6666004)(86362001)(52116002)(2616005)(478600001)(66476007)(316002)(186003)(8676002)(81156014)(81166006)(54906003)(36756003)(4326008)(1076003)(26005)(66946007)(66556008)(6506007);
@@ -69,14 +69,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MsjCevSwLsD34+vZmvTsrwfAr86tLhbIlIyhwLgiUN7lBPj29y7vC/FeQmJSiCKM1IcFBKEl6UJ+JOY2zomAAgr2sr2McioiVqB9IUDIhniwyGErp06Q6wwzXnLmSIyyiqPiQHvCQN/pXp8nGe7oBw7ieFnclUMI9WZWa5FdJoYOif8xJuAjt7d1ZtPyOAUvxd5hKB4m5y6qLs0UiRsQru+2VsoO1TKgWAErWHNRtVai15CNV567sKkArcNSU/hy+rtIylys+PeWdNZ27jjBfvgiFlUTGbU9YqfXoqn7bPNoYAmYvmDNvZcrFaloHW5qOFu06tA/Ur6lqk62kc4XaYjpNan3phVN7byqXpUq+i5muYju6mZLCdnMc5/MlT2ta6wi1xVnAw9FCHpZcuzMk/exP+TbNtlNcObuNZ0wusGYj5wn44auqCp3hzWD4YZL
+X-Microsoft-Antispam-Message-Info: dfhw3coQy6++OuQd2Op+NDxuc1QR7KBNuI3ONCCFAkBdY+aT+VUbHwu5c5Yc52Mv7TzVPnRFQ+pCycOVmZ8RhlVYcDIwTdxUAqbN/RDj5pWgsNEjoRjLNbxcsW0bmybPYh4bqzMaL99v6vTEB4jI4UhiV75GFDwPcFH5wpDtSUwJPxvwavCRf0fNN6cFigednADGTFuqfjoFKkg9Cpdb125+0ckliKc2/v1nUo0Pen3F6Vc57wQ+n1BYDS3vkN4IRIqnFJzEeedFwSD6yIxY6+RCOiaMV2/OlUNRzw9b6ly5d/VKnN1QcU1Jk8JKVqZMmn5YZpTt4WTMHiWwiyfraEFsWqpyOYYftkSYP8jC8LAfIVARZ10MJb19DO1YIVXkzSxIF4cIED5C7ey3UMHRt+MO+DpQoF/5EVXvW/CvGN4WTyB6BCpelx2TlbIf0h75
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cea4fa6d-3abc-46ba-8a8c-08d77e4f82c9
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:45.9725 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 053713c6-bb39-4ca0-d83d-08d77e4f834c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:46.8321 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hRjcslVPTDH5m1QaUTMZal5pNTJsVYGOanAuyNqrEy9yfrHI6wTemxWPAWaoMA3xVl3JARSG5TOiVEeopZMMNw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: XdSxS+M2KwD7T/zZ3+xPMKzcnWqLg0KJFap8Z+oAz2kFVjtdpDohXPrTJXhtk1gimD/ZUoCDHQ6Qo/LgcLeYWQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2491
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,58 +89,245 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Aric Cyr <aric.cyr@amd.com>,
- Harry.Wentland@amd.com, Anthony Koo <Anthony.Koo@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Aric Cyr <Aric.Cyr@amd.com>,
+ Jun Lei <Jun.Lei@amd.com>, Harry.Wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: Jun Lei <Jun.Lei@amd.com>
 
-Fix manual trigger source correctly be TRIGA for DCN2
-rather than MANUAL_FLOW.
+[why]
+DAL3 should support SRIOV
 
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+[how]
+Add support for the virtual dal flag.  This flag should skip
+most/all of DC construction since the HW isn't accessible, but
+still construct WindowsDM (almost) normally but with only SW display
+targets
+
+Signed-off-by: Jun Lei <Jun.Lei@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c | 8 +-------
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.h | 1 +
- 2 files changed, 2 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c  | 113 +++++++++++++---------
+ drivers/gpu/drm/amd/display/dc/dc_types.h |   7 +-
+ 2 files changed, 74 insertions(+), 46 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c
-index 9b36fec549d7..d875b0c38fde 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c
-@@ -390,14 +390,8 @@ void optc2_setup_manual_trigger(struct timing_generator *optc)
- {
- 	struct optc *optc1 = DCN10TG_FROM_TG(optc);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index c13480685853..3d89904003f0 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -582,6 +582,40 @@ static void dc_destruct(struct dc *dc)
  
--	REG_SET(OTG_MANUAL_FLOW_CONTROL, 0,
--			MANUAL_FLOW_CONTROL, 1);
+ }
+ 
++static bool dc_construct_ctx(struct dc *dc,
++		const struct dc_init_data *init_params)
++{
++	struct dc_context *dc_ctx;
++	enum dce_version dc_version = DCE_VERSION_UNKNOWN;
++
++	dc_ctx = kzalloc(sizeof(*dc_ctx), GFP_KERNEL);
++	if (!dc_ctx)
++		return false;
++
++	dc_ctx->cgs_device = init_params->cgs_device;
++	dc_ctx->driver_context = init_params->driver;
++	dc_ctx->dc = dc;
++	dc_ctx->asic_id = init_params->asic_id;
++	dc_ctx->dc_sink_id_count = 0;
++	dc_ctx->dc_stream_id_count = 0;
++	dc_ctx->dce_environment = init_params->dce_environment;
++
++	/* Create logger */
++
++	dc_version = resource_parse_asic_id(init_params->asic_id);
++	dc_ctx->dce_version = dc_version;
++
++	dc_ctx->perf_trace = dc_perf_trace_create();
++	if (!dc_ctx->perf_trace) {
++		ASSERT_CRITICAL(false);
++		return false;
++	}
++
++	dc->ctx = dc_ctx;
++
++	return true;
++}
++
+ static bool dc_construct(struct dc *dc,
+ 		const struct dc_init_data *init_params)
+ {
+@@ -593,7 +627,6 @@ static bool dc_construct(struct dc *dc,
+ 	struct dcn_ip_params *dcn_ip;
+ #endif
+ 
+-	enum dce_version dc_version = DCE_VERSION_UNKNOWN;
+ 	dc->config = init_params->flags;
+ 
+ 	// Allocate memory for the vm_helper
+@@ -639,26 +672,12 @@ static bool dc_construct(struct dc *dc,
+ 	dc->soc_bounding_box = init_params->soc_bounding_box;
+ #endif
+ 
+-	dc_ctx = kzalloc(sizeof(*dc_ctx), GFP_KERNEL);
+-	if (!dc_ctx) {
++	if (!dc_construct_ctx(dc, init_params)) {
+ 		dm_error("%s: failed to create ctx\n", __func__);
+ 		goto fail;
+ 	}
+ 
+-	dc_ctx->cgs_device = init_params->cgs_device;
+-	dc_ctx->driver_context = init_params->driver;
+-	dc_ctx->dc = dc;
+-	dc_ctx->asic_id = init_params->asic_id;
+-	dc_ctx->dc_sink_id_count = 0;
+-	dc_ctx->dc_stream_id_count = 0;
+-	dc->ctx = dc_ctx;
 -
--	REG_SET(OTG_GLOBAL_CONTROL2, 0,
--			MANUAL_FLOW_CONTROL_SEL, optc->inst);
+-	/* Create logger */
 -
- 	REG_SET_8(OTG_TRIGA_CNTL, 0,
--			OTG_TRIGA_SOURCE_SELECT, 22,
-+			OTG_TRIGA_SOURCE_SELECT, 21,
- 			OTG_TRIGA_SOURCE_PIPE_SELECT, optc->inst,
- 			OTG_TRIGA_RISING_EDGE_DETECT_CNTL, 1,
- 			OTG_TRIGA_FALLING_EDGE_DETECT_CNTL, 0,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.h
-index ac93fbfaee03..239cc40ae474 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.h
-@@ -106,6 +106,7 @@ void optc2_triplebuffer_lock(struct timing_generator *optc);
- void optc2_triplebuffer_unlock(struct timing_generator *optc);
- void optc2_lock_doublebuffer_disable(struct timing_generator *optc);
- void optc2_lock_doublebuffer_enable(struct timing_generator *optc);
-+void optc2_setup_manual_trigger(struct timing_generator *optc);
- void optc2_program_manual_trigger(struct timing_generator *optc);
- bool optc2_is_two_pixels_per_containter(const struct dc_crtc_timing *timing);
- #endif /* __DC_OPTC_DCN20_H__ */
+-	dc_ctx->dce_environment = init_params->dce_environment;
+-
+-	dc_version = resource_parse_asic_id(init_params->asic_id);
+-	dc_ctx->dce_version = dc_version;
++        dc_ctx = dc->ctx;
+ 
+ 	/* Resource should construct all asic specific resources.
+ 	 * This should be the only place where we need to parse the asic id
+@@ -673,7 +692,7 @@ static bool dc_construct(struct dc *dc,
+ 		bp_init_data.bios = init_params->asic_id.atombios_base_address;
+ 
+ 		dc_ctx->dc_bios = dal_bios_parser_create(
+-				&bp_init_data, dc_version);
++				&bp_init_data, dc_ctx->dce_version);
+ 
+ 		if (!dc_ctx->dc_bios) {
+ 			ASSERT_CRITICAL(false);
+@@ -681,17 +700,13 @@ static bool dc_construct(struct dc *dc,
+ 		}
+ 
+ 		dc_ctx->created_bios = true;
+-		}
+-
+-	dc_ctx->perf_trace = dc_perf_trace_create();
+-	if (!dc_ctx->perf_trace) {
+-		ASSERT_CRITICAL(false);
+-		goto fail;
+ 	}
+ 
++
++
+ 	/* Create GPIO service */
+ 	dc_ctx->gpio_service = dal_gpio_service_create(
+-			dc_version,
++			dc_ctx->dce_version,
+ 			dc_ctx->dce_environment,
+ 			dc_ctx);
+ 
+@@ -700,7 +715,7 @@ static bool dc_construct(struct dc *dc,
+ 		goto fail;
+ 	}
+ 
+-	dc->res_pool = dc_create_resource_pool(dc, init_params, dc_version);
++	dc->res_pool = dc_create_resource_pool(dc, init_params, dc_ctx->dce_version);
+ 	if (!dc->res_pool)
+ 		goto fail;
+ 
+@@ -731,8 +746,6 @@ static bool dc_construct(struct dc *dc,
+ 	return true;
+ 
+ fail:
+-
+-	dc_destruct(dc);
+ 	return false;
+ }
+ 
+@@ -825,29 +838,38 @@ struct dc *dc_create(const struct dc_init_data *init_params)
+ 	if (NULL == dc)
+ 		goto alloc_fail;
+ 
+-	if (false == dc_construct(dc, init_params))
+-		goto construct_fail;
++	if (init_params->dce_environment == DCE_ENV_VIRTUAL_HW) {
++		if (false == dc_construct_ctx(dc, init_params)) {
++			dc_destruct(dc);
++			goto construct_fail;
++		}
++	} else {
++		if (false == dc_construct(dc, init_params)) {
++			dc_destruct(dc);
++			goto construct_fail;
++		}
++
++		full_pipe_count = dc->res_pool->pipe_count;
++		if (dc->res_pool->underlay_pipe_index != NO_UNDERLAY_PIPE)
++			full_pipe_count--;
++		dc->caps.max_streams = min(
++				full_pipe_count,
++				dc->res_pool->stream_enc_count);
+ 
+-	full_pipe_count = dc->res_pool->pipe_count;
+-	if (dc->res_pool->underlay_pipe_index != NO_UNDERLAY_PIPE)
+-		full_pipe_count--;
+-	dc->caps.max_streams = min(
+-			full_pipe_count,
+-			dc->res_pool->stream_enc_count);
++		dc->optimize_seamless_boot_streams = 0;
++		dc->caps.max_links = dc->link_count;
++		dc->caps.max_audios = dc->res_pool->audio_count;
++		dc->caps.linear_pitch_alignment = 64;
+ 
+-	dc->optimize_seamless_boot_streams = 0;
+-	dc->caps.max_links = dc->link_count;
+-	dc->caps.max_audios = dc->res_pool->audio_count;
+-	dc->caps.linear_pitch_alignment = 64;
++		dc->caps.max_dp_protocol_version = DP_VERSION_1_4;
+ 
+-	dc->caps.max_dp_protocol_version = DP_VERSION_1_4;
++		if (dc->res_pool->dmcu != NULL)
++			dc->versions.dmcu_version = dc->res_pool->dmcu->dmcu_version;
++	}
+ 
+ 	/* Populate versioning information */
+ 	dc->versions.dc_ver = DC_VER;
+ 
+-	if (dc->res_pool->dmcu != NULL)
+-		dc->versions.dmcu_version = dc->res_pool->dmcu->dmcu_version;
+-
+ 	dc->build_id = DC_BUILD_ID;
+ 
+ 	DC_LOG_DC("Display Core initialized\n");
+@@ -865,7 +887,8 @@ struct dc *dc_create(const struct dc_init_data *init_params)
+ 
+ void dc_hardware_init(struct dc *dc)
+ {
+-	dc->hwss.init_hw(dc);
++	if (dc->ctx->dce_environment != DCE_ENV_VIRTUAL_HW)
++		dc->hwss.init_hw(dc);
+ }
+ 
+ void dc_init_callbacks(struct dc *dc,
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
+index 2cce8ed014ac..b1a372c8df83 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
+@@ -60,7 +60,12 @@ enum dce_environment {
+ 	DCE_ENV_FPGA_MAXIMUS,
+ 	/* Emulation on real HW or on FPGA. Used by Diagnostics, enforces
+ 	 * requirements of Diagnostics team. */
+-	DCE_ENV_DIAG
++	DCE_ENV_DIAG,
++	/*
++	 * Guest VM system, DC HW may exist but is not virtualized and
++	 * should not be used.  SW support for VDI only.
++	 */
++	DCE_ENV_VIRTUAL_HW
+ };
+ 
+ /* Note: use these macro definitions instead of direct comparison! */
 -- 
 2.24.0
 
