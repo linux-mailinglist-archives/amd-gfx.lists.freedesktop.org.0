@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16F7611B208
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:34:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5135711B20D
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:34:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0DD6EB92;
-	Wed, 11 Dec 2019 15:34:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB65A6EB94;
+	Wed, 11 Dec 2019 15:34:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760040.outbound.protection.outlook.com [40.107.76.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3DAC6EB92
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:34:18 +0000 (UTC)
+ (mail-eopbgr760088.outbound.protection.outlook.com [40.107.76.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED3436EB91
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:34:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X6IwphZn3Ipgyl/UZbPuCIOzRWkWoQmliFKaI1axggE+F+iDwI/fNdVUYXf6foLlVJA1PRBc4ueuKdKWvCQFl8PFVf8sPzZtwaQT5EYZN8Lms1RExFAG3KbDqXA79Covo9gNUrsgSFVWotsw6jQ8x8E90Yf73hd1IaVd1Kj1omHsoDXte7JEGniBf6gXCW8rC019RBzEph5G3RZtMirFFTLqwCGCfXE1gdU0eYEubVlp0NbqTttUQ9gX4z7rfvfeWhgeQV/yQ+0khnapnQ77WKlGUnZR0RpNn74e2jA+w2Ox2DxaQw3a1hLuT2x9wJ6VoxnUJBsd24yA5OLlECuhZQ==
+ b=MsuNr5PzKIDjKRwXJCvvZcEjofvf0Z8As/aniTzJ5Vdtb2OX9tHkrMkm/xHl8MziB6QpE2rJaP1gF0mtJJuEMTIUQYxtm31020IoA9R7DkWCzwUHvJe88sM5Q+BhDzU+M3mRL026GdM17WKrVwIYaLDA8epNJFbs79yfxck7JpwvAWaq4Q6P0dimRT5wTfdEyDTPx0mBiV+Anytc2tBFqSVeITkg3Xs5awTU3lLxR3HJo8Cna7CAqfiSZ1STHDnYLMR3emP7o4yCIOGosECkJiu5/xCA5l5x3QzeAa9bA2LqJr7QpqQMSbQ6F3lZwqU5Rq+pWLrAQcTHrjfDIiPfvw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CEyXT1V60kdecoIq40l9L3ngbKzppIeGuRN3R959R7A=;
- b=il6mvBv2+ZCP9kUnd+Ayc005XP0MgrWWD32UNfugnXgpP+YEKTuvsK2+E9eOr5K3yFYv9av3+UzRhBUkKSP/iHU0xnYwRIFU5n26vvhbWhhZnlXpDT45zpZNSJ+SbowY9i3u65K2gFMwtdsP2fM2hNdIZUEzgwJa563MA2x9nwQ5fs7jgQArNR+vqUQzrGap5U28ko3CsmBVWL/ln5sD1knSd34Mk/sM3Ju9XtXcgEcJTCYrjFKWTe5CABO1kMHAw46supY19QcYKXdU7Xi8HZVoGzJjeOiwagau3fgwbAJUYwnfY7XDVDLqtqSBwvoKISeoTUPUeUtfhff8favacA==
+ bh=CfHF4zzgsn1Mh0tbcxt6H8GNMXyVy2G7z6r7pJ8ShgU=;
+ b=OCgEsOaFCuCWXGuBuhPIxo09e8u041iHM3GIQe7wcBADEJbYATSMq6IrixuyDdGx+e9V+MKmj7Rro3U/4MgCKaJUDpmkIZf2/j+ksM6nanSSOIE/olVH5PSgEFzPUfzmAFThyC2YS+ELHNK++lTkXzPkFi4QAyN1bVGSXH50SW9s8MG9tdor+rirt0mWQUycd1W+pUGyXcl7lpw3knzcBZzdyhCc5X8knR+B7u7MPYE/ESJTWptNqTlu9c6AV+/tn6B0w+Zy5yz7VF9epFQaQwntZsCWx0y0p8qeJQUOPa2qq/CTFeLIY79j8qPeXZB8W76AqiF9uJHS8n5MqSyhpA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CEyXT1V60kdecoIq40l9L3ngbKzppIeGuRN3R959R7A=;
- b=LEGf6nLPBXsOIbd+ApKyvTopA8OrDLaDudV0TgN+7L/wApp8OPpSEk1qsdDt0/vk00l+Ng6cOXLc+3flAb+8OZBLuqfPg/0dIxFPo+mlpUA/p27emx4anPjd0s3wU8gSfJfjkxZtkDCKvguW1k7ajyMKPhxgqFsEZ+4M4HWOkAc=
+ bh=CfHF4zzgsn1Mh0tbcxt6H8GNMXyVy2G7z6r7pJ8ShgU=;
+ b=wQBYbYXbn4HdajOQRzqKUixJAoXy35a9C3qAhnMnThftGfDYEFwJwmaLYZI8Gm5fnRxXJ0CHfw8hwnpbjYjv9tNjCTTIE8l6/OvetJ8GdrOipIG8TGH7tDJvDjvlpRmBaXK8QUMsSLezR6dPKrAsyEoj6kWGyHzzDT0sIVKUYfU=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
@@ -40,10 +40,9 @@ Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  15:34:18 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 37/39] drm/amd/display: fix missing cursor on some rotated SLS
- displays
-Date: Wed, 11 Dec 2019 10:32:51 -0500
-Message-Id: <20191211153253.2291112-38-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 38/39] drm/amd/display: Do not handle linkloss for eDP
+Date: Wed, 11 Dec 2019 10:32:52 -0500
+Message-Id: <20191211153253.2291112-39-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
 References: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
@@ -55,11 +54,11 @@ X-Mailer: git-send-email 2.24.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 8f21d8d0-4437-464b-648b-08d77e4f84ee
+X-MS-Office365-Filtering-Correlation-Id: d352c097-d48c-44ad-e199-08d77e4f8576
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2491:|MW2PR12MB2491:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB24917F89A8C926843C01B615985A0@MW2PR12MB2491.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2491182698E42F8846E5140E985A0@MW2PR12MB2491.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-Forefront-PRVS: 024847EE92
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(396003)(346002)(376002)(39860400002)(366004)(136003)(189003)(199004)(6486002)(6512007)(6916009)(8936002)(5660300002)(2906002)(6666004)(86362001)(52116002)(2616005)(478600001)(66476007)(316002)(186003)(8676002)(81156014)(81166006)(54906003)(36756003)(4326008)(1076003)(26005)(66946007)(66556008)(6506007);
@@ -70,14 +69,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CtjFb+RcXDWf5K6t8UIYF30tHa4ev0QmE5l1q/tARJAOhNoNDH0pDBUSxkUQPjRk/TkGFV8Z/ay1vNPHtM9mqVDIpMqmp9MtBwHJ+434cshcsSzwdFiJRHA/B91TFuZ3lSSF34KTbG+mM3LxhkA70uvob2o97NptqglgYdaq6LdqNLhdKQE42RtpQXUpJtJEV850PIn13mV6QVaijboqKwm6antP/SEdp1TxS5A4bofaBSnX8oNBf+J2Zetb/1lhbwKXOfZoYxN+bIyJpam6QiiLr8b1+IcrcfCPTN/XBQau64OuuuE9biveyh3RJCVo/T54Ffxz4AMsmVaMhwKfs8DaThvd9OKW6tDOfAtk+/0QOPp3t8rcuZY49skyEimk4/x9hrJmyczF0W6PXhT3EFUk2WfIDcXtawAsYGPpkoOvF2PjkCV4WWm0HGcIQeFS
+X-Microsoft-Antispam-Message-Info: PVSmUXM4/+LoEgcITUKgYsZAY1Uk3a2RkuKZwX+r8MC4KgglxT2z1S5RY9tZsQNX4i4Yb/CI7DfTDQbDQRKBAWQNKKPxdMuA15UjcbEr2auHUcfHq5XIjIipoEDvBi/9o6qO44W4NemElRypcHx2mJOGCvm+8hxpqRvNJ6dusAHbtzbisnMis4o3yB76zf4Vu6RvwRkl63mtG1CbN1YIVNOCqK9qj5+2ZAa9OkbG9+6yMFE1dqmlKTIjkkVmnF7M1rg/tV2KQUPXrLRQg6TLMAywjfLN4i6U3jpLBLb25t7Q5FYCO7BFvAVWTMyHrnso5yxROvBucSwRT2CIkOOOPXA7st1vf1CZ8rMlm6FNyTXd6Y5F/eMB9+OSMz5TNctBeeWdawFtVLnNx+W/clUCvxTgSmmYdJMMZe6hPnL+AhNcqEaVTiJAGpEUqyApmzZH
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f21d8d0-4437-464b-648b-08d77e4f84ee
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:49.6265 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d352c097-d48c-44ad-e199-08d77e4f8576
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:50.4640 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2aQd7C+1HqkZ0Q6ZO6tQzmGAbxpjhN0I25u1TBPCuPQ/i2IjQFNCfMeDIJabq/ZzPWtAOsSZCsB3WhoN1mFYNQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: E2RZSW5yUGw2P9DR7TJXuvIUJCIJXTOu7o9dtE/471sqxd79miGKWsmzitKFGhFhhkJghX2QI0RgnSvTbnBKYQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2491
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,116 +89,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Jun Lei <Jun.Lei@amd.com>,
- Harry.Wentland@amd.com, Samson Tam <Samson.Tam@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Aric Cyr <Aric.Cyr@amd.com>,
+ Harry.Wentland@amd.com, Anthony Koo <Anthony.Koo@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Samson Tam <Samson.Tam@amd.com>
+From: Anthony Koo <Anthony.Koo@amd.com>
 
 [Why]
-Cursor disappears for some SLS displays that are rotated 180
-and 270 degrees.  This occurs when there is no pipe split being
-done ( ex. 3 or more displays ).  The cursor calculations assume
-pipe splitting is done so when it calculates the new cursor
-position in hwss.set_cursor_position(), it is out-of-bounds so
-it disables the cursor in hubp.set_cursor_position().
+eDP is internal link and link loss is unexpected.
+It is typically going to be PSR related errors, which is
+handled separately.
 
 [How]
-In non pipe split cases, calculate cursor using viewport size
-( width or height ) instead of viewport size * 2 ( the two
-because pipe splitting divides the rectangle into two ).
+Check for eDP and skip check for link loss
 
-Signed-off-by: Samson Tam <Samson.Tam@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Signed-off-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 51 +++++++++++++------
- 1 file changed, 36 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index 9e53bbd5d2b5..9c55e4897fca 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -2916,6 +2916,8 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 		.rotation = pipe_ctx->plane_state->rotation,
- 		.mirror = pipe_ctx->plane_state->horizontal_mirror
- 	};
-+	bool pipe_split_on = (pipe_ctx->top_pipe != NULL) ||
-+		(pipe_ctx->bottom_pipe != NULL);
- 
- 	int x_plane = pipe_ctx->plane_state->dst_rect.x;
- 	int y_plane = pipe_ctx->plane_state->dst_rect.y;
-@@ -2948,6 +2950,7 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 	// Swap axis and mirror horizontally
- 	if (param.rotation == ROTATION_ANGLE_90) {
- 		uint32_t temp_x = pos_cpy.x;
-+
- 		pos_cpy.x = pipe_ctx->plane_res.scl_data.viewport.width -
- 				(pos_cpy.y - pipe_ctx->plane_res.scl_data.viewport.x) + pipe_ctx->plane_res.scl_data.viewport.x;
- 		pos_cpy.y = temp_x;
-@@ -2955,26 +2958,44 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 	// Swap axis and mirror vertically
- 	else if (param.rotation == ROTATION_ANGLE_270) {
- 		uint32_t temp_y = pos_cpy.y;
--		if (pos_cpy.x >  pipe_ctx->plane_res.scl_data.viewport.height) {
--			pos_cpy.x = pos_cpy.x - pipe_ctx->plane_res.scl_data.viewport.height;
--			pos_cpy.y = pipe_ctx->plane_res.scl_data.viewport.height - pos_cpy.x;
--		} else {
--			pos_cpy.y = 2 * pipe_ctx->plane_res.scl_data.viewport.height - pos_cpy.x;
--		}
-+		int viewport_height =
-+			pipe_ctx->plane_res.scl_data.viewport.height;
-+
-+		if (pipe_split_on) {
-+			if (pos_cpy.x > viewport_height) {
-+				pos_cpy.x = pos_cpy.x - viewport_height;
-+				pos_cpy.y = viewport_height - pos_cpy.x;
-+			} else {
-+				pos_cpy.y = 2 * viewport_height - pos_cpy.x;
-+			}
-+		} else
-+			pos_cpy.y = viewport_height - pos_cpy.x;
- 		pos_cpy.x = temp_y;
- 	}
- 	// Mirror horizontally and vertically
- 	else if (param.rotation == ROTATION_ANGLE_180) {
--		if (pos_cpy.x >= pipe_ctx->plane_res.scl_data.viewport.width + pipe_ctx->plane_res.scl_data.viewport.x) {
--			pos_cpy.x = 2 * pipe_ctx->plane_res.scl_data.viewport.width
--					- pos_cpy.x + 2 * pipe_ctx->plane_res.scl_data.viewport.x;
--		} else {
--			uint32_t temp_x = pos_cpy.x;
--			pos_cpy.x = 2 * pipe_ctx->plane_res.scl_data.viewport.x - pos_cpy.x;
--			if (temp_x >= pipe_ctx->plane_res.scl_data.viewport.x + (int)hubp->curs_attr.width
--					|| pos_cpy.x <= (int)hubp->curs_attr.width + pipe_ctx->plane_state->src_rect.x) {
--				pos_cpy.x = temp_x + pipe_ctx->plane_res.scl_data.viewport.width;
-+		int viewport_width =
-+			pipe_ctx->plane_res.scl_data.viewport.width;
-+		int viewport_x =
-+			pipe_ctx->plane_res.scl_data.viewport.x;
-+
-+		if (pipe_split_on) {
-+			if (pos_cpy.x >= viewport_width + viewport_x) {
-+				pos_cpy.x = 2 * viewport_width
-+						- pos_cpy.x + 2 * viewport_x;
-+			} else {
-+				uint32_t temp_x = pos_cpy.x;
-+
-+				pos_cpy.x = 2 * viewport_x - pos_cpy.x;
-+				if (temp_x >= viewport_x +
-+					(int)hubp->curs_attr.width || pos_cpy.x
-+					<= (int)hubp->curs_attr.width +
-+					pipe_ctx->plane_state->src_rect.x) {
-+					pos_cpy.x = temp_x + viewport_width;
-+				}
- 			}
-+		} else {
-+			pos_cpy.x = viewport_width - pos_cpy.x + 2 * viewport_x;
- 		}
- 		pos_cpy.y = pipe_ctx->plane_res.scl_data.viewport.height - pos_cpy.y;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 42aa889fd0f5..38b0f4347383 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -2854,10 +2854,12 @@ bool dc_link_handle_hpd_rx_irq(struct dc_link *link, union hpd_irq_data *out_hpd
+ 	/* For now we only handle 'Downstream port status' case.
+ 	 * If we got sink count changed it means
+ 	 * Downstream port status changed,
+-	 * then DM should call DC to do the detection. */
+-	if (hpd_rx_irq_check_link_loss_status(
+-		link,
+-		&hpd_irq_dpcd_data)) {
++	 * then DM should call DC to do the detection.
++	 * NOTE: Do not handle link loss on eDP since it is internal link*/
++	if ((link->connector_signal != SIGNAL_TYPE_EDP) &&
++		hpd_rx_irq_check_link_loss_status(
++			link,
++			&hpd_irq_dpcd_data)) {
+ 		/* Connectivity log: link loss */
+ 		CONN_DATA_LINK_LOSS(link,
+ 					hpd_irq_dpcd_data.raw,
 -- 
 2.24.0
 
