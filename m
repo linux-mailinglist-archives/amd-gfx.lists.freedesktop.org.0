@@ -2,47 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F85311B204
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:34:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5C311B211
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:34:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74F2F6EB89;
-	Wed, 11 Dec 2019 15:34:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 231D56EB96;
+	Wed, 11 Dec 2019 15:34:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760084.outbound.protection.outlook.com [40.107.76.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 586886EB89
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:34:17 +0000 (UTC)
+ (mail-eopbgr760040.outbound.protection.outlook.com [40.107.76.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0CAF6EB91
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:34:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Hp9NHlliOHYjALDTYOAqI402YW7p6ib63+vZtZhcI3w3ozyr0fe0Pexn467zm3p4Ifq92hjmYQXLWBRCgZevlSRX9mZdgJ4RgUfGaJZBPlHP4zliSbDxzwH2D9i4uhp9WlWTNTssOIBfyHpDnDddaDpt6p5A6NPXWbOYNCWaqFi03zRTf9/0uPikbtM32qivnZ/KoPNXejdV0Cvod7+Zxk8pCBS8vjdwDwzqJEJSASDP+gmt4eDl9wTNHNFX1JUzfqIjpxLNULSgisdJRfsxFyUMDdAy7KvUE6bskHgu2B/Cm77MJbD0vcpbm7XLejH6Y1YopsjYk2kNChhWkgR8+g==
+ b=gDPOi3Jo13HBxVY41i9E/X5SS/ZfRiODFa1QGSw65lZCqOqYwXTkSVSbR0Uv4z+wC9kuLu2OCPcecYrPvkmdnEvDw/+FS8DG4hakFw12ol04bixjx9eBiB6DcKNlb+y87Hgh85BREUrXPiNPywRBrXsMEFeLUmcBR/fOq1dUkugAkTgzFH1clywf7A80dpUo5PriWGuJ6iohZS8PUsipkRmL+HZTxMhlMvzFdR1LC2eeueRfA35yZGG3LyYKEI8ojv0ahoO14jgZr7+X5x4VMdvea/lBYpvisEdAXpozGAvDcUPV686J6yQ7pPbQHTSKVhs6X/zgUSA9+t5WmZLtBA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U6E44/jIEuz2II28TlRdVlYwO++kZMkrrSwLp2RZPIo=;
- b=i9SztPobQbO0IpJIPboVLRNg57b9lgGZSuTfFHKrLwQXfpPA2QURWpvO5nQQwaK6GJgY1pYNCPzSpmKRKT+tPVx4XGlR5TBdT/L+nix/ZAjBwAm0Cq4689Hr4x7TQ6Qf9lJfFmbRm1K2TXls+VF6i3mzEde9Xtxm7Mw77YVnJrewRv9ce9oXx5zvQDOhj9byV0SxxqAnyJxMUKO4Y5Rrc7ucgW+jS9q7PoQa4CucJt0uzweE5CAeewBKIFNoCIAhuEesaReaaXkRaRBrlLtJvs2bRGzfcjCErNuiM3lw0RR8wBPWIb5MmTVCEbQa0lO50uSVndPCG3HtyP8f4k1+tQ==
+ bh=3U8NUtkkqf8tP8fWTTYexvb2ISeaPM4CoRIByRuM/z0=;
+ b=OgKc2h2RVh9WDeLgXqAZfk2i2C8Qqe0x+tJg5x5iec16cCk8pcMFZTHpOl+IZsR4VIKSnWaScXXqyr9EAqZFuLpBnXrTVAN6AjXn/jt4uFBlsgmEyvjVdPGaEFezy1cJCHM9XUiLnUP5DgX0tTyx4MeaQDCM/+yexAklfkqVEYtnz7qy8noWHRcfTTrBJ99oNWvMOK1P7fKraQXJwBmcaDkCC4TOf9PcBaIkML/B9Z/1Y+B1pFMUdf7SiJpzCzOfGm/1xRis6Fh7nj6EDHsK/WFdnysTqlP0P9AJcqRYm+85MVsMDF3HyeniHBVVpGLJ7G+GiqPDh3XD8jFP7AMjbw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U6E44/jIEuz2II28TlRdVlYwO++kZMkrrSwLp2RZPIo=;
- b=QUGNWVlnjQN5CbX8NDwEiaxsnU3/1UBCJXH5I67hpRiPVLVilvCObRqunR7Hpv88tv25vqPM+2BPkeBNQ3lMWfH6Ed7rWxHTlyJWO/VL9AfTW5YD7QKcONDzRaEs/CENrqIzcmNSTsZWqqavgU4V93WSIFHROZgyilURVZItH8E=
+ bh=3U8NUtkkqf8tP8fWTTYexvb2ISeaPM4CoRIByRuM/z0=;
+ b=Dr9ARssvYVXpth8OuJjOuncqyZTUorUVZyIZkydGRnhI7qrju7yTsBF/81BSmGczzqrdhg4fJndWJPZsv03NDKp6c+nb7dfsZwBHD7Ih5jHYrfXhF1F8JGGra+/wLlmWGu2pSZAgl5otkjI/N4u8Wp0TnivEQExFaVIoQ2nPsIQ=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
  MW2PR12MB2491.namprd12.prod.outlook.com (52.132.183.158) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.15; Wed, 11 Dec 2019 15:34:16 +0000
+ 15.20.2538.15; Wed, 11 Dec 2019 15:34:17 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69%5]) with mapi id 15.20.2516.018; Wed, 11 Dec 2019
- 15:34:16 +0000
+ 15:34:17 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 35/39] drm/amd/display: Lower DPP DTO only when safe
-Date: Wed, 11 Dec 2019 10:32:49 -0500
-Message-Id: <20191211153253.2291112-36-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 36/39] drm/amd/display: Formula refactor for calculating DPP
+ CLK DTO
+Date: Wed, 11 Dec 2019 10:32:50 -0500
+Message-Id: <20191211153253.2291112-37-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
 References: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
@@ -54,11 +55,11 @@ X-Mailer: git-send-email 2.24.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 58e0bc54-9a8b-4a1c-8030-08d77e4f83dc
+X-MS-Office365-Filtering-Correlation-Id: 6bae9d27-a7a9-4036-e2fe-08d77e4f8467
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2491:|MW2PR12MB2491:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2491976798968908394219E5985A0@MW2PR12MB2491.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2491E7166ED6CF3A13E8FDB5985A0@MW2PR12MB2491.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-Forefront-PRVS: 024847EE92
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(396003)(346002)(376002)(39860400002)(366004)(136003)(189003)(199004)(6486002)(6512007)(6916009)(8936002)(5660300002)(2906002)(6666004)(86362001)(52116002)(2616005)(478600001)(66476007)(316002)(186003)(8676002)(81156014)(81166006)(54906003)(36756003)(4326008)(1076003)(26005)(66946007)(66556008)(6506007);
@@ -69,14 +70,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: B2ftCTWCu9c7NeVfuGlOtBVryJFF3Y/TXoKb/9SE7y7zUSz9Yit3BrSWyV7JA0cpaiv9GYwGjHGJFv16W0xnAuT435HurjVZegCX6x3CPaibUjb3XikT2HQ3aXsBity31pmtRrY0geJgDO0K+AmjB8wWKCA2NBmgjpu18igoao/PqXTUbxiu6VXcRufZawHtw5g7buCdOmOcvFcJ6vcXQ5yPGaYsfKZaLKRTfPYKfaNFbswQnWWf/13uL2BzaGW53V1zMQoy2rUd86NbFVcYXziQ/V1+U9m0ZB2iTtGv4d8Wsq0Pmbzdk1Aj8kya4NLigbBg9JdodcVQtH1b7zQq8exwCoPm+9DfaoGgBGvdpv83rF72Ld6MH692ndiWe4Kh2yY9Wu4apxWPfFzobImYH1o/WER4juAM3UXUY+vh1QJcWTpKA2DxoHwvwfmA7n7W
+X-Microsoft-Antispam-Message-Info: UDgOrpaSmwIqEsAkhsIoz31bkOrjzk7MwTbvzZRWgbIoSkvWy3P924oCUWUmN8a+Ddq2p0OHGLBYJn6znsV/Wq6hehFJlymzW9yFEpJFS80WhTauET6IA17wKoRYrRcPFFSy/BLugKgGGnjKEMAMr8x4oHRPi7/p0/piW20stNGTAC9E+YmtTB0wiqKPS87CKSTa4SMs3y5eobNI+ckoV+K9XoVGHPRW0THW/ZdM6i+4dO8Uy2JyVIYJ6I8FyPYP8h1vdlb24qTBdobo+xerNH/Tt8Cl3B4FYAsE4ren0rrDUSF4ThBL165L5Xfd2zLlEqNRQqMew/Mdaidv4IN8Fa+K3xFclFUizowlw//POUdRYYxs3PP5hjzsiGcFwQi922ZvvB8dHv3DDgest/hEE4I2cIH7OHD6x8NTEzsRvGWVu6OIBrInntaeLIQOCaoG
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58e0bc54-9a8b-4a1c-8030-08d77e4f83dc
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:47.7935 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6bae9d27-a7a9-4036-e2fe-08d77e4f8467
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:48.6900 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mo2aR8Cm4s455i3kTCQfvQOSWdGuCszCBxXTedIysOPY9BEc4lEAZS14gf3tX9ETMuBmLRc9Y7/X+A0e3Vuv9g==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5TwiYXHVVtxCXR7MHZd1NwXuGpRU80771pGGttMLrzZxNvbvDimoFgZ8Xja7GCyhOaCGz0ebrZzNe8h+3CcsCQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2491
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,115 +101,56 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Sung Lee <sung.lee@amd.com>
 
 [Why]
-A corner case currently exists where DPP DTO is lowered before
-pipes are updated to a higher viewport. This causes underflow
-as the DPPCLK is too low for the current viewport.
+Previous formula for calculating DPP CLK DTO was
+hard to understand.
 
 [How]
-Only lower DPP DTO when it is safe to lower, or if
-the newer clocks are higher than the current ones.
+Replace with easier to understand formula that produces
+same results.
 
 Signed-off-by: Sung Lee <sung.lee@amd.com>
 Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c | 16 ++++++++++------
- .../amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h |  2 +-
- .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c    |  8 ++++----
- 3 files changed, 15 insertions(+), 11 deletions(-)
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_dccg.c | 20 +++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
-index 3ae1d23f7342..495f01e9f2ca 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
-@@ -101,13 +101,13 @@ uint32_t dentist_get_did_from_divider(int divider)
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.c
+index 1e1151356e60..50bffbfdd394 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.c
+@@ -50,20 +50,20 @@ void dccg2_update_dpp_dto(struct dccg *dccg, int dpp_inst, int req_dppclk)
  
- void dcn20_update_clocks_update_dpp_dto(struct clk_mgr_internal *clk_mgr,
--		struct dc_state *context)
-+		struct dc_state *context, bool safe_to_lower)
- {
- 	int i;
+ 	if (dccg->ref_dppclk && req_dppclk) {
+ 		int ref_dppclk = dccg->ref_dppclk;
++		int modulo, phase;
  
- 	clk_mgr->dccg->ref_dppclk = clk_mgr->base.clks.dppclk_khz;
- 	for (i = 0; i < clk_mgr->base.ctx->dc->res_pool->pipe_count; i++) {
--		int dpp_inst, dppclk_khz;
-+		int dpp_inst, dppclk_khz, prev_dppclk_khz;
+-		ASSERT(req_dppclk <= ref_dppclk);
+-		/* need to clamp to 8 bits */
+-		if (ref_dppclk > 0xff) {
+-			int divider = (ref_dppclk + 0xfe) / 0xff;
++		// phase / modulo = dpp pipe clk / dpp global clk
++		modulo = 0xff;   // use FF at the end
++		phase = ((modulo * req_dppclk) + ref_dppclk - 1) / ref_dppclk;
  
- 		/* Loop index will match dpp->inst if resource exists,
- 		 * and we want to avoid dependency on dpp object
-@@ -115,8 +115,12 @@ void dcn20_update_clocks_update_dpp_dto(struct clk_mgr_internal *clk_mgr,
- 		dpp_inst = i;
- 		dppclk_khz = context->res_ctx.pipe_ctx[i].plane_res.bw.dppclk_khz;
- 
--		clk_mgr->dccg->funcs->update_dpp_dto(
--				clk_mgr->dccg, dpp_inst, dppclk_khz);
-+		prev_dppclk_khz = clk_mgr->base.ctx->dc->current_state->res_ctx.pipe_ctx[i].plane_res.bw.dppclk_khz;
-+
-+		if (safe_to_lower || prev_dppclk_khz < dppclk_khz) {
-+			clk_mgr->dccg->funcs->update_dpp_dto(
-+							clk_mgr->dccg, dpp_inst, dppclk_khz);
-+		}
- 	}
- }
- 
-@@ -244,7 +248,7 @@ void dcn2_update_clocks(struct clk_mgr *clk_mgr_base,
- 	if (dc->config.forced_clocks == false || (force_reset && safe_to_lower)) {
- 		if (dpp_clock_lowered) {
- 			// if clock is being lowered, increase DTO before lowering refclk
--			dcn20_update_clocks_update_dpp_dto(clk_mgr, context);
-+			dcn20_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
- 			dcn20_update_clocks_update_dentist(clk_mgr);
- 		} else {
- 			// if clock is being raised, increase refclk before lowering DTO
-@@ -252,7 +256,7 @@ void dcn2_update_clocks(struct clk_mgr *clk_mgr_base,
- 				dcn20_update_clocks_update_dentist(clk_mgr);
- 			// always update dtos unless clock is lowered and not safe to lower
- 			if (new_clocks->dppclk_khz >= dc->current_state->bw_ctx.bw.dcn.clk.dppclk_khz)
--				dcn20_update_clocks_update_dpp_dto(clk_mgr, context);
-+				dcn20_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
+-			ref_dppclk /= divider;
+-			req_dppclk = (req_dppclk + divider - 1) / divider;
+-			if (req_dppclk > ref_dppclk)
+-				req_dppclk = ref_dppclk;
++		if (phase > 0xff) {
++			ASSERT(false);
++			phase = 0xff;
  		}
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h
-index b64a4e9d71d7..0b9c045b0c8e 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.h
-@@ -34,7 +34,7 @@ void dcn2_update_clocks_fpga(struct clk_mgr *clk_mgr,
- 			struct dc_state *context,
- 			bool safe_to_lower);
- void dcn20_update_clocks_update_dpp_dto(struct clk_mgr_internal *clk_mgr,
--		struct dc_state *context);
-+		struct dc_state *context, bool safe_to_lower);
- 
- void dcn2_init_clocks(struct clk_mgr *clk_mgr);
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-index de51ef12e33a..b02b4dc554a4 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-@@ -164,16 +164,16 @@ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
- 	}
- 
- 	if (dpp_clock_lowered) {
--		// if clock is being lowered, increase DTO before lowering refclk
--		dcn20_update_clocks_update_dpp_dto(clk_mgr, context);
-+		// increase per DPP DTO before lowering global dppclk
-+		dcn20_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
- 		rn_vbios_smu_set_dppclk(clk_mgr, clk_mgr_base->clks.dppclk_khz);
++
+ 		REG_SET_2(DPPCLK_DTO_PARAM[dpp_inst], 0,
+-				DPPCLK0_DTO_PHASE, req_dppclk,
+-				DPPCLK0_DTO_MODULO, ref_dppclk);
++				DPPCLK0_DTO_PHASE, phase,
++				DPPCLK0_DTO_MODULO, modulo);
+ 		REG_UPDATE(DPPCLK_DTO_CTRL,
+ 				DPPCLK_DTO_ENABLE[dpp_inst], 1);
  	} else {
--		// if clock is being raised, increase refclk before lowering DTO
-+		// increase global DPPCLK before lowering per DPP DTO
- 		if (update_dppclk || update_dispclk)
- 			rn_vbios_smu_set_dppclk(clk_mgr, clk_mgr_base->clks.dppclk_khz);
- 		// always update dtos unless clock is lowered and not safe to lower
- 		if (new_clocks->dppclk_khz >= dc->current_state->bw_ctx.bw.dcn.clk.dppclk_khz)
--			dcn20_update_clocks_update_dpp_dto(clk_mgr, context);
-+			dcn20_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
- 	}
- 
- 	if (update_dispclk &&
 -- 
 2.24.0
 
