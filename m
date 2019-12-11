@@ -2,48 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B977811B1FA
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC43611B1FE
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2019 16:33:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EBC16EB8C;
-	Wed, 11 Dec 2019 15:33:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2782F6EB93;
+	Wed, 11 Dec 2019 15:33:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760050.outbound.protection.outlook.com [40.107.76.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D1D26EB8C
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:33:42 +0000 (UTC)
+ (mail-eopbgr760074.outbound.protection.outlook.com [40.107.76.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C00C6EB84
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 15:33:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f6Jiv43oIrv77/CbUUsOoWaVIGgvX61am/SAXq1C5heGJkW8uV9NtMF/tqeFMa0qGk8jTrYVOvsQfP/QDtOp2IBsZeAYAEFGK28oZkt//dPzwJD+lblMYHb7wvVGzFtkY1xNSIa147JCnVK3u6/W3PD8ZaMm93EOwLPyeAsuFQzeJ2Z0kHBAYC8t8YazfKli/27xSpKdvhyDCdPSwzMMOtYWhHHF/2qdFyCh0gO94FTjxMR5gKyg0YfZAoA5iG4rxAW5LPSTienNTbg9ngL9/cpxcKMVrk9WVPOhDvCLtm+w24xnFVzQYwelDtcvUNnT57HcUsJA33b3UM/Q4/vESQ==
+ b=YrxkkLA+EwOG4mOM69jHXANdgrzJEX/TroUj9qOafIrG7r99bvhq32VB7mP25hlnV4IxHn3zv2JtAhantbkeIGfpM0c8L4ilsxkzfM8T4xWpT6zKD/Uh5LKEYSVPLcBamYPa2liW4rxYH4b/1ERxk19LqAfjUk4rA15xSItEc4fr1Q87ZpfdAa0oj7lGy76R07uChFmcdDFbiVuSgZoqrGDyuxnNIhEi5bI2BMHoJFPtXulP52n5ycEM5F5YNmhq5fU3GUqOFs0v6aCP4NGoiRgruVa5MoUKZ+1uZsEy0KmtUscqAkBEX3zjOqcGgTqdcg+LAOwzKxc1Gbfb4GfCnA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aLugb/Ih7TbWxNzFx/zoq2AsNj/2+gfFfAA9zKMuzj0=;
- b=OgNoV+ucPC2UasCwuVztJs+XL39YYsZyAB4pzFHF8bzywbWkZ2lleXvau8Ggw2yt9tca6iXNIfqzhQQoRYNRvSiPHQmVS3U7f7B5Ap8DOAevjN8zldbRtisTZ3WNP6bg1qtUMeSJ8jJxinQ5MLsFpTFaEJOs7aVcN7wkC/clp833YORIJakNgIcw1uIa/dv5eiG0guDpuXYmHhWEihrdd0htL/d+YWhupuofwWfRTQ0h15GCWcuASAcL/U7YK+7o8sucdp/En0op3BvIssqL5R8EFyHm4rKEP+IpEqkL5wwL1nq4nuq8IAUn1mtq9KWU/oMOrnpJG69yERRwrvfARA==
+ bh=wvml0RsTyX53AgWPHhFVTO88pc90Dmv39xDNjZU3R0k=;
+ b=d/ArGbLtrI58ppNTQqHHFDP3PCiH/AJLkTnOaMohlGoIPxF/rjp5r3YnBA3NN7sXHlSY1XdArLz8bBG3yh9WdoFeQegFZuABOmK+P5uYfTKRiukFrLfe3dT2aPYcx/L37XsKeL4Q0u9yqjLIaDNCEk81d1DkD3cOrcdznrmK807mkw76rtWWGpaAw9KPAdETXJzDE5YT5IQ70IRzkVVYIRvbeTmSETfC1gwMswV2AdSDFXVe7ZHz8ZkdutuATrOBpvNgI/IEdcA0isHAUVI3ym9mXitT1geXE4jCFNmYEtC7wzPZOe/aPV4/nr3M6owZjVBgIduyLJhKO7f0GqAekQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aLugb/Ih7TbWxNzFx/zoq2AsNj/2+gfFfAA9zKMuzj0=;
- b=QwXh4FDf2Z4ILZKGGyKIqXPiZ6pw6jxmEFua21hL9chO57icn5hv++6YFNDvCegkKJ3lVn7mvQuC4CWRWf98/7nl01WdTdDO/1TfpQVF9/y1BBPLnmMDZcV4yLHUtFyth0iJEi7CsoZYK/b0SwvyqnSEk9Ars9sBibanlyU+AQM=
+ bh=wvml0RsTyX53AgWPHhFVTO88pc90Dmv39xDNjZU3R0k=;
+ b=RNDeDyPCSXUasSW69Rvxet+JJ5vxsSl5RUaSfiQplNvkue/hSm0B1talSX+cuegmn+PDv3ZKokb4FyoCKQmTTLhvtyiEeTm8alhFsnmrnX9GYFFUeNM94+YcLvlLFIAwH5zuaoh+9xjDUeBTkcFsiQGRLrG4+M2CSEBNH7G9Gls=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
  MW2PR12MB2491.namprd12.prod.outlook.com (52.132.183.158) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.15; Wed, 11 Dec 2019 15:33:40 +0000
+ 15.20.2538.15; Wed, 11 Dec 2019 15:33:41 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::3d1f:4c20:e980:6e69%5]) with mapi id 15.20.2516.018; Wed, 11 Dec 2019
- 15:33:40 +0000
+ 15:33:41 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 27/39] drm/amd/display: Get cache window sizes from DMCUB
- firmware
-Date: Wed, 11 Dec 2019 10:32:41 -0500
-Message-Id: <20191211153253.2291112-28-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 28/39] drm/amd/display: fix 270 degree rotation for mixed-SLS
+ mode
+Date: Wed, 11 Dec 2019 10:32:42 -0500
+Message-Id: <20191211153253.2291112-29-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
 References: <20191211153253.2291112-1-Rodrigo.Siqueira@amd.com>
@@ -55,11 +55,11 @@ X-Mailer: git-send-email 2.24.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2c768917-9c0c-4f49-ee1f-08d77e4f7f9d
+X-MS-Office365-Filtering-Correlation-Id: 4ea93ad1-516b-4392-2f02-08d77e4f801e
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2491:|MW2PR12MB2491:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB249190B5F0AE86BF2DA77CD5985A0@MW2PR12MB2491.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB24915F6758F7EC2F1ADFFB69985A0@MW2PR12MB2491.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-Forefront-PRVS: 024847EE92
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(396003)(346002)(376002)(39860400002)(366004)(136003)(189003)(199004)(6486002)(6512007)(6916009)(8936002)(5660300002)(2906002)(86362001)(52116002)(2616005)(478600001)(66476007)(316002)(186003)(8676002)(81156014)(81166006)(54906003)(36756003)(4326008)(1076003)(26005)(66946007)(66556008)(6506007);
@@ -70,14 +70,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Da7OU8GzNjIXxV3iQt0tenMaXpB9sEYWjdaox5VoeYle/z6v6nUez4Tc1nWyLSUGp0hNRgtg15pMeHglgdE33SL+h+O8RdtnVssUAV/Sv4Fy7SaFUkxY8FsEtwEUtkfkNqEg8oeJfXVBQm14o/yuVrVSmVKffNxcL1MdSh9zSCkDzTAPsdU2RFfQ63ppoA6U0Q4LfCLhAv3SqIRuhMhreIs5TN+erglVhrTDcQVvgC17EsV4jNt6BNZAkz8S1L/Huflp0AuRD5/NAURe6+13g/FSDsMijeSm7xKeV5MBskNrFVP0qrfW2OlwZSA4V9mut0sSXXX9Qi+q+0cWdWuMRRInvt+Wb6reO29kXdmybLdivQ+eJMoBIkpMM+p5dHjhnxkwJsxnaFU++2GnBaeS1RALdIKwi1QKgR0CdIvdFAMAvqi+zhaEvhZ30KIbqoP5
+X-Microsoft-Antispam-Message-Info: pZPaDfBDQm/Jq3lpxfYGDQnZjpdlF2zItjXN9eXh4nkSdBadd34mbyDS12EEs7MTw82AgwcsTIdjFj6BvgozG4kxEegF9+7bHS/wUWx8j/EN6+rUhmlgNleay7WcZvPaM8KxBS0AYHxRKCkTqKTuO47QPX4AeUN44kmCkbgj2v8dLnQxP54G82ybjuPTZjFbA1gE3q4JTqaDIM7LY8RPgOakzLUx52RRtwLH8iHnSuGZ0qfwElrjUcG0o9mSAD1DZUBHkRQq815X+2HRDbgRMngLfMZlsXeLvf8bFTnYKGnxB1X5Y/J9D6poOQoCjntngENE/iJrICZ8tdIzq6Lkw1FwYgJgOCmhHGoeVydruuSx5baZcWWxFquMwMMBMokqs992accXyhICmM70uTYe/OMc/A7YY5IW7m+FaZUBr4euRQjWeoIaJq1SV/Mu4n+p
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c768917-9c0c-4f49-ee1f-08d77e4f7f9d
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:40.6576 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ea93ad1-516b-4392-2f02-08d77e4f801e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2019 15:33:41.5681 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uWfdEQaBu3raigzApzr6SEV8oBaj3h+UuS858uD2PRk6Cih39HzAQYpkk0CVuv9VRD+N+E70pF3h8CHPE4r12w==
+X-MS-Exchange-CrossTenant-UserPrincipalName: wP+UTdxHwZ+pahMMZU8No0SG0Ys0QnbYQLMOvHphHmtML9cWyxIk48urwC78egy8PYCzoejAzzmpio2H4UB/Qg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2491
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,270 +90,136 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Tony Cheng <Tony.Cheng@amd.com>, Harry.Wentland@amd.com,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Jun Lei <Jun.Lei@amd.com>,
+ Harry.Wentland@amd.com, Samson Tam <Samson.Tam@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: Samson Tam <Samson.Tam@amd.com>
 
 [Why]
-Firmware state and tracebuffer shouldn't be considered stable API
-between firmware versions.
-
-Driver shouldn't be querying anything from firmware state or tracebuffer
-outside of debugging.
-
-Commands are the stable API for this once we have the outbox.
+When we rotate 270 in mixed SLS mode, the recouts occupy the
+right side of the display.  So all the recout_skip_v values
+are relative to the left side of the display.  This causes
+adjust_vp_and_init_for_seamless_clip() to incorrectly increase
+the data->viewport.height for that recout.  The rotation looks
+like the bottom half is duplicated twice.
 
 [How]
-Add metadata struct to the end of the data firmware that describes
-fw_state_size and some reserved area for future use.
+recout.x values are being adjusted based on
+stream->timing.h_border_left.  Instead of using h_border_left,
+use dst.x to represent the border.  Shift dst.x by the amount of
+stream->timing.h_border_left and set
+stream->timing.h_border_left to 0.  Do all the calculations
+and then revert stream->timing.h_border_left and
+stream->dst.x back to their original values.
+When calculating pipe_ctx->plane_res.scl_data.h_active,
+make sure to use the original stream->timing.h_border_left
+value.
 
-Drop the tracebuffer and firmware state headers since they can differ
-per version.
-
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Signed-off-by: Samson Tam <Samson.Tam@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 ++
- .../inc/{dmub_fw_state.h => dmub_fw_meta.h}   | 64 ++++++++-----------
- .../gpu/drm/amd/display/dmub/inc/dmub_srv.h   |  3 +-
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   | 51 +++++++++++++--
- 4 files changed, 78 insertions(+), 44 deletions(-)
- rename drivers/gpu/drm/amd/display/dmub/inc/{dmub_fw_state.h => dmub_fw_meta.h} (57%)
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 57 ++++++++++++++++++-
+ 1 file changed, 54 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 8cdfb3ccb710..745d8719ccc1 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1234,6 +1234,10 @@ static int dm_dmub_sw_init(struct amdgpu_device *adev)
- 					PSP_HEADER_BYTES - PSP_FOOTER_BYTES;
- 	region_params.bss_data_size = le32_to_cpu(hdr->bss_data_bytes);
- 	region_params.vbios_size = adev->bios_size;
-+	region_params.fw_bss_data =
-+		adev->dm.dmub_fw->data +
-+		le32_to_cpu(hdr->header.ucode_array_offset_bytes) +
-+		le32_to_cpu(hdr->inst_const_bytes);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 51e0f4472dbd..64a0e08fd019 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -940,11 +940,51 @@ static void calculate_inits_and_adj_vp(struct pipe_ctx *pipe_ctx)
  
- 	status = dmub_srv_calc_region_info(dmub_srv, &region_params,
- 					   &region_info);
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_fw_state.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_fw_meta.h
-similarity index 57%
-rename from drivers/gpu/drm/amd/display/dmub/inc/dmub_fw_state.h
-rename to drivers/gpu/drm/amd/display/dmub/inc/dmub_fw_meta.h
-index c87b1ba7590e..242ec257998c 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_fw_state.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_fw_meta.h
-@@ -22,52 +22,42 @@
-  * Authors: AMD
-  *
-  */
--
--#ifndef _DMUB_FW_STATE_H_
--#define _DMUB_FW_STATE_H_
-+#ifndef _DMUB_META_H_
-+#define _DMUB_META_H_
- 
- #include "dmub_types.h"
- 
- #pragma pack(push, 1)
- 
--struct dmub_fw_state {
--	/**
--	 * @phy_initialized_during_fw_boot:
--	 *
--	 * Detects if VBIOS/VBL has ran before firmware boot.
--	 * A value of 1 will usually mean S0i3 boot.
--	 */
--	uint8_t phy_initialized_during_fw_boot;
--
--	/**
--	 * @intialized_phy:
--	 *
--	 * Bit vector of initialized PHY.
--	 */
--	uint8_t initialized_phy;
-+/* Magic value for identifying dmub_fw_meta_info */
-+#define DMUB_FW_META_MAGIC 0x444D5542
- 
--	/**
--	 * @enabled_phy:
--	 *
--	 * Bit vector of enabled PHY for DP alt mode switch tracking.
--	 */
--	uint8_t enabled_phy;
-+/* Offset from the end of the file to the dmub_fw_meta_info */
-+#define DMUB_FW_META_OFFSET 0x24
- 
--	/**
--	 * @dmcu_fw_loaded:
--	 *
--	 * DMCU auto load state.
--	 */
--	uint8_t dmcu_fw_loaded;
-+/**
-+ * struct dmub_fw_meta_info - metadata associated with fw binary
-+ *
-+ * NOTE: This should be considered a stable API. Fields should
-+ *       not be repurposed or reordered. New fields should be
-+ *       added instead to extend the structure.
-+ *
-+ * @magic_value: magic value identifying DMUB firmware meta info
-+ * @fw_region_size: size of the firmware state region
-+ * @trace_buffer_size: size of the tracebuffer region
-+ */
-+struct dmub_fw_meta_info {
-+	uint32_t magic_value;
-+	uint32_t fw_region_size;
-+	uint32_t trace_buffer_size;
-+};
- 
--	/**
--	 * @psr_state:
--	 *
--	 * PSR state tracking.
--	 */
--	uint8_t psr_state;
-+/* Ensure that the structure remains 64 bytes. */
-+union dmub_fw_meta {
-+	struct dmub_fw_meta_info info;
-+	uint8_t reserved[64];
- };
- 
- #pragma pack(pop)
- 
--#endif /* _DMUB_FW_STATE_H_ */
-+#endif /* _DMUB_META_H_ */
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_srv.h
-index 689806b6ee31..f34a50dd36ea 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_srv.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_srv.h
-@@ -67,7 +67,6 @@
- #include "dmub_types.h"
- #include "dmub_cmd.h"
- #include "dmub_rb.h"
--#include "dmub_fw_state.h"
- 
- #if defined(__cplusplus)
- extern "C" {
-@@ -145,11 +144,13 @@ struct dmub_fb {
-  * @inst_const_size: size of the fw inst const section
-  * @bss_data_size: size of the fw bss data section
-  * @vbios_size: size of the vbios data
-+ * @fw_bss_data: raw firmware bss data section
-  */
- struct dmub_srv_region_params {
- 	uint32_t inst_const_size;
- 	uint32_t bss_data_size;
- 	uint32_t vbios_size;
-+	const uint8_t *fw_bss_data;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-index 16837003721e..9a959f871f11 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-@@ -26,7 +26,7 @@
- #include "../inc/dmub_srv.h"
- #include "dmub_dcn20.h"
- #include "dmub_dcn21.h"
--#include "dmub_trace_buffer.h"
-+#include "dmub_fw_meta.h"
- #include "os_types.h"
- /*
-  * Note: the DMUB service is standalone. No additional headers should be
-@@ -46,6 +46,11 @@
- /* Mailbox size */
- #define DMUB_MAILBOX_SIZE (DMUB_RB_SIZE)
- 
-+/* Default state size if meta is absent. */
-+#define DMUB_FW_STATE_SIZE (1024)
-+
-+/* Default tracebuffer size if meta is absent. */
-+#define DMUB_TRACE_BUFFER_SIZE (1024)
- 
- /* Number of windows in use. */
- #define DMUB_NUM_WINDOWS (DMUB_WINDOW_6_FW_STATE + 1)
-@@ -62,6 +67,27 @@ static inline uint32_t dmub_align(uint32_t val, uint32_t factor)
- 	return (val + factor - 1) / factor * factor;
  }
  
-+static const struct dmub_fw_meta_info *
-+dmub_get_fw_meta_info(const uint8_t *fw_bss_data, uint32_t fw_bss_data_size)
++/*
++ * When handling 270 rotation in mixed SLS mode, we have
++ * stream->timing.h_border_left that is non zero.  If we are doing
++ * pipe-splitting, this h_border_left value gets added to recout.x and when it
++ * calls calculate_inits_and_adj_vp() and
++ * adjust_vp_and_init_for_seamless_clip(), it can cause viewport.height for a
++ * pipe to be incorrect.
++ *
++ * To fix this, instead of using stream->timing.h_border_left, we can use
++ * stream->dst.x to represent the border instead.  So we will set h_border_left
++ * to 0 and shift the appropriate amount in stream->dst.x.  We will then
++ * perform all calculations in resource_build_scaling_params() based on this
++ * and then restore the h_border_left and stream->dst.x to their original
++ * values.
++ *
++ * shift_border_left_to_dst() will shift the amount of h_border_left to
++ * stream->dst.x and set h_border_left to 0.  restore_border_left_from_dst()
++ * will restore h_border_left and stream->dst.x back to their original values
++ * We also need to make sure pipe_ctx->plane_res.scl_data.h_active uses the
++ * original h_border_left value in its calculation.
++ */
++int shift_border_left_to_dst(struct pipe_ctx *pipe_ctx)
 +{
-+	const union dmub_fw_meta *meta;
++	int store_h_border_left = pipe_ctx->stream->timing.h_border_left;
 +
-+	if (fw_bss_data == NULL)
-+		return NULL;
-+
-+	if (fw_bss_data_size < sizeof(union dmub_fw_meta) + DMUB_FW_META_OFFSET)
-+		return NULL;
-+
-+	meta = (const union dmub_fw_meta *)(fw_bss_data + fw_bss_data_size -
-+					    DMUB_FW_META_OFFSET -
-+					    sizeof(union dmub_fw_meta));
-+
-+	if (meta->info.magic_value != DMUB_FW_META_MAGIC)
-+		return NULL;
-+
-+	return &meta->info;
++	if (store_h_border_left) {
++		pipe_ctx->stream->timing.h_border_left = 0;
++		pipe_ctx->stream->dst.x += store_h_border_left;
++	}
++	return store_h_border_left;
 +}
 +
- static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
++void restore_border_left_from_dst(struct pipe_ctx *pipe_ctx,
++                                  int store_h_border_left)
++{
++	pipe_ctx->stream->dst.x -= store_h_border_left;
++	pipe_ctx->stream->timing.h_border_left = store_h_border_left;
++}
++
+ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
  {
- 	struct dmub_srv_hw_funcs *funcs = &dmub->hw_funcs;
-@@ -162,6 +188,9 @@ dmub_srv_calc_region_info(struct dmub_srv *dmub,
- 	struct dmub_region *mail = &out->regions[DMUB_WINDOW_4_MAILBOX];
- 	struct dmub_region *trace_buff = &out->regions[DMUB_WINDOW_5_TRACEBUFF];
- 	struct dmub_region *fw_state = &out->regions[DMUB_WINDOW_6_FW_STATE];
-+	const struct dmub_fw_meta_info *fw_info;
-+	uint32_t fw_state_size = DMUB_FW_STATE_SIZE;
-+	uint32_t trace_buffer_size = DMUB_TRACE_BUFFER_SIZE;
+ 	const struct dc_plane_state *plane_state = pipe_ctx->plane_state;
+ 	struct dc_crtc_timing *timing = &pipe_ctx->stream->timing;
+ 	bool res = false;
++	int store_h_border_left = shift_border_left_to_dst(pipe_ctx);
+ 	DC_LOGGER_INIT(pipe_ctx->stream->ctx->logger);
+ 	/* Important: scaling ratio calculation requires pixel format,
+ 	 * lb depth calculation requires recout and taps require scaling ratios.
+@@ -957,8 +997,14 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
  
- 	if (!dmub->sw_init)
- 		return DMUB_STATUS_INVALID;
-@@ -176,6 +205,11 @@ dmub_srv_calc_region_info(struct dmub_srv *dmub,
- 	data->base = dmub_align(inst->top, 256);
- 	data->top = data->base + params->bss_data_size;
+ 	calculate_viewport(pipe_ctx);
  
-+	/*
-+	 * All cache windows below should be aligned to the size
-+	 * of the DMCUB cache line, 64 bytes.
-+	 */
-+
- 	stack->base = dmub_align(data->top, 256);
- 	stack->top = stack->base + DMUB_STACK_SIZE + DMUB_CONTEXT_SIZE;
- 
-@@ -185,14 +219,19 @@ dmub_srv_calc_region_info(struct dmub_srv *dmub,
- 	mail->base = dmub_align(bios->top, 256);
- 	mail->top = mail->base + DMUB_MAILBOX_SIZE;
- 
-+	fw_info = dmub_get_fw_meta_info(params->fw_bss_data,
-+					params->bss_data_size);
-+
-+	if (fw_info) {
-+		fw_state_size = fw_info->fw_region_size;
-+		trace_buffer_size = fw_info->trace_buffer_size;
+-	if (pipe_ctx->plane_res.scl_data.viewport.height < 16 || pipe_ctx->plane_res.scl_data.viewport.width < 16)
++	if (pipe_ctx->plane_res.scl_data.viewport.height < 16 ||
++		pipe_ctx->plane_res.scl_data.viewport.width < 16) {
++		if (store_h_border_left) {
++			restore_border_left_from_dst(pipe_ctx,
++				store_h_border_left);
++		}
+ 		return false;
 +	}
+ 
+ 	calculate_recout(pipe_ctx);
+ 
+@@ -971,8 +1017,10 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
+ 	pipe_ctx->plane_res.scl_data.recout.x += timing->h_border_left;
+ 	pipe_ctx->plane_res.scl_data.recout.y += timing->v_border_top;
+ 
+-	pipe_ctx->plane_res.scl_data.h_active = timing->h_addressable + timing->h_border_left + timing->h_border_right;
+-	pipe_ctx->plane_res.scl_data.v_active = timing->v_addressable + timing->v_border_top + timing->v_border_bottom;
++	pipe_ctx->plane_res.scl_data.h_active = timing->h_addressable +
++		store_h_border_left + timing->h_border_right;
++	pipe_ctx->plane_res.scl_data.v_active = timing->v_addressable +
++		timing->v_border_top + timing->v_border_bottom;
+ 
+ 	/* Taps calculations */
+ 	if (pipe_ctx->plane_res.xfm != NULL)
+@@ -1019,6 +1067,9 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
+ 				plane_state->dst_rect.x,
+ 				plane_state->dst_rect.y);
+ 
++	if (store_h_border_left)
++		restore_border_left_from_dst(pipe_ctx, store_h_border_left);
 +
- 	trace_buff->base = dmub_align(mail->top, 256);
--	trace_buff->top = trace_buff->base + TRACE_BUF_SIZE;
-+	trace_buff->top = trace_buff->base + dmub_align(trace_buffer_size, 64);
- 
- 	fw_state->base = dmub_align(trace_buff->top, 256);
--
--	/* Align firmware state to size of cache line. */
--	fw_state->top =
--		fw_state->base + dmub_align(sizeof(struct dmub_fw_state), 64);
-+	fw_state->top = fw_state->base + dmub_align(fw_state_size, 64);
- 
- 	out->fb_size = dmub_align(fw_state->top, 4096);
+ 	return res;
+ }
  
 -- 
 2.24.0
