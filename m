@@ -1,66 +1,94 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1909611C82B
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Dec 2019 09:25:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4073311C8AA
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Dec 2019 09:55:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 893996ECAB;
-	Thu, 12 Dec 2019 08:25:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 023556ECBC;
+	Thu, 12 Dec 2019 08:55:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15FC56ECAB
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 08:25:08 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id q9so1310054wmj.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 00:25:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=euwi9F/9uy8gSW7G3XvaafacXRnNYxLGikolRd4jKco=;
- b=TCdLly/2D6fDabl/nIvdsPtWHJH4bvo2KN6zfOeZUXLpf2/YLNT1ZdsMwBl+MzM0Hg
- 92Vgc/m7q6LJBgs973uRWJAPAgLTCohHfg+gEUgJGDIIhw+Rflqukol14xjmFql7zV1C
- hq6GQRA4CzwUULpYQTaCWg4vvEWhcpI/+9dB38caXQijCyXWmgdPQxjMJkiqAhagrKbx
- rlwNj7eQOaYwnbtye3iOGURrthMCAWsSyPf5TCTNLsxkJ5vXXFszkdTnSOqlYSulmlfe
- egBmoTdQbvcozhUxp/rGFWLvvk6djs7YDzoPYEXNzFw4KzY1jVMpvvs3/sQ1IaPTkl0X
- Hc8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=euwi9F/9uy8gSW7G3XvaafacXRnNYxLGikolRd4jKco=;
- b=HLrEkfj2QdHX7ruceDWfZIMVvieehLIDT32ikmLWudBeUZfu1ipe35jXt4DwrBFP3M
- GwBEbdzYZ+BLJt/EQPT8+yA45PubRc2okl6u9m5+l1J6soPh121xsloR96KrfKaghbVX
- n3272fYQoE4mH70I6sHMhs9p90X5ChENLItG0Zd5wHGYz7poE+cDnhIhjbEcCH9hCIcv
- BYqDv4/uWQV01P0vdvQKhGTaSfJUu0sS9BdVUby91e0dvZL+YxkufRGdv1f7qpQcE6T7
- Ev95MTqFf/V0rtytSRHWimE9PyHTZFje3BVMJMQap5qdroD7ZMm7eGmFuurFqDmPzcdU
- 3e4w==
-X-Gm-Message-State: APjAAAW69LpgIyvqhdaP5+g4mYYpjSUC6DpRH4/wlVnz7EBegnNiGBkN
- NXy5wtwPURk25trUO1BNe/o=
-X-Google-Smtp-Source: APXvYqwI0nvpcAWNvQiVgo0on93zOP2MSZFReCoxnfQ17Wx9gGQcFBI9ZmYyuGlIl7DeEFDxyuZEEg==
-X-Received: by 2002:a7b:c450:: with SMTP id l16mr5073463wmi.31.1576139106580; 
- Thu, 12 Dec 2019 00:25:06 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id t1sm5440973wma.43.2019.12.12.00.25.00
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 12 Dec 2019 00:25:05 -0800 (PST)
-Subject: Re: [PATCH 2/5] drm: Add Reusable task barrier.
-To: Alex Deucher <alexdeucher@gmail.com>,
- Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-References: <1576094829-2245-1-git-send-email-andrey.grodzovsky@amd.com>
- <1576094829-2245-2-git-send-email-andrey.grodzovsky@amd.com>
- <CADnq5_OCzqh_t5YHithp2Kh0rxHsk4XxnfHm-Cm2_T7ZGSA4Ow@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <2b12b91a-e40f-25f4-bc7c-71566ffdabd4@gmail.com>
-Date: Thu, 12 Dec 2019 09:24:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <CADnq5_OCzqh_t5YHithp2Kh0rxHsk4XxnfHm-Cm2_T7ZGSA4Ow@mail.gmail.com>
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com
+ (mail-eopbgr30065.outbound.protection.outlook.com [40.107.3.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 892C26EC0E;
+ Wed, 11 Dec 2019 22:47:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=naoQvCM4DLbWx2sse9mSlmACWgFiOuL+IDt60zRa1xBsgpiMwliOIvHoqwbmdHwmu86rqQrf+OON7RCWxenWkb5i8hqvI4iatydDukChRJ6Jt5iXIMTAH7i+YI892SCkfGVi/ObRRBXr7j57ufVLArtUjqbvwlbqG+3cUWvFniAnhoVRGMvytQ7RKK9UFbhBlShIYHokH1SWuJJMal1Teaf9whF53IiShHpJZZjJtjnhuBCwcYjJ775+OwdEZy8+qTA92FcS+GWmaNQwHtPAYa615mJPFauteVd68025UAXtPIX6t2wlqz4k0V3dBH4yhH53Va2sWA6scr08y785CA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v4GrQ0KYd0WF77SVfF3S7xy8QY3oTjYsGP9aRTBifCs=;
+ b=napW0/vqL8u5HAVwOayvAmNqKOP+RNJRZKc+rp9eZsMZ636zNPLmsAFUSnsWp2RNenbdRlaCCV5fonjCUm+ihalUKALXzJpLqxYCjWHc8f13ljge8uAqwGXSwSCPUfsJvXahCaioAN8seRxynU8Ezfjek9qsqBX/HrSQIJZepLSnNmChll0HYmdpqRKrVUaAhUyxc/K8w+N5Ras8ymf0rjFjjgp0nHBDzJYHsCI91FmodN4LaQH8KhGCBWI/70AZ5sx5744Njau0DvVQq3eL0jMy22+nBRXAfAuwkxXKTmbQ71kYfdchMXizbcuh/IiUENmL8s8rU/cLq7yvkEuI4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mellanox.com; dmarc=pass action=none header.from=mellanox.com;
+ dkim=pass header.d=mellanox.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Mellanox.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v4GrQ0KYd0WF77SVfF3S7xy8QY3oTjYsGP9aRTBifCs=;
+ b=LvEBfMDT3uGuLQztJaEzq1mGCZjMhu5LNgDRZONlLWyHWzY80AMpvTVkOSGhzyUaBo7W3lXBTZnBb1oTdFhO29e3/Kmmw9Zt5RbKYggTlrf+pPjpmZmurRNW8Ueo/8CtA4MsD1BO8vfH3MYwOif83/QkJh+hoXj+4ZsjxdjbASI=
+Received: from DB7PR05MB4138.eurprd05.prod.outlook.com (52.135.129.16) by
+ DB7PR05MB4507.eurprd05.prod.outlook.com (52.134.107.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2538.16; Wed, 11 Dec 2019 22:47:52 +0000
+Received: from DB7PR05MB4138.eurprd05.prod.outlook.com
+ ([fe80::f9f4:95d6:71ab:7003]) by DB7PR05MB4138.eurprd05.prod.outlook.com
+ ([fe80::f9f4:95d6:71ab:7003%5]) with mapi id 15.20.2516.018; Wed, 11 Dec 2019
+ 22:47:52 +0000
+From: Jason Gunthorpe <jgg@mellanox.com>
+To: John Hubbard <jhubbard@nvidia.com>
+Subject: Re: [GIT PULL] Please pull hmm changes
+Thread-Topic: [GIT PULL] Please pull hmm changes
+Thread-Index: AQHVo9Dog/MtwM8aJU6I/7345tJKuKekCWkAgAAFfoCAA6/3AIAEegoAgAlpcIA=
+Date: Wed, 11 Dec 2019 22:47:52 +0000
+Message-ID: <20191211224739.GD3434@mellanox.com>
+References: <20191125204248.GA2485@ziepe.ca>
+ <CAHk-=wiqguF5NakpL4L9XCmmYr4wY0wk__+6+wHVReF2sVVZhA@mail.gmail.com>
+ <CAHk-=wiQtTsZfgTwLYgfV8Gr_0JJiboZOzVUTAgJ2xTdf5bMiw@mail.gmail.com>
+ <20191203024206.GC5795@mellanox.com>
+ <2f915b2d-ad97-a314-40f0-d0e571f896ba@nvidia.com>
+In-Reply-To: <2f915b2d-ad97-a314-40f0-d0e571f896ba@nvidia.com>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: SN6PR08CA0008.namprd08.prod.outlook.com
+ (2603:10b6:805:66::21) To DB7PR05MB4138.eurprd05.prod.outlook.com
+ (2603:10a6:5:23::16)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=jgg@mellanox.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [217.140.111.136]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: af5299c9-7354-4373-f0d9-08d77e8c27d5
+x-ms-traffictypediagnostic: DB7PR05MB4507:
+x-microsoft-antispam-prvs: <DB7PR05MB45078F9CF64337BB48841706CF5A0@DB7PR05MB4507.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 024847EE92
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(39860400002)(366004)(396003)(346002)(376002)(199004)(189003)(1076003)(478600001)(4744005)(54906003)(36756003)(4326008)(71200400001)(5660300002)(2906002)(66946007)(64756008)(66446008)(66556008)(316002)(7416002)(66476007)(52116002)(81166006)(81156014)(8676002)(186003)(6512007)(2616005)(26005)(6486002)(6916009)(6506007)(86362001)(33656002)(8936002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DB7PR05MB4507;
+ H:DB7PR05MB4138.eurprd05.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: mellanox.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 76ZpDlWXbWjA3EbwOZDfTK131Pc6FNHnHjmm5FOMsUCDEKBB51+4bMJXwHH/+0jA0+tfptEogwqujA6XYq4/ThVSKu/Vs9/RRSl4vSo7l3NESndToqyFmzhYdVy9zP6lVFl1LhoDwmokOFHb6iyyLbzhy6R6r8OAzGznaZo2kXjupzY7wC+Y3p7XqbrCSBI1HSU94J7mlkQMfMg2QKtHoZ+KS/kHsKDEZqQtDSKw2PlNvZtDIHzK7b+D7FlLux7WDMcNbCBWasGGw0N0UqfIRCewbOmRyqJfiL6+UPqLIjifScqriUX57mER9dcAT9IS6P65QO4NzctyQBtqFNs2tKVeK/mOwtTFGlf+4UBCN9R1iACEcVu4Q/ZAisOZLCNtCLyzPWsinvJazwMQrHrGSXaVhJ1IkAYjH4wQSoiEY2Qfp170q2I/kFN3HQTQXxIQ
+x-ms-exchange-transport-forked: True
+Content-ID: <69DD12A675BE064CB70D2FA97742766F@eurprd05.prod.outlook.com>
+MIME-Version: 1.0
+X-OriginatorOrg: Mellanox.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: af5299c9-7354-4373-f0d9-08d77e8c27d5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Dec 2019 22:47:52.7726 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a652971c-7d2e-4d9b-a6a4-d149256f461b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nLMutBqllesWIAGWtCMfTh12KOWbw8538uPcHkoxigZt1pX889SDHtg2CcHW0OH1Rk8XAh90Y/qxIXjaWz6L1w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR05MB4507
+X-Mailman-Approved-At: Thu, 12 Dec 2019 08:55:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,167 +100,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Le.Ma" <Le.Ma@amd.com>,
- "Quan, Evan" <Evan.Quan@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Hawking Zhang <hawking.zhang@amd.com>
+Cc: Ralph Campbell <rcampbell@nvidia.com>, David Airlie <airlied@linux.ie>,
+ "Kuehling, Felix" <Felix.Kuehling@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Christoph Hellwig <hch@lst.de>, "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Dan Williams <dan.j.williams@intel.com>,
+ "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 11.12.19 um 21:19 schrieb Alex Deucher:
-> On Wed, Dec 11, 2019 at 3:07 PM Andrey Grodzovsky
-> <andrey.grodzovsky@amd.com> wrote:
->> It is used to synchronize N threads at a rendevouz point before execution
->> of critical code that has to be started by all the threads at approximatly
->> the same time.
->>
->> Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-> You should resend to dri-devel since this task barrier is being added
-> to common code.
+On Thu, Dec 05, 2019 at 03:03:56PM -0800, John Hubbard wrote:
 
-Additional to that this whole thing has the potential to raise lockdep 
-warnings and if I'm not completely mistaken doesn't even work correctly.
+> No advice, just a naming idea similar in spirit to Jerome's suggestion
+> (use a longer descriptive word, and don't try to capture the entire phrase):
+> use "notif" in place of the unloved "mmn". So partially, approximately like 
+> this:
+> 
+> notif_*                                    <- MMU notifier prefix
+> notif_state                                <- struct mmu_notifier_mm
+> notif_subscription (notif_sub)             <- struct mmu_notifier
+> notif_invalidate_desc                      <- struct mmu_notifier_range*
+> notif_range_subscription (notif_range_sub) <- struct mmu_interval_notifier
 
-See Linux kernel semaphores don't allow negative values (the count field 
-in struct semaphore is unsigned).
+To me 'notif' suggests this belongs to the stuff in notifier.h - ie
+the naked word notififer is already taken
 
-Regards,
-Christian.
-
->
-> Alex
->
->> ---
->>   include/drm/task_barrier.h | 106 +++++++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 106 insertions(+)
->>   create mode 100644 include/drm/task_barrier.h
->>
->> diff --git a/include/drm/task_barrier.h b/include/drm/task_barrier.h
->> new file mode 100644
->> index 0000000..81fb0f7
->> --- /dev/null
->> +++ b/include/drm/task_barrier.h
->> @@ -0,0 +1,106 @@
->> +/*
->> + * Copyright 2019 Advanced Micro Devices, Inc.
->> + *
->> + * Permission is hereby granted, free of charge, to any person obtaining a
->> + * copy of this software and associated documentation files (the "Software"),
->> + * to deal in the Software without restriction, including without limitation
->> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
->> + * and/or sell copies of the Software, and to permit persons to whom the
->> + * Software is furnished to do so, subject to the following conditions:
->> + *
->> + * The above copyright notice and this permission notice shall be included in
->> + * all copies or substantial portions of the Software.
->> + *
->> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
->> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
->> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
->> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
->> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
->> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
->> + * OTHER DEALINGS IN THE SOFTWARE.
->> + *
->> + */
->> +#include <linux/semaphore.h>
->> +#include <linux/atomic.h>
->> +
->> +/*
->> + * Reusable 2 PHASE task barrier (randevouz point) implementation for N tasks.
->> + * Based on the Little book of sempahores - https://greenteapress.com/wp/semaphores/
->> + */
->> +
->> +
->> +
->> +#ifndef DRM_TASK_BARRIER_H_
->> +#define DRM_TASK_BARRIER_H_
->> +
->> +/*
->> + * Represents an instance of a task barrier.
->> + */
->> +struct task_barrier {
->> +       unsigned int n;
->> +       atomic_t count;
->> +       struct semaphore enter_turnstile;
->> +       struct semaphore exit_turnstile;
->> +};
->> +
->> +static inline void task_barrier_signal_turnstile(struct semaphore *turnstile,
->> +                                                unsigned int n)
->> +{
->> +       int i;
->> +
->> +       for (i = 0 ; i < n; i++)
->> +               up(turnstile);
->> +}
->> +
->> +static inline void task_barrier_init(struct task_barrier *tb)
->> +{
->> +       tb->n = 0;
->> +       atomic_set(&tb->count, 0);
->> +       sema_init(&tb->enter_turnstile, 0);
->> +       sema_init(&tb->exit_turnstile, 0);
->> +}
->> +
->> +static inline void task_barrier_add_task(struct task_barrier *tb)
->> +{
->> +       tb->n++;
->> +}
->> +
->> +static inline void task_barrier_rem_task(struct task_barrier *tb)
->> +{
->> +       tb->n--;
->> +}
->> +
->> +/*
->> + * Lines up all the threads BEFORE the critical point.
->> + *
->> + * When all thread passed this code the entry barrier is back to locked state.
->> + */
->> +static inline void task_barrier_enter(struct task_barrier *tb)
->> +{
->> +       if (atomic_inc_return(&tb->count) == tb->n)
->> +               task_barrier_signal_turnstile(&tb->enter_turnstile, tb->n);
->> +
->> +       down(&tb->enter_turnstile);
->> +}
->> +
->> +/*
->> + * Lines up all the threads AFTER the critical point.
->> + *
->> + * This function is used to avoid any one thread running ahead of the reset if
->> + * the barrier is used in a loop (repeatedly) .
->> + */
->> +static inline void task_barrier_exit(struct task_barrier *tb)
->> +{
->> +       if (atomic_dec_return(&tb->count) == 0)
->> +               task_barrier_signal_turnstile(&tb->exit_turnstile, tb->n);
->> +
->> +       down(&tb->exit_turnstile);
->> +}
->> +
->> +static inline void task_barrier_full(struct task_barrier *tb)
->> +{
->> +       task_barrier_enter(tb);
->> +       task_barrier_exit(tb);
->> +}
->> +
->> +#endif
->> --
->> 2.7.4
->>
->> _______________________________________________
->> amd-gfx mailing list
->> amd-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
+Jason
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
