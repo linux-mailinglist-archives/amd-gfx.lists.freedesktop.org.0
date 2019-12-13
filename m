@@ -1,61 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6FA211EAB2
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2019 19:49:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C061411EB30
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2019 20:47:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 665F36EC18;
-	Fri, 13 Dec 2019 18:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 546686EC40;
+	Fri, 13 Dec 2019 19:47:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com
- [IPv6:2607:f8b0:4864:20::f2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35A0A6E2ED
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 18:49:05 +0000 (UTC)
-Received: by mail-qv1-xf2a.google.com with SMTP id p2so146483qvo.10
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 10:49:05 -0800 (PST)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 466FD6EC40
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 19:47:49 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id y11so731777wrt.6
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 11:47:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Uh/gvkL9myFYQ2H9uWVR23BQNhi7IaX3i8MjsnmnbOM=;
- b=Olt1rhlNFBQDSJp2PqnblbZNjg2vh4tq/zryapbR/9EIoPJiNU4agP2t3sXIvwNkGt
- lpYoRjg3XGGivH/DWSzyKBj55AP5yk8gwDoys1icaZiGbWjunrjS/DwjUKOjwKqvIUo8
- EXUnfErnM/OaHyEb73hXl8/AFNlnT8EjrXN1A8PgbplUsFTR6UqUbiM9C0VVD8OrjtKF
- 9+53jQePvxdDrgDh+iFWfiSj329V2/uzhV1ScOqFOcS2tikbpSM+W9+e5QMeg6HRDN/P
- G+puCoAaL2w2BrfkFb9eIeStBpiuY+Ida23qL7oMMvZQboYQDuszWNJtbPLS7a6mgG3u
- sLYA==
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=dORjuMwhguI1AqgRevw2x+JBr8U9d6qZMaj708WKv58=;
+ b=BTyiJK5z7lrFEOXPz+graVafVhdxKe48P88qSYgWzculoc1eD20rF1KJz1PrKEitJx
+ FMpwF9rMDvlOPE6vJnD2csTFYcYFEyoCFWcCKw3X2i9oOLbSmv5Xz8fpgB0EEuPzmO6c
+ BK8kFSfPOk5bpQEYKBWHpIAKEhnO4RlN6gcoj4s9myfZ7Yu6K6sSJNmF9fuHS5Z53K70
+ KitZktfRw49SphGHlMrApTD1bMY02lJa/L86gkd/iddPf/oe+m3wlosK1mkyMYNr0QxC
+ qAX1kNIN8TGzwgb4PY+hPP2UFGRwMfnuuMO4TagID1rfi1Foyg2zEuzsJdOdiGXBTfkX
+ QvpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Uh/gvkL9myFYQ2H9uWVR23BQNhi7IaX3i8MjsnmnbOM=;
- b=QRRJwvx0ogHLAnz729HCR8gKUbrhPafoCULoLyuc/TLIWEhj8ZMq8PqPa65GtPoTOd
- rsSjAM1R7g9jWyP9dvP4S2fu/EW6UEjT+zF+d59C2DZi60lietn+zQ+KFcy+HKDFg3h+
- o8ClGWRQtKGgocql4thB0hvpdt+6Ynl3R0B/G63nmhYYtK1gVDeSCi/lmtW/ZcA+/OSQ
- 0WHAcY9uDhWUkSqtKNo+b5j4dgy6cCT85fTqKjR7DVCUQcGoGqPHz7hjhP1PKsGpWMVw
- AtAHOv7h/AIn+9bpzeCe0zGk9WXC7zyauLBW6Vfs9ld0QuyR9ychaXXGIxOcv2WsPDpA
- latA==
-X-Gm-Message-State: APjAAAX6Cw2NKUr/WP3AoDidahraeZwdA65VTkV0L1c8yMkB96ed6ip+
- 77NOOOYN4yI/mE9GVe7R4lJJitoX
-X-Google-Smtp-Source: APXvYqxHpGWwrTlyqoF/n1wTt04w1UKsXYgq71pHlNEb+onesDrDRifMsGTrvj8ovMNhy73LXQRKzA==
-X-Received: by 2002:ad4:58ac:: with SMTP id
- ea12mr14833607qvb.126.1576262944100; 
- Fri, 13 Dec 2019 10:49:04 -0800 (PST)
-Received: from localhost.localdomain ([71.219.59.120])
- by smtp.gmail.com with ESMTPSA id 200sm3098563qkn.79.2019.12.13.10.49.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Dec 2019 10:49:03 -0800 (PST)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdgpu/sdma5: make ring tests less chatty
-Date: Fri, 13 Dec 2019 13:48:54 -0500
-Message-Id: <20191213184854.3901-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191213184854.3901-1-alexander.deucher@amd.com>
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=dORjuMwhguI1AqgRevw2x+JBr8U9d6qZMaj708WKv58=;
+ b=iGSplgmyLBMlzNxPmoZ9WEvkasCJC8W/jsObQXeOfQTyFu3Vg27g+/e6XVDLLH/Uc7
+ 1+c2BCNCdqaohTKrdmIuLItKjjW022Uj5WJCzFQhMxYLf4g/sYs7Q3BReysObI76XOmt
+ IMgGoTMYVWdYQ+Tv2qkRSi16iXM1QQ9HpBqkmNxPdt6d4DYVNjnyMIRZ6iriHLjZEBgq
+ fi5pYInTA8kdPm+aV4oRWn8xn83OtOHmNPZR9+Wn3T6GncvP6ZZFOD7wWYb6+Cm/uY7X
+ W2Tt5vEN5TP7CYptj2obx5Z5RcvPk0NWc7Y/RF5SGcg3M9ilLBrPoxWzLVxGbM4qvTQX
+ 9QCg==
+X-Gm-Message-State: APjAAAXFqayG0ac7ciDWb3skCDAVCl1Epann7P/k+K3YEgZwU866fq5K
+ 5z0pGHlu0/PcBWtemX0mxF0=
+X-Google-Smtp-Source: APXvYqwTSmnR3lWEEga5cZLVPL9ksNqb2dRz/LcBP/fRITYi8rXU9rabR88Wuj3Cq3rmGzGC0ORbOQ==
+X-Received: by 2002:adf:eb8e:: with SMTP id t14mr14444193wrn.384.1576266467778; 
+ Fri, 13 Dec 2019 11:47:47 -0800 (PST)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id b17sm11152946wrx.15.2019.12.13.11.47.45
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 13 Dec 2019 11:47:47 -0800 (PST)
+Subject: Re: [PATCH 1/2] drm/amdgpu/gfx10: make ring tests less chatty
+To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
 References: <20191213184854.3901-1-alexander.deucher@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <6b1aed3a-db65-c6b5-9fb0-646b9de4a355@gmail.com>
+Date: Fri, 13 Dec 2019 20:47:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
+In-Reply-To: <20191213184854.3901-1-alexander.deucher@amd.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,63 +69,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: christian.koenig@amd.com
 Cc: Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We already did this for older generations.
-
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c | 20 +++++---------------
- 1 file changed, 5 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-index 64c53eed7fac..1b502396fcd4 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-@@ -907,16 +907,9 @@ static int sdma_v5_0_ring_test_ring(struct amdgpu_ring *ring)
- 			udelay(1);
- 	}
- 
--	if (i < adev->usec_timeout) {
--		if (amdgpu_emu_mode == 1)
--			DRM_INFO("ring test on %d succeeded in %d msecs\n", ring->idx, i);
--		else
--			DRM_INFO("ring test on %d succeeded in %d usecs\n", ring->idx, i);
--	} else {
--		DRM_ERROR("amdgpu: ring %d test failed (0x%08X)\n",
--			  ring->idx, tmp);
--		r = -EINVAL;
--	}
-+	if (i >= adev->usec_timeout)
-+		r = -ETIMEDOUT;
-+
- 	amdgpu_device_wb_free(adev, index);
- 
- 	return r;
-@@ -981,13 +974,10 @@ static int sdma_v5_0_ring_test_ib(struct amdgpu_ring *ring, long timeout)
- 		goto err1;
- 	}
- 	tmp = le32_to_cpu(adev->wb.wb[index]);
--	if (tmp == 0xDEADBEEF) {
--		DRM_INFO("ib test on ring %d succeeded\n", ring->idx);
-+	if (tmp == 0xDEADBEEF)
- 		r = 0;
--	} else {
--		DRM_ERROR("amdgpu: ib test failed (0x%08X)\n", tmp);
-+	else
- 		r = -EINVAL;
--	}
- 
- err1:
- 	amdgpu_ib_free(adev, &ib, NULL);
--- 
-2.23.0
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+QW0gMTMuMTIuMTkgdW0gMTk6NDggc2NocmllYiBBbGV4IERldWNoZXI6Cj4gV2UgYWxyZWFkeSBk
+aWQgdGhpcyBmb3Igb2xkZXIgZ2VuZXJhdGlvbnMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBBbGV4IERl
+dWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+CgpSZXZpZXdlZC1ieTogQ2hyaXN0aWFu
+IEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPiBmb3IgdGhlIHNlcmllcy4KCj4gLS0t
+Cj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYyB8IDM5ICsrKysrKyst
+LS0tLS0tLS0tLS0tLS0tLS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKSwg
+MjkgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvZ2Z4X3YxMF8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYwo+
+IGluZGV4IDhjZGVmNzlkZTlkNC4uM2VkZTE5Y2U5ZjFmIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTBfMC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9hbWRncHUvZ2Z4X3YxMF8wLmMKPiBAQCAtNDcyLDE4ICs0NzIsMTAgQEAgc3RhdGljIGludCBn
+ZnhfdjEwXzBfcmluZ190ZXN0X3Jpbmcoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQo+ICAgCQll
+bHNlCj4gICAJCQl1ZGVsYXkoMSk7Cj4gICAJfQo+IC0JaWYgKGkgPCBhZGV2LT51c2VjX3RpbWVv
+dXQpIHsKPiAtCQlpZiAoYW1kZ3B1X2VtdV9tb2RlID09IDEpCj4gLQkJCURSTV9JTkZPKCJyaW5n
+IHRlc3Qgb24gJWQgc3VjY2VlZGVkIGluICVkIG1zZWNzXG4iLAo+IC0JCQkJIHJpbmctPmlkeCwg
+aSk7Cj4gLQkJZWxzZQo+IC0JCQlEUk1fSU5GTygicmluZyB0ZXN0IG9uICVkIHN1Y2NlZWRlZCBp
+biAlZCB1c2Vjc1xuIiwKPiAtCQkJCSByaW5nLT5pZHgsIGkpOwo+IC0JfSBlbHNlIHsKPiAtCQlE
+Uk1fRVJST1IoImFtZGdwdTogcmluZyAlZCB0ZXN0IGZhaWxlZCAoc2NyYXRjaCgweCUwNFgpPTB4
+JTA4WClcbiIsCj4gLQkJCSAgcmluZy0+aWR4LCBzY3JhdGNoLCB0bXApOwo+IC0JCXIgPSAtRUlO
+VkFMOwo+IC0JfQo+ICsKPiArCWlmIChpID49IGFkZXYtPnVzZWNfdGltZW91dCkKPiArCQlyID0g
+LUVUSU1FRE9VVDsKPiArCj4gICAJYW1kZ3B1X2dmeF9zY3JhdGNoX2ZyZWUoYWRldiwgc2NyYXRj
+aCk7Cj4gICAKPiAgIAlyZXR1cm4gcjsKPiBAQCAtNTMzLDE0ICs1MjUsMTAgQEAgc3RhdGljIGlu
+dCBnZnhfdjEwXzBfcmluZ190ZXN0X2liKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZywgbG9uZyB0
+aW1lb3V0KQo+ICAgCX0KPiAgIAo+ICAgCXRtcCA9IFJSRUczMihzY3JhdGNoKTsKPiAtCWlmICh0
+bXAgPT0gMHhERUFEQkVFRikgewo+IC0JCURSTV9JTkZPKCJpYiB0ZXN0IG9uIHJpbmcgJWQgc3Vj
+Y2VlZGVkXG4iLCByaW5nLT5pZHgpOwo+ICsJaWYgKHRtcCA9PSAweERFQURCRUVGKQo+ICAgCQly
+ID0gMDsKPiAtCX0gZWxzZSB7Cj4gLQkJRFJNX0VSUk9SKCJhbWRncHU6IGliIHRlc3QgZmFpbGVk
+IChzY3JhdGNoKDB4JTA0WCk9MHglMDhYKVxuIiwKPiAtCQkJICBzY3JhdGNoLCB0bXApOwo+ICsJ
+ZWxzZQo+ICAgCQlyID0gLUVJTlZBTDsKPiAtCX0KPiAgIGVycjI6Cj4gICAJYW1kZ3B1X2liX2Zy
+ZWUoYWRldiwgJmliLCBOVUxMKTsKPiAgIAlkbWFfZmVuY2VfcHV0KGYpOwo+IEBAIC0zNjA3LDIz
+ICszNTk1LDE2IEBAIHN0YXRpYyBpbnQgZ2Z4X3YxMF8wX2NwX3Jlc3VtZShzdHJ1Y3QgYW1kZ3B1
+X2RldmljZSAqYWRldikKPiAgIAo+ICAgCWZvciAoaSA9IDA7IGkgPCBhZGV2LT5nZngubnVtX2dm
+eF9yaW5nczsgaSsrKSB7Cj4gICAJCXJpbmcgPSAmYWRldi0+Z2Z4LmdmeF9yaW5nW2ldOwo+IC0J
+CURSTV9JTkZPKCJnZnggJWQgcmluZyBtZSAlZCBwaXBlICVkIHEgJWRcbiIsCj4gLQkJCSBpLCBy
+aW5nLT5tZSwgcmluZy0+cGlwZSwgcmluZy0+cXVldWUpOwo+IC0JCXIgPSBhbWRncHVfcmluZ190
+ZXN0X3JpbmcocmluZyk7Cj4gLQkJaWYgKHIpIHsKPiAtCQkJcmluZy0+c2NoZWQucmVhZHkgPSBm
+YWxzZTsKPiArCQlyID0gYW1kZ3B1X3JpbmdfdGVzdF9oZWxwZXIocmluZyk7Cj4gKwkJaWYgKHIp
+Cj4gICAJCQlyZXR1cm4gcjsKPiAtCQl9Cj4gICAJfQo+ICAgCj4gICAJZm9yIChpID0gMDsgaSA8
+IGFkZXYtPmdmeC5udW1fY29tcHV0ZV9yaW5nczsgaSsrKSB7Cj4gICAJCXJpbmcgPSAmYWRldi0+
+Z2Z4LmNvbXB1dGVfcmluZ1tpXTsKPiAtCQlyaW5nLT5zY2hlZC5yZWFkeSA9IHRydWU7Cj4gLQkJ
+RFJNX0lORk8oImNvbXB1dGUgcmluZyAlZCBtZWMgJWQgcGlwZSAlZCBxICVkXG4iLAo+IC0JCQkg
+aSwgcmluZy0+bWUsIHJpbmctPnBpcGUsIHJpbmctPnF1ZXVlKTsKPiAtCQlyID0gYW1kZ3B1X3Jp
+bmdfdGVzdF9yaW5nKHJpbmcpOwo+ICsJCXIgPSBhbWRncHVfcmluZ190ZXN0X2hlbHBlcihyaW5n
+KTsKPiAgIAkJaWYgKHIpCj4gLQkJCXJpbmctPnNjaGVkLnJlYWR5ID0gZmFsc2U7Cj4gKwkJCXJl
+dHVybiByOwo+ICAgCX0KPiAgIAo+ICAgCXJldHVybiAwOwoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9hbWQtZ2Z4Cg==
