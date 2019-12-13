@@ -1,83 +1,81 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E829811E7D1
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2019 17:11:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB1611E875
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2019 17:38:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E6F26EAF6;
-	Fri, 13 Dec 2019 16:11:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D67D6E092;
+	Fri, 13 Dec 2019 16:38:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2079.outbound.protection.outlook.com [40.107.237.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 969D16EAF6
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 16:11:38 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760089.outbound.protection.outlook.com [40.107.76.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BFDD6E092
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 16:38:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LOl/Ndte9PZV8u1fS16w2O1nG/gdVb6mOmS33SCu1em9xUWZcJcNnq5eed6A1cqGIdxguUxG1YrRHSLuPJem1HnnNx+sgTQ0NOsOHi+EMjjgztSdgEfwKkZQ3GCe0H/m/xDsIGzht8W3jGCRCVDNKyrv9jH04Mbe56q1q16rXyo7nofP5Jtwa0ngLx4vOWLw46fbUqrmPjXcK2ZQpUj1JvVSMHgmAHa234H8E/YWcyCfATj7NIbJGpcRlP+cewFhkhT2SA3/vA3zExXE9FzsKBoeIhFAoMQQ8N67W1XUl4bUOo3fRlEHH/A1ogUJnlrLkrFrMrDBcWrLe4HsMOAMqA==
+ b=bj1R3YKJNrAK8/nWfDLWewmLmIn2TOrfeRay33zC+qLqOWgOVA1GK0l4x4EHlrdGxCrH7izwnbZUXs5GC7VEKNvqE7YkBAWa/v872xsjULE0VFKNjjYr6yIay9Iv84YX5eoQM1SvFl8vNJ7mQiBtMnfkDoplrfSF/c4K+JSCBpdas4If5azIRXAA0WSGFW5iZckExbhKuiJgvTWGN+oNhM842tEEdw+lleNwdJoRY3/RLl/OEL6ZWI4KIp90DXgcRH/L7unj0ENPzRjh/Z8y7W7rBqDVqG9J3dUzR1Ousl29yGQLyd57RdfdV5uCUr7uk5frkZV0Qjt4RfdhGrGy+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/18NmepNzr8p0fgyZ5jb4Bc1ropNQyropxR26n5fMxs=;
- b=RD4hS34Y1RM6ltneFUN7zBnv2BbJwYSa4B/ikNcpravi0PuK+RnA/pYu6LPU/m/jufeiLFjg9EzdAWws95lZpGekazMaS5jMYALJC4Z1UURV+2/FG2ochC9HujP2C4ubPhYYeGyLT1G6aOlF4dZlC/CxdaP27msKmwxramM7hmjNFtKwpbDhqFbIjcOiKC/oDd8xwx4LIWpg1njavFoPG6c9/hLoR1fc2zQfCtsHonBmqZsCAL+3BGdFHQ8Vmoikmd8uHaomZFDIpcOlGBPuW3sSGObnGtC2a484fWTB7qMFX052qZCXDd8RjZ4jSafU8sJLtg7/dVupwrNIfyZhfg==
+ bh=2LkjLlpcKiTsOnc6FXsWfKMuWYj7vsS6G5GcaAf6Ch8=;
+ b=bKngxeBTMfhIVHp/lFX70BZkie0eJTpcLzOvRSsQeldrj/EMKNKSzU/kAUykSOTOnnNXTnf0hP5Q9de6rHbZ0nYMGX5scy8RJkl321BgoFpmMH4Gn6b2dSvbwgNjtrdsjg4dpxbErTobOHSkA/tNMRifk24rKg0vzCCnC9wD1eLZSBRDOoeYc3EqVg6Lq6k6k8BLz8z6UDp0lRzgUU+UT/ISQK5iWrgnOuXhZeTuhW3Ka99FClehdUK1UgxAnGlXG7/FPD2XfcSZhJzXeS2/AcJRkJv5XQ2lKgCy5L6DpH/6aVTrsw5Qpm9GKKq+fA6NHqn+waaxIpwNyHT7H2sUWg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/18NmepNzr8p0fgyZ5jb4Bc1ropNQyropxR26n5fMxs=;
- b=eDzNVa4HXLwO+T64bFMq1rS6Jy/BAkiTUgt/iM3vNOUeIY/1n1r7g5DjwEWDfxAIBViC04NIQFb3+Faab7Wsvzww3+mO2Qv2rvMWOa8Og8A7K4BuU7hKyR3e8olSqxXOOnzA8OTuNOPACbz4DuxiBX6lAGEJe5Ca2h1nwKbBSNI=
+ bh=2LkjLlpcKiTsOnc6FXsWfKMuWYj7vsS6G5GcaAf6Ch8=;
+ b=NxbkRHK2Q0CCOlz72nS0lX6qwuzWfkmw+bC446/vgCXalJi56c2lhi05uKc20caN1/sYwSLlUEhxj15ib/X+AU2ndWemBQH/rLzoYXHFUpFuxT5BTyhyW5uzyBvoQcFvgmOdxoPN0w5aPSJdq7Wxq5NRsKL6XeFhw1lLH7yqupA=
 Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Zhan.Liu@amd.com; 
-Received: from DM6PR12MB3466.namprd12.prod.outlook.com (20.178.198.225) by
- DM6PR12MB4155.namprd12.prod.outlook.com (10.141.8.79) with Microsoft SMTP
+ smtp.mailfrom=Yong.Zhao@amd.com; 
+Received: from DM5PR1201MB0137.namprd12.prod.outlook.com (10.174.106.18) by
+ DM5PR1201MB0058.namprd12.prod.outlook.com (10.174.104.11) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.15; Fri, 13 Dec 2019 16:11:37 +0000
-Received: from DM6PR12MB3466.namprd12.prod.outlook.com
- ([fe80::8954:6ba3:6dca:4616]) by DM6PR12MB3466.namprd12.prod.outlook.com
- ([fe80::8954:6ba3:6dca:4616%7]) with mapi id 15.20.2516.020; Fri, 13 Dec 2019
- 16:11:37 +0000
-From: Zhan Liu <zhan.liu@amd.com>
-To: amd-gfx@lists.freedesktop.org, hersenxs.wu@amd.com,
- Alexander.Deucher@amd.com, Kevin1.Wang@amd.com, Evan.Quan@amd.com,
- Tianci.Yin@amd.com
-Subject: [PATCH v3] drm/amd/powerplay: Copy watermark to SMU
-Date: Fri, 13 Dec 2019 11:11:24 -0500
-Message-Id: <20191213161124.24622-1-zhan.liu@amd.com>
+ 15.20.2538.15; Fri, 13 Dec 2019 16:38:19 +0000
+Received: from DM5PR1201MB0137.namprd12.prod.outlook.com
+ ([fe80::5878:940a:dd61:4d22]) by DM5PR1201MB0137.namprd12.prod.outlook.com
+ ([fe80::5878:940a:dd61:4d22%9]) with mapi id 15.20.2516.018; Fri, 13 Dec 2019
+ 16:38:19 +0000
+From: Yong Zhao <Yong.Zhao@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdkfd: Improve function get_sdma_rlc_reg_offset()
+Date: Fri, 13 Dec 2019 11:38:07 -0500
+Message-Id: <20191213163807.27139-1-Yong.Zhao@amd.com>
 X-Mailer: git-send-email 2.17.1
-X-ClientProxiedBy: YTBPR01CA0032.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:14::45) To DM6PR12MB3466.namprd12.prod.outlook.com
- (2603:10b6:5:3b::33)
+X-ClientProxiedBy: YT1PR01CA0023.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::36)
+ To DM5PR1201MB0137.namprd12.prod.outlook.com
+ (2603:10b6:4:54::18)
 MIME-Version: 1.0
 X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [165.204.55.250]
+X-Originating-IP: [165.204.55.251]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 6a4e8a60-3e3e-4282-b4db-08d77fe7214a
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4155:|DM6PR12MB4155:
+X-MS-Office365-Filtering-Correlation-Id: e8c54e87-3e69-41b7-cec8-08d77feadc43
+X-MS-TrafficTypeDiagnostic: DM5PR1201MB0058:|DM5PR1201MB0058:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB415523FC82A3F327057104DB9E540@DM6PR12MB4155.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1060;
+X-Microsoft-Antispam-PRVS: <DM5PR1201MB00584439A5D41660721155DDF0540@DM5PR1201MB0058.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1775;
 X-Forefront-PRVS: 0250B840C1
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(366004)(136003)(396003)(376002)(346002)(199004)(189003)(2906002)(44832011)(52116002)(86362001)(316002)(4326008)(8936002)(81156014)(81166006)(8676002)(6666004)(2616005)(36756003)(6512007)(66476007)(5660300002)(66556008)(1076003)(66946007)(6486002)(6506007)(478600001)(186003)(26005)(6636002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB4155;
- H:DM6PR12MB3466.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
+ SFS:(10009020)(4636009)(376002)(136003)(346002)(396003)(366004)(39860400002)(189003)(199004)(4326008)(66556008)(86362001)(478600001)(6512007)(6666004)(6486002)(66946007)(66476007)(81166006)(316002)(2906002)(36756003)(81156014)(26005)(1076003)(8676002)(6916009)(52116002)(186003)(8936002)(6506007)(5660300002)(2616005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR1201MB0058;
+ H:DM5PR1201MB0137.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ooL1/i8xbE4gAD+BmWoktRiGZJ2rsn/jnFtQ0TelHoNWmeXANxhgjVY7/+xm5RTRaOvnh8ZOyb5xmRa3DzfkOoy7/lZL03glyLtcyH+9c8lkH89Vx19S+W6RFF6DG22pevGlbUiQ9yMl8LjVz4XH/3JVKr3r5mFzXTHFjQt1M5dc0V/2l66KtBfAg1+VNYk9WFwqOopxPdQO/QGCdi1Q4GE6AJuPWvE7PDLvzaqbpeTtGAispvA2FR66uJZUoEU5bYpFG/6NBgmnNGitQTmRuweENMHbP6hooX8irv82NLEuKoYzGYP8NRXltYvBNL2oBOLlnytSpIxZB6fVaMI26joUHE0LbQgcnnV56xd8VvrpvDdRgF89u8uZoau17/epzMLZMdONMT3E3sQvuTCrfAH5HaDApSzPrRb4JRLtRKmZdGlkX0HI2UI9xFhsRKuK
+X-Microsoft-Antispam-Message-Info: NtVEDyLI1s8kJwXV3/ADuC/n6r4Dn15Qwj1D03Lh5L2ckCFZDOCeFJoZb2sVaipnXA/wh66+9fY/EARyomaxozSgXLJbLO4P1SkgJGwffO3PKYz9Zv5Fv2qIlefSG+IKH2mKqJFmbAYKCL9bM4nymBAAKbECftgVXc3IK9R9bZOWPusO5SeZ3xdm+N2r56mVBtP7Z1OhMb2aYa8MT+5DLhZFSfvs4A+NeEGaFzJ2lbDu4q5QsiXwYAdgu5nylNEg2xSGZZAdUL0XqOTtfCsPi6aJB+45FT6zIFI63ctunLIibqZOVpD/JEo26KPqE44qti9+LPM0DggzAMGzvejoVljZxH1UHMlkshPh8OS+lO2HNZJhEdwGi5KCXBGVmLKKK7KOiHqNL5hdV5LYk40JCXU8U0lTIHBrUb2JXW7cpMrOW07BgDaU6Lk/Y78YKiF9
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a4e8a60-3e3e-4282-b4db-08d77fe7214a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2019 16:11:37.1260 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8c54e87-3e69-41b7-cec8-08d77feadc43
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2019 16:38:19.3388 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yVpIbT7IvxEpjxyKXmsmvgoBNZuSBuanAguKPHJPifEMCksVX7bi/SgFaTVaSVC5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4155
+X-MS-Exchange-CrossTenant-UserPrincipalName: OFPna2lL/X0tpYQcfRU6FYF96tABbtsjNMKLvTurg59UWRIGcORXW9SMbyc2eVtp
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0058
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,54 +87,103 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhan Liu <zhan.liu@amd.com>
+Cc: Yong Zhao <Yong.Zhao@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-Watermark value was expected to copy to SMU
-within navi10_display_config_changed(). But
-navi10_display_config_changed() is never called.
-As a result, the watermark value is never
-copied to SMU.
+This prevents the NULL pointer access when there are fewer than 8 sdma
+engines.
 
-[How]
-At end of navi10_set_watermarks_table,
-copy watermark to SMU.
-
-Signed-off-by: Zhan Liu <zhan.liu@amd.com>
+Change-Id: Iabae9bff7546b344720905d5d4a5cfc066a79d25
+Signed-off-by: Yong Zhao <Yong.Zhao@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ .../drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c   | 64 ++++++++++++-------
+ 1 file changed, 42 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-index 15403b7979d6..f4cdd78492fa 100644
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-@@ -1472,6 +1472,17 @@ static int navi10_set_watermarks_table(struct smu_context *smu,
- 				clock_ranges->wm_mcif_clocks_ranges[i].wm_set_id;
- 	}
- 
-+	/* Pass data to smu controller */
-+	if ((smu->watermarks_bitmap & WATERMARKS_EXIST) &&
-+			!(smu->watermarks_bitmap & WATERMARKS_LOADED)) {
-+		int ret = smu_write_watermarks_table(smu);
-+		if (ret) {
-+			pr_err("Failed to update WMTABLE!");
-+			return ret;
-+		}
-+		smu->watermarks_bitmap |= WATERMARKS_LOADED;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+index 3c119407dc34..2ad088f10493 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+@@ -71,32 +71,52 @@ static uint32_t get_sdma_rlc_reg_offset(struct amdgpu_device *adev,
+ 				unsigned int engine_id,
+ 				unsigned int queue_id)
+ {
+-	uint32_t sdma_engine_reg_base[8] = {
+-		SOC15_REG_OFFSET(SDMA0, 0,
+-				 mmSDMA0_RLC0_RB_CNTL) - mmSDMA0_RLC0_RB_CNTL,
+-		SOC15_REG_OFFSET(SDMA1, 0,
+-				 mmSDMA1_RLC0_RB_CNTL) - mmSDMA1_RLC0_RB_CNTL,
+-		SOC15_REG_OFFSET(SDMA2, 0,
+-				 mmSDMA2_RLC0_RB_CNTL) - mmSDMA2_RLC0_RB_CNTL,
+-		SOC15_REG_OFFSET(SDMA3, 0,
+-				 mmSDMA3_RLC0_RB_CNTL) - mmSDMA3_RLC0_RB_CNTL,
+-		SOC15_REG_OFFSET(SDMA4, 0,
+-				 mmSDMA4_RLC0_RB_CNTL) - mmSDMA4_RLC0_RB_CNTL,
+-		SOC15_REG_OFFSET(SDMA5, 0,
+-				 mmSDMA5_RLC0_RB_CNTL) - mmSDMA5_RLC0_RB_CNTL,
+-		SOC15_REG_OFFSET(SDMA6, 0,
+-				 mmSDMA6_RLC0_RB_CNTL) - mmSDMA6_RLC0_RB_CNTL,
+-		SOC15_REG_OFFSET(SDMA7, 0,
+-				 mmSDMA7_RLC0_RB_CNTL) - mmSDMA7_RLC0_RB_CNTL
+-	};
+-
+-	uint32_t retval = sdma_engine_reg_base[engine_id]
++	uint32_t sdma_engine_reg_base;
++	uint32_t sdma_rlc_reg_offset;
++
++	switch (engine_id) {
++	case 0:
++		sdma_engine_reg_base = SOC15_REG_OFFSET(SDMA0, 0,
++				mmSDMA0_RLC0_RB_CNTL) - mmSDMA0_RLC0_RB_CNTL;
++		break;
++	case 1:
++		sdma_engine_reg_base = SOC15_REG_OFFSET(SDMA1, 0,
++				mmSDMA1_RLC0_RB_CNTL) - mmSDMA1_RLC0_RB_CNTL;
++		break;
++	case 2:
++		sdma_engine_reg_base = SOC15_REG_OFFSET(SDMA2, 0,
++				mmSDMA2_RLC0_RB_CNTL) - mmSDMA2_RLC0_RB_CNTL;
++		break;
++	case 3:
++		sdma_engine_reg_base = SOC15_REG_OFFSET(SDMA3, 0,
++				mmSDMA3_RLC0_RB_CNTL) - mmSDMA3_RLC0_RB_CNTL;
++		break;
++	case 4:
++		sdma_engine_reg_base = SOC15_REG_OFFSET(SDMA4, 0,
++				mmSDMA4_RLC0_RB_CNTL) - mmSDMA4_RLC0_RB_CNTL;
++		break;
++	case 5:
++		sdma_engine_reg_base = SOC15_REG_OFFSET(SDMA5, 0,
++				mmSDMA5_RLC0_RB_CNTL) - mmSDMA5_RLC0_RB_CNTL;
++		break;
++	case 6:
++		sdma_engine_reg_base = SOC15_REG_OFFSET(SDMA6, 0,
++				mmSDMA6_RLC0_RB_CNTL) - mmSDMA6_RLC0_RB_CNTL;
++		break;
++	case 7:
++		sdma_engine_reg_base = SOC15_REG_OFFSET(SDMA7, 0,
++				mmSDMA7_RLC0_RB_CNTL) - mmSDMA7_RLC0_RB_CNTL;
++		break;
++
 +	}
 +
- 	return 0;
++	sdma_rlc_reg_offset = sdma_engine_reg_base
+ 		+ queue_id * (mmSDMA0_RLC1_RB_CNTL - mmSDMA0_RLC0_RB_CNTL);
+ 
+ 	pr_debug("RLC register offset for SDMA%d RLC%d: 0x%x\n", engine_id,
+-			queue_id, retval);
++			queue_id, sdma_rlc_reg_offset);
+ 
+-	return retval;
++	return sdma_rlc_reg_offset;
  }
  
+ static int kgd_hqd_sdma_load(struct kgd_dev *kgd, void *mqd,
 -- 
 2.17.1
 
-Fix a typo here.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
