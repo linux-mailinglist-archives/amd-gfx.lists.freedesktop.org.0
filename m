@@ -1,53 +1,86 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 552BF11E8F1
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2019 18:11:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8713311EA17
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2019 19:21:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E39A16EB5A;
-	Fri, 13 Dec 2019 17:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA3E6E2EC;
+	Fri, 13 Dec 2019 18:21:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6936EB5A
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 17:11:07 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id p17so358731wma.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 09:11:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=mKpajWEml4+FOMlblBcX3L1pWZcBGCypXaimI8tJVi0=;
- b=IbELLeWwILy2TpCTxLh1P4cHyRKAfQ+HP9gOeqc3dtDQ230KHpcSrW0Y78tWQ9S42e
- xy6uDpDjVhlG0df08QsUZngUs5xjQs11EIgcwRP/+GKJ5Z8ou10rfuGKT2zUk9VAbGcY
- err2NktIW55yMrNupovgLmNKyoFIXt0u4yp6TtodIflq+QzrDMqvs4g6T+aFi7A+L0Z+
- zQRMK4NgPT3L2tdEofgDS2UOzLdWCw9d7Uy7AS3iHbsbgQxFhKlhwQcpI+Cvnj4zEE55
- gyqEAW7kSvJyKFj4buf/HPnW+MTPOVlkAvnuGaeZh6jMRkEUTWGJkOW6IPzhbsRwc7h4
- Y22w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=mKpajWEml4+FOMlblBcX3L1pWZcBGCypXaimI8tJVi0=;
- b=IE0mig0UrW4y1h1cNWB9Mi1WBDJ7bHK0DM4ByvW9DmCzwP0kQ0KzWdfIVizfsBF6n0
- XYEf3R3Z94/lUJNr+bwaleTKu8OVkmBpkR70ahUCGppExGxpZ2iyX3XoKKcLIMZ9NWoY
- TUAePZE9a+C9c3u4Emnv0lLmlAmlERa5z9wMJqNCq/OoaKFXezgPhAFw+9lPyjeNcEE1
- 8aYvj2ScJPPBXqqQoqnzWTDkCDGBCl0XiQ40kG9SMOp0fnc/g9B2pNKika/zkz1FaES5
- E6n/CrB8zzpWwQFFj9d7zSIXH5oFQEIL/Orakd3pqQ3thla+0/LIU1YGfrfXM7W82lvP
- 5w2w==
-X-Gm-Message-State: APjAAAVyqBEQny6lA1VD+oTTR36qe8DFTBS7oaCGS+feRA8RQenSJ3xs
- Lptgha3qowVTke2nNNWIBsZ6HjmvIfHCPsVMw/A=
-X-Google-Smtp-Source: APXvYqyw48c46fnQfiPS6PWjiWJDGu9rR9l7gzrbjHXXqnL3Nkp8idbZA0f9O3WX2faT0FLpPss/TbTO8Qxme0q3NXw=
-X-Received: by 2002:a1c:e909:: with SMTP id q9mr15211829wmc.30.1576257065551; 
- Fri, 13 Dec 2019 09:11:05 -0800 (PST)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11olkn2012.outbound.protection.outlook.com [40.92.19.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E0D26EC04
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 18:21:12 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KIieABH1LzMwNYT5suM8j/LRqysFdexQ8OMLOUFbcPL6GefUiD+72rFAibpdXirct/0BfxLp1+b/2ERogo0qGNxLg0DmvI+mlTY19P0xOztE+yG7yf5aMPpCOaev0HGPnpkNZ4KA7em7NX4BW0i0+rx/8oTTsCD7WY8oI6X3jQG36NGTMn8gBn62h/Cq6YAwfk6Yrtt7DFyi0MuIRlwZcYkT1ug3Op5LFYQmkaGu8qTl1M2243djYa0Duk1Vu2OocfgmUj5njSeN1+0EIgDMe8LeMwsfyvqk44z5YH7xZjHdVPOAsjvo50RPetvchXfrqI3c6vdqEMj/7a5eCHOacQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vhVqhQbB59eIvMfPx6KZKEu3Xbo9xNrTgPAwD56tUxk=;
+ b=DEUnxXf0jtYjM6k1+VFGKXv8o0SeLz2yWAvIXyIP1KGYVDFI2DD6YhfMGBZqAriwNw5Y3pVw//ZrvA4BjbboqFl/cX4khG54kvT+MUGVQNia59Zwi7OP8TYBOX/udIP1TMebLxMvYLoPulSOoy01pY+Hfkjk2717oIrMCzqN4f1H1LzRdyKEPLQo2GF3RZIV686iiO59inl7gd6yQvxK9sVmZmOoByus346dJEwalnMMidVX1fcJOtTNEc2LDccC/tmfYYywZua3K6yEajZzjMibi0zJ4ZASvB+97BYLoX1aX5NTgfl0EHd6C1U+mG+Qd8Lq3TkascBflKLKeDKLiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vhVqhQbB59eIvMfPx6KZKEu3Xbo9xNrTgPAwD56tUxk=;
+ b=YYO0weBzDgMv0E0BbdPGmQA3dOdHOPidIJGcEx4BWO6DgGUhofQ4EvLQIx9IH4yOqrJjEybPJl5vQVQmtGsxtZfgEDdgWlJQ11tBPPqV0CfmcwkU89lA0vx7574hk0rd7IMBVfLfE+ZSyFF+VTYC9DVYpYFbarRDlHCgHWCZCGiUviWfuLDq34gs/s6vxMjOm1yd/H532HRCtBTLZGKBnxnxVydS6Bx1sIAiS3M5V93pUx+0IU4nZ3/GPpLeMJcoM4DRv8QWkczonDjgl2jBQZDiiwP+NiU3FKaEZHB3/t/kkr/e4Q6p/nCIN/BHaCPc3HPgiFeld0vkzmfNaa5iiA==
+Received: from BN8NAM11FT028.eop-nam11.prod.protection.outlook.com
+ (10.13.176.60) by BN8NAM11HT010.eop-nam11.prod.protection.outlook.com
+ (10.13.177.175) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.14; Fri, 13 Dec
+ 2019 18:21:10 +0000
+Received: from DM5PR02MB3178.namprd02.prod.outlook.com (10.13.176.55) by
+ BN8NAM11FT028.mail.protection.outlook.com (10.13.176.225) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2538.14 via Frontend Transport; Fri, 13 Dec 2019 18:21:10 +0000
+Received: from DM5PR02MB3178.namprd02.prod.outlook.com
+ ([fe80::9cdb:a733:f952:fbc3]) by DM5PR02MB3178.namprd02.prod.outlook.com
+ ([fe80::9cdb:a733:f952:fbc3%3]) with mapi id 15.20.2516.018; Fri, 13 Dec 2019
+ 18:21:10 +0000
+From: William Lewis <minutemaidpark@hotmail.com>
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v2 2/5] drm: Add Reusable task barrier.
+Thread-Topic: [PATCH v2 2/5] drm: Add Reusable task barrier.
+Thread-Index: AQHVsdX+RfMjrWxDYk6PpUIzEzOhjKe4YIEA
+Date: Fri, 13 Dec 2019 18:21:10 +0000
+Message-ID: <DM5PR02MB3178BAA83274FF2DCF7ABB2EC8540@DM5PR02MB3178.namprd02.prod.outlook.com>
+References: <1576256049-12838-1-git-send-email-andrey.grodzovsky@amd.com>
+ <1576256049-12838-2-git-send-email-andrey.grodzovsky@amd.com>
+In-Reply-To: <1576256049-12838-2-git-send-email-andrey.grodzovsky@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: SN4PR0801CA0024.namprd08.prod.outlook.com
+ (2603:10b6:803:29::34) To DM5PR02MB3178.namprd02.prod.outlook.com
+ (2603:10b6:4:67::10)
+x-incomingtopheadermarker: OriginalChecksum:C69661CE6D52C658EC672CC2BCA689835759E17E1E56D266B73BF93667CF5006;
+ UpperCasedChecksum:3138CA49249AF6E2C36C85EF37AEAC2668EBD845D7CAB6A2769F64C662B4610C;
+ SizeAsReceived:7310; Count:48
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [3mnIwOtzQ3tdK6iKKDZ54xcmiw4tsPbm]
+x-microsoft-original-message-id: <64f95b36-af1c-d3bc-fdb2-39c7b6e64542@hotmail.com>
+x-ms-publictraffictype: Email
+x-incomingheadercount: 48
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 59cc9a7b-8875-4a8f-8723-08d77ff93a47
+x-ms-traffictypediagnostic: BN8NAM11HT010:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: nYTBLGBaxCb9aAhj8pvMoN8W7V4Lmw8va6B9phlhi+tBd+nHjRAo48yil0bl8bKxH47ONYT+Ox7WrCTphzeSn6b4nROVNE1mOufj+OLmV8bfk/ITxfKTR7FjXrYePkGBNyeoH1vgxjbs500uH82YxN1/HgM9TFHhZa3uJghoH+zZM+ojMV7Sfax5Ljf2yc2ZQjJVXPiATsdIPayRJ5K0bKmAImo/QCGgb41FeJbmX38=
+x-ms-exchange-transport-forked: True
+Content-ID: <68ACCEF9F1A97748A6187AC1980CDEEA@namprd02.prod.outlook.com>
 MIME-Version: 1.0
-References: <20191213161124.24622-1-zhan.liu@amd.com>
-In-Reply-To: <20191213161124.24622-1-zhan.liu@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 13 Dec 2019 12:10:53 -0500
-Message-ID: <CADnq5_MMqfQoLxTbMhKEKnnNzVhQC_OH077JoEDzQqwwB_oCMQ@mail.gmail.com>
-Subject: Re: [PATCH v3] drm/amd/powerplay: Copy watermark to SMU
-To: Zhan Liu <zhan.liu@amd.com>
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59cc9a7b-8875-4a8f-8723-08d77ff93a47
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2019 18:21:10.3021 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8NAM11HT010
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,72 +92,145 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kevin Wang <Kevin1.Wang@amd.com>, tiancyin <Tianci.Yin@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Hersen Wu <hersenxs.wu@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Quan,
- Evan" <Evan.Quan@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2019 at 11:11 AM Zhan Liu <zhan.liu@amd.com> wrote:
+Some typographical error nitpicks inline.
+
+On 12/13/19 10:54 AM, Andrey Grodzovsky wrote:
+> It is used to synchronize N threads at a rendevouz point before execution
+rendezvous
+> of critical code that has to be started by all the threads at approximatly
+approximately
+> the same time.
 >
-> [Why]
-> Watermark value was expected to copy to SMU
-> within navi10_display_config_changed(). But
-> navi10_display_config_changed() is never called.
-> As a result, the watermark value is never
-> copied to SMU.
+> v2: Remove mention of reset use case, improve doc.
 >
-> [How]
-> At end of navi10_set_watermarks_table,
-> copy watermark to SMU.
->
-> Signed-off-by: Zhan Liu <zhan.liu@amd.com>
-
-This and the renoir patch are:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-
-Do we know why this isn't getting setup in the display configuration
-callback?  Are the watermarks static or do the depend on something?
-
-Alex
-
+> Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 > ---
->  drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>   include/drm/task_barrier.h | 107 +++++++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 107 insertions(+)
+>   create mode 100644 include/drm/task_barrier.h
 >
-> diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> index 15403b7979d6..f4cdd78492fa 100644
-> --- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> +++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> @@ -1472,6 +1472,17 @@ static int navi10_set_watermarks_table(struct smu_context *smu,
->                                 clock_ranges->wm_mcif_clocks_ranges[i].wm_set_id;
->         }
->
-> +       /* Pass data to smu controller */
-> +       if ((smu->watermarks_bitmap & WATERMARKS_EXIST) &&
-> +                       !(smu->watermarks_bitmap & WATERMARKS_LOADED)) {
-> +               int ret = smu_write_watermarks_table(smu);
-> +               if (ret) {
-> +                       pr_err("Failed to update WMTABLE!");
-> +                       return ret;
-> +               }
-> +               smu->watermarks_bitmap |= WATERMARKS_LOADED;
-> +       }
+> diff --git a/include/drm/task_barrier.h b/include/drm/task_barrier.h
+> new file mode 100644
+> index 0000000..087e3f6
+> --- /dev/null
+> +++ b/include/drm/task_barrier.h
+> @@ -0,0 +1,107 @@
+> +/*
+> + * Copyright 2019 Advanced Micro Devices, Inc.
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining a
+> + * copy of this software and associated documentation files (the "Software"),
+> + * to deal in the Software without restriction, including without limitation
+> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+> + * and/or sell copies of the Software, and to permit persons to whom the
+> + * Software is furnished to do so, subject to the following conditions:
+> + *
+> + * The above copyright notice and this permission notice shall be included in
+> + * all copies or substantial portions of the Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
+> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + * OTHER DEALINGS IN THE SOFTWARE.
+> + *
+> + */
+> +#include <linux/semaphore.h>
+> +#include <linux/atomic.h>
 > +
->         return 0;
->  }
->
-> --
-> 2.17.1
->
-> Fix a typo here.
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+> +/*
+> + * Reusable 2 PHASE task barrier (randevouz point) implementation for N tasks.
+rendezvous
+> + * Based on the Little book of sempahores - http://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf
+semaphores
+> + */
+> +
+> +
+> +
+> +#ifndef DRM_TASK_BARRIER_H_
+> +#define DRM_TASK_BARRIER_H_
+> +
+> +/*
+> + * Represents an instance of a task barrier.
+> + */
+> +struct task_barrier {
+> +	unsigned int n;
+> +	atomic_t count;
+> +	struct semaphore enter_turnstile;
+> +	struct semaphore exit_turnstile;
+> +};
+> +
+> +static inline void task_barrier_signal_turnstile(struct semaphore *turnstile,
+> +						 unsigned int n)
+> +{
+> +	int i;
+> +
+> +	for (i = 0 ; i < n; i++)
+> +		up(turnstile);
+> +}
+> +
+> +static inline void task_barrier_init(struct task_barrier *tb)
+> +{
+> +	tb->n = 0;
+> +	atomic_set(&tb->count, 0);
+> +	sema_init(&tb->enter_turnstile, 0);
+> +	sema_init(&tb->exit_turnstile, 0);
+> +}
+> +
+> +static inline void task_barrier_add_task(struct task_barrier *tb)
+> +{
+> +	tb->n++;
+> +}
+> +
+> +static inline void task_barrier_rem_task(struct task_barrier *tb)
+> +{
+> +	tb->n--;
+> +}
+> +
+> +/*
+> + * Lines up all the threads BEFORE the critical point.
+> + *
+> + * When all thread passed this code the entry barrier is back to locked state.
+threads pass
+> + */
+> +static inline void task_barrier_enter(struct task_barrier *tb)
+> +{
+> +	if (atomic_inc_return(&tb->count) == tb->n)
+> +		task_barrier_signal_turnstile(&tb->enter_turnstile, tb->n);
+> +
+> +	down(&tb->enter_turnstile);
+> +}
+> +
+> +/*
+> + * Lines up all the threads AFTER the critical point.
+> + *
+> + * This function is used to avoid any one thread running ahead if the barrier is
+> + *  used repeatedly .
+> + */
+> +static inline void task_barrier_exit(struct task_barrier *tb)
+> +{
+> +	if (atomic_dec_return(&tb->count) == 0)
+> +		task_barrier_signal_turnstile(&tb->exit_turnstile, tb->n);
+> +
+> +	down(&tb->exit_turnstile);
+> +}
+> +
+> +/* Convinieince function when nothing to be done in between entry and exit */
+Convenience
+> +static inline void task_barrier_full(struct task_barrier *tb)
+> +{
+> +	task_barrier_enter(tb);
+> +	task_barrier_exit(tb);
+> +}
+> +
+> +#endif
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
