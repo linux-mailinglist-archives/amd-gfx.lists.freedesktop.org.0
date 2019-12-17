@@ -1,102 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 752A5122905
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Dec 2019 11:38:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A5D1229CF
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Dec 2019 12:23:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5CB76E980;
-	Tue, 17 Dec 2019 10:38:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0863A6E98E;
+	Tue, 17 Dec 2019 11:23:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B82F46E980
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 10:38:43 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2060.outbound.protection.outlook.com [40.107.237.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B60BE6E987
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 11:23:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IyVoXmqzs1kmjgAOmmVLucG4wBRpRXWg+4a1sW6X94t92+VLMY+GINB2db7gx/hH059GKyAX5RzNUB8mpQrhXS7aZXJS5I/AaFKNjC20PUd1aHn+TpCXDzYrAzjZbMg8a+7DZsRFjXRU70PA0xpj525Nr0hOChs9/XnKFaqBcNN8bR3907KuLt/y8US3Oz9+RXvaj+R0JLsF5r+fI7gVA1Pb8m/wMFV7/pgBCMZ/QwFe2U7l8TvjRWlM/m8OiAOuEYlcTrbIVSVkhQF0ihtHRTbS0iefH61PUmrSeusPz1e6LXhA0K6qROiep/+4+6SwKWTame+kfn9uuK9B7jHCrg==
+ b=P2Wwst+FJdOmdjvSViWDLBXkzn32rGxvIWfIZOG54BRQkftDgheYztWK2t6T6JZC15tdgKnZkpYfzq71ZCQipHLz+ZWVMDslZUsJxJnvjeMluPtoVYPZlPz6z4sTB6opa3zfLvZzSodG0Fdrmmd9fSIx6XYLnkBE5UL1S2Gd/9ckPGwrvd3339GU3+WdK8jN3bEhMmjPqzH+2lAnko5Hy522+5hMM/lSz9f6WkVoD5Kg1m5RnIO6NFdhHZrrKPrBU4ZFpzsfVQpmbRERQ6RuBvUYlQiP55wQ0T2MjyCJBl3ELxYjwmjY0MTBTuKcDnTZi0WUAyEomvFeqGd0YVpDwg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7sX55zl0F1s+a0W3OnK6WToQ9lxiwLJBlZR4r45QMU8=;
- b=elWeW7uGVQbTIFaO2Ej/hQ5KFMATUZ40wMtw6qAzu914ObTBEZWZtaGDAvkC2X2zn1m/UPp51zifIiOhxV9wYbIzoEv3yfKVs95iKzHVUmE9Odwo+DxUNvvDPp+sQIwnldQSbCyGegBzbL8ILol7Fx7/O9O1eZK8+Tl/jh5HlIOBw0xnicG5MNVomFUZH5MtzHhKqL0BGNnNGWMdKFFeB+MLaNr8sd6XNPJLN9kENt5V59n/jPfVhhz9oUb1BOT9rLyJP2HrQIVrvR5K1JSPT9FHC5jgsKhq912NEkw2yRaBeCrHy9A0fsgPQLSJT2c6X0MjUa3QeXmrowN342OCXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=B3philQrJotYJgWGbaiFjtgDjuWXR4G/G28VxY9PxRw=;
+ b=fwMpEasDUJ/HNi0zimlTcT+TLC93pMgA5VgRi3BSHNV3oYVkhHxQlMPK4JZ2KqtnAC0Lp31b2Rl7O2o/yBx/QiS44V+39HB0PdOcdz+3rm+1gPxVYYuCtL62gs+73h3+alwmYTuzu8VNUhyehMpOtxa6FpoyMKGQyl06rJYxftV5jVeDVpRLqEItTlxqela+Pr9H3xazuLvjrvJyr1zVtY2VXBknkSKvzvvnCEXaBSEC51FRGFY5VZbu6bgcQYFpfakYqzzc8FKhRi3xMrsPG85Se7KD2eYVhZjeVTnm/4O4IY/udChdoPjbJADMTDY4bLZCAUK7cppxnwdokZjyTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7sX55zl0F1s+a0W3OnK6WToQ9lxiwLJBlZR4r45QMU8=;
- b=2VRmpcuL8VjigbIMpbkXQpQuwtdO+SfflNzpt9wjqWcHFIUJkqoG5qrIUqYqPr18Hr+mbbU8Hj5pcISosbrww/ngBjV7En0DBFoNIcuJbxhPkE31gfYR6axDnUyZBlYEMR09tWEYqYGtTG1oUPRQLS1IrebPn9JfgRYPHFEdzUo=
-Received: from MN2PR12MB2975.namprd12.prod.outlook.com (20.178.243.142) by
- MN2PR12MB4032.namprd12.prod.outlook.com (10.255.239.32) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.18; Tue, 17 Dec 2019 10:38:41 +0000
-Received: from MN2PR12MB2975.namprd12.prod.outlook.com
- ([fe80::851c:eebf:b936:20fd]) by MN2PR12MB2975.namprd12.prod.outlook.com
- ([fe80::851c:eebf:b936:20fd%4]) with mapi id 15.20.2538.019; Tue, 17 Dec 2019
- 10:38:41 +0000
-From: "Deng, Emily" <Emily.Deng@amd.com>
-To: "Liu, Monk" <Monk.Liu@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 2/2] drm/amdgpu: fix KIQ ring test fail in TDR of SRIOV
-Thread-Topic: [PATCH 2/2] drm/amdgpu: fix KIQ ring test fail in TDR of SRIOV
-Thread-Index: AQHVtMOc1oA62NMNYEC78ER924VxnKe+IrMA
-Date: Tue, 17 Dec 2019 10:38:41 +0000
-Message-ID: <MN2PR12MB29754A69954D54D87A69AAC98F500@MN2PR12MB2975.namprd12.prod.outlook.com>
-References: <1576577994-12874-1-git-send-email-Monk.Liu@amd.com>
- <1576577994-12874-2-git-send-email-Monk.Liu@amd.com>
-In-Reply-To: <1576577994-12874-2-git-send-email-Monk.Liu@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2019-12-17T10:38:39Z; 
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
- Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=8f577dfb-2658-4fe3-8be1-000024572b4b;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=1
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2019-12-17T10:38:39Z
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
- Unrestricted
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: eb1db59b-a22f-47f9-b340-0000e011b512
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Emily.Deng@amd.com; 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 81f05f73-2229-4aba-25f8-08d782dd48e3
-x-ms-traffictypediagnostic: MN2PR12MB4032:|MN2PR12MB4032:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB40324D8A87A47145CB77FF348F500@MN2PR12MB4032.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 02543CD7CD
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(136003)(346002)(39860400002)(366004)(396003)(199004)(189003)(13464003)(6506007)(8676002)(478600001)(81156014)(81166006)(2906002)(26005)(45080400002)(4326008)(71200400001)(64756008)(5660300002)(55016002)(66446008)(66556008)(76116006)(66946007)(66476007)(52536014)(86362001)(9686003)(8936002)(7696005)(316002)(33656002)(186003)(110136005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4032;
- H:MN2PR12MB2975.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
+ bh=B3philQrJotYJgWGbaiFjtgDjuWXR4G/G28VxY9PxRw=;
+ b=GZG4lthARLeGyyay3ghGExhTQf+CVosF1Fh3ogVECLA9bxRqxpf5cR1FGsNQxk+yzOA8NU1d44zqrGEmBUg38al/1HQVEeNIQc7+NJkOg4OV5/aB9T7HRVhWOFd9gUbSW0uYbuDIVI6osD+4kYtULMMeofWmWs1u5e9P19JH9FQ=
+Received: from MN2PR12CA0016.namprd12.prod.outlook.com (2603:10b6:208:a8::29)
+ by MN2PR12MB2974.namprd12.prod.outlook.com (2603:10b6:208:c1::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.18; Tue, 17 Dec
+ 2019 11:23:45 +0000
+Received: from BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eae::207) by MN2PR12CA0016.outlook.office365.com
+ (2603:10b6:208:a8::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.15 via Frontend
+ Transport; Tue, 17 Dec 2019 11:23:44 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nVjdHWJ0fbjvjc5W/m86VSl8XmOR0CwCwirIJ44OS30fVzIgQiUpX7fTsJdMOuMgK3AYJOGcVyjix0dTcL38qW6mtL7IBsh5PCB6Cvy1ooX9xLi5N3ycHhRpP2MvqiZQ2xpc99GQ/kVJD9o8R/bpYPGZrt6Smw1oKzMcQ97l9Zhppu0/GoTFwfWulQnzYcqAPvUGhX/ME+iJWORUJ5wLvJC03dBF7D40uCdz6a19EHczDohGX8UTZL1O8dg54AldHDV99aG1538NnVKky0SfX9PM9Vyb+06SCqmTkistzQotstazVz4nuQ0FPLY20qvdycmC8GwDzlTtYzi+IQTiOPlk39KC8yVCjIZw6ZN2nrirW1XDORPs6ijKt5EXKN14xvYQfEs3BasQrw14nx+pCydEJYTehbvqY5kKYT4u3g9K33fFyzvKHTV9FdcIeQBVpz01qfZxhGTf7iJ2z9a/e+wFK+L/7RZFaXiBwlXeP/cpSju7OfXBXBru0XqAJC84DmUSOVhfEuURDpL6oWDGeTljulJx47dK3nPMo8nR9Bo=
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT050.mail.protection.outlook.com (10.13.177.5) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2538.14 via Frontend Transport; Tue, 17 Dec 2019 11:23:44 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 17 Dec
+ 2019 05:23:27 -0600
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 17 Dec
+ 2019 05:23:27 -0600
+Received: from rico-code.amd.com (10.180.168.240) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Tue, 17 Dec 2019 05:23:25 -0600
+From: Tianci Yin <tianci.yin@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amdgpu: update the method to get fb_loc of memory
+ training
+Date: Tue, 17 Dec 2019 19:23:21 +0800
+Message-ID: <20191217112322.20042-1-tianci.yin@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(346002)(396003)(376002)(39860400002)(136003)(428003)(199004)(189003)(8936002)(81166006)(81156014)(426003)(8676002)(336012)(2616005)(6916009)(26005)(36756003)(478600001)(5660300002)(44832011)(7696005)(54906003)(316002)(6666004)(356004)(86362001)(1076003)(70206006)(186003)(70586007)(4326008)(2906002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB2974; H:SATLEXMB02.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: bfe099b2-fbbe-4c9c-6cf4-08d782e393fe
+X-MS-TrafficTypeDiagnostic: MN2PR12MB2974:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB29749C35F8CFDBF0B4CD3C4295500@MN2PR12MB2974.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-Forefront-PRVS: 02543CD7CD
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jbHMXiJVZpir+8fw+1yKc4mlfcROGc1HJ7UNslq4KwbAFlSBHGARPuwS3VHEF5iVfJ9GkaxoGPERC0WStqETkdMK4DXHKSbOkaIiQvYf0zizEHkkKhCsS53kJC8wFvAlFpD2ALEE7d0536XYTX/gFgV5JpOLUQ6Cj9tz3J/0ellYXSYIUyUXNu/IjObEUerY1oeF1lBn7ArfgFdRPO8xmcUGR222X7ZwAGWcPDTVE2h4vfDpHLAOxzubs9gEkgyQI/ByuT0FE1ERiKSK5OwfvqfBnMMXEY62LsKKWErmjaciuN3LrZmUP7VwIb1zTx/yoy206a4i/nLYrvL1tLCXPvJWAG2zTfoBuklgXUhIAnX+gfsIHH+poZIV40CBSrD/i+YsGaavEolOXCFB4TI1XyCtPjOfhQbXBF3tzAQk02RSRtpkwgBccf6/6s4bP0Nw
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81f05f73-2229-4aba-25f8-08d782dd48e3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2019 10:38:41.6524 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YMEeNI4G1JYfngAt6/YSswUSy4EUS1vs/Xv4xzEq9G8OR1fJV08G6C1r3nGSCIFn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4032
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2019 11:23:44.7594 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfe099b2-fbbe-4c9c-6cf4-08d782e393fe
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB2974
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,68 +103,164 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Liu, Monk" <Monk.Liu@amd.com>
+Cc: Long Gang <Gang.Long@amd.com>, Tianci Yin <tianci.yin@amd.com>,
+ Feifei Xu <Feifei.Xu@amd.com>, Kevin Wang <Kevin1.Wang@amd.com>,
+ Tuikov Luben <Luben.Tuikov@amd.com>,
+ Deucher Alexander <Alexander.Deucher@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xiaojie Yuan <xiaojie.yuan@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
+From: "Tianci.Yin" <tianci.yin@amd.com>
 
-Reviewed-by: Emily Deng <Emily.Deng@amd.com>
+The method of getting fb_loc changed from parsing VBIOS to
+taking certain offset from top of VRAM
 
->-----Original Message-----
->From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Monk Liu
->Sent: Tuesday, December 17, 2019 6:20 PM
->To: amd-gfx@lists.freedesktop.org
->Cc: Liu, Monk <Monk.Liu@amd.com>
->Subject: [PATCH 2/2] drm/amdgpu: fix KIQ ring test fail in TDR of SRIOV
->
->issues:
->MEC is ruined by the amdkfd_pre_reset after VF FLR done
->
->fix:
->amdkfd_pre_reset() would ruin MEC after hypervisor finished the VF FLR, the
->correct sequence is do amdkfd_pre_reset before VF FLR but there is a limitation
->to block this sequence:
->if we do pre_reset() before VF FLR, it would go KIQ way to do register access and
->stuck there, because KIQ probably won't work by that time (e.g. you already
->made GFX hang)
->
->so the best way right now is to simply remove it.
->
->Signed-off-by: Monk Liu <Monk.Liu@amd.com>
->---
-> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 --
-> 1 file changed, 2 deletions(-)
->
->diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->index 605cef6..ae962b9 100644
->--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->@@ -3672,8 +3672,6 @@ static int amdgpu_device_reset_sriov(struct
->amdgpu_device *adev,
-> 	if (r)
-> 		return r;
->
->-	amdgpu_amdkfd_pre_reset(adev);
->-
-> 	/* Resume IP prior to SMC */
-> 	r = amdgpu_device_ip_reinit_early_sriov(adev);
-> 	if (r)
->--
->2.7.4
->
->_______________________________________________
->amd-gfx mailing list
->amd-gfx@lists.freedesktop.org
->https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.fre
->edesktop.org%2Fmailman%2Flistinfo%2Famd-
->gfx&amp;data=02%7C01%7CEmily.Deng%40amd.com%7C74408803b49e4f328
->f7708d782daba6c%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6
->37121748318124859&amp;sdata=4YbyHwEEGxVLEhuOg%2Frc%2FxdhFRwrdm
->FuZ4vpHx%2FApAE%3D&amp;reserved=0
+Change-Id: I053b42fdb1d822722fa7980b2cd9f86b3fdce539
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  3 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  | 36 ++-----------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |  6 +++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |  7 ++++
+ drivers/gpu/drm/amd/include/atomfirmware.h    | 14 --------
+ 5 files changed, 16 insertions(+), 50 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index a78a363b1d71..fa2cf8e7bc07 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -642,9 +642,8 @@ struct amdgpu_fw_vram_usage {
+ 	struct amdgpu_bo *reserved_bo;
+ 	void *va;
+ 
+-	/* Offset on the top of VRAM, used as c2p write buffer.
++	/* GDDR6 training support flag.
+ 	*/
+-	u64 mem_train_fb_loc;
+ 	bool mem_train_support;
+ };
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
+index ff4eb96bdfb5..009cb0b03d13 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
+@@ -528,13 +528,9 @@ static int gddr6_mem_train_support(struct amdgpu_device *adev)
+ int amdgpu_atomfirmware_get_mem_train_fb_loc(struct amdgpu_device *adev)
+ {
+ 	struct atom_context *ctx = adev->mode_info.atom_context;
+-	unsigned char *bios = ctx->bios;
+-	struct vram_reserve_block *reserved_block;
+-	int index, block_number;
++	int index;
+ 	uint8_t frev, crev;
+ 	uint16_t data_offset, size;
+-	uint32_t start_address_in_kb;
+-	uint64_t offset;
+ 	int ret;
+ 
+ 	adev->fw_vram_usage.mem_train_support = false;
+@@ -569,32 +565,6 @@ int amdgpu_atomfirmware_get_mem_train_fb_loc(struct amdgpu_device *adev)
+ 		return -EINVAL;
+ 	}
+ 
+-	reserved_block = (struct vram_reserve_block *)
+-		(bios + data_offset + sizeof(struct atom_common_table_header));
+-	block_number = ((unsigned int)size - sizeof(struct atom_common_table_header))
+-		/ sizeof(struct vram_reserve_block);
+-	reserved_block += (block_number > 0) ? block_number-1 : 0;
+-	DRM_DEBUG("block_number:0x%04x, last block: 0x%08xkb sz, %dkb fw, %dkb drv.\n",
+-		  block_number,
+-		  le32_to_cpu(reserved_block->start_address_in_kb),
+-		  le16_to_cpu(reserved_block->used_by_firmware_in_kb),
+-		  le16_to_cpu(reserved_block->used_by_driver_in_kb));
+-	if (reserved_block->used_by_firmware_in_kb > 0) {
+-		start_address_in_kb = le32_to_cpu(reserved_block->start_address_in_kb);
+-		offset = (uint64_t)start_address_in_kb * ONE_KiB;
+-		if ((offset & (ONE_MiB - 1)) < (4 * ONE_KiB + 1) ) {
+-			offset -= ONE_MiB;
+-		}
+-
+-		offset &= ~(ONE_MiB - 1);
+-		adev->fw_vram_usage.mem_train_fb_loc = offset;
+-		adev->fw_vram_usage.mem_train_support = true;
+-		DRM_DEBUG("mem_train_fb_loc:0x%09llx.\n", offset);
+-		ret = 0;
+-	} else {
+-		DRM_ERROR("used_by_firmware_in_kb is 0!\n");
+-		ret = -EINVAL;
+-	}
+-
+-	return ret;
++	adev->fw_vram_usage.mem_train_support = true;
++	return 0;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index 2ff63d0414c9..ce5cb854bdb9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1705,7 +1705,11 @@ static int amdgpu_ttm_training_reserve_vram_init(struct amdgpu_device *adev)
+ 		return 0;
+ 	}
+ 
+-	ctx->c2p_train_data_offset = adev->fw_vram_usage.mem_train_fb_loc;
++	ctx->c2p_train_data_offset = adev->gmc.mc_vram_size;
++	if ((ctx->c2p_train_data_offset & (ONE_MiB - 1)) < (4 * ONE_KiB + 1) ) {
++		ctx->c2p_train_data_offset -= ONE_MiB;
++	}
++	ctx->c2p_train_data_offset &= ~(ONE_MiB - 1);
+ 	ctx->p2c_train_data_offset = (adev->gmc.mc_vram_size - GDDR6_MEM_TRAINING_OFFSET);
+ 	ctx->train_data_size = GDDR6_MEM_TRAINING_DATA_SIZE_IN_BYTES;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+index f1ebd424510c..19eb3e8456c7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+@@ -66,6 +66,13 @@ struct amdgpu_copy_mem {
+ 	unsigned long			offset;
+ };
+ 
++/* Definitions for constance */
++enum amdgpu_internal_constants
++{
++	ONE_KiB	= 0x400,
++	ONE_MiB	= 0x100000,
++};
++
+ extern const struct ttm_mem_type_manager_func amdgpu_gtt_mgr_func;
+ extern const struct ttm_mem_type_manager_func amdgpu_vram_mgr_func;
+ 
+diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
+index dd7cbc00a0aa..70146518174c 100644
+--- a/drivers/gpu/drm/amd/include/atomfirmware.h
++++ b/drivers/gpu/drm/amd/include/atomfirmware.h
+@@ -672,20 +672,6 @@ struct vram_usagebyfirmware_v2_1
+   uint16_t  used_by_driver_in_kb; 
+ };
+ 
+-/* This is part of vram_usagebyfirmware_v2_1 */
+-struct vram_reserve_block
+-{
+-	uint32_t start_address_in_kb;
+-	uint16_t used_by_firmware_in_kb;
+-	uint16_t used_by_driver_in_kb;
+-};
+-
+-/* Definitions for constance */
+-enum atomfirmware_internal_constants
+-{
+-	ONE_KiB	= 0x400,
+-	ONE_MiB	= 0x100000,
+-};
+ 
+ /* 
+   ***************************************************************************
+-- 
+2.17.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
