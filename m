@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C38D41238CD
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Dec 2019 22:45:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D52B21238CF
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Dec 2019 22:46:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A64586E147;
-	Tue, 17 Dec 2019 21:45:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA236E156;
+	Tue, 17 Dec 2019 21:46:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-xc42.google.com (mail-yw1-xc42.google.com
- [IPv6:2607:f8b0:4864:20::c42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD49D6E147
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 21:45:56 +0000 (UTC)
-Received: by mail-yw1-xc42.google.com with SMTP id x138so2550929ywd.9
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 13:45:56 -0800 (PST)
+Received: from mail-yw1-xc41.google.com (mail-yw1-xc41.google.com
+ [IPv6:2607:f8b0:4864:20::c41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFB4F6E156
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 21:45:57 +0000 (UTC)
+Received: by mail-yw1-xc41.google.com with SMTP id b186so702ywc.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 13:45:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=oYKJgrHPFUyUfnSIVXAefgzyEaw5upaKBPay0t+VC1E=;
- b=j5/Hv6E1uohflS+4hNF1i9KruU/3Z0OUCP53eWYw8cpM3g7BAlQ0RHz7RDxz5MjjDX
- 0y24KmxdCjTzxvLI6BaJRLW3CAHqomVCw40nlFdAO4CLuDRFx7+4lCwz5XItJmPu2uIR
- VipZLbukS9zeG3ShwgZRzGtxvAJZhlJuQy71QI/McsrtzC2NBca0+1LKMEdxhlHNYu0q
- FuvkqC4bPDyOiLZTO1CYhOTJlsxrf9VR7IdQpAIVK9/v8Y7elxXhPZZhj7RedZwngZeu
- PJNDV9dm3aHRNlWb67C7erB1kd4OrGOFjrJlVcrOQQJe4/Xy2lkpmccIS6JK13D+UGXv
- eKgQ==
+ bh=39U5V6v8ltDTcPx71AXPV/OoC9snyxAD99LZWYUVCEY=;
+ b=KvSxebT3gzg93X24R44spEue/+A8oGJj5MTiStn1BznlVArq1Hz+ePYCH6QDHDwbrI
+ p0q2uX23xeq2y7/ElvrlXZsmUJKHvYpYCg4zqHBAJzj95TDY1CcJlAgYNqaj4wUZJeOI
+ 2PHWMQsjZ/Tzy+TBUT5n7XqYgF+IKYDHAMbM9uu9G6yZvnF9IZkCR3u5EA5ENcE0iLkg
+ Hos2W7zVNVnUOQ/FfmkCKmQqA1DmHkfEllqwIdbkPHcC5B6z8BqAXeng324BTMhh3LWH
+ 7oJFPmjo+Djpdr2iNBSMGNy3u9x69ojdZ467Z9Zzb8Wc4BaNHPEmkLeT0HgJhkiVu18l
+ CFZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=oYKJgrHPFUyUfnSIVXAefgzyEaw5upaKBPay0t+VC1E=;
- b=CU4PjY0+IXwKvUYm/iIBNl80HV1HJjSd5g5GOA2vbPL/SAln8Nc77iV4hJk8F4l4wT
- epy6zT/yCX45wsxw7Kg3VV85VRFofjM83zpBF5scz4r/2bmAN1q11eMSwRz8JOTG+ZtP
- 2AmJuxs2SfG1WlTHMCCogrdwh+XFUNPrCaE+A06nBcv9y7qscmmN0dNxX0IZZadU4h3Q
- lfoCA7+e6JHwRot/3dldVgoScUvwi89u1FPbTjUtTBaqG4jwuzQhBENc70V7kstTsmJI
- B19qT3UWgBAq96JIfS25aTeW9bTQaIqi7lZsPejj/z97nSoYEdjs4nRdnUd6dSwGj0WE
- d90Q==
-X-Gm-Message-State: APjAAAUR8O71jQcc1Y65OzFDHK1OcW8Y3oofGxrrW4FmR8aXT3e5MoJe
- FjU2goeIdtBCb9howU5eyX64ZSRp
-X-Google-Smtp-Source: APXvYqww0JB8BkS/oSbF4NZgqvnQSgXDFPw+v26+XzZXoDgCQJeFTKItLy2cgyp2tVEUTJ7QThgpCg==
-X-Received: by 2002:a81:3dc5:: with SMTP id k188mr763685ywa.257.1576619155879; 
- Tue, 17 Dec 2019 13:45:55 -0800 (PST)
+ bh=39U5V6v8ltDTcPx71AXPV/OoC9snyxAD99LZWYUVCEY=;
+ b=ZYIddKunpitUoNDxK/cDcnQkpRy8xDbGzCfqZojYzqYZH3VRxvarP21xunarbbFqqF
+ e51ErFRGgap+x1UA5QkQDdAJ4Wr+sBaxMMa4UdnpEpm8DvIBg0UonTx77DtGVaQxhH5g
+ kwRd1tA3gH1tg5PW99wTHZMFFl8tBocXBDbldco70dUPYXfU5zJOSFtqTnsq/fX/Wnff
+ R0QR7THwT7bdkIXeV9wjXMoXEm7+aaSMM2pg0qnAqPG45uEjMn3VbsHrwAimGMmYQakB
+ MP5hltw29G7ZLJoUIEjd0D211cZB/WDiVZM1KssYG9ZzM8TEkXZD5WEkAsD9aEo5d9F6
+ V5kA==
+X-Gm-Message-State: APjAAAX58jmPLzG9JdMptpM8leuVPkr/EOsU4qCyKEMTgpPCA77Y2OlR
+ 7U7mAz1+g29NM0aKcGak5ntmkx6F
+X-Google-Smtp-Source: APXvYqxNJawVRuXmwlRB0zbLKVjy4VjtHe6lT+wnANbohTJv3T8FSyVIZq9UDqiNesjJpTOtrwB1rg==
+X-Received: by 2002:a0d:dd47:: with SMTP id g68mr723158ywe.299.1576619156782; 
+ Tue, 17 Dec 2019 13:45:56 -0800 (PST)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
  by smtp.gmail.com with ESMTPSA id c1sm32728ywe.67.2019.12.17.13.45.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Dec 2019 13:45:55 -0800 (PST)
+ Tue, 17 Dec 2019 13:45:56 -0800 (PST)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v2 4/5] drm/amdgpu/smu: add metrics table lock for renoir (v2)
-Date: Tue, 17 Dec 2019 16:45:42 -0500
-Message-Id: <20191217214543.2285700-4-alexander.deucher@amd.com>
+Subject: [PATCH v2 5/5] drm/amdgpu/smu: add metrics table lock for vega20 (v2)
+Date: Tue, 17 Dec 2019 16:45:43 -0500
+Message-Id: <20191217214543.2285700-5-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20191217214543.2285700-1-alexander.deucher@amd.com>
 References: <20191217214543.2285700-1-alexander.deucher@amd.com>
@@ -79,19 +79,19 @@ v2: unlock on error
 Bug: https://gitlab.freedesktop.org/drm/amd/issues/900
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/renoir_ppt.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/powerplay/vega20_ppt.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/powerplay/renoir_ppt.c b/drivers/gpu/drm/amd/powerplay/renoir_ppt.c
-index 81520b0fca68..979772dbe6a9 100644
---- a/drivers/gpu/drm/amd/powerplay/renoir_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/renoir_ppt.c
-@@ -171,17 +171,20 @@ static int renoir_get_metrics_table(struct smu_context *smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
+index 2b1c3f8a0415..250ff5aa1305 100644
+--- a/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/vega20_ppt.c
+@@ -1678,17 +1678,20 @@ static int vega20_get_metrics_table(struct smu_context *smu,
  	struct smu_table_context *smu_table= &smu->smu_table;
  	int ret = 0;
  
 +	mutex_lock(&smu->metrics_lock);
- 	if (!smu_table->metrics_time || time_after(jiffies, smu_table->metrics_time + msecs_to_jiffies(100))) {
+ 	if (!smu_table->metrics_time || time_after(jiffies, smu_table->metrics_time + HZ / 1000)) {
  		ret = smu_update_table(smu, SMU_TABLE_SMU_METRICS, 0,
  				(void *)smu_table->metrics_table, false);
  		if (ret) {
@@ -107,16 +107,6 @@ index 81520b0fca68..979772dbe6a9 100644
  
  	return ret;
  }
-@@ -239,8 +242,7 @@ static int renoir_print_clk_levels(struct smu_context *smu,
- 
- 	memset(&metrics, 0, sizeof(metrics));
- 
--	ret = smu_update_table(smu, SMU_TABLE_SMU_METRICS, 0,
--			       (void *)&metrics, false);
-+	ret = renoir_get_metrics_table(smu, &metrics);
- 	if (ret)
- 		return ret;
- 
 -- 
 2.23.0
 
