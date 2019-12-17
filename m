@@ -2,56 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812231238CC
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Dec 2019 22:45:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99EC11238CE
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Dec 2019 22:46:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0C1C6E145;
-	Tue, 17 Dec 2019 21:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E5E96E157;
+	Tue, 17 Dec 2019 21:45:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-xc42.google.com (mail-yw1-xc42.google.com
- [IPv6:2607:f8b0:4864:20::c42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 068E56E145
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 21:45:55 +0000 (UTC)
-Received: by mail-yw1-xc42.google.com with SMTP id b186so623ywc.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 13:45:54 -0800 (PST)
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com
+ [IPv6:2607:f8b0:4864:20::b41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 064A56E145
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 21:45:56 +0000 (UTC)
+Received: by mail-yb1-xb41.google.com with SMTP id x14so1062425ybr.4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 13:45:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=OQke6DgHxZjTIXoK3XtM2rnh0BpKcmLsrgzdc+5e2bs=;
- b=BIBREYOGRi7Snj0d8+/ZyVkWRiDi3yysvt6pI+TLPnJ4g7K5U2PBi6VBK9agbz9Fa7
- nid/BLbVgf7OQUwpsVOgD/8cBJ83jJy/TgSvbENzXu53L1robPzsLDmMHoAFgE5Ik5t5
- b4r9EE809LPMTnQXE5KY8DpRybI3tB1AuFCQmraP8nc4a1OZFdBI3DjwL0KqiNnzAfUg
- 0Xw7r2WxylJIht2sIlttcTQY4oQlN2PBf6vwKlRDMTvpG8qDYPxDeLzddgk242ncpH2X
- idmb+8yB7OQfNjQTMAbJ9JAdUI60d5MDubBF78WWRlRNXVJ1swnGvGFxZ+kH4phC1Srl
- g7iQ==
+ bh=qUjXfT/KO0e7SbCjvEgF0ppvtSuMdrt/2b8LZAiMUwI=;
+ b=rB9bu7VapcIfkDOOdrEXZ5lwnoJMhNQgroPaOAgcNtusoSdWB5pNN2cpN1tDdMGS8m
+ hS8D97Z5r+Cyx75ZSJYB0BWznACWJe/uE6OKggSqAtQOTIFYZb0zA4SXb13pdZDBjMUb
+ D6o359aPqV8feSyxkIOV8j38a2TpnLDqyyxKkbi7lskhZkL7vWOeIMp97C9fTZf5IsAO
+ Og5wTiGzwyVM5K9uvPSVRKb8B0ZCqOXMuNsHnCBelfYpPPeplW0phyNZDtxpFtIN6CGh
+ Gb6CiUQ5lyR3WAr6jB7k9dDzJpSEEup+3MwMaNWLvHyw1bwdp+pfjAybTLLJ9Bcc60PD
+ B86g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=OQke6DgHxZjTIXoK3XtM2rnh0BpKcmLsrgzdc+5e2bs=;
- b=WkXgsM49VQshpoUS/TB6DM5kIbY0pCrd/IzOfL3jXY/t8dnteq6DLKfJllSoISEpAf
- 9Knzo5AEU4NGYAH2MdOQy9Ml5Nesdk9MtbAarH05ybunVVGuwMQv4YFfO1oaACWB2sRc
- LD2aUXjZ0+ycHyaz92usn6qBc3Op+wS2glvTtMoN3AXSc8dacv1/8lBG5FY4VN0B0ttC
- sSbUR13O3RbayybinVP1xR520GHDgynLm1mCNhatdw7vwHDHXvz0bbwSCYZMcGaG2C7p
- xvsRIEP1OxUULlRyKe6n8Dfj9UMV1bDaJ26wnh9XE8kJd58RShQCjdOlnVaZzcZIKoUd
- +mWA==
-X-Gm-Message-State: APjAAAUKs1THKhxdU09ihcwUQ/I2s69CWYCjICt9Q/oOunPypWMsHUAU
- Nc6JQ5pbQq4hDk+ZpcWfTtiga3zD
-X-Google-Smtp-Source: APXvYqzakK+m+6Gi2yqdL90QEAbq0cg5gMgcLeTooVoOh4b1ErEDa/SxC44HriFIzLEQtHy6FkbiKQ==
-X-Received: by 2002:a81:6c4c:: with SMTP id h73mr720769ywc.489.1576619154032; 
+ bh=qUjXfT/KO0e7SbCjvEgF0ppvtSuMdrt/2b8LZAiMUwI=;
+ b=gGX9waH+PAFX5eKLpbeXc0VhX4VlIefyzb0AMjUrnXEykIp8qcUCQD7qp8n+I0D8VK
+ Uk62pcDgLAMNqwE0njOJpnSLP0r46WgL7QTzp0ny2oey00Cye7i9stHgcpEhR1OKNIRa
+ chU1ZrWOBZWz3tH4jGHeZICg5Ikbvm4Eg9/xheTBc6UkClcWXBMFATj/KiN8wTVeyWQ5
+ YXuR+lCzNIiVPHjLVaW76w6hGwAoVmuhlejWXToL3JB9srqJZgaV1cvp/Pm5n7Jv8ip5
+ XEVGypryRY9TyqnXRZtIUFoVihb4XqUbAHbUSBiHUgdDwqE9TBplytPDw/vCI31mNHIp
+ tEgg==
+X-Gm-Message-State: APjAAAUbtEp2gK66/d0qAn0/oSYQquN/860IBAFo2DS4goRZUpnaf5AK
+ W2gHAppG84BCfqI9IK27iiV1Av+K
+X-Google-Smtp-Source: APXvYqzXTEM1u3FooZghrageMUNWmQFayZNNCZupYrUsrxYs/4aUPb5WxaaOcQ3HIMpA+tZfwcJLaA==
+X-Received: by 2002:a5b:70d:: with SMTP id g13mr187918ybq.270.1576619154982;
  Tue, 17 Dec 2019 13:45:54 -0800 (PST)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id c1sm32728ywe.67.2019.12.17.13.45.53
+ by smtp.gmail.com with ESMTPSA id c1sm32728ywe.67.2019.12.17.13.45.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Dec 2019 13:45:53 -0800 (PST)
+ Tue, 17 Dec 2019 13:45:54 -0800 (PST)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v2 2/5] drm/amdgpu/smu: add metrics table lock for arcturus
- (v2)
-Date: Tue, 17 Dec 2019 16:45:40 -0500
-Message-Id: <20191217214543.2285700-2-alexander.deucher@amd.com>
+Subject: [PATCH v2 3/5] drm/amdgpu/smu: add metrics table lock for navi (v2)
+Date: Tue, 17 Dec 2019 16:45:41 -0500
+Message-Id: <20191217214543.2285700-3-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20191217214543.2285700-1-alexander.deucher@amd.com>
 References: <20191217214543.2285700-1-alexander.deucher@amd.com>
@@ -80,20 +79,19 @@ v2: unlock on error
 Bug: https://gitlab.freedesktop.org/drm/amd/issues/900
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/arcturus_ppt.c | 3 +++
+ drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-index 17eeb546c550..be4ae0aea9a0 100644
---- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-@@ -867,18 +867,21 @@ static int arcturus_get_metrics_table(struct smu_context *smu,
+diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+index 7b42e72dc939..bf87e93b26fc 100644
+--- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+@@ -564,17 +564,20 @@ static int navi10_get_metrics_table(struct smu_context *smu,
  	struct smu_table_context *smu_table= &smu->smu_table;
  	int ret = 0;
  
 +	mutex_lock(&smu->metrics_lock);
- 	if (!smu_table->metrics_time ||
- 	     time_after(jiffies, smu_table->metrics_time + HZ / 1000)) {
+ 	if (!smu_table->metrics_time || time_after(jiffies, smu_table->metrics_time + msecs_to_jiffies(100))) {
  		ret = smu_update_table(smu, SMU_TABLE_SMU_METRICS, 0,
  				(void *)smu_table->metrics_table, false);
  		if (ret) {
