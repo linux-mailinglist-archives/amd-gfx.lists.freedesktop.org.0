@@ -2,37 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2D5A125A50
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Dec 2019 05:31:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28FEA125A56
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Dec 2019 05:45:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5096E072;
-	Thu, 19 Dec 2019 04:31:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B3A26E072;
+	Thu, 19 Dec 2019 04:45:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F31D6E072;
- Thu, 19 Dec 2019 03:39:01 +0000 (UTC)
-Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id 86F6FE7A4898DE8BFA25;
- Thu, 19 Dec 2019 11:38:58 +0800 (CST)
-Received: from huawei.com (10.175.127.16) by DGGEMS411-HUB.china.huawei.com
- (10.3.19.211) with Microsoft SMTP Server id 14.3.439.0; Thu, 19 Dec 2019
- 11:38:50 +0800
-From: Pan Zhang <zhangpan26@huawei.com>
-To: <christian.koenig@amd.com>, <michel@daenzer.net>,
- <alexander.deucher@amd.com>, <David1.Zhou@amd.com>, <airlied@linux.ie>,
- <daniel@ffwll.ch>, <ray.huang@amd.com>, <irmoy.das@amd.com>,
- <sam@ravnborg.org>, <zhangpan26@huawei.com>, <hushiyuan@huawei.com>
-Subject: Re: Re: [PATCH 2/3] gpu: drm: dead code elimination
-Date: Thu, 19 Dec 2019 11:38:31 +0800
-Message-ID: <1576726711-14394-1-git-send-email-zhangpan26@huawei.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <484b831b-671a-12f4-8259-1cb6b75e93e3@daenzer.net>
-References: <484b831b-671a-12f4-8259-1cb6b75e93e3@daenzer.net>
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 537266E072;
+ Thu, 19 Dec 2019 04:45:28 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id d16so4546632wre.10;
+ Wed, 18 Dec 2019 20:45:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=FNls+2gWnzt5x5cRt1q7SlFZtyrShM7rccXddy75tHs=;
+ b=Z7tu6adL+OHHvvoEJ70DGp6aX5wZ+bmaYlMHtHQdKjBvIq770+yH+caJ/6phi3D53n
+ cJ9Rug29o6SZ09Pwx2+t92ww06UWT+liKCSW4godxQROPV2CxI+aed887lICeVaTYaLo
+ rpMccY3nez9l3MtjEitZyNohNotOJ4ArFoD1AQ61RLPB8GDMyZUajwh1MXceBVGpB0b7
+ i+cAqgmnN7zzwUqcAFUw8KzJeFarPa0KLife2U5gUj6C3Nz54irDh1ZyeADuM268ji7G
+ 6lp4uMPGFGDTMcOVweZqeVPplN46cdi40PF7PDnq4dX//ZK0jSOtogFDWOSkj/0v8QqU
+ chvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FNls+2gWnzt5x5cRt1q7SlFZtyrShM7rccXddy75tHs=;
+ b=o7TqhJjKaYOvqajbJHZDmF0cGuF8ZFs4Bb0v4QEjjGeWVH6qI2n8FFuftHilcbeWG3
+ rJU0VpKiXbT+Uhc33uZVGAKeuyCQYgi4tJQWacK1NmQSTzZGJ+yBYtsGg8+mWI5xamo+
+ 6yIpYjIkbZY2l4vzDF+AtVR+qz63Gp1RppQXhQQOJJvmdAcylA8kJkO7xHMJULmHkwca
+ 5ccT2EWsEXaC82NaZDkAnOPvAsHUFQLLZqt94yBbb4+kueR9afL1yDU1MCdApGlLtnOI
+ NMQORqAE77SOD7zwqRG5z+7N1ZEy07fl4bw0ZGC8PUOTI8S+TYWogyIFs7bDpoYmxndf
+ bGgg==
+X-Gm-Message-State: APjAAAXWtj7ZmCk2z4GahuE0LcE28HC0y9gg9jOG0WLfneskE3KUp7ug
+ 4gS/JfgD58VhQ6wNnqxxds8PKRIOybk7H9Cnhcw=
+X-Google-Smtp-Source: APXvYqynM3EFmEGEdye3EpDXwkf14ujvABA9/5A6zRi0Dmf5BllpxF9Ycf8S9khSbeP2DNNUYsmogxgbB1jn3X9VtCM=
+X-Received: by 2002:a5d:46c7:: with SMTP id g7mr6856954wrs.11.1576730726918;
+ Wed, 18 Dec 2019 20:45:26 -0800 (PST)
 MIME-Version: 1.0
-X-Originating-IP: [10.175.127.16]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Thu, 19 Dec 2019 04:31:12 +0000
+References: <20191217204707.2258744-1-alexander.deucher@amd.com>
+ <20191217204707.2258744-2-alexander.deucher@amd.com>
+ <CAPM=9twOo9TRcBkT+iR7LUJh4zkQirHB2J0A5vL7Ei0LYkQ-2Q@mail.gmail.com>
+In-Reply-To: <CAPM=9twOo9TRcBkT+iR7LUJh4zkQirHB2J0A5vL7Ei0LYkQ-2Q@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 18 Dec 2019 23:45:14 -0500
+Message-ID: <CADnq5_Ntpao=3p-Xo5owY9s31+HhURipyyf4y+C2zRhtCVkc_A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu/display: use msleep rather than udelay for
+ HDCP
+To: Dave Airlie <airlied@gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,41 +62,78 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAxOS0xMi0xOCA1OjUyIHAubS4sIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5u
-ZXQ+IHdyb3RlOgoKPj4gdGhpcyBzZXQgYWRkcyBzdXBwb3J0IGZvciByZW1vdmFsIG9mIGdwdSBk
-cm0gZGVhZCBjb2RlLgo+PiAKPj4gcGF0Y2gyOgo+PiBgbnVtX2VudHJpZXNgIGlzIGEgZGF0YSBv
-ZiB1bnNpZ25lZCB0eXBlKGNvbXBpbGVycyBhbHdheXMgdHJlYXQgYXMgCj4+IHVuc2lnbmVkIGlu
-dCkgYW5kIFNJWkVfTUFYID09IH4wLAo+PiAKPj4gc28gdGhlcmUgaXMgYSBpbXBvc3NpYmxlIGNv
-bmRpdGlvbjoKPj4gJyhudW1fZW50cmllcyA+ICgofjApIC0gNTYpIC8gNzIpID0+IChtYXgoMC11
-MzIpID4gMjU2MjA0Nzc4ODAxNTIxNTQ5KScuCgo+V2hpbGUgdGhpcyBsb29rcyBjb3JyZWN0IGZv
-ciA2NC1iaXQsIHdoZXJlIHNpemVfdCBpcyB1bnNpZ25lZCBsb25nLCBvbiAzMi1iaXQgaXQncyB1
-bnNpZ25lZCBpbnQsIGluIHdoaWNoIGNhc2UgdGhpcyBpc24ndCBkZWFkIGNvZGUuCgphbmQKCk9u
-IDIwMTktMTItMTggNTo1MiBwLm0uLCBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmln
-QHh4eHh4eHg+IHdyb3RlOgoKPk5BSywgdGhhdCBjYWxjdWxhdGlvbiBpcyBub3QgY29ycmVjdCBv
-biAzMi1iaXQgc3lzdGVtcy4KCj5DaHJpc3RpYW4uCgpZZXMsIHlvdSBhcmUgcmlnaHQuIEkganVz
-dCBmaWd1cmVkIHRoaXMgb3V0IChiZWNhdXNlIG91ciBTZXJ2ZXIgdXN1YWxseSB1c2VzIDY0IGJp
-dHMpLgoKdGhhbmtzLgoKCj4+U2lnbmVkLW9mZi1ieTogUGFuIFpoYW5nIDx6aGFuZ3BhbjI2QHh4
-eHh4eHh4eHg+Cj4+LS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYm9f
-bGlzdC5jIHwgNCAtLS0tCj4+ICAxIGZpbGUgY2hhbmdlZCwgNCBkZWxldGlvbnMoLSkKPj5kaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2JvX2xpc3QuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9ib19saXN0LmMKPj5pbmRleCA4NWIwNTE1
-Li4xMGE3ZjMwIDEwMDY0NAo+Pi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
-dV9ib19saXN0LmMKPj4rKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYm9f
-bGlzdC5jCj4+QEAgLTcxLDEwICs3MSw2IEBAIGludCBhbWRncHVfYm9fbGlzdF9jcmVhdGUoc3Ry
-dWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsIHN0cnVjdCBkcm1fZmlsZSAqZmlscCwKPj4gCXVuc2ln
-bmVkIGk7Cj4+IAlpbnQgcjsKPj4gCj4+LQlpZiAobnVtX2VudHJpZXMgPiAoU0laRV9NQVggLSBz
-aXplb2Yoc3RydWN0IGFtZGdwdV9ib19saXN0KSkKPj4tCQkJCS8gc2l6ZW9mKHN0cnVjdCBhbWRn
-cHVfYm9fbGlzdF9lbnRyeSkpCj4+LQkJcmV0dXJuIC1FSU5WQUw7Cj4+LQo+PiAJc2l6ZSA9IHNp
-emVvZihzdHJ1Y3QgYW1kZ3B1X2JvX2xpc3QpOwo+PiAJc2l6ZSArPSBudW1fZW50cmllcyAqIHNp
-emVvZihzdHJ1Y3QgYW1kZ3B1X2JvX2xpc3RfZW50cnkpOwo+PiAJbGlzdCA9IGt2bWFsbG9jKHNp
-emUsIEdGUF9LRVJORUwpOwo+PgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1n
-ZngK
+On Wed, Dec 18, 2019 at 6:07 PM Dave Airlie <airlied@gmail.com> wrote:
+>
+> Hey,
+>
+> I've pulled in these two patches to drm-next directly because my arm
+> test build was broken.
+
+Sounds good.
+
+Alex
+
+>
+> Dave.
+>
+> On Wed, 18 Dec 2019 at 06:47, Alex Deucher <alexdeucher@gmail.com> wrote:
+> >
+> > ARM has a 2000us limit for udelay.  Switch to msleep.  This code
+> > executes in a worker thread so shouldn't be an atomic context.
+> >
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > ---
+> >  drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
+> > index bcbc0b8a9aa0..f730b94ac3c0 100644
+> > --- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
+> > +++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
+> > @@ -153,7 +153,7 @@ static enum mod_hdcp_status poll_l_prime_available(struct mod_hdcp *hdcp)
+> >  {
+> >         enum mod_hdcp_status status;
+> >         uint8_t size;
+> > -       uint16_t max_wait = 20000; // units of us
+> > +       uint16_t max_wait = 20; // units of ms
+> >         uint16_t num_polls = 5;
+> >         uint16_t wait_time = max_wait / num_polls;
+> >
+> > @@ -161,7 +161,7 @@ static enum mod_hdcp_status poll_l_prime_available(struct mod_hdcp *hdcp)
+> >                 status = MOD_HDCP_STATUS_INVALID_OPERATION;
+> >         else
+> >                 for (; num_polls; num_polls--) {
+> > -                       udelay(wait_time);
+> > +                       msleep(wait_time);
+> >
+> >                         status = mod_hdcp_read_rxstatus(hdcp);
+> >                         if (status != MOD_HDCP_STATUS_SUCCESS)
+> > @@ -474,7 +474,7 @@ static enum mod_hdcp_status locality_check(struct mod_hdcp *hdcp,
+> >                          hdcp, "lc_init_write"))
+> >                 goto out;
+> >         if (is_dp_hdcp(hdcp))
+> > -               udelay(16000);
+> > +               msleep(16);
+> >         else
+> >                 if (!mod_hdcp_execute_and_set(poll_l_prime_available,
+> >                                 &input->l_prime_available_poll, &status,
+> > --
+> > 2.23.0
+> >
+> > _______________________________________________
+> > amd-gfx mailing list
+> > amd-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
