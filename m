@@ -2,98 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CFF11259C0
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Dec 2019 04:00:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 834E21259A9
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Dec 2019 03:48:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAE9D6E072;
-	Thu, 19 Dec 2019 02:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0786C6E072;
+	Thu, 19 Dec 2019 02:48:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2089.outbound.protection.outlook.com [40.107.237.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 505B66E072
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 02:59:58 +0000 (UTC)
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+ (mail-eopbgr750047.outbound.protection.outlook.com [40.107.75.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8E406E072
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 02:48:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HYHi5TH9VKTIaKSt1We38Tz9wdcE9Uiq0aR5ZTYcCHi6/AzN7maQYOElancu2btbLuPZhaf82kzWB4XoK1nIkZpAK6xmZfjtN0UxwpK3hwUK+MjVnh6z3alCoi476wfWkUqUvjZnWSnwUwFFX3/QKsFWUScB92NiTUFr1nqbbeN6N6h9D1Tx5jJjvpfV4/5VYhxMrAQ4N1rFOSLNGFPSf2vcMe0MJGtM0rvpz/yfAIqlcsiHj8FIjnAPDuUjtJv8mCtGaBYrwalA2w9KiqwQ4UVbZHRgWW4XWn/FuTNxyX9EKaKc66d5JAUxMoCZtIMsm9sJuoDlOczKzTRxE4B3sQ==
+ b=AJrvh3qyBJp7/i6HRmItc+B/ahKJz9FKuytiVMsdUQbIH4UBQyI6kFEWrhLN3FvySHkqLVKqW6oW4BsTWP82Egg/nTUp6XlCJCJYXXjbdiGZTQ1aTxpCy326GWS3BG4Zt7H1oUVu3AUW13SmJGxa2zytDJr+ESNvwG8UzSag5xpgdXh8G8gaP9LbkB1B/WMvAV5GcJRWsTYnVReO0Vzd98oULkXkeMvNbodIJkev0niZefGVZKNMPeDml3oqdcP8e6zEP1Ookkb5yWIHiTMqBOuMtxTCiGS7gJKEEjgAhjsqJGZxmgn4+em23i/f+6pI91y6nciZn2CvW5n8ZB6WuA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DmdN2BPFZxR5MIAhAM9Dqj0ijHctJafkNM8E7XwB0Ig=;
- b=Mf6tgnEEfE9BrkzRArl0XLSqa5UtfobBGzXRLW6UV2TvvaxmWuVWgbYWk3oOBTDCftnKGt0ZE+TRuhLGLMa7fHdtj/QiVNZxG1C2LQSHpC++u15jszfK+ErvMfvJfpy7KZVW10xHNky0H0VBdftAP9tfwaLs0gn59EQzynMXZgMUcKYdyGeoQGQdHGMUuGUId7SgUKozyP1q6Efyeo/V+JnGL8Iv+i0KvSRIkqU2YmNDNDp9oN1cncdZ7Q/9EcjSAJynMqFu4D8V4VV3maPxHdsBGk3+cj9t+bRxnB/cmgs5kD5XVaWmSDHD078uB1XuVgVfgDAHCx2MiwCyDfZQbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
+ bh=wMgveCag/m2b44Eka9mFKorl+LxLiZjp45eOnEmqpJo=;
+ b=hTmZhrMGZHrckbStrslzZkt902jtbX/Pi0ZyC1FPOD7OO7ojSKQBtTKO13ej70+OqQeyWfw9RnQZ/MCPNKoCp9gf9vo0n740HJESwNYxA0m0pIqJX+hnP/B/syFGKFCaYn2wIV/VACEd9i7KK2U5le3V/Xxr3KohSTlhnRM3qKUinsDXEBBcuP1PJnbZqbuQDa1Pp9K/m4hDEXkHA0hirbqI20Mmo98C3LJ6cXWoP7TDFgX42plG/wRNlYNZvn6ktXKsM66fDIO2mNBA627gpLCJ2eCxV4sw6fnv2bLeJMkpIi94miegCrXJhnm+FNefTlwe6FjA4CZQqKbtO6dHkQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DmdN2BPFZxR5MIAhAM9Dqj0ijHctJafkNM8E7XwB0Ig=;
- b=EyAgiRkW079uvo2kLvS46/T5muc/WqqPN6mDHhCRQNynuJ2CVSfEHqjfsaa9O+q0Sa+nlaiz/Y7NWYmbVZ7XDKX8pXvabn76IDypX1EpGkfld17O3xenBJbewteRFN3KlM81dmERJ3YJ+R7K+wpJ0HWPvDQe6pb6BTFR5nOmPM8=
-Received: from DM5PR12CA0004.namprd12.prod.outlook.com (2603:10b6:4:1::14) by
- MN2PR12MB4110.namprd12.prod.outlook.com (2603:10b6:208:1dd::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2559.13; Thu, 19 Dec
- 2019 02:44:33 +0000
-Received: from DM6NAM11FT055.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eaa::201) by DM5PR12CA0004.outlook.office365.com
- (2603:10b6:4:1::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2559.14 via Frontend
- Transport; Thu, 19 Dec 2019 02:44:33 +0000
-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
+ bh=wMgveCag/m2b44Eka9mFKorl+LxLiZjp45eOnEmqpJo=;
+ b=Dc68kBfARA14W33Zh3XFz5fDALn+7LBy3dArPRE8Q8UM+pZx8+l/igAqxBEtTHObDyPGk52hvjGNuGFwIGr2p2hgak1nM1kYqMWWSQBn5Uuw9LYcS3P1nyTebYaB4KYosdMrIK+DYsNiANSeDbt8gk8qsHUode/nrSIfEMDV+rQ=
+Received: from MN2PR12MB2957.namprd12.prod.outlook.com (20.179.82.14) by
+ MN2PR12MB3085.namprd12.prod.outlook.com (20.178.241.93) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2559.14; Thu, 19 Dec 2019 02:48:14 +0000
+Received: from MN2PR12MB2957.namprd12.prod.outlook.com
+ ([fe80::2cbe:ce2:60b5:7756]) by MN2PR12MB2957.namprd12.prod.outlook.com
+ ([fe80::2cbe:ce2:60b5:7756%6]) with mapi id 15.20.2559.012; Thu, 19 Dec 2019
+ 02:48:14 +0000
+From: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>
+To: "Tuikov, Luben" <Luben.Tuikov@amd.com>, "Wang, Kevin(Yang)"
+ <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 1/2] drm/amdgpu: update the method to get fb_loc of memory
+ training(V2)
+Thread-Topic: [PATCH 1/2] drm/amdgpu: update the method to get fb_loc of
+ memory training(V2)
+Thread-Index: AQHVtYBENFQSO958p0uozCUflj9QRqe/lvIAgAABbrGAALwcAIAAbQ9Q
+Date: Thu, 19 Dec 2019 02:48:13 +0000
+Message-ID: <MN2PR12MB2957401601B970825564553E95520@MN2PR12MB2957.namprd12.prod.outlook.com>
+References: <20191218085050.28635-1-tianci.yin@amd.com>
+ <MN2PR12MB329636BD472939B12B08EFA6A2530@MN2PR12MB3296.namprd12.prod.outlook.com>
+ <MN2PR12MB2957F19B488696AF8A61D46A95530@MN2PR12MB2957.namprd12.prod.outlook.com>,
+ <8a2e22db-989d-2169-eed6-dbe174a4d44d@amd.com>
+In-Reply-To: <8a2e22db-989d-2169-eed6-dbe174a4d44d@amd.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2019-12-19T02:48:13.211Z;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
+ Distribution
+ Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Tianci.Yin@amd.com; 
+x-originating-ip: [180.167.199.189]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 2a7a0f34-49fc-4395-6504-08d7842de4a8
+x-ms-traffictypediagnostic: MN2PR12MB3085:|MN2PR12MB3085:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MN2PR12MB30857822227EEAD82DC65F3B95520@MN2PR12MB3085.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0256C18696
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(136003)(366004)(346002)(376002)(396003)(129404003)(189003)(52314003)(199004)(5660300002)(64756008)(26005)(2906002)(6506007)(15650500001)(19627405001)(7696005)(71200400001)(9686003)(478600001)(55016002)(86362001)(186003)(81156014)(81166006)(33656002)(66946007)(54906003)(76116006)(91956017)(110136005)(53546011)(8936002)(52536014)(4001150100001)(8676002)(4326008)(66476007)(316002)(66556008)(66446008);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3085;
+ H:MN2PR12MB2957.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- DM6NAM11FT055.mail.protection.outlook.com (10.13.173.103) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2538.14 via Frontend Transport; Thu, 19 Dec 2019 02:44:32 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 18 Dec
- 2019 20:44:32 -0600
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 18 Dec
- 2019 20:44:31 -0600
-Received: from rico-code.amd.com (10.180.168.240) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Wed, 18 Dec 2019 20:44:27 -0600
-From: Tianci Yin <tianci.yin@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amdgpu: remove memory training p2c buffer
- reservation(V2)
-Date: Thu, 19 Dec 2019 10:44:16 +0800
-Message-ID: <20191219024416.32321-2-tianci.yin@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191219024416.32321-1-tianci.yin@amd.com>
-References: <20191219024416.32321-1-tianci.yin@amd.com>
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: qrBGl8qn2lOWJxpc0OyCMX2ioDCE/nkmL6TIeveOl/45ZeebyuQr9spca5kgnQLc/TiBwgYTXEONhoUD2AXRWZi/UDFuLk49an6s5fsbiqrJ3TYCuLLO4omBMk1yFTQFfIWji/M9GZLFRzSrGzBkN+nhPMp4SFm17mVUsUdWhvDHJo+vF7jYoUVEgoIhRv05GVHwztof4IhccOGNKjkAH/BWZdTyDjN6sb+N8d8fB6bJL6itcCYYsWJeQcWl1wps0hPozmVuSKn7uUbgYIEowQ+cnm9dhBhweeea+giPLPli8wy+FSBGxrQzgkkIkg2p6EVmn51vP1mEGZZLXKCijj2IpzvjQXV7gRFZkFAqrZioqiGnw471XaLDa/OvSKlN75SxJ4ODTPON7/N5yW7x2rKyiMyQpGSBCwvsCi3F/uVzk1WWBF+ZxGuDakBbSzGfx0wvm/C+PlH1O+wahlCef5d3yEoJ4uGoVqd2U4YGEdll6AXqTWH8AYnthtTBgNJfFza45mFFHjLuIOMK8v+G2Q==
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(396003)(376002)(136003)(346002)(428003)(199004)(189003)(2906002)(356004)(6666004)(81156014)(81166006)(426003)(2616005)(186003)(36756003)(4326008)(86362001)(54906003)(26005)(316002)(8676002)(336012)(8936002)(7696005)(1076003)(6916009)(70206006)(44832011)(478600001)(5660300002)(70586007);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4110; H:SATLEXMB01.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d582deb8-a33d-411b-4296-08d7842d6106
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4110:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB411097C10324974FD784E1D495520@MN2PR12MB4110.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
-X-Forefront-PRVS: 0256C18696
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ey+oKa/vtnKZ/1A4eLytu4zDQq7//7uOi5ApI5nkrX6M43f3REZ1qMf3OXpSQRUUNsYhToEAqeEgP94zPsT2kFkOZRkXuXuwIb2XvUu2mw4hED6mwYZAk9SfuT7uREa0699UyboNPeXe0iwhFbwH59TaTFDOYvCZWZS5y14Mp5dwmQnEaTZdwNoEr+Tao/xbKSmEDryquR5rqFxQSxZgc3gRsLdTnMTsVzHSvHAXS1RzCrof/vJrqzbCxe6isQ2+1AoV8rDEGRMOQPvtmKCSNgErCs0NCkZRf2amp0mLIfcaSomySEHzbJN96gW/YeZqJGLGpIUe7Jv2gZH7LR4179Jt6Yg060X3EvN9bV4RjGFEJULAts6rQN4kPNLyo03L+Bi9HJrCnxpJ377mD4xC3ZWYQJ1jjClLBG2idwaCyn7e9A0rIZUseTSfzwbfYf/E
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2019 02:44:32.8176 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d582deb8-a33d-411b-4296-08d7842d6106
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4110
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a7a0f34-49fc-4395-6504-08d7842de4a8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Dec 2019 02:48:13.8481 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DTrOP94PuUUV4uCINxRPUDflU+oJpplt4vGUL87oCi8bjgRV6ZOR/KPDm98SA1J3spvSKXl+ql9GqgfMt9Mfyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3085
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,98 +104,345 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Long Gang <Gang.Long@amd.com>, Tianci Yin <tianci.yin@amd.com>,
- Feifei Xu <Feifei.Xu@amd.com>, Kevin Wang <Kevin1.Wang@amd.com>,
- Tuikov Luben <Luben.Tuikov@amd.com>,
- Deucher Alexander <Alexander.Deucher@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xiaojie Yuan <xiaojie.yuan@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Long, Gang" <Gang.Long@amd.com>, "Xu,
+ Feifei" <Feifei.Xu@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>, "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
+Content-Type: multipart/mixed; boundary="===============0270491352=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Tianci.Yin" <tianci.yin@amd.com>
+--===============0270491352==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB2957401601B970825564553E95520MN2PR12MB2957namp_"
 
-IP discovery TMR(occupied the top VRAM with size DISCOVERY_TMR_SIZE)
-has been reserved, and the p2c buffer is in the range of this TMR, so
-the p2c buffer reservation is unnecessary.
+--_000_MN2PR12MB2957401601B970825564553E95520MN2PR12MB2957namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Change-Id: Ib1f2f2b4a1f3869c03ffe22e2836cdbee17ba99f
-Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
-Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |  1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 21 ++-------------------
- 2 files changed, 2 insertions(+), 20 deletions(-)
+[AMD Official Use Only - Internal Distribution Only]
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-index 5f8fd3e3535b..3265487b859f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-@@ -202,7 +202,6 @@ struct psp_memory_training_context {
- 
- 	/*vram offset of the p2c training data*/
- 	u64 p2c_train_data_offset;
--	struct amdgpu_bo *p2c_bo;
- 
- 	/*vram offset of the c2p training data*/
- 	u64 c2p_train_data_offset;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index ec84acdd43a2..60f17e989014 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1681,9 +1681,6 @@ static int amdgpu_ttm_training_reserve_vram_fini(struct amdgpu_device *adev)
- 	amdgpu_bo_free_kernel(&ctx->c2p_bo, NULL, NULL);
- 	ctx->c2p_bo = NULL;
- 
--	amdgpu_bo_free_kernel(&ctx->p2c_bo, NULL, NULL);
--	ctx->p2c_bo = NULL;
--
- 	return 0;
- }
- 
-@@ -1725,17 +1722,6 @@ static int amdgpu_ttm_training_reserve_vram_init(struct amdgpu_device *adev)
- 		  ctx->p2c_train_data_offset,
- 		  ctx->c2p_train_data_offset);
- 
--	ret = amdgpu_bo_create_kernel_at(adev,
--					 ctx->p2c_train_data_offset,
--					 ctx->train_data_size,
--					 AMDGPU_GEM_DOMAIN_VRAM,
--					 &ctx->p2c_bo,
--					 NULL);
--	if (ret) {
--		DRM_ERROR("alloc p2c_bo failed(%d)!\n", ret);
--		goto Err_out;
--	}
--
- 	ret = amdgpu_bo_create_kernel_at(adev,
- 					 ctx->c2p_train_data_offset,
- 					 ctx->train_data_size,
-@@ -1744,15 +1730,12 @@ static int amdgpu_ttm_training_reserve_vram_init(struct amdgpu_device *adev)
- 					 NULL);
- 	if (ret) {
- 		DRM_ERROR("alloc c2p_bo failed(%d)!\n", ret);
--		goto Err_out;
-+		amdgpu_ttm_training_reserve_vram_fini(adev);
-+		return ret;
- 	}
- 
- 	ctx->init = PSP_MEM_TRAIN_RESERVE_SUCCESS;
- 	return 0;
--
--Err_out:
--	amdgpu_ttm_training_reserve_vram_fini(adev);
--	return ret;
- }
- 
- /**
--- 
-2.17.1
+Hi Luben,
+
+Thank you very much for your suggestion and detailed explanation!
+
+Patch has been refined, please help review.
+
+Rico
+________________________________
+From: Tuikov, Luben <Luben.Tuikov@amd.com>
+Sent: Thursday, December 19, 2019 4:14
+To: Yin, Tianci (Rico) <Tianci.Yin@amd.com>; Wang, Kevin(Yang) <Kevin1.Wang=
+@amd.com>; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Koenig, Christian <Christian.Koenig@amd.com>; Deucher, Alexander <Alexa=
+nder.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Xu, Feifei <=
+Feifei.Xu@amd.com>; Yuan, Xiaojie <Xiaojie.Yuan@amd.com>; Long, Gang <Gang.=
+Long@amd.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu: update the method to get fb_loc of mem=
+ory training(V2)
+
+On 2019-12-18 4:14 a.m., Yin, Tianci (Rico) wrote:
+> Hi Kevin,
+>
+> You mean like this? It's a bit lengthy.
+> - ctx->c2p_train_data_offset &=3D ~(ONE_MiB - 1);
+> + ctx->c2p_train_data_offset =3D ALIGN(ctx->c2p_train_data_offset, ONE_Mi=
+B);
+>
+> -       ctx->c2p_train_data_offset =3D adev->fw_vram_usage.mem_train_fb_l=
+oc;
+> +       ctx->c2p_train_data_offset =3D adev->gmc.mc_vram_size;
+> +       if ((ctx->c2p_train_data_offset & (ONE_MiB - 1)) < (4 * ONE_KiB +=
+ 1) ) {
+> +               ctx->c2p_train_data_offset -=3D ONE_MiB;
+> +       }
+> +       ctx->c2p_train_data_offset &=3D ~(ONE_MiB - 1);
+
+Using the macro ALIGN() is a good practice.
+Usually when calculating a quantity, such as the one above, you'd
+use a working variable, say 'a', and after you're done with
+the calculation, you'd then assign it to the variable which
+needs it. Something like this:
+
+a =3D adev->gmc.mc_vram_size;
+if ((a & (ONE_MiB - 1)) < (4 * ONE_KiB + 1))
+        a -=3D ONE_MiB;
+ctx->c2p_train_data_offset =3D ALIGN(a, ONE_MiB);
+
+The easiest way to see this is, imagine, if all this calculation
+was offloaded to a dedicated function, f(), to do:
+
+ctx->c2p_train_data_offset =3D f(adev->gmc.mc_vram_size);
+
+Now, by using the working variable 'a', you've shown this
+abstraction just the same. (By using the working variable 'a',
+you've shown to the reader,that this calculation is abstracted,
+and could be relocated to a function.)
+
+Regards,
+Luben
+P.S. The compiler is probably already doing this, and not working
+directly on the ctx->c2p_train_data_offs, but assigns a final
+result, as explicitly shown above. The above is to make it easy
+for humans to read and understand the code. Hope this helps.
+
+>
+> *[kevin]:*
+> *i'd like to use the marco ALIGN() to simple above code.*
+> *anyway, the patch Reviewed-by: Kevin Wang <kevin1.wang@amd.com>*
+>
+>          ctx->p2c_train_data_offset =3D (adev->gmc.mc_vram_size - GDDR6_M=
+EM_TRAINING_OFFSET);
+>          ctx->train_data_size =3D GDDR6_MEM_TRAINING_DATA_SIZE_IN_BYTES;
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ttm.h
+> index f1ebd424510c..19eb3e8456c7 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> @@ -66,6 +66,13 @@ struct amdgpu_copy_mem {
+>          unsigned long                   offset;
+>  };
+>
+> +/* Definitions for constance */
+> +enum amdgpu_internal_constants
+> +{
+> +       ONE_KiB =3D 0x400,
+> +       ONE_MiB =3D 0x100000,
+> +};
+> +
+>  extern const struct ttm_mem_type_manager_func amdgpu_gtt_mgr_func;
+>  extern const struct ttm_mem_type_manager_func amdgpu_vram_mgr_func;
+>
+> diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm=
+/amd/include/atomfirmware.h
+> index dd7cbc00a0aa..70146518174c 100644
+> --- a/drivers/gpu/drm/amd/include/atomfirmware.h
+> +++ b/drivers/gpu/drm/amd/include/atomfirmware.h
+> @@ -672,20 +672,6 @@ struct vram_usagebyfirmware_v2_1
+>    uint16_t  used_by_driver_in_kb;
+>  };
+>
+> -/* This is part of vram_usagebyfirmware_v2_1 */
+> -struct vram_reserve_block
+> -{
+> -       uint32_t start_address_in_kb;
+> -       uint16_t used_by_firmware_in_kb;
+> -       uint16_t used_by_driver_in_kb;
+> -};
+> -
+> -/* Definitions for constance */
+> -enum atomfirmware_internal_constants
+> -{
+> -       ONE_KiB =3D 0x400,
+> -       ONE_MiB =3D 0x100000,
+> -};
+>
+>  /*
+>    **********************************************************************=
+*****
+> --
+> 2.17.1
+>
+
+
+--_000_MN2PR12MB2957401601B970825564553E95520MN2PR12MB2957namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
+ign=3D"Left">
+[AMD Official Use Only - Internal Distribution Only]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi Luben,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thank you very much for your suggestion and detailed explanation!</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Patch has been refined, please help review.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Rico<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Tuikov, Luben &lt;Lub=
+en.Tuikov@amd.com&gt;<br>
+<b>Sent:</b> Thursday, December 19, 2019 4:14<br>
+<b>To:</b> Yin, Tianci (Rico) &lt;Tianci.Yin@amd.com&gt;; Wang, Kevin(Yang)=
+ &lt;Kevin1.Wang@amd.com&gt;; amd-gfx@lists.freedesktop.org &lt;amd-gfx@lis=
+ts.freedesktop.org&gt;<br>
+<b>Cc:</b> Koenig, Christian &lt;Christian.Koenig@amd.com&gt;; Deucher, Ale=
+xander &lt;Alexander.Deucher@amd.com&gt;; Zhang, Hawking &lt;Hawking.Zhang@=
+amd.com&gt;; Xu, Feifei &lt;Feifei.Xu@amd.com&gt;; Yuan, Xiaojie &lt;Xiaoji=
+e.Yuan@amd.com&gt;; Long, Gang &lt;Gang.Long@amd.com&gt;<br>
+<b>Subject:</b> Re: [PATCH 1/2] drm/amdgpu: update the method to get fb_loc=
+ of memory training(V2)</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">On 2019-12-18 4:14 a.m., Yin, Tianci (Rico) wrote:=
+<br>
+&gt; Hi Kevin,<br>
+&gt; <br>
+&gt; You mean like this? It's a bit lengthy.<br>
+&gt; - ctx-&gt;c2p_train_data_offset &amp;=3D ~(ONE_MiB - 1);<br>
+&gt; &#43; ctx-&gt;c2p_train_data_offset =3D ALIGN(ctx-&gt;c2p_train_data_o=
+ffset, ONE_MiB);<br>
+&gt; <br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx-&gt;c2p_train_data_offset =
+=3D adev-&gt;fw_vram_usage.mem_train_fb_loc;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx-&gt;c2p_train_data_offse=
+t =3D adev-&gt;gmc.mc_vram_size;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((ctx-&gt;c2p_train_data_=
+offset &amp; (ONE_MiB - 1)) &lt; (4 * ONE_KiB &#43; 1) ) {<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; ctx-&gt;c2p_train_data_offset -=3D ONE_MiB;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx-&gt;c2p_train_data_offse=
+t &amp;=3D ~(ONE_MiB - 1);<br>
+<br>
+Using the macro ALIGN() is a good practice.<br>
+Usually when calculating a quantity, such as the one above, you'd<br>
+use a working variable, say 'a', and after you're done with<br>
+the calculation, you'd then assign it to the variable which<br>
+needs it. Something like this:<br>
+<br>
+a =3D adev-&gt;gmc.mc_vram_size;<br>
+if ((a &amp; (ONE_MiB - 1)) &lt; (4 * ONE_KiB &#43; 1))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a -=3D ONE_MiB;<br>
+ctx-&gt;c2p_train_data_offset =3D ALIGN(a, ONE_MiB);<br>
+<br>
+The easiest way to see this is, imagine, if all this calculation<br>
+was offloaded to a dedicated function, f(), to do:<br>
+<br>
+ctx-&gt;c2p_train_data_offset =3D f(adev-&gt;gmc.mc_vram_size);<br>
+<br>
+Now, by using the working variable 'a', you've shown this<br>
+abstraction just the same. (By using the working variable 'a',<br>
+you've shown to the reader,that this calculation is abstracted,<br>
+and could be relocated to a function.)<br>
+<br>
+Regards,<br>
+Luben<br>
+P.S. The compiler is probably already doing this, and not working<br>
+directly on the ctx-&gt;c2p_train_data_offs, but assigns a final<br>
+result, as explicitly shown above. The above is to make it easy<br>
+for humans to read and understand the code. Hope this helps.<br>
+<br>
+&gt; <br>
+&gt; *[kevin]:*<br>
+&gt; *i'd like to use the marco ALIGN() to simple above code.*<br>
+&gt; *anyway, the patch Reviewed-by: Kevin Wang &lt;kevin1.wang@amd.com&gt;=
+*<br>
+&gt; <br>
+&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx-&gt;p2c_train_dat=
+a_offset =3D (adev-&gt;gmc.mc_vram_size - GDDR6_MEM_TRAINING_OFFSET);<br>
+&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx-&gt;train_data_si=
+ze =3D GDDR6_MEM_TRAINING_DATA_SIZE_IN_BYTES;<br>
+&gt; &nbsp;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_ttm.h<br>
+&gt; index f1ebd424510c..19eb3e8456c7 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h<br>
+&gt; @@ -66,6 &#43;66,13 @@ struct amdgpu_copy_mem {<br>
+&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned long&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; offset;<br>
+&gt; &nbsp;};<br>
+&gt; &nbsp;<br>
+&gt; &#43;/* Definitions for constance */<br>
+&gt; &#43;enum amdgpu_internal_constants<br>
+&gt; &#43;{<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ONE_KiB =3D 0x400,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ONE_MiB =3D 0x100000,<br>
+&gt; &#43;};<br>
+&gt; &#43;<br>
+&gt; &nbsp;extern const struct ttm_mem_type_manager_func amdgpu_gtt_mgr_fun=
+c;<br>
+&gt; &nbsp;extern const struct ttm_mem_type_manager_func amdgpu_vram_mgr_fu=
+nc;<br>
+&gt; &nbsp;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/=
+drm/amd/include/atomfirmware.h<br>
+&gt; index dd7cbc00a0aa..70146518174c 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/include/atomfirmware.h<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/include/atomfirmware.h<br>
+&gt; @@ -672,20 &#43;672,6 @@ struct vram_usagebyfirmware_v2_1<br>
+&gt; &nbsp;&nbsp; uint16_t&nbsp; used_by_driver_in_kb;<br>
+&gt; &nbsp;};<br>
+&gt; &nbsp;<br>
+&gt; -/* This is part of vram_usagebyfirmware_v2_1 */<br>
+&gt; -struct vram_reserve_block<br>
+&gt; -{<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t start_address_in_kb;<br=
+>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint16_t used_by_firmware_in_kb;=
+<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint16_t used_by_driver_in_kb;<b=
+r>
+&gt; -};<br>
+&gt; -<br>
+&gt; -/* Definitions for constance */<br>
+&gt; -enum atomfirmware_internal_constants<br>
+&gt; -{<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ONE_KiB =3D 0x400,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ONE_MiB =3D 0x100000,<br>
+&gt; -};<br>
+&gt; &nbsp;<br>
+&gt; &nbsp;/*<br>
+&gt; &nbsp;&nbsp; *********************************************************=
+******************<br>
+&gt; -- <br>
+&gt; 2.17.1<br>
+&gt; <br>
+<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_MN2PR12MB2957401601B970825564553E95520MN2PR12MB2957namp_--
+
+--===============0270491352==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0270491352==--
