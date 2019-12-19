@@ -2,85 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A92A1259BF
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Dec 2019 03:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AC801259C7
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Dec 2019 04:02:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 911806E0A1;
-	Thu, 19 Dec 2019 02:59:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C08A6E072;
+	Thu, 19 Dec 2019 03:02:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760043.outbound.protection.outlook.com [40.107.76.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF90C6E072
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 02:59:36 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2041.outbound.protection.outlook.com [40.107.92.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B3786E072
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 03:02:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hQRCdhM1NabpMBp9SE738DR9r3U801Gaw258a2Ns0BBrm1PAwIarF3cwgLOXI6fia2U/jt5iIh0sxsvMIejE1KQzxy3rxiIJNXiZ2nAFGoyrXCiL6wQPZq1XprR+AdEAMHAeyTnnM24HV3nUiM3lavaHbv1T71ukPJ+6VNsdIfwC6WFc0S3vjrCCrUkjHztJYeg2Q13YybZ5LvC65//Vg3Q7wb+CfuS4IC5FDR8nAPJRVb2aRJAByzoTvaonJvoOtfd6t3OVTz1bIC/ooI53ArcgaaM7tJgT9/PG7qK13sLRcaYi3CH9oQ3Otzi+6Zej13X6vkPDOBBsMhT2s/9qyg==
+ b=AiPtFPt6cv3Sak19o3OmA/7E4C+lvQJUvT0aRTxDDfOoQ0iK8IPLP9++dzR0QoKtiOTMK6nFo0OQAczJc+wrNuVB6OwP24c/x3xkNyacGdoWJlgBrol4Stl+spiCgXqcSnGoE5Wqv5+CeFupPWUPJ37u8xeJjzOMhynvP8ipFTTwgpltdoWEhXqyIdb3FfRdW40KruD9bW/53FIl3RQaody+M3yHoJV6tRdpFNDibWoxX9fsPpCuQIlrm12XL+purzbpdzMEyYSNScVu8YFoWQ7ztfebUwkjPsJ2u+2WWmU6TkABomLdHC89Wjb6DASFcR0MVRw7TT2WEJn7UVcfJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bXW2HXzPJ4tQcZ+/zeIL/UJuz6OiKYoOYilQYEvxYE4=;
- b=QCXt2QTp5LEQ+PKUgoxKQGCCHXZAUetwchG67qhp5DipgWCUyNCJHDp5BVgczq8RZgwnYcOXSiZRugg6LH5o0dC6MAmZfi63kTZ+h7VaL3AnrAS18DuYMiA32LfMSSZGLUXEf4/6x0b8+n10c1MJLteg6sHWZHvgl4ZbiAUt069xinar7em443Yowq+RgfRdycAUMzIMvGPP3gKI9q7t+BspnIGMAF4Z5PcMSpQfMMNCvr7F/95ONMMjTI26ioxT8HTafjjgr/HNwcjEcI94U+Zqzf8QtvbgUifjDYQDZG/ZFKSHvQ48WgBZ+cRyuRiyp9bX+1WRimzpI9/Y9SS4/w==
+ bh=KqZ2xmL0EhWwrl9gAMecg3FR567JOX5pA7Yw/ttFOew=;
+ b=W+bjdm9DMBzr0v1c+qOhSQpMnYlopiR3lyrPtMqpRQ9ksGdxgpuTWH/W2Z/iplTmJyfNN/IV4B96oJZviqQSoFDqzYRGLvzRQXMLqD+qKBHDwVQWQyR04VdTUzO8H8TwOrhePjNYh/nfGvvqj9iP1WaN1/lLqSmm2vk7QJ+06xJbdbqC3iGWVH9gviG0XXwlFyhUV3udW0FdiDR7KIYIm7asVVkvNa2id2QXl5sBdtdOQfybjBmOO1jsVOpuMt1gMMFprRFSgqv0+5gmyJtoap244jajhULFMG4WH7cGyZAPBmL+Q+gpcl3KxbprGtl9Gf5VmymOSymJQ/zvYXr6Lg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bXW2HXzPJ4tQcZ+/zeIL/UJuz6OiKYoOYilQYEvxYE4=;
- b=GbOh45rPr8rQ3P29/Hj0IVKHxnjY+catnwomGcaiR6sXfd41oQca5Z2R58eXkLh8NaTcs7oBN20OQACXxtyh+3zaqjDL/UKpVqn52k/Tkct9ioWqrRZ7sid4LB0fJqNJK+oPNgHMqSciRX9mM/ER7NFQozmwN4kLyAlSeLWWcZc=
-Received: from MWHPR12MB1358.namprd12.prod.outlook.com (10.169.203.148) by
- MWHPR12MB1679.namprd12.prod.outlook.com (10.172.55.135) with Microsoft SMTP
+ bh=KqZ2xmL0EhWwrl9gAMecg3FR567JOX5pA7Yw/ttFOew=;
+ b=qeqy1U0+ZYOmpH3B0l4PgwOp9t0kgScpXbhOeN09pLWbJgwDle9aChEWNE2W3gsZZX9cRneYs2vo2WlfRL6JVo26adU5QLqdsYWz7zyLJ98I+JjEoLimR/wjkPQRztlKcQe1wSH0t0Tb2legqORwmTgcUwv4szzSzq3yfp3w6qg=
+Received: from MN2PR12MB3087.namprd12.prod.outlook.com (20.178.244.160) by
+ MN2PR12MB3152.namprd12.prod.outlook.com (20.178.242.151) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.16; Thu, 19 Dec 2019 02:59:33 +0000
-Received: from MWHPR12MB1358.namprd12.prod.outlook.com
- ([fe80::b94d:fcd8:729d:a94f]) by MWHPR12MB1358.namprd12.prod.outlook.com
- ([fe80::b94d:fcd8:729d:a94f%3]) with mapi id 15.20.2538.022; Thu, 19 Dec 2019
- 02:59:33 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Tuikov, Luben" <Luben.Tuikov@amd.com>, "amd-gfx@lists.freedesktop.org"
+ 15.20.2559.15; Thu, 19 Dec 2019 03:02:28 +0000
+Received: from MN2PR12MB3087.namprd12.prod.outlook.com
+ ([fe80::f047:8e55:3d00:780a]) by MN2PR12MB3087.namprd12.prod.outlook.com
+ ([fe80::f047:8e55:3d00:780a%7]) with mapi id 15.20.2559.012; Thu, 19 Dec 2019
+ 03:02:28 +0000
+From: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
+To: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: simplify padding calculations (v3)
-Thread-Topic: [PATCH] drm/amdgpu: simplify padding calculations (v3)
-Thread-Index: AQHVtfihHzl/nww8DkWKF0mOw4HE86fAhm8AgAA9/oA=
-Date: Thu, 19 Dec 2019 02:59:33 +0000
-Message-ID: <MWHPR12MB13583FE24170AEBBBD3DD450F7520@MWHPR12MB1358.namprd12.prod.outlook.com>
-References: <20191218231217.204500-1-luben.tuikov@amd.com>
- <001a6842-50cb-dd1f-2adb-1cd24f03afec@amd.com>
-In-Reply-To: <001a6842-50cb-dd1f-2adb-1cd24f03afec@amd.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu: remove memory training p2c buffer
+ reservation(V2)
+Thread-Topic: [PATCH 2/2] drm/amdgpu: remove memory training p2c buffer
+ reservation(V2)
+Thread-Index: AQHVthY/izIwnIR8mEWlk4lTbMg2zqfAxT9Q
+Date: Thu, 19 Dec 2019 03:02:28 +0000
+Message-ID: <MN2PR12MB308711E4D03C5C2750D2CD2789520@MN2PR12MB3087.namprd12.prod.outlook.com>
+References: <20191219024416.32321-1-tianci.yin@amd.com>,
+ <20191219024416.32321-2-tianci.yin@amd.com>
+In-Reply-To: <20191219024416.32321-2-tianci.yin@amd.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2019-12-19T03:02:27.653Z;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
+ Distribution
+ Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
-x-originating-ip: [165.204.84.11]
+ smtp.mailfrom=Xiaojie.Yuan@amd.com; 
+x-originating-ip: [180.167.199.189]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: ed38e793-ac20-422f-a4bf-08d7842f7997
-x-ms-traffictypediagnostic: MWHPR12MB1679:|MWHPR12MB1679:
+x-ms-office365-filtering-correlation-id: 91dd99e8-0958-43d4-6e2e-08d7842fe1cc
+x-ms-traffictypediagnostic: MN2PR12MB3152:|MN2PR12MB3152:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR12MB1679F7C39DBD2A62BC3E63C4F7520@MWHPR12MB1679.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-microsoft-antispam-prvs: <MN2PR12MB3152EACDE24E115A3362D03989520@MN2PR12MB3152.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3513;
 x-forefront-prvs: 0256C18696
 x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(366004)(376002)(39860400002)(346002)(136003)(13464003)(199004)(189003)(26005)(186003)(81166006)(9686003)(71200400001)(110136005)(4001150100001)(53546011)(6506007)(33656002)(316002)(478600001)(81156014)(66446008)(76116006)(4326008)(8676002)(66556008)(66476007)(8936002)(64756008)(66946007)(2906002)(55016002)(7696005)(86362001)(52536014)(5660300002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1679;
- H:MWHPR12MB1358.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(366004)(136003)(376002)(39860400002)(346002)(396003)(199004)(189003)(8936002)(81166006)(81156014)(8676002)(66946007)(64756008)(316002)(91956017)(76116006)(66446008)(66556008)(66476007)(52536014)(4326008)(7696005)(478600001)(5660300002)(33656002)(86362001)(9686003)(55016002)(2906002)(26005)(54906003)(71200400001)(186003)(110136005)(6506007)(53546011);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3152;
+ H:MN2PR12MB3087.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: NXtjiapzDqRGy9m5o5syAT/NMl0iMTrbYSlKoqmk8CmCk1uSAIJPn85Z/VacGUCApjMB+PpX6lyZuG5kEhkEitoMwAJP01VTZ5xM3dmttEioc1wnm2okH8rXyB8M/O7m3Yx0juYwsgnJzk/82G0uM7c+khvanGycZd3jxz5j4kLz7KP9xOGvtSafpHB0Q3KFWIg5F5yPt8H9Zsyb2JbfH5jydMKiNCBCXXfOIXoUe2mLIh9B9Gwt7bk/aQktGPQjwMXnyn7w+5tnTIFffB5TGZuAqmXb+xJ92tG/Axy6P9uJ7vrJUO0HXR9j0N0qJWJTc28HX0RaekwDdeQ/mDsAiClUSdPurf0OAA71uUBAo0YwfD9ZmZbED1zI6IgH9gT+rbLww6JrG1gzk7FPQ0k7ftOkHNxbW+2ZWseskNGC1nQmNeHrEx35aAo0R2iPy+NxpLCXgYOeU0yn4fQPGP1JFN7p8AgnbhNI3EUku8YCNufJNmcnrdh56G+zo+zfgHIV
+x-microsoft-antispam-message-info: dL14II+vAdZx5es+KcZU9hUCvtqPlad3mqLaGoUOahy6hUE45Po8RoDK4sk8bp36OHW9s5uST2lWn008mfZBBvyBzYJ2SPC1mfVvmPKyw7trRrlkHTiP85ZBX6HpDpCEsY7n8FSYnFO2FbW5JrzVXzYO4BBvTpFdixs2IXpNG6iqZmchZXYjP7W6qK5vW8xmgkqLgRFJvp4X0pLtjoiKC4HOMhp9F/o2VrffrMEnCazjwheDBQRYoSdS6WJbJSxCZ08cOYfz732//+SHyebCqO2Dli/OEZJevFL9dodKkYos3VDtZqxozK2DXFFs+ew2tr/NQZQG+mbI6W/yhbOsDq4Th4Shjnv/A8B5/V4E97r9PM1aFG2CulY/G7oul1wZwcIkcaRjwzd/wkA7vF5A+WMZHDZWGXUfe2kwrNPYZ2sI9dvXdDzqwn2Azz3inlGc
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed38e793-ac20-422f-a4bf-08d7842f7997
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Dec 2019 02:59:33.3025 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91dd99e8-0958-43d4-6e2e-08d7842fe1cc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Dec 2019 03:02:28.1855 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RjCWwKfj5a9wAv69M+SzxnYBtiXAhPyWi26hRZMfza7VhrK/S4wEi6qRmKlg6bJFTDlAOeyWW9KPCmddnR4Raw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1679
+X-MS-Exchange-CrossTenant-userprincipalname: MXqQogmojG/wHz1Zjlh5zjzVkEK7tQQ/9yFWkk8fBao6hxmYVk+Q3F+2eYSNIV9H
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3152
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,247 +101,108 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Koenig, Christian" <Christian.Koenig@amd.com>
+Cc: "Long, Gang" <Gang.Long@amd.com>, "Xu, Feifei" <Feifei.Xu@amd.com>, "Wang,
+ Kevin\(Yang\)" <Kevin1.Wang@amd.com>, "Tuikov, Luben" <Luben.Tuikov@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>, "Zhang,
+ Hawking" <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Tuikov, Luben <Luben.Tuikov@amd.com>
-> Sent: Wednesday, December 18, 2019 6:17 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
-> <Christian.Koenig@amd.com>
-> Subject: Re: [PATCH] drm/amdgpu: simplify padding calculations (v3)
-> 
-> This patch seems to have been dropped after posting and reposting. I'm not
-> sure why it keeps being dropped.
+[AMD Official Use Only - Internal Distribution Only]
 
-Dropped from what?  Once it's been reviewed, add the RBs and go ahead and push it to amd-staging-drm-next.
+Reviewed-by: Xiaojie Yuan <xiaojie.yuan@amd.com>
 
-Alex
+BR,
+Xiaojie
 
-> 
-> In v3, I added an explanation in the commit text below the original commit
-> text of the single sentence of "Simplify padding calculations." Identical
-> diffstat as v2.
-> 
-> Regards,
-> Luben
-> 
-> On 2019-12-18 6:12 p.m., Luben Tuikov wrote:
-> > Simplify padding calculations.
-> >
-> > 1. Taking the remainder of a binary value when the divisor is a power
-> > of two, such as, a % 2^n is identical to, a & (2^n - 1) in base-2
-> > arithmetic, and so expressions like this:
-> >
-> > (12 - (lower_32_bits(ring->wptr) & 7)) % 8
-> >
-> > are superflous. And can be reduced to a single remainder-taking
-> > operation.
-> >
-> > 2. Subtracting the remainder modulo 8 out of 12 and then again taking
-> > the remainder modulo 8, yields the same result as simply subtracting
-> > the value out of 4 and then taking the remainder.
-> > This is true because 4 belongs to the congruence
-> > (residue) class {4 + 8*k}, k in Z. (So using,  {..., -12, -4, 4, 12,
-> > 20, ...}, would yield  the same final result.
-> >
-> > So the above expression, becomes,
-> >
-> > (4 - lower_32_bits(ring->wptr)) & 7
-> >
-> > 3. Now since 8 is part of the conguence class
-> > {0 + 8*k}, k in Z, and from 1) and 2) above, then,
-> >
-> > (8 - (ib->length_dw & 0x7)) % 8
-> >
-> > becomes, simply,
-> >
-> > (-ib->length_dw) & 7.
-> >
-> > This patch implements all of the above in this code.
-> >
-> > v2: Comment update and spacing.
-> > v3: Add 1, 2, 3, above, in this commit message.
-> >
-> > Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/cik_sdma.c  |  4 ++--
-> > drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c |  4 ++--
-> > drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c |  4 ++--
-> > drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c |  4 ++--
-> > drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c | 17 ++++++++++++-----
-> >  5 files changed, 20 insertions(+), 13 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-> > b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-> > index 1f22a8d0f7f3..4274ccf765de 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-> > @@ -228,7 +228,7 @@ static void cik_sdma_ring_emit_ib(struct
-> amdgpu_ring *ring,
-> >  	u32 extra_bits = vmid & 0xf;
-> >
-> >  	/* IB packet must end on a 8 DW boundary */
-> > -	cik_sdma_ring_insert_nop(ring, (12 - (lower_32_bits(ring->wptr) &
-> 7)) % 8);
-> > +	cik_sdma_ring_insert_nop(ring, (4 - lower_32_bits(ring->wptr)) & 7);
-> >
-> >  	amdgpu_ring_write(ring,
-> SDMA_PACKET(SDMA_OPCODE_INDIRECT_BUFFER, 0, extra_bits));
-> >  	amdgpu_ring_write(ring, ib->gpu_addr & 0xffffffe0); /* base must
-> be
-> > 32 byte aligned */ @@ -811,7 +811,7 @@ static void
-> cik_sdma_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib)
-> >  	u32 pad_count;
-> >  	int i;
-> >
-> > -	pad_count = (8 - (ib->length_dw & 0x7)) % 8;
-> > +	pad_count = (-ib->length_dw) & 7;
-> >  	for (i = 0; i < pad_count; i++)
-> >  		if (sdma && sdma->burst_nop && (i == 0))
-> >  			ib->ptr[ib->length_dw++] =
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-> > b/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-> > index 606b621145a1..fd7fa6082563 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-> > @@ -255,7 +255,7 @@ static void sdma_v2_4_ring_emit_ib(struct
-> amdgpu_ring *ring,
-> >  	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
-> >
-> >  	/* IB packet must end on a 8 DW boundary */
-> > -	sdma_v2_4_ring_insert_nop(ring, (10 - (lower_32_bits(ring->wptr) &
-> 7)) % 8);
-> > +	sdma_v2_4_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) &
-> > +7);
-> >
-> >  	amdgpu_ring_write(ring,
-> SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
-> >  			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-> @@ -750,7 +750,7 @@
-> > static void sdma_v2_4_ring_pad_ib(struct amdgpu_ring *ring, struct
-> amdgpu_ib *ib
-> >  	u32 pad_count;
-> >  	int i;
-> >
-> > -	pad_count = (8 - (ib->length_dw & 0x7)) % 8;
-> > +	pad_count = (-ib->length_dw) & 7;
-> >  	for (i = 0; i < pad_count; i++)
-> >  		if (sdma && sdma->burst_nop && (i == 0))
-> >  			ib->ptr[ib->length_dw++] =
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-> > b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-> > index a559573ec8fd..4a8a7f0f3a9c 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-> > @@ -429,7 +429,7 @@ static void sdma_v3_0_ring_emit_ib(struct
-> amdgpu_ring *ring,
-> >  	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
-> >
-> >  	/* IB packet must end on a 8 DW boundary */
-> > -	sdma_v3_0_ring_insert_nop(ring, (10 - (lower_32_bits(ring->wptr) &
-> 7)) % 8);
-> > +	sdma_v3_0_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) &
-> > +7);
-> >
-> >  	amdgpu_ring_write(ring,
-> SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
-> >  			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-> @@ -1021,7 +1021,7
-> > @@ static void sdma_v3_0_ring_pad_ib(struct amdgpu_ring *ring, struct
-> amdgpu_ib *ib
-> >  	u32 pad_count;
-> >  	int i;
-> >
-> > -	pad_count = (8 - (ib->length_dw & 0x7)) % 8;
-> > +	pad_count = (-ib->length_dw) & 7;
-> >  	for (i = 0; i < pad_count; i++)
-> >  		if (sdma && sdma->burst_nop && (i == 0))
-> >  			ib->ptr[ib->length_dw++] =
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> > b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> > index bd9ed33bab43..c69df0cb21ec 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> > @@ -698,7 +698,7 @@ static void sdma_v4_0_ring_emit_ib(struct
-> amdgpu_ring *ring,
-> >  	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
-> >
-> >  	/* IB packet must end on a 8 DW boundary */
-> > -	sdma_v4_0_ring_insert_nop(ring, (10 - (lower_32_bits(ring->wptr) &
-> 7)) % 8);
-> > +	sdma_v4_0_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) &
-> > +7);
-> >
-> >  	amdgpu_ring_write(ring,
-> SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
-> >  			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-> @@ -1579,7 +1579,7
-> > @@ static void sdma_v4_0_ring_pad_ib(struct amdgpu_ring *ring, struct
-> amdgpu_ib *ib
-> >  	u32 pad_count;
-> >  	int i;
-> >
-> > -	pad_count = (8 - (ib->length_dw & 0x7)) % 8;
-> > +	pad_count = (-ib->length_dw) & 7;
-> >  	for (i = 0; i < pad_count; i++)
-> >  		if (sdma && sdma->burst_nop && (i == 0))
-> >  			ib->ptr[ib->length_dw++] =
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> > b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> > index 119364293cec..3912937f878f 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> > @@ -382,8 +382,15 @@ static void sdma_v5_0_ring_emit_ib(struct
-> amdgpu_ring *ring,
-> >  	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
-> >  	uint64_t csa_mc_addr = amdgpu_sdma_get_csa_mc_addr(ring,
-> vmid);
-> >
-> > -	/* IB packet must end on a 8 DW boundary */
-> > -	sdma_v5_0_ring_insert_nop(ring, (10 - (lower_32_bits(ring->wptr) &
-> 7)) % 8);
-> > +	/* An IB packet must end on a 8 DW boundary--the next dword
-> > +	 * must be on a 8-dword boundary. Our IB packet below is 6
-> > +	 * dwords long, thus add x number of NOPs, such that, in
-> > +	 * modular arithmetic,
-> > +	 * wptr + 6 + x = 8k, k >= 0, which in C is,
-> > +	 * (wptr + 6 + x) % 8 = 0.
-> > +	 * The expression below, is a solution of x.
-> > +	 */
-> > +	sdma_v5_0_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) &
-> > +7);
-> >
-> >  	amdgpu_ring_write(ring,
-> SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
-> >  			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-> @@ -1076,10 +1083,10
-> > @@ static void sdma_v5_0_vm_set_pte_pde(struct amdgpu_ib *ib,  }
-> >
-> >  /**
-> > - * sdma_v5_0_ring_pad_ib - pad the IB to the required number of dw
-> > - *
-> > + * sdma_v5_0_ring_pad_ib - pad the IB
-> >   * @ib: indirect buffer to fill with padding
-> >   *
-> > + * Pad the IB with NOPs to a boundary multiple of 8.
-> >   */
-> >  static void sdma_v5_0_ring_pad_ib(struct amdgpu_ring *ring, struct
-> > amdgpu_ib *ib)  { @@ -1087,7 +1094,7 @@ static void
-> > sdma_v5_0_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib
-> >  	u32 pad_count;
-> >  	int i;
-> >
-> > -	pad_count = (8 - (ib->length_dw & 0x7)) % 8;
-> > +	pad_count = (-ib->length_dw) & 0x7;
-> >  	for (i = 0; i < pad_count; i++)
-> >  		if (sdma && sdma->burst_nop && (i == 0))
-> >  			ib->ptr[ib->length_dw++] =
-> >
+________________________________________
+From: Tianci Yin <tianci.yin@amd.com>
+Sent: Thursday, December 19, 2019 10:44 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Tuikov, Luben; Koenig, Christian; Deucher, Alexander; Zhang, Hawking; Xu, Feifei; Yuan, Xiaojie; Long, Gang; Wang, Kevin(Yang); Yin, Tianci (Rico)
+Subject: [PATCH 2/2] drm/amdgpu: remove memory training p2c buffer reservation(V2)
+
+From: "Tianci.Yin" <tianci.yin@amd.com>
+
+IP discovery TMR(occupied the top VRAM with size DISCOVERY_TMR_SIZE)
+has been reserved, and the p2c buffer is in the range of this TMR, so
+the p2c buffer reservation is unnecessary.
+
+Change-Id: Ib1f2f2b4a1f3869c03ffe22e2836cdbee17ba99f
+Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
+Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |  1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 21 ++-------------------
+ 2 files changed, 2 insertions(+), 20 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+index 5f8fd3e3535b..3265487b859f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+@@ -202,7 +202,6 @@ struct psp_memory_training_context {
+
+        /*vram offset of the p2c training data*/
+        u64 p2c_train_data_offset;
+-       struct amdgpu_bo *p2c_bo;
+
+        /*vram offset of the c2p training data*/
+        u64 c2p_train_data_offset;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index ec84acdd43a2..60f17e989014 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1681,9 +1681,6 @@ static int amdgpu_ttm_training_reserve_vram_fini(struct amdgpu_device *adev)
+        amdgpu_bo_free_kernel(&ctx->c2p_bo, NULL, NULL);
+        ctx->c2p_bo = NULL;
+
+-       amdgpu_bo_free_kernel(&ctx->p2c_bo, NULL, NULL);
+-       ctx->p2c_bo = NULL;
+-
+        return 0;
+ }
+
+@@ -1725,17 +1722,6 @@ static int amdgpu_ttm_training_reserve_vram_init(struct amdgpu_device *adev)
+                  ctx->p2c_train_data_offset,
+                  ctx->c2p_train_data_offset);
+
+-       ret = amdgpu_bo_create_kernel_at(adev,
+-                                        ctx->p2c_train_data_offset,
+-                                        ctx->train_data_size,
+-                                        AMDGPU_GEM_DOMAIN_VRAM,
+-                                        &ctx->p2c_bo,
+-                                        NULL);
+-       if (ret) {
+-               DRM_ERROR("alloc p2c_bo failed(%d)!\n", ret);
+-               goto Err_out;
+-       }
+-
+        ret = amdgpu_bo_create_kernel_at(adev,
+                                         ctx->c2p_train_data_offset,
+                                         ctx->train_data_size,
+@@ -1744,15 +1730,12 @@ static int amdgpu_ttm_training_reserve_vram_init(struct amdgpu_device *adev)
+                                         NULL);
+        if (ret) {
+                DRM_ERROR("alloc c2p_bo failed(%d)!\n", ret);
+-               goto Err_out;
++               amdgpu_ttm_training_reserve_vram_fini(adev);
++               return ret;
+        }
+
+        ctx->init = PSP_MEM_TRAIN_RESERVE_SUCCESS;
+        return 0;
+-
+-Err_out:
+-       amdgpu_ttm_training_reserve_vram_fini(adev);
+-       return ret;
+ }
+
+ /**
+--
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
