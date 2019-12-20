@@ -1,48 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8BD12772A
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Dec 2019 09:30:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B6612772C
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Dec 2019 09:30:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C146789C33;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0087A89C68;
 	Fri, 20 Dec 2019 08:30:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
  (mail-co1nam11on2069.outbound.protection.outlook.com [40.107.220.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAED089C33
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 08:30:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18F1889C0D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 08:30:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jxbup3x8awGEAGrdXs450Mu1bW+W++QNZWSOUWYsGKD7FZlpxbk3G6B4nkF1ZJFsV1A5OT+RrQfNPh64tZRWm5Wkg8T9cikgr7/WcXNotMvVY4QoiyGznBlMhn/FUEUtHKgJU2+ZpXLW9XVO00iu+Xrn5DXxAKAaB2LZrfyk2+wga2SgF7MlmU64lMtmOSp4hTFypU88LVKBAtSsscHge0BvKpHy1TCEjruOs1ETzHy3wDrz8r0dd/xZPeleWLudHgxeoXC2rLlcfbq3CRU4eL4Zyaq0TagFDra5lYi+TbDvxlPHuLGQSe7vxRqTIWIcCRAWgs830nxSue2Ih5Lzug==
+ b=dEDa9XEb9sRKf1teJKnRsYI+1RWJwZNnOt3+pn3Y/TrQ1lRaEunGxrCj+bcVUjL08n679XCS/GeBDDL9Zdhcg/gtqbv5ua2P/Fz5pt5rDF3ItUsiNMS+2HFL+qheAs9FQ/XZ88RE9BYQXn687aIuQUw2SQ0vot5pJoHoTE/7mgrdodmGZvJXHJqiPJ5rarKCvBX1MyKk1/YzPuwpn+5SeUe43FZyizFSV0g/vRklLcp5AVN8r1DwR12IQC+htlNFGtEYGNfPlI4bSz+M7MUB8mnWkRuOw05wlMNhRHMkhG6SUhulYTGcwzU81wjhNlIqKCK74l5lJAm5NRIyklpGNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q+w2PxuHNKolvdYiCsOANj4tHorq8/XLX0fh/+Sk20A=;
- b=CZIw/eO516IOb9sUnReI8rPbrb1D74j6eEWqTMgqlWmJz76RU1K5R6mS4jLBnOSQ4agcFf1fTKOrRMz2ELm4xAujWLvyFldhMBMRXr1DUXY/1uW0oStCUB+w8sHujL/+hwKEweI9MwIdzdnxT+DMPXlz1NF45LKDJIZqJ9Hi0vyMaVmTDUfHxhvRNQTGflJpurDwvxVsPRvHGvnmf37zL+7hj+kX+6NWmJU4TJ4DZuB77ehTf/2A0bDZ8EwItaU4iCG1pKNCVKyXn4nRENgvQ/Zq2cnXCG/ibJvbWZX35NuUuzChsZQWAYJwX3fHBDQqNaf+qxFvIrrecPxUMMSnfw==
+ bh=QYbz3fpXQSzGXkYvMu83300yOEFuVs8/ojTQqxoU3hQ=;
+ b=nLDzMSAFghbiSMSA76prV4jCapqK4xJPEcXHKGkwluoCr79MBMQBnZ6C/n9DYBM/4jiQKFGZo8eJGhZYHLZZSENz09FUZMJmoOIiiBITni/VI5lIGrN7vBaxGLnT94xBi20UcvlRDw2WNNUXyhlzvxSURg/oaruCtt7KdDc3RG5yiKBpLFD/53wY7Fk4F3PgDV9Nya7OEqFJPbKMnQhG7o/5A5Q1ZZGw0LZn+1BKWoxQP+XcirTtuCIBysvHVilI0WOkLiR/V+FEvDTImKTfXwZBnHPlJ97Wfjc5ANBMXQy/BPwxYK1zaHjR0e+vViRmmTtuw/fj2eNyC0DTj3FCKg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q+w2PxuHNKolvdYiCsOANj4tHorq8/XLX0fh/+Sk20A=;
- b=Yxx/3t7DiC6s7cO3B7zPjz9KDhllL3GlLkKxtTEy6BXZMh0tnWnc55IwdLPrbLWUM5w45ZqnODw5gQ3/589nRQmZ0pcK99j1pmn9f88QZc5TbghUF5xwqptuVddDktHgI8U/lsnY9M2Tz0XISZleHu4p74VJXt93HArjBTl9kI8=
+ bh=QYbz3fpXQSzGXkYvMu83300yOEFuVs8/ojTQqxoU3hQ=;
+ b=AjkexxoribDhnZsoqZ5+xEVEBGrgu+pg6SLgXTEyvdz4cA5V2hvnIlSG3HCrNqlVAv6lp7ay07X6ZSj9RU/IyhhjCEUhAjZFdwCZs+d7e1oP/Lm/t2NCD11lIQZMH12vJsdyiOWYL6cyf+cgUOsmmHnnTrUDrq2jsuHAZx1q/ck=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Felix.Kuehling@amd.com; 
 Received: from MN2PR12MB3949.namprd12.prod.outlook.com (10.255.237.150) by
  MN2PR12MB3215.namprd12.prod.outlook.com (20.179.82.97) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2559.15; Fri, 20 Dec 2019 08:30:21 +0000
+ 15.20.2559.15; Fri, 20 Dec 2019 08:30:22 +0000
 Received: from MN2PR12MB3949.namprd12.prod.outlook.com
  ([fe80::d5cc:e5d3:2351:5c08]) by MN2PR12MB3949.namprd12.prod.outlook.com
  ([fe80::d5cc:e5d3:2351:5c08%6]) with mapi id 15.20.2559.015; Fri, 20 Dec 2019
- 08:30:21 +0000
+ 08:30:22 +0000
 From: Felix Kuehling <Felix.Kuehling@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/4] drm/amdkfd: Remove unused variable
-Date: Fri, 20 Dec 2019 03:29:59 -0500
-Message-Id: <20191220083001.30607-2-Felix.Kuehling@amd.com>
+Subject: [PATCH 3/4] drm/amdkfd: Improve HWS hang detection and handling
+Date: Fri, 20 Dec 2019 03:30:00 -0500
+Message-Id: <20191220083001.30607-3-Felix.Kuehling@amd.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20191220083001.30607-1-Felix.Kuehling@amd.com>
 References: <20191220083001.30607-1-Felix.Kuehling@amd.com>
@@ -53,18 +53,18 @@ MIME-Version: 1.0
 Received: from Harpoon.amd.com (165.204.55.251) by
  YTBPR01CA0008.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::21) with Microsoft
  SMTP Server (version=TLS1_2, cipher=) via Frontend Transport;
- Fri, 20 Dec 2019 08:30:20 +0000
+ Fri, 20 Dec 2019 08:30:21 +0000
 X-Mailer: git-send-email 2.24.1
 X-Originating-IP: [165.204.55.251]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: e515e6f2-2cbf-4c2e-549b-08d78526d9ec
+X-MS-Office365-Filtering-Correlation-Id: 46444fe2-789d-4c97-c2dd-08d78526da4f
 X-MS-TrafficTypeDiagnostic: MN2PR12MB3215:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB32156FCC7CD618F9846C8B31922D0@MN2PR12MB3215.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:93;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB321538AF043192937BA57AE0922D0@MN2PR12MB3215.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
 X-Forefront-PRVS: 025796F161
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(346002)(376002)(39860400002)(366004)(396003)(199004)(189003)(1076003)(52116002)(6666004)(5660300002)(36756003)(186003)(16526019)(2906002)(7696005)(6486002)(316002)(66556008)(66476007)(478600001)(6916009)(956004)(26005)(66946007)(2616005)(81156014)(8676002)(86362001)(8936002)(81166006);
+ SFS:(10009020)(4636009)(136003)(346002)(376002)(39860400002)(366004)(396003)(199004)(189003)(43544003)(1076003)(52116002)(6666004)(5660300002)(36756003)(186003)(16526019)(2906002)(7696005)(6486002)(316002)(66556008)(66476007)(478600001)(6916009)(956004)(26005)(66946007)(2616005)(81156014)(8676002)(86362001)(8936002)(81166006);
  DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3215;
  H:MN2PR12MB3949.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
@@ -72,14 +72,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: P/ycedqdzN55C+KzUR7hpO8e/tqovaCw7fnNs8N6B3qkoaHTRgLu/c0InV3KthwEldisyU4rQbTNHdDcuqMDv/XNGJt4VnVCBqrgeGE613xnRmQYxGMZBpRnqFRVEFnVX5CyVkcsuZkHrNePny2pYyaEK/LQjAQvLAtSu0NicNn1Xg5CRrNKcTUHytqJ//s63Y4QlRDAA0Vycusg/d9es/mHGQ2v9MSoEleH1Fili7Ktbgd3fZz0AnR7OxqOwdHpvqgu5+t4TavQ224ouWgkaHd/QK4fs7Wy4KeuhU6NE7kFi+OAjexnOLp6XpHKzOqlfAD8YhbjHAPAbF9m0+ntm9j1iNU+TmeYSTeD+Ed9VFG0ac+fPmaVqToH7zIBfaPDys4wUALtvHucudu2x7zRPnuRBXetoxygBSxJ0CW3y9rDWumAvPrH339W/OBW7KCB
+X-Microsoft-Antispam-Message-Info: et0PnKDrMLL1xhVELtsTQkbr1mYbmLhzFgWyw95Bpl3mNnrB2HKMZ8yq8UccY7ducDud2nRampZB6ylEkf4ysbR9uVP6F+Phbd5saPCK69Q9biKSaZJBL4o7vYCagAkM67wlT+fkwqrb6Gjj4f1jXv7v1XWHkZCblgmzt8CgGsaCj661kolEE7QL8szLkQdyDg8sS3DRoUUffYfHfo5ShexEHzlSxG9+ZT4s50kXhC3mWM7rSSEZhQcFWde3epEFyFfyEoUiPEJ58VfOq/7xHbs1gqyDlOalw5mDr+Lll9XCVUL+3T/XjCkNVZb/oKL4x3wY6btxyd4qkyVWEDmegN0IIKo+TLLdjvBZu9CC/Cf0W72Ml6dC4Y9pfQC4Awk8C7PbayZYacfSfEmZ3UycdN8FbZsVlX8L0cgCmS9IRKYH8xqk0zpdhLlXHR2+qWBEKmSuuKNqgcDsLF4UcjbRuTG5/pBdtW9Faiie5DNJimOBj+BeQd4pAoEXqBmpjo35
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e515e6f2-2cbf-4c2e-549b-08d78526d9ec
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2019 08:30:21.0938 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46444fe2-789d-4c97-c2dd-08d78526da4f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2019 08:30:21.7394 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iMdPR7rduWdAQlvm/ENOf12pmLed0GGpdMTxQ4NUhYzbdNOX/Ls+lvY/+Kk5AUgOeoWbDrm/LtK5wxd/1iI3TA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6rxA1x9fOUXTWchzGvZ7cDBw4WUv48PlcdYBibEO0TuO4cqi+Pvt5xJjrXrIdPP82oYWc9G3UbemRfQV1MsbMQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3215
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,38 +97,126 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-dqm->pipeline_mem wasn't used anywhere.
+Move HWS hand detection into unmap_queues_cpsch to catch hangs in all
+cases. If this happens during a reset, don't schedule another reset
+because the reset already in progress is expected to take care of it.
 
 Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 1 -
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h | 1 -
- 2 files changed, 2 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c       |  3 +++
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c | 27 ++++++++++++++-----
+ .../drm/amd/amdkfd/kfd_device_queue_manager.h |  2 ++
+ 3 files changed, 26 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index c6b6901bbda3..2a9e40131735 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -728,6 +728,9 @@ int kgd2kfd_pre_reset(struct kfd_dev *kfd)
+ {
+ 	if (!kfd->init_complete)
+ 		return 0;
++
++	kfd->dqm->ops.pre_reset(kfd->dqm);
++
+ 	kgd2kfd_suspend(kfd);
+ 
+ 	kfd_signal_reset_event(kfd);
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index f7f6df40875e..558c0ad81848 100644
+index 558c0ad81848..a7e9ec1b3ce3 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -930,7 +930,6 @@ static void uninitialize(struct device_queue_manager *dqm)
- 	for (i = 0 ; i < KFD_MQD_TYPE_MAX ; i++)
- 		kfree(dqm->mqd_mgrs[i]);
- 	mutex_destroy(&dqm->lock_hidden);
--	kfd_gtt_sa_free(dqm->dev, dqm->pipeline_mem);
+@@ -952,6 +952,13 @@ static int stop_nocpsch(struct device_queue_manager *dqm)
+ 	return 0;
  }
  
- static int start_nocpsch(struct device_queue_manager *dqm)
++static void pre_reset(struct device_queue_manager *dqm)
++{
++	dqm_lock(dqm);
++	dqm->is_resetting = true;
++	dqm_unlock(dqm);
++}
++
+ static int allocate_sdma_queue(struct device_queue_manager *dqm,
+ 				struct queue *q)
+ {
+@@ -1099,6 +1106,7 @@ static int start_cpsch(struct device_queue_manager *dqm)
+ 	dqm_lock(dqm);
+ 	/* clear hang status when driver try to start the hw scheduler */
+ 	dqm->is_hws_hang = false;
++	dqm->is_resetting = false;
+ 	dqm->sched_running = true;
+ 	execute_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0);
+ 	dqm_unlock(dqm);
+@@ -1351,8 +1359,17 @@ static int unmap_queues_cpsch(struct device_queue_manager *dqm,
+ 	/* should be timed out */
+ 	retval = amdkfd_fence_wait_timeout(dqm->fence_addr, KFD_FENCE_COMPLETED,
+ 				queue_preemption_timeout_ms);
+-	if (retval)
++	if (retval) {
++		pr_err("The cp might be in an unrecoverable state due to an unsuccessful queues preemption\n");
++		dqm->is_hws_hang = true;
++		/* It's possible we're detecting a HWS hang in the
++		 * middle of a GPU reset. No need to schedule another
++		 * reset in this case.
++		 */
++		if (!dqm->is_resetting)
++			schedule_work(&dqm->hw_exception_work);
+ 		return retval;
++	}
+ 
+ 	pm_release_ib(&dqm->packets);
+ 	dqm->active_runlist = false;
+@@ -1370,12 +1387,8 @@ static int execute_queues_cpsch(struct device_queue_manager *dqm,
+ 	if (dqm->is_hws_hang)
+ 		return -EIO;
+ 	retval = unmap_queues_cpsch(dqm, filter, filter_param);
+-	if (retval) {
+-		pr_err("The cp might be in an unrecoverable state due to an unsuccessful queues preemption\n");
+-		dqm->is_hws_hang = true;
+-		schedule_work(&dqm->hw_exception_work);
++	if (retval)
+ 		return retval;
+-	}
+ 
+ 	return map_queues_cpsch(dqm);
+ }
+@@ -1769,6 +1782,7 @@ struct device_queue_manager *device_queue_manager_init(struct kfd_dev *dev)
+ 		dqm->ops.initialize = initialize_cpsch;
+ 		dqm->ops.start = start_cpsch;
+ 		dqm->ops.stop = stop_cpsch;
++		dqm->ops.pre_reset = pre_reset;
+ 		dqm->ops.destroy_queue = destroy_queue_cpsch;
+ 		dqm->ops.update_queue = update_queue;
+ 		dqm->ops.register_process = register_process;
+@@ -1787,6 +1801,7 @@ struct device_queue_manager *device_queue_manager_init(struct kfd_dev *dev)
+ 		/* initialize dqm for no cp scheduling */
+ 		dqm->ops.start = start_nocpsch;
+ 		dqm->ops.stop = stop_nocpsch;
++		dqm->ops.pre_reset = pre_reset;
+ 		dqm->ops.create_queue = create_queue_nocpsch;
+ 		dqm->ops.destroy_queue = destroy_queue_nocpsch;
+ 		dqm->ops.update_queue = update_queue;
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-index a8c37e6da027..8991120c4fa2 100644
+index 8991120c4fa2..871d3b628d2d 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-@@ -190,7 +190,6 @@ struct device_queue_manager {
- 	/* the pasid mapping for each kfd vmid */
- 	uint16_t		vmid_pasid[VMID_NUM];
- 	uint64_t		pipelines_addr;
--	struct kfd_mem_obj	*pipeline_mem;
- 	uint64_t		fence_gpu_addr;
- 	unsigned int		*fence_addr;
- 	struct kfd_mem_obj	*fence_mem;
+@@ -104,6 +104,7 @@ struct device_queue_manager_ops {
+ 	int	(*initialize)(struct device_queue_manager *dqm);
+ 	int	(*start)(struct device_queue_manager *dqm);
+ 	int	(*stop)(struct device_queue_manager *dqm);
++	void	(*pre_reset)(struct device_queue_manager *dqm);
+ 	void	(*uninitialize)(struct device_queue_manager *dqm);
+ 	int	(*create_kernel_queue)(struct device_queue_manager *dqm,
+ 					struct kernel_queue *kq,
+@@ -198,6 +199,7 @@ struct device_queue_manager {
+ 
+ 	/* hw exception  */
+ 	bool			is_hws_hang;
++	bool			is_resetting;
+ 	struct work_struct	hw_exception_work;
+ 	struct kfd_mem_obj	hiq_sdma_mqd;
+ 	bool			sched_running;
 -- 
 2.24.1
 
