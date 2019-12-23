@@ -2,37 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA16129817
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Dec 2019 16:26:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D15129800
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Dec 2019 16:21:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C3E56E2D3;
-	Mon, 23 Dec 2019 15:26:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E1086E2C4;
+	Mon, 23 Dec 2019 15:21:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga06-in.huawei.com [45.249.212.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 359AC89D5B;
- Mon, 23 Dec 2019 13:39:14 +0000 (UTC)
-Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id 93364DCFFFF26E33927F;
- Mon, 23 Dec 2019 21:39:12 +0800 (CST)
-Received: from huawei.com (10.90.53.225) by DGGEMS408-HUB.china.huawei.com
- (10.3.19.208) with Microsoft SMTP Server id 14.3.439.0; Mon, 23 Dec 2019
- 21:39:02 +0800
-From: zhengbin <zhengbin13@huawei.com>
-To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <David1.Zhou@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-Subject: [PATCH 5/5] drm/amdgpu: use true,
- false for bool variable in amdgpu_psp.c
-Date: Mon, 23 Dec 2019 21:46:21 +0800
-Message-ID: <1577108781-68614-6-git-send-email-zhengbin13@huawei.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1577108781-68614-1-git-send-email-zhengbin13@huawei.com>
-References: <1577108781-68614-1-git-send-email-zhengbin13@huawei.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2055.outbound.protection.outlook.com [40.107.237.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5279C6E2C4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 15:21:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jtT+Rw6j7y9bN5Tq68S3JiAQglFnCh42FVAKk98o27pI1AtBJC0VeWc6Y1atpHbOeBce+7Jp8XO7n8Pxiq/OjI2Yb2qAzHSy9YnyTWqWbE9t0AzdnQY7PHFbsyTxq5j8aJFUVkEBeJWNcMdc9I6jTcXNfMMYaqeZXmJo+rqHbnXDuLLFMzfx0gboNCJ/arYZ9xoszV7PgMhVKP1gbIvLaV2CVQHUa6BpvKfNA4+LpzebRxvYgSt+rDqnqOqucWkBVLqQPEL3YCYh+LUF+aiBFLJcRoMnybbdCYMXuW6SOBcTQd+cOdQfgyMXzF0T4DKodsQoMqjJg2q0TA7iKnphSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vYAT9k2A+1+kAd7gm7wVbQfhQGel5/XCL+qL0Ihr2/M=;
+ b=IkNzlTV4fRxQdKIm1irX0TY9geKdNqModWJLJWimjhJRXdGdu13w1Q0QtvMaTVrR1LwEGm0/ILCJFQDiyOITrhW6Qa6ykewPqXq6zk85tXSdaksaVbpYuvfhwjFnQZNkJdcM7vLbsTZMWM65G4QSse00BSzh4c3mf34qoAno7FvNfigK1wXfniSNw/BokUxbStzrgf5gA00G3sbFjyOF48sJEILsfvf02TMDjvEuXFkt2ZzwCjrAap8yVRClTuXtJzDW8OBK4ab+Jt42ovO5YhxnEbqhFDrJlqrKzor37VUaAF2KdkZ6LFjqYKdQBWrAJSWlUSW12nPrXK1c8AY+Fg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vYAT9k2A+1+kAd7gm7wVbQfhQGel5/XCL+qL0Ihr2/M=;
+ b=ugNw/oRO7W46uZcpbDWvP9zhaPFVNigrKhqN/9BKtvG0G7gEPkoJ6r/mJah+wWbfl6EoNYL+RVdsYDRAtf3hpUH8AKEZ9V8Pl0WQvHLjbBfhXTX0JL3jWlOl9FuVsRx/zqML4+JbfmIuJj6hPGpTixV7jWDYHjoZlJpmQCG+0Pw=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Harry.Wentland@amd.com; 
+Received: from CY4PR1201MB0230.namprd12.prod.outlook.com (10.172.79.7) by
+ CY4PR1201MB0008.namprd12.prod.outlook.com (10.172.118.151) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2559.16; Mon, 23 Dec 2019 15:21:04 +0000
+Received: from CY4PR1201MB0230.namprd12.prod.outlook.com
+ ([fe80::301e:b0c8:7af:d77d]) by CY4PR1201MB0230.namprd12.prod.outlook.com
+ ([fe80::301e:b0c8:7af:d77d%11]) with mapi id 15.20.2559.017; Mon, 23 Dec 2019
+ 15:21:04 +0000
+Subject: Re: [PATCH] drm/amd/display: fix kernel_fpu_begin/_end() warnings
+To: Xiaojie Yuan <xiaojie.yuan@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20191223032258.7327-1-xiaojie.yuan@amd.com>
+From: Harry Wentland <hwentlan@amd.com>
+Autocrypt: addr=hwentlan@amd.com; keydata=
+ mQENBFhb4C8BCADhHHUNoBQ7K7LupCP0FsUb443Vuqq+dH0uo4A3lnPkMF6FJmGcJ9Sbx1C6
+ cd4PbVAaTFZUEmjqfpm+wCRBe11eF55hW3GJ273wvfH69Q/zmAxwO8yk+i5ZWWl8Hns5h69K
+ D9QURHLpXxrcwnfHFah0DwV23TrD1KGB7vowCZyJOw93U/GzAlXKESy0FM7ZOYIJH83X7qhh
+ Q9KX94iTEYTeH86Wy8hwHtqM6ySviwEz0g+UegpG8ebbz0w3b5QmdKCAg+eZTmBekP5o77YE
+ BKqR+Miiwo9+tzm2N5GiF9HDeI2pVe/egOLa5UcmsgdF4Y5FKoMnBbAHNaA6Fev8PHlNABEB
+ AAG0J0hhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPokBNwQTAQgAIQUC
+ WFvgLwIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRAtWBXJjBS24xUlCAC9MqAlIbZO
+ /a37s41h+MQ+D20C6/hVErWO+RA06nA+jFDPUWrDJKYdn6EDQWdLY3ATeAq3X8GIeOTXGrPD
+ b2OXD6kOViW/RNvlXdrIsnIDacdr39aoAlY1b+bhTzZVz4pto4l+K1PZb5jlMgTk/ks9HesL
+ RfYVq5wOy3qIpocdjdlXnSUKn0WOkGBBd8Nv3o0OI18tiJ1S/QwLBBfZoVvfGinoB2p4j/wO
+ kJxpi3F9TaOtLGcdrgfghg31Fb48DP+6kodZ4ircerp4hyAp0U2iKtsrQ/sVWR4mbe3eTfcn
+ YjBxGd2JOVdNQZa2VTNf9GshIDMD8IIQK6jN0LfY8Py2uQENBFhb4C8BCAC/0KWY3pIbU2cy
+ i7GMj3gqB6h0jGqRuMpMRoSNDoAUIuSh17w+bawuOF6XZPdK3D4lC9cOXMwP3aP9tTJOori2
+ 8vMH8KW9jp9lAYnGWYhSqLdjzIACquMqi96EBtawJDct1e9pVgp+d4JXHlgIrl11ITJo8rCP
+ dEqjro2bCBWxijsIncdCzMjf57+nR7u86SBtGSFcXKapS7YJeWcvM6MzFYgIkxHxxBDvBBvm
+ U2/mAXiL72kwmlV1BNrabQxX2UnIb3xt3UovYJehrnDUMdYjxJgSPRBx27wQ/D05xAlhkmmL
+ FJ01ZYc412CRCC6gjgFPfUi2y7YJTrQHS79WSyANABEBAAGJAR8EGAEIAAkFAlhb4C8CGwwA
+ CgkQLVgVyYwUtuM72Qf+J6JOQ/27pWf5Ulde9GS0BigA1kV9CNfIq396TgvQzeyixHMvgPdq
+ Z36x89zZi0otjMZv6ypIdEg5co1Bvz0wFaKbCiNbTjpnA1VAbQVLSFjCZLQiu0vc+BZ1yKDV
+ T5ASJ97G4XvQNO+XXGY55MrmhoNqMaeIa/3Jas54fPVd5olcnUAyDty29/VWXNllUq38iBCX
+ /0tTF7oav1lzPGfeW2c6B700FFZMTR4YBVSGE8jPIzu2Fj0E8EkDmsgS+nibqSvWXfo1v231
+ 410h35CjbYDlYQO7Z1YD7asqbaOnF0As+rckyRMweQ9CxZn5+YBijtPJA3x5ldbCfQ9rWiTu XQ==
+Message-ID: <569a81e1-e5df-2bdb-ba3e-11a22d2be73d@amd.com>
+Date: Mon, 23 Dec 2019 10:21:02 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
+In-Reply-To: <20191223032258.7327-1-xiaojie.yuan@amd.com>
+Content-Language: en-US
+X-ClientProxiedBy: YTXPR0101CA0039.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:1::16) To CY4PR1201MB0230.namprd12.prod.outlook.com
+ (2603:10b6:910:1e::7)
 MIME-Version: 1.0
-X-Originating-IP: [10.90.53.225]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Mon, 23 Dec 2019 15:26:04 +0000
+Received: from [10.4.33.74] (165.204.55.251) by
+ YTXPR0101CA0039.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::16) with
+ Microsoft SMTP Server (version=TLS1_2, cipher=) via Frontend Transport;
+ Mon, 23 Dec 2019 15:21:03 +0000
+X-Originating-IP: [165.204.55.251]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 3ef85ebd-0618-4be9-940d-08d787bbb9a7
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0008:|CY4PR1201MB0008:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB000810455AE8A43A1945C6EB8C2E0@CY4PR1201MB0008.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:411;
+X-Forefront-PRVS: 0260457E99
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(376002)(396003)(366004)(346002)(136003)(39860400002)(199004)(189003)(52116002)(16576012)(4326008)(4001150100001)(26005)(81166006)(81156014)(8676002)(186003)(16526019)(8936002)(316002)(31696002)(31686004)(66556008)(66476007)(66946007)(5660300002)(2616005)(6486002)(53546011)(956004)(478600001)(2906002)(36756003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR1201MB0008;
+ H:CY4PR1201MB0230.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: tFQgJ4Bh31DMmZI8mL5pCUnsclXjscSC/YAr35pxv9SYTPnAfjzB5pnTWT5GW6zUWDhg+j8Hb10MjahSnRWBeACmojNOlKQuPB4TzEnHZG0ag3tuuywfxZaA8KZZpUXAXzFbdiehQogUbW6hU2PgeO+SMjQRIoUcsHX+lR9S7dgqzxSmwF3JrtQTHX7eufkHPXgJBqeIcSdbsJUlyiDVgdSQwi4BFexlgRzV5OjOMoa4z0tOfelWyU3Pp4UpbyugKk7t5TfZqGMcHs03El9gwY8kgIQNbAtvyyGz6QfVG1p1EcKqrs6X6MsvUnWKLVmoltBgNKxjdlztpR4ePNQW4KDE/jVMQt8WSrCf5K16CGp3ciJ8ZxWgmcF7xZXqtKFDv4O4ZfZ6n/VxJ0sk/KLhp40k8MWWF6p3omh6D+FSIcsb6n+3sc7ruHAZv+LRtM8s
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ef85ebd-0618-4be9-940d-08d787bbb9a7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2019 15:21:04.1675 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zbr/Xr6Mkwf1Btw5io/TH3lb0X+PL7aEkdaaSHvkuiYeY74e5bBRtoQRVSel+rtpBjzhdoBMCMAPqhTI+GUaLQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0008
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,88 +117,68 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: zhengbin13@huawei.com
+Cc: harry.wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixes coccicheck warning:
+On 2019-12-22 10:22 p.m., Xiaojie Yuan wrote:
+> kernel_fpu_begin/_end() are already called inside dcn20_resource_construct,
+> and calling kernel_fpu_begin/_end() recursively triggers WARN_ON() when
+> CONFIG_X86_DEBUG_FPU is enabled.
+> 
+> [  107.060434] WARNING: CPU: 6 PID: 1370 at arch/x86/kernel/fpu/core.c:90 kernel_fpu_begin+0xbd/0xe0
+> <snip>
+> [  107.268197] Call Trace:
+> [  107.270751]  dcn20_patch_bounding_box+0x17/0x100 [amdgpu]
+> [  107.276204]  init_soc_bounding_box+0x1b3/0x5f0 [amdgpu]
+> [  107.281536]  ? _cond_resched+0x19/0x30
+> [  107.285307]  dcn20_resource_construct+0x3a9/0xa90 [amdgpu]
+> [  107.290957]  ? dcn20_resource_construct+0x3a9/0xa90 [amdgpu]
+> [  107.296621]  ? __alloc_pages_nodemask+0x16a/0x330
+> [  107.301476]  ? _cond_resched+0x19/0x30
+> [  107.305284]  ? kmem_cache_alloc_trace+0x197/0x230
+> [  107.310063]  ? _cond_resched+0x19/0x30
+> [  107.313783]  ? kmem_cache_alloc_trace+0x197/0x230
+> [  107.318691]  dcn20_create_resource_pool+0x42/0x70 [amdgpu]
+> [  107.324315]  dc_create_resource_pool+0x12d/0x170 [amdgpu]
+> [  107.329851]  dc_create+0x1b8/0x6a0 [amdgpu]
+> [  107.334013]  ? kmem_cache_alloc_trace+0x1e2/0x230
+> [  107.338832]  amdgpu_dm_init+0x13e/0x1c0 [amdgpu]
+> <snip>
+> 
+> Signed-off-by: Xiaojie Yuan <xiaojie.yuan@amd.com>
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:674:2-26: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:794:1-25: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:897:2-36: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:1016:1-35: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:1087:2-34: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:1177:1-33: WARNING: Assignment of 0/1 to bool variable
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: zhengbin <zhengbin13@huawei.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Harry
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index 3e293a3..9153b9a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -671,7 +671,7 @@ static int psp_ras_load(struct psp_context *psp)
- 			psp->fence_buf_mc_addr);
-
- 	if (!ret) {
--		psp->ras.ras_initialized = 1;
-+		psp->ras.ras_initialized = true;
- 		psp->ras.session_id = cmd->resp.session_id;
- 	}
-
-@@ -791,7 +791,7 @@ static int psp_ras_terminate(struct psp_context *psp)
- 	if (ret)
- 		return ret;
-
--	psp->ras.ras_initialized = 0;
-+	psp->ras.ras_initialized = false;
-
- 	/* free ras shared memory */
- 	amdgpu_bo_free_kernel(&psp->ras.ras_shared_bo,
-@@ -894,7 +894,7 @@ static int psp_hdcp_load(struct psp_context *psp)
- 	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
-
- 	if (!ret) {
--		psp->hdcp_context.hdcp_initialized = 1;
-+		psp->hdcp_context.hdcp_initialized = true;
- 		psp->hdcp_context.session_id = cmd->resp.session_id;
- 	}
-
-@@ -1013,7 +1013,7 @@ static int psp_hdcp_terminate(struct psp_context *psp)
- 	if (ret)
- 		return ret;
-
--	psp->hdcp_context.hdcp_initialized = 0;
-+	psp->hdcp_context.hdcp_initialized = false;
-
- 	/* free hdcp shared memory */
- 	amdgpu_bo_free_kernel(&psp->hdcp_context.hdcp_shared_bo,
-@@ -1084,7 +1084,7 @@ static int psp_dtm_load(struct psp_context *psp)
- 	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
-
- 	if (!ret) {
--		psp->dtm_context.dtm_initialized = 1;
-+		psp->dtm_context.dtm_initialized = true;
- 		psp->dtm_context.session_id = cmd->resp.session_id;
- 	}
-
-@@ -1174,7 +1174,7 @@ static int psp_dtm_terminate(struct psp_context *psp)
- 	if (ret)
- 		return ret;
-
--	psp->dtm_context.dtm_initialized = 0;
-+	psp->dtm_context.dtm_initialized = false;
-
- 	/* free hdcp shared memory */
- 	amdgpu_bo_free_kernel(&psp->dtm_context.dtm_shared_bo,
---
-2.7.4
-
+> ---
+>  drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+> index d72e921fffa0..9f346ffb6e78 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+> @@ -3225,7 +3225,6 @@ void dcn20_update_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_s
+>  
+>  void dcn20_patch_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_st *bb)
+>  {
+> -	DC_FP_START();
+>  	if ((int)(bb->sr_exit_time_us * 1000) != dc->bb_overrides.sr_exit_time_ns
+>  			&& dc->bb_overrides.sr_exit_time_ns) {
+>  		bb->sr_exit_time_us = dc->bb_overrides.sr_exit_time_ns / 1000.0;
+> @@ -3249,7 +3248,6 @@ void dcn20_patch_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_st
+>  		bb->dram_clock_change_latency_us =
+>  				dc->bb_overrides.dram_clock_change_latency_ns / 1000.0;
+>  	}
+> -	DC_FP_END();
+>  }
+>  
+>  static struct _vcs_dpi_soc_bounding_box_st *get_asic_rev_soc_bb(
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
