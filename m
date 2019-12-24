@@ -2,38 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF1A12A3CE
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Dec 2019 19:09:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D1B12A3C6
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Dec 2019 19:01:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18EE16E34C;
-	Tue, 24 Dec 2019 18:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F12F6E34B;
+	Tue, 24 Dec 2019 18:00:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga05-in.huawei.com [45.249.212.191])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A21696E0DB;
- Tue, 24 Dec 2019 03:20:33 +0000 (UTC)
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id 3E3E65504D56C2D0C355;
- Tue, 24 Dec 2019 11:20:31 +0800 (CST)
-Received: from huawei.com (10.90.53.225) by DGGEMS412-HUB.china.huawei.com
- (10.3.19.212) with Microsoft SMTP Server id 14.3.439.0; Tue, 24 Dec 2019
- 11:20:25 +0800
-From: zhengbin <zhengbin13@huawei.com>
-To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
- <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <David1.Zhou@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-Subject: [PATCH 8/8] drm/amd/display: use true,
- false for bool variable in display_rq_dlg_calc_21.c
-Date: Tue, 24 Dec 2019 11:27:43 +0800
-Message-ID: <1577158063-76188-9-git-send-email-zhengbin13@huawei.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1577158063-76188-1-git-send-email-zhengbin13@huawei.com>
-References: <1577158063-76188-1-git-send-email-zhengbin13@huawei.com>
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D84AB6E34B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 18:00:57 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id c9so20384545wrw.8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 10:00:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=EsCnnwx1N8hIBTj0xE7rBxakA3G8kLxK36JQeT506Ws=;
+ b=eWBwKBObAhdExuWQPm/a2fEFk5jfuKcygm9X41Fy6XpTFBpju3vygKfu5cgJ2Bew9q
+ HWrT63jjgxDhx/7KykC/RZ7noeKY80RF4CTOFslxnwUgoFuJeZhY2bG+5DF+/jZqQUxz
+ zC2ER5+p1C7in7Dga++jHXthKUT++TATMP+jJfGF+8rhu+0Y3L/h9VWt89ULwyCHOQAp
+ twbbYvfe8qOo2yleZKdP3XUlRgviHEoHfl4cYikuNDLNqecLTc1B4IgM4JsG+4rYkXFS
+ jzciJmhf/KvPIOGfAJ3JPLHUFbaL+SQEF85FNqg98wHloGItqYic/i4SphpvwpaiWQuL
+ CJ/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=EsCnnwx1N8hIBTj0xE7rBxakA3G8kLxK36JQeT506Ws=;
+ b=RQguc0Nuab4mWRJ4HvxifzPiFEyUz14Ka/+k0nAbnd93kAA7Hy/Eo7kVbb5lf3pH3J
+ UqY5PFipA1bzLPthV9gp8YUhZtWhOSa0OHjCDQT8bDSg/3aOQzCu7ck7C36D3mCdWyIF
+ PlqCBgmRX+7vFuOQlZRxlURQCRWr6IDzdZSfWaHibOORQPAJDmM7F9qfdpgAfTg8e7rn
+ 4WhSUTIZA94FcgYL2mmajO89k5umsx8I0pOYXx8TYNJyW069p71HNldWgem1UfYLWSRB
+ bLbhDVQH/BZG1DaaCRDO2J2QL6h+Wep+BUMi2zj09gBQG/tdVNFT6VOMW7gPbe6MC2eA
+ yuWw==
+X-Gm-Message-State: APjAAAVH7QfvJjyYH+Ui4guxmK4cdIyeXD6RlMY2YrkpWmRo5Ah+a2Ml
+ nVY0M/N9fu5PkMjSy1Yy2D9dqu7UmfaM2+wuMvQ=
+X-Google-Smtp-Source: APXvYqxup/yC7kEbAghLgT/qPXqO3mv4BQ68pRWTDUNi1w9V01FUhfiycz9jqZsnWmjUuz0Cn3AkQDRK/pOKETBWqnw=
+X-Received: by 2002:a5d:6a0f:: with SMTP id m15mr36284395wru.40.1577210456443; 
+ Tue, 24 Dec 2019 10:00:56 -0800 (PST)
 MIME-Version: 1.0
-X-Originating-IP: [10.90.53.225]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Tue, 24 Dec 2019 18:09:10 +0000
+References: <CAGzVRjxOWf=0T9vd6u4-qasWPzzKZoafrz_02+A40=KGZkgrow@mail.gmail.com>
+In-Reply-To: <CAGzVRjxOWf=0T9vd6u4-qasWPzzKZoafrz_02+A40=KGZkgrow@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 24 Dec 2019 13:00:45 -0500
+Message-ID: <CADnq5_NVW1u9fJjA6xq3s-o+3XFLW4wajANN27ohAY=Hm4ZudA@mail.gmail.com>
+Subject: Re: polaris12_mc.bin error
+To: =?UTF-8?Q?Yusuf_Alt=C4=B1parmak?= <yusufalti1997@gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,113 +60,57 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: zhengbin13@huawei.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixes coccicheck warning:
-
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:85:6-13: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:88:2-9: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:225:6-14: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:226:6-14: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:251:3-11: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:252:3-11: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:256:3-11: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:257:3-11: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:267:3-11: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:269:3-11: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:682:6-14: WARNING: Assignment of 0/1 to bool variable
-drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c:1013:1-9: WARNING: Assignment of 0/1 to bool variable
-
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: zhengbin <zhengbin13@huawei.com>
----
- .../display/dc/dml/dcn21/display_rq_dlg_calc_21.c  | 24 +++++++++++-----------
- 1 file changed, 12 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-index e60af38..a38baa7 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-@@ -82,10 +82,10 @@ static unsigned int get_bytes_per_element(enum source_format_class source_format
-
- static bool is_dual_plane(enum source_format_class source_format)
- {
--	bool ret_val = 0;
-+	bool ret_val = false;
-
- 	if ((source_format == dm_420_8) || (source_format == dm_420_10))
--		ret_val = 1;
-+		ret_val = true;
-
- 	return ret_val;
- }
-@@ -222,8 +222,8 @@ static void handle_det_buf_split(
- 	unsigned int swath_bytes_c = 0;
- 	unsigned int full_swath_bytes_packed_l = 0;
- 	unsigned int full_swath_bytes_packed_c = 0;
--	bool req128_l = 0;
--	bool req128_c = 0;
-+	bool req128_l = false;
-+	bool req128_c = false;
- 	bool surf_linear = (pipe_src_param.sw_mode == dm_sw_linear);
- 	bool surf_vert = (pipe_src_param.source_scan == dm_vert);
- 	unsigned int log2_swath_height_l = 0;
-@@ -248,13 +248,13 @@ static void handle_det_buf_split(
- 		total_swath_bytes = 2 * full_swath_bytes_packed_l + 2 * full_swath_bytes_packed_c;
-
- 		if (total_swath_bytes <= detile_buf_size_in_bytes) { //full 256b request
--			req128_l = 0;
--			req128_c = 0;
-+			req128_l = false;
-+			req128_c = false;
- 			swath_bytes_l = full_swath_bytes_packed_l;
- 			swath_bytes_c = full_swath_bytes_packed_c;
- 		} else { //128b request (for luma only for yuv420 8bpc)
--			req128_l = 1;
--			req128_c = 0;
-+			req128_l = true;
-+			req128_c = false;
- 			swath_bytes_l = full_swath_bytes_packed_l / 2;
- 			swath_bytes_c = full_swath_bytes_packed_c;
- 		}
-@@ -264,9 +264,9 @@ static void handle_det_buf_split(
- 		total_swath_bytes = 2 * full_swath_bytes_packed_l;
-
- 		if (total_swath_bytes <= detile_buf_size_in_bytes)
--			req128_l = 0;
-+			req128_l = false;
- 		else
--			req128_l = 1;
-+			req128_l = true;
-
- 		swath_bytes_l = total_swath_bytes;
- 		swath_bytes_c = 0;
-@@ -679,7 +679,7 @@ static void get_surf_rq_param(
- 		const display_pipe_params_st pipe_param,
- 		bool is_chroma)
- {
--	bool mode_422 = 0;
-+	bool mode_422 = false;
- 	unsigned int vp_width = 0;
- 	unsigned int vp_height = 0;
- 	unsigned int data_pitch = 0;
-@@ -1010,7 +1010,7 @@ static void dml_rq_dlg_get_dlg_params(
- 	// Source
- 	//             dcc_en              = src.dcc;
- 	dual_plane = is_dual_plane((enum source_format_class) (src->source_format));
--	mode_422 = 0; // FIXME
-+	mode_422 = false; // FIXME
- 	access_dir = (src->source_scan == dm_vert); // vp access direction: horizontal or vertical accessed
- 						    //      bytes_per_element_l = get_bytes_per_element(source_format_class(src.source_format), 0);
- 						    //      bytes_per_element_c = get_bytes_per_element(source_format_class(src.source_format), 1);
---
-2.7.4
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gVHVlLCBEZWMgMjQsIDIwMTkgYXQgMTozOCBBTSBZdXN1ZiBBbHTEsXBhcm1hawo8eXVzdWZh
+bHRpMTk5N0BnbWFpbC5jb20+IHdyb3RlOgo+Cj4gSGVsbG8sIEkganVzdCBjb21waWxlZCBteSA0
+LjE5IGtlcm5lbCB3aXRoIGFtZGdwdSBkcml2ZXIgKGFtZGdwdSBhcyBidWlsdGluKS4gVGhlIGRy
+aXZlciBpcyBnaXZpbmcgbWUgIC0yIGVycm9yIGJlY2F1c2Ugb2YgcG9sYXJpczEyX21jLmJpbiBk
+aWQgbm90IGZvdW5kLiBJIGNvdWxkbid0IGZpbmQgdGhhdCBmaWxlIGFueXdoZXJlLiBIb3cgY2Fu
+IGkgZ2V0IHBvbGFyaXMxMl9tYy5iaW4gYW5kIHdoZXJlIHNob3VsZCBJIHBsYWNlIGl0ID8KPgoK
+SWYgeW91IGFyZSBidWlsZGluZyBhbWRncHUgaW50byB5b3VyIGtlcm5lbCwgeW91IG5lZWQgdG8g
+YnVpbGQgdGhlCmZpcm13YXJlIGludG8gdGhlIGtlcm5lbCB0b28uICBJZiB5b3UgYXJlIHVzaW5n
+IGFuIGluaXRyZCwgeW91IG5lZWQgdG8KaW5jbHVkZSB0aGUgZmlybXdhcmUgaW4gdGhlIGluaXRy
+ZC4gIFRoZSBmaXJtd2FyZSBpcyB1c3VhbGx5IGluCi9saWIvZmlybXdhcmUsIGJ1dCBtYXkgdmFy
+eSBhIGJpdCBkZXBlbmRpbmcgb24geW91ciBkaXN0cm8uCgpBbGV4Cgo+IERtZXNnOgo+IFsgICAg
+NS40MjUzMjNdIFtkcm1dIGFtZGdwdSBrZXJuZWwgbW9kZXNldHRpbmcgZW5hYmxlZC4KPiBbICAg
+IDUuNDI5MDY2XSBhbWRncHUgMDAwMTowMTowMC4wOiBydW50aW1lIElSUSBtYXBwaW5nIG5vdCBw
+cm92aWRlZCBieSBhcmNoCj4gWyAgICA1LjQyOTYwOV0gW2RybV0gaW5pdGlhbGl6aW5nIGtlcm5l
+bCBtb2Rlc2V0dGluZyAoUE9MQVJJUzEyIDB4MTAwMjoweDY5ODcgMHgxNzg3OjB4MjM4OSAweDgw
+KS4KPiBbICAgIDUuNDM3MDkxXSBbZHJtXSByZWdpc3RlciBtbWlvIGJhc2U6IDB4MjAyMDAwMDAK
+PiBbICAgIDUuNDQ1MzAzXSBbZHJtXSByZWdpc3RlciBtbWlvIHNpemU6IDI2MjE0NAo+IFsgICAg
+NS40NDgyODhdIFtkcm1dIGFkZCBpcCBibG9jayBudW1iZXIgMCA8dmlfY29tbW9uPgo+IFsgICAg
+NS40NTE4NjRdIFtkcm1dIGFkZCBpcCBibG9jayBudW1iZXIgMSA8Z21jX3Y4XzA+Cj4gWyAgICA1
+LjQ1NTM1MV0gW2RybV0gYWRkIGlwIGJsb2NrIG51bWJlciAyIDx0b25nYV9paD4KPiBbICAgIDUu
+NDU4ODMzXSBbZHJtXSBhZGQgaXAgYmxvY2sgbnVtYmVyIDMgPHBvd2VycGxheT4KPiBbICAgIDUu
+NDYyNDEwXSBbZHJtXSBhZGQgaXAgYmxvY2sgbnVtYmVyIDQgPGRtPgo+IFsgICAgNS40NjUzNzZd
+IFtkcm1dIGFkZCBpcCBibG9jayBudW1iZXIgNSA8Z2Z4X3Y4XzA+Cj4gWyAgICA1LjQ2ODg2NF0g
+W2RybV0gYWRkIGlwIGJsb2NrIG51bWJlciA2IDxzZG1hX3YzXzA+Cj4gWyAgICA1LjQ3MjQzOF0g
+W2RybV0gYWRkIGlwIGJsb2NrIG51bWJlciA3IDx1dmRfdjZfMD4KPiBbICAgIDUuNDc1OTI5XSBb
+ZHJtXSBhZGQgaXAgYmxvY2sgbnVtYmVyIDggPHZjZV92M18wPgo+IFsgICAgNS40Nzk1MzBdIFtk
+cm1dIFVWRCBpcyBlbmFibGVkIGluIFZNIG1vZGUKPiBbICAgIDUuNDgyNDExXSBbZHJtXSBVVkQg
+RU5DIGlzIGVuYWJsZWQgaW4gVk0gbW9kZQo+IFsgICAgNS40ODU2NDddIFtkcm1dIFZDRSBlbmFi
+bGVkIGluIFZNIG1vZGUKPiBbICAgIDUuNzE3OTMyXSBBVE9NIEJJT1M6IDExMy1FUjE2QkZDLTAw
+MQo+IFsgICAgNS43MjA0MTJdIFtkcm1dIEdQVSBwb3N0aW5nIG5vdy4uLgo+IFsgICAgNS44NDMx
+NjBdIFtkcm1dIHZtIHNpemUgaXMgNjQgR0IsIDIgbGV2ZWxzLCBibG9jayBzaXplIGlzIDEwLWJp
+dCwgZnJhZ21lbnQgc2l6ZSBpcyA5LWJpdAo+IFsgICAgNS44NTAxNzVdIGFtZGdwdSAwMDAxOjAx
+OjAwLjA6IERpcmVjdCBmaXJtd2FyZSBsb2FkIGZvciBhbWRncHUvcG9sYXJpczEyX21jLmJpbiBm
+YWlsZWQgd2l0aCBlcnJvciAtMgo+IFsgICAgNS44NTgxODddIG1jOiBGYWlsZWQgdG8gbG9hZCBm
+aXJtd2FyZSAiYW1kZ3B1L3BvbGFyaXMxMl9tYy5iaW4iCj4gWyAgICA1Ljg2Mzc1Ml0gW2RybTou
+Z21jX3Y4XzBfc3dfaW5pdCBbYW1kZ3B1XV0gKkVSUk9SKiBGYWlsZWQgdG8gbG9hZCBtYyBmaXJt
+d2FyZSEKPiBbICAgIDUuODcwNTAxXSBbZHJtOi5hbWRncHVfZGV2aWNlX2luaXQgW2FtZGdwdV1d
+ICpFUlJPUiogc3dfaW5pdCBvZiBJUCBibG9jayA8Z21jX3Y4XzA+IGZhaWxlZCAtMgo+IFsgICAg
+NS44Nzc5MThdIGFtZGdwdSAwMDAxOjAxOjAwLjA6IGFtZGdwdV9kZXZpY2VfaXBfaW5pdCBmYWls
+ZWQKPiBbICAgIDUuODgyMzY1XSBhbWRncHUgMDAwMTowMTowMC4wOiBGYXRhbCBlcnJvciBkdXJp
+bmcgR1BVIGluaXQKPiBbICAgIDUuODg2NzIyXSBbZHJtXSBhbWRncHU6IGZpbmlzaGluZyBkZXZp
+Y2UuCj4gWyAgICA1Ljg5MDA1NF0gYW1kZ3B1OiBwcm9iZSBvZiAwMDAxOjAxOjAwLjAgZmFpbGVk
+IHdpdGggZXJyb3IgLTIKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwo+IGFtZC1nZnggbWFpbGluZyBsaXN0Cj4gYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ft
+ZC1nZngKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1k
+LWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
