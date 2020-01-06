@@ -2,89 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9710C13187E
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2020 20:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB9261318F1
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2020 20:59:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37BC689CD9;
-	Mon,  6 Jan 2020 19:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 795C76E50D;
+	Mon,  6 Jan 2020 19:59:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2087.outbound.protection.outlook.com [40.107.94.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55C1889CD9
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 19:16:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D3YBYugSei/RKwpjdEVeEm2qxu+p9DrZmGKH8QR/yPU5NA3I9f8GOj7sda5LXZ4TdtkWsyCM5mniRQv6XPzO4iKr7JP4LOcPz7QZqjhQgvF+AzcU7h2xFHO67ZgW1T43lVqP2KsmOiCFlM9G2Xk1MS4Geq8OEvrEqHDc6fIDFzJ5jazn4+y3AF9JSTKyPeXEaW9W9Sk83AkmrFgtlKVGKhF55Wym/my1SKyCPBW8k4Lg3/DoSgQk2ZH+dxazEQAmC7HO2wnHDPL1ON+Zl7F/KcUkU6Iz149kUSfdEQ5owxxX4vzKaWlGKA59Acf4fjjndMHZmBkBIT6P4eqlTZ7Qbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9kc3QVD3WgC+R0+dIhbgCpV0JPzcKE+lQuywmhi1AnM=;
- b=HVoms7kIv2/FhFXjlm0oxMHJh3sc2el90a+FbpvjhqWT06lE/0GeV+VwR99Y3ic6rJVSPNrGC+UDX3xBclYvo/Sf2XNljeEDB4g6i5JM1hi0KUzkNmmWN8Iby3F5N85BV0lKp0RB6Lvcosrl+e/Vk90p4nwTh7EV6IAJz9MLgXkRZCnnNMP0UWGtf5FBcOdSyO3UAjJmLkfegcC7Z4M3rnTIJdss76cv9+IGU/q09a0ROz1zae2DOLX0XqLsC9t25xFOkKiU/0QvrYmYOoe/F2UuvmdD023ORNLsL0uuT+EmH+wJO0LlLC4k71wjprpX5nTLdfp4VzhWGFdYyiYreA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9kc3QVD3WgC+R0+dIhbgCpV0JPzcKE+lQuywmhi1AnM=;
- b=Z6nNWI4bp303xN7U6LnoFwHijRzKFfDj+W9ggfh5uyRpdXDudhbEAYuSAgbk38A9WPPafTRg9km9gn0VbEbPoA9i7xWYVhxo0cb9Mijxx/55w7HAQ/IXnvABym35G60W86yKqqwwUzmXlWgJDAikmuQYijkdk5OBzxXrR6zLfQ4=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Felix.Kuehling@amd.com; 
-Received: from DM5PR1201MB0090.namprd12.prod.outlook.com (10.174.105.140) by
- DM5PR1201MB0025.namprd12.prod.outlook.com (10.174.105.148) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2602.11; Mon, 6 Jan 2020 19:16:57 +0000
-Received: from DM5PR1201MB0090.namprd12.prod.outlook.com
- ([fe80::7119:ff0:b3eb:619c]) by DM5PR1201MB0090.namprd12.prod.outlook.com
- ([fe80::7119:ff0:b3eb:619c%4]) with mapi id 15.20.2602.015; Mon, 6 Jan 2020
- 19:16:57 +0000
-Subject: Re: [PATCH 1/2] drm/amdgpu/gmc: move invaliation bitmap setup to
- common code
-To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
-References: <20200106183506.692030-1-alexander.deucher@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Organization: AMD Inc.
-Message-ID: <5407de4e-4c87-4026-5c81-91a42d8ff700@amd.com>
-Date: Mon, 6 Jan 2020 14:16:56 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com
+ [IPv6:2a00:1450:4864:20::132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEFE96E507
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 19:34:23 +0000 (UTC)
+Received: by mail-lf1-x132.google.com with SMTP id y1so37116760lfb.6
+ for <amd-gfx@lists.freedesktop.org>; Mon, 06 Jan 2020 11:34:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=to:from:subject:message-id:date:user-agent:mime-version
+ :content-transfer-encoding:content-language;
+ bh=wHg9BQSYJ1iv668A+G5b+aCAzAM8VnC+/2s2A3OHhLY=;
+ b=DKpVdxplYbaSfjlgb8fV6p0EbMX0BkWfeifbUIoTSWvCahtu9l/wF25B8p98n8SD7P
+ iaXyF2sarejCUcz+z0g580oGJPjF6cHrG1xHh8tbNQCQl2tN3AUIDb4X0WmpCjStdn4J
+ uoLJe8n64tgtc7JHvegMn6/GydoH9fZg0vuVFcTN/CDIG4MbJNROgDYjewe5DAgLAFOq
+ ZwkLtZ1ZAG0exR2ugl7Btjrrv5wXRGafhmWjW3mGiFYAufIG2yk29cCPL0pNPLgBiLWJ
+ tqW0jN6zkVDRvGKIB/fJAgM8ZUhQEvPR6tzfjlYpqvkIY4Kqd51dLdM+Npov6AQ8+Ng+
+ hA3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+ :mime-version:content-transfer-encoding:content-language;
+ bh=wHg9BQSYJ1iv668A+G5b+aCAzAM8VnC+/2s2A3OHhLY=;
+ b=RQB0FPz50Jjvi/40ptnqLsxTxpONrTEIWgPWO4Dze04stV4McEvrl4QG6ZENa6J8zP
+ Wo44J191zE9X3fq9ugEjvvRoXMN023vbMsA0vVHr9OlWn+Xz1H9h1819g+UIW9TCrN1K
+ vMcGY8euid+WFVpbl+0vSfb5bv4mQf/5JrEqC8VYDWeIEsf3MXwE89oT31Df1zAsK4di
+ Ub4MXvTWQ2e9gbpA3yp3PTnyUJwEBAn9LiUL6DZNAexZulMyBDZRowJ9YOWdJM6D2mhy
+ HXDbrsBeIFdIJrJL6eyzueYFN76/VOAhrgOAtBlGaQjmS7U9b5i1kS5wub6LwCzwbc6s
+ EsMg==
+X-Gm-Message-State: APjAAAU+xXrk8NVknkFSo4Y7PrxjEW9fRbSWvDJPbrIDYwHgSPiBYIM5
+ 5cXx158YdvlWwvKtvM7/3EA5aZ6/
+X-Google-Smtp-Source: APXvYqyzAgY1mMko4KOEY88RpWh0gbOlGXO3LwAYIyvhPvQprqWgY7Ssf2Fkd2q69jC2h8Uly4GcvQ==
+X-Received: by 2002:ac2:55a8:: with SMTP id y8mr56872649lfg.117.1578339261563; 
+ Mon, 06 Jan 2020 11:34:21 -0800 (PST)
+Received: from [192.168.0.11] (c83-252-246-74.bredband.comhem.se.
+ [83.252.246.74])
+ by smtp.gmail.com with ESMTPSA id q26sm29315954lfc.52.2020.01.06.11.34.20
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 06 Jan 2020 11:34:20 -0800 (PST)
+To: amd-gfx@lists.freedesktop.org
+From: =?UTF-8?Q?Martin_B=c3=a5ngens?= <marbangens@gmail.com>
+Subject: Problem whit Radeon rx 590 makes games crash on Linux
+Message-ID: <b4065e11-fd22-21af-8638-b33ff344304c@gmail.com>
+Date: Mon, 6 Jan 2020 20:34:15 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
-In-Reply-To: <20200106183506.692030-1-alexander.deucher@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: YT1PR01CA0035.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::48)
- To DM5PR1201MB0090.namprd12.prod.outlook.com
- (2603:10b6:4:53::12)
+ Thunderbird/68.3.1
 MIME-Version: 1.0
-Received: from [172.27.226.80] (165.204.55.251) by
- YT1PR01CA0035.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::48) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2602.12 via Frontend Transport; Mon, 6 Jan 2020 19:16:57 +0000
-X-Originating-IP: [165.204.55.251]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: ad5402c8-4508-441f-ab07-08d792dcffb3
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0025:|DM5PR1201MB0025:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB0025A9B66D73F85F095C72B7923C0@DM5PR1201MB0025.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:17;
-X-Forefront-PRVS: 0274272F87
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(376002)(39860400002)(396003)(346002)(136003)(189003)(199004)(8676002)(6486002)(81166006)(81156014)(8936002)(2906002)(2616005)(66556008)(66946007)(956004)(5660300002)(66476007)(31686004)(16526019)(36756003)(16576012)(4326008)(316002)(36916002)(86362001)(31696002)(52116002)(44832011)(53546011)(26005)(186003)(478600001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR1201MB0025;
- H:DM5PR1201MB0090.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qqmijJiIO4ZMyw8QiSVtlC6/K9wpHLWWoxwPPrMKOPFptpy807DXLrBntdzavcQeGJSLLWuEVbxw/MQhVOKQkpYNuTvBOZU5kzGaSWM/trCMPM1oiv2YOSV0c2ODR8lTMXCaEff+yYqBxLlTjPNIp/EDEnnaUKZnlO3CPvpp0s0syFmbAK25jDi0p+JjOzJcsUSAycHn4wQHAWHb0Q7l/NsLKl930SH0oD+hQDtSqqO8j5CaQxMei6uu3MCEPKYPuViQjM2na68OYpyHvDVfGH17kZmiWyf+5P6Vj4yKHvql9OckaWFMWn1Y7x5Hbc25MZhUTbLN4y7EmC/2BXAm1V9T1MdesGQi/jRVJ5jK7+/e0POuR3BUiFVHaVCCKLvx19T5tID3Fle7/HDHIQbVu5SMRI/AzUQQRZV2n3QG5eQIhvvFvkQqz7y5QYaqnFfZ
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad5402c8-4508-441f-ab07-08d792dcffb3
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2020 19:16:57.8159 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8sHBIK0glRn0XgDvqTfDuKtSYBmR686W9t0ZW/d9bFQPuld90SO87UgswGCeQvEUtNBgPk5Ui4FZuGBAua87nQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0025
+Content-Language: en-US
+X-Mailman-Approved-At: Mon, 06 Jan 2020 19:59:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,157 +68,25 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2020-01-06 1:35 p.m., Alex Deucher wrote:
-> So it can be shared with newer GMC versions.
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Hi AMD graphic driver developer for Linux!
 
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+I have problems with playing games using Linux opensource driver
+
+I have xfx radeon rx 590 fatboy and tested with proprietary driver games 
+run fine but too slow for playing
+
+here is bit more info about my experience
+
+ask me anything
 
 
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 40 +++++++++++++++++++++++++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  1 +
->   drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c   | 32 +-------------------
->   drivers/gpu/drm/amd/amdgpu/gmc_v9_0.h   | 10 -------
->   4 files changed, 42 insertions(+), 41 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> index bbcd11ac5bbb..d6901b274790 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> @@ -333,3 +333,43 @@ void amdgpu_gmc_ras_fini(struct amdgpu_device *adev)
->   	amdgpu_mmhub_ras_fini(adev);
->   	amdgpu_xgmi_ras_fini(adev);
->   }
-> +
-> +	/*
-> +	 * The latest engine allocation on gfx9 is:
-> +	 * Engine 2, 3: firmware
-> +	 * Engine 0, 1, 4~16: amdgpu ring,
-> +	 *                    subject to change when ring number changes
-> +	 * Engine 17: Gart flushes
-> +	 */
-> +#define GFXHUB_FREE_VM_INV_ENGS_BITMAP		0x1FFF3
-> +#define MMHUB_FREE_VM_INV_ENGS_BITMAP		0x1FFF3
-> +
-> +int amdgpu_gmc_allocate_vm_inv_eng(struct amdgpu_device *adev)
-> +{
-> +	struct amdgpu_ring *ring;
-> +	unsigned vm_inv_engs[AMDGPU_MAX_VMHUBS] =
-> +		{GFXHUB_FREE_VM_INV_ENGS_BITMAP, MMHUB_FREE_VM_INV_ENGS_BITMAP,
-> +		GFXHUB_FREE_VM_INV_ENGS_BITMAP};
-> +	unsigned i;
-> +	unsigned vmhub, inv_eng;
-> +
-> +	for (i = 0; i < adev->num_rings; ++i) {
-> +		ring = adev->rings[i];
-> +		vmhub = ring->funcs->vmhub;
-> +
-> +		inv_eng = ffs(vm_inv_engs[vmhub]);
-> +		if (!inv_eng) {
-> +			dev_err(adev->dev, "no VM inv eng for ring %s\n",
-> +				ring->name);
-> +			return -EINVAL;
-> +		}
-> +
-> +		ring->vm_inv_eng = inv_eng - 1;
-> +		vm_inv_engs[vmhub] &= ~(1 << ring->vm_inv_eng);
-> +
-> +		dev_info(adev->dev, "ring %s uses VM inv eng %u on hub %u\n",
-> +			 ring->name, ring->vm_inv_eng, ring->funcs->vmhub);
-> +	}
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-> index b499a3de8bb6..c91dd602d5f1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-> @@ -267,5 +267,6 @@ bool amdgpu_gmc_filter_faults(struct amdgpu_device *adev, uint64_t addr,
->   			      uint16_t pasid, uint64_t timestamp);
->   int amdgpu_gmc_ras_late_init(struct amdgpu_device *adev);
->   void amdgpu_gmc_ras_fini(struct amdgpu_device *adev);
-> +int amdgpu_gmc_allocate_vm_inv_eng(struct amdgpu_device *adev);
->   
->   #endif
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-> index 68f9a1fa6dc1..e3bbeab28152 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-> @@ -795,36 +795,6 @@ static bool gmc_v9_0_keep_stolen_memory(struct amdgpu_device *adev)
->   	}
->   }
->   
-> -static int gmc_v9_0_allocate_vm_inv_eng(struct amdgpu_device *adev)
-> -{
-> -	struct amdgpu_ring *ring;
-> -	unsigned vm_inv_engs[AMDGPU_MAX_VMHUBS] =
-> -		{GFXHUB_FREE_VM_INV_ENGS_BITMAP, MMHUB_FREE_VM_INV_ENGS_BITMAP,
-> -		GFXHUB_FREE_VM_INV_ENGS_BITMAP};
-> -	unsigned i;
-> -	unsigned vmhub, inv_eng;
-> -
-> -	for (i = 0; i < adev->num_rings; ++i) {
-> -		ring = adev->rings[i];
-> -		vmhub = ring->funcs->vmhub;
-> -
-> -		inv_eng = ffs(vm_inv_engs[vmhub]);
-> -		if (!inv_eng) {
-> -			dev_err(adev->dev, "no VM inv eng for ring %s\n",
-> -				ring->name);
-> -			return -EINVAL;
-> -		}
-> -
-> -		ring->vm_inv_eng = inv_eng - 1;
-> -		vm_inv_engs[vmhub] &= ~(1 << ring->vm_inv_eng);
-> -
-> -		dev_info(adev->dev, "ring %s uses VM inv eng %u on hub %u\n",
-> -			 ring->name, ring->vm_inv_eng, ring->funcs->vmhub);
-> -	}
-> -
-> -	return 0;
-> -}
-> -
->   static int gmc_v9_0_late_init(void *handle)
->   {
->   	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-> @@ -833,7 +803,7 @@ static int gmc_v9_0_late_init(void *handle)
->   	if (!gmc_v9_0_keep_stolen_memory(adev))
->   		amdgpu_bo_late_init(adev);
->   
-> -	r = gmc_v9_0_allocate_vm_inv_eng(adev);
-> +	r = amdgpu_gmc_allocate_vm_inv_eng(adev);
->   	if (r)
->   		return r;
->   	/* Check if ecc is available */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.h b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.h
-> index 49e8be761214..e0585e8c6c1b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.h
-> @@ -24,16 +24,6 @@
->   #ifndef __GMC_V9_0_H__
->   #define __GMC_V9_0_H__
->   
-> -	/*
-> -	 * The latest engine allocation on gfx9 is:
-> -	 * Engine 2, 3: firmware
-> -	 * Engine 0, 1, 4~16: amdgpu ring,
-> -	 *                    subject to change when ring number changes
-> -	 * Engine 17: Gart flushes
-> -	 */
-> -#define GFXHUB_FREE_VM_INV_ENGS_BITMAP		0x1FFF3
-> -#define MMHUB_FREE_VM_INV_ENGS_BITMAP		0x1FFF3
-> -
->   extern const struct amd_ip_funcs gmc_v9_0_ip_funcs;
->   extern const struct amdgpu_ip_block_version gmc_v9_0_ip_block;
->   #endif
+https://community.amd.com/thread/246894
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
