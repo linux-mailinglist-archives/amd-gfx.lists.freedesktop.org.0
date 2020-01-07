@@ -2,40 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C15132EC6
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jan 2020 19:57:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E5D7132FA7
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jan 2020 20:41:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4980B6E125;
-	Tue,  7 Jan 2020 18:57:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F19C76E130;
+	Tue,  7 Jan 2020 19:41:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C93ED6E127;
- Tue,  7 Jan 2020 18:57:21 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2020 10:57:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,406,1571727600"; d="scan'208";a="233314132"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 07 Jan 2020 10:57:18 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 Jan 2020 20:57:15 +0200
-Date: Tue, 7 Jan 2020 20:57:15 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lin, Wayne" <Wayne.Lin@amd.com>
-Subject: Re: [PATCH] drm/dp_mst: correct the shifting in DP_REMOTE_I2C_READ
-Message-ID: <20200107185715.GK1208@intel.com>
-References: <20191230070516.4760-1-Wayne.Lin@amd.com>
- <87mubaoyi1.fsf@intel.com>
- <DM6PR12MB41375620C8A3030E0C9154CCFC260@DM6PR12MB4137.namprd12.prod.outlook.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <DM6PR12MB41375620C8A3030E0C9154CCFC260@DM6PR12MB4137.namprd12.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com
+ [IPv6:2607:f8b0:4864:20::b44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EECE86E83A
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 19:26:01 +0000 (UTC)
+Received: by mail-yb1-xb44.google.com with SMTP id n66so460100ybg.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jan 2020 11:26:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=digitalocean.com; s=google;
+ h=from:to:cc:subject:date:message-id;
+ bh=4DKB6Qc7EQjmBiBL2Egn9+nwj/mOHqlQ9foMEYlIG8s=;
+ b=IOJjPyAyvnzuaeYvsM7svksubqWXA8Hoa7vK1bSt+tq7EJBo7VMbZS8S8OZSLwg1pG
+ 36w/czHJ96ImfadkDxCEjuu2XWNf62lAMDsXNsGFKHjawBMtvJOe2BF5ITEpiN1FAxl9
+ 5YiirNrNugcI13cQILvJLZwP+M6SsP86e47EU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=4DKB6Qc7EQjmBiBL2Egn9+nwj/mOHqlQ9foMEYlIG8s=;
+ b=ZOm8c7bcKcpZW5D5Hg8ZuGrWcRjC3Wq5+Z5nfkg5+QgkIy/Ul4I9bh29adZcn+7an4
+ UuUcSFR3dzhyZtwo/DIqwsZULsKth3oMSxaGas+k5UO3ZxX2PMs3aCM8elzVGVvA1aBw
+ vNyWc1aaHnucF1K4Ti/OtAHoKtjJEX4tXn7pkPxlpEApy33Xv+jhr8sFI8IS4sqWc2TB
+ F8pkV9wFZ6oBzsZ/3w0/XkuKA/25a1/tLNz/TXPncn7fiaPCEmR30rJWLgGK7etNtHsv
+ PXQmmf3hv5kL8deB2rW95VNN25ThBF6elbD46VRgQsZcmtpxhY6PT2iIDX+jteIN7OJl
+ ozPQ==
+X-Gm-Message-State: APjAAAUFRwgANiOp+Vw8+PEX8+v4NVMbpCIb1IXWxfShope6cz86/CyR
+ Oa4EI1Phm1mkDBNgvEvjuUDg
+X-Google-Smtp-Source: APXvYqy+9ob7vtrukxOuHGC9cxGwvi0VR2CE0/vcLH7EgE5nxS3/p087frpqoeKCnXIBDamwJYeLvQ==
+X-Received: by 2002:a25:40c4:: with SMTP id n187mr909330yba.199.1578425160957; 
+ Tue, 07 Jan 2020 11:26:00 -0800 (PST)
+Received: from tina-kpatch ([162.243.188.76])
+ by smtp.gmail.com with ESMTPSA id y9sm252630ywc.19.2020.01.07.11.26.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Jan 2020 11:26:00 -0800 (PST)
+From: Tianlin Li <tli@digitalocean.com>
+To: kernel-hardening@lists.openwall.com,
+	keescook@chromium.org
+Subject: [PATCH 0/2] drm/radeon: have the callers of set_memory_*() check the
+ return value
+Date: Tue,  7 Jan 2020 13:25:53 -0600
+Message-Id: <20200107192555.20606-1-tli@digitalocean.com>
+X-Mailer: git-send-email 2.17.1
+X-Mailman-Approved-At: Tue, 07 Jan 2020 19:41:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,106 +61,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zuo, Jerry" <Jerry.Zuo@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, "Kazlauskas,
- Nicholas" <Nicholas.Kazlauskas@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: David1.Zhou@amd.com, David Airlie <airlied@linux.ie>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Tianlin Li <tli@digitalocean.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ christian.koenig@amd.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 31, 2019 at 03:30:47AM +0000, Lin, Wayne wrote:
-> [AMD Official Use Only - Internal Distribution Only]
-> =
+Right now several architectures allow their set_memory_*() family of  
+functions to fail, but callers may not be checking the return values.
+If set_memory_*() returns with an error, call-site assumptions may be
+infact wrong to assume that it would either succeed or not succeed at  
+all. Ideally, the failure of set_memory_*() should be passed up the 
+call stack, and callers should examine the failure and deal with it. 
 
-> > ________________________________________
-> > From: Jani Nikula <jani.nikula@linux.intel.com>
-> > Sent: Monday, December 30, 2019 19:15
-> > To: Lin, Wayne; dri-devel@lists.freedesktop.org; amd-gfx@lists.freedesk=
-top.org
-> > Cc: Zuo, Jerry; Kazlauskas, Nicholas; Lin, Wayne
-> > Subject: Re: [PATCH] drm/dp_mst: correct the shifting in DP_REMOTE_I2C_=
-READ
-> >
-> > On Mon, 30 Dec 2019, Wayne Lin <Wayne.Lin@amd.com> wrote:
-> > > [Why]
-> > > According to DP spec, it should shift left 4 digits for NO_STOP_BIT
-> > > in REMOTE_I2C_READ message. Not 5 digits.
-> > >
-> > > [How]
-> > > Correct the shifting value of NO_STOP_BIT for DP_REMOTE_I2C_READ case=
- in
-> > > drm_dp_encode_sideband_req().
-> >
-> > Which commit introduced the issue? Fixes: tag. Does it need a stable
-> > backport? Does this fix a user visible bug?
-> >
-> > BR,
-> > Jani.
-> >
-> Thanks for your time and reminder.
-> =
+Need to fix the callers and add the __must_check attribute. They also 
+may not provide any level of atomicity, in the sense that the memory 
+protections may be left incomplete on failure. This issue likely has a 
+few steps on effects architectures:
+1)Have all callers of set_memory_*() helpers check the return value.
+2)Add __must_check to all set_memory_*() helpers so that new uses do  
+not ignore the return value.
+3)Add atomicity to the calls so that the memory protections aren't left 
+in a partial state.
 
-> It seems like the issue has been there since very beginning.(commit: ad7f=
-8a1).
-> It doesn't introduce user visible bug under my test cases, but this affec=
-ts the I2C signal
-> between I2C master and I2C slave. Not pretty sure if there is any eeprom =
-will reset
-> the written offset once received I2C stop. If so, that might cause wrongl=
-y reading EDID.
-> I will Cc to stable. Thanks.
+This series is part of step 1. Make drm/radeon check the return value of  
+set_memory_*().
 
-The segment address should be reset on STOP. So large EDIDs should
-fail. IIRC we had a bug report of some sort about this which I tried
-to fix by confgiuring .no_stop_bit correctly, but apparently I failed
-to double check that the bit get stuffed onto the wire correctly.
+Tianlin Li (2):
+  drm/radeon: have the callers of set_memory_*() check the return value
+  drm/radeon: change call sites to handle return value properly.
 
-Ah yes, https://bugs.freedesktop.org/show_bug.cgi?id=3D108081
-So you may have just fixed that one, although we seem to have closed
-it already.
+ drivers/gpu/drm/radeon/r100.c        |  3 ++-
+ drivers/gpu/drm/radeon/radeon.h      |  2 +-
+ drivers/gpu/drm/radeon/radeon_gart.c | 22 ++++++++++++++++++----
+ drivers/gpu/drm/radeon/rs400.c       |  3 ++-
+ 4 files changed, 23 insertions(+), 7 deletions(-)
 
-> > > Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_dp_mst_topology.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/=
-drm_dp_mst_topology.c
-> > > index 1d1bfa49ca2b..0557e225ff67 100644
-> > > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> > > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> > > @@ -393,7 +393,7 @@ drm_dp_encode_sideband_req(const struct drm_dp_si=
-deband_msg_req_body *req,
-> > >                       memcpy(&buf[idx], req->u.i2c_read.transactions[=
-i].bytes, req->u.i2c_read.transactions[i].num_bytes);
-> > >                       idx +=3D req->u.i2c_read.transactions[i].num_by=
-tes;
-> > >
-> > > -                     buf[idx] =3D (req->u.i2c_read.transactions[i].n=
-o_stop_bit & 0x1) << 5;
-> > > +                     buf[idx] =3D (req->u.i2c_read.transactions[i].n=
-o_stop_bit & 0x1) << 4;
-> > >                       buf[idx] |=3D (req->u.i2c_read.transactions[i].=
-i2c_transaction_delay & 0xf);
-> > >                       idx++;
-> > >               }
-> >
-> > --
-> > Jani Nikula, Intel Open Source Graphics Center
-> --
-> Wayne Lin
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+-- 
+2.17.1
 
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
