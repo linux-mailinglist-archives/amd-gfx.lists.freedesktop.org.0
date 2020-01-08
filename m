@@ -2,54 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B7A1347F4
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2020 17:27:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D93231349CE
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2020 18:52:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61DF66E2EA;
-	Wed,  8 Jan 2020 16:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D3AB6E223;
+	Wed,  8 Jan 2020 17:52:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3EC6E8B6
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 16:27:39 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id z3so4075649wru.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Jan 2020 08:27:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6XNkmKK6qS9xXUET7EwsPlVghFJuGA2/wx/mxC2aVVg=;
- b=qoDWGJSeFx9Bsx06jhjZweBLsAT3zFhwBnTycG5Ee14H15gowsKGTCNzlL7j154TxL
- 5MdVHRGEfI9nKF8xxfyG1TuO1vFojKABTmStT57/11X92F+jWAUf8tcHcdNbesmMOPTC
- M0JD9DnrdFwF62jg4GWuZ66f8mhbouy3w+6oTjDAj9v6zfcJBp9KuXcJTFx4fDeyz1TB
- WTaNrKM0f12xjgCeL/Vu3ZMqbyiVSIH8PLtuRNWKwr0fDwRfif5wgftsI0wC5poqaNIK
- yIf2LuUKJfNfRYq27AtwKqrpO/2EcLAQ7avGBMjAYoB9fWfm8oxEFMlBrghRMcv88AZG
- 0xbw==
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
+ [IPv6:2607:f8b0:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 070166E131
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 17:39:30 +0000 (UTC)
+Received: by mail-pf1-x444.google.com with SMTP id q8so1973386pfh.7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Jan 2020 09:39:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=bKjvwLoHlC29TnvYqxLfJzXQCusKrCOIAaFwwH7cSJ0=;
+ b=GTNCpgnTvYnInEtO3QFpRZVybeL6CBYzJJx27ePUFw0/SafUvNxEYcOYQfvASQ6xqX
+ 6j+5vDN0aFTy3n2vQk6NkoWpkjjM2jUwkxQaSbL/wj3TBgA2VXvX2hZcLRoUwLWwSopL
+ JoZOKKbVLSYcz5PbBGPmd9fCF6ZxmqIR6YilM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=6XNkmKK6qS9xXUET7EwsPlVghFJuGA2/wx/mxC2aVVg=;
- b=Ay0t0UX7F8gkSfYXlcIdWjk1fU8LNPsCycd6e8lEnNbdiMwzWwD+C1DDvG8/XyOgd5
- 477C4e4Wf8O3NPTbAq27bJ4Yn2+MsLyVcvN4GAliv/TTP5bClm/qE9IwFJrbEspiC1JT
- 0MWijss09fj05+NW4I+jpWoIFise527aG/3mJeJSBBZ5Wb6ktrAwLkGhCAz6RTV/FX9I
- ybkp+upbRMwWRbnFMipYY7qD6vSomNPeU8DH3UHX/iYHE+uNFcSk8EAvu4N7DLwE/Nlt
- TLJFcBSSvKO1c9b7nbrExXGDTAauK7kiGQ83QasPRoADpfnzCU9AWI9JNFacSjs4bTjh
- nOXA==
-X-Gm-Message-State: APjAAAWGXlXEUNSJ4U/X/ndBd0k42PMxb5YDhadJkP7Pqr+9buwbg6PA
- TjsfIao1gAtw9SohBAmUDBFkhOaBsMqFFkWPk/Y=
-X-Google-Smtp-Source: APXvYqyrTlC8kzX1w80Z1BnoWoL/A9p/FKIUi9ltbQlFqTAP46Ho8mYS3Fq8+RxRBAaaZ8/CNTltRyilejQXr/DoNzs=
-X-Received: by 2002:a5d:4692:: with SMTP id u18mr5704572wrq.206.1578500858503; 
- Wed, 08 Jan 2020 08:27:38 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=bKjvwLoHlC29TnvYqxLfJzXQCusKrCOIAaFwwH7cSJ0=;
+ b=fa0IMVt25TGuoCqDgvIOnsxsXs+LQj8EA5sc6kCj4oj5JIzPhrpK7bGvO8neIUweot
+ A1bwsNLW+MmaHYbGu6Qze7SMlS4r8xFNDY5It8CUZ4SioQ6QfrOYTAIinNCwM/NbpcTG
+ WH1CbnAoQbuveg1W+cFChOzMRG8+i1G4iYdjXbMmN7ox87+V65BT5ABYZ8kexsEiBIdh
+ T9/gxBwzqTtDghGbUF06lTvPJoLLevXCT9VgRgbkRiXMIdWFDWW74keFVGrzkh6PEWS0
+ OUbgVCM7ixISpCap9GKA8bCUNYLY9b/LdwCh0SMRhxNn0SyCFpFzrYSJEHZCrUSTYYpF
+ JIdQ==
+X-Gm-Message-State: APjAAAVUsLuwVTNyI0GnEh06bQAYpt8GHst9FPqT+rF2yJnxQkUFotij
+ dh4wRJ44TRthrHAUkj5/JKBYXA==
+X-Google-Smtp-Source: APXvYqxdgwKREsz1YZeH4VDxSzla/QubcfkdDOAeGwicuj/jBB+4Si/iUY0qR/AhKo7jBTllsOCHfg==
+X-Received: by 2002:a65:63ce:: with SMTP id n14mr6602246pgv.282.1578505169677; 
+ Wed, 08 Jan 2020 09:39:29 -0800 (PST)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+ by smtp.gmail.com with ESMTPSA id l8sm3901278pjy.24.2020.01.08.09.39.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Jan 2020 09:39:28 -0800 (PST)
+Date: Wed, 8 Jan 2020 09:39:27 -0800
+From: Kees Cook <keescook@chromium.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Subject: Re: [PATCH 0/2] drm/radeon: have the callers of set_memory_*() check
+ the return value
+Message-ID: <202001080936.A36005F1@keescook>
+References: <20200107192555.20606-1-tli@digitalocean.com>
+ <b5984995-7276-97d3-a604-ddacfb89bd89@amd.com>
 MIME-Version: 1.0
-References: <20200108161721.7727-1-Hawking.Zhang@amd.com>
- <20200108161721.7727-5-Hawking.Zhang@amd.com>
-In-Reply-To: <20200108161721.7727-5-Hawking.Zhang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 8 Jan 2020 11:27:25 -0500
-Message-ID: <CADnq5_M=Ujo2QuWsHU--D8bqpyOorO4uqwwmRmthbb1-_=9thw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] drm/amdgpu: read sdma edc counter to clear the
- counters
-To: Hawking Zhang <Hawking.Zhang@amd.com>
+Content-Disposition: inline
+In-Reply-To: <b5984995-7276-97d3-a604-ddacfb89bd89@amd.com>
+X-Mailman-Approved-At: Wed, 08 Jan 2020 17:52:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,100 +66,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Gang Long <Gang.Long@amd.com>, Guchun Chen <Guchun.Chen@amd.com>,
- Tao Zhou <Tao.Zhou1@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>, Candice Li <Candice.Li@amd.com>,
- John Clements <John.Clements@amd.com>, Dennis Li <Dennis.Li@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David1.Zhou@amd.com, kernel-hardening@lists.openwall.com,
+ David Airlie <airlied@linux.ie>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Tianlin Li <tli@digitalocean.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 8, 2020 at 11:18 AM Hawking Zhang <Hawking.Zhang@amd.com> wrote:
->
-> SDMA edc counter registers were added in gfx edc counters
-> array. When querying gfx error counter in that array, there
-> is no way to differentiate sdma instance number for different
-> asic and then results to NULL pointer access when trying to
-> read sdma register base address for instances greater
-> than 2 on Vega20.
-> In addition, this also results to wrong gfx error counters
-> since it actually added sdma edc counters.
-> Therefore, sdma edc counter registers should be separated
-> from gfx edc counter regsiter array and only get initialized
-> when driver tries to enable sdma ras.
->
-> Change-Id: I206917f9d7b81670a8fed84dc749085ce5a6f678
-> Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
+On Wed, Jan 08, 2020 at 01:56:47PM +0100, Christian K=F6nig wrote:
+> Am 07.01.20 um 20:25 schrieb Tianlin Li:
+> > Right now several architectures allow their set_memory_*() family of
+> > functions to fail, but callers may not be checking the return values.
+> > If set_memory_*() returns with an error, call-site assumptions may be
+> > infact wrong to assume that it would either succeed or not succeed at
+> > all. Ideally, the failure of set_memory_*() should be passed up the
+> > call stack, and callers should examine the failure and deal with it.
+> > =
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+> > Need to fix the callers and add the __must_check attribute. They also
+> > may not provide any level of atomicity, in the sense that the memory
+> > protections may be left incomplete on failure. This issue likely has a
+> > few steps on effects architectures:
+> > 1)Have all callers of set_memory_*() helpers check the return value.
+> > 2)Add __must_check to all set_memory_*() helpers so that new uses do
+> > not ignore the return value.
+> > 3)Add atomicity to the calls so that the memory protections aren't left
+> > in a partial state.
+> > =
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c  | 11 +----------
->  drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c |  7 +++++++
->  2 files changed, 8 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index 33d1c57aaaf1..c9ade16bbcc3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -4038,14 +4038,6 @@ static const struct soc15_reg_entry sec_ded_counter_registers[] = {
->     { SOC15_REG_ENTRY(GC, 0, mmTCA_EDC_CNT), 0, 1, 2},
->     { SOC15_REG_ENTRY(GC, 0, mmSQC_EDC_CNT3), 0, 4, 6},
->     { SOC15_REG_ENTRY(HDP, 0, mmHDP_EDC_CNT), 0, 1, 1},
-> -   { SOC15_REG_ENTRY(SDMA0, 0, mmSDMA0_EDC_COUNTER), 0, 1, 1},
-> -   { SOC15_REG_ENTRY(SDMA1, 0, mmSDMA1_EDC_COUNTER), 0, 1, 1},
-> -   { SOC15_REG_ENTRY(SDMA2, 0, mmSDMA2_EDC_COUNTER), 0, 1, 1},
-> -   { SOC15_REG_ENTRY(SDMA3, 0, mmSDMA3_EDC_COUNTER), 0, 1, 1},
-> -   { SOC15_REG_ENTRY(SDMA4, 0, mmSDMA4_EDC_COUNTER), 0, 1, 1},
-> -   { SOC15_REG_ENTRY(SDMA5, 0, mmSDMA5_EDC_COUNTER), 0, 1, 1},
-> -   { SOC15_REG_ENTRY(SDMA6, 0, mmSDMA6_EDC_COUNTER), 0, 1, 1},
-> -   { SOC15_REG_ENTRY(SDMA7, 0, mmSDMA7_EDC_COUNTER), 0, 1, 1},
->  };
->
->  static int gfx_v9_0_do_edc_gds_workarounds(struct amdgpu_device *adev)
-> @@ -4109,7 +4101,6 @@ static int gfx_v9_0_do_edc_gpr_workarounds(struct amdgpu_device *adev)
->                                                 adev->gfx.config.max_sh_per_se;
->         int sgpr_work_group_size = 5;
->         int gpr_reg_size = compute_dim_x / 16 + 6;
-> -       int sec_ded_counter_reg_size = adev->sdma.num_instances + 34;
->
->         /* only support when RAS is enabled */
->         if (!amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__GFX))
-> @@ -4249,7 +4240,7 @@ static int gfx_v9_0_do_edc_gpr_workarounds(struct amdgpu_device *adev)
->
->         /* read back registers to clear the counters */
->         mutex_lock(&adev->grbm_idx_mutex);
-> -       for (i = 0; i < sec_ded_counter_reg_size; i++) {
-> +       for (i = 0; i < ARRAY_SIZE(sec_ded_counter_registers); i++) {
->                 for (j = 0; j < sec_ded_counter_registers[i].se_num; j++) {
->                         for (k = 0; k < sec_ded_counter_registers[i].instance; k++) {
->                                 gfx_v9_0_select_se_sh(adev, j, 0x0, k);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> index fd20594b6d6e..f4107f9b75f3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> @@ -1802,6 +1802,13 @@ static int sdma_v4_0_late_init(void *handle)
->         struct ras_ih_if ih_info = {
->                 .cb = sdma_v4_0_process_ras_data_cb,
->         };
-> +       int i;
-> +
-> +       /* read back edc counter registers to clear the counters */
-> +       if (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__SDMA)) {
-> +               for (i = 0; i < adev->sdma.num_instances; i++)
-> +                       RREG32_SDMA(i, mmSDMA0_EDC_COUNTER);
-> +       }
->
->         return adev->sdma.funcs->ras_late_init(adev, &ih_info);
->  }
-> --
-> 2.17.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+> > This series is part of step 1. Make drm/radeon check the return value of
+> > set_memory_*().
+> =
+
+> I'm a little hesitate merge that. This hardware is >15 years old and nobo=
+dy
+> of the developers have any system left to test this change on.
+
+If that's true it should be removed from the tree. We need to be able to
+correctly make these kinds of changes in the kernel.
+
+> Would it be to much of a problem to just add something like: r =3D
+> set_memory_*(); (void)r; /* Intentionally ignored */.
+
+This seems like a bad idea -- we shouldn't be papering over failures
+like this when there is logic available to deal with it.
+
+> Apart from that certainly a good idea to add __must_check to the function=
+s.
+
+Agreed!
+
+-Kees
+
+-- =
+
+Kees Cook
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
