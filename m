@@ -1,48 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC143136466
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 01:43:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C37136468
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 01:43:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDEE66E981;
-	Fri, 10 Jan 2020 00:43:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADF4F6E98A;
+	Fri, 10 Jan 2020 00:43:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM04-CO1-obe.outbound.protection.outlook.com
  (mail-eopbgr690059.outbound.protection.outlook.com [40.107.69.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F01F56E981
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 00:43:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22FE46E95A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 00:43:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cNh2ECXhGopvcjziB1JrX+n5yG2QdeMUCCjhbtQerJnR5kDTJuSSi+2lud9+Bohb+pfyQctzl+4NTuP+X5qiixML+nH3jkDSdz10JKbw3h3CcAH+tiq4CaGR5YWnovdEOIfmXPKGM9rB6kWOAs4WPaaafwkZMvyAVQcGgiq7keog32H3fPqahIGN64IZFaVZrXZyB4o87qMSAMveNh/GU/VwM109lujG8TfVOHwxDzHVr1YkmArvv8zaeiziBnAITc32RNGVh6zsUCpt9/1W1EKF6nz9LLL/wMdhrGV7NTNPdFfixVxIg6DEFcXtpmMj3vvvonUDuVysPBPwK8tKow==
+ b=Dw6DBq/cxJVbJ8BAgFsqzUTS9IHIlD6ytHY/tv6rGYEYgN0F9j1LTPe5ES34dJp1PhBnSD0a/EkT+dLZpu/tCY42rIRIw+qUlP7lfmwPie8luoTBHGxtw/GvfFswGlj/rzJ9Cejt6pFWzlkgEq1IJhWu8kb+GIp75TaR8eJwYOodIslcTA1cjQHjUankPBAFQUD7LUr/bdUUrXv/PlMUAb7DxdgntqDRL89pdzKSUHL7kyzCg3D06CupX2USaQhOGq9mFm3ILRihQbYOUpQpXpizkrjTcCnRMcXwwrgzxofN7h8FgPsgQWdJvx/xf+2AkcsXLIbu1GuH4nyPnWJcJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dhOPaHJLzlXUQsIeAtAk/05uanJNKT0B6lGVfpILQJE=;
- b=kw88rUzHLi/OZOb+oiOK4A8ra/hXDIN5isYwIDziuLK004jcno2kccuL5qCbPFHBANICX7ncuJughDQz3M2tYV1OH/Lp9ORSfPfGGwdguD6ArJztEoqKb4Y/f3QOxhm1ieceaszee3Mn6RbyfwYimUjMYGvTJ9LaRsT0+tl7hmJRYuTO2aA9v+FZqOMjEKdJErmDnPoAvBfXOpsDWlfbHOGmBwX5S1VKkoSia19yHLiqbiy5OZLx8RC9LciBSyH5qv4i5b68zR5WgIuhfDrySNJ3zwF+sHqM0S2VCGSdm4m+C/uwtMp4GStR2kaERfdj7xMtOl4+fOpX2uFQtudTRg==
+ bh=d+Gbzscwey6YKBY1Cubb84nc3wHuAMWXK6D1MDFqj7Y=;
+ b=BhKym0UdhZvnmaJk9uCks88JQ158JzOcX491qmZUO94KzmhYNEZjwqHMMOIa91vtBaHX4BK4jxx2ZE/ZvlyeU6oxJRA/cUPDVoIycjehKBTjB78Vh9Ojocj2+0l34CM872eNWc7lPHD6STxVKrbj2yuhEhd+Y14KUx2mSI+G7zmmkU7RC/xKjCdGK0wPbdMmGDvKgRsRQ6G8bYnjmQAvi+PkBrUuxZNXOp20qcWZnSHTA9V0GPIuOaq4Ts51ojxLgSHfz6hmJV5aS74gT2vLRWBEXCQdjtIGj34Xw1It/xAkqwpIWyLpzDQqm1847ucj4HceOOE05+z37at3H/2YJg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dhOPaHJLzlXUQsIeAtAk/05uanJNKT0B6lGVfpILQJE=;
- b=DRhQ4XdsOf+CmdFqKJO/G6GMt7PrARkWN9/ZDiWpaALgrP6gtYoDi/hRx6MSXhcS+lSPi7ZwBHcxVrBZNzfBM5Se38I5NKKYz6duLPrkw9Y8/6nozOrQWB0q220C3WBZM8wV7At+5WOQc3R5BKDux8VnYtLg6vnBIRb4G6fZzQY=
+ bh=d+Gbzscwey6YKBY1Cubb84nc3wHuAMWXK6D1MDFqj7Y=;
+ b=c4NsQ7voWTtZGNVZ7ZmNpIOscmkhV+xiQ8qU6T72nvijv+RAQnmbaEigIjRVu8Sdu/2fsFTfERD8klmq+E6lbhgTj69wsmsXXf7Osa6bmA5TM0lnegtKZjcubt6dUg6Qkxet26IszCJWlwd15XwO498R0F0QA1hJXCe5FVZxU9A=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Alex.Sierra@amd.com; 
 Received: from SN6PR12MB2621.namprd12.prod.outlook.com (52.135.105.15) by
  SN6PR12MB2672.namprd12.prod.outlook.com (52.135.103.25) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.9; Fri, 10 Jan 2020 00:43:48 +0000
+ 15.20.2623.9; Fri, 10 Jan 2020 00:43:49 +0000
 Received: from SN6PR12MB2621.namprd12.prod.outlook.com
  ([fe80::8923:17de:add5:1490]) by SN6PR12MB2621.namprd12.prod.outlook.com
  ([fe80::8923:17de:add5:1490%6]) with mapi id 15.20.2623.008; Fri, 10 Jan 2020
- 00:43:48 +0000
+ 00:43:49 +0000
 From: Alex Sierra <alex.sierra@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/8] drm/amdgpu: GPU TLB flush API moved to amdgpu_amdkfd
-Date: Thu,  9 Jan 2020 18:43:30 -0600
-Message-Id: <20200110004335.113095-3-alex.sierra@amd.com>
+Subject: [PATCH 4/8] drm/amdgpu: flush TLB functions removal from kfd2kgd
+ interface
+Date: Thu,  9 Jan 2020 18:43:31 -0600
+Message-Id: <20200110004335.113095-4-alex.sierra@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200110004335.113095-1-alex.sierra@amd.com>
 References: <20200110004335.113095-1-alex.sierra@amd.com>
@@ -59,14 +60,14 @@ X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [165.204.77.1]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: aea98683-fb74-43fd-f6c1-08d7956627e5
+X-MS-Office365-Filtering-Correlation-Id: 0b226e3f-03af-429b-3f2f-08d795662837
 X-MS-TrafficTypeDiagnostic: SN6PR12MB2672:|SN6PR12MB2672:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN6PR12MB26727FE974ABFA4B8D8C8977FD380@SN6PR12MB2672.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-Microsoft-Antispam-PRVS: <SN6PR12MB2672283030E682D54AFA8493FD380@SN6PR12MB2672.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1107;
 X-Forefront-PRVS: 02788FF38E
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(346002)(39860400002)(396003)(376002)(366004)(199004)(189003)(8936002)(26005)(5660300002)(7696005)(316002)(86362001)(1076003)(186003)(2616005)(16526019)(956004)(44832011)(2906002)(36756003)(52116002)(66556008)(478600001)(66476007)(6916009)(6666004)(6486002)(66946007)(4326008)(81156014)(81166006)(8676002);
+ SFS:(10009020)(4636009)(136003)(346002)(39860400002)(396003)(376002)(366004)(199004)(189003)(30864003)(8936002)(26005)(5660300002)(7696005)(316002)(86362001)(1076003)(186003)(2616005)(16526019)(956004)(44832011)(2906002)(36756003)(52116002)(66556008)(478600001)(66476007)(6916009)(6666004)(6486002)(66946007)(4326008)(81156014)(81166006)(8676002);
  DIR:OUT; SFP:1101; SCL:1; SRVR:SN6PR12MB2672;
  H:SN6PR12MB2621.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
@@ -74,14 +75,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: K/8bCIassJTveW65d37OOTquk6iXCDOqD09BgYyBdr47zk4N5Kkp8s18q0rUy4GKA9/vgIaRV9BAAxeE6ajpGc790TItCb5KmHUgLTj47HRA6U9cnkVK8u/CLwX0YQOZvlbVNpTSvd/STQscRWKIev0KREgznCZOqbvmRf+73hNBIuW9S50vWfyHrujoAJWzZNYGp08ce3q7Wafy8aB0BrFyBEi6XO5s6lUcbTvtkkOjumN6TorH2DNxzKHTMnoJ9f3axqCSxUbEPLZhKU+QHxhROczLAp+kKKWpOaWK+GkimFn5jQ5fx9ihvgpVJ9UsdzSKEJzd1o+uEwigt6ZRTX+6lSFHurACdxCkP0xGlfkn6/V+FkpMkXfBcU5AWzHeRWBjJ3CC4JH7s6XujVBMx6nWLQmMJ6YSzovkM1vX8i8ZRtjdPxKb1LEEbtr6XzsO
+X-Microsoft-Antispam-Message-Info: XhSWldJhkIBfwrhP0or67f7nz4OewBhBXbHnyyeubW8MXUqVKDiyMTNGQ09UI26ZASoCQlOJO1Do9SQGyxN3HszODAjF4rsEDzGEARcBAk2pABvGMhRBRPrBwTgBZZsJWgIPA0beHC+CJGyHTPzz9lyfPC/rl8dkxT4tsKzr59x0Po2tG5GcDGVMBIywACNkDs1N0Icis6wKcPdUnSt4ZAHOyolTNZjN0c1ClRhEt4qG0ouiAw6IVxNGzcvM3KGAizhmfZmHtwJYVkr/rJkyF38rZnaslZ00XJvrbbKIiPXkUf1xKbXVXg1+5jC+qDSv4ICR7pisevhIm0wg2rnsEoykXPXPYEZv05jSx9SE8qg9EdPubAIL5+X2ss5S9bG25/y5LFSlEBxE25+Bfz5RzreUaKzOzBLAGSne6OHWqNd8dtOKoypikyFx/K+JTEvS
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aea98683-fb74-43fd-f6c1-08d7956627e5
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 00:43:48.6918 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b226e3f-03af-429b-3f2f-08d795662837
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 00:43:49.2275 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RwsSy9S0PsIX71L5alXJVFP+AeB9AfT4SLpP3eGapZphfsahEDYurYSguzKEc8aYw8739fE22+Vu5nlVVdhEsw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: XpViU5BBxiI/RoMIM2VitJ0D6t5oD9p5VzIL7V11EYjQyJuaH0yHoezjA7/FtKDI1qEElJ9KN2lD01lQic46ZQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2672
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,108 +102,374 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-TLB flush method has been deprecated using kfd2kgd interface.
-This implementation is now on the amdgpu_amdkfd API.
+kfd2kgd interface will be deprecated. This removal only covers TLB
+invalidation for now. They have been replaced in amdgpu_amdkfd API.
 
 [How]
-TLB flush functions now implemented in amdgpu_amdkfd.
+TLB invalidate functions removed from the different amdkfd_gfx_v*
+versions.
 
-Change-Id: Ic51cccdfe6e71288d78da772b6e1b6ced72f8ef7
+Change-Id: Ic2c7d4a0d19fe1e884dee1ff10a520d31252afee
 Signed-off-by: Alex Sierra <alex.sierra@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c | 32 ++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h |  2 ++
- drivers/gpu/drm/amd/amdkfd/kfd_process.c   |  8 ++++--
- 3 files changed, 39 insertions(+), 3 deletions(-)
+ .../drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c   |  2 -
+ .../drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c    | 67 -------------
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c | 41 --------
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c | 41 --------
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c | 96 -------------------
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h |  2 -
+ .../gpu/drm/amd/include/kgd_kfd_interface.h   |  2 -
+ 7 files changed, 251 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-index 88e10b956413..8609287620ea 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-@@ -628,6 +628,38 @@ bool amdgpu_amdkfd_is_kfd_vmid(struct amdgpu_device *adev, u32 vmid)
- 	return false;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+index 2b26925623eb..1c7e9bb7feb3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+@@ -317,7 +317,5 @@ const struct kfd2kgd_calls arcturus_kfd2kgd = {
+ 			kgd_gfx_v9_get_atc_vmid_pasid_mapping_info,
+ 	.get_tile_config = kgd_gfx_v9_get_tile_config,
+ 	.set_vm_context_page_table_base = kgd_set_vm_context_page_table_base,
+-	.invalidate_tlbs = kgd_gfx_v9_invalidate_tlbs,
+-	.invalidate_tlbs_vmid = kgd_gfx_v9_invalidate_tlbs_vmid,
+ 	.get_hive_id = amdgpu_amdkfd_get_hive_id,
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
+index 61cd707158e4..6132b4874498 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
+@@ -686,71 +686,6 @@ static bool get_atc_vmid_pasid_mapping_info(struct kgd_dev *kgd,
+ 	return !!(value & ATC_VMID0_PASID_MAPPING__VALID_MASK);
  }
  
-+int amdgpu_amdkfd_flush_gpu_tlb_vmid(struct kgd_dev *kgd, uint16_t vmid)
-+{
-+	struct amdgpu_device *adev = (struct amdgpu_device *)kgd;
-+
-+	if (adev->family == AMDGPU_FAMILY_AI) {
-+		int i;
-+
-+		for (i = 0; i < adev->num_vmhubs; i++)
-+			amdgpu_gmc_flush_gpu_tlb(adev, vmid, i, 0);
-+	} else {
-+		amdgpu_gmc_flush_gpu_tlb(adev, vmid, AMDGPU_GFXHUB_0, 0);
-+	}
-+
-+	return 0;
-+}
-+
-+int amdgpu_amdkfd_flush_gpu_tlb_pasid(struct kgd_dev *kgd, uint16_t pasid)
-+{
-+	struct amdgpu_device *adev = (struct amdgpu_device *)kgd;
-+	uint32_t flush_type = 0;
-+	bool all_hub = false;
-+
-+	if (adev->gmc.xgmi.num_physical_nodes &&
-+		adev->asic_type == CHIP_VEGA20)
-+		flush_type = 2;
-+
-+	if (adev->family == AMDGPU_FAMILY_AI)
-+		all_hub = true;
-+
-+	return amdgpu_gmc_flush_gpu_tlb_pasid(adev, pasid, flush_type, all_hub);
-+}
-+
- bool amdgpu_amdkfd_have_atomics_support(struct kgd_dev *kgd)
+-static int invalidate_tlbs_with_kiq(struct amdgpu_device *adev, uint16_t pasid)
+-{
+-	signed long r;
+-	uint32_t seq;
+-	struct amdgpu_ring *ring = &adev->gfx.kiq.ring;
+-
+-	spin_lock(&adev->gfx.kiq.ring_lock);
+-	amdgpu_ring_alloc(ring, 12); /* fence + invalidate_tlbs package*/
+-	amdgpu_ring_write(ring, PACKET3(PACKET3_INVALIDATE_TLBS, 0));
+-	amdgpu_ring_write(ring,
+-			PACKET3_INVALIDATE_TLBS_DST_SEL(1) |
+-			PACKET3_INVALIDATE_TLBS_PASID(pasid));
+-	amdgpu_fence_emit_polling(ring, &seq);
+-	amdgpu_ring_commit(ring);
+-	spin_unlock(&adev->gfx.kiq.ring_lock);
+-
+-	r = amdgpu_fence_wait_polling(ring, seq, adev->usec_timeout);
+-	if (r < 1) {
+-		DRM_ERROR("wait for kiq fence error: %ld.\n", r);
+-		return -ETIME;
+-	}
+-
+-	return 0;
+-}
+-
+-static int invalidate_tlbs(struct kgd_dev *kgd, uint16_t pasid)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *) kgd;
+-	int vmid;
+-	uint16_t queried_pasid;
+-	bool ret;
+-	struct amdgpu_ring *ring = &adev->gfx.kiq.ring;
+-
+-	if (amdgpu_emu_mode == 0 && ring->sched.ready)
+-		return invalidate_tlbs_with_kiq(adev, pasid);
+-
+-	for (vmid = 0; vmid < 16; vmid++) {
+-		if (!amdgpu_amdkfd_is_kfd_vmid(adev, vmid))
+-			continue;
+-
+-		ret = get_atc_vmid_pasid_mapping_info(kgd, vmid,
+-				&queried_pasid);
+-		if (ret	&& queried_pasid == pasid) {
+-			amdgpu_gmc_flush_gpu_tlb(adev, vmid,
+-					AMDGPU_GFXHUB_0, 0);
+-			break;
+-		}
+-	}
+-
+-	return 0;
+-}
+-
+-static int invalidate_tlbs_vmid(struct kgd_dev *kgd, uint16_t vmid)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *) kgd;
+-
+-	if (!amdgpu_amdkfd_is_kfd_vmid(adev, vmid)) {
+-		pr_err("non kfd vmid %d\n", vmid);
+-		return 0;
+-	}
+-
+-	amdgpu_gmc_flush_gpu_tlb(adev, vmid, AMDGPU_GFXHUB_0, 0);
+-	return 0;
+-}
+-
+ static int kgd_address_watch_disable(struct kgd_dev *kgd)
  {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)kgd;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-index 069d5d230810..47b0f2957d1f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-@@ -136,6 +136,8 @@ int amdgpu_amdkfd_submit_ib(struct kgd_dev *kgd, enum kgd_engine_type engine,
- 				uint32_t *ib_cmd, uint32_t ib_len);
- void amdgpu_amdkfd_set_compute_idle(struct kgd_dev *kgd, bool idle);
- bool amdgpu_amdkfd_have_atomics_support(struct kgd_dev *kgd);
-+int amdgpu_amdkfd_flush_gpu_tlb_vmid(struct kgd_dev *kgd, uint16_t vmid);
-+int amdgpu_amdkfd_flush_gpu_tlb_pasid(struct kgd_dev *kgd, uint16_t pasid);
- 
- bool amdgpu_amdkfd_is_kfd_vmid(struct amdgpu_device *adev, u32 vmid);
- 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index 536a153ac9a4..25b90f70aecd 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -32,6 +32,7 @@
- #include <linux/mman.h>
- #include <linux/file.h>
- #include "amdgpu_amdkfd.h"
-+#include "amdgpu.h"
- 
- struct mm_struct;
- 
-@@ -1152,16 +1153,17 @@ int kfd_reserved_mem_mmap(struct kfd_dev *dev, struct kfd_process *process,
- void kfd_flush_tlb(struct kfd_process_device *pdd)
- {
- 	struct kfd_dev *dev = pdd->dev;
--	const struct kfd2kgd_calls *f2g = dev->kfd2kgd;
- 
- 	if (dev->dqm->sched_policy == KFD_SCHED_POLICY_NO_HWS) {
- 		/* Nothing to flush until a VMID is assigned, which
- 		 * only happens when the first queue is created.
- 		 */
- 		if (pdd->qpd.vmid)
--			f2g->invalidate_tlbs_vmid(dev->kgd, pdd->qpd.vmid);
-+			amdgpu_amdkfd_flush_gpu_tlb_vmid(dev->kgd,
-+							pdd->qpd.vmid);
- 	} else {
--		f2g->invalidate_tlbs(dev->kgd, pdd->process->pasid);
-+		amdgpu_amdkfd_flush_gpu_tlb_pasid(dev->kgd,
-+						pdd->process->pasid);
- 	}
+ 	return 0;
+@@ -832,7 +767,5 @@ const struct kfd2kgd_calls gfx_v10_kfd2kgd = {
+ 			get_atc_vmid_pasid_mapping_info,
+ 	.get_tile_config = amdgpu_amdkfd_get_tile_config,
+ 	.set_vm_context_page_table_base = set_vm_context_page_table_base,
+-	.invalidate_tlbs = invalidate_tlbs,
+-	.invalidate_tlbs_vmid = invalidate_tlbs_vmid,
+ 	.get_hive_id = amdgpu_amdkfd_get_hive_id,
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c
+index 6e6f0a99ec06..8f052e98a3c6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c
+@@ -696,45 +696,6 @@ static void set_vm_context_page_table_base(struct kgd_dev *kgd, uint32_t vmid,
+ 		lower_32_bits(page_table_base));
  }
+ 
+-static int invalidate_tlbs(struct kgd_dev *kgd, uint16_t pasid)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *) kgd;
+-	int vmid;
+-	unsigned int tmp;
+-
+-	if (adev->in_gpu_reset)
+-		return -EIO;
+-
+-	for (vmid = 0; vmid < 16; vmid++) {
+-		if (!amdgpu_amdkfd_is_kfd_vmid(adev, vmid))
+-			continue;
+-
+-		tmp = RREG32(mmATC_VMID0_PASID_MAPPING + vmid);
+-		if ((tmp & ATC_VMID0_PASID_MAPPING__VALID_MASK) &&
+-			(tmp & ATC_VMID0_PASID_MAPPING__PASID_MASK) == pasid) {
+-			WREG32(mmVM_INVALIDATE_REQUEST, 1 << vmid);
+-			RREG32(mmVM_INVALIDATE_RESPONSE);
+-			break;
+-		}
+-	}
+-
+-	return 0;
+-}
+-
+-static int invalidate_tlbs_vmid(struct kgd_dev *kgd, uint16_t vmid)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *) kgd;
+-
+-	if (!amdgpu_amdkfd_is_kfd_vmid(adev, vmid)) {
+-		pr_err("non kfd vmid\n");
+-		return 0;
+-	}
+-
+-	WREG32(mmVM_INVALIDATE_REQUEST, 1 << vmid);
+-	RREG32(mmVM_INVALIDATE_RESPONSE);
+-	return 0;
+-}
+-
+  /**
+   * read_vmid_from_vmfault_reg - read vmid from register
+   *
+@@ -771,7 +732,5 @@ const struct kfd2kgd_calls gfx_v7_kfd2kgd = {
+ 	.set_scratch_backing_va = set_scratch_backing_va,
+ 	.get_tile_config = get_tile_config,
+ 	.set_vm_context_page_table_base = set_vm_context_page_table_base,
+-	.invalidate_tlbs = invalidate_tlbs,
+-	.invalidate_tlbs_vmid = invalidate_tlbs_vmid,
+ 	.read_vmid_from_vmfault_reg = read_vmid_from_vmfault_reg,
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c
+index bfbddedb2380..19a10db93d68 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c
+@@ -657,45 +657,6 @@ static void set_vm_context_page_table_base(struct kgd_dev *kgd, uint32_t vmid,
+ 			lower_32_bits(page_table_base));
+ }
+ 
+-static int invalidate_tlbs(struct kgd_dev *kgd, uint16_t pasid)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *) kgd;
+-	int vmid;
+-	unsigned int tmp;
+-
+-	if (adev->in_gpu_reset)
+-		return -EIO;
+-
+-	for (vmid = 0; vmid < 16; vmid++) {
+-		if (!amdgpu_amdkfd_is_kfd_vmid(adev, vmid))
+-			continue;
+-
+-		tmp = RREG32(mmATC_VMID0_PASID_MAPPING + vmid);
+-		if ((tmp & ATC_VMID0_PASID_MAPPING__VALID_MASK) &&
+-			(tmp & ATC_VMID0_PASID_MAPPING__PASID_MASK) == pasid) {
+-			WREG32(mmVM_INVALIDATE_REQUEST, 1 << vmid);
+-			RREG32(mmVM_INVALIDATE_RESPONSE);
+-			break;
+-		}
+-	}
+-
+-	return 0;
+-}
+-
+-static int invalidate_tlbs_vmid(struct kgd_dev *kgd, uint16_t vmid)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *) kgd;
+-
+-	if (!amdgpu_amdkfd_is_kfd_vmid(adev, vmid)) {
+-		pr_err("non kfd vmid %d\n", vmid);
+-		return -EINVAL;
+-	}
+-
+-	WREG32(mmVM_INVALIDATE_REQUEST, 1 << vmid);
+-	RREG32(mmVM_INVALIDATE_RESPONSE);
+-	return 0;
+-}
+-
+ const struct kfd2kgd_calls gfx_v8_kfd2kgd = {
+ 	.program_sh_mem_settings = kgd_program_sh_mem_settings,
+ 	.set_pasid_vmid_mapping = kgd_set_pasid_vmid_mapping,
+@@ -717,6 +678,4 @@ const struct kfd2kgd_calls gfx_v8_kfd2kgd = {
+ 	.set_scratch_backing_va = set_scratch_backing_va,
+ 	.get_tile_config = get_tile_config,
+ 	.set_vm_context_page_table_base = set_vm_context_page_table_base,
+-	.invalidate_tlbs = invalidate_tlbs,
+-	.invalidate_tlbs_vmid = invalidate_tlbs_vmid,
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+index e7861f0ef415..932ae85d97e2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+@@ -617,100 +617,6 @@ bool kgd_gfx_v9_get_atc_vmid_pasid_mapping_info(struct kgd_dev *kgd,
+ 	return !!(value & ATC_VMID0_PASID_MAPPING__VALID_MASK);
+ }
+ 
+-static int invalidate_tlbs_with_kiq(struct amdgpu_device *adev, uint16_t pasid,
+-			uint32_t flush_type)
+-{
+-	signed long r;
+-	uint32_t seq;
+-	struct amdgpu_ring *ring = &adev->gfx.kiq.ring;
+-
+-	spin_lock(&adev->gfx.kiq.ring_lock);
+-	amdgpu_ring_alloc(ring, 12); /* fence + invalidate_tlbs package*/
+-	amdgpu_ring_write(ring, PACKET3(PACKET3_INVALIDATE_TLBS, 0));
+-	amdgpu_ring_write(ring,
+-			PACKET3_INVALIDATE_TLBS_DST_SEL(1) |
+-			PACKET3_INVALIDATE_TLBS_ALL_HUB(1) |
+-			PACKET3_INVALIDATE_TLBS_PASID(pasid) |
+-			PACKET3_INVALIDATE_TLBS_FLUSH_TYPE(flush_type));
+-	amdgpu_fence_emit_polling(ring, &seq);
+-	amdgpu_ring_commit(ring);
+-	spin_unlock(&adev->gfx.kiq.ring_lock);
+-
+-	r = amdgpu_fence_wait_polling(ring, seq, adev->usec_timeout);
+-	if (r < 1) {
+-		DRM_ERROR("wait for kiq fence error: %ld.\n", r);
+-		return -ETIME;
+-	}
+-
+-	return 0;
+-}
+-
+-int kgd_gfx_v9_invalidate_tlbs(struct kgd_dev *kgd, uint16_t pasid)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *) kgd;
+-	int vmid, i;
+-	uint16_t queried_pasid;
+-	bool ret;
+-	struct amdgpu_ring *ring = &adev->gfx.kiq.ring;
+-	uint32_t flush_type = 0;
+-
+-	if (adev->in_gpu_reset)
+-		return -EIO;
+-	if (adev->gmc.xgmi.num_physical_nodes &&
+-		adev->asic_type == CHIP_VEGA20)
+-		flush_type = 2;
+-
+-	if (ring->sched.ready)
+-		return invalidate_tlbs_with_kiq(adev, pasid, flush_type);
+-
+-	for (vmid = 0; vmid < 16; vmid++) {
+-		if (!amdgpu_amdkfd_is_kfd_vmid(adev, vmid))
+-			continue;
+-
+-		ret = kgd_gfx_v9_get_atc_vmid_pasid_mapping_info(kgd, vmid,
+-				&queried_pasid);
+-		if (ret && queried_pasid == pasid) {
+-			for (i = 0; i < adev->num_vmhubs; i++)
+-				amdgpu_gmc_flush_gpu_tlb(adev, vmid,
+-							i, flush_type);
+-			break;
+-		}
+-	}
+-
+-	return 0;
+-}
+-
+-int kgd_gfx_v9_invalidate_tlbs_vmid(struct kgd_dev *kgd, uint16_t vmid)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *) kgd;
+-	int i;
+-
+-	if (!amdgpu_amdkfd_is_kfd_vmid(adev, vmid)) {
+-		pr_err("non kfd vmid %d\n", vmid);
+-		return 0;
+-	}
+-
+-	/* Use legacy mode tlb invalidation.
+-	 *
+-	 * Currently on Raven the code below is broken for anything but
+-	 * legacy mode due to a MMHUB power gating problem. A workaround
+-	 * is for MMHUB to wait until the condition PER_VMID_INVALIDATE_REQ
+-	 * == PER_VMID_INVALIDATE_ACK instead of simply waiting for the ack
+-	 * bit.
+-	 *
+-	 * TODO 1: agree on the right set of invalidation registers for
+-	 * KFD use. Use the last one for now. Invalidate both GC and
+-	 * MMHUB.
+-	 *
+-	 * TODO 2: support range-based invalidation, requires kfg2kgd
+-	 * interface change
+-	 */
+-	for (i = 0; i < adev->num_vmhubs; i++)
+-		amdgpu_gmc_flush_gpu_tlb(adev, vmid, i, 0);
+-
+-	return 0;
+-}
+-
+ int kgd_gfx_v9_address_watch_disable(struct kgd_dev *kgd)
+ {
+ 	return 0;
+@@ -793,7 +699,5 @@ const struct kfd2kgd_calls gfx_v9_kfd2kgd = {
+ 			kgd_gfx_v9_get_atc_vmid_pasid_mapping_info,
+ 	.get_tile_config = kgd_gfx_v9_get_tile_config,
+ 	.set_vm_context_page_table_base = kgd_gfx_v9_set_vm_context_page_table_base,
+-	.invalidate_tlbs = kgd_gfx_v9_invalidate_tlbs,
+-	.invalidate_tlbs_vmid = kgd_gfx_v9_invalidate_tlbs_vmid,
+ 	.get_hive_id = amdgpu_amdkfd_get_hive_id,
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h
+index 02b1426d17d1..dfafa28b7559 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h
+@@ -57,7 +57,5 @@ uint32_t kgd_gfx_v9_address_watch_get_offset(struct kgd_dev *kgd,
+ 
+ bool kgd_gfx_v9_get_atc_vmid_pasid_mapping_info(struct kgd_dev *kgd,
+ 					uint8_t vmid, uint16_t *p_pasid);
+-int kgd_gfx_v9_invalidate_tlbs(struct kgd_dev *kgd, uint16_t pasid);
+-int kgd_gfx_v9_invalidate_tlbs_vmid(struct kgd_dev *kgd, uint16_t vmid);
+ int kgd_gfx_v9_get_tile_config(struct kgd_dev *kgd,
+ 		struct tile_config *config);
+diff --git a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h b/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
+index 2cd217e60125..a01ef836ad58 100644
+--- a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
++++ b/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
+@@ -307,8 +307,6 @@ struct kfd2kgd_calls {
+ 
+ 	void (*set_vm_context_page_table_base)(struct kgd_dev *kgd,
+ 			uint32_t vmid, uint64_t page_table_base);
+-	int (*invalidate_tlbs)(struct kgd_dev *kgd, uint16_t pasid);
+-	int (*invalidate_tlbs_vmid)(struct kgd_dev *kgd, uint16_t vmid);
+ 	uint32_t (*read_vmid_from_vmfault_reg)(struct kgd_dev *kgd);
+ 	uint64_t (*get_hive_id)(struct kgd_dev *kgd);
  
 -- 
 2.17.1
