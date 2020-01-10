@@ -1,49 +1,51 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4773136FC1
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:47:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF77136FBF
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:47:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D4D66EA33;
-	Fri, 10 Jan 2020 14:47:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 871AE6EA2F;
+	Fri, 10 Jan 2020 14:47:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2061.outbound.protection.outlook.com [40.107.236.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91CF36EA2C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 481E16EA2C
  for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:47:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ktlLQSqHR9E/Z4eFKnH2KWWq2GF2QZ5aWja23R/U4ENpVNxarpYoRL3P6hRAoJl4fjL6wKrdrnIvNQbrD6tvwptbpMgKV6kRRvazUPSblEt4serf2NXuO4xJquhsVSQXqjCuhvd/R3uQIsKZrB5H1NSc6Sg/ddZTtWrZskSJYL4UqqAEjl7QFRLHGIyJLV/uUXlWNmaoHpwamGIr4keYPXkz40wxaE4pQ5UTfHmCcrf7KGnHB67RPi8ZkLLX6ypRdJyXMFm6DZQsbtnXqp4dtzkEC0C+k2dWRDkyYCvBh3rAs2b3wMiYBn7WZuvxx7pq/od0eyQS6WmR5R9KINjHUQ==
+ b=HzkYxOvCKjq8Z+HjrRNkUOdNRQAxcOcGUhUDAZwp/6+AFeRwrcS28lWGI8cK7TunPbSWtortPl+LZlWW19m/rxbPL1KoDqxCugTE/IyNwTU2jBGgDJ6YzAFBrUTM3zV3EiEmUz21ErAAcsnGl0BN938VPZzqwkjJkiaA+BR6eO+Y63KnS8YiuxZopHZA6MQu64W8RSGcNSdSakcUu6sfGbolDCIvtBrNxHSTvW3mTveVPnRMMaHjDydU0MMEExu1DDj5rMbftSCP1Cm/a2WW7m1Zn2VTIimveyh2F6IPWmJy61hCkl9a3TXBbtudEXqPSeAf+J89tx3Q8gXAfj2PQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Zq3LXgDF1jZ7Hpe2Admrb3z48V7ksgTNxEtRSREwLZI=;
- b=E3t4UEPL/R4a63x9Ix5hwGffqF4THzkdJo0Gi+eDkDrDSz4zwmWCrSA5pzHfWMUBMNmTUzC99zzRrLpSiVwafurZzm3BFQIk3L8fMp22RjjGDhQRuI/iIypKx/oiC0TOuWDrLVCCNMnBCC4qYubVwX00JGUU8QRWq//AyIWv5pUDzcQVLm+TcFCwPCSZe0jwXp2UhP4b2F90FsuGlAvAKGE3w24LI0SXfbPmiBKS1TvBJJnGbYVw3wej19UxfifQo8GCQbcOSGI1qCmkOJh6ekRQwif47a+2usVRxAV6LrBgXvR7yVocy8BEUjoZX+EyEnkGGna0Scku2S+qgxhHwA==
+ bh=1FjwwHM84TaCxRx3hpa0h88tzZ7sPCVBkL9xXuQ4fp0=;
+ b=IyozDmf5rNBG9dTlE4SzOo3i8K5ODhvCh3z0ocz0MPs0qRvgNYk380BsvddY3mxN3FdkE/hhEE+ldBWaqUOEogdM+dg4CLjQFP8sZJBKHjZTBehKMWNCg8C8kNwqB9PHHS1pXeB5sVqNn+zaIBc9hAhPGjNvoz+b7ikQLG6sSD6pznqT5MEyFA85oljjMnfLikRW+x5WrXCPNa0K1bJjGFh4DC95EmjDyVG8DL082rXpUBnbHjAipULO7iC35fjPNHouKdHF9vfKR8/pdvt+UNlC0qhmpek0ht/PVjongcZ4/oJfje9uSx43H1YorKT48fmRMZKionkoW+veH3HaMQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Zq3LXgDF1jZ7Hpe2Admrb3z48V7ksgTNxEtRSREwLZI=;
- b=Tp8yTR9y5z5BXhPhxBP8SJpDYWV4EiZp/0OukboCs70K/l4T8gRBf7k4e1xUboSjyyjD+wYzzqyXn5PV/4w05qB5o0XvnBDEiDJVgrpSS4UGQp0yio0tBC7JqCCy26QBl8VuqxFU6B62XBhRuiWH7/T9WkxyNE35cDu/rHNIV6I=
+ bh=1FjwwHM84TaCxRx3hpa0h88tzZ7sPCVBkL9xXuQ4fp0=;
+ b=h9rH2AfonbQ2Wf7B46QsgP3VrHi3SsCElZGGE3UCC9zeDcrm/tbLlFv5y2uZ5X8Z3TViZgykQ1b6nqAH68bSX3+gUgcVdE13sFkNnbb9cN7wG08b8X1nXJfCbGjenqsEGSUAMEh+I26AiBdCu/OwXbAvU8zAl/L2lGTdhZtelek=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
  MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.11; Fri, 10 Jan 2020 14:47:20 +0000
+ 15.20.2623.11; Fri, 10 Jan 2020 14:47:21 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2%6]) with mapi id 15.20.2623.011; Fri, 10 Jan 2020
- 14:47:20 +0000
+ 14:47:21 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 00/43] DC Patches - January 10, 2020
-Date: Fri, 10 Jan 2020 09:46:12 -0500
-Message-Id: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 01/43] drm/amd/include: Add OCSC registers
+Date: Fri, 10 Jan 2020 09:46:13 -0500
+Message-Id: <20200110144655.55845-2-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
+References: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
 X-ClientProxiedBy: YT1PR01CA0009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::22)
  To MW2PR12MB2524.namprd12.prod.outlook.com
  (2603:10b6:907:9::27)
@@ -56,14 +58,14 @@ X-Mailer: git-send-email 2.24.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: fdf5d74a-20ec-4eef-59c7-08d795dbfefc
+X-MS-Office365-Filtering-Correlation-Id: 39796ea0-5d41-4e68-92b1-08d795dbff77
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2524:|MW2PR12MB2524:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2524DE522F0878640ADACA5898380@MW2PR12MB2524.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1443;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB25243CDD173FA0E9C9C65BD098380@MW2PR12MB2524.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1284;
 X-Forefront-PRVS: 02788FF38E
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(189003)(199004)(8936002)(5660300002)(6916009)(81156014)(6486002)(81166006)(36756003)(316002)(1076003)(2906002)(6666004)(956004)(7696005)(52116002)(478600001)(186003)(2616005)(86362001)(26005)(16526019)(66556008)(8676002)(66476007)(4326008)(66946007);
+ SFS:(10009020)(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(189003)(199004)(8936002)(5660300002)(6916009)(54906003)(81156014)(6486002)(81166006)(36756003)(316002)(1076003)(2906002)(6666004)(956004)(7696005)(52116002)(478600001)(186003)(2616005)(86362001)(26005)(16526019)(66556008)(8676002)(66476007)(4326008)(66946007);
  DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2524;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
@@ -71,14 +73,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: C2eLa48rCvc0ynzXOQhNjlaR7uCD4ojXTeyBnJeTYtJHB1hfGUPEtDK3PyikLiQndnH7hqtN4f/7Ni1ztZ9ztSlRP8Jjs+PzQ4dH6mNLgL0G+1u2YSrs91R45GeaB18/kKNj53+Xb0PJYaMcqGo7mWouot71I0Baw8lAjcA8xWa7ApZvadEVhZof9b0/dAGbYgGJ+TyiBfeky4OTO/SI/0IPceuhezap0IUrZWll6UTjhQntoe/WiSR7ZDAc7cfk6uRIM8GBq8AiWS3v4zxSOpqmPuhPWqmab9EzBBwRj7sd8Ut9mR5xxRBo/mErPrhGlqRM4E5S0U4DBMOH6F9SNRY3r7qHxQbdFUvVX7g3OAi0gdYGgC91AF0tQaeG/Y7JsyV7eboIisNcRd3LFfwLIWCH2/VGDXKgi1hSctSpBlKHTYCnCaESlFTklzBWtEOc
+X-Microsoft-Antispam-Message-Info: QvhxQDXtDwGUGDtMseCAxDAzTO1+0CWx03wa6P2apuzKjGIruBgE36wBr1hrZ3nDqVBgqeO+879K79D4ADCi/TFykwvQ18d6XbZH8qhejXk76oXy0/9arFr7Urh0rQF2/fv4g1igPnVt0b3B/VrOp1WVjiX135ddgDKGkcielkcRxAhQgvSnCuTZlCf6Yi758L71RQRYJtfXgUOTnMbfS8c9sfS0oGP+M4MS6zuaqsz8T44L+6p3poqfe40FBZz08s4w3t2i5C/c8M7A2Lkdy9Q4xtHQhNr+k2CaYlNAXaAAyTF6O1I7sdBvzpVudvvUi8ej787/3u0SnkttX2UIB+BYFmYrDOVcCabp7P0noXvFsrU6fJy+DsIfCD9rXcejECl22ErD416Lok6MprtrkVoK95+5IkrkK/KtsPQW+9XQIg8Hf8QrzhLslaR7XW7R
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fdf5d74a-20ec-4eef-59c7-08d795dbfefc
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:20.6360 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39796ea0-5d41-4e68-92b1-08d795dbff77
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:21.4386 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cy+00JZzRB2Z0spgogpLsY3vVQ2QwWazwDErxtyxGkyu75wCfMS3yM20MFdq1nL46tJKZo9SERgaVK3gnESlhg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: NerF9vVMc8DO8/3mNrWrbvYvfL/vE59S7RSO6SpG42JF9caffzZZgWrcsPwCFL+YBkgm2mX+YFH2kfY0n+Zg/g==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2524
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,187 +93,95 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Harry.Wentland@amd.com
+Cc: Leo Li <sunpeng.li@amd.com>, Bhawanpreet.Lakha@amd.com,
+ Harry Wentland <harry.wentland@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This DC patchset brings improvements in multiple areas. In summary, we
-highlight:
+Add registers for handling Post Gamma Color Blending (OCSC), which is
+useful for conversion from RGB->YUV for HDMI.
 
-* Add OCSC improvements.
-* Bug fix on chroma, Freesync dml, and DMUB.
-* DMCUB improvements.
-* Some code refactor.
+Reviewed-by: Leo Li <sunpeng.li@amd.com>
+Acked-by: Harry Wentland <harry.wentland@amd.com>
+Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+---
+ .../gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_offset.h  | 4 ++++
+ .../gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_sh_mask.h | 9 ++++++++-
+ .../gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_offset.h  | 5 ++++-
+ .../gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_sh_mask.h | 8 ++++++++
+ 4 files changed, 24 insertions(+), 2 deletions(-)
 
-Alvin Lee (3):
-  drm/amd/display: Fix 300Hz Freesync bug
-  drm/amd/display: Don't always set pstate true if dummy latency = 0
-  drm/amd/display: Enable double buffer for OTG_BLANK
-
-Amanda Liu (1):
-  drm/amd/display: Clear state after exiting fixed active VRR state
-
-Anthony Koo (1):
-  drm/amd/display: make PSR static screen entry within 30 ms
-
-Aric Cyr (4):
-  drm/amd/display: 3.2.65
-  drm/amd/display: 3.2.66
-  drm/amd/display: 3.2.67
-  drm/amd/display: 3.2.68
-
-Charlene Liu (1):
-  drm/amd/display: rename _lvp to l_vp
-
-Chris Park (1):
-  drm/amd/display: Add default switch case for DCC
-
-Dmytro Laktyushkin (1):
-  drm/amd/display: expand dml structs
-
-Eric Yang (1):
-  drm/amd/display: fix chroma vp wa corner case
-
-George Shen (1):
-  drm/amd/display: Add w/a to reset PHY before link training in
-    verify_link_cap
-
-Joseph Gravenor (1):
-  drm/amd/display: stop doing unnecessary detection when going to D3
-
-Josip Pavic (1):
-  drm/amd/display: implement fw-driver interface for abm 2.4
-
-Jun Lei (1):
-  drm/amd/display: fixup DML dependencies
-
-Lewis Huang (2):
-  drm/amd/display: remove psr state condition when psr exit case
-  drm/amd/display: Add monitor patch for AUO dpcd issue
-
-Martin Leung (1):
-  drm/amd/display: Adding forgotten hubbub func
-
-Martin Tsai (1):
-  drm/amd/display: Use udelay to avoid context switch
-
-Michael Strauss (1):
-  drm/amd/display: Update HDMI hang w/a to apply to all TMDS signals
-
-Nicholas Kazlauskas (3):
-  drm/amd/display: Flush framebuffer data before passing to DMCUB
-  drm/amd/display: Read inst_fb data back during DMUB loading
-  drm/amd/display: Soft reset DMUIF during DMUB reset
-
-Nikola Cornij (1):
-  drm/amd/display: Disable secondary link for certain monitors
-
-Noah Abradjian (4):
-  drm/amd/display: Add double buffering to dcn20 OCSC
-  drm/amd/display: Fix double buffering in dcn2 ICSC
-  drm/amd/display: Double buffer dcn2 Gamut Remap
-  drm/amd/display: Indirect reg read macro with shift and mask
-
-Paul Hsieh (1):
-  drm/amd/display: reallocate MST payload when link loss
-
-Rodrigo Siqueira (1):
-  drm/amd/include: Add OCSC registers
-
-Sung Lee (1):
-  drm/amd/display: Use SMU ClockTable Values for DML Calculations
-
-Wenjing Liu (3):
-  drm/amd/display: wait for update when setting dpg test pattern
-  drm/amd/display: wait for test pattern after when all pipes are
-    programmed
-  drm/amd/display: skip opp blank or unblank if test pattern enabled
-
-Wyatt Wood (3):
-  drm/amd/display: Driverside changes to support PSR in DMCUB
-  drm/amd/display: DMCUB FW Changes to support PSR
-  drm/amd/display: Fix DMUB PSR command IDs
-
-Yongqiang Sun (3):
-  drm/amd/display: programing surface flip by dmcub.
-  drm/amd/display: Refactor surface flip programming
-  drm/amd/display: Only program surface flip for video plane via dmcub
-
-abdoulaye berthe (1):
-  drm/amd/display: store lttpr mode with dpcd
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  32 +-
- .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |  10 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  13 +-
- drivers/gpu/drm/amd/display/dc/core/dc_link.c |  64 +++-
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  |  99 +++++-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  10 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |  20 +-
- drivers/gpu/drm/amd/display/dc/dc_helper.c    |  30 ++
- drivers/gpu/drm/amd/display/dc/dc_link.h      |   4 +
- drivers/gpu/drm/amd/display/dc/dc_stream.h    |   4 +-
- drivers/gpu/drm/amd/display/dc/dc_types.h     |   3 +-
- drivers/gpu/drm/amd/display/dc/dce/dce_dmcu.c |   3 -
- drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c | 220 +++++++++++++
- drivers/gpu/drm/amd/display/dc/dce/dmub_psr.h |  47 +++
- .../display/dc/dce110/dce110_hw_sequencer.c   |  35 +-
- .../dc/dce110/dce110_timing_generator.c       |  11 +-
- .../dc/dce110/dce110_timing_generator.h       |   3 +-
- .../dc/dce120/dce120_timing_generator.c       |  11 +-
- .../drm/amd/display/dc/dcn10/dcn10_dpp_cm.c   |  20 --
- .../drm/amd/display/dc/dcn10/dcn10_hubbub.c   |   3 +
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  31 +-
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.h |   2 +-
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c |  15 +-
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.h |   3 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dpp.c  |  26 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dpp.h  |  64 +++-
- .../drm/amd/display/dc/dcn20/dcn20_dpp_cm.c   | 155 ++++++++-
- .../drm/amd/display/dc/dcn20/dcn20_hubbub.c   |   6 +-
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  13 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c  |  47 ++-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_mpc.h  |  22 ++
- .../drm/amd/display/dc/dcn20/dcn20_resource.c |  53 +++-
- .../gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c | 300 ++++++++++--------
- .../drm/amd/display/dc/dcn21/dcn21_resource.c |  28 +-
- .../dc/dml/dcn20/display_mode_vba_20.c        | 169 +++++-----
- .../dc/dml/dcn20/display_mode_vba_20v2.c      | 171 +++++-----
- .../dc/dml/dcn21/display_mode_vba_21.c        | 161 +++++-----
- .../amd/display/dc/dml/display_mode_enums.h   |  18 +-
- .../amd/display/dc/dml/display_mode_structs.h |   7 +-
- .../drm/amd/display/dc/dml/display_mode_vba.c |  22 +-
- .../drm/amd/display/dc/dml/display_mode_vba.h | 128 +++++---
- .../drm/amd/display/dc/dml/dml_common_defs.c  |   2 +-
- .../drm/amd/display/dc/dml/dml_inline_defs.h  |   2 +-
- .../gpu/drm/amd/display/dc/inc/core_types.h   |   1 +
- .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |   2 +
- .../display/dc/{calcs => inc}/dcn_calc_math.h |   0
- drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h   |  20 ++
- drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |  20 ++
- .../amd/display/dc/inc/hw/timing_generator.h  |   3 +-
- .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |   4 +-
- .../amd/display/dc/inc/hw_sequencer_private.h |   2 +-
- .../gpu/drm/amd/display/dc/inc/reg_helper.h   |  13 +
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  78 +++--
- .../drm/amd/display/dmub/inc/dmub_cmd_dal.h   |  15 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_rb.h    |  29 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_srv.h   |  19 --
- .../gpu/drm/amd/display/dmub/src/dmub_dcn20.c |   2 +
- .../gpu/drm/amd/display/dmub/src/dmub_dcn20.h |   6 +-
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |  57 ++--
- .../amd/display/modules/freesync/freesync.c   |   3 +
- .../amd/display/modules/power/power_helpers.c |   7 +-
- .../include/asic_reg/dcn/dcn_2_0_0_offset.h   |   4 +
- .../include/asic_reg/dcn/dcn_2_0_0_sh_mask.h  |   9 +-
- .../include/asic_reg/dcn/dcn_2_1_0_offset.h   |   5 +-
- .../include/asic_reg/dcn/dcn_2_1_0_sh_mask.h  |   8 +
- 65 files changed, 1743 insertions(+), 651 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dce/dmub_psr.h
- rename drivers/gpu/drm/amd/display/dc/{calcs => inc}/dcn_calc_math.h (100%)
-
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_offset.h
+index cff8f91555d3..e9b2bd84cfed 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_offset.h
+@@ -8134,6 +8134,10 @@
+ #define mmMPC_OUT5_CSC_C33_C34_B                                                                       0x1604
+ #define mmMPC_OUT5_CSC_C33_C34_B_BASE_IDX                                                              2
+ 
++#define mmMPC_OCSC_TEST_DEBUG_INDEX                                                                    0x163b
++#define mmMPC_OCSC_TEST_DEBUG_INDEX_BASE_IDX                                                           2
++#define mmMPC_OCSC_TEST_DEBUG_DATA_BASE_IDX                                                            2
++#define mmMPC_OCSC_TEST_DEBUG_DATA                                                                     0x163c
+ 
+ // addressBlock: dce_dc_mpc_mpc_dcperfmon_dc_perfmon_dispdec
+ // base address: 0x5964
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_sh_mask.h
+index 10c83fecd147..dc8ce7aaa0cf 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_0_0_sh_mask.h
+@@ -28263,7 +28263,14 @@
+ #define MPC_OUT5_CSC_C33_C34_B__MPC_OCSC_C34_B__SHIFT                                                         0x10
+ #define MPC_OUT5_CSC_C33_C34_B__MPC_OCSC_C33_B_MASK                                                           0x0000FFFFL
+ #define MPC_OUT5_CSC_C33_C34_B__MPC_OCSC_C34_B_MASK                                                           0xFFFF0000L
+-
++//MPC_OCSC_TEST_DEBUG_INDEX
++#define MPC_OCSC_TEST_DEBUG_INDEX__MPC_OCSC_TEST_DEBUG_INDEX__SHIFT                                           0x0
++#define MPC_OCSC_TEST_DEBUG_INDEX__MPC_OCSC_TEST_DEBUG_WRITE_EN__SHIFT                                        0x8
++#define MPC_OCSC_TEST_DEBUG_INDEX__MPC_OCSC_TEST_DEBUG_INDEX_MASK                                             0x000000FFL
++#define MPC_OCSC_TEST_DEBUG_INDEX__MPC_OCSC_TEST_DEBUG_WRITE_EN_MASK                                          0x00000100L
++//MPC_OCSC_TEST_DEBUG_DATA
++#define MPC_OCSC_TEST_DEBUG_DATA__MPC_OCSC_TEST_DEBUG_DATA__SHIFT                                             0x0
++#define MPC_OCSC_TEST_DEBUG_DATA__MPC_OCSC_TEST_DEBUG_DATA_MASK                                               0xFFFFFFFFL
+ 
+ // addressBlock: dce_dc_mpc_mpc_dcperfmon_dc_perfmon_dispdec
+ //DC_PERFMON17_PERFCOUNTER_CNTL
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_offset.h
+index eddf83ec1c39..7cd0ee61c030 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_offset.h
+@@ -7103,7 +7103,10 @@
+ #define mmMPC_OUT3_CSC_C31_C32_B_BASE_IDX                                                              2
+ #define mmMPC_OUT3_CSC_C33_C34_B                                                                       0x15ea
+ #define mmMPC_OUT3_CSC_C33_C34_B_BASE_IDX                                                              2
+-
++#define mmMPC_OCSC_TEST_DEBUG_INDEX                                                                    0x163b
++#define mmMPC_OCSC_TEST_DEBUG_INDEX_BASE_IDX                                                           2
++#define mmMPC_OCSC_TEST_DEBUG_DATA_BASE_IDX                                                            2
++#define mmMPC_OCSC_TEST_DEBUG_DATA                                                                     0x163c
+ 
+ // addressBlock: dce_dc_mpc_mpc_dcperfmon_dc_perfmon_dispdec
+ // base address: 0x5964
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_sh_mask.h
+index faa0e76e32b4..2f780aefc722 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_2_1_0_sh_mask.h
+@@ -56634,5 +56634,13 @@
+ #define AZF0INPUTENDPOINT7_AZALIA_F0_CODEC_INPUT_PIN_CONTROL_INFOFRAME__INFOFRAME_BYTE_5_MASK                 0x00FF0000L
+ #define AZF0INPUTENDPOINT7_AZALIA_F0_CODEC_INPUT_PIN_CONTROL_INFOFRAME__INFOFRAME_VALID_MASK                  0x80000000L
+ 
++//MPC_OCSC_TEST_DEBUG_INDEX
++#define MPC_OCSC_TEST_DEBUG_INDEX__MPC_OCSC_TEST_DEBUG_INDEX__SHIFT                                           0x0
++#define MPC_OCSC_TEST_DEBUG_INDEX__MPC_OCSC_TEST_DEBUG_WRITE_EN__SHIFT                                        0x8
++#define MPC_OCSC_TEST_DEBUG_INDEX__MPC_OCSC_TEST_DEBUG_INDEX_MASK                                             0x000000FFL
++#define MPC_OCSC_TEST_DEBUG_INDEX__MPC_OCSC_TEST_DEBUG_WRITE_EN_MASK                                          0x00000100L
++//MPC_OCSC_TEST_DEBUG_DATA
++#define MPC_OCSC_TEST_DEBUG_DATA__MPC_OCSC_TEST_DEBUG_DATA__SHIFT                                             0x0
++#define MPC_OCSC_TEST_DEBUG_DATA__MPC_OCSC_TEST_DEBUG_DATA_MASK                                               0xFFFFFFFFL
+ 
+ #endif
 -- 
 2.24.1
 
