@@ -1,49 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5857B136FCE
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:47:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B170A136FCB
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:47:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E58E26EA31;
-	Fri, 10 Jan 2020 14:47:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79DDD6EA3E;
+	Fri, 10 Jan 2020 14:47:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2047.outbound.protection.outlook.com [40.107.236.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 445896EA3C
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:47:33 +0000 (UTC)
+ (mail-bn8nam11on2045.outbound.protection.outlook.com [40.107.236.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B09476EA3D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:47:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nEwHvUIMZLCozkYzGnWCUJzbL7RpBeKpCgfCyFhj/w8cI+MCyCAX1WWteEn6By9Zl0dz416IjVDwul+zyDXuglTfQuW3vBnYpB/aLdq5I3/ToixMb1qwOOuDU13GB9Ky8UuGPOncrHRWasEM6wBZn/Wsp0naZwqPn7H+ZgUHXZa1ceK2NBMM/+zS4CPTqkv8dYjkInUT4Z98DQglOh1xbOO1qnfGXIXqDlKSylv+e6U+ut+bkcMfe0qs/iwsGGoP/nbsSvsvKGovH4SKD4epRvm54IiEGa4YgCdWPy8xqSnFAbLLEj+XwtXCbY7rYOTkqXKioIRz9xdTegogGRuG5g==
+ b=YwMmIGDlp1bnr0ZLVFtvBKm3jsLbi9izo596jWKTqpkdEqRnNLjg8KswbnxrVmYbuq5jGh/GY7TstrUUTT3gpsalQaOGJoEqmsoWXLQiCks7L1/xf1JrhODYko3539ZHsaC8Ay+5lcbAmixSdNL1Rf00Vws9ZbCXA+XyKH1QiofWO9VJrEqHNrDHp2Ra1Pj8OKjS1eAkZzblG/QqAF23XK78wUIZM7Zbt1mXAZMilzz+7McM6Hs3gq2uZXrhncQZ1y6v63VBl781bp+ircI2ij3MHcEWeLUZVcBRtwrz4zy13+Isjju6LW97Ud3MetxFfajU4c3JZGWqvtub25gOHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Vk/C71qdpt97Qs/Bqh0GmVWkQt7aTFED/acVH2sein0=;
- b=MGANU9TL2qvvvou+42KpFSu9bJFKIAo/8o0wUc/n+WmGfokqsSc2bJXW8UOTe8Q3VfdxJRVtMp+yZckV7oReDwJa6R74gFrnLiLp0MxQavIxCtdPa7nwTg3dmARAXyIQYQz56XVyj8kU9Qacn035SfbDtpfqe1Hlx53042nT9Bc0MmgzE577fdwiQglzXOn2QGyNKxnDDEQEEcdA7adxFsxI2pcdKMtf16zpZEsJvfRgddWQl2yQzZK8PCjUvwO2SiEIbxoa8uoGzJd0UvzIxI8cVsVtngrOvIGnwXVHUiqFmmpHQX5iSrBlrj9via9BbCxaqliZCMatT26p8yz5WQ==
+ bh=CpnAXt7jF/w8h3b90gjxY8VnvZTNUp/kcn09LeLt0aY=;
+ b=AXOdvC5N9zjK7KMK7koBnjgzmqljbp3HY2/h58tpWb0Xw384+G6/ryf3APvnvNRXQZPgldTmE/RVYtmBZnAm/eUUYj4SxgqgQZXCVH6fXKGCQT9vJJjvRBeIERHUN9tLhRjZq//w/0IZtvfNOXRgHGC3fFBtTGgrnyXuvKHFLGH2FpDHyaq5T0pX6QMKNiOu017Cxvh3jaeFJJJnBLu+Gm/mw1uUWU3+/pvNZO7lUIAEiYp/CjU/HI+d3+VznX8Vzya7zm+unJV1EKgIFMiHqgiRhW6hg5zs4QodozRPh82wNjx8csTgGpIi5JpQw6hBKqSMcfLDifB7YE4K855IEQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Vk/C71qdpt97Qs/Bqh0GmVWkQt7aTFED/acVH2sein0=;
- b=uBjh27HBV3bfpfAn6Qgh+utUyMzVo5Gz7G3v9AezC1W6wdQ5IXy5yYGIMip9vjYCiV1nLn/F5HqKEaFnnQiTls1crORiZ4taQHpzjLmD4ShXKDb/89FSDsd5BtfPiMsGB6lmlEvb1YaldX3ZhC/eD0n8KX87Qrt8f2Q/l2MPUQo=
+ bh=CpnAXt7jF/w8h3b90gjxY8VnvZTNUp/kcn09LeLt0aY=;
+ b=R8UO/AH7Vc9y7BZtBVsQPHgciGLBQ0BBbwRtlwNSvvuCfkfDwHMzmfew/rgKN9aVStiH8ly7DPBvjEsnnx7MdFVzXfZxOPS81dPIC/nFOiP26xRYRaKrOyEIYHc23MBIBtAIedKxzpyiyDMo/A0vy70CkgOh8oozISNq7ty2aCo=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
  MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.11; Fri, 10 Jan 2020 14:47:32 +0000
+ 15.20.2623.11; Fri, 10 Jan 2020 14:47:33 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2%6]) with mapi id 15.20.2623.011; Fri, 10 Jan 2020
- 14:47:32 +0000
+ 14:47:33 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 13/43] drm/amd/display: Don't always set pstate true if dummy
- latency = 0
-Date: Fri, 10 Jan 2020 09:46:25 -0500
-Message-Id: <20200110144655.55845-14-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 14/43] drm/amd/display: Update HDMI hang w/a to apply to all
+ TMDS signals
+Date: Fri, 10 Jan 2020 09:46:26 -0500
+Message-Id: <20200110144655.55845-15-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
 References: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
@@ -54,19 +54,19 @@ MIME-Version: 1.0
 Received: from atma2.amd.com (165.204.55.250) by
  YT1PR01CA0009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:31 +0000
+ 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:32 +0000
 X-Mailer: git-send-email 2.24.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 085ebb89-444c-41cb-a6bf-08d795dc05f2
+X-MS-Office365-Filtering-Correlation-Id: 8174e299-5c05-4f89-60f9-08d795dc067a
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2524:|MW2PR12MB2524:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB25240B27BBAE3199311AAD8198380@MW2PR12MB2524.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:758;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2524F481A4FDD744446C048D98380@MW2PR12MB2524.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-Forefront-PRVS: 02788FF38E
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(189003)(199004)(8936002)(5660300002)(6916009)(54906003)(81156014)(6486002)(81166006)(36756003)(316002)(1076003)(2906002)(6666004)(956004)(7696005)(52116002)(478600001)(186003)(2616005)(86362001)(26005)(16526019)(66556008)(8676002)(66476007)(4326008)(66946007);
+ SFS:(10009020)(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(189003)(199004)(8936002)(5660300002)(6916009)(54906003)(81156014)(6486002)(81166006)(36756003)(316002)(1076003)(2906002)(6666004)(956004)(7696005)(52116002)(478600001)(186003)(15650500001)(2616005)(86362001)(26005)(16526019)(66556008)(8676002)(66476007)(4326008)(66946007);
  DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2524;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
@@ -74,14 +74,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DKMUBDrACL7UsGeDGxoI5tHnIlX2lLCkQPzbUfkQt2CeT9ZiCHyMvimcfteaBwVgkqm+DeV8ACTDxZ0fWP19vUrf9CjBe6lA6aoJ4sO8f4qrV1/rbV85W7umBIwe73TkTbMF0pHvLAHYUV4UprkY4UjASik05RMr+rYwnCA7yTJAfP4k+MkjgRDu9WX+aAoAcsIDbmZVhf+ZOkpg02Nl/fW/W4mEZ2BPuzhoKhvd7vzyoMuPmnDSKX4ay+OVM8Set0iZW62r/q8lhqCpyoU7gcEwlYgFJiyTNmfo1oIzScqZRtP8PVzhRVYvmSWt1BOAWQJkx9JSieKaYh+lL81xE5At6crA+eQHW5MiydSyY9LBoW0EgJwev9bcYd0NWDHgrzAoILMtZsR3YkAy6yN/13wcyBjhr7Il2fcro05FVZk+x0/tEFQp4u/wNafAR2ge
+X-Microsoft-Antispam-Message-Info: J3OfeX1i3E1yV856KyfDpw1bPrCgfj5A6ZXym9w7T9NH6zN0dM6BREzxM7/VM9JCFhnaZovqvXEdlMqIZ9ZQdX7u5G6ge2dxyK3FdTPuNX97Ujj22NSWSsNBo+uv1H3nh9FU9CoBPxUWyUxFN97vxT9wkdqF0r7da4yWHSgQpVJIAJ6aAX+QTW/p3bUQ8MsSyP8VDxNtHqtA8EEIocuxpVcttIldGTN2O3MMuvkX6PepeCJIQkkBDECJwp/Z9oNedMmw8ZoUG+vuDgaudH9k6a9Nbnogg41bGSj4qLQxEnBZaM+RNwAoMItGuA93P4lMSYvSTdpHOnPzo2NBMvuqIDTfW6x5UgfxwS83HTK16UiPGNL00nR9RMhA5+IlbVqu4ysTFXFssjw+k906xNNoJemNUUFeNTfyWcoArJ/71Bt3Qr8FQzuAVxqxvvg0CsPx
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 085ebb89-444c-41cb-a6bf-08d795dc05f2
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:32.3655 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8174e299-5c05-4f89-60f9-08d795dc067a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:33.1631 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8WTkf4MwB9Myx91SeL+4KFeklcR605rs8PP280wj9QzJB3v9u70mYoG74Qa4o7NOoKINPjzuKKEqTV5dN77EMw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: jaYXKwKrqUM5nAWyCdwC6W0rX7e5NsLDFPNJFB4FLZM9Xl0wVqnOdgRS5pDw5janXZ/ivFLetn3KUI210tiXsQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2524
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,43 +94,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Jun Lei <Jun.Lei@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, Alvin Lee <alvin.lee2@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
+ Harry Wentland <harry.wentland@amd.com>, Eric Yang <eric.yang2@amd.com>,
+ Michael Strauss <michael.strauss@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <alvin.lee2@amd.com>
+From: Michael Strauss <michael.strauss@amd.com>
 
-[Why]
-If dummy pstate latency is 0 we should report the actual
-pstate support, and not that pstate is always supported.
+[WHY]
+48mhz turn off feature does not work on HDMI and DVI, but the feauture
+was only blocked on HDMI, this change will apply the same wa on DVI
 
-[How]
-Don't always program pstate support true
+[HOW]
+Apply workaround for all TMDS signal types (HDMI, DVI single/dual link)
 
-Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Signed-off-by: Michael Strauss <michael.strauss@amd.com>
+Reviewed-by: Eric Yang <eric.yang2@amd.com>
 Acked-by: Harry Wentland <harry.wentland@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c  | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index a05746142ec8..eac4c3cecadf 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -2918,7 +2918,7 @@ bool dcn20_validate_bandwidth(struct dc *dc, struct dc_state *context,
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+index ffed7207c099..7ae4c06232dd 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+@@ -59,14 +59,16 @@ int rn_get_active_display_cnt_wa(
+ 		struct dc_state *context)
+ {
+ 	int i, display_count;
+-	bool hdmi_present = false;
++	bool tmds_present = false;
  
- 	if (context->bw_ctx.dml.soc.dummy_pstate_latency_us == 0 ||
- 		(voltage_supported && full_pstate_supported)) {
--		context->bw_ctx.bw.dcn.clk.p_state_change_support = true;
-+		context->bw_ctx.bw.dcn.clk.p_state_change_support = full_pstate_supported;
- 		goto restore_dml_state;
+ 	display_count = 0;
+ 	for (i = 0; i < context->stream_count; i++) {
+ 		const struct dc_stream_state *stream = context->streams[i];
+ 
+-		if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
+-			hdmi_present = true;
++		if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A ||
++				stream->signal == SIGNAL_TYPE_DVI_SINGLE_LINK ||
++				stream->signal == SIGNAL_TYPE_DVI_DUAL_LINK)
++			tmds_present = true;
  	}
  
+ 	for (i = 0; i < dc->link_count; i++) {
+@@ -85,7 +87,7 @@ int rn_get_active_display_cnt_wa(
+ 	}
+ 
+ 	/* WA for hang on HDMI after display off back back on*/
+-	if (display_count == 0 && hdmi_present)
++	if (display_count == 0 && tmds_present)
+ 		display_count = 1;
+ 
+ 	return display_count;
 -- 
 2.24.1
 
