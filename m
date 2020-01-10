@@ -1,49 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8936F136FD9
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:47:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171FE136FDD
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:48:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFFF66EA4C;
-	Fri, 10 Jan 2020 14:47:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 808DC6EA30;
+	Fri, 10 Jan 2020 14:48:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770087.outbound.protection.outlook.com [40.107.77.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51AFA6EA4C
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:47:49 +0000 (UTC)
+ (mail-eopbgr770057.outbound.protection.outlook.com [40.107.77.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2FCD6EA2F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:48:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TLpSLY8ZVfWAzJNBs5wNVOPoSljfuUzaNJ0fT/qPDzWbjnyEIM7ozqjDPQdmmE2HHI0tdMnzi513FpFmvbVwe10vpigcdSRSK0aMB6CGm6ZF/ZmFqo0s6bHbGOSTf0JRyMOalpkToU+EqpkaievStk0dP4ODRsePMor7pov0OTfnC+YnSRJojtH30SIMouiCjOC1D4xK2jjl+21QyN80LBm1gBwU63g/P1+Pe6qbN6PDTov1tcGmyj/rrT307oa+OprYxi/F2jxGavkajfx8x8Gta0ZUjPbKCRElNBOojUsjXT6SbjBlYROzfAtkHuWIaum0Sm5JdB5/sfxOZVmnBg==
+ b=iRujnyd/KUQXUg9Gg0GZ2FmP+4C/9QbB1ZFnpaeEoI/9NK4peEcPEP39/UU9zek2WHrHytdiOYdgs2aTmm/t1ZHW/gfgyG9MbsyCbdN3b//js49wSTqqdSaRcOxGt1Ugwfz2aDrBLaW7tHyBBtoRjSyXcIVSjVa3rjz0DQv+hT9fpcDFtLVLlbyo5Go885JZQSGog3vXvoWhmCgpOpzs68RND9Areg0m3Mp5sJQ1E7F/uODRFystV+2xlSI2BhxjoCXkOTv28GKqAKZE34UD9qEB4NMt0UvmC4paTmnEnsqf5Wdfyfhw+2DMe8E3eWK8iWcd2uzL1Q71r36QVSTl5w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7NXvACt8b9hAwynVJ+h+6hbn6HMOZpevUMnF0NeLnl8=;
- b=d/zAj7dbZKJjNXxp+Q8NK+3jZRViBQ21/zazM+gmTy9Cx5lHaqmCEMYrxTWF5hdw5jo0Ih3/5SyQgaEeiLnJxEjPNQCoIOUhET1hqkpFwbAAbOtVBXRw/lXU7qaHFDr1XeusskHyJgg2t2S+ZhrFygUKq6Fh+dvW/JxNbQUs8m6B5GqjXEOiIQ8KsXWqsIS0205C26QBQLFdq/JDFeb1lGD/jG95h7L5X3ykms+I++6eQDnDx7z4STbcDoZPdLiO0HEzN4p1mGULW5iVnDbfS8tLNNb41hLSzc7qX6TlTTiPQqgVZ20PPSDTRKuLHnyT/zqBjc8LmCLF6k2PgyjuAQ==
+ bh=AR30phuEcS4WTnoaPcqHXcevWcIoxz0qI7TgdUgyg/Q=;
+ b=d/jhDpm0o5E40NaJFUuoG7V3sWGXzuyl09Ao1B+1UTPeOhWJnvTDZHUl1R/hdmBLAcFwKmbkJwdI8nOt1GGfYJGMiFV/JPxOhwPIBk6+YtkA/6rUgqI6brSn/uG8cHpCLC1b//DdXkmIXTbiUnrzt4wvJEKLT53TDrSiqenbvrP5C7y8x9BsaOiNxSU22NeQllRq5UDHJSRokvP0bwDCJ+BzhbqJRTRec2Ia3TscpDjR140T9yLiIewFx+FAX9CvwQ734MkYW2zmYCYpcpKCvyILt79przEezvPUA9TPtc72wNzwUO17ofuJKgkk9Aa7XRE+QSyWbCQCz1ZHsSfQGQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7NXvACt8b9hAwynVJ+h+6hbn6HMOZpevUMnF0NeLnl8=;
- b=M6ZtNs3L7qBrwPzrubOrpu7Iz42j/lcC8wfEEFb7IM8wggn80PrZ32+p6iI6yC1YdX2sVS6W6PSE3496CDtDVzQ53mQ+Gbnt8uLG5LytXW3sT2noyBWJWte/9gViAFjzEpOG9mXUx+cFUkg5/22kPbhaw6AkMZIqFNudHEXb9sE=
+ bh=AR30phuEcS4WTnoaPcqHXcevWcIoxz0qI7TgdUgyg/Q=;
+ b=kWQxFcbJcgkgtX2vWBpIqQ1OSvYU4ZF6VMo2k7xA1ATISQhpJvLCXGlGOcbFdHDADWfWXyUV9iO+KFlvLa7lOWWoeZf5/x76VE0hKpu88m7xbHC1w2KKqZual2qNkyPHnVUxCKhCS2efEdH2+QNneAHr11BE7SZZY22YqGew3zY=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
  MW2PR12MB2378.namprd12.prod.outlook.com (52.132.183.143) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.9; Fri, 10 Jan 2020 14:47:46 +0000
+ 15.20.2623.9; Fri, 10 Jan 2020 14:48:17 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2%6]) with mapi id 15.20.2623.011; Fri, 10 Jan 2020
- 14:47:46 +0000
+ 14:48:17 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 29/43] drm/amd/display: Use SMU ClockTable Values for DML
- Calculations
-Date: Fri, 10 Jan 2020 09:46:41 -0500
-Message-Id: <20200110144655.55845-30-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 30/43] drm/amd/display: Add default switch case for DCC
+Date: Fri, 10 Jan 2020 09:46:42 -0500
+Message-Id: <20200110144655.55845-31-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
 References: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
@@ -54,16 +53,16 @@ MIME-Version: 1.0
 Received: from atma2.amd.com (165.204.55.250) by
  YT1PR01CA0009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:45 +0000
+ 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:46 +0000
 X-Mailer: git-send-email 2.24.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 3eee734a-6c8b-4e0a-9cda-08d795dc0e6c
+X-MS-Office365-Filtering-Correlation-Id: 7fbcc031-acca-42d5-a0a4-08d795dc0ef6
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2378:|MW2PR12MB2378:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB23782CD677CD86690B26F02898380@MW2PR12MB2378.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB23788D90718D387D375B3B0198380@MW2PR12MB2378.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296;
 X-Forefront-PRVS: 02788FF38E
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(366004)(136003)(376002)(346002)(396003)(39860400002)(199004)(189003)(54906003)(52116002)(8676002)(81166006)(81156014)(86362001)(478600001)(7696005)(6916009)(26005)(2906002)(316002)(8936002)(16526019)(186003)(66556008)(4326008)(6666004)(6486002)(36756003)(66476007)(5660300002)(956004)(2616005)(66946007)(1076003);
@@ -74,14 +73,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 68xEEuDJAv9fEVrHwIW274gdJfb5I4mZpV4Ca8z5QxPqY3o8z/jbHtJhTj9I9OtpRx/+jAI9m6KiS/IIbrodz6BuQL/eFlE01bZNogN8HrvZsh6yr06COG97NL+V8Zq5qr/l7IzbXxiHNYg4NF7pXfIpD2Peywjk3C4pt5u9l5CdgVbKbP0UO+Rv4AhA9T66Z32bVJteV49IhzRcs5i8q0tvOlDX66EVkzYQbZpr4eWSzU/Mw9+hM6+9dFS8by3NhHcqkek9qPt/w0D3JjI1axx/8wFv43ZWvGejaKkdPfhXdEbElVJAqfrNWduzN06cVEQJ+q5XOK7Eo5cTjshJE/40Ojjj/WAFARZFAc2boybnPp7mMP1BvsvM35Fa1h2LExztDtWccE6eFETkYWdCjSevBH17pvBzyhWlXKUnxr3BOkvymwKGg4CrKDBVhAUT
+X-Microsoft-Antispam-Message-Info: jgNeNLjUwoZvV1Kr8onNkrPj2XumYH2Aim2UNmmQYDAgI0slyP4UK41vPIi5jmyDZSIvdC680xKoIzB59xluJEupmjqb39n1eDi+MeIbQxkhkZbyo1/5Hw0IejrHluswcFX6wzeEUumI7qdi6VCkyQIC6O55r7p3758x0eBgvousQBZW6HQHVfb+53UNy3Jsj3oFOKh1i2fGj6xCHdDZqUv56FNUnMkZB/ab6Ul4tDWHsu3J6YLer6hqmX4pklmpFOvGrYIt14k1FaUq8NmpN8yY00NMu/eLwwUXgJivME4agydgutJ0a2lf7EwJiB3/niXyuhq9jD/RBQpF6K5W6aaWjd/P/1IGDFLxfWgKBpmHpjyvbdTKR8Kl4lFgrKUYWsnI8dtC7gNPNdpgq3eDIvptXK46HfOoUz45AeV/jjCott87jheAzKo9SQwCx2X0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3eee734a-6c8b-4e0a-9cda-08d795dc0e6c
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:46.5026 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7fbcc031-acca-42d5-a0a4-08d795dc0ef6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:47.3991 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9Q2NTKeW1krnF4zUzpLOKCX3QAw7AU/FHR3u9Xyr7ZfnjXE3x7XTt8Zu0d73a2M9DvWwj/VKmvQu+TfgYGzYKw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: FskRsuWwOumh+Pt+abxF+IkIdrXjq/xeiG9Y/xXgxGQp6WYj0p27rdpn5r/DiKCaT9ukLK/CQ5SkLeRk9olzPA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2378
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,46 +93,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Sung Lee <sung.lee@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, Tony Cheng <Tony.Cheng@amd.com>
+Cc: Aric Cyr <Aric.Cyr@amd.com>, Chris Park <Chris.Park@amd.com>,
+ Sunpeng.Li@amd.com, Harry Wentland <harry.wentland@amd.com>,
+ Jordan Lazare <Jordan.Lazare@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
+From: Chris Park <Chris.Park@amd.com>
 
-[Why]
-DML Initialization was previously done on dcn21_resource initialization.
-This meant that DML soc struct was populated with hardcoded values.
-
-[How]
-Move DML initialization to after updating bounding box, to use clock table
-values from SMU.
-
-Signed-off-by: Sung Lee <sung.lee@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Signed-off-by: Chris Park <Chris.Park@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+Reviewed-by: Jordan Lazare <Jordan.Lazare@amd.com>
 Acked-by: Harry Wentland <harry.wentland@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c | 3 +++
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c | 3 +++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 0c02120311b6..1d741bca2211 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -1349,6 +1349,10 @@ static void update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_param
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c
+index a02c10e23e0d..f36a0d8cedfe 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c
+@@ -930,6 +930,9 @@ static bool hubbub1_get_dcc_compression_cap(struct hubbub *hubbub,
+ 		output->grph.rgb.max_compressed_blk_size = 64;
+ 		output->grph.rgb.independent_64b_blks = true;
+ 		break;
++	default:
++		ASSERT(false);
++		break;
  	}
- 	dcn2_1_soc.clock_limits[i] = dcn2_1_soc.clock_limits[i - 1];
- 	dcn2_1_soc.num_states = i;
-+
-+	// diags does not retrieve proper values from SMU, do not update DML instance for diags
-+	if (!IS_FPGA_MAXIMUS_DC(dc->ctx->dce_environment) && !IS_DIAG_DC(dc->ctx->dce_environment))
-+		dml_init_instance(&dc->dml, &dcn2_1_soc, &dcn2_1_ip, DML_PROJECT_DCN21);
- }
  
- /* Temporary Place holder until we can get them from fuse */
+ 	output->capable = true;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c
+index 836af0f2bbda..9235f7d29454 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c
+@@ -293,6 +293,9 @@ bool hubbub2_get_dcc_compression_cap(struct hubbub *hubbub,
+ 		output->grph.rgb.max_compressed_blk_size = 64;
+ 		output->grph.rgb.independent_64b_blks = true;
+ 		break;
++	default:
++		ASSERT(false);
++		break;
+ 	}
+ 	output->capable = true;
+ 	output->const_color_support = true;
 -- 
 2.24.1
 
