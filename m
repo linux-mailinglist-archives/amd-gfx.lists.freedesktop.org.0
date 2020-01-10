@@ -1,48 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ADE8136FCA
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:47:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5857B136FCE
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:47:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D23B16EA3C;
-	Fri, 10 Jan 2020 14:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E58E26EA31;
+	Fri, 10 Jan 2020 14:47:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2047.outbound.protection.outlook.com [40.107.236.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED6FB6EA3A
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:47:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 445896EA3C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:47:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZBqBlp4xXapMF87X/SOS5uihU600XrqSNBOf11n+wi9V+n0yLQlKu3m/Z/5opu9z59z5K9VlTUh9cQqu2+DVvGFNDoxGEIyAYVfxoSxyTGLe1mAX+CiTAdRiBtMJAwVHIKNaiqATAFVjRe40ornjJkM61rSUnFHiOQ0ze8JV25uLvCEwDIQ49lLn3Gd3JBO4Ac+uKARPjT4gwW7khwvJ7YHT6Oab3F4KuQKnRqxIIuHbPQ5f5jgWJSa8SL3oLG65M54H35AH0ZMm2uflPZibPe6AoQVxrReUFD9vDsyERSsvDA61RMwQnVnUK9oDeJOu670TpLT3esTBxN2LSFCGiA==
+ b=nEwHvUIMZLCozkYzGnWCUJzbL7RpBeKpCgfCyFhj/w8cI+MCyCAX1WWteEn6By9Zl0dz416IjVDwul+zyDXuglTfQuW3vBnYpB/aLdq5I3/ToixMb1qwOOuDU13GB9Ky8UuGPOncrHRWasEM6wBZn/Wsp0naZwqPn7H+ZgUHXZa1ceK2NBMM/+zS4CPTqkv8dYjkInUT4Z98DQglOh1xbOO1qnfGXIXqDlKSylv+e6U+ut+bkcMfe0qs/iwsGGoP/nbsSvsvKGovH4SKD4epRvm54IiEGa4YgCdWPy8xqSnFAbLLEj+XwtXCbY7rYOTkqXKioIRz9xdTegogGRuG5g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XGHr2UXqFxo6wANdal5tYFUNQi9redGd6KgZ0Wqg9DI=;
- b=NgsJPf4b9izxf2FXGgpfo/RYr7UV/fwH3HjB0OwC/+yqZtpx5satYJulE49K0GC9jiyI9A+0d0bouMJVIIXhkEVN252dWVggXerBsSTRyw98Yv7Tz3Pz3c+xli66k3atNxrVi03xSISeOlal5IVCu++9uQVLU7ZLzjIr8y/2hQUcVTqyM4HhLeTDBvEGRO/ByIR/1akDz6k9v61VpWubVjaebybOAIuvNmtzWSaWKH+BvX5dSPMQi0rfALnGp5n8lrMJyWCoX9IDn8fsXkh5mLoFCXA/4j2KV5H/GtWDSQxY0xO4Jgn9uWZ8fGcH8XQ17kCsjfBcM16l/Mjt+lRyeA==
+ bh=Vk/C71qdpt97Qs/Bqh0GmVWkQt7aTFED/acVH2sein0=;
+ b=MGANU9TL2qvvvou+42KpFSu9bJFKIAo/8o0wUc/n+WmGfokqsSc2bJXW8UOTe8Q3VfdxJRVtMp+yZckV7oReDwJa6R74gFrnLiLp0MxQavIxCtdPa7nwTg3dmARAXyIQYQz56XVyj8kU9Qacn035SfbDtpfqe1Hlx53042nT9Bc0MmgzE577fdwiQglzXOn2QGyNKxnDDEQEEcdA7adxFsxI2pcdKMtf16zpZEsJvfRgddWQl2yQzZK8PCjUvwO2SiEIbxoa8uoGzJd0UvzIxI8cVsVtngrOvIGnwXVHUiqFmmpHQX5iSrBlrj9via9BbCxaqliZCMatT26p8yz5WQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XGHr2UXqFxo6wANdal5tYFUNQi9redGd6KgZ0Wqg9DI=;
- b=K5wUR47dgENgtmYcXzwffnq60KSGQsMWw3X0RM5BSEx/h7w4YL0Lf/G9PqvcLDcVM4XtkWljFTtfoU7QeG/IHP5LNrQC23bdqLWmLNNpiyxyDHSMQllGLj3SE/dq2BFuBdx62+XzlMbK2h5soOa8ck47ATCj2Y7ohjzf4yvz9Pc=
+ bh=Vk/C71qdpt97Qs/Bqh0GmVWkQt7aTFED/acVH2sein0=;
+ b=uBjh27HBV3bfpfAn6Qgh+utUyMzVo5Gz7G3v9AezC1W6wdQ5IXy5yYGIMip9vjYCiV1nLn/F5HqKEaFnnQiTls1crORiZ4taQHpzjLmD4ShXKDb/89FSDsd5BtfPiMsGB6lmlEvb1YaldX3ZhC/eD0n8KX87Qrt8f2Q/l2MPUQo=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
  MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.11; Fri, 10 Jan 2020 14:47:31 +0000
+ 15.20.2623.11; Fri, 10 Jan 2020 14:47:32 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2%6]) with mapi id 15.20.2623.011; Fri, 10 Jan 2020
- 14:47:31 +0000
+ 14:47:32 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 12/43] drm/amd/display: store lttpr mode with dpcd
-Date: Fri, 10 Jan 2020 09:46:24 -0500
-Message-Id: <20200110144655.55845-13-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 13/43] drm/amd/display: Don't always set pstate true if dummy
+ latency = 0
+Date: Fri, 10 Jan 2020 09:46:25 -0500
+Message-Id: <20200110144655.55845-14-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
 References: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
@@ -53,16 +54,16 @@ MIME-Version: 1.0
 Received: from atma2.amd.com (165.204.55.250) by
  YT1PR01CA0009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:30 +0000
+ 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:31 +0000
 X-Mailer: git-send-email 2.24.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 7c835ae6-4041-4fc1-7208-08d795dc0538
+X-MS-Office365-Filtering-Correlation-Id: 085ebb89-444c-41cb-a6bf-08d795dc05f2
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2524:|MW2PR12MB2524:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2524E58DC34A55F96EB5B61B98380@MW2PR12MB2524.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:469;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB25240B27BBAE3199311AAD8198380@MW2PR12MB2524.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:758;
 X-Forefront-PRVS: 02788FF38E
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(189003)(199004)(8936002)(5660300002)(6916009)(54906003)(81156014)(6486002)(81166006)(36756003)(316002)(1076003)(2906002)(6666004)(956004)(7696005)(52116002)(478600001)(186003)(2616005)(86362001)(26005)(16526019)(66556008)(8676002)(66476007)(4326008)(66946007);
@@ -73,14 +74,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LqexnMg56syMKluD+GM4YMveQU0bJIJthPPfHZ4X+JqEhh9jUXxCbYNhpOv+IWfu7GRktURm/MvXg8WquijwvraabbKeMyJl1p7J/gFENmfiet1Gk1cMmq/gT4T21E+4w4Bv775p4uyDMdNHqoCP9CLMN3yEaf8rNmA1OGs5wwijC75M/bOTokySG2Lt6ENG/wHYspQbflW/vGI4HSAhaQppxYJATgRAuzLWEGHmCjZ8tgCsVxJsfv/p1pB99PIqjjnmL3sz6cTRuIC+zGsKoHOdt4mVddwa+7II3IQx/MM1oNsBcla/76PDqZqV70wgWIs5+W7Veq0lCi24uF6AjPQ1g4FzDM3ELjmRokohLT2f8L0VIqamTrHTIJIoUsiLvJbCZPytXQzA3X9n0oe/+JCQBkpoaYnln1SWZFupDzY14AjHkNC9iF25UzjqY5uD
+X-Microsoft-Antispam-Message-Info: DKMUBDrACL7UsGeDGxoI5tHnIlX2lLCkQPzbUfkQt2CeT9ZiCHyMvimcfteaBwVgkqm+DeV8ACTDxZ0fWP19vUrf9CjBe6lA6aoJ4sO8f4qrV1/rbV85W7umBIwe73TkTbMF0pHvLAHYUV4UprkY4UjASik05RMr+rYwnCA7yTJAfP4k+MkjgRDu9WX+aAoAcsIDbmZVhf+ZOkpg02Nl/fW/W4mEZ2BPuzhoKhvd7vzyoMuPmnDSKX4ay+OVM8Set0iZW62r/q8lhqCpyoU7gcEwlYgFJiyTNmfo1oIzScqZRtP8PVzhRVYvmSWt1BOAWQJkx9JSieKaYh+lL81xE5At6crA+eQHW5MiydSyY9LBoW0EgJwev9bcYd0NWDHgrzAoILMtZsR3YkAy6yN/13wcyBjhr7Il2fcro05FVZk+x0/tEFQp4u/wNafAR2ge
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c835ae6-4041-4fc1-7208-08d795dc0538
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:31.0552 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 085ebb89-444c-41cb-a6bf-08d795dc05f2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:32.3655 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hRFe26I1UJqBgYmcoHmw0kug+KzYRUQe0FvQCDKEE4n31bWs5nqF9C5vwl5wgw7QxncMhOeFM7SqH244lMCdwg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8WTkf4MwB9Myx91SeL+4KFeklcR605rs8PP280wj9QzJB3v9u70mYoG74Qa4o7NOoKINPjzuKKEqTV5dN77EMw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2524
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,66 +94,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Harry Wentland <harry.wentland@amd.com>, Wenjing Liu <Wenjing.Liu@amd.com>,
- abdoulaye berthe <abdoulaye.berthe@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Jun Lei <Jun.Lei@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Alvin Lee <alvin.lee2@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: abdoulaye berthe <abdoulaye.berthe@amd.com>
+From: Alvin Lee <alvin.lee2@amd.com>
 
-Make sure that lttpr_caps has the mode set to repeater.
+[Why]
+If dummy pstate latency is 0 we should report the actual
+pstate support, and not that pstate is always supported.
 
-Signed-off-by: abdoulaye berthe <abdoulaye.berthe@amd.com>
-Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+[How]
+Don't always program pstate support true
+
+Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Harry Wentland <harry.wentland@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 38b0f4347383..0d0507cc9bf9 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -1217,24 +1217,33 @@ static void configure_lttpr_mode(struct dc_link *link)
- 	uint8_t repeater_cnt;
- 	uint32_t aux_interval_address;
- 	uint8_t repeater_id;
-+	enum dc_status result = DC_ERROR_UNEXPECTED;
- 	uint8_t repeater_mode = DP_PHY_REPEATER_MODE_TRANSPARENT;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index a05746142ec8..eac4c3cecadf 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -2918,7 +2918,7 @@ bool dcn20_validate_bandwidth(struct dc *dc, struct dc_state *context,
  
- 	DC_LOG_HW_LINK_TRAINING("%s\n Set LTTPR to Transparent Mode\n", __func__);
--	core_link_write_dpcd(link,
-+	result = core_link_write_dpcd(link,
- 			DP_PHY_REPEATER_MODE,
- 			(uint8_t *)&repeater_mode,
- 			sizeof(repeater_mode));
+ 	if (context->bw_ctx.dml.soc.dummy_pstate_latency_us == 0 ||
+ 		(voltage_supported && full_pstate_supported)) {
+-		context->bw_ctx.bw.dcn.clk.p_state_change_support = true;
++		context->bw_ctx.bw.dcn.clk.p_state_change_support = full_pstate_supported;
+ 		goto restore_dml_state;
+ 	}
  
-+	if (result == DC_OK) {
-+		link->dpcd_caps.lttpr_caps.mode = repeater_mode;
-+	}
-+
- 	if (!link->is_lttpr_mode_transparent) {
- 
- 		DC_LOG_HW_LINK_TRAINING("%s\n Set LTTPR to Non Transparent Mode\n", __func__);
- 
- 		repeater_mode = DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
--		core_link_write_dpcd(link,
-+		result = core_link_write_dpcd(link,
- 				DP_PHY_REPEATER_MODE,
- 				(uint8_t *)&repeater_mode,
- 				sizeof(repeater_mode));
- 
-+		if (result == DC_OK) {
-+			link->dpcd_caps.lttpr_caps.mode = repeater_mode;
-+		}
-+
- 		repeater_cnt = convert_to_count(link->dpcd_caps.lttpr_caps.phy_repeater_cnt);
- 		for (repeater_id = repeater_cnt; repeater_id > 0; repeater_id--) {
- 			aux_interval_address = DP_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1 +
 -- 
 2.24.1
 
