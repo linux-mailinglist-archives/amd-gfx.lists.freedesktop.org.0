@@ -2,47 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76BB136FD3
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 061AD136FD5
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:47:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10FDD6EA41;
-	Fri, 10 Jan 2020 14:47:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5303F6EA46;
+	Fri, 10 Jan 2020 14:47:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2048.outbound.protection.outlook.com [40.107.236.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FB0A6EA44
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:47:41 +0000 (UTC)
+ (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B8146EA41
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:47:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fwjXbU7Gm5QwJXwctJaj9/rV0QWscfhEzZRfNKC+Gou3WCuXOu8atnLMfbYb1ePhORlcSGJ7od/i4o04EB1Vj5ZFyFNFv1i8enuN8InnWB8XFRKmlYBKuvUMHUOeTJyDz32iNEebQ93xacfxn3YI2XZLTp8uay0moPgUOdXl/SmyBCtVrp6VY6Z3NDCrbprC+0/cNRGpkjTSMGoyV/YszH1wBR2FW/VrOOmLCUVwSzgFgYr7f4R0OHhs/MOZ420C8jXSAHlWfAD0gPhC7wjV3gc5nJmtjW+Q+Tua0pbYgpyOmHjcDwxE8ECUAakZtyKNOIKxsnEQNVeZ4cGpDbZ7mQ==
+ b=Ko7DZrnze0Rpz1gcOmRkI1uzUnxoDm9fdPqn8oDe4E8sNFGodHQ01Drq1yYFUSDZ4/n4q9Zk1zq1C1xwogK/16soDYpL9zPH22y40hAkfSIXmU3sKTT/fd1SDl7WYrY2L6N4psxbBxVns+s7Nal7xK4eiHnsuYRsnArRylh2DdipARHOHLDIUcp37tIQ/62rbLU6i0rjNw0EABrAV8K8fYZW9W2gkPrPDCTKAfVO68QZEJWBHmwfPOcOQET5coonZagssRB/5ucLkLWv8aD1iyBN8nnnk7EQx1V+UwOG+MTOjS7jwcu6r9EtnfRe9mhvtJxuBa/3o5bAqhL4LI/AYQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vBRIii3kSPSLvxCtHSadpfxXe2VrUhg5kPZRHAatQ24=;
- b=E/eNCMh8Bo9qxy0mgq5vqNLI1pAiib9feW9Ua5dz5e1Rn819CtRWW6cMM/tGhE+E4lUqUOaziYUpFPxrinFUrOITDkUrP7ntAtv05HhPOYGyZoUjtHHkm8L29bi6531auQCQDmyN/owO/rOgUTlG0F5eG4hK4sLdssbaLbIQBHO82IF12QhLKpGwdEFnk5MRl/6r6od7B6gdIvY8C/g1aGCH+Cmr5v7khvWP2UAPM+1l3CNllVgUn4qDTqLU3evE0voAdmVDLmP0QqfXaHNPMagCSnkEvktbIVd66UTHZbHMDT7rKrD2nqu1bH1TWua9YrD+be0Iu0grQ7RkFDLigQ==
+ bh=qxQOlwvHIvKN2nfbFBipmyIQYbQBkBvSvG6ml2yBX58=;
+ b=EAvjmVKDRNr9KPIjXYFH77Wz7BziUu9tnfckZ3PaAl5QGRDg9YQTc1brynNVoJGSTnA8BiosA9uzQyf2PSbXjgBHNA2StZU5JHwVuK80f8wRAHwPWJ//2an0R+E/ibxYHaQEI9FxDnkNoTVcMirBIAP2lK6RCjfDux6qZcJK/mtHI3CTk5ASqQw/gnE3SosIzU8ArM3DzhmG+TRUvA6BhSTU/rDi6ojEjBbqdJX62b5flzfyPNy9K6thIRwB152eYmAVWfrEohnAhTkovscZise8M/IIXZl2zqrq/4YSd6z3j7hHB3D5qufL8qGpCrRImMzDXWUzv0/OL9W7Vz76+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vBRIii3kSPSLvxCtHSadpfxXe2VrUhg5kPZRHAatQ24=;
- b=sLRME/DrGvLOBw4t8QpkQJV/4nqRtVc1/fp9hoJR8cP0V1DUfnXMoFi9SRIjpmly2DWc2yvMuMRf5fbVP0Z/7VjQPn25hOWNnhmLygsobqT/Od2NLRUjmv0jbccykVA5GyZjf3RE6XPmaeQezU0fx4UJbc+R5F6sd6bUD8TqHfc=
+ bh=qxQOlwvHIvKN2nfbFBipmyIQYbQBkBvSvG6ml2yBX58=;
+ b=OqPzi7OEnN1bl0Z+bD9vnKUEubtNPm4a4kGJTHfjnJLqVoHoROrsJV69p2a7yQOeduJycOY47viy+RoGFee20C84muGijMY6SL9Jd9zpaB7HWNLdtXEoPVzd95mnubh1nwTqoTFz3OGcw3lpAXGORoiBWaNbn6Uu01nsKTxxLOc=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
  MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.11; Fri, 10 Jan 2020 14:47:39 +0000
+ 15.20.2623.11; Fri, 10 Jan 2020 14:47:40 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2%6]) with mapi id 15.20.2623.011; Fri, 10 Jan 2020
- 14:47:39 +0000
+ 14:47:40 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 21/43] drm/amd/display: Double buffer dcn2 Gamut Remap
-Date: Fri, 10 Jan 2020 09:46:33 -0500
-Message-Id: <20200110144655.55845-22-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 22/43] drm/amd/display: programing surface flip by dmcub.
+Date: Fri, 10 Jan 2020 09:46:34 -0500
+Message-Id: <20200110144655.55845-23-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
 References: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
@@ -53,17 +53,16 @@ MIME-Version: 1.0
 Received: from atma2.amd.com (165.204.55.250) by
  YT1PR01CA0009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:38 +0000
+ 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:39 +0000
 X-Mailer: git-send-email 2.24.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 4345dbcf-1485-49e7-15ef-08d795dc0a1f
+X-MS-Office365-Filtering-Correlation-Id: 220c7895-8751-4ccc-e550-08d795dc0aae
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2524:|MW2PR12MB2524:
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB252498293F9109FFD66A752A98380@MW2PR12MB2524.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB252446DFF5414F6B37A8E5CD98380@MW2PR12MB2524.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
 X-Forefront-PRVS: 02788FF38E
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(189003)(199004)(8936002)(5660300002)(6916009)(54906003)(81156014)(6486002)(81166006)(36756003)(316002)(1076003)(2906002)(6666004)(956004)(7696005)(52116002)(478600001)(186003)(2616005)(86362001)(26005)(16526019)(66556008)(8676002)(66476007)(4326008)(66946007);
@@ -74,14 +73,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: h80E48GJHPe09sJTt0KepSI/Ce1OtdHFntM+Ol15/274TPhGIC/XtPw7nUNKMqCCK3RnSoVSsee3brbEP019Q1WoOq+EPkaSAHiK9MruhKChYP9n4BfGSgtlZKf7NMHPI+LSU3tOPopAtBRTsDMynR7iLOrHA7vbxlXBb6AIN+NHnyGclJ6RA6ccSLzqZ9BMbeXqoAPhdH/JjqkbzdzuOE4+TV4b8lfZ+1pMNmM9A41xlK8Dhcwbty9KR55EcYxAyEVJ/zXw5xRXvl9umMkvzlEqPqs5jGonr1BIpVMjxLTrRfuFXtgQ0kegLK1qbLcVXGnr+/0K1UfvElEMXxPwACFjMcIeHLX+pYsBZ+9DdzcV/YN54kdK5PnMBCgQltG0g2Z8maNjp8kuanO2w0DS2EMXm0E3NT3rVvae5bg362qwERXEhHHTdSSnr6ENID5F
+X-Microsoft-Antispam-Message-Info: /v9/yfdYXvddu1URhXGnxT3gaMUcC8XrIXhMrmbSESYGzTtGSUg/Y7fFJDtw8ezzsxynTgkikdmtAQMAICkbJUljaQzyqfSqHZrkD6CAr2bFN8Z5v8eI0xgPUUzwk6GhKZr4S4dle7YMB/Iqe3gVXkN+4ZkK//sTlp+XpENV43dfVjfHnPomwtD0pVfGb+CYVT5PWO0YcXysSspEBGPviaBJYkt9Toq2zODevXWiSxTd9WnsBCALQ/0AVzWNNOrTimhJzPIXaDfXs79O2Qo8ejRFGsrp9ood/q2CDlpaqg32OtxIaLnMs+yMsT9OBbY44Nkq5sGkh3DrMmfSMVly0sJmVXi/W8bdO1lu7StPoscR3TFcNLDrZ+pVFJd0uTG4HhimNJeRf8SbYgBK1zAbbJgRQai6/lKl6t0KKoHpitv2OdT+AYL27LE0CwfMiuGI
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4345dbcf-1485-49e7-15ef-08d795dc0a1f
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:39.3616 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 220c7895-8751-4ccc-e550-08d795dc0aae
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:40.2831 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Hedb8vR6dEI7c5bS4eIxgZUYrbyAK9OZO1VK28K/rJkLlzD00W9+3cOCo3Y9UNO5eulyS+lMmopKgq9GjC5HjA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: VDoKmDb0KLka3hb4AR9/6nl6cP6X+59b3EEMtrbcg/Nh+IlzBu+TzpR5Sz85BSpjjfb5e10r1NYqnnv8Nn1zaA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2524
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,225 +94,300 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Tony Cheng <Tony.Cheng@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Noah Abradjian <noah.abradjian@amd.com>
+ Tony Cheng <Tony.Cheng@amd.com>, Yongqiang Sun <yongqiang.sun@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Noah Abradjian <noah.abradjian@amd.com>
+From: Yongqiang Sun <yongqiang.sun@amd.com>
 
-[Why]
-When rapidly adjusting color temperature, screen tearing was observed.
-This was due to overwritten values in gamut remap registers.
-This issue was solved for OCSC and ICSC by alternating between "A" and
-"B" registers to double buffer the writes.
+Programming surface flip addresses via dmcub uC for optimizing the data
+flush.
 
-[How]
-Create new set_gamut_remap and program_gamut_remap for dcn20.
-Alternate which registers are written to by switching modes each time.
-Also fixes ICSC mode reg read to use proper data offset.
-
-Signed-off-by: Noah Abradjian <noah.abradjian@amd.com>
+Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
 Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Harry Wentland <harry.wentland@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dpp.c  |  2 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dpp.h  | 29 ++++++-
- .../drm/amd/display/dc/dcn20/dcn20_dpp_cm.c   | 84 ++++++++++++++++++-
- 3 files changed, 109 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h           |   1 +
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c | 116 ++++++++++++++++++
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  36 +++++-
+ .../gpu/drm/amd/display/dmub/inc/dmub_rb.h    |  18 ++-
+ 4 files changed, 165 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp.c
-index bbdab5000a7c..13e057d7ee93 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp.c
-@@ -458,7 +458,7 @@ static struct dpp_funcs dcn20_dpp_funcs = {
- 	.dpp_reset = dpp_reset,
- 	.dpp_set_scaler = dpp1_dscl_set_scaler_manual_scale,
- 	.dpp_get_optimal_number_of_taps = dpp1_get_optimal_number_of_taps,
--	.dpp_set_gamut_remap = dpp1_cm_set_gamut_remap,
-+	.dpp_set_gamut_remap = dpp2_cm_set_gamut_remap,
- 	.dpp_set_csc_adjustment = NULL,
- 	.dpp_set_csc_default = NULL,
- 	.dpp_program_regamma_pwl = oppn20_dummy_program_regamma_pwl,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp.h
-index d9ce60b6aa6e..141dea963db9 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp.h
-@@ -151,6 +151,12 @@
- 	SRI(CM_SHAPER_LUT_INDEX, CM, id)
- 
- #define TF_REG_LIST_DCN20_COMMON_APPEND(id) \
-+	SRI(CM_GAMUT_REMAP_B_C11_C12, CM, id),\
-+	SRI(CM_GAMUT_REMAP_B_C13_C14, CM, id),\
-+	SRI(CM_GAMUT_REMAP_B_C21_C22, CM, id),\
-+	SRI(CM_GAMUT_REMAP_B_C23_C24, CM, id),\
-+	SRI(CM_GAMUT_REMAP_B_C31_C32, CM, id),\
-+	SRI(CM_GAMUT_REMAP_B_C33_C34, CM, id),\
- 	SRI(CM_ICSC_B_C11_C12, CM, id), \
- 	SRI(CM_ICSC_B_C33_C34, CM, id)
- 
-@@ -579,11 +585,14 @@
- /* DPP CM debug status register:
-  *
-  *		Status index including current ICSC, Gamut Remap Mode is 9
-- *			ICSC Mode: [5..4]
-+ *			ICSC Mode: [4..3]
-+ *			Gamut Remap Mode: [10..9]
-  */
- #define CM_TEST_DEBUG_DATA_STATUS_IDX 9
--#define CM_TEST_DEBUG_DATA_ICSC_MODE_SH 4
-+#define CM_TEST_DEBUG_DATA_ICSC_MODE_SH 3
- #define CM_TEST_DEBUG_DATA_ICSC_MODE_MASK 0x3
-+#define CM_TEST_DEBUG_DATA_GAMUT_REMAP_MODE_SH 9
-+#define CM_TEST_DEBUG_DATA_GAMUT_REMAP_MODE_MASK 0x3
- 
- #define TF_REG_FIELD_LIST_DCN2_0(type) \
- 	TF_REG_FIELD_LIST(type) \
-@@ -646,6 +655,12 @@ struct dcn2_dpp_mask {
- 	uint32_t DSCL_MEM_PWR_CTRL
- 
- #define DPP_DCN2_REG_VARIABLE_LIST_CM_APPEND \
-+	uint32_t CM_GAMUT_REMAP_B_C11_C12; \
-+	uint32_t CM_GAMUT_REMAP_B_C13_C14; \
-+	uint32_t CM_GAMUT_REMAP_B_C21_C22; \
-+	uint32_t CM_GAMUT_REMAP_B_C23_C24; \
-+	uint32_t CM_GAMUT_REMAP_B_C31_C32; \
-+	uint32_t CM_GAMUT_REMAP_B_C33_C34; \
- 	uint32_t CM_ICSC_B_C11_C12; \
- 	uint32_t CM_ICSC_B_C33_C34
- 
-@@ -679,6 +694,12 @@ enum dcn20_input_csc_select {
- 	DCN2_ICSC_SELECT_ICSC_B = 2
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index dfc66954a24b..ecd2257de80b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -420,6 +420,7 @@ struct dc_debug_options {
+ 	bool nv12_iflip_vm_wa;
+ 	bool disable_dram_clock_change_vactive_support;
+ 	bool validate_dml_output;
++	bool enable_dmcub_surface_flip;
  };
  
-+enum dcn20_gamut_remap_select {
-+	DCN2_GAMUT_REMAP_BYPASS = 0,
-+	DCN2_GAMUT_REMAP_COEF_A = 1,
-+	DCN2_GAMUT_REMAP_COEF_B = 2
-+};
-+
- void dpp20_read_state(struct dpp *dpp_base,
- 		struct dcn_dpp_state *s);
+ struct dc_debug_data {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c
+index 4d2564f79395..1f4e2cd08d4c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c
+@@ -29,6 +29,8 @@
+ #include "dm_services.h"
+ #include "reg_helper.h"
  
-@@ -690,6 +711,10 @@ void dpp2_set_degamma(
- 		struct dpp *dpp_base,
- 		enum ipp_degamma_mode mode);
- 
-+void dpp2_cm_set_gamut_remap(
-+	struct dpp *dpp_base,
-+	const struct dpp_grph_csc_adjustment *adjust);
++#include "dc_dmub_srv.h"
 +
- void dpp2_program_input_csc(
- 		struct dpp *dpp_base,
- 		enum dc_color_space color_space,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp_cm.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp_cm.c
-index 423f3daa177f..4047d406a74c 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp_cm.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp_cm.c
-@@ -158,6 +158,85 @@ void dpp2_set_degamma(
- 	}
+ #define DC_LOGGER_INIT(logger)
+ 
+ #define REG(reg)\
+@@ -688,6 +690,113 @@ void hubp21_validate_dml_output(struct hubp *hubp,
+ 				dml_dlg_attr->refcyc_per_meta_chunk_flip_l, dlg_attr.refcyc_per_meta_chunk_flip_l);
  }
  
-+static void program_gamut_remap(
-+		struct dcn20_dpp *dpp,
-+		const uint16_t *regval,
-+		enum dcn20_gamut_remap_select select)
++static void program_video_progressive_dmcub(
++		struct dc_dmub_srv *dmcub,
++		struct hubp *hubp,
++		const struct dc_plane_address *address,
++		bool flip_immediate)
 +{
-+	uint32_t cur_select = 0;
-+	struct color_matrices_reg gam_regs;
++	struct dcn21_hubp *hubp21 = TO_DCN21_HUBP(hubp);
++	struct dmub_rb_cmd_flip surface_flip = { 0 };
 +
-+	if (regval == NULL || select == DCN2_GAMUT_REMAP_BYPASS) {
-+		REG_SET(CM_GAMUT_REMAP_CONTROL, 0,
-+				CM_GAMUT_REMAP_MODE, 0);
-+		return;
++	surface_flip.header.type = DMUB_CMD__SURFACE_FLIP;
++
++	surface_flip.flip.addr_type = address->type;
++	surface_flip.flip.immediate = flip_immediate;
++	surface_flip.flip.vmid = address->vmid;
++
++	surface_flip.flip.hubp_inst = hubp->inst;
++	surface_flip.flip.tmz_surface = address->tmz_surface;
++
++	switch (address->type) {
++	case PLN_ADDR_TYPE_GRAPHICS:
++		if (address->grph.addr.quad_part == 0)
++			return;
++
++		if (address->grph.meta_addr.quad_part != 0) {
++			surface_flip.flip.DCSURF_PRIMARY_META_SURFACE_ADDRESS =
++					address->grph.meta_addr.low_part;
++			surface_flip.flip.DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH =
++					address->grph.meta_addr.high_part;
++		}
++
++		surface_flip.flip.DCSURF_PRIMARY_SURFACE_ADDRESS =
++				address->grph.addr.low_part;
++		surface_flip.flip.DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH =
++				address->grph.addr.high_part;
++		break;
++	case PLN_ADDR_TYPE_VIDEO_PROGRESSIVE:
++		if (address->video_progressive.luma_addr.quad_part == 0
++				|| address->video_progressive.chroma_addr.quad_part == 0)
++			return;
++
++		if (address->video_progressive.luma_meta_addr.quad_part != 0) {
++			surface_flip.flip.DCSURF_PRIMARY_META_SURFACE_ADDRESS =
++					address->video_progressive.luma_meta_addr.low_part;
++			surface_flip.flip.DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH =
++					address->video_progressive.luma_meta_addr.high_part;
++
++			surface_flip.flip.DCSURF_PRIMARY_META_SURFACE_ADDRESS_C =
++					address->video_progressive.chroma_meta_addr.low_part;
++			surface_flip.flip.DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH_C =
++					address->video_progressive.chroma_meta_addr.high_part;
++		}
++
++		surface_flip.flip.DCSURF_PRIMARY_SURFACE_ADDRESS =
++				address->video_progressive.luma_addr.low_part;
++		surface_flip.flip.DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH =
++				address->video_progressive.luma_addr.high_part;
++
++		surface_flip.flip.DCSURF_PRIMARY_SURFACE_ADDRESS_C =
++				address->video_progressive.chroma_addr.low_part;
++		surface_flip.flip.DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH_C =
++				address->video_progressive.chroma_addr.high_part;
++
++		break;
++	case PLN_ADDR_TYPE_GRPH_STEREO:
++		if (address->grph_stereo.left_addr.quad_part == 0)
++			return;
++		if (address->grph_stereo.right_addr.quad_part == 0)
++			return;
++
++		surface_flip.flip.grph_stereo = true;
++
++		if (address->grph_stereo.right_meta_addr.quad_part != 0) {
++			surface_flip.flip.DCSURF_SECONDARY_META_SURFACE_ADDRESS =
++					address->grph_stereo.right_meta_addr.low_part;
++			surface_flip.flip.DCSURF_SECONDARY_META_SURFACE_ADDRESS_HIGH =
++					address->grph_stereo.right_meta_addr.high_part;
++		}
++
++		if (address->grph_stereo.left_meta_addr.quad_part != 0) {
++			surface_flip.flip.DCSURF_PRIMARY_META_SURFACE_ADDRESS =
++					address->grph_stereo.left_meta_addr.low_part;
++			surface_flip.flip.DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH =
++					address->grph_stereo.left_meta_addr.high_part;
++		}
++
++		surface_flip.flip.DCSURF_PRIMARY_SURFACE_ADDRESS =
++				address->grph_stereo.left_addr.low_part;
++		surface_flip.flip.DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH =
++				address->grph_stereo.left_addr.high_part;
++
++		surface_flip.flip.DCSURF_SECONDARY_SURFACE_ADDRESS =
++				address->grph_stereo.right_addr.low_part;
++		surface_flip.flip.DCSURF_SECONDARY_SURFACE_ADDRESS_HIGH =
++				address->grph_stereo.right_addr.high_part;
++
++		break;
++
 +	}
 +
-+	/* determine which gamut_remap coefficients (A or B) we are using
-+	 * currently. select the alternate set to double buffer
-+	 * the update so gamut_remap is updated on frame boundary
-+	 */
-+	cur_select = IX_REG_READ(CM_TEST_DEBUG_INDEX, CM_TEST_DEBUG_DATA,
-+					CM_TEST_DEBUG_DATA_STATUS_IDX);
-+
-+	/* IX_REG_READ reads whole reg, so isolate part we want [10..9] */
-+	cur_select = (cur_select >> CM_TEST_DEBUG_DATA_GAMUT_REMAP_MODE_SH)
-+					& CM_TEST_DEBUG_DATA_GAMUT_REMAP_MODE_MASK;
-+
-+	/* value stored in dbg reg will be 1 greater than mode we want */
-+	if (cur_select != DCN2_GAMUT_REMAP_COEF_A)
-+		select = DCN2_GAMUT_REMAP_COEF_A;
-+	else
-+		select = DCN2_GAMUT_REMAP_COEF_B;
-+
-+	gam_regs.shifts.csc_c11 = dpp->tf_shift->CM_GAMUT_REMAP_C11;
-+	gam_regs.masks.csc_c11  = dpp->tf_mask->CM_GAMUT_REMAP_C11;
-+	gam_regs.shifts.csc_c12 = dpp->tf_shift->CM_GAMUT_REMAP_C12;
-+	gam_regs.masks.csc_c12 = dpp->tf_mask->CM_GAMUT_REMAP_C12;
-+
-+	if (select == DCN2_GAMUT_REMAP_COEF_A) {
-+		gam_regs.csc_c11_c12 = REG(CM_GAMUT_REMAP_C11_C12);
-+		gam_regs.csc_c33_c34 = REG(CM_GAMUT_REMAP_C33_C34);
-+	} else {
-+		gam_regs.csc_c11_c12 = REG(CM_GAMUT_REMAP_B_C11_C12);
-+		gam_regs.csc_c33_c34 = REG(CM_GAMUT_REMAP_B_C33_C34);
-+	}
-+
-+	cm_helper_program_color_matrices(
-+				dpp->base.ctx,
-+				regval,
-+				&gam_regs);
-+
-+	REG_SET(
-+			CM_GAMUT_REMAP_CONTROL, 0,
-+			CM_GAMUT_REMAP_MODE, select);
-+
++	PERF_TRACE();  // TODO: remove after performance is stable.
++	dc_dmub_srv_cmd_queue(dmcub, &surface_flip.header);
++	PERF_TRACE();  // TODO: remove after performance is stable.
++	dc_dmub_srv_cmd_execute(dmcub);
++	PERF_TRACE();  // TODO: remove after performance is stable.
++	dc_dmub_srv_wait_idle(dmcub);
 +}
 +
-+void dpp2_cm_set_gamut_remap(
-+	struct dpp *dpp_base,
-+	const struct dpp_grph_csc_adjustment *adjust)
-+{
-+	struct dcn20_dpp *dpp = TO_DCN20_DPP(dpp_base);
-+	int i = 0;
+ bool hubp21_program_surface_flip_and_addr(
+ 	struct hubp *hubp,
+ 	const struct dc_plane_address *address,
+@@ -696,6 +805,13 @@ bool hubp21_program_surface_flip_and_addr(
+ 	struct dcn21_hubp *hubp21 = TO_DCN21_HUBP(hubp);
+ 	struct dc_debug_options *debug = &hubp->ctx->dc->debug;
+ 
 +
-+	if (adjust->gamut_adjust_type != GRAPHICS_GAMUT_ADJUST_TYPE_SW)
-+		/* Bypass if type is bypass or hw */
-+		program_gamut_remap(dpp, NULL, DCN2_GAMUT_REMAP_BYPASS);
-+	else {
-+		struct fixed31_32 arr_matrix[12];
-+		uint16_t arr_reg_val[12];
-+
-+		for (i = 0; i < 12; i++)
-+			arr_matrix[i] = adjust->temperature_matrix[i];
-+
-+		convert_float_matrix(
-+			arr_reg_val, arr_matrix, 12);
-+
-+		program_gamut_remap(dpp, arr_reg_val, DCN2_GAMUT_REMAP_COEF_A);
++	if (hubp->ctx->dc->debug.enable_dmcub_surface_flip) {
++		program_video_progressive_dmcub(hubp->ctx->dmub_srv, hubp, address, flip_immediate);
++		hubp->request_address = *address;
++		return true;
 +	}
-+}
 +
- void dpp2_program_input_csc(
- 		struct dpp *dpp_base,
- 		enum dc_color_space color_space,
-@@ -199,12 +278,11 @@ void dpp2_program_input_csc(
- 	cur_select = IX_REG_READ(CM_TEST_DEBUG_INDEX, CM_TEST_DEBUG_DATA,
- 					CM_TEST_DEBUG_DATA_STATUS_IDX);
+ 	//program flip type
+ 	REG_UPDATE(DCSURF_FLIP_CONTROL,
+ 			SURFACE_FLIP_TYPE, flip_immediate);
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index d8fdf7e76ded..919323257edb 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -30,12 +30,13 @@
+ #include "dmub_cmd_dal.h"
+ #include "dmub_cmd_vbios.h"
+ #include "atomfirmware.h"
+-
++#include "dc_hw_types.h"
+ #define DMUB_RB_CMD_SIZE 64
+ #define DMUB_RB_MAX_ENTRY 128
+ #define DMUB_RB_SIZE (DMUB_RB_CMD_SIZE * DMUB_RB_MAX_ENTRY)
+ #define REG_SET_MASK 0xFFFF
  
--	/* IX_REG_READ reads whole reg, so isolate part we want [5..4] */
-+	/* IX_REG_READ reads whole reg, so isolate part we want [4..3] */
- 	cur_select = (cur_select >> CM_TEST_DEBUG_DATA_ICSC_MODE_SH)
- 					& CM_TEST_DEBUG_DATA_ICSC_MODE_MASK;
++
+ /*
+  * Command IDs should be treated as stable ABI.
+  * Do not reuse or modify IDs.
+@@ -47,6 +48,7 @@ enum dmub_cmd_type {
+ 	DMUB_CMD__REG_SEQ_FIELD_UPDATE_SEQ = 2,
+ 	DMUB_CMD__REG_SEQ_BURST_WRITE = 3,
+ 	DMUB_CMD__REG_REG_WAIT = 4,
++	DMUB_CMD__SURFACE_FLIP = 5,
+ 	DMUB_CMD__PSR = 64,
+ 	DMUB_CMD__VBIOS = 128,
+ };
+@@ -145,6 +147,37 @@ struct dmub_rb_cmd_reg_wait {
+ 	struct dmub_cmd_reg_wait_data reg_wait;
+ };
  
--	/* value stored in dbg reg will be 1 greater than mode we want */
--	if (cur_select - 1 != DCN2_ICSC_SELECT_ICSC_A)
-+	if (cur_select != DCN2_ICSC_SELECT_ICSC_A)
- 		select = DCN2_ICSC_SELECT_ICSC_A;
- 	else
- 		select = DCN2_ICSC_SELECT_ICSC_B;
++#ifndef PHYSICAL_ADDRESS_LOC
++#define PHYSICAL_ADDRESS_LOC union large_integer
++#endif
++
++struct dmub_cmd_surface_flip {
++	uint32_t DCSURF_SURFACE_CONTROL;
++	uint32_t DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH;
++	uint32_t DCSURF_PRIMARY_META_SURFACE_ADDRESS;
++	uint32_t DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH;
++	uint32_t DCSURF_PRIMARY_SURFACE_ADDRESS;
++	uint32_t DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH_C;
++	uint32_t DCSURF_PRIMARY_META_SURFACE_ADDRESS_C;
++	uint32_t DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH_C;
++	uint32_t DCSURF_PRIMARY_SURFACE_ADDRESS_C;
++	uint32_t DCSURF_SECONDARY_META_SURFACE_ADDRESS_HIGH;
++	uint32_t DCSURF_SECONDARY_META_SURFACE_ADDRESS;
++	uint32_t DCSURF_SECONDARY_SURFACE_ADDRESS_HIGH;
++	uint32_t DCSURF_SECONDARY_SURFACE_ADDRESS;
++	enum dc_plane_addr_type addr_type;
++	uint8_t hubp_inst;
++	bool tmz_surface;
++	bool immediate;
++	uint8_t vmid;
++	bool grph_stereo;
++};
++
++struct dmub_rb_cmd_flip {
++	struct dmub_cmd_header header;
++	struct dmub_cmd_surface_flip flip;
++};
++
+ struct dmub_cmd_digx_encoder_control_data {
+ 	union dig_encoder_control_parameters_v1_5 dig;
+ };
+@@ -262,6 +295,7 @@ union dmub_rb_cmd {
+ 	struct dmub_rb_cmd_psr_enable psr_enable;
+ 	struct dmub_rb_cmd_psr_copy_settings psr_copy_settings;
+ 	struct dmub_rb_cmd_psr_set_level psr_set_level;
++	struct dmub_rb_cmd_flip surface_flip;
+ };
+ 
+ #pragma pack(pop)
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_rb.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_rb.h
+index ade688fd32f0..df875fdd2ab0 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_rb.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_rb.h
+@@ -73,12 +73,17 @@ static inline bool dmub_rb_full(struct dmub_rb *rb)
+ static inline bool dmub_rb_push_front(struct dmub_rb *rb,
+ 				      const struct dmub_cmd_header *cmd)
+ {
+-	uint8_t *wt_ptr = (uint8_t *)(rb->base_address) + rb->wrpt;
++	uint64_t volatile *dst = (uint64_t volatile *)(rb->base_address) + rb->wrpt / sizeof(uint64_t);
++	const uint64_t *src = (const uint64_t *)cmd;
++	int i;
+ 
+ 	if (dmub_rb_full(rb))
+ 		return false;
+ 
+-	dmub_memcpy(wt_ptr, cmd, DMUB_RB_CMD_SIZE);
++	// copying data
++	for (i = 0; i < DMUB_RB_CMD_SIZE / sizeof(uint64_t); i++)
++		*dst++ = *src++;
++
+ 	rb->wrpt += DMUB_RB_CMD_SIZE;
+ 
+ 	if (rb->wrpt >= rb->capacity)
+@@ -115,14 +120,17 @@ static inline bool dmub_rb_pop_front(struct dmub_rb *rb)
+ 
+ static inline void dmub_rb_flush_pending(const struct dmub_rb *rb)
+ {
+-	uint8_t buf[DMUB_RB_CMD_SIZE];
+ 	uint32_t rptr = rb->rptr;
+ 	uint32_t wptr = rb->wrpt;
+ 
+ 	while (rptr != wptr) {
+-		const uint8_t *data = (const uint8_t *)rb->base_address + rptr;
++		uint64_t volatile *data = (uint64_t volatile *)rb->base_address + rptr / sizeof(uint64_t);
++		//uint64_t volatile *p = (uint64_t volatile *)data;
++		uint64_t temp;
++		int i;
+ 
+-		dmub_memcpy(buf, data, DMUB_RB_CMD_SIZE);
++		for (i = 0; i < DMUB_RB_CMD_SIZE / sizeof(uint64_t); i++)
++			temp = *data++;
+ 
+ 		rptr += DMUB_RB_CMD_SIZE;
+ 		if (rptr >= rb->capacity)
 -- 
 2.24.1
 
