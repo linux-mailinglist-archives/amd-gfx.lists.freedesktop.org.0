@@ -1,48 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 171FE136FDD
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:48:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F68136FDF
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2020 15:48:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 808DC6EA30;
-	Fri, 10 Jan 2020 14:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A15D6EA45;
+	Fri, 10 Jan 2020 14:48:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-SN1-obe.outbound.protection.outlook.com
  (mail-eopbgr770057.outbound.protection.outlook.com [40.107.77.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2FCD6EA2F
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:48:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FF106EA2F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:48:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iRujnyd/KUQXUg9Gg0GZ2FmP+4C/9QbB1ZFnpaeEoI/9NK4peEcPEP39/UU9zek2WHrHytdiOYdgs2aTmm/t1ZHW/gfgyG9MbsyCbdN3b//js49wSTqqdSaRcOxGt1Ugwfz2aDrBLaW7tHyBBtoRjSyXcIVSjVa3rjz0DQv+hT9fpcDFtLVLlbyo5Go885JZQSGog3vXvoWhmCgpOpzs68RND9Areg0m3Mp5sJQ1E7F/uODRFystV+2xlSI2BhxjoCXkOTv28GKqAKZE34UD9qEB4NMt0UvmC4paTmnEnsqf5Wdfyfhw+2DMe8E3eWK8iWcd2uzL1Q71r36QVSTl5w==
+ b=HFLJwXSg4mlCqvaPgYYh84XZwS4MbOTlGCK9/9YjFVUQe8oPBxgawk9O1E2q4Ar1FJX4WKi5xwIKmTc/31aLCdzCxRrH9eVFdMH+v6YDnNaZIRPFRV1+vAa1wyoqEVsxrbmEbI/bQVFyuYMVoRS5WNqROwdHzkeP59RuVB6had59xPKflwCGMl1tISaNdEGIbmiljcxKzrXJKBmkMDcRhfZ3zNrgJeLJi1ZgY3mxv4yoTuQObzluTddimycuL3tVPVXUtMXMCvnyKnYpvuCQ05p0tRgkbhJ3qWx4cVYDRo/EgewecYZCWFp9ZHhWKVMtM2yR7/wASsOX8Q458p6NNw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AR30phuEcS4WTnoaPcqHXcevWcIoxz0qI7TgdUgyg/Q=;
- b=d/jhDpm0o5E40NaJFUuoG7V3sWGXzuyl09Ao1B+1UTPeOhWJnvTDZHUl1R/hdmBLAcFwKmbkJwdI8nOt1GGfYJGMiFV/JPxOhwPIBk6+YtkA/6rUgqI6brSn/uG8cHpCLC1b//DdXkmIXTbiUnrzt4wvJEKLT53TDrSiqenbvrP5C7y8x9BsaOiNxSU22NeQllRq5UDHJSRokvP0bwDCJ+BzhbqJRTRec2Ia3TscpDjR140T9yLiIewFx+FAX9CvwQ734MkYW2zmYCYpcpKCvyILt79przEezvPUA9TPtc72wNzwUO17ofuJKgkk9Aa7XRE+QSyWbCQCz1ZHsSfQGQ==
+ bh=GOAQENF4TI3UviKCeNQvxtYfUqJgMs2sHEsBOo8rsLM=;
+ b=Ypo+SBWD1eDsbnsw9s1fDLLjJjBh5qug0+9xz1l9qWBL3Hlnp1mMmqQxPCJS4sVEqksEJgQcSmkDBL87WkjotpDMp+6+gZx3nCF8wugmDHB2JmvsHe6r8UJpF5kTtCWlc4Gg8kp2qHJd5JBBy3GyAvxgvfQOrn4IAB38AeqJqhbsykzmAxTElES1etzib6quf5ZPZzpW9q4czJzbEAtavWHBKvJIEqEu5rxqIaNP4PJ354uyEPFsP7Lm6ibK3wAzNgT2kNxFgGJfMc/e/RZcGHiqgk/5hf4XyrdsiHmkkl7XhH+wWmKMrKKcW57Y/zPKWMJP8ePVQ20c5LRmOHIS7w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AR30phuEcS4WTnoaPcqHXcevWcIoxz0qI7TgdUgyg/Q=;
- b=kWQxFcbJcgkgtX2vWBpIqQ1OSvYU4ZF6VMo2k7xA1ATISQhpJvLCXGlGOcbFdHDADWfWXyUV9iO+KFlvLa7lOWWoeZf5/x76VE0hKpu88m7xbHC1w2KKqZual2qNkyPHnVUxCKhCS2efEdH2+QNneAHr11BE7SZZY22YqGew3zY=
+ bh=GOAQENF4TI3UviKCeNQvxtYfUqJgMs2sHEsBOo8rsLM=;
+ b=pK0jHIongj2rNMhys3Zys3iPwkZMIuBowOPPBAPkoI28SbdQ7UeO/4Sw2/Cj80mKEuSSOqacNgfx4t2Bxpz+XqBIBQfsTKltoYMRHpA8Nc4haRbpGc0Z7mx8RbfOCwsDOgCA1Lbtq5h83wfzIp2ocp6b9R1H5PI9c5rmRmuKZOo=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (52.132.180.155) by
  MW2PR12MB2378.namprd12.prod.outlook.com (52.132.183.143) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.9; Fri, 10 Jan 2020 14:48:17 +0000
+ 15.20.2623.9; Fri, 10 Jan 2020 14:48:18 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::699c:a877:13ef:6ae2%6]) with mapi id 15.20.2623.011; Fri, 10 Jan 2020
- 14:48:17 +0000
+ 14:48:18 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 30/43] drm/amd/display: Add default switch case for DCC
-Date: Fri, 10 Jan 2020 09:46:42 -0500
-Message-Id: <20200110144655.55845-31-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 31/43] drm/amd/display: implement fw-driver interface for abm
+ 2.4
+Date: Fri, 10 Jan 2020 09:46:43 -0500
+Message-Id: <20200110144655.55845-32-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
 References: <20200110144655.55845-1-Rodrigo.Siqueira@amd.com>
@@ -53,16 +54,16 @@ MIME-Version: 1.0
 Received: from atma2.amd.com (165.204.55.250) by
  YT1PR01CA0009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:46 +0000
+ 15.20.2623.8 via Frontend Transport; Fri, 10 Jan 2020 14:47:47 +0000
 X-Mailer: git-send-email 2.24.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 7fbcc031-acca-42d5-a0a4-08d795dc0ef6
+X-MS-Office365-Filtering-Correlation-Id: 98571b46-0714-4a89-93c8-08d795dc0f76
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2378:|MW2PR12MB2378:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB23788D90718D387D375B3B0198380@MW2PR12MB2378.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:296;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB23782893CD7E67F679F1C80398380@MW2PR12MB2378.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
 X-Forefront-PRVS: 02788FF38E
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(366004)(136003)(376002)(346002)(396003)(39860400002)(199004)(189003)(54906003)(52116002)(8676002)(81166006)(81156014)(86362001)(478600001)(7696005)(6916009)(26005)(2906002)(316002)(8936002)(16526019)(186003)(66556008)(4326008)(6666004)(6486002)(36756003)(66476007)(5660300002)(956004)(2616005)(66946007)(1076003);
@@ -73,14 +74,14 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jgNeNLjUwoZvV1Kr8onNkrPj2XumYH2Aim2UNmmQYDAgI0slyP4UK41vPIi5jmyDZSIvdC680xKoIzB59xluJEupmjqb39n1eDi+MeIbQxkhkZbyo1/5Hw0IejrHluswcFX6wzeEUumI7qdi6VCkyQIC6O55r7p3758x0eBgvousQBZW6HQHVfb+53UNy3Jsj3oFOKh1i2fGj6xCHdDZqUv56FNUnMkZB/ab6Ul4tDWHsu3J6YLer6hqmX4pklmpFOvGrYIt14k1FaUq8NmpN8yY00NMu/eLwwUXgJivME4agydgutJ0a2lf7EwJiB3/niXyuhq9jD/RBQpF6K5W6aaWjd/P/1IGDFLxfWgKBpmHpjyvbdTKR8Kl4lFgrKUYWsnI8dtC7gNPNdpgq3eDIvptXK46HfOoUz45AeV/jjCott87jheAzKo9SQwCx2X0
+X-Microsoft-Antispam-Message-Info: i1XAvERKZBePGr8sApYhW8Gd9bfxtP3yJDEI9QTIkXx7CJ97YvnXejf9I9gmiO51mEESl15f1AWkrxfGF/wNsTwP7A9O7eSrS3nNlZ3kwXQpNfuA8fIYK/1UrrDrWJ6aunuhcqgykPGgkLbWEAMBZQU9duE5PF0VSlOM7uRwXP90q+2vbXzmn3dkJlxt/kzyc5VOZdngHRRrDHasyxW8FZ7meUZUI+TKG/WJrKNCW0TwDFHtpeEIIYoeULk/v2ErFiWMLtl3+jrKAXHQwpeKTq7cgSN0aADpDEjzUnR1rAimKUoX/ApRI+LEE6iDIHTR8T4bLnraEon/je/GaHU8OQVa0gDM1jmNBBXGnvN3HM3+YdqCOm389EEf7CPqwE8lUkpUyPShHJPDP/kpxlQWmj60HrmY7y/cV8MBgKgv9qkG3jUIJ3/6iCg2avOR5WOC
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fbcc031-acca-42d5-a0a4-08d795dc0ef6
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:47.3991 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98571b46-0714-4a89-93c8-08d795dc0f76
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2020 14:47:48.2306 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FskRsuWwOumh+Pt+abxF+IkIdrXjq/xeiG9Y/xXgxGQp6WYj0p27rdpn5r/DiKCaT9ukLK/CQ5SkLeRk9olzPA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: UpSbd713+cwxC/PGtX360cCeVAF/6xp41G3WxkjOtbFsfCgbuYXkbVir/wx/3zCbVAT9FcTgeJnJSHiMP1Pc0Q==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2378
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,54 +94,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <Aric.Cyr@amd.com>, Chris Park <Chris.Park@amd.com>,
- Sunpeng.Li@amd.com, Harry Wentland <harry.wentland@amd.com>,
- Jordan Lazare <Jordan.Lazare@amd.com>, Bhawanpreet.Lakha@amd.com
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
+ Josip Pavic <Josip.Pavic@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ Aric Cyr <Aric.Cyr@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Park <Chris.Park@amd.com>
+From: Josip Pavic <Josip.Pavic@amd.com>
 
-Signed-off-by: Chris Park <Chris.Park@amd.com>
+[Why]
+IRAM definition needed for versions of DMCU containing ABM 2.4
+
+[How]
+Pass ABM 2.3 IRAM definition, which is compatible with ABM 2.4, to DMCU
+when ABM 2.4 FW is detected
+
+Signed-off-by: Josip Pavic <Josip.Pavic@amd.com>
 Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
-Reviewed-by: Jordan Lazare <Jordan.Lazare@amd.com>
 Acked-by: Harry Wentland <harry.wentland@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c | 3 +++
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c | 3 +++
- 2 files changed, 6 insertions(+)
+ drivers/gpu/drm/amd/display/modules/power/power_helpers.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c
-index a02c10e23e0d..f36a0d8cedfe 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c
-@@ -930,6 +930,9 @@ static bool hubbub1_get_dcc_compression_cap(struct hubbub *hubbub,
- 		output->grph.rgb.max_compressed_blk_size = 64;
- 		output->grph.rgb.independent_64b_blks = true;
- 		break;
-+	default:
-+		ASSERT(false);
-+		break;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+index 4e2f615c3566..e75a4bb94488 100644
+--- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
++++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+@@ -662,7 +662,11 @@ bool dmcu_load_iram(struct dmcu *dmcu,
  
- 	output->capable = true;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c
-index 836af0f2bbda..9235f7d29454 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.c
-@@ -293,6 +293,9 @@ bool hubbub2_get_dcc_compression_cap(struct hubbub *hubbub,
- 		output->grph.rgb.max_compressed_blk_size = 64;
- 		output->grph.rgb.independent_64b_blks = true;
- 		break;
-+	default:
-+		ASSERT(false);
-+		break;
- 	}
- 	output->capable = true;
- 	output->const_color_support = true;
+ 	memset(&ram_table, 0, sizeof(ram_table));
+ 
+-	if (dmcu->dmcu_version.abm_version == 0x23) {
++	if (dmcu->dmcu_version.abm_version == 0x24) {
++		fill_iram_v_2_3((struct iram_table_v_2_2 *)ram_table, params);
++		result = dmcu->funcs->load_iram(
++				dmcu, 0, (char *)(&ram_table), IRAM_RESERVE_AREA_START_V2_2);
++	} else if (dmcu->dmcu_version.abm_version == 0x23) {
+ 		fill_iram_v_2_3((struct iram_table_v_2_2 *)ram_table, params);
+ 
+ 		result = dmcu->funcs->load_iram(
+@@ -687,3 +691,4 @@ bool dmcu_load_iram(struct dmcu *dmcu,
+ 
+ 	return result;
+ }
++
 -- 
 2.24.1
 
