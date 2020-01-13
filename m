@@ -1,88 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2997D13A038
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jan 2020 05:20:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF2CA13A252
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jan 2020 08:57:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C7DE89337;
-	Tue, 14 Jan 2020 04:20:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F8236E2E2;
+	Tue, 14 Jan 2020 07:57:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2052.outbound.protection.outlook.com [40.107.244.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D18389337
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 04:20:16 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2075.outbound.protection.outlook.com [40.107.220.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E39B66E2E2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 07:57:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CWWqQSW8tAsoWoi8uTPlE3ieErJzNpKtNuL9UOmcAipHm7PqDkFGWzF3jEfut2UFDSATm8xpLG0bXqHt8aHoYZGzcTNbVra6+89ktPp4nvMZBnJE1wcAFbFae5OXt2b3n6uxa6u58bc1eEJROsS6pYMNVlRGY0FnOUy2jigK5nRfdRp8dReT8a9MF+ueSZA1gKTNBHSWgws8hW7jwi9hqmnn2RZwZ3vGw2kVoHDdQ9dz8Lr+ozqtlfzwPslXpewiSERP9iUPAjo1kUA9FVSskD1EQGFYTi4aIk3Gkmja0BBmKB0PMGoxvJTvf3z30I1VgMSAesAzshmkuL39rM3+9Q==
+ b=ScxdphAYqU/thhdizkRnzQc5n2zc7gA6vlefgA5/gHM7SFPxs7HzSGBVqUPkutn1tslEsl9ZpXm+C64VN9B81tYZQV9piOLZk6WuSmZ76i8Dp122hCRHfVKnRPnf0p4/8dfoBX/urllhG+kC76fIjxrV1CwloQndmPCxC0Y9HfAcsnhA2wF8BBX0Bq0yi6mvtxPOlv2unKhTf1S4DYzTXwTEm5/ZaJHW/saJM53fWf7PiSBVoAsVAZCyHm5JSM7rMu2ovfr8nCuVX2MXD/lKGw4/lbw1DqL2I+FTUfRPMlk6wZZ5f5NW1MbtqaBVteoNa745bAH4Upk+/DzTdyFigQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/QyuPtkeIFLFmbKPziAp38togbxW/mQxTNQF5uhKkdY=;
- b=jpGrbdoUAv2KBUNVo0i+KLuRuFsoE6TpuoVUe5/x+uEXRimhWkzCRYPBVA3wsnjM9l9X2DWWLqLLivw+19BTOe8gTNILrwT8C4DD90TLgtcaL1ETPflH51ldtMeuj/JTo0wlM2Kpr+F95Pc9RXwOJwFetNoeSbsNYdPixxbGMZyi1FfoM/CubigfNE6sMAhDHMUWSf+nhHOvBaSMy5zTk0BIpbL6PB/dEsTNGygKuSCP9Hzu4I8mCiGjf/bUO07HftQt9X3szInpYFJBFZv1wUNg+UqL787qketlfSxFtzH+324rLtEUvh84lzhXpkBQRW9JfMGtrgi3OTH+4mB0Vw==
+ bh=yVKrbcG1CHVcrNux9X+V4nXsYaZydLVmCr+It+v0WA8=;
+ b=lEGb223ylBaKmna6ZI9s4zX3x/0iYwfzUNwHLbL1bLKC01eJTDpzTcY1uDun0l0O8GvMbAlS84U2qH6fxLxvrGXJPPJKegKDpE1hDc5NYhqH0pkBotxqMSF+5GZ6TBAMr8bda+9aI/1r+LxzVZMrwPtjEOzNjUPXfuW7pKpKcZHd8QaGYCjt46I/0G6mBjzAR88JfGcpwLgXO4pZ6dcJ/ht0NCtahyhK3t9G40GEsbidzNlz6znoJRkPDKmBJD9gZJFiK3JjuUc43yVrhwWkVGTG8li8FBlsPiDe848YpECxUP6TfjK3mIGvhzDWiKKEzNMV+8K2ac+AiH/enfyEXA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/QyuPtkeIFLFmbKPziAp38togbxW/mQxTNQF5uhKkdY=;
- b=1ucIpcguwu40clSMPOSNYAG7ptrm0lSxpjn0NdYvXwFHvlT86MgOb64JDOl5nTLdsVSHMzu2sl5RfIzcrCYYilDeV1KY0uOOhfLL1JH5Dr61vv1bmZ9htzEFC7G2oox5GBiW+NpZCMKBW9SMJLagTd0DmoaQqVqGM0QWDYKLJ6o=
+ bh=yVKrbcG1CHVcrNux9X+V4nXsYaZydLVmCr+It+v0WA8=;
+ b=GGyGQuTuYmt8dvO/kpi+jeLuHocjrS56SZeWkJvJGRpyjFx1phro86s9hZYQWnAaUQrAZ7OZKXGnE/GtKxyA5wrbZOZ3mRDPP36Gw6ZokRP0O8LwPW3NR/503kYAvYOdoJp8iFGUUasFjTYs70iQsXSt51B3lhQ1uW709Eb3Q+c=
 Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Ray.Huang@amd.com; 
-Received: from MN2PR12MB3309.namprd12.prod.outlook.com (20.179.83.157) by
- MN2PR12MB4237.namprd12.prod.outlook.com (52.135.49.71) with Microsoft SMTP
+ smtp.mailfrom=Christian.Koenig@amd.com; 
+Received: from DM5PR12MB1705.namprd12.prod.outlook.com (10.175.88.22) by
+ DM5PR12MB1322.namprd12.prod.outlook.com (10.168.235.17) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.11; Tue, 14 Jan 2020 04:20:14 +0000
-Received: from MN2PR12MB3309.namprd12.prod.outlook.com
- ([fe80::f945:5c4c:9c3f:930a]) by MN2PR12MB3309.namprd12.prod.outlook.com
- ([fe80::f945:5c4c:9c3f:930a%6]) with mapi id 15.20.2623.015; Tue, 14 Jan 2020
- 04:20:13 +0000
-Date: Tue, 14 Jan 2020 12:20:06 +0800
-From: Huang Rui <ray.huang@amd.com>
-To: chen gong <curry.gong@amd.com>
+ 15.20.2623.9; Tue, 14 Jan 2020 07:57:37 +0000
+Received: from DM5PR12MB1705.namprd12.prod.outlook.com
+ ([fe80::8dde:b52a:d97a:e89]) by DM5PR12MB1705.namprd12.prod.outlook.com
+ ([fe80::8dde:b52a:d97a:e89%2]) with mapi id 15.20.2623.015; Tue, 14 Jan 2020
+ 07:57:37 +0000
 Subject: Re: [PATCH 1/2] drm/amdgpu: add kiq version interface for RREG32
-Message-ID: <20200114042005.GA13044@jenkins-Celadon-RN>
+To: Huang Rui <ray.huang@amd.com>, chen gong <curry.gong@amd.com>
 References: <1578910582-4505-1-git-send-email-curry.gong@amd.com>
  <20200113155636.GC4021@jenkins-Celadon-RN>
-Content-Disposition: inline
-In-Reply-To: <20200113155636.GC4021@jenkins-Celadon-RN>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-ClientProxiedBy: HK2PR02CA0152.apcprd02.prod.outlook.com
- (2603:1096:201:1f::12) To MN2PR12MB3309.namprd12.prod.outlook.com
- (2603:10b6:208:106::29)
+ <20200114042005.GA13044@jenkins-Celadon-RN>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <1eaed3a3-a4eb-8903-e4ee-6b89c70208a4@amd.com>
+Date: Mon, 13 Jan 2020 22:07:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+In-Reply-To: <20200114042005.GA13044@jenkins-Celadon-RN>
+Content-Language: en-US
+X-ClientProxiedBy: AM0PR10CA0046.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:150::26) To DM5PR12MB1705.namprd12.prod.outlook.com
+ (2603:10b6:3:10c::22)
 MIME-Version: 1.0
-Received: from jenkins-Celadon-RN (180.167.199.189) by
- HK2PR02CA0152.apcprd02.prod.outlook.com (2603:1096:201:1f::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2644.18 via Frontend Transport; Tue, 14 Jan 2020 04:20:11 +0000
-X-Originating-IP: [180.167.199.189]
+Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+ (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
+ AM0PR10CA0046.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:150::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2623.12 via Frontend
+ Transport; Tue, 14 Jan 2020 07:57:36 +0000
+X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 6b7b23bd-7223-4cd9-337c-08d798a90d35
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4237:|MN2PR12MB4237:
+X-MS-Office365-Filtering-Correlation-Id: bed3e100-293a-4718-e085-08d798c76bd1
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1322:|DM5PR12MB1322:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB423795A7E280EE1DCA852971EC340@MN2PR12MB4237.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1322C36DDBF0C5F6276C3AD483340@DM5PR12MB1322.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-Forefront-PRVS: 028256169F
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(396003)(346002)(39860400002)(376002)(136003)(199004)(189003)(33716001)(8676002)(966005)(6636002)(16526019)(66946007)(4326008)(316002)(6862004)(2906002)(186003)(26005)(478600001)(52116002)(6496006)(86362001)(45080400002)(33656002)(9686003)(6666004)(1076003)(8936002)(66476007)(5660300002)(81166006)(66556008)(55016002)(81156014)(54906003)(956004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB4237;
- H:MN2PR12MB3309.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
+ SFS:(10009020)(4636009)(366004)(39860400002)(376002)(346002)(136003)(396003)(189003)(199004)(110136005)(54906003)(66946007)(66476007)(66556008)(4326008)(478600001)(45080400002)(966005)(2906002)(31696002)(6666004)(6636002)(6486002)(36756003)(8936002)(8676002)(81166006)(81156014)(86362001)(5660300002)(16526019)(186003)(316002)(2616005)(52116002)(31686004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1322;
+ H:DM5PR12MB1705.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ANzEipgk50dhvD2XlkMCvytPQBrPUhcNL/ny8C5VR5I51eFJDWgY0X4kwMId1bQKLGcnX0gFWYJ+hIHnK59OWYOWYkTxevR8ZKz1qgAh2igbOhht1iAPtbHxrlobADwAfOfIbvzSanQ7Zu1y9OJDzgfKIfZT7AGZtarMT4oC5SMSvUnY8zRnGARaV6aNoohWXP3L0Ile8LBwg37XsS6TGqi3hr9NLKVh6Sgc1ZnCiyLPjNWOUnq+K888ryaN23jSG0PHOxiUMyee8nVS/AMNw3ykRQDb6EXDg6XDZI4om3NZjfUhsSyt4h2N/i+5Xh+Pu+dYe2Mdz9ZoOS/chGHv54rv1l0rtHAkCFxlUB5xR2fiwtb6c5O9VsTUKOMhmU1dHRmSGo+YO9hwC4dpmB6uL6x9HsbLfa2UGMetN4znoASoYU41HdCFGDITSmDvAZpxRtaKj6Wp4EVdvRVZVW5WuZ09jBtJCgqMER3g5ndYNFg=
+X-Microsoft-Antispam-Message-Info: UO5jgOdStJrrONhXUWPxrlcEKZzaGZ8SPA2oSdXGcU4DQhQcaSEmZe+9iU8iU+Soe5BvQfgwvj5cy5kjeP/ZIPDm43t08i2VydWiCcNhOj8HnGe4hPvB77fXMSQCB39Pg4MqTsd0mNBgP4CSvZnN51ZkF9VF+2cAwcfrhKaDOroUp9lo5280MlZUsxe8VlJke56n075JJvwirGJDS0fk23xuBWqON1jl80hfN07hbM5ySgIdISD23+9yA6OSQAg484gd154mxU5pqlFKJXRnSowxkFlxm/gfHGLZ5UVyrAfroMqe9MWg2dgYIC7NnE1PUcEtu9KVwM2GAuni7cEwf8nM09VXvVfobAWs22lE4Saq+/+D8MKATCQzwQUJumLNDBcvwfTmVbupflLVyj2YD9MCT56JcYwTOXO5FHlkbOr4CEay58Hh+dL8IJhgegwx/+MvZpny2owZrC1xFqwOukRA5nUEePLmSQxIaVa4ROc=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b7b23bd-7223-4cd9-337c-08d798a90d35
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2020 04:20:13.7198 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bed3e100-293a-4718-e085-08d798c76bd1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2020 07:57:37.3254 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cPvN2mi16daFGk0TqXebqHLcIhVMm9sFdmd0QAHaBJsaWfuebYgMw4OzEJxp3BM7x/A4PdhyY19V3XzAKPJl/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4237
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1Pz57QRq2Re5CB4MVUYtdL9ysE0WfDpNklWAIVLY6Rm1nR/876gfiYE8WrQJlbPD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1322
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,81 +99,88 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+ Felix Kuehling <Felix.Kuehling@amd.com>, amd-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 13, 2020 at 11:56:46PM +0800, Huang Rui wrote:
-> On Mon, Jan 13, 2020 at 06:16:21PM +0800, chen gong wrote:
-> > Reading some registers by mmio will result in hang when GPU is in
-> > "gfxoff" state.
-> > 
-> > This problem can be solved by GPU in "ring command packages" way.
-> > 
-> > Signed-off-by: chen gong <curry.gong@amd.com>
-> 
-> Acked-by: Huang Rui <ray.huang@amd.com>
-> 
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 3 +++
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
-> >  2 files changed, 4 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > index 63eab0c..92c5ee4 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > @@ -1016,10 +1016,13 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
-> >  
-> >  #define AMDGPU_REGS_IDX       (1<<0)
-> >  #define AMDGPU_REGS_NO_KIQ    (1<<1)
-> > +#define AMDGPU_REGS_KIQ       (1<<2)
-> >  
-> >  #define RREG32_NO_KIQ(reg) amdgpu_mm_rreg(adev, (reg), AMDGPU_REGS_NO_KIQ)
-> >  #define WREG32_NO_KIQ(reg, v) amdgpu_mm_wreg(adev, (reg), (v), AMDGPU_REGS_NO_KIQ)
-> >  
-> > +#define RREG32_KIQ(reg) amdgpu_mm_rreg(adev, (reg), AMDGPU_REGS_KIQ)
-> > +
-> >  #define RREG8(reg) amdgpu_mm_rreg8(adev, (reg))
-> >  #define WREG8(reg, v) amdgpu_mm_wreg8(adev, (reg), (v))
-> >  
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > index 2c64d2a..4045b56 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > @@ -217,7 +217,7 @@ uint32_t amdgpu_mm_rreg(struct amdgpu_device *adev, uint32_t reg,
-> >  {
-> >  	uint32_t ret;
-> >  
-> > -	if (!(acc_flags & AMDGPU_REGS_NO_KIQ) && amdgpu_sriov_runtime(adev))
-> > +	if ((acc_flags & AMDGPU_REGS_KIQ) || (!(acc_flags & AMDGPU_REGS_NO_KIQ) && amdgpu_sriov_runtime(adev)))
-> >  		return amdgpu_virt_kiq_rreg(adev, reg);
+Am 14.01.20 um 05:20 schrieb Huang Rui:
+> On Mon, Jan 13, 2020 at 11:56:46PM +0800, Huang Rui wrote:
+>> On Mon, Jan 13, 2020 at 06:16:21PM +0800, chen gong wrote:
+>>> Reading some registers by mmio will result in hang when GPU is in
+>>> "gfxoff" state.
+>>>
+>>> This problem can be solved by GPU in "ring command packages" way.
+>>>
+>>> Signed-off-by: chen gong <curry.gong@amd.com>
+>> Acked-by: Huang Rui <ray.huang@amd.com>
+>>
+>>> ---
+>>>   drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 3 +++
+>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+>>>   2 files changed, 4 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>>> index 63eab0c..92c5ee4 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>>> @@ -1016,10 +1016,13 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
+>>>   
+>>>   #define AMDGPU_REGS_IDX       (1<<0)
+>>>   #define AMDGPU_REGS_NO_KIQ    (1<<1)
+>>> +#define AMDGPU_REGS_KIQ       (1<<2)
+>>>   
+>>>   #define RREG32_NO_KIQ(reg) amdgpu_mm_rreg(adev, (reg), AMDGPU_REGS_NO_KIQ)
+>>>   #define WREG32_NO_KIQ(reg, v) amdgpu_mm_wreg(adev, (reg), (v), AMDGPU_REGS_NO_KIQ)
+>>>   
+>>> +#define RREG32_KIQ(reg) amdgpu_mm_rreg(adev, (reg), AMDGPU_REGS_KIQ)
+>>> +
+>>>   #define RREG8(reg) amdgpu_mm_rreg8(adev, (reg))
+>>>   #define WREG8(reg, v) amdgpu_mm_wreg8(adev, (reg), (v))
+>>>   
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>> index 2c64d2a..4045b56 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>> @@ -217,7 +217,7 @@ uint32_t amdgpu_mm_rreg(struct amdgpu_device *adev, uint32_t reg,
+>>>   {
+>>>   	uint32_t ret;
+>>>   
+>>> -	if (!(acc_flags & AMDGPU_REGS_NO_KIQ) && amdgpu_sriov_runtime(adev))
+>>> +	if ((acc_flags & AMDGPU_REGS_KIQ) || (!(acc_flags & AMDGPU_REGS_NO_KIQ) && amdgpu_sriov_runtime(adev)))
+>>>   		return amdgpu_virt_kiq_rreg(adev, reg);
+> Hi Curry,
+>
+> I read this patch again, we would better move the
+> amdgpu_virt_kiq_rreg/amdgpu_virt_kiq_wreg out of amdgpu_virt to amdgpu.h.
+>
+> Because these functions are not only used for virtualization but also for
+> the case while gfxoff enabled. We will continue using this interface
+> instead of MMIO access in KFD driver as well.
 
-Hi Curry,
+Yes, that is a really good idea.
 
-I read this patch again, we would better move the
-amdgpu_virt_kiq_rreg/amdgpu_virt_kiq_wreg out of amdgpu_virt to amdgpu.h.
+We should probably start a amdgpu_kiq.c file and move quite a bunch of 
+stuff over there.
 
-Because these functions are not only used for virtualization but also for
-the case while gfxoff enabled. We will continue using this interface
-instead of MMIO access in KFD driver as well.
+Regards,
+Christian.
 
-Thanks,
-Ray
+>
+> Thanks,
+> Ray
+>
+>>>   
+>>>   	if ((reg * 4) < adev->rmmio_size && !(acc_flags & AMDGPU_REGS_IDX))
+>>> -- 
+>>> 2.7.4
+>>>
+>>> _______________________________________________
+>>> amd-gfx mailing list
+>>> amd-gfx@lists.freedesktop.org
+>>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Cray.huang%40amd.com%7C30ace3a1329f439cb69508d79811d5aa%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637145074676514100&amp;sdata=t6rAUcThU9cmcu5Rwh%2BuHFDtj7Yie4tRN%2FgF2OSBZ00%3D&amp;reserved=0
 
-> >  
-> >  	if ((reg * 4) < adev->rmmio_size && !(acc_flags & AMDGPU_REGS_IDX))
-> > -- 
-> > 2.7.4
-> > 
-> > _______________________________________________
-> > amd-gfx mailing list
-> > amd-gfx@lists.freedesktop.org
-> > https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Cray.huang%40amd.com%7C30ace3a1329f439cb69508d79811d5aa%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637145074676514100&amp;sdata=t6rAUcThU9cmcu5Rwh%2BuHFDtj7Yie4tRN%2FgF2OSBZ00%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
