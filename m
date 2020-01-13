@@ -2,91 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B529139336
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2020 15:12:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2CC11393D7
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2020 15:41:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F9526E0B8;
-	Mon, 13 Jan 2020 14:12:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0E2A6E0DA;
+	Mon, 13 Jan 2020 14:40:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680044.outbound.protection.outlook.com [40.107.68.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A0EF89EA3
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 14:12:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b9XiLLq5LePP+pNXZWtg2KOv6UHuaT1zxvTGhkpixQUfa0K1YQxUbGYzMHmJ9Sf6HvSv60hlaE4sL4q6JQi5ujMhdUACyfX5TmunHZVVaksPqBzvKVqySgD3t7dTBqhEZKL5kRu+iykf0o20WC3F9YkskevqWSu9+N5OYPu7xbI+tvOlYn/ImwWJSqQZIDxi7eP0G7SeSF6dWUsCmVcTTKmflFpIst3RAZ5mmampmQfHd7WH5/k8RC1Ula82+RyxL3tog1pIrQnF+dXbnAjXHqBa03knk82iGQHFP0jb9ILMkGz84KlmcyHczbfq4/YK1IenB9vzoSGpW9yHXQwCOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rXNuCSTmfEWWjy7Kd1d7E1OIlqo8+hM/FAUOa1SFvbo=;
- b=EiWMFdBl17CIP150OLT/qOH1Ibxzl33NUIgn5dJH4i3grAr5WJ3nE6mu0hOgKp6UBY/9xe7Ufb8f2sdg/OaMSVhZJLBEQvWdRZReF+FBrMsR433uOMzYpTpqrRrTTDEABQp3AFrwbS11G9RkYJCwZJB6GAJGOX+82FWRLAXYZ2QaBc1WiOGteDMSW4AFfGFH59wvOp+nsLCu/rvRw4Dj9ZSh9pcXD4HwcM9AkrttyqsGbss6TcDP05GIfaJlLt2aZloGOMM2ZB036mkZm+vOUSZ4C2K6eUlA6/CebrwywHr5n9vJ8PJOQ1I3hXDIKMk+Ynt6ohmsXqfR5TisXZF81Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rXNuCSTmfEWWjy7Kd1d7E1OIlqo8+hM/FAUOa1SFvbo=;
- b=BL2BBVfjIVFhYwS2wdD7D85sFphglOuHb28FOmskDq1UEg4afEJrdKWIUjVgDyzMIVawQOYls+VRymFniLbBkTbJaaRvelpCOgxBXDoe1ADzf+cHEJRztzvLYZBLsZNj9JRYThggakKfMTTfa8eOTcqcERWiLFJe6Bfef0dXoMM=
-Received: from CH2PR12MB3912.namprd12.prod.outlook.com (52.132.246.86) by
- CH2PR12MB4149.namprd12.prod.outlook.com (20.180.17.141) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.13; Mon, 13 Jan 2020 14:12:04 +0000
-Received: from CH2PR12MB3912.namprd12.prod.outlook.com
- ([fe80::4874:d6a2:6327:aa2b]) by CH2PR12MB3912.namprd12.prod.outlook.com
- ([fe80::4874:d6a2:6327:aa2b%4]) with mapi id 15.20.2623.015; Mon, 13 Jan 2020
- 14:12:04 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Zhao, Yong" <Yong.Zhao@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdkfd: Fix a compiling warning
-Thread-Topic: [PATCH] drm/amdkfd: Fix a compiling warning
-Thread-Index: AQHVyBfKElNCL0cImUea96K+qI5QzKfopppu
-Date: Mon, 13 Jan 2020 14:12:04 +0000
-Message-ID: <CH2PR12MB391284BE83C985A9AF79D4B8F7350@CH2PR12MB3912.namprd12.prod.outlook.com>
-References: <20200111004032.30224-1-Yong.Zhao@amd.com>
-In-Reply-To: <20200111004032.30224-1-Yong.Zhao@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-01-13T14:12:03.843Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
-x-originating-ip: [71.219.59.120]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 77e0ec42-f77a-4731-9eb7-08d79832912a
-x-ms-traffictypediagnostic: CH2PR12MB4149:|CH2PR12MB4149:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CH2PR12MB41491721E6F654C6D047ED75F7350@CH2PR12MB4149.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:187;
-x-forefront-prvs: 028166BF91
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(136003)(39860400002)(376002)(346002)(366004)(199004)(189003)(110136005)(71200400001)(19627405001)(2906002)(8936002)(966005)(478600001)(316002)(5660300002)(45080400002)(55016002)(33656002)(52536014)(66946007)(64756008)(76116006)(66446008)(9686003)(66556008)(66476007)(81166006)(81156014)(8676002)(86362001)(6506007)(53546011)(7696005)(186003)(26005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CH2PR12MB4149;
- H:CH2PR12MB3912.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Lr+e7Jhed10MN/hZnYzMVW4PpdSVQ3gyAWpufjhIS6qVxFNn8VMJMkEwiA5x38TcQ1MM4m3723nN9artcBPPukISOn4xEiXDREVWhTyym9y8KD1eU/7EdTrQ7EpM1pSmlXkqTrXxpamq/yXYfKKhN7KvBh2NudCo8F0A+eWA0ILdPv7NmrOPaEIeWM74i5ZQDAyhumAa5mbFqtzXNZ7S68efQUuy9r/K9r+xp9/V2YV15zKKPTzOsKkq5OuB6c8uUW65ZKZCcK4KPZ9JB7n3ogAqH4S9m/Qc4C2+vcVN937S1ZO+hE0Jieu5wHwsPw01wLcWS76zaGN6VG+PPKhAvc0j5TKTpSMGlFznXLSOokT1Rl3WHB/rhIZy8ecWhZISvwM+GLtBpO9Yvhu0XziL1qHQmt+NaEoAqYtw51uVUvyXq6Qr07oqFNMdnBmzqm+gIUhtx6nZZORX9zqqKIDvNvhpMzUL7CVjOeDzpJ5G2MU=
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F4B46E0D8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 14:40:58 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id q10so8831942wrm.11
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 06:40:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=6GRb/2uvU0LDkpEan2eFVgDU/bgqoAzPjNMkm/OdpVc=;
+ b=D9br817pdhDw72DBDqhl5+dSXAbYeUUfqsk1+SBBSke9YljjcJnPsL6M5KjbLjgKVA
+ 53u304EAZKriuLR9gS8T+TXUkTFGpypkxlhLmnuWnTfzoTOf6xgpWTriJtPATHyuG+Fc
+ CwIkilQaueDx45TsoX89+AWTjuxTq6qf/kMjDf6WNVrzWKPX1JjAOof0ovnwola81LAW
+ rHh4jFgjZoYuF8/X2Ppm88CpQzJKuxs2CDGwplkumQX7ZEKCs1DWt22NzsuluOArzhR8
+ Mu8KkW5G2HtPqaFgR/BPEFymGQ8rDrGv1LyYF5dm45wI8sA6rwSVQHoTT/9mErG1cU6m
+ fqnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=6GRb/2uvU0LDkpEan2eFVgDU/bgqoAzPjNMkm/OdpVc=;
+ b=kUpMGYcM/8bgfCxpE12O7rVoKbHBDqoNY3RRfmTO8cK2n2oq+7Jt0EpT7jPn6lvdhP
+ mSCTeyDKSoGQAaBwqcOv8vDQskMbt9l1KMYpbSGhSY1XI08PZ3xCEVNBgbs+CZRyxfuu
+ SyCCMCLPszgE3Yt8AIkYGFRr8cl/tCref3byZaxE+9dtUPY+JxJ+DH5wjWQ5jjASddLP
+ MCUSXb9Y9QrAkAnmArSFS9wzJiow7YAbCw8PT8liGy6jWCrxPz233d2w+VRffcrbGz81
+ O4rwM4WxQm52rI7L3PSdJpm5ZV8dH6+CmGxy32ww5o99vAWp+WWqIhGF6ocUs77hS5Y+
+ zMZg==
+X-Gm-Message-State: APjAAAUCLkicGEnjGiXH/w1i7FZ+MnNGjKe5fyNG93RkSe3Id5tpTSzQ
+ zs1UsI8dn3EVVmqk6XzF/kPvBdwT
+X-Google-Smtp-Source: APXvYqyBhV5PdJT3O9ZH9302o7f30XSy9V7cK4ZmOXbXy97zfoV6WRH1RP8Ml05VdZ80Dq99eKQT1w==
+X-Received: by 2002:a5d:4b8f:: with SMTP id b15mr19934847wrt.100.1578926456756; 
+ Mon, 13 Jan 2020 06:40:56 -0800 (PST)
+Received: from abel.fritz.box ([2a02:908:1252:fb60:bd29:349f:9f33:2a26])
+ by smtp.gmail.com with ESMTPSA id m10sm15347802wrx.19.2020.01.13.06.40.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Jan 2020 06:40:56 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: amd-gfx@lists.freedesktop.org, Alex.Sierra@amd.com, Philip.Yang@amd.com,
+ felix.kuehling@amd.com
+Subject: [PATCH 1/8] drm/amdgpu: drop amdgpu_job.owner
+Date: Mon, 13 Jan 2020 15:40:48 +0100
+Message-Id: <20200113144055.3416-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77e0ec42-f77a-4731-9eb7-08d79832912a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jan 2020 14:12:04.5891 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xOTOIuhotzbFd7bmYgk+rGYnPGePnU0kNTzgWMOpQtIz+7Fl31vngyTQa10fLbZGkpKryjxESFol+16LoUm8WA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4149
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,195 +66,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1418748542=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1418748542==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CH2PR12MB391284BE83C985A9AF79D4B8F7350CH2PR12MB3912namp_"
-
---_000_CH2PR12MB391284BE83C985A9AF79D4B8F7350CH2PR12MB3912namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-[AMD Official Use Only - Internal Distribution Only]
-
-FWIW:
-https://patchwork.freedesktop.org/patch/347923/
-
-Alex
-
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Yong Zha=
-o <Yong.Zhao@amd.com>
-Sent: Friday, January 10, 2020 7:40 PM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Zhao, Yong <Yong.Zhao@amd.com>
-Subject: [PATCH] drm/amdkfd: Fix a compiling warning
-
-The warning was introduced in
-
-commit b4267f2e687ff5e0402ab915c9a4d47f9a4eb73e
-Author: Yong Zhao <Yong.Zhao@amd.com>
-Date:   Fri Dec 13 11:31:48 2019 -0500
-
-    drm/amdkfd: Improve function get_sdma_rlc_reg_offset()
-
-Change-Id: I87da4f1ad8a190327a4a71f0ff78812cb942d6e0
-Signed-off-by: Yong Zhao <Yong.Zhao@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c b/drivers/=
-gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
-index 2b26925623eb..f9011a07cb90 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
-@@ -71,7 +71,7 @@ static uint32_t get_sdma_rlc_reg_offset(struct amdgpu_dev=
-ice *adev,
-                                 unsigned int engine_id,
-                                 unsigned int queue_id)
- {
--       uint32_t sdma_engine_reg_base;
-+       uint32_t sdma_engine_reg_base =3D 0;
-         uint32_t sdma_rlc_reg_offset;
-
-         switch (engine_id) {
---
-2.17.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D02%7C01%7Calexande=
-r.deucher%40amd.com%7C6428020902c0464fb20408d7962ee8c9%7C3dd8961fe4884e608e=
-11a82d994e183d%7C0%7C0%7C637143000578441842&amp;sdata=3DVP7%2FbA3lxSX2l9Hx2=
-TySiChP4VKBch2SQRNOei2wElw%3D&amp;reserved=3D0
-
---_000_CH2PR12MB391284BE83C985A9AF79D4B8F7350CH2PR12MB3912namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
-ign=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-FWIW:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<a href=3D"https://patchwork.freedesktop.org/patch/347923/" id=3D"LPlnk7476=
-24">https://patchwork.freedesktop.org/patch/347923/</a></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Alex</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Yong Zhao &lt;Yong.Zhao@amd.c=
-om&gt;<br>
-<b>Sent:</b> Friday, January 10, 2020 7:40 PM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Zhao, Yong &lt;Yong.Zhao@amd.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amdkfd: Fix a compiling warning</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">The warning was introduced in<br>
-<br>
-commit b4267f2e687ff5e0402ab915c9a4d47f9a4eb73e<br>
-Author: Yong Zhao &lt;Yong.Zhao@amd.com&gt;<br>
-Date:&nbsp;&nbsp; Fri Dec 13 11:31:48 2019 -0500<br>
-<br>
-&nbsp;&nbsp;&nbsp; drm/amdkfd: Improve function get_sdma_rlc_reg_offset()<b=
-r>
-<br>
-Change-Id: I87da4f1ad8a190327a4a71f0ff78812cb942d6e0<br>
-Signed-off-by: Yong Zhao &lt;Yong.Zhao@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c | 2 &#43;-<br>
-&nbsp;1 file changed, 1 insertion(&#43;), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c b/drivers/=
-gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c<br>
-index 2b26925623eb..f9011a07cb90 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c<br>
-@@ -71,7 &#43;71,7 @@ static uint32_t get_sdma_rlc_reg_offset(struct amdgpu=
-_device *adev,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int engine_id,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int queue_id)<br>
-&nbsp;{<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t sdma_engine_reg_base;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t sdma_engine_reg_base =3D=
- 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t sdma_rlc_reg_offs=
-et;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (engine_id) {<br>
--- <br>
-2.17.1<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
-F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%=
-7C01%7Calexander.deucher%40amd.com%7C6428020902c0464fb20408d7962ee8c9%7C3dd=
-8961fe4884e608e11a82d994e183d%7C0%7C0%7C637143000578441842&amp;amp;sdata=3D=
-VP7%2FbA3lxSX2l9Hx2TySiChP4VKBch2SQRNOei2wElw%3D&amp;amp;reserved=3D0">http=
-s://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.freed=
-esktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%7C01%7Calexande=
-r.deucher%40amd.com%7C6428020902c0464fb20408d7962ee8c9%7C3dd8961fe4884e608e=
-11a82d994e183d%7C0%7C0%7C637143000578441842&amp;amp;sdata=3DVP7%2FbA3lxSX2l=
-9Hx2TySiChP4VKBch2SQRNOei2wElw%3D&amp;amp;reserved=3D0</a><br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_CH2PR12MB391284BE83C985A9AF79D4B8F7350CH2PR12MB3912namp_--
-
---===============1418748542==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1418748542==--
+RW50aXJlbHkgdW51c2VkLgoKU2lnbmVkLW9mZi1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0
+aWFuLmtvZW5pZ0BhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
+dV9jcy5jICB8IDEgLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2pvYi5jIHwg
+MSAtCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfam9iLmggfCAxIC0KIDMgZmls
+ZXMgY2hhbmdlZCwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfY3MuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
+dV9jcy5jCmluZGV4IDYxNDkxOWYyNjViOS4uYzRhODE0OGI5YjZmIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfY3MuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfY3MuYwpAQCAtMTIzMyw3ICsxMjMzLDYgQEAgc3RhdGljIGludCBh
+bWRncHVfY3Nfc3VibWl0KHN0cnVjdCBhbWRncHVfY3NfcGFyc2VyICpwLAogCQlnb3RvIGVycm9y
+X2Fib3J0OwogCX0KIAotCWpvYi0+b3duZXIgPSBwLT5maWxwOwogCXAtPmZlbmNlID0gZG1hX2Zl
+bmNlX2dldCgmam9iLT5iYXNlLnNfZmVuY2UtPmZpbmlzaGVkKTsKIAogCWFtZGdwdV9jdHhfYWRk
+X2ZlbmNlKHAtPmN0eCwgZW50aXR5LCBwLT5mZW5jZSwgJnNlcSk7CmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfam9iLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9hbWRncHVfam9iLmMKaW5kZXggNzMzMjhkMGM3NDFkLi5kNDJiZTg4MGEyMzYgMTAw
+NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9qb2IuYworKysgYi9k
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfam9iLmMKQEAgLTE1Myw3ICsxNTMsNiBA
+QCBpbnQgYW1kZ3B1X2pvYl9zdWJtaXQoc3RydWN0IGFtZGdwdV9qb2IgKmpvYiwgc3RydWN0IGRy
+bV9zY2hlZF9lbnRpdHkgKmVudGl0eSwKIAlpZiAocikKIAkJcmV0dXJuIHI7CiAKLQlqb2ItPm93
+bmVyID0gb3duZXI7CiAJKmYgPSBkbWFfZmVuY2VfZ2V0KCZqb2ItPmJhc2Uuc19mZW5jZS0+Zmlu
+aXNoZWQpOwogCWFtZGdwdV9qb2JfZnJlZV9yZXNvdXJjZXMoam9iKTsKIAlwcmlvcml0eSA9IGpv
+Yi0+YmFzZS5zX3ByaW9yaXR5OwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2pvYi5oIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2pvYi5o
+CmluZGV4IGFhMGUzNzUwNjJmMi4uMzFjNDQ0NGIwMjAzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfam9iLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X2pvYi5oCkBAIC00OSw3ICs0OSw2IEBAIHN0cnVjdCBhbWRncHVfam9iIHsK
+IAl1aW50MzJfdAkJcHJlYW1ibGVfc3RhdHVzOwogCXVpbnQzMl90ICAgICAgICAgICAgICAgIHBy
+ZWVtcHRpb25fc3RhdHVzOwogCXVpbnQzMl90CQludW1faWJzOwotCXZvaWQJCQkqb3duZXI7CiAJ
+Ym9vbCAgICAgICAgICAgICAgICAgICAgdm1fbmVlZHNfZmx1c2g7CiAJdWludDY0X3QJCXZtX3Bk
+X2FkZHI7CiAJdW5zaWduZWQJCXZtaWQ7Ci0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vYW1kLWdmeAo=
