@@ -2,87 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2972713B53C
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jan 2020 23:23:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6258C13B60B
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jan 2020 00:41:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1556E5A4;
-	Tue, 14 Jan 2020 22:23:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC2E66E075;
+	Tue, 14 Jan 2020 23:41:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2062a.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e89::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 394776E5A3
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 22:23:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Bl8ixxs6RfVGyjrWzbiuGUxPj1Z4VX/vC0fUhOSC0XM1AQ3NkiV4b5Jh8WtrWAaliN5qTwpXxopNvd5N9q+rXzlIeocCXpmUjGSgV4vI5ACirx/4G480E56CJusbj4yf7dppGQgmVfzzPytMQ0dTZGTFDgbWgMcWbJTY7bjzTB7BkyGVxSNczBJeQQT7b3FdMI9kVeNfbIYeqAu/vCKrfbJHDgufZ8xm14qL7SyLRiD9oPENH36OBtc/bfFK/8ejvBrAEbN4Df65/n9UIIU2J/PYRXTSKIVzYY4iIuGf2gXpNPGDDI6mv61gkgBVfZYtiR0p1q5gBaFBosIlsgSbbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4PsQwztPE309Xi0UFu+7ChSYtFMxaqMLg6lLcU29f54=;
- b=PKwqvWqr1m+tWuYHXFZ81g2r8xwGemlmWJRyRDQhhkmBqDQmWzQ06ftG1ZlXN7ne/1kxaEMoiLzuxuZwduXKqnYsl1Dd40fPbRyRGob/M3o1AiXq+2W+YtfwIYnSsbAr2jv8zU4S+Nm1uEv63/jFEKZPTV+PyKyTWyhGfxzc7yKlZ7m2G3B+MoI/cOkomBf4ePp+D6RxNPK2m58FhnDDuCVNuMGpt69yyPqSaY+OGH+YIUmjPc29qGf2B5rfQKSFp8KNUaIH7Na4H5WpDt9l7zLwrQY1u+ophHVOV3ZJeqBcSVoV5WBNBCj9PnR5WQhjuYM3ky25hAcVsI2Y5NwTQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4PsQwztPE309Xi0UFu+7ChSYtFMxaqMLg6lLcU29f54=;
- b=Top6SIbhiAEeYD46XhV3KFN1W0vK/TDZzKht8mJXcGZQNErgrhMspo/UYNQZ+smU8xmdasPd0yQu5C4HQ+ww5w/lUfYSnhFKlZCnNfzcMyJrdbn41Hbf7kMZgbLgejCYNUR6vHUbhJN5OecA3s0cnVgZ0iX8VE9AK7pxDCEv1B8=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=James.Zhu@amd.com; 
-Received: from BYAPR12MB3285.namprd12.prod.outlook.com (20.179.92.142) by
- BYAPR12MB3349.namprd12.prod.outlook.com (20.178.196.147) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.10; Tue, 14 Jan 2020 22:23:29 +0000
-Received: from BYAPR12MB3285.namprd12.prod.outlook.com
- ([fe80::18a7:759:1dbb:ef99]) by BYAPR12MB3285.namprd12.prod.outlook.com
- ([fe80::18a7:759:1dbb:ef99%7]) with mapi id 15.20.2644.015; Tue, 14 Jan 2020
- 22:23:29 +0000
-From: James Zhu <James.Zhu@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 5/5] drm/amdgpu/vcn2.5: implement indirect DPG SRAM mode
-Date: Tue, 14 Jan 2020 17:23:16 -0500
-Message-Id: <1579040596-12728-6-git-send-email-James.Zhu@amd.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1579040596-12728-1-git-send-email-James.Zhu@amd.com>
-References: <1579040596-12728-1-git-send-email-James.Zhu@amd.com>
-X-ClientProxiedBy: YTXPR0101CA0007.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00::20) To BYAPR12MB3285.namprd12.prod.outlook.com
- (2603:10b6:a03:134::14)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73B346E075
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 23:41:46 +0000 (UTC)
+Received: from localhost (mobile-166-170-223-177.mycingular.net
+ [166.170.223.177])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id F115724658;
+ Tue, 14 Jan 2020 23:41:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1579045306;
+ bh=RsuImxKncFh921sEhbYmo2hrm0xBmtsUawKwojC/cxY=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=aoGMW7Ylbi7mAlxbAkz9U6f9POkDbrJ2bADfo97cwN5JCmoNny4DH/i9OgAiHNwtG
+ vyZh/4NJ7AW/mvgSGIQ7ktD+XrhveMW4zz6g9dhhHwzm/h+Xt9fEnvxpke8nftv5Za
+ 4pumKkS331yyTD+3/rIOvi9TTdVaJEWUwpBB4Ptg=
+Date: Tue, 14 Jan 2020 17:41:44 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH 0/2] Adjust AMD GPU ATS quirks
+Message-ID: <20200114234144.GA56595@google.com>
 MIME-Version: 1.0
-Received: from work_495456.amd.com (165.204.55.251) by
- YTXPR0101CA0007.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.2644.18 via Frontend Transport; Tue, 14 Jan 2020 22:23:28 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [165.204.55.251]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 07a7424f-f711-4433-6e76-08d799406194
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3349:|BYAPR12MB3349:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR12MB33492531DB90F90A09DC0C5DE4340@BYAPR12MB3349.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1013;
-X-Forefront-PRVS: 028256169F
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(39860400002)(346002)(376002)(366004)(136003)(199004)(189003)(66556008)(6486002)(36756003)(6666004)(956004)(2616005)(478600001)(26005)(186003)(52116002)(16526019)(8676002)(4326008)(81166006)(81156014)(7696005)(66476007)(5660300002)(66946007)(8936002)(316002)(86362001)(2906002)(6916009);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BYAPR12MB3349;
- H:BYAPR12MB3285.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OD4V+kLwfhBMJbV8gn4WAIZtEnZWOfQ9a7XuPyc/1sbDb0ykiLyf4gxjXuCeu3RBislQjsXZI39Bx2a7+bKMulJZoPRYQqigp8DRFK3wfR9O/hN8DB+d4Vugp+m/AIr3JhSeTdJ9huq4nptJtZ21iIlULQRtZuOujA/JP1EHdlHQn5ooHCBN8tnpI2zXDWCKMEl3TvIjTgFoilxUcAJ37OXSKI5yaE7+FyXtx048MMkb3sDOvr3ITSTOdY/6nP7/fsNB4u0Rd3R86A9xpclrGHb9YbkhNmwqpEjkrN44cSuCkXxKDYcej19b52Qb8/3pKVf9DcmO7DtS5+7GDQFQmuZYpnxquzNyP2j7OvMXBa7HEr/4vCZWB5xjmKpdFdJaKH46yj9vzKVqU0lBJucYqKaV9wFkIg2HySKPNe95+Id0BmNXIs6CZO5c9Jp6Sxy/
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07a7424f-f711-4433-6e76-08d799406194
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2020 22:23:29.2857 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rYwZ0eNaLPY6fWFs267gB7pOTYrWGJDJ9aPTpmKenTIY9WAYRGez0hgDb2wtr3av
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3349
+Content-Disposition: inline
+In-Reply-To: <20200114205523.1054271-1-alexander.deucher@amd.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,147 +45,88 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jamesz@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>, linux-pci@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Implement indirect DPG SRAM mode for vcn2.5
+On Tue, Jan 14, 2020 at 03:55:21PM -0500, Alex Deucher wrote:
+> We've root caused the issue and clarified the quirk.
+> This also adds a new quirk for a new GPU.
+> 
+> Alex Deucher (2):
+>   pci: Clarify ATS quirk
+>   pci: add ATS quirk for navi14 board (v2)
+> 
+>  drivers/pci/quirks.c | 32 +++++++++++++++++++++++++-------
+>  1 file changed, 25 insertions(+), 7 deletions(-)
 
-Signed-off-by: James Zhu <James.Zhu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c |  3 ++
- drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   | 69 +++++++++++++++++++++++----------
- 2 files changed, 52 insertions(+), 20 deletions(-)
+I propose the following, which I intend to be functionally identical.
+It just doesn't repeat the pci_info() and pdev->ats_cap = 0.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-index ca62d99..ab51f0e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -75,6 +75,9 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev)
- 		break;
- 	case CHIP_ARCTURUS:
- 		fw_name = FIRMWARE_ARCTURUS;
-+		if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
-+		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-+			adev->vcn.indirect_sram = true;
- 		break;
- 	case CHIP_RENOIR:
- 		fw_name = FIRMWARE_RENOIR;
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-index 7ce5a9e..5ba96b7 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-@@ -438,14 +438,23 @@ static void vcn_v2_5_mc_resume_dpg_mode(struct amdgpu_device *adev, int inst_idx
+commit 998c4f7975b0 ("PCI: Mark AMD Navi14 GPU rev 0xc5 ATS as broken")
+Author: Bjorn Helgaas <bhelgaas@google.com>
+Date:   Tue Jan 14 17:09:28 2020 -0600
+
+    PCI: Mark AMD Navi14 GPU rev 0xc5 ATS as broken
+    
+    To account for parts of the chip that are "harvested" (disabled) due to
+    silicon flaws, caches on some AMD GPUs must be initialized before ATS is
+    enabled.
+    
+    ATS is normally enabled by the IOMMU driver before the GPU driver loads, so
+    this cache initialization would have to be done in a quirk, but that's too
+    complex to be practical.
+    
+    For Navi14 (device ID 0x7340), this initialization is done by the VBIOS,
+    but apparently some boards went to production with an older VBIOS that
+    doesn't do it.  Disable ATS for those boards.
+    
+    https://lore.kernel.org/r/20200114205523.1054271-3-alexander.deucher@amd.com
+    Bug: https://gitlab.freedesktop.org/drm/amd/issues/1015
+    See-also: d28ca864c493 ("PCI: Mark AMD Stoney Radeon R7 GPU ATS as broken")
+    See-also: 9b44b0b09dec ("PCI: Mark AMD Stoney GPU ATS as broken")
+    Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+    Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+
+diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+index 4937a088d7d8..fbeb9f73ef28 100644
+--- a/drivers/pci/quirks.c
++++ b/drivers/pci/quirks.c
+@@ -5074,18 +5074,25 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_SERVERWORKS, 0x0422, quirk_no_ext_tags);
  
- 	/* cache window 0: fw */
- 	if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) {
--		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
--			UVD, inst_idx, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),
--			(adev->firmware.ucode[AMDGPU_UCODE_ID_VCN + inst_idx].tmr_mc_addr_lo), 0, indirect);
--		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
--			UVD, inst_idx, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),
--			(adev->firmware.ucode[AMDGPU_UCODE_ID_VCN + inst_idx].tmr_mc_addr_hi), 0, indirect);
--		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
--			UVD, inst_idx, mmUVD_VCPU_CACHE_OFFSET0), 0, 0, indirect);
-+		if (!indirect) {
-+			WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+				UVD, inst_idx, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW),
-+				(adev->firmware.ucode[AMDGPU_UCODE_ID_VCN + inst_idx].tmr_mc_addr_lo), 0, indirect);
-+			WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+				UVD, inst_idx, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH),
-+				(adev->firmware.ucode[AMDGPU_UCODE_ID_VCN + inst_idx].tmr_mc_addr_hi), 0, indirect);
-+			WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+				UVD, inst_idx, mmUVD_VCPU_CACHE_OFFSET0), 0, 0, indirect);
-+		} else {
-+			WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+				UVD, inst_idx, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_LOW), 0, 0, indirect);
-+			WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+				UVD, inst_idx, mmUVD_LMI_VCPU_CACHE_64BIT_BAR_HIGH), 0, 0, indirect);
-+			WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+				UVD, inst_idx, mmUVD_VCPU_CACHE_OFFSET0), 0, 0, indirect);
-+		}
- 		offset = 0;
- 	} else {
- 		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-@@ -460,19 +469,31 @@ static void vcn_v2_5_mc_resume_dpg_mode(struct amdgpu_device *adev, int inst_idx
- 			AMDGPU_UVD_FIRMWARE_OFFSET >> 3, 0, indirect);
- 	}
- 
--	WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
--		UVD, inst_idx, mmUVD_VCPU_CACHE_SIZE0), size, 0, indirect);
-+	if (!indirect)
-+		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+			UVD, inst_idx, mmUVD_VCPU_CACHE_SIZE0), size, 0, indirect);
-+	else
-+		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+			UVD, inst_idx, mmUVD_VCPU_CACHE_SIZE0), 0, 0, indirect);
- 
- 	/* cache window 1: stack */
--	WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
--		UVD, inst_idx, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_LOW),
--		lower_32_bits(adev->vcn.inst[inst_idx].gpu_addr + offset), 0, indirect);
--	WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
--		UVD, inst_idx, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_HIGH),
--		upper_32_bits(adev->vcn.inst[inst_idx].gpu_addr + offset), 0, indirect);
--	WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
--		UVD, inst_idx, mmUVD_VCPU_CACHE_OFFSET1), 0, 0, indirect);
--
-+	if (!indirect) {
-+		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+			UVD, inst_idx, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_LOW),
-+			lower_32_bits(adev->vcn.inst[inst_idx].gpu_addr + offset), 0, indirect);
-+		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+			UVD, inst_idx, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_HIGH),
-+			upper_32_bits(adev->vcn.inst[inst_idx].gpu_addr + offset), 0, indirect);
-+		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+			UVD, inst_idx, mmUVD_VCPU_CACHE_OFFSET1), 0, 0, indirect);
-+	} else {
-+		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+			UVD, inst_idx, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_LOW), 0, 0, indirect);
-+		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+			UVD, inst_idx, mmUVD_LMI_VCPU_CACHE1_64BIT_BAR_HIGH), 0, 0, indirect);
-+		WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
-+			UVD, inst_idx, mmUVD_VCPU_CACHE_OFFSET1), 0, 0, indirect);
-+	}
- 	WREG32_SOC15_DPG_MODE_2_0(inst_idx, SOC15_DPG_MODE_OFFSET_2_0(
- 		UVD, inst_idx, mmUVD_VCPU_CACHE_SIZE1), AMDGPU_VCN_STACK_SIZE, 0, indirect);
- 
-@@ -745,6 +766,9 @@ static int vcn_v2_5_start_dpg_mode(struct amdgpu_device *adev, int inst_idx, boo
- 	tmp |= UVD_POWER_STATUS__UVD_PG_EN_MASK;
- 	WREG32_SOC15(UVD, inst_idx, mmUVD_POWER_STATUS, tmp);
- 
-+	if (indirect)
-+		adev->vcn.inst[inst_idx].dpg_sram_curr_addr = (uint32_t*)adev->vcn.inst[inst_idx].dpg_sram_cpu_addr;
+ #ifdef CONFIG_PCI_ATS
+ /*
+- * Some devices have a broken ATS implementation causing IOMMU stalls.
+- * Don't use ATS for those devices.
++ * Some devices require additional driver setup to enable ATS.  Don't use
++ * ATS for those devices as ATS will be enabled before the driver has had a
++ * chance to load and configure the device.
+  */
+-static void quirk_no_ats(struct pci_dev *pdev)
++static void quirk_amd_harvest_no_ats(struct pci_dev *pdev)
+ {
+-	pci_info(pdev, "disabling ATS (broken on this device)\n");
++	if (pdev->device == 0x7340 && pdev->revision != 0xc5)
++		return;
 +
- 	/* enable clock gating */
- 	vcn_v2_5_clock_gating_dpg_mode(adev, 0, inst_idx, indirect);
++	pci_info(pdev, "disabling ATS\n");
+ 	pdev->ats_cap = 0;
+ }
  
-@@ -820,6 +844,11 @@ static int vcn_v2_5_start_dpg_mode(struct amdgpu_device *adev, int inst_idx, boo
- 		UVD, inst_idx, mmUVD_MASTINT_EN),
- 		UVD_MASTINT_EN__VCPU_EN_MASK, 0, indirect);
+ /* AMD Stoney platform GPU */
+-DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_ATI, 0x98e4, quirk_no_ats);
+-DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_ATI, 0x6900, quirk_no_ats);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_ATI, 0x98e4, quirk_amd_harvest_no_ats);
++/* AMD Iceland dGPU */
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_ATI, 0x6900, quirk_amd_harvest_no_ats);
++/* AMD Navi14 dGPU */
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_ATI, 0x7340, quirk_amd_harvest_no_ats);
+ #endif /* CONFIG_PCI_ATS */
  
-+	if (indirect)
-+		psp_update_vcn_sram(adev, inst_idx, adev->vcn.inst[inst_idx].dpg_sram_gpu_addr,
-+				    (uint32_t)((uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_curr_addr -
-+					       (uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_cpu_addr));
-+
- 	ring = &adev->vcn.inst[inst_idx].ring_dec;
- 	/* force RBC into idle state */
- 	rb_bufsz = order_base_2(ring->ring_size);
-@@ -868,7 +897,7 @@ static int vcn_v2_5_start(struct amdgpu_device *adev)
- 		if (adev->vcn.harvest_config & (1 << i))
- 			continue;
- 		if (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)
--			return vcn_v2_5_start_dpg_mode(adev, i, 0);
-+			return vcn_v2_5_start_dpg_mode(adev, i, adev->vcn.indirect_sram);
- 
- 		/* disable register anti-hang mechanism */
- 		WREG32_P(SOC15_REG_OFFSET(UVD, i, mmUVD_POWER_STATUS), 0,
--- 
-2.7.4
-
+ /* Freescale PCIe doesn't support MSI in RC mode */
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
