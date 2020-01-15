@@ -1,92 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD56613BE1B
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jan 2020 12:02:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB8A13C017
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jan 2020 13:17:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5412A6E90E;
-	Wed, 15 Jan 2020 11:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38F966E953;
+	Wed, 15 Jan 2020 12:17:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690051.outbound.protection.outlook.com [40.107.69.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F54A6E90E
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 11:02:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nFEr/soZMKwgONQGQAUAMrSNaSDSrrLFf/+GARWfboOyie114txmtPwd0fSq0fFANgfuzOOD/cOyuu4jFQyDwX6VXzYrseWnBsMUoBf4n9eHx/rcfut50rmCZtfW5OsE7jTF3FYTxfVJOyhhhUSW01h9FXMA7AQftMCYO8jnwqHGuw6wdhtaVVK7JiLfyvqEWuv4oXgS2vIbf2MGJ70TFL6oQyC7jV/mntslH2d9+hJfXmiex7tNupXguKcGyR7fI/yew1/1YMxZ+GE30uvgX8wNVoEOhwk/uxOywyMihdlE7vjFS5sGGYBTygE/fNOZLD+XbFsTOwg9rvjnixlJOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SSWGvqywdfubeo6FTbRZ7chUx6gHCLlEOYpgq3weGKA=;
- b=gkgOizaEbkQqql3y5agXLQV9Yyn6aMcT38djn06G/qmQIrsWHxnzB/r7zb3pVmP0aubxhemNEP2weROOve2dUyEozDhKqsmCJXev2aG1ex6tiI30oPgQHCrt95GsDYHiZOqd3MosSPRFibDeje/gfcbkZ15gzVDxqTyk66b5rscup41Dewy4wRB50ryBGuEanafGMWpVZ4aEudIK/lNN36Hwi2LKoOCSXBWJLB0bvHhe84gXIQ2BPT9SyKki4yipufjaoPF2d7o11eqp/ooEoljiyueLmqMjDbNBx7BLFW1rKGsuKYMNwyqf115elLM75b3DDQCLegYmHqfwoum1uQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SSWGvqywdfubeo6FTbRZ7chUx6gHCLlEOYpgq3weGKA=;
- b=s/tQLUT3KLiTgn9fKesv8mSamGKkNYolSAIzUD/h2fXywyTzfmD2oEK1fs+y8KOvsonazUcgPf8S5uTdDlRKazXollJB8BmEVWaVKS01/xsu3RlvzqN7U3sGjoQVsHQPokwEQ3Zl+9xK56RL3/6drmKATJ/Uno7Y94F7GZs+8Cw=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Nirmoy.Das@amd.com; 
-Received: from DM5PR12MB2376.namprd12.prod.outlook.com (52.132.143.139) by
- DM5PR12MB1786.namprd12.prod.outlook.com (10.175.91.14) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.13; Wed, 15 Jan 2020 11:02:50 +0000
-Received: from DM5PR12MB2376.namprd12.prod.outlook.com
- ([fe80::c06c:24da:d4c5:5ee3]) by DM5PR12MB2376.namprd12.prod.outlook.com
- ([fe80::c06c:24da:d4c5:5ee3%6]) with mapi id 15.20.2644.015; Wed, 15 Jan 2020
- 11:02:50 +0000
-Subject: Re: [PATCH] drm/scheduler: fix race condition in load balancer
-To: christian.koenig@amd.com, Nirmoy Das <nirmoy.aiemd@gmail.com>,
- amd-gfx@lists.freedesktop.org
-References: <20200114154339.3519-1-nirmoy.das@amd.com>
- <5deb3805-f7e8-3d0d-4259-a3be1c5d3cf5@gmail.com>
-From: Nirmoy <nirmodas@amd.com>
-Message-ID: <862ad550-082d-7ece-1d4d-99801ab10428@amd.com>
-Date: Wed, 15 Jan 2020 12:04:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
-In-Reply-To: <5deb3805-f7e8-3d0d-4259-a3be1c5d3cf5@gmail.com>
-Content-Language: en-US
-X-ClientProxiedBy: AM0PR0102CA0048.eurprd01.prod.exchangelabs.com
- (2603:10a6:208::25) To DM5PR12MB2376.namprd12.prod.outlook.com
- (2603:10b6:4:b9::11)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67AC06E93C;
+ Wed, 15 Jan 2020 12:17:03 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 06AF5AFC2;
+ Wed, 15 Jan 2020 12:17:00 +0000 (UTC)
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com,
+ christian.koenig@amd.com, David1.Zhou@amd.com,
+ maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com,
+ robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org,
+ vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net,
+ rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com,
+ linux-graphics-maintainer@vmware.com, thellstrom@vmware.com,
+ bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com
+Subject: [PATCH v2 00/21] drm: Clean up VBLANK callbacks in struct drm_driver
+Date: Wed, 15 Jan 2020 13:16:31 +0100
+Message-Id: <20200115121652.7050-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Received: from [IPv6:2003:c5:8f2b:bb00:33a:7193:ff09:7830]
- (2003:c5:8f2b:bb00:33a:7193:ff09:7830) by
- AM0PR0102CA0048.eurprd01.prod.exchangelabs.com (2603:10a6:208::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.19 via Frontend
- Transport; Wed, 15 Jan 2020 11:02:37 +0000
-X-Originating-IP: [2003:c5:8f2b:bb00:33a:7193:ff09:7830]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 1f7867d3-e960-4643-4023-08d799aa75e5
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1786:|DM5PR12MB1786:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1786E4F2E7693B29D80406708B370@DM5PR12MB1786.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-Forefront-PRVS: 02830F0362
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(396003)(39860400002)(346002)(376002)(366004)(189003)(199004)(16526019)(478600001)(186003)(6486002)(81166006)(31696002)(5660300002)(8676002)(316002)(6666004)(31686004)(81156014)(66946007)(52116002)(2616005)(4326008)(53546011)(66476007)(2906002)(36756003)(66556008)(8936002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1786;
- H:DM5PR12MB2376.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0ZfontPshSInM/biV3y8S1zcx23idn5vHoKUbqtZYOUo7t9BSW0IPtFcqJM+L+WGTm953ywYzPmRV82aoctq3rb7Y0tlO2fdQyp8/MbRvRY/RPMy5r9hrNc9R2esSidotmARmaYxh3Kr60hwLaANCShsQG49sPJXIu5nb81hdiZkSghiEO4YUHSvCpUECCrM54/+F5e8OUEUGsxYhvo4TLBFVvBPlyNT8rSXNof6E7DIpU4wE5Xz9i2684l/br1L+mqN117TIp7wpM6RAGqMafLzh/pvmBDjJTpqmwr0zbaNPLZYQX9GT+jMOGHjEuC0IsB/bpi8OrGK3b5suXpqJWmxMyvGL71OPJmcUb93gTDbATzUIYlFD85IEtAsRXTzGMm3izlVPW1MSaTTBjQZAURGAwgFJOIOulNLMwDxgwl+YlXUITeDzcereTzMzNUw
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f7867d3-e960-4643-4023-08d799aa75e5
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2020 11:02:49.8882 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Hkllpe018FXiYVKOIGllvCrHjOkoPAEim3R707rIzjHsXVMUOXFeGN+5iyILkSApc5DvjifzOUQTeJQe9jTqRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1786
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,42 +44,146 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, kenny.ho@amd.com, nirmoy.das@amd.com,
- pierre-eric.pelloux-prayer@amd.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, nouveau@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SGkgQ2hyaXN0aWFuLAoKT24gMS8xNC8yMCA1OjAxIFBNLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3Rl
-Ogo+Cj4+IEJlZm9yZSB0aGlzIHBhdGNoOgo+Pgo+PiBzY2hlZF9uYW1lwqDCoMKgwqAgbnVtIG9m
-IG1hbnkgdGltZXMgaXQgZ290IHNjaGVkdWxlZAo+PiA9PT09PT09PT3CoMKgwqDCoMKgID09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPj4gc2RtYTDCoMKgwqDCoMKgwqDCoMKgwqAg
-MzE0Cj4+IHNkbWExwqDCoMKgwqDCoMKgwqDCoMKgIDMyCj4+IGNvbXBfMS4wLjDCoMKgwqDCoCA1
-Ngo+PiBjb21wXzEuMS4wwqDCoMKgwqAgMAo+PiBjb21wXzEuMS4xwqDCoMKgwqAgMAo+PiBjb21w
-XzEuMi4wwqDCoMKgwqAgMAo+PiBjb21wXzEuMi4xwqDCoMKgwqAgMAo+PiBjb21wXzEuMy4wwqDC
-oMKgwqAgMAo+PiBjb21wXzEuMy4xwqDCoMKgwqAgMAo+Pgo+PiBBZnRlciB0aGlzIHBhdGNoOgo+
-Pgo+PiBzY2hlZF9uYW1lwqDCoMKgwqAgbnVtIG9mIG1hbnkgdGltZXMgaXQgZ290IHNjaGVkdWxl
-ZAo+PiA9PT09PT09PT3CoMKgwqDCoMKgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT0KPj4gwqAgc2RtYTHCoMKgwqDCoMKgwqDCoMKgwqAgMjQzCj4+IMKgIHNkbWEwwqDCoMKgwqDC
-oMKgwqDCoMKgIDE2NAo+PiDCoCBjb21wXzEuMC4xwqDCoMKgwqAgMTQKPj4gwqAgY29tcF8xLjEu
-MMKgwqDCoMKgIDExCj4+IMKgIGNvbXBfMS4xLjHCoMKgwqDCoCAxMAo+PiDCoCBjb21wXzEuMi4w
-wqDCoMKgwqAgMTUKPj4gwqAgY29tcF8xLjIuMcKgwqDCoMKgIDE0Cj4+IMKgIGNvbXBfMS4zLjDC
-oMKgwqDCoCAxMAo+PiDCoCBjb21wXzEuMy4xwqDCoMKgwqAgMTAKPgo+IFdlbGwgdGhhdCBpcyBz
-dGlsbCByYXRoZXIgbmljZSB0byBoYXZlLCB3aHkgZG9lcyB0aGF0IGhhcHBlbj8KCkkgdGhpbmsg
-SSBrbm93IHdoeSBpdCBoYXBwZW5zLiBBdCBpbml0IGFsbCBlbnRpdHkncyBycSBnZXRzIGFzc2ln
-bmVkIHRvIApzY2hlZF9saXN0WzBdLiBJIHB1dCBzb21lIHByaW50cyB0byBjaGVjayB3aGF0IHdl
-IGNvbXBhcmUgaW4gCmRybV9zY2hlZF9lbnRpdHlfZ2V0X2ZyZWVfc2NoZWQuCgpJdCB0dXJucyBv
-dXQgbW9zdCBvZiB0aGUgdGltZSBpdCBjb21wYXJlcyB6ZXJvIHZhbHVlcyhudW1fam9icygwKSA8
-IAptaW5fam9icygwKSkgc28gbW9zdCBvZiB0aGUgdGltZSAxc3QgcnEoc2RtYTAsIGNvbXBfMS4w
-LjApIHdhcyBwaWNrZWQgYnkgCmRybV9zY2hlZF9lbnRpdHlfZ2V0X2ZyZWVfc2NoZWQuCgoKVGhp
-cyBwYXRjaCB3YXMgbm90IGNvcnJlY3QgLCBoYWQgYW4gZXh0cmEgYXRvbWljX2luYyhudW1fam9i
-cykgaW4gCmRybV9zY2hlZF9qb2JfaW5pdC4gVGhpcyBwcm9iYWJseSBhZGRlZCBiaXQgb2YgcmFu
-ZG9tbmVzcyBJIHRoaW5rLCB3aGljaCAKaGVscGVkIGluIGJldHRlciBqb2IgZGlzdHJpYnV0aW9u
-LgoKSSd2ZSB1cGRhdGVkIG15IHByZXZpb3VzIFJGQyBwYXRjaCB3aGljaCB1c2VzIHRpbWUgY29u
-c3VtZWQgYnkgZWFjaCAKc2NoZWQgZm9yIGxvYWQgYmFsYW5jZSB3aXRoIGEgdHdpc3Qgb2YgaWdu
-b3JpbmcgcHJldmlvdXNseSBzY2hlZHVsZWQgCnNjaGVkL3JxLiBMZXQgbWUga25vdyB3aGF0IGRv
-IHlvdSB0aGluay4KCgpSZWdhcmRzLAoKTmlybW95Cgo+Cj4gQ2hyaXN0aWFuLgo+Cj4KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5n
-IGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+VBLANK handlers in struct drm_driver are deprecated. Only legacy,
+non-KMS drivers are supposed to used them. DRM drivers with kernel
+modesetting are supposed to use VBLANK callbacks of the CRTC
+infrastructure.
+
+This patchset converts all DRM drivers to CRTC VBLANK callbacks and
+cleans up struct drm_driver. The remaining VBLANK callbacks in struct
+drm_driver are only used by legacy drivers.
+
+Patches 1 and 3 prepare the DRM infrastructure. These patches add
+get_scanout_position() to struct drm_crtc_helper_funcs, get_vblank_timestamp()
+to struct drm_crtc_funcs, and add helpers for the new interfaces. Patch 2
+changes the VBLANK code to evaluate vblank_disable_immediate in struct
+drm_device. This simplifies the integration of CRTC VBLANK callbacks in
+patch 3. If necessary, a future patch could move vblank_disable_immedate
+to struct drm_crtc, so that high-precision VBLANKs could be enabled on a
+per-CRTC basis.
+
+Patches 4 to 20 convert drivers over.
+
+In patch 21, all VBLANK callbacks are removed from struct drm_driver, except
+for get_vblank_counter(), enable_vblank(), and disable_vblank(). These
+interfaces are moved to the legacy section at the end of the structure. Old
+helper code is now unused and being removed as well.
+
+To cover all affected drivers, I build the patchset in x86, x86-64,
+arm and aarch64. I smoke-tested amdgpu, gma500, i915, radeon and vc4 on
+respective hardware.
+
+v2:
+	* reorder patches so the i915 can be converted without duplicating
+	  helper code.
+	* merged cleanup patches
+	* changed VBLANK function signatures in amdgpu
+
+Thomas Zimmermann (21):
+  drm: Add get_scanout_position() to struct drm_crtc_helper_funcs
+  drm: Evaluate struct drm_device.vblank_disable_immediate on each use
+  drm: Add get_vblank_timestamp() to struct drm_crtc_funcs
+  drm/amdgpu: Convert to struct
+    drm_crtc_helper_funcs.get_scanout_position()
+  drm/amdgpu: Convert to CRTC VBLANK callbacks
+  drm/gma500: Convert to CRTC VBLANK callbacks
+  drm/i915: Convert to CRTC VBLANK callbacks
+  drm/nouveau: Convert to struct
+    drm_crtc_helper_funcs.get_scanout_position()
+  drm/nouveau: Convert to CRTC VBLANK callbacks
+  drm/radeon: Convert to struct
+    drm_crtc_helper_funcs.get_scanout_position()
+  drm/radeon: Convert to CRTC VBLANK callbacks
+  drm/msm: Convert to struct
+    drm_crtc_helper_funcs.get_scanout_position()
+  drm/msm: Convert to CRTC VBLANK callbacks
+  drm/stm: Convert to struct
+    drm_crtc_helper_funcs.get_scanout_position()
+  drm/stm: Convert to CRTC VBLANK callbacks
+  drm/sti: Convert to CRTC VBLANK callbacks
+  drm/vc4: Convert to struct
+    drm_crtc_helper_funcs.get_scanout_position()
+  drm/vc4: Convert to CRTC VBLANK callbacks
+  drm/vkms: Convert to CRTC VBLANK callbacks
+  drm/vmwgfx: Convert to CRTC VBLANK callbacks
+  drm: Clean-up VBLANK-related callbacks in struct drm_driver
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  16 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  15 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |  21 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |   5 +
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |   5 +
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |   5 +
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |   5 +
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |   5 +
+ drivers/gpu/drm/amd/amdgpu/dce_virtual.c      |   5 +
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  13 +-
+ drivers/gpu/drm/drm_vblank.c                  | 411 ++++++++++--------
+ drivers/gpu/drm/gma500/cdv_intel_display.c    |   3 +
+ drivers/gpu/drm/gma500/psb_drv.c              |   4 -
+ drivers/gpu/drm/gma500/psb_drv.h              |   6 +-
+ drivers/gpu/drm/gma500/psb_intel_display.c    |   3 +
+ drivers/gpu/drm/gma500/psb_irq.c              |  12 +-
+ drivers/gpu/drm/gma500/psb_irq.h              |   7 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   7 +
+ drivers/gpu/drm/i915/i915_drv.c               |   3 -
+ drivers/gpu/drm/i915/i915_irq.c               |  20 +-
+ drivers/gpu/drm/i915/i915_irq.h               |   6 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c      |   2 +
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c     |   2 +
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c     |  82 ++++
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c      |  95 ----
+ drivers/gpu/drm/msm/msm_drv.c                 |  10 +-
+ drivers/gpu/drm/msm/msm_drv.h                 |   3 +
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c       |   4 +
+ drivers/gpu/drm/nouveau/dispnv50/head.c       |   5 +
+ drivers/gpu/drm/nouveau/nouveau_display.c     |  28 +-
+ drivers/gpu/drm/nouveau/nouveau_display.h     |   6 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |   5 -
+ drivers/gpu/drm/radeon/atombios_crtc.c        |   1 +
+ drivers/gpu/drm/radeon/radeon_display.c       |  25 +-
+ drivers/gpu/drm/radeon/radeon_drv.c           |  18 -
+ drivers/gpu/drm/radeon/radeon_kms.c           |  29 +-
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c   |   3 +-
+ drivers/gpu/drm/radeon/radeon_mode.h          |   6 +
+ drivers/gpu/drm/sti/sti_crtc.c                |  11 +-
+ drivers/gpu/drm/sti/sti_crtc.h                |   2 -
+ drivers/gpu/drm/sti/sti_drv.c                 |   4 -
+ drivers/gpu/drm/stm/drv.c                     |   2 -
+ drivers/gpu/drm/stm/ltdc.c                    |  66 +--
+ drivers/gpu/drm/stm/ltdc.h                    |   5 -
+ drivers/gpu/drm/vc4/vc4_crtc.c                |  13 +-
+ drivers/gpu/drm/vc4/vc4_drv.c                 |   3 -
+ drivers/gpu/drm/vc4/vc4_drv.h                 |   4 -
+ drivers/gpu/drm/vkms/vkms_crtc.c              |   9 +-
+ drivers/gpu/drm/vkms/vkms_drv.c               |   1 -
+ drivers/gpu/drm/vkms/vkms_drv.h               |   4 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   3 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h           |   6 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c           |   6 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c           |   3 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c          |   3 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c          |   3 +
+ include/drm/drm_crtc.h                        |  46 +-
+ include/drm/drm_drv.h                         | 156 +------
+ include/drm/drm_modeset_helper_vtables.h      |  47 ++
+ include/drm/drm_vblank.h                      |  30 +-
+ 61 files changed, 692 insertions(+), 642 deletions(-)
+
+--
+2.24.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
