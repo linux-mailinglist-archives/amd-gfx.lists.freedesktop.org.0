@@ -1,53 +1,96 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3F4913F963
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 20:24:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4007B13FA34
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 21:11:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B5C06EEA6;
-	Thu, 16 Jan 2020 19:24:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B99E6E24E;
+	Thu, 16 Jan 2020 20:11:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89FC76EEA6
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 19:24:50 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id g17so20334194wro.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 11:24:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=z/ZuX/zV6gZcTYCBZXn8xxANjGNSdpl87QWKVQLIO84=;
- b=Xi8RSsTvzd5uN0+qJyN+eeMSCPTtCAKGE8xWls/vMpwRR1zk5mABV7q1DfvogKVM/l
- 0w/VD7IzT+u+JS9uiAV0czaL9z7YrEwUUdNERqyPQNQASuYeenluwudFzOgPiYqd9nAd
- 38hxDN48SfABQBsZ0M63njKWxUitU/vVQOg3FY9xXehwD8mzTwg9ldfozXcgSwYZ76QE
- OSKXtqQA21rKGBjHCT0VNOeEU+5hKs1GHUi9BqpnBMHzDN47/DhKpeyyPjI49GKuzCiL
- x59V1DsVGffczlcLe35yftm81vHcfoDRMdi2pIPoGewZvd3Isa4E8+r7nnoI6KzuX7Yr
- 6pKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=z/ZuX/zV6gZcTYCBZXn8xxANjGNSdpl87QWKVQLIO84=;
- b=atWD8hpbNyHnwCTbkgT76iP4JGBCDihkl3dKblnzpRjPqQAz4h36oPbnNhaEe+3giL
- SQcaGbRUZc0/oFqJ/AUr1Akbnxy0xaI8kZIHonCb6m+cJkZ0z31pmjBoTMhqL79kPsvN
- 7T7D4G25YA0ntfahxHIq1U8MmQYRC84lY8fBKbqGpqK4vNcCCOrh/bmKEpGzMYPuwc3H
- 3YoDYbNAFZWTCb9TwF/xWnh9PwpdYa0JDK7d4+XiEJ/ekCENIcuVaLFlylxvvssCcLMo
- P87asmXAUknuI8SZIbkGSzN8uZqDS72UgufiVhXMJ++yYpZ2XvwiiEXg+Ce3wLw2ka6t
- sv5w==
-X-Gm-Message-State: APjAAAXqRqb+357B4MdZ4MJKma+ac6+c/7fTFTtfh3S9mywdzQsw/6GZ
- C3sDNfo94bq4krqhcA/sdbq8qFAkBrpYAP9pk1XvVQ==
-X-Google-Smtp-Source: APXvYqwccAzCdUcGAC+8dBaMDIaKsfzKsavmCpNmaTgdIg4pUozMZsUt1VVKbVqrUIJ1BX+zWD+7WHvqyhDoEPoN8ok=
-X-Received: by 2002:a5d:5091:: with SMTP id a17mr4882664wrt.362.1579202688906; 
- Thu, 16 Jan 2020 11:24:48 -0800 (PST)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760045.outbound.protection.outlook.com [40.107.76.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B39586E24E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 20:11:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JfA0RDA5HT2XMOfPi3eHwDxsZAEDjDxq/Y+XoAMKFdXBdY4kJTMNBMOmK4TQjcYr4mYiYUARq5lMOtKU6UXxKuvxdE2frg7s/WXvtbcQVzBxceWjY0oUuQi0bCc2+kTlqvyRiiKgGb/4Sk3V1tWiyhtj+okdd4bCfv1Z3fgjPPWyO1jP7NFpC21e6agxrqdbpwJVamZxk+pc3RcgK9M2/KMdFmt1YI6WrZOzZb9I0GB805BQVs2L+USYjKastvUDClvFFKDMXcgfKTZlJmiKVa/u7YN9uGgGeT1PJeSw5YlBbNbNcT0zhgJ+/tg6aFnavUyu1cYO2nmggzQj8rsexQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nxet/GjI5sbephx6GPpIjD2g9obfGN5HPZ82VIC2hl4=;
+ b=OKBebzO99j2tbxMm9DLfSCLNpnUXa7EMWilqdH2bRDG70weumQCX+N+II8L8q5risCt6w7bGDd1z10gcp552W2JlqZCbdl34QDsYidnvoWE2WEbIbYx7Zh3QDeP3EPfKEGJkF7CwOHXX6K82sy9XHrGvqrw0kCteFOwdQKLPuoidYycbmu/CfWwg7H3l7C+jhLzq4PoCWK+wAe3Wsdnd0O41MlzMR5QFKgharViDyD/DH1Nc3Y1NJInXPGevjX0x0a9B8DD2A/Gmm6NSxEnzOqYbekpV4OzOd1A6KiIXYNMaGgRAU9EEgABnx7LW0wt0SLofe63YAvfh/G6ux6JAXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nxet/GjI5sbephx6GPpIjD2g9obfGN5HPZ82VIC2hl4=;
+ b=oyoSJHjlbrV/E9jp7ps3q8GdkCSR6vUA14kLNDGLIuUZ+s8C2IY7bVDOF2kA1BDRXlDYOopd4fFZw4lBAJ+6P1DSaWHzbcxksDLSDTWaXNBWqxP+48UvG9U6m6+dM3GP/PVSizMqHkjT4Mo3s0Apij182frAvZEhhQOL8RRT7vU=
+Received: from DM3PR12CA0124.namprd12.prod.outlook.com (2603:10b6:0:51::20) by
+ MWHPR1201MB0240.namprd12.prod.outlook.com (2603:10b6:301:58::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.20; Thu, 16 Jan
+ 2020 20:11:25 +0000
+Received: from DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eaa::209) by DM3PR12CA0124.outlook.office365.com
+ (2603:10b6:0:51::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.19 via Frontend
+ Transport; Thu, 16 Jan 2020 20:11:25 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ DM6NAM11FT006.mail.protection.outlook.com (10.13.173.104) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2644.19 via Frontend Transport; Thu, 16 Jan 2020 20:11:25 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
+ 2020 14:11:24 -0600
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
+ 2020 14:11:24 -0600
+Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Thu, 16 Jan 2020 14:11:24 -0600
+From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 00/22] DC Patches 16 Jan 2020
+Date: Thu, 16 Jan 2020 15:10:36 -0500
+Message-ID: <20200116201058.29200-1-Bhawanpreet.Lakha@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <1579201021-7109-1-git-send-email-Hawking.Zhang@amd.com>
-In-Reply-To: <1579201021-7109-1-git-send-email-Hawking.Zhang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 16 Jan 2020 14:24:37 -0500
-Message-ID: <CADnq5_OFFAWgdm5WbSDU7TxM3nVhhyOLK8b_=9auPOdz1QaeBA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/amdgpu: allow init discovery tmr region per ASIC
-To: Hawking Zhang <Hawking.Zhang@amd.com>
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(376002)(346002)(136003)(396003)(39860400002)(428003)(189003)(199004)(36756003)(6916009)(478600001)(316002)(70586007)(426003)(26005)(336012)(7696005)(2616005)(186003)(356004)(6666004)(81166006)(81156014)(2906002)(8936002)(8676002)(5660300002)(54906003)(70206006)(4326008)(1076003)(86362001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR1201MB0240; H:SATLEXMB02.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 817bcda2-b083-4527-9cd2-08d79ac04399
+X-MS-TrafficTypeDiagnostic: MWHPR1201MB0240:
+X-Microsoft-Antispam-PRVS: <MWHPR1201MB0240DEA5665F855E1B8471BFF9360@MWHPR1201MB0240.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2803;
+X-Forefront-PRVS: 02843AA9E0
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +5gfwKBsbwCXqKRvmkhRnBv6Bc97gd6IdsLzMKaRRQfcy262XRUpTVF2mfG2cT6WXZbbYOxcsFLMZE0nwNxTkYYCGWKjmKy3rYPRH2Qkyp58ACh9/32F9vfEXHTFGHV0URB3ktcdF42I7190her6uSWsRfykakU2lEnPM0Exre0OSXgu+CPMGltcOnkopyJ5+hVJijjxk1UtXjPcY8CpQli9iqc/7yHtYr4QGwthdB8SMPUsS0noQuoXCw4Q4z5KgdCR7HJfwWOrY1T6XDa27UuyDhNrEJqS3KWHRiRk/KpSk9f8L1qnZR5B/n0kibPG/DRoQA7mOU8XpXhkZKY3Zb0OIgq1TMxe1gAanLGb3//HTDVgurNLZEFmnfp0B6w6fh0VHj6r/2EjZIjJUNb2O4hrqKaij1uAJLlUEBASRL1cJz58mh3GsoMQRZJWgcuI
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 20:11:25.3782 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 817bcda2-b083-4527-9cd2-08d79ac04399
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0240
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,267 +102,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, harry.wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2020 at 1:57 PM Hawking Zhang <Hawking.Zhang@amd.com> wrote:
->
-> discovery tmr size should be ASIC specific setting, instead
-> of fixed 64KB for all ASICs.
->
-> Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  5 ++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 58 ++++++++++++++-------------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 12 +++---
->  3 files changed, 39 insertions(+), 36 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index 63eab0c..792fe16 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -756,7 +756,6 @@ struct amdgpu_device {
->         uint8_t                         *bios;
->         uint32_t                        bios_size;
->         struct amdgpu_bo                *stolen_vga_memory;
-> -       struct amdgpu_bo                *discovery_memory;
->         uint32_t                        bios_scratch_reg_offset;
->         uint32_t                        bios_scratch[AMDGPU_BIOS_NUM_SCRATCH];
->
-> @@ -908,7 +907,9 @@ struct amdgpu_device {
->         struct amdgpu_display_manager dm;
->
->         /* discovery */
-> -       uint8_t                         *discovery;
-> +       uint8_t                         *discovery_bin;
-> +       uint32_t                        discovery_tmr_size;
-> +       struct amdgpu_bo                *discovery_memory;
->
->         /* mes */
->         bool                            enable_mes;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> index f950927..800cc78 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -135,9 +135,10 @@ static int hw_id_map[MAX_HWIP] = {
->  static int amdgpu_discovery_read_binary(struct amdgpu_device *adev, uint8_t *binary)
->  {
->         uint64_t vram_size = (uint64_t)RREG32(mmRCC_CONFIG_MEMSIZE) << 20;
-> -       uint64_t pos = vram_size - DISCOVERY_TMR_SIZE;
-> +       uint64_t pos = vram_size - adev->discovery_tmr_size;
->
-> -       amdgpu_device_vram_access(adev, pos, (uint32_t *)binary, DISCOVERY_TMR_SIZE, false);
-> +       amdgpu_device_vram_access(adev, pos, (uint32_t *)binary,
-> +                                 adev->discovery_tmr_size, false);
->         return 0;
->  }
->
-> @@ -169,17 +170,18 @@ int amdgpu_discovery_init(struct amdgpu_device *adev)
->         uint16_t checksum;
->         int r;
->
-> -       adev->discovery = kzalloc(DISCOVERY_TMR_SIZE, GFP_KERNEL);
-> -       if (!adev->discovery)
-> +       adev->discovery_tmr_size = DISCOVERY_TMR_SIZE;
-> +       adev->discovery_bin = kzalloc(adev->discovery_tmr_size, GFP_KERNEL);
-> +       if (!adev->discovery_bin)
->                 return -ENOMEM;
->
-> -       r = amdgpu_discovery_read_binary(adev, adev->discovery);
-> +       r = amdgpu_discovery_read_binary(adev, adev->discovery_bin);
->         if (r) {
->                 DRM_ERROR("failed to read ip discovery binary\n");
->                 goto out;
->         }
->
-> -       bhdr = (struct binary_header *)adev->discovery;
-> +       bhdr = (struct binary_header *)adev->discovery_bin;
->
->         if (le32_to_cpu(bhdr->binary_signature) != BINARY_SIGNATURE) {
->                 DRM_ERROR("invalid ip discovery binary signature\n");
-> @@ -192,7 +194,7 @@ int amdgpu_discovery_init(struct amdgpu_device *adev)
->         size = bhdr->binary_size - offset;
->         checksum = bhdr->binary_checksum;
->
-> -       if (!amdgpu_discovery_verify_checksum(adev->discovery + offset,
-> +       if (!amdgpu_discovery_verify_checksum(adev->discovery_bin + offset,
->                                               size, checksum)) {
->                 DRM_ERROR("invalid ip discovery binary checksum\n");
->                 r = -EINVAL;
-> @@ -202,7 +204,7 @@ int amdgpu_discovery_init(struct amdgpu_device *adev)
->         info = &bhdr->table_list[IP_DISCOVERY];
->         offset = le16_to_cpu(info->offset);
->         checksum = le16_to_cpu(info->checksum);
-> -       ihdr = (struct ip_discovery_header *)(adev->discovery + offset);
-> +       ihdr = (struct ip_discovery_header *)(adev->discovery_bin + offset);
->
->         if (le32_to_cpu(ihdr->signature) != DISCOVERY_TABLE_SIGNATURE) {
->                 DRM_ERROR("invalid ip discovery data table signature\n");
-> @@ -210,7 +212,7 @@ int amdgpu_discovery_init(struct amdgpu_device *adev)
->                 goto out;
->         }
->
-> -       if (!amdgpu_discovery_verify_checksum(adev->discovery + offset,
-> +       if (!amdgpu_discovery_verify_checksum(adev->discovery_bin + offset,
->                                               ihdr->size, checksum)) {
->                 DRM_ERROR("invalid ip discovery data table checksum\n");
->                 r = -EINVAL;
-> @@ -220,9 +222,9 @@ int amdgpu_discovery_init(struct amdgpu_device *adev)
->         info = &bhdr->table_list[GC];
->         offset = le16_to_cpu(info->offset);
->         checksum = le16_to_cpu(info->checksum);
-> -       ghdr = (struct gpu_info_header *)(adev->discovery + offset);
-> +       ghdr = (struct gpu_info_header *)(adev->discovery_bin + offset);
->
-> -       if (!amdgpu_discovery_verify_checksum(adev->discovery + offset,
-> +       if (!amdgpu_discovery_verify_checksum(adev->discovery_bin + offset,
->                                               ghdr->size, checksum)) {
->                 DRM_ERROR("invalid gc data table checksum\n");
->                 r = -EINVAL;
-> @@ -232,16 +234,16 @@ int amdgpu_discovery_init(struct amdgpu_device *adev)
->         return 0;
->
->  out:
-> -       kfree(adev->discovery);
-> -       adev->discovery = NULL;
-> +       kfree(adev->discovery_bin);
-> +       adev->discovery_bin = NULL;
->
->         return r;
->  }
->
->  void amdgpu_discovery_fini(struct amdgpu_device *adev)
->  {
-> -       kfree(adev->discovery);
-> -       adev->discovery = NULL;
-> +       kfree(adev->discovery_bin);
-> +       adev->discovery_bin = NULL;
->  }
->
->  int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
-> @@ -258,13 +260,13 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
->         int hw_ip;
->         int i, j, k;
->
-> -       if (!adev->discovery) {
-> +       if (!adev->discovery_bin) {
->                 DRM_ERROR("ip discovery uninitialized\n");
->                 return -EINVAL;
->         }
->
-> -       bhdr = (struct binary_header *)adev->discovery;
-> -       ihdr = (struct ip_discovery_header *)(adev->discovery +
-> +       bhdr = (struct binary_header *)adev->discovery_bin;
-> +       ihdr = (struct ip_discovery_header *)(adev->discovery_bin +
->                         le16_to_cpu(bhdr->table_list[IP_DISCOVERY].offset));
->         num_dies = le16_to_cpu(ihdr->num_dies);
->
-> @@ -272,7 +274,7 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
->
->         for (i = 0; i < num_dies; i++) {
->                 die_offset = le16_to_cpu(ihdr->die_info[i].die_offset);
-> -               dhdr = (struct die_header *)(adev->discovery + die_offset);
-> +               dhdr = (struct die_header *)(adev->discovery_bin + die_offset);
->                 num_ips = le16_to_cpu(dhdr->num_ips);
->                 ip_offset = die_offset + sizeof(*dhdr);
->
-> @@ -286,7 +288,7 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
->                                 le16_to_cpu(dhdr->die_id), num_ips);
->
->                 for (j = 0; j < num_ips; j++) {
-> -                       ip = (struct ip *)(adev->discovery + ip_offset);
-> +                       ip = (struct ip *)(adev->discovery_bin + ip_offset);
->                         num_base_address = ip->num_base_address;
->
->                         DRM_DEBUG("%s(%d) #%d v%d.%d.%d:\n",
-> @@ -335,24 +337,24 @@ int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id,
->         uint16_t num_ips;
->         int i, j;
->
-> -       if (!adev->discovery) {
-> +       if (!adev->discovery_bin) {
->                 DRM_ERROR("ip discovery uninitialized\n");
->                 return -EINVAL;
->         }
->
-> -       bhdr = (struct binary_header *)adev->discovery;
-> -       ihdr = (struct ip_discovery_header *)(adev->discovery +
-> +       bhdr = (struct binary_header *)adev->discovery_bin;
-> +       ihdr = (struct ip_discovery_header *)(adev->discovery_bin +
->                         le16_to_cpu(bhdr->table_list[IP_DISCOVERY].offset));
->         num_dies = le16_to_cpu(ihdr->num_dies);
->
->         for (i = 0; i < num_dies; i++) {
->                 die_offset = le16_to_cpu(ihdr->die_info[i].die_offset);
-> -               dhdr = (struct die_header *)(adev->discovery + die_offset);
-> +               dhdr = (struct die_header *)(adev->discovery_bin + die_offset);
->                 num_ips = le16_to_cpu(dhdr->num_ips);
->                 ip_offset = die_offset + sizeof(*dhdr);
->
->                 for (j = 0; j < num_ips; j++) {
-> -                       ip = (struct ip *)(adev->discovery + ip_offset);
-> +                       ip = (struct ip *)(adev->discovery_bin + ip_offset);
->
->                         if (le16_to_cpu(ip->hw_id) == hw_id) {
->                                 if (major)
-> @@ -375,13 +377,13 @@ int amdgpu_discovery_get_gfx_info(struct amdgpu_device *adev)
->         struct binary_header *bhdr;
->         struct gc_info_v1_0 *gc_info;
->
-> -       if (!adev->discovery) {
-> +       if (!adev->discovery_bin) {
->                 DRM_ERROR("ip discovery uninitialized\n");
->                 return -EINVAL;
->         }
->
-> -       bhdr = (struct binary_header *)adev->discovery;
-> -       gc_info = (struct gc_info_v1_0 *)(adev->discovery +
-> +       bhdr = (struct binary_header *)adev->discovery_bin;
-> +       gc_info = (struct gc_info_v1_0 *)(adev->discovery_bin +
->                         le16_to_cpu(bhdr->table_list[GC].offset));
->
->         adev->gfx.config.max_shader_engines = le32_to_cpu(gc_info->gc_num_se);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> index ae1b00d..967f6d0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> @@ -1819,15 +1819,15 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
->                 return r;
->
->         /*
-> -        * reserve one TMR (64K) memory at the top of VRAM which holds
-> +        * reserve TMR memory at the top of VRAM which holds
->          * IP Discovery data and is protected by PSP.
->          */
->         r = amdgpu_bo_create_kernel_at(adev,
-> -                                      adev->gmc.real_vram_size - DISCOVERY_TMR_SIZE,
-> -                                      DISCOVERY_TMR_SIZE,
-> -                                      AMDGPU_GEM_DOMAIN_VRAM,
-> -                                      &adev->discovery_memory,
-> -                                      NULL);
-> +                       adev->gmc.real_vram_size - adev->discovery_tmr_size,
-> +                       adev->discovery_tmr_size,
-> +                       AMDGPU_GEM_DOMAIN_VRAM,
-> +                       &adev->discovery_memory,
-> +                       NULL);
+Summary Of Changes
+* Code fixes/cleanups
+* i2c frequency refactor
+* DMCUB changes
+* Update type fix
 
-The indentation looks wrong here.  With that fixed, the series is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Anthony Koo (1):
+  drm/amd/display: Refactor to remove diags specific rgam func
 
->         if (r)
->                 return r;
->
-> --
-> 2.7.4
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+Aric Cyr (1):
+  drm/amd/display: 3.2.69
+
+Brandon Syu (1):
+  drm/amd/display: fix rotation_angle to use enum values
+
+Haiyi Zhou (1):
+  drm/amd/display: Fixed comment styling
+
+Isabel Zhang (1):
+  drm/amd/display: changed max_downscale_src_width to 4096.
+
+Jerry (Fangzhi) Zuo (1):
+  drm/amd/display: Fix DML dummyinteger types mismatch
+
+Lewis Huang (2):
+  drm/amd/display: Refine i2c frequency calculating sequence
+  drm/amd/display: init hw i2c speed
+
+Nicholas Kazlauskas (7):
+  drm/amd/display: Get fb base and fb offset for DMUB from registers
+  drm/amd/display: Fallback to DMCUB when command table is missing
+  drm/amd/display: Do DMCUB hw_init before DC
+  drm/amd/display: Add hardware reset interface for DMUB service
+  drm/amd/display: Call ATOM_INIT instead of ATOM_ENABLE for DMCUB
+  drm/amd/display: Reset inbox rptr/wptr when resetting DMCUB
+  drm/amd/display: Check hw_init state when determining if DMCUB is
+    initialized
+
+Paul Hsieh (1):
+  drm/amd/display: check pipe_ctx is split pipe or not
+
+Roman Li (1):
+  drm/amd/display: Fix update type for multiple planes
+
+Sung Lee (1):
+  drm/amd/display: Do not send training pattern if VS Different
+
+Wenjing Liu (4):
+  drm/amd/display: update MSA and VSC SDP on video test pattern request
+  drm/amd/display: Add debug option to disable DSC support
+  drm/amd/display: support VSC SDP update on video test pattern request
+  drm/amd/display: use odm combine for YCbCr420 timing with h_active
+    greater than 4096
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  68 ++--
+ .../drm/amd/display/dc/bios/command_table2.c  |  78 ++++-
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  17 +-
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  |  34 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |   3 +-
+ .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.c   |  73 +----
+ .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.h   |   1 -
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c |  12 +-
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c |   2 +-
+ .../dc/dml/dcn20/display_mode_vba_20.c        |  19 +-
+ .../dc/dml/dcn20/display_mode_vba_20v2.c      |  24 +-
+ .../dc/dml/dcn21/display_mode_vba_21.c        |  24 +-
+ .../drm/amd/display/dc/dml/display_mode_vba.h |   4 +-
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c   |   3 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_srv.h   |  17 +
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn20.c |  25 +-
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn20.h |   8 +-
+ .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |  19 ++
+ .../amd/display/modules/color/color_gamma.c   | 307 ++++++++----------
+ .../amd/display/modules/color/color_gamma.h   |   4 -
+ .../amd/display/modules/freesync/freesync.c   |   2 +-
+ 21 files changed, 426 insertions(+), 318 deletions(-)
+
+-- 
+2.17.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
