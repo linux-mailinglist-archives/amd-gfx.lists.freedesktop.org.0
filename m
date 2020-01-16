@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4007B13FA34
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 21:11:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB6F213FA37
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 21:11:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B99E6E24E;
-	Thu, 16 Jan 2020 20:11:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 759736E25C;
+	Thu, 16 Jan 2020 20:11:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760045.outbound.protection.outlook.com [40.107.76.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B39586E24E
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr690064.outbound.protection.outlook.com [40.107.69.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD0216E250
  for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 20:11:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JfA0RDA5HT2XMOfPi3eHwDxsZAEDjDxq/Y+XoAMKFdXBdY4kJTMNBMOmK4TQjcYr4mYiYUARq5lMOtKU6UXxKuvxdE2frg7s/WXvtbcQVzBxceWjY0oUuQi0bCc2+kTlqvyRiiKgGb/4Sk3V1tWiyhtj+okdd4bCfv1Z3fgjPPWyO1jP7NFpC21e6agxrqdbpwJVamZxk+pc3RcgK9M2/KMdFmt1YI6WrZOzZb9I0GB805BQVs2L+USYjKastvUDClvFFKDMXcgfKTZlJmiKVa/u7YN9uGgGeT1PJeSw5YlBbNbNcT0zhgJ+/tg6aFnavUyu1cYO2nmggzQj8rsexQ==
+ b=nUGSUV9yQ0aM4ljaWs1UD2Olq4hfqiyBdd7kZwL4dfyoC02kKevGxLV/bd1mgi+1KKUTZ2XkXcUyDGQJ+V9nzQoGofP9zxo9RkB/bvxecEaeyD8ckTL0yrgfGqThbDwUu7g8PwiAcH5LSV1VQ9qgtJAF4VIxwTozJtwAUr0rIXyomz/vNBXLN0fHaZdVj1qsPbJInNv9U+UrfgOAyTQutfcViOmcm+vcbAjSmsOO7rjcP5rhv5RopGpnCX0Fp/OrnEuJla9D3EZ0kH7R5TN+1nOb9R4wmsxXu+H9222TiB/5uxNep78ibYkRxFrtdGj3Yv/tWCb7vHlkqWI1l8YlxA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nxet/GjI5sbephx6GPpIjD2g9obfGN5HPZ82VIC2hl4=;
- b=OKBebzO99j2tbxMm9DLfSCLNpnUXa7EMWilqdH2bRDG70weumQCX+N+II8L8q5risCt6w7bGDd1z10gcp552W2JlqZCbdl34QDsYidnvoWE2WEbIbYx7Zh3QDeP3EPfKEGJkF7CwOHXX6K82sy9XHrGvqrw0kCteFOwdQKLPuoidYycbmu/CfWwg7H3l7C+jhLzq4PoCWK+wAe3Wsdnd0O41MlzMR5QFKgharViDyD/DH1Nc3Y1NJInXPGevjX0x0a9B8DD2A/Gmm6NSxEnzOqYbekpV4OzOd1A6KiIXYNMaGgRAU9EEgABnx7LW0wt0SLofe63YAvfh/G6ux6JAXQ==
+ bh=15rsGOLHKWwR4shom7wE0UTJlsNbZYWui2rgPM2oUig=;
+ b=DcU/OFKa/3hmZpweB5pP7tE2U71nLOtxT79oT1OZ8NH4ylhF0fZVynl3+v/NCbA/m9EmnvfF3vFsN5HN9CyWxse1YqJn6+x/8c9pgcopnHpcsadiG7eHHm9iRL/RE22c3CKnn4Nhh0Mr9bW+zdOs6IIjXOjiuDV4WfuDekdCzzztEoErMOHNCLitM9mDYGe4R12GRH4zO1jEGRjNj3I5/T8o3Yg+pH0Lg2fmt6fF0KxGm5WOTVfuWRVQattEEC0eUBGc1AA5ZZo/i25NAKbAYBm3h3a+AAS2rbX5w7kW6oCLpHCkNkZ8IBbxae9Pb2RQjzhjyrao6yefspPZZ/NUVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,70 +27,73 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nxet/GjI5sbephx6GPpIjD2g9obfGN5HPZ82VIC2hl4=;
- b=oyoSJHjlbrV/E9jp7ps3q8GdkCSR6vUA14kLNDGLIuUZ+s8C2IY7bVDOF2kA1BDRXlDYOopd4fFZw4lBAJ+6P1DSaWHzbcxksDLSDTWaXNBWqxP+48UvG9U6m6+dM3GP/PVSizMqHkjT4Mo3s0Apij182frAvZEhhQOL8RRT7vU=
-Received: from DM3PR12CA0124.namprd12.prod.outlook.com (2603:10b6:0:51::20) by
- MWHPR1201MB0240.namprd12.prod.outlook.com (2603:10b6:301:58::21) with
+ bh=15rsGOLHKWwR4shom7wE0UTJlsNbZYWui2rgPM2oUig=;
+ b=PO6Cj8v0Wx2S98yoVgIfA0o30JaFOT6T4JZ1HTAQUhfzu4iLdXUtFxe/NmmNwu67MlxL2616VrlESlHQiyYTwQgMwH3jCyapPXsMKKRpppwXmLcTO5muGnB7KINhWsBrrjcKLP8PZEtk0G3Pq89IxhxW4qnL7mAaTiItjCmEOfA=
+Received: from BN8PR12CA0006.namprd12.prod.outlook.com (2603:10b6:408:60::19)
+ by DM5PR12MB1131.namprd12.prod.outlook.com (2603:10b6:3:73::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.20; Thu, 16 Jan
- 2020 20:11:25 +0000
-Received: from DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eaa::209) by DM3PR12CA0124.outlook.office365.com
- (2603:10b6:0:51::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.19 via Frontend
- Transport; Thu, 16 Jan 2020 20:11:25 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2623.13; Thu, 16 Jan
+ 2020 20:11:26 +0000
+Received: from DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eaa::204) by BN8PR12CA0006.outlook.office365.com
+ (2603:10b6:408:60::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.18 via Frontend
+ Transport; Thu, 16 Jan 2020 20:11:26 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- DM6NAM11FT006.mail.protection.outlook.com (10.13.173.104) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ DM6NAM11FT059.mail.protection.outlook.com (10.13.172.92) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.2644.19 via Frontend Transport; Thu, 16 Jan 2020 20:11:25 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
- 2020 14:11:24 -0600
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 14:11:25 -0600
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
- 2020 14:11:24 -0600
+ 2020 14:11:25 -0600
 Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
  Transport; Thu, 16 Jan 2020 14:11:24 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 00/22] DC Patches 16 Jan 2020
-Date: Thu, 16 Jan 2020 15:10:36 -0500
-Message-ID: <20200116201058.29200-1-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 01/22] drm/amd/display: update MSA and VSC SDP on video test
+ pattern request
+Date: Thu, 16 Jan 2020 15:10:37 -0500
+Message-ID: <20200116201058.29200-2-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200116201058.29200-1-Bhawanpreet.Lakha@amd.com>
+References: <20200116201058.29200-1-Bhawanpreet.Lakha@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(136003)(396003)(39860400002)(428003)(189003)(199004)(36756003)(6916009)(478600001)(316002)(70586007)(426003)(26005)(336012)(7696005)(2616005)(186003)(356004)(6666004)(81166006)(81156014)(2906002)(8936002)(8676002)(5660300002)(54906003)(70206006)(4326008)(1076003)(86362001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR1201MB0240; H:SATLEXMB02.amd.com; FPR:;
+ SFS:(10009020)(4636009)(39860400002)(376002)(136003)(396003)(346002)(428003)(189003)(199004)(86362001)(8676002)(54906003)(356004)(316002)(6666004)(2906002)(6916009)(36756003)(81166006)(7696005)(2616005)(1076003)(81156014)(426003)(336012)(478600001)(26005)(5660300002)(70206006)(15650500001)(70586007)(186003)(4326008)(8936002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1131; H:SATLEXMB01.amd.com; FPR:;
  SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 817bcda2-b083-4527-9cd2-08d79ac04399
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB0240:
-X-Microsoft-Antispam-PRVS: <MWHPR1201MB0240DEA5665F855E1B8471BFF9360@MWHPR1201MB0240.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2803;
+X-MS-Office365-Filtering-Correlation-Id: c12605eb-ae0d-40cc-d81c-08d79ac043df
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1131:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB11310CB442B73B70899D7865F9360@DM5PR12MB1131.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-Forefront-PRVS: 02843AA9E0
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +5gfwKBsbwCXqKRvmkhRnBv6Bc97gd6IdsLzMKaRRQfcy262XRUpTVF2mfG2cT6WXZbbYOxcsFLMZE0nwNxTkYYCGWKjmKy3rYPRH2Qkyp58ACh9/32F9vfEXHTFGHV0URB3ktcdF42I7190her6uSWsRfykakU2lEnPM0Exre0OSXgu+CPMGltcOnkopyJ5+hVJijjxk1UtXjPcY8CpQli9iqc/7yHtYr4QGwthdB8SMPUsS0noQuoXCw4Q4z5KgdCR7HJfwWOrY1T6XDa27UuyDhNrEJqS3KWHRiRk/KpSk9f8L1qnZR5B/n0kibPG/DRoQA7mOU8XpXhkZKY3Zb0OIgq1TMxe1gAanLGb3//HTDVgurNLZEFmnfp0B6w6fh0VHj6r/2EjZIjJUNb2O4hrqKaij1uAJLlUEBASRL1cJz58mh3GsoMQRZJWgcuI
+X-Microsoft-Antispam-Message-Info: LVVib+DO3YUDSfGQMm+QxgK7Kg4qh6zyAMTkvc1VVFMShlYhNXKmlZHs5djTYeqtdlfnvgh9s0gA/JdK78QWulOar1p8Ue8NX75/KEwpkLwEk9C4QhHYiDFv/WzfJirAGdRQowknAmDyWVLsPY0xFSmJGQzoLSzqsWWEFfb9aPO+TFmeiAuLN2yVoVlykJIawMNmZG4hi4dY+2bYRz94ag7Qb5fJSE7ReqV9BNdLTokQhNhn2ph+xO8m3Ld2UB8OcDsqFjJ+7pcYwtgNr0YmKL7GdmqH4J5C9W1VFuyc9UQJSHNLkKkkKCRyq9DBDA11o03IjT4QzQv1gH4eJSPOsnzxqfqIfSjtItHv8C2XO+h1iRIGEi7Ii3elojAHHUHTyQvkV0gQgUY/bz4XiSmR6Y78wv8BoXrTButvJzRNFUa02TdzDRCQyFGOjT3XkDgK
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 20:11:25.3782 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 817bcda2-b083-4527-9cd2-08d79ac04399
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 20:11:25.8385 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c12605eb-ae0d-40cc-d81c-08d79ac043df
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
+ Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0240
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1131
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,90 +105,81 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, harry.wentland@amd.com,
+ Wenjing Liu <Wenjing.Liu@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Summary Of Changes
-* Code fixes/cleanups
-* i2c frequency refactor
-* DMCUB changes
-* Update type fix
+From: Wenjing Liu <Wenjing.Liu@amd.com>
 
-Anthony Koo (1):
-  drm/amd/display: Refactor to remove diags specific rgam func
+[why]
+On video test pattern request we need to update MSA and VSC so
+it will match the requested test pattern dynamic range field.
 
-Aric Cyr (1):
-  drm/amd/display: 3.2.69
+[how]
+Update dynamic range field in MSA and disable VSC as updating VSC
+info packet is complicated and not required for test pattern purpose.
 
-Brandon Syu (1):
-  drm/amd/display: fix rotation_angle to use enum values
+Change-Id: Ie49c1d3b1c219aaff88f8185371a252e492e1697
+Signed-off-by: Wenjing Liu <Wenjing.Liu@amd.com>
+Reviewed-by: Nikola Cornij <Nikola.Cornij@amd.com>
+Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+IP-reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+---
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 37 ++++++++++++++++++-
+ 1 file changed, 36 insertions(+), 1 deletion(-)
 
-Haiyi Zhou (1):
-  drm/amd/display: Fixed comment styling
-
-Isabel Zhang (1):
-  drm/amd/display: changed max_downscale_src_width to 4096.
-
-Jerry (Fangzhi) Zuo (1):
-  drm/amd/display: Fix DML dummyinteger types mismatch
-
-Lewis Huang (2):
-  drm/amd/display: Refine i2c frequency calculating sequence
-  drm/amd/display: init hw i2c speed
-
-Nicholas Kazlauskas (7):
-  drm/amd/display: Get fb base and fb offset for DMUB from registers
-  drm/amd/display: Fallback to DMCUB when command table is missing
-  drm/amd/display: Do DMCUB hw_init before DC
-  drm/amd/display: Add hardware reset interface for DMUB service
-  drm/amd/display: Call ATOM_INIT instead of ATOM_ENABLE for DMCUB
-  drm/amd/display: Reset inbox rptr/wptr when resetting DMCUB
-  drm/amd/display: Check hw_init state when determining if DMCUB is
-    initialized
-
-Paul Hsieh (1):
-  drm/amd/display: check pipe_ctx is split pipe or not
-
-Roman Li (1):
-  drm/amd/display: Fix update type for multiple planes
-
-Sung Lee (1):
-  drm/amd/display: Do not send training pattern if VS Different
-
-Wenjing Liu (4):
-  drm/amd/display: update MSA and VSC SDP on video test pattern request
-  drm/amd/display: Add debug option to disable DSC support
-  drm/amd/display: support VSC SDP update on video test pattern request
-  drm/amd/display: use odm combine for YCbCr420 timing with h_active
-    greater than 4096
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  68 ++--
- .../drm/amd/display/dc/bios/command_table2.c  |  78 ++++-
- drivers/gpu/drm/amd/display/dc/core/dc_link.c |  17 +-
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  |  34 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |   3 +-
- .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.c   |  73 +----
- .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.h   |   1 -
- .../gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c |  12 +-
- .../drm/amd/display/dc/dcn21/dcn21_resource.c |   2 +-
- .../dc/dml/dcn20/display_mode_vba_20.c        |  19 +-
- .../dc/dml/dcn20/display_mode_vba_20v2.c      |  24 +-
- .../dc/dml/dcn21/display_mode_vba_21.c        |  24 +-
- .../drm/amd/display/dc/dml/display_mode_vba.h |   4 +-
- drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c   |   3 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_srv.h   |  17 +
- .../gpu/drm/amd/display/dmub/src/dmub_dcn20.c |  25 +-
- .../gpu/drm/amd/display/dmub/src/dmub_dcn20.h |   8 +-
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |  19 ++
- .../amd/display/modules/color/color_gamma.c   | 307 ++++++++----------
- .../amd/display/modules/color/color_gamma.h   |   4 -
- .../amd/display/modules/freesync/freesync.c   |   2 +-
- 21 files changed, 426 insertions(+), 318 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 6ab298c65247..1bd0946829e3 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -3925,8 +3925,43 @@ bool dc_link_dp_set_test_pattern(
+ 					     sizeof(training_pattern));
+ 		}
+ 	} else {
+-	/* CRTC Patterns */
++		enum dc_color_space color_space = COLOR_SPACE_UNKNOWN;
++		struct encoder_info_frame info_frame = pipe_ctx->stream_res.encoder_info_frame;
++
++		switch (test_pattern_color_space) {
++		case DP_TEST_PATTERN_COLOR_SPACE_RGB:
++			color_space = COLOR_SPACE_SRGB;
++			if (test_pattern == DP_TEST_PATTERN_COLOR_SQUARES_CEA)
++				color_space = COLOR_SPACE_SRGB_LIMITED;
++			break;
++
++		case DP_TEST_PATTERN_COLOR_SPACE_YCBCR601:
++			color_space = COLOR_SPACE_YCBCR601;
++			if (test_pattern == DP_TEST_PATTERN_COLOR_SQUARES_CEA)
++				color_space = COLOR_SPACE_YCBCR601_LIMITED;
++			break;
++		case DP_TEST_PATTERN_COLOR_SPACE_YCBCR709:
++			color_space = COLOR_SPACE_YCBCR709;
++			if (test_pattern == DP_TEST_PATTERN_COLOR_SQUARES_CEA)
++				color_space = COLOR_SPACE_YCBCR709_LIMITED;
++			break;
++		default:
++			break;
++		}
++		/* update MSA to requested color space */
++		pipe_ctx->stream_res.stream_enc->funcs->dp_set_stream_attribute(pipe_ctx->stream_res.stream_enc,
++				&pipe_ctx->stream->timing,
++				color_space, false, link->dpcd_caps.dprx_feature.bits.SST_SPLIT_SDP_CAP);
++
++		/* disable vsc so no need to update it based on request */
++		info_frame.vsc.valid = false;
++		pipe_ctx->stream_res.stream_enc->funcs->update_dp_info_packets(
++				pipe_ctx->stream_res.stream_enc,
++				&info_frame);
++
++		/* CRTC Patterns */
+ 		set_crtc_test_pattern(link, pipe_ctx, test_pattern, test_pattern_color_space);
++
+ 		/* Set Test Pattern state */
+ 		link->test_pattern_enabled = true;
+ 	}
 -- 
 2.17.1
 
