@@ -1,40 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5001A13E1D8
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 17:53:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C8BA13E55E
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 18:14:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B196D6EDEF;
-	Thu, 16 Jan 2020 16:53:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 142226EE21;
+	Thu, 16 Jan 2020 17:14:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94D2F6EDEF;
- Thu, 16 Jan 2020 16:53:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEA856EE21;
+ Thu, 16 Jan 2020 17:14:25 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id B9F5F2176D;
- Thu, 16 Jan 2020 16:53:55 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id DA682246B9;
+ Thu, 16 Jan 2020 17:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1579193636;
- bh=NGeX31yHaJjulEnEI8CSs+W7be4cul/wAnLxIUgPJuw=;
+ s=default; t=1579194865;
+ bh=993pg9XMBYHt9nnaRXdF+Najd/DaGCdU+bws4zSlLE8=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=oiFyTes2Xy07hYbwxjsXWocdL9h2nTu+tlK9EI6o1RWAjgPxg4D2T3FZ1O9M1HKYm
- RbdlSp6flDNSuQp3WNGqQQuGGcVYfCwbih4/lXr856WQVvBoIw9qtWAa22UWffnmuX
- 83+UTp59GVX+v1EPjGejWhLsY3r4UEIHYjzWnuL4=
+ b=lV5AQg4oRGoiTdVTOwK/fDMf3eKkPS//X9gHEhNjltPbTaPHBllfs88bNYtC9j8jV
+ pt+RRGbEyGr+veG+xZMMaR0zIOKLa23KspChR3l4iRIDAL6HN9dMCNqlinTLaYovU1
+ ZNU72T8xNn+hzxCUDJF8fyIciUzQAQDibYZpkj2k=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 169/205] drm/radeon: fix bad DMA from
+Subject: [PATCH AUTOSEL 4.19 659/671] drm/radeon: fix bad DMA from
  INTERRUPT_CNTL2
-Date: Thu, 16 Jan 2020 11:42:24 -0500
-Message-Id: <20200116164300.6705-169-sashal@kernel.org>
+Date: Thu, 16 Jan 2020 12:04:57 -0500
+Message-Id: <20200116170509.12787-396-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200116164300.6705-1-sashal@kernel.org>
-References: <20200116164300.6705-1-sashal@kernel.org>
+In-Reply-To: <20200116170509.12787-1-sashal@kernel.org>
+References: <20200116170509.12787-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -82,10 +82,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  3 files changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
-index 62eab82a64f9..897442754fd0 100644
+index ebce4601a305..827d551962d9 100644
 --- a/drivers/gpu/drm/radeon/cik.c
 +++ b/drivers/gpu/drm/radeon/cik.c
-@@ -6969,8 +6969,8 @@ static int cik_irq_init(struct radeon_device *rdev)
+@@ -6965,8 +6965,8 @@ static int cik_irq_init(struct radeon_device *rdev)
  	}
  
  	/* setup interrupt control */
@@ -97,10 +97,10 @@ index 62eab82a64f9..897442754fd0 100644
  	/* IH_DUMMY_RD_OVERRIDE=0 - dummy read disabled with msi, enabled without msi
  	 * IH_DUMMY_RD_OVERRIDE=1 - dummy read controlled by IH_DUMMY_RD_EN
 diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
-index e937cc01910d..033bc466a862 100644
+index e06e2d8feab3..a724bb87cfad 100644
 --- a/drivers/gpu/drm/radeon/r600.c
 +++ b/drivers/gpu/drm/radeon/r600.c
-@@ -3696,8 +3696,8 @@ int r600_irq_init(struct radeon_device *rdev)
+@@ -3690,8 +3690,8 @@ int r600_irq_init(struct radeon_device *rdev)
  	}
  
  	/* setup interrupt control */
@@ -112,10 +112,10 @@ index e937cc01910d..033bc466a862 100644
  	/* IH_DUMMY_RD_OVERRIDE=0 - dummy read disabled with msi, enabled without msi
  	 * IH_DUMMY_RD_OVERRIDE=1 - dummy read controlled by IH_DUMMY_RD_EN
 diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
-index 05894d198a79..1d8efb0eefdb 100644
+index 85c604d29235..639f0698f961 100644
 --- a/drivers/gpu/drm/radeon/si.c
 +++ b/drivers/gpu/drm/radeon/si.c
-@@ -5997,8 +5997,8 @@ static int si_irq_init(struct radeon_device *rdev)
+@@ -5993,8 +5993,8 @@ static int si_irq_init(struct radeon_device *rdev)
  	}
  
  	/* setup interrupt control */
