@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 781E813FA52
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 21:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46AD413FA4F
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 21:14:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99AFF6E2AF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A9C06E283;
 	Thu, 16 Jan 2020 20:14:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2089.outbound.protection.outlook.com [40.107.92.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 380F86E283
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9F276E283
  for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 20:14:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j+N1aXiJQlFzrqHyJ52UmKjtxcnZ55OTY53+UmyNEK5XPtp5ywmYHE8zncD5RkrRgFrimZrDE4uoVNHi82M6AYBnXVCRVmD8e5FcWSVIXcxh+RXk/sNQiU+UPWjdzNJoLavio33kQoelg58hzg3feEOVNxnIi6DyjjCOVhh7dU/TBVovVXSCi5j+nZvmG2jG/I4BSJedmMLOBafcgAeH5nuDS4jTFf44SYvFPKHPx/l0KRdFBkE+kl/dZ/aCD4jXd/R7PXNKXg4dpphHUZUVTVjXEojm8/mAhjSSSPlKo0+axJGzJ7ypMpJCvuBj8Rih3DAkVmjijhLjoP2XOjmpqA==
+ b=fEJzVDKSXuGgOetiePlDS+OXD5jMbdmc+VVpUVSC0Ls5xgl4p/jH1NUrfRNpnOzJ1DIzCm5UXtgDmeZZhoSym+e3fSjrF/VdUmJaibOvXlnxrJoL9q+dpLT/6IkOPdDZqSXstQVoseFJSvU3MqAbp50xw5AwXWL3Unu3XKUT6slDTfkPjJ7Mct9DHIygEJx0QCcVFzzH7Xb3GN6g+7pORvrUPG0WXpq2yKsccAau9gQK7u3Q/MbU3GjiVECcZxgoTIOioJsCSVVtA4B4f8nV5dh7TK9A4p252pGE9EIX4dcneyagICq8HUBJni0/WKteCg7Dn+AkWGNZaxy3O60w+Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OwmfCpy5bOkuP2ymPXvT5w70Gb5rr87SMA4M/5qt+Ew=;
- b=UFQc2G7l8LqMTbuRUp03a9gcjz+cf0O2c+pogrY4Z4/aVhJlj2JEHgXxKb9jAeRSrpQBmxKSmkiAFJ/7H5PpSi2UjhpmQEfgGKuL7K6EQ5e4qAQmmwcCet6EKVfOuvxJW7bfAFjC9x0lsPLioSUUGeI+DlmSp95p+JGvFyr3QPKQlQS07X2BkNIkIaJLq1GVC++Bu9OMPJMk0GgBvs9wnbFwEUItE2lw8t0KAyZSx1sBkKW6uFNP04XBTjSjTJ56KuAHDwV50neqNDNviMlEH7BlAkC7iqj32EWxJlkUPyR/jDcoEX9e8W/ypjRrfq6JxchQMqFMTJQR+96PwhVolA==
+ bh=PQGu8EJEVgI4GEy0uFCkPxoVhJ4fY3tumFTxnsou86w=;
+ b=YQAJG/MMw/LePAR5z3WKatD7nDy6lzralqt1lSlrUKn0cdyXPyF62Lde1r3avyqzzZ+6Sxu2ohchs4io/cjOgQ7/Wl+2C5L+KeNtwKVxTRB++90hy7CrZVxro//cRHbDHm2S8106y1qSg+LuCvPI1uJyB11IPAVHj+PHZPI3mKkycEtyO1JbmSbQIXWUi18jFRGKMYjX7RsdGRtgB6iMcX27RIQjHJX+VTjMVYFODSPTmsAdsiORJqPOic9m1sFxhAQu3duJt9HHy6aWFfRsjyU73GMI5wo8HmJ3o9Hk5/QDZGDXX6wE1EqbxMMdZZHWPlRXovVA2YklB5GoXgCsyw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OwmfCpy5bOkuP2ymPXvT5w70Gb5rr87SMA4M/5qt+Ew=;
- b=vV+MCDnfCgP+/abgadSb0KFyVsW2fiTky6PBC+uuchoutjgUI0ZJpSQ6STJ1y/qnBXBXyGN+pe5gdOYa7A0hjE0lIMmLdLUIBH9hxEvJW5EEYRSMAMOEpg5GxVG4LtwDeTVeTAbcPalK9FRHQARMr+silXcCNV8DmgMG8nsz5D4=
+ bh=PQGu8EJEVgI4GEy0uFCkPxoVhJ4fY3tumFTxnsou86w=;
+ b=aNhmMxPmTRdepevcieYfO0n8iRlr70STqsDlZGqn/ZB6wg1J4e8oLa/8F6UUQW3HZBsYFv5SAXTfnEZ8U5w2QRCyn6uiziyIHl9/y1ITVjlogzNxt4tQ9HKPCk9L0KKRm8Hi1E3IHUY2MSU/ONJ4sbaM8q5ZnbkJ68sw4RTXTGE=
 Received: from DM5PR12CA0007.namprd12.prod.outlook.com (2603:10b6:4:1::17) by
- DM5PR12MB1257.namprd12.prod.outlook.com (2603:10b6:3:74::13) with
+ DM6PR12MB2892.namprd12.prod.outlook.com (2603:10b6:5:182::22) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.16; Thu, 16 Jan 2020 20:14:27 +0000
+ 15.20.2623.10; Thu, 16 Jan 2020 20:14:28 +0000
 Received: from DM6NAM11FT042.eop-nam11.prod.protection.outlook.com
  (2a01:111:f400:7eaa::200) by DM5PR12CA0007.outlook.office365.com
  (2603:10b6:4:1::17) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.18 via Frontend
- Transport; Thu, 16 Jan 2020 20:14:27 +0000
+ Transport; Thu, 16 Jan 2020 20:14:28 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -48,19 +48,19 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
  DM6NAM11FT042.mail.protection.outlook.com (10.13.173.165) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2644.19 via Frontend Transport; Thu, 16 Jan 2020 20:14:27 +0000
+ 15.20.2644.19 via Frontend Transport; Thu, 16 Jan 2020 20:14:28 +0000
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
  2020 14:14:26 -0600
 Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Thu, 16 Jan 2020 14:14:25 -0600
+ Transport; Thu, 16 Jan 2020 14:14:26 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/22] drm/amd/display: Do DMCUB hw_init before DC
-Date: Thu, 16 Jan 2020 15:14:04 -0500
-Message-ID: <20200116201418.2254-9-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 09/22] drm/amd/display: Fix DML dummyinteger types mismatch
+Date: Thu, 16 Jan 2020 15:14:05 -0500
+Message-ID: <20200116201418.2254-10-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200116201418.2254-1-Bhawanpreet.Lakha@amd.com>
 References: <20200116201418.2254-1-Bhawanpreet.Lakha@amd.com>
@@ -69,26 +69,26 @@ X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(136003)(346002)(396003)(39860400002)(428003)(199004)(189003)(4326008)(356004)(26005)(316002)(6916009)(54906003)(7696005)(426003)(186003)(6666004)(336012)(81156014)(8676002)(36756003)(86362001)(2616005)(2906002)(8936002)(81166006)(70206006)(1076003)(478600001)(70586007)(5660300002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1257; H:SATLEXMB02.amd.com; FPR:;
+ SFS:(10009020)(4636009)(39860400002)(136003)(396003)(376002)(346002)(428003)(199004)(189003)(426003)(336012)(70206006)(70586007)(54906003)(5660300002)(81156014)(316002)(81166006)(478600001)(2906002)(1076003)(8676002)(86362001)(6916009)(2616005)(186003)(7696005)(36756003)(4326008)(8936002)(356004)(6666004)(26005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB2892; H:SATLEXMB02.amd.com; FPR:;
  SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 73ab5658-19e9-4988-4406-08d79ac0b055
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1257:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1257D1A8A5088E1BE2C512CDF9360@DM5PR12MB1257.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:489;
+X-MS-Office365-Filtering-Correlation-Id: 1775649b-4cd5-42c0-61cb-08d79ac0b097
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2892:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB28922A49095071E7B34E6874F9360@DM6PR12MB2892.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-Forefront-PRVS: 02843AA9E0
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GDOJcl0h2LLLsmefEWi3PBPwUv/hYKHk22naqLSw6EsRZ5JfPj6/PgHm0NLfbDbpcZJYfWnOn/sXJNoDS3lGm4Ppgt6WPl0ZfrH7pKbhLmZ6weBMyP2NRK4kDmMO5rmjec2HfgM/8ePdHNPhQHE5Zy8xJR0EO49xDJ2kpTvlPMUHzOSCR+UzXL3pbVJAMPX9Q3Gc4Dzs5qE2sOiKVlCszvEVZ6r2vFlRNvDcX+B5HMQug4Gscj1vBRdfQD4qNbu3QZompyYkfzJyctxRkXlKkFQAOSQ0n8tsn47LeEh1r3BI3jAynWADtbfOuZrv5A4NSNRHVJqNYTTeY/sZ5HgpcDi7reHZGTk/TJZxeWCLVhcGRufmSBWPvRcyWiJgcwAkgpQ76OBAT0uWvglMaBlEG0PIZuqRIMH6fX+cMalqGluYtczSal9OahlPq8eN0lz/
+X-Microsoft-Antispam-Message-Info: Vt0MEmGdsB9OkBn7RUC0K9+KO0kUx7dQvuj/x8wYvaguJjr9Vf7Tr9HD9i6siP00YaMWvAVi+DIQMLM8HaCe4zQHsAfAGZsLlYaCQQ79WZJkxJj4KOgxR2USXGen22aXqUxrizXiM0v6CX5cHtbTFdo/knEgXEHfeKITh4IvZaoknoBX5NA7eBr6QQH7+G+/Zlm5fr7XXJKHuJf+Qt7bPJpNkp+K82A2pMash1m1xH79GZpcPVeKho3sN39sge+wtOAL6FjOONtH5hRFUPNqbo3MHP4FMKL2SOdCv7a1/C5pymSnEVZRBuQqqebTwPm8QVEK8ptOA6y+J2rShC2MDkBU2ona/pq/dTStrZmm512gQAmgZJ24ijzlIu/b8F1N7wqbM6OY7CmX4BOGHyjB1GKMVJYf5YrwprrUfrHCI+vRns0gsqFVLzyBSKwPvi4h
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 20:14:27.7960 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73ab5658-19e9-4988-4406-08d79ac0b055
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 20:14:28.2283 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1775649b-4cd5-42c0-61cb-08d79ac0b097
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1257
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2892
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,54 +100,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, harry.wentland@amd.com,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com,
+ "Jerry \(Fangzhi\) Zuo" <Jerry.Zuo@amd.com>, harry.wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>
 
 [Why]
-For DMCUB enabled hardware DC has a dependency on DMCUB already being
-running.
-
-Command table offloading will fail on first modeset if DMCUB isn't
-initialized first.
+The types for dummyinteger1 and dummyinteger2 are unsigned
+as part of the DML spec. They should not be long.
 
 [How]
-Perform DMCUB hardware initialization before DC.
+Make them unsigned int instead of long.
 
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
-Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Signed-off-by: Jerry (Fangzhi) Zuo <Jerry.Zuo@amd.com>
+Reviewed-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 ++--
+ drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index cddfe29de84f..51e51c0eda0c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -940,14 +940,14 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 		goto error;
- 	}
- 
--	dc_hardware_init(adev->dm.dc);
--
- 	r = dm_dmub_hw_init(adev);
- 	if (r) {
- 		DRM_ERROR("DMUB interface failed to initialize: status=%d\n", r);
- 		goto error;
- 	}
- 
-+	dc_hardware_init(adev->dm.dc);
-+
- 	adev->dm.freesync_module = mod_freesync_create(adev->dm.dc);
- 	if (!adev->dm.freesync_module) {
- 		DRM_ERROR(
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+index e7a44df676ca..2875efd85467 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+@@ -763,8 +763,8 @@ struct vba_vars_st {
+ 	double SwathWidthC[DC__NUM_DPP__MAX];
+ 	unsigned int BytePerPixelY[DC__NUM_DPP__MAX];
+ 	unsigned int BytePerPixelC[DC__NUM_DPP__MAX];
+-	long dummyinteger1;
+-	long dummyinteger2;
++	unsigned int dummyinteger1;
++	unsigned int dummyinteger2;
+ 	double FinalDRAMClockChangeLatency;
+ 	double Tdmdl_vm[DC__NUM_DPP__MAX];
+ 	double Tdmdl[DC__NUM_DPP__MAX];
 -- 
 2.17.1
 
