@@ -1,98 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B86713D74E
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 11:01:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CEE313D8DB
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 12:21:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 473C56E218;
-	Thu, 16 Jan 2020 10:01:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBA026ECA5;
+	Thu, 16 Jan 2020 11:21:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2080.outbound.protection.outlook.com [40.107.244.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9AE76E218
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 10:01:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JydZMZnarxuHq1+s2DvodPO5Epn1L3zEgjugPSmCy18NakT2Uveo5OZ8lIBUg4BKcDqEndPny4M82xKbaVlEi/F7q5TD7ejZYGFpJ+GOLIBRRLX7x4Y13/Ht/z9MjSHLyQ8QoTkWfuWYV6LXW6mOQ8iBlXTpE+kcgTVRBqMbflYkwNyQsj8Vp3/chfNTcF+VmOdLtKh1JF0vARRyKZnCIWVJYGk/uoO08Va4XFaxVXVcKxA2Lv0Kn9uRVsNELFerM2anFy399vo2mtM2rQo37PxnHc9aJAJEFBqQT/2JhIDPJl1Rse1j7W6W8Gc3khzCX3FMqu/pEKQSKlb+3SVtuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h4carQZLbOvQqucOYhS75Nd8bF0Ffib1L55/lUz+yAw=;
- b=mTCadwTKE1RKJquqIxKO3B86l5yG7gKhxpj48y3ElzRJP6CldKbfxG3BFlZjVU1xqxY7iba7Z0q31LD0tPVj/rV9z5CADSsYWcGvjye1zaVcx0yRCtGSFwpw8kGAP5kiR/jMakiSaAAMHdEIf3FiuxW49Vbd4h+drqyo7v/kqvgrNtt6pajL5X10BjTnIsInaDcYWXWo1aaKkM7MR0I9r83ePIR1CNAR5M8isPSNRXqwLR7tT3eE4OmUVwXN05m97K9D8gPdqN9COF0MDYvHOx1wayTZlAzh7Tj3vfF/eQfm2xeMAp6haf0fsq8UkJ60MUc1O/Snp75gl1EvD6d4dg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h4carQZLbOvQqucOYhS75Nd8bF0Ffib1L55/lUz+yAw=;
- b=deP9ihZMrkaDkqSjD3cCrs+UbTrZxM/DVAHza0O4CvbGuD4CR6FEn+oC5vglCBp71hM6eg42h9Y/JlgERuDyf96TeQoZbGNGwlQChbfXSDNzmp6T32XI57kjl6iKqx/ErO9R5Q2YA0nRZRDfAX9PtzDvCQ2u5pK1/tKEgOWDnMk=
-Received: from CY4PR1201CA0013.namprd12.prod.outlook.com
- (2603:10b6:910:16::23) by DM6PR12MB2796.namprd12.prod.outlook.com
- (2603:10b6:5:50::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2623.16; Thu, 16 Jan
- 2020 10:01:06 +0000
-Received: from DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eaa::209) by CY4PR1201CA0013.outlook.office365.com
- (2603:10b6:910:16::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.19 via Frontend
- Transport; Thu, 16 Jan 2020 10:01:06 +0000
-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- DM6NAM11FT003.mail.protection.outlook.com (10.13.173.162) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2644.19 via Frontend Transport; Thu, 16 Jan 2020 10:01:05 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
- 2020 04:01:05 -0600
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
- 2020 04:01:04 -0600
-Received: from gc-System-Product-Name.amd.com (10.180.168.240) by
- SATLEXMB01.amd.com (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5
- via Frontend Transport; Thu, 16 Jan 2020 04:01:04 -0600
-From: chen gong <curry.gong@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amdgpu: read gfx register using RREG32_KIQ macro
-Date: Thu, 16 Jan 2020 18:00:56 +0800
-Message-ID: <1579168856-6437-3-git-send-email-curry.gong@amd.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1579168856-6437-1-git-send-email-curry.gong@amd.com>
-References: <1579168856-6437-1-git-send-email-curry.gong@amd.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3192F6ECA5;
+ Thu, 16 Jan 2020 11:21:30 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 03:21:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,326,1574150400"; d="scan'208";a="243243120"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 16 Jan 2020 03:21:22 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 16 Jan 2020 13:21:21 +0200
+Date: Thu, 16 Jan 2020 13:21:21 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH v2 03/21] drm: Add get_vblank_timestamp() to
+ struct drm_crtc_funcs
+Message-ID: <20200116112121.GE13686@intel.com>
+References: <20200115121652.7050-1-tzimmermann@suse.de>
+ <20200115121652.7050-4-tzimmermann@suse.de>
+ <20200115144938.GA13686@intel.com>
+ <5ce4974a-8a56-3827-f4a0-b5f74979ef4e@suse.de>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(396003)(136003)(39860400002)(428003)(199004)(189003)(356004)(7696005)(6666004)(336012)(6916009)(426003)(5660300002)(70586007)(36756003)(316002)(86362001)(2906002)(26005)(81156014)(81166006)(478600001)(8936002)(2616005)(8676002)(186003)(70206006)(4326008);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB2796; H:SATLEXMB02.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b830edf7-59ed-402b-9f86-08d79a6b0095
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2796:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB2796EB309E5ADDD1C1DD2F339D360@DM6PR12MB2796.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1443;
-X-Forefront-PRVS: 02843AA9E0
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kt+c7h9WXUeJ8gtRrTWmnfQnUstVmT5CcOHMa+MEWOaEzbRDU0769j2HksRujPxDZpxeIBvjd5XnVtEoLqItYtsALj8orchpH5YmPihfTJ2HMcQ3fxySaQz47qkUga8lzaXEVjFRg1ZO1nlCt63G3eH/kc4uq7Bs3VZw0lIPP6ZpLrB8sOeke2vCWb7rdSJ/A8nBlLX5ZCmWn9VUL9E59G6setWgyGJAJML5BYNUFfDkiHg1VXEs9u/uNIx5Rts8T7Ae4hbV+d4E7jywakJCZkgKJorIXRPY2AdgnnsYl1e94LQ28ygw+s91N3NOE1GPNiqCt9FTcDxR+wwwMgkKNmcJftGhmOPuOSdSw7y6lxs9uaU0kG6YVMIbUZCEJsOOtLhlNn7PsPT++PNwJVKPXB2ou/cLSElMD3Ay1wkuVUAxmA0O2n8AiofRsQHXscTx
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 10:01:05.7356 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b830edf7-59ed-402b-9f86-08d79a6b0095
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2796
+Content-Disposition: inline
+In-Reply-To: <5ce4974a-8a56-3827-f4a0-b5f74979ef4e@suse.de>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,65 +50,327 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chen gong <curry.gong@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: hamohammed.sa@gmail.com, airlied@linux.ie, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, thellstrom@vmware.com, sean@poorly.run,
+ amd-gfx@lists.freedesktop.org, linux-graphics-maintainer@vmware.com,
+ bskeggs@redhat.com, alexandre.torgue@st.com, sunpeng.li@amd.com,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, vincent.abriou@st.com, rodrigosiqueiramelo@gmail.com,
+ philippe.cornu@st.com, yannick.fertre@st.com, mcoquelin.stm32@gmail.com,
+ alexander.deucher@amd.com, freedreno@lists.freedesktop.org,
+ christian.koenig@amd.com
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reading CP_MEM_SLP_CNTL register with RREG32_SOC15 macro will lead to
-hang when GPU is in "gfxoff" state.
-I do a uniform substitution here.
+On Thu, Jan 16, 2020 at 09:44:55AM +0100, Thomas Zimmermann wrote:
+> Hi
+> =
 
-Signed-off-by: chen gong <curry.gong@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+> Am 15.01.20 um 15:49 schrieb Ville Syrj=E4l=E4:
+> > On Wed, Jan 15, 2020 at 01:16:34PM +0100, Thomas Zimmermann wrote:
+<snip>
+> >> @@ -2020,3 +2042,193 @@ int drm_crtc_queue_sequence_ioctl(struct drm_d=
+evice *dev, void *data,
+> >>  	kfree(e);
+> >>  	return ret;
+> >>  }
+> >> +
+> >> +/*
+> >> + * Helpers for struct drm_crtc_funcs
+> >> + */
+> >> +
+> >> +/**
+> >> + * drm_crtc_vblank_helper_get_vblank_timestamp_internal - precise vbl=
+ank
+> >> + *                                                        timestamp h=
+elper
+> >> + * @dev: DRM device
+> >> + * @pipe: index of CRTC whose vblank timestamp to retrieve
+> >> + * @max_error: Desired maximum allowable error in timestamps (nanosec=
+s)
+> >> + *             On return contains true maximum error of timestamp
+> >> + * @vblank_time: Pointer to time which should receive the timestamp
+> >> + * @in_vblank_irq:
+> >> + *     True when called from drm_crtc_handle_vblank().  Some drivers
+> >> + *     need to apply some workarounds for gpu-specific vblank irq qui=
+rks
+> >> + *     if flag is set.
+> >> + * @get_scanout_position:
+> >> + *     Callback function to retrieve the scanout position. See
+> >> + *     @struct drm_crtc_helper_funcs.get_scanout_position.
+> >> + *
+> >> + * Implements calculation of exact vblank timestamps from given drm_d=
+isplay_mode
+> >> + * timings and current video scanout position of a CRTC.
+> >> + *
+> >> + * The current implementation only handles standard video modes. For =
+double scan
+> >> + * and interlaced modes the driver is supposed to adjust the hardware=
+ mode
+> >> + * (taken from &drm_crtc_state.adjusted mode for atomic modeset drive=
+rs) to
+> >> + * match the scanout position reported.
+> >> + *
+> >> + * Note that atomic drivers must call drm_calc_timestamping_constants=
+() before
+> >> + * enabling a CRTC. The atomic helpers already take care of that in
+> >> + * drm_atomic_helper_update_legacy_modeset_state().
+> >> + *
+> >> + * Returns:
+> >> + *
+> >> + * Returns true on success, and false on failure, i.e. when no accura=
+te
+> >> + * timestamp could be acquired.
+> >> + */
+> >> +bool
+> >> +drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+> >> +	struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
+> >> +	bool in_vblank_irq,
+> >> +	bool (*get_scanout_position)(struct drm_crtc *crtc,
+> >> +                                     bool in_vblank_irq, int *vpos, i=
+nt *hpos,
+> >> +                                     ktime_t *stime, ktime_t *etime,
+> >> +                                     const struct drm_display_mode *m=
+ode))
+> >> +{
+> >> +	struct drm_device *dev =3D crtc->dev;
+> >> +	unsigned int pipe =3D crtc->index;
+> >> +	struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
+> >> +	struct timespec64 ts_etime, ts_vblank_time;
+> >> +	ktime_t stime, etime;
+> >> +	bool vbl_status;
+> >> +	const struct drm_display_mode *mode;
+> >> +	int vpos, hpos, i;
+> >> +	int delta_ns, duration_ns;
+> >> +
+> >> +	if (pipe >=3D dev->num_crtcs) {
+> >> +		DRM_ERROR("Invalid crtc %u\n", pipe);
+> >> +		return false;
+> >> +	}
+> >> +
+> >> +	/* Scanout position query not supported? Should not happen. */
+> >> +	if (!get_scanout_position) {
+> >> +		DRM_ERROR("Called from CRTC w/o get_scanout_position()!?\n");
+> >> +		return false;
+> >> +	}
+> >> +
+> >> +	if (drm_drv_uses_atomic_modeset(dev))
+> >> +		mode =3D &vblank->hwmode;
+> >> +	else
+> >> +		mode =3D &crtc->hwmode;
+> >> +
+> >> +	/* If mode timing undefined, just return as no-op:
+> >> +	 * Happens during initial modesetting of a crtc.
+> >> +	 */
+> >> +	if (mode->crtc_clock =3D=3D 0) {
+> >> +		DRM_DEBUG("crtc %u: Noop due to uninitialized mode.\n", pipe);
+> >> +		WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev));
+> >> +		return false;
+> >> +	}
+> >> +
+> >> +	/* Get current scanout position with system timestamp.
+> >> +	 * Repeat query up to DRM_TIMESTAMP_MAXRETRIES times
+> >> +	 * if single query takes longer than max_error nanoseconds.
+> >> +	 *
+> >> +	 * This guarantees a tight bound on maximum error if
+> >> +	 * code gets preempted or delayed for some reason.
+> >> +	 */
+> >> +	for (i =3D 0; i < DRM_TIMESTAMP_MAXRETRIES; i++) {
+> >> +		/*
+> >> +		 * Get vertical and horizontal scanout position vpos, hpos,
+> >> +		 * and bounding timestamps stime, etime, pre/post query.
+> >> +		 */
+> >> +		vbl_status =3D get_scanout_position(crtc, in_vblank_irq, &vpos,
+> >> +						  &hpos, &stime, &etime, mode);
+> >> +
+> >> +		/* Return as no-op if scanout query unsupported or failed. */
+> >> +		if (!vbl_status) {
+> >> +			DRM_DEBUG("crtc %u : scanoutpos query failed.\n",
+> >> +				  pipe);
+> >> +			return false;
+> >> +		}
+> >> +
+> >> +		/* Compute uncertainty in timestamp of scanout position query. */
+> >> +		duration_ns =3D ktime_to_ns(etime) - ktime_to_ns(stime);
+> >> +
+> >> +		/* Accept result with <  max_error nsecs timing uncertainty. */
+> >> +		if (duration_ns <=3D *max_error)
+> >> +			break;
+> >> +	}
+> >> +
+> >> +	/* Noisy system timing? */
+> >> +	if (i =3D=3D DRM_TIMESTAMP_MAXRETRIES) {
+> >> +		DRM_DEBUG("crtc %u: Noisy timestamp %d us > %d us [%d reps].\n",
+> >> +			  pipe, duration_ns/1000, *max_error/1000, i);
+> >> +	}
+> >> +
+> >> +	/* Return upper bound of timestamp precision error. */
+> >> +	*max_error =3D duration_ns;
+> >> +
+> >> +	/* Convert scanout position into elapsed time at raw_time query
+> >> +	 * since start of scanout at first display scanline. delta_ns
+> >> +	 * can be negative if start of scanout hasn't happened yet.
+> >> +	 */
+> >> +	delta_ns =3D div_s64(1000000LL * (vpos * mode->crtc_htotal + hpos),
+> >> +			   mode->crtc_clock);
+> >> +
+> >> +	/* Subtract time delta from raw timestamp to get final
+> >> +	 * vblank_time timestamp for end of vblank.
+> >> +	 */
+> >> +	*vblank_time =3D ktime_sub_ns(etime, delta_ns);
+> >> +
+> >> +	if (!drm_debug_enabled(DRM_UT_VBL))
+> >> +		return true;
+> >> +
+> >> +	ts_etime =3D ktime_to_timespec64(etime);
+> >> +	ts_vblank_time =3D ktime_to_timespec64(*vblank_time);
+> >> +
+> >> +	DRM_DEBUG_VBL("crtc %u : v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d =
+us, %d rep]\n",
+> >> +		      pipe, hpos, vpos,
+> >> +		      (u64)ts_etime.tv_sec, ts_etime.tv_nsec / 1000,
+> >> +		      (u64)ts_vblank_time.tv_sec, ts_vblank_time.tv_nsec / 1000,
+> >> +		      duration_ns / 1000, i);
+> >> +
+> >> +	return true;
+> >> +}
+> >> +EXPORT_SYMBOL(drm_crtc_vblank_helper_get_vblank_timestamp_internal);
+> > =
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index d9d7ee9..03f4dbe 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -4717,12 +4717,12 @@ static void gfx_v9_0_get_clockgating_state(void *handle, u32 *flags)
- 		*flags = 0;
- 
- 	/* AMD_CG_SUPPORT_GFX_MGCG */
--	data = RREG32_SOC15(GC, 0, mmRLC_CGTT_MGCG_OVERRIDE);
-+	data = RREG32_KIQ(SOC15_REG_OFFSET(GC, 0, mmRLC_CGTT_MGCG_OVERRIDE));
- 	if (!(data & RLC_CGTT_MGCG_OVERRIDE__GFXIP_MGCG_OVERRIDE_MASK))
- 		*flags |= AMD_CG_SUPPORT_GFX_MGCG;
- 
- 	/* AMD_CG_SUPPORT_GFX_CGCG */
--	data = RREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL);
-+	data = RREG32_KIQ(SOC15_REG_OFFSET(GC, 0, mmRLC_CGCG_CGLS_CTRL));
- 	if (data & RLC_CGCG_CGLS_CTRL__CGCG_EN_MASK)
- 		*flags |= AMD_CG_SUPPORT_GFX_CGCG;
- 
-@@ -4731,18 +4731,18 @@ static void gfx_v9_0_get_clockgating_state(void *handle, u32 *flags)
- 		*flags |= AMD_CG_SUPPORT_GFX_CGLS;
- 
- 	/* AMD_CG_SUPPORT_GFX_RLC_LS */
--	data = RREG32_SOC15(GC, 0, mmRLC_MEM_SLP_CNTL);
-+	data = RREG32_KIQ(SOC15_REG_OFFSET(GC, 0, mmRLC_MEM_SLP_CNTL));
- 	if (data & RLC_MEM_SLP_CNTL__RLC_MEM_LS_EN_MASK)
- 		*flags |= AMD_CG_SUPPORT_GFX_RLC_LS | AMD_CG_SUPPORT_GFX_MGLS;
- 
- 	/* AMD_CG_SUPPORT_GFX_CP_LS */
--	data = RREG32_SOC15(GC, 0, mmCP_MEM_SLP_CNTL);
-+	data = RREG32_KIQ(SOC15_REG_OFFSET(GC, 0, mmCP_MEM_SLP_CNTL));
- 	if (data & CP_MEM_SLP_CNTL__CP_MEM_LS_EN_MASK)
- 		*flags |= AMD_CG_SUPPORT_GFX_CP_LS | AMD_CG_SUPPORT_GFX_MGLS;
- 
- 	if (adev->asic_type != CHIP_ARCTURUS) {
- 		/* AMD_CG_SUPPORT_GFX_3D_CGCG */
--		data = RREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL_3D);
-+		data = RREG32_KIQ(SOC15_REG_OFFSET(GC, 0, mmRLC_CGCG_CGLS_CTRL_3D));
- 		if (data & RLC_CGCG_CGLS_CTRL_3D__CGCG_EN_MASK)
- 			*flags |= AMD_CG_SUPPORT_GFX_3D_CGCG;
- 
--- 
-2.7.4
+> > This looks like copy paste from the current thing. Why are you =
 
+> > duplicating the entire function instead of refactoring what
+> > we already have?
+> =
+
+> It is copied with a small difference.
+> =
+
+> The original function is drm_calc_vbltimestamp_from_scanoutpos(). It
+> uses either drm_driver.get_scanout_position() or
+> drm_crtc_helper_funcs.get_scanout_position(). The former receives device
+> pointer and pipe index, the latter receives a pointer to a crtc. (see
+> patch 1)
+> =
+
+> This function, drm_crtc_vblank_helper_get_vblank_timestamp_internal(),
+> receives a get_scanout_position() as its argument with the same
+> signature as drm_crtc_helper_funcs.get_scanout_position().
+> =
+
+> The function is exported, so that i915 can use the algorithm and provide
+> it's own implementation of get_scanout_position(). i915 does not use
+> CRTC helpers, and therefore cannot set get_scanout_position() there.
+> =
+
+> Patch 21, when all drivers have been converted to use the CRTC
+> interface, removes drm_calc_vbltimestamp_from_scanoutpos() entirely.
+> It's only kept around for transitionng the driver over to the new interfa=
+ce.
+
+All that means reviewing is going to be a bit of a pain. Also the
+history will become more annoying to dig through. Eg. git blame
+can't help us anymore, and when looking through git log one can't
+see the old name of the function from the patch context so need to
+either guess or trawl the logs blindly looking for a similar looking
+function.
+
+So would definitely appreciate if you can find a way to refactor this
+properly.
+
+<snip>
+> >>  	struct drm_display_mode hwmode;
+> >> @@ -238,4 +238,22 @@ void drm_calc_timestamping_constants(struct drm_c=
+rtc *crtc,
+> >>  wait_queue_head_t *drm_crtc_vblank_waitqueue(struct drm_crtc *crtc);
+> >>  void drm_crtc_set_max_vblank_count(struct drm_crtc *crtc,
+> >>  				   u32 max_vblank_count);
+> >> +
+> >> +/*
+> >> + * Helpers for struct drm_crtc_funcs
+> >> + */
+> >> +
+> >> +bool
+> >> +drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+> >> +	struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
+> >> +	bool in_vblank_irq,
+> >> +	bool (*get_scanout_position)(struct drm_crtc *crtc,
+> >> +                                     bool in_vblank_irq, int *vpos, i=
+nt *hpos,
+> >> +                                     ktime_t *stime, ktime_t *etime,
+> >> +                                     const struct drm_display_mode *m=
+ode));
+> > =
+
+> > Ugly alignment. Could maybe add a typedef for the function pointer if it
+> > otherwise gets super horrible with proper alignment.
+> =
+
+> Email formatting might add to the ugliness here.
+> =
+
+> How would this be aligned properly?
+
+Function arguments should be aligned after the '('.
+
+> =
+
+> I'm slightly reluctent to add a typedef for only this single function
+> and it's caller in i915. Typedefs are a form of code obfuscation IMHO.
+> But if that's the way to go, I won't mind of course.
+
+Yeah, I generally avoid them too. But I tend to have a few exceptions:
+a) when the funciton pointer has to be stuffed into multiple places
+b) exactly this case where the function signature is a horrible
+   mess and it has to be passed to a function
+
+> =
+
+> Best regards
+> Thomas
+> =
+
+> > =
+
+> >> +bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crt=
+c,
+> >> +						 int *max_error,
+> >> +						 ktime_t *vblank_time,
+> >> +						 bool in_vblank_irq);
+> >> +
+> >>  #endif
+> >> -- =
+
+> >> 2.24.1
+> >>
+> >> _______________________________________________
+> >> Intel-gfx mailing list
+> >> Intel-gfx@lists.freedesktop.org
+> >> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > =
+
+> =
+
+> -- =
+
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+> (HRB 36809, AG N=FCrnberg)
+> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+> =
+
+
+
+
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
