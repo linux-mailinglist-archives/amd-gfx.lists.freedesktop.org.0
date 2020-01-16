@@ -2,89 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED3E613E548
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 18:13:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F185013E78B
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 18:27:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 715566EE20;
-	Thu, 16 Jan 2020 17:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F3E36EE41;
+	Thu, 16 Jan 2020 17:27:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-cys01nam02on0611.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe45::611])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D1256EE20
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 17:13:56 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2060.outbound.protection.outlook.com [40.107.244.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0F5B6EE40
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 17:27:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hOSW+nDw01iCF64wmw3lqisfGqRa7QFk1n5J3yRAmmflh+reHEecyPeMbDFlKNtBX32vQy7VyVSuNh/6aFtbkPq4i6ZDLzhKi3IKmQk/Iw1niR0xj93MuNmhsxPmNU4J+HmtDJHuEWjL6rDO3IGQZZmUpdcE9B5LE7n53Z6d1xT2h3DMEazACEcNOHHPEFuUxVW8gir9WyBLIaNdfjKQ4RHejMAIoEKA3euX5T3ypxGek7R4C0Xm1uuDAxN2rg/qXEcVWLQ5Sep0OTOck7YAFe7vVLcNwZbdQxIoJWVjuBhjwInqqENAndQ84ZP/juMoLRpUmUXESCPZwfLWnx2wBg==
+ b=EoRfkOFVSLlS66wAVlff0eSXfqqIBvo3fBdyP08SwPsB+wqsjW6NsRKuuZ4hkD3ddqP9GPHxrhRpZijy3e33xQVZdNopDiNuFUP9lEt6JTdhptofP6NVag9INb2lKZurKsHERliZy06CJ5gLcGH2pM8J/rMy+WVMblQhY0uBak1tilXzHItgsl0VP04hZTf4AH5LUr4xwvNJK5Zqicd/iaGjjxcXHwutSkArNA+WV2BQe308NfaURgj1gi8WJPZg1o3fB3IDiWtCeoCZBDHHRvWQb6e1q9KWxfyEAmKhkFPtLmrrPpvYwaAoBr9AjkIGUGVUnq9DmMiomBQJhx3RfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ag8PY5QWmPmvHg2PXNsUB1UGsSPMYexoscu1S4vSKsI=;
- b=azAWbmb4qYJWIF/AxD6yppavnYY4GSQETtGILXQMdSt/2LeO1BZZz5X7q20+nkyxZTWy6sOq2xvI3gowL8Xdgf9+kOSrnMmhV+mk2PwAfXruf+4IYx5fSHqL8SdMv+eOtFrP+zR8D/Zdpqf/bOzZGVlcfrj/IohSXBW41O8V7qhPqMtHbd2Io/m5ZuklzEzLmnVX0KzX/cfY6uUl9QMd+QzuYe5Oz65gISDNAg4PSP4TkuRIa0QgVUoq0MKrWoshqfXu2h42xxW9kwBiR47eUcnUamLpqtwD+4VedQzfKNj9BSHxa7GVnnOtPSh1kpSotk7GbxyZdnTvuLDc9On/QQ==
+ bh=76QJ+zxfZ6tHsB+S/wFPdh6aWFvV7VelORxIXDeFFIY=;
+ b=ZLmcZnZNanVv2U5KMbJgZ3teIqzVRmUdxGyxQLZUVBALnD9NvTBDvnuHJZq0kkiq3VhQyczNKAC9mr0n/yG6BhHVQvl63h+6ZNkEVt9A6WYAAg/piPi7sSEQ/YNmkuC1wSZaod0oYQr9a/vgUBasQiVX4T92YU/dxnsFLt/6TkYfh3ydBBsfRx/CDsWOS7jxU2hIn+QOVJOwjD0dTQg5W7kBuoisDUnH90Hr8DO6Diw5f1GvuBMV643Tx5knTXjyVhMNx9jQpyApIUwkfFryb/vdN0uueNVEvxh++vOCN5TlYbsD2BKOkLnRhJbk5+qJSqQSn5WUd5INB4gPGb/JlA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ag8PY5QWmPmvHg2PXNsUB1UGsSPMYexoscu1S4vSKsI=;
- b=xfdZcbV3Amr/su9Sa+OweVYFrZ66jSplgOqQ07iteWadmMBSSa80eqQQvn0xzIMnNcD0k7bpKKcFCpEp31/3UEd7QGMtsTrjTFB2t+4tU7Ym385kSFt9DIuZQvRQYNOlF43BSahT9nTlJBIVjwdqQSvXb8eEIrj0vO6mijWXjp0=
+ bh=76QJ+zxfZ6tHsB+S/wFPdh6aWFvV7VelORxIXDeFFIY=;
+ b=BWTC50E23uekz6J4LWOs6ikcjKWo/0TZiwopCaLnhQvJu5BnpdYqzqeD8zMeLax5hCr8t1uaLSiv3OSHJKNefUsZZqgtQKh9iW6C2Sy/j8H/1M5XGOgNqFAMa/XMHF3UeqeVCQA0wuQEWAzDI/KWPLJpCFUfm2vbK3Cc1w2ifKw=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Luben.Tuikov@amd.com; 
 Received: from DM6PR12MB3355.namprd12.prod.outlook.com (20.178.29.90) by
- DM6PR12MB3499.namprd12.prod.outlook.com (20.178.31.148) with Microsoft SMTP
+ DM6PR12MB3772.namprd12.prod.outlook.com (10.255.172.140) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.8; Thu, 16 Jan 2020 17:13:54 +0000
+ 15.20.2623.9; Thu, 16 Jan 2020 17:27:15 +0000
 Received: from DM6PR12MB3355.namprd12.prod.outlook.com
  ([fe80::799b:b372:6589:c8a]) by DM6PR12MB3355.namprd12.prod.outlook.com
  ([fe80::799b:b372:6589:c8a%7]) with mapi id 15.20.2623.015; Thu, 16 Jan 2020
- 17:13:54 +0000
-Subject: Re: [PATCH] drm/scheduler: fix documentation by replacing rq_list
- with sched_list
-To: Nirmoy Das <nirmoy.aiemd@gmail.com>, amd-gfx@lists.freedesktop.org
-References: <20200116144320.109044-1-nirmoy.das@amd.com>
+ 17:27:15 +0000
+Subject: Re: [PATCH] drm/amdgpu: attempt to enable gfxoff on more raven1 boards
+To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
+References: <20200115173139.1392429-1-alexander.deucher@amd.com>
 From: Luben Tuikov <luben.tuikov@amd.com>
-Message-ID: <cec773a9-8040-ee55-c73b-f7165a117696@amd.com>
-Date: Thu, 16 Jan 2020 12:13:51 -0500
+Message-ID: <122fd08d-2881-f45a-183a-9190db93192d@amd.com>
+Date: Thu, 16 Jan 2020 12:27:13 -0500
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
-In-Reply-To: <20200116144320.109044-1-nirmoy.das@amd.com>
+In-Reply-To: <20200115173139.1392429-1-alexander.deucher@amd.com>
 Content-Language: en-CA
-X-ClientProxiedBy: YT1PR01CA0029.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::42)
- To DM6PR12MB3355.namprd12.prod.outlook.com
+X-ClientProxiedBy: YTXPR0101CA0033.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00::46) To DM6PR12MB3355.namprd12.prod.outlook.com
  (2603:10b6:5:115::26)
 MIME-Version: 1.0
 Received: from [192.168.1.2] (108.162.131.176) by
- YT1PR01CA0029.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::42) with Microsoft
+ YTXPR0101CA0033.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::46) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2644.20 via Frontend Transport; Thu, 16 Jan 2020 17:13:53 +0000
+ 15.20.2644.20 via Frontend Transport; Thu, 16 Jan 2020 17:27:15 +0000
 X-Originating-IP: [108.162.131.176]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 069ce196-0c3b-4bbe-b322-08d79aa7771b
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3499:|DM6PR12MB3499:
+X-MS-Office365-Filtering-Correlation-Id: ba8c2097-9fde-4aed-4837-08d79aa95463
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3772:|DM6PR12MB3772:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB349927FC90BD9B91ED371AC699360@DM6PR12MB3499.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB377298DE87A1F387F03DAD5799360@DM6PR12MB3772.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-Forefront-PRVS: 02843AA9E0
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(366004)(376002)(346002)(396003)(39860400002)(199004)(189003)(26005)(55236004)(5660300002)(36756003)(53546011)(16526019)(186003)(52116002)(2906002)(956004)(66946007)(66476007)(66556008)(2616005)(86362001)(31696002)(8676002)(8936002)(81156014)(81166006)(478600001)(4326008)(44832011)(31686004)(16576012)(6486002)(316002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3499;
+ SFS:(10009020)(4636009)(396003)(136003)(346002)(376002)(39860400002)(366004)(199004)(189003)(66946007)(478600001)(2616005)(956004)(966005)(36756003)(26005)(186003)(4326008)(55236004)(16526019)(66556008)(66476007)(53546011)(5660300002)(2906002)(31686004)(8676002)(52116002)(16576012)(31696002)(86362001)(45080400002)(6486002)(44832011)(81156014)(81166006)(316002)(8936002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3772;
  H:DM6PR12MB3355.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: u/k3JYUBmBOdu9YZpPYuQbYiSuh4jVanMmpi4PwLQg+0ztinpO0hoiJ/K6ETUCHkmBixcdjyROy5+rxwXxwfNNIv2aw4R5REFFo8yjl5C92YFk630cJdkkKk2h44UPaPyRAPkwohv56nGi0yGJIGmJWEg1fPi637qf+cu6k+1wa20zV/OHgd9eqoiCEIMFAAVurfRKxgDsK08b5A2c40e8IhEzFcT3Z6E7wZirFdXs50eoEh484UyXc5RLZEc25oYBs27t/W0S70AVCaV873GxEU9Kx3MJ2+Q7KogQho6m7DwpI/fMfSvTV8LvEG2Xk5gu/hknCbndtEpCAWphgCiG9pqkZXcCqyQhpcBDZUbyb+Dq1cbjarqUAxMVr5r1mN0aGkJGYfi6ACILAGAPYGeQ+PdLdG92EG/2YEiw9jshdVMclDV0svfxqE4VkRa3V3
+X-Microsoft-Antispam-Message-Info: /yRaNeONbAY/wgnj8tET3NKKcyYAhzRNl+V/R+K3FJIiOHstP+vErPYJgxPQ1SlUklLr34Z2OB1wVFEKbD86tp2YBOLW4pQXZrCkFmLaorzYNdbBFeZeiDBB64DLQH/7W845hDMBftKMk0jnK3akBWnIoNEcrmvtgR/WPGiJ1+i4TbAOj9Llpqzs1+VuBiLL0/tBB4N9FmU8CsSFRZSsITd7OVEOgQgMoQ9gHKMBSg2dNgMXQYCl7YBUo9TWKzGdlc9lUGHONjpNbQAwzPoJg9w+rUVXMALDCUpNUgH/2VHZ1jHoLjVq8V5xLty8tsaYLB78k8i+7sbAP16lq2jUJeCN/nJuiiA0/ZS0W/BdlUNaeCdfPEI8pxFzAFQknid+/GxggAQjPqFaK637Pmf5Ppl8wvLkbsxtns8HSayHWM3Jg5pqyX9muwlnOXMwK2EYeVs8ow/Vd3qkqiqrgUzzHyYrxWmz8OADGCGk5iiiZEQf0+J7aqQfriSYw+6GMx2n5fYoPsip9mXUrlm8ips3CQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 069ce196-0c3b-4bbe-b322-08d79aa7771b
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 17:13:54.7273 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ba8c2097-9fde-4aed-4837-08d79aa95463
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 17:27:15.4836 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zboRexJXh6aaIyP+NwdLftkgxw++txRBmgl+jgITB+Sgas+j7lD7ZeB6c7an7e9a
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3499
+X-MS-Exchange-CrossTenant-UserPrincipalName: CmNy1rzlpjEBJMSIEWLqqubSS21ChWwkscQhJwOSMOQLszNfJ+pn9St98f+I1/vB
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3772
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,85 +94,108 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, nirmoy.das@amd.com, christian.koenig@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2020-01-16 09:43, Nirmoy Das wrote:
-> This also replaces old artifacts with a correct one in drm_sched_entity_init()
-> declaration
+On 2020-01-15 12:31, Alex Deucher wrote:
+> Switch to a blacklist so we can disable specific boards
+> that are problematic.
 > 
-> Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 > ---
->  drivers/gpu/drm/scheduler/sched_entity.c |  2 +-
->  include/drm/gpu_scheduler.h              | 10 +++++-----
->  2 files changed, 6 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 42 ++++++++++++++++++++++++---
+>  1 file changed, 38 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-> index 33e2cd1089a2..ec79e8e5ad3c 100644
-> --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> @@ -45,7 +45,7 @@
->   * @guilty: atomic_t set to 1 when a job on this queue
->   *          is found to be guilty causing a timeout
->   *
-> - * Note: the rq_list should have atleast one element to schedule
-> + * Note: the sched_list should have atleast one element to schedule
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> index e3d466bd5c4e..b48b07bcd0fb 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> @@ -1031,6 +1031,37 @@ static void gfx_v9_0_check_fw_write_wait(struct amdgpu_device *adev)
+>  	}
+>  }
+>  
+> +struct amdgpu_gfxoff_quirk {
+> +	u16 chip_vendor;
+> +	u16 chip_device;
+> +	u16 subsys_vendor;
+> +	u16 subsys_device;
+> +	u8 revision;
+> +};
+> +
+> +static const struct amdgpu_gfxoff_quirk amdgpu_gfxoff_quirk_list[] = {
+> +	/* https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fbugzilla.kernel.org%2Fshow_bug.cgi%3Fid%3D204689&amp;data=02%7C01%7Cluben.tuikov%40amd.com%7C683669e5a2c74bcbbc9108d799e0cda4%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637147063903364365&amp;sdata=UL9SCKI7OchzK6a27AxkjrpeLNw%2BWH5DmpWGKutCI4A%3D&amp;reserved=0 */
+> +	{ 0x1002, 0x15dd, 0x1002, 0x15dd, 0xc8 },
+> +	{ 0, 0, 0, 0, 0 },
+> +};
+> +
+> +static bool gfx_v9_0_raven_check_disable_gfxoff(struct pci_dev *pdev)
+> +{
+> +	const struct amdgpu_gfxoff_quirk *p = amdgpu_gfxoff_quirk_list;
+> +
+> +	while (p && p->chip_device != 0) {
 
-"atleast" --> "at least".
+Maybe a "for" loop would make it compact?
 
->   *       the entity
->   *
->   * Returns 0 on success or a negative error code on failure.
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index 537f7a4655a5..9e71be129c30 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -52,9 +52,9 @@ enum drm_sched_priority {
->   * @list: used to append this struct to the list of entities in the
->   *        runqueue.
->   * @rq: runqueue on which this entity is currently scheduled.
-> - * @rq_list: a list of run queues on which jobs from this entity can
-> - *           be scheduled
-> - * @num_rq_list: number of run queues in the rq_list
-> + * @sched_list: a list of drm_gpu_schedulers on which jobs from this entity can
-> + *              be scheduled
+for ( ; p && p->chip_device != 0; p++) {
+	if (pdev->vendor == p->chip_vendor &&
+	    pdev->device == p->chip_device &&
+	    pdev->subsystem_vendor == p->subsys_vendor &&
+	    pdev->subsystem_device == p->subsys_device &&
+	    pdev->revision == p->revision) {
+		return true;
+	}
+}
 
-I had to read this a few times to understand it. I wonder if splitting
-it into two sentences would make it clearer:
+I wonder if the structure "amdgpu_gfxoff_quirk" which stores
+device ID information can be named something more generic, (struct device_id?)
+and also used in "pdev"? (Reuse the struct.)
 
-"A list of schedulers (drm_gpu_schedulers). Jobs from this entity,
- can be scheduled on any scheduler on this list."
+Then we'd only compare structs:
+
+for ( ; p && p->chip_device != 0; p++) {
+	if (pdev->dev_id == *p)
+		return true;
+}
 
 Regards,
 Luben
 
-
-> + * @num_sched_list: number of drm_gpu_schedulers in the sched_list.
->   * @rq_lock: lock to modify the runqueue to which this entity belongs.
->   * @job_queue: the list of jobs of this entity.
->   * @fence_seq: a linearly increasing seqno incremented with each
-> @@ -81,8 +81,8 @@ enum drm_sched_priority {
->  struct drm_sched_entity {
->  	struct list_head		list;
->  	struct drm_sched_rq		*rq;
-> -	unsigned int                    num_sched_list;
->  	struct drm_gpu_scheduler        **sched_list;
-> +	unsigned int                    num_sched_list;
->  	enum drm_sched_priority         priority;
->  	spinlock_t			rq_lock;
+> +		if (pdev->vendor == p->chip_vendor &&
+> +		    pdev->device == p->chip_device &&
+> +		    pdev->subsystem_vendor == p->subsys_vendor &&
+> +		    pdev->subsystem_device == p->subsys_device &&
+> +		    pdev->revision == p->revision) {
+> +			return true;
+> +		}
+> +		++p;
+> +	}
+> +	return false;
+> +}
+> +
+>  static void gfx_v9_0_check_if_need_gfxoff(struct amdgpu_device *adev)
+>  {
+>  	switch (adev->asic_type) {
+> @@ -1039,10 +1070,13 @@ static void gfx_v9_0_check_if_need_gfxoff(struct amdgpu_device *adev)
+>  	case CHIP_VEGA20:
+>  		break;
+>  	case CHIP_RAVEN:
+> -		if (!(adev->rev_id >= 0x8 ||
+> -		      adev->pdev->device == 0x15d8) &&
+> -		    (adev->pm.fw_version < 0x41e2b || /* not raven1 fresh */
+> -		     !adev->gfx.rlc.is_rlc_v2_1)) /* without rlc save restore ucodes */
+> +		if (!(adev->rev_id >= 0x8 || adev->pdev->device == 0x15d8) &&
+> +		    ((adev->gfx.rlc_fw_version != 106 &&
+> +		      adev->gfx.rlc_fw_version < 531) ||
+> +		     (adev->gfx.rlc_fw_version == 53815) ||
+> +		     (adev->gfx.rlc_feature_version < 1) ||
+> +		     !adev->gfx.rlc.is_rlc_v2_1) &&
+> +		    !gfx_v9_0_raven_check_disable_gfxoff(adev->pdev))
+>  			adev->pm.pp_feature &= ~PP_GFXOFF_MASK;
 >  
-> @@ -315,7 +315,7 @@ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
->  int drm_sched_entity_init(struct drm_sched_entity *entity,
->  			  enum drm_sched_priority priority,
->  			  struct drm_gpu_scheduler **sched_list,
-> -			  unsigned int num_rq_list,
-> +			  unsigned int num_sched_list,
->  			  atomic_t *guilty);
->  long drm_sched_entity_flush(struct drm_sched_entity *entity, long timeout);
->  void drm_sched_entity_fini(struct drm_sched_entity *entity);
+>  		if (adev->pm.pp_feature & PP_GFXOFF_MASK)
 > 
 
 _______________________________________________
