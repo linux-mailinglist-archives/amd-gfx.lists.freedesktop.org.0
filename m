@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 799AF13FA55
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 21:14:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C6913FA5E
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 21:14:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96A266E47A;
-	Thu, 16 Jan 2020 20:14:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 060876E489;
+	Thu, 16 Jan 2020 20:14:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750079.outbound.protection.outlook.com [40.107.75.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 838506E2B2
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 20:14:33 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2057.outbound.protection.outlook.com [40.107.94.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90F456E48C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 20:14:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NB0zbgYgmFHRGdIDdpmdLBfFtO4r8l82HudUvANRnlleX425AGLE56mYlYvJkC2xjFspuar95CSJhRvSsdJggwxhP/+iyWbjM8c/xvd07qnAIsLOr4lYZ7JijeUu1lqCu1mL2VpBgh6CvOyPrvFbyfej3dlnHWLZjhUONc93deg1xMSzqL3T44kTMVpcOjfu+giQdK5mpSKqd4EepFpgAbN33Pf64dnabiMmOIE7teNZO/R/n+RFl5rW0+9yjuQ+d7DFKxR2d5QSA95IEwfXCZIQhx7Oq03/h/9mZ5qenYGN75lVCkCOG7NVFWFWD3V7xaJdKPtwvI8X5+OQ9G/eHw==
+ b=I89zuWAzdHZ1z3vN7wt5kJGCcKahFlnKQzlrI4x8P3NqDupDmZYOY/cXv2tTVXFgPk1yZTLwdL+6P8oO5CU2jaXrYuElKQzXlsVwfG8CuMAaauXKs6cJeA/fBAJxoFj0yrSnvpjYlJTykEqEbJzHR8OiKlUlFfC7rQGH+79RsOfCDWwhlHhe8wz10+Q98fDe7z52V7iuYrOkLhy6dATDa7A5Eadd0uhVE7Vg8qoczgEOTtjuRIPean1592nMjyMZHGMeUqTAMRIcpdlt5ORWksSHsqaKzlhrk1qdvLHrPBvLue1hDgEu/jOymOf+hSey78H/aWi/LHJ5lw2OlPeoJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HG1JlcYxJ74+Q6baokx7nsyCgZEcgolGVrymniqTErU=;
- b=oKq8/q0bRO2oKr+m6lBoGJZWjMWcalNPDamWWtYKtOYG7uC7VN9/3vEnORrt0dxwtvEjIaGr27DJMpjLg7fDH+m+UfTXta6TRF6u2Q6u1noohRgUNDQuwgqgnb3Z4BSkH03a+aydq7ddY52mbk93IhAufEA7y3SsHOYFrDiP/dK7zjdNJ9w6KmnMOwoHkN1WYOO+l5yNCSHrbtF5J9mHVmtp7rPpxDp4TR39FNGLimrEkiKlkNQ6gShGbxuS8/mEDWi3C/ZtSHh3xvC+TRTiEYhcbEF6JuLvA97Aj1VD23VZkCwjm2FJKXWrrxcI/AsplSLd/+hbVpnBHu8hXwDYkA==
+ bh=7GTmAr0JWR4jEDAdUJvUAC4Sv1MFnuUYJmPo8t2QehU=;
+ b=SgxY3gU8J56dDKdpAGmdPuw/YaS0zTSzY+YUhtUtV1dvjBaXnvoAn8dXkUc7fxzAiqbYwwv3b4PRwBQbsGiZXT37fGIVBxnLdYPvTYhdsp/X+qF30RGvy0fhwcZKlc+/+VdJh/Vg1GeFjF+lJfH/rkob99ZrdtlFCKKgJ6/6XQrk0J7NpDNUF2IT//oZ7bTo3u6N6mmVXsAOhH+Cp4o4zK118SIB0Vrk40ye07rEXTPbiej5QtnEhm1iWtfLCVBy567u34n0JeipXmZhd+srsZWiaWWC4vRRLme8NTtDnyGiHzCNmCkMhAL8kmfm3kbwLZMjskSirKsvWQuIw0SqCA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HG1JlcYxJ74+Q6baokx7nsyCgZEcgolGVrymniqTErU=;
- b=prowa1iifeIzlwLSa8anDbnxOAZZTcIoy7QhZTtaZk2wtLFOjwrM4oWU5D0UmTNjtk6wTbsJhD4hX+evmGMfyST4CVCMitXMyzTybHksRVQkoYEQNkSZRg1GMvjsktNs1Jh0AbojnU99QRXhfZ1a2D5xyGeDXcS4y77uAFBOwrI=
+ bh=7GTmAr0JWR4jEDAdUJvUAC4Sv1MFnuUYJmPo8t2QehU=;
+ b=fXi3dX65znKjTbdF3WMZnQsXkmip2MPZPTnsuDty0+31tzunrMTT0P+CdOqleu6hWKeNdqJwNthw/k7riRSy4e+H9h8N/qVxN8IclXCJea1ltBImOexlsZapGeNPb98j0lOyYoqSVGjnBjGxMaYDDNaTfG47YF34+GXC0pvCM4o=
 Received: from DM5PR12CA0007.namprd12.prod.outlook.com (2603:10b6:4:1::17) by
- BY5PR12MB4308.namprd12.prod.outlook.com (2603:10b6:a03:20a::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2644.20; Thu, 16 Jan 2020 20:14:31 +0000
+ BY5PR12MB4196.namprd12.prod.outlook.com (2603:10b6:a03:205::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.18; Thu, 16 Jan
+ 2020 20:14:34 +0000
 Received: from DM6NAM11FT042.eop-nam11.prod.protection.outlook.com
  (2a01:111:f400:7eaa::200) by DM5PR12CA0007.outlook.office365.com
  (2603:10b6:4:1::17) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.18 via Frontend
- Transport; Thu, 16 Jan 2020 20:14:31 +0000
+ Transport; Thu, 16 Jan 2020 20:14:32 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -48,19 +48,19 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
  DM6NAM11FT042.mail.protection.outlook.com (10.13.173.165) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2644.19 via Frontend Transport; Thu, 16 Jan 2020 20:14:30 +0000
+ 15.20.2644.19 via Frontend Transport; Thu, 16 Jan 2020 20:14:31 +0000
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
  2020 14:14:28 -0600
 Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Thu, 16 Jan 2020 14:14:27 -0600
+ Transport; Thu, 16 Jan 2020 14:14:28 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 12/22] drm/amd/display: 3.2.69
-Date: Thu, 16 Jan 2020 15:14:08 -0500
-Message-ID: <20200116201418.2254-13-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 13/22] drm/amd/display: fix rotation_angle to use enum values
+Date: Thu, 16 Jan 2020 15:14:09 -0500
+Message-ID: <20200116201418.2254-14-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200116201418.2254-1-Bhawanpreet.Lakha@amd.com>
 References: <20200116201418.2254-1-Bhawanpreet.Lakha@amd.com>
@@ -69,26 +69,26 @@ X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(376002)(39860400002)(396003)(346002)(428003)(189003)(199004)(5660300002)(36756003)(70206006)(478600001)(2906002)(4744005)(54906003)(6666004)(356004)(70586007)(316002)(6916009)(1076003)(186003)(426003)(26005)(2616005)(336012)(7696005)(86362001)(4326008)(8676002)(8936002)(81166006)(81156014);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BY5PR12MB4308; H:SATLEXMB02.amd.com; FPR:;
+ SFS:(10009020)(4636009)(39860400002)(346002)(376002)(396003)(136003)(428003)(189003)(199004)(2906002)(336012)(70206006)(70586007)(86362001)(6916009)(478600001)(7696005)(54906003)(36756003)(356004)(6666004)(186003)(316002)(26005)(4326008)(2616005)(81166006)(81156014)(8936002)(8676002)(5660300002)(1076003)(426003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BY5PR12MB4196; H:SATLEXMB02.amd.com; FPR:;
  SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8e08270d-b6cf-4d28-8529-08d79ac0b212
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4308:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB43081FA7CA5DF0E67549E62FF9360@BY5PR12MB4308.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:296;
+X-MS-Office365-Filtering-Correlation-Id: 7bf44e92-ead5-46bc-b4a2-08d79ac0b2be
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4196:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB419689B07EC31F3FECA0367FF9360@BY5PR12MB4196.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:454;
 X-Forefront-PRVS: 02843AA9E0
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HtUwVhXx6+akGahF60aZAXjX/XwdeZKEeOT1F8uosPD5Gu+wM7cPkPyABWYlYRMVeVff6fotq0dEq37p0Tq1RO167nIEh+kIFwzUv16r236fOA0bgKMHt8Lm+u8/F+7h74UsIWsgXfh7JN0LHs75Hh4kYvyyUmzpXONSFDdJYh0JaD1cgEnbZHAXNOPrbF7GBttuucPBGVSjy1lOLaNJlb2b0mJ8NE0HTYqBGSCeLTlMUu9hKIt2WwYFUwJB6OUNxKuAKgj8tbLBb2pY4PaV+74bvtGcDkKPXQvSaX1i0rJT7Hyawz0m/nccwbJRTkSAWwgDe3/+SGK3T4/kX5UAJS04o7qFnGgk+3hUFhC+kwStHYkJItY0IK8EpHawOZJ+/RXetcG8YA+EeCS3YJ+ife0xMscd/U76CvP1P4pQPv3Ur2KbCWB6cvV2XFUXweX/
+X-Microsoft-Antispam-Message-Info: jGZ2THNZhpYSZuwHt9jhSHLFqKkc3f8cGBlhc7Lq/Wcy/UMU05tDjTYxfFC/8wNO1xBUwamlwKdnsbt3+hUhUVzdHngdbJrDenThHxf0jmsphv9sFD5RJBw+QyHr24EcfIB7csl+0JtnYgW+ItBXfmFL4M6YlKbyjJWuy3nL+VhC51EDp8Nhtu/FP+h7H1YDBRCOZ1k/zoFb8oGHq0c60sPgStN5lEzPLJ0SBwUb3A1eEbyUOflM83Te5nF8Y6t5Y+UPcXeTGzyvDU3f9ceXyonC2a3Wabtv+RoiJbNrrZvc/EHOXRRTOPBNC3JMAX3BBU2rWkbGLwDvv72bTTgKK1GaPWWhUvJS5oFzgKRYMHmRfEgJyA6NShxQ8VgkaIJEKnr9zQdjfgkXbkB8Gpl5fqw4vWM3Gjyelly5SiBuLMIRGnnPRhkUyt7d+ntIsoev
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 20:14:30.7130 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e08270d-b6cf-4d28-8529-08d79ac0b212
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 20:14:31.8423 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7bf44e92-ead5-46bc-b4a2-08d79ac0b2be
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4308
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4196
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,35 +100,75 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, Aric Cyr <aric.cyr@amd.com>,
- harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com,
+ Brandon Syu <Brandon.Syu@amd.com>, harry.wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: Brandon Syu <Brandon.Syu@amd.com>
 
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+[Why]
+Hardcoded fixed values are not proper.
+
+[How]
+Use enum values instead of fixed numbers.
+
+Signed-off-by: Brandon Syu <Brandon.Syu@amd.com>
+Reviewed-by: Eric Yang <eric.yang2@amd.com>
 Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 7d31dcb9e37f..8ff25b5dd2f6 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -39,7 +39,7 @@
- #include "inc/hw/dmcu.h"
- #include "dml/display_mode_lib.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c
+index da63fc53cc4a..cf09b9335728 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c
+@@ -261,28 +261,28 @@ static void hubp21_apply_PLAT_54186_wa(
+ 			address->video_progressive.luma_addr.high_part == 0xf4)
+ 		return;
  
--#define DC_VER "3.2.68"
-+#define DC_VER "3.2.69"
+-	if ((rotation_angle == 0 || rotation_angle == 180)
++	if ((rotation_angle == ROTATION_ANGLE_0 || rotation_angle == ROTATION_ANGLE_180)
+ 			&& viewport_c_height <= 512)
+ 		return;
  
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
+-	if ((rotation_angle == 90 || rotation_angle == 270)
++	if ((rotation_angle == ROTATION_ANGLE_90 || rotation_angle == ROTATION_ANGLE_270)
+ 				&& viewport_c_width <= 512)
+ 		return;
+ 
+ 	switch (rotation_angle) {
+-	case 0: /* 0 degree rotation */
++	case ROTATION_ANGLE_0: /* 0 degree rotation */
+ 		row_height = 128;
+ 		patched_viewport_height = (viewport_c_height / row_height + 1) * row_height + 1;
+ 		patched_viewport_width = viewport_c_width;
+ 		hubp21->PLAT_54186_wa_chroma_addr_offset = 0;
+ 		break;
+-	case 2: /* 180 degree rotation */
++	case ROTATION_ANGLE_180: /* 180 degree rotation */
+ 		row_height = 128;
+ 		patched_viewport_height = viewport_c_height + row_height;
+ 		patched_viewport_width = viewport_c_width;
+ 		hubp21->PLAT_54186_wa_chroma_addr_offset = 0 - chroma_pitch * row_height * chroma_bpe;
+ 		break;
+-	case 1: /* 90 degree rotation */
++	case ROTATION_ANGLE_90: /* 90 degree rotation */
+ 		row_height = 256;
+ 		if (h_mirror_en) {
+ 			patched_viewport_height = viewport_c_height;
+@@ -294,7 +294,7 @@ static void hubp21_apply_PLAT_54186_wa(
+ 			hubp21->PLAT_54186_wa_chroma_addr_offset = 0 - tile_blk_size;
+ 		}
+ 		break;
+-	case 3:	/* 270 degree rotation */
++	case ROTATION_ANGLE_270: /* 270 degree rotation */
+ 		row_height = 256;
+ 		if (h_mirror_en) {
+ 			patched_viewport_height = viewport_c_height;
 -- 
 2.17.1
 
