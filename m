@@ -1,94 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9106613D45B
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 07:32:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ECE613D5E4
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 09:21:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D60996EBEF;
-	Thu, 16 Jan 2020 06:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6A636EC39;
+	Thu, 16 Jan 2020 08:21:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on20606.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eaa::606])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC816EBEF
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 06:32:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IEMK0kTAlquE7IS89iaR9bEiOJFoLeOltBDXA/QivjlljrloNQQEk2Nky8UbigutUZj7dGn6LNsIJskuWcZHAVmwQBBjYCnFkKyICPmexYmjkEiBJuiC/iRmBAYw6bXA10TQuWyLxPVxlJp/P+sRNcsNR+R869oBf5gNJAq5vTbZ7iSeoAVuOpATQrMZovhj/OSYaEqAHaLzfXX14RtWWXSlNiYeurdyif0R6Z0vNgf4SOrILM773RIw5X7ctfFXtcTinQ+WgdGxVtJi/M2guGyxY9ukwDNJUSa3pz/aovoeSvk7da3tZWk74WGe8gKGpGgRzrA3JlKWFDOAN6Mb/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XZfH+OM8phkxMVJnCKKCuk3X8E87ifCZSQT+se+BF+k=;
- b=QqV+KyAt//ZnirXta1JQGL7vfZBUgeoidwgVUwtBiBHVUx3vY0gKGwB20CUKinrumevrDpmKVAY9OwGC/3t7Q1TsYYc0pjDVIqUeQQVqgMrmGnvEVm/fZYtcLjf5Iw8HRmJ2aCCOMb8bI47DZTzo83cRZ1VlMTFKf92q9GSdhi/C+EA60yge2lX3iu0nMfxImPFfgmjLhuVGsiWf2o8g8bEOwUoheH/z94uyji0Hus5pVw5eeUDp0g42ycciGYAJt2H5ZY5LrHoDmD6gFUDe4fmL4rumhFDpk4c2v0+6COXU+e5WxgHrfaYPLGCQdxFx8f9ZudpuYUXhYja0IWOoLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XZfH+OM8phkxMVJnCKKCuk3X8E87ifCZSQT+se+BF+k=;
- b=Ko03KNM+G+y5+mqtkqANE8XnWT7BZ45opcc32gT2wFljyEdgMoGn/e6bxF6bWsjsI44Xc0hbqE3sUgCLw47R2Vmb0pXJGLOSBOcRd998UU6LYShOoDJqDVCnAc5JND4fW68M1P1VCnc0O+WliC3KBrdvLtlk/BeTxeHFEUeG5TU=
-Received: from CH2PR12MB3767.namprd12.prod.outlook.com (52.132.244.213) by
- CH2PR12MB3799.namprd12.prod.outlook.com (52.132.231.202) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2644.20; Thu, 16 Jan 2020 06:32:08 +0000
-Received: from CH2PR12MB3767.namprd12.prod.outlook.com
- ([fe80::703e:37ee:ddb1:d321]) by CH2PR12MB3767.namprd12.prod.outlook.com
- ([fe80::703e:37ee:ddb1:d321%3]) with mapi id 15.20.2644.015; Thu, 16 Jan 2020
- 06:32:08 +0000
-From: "Xu, Feifei" <Feifei.Xu@amd.com>
-To: "Pan, Xinhui" <Xinhui.Pan@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: add the lost mutex_init back
-Thread-Topic: [PATCH] drm/amdgpu: add the lost mutex_init back
-Thread-Index: AdXMM3R2ar8RTqN/RB+oGoIMPAFrEgAAzRqA
-Date: Thu, 16 Jan 2020 06:32:08 +0000
-Message-ID: <CH2PR12MB3767F4115CBAA3EFADDB7BDFFE360@CH2PR12MB3767.namprd12.prod.outlook.com>
-References: <SN6PR12MB280058965C66589B199AC18C87360@SN6PR12MB2800.namprd12.prod.outlook.com>
-In-Reply-To: <SN6PR12MB280058965C66589B199AC18C87360@SN6PR12MB2800.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=92bde98d-97ef-4e31-b1de-0000e258c821;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
- Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-01-16T06:08:40Z; 
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Feifei.Xu@amd.com; 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 820ad4d6-6af6-4112-a229-08d79a4dcfae
-x-ms-traffictypediagnostic: CH2PR12MB3799:|CH2PR12MB3799:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CH2PR12MB37998396903F20842C523C8CFE360@CH2PR12MB3799.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:813;
-x-forefront-prvs: 02843AA9E0
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(376002)(39860400002)(136003)(366004)(396003)(189003)(199004)(33656002)(478600001)(45080400002)(966005)(4326008)(52536014)(5660300002)(316002)(110136005)(81166006)(81156014)(8676002)(8936002)(9686003)(71200400001)(26005)(53546011)(6506007)(186003)(86362001)(7696005)(64756008)(76116006)(66946007)(66476007)(55016002)(66556008)(66446008)(2906002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CH2PR12MB3799;
- H:CH2PR12MB3767.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: DUhWwj5RC3PghM2vUHwXmkwQqI92oKkf1glIKCmaKIGx3+lNyvHE8sAPuN11oJWZykb8u1H5VIMYBeD2dWAfjJqN5SP/BguZFhcgFIJeOIXZ9ufiPqpTN0N9GWZMGUh9W2A27MRlEwHmK6VSdQiAbieUk0hpROpd7+y3bQGLTTiJklpEWbQLc/XKIz90LuvROLVtgdS9wIHhN6ehCoiBILEjek2fix4rdMfF7uDpoLaJN0enH8PMlGiMfPhQJLdHenWqDa3TtNjbQv2I6GZQgS4oiCM2sVHZ3LdrtGouDm5RVmm7orE/oUbnrwE4opJlw0GJ6iikBISLyb4ROw2lxpE/a3/fgdTi0in8lmG8tYQGUQfMTqU1pm9AdU/DqtK72d2f6aHUubqfHoCj9UvC1FL+sj79n5Kjj7poSgm+8nQPUjbh4ER3kVQ3FlW4qcW7gSx2OecxgUmsrhDnRaHA6sb3CNJWhJpGEryMvkjRPoI=
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 584FC6EBD1;
+ Thu, 16 Jan 2020 04:58:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+ Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=g2O7+C2E3x8zMqGkIw0J+Ras/2kPdtJrH6vgSjyfjdU=; b=NXF7ATWhl9Aw2V28PadqBdwiM
+ iXCRnWTOLEqkb6iR6GP2N9wOodWZ/vQo7OhCCZ8EHbSv21XkYtW3TRWIphD8XxL7hZGYHI09msyq6
+ KTy1yiNKpbpY4/cpfsP3+P+HoyL4kHRmDdV8qfmw3t74RDjuzaZNJSQzSAvLo6/xTgEnHI00GIeML
+ 5Sin0Rqj6Jbt1Dj51zrqiead+yqS1hwcse2NG4G4kRFktXWxebKuoIf3RZePVRZOzd4KpyeX2R6Pw
+ CW59VNdb5HSVGjLgaOA1bDp9V6CZyHpeJxpG4R4FP59j5SGQ6dfTM6gktyp1yPM6sH2dssKRjbj3u
+ evVlYRzEQ==;
+Received: from [2601:1c0:6280:3f0::ed68]
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1irxF8-0008N7-4e; Thu, 16 Jan 2020 04:58:54 +0000
+Subject: Re: [PATCH] drm/amdgpu/display: Use u64 divide macro for round up
+ division
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ mikita.lipski@amd.com
+References: <20200113132042.25717-1-mikita.lipski@amd.com>
+ <20200113170722.GS13686@intel.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <99a19537-11ad-6723-40e1-a2d355903f5b@infradead.org>
+Date: Wed, 15 Jan 2020 20:58:52 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 820ad4d6-6af6-4112-a229-08d79a4dcfae
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jan 2020 06:32:08.3202 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RZXsWo2UD1sNNdS4SzeCVzjpRoReq+Cet02Ost5xPZJZjWDYKz1qzEQ2nZanAt/q
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3799
+In-Reply-To: <20200113170722.GS13686@intel.com>
+Content-Language: en-US
+X-Mailman-Approved-At: Thu, 16 Jan 2020 08:21:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,50 +54,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Alexander.Deucher@amd.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-Reviewed-by: Feifei Xu <Feifei.Xu@amd.com>
-
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Pan, Xinhui
-Sent: Thursday, January 16, 2020 2:10 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: add the lost mutex_init back
-
-
-Initialize notifier_lock.
-
-Signed-off-by: xinhui pan <xinhui.pan@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 2c64d2a83d61..c2453532fd95 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2851,6 +2851,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	hash_init(adev->mn_hash);
- 	mutex_init(&adev->lock_reset);
- 	mutex_init(&adev->psp.mutex);
-+	mutex_init(&adev->notifier_lock);
- 
- 	r = amdgpu_device_check_arguments(adev);
- 	if (r)
--- 
-2.17.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7CFeifei.Xu%40amd.com%7Cc9b343a7880547442b7108d79a4aafda%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637147517952107932&amp;sdata=42C3Wzh1ns23%2BhjFlX0sbqxEyYmGejLLzVUZ50b1lNw%3D&amp;reserved=0
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gMS8xMy8yMCA5OjA3IEFNLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6Cj4gT24gTW9uLCBKYW4g
+MTMsIDIwMjAgYXQgMDg6MjA6NDJBTSAtMDUwMCwgbWlraXRhLmxpcHNraUBhbWQuY29tIHdyb3Rl
+Ogo+PiBGcm9tOiBNaWtpdGEgTGlwc2tpIDxtaWtpdGEubGlwc2tpQGFtZC5jb20+Cj4+Cj4+IFt3
+aHldCj4+IEZpeCBjb21waWxhdGlvbiB3YXJuaW5ncyBvbiBpMzg2IGFyY2hpdGVjdHVyZToKPj4g
+dW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgX191ZGl2ZGkzJwo+PiBbaG93XQo+PiBTd2l0Y2ggRElW
+X1JPVU5EX1VQIHRvIERJVjY0X1U2NF9ST1VORF9VUAo+Pgo+PiBSZXBvcnRlZC1ieTogUmFuZHkg
+RHVubGFwIDxyZHVubGFwQGluZnJhZGVhZC5vcmc+Cj4+IFNpZ25lZC1vZmYtYnk6IE1pa2l0YSBM
+aXBza2kgPG1pa2l0YS5saXBza2lAYW1kLmNvbT4KPj4gLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0v
+YW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9tc3RfdHlwZXMuYyB8IDIgKy0KPj4gIDEg
+ZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG1fbXN0
+X3R5cGVzLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9k
+bV9tc3RfdHlwZXMuYwo+PiBpbmRleCA1MmZiMjA3MzkzZWYuLjk2YjM5MWU0YjNlNyAxMDA2NDQK
+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG1f
+bXN0X3R5cGVzLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9k
+bS9hbWRncHVfZG1fbXN0X3R5cGVzLmMKPj4gQEAgLTUzNCw3ICs1MzQsNyBAQCBzdGF0aWMgaW50
+IGticHNfdG9fcGVha19wYm4oaW50IGticHMpCj4+ICAKPj4gIAlwZWFrX2ticHMgKj0gMTAwNjsK
+Pj4gIAlwZWFrX2ticHMgPSBkaXZfdTY0KHBlYWtfa2JwcywgMTAwMCk7Cj4+IC0JcmV0dXJuIChp
+bnQpIERJVl9ST1VORF9VUChwZWFrX2ticHMgKiA2NCwgKDU0ICogOCAqIDEwMDApKTsKPj4gKwly
+ZXR1cm4gKGludCkgRElWNjRfVTY0X1JPVU5EX1VQKHBlYWtfa2JwcyAqIDY0LCAoNTQgKiA4ICog
+MTAwMCkpOwoKdGhhdCBidWlsZHMgZmluZS4KCj4gRElWX1JPVU5EX1VQX1VMTCgpIHdvdWxkIHNl
+ZW0gdG8gc3VmZmljZSBmb3IgdGhpcyBkaXZpc29yLgoKYW5kIHNvIGRvZXMgdGhhdCBvbmUuCgpU
+aGFua3MuCgpGb3IgZWl0aGVyIHBhdGNoOgpBY2tlZC1ieTogUmFuZHkgRHVubGFwIDxyZHVubGFw
+QGluZnJhZGVhZC5vcmc+ICMgYnVpbGQtdGVzdGVkCgoKIAo+PiAgfQo+PiAgCj4+ICBzdGF0aWMg
+dm9pZCBzZXRfZHNjX2NvbmZpZ3NfZnJvbV9mYWlybmVzc192YXJzKHN0cnVjdCBkc2NfbXN0X2Zh
+aXJuZXNzX3BhcmFtcyAqcGFyYW1zLAo+PiAtLSAKCgotLSAKflJhbmR5CgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAph
+bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
