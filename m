@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7285113FA57
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 21:14:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC8AD13FA54
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2020 21:14:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68F8B6E2E6;
-	Thu, 16 Jan 2020 20:14:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BEB56E2B2;
+	Thu, 16 Jan 2020 20:14:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2087.outbound.protection.outlook.com [40.107.223.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 254326E287
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2062.outbound.protection.outlook.com [40.107.220.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCC946E2B2
  for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 20:14:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RHjZ5GHZQ/rpXBQ1Vt6NJ/Htuy3V1Eet08HrrNip1snCM+ilvxFdsYr27IJtk0mcnKvfin4/F0f0KEqaw3A899hBSG5u8x67rmK0eNxFI6ExMHDZAH9QQjTp3xcidPQcgjEJ90hu+FWZ4AYHpyjI3rStvKGvGGnRaz4hoeBMN4V7wy5eJ7vHwuiMipsspYi05mMwFKq/zIdi+yCTNDvNzPbSGV8Cx5cqMDGB0KVDs7pFCka1hGPkfsjdAA1kx70OxGMjWtCjhwbwLFIR8dgY2DMhF9wOSFiCDc2NBTKgEt9zrS7IlOnG6NpUZbFPdvmjXuQhqM/0/PVP5RwFaOVvBQ==
+ b=XaU78mFTmvOq6OXWVLSXha94FiyF3uxgJoFDprNdTSj+gNXV9SW1awl+jw+Ba9FSt8KcYuKKDahZHBWPrLt3MUX8v/PRBBZS707vv/W+qb08Pjd9FP5saXBw6F6XuOInKQKbh/3cjURveCaTxSWm9abzAlmheIHLAPcWLloUB1rDp6+k6gGQyGthrhSOy4wEk/VxJf476MEu1W9lNozjJCEp8fNkCFmOLsSL8S2SWO/U3v1phFKAMnoQoAJ1lTBdkTHvVMszS92YZOljesVAl14JXuggdcssl5O+bL3u4cMnAyuETZl7yjFadSlxxoGpt6b5i7YdwmFx1+CMR2wnRw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZC4sOYu9csWkNSpjJT4id99f8IyULoZGAEt6Mk24eE8=;
- b=VoIXApQJdVNoMkOyFslMC61TDg1106n6uZNUDWwQ7VKfFeibke8Fph8Sk7NPmJWcTg1pZsHT15KFON++0H7yA9B1TI0u26KaXvjsSIZR/ZyNQ5ej1ssXYT3vBzTxDlqFNaZQcNafsmGq3v0QgHIFAWk1tng8C7UjJgyRmoNILfKjYBkIlExBK1i8VlAuVjUGSg8jhaHx1rgcFp0RAt0vzKT0+Y7gpdFvqYc0o8Pmns6ECacSYOOXK2HY0ClZz1paU0J8q7pjmbT8Wxl6wy6smpqfVJ0oJuAlSvvh1gO23OEQyj+yuxBUjfoXRJ1ZqWtsALSNuNZ17ZlPoIzPP2PxYQ==
+ bh=b0iPfJ4xdMFyM0XD/DDqpPgDV3H/4xPBRfkXWpU7GhE=;
+ b=oGubkOIEmXuljtF2zmioj8VFkXPkvOP1BClsgvwIfqJfVVRNHAepQz1JaHiiojd3bt84a9JBSJraVoqUB9GIMZV42okoQx/jp5J73uF1IEceWOtrCKwre8GCZIP0h6moGAu1+L4+2g8ROXtzDtyaTord0DgoMa8M3Z1bxWuO1yns3cS6XnQDleB8OWwWYhMhh/54bdYYVAwDgiEGFO8hVu5qqwX7C729RoT7hNH1zBzNGctziYR4vD7zLFOb7dqq2p77w8UEcM7HHjCornWaNUAd2OUiFp04LAR+UF4i577hwvQ8SXvxeYoJJDTV5gO8NsTTysiEJ6r1zJOryu47IA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZC4sOYu9csWkNSpjJT4id99f8IyULoZGAEt6Mk24eE8=;
- b=JP9O6HS+LJgUc3Qom3xLs6fHmRpW08CKNN+R0am8wjqyBWoets0yQI+SQnhMwVJXRv1rTMYI9EabrYMiMQy65x/mTImuiWFK4sk45v6h0K2fE+44PqEbtNpXc1pYIQu67IUTg8+B7N8DknP4uVClW2OXsROVVp4a+4F+5OAFP1c=
-Received: from DM5PR12CA0007.namprd12.prod.outlook.com (2603:10b6:4:1::17) by
- BY5PR12MB4003.namprd12.prod.outlook.com (2603:10b6:a03:196::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.20; Thu, 16 Jan
- 2020 20:14:29 +0000
+ bh=b0iPfJ4xdMFyM0XD/DDqpPgDV3H/4xPBRfkXWpU7GhE=;
+ b=CZfLgb9Umwkqzuh/IkJsJykWX3NSNePDNkC7bS8eMagzl50C+3cQEubbjVDTg6s/8rOowwMaNznl6/5b4zb6d2LF13UURDd3LdyQo5gtqWLKAdzC16HLyaMHqwLuX47bBbkRhjXTUpmQc+XxN6VM6ucqe+njj99CNW5Plj1ny7M=
+Received: from DM5PR12CA0010.namprd12.prod.outlook.com (2603:10b6:4:1::20) by
+ CY4PR12MB1350.namprd12.prod.outlook.com (2603:10b6:903:41::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2623.9; Thu, 16 Jan 2020 20:14:30 +0000
 Received: from DM6NAM11FT042.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eaa::200) by DM5PR12CA0007.outlook.office365.com
- (2603:10b6:4:1::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.18 via Frontend
- Transport; Thu, 16 Jan 2020 20:14:28 +0000
+ (2a01:111:f400:7eaa::205) by DM5PR12CA0010.outlook.office365.com
+ (2603:10b6:4:1::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.19 via Frontend
+ Transport; Thu, 16 Jan 2020 20:14:30 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -48,20 +48,20 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
  DM6NAM11FT042.mail.protection.outlook.com (10.13.173.165) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2644.19 via Frontend Transport; Thu, 16 Jan 2020 20:14:28 +0000
+ 15.20.2644.19 via Frontend Transport; Thu, 16 Jan 2020 20:14:30 +0000
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
  2020 14:14:27 -0600
 Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Thu, 16 Jan 2020 14:14:26 -0600
+ Transport; Thu, 16 Jan 2020 14:14:27 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 10/22] drm/amd/display: Refactor to remove diags specific rgam
- func
-Date: Thu, 16 Jan 2020 15:14:06 -0500
-Message-ID: <20200116201418.2254-11-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 11/22] drm/amd/display: Refine i2c frequency calculating
+ sequence
+Date: Thu, 16 Jan 2020 15:14:07 -0500
+Message-ID: <20200116201418.2254-12-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200116201418.2254-1-Bhawanpreet.Lakha@amd.com>
 References: <20200116201418.2254-1-Bhawanpreet.Lakha@amd.com>
@@ -70,26 +70,26 @@ X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(396003)(346002)(39860400002)(376002)(428003)(189003)(199004)(478600001)(4326008)(36756003)(336012)(26005)(81156014)(2616005)(70206006)(426003)(81166006)(6916009)(70586007)(8676002)(8936002)(7696005)(186003)(6666004)(316002)(54906003)(2906002)(1076003)(30864003)(5660300002)(86362001)(356004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BY5PR12MB4003; H:SATLEXMB02.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
+ SFS:(10009020)(4636009)(396003)(346002)(376002)(39860400002)(136003)(428003)(199004)(189003)(2906002)(8936002)(336012)(426003)(316002)(6916009)(36756003)(81156014)(70206006)(54906003)(81166006)(70586007)(8676002)(186003)(4326008)(26005)(2616005)(7696005)(478600001)(356004)(6666004)(1076003)(5660300002)(86362001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR12MB1350; H:SATLEXMB02.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 700e7a6b-c08e-49d4-cdc6-08d79ac0b0d9
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4003:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB400348BF910ACBBC9DFD0FDEF9360@BY5PR12MB4003.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Office365-Filtering-Correlation-Id: eff75174-2308-4269-9626-08d79ac0b1cc
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1350:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1350DD05B97EF7FD8FC1EE5CF9360@CY4PR12MB1350.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:758;
 X-Forefront-PRVS: 02843AA9E0
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: r6WunXnIQOXvLDywab0DE+GrxdWnFcT19qkRWzkbbDsAsENEPyLCB341RirWRCx/GLw9yb4JQuVPUywysA2H1JXtwm7vSQBmj0LRpRzS7Xv1n0YVDSBLdv/V/zz397JZ8/zeQ3VeubbEqHT5y/jerN2V8bDCsi9JJiEfyzXw0ZeYB5+zsroyDfFVVb9B7nV7JBp5JlJ1Enc/hGNMMDuW6ktB+dEUzQ6fuB+y9+aX1vf41/cOGualDplNEtkzos8+WGS1RxZrEYuxwgFmaf2sRQ3Fi0kYIkhSpLoE8y0GZ9kFHVg/wPUTUxoO82yqvTIHaYYQfw3vAKp9eaUAZl10qGaWV14PVFpBMqrnYYLf/7jsMIUFr5ZJE8gCc8MBYTux2lILjfJIV8Nq5Qr3stlcxjqadm++hJ1QAwz7GQVad/aSSedEa8MyKNQeOnSUAiol
+X-Microsoft-Antispam-Message-Info: 1VztyHHoSyIMjQ/V5jFeURtrRVzB0QEeNqAxXy4fc0JF07IgZTtRFcsRDdqjT66w8ZnPLFqb2FQG4om3n9KHjQIy0Fq8s5TM8tioWdRSwMCT3K0BSs+qqIYxZ+uYItyvEUpXUW8D+zF/2ACJCkfEIMB1vojwUz0eUXbvReH70sS46hcDAjPpw+arXL/ddMxqQnx233TlVIl6PBOkHe4Vc6eKoQVXQphwMa6/SJB4NM03dfiqGYScRhjSRG+8UGpGuh3vngav1s1YcXfmcNFytx5e7bxUpwe9RRG4VRQPWg7LRv/Wo4k8bGJZ8tzU7g6y4o5EP2KhRsYIr2MWhr/hH8tXKCT0yE0gPsKqIdedoflIr2eMk+uZ0QsLFY4/Ar9ySyixwdE6u8XnYzcuVs+2V/W4t3tnok7Zxguaff/vsOVVokE0lms01yzQO5PL+Ss9
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 20:14:28.6646 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 700e7a6b-c08e-49d4-cdc6-08d79ac0b0d9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2020 20:14:30.2547 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: eff75174-2308-4269-9626-08d79ac0b1cc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4003
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1350
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,410 +102,186 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, harry.wentland@amd.com,
- Anthony Koo <Anthony.Koo@amd.com>
+ Lewis Huang <Lewis.Huang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Anthony Koo <Anthony.Koo@amd.com>
+From: Lewis Huang <Lewis.Huang@amd.com>
 
 [Why]
-It has duplicate code for building regamma curve
+In HG mode, vbios didn't call DispController_Init to program NV1x
+XTAL_REF_DIV value when ASIC_INIT, but driver read XTAL_REF_DIV
+to calculate i2c reference frequency. it cause i2c frequency change
+from 100kHz to 200kHz.
 
 [How]
-Remove the duplicate code and use the same function for building regamma
+remove get_speed function and calculate reference frequency at
+set_speed functiton.
 
-Signed-off-by: Anthony Koo <Anthony.Koo@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
-Reviewed-by: Krunoslav Kovac <Krunoslav.Kovac@amd.com>
+Signed-off-by: Lewis Huang <Lewis.Huang@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- .../amd/display/modules/color/color_gamma.c   | 307 ++++++++----------
- .../amd/display/modules/color/color_gamma.h   |   4 -
- 2 files changed, 129 insertions(+), 182 deletions(-)
+ .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.c   | 68 ++++++-------------
+ 1 file changed, 19 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-index 1b278c42809a..cac09d500fda 100644
---- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-+++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-@@ -1673,129 +1673,6 @@ static bool map_regamma_hw_to_x_user(
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
+index 1cd4d8fc361f..49d490214060 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
+@@ -100,20 +100,6 @@ static uint32_t get_hw_buffer_available_size(
+ 			dce_i2c_hw->buffer_used_bytes;
+ }
  
- #define _EXTRA_POINTS 3
- 
--bool mod_color_calculate_regamma_params(struct dc_transfer_func *output_tf,
--		const struct dc_gamma *ramp, bool mapUserRamp, bool canRomBeUsed,
--		const struct freesync_hdr_tf_params *fs_params)
+-static uint32_t get_speed(
+-	const struct dce_i2c_hw *dce_i2c_hw)
 -{
--	struct dc_transfer_func_distributed_points *tf_pts = &output_tf->tf_pts;
--	struct dividers dividers;
+-	uint32_t pre_scale = 0;
 -
--	struct pwl_float_data *rgb_user = NULL;
--	struct pwl_float_data_ex *rgb_regamma = NULL;
--	struct gamma_pixel *axis_x = NULL;
--	struct pixel_gamma_point *coeff = NULL;
--	enum dc_transfer_func_predefined tf = TRANSFER_FUNCTION_SRGB;
--	bool ret = false;
+-	REG_GET(SPEED, DC_I2C_DDC1_PRESCALE, &pre_scale);
 -
--	if (output_tf->type == TF_TYPE_BYPASS)
--		return false;
--
--	/* we can use hardcoded curve for plain SRGB TF */
--	if (output_tf->type == TF_TYPE_PREDEFINED && canRomBeUsed == true &&
--			output_tf->tf == TRANSFER_FUNCTION_SRGB) {
--		if (ramp == NULL)
--			return true;
--		if ((ramp->is_identity && ramp->type != GAMMA_CS_TFM_1D) ||
--				(!mapUserRamp && ramp->type == GAMMA_RGB_256))
--			return true;
--	}
--
--	output_tf->type = TF_TYPE_DISTRIBUTED_POINTS;
--
--	if (ramp && ramp->type != GAMMA_CS_TFM_1D &&
--			(mapUserRamp || ramp->type != GAMMA_RGB_256)) {
--		rgb_user = kvcalloc(ramp->num_entries + _EXTRA_POINTS,
--			    sizeof(*rgb_user),
--			    GFP_KERNEL);
--		if (!rgb_user)
--			goto rgb_user_alloc_fail;
--
--		axis_x = kvcalloc(ramp->num_entries + 3, sizeof(*axis_x),
--				GFP_KERNEL);
--		if (!axis_x)
--			goto axis_x_alloc_fail;
--
--		dividers.divider1 = dc_fixpt_from_fraction(3, 2);
--		dividers.divider2 = dc_fixpt_from_int(2);
--		dividers.divider3 = dc_fixpt_from_fraction(5, 2);
--
--		build_evenly_distributed_points(
--				axis_x,
--				ramp->num_entries,
--				dividers);
--
--		if (ramp->type == GAMMA_RGB_256 && mapUserRamp)
--			scale_gamma(rgb_user, ramp, dividers);
--		else if (ramp->type == GAMMA_RGB_FLOAT_1024)
--			scale_gamma_dx(rgb_user, ramp, dividers);
--	}
--
--	rgb_regamma = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS,
--			       sizeof(*rgb_regamma),
--			       GFP_KERNEL);
--	if (!rgb_regamma)
--		goto rgb_regamma_alloc_fail;
--
--	coeff = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS, sizeof(*coeff),
--			 GFP_KERNEL);
--	if (!coeff)
--		goto coeff_alloc_fail;
--
--	tf = output_tf->tf;
--	if (tf == TRANSFER_FUNCTION_PQ) {
--		tf_pts->end_exponent = 7;
--		tf_pts->x_point_at_y1_red = 125;
--		tf_pts->x_point_at_y1_green = 125;
--		tf_pts->x_point_at_y1_blue = 125;
--
--		build_pq(rgb_regamma,
--				MAX_HW_POINTS,
--				coordinates_x,
--				output_tf->sdr_ref_white_level);
--	} else if (tf == TRANSFER_FUNCTION_GAMMA22 &&
--			fs_params != NULL && fs_params->skip_tm == 0) {
--		build_freesync_hdr(rgb_regamma,
--				MAX_HW_POINTS,
--				coordinates_x,
--				fs_params);
--	} else if (tf == TRANSFER_FUNCTION_HLG) {
--		build_freesync_hdr(rgb_regamma,
--				MAX_HW_POINTS,
--				coordinates_x,
--				fs_params);
--
--	} else {
--		tf_pts->end_exponent = 0;
--		tf_pts->x_point_at_y1_red = 1;
--		tf_pts->x_point_at_y1_green = 1;
--		tf_pts->x_point_at_y1_blue = 1;
--
--		build_regamma(rgb_regamma,
--				MAX_HW_POINTS,
--				coordinates_x, tf);
--	}
--	map_regamma_hw_to_x_user(ramp, coeff, rgb_user,
--			coordinates_x, axis_x, rgb_regamma,
--			MAX_HW_POINTS, tf_pts,
--			(mapUserRamp || (ramp && ramp->type != GAMMA_RGB_256)) &&
--			(ramp && ramp->type != GAMMA_CS_TFM_1D));
--
--	if (ramp && ramp->type == GAMMA_CS_TFM_1D)
--		apply_lut_1d(ramp, MAX_HW_POINTS, tf_pts);
--
--	ret = true;
--
--	kvfree(coeff);
--coeff_alloc_fail:
--	kvfree(rgb_regamma);
--rgb_regamma_alloc_fail:
--	kvfree(axis_x);
--axis_x_alloc_fail:
--	kvfree(rgb_user);
--rgb_user_alloc_fail:
--	return ret;
+-	/* [anaumov] it seems following is unnecessary */
+-	/*ASSERT(value.bits.DC_I2C_DDC1_PRESCALE);*/
+-	return pre_scale ?
+-		dce_i2c_hw->reference_frequency / pre_scale :
+-		dce_i2c_hw->default_speed;
 -}
 -
- bool calculate_user_regamma_coeff(struct dc_transfer_func *output_tf,
- 		const struct regamma_lut *regamma)
+ static void process_channel_reply(
+ 	struct dce_i2c_hw *dce_i2c_hw,
+ 	struct i2c_payload *reply)
+@@ -278,16 +264,25 @@ static void set_speed(
+ 	struct dce_i2c_hw *dce_i2c_hw,
+ 	uint32_t speed)
  {
-@@ -2043,14 +1920,14 @@ bool mod_color_calculate_degamma_params(struct dc_transfer_func *input_tf,
- 	return ret;
- }
- 
--
--bool  mod_color_calculate_curve(enum dc_transfer_func_predefined trans,
-+static bool calculate_curve(enum dc_transfer_func_predefined trans,
- 				struct dc_transfer_func_distributed_points *points,
-+				struct pwl_float_data_ex *rgb_regamma,
-+				const struct freesync_hdr_tf_params *fs_params,
- 				uint32_t sdr_ref_white_level)
- {
- 	uint32_t i;
- 	bool ret = false;
--	struct pwl_float_data_ex *rgb_regamma = NULL;
- 
- 	if (trans == TRANSFER_FUNCTION_UNITY ||
- 		trans == TRANSFER_FUNCTION_LINEAR) {
-@@ -2060,68 +1937,33 @@ bool  mod_color_calculate_curve(enum dc_transfer_func_predefined trans,
- 		points->x_point_at_y1_blue = 1;
- 
- 		for (i = 0; i <= MAX_HW_POINTS ; i++) {
--			points->red[i]    = coordinates_x[i].x;
--			points->green[i]  = coordinates_x[i].x;
--			points->blue[i]   = coordinates_x[i].x;
-+			rgb_regamma[i].r = coordinates_x[i].x;
-+			rgb_regamma[i].g = coordinates_x[i].x;
-+			rgb_regamma[i].b = coordinates_x[i].x;
- 		}
++	uint32_t xtal_ref_div = 0;
++	uint32_t prescale = 0;
 +
- 		ret = true;
- 	} else if (trans == TRANSFER_FUNCTION_PQ) {
--		rgb_regamma = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS,
--				       sizeof(*rgb_regamma),
--				       GFP_KERNEL);
--		if (!rgb_regamma)
--			goto rgb_regamma_alloc_fail;
- 		points->end_exponent = 7;
- 		points->x_point_at_y1_red = 125;
- 		points->x_point_at_y1_green = 125;
- 		points->x_point_at_y1_blue = 125;
- 
--
- 		build_pq(rgb_regamma,
- 				MAX_HW_POINTS,
- 				coordinates_x,
- 				sdr_ref_white_level);
--		for (i = 0; i <= MAX_HW_POINTS ; i++) {
--			points->red[i]    = rgb_regamma[i].r;
--			points->green[i]  = rgb_regamma[i].g;
--			points->blue[i]   = rgb_regamma[i].b;
--		}
--		ret = true;
--
--		kvfree(rgb_regamma);
--	} else if (trans == TRANSFER_FUNCTION_SRGB ||
--		trans == TRANSFER_FUNCTION_BT709 ||
--		trans == TRANSFER_FUNCTION_GAMMA22 ||
--		trans == TRANSFER_FUNCTION_GAMMA24 ||
--		trans == TRANSFER_FUNCTION_GAMMA26) {
--		rgb_regamma = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS,
--				       sizeof(*rgb_regamma),
--				       GFP_KERNEL);
--		if (!rgb_regamma)
--			goto rgb_regamma_alloc_fail;
--		points->end_exponent = 0;
--		points->x_point_at_y1_red = 1;
--		points->x_point_at_y1_green = 1;
--		points->x_point_at_y1_blue = 1;
- 
--		build_regamma(rgb_regamma,
-+		ret = true;
-+	} else if (trans == TRANSFER_FUNCTION_GAMMA22 &&
-+			fs_params != NULL && fs_params->skip_tm == 0) {
-+		build_freesync_hdr(rgb_regamma,
- 				MAX_HW_POINTS,
- 				coordinates_x,
--				trans);
--		for (i = 0; i <= MAX_HW_POINTS ; i++) {
--			points->red[i]    = rgb_regamma[i].r;
--			points->green[i]  = rgb_regamma[i].g;
--			points->blue[i]   = rgb_regamma[i].b;
--		}
--		ret = true;
-+				fs_params);
- 
--		kvfree(rgb_regamma);
-+		ret = true;
- 	} else if (trans == TRANSFER_FUNCTION_HLG) {
--		rgb_regamma = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS,
--				       sizeof(*rgb_regamma),
--				       GFP_KERNEL);
--		if (!rgb_regamma)
--			goto rgb_regamma_alloc_fail;
- 		points->end_exponent = 4;
- 		points->x_point_at_y1_red = 12;
- 		points->x_point_at_y1_green = 12;
-@@ -2131,18 +1973,127 @@ bool  mod_color_calculate_curve(enum dc_transfer_func_predefined trans,
- 				MAX_HW_POINTS,
- 				coordinates_x,
- 				80, 1000);
--		for (i = 0; i <= MAX_HW_POINTS ; i++) {
--			points->red[i]    = rgb_regamma[i].r;
--			points->green[i]  = rgb_regamma[i].g;
--			points->blue[i]   = rgb_regamma[i].b;
--		}
++	REG_GET(MICROSECOND_TIME_BASE_DIV, XTAL_REF_DIV, &xtal_ref_div);
 +
-+		ret = true;
-+	} else {
-+		// trans == TRANSFER_FUNCTION_SRGB
-+		// trans == TRANSFER_FUNCTION_BT709
-+		// trans == TRANSFER_FUNCTION_GAMMA22
-+		// trans == TRANSFER_FUNCTION_GAMMA24
-+		// trans == TRANSFER_FUNCTION_GAMMA26
-+		points->end_exponent = 0;
-+		points->x_point_at_y1_red = 1;
-+		points->x_point_at_y1_green = 1;
-+		points->x_point_at_y1_blue = 1;
++	if (xtal_ref_div == 0)
++		xtal_ref_div = 2;
 +
-+		build_regamma(rgb_regamma,
-+				MAX_HW_POINTS,
-+				coordinates_x,
-+				trans);
-+
- 		ret = true;
--		kvfree(rgb_regamma);
++	prescale = ((dce_i2c_hw->reference_frequency * 2) / xtal_ref_div) / speed;
+ 
+ 	if (speed) {
+ 		if (dce_i2c_hw->masks->DC_I2C_DDC1_START_STOP_TIMING_CNTL)
+ 			REG_UPDATE_N(SPEED, 3,
+-				     FN(DC_I2C_DDC1_SPEED, DC_I2C_DDC1_PRESCALE), dce_i2c_hw->reference_frequency / speed,
++				     FN(DC_I2C_DDC1_SPEED, DC_I2C_DDC1_PRESCALE), prescale,
+ 				     FN(DC_I2C_DDC1_SPEED, DC_I2C_DDC1_THRESHOLD), 2,
+ 				     FN(DC_I2C_DDC1_SPEED, DC_I2C_DDC1_START_STOP_TIMING_CNTL), speed > 50 ? 2:1);
+ 		else
+ 			REG_UPDATE_N(SPEED, 2,
+-				     FN(DC_I2C_DDC1_SPEED, DC_I2C_DDC1_PRESCALE), dce_i2c_hw->reference_frequency / speed,
++				     FN(DC_I2C_DDC1_SPEED, DC_I2C_DDC1_PRESCALE), prescale,
+ 				     FN(DC_I2C_DDC1_SPEED, DC_I2C_DDC1_THRESHOLD), 2);
  	}
--rgb_regamma_alloc_fail:
-+
- 	return ret;
+ }
+@@ -344,9 +339,7 @@ static void release_engine(
+ 	bool safe_to_reset;
+ 
+ 	/* Restore original HW engine speed */
+-
+-	set_speed(dce_i2c_hw, dce_i2c_hw->original_speed);
+-
++	REG_WRITE(SPEED, dce_i2c_hw->original_speed);
+ 
+ 	/* Reset HW engine */
+ 	{
+@@ -416,7 +409,7 @@ struct dce_i2c_hw *acquire_i2c_hw_engine(
+ 
+ 	dce_i2c_hw->ddc = ddc;
+ 
+-	current_speed = get_speed(dce_i2c_hw);
++	current_speed = REG_READ(SPEED);
+ 
+ 	if (current_speed)
+ 		dce_i2c_hw->original_speed = current_speed;
+@@ -478,13 +471,9 @@ static void submit_channel_request_hw(
+ 
+ static uint32_t get_transaction_timeout_hw(
+ 	const struct dce_i2c_hw *dce_i2c_hw,
+-	uint32_t length)
++	uint32_t length,
++	uint32_t speed)
+ {
+-
+-	uint32_t speed = get_speed(dce_i2c_hw);
+-
+-
+-
+ 	uint32_t period_timeout;
+ 	uint32_t num_of_clock_stretches;
+ 
+@@ -504,7 +493,8 @@ static uint32_t get_transaction_timeout_hw(
+ bool dce_i2c_hw_engine_submit_payload(
+ 	struct dce_i2c_hw *dce_i2c_hw,
+ 	struct i2c_payload *payload,
+-	bool middle_of_transaction)
++	bool middle_of_transaction,
++	uint32_t speed)
+ {
+ 
+ 	struct i2c_request_transaction_data request;
+@@ -542,7 +532,7 @@ bool dce_i2c_hw_engine_submit_payload(
+ 	/* obtain timeout value before submitting request */
+ 
+ 	transaction_timeout = get_transaction_timeout_hw(
+-		dce_i2c_hw, payload->length + 1);
++		dce_i2c_hw, payload->length + 1, speed);
+ 
+ 	submit_channel_request_hw(
+ 		dce_i2c_hw, &request);
+@@ -588,13 +578,11 @@ bool dce_i2c_submit_command_hw(
+ 		struct i2c_payload *payload = cmd->payloads + index_of_payload;
+ 
+ 		if (!dce_i2c_hw_engine_submit_payload(
+-				dce_i2c_hw, payload, mot)) {
++				dce_i2c_hw, payload, mot, cmd->speed)) {
+ 			result = false;
+ 			break;
+ 		}
+ 
+-
+-
+ 		++index_of_payload;
+ 	}
+ 
+@@ -640,9 +628,6 @@ void dce100_i2c_hw_construct(
+ 	const struct dce_i2c_shift *shifts,
+ 	const struct dce_i2c_mask *masks)
+ {
+-
+-	uint32_t xtal_ref_div = 0;
+-
+ 	dce_i2c_hw_construct(dce_i2c_hw,
+ 			ctx,
+ 			engine_id,
+@@ -650,21 +635,6 @@ void dce100_i2c_hw_construct(
+ 			shifts,
+ 			masks);
+ 	dce_i2c_hw->buffer_size = I2C_HW_BUFFER_SIZE_DCE100;
+-
+-	REG_GET(MICROSECOND_TIME_BASE_DIV, XTAL_REF_DIV, &xtal_ref_div);
+-
+-	if (xtal_ref_div == 0)
+-		xtal_ref_div = 2;
+-
+-	/*Calculating Reference Clock by divding original frequency by
+-	 * XTAL_REF_DIV.
+-	 * At upper level, uint32_t reference_frequency =
+-	 *  dal_dce_i2c_get_reference_clock(as) >> 1
+-	 *  which already divided by 2. So we need x2 to get original
+-	 *  reference clock from ppll_info
+-	 */
+-	dce_i2c_hw->reference_frequency =
+-		(dce_i2c_hw->reference_frequency * 2) / xtal_ref_div;
  }
  
-+bool mod_color_calculate_regamma_params(struct dc_transfer_func *output_tf,
-+		const struct dc_gamma *ramp, bool mapUserRamp, bool canRomBeUsed,
-+		const struct freesync_hdr_tf_params *fs_params)
-+{
-+	struct dc_transfer_func_distributed_points *tf_pts = &output_tf->tf_pts;
-+	struct dividers dividers;
-+
-+	struct pwl_float_data *rgb_user = NULL;
-+	struct pwl_float_data_ex *rgb_regamma = NULL;
-+	struct gamma_pixel *axis_x = NULL;
-+	struct pixel_gamma_point *coeff = NULL;
-+	enum dc_transfer_func_predefined tf = TRANSFER_FUNCTION_SRGB;
-+	bool ret = false;
-+
-+	if (output_tf->type == TF_TYPE_BYPASS)
-+		return false;
-+
-+	/* we can use hardcoded curve for plain SRGB TF */
-+	if (output_tf->type == TF_TYPE_PREDEFINED && canRomBeUsed == true &&
-+			output_tf->tf == TRANSFER_FUNCTION_SRGB) {
-+		if (ramp == NULL)
-+			return true;
-+		if ((ramp->is_identity && ramp->type != GAMMA_CS_TFM_1D) ||
-+				(!mapUserRamp && ramp->type == GAMMA_RGB_256))
-+			return true;
-+	}
-+
-+	output_tf->type = TF_TYPE_DISTRIBUTED_POINTS;
-+
-+	if (ramp && ramp->type != GAMMA_CS_TFM_1D &&
-+			(mapUserRamp || ramp->type != GAMMA_RGB_256)) {
-+		rgb_user = kvcalloc(ramp->num_entries + _EXTRA_POINTS,
-+			    sizeof(*rgb_user),
-+			    GFP_KERNEL);
-+		if (!rgb_user)
-+			goto rgb_user_alloc_fail;
-+
-+		axis_x = kvcalloc(ramp->num_entries + 3, sizeof(*axis_x),
-+				GFP_KERNEL);
-+		if (!axis_x)
-+			goto axis_x_alloc_fail;
-+
-+		dividers.divider1 = dc_fixpt_from_fraction(3, 2);
-+		dividers.divider2 = dc_fixpt_from_int(2);
-+		dividers.divider3 = dc_fixpt_from_fraction(5, 2);
-+
-+		build_evenly_distributed_points(
-+				axis_x,
-+				ramp->num_entries,
-+				dividers);
-+
-+		if (ramp->type == GAMMA_RGB_256 && mapUserRamp)
-+			scale_gamma(rgb_user, ramp, dividers);
-+		else if (ramp->type == GAMMA_RGB_FLOAT_1024)
-+			scale_gamma_dx(rgb_user, ramp, dividers);
-+	}
-+
-+	rgb_regamma = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS,
-+			       sizeof(*rgb_regamma),
-+			       GFP_KERNEL);
-+	if (!rgb_regamma)
-+		goto rgb_regamma_alloc_fail;
-+
-+	coeff = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS, sizeof(*coeff),
-+			 GFP_KERNEL);
-+	if (!coeff)
-+		goto coeff_alloc_fail;
-+
-+	tf = output_tf->tf;
-+
-+	ret = calculate_curve(tf,
-+			tf_pts,
-+			rgb_regamma,
-+			fs_params,
-+			output_tf->sdr_ref_white_level);
-+
-+	if (ret) {
-+		map_regamma_hw_to_x_user(ramp, coeff, rgb_user,
-+				coordinates_x, axis_x, rgb_regamma,
-+				MAX_HW_POINTS, tf_pts,
-+				(mapUserRamp || (ramp && ramp->type != GAMMA_RGB_256)) &&
-+				(ramp && ramp->type != GAMMA_CS_TFM_1D));
-+
-+		if (ramp && ramp->type == GAMMA_CS_TFM_1D)
-+			apply_lut_1d(ramp, MAX_HW_POINTS, tf_pts);
-+	}
-+
-+	kvfree(coeff);
-+coeff_alloc_fail:
-+	kvfree(rgb_regamma);
-+rgb_regamma_alloc_fail:
-+	kvfree(axis_x);
-+axis_x_alloc_fail:
-+	kvfree(rgb_user);
-+rgb_user_alloc_fail:
-+	return ret;
-+}
- 
- bool  mod_color_calculate_degamma_curve(enum dc_transfer_func_predefined trans,
- 				struct dc_transfer_func_distributed_points *points)
-diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
-index 44ddea58523a..9994817a9a03 100644
---- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
-+++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
-@@ -103,10 +103,6 @@ bool mod_color_calculate_regamma_params(struct dc_transfer_func *output_tf,
- bool mod_color_calculate_degamma_params(struct dc_transfer_func *output_tf,
- 		const struct dc_gamma *ramp, bool mapUserRamp);
- 
--bool mod_color_calculate_curve(enum dc_transfer_func_predefined  trans,
--		struct dc_transfer_func_distributed_points *points,
--		uint32_t sdr_ref_white_level);
--
- bool mod_color_calculate_degamma_curve(enum dc_transfer_func_predefined trans,
- 				struct dc_transfer_func_distributed_points *points);
- 
+ void dce112_i2c_hw_construct(
 -- 
 2.17.1
 
