@@ -2,39 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045F6142561
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jan 2020 09:24:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C15B1428DA
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jan 2020 12:08:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB1886E859;
-	Mon, 20 Jan 2020 08:23:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E0216E8CC;
+	Mon, 20 Jan 2020 11:08:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B28B96E838;
- Mon, 20 Jan 2020 08:23:49 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id 4F9EDB258;
- Mon, 20 Jan 2020 08:23:48 +0000 (UTC)
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com,
- christian.koenig@amd.com, David1.Zhou@amd.com,
- maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com,
- robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org,
- vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net,
- rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com,
- linux-graphics-maintainer@vmware.com, thellstrom@vmware.com,
- bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com
-Subject: [PATCH v3 22/22] drm: Remove legacy version of get_scanout_position()
-Date: Mon, 20 Jan 2020 09:23:14 +0100
-Message-Id: <20200120082314.14756-23-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200120082314.14756-1-tzimmermann@suse.de>
-References: <20200120082314.14756-1-tzimmermann@suse.de>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2045.outbound.protection.outlook.com [40.107.94.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 238D56E8CC
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jan 2020 11:08:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N3F7rxWLGx1/4YE4arS01Q7bYFI1I9VTeQOu8DeQf6U+PDD8UhDu1QbI2KNWJNUnV7D6I8yTQD1cEtIuTyJivvexznfp7596M/8DidEF2DJlqaJO003G2+i00qpL89EWp3FjyoPU/Ro+ztQj7x1/tXcq+rX63jF8uMVuSWhNY+vJICS9PZbWX6zL+tezblqaD9TGeG9QvDz+17UboIM3xdjs4HFbcyEER5gAWAT6RRAds6U4Dk9Mm0gZMufrUl3PfUyY4E57P2TuzbwwrvVUwxarUsnCH93nMIFGV2QjH4eIAlE7EA1sDYuj5vQzKixuSMW0zyzdciVpUDUe0q62sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EYgabKPRalFBhvVBvD7sFHWzgLhHCsho47s++Zo4w70=;
+ b=VVWqkAcg0EQcKRAUn+C5L2uHGiprsVvvkkFyopcLl+PgYRtWWplq9q4rfwD4aqwX+nYUI3h1dDl5qqFNmfrhzNR8PEUMXQDPJeriCNfi94QthTo0tTYtArOFJsZc3tPYJzW8Iv1NzYiuawppVQZWkaKy6b+F195u1cbLn60/KNqzh93EFR5/zxi2TR1Nz4hd/9DLkJ3aMuLKg6K36OlgJ4co+ApxSZShm/JPBwT+qgokl8QNlE9XFLRL7a7d0TmgyZZWf25e2YhWvtCnwQ4eoHEUB+jpVqYoLeE3aQnoIinnwvhcQcOnkFs8k6LiKLzgUT5SDMM/0bCtjWbw0cTNOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EYgabKPRalFBhvVBvD7sFHWzgLhHCsho47s++Zo4w70=;
+ b=V281VZJgFy/rQq/xO/jN7VFNNotjaciw0rzyqi0eWV6PODGTagsyTyUUGdJ0N9jP/cFY8XzghMUEoCKrMStcG4avOt8N2W0kk3llVxZIsHMfBzgBdC92kgpqRs+eBLpYfqSPDh3tAvQgAAB3TjQQIo34DtFoiOMksjeq2KbIpzU=
+Received: from SN1PR12CA0064.namprd12.prod.outlook.com (2603:10b6:802:20::35)
+ by BN6PR1201MB0097.namprd12.prod.outlook.com (2603:10b6:405:54::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.18; Mon, 20 Jan
+ 2020 11:08:31 +0000
+Received: from DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eaa::206) by SN1PR12CA0064.outlook.office365.com
+ (2603:10b6:802:20::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.20 via Frontend
+ Transport; Mon, 20 Jan 2020 11:08:31 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ DM6NAM11FT032.mail.protection.outlook.com (10.13.173.93) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2644.19 via Frontend Transport; Mon, 20 Jan 2020 11:08:31 +0000
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Mon, 20 Jan
+ 2020 05:08:30 -0600
+Received: from rico-code.amd.com (10.180.168.240) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Mon, 20 Jan 2020 05:08:28 -0600
+From: Tianci Yin <tianci.yin@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] Revert "drm/amdgpu: fix modprobe failure of the secondary
+ GPU when GDDR6 training enabled(V5)"
+Date: Mon, 20 Jan 2020 19:08:21 +0800
+Message-ID: <20200120110822.30163-1-tianci.yin@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(346002)(396003)(376002)(136003)(39860400002)(428003)(199004)(189003)(4326008)(81166006)(8676002)(426003)(26005)(186003)(5660300002)(81156014)(316002)(478600001)(336012)(8936002)(1076003)(44832011)(70586007)(70206006)(36756003)(54906003)(2616005)(2906002)(86362001)(6916009)(7696005)(6666004)(356004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR1201MB0097; H:SATLEXMB02.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9cf41db1-8fa6-4b31-0a0b-08d79d991591
+X-MS-TrafficTypeDiagnostic: BN6PR1201MB0097:
+X-Microsoft-Antispam-PRVS: <BN6PR1201MB0097FCA6BBBEE70C4E0611C395320@BN6PR1201MB0097.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:270;
+X-Forefront-PRVS: 0288CD37D9
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: UM/21a7ZObOjsAof/eEeo1YMBo+bQzuzBHW4D4t8jBRxqPQcphbO4f95frkbKMHfxcdjBXOxrb21AnBQzT2ewFcwdIE0KpIgyOt79fYH8Po5qm0dSuSyOxUB/7K/D/8m1fatzsRlTKQD9ym6prjFV1rYpKejoVDuJgWnBv6Z9vVc25yOqEv85OLhsUSsDK9VDYok1Orryhw0FN6rMPupkzzhS/4zq5GW2k6EUHgD7MbPlCFgrJ6pJTs1mH2XxQnAZOV/UfbXErJGicVayvIlNYvgTmSZahp7qYLtMaYLgHZNTJCgLDG5/UuEpq/9MStDdTeGamIhBxTy1WPhJPDPJtz23P5dZfeZLm5NzEniLbk8FTtclxt9ktnqGYswBO1sQcu9Ymgu1ywqcREKCXDtDbPb0igB3HW9QOP52QCVuM3zWNX1vd4FaCudWwzuuUno
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2020 11:08:31.2637 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cf41db1-8fa6-4b31-0a0b-08d79d991591
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB0097
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,133 +99,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, nouveau@lists.freedesktop.org,
- freedreno@lists.freedesktop.org
+Cc: Long Gang <Gang.Long@amd.com>, Tianci Yin <tianci.yin@amd.com>,
+ Feifei Xu <Feifei.Xu@amd.com>, Kevin Wang <Kevin1.Wang@amd.com>,
+ Tuikov Luben <Luben.Tuikov@amd.com>,
+ Deucher Alexander <Alexander.Deucher@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xiaojie Yuan <xiaojie.yuan@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The legacy version of get_scanout_position() was only useful while
-drivers still used drm_driver.get_scanout_position(). With no such
-drivers left, the related typedef and code can be removed
+From: "Tianci.Yin" <tianci.yin@amd.com>
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+This reverts commit 2ad857d7b82081736c078997ba0542acfdd50099.
+
+The patch will be replaced with a better solution, revert it.
 ---
- drivers/gpu/drm/drm_vblank.c    | 27 +++++++--------------------
- drivers/gpu/drm/i915/i915_irq.c |  2 +-
- include/drm/drm_vblank.h        | 10 +---------
- 3 files changed, 9 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  5 -----
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 27 +------------------------
+ 2 files changed, 1 insertion(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 34428ce3c676..0bda7d7a0af2 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -576,9 +576,6 @@ EXPORT_SYMBOL(drm_calc_timestamping_constants);
-  * @get_scanout_position:
-  *     Callback function to retrieve the scanout position. See
-  *     @struct drm_crtc_helper_funcs.get_scanout_position.
-- * @get_scanout_position_legacy:
-- *     Callback function to retrieve the scanout position. See
-- *     @struct drm_driver.get_scanout_position.
-  *
-  * Implements calculation of exact vblank timestamps from given drm_display_mode
-  * timings and current video scanout position of a CRTC.
-@@ -601,8 +598,7 @@ bool
- drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
- 	bool in_vblank_irq,
--	drm_vblank_get_scanout_position_func get_scanout_position,
--	drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy)
-+	drm_vblank_get_scanout_position_func get_scanout_position)
- {
- 	struct drm_device *dev = crtc->dev;
- 	unsigned int pipe = crtc->index;
-@@ -620,7 +616,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+index 86267baca07c..d3c27a3c43f6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+@@ -60,11 +60,6 @@
+  */
+ #define AMDGPU_GMC_FAULT_TIMEOUT	5000ULL
  
- 	/* Scanout position query not supported? Should not happen. */
--	if (!get_scanout_position && !get_scanout_position_legacy) {
-+	if (!get_scanout_position) {
- 		DRM_ERROR("Called from CRTC w/o get_scanout_position()!?\n");
- 		return false;
- 	}
-@@ -651,19 +647,10 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 		 * Get vertical and horizontal scanout position vpos, hpos,
- 		 * and bounding timestamps stime, etime, pre/post query.
- 		 */
--		if (get_scanout_position) {
--			vbl_status = get_scanout_position(crtc,
--							  in_vblank_irq,
--							  &vpos, &hpos,
--							  &stime, &etime,
--							  mode);
--		} else {
--			vbl_status = get_scanout_position_legacy(dev, pipe,
--								 in_vblank_irq,
--								 &vpos, &hpos,
--								 &stime, &etime,
--								 mode);
--		}
-+		vbl_status = get_scanout_position(crtc, in_vblank_irq,
-+						  &vpos, &hpos,
-+						  &stime, &etime,
-+						  mode);
- 
- 		/* Return as no-op if scanout query unsupported or failed. */
- 		if (!vbl_status) {
-@@ -755,7 +742,7 @@ bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
- {
- 	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 		crtc, max_error, vblank_time, in_vblank_irq,
--		crtc->helper_private->get_scanout_position, NULL);
-+		crtc->helper_private->get_scanout_position);
- }
- EXPORT_SYMBOL(drm_crtc_vblank_helper_get_vblank_timestamp);
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 29bf847999f5..3245f7c5c84f 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -886,7 +886,7 @@ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
- {
- 	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 		crtc, max_error, vblank_time, in_vblank_irq,
--		i915_get_crtc_scanoutpos, NULL);
-+		i915_get_crtc_scanoutpos);
- }
- 
- int intel_get_crtc_scanline(struct intel_crtc *crtc)
-diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-index a6ca8be93dd8..0f474e855e7f 100644
---- a/include/drm/drm_vblank.h
-+++ b/include/drm/drm_vblank.h
-@@ -245,20 +245,12 @@ typedef bool (*drm_vblank_get_scanout_position_func)(struct drm_crtc *crtc,
- 						     ktime_t *stime, ktime_t *etime,
- 						     const struct drm_display_mode *mode);
- 
--typedef bool (*drm_vblank_get_scanout_position_legacy_func)(struct drm_device *dev,
--							    unsigned int pipe,
--							    bool in_vblank_irq,
--							    int *vpos, int *hpos,
--							    ktime_t *stime, ktime_t *etime,
--							    const struct drm_display_mode *mode);
+-/*
+- * Default stolen memory size, 1024 * 768 * 4
+- */
+-#define AMDGPU_STOLEN_BIST_TRAINING_DEFAULT_SIZE	0x300000ULL
 -
- bool
- drm_crtc_vblank_helper_get_vblank_timestamp_internal(struct drm_crtc *crtc,
- 						     int *max_error,
- 						     ktime_t *vblank_time,
- 						     bool in_vblank_irq,
--						     drm_vblank_get_scanout_position_func get_scanout_position,
--						     drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy);
-+						     drm_vblank_get_scanout_position_func get_scanout_position);
- bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
- 						 int *max_error,
- 						 ktime_t *vblank_time,
+ struct firmware;
+ 
+ /*
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index 86f4ffe408e7..0c5bf3bd640f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -641,12 +641,7 @@ static int gmc_v10_0_late_init(void *handle)
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 	int r;
+ 
+-	/*
+-	 * Can't free the stolen VGA memory when it might be used for memory
+-	 * training again.
+-	 */
+-	if (!adev->fw_vram_usage.mem_train_support)
+-		amdgpu_bo_late_init(adev);
++	amdgpu_bo_late_init(adev);
+ 
+ 	r = amdgpu_gmc_allocate_vm_inv_eng(adev);
+ 	if (r)
+@@ -830,19 +825,6 @@ static int gmc_v10_0_sw_init(void *handle)
+ 
+ 	adev->gmc.stolen_size = gmc_v10_0_get_vbios_fb_size(adev);
+ 
+-	/*
+-	 * In dual GPUs scenario, stolen_size is assigned to zero on the
+-	 * secondary GPU, since there is no pre-OS console using that memory.
+-	 * Then the bottom region of VRAM was allocated as GTT, unfortunately a
+-	 * small region of bottom VRAM was encroached by UMC firmware during
+-	 * GDDR6 BIST training, this cause page fault.
+-	 * The page fault can be fixed by forcing stolen_size to 3MB, then the
+-	 * bottom region of VRAM was allocated as stolen memory, GTT corruption
+-	 * avoid.
+-	 */
+-	adev->gmc.stolen_size = max(adev->gmc.stolen_size,
+-				    AMDGPU_STOLEN_BIST_TRAINING_DEFAULT_SIZE);
+-
+ 	/* Memory manager */
+ 	r = amdgpu_bo_init(adev);
+ 	if (r)
+@@ -882,13 +864,6 @@ static void gmc_v10_0_gart_fini(struct amdgpu_device *adev)
+ static int gmc_v10_0_sw_fini(void *handle)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	void *stolen_vga_buf;
+-
+-	/*
+-	 * Free the stolen memory if it wasn't already freed in late_init
+-	 * because of memory training.
+-	 */
+-	amdgpu_bo_free_kernel(&adev->stolen_vga_memory, NULL, &stolen_vga_buf);
+ 
+ 	amdgpu_vm_manager_fini(adev);
+ 	gmc_v10_0_gart_fini(adev);
 -- 
-2.24.1
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
