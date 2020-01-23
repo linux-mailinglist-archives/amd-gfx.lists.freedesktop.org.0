@@ -1,102 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499D9146EC5
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jan 2020 17:58:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41533146F28
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jan 2020 18:06:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2813E6E051;
-	Thu, 23 Jan 2020 16:58:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C1576E0FA;
+	Thu, 23 Jan 2020 17:05:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2079E6E051
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 16:58:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=faLY3ufk0nQRz639mz1UafpZloqciyY8FqCVJhFjxUmVWDoIxp1cLFDAdu71kV5ds0jRX/BureW0lvpBRVTnYOP4gpT+RXmFNg4kBk6R3kzeGt95+ifGiYe6R0uhy2yy4pKDfLEKkK8k5LYrPbHAC/d3QL7oAjHZIO/2WYP2mxAPQ2N4OvbW952rShotGa2jCMDBGzLEAGPEALut00bpfMZPlc88tYiT3Pmvx9dxW/Mia7z+GLe5D0DiThTe000MNpJaWtCDAIZiOpuMPPIA7RwCJYhtNMmYF957TLN5WRjDqAjaKSEYNVr3wPCOaZYIGz8hktuBnq6BnKGqC69RCQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/I+okrjlTVFyrO62ZNuGDVYEmb2l5QUsL6tyn0hWtJY=;
- b=h9qjkwQfxmE2CGS7djKA78R1E+7FxS9q1dzLIfshaIZrjU9CCjV+PB1/LRr+HGFcBuJ3Q60eh1ve/V9+cGHpqnWh03XVKn5//9YR91WaVMO01Q6/jz/qUPqpJvOomJPcdRRLI2U6xLIrSJC5bMR/Xoik0wRtYGgkfjLDYIK3q6fS+UUg+dzTLuurHFhQofwWDTYMKDuSmbq+/BQHf/OVEFZeijxPyUqRUJPViBqh2KkNLIZaOdmiXS5L2nrq0AZ5VRw4JR8jlCITLMClZXhAdl+2Rsmfs0voPMpZ93OfrFfpX3aFGeWagZn4nMkQ6WZZAMHADKhUnGqY9MDDG8hf2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/I+okrjlTVFyrO62ZNuGDVYEmb2l5QUsL6tyn0hWtJY=;
- b=KQ+TuzhSKU+4/TDW7dvRizHO45tRSCcQd6Z5Pn3gzeQAJQgOe8Vh9m+mHDEBjpcC1sMG7x7ORVbQ3M0focXHELMxM0qxhYCFCbNPqTH7FHOlGSY1nWGW9QUZP6GPuGsrcR/p5jR1KRtjjck9zrQy+ZGesuFnYNASjkbsIe2PjFs=
-Received: from DM5PR12MB1418.namprd12.prod.outlook.com (10.168.240.15) by
- DM5PR12MB1740.namprd12.prod.outlook.com (10.175.89.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2644.18; Thu, 23 Jan 2020 16:58:47 +0000
-Received: from DM5PR12MB1418.namprd12.prod.outlook.com
- ([fe80::c8ba:7e4e:e1c3:d8db]) by DM5PR12MB1418.namprd12.prod.outlook.com
- ([fe80::c8ba:7e4e:e1c3:d8db%5]) with mapi id 15.20.2644.028; Thu, 23 Jan 2020
- 16:58:47 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx list
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: remove the experimental flag for renoir
-Thread-Topic: [PATCH] drm/amdgpu: remove the experimental flag for renoir
-Thread-Index: AQHV0UODDw2ueOQ1ukGd3ZgjZpT096f4bA+AgAAODvA=
-Date: Thu, 23 Jan 2020 16:58:46 +0000
-Message-ID: <DM5PR12MB1418ADA5BE23023163B62858FC0F0@DM5PR12MB1418.namprd12.prod.outlook.com>
-References: <20200122164623.239931-1-alexander.deucher@amd.com>
- <CADnq5_N4_oaHNXHcXj79-O3d-y+v=ZrEhnJ=MhtfYm-5ixgzCw@mail.gmail.com>
-In-Reply-To: <CADnq5_N4_oaHNXHcXj79-O3d-y+v=ZrEhnJ=MhtfYm-5ixgzCw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-01-23T16:58:45Z; 
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
- Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=f1e13554-1385-4ab7-a0b3-0000f860ee3c;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=1
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-01-23T16:58:45Z
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
- Unrestricted
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: 9a3d039d-f246-4f12-98f0-0000679a0b7e
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Hawking.Zhang@amd.com; 
-x-originating-ip: [165.204.55.251]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: b823faa8-b52e-4c9b-64d6-08d7a025831f
-x-ms-traffictypediagnostic: DM5PR12MB1740:|DM5PR12MB1740:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR12MB17409604303AFCFCADCCA44CFC0F0@DM5PR12MB1740.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2276;
-x-forefront-prvs: 029174C036
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(136003)(39860400002)(346002)(376002)(396003)(189003)(199004)(26005)(186003)(8936002)(66556008)(66476007)(6506007)(53546011)(66446008)(45080400002)(64756008)(478600001)(5660300002)(66946007)(76116006)(2906002)(316002)(7696005)(71200400001)(33656002)(55016002)(52536014)(966005)(8676002)(86362001)(9686003)(81156014)(4326008)(81166006)(110136005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1740;
- H:DM5PR12MB1418.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nFDZrt+NEP4Ksgj+wj5lH63eYrMcLdF+QQjA5y0mw2NDb/oo2KBYbeAPSdOYHyB/wCpT7AVeCah5ZKTolXDKbK/M3Q32Ycyyw5nc3FZkPQ9Mvb+8PGJ/igdu8UQ9JCsp+gFv/lZZtwwMes2Gk9AfICN66zdvheY1rbQX6Qg+WzbKlkjGZCavphCVUWKwkIjLiFrGwIWrYDqPj0H/rmDVsyYcS/bnGelNyGoewzPvJ0WiqZjfPCClNmCiBrJKi2q5dOWi6ch14KDajCk+vdpBxNIBEZHHaTuUsOiLqMB+eYIsVh1hXS7f/kcSkLaouZFhFGbo4jOKsmygkzJ8Pd7v9f3QpOty45caNBQ4yRFb1e+KwNZbTaxFJT+13lQiVJnFdLsWZB/LryS0MpJyMAugKeSEoENQxFVkH/A4EZHnDVeBLW5rUn7o9Qv1fb0hVD4SnKzRc1jgf7pA1FgShEtzbS/4bstCc8jI/YyDm54Lk4k=
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30FF56E0FA
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 17:05:58 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id w8so2986254qts.11
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 09:05:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Lfsg+E38fen8LkCjtNI12VPr90+9rK5ecTQ+vKtbCq8=;
+ b=t9j+WpA3rlNVcEbiaHOlgxoL4GfVv4b5EJHKY6EwTNx/baB6/kImrGIrJNHyiyTIIX
+ mHVn/gU45WMVYxKClMPxrypagDevG5oKw3nvCeUk1mYvJUijLVkg6z9Qre9BEPweyed6
+ 0uwziVHK+j+cnz4sSJhyd/ea6sPDz7zo5YHEfoaV2mAjU71SgFdRSIgR3FTFDH4oWnBG
+ TOdoJGsxzF8n+QZNm/YwTIj0l0EOOnQpcl2Gn3veco+YSoXZAeFMOLHneNCO3RiD3Qab
+ Z0ZcG2lnZA/X9PozXnzuJDef9iD2DQ3wQbrMaK2xG8LKPs7Yq1DknfJTAbikgHfe5gBC
+ JQ0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Lfsg+E38fen8LkCjtNI12VPr90+9rK5ecTQ+vKtbCq8=;
+ b=ODEv11I3qAhtQFX8DxPjw11VNklePgNh8NUD7ukwUEl244yB2+pdq3x0psi+eNKZN2
+ 8kvUeB8XcZibFlVA22MbSMkz5oM3EZagSe1RvLbg8Pk8sdiYS59j3meIFFQU5Nww8k/x
+ 2VKNhn7LRyTbbDzQNiYYRTsMGB18a4f3pkb1k0TBEpDgKYDoNl+HFWKt80aN3gL2aGOb
+ l1sskY4a7/aVxtXs6kbCOlF3zt3ZPJbTG5fiJqbNKqKAbX2E0bGbDGtJ19dd8ukhvjF2
+ WxoAuxcbCsslL971KN/bwXzkwVmTKwhwHUoWZKeMgACHAWCepvADj7rW4NCcTAOV2NUS
+ FM3Q==
+X-Gm-Message-State: APjAAAUPWW3sxPJDh/184xM1pmKOUQ6u3zB65/97/sXkqYfubZXFgVUw
+ wtiMUt7AIOQWy7PzjCrPOmmPxlbN
+X-Google-Smtp-Source: APXvYqxF1P+RBuJnJ/COvObTx6PCztPVw5s2agcI/0TuIC0LlY3Xev8MUyPB3pwJitpXP3j5JR3npQ==
+X-Received: by 2002:ac8:24c1:: with SMTP id t1mr17198256qtt.257.1579799157063; 
+ Thu, 23 Jan 2020 09:05:57 -0800 (PST)
+Received: from localhost.localdomain ([71.219.59.120])
+ by smtp.gmail.com with ESMTPSA id d9sm1202507qth.34.2020.01.23.09.05.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Jan 2020 09:05:56 -0800 (PST)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amdgpu: attempt to enable gfxoff on more raven1
+ boards (v2)
+Date: Thu, 23 Jan 2020 12:05:48 -0500
+Message-Id: <20200123170549.4179-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b823faa8-b52e-4c9b-64d6-08d7a025831f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2020 16:58:46.9351 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PSIvGpI7EXFPGwkw39/XH20NELOrZZ02yrStOzgi+/tnpvakQQHTGKOnLRMmVzeULtWkyhfapVgYgZ8M0A62cw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1740
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,61 +65,88 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
+Switch to a blacklist so we can disable specific boards
+that are problematic.
 
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+v2: make the blacklist non-raven specific.
 
-Regards,
-Hawking
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex Deucher
-Sent: Friday, January 24, 2020 00:08
-To: amd-gfx list <amd-gfx@lists.freedesktop.org>
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-Subject: Re: [PATCH] drm/amdgpu: remove the experimental flag for renoir
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 44 ++++++++++++++++++++++++---
+ 1 file changed, 40 insertions(+), 4 deletions(-)
 
-Ping?
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 33e851ad4943..67ea6a9e13d9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -1162,18 +1162,54 @@ static void gfx_v9_0_check_fw_write_wait(struct amdgpu_device *adev)
+ 	}
+ }
+ 
++struct amdgpu_gfxoff_quirk {
++	u16 chip_vendor;
++	u16 chip_device;
++	u16 subsys_vendor;
++	u16 subsys_device;
++	u8 revision;
++};
++
++static const struct amdgpu_gfxoff_quirk amdgpu_gfxoff_quirk_list[] = {
++	/* https://bugzilla.kernel.org/show_bug.cgi?id=204689 */
++	{ 0x1002, 0x15dd, 0x1002, 0x15dd, 0xc8 },
++	{ 0, 0, 0, 0, 0 },
++};
++
++static bool gfx_v9_0_should_disable_gfxoff(struct pci_dev *pdev)
++{
++	const struct amdgpu_gfxoff_quirk *p = amdgpu_gfxoff_quirk_list;
++
++	while (p && p->chip_device != 0) {
++		if (pdev->vendor == p->chip_vendor &&
++		    pdev->device == p->chip_device &&
++		    pdev->subsystem_vendor == p->subsys_vendor &&
++		    pdev->subsystem_device == p->subsys_device &&
++		    pdev->revision == p->revision) {
++			return true;
++		}
++		++p;
++	}
++	return false;
++}
++
+ static void gfx_v9_0_check_if_need_gfxoff(struct amdgpu_device *adev)
+ {
++	if (gfx_v9_0_should_disable_gfxoff(adev->pdev))
++		adev->pm.pp_feature &= ~PP_GFXOFF_MASK;
++
+ 	switch (adev->asic_type) {
+ 	case CHIP_VEGA10:
+ 	case CHIP_VEGA12:
+ 	case CHIP_VEGA20:
+ 		break;
+ 	case CHIP_RAVEN:
+-		if (!(adev->rev_id >= 0x8 ||
+-		      adev->pdev->device == 0x15d8) &&
+-		    (adev->pm.fw_version < 0x41e2b || /* not raven1 fresh */
+-		     !adev->gfx.rlc.is_rlc_v2_1)) /* without rlc save restore ucodes */
++		if (!(adev->rev_id >= 0x8 || adev->pdev->device == 0x15d8) &&
++		    ((adev->gfx.rlc_fw_version != 106 &&
++		      adev->gfx.rlc_fw_version < 531) ||
++		     (adev->gfx.rlc_fw_version == 53815) ||
++		     (adev->gfx.rlc_feature_version < 1) ||
++		     !adev->gfx.rlc.is_rlc_v2_1))
+ 			adev->pm.pp_feature &= ~PP_GFXOFF_MASK;
+ 
+ 		if (adev->pm.pp_feature & PP_GFXOFF_MASK)
+-- 
+2.24.1
 
-Alex
-
-On Wed, Jan 22, 2020 at 11:46 AM Alex Deucher <alexdeucher@gmail.com> wrote:
->
-> Should work properly with the latest sbios on 5.5 and newer kernels.
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c 
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index 01a793a0cbf7..30a1e3ac21d6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -1004,7 +1004,7 @@ static const struct pci_device_id pciidlist[] = {
->         {0x1002, 0x734F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_NAVI14},
->
->         /* Renoir */
-> -       {0x1002, 0x1636, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RENOIR|AMD_IS_APU|AMD_EXP_HW_SUPPORT},
-> +       {0x1002, 0x1636, PCI_ANY_ID, PCI_ANY_ID, 0, 0, 
-> + CHIP_RENOIR|AMD_IS_APU},
->
->         /* Navi12 */
->         {0x1002, 0x7360, PCI_ANY_ID, PCI_ANY_ID, 0, 0, 
-> CHIP_NAVI12|AMD_EXP_HW_SUPPORT},
-> --
-> 2.24.1
->
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Chawking.zhang%40amd.com%7Cbea189f0eb804f3964cf08d7a01e7897%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637153925050975234&amp;sdata=Q8GdcfxnoLYcUrZJfb%2FGDzKxyY5gknAu8KUFZ7Scwso%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
