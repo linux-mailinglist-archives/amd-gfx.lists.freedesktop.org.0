@@ -2,58 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7183C147191
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jan 2020 20:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68B1B147204
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jan 2020 20:46:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9B5A6FE31;
-	Thu, 23 Jan 2020 19:14:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 912866FE46;
+	Thu, 23 Jan 2020 19:46:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com
- [IPv6:2607:f8b0:4864:20::72e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2CC96FE31;
- Thu, 23 Jan 2020 19:14:32 +0000 (UTC)
-Received: by mail-qk1-x72e.google.com with SMTP id j20so4551619qka.10;
- Thu, 23 Jan 2020 11:14:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=F6dtyi0TxFJoF+T23AQH64PDgakD37qLEHUU/wMvAqo=;
- b=IB737zPJ2G+BvaTc8adyUa7tF614GBIlujgS5L+9PAbP2Xgo2yHJ41Ik1yol4PoyEI
- rXx5npJc3QSPTuzjNMgVu4zW9DMwEByrn++lLFIv765DdQrkDwZTlhfQeZBkRXmsqBMV
- R8Fnwnlr22mE4HSnXlV+Ij+OVsTG29Sa5aW/0flrPbzrC/uJdrD0l2U4jcb7LwX814pO
- yOOC4stigz8KU2kMTFzCgl4RSBx/8CFjn7CS94zYleKL1iIcMr2ZeBwtCjvDdfApzBiS
- VV/lV+y9GxHMFxlRH2flEVcOdI0sgaiMOEVFmDIRyy90n37gofo5W2E7+j1mqlzRwlp9
- KvXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=F6dtyi0TxFJoF+T23AQH64PDgakD37qLEHUU/wMvAqo=;
- b=hQv6OtafX4z4R0qBqnSj/4l/210OWKvPsRpv/1CyODpNn99liFC13OwoY70wNLC4cM
- Go5nyDp7SodK5oUTcwIjX0HYn5jXzv4c077TJ0objKvSqy5D2MFunkVtlw1/wv04XxON
- ipSHUX6auW68zyWKW1bBGom0luDGLymkCV7MbnhPUhVia9EtV2Im4bXKCHDQTPwyJMW8
- Ru5FDvB3vi4whh5ABsV22Ih7YvlMc6Z2HKTKeHRvtdje3/YTIQVrUtivJLMvMB9xcdyj
- VqlKPwAahReVCaQ4K0NplXu6J2Hj/D9qgP+8kk7n+aZ71aF44k6U7rcm2vvHIDGsWwGJ
- kB9A==
-X-Gm-Message-State: APjAAAUsiHdxPK/2qDpKSsgsbrILYSaO91hihuG1LEuOh4NQGm6nbxzP
- 0CAWJWttYasDcamZ8JcbB4xwYFe1
-X-Google-Smtp-Source: APXvYqzJ2RQ+U8VUU1HCW3P4etofOu4ZmhxYAviF2VPhg74oXm3LgTKGQhu/aSBdGlNr1hOfTTyaUA==
-X-Received: by 2002:ae9:e910:: with SMTP id x16mr17291002qkf.90.1579806871640; 
- Thu, 23 Jan 2020 11:14:31 -0800 (PST)
-Received: from localhost.localdomain ([71.219.59.120])
- by smtp.gmail.com with ESMTPSA id 8sm1398272qkm.92.2020.01.23.11.14.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Jan 2020 11:14:31 -0800 (PST)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, daniel.vetter@ffwll.ch
-Subject: [pull] amdgpu drm-fixes-5.5
-Date: Thu, 23 Jan 2020 14:14:24 -0500
-Message-Id: <20200123191424.3849-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.24.1
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-cys01nam02on0623.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe45::623])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF5F56FE46
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 19:46:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jfsUIAVD6Eq8b2Qde8CtJwcr2P4e6ZwUtFG0ZsoNjjaUGu4HINGI28OerWYPmb9aM54Pah1FgBlLGKv3801FTWKtxE69IGDLfTa3mop30tLiPHPA7rxDuzIkdFrQkIDhKDzqUTss8AXwF6UGEBq3Y/A6iyyqagPYU2D4UmvbiZduAI88Svfy698W5s4LEhxTuJY0Km63f8z51EKwv5+uG88gHBu5LPVD6/vrxMpnqjgEAB1BHGwgFWuhdqoK0q6FVv0tp1DBEl5AC+xdoMwf/+Epag9krYcezCFjVq7hQx3aXBGIDA7c/sZcwXDkjBl3NhMOgE/9J4fslYfQ4TydvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=61bcECVCDoWk4wLykyPCCc48owDIya1H9txwWlQL600=;
+ b=nEVLUInz0qZH9DTBqmdf+bxaMXrImlhYJuJDC2gDU+xaU3w17nNF44OWmKmukyEeVFUeta3AlfR2X7dtJuFcAL79V6AY1xNUn8lJo8xBluD6DKqr5dOQmptQ7MMsk2DupemCMUFdjT0BqepV5yFQlCmJ+SYbwITsqsCYN2Q2IJDe1Mk8BnmEI1L1VVuwzGfBkDKMO6fzYP67PoQRFGxFCT6GLKer16qd46dLtRVCSAoi1TdcylAOoBTr7mPQkYLp1WPgwN3VjL6dqJSsckLqcbjnLWOhu3M4yGSS2dHfd6WWU3ENT6fBkaaS4a/YiLdVduVUQ1hPIEB8raPEUNA34g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=61bcECVCDoWk4wLykyPCCc48owDIya1H9txwWlQL600=;
+ b=L/EKgxrChe/Bc5BJzfQ9iXcKvMwBoXfu6s0esspyyoqRgEKvOJ7TE7xATFWzciXm9xxgHyH/lulJWEl0Ct6lx81LKB4zAZo5xDek294jb8n/jvRSXxcCmB2nBFYuf15MTPQiQl+FD5SgxIjt3sunTKSfEmCu+oxKAYy8Ev8ze/0=
+Received: from CY4PR1201CA0011.namprd12.prod.outlook.com
+ (2603:10b6:910:16::21) by CH2PR12MB4279.namprd12.prod.outlook.com
+ (2603:10b6:610:af::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.18; Thu, 23 Jan
+ 2020 19:45:34 +0000
+Received: from DM6NAM11FT049.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eaa::205) by CY4PR1201CA0011.outlook.office365.com
+ (2603:10b6:910:16::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2665.19 via Frontend
+ Transport; Thu, 23 Jan 2020 19:45:34 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ DM6NAM11FT049.mail.protection.outlook.com (10.13.172.188) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2644.19 via Frontend Transport; Thu, 23 Jan 2020 19:45:33 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 23 Jan
+ 2020 13:45:33 -0600
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 23 Jan
+ 2020 13:45:32 -0600
+Received: from hwentlanhp.amd.com (10.180.168.240) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Thu, 23 Jan 2020 13:45:32 -0600
+From: Harry Wentland <harry.wentland@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amd/display: Retrain dongles when SINK_COUNT becomes
+ non-zero
+Date: Thu, 23 Jan 2020 14:45:25 -0500
+Message-ID: <20200123194526.17967-1-harry.wentland@amd.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(396003)(39860400002)(346002)(136003)(376002)(428003)(199004)(189003)(7696005)(6666004)(36756003)(356004)(478600001)(5660300002)(70586007)(70206006)(86362001)(426003)(336012)(26005)(186003)(6916009)(8936002)(54906003)(2616005)(8676002)(1076003)(316002)(4326008)(44832011)(81156014)(81166006)(2906002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:CH2PR12MB4279; H:SATLEXMB01.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 622477da-be83-43c9-8140-08d7a03ccfa2
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4279:
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4279DEAC342C85FEF0BE2DD18C0F0@CH2PR12MB4279.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-Forefront-PRVS: 029174C036
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bcCQPv2Kl45ClfkS+EXf3/gm0o1eWPZb6Y9eZkZ4IRa4YZwloGj+8aDKgcBURJre0ZynVoDUEkEz+1QTnuA+ijFP1ntj77nl7ULKOy0OkXkXOaDfRBveQhkEVDx5u+dw+fgZASY9WU+9QbEeUKb8sn/CeNUyPI7k0qg6NEFyA2SzvlM1Up937VNKDb3nrQ/si1Br+prYdqyI2CTvDSN2PiCe89e+/8VQGWeaiTcQbztxK/CJuBW4rxOpfbQxGNja/KgqhGvTH8iSgbcVbpc/95nX5oLtIPSyAft87OtdLXH268ff36uQ8iTdh53p5hyPem1tN9G6pdfdicS6lyuYRGE9KpyvS33U/l81KkUtbidUTOrvr7J6VjxKwUHqzDnZi1AJWlZuTi41upBaVWQ4JJc0eRBNMf2Gs64iP/w18uH69BRBBT+xAJz/JeFdB24U
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2020 19:45:33.7259 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 622477da-be83-43c9-8140-08d7a03ccfa2
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4279
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,40 +104,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Hersen Wu <hersenxs.wu@amd.com>, Wenjing Liu <Wenjing.Liu@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Eric Yang <Eric.Yang2@amd.com>,
+ Louis Li <Ching-shih.Li@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+[WHY]
+Two years ago the patch referenced by the Fixes tag stopped running
+dp_verify_link_cap_with_retries during DP detection when the reason
+for the detection was a short-pulse interrupt. This effectively meant
+that we were no longer doing the verify_link_cap training on active
+dongles when their SINK_COUNT changed from 0 to 1.
 
-Just one change to remove the experimental flag from renoir.
+A year ago this was partly remedied with this commit:
+80adaebd2d41 drm/amd/display: Don't skip link training for empty dongle
 
-The following changes since commit def9d2780727cec3313ed3522d0123158d87224d:
+This made sure that we trained the dongle on initial hotplug (without
+connected downstream devices).
 
-  Linux 5.5-rc7 (2020-01-19 16:02:49 -0800)
+This is all fine and dandy if it weren't for the fact that there are
+some dongles on the market that don't like link training when SINK_COUNT
+is 0 These dongles will in fact indicate a SINK_COUNT of 0 immediately
+after hotplug, even when a downstream device is connected, and then
+trigger a shortpulse interrupt indicating a SINK_COUNT change to 1.
 
-are available in the Git repository at:
+In order to play nicely we will need our policy to not link train an
+active DP dongle when SINK_COUNT is 0 but ensure we train it when the
+SINK_COUNT changes to 1.
 
-  git://people.freedesktop.org/~agd5f/linux tags/amd-drm-fixes-5.5-2020-01-23
+[HOW]
+Call dp_verify_link_cap_with_retries on detection even when the detection
+is triggered from a short pulse interrupt.
 
-for you to fetch changes up to 23fe1390c7f13af417069fc0787f7cc82839a6bd:
+With this change we can also revert this commit which we'll do in a separate
+follow-up change:
+80adaebd2d41 drm/amd/display: Don't skip link training for empty dongle
 
-  drm/amdgpu: remove the experimental flag for renoir (2020-01-23 12:14:53 -0500)
+Fixes: 0301ccbaf67d drm/amd/display: DP Compliance 400.1.1 failure
+Suggested-by: Louis Li <Ching-shih.Li@amd.com>
+Tested-by: Louis Li <Ching-shih.Li@amd.com>
+Cc: Wenjing Liu <Wenjing.Liu@amd.com>
+Cc: Hersen Wu <hersenxs.wu@amd.com>
+Cc: Eric Yang <Eric.Yang2@amd.com>
+Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-----------------------------------------------------------------
-amd-drm-fixes-5.5-2020-01-23:
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index a50768a7ba68..cc2e05003595 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -969,8 +969,7 @@ static bool dc_link_detect_helper(struct dc_link *link,
+ 			same_edid = is_same_edid(&prev_sink->dc_edid, &sink->dc_edid);
+ 
+ 		if (link->connector_signal == SIGNAL_TYPE_DISPLAY_PORT &&
+-			sink_caps.transaction_type == DDC_TRANSACTION_TYPE_I2C_OVER_AUX &&
+-			reason != DETECT_REASON_HPDRX) {
++			sink_caps.transaction_type == DDC_TRANSACTION_TYPE_I2C_OVER_AUX) {
+ 			/*
+ 			 * TODO debug why Dell 2413 doesn't like
+ 			 *  two link trainings
+-- 
+2.25.0
 
-amdgpu:
-- remove the experimental flag from renoir
-
-----------------------------------------------------------------
-Alex Deucher (1):
-      drm/amdgpu: remove the experimental flag for renoir
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
