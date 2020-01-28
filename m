@@ -1,60 +1,87 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA51F14C138
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jan 2020 20:47:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21A5A14C14C
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jan 2020 20:56:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59CCA6F3C0;
-	Tue, 28 Jan 2020 19:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59D4B6E11B;
+	Tue, 28 Jan 2020 19:56:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
- [IPv6:2607:f8b0:4864:20::843])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6FB66F3C0
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 19:47:15 +0000 (UTC)
-Received: by mail-qt1-x843.google.com with SMTP id t13so10866239qto.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 11:47:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=/AX5SIWmveyNDwwxZFTOBj/Pe9QepHmy+0fUCBeNEWM=;
- b=heWPlKYRb9KXjZEWMyix4WTX2A8FXYZ6qSmUCFaYvZgpx4pvpjtQ5HBgDUTq9K8v3g
- ZBoP7pjWZoWJ/sscTUh9AL1JQecqD9f8yUKKRyCTl+jpgL7Y/Kxy0PRcihzCJ2kdk2k7
- J6/g0VSf6k4Id6slAuQPWXRiAUVQ1Bcl6dLUp1v6N8Gh9pwvjVsbXAjJ19IFp/HTxug5
- LnW4iqwTq+W1oA7GSIR9Mg0vITU/aUM447wZ3wnAuvoyoFflNSiFvHTwr5G4rA75OJRn
- YiA4gUodeGhMi+dtwo9UaQufndbfNViFJ85UIR+uM48uLD7nb9jmmH9iiLgjg8UkIeSN
- MGXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=/AX5SIWmveyNDwwxZFTOBj/Pe9QepHmy+0fUCBeNEWM=;
- b=p5GiBeGBkAQo8qi19PcB7NKntT7ouVLdNyJL1J3Yz6OpElf0iqjAS3rj4c1gfmbybH
- otqDIuU94OG+23Dhh2VS9C6l/pRnH3rx4j611+sjSiDG9yPz+OLdunBXvNRZKIkdj7nu
- H5hfPUhAUBH2c8/YeqqLBmHuI0Mwnh8fkJXVtsfmusuIaLGf2yXBaN8ZUkLpHMe5m/yK
- sykrpN7mOuDJh+0uGGwv15UsK0xcnbxyhXYOQBQlgA5/dquFHZavehKdMapO6WJc4j80
- eyVLQcxdEWjateHcRZ0zspx9Lf0Va0/kA+A6Dp5Ct2pnLX7dOxbmfFBqifxygqRizSVR
- r7TQ==
-X-Gm-Message-State: APjAAAXoOaKpzzy6MOx3n0MNmfSV892RqYUIkcjkQurptFR0Qcscpwr4
- UBCDKxS35Tg3ybKYQ6G7d9mkGnW2
-X-Google-Smtp-Source: APXvYqw+ooTHCbZdyvy/oN/vaR7p/s20NMpJ+AZTwgcfwXmhrKadWicMcFEXq2E/TnqM8hUKEEfrEw==
-X-Received: by 2002:ac8:769a:: with SMTP id g26mr23101446qtr.259.1580240834910; 
- Tue, 28 Jan 2020 11:47:14 -0800 (PST)
-Received: from localhost.localdomain ([71.219.59.120])
- by smtp.gmail.com with ESMTPSA id b22sm12590452qka.121.2020.01.28.11.47.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Jan 2020 11:47:14 -0800 (PST)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2088.outbound.protection.outlook.com [40.107.92.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7E7E6E11B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 19:55:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BBRXJzsmBoVHMlC8w9u7NFuvWgul+PlnGXBi/04cWhcaZwRBq0lKuU9rJ5BTvPOB4L8JlFduXH88ykV1NQr5v2+9dnC1beDFIf1DFXxbYT68xQc9ElOmknDsJlF5XaYlJN0h6bfCAihBUPNqGSvrCJsY7UsKU4vJ/uYpqFzeX7LIgO3FqnYWGBPIrzgqCrMBPyblfyTRYGSxjqplpSRHJejqEJTz72FLLd7MyOWScQlDXU66rLMC/gJltNgZ9azyLsQ4y/xAKGuiP3PdYUKYDan5VKm+ESEYoIaJlIs1w4RGFvtaShUXzVYUBVEILqbncgT5PW4SHBH7VrkYu0QT5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VyiAVIa7wIkaNl2z/BECO1ddfGCNGLXuBOh0oRALK2U=;
+ b=ocH6sO09g5p4t8kOppaeJ7Gdb+YpC9lTDjNyx2qciJpr7ZgXoNp7bGQliNS9HCE9/DgDUstkNPovxSzGmc0qedwCnZW1sDDOAJsb1PTYIJB34TnQ2b6tLTJi+i6zXPQn7EgQlsm1NAxsxNFUjeEEEFEGg2mOotdx970vLNs3BNM92kayUHIB6BAtHWrT1CotviWFkWwOYeBwJ67Wg04xVttJSzuJ2urjYsZ9+wvT78DnYeaiOQwhQR+nJDo4wuy/Ijgl/3iGZ4Srt3N6CbmYRozwt8CNBa6xlDUlq56HjN6zP98NLhZAq8V2oow6nLUJeU/VfYY/nqZOmHkzbI7gdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VyiAVIa7wIkaNl2z/BECO1ddfGCNGLXuBOh0oRALK2U=;
+ b=tQzsRrpxnVxItMmtLvOZ1Twsm15vAFRtqr/j0m1wtYT0F6JxY0so0TI5/8o24ixKaYBSV9mzimXUklI8huO9e8SCOminYBf390pxJY1oHcV/jRSbjqPjVlPTQ/LO+tqVDOAiTgoODXkBfCl+Mw6lRLPRE08qTosObR5s2WJZSrw=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Philip.Yang@amd.com; 
+Received: from MN2PR12MB4030.namprd12.prod.outlook.com (10.255.86.25) by
+ MN2PR12MB3038.namprd12.prod.outlook.com (20.178.242.220) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2665.22; Tue, 28 Jan 2020 19:55:57 +0000
+Received: from MN2PR12MB4030.namprd12.prod.outlook.com
+ ([fe80::dcae:63d1:58e3:4c4]) by MN2PR12MB4030.namprd12.prod.outlook.com
+ ([fe80::dcae:63d1:58e3:4c4%6]) with mapi id 15.20.2665.026; Tue, 28 Jan 2020
+ 19:55:56 +0000
+From: Philip Yang <Philip.Yang@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdgpu/smu10: fix smu10_get_clock_by_type_with_latency
-Date: Tue, 28 Jan 2020 14:47:07 -0500
-Message-Id: <20200128194707.87898-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200128194707.87898-1-alexander.deucher@amd.com>
-References: <20200128194707.87898-1-alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: correct vram mgr node size calculation
+Date: Tue, 28 Jan 2020 14:55:43 -0500
+Message-Id: <20200128195543.8286-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: YTOPR0101CA0028.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:15::41) To MN2PR12MB4030.namprd12.prod.outlook.com
+ (2603:10b6:208:159::25)
 MIME-Version: 1.0
+Received: from Philip-Dev.amd.com (165.204.55.251) by
+ YTOPR0101CA0028.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::41) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2665.20 via Frontend
+ Transport; Tue, 28 Jan 2020 19:55:56 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.55.251]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 4370c985-54ec-4b89-8215-08d7a42c169d
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3038:|MN2PR12MB3038:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3038C05036FBF74F392E842BE60A0@MN2PR12MB3038.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
+X-Forefront-PRVS: 029651C7A1
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(136003)(366004)(396003)(346002)(376002)(199004)(189003)(478600001)(6486002)(6916009)(7696005)(36756003)(52116002)(66476007)(66556008)(66946007)(6666004)(16526019)(2616005)(956004)(26005)(186003)(86362001)(1076003)(8936002)(81166006)(5660300002)(4326008)(316002)(8676002)(2906002)(81156014);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3038;
+ H:MN2PR12MB4030.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kK/yJxdpUfZ1t8UWTDnee/+6uzktdI8N2FaTho3vsFMGMb/OwPhzc9FPdp+yjf4qoCuj1gPpnlyg+ENoXqOAi23MxHNU/ihFpJhq1ztfSi866tIKu7ElT1yE4Bl/L0xSuwvIov8nDUZCHpyq8TGQzEKdft4dpELej2+IhVgR/YcGR/6taE2NzHw+wGM1v+rr+pur8fjvLtrloLkuieQll5EbET2UN21yHkP6bTMiJqXSu1DMOXzx+4Q+FF8FDQLp6rO8weMyrwCU876fphOzlGXw2p8QvW+qhFCVIs7wLZFDdw45C8dqzPpaP1aKZwNFIPElZ3h/bodAwUoBd4EtywFtyxmEgsgtq1d3qrXoPGQHEA2fEOkyKnS4lcASjIEac6V3K3WtUBFt1VTFL1YaDmkzMpHx/Pph93NKJ2F3aDYE2BDLYgoGsH5LzZ6d4fBI
+X-MS-Exchange-AntiSpam-MessageData: iiBuTlrWPF0AC2hLs+nxv9kY+3x/EGha4tqeyE2YkjPK5YAP277IGmPLvti3Zs7LbcD7TlbEo+VS0WvEhgdWRxpIkC24xmVJ+5t3+UFOekoZu1Ju+I+0FuTLZ8YXt2xyXqJsuWm+tntCPLLJ1seODA==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4370c985-54ec-4b89-8215-08d7a42c169d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2020 19:55:56.7018 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vhe4UacZF5GdSID6+aZ++GAIIvFB7CnTKeVJGz4xCxbvSBCXsPDhvsZi0pVOzVpw
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3038
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,49 +93,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Philip Yang <Philip.Yang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Only send non-0 clocks to DC for validation.  This mirrors
-what the windows driver does.
+Use pages_per_node instead of mem->num_pages to alloc vram, this will
+increase the chance to get vram node after vram fragments.
 
-Bug: https://gitlab.freedesktop.org/drm/amd/issues/963
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/hwmgr/smu10_hwmgr.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/powerplay/hwmgr/smu10_hwmgr.c b/drivers/gpu/drm/amd/powerplay/hwmgr/smu10_hwmgr.c
-index 4e8ab139bb3b..273126cfc37d 100644
---- a/drivers/gpu/drm/amd/powerplay/hwmgr/smu10_hwmgr.c
-+++ b/drivers/gpu/drm/amd/powerplay/hwmgr/smu10_hwmgr.c
-@@ -1026,12 +1026,15 @@ static int smu10_get_clock_by_type_with_latency(struct pp_hwmgr *hwmgr,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+index 82a3299e53c0..67a454f4c37a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+@@ -369,7 +369,7 @@ static int amdgpu_vram_mgr_new(struct ttm_mem_type_manager *man,
  
- 	clocks->num_levels = 0;
- 	for (i = 0; i < pclk_vol_table->count; i++) {
--		clocks->data[i].clocks_in_khz = pclk_vol_table->entries[i].clk * 10;
--		clocks->data[i].latency_in_us = latency_required ?
--						smu10_get_mem_latency(hwmgr,
--						pclk_vol_table->entries[i].clk) :
--						0;
--		clocks->num_levels++;
-+		if (pclk_vol_table->entries[i].clk) {
-+			clocks->data[clocks->num_levels].clocks_in_khz =
-+				pclk_vol_table->entries[i].clk * 10;
-+			clocks->data[clocks->num_levels].latency_in_us = latency_required ?
-+				smu10_get_mem_latency(hwmgr,
-+						      pclk_vol_table->entries[i].clk) :
-+				0;
-+			clocks->num_levels++;
-+		}
+ 	spin_lock(&mgr->lock);
+ 	for (i = 0; pages_left >= pages_per_node; ++i) {
+-		unsigned long pages = rounddown_pow_of_two(pages_left);
++		unsigned long pages = rounddown_pow_of_two(pages_per_node);
+ 
+ 		r = drm_mm_insert_node_in_range(mm, &nodes[i], pages,
+ 						pages_per_node, 0,
+@@ -383,15 +383,11 @@ static int amdgpu_vram_mgr_new(struct ttm_mem_type_manager *man,
+ 		pages_left -= pages;
  	}
  
- 	return 0;
+-	for (; pages_left; ++i) {
+-		unsigned long pages = min(pages_left, pages_per_node);
++	if (pages_left) {
+ 		uint32_t alignment = mem->page_alignment;
+ 
+-		if (pages == pages_per_node)
+-			alignment = pages_per_node;
+-
+ 		r = drm_mm_insert_node_in_range(mm, &nodes[i],
+-						pages, alignment, 0,
++						pages_left, alignment, 0,
+ 						place->fpfn, lpfn,
+ 						mode);
+ 		if (unlikely(r))
+@@ -399,7 +395,6 @@ static int amdgpu_vram_mgr_new(struct ttm_mem_type_manager *man,
+ 
+ 		vis_usage += amdgpu_vram_mgr_vis_size(adev, &nodes[i]);
+ 		amdgpu_vram_mgr_virt_start(mem, &nodes[i]);
+-		pages_left -= pages;
+ 	}
+ 	spin_unlock(&mgr->lock);
+ 
 -- 
-2.24.1
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
