@@ -1,55 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D64F14C1E0
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jan 2020 22:05:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C7614C211
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jan 2020 22:20:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECE916F413;
-	Tue, 28 Jan 2020 21:05:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 023606F41F;
+	Tue, 28 Jan 2020 21:20:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EDCA6F413
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 21:05:28 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id q10so17728986wrm.11
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 13:05:28 -0800 (PST)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1D676F41D;
+ Tue, 28 Jan 2020 21:20:09 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id t2so17772796wrr.1;
+ Tue, 28 Jan 2020 13:20:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=E2a2z4l5Pj72KWAkXb5z3qUbAPqTY/6uPF+x99Q7bKo=;
- b=H6RZ3hyi7dk+qfUx6KcLrklFJhW7iDYC2Qj+FulXRGGm0CUZjxvVCOB+xDdzGAqZn8
- JoG/C36ndHLmUYy6oWbOW70IJikdR/FWRtXBZkrnjn2wLioigzUpt9KjA/anbjOVYOsN
- erfKRPf5nAMu62h1rOnzUMQuTsw5xuvgDvIdv0dqs++eg/xxSfIauH4z8XZH0jGMocZJ
- uhI/yKxt//E3ii9YJMc+4+cbqfT8l3BRyJ3Gg2MkQ0fyJgUFXFk1DJFjVlOuZtJUT2zP
- CBz6mm0R9kFipDE67ChuO4fxz+5s5czPWNV3si8+6eNWcPtTZIawy18yIboMKDVY+7e6
- PvLA==
+ :cc; bh=zI+cNUNLF3kaXSaB95jriRVjzozM0k40b3VUnBQ2hL4=;
+ b=cr1Eugxz1jDRTs5xXm0mdslOFP/LW6r93aHJoQ549mVFWqHrC7WNncFStX/6Q9ce9v
+ nz/ilbtGXaVqmwnuUOtPzEEhhnZbi3G+ArTMvX9t3TNlebra7xCRIRaoIySvpHIHToPn
+ ZIniEsnYZOL+8NM4M6/QoQ7Yn43VBVyPuanKM45xtbmRasmAHJluexqc8RsEXCiIJ2Y5
+ ULKgK92O+HRsoauqf+y8qkpWo0+kSEedvad0oMmKLIq8QKCz2+K4HunTYzUN4LPIveRF
+ yFnleba3CQRXqMwll04l9z6s5L9y3Xgoqx8P/n6lFGMEIWPn1inGG3AfqJtGjWK0k+K2
+ q6ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=E2a2z4l5Pj72KWAkXb5z3qUbAPqTY/6uPF+x99Q7bKo=;
- b=EnPSzGf942ncT7f+UGRrUgmT2zKBOS/utdfuYsccqy4gTTe/7enXjaddDyKh7EN+RS
- uIzFOsyiJTp5wfNe8CySlZku9o65TDSX0uz8KlxVTFrBeNA/A5wDJCxd+vbMew3Rkmgc
- NugF4n6x+TXVizM266El2VKWjLU/+8yvZE8YK9JxgHR6UlPXN9VE2S+FBnG52KMAhPe2
- UV4QtTEWKcpWoTROMikkGbKcm0kyphOJA7AYr0fLEwuyeU1IwblTRBNDx5UM3qT+TMJn
- Rw5YhBpOnljOqtrUaXJuqjlcAbI9JGcxJ9FJkU9LtbQtljIRm2qsIlrvlQ/ijorwAz7U
- Pbow==
-X-Gm-Message-State: APjAAAWb9s7rG0ZiAO0VDXo8yw20VkIgEGlSG3VlM7ufHQavmLSrHJuG
- ei00q7aUQ9SxXbP8v0ZKzxB6DTxLlFH9H0jl6uo=
-X-Google-Smtp-Source: APXvYqwzJtvBIjWdaS4DxyZkOHKrpEYOnTc90NCmhDFuI7Nayt8TyG3+t/jxsm8W9XxfjqZQp4rrJ4QV8S4dg1yaR0E=
-X-Received: by 2002:adf:f2c1:: with SMTP id d1mr30120726wrp.111.1580245527241; 
- Tue, 28 Jan 2020 13:05:27 -0800 (PST)
+ bh=zI+cNUNLF3kaXSaB95jriRVjzozM0k40b3VUnBQ2hL4=;
+ b=ahypR/r/zCUv3/q3oo9MfwB4G8cA/zHB8WVSMFjd7dQQI8qWeY4vOsQE5PFffm5eoj
+ PwuKl2jV2emLpGvr0iD4DSUdraNzzNxz2oU+k8122EkomoIhGbCHOPCqU8bDWZ60suPQ
+ DlzwiqH0Qw144b6wTXhY2bAS0Jz/aBWj1GP96jMTMxFLJ744ejidpldtAc8kUctgq7Qt
+ tajsRtpn1v2kvhT3zbeJE8GCXuYlkrJ24TgZSA7pRTpb6ojyMGmV6jb4TtOmEWhd0n3C
+ qi5rAAZKDVFffumcNO/MJAaDi+BRnWgdK2/wgn1IhrixBATLsl71lWA7lKAmRqZKWeqX
+ 6qjQ==
+X-Gm-Message-State: APjAAAVgPTsYgGOp9l1ZgQHqiQC+W/jXSBDYWMZOe0xTuEMBFG07rwde
+ N7wwV72P3rOoNw18eGut8zJXvXjWZfkLGYrPcLY=
+X-Google-Smtp-Source: APXvYqzxeqjTVGWhGxKoLAamd10Qlofs6anWK7unOqW4V0Q59Aa6fL+sO2cRfdjqYiyhrmbqNf2yQCOAN4GC6qOHll4=
+X-Received: by 2002:adf:f2c1:: with SMTP id d1mr30178824wrp.111.1580246408308; 
+ Tue, 28 Jan 2020 13:20:08 -0800 (PST)
 MIME-Version: 1.0
-References: <20200125183321.2315-1-alexander.deucher@amd.com>
- <3caaa45e-03c4-4e34-61d4-6db90b6d17c8@gmail.com>
-In-Reply-To: <3caaa45e-03c4-4e34-61d4-6db90b6d17c8@gmail.com>
+References: <20200128112827.43682-1-colin.king@canonical.com>
+In-Reply-To: <20200128112827.43682-1-colin.king@canonical.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 28 Jan 2020 16:05:15 -0500
-Message-ID: <CADnq5_N8zDd16v+-15V1+UTO2OGr-a8zxvx7=0aZ366HHNeydw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/navi10: add mclk to
- navi10_get_clock_by_type_with_latency
-To: Matt Coffin <mcoffin13@gmail.com>
+Date: Tue, 28 Jan 2020 16:19:56 -0500
+Message-ID: <CADnq5_O=W6TFFCGZsdvtuLPijanxX4vdkdmedh2OxZauG6M58w@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: fix spelling mistake link_integiry_check
+ -> link_integrity_check
+To: Colin King <colin.king@canonical.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,50 +60,106 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: David Zhou <David1.Zhou@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, kernel-janitors@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 28, 2020 at 1:50 PM Matt Coffin <mcoffin13@gmail.com> wrote:
+On Tue, Jan 28, 2020 at 6:28 AM Colin King <colin.king@canonical.com> wrote:
 >
-> Let me know if I'm not doing this correctly since I'm still new.
+> From: Colin Ian King <colin.king@canonical.com>
 >
+> There is a spelling mistake on the struct field name link_integiry_check,
+> fix this by renaming it.
 >
->
-> Patch is
->
-> Reviewed-by: Matt Coffin <mcoffin13@gmail.com>
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 
-Thanks!
+Applied.  Thanks!
 
 Alex
 
+> ---
+>  drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h           | 2 +-
+>  .../gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c    | 8 ++++----
+>  .../gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c   | 4 ++--
+>  3 files changed, 7 insertions(+), 7 deletions(-)
 >
-> On 1/25/20 11:33 AM, Alex Deucher wrote:
-> > Doesn't seem to be used, but add it just in case.
-> >
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> > index 015f5ea38901..f60762f9b143 100644
-> > --- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> > +++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-> > @@ -1008,6 +1008,8 @@ static int navi10_get_clock_by_type_with_latency(struct smu_context *smu,
-> >       case SMU_GFXCLK:
-> >       case SMU_DCEFCLK:
-> >       case SMU_SOCCLK:
-> > +     case SMU_MCLK:
-> > +     case SMU_UCLK:
-> >               ret = smu_get_dpm_level_count(smu, clk_type, &level_count);
-> >               if (ret)
-> >                       return ret;
-> >
+> diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+> index f98d3d9ecb6d..af78e4f1be68 100644
+> --- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+> +++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+> @@ -63,7 +63,7 @@ struct mod_hdcp_transition_input_hdcp1 {
+>         uint8_t hdcp_capable_dp;
+>         uint8_t binfo_read_dp;
+>         uint8_t r0p_available_dp;
+> -       uint8_t link_integiry_check;
+> +       uint8_t link_integrity_check;
+>         uint8_t reauth_request_check;
+>         uint8_t stream_encryption_dp;
+>  };
+> diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+> index 04845e43df15..37670db64855 100644
+> --- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+> +++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+> @@ -283,8 +283,8 @@ static enum mod_hdcp_status wait_for_ready(struct mod_hdcp *hdcp,
+>                                 hdcp, "bstatus_read"))
+>                         goto out;
+>                 if (!mod_hdcp_execute_and_set(check_link_integrity_dp,
+> -                               &input->link_integiry_check, &status,
+> -                               hdcp, "link_integiry_check"))
+> +                               &input->link_integrity_check, &status,
+> +                               hdcp, "link_integrity_check"))
+>                         goto out;
+>                 if (!mod_hdcp_execute_and_set(check_no_reauthentication_request_dp,
+>                                 &input->reauth_request_check, &status,
+> @@ -431,8 +431,8 @@ static enum mod_hdcp_status authenticated_dp(struct mod_hdcp *hdcp,
+>                         hdcp, "bstatus_read"))
+>                 goto out;
+>         if (!mod_hdcp_execute_and_set(check_link_integrity_dp,
+> -                       &input->link_integiry_check, &status,
+> -                       hdcp, "link_integiry_check"))
+> +                       &input->link_integrity_check, &status,
+> +                       hdcp, "link_integrity_check"))
+>                 goto out;
+>         if (!mod_hdcp_execute_and_set(check_no_reauthentication_request_dp,
+>                         &input->reauth_request_check, &status,
+> diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c
+> index 21ebc62bb9d9..76edcbe51f71 100644
+> --- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c
+> +++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c
+> @@ -241,7 +241,7 @@ enum mod_hdcp_status mod_hdcp_hdcp1_dp_transition(struct mod_hdcp *hdcp,
+>                 }
+>                 break;
+>         case D1_A4_AUTHENTICATED:
+> -               if (input->link_integiry_check != PASS ||
+> +               if (input->link_integrity_check != PASS ||
+>                                 input->reauth_request_check != PASS) {
+>                         /* 1A-07: restart hdcp on a link integrity failure */
+>                         fail_and_restart_in_ms(0, &status, output);
+> @@ -249,7 +249,7 @@ enum mod_hdcp_status mod_hdcp_hdcp1_dp_transition(struct mod_hdcp *hdcp,
+>                 }
+>                 break;
+>         case D1_A6_WAIT_FOR_READY:
+> -               if (input->link_integiry_check == FAIL ||
+> +               if (input->link_integrity_check == FAIL ||
+>                                 input->reauth_request_check == FAIL) {
+>                         fail_and_restart_in_ms(0, &status, output);
+>                         break;
+> --
+> 2.24.0
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
