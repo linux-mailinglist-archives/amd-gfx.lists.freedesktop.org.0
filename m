@@ -1,57 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34FCB14D043
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jan 2020 19:18:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0348D14D045
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jan 2020 19:18:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE5326F61F;
-	Wed, 29 Jan 2020 18:18:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 735B66F622;
+	Wed, 29 Jan 2020 18:18:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
- [IPv6:2607:f8b0:4864:20::843])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4857A6F61F
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 18:18:00 +0000 (UTC)
-Received: by mail-qt1-x843.google.com with SMTP id v25so220771qto.7
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 10:18:00 -0800 (PST)
+Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com
+ [IPv6:2607:f8b0:4864:20::f43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C56D6F61F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 18:18:01 +0000 (UTC)
+Received: by mail-qv1-xf43.google.com with SMTP id z3so155017qvn.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 10:18:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=SKL2sqi2EL4mq8psKYKolWdZLh6vJTuTy7MFp7cI8oM=;
- b=N7epFMFGOKQhgWLBqNCtYLI20nkHUAMLIOkjXTgK1jyn6WSp+5r5w/uGCKjvsDBWow
- 9MlW9vMCMFN9iiQ79goXHc3icxpb+jA1tZvs66eTUs09/kOK0dCkKE7q9Il0uWZPuVD7
- Ua1s+PwBk71BtN1L7j4QToKs4YRAXkf9kQOyKBjlBvryMOGlYp2NzDyINpznrH9MYCjj
- JrClB/kKL6OMVHr6V+K5TUGMS9sBImTKOJO3VdIuf76QCJMBJid58ebSmcfJGJnZVrl0
- 5a+hu4Io71vtrdYUM42vt2j0U+gOg1jbsmw2SgkDSkZ3VTC6SaKot/DWVRTTCnZOH87U
- vg3Q==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=EbvDApfL7wh2Ah4vedDxdpA31xDUHAgBh2go4J3LL9A=;
+ b=GwMYHeHPgTe9vVbwhDynG48pNOR9Etjfjl16opXJAKFwaiX/zbqwrPsSg1qo2xf/iF
+ aeIHkhIA+uTPIPNIXJ0o+Jj9JHPfCcArB101C1S4JGEkjXcp/WBPExDC+fqQ7XuryiDV
+ oW8wGLOa/Q78Df0awNo9lchTud9AKJ/Gl3KhOtwr7AxdNiVERwNrr2mCHSoAyM22ukff
+ 03gHORb+ruW/M+ZKRO8zjBu2hEN0HrGiW3zdA1R6EylZv8mli6V3fy7etAuQA8Yz/u40
+ 4Zc6n7r0mDiOnVR2SYJ4jxRtq+wYmG0YKwImGvX3KM5x4NSlg2WJsoxptlLZckYsGH6w
+ XCTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=SKL2sqi2EL4mq8psKYKolWdZLh6vJTuTy7MFp7cI8oM=;
- b=aSR/sRRX0pVvZ7EL5szTEJqryYm2GEB7PqEKQ0RaqLje/r8rwiBWAziZlbNR0bcuLE
- RnBvCNHGkVpPkzM0LPpwitf8mJOhuUXFfhxaJubmkfeYAlZc+s1Yglce8v0gGIs1U7xO
- xE4PDHxrqDVKnBBY0i84w5Yc9YId01b7O4VmlTMwXIvcLaMZrG6cLXkKiC4nI1DueB8I
- 6jdHVAheFvTdyAAO6tKVkaMFevTQjk1uCxzNY/OXqUzquvAp3PPrc0n/H+Zg9LuXiqut
- Bu8T+Clf9dx6sJDaDvzx9+z+RuJG0osJbPQqoOOZRw7Whm/DZk3PAVgoCI6ZkZXx1GG5
- QG3g==
-X-Gm-Message-State: APjAAAWP2tYT1wxxRNztokdJAvm1suN7IKftsWdGDQ/rpeSy7SXyUtu6
- mXXhQf9fu8SNPnuSs+KGluVAoHH7
-X-Google-Smtp-Source: APXvYqwp2bxWkGYOjvoemCMo12DwPYqoVuHIEnwIVzauo90kQuidY66Krc1XsM16oMEC4Ub6L+VaHQ==
-X-Received: by 2002:ac8:a8b:: with SMTP id d11mr503547qti.94.1580321879273;
- Wed, 29 Jan 2020 10:17:59 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=EbvDApfL7wh2Ah4vedDxdpA31xDUHAgBh2go4J3LL9A=;
+ b=b53jXQ/2iqKkMuxPnNTjuEWMRqRfkw9HC2Tc6DCOtRIZUdoHym8qPfEdtZgvul5wfu
+ 0GvPojLK1QFX8P7IWK/H0yyvLDFcayr3kyKg9KOaUhMdgdv485rgg5WbmTkssMDmeREy
+ 6kLRhOSK09UaRkitpBNE6dXrglXAwK1flF99OzqbVl5Y9AK34jcuax4mSh92h8lGa5CO
+ qkAPv9sWgH4IlnuoOoIdWHXK5JwGrvoGpldj/IJ4wR/i0ZtJxQSEXD2HEnStdTMpAu1b
+ D3Gbi/ozbWGap77t1SUmHXLgVZ2tP95jdPKWAFXjJLHMY1nIoqJYH2W3eu4u21U2S6/k
+ NV3g==
+X-Gm-Message-State: APjAAAVInCbQPwUWMTtkTdffhl3U4uf0bFuXR6hPd5hUm8Tphk3T5wUq
+ 4tc+SVNH7gt09Rl1LuPyI9PeNmWi
+X-Google-Smtp-Source: APXvYqx+RIVqsZufpqaER0oj7HImOTeirISlh0JpVXTGhPW4o+Cg1yp2c6047hTQUcMmN4AX8l9Xew==
+X-Received: by 2002:a0c:ea50:: with SMTP id u16mr342887qvp.110.1580321880056; 
+ Wed, 29 Jan 2020 10:18:00 -0800 (PST)
 Received: from localhost.localdomain ([71.219.59.120])
- by smtp.gmail.com with ESMTPSA id v55sm1510114qtc.1.2020.01.29.10.17.58
+ by smtp.gmail.com with ESMTPSA id v55sm1510114qtc.1.2020.01.29.10.17.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Jan 2020 10:17:58 -0800 (PST)
+ Wed, 29 Jan 2020 10:17:59 -0800 (PST)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/amdgpu/navi: fix index for OD MCLK
-Date: Wed, 29 Jan 2020 13:17:50 -0500
-Message-Id: <20200129181752.609344-1-alexander.deucher@amd.com>
+Subject: [PATCH 2/3] drm/amdgpu/navi10: add OD_RANGE for navi overclocking
+Date: Wed, 29 Jan 2020 13:17:51 -0500
+Message-Id: <20200129181752.609344-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200129181752.609344-1-alexander.deucher@amd.com>
+References: <20200129181752.609344-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,27 +72,98 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-You can only adjust the max mclk, not the min.
+So users can see the range of valid values.
 
 Bug: https://gitlab.freedesktop.org/drm/amd/issues/1020
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 59 ++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-index f1b27fc20c19..c8f09874c2ec 100644
+index c8f09874c2ec..d2d45181ae23 100644
 --- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
 +++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-@@ -843,7 +843,7 @@ static int navi10_print_clk_levels(struct smu_context *smu,
- 		if (!navi10_od_feature_is_supported(od_settings, SMU_11_0_ODFEATURE_UCLK_MAX))
- 			break;
- 		size += sprintf(buf + size, "OD_MCLK:\n");
--		size += sprintf(buf + size, "0: %uMHz\n", od_table->UclkFmax);
-+		size += sprintf(buf + size, "1: %uMHz\n", od_table->UclkFmax);
+@@ -737,6 +737,15 @@ static inline bool navi10_od_feature_is_supported(struct smu_11_0_overdrive_tabl
+ 	return od_table->cap[feature];
+ }
+ 
++static void navi10_od_setting_get_range(struct smu_11_0_overdrive_table *od_table,
++					enum SMU_11_0_ODSETTING_ID setting,
++					uint32_t *min, uint32_t *max)
++{
++	if (min)
++		*min = od_table->min[setting];
++	if (max)
++		*max = od_table->max[setting];
++}
+ 
+ static int navi10_print_clk_levels(struct smu_context *smu,
+ 			enum smu_clk_type clk_type, char *buf)
+@@ -755,6 +764,7 @@ static int navi10_print_clk_levels(struct smu_context *smu,
+ 	OverDriveTable_t *od_table =
+ 		(OverDriveTable_t *)table_context->overdrive_table;
+ 	struct smu_11_0_overdrive_table *od_settings = smu->od_settings;
++	uint32_t min_value, max_value;
+ 
+ 	switch (clk_type) {
+ 	case SMU_GFXCLK:
+@@ -867,6 +877,55 @@ static int navi10_print_clk_levels(struct smu_context *smu,
+ 			}
+ 			size += sprintf(buf + size, "%d: %uMHz @ %umV\n", i, curve_settings[0], curve_settings[1] / NAVI10_VOLTAGE_SCALE);
+ 		}
++		break;
++	case SMU_OD_RANGE:
++		if (!smu->od_enabled || !od_table || !od_settings)
++			break;
++		size = sprintf(buf, "%s:\n", "OD_RANGE");
++
++		if (navi10_od_feature_is_supported(od_settings, SMU_11_0_ODFEATURE_GFXCLK_LIMITS)) {
++			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_GFXCLKFMIN,
++						    &min_value, NULL);
++			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_GFXCLKFMAX,
++						    NULL, &max_value);
++			size += sprintf(buf + size, "SCLK: %7uMhz %10uMhz\n",
++					min_value, max_value);
++		}
++
++		if (navi10_od_feature_is_supported(od_settings, SMU_11_0_ODFEATURE_UCLK_MAX)) {
++			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_UCLKFMAX,
++						    &min_value, &max_value);
++			size += sprintf(buf + size, "MCLK: %7uMhz %10uMhz\n",
++					min_value, max_value);
++		}
++
++		if (navi10_od_feature_is_supported(od_settings, SMU_11_0_ODFEATURE_GFXCLK_CURVE)) {
++			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEFREQ_P1,
++						    &min_value, &max_value);
++			size += sprintf(buf + size, "VDDC_CURVE_SCLK[0]: %7uMhz %10uMhz\n",
++					min_value, max_value);
++			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEVOLTAGE_P1,
++						    &min_value, &max_value);
++			size += sprintf(buf + size, "VDDC_CURVE_VOLT[0]: %7dmV %11dmV\n",
++					min_value, max_value);
++			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEFREQ_P2,
++						    &min_value, &max_value);
++			size += sprintf(buf + size, "VDDC_CURVE_SCLK[1]: %7uMhz %10uMhz\n",
++					min_value, max_value);
++			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEVOLTAGE_P2,
++						    &min_value, &max_value);
++			size += sprintf(buf + size, "VDDC_CURVE_VOLT[1]: %7dmV %11dmV\n",
++					min_value, max_value);
++			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEFREQ_P3,
++						    &min_value, &max_value);
++			size += sprintf(buf + size, "VDDC_CURVE_SCLK[2]: %7uMhz %10uMhz\n",
++					min_value, max_value);
++			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEVOLTAGE_P3,
++						    &min_value, &max_value);
++			size += sprintf(buf + size, "VDDC_CURVE_VOLT[2]: %7dmV %11dmV\n",
++					min_value, max_value);
++		}
++
  		break;
- 	case SMU_OD_VDDC_CURVE:
- 		if (!smu->od_enabled || !od_table || !od_settings)
+ 	default:
+ 		break;
 -- 
 2.24.1
 
