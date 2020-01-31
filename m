@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C4014F48D
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Jan 2020 23:17:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B68C214F486
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Jan 2020 23:17:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7BC26FC49;
-	Fri, 31 Jan 2020 22:17:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E6446FC51;
+	Fri, 31 Jan 2020 22:17:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2085.outbound.protection.outlook.com [40.107.92.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67A826FC3C
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 22:17:20 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2072.outbound.protection.outlook.com [40.107.244.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C0526FC40
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 22:17:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AN8xnSJWprYwPaPqjLXBukgUKfjbfLW27lHwfEZeBCVC92p3ccNJkXLgyelv0Qbl/IJ3uBY6ArleSjoL1OoUp9eOHsZZI8fw9vbohI6oLcuM3BUcAdPj9UHoiRYHGYWBnZbDguewu1eo4rIc/KBMNbjFinOAH7ixF7vIES8N3NCWChdjiebpE7Gm5sNPDjktj4ENnSVlR6n4DPBwBlwUJJXO6+KAkpfXjWGVXWr+SV5vBrblvcGdPu1mD54skyN01P8NgCJxgGggWgHmeh1Nep+oWFRPLagKGpz6M8jc1yWzHODKVGgd1kIkUGRaEjIU2PUg5vvFgLHY6Q1SUQYABQ==
+ b=XnKGDBhdQm4RGKr66/YrlKAJt3h0PbNVrOP5sECknDI+raEwebnVqrIUrTWAh5qu9aKfowjSpW1OCJjx0HfeeuPpho6AMmEBTJKqUedY5WOsQzF28IHln6K9+CDdW4wG42whavPIM4hPEQ+StBBwuwuPpn2GRq2/gZosY9RWGNxw7wOCLzj6jo2Gkk39V/DfEOYqH6nYxdIMF8yFAILmGi1HNz9LwoLqXL9l2o2vNijoOkX0lCJSjOZzjqUs1HnNWtBQhnGodG+n75XG8e4GBZAKBrLl6WPpxiJyUhnWA3VEaulFNTW3nYdOZ9BuztQxqzEwuYW2mSHPexW1SQ0bhA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bVzstDqJgvLO4L9r1SBR0cHIs+dsvDJZx8hRoYQNVcY=;
- b=YBptkvef1fNKOnvUDY+owOtiDDugUeZbxhgOmnW2rDK04KnRUe81Gyln1QxsJlyP/+Uymlpm1q6JnUbUZB8f/kF1EMNOVGaOXdhXhP0hSO+xiU8+tiPFW+rZfduYOUtONYY7CCCTr5tgAgsNe01mnozDOeoGDH7RYcm8GiVqxgYdSiKyw7Gn7xaGKErmrwZRi5XRmHREwyuAebRQ0hpwPCDzbUT2ii/Ap9ggnVB7dQtXkV5+wwiG2YKl6+fS6yQT0g08vAg1pbotDtqq3hmbiGRV93QwEvBV8+ChXeEERxAy/cQyJARrIvnm7x08ylHUYQuV7LepifpL3p87CGm+Qw==
+ bh=1WbEG3FJv2zHhi3BLKUrICPCAYUaySVMiCghkP27pcs=;
+ b=d9NhE0IS3/I/thRpJ72qbcwziT9hZaNXBvElQQWO2B2vyYU9BeV4O26wV3yiBNiuXcFrLb/yNJo1WnwOfTf4f4Svnh/zf2GyBZOMHZCxcRzX9T7LEXqPwNbUOz7ybcj9DxFMtyKNkisKzeCeNFX0/z63PtTDdq8o+sDpDuPuZhe5rzO3+OOWmumwRAoVZp6enHdXDtPHFdbjjjzfNzTbo73qkE7Vrx5UM4PBquahGCjtq1LmbiPtBsDxmTLvCubCrXvYq5OYzOv5x1Lznhe/RJg+WlA4jlzqDuOBN+xGjK2T3QEEUVIRYtPsioYiOwOhkLK0V9qa7xjjiPTecbXtdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bVzstDqJgvLO4L9r1SBR0cHIs+dsvDJZx8hRoYQNVcY=;
- b=Axf12DpeaTLn47FCY9w/BG0x0e/ZdYdy/4Eaq+iIiT2F97G5GKwktWnf9hNauHanJKx9issksuk6vsK3OPrIMov9A2iTmfUnlxrTB4K5qaGzkxGhDQSF/GXCTIPVkCTzAgxt2PiWcxzQJNySKIj6xABdfOWS4Se1x1F2A34dL68=
+ bh=1WbEG3FJv2zHhi3BLKUrICPCAYUaySVMiCghkP27pcs=;
+ b=4SWUC5xq+LieQmL2FRPtmTcv0iPkRc/UxzLVO9bUAlsZdejC2L3P0DrC2be4OXe2fPJFYBSlA7BlpCJsjA/gGXt985cIc71b5AfULka5Bmsr1c2IHB8hetYPyDLJ9xiUuQM/TRBvTE7eKWLTeryW9K9q3EBuJrH0Eyl2ZczyJbA=
 Received: from DM3PR12CA0084.namprd12.prod.outlook.com (2603:10b6:0:57::28) by
- DM6PR12MB2715.namprd12.prod.outlook.com (2603:10b6:5:4a::15) with
+ MW2PR12MB2458.namprd12.prod.outlook.com (2603:10b6:907:8::33) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2665.20; Fri, 31 Jan 2020 22:17:18 +0000
+ 15.20.2665.24; Fri, 31 Jan 2020 22:17:20 +0000
 Received: from CO1NAM11FT007.eop-nam11.prod.protection.outlook.com
  (2a01:111:f400:7eab::209) by DM3PR12CA0084.outlook.office365.com
  (2603:10b6:0:57::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2686.27 via Frontend
- Transport; Fri, 31 Jan 2020 22:17:18 +0000
+ Transport; Fri, 31 Jan 2020 22:17:20 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -48,19 +48,20 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
  CO1NAM11FT007.mail.protection.outlook.com (10.13.174.131) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2686.25 via Frontend Transport; Fri, 31 Jan 2020 22:17:18 +0000
+ 15.20.2686.25 via Frontend Transport; Fri, 31 Jan 2020 22:17:19 +0000
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 31 Jan
  2020 16:17:09 -0600
 Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Fri, 31 Jan 2020 16:17:08 -0600
+ Transport; Fri, 31 Jan 2020 16:17:09 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 19/33] drm/amd/display: Use dcfclk to populate watermark ranges
-Date: Fri, 31 Jan 2020 17:16:29 -0500
-Message-ID: <20200131221643.10035-20-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 20/33] drm/amd/display: Check engine is not NULL before
+ acquiring
+Date: Fri, 31 Jan 2020 17:16:30 -0500
+Message-ID: <20200131221643.10035-21-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200131221643.10035-1-Bhawanpreet.Lakha@amd.com>
 References: <20200131221643.10035-1-Bhawanpreet.Lakha@amd.com>
@@ -69,26 +70,26 @@ X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(346002)(376002)(39860400002)(136003)(428003)(199004)(189003)(36756003)(2906002)(6916009)(86362001)(7696005)(1076003)(336012)(4326008)(26005)(2616005)(426003)(186003)(8936002)(356004)(6666004)(54906003)(478600001)(8676002)(81166006)(316002)(70206006)(5660300002)(81156014)(70586007)(40753002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB2715; H:SATLEXMB01.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+ SFS:(10009020)(4636009)(39860400002)(396003)(136003)(346002)(376002)(428003)(189003)(199004)(6916009)(4744005)(70206006)(1076003)(2906002)(70586007)(478600001)(81156014)(81166006)(8676002)(8936002)(4326008)(86362001)(36756003)(6666004)(356004)(54906003)(426003)(5660300002)(316002)(336012)(186003)(7696005)(2616005)(26005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2458; H:SATLEXMB01.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3ebd9d31-85c2-4c32-a58d-08d7a69b55a0
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2715:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB2715E7227EF116F075ABEDE7F9070@DM6PR12MB2715.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Office365-Filtering-Correlation-Id: ad22baae-1660-4760-1e89-08d7a69b56ac
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2458:
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2458916AF256B51B1984C0B1F9070@MW2PR12MB2458.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
 X-Forefront-PRVS: 029976C540
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bcrF7H/Uq6DYvzdz2x4mTKWxyj/rKlYvZ/n3T1W7P8GSGlwCtbM/CfJvig32Tn6UgTx+5EWGzUdqD9RYX5NMh5XfDhg4QWNbmolNgKqM6AXN7I4wP98CcX4vv+AJtVrZpOE1tO4cFksU31UdaFZ7/RFs0yTFXh1VdgR7cDQd3bjeOR8FyhaapJ+fkXf33ErsrPNB3kEHU8vLgO5UmWJRhVx5FWiWYBCdEDlBm843VV5wcu3Wd0gfpXtYNiUT+no7SbmMhAL49P6BKfn5T6UZzU7xuYL16m6WCdJVFlZE4duXFXjzErXjw9mrfZB3l47k3rxZyzOBsFExAz9WyI1n52s+rSE3Umj7SLxptmLgYuodpdp3+HIP9Mzs9hxi0fLDXMBCEY8swuAnN7RTa0Prsyg88bNJuT3Ho9B87qYZDIdA379HnPXWl1knZV61YKgyKB/aTtRvef1hX8WHQ2AReCEr+bILBUtLqlW0ccUKVwVNJllN0Q/jjoGglmTClS41
+X-Microsoft-Antispam-Message-Info: 93uRGrYza+ieTnsaaXwWGocO6a+4wXdTH1zkv3cvMaEL3jXlRZH4BlnJvbTkGUL5m4+2Ef9mS9Ht0qy0GCNiN17xKokxaTWVon+uvAGsOQWRik/u5AMve2oCGVR2MG8FS+EfZ6s+q52nhdJ5raTweUea0D0/6yJUqhe2ABMkVntsddssru3YuetLACZZGSTCI6IN7lrMsRbTX5nUFMxFX0y5jryQDBszNbYKP4VBeH8bzWBSOWdAV077hsc5spyTTR99Eqpb+vJgwkLsqmoneoAxWzcEZzl6YosJ5nTtLltPcV6DD5LCcHMRem+cXMhoHvK+L+aj/oDjuDqcKN8SEKkm2dk4nhq1j4E9MVk/a1OpemSCSmnrxU4CokXPANjmxg4fAaD68kjqfLh69Llk0U8QUHRj4GB7FFnYxxvddYQNLRbnfAjJxHSUvMFfYjtr
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2020 22:17:18.1336 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ebd9d31-85c2-4c32-a58d-08d7a69b55a0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2020 22:17:19.8865 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad22baae-1660-4760-1e89-08d7a69b56ac
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2715
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2458
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,58 +101,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, Sung Lee <sung.lee@amd.com>,
+Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, Aric Cyr <aric.cyr@amd.com>,
  harry.wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
+From: Aric Cyr <aric.cyr@amd.com>
 
-[WHY & HOW]
-Previously drain clk was unconstrained and fill clk was constrained on fclk.
-We want to change it to fill clk unconstrained and drain clock constrained
-to dcfclk.
+[Why]
+Engine can be NULL in some cases, so we must not acquire it.
 
-Signed-off-by: Sung Lee <sung.lee@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+[How]
+Check for NULL engine before acquiring.
+
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- .../drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c  | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dce/dce_aux.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-index 7ae4c06232dd..034a5852a416 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-@@ -412,19 +412,19 @@ void build_watermark_ranges(struct clk_bw_params *bw_params, struct pp_smu_wm_ra
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
+index f1a5d2c6aa37..68c4049cbc2a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
+@@ -400,7 +400,7 @@ static bool acquire(
+ {
+ 	enum gpio_result result;
  
- 		ranges->reader_wm_sets[num_valid_sets].wm_inst = bw_params->wm_table.entries[i].wm_inst;
- 		ranges->reader_wm_sets[num_valid_sets].wm_type = bw_params->wm_table.entries[i].wm_type;
--		/* We will not select WM based on dcfclk, so leave it as unconstrained */
--		ranges->reader_wm_sets[num_valid_sets].min_drain_clk_mhz = PP_SMU_WM_SET_RANGE_CLK_UNCONSTRAINED_MIN;
--		ranges->reader_wm_sets[num_valid_sets].max_drain_clk_mhz = PP_SMU_WM_SET_RANGE_CLK_UNCONSTRAINED_MAX;
--		/* fclk wil be used to select WM*/
-+		/* We will not select WM based on fclk, so leave it as unconstrained */
-+		ranges->reader_wm_sets[num_valid_sets].min_fill_clk_mhz = PP_SMU_WM_SET_RANGE_CLK_UNCONSTRAINED_MIN;
-+		ranges->reader_wm_sets[num_valid_sets].max_fill_clk_mhz = PP_SMU_WM_SET_RANGE_CLK_UNCONSTRAINED_MAX;
-+		/* dcfclk wil be used to select WM*/
+-	if (!is_engine_available(engine))
++	if ((engine == NULL) || !is_engine_available(engine))
+ 		return false;
  
- 		if (ranges->reader_wm_sets[num_valid_sets].wm_type == WM_TYPE_PSTATE_CHG) {
- 			if (i == 0)
--				ranges->reader_wm_sets[num_valid_sets].min_fill_clk_mhz = 0;
-+				ranges->reader_wm_sets[num_valid_sets].min_drain_clk_mhz = 0;
- 			else {
- 				/* add 1 to make it non-overlapping with next lvl */
--				ranges->reader_wm_sets[num_valid_sets].min_fill_clk_mhz = bw_params->clk_table.entries[i - 1].fclk_mhz + 1;
-+				ranges->reader_wm_sets[num_valid_sets].min_drain_clk_mhz = bw_params->clk_table.entries[i - 1].dcfclk_mhz + 1;
- 			}
--			ranges->reader_wm_sets[num_valid_sets].max_fill_clk_mhz = bw_params->clk_table.entries[i].fclk_mhz;
-+			ranges->reader_wm_sets[num_valid_sets].max_drain_clk_mhz = bw_params->clk_table.entries[i].dcfclk_mhz;
- 
- 		} else {
- 			/* unconstrained for memory retraining */
+ 	result = dal_ddc_open(ddc, GPIO_MODE_HARDWARE,
 -- 
 2.17.1
 
