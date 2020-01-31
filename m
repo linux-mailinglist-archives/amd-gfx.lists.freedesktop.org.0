@@ -2,24 +2,25 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D64BB14F48E
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Jan 2020 23:17:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 231B714F485
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Jan 2020 23:17:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A95946FC48;
-	Fri, 31 Jan 2020 22:17:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC17B6FC47;
+	Fri, 31 Jan 2020 22:17:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2048.outbound.protection.outlook.com [40.107.220.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FDE66FC4E
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 22:17:25 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-cys01nam02on0605.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe45::605])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AFCA6FC3C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 22:17:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UqH4PvTINLDKwCu8p/rvv200qJCPO3a1xLiwRsFGycg5IhXswbW6uv1hhtoumjQZ2kqQTg4GdnNzFxygwASHJAC3peehLWTe6TeUPLe3ARL/uNHZKItUv+4Dlp3s5/9E4NhL9w6six78t2egph8WMmdkWPzhzZMOMPYOQVhWX1W48beNLsEHokj0gQAXmAkya0pMubvB5o17huAF9kytj1x7rk/de67uAwcyWa0rasRgOqu0fH9aiGOKSyHR+RzK+rAozoq+9l3tULsGvycaWGD+cme7XIYbJkDkXBgb8k8HSbLBp1TCUn6FPRhBBMGNb4OA2f3bMusBC98r6ikZCg==
+ b=EY2dRzmAy455u0j9SXWhg8QvBR6zamg4oYo1eoxtQJr8Ss+f8qaHb3KuF5wPLr7GwfZM4rzw3Sr4S5dNG5aarc3+GYn4OMidDRu9Lkfv/pU5aNoD8xX/Jy3OkBiOYt+1nGvCNgg/Yay7aSqhzdZ51b5UMbxzKIwSLU+6RdHWs/cO2e6tyHsnvV6FI7sX91Wo6LSWhW5b1u+lPA4/7sDoNYXRCpM5IQR65FiVzqF+QjWtGHS+aJ0g3mYtD+fD60/jCpqUWjg94Le68H1a1PcYY7QFICmLfecLUAAFj4/qQgFd0CZKAqeyvZ96huL74ygtXzT+dbpVHAS3mElQNd9YtA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V0vwQNGfdrnvXZUKcV+Smqa3PmgPwWfpzTxSDKynCtc=;
- b=WPGhxpQN7UT/XNXa4YCj8E/abL1A5VxLTE6xknkMPIdhwYse2v8Ukpetn049Y3U9xw2PzZCEvd4m3rlR3Aq07hzqD/swp+bmqjqLGSaZdwWpuLvK3ELESyFpKl4q/N5hVgvuwsJb3GCqXveZO49c8a7LiZGGcNUGTfbcvrLcTq9+65gVGHTjdnDUVtVpCTfXubVWztLMSGtJxVfjILFufwBY/5vMZoaUSyRqQ5/Rqk+qXO/4IgA3suR3p4Yw1ED2Nt+NWFP15DyVHJHFNkyN/15wZzQncuMHpytTLVsgAaQuKsLBunwgaCfKQFFgTtCW8xVESWvB229BwpuJn/DTfQ==
+ bh=Udm127YBxD62vAIWzAvZXYM14ZN2cpWqVsIEil1dM3g=;
+ b=ENmggdZC1iTsXCRcRRRoqRQNn4GrLtPEyevaVRjkk1ITq5imgVtQQO7+vq7pxNuib/fgVafVif/esy7uHrXjhXzCQt/1JMskEyLv7O+8AdIjC86f2fpcVzf4/j5V8iwDnwhpb95inq5wqsF5C/xdvu/uxI/z+5jAS/QI4hbrdZErj0SjBBHkungI8UcLKzSr8mzXK+4vnBa/JUqLHqoxfUaFUSxcpdrXmY0RzfU4ifi7sEN9Pq49mZmLsMHXWPyiBdISH0MwE/IqWaR0eVrBAHSBIujJP6yDkGB6nSFkC+nzqD8WCH91/kwP72FI7kGMXWCh1s8Cqq5/pNfKgqw+9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,30 +28,30 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V0vwQNGfdrnvXZUKcV+Smqa3PmgPwWfpzTxSDKynCtc=;
- b=sO25fFwpNwV35cpjMXdOlL3ZYPlBnMoXN1Dq7nnPd+GYf7jbGvWROp8IYy6za5jCoMYbYW8GaRRMi7YJocq2xGhEuUKSD8Mk+lxRdciAks0TUgifCTPuPvYiyM5PaGy4Jmc80tD7UfsZ9XakITeWM+gRgvwLdohjlsEK9/U2V3s=
-Received: from DM3PR12CA0084.namprd12.prod.outlook.com (2603:10b6:0:57::28) by
- DM5PR12MB2456.namprd12.prod.outlook.com (2603:10b6:4:b4::37) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2686.26; Fri, 31 Jan 2020 22:17:23 +0000
-Received: from CO1NAM11FT007.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eab::209) by DM3PR12CA0084.outlook.office365.com
- (2603:10b6:0:57::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2686.27 via Frontend
- Transport; Fri, 31 Jan 2020 22:17:23 +0000
+ bh=Udm127YBxD62vAIWzAvZXYM14ZN2cpWqVsIEil1dM3g=;
+ b=ejXiBW91lOHaC1ls3XJQQsy96fjjxILaox6qJG8pSlQRIrIbmHJHOII+vAM+SXPr8W7NDLucGWwzH3J3yNk2lwQTw1J1o4Ua6fZcttcz7Vca2lBCOP7FXMI1Z8u6+cLsYYHmLelkgR/YSgGkuny6MqHvM59JkA/R9rNmR4y3QIE=
+Received: from SN1PR12CA0075.namprd12.prod.outlook.com (2603:10b6:802:20::46)
+ by DM5PR12MB1833.namprd12.prod.outlook.com (2603:10b6:3:111::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2686.27; Fri, 31 Jan
+ 2020 22:17:18 +0000
+Received: from BN8NAM11FT026.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eae::208) by SN1PR12CA0075.outlook.office365.com
+ (2603:10b6:802:20::46) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.19 via Frontend
+ Transport; Fri, 31 Jan 2020 22:17:18 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT007.mail.protection.outlook.com (10.13.174.131) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT026.mail.protection.outlook.com (10.13.177.51) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2686.25 via Frontend Transport; Fri, 31 Jan 2020 22:17:22 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.2686.25 via Frontend Transport; Fri, 31 Jan 2020 22:17:18 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 31 Jan
  2020 16:17:13 -0600
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
@@ -59,12 +60,12 @@ Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
  2020 16:17:13 -0600
 Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Fri, 31 Jan 2020 16:17:12 -0600
+ Transport; Fri, 31 Jan 2020 16:17:13 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 27/33] drm/amd/display: 3.2.71
-Date: Fri, 31 Jan 2020 17:16:37 -0500
-Message-ID: <20200131221643.10035-28-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 28/33] drm/amd/display: Add DMUB tracebuffer debugfs
+Date: Fri, 31 Jan 2020 17:16:38 -0500
+Message-ID: <20200131221643.10035-29-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200131221643.10035-1-Bhawanpreet.Lakha@amd.com>
 References: <20200131221643.10035-1-Bhawanpreet.Lakha@amd.com>
@@ -73,26 +74,26 @@ X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(136003)(346002)(396003)(39860400002)(428003)(199004)(189003)(5660300002)(2616005)(7696005)(6916009)(36756003)(4744005)(86362001)(316002)(54906003)(186003)(336012)(4326008)(8676002)(2906002)(81156014)(1076003)(70586007)(356004)(70206006)(81166006)(6666004)(426003)(26005)(478600001)(8936002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2456; H:SATLEXMB01.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+ SFS:(10009020)(4636009)(39860400002)(136003)(396003)(376002)(346002)(428003)(189003)(199004)(6916009)(478600001)(86362001)(7696005)(1076003)(5660300002)(36756003)(356004)(316002)(6666004)(70586007)(8936002)(70206006)(81166006)(81156014)(8676002)(2906002)(186003)(2616005)(336012)(26005)(426003)(4326008)(54906003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1833; H:SATLEXMB02.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5a41a251-aa69-4259-3778-08d7a69b5820
-X-MS-TrafficTypeDiagnostic: DM5PR12MB2456:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB245604A7F67CC9A3A9F85394F9070@DM5PR12MB2456.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:296;
+X-MS-Office365-Filtering-Correlation-Id: 603277c0-6945-4a96-21c9-08d7a69b55a2
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1833:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1833231C593AFF056620807EF9070@DM5PR12MB1833.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
 X-Forefront-PRVS: 029976C540
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mJCCHKJ1dDYnP+J1VHELlODK1g7Uv8Nd4M3V0fvPJUMiPpU+hH5sTvwOAPZk9tZQmzKU2ubbsrUW719GsTFO11+nFmOKTZSKHSVGBvnkAw2j/sU3FHusGd91zvHCXgJeE33FAxNE05vae5A+llcKhJxfiCu/hTqvuh5TgSl+hOa4i1Sod86OeNwXsDpWmxnZSnOMGuxzI9QmPjUoWOH9dzXcSQrDG5M3zOQVx9Qv2g95UUgmbmtdKuWD1Cuoo5BTrKKaFFgnUbNE233zBq3NLGYWZm+7sXfya1l57r+G4VCop68qBOG7hxa43jwOydL6WnbBTkZDVAGIOw/ZN41E76bALbx8Nb7o77UcSOYre6KHKTUDeflojWqpb5C7Ba7vJm3m/JBtZjYPceDHUTyz3UVXOkAQ5aB3Ed5BCGulCvjCnBOdRm2C2bHZPZr1nXgy
+X-Microsoft-Antispam-Message-Info: cKbxfFhaTRCuVouM4Di6UViYwMxqB6kgMPRzskDwHeI7BiwIbnHVU0gJSIB9cb59AWC3E0Z3DMcmxgov5Ek+oHMy0xaSVaWVh96KsAH5NG6gUrSGTowVOJEiyRqf7DElb4Pn1/AC5tgmr15UHZdXp1F4cjElE1hux2w3vYLsEjs6BKDz/rV8Y3c28jP8I2tdaz0AsbdHgTZw7pnRuWc8zE4Hp0yoGOyMK3MT6yCOrBpi9ag7lecSlTm/Mfmmu2S4+hVwDi6tUICP2SmxVRsfYGpOKZYNZDxX6NaNChzcNqepBaAHFIrGELsP6/cTFWZq3wxtHBpFeqf/FDtdM/2IWLbyn+Q+z9rW6NJIfDhxUcJ1VEompoBKmNZIAZumI21pTnTEsGc3FOcmxWYSwJ6GAVLnSmEjcxPjQNadWeYadBqE69+5deEGHowsTl16Bi6/
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2020 22:17:22.3241 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a41a251-aa69-4259-3778-08d7a69b5820
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2020 22:17:18.2614 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 603277c0-6945-4a96-21c9-08d7a69b55a2
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
+ Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2456
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1833
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,35 +105,124 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, Aric Cyr <aric.cyr@amd.com>,
- harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, harry.wentland@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+[Why]
+The DMUB tracebuffer is useful for understanding DMCUB execution state.
+
+[How]
+Add a "show" attribute debugfs so we can loop through the buffer
+and print the entries.
+
+The structs for the entry format are defined in the debugfs since
+the tracebuffer header no longer exists in the DMUB service.
+
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
 Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index c489a863f108..e52a469b4672 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -39,7 +39,7 @@
- #include "inc/hw/dmcu.h"
- #include "dml/display_mode_lib.h"
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index f81d3439ee8c..ead5c05eec92 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -32,6 +32,19 @@
+ #include "amdgpu_dm.h"
+ #include "amdgpu_dm_debugfs.h"
+ #include "dm_helpers.h"
++#include "dmub/inc/dmub_srv.h"
++
++struct dmub_debugfs_trace_header {
++	uint32_t entry_count;
++	uint32_t reserved[3];
++};
++
++struct dmub_debugfs_trace_entry {
++	uint32_t trace_code;
++	uint32_t tick_count;
++	uint32_t param0;
++	uint32_t param1;
++};
  
--#define DC_VER "3.2.70"
-+#define DC_VER "3.2.71"
+ /* function description
+  * get/ set DP configuration: lane_count, link_rate, spread_spectrum
+@@ -675,6 +688,50 @@ static ssize_t dp_phy_test_pattern_debugfs_write(struct file *f, const char __us
+ 	return bytes_from_user;
+ }
  
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
++/**
++ * Returns the DMCUB tracebuffer contents.
++ * Example usage: cat /sys/kernel/debug/dri/0/amdgpu_dm_dmub_tracebuffer
++ */
++static int dmub_tracebuffer_show(struct seq_file *m, void *data)
++{
++	struct amdgpu_device *adev = m->private;
++	struct dmub_srv_fb_info *fb_info = adev->dm.dmub_fb_info;
++	struct dmub_debugfs_trace_entry *entries;
++	uint8_t *tbuf_base;
++	uint32_t tbuf_size, max_entries, num_entries, i;
++
++	if (!fb_info)
++		return 0;
++
++	tbuf_base = (uint8_t *)fb_info->fb[DMUB_WINDOW_5_TRACEBUFF].cpu_addr;
++	if (!tbuf_base)
++		return 0;
++
++	tbuf_size = fb_info->fb[DMUB_WINDOW_5_TRACEBUFF].size;
++	max_entries = (tbuf_size - sizeof(struct dmub_debugfs_trace_header)) /
++		      sizeof(struct dmub_debugfs_trace_entry);
++
++	num_entries =
++		((struct dmub_debugfs_trace_header *)tbuf_base)->entry_count;
++
++	num_entries = min(num_entries, max_entries);
++
++	entries = (struct dmub_debugfs_trace_entry
++			   *)(tbuf_base +
++			      sizeof(struct dmub_debugfs_trace_header));
++
++	for (i = 0; i < num_entries; ++i) {
++		struct dmub_debugfs_trace_entry *entry = &entries[i];
++
++		seq_printf(m,
++			   "trace_code=%u tick_count=%u param0=%u param1=%u\n",
++			   entry->trace_code, entry->tick_count, entry->param0,
++			   entry->param1);
++	}
++
++	return 0;
++}
++
+ /*
+  * Returns the current and maximum output bpc for the connector.
+  * Example usage: cat /sys/kernel/debug/dri/0/DP-1/output_bpc
+@@ -880,6 +937,7 @@ static ssize_t dp_dpcd_data_read(struct file *f, char __user *buf,
+ 	return read_size - r;
+ }
+ 
++DEFINE_SHOW_ATTRIBUTE(dmub_tracebuffer);
+ DEFINE_SHOW_ATTRIBUTE(output_bpc);
+ DEFINE_SHOW_ATTRIBUTE(vrr_range);
+ 
+@@ -1188,5 +1246,8 @@ int dtn_debugfs_init(struct amdgpu_device *adev)
+ 	debugfs_create_file_unsafe("amdgpu_dm_visual_confirm", 0644, root, adev,
+ 				   &visual_confirm_fops);
+ 
++	debugfs_create_file_unsafe("amdgpu_dm_dmub_tracebuffer", 0644, root,
++				   adev, &dmub_tracebuffer_fops);
++
+ 	return 0;
+ }
 -- 
 2.17.1
 
