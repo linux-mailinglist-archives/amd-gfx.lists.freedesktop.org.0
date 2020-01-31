@@ -1,26 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F64014F487
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Jan 2020 23:17:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D64BB14F48E
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Jan 2020 23:17:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3F226FC45;
-	Fri, 31 Jan 2020 22:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A95946FC48;
+	Fri, 31 Jan 2020 22:17:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on20602.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e88::602])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEA396FC3D
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 22:17:18 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2048.outbound.protection.outlook.com [40.107.220.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FDE66FC4E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 22:17:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cQLI3uJAy5u1gs4uR8wjNFJjjn2p9HjuKn9lifgNNPD+rKCzf0+4pRvnhiTrPfTlIQdygjEhWu1rIjd9N4bFMHP0JD3Q5t4xoSmUbsBHgGJN8mQdmg6ZkvMrBvf4VnBT/ZQAurhsquoA2EcpMp5qcRxZuZvI90Ox8J58tzljxR/20ckuMokCpIwf+/FB67oE+ow4JdU+zyv6e398plsPUZ0SbDbTZhO4LysYnKMXFRoyyg/saGixTL4zc0QfZTDarUKRiMKxYJq/esY/1btddFLxucFNwsdUKSicoOosiXeXrOW5Wx5nmF4eksc43oIxurAoYDnw8TpgUXkK6GVrcA==
+ b=UqH4PvTINLDKwCu8p/rvv200qJCPO3a1xLiwRsFGycg5IhXswbW6uv1hhtoumjQZ2kqQTg4GdnNzFxygwASHJAC3peehLWTe6TeUPLe3ARL/uNHZKItUv+4Dlp3s5/9E4NhL9w6six78t2egph8WMmdkWPzhzZMOMPYOQVhWX1W48beNLsEHokj0gQAXmAkya0pMubvB5o17huAF9kytj1x7rk/de67uAwcyWa0rasRgOqu0fH9aiGOKSyHR+RzK+rAozoq+9l3tULsGvycaWGD+cme7XIYbJkDkXBgb8k8HSbLBp1TCUn6FPRhBBMGNb4OA2f3bMusBC98r6ikZCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=stjaFa/fCccmhpYszs2udS4iclTd75z0ltTylwnmuKs=;
- b=HFUqW09N5SEdq4DRbEbQ+DQAvLdv+IdGmJM/QNVRlg0T4M/khUgFOiGwFaSzjyUina7Hf6FL0tUiJHuDONaqwShN9cMI9SfKYOUS5sj/XfYQUUue+4QFGrxU0XPh/VyM5gDwf/41yccdWQ31KdAaocZA5JkPgxqFZ3T5dmgK+S5gQ4jfHFLhCya0f7aHNdGRQjokmOMPrhU6c0m+IanYBE28lYCIOIqX1JG2N2E+Badxm4KX5jQ6V9garMWdaNikcg98tBrEg2Jx6e33OPCzu464QGv38sBdYOqLh29DW6TbxEm9aSraWLHztkI/+7nAVPXoTOpgYdlc6mA22bSoYw==
+ bh=V0vwQNGfdrnvXZUKcV+Smqa3PmgPwWfpzTxSDKynCtc=;
+ b=WPGhxpQN7UT/XNXa4YCj8E/abL1A5VxLTE6xknkMPIdhwYse2v8Ukpetn049Y3U9xw2PzZCEvd4m3rlR3Aq07hzqD/swp+bmqjqLGSaZdwWpuLvK3ELESyFpKl4q/N5hVgvuwsJb3GCqXveZO49c8a7LiZGGcNUGTfbcvrLcTq9+65gVGHTjdnDUVtVpCTfXubVWztLMSGtJxVfjILFufwBY/5vMZoaUSyRqQ5/Rqk+qXO/4IgA3suR3p4Yw1ED2Nt+NWFP15DyVHJHFNkyN/15wZzQncuMHpytTLVsgAaQuKsLBunwgaCfKQFFgTtCW8xVESWvB229BwpuJn/DTfQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -28,44 +27,44 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=stjaFa/fCccmhpYszs2udS4iclTd75z0ltTylwnmuKs=;
- b=BX6EIgVtss1Iwv6wX1Ut9WHyl0HCEbcWDS668a0OuDfs58YnnpAiXkuSVFO0zzIkSEF55kdNqjgb22eXPbVt+kHaBD0qMspw3c8zVSIGA+K+MuIwJ8DjS6e4LM4ocDdd5EoEU+lvXOsbCW30YIHBLESWV/T76I8RZu/vLcQTk+E=
-Received: from SN1PR12CA0075.namprd12.prod.outlook.com (2603:10b6:802:20::46)
- by MN2PR12MB3342.namprd12.prod.outlook.com (2603:10b6:208:c3::32)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2665.24; Fri, 31 Jan
- 2020 22:17:16 +0000
-Received: from BN8NAM11FT026.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eae::208) by SN1PR12CA0075.outlook.office365.com
- (2603:10b6:802:20::46) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.19 via Frontend
- Transport; Fri, 31 Jan 2020 22:17:16 +0000
+ bh=V0vwQNGfdrnvXZUKcV+Smqa3PmgPwWfpzTxSDKynCtc=;
+ b=sO25fFwpNwV35cpjMXdOlL3ZYPlBnMoXN1Dq7nnPd+GYf7jbGvWROp8IYy6za5jCoMYbYW8GaRRMi7YJocq2xGhEuUKSD8Mk+lxRdciAks0TUgifCTPuPvYiyM5PaGy4Jmc80tD7UfsZ9XakITeWM+gRgvwLdohjlsEK9/U2V3s=
+Received: from DM3PR12CA0084.namprd12.prod.outlook.com (2603:10b6:0:57::28) by
+ DM5PR12MB2456.namprd12.prod.outlook.com (2603:10b6:4:b4::37) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2686.26; Fri, 31 Jan 2020 22:17:23 +0000
+Received: from CO1NAM11FT007.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eab::209) by DM3PR12CA0084.outlook.office365.com
+ (2603:10b6:0:57::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2686.27 via Frontend
+ Transport; Fri, 31 Jan 2020 22:17:23 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- BN8NAM11FT026.mail.protection.outlook.com (10.13.177.51) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT007.mail.protection.outlook.com (10.13.174.131) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2686.25 via Frontend Transport; Fri, 31 Jan 2020 22:17:16 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.2686.25 via Frontend Transport; Fri, 31 Jan 2020 22:17:22 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 31 Jan
- 2020 16:17:12 -0600
+ 2020 16:17:13 -0600
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 31 Jan
- 2020 16:17:12 -0600
+ 2020 16:17:13 -0600
 Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
  Transport; Fri, 31 Jan 2020 16:17:12 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 26/33] drm/amd/display: Limit minimum DPPCLK to 100MHz.
-Date: Fri, 31 Jan 2020 17:16:36 -0500
-Message-ID: <20200131221643.10035-27-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 27/33] drm/amd/display: 3.2.71
+Date: Fri, 31 Jan 2020 17:16:37 -0500
+Message-ID: <20200131221643.10035-28-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200131221643.10035-1-Bhawanpreet.Lakha@amd.com>
 References: <20200131221643.10035-1-Bhawanpreet.Lakha@amd.com>
@@ -74,26 +73,26 @@ X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(396003)(136003)(39860400002)(428003)(189003)(199004)(6666004)(426003)(478600001)(70206006)(70586007)(356004)(316002)(6916009)(54906003)(336012)(186003)(26005)(2906002)(7696005)(86362001)(8936002)(36756003)(4326008)(81166006)(8676002)(2616005)(81156014)(1076003)(5660300002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3342; H:SATLEXMB02.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
+ SFS:(10009020)(4636009)(376002)(136003)(346002)(396003)(39860400002)(428003)(199004)(189003)(5660300002)(2616005)(7696005)(6916009)(36756003)(4744005)(86362001)(316002)(54906003)(186003)(336012)(4326008)(8676002)(2906002)(81156014)(1076003)(70586007)(356004)(70206006)(81166006)(6666004)(426003)(26005)(478600001)(8936002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2456; H:SATLEXMB01.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 516f181f-2aac-4b64-1e68-08d7a69b5467
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3342:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB33424181856F5F8DDEB6DEDEF9070@MN2PR12MB3342.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:935;
+X-MS-Office365-Filtering-Correlation-Id: 5a41a251-aa69-4259-3778-08d7a69b5820
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2456:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB245604A7F67CC9A3A9F85394F9070@DM5PR12MB2456.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296;
 X-Forefront-PRVS: 029976C540
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OsCtegY9MdWq9YRt+6qe6bY3otIoYn3nrNfbYhtgTXBrjX/NuxYwg23TKkKT1S+hNumkFHrNlTaHkHVBtDiP11UUWzJeHJV3ibh042v6MFSX45TVikb7LJX9V4dhbIQBIgXjCEi7e8PVyJAUgPv19DrFBbIbHn/AIrKQsjpwsfpg2XKWnk0TClimliSvF3+2UhrDH04y5m/CAGr0VmNVbxSx7ktKXc0G5KlRNZ4ySBzppFtQme1oKIPJWaFB7TaMhlnBl0qcpTmU/fJ8DWTXl3IY7oPJb2E0i27Lj8jWlc6hpJkyujAzqrVE8oD66fpyyF7dhkJDlHgJcl6+Nn1Qtoyl1CyNBSQz0VMChQ+x/y0Bckn1HsUy9Dq1INnboWjBenMdR1E8aPMy8VXCrQa7e8KH+6V3dQZERuW5JByKZmx6qQKUNYuCHeTZHSoBnCse
+X-Microsoft-Antispam-Message-Info: mJCCHKJ1dDYnP+J1VHELlODK1g7Uv8Nd4M3V0fvPJUMiPpU+hH5sTvwOAPZk9tZQmzKU2ubbsrUW719GsTFO11+nFmOKTZSKHSVGBvnkAw2j/sU3FHusGd91zvHCXgJeE33FAxNE05vae5A+llcKhJxfiCu/hTqvuh5TgSl+hOa4i1Sod86OeNwXsDpWmxnZSnOMGuxzI9QmPjUoWOH9dzXcSQrDG5M3zOQVx9Qv2g95UUgmbmtdKuWD1Cuoo5BTrKKaFFgnUbNE233zBq3NLGYWZm+7sXfya1l57r+G4VCop68qBOG7hxa43jwOydL6WnbBTkZDVAGIOw/ZN41E76bALbx8Nb7o77UcSOYre6KHKTUDeflojWqpb5C7Ba7vJm3m/JBtZjYPceDHUTyz3UVXOkAQ5aB3Ed5BCGulCvjCnBOdRm2C2bHZPZr1nXgy
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2020 22:17:16.1970 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 516f181f-2aac-4b64-1e68-08d7a69b5467
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2020 22:17:22.3241 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a41a251-aa69-4259-3778-08d7a69b5820
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
+ Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3342
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2456
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,46 +104,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com,
- Yongqiang Sun <yongqiang.sun@amd.com>, harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, Aric Cyr <aric.cyr@amd.com>,
+ harry.wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yongqiang Sun <yongqiang.sun@amd.com>
+From: Aric Cyr <aric.cyr@amd.com>
 
-[Why]
-Underflow is observed when plug in a 4K@60 monitor with
-1366x768 eDP due to DPPCLK is too low.
-
-[How]
-Limit minimum DPPCLK to 100MHz.
-
-Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
-Reviewed-by: Eric Yang <eric.yang2@amd.com>
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-index 8ecb98c29eb9..5d82ec1f1ce5 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-@@ -151,6 +151,12 @@ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
- 		rn_vbios_smu_set_min_deep_sleep_dcfclk(clk_mgr, clk_mgr_base->clks.dcfclk_deep_sleep_khz);
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index c489a863f108..e52a469b4672 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -39,7 +39,7 @@
+ #include "inc/hw/dmcu.h"
+ #include "dml/display_mode_lib.h"
  
-+	// workaround: Limit dppclk to 100Mhz to avoid lower eDP panel switch to plus 4K monitor underflow.
-+	if (!IS_DIAG_DC(dc->ctx->dce_environment)) {
-+		if (new_clocks->dppclk_khz < 100000)
-+			new_clocks->dppclk_khz = 100000;
-+	}
-+
- 	if (should_set_clock(safe_to_lower, new_clocks->dppclk_khz, clk_mgr->base.clks.dppclk_khz)) {
- 		if (clk_mgr->base.clks.dppclk_khz > new_clocks->dppclk_khz)
- 			dpp_clock_lowered = true;
+-#define DC_VER "3.2.70"
++#define DC_VER "3.2.71"
+ 
+ #define MAX_SURFACES 3
+ #define MAX_PLANES 6
 -- 
 2.17.1
 
