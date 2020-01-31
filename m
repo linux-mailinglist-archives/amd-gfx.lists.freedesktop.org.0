@@ -1,25 +1,26 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D22C114F48A
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Jan 2020 23:17:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E83C14F484
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Jan 2020 23:17:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25CA56FC42;
-	Fri, 31 Jan 2020 22:17:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34D366FC4F;
+	Fri, 31 Jan 2020 22:17:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2074.outbound.protection.outlook.com [40.107.236.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A2056FC48
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 22:17:24 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2060d.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eaa::60d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39D8D6FC3C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 22:17:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mWIcruhjllcoVpuGRMVRRrMkgCD6kLEODwh88ilv0bqknl+ZpMaOGr6ykLFiG1LVr5JdNq5sMqNNsFcJ6QRnMHFaXnDmWufpaTGQARIz99WyOlnrnPmt6RGg4Pf5Dc4R8udJU7PBDoZN5JOvYW63SW/7lBa09mM2DscPRQNBaQ6aOp0Fy17o6TRcs+sF7EA/xeeByh1hUSoRxV8T1heGEEsxr+vmqqJ1URXFx4HSnKYZfTCN1h/HdJSCscwvQsvdn3KaoGpmh80GAeKpcK2LdE4obfhdYhsEXzbXLL4cAo89eO0j9RIM0enDV56HlIsp6s9yEX6D5IVAK0ly2pYLNQ==
+ b=PdcepnPwMVikadTGpCWy2sxlZPhc3t5bHoUND/+9WhzUQE/HSbp4to4874rhAt0k5Fijf+wldaU4Tm5M64kTlEa21utbZMtThnUiVyg+UMA6TiIGNHYb8lHr/Ze4xhZPF03fA2bIuFrNjAWRyYrfRCAQHG7a5vQ7qTv1/gmVbFWrpOp9N6F+nt5wGdKtqAzMw9me47nEQ0clj4OZpVp4CRg+Nv/8vqt9mIM3o3/xCD26bAXcbgYPlwSffna2EKoqD6ko0Ad/YLUPPX7D6qtrseABflJocaFWijN5Hoi61gM6VyqXFHbCS4B+OiD/ApfCWDQdiMJ6yWq7UW4JFAlGyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MCKMS0Y/omgH8jMoCvt/s7x2eHkzEQqAb90aBD0kZ2Y=;
- b=UDFegB+mTrkXP/KBWcMLbmZhuHeqTFFQnZrF+z3QUAMgf3u4D/3yiSCiMPYy0M16B2ZAjP0CuQ6OEwfTOvLCve/ARAZRmVkJuOHc5yqSp9WppbhSI+PL3l23ed2SwhqbmckPJdc3qbG6+M6qjt0xDjtqTxnBrQjpv5VAI+6qqeqWajesAcXUrhrQ47hP52P3neuIfLFzSoRhfCkotnvOorBybPzQ7MrxyKsTW9pkWPn5vUKKCY3cTJbZ9ckXXNwrstBSX9w/5hzfU3H83t8UJEnKk9gdwfuodeH6Xr0ukpMh0skBnbdHaQjrU/ruqL/e7TYkC+dG7B0nvJWzDxv9Ag==
+ bh=Be4fu0VCL3wzRwUR9cdIZ0vRZsZNng7pelPGFXHsHu0=;
+ b=Kx7JMB3GTDSdyXF1T//Us1Eo4s7QvAIMWtn5Wgck+TAd+YgpKyjT7KvaGnkoZ9cH04tePYQIQdJjEerdWNiaf3B2kvZY2WLonptUQEnkDgMlqhRTAqY8DgvoJ+m+iJGPpahix9xnmYdD1bFyMTEicFGo4v5mSPmwD6zeLv0z5yBD22qiKc5TIxKqAguy/Xz8IPgw7Xwsr3SDwGEL5QfNGQdNrCBYft9gK/V33h8iFoj1Sv0oU2cpWRddMOICvK2llQX7PEK40UT3GRwkMZ/vdpYemQtN5YGTpUf0suiANMLC1Apyrd9ZCVAuZO/VSaLGOTGXu0Hi3OAarFoxMCLAJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,44 +28,45 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MCKMS0Y/omgH8jMoCvt/s7x2eHkzEQqAb90aBD0kZ2Y=;
- b=MLfsQLFbNSPAPdYXfFNFvHA2YpmwsDiILt5Lyowk6N8DnWviG8ZX+w18RrJac+PD7qxLrCmjDjxAiMsP2q33Qj7mUZPS0FTnQiHUiqBHeJgejz6TY44ZNLcj032Nz9hvK9NqAFMp7ofZ1N2H9pgiCyhEc4Vts0ir8h/1TBXOrHc=
-Received: from SN1PR12CA0095.namprd12.prod.outlook.com (2603:10b6:802:21::30)
- by DM5PR12MB2471.namprd12.prod.outlook.com (2603:10b6:4:b5::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2686.26; Fri, 31 Jan
- 2020 22:17:22 +0000
-Received: from CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eab::201) by SN1PR12CA0095.outlook.office365.com
- (2603:10b6:802:21::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.23 via Frontend
- Transport; Fri, 31 Jan 2020 22:17:22 +0000
+ bh=Be4fu0VCL3wzRwUR9cdIZ0vRZsZNng7pelPGFXHsHu0=;
+ b=n45BNMikTVZJwN7AYtcrZSgDxvoZQYXhdZynNGIewchj6CCaWJhqOfifiIai2tl6uvoqBqzLKG0xr5hdCMhB5RvkdVPzMZ15jX4dzvhGIwz7A2+ggr6e7gW+LxTtD0tDE+hWbtNv6Is7zFVz6sAXjuZFLssfmlemnp+YMU8F6/Q=
+Received: from SN1PR12CA0074.namprd12.prod.outlook.com (2603:10b6:802:20::45)
+ by BN8PR12MB3171.namprd12.prod.outlook.com (2603:10b6:408:99::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2686.27; Fri, 31 Jan
+ 2020 22:17:15 +0000
+Received: from BN8NAM11FT026.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eae::207) by SN1PR12CA0074.outlook.office365.com
+ (2603:10b6:802:20::45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.20 via Frontend
+ Transport; Fri, 31 Jan 2020 22:17:15 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT067.mail.protection.outlook.com (10.13.174.212) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT026.mail.protection.outlook.com (10.13.177.51) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2686.25 via Frontend Transport; Fri, 31 Jan 2020 22:17:21 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.2686.25 via Frontend Transport; Fri, 31 Jan 2020 22:17:14 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 31 Jan
- 2020 16:17:11 -0600
+ 2020 16:17:12 -0600
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 31 Jan
- 2020 16:17:11 -0600
+ 2020 16:17:12 -0600
 Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
  Transport; Fri, 31 Jan 2020 16:17:11 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 24/33] drm/amd/display: Add wm ranges to clk_mgr
-Date: Fri, 31 Jan 2020 17:16:34 -0500
-Message-ID: <20200131221643.10035-25-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 25/33] drm/amd/display: Use uint64_t logger_mask instead of
+ uint32_t
+Date: Fri, 31 Jan 2020 17:16:35 -0500
+Message-ID: <20200131221643.10035-26-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200131221643.10035-1-Bhawanpreet.Lakha@amd.com>
 References: <20200131221643.10035-1-Bhawanpreet.Lakha@amd.com>
@@ -73,26 +75,26 @@ X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(136003)(346002)(376002)(396003)(428003)(199004)(189003)(6916009)(26005)(186003)(54906003)(336012)(316002)(426003)(7696005)(36756003)(70206006)(2616005)(70586007)(1076003)(356004)(6666004)(478600001)(4326008)(8676002)(2906002)(8936002)(81166006)(5660300002)(86362001)(81156014);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2471; H:SATLEXMB01.amd.com; FPR:;
+ SFS:(10009020)(4636009)(346002)(396003)(136003)(376002)(39860400002)(428003)(199004)(189003)(2616005)(36756003)(2906002)(426003)(8936002)(336012)(6916009)(70206006)(8676002)(54906003)(7696005)(316002)(70586007)(478600001)(6666004)(5660300002)(1076003)(356004)(4326008)(86362001)(81156014)(81166006)(26005)(186003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB3171; H:SATLEXMB02.amd.com; FPR:;
  SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0446355f-7c9f-4411-aff1-08d7a69b57b6
-X-MS-TrafficTypeDiagnostic: DM5PR12MB2471:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB2471E1B8596C701DB1220D30F9070@DM5PR12MB2471.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Office365-Filtering-Correlation-Id: c0dea1f9-0e3f-409b-747b-08d7a69b53ab
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3171:
+X-Microsoft-Antispam-PRVS: <BN8PR12MB3171D82550E8CCD9B2112567F9070@BN8PR12MB3171.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-Forefront-PRVS: 029976C540
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9i5ygAy8CjE7geUl8wz2ZJvtZ/qoj8JfDyapMsc1rhWRJp/I4yrei5d0YA/NvOAnSivol76+TsTgHPh1yc1pIXqSXDbpSvA4DOOCRqXVwUrgg5Z5JSH7bqp9z6E8SjE95PkXwCy8ywNwvsY+T3jxceXl1938poC058UnS/1M+1dTGiILSqP3yb8aX1qZT6gm56S3Ns6JqyFg2UOSuyk1X8f/ttbanlOEsHa+moUBFxVG2QloFxwMvTWL9WHSSPTxD0pLrngDgF/EBfaCn9TbAzCKFU58+gNYo/8AjxNtMq0Uzr9AHo4PFSLK5zYEXjuAyiSEGp+nt+W9JK1odXUWt8XVclNfXYPYUkrkQaALCQS86qRcfCinHcD8/jZdsvEoJWPftDta9CZx+Ns+h9WA/nGLFiKJV1VjyYPz6YNaa39Rk9oNq9R4gIax1Br0PLNF
+X-Microsoft-Antispam-Message-Info: T3Njdan8eWth5vNM94s3kEDli4b2GwDv0f1rl0m6d+rmkcBPhQPzY/s6Isj0NMuwtZpXDn5Q54zyE98d5HlUhyN49NBouhY1vEGTZRZQRnLP7SrrIYUIobq8uyYtd+woMYxWv4p0eAEBVG2hAEs1q4ZwZZ+825r33Zou6ebATB3U3vxQTtguH+8fUSbC3YSSjYYZGhPAFYcxzg116h1GWbDe1/H6k5ZKSzFqNQA7MSRf/Uua/ZxkprEJhKhC9p1Mh5pdP/J+nQLwbMhoorshH42McKVNyqH7yX+gF7jyrhAXFSPg37TReMvsa2YKhVnA5dUSZ7C8Igg8EhlJHEPSjkHCkdMSQDvH1ViJxv0v+ofI4tTJXZ/xhCsmDGaKeNZUSouOi3c7JoyhjRfVbJkWQa/koZFsH0g5G6YKLXyssC5d9HFzMMBp5Qf8NhybgSKJ
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2020 22:17:21.6325 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0446355f-7c9f-4411-aff1-08d7a69b57b6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2020 22:17:14.9671 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0dea1f9-0e3f-409b-747b-08d7a69b53ab
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
+ Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2471
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3171
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,72 +106,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, Sung Lee <sung.lee@amd.com>,
- harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, rodrigo.siqueira@amd.com, harry.wentland@amd.com,
+ David Galiffi <David.Galiffi@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
+From: David Galiffi <David.Galiffi@amd.com>
 
-[WHY & HOW]
-Having watermark ranges saved inside clk_mgr to be
-available for debug at all times would be useful.
-Add it to the clk_mgr_internal struct for reference.
-Only populated for Renoir, unused for other asics.
+[WHY]
+enum dc_log_type has more than 32 entries. User cannot set larger entries,
+like LOG_DSC. Logs from LOG_GAMMA_DEBUG where being printed even though
+flag was not enabled, because dal_logger_should_log check erroneously
+passed.
 
-Signed-off-by: Sung Lee <sung.lee@amd.com>
-Reviewed-by: Yongqiang Sun <yongqiang.sun@amd.com>
+[HOW]
+Change struct dal_logger.mask and struct dc_init_data.mask to uint64_t.
+
+Signed-off-by: David Galiffi <David.Galiffi@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 5 ++---
- drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h           | 2 ++
- 2 files changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-index 034a5852a416..8ecb98c29eb9 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-@@ -459,16 +459,15 @@ void build_watermark_ranges(struct clk_bw_params *bw_params, struct pp_smu_wm_ra
- static void rn_notify_wm_ranges(struct clk_mgr *clk_mgr_base)
- {
- 	struct dc_debug_options *debug = &clk_mgr_base->ctx->dc->debug;
--	struct pp_smu_wm_range_sets ranges = {0};
- 	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
- 	struct pp_smu_funcs *pp_smu = clk_mgr->pp_smu;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 6f94906968b3..c489a863f108 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -566,7 +566,8 @@ struct dc_init_data {
+ 	struct dc_reg_helper_state *dmub_offload;
  
- 	if (!debug->disable_pplib_wm_range) {
--		build_watermark_ranges(clk_mgr_base->bw_params, &ranges);
-+		build_watermark_ranges(clk_mgr_base->bw_params, &clk_mgr_base->ranges);
- 
- 		/* Notify PP Lib/SMU which Watermarks to use for which clock ranges */
- 		if (pp_smu && pp_smu->rn_funcs.set_wm_ranges)
--			pp_smu->rn_funcs.set_wm_ranges(&pp_smu->rn_funcs.pp_smu, &ranges);
-+			pp_smu->rn_funcs.set_wm_ranges(&pp_smu->rn_funcs.pp_smu, &clk_mgr_base->ranges);
- 	}
- 
- }
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h
-index ac530c057ddd..ce65678c03b2 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h
-@@ -27,6 +27,7 @@
- #define __DAL_CLK_MGR_H__
- 
- #include "dc.h"
-+#include "dm_pp_smu.h"
- 
- #define DCN_MINIMUM_DISPCLK_Khz 100000
- #define DCN_MINIMUM_DPPCLK_Khz 100000
-@@ -193,6 +194,7 @@ struct clk_mgr {
- 	int dentist_vco_freq_khz;
- 	struct clk_state_registers_and_bypass boot_snapshot;
- 	struct clk_bw_params *bw_params;
-+	struct pp_smu_wm_range_sets ranges;
- };
- 
- /* forward declarations */
+ 	struct dc_config flags;
+-	uint32_t log_mask;
++	uint64_t log_mask;
++
+ 	/**
+ 	 * gpu_info FW provided soc bounding box struct or 0 if not
+ 	 * available in FW
 -- 
 2.17.1
 
