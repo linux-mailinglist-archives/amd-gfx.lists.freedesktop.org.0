@@ -1,95 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E2E21500B0
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Feb 2020 04:18:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 976CD150283
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Feb 2020 09:27:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E5226E167;
-	Mon,  3 Feb 2020 03:18:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 287906EB59;
+	Mon,  3 Feb 2020 08:27:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760040.outbound.protection.outlook.com [40.107.76.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D42736E167
- for <amd-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 03:18:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m9VWVEm6ol1iUnbZaYYR4z8ixgkm0FYZC3I1kiOVv2FE4nA12ipovU1wnfBI+K7f2Jykw3SgYz1pw19muruAzNvhBXS9PA/Sr9zKrCizbMUYLAc+22d7RfIUGfMsGyiu9SV3FYctACl4fI8NmM+qNO4V/RmCyocu69AtWhX1c81CnKovVUU46E4bt1dh58id4NGpU3/Pt+V1vnjLUd9Iy85AOdJkV5JEUNrK4BkNEMy+Z4jqDg+ojREGro4m/oV2Z8Lh9Rep5nESOwq9IVloCdE5z5BKOHALp+BlxgtF6iY9QW8UyM1GN2kajIiWuQbqx1nOCRxNvSqJzxbkq1YiIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SVGd+pLcD42GoOf01j1zPz/gCgel9gDwmvnNVZ4lVsc=;
- b=N10GQy0Dbr1otKAL5Zeg5wGoKIGvE4PVYfZGFdT4j/a0KWA1ikii7iwFg8T3W3QPf0g4hbU0hcDFOZtl2f9Qail6mbFhZux4yhGgEgl0chPDytyGAHxTjF7jz7WOj83KQ0VzN0tic56eUFa6oeYBfB8U4qlEOE+Zi1370eshN5aWcmjd6zgt9Z/TOmjwwzV962f175ki6A73wUcdb8I7BPHWKjBInM7JA1AfY6PJTl0580Q4YG8llJo46ApHW5WOtrM8PfGJc9BZheI/bgF1VVlErk0MAwXmBW4r2aP1v5cazwGx9HTi2qxZHTwLfZlfUgwAU7Y392vSv+mblrqdlg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SVGd+pLcD42GoOf01j1zPz/gCgel9gDwmvnNVZ4lVsc=;
- b=Qb7ve4RLOXWA0vf1rzn3D9I9uwBBuL2ete+VSgP8FN//O54TWEnolMZfDNzoE2RULD1hKDMvQpF0QRIEt++RilIyUkbBJ9HiigMR7rJkRy4k/R/VpnM6Q18QWv/QoNGbqOITwDzEET7s4d1RRg952sl63GEw84JyA4q+XYlGB90=
-Received: from MN2PR12MB3344.namprd12.prod.outlook.com (20.178.241.74) by
- MN2PR12MB3712.namprd12.prod.outlook.com (10.255.236.212) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2686.26; Mon, 3 Feb 2020 03:18:15 +0000
-Received: from MN2PR12MB3344.namprd12.prod.outlook.com
- ([fe80::1010:4621:68dd:5b47]) by MN2PR12MB3344.namprd12.prod.outlook.com
- ([fe80::1010:4621:68dd:5b47%5]) with mapi id 15.20.2686.031; Mon, 3 Feb 2020
- 03:18:15 +0000
-From: "Quan, Evan" <Evan.Quan@amd.com>
-To: Alex Deucher <alexdeucher@gmail.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 2/3] drm/amdgpu/navi10: add OD_RANGE for navi overclocking
-Thread-Topic: [PATCH 2/3] drm/amdgpu/navi10: add OD_RANGE for navi overclocking
-Thread-Index: AQHV1tB45jeXx+6cBUq6RFoEnUPe9KgI03uQ
-Date: Mon, 3 Feb 2020 03:18:14 +0000
-Message-ID: <MN2PR12MB33445DBA8D7E2E291CA76AC2E4000@MN2PR12MB3344.namprd12.prod.outlook.com>
-References: <20200129181752.609344-1-alexander.deucher@amd.com>
- <20200129181752.609344-2-alexander.deucher@amd.com>
-In-Reply-To: <20200129181752.609344-2-alexander.deucher@amd.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=3b01e8be-c6a1-45ec-889c-0000d0930493;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Use Only - Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-02-03T03:18:08Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Evan.Quan@amd.com; 
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 69cc1f72-4932-4547-78d1-08d7a857b51c
-x-ms-traffictypediagnostic: MN2PR12MB3712:|MN2PR12MB3712:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB37125A1E81C4D9FAAB435174E4000@MN2PR12MB3712.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:901;
-x-forefront-prvs: 0302D4F392
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(39850400004)(396003)(366004)(376002)(346002)(189003)(199004)(478600001)(6506007)(53546011)(966005)(8676002)(52536014)(8936002)(110136005)(45080400002)(26005)(5660300002)(55016002)(9686003)(33656002)(7696005)(86362001)(71200400001)(4326008)(2906002)(186003)(316002)(81166006)(76116006)(66946007)(66476007)(66446008)(64756008)(66556008)(81156014);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3712;
- H:MN2PR12MB3344.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vaHdHA/DhjR4hliP1+un6MOOA699t2vylkatDQooT+Q8j6/1RXkkiw55IKjILRVKkWtQbbO6TmwpvEh27klnVeLBSvS9NBS79FGpESwl0qO9B2YaQWdpNmV6ZEvb7nbDxRwHkV1fDECjzRoS879gIA4sGL6ZE8rzDEhlT3NfgvXPnKRaaMmPan3g75iGHLiznQARUgKfhIky3Q2a1RQUjN8oTMq7ffRFGQHhrwwad0JonY/ZaYCXRWQ/YkfNEOrX9/Bh7RbyUdp3xqsaFXh8X97VYQCqHFrLEc4YXFzRC1vrfV9WIjxnC/B6SGEyLXRAqk4g2o+bT9O9AIL6zbNhn0gbUNT8zFWHA7qE+1fAA0Zr+t/2jDdnE8a/KNizDJfrMhyJB/LS64I9mbqIP3YFZaR1W4rptkzrxtNO21Pp7ZPbSp/LI+m3g/DE6Qc1MB6smOxUpb7Kh2nf9Zru7N5LFLfVDFtJ8LfBfSiG5zLBhChzgpJYgbr0FfEVZ7ChDLLnn2CeKMEwfugIjqyjOfpRhA==
-x-ms-exchange-antispam-messagedata: dJTaAsujmeB3nMEVw2LSzGMxvp7XOmoimo1HoebzeLhIy/Mu+i1jmojkVHOFzMS4/kxRU+UMm8hrF3nz1fZwHsCMjYZC+V9QY8Jjy3A2hsJx2+mt6G4huOaqprUK9UxDK++rB9+Oj/Vutjs3sgvVMA==
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8C906E4AB;
+ Sat,  1 Feb 2020 23:12:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1580598770;
+ bh=BN/HLePm+CCf22j9Rm1J8xkmEuscsbElFGHdHKMjYig=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+ b=Izj0Nk/OMug7Z70047HsiNQPhnxL1GVeQR8rBK4Qq5LKuMxF/bTRPB4cZp2OWYbmP
+ 2WQu0zQBSNpFPBvXOiAqx3dG1Mw7kQunoK6lQkYVW0moQyu7f1ZoiWLTkQqPnlzCni
+ /RqBikBd8qSrLfV2fFz9Dk/IjM9yAsILPWncmkpY=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from localhost.localdomain ([212.114.254.236]) by mail.gmx.com
+ (mrgmx104 [212.227.17.168]) with ESMTPSA (Nemesis) id
+ 1MtOGU-1jpaZQ2ePm-00uoSk; Sun, 02 Feb 2020 00:12:50 +0100
+From: Julian Sax <jsbc@gmx.de>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdkfd: Make process queues logs less verbose
+Date: Sun,  2 Feb 2020 00:11:01 +0100
+Message-Id: <20200201231101.2127964-1-jsbc@gmx.de>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 69cc1f72-4932-4547-78d1-08d7a857b51c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2020 03:18:14.8458 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RI1wnrt2831kGDJ6ARF+JdU7CLklIP6lgk4WLAKOk+/FHLn+wtyLhIKyqwVZfHl6
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3712
+X-Provags-ID: V03:K1:IRuqZirwaJVNO4uaoYMSni2zgN+ChoMXRPkqDEbMxx8YTWuPafi
+ 1hMVR8j6aTwwegGKabcdRTsMdncx4BGqesGVqdVF8nK6jAzg4u2OK1XK+BCftvHUKewGsIC
+ bRgfeGiXlIto8GJce6ma+tLqsMiQoJrW1gog2ottjCZlvWI6cFvxEGDPAIAhGQqsS6KoWfv
+ qLMJkM4mLIgM+HHS1s8BA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:0yPV4JpqnjM=:EK0NGKg8mL+WHI0v6slkbp
+ S7M9cVjQbWfHyLfMq6WXxHT4rCm2eaV01zPWndJ1+FIVh8C06Gnazoizs5+KBhWKBuCM8UmNA
+ KDUG1A7lZY5JEZQXR22NIc+xKwMio6CUBph3ScxYtAu2etQyaJsH9x3mBT8orVwLrUniNLKeu
+ c6Zh86L2ZJ2YeBAKAt4v0pmQ+at8s3QC+tAzHvI6W/H7Mi3ZHQ8bnH+IkEXd5uf/2/O1cQGLu
+ NLWEFZuS7edudrdeef7fXGJ9BUyqHEjEq3/LBAiUjaAQSwFr0UWBZqw7QzDAr46Y47BpFbeqf
+ 0ibRxpeSWwzPMC+oTJbx+S53u0Ww6NWSyGqv3fek4SxfBWZnhD8fXiAZUvn6lgYQmM9ABgHPx
+ +SEjdQrlNd/17ruB/M60bCtrRBGoDFYyBGTQrLc3PKlHWNYCxRVFm6s8Z3on4SVL+g+e63ERp
+ eUC8zWfHXVyNi92/5Mo/MidrIupBt/dvvn2cRCvFIYwBbEytSVwsdZ3pzw/wxz/mxuT7OhTL5
+ pwSDpOK8kjpCdYqoPd4fJ7ksdUogqwmgXLxLSot7GBqqwg1zYW42ECi1tE5tBntKXInJ+z2DK
+ XalvQvfKEUWXHIXBE8PsxHazQb3YyepJLr/DnSaaQiiXywn5IfSSscELzz1ga93DLx3zxVRMQ
+ IVEIzxXz9Oo6jP6pgLNCShazRwOTc8veEse3u52Vx1sbO3bTc4aNQv1CASmmUFG1TyTCubAwV
+ t2A+yjCq+MxDk6boNRzAFsk2+Lpce+EhehRmciRH4J4lHagY3zkARtRkVIkHL3uEy1n895BkA
+ RrkMmyq+JaqNU3hULL5kNoAMWUyeO2a4HrlAaa+VklwkBQKJeVDpUh1lplgAebwwVmidXZvfz
+ cM4XNEl3DELXeBocRc7oJDcmeCFSja5rYaZnZh7FWT0St1ZGQIaaUtvQY/dGeRV0BFlCWAjsu
+ NWOemMCjU2GrtaE7i+lDngyYMbrAIl1TYZDMcwksLQ1sE/mUpa39GQLTEkKeiniqfzG2WhQcv
+ +aWDjKVADDZ5FVRj9Cj9FBx69GQWJjhHshfpcnOrSKWLeT/lOjfZjjlcOwjwJXE6D06eTZ/lR
+ xeifmbV4UI2uYKaacrQyJpCWcmO3XkhaF/idJuUQ5oisrzFCD4Ai1DjO0A7YgqUe7Y6DyWJUm
+ /8McVk0z9l1fdXGpZqLgR7HMAFrCXi5bsMNZ/IbhiZUZLoWvp+uCcJK+2DxaRRpYirz1w=
+X-Mailman-Approved-At: Mon, 03 Feb 2020 08:27:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,119 +65,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ David Airlie <airlied@linux.ie>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Julian Sax <jsbc@gmx.de>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Evan Quan <evan.quan@amd.com>
+During normal usage, especially if jobs are started and stopped in rapid
+succession, the kernel log is filled with messages like this:
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex Deucher
-Sent: Thursday, January 30, 2020 2:18 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-Subject: [PATCH 2/3] drm/amdgpu/navi10: add OD_RANGE for navi overclocking
+[38732.522910] Restoring PASID 0x8003 queues
+[38732.666767] Evicting PASID 0x8003 queues
+[38732.714074] Restoring PASID 0x8003 queues
+[38732.815633] Evicting PASID 0x8003 queues
+[38732.834961] Restoring PASID 0x8003 queues
+[38732.840536] Evicting PASID 0x8003 queues
+[38732.869846] Restoring PASID 0x8003 queues
+[38732.893655] Evicting PASID 0x8003 queues
+[38732.927975] Restoring PASID 0x8003 queues
 
-So users can see the range of valid values.
+According to [1], these messages are expected, but they carry little
+value for the end user, so turn them into debug messages.
 
-Bug: https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.freedesktop.org%2Fdrm%2Famd%2Fissues%2F1020&amp;data=02%7C01%7Cevan.quan%40amd.com%7C0e007c1c61d74ee6f6fb08d7a4e79680%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637159186942374776&amp;sdata=5NRVbhuOdaAqKBZorF5%2F33np%2F8aoNa5LZsmMCyrazJY%3D&amp;reserved=0
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+[1] https://github.com/RadeonOpenCompute/ROCm/issues/343
+
+Signed-off-by: Julian Sax <jsbc@gmx.de>
 ---
- drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 59 ++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-index c8f09874c2ec..d2d45181ae23 100644
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-@@ -737,6 +737,15 @@ static inline bool navi10_od_feature_is_supported(struct smu_11_0_overdrive_tabl
- 	return od_table->cap[feature];
- }
- 
-+static void navi10_od_setting_get_range(struct smu_11_0_overdrive_table *od_table,
-+					enum SMU_11_0_ODSETTING_ID setting,
-+					uint32_t *min, uint32_t *max)
-+{
-+	if (min)
-+		*min = od_table->min[setting];
-+	if (max)
-+		*max = od_table->max[setting];
-+}
- 
- static int navi10_print_clk_levels(struct smu_context *smu,
- 			enum smu_clk_type clk_type, char *buf) @@ -755,6 +764,7 @@ static int navi10_print_clk_levels(struct smu_context *smu,
- 	OverDriveTable_t *od_table =
- 		(OverDriveTable_t *)table_context->overdrive_table;
- 	struct smu_11_0_overdrive_table *od_settings = smu->od_settings;
-+	uint32_t min_value, max_value;
- 
- 	switch (clk_type) {
- 	case SMU_GFXCLK:
-@@ -867,6 +877,55 @@ static int navi10_print_clk_levels(struct smu_context *smu,
- 			}
- 			size += sprintf(buf + size, "%d: %uMHz @ %umV\n", i, curve_settings[0], curve_settings[1] / NAVI10_VOLTAGE_SCALE);
- 		}
-+		break;
-+	case SMU_OD_RANGE:
-+		if (!smu->od_enabled || !od_table || !od_settings)
-+			break;
-+		size = sprintf(buf, "%s:\n", "OD_RANGE");
-+
-+		if (navi10_od_feature_is_supported(od_settings, SMU_11_0_ODFEATURE_GFXCLK_LIMITS)) {
-+			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_GFXCLKFMIN,
-+						    &min_value, NULL);
-+			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_GFXCLKFMAX,
-+						    NULL, &max_value);
-+			size += sprintf(buf + size, "SCLK: %7uMhz %10uMhz\n",
-+					min_value, max_value);
-+		}
-+
-+		if (navi10_od_feature_is_supported(od_settings, SMU_11_0_ODFEATURE_UCLK_MAX)) {
-+			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_UCLKFMAX,
-+						    &min_value, &max_value);
-+			size += sprintf(buf + size, "MCLK: %7uMhz %10uMhz\n",
-+					min_value, max_value);
-+		}
-+
-+		if (navi10_od_feature_is_supported(od_settings, SMU_11_0_ODFEATURE_GFXCLK_CURVE)) {
-+			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEFREQ_P1,
-+						    &min_value, &max_value);
-+			size += sprintf(buf + size, "VDDC_CURVE_SCLK[0]: %7uMhz %10uMhz\n",
-+					min_value, max_value);
-+			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEVOLTAGE_P1,
-+						    &min_value, &max_value);
-+			size += sprintf(buf + size, "VDDC_CURVE_VOLT[0]: %7dmV %11dmV\n",
-+					min_value, max_value);
-+			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEFREQ_P2,
-+						    &min_value, &max_value);
-+			size += sprintf(buf + size, "VDDC_CURVE_SCLK[1]: %7uMhz %10uMhz\n",
-+					min_value, max_value);
-+			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEVOLTAGE_P2,
-+						    &min_value, &max_value);
-+			size += sprintf(buf + size, "VDDC_CURVE_VOLT[1]: %7dmV %11dmV\n",
-+					min_value, max_value);
-+			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEFREQ_P3,
-+						    &min_value, &max_value);
-+			size += sprintf(buf + size, "VDDC_CURVE_SCLK[2]: %7uMhz %10uMhz\n",
-+					min_value, max_value);
-+			navi10_od_setting_get_range(od_settings, SMU_11_0_ODSETTING_VDDGFXCURVEVOLTAGE_P3,
-+						    &min_value, &max_value);
-+			size += sprintf(buf + size, "VDDC_CURVE_VOLT[2]: %7dmV %11dmV\n",
-+					min_value, max_value);
-+		}
-+
- 		break;
- 	default:
- 		break;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index 984c2f2b24b6..3dc0e8c3b91b 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -604,7 +604,7 @@ static int evict_process_queues_nocpsch(struct device_queue_manager *dqm,
+ 		goto out;
+
+ 	pdd = qpd_to_pdd(qpd);
+-	pr_info_ratelimited("Evicting PASID 0x%x queues\n",
++	pr_debug_ratelimited("Evicting PASID 0x%x queues\n",
+ 			    pdd->process->pasid);
+
+ 	/* Mark all queues as evicted. Deactivate all active queues on
+@@ -650,7 +650,7 @@ static int evict_process_queues_cpsch(struct device_queue_manager *dqm,
+ 		goto out;
+
+ 	pdd = qpd_to_pdd(qpd);
+-	pr_info_ratelimited("Evicting PASID 0x%x queues\n",
++	pr_debug_ratelimited("Evicting PASID 0x%x queues\n",
+ 			    pdd->process->pasid);
+
+ 	/* Mark all queues as evicted. Deactivate all active queues on
+@@ -696,7 +696,7 @@ static int restore_process_queues_nocpsch(struct device_queue_manager *dqm,
+ 		goto out;
+ 	}
+
+-	pr_info_ratelimited("Restoring PASID 0x%x queues\n",
++	pr_debug_ratelimited("Restoring PASID 0x%x queues\n",
+ 			    pdd->process->pasid);
+
+ 	/* Update PD Base in QPD */
+@@ -772,7 +772,7 @@ static int restore_process_queues_cpsch(struct device_queue_manager *dqm,
+ 		goto out;
+ 	}
+
+-	pr_info_ratelimited("Restoring PASID 0x%x queues\n",
++	pr_debug_ratelimited("Restoring PASID 0x%x queues\n",
+ 			    pdd->process->pasid);
+
+ 	/* Update PD Base in QPD */
 --
 2.24.1
 
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Cevan.quan%40amd.com%7C0e007c1c61d74ee6f6fb08d7a4e79680%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637159186942374776&amp;sdata=pkI2xsrGq0EJNMaWU5r53%2Fv2CJ4p1ngxeaqHulbeoFo%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
