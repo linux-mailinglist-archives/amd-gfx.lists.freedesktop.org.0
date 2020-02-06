@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E01A154DBD
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Feb 2020 22:14:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3430154DBF
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Feb 2020 22:14:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B4666FB5C;
-	Thu,  6 Feb 2020 21:14:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 199956FB5B;
+	Thu,  6 Feb 2020 21:14:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690059.outbound.protection.outlook.com [40.107.69.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88DE76FB5C
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 21:14:39 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2079.outbound.protection.outlook.com [40.107.243.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 903256FB5D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 21:14:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gobd3yvY2pMyo1qGqSW17YMi9Acd3q6BXTwLxXxr5RqxhyXsnlpK2Z/WB3ScdNBbwBKfmmTtmbqyxrc3UrNqpYdR8aeaOgQtXwPZLoS8O1wn/S5RdlEwgNT+2OPjrNRgsjhN+dvEe1WIQAwi9b9N6a9tkZp3lPRY8vN/M8aWh89HWrFqETfLSE/QZTpoXbkzGOk1CUBufoEv0Kj3w9lTCaC7SVuLXjixZgpCrirmDGqb4tI5RjHXLDyetkQ+8r6Hzv/xOqcRSfBr2La397kQN7SvI/cUXu73OoVQkFVpfIgRYPZgIwe/Tk3sY5dCzlyaX5bYsC1aCv3zdAIEpEtlVQ==
+ b=aBkNtKy91wPK0FTJdwptgH7GnXOGn7JbTrSM9DVu9eaQ7l/L7DWgfVyqfK3gt6tj1YCsiDZqQBPdNwhG7R7MG/t38DFjBwVNBw7/Drvktg8Y9QXZLQe47v+3mNn/aQECj19/OadkXk/OGTCaPP3ehIf17H843RR5L8dbe6VR7Kq8k7Ped5AmR5ruBixCY6LOW+ZaD1YVh/83xQ1YxFwxUfohg5K/BY9vscx2nULmx70dXsR5RtTGpp1GaR8q8mpVqsibT0CSsJqaHAh7sVDoaKVU1LUYUwu0XFRDYv2ATN3GdUBlWJKii3YDqr34vA2wMLGGUicFYh3WR7CT4KNC6A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Tc0ckRmos/TUtSibgHgoJ7E6QRi9Ri/P5UbSmdxvAqc=;
- b=jLJTU4f4cDAkfkYwQazJY8N/tJf01w1PCrKiE77NSJZDEFZ5G6CeKkSaDFA8Atz6aSQfAb8Djv0uL5hVH+imAGT2W6MAuhNh5JlDhYzmbOFhVVPw9N+cTtvH6ZOl3havrRqrGHeDjNASTY6Sadw5ChPT3CAkaAyFLhVMAp0pBTguMfnjVsDKvclWILdjFo3J5C/zDa6o+ADboY8+Vs/9UkILB3AYSqGhPXmNACjli43cImzK1OX3GX0rX5vuUIBEH9wefO1Wd2Rri/mbo5DFAci3vvxIAIYySesPAmRnklqXhuOpYInCUQBDwBHIxi9IkJVyF0aBJM9DQuLqMv+flg==
+ bh=JwFPE5Nn1tZycEkIJ20jrh0cMl9hYfrJPyNBgfDXd4w=;
+ b=jc7IZsDXZdsBrH+4Pf4ZLvcfABtgGRjz/gGMcVJmuRcAe67gNRHxiNcgkpoz+H++d5km9rDTRI5q1nqeZhe86KykLK9SrPsHuFg8IO8DP5RH2vCdBapuOckp/rkmgDuChbKC0IMOcdj/2FYCTJVkmAkbbPiRQtdTHR0CALyhGqGqzgsCwts0ynA61zW/MJ5DWML8RyoXpBupJhTuIK3uIt1luqM4V1+p0SWrhthADUDaGwh/XwFZNVPjOTLKxPEgJoMhVDGdkqYVuAGnhZEIFVcKejY+fRCidmxXXld3rcmvZANn4hNmiL+f51k3GaEORVUjUS5cLOXx4bGHTahOaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,32 +27,32 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Tc0ckRmos/TUtSibgHgoJ7E6QRi9Ri/P5UbSmdxvAqc=;
- b=LDe14vWAxuXrDdEoHHGoumbwW7b6rtJL9vuBCOy8OH0IDvPL9YlxE3DeTCRIoYl43cHg+d6zeN+ttLcm9i7hXEjmRIll1PipZvyAFSPh3goV6Pl6bQ6v9AFAP/c2YHUff8ZeAarIf4yVna+tBURt4c9sg8DJxQn0RZnD8ON4VzY=
-Received: from MN2PR12CA0006.namprd12.prod.outlook.com (2603:10b6:208:a8::19)
- by MWHPR12MB1840.namprd12.prod.outlook.com (2603:10b6:300:114::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21; Thu, 6 Feb
- 2020 21:14:38 +0000
-Received: from BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eae::200) by MN2PR12CA0006.outlook.office365.com
- (2603:10b6:208:a8::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.24 via Frontend
- Transport; Thu, 6 Feb 2020 21:14:38 +0000
+ bh=JwFPE5Nn1tZycEkIJ20jrh0cMl9hYfrJPyNBgfDXd4w=;
+ b=NNN9Q3XMpZgDpA/taOiQRUD84Prevejp8rJmIoW45cytFXxCMKs5y5ffC2OlZlJ1MIsZaZeHe7e6/8xM1VBLaI6Y2yyr6TjsJmAYU6zcFDuhwCpZZygIVfCVNyF3pqx3B+q9NedZeME83gYtRwhByXKrnUbyfPW2iDKr7Iije8A=
+Received: from DM3PR12CA0057.namprd12.prod.outlook.com (2603:10b6:0:56::25) by
+ BN8PR12MB2900.namprd12.prod.outlook.com (2603:10b6:408:69::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2707.21; Thu, 6 Feb 2020 21:14:39 +0000
+Received: from CO1NAM11FT061.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eab::204) by DM3PR12CA0057.outlook.office365.com
+ (2603:10b6:0:56::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21 via Frontend
+ Transport; Thu, 6 Feb 2020 21:14:39 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- BN8NAM11FT058.mail.protection.outlook.com (10.13.177.58) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT061.mail.protection.outlook.com (10.13.175.200) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.2707.21 via Frontend Transport; Thu, 6 Feb 2020 21:14:38 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 6 Feb 2020
- 15:14:37 -0600
+ 15:14:38 -0600
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 6 Feb 2020
@@ -62,9 +62,10 @@ Received: from blakha.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  Transport; Thu, 6 Feb 2020 15:14:37 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/5] drm/amd/display: Handle revoked receivers
-Date: Thu, 6 Feb 2020 16:14:21 -0500
-Message-ID: <20200206211425.20394-2-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 2/5] drm/amd/display: no hdcp retry if bksv or ksv list is
+ revoked
+Date: Thu, 6 Feb 2020 16:14:22 -0500
+Message-ID: <20200206211425.20394-3-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200206211425.20394-1-Bhawanpreet.Lakha@amd.com>
 References: <20200206211425.20394-1-Bhawanpreet.Lakha@amd.com>
@@ -74,25 +75,25 @@ X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
  SFS:(10009020)(4636009)(396003)(136003)(376002)(346002)(39860400002)(428003)(189003)(199004)(478600001)(5660300002)(426003)(7696005)(336012)(86362001)(6666004)(6916009)(186003)(36756003)(26005)(356004)(2616005)(70586007)(70206006)(54906003)(4326008)(2906002)(81156014)(81166006)(316002)(8936002)(8676002)(1076003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1840; H:SATLEXMB02.amd.com; FPR:;
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BN8PR12MB2900; H:SATLEXMB01.amd.com; FPR:;
  SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 80db9315-0175-4842-02f3-08d7ab4992d4
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1840:
-X-Microsoft-Antispam-PRVS: <MWHPR12MB1840414A5BA7684A054E19CAF91D0@MWHPR12MB1840.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 3576ba33-bcf0-4469-f1ac-08d7ab499367
+X-MS-TrafficTypeDiagnostic: BN8PR12MB2900:
+X-Microsoft-Antispam-PRVS: <BN8PR12MB2900FA18E304AD6FA35E2369F91D0@BN8PR12MB2900.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
 X-Forefront-PRVS: 0305463112
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 81gO/rDpdea3+of/70Vy9PGfYfh39LCT6kUFtJX8F22l900UqVc6mRxe1xQl+yYV7xshz4rLQE4+jyFbS6pgB4IXfdxv/9n3D476Z2GolVYAcVXUL56Ye6j9mSsm31pGAxFlDJ7/6bkJ6LYZMsc87E2xonYiKAwQq2iM/c9nXorMkaqe4kYCf2ZyApnWKrw/XpUfkdWM2Z5YZ4QJ1mzy2IjwIiejyZIQPUIlvel2dyIhgscYfrXVk56t4mkOOR11PhYreZL02176inPqZnm3HLbvXiwulVqXEbej2IL2CvJcLU8jpcElBFe26/5wm+ght/zegAdjM5zYK1vkPPQzIYHfUboVAxHY/Knrjkys4pOgvdRodNoPcm2hc5G3IRSP3yPaM7m/w0R7f/uXNMiWcDeXYeRKddsVbeU3HZKMKRmhKNd4h8+YZC5r5mP2xwU3
+X-Microsoft-Antispam-Message-Info: Tb1xctLyXHSF+O0pXomdf7o8JSXbw1TAltyWFyJPRpmKjlkbs0SV0aFC8dmbwu9ijU69OPrIxs4MYYucGmeipDkDmEFMqlr6O7lOBTGvOoC8T10NVY+gwoy4yJ9npKi7e5MA/EFlnySQy0lvCFvWQSKaYu1LHCVUJ58dJQhctGqdXYnKl8hnl/r6ZUI1GsS/fthgfRKjvG+/eyfqEsWGiQXeWYSNqiuJmDwpovEQm+NKF+uyKAXbz+/wZUURGcQePI81gmvnvF9MmOsykQ2aUy1i/cIACdWioUO9gUJ748VIv+D0JAFmSn4BX2SmJL+z0NgFwLKIbW9zSYl1jyC5/P7PCJBCivizJq+v/K6/fcxCvbxTZq8DANsXJkS9YOqLE/gHMoUS7HRYrsZ1+YtrHCvq70QsqdArT62PzE9HYmPD/jf7b47OmF2tiu2agyRQ
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2020 21:14:38.0124 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80db9315-0175-4842-02f3-08d7ab4992d4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2020 21:14:38.8621 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3576ba33-bcf0-4469-f1ac-08d7ab499367
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
+ Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1840
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2900
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,122 +105,117 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, harry.wentland@amd.com
+Cc: Wenjing Liu <Wenjing.Liu@amd.com>, harry.wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-PSP added a new return code for revoked receivers (SRM). We need to
-handle that so we don't retry hdcp
+From: Wenjing Liu <Wenjing.Liu@amd.com>
 
-This is already being handled on windows
+[why]
+According to the specs when bksv or ksv list fails SRM check,
+HDCP TX should abort hdcp immediately.
+However with the current code HDCP will be reattampt upto 4 times.
 
-[How]
-Add the enums to psp interface header and handle them.
+[how]
+Add the logic that stop HDCP retry if bksv or ksv list
+is revoked.
 
-Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Wenjing Liu <Wenjing.Liu@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 ---
- .../drm/amd/display/modules/hdcp/hdcp_psp.c   | 28 ++++++++++++++++---
- .../drm/amd/display/modules/hdcp/hdcp_psp.h   |  6 ++--
- 2 files changed, 28 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c             | 3 ++-
+ drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h             | 1 +
+ drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c | 6 ++++--
+ drivers/gpu/drm/amd/display/modules/hdcp/hdcp_log.c         | 4 ++++
+ drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h          | 2 ++
+ 5 files changed, 13 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
-index 7911dc157d5a..844454e0a5ba 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
-@@ -210,6 +210,10 @@ enum mod_hdcp_status mod_hdcp_hdcp1_validate_rx(struct mod_hdcp *hdcp)
- 	} else if (hdcp_cmd->out_msg.hdcp1_first_part_authentication.authentication_status ==
- 		   TA_HDCP_AUTHENTICATION_STATUS__HDCP1_AUTHENTICATED) {
- 		hdcp->connection.is_repeater = 0;
-+	} else if (hdcp_cmd->out_msg.hdcp1_first_part_authentication.authentication_status ==
-+		   TA_HDCP_AUTHENTICATION_STATUS__HDCP1_KSV_REVOKED) {
-+		hdcp->connection.is_hdcp1_revoked = 1;
-+		return MOD_HDCP_STATUS_HDCP1_BKSV_REVOKED;
- 	} else
- 		return MOD_HDCP_STATUS_HDCP1_VALIDATE_RX_FAILURE;
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
+index 8aa528e874c4..a7d24734c7cd 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
+@@ -61,7 +61,8 @@ static uint8_t is_cp_desired_hdcp1(struct mod_hdcp *hdcp)
  
-@@ -245,6 +249,7 @@ enum mod_hdcp_status mod_hdcp_hdcp1_validate_ksvlist_vp(struct mod_hdcp *hdcp)
- {
- 	struct psp_context *psp = hdcp->config.psp.handle;
- 	struct ta_hdcp_shared_memory *hdcp_cmd;
-+	enum mod_hdcp_status status = MOD_HDCP_STATUS_SUCCESS;
- 
- 	hdcp_cmd = (struct ta_hdcp_shared_memory *)psp->hdcp_context.hdcp_shared_buf;
- 	memset(hdcp_cmd, 0, sizeof(struct ta_hdcp_shared_memory));
-@@ -264,10 +269,19 @@ enum mod_hdcp_status mod_hdcp_hdcp1_validate_ksvlist_vp(struct mod_hdcp *hdcp)
- 
- 	psp_hdcp_invoke(psp, hdcp_cmd->cmd_id);
- 
--	if (hdcp_cmd->hdcp_status != TA_HDCP_STATUS__SUCCESS)
--		return MOD_HDCP_STATUS_HDCP1_VALIDATE_KSV_LIST_FAILURE;
-+	if (hdcp_cmd->hdcp_status == TA_HDCP_STATUS__SUCCESS &&
-+	    hdcp_cmd->out_msg.hdcp1_second_part_authentication.authentication_status ==
-+		    TA_HDCP_AUTHENTICATION_STATUS__HDCP1_AUTHENTICATED) {
-+		status = MOD_HDCP_STATUS_SUCCESS;
-+	} else if (hdcp_cmd->out_msg.hdcp1_second_part_authentication.authentication_status ==
-+		   TA_HDCP_AUTHENTICATION_STATUS__HDCP1_KSV_REVOKED) {
-+		hdcp->connection.is_hdcp1_revoked = 1;
-+		status = MOD_HDCP_STATUS_HDCP1_KSV_LIST_REVOKED;
-+	} else {
-+		status = MOD_HDCP_STATUS_HDCP1_VALIDATE_KSV_LIST_FAILURE;
-+	}
- 
--	return MOD_HDCP_STATUS_SUCCESS;
-+	return status;
+ 	return (hdcp->connection.hdcp1_retry_count < MAX_NUM_OF_ATTEMPTS) &&
+ 			is_auth_needed &&
+-			!hdcp->connection.link.adjust.hdcp1.disable;
++			!hdcp->connection.link.adjust.hdcp1.disable &&
++			!hdcp->connection.is_hdcp1_revoked;
  }
  
- enum mod_hdcp_status mod_hdcp_hdcp1_enable_dp_stream_encryption(struct mod_hdcp *hdcp)
-@@ -473,9 +487,12 @@ enum mod_hdcp_status mod_hdcp_hdcp2_validate_ake_cert(struct mod_hdcp *hdcp)
- 		hdcp->connection.is_km_stored = msg_out->process.is_km_stored ? 1 : 0;
- 		hdcp->connection.is_repeater = msg_out->process.is_repeater ? 1 : 0;
- 		return MOD_HDCP_STATUS_SUCCESS;
-+	} else if (msg_out->process.msg1_status == TA_HDCP2_MSG_AUTHENTICATION_STATUS__RECEIVERID_REVOKED) {
-+		hdcp->connection.is_hdcp2_revoked = 1;
-+		return MOD_HDCP_STATUS_HDCP2_AKE_CERT_REVOKED;
- 	}
- 
--	return MOD_HDCP_STATUS_FAILURE;
-+	return MOD_HDCP_STATUS_HDCP2_VALIDATE_AKE_CERT_FAILURE;
- }
- 
- enum mod_hdcp_status mod_hdcp_hdcp2_validate_h_prime(struct mod_hdcp *hdcp)
-@@ -695,6 +712,9 @@ enum mod_hdcp_status mod_hdcp_hdcp2_validate_rx_id_list(struct mod_hdcp *hdcp)
- 		hdcp->connection.is_km_stored = msg_out->process.is_km_stored ? 1 : 0;
- 		hdcp->connection.is_repeater = msg_out->process.is_repeater ? 1 : 0;
- 		return MOD_HDCP_STATUS_SUCCESS;
-+	} else if (msg_out->process.msg1_status == TA_HDCP2_MSG_AUTHENTICATION_STATUS__RECEIVERID_REVOKED) {
-+		hdcp->connection.is_hdcp2_revoked = 1;
-+		return MOD_HDCP_STATUS_HDCP2_RX_ID_LIST_REVOKED;
- 	}
- 
- 
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.h
-index d5cb3f46606f..1a663dbbf810 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.h
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.h
-@@ -240,7 +240,8 @@ enum ta_hdcp_authentication_status {
- 	TA_HDCP_AUTHENTICATION_STATUS__HDCP22_AUTHENTICATION_PENDING = 0x06,
- 	TA_HDCP_AUTHENTICATION_STATUS__HDCP22_AUTHENTICATION_FAILED = 0x07,
- 	TA_HDCP_AUTHENTICATION_STATUS__HDCP22_AUTHENTICATED = 0x08,
--	TA_HDCP_AUTHENTICATION_STATUS__HDCP1_KSV_VALIDATION_FAILED = 0x09
-+	TA_HDCP_AUTHENTICATION_STATUS__HDCP1_KSV_VALIDATION_FAILED = 0x09,
-+	TA_HDCP_AUTHENTICATION_STATUS__HDCP1_KSV_REVOKED = 0x0A
- };
- 
- enum ta_hdcp2_msg_authentication_status {
-@@ -258,7 +259,8 @@ enum ta_hdcp2_msg_authentication_status {
- 	TA_HDCP2_MSG_AUTHENTICATION_STATUS__INVALID_SEQ_NUM,
- 	TA_HDCP2_MSG_AUTHENTICATION_STATUS__INVALID_SIZE,
- 	TA_HDCP2_MSG_AUTHENTICATION_STATUS__INVALID_LENGTH,
--	TA_HDCP2_MSG_AUTHENTICATION_STATUS__REAUTH_REQUEST
-+	TA_HDCP2_MSG_AUTHENTICATION_STATUS__REAUTH_REQUEST,
-+	TA_HDCP2_MSG_AUTHENTICATION_STATUS__RECEIVERID_REVOKED
- };
- 
- enum ta_hdcp_content_type {
+ static uint8_t is_cp_desired_hdcp2(struct mod_hdcp *hdcp)
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+index af78e4f1be68..4d717ec8f14b 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+@@ -170,6 +170,7 @@ struct mod_hdcp_connection {
+ 	struct mod_hdcp_display displays[MAX_NUM_OF_DISPLAYS];
+ 	uint8_t is_repeater;
+ 	uint8_t is_km_stored;
++	uint8_t is_hdcp1_revoked;
+ 	uint8_t is_hdcp2_revoked;
+ 	struct mod_hdcp_trace trace;
+ 	uint8_t hdcp1_retry_count;
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c
+index 76edcbe51f71..d66a9f954ade 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_transition.c
+@@ -210,7 +210,8 @@ enum mod_hdcp_status mod_hdcp_hdcp1_dp_transition(struct mod_hdcp *hdcp,
+ 			fail_and_restart_in_ms(0, &status, output);
+ 			break;
+ 		} else if (input->rx_validation != PASS) {
+-			if (hdcp->state.stay_count < 2) {
++			if (hdcp->state.stay_count < 2 &&
++					!hdcp->connection.is_hdcp1_revoked) {
+ 				/* allow 2 additional retries */
+ 				callback_in_ms(0, output);
+ 				increment_stay_counter(hdcp);
+@@ -290,7 +291,8 @@ enum mod_hdcp_status mod_hdcp_hdcp1_dp_transition(struct mod_hdcp *hdcp,
+ 			fail_and_restart_in_ms(0, &status, output);
+ 			break;
+ 		} else if (input->ksvlist_vp_validation != PASS) {
+-			if (hdcp->state.stay_count < 2) {
++			if (hdcp->state.stay_count < 2 &&
++					!hdcp->connection.is_hdcp1_revoked) {
+ 				/* allow 2 additional retries */
+ 				callback_in_ms(0, output);
+ 				increment_stay_counter(hdcp);
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_log.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_log.c
+index 724ebcee9a19..44956f9ba178 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_log.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_log.c
+@@ -90,10 +90,14 @@ char *mod_hdcp_status_to_str(int32_t status)
+ 		return "MOD_HDCP_STATUS_HDCP1_R0_PRIME_PENDING";
+ 	case MOD_HDCP_STATUS_HDCP1_VALIDATE_RX_FAILURE:
+ 		return "MOD_HDCP_STATUS_HDCP1_VALIDATE_RX_FAILURE";
++	case MOD_HDCP_STATUS_HDCP1_BKSV_REVOKED:
++		return "MOD_HDCP_STATUS_HDCP1_BKSV_REVOKED";
+ 	case MOD_HDCP_STATUS_HDCP1_KSV_LIST_NOT_READY:
+ 		return "MOD_HDCP_STATUS_HDCP1_KSV_LIST_NOT_READY";
+ 	case MOD_HDCP_STATUS_HDCP1_VALIDATE_KSV_LIST_FAILURE:
+ 		return "MOD_HDCP_STATUS_HDCP1_VALIDATE_KSV_LIST_FAILURE";
++	case MOD_HDCP_STATUS_HDCP1_KSV_LIST_REVOKED:
++		return "MOD_HDCP_STATUS_HDCP1_KSV_LIST_REVOKED";
+ 	case MOD_HDCP_STATUS_HDCP1_ENABLE_ENCRYPTION:
+ 		return "MOD_HDCP_STATUS_HDCP1_ENABLE_ENCRYPTION";
+ 	case MOD_HDCP_STATUS_HDCP1_ENABLE_STREAM_ENCRYPTION_FAILURE:
+diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
+index f2a0e1a064da..891bca555e17 100644
+--- a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
++++ b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
+@@ -56,8 +56,10 @@ enum mod_hdcp_status {
+ 	MOD_HDCP_STATUS_HDCP1_NOT_CAPABLE,
+ 	MOD_HDCP_STATUS_HDCP1_R0_PRIME_PENDING,
+ 	MOD_HDCP_STATUS_HDCP1_VALIDATE_RX_FAILURE,
++	MOD_HDCP_STATUS_HDCP1_BKSV_REVOKED,
+ 	MOD_HDCP_STATUS_HDCP1_KSV_LIST_NOT_READY,
+ 	MOD_HDCP_STATUS_HDCP1_VALIDATE_KSV_LIST_FAILURE,
++	MOD_HDCP_STATUS_HDCP1_KSV_LIST_REVOKED,
+ 	MOD_HDCP_STATUS_HDCP1_ENABLE_ENCRYPTION,
+ 	MOD_HDCP_STATUS_HDCP1_ENABLE_STREAM_ENCRYPTION_FAILURE,
+ 	MOD_HDCP_STATUS_HDCP1_MAX_CASCADE_EXCEEDED_FAILURE,
 -- 
 2.17.1
 
