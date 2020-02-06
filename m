@@ -2,104 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9336F154CDE
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Feb 2020 21:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17367154DBE
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Feb 2020 22:14:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF0256FB3E;
-	Thu,  6 Feb 2020 20:23:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B56596FB60;
+	Thu,  6 Feb 2020 21:14:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2083.outbound.protection.outlook.com [40.107.93.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A4786FB3E
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 20:23:33 +0000 (UTC)
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680061.outbound.protection.outlook.com [40.107.68.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B849E6FB5C
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 21:14:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b8muEekIQ7EPgD7csGp7o7QxdK5sOrGY1vX6WiC61HzXl/WW+bG3Oy86JkU/9/03jjy46IfLN/386Ur3uYvB8gq6O54b+pd7oh+hUNvzkIys333EFO5yD9sAG1aBUr6ZR5vUH1m0mnfhkQMruB9bPSbKpguZCEb9TXvrkDDBY2pQCmyagEQOGm+GujL0v48UIAcTTliM3LZRYITe2/uVWX9bjtPMwcY/4MyI3ZrLq1gFmum7h/geQa18outXFcZi9BQgcX1+De43YhkUBLyLqwZtz6SoWhj511MVDySJhujW2+MXK2ng/j0D1jrpjhcFHVj1TcYz97ThUlpUFcra6w==
+ b=MB0GAssET1XDvvtqxnrn4u7FClJtVwA1wkViJUSSoH+Hb8w6G53hbR8ETrmdYk4j6lKrpyXQXZ3wgF91Z9gfJTtThZuKZZ5VZ8VIWk3ADYO4F9Y6NqvkLj/IzOEoZ93JdMWylhoabcf1B08iIj8eYu1ggTUG+2DN9N9RCxPbnl+uMMGHa5NmL4224g+hlQQGVkoiNvoOipTP0veqyXuYGi1dzG2DizAfMxIq47ALzR4fSXAM7yW6QPVhYcIfVfsv2XRRe985qzHNaLEvUNz492RDmsU6zcnhJww/DMYj6kg8IXclj2Jj/SmGEZ9jsl8frLDypRLQrnF8s3QRBhaLUA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p9jMvS2mGM0e9wWcjgz9ZnTxP3EPogZx8R0FJaYn9IY=;
- b=mNtzFgbMR0SBPsrg0tDaZX1nRL0EHfVigRldf0Lbih3GJPz6xooThZgXnmrSWh0fUyNb1sqlv90sYoLVNYJfeMaveUhPzdzWK7DsAvgpZQ8JRyyYPSne1cjwEAhRBlqJEGXI92SGlRW4ZrtGP8Kn6/mtK4cLWyowo47dhZH0RSmnSuGl24LWqXahf318srKdU80sNRtWIemJaVYyPea9aESvSU84G268DqStF4hYlI4359DRolThjRBQANZNkHiqTgKmP0+WzjCEx8x2IOGcsj38EpD3gyz++wrAsBVAwZUJYufMUqpY+jHeOAhi7jmOyN+WmVbsNfHk73vhguZSjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=CnAXNP68sm71SN1kvBMB5YChI6wBDkFEXZyjIeOXfTo=;
+ b=ILInZTZo5/JhMRJ/PMBWIxDM27izp2qELYR83aVfhw83ZDIg6gJzZjhIdP3kXSxiltenBG7BaolNPIy2NaoDXpT84/NX/GzHmDTjwV+CO96t+Q3zrZCorhJlRqf5wZpLzA6IuFuQ2AEbHqi5KpHEXEQhHCPzJa+FwtTv21e0U3iRU7Ux2UVn9kT66lQMC/I7fH/PLWhXKRcYuQE8QPEZ7mpY/NC1Flw/IvCOSNrzJyociYlNeApnleMpTXrTLQXlSP0lQu1l5BogYV0+7Fdh8/O1YbzRGdUoKbmvqal/QsioQ7BnPqos85Afy/yRjWy3Ujy2ZaoR92aKYTNfF+InBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p9jMvS2mGM0e9wWcjgz9ZnTxP3EPogZx8R0FJaYn9IY=;
- b=qMCv3M9OAyG2aZ/rjrqJTc03sNfjPTAlavHeG95EMZyWNawDPqLyBynoWFz5+q/dsPWpIpBGH/5SspyybKWKqkquL7zUwLVOKX3FDxWNzCiwR+gxyaMiljfITtJ7Yoy+gPcAdMCIfEloQp0DIneGYaGYx3LuTJ2CMUreTEprsi4=
-Received: from DM6PR12MB4314.namprd12.prod.outlook.com (10.141.184.86) by
- DM6PR12MB4140.namprd12.prod.outlook.com (10.141.8.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2707.21; Thu, 6 Feb 2020 20:23:29 +0000
-Received: from DM6PR12MB4314.namprd12.prod.outlook.com
- ([fe80::91ff:bd7c:2bb2:d8b9]) by DM6PR12MB4314.namprd12.prod.outlook.com
- ([fe80::91ff:bd7c:2bb2:d8b9%3]) with mapi id 15.20.2707.020; Thu, 6 Feb 2020
- 20:23:29 +0000
-From: "Kim, Jonathan" <Jonathan.Kim@amd.com>
-To: "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: fix amdgpu pmu to use hwc->config instead of
- hwc->conf
-Thread-Topic: [PATCH] drm/amdgpu: fix amdgpu pmu to use hwc->config instead of
- hwc->conf
-Thread-Index: AQHV3RAi85twFC8COUKFgwU+Uwk+7agOmCWAgAAD8OA=
-Date: Thu, 6 Feb 2020 20:23:29 +0000
-Message-ID: <DM6PR12MB4314E3C7A7C820FFFBB880CA851D0@DM6PR12MB4314.namprd12.prod.outlook.com>
-References: <20200206170847.39102-1-jonathan.kim@amd.com>
- <d8b406a2-f920-6634-f382-58387894bf93@amd.com>
-In-Reply-To: <d8b406a2-f920-6634-f382-58387894bf93@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_Enabled=true;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_SetDate=2020-02-06T20:23:04Z; 
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_Method=Privileged;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_Name=Internal Use Only -
- Restricted;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_ActionId=69238080-4d87-45a8-9271-000051fdf830;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_ContentBits=1
-msip_label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_enabled: true
-msip_label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_setdate: 2020-02-06T20:23:23Z
-msip_label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_method: Privileged
-msip_label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_name: Internal Use Only -
- Restricted
-msip_label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_actionid: ba2ccfb3-cfd6-4e64-917c-00004ec318de
-msip_label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_contentbits: 0
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Jonathan.Kim@amd.com; 
-x-originating-ip: [165.204.55.251]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 7192a8e0-d96c-40e5-a471-08d7ab426dfd
-x-ms-traffictypediagnostic: DM6PR12MB4140:|DM6PR12MB4140:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR12MB414061F55F11A99B3460EC98851D0@DM6PR12MB4140.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1417;
-x-forefront-prvs: 0305463112
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(366004)(136003)(346002)(376002)(39860400002)(189003)(199004)(66946007)(76116006)(66476007)(5660300002)(33656002)(7696005)(66556008)(66446008)(64756008)(52536014)(86362001)(71200400001)(9686003)(8676002)(55016002)(81166006)(81156014)(478600001)(186003)(2906002)(26005)(110136005)(6506007)(316002)(53546011)(8936002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB4140;
- H:DM6PR12MB4314.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
+ bh=CnAXNP68sm71SN1kvBMB5YChI6wBDkFEXZyjIeOXfTo=;
+ b=tA/vN9MVf8kMmADG9JrkvDaLYvu8GGF4MIMc5IcMRTlt1a/0GtP1TR4hEie+1PYeGchYf2BnHvqBwjeHQ/DDn0v2VZGqOF3Jor/Yc6FQSLqbEcb1eI0F6qNXcOa8TYAE8BfLjqe5WmDzVheZmSn9pfkEtBdJzjjUeHrlL1GXwac=
+Received: from DM3PR12CA0057.namprd12.prod.outlook.com (2603:10b6:0:56::25) by
+ DM6PR12MB2940.namprd12.prod.outlook.com (2603:10b6:5:15f::19) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2707.23; Thu, 6 Feb 2020 21:14:38 +0000
+Received: from CO1NAM11FT061.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eab::204) by DM3PR12CA0057.outlook.office365.com
+ (2603:10b6:0:56::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21 via Frontend
+ Transport; Thu, 6 Feb 2020 21:14:38 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: XSHSbIkC52isnFX/9wKCnJCh6Np3wuyf5O513yeLIWhcVVM8GgZijKZ6XyvTVhXrAan2p3E8oFAY2RcoC5TUucAvdSwlUE+5MK96y5d2nRzla3duUnB9lyIXrKN0+BUJBBugLRHrSLP3UuZ59TczHye2Q4WJOVfUnb9/o83igdwXTQiEVaoGiGGC81OkbkT+Z3uq/3ixh0+loONo1zQI4No43geXATWBM90V6kME45qtASUP5kgrssYLimDWYCDOcxiyQvLgSg8KpLQblkRfWQeopLk3/LLxMegGRtFSNo04sBp99P12qpuKoHMcDXtOmqSLxtP+QnAADctznTH72seHZIgR5AwP9xOLwzEowDiilmgEh6PIGg2wsh4EtS9fh/r2Uduir2CdoIuoew0NMcgTQMu5YxLO2cEuNWy6U6tfqOu+4NIC2rKwRb77Ji5N
-x-ms-exchange-antispam-messagedata: Kfofk/wzG4zMJVPwpEJdg1aXFGGa/mzCSLVzjtBNtGByK4yPHDYYZb10TCAw+xrgj1SfGH4vS/D8zr+0QOdusyJJTQn5sVTXneRxFQQhxHwayWtBkwIPZKcWV5tVtSz01tk5R9cISqwfGHQ2AQ/nIw==
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT061.mail.protection.outlook.com (10.13.175.200) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2707.21 via Frontend Transport; Thu, 6 Feb 2020 21:14:37 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 6 Feb 2020
+ 15:14:37 -0600
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 6 Feb 2020
+ 15:14:36 -0600
+Received: from blakha.amd.com (10.180.168.240) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Thu, 6 Feb 2020 15:14:36 -0600
+From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 0/5] HDCP fixes
+Date: Thu, 6 Feb 2020 16:14:20 -0500
+Message-ID: <20200206211425.20394-1-Bhawanpreet.Lakha@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(396003)(39860400002)(136003)(346002)(376002)(428003)(199004)(189003)(2616005)(70206006)(70586007)(8936002)(6666004)(356004)(8676002)(81156014)(81166006)(478600001)(86362001)(4326008)(54906003)(26005)(2906002)(186003)(7696005)(1076003)(5660300002)(426003)(336012)(36756003)(6916009)(316002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB2940; H:SATLEXMB01.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d3749ad6-b9aa-4805-b0dc-08d7ab4992d9
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2940:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2940D43775CF875BA8E9DE69F91D0@DM6PR12MB2940.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2803;
+X-Forefront-PRVS: 0305463112
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7YMhV83CHUaeH2QJdL2H44m/wqoLW8+/Ta+9RChqIP30TQt8/Smf8qXbfMwqLONJFm34qJpoLEXnXEfahktwZaemw9uSNWxQEYby0clRB+fESmc65fvmH3LXqXvJ5Ca29r5S+QXV4v1X5Jud2WdkAS5yUGOP85mhQxcwX1kby+sai9m2OZb3IFi5g0dWhAG0qF47XCBjoWfUHLegaLU8fBk6Sd9R9ER4M0QE/2EhedVafF4HKAYyIjDJ8hx8iIYJerDHmdNIR+KCrLr7qCwvqnh29pB+EVO5KJk02hRUxLGMxbmxl1W0nOoWz5ZgG3ckR261n8lbZFiYE5MJXEEz01brBXd8DdjcqjfRIilAYRhyk8RbX2dEoT8tAkKB4heM0FzyR7eWLrip2qe4ZLTvWo23bYWDdJfEPGJDCfZ/Vv4n+yhSBqXfmjH/fiFwn4mC
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7192a8e0-d96c-40e5-a471-08d7ab426dfd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2020 20:23:29.5893 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6RzTkW7ogjkbaBrq57xlKaGoCrj/BFafbMzVMx7N+xZCCUgjdOC7J9Ptf1x3UyZi
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4140
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2020 21:14:37.9285 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3749ad6-b9aa-4805-b0dc-08d7ab4992d9
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2940
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,107 +102,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, harry.wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Approved for External Use]
-
-Thanks for pointing that out Felix.  I'll append that as well to the comments for the commit.
-
-Jon
-
------Original Message-----
-From: Kuehling, Felix <Felix.Kuehling@amd.com> 
-Sent: Thursday, February 6, 2020 3:08 PM
-To: Kim, Jonathan <Jonathan.Kim@amd.com>; amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/amdgpu: fix amdgpu pmu to use hwc->config instead of hwc->conf
-
-On 2020-02-06 12:08, Jonathan Kim wrote:
-> hwc->conf was designated specifically for AMD APU IOMMU purposes.  
-> hwc->This
-> could cause problems in performance and/or function since APU IOMMU 
-> implementation is elsewhere.
-
-It's actually worse than that. hwc is a union of anonymous structures. 
-hwc->conf and hwc->config are in different members of that union. So 
-hwc->conf aliases some other variable in the structure that hwc->config
-is in. If I did the math right, hwc->conf aliases hwc->last_tag.
-
-Anyway, the patch is
-
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Summary of changes
+*handle revoked receivers
+*don't retry if revoked
+*fix rx_caps check typo
+*fix enable encryption call to psp for 2.2
+*update DTM right after HW programming
 
 
->
-> Signed-off-by: Jonathan Kim <Jonathan.Kim@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c | 15 ++++++++-------
->   1 file changed, 8 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
-> index 07914e34bc25..1311d6aec5d4 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
-> @@ -52,7 +52,7 @@ static int amdgpu_perf_event_init(struct perf_event *event)
->   		return -ENOENT;
->   
->   	/* update the hw_perf_event struct with config data */
-> -	hwc->conf = event->attr.config;
-> +	hwc->config = event->attr.config;
->   
->   	return 0;
->   }
-> @@ -74,9 +74,9 @@ static void amdgpu_perf_start(struct perf_event *event, int flags)
->   	switch (pe->pmu_perf_type) {
->   	case PERF_TYPE_AMDGPU_DF:
->   		if (!(flags & PERF_EF_RELOAD))
-> -			pe->adev->df.funcs->pmc_start(pe->adev, hwc->conf, 1);
-> +			pe->adev->df.funcs->pmc_start(pe->adev, hwc->config, 1);
->   
-> -		pe->adev->df.funcs->pmc_start(pe->adev, hwc->conf, 0);
-> +		pe->adev->df.funcs->pmc_start(pe->adev, hwc->config, 0);
->   		break;
->   	default:
->   		break;
-> @@ -101,7 +101,7 @@ static void amdgpu_perf_read(struct perf_event *event)
->   
->   		switch (pe->pmu_perf_type) {
->   		case PERF_TYPE_AMDGPU_DF:
-> -			pe->adev->df.funcs->pmc_get_count(pe->adev, hwc->conf,
-> +			pe->adev->df.funcs->pmc_get_count(pe->adev, hwc->config,
->   							  &count);
->   			break;
->   		default:
-> @@ -126,7 +126,7 @@ static void amdgpu_perf_stop(struct perf_event *event, int flags)
->   
->   	switch (pe->pmu_perf_type) {
->   	case PERF_TYPE_AMDGPU_DF:
-> -		pe->adev->df.funcs->pmc_stop(pe->adev, hwc->conf, 0);
-> +		pe->adev->df.funcs->pmc_stop(pe->adev, hwc->config, 0);
->   		break;
->   	default:
->   		break;
-> @@ -156,7 +156,8 @@ static int amdgpu_perf_add(struct perf_event *event, int flags)
->   
->   	switch (pe->pmu_perf_type) {
->   	case PERF_TYPE_AMDGPU_DF:
-> -		retval = pe->adev->df.funcs->pmc_start(pe->adev, hwc->conf, 1);
-> +		retval = pe->adev->df.funcs->pmc_start(pe->adev,
-> +						       hwc->config, 1);
->   		break;
->   	default:
->   		return 0;
-> @@ -184,7 +185,7 @@ static void amdgpu_perf_del(struct perf_event *event, int flags)
->   
->   	switch (pe->pmu_perf_type) {
->   	case PERF_TYPE_AMDGPU_DF:
-> -		pe->adev->df.funcs->pmc_stop(pe->adev, hwc->conf, 1);
-> +		pe->adev->df.funcs->pmc_stop(pe->adev, hwc->config, 1);
->   		break;
->   	default:
->   		break;
+Bhawanpreet Lakha (3):
+  drm/amd/display: Handle revoked receivers
+  drm/amd/display: fix backwards byte order in rx_caps.
+  drm/amd/display: Fix message for encryption
+
+Wenjing Liu (2):
+  drm/amd/display: no hdcp retry if bksv or ksv list is revoked
+  drm/amd/display: update HDCP DTM immediately after hardware
+    programming
+
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.c   |  49 ++----
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.h   |  11 +-
+ .../display/modules/hdcp/hdcp1_execution.c    |   4 -
+ .../display/modules/hdcp/hdcp1_transition.c   |  12 +-
+ .../display/modules/hdcp/hdcp2_execution.c    |  10 +-
+ .../display/modules/hdcp/hdcp2_transition.c   |   6 +-
+ .../drm/amd/display/modules/hdcp/hdcp_log.c   |   4 +
+ .../drm/amd/display/modules/hdcp/hdcp_log.h   |   9 +
+ .../drm/amd/display/modules/hdcp/hdcp_psp.c   | 164 +++++++++++-------
+ .../drm/amd/display/modules/hdcp/hdcp_psp.h   |   6 +-
+ .../drm/amd/display/modules/inc/mod_hdcp.h    |   2 +
+ 11 files changed, 150 insertions(+), 127 deletions(-)
+
+-- 
+2.17.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
