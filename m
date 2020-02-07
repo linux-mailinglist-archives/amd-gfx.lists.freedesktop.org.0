@@ -1,90 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B08D5154F99
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2020 01:09:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47D2E1551A0
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2020 05:52:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 002116E4D4;
-	Fri,  7 Feb 2020 00:09:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0F96E85D;
+	Fri,  7 Feb 2020 04:52:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2071.outbound.protection.outlook.com [40.107.237.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41BB36E4AB
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 00:09:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iJ0P2QyAAbEK6Eu4btf/GFqwqUkrCL0NOUAethWOwJXLdKdH+Aq2Q9OCAI18L8+y9vCwCbGghbYgxbvY8z5BcZQtk2BbKDq+8yPCXZpT4hfEy59v4Bnqrb/BK6AAljVZQtpEZzl7cimyEx3HB0X8++Qlo4O34n20szTGrQ6N4/S3e70N1d7EJiO/lCrk/Y5hUfiSpaLxF/jcIwal0wYnNWGH658Uqktbkbm2NQyP5sgcC282veuQ/rTBiWDsyubFZIU8q/tUxdbyXgN4BQev50+j9T31sFqHmn1GDTUasqJD8PIEoZrKjgwA3DeuU9rQEHBmDX5uaD6aUGEhSLOBMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FYy4/GedHAmsJsTnFsDSAECp9kvO95kqQuplMmUSpbQ=;
- b=SD67iSd9VCuNB1GIrLhGP6S9peakwLBne7WzuIKjxezT7IQ2jvIO6AshQSM5WVT8oIHyE+bAnCCGVVq+ONDsUmrORJVSwO50IFVn0WSU7X9qjm0ow0CAaFLGh9RKlMZHM23V0MtH06UzIy7s7XkLlRYBd0hHU9SY0Hcp+CSb8g0dHV6KZJwej8K8TY7gONzpo2eiJO1McE0A044C37wKnjgJ+AFRZ2mWPr12BqElRvWFF1zxowP5/yIO7li1s6n1xTjh0gp+BiTZQaFFw+xMJseNICXFbrpf/WGUhks7KjG5iN5SyjosfMOKOegMn/rq/pUoK2oJiULMGE6a80LsbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 151AA6E85D
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 04:52:36 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id h12so1022667qtu.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 06 Feb 2020 20:52:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FYy4/GedHAmsJsTnFsDSAECp9kvO95kqQuplMmUSpbQ=;
- b=2872orpqmJAbuZXdqD1eQbGAQpugP7EgX7l+IYAduxzdPyKnXi7rQxN20iQrAquD1G9hEk/j3CZFqOD03xhfKMuovWx+Rwv1N5V4quzdWqraeg+7CDIyNMTE4ZZf3XxE3+6ZB5kd6ggLgTGZjoFbCf/MLx/JYqHSbxfj5iNymR0=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Rajneesh.Bhardwaj@amd.com; 
-Received: from DM5PR12MB2359.namprd12.prod.outlook.com (52.132.141.12) by
- DM5PR12MB1530.namprd12.prod.outlook.com (10.172.34.23) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2686.30; Fri, 7 Feb 2020 00:09:29 +0000
-Received: from DM5PR12MB2359.namprd12.prod.outlook.com
- ([fe80::5539:bec0:f67:934f]) by DM5PR12MB2359.namprd12.prod.outlook.com
- ([fe80::5539:bec0:f67:934f%6]) with mapi id 15.20.2707.024; Fri, 7 Feb 2020
- 00:09:29 +0000
-From: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [Patch v3 4/4] drm/amdgpu/runpm: enable runpm on baco capable VI+
- asics
-Date: Thu,  6 Feb 2020 19:09:11 -0500
-Message-Id: <20200207000911.19166-5-rajneesh.bhardwaj@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200207000911.19166-1-rajneesh.bhardwaj@amd.com>
-References: <20200207000911.19166-1-rajneesh.bhardwaj@amd.com>
-X-ClientProxiedBy: YTOPR0101CA0056.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::33) To DM5PR12MB2359.namprd12.prod.outlook.com
- (2603:10b6:4:b4::12)
+ d=endlessm-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=zD+SD3a85WaBxn1quERCa86dJtVc2O8o6GA7qwBXCJo=;
+ b=uddvL1JO80blrtkaBfjv1aHwZ4HIytAKy0DI5CT9/O4us4MST76ZlsrdKQysjeImgW
+ w3Rx79nuHFyMRNvG7GnsVnVipDncm8zE7nRpEr7FqIPPz+nnKLNEXI2N76W3/ZLZkT5Z
+ Y+BlQr+helxKkejSPCoOc9+BTLIWiwLQ03l+TqRQxvE+nKlsNfS120O2c1Iubg5+ZFQO
+ mLIoBeBnxdYYchquUqH0Cg9qF9NKVYhKYgC1vSkUjq5URuH7BKhqIKwelatUjTN1YoQl
+ aI//XrgBlQA4abFi3U/VDYgOreY2cfEO+w03A5k1j7T7RMvtX94WDRb/ZOl/0/s+XH7w
+ IDtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=zD+SD3a85WaBxn1quERCa86dJtVc2O8o6GA7qwBXCJo=;
+ b=llfeJCIO+aciQksWHuJa2OY0f/tJt+N/C+a57ZJUl0wsuPv1khuPAghIfAMk86AsAm
+ kDPS4xFiXn4Ov9oFSaXSelj5HeZ6WgmLhMnRH9T22teOXVOb61eC+tz8J8dDMyTMciJT
+ 8VhKUwFHIJWns4vQ21aqRKtdtKqbzCojbZBl6ADyl4ZR+R/m2dMcjNBpOhoeCSwl7trK
+ soAAo+GZYNxix/BWADkOGSSa6+Zcp023Fz2ZDQSImJ0qeSUp+NAXudwncCEVYOFXbzaS
+ dzANAAeE/oC3MqLjZQRJSRaPIi8yF8OwsMH7ZNamiVx0EkIX+RXn8avbZHK2erQfsXBN
+ zLWA==
+X-Gm-Message-State: APjAAAUR+yauBFHa0922zcZJIQBOliItd8x/sCVO58jggRlH1yHA0FLI
+ /qo1EF/Ifh43WpVU7TzEDm9Vga0WR8gr7pmWLyDgjA==
+X-Google-Smtp-Source: APXvYqxdMLigY2gCSUFZRs79VGs+uC4dThA5WCs4e+pUPAKLGhvcheCYWpetzZ/p8JD1bZZO+ae2gLnu+ndNSyfimRU=
+X-Received: by 2002:ac8:59:: with SMTP id i25mr5804123qtg.110.1581051155016;
+ Thu, 06 Feb 2020 20:52:35 -0800 (PST)
 MIME-Version: 1.0
-Received: from rajneesh-desk.amd.com (165.204.55.251) by
- YTOPR0101CA0056.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::33) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21 via Frontend
- Transport; Fri, 7 Feb 2020 00:09:28 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [165.204.55.251]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: cfab9770-ff45-4a27-6526-08d7ab61ffd9
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1530:|DM5PR12MB1530:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB153042C2AF88C26FF592C9FEFE1C0@DM5PR12MB1530.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-Forefront-PRVS: 0306EE2ED4
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(396003)(136003)(366004)(39860400002)(346002)(189003)(199004)(26005)(66946007)(44832011)(66476007)(5660300002)(956004)(66556008)(478600001)(6486002)(7696005)(6666004)(186003)(16526019)(2906002)(52116002)(36756003)(316002)(86362001)(8676002)(2616005)(6916009)(81166006)(1076003)(4326008)(966005)(8936002)(81156014);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1530;
- H:DM5PR12MB2359.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /w5nx37McS1k7Obk6Rf71WHnpjRY7zb3TiYSuSSk2zvy+dnziccS4w7iVSnhED8OXntbsVsb2FLHNCzdtMns6/9zzCilYpojhfqsskCXOr8Ky2r8+V1YjY9uBaZtwbeMjLJuGpoAbO7sIW1IXYUQ5X2zakBRx2Z5It6MfjgQWVaat+ovD8sbLRH5GWnTStM2GkR71OYm9Fp3WAviAFk2zu2CeDR9GuXLrT0OSMNRiz+U4qkd4cU8uu6aADzzM7JiWNC4EjummieC8TteOllXKjcAglgPIoT1c2ykRmX0q+TPM5FGAJFEfZRdp4huGCsSAE0huneQmSqIMPqzxi20JoOo6ABxjS13PqcDEub14DxUeK7RJC2dV5BH+Q+gUCGvuN5KM2uA5I6ONqklSRs9VsY+ruLC7YTRhFYKcN6CfajJ1WGYgWlEempE5DGLT0kKmm9c/FE3Q3HnZFtTVuCcTYw7XpgpEZJyAh4DQMDrxfggtzuHhcnHPjbeZ/imyXTcASIo3cKNat4gXh2CfZ/Pbg==
-X-MS-Exchange-AntiSpam-MessageData: rgb8MgZBgiOS3XdTs/ezHQcQXQPEmJL7Da2ehOQD5fyl5rEkFhx0dds7iNL86BcGdBQwBqlkhWXplkRcyu6Cdxu5heCOHEvcd4q1dozR5tEVOToG+V25zSXWYt6O3TPtb/7HMiP1Q2Fb879VFGQ4UQ==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfab9770-ff45-4a27-6526-08d7ab61ffd9
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2020 00:09:29.0448 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wL6WZxJxVE2KF/a7edgtXJwjS/96NXQO/+tWsAH0ajX8cTYqCZYxjJ7xdDtwX748u3KbZteSFQYOetipPVj4uA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1530
+References: <20191015065002.18701-1-drake@endlessm.com>
+ <CADnq5_M4Leu0raYS6M72MqTm1+PLg9BjHCHLAYuB2-dEVP56_A@mail.gmail.com>
+ <CAD8Lp443ZhPEo0PJRxbTSB9DY9x92OvWBeH29m9Ehpyhg+2n5A@mail.gmail.com>
+ <CADnq5_OaATVESAY9E2mtd7PoV2VjG=WLS56LCHVpieSHDTas0A@mail.gmail.com>
+ <CAD8Lp46f9LR_VJ26BGfOGvj8sTjKZowkbjLNv6R4CsVMfRZQ=Q@mail.gmail.com>
+ <CAD8Lp46+Te+AUQKLkLEcGf34izw=JzkU5w=CsZRf_UKJQ_k7qg@mail.gmail.com>
+ <CADnq5_OObnKTP7-tBmPz75R5qXs8ubRxgfX-qkBnzqcox0TZyQ@mail.gmail.com>
+ <CAD8Lp44FKuEsmdK+zDX_-ZYQEnqjQM-z6nnfE-CJ62mutd+scA@mail.gmail.com>
+ <CADnq5_PNGr4=MqpBeKbhxJ-gpniSCj7L0wO5_V6mjuwpKoaCAg@mail.gmail.com>
+In-Reply-To: <CADnq5_PNGr4=MqpBeKbhxJ-gpniSCj7L0wO5_V6mjuwpKoaCAg@mail.gmail.com>
+From: Daniel Drake <drake@endlessm.com>
+Date: Fri, 7 Feb 2020 12:52:23 +0800
+Message-ID: <CAD8Lp47vOdyG+BSzFy2URULz4icXYHW7SMW9zBEt4nfz804XTw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: always reset asic when going into suspend
+To: Alex Deucher <alexdeucher@gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,54 +68,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, felix.kuehling@amd.com,
- Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
+ Chunming Zhou <David1.Zhou@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Linux PM <linux-pm@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alex Deucher <alexander.deucher@amd.com>
+On Thu, Jan 16, 2020 at 11:15 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+> It's just papering over the problem.  It would be better from a power
+> perspective for the driver to just not suspend and keep running like
+> normal.  When the driver is not suspended runtime things like clock
+> and power gating are active which keep the GPU power at a minimum.
 
-Seems to work reliably on VI+ except for a few so enable runpm barring
-those where baco for runtime power management is not supported.
+Until we have a better solution, are there any strategies we could
+apply here to avoid the suspend as you say?
+e.g. DMI quirk these products to disable suspend? Or disable suspend
+on all s2idle setups?
 
-[rajneesh] Picked https://patchwork.freedesktop.org/patch/335402/ to
-enable runtime pm with baco for kfd. Also fixed a checkpatch warning and
-added extra checks for VEGA20 and ARCTURUS.
+This would certainly be better than the current situation of the
+machine becoming unusable on resume.
 
-Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+> I talked to our sbios team and they seem to think our S0ix
+> implementation works pretty differently from Intel's.  I'm not really
+> an expert on this area however.  We have a new team ramping on up this
+> for Linux however.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 3a0ea9096498..0f3563926ad1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -170,10 +170,16 @@ int amdgpu_driver_load_kms(struct drm_device *dev, unsigned long flags)
- 	}
- 
- 	if (amdgpu_device_supports_boco(dev) &&
--	    (amdgpu_runtime_pm != 0)) /* enable runpm by default */
-+	    (amdgpu_runtime_pm != 0)) /* enable runpm by default for boco */
- 		adev->runpm = true;
- 	else if (amdgpu_device_supports_baco(dev) &&
--		 (amdgpu_runtime_pm > 0)) /* enable runpm if runpm=1 */
-+		 (amdgpu_runtime_pm != 0) &&
-+		 (adev->asic_type >= CHIP_TOPAZ) &&
-+		 (adev->asic_type != CHIP_VEGA20) &&
-+		 (adev->asic_type != CHIP_ARCTURUS)) /* enable runpm on VI+ */
-+		adev->runpm = true;
-+	else if (amdgpu_device_supports_baco(dev) &&
-+		 (amdgpu_runtime_pm > 0))  /* enable runpm if runpm=1 on CI */
- 		adev->runpm = true;
- 
- 	/* Call ACPI methods: require modeset init
--- 
-2.17.1
+Thanks for following up on this internally! Can I lend a product
+sample to the new team so that they have direct access?
 
+Daniel
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
