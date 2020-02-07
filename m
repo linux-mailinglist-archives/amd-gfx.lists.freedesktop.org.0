@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD32155B18
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2020 16:50:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A374155B1B
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2020 16:51:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99F3B6FD13;
-	Fri,  7 Feb 2020 15:50:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC0826FD17;
+	Fri,  7 Feb 2020 15:50:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com
  (mail-dm6nam10on2076.outbound.protection.outlook.com [40.107.93.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 329B96FD0D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 581526FD0E
  for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 15:50:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I30djD8GpvauzFptkk4+DJpCALVD/XpnY3dgZxuUud3IZPA6ZPy48YfztVezsT72C7s37MUxJ5dMJGvFcg/jH/lkI/ygtRz3c/QvIl8BdhdglbDpLEct+6ld9zjFwT20X0qXd4Cs6fJ6KrEwMjd0MFKnWPurfJ/BxVXecLg3EhfCUAcvShWCZWfYHCXiUNhrvq70C3ocdtypn5mMr5wEi5P14mPhNs6oOJ/no6JPSnXwT1JCifVQ9FiDyWA/B0955zc/b2+prbfJIla38p8aH0og83Xj4+Tqcbhn7tz8aBVTOweF1ljfGGqgnsG/GhewrxStCts8IUKF8KtOyhmohA==
+ b=TVxaiK/TNX6xY+mM94B8sUBcpted0le7hsQUGVc9YGX+FFJHAmN5qC9i5NIZWktVuIGM+xeiaQACa+dKsRe2pMuzCus6dudmF6atCeZIhtYQxUbl/V2ktaq+4x34d66EIN/JFpDHcFpAyinnMoypgb8oIoiQO4lJU/c0nvllvshdkUiZkB1Ol65Vj9UlVLqkoHTvK8le7cNH2eY5EXYDhCI90zPtCpJnOqDaTLE9zAq/v+VNUeNyUMYLtGTAHJZv9LRXvAPxU//qxq5qiYF4HL1EYkAexdNdjpeBM3ogSR704ZeTN3JYXb3tazX2k9TxZ/gpDfTONJpmjZJjcrhoHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=65vL16ymJp0UM5cxZ/j9VLt3U/Egzt2GXFmA+18lXuk=;
- b=gchCi5OAJFDEDDvUn1SG/8tlMZr+IF+6ENQhH5kkPz/9xhFDld0aYIbLX/GvFfZRZKya4b6ywgl7KHVWdk3mZxd5xSNGCoI67FUuMu7jqroziuRe9xPOWDEo+iEtMbK+vcmH6YdidjvvjftD2DNyJLAGPUVY+4Ku6ZURyAUGnaEsQZd4vywvL6erPCuW1QNVjlyopU2QqEt4HCbtE+kD4Ee6oDKMSDZhQtN2WSd940FHCahB6pEZcNk4/lXCDw6k5ixRmrXsNcA2eHxEO2vgMYniiuuQwYriRBMjTpK4NJc8+uxV86T4cHyC+hGFsjK6vvPAMCjZxzVOyWaI16JQlg==
+ bh=2Custi36LrYLarbLmfYHNxrgZQa8cOgenhWX6UkaDTE=;
+ b=Y35aFmKRjr+9iyCL0jg+/+ftTtXHPID7hd+fY/2zKwrTYwAzy52SrPxtxIw5hWiVVRO5or7DyU1pz80dWuwD55WoSyGL24vufmDKhIq2+qfgFOL8Zyv2BfyK+mP6hazTfWgieYiDxhSeTX6Cvi20YbHSFNm5zTqPcD9bpDl6acZZ1cK4USBpbbqywjwtkn3MSGX7YaRK7uc3w/OOTArkd5ck663uHyWEMrCoxBbQ94DqAIPa6xDrrtUvuNneBcvN+8Pp9eFlxvX8e9RzntU6Kmnmwz2OWxm4hGnRVMSCxaJNLLb4sSgJ/XXdcRnNwlcvade0jM24q6y6TVPA4gyJ3w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=65vL16ymJp0UM5cxZ/j9VLt3U/Egzt2GXFmA+18lXuk=;
- b=V77T6kOxCMTTys8qfRN0RSyh6Kd386hhLhr+727gdbhzbn5oNIlLltP8OxAm3nxCgLN2zB05nppoC1ZebhSDBCoshW32OaMtdPHGG0v/XfYzV2Q86hY6E+Kkpv6NeoZblMaI2KNvCCUW4OLgci9Oif2cZGNgS0bvaLz76wLdosc=
+ bh=2Custi36LrYLarbLmfYHNxrgZQa8cOgenhWX6UkaDTE=;
+ b=fVKEXZsW2NAY4EHar7dgj7N9PHfG3nzN//Y8Phgdw17Lk89tDeOuPkpiHS57KZJO5HRO1OL+0zezrM3YMXmjNTn/3PEHPuiIosVocA/H/i4SJWnXhD13QDkEqSknfv0DOFgytWQkecXmP278fex4mpaHHgx5tZR7EYRYx2xuUT0=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from DM5PR12MB2519.namprd12.prod.outlook.com (52.132.141.150) by
@@ -37,13 +37,13 @@ Received: from DM5PR12MB2519.namprd12.prod.outlook.com (52.132.141.150) by
 Received: from DM5PR12MB2519.namprd12.prod.outlook.com
  ([fe80::3506:db14:d616:9f43]) by DM5PR12MB2519.namprd12.prod.outlook.com
  ([fe80::3506:db14:d616:9f43%6]) with mapi id 15.20.2707.024; Fri, 7 Feb 2020
- 15:50:49 +0000
+ 15:50:50 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 12/17] drm/amd/display: add odm split logic to scaling
- calculations
-Date: Fri,  7 Feb 2020 10:50:05 -0500
-Message-Id: <20200207155010.1070737-13-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 13/17] drm/amd/display: add monitor patch to disable SCDC
+ read/write
+Date: Fri,  7 Feb 2020 10:50:06 -0500
+Message-Id: <20200207155010.1070737-14-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200207155010.1070737-1-Rodrigo.Siqueira@amd.com>
 References: <20200207155010.1070737-1-Rodrigo.Siqueira@amd.com>
@@ -55,19 +55,19 @@ Received: from atma2.amd.com (165.204.55.250) by
  YTOPR0101CA0019.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21 via Frontend
- Transport; Fri, 7 Feb 2020 15:50:48 +0000
+ Transport; Fri, 7 Feb 2020 15:50:49 +0000
 X-Mailer: git-send-email 2.25.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: cca77faf-f0f6-4d13-f391-08d7abe5807f
+X-MS-Office365-Filtering-Correlation-Id: 86c56378-c5b9-4899-42f8-08d7abe580e8
 X-MS-TrafficTypeDiagnostic: DM5PR12MB2440:|DM5PR12MB2440:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB2440DCA68AC7BFA3AA3A6EDB981C0@DM5PR12MB2440.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1360;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB2440B75D53E73ECC442803A6981C0@DM5PR12MB2440.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-Forefront-PRVS: 0306EE2ED4
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(396003)(39860400002)(136003)(346002)(376002)(199004)(189003)(8676002)(36756003)(2906002)(66556008)(186003)(6916009)(81156014)(81166006)(8936002)(16526019)(66946007)(66476007)(30864003)(5660300002)(478600001)(6486002)(1076003)(956004)(2616005)(4326008)(7696005)(26005)(54906003)(316002)(6666004)(52116002)(86362001);
+ SFS:(10009020)(4636009)(366004)(396003)(39860400002)(136003)(346002)(376002)(199004)(189003)(8676002)(36756003)(2906002)(66556008)(186003)(6916009)(81156014)(81166006)(8936002)(16526019)(66946007)(66476007)(5660300002)(478600001)(6486002)(1076003)(956004)(2616005)(4326008)(7696005)(26005)(54906003)(316002)(6666004)(52116002)(86362001);
  DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2440;
  H:DM5PR12MB2519.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
@@ -75,15 +75,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wSluQttRbhysLUaDg2gPCJ3OsFzFYhaz1AnlgG+B3+NYkrM2spyddJ0OY0lAb2yW1ilRoFLXN1M3c6rtGuXQWa4SfGZ1qWnCtu/8FLUC9b9DYYtBxAdrqCadxs8h1gCNmtGdcAotVEfl81GZdbSzbwRCvJSQGgqGjzaKAx18FlE4C9/FV7vcdqgRdf5v5yEcBxXh8giIXZUmv5orFLQ76JuR+2+zKOYf62SbL1sMO5+27jfGPhrTK5P0fbK3LYYNZrBxzBeNn/58bMQND3qLUIRfVFL3t0e3PEf7l7QCicUHZeSiq2O/gLQxhXkuANWWVcxaTBi8zYgtRS1YIuPuS3Q0Bt2aml+ugzikWFrubYJaIZJxBmTf5E/kt6vcHx2MyZ8hmMSEeme96Jajg5adtzAGw7QRxSEp9qMqWJOh7RTRBHpYu2IBfsBq4kwpLAIL
-X-MS-Exchange-AntiSpam-MessageData: QLEdHFs6bh+TRB+q2KJQUS0lI3IfQqF0EMuCc68HD83GzoU0T17xCmnMu1qeZQTWYUxNmpwFogGbHI/laq4cJEW8AzAR6lNjKUTMXN6KrJZbOqCGS3PeEpsmtHrwR/5pFVBaVc9nPKFMySKoTYqGyw==
+X-Microsoft-Antispam-Message-Info: RgGtIVzw3Sw7s0rVXdKjIo4ORGdBW8vjyjIQIpFmcMcQEVzsFKycSmkmVMNriMVEz/5p3kVSchEjF88nNZQ6h0JjHJYIQjZlk7jXqbfKuiVPLLpMwylEBy6L/GTaGxj3l5P17zrGZCUSQku1MihwHb6exSCvRF1bEoLkmIdWuVqg6+8vlLldLJ+qVYZnovFwgdaOxJUNQM1AygoOo1/r4WcCJg/H70AvLcvN9iAlp0vZbGtswZe0y/fyPA4A7QGJ/HrmOrAAOLd4mjuCgczy2qWzr9e0hXwLBDfPZ72LZroN0g8w1K/kLYBVL0eQdCMzGBE7QMvMqwuOcoUarmH+cxeMIkuuwMoIoeXg2FoaKFPvwS+ts0L/QRXG/lV+dKswwMLANk4EmmJYdVhFesy+4ET7hZMsSp+RoEU/C3+J4TAlxBp+k37B9rSCGBavSr3i
+X-MS-Exchange-AntiSpam-MessageData: WW+DneIBUCwbdS8pyXsjJWf6q2S60YsZHP7esDc5aJOEu66HQoro/oU8swTLol2bYhqnxNUAkEFdObe8KUro1GTe5y7HoF+rA9rBxhQ+Vk5foCTyCCKRz+ptAM4HoltIJ0G1hMjf3LV4wKLZuP97GA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cca77faf-f0f6-4d13-f391-08d7abe5807f
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2020 15:50:49.1462 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86c56378-c5b9-4899-42f8-08d7abe580e8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2020 15:50:49.6968 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6zjRKCFBGA3tL8bhCsrltXNQCRzcyEIEyJa5rCynIp7+NPlZNGbXnmRzE5i8VcfPetgE1TeLlULy7O2yuq4uCg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: NiGpb9pYIhhU9MePxxZ4Y1IbjiFAaBt7QMsxEsTferZIqFMWzghPigrqMRI/VCdVsK3eEads3I2wO4OOIeC3Xg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2440
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,360 +96,103 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eric Yang <eric.yang2@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- Michael Strauss <Michael.Strauss@amd.com>, Bhawanpreet.Lakha@amd.com
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
+ Chris Park <Chris.Park@amd.com>, Harry.Wentland@amd.com,
+ Martin Leung <martin.leung@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+From: Martin Leung <martin.leung@amd.com>
 
-Currently odm scaling calculations are only done when adding initial
-odm pipe. Any scaling re-calculations will mess up odm because of this.
+[why]
+customer issue: found that for their specific panel, EDID register space
+being overwritten during SCDC read write
 
-This change resolves the problem by updating scaling split logic to
-handle odm.
+[how]
+customer accepted HDMI 2 features not working - disabled SCDC read/write
+as well as HDMI 2 in general based on monitor patch
 
-Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
-Reviewed-by: Eric Yang <eric.yang2@amd.com>
-Acked-by: Michael Strauss <Michael.Strauss@amd.com>
+Signed-off-by: Martin Leung <martin.leung@amd.com>
+Reviewed-by: Chris Park <Chris.Park@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_resource.c | 171 +++++++++++-------
- .../drm/amd/display/dc/dcn20/dcn20_resource.c |  40 ++--
- .../drm/amd/display/dc/dcn20/dcn20_resource.h |   1 +
- 3 files changed, 132 insertions(+), 80 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c             | 4 ++++
+ drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c         | 8 ++++++++
+ drivers/gpu/drm/amd/display/dc/dc_types.h                 | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c | 5 +++++
+ 4 files changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index cd80d8249d14..a65a1e7820d6 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -532,6 +532,35 @@ static inline void get_vp_scan_direction(
- 		*flip_horz_scan_dir = !*flip_horz_scan_dir;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index bed57051f04d..66d8d56f6abd 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -977,6 +977,10 @@ static bool dc_link_detect_helper(struct dc_link *link,
+ 		if ((prev_sink != NULL) && ((edid_status == EDID_THE_SAME) || (edid_status == EDID_OK)))
+ 			same_edid = is_same_edid(&prev_sink->dc_edid, &sink->dc_edid);
  
-+static void calculate_split_count_and_index(struct pipe_ctx *pipe_ctx, int *split_count, int *split_idx)
-+{
-+	*split_count = get_num_odm_splits(pipe_ctx);
-+	*split_idx = 0;
-+	if (*split_count == 0) {
-+		/*Check for mpc split*/
-+		struct pipe_ctx *split_pipe = pipe_ctx->top_pipe;
++		if (&sink->edid_caps.panel_patch.skip_scdc_overwrite)
++			link->ctx->dc->debug.hdmi20_disable = true;
 +
-+		while (split_pipe && split_pipe->plane_state == pipe_ctx->plane_state) {
-+			(*split_idx)++;
-+			(*split_count)++;
-+			split_pipe = split_pipe->top_pipe;
-+		}
-+		split_pipe = pipe_ctx->bottom_pipe;
-+		while (split_pipe && split_pipe->plane_state == pipe_ctx->plane_state) {
-+			(*split_count)++;
-+			split_pipe = split_pipe->bottom_pipe;
-+		}
-+	} else {
-+		/*Get odm split index*/
-+		struct pipe_ctx *split_pipe = pipe_ctx->prev_odm_pipe;
 +
-+		while (split_pipe) {
-+			(*split_idx)++;
-+			split_pipe = split_pipe->prev_odm_pipe;
-+		}
-+	}
-+}
+ 		if (link->connector_signal == SIGNAL_TYPE_DISPLAY_PORT &&
+ 			sink_caps.transaction_type == DDC_TRANSACTION_TYPE_I2C_OVER_AUX) {
+ 			/*
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
+index a49c10d5df26..a5586f68b4da 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
+@@ -686,6 +686,10 @@ void dal_ddc_service_write_scdc_data(struct ddc_service *ddc_service,
+ 	uint8_t write_buffer[2] = {0};
+ 	/*Lower than 340 Scramble bit from SCDC caps*/
+ 
++	if (ddc_service->link->local_sink &&
++		ddc_service->link->local_sink->edid_caps.panel_patch.skip_scdc_overwrite)
++		return;
 +
- static void calculate_viewport(struct pipe_ctx *pipe_ctx)
- {
- 	const struct dc_plane_state *plane_state = pipe_ctx->plane_state;
-@@ -541,16 +570,16 @@ static void calculate_viewport(struct pipe_ctx *pipe_ctx)
- 	struct rect clip, dest;
- 	int vpc_div = (data->format == PIXEL_FORMAT_420BPP8
- 			|| data->format == PIXEL_FORMAT_420BPP10) ? 2 : 1;
--	bool pri_split = pipe_ctx->bottom_pipe &&
--			pipe_ctx->bottom_pipe->plane_state == pipe_ctx->plane_state;
--	bool sec_split = pipe_ctx->top_pipe &&
--			pipe_ctx->top_pipe->plane_state == pipe_ctx->plane_state;
-+	int split_count = 0;
-+	int split_idx = 0;
- 	bool orthogonal_rotation, flip_y_start, flip_x_start;
+ 	dal_ddc_service_query_ddc_data(ddc_service, slave_address, &offset,
+ 			sizeof(offset), &sink_version, sizeof(sink_version));
+ 	if (sink_version == 1) {
+@@ -715,6 +719,10 @@ void dal_ddc_service_read_scdc_data(struct ddc_service *ddc_service)
+ 	uint8_t offset = HDMI_SCDC_TMDS_CONFIG;
+ 	uint8_t tmds_config = 0;
  
-+	calculate_split_count_and_index(pipe_ctx, &split_count, &split_idx);
++	if (ddc_service->link->local_sink &&
++		ddc_service->link->local_sink->edid_caps.panel_patch.skip_scdc_overwrite)
++		return;
 +
- 	if (stream->view_format == VIEW_3D_FORMAT_SIDE_BY_SIDE ||
- 		stream->view_format == VIEW_3D_FORMAT_TOP_AND_BOTTOM) {
--		pri_split = false;
--		sec_split = false;
-+		split_count = 0;
-+		split_idx = 0;
- 	}
+ 	dal_ddc_service_query_ddc_data(ddc_service, slave_address, &offset,
+ 			sizeof(offset), &tmds_config, sizeof(tmds_config));
+ 	if (tmds_config & 0x1) {
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
+index 122c96455792..1490732a4b44 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
+@@ -229,6 +229,7 @@ struct dc_panel_patch {
+ 	unsigned int extra_t12_ms;
+ 	unsigned int extra_delay_backlight_off;
+ 	unsigned int extra_t7_ms;
++	unsigned int skip_scdc_overwrite;
+ };
  
- 	/* The actual clip is an intersection between stream
-@@ -609,23 +638,32 @@ static void calculate_viewport(struct pipe_ctx *pipe_ctx)
- 	data->viewport.height = clip.height * surf_src.height / dest.height;
+ struct dc_edid_caps {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c
+index 1a37c90e9d43..d3617d6785a7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c
+@@ -782,6 +782,11 @@ bool dcn10_link_encoder_validate_output_with_stream(
+ 	struct dcn10_link_encoder *enc10 = TO_DCN10_LINK_ENC(enc);
+ 	bool is_valid;
  
- 	/* Handle split */
--	if (pri_split || sec_split) {
-+	if (split_count) {
-+		/* extra pixels in the division remainder need to go to pipes after
-+		 * the extra pixel index minus one(epimo) defined here as:
-+		 */
-+		int epimo = 0;
++	//if SCDC (340-600MHz) is disabled, set to HDMI 1.4 timing limit
++	if (stream->sink->edid_caps.panel_patch.skip_scdc_overwrite &&
++		enc10->base.features.max_hdmi_pixel_clock > 300000)
++		enc10->base.features.max_hdmi_pixel_clock = 300000;
 +
- 		if (orthogonal_rotation) {
--			if (flip_y_start != pri_split)
--				data->viewport.height /= 2;
--			else {
--				data->viewport.y +=  data->viewport.height / 2;
--				/* Ceil offset pipe */
--				data->viewport.height = (data->viewport.height + 1) / 2;
--			}
-+			if (flip_y_start)
-+				split_idx = split_count - split_idx;
-+
-+			epimo = split_count - data->viewport.height % (split_count + 1);
-+
-+			data->viewport.y += (data->viewport.height / (split_count + 1)) * split_idx;
-+			if (split_idx > epimo)
-+				data->viewport.y += split_idx - epimo - 1;
-+			data->viewport.height = data->viewport.height / (split_count + 1) + (split_idx > epimo ? 1 : 0);
- 		} else {
--			if (flip_x_start != pri_split)
--				data->viewport.width /= 2;
--			else {
--				data->viewport.x +=  data->viewport.width / 2;
--				/* Ceil offset pipe */
--				data->viewport.width = (data->viewport.width + 1) / 2;
--			}
-+			if (flip_x_start)
-+				split_idx = split_count - split_idx;
-+
-+			epimo = split_count - data->viewport.width % (split_count + 1);
-+
-+			data->viewport.x += (data->viewport.width / (split_count + 1)) * split_idx;
-+			if (split_idx > epimo)
-+				data->viewport.x += split_idx - epimo - 1;
-+			data->viewport.width = data->viewport.width / (split_count + 1) + (split_idx > epimo ? 1 : 0);
- 		}
- 	}
- 
-@@ -644,58 +682,58 @@ static void calculate_recout(struct pipe_ctx *pipe_ctx)
- {
- 	const struct dc_plane_state *plane_state = pipe_ctx->plane_state;
- 	const struct dc_stream_state *stream = pipe_ctx->stream;
-+	struct scaler_data *data = &pipe_ctx->plane_res.scl_data;
- 	struct rect surf_clip = plane_state->clip_rect;
--	bool pri_split = pipe_ctx->bottom_pipe &&
--			pipe_ctx->bottom_pipe->plane_state == pipe_ctx->plane_state;
--	bool sec_split = pipe_ctx->top_pipe &&
--			pipe_ctx->top_pipe->plane_state == pipe_ctx->plane_state;
--	bool top_bottom_split = stream->view_format == VIEW_3D_FORMAT_TOP_AND_BOTTOM;
--
--	pipe_ctx->plane_res.scl_data.recout.x = stream->dst.x;
-+	bool pri_split_tb = pipe_ctx->bottom_pipe &&
-+			pipe_ctx->bottom_pipe->plane_state == pipe_ctx->plane_state &&
-+			stream->view_format == VIEW_3D_FORMAT_TOP_AND_BOTTOM;
-+	bool sec_split_tb = pipe_ctx->top_pipe &&
-+			pipe_ctx->top_pipe->plane_state == pipe_ctx->plane_state &&
-+			stream->view_format == VIEW_3D_FORMAT_TOP_AND_BOTTOM;
-+	int split_count = 0;
-+	int split_idx = 0;
-+
-+	calculate_split_count_and_index(pipe_ctx, &split_count, &split_idx);
-+
-+	data->recout.x = stream->dst.x;
- 	if (stream->src.x < surf_clip.x)
--		pipe_ctx->plane_res.scl_data.recout.x += (surf_clip.x
--			- stream->src.x) * stream->dst.width
-+		data->recout.x += (surf_clip.x - stream->src.x) * stream->dst.width
- 						/ stream->src.width;
- 
--	pipe_ctx->plane_res.scl_data.recout.width = surf_clip.width *
--			stream->dst.width / stream->src.width;
--	if (pipe_ctx->plane_res.scl_data.recout.width + pipe_ctx->plane_res.scl_data.recout.x >
--			stream->dst.x + stream->dst.width)
--		pipe_ctx->plane_res.scl_data.recout.width =
--			stream->dst.x + stream->dst.width
--						- pipe_ctx->plane_res.scl_data.recout.x;
-+	data->recout.width = surf_clip.width * stream->dst.width / stream->src.width;
-+	if (data->recout.width + data->recout.x > stream->dst.x + stream->dst.width)
-+		data->recout.width = stream->dst.x + stream->dst.width - data->recout.x;
- 
--	pipe_ctx->plane_res.scl_data.recout.y = stream->dst.y;
-+	data->recout.y = stream->dst.y;
- 	if (stream->src.y < surf_clip.y)
--		pipe_ctx->plane_res.scl_data.recout.y += (surf_clip.y
--			- stream->src.y) * stream->dst.height
-+		data->recout.y += (surf_clip.y - stream->src.y) * stream->dst.height
- 						/ stream->src.height;
- 
--	pipe_ctx->plane_res.scl_data.recout.height = surf_clip.height *
--			stream->dst.height / stream->src.height;
--	if (pipe_ctx->plane_res.scl_data.recout.height + pipe_ctx->plane_res.scl_data.recout.y >
--			stream->dst.y + stream->dst.height)
--		pipe_ctx->plane_res.scl_data.recout.height =
--			stream->dst.y + stream->dst.height
--						- pipe_ctx->plane_res.scl_data.recout.y;
-+	data->recout.height = surf_clip.height * stream->dst.height / stream->src.height;
-+	if (data->recout.height + data->recout.y > stream->dst.y + stream->dst.height)
-+		data->recout.height = stream->dst.y + stream->dst.height - data->recout.y;
- 
- 	/* Handle h & v split, handle rotation using viewport */
--	if (sec_split && top_bottom_split) {
--		pipe_ctx->plane_res.scl_data.recout.y +=
--				pipe_ctx->plane_res.scl_data.recout.height / 2;
-+	if (sec_split_tb) {
-+		data->recout.y += data->recout.height / 2;
- 		/* Floor primary pipe, ceil 2ndary pipe */
--		pipe_ctx->plane_res.scl_data.recout.height =
--				(pipe_ctx->plane_res.scl_data.recout.height + 1) / 2;
--	} else if (pri_split && top_bottom_split)
--		pipe_ctx->plane_res.scl_data.recout.height /= 2;
--	else if (sec_split) {
--		pipe_ctx->plane_res.scl_data.recout.x +=
--				pipe_ctx->plane_res.scl_data.recout.width / 2;
--		/* Ceil offset pipe */
--		pipe_ctx->plane_res.scl_data.recout.width =
--				(pipe_ctx->plane_res.scl_data.recout.width + 1) / 2;
--	} else if (pri_split)
--		pipe_ctx->plane_res.scl_data.recout.width /= 2;
-+		data->recout.height = (data->recout.height + 1) / 2;
-+	} else if (pri_split_tb)
-+		data->recout.height /= 2;
-+	else if (split_count) {
-+		/* extra pixels in the division remainder need to go to pipes after
-+		 * the extra pixel index minus one(epimo) defined here as:
-+		 */
-+		int epimo = split_count - data->recout.width % (split_count + 1);
-+
-+		/*no recout offset due to odm */
-+		if (!pipe_ctx->next_odm_pipe && !pipe_ctx->prev_odm_pipe) {
-+			data->recout.x += (data->recout.width / (split_count + 1)) * split_idx;
-+			if (split_idx > epimo)
-+				data->recout.x += split_idx - epimo - 1;
-+		}
-+		data->recout.width = data->recout.width / (split_count + 1) + (split_idx > epimo ? 1 : 0);
-+	}
- }
- 
- static void calculate_scaling_ratios(struct pipe_ctx *pipe_ctx)
-@@ -832,6 +870,7 @@ static void calculate_inits_and_adj_vp(struct pipe_ctx *pipe_ctx)
- {
- 	const struct dc_plane_state *plane_state = pipe_ctx->plane_state;
- 	const struct dc_stream_state *stream = pipe_ctx->stream;
-+	struct pipe_ctx *odm_pipe = pipe_ctx->prev_odm_pipe;
- 	struct scaler_data *data = &pipe_ctx->plane_res.scl_data;
- 	struct rect src = pipe_ctx->plane_state->src_rect;
- 	int recout_skip_h, recout_skip_v, surf_size_h, surf_size_v;
-@@ -869,6 +908,12 @@ static void calculate_inits_and_adj_vp(struct pipe_ctx *pipe_ctx)
- 					* stream->dst.width / stream->src.width -
- 					src.x * plane_state->dst_rect.width / src.width
- 					* stream->dst.width / stream->src.width);
-+	/*modified recout_skip_h calculation due to odm having no recout offset caused by split*/
-+	while (odm_pipe) {
-+		recout_skip_h += odm_pipe->plane_res.scl_data.recout.width + odm_pipe->plane_res.scl_data.recout.x;
-+		odm_pipe = odm_pipe->prev_odm_pipe;
-+	}
-+
- 	recout_skip_v = data->recout.y - (stream->dst.y + (plane_state->dst_rect.y - stream->src.y)
- 					* stream->dst.height / stream->src.height -
- 					src.y * plane_state->dst_rect.height / src.height
-@@ -1021,6 +1066,8 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
- 		store_h_border_left + timing->h_border_right;
- 	pipe_ctx->plane_res.scl_data.v_active = timing->v_addressable +
- 		timing->v_border_top + timing->v_border_bottom;
-+	if (pipe_ctx->next_odm_pipe || pipe_ctx->prev_odm_pipe)
-+		pipe_ctx->plane_res.scl_data.h_active /= get_num_odm_splits(pipe_ctx) + 1;
- 
- 	/* Taps calculations */
- 	if (pipe_ctx->plane_res.xfm != NULL)
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 85f90f3e24cb..39026df56fa6 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -1861,20 +1861,20 @@ void dcn20_populate_dml_writeback_from_context(
- 
- }
- 
--static int get_num_odm_heads(struct pipe_ctx *pipe)
-+int get_num_odm_splits(struct pipe_ctx *pipe)
- {
--	int odm_head_count = 0;
-+	int odm_split_count = 0;
- 	struct pipe_ctx *next_pipe = pipe->next_odm_pipe;
- 	while (next_pipe) {
--		odm_head_count++;
-+		odm_split_count++;
- 		next_pipe = next_pipe->next_odm_pipe;
- 	}
- 	pipe = pipe->prev_odm_pipe;
- 	while (pipe) {
--		odm_head_count++;
-+		odm_split_count++;
- 		pipe = pipe->prev_odm_pipe;
- 	}
--	return odm_head_count ? odm_head_count + 1 : 0;
-+	return odm_split_count;
- }
- 
- int dcn20_populate_dml_pipes_from_context(
-@@ -1956,8 +1956,8 @@ int dcn20_populate_dml_pipes_from_context(
- 		pipes[pipe_cnt].dout.dp_lanes = 4;
- 		pipes[pipe_cnt].pipe.dest.vtotal_min = res_ctx->pipe_ctx[i].stream->adjust.v_total_min;
- 		pipes[pipe_cnt].pipe.dest.vtotal_max = res_ctx->pipe_ctx[i].stream->adjust.v_total_max;
--		switch (get_num_odm_heads(&res_ctx->pipe_ctx[i])) {
--		case 2:
-+		switch (get_num_odm_splits(&res_ctx->pipe_ctx[i])) {
-+		case 1:
- 			pipes[pipe_cnt].pipe.dest.odm_combine = dm_odm_combine_mode_2to1;
- 			break;
- 		default:
-@@ -2124,18 +2124,22 @@ int dcn20_populate_dml_pipes_from_context(
- 			pipes[pipe_cnt].pipe.src.dcc = pln->dcc.enable;
- 			pipes[pipe_cnt].pipe.dest.recout_width = scl->recout.width;
- 			pipes[pipe_cnt].pipe.dest.recout_height = scl->recout.height;
--			pipes[pipe_cnt].pipe.dest.full_recout_width = scl->recout.width;
- 			pipes[pipe_cnt].pipe.dest.full_recout_height = scl->recout.height;
--			if (res_ctx->pipe_ctx[i].bottom_pipe && res_ctx->pipe_ctx[i].bottom_pipe->plane_state == pln) {
--				pipes[pipe_cnt].pipe.dest.full_recout_width +=
--						res_ctx->pipe_ctx[i].bottom_pipe->plane_res.scl_data.recout.width;
--				pipes[pipe_cnt].pipe.dest.full_recout_height +=
--						res_ctx->pipe_ctx[i].bottom_pipe->plane_res.scl_data.recout.height;
--			} else if (res_ctx->pipe_ctx[i].top_pipe && res_ctx->pipe_ctx[i].top_pipe->plane_state == pln) {
--				pipes[pipe_cnt].pipe.dest.full_recout_width +=
--						res_ctx->pipe_ctx[i].top_pipe->plane_res.scl_data.recout.width;
--				pipes[pipe_cnt].pipe.dest.full_recout_height +=
--						res_ctx->pipe_ctx[i].top_pipe->plane_res.scl_data.recout.height;
-+			pipes[pipe_cnt].pipe.dest.full_recout_width = scl->recout.width;
-+			if (pipes[pipe_cnt].pipe.dest.odm_combine == dm_odm_combine_mode_2to1)
-+				pipes[pipe_cnt].pipe.dest.full_recout_width *= 2;
-+			else {
-+				struct pipe_ctx *split_pipe = res_ctx->pipe_ctx[i].bottom_pipe;
-+
-+				while (split_pipe && split_pipe->plane_state == pln) {
-+					pipes[pipe_cnt].pipe.dest.full_recout_width += split_pipe->plane_res.scl_data.recout.width;
-+					split_pipe = split_pipe->bottom_pipe;
-+				}
-+				split_pipe = res_ctx->pipe_ctx[i].top_pipe;
-+				while (split_pipe && split_pipe->plane_state == pln) {
-+					pipes[pipe_cnt].pipe.dest.full_recout_width += split_pipe->plane_res.scl_data.recout.width;
-+					split_pipe = split_pipe->top_pipe;
-+				}
- 			}
- 
- 			pipes[pipe_cnt].pipe.scale_ratio_depth.lb_depth = dm_lb_16;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-index f5893840b79b..5180088ab6bc 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-@@ -49,6 +49,7 @@ unsigned int dcn20_calc_max_scaled_time(
- 		unsigned int time_per_pixel,
- 		enum mmhubbub_wbif_mode mode,
- 		unsigned int urgent_watermark);
-+int get_num_odm_splits(struct pipe_ctx *pipe);
- int dcn20_populate_dml_pipes_from_context(
- 		struct dc *dc, struct dc_state *context, display_e2e_pipe_params_st *pipes);
- struct pipe_ctx *dcn20_acquire_idle_pipe_for_layer(
+ 	switch (stream->signal) {
+ 	case SIGNAL_TYPE_DVI_SINGLE_LINK:
+ 	case SIGNAL_TYPE_DVI_DUAL_LINK:
 -- 
 2.25.0
 
