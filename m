@@ -1,48 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00B9155B0F
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2020 16:50:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F99155B0D
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2020 16:50:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE3A6FD08;
-	Fri,  7 Feb 2020 15:50:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B08EF6FD05;
+	Fri,  7 Feb 2020 15:50:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com
  (mail-dm6nam10on2070.outbound.protection.outlook.com [40.107.93.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00D296FD03
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 15:50:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A1506FD00
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 15:50:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hsPAOzibEbnvaoMFvdwVWV7f7mx2FDPiSuKxEAAtUqQhqKyyhmNZobsbdSrp42an4QyAgbKRppOHM+MqjZ7Hi4SoegPpWC0Bn25pwo5vRoiuyrOCFcCI3mfUBT6HenTHOr9K4GzJShAL11qmelKlngyOjBg8VV8y+OfkSoCX3ufUqI/IZvEw0ugaJogQss1shUTnfVCNgx9S1prUXD+Cm43zOQfj9OFz+921pDlmoMp2IlBzh8mwWl7NUPpU2Rj5rEkZzTSTLscN0XpuFnEbNRedLaa41D2NBWDv75VLbKg5OAiHwfHR1fU67OD4kW1iRpUZRw6BlY0CPCE/a5E0QA==
+ b=Y8MPV8W3qbW8XcdIBV7YCo3iyPUHwEGOWUZz9aVungc7pceESb/qsYFUKyRgDLuOuixuF3bqkdMYHK5KNqTNRIsF79IuwgNfX+n/HCHOm4U/yV5zJIbEoXdVzoPP1714HFcEWGpBClt/nh5pQBdXJeoZFH37NkEElbR9Q9TWVWfrfW+Q6/KuSg7foht4ALpIyIRJDjuzsKZPh2H34bOy10Hxiu61KatyqPBAHyW+rci/W9RcNWKSRbdUDkIp8qkNZT/YFv5boVlCNEUle/aFoac8GeIzX5QBY9lf8i2pI87eug39LDf50oLxV/gbmc0SnjeH5Rh90dpy1BFl044Xmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OEanwbrc3ltspg2Hy0qW/95p6J2pLMpYOGxVpytxYJc=;
- b=kTklTqbDiTuz3H5WOoYgKdwdKz/DeLVj+8SXg2j2Fc0pRaR049Ie+29p7iOS1AENStrbN0/X4CCo3bZXgO5DQSbhskL5ocVFLcFOQsvoflVtyi7tFqKet/dMRoMFKzOOHI7qZSzSbL3TiZ8XirFpbppPiit6aIt0iYtjjvQw1ujEmaCDpIjif19X5s8vxfHXJ4/H9wIrlw3FJzdeWf2RK7O5iKqLs3jw2I6NyhogL9j+YfwEmr02WJDhlnImFxVZ7wWRN0gvY+jbPOwfeCkKOpty00ZpTbqEB8gymSslxee5L1i7Md7audvHvva+wtlZ2/hori3DKWBeul+4+MWzVA==
+ bh=WeUQFjSIkuOJRtJZPoN2FoGgEGkwY+VgXBA1G9gv/cA=;
+ b=no8jq5zmi2NjB5dWO2zpS300RIXSj40gnTzCZSrbbmh/QHuyIYmdmYbyDW5XHdM53+YXA/zqaFwcFTtueC7PDnx04n1V6Pjm64S9BhVf+oTRtajHhUvIe/JEP3y0IcK0YB1yT64wvJKN0cwjzoc3vnqxmtR3RUtAuLVmA6GHMMOvSvrmWi4SQpci3YeZ8l5NYs4G9J1/B3/KwNC1h8STDkUWpX5/JhWRDGTjTo8hfRhqLkrlHWpEOFC1it7p0qvme3gzqJg85HNuf0DcSvZwXfQzyHMbK/kudinqr4IQ55xX7W69b6xoWkQwLQ5O6Qtt6gznTwvZXyw8ozi27BQTAg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OEanwbrc3ltspg2Hy0qW/95p6J2pLMpYOGxVpytxYJc=;
- b=ReKge4QnkVo29ysa+cg7RI8bzBksDJpKqv9X4mw1S0SwDIUPqL4uEyYnFMT81EYSvLvQVHle/1+s2WSBO9eksXEbJ/Fkt1e7jfmhdGAzuwyhEBlM+PEOms1POiUTBq/77uv/A4WdudS8tebAehcmoKeB42KfAheJ7Zsu/8Igm0o=
+ bh=WeUQFjSIkuOJRtJZPoN2FoGgEGkwY+VgXBA1G9gv/cA=;
+ b=Y1tMW3SUk0wvlgXR9H8FAqjo9WWhULN47TsjONrfOEZyF7608Va2O9vV3q6vFd2+WK+7h8wsaCzFaB/b/co/qfnvCbCcNHqkLJFtSu0uJLeTbLNl991PX501ghnb13x6lFbslZxJqDSpHR52KHpO0qDiSST/Pe7xwQ/Wh5CZzdw=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from DM5PR12MB2519.namprd12.prod.outlook.com (52.132.141.150) by
  DM5PR12MB2440.namprd12.prod.outlook.com (52.132.142.39) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2686.29; Fri, 7 Feb 2020 15:50:44 +0000
+ 15.20.2686.29; Fri, 7 Feb 2020 15:50:45 +0000
 Received: from DM5PR12MB2519.namprd12.prod.outlook.com
  ([fe80::3506:db14:d616:9f43]) by DM5PR12MB2519.namprd12.prod.outlook.com
  ([fe80::3506:db14:d616:9f43%6]) with mapi id 15.20.2707.024; Fri, 7 Feb 2020
- 15:50:43 +0000
+ 15:50:45 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 03/17] drm/amd/display: Remove unused values from psr struct
-Date: Fri,  7 Feb 2020 10:49:56 -0500
-Message-Id: <20200207155010.1070737-4-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 04/17] drm/amd/display: Pass override OUI in to dc_init_data
+Date: Fri,  7 Feb 2020 10:49:57 -0500
+Message-Id: <20200207155010.1070737-5-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200207155010.1070737-1-Rodrigo.Siqueira@amd.com>
 References: <20200207155010.1070737-1-Rodrigo.Siqueira@amd.com>
@@ -54,19 +54,19 @@ Received: from atma2.amd.com (165.204.55.250) by
  YTOPR0101CA0019.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21 via Frontend
- Transport; Fri, 7 Feb 2020 15:50:42 +0000
+ Transport; Fri, 7 Feb 2020 15:50:43 +0000
 X-Mailer: git-send-email 2.25.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 24a05519-538d-4778-4437-08d7abe57cfd
+X-MS-Office365-Filtering-Correlation-Id: 531de227-8e2c-4c2d-f44d-08d7abe57d54
 X-MS-TrafficTypeDiagnostic: DM5PR12MB2440:|DM5PR12MB2440:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB24406A1552BDF1FAD8CAA0E4981C0@DM5PR12MB2440.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2043;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB24403B37F2B8D5DA7A1D9E5F981C0@DM5PR12MB2440.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2803;
 X-Forefront-PRVS: 0306EE2ED4
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(396003)(39860400002)(136003)(346002)(376002)(199004)(189003)(8676002)(36756003)(2906002)(66556008)(186003)(6916009)(81156014)(81166006)(8936002)(16526019)(66946007)(66476007)(5660300002)(478600001)(6486002)(1076003)(956004)(2616005)(4326008)(7696005)(26005)(54906003)(316002)(6666004)(52116002)(86362001);
+ SFS:(10009020)(4636009)(366004)(396003)(39860400002)(136003)(346002)(376002)(199004)(189003)(8676002)(36756003)(2906002)(66556008)(186003)(6916009)(81156014)(81166006)(8936002)(16526019)(66946007)(66476007)(5660300002)(478600001)(19627235002)(6486002)(1076003)(956004)(2616005)(4326008)(7696005)(26005)(54906003)(316002)(6666004)(52116002)(86362001);
  DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2440;
  H:DM5PR12MB2519.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; MX:1; 
@@ -74,15 +74,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cMPTM9VIhmZ7pdT5AXEmx6MbzNGW7mB7dCDmwBasblYUgZTJx6m/ZYWeCMb6mu9v1lpOYaMESOvF6524RRkmwy5477PVVAIg4pHZsy0k0PPxRTuEUzYhUpZpoWSfBMUQOS+0S0cK3Hg7+r4xOcAUyUmh+r1psQBOldP0/i67bVXEDq7MhSSlgsr7ufgeJ8DE8bPvBDw9wGsZmTlWS0bITiBEo3zlh9B6Xvz9l2PyWKJXHaLVoNbXc7vDvS1fhVZEgXMWvfS76OeEWgLNRDoOD7qC5h6j3/ZFP6nLV9i0le5HOdOZ8A/1JrRa4lxs+PH6M8TrSynXhESD1A8tl5u+YcUt23V5btg80wwzLHhYpQPALiNjGMvVZDxgzPwYnnxSnyt0vJPXXU+6N91DocI3vL1SE8C+3Fdubu5JgHoii2ar4flvbCCviSKUlor+51j9
-X-MS-Exchange-AntiSpam-MessageData: kXFv7dxmBWkl3iQlPnk1pf6uBe23DXwds4GaARPHXPvKtvQhd002GN4w6804JLtwZQPB3Ma0BKEjPo6DxDd9vKo56e4O5PuJDafF9WCBs9WcnTbYqQ+rX9OW6cdStv06cMRIoWnHCCKi5P9E9ylRrA==
+X-Microsoft-Antispam-Message-Info: uMvrYMg9FOKD4WelqCrcskk8In/3C1/MePex3+/s973N8bzg1NQ2FTwLr8I8Ka7brzazC6gOmjsvrqymADvWHCjMgN/XEpOtgVy/kKx1ToqU8XW8AWOGE/d7IsDQy5M4g57yfFCmCyLXsfYI+UtSEEj8tyLHDDfQY9A2tRgfYOmUyMxRAqVCY08iFuqMTc4UE6x0HmOv7FD6LBQzqpoP/NcUKgypmSz6pcLBNnpuCDzOHU53uPKulrM4XObMqRHKy1uGinmpfzL15cgiqtSduv1tvfH8MakkBdFq2hMOyhQ++DayvVvvpRDVu8M1uRMjoVK2RUU+EnWqUFo3bd4Mk8UYyoSenRT9IaN3FVXksASKEGadc0TwD/fVFrmY18vRWxYILwsL9t6zL22Cj0UVrBpoHwyNI8wGN50QY5fPbEbGzIz6pRQc6/6u1iwNFzUN
+X-MS-Exchange-AntiSpam-MessageData: hN5g6GLdMqfPuCjYuUYnA5zzj659eqzU2d5B4ZGC6BhO9fYLRxnC6AAMm2P1KuArU7Mo/Zd4TdKbMU1hQbge1M88xtdujDPBusGt07SBZctCY1sPf4c5iAtVr/K+3HV1Jn1a+LajArM7OOZHBrAMUA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 24a05519-538d-4778-4437-08d7abe57cfd
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2020 15:50:43.1246 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 531de227-8e2c-4c2d-f44d-08d7abe57d54
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2020 15:50:43.7293 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ahQUqXgnWTDQv7NkHSJ39KdO0nywjSJO5POja4RIW3Lq6zTa5uoDX3J2VRisssVmU4qevCUDyG0F/ceqICFq7w==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1S1CyCS6bl+qDU2szlLJ6AM9fpNVTr5X7263XEwjTvtpPjvPSmMDMUBeplodhahDLYgvpmSGXOrb5gyuQOdXKQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2440
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,94 +95,146 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Harry.Wentland@amd.com,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
- Wyatt Wood <wyatt.wood@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Jun Lei <Jun.Lei@amd.com>,
+ Harry.Wentland@amd.com, Calvin Hou <Calvin.Hou@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wyatt Wood <wyatt.wood@amd.com>
+From: Calvin Hou <Calvin.Hou@amd.com>
 
-[Why]
-Taking up unnecessary space.
+[WHY]
+Vendor dongle requires propietary OUI and handshake sequence.
 
-[How]
-Remove unused values from psr struct.
+[HOW]
+Add a new structure to dc_init_data, to allow creator to pass
+an override vendor_oui. This value will be written to DP_SOURCE_OUI
+instead of AMD signature, when dpcd_set_source_specific_data is
+called.
 
-Signed-off-by: Wyatt Wood <wyatt.wood@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Signed-off-by: Calvin Hou <Calvin.Hou@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c   | 13 -------------
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 10 ----------
- 2 files changed, 23 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  2 +-
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 41 +++++++++++--------
+ drivers/gpu/drm/amd/display/dc/dc.h           |  2 +
+ drivers/gpu/drm/amd/display/dc/dc_dp_types.h  | 14 +++++++
+ 4 files changed, 41 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
-index bdf80b09277e..59cdd8ea31fb 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
-@@ -159,10 +159,6 @@ static bool dmub_psr_copy_settings(struct dmub_psr *dmub,
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 40878b86a05d..7513aa71da38 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -701,7 +701,7 @@ static bool dc_construct(struct dc *dc,
+ 		dc_ctx->created_bios = true;
+ 	}
  
- 	copy_settings_data->mpcc_inst				= pipe_ctx->plane_res.mpcc_inst;
+-
++	dc->vendor_signature = init_params->vendor_signature;
  
--	if (pipe_ctx->plane_res.hubp)
--		copy_settings_data->hubp_inst			= pipe_ctx->plane_res.hubp->inst;
--	else
--		copy_settings_data->hubp_inst			= 0;
- 	if (pipe_ctx->plane_res.dpp)
- 		copy_settings_data->dpp_inst			= pipe_ctx->plane_res.dpp->inst;
- 	else
-@@ -178,18 +174,9 @@ static bool dmub_psr_copy_settings(struct dmub_psr *dmub,
+ 	/* Create GPIO service */
+ 	dc_ctx->gpio_service = dal_gpio_service_create(
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index c5b45d17e8cd..3bc05fa93ed5 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -4179,25 +4179,32 @@ void dp_set_fec_enable(struct dc_link *link, bool enable)
  
- 	// Misc
- 	copy_settings_data->psr_level				= psr_context->psr_level.u32all;
--	copy_settings_data->hyst_frames				= psr_context->timehyst_frames;
--	copy_settings_data->hyst_lines				= psr_context->hyst_lines;
--	copy_settings_data->phy_type				= psr_context->phyType;
--	copy_settings_data->aux_repeat				= psr_context->aux_repeats;
- 	copy_settings_data->smu_optimizations_en		= psr_context->allow_smu_optimizations;
--	copy_settings_data->skip_wait_for_pll_lock		= psr_context->skipPsrWaitForPllLock;
- 	copy_settings_data->frame_delay				= psr_context->frame_delay;
--	copy_settings_data->smu_phy_id				= psr_context->smuPhyId;
--	copy_settings_data->num_of_controllers			= psr_context->numberOfControllers;
- 	copy_settings_data->frame_cap_ind			= psr_context->psrFrameCaptureIndicationReq;
--	copy_settings_data->phy_num				= psr_context->frame_delay & 0x7;
--	copy_settings_data->link_rate				= psr_context->frame_delay & 0xF;
+ void dpcd_set_source_specific_data(struct dc_link *link)
+ {
+-	struct dpcd_amd_signature amd_signature;
+ 	const uint32_t post_oui_delay = 30; // 30ms
  
- 	dc_dmub_srv_cmd_queue(dc->dmub_srv, &cmd.psr_copy_settings.header);
- 	dc_dmub_srv_cmd_execute(dc->dmub_srv);
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 8f518e7d8b4e..0cb8967f0c45 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -216,7 +216,6 @@ struct dmub_rb_cmd_dpphy_init {
+-	amd_signature.AMD_IEEE_TxSignature_byte1 = 0x0;
+-	amd_signature.AMD_IEEE_TxSignature_byte2 = 0x0;
+-	amd_signature.AMD_IEEE_TxSignature_byte3 = 0x1A;
+-	amd_signature.device_id_byte1 =
+-			(uint8_t)(link->ctx->asic_id.chip_id);
+-	amd_signature.device_id_byte2 =
+-			(uint8_t)(link->ctx->asic_id.chip_id >> 8);
+-	memset(&amd_signature.zero, 0, 4);
+-	amd_signature.dce_version =
+-			(uint8_t)(link->ctx->dce_version);
+-	amd_signature.dal_version_byte1 = 0x0; // needed? where to get?
+-	amd_signature.dal_version_byte2 = 0x0; // needed? where to get?
+-
+-	core_link_write_dpcd(link, DP_SOURCE_OUI,
+-			(uint8_t *)(&amd_signature),
+-			sizeof(amd_signature));
++	if (!link->dc->vendor_signature.is_valid) {
++		struct dpcd_amd_signature amd_signature;
++		amd_signature.AMD_IEEE_TxSignature_byte1 = 0x0;
++		amd_signature.AMD_IEEE_TxSignature_byte2 = 0x0;
++		amd_signature.AMD_IEEE_TxSignature_byte3 = 0x1A;
++		amd_signature.device_id_byte1 =
++				(uint8_t)(link->ctx->asic_id.chip_id);
++		amd_signature.device_id_byte2 =
++				(uint8_t)(link->ctx->asic_id.chip_id >> 8);
++		memset(&amd_signature.zero, 0, 4);
++		amd_signature.dce_version =
++				(uint8_t)(link->ctx->dce_version);
++		amd_signature.dal_version_byte1 = 0x0; // needed? where to get?
++		amd_signature.dal_version_byte2 = 0x0; // needed? where to get?
++
++		core_link_write_dpcd(link, DP_SOURCE_OUI,
++				(uint8_t *)(&amd_signature),
++				sizeof(amd_signature));
++
++	} else {
++		core_link_write_dpcd(link, DP_SOURCE_OUI,
++				link->dc->vendor_signature.data.raw,
++				sizeof(link->dc->vendor_signature.data.raw));
++	}
  
- struct dmub_cmd_psr_copy_settings_data {
- 	uint16_t psr_level;
--	uint8_t hubp_inst;
- 	uint8_t dpp_inst;
- 	uint8_t mpcc_inst;
- 	uint8_t opp_inst;
-@@ -225,17 +224,8 @@ struct dmub_cmd_psr_copy_settings_data {
- 	uint8_t digbe_inst;
- 	uint8_t dpphy_inst;
- 	uint8_t aux_inst;
--	uint8_t hyst_frames;
--	uint8_t hyst_lines;
--	uint8_t phy_num;
--	uint8_t phy_type;
--	uint8_t aux_repeat;
- 	uint8_t smu_optimizations_en;
--	uint8_t skip_wait_for_pll_lock;
- 	uint8_t frame_delay;
--	uint8_t smu_phy_id;
--	uint8_t num_of_controllers;
--	uint8_t link_rate;
- 	uint8_t frame_cap_ind;
+ 	// Sink may need to configure internals based on vendor, so allow some
+ 	// time before proceeding with possibly vendor specific transactions
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 6e2e5e24daaf..8c88706040a7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -527,6 +527,7 @@ struct dc {
+ 	struct compressor *fbc_compressor;
+ 
+ 	struct dc_debug_data debug_data;
++	struct dpcd_vendor_signature vendor_signature;
+ 
+ 	const char *build_id;
+ 	struct vm_helper *vm_helper;
+@@ -573,6 +574,7 @@ struct dc_init_data {
+ 	 * available in FW
+ 	 */
+ 	const struct gpu_info_soc_bounding_box_v1_0 *soc_bounding_box;
++	struct dpcd_vendor_signature vendor_signature;
  };
  
+ struct dc_callback_init {
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+index f762f35f529d..bb2730e9521e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+@@ -432,6 +432,20 @@ struct dp_sink_hw_fw_revision {
+ 	uint8_t ieee_fw_rev[2];
+ };
+ 
++struct dpcd_vendor_signature {
++	bool is_valid;
++
++	union dpcd_ieee_vendor_signature {
++		struct {
++			uint8_t ieee_oui[3];/*24-bit IEEE OUI*/
++			uint8_t ieee_device_id[6];/*usually 6-byte ASCII name*/
++			uint8_t ieee_hw_rev;
++			uint8_t ieee_fw_rev[2];
++		};
++		uint8_t raw[12];
++	} data;
++};
++
+ struct dpcd_amd_signature {
+ 	uint8_t AMD_IEEE_TxSignature_byte1;
+ 	uint8_t AMD_IEEE_TxSignature_byte2;
 -- 
 2.25.0
 
