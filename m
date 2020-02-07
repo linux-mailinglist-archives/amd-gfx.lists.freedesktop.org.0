@@ -1,48 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1667155B0C
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2020 16:50:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E812B155B0E
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2020 16:50:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C14F6FD03;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C767B6FD07;
 	Fri,  7 Feb 2020 15:50:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com
  (mail-dm6nam10on2070.outbound.protection.outlook.com [40.107.93.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C20636FD03
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD396FD00
  for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 15:50:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SiXqroYxrQtMI/AY5crNHfymI6mI/V6rg/hrf0CwZL5X/8fRADqdIJkkfISUDj9MwCqzt5YJ+95WRtkn9WGMLxN2HhvyeUS/5+WoCf4VJp+ILHAfAJrAR7d7YjUCIyyjZICcqBfjW0UjS9c2mW4WaZB1jZHflaCEHzmwb0iK8rfYo/ZMIzTKeR+7aOWLo1TXo6V4INWGPQPvBl1LiMmBFCyJbClCYEQ7ab6G104dd3eLLWU/KK5DRIk/pipaXeTrOWrf8a6jSUaaq4KcF+1IjUhIhgNcC455DhUq0gwFueBLNeV+IXDQaUj+sNgfRk+i8dCJhoOCNchqyH/xJYla+Q==
+ b=SWcJam0MfnFbjOPbc/0MTzRvCWsksm2QesLy/aG06L0e00gLxC0TuGKkxdHAtgrqqCLS3Rvn7y1gesbYIwBW1U5xpplVZ5Pc7lXeIprvLd3FscyBTYq+xHYMxzMNWtGygSd1UG8S5oewOvomxM2abN8k+UKRrUirXW22muKTZpgUmRD25YjWjwGpqze1SikqdMOaJjpbY06MXlRhAVEzcxfBssy/aPTA7AZ/J2PP+3qUo7LRGbIrkTIqsKuW4IPU/C6dO+1HpgG//SP5DS2RWQREhvDobo0uH7FEQsprBFpriVedubbrw1+oLwhMPOfk2EQ5B8XxjrESosJ7FKWc/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dKfgOrPZKg7SUDRMDibIrzxEqlrwfIpbggpnqCe40aU=;
- b=HMPtztGU5WAsW7ePzufun1WHW0GslasP6oefHCcxOtobPELrU1HkgY9F4671/5Mg0BVjakkUXKRXe004cpnVAKkZ+eijf9wKfZlAtC3i5ikmOS+QWzzGR4M5Fpt6UgwnfZAvrEMDx5haNr1EG0I5uCKi91vqXJo8lmGR+dOC6uh8Cn9xD458Ug1ToMmhmn1nWatf+4DTzul9viuQ0gcOHZiXivca24XVTj9AanPSCdWbLYaqZr32vYh9DKWmME2uPDsYkZ+IoKrOVtpJcDvRjFJCcPc6b3PWTFvUB1dNj4oUpd708Tr+4jBXXTxFsd5NdRHkro8X1za1SYuKEQd0IQ==
+ bh=z0cf+s4sc7qxAqFoq9QKeCAKb5E3sOZEkd/U+Frhlxg=;
+ b=OVUgLTEOm04v+D6hPdEgIlflTK8zTtAVk/do7Aw5V8KZE9Q0RGsAXYPqJfsYW5etph3ZknS/f2JkfDicGGD/F+Y7U3DzIwTlGYCF7fGOmXy4UD7LVs0OOppmwuQNIJ3zgAsDcmc0+NpZKmP+/YYIJVUCdHWHJLlMmNIscRkD8j7MvsKNxxQtMhulQyR/7PMfrzWHeUY4uEst3I8EfndRhpf8AsIp3zgmouwDO5KI9DVFUDIRdIS+DVpwR6FAJZ7p1ru4omGDsyYnBU9PUpObyB8NxeTqB2Wo9O1+j19vP1KGfdFzs4CwR1GhbbfzkMLGEBykOrZCT+bzGMt1t0CncA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dKfgOrPZKg7SUDRMDibIrzxEqlrwfIpbggpnqCe40aU=;
- b=1xJTSXoddxb3He1SVnR+9i8U2GzPUHY1MdOz7gN7Z0fhmwFWl5rlWTh7xOLTN9Jnd7HavFafPDGibQ2c7t+2Yw8d+h57MdLRfLFhDU2jg1PnksDtR8t8OZr0+HMVM3tdV2h8ZK8fHMNTfixp6INh33p9JOBk31z7/FuFfQ1MKuY=
+ bh=z0cf+s4sc7qxAqFoq9QKeCAKb5E3sOZEkd/U+Frhlxg=;
+ b=YP5kQsIJ0GCUKEJLfgnfMWX4WvCPJK3zPdgnL6gZdfxOSAOXxwhn3iHn/CIhlJAyU7DnIHjLasBxnrC/NvTTFO1VpmnFkznKJjQcPXt2At6/ICMGoB8NxAVLt9VHyFS2ac17RjmJEODCY26nfcosi1BFXvkLqhzKpif+3SIG5K4=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from DM5PR12MB2519.namprd12.prod.outlook.com (52.132.141.150) by
  DM5PR12MB2440.namprd12.prod.outlook.com (52.132.142.39) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2686.29; Fri, 7 Feb 2020 15:50:42 +0000
+ 15.20.2686.29; Fri, 7 Feb 2020 15:50:43 +0000
 Received: from DM5PR12MB2519.namprd12.prod.outlook.com
  ([fe80::3506:db14:d616:9f43]) by DM5PR12MB2519.namprd12.prod.outlook.com
  ([fe80::3506:db14:d616:9f43%6]) with mapi id 15.20.2707.024; Fri, 7 Feb 2020
- 15:50:41 +0000
+ 15:50:43 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 01/17] drm/amd/display: always apply T7/T9 delay logic
-Date: Fri,  7 Feb 2020 10:49:54 -0500
-Message-Id: <20200207155010.1070737-2-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 02/17] drm/amd/display: Don't treat missing command table as
+ failure
+Date: Fri,  7 Feb 2020 10:49:55 -0500
+Message-Id: <20200207155010.1070737-3-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200207155010.1070737-1-Rodrigo.Siqueira@amd.com>
 References: <20200207155010.1070737-1-Rodrigo.Siqueira@amd.com>
@@ -54,16 +55,16 @@ Received: from atma2.amd.com (165.204.55.250) by
  YTOPR0101CA0019.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21 via Frontend
- Transport; Fri, 7 Feb 2020 15:50:41 +0000
+ Transport; Fri, 7 Feb 2020 15:50:42 +0000
 X-Mailer: git-send-email 2.25.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2171ec56-e73d-465c-c239-08d7abe57c42
+X-MS-Office365-Filtering-Correlation-Id: e78a921c-c9cb-4d30-838c-08d7abe57c9b
 X-MS-TrafficTypeDiagnostic: DM5PR12MB2440:|DM5PR12MB2440:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB24401178AFFB9689D3797F94981C0@DM5PR12MB2440.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB2440EA4E10E3B6E51AB6ACAD981C0@DM5PR12MB2440.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
 X-Forefront-PRVS: 0306EE2ED4
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(366004)(396003)(39860400002)(136003)(346002)(376002)(199004)(189003)(8676002)(36756003)(2906002)(66556008)(186003)(6916009)(81156014)(81166006)(8936002)(16526019)(66946007)(66476007)(5660300002)(478600001)(6486002)(1076003)(956004)(2616005)(4326008)(7696005)(26005)(54906003)(316002)(6666004)(52116002)(86362001);
@@ -74,15 +75,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 15gMXnsU+sQVK3l7lU//dKGuxFWUJgkiqoBGVpiTO2uYVoi9wWSrccvSH5Hd7lIf/CAq2jAfIvYqfEsqC15qTcHFupwrbQsya7MXPGLpbR/AVm+y1ya3//MLvWZsNpg/M1jfkCAxKtPZxys76mnlIPYqmwCC5b5s9Bf6pa2zgK1HMmwHqPPa45+JmEBNQKYbEhSwUkRX35YRjoNPa+HsHdh9DBQFqx2l30zakKdpCSP0PNcU4i92wCfbEyKi+VpO2wjgiN8FNkbCtg4EIjOCZ0Vs3N74yFE4DJnhqu2ihXmFFy9n8FQIpr0cFddBwnFVB0IdoZaLDKYVFl4Z4faY0gC4b3xdupCU75dJHNlRsGh5x5xduNMELH3m9mUTCxd1sHtBDnT61XTSR95vHF6iL1Xz7Cn4nBSPOdGqc18b7EsqwFEXKFlw5nmtyyK+66t0
-X-MS-Exchange-AntiSpam-MessageData: uLGtoGnFlIz8f9piPpjZTwd8vmM328VZOLUwtAVBrQNbZJuVN2Zu4XfDZdF4Jqgq3sfGIBTrCzopY7lzFyRPCbMVGzSIoSAw5a2nYBsS+j7EUWKIWPDsPuRAx4U4byi4ghjd+aHFgP4ks3h2EH1+oQ==
+X-Microsoft-Antispam-Message-Info: w+Q2+bv2JLM9GgjEp7VWkTQxYGHKepBtS8AccaCPK50Kkdsv+24kpfOLqeSV1RG/+05zFa1r7W+Yh10Zr8/OKSLGWCmk6Us69MdyZMfYYKL0cgj+CLzBgxd/g0554FaR0BcJJlsM+t1p7UrY4K9Pbe9uLPmRzidKMfL772cAL0Z42H6TNGqhov3WrKVCZsXKGeMcuA5epgS7g/hlaS4tCQozuZSKCGsn1Kr0Kka0jIewFxFxbQKtqj3vqEuwZVLg7nibPcu+l80DJUpRjz8ioz4WQXJptyV+uulNfs6CTGUkl+gkvN0Xs6poQCMLwwQ+UDVgfWcT4hzXaYqBy/jYAH715VYfYi+7c4jYg2Xql6W+yr43QnEMMmf+tTOlxTLhnA1jzPRQ5tNFIqfYdwR4JdNqFePqc4bFpwCEgztWsMtSF/8qk/7AeRqGTOZjPBsx
+X-MS-Exchange-AntiSpam-MessageData: bSTiBvZDKkUKIGn8ZleG9YUu2oRXFJJznYp1AYnF2cgEV0fqU35JYpYvIrXJA3L17T7bSAQWaMjr7rr31Vw+8kN28OmEPCXh/aWClRoZshX1IQzp5zBozJHI99raUz6hOjJYOYxhE3aadVrKJ912EQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2171ec56-e73d-465c-c239-08d7abe57c42
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2020 15:50:41.8973 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e78a921c-c9cb-4d30-838c-08d7abe57c9b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2020 15:50:42.5329 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KGa6PIsO1NPTgymVFA9gfrdzDdtevk0BmKVGiMX609xcG+g/OW4cWJP4RwiotfpRyZroOdDTIBIyDsKpY23bXQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6P4Ued+/qC2wAt5l2Tvc69d4xvtqd2b9G8H9k3jbqTOB3pNQn8U+yLqrJLaCnVEbjkrTcT27ZmRh6aeN4OSSHg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2440
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,104 +96,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Harry.Wentland@amd.com,
- Anthony Koo <Anthony.Koo@amd.com>, Martin Leung <martin.leung@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
+ Chris Park <Chris.Park@amd.com>, Harry.Wentland@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Martin Leung <martin.leung@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-[why]
-before we exit early in edp_reciever_ready if we detect that panel
-is not edp or below rev 1.2. This will skip the backlight/t7 delay panel
-patch.
+[Why]
+With the fallback case in place for command table offloading via DMCUB
+it's no longer an error for the command table to be missing specific
+entries.
 
-[how]
-edit logic to ensure panel patch is applied regardless of edp rev.
+[How]
+Drop the BREAK_TO_DEBUGGER();
 
-Signed-off-by: Martin Leung <martin.leung@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Chris Park <Chris.Park@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../drm/amd/display/dc/core/dc_link_hwss.c    | 56 ++++++++++---------
- 1 file changed, 29 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/amd/display/dc/bios/command_table2.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
-index ddb855045767..58634f191a55 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
-@@ -153,18 +153,19 @@ bool edp_receiver_ready_T9(struct dc_link *link)
- 	unsigned char edpRev = 0;
- 	enum dc_status result = DC_OK;
- 	result = core_link_read_dpcd(link, DP_EDP_DPCD_REV, &edpRev, sizeof(edpRev));
--	if (edpRev < DP_EDP_12)
--		return true;
--	/* start from eDP version 1.2, SINK_STAUS indicate the sink is ready.*/
--	do {
--		sinkstatus = 1;
--		result = core_link_read_dpcd(link, DP_SINK_STATUS, &sinkstatus, sizeof(sinkstatus));
--		if (sinkstatus == 0)
--			break;
--		if (result != DC_OK)
--			break;
--		udelay(100); //MAx T9
--	} while (++tries < 50);
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/command_table2.c b/drivers/gpu/drm/amd/display/dc/bios/command_table2.c
+index 629a07a2719b..c38f75a56129 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/command_table2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/command_table2.c
+@@ -221,8 +221,8 @@ static void init_transmitter_control(struct bios_parser *bp)
+ 	uint8_t frev;
+ 	uint8_t crev;
+ 
+-	if (BIOS_CMD_TABLE_REVISION(dig1transmittercontrol, frev, crev) == false)
+-		BREAK_TO_DEBUGGER();
++	BIOS_CMD_TABLE_REVISION(dig1transmittercontrol, frev, crev);
 +
-+     /* start from eDP version 1.2, SINK_STAUS indicate the sink is ready.*/
-+	if (result == DC_OK && edpRev >= DP_EDP_12) {
-+		do {
-+			sinkstatus = 1;
-+			result = core_link_read_dpcd(link, DP_SINK_STATUS, &sinkstatus, sizeof(sinkstatus));
-+			if (sinkstatus == 0)
-+				break;
-+			if (result != DC_OK)
-+				break;
-+			udelay(100); //MAx T9
-+		} while (++tries < 50);
-+	}
- 
- 	if (link->local_sink->edid_caps.panel_patch.extra_delay_backlight_off > 0)
- 		udelay(link->local_sink->edid_caps.panel_patch.extra_delay_backlight_off * 1000);
-@@ -183,21 +184,22 @@ bool edp_receiver_ready_T7(struct dc_link *link)
- 	unsigned long long time_taken_in_ns = 0;
- 
- 	result = core_link_read_dpcd(link, DP_EDP_DPCD_REV, &edpRev, sizeof(edpRev));
--	if (result == DC_OK && edpRev < DP_EDP_12)
--		return true;
--	/* start from eDP version 1.2, SINK_STAUS indicate the sink is ready.*/
--	enter_timestamp = dm_get_timestamp(link->ctx);
--	do {
--		sinkstatus = 0;
--		result = core_link_read_dpcd(link, DP_SINK_STATUS, &sinkstatus, sizeof(sinkstatus));
--		if (sinkstatus == 1)
--			break;
--		if (result != DC_OK)
--			break;
--		udelay(25);
--		finish_timestamp = dm_get_timestamp(link->ctx);
--		time_taken_in_ns = dm_get_elapse_time_in_ns(link->ctx, finish_timestamp, enter_timestamp);
--	} while (time_taken_in_ns < 50 * 1000000); //MAx T7 is 50ms
-+
-+	if (result == DC_OK && edpRev >= DP_EDP_12) {
-+		/* start from eDP version 1.2, SINK_STAUS indicate the sink is ready.*/
-+		enter_timestamp = dm_get_timestamp(link->ctx);
-+		do {
-+			sinkstatus = 0;
-+			result = core_link_read_dpcd(link, DP_SINK_STATUS, &sinkstatus, sizeof(sinkstatus));
-+			if (sinkstatus == 1)
-+				break;
-+			if (result != DC_OK)
-+				break;
-+			udelay(25);
-+			finish_timestamp = dm_get_timestamp(link->ctx);
-+			time_taken_in_ns = dm_get_elapse_time_in_ns(link->ctx, finish_timestamp, enter_timestamp);
-+		} while (time_taken_in_ns < 50 * 1000000); //MAx T7 is 50ms
-+	}
- 
- 	if (link->local_sink->edid_caps.panel_patch.extra_t7_ms > 0)
- 		udelay(link->local_sink->edid_caps.panel_patch.extra_t7_ms * 1000);
+ 	switch (crev) {
+ 	case 6:
+ 		bp->cmd_tbl.transmitter_control = transmitter_control_v1_6;
 -- 
 2.25.0
 
