@@ -1,59 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC67715D2FA
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Feb 2020 08:39:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4BB115D3B6
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Feb 2020 09:25:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 579586E463;
-	Fri, 14 Feb 2020 07:39:40 +0000 (UTC)
-X-Original-To: amd-gfx@lists.freedesktop.org
-Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF2486E462
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 07:39:38 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id y11so9713681wrt.6
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 23:39:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=gwEXGayWNjSUDwj4aJkTLljk4bGT0CReLTVZDc39sU0=;
- b=Xq/pG5yyeEeBlDKdZXWTpZm8VEBGTgxYCdZ0teJEdSa+sexS8LAIinohzMT9BQ+PYe
- MT6CMno/oGY5ounDL+2VbMpPq9hyR6lHROVtnMpZuE6cXry0wCzBdYd12qVVXwcH+FhM
- Un1dpnGmyi28nSDZ1G+9gv/5vXXRdDCsO1a40=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=gwEXGayWNjSUDwj4aJkTLljk4bGT0CReLTVZDc39sU0=;
- b=lYkrEpsN+JsBBLaWyi6Xo81dbdVwCB1hw7UqiCxggP/U+b0f+STxiPSlf+Yv/itgpi
- EJ8WkxoykIN0WWsJZ9uU4wioIivfziNLG3tYZS64IxJnd2DqSspwTXLbcOIeOR7oVbMa
- R2XzXteow4mzwMaqG9M8CF1soqWCLcF35P2LUJSUUy++IxnsvM1ldn4Z8X5ZoGWs07zm
- 54Am6F1lA27eoFnhwnGfvj94wWOesL3spDJXJAXpfBNu1Obczs8osikMgmBwokdyHwRE
- uYstIc1vFJ87VulwgQCvtv6hcfsqBwYnbcZcot1fYWhJ1nFGGiKlPjmifsVE/7UFJy7P
- AUwg==
-X-Gm-Message-State: APjAAAWofmnu5vJio6o8ZLZBFRJrQZzrnHS66Oh/NqPXVOyZV9409yig
- r1K1CtuRc4oGS94RLe/U4F81Yw==
-X-Google-Smtp-Source: APXvYqwcG8o8u+cGRJxharaUuoXuRJfBSDoC9kR2L00dkWuuhKJ3mN4MBN9VolZV6wjcMWeZVtIMEw==
-X-Received: by 2002:a05:6000:1112:: with SMTP id
- z18mr2343126wrw.140.1581665977001; 
- Thu, 13 Feb 2020 23:39:37 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id e1sm6052742wrt.84.2020.02.13.23.39.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 13 Feb 2020 23:39:36 -0800 (PST)
-Date: Fri, 14 Feb 2020 08:39:34 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH 13/15] drm/amdgpu/display: split dp connector
- registration (v3)
-Message-ID: <20200214073934.GV2363188@phenom.ffwll.local>
-References: <20200207211713.3870-1-alexander.deucher@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B124B6E0A2;
+	Fri, 14 Feb 2020 08:25:21 +0000 (UTC)
+X-Original-To: amd-gfx@freedesktop.org
+Delivered-To: amd-gfx@freedesktop.org
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2073.outbound.protection.outlook.com [40.107.94.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2A616E0A2
+ for <amd-gfx@freedesktop.org>; Fri, 14 Feb 2020 08:25:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LPm3CJEE5vYNjIcCrwp5F+d5fcvVXx1U2MQx+B3StI0nP67r9fRY0ETKIy/vxPdJsSbRKW4szPfmLurB+JfwsTFn66iwGuyMD6P2Mcue6we1zH4Le+30vd4tzM3gmTiyoBRIAG907JVMF/CIIhlm9vurJDgn4DpkVv68YteHCcQqd9IM4SxA7S62V14/u9ajzVySF/xjyqLU/2mUAAa6mPJzfBiJhrx+SUgdQhuFb0HMONgXrnGBZ1qgN/CpOhFaXClddav3WQNsydgJISszUgLoY+NWKSJykdvUDXbXEyiA35TfDaBGSX+0lk26QqY++aLoJ5NSdPZMwhdSh/8QMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UiHm6ts5PuYWPASQq5ItPGJHIegAeQRLu8aRWoX/ZVc=;
+ b=EnONKCYmZ43M25ASZVDsGOZddi3wcayWVJAJRoIHGmDYxK/1JtCcIsImpp32LzhRUURtz45s+ZWdfirAoHIFYSgVk004LKkH/iZCoTMZp0mrGgV8LA3cWQVs08cXXvHGelwUTWWIvQ5WVKD+mlZSby3EcPAE+cYJtjVRBFJBZd0MibN1PmsXTqhfGW/IUwaIFPtfzO1+OVqm2JDUd539ROU8QqrTB3OzyRtUKwd3+eGqIPRzcUT8T1KxsKIHG/WIEaRqP2ACSMJjMqNjr6t7L05YGl6yaL4ObUKqQzUOEL8c1fmXOyzH96fO+NovNG4Hphm2j8wpYadAY9QrJ4JA+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=freedesktop.org smtp.mailfrom=amd.com;
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UiHm6ts5PuYWPASQq5ItPGJHIegAeQRLu8aRWoX/ZVc=;
+ b=bVGXE6d63kTYYHr4ZgKf2dDeS0PfZAKj/42v3DtIoOC81oZh68UynEsU8hc0UyrV8C0Sm+5TPWZw9i3Bamy4iHqtw0XdRY3Gqqsirx59vSH+omu2kopSvlBLNxpO28WbZMC3TFhmoUuHsjj+6WrQ0+zejIY+w5CVyGFcrbgpqOs=
+Received: from CH2PR12CA0019.namprd12.prod.outlook.com (2603:10b6:610:57::29)
+ by MWHPR12MB1198.namprd12.prod.outlook.com (2603:10b6:300:d::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2729.22; Fri, 14 Feb
+ 2020 08:25:14 +0000
+Received: from BN8NAM11FT027.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eae::209) by CH2PR12CA0019.outlook.office365.com
+ (2603:10b6:610:57::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2729.25 via Frontend
+ Transport; Fri, 14 Feb 2020 08:25:14 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; freedesktop.org; dkim=none (message not signed)
+ header.d=none;freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ BN8NAM11FT027.mail.protection.outlook.com (10.13.177.96) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2729.22 via Frontend Transport; Fri, 14 Feb 2020 08:25:14 +0000
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 14 Feb
+ 2020 02:25:13 -0600
+Received: from monk-build.amd.com (10.180.168.240) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Fri, 14 Feb 2020 02:25:12 -0600
+From: Monk Liu <Monk.Liu@amd.com>
+To: <amd-gfx@freedesktop.org>
+Subject: [PATCH] avoid to use NULL pointer
+Date: Fri, 14 Feb 2020 16:25:02 +0800
+Message-ID: <1581668702-7121-1-git-send-email-Monk.Liu@amd.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200207211713.3870-1-alexander.deucher@amd.com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(136003)(396003)(346002)(376002)(428003)(199004)(189003)(316002)(6916009)(2616005)(2906002)(4744005)(7696005)(426003)(8676002)(86362001)(81156014)(81166006)(8936002)(336012)(5660300002)(70206006)(70586007)(186003)(4326008)(6666004)(356004)(36756003)(478600001)(26005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1198; H:SATLEXMB01.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9326f846-2900-4e63-b814-08d7b1276a4a
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1198:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB11987AA2004C5C22BA119CE484150@MWHPR12MB1198.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
+X-Forefront-PRVS: 03137AC81E
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PkgAkNSHAZ9OMop6QMNVrr5DnPnfBMUnsz+cvcrOyL1ZxOzkmZXzRzYYGa52pb1BDZUDzbJLrjozqenFQ/G++ATYCojxJWz0UIbzbyfXzPQsgZTGgkAnD0CmmvJVR5leXDm2QQEeP2ItRVscujk/Ni10Ua7DHhzdwm9K4ztoYr9mY/TDzcp70ajCRbPwQPW/hiRsH13mDwp1Kcl7BOk9kNmOtLJoTsgCYhUVXWLTdMZkixqvoDdV0nxAm2m8wNjUOY8Q+j2kJhCjxv91cS1kPPfdaaK+a+w2GzkpfT0RjFI0Tnz07qgDzPJ6UN/0ffJ65R6oPOC4EsMrq8uHIY4UYMH/4vhvrRJXscQgNJWBasrkTCv7mtAKCDEXDAWsyN2VYoXAlpJaPHOa6oyGoeKwcUyE5GatL72WzgRzsdm+rUa1bueywKpHJoodoM05fN5A
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2020 08:25:14.0916 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9326f846-2900-4e63-b814-08d7b1276a4a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1198
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,144 +98,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+Cc: Monk Liu <Monk.Liu@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 07, 2020 at 04:17:13PM -0500, Alex Deucher wrote:
-> Split into init and register functions to avoid a segfault
-> in some configs when the load/unload callbacks are removed.
-> 
-> v2:
-> - add back accidently dropped has_aux setting
-> - set dev in late_register
-> 
-> v3:
-> - fix dp cec ordering
+Signed-off-by: Monk Liu <Monk.Liu@amd.com>
+---
+ src/lib/umr_read_pm4_stream.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Why did you move this back out of the late_register callback when going
-from v2->v3? In i915 we register the cec stuff from ->late_register, like
-anything else userspace visible. Maybe follow-up patch (the idea behind
-removing the ->load callback is to close all the driver load races,
-instead of only open("/dev/dri/0"), which is protected by
-drm_global_mutex). On this:
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-Cheers, Daniel
-
-> 
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c   | 16 ++++++++++++++++
->  drivers/gpu/drm/amd/amdgpu/atombios_dp.c         | 10 ++--------
->  .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c  |  7 ++++++-
->  3 files changed, 24 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> index ec1501e3a63a..f355d9a752d2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> @@ -1461,6 +1461,20 @@ static enum drm_mode_status amdgpu_connector_dp_mode_valid(struct drm_connector
->  	return MODE_OK;
->  }
->  
-> +static int
-> +amdgpu_connector_late_register(struct drm_connector *connector)
-> +{
-> +	struct amdgpu_connector *amdgpu_connector = to_amdgpu_connector(connector);
-> +	int r = 0;
-> +
-> +	if (amdgpu_connector->ddc_bus->has_aux) {
-> +		amdgpu_connector->ddc_bus->aux.dev = amdgpu_connector->base.kdev;
-> +		r = drm_dp_aux_register(&amdgpu_connector->ddc_bus->aux);
-> +	}
-> +
-> +	return r;
-> +}
-> +
->  static const struct drm_connector_helper_funcs amdgpu_connector_dp_helper_funcs = {
->  	.get_modes = amdgpu_connector_dp_get_modes,
->  	.mode_valid = amdgpu_connector_dp_mode_valid,
-> @@ -1475,6 +1489,7 @@ static const struct drm_connector_funcs amdgpu_connector_dp_funcs = {
->  	.early_unregister = amdgpu_connector_unregister,
->  	.destroy = amdgpu_connector_destroy,
->  	.force = amdgpu_connector_dvi_force,
-> +	.late_register = amdgpu_connector_late_register,
->  };
->  
->  static const struct drm_connector_funcs amdgpu_connector_edp_funcs = {
-> @@ -1485,6 +1500,7 @@ static const struct drm_connector_funcs amdgpu_connector_edp_funcs = {
->  	.early_unregister = amdgpu_connector_unregister,
->  	.destroy = amdgpu_connector_destroy,
->  	.force = amdgpu_connector_dvi_force,
-> +	.late_register = amdgpu_connector_late_register,
->  };
->  
->  void
-> diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_dp.c b/drivers/gpu/drm/amd/amdgpu/atombios_dp.c
-> index ea702a64f807..9b74cfdba7b8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/atombios_dp.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/atombios_dp.c
-> @@ -186,16 +186,10 @@ amdgpu_atombios_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_msg *m
->  
->  void amdgpu_atombios_dp_aux_init(struct amdgpu_connector *amdgpu_connector)
->  {
-> -	int ret;
-> -
->  	amdgpu_connector->ddc_bus->rec.hpd = amdgpu_connector->hpd.hpd;
-> -	amdgpu_connector->ddc_bus->aux.dev = amdgpu_connector->base.kdev;
->  	amdgpu_connector->ddc_bus->aux.transfer = amdgpu_atombios_dp_aux_transfer;
-> -	ret = drm_dp_aux_register(&amdgpu_connector->ddc_bus->aux);
-> -	if (!ret)
-> -		amdgpu_connector->ddc_bus->has_aux = true;
-> -
-> -	WARN(ret, "drm_dp_aux_register_i2c_bus() failed with error %d\n", ret);
-> +	drm_dp_aux_init(&amdgpu_connector->ddc_bus->aux);
-> +	amdgpu_connector->ddc_bus->has_aux = true;
->  }
->  
->  /***** general DP utility functions *****/
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index 3959c942c88b..d5b9e72f2649 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -155,6 +155,11 @@ amdgpu_dm_mst_connector_late_register(struct drm_connector *connector)
->  	struct amdgpu_dm_connector *amdgpu_dm_connector =
->  		to_amdgpu_dm_connector(connector);
->  	struct drm_dp_mst_port *port = amdgpu_dm_connector->port;
-> +	int r;
-> +
-> +	r = drm_dp_aux_register(&amdgpu_dm_connector->dm_dp_aux.aux);
-> +	if (r)
-> +		return r;
->  
->  #if defined(CONFIG_DEBUG_FS)
->  	connector_debugfs_init(amdgpu_dm_connector);
-> @@ -484,7 +489,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
->  	aconnector->dm_dp_aux.aux.transfer = dm_dp_aux_transfer;
->  	aconnector->dm_dp_aux.ddc_service = aconnector->dc_link->ddc;
->  
-> -	drm_dp_aux_register(&aconnector->dm_dp_aux.aux);
-> +	drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
->  	drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
->  				      &aconnector->base);
->  
-> -- 
-> 2.24.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
+diff --git a/src/lib/umr_read_pm4_stream.c b/src/lib/umr_read_pm4_stream.c
+index 60bea49..317b638 100644
+--- a/src/lib/umr_read_pm4_stream.c
++++ b/src/lib/umr_read_pm4_stream.c
+@@ -325,6 +325,9 @@ int umr_pm4_decode_ring_is_halted(struct umr_asic *asic, char *ringname)
+ 	// since the kernel returned values might be unwrapped.
+ 	for (n = 0; n < 100; n++) {
+ 		ringdata = umr_read_ring_data(asic, ringname, &ringsize);
++		if (!ringdata)
++			return 1;
++
+ 		ringsize /= 4;
+ 		ringdata[0] %= ringsize;
+ 		ringdata[1] %= ringsize;
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.7.4
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
