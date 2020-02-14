@@ -1,37 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C4CE15E03A
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Feb 2020 17:13:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 957CF15E041
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Feb 2020 17:13:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D1AD6E836;
-	Fri, 14 Feb 2020 16:13:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72C096FAA4;
+	Fri, 14 Feb 2020 16:13:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47F476FA93;
- Fri, 14 Feb 2020 16:13:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 766626FA9C;
+ Fri, 14 Feb 2020 16:13:13 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 4056824696;
- Fri, 14 Feb 2020 16:13:06 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 58C9B24696;
+ Fri, 14 Feb 2020 16:13:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1581696787;
- bh=iAqYGLyVkYUetROcmctoKKpzGBAgC5kjLQhn2Fx+Tlo=;
+ s=default; t=1581696793;
+ bh=7lG+dWiKK0SAsQ/9MpxIx6tL6YFcunMBoZY+JdjCtaE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=EIiaB14iCWs7YjCrRnh9oGBjuuZB/EOeYf5ysKTaKXWpr1jVZAw58eTk5FizJrNDV
- WTfrAdg6HSX+XrQggU+Hr+N18/S/EEp34x1s1lDn7MdI7k30Yc/Mi46Dcv67cLIvIh
- FVyXhtZONPPwjy73H5bPKyRkFp32R3bJm+LOdnMQ=
+ b=sLj5lC2bBEhx+yRPj+kyw2IblsZM/7reWF1u8OlMogSgZqiuUfHKHUqn24+NWbzae
+ PwBmPIjdzylv1/e/JeJUBTmzO8S38QnNDIcrgXrLAFJuvBzRdkwFrHjZTMgA310gfx
+ CYPTe439sl/6qKdczjokXYAM724GvtrpD/QIhroM=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 062/252] drm/amd/powerplay: remove set but not
- used variable 'us_mvdd'
-Date: Fri, 14 Feb 2020 11:08:37 -0500
-Message-Id: <20200214161147.15842-62-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 067/252] drm/amd/display: remove set but not used
+ variable 'bp' in bios_parser2.c
+Date: Fri, 14 Feb 2020 11:08:42 -0500
+Message-Id: <20200214161147.15842-67-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214161147.15842-1-sashal@kernel.org>
 References: <20200214161147.15842-1-sashal@kernel.org>
@@ -49,47 +49,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, yu kuai <yukuai3@huawei.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Sasha Levin <sashal@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Sasha Levin <sashal@kernel.org>, amd-gfx@lists.freedesktop.org,
+ zhengbin <zhengbin13@huawei.com>, Hulk Robot <hulkci@huawei.com>,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogeXUga3VhaSA8eXVrdWFpM0BodWF3ZWkuY29tPgoKWyBVcHN0cmVhbSBjb21taXQgNDcy
-YjM2YTJhYjY3ODgwZTg5ZDZiMGNkMGUyNDM4MzBlOGNiNzVlMSBdCgpGaXhlcyBnY2MgJy1XdW51
-c2VkLWJ1dC1zZXQtdmFyaWFibGUnIHdhcm5pbmc6Cgpkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2Vy
-cGxheS9zbXVtZ3IvdmVnYW1fc211bWdyLmM6IEluCmZ1bmN0aW9uIOKAmHZlZ2FtX3BvcHVsYXRl
-X3NtY19hY3BpX2xldmVs4oCZOgpkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9zbXVtZ3Iv
-dmVnYW1fc211bWdyLmM6MTExNzoxMToKd2FybmluZzogdmFyaWFibGUgJ3VzX212ZGQnIHNldCBi
-dXQgbm90IHVzZWQgWy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGVdCgpJdCBpcyBuZXZlciB1c2Vk
-LCBzbyBjYW4gYmUgcmVtb3ZlZC4KCkZpeGVzOiBhYzc4MjJiMDAyNmYgKCJkcm0vYW1kL3Bvd2Vy
-cGxheTogYWRkIHNtdW1nciBzdXBwb3J0IGZvciBWRUdBTSAodjIpIikKU2lnbmVkLW9mZi1ieTog
-eXUga3VhaSA8eXVrdWFpM0BodWF3ZWkuY29tPgpTaWduZWQtb2ZmLWJ5OiBBbGV4IERldWNoZXIg
-PGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+ClNpZ25lZC1vZmYtYnk6IFNhc2hhIExldmluIDxz
-YXNoYWxAa2VybmVsLm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9zbXVt
-Z3IvdmVnYW1fc211bWdyLmMgfCAxMiAtLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMiBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9z
-bXVtZ3IvdmVnYW1fc211bWdyLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9zbXVt
-Z3IvdmVnYW1fc211bWdyLmMKaW5kZXggNTkxMTNmZGQxYzFjMS4uNGNkZTg3YTNmMjM4OCAxMDA2
-NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211bWdyL3ZlZ2FtX3NtdW1n
-ci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L3NtdW1nci92ZWdhbV9zbXVt
-Z3IuYwpAQCAtMTExNCw3ICsxMTE0LDYgQEAgc3RhdGljIGludCB2ZWdhbV9wb3B1bGF0ZV9zbWNf
-YWNwaV9sZXZlbChzdHJ1Y3QgcHBfaHdtZ3IgKmh3bWdyLAogCQkJKHN0cnVjdCBwaG1fcHB0X3Yx
-X2luZm9ybWF0aW9uICopKGh3bWdyLT5wcHRhYmxlKTsKIAlTTUlPX1BhdHRlcm4gdm9sX2xldmVs
-OwogCXVpbnQzMl90IG12ZGQ7Ci0JdWludDE2X3QgdXNfbXZkZDsKIAogCXRhYmxlLT5BQ1BJTGV2
-ZWwuRmxhZ3MgJj0gflBQU01DX1NXU1RBVEVfRkxBR19EQzsKIApAQCAtMTE2OCwxNyArMTE2Nyw2
-IEBAIHN0YXRpYyBpbnQgdmVnYW1fcG9wdWxhdGVfc21jX2FjcGlfbGV2ZWwoc3RydWN0IHBwX2h3
-bWdyICpod21nciwKIAkJCSJpbiBDbG9jayBEZXBlbmRlbmN5IFRhYmxlIiwKIAkJCSk7CiAKLQl1
-c19tdmRkID0gMDsKLQlpZiAoKFNNVTdfVk9MVEFHRV9DT05UUk9MX05PTkUgPT0gZGF0YS0+bXZk
-ZF9jb250cm9sKSB8fAotCQkJKGRhdGEtPm1jbGtfZHBtX2tleV9kaXNhYmxlZCkpCi0JCXVzX212
-ZGQgPSBkYXRhLT52Ymlvc19ib290X3N0YXRlLm12ZGRfYm9vdHVwX3ZhbHVlOwotCWVsc2Ugewot
-CQlpZiAoIXZlZ2FtX3BvcHVsYXRlX212ZGRfdmFsdWUoaHdtZ3IsCi0JCQkJZGF0YS0+ZHBtX3Rh
-YmxlLm1jbGtfdGFibGUuZHBtX2xldmVsc1swXS52YWx1ZSwKLQkJCQkmdm9sX2xldmVsKSkKLQkJ
-CXVzX212ZGQgPSB2b2xfbGV2ZWwuVm9sdGFnZTsKLQl9Ci0KIAlpZiAoIXZlZ2FtX3BvcHVsYXRl
-X212ZGRfdmFsdWUoaHdtZ3IsIDAsICZ2b2xfbGV2ZWwpKQogCQl0YWJsZS0+TWVtb3J5QUNQSUxl
-dmVsLk1pbk12ZGQgPSBQUF9IT1NUX1RPX1NNQ19VTCh2b2xfbGV2ZWwuVm9sdGFnZSk7CiAJZWxz
-ZQotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+From: zhengbin <zhengbin13@huawei.com>
+
+[ Upstream commit 589d8d282ebe1eab2dd8b1fba3e60322787a50e6 ]
+
+Fixes gcc '-Wunused-but-set-variable' warning:
+
+drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c: In function bios_get_board_layout_info:
+drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c:1826:22: warning: variable bp set but not used [-Wunused-but-set-variable]
+
+It is introduced by commit 1eeedbcc20d6 ("drm/amd/display:
+get board layout for edid emulation"), but never used,
+so remove it.
+
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: zhengbin <zhengbin13@huawei.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index eab007e1793c2..9ee6814e80c7c 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -2029,7 +2029,6 @@ static enum bp_result bios_get_board_layout_info(
+ 	struct board_layout_info *board_layout_info)
+ {
+ 	unsigned int i;
+-	struct bios_parser *bp;
+ 	enum bp_result record_result;
+ 
+ 	const unsigned int slot_index_to_vbios_id[MAX_BOARD_SLOTS] = {
+@@ -2038,7 +2037,6 @@ static enum bp_result bios_get_board_layout_info(
+ 		0, 0
+ 	};
+ 
+-	bp = BP_FROM_DCB(dcb);
+ 	if (board_layout_info == NULL) {
+ 		DC_LOG_DETECTION_EDID_PARSER("Invalid board_layout_info\n");
+ 		return BP_RESULT_BADINPUT;
+-- 
+2.20.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
