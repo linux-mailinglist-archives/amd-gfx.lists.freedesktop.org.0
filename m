@@ -1,59 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46DA0162838
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2020 15:32:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B542162841
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2020 15:35:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE02D6E2ED;
-	Tue, 18 Feb 2020 14:32:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E53A66EA1D;
+	Tue, 18 Feb 2020 14:35:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
- [IPv6:2607:f8b0:4864:20::741])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 890CE6EA19
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 14:32:53 +0000 (UTC)
-Received: by mail-qk1-x741.google.com with SMTP id p7so19648093qkh.10
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 06:32:53 -0800 (PST)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A05306EA19
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 14:35:07 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id w12so24222959wrt.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 06:35:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=lU9BQza05SAHzt7rYIFV8/IOsiLSzx+0FaKRMYIbZGY=;
- b=Ct+Sbc01hi9Utdh4Id/kPi8AjPP0m/VHIuwBeahtKe9Yn6+/t6LW+d0UNKpQVPqIYJ
- lvnUuKgbNHZFnR0ReH7hIlkK1etNCkyMFlpdRKrSjXpkX40cirBmSx5g+OoiJR8/BnqQ
- no5rmINXBEkGxreoP702UQd1yGUwwoE844mrqUj+Z1p1T8TZPhgkbflDAP7o21B9VIo9
- WFn6aXWKFoeDqebejlK+AYbqpehS5vfYWXrHeSVqo/VAXutrH2sW2TBlBJwmTIplXx8F
- 0YIPVsjb1e0/XrmrWDWao36VHpdVlPjRO15WXj0R9Y2CoHzROfDpbwBHMxllBIthtGA7
- KLjw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=Yj1DiOxTywxnNaYwwMEsq2trQGIz9WMmNdN8Z4WkPSI=;
+ b=kcErv6Q7NsWj86mN5fwPpB3fgGuoPOMhrKLZ0BO4cCZ1QcM5dDezEyoF0WbaiaeJdg
+ +/kx3SqACip4All3IlAxdtjjnW08xpw1Wbq8ppAhc5Zr6qeRybaj8UEWLsz67mMYfKfb
+ q8uLhGp2zauFsORaY7mL1OOtSbd+3Luam9J6kjI4Lmg9H6+o7CtV7xYZOaGBPIeVQTM3
+ 3dnBZjiTu+JY+dhTkYzrgPx7eNYuTO/addelOTxZ2ChkQCfrvY9q7CXwtYnFxPDnGGEt
+ 4d3EwlIQaalN+Qx1fitSDVCgyaVkRdjtXgOAHsdvQchsNSjaWyTvp4XxUIaH6m4+qybA
+ YTHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=lU9BQza05SAHzt7rYIFV8/IOsiLSzx+0FaKRMYIbZGY=;
- b=gxzfsDgwR+fuIl01cpT6ptLKJWaMS6H4Lyw5UyAQXRMgLeC3AEc8w715cM5WrTuOlx
- BjvMPcZjaqOyklHeJUfOMaU8xsJhixnz2p88fndH6guMb41aM0sh25/lGr04Q+B/V9wu
- 7qzIFsQ0Nm7PBRVqxjYpWNoRzlxVADAN1HokAstqbwQZBHO7C+wj9ghdOesX5ISvor6z
- pGvGLmlePvTP+hI9G9tz6nDjNb80HlhIN13RAEARBdwfahfGyG2eMvpcFbGDuAT/K+5o
- DbEb8aoFVU+l9FFU67JlmlpKsQZIhUhHtL2Y5vAOTcVYEIgyAU9fw7KAQtG81tZl5Te1
- flsA==
-X-Gm-Message-State: APjAAAVynfFJLv/jewsNUyGIYocLLfP5MwDx4rdyN+cWk1GtCIYAe2DZ
- WmHX0UF10kYqAb8wkRrQHjM4aWKg
-X-Google-Smtp-Source: APXvYqzmKEFBmd//WlcQ8Yb5k5ICV58PX9tI0Ss7OdBYGHSeRyEEcZHSrwTY2kRRAGk55/cMTgES1Q==
-X-Received: by 2002:a05:620a:8d6:: with SMTP id
- z22mr17525317qkz.420.1582036371202; 
- Tue, 18 Feb 2020 06:32:51 -0800 (PST)
-Received: from localhost.localdomain ([71.219.59.120])
- by smtp.gmail.com with ESMTPSA id g18sm1962138qki.13.2020.02.18.06.32.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 Feb 2020 06:32:50 -0800 (PST)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu/smu: add a send message lock
-Date: Tue, 18 Feb 2020 09:31:56 -0500
-Message-Id: <20200218143156.1640434-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.24.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=Yj1DiOxTywxnNaYwwMEsq2trQGIz9WMmNdN8Z4WkPSI=;
+ b=C2z59+S6zfVdVDLBcyt6ApLymHDHxVaDubwvIuET2WcNTro1QvskWW+kDLNsktTiMb
+ cf/nIKhX4+zSvc0JyY7VcOqM3AAODjDimkfWu0CiRWq7Ooa+KXrLByIFhi7jIMtSOR28
+ 8RruoLRQLT/NizKJWWH0/6Ka77Kgrq1srtea5cvHdpLw82gJLC4XSuSbyyYGxZHXoB9I
+ aY/thmto8SBwfOWJ2JV6mYk7dh2A3fOTUDbqcOieSkQ82j6XTl+jHa8srj+js3v/Uihc
+ uOl3e+nWL0mit3g4es4xJdjKsMJ7eoyoDKJkJq2lwf1C8AhnuI2UAcToNbTDF6POtAES
+ gMnQ==
+X-Gm-Message-State: APjAAAVFQa2idFUcj9z2bblLHX/nBw1emwpuUF4A5+IMBedZZSN0p+Qa
+ TP4L8vWGqPFpSGQZIYcPrGKG/TYnoUOiYRwoeJw=
+X-Google-Smtp-Source: APXvYqxFzWbmNwy/PUZauIXf1l5Ct7sifEX90R7xd9FHv8/H6xqNF2sjP2eonx5FSObeJ6iCjL+5DVjJdvwZxXf6aBI=
+X-Received: by 2002:adf:ec4c:: with SMTP id w12mr30785554wrn.124.1582036506266; 
+ Tue, 18 Feb 2020 06:35:06 -0800 (PST)
 MIME-Version: 1.0
+References: <20200217213730.1413533-1-alexander.deucher@amd.com>
+ <MN2PR12MB33444C333C7032B4F78BD581E4110@MN2PR12MB3344.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB33444C333C7032B4F78BD581E4110@MN2PR12MB3344.namprd12.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 18 Feb 2020 09:34:54 -0500
+Message-ID: <CADnq5_N4DorOzy4m_SaxYM4wFMp0J-exKpq85gf6ooz-D67drg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/smu: add an update table lock
+To: "Quan, Evan" <Evan.Quan@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,111 +61,103 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The driver uses a scratch register to communicate with the SMU.
-Add a lock to make sure we don't try and do this concurrently
-by accident.
+On Mon, Feb 17, 2020 at 10:01 PM Quan, Evan <Evan.Quan@amd.com> wrote:
+>
+> Hi Alex,
+>
+> Did you seen any issue caused by this?
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/powerplay/amdgpu_smu.c     | 1 +
- drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h | 1 +
- drivers/gpu/drm/amd/powerplay/smu_v11_0.c      | 7 ++++++-
- drivers/gpu/drm/amd/powerplay/smu_v12_0.c      | 7 ++++++-
- 4 files changed, 14 insertions(+), 2 deletions(-)
+Seems to help on:
+https://gitlab.freedesktop.org/drm/amd/issues/1047
+I haven't been able to prove to myself that the existing high level
+locking covers every case.
 
-diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-index 437a3e7b36b4..694017740186 100644
---- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-@@ -905,6 +905,7 @@ static int smu_sw_init(void *handle)
- 	mutex_init(&smu->sensor_lock);
- 	mutex_init(&smu->metrics_lock);
- 	mutex_init(&smu->update_table_lock);
-+	mutex_init(&smu->send_msg_lock);
- 
- 	smu->watermarks_bitmap = 0;
- 	smu->power_profile_mode = PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
-diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-index 506288072e8e..25fa5c5ed09b 100644
---- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-@@ -363,6 +363,7 @@ struct smu_context
- 	struct mutex			sensor_lock;
- 	struct mutex			metrics_lock;
- 	struct mutex			update_table_lock;
-+	struct mutex			send_msg_lock;
- 	uint64_t pool_size;
- 
- 	struct smu_table_context	smu_table;
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-index b06c057a9002..ed5b3afcab66 100644
---- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-@@ -97,12 +97,16 @@ smu_v11_0_send_msg_with_param(struct smu_context *smu,
- 	struct amdgpu_device *adev = smu->adev;
- 	int ret = 0, index = 0;
- 
-+	mutex_lock(&smu->send_msg_lock);
- 	index = smu_msg_get_index(smu, msg);
--	if (index < 0)
-+	if (index < 0) {
-+		mutex_unlock(&smu->send_msg_lock);
- 		return index;
-+	}
- 
- 	ret = smu_v11_0_wait_for_response(smu);
- 	if (ret) {
-+		mutex_unlock(&smu->send_msg_lock);
- 		pr_err("Msg issuing pre-check failed and "
- 		       "SMU may be not in the right state!\n");
- 		return ret;
-@@ -118,6 +122,7 @@ smu_v11_0_send_msg_with_param(struct smu_context *smu,
- 	if (ret)
- 		pr_err("failed send message: %10s (%d) \tparam: 0x%08x response %#x\n",
- 		       smu_get_message_name(smu, msg), index, param, ret);
-+	mutex_unlock(&smu->send_msg_lock);
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_v12_0.c b/drivers/gpu/drm/amd/powerplay/smu_v12_0.c
-index 870e6db2907e..1ca8a8c959b1 100644
---- a/drivers/gpu/drm/amd/powerplay/smu_v12_0.c
-+++ b/drivers/gpu/drm/amd/powerplay/smu_v12_0.c
-@@ -83,12 +83,16 @@ smu_v12_0_send_msg_with_param(struct smu_context *smu,
- 	struct amdgpu_device *adev = smu->adev;
- 	int ret = 0, index = 0;
- 
-+	mutex_lock(&smu->send_msg_lock);
- 	index = smu_msg_get_index(smu, msg);
--	if (index < 0)
-+	if (index < 0) {
-+		mutex_unlock(&smu->send_msg_lock);
- 		return index;
-+	}
- 
- 	ret = smu_v12_0_wait_for_response(smu);
- 	if (ret) {
-+		mutex_unlock(&smu->send_msg_lock);
- 		pr_err("Msg issuing pre-check failed and "
- 		       "SMU may be not in the right state!\n");
- 		return ret;
-@@ -104,6 +108,7 @@ smu_v12_0_send_msg_with_param(struct smu_context *smu,
- 	if (ret)
- 		pr_err("Failed to send message 0x%x, response 0x%x param 0x%x\n",
- 		       index, ret, param);
-+	mutex_unlock(&smu->send_msg_lock);
- 
- 	return ret;
- }
--- 
-2.24.1
+Alex
 
+>
+> Regards,
+> Evan
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex Deucher
+> Sent: Tuesday, February 18, 2020 5:38 AM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
+> Subject: [PATCH] drm/amdgpu/smu: add an update table lock
+>
+> The driver uses a staging buffer to update tables in the SMU.
+> Add a lock to make sure we don't try and do this concurrently
+> by accident.
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c     | 7 ++++++-
+>  drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h | 1 +
+>  2 files changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> index 9f2428fd98f6..437a3e7b36b4 100644
+> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> @@ -530,6 +530,7 @@ int smu_update_table(struct smu_context *smu, enum smu_table_id table_index, int
+>
+>         table_size = smu_table->tables[table_index].size;
+>
+> +       mutex_lock(&smu->update_table_lock);
+>         if (drv2smu) {
+>                 memcpy(table->cpu_addr, table_data, table_size);
+>                 /*
+> @@ -544,13 +545,16 @@ int smu_update_table(struct smu_context *smu, enum smu_table_id table_index, int
+>                                           SMU_MSG_TransferTableSmu2Dram,
+>                                           table_id | ((argument & 0xFFFF) << 16));
+>         if (ret)
+> -               return ret;
+> +               goto unlock;
+>
+>         if (!drv2smu) {
+>                 amdgpu_asic_flush_hdp(adev, NULL);
+>                 memcpy(table_data, table->cpu_addr, table_size);
+>         }
+>
+> +unlock:
+> +       mutex_unlock(&smu->update_table_lock);
+> +
+>         return ret;
+>  }
+>
+> @@ -900,6 +904,7 @@ static int smu_sw_init(void *handle)
+>
+>         mutex_init(&smu->sensor_lock);
+>         mutex_init(&smu->metrics_lock);
+> +       mutex_init(&smu->update_table_lock);
+>
+>         smu->watermarks_bitmap = 0;
+>         smu->power_profile_mode = PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
+> diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+> index 97b6714e83e6..506288072e8e 100644
+> --- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+> +++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+> @@ -362,6 +362,7 @@ struct smu_context
+>         struct mutex                    mutex;
+>         struct mutex                    sensor_lock;
+>         struct mutex                    metrics_lock;
+> +       struct mutex                    update_table_lock;
+>         uint64_t pool_size;
+>
+>         struct smu_table_context        smu_table;
+> --
+> 2.24.1
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Cevan.quan%40amd.com%7Cbdb09232f91649c08af408d7b3f1ab89%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637175722941118202&amp;sdata=2%2FNzcPGthFtelyfXNiiIL3BV3c%2Bvoy%2F2Cq1oFWuZ4%2Bc%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
