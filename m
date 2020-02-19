@@ -2,96 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63AEC1643D2
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Feb 2020 13:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DF7A16449B
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Feb 2020 13:48:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA2A46E2F8;
-	Wed, 19 Feb 2020 12:02:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E15B56E5CA;
+	Wed, 19 Feb 2020 12:48:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on20617.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eae::617])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1DA06E2F8
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 12:02:24 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2061e.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e88::61e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8FD86E5CA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 12:48:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eMeYko2viKwXKIcikdvtMy+Z1jwfZvRITR6QFOkER8K/ucPJp6fMyc3XgJmBPeY7vdcgNO0GScquZOWzDxcExgG4mu2vbRpbyelUjLw+ftAs3K0diMF8FxawhPRWuO3Z4W5hfh/qERGAhNExNaoREZ0sRsX0eoovvGjoZqUtaeVvwhi//D0UTLoCPBlHOoD9zb3dA5njuULK9haiWzOKTvTbo461Fb275sS4b7SWUKMHcXqgwyHTgNiFQl+ZkL+Pj6f9oJMdpKsJIlEbia2e1xKvbQShz3+D3MGYrmlVhN+zhtV45EU50Ixmi2RUYGwoiXsje8pyr4oTywAO9w2hbA==
+ b=LvpSe9KThZg1f8OmPpiAr0xNqkwytzk4anM90/vwOyawXX621mp/veEk7d01Y2fOWR9NFQ73yD41VqsbPtWDTEoJLR/WH1fgaqFJ9SoX5MvyxXYc5Irbg2QlcTzSa7smLLjjv3WnRdrrXGmWD0uQ701sZJKhTGv6wWPv8cS6yAs6CLz0+LgqFWLEb067CTZkhsrQNdflZT8zSvHvBOOskwMxDwlx9RhZXFSKK9w3TYKXUMVs0GwvQo0c6eIHnEJYg2ppEpKvOChCNuVVGpCGZqyZW0/MBZRYybbB+8mIt7+f8uQGo9yLjLiObevur0m8Trwz3ENRtKNxN/R4SUCJxw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nnF/mOLYB5v2il+uePO+v8k2qNFG79G3xjK+8r+1DSY=;
- b=od8z0K49eFiaEzE/9NmL73qzqhQzUD9hR1pZlDSgJ9j8tr8bUFMTleAgRzsZbppX4qag8NcZWdLQ4CaqvbmqfO83li3X4W8ADLXKubZ+0lmTkxVFYkZVWF5V1MDkxhNDckW0iBghs5GuAAZPur+e1AoEI9S6KXikWIrPnzwhnvm29VhBy358rSttNsZ6xo1+58t4tjtID9wnJ6JfI9WtpuX+hgFZoyCM/OaMWUeXBZCFEfOaiVBS6I7D+r3C9n+UBpebbSis5WJvBGZdJ8bzIq/zonFkBG8VVkuNr3ujko5xp4gf9WL3WhUgiAimT+/ZJuaWPlSDA7WYfgMhst/tIg==
+ bh=cvvKW+w7S5peqC7xL4EBNLiSLUsKbpLIPyk2ktWEcFM=;
+ b=LDVAwDu015FEq+KBa8+dHu4gJZLtdK5zltTOcEWbZoBGqF82+7CxFAklPfGWfooNgtOTQh/XHvsBhszKsWDyMss5Y3znYpHdp4PAo1ADDpSNmAJALfwmBmuGm+USfHoU49ZpBHo37beXDxKh5TuuW7Ltx9f2UZduT1Px0QQpebsdEdU7azEKl6hOS3stpREjYel741G43usDyPLbbYggb4HghfJDxaAqAtyDEDtvjgDntzEQlfGzL7hQjYtlOGogOswSrZ/wb1Jy28rOrMgH8RqwyvGq7X1+Jth8yIRzPAo8NQK7dvbgvjiqQoXc0yqtflo0Ej4Dmz+HcWi5ApQJUw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nnF/mOLYB5v2il+uePO+v8k2qNFG79G3xjK+8r+1DSY=;
- b=u/bMAZLI6qSWf1Q7iBPG/VcHDwqJpS4k3GtfZ29nVA3m0hND6a60BvAVXKYIVf0+2QFaB+ZFNcvKBLx8/KyqW5Sh3VBeeiXysI8Y7KdcPdRIkDCtiuKvxjj3gs6hYGf+qFXnMUVqXTe0X7wWRo15yIvYORBkJkCfHKR7IxFInXE=
-Received: from MN2PR12MB3087.namprd12.prod.outlook.com (20.178.244.160) by
- MN2PR12MB3453.namprd12.prod.outlook.com (20.178.240.210) with Microsoft SMTP
+ bh=cvvKW+w7S5peqC7xL4EBNLiSLUsKbpLIPyk2ktWEcFM=;
+ b=KuOlrLn4r5cUPta1/CqsEuiBfYOyriW6c2g6T8W8OUvjxva8M/thfK8Df7K6XlkynFp8yAFZ835E9vVl5fP2lkA2TiBUtdnDIXKoB6cmhEMXijWoHgKmmiG4t/fgc0JBxUKX7KSw44wMLNjMpoCxBC3F68Z6g5tnPhiQy+tCCV8=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Xinhui.Pan@amd.com; 
+Received: from SN6PR12MB2800.namprd12.prod.outlook.com (52.135.101.138) by
+ SN6PR12MB2608.namprd12.prod.outlook.com (52.135.99.153) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2729.23; Wed, 19 Feb 2020 12:02:21 +0000
-Received: from MN2PR12MB3087.namprd12.prod.outlook.com
- ([fe80::b93c:2786:619:c02d]) by MN2PR12MB3087.namprd12.prod.outlook.com
- ([fe80::b93c:2786:619:c02d%3]) with mapi id 15.20.2729.032; Wed, 19 Feb 2020
- 12:02:21 +0000
-From: "Yuan, Xiaojie" <Xiaojie.Yuan@amd.com>
-To: "StDenis, Tom" <Tom.StDenis@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH umr v2] fix field names for INDIRECT_BUFFER_CONST/CIK for
- gfx9/gfx10
-Thread-Topic: [PATCH umr v2] fix field names for INDIRECT_BUFFER_CONST/CIK for
- gfx9/gfx10
-Thread-Index: AQHV5xukmtLj0+qZsEStw08OymjUy6gial2AgAAAP8g=
-Date: Wed, 19 Feb 2020 12:02:20 +0000
-Message-ID: <MN2PR12MB30879FAA1A5C220758FE80FD89100@MN2PR12MB3087.namprd12.prod.outlook.com>
-References: <20200219115606.6612-1-xiaojie.yuan@amd.com>,
- <1ccbf336-8263-761b-40e9-eeeef02ad70a@amd.com>
-In-Reply-To: <1ccbf336-8263-761b-40e9-eeeef02ad70a@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-02-19T12:02:23.521Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Xiaojie.Yuan@amd.com; 
-x-originating-ip: [180.167.199.185]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: f96a4bde-4c8e-4ce9-5df9-08d7b533931b
-x-ms-traffictypediagnostic: MN2PR12MB3453:|MN2PR12MB3453:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB3453A38C3B35C9C2911F020B89100@MN2PR12MB3453.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:499;
-x-forefront-prvs: 0318501FAE
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(136003)(346002)(396003)(376002)(39860400002)(199004)(189003)(478600001)(86362001)(81166006)(8936002)(33656002)(71200400001)(8676002)(81156014)(7696005)(2906002)(9686003)(55016002)(91956017)(5660300002)(66946007)(53546011)(76116006)(316002)(110136005)(186003)(64756008)(6506007)(66556008)(66476007)(26005)(66446008)(52536014);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3453;
- H:MN2PR12MB3087.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: IaEB2o9/AURA2Ev6aj8a4VPvQay4RtY3Zel6owukoYaj+M9s9eeHUoDrwFrkOUm1ikJjKj0hwJXdg6SHv3Kk0iXNQN3UFPp/I+zD9LI48pY5RcxLEyJt0c/3zcrxDrTn4jtikJ/0JT4GGzhu9JstiGQE1DsSj+TsqKgZjZhNo8JtFihdHiNIxME08CvHOm/E+rqJmkSfyqPHcAATjwc+EIwGB0ys2zaNXasSY8R85/eu2dzrP7QqxQ1yuwUrpzis0YTo4hjKvTkNk2kY5PYCWWJkMpKLdrGELhx+yfANlGEf8o+tnOdfZGS7IhRJ8zyjG3gKNux9ws7W/oyRBA9q+eqOUqJMrEOA4/2v1ACQ3f7S6cF1PckhAMJI5fMcFl4XnKjTvdK4b9DF10a6TX2a+GciO46Am6P+tgapi3ny2nAJpl8CzfDQgI5rQ/XmDkYc
-x-ms-exchange-antispam-messagedata: vzpEsZoqDcsUSlhazkHqWMRByWfy96ATd5x4MRX7PADMqTbo+PmSz5L+Kqp2fgbv7DcvTSsVTx99iP4m+AUX9UwQNIhx68izovh0LYtLhwx0adCdB8n+PEjtsnEHMwaZl1UPoYbTsQPmK1VtNHDraA==
+ 15.20.2729.25; Wed, 19 Feb 2020 12:48:03 +0000
+Received: from SN6PR12MB2800.namprd12.prod.outlook.com
+ ([fe80::b99c:18c0:8685:1c10]) by SN6PR12MB2800.namprd12.prod.outlook.com
+ ([fe80::b99c:18c0:8685:1c10%5]) with mapi id 15.20.2729.032; Wed, 19 Feb 2020
+ 12:48:02 +0000
+From: xinhui pan <xinhui.pan@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [RFC PATCH v6] drm/amdgpu: Remove kfd eviction fence before release bo
+Date: Wed, 19 Feb 2020 20:46:52 +0800
+Message-Id: <20200219124652.7465-1-xinhui.pan@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: HK2PR02CA0153.apcprd02.prod.outlook.com
+ (2603:1096:201:1f::13) To SN6PR12MB2800.namprd12.prod.outlook.com
+ (2603:10b6:805:6c::10)
 MIME-Version: 1.0
+Received: from pp-server-two.amd.com (180.167.199.189) by
+ HK2PR02CA0153.apcprd02.prod.outlook.com (2603:1096:201:1f::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2750.18 via Frontend Transport; Wed, 19 Feb 2020 12:48:00 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [180.167.199.189]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 8f9dab4b-5f39-4e72-8607-08d7b539f500
+X-MS-TrafficTypeDiagnostic: SN6PR12MB2608:|SN6PR12MB2608:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SN6PR12MB26089E38F0CCAA4DFFDE757387100@SN6PR12MB2608.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
+X-Forefront-PRVS: 0318501FAE
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(366004)(39860400002)(136003)(346002)(376002)(396003)(189003)(199004)(2616005)(956004)(8676002)(26005)(81156014)(86362001)(8936002)(52116002)(5660300002)(81166006)(36756003)(2906002)(186003)(7696005)(54906003)(16526019)(6916009)(66946007)(6486002)(66556008)(4326008)(316002)(66574012)(66476007)(478600001)(6666004)(1076003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:SN6PR12MB2608;
+ H:SN6PR12MB2800.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: guwkAAnia9wOXZxS/PMDcylCcRF6E+lS+aMe3aT9eRWy9ealzJb7rGWlE4mhCMhoFT/XY33CjzfUOQYSonHtMfBqGO9LfJJ5G2ILE1xDY70NUb7Er9LA7EWYoSaS3PLEwE2nPAlbEK6qsxnIgOaqcuzORnSzk9iiC+Zwh7Z1/Pxf+Yra5FXFVpB+XYcFPCSLv7QW32HRkquv2iAWJpf4nMHF35gaL+o6OxFWTyckpXNaFhR4bkGz7GFbhUvhXPLFhbBqipXLWcx4c04uY4PpyCqTUK8aqtG28Pu3h4m+hwXSzAwzMJRu88LiG53G7YqJIpQp58t1PAFsiulXJckNbdJBxNN604gu8jz2r/vac30KwI2ZN0AgKJLB+hgSbQqLvU3OqRz9C2cieTEOc78wabQ3BqN/QScll7jYpVOaDVi/q7pI6R9VFMh9dlngor3o
+X-MS-Exchange-AntiSpam-MessageData: 3IhtEiwgJ/7hwDcoGnJi/xgnA3Q3yosfEQocNneOnBz6zVXeoj0res+NU3z6hS00270w3TOoy0jbpWzbVrSn4fg7Gy8L3o+Jc9E1Y1SJug7HgefHtCJT1FGCQnfjQa3hUCBVGkMX+Dgcca+syE/83Q==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f96a4bde-4c8e-4ce9-5df9-08d7b533931b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Feb 2020 12:02:20.9949 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 63f5T8GV+rAKJ+mUsAgMw/s6lfZh1CbcP3feJVA2eO78+NHlvCcmwH+IDXkSe76W
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3453
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f9dab4b-5f39-4e72-8607-08d7b539f500
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2020 12:48:02.6978 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: C8Jc1ALe3ZlEZbYSKMnbcq+RsHV0lGLwI+BQBsbNSbgdYL5N5G/cseV62lwY+St4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2608
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,109 +93,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <felix.kuehling@amd.com>, xinhui pan <xinhui.pan@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
-
-Thanks Tom.
-
-BR,
-Xiaojie
-
-________________________________________
-From: StDenis, Tom <Tom.StDenis@amd.com>
-Sent: Wednesday, February 19, 2020 8:01 PM
-To: Yuan, Xiaojie; amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH umr v2] fix field names for INDIRECT_BUFFER_CONST/CIK for gfx9/gfx10
-
-Hmm it doesn't apply on top of the tip of master.  I'll just manually
-apply it.
-
-
-Tom
-
-On 2020-02-19 6:56 a.m., Xiaojie Yuan wrote:
-> field names for INDIRECT_BUFFER_CONST/CIK of gfx9/gfx10 are the same.
-> fields like OFFLOAD_POLLING and VALID are defined in mec's
-> INDIRECT_BUFFER packet, so not applicable here.
->
-> v2: fix umr_pm4_decode_opcodes.c as well
->
-> Signed-off-by: Xiaojie Yuan <xiaojie.yuan@amd.com>
-> ---
->   src/lib/ring_decode.c            | 23 +++++++----------------
->   src/lib/umr_pm4_decode_opcodes.c | 20 ++++++--------------
->   2 files changed, 13 insertions(+), 30 deletions(-)
->
-> diff --git a/src/lib/ring_decode.c b/src/lib/ring_decode.c
-> index 250dfd7..fa44f27 100644
-> --- a/src/lib/ring_decode.c
-> +++ b/src/lib/ring_decode.c
-> @@ -617,22 +617,13 @@ static void print_decode_pm4_pkt3(struct umr_asic *asic, struct umr_ring_decoder
->                               case 2: printf("IB_SIZE:%s%lu%s, VMID: %s%lu%s", BLUE, BITS(ib, 0, 20), RST, BLUE, BITS(ib, 24, 28), RST);
->                                       decoder->pm4.next_ib_state.ib_size = BITS(ib, 0, 20) * 4;
->                                       decoder->pm4.next_ib_state.ib_vmid = decoder->next_ib_info.vmid ? decoder->next_ib_info.vmid : BITS(ib, 24, 28);
-> -                                     if (decoder->pm4.cur_opcode == 0x33) {
-> -                                             if (asic->family >= FAMILY_NV) {
-> -                                                     printf(", CHAIN: %s%u%s, PRE_ENA: %s%u%s, CACHE_POLICY: %s%u%s, PRE_RESUME: %s%u%s PRIV: %s%u%s",
-> -                                                                BLUE, (unsigned)BITS(ib, 20, 21), RST,
-> -                                                                BLUE, (unsigned)BITS(ib, 21, 22), RST,
-> -                                                                BLUE, (unsigned)BITS(ib, 28, 30), RST,
-> -                                                                BLUE, (unsigned)BITS(ib, 30, 31), RST,
-> -                                                                BLUE, (unsigned)BITS(ib, 31, 32), RST);
-> -                                             } else if (asic->family >= FAMILY_AI) {
-> -                                                     printf(", CHAIN: %s%u%s, OFFLOAD_POLLING: %s%u%s, VALID: %s%u%s, CACHE_POLICY: %s%u%s PRIV: %s%u%s",
-> -                                                                BLUE, (unsigned)BITS(ib, 20, 21), RST,
-> -                                                                BLUE, (unsigned)BITS(ib, 21, 22), RST,
-> -                                                                BLUE, (unsigned)BITS(ib, 23, 24), RST,
-> -                                                                BLUE, (unsigned)BITS(ib, 28, 30), RST,
-> -                                                                BLUE, (unsigned)BITS(ib, 31, 32), RST);
-> -                                             }
-> +                                     if (asic->family >= FAMILY_AI) {
-> +                                             printf(", CHAIN: %s%u%s, PRE_ENA: %s%u%s, CACHE_POLICY: %s%u%s, PRE_RESUME: %s%u%s PRIV: %s%u%s",
-> +                                                        BLUE, (unsigned)BITS(ib, 20, 21), RST,
-> +                                                        BLUE, (unsigned)BITS(ib, 21, 22), RST,
-> +                                                        BLUE, (unsigned)BITS(ib, 28, 30), RST,
-> +                                                        BLUE, (unsigned)BITS(ib, 30, 31), RST,
-> +                                                        BLUE, (unsigned)BITS(ib, 31, 32), RST);
->                                       }
->                                       if (!asic->options.no_follow_ib) {
->                                               if (umr_read_vram(asic, decoder->pm4.next_ib_state.ib_vmid,
-> diff --git a/src/lib/umr_pm4_decode_opcodes.c b/src/lib/umr_pm4_decode_opcodes.c
-> index d7c1495..a823ecf 100644
-> --- a/src/lib/umr_pm4_decode_opcodes.c
-> +++ b/src/lib/umr_pm4_decode_opcodes.c
-> @@ -429,20 +429,12 @@ static void decode_pkt3(struct umr_asic *asic, struct umr_pm4_stream_decode_ui *
->                       ui->add_field(ui, ib_addr + 8, ib_vmid, "IB_BASE_HI", BITS(stream->words[1], 0, 16), NULL, 16);
->                       ui->add_field(ui, ib_addr + 12, ib_vmid, "IB_SIZE", BITS(stream->words[2], 0, 20), NULL, 10);
->                       ui->add_field(ui, ib_addr + 12, ib_vmid, "IB_VMID", BITS(stream->words[2], 24, 28), NULL, 10);
-> -                     if (stream->opcode == 0x33) {
-> -                             if (asic->family >= FAMILY_NV) {
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "CHAIN", BITS(stream->words[2], 20, 21), NULL, 10);
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "PRE_ENA", BITS(stream->words[2], 21, 22), NULL, 10);
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "CACHE_POLICY", BITS(stream->words[2], 28, 30), NULL, 10);
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "PRE_RESUME", BITS(stream->words[2], 30, 31), NULL, 10);
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "PRIV", BITS(stream->words[2], 31, 32), NULL, 10);
-> -                             } else if (asic->family >= FAMILY_AI) {
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "CHAIN", BITS(stream->words[2], 20, 21), NULL, 10);
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "OFFLOAD_POLLING", BITS(stream->words[2], 21, 22), NULL, 10);
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "VALID", BITS(stream->words[2], 23, 24), NULL, 10);
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "CACHE_POLICY", BITS(stream->words[2], 28, 30), NULL, 10);
-> -                                     ui->add_field(ui, ib_addr + 12, ib_vmid, "PRIV", BITS(stream->words[2], 31, 32), NULL, 10);
-> -                             }
-> +                     if (asic->family >= FAMILY_AI) {
-> +                             ui->add_field(ui, ib_addr + 12, ib_vmid, "CHAIN", BITS(stream->words[2], 20, 21), NULL, 10);
-> +                             ui->add_field(ui, ib_addr + 12, ib_vmid, "PRE_ENA", BITS(stream->words[2], 21, 22), NULL, 10);
-> +                             ui->add_field(ui, ib_addr + 12, ib_vmid, "CACHE_POLICY", BITS(stream->words[2], 28, 30), NULL, 10);
-> +                             ui->add_field(ui, ib_addr + 12, ib_vmid, "PRE_RESUME", BITS(stream->words[2], 30, 31), NULL, 10);
-> +                             ui->add_field(ui, ib_addr + 12, ib_vmid, "PRIV", BITS(stream->words[2], 31, 32), NULL, 10);
->                       }
->                       break;
->               case 0x37: // WRITE_DATA
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+Tm8gbmVlZCB0byB0cmlnZ2VyIGV2aWN0aW9uIGFzIHRoZSBtZW1vcnkgbWFwcGluZyB3aWxsIG5v
+dCBiZSB1c2VkCmFueW1vcmUuCgpBbGwgcHQvcGQgYm9zIHNoYXJlIHNhbWUgcmVzdiwgaGVuY2Ug
+dGhlIHNhbWUgc2hhcmVkIGV2aWN0aW9uIGZlbmNlLgpFdmVyeXRpbWUgcGFnZSB0YWJsZSBpcyBm
+cmVlZCwgdGhlIGZlbmNlIHdpbGwgYmUgc2lnbmxlZCBhbmQgdGhhdCBjdWFzZXMKa2ZkIHVuZXhj
+ZXB0ZWQgZXZpY3Rpb25zLgoKQ0M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdA
+YW1kLmNvbT4KQ0M6IEZlbGl4IEt1ZWhsaW5nIDxmZWxpeC5rdWVobGluZ0BhbWQuY29tPgpDQzog
+QWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgpBY2tlZC1ieTogQ2hyaXN0
+aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgpTaWduZWQtb2ZmLWJ5OiB4aW5o
+dWkgcGFuIDx4aW5odWkucGFuQGFtZC5jb20+Ci0tLQpjaGFuZ2UgZnJvbSB2NToKdXNlIHRyeWxv
+Y2sgaW5zdGVhZCwgYW5kIGFkZCB3YXJuX29uX29uY2UgdG8gZ2l2ZSBhIGxpbWl0ZCB3YXJuaW5n
+LgoKY2hhbmdlIGZyb20gdjQ6CmJhc2VkIG9uIG5ldyB0dG0gY29kZS4KCmNoYW5nZSBmcm9tIHYz
+OgpmaXggYSBjb2RpbmcgZXJyb3IKCmNoYW5nZSBmcm9tIHYyOgpiYXNlZCBvbiBDaHJpcycgZHJt
+L3R0bTogcmV3b3JrIEJPIGRlbGF5ZWQgZGVsZXRlIHBhdGNoc2V0LgotLS0KIGRyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9hbWRrZmQuaCAgICB8ICAxICsKIC4uLi9ncHUvZHJtL2Ft
+ZC9hbWRncHUvYW1kZ3B1X2FtZGtmZF9ncHV2bS5jICB8IDM4ICsrKysrKysrKysrKysrKysrKysK
+IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9vYmplY3QuYyAgICB8ICA1ICsrKwog
+MyBmaWxlcyBjaGFuZ2VkLCA0NCBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5oIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X2FtZGtmZC5oCmluZGV4IDllOGRiNzAyZDg3OC4uMGVlOGFhZTZjNTE5IDEw
+MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkLmgKKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5oCkBAIC05Niw2ICs5
+Niw3IEBAIHN0cnVjdCBhbWRncHVfYW1ka2ZkX2ZlbmNlICphbWRncHVfYW1ka2ZkX2ZlbmNlX2Ny
+ZWF0ZSh1NjQgY29udGV4dCwKIAkJCQkJCSAgICAgICBzdHJ1Y3QgbW1fc3RydWN0ICptbSk7CiBi
+b29sIGFtZGtmZF9mZW5jZV9jaGVja19tbShzdHJ1Y3QgZG1hX2ZlbmNlICpmLCBzdHJ1Y3QgbW1f
+c3RydWN0ICptbSk7CiBzdHJ1Y3QgYW1kZ3B1X2FtZGtmZF9mZW5jZSAqdG9fYW1kZ3B1X2FtZGtm
+ZF9mZW5jZShzdHJ1Y3QgZG1hX2ZlbmNlICpmKTsKK2ludCBhbWRncHVfYW1ka2ZkX3JlbW92ZV9m
+ZW5jZV9vbl9wdF9wZF9ib3Moc3RydWN0IGFtZGdwdV9ibyAqYm8pOwogCiBzdHJ1Y3QgYW1ka2Zk
+X3Byb2Nlc3NfaW5mbyB7CiAJLyogTGlzdCBoZWFkIG9mIGFsbCBWTXMgdGhhdCBiZWxvbmcgdG8g
+YSBLRkQgcHJvY2VzcyAqLwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2FtZGtmZF9ncHV2bS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+X2FtZGtmZF9ncHV2bS5jCmluZGV4IGVmNzIxY2I2NTg2OC4uODk4ODUxYmVjMzc3IDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkX2dwdXZtLmMKKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZF9ncHV2bS5jCkBAIC0y
+NzYsNiArMjc2LDQyIEBAIHN0YXRpYyBpbnQgYW1kZ3B1X2FtZGtmZF9yZW1vdmVfZXZpY3Rpb25f
+ZmVuY2Uoc3RydWN0IGFtZGdwdV9ibyAqYm8sCiAJcmV0dXJuIDA7CiB9CiAKK2ludCBhbWRncHVf
+YW1ka2ZkX3JlbW92ZV9mZW5jZV9vbl9wdF9wZF9ib3Moc3RydWN0IGFtZGdwdV9ibyAqYm8pCit7
+CisJc3RydWN0IGFtZGdwdV9ibyAqcm9vdCA9IGJvOworCXN0cnVjdCBhbWRncHVfdm1fYm9fYmFz
+ZSAqdm1fYm87CisJc3RydWN0IGFtZGdwdV92bSAqdm07CisJc3RydWN0IGFtZGtmZF9wcm9jZXNz
+X2luZm8gKmluZm87CisJc3RydWN0IGFtZGdwdV9hbWRrZmRfZmVuY2UgKmVmOworCWludCByZXQ7
+CisKKwkvKiB3ZSBjYW4gYWx3YXlzIGdldCB2bV9ibyBmcm9tIHJvb3QgUEQgYm8uKi8KKwl3aGls
+ZSAocm9vdC0+cGFyZW50KQorCQlyb290ID0gcm9vdC0+cGFyZW50OworCisJdm1fYm8gPSByb290
+LT52bV9ibzsKKwlpZiAoIXZtX2JvKQorCQlyZXR1cm4gMDsKKworCXZtID0gdm1fYm8tPnZtOwor
+CWlmICghdm0pCisJCXJldHVybiAwOworCisJaW5mbyA9IHZtLT5wcm9jZXNzX2luZm87CisJaWYg
+KCFpbmZvIHx8ICFpbmZvLT5ldmljdGlvbl9mZW5jZSkKKwkJcmV0dXJuIDA7CisKKwllZiA9IGNv
+bnRhaW5lcl9vZihkbWFfZmVuY2VfZ2V0KCZpbmZvLT5ldmljdGlvbl9mZW5jZS0+YmFzZSksCisJ
+CQlzdHJ1Y3QgYW1kZ3B1X2FtZGtmZF9mZW5jZSwgYmFzZSk7CisKKwlCVUdfT04oIWRtYV9yZXN2
+X3RyeWxvY2soYm8tPnRiby5iYXNlLnJlc3YpKTsKKwlyZXQgPSBhbWRncHVfYW1ka2ZkX3JlbW92
+ZV9ldmljdGlvbl9mZW5jZShibywgZWYpOworCWRtYV9yZXN2X3VubG9jayhiby0+dGJvLmJhc2Uu
+cmVzdik7CisKKwlkbWFfZmVuY2VfcHV0KCZlZi0+YmFzZSk7CisJcmV0dXJuIHJldDsKK30KKwog
+c3RhdGljIGludCBhbWRncHVfYW1ka2ZkX2JvX3ZhbGlkYXRlKHN0cnVjdCBhbWRncHVfYm8gKmJv
+LCB1aW50MzJfdCBkb21haW4sCiAJCQkJICAgICBib29sIHdhaXQpCiB7CkBAIC0xMDQ1LDYgKzEw
+ODEsOCBAQCB2b2lkIGFtZGdwdV9hbWRrZmRfZ3B1dm1fZGVzdHJveV9jYihzdHJ1Y3QgYW1kZ3B1
+X2RldmljZSAqYWRldiwKIAlsaXN0X2RlbCgmdm0tPnZtX2xpc3Rfbm9kZSk7CiAJbXV0ZXhfdW5s
+b2NrKCZwcm9jZXNzX2luZm8tPmxvY2spOwogCisJdm0tPnByb2Nlc3NfaW5mbyA9IE5VTEw7CisK
+IAkvKiBSZWxlYXNlIHBlci1wcm9jZXNzIHJlc291cmNlcyB3aGVuIGxhc3QgY29tcHV0ZSBWTSBp
+cyBkZXN0cm95ZWQgKi8KIAlpZiAoIXByb2Nlc3NfaW5mby0+bl92bXMpIHsKIAkJV0FSTl9PTigh
+bGlzdF9lbXB0eSgmcHJvY2Vzc19pbmZvLT5rZmRfYm9fbGlzdCkpOwpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X29iamVjdC5jIGIvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvYW1kZ3B1X29iamVjdC5jCmluZGV4IDZmNjBhNTgxZTNiYS4uNTc2NmQyMGYy
+OWQ4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfb2JqZWN0
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X29iamVjdC5jCkBAIC0x
+MzA3LDYgKzEzMDcsMTEgQEAgdm9pZCBhbWRncHVfYm9fcmVsZWFzZV9ub3RpZnkoc3RydWN0IHR0
+bV9idWZmZXJfb2JqZWN0ICpibykKIAlpZiAoYWJvLT5rZmRfYm8pCiAJCWFtZGdwdV9hbWRrZmRf
+dW5yZXNlcnZlX21lbW9yeV9saW1pdChhYm8pOwogCisJLyogV2Ugb25seSByZW1vdmUgdGhlIGZl
+bmNlIGlmIHRoZSByZXN2IGhhcyBpbmRpdmlkdWFsaXplZC4gKi8KKwlXQVJOX09OX09OQ0UoYm8t
+PmJhc2UucmVzdiAhPSAmYm8tPmJhc2UuX3Jlc3YpOworCWlmIChiby0+YmFzZS5yZXN2ID09ICZi
+by0+YmFzZS5fcmVzdikKKwkJYW1kZ3B1X2FtZGtmZF9yZW1vdmVfZmVuY2Vfb25fcHRfcGRfYm9z
+KGFibyk7CisKIAlpZiAoYm8tPm1lbS5tZW1fdHlwZSAhPSBUVE1fUExfVlJBTSB8fCAhYm8tPm1l
+bS5tbV9ub2RlIHx8CiAJICAgICEoYWJvLT5mbGFncyAmIEFNREdQVV9HRU1fQ1JFQVRFX1ZSQU1f
+V0lQRV9PTl9SRUxFQVNFKSkKIAkJcmV0dXJuOwotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
