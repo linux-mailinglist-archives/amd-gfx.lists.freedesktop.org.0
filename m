@@ -2,48 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13FBC1682A2
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2020 17:04:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B65A816829A
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2020 17:04:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C12B6F4A8;
-	Fri, 21 Feb 2020 16:04:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D80BC6F4A0;
+	Fri, 21 Feb 2020 16:03:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2077.outbound.protection.outlook.com [40.107.92.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 604506F4A5
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 16:03:59 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on20624.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eaa::624])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DA4D6F4A0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 16:03:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CItgnKvbq6ToiF9Mk0rQOvSD5QGU2oaq2p1FxLWdjcPYl53o19qD0Jz8jWRXobAJrYh7lkJqMXdOscnRCpguPv3/fUzWqxkQZ+p/s3ag7gSJxZRdGF70VXv3sIaAb+MlfZkMCDUxWnlEdZYnGI5eqqhiXHjbD3jdvB7TzXfmJnwmHfhGRyrE+1x/y3h1YRUMlPVrqrieYnEyuBhzjFVYxPgaGjGo3IUkZFjXYuHrGx4PfP88DBtNuMdD9udEjTkMhJeeLm2FkArFjt14KvqnI8hHD08Vp5T/Rs/iXoT/nWqmrke9VlNr4/nw4NIl0HHmm6egCxIe8xFEDK25hvwNyg==
+ b=dEr6SoH+Y8GIg114BtNxEfWUn98bVRA2aIL5d9tx0+jWfsC/q1I+8gM6xFvNb9pBC14Lgn97PfJ6mX88AawvZrJEhrXzA4WsGmzFkRQcfEA9UaeXTvBR8Fg5S4I7WDsvQwDETlMP5Tu/Exu2jzSsUvxC+850a1WOVtjw57xILfnzrwDbLuyQtgsfYa89TWyO2n/ysWBUSYIIVRxF2+xyd4fos8CU0mf94lwnrH0vVvSloYU8irGbkwC4YTuTdePo+60nmjnLWhBNIADP8+hbQOKcIxpus0NXCZD6yH6F0CMFAYXNTJHNsMLi69CeLfU/RgLTdNd4CCdPuLdFXuLrTA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u0shsGe/pQC+Hjcny/gfx5Nq6TOPD9naCHfFqJ/4WCw=;
- b=l7r0+uNgJbnfL7tx8HcDvqnKierOkaxrr5iMIQA5Pdtj9jg1GB0/UYhgk0ziItKJScC+D43tmkDwxO8x9xVKVz4uIOyiQ1CcqQuNXnKDSzU0vhbSV62cnZi58JCNIFAmZ4PwqzRRjg4Zq2ZAzmW0O9UHzNCgqK0jekUFMPaV8zaC59MhuKYeCr/J7JmrV/6z0TyLA5a7u1/Ad5RuqpmPmJMkh47Q+hWNhXKtdS8UvFy364OqVr+nZ7k6HE09IVj2WPR2Ibsbg98Zea4LESat6ANdE11By+uzNv17ktxYcS5lJSbqtX/oE3IOG5b4e++1ZBYy+T26Ja37wTFDHgInmA==
+ bh=7yLfFuZATIJKm80viq8gr2qpr7iKEOBX9hAww6PzmRA=;
+ b=NkGR2mOvGPRRCYNQG6ZGqjdzKA9F+z0nlLtuUi9jzhoEo3Bv2r1snu7irAlzdoLLdz2/orbRTkFLbht5GxG0aP/OJJDeBl4a0B7qds8ivN7TQrifprLvqf0HEUIeSrGpUFm4J2Ro5edAS3f5tA1qx0Z2ZOV46QeyjZSrgj15eeJeRPpz5kInVcRlynm4U+UYrYYwdGkDqto6tpsM1sLWO63o1tT46gmErwcKeMpCE5r5QFC94xJSP8QjXGdh75/h/ASBcwDV7YX2DwvWEaEJOc15UY+a2SQeuPw3lChn+BB3vtzGdukzA1G/uqzOTXeSE6kFfB8/2UtmmGnIilFpoA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u0shsGe/pQC+Hjcny/gfx5Nq6TOPD9naCHfFqJ/4WCw=;
- b=uwaAsqrlA+/B8hVfrrmiK0dNs+pxcwkJZrBxCZhzhpt/Z51iSNT692P9hAi0s4O+Irnozn1x3EZHmFTTsl96sMvMgHGZCW5WTlUaKn5BmyTv4bahgv4qKABnQWHjS16I7snNqIrmG16OhOwLFK3bh/yjqAW29FS32F4dqdQQpfo=
+ bh=7yLfFuZATIJKm80viq8gr2qpr7iKEOBX9hAww6PzmRA=;
+ b=HYC0fJ/W+X34wkVRixZrWuqGTcipJBETDwm7ZllCFP+k1EH+j1/x1ei+lNQJ9A8tx9AA2lUq9aUUnc1vxl/dyxRD32V28KavtdhwVIGRSJEnmjrvIczjDUCMoS7UJ7S4swLSICQxGa3aHGl2U0cteyybq2Wq/LEqL4EU9BeRa+k=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
- by MW2PR12MB2409.namprd12.prod.outlook.com (2603:10b6:907:9::26) with
+ by MW2PR12MB2572.namprd12.prod.outlook.com (2603:10b6:907:6::27) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.21; Fri, 21 Feb
  2020 16:03:54 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::b8ff:6893:5820:420f]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::b8ff:6893:5820:420f%6]) with mapi id 15.20.2729.033; Fri, 21 Feb 2020
- 16:03:53 +0000
+ 16:03:54 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 09/35] drm/amd/display: Add dmcu f/w loading for NV12
-Date: Fri, 21 Feb 2020 11:02:58 -0500
-Message-Id: <20200221160324.2969975-10-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 10/35] drm/amd/display: do not force UCLK DPM to stay at
+ highest state during display off in DCN2
+Date: Fri, 21 Feb 2020 11:02:59 -0500
+Message-Id: <20200221160324.2969975-11-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200221160324.2969975-1-Rodrigo.Siqueira@amd.com>
 References: <20200221160324.2969975-1-Rodrigo.Siqueira@amd.com>
@@ -55,36 +57,36 @@ Received: from atma2.amd.com (165.204.55.250) by
  YTOPR0101CA0008.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.18 via Frontend
- Transport; Fri, 21 Feb 2020 16:03:51 +0000
+ Transport; Fri, 21 Feb 2020 16:03:52 +0000
 X-Mailer: git-send-email 2.25.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 0215621d-5040-4351-853f-08d7b6e7a511
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2409:|MW2PR12MB2409:
+X-MS-Office365-Filtering-Correlation-Id: 305ab7a7-c793-4543-d23f-08d7b6e7a59d
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2572:|MW2PR12MB2572:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB240932583375F7870761133698120@MW2PR12MB2409.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2043;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB257206ADE323BE1C98887F8798120@MW2PR12MB2572.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1923;
 X-Forefront-PRVS: 0320B28BE1
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(376002)(346002)(39860400002)(136003)(396003)(189003)(199004)(16526019)(36756003)(66946007)(66476007)(7696005)(66556008)(6916009)(26005)(52116002)(6486002)(1076003)(5660300002)(4326008)(8936002)(81166006)(2906002)(2616005)(956004)(81156014)(54906003)(186003)(316002)(478600001)(8676002)(86362001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2409;
+ SFS:(10009020)(4636009)(396003)(39860400002)(376002)(366004)(346002)(136003)(189003)(199004)(1076003)(5660300002)(36756003)(2906002)(8936002)(86362001)(8676002)(6486002)(81156014)(81166006)(7696005)(52116002)(4326008)(316002)(186003)(26005)(6916009)(16526019)(54906003)(2616005)(66476007)(66556008)(66946007)(956004)(478600001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2572;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7eDWUmz8qNWQEyyvp/R9QQ9C2JzMtf2vszTSdQ6YQvOrStF5aMEDieONPR13awYr5ac7cqCsL2lVKiLU3HzwTeSVF4K95xOmii3kdarjB9xzpeR4tb6sRQpu4ug8uSpMaHT4c69Mi7SXU8mOLsfpU6c8Ys5/5mmqNtwNC7+hpRiAXV7jbMaSXtBtVRueHKwC4PKbADK9K2JurAivDEnimDhSnRE8KPiigXfH++K425SAXEX4DbaYdLTMeOmtYA1ei2Gp8yXUx5rXv/h3Juu/+6qRxZreZvSebXK0RRBHfBDhr+jS6HN33Lve3j43xvCeKx1vKePY/ZECM/q5daeuyw9DQFaBg2qiL/e0kfUoWnoNec4ye15TL+Sl0xZnFtYQWiWzHc1Wy5R4O2N6UXW8ybx0njJTbJMDOWG5xdLHByBrCJOgHh6/6wQ/DljyhE7p
-X-MS-Exchange-AntiSpam-MessageData: X409G/tGlvivqAnHHiq92koLnvndGy6AHyIv75eflGRDEjbnpFsQjnA6Ej1Pbh/ZRfDvQ975MeHi34N1GT9ncYDc3BwUABkRQdcXhOa54a/EheIufO87ufrXBPYt0bqLpf7d+Kg1d5mb8InCEAJbmQ==
+X-Microsoft-Antispam-Message-Info: sRAp+B0FC+LaZg+8b7RFtJgG97+y7bPr1CkM5cXx1vhc81Xeh2E4rIoUY+XvNN3+2OUKBXD6nQx1XjUnI6iUO/A657lRE/Rj0STupvAkF8OJJoj9wdKIYhlisva0ZrBlpcXMRBCRz7Epn0ZpWbxdvXCDSDFMt1qJJUBi+V4UidHYUVCV1V+pFLA23BPIw8oHatmRED68wK5ezkppnoy7kEsI2FM2+rYT0NvWWfTlIk5sI9EcBTM7sTBwAdmje+pxytbdb2rpDJP8zmIQfRHJXSbnnTMRWGk/5SsxgnDOxOilLT0gQubl4unLCKZQKXNh+ImjIDCyAUxx/9gyEFLtFqNHCXMzgkFnfrcp/xu3jVghkpc9nZ0JaYe5KLV/BaNvfCboCc5OBoy/5ue5A9CqbwhvhLbkOedx8ALMxFGsDwZvKfAZiAP4xl6MhomNB+c3
+X-MS-Exchange-AntiSpam-MessageData: 9yCaamOTH5y1h78VC36vG6qUpbrPM5a+5Qsd9QvK4R8naKd4A3ib1HeWDFo7qO/cN0l8q63PsxAOfb0pfrLCShm2b6t5xo5z29s0sLIYVhCiNP0h/Ssek4IjriD8nPL+HDU5BXB+OcZb1plAp2+G8A==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0215621d-5040-4351-853f-08d7b6e7a511
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2020 16:03:52.0923 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 305ab7a7-c793-4543-d23f-08d7b6e7a59d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2020 16:03:53.0237 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0lbagHBlPkIzghBqF8kHdqERWQnNwFSk/AEiU05/B2hTX4SREXw5ky2hvLNHP0lZBrJztybkhFW3hxfcYjhP5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2409
+X-MS-Exchange-CrossTenant-UserPrincipalName: YzbVplDnlRPI/yHokakmFbQ7RfLaFS34KDh0nLNtuBBK0Xp1eFSd/nHbSrCga7hbasyw1v6Wv4Qyq8siMRwJJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2572
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,56 +99,107 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Harry Wentland <harry.wentland@amd.com>,
- Rodrigo.Siqueira@amd.com, Roman Li <roman.li@amd.com>,
- Hersen Wu <hersenxs.wu@amd.com>, Bhawanpreet.Lakha@amd.com
+ Rodrigo.Siqueira@amd.com, Samson Tam <Samson.Tam@amd.com>,
+ Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <roman.li@amd.com>
+From: Samson Tam <Samson.Tam@amd.com>
 
 [Why]
-We need DMCU for features like PSR and ABM.
+Add optimization to allow pstate change support when all displays
+are off in DCN2.
 
 [How]
-Add path to dmcu firmware binary and load it for Navi12.
+Add clk_mgr_helper_get_active_plane_cnt() to sum plane_count for all
+valid stream_status[].  If plane_count is 0, then there are no active
+or virtual streams present. Use plane_count == 0 as extra condition to
+enable p_state_change_support in dcn2_update_clocks().
 
-Signed-off-by: Roman Li <roman.li@amd.com>
-Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
+Signed-off-by: Samson Tam <Samson.Tam@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Harry Wentland <harry.wentland@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c  | 19 +++++++++++++++++++
+ .../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c  |  8 ++++++--
+ .../amd/display/dc/inc/hw/clk_mgr_internal.h  |  4 ++++
+ 3 files changed, 29 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 933bbe8350bb..bd88396a8469 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -98,6 +98,9 @@ MODULE_FIRMWARE(FIRMWARE_RENOIR_DMUB);
- #define FIRMWARE_RAVEN_DMCU		"amdgpu/raven_dmcu.bin"
- MODULE_FIRMWARE(FIRMWARE_RAVEN_DMCU);
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+index a78e5c74c79c..2f43f1618db8 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+@@ -63,6 +63,25 @@ int clk_mgr_helper_get_active_display_cnt(
+ 	return display_count;
+ }
  
-+#define FIRMWARE_NAVI12_DMCU            "amdgpu/navi12_dmcu.bin"
-+MODULE_FIRMWARE(FIRMWARE_NAVI12_DMCU);
++int clk_mgr_helper_get_active_plane_cnt(
++		struct dc *dc,
++		struct dc_state *context)
++{
++	int i, total_plane_count;
 +
- /* Number of bytes in PSP header for firmware. */
- #define PSP_HEADER_BYTES 0x100
++	total_plane_count = 0;
++	for (i = 0; i < context->stream_count; i++) {
++		const struct dc_stream_status stream_status = context->stream_status[i];
++
++		/*
++		 * Sum up plane_count for all streams ( active and virtual ).
++		 */
++		total_plane_count += stream_status.plane_count;
++	}
++
++	return total_plane_count;
++}
++
+ void clk_mgr_exit_optimized_pwr_state(const struct dc *dc, struct clk_mgr *clk_mgr)
+ {
+ 	struct dc_link *edp_link = get_edp_link(dc);
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+index 49ce46b543ea..68a1120ff674 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+@@ -158,6 +158,8 @@ void dcn2_update_clocks(struct clk_mgr *clk_mgr_base,
+ 	bool dpp_clock_lowered = false;
+ 	struct dmcu *dmcu = clk_mgr_base->ctx->dc->res_pool->dmcu;
+ 	bool force_reset = false;
++	bool p_state_change_support;
++	int total_plane_count;
  
-@@ -1088,9 +1091,11 @@ static int load_dmcu_fw(struct amdgpu_device *adev)
- 	case CHIP_VEGA20:
- 	case CHIP_NAVI10:
- 	case CHIP_NAVI14:
--	case CHIP_NAVI12:
- 	case CHIP_RENOIR:
- 		return 0;
-+	case CHIP_NAVI12:
-+		fw_name_dmcu = FIRMWARE_NAVI12_DMCU;
-+		break;
- 	case CHIP_RAVEN:
- 		if (ASICREV_IS_PICASSO(adev->external_rev_id))
- 			fw_name_dmcu = FIRMWARE_RAVEN_DMCU;
+ 	if (dc->work_arounds.skip_clock_update)
+ 		return;
+@@ -213,9 +215,11 @@ void dcn2_update_clocks(struct clk_mgr *clk_mgr_base,
+ 			pp_smu->set_hard_min_socclk_by_freq(&pp_smu->pp_smu, clk_mgr_base->clks.socclk_khz / 1000);
+ 	}
+ 
+-	if (should_update_pstate_support(safe_to_lower, new_clocks->p_state_change_support, clk_mgr_base->clks.p_state_change_support)) {
++	total_plane_count = clk_mgr_helper_get_active_plane_cnt(dc, context);
++	p_state_change_support = new_clocks->p_state_change_support || (total_plane_count == 0);
++	if (should_update_pstate_support(safe_to_lower, p_state_change_support, clk_mgr_base->clks.p_state_change_support)) {
+ 		clk_mgr_base->clks.prev_p_state_change_support = clk_mgr_base->clks.p_state_change_support;
+-		clk_mgr_base->clks.p_state_change_support = new_clocks->p_state_change_support;
++		clk_mgr_base->clks.p_state_change_support = p_state_change_support;
+ 		if (pp_smu && pp_smu->set_pstate_handshake_support)
+ 			pp_smu->set_pstate_handshake_support(&pp_smu->pp_smu, clk_mgr_base->clks.p_state_change_support);
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+index 862952c0286a..9311d0de377f 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+@@ -296,6 +296,10 @@ int clk_mgr_helper_get_active_display_cnt(
+ 		struct dc *dc,
+ 		struct dc_state *context);
+ 
++int clk_mgr_helper_get_active_plane_cnt(
++		struct dc *dc,
++		struct dc_state *context);
++
+ 
+ 
+ #endif //__DAL_CLK_MGR_INTERNAL_H__
 -- 
 2.25.0
 
