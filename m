@@ -1,56 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D8D1682A9
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2020 17:04:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE331682C5
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2020 17:06:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20E4F6F4B2;
-	Fri, 21 Feb 2020 16:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ED476F498;
+	Fri, 21 Feb 2020 16:06:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 788566F4AA
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 16:04:08 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id p9so2329358wmc.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 08:04:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language;
- bh=5yDd0np2tzxNG80ygpQgxorD9FlghTPFveGVtXqLAak=;
- b=hIKGObvTqG3M68DbbpRonobAU+xK3tYltIw630H4SEjj9zBtPoMQ1WzYnziXeWpbt3
- 54SzMTGiPFUMnS3iDXbP7d0dRHbJQ1T2HTSeLCik02yUTD+2ObYeUlctMqqv4J2zoybx
- P/ivoi5M44EBxW6NfC/w6+Nuwzge0DB/eN8wnM2E9wiwGuzIbC4CU4W3yth9OtyhgVAa
- 8Prb2MY8UAYo4abuS+stw31kMOYuloAWbryjawW3fe1A6/hO2FVsGoMalA+QbaxQlFEv
- 6PlWYMgkD/Gmcvyk0qTXUAxU1at0PIcK8/p9ALvZtkHWKSXPWpqpaPYIYMii6abJ/F6y
- vRsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language;
- bh=5yDd0np2tzxNG80ygpQgxorD9FlghTPFveGVtXqLAak=;
- b=TiqkupT4nfzfAaGMgbTnh1PgV42RbMVO88Dl4vHVH3L/4P9UsXuXlqy6vP23pUVxz7
- h/MVFSj/3+wH/q9V8EZC3rHW0ojl9swvxxwPmnUUNsHEhIn1svShKw2P27JYSx19L+HN
- +xmHpxVvwdpvWfSP/cv9hEXY4q2/6brrD+Mc4j6RgU6LsFdvtIKnVilLBl9PqRO7p6Ox
- /eq0YZ6DweXcKLQlU41NsmMPP33nEI7xJ31hjke60u4vJmNCcS9ruNCo90oRqi23Nek7
- EJgxCAm89Q2piN3g9CrlCLXC/jh05mqZxayVQlhGXgm4rz92WIrpPX+PznxaV/GfvQXl
- cLlQ==
-X-Gm-Message-State: APjAAAX140kGTUJ/wCNcUKzhwzFzxJPU63AyaoFO95bM/ovUsu/3Epjx
- 7u6j2WSS86CNLxff5Hkdbq0ELJZM
-X-Google-Smtp-Source: APXvYqweQEpV5magF6T5zGH0YvBgHpMlyQrJgwL9q8E2g7Mw8a1kWsMfgKP1el01UQK1P3vKItzGLA==
-X-Received: by 2002:a1c:491:: with SMTP id 139mr4644715wme.117.1582301046792; 
- Fri, 21 Feb 2020 08:04:06 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id 133sm4652775wmd.5.2020.02.21.08.04.05
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 21 Feb 2020 08:04:06 -0800 (PST)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2053.outbound.protection.outlook.com [40.107.220.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97E5F6F498
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 16:06:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LOTDKSXhc0TJyWonOdzgJgZ2dvhH5St1kI1tkGeA34QAqkwAczOT1O00yjWAtm8RSVrC3WSnZdhFq1/c8BjXh0Tx44bBWG2pIwLepSFVzHlD9PZ8nN/1dzosB7mmF+xVDrWSHfRfo4zRDkfuKztqT9j7epcsp5wZxond5c4kYMBQU7yQG5CtNaet1PJHk7I/ra6rB10Q5kHP74uRAVIv6dmfqPgctmoqkFaKI7sD3l6df4H32R82HuJ5LdaHqu5ddwgWQSAMx33tAm2ApkXvhgZwEAeYTfzWXSpONjz0okcQGdaKrTscKO7b4qmbc7qtS1rtFo6Gm3ejZr/SL/SCjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tx52SbhxHrlNYOdqUslCAyZ5tF7GraE0YhQgKrTUXdY=;
+ b=QL3VTQqk74qI5PABs3xV7XFnBaIDI4izRCkxxuSH7Aojo4WVhePavD0yhD/PVNmv+iK65Z/c5ef2DqY86nVpHOlcLRWOCv8bJsbTUvoErluNMJhEoUkJRb8GhWCorvH0IZH65nS1zsjFIVN9TkBJFvo1C32HJc+oye/7YogeMQjkfMJzEdeupM7tIhzfeAsyRW1whmuhlYm2PqBKRQ/OB911R5P5cR42NizbsGAq8XlUxvvIHPC9j/D5jBEAb5dz4TMCxp1f3b7rmAabMd6twznBUML3PEhgsT6YLFJ+OemLuWIHi0qE9ccjQA5MlgMOHH+ENpPOpL60omjGT2MxGw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tx52SbhxHrlNYOdqUslCAyZ5tF7GraE0YhQgKrTUXdY=;
+ b=yWyhC6KDbA8qw9X36dHcsytLlj6tVuzPTmhnNiywZ7zq60gS2T71JRttVqA8edIOhMHXC6fVVu3hGowSbTqdxaHmcAt1PMGppy2KZ9I9BZZVOSpdtcBFyMK+lYNw499PK+eIH6pUsGMKZqkEDW6xNWJzlt2yD2kwK8AbWYwIFKQ=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Tom.StDenis@amd.com; 
+Received: from CH2PR12MB3927.namprd12.prod.outlook.com (2603:10b6:610:2d::13)
+ by CH2PR12MB4166.namprd12.prod.outlook.com (2603:10b6:610:78::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2729.23; Fri, 21 Feb
+ 2020 16:06:09 +0000
+Received: from CH2PR12MB3927.namprd12.prod.outlook.com
+ ([fe80::54a8:8b32:7a8f:488c]) by CH2PR12MB3927.namprd12.prod.outlook.com
+ ([fe80::54a8:8b32:7a8f:488c%7]) with mapi id 15.20.2729.033; Fri, 21 Feb 2020
+ 16:06:09 +0000
 Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIXSBkcm0vYW1kL2FtZGdwdTogZGlzYWJs?=
  =?UTF-8?Q?e_GFXOFF_around_debugfs_access_to_MMIO?=
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Huang, Ray" <Ray.Huang@amd.com>, "Liu, Monk" <Monk.Liu@amd.com>
+To: christian.koenig@amd.com, "Deucher, Alexander"
+ <Alexander.Deucher@amd.com>, "Huang, Ray" <Ray.Huang@amd.com>,
+ "Liu, Monk" <Monk.Liu@amd.com>
 References: <20200219150417.510884-1-tom.stdenis@amd.com>
  <CADnq5_PaR2a4UCwQFF6y1A1MCqaDAbPbFJZSzdBcTMkRnREw5g@mail.gmail.com>
  <6f93ee3f-4fba-575a-f8eb-0441b0efd4c8@amd.com>
@@ -61,14 +54,51 @@ References: <20200219150417.510884-1-tom.stdenis@amd.com>
  <CH2PR12MB391225487BEB1F7F94F305EBF7120@CH2PR12MB3912.namprd12.prod.outlook.com>
  <4baecca5-199b-414c-5865-410456bc2876@gmail.com>
  <CH2PR12MB39120922B0E459A5721F0A15F7120@CH2PR12MB3912.namprd12.prod.outlook.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <d59d3310-329d-10a7-45c9-3bb85cb58644@gmail.com>
-Date: Fri, 21 Feb 2020 17:04:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <CH2PR12MB39120922B0E459A5721F0A15F7120@CH2PR12MB3912.namprd12.prod.outlook.com>
+ <d59d3310-329d-10a7-45c9-3bb85cb58644@gmail.com>
+From: Tom St Denis <tom.stdenis@amd.com>
+Message-ID: <03fe7a97-a454-fd48-382e-1c62a2d8b4bc@amd.com>
+Date: Fri, 21 Feb 2020 11:06:04 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+In-Reply-To: <d59d3310-329d-10a7-45c9-3bb85cb58644@gmail.com>
 Content-Language: en-US
+X-ClientProxiedBy: BN6PR2001CA0033.namprd20.prod.outlook.com
+ (2603:10b6:405:16::19) To CH2PR12MB3927.namprd12.prod.outlook.com
+ (2603:10b6:610:2d::13)
+MIME-Version: 1.0
+Received: from localhost.localdomain (165.204.84.11) by
+ BN6PR2001CA0033.namprd20.prod.outlook.com (2603:10b6:405:16::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.17 via Frontend
+ Transport; Fri, 21 Feb 2020 16:06:07 +0000
+X-Originating-IP: [165.204.84.11]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: e610524f-278c-4f68-80dd-08d7b6e7f6d0
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4166:|CH2PR12MB4166:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH2PR12MB41662348736823D0895B94CFF7120@CH2PR12MB4166.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Forefront-PRVS: 0320B28BE1
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10001)(10009020)(4636009)(376002)(346002)(366004)(136003)(396003)(39860400002)(189003)(199004)(66476007)(66556008)(30864003)(81166006)(8936002)(2906002)(31696002)(5660300002)(66946007)(224303003)(6486002)(6512007)(36756003)(81156014)(6636002)(956004)(2616005)(4326008)(966005)(53546011)(186003)(6506007)(110136005)(54906003)(45080400002)(16526019)(66574012)(31686004)(6666004)(316002)(86362001)(478600001)(52116002)(26005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:CH2PR12MB4166;
+ H:CH2PR12MB3927.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8rcswkjMpze5hXdmmZKvw3mqXdexweqLmMlsDt+dyiIbqRLbNu/f/OyRZ2AT4+YNzQhimPTgRsm7FbLd68Mc8rNfzuAUmpHYmwdTLEdz6prgEG7LcwTnc1zP7HKJape3AV5wr67UtPW4RLVBFufCGqQxib4eEHLzleYF5nPFXl9cH7XYU3cXSduWeZvp0LkPk9OFWF20P75HTs2pKKWjBLru1YFSavwwdGztfqH2T8WroBW6z9K8YDNZ91H6AIj5CZO5TmwKxuu4U76ra765fuNltHqf6NmHtIQmWtyYW+/GXUfzRoY0iRXvM6rymId1ExD9J5hqGLtzVJH3xIl6cG4ClFA3lPrBsQOu9u3/VqGa9/sLyYijOfv4LM5ArPBcKVj1ztdPkxgfDC7nqXP51H96whZot3+i1AAWGcAojTjeO8Ppv1KwaiuaI7CZnBksfYDEbfFK2P7M6tQhjYLKaMMikGcolRB6s18U7pVh5Ydh8KZNQ5VkahUvpPABKoudIPTxelzUvjshBZY4IreGWhsGUGHjhGCrqbv8Z2p6encrPUirvHJScIEwcSM0BLMMo6xMoBGLVdhH2UtuHDZzFtS7U4B5OG8xEm6T+8unceYyVkXBYpsYh1YSHXRVpeJK
+X-MS-Exchange-AntiSpam-MessageData: iqNhOpvrFgahONOK/2mjOLZaoDhAewJF6tlT3YgNHeQl8mfIqTEUPt5lcyJ85OnxM9gyO+4+XBbVcLZUCG8QWmssje0AChFlaiPICxyHKujrsVjcZCr5Aedh7oRUezdah2NuS5LExUV6uAavv20KyA==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e610524f-278c-4f68-80dd-08d7b6e7f6d0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2020 16:06:09.3033 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RzrDuvE9HW1sYxI6/G7lB2/IB5aqHtnNqkKrzP3TO/RKQFLOFXnRT9E+vxWRPSeRGDO+SPs1EezzrQFTHRa03A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4166
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,646 +110,195 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: "StDenis, Tom" <Tom.StDenis@amd.com>, Alex Deucher <alexdeucher@gmail.com>,
+Cc: Alex Deucher <alexdeucher@gmail.com>,
  amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1764079868=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============1764079868==
-Content-Type: multipart/alternative;
- boundary="------------AA419B634B9B8041D67CE76D"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------AA419B634B9B8041D67CE76D
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Ok how about this:
-
-We add a debugfs file which when read returns the GFXOFF status and when 
-written with a number disabled GFXOFF for N seconds with 0 meaning forever.
-
-Umr gets a new commandline option to write to that file before reading 
-registers.
-
-This way the user can still disable it if it causes any problems. Does 
-that sounds like a plan?
-
-Regards,
-Christian.
-
-Am 21.02.20 um 16:56 schrieb Deucher, Alexander:
->
-> [AMD Public Use]
->
->
-> Not at the moment.  But we could add a debugfs file which just wraps 
-> amdgpu_gfx_off_ctrl(). That said, maybe we just add a delay here or a 
-> use a timer to delay turning gfxoff back on again so that we aren't 
-> turning it on and off so rapidly.
->
-> Alex
->
-> ------------------------------------------------------------------------
-> *From:* Christian König <ckoenig.leichtzumerken@gmail.com>
-> *Sent:* Friday, February 21, 2020 10:43 AM
-> *To:* Deucher, Alexander <Alexander.Deucher@amd.com>; Huang, Ray 
-> <Ray.Huang@amd.com>; Liu, Monk <Monk.Liu@amd.com>
-> *Cc:* StDenis, Tom <Tom.StDenis@amd.com>; Alex Deucher 
-> <alexdeucher@gmail.com>; amd-gfx list <amd-gfx@lists.freedesktop.org>
-> *Subject:* Re: 回复: [PATCH] drm/amd/amdgpu: disable GFXOFF around 
-> debugfs access to MMIO
-> Do we have a way to disable GFXOFF on the fly?
->
-> If not maybe it would be a good idea to add a separate debugfs file to 
-> do this.
->
-> Christian.
->
-> Am 21.02.20 um 16:39 schrieb Deucher, Alexander:
->>
->> [AMD Public Use]
->>
->>
->> If we are trying to debug a reproducible hang, probably best to just 
->> to disable gfxoff before messing with it to remove that as a factor.  
->> Otherwise, the method included in this patch is the proper way to 
->> disable/enable GFXOFF dynamically.
->>
->> Alex
->>
->> ------------------------------------------------------------------------
->> *From:* amd-gfx <amd-gfx-bounces@lists.freedesktop.org> 
->> <mailto:amd-gfx-bounces@lists.freedesktop.org> on behalf of Christian 
->> König <ckoenig.leichtzumerken@gmail.com> 
->> <mailto:ckoenig.leichtzumerken@gmail.com>
->> *Sent:* Friday, February 21, 2020 10:27 AM
->> *To:* Huang, Ray <Ray.Huang@amd.com> <mailto:Ray.Huang@amd.com>; Liu, 
->> Monk <Monk.Liu@amd.com> <mailto:Monk.Liu@amd.com>
->> *Cc:* StDenis, Tom <Tom.StDenis@amd.com> 
->> <mailto:Tom.StDenis@amd.com>; Alex Deucher <alexdeucher@gmail.com> 
->> <mailto:alexdeucher@gmail.com>; amd-gfx list 
->> <amd-gfx@lists.freedesktop.org> <mailto:amd-gfx@lists.freedesktop.org>
->> *Subject:* Re: 回复: [PATCH] drm/amd/amdgpu: disable GFXOFF around 
->> debugfs access to MMIO
->> Am 21.02.20 um 16:23 schrieb Huang Rui:
->> > On Fri, Feb 21, 2020 at 11:18:07PM +0800, Liu, Monk wrote:
->> >> Better not use KIQ, because when you use debugfs to read register 
->> you usually hit a hang, and by that case KIQ probably already die
->> > If CP is busy, the gfx should be in "on" state at that time, we 
->> needn't use KIQ.
->>
->> Yeah, but how do you detect that? Do we have a way to wake up the CP
->> without asking power management to do so?
->>
->> Cause the register debug interface is meant to be used when the ASIC is
->> completed locked up. Sending messages to the SMU is not really going to
->> work in that situation.
->>
->> Regards,
->> Christian.
->>
->> >
->> > Thanks,
->> > Ray
->> >
->> >> -----邮件原件-----
->> >> 发件人: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> 
->> <mailto:amd-gfx-bounces@lists.freedesktop.org> 代表 Huang Rui
->> >> 发送时间: 2020年2月21日 22:34
->> >> 收件人: StDenis, Tom <Tom.StDenis@amd.com> 
->> <mailto:Tom.StDenis@amd.com>
->> >> 抄送: Alex Deucher <alexdeucher@gmail.com> 
->> <mailto:alexdeucher@gmail.com>; amd-gfx list 
->> <amd-gfx@lists.freedesktop.org> <mailto:amd-gfx@lists.freedesktop.org>
->> >> 主题: Re: [PATCH] drm/amd/amdgpu: disable GFXOFF around debugfs 
->> access to MMIO
->> >>
->> >> On Wed, Feb 19, 2020 at 10:09:46AM -0500, Tom St Denis wrote:
->> >>> I got some messages after a while:
->> >>>
->> >>> [  741.788564] Failed to send Message 8.
->> >>> [  746.671509] Failed to send Message 8.
->> >>> [  748.749673] Failed to send Message 2b.
->> >>> [  759.245414] Failed to send Message 7.
->> >>> [  763.216902] Failed to send Message 2a.
->> >>>
->> >>> Are there any additional locks that should be held?  Because some
->> >>> commands like --top or --waves can do a lot of distinct read
->> >>> operations (causing a lot of enable/disable calls).
->> >>>
->> >>> I'm going to sit on this a bit since I don't think the patch is ready
->> >>> for pushing out.
->> >>>
->> >> How about use RREG32_KIQ and WREG32_KIQ?
->> >>
->> >> Thanks,
->> >> Ray
->> >>
->> >>> Tom
->> >>>
->> >>> On 2020-02-19 10:07 a.m., Alex Deucher wrote:
->> >>>> On Wed, Feb 19, 2020 at 10:04 AM Tom St Denis 
->> <tom.stdenis@amd.com> <mailto:tom.stdenis@amd.com> wrote:
->> >>>>> Signed-off-by: Tom St Denis <tom.stdenis@amd.com> 
->> <mailto:tom.stdenis@amd.com>
->> >>>> Please add a patch description. With that fixed:
->> >>>> Reviewed-by: Alex Deucher <alexander.deucher@amd.com> 
->> <mailto:alexander.deucher@amd.com>
->> >>>>
->> >>>>> ---
->> >>>>> drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 3 +++
->> >>>>>    1 file changed, 3 insertions(+)
->> >>>>>
->> >>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> >>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> >>>>> index 7379910790c9..66f763300c96 100644
->> >>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> >>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> >>>>> @@ -169,6 +169,7 @@ static int  
->> amdgpu_debugfs_process_reg_op(bool read, struct file *f,
->> >>>>>           if (pm_pg_lock)
->> >>>>> mutex_lock(&adev->pm.mutex);
->> >>>>>
->> >>>>> + amdgpu_gfx_off_ctrl(adev, false);
->> >>>>>           while (size) {
->> >>>>>                   uint32_t value;
->> >>>>>
->> >>>>> @@ -192,6 +193,8 @@ static int  
->> amdgpu_debugfs_process_reg_op(bool read, struct file *f,
->> >>>>>           }
->> >>>>>
->> >>>>>    end:
->> >>>>> + amdgpu_gfx_off_ctrl(adev, true);
->> >>>>> +
->> >>>>>           if (use_bank) {
->> >>>>> amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff);
->> >>>>> mutex_unlock(&adev->grbm_idx_mutex);
->> >>>>> --
->> >>>>> 2.24.1
->> >>>>>
->> >>>>> _______________________________________________
->> >>>>> amd-gfx mailing list
->> >>>>> amd-gfx@lists.freedesktop.org 
->> <mailto:amd-gfx@lists.freedesktop.org>
->> >>>>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2F
->> >>>>> lists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7
->> >>>>> C01%7Cmonk.liu%40amd.com%7Cba45efb26c0240ed036f08d7b6db20aa%7C3dd8
->> >>>>> 961fe4884e608e11a82d994e183d%7C0%7C0%7C637178924605524378&amp;sdat
->> >>>>> a=%2FyHkvYU5T%2F4iFxRexsg%2BIdm7sDzyXbjzNpHUGCO7h4k%3D&amp;reserve
->> >>>>> d=0
->> >>> _______________________________________________
->> >>> amd-gfx mailing list
->> >>> amd-gfx@lists.freedesktop.org <mailto:amd-gfx@lists.freedesktop.org>
->> >>> 
->> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flist
->> >>> 
->> s.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Cmo
->> >>> 
->> nk.liu%40amd.com%7Cba45efb26c0240ed036f08d7b6db20aa%7C3dd8961fe4884e60
->> >>> 
->> 8e11a82d994e183d%7C0%7C0%7C637178924605524378&amp;sdata=%2FyHkvYU5T%2F
->> >>> 4iFxRexsg%2BIdm7sDzyXbjzNpHUGCO7h4k%3D&amp;reserved=0
->> >> _______________________________________________
->> >> amd-gfx mailing list
->> >> amd-gfx@lists.freedesktop.org <mailto:amd-gfx@lists.freedesktop.org>
->> >> 
->> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Calexander.deucher%40amd.com%7Cf3762304925b4019bfed08d7b6e287e4%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178957179179431&amp;sdata=bY7V%2BKOF3gYu4ITGCKgAiRvXUvxPcwsz2zsEJDns3jI%3D&amp;reserved=0 
->> <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&data=02%7C01%7CAlexander.Deucher%40amd.com%7C50c08a2474b346c44c0608d7b6e4d3ff%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178966243976347&sdata=yQgD1Ywji%2BimCVr06LD0oSnf4ZHGmoN3s8a5NybPx4E%3D&reserved=0>
->> > _______________________________________________
->> > amd-gfx mailing list
->> > amd-gfx@lists.freedesktop.org <mailto:amd-gfx@lists.freedesktop.org>
->> > 
->> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Calexander.deucher%40amd.com%7Cf3762304925b4019bfed08d7b6e287e4%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178957179179431&amp;sdata=bY7V%2BKOF3gYu4ITGCKgAiRvXUvxPcwsz2zsEJDns3jI%3D&amp;reserved=0 
->> <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&data=02%7C01%7CAlexander.Deucher%40amd.com%7C50c08a2474b346c44c0608d7b6e4d3ff%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178966243986301&sdata=5vafv2zCFbpgaSpgcQzLaEAC3wnqkIvGbrvKH3M11s4%3D&reserved=0>
->>
->> _______________________________________________
->> amd-gfx mailing list
->> amd-gfx@lists.freedesktop.org <mailto:amd-gfx@lists.freedesktop.org>
->> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Calexander.deucher%40amd.com%7Cf3762304925b4019bfed08d7b6e287e4%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178957179179431&amp;sdata=bY7V%2BKOF3gYu4ITGCKgAiRvXUvxPcwsz2zsEJDns3jI%3D&amp;reserved=0 
->> <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&data=02%7C01%7CAlexander.Deucher%40amd.com%7C50c08a2474b346c44c0608d7b6e4d3ff%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178966243986301&sdata=5vafv2zCFbpgaSpgcQzLaEAC3wnqkIvGbrvKH3M11s4%3D&reserved=0>
->
-
-
---------------AA419B634B9B8041D67CE76D
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">Ok how about this:<br>
-      <br>
-      We add a debugfs file which when read returns the GFXOFF status
-      and when written with a number disabled GFXOFF for N seconds with
-      0 meaning forever.<br>
-      <br>
-      Umr gets a new commandline option to write to that file before
-      reading registers.<br>
-      <br>
-      This way the user can still disable it if it causes any problems.
-      Does that sounds like a plan?<br>
-      <br>
-      Regards,<br>
-      Christian.<br>
-      <br>
-      Am 21.02.20 um 16:56 schrieb Deucher, Alexander:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CH2PR12MB39120922B0E459A5721F0A15F7120@CH2PR12MB3912.namprd12.prod.outlook.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
-      <p
-        style="font-family:Arial;font-size:10pt;color:#317100;margin:15pt;"
-        align="Left">
-        [AMD Public Use]<br>
-      </p>
-      <br>
-      <div>
-        <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-          font-size: 12pt; color: rgb(0, 0, 0);">
-          Not at the moment.  But we could add a debugfs file which just
-          wraps <font size="2">
-            <span style="font-size:11pt">amdgpu_gfx_off_ctrl</span></font>(). 
-          That said, maybe we just add a delay here or a use a timer to
-          delay turning gfxoff back on again so that we aren't turning
-          it on and off so rapidly.</div>
-        <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-          font-size: 12pt; color: rgb(0, 0, 0);">
-          <br>
-        </div>
-        <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-          font-size: 12pt; color: rgb(0, 0, 0);">
-          Alex</div>
-        <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-          font-size: 12pt; color: rgb(0, 0, 0);">
-          <br>
-        </div>
-        <hr style="display:inline-block;width:98%" tabindex="-1">
-        <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
-            face="Calibri, sans-serif" color="#000000"><b>From:</b>
-            Christian König <a class="moz-txt-link-rfc2396E" href="mailto:ckoenig.leichtzumerken@gmail.com">&lt;ckoenig.leichtzumerken@gmail.com&gt;</a><br>
-            <b>Sent:</b> Friday, February 21, 2020 10:43 AM<br>
-            <b>To:</b> Deucher, Alexander
-            <a class="moz-txt-link-rfc2396E" href="mailto:Alexander.Deucher@amd.com">&lt;Alexander.Deucher@amd.com&gt;</a>; Huang, Ray
-            <a class="moz-txt-link-rfc2396E" href="mailto:Ray.Huang@amd.com">&lt;Ray.Huang@amd.com&gt;</a>; Liu, Monk
-            <a class="moz-txt-link-rfc2396E" href="mailto:Monk.Liu@amd.com">&lt;Monk.Liu@amd.com&gt;</a><br>
-            <b>Cc:</b> StDenis, Tom <a class="moz-txt-link-rfc2396E" href="mailto:Tom.StDenis@amd.com">&lt;Tom.StDenis@amd.com&gt;</a>; Alex
-            Deucher <a class="moz-txt-link-rfc2396E" href="mailto:alexdeucher@gmail.com">&lt;alexdeucher@gmail.com&gt;</a>; amd-gfx list
-            <a class="moz-txt-link-rfc2396E" href="mailto:amd-gfx@lists.freedesktop.org">&lt;amd-gfx@lists.freedesktop.org&gt;</a><br>
-            <b>Subject:</b> Re: 回复: [PATCH] drm/amd/amdgpu: disable
-            GFXOFF around debugfs access to MMIO</font>
-          <div> </div>
-        </div>
-        <div style="background-color:#FFFFFF">
-          <div class="x_moz-cite-prefix">Do we have a way to disable
-            GFXOFF on the fly?<br>
-            <br>
-            If not maybe it would be a good idea to add a separate
-            debugfs file to do this.<br>
-            <br>
-            Christian.<br>
-            <br>
-            Am 21.02.20 um 16:39 schrieb Deucher, Alexander:<br>
-          </div>
-          <blockquote type="cite">
-            <style type="text/css" style="display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-            <p style="font-family:Arial; font-size:10pt; color:#317100;
-              margin:15pt" align="Left">
-              [AMD Public Use]<br>
-            </p>
-            <br>
-            <div>
-              <div
-                style="font-family:Calibri,Arial,Helvetica,sans-serif;
-                font-size:12pt; color:rgb(0,0,0)">
-                If we are trying to debug a reproducible hang, probably
-                best to just to disable gfxoff before messing with it to
-                remove that as a factor.  Otherwise, the method included
-                in this patch is the proper way to disable/enable GFXOFF
-                dynamically.</div>
-              <div
-                style="font-family:Calibri,Arial,Helvetica,sans-serif;
-                font-size:12pt; color:rgb(0,0,0)">
-                <br>
-              </div>
-              <div
-                style="font-family:Calibri,Arial,Helvetica,sans-serif;
-                font-size:12pt; color:rgb(0,0,0)">
-                Alex</div>
-              <div
-                style="font-family:Calibri,Arial,Helvetica,sans-serif;
-                font-size:12pt; color:rgb(0,0,0)">
-                <br>
-              </div>
-              <hr tabindex="-1" style="display:inline-block; width:98%">
-              <div id="x_divRplyFwdMsg" dir="ltr"><font
-                  style="font-size:11pt" face="Calibri, sans-serif"
-                  color="#000000"><b>From:</b> amd-gfx
-                  <a class="x_moz-txt-link-rfc2396E"
-                    href="mailto:amd-gfx-bounces@lists.freedesktop.org"
-                    moz-do-not-send="true">
-                    &lt;amd-gfx-bounces@lists.freedesktop.org&gt;</a> on
-                  behalf of Christian König <a
-                    class="x_moz-txt-link-rfc2396E"
-                    href="mailto:ckoenig.leichtzumerken@gmail.com"
-                    moz-do-not-send="true">
-                    &lt;ckoenig.leichtzumerken@gmail.com&gt;</a><br>
-                  <b>Sent:</b> Friday, February 21, 2020 10:27 AM<br>
-                  <b>To:</b> Huang, Ray <a
-                    class="x_moz-txt-link-rfc2396E"
-                    href="mailto:Ray.Huang@amd.com"
-                    moz-do-not-send="true">
-                    &lt;Ray.Huang@amd.com&gt;</a>; Liu, Monk <a
-                    class="x_moz-txt-link-rfc2396E"
-                    href="mailto:Monk.Liu@amd.com"
-                    moz-do-not-send="true">
-                    &lt;Monk.Liu@amd.com&gt;</a><br>
-                  <b>Cc:</b> StDenis, Tom <a
-                    class="x_moz-txt-link-rfc2396E"
-                    href="mailto:Tom.StDenis@amd.com"
-                    moz-do-not-send="true">
-                    &lt;Tom.StDenis@amd.com&gt;</a>; Alex Deucher <a
-                    class="x_moz-txt-link-rfc2396E"
-                    href="mailto:alexdeucher@gmail.com"
-                    moz-do-not-send="true">
-                    &lt;alexdeucher@gmail.com&gt;</a>; amd-gfx list <a
-                    class="x_moz-txt-link-rfc2396E"
-                    href="mailto:amd-gfx@lists.freedesktop.org"
-                    moz-do-not-send="true">
-                    &lt;amd-gfx@lists.freedesktop.org&gt;</a><br>
-                  <b>Subject:</b> Re: 回复: [PATCH] drm/amd/amdgpu:
-                  disable GFXOFF around debugfs access to MMIO</font>
-                <div> </div>
-              </div>
-              <div class="x_BodyFragment"><font size="2"><span
-                    style="font-size:11pt">
-                    <div class="x_PlainText">Am 21.02.20 um 16:23
-                      schrieb Huang Rui:<br>
-                      &gt; On Fri, Feb 21, 2020 at 11:18:07PM +0800,
-                      Liu, Monk wrote:<br>
-                      &gt;&gt; Better not use KIQ, because when you use
-                      debugfs to read register you usually hit a hang,
-                      and by that case KIQ probably already die<br>
-                      &gt; If CP is busy, the gfx should be in "on"
-                      state at that time, we needn't use KIQ.<br>
-                      <br>
-                      Yeah, but how do you detect that? Do we have a way
-                      to wake up the CP <br>
-                      without asking power management to do so?<br>
-                      <br>
-                      Cause the register debug interface is meant to be
-                      used when the ASIC is <br>
-                      completed locked up. Sending messages to the SMU
-                      is not really going to <br>
-                      work in that situation.<br>
-                      <br>
-                      Regards,<br>
-                      Christian.<br>
-                      <br>
-                      &gt;<br>
-                      &gt; Thanks,<br>
-                      &gt; Ray<br>
-                      &gt;<br>
-                      &gt;&gt; -----邮件原件-----<br>
-                      &gt;&gt; 发件人: amd-gfx <a
-                        class="x_moz-txt-link-rfc2396E"
-                        href="mailto:amd-gfx-bounces@lists.freedesktop.org"
-                        moz-do-not-send="true">
-                        &lt;amd-gfx-bounces@lists.freedesktop.org&gt;</a>
-                      代表 Huang Rui<br>
-                      &gt;&gt; 发送时间: 2020年2月21日 22:34<br>
-                      &gt;&gt; 收件人: StDenis, Tom <a
-                        class="x_moz-txt-link-rfc2396E"
-                        href="mailto:Tom.StDenis@amd.com"
-                        moz-do-not-send="true">
-                        &lt;Tom.StDenis@amd.com&gt;</a><br>
-                      &gt;&gt; 抄送: Alex Deucher <a
-                        class="x_moz-txt-link-rfc2396E"
-                        href="mailto:alexdeucher@gmail.com"
-                        moz-do-not-send="true">
-                        &lt;alexdeucher@gmail.com&gt;</a>; amd-gfx list
-                      <a class="x_moz-txt-link-rfc2396E"
-                        href="mailto:amd-gfx@lists.freedesktop.org"
-                        moz-do-not-send="true">
-                        &lt;amd-gfx@lists.freedesktop.org&gt;</a><br>
-                      &gt;&gt; 主题: Re: [PATCH] drm/amd/amdgpu: disable
-                      GFXOFF around debugfs access to MMIO<br>
-                      &gt;&gt;<br>
-                      &gt;&gt; On Wed, Feb 19, 2020 at 10:09:46AM -0500,
-                      Tom St Denis wrote:<br>
-                      &gt;&gt;&gt; I got some messages after a while:<br>
-                      &gt;&gt;&gt;<br>
-                      &gt;&gt;&gt; [  741.788564] Failed to send Message
-                      8.<br>
-                      &gt;&gt;&gt; [  746.671509] Failed to send Message
-                      8.<br>
-                      &gt;&gt;&gt; [  748.749673] Failed to send Message
-                      2b.<br>
-                      &gt;&gt;&gt; [  759.245414] Failed to send Message
-                      7.<br>
-                      &gt;&gt;&gt; [  763.216902] Failed to send Message
-                      2a.<br>
-                      &gt;&gt;&gt;<br>
-                      &gt;&gt;&gt; Are there any additional locks that
-                      should be held?  Because some<br>
-                      &gt;&gt;&gt; commands like --top or --waves can do
-                      a lot of distinct read<br>
-                      &gt;&gt;&gt; operations (causing a lot of
-                      enable/disable calls).<br>
-                      &gt;&gt;&gt;<br>
-                      &gt;&gt;&gt; I'm going to sit on this a bit since
-                      I don't think the patch is ready<br>
-                      &gt;&gt;&gt; for pushing out.<br>
-                      &gt;&gt;&gt;<br>
-                      &gt;&gt; How about use RREG32_KIQ and WREG32_KIQ?<br>
-                      &gt;&gt;<br>
-                      &gt;&gt; Thanks,<br>
-                      &gt;&gt; Ray<br>
-                      &gt;&gt;<br>
-                      &gt;&gt;&gt; Tom<br>
-                      &gt;&gt;&gt;<br>
-                      &gt;&gt;&gt; On 2020-02-19 10:07 a.m., Alex
-                      Deucher wrote:<br>
-                      &gt;&gt;&gt;&gt; On Wed, Feb 19, 2020 at 10:04 AM
-                      Tom St Denis <a class="x_moz-txt-link-rfc2396E"
-                        href="mailto:tom.stdenis@amd.com"
-                        moz-do-not-send="true">
-                        &lt;tom.stdenis@amd.com&gt;</a> wrote:<br>
-                      &gt;&gt;&gt;&gt;&gt; Signed-off-by: Tom St Denis <a
-                        class="x_moz-txt-link-rfc2396E"
-                        href="mailto:tom.stdenis@amd.com"
-                        moz-do-not-send="true">
-                        &lt;tom.stdenis@amd.com&gt;</a><br>
-                      &gt;&gt;&gt;&gt; Please add a patch description. 
-                      With that fixed:<br>
-                      &gt;&gt;&gt;&gt; Reviewed-by: Alex Deucher <a
-                        class="x_moz-txt-link-rfc2396E"
-                        href="mailto:alexander.deucher@amd.com"
-                        moz-do-not-send="true">
-                        &lt;alexander.deucher@amd.com&gt;</a><br>
-                      &gt;&gt;&gt;&gt;<br>
-                      &gt;&gt;&gt;&gt;&gt; ---<br>
-                      &gt;&gt;&gt;&gt;&gt;   
-                      drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 3
-                      +++<br>
-                      &gt;&gt;&gt;&gt;&gt;    1 file changed, 3
-                      insertions(+)<br>
-                      &gt;&gt;&gt;&gt;&gt;<br>
-                      &gt;&gt;&gt;&gt;&gt; diff --git
-                      a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c<br>
-                      &gt;&gt;&gt;&gt;&gt;
-                      b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c<br>
-                      &gt;&gt;&gt;&gt;&gt; index
-                      7379910790c9..66f763300c96 100644<br>
-                      &gt;&gt;&gt;&gt;&gt; ---
-                      a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c<br>
-                      &gt;&gt;&gt;&gt;&gt; +++
-                      b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c<br>
-                      &gt;&gt;&gt;&gt;&gt; @@ -169,6 +169,7 @@ static
-                      int  amdgpu_debugfs_process_reg_op(bool read,
-                      struct file *f,<br>
-                      &gt;&gt;&gt;&gt;&gt;           if (pm_pg_lock)<br>
-                      &gt;&gt;&gt;&gt;&gt;                  
-                      mutex_lock(&amp;adev-&gt;pm.mutex);<br>
-                      &gt;&gt;&gt;&gt;&gt;<br>
-                      &gt;&gt;&gt;&gt;&gt; +      
-                      amdgpu_gfx_off_ctrl(adev, false);<br>
-                      &gt;&gt;&gt;&gt;&gt;           while (size) {<br>
-                      &gt;&gt;&gt;&gt;&gt;                   uint32_t
-                      value;<br>
-                      &gt;&gt;&gt;&gt;&gt;<br>
-                      &gt;&gt;&gt;&gt;&gt; @@ -192,6 +193,8 @@ static
-                      int  amdgpu_debugfs_process_reg_op(bool read,
-                      struct file *f,<br>
-                      &gt;&gt;&gt;&gt;&gt;           }<br>
-                      &gt;&gt;&gt;&gt;&gt;<br>
-                      &gt;&gt;&gt;&gt;&gt;    end:<br>
-                      &gt;&gt;&gt;&gt;&gt; +      
-                      amdgpu_gfx_off_ctrl(adev, true);<br>
-                      &gt;&gt;&gt;&gt;&gt; +<br>
-                      &gt;&gt;&gt;&gt;&gt;           if (use_bank) {<br>
-                      &gt;&gt;&gt;&gt;&gt;                  
-                      amdgpu_gfx_select_se_sh(adev, 0xffffffff,
-                      0xffffffff, 0xffffffff);<br>
-                      &gt;&gt;&gt;&gt;&gt;                  
-                      mutex_unlock(&amp;adev-&gt;grbm_idx_mutex);<br>
-                      &gt;&gt;&gt;&gt;&gt; --<br>
-                      &gt;&gt;&gt;&gt;&gt; 2.24.1<br>
-                      &gt;&gt;&gt;&gt;&gt;<br>
-                      &gt;&gt;&gt;&gt;&gt;
-                      _______________________________________________<br>
-                      &gt;&gt;&gt;&gt;&gt; amd-gfx mailing list<br>
-                      &gt;&gt;&gt;&gt;&gt; <a
-                        class="x_moz-txt-link-abbreviated"
-                        href="mailto:amd-gfx@lists.freedesktop.org"
-                        moz-do-not-send="true">
-                        amd-gfx@lists.freedesktop.org</a><br>
-                      &gt;&gt;&gt;&gt;&gt; <a
-href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2F"
-                        moz-do-not-send="true">
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2F</a><br>
-                      &gt;&gt;&gt;&gt;&gt;
-                      lists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=02%7<br>
-                      &gt;&gt;&gt;&gt;&gt;
-                      C01%7Cmonk.liu%40amd.com%7Cba45efb26c0240ed036f08d7b6db20aa%7C3dd8<br>
-                      &gt;&gt;&gt;&gt;&gt;
-                      961fe4884e608e11a82d994e183d%7C0%7C0%7C637178924605524378&amp;amp;sdat<br>
-                      &gt;&gt;&gt;&gt;&gt;
-                      a=%2FyHkvYU5T%2F4iFxRexsg%2BIdm7sDzyXbjzNpHUGCO7h4k%3D&amp;amp;reserve<br>
-                      &gt;&gt;&gt;&gt;&gt; d=0<br>
-                      &gt;&gt;&gt;
-                      _______________________________________________<br>
-                      &gt;&gt;&gt; amd-gfx mailing list<br>
-                      &gt;&gt;&gt; <a
-                        class="x_moz-txt-link-abbreviated"
-                        href="mailto:amd-gfx@lists.freedesktop.org"
-                        moz-do-not-send="true">
-                        amd-gfx@lists.freedesktop.org</a><br>
-                      &gt;&gt;&gt; <a
-href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flist"
-                        moz-do-not-send="true">
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flist</a><br>
-                      &gt;&gt;&gt;
-s.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=02%7C01%7Cmo<br>
-                      &gt;&gt;&gt;
-                      nk.liu%40amd.com%7Cba45efb26c0240ed036f08d7b6db20aa%7C3dd8961fe4884e60<br>
-                      &gt;&gt;&gt;
-8e11a82d994e183d%7C0%7C0%7C637178924605524378&amp;amp;sdata=%2FyHkvYU5T%2F<br>
-                      &gt;&gt;&gt;
-                      4iFxRexsg%2BIdm7sDzyXbjzNpHUGCO7h4k%3D&amp;amp;reserved=0<br>
-                      &gt;&gt;
-                      _______________________________________________<br>
-                      &gt;&gt; amd-gfx mailing list<br>
-                      &gt;&gt; <a class="x_moz-txt-link-abbreviated"
-                        href="mailto:amd-gfx@lists.freedesktop.org"
-                        moz-do-not-send="true">
-                        amd-gfx@lists.freedesktop.org</a><br>
-                      &gt;&gt; <a
-href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7CAlexander.Deucher%40amd.com%7C50c08a2474b346c44c0608d7b6e4d3ff%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178966243976347&amp;sdata=yQgD1Ywji%2BimCVr06LD0oSnf4ZHGmoN3s8a5NybPx4E%3D&amp;reserved=0"
-originalsrc="https://lists.freedesktop.org/mailman/listinfo/amd-gfx"
-shash="LqtLGEoomD1bdinw+EjRXZ2OeqKLF5oWf5aHZFEbAfd8xh8rXUIh8fVv+uoJMV9lkffB2syhnIgBLq2tJlSoZoFMbWd3pDTkmt/cpnIC/ExDYy93x3/F1MKt9QH2q0IeK+cT6UKhA+msphzGLXbA3CpORfb4qAfA9cQ6c5Sj/aw="
-                        moz-do-not-send="true">
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=02%7C01%7Calexander.deucher%40amd.com%7Cf3762304925b4019bfed08d7b6e287e4%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178957179179431&amp;amp;sdata=bY7V%2BKOF3gYu4ITGCKgAiRvXUvxPcwsz2zsEJDns3jI%3D&amp;amp;reserved=0</a><br>
-                      &gt;
-                      _______________________________________________<br>
-                      &gt; amd-gfx mailing list<br>
-                      &gt; <a class="x_moz-txt-link-abbreviated"
-                        href="mailto:amd-gfx@lists.freedesktop.org"
-                        moz-do-not-send="true">
-                        amd-gfx@lists.freedesktop.org</a><br>
-                      &gt; <a
-href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7CAlexander.Deucher%40amd.com%7C50c08a2474b346c44c0608d7b6e4d3ff%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178966243986301&amp;sdata=5vafv2zCFbpgaSpgcQzLaEAC3wnqkIvGbrvKH3M11s4%3D&amp;reserved=0"
-originalsrc="https://lists.freedesktop.org/mailman/listinfo/amd-gfx"
-shash="sNRPT35y/6wAGc9zONfY2DSN5loMxxR+oVuiO5qrFk03ANo8/FqIdLmGd8kP4FMnklSakEDVDNeoS97JRFWxUprHaeWBQ0oR5sa7gvhRu1pOw80jjDWxuhfZlFd9xVwkCV31z4wE5g4aPUlsN7IiAfNzmJwQ3sF2RnQONHZuBF4="
-                        moz-do-not-send="true">
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=02%7C01%7Calexander.deucher%40amd.com%7Cf3762304925b4019bfed08d7b6e287e4%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178957179179431&amp;amp;sdata=bY7V%2BKOF3gYu4ITGCKgAiRvXUvxPcwsz2zsEJDns3jI%3D&amp;amp;reserved=0</a><br>
-                      <br>
-                      _______________________________________________<br>
-                      amd-gfx mailing list<br>
-                      <a class="x_moz-txt-link-abbreviated"
-                        href="mailto:amd-gfx@lists.freedesktop.org"
-                        moz-do-not-send="true">amd-gfx@lists.freedesktop.org</a><br>
-                      <a
-href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7CAlexander.Deucher%40amd.com%7C50c08a2474b346c44c0608d7b6e4d3ff%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178966243986301&amp;sdata=5vafv2zCFbpgaSpgcQzLaEAC3wnqkIvGbrvKH3M11s4%3D&amp;reserved=0"
-originalsrc="https://lists.freedesktop.org/mailman/listinfo/amd-gfx"
-shash="sNRPT35y/6wAGc9zONfY2DSN5loMxxR+oVuiO5qrFk03ANo8/FqIdLmGd8kP4FMnklSakEDVDNeoS97JRFWxUprHaeWBQ0oR5sa7gvhRu1pOw80jjDWxuhfZlFd9xVwkCV31z4wE5g4aPUlsN7IiAfNzmJwQ3sF2RnQONHZuBF4="
-                        moz-do-not-send="true">https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=02%7C01%7Calexander.deucher%40amd.com%7Cf3762304925b4019bfed08d7b6e287e4%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637178957179179431&amp;amp;sdata=bY7V%2BKOF3gYu4ITGCKgAiRvXUvxPcwsz2zsEJDns3jI%3D&amp;amp;reserved=0</a><br>
-                    </div>
-                  </span></font></div>
-            </div>
-          </blockquote>
-          <br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------AA419B634B9B8041D67CE76D--
-
---===============1764079868==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1764079868==--
+UHJvYmFibHkgc2ltcGxlciBqdXN0IHRvIGRvIG9uL29mZiBhbmQgbGV0IHVzZXJzcGFjZSBkZXRl
+cm1pbmUgdGltaW5nIApidXQgb3RoZXIgdGhhbiB0aGF0IHlhIHNvdW5kcyBnb29kLgoKCkZvciB0
+aGluZ3MgbGlrZSB1bXIncyAtLXRvcCB3aGljaCBydW5zIGluZGVmaW5pdGVseSBoYXZpbmcgYSB0
+aW1lciAKd291bGRuJ3Qgd29yay7CoCBTaW1pbGFybHksIC0td2F2ZXMgY2FuIHRha2UgYSBsb25n
+IHRpbWUgZGVwZW5kaW5nIG9uIAphY3Rpdml0eSBhbmQgdGhlIGFzaWMuCgoKVG9tCgoKCk9uIDIw
+MjAtMDItMjEgMTE6MDQgYS5tLiwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPiBPayBob3cgYWJv
+dXQgdGhpczoKPgo+IFdlIGFkZCBhIGRlYnVnZnMgZmlsZSB3aGljaCB3aGVuIHJlYWQgcmV0dXJu
+cyB0aGUgR0ZYT0ZGIHN0YXR1cyBhbmQgCj4gd2hlbiB3cml0dGVuIHdpdGggYSBudW1iZXIgZGlz
+YWJsZWQgR0ZYT0ZGIGZvciBOIHNlY29uZHMgd2l0aCAwIAo+IG1lYW5pbmcgZm9yZXZlci4KPgo+
+IFVtciBnZXRzIGEgbmV3IGNvbW1hbmRsaW5lIG9wdGlvbiB0byB3cml0ZSB0byB0aGF0IGZpbGUg
+YmVmb3JlIHJlYWRpbmcgCj4gcmVnaXN0ZXJzLgo+Cj4gVGhpcyB3YXkgdGhlIHVzZXIgY2FuIHN0
+aWxsIGRpc2FibGUgaXQgaWYgaXQgY2F1c2VzIGFueSBwcm9ibGVtcy4gRG9lcyAKPiB0aGF0IHNv
+dW5kcyBsaWtlIGEgcGxhbj8KPgo+IFJlZ2FyZHMsCj4gQ2hyaXN0aWFuLgo+Cj4gQW0gMjEuMDIu
+MjAgdW0gMTY6NTYgc2NocmllYiBEZXVjaGVyLCBBbGV4YW5kZXI6Cj4+Cj4+IFtBTUQgUHVibGlj
+IFVzZV0KPj4KPj4KPj4gTm90IGF0IHRoZSBtb21lbnQuwqAgQnV0IHdlIGNvdWxkIGFkZCBhIGRl
+YnVnZnMgZmlsZSB3aGljaCBqdXN0IHdyYXBzIAo+PiBhbWRncHVfZ2Z4X29mZl9jdHJsKCkuIFRo
+YXQgc2FpZCwgbWF5YmUgd2UganVzdCBhZGQgYSBkZWxheSBoZXJlIG9yIGEgCj4+IHVzZSBhIHRp
+bWVyIHRvIGRlbGF5IHR1cm5pbmcgZ2Z4b2ZmIGJhY2sgb24gYWdhaW4gc28gdGhhdCB3ZSBhcmVu
+J3QgCj4+IHR1cm5pbmcgaXQgb24gYW5kIG9mZiBzbyByYXBpZGx5Lgo+Pgo+PiBBbGV4Cj4+Cj4+
+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLQo+PiAqRnJvbToqIENocmlzdGlhbiBLw7ZuaWcgPGNrb2VuaWcubGVp
+Y2h0enVtZXJrZW5AZ21haWwuY29tPgo+PiAqU2VudDoqIEZyaWRheSwgRmVicnVhcnkgMjEsIDIw
+MjAgMTA6NDMgQU0KPj4gKlRvOiogRGV1Y2hlciwgQWxleGFuZGVyIDxBbGV4YW5kZXIuRGV1Y2hl
+ckBhbWQuY29tPjsgSHVhbmcsIFJheSAKPj4gPFJheS5IdWFuZ0BhbWQuY29tPjsgTGl1LCBNb25r
+IDxNb25rLkxpdUBhbWQuY29tPgo+PiAqQ2M6KiBTdERlbmlzLCBUb20gPFRvbS5TdERlbmlzQGFt
+ZC5jb20+OyBBbGV4IERldWNoZXIgCj4+IDxhbGV4ZGV1Y2hlckBnbWFpbC5jb20+OyBhbWQtZ2Z4
+IGxpc3QgPGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPgo+PiAqU3ViamVjdDoqIFJlOiDl
+m57lpI06IFtQQVRDSF0gZHJtL2FtZC9hbWRncHU6IGRpc2FibGUgR0ZYT0ZGIGFyb3VuZCAKPj4g
+ZGVidWdmcyBhY2Nlc3MgdG8gTU1JTwo+PiBEbyB3ZSBoYXZlIGEgd2F5IHRvIGRpc2FibGUgR0ZY
+T0ZGIG9uIHRoZSBmbHk/Cj4+Cj4+IElmIG5vdCBtYXliZSBpdCB3b3VsZCBiZSBhIGdvb2QgaWRl
+YSB0byBhZGQgYSBzZXBhcmF0ZSBkZWJ1Z2ZzIGZpbGUgCj4+IHRvIGRvIHRoaXMuCj4+Cj4+IENo
+cmlzdGlhbi4KPj4KPj4gQW0gMjEuMDIuMjAgdW0gMTY6Mzkgc2NocmllYiBEZXVjaGVyLCBBbGV4
+YW5kZXI6Cj4+Pgo+Pj4gW0FNRCBQdWJsaWMgVXNlXQo+Pj4KPj4+Cj4+PiBJZiB3ZSBhcmUgdHJ5
+aW5nIHRvIGRlYnVnIGEgcmVwcm9kdWNpYmxlIGhhbmcsIHByb2JhYmx5IGJlc3QgdG8ganVzdCAK
+Pj4+IHRvIGRpc2FibGUgZ2Z4b2ZmIGJlZm9yZSBtZXNzaW5nIHdpdGggaXQgdG8gcmVtb3ZlIHRo
+YXQgYXMgYSAKPj4+IGZhY3Rvci7CoCBPdGhlcndpc2UsIHRoZSBtZXRob2QgaW5jbHVkZWQgaW4g
+dGhpcyBwYXRjaCBpcyB0aGUgcHJvcGVyIAo+Pj4gd2F5IHRvIGRpc2FibGUvZW5hYmxlIEdGWE9G
+RiBkeW5hbWljYWxseS4KPj4+Cj4+PiBBbGV4Cj4+Pgo+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4+PiAq
+RnJvbToqIGFtZC1nZnggPGFtZC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IAo+
+Pj4gPG1haWx0bzphbWQtZ2Z4LWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBvbiBiZWhh
+bGYgb2YgCj4+PiBDaHJpc3RpYW4gS8O2bmlnIDxja29lbmlnLmxlaWNodHp1bWVya2VuQGdtYWls
+LmNvbT4gCj4+PiA8bWFpbHRvOmNrb2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwuY29tPgo+Pj4g
+KlNlbnQ6KiBGcmlkYXksIEZlYnJ1YXJ5IDIxLCAyMDIwIDEwOjI3IEFNCj4+PiAqVG86KiBIdWFu
+ZywgUmF5IDxSYXkuSHVhbmdAYW1kLmNvbT4gPG1haWx0bzpSYXkuSHVhbmdAYW1kLmNvbT47IAo+
+Pj4gTGl1LCBNb25rIDxNb25rLkxpdUBhbWQuY29tPiA8bWFpbHRvOk1vbmsuTGl1QGFtZC5jb20+
+Cj4+PiAqQ2M6KiBTdERlbmlzLCBUb20gPFRvbS5TdERlbmlzQGFtZC5jb20+IAo+Pj4gPG1haWx0
+bzpUb20uU3REZW5pc0BhbWQuY29tPjsgQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5j
+b20+IAo+Pj4gPG1haWx0bzphbGV4ZGV1Y2hlckBnbWFpbC5jb20+OyBhbWQtZ2Z4IGxpc3QgCj4+
+PiA8YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+IDxtYWlsdG86YW1kLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmc+Cj4+PiAqU3ViamVjdDoqIFJlOiDlm57lpI06IFtQQVRDSF0gZHJtL2Ft
+ZC9hbWRncHU6IGRpc2FibGUgR0ZYT0ZGIGFyb3VuZCAKPj4+IGRlYnVnZnMgYWNjZXNzIHRvIE1N
+SU8KPj4+IEFtIDIxLjAyLjIwIHVtIDE2OjIzIHNjaHJpZWIgSHVhbmcgUnVpOgo+Pj4gPiBPbiBG
+cmksIEZlYiAyMSwgMjAyMCBhdCAxMToxODowN1BNICswODAwLCBMaXUsIE1vbmsgd3JvdGU6Cj4+
+PiA+PiBCZXR0ZXIgbm90IHVzZSBLSVEsIGJlY2F1c2Ugd2hlbiB5b3UgdXNlIGRlYnVnZnMgdG8g
+cmVhZCByZWdpc3RlciAKPj4+IHlvdSB1c3VhbGx5IGhpdCBhIGhhbmcsIGFuZCBieSB0aGF0IGNh
+c2UgS0lRIHByb2JhYmx5IGFscmVhZHkgZGllCj4+PiA+IElmIENQIGlzIGJ1c3ksIHRoZSBnZngg
+c2hvdWxkIGJlIGluICJvbiIgc3RhdGUgYXQgdGhhdCB0aW1lLCB3ZSAKPj4+IG5lZWRuJ3QgdXNl
+IEtJUS4KPj4+Cj4+PiBZZWFoLCBidXQgaG93IGRvIHlvdSBkZXRlY3QgdGhhdD8gRG8gd2UgaGF2
+ZSBhIHdheSB0byB3YWtlIHVwIHRoZSBDUAo+Pj4gd2l0aG91dCBhc2tpbmcgcG93ZXIgbWFuYWdl
+bWVudCB0byBkbyBzbz8KPj4+Cj4+PiBDYXVzZSB0aGUgcmVnaXN0ZXIgZGVidWcgaW50ZXJmYWNl
+IGlzIG1lYW50IHRvIGJlIHVzZWQgd2hlbiB0aGUgQVNJQyBpcwo+Pj4gY29tcGxldGVkIGxvY2tl
+ZCB1cC4gU2VuZGluZyBtZXNzYWdlcyB0byB0aGUgU01VIGlzIG5vdCByZWFsbHkgZ29pbmcgdG8K
+Pj4+IHdvcmsgaW4gdGhhdCBzaXR1YXRpb24uCj4+Pgo+Pj4gUmVnYXJkcywKPj4+IENocmlzdGlh
+bi4KPj4+Cj4+PiA+Cj4+PiA+IFRoYW5rcywKPj4+ID4gUmF5Cj4+PiA+Cj4+PiA+PiAtLS0tLemC
+ruS7tuWOn+S7ti0tLS0tCj4+PiA+PiDlj5Hku7bkuro6IGFtZC1nZnggPGFtZC1nZngtYm91bmNl
+c0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IAo+Pj4gPG1haWx0bzphbWQtZ2Z4LWJvdW5jZXNAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnPiDku6PooaggSHVhbmcgUnVpCj4+PiA+PiDlj5HpgIHml7bpl7Q6
+IDIwMjDlubQy5pyIMjHml6UgMjI6MzQKPj4+ID4+IOaUtuS7tuS6ujogU3REZW5pcywgVG9tIDxU
+b20uU3REZW5pc0BhbWQuY29tPiAKPj4+IDxtYWlsdG86VG9tLlN0RGVuaXNAYW1kLmNvbT4KPj4+
+ID4+IOaKhOmAgTogQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5jb20+IAo+Pj4gPG1h
+aWx0bzphbGV4ZGV1Y2hlckBnbWFpbC5jb20+OyBhbWQtZ2Z4IGxpc3QgCj4+PiA8YW1kLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmc+IDxtYWlsdG86YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmc+Cj4+PiA+PiDkuLvpopg6IFJlOiBbUEFUQ0hdIGRybS9hbWQvYW1kZ3B1OiBkaXNhYmxlIEdG
+WE9GRiBhcm91bmQgZGVidWdmcyAKPj4+IGFjY2VzcyB0byBNTUlPCj4+PiA+Pgo+Pj4gPj4gT24g
+V2VkLCBGZWIgMTksIDIwMjAgYXQgMTA6MDk6NDZBTSAtMDUwMCwgVG9tIFN0IERlbmlzIHdyb3Rl
+Ogo+Pj4gPj4+IEkgZ290IHNvbWUgbWVzc2FnZXMgYWZ0ZXIgYSB3aGlsZToKPj4+ID4+Pgo+Pj4g
+Pj4+IFvCoCA3NDEuNzg4NTY0XSBGYWlsZWQgdG8gc2VuZCBNZXNzYWdlIDguCj4+PiA+Pj4gW8Kg
+IDc0Ni42NzE1MDldIEZhaWxlZCB0byBzZW5kIE1lc3NhZ2UgOC4KPj4+ID4+PiBbwqAgNzQ4Ljc0
+OTY3M10gRmFpbGVkIHRvIHNlbmQgTWVzc2FnZSAyYi4KPj4+ID4+PiBbwqAgNzU5LjI0NTQxNF0g
+RmFpbGVkIHRvIHNlbmQgTWVzc2FnZSA3Lgo+Pj4gPj4+IFvCoCA3NjMuMjE2OTAyXSBGYWlsZWQg
+dG8gc2VuZCBNZXNzYWdlIDJhLgo+Pj4gPj4+Cj4+PiA+Pj4gQXJlIHRoZXJlIGFueSBhZGRpdGlv
+bmFsIGxvY2tzIHRoYXQgc2hvdWxkIGJlIGhlbGQ/wqAgQmVjYXVzZSBzb21lCj4+PiA+Pj4gY29t
+bWFuZHMgbGlrZSAtLXRvcCBvciAtLXdhdmVzIGNhbiBkbyBhIGxvdCBvZiBkaXN0aW5jdCByZWFk
+Cj4+PiA+Pj4gb3BlcmF0aW9ucyAoY2F1c2luZyBhIGxvdCBvZiBlbmFibGUvZGlzYWJsZSBjYWxs
+cykuCj4+PiA+Pj4KPj4+ID4+PiBJJ20gZ29pbmcgdG8gc2l0IG9uIHRoaXMgYSBiaXQgc2luY2Ug
+SSBkb24ndCB0aGluayB0aGUgcGF0Y2ggaXMgCj4+PiByZWFkeQo+Pj4gPj4+IGZvciBwdXNoaW5n
+IG91dC4KPj4+ID4+Pgo+Pj4gPj4gSG93IGFib3V0IHVzZSBSUkVHMzJfS0lRIGFuZCBXUkVHMzJf
+S0lRPwo+Pj4gPj4KPj4+ID4+IFRoYW5rcywKPj4+ID4+IFJheQo+Pj4gPj4KPj4+ID4+PiBUb20K
+Pj4+ID4+Pgo+Pj4gPj4+IE9uIDIwMjAtMDItMTkgMTA6MDcgYS5tLiwgQWxleCBEZXVjaGVyIHdy
+b3RlOgo+Pj4gPj4+PiBPbiBXZWQsIEZlYiAxOSwgMjAyMCBhdCAxMDowNCBBTSBUb20gU3QgRGVu
+aXMgCj4+PiA8dG9tLnN0ZGVuaXNAYW1kLmNvbT4gPG1haWx0bzp0b20uc3RkZW5pc0BhbWQuY29t
+PiB3cm90ZToKPj4+ID4+Pj4+IFNpZ25lZC1vZmYtYnk6IFRvbSBTdCBEZW5pcyA8dG9tLnN0ZGVu
+aXNAYW1kLmNvbT4gCj4+PiA8bWFpbHRvOnRvbS5zdGRlbmlzQGFtZC5jb20+Cj4+PiA+Pj4+IFBs
+ZWFzZSBhZGQgYSBwYXRjaCBkZXNjcmlwdGlvbi7CoCBXaXRoIHRoYXQgZml4ZWQ6Cj4+PiA+Pj4+
+IFJldmlld2VkLWJ5OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+IAo+
+Pj4gPG1haWx0bzphbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+Pj4gPj4+Pgo+Pj4gPj4+Pj4g
+LS0tCj4+PiA+Pj4+PiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGVidWdmcy5j
+IHwgMyArKysKPj4+ID4+Pj4+wqDCoMKgIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKykK
+Pj4+ID4+Pj4+Cj4+PiA+Pj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2RlYnVnZnMuYwo+Pj4gPj4+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9hbWRncHVfZGVidWdmcy5jCj4+PiA+Pj4+PiBpbmRleCA3Mzc5OTEwNzkwYzkuLjY2Zjc2MzMw
+MGM5NiAxMDA2NDQKPj4+ID4+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
+ZGdwdV9kZWJ1Z2ZzLmMKPj4+ID4+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
+L2FtZGdwdV9kZWJ1Z2ZzLmMKPj4+ID4+Pj4+IEBAIC0xNjksNiArMTY5LDcgQEAgc3RhdGljIGlu
+dMKgIAo+Pj4gYW1kZ3B1X2RlYnVnZnNfcHJvY2Vzc19yZWdfb3AoYm9vbCByZWFkLCBzdHJ1Y3Qg
+ZmlsZSAqZiwKPj4+ID4+Pj4+wqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKHBtX3BnX2xvY2spCj4+
+PiA+Pj4+PiBtdXRleF9sb2NrKCZhZGV2LT5wbS5tdXRleCk7Cj4+PiA+Pj4+Pgo+Pj4gPj4+Pj4g
+KyBhbWRncHVfZ2Z4X29mZl9jdHJsKGFkZXYsIGZhbHNlKTsKPj4+ID4+Pj4+wqDCoMKgwqDCoMKg
+wqDCoMKgwqAgd2hpbGUgKHNpemUpIHsKPj4+ID4+Pj4+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIHVpbnQzMl90IHZhbHVlOwo+Pj4gPj4+Pj4KPj4+ID4+Pj4+IEBAIC0xOTIs
+NiArMTkzLDggQEAgc3RhdGljIGludMKgIAo+Pj4gYW1kZ3B1X2RlYnVnZnNfcHJvY2Vzc19yZWdf
+b3AoYm9vbCByZWFkLCBzdHJ1Y3QgZmlsZSAqZiwKPj4+ID4+Pj4+wqDCoMKgwqDCoMKgwqDCoMKg
+wqAgfQo+Pj4gPj4+Pj4KPj4+ID4+Pj4+wqDCoMKgIGVuZDoKPj4+ID4+Pj4+ICsgYW1kZ3B1X2dm
+eF9vZmZfY3RybChhZGV2LCB0cnVlKTsKPj4+ID4+Pj4+ICsKPj4+ID4+Pj4+wqDCoMKgwqDCoMKg
+wqDCoMKgwqAgaWYgKHVzZV9iYW5rKSB7Cj4+PiA+Pj4+PiBhbWRncHVfZ2Z4X3NlbGVjdF9zZV9z
+aChhZGV2LCAweGZmZmZmZmZmLCAweGZmZmZmZmZmLCAweGZmZmZmZmZmKTsKPj4+ID4+Pj4+IG11
+dGV4X3VubG9jaygmYWRldi0+Z3JibV9pZHhfbXV0ZXgpOwo+Pj4gPj4+Pj4gLS0KPj4+ID4+Pj4+
+IDIuMjQuMQo+Pj4gPj4+Pj4KPj4+ID4+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCj4+PiA+Pj4+PiBhbWQtZ2Z4IG1haWxpbmcgbGlzdAo+Pj4gPj4+
+Pj4gYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcgCj4+PiA8bWFpbHRvOmFtZC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnPgo+Pj4gPj4+Pj4gaHR0cHM6Ly9uYW0xMS5zYWZlbGlua3MucHJv
+dGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGCj4+PiA+Pj4+PiBsaXN0cy5m
+cmVlZGVza3RvcC5vcmclMkZtYWlsbWFuJTJGbGlzdGluZm8lMkZhbWQtZ2Z4JmFtcDtkYXRhPTAy
+JTcKPj4+ID4+Pj4+IEMwMSU3Q21vbmsubGl1JTQwYW1kLmNvbSU3Q2JhNDVlZmIyNmMwMjQwZWQw
+MzZmMDhkN2I2ZGIyMGFhJTdDM2RkOAo+Pj4gPj4+Pj4gOTYxZmU0ODg0ZTYwOGUxMWE4MmQ5OTRl
+MTgzZCU3QzAlN0MwJTdDNjM3MTc4OTI0NjA1NTI0Mzc4JmFtcDtzZGF0Cj4+PiA+Pj4+PiBhPSUy
+RnlIa3ZZVTVUJTJGNGlGeFJleHNnJTJCSWRtN3NEenlYYmp6TnBIVUdDTzdoNGslM0QmYW1wO3Jl
+c2VydmUKPj4+ID4+Pj4+IGQ9MAo+Pj4gPj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCj4+PiA+Pj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPj4+ID4+PiBh
+bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyA8bWFpbHRvOmFtZC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnPgo+Pj4gPj4+IAo+Pj4gaHR0cHM6Ly9uYW0xMS5zYWZlbGlua3MucHJvdGVjdGlv
+bi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGbGlzdAo+Pj4gPj4+IAo+Pj4gcy5mcmVl
+ZGVza3RvcC5vcmclMkZtYWlsbWFuJTJGbGlzdGluZm8lMkZhbWQtZ2Z4JmFtcDtkYXRhPTAyJTdD
+MDElN0Ntbwo+Pj4gPj4+IAo+Pj4gbmsubGl1JTQwYW1kLmNvbSU3Q2JhNDVlZmIyNmMwMjQwZWQw
+MzZmMDhkN2I2ZGIyMGFhJTdDM2RkODk2MWZlNDg4NGU2MAo+Pj4gPj4+IAo+Pj4gOGUxMWE4MmQ5
+OTRlMTgzZCU3QzAlN0MwJTdDNjM3MTc4OTI0NjA1NTI0Mzc4JmFtcDtzZGF0YT0lMkZ5SGt2WVU1
+VCUyRgo+Pj4gPj4+IDRpRnhSZXhzZyUyQklkbTdzRHp5WGJqek5wSFVHQ083aDRrJTNEJmFtcDty
+ZXNlcnZlZD0wCj4+PiA+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwo+Pj4gPj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPj4+ID4+IGFtZC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnIDxtYWlsdG86YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Cj4+
+PiA+PiAKPj4+IGh0dHBzOi8vbmFtMTEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20v
+P3VybD1odHRwcyUzQSUyRiUyRmxpc3RzLmZyZWVkZXNrdG9wLm9yZyUyRm1haWxtYW4lMkZsaXN0
+aW5mbyUyRmFtZC1nZngmYW1wO2RhdGE9MDIlN0MwMSU3Q2FsZXhhbmRlci5kZXVjaGVyJTQwYW1k
+LmNvbSU3Q2YzNzYyMzA0OTI1YjQwMTliZmVkMDhkN2I2ZTI4N2U0JTdDM2RkODk2MWZlNDg4NGU2
+MDhlMTFhODJkOTk0ZTE4M2QlN0MwJTdDMCU3QzYzNzE3ODk1NzE3OTE3OTQzMSZhbXA7c2RhdGE9
+Ylk3ViUyQktPRjNnWXU0SVRHQ0tnQWlSdlhVdnhQY3dzejJ6c0VKRG5zM2pJJTNEJmFtcDtyZXNl
+cnZlZD0wIAo+Pj4gPGh0dHBzOi8vbmFtMTEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5j
+b20vP3VybD1odHRwcyUzQSUyRiUyRmxpc3RzLmZyZWVkZXNrdG9wLm9yZyUyRm1haWxtYW4lMkZs
+aXN0aW5mbyUyRmFtZC1nZngmZGF0YT0wMiU3QzAxJTdDVG9tLlN0RGVuaXMlNDBhbWQuY29tJTdD
+ZTdjNjI3N2MyNjg4NGU1MDljZTUwOGQ3YjZlN2FlYTUlN0MzZGQ4OTYxZmU0ODg0ZTYwOGUxMWE4
+MmQ5OTRlMTgzZCU3QzAlN0MwJTdDNjM3MTc4OTc4Nzk4ODE2MDk2JnNkYXRhPU5qJTJCeGVtUHFy
+TDRWaFhKRGNrdFFCV3U3N0t4dHd5WUxQVXZIRVBxdXZIdyUzRCZyZXNlcnZlZD0wPgo+Pj4gPiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gPiBhbWQt
+Z2Z4IG1haWxpbmcgbGlzdAo+Pj4gPiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyA8bWFp
+bHRvOmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPgo+Pj4gPiAKPj4+IGh0dHBzOi8vbmFt
+MTEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmxp
+c3RzLmZyZWVkZXNrdG9wLm9yZyUyRm1haWxtYW4lMkZsaXN0aW5mbyUyRmFtZC1nZngmYW1wO2Rh
+dGE9MDIlN0MwMSU3Q2FsZXhhbmRlci5kZXVjaGVyJTQwYW1kLmNvbSU3Q2YzNzYyMzA0OTI1YjQw
+MTliZmVkMDhkN2I2ZTI4N2U0JTdDM2RkODk2MWZlNDg4NGU2MDhlMTFhODJkOTk0ZTE4M2QlN0Mw
+JTdDMCU3QzYzNzE3ODk1NzE3OTE3OTQzMSZhbXA7c2RhdGE9Ylk3ViUyQktPRjNnWXU0SVRHQ0tn
+QWlSdlhVdnhQY3dzejJ6c0VKRG5zM2pJJTNEJmFtcDtyZXNlcnZlZD0wIAo+Pj4gPGh0dHBzOi8v
+bmFtMTEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUy
+Rmxpc3RzLmZyZWVkZXNrdG9wLm9yZyUyRm1haWxtYW4lMkZsaXN0aW5mbyUyRmFtZC1nZngmZGF0
+YT0wMiU3QzAxJTdDVG9tLlN0RGVuaXMlNDBhbWQuY29tJTdDZTdjNjI3N2MyNjg4NGU1MDljZTUw
+OGQ3YjZlN2FlYTUlN0MzZGQ4OTYxZmU0ODg0ZTYwOGUxMWE4MmQ5OTRlMTgzZCU3QzAlN0MwJTdD
+NjM3MTc4OTc4Nzk4ODI2MDg3JnNkYXRhPVZRRU9YMXA0bVdxV2VhbVdQOU9GNGRwUWVoOHdBZEpF
+JTJCNFNPVGhGQWhTWSUzRCZyZXNlcnZlZD0wPgo+Pj4KPj4+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+PiBhbWQtZ2Z4IG1haWxpbmcgbGlzdAo+Pj4g
+YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcgPG1haWx0bzphbWQtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZz4KPj4+IGh0dHBzOi8vbmFtMTEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9v
+ay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmxpc3RzLmZyZWVkZXNrdG9wLm9yZyUyRm1haWxtYW4l
+MkZsaXN0aW5mbyUyRmFtZC1nZngmYW1wO2RhdGE9MDIlN0MwMSU3Q2FsZXhhbmRlci5kZXVjaGVy
+JTQwYW1kLmNvbSU3Q2YzNzYyMzA0OTI1YjQwMTliZmVkMDhkN2I2ZTI4N2U0JTdDM2RkODk2MWZl
+NDg4NGU2MDhlMTFhODJkOTk0ZTE4M2QlN0MwJTdDMCU3QzYzNzE3ODk1NzE3OTE3OTQzMSZhbXA7
+c2RhdGE9Ylk3ViUyQktPRjNnWXU0SVRHQ0tnQWlSdlhVdnhQY3dzejJ6c0VKRG5zM2pJJTNEJmFt
+cDtyZXNlcnZlZD0wIAo+Pj4gPGh0dHBzOi8vbmFtMTEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0
+bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmxpc3RzLmZyZWVkZXNrdG9wLm9yZyUyRm1haWxt
+YW4lMkZsaXN0aW5mbyUyRmFtZC1nZngmZGF0YT0wMiU3QzAxJTdDVG9tLlN0RGVuaXMlNDBhbWQu
+Y29tJTdDZTdjNjI3N2MyNjg4NGU1MDljZTUwOGQ3YjZlN2FlYTUlN0MzZGQ4OTYxZmU0ODg0ZTYw
+OGUxMWE4MmQ5OTRlMTgzZCU3QzAlN0MwJTdDNjM3MTc4OTc4Nzk4ODM2MDgzJnNkYXRhPUhPSUJX
+NGN0cjYxVUNXeHIlMkZFcEJZelA2a1RNeHg1SjlJdE9YQk1tWlVONCUzRCZyZXNlcnZlZD0wPgo+
+Pgo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1n
+ZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
