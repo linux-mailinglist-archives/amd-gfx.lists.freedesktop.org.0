@@ -1,50 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27F5316829C
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2020 17:04:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB66C16829E
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2020 17:04:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 467156F4A3;
-	Fri, 21 Feb 2020 16:03:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 911BC6F4A5;
+	Fri, 21 Feb 2020 16:04:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on20611.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eaa::611])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A137E6F4A1
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 16:03:57 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2077.outbound.protection.outlook.com [40.107.92.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 124CF6F4A1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 16:03:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h2IiQd1PWnNMSrHgqd2Um19N3kpOLU/hTU4KxbfUvSJXkqf8LnEGTpp5+kXZoqFqghRcW+ae5Tpbph+oGXZTEgFRe791347cJ3w13dHi0tGZjk52ubveN1R1ME48ctv4ttCNd/tauu3ZDPqdtX7m8lH6Y32gdkcD7ZgAWZwRZ6zY8qCm1jE+k1Ei3TFGF4SERyTL6P/MuC0z/yebae+tnNEUscIGTTgEYf4ytk/qwms3Z82gGJ75UBnqPKxyvVm7z4TUkCx81hf5GVo5aR9REZOXZNqUwshigkY3nPbktMQflZTaovHaJyjNf1XkvVrMCtYzM0LE9QEqf7tFeqb7NA==
+ b=Ft2xiY01TE/W4Ilb0JKXatTzKHLtpZe2QQhscN6L4TH/pVkCYiQ9NZrojQU7yp2y3gJk1wFT5DIvih3hgXKgre4k8nPLDviis2HwLxV9L+wzMQJf7ajPBFFp3/mQddNE9EW3v6MoPcGRLB9kja+GByw9W/ulWNESsx3QZSMUMAK35CcXcKX8PIZIpqeYsH6mDk+4aVYRBVpY8LrKkC9nvLzx9exB/kndtNk6tXCPbDlFlnb7HC1VVoVMsY4s+ebP8e7JHoQbgpHRsAvPorx1V/pi54FH/h77PYL6haevpT0E6quR7K0Q5en1laKrEthzt+3p4SFIGH4Oj8DhRlT/HQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JlxhLaQgdro+luY2KCljZ36S02jMtLSqMmQlX3/Meqo=;
- b=RuJ28IgwjhmTw4wUelafgfaCB74wldTr2E1MS/qe3o0fL2XdlL8YzjQ3TeFfrfFwx+fccJHlhUjadmX1mXqvgrnV/A5M8QVXVuEYm1D6pDCfSJcTAP1MJlrR8J61BQV0fWkU5JQ3js5dtpfsAKKHbmmbc8ufM6KMt4sSF/DVLz2vtVOx4a3e7QbyNPb+yvUKIcIbIL6Tn3ouijvHhIYgoD7X/RAPBxf1Bkk/r/u//GPGodmAa+2MzC1nxNkhuTzSyBVvbasolidJTALxlS+dvweoMt5bFY3JFCAfr+B1UcCTzaVEDTdWPdXQNugC6E10tL7j+/3TSmwhWsRnos0sCw==
+ bh=UtKtGjIOOM2tzzHXiunaFq45AjvJKkaQ6lcp4plLpbo=;
+ b=AYLARUH9hJwJxXhzoCbflqvIHSsKjPzZ8IpDGTy+OTM8aY4vz7cBDPdYHrt9ZLmbSuQhUnBZ0i3+pn/VsFgaN/lEWB4AIsiLLHV3uV821KngmEslMxDDTA4cmvLfmJmr36lZ0l2Du9MPggE98DFRmWWK9TCbrJtnFzftvK68Kl0JBNVhrmkaTim5spi3V5TlFycXKum+PzOxNDEgBsw6KGO7fC0h16RY/jJw2WrrXfxJQzk548PeC2wqnQvvarqgxuvg05B3y4YdRQQBSGxqkMLvWd1fqYVgzqY7In0cUIcxAbw+HgktL6KW2EQLTHJTWtwS0LT6o3wDUvKcOFHt2g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JlxhLaQgdro+luY2KCljZ36S02jMtLSqMmQlX3/Meqo=;
- b=G3Vzv4dhICvzZ2/HXs8WiQ9vEc+FLdhWDpSkuYct225GDCMiR7cmYHB5pgOvmFGxhn9MLyQXVGNPzomzr85cKA9vDp9wnXFN1zJtHU617bVgPOElEyotYRRLjVSl1zW8j+sWYnWSYognXqUM7s1z45Mns05rK14g3kyBApQHXcg=
+ bh=UtKtGjIOOM2tzzHXiunaFq45AjvJKkaQ6lcp4plLpbo=;
+ b=QW+jxg3+PwOW2HK+VTFTLIqsnzhgSq9B3jzlDDgawu9+KM0SVzdiNcrnRBQeeWHA7fQVKTBqQ18V/Pmk22fB13T4xlA6QDm+LQjBU2A7nxlBFVYAYfbJncdPsowz0tzqRVArSDUJTiTCOmeeuzzk5OXzyLMIcotqzf6UkSB1OOs=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
- by MW2PR12MB2572.namprd12.prod.outlook.com (2603:10b6:907:6::27) with
+ by MW2PR12MB2409.namprd12.prod.outlook.com (2603:10b6:907:9::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.21; Fri, 21 Feb
- 2020 16:03:56 +0000
+ 2020 16:03:57 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::b8ff:6893:5820:420f]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::b8ff:6893:5820:420f%6]) with mapi id 15.20.2729.033; Fri, 21 Feb 2020
- 16:03:56 +0000
+ 16:03:57 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 12/35] drm/amd/display: Only round InfoFrame refresh rates
-Date: Fri, 21 Feb 2020 11:03:01 -0500
-Message-Id: <20200221160324.2969975-13-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 13/35] drm/amd/display: 3.2.73
+Date: Fri, 21 Feb 2020 11:03:02 -0500
+Message-Id: <20200221160324.2969975-14-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200221160324.2969975-1-Rodrigo.Siqueira@amd.com>
 References: <20200221160324.2969975-1-Rodrigo.Siqueira@amd.com>
@@ -56,36 +55,36 @@ Received: from atma2.amd.com (165.204.55.250) by
  YTOPR0101CA0008.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.18 via Frontend
- Transport; Fri, 21 Feb 2020 16:03:54 +0000
+ Transport; Fri, 21 Feb 2020 16:03:55 +0000
 X-Mailer: git-send-email 2.25.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2377096a-cd71-43d8-fe39-08d7b6e7a6cc
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2572:|MW2PR12MB2572:
+X-MS-Office365-Filtering-Correlation-Id: 9c0b1096-9392-41b8-a100-08d7b6e7a767
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2409:|MW2PR12MB2409:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2572CEA368F768E9E4D3C68798120@MW2PR12MB2572.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2409714930D02BAA8A49337698120@MW2PR12MB2409.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296;
 X-Forefront-PRVS: 0320B28BE1
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(39860400002)(376002)(366004)(346002)(136003)(189003)(199004)(1076003)(5660300002)(36756003)(2906002)(8936002)(86362001)(8676002)(6486002)(81156014)(81166006)(7696005)(52116002)(4326008)(6666004)(316002)(186003)(26005)(6916009)(16526019)(54906003)(2616005)(66476007)(66556008)(66946007)(956004)(478600001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2572;
+ SFS:(10009020)(4636009)(366004)(376002)(346002)(39860400002)(136003)(396003)(189003)(199004)(16526019)(36756003)(66946007)(66476007)(7696005)(66556008)(6916009)(26005)(52116002)(6486002)(1076003)(5660300002)(6666004)(4326008)(8936002)(81166006)(2906002)(2616005)(956004)(81156014)(54906003)(4744005)(186003)(316002)(478600001)(8676002)(86362001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2409;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5bsnoOFnaJwFvwDhWnenufLsnZcROhqsXxCUuDzShVso+F7tD5Qpn+fE1zLcAkKKE4uSxc26dwJLKHGHN4zl40K4DurCdIQZE6MPLWUaEo7aubhMdZk0wDRqEn5Xe6Vp9Cd3od4f0vTZpGn0QPa/5EjK+/J/I/LZ5EJ3MeTv1OibIWNj043buO2q51Km7FFo5sUVCQ3CCZGAxTVqH+jUl7PEMRVhwlwW3qnOOB673NFCUNOwDXs5oF/C6vMoz5nGWPmwQGi32FL39sNVgEOwdvRFg4RKcDbf72XjnJOjur8dq4oEaqGgPuZ2zM4bVdJQx5XXfE2P2k0n2iwziyEHWKmGScZhwdvhji5uJohRX6jxcSdETBZlWMK25ySZ9/YaT65H8dZ1gf3l2WRtab0r6AK9GaCT2GiCiZsTtHGV4WsrW/QAskBlTJECOpo6gglz
-X-MS-Exchange-AntiSpam-MessageData: DGg2Ocrl15w0u2TgciWN8OGsFt7QRvnH1hivfxQ6vdzS07LWcvYa7Ktq+ss+/yYdgULJZHg2R6zxN3r5oIG5AVtrOVYHThH+lGB9DfQbP8HAoChVv/zGFLsuoLjhutalZAz9qq9XgOVXN8N4hfNDsQ==
+X-Microsoft-Antispam-Message-Info: kYL3kjXjouuIH1TX5t4mKARyba+BusE2KqUtiaQE0aYCE2ZiKDy9rqzi2vwlW4PD7kZMNEg5xlA2UoN5UpotD2q4q0sjdZNJytQ2KEXZ82KikzBeVwGatKahSjN7SCWOPSeLTXtK392Ht3A391k5M/a7j3g4pKpyB4FNQZeUpweIdfN8Q7HMV7LUvKCfix2y42FsiAbh/6QMmENCBmup3KldYT+odfE9Z/03I96CiftvIljdQWue3VvZs8ZdKom0qCW4+jGLRJymlTnGNw0a1BS6vK53d993fEpmA/aSJK0nuUCMSDjodI1VO2zeYERt7DJsDxnHst/d9ZG8/RiBwfAHrgeia0WcnqrMJcKSfBkLi4A9ckAjKWxxqTe6zQKrLu3bqj/AcBCv8pRUDqo9aWhXGM5C3fsoxqNp9kZORF4vDDc1zpEshvJKoRtRYiOy
+X-MS-Exchange-AntiSpam-MessageData: qoMCMnPtzSMlpGVLNq6s47PTRjovOJVvXkuOdb9diB5OpmRh3y3gPQWpjsa2OTZAFqbWHg5n+anikFe+RomSdpvyPQxbnH8yvtMCsP1cDmNAVDyaGRKFxaB6eUvi53e/JYerpYdLM6/8D1/bF50hgQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2377096a-cd71-43d8-fe39-08d7b6e7a6cc
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2020 16:03:55.0236 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c0b1096-9392-41b8-a100-08d7b6e7a767
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2020 16:03:56.1180 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kYkxpl9Wt7OXLfuqDYiDDmgDjIrh62kWqJtbLbj661Tc8IdfnrzH3egJp86auuxAgRQrLKT4R+C5HSxw8Ixz/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2572
+X-MS-Exchange-CrossTenant-UserPrincipalName: RI10Ds0tet+jVWJ7WooJ5InIvacXHYbxbkUAAXedVPUqsRprOBEiq8ny7gKAWFh+BFIejxTy7zyn2Hg24O3Cug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2409
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,9 +96,8 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <aric.cyr@amd.com>, Sunpeng.Li@amd.com,
- Harry Wentland <harry.wentland@amd.com>, Rodrigo.Siqueira@amd.com,
- Bhawanpreet.Lakha@amd.com, Anthony Koo <Anthony.Koo@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Aric Cyr <Aric.Cyr@amd.com>,
+ Rodrigo.Siqueira@amd.com, Harry Wentland <harry.wentland@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
@@ -107,52 +105,27 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Aric Cyr <aric.cyr@amd.com>
 
-[Why]
-When calculating nominal refresh rates, don't round.
-Only the VSIF needs to be rounded.
-
-[How]
-Revert rounding change for nominal and just round when forming the
-FreeSync VSIF.
-
 Signed-off-by: Aric Cyr <aric.cyr@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Harry Wentland <harry.wentland@amd.com>
 ---
- drivers/gpu/drm/amd/display/modules/freesync/freesync.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-index b9992ebf77a6..4e542826cd26 100644
---- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-+++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-@@ -524,12 +524,12 @@ static void build_vrr_infopacket_data(const struct mod_vrr_params *vrr,
- 		infopacket->sb[6] |= 0x04;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index f77b3acfeb06..b3f6311d3564 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -39,7 +39,7 @@
+ #include "inc/hw/dmcu.h"
+ #include "dml/display_mode_lib.h"
  
- 	/* PB7 = FreeSync Minimum refresh rate (Hz) */
--	infopacket->sb[7] = (unsigned char)(vrr->min_refresh_in_uhz / 1000000);
-+	infopacket->sb[7] = (unsigned char)((vrr->min_refresh_in_uhz + 500000) / 1000000);
+-#define DC_VER "3.2.72"
++#define DC_VER "3.2.73"
  
- 	/* PB8 = FreeSync Maximum refresh rate (Hz)
- 	 * Note: We should never go above the field rate of the mode timing set.
- 	 */
--	infopacket->sb[8] = (unsigned char)(vrr->max_refresh_in_uhz / 1000000);
-+	infopacket->sb[8] = (unsigned char)((vrr->max_refresh_in_uhz + 500000) / 1000000);
- 
- 
- 	//FreeSync HDR
-@@ -747,10 +747,6 @@ void mod_freesync_build_vrr_params(struct mod_freesync *mod_freesync,
- 	nominal_field_rate_in_uhz =
- 			mod_freesync_calc_nominal_field_rate(stream);
- 
--	/* Rounded to the nearest Hz */
--	nominal_field_rate_in_uhz = 1000000ULL *
--			div_u64(nominal_field_rate_in_uhz + 500000, 1000000);
--
- 	min_refresh_in_uhz = in_config->min_refresh_in_uhz;
- 	max_refresh_in_uhz = in_config->max_refresh_in_uhz;
- 
+ #define MAX_SURFACES 3
+ #define MAX_PLANES 6
 -- 
 2.25.0
 
