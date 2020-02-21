@@ -2,48 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 864A1168295
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2020 17:03:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF1C168299
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2020 17:04:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C9EE6F49B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCEA36F49E;
 	Fri, 21 Feb 2020 16:03:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
  (mail-bn7nam10on2088.outbound.protection.outlook.com [40.107.92.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73DD06F49B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAEB86F49D
  for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 16:03:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jx9V+rqnBIQtSCjjsB8Vz16Ly7193xaLWGADvxYpybgpWZ+Zg3C4ubQlNrhEPhRVpehGkvVEXmIxHyiQKAR7B1WHP5HEl94AT4p6KWME2AWC5sEiS/vJdYNNar3gPNW9a30U8Vfjj4Tu4KuOiKCkenSC8ySRgeZC3Hj+RE+jZV8lzbcm+zuq6zs8jLlspKlGzEAVni+EyEMI61HinA4vzxyP4oASTalQb8PF+q5C0WcLs8Zh81UwFzsHUatMOGt/1ro1ifZ9oqEzh0F1Hoaws5HtF1PS2GTR1JYz1xvItq6R6PdpTCHOwVcn6NTDI6sDEd/lzBVduGcFZ2OHzO3bqQ==
+ b=j7bPAGKA5p70tjAIllmKmPIBRXfJpc3rbpr/eqvoqxS1b4H6+hrHNK9NBKLgHJBF2Spfrw08CjOsyGORrUqzTgcT8UkdhpO298Mh2PnKepa+ENIOKb3UvWEA5noZKOB9UKqEShMzmPYLNL7zM1bcIKcR4+gw7ZTpl0lUSEtl/y9OqQHNW3fWb9pH+zGa8iTqdE4oL5Fy6I+5JJ4C2Ffn8QQcI/0WzAtAHXGCAKfv1nqLosQG+V0SntDDjJgaXqrsO4S/+r5vNIkr3i9f9sxBMftoe1SRY5A37ow4OxmQU+ddOsLvjhypTRGswp0SKwSFACAbDlR2JHWjX2pBlEbD3g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jw/e35FHJninbxsu6vimKJRM6ozYSLG9AJBXiWEbRCg=;
- b=I+0Ogq87wil8FpC/gqxq0VITPa74SZBEAuUuSq0AnzWq+5Ku1qWvAefjhZ2ku7ZmElahEKbQC0r/UokAoLJZAzLuhHtOEhKpbhYaajRphxZZoXbhBPOZi/GZuyN8Dtyo7TrRrzmruIdDqVjNO7D6uryzJsbch0KI89GtprOktSjUp2EdiFnDDAvSF0MAMRUaFxFn/kvZ1j/MrK8vAU3h3uFOX8GukCAx687qlzTq1Zkm7ttyx+YgbPyM6wIpas0nAJBT0lmIpYkZO/QzAOY6WMVXEaxacQpxjrLfJx8W9a/8/0gc1REnUDH2zHzW21ilXj0CxLvQmrAs3AotJKEqAA==
+ bh=N40b6kR2X9+TIyBj+wk0qjffd76fqLVVtTVpP1F3pz8=;
+ b=c4hQZzKWbT7pt/L88Y0oT0zAN9NeNAlS9SezBpsptu0RaYH7ZGiycxi/pp7iAAlDX9Nhr9te13+ewd8aHnjAWhxaIdFuAYXYEi0b+kktQJRExgqHOtbL8rQ6Jvci+Z8HhTY8odmV9/Dwo6jBD3LzC0pdxaXFhX3sUAkE0Rs8zKJmIsEXFgyY9mQvWhAE5VzNqia0HgkicBisdCHvjy+L5Jz1eShbBPcRjpztaaayuvY7rSn0r6Gjg/taHWR2BygqhaE6cBBARvTBQKBS+Kw5fg8q+WaHrIOQoiH6KhPScNn1KKMB0TN/tsyvcg4l1by3ycpOWxs/ebl28S1k7dqROg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jw/e35FHJninbxsu6vimKJRM6ozYSLG9AJBXiWEbRCg=;
- b=tdIdblhcexlA6unbPNjCulodC9lnLgl7aBLKz6Mvmlqa5SOtfsHhyUNZ+XLgS5RJf9vGSmmP56TJ70YP68we+3haEmpF5+mVS/+Pnn50NaGBASBYToo8OWA1Xj0cE+/5I1jg9UxM8/8IideO8t6diBExRo/LEbTZJVhLl+dtN3E=
+ bh=N40b6kR2X9+TIyBj+wk0qjffd76fqLVVtTVpP1F3pz8=;
+ b=GJTjf7PssOjPjFaH3Cr3yu8T24Y/2UoigxKcRnLy13FSdB399hTL5drblsA0UnpCCphuRQDJveZzXusI8OhlISH2J015ha8ScovWzlLnTpyj4APEJ34bRcSv2NI0OqGeENhB0U31uPKqUPRmpGnng7OSjQJMlYYEJp4P/JTIm68=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2572.namprd12.prod.outlook.com (2603:10b6:907:6::27) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.21; Fri, 21 Feb
- 2020 16:03:51 +0000
+ 2020 16:03:52 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::b8ff:6893:5820:420f]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::b8ff:6893:5820:420f%6]) with mapi id 15.20.2729.033; Fri, 21 Feb 2020
- 16:03:51 +0000
+ 16:03:52 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/35] drm/amd/display: Disable PG on NV12
-Date: Fri, 21 Feb 2020 11:02:55 -0500
-Message-Id: <20200221160324.2969975-7-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 07/35] drm/amd/display: Wait for DMCUB to finish loading
+ before executing commands
+Date: Fri, 21 Feb 2020 11:02:56 -0500
+Message-Id: <20200221160324.2969975-8-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200221160324.2969975-1-Rodrigo.Siqueira@amd.com>
 References: <20200221160324.2969975-1-Rodrigo.Siqueira@amd.com>
@@ -55,16 +56,16 @@ Received: from atma2.amd.com (165.204.55.250) by
  YTOPR0101CA0008.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.18 via Frontend
- Transport; Fri, 21 Feb 2020 16:03:47 +0000
+ Transport; Fri, 21 Feb 2020 16:03:48 +0000
 X-Mailer: git-send-email 2.25.0
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 63074c88-0a6a-456c-01e3-08d7b6e7a2f2
+X-MS-Office365-Filtering-Correlation-Id: 0125ed8e-50df-401f-5f8a-08d7b6e7a388
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2572:|MW2PR12MB2572:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB257268DF540B7AC19037F99298120@MW2PR12MB2572.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB257212DA1108502732F4922E98120@MW2PR12MB2572.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
 X-Forefront-PRVS: 0320B28BE1
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(396003)(39860400002)(376002)(366004)(346002)(136003)(189003)(199004)(1076003)(5660300002)(36756003)(2906002)(8936002)(86362001)(8676002)(6486002)(81156014)(81166006)(7696005)(52116002)(4326008)(6666004)(316002)(186003)(26005)(6916009)(16526019)(54906003)(2616005)(66476007)(66556008)(66946007)(956004)(478600001);
@@ -75,15 +76,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0VO5tDguK1NK+Cniq8r7x0GVfqQt0caR628vUJyxSFDuTcQbcotHZ6MkmJjaLfZWowBcBxgl0ascEaCmjzQTWo26ER0yh/j0nvis/SanFBn4aTFje+7lBb6OktEH3HcWDSVAhSaPpQeNOAqLcNdZy3DzmsYXIQHaXyzFvHYsQAevKTHloimKA24M+tFtFagVvgLCjCd7lZnbUWav4C/RSkkuOgjLGNGyiTWKHpiFuOnzVR5KGdg3NofC5Orijr9zmNlNi1jSZJ8ezH77wg6nNqxWKE80srVP+ilX3rqK9AH5Ob7wIo68LtRKfU9uuNRpH1bRMwGe+c2hVE9v/Kh17nhBQRitLho0CLGXtmnM80qBGXFdwUhGbG6cC1ACFPRNmG5GqZEPEiFDJYw5ebZCkiLYwlQrtWdDzYxCvTuBohryppRsQ97ZAnSHTBZ/NOdG
-X-MS-Exchange-AntiSpam-MessageData: VShMj6zMXsnUlqJP/fAjOOnTv331dG2EMEgq2bI7a4AM+vLPb0xXKMvmvGEurDEQxIjsyeK5ZakJ0tPiTJcK6EH5xxFbY3XokAgD4QfpAOrf0Wn5hnE3cQjp0GWPExxs2wO4X/5LUf8Y89Pg1rtYtQ==
+X-Microsoft-Antispam-Message-Info: jKkdONRHQYW18BGyi7me+TcsolL++LL3YM/3ELP6umGHOznyFzi4Aq7VQIA5/vd+w5yU/e1czG3q3sKWtATH9ssono8NDCe3BAd5cY4lu7sngo1DOS2uFVYwRNwVc/Um+8taXIkz4R4R9agr8NXLqzyZ5+e3agOTLyz8bXGEFkHt9R5G8wYsS4H+eMUQ4zXmSBFRNRzXDgAcqfemF21B8DZuPU8XvelVR2GJYcjbgm/hoAz6Oy7MaLeb2WFwsznTxEurWaTXB2ARa+oSiq81afZWQoTqnUvWQxiDXw/DcyPsC0VW0wkya34/F9R12U0lhMgaHH5T5ARJ+3GwYE6XiYDaZjuwb7oqRA/2nrxXpoji3yzMZXmzsK1njP7uiLE+rWNyP88uk98XTSXOtEJJegbUENkPFm+6nZgSZRbaCNYjqjcDoISKwTPLJ0gWAdGH
+X-MS-Exchange-AntiSpam-MessageData: kC1vgJ57eTCqjtJGkkfz+EzWCU1YZPBKvWP/fixB/BZ7iex8dlvw6yZ6gkqrlnWwuxFMPKpfPgsESsq2EDryBaa2WpWxtaGyK3vWWQAFzbyzn2+8XpE+k+ZiO0pIt1pP1JQXT1iiNhQceHuU5Z2xOg==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63074c88-0a6a-456c-01e3-08d7b6e7a2f2
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2020 16:03:48.5963 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0125ed8e-50df-401f-5f8a-08d7b6e7a388
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2020 16:03:49.5297 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 65hjnh4G2dOFtS0YxhME6NjFGG4Q2BA6z4aPMS7fEeZ5MJ7zOY4r/234eDH+NUifbzxFkXMQV2qLXKJ5HpCpDg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: at7dbgdRzsG3h9BNKs6rm0OflFuUcXHWlvbxZY/qcelmsmk6CkK0cZgMkkxflnAiCZfLtl/8oQHuiSLPuSJzNA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2572
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,78 +97,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Harry Wentland <harry.wentland@amd.com>,
- Rodrigo.Siqueira@amd.com, Alvin Lee <alvin.lee2@amd.com>,
- Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com
+Cc: Chris Park <Chris.Park@amd.com>, Sunpeng.Li@amd.com,
+ Harry Wentland <harry.wentland@amd.com>, Rodrigo.Siqueira@amd.com,
+ Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <alvin.lee2@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
 [Why]
-According to HW team, PG is dropped for NV12, but programming
-the registers will still cause power to be consumed, so don't
-program for NV12.
+When we execute the first command for ASIC_INIT for command table
+offloading we can hit a timing scenario such that the interrupts
+for the inbox wptr haven't been enabled yet and the first command
+is ignored until the second command is sent.
 
 [How]
-Set function pointer to NULL if NV12
+This happens when either the SCRATCH0 is already the correct status
+code or autoload check is unsupported.
 
-Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Clear SCRATCH0 during reset.
+
+Also ensure that we don't accidentally reset the ASIC again in case
+of a hang by clearing GPINT while we're at it.
+
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Chris Park <Chris.Park@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Harry Wentland <harry.wentland@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c    | 7 ++++---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c    | 9 +++++++++
- 2 files changed, 13 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index 5f56cc13d6dc..113ff6731902 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -1268,7 +1268,8 @@ void dcn10_init_hw(struct dc *dc)
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
+index 993e47e99fbe..63bb9e2c81de 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
+@@ -116,6 +116,10 @@ void dmub_dcn20_reset(struct dmub_srv *dmub)
+ 				break;
  		}
  
- 		//Enable ability to power gate / don't force power on permanently
--		hws->funcs.enable_power_gating_plane(hws, true);
-+		if (hws->funcs.enable_power_gating_plane)
-+			hws->funcs.enable_power_gating_plane(hws, true);
- 
- 		return;
- 	}
-@@ -1378,8 +1379,8 @@ void dcn10_init_hw(struct dc *dc)
- 
- 		REG_UPDATE(DCFCLK_CNTL, DCFCLK_GATE_DIS, 0);
- 	}
--
--	hws->funcs.enable_power_gating_plane(dc->hwseq, true);
-+	if (hws->funcs.enable_power_gating_plane)
-+		hws->funcs.enable_power_gating_plane(dc->hwseq, true);
- 
- 	if (dc->clk_mgr->funcs->notify_wm_ranges)
- 		dc->clk_mgr->funcs->notify_wm_ranges(dc->clk_mgr);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 1061faccec9c..080d4581a93d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -3760,6 +3760,15 @@ static bool dcn20_resource_construct(
- 
- 	dcn20_hw_sequencer_construct(dc);
- 
-+	// IF NV12, set PG function pointer to NULL. It's not that
-+	// PG isn't supported for NV12, it's that we don't want to
-+	// program the registers because that will cause more power
-+	// to be consumed. We could have created dcn20_init_hw to get
-+	// the same effect by checking ASIC rev, but there was a
-+	// request at some point to not check ASIC rev on hw sequencer.
-+	if (ASICREV_IS_NAVI12_P(dc->ctx->asic_id.hw_internal_rev))
-+		dc->hwseq->funcs.enable_power_gating_plane = NULL;
++		/* Clear the GPINT command manually so we don't reset again. */
++		cmd.all = 0;
++		dmub->hw_funcs.set_gpint(dmub, cmd);
 +
- 	dc->caps.max_planes =  pool->base.pipe_count;
+ 		/* Force reset in case we timed out, DMCUB is likely hung. */
+ 	}
  
- 	for (i = 0; i < dc->caps.max_planes; ++i)
+@@ -124,6 +128,7 @@ void dmub_dcn20_reset(struct dmub_srv *dmub)
+ 	REG_UPDATE(MMHUBBUB_SOFT_RESET, DMUIF_SOFT_RESET, 1);
+ 	REG_WRITE(DMCUB_INBOX1_RPTR, 0);
+ 	REG_WRITE(DMCUB_INBOX1_WPTR, 0);
++	REG_WRITE(DMCUB_SCRATCH0, 0);
+ }
+ 
+ void dmub_dcn20_reset_release(struct dmub_srv *dmub)
 -- 
 2.25.0
 
