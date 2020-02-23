@@ -1,40 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D074D16933B
-	for <lists+amd-gfx@lfdr.de>; Sun, 23 Feb 2020 03:21:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67EC7169368
+	for <lists+amd-gfx@lfdr.de>; Sun, 23 Feb 2020 03:23:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53D356E9A4;
-	Sun, 23 Feb 2020 02:21:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CE0A6E9AC;
+	Sun, 23 Feb 2020 02:23:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15EA26E9A4;
- Sun, 23 Feb 2020 02:21:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4B726E9AA;
+ Sun, 23 Feb 2020 02:23:01 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3650D227BF;
- Sun, 23 Feb 2020 02:21:52 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id BB9C12071E;
+ Sun, 23 Feb 2020 02:23:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1582424513;
- bh=nu12upa2YBED248NaTn+dMF9VDPyyAVLRlkgIW0kpbc=;
+ s=default; t=1582424581;
+ bh=g9RnykzEodxfWrp1WVCnoI0ktr7vw50NZU8MMja7NyI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=kFusnh3CzMkuJE20xiQaISpWKQAVIlxUn7/8LiscWMEwLj7i8gxgjLIn9LvwlyJEf
- OgwGAep4d4kehdnTv63b4xPqQtKSW5zpAyKyGshYsDYAQa8U+8bW0OE9iZWez8Coj9
- xfFozAzjDADh/MosncP3NYR1Na1/Od8YqrUL0PEg=
+ b=y87Rya1TBP8S+RjeFfC3SGQCfK39VR1RgAA1Tt21Ml30Bl442zkklGXEIv/EyTdQM
+ 1K63s7SzIyVrBor025ZJi5ttsHzNfMq4OWVMq4XC8y+I3a5t2qg+qJ9DSCw1XU8TxB
+ 6TxhnTLzYeEWHbF9o89jOluvmM6XJ0kmm+fC3xQw=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 27/58] amdgpu: Prevent build errors regarding
- soft/hard-float FP ABI tags
-Date: Sat, 22 Feb 2020 21:20:48 -0500
-Message-Id: <20200223022119.707-27-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 21/50] drm/amd/display: Do not set
+ optimized_require to false after plane disable
+Date: Sat, 22 Feb 2020 21:22:06 -0500
+Message-Id: <20200223022235.1404-21-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200223022119.707-1-sashal@kernel.org>
-References: <20200223022119.707-1-sashal@kernel.org>
+In-Reply-To: <20200223022235.1404-1-sashal@kernel.org>
+References: <20200223022235.1404-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -49,54 +49,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Daniel Kolesa <daniel@octaforge.org>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Sasha Levin <sashal@kernel.org>
+Cc: Sasha Levin <sashal@kernel.org>, Sung Lee <sung.lee@amd.com>,
+ Tony Cheng <Tony.Cheng@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Daniel Kolesa <daniel@octaforge.org>
+From: Sung Lee <sung.lee@amd.com>
 
-[ Upstream commit 416611d9b6eebaeae58ed26cc7d23131c69126b1 ]
+[ Upstream commit df36f6cf23ada812930afa8ee76681d4ad307c61 ]
 
-On PowerPC, the compiler will tag object files with whether they
-use hard or soft float FP ABI and whether they use 64 or 128-bit
-long double ABI. On systems with 64-bit long double ABI, a tag
-will get emitted whenever a double is used, as on those systems
-a long double is the same as a double. This will prevent linkage
-as other files are being compiled with hard-float.
+[WHY]
+The optimized_require flag is needed to set watermarks and clocks lower
+in certain conditions. This flag is set to true and then set to false
+while programming front end in dcn20.
 
-On ppc64, this code will never actually get used for the time
-being, as the only currently existing hardware using it are the
-Renoir APUs. Therefore, until this is testable and can be fixed
-properly, at least make sure the build will not fail.
+[HOW]
+Do not set the flag to false while disabling plane.
 
-Signed-off-by: Daniel Kolesa <daniel@octaforge.org>
+Signed-off-by: Sung Lee <sung.lee@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile b/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile
-index b864869cc7e3e..6fa7422c51da5 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile
-@@ -91,6 +91,12 @@ ifdef CONFIG_DRM_AMD_DC_DCN2_1
- ###############################################################################
- CLK_MGR_DCN21 = rn_clk_mgr.o rn_clk_mgr_vbios_smu.o
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 937a8ba811603..e933f6a369f92 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -493,7 +493,6 @@ static void dcn20_plane_atomic_disable(struct dc *dc, struct pipe_ctx *pipe_ctx)
+ 	dpp->funcs->dpp_dppclk_control(dpp, false, false);
  
-+# prevent build errors regarding soft-float vs hard-float FP ABI tags
-+# this code is currently unused on ppc64, as it applies to Renoir APUs only
-+ifdef CONFIG_PPC64
-+CFLAGS_$(AMDDALPATH)/dc/clk_mgr/dcn21/rn_clk_mgr.o := $(call cc-option,-mno-gnu-attribute)
-+endif
-+
- AMD_DAL_CLK_MGR_DCN21 = $(addprefix $(AMDDALPATH)/dc/clk_mgr/dcn21/,$(CLK_MGR_DCN21))
+ 	hubp->power_gated = true;
+-	dc->optimized_required = false; /* We're powering off, no need to optimize */
  
- AMD_DISPLAY_FILES += $(AMD_DAL_CLK_MGR_DCN21)
+ 	dc->hwss.plane_atomic_power_down(dc,
+ 			pipe_ctx->plane_res.dpp,
 -- 
 2.20.1
 
