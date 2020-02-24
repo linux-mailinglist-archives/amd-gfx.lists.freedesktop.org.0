@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A524116B3C0
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2020 23:19:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 206E816B3BD
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2020 23:19:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EB5E6E9AB;
-	Mon, 24 Feb 2020 22:19:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E48D6E994;
+	Mon, 24 Feb 2020 22:19:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C5E46E994
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDE3B6E99C
  for <amd-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 22:18:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K9bDmQu0G0hv6UR3UM9XpqwTY/kym+ZJL1Jq2uF+3NTKXGQqa2/C2CbeNL7ZlS1Q2HgXu7DoOmbDcCPsTFgFvMqJDUUvuBidH0YGGbDkUhAQAnFzHOXyjUl/JwvgEwg+jp2q82yZvJaoamtpJZCGIdsizJXRiEPmZDTSQQgUO5vgTD1eB/UIIq2iHOlX2nDOcIEKAxqYUaPDL9zcovD4s5w9fldwKUmOWHqJvlSiS2064zerWUD4OFe4yQK21JFjEvdJReoTJeaXkiBS5mBHsEAjSIw28/iQWdsqyGcr8RYQxpeocxZb6GQUQoCfsWvBIZuLCI8fQr3aKLnfvFk9cA==
+ b=JOAuCmjH4n/ZfaAs+2MCQycLDu1mRoKO3lbSom4tAfFs6M0GtS/HjqgH0eCggTNgnfZ5bfwjO+5GhvGsGGmN+sRkMtN+ttDOgAgp6QYIYnNqz197khHPqK+lS9v8BUONVmzCMJNG9zAOTA19tbCkWifuzKGcz+fwY6AsMCJxSoJfYjLxCFbxpDe+HDp8MuRD5pfC021CPl5Fd8572sL7lwU07W4TuBKX/QxvVuQ74yYDwk2ugx325tnraBNRC/yAtBzRUsfwN6p1wWB+YSiW9pwaY3S0wYQdsGHWl+luwI0qjosSeg7iyrCeK0uGZK+mT3Wl1/wjf5G0GQSHW0B9/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1g+7A21aLA9Vve6/ZkTOqCcKPMVIVKz7RqT2NtP31VI=;
- b=kDzpX3tQpM4V6HsiufR13K1np65ZF5nFy9XniPhdRUi5sFF92kleX4eXqV8z8ocTBLBUYqFNCPDyqrf+tGV7xCVkIgyhW3+w57gvCKF94mJPYwo+HdSME8pSqwtZvOR3FwK5t0iGvY+sjJkgd7va5txE8CIqMdiXUvRsuyyn8GPb2RRhpgPymss0uywROf6mv/pNEQAapz+w7O/LxRTzhnxXM819sHP5yNwVW0YsJYE8Q5js/Ht08VtpwD8AnFnjKuHk+z4zF+TvhowsRAwL6D0988pGghoOs3Gpb0KHGmeNSNpAXC0aEb0siU+Ur05L9pBS+M2QUv+JupO3S5gA/A==
+ bh=xhs/XO0ksZF3q9Zd8CA+FbdkeuHAwc/PgOGrSlK00vU=;
+ b=T2bKm8pdTzKmmHUl8sShj+bz0+DTfg9ES9zmiU2QK5CshgPqsv4W8oxGWZ467ZiexuYMdEOq2pUiS8VijLq4nORGGesK4L04KTMWt2qzJkuGuhMsYxufdqLkJwbaiI4gF+oQNIYM9siOHcyBAYkEwobSzDwaNtez6dWRdVXxgt3K0pP9euw2NcLN3MC+FoP3GtUdXOmXW8dZsJMY2RnLaH7RLpMJmHhbw8xVFFiew2t8Cysre5Yi44UNsHNMCfhVj84DfTZpmX9T+x5XaMTxyWiGn4rKPUDWExHVWVl7hoy/AY9jcGpa1dHaJJlhzW+9QdzHd91U6/jYN1uogrDg/w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1g+7A21aLA9Vve6/ZkTOqCcKPMVIVKz7RqT2NtP31VI=;
- b=u4Dmyy+ju8mRqWNph/AaE0KywvcnkctyAjue+RtTJ4wSNZpWmqkBG/bipi1JH2cTWDZ5fhZ7traYSItfECpHsJwyCr+P4Py2wnjxXKXiOWpbMsx38bZtQp28lCTaZdsm0Y+Z3oxg+RofJlgFOjkvEHeZuX5C35MwDS1McAb4GkE=
+ bh=xhs/XO0ksZF3q9Zd8CA+FbdkeuHAwc/PgOGrSlK00vU=;
+ b=dvvg32BFCEAI3RM+0pmfrrh6g06VacoROEJ19F/ldPCHiRavtdIVAAmMhkmGOagGhN9DhhdV6aYA5mPqA/KKRbex0k3naUjQiMgXWY4X3VAfd7eWDXcGhvUZH+Yj1IcliqWrwzE8/oevkrv3fwbTUlBfHNcbL66J5aKB34+lG1c=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Yong.Zhao@amd.com; 
 Received: from CH2PR12MB3926.namprd12.prod.outlook.com (2603:10b6:610:27::30)
@@ -41,10 +41,9 @@ Received: from CH2PR12MB3926.namprd12.prod.outlook.com
  22:18:58 +0000
 From: Yong Zhao <Yong.Zhao@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 4/6] drm/amdkfd: Fix a memory leak in queue creation error
- handling
-Date: Mon, 24 Feb 2020 17:18:40 -0500
-Message-Id: <20200224221842.14110-4-Yong.Zhao@amd.com>
+Subject: [PATCH 5/6] drm/amdkfd: Delete excessive printings
+Date: Mon, 24 Feb 2020 17:18:41 -0500
+Message-Id: <20200224221842.14110-5-Yong.Zhao@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200224221842.14110-1-Yong.Zhao@amd.com>
 References: <20200224221842.14110-1-Yong.Zhao@amd.com>
@@ -56,19 +55,19 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from yong-dev.amd.com (165.204.55.251) by
  YTXPR0101CA0021.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::34) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2750.18 via Frontend Transport; Mon, 24 Feb 2020 22:18:57 +0000
+ 15.20.2750.18 via Frontend Transport; Mon, 24 Feb 2020 22:18:58 +0000
 X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [165.204.55.251]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2fa1ec3a-85d3-4ca4-d6d0-08d7b9778ac2
+X-MS-Office365-Filtering-Correlation-Id: 2bc7f103-946f-42f5-46a1-08d7b9778b14
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3749:|CH2PR12MB3749:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB374947D9FCCA0988B65FD946F0EC0@CH2PR12MB3749.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1122;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB374977FCCA3B5C6AC3D5FF75F0EC0@CH2PR12MB3749.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:227;
 X-Forefront-PRVS: 032334F434
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(39860400002)(366004)(376002)(346002)(136003)(189003)(199004)(36756003)(52116002)(2906002)(4744005)(5660300002)(86362001)(7696005)(66556008)(66476007)(66946007)(4326008)(6666004)(478600001)(8676002)(81156014)(1076003)(81166006)(26005)(6486002)(316002)(8936002)(186003)(6916009)(16526019)(2616005)(956004);
+ SFS:(10009020)(4636009)(396003)(39860400002)(366004)(376002)(346002)(136003)(189003)(199004)(36756003)(52116002)(2906002)(5660300002)(86362001)(7696005)(66556008)(66476007)(66946007)(4326008)(6666004)(478600001)(8676002)(81156014)(1076003)(81166006)(26005)(6486002)(316002)(8936002)(186003)(6916009)(16526019)(2616005)(956004);
  DIR:OUT; SFP:1101; SCL:1; SRVR:CH2PR12MB3749;
  H:CH2PR12MB3926.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
@@ -76,15 +75,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2N2fM72RvfumBKOvcXqMKR54o13ug3v6S0uxLt/7aPAaT90YV1UUgIZVt5OtmJXQCsghYzuCcN11OA8VWmQO3YUEDmvzD8gQKW+UPE81HLQoXCm1DB5X8ec+WE/A87SSDSxH/INThgVWLvsVPP96UGP8SfudmN0p8pQIHGwMLz+HOZ8VmjMrbvNvPP5CS7TFMdAqb7z5tllIYTGdLGoTEhJiVOxgLY4L4QotjzwxD2OVOwa3/fCQGJFgeZ8cAIDzJ+JZPZxhhiYNcDIAEzx/lozwdyjDBzeqH6YXgBnuyY5QmXIhW4EqzGaSkb3IW8mTySF5KkIL6K6AP0jRm0158EprJm4DBIS+kpGtCQEfdXyquRpWSNcr/ZzfKMJPa0Woy0NGFKOq4Xw3CIf1dsO+1m9RpbzyiDffFnTvtdr0sMugEq5BDSAoQdw8r0nEOGfv
-X-MS-Exchange-AntiSpam-MessageData: F0rGqDy9zErVUQlOFchk34X0ewOHo4iAPdcOF1v5OZwqJXC5cf+IZj1uVnMcEMgORtQO+ZNbB4JS19wLyf0E9UqgKL05KO1uysKTKE87kbk4yTpjepxfmsYJLe99JqVXIScXsIhqOcUyCCbUUQDnJg==
+X-Microsoft-Antispam-Message-Info: RpH+RY77JLyftx9SrdDti99EWx6gNrUyfJIJvcMWQr/eCYTK+U86wYZRuwZWcKO221AZ2C4cBcV/zHrTpULvstmhWnrxw3Sr3o7ie10g63yzMqVj6Aq/0dyS+35rsHaFFMdtLb/YvxixMHJZXiTVmCyVuPd7eXiJd71m2JAnZjJeacX2Zp9XXcWeI4Hsh4zqdb5xCMWR3DxnPRvcIT9IZqkvIea4F+T82EfQw07CoWfnl0FxIafEOn1N68+ZhgKa9WyAvHKYEfsC+DRPw5aQ006IbAUb5dnKP9At6W30NXkMP9JP+oPwtzeYIxU+01bmnaf+fZVay48RHFU0hItiPcWeOpHrCTyBicJabcMIMGgh/UG3yrvKVhH2I+JRo2C72wo23GetaYxDATEib3SPU7ZHUyzrnQlt745UEKkgHlEtecLE9NdDIeRMyqRHcknV
+X-MS-Exchange-AntiSpam-MessageData: Xi+5uQaRo0sv+p/WS2e1HQQyjzsQITT513f/LBELlZFr3tnM32MZ85gPB6053YPq87Uj8mz0zT5mtcIQJMm/GsJq1loFGB7+m8gH8Z0MDJY0xqNCiZhrNjWrSfjJ7mv8HvteWUZ7RGVcaT5xRi0c5g==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2fa1ec3a-85d3-4ca4-d6d0-08d7b9778ac2
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2020 22:18:57.8914 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2bc7f103-946f-42f5-46a1-08d7b9778b14
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2020 22:18:58.3372 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IQffcSEhrUCcqclWOLig8Cbs1CFrxlbBV9rEtc64HK4add0dG5nxQP7qO56JStnA
+X-MS-Exchange-CrossTenant-UserPrincipalName: CTvz+VCQuge0kYsPOnaGYR3ivVcpw7SYvzn+DC0CcczwRdIIpMAthJ46g0xUb5PI
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3749
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -103,28 +102,57 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When the queue creation failed, some resources were not freed. Fix it.
+Those printings are duplicated or useless.
 
-Change-Id: Ia24b6ad31528dceddfd4d1c58bb1d22c35d3eabf
+Change-Id: I88fbe8f5748bbd0a20bcf1f6ca67b9dde99733fe
 Signed-off-by: Yong Zhao <Yong.Zhao@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c  | 2 --
+ drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 4 +---
+ 2 files changed, 1 insertion(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index a3c44d88314b..958275db3f55 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -297,8 +297,6 @@ static int create_queue_nocpsch(struct device_queue_manager *dqm,
+ 	struct mqd_manager *mqd_mgr;
+ 	int retval;
+ 
+-	print_queue(q);
+-
+ 	dqm_lock(dqm);
+ 
+ 	if (dqm->total_queue_count >= max_num_of_queues_per_device) {
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-index b62ee2e3344a..c604a2ede3f5 100644
+index c604a2ede3f5..3bfa5c8d9654 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-@@ -329,6 +329,9 @@ int pqm_create_queue(struct process_queue_manager *pqm,
- 	return retval;
+@@ -257,7 +257,6 @@ int pqm_create_queue(struct process_queue_manager *pqm,
+ 		pqn->q = q;
+ 		pqn->kq = NULL;
+ 		retval = dev->dqm->ops.create_queue(dev->dqm, q, &pdd->qpd);
+-		pr_debug("DQM returned %d for create_queue\n", retval);
+ 		print_queue(q);
+ 		break;
  
- err_create_queue:
-+	uninit_queue(q);
-+	if (kq)
-+		kernel_queue_uninit(kq, false);
- 	kfree(pqn);
- err_allocate_pqn:
- 	/* check if queues list is empty unregister process from device */
+@@ -278,7 +277,6 @@ int pqm_create_queue(struct process_queue_manager *pqm,
+ 		pqn->q = q;
+ 		pqn->kq = NULL;
+ 		retval = dev->dqm->ops.create_queue(dev->dqm, q, &pdd->qpd);
+-		pr_debug("DQM returned %d for create_queue\n", retval);
+ 		print_queue(q);
+ 		break;
+ 	case KFD_QUEUE_TYPE_DIQ:
+@@ -299,7 +297,7 @@ int pqm_create_queue(struct process_queue_manager *pqm,
+ 	}
+ 
+ 	if (retval != 0) {
+-		pr_err("Pasid 0x%x DQM create queue %d failed. ret %d\n",
++		pr_err("Pasid 0x%x DQM create queue type %d failed. ret %d\n",
+ 			pqm->process->pasid, type, retval);
+ 		goto err_create_queue;
+ 	}
 -- 
 2.17.1
 
