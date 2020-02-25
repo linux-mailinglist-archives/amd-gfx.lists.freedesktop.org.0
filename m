@@ -2,95 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D0A16C28E
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Feb 2020 14:39:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9905616C27B
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Feb 2020 14:37:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42F586EABE;
-	Tue, 25 Feb 2020 13:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A25D96E207;
+	Tue, 25 Feb 2020 13:37:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2045.outbound.protection.outlook.com [40.107.220.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 173866EABE
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 13:39:55 +0000 (UTC)
+ (mail-co1nam11on2083.outbound.protection.outlook.com [40.107.220.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAE2D6E207
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 13:37:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fQpNf4efgz1RNFl6djwhtwX4aL7vJZqCxi2vmcoYRxq/uM99eDnI7tHdHrQf/BA7yFwYWSnxc2ibw4uQGR+RDQJ0psnxScXoOjfsdytnPeoSa1ue42kuNbyOgI38k3GUg9svy+Uv4XJW9IL46CLcQQswnwjXOo7s8u3+Q1Y4WQjhsxVybqEcDenYVzcvwJ/Je25lv/B9JNhAB54LZndP9hqS4sG1DOBcAQdJdT4v6rvwKngCMUqP0SsJNxRnP0Ct1obcXA4b6xKMiYnhvom5ln9A8sV5+wk5Y8F4u+iPXUMU1U6i62+0U8mvtFldOxcJWi4SQDtO7r3sbh7vi4n3Tg==
+ b=a2ol/YXug2qfzc+6dv3mZyqKl3Zxl5HViCyzWW7s79BlvcfPH1WT/q2phPqlQpJgqtGKs7enwqP5f768I3CbSpmnR7r8UbdG4mYTHY6yW95GnNKuy7nltJpaAU1+mCoLKd/TM980glss0+xftwUSbc/cXVbx+NYDSa5cA91v7Ouc21sBsGswV49AXEFjWZ8pSMU8CLuoKJqNHK2YjEheKczDdS7I/tAkTjB3dTqtPhMzDox0JzUeXaqPjEgfqjCdGOQqeCNbreeuovRLTaoVW2ITr7GG3AZsdPAO2UxcoCI49wNKALXCYw6WoAW/IW80JjhViaVIDs/rSeSuOqe34w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zpRH1CL9CsaSnR4oDRj+N/tByywEQrlGABuecNqVyAY=;
- b=FVF8RBB4szEpI2K2umCxNrM354i3KXvvYpwSGAz5biSCf6K5jHPBi6E3EW/nPZ9YBI1sxJPJnjvqkH8LMQE+lZQYsSgrZDNzoHcAHpnRU8LaWF9Xc72BIaCaaRxynZV/EMBjJpVrlxWlMA1Brq6ZSTeIqWYs63YtWb1g0fEHOwfVjHPyq4AYXnthByxyMEYDqzIUT+0Xd1OVdelj/gPjS0Bbs6Ott9xRLWBJoi7GWHRrG7ZHHND5xsMJy4rQ7pPCoai7K9LGwELOHOTj6DF4OoELufxUhkJ0Nd2lnDvp6Lu2hS5quscWBWCxTvDxiMs5Q+P2JNDK7FpLhbbsIcxoFw==
+ bh=0dkw4M6FC9doJcoi//SqSy68Ua2y92KUIeA7PcfBgc0=;
+ b=nR1mQRWByfZQmKpt2C1DFXvYIc97auHara6foakKXnbjk3R3FgxTcjqd0hU9H1Oj+/XKwKCQHHyL1MBWLStsae5LMNoaXBXgMyz+fbBUSiPRL2lSuHELTVcRZFiARMXNCmwwP02UkWE3c9Cm7qvtRtYpztNE5MKXn5DELEZ3/mmjmfwAAjjjczNZz3sNZW05tVSkIuWMVaYZbE+P7NbKR1ZdPIvASy8w3NKqO+pesfbOU1ipeZdn0jdsN5b6FXIaAc/DrAiOm3dqRhLgfzKIAaITE2UdIQ5EhLIf9oJEKo9pxX6vtgC0pFvZe/TpeHo+48MK7E5RX+njzT53fMt4SA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zpRH1CL9CsaSnR4oDRj+N/tByywEQrlGABuecNqVyAY=;
- b=oZvlD6OvGo7o479STsjWTTG13JCv0GCHmUq0FKhG7ao3j0gjLSWdvn5eA1Qrnz8hFEy5IkDNI9dLNerpxtPOLOGPDdreQCL6PvnS6GbgOjHCmEadI6gWrSN855qofnlJltlWVkrVtBmj2/Nric5Kr4Xblh2zuvcNQV/FjPpS9hg=
-Received: from CH2PR12MB3912.namprd12.prod.outlook.com (2603:10b6:610:2c::22)
- by CH2PR12MB4309.namprd12.prod.outlook.com (2603:10b6:610:a4::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.21; Tue, 25 Feb
- 2020 13:39:52 +0000
-Received: from CH2PR12MB3912.namprd12.prod.outlook.com
- ([fe80::7921:a391:1d1b:5167]) by CH2PR12MB3912.namprd12.prod.outlook.com
- ([fe80::7921:a391:1d1b:5167%5]) with mapi id 15.20.2750.021; Tue, 25 Feb 2020
- 13:39:52 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Zhao, Yong" <Yong.Zhao@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 6/6] drm/amdkfd: Delete unnecessary unmap queue package
- submissions
-Thread-Topic: [PATCH 6/6] drm/amdkfd: Delete unnecessary unmap queue package
- submissions
-Thread-Index: AQHV62BzUFsvFYer9EqnsHiKIOLOj6gr6zPw
-Date: Tue, 25 Feb 2020 13:39:52 +0000
-Message-ID: <CH2PR12MB3912FF27C79132CA1F84F3D6F7ED0@CH2PR12MB3912.namprd12.prod.outlook.com>
-References: <20200224221842.14110-1-Yong.Zhao@amd.com>,
- <20200224221842.14110-6-Yong.Zhao@amd.com>
-In-Reply-To: <20200224221842.14110-6-Yong.Zhao@amd.com>
-Accept-Language: en-US
+ bh=0dkw4M6FC9doJcoi//SqSy68Ua2y92KUIeA7PcfBgc0=;
+ b=JuNfmUQMrsqVT2iD8nAh22m0M5stFAHORd+tksTknOZLrrlwwcPwz00bpOHZ3itOPFMwoPNIjdNj1zdXdvFUtmnaQwSenWxkXDyqrHNT13RrgzqhPoqUo/ykIhgxqSar69Ul3n+hmbQ/5kTBHp86z54Nd/BwJxYEYuSA0iccXic=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Nirmoy.Das@amd.com; 
+Received: from DM5PR12MB2376.namprd12.prod.outlook.com (2603:10b6:4:b9::11) by
+ DM5PR12MB1819.namprd12.prod.outlook.com (2603:10b6:3:113::20) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2750.22; Tue, 25 Feb 2020 13:37:44 +0000
+Received: from DM5PR12MB2376.namprd12.prod.outlook.com
+ ([fe80::ac12:6413:cd14:4904]) by DM5PR12MB2376.namprd12.prod.outlook.com
+ ([fe80::ac12:6413:cd14:4904%4]) with mapi id 15.20.2750.021; Tue, 25 Feb 2020
+ 13:37:44 +0000
+Subject: Re: [PATCH] drm/amdgpu: stop disable the scheduler during HW fini
+To: Dennis.Li@amd.com
+References: <20200225130736.2929-1-christian.koenig@amd.com>
+From: Nirmoy <nirmodas@amd.com>
+Message-ID: <0c14cd77-faa9-b607-28f5-8f2bda34282f@amd.com>
+Date: Tue, 25 Feb 2020 14:40:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+In-Reply-To: <20200225130736.2929-1-christian.koenig@amd.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=True;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-02-25T13:39:51.770Z;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=AMD
- Public; MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=0;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged; 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
-x-originating-ip: [71.219.59.120]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: ca9e4671-8c56-482b-9999-08d7b9f83123
-x-ms-traffictypediagnostic: CH2PR12MB4309:|CH2PR12MB4309:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CH2PR12MB4309E755C1946D06F7AA257AF7ED0@CH2PR12MB4309.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3276;
-x-forefront-prvs: 0324C2C0E2
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(136003)(346002)(376002)(396003)(366004)(199004)(189003)(76116006)(66946007)(7696005)(186003)(966005)(316002)(64756008)(5660300002)(86362001)(66446008)(66476007)(66556008)(110136005)(9686003)(45080400002)(8936002)(26005)(2906002)(81166006)(81156014)(71200400001)(33656002)(55016002)(30864003)(6506007)(8676002)(52536014)(19627405001)(478600001)(53546011);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CH2PR12MB4309;
- H:CH2PR12MB3912.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: UZCCKVFKeFS1f0ZbFZ/ouiVSvwxYGa0DT9E4D+i+kH2ZBlWKTCHpj480WdGipuVnITzDRDhcwalr1FDEs4kDp8leYSReJXID7JCNQzduA+Mzul5Ix7nzBrsVS/l8dJ7XHlNSnB8rxhDNLEPKjPtuA430bdsZboe4dN5sGkQL4QENW+DaRHojSwm+8YIU/8lhGOrSoigFFuYhpq5f3cVEGBhwpZ+C4kjOjgjRxLli5+PFcod/6AMe287MtbLR+jhFQ8N7foCmnwAJup3i1YKe8pdxz/h0UMVJP1Ol3SAk3BjEcBxItQ8NRgPVgC6IXkK5vf0Rk/z0bdbGlq2SNLtRn9EeCaxoqJaWEJyiXHvTukxGoGdytut/qiB7TVkC7x81TBMjArbP6NrXB52PGqlNU48uauZYySCwQzdcTl4+o1+wlLc+IL4vb75yT93kqFNOSQH6PHX0wWeg9d3ckZyityvaVl7AiMEQMdyVd3MEkFbBK3ctpWM5rkmXlBkKu9mDBlF5MrwnO7rn9xth/AvetQ==
-x-ms-exchange-antispam-messagedata: wt7T6Qj6/wjMsB3ZKP7yJwr+ReROjIZgkU1xsCBYdpVh4dVvo8k9tdzqxDFXKUeECJXbZ3JfK8XjpCuJglotg5EUOl4dOkwBire1PwtWBV+5P6Z7bcAs5ey926dkBy8c/FbOUnTwSIJyU2q5m2miuA==
+X-ClientProxiedBy: BN4PR13CA0001.namprd13.prod.outlook.com
+ (2603:10b6:403:3::11) To DM5PR12MB2376.namprd12.prod.outlook.com
+ (2603:10b6:4:b9::11)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2003:c5:8f2c:dd00:254c:e011:75f7:66e4]
+ (2003:c5:8f2c:dd00:254c:e011:75f7:66e4) by
+ BN4PR13CA0001.namprd13.prod.outlook.com (2603:10b6:403:3::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2772.9 via Frontend Transport; Tue, 25 Feb 2020 13:37:43 +0000
+X-Originating-IP: [2003:c5:8f2c:dd00:254c:e011:75f7:66e4]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: fb15ec8d-4130-4c36-1f1c-08d7b9f7e4d0
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1819:|DM5PR12MB1819:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1819407E0B7B0484C9EA37C28BED0@DM5PR12MB1819.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
+X-Forefront-PRVS: 0324C2C0E2
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(366004)(189003)(199004)(5660300002)(4326008)(2906002)(31686004)(31696002)(66946007)(66556008)(53546011)(6666004)(2616005)(186003)(16526019)(66476007)(30864003)(37006003)(66574012)(498600001)(34206002)(52116002)(6486002)(36756003)(8936002)(81166006)(81156014)(6636002)(8676002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1819;
+ H:DM5PR12MB2376.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: B8739VxKR5+n6gn8b/xIgfhYy6PO/NCniqFInRi9DCmVO8OpiLUavSWNIRjFQEvo+RlOlxUjXa5+855vY1E1OL+rFKLadkRf45ZC3HUP2jXZ3WsWKriFTIwOivs/gH+GjQL6CZvQ8HR23+K7P0Wv/eeGCLucKNmy/TD7qeleTtlTiV/OCgaQr+KlTQg+eTyWFP5EsQN5OkHvnUmt+4ufN8PJ1AbHqiN5cLGsOqXBXa+C8X3RfCeY9H0mSvTi1tG0hg+Gw6Au5ZI017MPHpEZNQa+ZgTa3EvVs6Vj371YHoyENeBeT7KgACwCYjoEh0lL/p2yiEtnMLaU7eK1Sh8GbdqxUQRXri7VHMfwOHaBvQdjemSU5tsz+iSyr6U701gzGdx5k4Nh6Xgi+jYqKZqFh0wn+5i1gLn/3QUvL6vASpUHZ99iBwElY99xzmXFxXKY
+X-MS-Exchange-AntiSpam-MessageData: Xd1193IhGUXcCXUd3XdrywxyeSCXz3sFnOuY+Cc/7Edz09GhQyO2BOwNy8sLl91Put8APOHl0l/mRSGqgo7aa0GUIK2uoAeS2RZzNFiCHZSRvZmn35Fl5WF9gyFa1cOvQqLZsSDdyGiGm/Ox+2LBl64JensafHpr+LpzcOM/i9E/Je1Rf3ArP1yDa9ALKxUv6KrFo+GJizzeyHeRdLjU6g==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca9e4671-8c56-482b-9999-08d7b9f83123
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2020 13:39:52.2030 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9Sn6tZ+ZPJW7mX+v53q7AItxSnv5T+T/P+TvIhBY4YjvMEhhgL8thpn7lLDOFJjZOZq2ZHnYwgYvlRUWn56YGw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4309
+X-MS-Exchange-CrossTenant-Network-Message-Id: fb15ec8d-4130-4c36-1f1c-08d7b9f7e4d0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2020 13:37:44.6378 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6a22ZV+PlOadtiy14PaonIhsKNjkmh64NHqpdugTVHNO5F3pn68o9mwUUVEWJQsSORvNkqhW0HX7ZS1We7farQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1819
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,854 +98,341 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1701656078=="
+Cc: amd-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1701656078==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CH2PR12MB3912FF27C79132CA1F84F3D6F7ED0CH2PR12MB3912namp_"
-
---_000_CH2PR12MB3912FF27C79132CA1F84F3D6F7ED0CH2PR12MB3912namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-[AMD Public Use]
-
-Series is:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Yong Zha=
-o <Yong.Zhao@amd.com>
-Sent: Monday, February 24, 2020 5:18 PM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Zhao, Yong <Yong.Zhao@amd.com>
-Subject: [PATCH 6/6] drm/amdkfd: Delete unnecessary unmap queue package sub=
-missions
-
-The previous SDMA queue counting was wrong. In addition, after confirming
-with MEC firmware team, we understands that only one unmap queue package,
-instead of one unmap queue package for CP and each SDMA engine, is needed,
-which results in much simpler driver code.
-
-Change-Id: I84fd2f7e63d6b7f664580b425a78d3e995ce9abc
-Signed-off-by: Yong Zhao <Yong.Zhao@amd.com>
----
- .../drm/amd/amdkfd/kfd_device_queue_manager.c | 79 ++++++-------------
- .../drm/amd/amdkfd/kfd_device_queue_manager.h |  2 -
- .../amd/amdkfd/kfd_process_queue_manager.c    | 16 ++--
- 3 files changed, 29 insertions(+), 68 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/driver=
-s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index 958275db3f55..692abfd2088a 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -109,6 +109,11 @@ static unsigned int get_num_xgmi_sdma_engines(struct d=
-evice_queue_manager *dqm)
-         return dqm->dev->device_info->num_xgmi_sdma_engines;
- }
-
-+static unsigned int get_num_all_sdma_engines(struct device_queue_manager *=
-dqm)
-+{
-+       return get_num_sdma_engines(dqm) + get_num_xgmi_sdma_engines(dqm);
-+}
-+
- unsigned int get_num_sdma_queues(struct device_queue_manager *dqm)
- {
-         return dqm->dev->device_info->num_sdma_engines
-@@ -375,11 +380,6 @@ static int create_queue_nocpsch(struct device_queue_ma=
-nager *dqm,
-         if (q->properties.is_active)
-                 increment_queue_count(dqm, q->properties.type);
-
--       if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA)
--               dqm->sdma_queue_count++;
--       else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI)
--               dqm->xgmi_sdma_queue_count++;
--
-         /*
-          * Unconditionally increment this counter, regardless of the queue=
-'s
-          * type or whether the queue is active.
-@@ -460,15 +460,13 @@ static int destroy_queue_nocpsch_locked(struct device=
-_queue_manager *dqm,
-         mqd_mgr =3D dqm->mqd_mgrs[get_mqd_type_from_queue_type(
-                         q->properties.type)];
-
--       if (q->properties.type =3D=3D KFD_QUEUE_TYPE_COMPUTE) {
-+       if (q->properties.type =3D=3D KFD_QUEUE_TYPE_COMPUTE)
-                 deallocate_hqd(dqm, q);
--       } else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA) {
--               dqm->sdma_queue_count--;
-+       else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA)
-                 deallocate_sdma_queue(dqm, q);
--       } else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI) {
--               dqm->xgmi_sdma_queue_count--;
-+       else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI)
-                 deallocate_sdma_queue(dqm, q);
--       } else {
-+       else {
-                 pr_debug("q->properties.type %d is invalid\n",
-                                 q->properties.type);
-                 return -EINVAL;
-@@ -915,8 +913,6 @@ static int initialize_nocpsch(struct device_queue_manag=
-er *dqm)
-         INIT_LIST_HEAD(&dqm->queues);
-         dqm->active_queue_count =3D dqm->next_pipe_to_allocate =3D 0;
-         dqm->active_cp_queue_count =3D 0;
--       dqm->sdma_queue_count =3D 0;
--       dqm->xgmi_sdma_queue_count =3D 0;
-
-         for (pipe =3D 0; pipe < get_pipes_per_mec(dqm); pipe++) {
-                 int pipe_offset =3D pipe * get_queues_per_pipe(dqm);
-@@ -981,8 +977,11 @@ static int allocate_sdma_queue(struct device_queue_man=
-ager *dqm,
-         int bit;
-
-         if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA) {
--               if (dqm->sdma_bitmap =3D=3D 0)
-+               if (dqm->sdma_bitmap =3D=3D 0) {
-+                       pr_err("No more SDMA queue to allocate\n");
-                         return -ENOMEM;
-+               }
-+
-                 bit =3D __ffs64(dqm->sdma_bitmap);
-                 dqm->sdma_bitmap &=3D ~(1ULL << bit);
-                 q->sdma_id =3D bit;
-@@ -991,8 +990,10 @@ static int allocate_sdma_queue(struct device_queue_man=
-ager *dqm,
-                 q->properties.sdma_queue_id =3D q->sdma_id /
-                                 get_num_sdma_engines(dqm);
-         } else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI) {
--               if (dqm->xgmi_sdma_bitmap =3D=3D 0)
-+               if (dqm->xgmi_sdma_bitmap =3D=3D 0) {
-+                       pr_err("No more XGMI SDMA queue to allocate\n");
-                         return -ENOMEM;
-+               }
-                 bit =3D __ffs64(dqm->xgmi_sdma_bitmap);
-                 dqm->xgmi_sdma_bitmap &=3D ~(1ULL << bit);
-                 q->sdma_id =3D bit;
-@@ -1081,8 +1082,7 @@ static int initialize_cpsch(struct device_queue_manag=
-er *dqm)
-         INIT_LIST_HEAD(&dqm->queues);
-         dqm->active_queue_count =3D dqm->processes_count =3D 0;
-         dqm->active_cp_queue_count =3D 0;
--       dqm->sdma_queue_count =3D 0;
--       dqm->xgmi_sdma_queue_count =3D 0;
-+
-         dqm->active_runlist =3D false;
-         dqm->sdma_bitmap =3D ~0ULL >> (64 - get_num_sdma_queues(dqm));
-         dqm->xgmi_sdma_bitmap =3D ~0ULL >> (64 - get_num_xgmi_sdma_queues(=
-dqm));
-@@ -1254,11 +1254,6 @@ static int create_queue_cpsch(struct device_queue_ma=
-nager *dqm, struct queue *q,
-         list_add(&q->list, &qpd->queues_list);
-         qpd->queue_count++;
-
--       if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA)
--               dqm->sdma_queue_count++;
--       else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI)
--               dqm->xgmi_sdma_queue_count++;
--
-         if (q->properties.is_active) {
-                 increment_queue_count(dqm, q->properties.type);
-
-@@ -1315,20 +1310,6 @@ int amdkfd_fence_wait_timeout(unsigned int *fence_ad=
-dr,
-         return 0;
- }
-
--static int unmap_sdma_queues(struct device_queue_manager *dqm)
--{
--       int i, retval =3D 0;
--
--       for (i =3D 0; i < dqm->dev->device_info->num_sdma_engines +
--               dqm->dev->device_info->num_xgmi_sdma_engines; i++) {
--               retval =3D pm_send_unmap_queue(&dqm->packets, KFD_QUEUE_TYP=
-E_SDMA,
--                       KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0, false, i=
-);
--               if (retval)
--                       return retval;
--       }
--       return retval;
--}
--
- /* dqm->lock mutex has to be locked before calling this function */
- static int map_queues_cpsch(struct device_queue_manager *dqm)
- {
-@@ -1366,12 +1347,6 @@ static int unmap_queues_cpsch(struct device_queue_ma=
-nager *dqm,
-         if (!dqm->active_runlist)
-                 return retval;
-
--       pr_debug("Before destroying queues, sdma queue count is : %u, xgmi =
-sdma queue count is : %u\n",
--               dqm->sdma_queue_count, dqm->xgmi_sdma_queue_count);
--
--       if (dqm->sdma_queue_count > 0 || dqm->xgmi_sdma_queue_count)
--               unmap_sdma_queues(dqm);
--
-         retval =3D pm_send_unmap_queue(&dqm->packets, KFD_QUEUE_TYPE_COMPU=
-TE,
-                         filter, filter_param, false, 0);
-         if (retval)
-@@ -1444,13 +1419,10 @@ static int destroy_queue_cpsch(struct device_queue_=
-manager *dqm,
-
-         deallocate_doorbell(qpd, q);
-
--       if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA) {
--               dqm->sdma_queue_count--;
-+       if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA)
-                 deallocate_sdma_queue(dqm, q);
--       } else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI) {
--               dqm->xgmi_sdma_queue_count--;
-+       else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI)
-                 deallocate_sdma_queue(dqm, q);
--       }
-
-         list_del(&q->list);
-         qpd->queue_count--;
-@@ -1673,13 +1645,10 @@ static int process_termination_cpsch(struct device_=
-queue_manager *dqm,
-
-         /* Clear all user mode queues */
-         list_for_each_entry(q, &qpd->queues_list, list) {
--               if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA) {
--                       dqm->sdma_queue_count--;
-+               if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA)
-                         deallocate_sdma_queue(dqm, q);
--               } else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XG=
-MI) {
--                       dqm->xgmi_sdma_queue_count--;
-+               else if (q->properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI=
-)
-                         deallocate_sdma_queue(dqm, q);
--               }
-
-                 if (q->properties.is_active)
-                         decrement_queue_count(dqm, q->properties.type);
-@@ -1759,8 +1728,7 @@ static int allocate_hiq_sdma_mqd(struct device_queue_=
-manager *dqm)
-         struct kfd_dev *dev =3D dqm->dev;
-         struct kfd_mem_obj *mem_obj =3D &dqm->hiq_sdma_mqd;
-         uint32_t size =3D dqm->mqd_mgrs[KFD_MQD_TYPE_SDMA]->mqd_size *
--               (dev->device_info->num_sdma_engines +
--               dev->device_info->num_xgmi_sdma_engines) *
-+               get_num_all_sdma_engines(dqm) *
-                 dev->device_info->num_sdma_queues_per_engine +
-                 dqm->mqd_mgrs[KFD_MQD_TYPE_HIQ]->mqd_size;
-
-@@ -2012,8 +1980,7 @@ int dqm_debugfs_hqds(struct seq_file *m, void *data)
-                 }
-         }
-
--       for (pipe =3D 0; pipe < get_num_sdma_engines(dqm) +
--                       get_num_xgmi_sdma_engines(dqm); pipe++) {
-+       for (pipe =3D 0; pipe < get_num_all_sdma_engines(dqm); pipe++) {
-                 for (queue =3D 0;
-                      queue < dqm->dev->device_info->num_sdma_queues_per_en=
-gine;
-                      queue++) {
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h b/driver=
-s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-index 05e0afc04cd9..50d919f814e9 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-@@ -182,8 +182,6 @@ struct device_queue_manager {
-         unsigned int            processes_count;
-         unsigned int            active_queue_count;
-         unsigned int            active_cp_queue_count;
--       unsigned int            sdma_queue_count;
--       unsigned int            xgmi_sdma_queue_count;
-         unsigned int            total_queue_count;
-         unsigned int            next_pipe_to_allocate;
-         unsigned int            *allocated_queues;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drive=
-rs/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-index 3bfa5c8d9654..eb1635ac8988 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-@@ -241,16 +241,12 @@ int pqm_create_queue(struct process_queue_manager *pq=
-m,
-         switch (type) {
-         case KFD_QUEUE_TYPE_SDMA:
-         case KFD_QUEUE_TYPE_SDMA_XGMI:
--               if ((type =3D=3D KFD_QUEUE_TYPE_SDMA && dev->dqm->sdma_queu=
-e_count
--                       >=3D get_num_sdma_queues(dev->dqm)) ||
--                       (type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI &&
--                       dev->dqm->xgmi_sdma_queue_count
--                       >=3D get_num_xgmi_sdma_queues(dev->dqm))) {
--                       pr_debug("Over-subscription is not allowed for SDMA=
-.\n");
--                       retval =3D -EPERM;
--                       goto err_create_queue;
--               }
--
-+               /* SDMA queues are always allocated statically no matter
-+                * which scheduler mode is used. We also do not need to
-+                * check whether a SDMA queue can be allocated here, becaus=
-e
-+                * allocate_sdma_queue() in create_queue() has the
-+                * corresponding check logic.
-+                */
-                 retval =3D init_user_queue(pqm, dev, &q, properties, f, *q=
-id);
-                 if (retval !=3D 0)
-                         goto err_create_queue;
---
-2.17.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D02%7C01%7Calexande=
-r.deucher%40amd.com%7Ccbd81ebf5d5e4c67e7d508d7b9778eaf%7C3dd8961fe4884e608e=
-11a82d994e183d%7C0%7C0%7C637181795552610204&amp;sdata=3Dt6I98xMQpezJ6xa5eAD=
-JmZqozS0rIz1GgRhn7qXCnhs%3D&amp;reserved=3D0
-
---_000_CH2PR12MB3912FF27C79132CA1F84F3D6F7ED0CH2PR12MB3912namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#317100;margin:15pt;" al=
-ign=3D"Left">
-[AMD Public Use]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Series is:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Yong Zhao &lt;Yong.Zhao@amd.c=
-om&gt;<br>
-<b>Sent:</b> Monday, February 24, 2020 5:18 PM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Zhao, Yong &lt;Yong.Zhao@amd.com&gt;<br>
-<b>Subject:</b> [PATCH 6/6] drm/amdkfd: Delete unnecessary unmap queue pack=
-age submissions</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">The previous SDMA queue counting was wrong. In add=
-ition, after confirming<br>
-with MEC firmware team, we understands that only one unmap queue package,<b=
-r>
-instead of one unmap queue package for CP and each SDMA engine, is needed,<=
-br>
-which results in much simpler driver code.<br>
-<br>
-Change-Id: I84fd2f7e63d6b7f664580b425a78d3e995ce9abc<br>
-Signed-off-by: Yong Zhao &lt;Yong.Zhao@amd.com&gt;<br>
----<br>
-&nbsp;.../drm/amd/amdkfd/kfd_device_queue_manager.c | 79 &#43;&#43;&#43;&#4=
-3;&#43;&#43;-------------<br>
-&nbsp;.../drm/amd/amdkfd/kfd_device_queue_manager.h |&nbsp; 2 -<br>
-&nbsp;.../amd/amdkfd/kfd_process_queue_manager.c&nbsp;&nbsp;&nbsp; | 16 &#4=
-3;&#43;--<br>
-&nbsp;3 files changed, 29 insertions(&#43;), 68 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/driver=
-s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c<br>
-index 958275db3f55..692abfd2088a 100644<br>
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c<br>
-@@ -109,6 &#43;109,11 @@ static unsigned int get_num_xgmi_sdma_engines(stru=
-ct device_queue_manager *dqm)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return dqm-&gt;dev-&gt;dev=
-ice_info-&gt;num_xgmi_sdma_engines;<br>
-&nbsp;}<br>
-&nbsp;<br>
-&#43;static unsigned int get_num_all_sdma_engines(struct device_queue_manag=
-er *dqm)<br>
-&#43;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return get_num_sdma_engines(dqm) =
-&#43; get_num_xgmi_sdma_engines(dqm);<br>
-&#43;}<br>
-&#43;<br>
-&nbsp;unsigned int get_num_sdma_queues(struct device_queue_manager *dqm)<br=
->
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return dqm-&gt;dev-&gt;dev=
-ice_info-&gt;num_sdma_engines<br>
-@@ -375,11 &#43;380,6 @@ static int create_queue_nocpsch(struct device_queu=
-e_manager *dqm,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.is_ac=
-tive)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; increment_queue_count(dqm, q-&gt;properties.type);<br=
->
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.type =3D=3D KFD_=
-QUEUE_TYPE_SDMA)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;sdma_queue_count&#43;&#43;;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (q-&gt;properties.type =3D=3D=
- KFD_QUEUE_TYPE_SDMA_XGMI)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;xgmi_sdma_queue_count&#43;&#43;;<br>
--<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Unconditionally in=
-crement this counter, regardless of the queue's<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * type or whether th=
-e queue is active.<br>
-@@ -460,15 &#43;460,13 @@ static int destroy_queue_nocpsch_locked(struct de=
-vice_queue_manager *dqm,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mqd_mgr =3D dqm-&gt;mqd_mg=
-rs[get_mqd_type_from_queue_type(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; q-&gt=
-;properties.type)];<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.type =3D=3D KFD_=
-QUEUE_TYPE_COMPUTE) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.type =3D=3D =
-KFD_QUEUE_TYPE_COMPUTE)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; deallocate_hqd(dqm, q);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (q-&gt;properties.type =3D=
-=3D KFD_QUEUE_TYPE_SDMA) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;sdma_queue_count--;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (q-&gt;properties.type =
-=3D=3D KFD_QUEUE_TYPE_SDMA)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; deallocate_sdma_queue(dqm, q);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (q-&gt;properties.type =3D=
-=3D KFD_QUEUE_TYPE_SDMA_XGMI) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;xgmi_sdma_queue_count--;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (q-&gt;properties.type =
-=3D=3D KFD_QUEUE_TYPE_SDMA_XGMI)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; deallocate_sdma_queue(dqm, q);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;q-&gt;properties.type %d is invalid\n&=
-quot;,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; q-&gt;properties.type);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
-@@ -915,8 &#43;913,6 @@ static int initialize_nocpsch(struct device_queue_m=
-anager *dqm)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INIT_LIST_HEAD(&amp;dqm-&g=
-t;queues);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;active_queue_count=
- =3D dqm-&gt;next_pipe_to_allocate =3D 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;active_cp_queue_co=
-unt =3D 0;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;sdma_queue_count =3D 0;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;xgmi_sdma_queue_count =3D 0;<=
-br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (pipe =3D 0; pipe &lt;=
- get_pipes_per_mec(dqm); pipe&#43;&#43;) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; int pipe_offset =3D pipe * get_queues_per_pipe(dqm);<=
-br>
-@@ -981,8 &#43;977,11 @@ static int allocate_sdma_queue(struct device_queue=
-_manager *dqm,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int bit;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.type =
-=3D=3D KFD_QUEUE_TYPE_SDMA) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (dqm-&gt;sdma_bitmap =3D=3D 0)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; if (dqm-&gt;sdma_bitmap =3D=3D 0) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_err(&quot=
-;No more SDMA queue to allocate\n&quot;);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
-n -ENOMEM;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; }<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; bit =3D __ffs64(dqm-&gt;sdma_bitmap);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; dqm-&gt;sdma_bitmap &amp;=3D ~(1ULL &lt;&lt; bit);<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; q-&gt;sdma_id =3D bit;<br>
-@@ -991,8 &#43;990,10 @@ static int allocate_sdma_queue(struct device_queue=
-_manager *dqm,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; q-&gt;properties.sdma_queue_id =3D q-&gt;sdma_id /<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; get_num_sdma_engines(dqm);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (q-&gt;propertie=
-s.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (dqm-&gt;xgmi_sdma_bitmap =3D=3D 0)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; if (dqm-&gt;xgmi_sdma_bitmap =3D=3D 0) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_err(&quot=
-;No more XGMI SDMA queue to allocate\n&quot;);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
-n -ENOMEM;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; bit =3D __ffs64(dqm-&gt;xgmi_sdma_bitmap);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; dqm-&gt;xgmi_sdma_bitmap &amp;=3D ~(1ULL &lt;&lt; bit=
-);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; q-&gt;sdma_id =3D bit;<br>
-@@ -1081,8 &#43;1082,7 @@ static int initialize_cpsch(struct device_queue_m=
-anager *dqm)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INIT_LIST_HEAD(&amp;dqm-&g=
-t;queues);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;active_queue_count=
- =3D dqm-&gt;processes_count =3D 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;active_cp_queue_co=
-unt =3D 0;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;sdma_queue_count =3D 0;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;xgmi_sdma_queue_count =3D 0;<=
-br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;active_runlist =3D=
- false;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;sdma_bitmap =3D ~0=
-ULL &gt;&gt; (64 - get_num_sdma_queues(dqm));<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;xgmi_sdma_bitmap =
-=3D ~0ULL &gt;&gt; (64 - get_num_xgmi_sdma_queues(dqm));<br>
-@@ -1254,11 &#43;1254,6 @@ static int create_queue_cpsch(struct device_queu=
-e_manager *dqm, struct queue *q,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list_add(&amp;q-&gt;list, =
-&amp;qpd-&gt;queues_list);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; qpd-&gt;queue_count&#43;&#=
-43;;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.type =3D=3D KFD_=
-QUEUE_TYPE_SDMA)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;sdma_queue_count&#43;&#43;;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (q-&gt;properties.type =3D=3D=
- KFD_QUEUE_TYPE_SDMA_XGMI)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;xgmi_sdma_queue_count&#43;&#43;;<br>
--<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.is_ac=
-tive) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; increment_queue_count(dqm, q-&gt;properties.type);<br=
->
-&nbsp;<br>
-@@ -1315,20 &#43;1310,6 @@ int amdkfd_fence_wait_timeout(unsigned int *fenc=
-e_addr,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-&nbsp;<br>
--static int unmap_sdma_queues(struct device_queue_manager *dqm)<br>
--{<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i, retval =3D 0;<br>
--<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; dqm-&gt;dev-&gt;=
-device_info-&gt;num_sdma_engines &#43;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;dev-&gt;device_info-&gt;num_xgmi_sdma_engines; i&#43;&#4=
-3;) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; retval =3D pm_send_unmap_queue(&amp;dqm-&gt;packets, KFD_QUEUE_T=
-YPE_SDMA,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KFD_UNMAP_QUEUES=
-_FILTER_DYNAMIC_QUEUES, 0, false, i);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (retval)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return retval;<b=
-r>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return retval;<br>
--}<br>
--<br>
-&nbsp;/* dqm-&gt;lock mutex has to be locked before calling this function *=
-/<br>
-&nbsp;static int map_queues_cpsch(struct device_queue_manager *dqm)<br>
-&nbsp;{<br>
-@@ -1366,12 &#43;1347,6 @@ static int unmap_queues_cpsch(struct device_queu=
-e_manager *dqm,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!dqm-&gt;active_runlis=
-t)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return retval;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;Before destroying queu=
-es, sdma queue count is : %u, xgmi sdma queue count is : %u\n&quot;,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;sdma_queue_count, dqm-&gt;xgmi_sdma_queue_count);<br>
--<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dqm-&gt;sdma_queue_count &gt; 0 |=
-| dqm-&gt;xgmi_sdma_queue_count)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; unmap_sdma_queues(dqm);<br>
--<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retval =3D pm_send_unmap_q=
-ueue(&amp;dqm-&gt;packets, KFD_QUEUE_TYPE_COMPUTE,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; filte=
-r, filter_param, false, 0);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (retval)<br>
-@@ -1444,13 &#43;1419,10 @@ static int destroy_queue_cpsch(struct device_qu=
-eue_manager *dqm,<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; deallocate_doorbell(qpd, q=
-);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.type =3D=3D KFD_=
-QUEUE_TYPE_SDMA) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;sdma_queue_count--;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.type =3D=3D =
-KFD_QUEUE_TYPE_SDMA)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; deallocate_sdma_queue(dqm, q);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (q-&gt;properties.type =3D=
-=3D KFD_QUEUE_TYPE_SDMA_XGMI) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dqm-&gt;xgmi_sdma_queue_count--;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (q-&gt;properties.type =
-=3D=3D KFD_QUEUE_TYPE_SDMA_XGMI)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; deallocate_sdma_queue(dqm, q);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list_del(&amp;q-&gt;list);=
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; qpd-&gt;queue_count--;<br>
-@@ -1673,13 &#43;1645,10 @@ static int process_termination_cpsch(struct dev=
-ice_queue_manager *dqm,<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Clear all user mode que=
-ues */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list_for_each_entry(q, &am=
-p;qpd-&gt;queues_list, list) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (q-&gt;properties.type =3D=3D KFD_QUEUE_TYPE_SDMA) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;sdma_que=
-ue_count--;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; if (q-&gt;properties.type =3D=3D KFD_QUEUE_TYPE_SDMA)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; deall=
-ocate_sdma_queue(dqm, q);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; } else if (q-&gt;properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XGMI=
-) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm-&gt;xgmi_sdm=
-a_queue_count--;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; else if (q-&gt;properties.type =3D=3D KFD_QUEUE_TYPE_SDMA_XG=
-MI)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; deall=
-ocate_sdma_queue(dqm, q);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (q-&gt;properties.is_active)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; decre=
-ment_queue_count(dqm, q-&gt;properties.type);<br>
-@@ -1759,8 &#43;1728,7 @@ static int allocate_hiq_sdma_mqd(struct device_qu=
-eue_manager *dqm)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct kfd_dev *dev =3D dq=
-m-&gt;dev;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct kfd_mem_obj *mem_ob=
-j =3D &amp;dqm-&gt;hiq_sdma_mqd;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t size =3D dqm-&gt;=
-mqd_mgrs[KFD_MQD_TYPE_SDMA]-&gt;mqd_size *<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; (dev-&gt;device_info-&gt;num_sdma_engines &#43;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; dev-&gt;device_info-&gt;num_xgmi_sdma_engines) *<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; get_num_all_sdma_engines(dqm) *<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; dev-&gt;device_info-&gt;num_sdma_queues_per_engine &#=
-43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; dqm-&gt;mqd_mgrs[KFD_MQD_TYPE_HIQ]-&gt;mqd_size;<br>
-&nbsp;<br>
-@@ -2012,8 &#43;1980,7 @@ int dqm_debugfs_hqds(struct seq_file *m, void *da=
-ta)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (pipe =3D 0; pipe &lt; get_num_sd=
-ma_engines(dqm) &#43;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; get_num_xgmi_sdm=
-a_engines(dqm); pipe&#43;&#43;) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (pipe =3D 0; pipe &lt; get_nu=
-m_all_sdma_engines(dqm); pipe&#43;&#43;) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; for (queue =3D 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queue &lt; dqm-&gt;dev-=
-&gt;device_info-&gt;num_sdma_queues_per_engine;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queue&#43;&#43;) {<br>
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h b/driver=
-s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h<br>
-index 05e0afc04cd9..50d919f814e9 100644<br>
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h<br>
-@@ -182,8 &#43;182,6 @@ struct device_queue_manager {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; processes_count;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active_queue_count;<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active_cp_queue_count;=
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sdma_queue_count;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xgmi_sdma_queue_count;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total_queue_count;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; next_pipe_to_allocate;=
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *allocated_queues;<br>
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drive=
-rs/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c<br>
-index 3bfa5c8d9654..eb1635ac8988 100644<br>
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c<br=
->
-@@ -241,16 &#43;241,12 @@ int pqm_create_queue(struct process_queue_manager=
- *pqm,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (type) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case KFD_QUEUE_TYPE_SDMA:<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case KFD_QUEUE_TYPE_SDMA_X=
-GMI:<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if ((type =3D=3D KFD_QUEUE_TYPE_SDMA &amp;&amp; dev-&gt;dqm-&gt;=
-sdma_queue_count<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt;=3D get_num_=
-sdma_queues(dev-&gt;dqm)) ||<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (type =3D=3D KFD=
-_QUEUE_TYPE_SDMA_XGMI &amp;&amp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dev-&gt;dqm-&gt;=
-xgmi_sdma_queue_count<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt;=3D get_num_=
-xgmi_sdma_queues(dev-&gt;dqm))) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;O=
-ver-subscription is not allowed for SDMA.\n&quot;);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retval =3D -EPER=
-M;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto err_create_=
-queue;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
--<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; /* SDMA queues are always allocated statically no matter<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; * which scheduler mode is used. We also do not need to=
-<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; * check whether a SDMA queue can be allocated here, be=
-cause<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; * allocate_sdma_queue() in create_queue() has the<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; * corresponding check logic.<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; retval =3D init_user_queue(pqm, dev, &amp;q, properti=
-es, f, *qid);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (retval !=3D 0)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto =
-err_create_queue;<br>
--- <br>
-2.17.1<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
-F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%=
-7C01%7Calexander.deucher%40amd.com%7Ccbd81ebf5d5e4c67e7d508d7b9778eaf%7C3dd=
-8961fe4884e608e11a82d994e183d%7C0%7C0%7C637181795552610204&amp;amp;sdata=3D=
-t6I98xMQpezJ6xa5eADJmZqozS0rIz1GgRhn7qXCnhs%3D&amp;amp;reserved=3D0">https:=
-//nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.freedes=
-ktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%7C01%7Calexander.=
-deucher%40amd.com%7Ccbd81ebf5d5e4c67e7d508d7b9778eaf%7C3dd8961fe4884e608e11=
-a82d994e183d%7C0%7C0%7C637181795552610204&amp;amp;sdata=3Dt6I98xMQpezJ6xa5e=
-ADJmZqozS0rIz1GgRhn7qXCnhs%3D&amp;amp;reserved=3D0</a><br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_CH2PR12MB3912FF27C79132CA1F84F3D6F7ED0CH2PR12MB3912namp_--
-
---===============1701656078==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1701656078==--
+SGkgRGVubmlzLAoKQ2FuIHlvdSBwbGVhc2UgdGVzdCB0aGlzIHBhdGNoIG9uIHZlZ2EyMCBmb3Ig
+U1dERVYtMjIzMTE3CgoKUmVnYXJkcywKCk5pcm1veQoKT24gMi8yNS8yMCAyOjA3IFBNLCBDaHJp
+c3RpYW4gS8O2bmlnIHdyb3RlOgo+IFdoZW4gd2Ugc3RvcCB0aGUgSFcgZm9yIGV4YW1wbGUgZm9y
+IEdQVSByZXNldCB3ZSBzaG91bGQgbm90IHN0b3AgdGhlCj4gZnJvbnQtZW5kIHNjaGVkdWxlci4g
+T3RoZXJ3aXNlIHdlIHJ1biBpbnRvIGludGVybWVkaWF0ZSBmYWlsdXJlcyBkdXJpbmcKPiBjb21t
+YW5kIHN1Ym1pc3Npb24uCj4KPiBUaGUgc2NoZWR1bGVyIHNob3VsZCBvbmx5IGJlIHN0b3BwZWQg
+aW4gdmVyeSBmZXcgY2FzZXM6Cj4gMS4gV2UgY2FuJ3QgZ2V0IHRoZSBoYXJkd2FyZSB3b3JraW5n
+IGluIHJpbmcgb3IgSUIgdGVzdCBhZnRlciBhIEdQVSByZXNldC4KPiAyLiBUaGUgS0lRIHNjaGVk
+dWxlciBpcyBub3QgdXNlZCBpbiB0aGUgZnJvbnQtZW5kIGFuZCBzaG91bGQgYmUgZGlzYWJsZWQg
+ZHVyaW5nIEdQVSByZXNldC4KPiAzLiBJbiBhbWRncHVfcmluZ19maW5pKCkgd2hlbiB0aGUgZHJp
+dmVyIHVubG9hZHMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3Rp
+YW4ua29lbmlnQGFtZC5jb20+Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9j
+aWtfc2RtYS5jICB8ICAyIC0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEw
+XzAuYyB8ICA4IC0tLS0tLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjZf
+MC5jICB8ICA1IC0tLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjdfMC5j
+ICB8IDI1ICsrKysrKysrKy0tLS0tLS0tLS0tLS0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L2dmeF92OF8wLmMgIHwgIDcgLS0tLS0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvZ2Z4X3Y5XzAuYyAgfCAgOSAtLS0tLS0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L2pwZWdfdjJfMC5jIHwgIDMgLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9zZG1hX3YyXzQuYyB8ICAyIC0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zZG1h
+X3YzXzAuYyB8ICAyIC0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zZG1hX3Y0XzAu
+YyB8ICA0IC0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3NkbWFfdjVfMC5jIHwg
+IDMgLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zaV9kbWEuYyAgICB8ICAxIC0K
+PiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3V2ZF92NF8yLmMgIHwgIDMgLS0tCj4gICBk
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS91dmRfdjVfMC5jICB8ICAzIC0tLQo+ICAgZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvdXZkX3Y2XzAuYyAgfCAgMyAtLS0KPiAgIGRyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L3V2ZF92N18wLmMgIHwgIDcgLS0tLS0tLQo+ICAgZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvdmNlX3Y0XzAuYyAgfCAgNCAtLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS92Y25fdjFfMC5jICB8ICAzIC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvdmNuX3YyXzAuYyAgfCAgOSAtLS0tLS0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L3Zjbl92Ml81LmMgIHwgMTEgKy0tLS0tLS0tLS0KPiAgIDIwIGZpbGVzIGNoYW5nZWQs
+IDEwIGluc2VydGlvbnMoKyksIDEwNCBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9jaWtfc2RtYS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvY2lrX3NkbWEuYwo+IGluZGV4IDQyNzRjY2Y3NjVkZS4uY2IzYjNhMGExMzQ4IDEwMDY0
+NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Npa19zZG1hLmMKPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9jaWtfc2RtYS5jCj4gQEAgLTMyMCw4ICszMjAsNiBA
+QCBzdGF0aWMgdm9pZCBjaWtfc2RtYV9nZnhfc3RvcChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRl
+dikKPiAgIAkJV1JFRzMyKG1tU0RNQTBfR0ZYX1JCX0NOVEwgKyBzZG1hX29mZnNldHNbaV0sIHJi
+X2NudGwpOwo+ICAgCQlXUkVHMzIobW1TRE1BMF9HRlhfSUJfQ05UTCArIHNkbWFfb2Zmc2V0c1tp
+XSwgMCk7Cj4gICAJfQo+IC0Jc2RtYTAtPnNjaGVkLnJlYWR5ID0gZmFsc2U7Cj4gLQlzZG1hMS0+
+c2NoZWQucmVhZHkgPSBmYWxzZTsKPiAgIH0KPiAgIAo+ICAgLyoqCj4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTBfMC5jIGIvZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9hbWRncHUvZ2Z4X3YxMF8wLmMKPiBpbmRleCA3YjYxNTgzMjA0MDAuLjM2Y2U2N2NlNDgwMCAx
+MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYwo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTBfMC5jCj4gQEAgLTIzOTEsMTAg
+KzIzOTEsNiBAQCBzdGF0aWMgaW50IGdmeF92MTBfMF9jcF9nZnhfZW5hYmxlKHN0cnVjdCBhbWRn
+cHVfZGV2aWNlICphZGV2LCBib29sIGVuYWJsZSkKPiAgIAl0bXAgPSBSRUdfU0VUX0ZJRUxEKHRt
+cCwgQ1BfTUVfQ05UTCwgTUVfSEFMVCwgZW5hYmxlID8gMCA6IDEpOwo+ICAgCXRtcCA9IFJFR19T
+RVRfRklFTEQodG1wLCBDUF9NRV9DTlRMLCBQRlBfSEFMVCwgZW5hYmxlID8gMCA6IDEpOwo+ICAg
+CXRtcCA9IFJFR19TRVRfRklFTEQodG1wLCBDUF9NRV9DTlRMLCBDRV9IQUxULCBlbmFibGUgPyAw
+IDogMSk7Cj4gLQlpZiAoIWVuYWJsZSkgewo+IC0JCWZvciAoaSA9IDA7IGkgPCBhZGV2LT5nZngu
+bnVtX2dmeF9yaW5nczsgaSsrKQo+IC0JCQlhZGV2LT5nZnguZ2Z4X3JpbmdbaV0uc2NoZWQucmVh
+ZHkgPSBmYWxzZTsKPiAtCX0KPiAgIAlXUkVHMzJfU09DMTUoR0MsIDAsIG1tQ1BfTUVfQ05UTCwg
+dG1wKTsKPiAgIAo+ICAgCWZvciAoaSA9IDA7IGkgPCBhZGV2LT51c2VjX3RpbWVvdXQ7IGkrKykg
+ewo+IEBAIC0yODY5LDE2ICsyODY1LDEyIEBAIHN0YXRpYyBpbnQgZ2Z4X3YxMF8wX2NwX2dmeF9y
+ZXN1bWUoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gICAKPiAgIHN0YXRpYyB2b2lkIGdm
+eF92MTBfMF9jcF9jb21wdXRlX2VuYWJsZShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwgYm9v
+bCBlbmFibGUpCj4gICB7Cj4gLQlpbnQgaTsKPiAtCj4gICAJaWYgKGVuYWJsZSkgewo+ICAgCQlX
+UkVHMzJfU09DMTUoR0MsIDAsIG1tQ1BfTUVDX0NOVEwsIDApOwo+ICAgCX0gZWxzZSB7Cj4gICAJ
+CVdSRUczMl9TT0MxNShHQywgMCwgbW1DUF9NRUNfQ05UTCwKPiAgIAkJCSAgICAgKENQX01FQ19D
+TlRMX19NRUNfTUUxX0hBTFRfTUFTSyB8Cj4gICAJCQkgICAgICBDUF9NRUNfQ05UTF9fTUVDX01F
+Ml9IQUxUX01BU0spKTsKPiAtCQlmb3IgKGkgPSAwOyBpIDwgYWRldi0+Z2Z4Lm51bV9jb21wdXRl
+X3JpbmdzOyBpKyspCj4gLQkJCWFkZXYtPmdmeC5jb21wdXRlX3JpbmdbaV0uc2NoZWQucmVhZHkg
+PSBmYWxzZTsKPiAgIAkJYWRldi0+Z2Z4LmtpcS5yaW5nLnNjaGVkLnJlYWR5ID0gZmFsc2U7Cj4g
+ICAJfQo+ICAgCXVkZWxheSg1MCk7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L2dmeF92Nl8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjZfMC5j
+Cj4gaW5kZXggMzFmNDRkMDVlNjA2Li5lNDYyYTA5OWRiZGEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y2XzAuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvYW1kZ3B1L2dmeF92Nl8wLmMKPiBAQCAtMTk1MCw3ICsxOTUwLDYgQEAgc3RhdGljIGludCBn
+ZnhfdjZfMF9yaW5nX3Rlc3RfaWIoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nLCBsb25nIHRpbWVv
+dXQpCj4gICAKPiAgIHN0YXRpYyB2b2lkIGdmeF92Nl8wX2NwX2dmeF9lbmFibGUoc3RydWN0IGFt
+ZGdwdV9kZXZpY2UgKmFkZXYsIGJvb2wgZW5hYmxlKQo+ICAgewo+IC0JaW50IGk7Cj4gICAJaWYg
+KGVuYWJsZSkgewo+ICAgCQlXUkVHMzIobW1DUF9NRV9DTlRMLCAwKTsKPiAgIAl9IGVsc2Ugewo+
+IEBAIC0xOTU4LDEwICsxOTU3LDYgQEAgc3RhdGljIHZvaWQgZ2Z4X3Y2XzBfY3BfZ2Z4X2VuYWJs
+ZShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwgYm9vbCBlbmFibGUpCj4gICAJCQkJICAgICAg
+Q1BfTUVfQ05UTF9fUEZQX0hBTFRfTUFTSyB8Cj4gICAJCQkJICAgICAgQ1BfTUVfQ05UTF9fQ0Vf
+SEFMVF9NQVNLKSk7Cj4gICAJCVdSRUczMihtbVNDUkFUQ0hfVU1TSywgMCk7Cj4gLQkJZm9yIChp
+ID0gMDsgaSA8IGFkZXYtPmdmeC5udW1fZ2Z4X3JpbmdzOyBpKyspCj4gLQkJCWFkZXYtPmdmeC5n
+ZnhfcmluZ1tpXS5zY2hlZC5yZWFkeSA9IGZhbHNlOwo+IC0JCWZvciAoaSA9IDA7IGkgPCBhZGV2
+LT5nZngubnVtX2NvbXB1dGVfcmluZ3M7IGkrKykKPiAtCQkJYWRldi0+Z2Z4LmNvbXB1dGVfcmlu
+Z1tpXS5zY2hlZC5yZWFkeSA9IGZhbHNlOwo+ICAgCX0KPiAgIAl1ZGVsYXkoNTApOwo+ICAgfQo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjdfMC5jIGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y3XzAuYwo+IGluZGV4IDhmMjBhNWRkNDRmZS4u
+OWJjODY3M2M4M2FjIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dm
+eF92N18wLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjdfMC5jCj4g
+QEAgLTI0MzEsMTUgKzI0MzEsMTIgQEAgc3RhdGljIGludCBnZnhfdjdfMF9yaW5nX3Rlc3RfaWIo
+c3RydWN0IGFtZGdwdV9yaW5nICpyaW5nLCBsb25nIHRpbWVvdXQpCj4gICAgKi8KPiAgIHN0YXRp
+YyB2b2lkIGdmeF92N18wX2NwX2dmeF9lbmFibGUoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYs
+IGJvb2wgZW5hYmxlKQo+ICAgewo+IC0JaW50IGk7Cj4gLQo+IC0JaWYgKGVuYWJsZSkgewo+ICsJ
+aWYgKGVuYWJsZSkKPiAgIAkJV1JFRzMyKG1tQ1BfTUVfQ05UTCwgMCk7Cj4gLQl9IGVsc2Ugewo+
+IC0JCVdSRUczMihtbUNQX01FX0NOVEwsIChDUF9NRV9DTlRMX19NRV9IQUxUX01BU0sgfCBDUF9N
+RV9DTlRMX19QRlBfSEFMVF9NQVNLIHwgQ1BfTUVfQ05UTF9fQ0VfSEFMVF9NQVNLKSk7Cj4gLQkJ
+Zm9yIChpID0gMDsgaSA8IGFkZXYtPmdmeC5udW1fZ2Z4X3JpbmdzOyBpKyspCj4gLQkJCWFkZXYt
+PmdmeC5nZnhfcmluZ1tpXS5zY2hlZC5yZWFkeSA9IGZhbHNlOwo+IC0JfQo+ICsJZWxzZQo+ICsJ
+CVdSRUczMihtbUNQX01FX0NOVEwsIChDUF9NRV9DTlRMX19NRV9IQUxUX01BU0sgfAo+ICsJCQkJ
+ICAgICAgQ1BfTUVfQ05UTF9fUEZQX0hBTFRfTUFTSyB8Cj4gKwkJCQkgICAgICBDUF9NRV9DTlRM
+X19DRV9IQUxUX01BU0spKTsKPiAgIAl1ZGVsYXkoNTApOwo+ICAgfQo+ICAgCj4gQEAgLTI3MDAs
+MTUgKzI2OTcsMTEgQEAgc3RhdGljIHZvaWQgZ2Z4X3Y3XzBfcmluZ19zZXRfd3B0cl9jb21wdXRl
+KHN0cnVjdCBhbWRncHVfcmluZyAqcmluZykKPiAgICAqLwo+ICAgc3RhdGljIHZvaWQgZ2Z4X3Y3
+XzBfY3BfY29tcHV0ZV9lbmFibGUoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsIGJvb2wgZW5h
+YmxlKQo+ICAgewo+IC0JaW50IGk7Cj4gLQo+IC0JaWYgKGVuYWJsZSkgewo+ICsJaWYgKGVuYWJs
+ZSkKPiAgIAkJV1JFRzMyKG1tQ1BfTUVDX0NOVEwsIDApOwo+IC0JfSBlbHNlIHsKPiAtCQlXUkVH
+MzIobW1DUF9NRUNfQ05UTCwgKENQX01FQ19DTlRMX19NRUNfTUUxX0hBTFRfTUFTSyB8IENQX01F
+Q19DTlRMX19NRUNfTUUyX0hBTFRfTUFTSykpOwo+IC0JCWZvciAoaSA9IDA7IGkgPCBhZGV2LT5n
+ZngubnVtX2NvbXB1dGVfcmluZ3M7IGkrKykKPiAtCQkJYWRldi0+Z2Z4LmNvbXB1dGVfcmluZ1tp
+XS5zY2hlZC5yZWFkeSA9IGZhbHNlOwo+IC0JfQo+ICsJZWxzZQo+ICsJCVdSRUczMihtbUNQX01F
+Q19DTlRMLCAoQ1BfTUVDX0NOVExfX01FQ19NRTFfSEFMVF9NQVNLIHwKPiArCQkJCSAgICAgICBD
+UF9NRUNfQ05UTF9fTUVDX01FMl9IQUxUX01BU0spKTsKPiAgIAl1ZGVsYXkoNTApOwo+ICAgfQo+
+ICAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OF8wLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjhfMC5jCj4gaW5kZXggZmEyNDU5NzNk
+ZTEyLi43YjZiMDNjMDI3NTQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvZ2Z4X3Y4XzAuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OF8w
+LmMKPiBAQCAtNDExMSw3ICs0MTExLDYgQEAgc3RhdGljIGludCBnZnhfdjhfMF9ybGNfcmVzdW1l
+KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQo+ICAgCj4gICBzdGF0aWMgdm9pZCBnZnhfdjhf
+MF9jcF9nZnhfZW5hYmxlKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LCBib29sIGVuYWJsZSkK
+PiAgIHsKPiAtCWludCBpOwo+ICAgCXUzMiB0bXAgPSBSUkVHMzIobW1DUF9NRV9DTlRMKTsKPiAg
+IAo+ICAgCWlmIChlbmFibGUpIHsKPiBAQCAtNDEyMiw4ICs0MTIxLDYgQEAgc3RhdGljIHZvaWQg
+Z2Z4X3Y4XzBfY3BfZ2Z4X2VuYWJsZShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwgYm9vbCBl
+bmFibGUpCj4gICAJCXRtcCA9IFJFR19TRVRfRklFTEQodG1wLCBDUF9NRV9DTlRMLCBNRV9IQUxU
+LCAxKTsKPiAgIAkJdG1wID0gUkVHX1NFVF9GSUVMRCh0bXAsIENQX01FX0NOVEwsIFBGUF9IQUxU
+LCAxKTsKPiAgIAkJdG1wID0gUkVHX1NFVF9GSUVMRCh0bXAsIENQX01FX0NOVEwsIENFX0hBTFQs
+IDEpOwo+IC0JCWZvciAoaSA9IDA7IGkgPCBhZGV2LT5nZngubnVtX2dmeF9yaW5nczsgaSsrKQo+
+IC0JCQlhZGV2LT5nZnguZ2Z4X3JpbmdbaV0uc2NoZWQucmVhZHkgPSBmYWxzZTsKPiAgIAl9Cj4g
+ICAJV1JFRzMyKG1tQ1BfTUVfQ05UTCwgdG1wKTsKPiAgIAl1ZGVsYXkoNTApOwo+IEBAIC00MzEx
+LDE0ICs0MzA4LDEwIEBAIHN0YXRpYyBpbnQgZ2Z4X3Y4XzBfY3BfZ2Z4X3Jlc3VtZShzdHJ1Y3Qg
+YW1kZ3B1X2RldmljZSAqYWRldikKPiAgIAo+ICAgc3RhdGljIHZvaWQgZ2Z4X3Y4XzBfY3BfY29t
+cHV0ZV9lbmFibGUoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsIGJvb2wgZW5hYmxlKQo+ICAg
+ewo+IC0JaW50IGk7Cj4gLQo+ICAgCWlmIChlbmFibGUpIHsKPiAgIAkJV1JFRzMyKG1tQ1BfTUVD
+X0NOVEwsIDApOwo+ICAgCX0gZWxzZSB7Cj4gICAJCVdSRUczMihtbUNQX01FQ19DTlRMLCAoQ1Bf
+TUVDX0NOVExfX01FQ19NRTFfSEFMVF9NQVNLIHwgQ1BfTUVDX0NOVExfX01FQ19NRTJfSEFMVF9N
+QVNLKSk7Cj4gLQkJZm9yIChpID0gMDsgaSA8IGFkZXYtPmdmeC5udW1fY29tcHV0ZV9yaW5nczsg
+aSsrKQo+IC0JCQlhZGV2LT5nZnguY29tcHV0ZV9yaW5nW2ldLnNjaGVkLnJlYWR5ID0gZmFsc2U7
+Cj4gICAJCWFkZXYtPmdmeC5raXEucmluZy5zY2hlZC5yZWFkeSA9IGZhbHNlOwo+ICAgCX0KPiAg
+IAl1ZGVsYXkoNTApOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9n
+ZnhfdjlfMC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYwo+IGluZGV4
+IDFjN2ExNmI5MTY4Ni4uYTJmOTg4MmJkOWI0IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2dmeF92OV8wLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9nZnhfdjlfMC5jCj4gQEAgLTMwMzQsMTYgKzMwMzQsMTEgQEAgc3RhdGljIGludCBnZnhfdjlf
+MF9ybGNfcmVzdW1lKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQo+ICAgCj4gICBzdGF0aWMg
+dm9pZCBnZnhfdjlfMF9jcF9nZnhfZW5hYmxlKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LCBi
+b29sIGVuYWJsZSkKPiAgIHsKPiAtCWludCBpOwo+ICAgCXUzMiB0bXAgPSBSUkVHMzJfU09DMTUo
+R0MsIDAsIG1tQ1BfTUVfQ05UTCk7Cj4gICAKPiAgIAl0bXAgPSBSRUdfU0VUX0ZJRUxEKHRtcCwg
+Q1BfTUVfQ05UTCwgTUVfSEFMVCwgZW5hYmxlID8gMCA6IDEpOwo+ICAgCXRtcCA9IFJFR19TRVRf
+RklFTEQodG1wLCBDUF9NRV9DTlRMLCBQRlBfSEFMVCwgZW5hYmxlID8gMCA6IDEpOwo+ICAgCXRt
+cCA9IFJFR19TRVRfRklFTEQodG1wLCBDUF9NRV9DTlRMLCBDRV9IQUxULCBlbmFibGUgPyAwIDog
+MSk7Cj4gLQlpZiAoIWVuYWJsZSkgewo+IC0JCWZvciAoaSA9IDA7IGkgPCBhZGV2LT5nZngubnVt
+X2dmeF9yaW5nczsgaSsrKQo+IC0JCQlhZGV2LT5nZnguZ2Z4X3JpbmdbaV0uc2NoZWQucmVhZHkg
+PSBmYWxzZTsKPiAtCX0KPiAgIAlXUkVHMzJfU09DMTVfUkxDKEdDLCAwLCBtbUNQX01FX0NOVEws
+IHRtcCk7Cj4gICAJdWRlbGF5KDUwKTsKPiAgIH0KPiBAQCAtMzIzOSwxNSArMzIzNCwxMSBAQCBz
+dGF0aWMgaW50IGdmeF92OV8wX2NwX2dmeF9yZXN1bWUoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFk
+ZXYpCj4gICAKPiAgIHN0YXRpYyB2b2lkIGdmeF92OV8wX2NwX2NvbXB1dGVfZW5hYmxlKHN0cnVj
+dCBhbWRncHVfZGV2aWNlICphZGV2LCBib29sIGVuYWJsZSkKPiAgIHsKPiAtCWludCBpOwo+IC0K
+PiAgIAlpZiAoZW5hYmxlKSB7Cj4gICAJCVdSRUczMl9TT0MxNV9STEMoR0MsIDAsIG1tQ1BfTUVD
+X0NOVEwsIDApOwo+ICAgCX0gZWxzZSB7Cj4gICAJCVdSRUczMl9TT0MxNV9STEMoR0MsIDAsIG1t
+Q1BfTUVDX0NOVEwsCj4gICAJCQkoQ1BfTUVDX0NOVExfX01FQ19NRTFfSEFMVF9NQVNLIHwgQ1Bf
+TUVDX0NOVExfX01FQ19NRTJfSEFMVF9NQVNLKSk7Cj4gLQkJZm9yIChpID0gMDsgaSA8IGFkZXYt
+PmdmeC5udW1fY29tcHV0ZV9yaW5nczsgaSsrKQo+IC0JCQlhZGV2LT5nZnguY29tcHV0ZV9yaW5n
+W2ldLnNjaGVkLnJlYWR5ID0gZmFsc2U7Cj4gICAJCWFkZXYtPmdmeC5raXEucmluZy5zY2hlZC5y
+ZWFkeSA9IGZhbHNlOwo+ICAgCX0KPiAgIAl1ZGVsYXkoNTApOwo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9qcGVnX3YyXzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L2pwZWdfdjJfMC5jCj4gaW5kZXggZmYyZTZlMWNjZGU3Li40NzE3MTBhNDJhMGMgMTAw
+NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvanBlZ192Ml8wLmMKPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9qcGVnX3YyXzAuYwo+IEBAIC0xNjksMTQgKzE2
+OSwxMSBAQCBzdGF0aWMgaW50IGpwZWdfdjJfMF9od19pbml0KHZvaWQgKmhhbmRsZSkKPiAgIHN0
+YXRpYyBpbnQganBlZ192Ml8wX2h3X2Zpbmkodm9pZCAqaGFuZGxlKQo+ICAgewo+ICAgCXN0cnVj
+dCBhbWRncHVfZGV2aWNlICphZGV2ID0gKHN0cnVjdCBhbWRncHVfZGV2aWNlICopaGFuZGxlOwo+
+IC0Jc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nID0gJmFkZXYtPmpwZWcuaW5zdC0+cmluZ19kZWM7
+Cj4gICAKPiAgIAlpZiAoYWRldi0+anBlZy5jdXJfc3RhdGUgIT0gQU1EX1BHX1NUQVRFX0dBVEUg
+JiYKPiAgIAkgICAgICBSUkVHMzJfU09DMTUoSlBFRywgMCwgbW1VVkRfSlJCQ19TVEFUVVMpKQo+
+ICAgCQlqcGVnX3YyXzBfc2V0X3Bvd2VyZ2F0aW5nX3N0YXRlKGFkZXYsIEFNRF9QR19TVEFURV9H
+QVRFKTsKPiAgIAo+IC0JcmluZy0+c2NoZWQucmVhZHkgPSBmYWxzZTsKPiAtCj4gICAJcmV0dXJu
+IDA7Cj4gICB9Cj4gICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+c2RtYV92Ml80LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zZG1hX3YyXzQuYwo+IGlu
+ZGV4IGZkN2ZhNjA4MjU2My4uMDViNzlhY2VkNmU4IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L3NkbWFfdjJfNC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvc2RtYV92Ml80LmMKPiBAQCAtMzU1LDggKzM1NSw2IEBAIHN0YXRpYyB2b2lkIHNkbWFf
+djJfNF9nZnhfc3RvcChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKPiAgIAkJaWJfY250bCA9
+IFJFR19TRVRfRklFTEQoaWJfY250bCwgU0RNQTBfR0ZYX0lCX0NOVEwsIElCX0VOQUJMRSwgMCk7
+Cj4gICAJCVdSRUczMihtbVNETUEwX0dGWF9JQl9DTlRMICsgc2RtYV9vZmZzZXRzW2ldLCBpYl9j
+bnRsKTsKPiAgIAl9Cj4gLQlzZG1hMC0+c2NoZWQucmVhZHkgPSBmYWxzZTsKPiAtCXNkbWExLT5z
+Y2hlZC5yZWFkeSA9IGZhbHNlOwo+ICAgfQo+ICAgCj4gICAvKioKPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvc2RtYV92M18wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9zZG1hX3YzXzAuYwo+IGluZGV4IDRhOGE3ZjBmM2E5Yy4uMTQ0OGQ5YmViN2E4IDEw
+MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3NkbWFfdjNfMC5jCj4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvc2RtYV92M18wLmMKPiBAQCAtNTI5LDggKzUy
+OSw2IEBAIHN0YXRpYyB2b2lkIHNkbWFfdjNfMF9nZnhfc3RvcChzdHJ1Y3QgYW1kZ3B1X2Rldmlj
+ZSAqYWRldikKPiAgIAkJaWJfY250bCA9IFJFR19TRVRfRklFTEQoaWJfY250bCwgU0RNQTBfR0ZY
+X0lCX0NOVEwsIElCX0VOQUJMRSwgMCk7Cj4gICAJCVdSRUczMihtbVNETUEwX0dGWF9JQl9DTlRM
+ICsgc2RtYV9vZmZzZXRzW2ldLCBpYl9jbnRsKTsKPiAgIAl9Cj4gLQlzZG1hMC0+c2NoZWQucmVh
+ZHkgPSBmYWxzZTsKPiAtCXNkbWExLT5zY2hlZC5yZWFkeSA9IGZhbHNlOwo+ICAgfQo+ICAgCj4g
+ICAvKioKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvc2RtYV92NF8w
+LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zZG1hX3Y0XzAuYwo+IGluZGV4IDdjZWE0
+NTEzYzMwMy4uMGM2ZWI2NWY5NmYzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L3NkbWFfdjRfMC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvc2Rt
+YV92NF8wLmMKPiBAQCAtOTIzLDggKzkyMyw2IEBAIHN0YXRpYyB2b2lkIHNkbWFfdjRfMF9nZnhf
+c3RvcChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKPiAgIAkJaWJfY250bCA9IFJSRUczMl9T
+RE1BKGksIG1tU0RNQTBfR0ZYX0lCX0NOVEwpOwo+ICAgCQlpYl9jbnRsID0gUkVHX1NFVF9GSUVM
+RChpYl9jbnRsLCBTRE1BMF9HRlhfSUJfQ05UTCwgSUJfRU5BQkxFLCAwKTsKPiAgIAkJV1JFRzMy
+X1NETUEoaSwgbW1TRE1BMF9HRlhfSUJfQ05UTCwgaWJfY250bCk7Cj4gLQo+IC0JCXNkbWFbaV0t
+PnNjaGVkLnJlYWR5ID0gZmFsc2U7Cj4gICAJfQo+ICAgfQo+ICAgCj4gQEAgLTk3MSw4ICs5Njks
+NiBAQCBzdGF0aWMgdm9pZCBzZG1hX3Y0XzBfcGFnZV9zdG9wKHN0cnVjdCBhbWRncHVfZGV2aWNl
+ICphZGV2KQo+ICAgCQlpYl9jbnRsID0gUkVHX1NFVF9GSUVMRChpYl9jbnRsLCBTRE1BMF9QQUdF
+X0lCX0NOVEwsCj4gICAJCQkJCUlCX0VOQUJMRSwgMCk7Cj4gICAJCVdSRUczMl9TRE1BKGksIG1t
+U0RNQTBfUEFHRV9JQl9DTlRMLCBpYl9jbnRsKTsKPiAtCj4gLQkJc2RtYVtpXS0+c2NoZWQucmVh
+ZHkgPSBmYWxzZTsKPiAgIAl9Cj4gICB9Cj4gICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvc2RtYV92NV8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9z
+ZG1hX3Y1XzAuYwo+IGluZGV4IDdlZTYwM2RiOGM1Ny4uNWFmNjZhMjRiMGEyIDEwMDY0NAo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3NkbWFfdjVfMC5jCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvc2RtYV92NV8wLmMKPiBAQCAtNTAyLDkgKzUwMiw2IEBAIHN0
+YXRpYyB2b2lkIHNkbWFfdjVfMF9nZnhfc3RvcChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikK
+PiAgIAkJaWJfY250bCA9IFJFR19TRVRfRklFTEQoaWJfY250bCwgU0RNQTBfR0ZYX0lCX0NOVEws
+IElCX0VOQUJMRSwgMCk7Cj4gICAJCVdSRUczMihzZG1hX3Y1XzBfZ2V0X3JlZ19vZmZzZXQoYWRl
+diwgaSwgbW1TRE1BMF9HRlhfSUJfQ05UTCksIGliX2NudGwpOwo+ICAgCX0KPiAtCj4gLQlzZG1h
+MC0+c2NoZWQucmVhZHkgPSBmYWxzZTsKPiAtCXNkbWExLT5zY2hlZC5yZWFkeSA9IGZhbHNlOwo+
+ICAgfQo+ICAgCj4gICAvKioKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvc2lfZG1hLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zaV9kbWEuYwo+IGluZGV4
+IDdmNjRkNzMwNDNjZi4uYTg1NDg2NzhjMzdkIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L3NpX2RtYS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+c2lfZG1hLmMKPiBAQCAtMTI0LDcgKzEyNCw2IEBAIHN0YXRpYyB2b2lkIHNpX2RtYV9zdG9wKHN0
+cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQo+ICAgCj4gICAJCWlmIChhZGV2LT5tbWFuLmJ1ZmZl
+cl9mdW5jc19yaW5nID09IHJpbmcpCj4gICAJCQlhbWRncHVfdHRtX3NldF9idWZmZXJfZnVuY3Nf
+c3RhdHVzKGFkZXYsIGZhbHNlKTsKPiAtCQlyaW5nLT5zY2hlZC5yZWFkeSA9IGZhbHNlOwo+ICAg
+CX0KPiAgIH0KPiAgIAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS91
+dmRfdjRfMi5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvdXZkX3Y0XzIuYwo+IGluZGV4
+IDgyYWJkOGU3MjhhYi4uOTU3ZTE0ZTJjMTU1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L3V2ZF92NF8yLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS91dmRfdjRfMi5jCj4gQEAgLTIxMCwxMyArMjEwLDEwIEBAIHN0YXRpYyBpbnQgdXZkX3Y0XzJf
+aHdfaW5pdCh2b2lkICpoYW5kbGUpCj4gICBzdGF0aWMgaW50IHV2ZF92NF8yX2h3X2Zpbmkodm9p
+ZCAqaGFuZGxlKQo+ICAgewo+ICAgCXN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gKHN0cnVj
+dCBhbWRncHVfZGV2aWNlICopaGFuZGxlOwo+IC0Jc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nID0g
+JmFkZXYtPnV2ZC5pbnN0LT5yaW5nOwo+ICAgCj4gICAJaWYgKFJSRUczMihtbVVWRF9TVEFUVVMp
+ICE9IDApCj4gICAJCXV2ZF92NF8yX3N0b3AoYWRldik7Cj4gICAKPiAtCXJpbmctPnNjaGVkLnJl
+YWR5ID0gZmFsc2U7Cj4gLQo+ICAgCXJldHVybiAwOwo+ICAgfQo+ICAgCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3V2ZF92NV8wLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS91dmRfdjVfMC5jCj4gaW5kZXggMGZhOGFhZTJkNzhlLi4yYWFkNjY4OTgyM2Ig
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvdXZkX3Y1XzAuYwo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3V2ZF92NV8wLmMKPiBAQCAtMjA4LDEzICsy
+MDgsMTAgQEAgc3RhdGljIGludCB1dmRfdjVfMF9od19pbml0KHZvaWQgKmhhbmRsZSkKPiAgIHN0
+YXRpYyBpbnQgdXZkX3Y1XzBfaHdfZmluaSh2b2lkICpoYW5kbGUpCj4gICB7Cj4gICAJc3RydWN0
+IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSAoc3RydWN0IGFtZGdwdV9kZXZpY2UgKiloYW5kbGU7Cj4g
+LQlzdHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmcgPSAmYWRldi0+dXZkLmluc3QtPnJpbmc7Cj4gICAK
+PiAgIAlpZiAoUlJFRzMyKG1tVVZEX1NUQVRVUykgIT0gMCkKPiAgIAkJdXZkX3Y1XzBfc3RvcChh
+ZGV2KTsKPiAgIAo+IC0JcmluZy0+c2NoZWQucmVhZHkgPSBmYWxzZTsKPiAtCj4gICAJcmV0dXJu
+IDA7Cj4gICB9Cj4gICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+dXZkX3Y2XzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3V2ZF92Nl8wLmMKPiBpbmRl
+eCBlMGFhZGNhZjZjOGIuLmE5ZDA2ZWM1ZDA5YSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS91dmRfdjZfMC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvdXZkX3Y2XzAuYwo+IEBAIC01MzUsMTMgKzUzNSwxMCBAQCBzdGF0aWMgaW50IHV2ZF92Nl8w
+X2h3X2luaXQodm9pZCAqaGFuZGxlKQo+ICAgc3RhdGljIGludCB1dmRfdjZfMF9od19maW5pKHZv
+aWQgKmhhbmRsZSkKPiAgIHsKPiAgIAlzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiA9IChzdHJ1
+Y3QgYW1kZ3B1X2RldmljZSAqKWhhbmRsZTsKPiAtCXN0cnVjdCBhbWRncHVfcmluZyAqcmluZyA9
+ICZhZGV2LT51dmQuaW5zdC0+cmluZzsKPiAgIAo+ICAgCWlmIChSUkVHMzIobW1VVkRfU1RBVFVT
+KSAhPSAwKQo+ICAgCQl1dmRfdjZfMF9zdG9wKGFkZXYpOwo+ICAgCj4gLQlyaW5nLT5zY2hlZC5y
+ZWFkeSA9IGZhbHNlOwo+IC0KPiAgIAlyZXR1cm4gMDsKPiAgIH0KPiAgIAo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS91dmRfdjdfMC5jIGIvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvdXZkX3Y3XzAuYwo+IGluZGV4IDA5OTUzNzhkODI2My4uYWYzYjFjOWQzMzc3
+IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3V2ZF92N18wLmMKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS91dmRfdjdfMC5jCj4gQEAgLTU5OCw3ICs1
+OTgsNiBAQCBzdGF0aWMgaW50IHV2ZF92N18wX2h3X2luaXQodm9pZCAqaGFuZGxlKQo+ICAgc3Rh
+dGljIGludCB1dmRfdjdfMF9od19maW5pKHZvaWQgKmhhbmRsZSkKPiAgIHsKPiAgIAlzdHJ1Y3Qg
+YW1kZ3B1X2RldmljZSAqYWRldiA9IChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqKWhhbmRsZTsKPiAt
+CWludCBpOwo+ICAgCj4gICAJaWYgKCFhbWRncHVfc3Jpb3ZfdmYoYWRldikpCj4gICAJCXV2ZF92
+N18wX3N0b3AoYWRldik7Cj4gQEAgLTYwNywxMiArNjA2LDYgQEAgc3RhdGljIGludCB1dmRfdjdf
+MF9od19maW5pKHZvaWQgKmhhbmRsZSkKPiAgIAkJRFJNX0RFQlVHKCJGb3IgU1JJT1YgY2xpZW50
+LCBzaG91bGRuJ3QgZG8gYW55dGhpbmcuXG4iKTsKPiAgIAl9Cj4gICAKPiAtCWZvciAoaSA9IDA7
+IGkgPCBhZGV2LT51dmQubnVtX3V2ZF9pbnN0OyArK2kpIHsKPiAtCQlpZiAoYWRldi0+dXZkLmhh
+cnZlc3RfY29uZmlnICYgKDEgPDwgaSkpCj4gLQkJCWNvbnRpbnVlOwo+IC0JCWFkZXYtPnV2ZC5p
+bnN0W2ldLnJpbmcuc2NoZWQucmVhZHkgPSBmYWxzZTsKPiAtCX0KPiAtCj4gICAJcmV0dXJuIDA7
+Cj4gICB9Cj4gICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvdmNl
+X3Y0XzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3ZjZV92NF8wLmMKPiBpbmRleCAz
+ZmQxMDJlZmI3YWYuLjVlOTg2ZGVhNDY0NSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS92Y2VfdjRfMC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+dmNlX3Y0XzAuYwo+IEBAIC01MzksNyArNTM5LDYgQEAgc3RhdGljIGludCB2Y2VfdjRfMF9od19p
+bml0KHZvaWQgKmhhbmRsZSkKPiAgIHN0YXRpYyBpbnQgdmNlX3Y0XzBfaHdfZmluaSh2b2lkICpo
+YW5kbGUpCj4gICB7Cj4gICAJc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSAoc3RydWN0IGFt
+ZGdwdV9kZXZpY2UgKiloYW5kbGU7Cj4gLQlpbnQgaTsKPiAgIAo+ICAgCWlmICghYW1kZ3B1X3Ny
+aW92X3ZmKGFkZXYpKSB7Cj4gICAJCS8qIHZjZV92NF8wX3dhaXRfZm9yX2lkbGUoaGFuZGxlKTsg
+Ki8KPiBAQCAtNTQ5LDkgKzU0OCw2IEBAIHN0YXRpYyBpbnQgdmNlX3Y0XzBfaHdfZmluaSh2b2lk
+ICpoYW5kbGUpCj4gICAJCURSTV9ERUJVRygiRm9yIFNSSU9WIGNsaWVudCwgc2hvdWxkbid0IGRv
+IGFueXRoaW5nLlxuIik7Cj4gICAJfQo+ICAgCj4gLQlmb3IgKGkgPSAwOyBpIDwgYWRldi0+dmNl
+Lm51bV9yaW5nczsgaSsrKQo+IC0JCWFkZXYtPnZjZS5yaW5nW2ldLnNjaGVkLnJlYWR5ID0gZmFs
+c2U7Cj4gLQo+ICAgCXJldHVybiAwOwo+ICAgfQo+ICAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L3Zjbl92MV8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS92Y25fdjFfMC5jCj4gaW5kZXggNzFmNjFhZmRjNjU1Li5kZjkyYzRlMWVmYWEgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvdmNuX3YxXzAuYwo+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3Zjbl92MV8wLmMKPiBAQCAtMjI3LDE0ICsyMjcsMTEgQEAg
+c3RhdGljIGludCB2Y25fdjFfMF9od19pbml0KHZvaWQgKmhhbmRsZSkKPiAgIHN0YXRpYyBpbnQg
+dmNuX3YxXzBfaHdfZmluaSh2b2lkICpoYW5kbGUpCj4gICB7Cj4gICAJc3RydWN0IGFtZGdwdV9k
+ZXZpY2UgKmFkZXYgPSAoc3RydWN0IGFtZGdwdV9kZXZpY2UgKiloYW5kbGU7Cj4gLQlzdHJ1Y3Qg
+YW1kZ3B1X3JpbmcgKnJpbmcgPSAmYWRldi0+dmNuLmluc3QtPnJpbmdfZGVjOwo+ICAgCj4gICAJ
+aWYgKChhZGV2LT5wZ19mbGFncyAmIEFNRF9QR19TVVBQT1JUX1ZDTl9EUEcpIHx8Cj4gICAJCVJS
+RUczMl9TT0MxNShWQ04sIDAsIG1tVVZEX1NUQVRVUykpCj4gICAJCXZjbl92MV8wX3NldF9wb3dl
+cmdhdGluZ19zdGF0ZShhZGV2LCBBTURfUEdfU1RBVEVfR0FURSk7Cj4gICAKPiAtCXJpbmctPnNj
+aGVkLnJlYWR5ID0gZmFsc2U7Cj4gLQo+ICAgCXJldHVybiAwOwo+ICAgfQo+ICAgCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3Zjbl92Ml8wLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGdwdS92Y25fdjJfMC5jCj4gaW5kZXggYzM4N2M4MWY4Njk1Li4zNzUwODI3
+N2NiZGYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvdmNuX3YyXzAu
+Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3Zjbl92Ml8wLmMKPiBAQCAtMjMy
+LDIxICsyMzIsMTIgQEAgc3RhdGljIGludCB2Y25fdjJfMF9od19pbml0KHZvaWQgKmhhbmRsZSkK
+PiAgIHN0YXRpYyBpbnQgdmNuX3YyXzBfaHdfZmluaSh2b2lkICpoYW5kbGUpCj4gICB7Cj4gICAJ
+c3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSAoc3RydWN0IGFtZGdwdV9kZXZpY2UgKiloYW5k
+bGU7Cj4gLQlzdHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmcgPSAmYWRldi0+dmNuLmluc3QtPnJpbmdf
+ZGVjOwo+IC0JaW50IGk7Cj4gICAKPiAgIAlpZiAoKGFkZXYtPnBnX2ZsYWdzICYgQU1EX1BHX1NV
+UFBPUlRfVkNOX0RQRykgfHwKPiAgIAkgICAgKGFkZXYtPnZjbi5jdXJfc3RhdGUgIT0gQU1EX1BH
+X1NUQVRFX0dBVEUgJiYKPiAgIAkgICAgICBSUkVHMzJfU09DMTUoVkNOLCAwLCBtbVVWRF9TVEFU
+VVMpKSkKPiAgIAkJdmNuX3YyXzBfc2V0X3Bvd2VyZ2F0aW5nX3N0YXRlKGFkZXYsIEFNRF9QR19T
+VEFURV9HQVRFKTsKPiAgIAo+IC0JcmluZy0+c2NoZWQucmVhZHkgPSBmYWxzZTsKPiAtCj4gLQlm
+b3IgKGkgPSAwOyBpIDwgYWRldi0+dmNuLm51bV9lbmNfcmluZ3M7ICsraSkgewo+IC0JCXJpbmcg
+PSAmYWRldi0+dmNuLmluc3QtPnJpbmdfZW5jW2ldOwo+IC0JCXJpbmctPnNjaGVkLnJlYWR5ID0g
+ZmFsc2U7Cj4gLQl9Cj4gLQo+ICAgCXJldHVybiAwOwo+ICAgfQo+ICAgCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3Zjbl92Ml81LmMgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS92Y25fdjJfNS5jCj4gaW5kZXggMmQ2NGJhMWFkZjk5Li45MGExOTk0ODU3ZGIg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvdmNuX3YyXzUuYwo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3Zjbl92Ml81LmMKPiBAQCAtMzA3LDI1ICsz
+MDcsMTYgQEAgc3RhdGljIGludCB2Y25fdjJfNV9od19pbml0KHZvaWQgKmhhbmRsZSkKPiAgIHN0
+YXRpYyBpbnQgdmNuX3YyXzVfaHdfZmluaSh2b2lkICpoYW5kbGUpCj4gICB7Cj4gICAJc3RydWN0
+IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSAoc3RydWN0IGFtZGdwdV9kZXZpY2UgKiloYW5kbGU7Cj4g
+LQlzdHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmc7Cj4gLQlpbnQgaSwgajsKPiArCWludCBpOwo+ICAg
+Cj4gICAJZm9yIChpID0gMDsgaSA8IGFkZXYtPnZjbi5udW1fdmNuX2luc3Q7ICsraSkgewo+ICAg
+CQlpZiAoYWRldi0+dmNuLmhhcnZlc3RfY29uZmlnICYgKDEgPDwgaSkpCj4gICAJCQljb250aW51
+ZTsKPiAtCQlyaW5nID0gJmFkZXYtPnZjbi5pbnN0W2ldLnJpbmdfZGVjOwo+ICAgCj4gICAJCWlm
+ICgoYWRldi0+cGdfZmxhZ3MgJiBBTURfUEdfU1VQUE9SVF9WQ05fRFBHKSB8fAo+ICAgCQkgICAg
+KGFkZXYtPnZjbi5jdXJfc3RhdGUgIT0gQU1EX1BHX1NUQVRFX0dBVEUgJiYKPiAgIAkJICAgICBS
+UkVHMzJfU09DMTUoVkNOLCBpLCBtbVVWRF9TVEFUVVMpKSkKPiAgIAkJCXZjbl92Ml81X3NldF9w
+b3dlcmdhdGluZ19zdGF0ZShhZGV2LCBBTURfUEdfU1RBVEVfR0FURSk7Cj4gLQo+IC0JCXJpbmct
+PnNjaGVkLnJlYWR5ID0gZmFsc2U7Cj4gLQo+IC0JCWZvciAoaiA9IDA7IGogPCBhZGV2LT52Y24u
+bnVtX2VuY19yaW5nczsgKytqKSB7Cj4gLQkJCXJpbmcgPSAmYWRldi0+dmNuLmluc3RbaV0ucmlu
+Z19lbmNbal07Cj4gLQkJCXJpbmctPnNjaGVkLnJlYWR5ID0gZmFsc2U7Cj4gLQkJfQo+ICAgCX0K
+PiAgIAo+ICAgCXJldHVybiAwOwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1n
+ZngK
