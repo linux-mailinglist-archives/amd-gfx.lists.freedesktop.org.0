@@ -1,102 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB40817084D
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Feb 2020 20:02:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF91F1708FC
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Feb 2020 20:35:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 344666EBA9;
-	Wed, 26 Feb 2020 19:02:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 486B889CA2;
+	Wed, 26 Feb 2020 19:35:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2054.outbound.protection.outlook.com [40.107.237.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC1F46EBA9;
- Wed, 26 Feb 2020 19:02:16 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2046.outbound.protection.outlook.com [40.107.220.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CEB789CA2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 19:35:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NI3U8w40SGD9RgDiESHGArmcdoSIOHDd6I3hyZZ6/fJWiAdqs1ymKlg/HDr20943phyv95gsJlvOvhUKwiVpcUkLZQ2xejCECilFY5YgvZ06N9Jv7bi968sMEl7yvgiMllFMZ8lzCyGw9NTZ8YUUWfo0y7vwhZOWwwoiUeODrGNoEHZvJvG7KjdtHjVYRRD/jeIUZ35BoyX0a6nIYiVPpCy1hsR3bUK0NFe6yN/kvnzoQck/7Yb0C7gD21+2k1pvhUZzkJ3eA3LBlR4q+Lj0dytBKqA7MuE8TBf7EAbVmhzSvkApas0qpFfhPtfQUbQEvToh10Ho/HyxdBtgMR/Uxw==
+ b=KF2UmDwHHFnk7MdnUa4H466CumHHjdHvZWMprOi6TyZx7tOK3p8/hWFrwe98jY1eQb/IlQytoXON6b+A59C7/3Ltp5KytOJltz8lpBFKtikkOguc6DFKM6ECk9HMvHD3ZQKQp5hVWnRkxW74XBOaPKV4ZxDEgp5YVpGvOLUC46v9TKAmh9b2zSYKMta0f92KArUJ/mbDKF9MtSXzz3jt9PaV9uLld6Gyf5gpyellG/iWcNyxsQHrCxPiwyPgaleU1175vgpk9p2BLuAwEahY5p4ayVmZ/3zOQGtwBFRp+kwh5ohe+RE/GspZkaFx/copwVpKdenUGfrWvSZmzXy1SQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9U7NEPPNIxK9vLDx9ztf8Nw8JMRkapZr2Z7bfi02Ns=;
- b=Mb6HtP9HJ6rsO22+xTCWzbRMwMNzCU1IDYzJBfzNdQPdcUDR1CxdBsgXZYjDl1iVcFcKlnF9wPpWzGJ1lAN3zDwvfK7jGfcdLgyngSN0e9Qtd7bgXGRdlzHGgPD2xggc0AIJHSTiePwbWRDvh9HqeYMgGwYWHreIpGxLLHk3ZEPSztyKApB+7gjY/q8wj8hOrv4GXzyOeic3NipVx/aLMIuAFP1KcLBESvl1lv5dusMM9L4KsBHftZGstlZaISFj7BRcm4qrNQ/HuJTbbdBJXGeiJqkfrBnjr2R3OJrQ57qluwYS03qas1PDgHGLwP9YuVJ2p3nfc8kfnCmIwHpiaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com;
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
+ bh=wI2Kitm0+raq9ONpDYt1tJVd1FKmPQ3rsuwnYNCRMWU=;
+ b=dva3MSUOqNuHo3yVxRgLH8fCisaI95yr4hZeWPXvDt5V+1zCnlklO4orkviBj1s6ZyjZAOJZMg0LmlmGJSQxhIOFnLf/rmwO9x3GejN9Os80xJoswzbhdKuvEcpI22+oN3udwzvPKOObnzSAXE4rHaqUdiO3qoABGunF+IUOiYv7ASKNfq1mDXis5CyGUZmvVjO8sUJFWpjwVoYhVa6G/cpYdgTQIowzxhTD/Zmg3XXlaCnRYz/NgTVkEI6T4Xfq7g4zj5skD27aM6Nkd/9hTiFHQ2dhWhnfOde1ioynAVj6GZ3AdoxJq7ztnSmDPlcL2GlqnksOCRKLvylX/oOe7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9U7NEPPNIxK9vLDx9ztf8Nw8JMRkapZr2Z7bfi02Ns=;
- b=QWpKUaq0iv9VYjHDJgQjF5MMYNX88XViZp6gsTR7bikY+lpGf1oQHb4KvO5/6T3WkWcF++WjX+n7tPDGZ0gcgncQjYCh52vYlpCClIlmlNODmt+UuL2WvvRult93zN2nKtLT3HNEQyFS+GPPaVWECfih6SDoH7vjd2E9yDTRDaQ=
-Received: from DM5PR04CA0062.namprd04.prod.outlook.com (2603:10b6:3:ef::24) by
- DM6PR12MB2988.namprd12.prod.outlook.com (2603:10b6:5:3d::23) with
- Microsoft
+ bh=wI2Kitm0+raq9ONpDYt1tJVd1FKmPQ3rsuwnYNCRMWU=;
+ b=AKTLh32NP39QIyj035en74HzuY+YmjbisIJ80YKxa0DiIVAfVLvajdYKhiTd4Y2HjbcWqWW+glOK243G57YsEAjJ4rExooJ0iiZYXA0IEmheaMmtqNs33OaUcR4FkziR5szZLMLeX0897Scf0EjB26qVg2KGqqfde+UBuF2oPAY=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Zhigang.Luo@amd.com; 
+Received: from DM5PR1201MB0266.namprd12.prod.outlook.com (2603:10b6:4:57::13)
+ by DM5PR1201MB0010.namprd12.prod.outlook.com (2603:10b6:3:e3::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.22; Wed, 26 Feb
+ 2020 19:35:34 +0000
+Received: from DM5PR1201MB0266.namprd12.prod.outlook.com
+ ([fe80::c1b7:15f9:4051:a209]) by DM5PR1201MB0266.namprd12.prod.outlook.com
+ ([fe80::c1b7:15f9:4051:a209%10]) with mapi id 15.20.2750.021; Wed, 26 Feb
+ 2020 19:35:34 +0000
+From: Zhigang Luo <zhigang.luo@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: add CAP fw loading
+Date: Wed, 26 Feb 2020 14:35:13 -0500
+Message-Id: <20200226193513.19417-1-zhigang.luo@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: YTXPR0101CA0035.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00::48) To DM5PR1201MB0266.namprd12.prod.outlook.com
+ (2603:10b6:4:57::13)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from Zhigang-WS.amd.com (165.204.55.250) by
+ YTXPR0101CA0035.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::48) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2750.21; Wed, 26 Feb 2020 19:02:12 +0000
-Received: from DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:ef:cafe::d) by DM5PR04CA0062.outlook.office365.com
- (2603:10b6:3:ef::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.18 via Frontend
- Transport; Wed, 26 Feb 2020 19:02:12 +0000
-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=permerror action=none header.from=amd.com;
+ 15.20.2772.15 via Frontend Transport; Wed, 26 Feb 2020 19:35:33 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.55.250]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 1a1134a6-dbc5-44d0-179a-08d7baf30c26
+X-MS-TrafficTypeDiagnostic: DM5PR1201MB0010:|DM5PR1201MB0010:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR1201MB0010AF580AB026825ADD398AF1EA0@DM5PR1201MB0010.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-Forefront-PRVS: 0325F6C77B
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(346002)(366004)(376002)(136003)(396003)(189003)(199004)(6666004)(26005)(66946007)(66556008)(5660300002)(956004)(2616005)(16526019)(186003)(6486002)(36756003)(8676002)(66476007)(2906002)(7696005)(81156014)(81166006)(4326008)(316002)(8936002)(1076003)(6916009)(44832011)(86362001)(478600001)(52116002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR1201MB0010;
+ H:DM5PR1201MB0266.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- DM6NAM11FT059.mail.protection.outlook.com (10.13.172.92) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2772.14 via Frontend Transport; Wed, 26 Feb 2020 19:02:12 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 26 Feb
- 2020 13:02:11 -0600
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 26 Feb
- 2020 13:02:11 -0600
-Received: from yuho-zbook.amd.com (10.180.168.240) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Wed, 26 Feb 2020 13:02:10 -0600
-From: Kenny Ho <Kenny.Ho@amd.com>
-To: <y2kenny@gmail.com>, <cgroups@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <tj@kernel.org>, <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <felix.kuehling@amd.com>, <joseph.greathouse@amd.com>, <jsparks@cray.com>
-Subject: [PATCH v2 11/11] drm/amdgpu: Integrate with DRM cgroup
-Date: Wed, 26 Feb 2020 14:01:52 -0500
-Message-ID: <20200226190152.16131-12-Kenny.Ho@amd.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200226190152.16131-1-Kenny.Ho@amd.com>
-References: <lkaplan@cray.com; daniel@ffwll.ch; nirmoy.das@amd.com;
- damon.mcdougall@amd.com; juan.zuniga-anaya@amd.com; hannes@cmpxchg.org>
- <20200226190152.16131-1-Kenny.Ho@amd.com>
-MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(346002)(136003)(396003)(376002)(428003)(189003)(199004)(4326008)(478600001)(26005)(86362001)(2906002)(316002)(5660300002)(110136005)(7696005)(336012)(1076003)(8676002)(186003)(36756003)(426003)(2616005)(356004)(81166006)(70586007)(6666004)(81156014)(70206006)(8936002)(921003)(1121003)(83996005)(2101003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB2988; H:SATLEXMB02.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 68aeacbe-ae5b-4aa9-82c1-08d7baee62fd
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2988:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB29883D89BF34F2D7890572B483EA0@DM6PR12MB2988.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-Forefront-PRVS: 0325F6C77B
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rDYwxrqMvkijOuqsl88Ag0EWbKY0O+6qsHJ/RKjoXSmF+q5sOvPwyI4tCdfllUZ1ObXCQYPBKGiDtHfd/u9R3yWPURrEHENgxef25zlk25Sfw/5FdTNHpLIlAwL7WJQtupb4BXzmVQtaQaEuvoPLMhjOOTu6J6ecHT+udVLv8lnboeXDS9KQcjEwccdQKsvok2uXWzaR11G9TpE0/rXRlVDzHLhU/GapS4I7CvXCoNrtGvk0/+pVoA31RfeNKhf5Nb/dECW5ZOnbGehUbcrgfZwcagCAOFAvq1Lwpi/886JAnOI8f7VMyTpVK6iunbI4YPUBsEGDb63BR4oHr/Zl8Y128zW7SbMO7StsiSWN6tzQr+WvvatFvp8LRMKHCXvKeEhf0+m1tRegH4E13M5BN+jBj/txZqkecQ4tTvYl8EUuzQDmaI+qIeO9CVY1UWxi7kaZiT/vH1DlLzHYHpbf/uYG8jWGn506lC5FD+tq1w3EcxyLFf+ns/r2jRbaNFg9jDu13TcPIUypI6JGccQfjf50Ko9CUVAxpnshyy5AkR4=
+X-Microsoft-Antispam-Message-Info: gmN1MwxrplvUVI+HtGjtBVwEHC4olPy3Dx9FS8Be4A8LxqNeiusLwaR12Zwz9WJ/Kh/YiSC1qqZseZAAVnI/WnfHUyZjxl167G4+pf255xA11v9FVwi+rhlY5Eqf7vu5krqZrz8qYz6TvEi4b21+zLS0/jAM58hRARq1bQubPVqOGxcGRai6Kpu1GDaZmJVlR4dPfknLAvJZVSKHvwZqow401XXqmH3v/7NF1WrTdQFIdYXrOy1Bf1m4LigX7ld5TkU1ioEW3N3D9wjum9GXpqfUgwEwnFn1f0lu6dW/PBU7m5HFFIRfNok//Uv7wrTLalMoaUlDg4+qvXvltj9uIrIhhb4hZ3HH4RXx1ty/CoOrh9rmAx6nnrWF0qIS3uv5Y2upsFgL9Sz+nwVcDJGVC2j1onDCIyxy7SFWAoJhzNKAEj9BCxfz4jZV3jl8aoHz
+X-MS-Exchange-AntiSpam-MessageData: CF5xjP1ja8Jsk/u+Kz1HW8ZLL9nvnGtjmVB/+WpB84/DL09YKhxkHXUfpcD9Yq1ltTK00SltL9eWDusaz16gwSp98zDtY5vznxsqqgldHOymGEzOb93CvCnsbLZWs15n8aTY4TiEt2Us5PUh0ocRAQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2020 19:02:12.0759 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 68aeacbe-ae5b-4aa9-82c1-08d7baee62fd
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a1134a6-dbc5-44d0-179a-08d7baf30c26
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2020 19:35:34.1815 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2988
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vaL7eVYAKBUKPMWDna9bNBi2816HSb5wlDkLMiqwu/9Vi2v4fgbR3gm3FY1YanS0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0010
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,322 +94,158 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenny Ho <Kenny.Ho@amd.com>
+Cc: Zhigang Luo <zhigang.luo@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The number of compute unit (CU) for a device is used for the gpu cgroup
-compute capacity.  The gpu cgroup compute allocation limit only applies
-to compute workload for the moment (enforced via kfd queue creation.)
-Any cu_mask update is validated against the availability of the compute
-unit as defined by the drmcg the kfd process belongs to.
+The CAP fw is for enabling driver compatibility. Currently, it only
+enabled for vega10 VF.
 
-Change-Id: I2930e76ef9ac6d36d0feb81f604c89a4208e6614
-Signed-off-by: Kenny Ho <Kenny.Ho@amd.com>
+Signed-off-by: Zhigang Luo <zhigang.luo@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |   4 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  29 ++++
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      |   7 +
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |   3 +
- .../amd/amdkfd/kfd_process_queue_manager.c    | 153 ++++++++++++++++++
- 5 files changed, 196 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c   |  9 +++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h   |  3 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h |  3 ++-
+ drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h   |  1 +
+ drivers/gpu/drm/amd/amdgpu/psp_v3_1.c     | 26 +++++++++++++++++++++++
+ 5 files changed, 40 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-index 0ee8aae6c519..1efbc0d3c03e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-@@ -199,6 +199,10 @@ uint8_t amdgpu_amdkfd_get_xgmi_hops_count(struct kgd_dev *dst, struct kgd_dev *s
- 		valid;							\
- 	})
- 
-+int amdgpu_amdkfd_update_cu_mask_for_process(struct task_struct *task,
-+		struct amdgpu_device *adev, unsigned long *compute_bm,
-+		unsigned int compute_bm_size);
-+
- /* GPUVM API */
- int amdgpu_amdkfd_gpuvm_create_process_vm(struct kgd_dev *kgd, unsigned int pasid,
- 					void **vm, void **process_info,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 171397708855..595ad852080b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1418,9 +1418,31 @@ amdgpu_get_crtc_scanout_position(struct drm_device *dev, unsigned int pipe,
- static void amdgpu_drmcg_custom_init(struct drm_device *dev,
- 	struct drmcg_props *props)
- {
-+	struct amdgpu_device *adev = dev->dev_private;
-+
-+	props->compute_capacity = adev->gfx.cu_info.number;
-+	bitmap_zero(props->compute_slots, MAX_DRMCG_COMPUTE_CAPACITY);
-+	bitmap_fill(props->compute_slots, props->compute_capacity);
-+
- 	props->limit_enforced = true;
- }
- 
-+static void amdgpu_drmcg_limit_updated(struct drm_device *dev,
-+		struct task_struct *task, struct drmcg_device_resource *ddr,
-+		enum drmcg_res_type res_type)
-+{
-+	struct amdgpu_device *adev = dev->dev_private;
-+
-+	switch (res_type) {
-+	case DRMCG_TYPE_COMPUTE:
-+		amdgpu_amdkfd_update_cu_mask_for_process(task, adev,
-+                        ddr->compute_eff, dev->drmcg_props.compute_capacity);
-+		break;
-+	default:
-+		break;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 0c88837bb890..6ebc04c95927 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -93,6 +93,10 @@ static int psp_sw_fini(void *handle)
+ 	adev->psp.sos_fw = NULL;
+ 	release_firmware(adev->psp.asd_fw);
+ 	adev->psp.asd_fw = NULL;
++	if (adev->psp.cap_fw) {
++		release_firmware(adev->psp.cap_fw);
++		adev->psp.cap_fw = NULL;
 +	}
-+}
-+
- #else
- 
- static void amdgpu_drmcg_custom_init(struct drm_device *dev,
-@@ -1428,6 +1450,12 @@ static void amdgpu_drmcg_custom_init(struct drm_device *dev,
- {
- }
- 
-+static void amdgpu_drmcg_limit_updated(struct drm_device *dev,
-+		struct task_struct *task, struct drmcg_device_resource *ddr,
-+		enum drmcg_res_type res_type)
-+{
-+}
-+
- #endif /* CONFIG_CGROUP_DRM */
- 
- static struct drm_driver kms_driver = {
-@@ -1462,6 +1490,7 @@ static struct drm_driver kms_driver = {
- 	.gem_prime_mmap = amdgpu_gem_prime_mmap,
- 
- 	.drmcg_custom_init = amdgpu_drmcg_custom_init,
-+	.drmcg_limit_updated = amdgpu_drmcg_limit_updated,
- 
- 	.name = DRIVER_NAME,
- 	.desc = DRIVER_DESC,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 675735b8243a..a35596f2dc4e 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -451,6 +451,13 @@ static int kfd_ioctl_set_cu_mask(struct file *filp, struct kfd_process *p,
- 		return -EFAULT;
+ 	if (adev->psp.ta_fw) {
+ 		release_firmware(adev->psp.ta_fw);
+ 		adev->psp.ta_fw = NULL;
+@@ -162,7 +166,7 @@ psp_cmd_submit_buf(struct psp_context *psp,
+ 				  ucode->ucode_id);
+ 		DRM_WARN("psp command failed and response status is (%d)\n",
+ 			  psp->cmd_buf_mem->resp.status);
+-		if (!timeout)
++		if ((ucode->ucode_id == AMDGPU_UCODE_ID_CAP) || !timeout)
+ 			return -EINVAL;
  	}
  
-+	if (!pqm_drmcg_compute_validate(p, args->queue_id,
-+                    properties.cu_mask, cu_mask_size)) {
-+		pr_debug("CU mask not permitted by DRM Cgroup");
-+		kfree(properties.cu_mask);
-+		return -EACCES;
-+	}
-+
- 	mutex_lock(&p->mutex);
- 
- 	retval = pqm_set_cu_mask(&p->pqm, args->queue_id, &properties);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index 063096ec832d..0fb619586e24 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -929,6 +929,9 @@ int pqm_get_wave_state(struct process_queue_manager *pqm,
- 		       u32 *ctl_stack_used_size,
- 		       u32 *save_area_used_size);
- 
-+bool pqm_drmcg_compute_validate(struct kfd_process *p, int qid, u32 *cu_mask,
-+		unsigned int cu_mask_size);
-+
- int amdkfd_fence_wait_timeout(unsigned int *fence_addr,
- 			      unsigned int fence_value,
- 			      unsigned int timeout_ms);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-index cb1ca11b99c3..bd09403e07b5 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-@@ -23,9 +23,11 @@
- 
- #include <linux/slab.h>
- #include <linux/list.h>
-+#include <linux/cgroup_drm.h>
- #include "kfd_device_queue_manager.h"
- #include "kfd_priv.h"
- #include "kfd_kernel_queue.h"
-+#include "amdgpu.h"
- #include "amdgpu_amdkfd.h"
- 
- static inline struct process_queue_node *get_queue_by_qid(
-@@ -167,6 +169,7 @@ static int init_user_queue(struct process_queue_manager *pqm,
- 				struct queue_properties *q_properties,
- 				struct file *f, unsigned int qid)
+@@ -841,6 +845,9 @@ static int psp_get_fw_type(struct amdgpu_firmware_info *ucode,
+ 			   enum psp_gfx_fw_type *type)
  {
-+	struct drmcg *drmcg;
- 	int retval;
+ 	switch (ucode->ucode_id) {
++	case AMDGPU_UCODE_ID_CAP:
++		*type = GFX_FW_TYPE_CAP;
++		break;
+ 	case AMDGPU_UCODE_ID_SDMA0:
+ 		*type = GFX_FW_TYPE_SDMA0;
+ 		break;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+index 80bbfecc815d..b51901626798 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+@@ -184,6 +184,9 @@ struct psp_context
+ 	uint64_t			asd_shared_mc_addr;
+ 	void				*asd_shared_buf;
  
- 	/* Doorbell initialized in user space*/
-@@ -180,6 +183,37 @@ static int init_user_queue(struct process_queue_manager *pqm,
- 	if (retval != 0)
- 		return retval;
++	/* cap firmware */
++	const struct firmware		*cap_fw;
++
+ 	/* fence buffer */
+ 	struct amdgpu_bo		*fence_buf_bo;
+ 	uint64_t			fence_buf_mc_addr;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
+index c1fb6dc86440..82e13fa43e28 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
+@@ -260,7 +260,8 @@ union amdgpu_firmware_header {
+  * fw loading support
+  */
+ enum AMDGPU_UCODE_ID {
+-	AMDGPU_UCODE_ID_SDMA0 = 0,
++	AMDGPU_UCODE_ID_CAP = 0, /* CAP must be the 1st fw to be loaded */
++	AMDGPU_UCODE_ID_SDMA0,
+ 	AMDGPU_UCODE_ID_SDMA1,
+ 	AMDGPU_UCODE_ID_CP_CE,
+ 	AMDGPU_UCODE_ID_CP_PFP,
+diff --git a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
+index 5080a73a95a5..2651d9164007 100644
+--- a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
++++ b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
+@@ -235,6 +235,7 @@ enum psp_gfx_fw_type {
+ 	GFX_FW_TYPE_RLX6_DRAM_BOOT                  = 48,   /* RLX6 DRAM BOOT           NV      */
+ 	GFX_FW_TYPE_VCN0_RAM                        = 49,   /* VCN_RAM  NV */
+ 	GFX_FW_TYPE_VCN1_RAM                        = 50,   /* VCN_RAM  NV */
++	GFX_FW_TYPE_CAP                             = 62,   /* CAP_FW                   VG      */
+ 	GFX_FW_TYPE_MAX
+ };
  
-+#ifdef CONFIG_CGROUP_DRM
-+	drmcg = drmcg_get(pqm->process->lead_thread);
-+	if (drmcg) {
-+		struct amdgpu_device *adev;
-+		struct drmcg_device_resource *ddr;
-+		int mask_size;
-+		u32 *mask;
+diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c b/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
+index ec3a05602f11..6ffcc89e9e28 100644
+--- a/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
+@@ -42,6 +42,7 @@
+ 
+ MODULE_FIRMWARE("amdgpu/vega10_sos.bin");
+ MODULE_FIRMWARE("amdgpu/vega10_asd.bin");
++MODULE_FIRMWARE("amdgpu/vega10_cap.bin");
+ MODULE_FIRMWARE("amdgpu/vega12_sos.bin");
+ MODULE_FIRMWARE("amdgpu/vega12_asd.bin");
+ 
+@@ -61,6 +62,7 @@ static int psp_v3_1_init_microcode(struct psp_context *psp)
+ 	char fw_name[30];
+ 	int err = 0;
+ 	const struct psp_firmware_header_v1_0 *hdr;
++	struct amdgpu_firmware_info *info = NULL;
+ 
+ 	DRM_DEBUG("\n");
+ 
+@@ -110,6 +112,26 @@ static int psp_v3_1_init_microcode(struct psp_context *psp)
+ 	adev->psp.asd_start_addr = (uint8_t *)hdr +
+ 				le32_to_cpu(hdr->header.ucode_array_offset_bytes);
+ 
++	if (amdgpu_sriov_vf(adev) && adev->asic_type == CHIP_VEGA10) {
++		snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_cap.bin",
++			 chip_name);
++		err = request_firmware(&adev->psp.cap_fw, fw_name, adev->dev);
++		if (err)
++			goto out;
 +
-+		adev = (struct amdgpu_device *) dev->kgd;
++		err = amdgpu_ucode_validate(adev->psp.cap_fw);
++		if (err)
++			goto out;
 +
-+		mask_size = adev->ddev->drmcg_props.compute_capacity;
-+		mask = kzalloc(sizeof(u32) * round_up(mask_size, 32),
-+				GFP_KERNEL);
++		info = &adev->firmware.ucode[AMDGPU_UCODE_ID_CAP];
++		info->ucode_id = AMDGPU_UCODE_ID_CAP;
++		info->fw = adev->psp.cap_fw;
++		hdr = (const struct psp_firmware_header_v1_0 *)
++			      adev->psp.cap_fw->data;
++		adev->firmware.fw_size += ALIGN(
++			le32_to_cpu(hdr->header.ucode_size_bytes), PAGE_SIZE);
++	}
 +
-+		if (!mask) {
-+			drmcg_put(drmcg);
-+			uninit_queue(*q);
-+			return -ENOMEM;
+ 	return 0;
+ out:
+ 	if (err) {
+@@ -120,6 +142,10 @@ static int psp_v3_1_init_microcode(struct psp_context *psp)
+ 		adev->psp.sos_fw = NULL;
+ 		release_firmware(adev->psp.asd_fw);
+ 		adev->psp.asd_fw = NULL;
++		if (amdgpu_sriov_vf(adev) && adev->asic_type == CHIP_VEGA10) {
++			release_firmware(adev->psp.cap_fw);
++			adev->psp.cap_fw = NULL;
 +		}
-+
-+		ddr = drmcg->dev_resources[adev->ddev->primary->index];
-+
-+		bitmap_to_arr32(mask, ddr->compute_eff, mask_size);
-+
-+		(*q)->properties.cu_mask_count = mask_size;
-+		(*q)->properties.cu_mask = mask;
-+
-+		drmcg_put(drmcg);
-+	}
-+#endif /* CONFIG_CGROUP_DRM */
-+
- 	(*q)->device = dev;
- 	(*q)->process = pqm->process;
+ 	}
  
-@@ -510,6 +544,125 @@ int pqm_get_wave_state(struct process_queue_manager *pqm,
- 						       save_area_used_size);
- }
- 
-+#ifdef CONFIG_CGROUP_DRM
-+
-+bool pqm_drmcg_compute_validate(struct kfd_process *p, int qid, u32 *cu_mask,
-+		unsigned int cu_mask_size)
-+{
-+	DECLARE_BITMAP(curr_mask, MAX_DRMCG_COMPUTE_CAPACITY);
-+	struct drmcg_device_resource *ddr;
-+	struct process_queue_node *pqn;
-+	struct amdgpu_device *adev;
-+	struct drmcg *drmcg;
-+	bool result;
-+
-+	if (cu_mask_size > MAX_DRMCG_COMPUTE_CAPACITY)
-+		return false;
-+
-+	bitmap_from_arr32(curr_mask, cu_mask, cu_mask_size);
-+
-+	pqn = get_queue_by_qid(&p->pqm, qid);
-+	if (!pqn)
-+		return false;
-+
-+	adev = (struct amdgpu_device *)pqn->q->device->kgd;
-+
-+	drmcg = drmcg_get(p->lead_thread);
-+	ddr = drmcg->dev_resources[adev->ddev->primary->index];
-+
-+	if (bitmap_subset(curr_mask, ddr->compute_eff,
-+				MAX_DRMCG_COMPUTE_CAPACITY))
-+		result = true;
-+	else
-+		result = false;
-+
-+	drmcg_put(drmcg);
-+
-+	return result;
-+}
-+
-+#else
-+
-+bool pqm_drmcg_compute_validate(struct kfd_process *p, int qid, u32 *cu_mask,
-+		unsigned int cu_mask_size)
-+{
-+	return true;
-+}
-+
-+#endif /* CONFIG_CGROUP_DRM */
-+
-+int amdgpu_amdkfd_update_cu_mask_for_process(struct task_struct *task,
-+		struct amdgpu_device *adev, unsigned long *compute_bm,
-+		unsigned int compute_bm_size)
-+{
-+	struct kfd_dev *kdev = adev->kfd.dev;
-+	struct process_queue_node *pqn;
-+	struct kfd_process *kfdproc;
-+	size_t size_in_bytes;
-+	u32 *cu_mask;
-+	int rc = 0;
-+
-+	if ((compute_bm_size % 32) != 0) {
-+		pr_warn("compute_bm_size %d must be a multiple of 32",
-+				compute_bm_size);
-+		return -EINVAL;
-+	}
-+
-+	kfdproc = kfd_get_process(task);
-+
-+	if (IS_ERR(kfdproc))
-+		return -ESRCH;
-+
-+	size_in_bytes = sizeof(u32) * round_up(compute_bm_size, 32);
-+
-+	mutex_lock(&kfdproc->mutex);
-+	list_for_each_entry(pqn, &kfdproc->pqm.queues, process_queue_list) {
-+		if (pqn->q && pqn->q->device == kdev) {
-+			/* update cu_mask accordingly */
-+			cu_mask = kzalloc(size_in_bytes, GFP_KERNEL);
-+			if (!cu_mask) {
-+				rc = -ENOMEM;
-+				break;
-+			}
-+
-+			if (pqn->q->properties.cu_mask) {
-+				DECLARE_BITMAP(curr_mask,
-+						MAX_DRMCG_COMPUTE_CAPACITY);
-+
-+				if (pqn->q->properties.cu_mask_count >
-+						compute_bm_size) {
-+					rc = -EINVAL;
-+					kfree(cu_mask);
-+					break;
-+				}
-+
-+				bitmap_from_arr32(curr_mask,
-+						pqn->q->properties.cu_mask,
-+						pqn->q->properties.cu_mask_count);
-+
-+				bitmap_and(curr_mask, curr_mask, compute_bm,
-+						compute_bm_size);
-+
-+				bitmap_to_arr32(cu_mask, curr_mask,
-+						compute_bm_size);
-+
-+				kfree(curr_mask);
-+			} else
-+				bitmap_to_arr32(cu_mask, compute_bm,
-+						compute_bm_size);
-+
-+			pqn->q->properties.cu_mask = cu_mask;
-+			pqn->q->properties.cu_mask_count = compute_bm_size;
-+
-+			rc = pqn->q->device->dqm->ops.update_queue(
-+					pqn->q->device->dqm, pqn->q);
-+		}
-+	}
-+	mutex_unlock(&kfdproc->mutex);
-+
-+	return rc;
-+}
-+
- #if defined(CONFIG_DEBUG_FS)
- 
- int pqm_debugfs_mqds(struct seq_file *m, void *data)
+ 	return err;
 -- 
-2.25.0
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
