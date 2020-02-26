@@ -1,62 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7393F1709BE
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Feb 2020 21:34:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9975F170A16
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Feb 2020 22:01:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B28A6EBC0;
-	Wed, 26 Feb 2020 20:34:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C460B89948;
+	Wed, 26 Feb 2020 21:01:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAF9A6EBC0
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 20:34:38 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id i10so4286006wmd.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 12:34:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=sGgx2NQB1lSisbR0V23+LoLqZTq0MxI+qW6URGswysg=;
- b=aVkubcmrVfDjjnRd9UCS6z7rlOF6jiWO1YXilL55mDSXhBnrxKJP4JgiRhHLvE1W/l
- Bye1JaMMw15bHrieYWsdYb2ARAGok08uhT2n2lC/wg8D70PwBnbqaC/YaI8iVk1KEWmX
- a6s1/aoGvRJRAdvBFIKHtPsYz97uFsdcV56IdfONJiR/4bj7dp32V72LQEVLEuAvkanY
- 4a0YRp+VymobkM/uTcxfjOIOjivSRU+t2FXlS3anQB5p/mXEEFI6yQ9utPFYlIvdIxj+
- rfBPwLdJwRvRCXhOqhJ0JQa9mM9hVGQfb9bZ3osrGN22ZdFJjPnX6mFf+q3WWAhGDHPv
- H4yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=sGgx2NQB1lSisbR0V23+LoLqZTq0MxI+qW6URGswysg=;
- b=arVQvG4u97PUmrHnkV3WqXLB+IDxiXbdwklJaxOgKxeCQOT30twu29CQb0478WCYOy
- Z8KtIsor4moiBZtfO1+zIm2r273N5hJ+azvhaVd3h2wTMeKu7DyMc9OozfqIJzkxsSbE
- nVkHEDeIV4ZcpzGHKWOMMXiN8VppBXu+fUPAxD++K//sc3vfYAjOaJn2d5jgTVGV3m6g
- IgjuMSgqe/KuwIDT8157cO2alJ7eAjZddk5+u1Sugz5QKZgm7BS2g3WPo/EQU8XXSXLt
- 3ysm6UJvvKxbMpbBH4jAzX74gbPGmjt6eojRmVZBD/zsmXRB8tqaFH/iR93Y9gv57aNJ
- aBqQ==
-X-Gm-Message-State: APjAAAUGXbNdhxuXFkYZQWkJAH9JAF9BRRVtSM1ig/mDDxRuutuoiHJF
- YEQdEZSK18l5WHndmsEvrY2NmreYqFE=
-X-Google-Smtp-Source: APXvYqxf8nmifawC+BH1yIutkglfH5Xv3V0ri8ilq0nzQrMx8EXwO0I8EB4StmjHwOvggo+HvD1rqg==
-X-Received: by 2002:a7b:cd92:: with SMTP id y18mr668046wmj.133.1582749276901; 
- Wed, 26 Feb 2020 12:34:36 -0800 (PST)
-Received: from brihaspati.fritz.box
- (p200300C58F275300BB8A7FF1D96B1B54.dip0.t-ipconnect.de.
- [2003:c5:8f27:5300:bb8a:7ff1:d96b:1b54])
- by smtp.gmail.com with ESMTPSA id d76sm4406191wmd.39.2020.02.26.12.34.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2020 12:34:36 -0800 (PST)
-From: Nirmoy Das <nirmoy.aiemd@gmail.com>
-X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [RFC PATCH 3/3] drm/amdgpu: remove unused functions
-Date: Wed, 26 Feb 2020 21:37:30 +0100
-Message-Id: <20200226203730.4621-4-nirmoy.das@amd.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200226203730.4621-1-nirmoy.das@amd.com>
-References: <20200226203730.4621-1-nirmoy.das@amd.com>
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760049.outbound.protection.outlook.com [40.107.76.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAC0589A9F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 21:01:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CbZrxaoG7GS5b3aDBVyaYAYZ4fQ15mysm95tSRHdDknSRN+DkHaJODO3Xol366WoK76QQDKfqhEGgLHnDdkszZI6VsuxzRysBDPDgcSZYcNyHxnAjO6AmfCLe8KfvrZhDN2uM7/GB+thV3Lv2TNqRadOAD64E0CBOEB1rlR5WOxFgK4DzPkQ+rnz0xqgfAD4eSYypTAE7/mZ47K39Sr56WeKiH0oAlYmo47XyC2cwVckW9Qwvqpq84XYVfFa4wSjyeGOXV0bFo53DuI1gnvurYlRFUBfQrB/gQ1oxM+nDK5ht4QrBTJ1zu0Zkkw/XA8bFj/sNzr3wwTVf8MTwRL28g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JKrzjk75x8wXHDm0EcL6PSvlUbQiDv5M39m5g7j/ybQ=;
+ b=WmWrQQD15L6Qew5jAw5FSu91gAWJVcmkpxEK8ogoTSjnbgPN7B4UY/9Fje7hi+gYunu5bh2qAwhVxF6R4DA2B/QFgFp3BRbPH6b3PZw5nM6j4tH03in2RKrRoFBP28VQFBQ2HYN76bRN0l+3XDA/xlGQjB1eehNbmC5wH3S011Jlx3UdymEtW8MOROPoNTzr8HfG4fzRSB+vN31HrSNekWpGN0evZj+ggBO1lz9vpCOyK6ceSagVNEvpUn7uu20vJV510ykW0wHB23i4iQssqRiyQgayuR6Tb0ambnJsPVj0vjKdicBW3WhZRpzGDGHWv+/UOYB24VpVhsntpiAeUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JKrzjk75x8wXHDm0EcL6PSvlUbQiDv5M39m5g7j/ybQ=;
+ b=GH6yGRkULi1/2a5zIKlR0CCZbie9yLKqJ5ft9vxiFcw1dplDDeADMlur4hDQcbQpWtqNNUzRcbcheLpLpdD3IKRejeBYOCim+UZbhI72vfZPLKDc64jIBYNYdwDjQGSYkmXGvd+dgnqZG+77fUyW3+fk092EzlyMdEdpq4at/xs=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Felix.Kuehling@amd.com; 
+Received: from DM5PR1201MB0090.namprd12.prod.outlook.com (2603:10b6:4:53::12)
+ by DM5PR1201MB0234.namprd12.prod.outlook.com (2603:10b6:4:56::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.14; Wed, 26 Feb
+ 2020 21:01:01 +0000
+Received: from DM5PR1201MB0090.namprd12.prod.outlook.com
+ ([fe80::6c24:8172:ed3c:5a8a]) by DM5PR1201MB0090.namprd12.prod.outlook.com
+ ([fe80::6c24:8172:ed3c:5a8a%6]) with mapi id 15.20.2750.021; Wed, 26 Feb 2020
+ 21:01:00 +0000
+Subject: Re: [PATCH] drm/amdkfd: change SDMA MQD memory type
+To: Eric Huang <JinhuiEric.Huang@amd.com>, amd-gfx@lists.freedesktop.org
+References: <1582745831-6902-1-git-send-email-JinhuiEric.Huang@amd.com>
+From: Felix Kuehling <felix.kuehling@amd.com>
+Message-ID: <53f26edc-de4d-c66b-e585-635424e3d290@amd.com>
+Date: Wed, 26 Feb 2020 15:00:59 -0600
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
+In-Reply-To: <1582745831-6902-1-git-send-email-JinhuiEric.Huang@amd.com>
+Content-Language: en-US
+X-ClientProxiedBy: DM5PR13CA0019.namprd13.prod.outlook.com
+ (2603:10b6:3:23::29) To DM5PR1201MB0090.namprd12.prod.outlook.com
+ (2603:10b6:4:53::12)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.236.189.239] (165.204.77.1) by
+ DM5PR13CA0019.namprd13.prod.outlook.com (2603:10b6:3:23::29) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2772.13 via Frontend Transport; Wed, 26 Feb 2020 21:01:00 +0000
+X-Originating-IP: [165.204.77.1]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 02e20ea8-a3c1-4cbb-2bde-08d7bafefbde
+X-MS-TrafficTypeDiagnostic: DM5PR1201MB0234:|DM5PR1201MB0234:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR1201MB02342493844B00E1F7CC9C8192EA0@DM5PR1201MB0234.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-Forefront-PRVS: 0325F6C77B
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(396003)(366004)(346002)(376002)(39860400002)(189003)(199004)(2616005)(956004)(36756003)(81166006)(44832011)(8676002)(8936002)(81156014)(6486002)(86362001)(66476007)(66946007)(66556008)(316002)(16576012)(186003)(53546011)(52116002)(31686004)(26005)(16526019)(31696002)(478600001)(5660300002)(2906002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR1201MB0234;
+ H:DM5PR1201MB0090.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rMHQPq7vcsk0GMod9bfcGD/g5oitNlq6SPldE6HwqoG1wMQIa/dh7ld58sjdIiglN11hZY5EoBR2Gir75swGZ+qNJsO0x2kTV0WEfyCqHmVyNEk90Me5DxB8GdteQxZZeRnGB/74K/8xUmlloqJC0H7bydkB31PeL8xCZ5IO0+Z1KQrIC6SExVjcbgeKHg4eUr9OdT7fLuHPr9WfaIWdzpGSiRUDe7KWMoDFFU5R2fqFTAWK525GAucF5g+cinvNA3ZbXucTzp8JOxYJk4c5PKJe/vePLoMGAf5b1xqcI5GoePkjxb3GMNpkwKqDVds8+tL4pN2u1xJWSJyjKiKJGSyzOrRHPExsB4YUoWRG1yn8L5GnGA1YVDoiyJZDMbBdvDgujXWqLuVTGEIp5PsuHGdGITcg99rNEXEvjE9z/3SD+1mPajoZ55BY/XZ9bqXV
+X-MS-Exchange-AntiSpam-MessageData: Y8F1mmqfRPneesEEN/uumcOY+mdJ+SKRf3swR47v1Vio02VXyD/VAifgUT7y32vqOT5ZKwUtXFjL47nHj+vCieNVBXZaq7hstc8JG6lw36kSqdXjexD3ovm5NnkAGZppgltsWtdqrEmONXoKf8eVrQ==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02e20ea8-a3c1-4cbb-2bde-08d7bafefbde
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2020 21:01:00.7904 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aA0j7By76NrSVUPmhWmyVX1fZBSL3ThIWdSPXVGvl/ANiR5xMT8f10x1DzpqSNbZ8TOoMwH+IOdzC9Uja7k7ww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0234
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,120 +97,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Ray.Huang@amd.com, nirmoy.das@amd.com,
- christian.koenig@amd.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove unused amdgpu_ring_priority_put() and amdgpu_ring_priority_get()
+On 2020-02-26 14:37, Eric Huang wrote:
+> SDMA MQD memory type is NC that causes MQD data overwritten
+> accidentally by an old stable cache line. Changing it to UC
+> default for GART will fix the issue.
 
-Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 70 ------------------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  4 --
- 2 files changed, 74 deletions(-)
+Maybe add a statement here, that the mqd_gfx9 parameter is meant for 
+control stacks that are allocated together with user mode queue MQDs. 
+Setting mqd_gfx9 to true maps the control stack pages as NC. Here it was 
+accidentally applied to SDMA MQDs, which are allocated together with the 
+HIQ MQD. Setting the mqd_gfx9 to false avoids that.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-index 4501ae7afb2e..8ac4b569c036 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -150,76 +150,6 @@ void amdgpu_ring_undo(struct amdgpu_ring *ring)
- 		ring->funcs->end_use(ring);
- }
- 
--/**
-- * amdgpu_ring_priority_put - restore a ring's priority
-- *
-- * @ring: amdgpu_ring structure holding the information
-- * @priority: target priority
-- *
-- * Release a request for executing at @priority
-- */
--void amdgpu_ring_priority_put(struct amdgpu_ring *ring,
--			      enum drm_sched_priority priority)
--{
--	int i;
--
--	if (!ring->funcs->set_priority)
--		return;
--
--	if (atomic_dec_return(&ring->num_jobs[priority]) > 0)
--		return;
--
--	/* no need to restore if the job is already at the lowest priority */
--	if (priority == DRM_SCHED_PRIORITY_NORMAL)
--		return;
--
--	mutex_lock(&ring->priority_mutex);
--	/* something higher prio is executing, no need to decay */
--	if (ring->priority > priority)
--		goto out_unlock;
--
--	/* decay priority to the next level with a job available */
--	for (i = priority; i >= DRM_SCHED_PRIORITY_MIN; i--) {
--		if (i == DRM_SCHED_PRIORITY_NORMAL
--				|| atomic_read(&ring->num_jobs[i])) {
--			ring->priority = i;
--			ring->funcs->set_priority(ring, i);
--			break;
--		}
--	}
--
--out_unlock:
--	mutex_unlock(&ring->priority_mutex);
--}
--
--/**
-- * amdgpu_ring_priority_get - change the ring's priority
-- *
-- * @ring: amdgpu_ring structure holding the information
-- * @priority: target priority
-- *
-- * Request a ring's priority to be raised to @priority (refcounted).
-- */
--void amdgpu_ring_priority_get(struct amdgpu_ring *ring,
--			      enum drm_sched_priority priority)
--{
--	if (!ring->funcs->set_priority)
--		return;
--
--	if (atomic_inc_return(&ring->num_jobs[priority]) <= 0)
--		return;
--
--	mutex_lock(&ring->priority_mutex);
--	if (priority <= ring->priority)
--		goto out_unlock;
--
--	ring->priority = priority;
--	ring->funcs->set_priority(ring, priority);
--
--out_unlock:
--	mutex_unlock(&ring->priority_mutex);
--}
--
- /**
-  * amdgpu_ring_init - init driver ring struct.
-  *
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index a109373b9fe8..e6c3bcb990fd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -259,10 +259,6 @@ void amdgpu_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count);
- void amdgpu_ring_generic_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib);
- void amdgpu_ring_commit(struct amdgpu_ring *ring);
- void amdgpu_ring_undo(struct amdgpu_ring *ring);
--void amdgpu_ring_priority_get(struct amdgpu_ring *ring,
--			      enum drm_sched_priority priority);
--void amdgpu_ring_priority_put(struct amdgpu_ring *ring,
--			      enum drm_sched_priority priority);
- int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
- 		     unsigned ring_size, struct amdgpu_irq_src *irq_src,
- 		     unsigned irq_type);
--- 
-2.25.0
 
+>
+> Change-Id: If609f47c78cb97e2c8dc930df2ab5c10c29dfe56
+> Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
+
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+
+
+> ---
+>   drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> index 692abfd..77ea0f0 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> @@ -1734,7 +1734,7 @@ static int allocate_hiq_sdma_mqd(struct device_queue_manager *dqm)
+>   
+>   	retval = amdgpu_amdkfd_alloc_gtt_mem(dev->kgd, size,
+>   		&(mem_obj->gtt_mem), &(mem_obj->gpu_addr),
+> -		(void *)&(mem_obj->cpu_ptr), true);
+> +		(void *)&(mem_obj->cpu_ptr), false);
+>   
+>   	return retval;
+>   }
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
