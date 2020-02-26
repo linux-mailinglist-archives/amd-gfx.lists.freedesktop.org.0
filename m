@@ -1,92 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B511817044C
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Feb 2020 17:26:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8594B170472
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Feb 2020 17:33:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E842A8922A;
-	Wed, 26 Feb 2020 16:26:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E87F6E402;
+	Wed, 26 Feb 2020 16:33:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2047.outbound.protection.outlook.com [40.107.237.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E763789227
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 16:26:13 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2082.outbound.protection.outlook.com [40.107.223.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 222A16E402
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 16:33:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O37EvmRfhQ4zD2fMJX/STbrY9FBIqLT2+MeoCVBwaLvtF1dKYzdhR6Prhx21KaNlcPobzQr/SwOIxbCrG+/MiN01Nsn1Bp8MN79AmzoKKm/GEbDkhw73EbD1jLLcyFlajMrMVt6IX6N2vokhd9VmP8lGJ1yyw6Uou2FFEDwigaPNKO4chUcc0z7HfESsEUTPakUD2C0HTEL9oeIWqUOwaceYN3yzBGKTQrVaIeQZbi/+5LX/ptiYyeE0O3Laww4hBaDTzoC2NvOKND8sAQtCjATpht+pKnaVKOnxhxdhwkMV4IWwwxQxr6qz1EjNCGIH0PqpIE0rFT/5WLrC1GPyag==
+ b=KfprCVJSF4C/9UaGZ1Oi3dHa5bwPWKAZwLOwlsQ6c3BZdc6NFLhr2bWjeqTp8o7U3Zh3+nRgdFh+XAjEqsW6jSUAIU+Cb44s4z6srD9sQeHCLalmrLNIKuoutVOD2Y7D8M2SB+8xRZvujD5oTfpYU3NI+KtwtYcjXIu1r4WkEhL+ql3RNkdK/XDKB1J/RTBlM9ku7zGbv7gvvAJqPlmiX7dfkK2hqJuGuShiLbxssuU6OLrL2k2UY/HHoTTCFoPTyrhlfz3CAExdEB6pZG4C7RrIsl/kEWLE3Dmhdno2YdmpUJYj0repSi1P4pqZeK9aNUK03r2bvwsguSY5FJoypA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=18csKG5TTWkwKR6MfH9oUuCIOUe52PP3TkJ/Y+8FXNc=;
- b=UZ4TD2AkisXAohSrRl8k/PwzGZ42NlABBYCEAgkh60DsyheluF4kEnS25S11kuS3bJNL6yxnMC1gsHiMplLV7I7cYPaTLjYzNotzYtGF/6Cxq8tUiX+7FtUZfWR04QXbhnB99tkEKWRIe39XtDDkz0c8dEomHq3c70MdNOWpBTsi337NOe6/SYngy/+iQPHkZvi8Vi7i+YLfDY4KZJ2ON4fGk36rhHsfgIZzDSXjJPUMEPvOnkElE3xufjnyElx0ikA+98gTZdWWN7hTZJMpK4K/iPAJlokKULf562oWzolT2gkDSXCig05clIpa54R4t8EAyihGNKxgKQ4jm+J4mQ==
+ bh=ghNQ+N62sxovWRJpbMPsrSwAX4RB4bQrtmdOam84ol4=;
+ b=Q57O8t6e+CQi3nboS/EOwYFn+5FG8JEjXtND1AT4aHCf/ujYf5qvOsU6hqns1zRkpDoE2AtJ7rCZpqis9EYTlsvTOA1om7j9alK0g5t1igbFLMB3jq3VZ3ZMNJ8bsd2+uNvlXisH01Gmj9CgYt116ZGg9BdPMtdU/oudTBAo/H3A/kOdTkqmXT6uIlJ7ut7/OhV6GaykDRMsq4eqM0P014vr/jI2Vvdb3qUccQnR4tBoTawC1818aMvFpFRzaCZEVYedb03GIrqKYb3+8VNs4bPrXcuvOCFSSJSwGn9jkKkpSLCyPq03Zx/UVmjUks8WrlS8QoQtxZI3dogRrNagKw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=18csKG5TTWkwKR6MfH9oUuCIOUe52PP3TkJ/Y+8FXNc=;
- b=natmyXf8fJABJNYkA+YnwKz78Jx9/+tyr+/qu3DA2suHoEORFCTqkxzerlLXJ1hG+OPdaSEhtsdcC82Aabr1fIIhoHqkMTZhzgBc4oD34tcZE8Pf6w/0Dzbm/+OVevi4S7/6uX88tKQJt6Hpa+O81i67tCEAvbcznA3+gVpFAUw=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Luben.Tuikov@amd.com; 
-Received: from DM6PR12MB3355.namprd12.prod.outlook.com (2603:10b6:5:115::26)
- by DM6PR12MB4219.namprd12.prod.outlook.com (2603:10b6:5:217::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.17; Wed, 26 Feb
- 2020 16:26:12 +0000
-Received: from DM6PR12MB3355.namprd12.prod.outlook.com
- ([fe80::9505:d766:9ac9:2bfd]) by DM6PR12MB3355.namprd12.prod.outlook.com
- ([fe80::9505:d766:9ac9:2bfd%6]) with mapi id 15.20.2750.021; Wed, 26 Feb 2020
- 16:26:12 +0000
-Subject: Re: [PATCH] drm/amdgpu: fix the gfx hang while use per-ib secure flag
-From: Luben Tuikov <luben.tuikov@amd.com>
-To: Huang Rui <ray.huang@amd.com>, amd-gfx@lists.freedesktop.org
-References: <1582639073-16555-1-git-send-email-ray.huang@amd.com>
- <478627e0-3954-e729-f8ed-c5a8fac8e81d@amd.com>
-Message-ID: <c062930f-d9bd-bb7b-e75a-3e5b4e0c7de4@amd.com>
-Date: Wed, 26 Feb 2020 11:26:12 -0500
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
-In-Reply-To: <478627e0-3954-e729-f8ed-c5a8fac8e81d@amd.com>
-Content-Language: en-CA
-X-ClientProxiedBy: YT1PR01CA0008.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::21)
- To DM6PR12MB3355.namprd12.prod.outlook.com
- (2603:10b6:5:115::26)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.1.4] (108.162.131.176) by
- YT1PR01CA0008.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2772.14 via Frontend Transport; Wed, 26 Feb 2020 16:26:11 +0000
-X-Originating-IP: [108.162.131.176]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 8ed4f966-f1e3-45e5-427d-08d7bad89810
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4219:|DM6PR12MB4219:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB42192830270CAB7C35CD16F599EA0@DM6PR12MB4219.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
-X-Forefront-PRVS: 0325F6C77B
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(376002)(39860400002)(396003)(346002)(136003)(189003)(199004)(186003)(86362001)(16526019)(956004)(53546011)(26005)(31696002)(8936002)(55236004)(2616005)(4326008)(2906002)(16576012)(54906003)(52116002)(316002)(8676002)(36756003)(81156014)(6486002)(81166006)(66476007)(66946007)(66556008)(5660300002)(478600001)(44832011)(31686004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB4219;
- H:DM6PR12MB3355.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ bh=ghNQ+N62sxovWRJpbMPsrSwAX4RB4bQrtmdOam84ol4=;
+ b=e7CzLMPhl+FQfIKNPNILtEyM+4Kqjx6zbLH90CyEbtJANbpwwGmThdlmTpmqXgiF1Hu6TWVCnj/vHY82T3vJezvHkOg5RX+CMvlcZfJSG7/+kKzrFy19Z8G/9bE8uEoBnrLnNpG2eNkDl5+Va+2/U5ptnvEptWW2d8umcju98ko=
+Received: from CH2PR12MB3912.namprd12.prod.outlook.com (2603:10b6:610:2c::22)
+ by CH2PR12MB3910.namprd12.prod.outlook.com (2603:10b6:610:28::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.14; Wed, 26 Feb
+ 2020 16:33:23 +0000
+Received: from CH2PR12MB3912.namprd12.prod.outlook.com
+ ([fe80::7921:a391:1d1b:5167]) by CH2PR12MB3912.namprd12.prod.outlook.com
+ ([fe80::7921:a391:1d1b:5167%5]) with mapi id 15.20.2772.012; Wed, 26 Feb 2020
+ 16:33:23 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: Matt Coffin <mcoffin13@gmail.com>, Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu/powerplay: Refactor SMU message handling
+ for safety
+Thread-Topic: [PATCH 1/2] drm/amdgpu/powerplay: Refactor SMU message handling
+ for safety
+Thread-Index: AQHV51mZUZ3X1/05PkSBgD23h/0x6qgsVXsAgABMJICAARR8Tw==
+Date: Wed, 26 Feb 2020 16:33:23 +0000
+Message-ID: <CH2PR12MB3912C9A349C893AFF8A623D6F7EA0@CH2PR12MB3912.namprd12.prod.outlook.com>
+References: <5d301d58-49c7-6c3c-0652-6e051514d1ff@amd.com>
+ <20200219191941.67724-2-mcoffin13@gmail.com>
+ <CADnq5_NTd_dZAtN4yVyeM+Fp2w0Toy=tkvz00OwiYyC908W1Xg@mail.gmail.com>,
+ <4a61f3b0-369d-21ca-4fd2-23662c7738e4@gmail.com>
+In-Reply-To: <4a61f3b0-369d-21ca-4fd2-23662c7738e4@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=True;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-02-26T16:33:22.440Z;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=AMD
+ Public; MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=0;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged; 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Alexander.Deucher@amd.com; 
+x-originating-ip: [71.219.59.120]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 33a6eed1-f066-4787-8317-08d7bad99910
+x-ms-traffictypediagnostic: CH2PR12MB3910:|CH2PR12MB3910:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CH2PR12MB3910E306708A5F2EC966DC7EF7EA0@CH2PR12MB3910.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0325F6C77B
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(39860400002)(366004)(346002)(376002)(396003)(189003)(199004)(186003)(8676002)(81156014)(8936002)(81166006)(26005)(71200400001)(15650500001)(55016002)(9686003)(53546011)(6506007)(7696005)(4326008)(110136005)(54906003)(86362001)(19627405001)(33656002)(316002)(5660300002)(66446008)(64756008)(478600001)(966005)(52536014)(76116006)(66556008)(66476007)(66946007)(2906002)(45080400002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:CH2PR12MB3910;
+ H:CH2PR12MB3912.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FO6pvXZObc5FzrRUSoPL8Uhwn8vPNMl3QooXWFF74COz4WPxwQD07M0l8PaMtYYTUeveZ4r65AvNIQNPhJa/xSpCR2NoFADtw2iS7iAknyjk5F5EWKP0MfvsEI1Q6mgY122sdLDTENFAl1Wz00+F5LvDmM/9VvQNTkpv3vOM9aVbihTdMEIoTo8ZIKXn+yS7btKXlDmJuPTbiP7L47y78noc3JywuzNbZ7ztAimvKjH2fYgf0l+A5X5mXEkLsYaDCiDKxdc8cAJKzHzftrb+yPOTv87GtsP/EuP0jDY81YjtolxM7jQHrPbJ8Lw5TF0tkR7OsVrL662MLQmlyyausKbRGs5RJC8NtJd6Jn2WyuXM1/qjZHyE+5dNUt/hwUVru0pbzpTzadEXUQ6R8HfYyBWV0wMfTz/zo1/FAhaLp8tvVgK7jeHh4PxeXJAbWY1f
-X-MS-Exchange-AntiSpam-MessageData: neXybaMH1HO8WzBpWlgvaVU+79Tk9eIeW0zUa/sU4gvFUrF4B/NGde1vgPC0o0lDkvC5MyFCy0ttETZeMzFyk7Ba9wXNfniDbF7/bTv6rUzn2RuQWVnqdtdT99Oglz8fDFVHUqOOKOCPNHqcqxRl6g==
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ZraBYFqK3luhd/nmXlSnz5c8i/q+F5st0KL5siH6M+Pb7QYQtdAw3UPqJhxHBD5Iew49XLE4I/ZwchEvtqdmQ/0KyP0InIQBCFfDl7JAv+L+pe/lzpAaUAIHx4FpcmQixL2ACkKDoRIR0sZoV/vMhKTd7EmL52XVuJLlybm0kX5o61SASzazTH9AP0gdWl6jT9WwY69i0uZad0g5ycaIZlfT/wG3W2st3LJbEhJPutFhF4dgUi9Y90KQbzb4ZX083qWlus7i9uLgKgXzgojwLy8E4Xf3REJlQ1D3TNOJeP/6QMsTQNaqRlKbQxmDS2+RbS8Kje/RWeHAm+znau606x+LRHHrEV8PqfOFMQ0Eq8RWKsMaI/s96bPsC8KAs5/hWGCGygl3qUElGmiL9kjbBsy0jcxLcWQpys3XQs1DCo1c8RjCxW9ikomOzpjnFsUPGlj3+cYPiGtvgKiQ46Y8utxDgXvf/O+Hxb88A5G+HGEuwdh+4ZyZHDGxOLL/epMJLlJHEudY0b4qVMZ5EmvBxw==
+x-ms-exchange-antispam-messagedata: eJ0e3tBRAjjTLBg3yr+w/s/r3EXc7toqRuE8ZTPa+DAc+KUZU+w76hTExt9hqwmWfIEXLyNHUaxHTwT6LHiZNT2U5HWsuNmADJhD2MnU6xCzZjHn1WAG336/3tpdBVzD/9K2mG6gwmuKlnJFfL6M2w==
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ed4f966-f1e3-45e5-427d-08d7bad89810
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2020 16:26:12.5327 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LMo824bpVwEjkAObzDICfRcx9BmhalUEweKiA1wOzBciMFMAIO/EtAv0GfpKi6Q5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4219
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33a6eed1-f066-4787-8317-08d7bad99910
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2020 16:33:23.3640 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4OcBcLAJKGTw6dLDkZlsEOuNNk8UUe6cQ8ehkhyUlL59th2p2TMc7Tcj558XEPzkPzGDg/pM/OGCccu5DeyJSg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3910
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,242 +103,173 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Aaron Liu <aaron.liu@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Das, Nirmoy" <Nirmoy.Das@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0281638158=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2020-02-25 18:40, Luben Tuikov wrote:
-> On 2020-02-25 8:57 a.m., Huang Rui wrote:
->> Since 6643ba1 frame control packets are only issued in presence of secure IB(s).
->> This causes hangs on some hardware (eg: Raven1). This patch restores the
->> unconditionnal frame control packets issuing, that's to keep the per-IB logic
->> regarding the secure flag.
->>
->> Fixes: 6643ba1 drm/amdgpu: Move to a per-IB secure flag (TMZ)
->>
->> Reported-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
->> Signed-off-by: Huang Rui <ray.huang@amd.com>
->> ---
->>  drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c   | 41 +++++++++++++++++++-------------
->>  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  5 ++--
->>  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   | 15 ++++++------
->>  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    | 13 +++++-----
->>  4 files changed, 43 insertions(+), 31 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
->> index 4b2342d..9713a7d 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
->> @@ -131,7 +131,7 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned num_ibs,
->>  	uint64_t fence_ctx;
->>  	uint32_t status = 0, alloc_size;
->>  	unsigned fence_flags = 0;
->> -	bool secure;
->> +	int secure = -1;
-> 
-> Don't initialize them far away from where they're being
-> used. That's a very bad habit.
-> This function is pretty long.
-> Initialize "secure" next to where it is being used--right
-> above the for-loop so that it is clear how it's used.
-> 
->>  
->>  	unsigned i;
->>  	int r = 0;
->> @@ -216,7 +216,6 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned num_ibs,
->>  		amdgpu_ring_emit_cntxcntl(ring, status);
->>  	}
->>  
->> -	secure = false;
-> 
-> Set "secure" here, close to where it is used.
-> This makes the code modular, so that it is easy
-> to see what is happening _locally_. Another
-> advantage is that should ever this code be pulled
-> out into its own function, we don't have to chase
-> variables around.
-> 
->>  	for (i = 0; i < num_ibs; ++i) {
->>  		ib = &ibs[i];
->>  
->> @@ -228,27 +227,37 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned num_ibs,
->>  		    !amdgpu_sriov_vf(adev)) /* for SRIOV preemption, Preamble CE ib must be inserted anyway */
->>  			continue;
->>  
->> -		/* If this IB is TMZ, add frame TMZ start packet,
->> -		 * else, turn off TMZ.
->> -		 */
->> -		if (ib->flags & AMDGPU_IB_FLAGS_SECURE && ring->funcs->emit_tmz) {
->> -			if (!secure) {
->> -				secure = true;
->> -				amdgpu_ring_emit_tmz(ring, true);
->> +		if (job && ring->funcs->emit_frame_cntl) {
+--===============0281638158==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CH2PR12MB3912C9A349C893AFF8A623D6F7EA0CH2PR12MB3912namp_"
 
-Also note that the value of this conditional is static to the body of the loop,
-i.e. invariant to the loop, and it can be pulled out of the loop.
-Each loop iteration doesn't change the value of this conditional. This would 
-create two tight loops. This is a formulaic optimization method which generates
-slightly longer code, but more streamlined.
+--_000_CH2PR12MB3912C9A349C893AFF8A623D6F7EA0CH2PR12MB3912namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I'm ambivalent as to whether you implement those optimizations.
+[AMD Public Use]
 
-Regards,
-Luben
+That's fine we can take care of testing other platforms.
 
->> +			if (secure == -1) {
->> +				if (ib->flags & AMDGPU_IB_FLAGS_SECURE) {
->> +					secure = 1;
->> +					amdgpu_ring_emit_frame_cntl(ring, true, true);
->> +				} else {
->> +					secure = 0;
->> +					amdgpu_ring_emit_frame_cntl(ring, true, false);
->> +				}
-> 
-> So the above is executed only once. At the very first
-> iteration, since "secure" is set to -1. You can pull
-> that out of the loop and have a more straightforward
-> body of the loop.
-> 
-> Regards,
-> Luben
-> 
->> +			} else {
->> +				if (secure == 1 &&
->> +				    !(ib->flags & AMDGPU_IB_FLAGS_SECURE)) {
->> +					secure = 0;
->> +					amdgpu_ring_emit_frame_cntl(ring, false, true);
->> +					amdgpu_ring_emit_frame_cntl(ring, true, false);
->> +				} else if (secure == 0 &&
->> +					   ib->flags & AMDGPU_IB_FLAGS_SECURE) {
->> +					secure = 1;
->> +					amdgpu_ring_emit_frame_cntl(ring, false, false);
->> +					amdgpu_ring_emit_frame_cntl(ring, true, true);
->> +				}
->>  			}
->> -		} else if (secure) {
->> -			secure = false;
->> -			amdgpu_ring_emit_tmz(ring, false);
->>  		}
->>  
->>  		amdgpu_ring_emit_ib(ring, job, ib, status);
->>  		status &= ~AMDGPU_HAVE_CTX_SWITCH;
->>  	}
->>  
->> -	if (secure) {
->> -		secure = false;
->> -		amdgpu_ring_emit_tmz(ring, false);
->> -	}
->> +	if (job && ring->funcs->emit_frame_cntl)
->> +		amdgpu_ring_emit_frame_cntl(ring, false,
->> +					    (secure == 1) ? true : false);
->>  
->>  #ifdef CONFIG_X86_64
->>  	if (!(adev->flags & AMD_IS_APU))
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
->> index 24caff0..4d019d6 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
->> @@ -166,7 +166,8 @@ struct amdgpu_ring_funcs {
->>  	void (*emit_reg_write_reg_wait)(struct amdgpu_ring *ring,
->>  					uint32_t reg0, uint32_t reg1,
->>  					uint32_t ref, uint32_t mask);
->> -	void (*emit_tmz)(struct amdgpu_ring *ring, bool start);
->> +	void (*emit_frame_cntl)(struct amdgpu_ring *ring, bool start,
->> +				bool secure);
->>  	/* priority functions */
->>  	void (*set_priority) (struct amdgpu_ring *ring,
->>  			      enum drm_sched_priority priority);
->> @@ -247,7 +248,7 @@ struct amdgpu_ring {
->>  #define amdgpu_ring_emit_wreg(r, d, v) (r)->funcs->emit_wreg((r), (d), (v))
->>  #define amdgpu_ring_emit_reg_wait(r, d, v, m) (r)->funcs->emit_reg_wait((r), (d), (v), (m))
->>  #define amdgpu_ring_emit_reg_write_reg_wait(r, d0, d1, v, m) (r)->funcs->emit_reg_write_reg_wait((r), (d0), (d1), (v), (m))
->> -#define amdgpu_ring_emit_tmz(r, b) (r)->funcs->emit_tmz((r), (b))
->> +#define amdgpu_ring_emit_frame_cntl(r, b, s) (r)->funcs->emit_frame_cntl((r), (b), (s))
->>  #define amdgpu_ring_pad_ib(r, ib) ((r)->funcs->pad_ib((r), (ib)))
->>  #define amdgpu_ring_init_cond_exec(r) (r)->funcs->init_cond_exec((r))
->>  #define amdgpu_ring_patch_cond_exec(r,o) (r)->funcs->patch_cond_exec((r),(o))
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
->> index 7b61583..748ac35 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
->> @@ -256,7 +256,7 @@ static int gfx_v10_0_rlc_backdoor_autoload_enable(struct amdgpu_device *adev);
->>  static int gfx_v10_0_wait_for_rlc_autoload_complete(struct amdgpu_device *adev);
->>  static void gfx_v10_0_ring_emit_ce_meta(struct amdgpu_ring *ring, bool resume);
->>  static void gfx_v10_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool resume);
->> -static void gfx_v10_0_ring_emit_tmz(struct amdgpu_ring *ring, bool start);
->> +static void gfx_v10_0_ring_emit_frame_cntl(struct amdgpu_ring *ring, bool start, bool secure);
->>  
->>  static void gfx10_kiq_set_resources(struct amdgpu_ring *kiq_ring, uint64_t queue_mask)
->>  {
->> @@ -4729,12 +4729,13 @@ static void gfx_v10_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool resume)
->>  					   sizeof(de_payload) >> 2);
->>  }
->>  
->> -static void gfx_v10_0_ring_emit_tmz(struct amdgpu_ring *ring, bool start)
->> +static void gfx_v10_0_ring_emit_frame_cntl(struct amdgpu_ring *ring, bool start,
->> +				    bool secure)
->>  {
->> -	if (amdgpu_is_tmz(ring->adev)) {
->> -		amdgpu_ring_write(ring, PACKET3(PACKET3_FRAME_CONTROL, 0));
->> -		amdgpu_ring_write(ring, FRAME_TMZ | FRAME_CMD(start ? 0 : 1));
->> -	}
->> +	uint32_t v = secure ? FRAME_TMZ : 0;
->> +
->> +	amdgpu_ring_write(ring, PACKET3(PACKET3_FRAME_CONTROL, 0));
->> +	amdgpu_ring_write(ring, v | FRAME_CMD(start ? 0 : 1));
->>  }
->>  
->>  static void gfx_v10_0_ring_emit_rreg(struct amdgpu_ring *ring, uint32_t reg)
->> @@ -5188,7 +5189,7 @@ static const struct amdgpu_ring_funcs gfx_v10_0_ring_funcs_gfx = {
->>  	.init_cond_exec = gfx_v10_0_ring_emit_init_cond_exec,
->>  	.patch_cond_exec = gfx_v10_0_ring_emit_patch_cond_exec,
->>  	.preempt_ib = gfx_v10_0_ring_preempt_ib,
->> -	.emit_tmz = gfx_v10_0_ring_emit_tmz,
->> +	.emit_frame_cntl = gfx_v10_0_ring_emit_frame_cntl,
->>  	.emit_wreg = gfx_v10_0_ring_emit_wreg,
->>  	.emit_reg_wait = gfx_v10_0_ring_emit_reg_wait,
->>  	.emit_reg_write_reg_wait = gfx_v10_0_ring_emit_reg_write_reg_wait,
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
->> index 1c7a16b..fbde712 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
->> @@ -5230,12 +5230,13 @@ static void gfx_v9_0_ring_emit_de_meta(struct amdgpu_ring *ring)
->>  	amdgpu_ring_write_multiple(ring, (void *)&de_payload, sizeof(de_payload) >> 2);
->>  }
->>  
->> -static void gfx_v9_0_ring_emit_tmz(struct amdgpu_ring *ring, bool start)
->> +static void gfx_v9_0_ring_emit_frame_cntl(struct amdgpu_ring *ring, bool start,
->> +				   bool secure)
->>  {
->> -	if (amdgpu_is_tmz(ring->adev)) {
->> -		amdgpu_ring_write(ring, PACKET3(PACKET3_FRAME_CONTROL, 0));
->> -		amdgpu_ring_write(ring, FRAME_TMZ | FRAME_CMD(start ? 0 : 1));
->> -	}
->> +	uint32_t v = secure ? FRAME_TMZ : 0;
->> +
->> +	amdgpu_ring_write(ring, PACKET3(PACKET3_FRAME_CONTROL, 0));
->> +	amdgpu_ring_write(ring, v | FRAME_CMD(start ? 0 : 1));
->>  }
->>  
->>  static void gfx_v9_ring_emit_cntxcntl(struct amdgpu_ring *ring, uint32_t flags)
->> @@ -6477,7 +6478,7 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_gfx = {
->>  	.emit_cntxcntl = gfx_v9_ring_emit_cntxcntl,
->>  	.init_cond_exec = gfx_v9_0_ring_emit_init_cond_exec,
->>  	.patch_cond_exec = gfx_v9_0_ring_emit_patch_cond_exec,
->> -	.emit_tmz = gfx_v9_0_ring_emit_tmz,
->> +	.emit_frame_cntl = gfx_v9_0_ring_emit_frame_cntl,
->>  	.emit_wreg = gfx_v9_0_ring_emit_wreg,
->>  	.emit_reg_wait = gfx_v9_0_ring_emit_reg_wait,
->>  	.emit_reg_write_reg_wait = gfx_v9_0_ring_emit_reg_write_reg_wait,
->>
-> 
+Thanks,
+
+Alex
+
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Matt Cof=
+fin <mcoffin13@gmail.com>
+Sent: Tuesday, February 25, 2020 7:03 PM
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Das, Nirmoy <Nirmoy.Das@amd.com>; amd-gfx list <amd-gfx@lists.freedeskt=
+op.org>
+Subject: Re: [PATCH 1/2] drm/amdgpu/powerplay: Refactor SMU message handlin=
+g for safety
+
+Hey Alex,
+
+The reason I didn't transition the other code is that I have no hardware
+to test with.
+
+I'll go ahead and do it, but someone with the hardware should at least
+ensure it boots properly (vega20, and something on smu_v12_0).
+
+With that, I'm good with doing it, I just don't want to risk breaking
+other ASICs with a change that is supposed to increase stability.
+
+On 2/25/20 12:30 PM, Alex Deucher wrote:
+> Drop the unsafe ones.  Let's convert everyone.
+
+Thanks for the review; I'll make the necessary changes. Sorry I keep
+forgetting my Signed-off-by... I should really just add a git hook for it.
+
+~Matt
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
+reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D02%7C01%7Calexande=
+r.deucher%40amd.com%7C479c9ea7ef3c4067dcf508d7ba4f4ee2%7C3dd8961fe4884e608e=
+11a82d994e183d%7C0%7C0%7C637182722163693285&amp;sdata=3DnRAVFh8evB4fIOmPh%2=
+F9ikOr3Aa52lc78wNgBxJChupw%3D&amp;reserved=3D0
+
+--_000_CH2PR12MB3912C9A349C893AFF8A623D6F7EA0CH2PR12MB3912namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#317100;margin:15pt;" al=
+ign=3D"Left">
+[AMD Public Use]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+That's fine we can take care of testing other platforms.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thanks,<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Alex<br>
+</div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
+=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx=
+-bounces@lists.freedesktop.org&gt; on behalf of Matt Coffin &lt;mcoffin13@g=
+mail.com&gt;<br>
+<b>Sent:</b> Tuesday, February 25, 2020 7:03 PM<br>
+<b>To:</b> Alex Deucher &lt;alexdeucher@gmail.com&gt;<br>
+<b>Cc:</b> Das, Nirmoy &lt;Nirmoy.Das@amd.com&gt;; amd-gfx list &lt;amd-gfx=
+@lists.freedesktop.org&gt;<br>
+<b>Subject:</b> Re: [PATCH 1/2] drm/amdgpu/powerplay: Refactor SMU message =
+handling for safety</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+>
+<div class=3D"PlainText">Hey Alex,<br>
+<br>
+The reason I didn't transition the other code is that I have no hardware<br=
+>
+to test with.<br>
+<br>
+I'll go ahead and do it, but someone with the hardware should at least<br>
+ensure it boots properly (vega20, and something on smu_v12_0).<br>
+<br>
+With that, I'm good with doing it, I just don't want to risk breaking<br>
+other ASICs with a change that is supposed to increase stability.<br>
+<br>
+On 2/25/20 12:30 PM, Alex Deucher wrote:<br>
+&gt; Drop the unsafe ones.&nbsp; Let's convert everyone.<br>
+<br>
+Thanks for the review; I'll make the necessary changes. Sorry I keep<br>
+forgetting my Signed-off-by... I should really just add a git hook for it.<=
+br>
+<br>
+~Matt<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
+F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%=
+7C01%7Calexander.deucher%40amd.com%7C479c9ea7ef3c4067dcf508d7ba4f4ee2%7C3dd=
+8961fe4884e608e11a82d994e183d%7C0%7C0%7C637182722163693285&amp;amp;sdata=3D=
+nRAVFh8evB4fIOmPh%2F9ikOr3Aa52lc78wNgBxJChupw%3D&amp;amp;reserved=3D0">http=
+s://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.freed=
+esktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%7C01%7Calexande=
+r.deucher%40amd.com%7C479c9ea7ef3c4067dcf508d7ba4f4ee2%7C3dd8961fe4884e608e=
+11a82d994e183d%7C0%7C0%7C637182722163693285&amp;amp;sdata=3DnRAVFh8evB4fIOm=
+Ph%2F9ikOr3Aa52lc78wNgBxJChupw%3D&amp;amp;reserved=3D0</a><br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_CH2PR12MB3912C9A349C893AFF8A623D6F7EA0CH2PR12MB3912namp_--
+
+--===============0281638158==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0281638158==--
