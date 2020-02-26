@@ -1,59 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C1A1709BC
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Feb 2020 21:34:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 626B81709BF
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Feb 2020 21:34:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17FAA6EBD1;
-	Wed, 26 Feb 2020 20:34:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B60E6EBC8;
+	Wed, 26 Feb 2020 20:34:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60EE06EBCD
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 20:34:36 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id z3so441797wru.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 12:34:36 -0800 (PST)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A3166EBCF
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 20:34:37 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id e8so424975wrm.5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 12:34:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=wCY0tN7j0B2h1HgUXDuiDci3q0m2gDpBZ/NQ/AtbCPc=;
- b=P6WtyomqzTLQIdUbJMldtoJVTzN3NuxCSQPVsB+2L+hXvDYwmlnqTEQAArOx4t15u9
- g6QMh9uVdAtwgDSk/ST9G68CBuehJ9QZZmvqrQrOgyWzgfBUXhjBRM647X7n9kfYTC1O
- QopbVCfIfOGmhIcEdGHGvuWyiA9/Men8SmmSi3THLOeNE5tCJvWpXa5zOoxSK8iUZdKm
- L1/upRCGK9OfBpuVhogJYCOx7Orcb/8Bcv76CcGPDBhoX/unz3623/jKGy/6v5kL+njZ
- mkOx8c/Yqhh2SYbGDGaXSLXv+VfhbfnRk5V/ie11866ol5SgrB8vxNeXth1MAmwhW6IX
- Fbyg==
+ bh=ZV3WAKe4YHajnMCDc062xpD+FETNPDv8wBsLTg88GcA=;
+ b=veqECf67mCxLJu4ed7KTfiDfrBdZXbU/Wq01F6U8hJ2LG2gVwuBf1+tk1g+bHsjEoG
+ FZX873WtV+rwaciM7k8wcLZ3cZ2TbK+MqFOk5iSQoFR17WtSvNR6yUM4AnsElaSeQvhY
+ laEskaJbQXhAnAq77w/AuFVlzii2r618fgZ4f/d+oNFqp8kRVJAWgrfjYUk4Cr8FFpQt
+ PuJp2sHtHHaDE7MzQNlBWeg4fNOMoJ7e3VDD8VTf4cAgGdXplokaW+SUMlWlpl3/xxEc
+ ZTkQsOiDSlpZFDVaZL8RQyy/e7Alhvo1AXjsd6DO1a044fOZViChqjQPX4yRNa0SxGOq
+ HXEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=wCY0tN7j0B2h1HgUXDuiDci3q0m2gDpBZ/NQ/AtbCPc=;
- b=XXIzM/QVQGUfcDhKAVXEe3Iv6b9bQNzxA8KdjShTv3utIVihoPt7JxBJK6UL+f1GtT
- GwjR/r2S2TNY4/bnTGxz0L3HFBcf6u2sfhl/HdL3rv6htNjHMZcdJuYgtDf87jCl3jmY
- hO3Dm1R9vKSEstvTTwYIeg7I2sa+MHeDqdVix+NiYmDemRbRLgKBRhpL2iZ3pUNP9pvS
- OzhLo46ArTdgNhGxWNuYiu4WqwaPzV22SfsvwfQRZuQ0yvVR74DyNHxZn4TegCpXWmNf
- 23om7VqHbw6iGG0W+Mr9qyZBSw6nHRh4mF/gDfcd29WJ8OP08dpzDK8/S3/JY63UCfYn
- qP1A==
-X-Gm-Message-State: APjAAAVAkOzAPWorwaYWXWxD8eHccIl45DlO/B98mivqmLq8zu9YUHXp
- n4pRxn864q3ssUtJyeX7ns2j1DXnElI=
-X-Google-Smtp-Source: APXvYqylwZjGQ2UMqNiByP/VYlkKgTFG4ZlgX3awSrqA/25nHaBnhBIuUoEAarYqDWxmVMnMLlrXHA==
-X-Received: by 2002:adf:f641:: with SMTP id x1mr435750wrp.248.1582749274675;
- Wed, 26 Feb 2020 12:34:34 -0800 (PST)
+ bh=ZV3WAKe4YHajnMCDc062xpD+FETNPDv8wBsLTg88GcA=;
+ b=NtF7o8kGa2hQWjyENU2nIM7bX7vrzJz65BCK0gZDHebmLaOcyo5nfC/vlTFu2FUoYa
+ SaBT/j/91qqm1o8aufBTqqx+pLtjOqJtyzL2hKbksijtV9QzdkGoQ/hD1OrEUQAKGElQ
+ mMHbphjPRXyxj1V8WL6aij6KicoNCl5IoMaUdkEqcbIhE+zNbssfxmMhr2N+ygXDF7TX
+ e1x1I3zakOTYtUuOYhb7QSjbRUHy8mo1x66J1V0zAYvM5l8+izZMpjXABm3Jgwk0jyGQ
+ wH2V+Nl/W1QZaGxDvu7gdZ8SFZQ6aCGuo4g5jEJAIDH1mPWMtx3k60uTgGxsYmBW672F
+ vtoQ==
+X-Gm-Message-State: APjAAAVwpJJhdhTsFTmZ6gKPS1IbQZLPXlvIAoSRuMe8hLu+vqYUa9nL
+ HGY95k7i4gSgYAE3o2Pi4DfIhh785MY=
+X-Google-Smtp-Source: APXvYqx9N06tLmTUGwForCKfKjVixGG95wgw69BbDgtqz2Nmms8qkb7aVT13MjahzMLU+nxU6GIPsw==
+X-Received: by 2002:a05:6000:114f:: with SMTP id
+ d15mr448763wrx.130.1582749275734; 
+ Wed, 26 Feb 2020 12:34:35 -0800 (PST)
 Received: from brihaspati.fritz.box
  (p200300C58F275300BB8A7FF1D96B1B54.dip0.t-ipconnect.de.
  [2003:c5:8f27:5300:bb8a:7ff1:d96b:1b54])
- by smtp.gmail.com with ESMTPSA id d76sm4406191wmd.39.2020.02.26.12.34.32
+ by smtp.gmail.com with ESMTPSA id d76sm4406191wmd.39.2020.02.26.12.34.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2020 12:34:32 -0800 (PST)
+ Wed, 26 Feb 2020 12:34:35 -0800 (PST)
 From: Nirmoy Das <nirmoy.aiemd@gmail.com>
 X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [RFC PATCH 1/3] drm/amdgpu: implement ring init_priority for compute
- ring
-Date: Wed, 26 Feb 2020 21:37:28 +0100
-Message-Id: <20200226203730.4621-2-nirmoy.das@amd.com>
+Subject: [RFC PATCH 2/3] drm/amdgpu: change hw sched list on ctx priority
+ override
+Date: Wed, 26 Feb 2020 21:37:29 +0100
+Message-Id: <20200226203730.4621-3-nirmoy.das@amd.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200226203730.4621-1-nirmoy.das@amd.com>
 References: <20200226203730.4621-1-nirmoy.das@amd.com>
@@ -76,92 +77,213 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-init_priority will set second compute queue(gfx8 and gfx9) of a pipe to high priority
-and 1st queue to normal priority.
+We were changing compute ring priority while rings were being used
+before every job submission which is not recommended. This patch
+recreates entity with higher/normal priority sched list when user
+changes ctx's priority.
+
+high/normal priority sched list are generated from set of high/normal
+priority compute queues. When there are no high priority hw queues then
+it fall backs to software priority.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  1 +
- drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c    | 14 ++++++++++++++
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    | 13 +++++++++++++
- 3 files changed, 28 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c   |  4 --
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c  | 58 ++++++++++++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h  |  2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  |  6 ---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c |  4 ++
+ 5 files changed, 59 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index 24caff085d00..a109373b9fe8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -170,6 +170,7 @@ struct amdgpu_ring_funcs {
- 	/* priority functions */
- 	void (*set_priority) (struct amdgpu_ring *ring,
- 			      enum drm_sched_priority priority);
-+	void (*init_priority) (struct amdgpu_ring *ring);
- 	/* Try to soft recover the ring to make the fence signal */
- 	void (*soft_recovery)(struct amdgpu_ring *ring, unsigned vmid);
- 	int (*preempt_ib)(struct amdgpu_ring *ring);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-index fa245973de12..14bab6e08bd6 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-@@ -6334,6 +6334,19 @@ static void gfx_v8_0_ring_set_priority_compute(struct amdgpu_ring *ring,
- 	gfx_v8_0_pipe_reserve_resources(adev, ring, acquire);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index f397ff97b4e4..8304d0c87899 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -1205,7 +1205,6 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
+ 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
+ 	struct drm_sched_entity *entity = p->entity;
+ 	enum drm_sched_priority priority;
+-	struct amdgpu_ring *ring;
+ 	struct amdgpu_bo_list_entry *e;
+ 	struct amdgpu_job *job;
+ 	uint64_t seq;
+@@ -1258,9 +1257,6 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
+ 	priority = job->base.s_priority;
+ 	drm_sched_entity_push_job(&job->base, entity);
+ 
+-	ring = to_amdgpu_ring(entity->rq->sched);
+-	amdgpu_ring_priority_get(ring, priority);
+-
+ 	amdgpu_vm_move_to_lru_tail(p->adev, &fpriv->vm);
+ 
+ 	ttm_eu_fence_buffer_objects(&p->ticket, &p->validated, p->fence);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index 94a6c42f29ea..ea4dc57d2237 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -85,8 +85,13 @@ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, const u32 hw_ip, const
+ 			num_scheds = 1;
+ 			break;
+ 		case AMDGPU_HW_IP_COMPUTE:
+-			scheds = adev->gfx.compute_sched;
+-			num_scheds = adev->gfx.num_compute_sched;
++			if (priority <= DRM_SCHED_PRIORITY_NORMAL) {
++				scheds = adev->gfx.compute_sched;
++				num_scheds = adev->gfx.num_compute_sched;
++			} else {
++				scheds = adev->gfx.compute_sched_high;
++				num_scheds = adev->gfx.num_compute_sched_high;
++			}
+ 			break;
+ 		case AMDGPU_HW_IP_DMA:
+ 			scheds = adev->sdma.sdma_sched;
+@@ -502,6 +507,24 @@ struct dma_fence *amdgpu_ctx_get_fence(struct amdgpu_ctx *ctx,
+ 	return fence;
  }
-
-+static void gfx_v8_0_ring_init_priority_compute(struct amdgpu_ring *ring)
+ 
++static void amdgpu_ctx_hw_priority_override(struct amdgpu_ctx *ctx,
++					    const u32 hw_ip,
++					    enum drm_sched_priority priority)
 +{
-+	/* set pipe 0 to normal priority and pipe 1 to high priority*/
-+	if (ring->queue == 1) {
-+		gfx_v8_0_hqd_set_priority(ring->adev, ring, true);
-+		gfx_v8_0_ring_set_pipe_percent(ring, true);
-+	} else {
-+		gfx_v8_0_hqd_set_priority(ring->adev, ring, false);
-+		gfx_v8_0_ring_set_pipe_percent(ring, false);
-+	}
++	int i;
 +
-+}
++	for (i = 0; i < amdgpu_ctx_num_entities[hw_ip]; ++i) {
++		if (!ctx->entities[hw_ip][i])
++			continue;
 +
- static void gfx_v8_0_ring_emit_fence_compute(struct amdgpu_ring *ring,
- 					     u64 addr, u64 seq,
- 					     unsigned flags)
-@@ -6967,6 +6980,7 @@ static const struct amdgpu_ring_funcs gfx_v8_0_ring_funcs_compute = {
- 	.insert_nop = amdgpu_ring_insert_nop,
- 	.pad_ib = amdgpu_ring_generic_pad_ib,
- 	.set_priority = gfx_v8_0_ring_set_priority_compute,
-+	.init_priority = gfx_v8_0_ring_init_priority_compute,
- 	.emit_wreg = gfx_v8_0_ring_emit_wreg,
- };
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 1c7a16b91686..0c66743fb6f5 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -5143,6 +5143,18 @@ static void gfx_v9_0_ring_set_priority_compute(struct amdgpu_ring *ring,
- 	gfx_v9_0_pipe_reserve_resources(adev, ring, acquire);
- }
-
-+static void gfx_v9_0_ring_init_priority_compute(struct amdgpu_ring *ring)
-+{
-+	/* set pipe 0 to normal priority and pipe 1 to high priority*/
-+	if (ring->queue == 1) {
-+		gfx_v9_0_hqd_set_priority(ring->adev, ring, true);
-+		gfx_v9_0_ring_set_pipe_percent(ring, true);
-+	} else {
-+		gfx_v9_0_hqd_set_priority(ring->adev, ring, false);
-+		gfx_v9_0_ring_set_pipe_percent(ring, true);
++		/* TODO what happens with prev scheduled jobs */
++		drm_sched_entity_destroy(&ctx->entities[hw_ip][i]->entity);
++		amdgpu_ctx_fini_entity(ctx->entities[hw_ip][i]);
++
++		amdgpu_ctx_init_entity(ctx, AMDGPU_HW_IP_COMPUTE, i);
++
 +	}
 +}
-+
- static void gfx_v9_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
+ void amdgpu_ctx_priority_override(struct amdgpu_ctx *ctx,
+ 				  enum drm_sched_priority priority)
  {
- 	struct amdgpu_device *adev = ring->adev;
-@@ -6514,6 +6526,7 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_compute = {
- 	.insert_nop = amdgpu_ring_insert_nop,
- 	.pad_ib = amdgpu_ring_generic_pad_ib,
- 	.set_priority = gfx_v9_0_ring_set_priority_compute,
-+	.init_priority = gfx_v9_0_ring_init_priority_compute,
- 	.emit_wreg = gfx_v9_0_ring_emit_wreg,
- 	.emit_reg_wait = gfx_v9_0_ring_emit_reg_wait,
- 	.emit_reg_write_reg_wait = gfx_v9_0_ring_emit_reg_write_reg_wait,
---
+@@ -515,12 +538,18 @@ void amdgpu_ctx_priority_override(struct amdgpu_ctx *ctx,
+ 	for (i = 0; i < AMDGPU_HW_IP_NUM; ++i) {
+ 		for (j = 0; j < amdgpu_ctx_num_entities[i]; ++j) {
+ 			struct drm_sched_entity *entity;
++			struct amdgpu_ring *ring;
+ 
+ 			if (!ctx->entities[i][j])
+ 				continue;
+ 
+ 			entity = &ctx->entities[i][j]->entity;
+-			drm_sched_entity_set_priority(entity, ctx_prio);
++			ring = to_amdgpu_ring(entity->rq->sched);
++
++			if (ring->funcs->init_priority)
++				amdgpu_ctx_hw_priority_override(ctx, i, priority);
++			else
++				drm_sched_entity_set_priority(entity, ctx_prio);
+ 		}
+ 	}
+ }
+@@ -630,6 +659,7 @@ void amdgpu_ctx_mgr_fini(struct amdgpu_ctx_mgr *mgr)
+ 
+ void amdgpu_ctx_init_sched(struct amdgpu_device *adev)
+ {
++	enum drm_sched_priority priority;
+ 	int i, j;
+ 
+ 	for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+@@ -638,8 +668,26 @@ void amdgpu_ctx_init_sched(struct amdgpu_device *adev)
+ 	}
+ 
+ 	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-		adev->gfx.compute_sched[i] = &adev->gfx.compute_ring[i].sched;
+-		adev->gfx.num_compute_sched++;
++		priority = adev->gfx.compute_ring[i].priority;
++		if (priority <= DRM_SCHED_PRIORITY_NORMAL) {
++			adev->gfx.compute_sched[i] =
++				&adev->gfx.compute_ring[i].sched;
++			adev->gfx.num_compute_sched++;
++		} else {
++			adev->gfx.compute_sched_high[i] =
++				&adev->gfx.compute_ring[i].sched;
++			adev->gfx.num_compute_sched_high++;
++		}
++	}
++
++	/* if there are no high prio compute queue then mirror with normal
++	 * priority so amdgpu_ctx_init_entity() works as expected */
++	if (!adev->gfx.num_compute_sched_high) {
++		for (i = 0; i < adev->gfx.num_compute_sched; i++) {
++			adev->gfx.compute_sched_high[i] =
++			       adev->gfx.compute_sched[i];
++		}
++		adev->gfx.num_compute_sched_high = adev->gfx.num_compute_sched;
+ 	}
+ 
+ 	for (i = 0; i < adev->sdma.num_instances; i++) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index ca17ffb01301..d58d748e3a56 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -279,7 +279,9 @@ struct amdgpu_gfx {
+ 	unsigned			num_gfx_rings;
+ 	struct amdgpu_ring		compute_ring[AMDGPU_MAX_COMPUTE_RINGS];
+ 	struct drm_gpu_scheduler	*compute_sched[AMDGPU_MAX_COMPUTE_RINGS];
++	struct drm_gpu_scheduler	*compute_sched_high[AMDGPU_MAX_COMPUTE_RINGS];
+ 	uint32_t			num_compute_sched;
++	uint32_t			num_compute_sched_high;
+ 	unsigned			num_compute_rings;
+ 	struct amdgpu_irq_src		eop_irq;
+ 	struct amdgpu_irq_src		priv_reg_irq;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index d42be880a236..4981e443a884 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -117,12 +117,10 @@ void amdgpu_job_free_resources(struct amdgpu_job *job)
+ 
+ static void amdgpu_job_free_cb(struct drm_sched_job *s_job)
+ {
+-	struct amdgpu_ring *ring = to_amdgpu_ring(s_job->sched);
+ 	struct amdgpu_job *job = to_amdgpu_job(s_job);
+ 
+ 	drm_sched_job_cleanup(s_job);
+ 
+-	amdgpu_ring_priority_put(ring, s_job->s_priority);
+ 	dma_fence_put(job->fence);
+ 	amdgpu_sync_free(&job->sync);
+ 	amdgpu_sync_free(&job->sched_sync);
+@@ -143,7 +141,6 @@ int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
+ 		      void *owner, struct dma_fence **f)
+ {
+ 	enum drm_sched_priority priority;
+-	struct amdgpu_ring *ring;
+ 	int r;
+ 
+ 	if (!f)
+@@ -158,9 +155,6 @@ int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
+ 	priority = job->base.s_priority;
+ 	drm_sched_entity_push_job(&job->base, entity);
+ 
+-	ring = to_amdgpu_ring(entity->rq->sched);
+-	amdgpu_ring_priority_get(ring, priority);
+-
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index 18e11b0fdc3e..4501ae7afb2e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -326,6 +326,10 @@ int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
+ 
+ 	ring->max_dw = max_dw;
+ 	ring->priority = DRM_SCHED_PRIORITY_NORMAL;
++	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE &&
++	    ring->funcs->init_priority)
++		ring->funcs->init_priority(ring);
++
+ 	mutex_init(&ring->priority_mutex);
+ 
+ 	for (i = 0; i < DRM_SCHED_PRIORITY_MAX; ++i)
+-- 
 2.25.0
 
 _______________________________________________
