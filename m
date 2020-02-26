@@ -1,61 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D42F4170C3B
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Feb 2020 00:05:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E618170C72
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Feb 2020 00:16:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B5076EBDF;
-	Wed, 26 Feb 2020 23:05:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 345436E183;
+	Wed, 26 Feb 2020 23:16:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-il1-x141.google.com (mail-il1-x141.google.com
- [IPv6:2607:f8b0:4864:20::141])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ABE16EBDF
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 23:05:51 +0000 (UTC)
-Received: by mail-il1-x141.google.com with SMTP id x7so647751ilq.11
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 15:05:51 -0800 (PST)
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com
+ [IPv6:2607:f8b0:4864:20::143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83D916E183
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 23:16:25 +0000 (UTC)
+Received: by mail-il1-x143.google.com with SMTP id p78so672565ilb.10
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 15:16:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=2GhqDP6nW062OtdeYUeNaCOsDHfDo7qPGcwj5OEE4YU=;
- b=a3HHrqRAzvkbwHamc+aOPhYbSysXwYyPonj6QzUXkcekTqQU/cj9cuHr1QtoGUAeC0
- YoL2vceK1Iq1gQeQwnGYI9A2+pdDn46k58SbBKkfwGxWyBUfmDlw8mf6QOrpCdjaMZ1U
- icgsRNO4RxQKYhnb1bAwEa/SEGCMfg90R9B/BSWd5WbU6H8ZncMbf+/OaYVPm0MwrsXV
- MF0gyT49P8VoyHTTXLFS2BriKuu67MB3or6PpPsSGZKxhEXhMDWapCipxwDO5+9qvMfI
- nwugZu7WmiH5VdhlH2qHDhskEB8MkOOZ8c2RANRCv1DuVx5AP00PUozDDLRtdIJKb7y1
- EzHw==
+ bh=ka5lU/QsYZop21aC6TYUNK6utIWdU04koxY5N0YqQNs=;
+ b=WyCwC90Neva3+AzMXCZHyJb6uohsbTHCe/rpuPZGZ/k06jNnaqL0D5ZkOheghyBdj/
+ I/EjAyJn5Zd1QXz2KTUUyzkqmox1H2kryQ9oQeK4NRwQl2/j1HdR7KU61bNk9B1y79t8
+ 6E8Z3Otri68tuhfJ5tnI2Sg3EDCfSchEUEYDo4bJnfBIyBEt50iqT6Auy0KH4Br97ZkH
+ DAbi5eXC95Kd2j+mK0/bmxi55piLBJUB+4VgXb3ERG27yeaMJuTzDmnSAk2O0Q1rZf+f
+ 45lHA1eMMc6T6nGZLVwrVcPO9aSjwP79Q2mIF0793tiLgIGI0wGrumTKU+0RR6ImRKrd
+ zDaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=2GhqDP6nW062OtdeYUeNaCOsDHfDo7qPGcwj5OEE4YU=;
- b=P+l3YzVhffWPog8yJtLngbcA+TFoP9LKrQrOgSGQO+hJv/6qDbEcAUH5eNJDVQWEMi
- tPPkt0LxnCDwU21LtdbL+Bj2+SKN32RLHHRkADmN8Q26VitwHELx9+Q0o1ttdOedhz4+
- ws+lurJiUBpYgDyI4BePuEqhfiAxu8iC3c922TmaxIHhBpW2pYFuK0TV9E9UvUe07aEv
- MEnwt17gFjx8AA1fWBt/hCwacjxn8vQOIGJKOxjLhoqKTBEULUvMQc8Y0Pd2IFUH4CEq
- EAyCkMeuQY3dyjDWM0MVHENdvc3RmS1NUEA5EoFQbB7Mmw9ifngjFSiXqDOYkpk8Tuqc
- O3Ow==
-X-Gm-Message-State: APjAAAWYzrvaNLTvIGdcMYY3T4gKzp+abEtd0qex3pveYUr0eZzyw2F5
- vXPfSSo3OQoVJDJiO/LHCWc=
-X-Google-Smtp-Source: APXvYqxrNaXY8UfOln1IgpyXoTI3xGcMnR06ro2An4l7bQoQk3+U14SODS1+qJxZ9jAFeSzUfC/Pog==
-X-Received: by 2002:a92:d7c1:: with SMTP id g1mr1414773ilq.192.1582758350658; 
- Wed, 26 Feb 2020 15:05:50 -0800 (PST)
+ bh=ka5lU/QsYZop21aC6TYUNK6utIWdU04koxY5N0YqQNs=;
+ b=Ngv0vSfIk+VpX45m/sOr32nnYUCVWquGmVHOvQhesL2QTX8Q9/TpksLTLnAzKVcoxA
+ 0nIDetG+5ra6VLXD1KYUosAZckCccvUKzrFL99IfAsWU4x1ASlRPfAXXqhLMyESyImIK
+ AcW0b+odHxVxg9bNuTwUUN62UczvEFmOCIGWxYDekYUAmsqbFzn+aJP9aigmzOiNQT3p
+ B+fKQMLNmcOAVFt/9rQE3RIg9eOizxD5VRwN9yipcUh8NW7SjN9uY5sHwUUrPGVhaotL
+ kMGP+xnt4CXcfGhKoTOMxs3cSHlqoc2GLd1NoQTzRX4Poht3zJCTACVG+XNCRxoAe+mV
+ jN2A==
+X-Gm-Message-State: APjAAAUnnHOe4AzWVeFgPAuwTLe4ZBMrW7j2DQWV9EbAaEowZKy0/TS5
+ Lcvr1XkJ40zkEKQ6r9dJMi5JjUiHLpU=
+X-Google-Smtp-Source: APXvYqyOaMVmplti3y/+IExLL0ubvFURwWs8ynmAukGYcEiYEnK2v5RTq65hFDZ6AoV9rJLwnatLVw==
+X-Received: by 2002:a92:cf45:: with SMTP id c5mr1471286ilr.236.1582758984735; 
+ Wed, 26 Feb 2020 15:16:24 -0800 (PST)
 Received: from mcoffin-dev-tower.ec2.internal
  ([2602:ae:10d1:b00:6d4:c4ff:fe4a:ea6b])
- by smtp.gmail.com with ESMTPSA id r14sm1191177ilg.59.2020.02.26.15.05.50
+ by smtp.gmail.com with ESMTPSA id u80sm1119912ili.77.2020.02.26.15.16.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2020 15:05:50 -0800 (PST)
+ Wed, 26 Feb 2020 15:16:24 -0800 (PST)
 From: Matt Coffin <mcoffin13@gmail.com>
 To: Alex Deucher <alexdeucher@gmail.com>,
 	amd-gfx@lists.freedesktop.org
-Subject: [PATCH v2 3/3] drm/amdgpu/smu: Add message sending lock
-Date: Wed, 26 Feb 2020 16:05:25 -0700
-Message-Id: <5f2de5082eeb8b7ab5118d3ffd9a85da55c10dea.1582756642.git.mcoffin13@gmail.com>
+Subject: [PATCH v3 0/3] Implement SMU message register protection
+Date: Wed, 26 Feb 2020 16:16:11 -0700
+Message-Id: <cover.1582758921.git.mcoffin13@gmail.com>
 X-Mailer: git-send-email 2.25.0
-In-Reply-To: <cover.1582756642.git.mcoffin13@gmail.com>
+In-Reply-To: <CADnq5_NTd_dZAtN4yVyeM+Fp2w0Toy=tkvz00OwiYyC908W1Xg@mail.gmail.com>
 References: <CADnq5_NTd_dZAtN4yVyeM+Fp2w0Toy=tkvz00OwiYyC908W1Xg@mail.gmail.com>
- <cover.1582756642.git.mcoffin13@gmail.com>
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,113 +73,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This adds a message lock to the smu_send_smc_msg* implementations to
-protect against concurrent access to the mmu registers used to
-communicate with the SMU
+Sorry for the extra email, but the mutex_init got lost when I was rebasing. Oops.
 
-v2: Implement for smu_v12_0 as well
+This patchset adds a message lock to lock access to the SMU message
+communication registers to prevent concurrent access.
 
-Signed-off-by: Matt Coffin <mcoffin13@gmail.com>
----
- drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h |  1 +
- drivers/gpu/drm/amd/powerplay/smu_v11_0.c      | 12 +++++++-----
- drivers/gpu/drm/amd/powerplay/smu_v12_0.c      | 10 ++++++----
- 3 files changed, 14 insertions(+), 9 deletions(-)
+v2: Separate navi10 change out into a separate patch, and remove mutex
+definition from first patch
 
-diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-index 573929114617..d652f920a65a 100644
---- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-@@ -362,6 +362,7 @@ struct smu_context
- 	struct mutex			mutex;
- 	struct mutex			sensor_lock;
- 	struct mutex			metrics_lock;
-+	struct mutex			message_lock;
- 	uint64_t pool_size;
- 
- 	struct smu_table_context	smu_table;
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-index 805735242273..3a9d11706490 100644
---- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-@@ -102,11 +102,12 @@ smu_v11_0_send_msg_with_param(struct smu_context *smu,
- 	if (index < 0)
- 		return index;
- 
-+	mutex_lock(&smu->message_lock);
- 	ret = smu_v11_0_wait_for_response(smu);
- 	if (ret) {
- 		pr_err("Msg issuing pre-check failed and "
- 		       "SMU may be not in the right state!\n");
--		return ret;
-+		goto out;
- 	}
- 
- 	WREG32_SOC15(MP1, 0, mmMP1_SMN_C2PMSG_90, 0);
-@@ -119,18 +120,19 @@ smu_v11_0_send_msg_with_param(struct smu_context *smu,
- 	if (ret) {
- 		pr_err("failed send message: %10s (%d) \tparam: 0x%08x response %#x\n",
- 		       smu_get_message_name(smu, msg), index, param, ret);
--		return ret;
-+		goto out;
- 	}
- 	if (read_arg) {
- 		ret = smu_v11_0_read_arg(smu, read_arg);
- 		if (ret) {
- 			pr_err("failed to read message arg: %10s (%d) \tparam: 0x%08x response %#x\n",
- 			       smu_get_message_name(smu, msg), index, param, ret);
--			return ret;
-+			goto out;
- 		}
- 	}
--
--	return 0;
-+out:
-+	mutex_unlock(&smu->message_lock);
-+	return ret;
- }
- 
- int smu_v11_0_init_microcode(struct smu_context *smu)
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_v12_0.c b/drivers/gpu/drm/amd/powerplay/smu_v12_0.c
-index c18b08c8cb9a..93b85585fd26 100644
---- a/drivers/gpu/drm/amd/powerplay/smu_v12_0.c
-+++ b/drivers/gpu/drm/amd/powerplay/smu_v12_0.c
-@@ -88,11 +88,12 @@ smu_v12_0_send_msg_with_param(struct smu_context *smu,
- 	if (index < 0)
- 		return index;
- 
-+	mutex_lock(&smu->message_lock);
- 	ret = smu_v12_0_wait_for_response(smu);
- 	if (ret) {
- 		pr_err("Msg issuing pre-check failed and "
- 		       "SMU may be not in the right state!\n");
--		return ret;
-+		goto out;
- 	}
- 
- 	WREG32_SOC15(MP1, 0, mmMP1_SMN_C2PMSG_90, 0);
-@@ -105,17 +106,18 @@ smu_v12_0_send_msg_with_param(struct smu_context *smu,
- 	if (ret) {
- 		pr_err("Failed to send message 0x%x, response 0x%x param 0x%x\n",
- 		       index, ret, param);
--		return ret;
-+		goto out;
- 	}
- 	if (read_arg) {
- 		ret = smu_v12_0_read_arg(smu, read_arg);
- 		if (ret) {
- 			pr_err("Failed to read message arg 0x%x, response 0x%x param 0x%x\n",
- 			       index, ret, param);
--			return ret;
-+			goto out;
- 		}
- 	}
--
-+out:
-+	mutex_unlock(&smu->message_lock);
- 	return ret;
- }
- 
+v3: Re-add mutex_init to amdgpu_smu.c. It got lost in the rebase
+
+For Alex's concerns, I omitted one of them, though I can re-submit if
+it's still desired. since smu_send_smc_msg was previously around, and is
+used in lots of places, I left it alone rather than replace every
+occurance as it still makes sense to be able to safely send messages
+without arguments, without knowing that the default argument should be
+zero.
+
+Matt Coffin (3):
+  drm/amdgpu/powerplay: Refactor SMU message handling for safety
+  drm/amdgpu/powerplay: Remove deprecated smc_read_arg
+  drm/amdgpu/smu: Add message sending lock
+
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c    |  47 ++-----
+ drivers/gpu/drm/amd/powerplay/arcturus_ppt.c  |  30 +++--
+ .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h    |   4 +-
+ drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h |   5 +-
+ drivers/gpu/drm/amd/powerplay/inc/smu_v12_0.h |   5 +-
+ drivers/gpu/drm/amd/powerplay/navi10_ppt.c    |  35 ++---
+ drivers/gpu/drm/amd/powerplay/renoir_ppt.c    |  26 ++--
+ drivers/gpu/drm/amd/powerplay/smu_internal.h  |  11 +-
+ drivers/gpu/drm/amd/powerplay/smu_v11_0.c     | 120 +++++++++---------
+ drivers/gpu/drm/amd/powerplay/smu_v12_0.c     |  87 +++++++------
+ drivers/gpu/drm/amd/powerplay/vega20_ppt.c    |  69 ++++++----
+ 11 files changed, 220 insertions(+), 219 deletions(-)
+
 -- 
 2.25.0
 
