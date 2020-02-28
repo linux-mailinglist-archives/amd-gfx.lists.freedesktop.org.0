@@ -2,96 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4062173207
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2020 08:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29C6117325B
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2020 09:00:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 326326EE11;
-	Fri, 28 Feb 2020 07:47:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2444F6EE2E;
+	Fri, 28 Feb 2020 08:00:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750080.outbound.protection.outlook.com [40.107.75.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D68786EE10
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 07:47:18 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EPSd1oOroBOiq1FVOyONqtXXQrR7ZoQPzqOAThzrN93iYCVXdwRaRzvKZnHS3JSDz1EfmAURRUmPpGqxRp/BCz0QFCZDqTsuZnpLEASuXqJK8VhC8qpPyxasr0iN+DgdNPgWsAQDYQjxR2Q8QnXuhu4aJDgFAa8kzrPINENQP6ynxg9rtixehUOhEqMWQRsDQoONJSq6+K5JRPHjNz8PGGbIe5TfsS7x/8AmFEhPOu30Y4mg0ajeiCrbxHuLw5br3TOnHDN7cKWzSrLk09ErG5Libt8gWsZJ8YvKcoEkpLsVNWkD+MhpPpWtM1kgR7wTYMfiDCI+2Ct/2nwGhuukLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5hjxKW/3RMwEjtfQT/jYz4Dz/kQvreObgt5IOObreDw=;
- b=F0GtalAi3n6PFfSSkqPGuASMUKiJeRdtR+jZ/LBjYGUL1lKuOmlTrQeKaJWCcb8/FZoVFVqS9Tk0/j5IC+0b5YTsKZDGoQM4XloZqejZEfEbWHdOQYz9HrzPhAbDFpqY8le1nd8apU0bJE93GQ+U8xFeqF4Cxa99lvza4LWB7vM0T2QFYBzX+Hhr3/KOfqOEmfDdsMAszLCDlDP+aTXC3W/NY7HzKT0Ylwk0YNbLxevTvyDrSnmMaOv1O0+0SoYg4s+mwFjKaCrmA1KtaplxsWVAS+dI5RRzJogqaLw3in9Eui88GJvTr6ms8Y/LSOhpoV/hxPQxhFn75JSPIk0rrA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBBDF6EE50
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 08:00:15 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id f19so2181276wmh.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 00:00:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5hjxKW/3RMwEjtfQT/jYz4Dz/kQvreObgt5IOObreDw=;
- b=kkm0c9W1HJjVt6/cRFByriss8nKovrYGvKcJa+doP26xDLaYD5s5jPKBdLyPGPLbDcL82kVs+5MPCOuWelWl0iw6Fn01iWHIe6pHR3hrRixqf05+vGYJRBhKcVVFgjPCU5P9t3YZeqPZUM5DhMVCG1SBHmooNZwAYdpCWc0r75A=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Christian.Koenig@amd.com; 
-Received: from DM5PR12MB1705.namprd12.prod.outlook.com (2603:10b6:3:10c::22)
- by DM5PR12MB2486.namprd12.prod.outlook.com (2603:10b6:4:b2::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15; Fri, 28 Feb
- 2020 07:47:17 +0000
-Received: from DM5PR12MB1705.namprd12.prod.outlook.com
- ([fe80::d40e:7339:8605:bc92]) by DM5PR12MB1705.namprd12.prod.outlook.com
- ([fe80::d40e:7339:8605:bc92%11]) with mapi id 15.20.2772.012; Fri, 28 Feb
- 2020 07:47:17 +0000
-Subject: Re: [RFC PATCH 2/4] drm/scheduler: implement a function to modify
- sched list
-To: Luben Tuikov <luben.tuikov@amd.com>, Nirmoy Das <nirmoy.aiemd@gmail.com>, 
- amd-gfx@lists.freedesktop.org
-References: <20200227214012.3383-1-nirmoy.das@amd.com>
- <20200227214012.3383-2-nirmoy.das@amd.com>
- <46106fdd-55ed-cb09-902e-a1c0cffd7b0d@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <d87c9952-1eb8-5295-a1bc-475f5e94fc78@amd.com>
-Date: Fri, 28 Feb 2020 08:47:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-In-Reply-To: <46106fdd-55ed-cb09-902e-a1c0cffd7b0d@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: AM0PR01CA0041.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:e6::18) To DM5PR12MB1705.namprd12.prod.outlook.com
- (2603:10b6:3:10c::22)
+ d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=UuBs2+Hd3ZijsIUd+4BFI9Nm7vJa4nyEbzAyJbBYI6g=;
+ b=2HG/oIGlOwAr2Mm+dznW7fE6KJkApAZXTtYKqmeibq0CfLyJ3zGpxBwxlh5Qms0yK6
+ xAMkorM5TllA6zg7P5MJrBqeHQ4o9xu4oUQKixgs+hBcTOII/1oI8qQgRp6Acfr8FAuY
+ uSMbrspJ/WGYwvYae6ZcQQOGtgmvUu3ZLf53M7CY1Z+Y6p0LHwoqU0dG9nFRYPtnO6tS
+ LgewjWjGl24xwXu5X9RZJbklmawIJbrbWQ0bCMx2WNPvmTmMRInw6GhZaJZdRPwZpUiz
+ wHsltb2fG42V0fFCjPOkt+cO+VOm/Vy9MPLTcYleb5qrLHkRLvx9FzM2qYmDlfGcaJeZ
+ qBgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=UuBs2+Hd3ZijsIUd+4BFI9Nm7vJa4nyEbzAyJbBYI6g=;
+ b=F+UM7qHKcEyuYCgmrDEK0CqkXtvvDmUSj7CHDqq/rMmpe/tSpdUG4ZkuwlqdTA+X7t
+ Zdkrk3bQi3z+vmGb1oeBE9nvC1IlVzmpYeCPtzH6F4xvGRC5bL9fED0roMX4g1gpL6aO
+ I4Nm9ONaVBEbo51TSLgjsXf6cN2KE4Wz7oxQWFpO3HGDlIEygF2cKGAGSiPn74Gy9bp6
+ 7uybAhBMYBljMkCHSquVojKIUr6Cjhpky/IS9mx5xODVBc8e5vH+mBOJ71NG057he7Eb
+ Sx4OgNxn2lP97ZPZbunh/p6ciSSQRp9oq4JYsRrv/X/wrHP/TTzv5NWTlzJZwszotbaz
+ Cj7Q==
+X-Gm-Message-State: APjAAAV+eNIN+C5lqyy6/YfKFL0txCW3FX8mvwaAlJM5sl01oECeQmlK
+ hvwTAT/4xjLVpg82oFJBOMCIZnePheYqGLjVEcxBkg==
+X-Google-Smtp-Source: APXvYqxg+wHrxOqZlt348pf0cVqzRt3fiT4J5hZpwrt6+4iK40Av6zWOyMBPZrOaPIy+xhyASlWJYzcKeu8Qj5qDb0g=
+X-Received: by 2002:a7b:c08d:: with SMTP id r13mr3541794wmh.84.1582876814250; 
+ Fri, 28 Feb 2020 00:00:14 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- AM0PR01CA0041.eurprd01.prod.exchangelabs.com (2603:10a6:208:e6::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.14 via Frontend
- Transport; Fri, 28 Feb 2020 07:47:15 +0000
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 32b3a39b-edfc-460b-2d43-08d7bc226e98
-X-MS-TrafficTypeDiagnostic: DM5PR12MB2486:|DM5PR12MB2486:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB24866A780256C32CDDD8F79183E80@DM5PR12MB2486.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-Forefront-PRVS: 0327618309
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(366004)(39860400002)(376002)(346002)(136003)(189003)(199004)(5660300002)(316002)(8936002)(52116002)(31686004)(6666004)(66476007)(66946007)(66556008)(86362001)(53546011)(31696002)(2906002)(4326008)(36756003)(110136005)(8676002)(81166006)(81156014)(6486002)(16526019)(186003)(478600001)(2616005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2486;
- H:DM5PR12MB1705.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PQ8u6kgDjyyXWRcwfph3vL3powas68lbLh3y1iioV4MIkEqhcoxT3WzTeqHyWLggs+ctJxoyJDMGg5S6DFG2FHtrVZDLfHd57nU4ag6jAxsrBarVL0Zrk3u3ScIiN4Yt0gVcSNqzA7yUWBZ3j04Xu9Pp+c+eL1N9RfzSdlDb365SCyYvLQtdDy+bJ4u83onWaaD+toIut/ywpZhXZSSo4lRAaC6n6VBSA8cSfdNtNsQ/QURI+Bo308Z9U1IXBIeoqyn/rRibdhBh43BQK2NrAmobRYAK39L/LWysMBAKsWjZNl3S7vnSoCP3pkiPj5xouPyr/VX7Z/RuhwzsJAQHBWaD6OuYsHsGAd+/x6ORUKOz46bthpxKba9hG4o3jiqq7AwkxYqzOvv/r3gjwr2lwkZBHwuR2bJRD9wfg3SZCcq7LrGFgZOPNPpxbmW1Jn4B
-X-MS-Exchange-AntiSpam-MessageData: FhtQbF9M0K5/u9WIKSDjdHd1C4eA5m1vJWkfq/GZVPFjw5a0PMPMFnBRGfOYXHGI0mvsFoDhRCjsF12faCSY51gMMug4qtcQtAJHpW9bx1VKEoJh+GKTceDulKcn3gMrZMLUDssZlRM33j8ErhZXLhOJad+7igXFbp9xVGeLOdqw5lShV6ngcXB3csbQIv8vwTizSE7aFQ5VYBLBvIMEpA==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32b3a39b-edfc-460b-2d43-08d7bc226e98
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2020 07:47:16.8770 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: m6yWQIW3PO+B0uGW1QWXXA0qJZ1Q5XdoIU5+sLiM/0qN8No4v1L3jsoXr6VrCmSR
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2486
+References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+ <CAEdQ38Hr-L6rg80Gf18QNM7eK-QDK0BBU-9tChT6VxrP+T4qCw@mail.gmail.com>
+In-Reply-To: <CAEdQ38Hr-L6rg80Gf18QNM7eK-QDK0BBU-9tChT6VxrP+T4qCw@mail.gmail.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Fri, 28 Feb 2020 07:59:33 +0000
+Message-ID: <CAPj87rOhwLPGHaHvPrZ6j8zufO8VqiwNFoBGFjx95yHr3cBm3Q@mail.gmail.com>
+Subject: Re: gitlab.fd.o financial situation and impact on services
+To: Matt Turner <mattst88@gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,107 +61,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Ray.Huang@amd.com, nirmoy.das@amd.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "X.Org development" <xorg-devel@lists.x.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ wayland <wayland-devel@lists.freedesktop.org>,
+ "X.Org Foundation Board" <board@foundation.x.org>,
+ Xorg Members List <members@x.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>,
+ gstreamer-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjguMDIuMjAgdW0gMDY6MDggc2NocmllYiBMdWJlbiBUdWlrb3Y6Cj4gT24gMjAyMC0wMi0y
-NyA0OjQwIHAubS4sIE5pcm1veSBEYXMgd3JvdGU6Cj4+IGltcGxlbWVudCBkcm1fc2NoZWRfZW50
-aXR5X21vZGlmeV9zY2hlZCgpIHdoaWNoIGNhbiBtb2RpZnkgZXhpc3RpbmcKPj4gc2NoZWRfbGlz
-dCB3aXRoIGEgZGlmZmVyZW50IG9uZS4gVGhpcyBpcyBnb2luZyB0byBiZSBoZWxwZnVsIHdoZW4K
-Pj4gdXNlcnNwYWNlIGNoYW5nZXMgcHJpb3JpdHkgb2YgYSBjdHgvZW50aXR5IHRoZW4gZHJpdmVy
-IGNhbiBzd2l0Y2ggdG8KPj4gY29ycmVzcG9uZGluZyBodyBzaGNlZCBsaXN0IGZvciB0aGF0IHBy
-aW9yaXR5Cj4+Cj4+IFNpZ25lZC1vZmYtYnk6IE5pcm1veSBEYXMgPG5pcm1veS5kYXNAYW1kLmNv
-bT4KPj4gLS0tCj4+ICAgZHJpdmVycy9ncHUvZHJtL3NjaGVkdWxlci9zY2hlZF9lbnRpdHkuYyB8
-IDI0ICsrKysrKysrKysrKysrKysrKysrKysrKwo+PiAgIGluY2x1ZGUvZHJtL2dwdV9zY2hlZHVs
-ZXIuaCAgICAgICAgICAgICAgfCAgNCArKysrCj4+ICAgMiBmaWxlcyBjaGFuZ2VkLCAyOCBpbnNl
-cnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vc2NoZWR1bGVyL3Nj
-aGVkX2VudGl0eS5jIGIvZHJpdmVycy9ncHUvZHJtL3NjaGVkdWxlci9zY2hlZF9lbnRpdHkuYwo+
-PiBpbmRleCA2M2JjY2QyMDFiOTcuLjcxMWU5ZDUwNGJjYiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL3NjaGVkdWxlci9zY2hlZF9lbnRpdHkuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vc2NoZWR1bGVyL3NjaGVkX2VudGl0eS5jCj4+IEBAIC04Myw2ICs4MywzMCBAQCBpbnQgZHJt
-X3NjaGVkX2VudGl0eV9pbml0KHN0cnVjdCBkcm1fc2NoZWRfZW50aXR5ICplbnRpdHksCj4+ICAg
-fQo+PiAgIEVYUE9SVF9TWU1CT0woZHJtX3NjaGVkX2VudGl0eV9pbml0KTsKPj4gICAKPj4gKy8q
-Kgo+PiArICogZHJtX3NjaGVkX2VudGl0eV9tb2RpZnlfc2NoZWQgLSBNb2RpZnkgc2NoZWQgb2Yg
-YW4gZW50aXR5Cj4+ICsgKgo+PiArICogQGVudGl0eTogc2NoZWR1bGVyIGVudGl0eSB0byBpbml0
-Cj4+ICsgKiBAc2NoZWRfbGlzdDogdGhlIGxpc3Qgb2YgbmV3IGRybSBzY2hlZHMgd2hpY2ggd2ls
-bCByZXBsYWNlCj4+ICsgKgkJZXhpc3RpbmcgZW50aXR5LT5zY2hlZF9saXN0Cj4+ICsgKiBAbnVt
-X3NjaGVkX2xpc3Q6IG51bWJlciBvZiBkcm0gc2NoZWQgaW4gc2NoZWRfbGlzdAo+PiArICoKPj4g
-KyAqIFJldHVybnMgMCBvbiBzdWNjZXNzIG9yIGEgbmVnYXRpdmUgZXJyb3IgY29kZSBvbiBmYWls
-dXJlLgo+PiArICovCj4+ICtpbnQgZHJtX3NjaGVkX2VudGl0eV9tb2RpZnlfc2NoZWQoc3RydWN0
-IGRybV9zY2hlZF9lbnRpdHkgKmVudGl0eSwKPj4gKwkJCQkgIHN0cnVjdCBkcm1fZ3B1X3NjaGVk
-dWxlciAqKnNjaGVkX2xpc3QsCj4+ICsJCQkJICB1bnNpZ25lZCBpbnQgbnVtX3NjaGVkX2xpc3Qp
-Cj4+ICt7Cj4+ICsJaWYgKCEoZW50aXR5ICYmIHNjaGVkX2xpc3QgJiYgKG51bV9zY2hlZF9saXN0
-ID09IDAgfHwgc2NoZWRfbGlzdFswXSkpKQo+PiArCQlyZXR1cm4gLUVJTlZBTDsKPiBUaGlzIHNl
-ZW1zIHVubWFpbnRhaW5hYmxlLiBJJ2Qgd3JpdGUgaXQgaW4gaXRzIG5hdHVyYWwgZm9ybToKClRo
-aXMgaXMgcHJvYmFibHkganVzdCBjb3B5ICYgcGFzdGVkIGZyb20gdGhlIGluaXQgZnVuY3Rpb24g
-YW5kIGNvbXBsZXRlIApvdmVya2lsbCBoZXJlLgoKPgo+IGludCBkcm1fc2NoZWRfZW50aXR5X21v
-ZGlmeV9zY2hlZChzdHJ1Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5LAo+IAkJCQkgIHN0cnVj
-dCBkcm1fZ3B1X3NjaGVkdWxlciAqKnNjaGVkX2xpc3QsCj4gCQkJCSAgdW5zaWduZWQgaW50IG51
-bV9zY2hlZF9saXN0KQo+IHsKPiAJaWYgKGVudGl0eSAmJiBzY2hlZF9saXN0ICYmIChudW1fc2No
-ZWRfbGlzdCA9PSAwIHx8IHNjaGVkX2xpc3RbMF0gIT0gTlVMTCkpIHsKPiAJCWVudGl0eS0+c2No
-ZWRfbGlzdCA9IG51bV9zY2hlZF9saXN0ID4gMSA/IHNjaGVkX2xpc3QgOiBOVUxMOwo+IAkJZW50
-aXR5LT5udW1fc2NoZWRfbGlzdCA9IG51bV9zY2hlZF9saXN0Owo+IAkJcmV0dXJuIDA7Cj4gCX0g
-ZWxzZSB7Cj4gCQlyZXR1cm4gLUVJTlZBTDsKPiAJfQo+IH0KCkFjdHVhbGx5IHRoYXQncyBhIHJh
-dGhlciBiYWQgaWRlYS4gRXJyb3IgaGFuZGxpbmcgc2hvdWxkIGFsd2F5cyBiZSBpbiAKdGhlIGZv
-cm0gb2Y6CgppZiAoY2hlY2tfZXJyb3IgfHwgbWlzc2luZ19wcmVyZXF1aXNpdGUpCiDCoMKgwqAg
-cmV0dXJuX29yX2dvdG9fY2xlYW51cDsKCj4gVGhhdCdzIHRvbyBoZWF2eS4gQ2FuIHdlIGltcHJv
-dmUgdGhlIGFyY2hpdGVjdHVyZQo+IHNvIHdlIGRvbid0IGhhdmUgdG8gY2hlY2sgZm9yIHRoaXMg
-aW4gbGVhZiBmdW5jdGlvbnMgbGlrZSB0aGlzIG9uZT8KPiBXZSBjYW4ganVzdCByZXR1cm4gYSBw
-YXJhbWV0ZXJpemF0aW9uLgo+Cj4gV2h5IHdvdWxkIHRoaXMgYmUgY2FsbGVkIHdpdGggZW50aXR5
-IGJlaW5nIE5VTEw/Cj4gT3Igd2l0aCBzY2hlZF9saXN0IGJlaW5nIE5VTEw/IE9yIG51bV9zY2hl
-ZF9saXN0IGJlaW5nIG5vdCB6ZXJvCj4geWV0IHNjaGVkX2xpc3RbMF0gYmVpbmcgTlVMTD8gV2h5
-IG5vdCBtYWtlIHN1cmUgdGhhdCBzY2hlZF9saXN0WzBdIGlzCj4gbmV2ZXIgTlVMTCBhbmQgdGhh
-dCBudW1fc2NoZWRfbGlzdCBpcyBncmVhdGVyIHRoYW4gMCBhbHdheXM/Cj4KPiBEb2VzIHRoaXMg
-bWFrZSBpdCB0byB1c2VyIHNwYWNlPwo+IFdoeSB3b3VsZCB0aGUgc3RhdGUgb2YgZXhlY3V0aW9u
-IGJlIG9uZSBzdWNoIHRoYXQgdGhpcyBpcyB0cnVlL2ZhbHNlCj4gZm9yIHRoZSBjb2RlIHRvIHJl
-dHVybiAtRUlOVkFMPwo+ICBGcm9tIHBhdGNoIDMvNCBpdCBzZWVtcyB0aGF0IGFuIGVycm9yIGlz
-IHByaW50ZWQgaW5zaWRlIGFtZGdwdV9jdHhfcHJpb3JpdHlfb3ZlcnJpZGUoKQo+IGFuZCB0aGUg
-cmVzdWx0IGlzIG5vdCBwcm9wYWdhdGVkIHVwIHRoZSBzdGFjay4KPgo+IEkgdGhpbmsgd2Ugc2hv
-dWxkIGltcHJvdmUgdGhlIGNvZGUgd2hlcmUgaGVyZSB0aGlzIGNvbmRpdGlvbiBhYm92ZQo+IGlz
-IG5ldmVyIHRydWUuIFRoZW4gd2UgY2FuIHVzZSBwYXJhbWV0ZXJpemF0aW9uIGZvciB0aG9zZSB0
-d28KPiBzdGF0ZW1lbnRzIGJlbG93Ogo+Cj4+ICsKPj4gKwllbnRpdHktPnNjaGVkX2xpc3QgPSBu
-dW1fc2NoZWRfbGlzdCA+IDEgPyBzY2hlZF9saXN0IDogTlVMTDsKPiBTbyBpZiB3ZSdyZSBoZXJl
-LCB3ZSBrbm93IGZyb20gdGhlIHRvcCBjb25kaXRpb25hbCB0aGF0Cj4gZWl0aGVyIG51bV9zY2hl
-ZF9saXN0IGlzIDAgb3IgdGhhdCBzY2hlZF9saXN0WzBdIG5vdCBOVUxMCj4gb3IgYm90aC4KPgo+
-IFNvIGlmIG51bV9zY2hlZF9saXN0IGlzIDAgb3IgMSB3ZSByZXR1cm4gTlVMTD8KPiBBbmQgaWYg
-bnVtX3NjaGVkX2xpc3QgaXMgMiBvciBncmVhdGVyIHdlIHJldHVybiBzY2hlZF9saXN0Cj4gb2Yg
-d2hpY2ggc2NoZWRfbGlzdFswXSBjb3VsZCBiZSBOVUxMPwoKVGhpcyBpcyBhbHNvIGNvcHkmcGFz
-dGVkIGZyb20gdGhlIGluaXQgY29kZSBhbmQgY29tcGxldGVseSB3cm9uZyBoZXJlLgoKV2hhdCB3
-ZSBzaG91bGQgZG8gaW5zdGVhZCBpcyBqdXN0OiBXQVJOX09OKCFudW1fc2NoZWRfbGlzdCB8fCAh
-c2NoZWRfbGlzdCk7CgpBbmQgdG8gdGhlIGNoZWNraW5nIGZvciBub3Qga2VlcGluZyBhcm91bmQg
-dGhlIHNjaGVkdWxlciBsaXN0IGluIHRoZSAKaW5pdCBmdW5jdGlvbi4KCj4gV2h5IG5vdCBmaXgg
-dGhlIGFyY2hpdGVjdHVyZSBzbyB0aGF0IHRoaXMgaXMgc2ltcGx5IGNvcGllZD8KCldlIGhhZCB0
-aGF0IGFuZCBtb3ZlZCBhd2F5IGZyb20gaXQgYmVjYXVzZSB0aGUgc2NoZWR1bGVyIGxpc3QgaXMg
-CmFjdHVhbGx5IGNvbnN0IGFuZCBzaG91bGRuJ3QgYmUgYWxsb2NhdGVkIHdpdGggZWFjaCBlbnRp
-dHkgKHdoaWNoIHdlIGNhbiAKZWFzaWx5IGhhdmUgdGhvdXNhbmRzIG9mKS4KClJlZ2FyZHMsCkNo
-cmlzdGlhbi4KCj4gICAoaW4gd2hpY2ggY2FzZQo+IHdlIGNhbiBzaW1wbHkgaW5kZXgtcGFyYW1l
-dGVyaXplIGl0IGFuZCBzaW1wbHkgY29weSBpdC4KPiBXaHkgYXJlIHRoZXJlIHNvIG1hbnkgY2hl
-Y2tzIGV2ZXJ5d2hlcmU/Cj4KPj4gKwllbnRpdHktPm51bV9zY2hlZF9saXN0ID0gbnVtX3NjaGVk
-X2xpc3Q7Cj4+ICsKPiBJIG1lYW4sIGFsbCB3ZSdyZSBkb2luZyBpbiB0aGlzIGZ1bmN0aW9uIGlz
-IGluaXRpYWxpemluZwo+IGVudGl0eS0+c2NoZWRfbGlzdCBhbmQgZW50aXR5LT5udW1fc2NoZWRf
-bGlzdC4gV2h5IGRvZXMgdGhpcwo+IGZ1bmN0aW9uIGhhdmUgdG8gYmUgc28gY29tcGxleCBhbmQg
-ZG8gc28gbWFueSBjaGVja3M/Cj4gQ2FuIHdlIGltcHJvdmUvZml4IHRoZSBhcmNoaXRlY3R1cmUg
-aW5zdGVhZD8KPgo+IFJlZ2FyZHMsCj4gTHViZW4KPgo+Cj4+ICsJcmV0dXJuIDA7Cj4+ICt9Cj4+
-ICtFWFBPUlRfU1lNQk9MKGRybV9zY2hlZF9lbnRpdHlfbW9kaWZ5X3NjaGVkKTsKPj4gKwo+PiAg
-IC8qKgo+PiAgICAqIGRybV9zY2hlZF9lbnRpdHlfaXNfaWRsZSAtIENoZWNrIGlmIGVudGl0eSBp
-cyBpZGxlCj4+ICAgICoKPj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2dwdV9zY2hlZHVsZXIu
-aCBiL2luY2x1ZGUvZHJtL2dwdV9zY2hlZHVsZXIuaAo+PiBpbmRleCA1ODliZTg1MWY4YTEuLjBj
-MTY0YTk2ZDUxYiAxMDA2NDQKPj4gLS0tIGEvaW5jbHVkZS9kcm0vZ3B1X3NjaGVkdWxlci5oCj4+
-ICsrKyBiL2luY2x1ZGUvZHJtL2dwdV9zY2hlZHVsZXIuaAo+PiBAQCAtMjk3LDYgKzI5NywxMCBA
-QCB2b2lkIGRybV9zY2hlZF9maW5pKHN0cnVjdCBkcm1fZ3B1X3NjaGVkdWxlciAqc2NoZWQpOwo+
-PiAgIGludCBkcm1fc2NoZWRfam9iX2luaXQoc3RydWN0IGRybV9zY2hlZF9qb2IgKmpvYiwKPj4g
-ICAJCSAgICAgICBzdHJ1Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5LAo+PiAgIAkJICAgICAg
-IHZvaWQgKm93bmVyKTsKPj4gK2ludCBkcm1fc2NoZWRfZW50aXR5X21vZGlmeV9zY2hlZChzdHJ1
-Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5LAo+PiArCQkJCSAgc3RydWN0IGRybV9ncHVfc2No
-ZWR1bGVyICoqc2NoZWRfbGlzdCwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICB1bnNpZ25lZCBpbnQgbnVtX3NjaGVkX2xpc3QpOwo+PiArCj4+ICAgdm9pZCBkcm1fc2NoZWRf
-am9iX2NsZWFudXAoc3RydWN0IGRybV9zY2hlZF9qb2IgKmpvYik7Cj4+ICAgdm9pZCBkcm1fc2No
-ZWRfd2FrZXVwKHN0cnVjdCBkcm1fZ3B1X3NjaGVkdWxlciAqc2NoZWQpOwo+PiAgIHZvaWQgZHJt
-X3NjaGVkX3N0b3Aoc3RydWN0IGRybV9ncHVfc2NoZWR1bGVyICpzY2hlZCwgc3RydWN0IGRybV9z
-Y2hlZF9qb2IgKmJhZCk7Cj4+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1n
-ZngK
+Hi Matt,
+
+On Thu, 27 Feb 2020 at 23:45, Matt Turner <mattst88@gmail.com> wrote:
+> We're paying 75K USD for the bandwidth to transfer data from the
+> GitLab cloud instance. i.e., for viewing the https site, for
+> cloning/updating git repos, and for downloading CI artifacts/images to
+> the testing machines (AFAIU).
+
+I believe that in January, we had $2082 of network cost (almost
+entirely egress; ingress is basically free) and $1750 of cloud-storage
+cost (almost all of which was download). That's based on 16TB of
+cloud-storage (CI artifacts, container images, file uploads, Git LFS)
+egress and 17.9TB of other egress (the web service itself, repo
+activity). Projecting that out gives us roughly $45k of network
+activity alone, so it looks like this figure is based on a projected
+increase of ~50%.
+
+The actual compute capacity is closer to $1150/month.
+
+> I was not aware that we were being charged for anything wrt GitLab
+> hosting yet (and neither was anyone on my team at Intel that I've
+> asked). This... kind of needs to be communicated.
+>
+> A consistent concern put forth when we were discussing switching to
+> GitLab and building CI was... how do we pay for it. It felt like that
+> concern was always handwaved away. I heard many times that if we
+> needed more runners that we could just ask Google to spin up a few
+> more. If we needed testing machines they'd be donated. No one
+> mentioned that all the while we were paying for bandwidth... Perhaps
+> people building the CI would make different decisions about its
+> structure if they knew it was going to wipe out the bank account.
+
+The original answer is that GitLab themselves offered to sponsor
+enough credit on Google Cloud to get us started. They used GCP
+themselves so they could assist us (me) in getting bootstrapped, which
+was invaluable. After that, Google's open-source program office
+offered to sponsor us for $30k/year, which was I believe last April.
+Since then the service usage has increased roughly by a factor of 10,
+so our 12-month sponsorship is no longer enough to cover 12 months.
+
+> What percentage of the bandwidth is consumed by transferring CI
+> images, etc? Wouldn't 75K USD would be enough to buy all the testing
+> machines we need and host them within Google or wherever so we don't
+> need to pay for huge amounts of bandwidth?
+
+Unless the Google Cloud Platform starts offering DragonBoards, it
+wouldn't reduce our bandwidth usage as the corporate network is
+treated separately for egress.
+
+Cheers,
+Daniel
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
