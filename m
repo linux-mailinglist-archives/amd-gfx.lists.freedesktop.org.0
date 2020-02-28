@@ -2,54 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1691E1732AA
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2020 09:18:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48DEF1732BB
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2020 09:22:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E7336EE57;
-	Fri, 28 Feb 2020 08:18:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD7BD6EE56;
+	Fri, 28 Feb 2020 08:22:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13E686EE4A
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 08:18:13 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id i10so7655959wmd.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 00:18:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=hrtwUC/YhDBYyzJxltk/TqizHVfa54GZzbXBEN339JE=;
- b=DFKSJihiIibkFSmT/kIyW7RGOr7qByEjhIlNdG47exZI/VElg8ZCOZ0OlEX1OU4H74
- BRlW6KP2Umb02dkLRa45X4B94BSB0fO2I2j4zIHOG4X7A4KjRRXTZFNjSnpujXdH/fJK
- HZGl1U6n2Wr6ckgP0As/cBz0pn5UNH6+StKBpaK/LdOz3rvXDD/zzrry5aJyiMiyTARI
- 2XDPaE9BB+wFfNsLR1YaBY5+UQvrGbKMNDmAtagyvGLWL/8ZflWSto3RhdEri0s4WFGr
- AbWluOImntXaubCXSfag6+o9i8mx4pN5/UUHrT+7KE071oQqkkGwLnXbmpziIeIMtfx4
- PYcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=hrtwUC/YhDBYyzJxltk/TqizHVfa54GZzbXBEN339JE=;
- b=oH6D5h5Lpg92DFmU9Uttvd6wnsMu20mX+a8zj0twZM6nkiWS4dVxIJZ/2q0kazUuGL
- JNWsH+yDdMV8QvXefZIs9RAxb9E0p8NLF3G0wwZkOkgGUkENirLpNgGyX2Y5myVHqkNu
- 8bumhkF5uc1TdIVKi+35+/qdAHrAsfsc7x067NyisErATPqFQD1VrGPRbiymiqaXeQlG
- v1mtM6Sv9R2TkUVYzAdpKc9k67AHCc63VfCvywf+45Itz7liOa3L7nC0xGjDPtBZFXEu
- 2+waYXY653S253LLOU0Vvje7L+xQ2OiIzbXNhYtdsVfMgeuDMlWcId+4LIwxZtdTMfZN
- mo0Q==
-X-Gm-Message-State: APjAAAW/IaVxGLELSUNBkjOU9Ye6O3j3h1QTBknMHFnlv6Eh3Bb/x+ja
- 87cmUcPMxl+R1kvixf+GAUyX4GOM7C4nIlohhZwZ3Q==
-X-Google-Smtp-Source: APXvYqwALWZkAtx9oMFKzrxz7zcRqmu/NRtii7qiTuBEa3xbRKb9X8VjT3M6ZxdmzigZ59XXireQtl/vDiYJZ8a/jPk=
-X-Received: by 2002:a1c:7c11:: with SMTP id x17mr3843049wmc.168.1582877891565; 
- Fri, 28 Feb 2020 00:18:11 -0800 (PST)
+Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B2C46EE56
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 08:22:33 +0000 (UTC)
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+ by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 01S88oP1182320;
+ Fri, 28 Feb 2020 08:22:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=I+bU3dY3lxD6K6D0f4wCrSdER2Nrs6Y/9UCyyPJOhJM=;
+ b=I7tu14pcKXPM5Kv3ASR8+6QqSEJkcUwDUMhUFQf/nZ4LFuN7tmpi+b3vMFsF6Oik7FKz
+ wtaIIGkvfrrr03vVmq5fvFvj2m6+yvyciukH0IldOK0JjK5mPnkkVN8jkjcbhh8iEyhJ
+ sxzzylZKgUYCAiUjCeEqWUB5o1m9lmjdaFaI9HTG/+5UbJ5AbM4dnJjFqAtPadBvFb55
+ VH/MJkm4dd/XHmIp2zNC9Z2eM3NVVo40n+Aovqp+TJJZZcee5RjWCxqsj0wxYoavL0G5
+ Mr9cicb38vDp3DUgKQwRYf3o8ObTF4Ufb6WFynF3x1Q+jbs1LozYxD2PBPh8yesRn2ZU 9Q== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+ by userp2120.oracle.com with ESMTP id 2ydct3h99k-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 28 Feb 2020 08:22:27 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+ by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 01S8EOZj182451;
+ Fri, 28 Feb 2020 08:22:27 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+ by userp3020.oracle.com with ESMTP id 2ydj4q3d80-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 28 Feb 2020 08:22:27 +0000
+Received: from abhmp0011.oracle.com (abhmp0011.oracle.com [141.146.116.17])
+ by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 01S8MO4A022656;
+ Fri, 28 Feb 2020 08:22:25 GMT
+Received: from kili.mountain (/129.205.23.165)
+ by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Fri, 28 Feb 2020 00:22:24 -0800
+Date: Fri, 28 Feb 2020 11:22:10 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Harry Wentland <harry.wentland@amd.com>, Wyatt Wood <wyatt.wood@amd.com>
+Subject: [PATCH] drm/amd/display: Use after free in dmub_psr_destroy()
+Message-ID: <20200228080436.rmsqe3ytmxi3bwxn@kili.mountain>
 MIME-Version: 1.0
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
-In-Reply-To: <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Fri, 28 Feb 2020 08:17:30 +0000
-Message-ID: <CAPj87rM76W9y_76WUHR35NS3V4_-RFi9ZM3GA=aED3dD3hWYkg@mail.gmail.com>
-Subject: Re: [Intel-gfx] gitlab.fd.o financial situation and impact on services
-To: Dave Airlie <airlied@gmail.com>
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9544
+ signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ phishscore=0 suspectscore=0
+ spamscore=0 adultscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
+ definitions=main-2002280069
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9544
+ signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ lowpriorityscore=0 bulkscore=0
+ impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0 adultscore=0
+ phishscore=0 mlxlogscore=999 mlxscore=0 suspectscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
+ definitions=main-2002280069
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,79 +76,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- gstreamer-devel@lists.freedesktop.org
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, kernel-janitors@vger.kernel.org,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 Feb 2020 at 03:38, Dave Airlie <airlied@gmail.com> wrote:
-> b) we probably need to take a large step back here.
->
-> Look at this from a sponsor POV, why would I give X.org/fd.o
-> sponsorship money that they are just giving straight to google to pay
-> for hosting credits? Google are profiting in some minor way from these
-> hosting credits being bought by us, and I assume we aren't getting any
-> sort of discounts here. Having google sponsor the credits costs google
-> substantially less than having any other company give us money to do
-> it.
+These lines need to be re-ordered so that we don't dereference "dmub"
+after we just freed it.
 
-The last I looked, Google GCP / Amazon AWS / Azure were all pretty
-comparable in terms of what you get and what you pay for them.
-Obviously providers like Packet and Digital Ocean who offer bare-metal
-services are cheaper, but then you need to find someone who is going
-to properly administer the various machines, install decent
-monitoring, make sure that more storage is provisioned when we need
-more storage (which is basically all the time), make sure that the
-hardware is maintained in decent shape (pretty sure one of the fd.o
-machines has had a drive in imminent-failure state for the last few
-months), etc.
+Fixes: 4c1a1335dfe0 ("drm/amd/display: Driverside changes to support PSR in DMCUB")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Given the size of our service, that's a much better plan (IMO) than
-relying on someone who a) isn't an admin by trade, b) has a million
-other things to do, and c) hasn't wanted to do it for the past several
-years. But as long as that's the resources we have, then we're paying
-the cloud tradeoff, where we pay more money in exchange for fewer
-problems.
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+index 2c932c29f1f9..dc858b152c6e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+@@ -235,6 +235,6 @@ struct dmub_psr *dmub_psr_create(struct dc_context *ctx)
+  */
+ void dmub_psr_destroy(struct dmub_psr **dmub)
+ {
+-	kfree(dmub);
+ 	*dmub = NULL;
++	kfree(dmub);
+ }
+-- 
+2.11.0
 
-> If our current CI architecture is going to burn this amount of money a
-> year and we hadn't worked this out in advance of deploying it then I
-> suggest the system should be taken offline until we work out what a
-> sustainable system would look like within the budget we have, whether
-> that be never transferring containers and build artifacts from the
-> google network, just having local runner/build combos etc.
-
-Yes, we could federate everything back out so everyone runs their own
-builds and executes those. Tinderbox did something really similar to
-that IIRC; not sure if Buildbot does as well. Probably rules out
-pre-merge testing, mind.
-
-The reason we hadn't worked everything out in advance of deploying is
-because Mesa has had 3993 MRs in the not long over a year since
-moving, and a similar number in GStreamer, just taking the two biggest
-users. At the start it was 'maybe let's use MRs if you want to but
-make sure everything still goes through the list', and now it's
-something different. Similarly the CI architecture hasn't been
-'designed', so much as that people want to run dEQP and Piglit on
-their hardware pre-merge in an open fashion that's actually accessible
-to people, and have just done it.
-
-Again, if you want everything to be centrally
-designed/approved/monitored/controlled, that's a fine enough idea, and
-I'd be happy to support whoever it was who was doing that for all of
-fd.o.
-
-Cheers,
-Daniel
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
