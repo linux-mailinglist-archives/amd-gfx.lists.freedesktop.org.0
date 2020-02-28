@@ -2,33 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16904173EE2
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2020 18:51:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E783F173EE5
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2020 18:51:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A4F66F4A5;
-	Fri, 28 Feb 2020 17:51:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 405056F4A8;
+	Fri, 28 Feb 2020 17:51:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 881976EF39;
- Fri, 28 Feb 2020 11:02:44 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: kusma) with ESMTPSA id 8117329695C
-Message-ID: <6761e107fda6af2f70f0a11784e182dfbc61cb0e.camel@collabora.com>
-Subject: Re: [Mesa-dev] [Intel-gfx] gitlab.fd.o financial situation and
- impact on services
-From: Erik Faye-Lund <erik.faye-lund@collabora.com>
-To: Daniel Stone <daniel@fooishbar.org>
-Date: Fri, 28 Feb 2020 12:02:34 +0100
-In-Reply-To: <CAPj87rO7BuKQj2Kei3T7RdkFq5=TiuShBvtrPU2sn0iqMfXSTg@mail.gmail.com>
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
- <ece8ebe3-40ec-2457-02da-4fef19cbe8f6@intel.com>
- <6d2ec570f957b4504fb70e0b1f0632712a99dc0c.camel@collabora.com>
- <CAPj87rO7BuKQj2Kei3T7RdkFq5=TiuShBvtrPU2sn0iqMfXSTg@mail.gmail.com>
-User-Agent: Evolution 3.34.1-2 
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD2DD6F445;
+ Fri, 28 Feb 2020 13:08:24 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1j7fNN-00080w-Oo; Fri, 28 Feb 2020 13:08:21 +0000
+From: Colin King <colin.king@canonical.com>
+To: Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Zhou <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH][next] drm/amdkfd: fix indentation issue
+Date: Fri, 28 Feb 2020 13:08:21 +0000
+Message-Id: <20200228130821.64695-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
 X-Mailman-Approved-At: Fri, 28 Feb 2020 17:51:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -42,67 +42,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>,
- gstreamer-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2020-02-28 at 10:43 +0000, Daniel Stone wrote:
-> On Fri, 28 Feb 2020 at 10:06, Erik Faye-Lund
-> <erik.faye-lund@collabora.com> wrote:
-> > On Fri, 2020-02-28 at 11:40 +0200, Lionel Landwerlin wrote:
-> > > Yeah, changes on vulkan drivers or backend compilers should be
-> > > fairly
-> > > sandboxed.
-> > > 
-> > > We also have tools that only work for intel stuff, that should
-> > > never
-> > > trigger anything on other people's HW.
-> > > 
-> > > Could something be worked out using the tags?
-> > 
-> > I think so! We have the pre-defined environment variable
-> > CI_MERGE_REQUEST_LABELS, and we can do variable conditions:
-> > 
-> > https://docs.gitlab.com/ee/ci/yaml/#onlyvariablesexceptvariables
-> > 
-> > That sounds like a pretty neat middle-ground to me. I just hope
-> > that
-> > new pipelines are triggered if new labels are added, because not
-> > everyone is allowed to set labels, and sometimes people forget...
-> 
-> There's also this which is somewhat more robust:
-> https://gitlab.freedesktop.org/mesa/mesa/merge_requests/2569
-> 
-> 
+From: Colin Ian King <colin.king@canonical.com>
 
-I'm not sure it's more robust, but yeah that a useful tool too.
+There is a statement that is indented with spaces instead of a tab.
+Replace spaces with a tab.
 
-The reason I'm skeptical about the robustness is that we'll miss
-testing if this misses a path. That can of course be fixed by testing
-everything once things are in master, and fixing up that list when
-something breaks on master.
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The person who wrote a change knows more about the intricacies of the
-changes than a computer will ever do. But humans are also good at
-making mistakes, so I'm not sure which one is better. Maybe the union
-of both?
-
-As long as we have both rigorous testing after something landed in
-master (doesn't nessecarily need to happen right after, but for now
-that's probably fine), as well as a reasonable heuristic for what
-testing is needed pre-merge, I think we're good.
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index f547e4769831..5db42814dd51 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -490,7 +490,7 @@ static ssize_t node_show(struct kobject *kobj, struct attribute *attr,
+ 			dev->node_props.num_sdma_queues_per_engine);
+ 	sysfs_show_32bit_prop(buffer, "num_cp_queues",
+ 			dev->node_props.num_cp_queues);
+-    sysfs_show_64bit_prop(buffer, "unique_id",
++	sysfs_show_64bit_prop(buffer, "unique_id",
+ 			dev->node_props.unique_id);
+ 
+ 	if (dev->gpu) {
+-- 
+2.25.0
 
 _______________________________________________
 amd-gfx mailing list
