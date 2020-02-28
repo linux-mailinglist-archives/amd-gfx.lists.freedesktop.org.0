@@ -1,59 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F1761739F9
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2020 15:36:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 439B11739FB
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2020 15:36:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D07846E02C;
-	Fri, 28 Feb 2020 14:36:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31AFD6F467;
+	Fri, 28 Feb 2020 14:36:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ECF66E02C
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 14:36:43 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id r17so3188502wrj.7
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 06:36:43 -0800 (PST)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1FBA6F465
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 14:36:45 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id y17so3201281wrn.6
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 06:36:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=l6TVBawHJgOYJ4qWLYR5BxnF65qUEdirsfdOJKMig60=;
- b=tkDTQRZkzIVY+Xdl1YDI44DrReXwnKpknrhyCSz4aDt0dLyaTgAS7YSJ8Wbi9kcrW1
- nhZtQohTmloW5wFFV+NIgL2j2bJ7YhPho6rx0gVy+llJYw1genX0976C/U2mJCLSgtxC
- VsL0/VZoGcNiaWmZk9wVlnd9eVLxImwC78pul2KCgqGVgfhvYB2GGA+tjGB2IsRSh5/4
- 6gjVjROzDvOrsowpxrRYdcmqe991ADKMyNab9QPzim5oYMEth+RuNRt9kleZraloACXQ
- vmrJEMX7QD8CB6SHFVjVpitfUN6hXDwrgaJ84WAnlgiPDB8wt457KLStxET1+wu0KbDN
- sQ6w==
+ bh=o3iZYv9aTcsoC53P0H04vS89Spx+uIGkCYyAmss2CB0=;
+ b=uJBuwLiEXZuN35XT0GIICZGreJx0RdfxfBmdRrEWOL/N5RZ101b8XHx8veb0oJAlp4
+ VRDQB+GNpobfktaZv+CPMsgAbjlemEeDGmXWmgxcGudE0K88febKwZZlpERo2x5Mqr7L
+ ukQXPQuyh2OdjIhUQRiynoA6b1RVHfknnckFwTvqAFRe0r1Empgaz43wcV7GvYkKDbSS
+ 4C8bIk121bhgJfVIxumjV7gDYSLpDP6EG+FTEYvBbwk8/eUy9Ku/VUUYJGcTM1g95e9p
+ aBD0c50eBbRs6zOsKMTpQ1gZOoUkFdkzlPD7yeiIWbL2/PySmPV/V2M3fTNAJF8yVr9Y
+ kVOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=l6TVBawHJgOYJ4qWLYR5BxnF65qUEdirsfdOJKMig60=;
- b=mjqzKtE/LZqqBDGIaqtNTSeaYvzxZ3X49xNXo8S7u8tr/ZG2QEXkeMY1NsR5vZ3qoq
- TKz83fhTxOaVvCPFK1jLJo9pG2N0CdLsvDN7c1VeDNTPvFSfzwoidf/BbQsZvHZHzUzC
- 7ZqR4x1zTtd0fX8b0OhSFYaI2DNBDhv7kZB8yO9ZviOVGW8zp3K5umQgM8nKd7uPZJYW
- TGyagm845SIXmGm9jD4WBHN3k+wWoGvJZC+5iFdjQevCbqfuj/ZGUhogV/lBZisphGh5
- hEDlLTQ8rSp06dTUxYz8BYogVkpTh2j6h5pQLGGHkj6iq5fcjbcUVX3FLkKoiahpsA7i
- o9Cw==
-X-Gm-Message-State: APjAAAXi12vXUmF3HUCtBj2J0z5zGK2cTX3lAngj91FCZKrA1vl+KwCO
- DYJT78RSzfKd4SUkLcBCOYDJIIWzMGljmg==
-X-Google-Smtp-Source: APXvYqx1+7GC0f84uNLa47ZO+Kuwb7RP0jSR439mvAq11u4L9kCN+UR3Okbgh/STy4qleANsJGN53w==
-X-Received: by 2002:adf:ee86:: with SMTP id b6mr4972912wro.282.1582900601320; 
- Fri, 28 Feb 2020 06:36:41 -0800 (PST)
+ bh=o3iZYv9aTcsoC53P0H04vS89Spx+uIGkCYyAmss2CB0=;
+ b=rOmX+sXPo1H+FRSuN3rWN6JWVqPkYw0/ypw0tPnUGxXeGqi+W59fvXTNWarRJQS5fi
+ WoWFEKDgCjFhte2p4kvZ5a40AwE0071PVP6GescaUNOdCklYH4JxYRkdfTHHYlwwsnXW
+ 6b9/uxf3L7DW7DbUuVV0OazGa4k9ZNQGQnFQcngmpOkYSi1FK96AWNn7wlHd/PiP45fs
+ chh72/JWKuKRKvdS+kBd6f22jNzc37Y752GgnheVikxc0BS72rPVCgoaoD5DgYXiRzK9
+ U+SyraeNu8kc29ymqlvdnPQHQ5YK5+3ZUFeZvg7ZGUNPnE2Tp9kRKzxMO1lrYABIfYCv
+ KIHg==
+X-Gm-Message-State: APjAAAWvcZC1GDQO1qaCPbVDLtFtnAyhshR5wc5WXI3aMdR6K4I89iS9
+ lqej2+WFOjhJZW3qgLRvOCdgA6sVtke3oQ==
+X-Google-Smtp-Source: APXvYqz5oft+2OPJPhUxRDbzYHDPO6b1+1JUYHYpL+C6UDcLhhzyF/d1zTpMOK/P6nFGSWI+CNbQYg==
+X-Received: by 2002:adf:ea85:: with SMTP id s5mr5045156wrm.75.1582900604303;
+ Fri, 28 Feb 2020 06:36:44 -0800 (PST)
 Received: from brihaspati.fritz.box
  (p200300C58F28EF00805E149DBFE09C45.dip0.t-ipconnect.de.
  [2003:c5:8f28:ef00:805e:149d:bfe0:9c45])
- by smtp.gmail.com with ESMTPSA id m125sm2445471wmf.8.2020.02.28.06.36.40
+ by smtp.gmail.com with ESMTPSA id m125sm2445471wmf.8.2020.02.28.06.36.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Feb 2020 06:36:40 -0800 (PST)
+ Fri, 28 Feb 2020 06:36:41 -0800 (PST)
 From: Nirmoy Das <nirmoy.aiemd@gmail.com>
 X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v2 2/4] drm/scheduler: implement a function to modify sched
- list
-Date: Fri, 28 Feb 2020 15:39:39 +0100
-Message-Id: <20200228143941.4919-2-nirmoy.das@amd.com>
+Subject: [PATCH v2 3/4] drm/amdgpu: change hw sched list on ctx priority
+ override
+Date: Fri, 28 Feb 2020 15:39:40 +0100
+Message-Id: <20200228143941.4919-3-nirmoy.das@amd.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200228143941.4919-1-nirmoy.das@amd.com>
 References: <20200228143941.4919-1-nirmoy.das@amd.com>
@@ -76,62 +76,61 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-implement drm_sched_entity_modify_sched() which can modify existing
-sched_list with a different one. This is going to be helpful when
-userspace changes priority of a ctx/entity then driver can switch to
-corresponding hw shced list for that priority
+Switch to appropriate sched list for an entity on priority override.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
 ---
- drivers/gpu/drm/scheduler/sched_entity.c | 19 +++++++++++++++++++
- include/drm/gpu_scheduler.h              |  4 ++++
- 2 files changed, 23 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 27 +++++++++++++++++++++----
+ 1 file changed, 23 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index 63bccd201b97..b94312154e56 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -83,6 +83,25 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index b21771b37300..3744c689affc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -502,6 +502,27 @@ struct dma_fence *amdgpu_ctx_get_fence(struct amdgpu_ctx *ctx,
+ 	return fence;
  }
- EXPORT_SYMBOL(drm_sched_entity_init);
 
-+/**
-+ * drm_sched_entity_modify_sched - Modify sched of an entity
-+ *
-+ * @entity: scheduler entity to init
-+ * @sched_list: the list of new drm scheds which will replace
-+ *		existing entity->sched_list
-+ * @num_sched_list: number of drm sched in sched_list
-+ */
-+void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
-+				  struct drm_gpu_scheduler **sched_list,
-+				  unsigned int num_sched_list)
++static void amdgpu_ctx_set_entity_priority(struct amdgpu_ctx *ctx,
++				   struct amdgpu_ctx_entity *aentity,
++				   int hw_ip, enum drm_sched_priority priority)
 +{
-+	WARN_ON(!num_sched_list || !sched_list);
++	struct amdgpu_device *adev = ctx->adev;
++	struct drm_gpu_scheduler **scheds = NULL;
++	unsigned num_scheds = 0;
 +
-+	entity->sched_list = sched_list;
-+	entity->num_sched_list = num_sched_list;
++	switch (hw_ip) {
++	case AMDGPU_HW_IP_COMPUTE:
++		scheds = adev->gfx.compute_prio_sched[priority];
++		num_scheds = adev->gfx.num_compute_sched[priority];
++		break;
++	default:
++		return;
++	}
++
++	drm_sched_entity_modify_sched(&aentity->entity, scheds, num_scheds);
++	drm_sched_entity_set_priority(&aentity->entity, priority);
 +}
-+EXPORT_SYMBOL(drm_sched_entity_modify_sched);
 +
- /**
-  * drm_sched_entity_is_idle - Check if entity is idle
-  *
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 589be851f8a1..f70a84aaaf7a 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -297,6 +297,10 @@ void drm_sched_fini(struct drm_gpu_scheduler *sched);
- int drm_sched_job_init(struct drm_sched_job *job,
- 		       struct drm_sched_entity *entity,
- 		       void *owner);
-+void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
-+				  struct drm_gpu_scheduler **sched_list,
-+                                  unsigned int num_sched_list);
-+
- void drm_sched_job_cleanup(struct drm_sched_job *job);
- void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
- void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
+ void amdgpu_ctx_priority_override(struct amdgpu_ctx *ctx,
+ 				  enum drm_sched_priority priority)
+ {
+@@ -514,13 +535,11 @@ void amdgpu_ctx_priority_override(struct amdgpu_ctx *ctx,
+ 			ctx->init_priority : ctx->override_priority;
+ 	for (i = 0; i < AMDGPU_HW_IP_NUM; ++i) {
+ 		for (j = 0; j < amdgpu_ctx_num_entities[i]; ++j) {
+-			struct drm_sched_entity *entity;
+-
+ 			if (!ctx->entities[i][j])
+ 				continue;
+
+-			entity = &ctx->entities[i][j]->entity;
+-			drm_sched_entity_set_priority(entity, ctx_prio);
++			amdgpu_ctx_set_entity_priority(ctx, ctx->entities[i][j],
++						       i, ctx_prio);
+ 		}
+ 	}
+ }
 --
 2.25.0
 
