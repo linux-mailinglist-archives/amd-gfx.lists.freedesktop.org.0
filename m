@@ -2,91 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2145175446
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 08:08:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9A61755C8
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 09:19:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB136E0AC;
-	Mon,  2 Mar 2020 07:08:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECB276E116;
+	Mon,  2 Mar 2020 08:19:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2043.outbound.protection.outlook.com [40.107.236.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 912126E0AC
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 07:08:28 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GOqB8qbPH3xc0nPgQM6HcDrcIyNwiV4rVp/1YEOv6W1pkvzwhTMeskuUoItLS0ZfD/Q8oO+tOzSEm3PzwOEOlIjFIcpyvqpg1gTjtvCYdj4DTzXMHkrhd/BVrfR7HfJVEZ8UOmvsJa7Xr/hQl0j2knwXUbtqDtOLHdtIy7HAM/BLCc1MZZPFXhmUXLn5MJVARzXqsV6ce6MwflrX3sPuM3Tax9sclPU9fmsXFNrx7l8Bvxruv35cJqHOJcucbxWfRON1PXBCDQKeAsVNUBs9Rt4liChE8ig3pSHWgSd7jDVI19Sd8HcxtOUVkuUo5JNeXc192E66bCC1bzJlxsx76g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sB7xu4QHRUrUwypilsjKXcO16hZoVOF6qUIavpGXqdo=;
- b=JdX7lmQ01qRFuW3NSAos6j2Nue2yZEMJoQKz/IxrwU0HG5ckC3p+EqbpvTt2V6wfOP0WZcjpn7u8ou1X5XnVMuMnGocS+S3QPyRPyF+9zu0LlRAL2GGgRIOXogHx3iosdCcZ/ukB68qmMJSLjZf7s2RQUpz3nw67fsLi3lqXHeKNijVvJp6tgtyktnrRfNUiefawP8kBRh3s6rWkJ4quuj/hBn6pxqRPpfwpSV9Foq1xPncfCJT8BBDH3PCMqr/d4sc6qCk+bbS2TBRgwwedvkA/nWJFZSI+j8x6VkX0D5c76Y9BMM/tnKDx9WBKZrLMvgpA3CwzETMD4GEBcJ775Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sB7xu4QHRUrUwypilsjKXcO16hZoVOF6qUIavpGXqdo=;
- b=Nut56lX5p5Qp4YdjciiHAspsK/WNKLvc4KLvD25NQ/R/76jrzL9zQu62e7lnirGUM1v5I4xhaPQJOOMTCGRNgXAVF1W+7eFWXDZe3RumC0ZoKKx2uFiwur9M+h7uSwQEy3eIQBHeyte4p13N4V+FePNHQbvi3IL7VnXtoBkEr+8=
-Received: from DM6PR14CA0050.namprd14.prod.outlook.com (2603:10b6:5:18f::27)
- by DM5PR12MB2376.namprd12.prod.outlook.com (2603:10b6:4:b9::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.19; Mon, 2 Mar
- 2020 07:08:26 +0000
-Received: from DM6NAM11FT060.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:18f:cafe::5c) by DM6PR14CA0050.outlook.office365.com
- (2603:10b6:5:18f::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.18 via Frontend
- Transport; Mon, 2 Mar 2020 07:08:26 +0000
-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- DM6NAM11FT060.mail.protection.outlook.com (10.13.173.63) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 07:08:25 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Mon, 2 Mar 2020
- 01:08:25 -0600
-Received: from gamma.amd.com (10.180.168.240) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Mon, 2 Mar 2020 01:08:24 -0600
-From: Tiecheng Zhou <Tiecheng.Zhou@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu/sriov: skip programing some regs with new L1 policy
-Date: Mon, 2 Mar 2020 15:08:06 +0800
-Message-ID: <20200302070806.32034-1-Tiecheng.Zhou@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
+ [IPv6:2a00:1450:4864:20::331])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7251A6E394;
+ Sat, 29 Feb 2020 18:14:08 +0000 (UTC)
+Received: by mail-wm1-x331.google.com with SMTP id u9so949660wml.3;
+ Sat, 29 Feb 2020 10:14:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=/YOqBOlJrUI1flDmCuCHKMLtepW5A1wxOXV1iaBg5Zg=;
+ b=Xw6Smsm8KtPM8OC991PrJ6I786aMOsrvMXt1LNA+ZTZjcWFCTSRhzx4E7eerOI+a8j
+ oirw2M/flraj1u+/g0rD4SlLa1fFaOxplRfeTh6WwIyFi/ubTU/zJE1TL5zj5sKiGhoS
+ hg+9wP+nO8f8NMjraZpQ8zxLltzT4MOn9OmU8o80FXyP+9sUr9tHjF4Dl7QMkvPubXC9
+ aXVrj/nt2PHVkvdzjUSvnKEi1IC5JIm917IFIdb8ZOQOctwNbo1HObb+J35cRrUH3OaP
+ l0S0RzxJ2gCGYIZN2NjBayG9byD+NmRtGE5cxMINgLXSl28hs1Q1Z/mK4NJzO4CFRILw
+ Gktw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=/YOqBOlJrUI1flDmCuCHKMLtepW5A1wxOXV1iaBg5Zg=;
+ b=KjZxRb+ow7AYVhTESjeVLfUkGEUXXvVj4NkjyJaeG++/63+gHGpnP1oGvjfa9lRKex
+ rGlrQW2ByE/bDo/3MU5c3tdEmckpsvHn7fXrfWVtar5i45q1BVMHgB6GgGAXmsZnZVYr
+ Zyh2ExXO1dKLx7ro6fO4OlYb7TQwURhWqkHRaQm0W7pmTuu9ORpNc9nW1Q7L6RqPhyJc
+ mO/gaqFVmsbwWkjjnhIrgD1DaXLDGj3UDrBZwiOcNT5/Pn+E8NB/wG78odJVZIlg22uw
+ anYSYJaZHh/rdHe2LR4Sj52aY8xTJDxcW0RwYlkcfRVqKr64VF0eT2C1+dCzlfVOyRRf
+ lq8w==
+X-Gm-Message-State: APjAAAW8qTFugrlUKM2EEtGXdP1hRd4FF4WEm6hWQ2SH1juBMBT0IYqd
+ 4DhCaD78xsHgy9dTP5vO0Q4=
+X-Google-Smtp-Source: APXvYqyRtFe1dg/neYu3kj9xZXUEpYq4gJN/mXtTelG04QTVkriVeOk06WCBQ0T+b6cxQbLv5W5Jyw==
+X-Received: by 2002:a1c:bc46:: with SMTP id m67mr10367591wmf.40.1583000047136; 
+ Sat, 29 Feb 2020 10:14:07 -0800 (PST)
+Received: from Timur-XPS ([2a02:ab88:3846:1b00:9eb6:d0ff:fe89:c25f])
+ by smtp.gmail.com with ESMTPSA id i8sm12579747wrq.10.2020.02.29.10.14.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 29 Feb 2020 10:14:06 -0800 (PST)
+Message-ID: <59f4ea1f13a9a9d37f7801b93061b4ae7dd595e2.camel@gmail.com>
+Subject: Re: [Mesa-dev] [Intel-gfx] gitlab.fd.o financial situation and
+ impact on services
+From: Timur =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
+To: Daniel Stone <daniel@fooishbar.org>, Erik Faye-Lund
+ <erik.faye-lund@collabora.com>
+Date: Sat, 29 Feb 2020 19:14:04 +0100
+In-Reply-To: <CAPj87rO7BuKQj2Kei3T7RdkFq5=TiuShBvtrPU2sn0iqMfXSTg@mail.gmail.com>
+References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+ <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
+ <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
+ <ece8ebe3-40ec-2457-02da-4fef19cbe8f6@intel.com>
+ <6d2ec570f957b4504fb70e0b1f0632712a99dc0c.camel@collabora.com>
+ <CAPj87rO7BuKQj2Kei3T7RdkFq5=TiuShBvtrPU2sn0iqMfXSTg@mail.gmail.com>
+User-Agent: Evolution 3.34.3 (3.34.3-1.fc31) 
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
- SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(396003)(346002)(376002)(39860400002)(428003)(199004)(189003)(2616005)(36756003)(8676002)(81156014)(2906002)(8936002)(81166006)(4326008)(336012)(1076003)(478600001)(7696005)(186003)(316002)(26005)(6916009)(70206006)(6666004)(70586007)(426003)(86362001)(5660300002)(356004);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB2376; H:SATLEXMB02.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7d74835f-6c98-498b-c42b-08d7be7880a4
-X-MS-TrafficTypeDiagnostic: DM5PR12MB2376:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB23764D01321EFAD166B0A1A5E4E70@DM5PR12MB2376.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
-X-Forefront-PRVS: 033054F29A
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OBamhWQHlzKIEB+/8UociJ3Zh1k6J/bQ8iysN6F5MynylxFrPmN6GSjPmr9EgLWOxpehx0IuwbhkzXH5/naXj6DvlA3I836RYwp9uSoORImUXqQHhLvkLtrfAOpdCBOC/Lm49722uHuIwoyJIsGTbYZDjbDjzxHW9XNpneiKkuWaGKYq2iB2X0HG6aODPiRZoJFMHHa9Ayg3pOjST0ioIHZUC+EOK398t7jQ9Axwjnewz6woSFmZcIaA7h9rbdYrMfxZ2Z/3zFTpHpRQqnBUtWimplEJbCWPwJrkwEgBvK94WZzaZK5wUSytJKRgRKgnxVohjCTqyoPoJGhFLCng8MBPMBkubpL0xJ5gHBbILF9YyoxZ/svS32Gyj1hlBaI3dt6hirxG5Gyy4SR4nWgDjVTNckZCnYSLnEQlloqOpNiXvOvUZqTefy75wAaWR9ZR
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 07:08:25.8899 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d74835f-6c98-498b-c42b-08d7be7880a4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2376
+X-Mailman-Approved-At: Mon, 02 Mar 2020 08:19:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,158 +73,67 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tiecheng.Zhou@amd.com
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "X.Org development" <xorg-devel@lists.x.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ wayland <wayland-devel@lists.freedesktop.org>,
+ "X.Org Foundation Board" <board@foundation.x.org>,
+ Xorg Members List <members@x.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ gstreamer-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-With new L1 policy, some regs are blocked at guest and they are
-programed at host side. So skip programing the regs under sriov.
+On Fri, 2020-02-28 at 10:43 +0000, Daniel Stone wrote:
+> On Fri, 28 Feb 2020 at 10:06, Erik Faye-Lund
+> <erik.faye-lund@collabora.com> wrote:
+> > On Fri, 2020-02-28 at 11:40 +0200, Lionel Landwerlin wrote:
+> > > Yeah, changes on vulkan drivers or backend compilers should be
+> > > fairly
+> > > sandboxed.
+> > > 
+> > > We also have tools that only work for intel stuff, that should
+> > > never
+> > > trigger anything on other people's HW.
+> > > 
+> > > Could something be worked out using the tags?
+> > 
+> > I think so! We have the pre-defined environment variable
+> > CI_MERGE_REQUEST_LABELS, and we can do variable conditions:
+> > 
+> > https://docs.gitlab.com/ee/ci/yaml/#onlyvariablesexceptvariables
+> > 
+> > That sounds like a pretty neat middle-ground to me. I just hope
+> > that
+> > new pipelines are triggered if new labels are added, because not
+> > everyone is allowed to set labels, and sometimes people forget...
+> 
+> There's also this which is somewhat more robust:
+> https://gitlab.freedesktop.org/mesa/mesa/merge_requests/2569
 
-the regs are:
-GCMC_VM_FB_LOCATION_TOP
-GCMC_VM_FB_LOCATION_BASE
-MMMC_VM_FB_LOCATION_TOP
-MMMC_VM_FB_LOCATION_BASE
-GCMC_VM_SYSTEM_APERTURE_HIGH_ADDR
-GCMC_VM_SYSTEM_APERTURE_LOW_ADDR
-MMMC_VM_SYSTEM_APERTURE_HIGH_ADDR
-MMMC_VM_SYSTEM_APERTURE_LOW_ADDR
-HDP_NONSURFACE_BASE
-HDP_NONSURFACE_BASE_HI
-GCMC_VM_AGP_TOP
-GCMC_VM_AGP_BOT
-GCMC_VM_AGP_BASE
+My 20 cents:
 
-Signed-off-by: Tiecheng Zhou <Tiecheng.Zhou@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c | 55 +++++++++++-------------
- drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c  | 29 ++++++-------
- 2 files changed, 37 insertions(+), 47 deletions(-)
+1. I think we should completely disable running the CI on MRs which are
+marked WIP. Speaking from personal experience, I usually make a lot of
+changes to my MRs before they are merged, so it is a waste of CI
+resources.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
-index e0654a216ab5..cc866c367939 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
-@@ -81,24 +81,31 @@ static void gfxhub_v2_0_init_system_aperture_regs(struct amdgpu_device *adev)
- {
- 	uint64_t value;
- 
--	/* Disable AGP. */
--	WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_BASE, 0);
--	WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_TOP, 0);
--	WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_BOT, 0x00FFFFFF);
--
--	/* Program the system aperture low logical page number. */
--	WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_LOW_ADDR,
--		     adev->gmc.vram_start >> 18);
--	WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR,
--		     adev->gmc.vram_end >> 18);
--
--	/* Set default page address. */
--	value = adev->vram_scratch.gpu_addr - adev->gmc.vram_start
--		+ adev->vm_manager.vram_base_offset;
--	WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_LSB,
--		     (u32)(value >> 12));
--	WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_MSB,
--		     (u32)(value >> 44));
-+	if (!amdgpu_sriov_vf(adev)) {
-+		/*
-+		 * the new L1 policy will block SRIOV guest from writing
-+		 * these regs, and they will be programed at host.
-+		 * so skip programing these regs.
-+		 */
-+		/* Disable AGP. */
-+		WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_BASE, 0);
-+		WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_TOP, 0);
-+		WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_BOT, 0x00FFFFFF);
-+
-+		/* Program the system aperture low logical page number. */
-+		WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_LOW_ADDR,
-+			     adev->gmc.vram_start >> 18);
-+		WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR,
-+			     adev->gmc.vram_end >> 18);
-+
-+		/* Set default page address. */
-+		value = adev->vram_scratch.gpu_addr - adev->gmc.vram_start
-+			+ adev->vm_manager.vram_base_offset;
-+		WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_LSB,
-+			     (u32)(value >> 12));
-+		WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_MSB,
-+			     (u32)(value >> 44));
-+	}
- 
- 	/* Program "protection fault". */
- 	WREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_LO32,
-@@ -260,18 +267,6 @@ static void gfxhub_v2_0_program_invalidation(struct amdgpu_device *adev)
- 
- int gfxhub_v2_0_gart_enable(struct amdgpu_device *adev)
- {
--	if (amdgpu_sriov_vf(adev)) {
--		/*
--		 * GCMC_VM_FB_LOCATION_BASE/TOP is NULL for VF, becuase they are
--		 * VF copy registers so vbios post doesn't program them, for
--		 * SRIOV driver need to program them
--		 */
--		WREG32_SOC15(GC, 0, mmGCMC_VM_FB_LOCATION_BASE,
--			     adev->gmc.vram_start >> 24);
--		WREG32_SOC15(GC, 0, mmGCMC_VM_FB_LOCATION_TOP,
--			     adev->gmc.vram_end >> 24);
--	}
--
- 	/* GART Enable. */
- 	gfxhub_v2_0_init_gart_aperture_regs(adev);
- 	gfxhub_v2_0_init_system_aperture_regs(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-index bde189680521..fb3f228458e5 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-@@ -72,11 +72,18 @@ static void mmhub_v2_0_init_system_aperture_regs(struct amdgpu_device *adev)
- 	WREG32_SOC15(MMHUB, 0, mmMMMC_VM_AGP_TOP, 0);
- 	WREG32_SOC15(MMHUB, 0, mmMMMC_VM_AGP_BOT, 0x00FFFFFF);
- 
--	/* Program the system aperture low logical page number. */
--	WREG32_SOC15(MMHUB, 0, mmMMMC_VM_SYSTEM_APERTURE_LOW_ADDR,
--		     adev->gmc.vram_start >> 18);
--	WREG32_SOC15(MMHUB, 0, mmMMMC_VM_SYSTEM_APERTURE_HIGH_ADDR,
--		     adev->gmc.vram_end >> 18);
-+	if (!amdgpu_sriov_vf(adev)) {
-+		/*
-+		 * the new L1 policy will block SRIOV guest from writing
-+		 * these regs, and they will be programed at host.
-+		 * so skip programing these regs.
-+		 */
-+		/* Program the system aperture low logical page number. */
-+		WREG32_SOC15(MMHUB, 0, mmMMMC_VM_SYSTEM_APERTURE_LOW_ADDR,
-+			     adev->gmc.vram_start >> 18);
-+		WREG32_SOC15(MMHUB, 0, mmMMMC_VM_SYSTEM_APERTURE_HIGH_ADDR,
-+			     adev->gmc.vram_end >> 18);
-+	}
- 
- 	/* Set default page address. */
- 	value = adev->vram_scratch.gpu_addr - adev->gmc.vram_start +
-@@ -247,18 +254,6 @@ static void mmhub_v2_0_program_invalidation(struct amdgpu_device *adev)
- 
- int mmhub_v2_0_gart_enable(struct amdgpu_device *adev)
- {
--	if (amdgpu_sriov_vf(adev)) {
--		/*
--		 * MMMC_VM_FB_LOCATION_BASE/TOP is NULL for VF, becuase they are
--		 * VF copy registers so vbios post doesn't program them, for
--		 * SRIOV driver need to program them
--		 */
--		WREG32_SOC15(MMHUB, 0, mmMMMC_VM_FB_LOCATION_BASE,
--			     adev->gmc.vram_start >> 24);
--		WREG32_SOC15(MMHUB, 0, mmMMMC_VM_FB_LOCATION_TOP,
--			     adev->gmc.vram_end >> 24);
--	}
--
- 	/* GART Enable. */
- 	mmhub_v2_0_init_gart_aperture_regs(adev);
- 	mmhub_v2_0_init_system_aperture_regs(adev);
--- 
-2.17.1
+2. Maybe we could take this one step further and only allow the CI to
+be only triggered manually instead of automatically on every push.
+
+3. I completely agree with Pierre-Eric on MR 2569, let's not run the
+full CI pipeline on every change, only those parts which are affected
+by the change. It not only costs money, but is also frustrating when
+you submit a change and you get unrelated failures from a completely
+unrelated driver.
+
+Best regards,
+Timur
 
 _______________________________________________
 amd-gfx mailing list
