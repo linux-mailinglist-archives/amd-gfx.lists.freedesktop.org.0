@@ -2,38 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38DE8175F5A
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26772176048
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B54BA6E554;
-	Mon,  2 Mar 2020 16:18:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A075E6E5BD;
+	Mon,  2 Mar 2020 16:47:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-40134.protonmail.ch (mail-40134.protonmail.ch
- [185.70.40.134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B22206E530
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:08:43 +0000 (UTC)
-Date: Mon, 02 Mar 2020 16:08:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me; s=proton;
- t=1583165321; bh=iSz9D4BaSeSiRRWSvn9TL3x9mu2IRPBCLNzvEIW7tC0=;
- h=Date:To:From:Reply-To:Subject:Feedback-ID:From;
- b=neiMV4tAyJrpw5VH5KUB2oEEK3Jua+AW62ycMtNbWHIqyqypzTHtIIS4uccvvZewK
- fcXrr1PaeGLld+jDZWLB0HLgadyEfTPmS6emv2/ikP34mASMp/0eRpBMonR+2GRdwW
- X/Le/3mdLfBFAMBSp9nGlWLrmlBzKL85Vy/jXbeg9W62Q76bzPIGEQagPvrBTcF3BO
- SYrb6TO4fOGdfyvD1KFZn5JENnmzRenSH6lDRsaE0P4lr+m5GV+BJgZ1OPLKdWcnGl
- D6JdaHMW4eAX2GiSxZG9XGH08CvuO2+df4PAEP6UJ6l6xcBdWbF1Dl7iSqR1peO//Q
- mTNaGBdoD3hsw==
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-From: Josh Fuhs <Joshua.Fuhs@pm.me>
-Subject: Problem w/ OpenCL and amdgpu w/ ASRock Challenger 5700 XT
-Message-ID: <pLJ94m2EVdRP_9hakGSs10rU_yB2JxRChSrGz7Zg6YBDxXJdRO8KdsYeup57jRfqMW_7T7hm_hutblaK8UIsLz3SIsfZnEZGm4qH8xwbB1E=@pm.me>
-Feedback-ID: Z662AikR9l0kvOVYg-m6awgxgDvAwWrs2Bm3gEUXm9LfoVZ1m76tPXUIXwvGIf4o-c-y35FVaJ-GCj--pnTrbw==:Ext:ProtonMail
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on20602.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe59::602])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40AB76E5BE
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:47:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lgPnzUMwqql6Y9YWbhzhptTyy3ZQT1LOFCnjmjLrO0mno/0hPUOAIpp51pg73T1+IPbLKPnzprrMXJ41JWIzWfh9qBBg+cgqJit5SYN/goO/K0cB2EhIfHd33hhUPzKX0GHURAObgBqZ+Yi01lHVzqCrSK8w5JKke/ydZuvdbrUoglO+ElrJlmgDb1Jlvpl2OiFiMRYJDNTPeCrcbPprUYM+nDleHTDqq8iMl7+Vi+nXWE/Oc3oyPSDbhe1AzSOk9hxZHtELYmvFQ0eN+nF/rY7OL0mdnRKINGGVQkET7YnxG4gvYuCuXc+ZVofNVjoBFmaYkx1A7oZ4bS33xw7wDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kzeLYsX+Gq/A9htoMNs6Hfce/aC04bC5uCRwHx9RRAM=;
+ b=cJ3r4nlobKr4a9Drk78cy5FopXOVQlr1D+k6yS5ZU+UpxyTvL5oEERn0C3CFDlDn5peB4Jn1MS/1FvJ6CDZeDDDwwcXw/TDTf4Xf//ZCpssSMo8fxF2eNvCPZFKkKF9ZrjtFXGWzc0TtMO+qrbC0WZLrcGR5DteNivDd60TFVdExZan/9EFCn+CyaCdHz+g8dwFj6+NGZkU9j8iBB+XNgaCDX2DmmCdWIyYzZh34pXTJHv1S+e8lEAmRZ0wzW0ovQJxCKJcVsZx4SYv/K5kiPBbXkLLq3jx//KSvwbHzsQFCXa/K2J+e/oD4vFSBvU+w08yGWB3ZGCwehyFV5Dof/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kzeLYsX+Gq/A9htoMNs6Hfce/aC04bC5uCRwHx9RRAM=;
+ b=lwco5f6IXnlN3JRfJ/8ODbsMBPAc3upJbtlCkzHmgy4ToeB2ylVfEdaUH980jPnXlgq8OHIQQjnNV6+JEBsmzyRfum+90El/Og3JbNsYDU3eZIaglETxAwpkHxU09xjB3m1+pidrlM7tYIRCZyzAMFeeyPipuY/XQxBs5vp1Xas=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
+Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
+ by MW2PR12MB2540.namprd12.prod.outlook.com (2603:10b6:907:7::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15; Mon, 2 Mar
+ 2020 16:47:49 +0000
+Received: from MW2PR12MB2524.namprd12.prod.outlook.com
+ ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
+ ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2772.019; Mon, 2 Mar 2020
+ 16:47:49 +0000
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 00/22] DC Patches March 02, 2020
+Date: Mon,  2 Mar 2020 11:47:14 -0500
+Message-Id: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-ClientProxiedBy: YTBPR01CA0021.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:14::34) To MW2PR12MB2524.namprd12.prod.outlook.com
+ (2603:10b6:907:9::27)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=7.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HTML_MESSAGE,WEIRD_QUOTING
- shortcircuit=no autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on mail.protonmail.ch
-X-Mailman-Approved-At: Mon, 02 Mar 2020 16:18:32 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from atma2.amd.com (165.204.55.250) by
+ YTBPR01CA0021.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::34) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:47:48 +0000
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [165.204.55.250]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: edf1ef35-35ea-48b2-9dce-08d7bec97100
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2540:|MW2PR12MB2540:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MW2PR12MB25400F81C6E05941E6C2077D98E70@MW2PR12MB2540.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:525;
+X-Forefront-PRVS: 033054F29A
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(39860400002)(376002)(366004)(346002)(396003)(189003)(199004)(316002)(7696005)(52116002)(8936002)(6486002)(86362001)(6666004)(36756003)(81166006)(81156014)(8676002)(1076003)(5660300002)(16526019)(2616005)(4326008)(2906002)(186003)(956004)(478600001)(6916009)(66556008)(66946007)(66476007)(26005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2540;
+ H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uykorVb2ZcxY/ZzpKl2uVMgmkU7eeAY8Wm+rqVn/wpo1+rS+iaP0odm+YQ4OyUE373Was3fDD756IP4GDL26BfbNM7+4j05qj40OVRV9hu4rRRduECOeSES73hJVNNn4xkcJDwS8jgCqMmpgTG6eGIw61lcwFCWloUZbScR+ISkis4jH9EBAC7RlgHnNecfScN97YUQSVdiJbCOkpOHtYFCFUdXw4gF6nuUuQBxhpBmhKCgugwXS5KFRkQ/BH9NLOMVNapm/vLEbwpKOcjYHg8xWVJQSHMK6vLLoNFu7zr6OdNxVnKuGBDajyDYCQiJvUJr5Q/T8P6zwfgf/SBG9puJuLYbxuP1ID/dz/1k+nAOo+z083humOCvdqMCRRPWSaeKJuesjn+Chpjm9CguSFo8TipEtBgevRqPfgQhg/OdsbXqPQd2Ka2HweSdCZCIj
+X-MS-Exchange-AntiSpam-MessageData: yR11+xgovuRz4EIAwd9HGxiWrAiaGoiUa/nLBZ6p/R2gkISPg4KAW6c1x60Tie3S49kUFaCVcwAq3EglWmESb/4v74Whx9sqLTK5UxplruFelI6+3t4bEH8HxVkO2q4QoqDMjgJaxtNPCsg0u0O1Vg==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: edf1ef35-35ea-48b2-9dce-08d7bec97100
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:47:49.2172 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hSrojATxvbx8jP/3ISm+2LqnE0+9S0yui5jrdpQaHC7AQaodbclUcFvTlyJaGVQKe2cO+mXohXqJKHikpBdLHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2540
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,110 +95,116 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Josh Fuhs <Joshua.Fuhs@pm.me>
-Content-Type: multipart/mixed; boundary="===============1959971524=="
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Rodrigo.Siqueira@amd.com,
+ Harry.Wentland@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
+This DC patchset brings improvements in multiple areas. In summary, we
+highlight:
 
---===============1959971524==
-Content-Type: multipart/alternative;
-	boundary="b1_9cefd88827ce1939084e44750f8a840b"
+* Improvements on link training
+* fixes on odm, dcc, and logger
+* Improvements on DMCUB
 
-This is a multi-part message in MIME format.
+Aric Cyr (1):
+  drm/amd/display: 3.2.75
 
---b1_9cefd88827ce1939084e44750f8a840b
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+Bhawanpreet Lakha (1):
+  drm/amd/display: Clear link settings on MST disable connector
 
-SGVsbG8sCgpJJ20gaGF2aW5nIGRpZmZpY3VsdHkgZ2V0dGluZyBPcGVuQ0wgdG8gc2VlIGFuIEFT
-Um9jayA1NzAwIFhUIEdQVS4gSSBoYXZlIGdvdHRlbiB0aGlzIHRvIHdvcmsgd2l0aCBhIFNhcHBo
-aXJlIGNhcmQsIHdoaWNoIEkgaGF2ZSBiZWVuIHVzaW5nIGFzIGEgcG9pbnQgb2YgY29tcGFyaXNv
-biBvbiBhIGRpZmZlcmVudCBzeXN0ZW0uCgpXaXRoIGFtZGdwdS0xOS41MCBhbmQga2VybmVsIDUu
-NS42IG9yIDUuNnJjMywgY2xpbmZvIChlaXRoZXIgdmlhIGFtZGdwdSBvciBzdGFuZGFyZCkgcmVw
-b3J0cyB6ZXJvIGRldmljZXMgYXZhaWxhYmxlLgoKVGhlIGtlcm5lbCBmb3VuZCB0aGUgQVNSb2Nr
-IGNhcmQgYW5kIGZpbGxzIG91dCB0aGUgL3N5cy9jbGFzcy9kcm0vY2FyZFggZmlsZXN5c3RlbSBq
-dXN0IGxpa2UgdGhlIFNhcHBoaXJlIGNhcmQuIEkgc2VlIG5vIGVycm9ycyBpbiB0aGUgbG9ncyB3
-aXRoIHJlc3BlY3QgdG8gYW1kZ3B1LgoKT3V0cHV0IG9mICdsc3BjaSAtbm4gfCBncmVwICJWR0Ei
-JzoKCiIiIgo4MzowMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRyb2xsZXIgWzAzMDBdOiBBZHZhbmNl
-ZCBNaWNybyBEZXZpY2VzLCBJbmMuIFtBTUQvQVRJXSBEZXZpY2UgWzEwMDI6NzMxZl0gKHJldiBj
-MSkKYzI6MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyIFswMzAwXTogQVNQRUVEIFRlY2hu
-b2xvZ3ksIEluYy4gQVNQRUVEIEdyYXBoaWNzIEZhbWlseSBbMWEwMzoyMDAwXSAocmV2IDQxKQoi
-IiIKClBhcnRpYWwgb3V0cHV0IG9mIGNsaW5mbzoKCiIiIgpQbGF0Zm9ybSBOYW1lICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICBBTUQgQWNjZWxlcmF0ZWQgUGFyYWxsZWwgUHJvY2Vz
-c2luZwpOdW1iZXIgb2YgZGV2aWNlcyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAK
-IiIiIgoKU29tZXRoaW5nIHRoYXQgbG9va3Mgb2RkIGJldHdlZW4gdGhlIGNhcmRzOgoKQVNSb2Nr
-OgpwY2llX2J3OiA5MjIzMzcyMTY2MDUyNTk5OTExIDQxOTQzMDQgMjU2CgpTYXBwaGlyZToKcGNp
-ZV9idzogNDE5NzU2OCAxODQ0NjYzNzAzNjcwMzg3NDQ4OCAyNTYKCklmIHlvdSBrbm93IG9mIGFu
-eSB0b29scyB0aGF0IHdvdWxkIGhlbHAgbWUgdG8gZGlhZ25vc2UgdGhlIHByb2JsZW0sIG9yIGlm
-IHRoZXJlIGlzIGEgYmV0dGVyIHBsYWNlIHRvIGFzaywgYW55IHBvaW50ZXJzIHdvdWxkIGJlIGFw
-cHJlY2lhdGVkLgoKVGhhbmtzIGZvciB5b3VyIGhlbHAuCgpKb3NoCgpUaGFua3MgZm9yIGFsbCB0
-aGUgaGVscC4KCkpvc2g=
+Eric Bernstein (1):
+  drm/amd/display: Fix default logger mask definition
 
+George Shen (1):
+  drm/amd/display: Workaround to do HDCP authentication twice on certain
+    displays
 
---b1_9cefd88827ce1939084e44750f8a840b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+Isabel Zhang (1):
+  drm/amd/display: Move mod_hdcp_displays to mod_hdcp struct
 
-PGRpdj48ZGl2PkhlbGxvLDxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkknbSBoYXZpbmcg
-ZGlmZmljdWx0eSBnZXR0aW5nIE9wZW5DTCB0byBzZWUgYW4gQVNSb2NrIDU3MDAgWFQgR1BVLiBJ
-IGhhdmUgZ290dGVuIHRoaXMgdG8gd29yayB3aXRoIGEgU2FwcGhpcmUgY2FyZCwgd2hpY2ggSSBo
-YXZlIGJlZW4gdXNpbmcgYXMgYSBwb2ludCBvZiBjb21wYXJpc29uIG9uIGEgZGlmZmVyZW50IHN5
-c3RlbS48YnI+PGJyPldpdGggYW1kZ3B1LTE5LjUwIGFuZCBrZXJuZWwgNS41LjYgb3IgNS42cmMz
-LCBjbGluZm8gKGVpdGhlciB2aWEgYW1kZ3B1IG9yIHN0YW5kYXJkKSByZXBvcnRzIHplcm8gZGV2
-aWNlcyBhdmFpbGFibGUuPGJyPjwvZGl2PjwvZGl2PjxkaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5U
-aGUga2VybmVsIGZvdW5kIHRoZSBBU1JvY2sgY2FyZCBhbmQgZmlsbHMgb3V0IHRoZSAvc3lzL2Ns
-YXNzL2RybS9jYXJkWCBmaWxlc3lzdGVtIGp1c3QgbGlrZSB0aGUgU2FwcGhpcmUgY2FyZC4gSSBz
-ZWUgbm8gZXJyb3JzIGluIHRoZSBsb2dzIHdpdGggcmVzcGVjdCB0byBhbWRncHUuPGJyPjwvZGl2
-PjxkaXY+PGJyPjwvZGl2PjxkaXY+T3V0cHV0IG9mICdsc3BjaSAtbm4gfCBncmVwICJWR0EiJzo8
-YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj4iIiI8YnI+PC9kaXY+PC9kaXY+PGRpdj44Mzow
-MC4wIFZHQSBjb21wYXRpYmxlIGNvbnRyb2xsZXIgWzAzMDBdOiBBZHZhbmNlZCBNaWNybyBEZXZp
-Y2VzLCBJbmMuIFtBTUQvQVRJXSBEZXZpY2UgWzEwMDI6NzMxZl0gKHJldiBjMSk8YnI+PC9kaXY+
-PGRpdj5jMjowMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRyb2xsZXIgWzAzMDBdOiBBU1BFRUQgVGVj
-aG5vbG9neSwgSW5jLiBBU1BFRUQgR3JhcGhpY3MgRmFtaWx5IFsxYTAzOjIwMDBdIChyZXYgNDEp
-PGJyPjwvZGl2PjxkaXY+PGRpdj4iIiI8YnI+PC9kaXY+PGRpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
-PlBhcnRpYWwgb3V0cHV0IG9mIGNsaW5mbzo8YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+IiIiPGJy
-PjwvZGl2PjxkaXY+PGRpdj48ZGl2PjxkaXY+UGxhdGZvcm0gTmFtZSZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyBBTUQgQWNjZWxlcmF0ZWQgUGFyYWxsZWwgUHJvY2Vzc2luZzxicj48
-L2Rpdj48L2Rpdj48ZGl2Pk51bWJlciBvZiBkZXZpY2VzJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDA8
-YnI+PC9kaXY+PC9kaXY+PGRpdj4iIiIiPGJyPjwvZGl2PjxkaXY+PGRpdj48ZGl2Pjxicj48L2Rp
-dj48L2Rpdj48ZGl2PlNvbWV0aGluZyB0aGF0IGxvb2tzIG9kZCBiZXR3ZWVuIHRoZSBjYXJkczo8
-YnI+PC9kaXY+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5BU1JvY2s6PGJyPjwvZGl2PjxkaXY+
-cGNpZV9idzogOTIyMzM3MjE2NjA1MjU5OTkxMSA0MTk0MzA0IDI1Njxicj48L2Rpdj48ZGl2Pjxi
-cj48L2Rpdj48ZGl2PlNhcHBoaXJlOjxicj48L2Rpdj48ZGl2PnBjaWVfYnc6IDQxOTc1NjggMTg0
-NDY2MzcwMzY3MDM4NzQ0ODggMjU2PGJyPjwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+
-SWYgeW91IGtub3cgb2YmbmJzcDthbnkgdG9vbHMgdGhhdCB3b3VsZCBoZWxwIG1lIHRvIGRpYWdu
-b3NlIHRoZSBwcm9ibGVtLCBvciBpZiB0aGVyZSBpcyBhIGJldHRlciBwbGFjZSB0byBhc2ssIGFu
-eSBwb2ludGVycyB3b3VsZCBiZSBhcHByZWNpYXRlZC48YnI+PC9kaXY+PC9kaXY+PGRpdj48ZGl2
-Pjxicj5UaGFua3MgZm9yIHlvdXIgaGVscC48YnI+PGJyPkpvc2g8YnI+PC9kaXY+PC9kaXY+PGRp
-diBjbGFzcz0icHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2sgcHJvdG9ubWFpbF9zaWduYXR1cmVf
-YmxvY2stZW1wdHkiPjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLXVzZXIg
-cHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2stZW1wdHkiPjxicj48L2Rpdj48ZGl2Pjxicj48YnI+
-VGhhbmtzIGZvciBhbGwgdGhlIGhlbHAuPGJyPjxicj5Kb3NoPGJyPjwvZGl2PjwvZGl2PjxkaXY+
-PGJyPjwvZGl2Pg==
+Joseph Gravenor (1):
+  drm/amd/display: add worst case dcc meta pitch to fake plane
 
+Josip Pavic (1):
+  drm/amd/display: fix dcc swath size calculations on dcn1
 
+Martin Leung (1):
+  drm/amd/display: Link training TPS1 workaround add back in dpcd
 
---b1_9cefd88827ce1939084e44750f8a840b--
+Michael Strauss (1):
+  drm/amd/display: Disable freesync borderless on Renoir
 
+Nikola Cornij (1):
+  drm/amd/display: Add 'disable FEC for specific monitor' infrastructure
+    to DC
 
---===============1959971524==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Roman Li (1):
+  drm/amd/display: fix typo "to found" -> "to find"
+
+Sung Lee (3):
+  drm/amd/display: Make clock table struct more accessible
+  drm/amd/display: Remove DISPCLK Limit Floor for Certain SMU Versions
+  drm/amd/display: Set clock optimization required after update clocks
+
+Wenjing Liu (4):
+  drm/amd/display: only include FEC overhead if both asic and display
+    support FEC
+  drm/amd/display: add vsc update support for test pattern request
+  drm/amd/display: program DPG_OFFSET_SEGMENT for odm_pipe
+  drm/amd/display: fix image corruption with ODM 2:1 DSC 2 slice
+
+Wyatt Wood (2):
+  drm/amd/display: Add driver support for enabling PSR on DMCUB
+  drm/amd/display: Add ABM command structs to DMCUB
+
+Yongqiang Sun (1):
+  drm/amd/display: change number of cursor policy for dml calculation.
+
+abdoulaye berthe (1):
+  drm/amd/display: set lttpr mode before link settings
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 16 ++--
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  1 +
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |  8 ++
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 14 ++-
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 96 ++++++++++++-------
+ .../drm/amd/display/dc/core/dc_link_hwss.c    |  2 +
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  4 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |  4 +-
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |  3 +
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |  1 +
+ .../drm/amd/display/dc/dcn10/dcn10_hubbub.c   |  4 +-
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c |  6 +-
+ .../drm/amd/display/dc/dcn10/dcn10_resource.c |  4 +-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c  |  2 +-
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 14 ++-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_opp.c  |  8 +-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_opp.h  |  9 +-
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c | 21 ++--
+ .../drm/amd/display/dc/dcn20/dcn20_resource.h |  2 +-
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c | 22 ++++-
+ .../amd/display/dc/dml/display_mode_structs.h |  3 +-
+ .../gpu/drm/amd/display/dc/inc/core_types.h   |  2 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h   |  1 +
+ .../drm/amd/display/dc/inc/hw/link_encoder.h  |  1 +
+ drivers/gpu/drm/amd/display/dc/inc/hw/opp.h   |  3 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 52 ++++++++++
+ .../drm/amd/display/dmub/inc/dmub_cmd_dal.h   |  9 ++
+ .../drm/amd/display/include/logger_types.h    | 63 ++++++------
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.c   | 12 +--
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.h   | 21 ++--
+ .../display/modules/hdcp/hdcp1_transition.c   |  3 +
+ .../drm/amd/display/modules/hdcp/hdcp_psp.c   | 32 +++----
+ .../drm/amd/display/modules/inc/mod_hdcp.h    |  3 +-
+ 33 files changed, 303 insertions(+), 143 deletions(-)
+
+-- 
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1959971524==--
-
