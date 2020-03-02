@@ -2,50 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26772176048
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6339176045
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:47:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A075E6E5BD;
-	Mon,  2 Mar 2020 16:47:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43ACF6E5B9;
+	Mon,  2 Mar 2020 16:47:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on20602.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe59::602])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40AB76E5BE
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:47:54 +0000 (UTC)
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+ (mail-eopbgr750074.outbound.protection.outlook.com [40.107.75.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A2976E5B6
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:47:52 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lgPnzUMwqql6Y9YWbhzhptTyy3ZQT1LOFCnjmjLrO0mno/0hPUOAIpp51pg73T1+IPbLKPnzprrMXJ41JWIzWfh9qBBg+cgqJit5SYN/goO/K0cB2EhIfHd33hhUPzKX0GHURAObgBqZ+Yi01lHVzqCrSK8w5JKke/ydZuvdbrUoglO+ElrJlmgDb1Jlvpl2OiFiMRYJDNTPeCrcbPprUYM+nDleHTDqq8iMl7+Vi+nXWE/Oc3oyPSDbhe1AzSOk9hxZHtELYmvFQ0eN+nF/rY7OL0mdnRKINGGVQkET7YnxG4gvYuCuXc+ZVofNVjoBFmaYkx1A7oZ4bS33xw7wDQ==
+ b=bSMA3+PQ3N0YX+nz+scy06mMEvKm+1ttpNIc50K5I358ckqzWdJQBPa6VgqZBKahqcJHvQMTHsXAJT8eQHH5ckBJ2bQYfc5h3In5unCAGzFmsf6PzXrJgJXoFyiGpudaOEIJCG5O2W1JXIyOAO9dLBtosEl+WHl2dVGka1LKNVFwofor788sMjamufh/WmwB4W0lQYMQ/ICgcI3hp0SuQQu+A3uAGnpHxYCREt6KTiiJNhgYigJmHY6ybqoZuJKpl5jAaWxTPP4jFik7CSFUwcegt0UpyhNUINmgecvp8h3E7C/wsIJge0PAletxUZpEvuaGCKjCXgBpT/7E0kh/JQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kzeLYsX+Gq/A9htoMNs6Hfce/aC04bC5uCRwHx9RRAM=;
- b=cJ3r4nlobKr4a9Drk78cy5FopXOVQlr1D+k6yS5ZU+UpxyTvL5oEERn0C3CFDlDn5peB4Jn1MS/1FvJ6CDZeDDDwwcXw/TDTf4Xf//ZCpssSMo8fxF2eNvCPZFKkKF9ZrjtFXGWzc0TtMO+qrbC0WZLrcGR5DteNivDd60TFVdExZan/9EFCn+CyaCdHz+g8dwFj6+NGZkU9j8iBB+XNgaCDX2DmmCdWIyYzZh34pXTJHv1S+e8lEAmRZ0wzW0ovQJxCKJcVsZx4SYv/K5kiPBbXkLLq3jx//KSvwbHzsQFCXa/K2J+e/oD4vFSBvU+w08yGWB3ZGCwehyFV5Dof/g==
+ bh=Goe1XO0DCg3YO21xfqVktBWFHVDLpUjS9C7X0sUFUGw=;
+ b=myFCebG1Xpau+ut1rDz4PRR1bX10o0BGjHyy5z4M4lRIBDhWggfDHXwsBIohS+9uM1sx59pOfWjBAIe5BOR+uzwjB3FthPoZpv23eQ7OxUYpQ61jBnOxgA1zFxxRLLFmxtp1NzYn5dIuqmM7kfEF2MSxpGU7fLZBYqY0TXzFwQLOR1OpDiTX9aKePFfnZMTsR+QTW+iD9039jp3BgjFH/I36UfWj37Q7ZG3o164dM+2GaZ07POvd9QMdtnfAVH1s4Hu9Zb8R5pDp3edYlWFtOfcU0BSlVOh70A8sY24Z98BZcZTpdpqBWP2p7A3hT+fFbX43ZIVBshLBnivE/8/vqw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kzeLYsX+Gq/A9htoMNs6Hfce/aC04bC5uCRwHx9RRAM=;
- b=lwco5f6IXnlN3JRfJ/8ODbsMBPAc3upJbtlCkzHmgy4ToeB2ylVfEdaUH980jPnXlgq8OHIQQjnNV6+JEBsmzyRfum+90El/Og3JbNsYDU3eZIaglETxAwpkHxU09xjB3m1+pidrlM7tYIRCZyzAMFeeyPipuY/XQxBs5vp1Xas=
+ bh=Goe1XO0DCg3YO21xfqVktBWFHVDLpUjS9C7X0sUFUGw=;
+ b=A0KR2QPAcMDAAG/l31f2FX8BSsxnfGK/MaHjnFn0aE5acQdtNxE/2IfO87sXEBrs96YJpov2ECqmM7uy59JSQQDs2ktIAI38m94kWfCKSyk2Cc3AbGNGuN6tSNgngrTSPnJNpQma4umYjynzZwGJCecQL6TTaHvtlD6QkKajovw=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
- by MW2PR12MB2540.namprd12.prod.outlook.com (2603:10b6:907:7::20) with
+ by MW2PR12MB2411.namprd12.prod.outlook.com (2603:10b6:907:10::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15; Mon, 2 Mar
- 2020 16:47:49 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.19; Mon, 2 Mar
+ 2020 16:47:50 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2772.019; Mon, 2 Mar 2020
- 16:47:49 +0000
+ 16:47:50 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 00/22] DC Patches March 02, 2020
-Date: Mon,  2 Mar 2020 11:47:14 -0500
-Message-Id: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 01/22] drm/amd/display: Link training TPS1 workaround add back
+ in dpcd
+Date: Mon,  2 Mar 2020 11:47:15 -0500
+Message-Id: <20200302164736.89429-2-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
+References: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
 X-ClientProxiedBy: YTBPR01CA0021.CANPRD01.PROD.OUTLOOK.COM
  (2603:10b6:b01:14::34) To MW2PR12MB2524.namprd12.prod.outlook.com
  (2603:10b6:907:9::27)
@@ -54,36 +56,36 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.amd.com (165.204.55.250) by
  YTBPR01CA0021.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::34) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:47:48 +0000
+ 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:47:49 +0000
 X-Mailer: git-send-email 2.25.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: edf1ef35-35ea-48b2-9dce-08d7bec97100
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2540:|MW2PR12MB2540:
+X-MS-Office365-Filtering-Correlation-Id: a70f2922-85d8-48c1-6836-08d7bec97192
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2411:|MW2PR12MB2411:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB25400F81C6E05941E6C2077D98E70@MW2PR12MB2540.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:525;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2411BE926685DF25853EF00D98E70@MW2PR12MB2411.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-Forefront-PRVS: 033054F29A
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(39860400002)(376002)(366004)(346002)(396003)(189003)(199004)(316002)(7696005)(52116002)(8936002)(6486002)(86362001)(6666004)(36756003)(81166006)(81156014)(8676002)(1076003)(5660300002)(16526019)(2616005)(4326008)(2906002)(186003)(956004)(478600001)(6916009)(66556008)(66946007)(66476007)(26005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2540;
+ SFS:(10009020)(4636009)(39860400002)(396003)(346002)(136003)(376002)(366004)(199004)(189003)(66946007)(6916009)(6666004)(54906003)(8676002)(316002)(4326008)(66556008)(478600001)(36756003)(66476007)(8936002)(2616005)(1076003)(956004)(81156014)(186003)(81166006)(16526019)(86362001)(2906002)(52116002)(7696005)(26005)(6486002)(5660300002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2411;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ PTR:InfoNoRecords; A:1; MX:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uykorVb2ZcxY/ZzpKl2uVMgmkU7eeAY8Wm+rqVn/wpo1+rS+iaP0odm+YQ4OyUE373Was3fDD756IP4GDL26BfbNM7+4j05qj40OVRV9hu4rRRduECOeSES73hJVNNn4xkcJDwS8jgCqMmpgTG6eGIw61lcwFCWloUZbScR+ISkis4jH9EBAC7RlgHnNecfScN97YUQSVdiJbCOkpOHtYFCFUdXw4gF6nuUuQBxhpBmhKCgugwXS5KFRkQ/BH9NLOMVNapm/vLEbwpKOcjYHg8xWVJQSHMK6vLLoNFu7zr6OdNxVnKuGBDajyDYCQiJvUJr5Q/T8P6zwfgf/SBG9puJuLYbxuP1ID/dz/1k+nAOo+z083humOCvdqMCRRPWSaeKJuesjn+Chpjm9CguSFo8TipEtBgevRqPfgQhg/OdsbXqPQd2Ka2HweSdCZCIj
-X-MS-Exchange-AntiSpam-MessageData: yR11+xgovuRz4EIAwd9HGxiWrAiaGoiUa/nLBZ6p/R2gkISPg4KAW6c1x60Tie3S49kUFaCVcwAq3EglWmESb/4v74Whx9sqLTK5UxplruFelI6+3t4bEH8HxVkO2q4QoqDMjgJaxtNPCsg0u0O1Vg==
+X-Microsoft-Antispam-Message-Info: XtH19L/gwTNlu4UGOmlFX1zFsnq1KYcmF7FpmhVG8tGctGQMCmHkpf8zMn+OqW2x6Lxy2TDO2qIkz0ssX1tkfgcTxYlo/QCnjwe7BxgfxwSTow8zFQHplc9AfEVW7mcgG45Za63p1euB9g0V7+LMEOD7wqNzpp4SOYuNLeUCQUeJYvuceOlH/W25RfLtMLmuCnWlTfg1orMnp+59+z/mgaSFJODpPkcfiXz/U2wNDwGUQgqRiCUdDGWycdFiQOQFknUoahvYQijPiy5HPgWoOVC9VnqEjjBGa2USpOOv5JGgsy2+Kr0iixgwOh3VEDSIxk3ZC9oAoGaffNKBWoYnc2bptOLvVnqGDoYL1wnpblyBg33i1y7YCb+aOL0BO+XTK/ypL/PZMtAvOPcF5KpQ5OL0iTmz1quqKhxIoLN+0S6OxwJOcGcmCgsmjzKh/lVX
+X-MS-Exchange-AntiSpam-MessageData: tKJdBoRsqIFAornTCO1V7qvBnKnIe8h0wm2z5lmLJsoWokS07eLNgF/sChfwaIPLvgyLfZG7VQVXxGEP6BYWNU0nNSZuTF0SA+38dWYeMgoWYn7WkOMO3BUL/B+71zpXMN52QZWcAukYRMBe49Z4NA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: edf1ef35-35ea-48b2-9dce-08d7bec97100
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:47:49.2172 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a70f2922-85d8-48c1-6836-08d7bec97192
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:47:50.2227 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hSrojATxvbx8jP/3ISm+2LqnE0+9S0yui5jrdpQaHC7AQaodbclUcFvTlyJaGVQKe2cO+mXohXqJKHikpBdLHg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2540
+X-MS-Exchange-CrossTenant-UserPrincipalName: RpsN0tt9RMuBX7Ri6mJHlosQwqWkhC8+hQuSOzOKovFQaPVytem6VhWNUFX6WMAWysX6pBEf+A1xTQbvfO0gHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2411
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,112 +97,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Rodrigo.Siqueira@amd.com,
- Harry.Wentland@amd.com
+Cc: David Galiffi <David.Galiffi@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Martin Leung <martin.leung@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This DC patchset brings improvements in multiple areas. In summary, we
-highlight:
+From: Martin Leung <martin.leung@amd.com>
 
-* Improvements on link training
-* fixes on odm, dcc, and logger
-* Improvements on DMCUB
+[Why]
+Previously implemented early_cr_pattern we mistook dp_hw_link_settings
+for a redundant call of dpcd_set_link_settings
 
-Aric Cyr (1):
-  drm/amd/display: 3.2.75
+[How]
+revert the changes to dpcd_set_link_settings calls for this workaround.
+Do not need to revert the entire change since it only affects patched
+case
 
-Bhawanpreet Lakha (1):
-  drm/amd/display: Clear link settings on MST disable connector
+Signed-off-by: Martin Leung <martin.leung@amd.com>
+Reviewed-by: David Galiffi <David.Galiffi@amd.com>
+Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-Eric Bernstein (1):
-  drm/amd/display: Fix default logger mask definition
-
-George Shen (1):
-  drm/amd/display: Workaround to do HDCP authentication twice on certain
-    displays
-
-Isabel Zhang (1):
-  drm/amd/display: Move mod_hdcp_displays to mod_hdcp struct
-
-Joseph Gravenor (1):
-  drm/amd/display: add worst case dcc meta pitch to fake plane
-
-Josip Pavic (1):
-  drm/amd/display: fix dcc swath size calculations on dcn1
-
-Martin Leung (1):
-  drm/amd/display: Link training TPS1 workaround add back in dpcd
-
-Michael Strauss (1):
-  drm/amd/display: Disable freesync borderless on Renoir
-
-Nikola Cornij (1):
-  drm/amd/display: Add 'disable FEC for specific monitor' infrastructure
-    to DC
-
-Roman Li (1):
-  drm/amd/display: fix typo "to found" -> "to find"
-
-Sung Lee (3):
-  drm/amd/display: Make clock table struct more accessible
-  drm/amd/display: Remove DISPCLK Limit Floor for Certain SMU Versions
-  drm/amd/display: Set clock optimization required after update clocks
-
-Wenjing Liu (4):
-  drm/amd/display: only include FEC overhead if both asic and display
-    support FEC
-  drm/amd/display: add vsc update support for test pattern request
-  drm/amd/display: program DPG_OFFSET_SEGMENT for odm_pipe
-  drm/amd/display: fix image corruption with ODM 2:1 DSC 2 slice
-
-Wyatt Wood (2):
-  drm/amd/display: Add driver support for enabling PSR on DMCUB
-  drm/amd/display: Add ABM command structs to DMCUB
-
-Yongqiang Sun (1):
-  drm/amd/display: change number of cursor policy for dml calculation.
-
-abdoulaye berthe (1):
-  drm/amd/display: set lttpr mode before link settings
-
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 16 ++--
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  1 +
- .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |  8 ++
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 14 ++-
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 96 ++++++++++++-------
- .../drm/amd/display/dc/core/dc_link_hwss.c    |  2 +
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  4 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |  4 +-
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  3 +
- drivers/gpu/drm/amd/display/dc/dc_types.h     |  1 +
- .../drm/amd/display/dc/dcn10/dcn10_hubbub.c   |  4 +-
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c |  6 +-
- .../drm/amd/display/dc/dcn10/dcn10_resource.c |  4 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c  |  2 +-
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 14 ++-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_opp.c  |  8 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_opp.h  |  9 +-
- .../drm/amd/display/dc/dcn20/dcn20_resource.c | 21 ++--
- .../drm/amd/display/dc/dcn20/dcn20_resource.h |  2 +-
- .../drm/amd/display/dc/dcn21/dcn21_resource.c | 22 ++++-
- .../amd/display/dc/dml/display_mode_structs.h |  3 +-
- .../gpu/drm/amd/display/dc/inc/core_types.h   |  2 +-
- drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h   |  1 +
- .../drm/amd/display/dc/inc/hw/link_encoder.h  |  1 +
- drivers/gpu/drm/amd/display/dc/inc/hw/opp.h   |  3 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 52 ++++++++++
- .../drm/amd/display/dmub/inc/dmub_cmd_dal.h   |  9 ++
- .../drm/amd/display/include/logger_types.h    | 63 ++++++------
- .../gpu/drm/amd/display/modules/hdcp/hdcp.c   | 12 +--
- .../gpu/drm/amd/display/modules/hdcp/hdcp.h   | 21 ++--
- .../display/modules/hdcp/hdcp1_transition.c   |  3 +
- .../drm/amd/display/modules/hdcp/hdcp_psp.c   | 32 +++----
- .../drm/amd/display/modules/inc/mod_hdcp.h    |  3 +-
- 33 files changed, 303 insertions(+), 143 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 93127bc90f3c..5aa3de9644ea 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -1446,11 +1446,11 @@ enum link_training_result dc_link_dp_perform_link_training(
+ 			&link->preferred_training_settings,
+ 			&lt_settings);
+ 
+-	/* 1. set link rate, lane count and spread. */
+ 	if (link->ctx->dc->work_arounds.lt_early_cr_pattern)
+ 		start_clock_recovery_pattern_early(link, &lt_settings, DPRX);
+-	else
+-		dpcd_set_link_settings(link, &lt_settings);
++
++	/* 1. set link rate, lane count and spread. */
++	dpcd_set_link_settings(link, &lt_settings);
+ 
+ 	if (link->preferred_training_settings.fec_enable != NULL)
+ 		fec_enable = *link->preferred_training_settings.fec_enable;
+@@ -1669,11 +1669,11 @@ enum link_training_result dc_link_dp_sync_lt_attempt(
+ 	dp_set_panel_mode(link, panel_mode);
+ 
+ 	/* Attempt to train with given link training settings */
+-	/* Set link rate, lane count and spread. */
+ 	if (link->ctx->dc->work_arounds.lt_early_cr_pattern)
+ 		start_clock_recovery_pattern_early(link, &lt_settings, DPRX);
+-	else
+-		dpcd_set_link_settings(link, &lt_settings);
++
++	/* Set link rate, lane count and spread. */
++	dpcd_set_link_settings(link, &lt_settings);
+ 
+ 	/* 2. perform link training (set link training done
+ 	 *  to false is done as well)
 -- 
 2.25.1
 
