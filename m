@@ -2,95 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62C17175783
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 10:42:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EA5C1757A8
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 10:49:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C86D26E297;
-	Mon,  2 Mar 2020 09:42:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BAF86E23D;
+	Mon,  2 Mar 2020 09:49:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690081.outbound.protection.outlook.com [40.107.69.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA0F36E228
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 09:42:21 +0000 (UTC)
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700040.outbound.protection.outlook.com [40.107.70.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01D0E6E23D
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 09:49:52 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lmg/TVev7SzsXBRV54lVS2qeNkDWvTdZ7Jo7hgUOo133P7HPpBO7AgH75eFZW+tV1j8uTC9YkFzZK8pAdf8aBKcA4FpbqN7+ZEwO74d0zxYX4Ql9OTgQv5rZzxJJF3XRwBuDKzLPwsCmuJgJDzYQD9vCgZyJ++UXATj09xbVYulqzFY3dz2LNVEtFNdJDYlYBUB/PsqEAaOg4SozNfCT/hNQ/IRyHhdNJU4d2AUlDikumbB8hVcK4iTkusmBkFdjbe4dkHoNF+jbswj/53b5jM7BZ0+DB5s42nstYnPicMKsGChvyEDNpmror223XEBhRE+SuXI4ANB9K8ZyCAGPCw==
+ b=U3RGKaQcv5xclKL8SJ6COvEg+wdwzR++mzotGqsnbmIgdevSqWLVkueyBa3ohgYeSB/JR/MBbxsXoD5R7/GPl6z25SmHONW0vHS6IF7mF+AHHY6DTKh5uigHn6mSXRaRpH4ri3xR/uRg0Hhd4XKUoBKI/bcf/Xw7y4ae4fwyXfFcTevkuf4ftP3QSjJsTTsliTn8/JhTty7TGgDPvX2OSSgWQvtM+Boi0kHyIEfDIdHJ4AtTrgFGSXS3HUcCsja5a9KsUTLdmmQqBJZu2TSKItVEL2WOEPDaTcsS8WPZiR10U3F57a/XmH+69hMj4Qy4THdkKPtbljZE9wYywjmpkQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8TZPmdYV613gq+tVfeDXyUVgY/aCgKzTjPe2mJ+cItY=;
- b=GViJiv4MsoDrdzZczH5Hb9REGYRIUn7rmLiqppOGVG6wggLsj/9b8MLAIaGzZW+0QIP+Z40R/DfPEDj/WBOoguTGP2IEFaJkS7BgreqBRcGauO/HhgHRLoOeFWFuYn4+ZhlfXOAjkHmlU49G9NNeIhg/A3dThVDj4VXKBlVH0qWSH9sRznRHUoGUfjeUL3JyME+uKPBurEX6qjAMBMczPHrQbamhaAZgcvGYsyxC16ImMEwxOsN6CumoGnPxa/ZAvCumBfOYTLlwd5Kzpd562r78JdddVKPAgBEUeeIa9xgdVIKRByNix7oPwxjZsaPqTgeam9YKtkCCsfo4y/fWbw==
+ bh=Y1qyv9ZrpFZqIGuIZMpPghWsQGoMG7rYI9xWCeD7H2M=;
+ b=gmYkS6i6LqcgyAiD1y1O0n5pvE7IOq32ehqBa8Of5qMd3HZF0vss+XQ71mf0yYZYUAM5vsqv+KsTYP9kocsiT71u+lSsxFln2lKY1P473mbxT6chTbZyoBE2TXpTbpY85aU0SZHCP7uTG+iqpzgBmZzeBDhYkJwUFwMj189i2Q/udyX5N5Qd5vn4aJ/XjIk6x2q/hD71tB5727YujEm6+WOYsWuQQMmCQCyxhckHtJ7PFYWn+1iAy3+wplaW03gse4nFytudJ9b5tlu/A7PAz7kavWgHifUyPFfkwBct6rCs/tQLpjCMkCYdqVyKB6aZm0jrjn8TyOokrzsEVfPMbw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8TZPmdYV613gq+tVfeDXyUVgY/aCgKzTjPe2mJ+cItY=;
- b=u8+rHmA5FdSWCQ4G3c81kzQNAnMuU9G2LL0FcZOYE01aIQwR9PYtfrD2kUZQBwhgFGAzRhF6mnHYpk9+gKzvHS/NDkIKEoEKKpBqWiwvvYrZ1CraUl9xVrL+I2EzMOQPGpU9mV5YXxrYZ8atLk05EVZlVL07J/UmTxfIsVKJz9Q=
-Received: from MN2PR12MB2957.namprd12.prod.outlook.com (2603:10b6:208:100::14)
- by MN2SPR01MB0026.namprd12.prod.outlook.com (2603:10b6:208:cf::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15; Mon, 2 Mar
- 2020 09:42:20 +0000
-Received: from MN2PR12MB2957.namprd12.prod.outlook.com
- ([fe80::cc84:be2a:e761:5914]) by MN2PR12MB2957.namprd12.prod.outlook.com
- ([fe80::cc84:be2a:e761:5914%6]) with mapi id 15.20.2772.019; Mon, 2 Mar 2020
- 09:42:20 +0000
-From: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>
-To: "Liu, Monk" <Monk.Liu@amd.com>, "Xu, Feifei" <Feifei.Xu@amd.com>,
+ bh=Y1qyv9ZrpFZqIGuIZMpPghWsQGoMG7rYI9xWCeD7H2M=;
+ b=rZHTtksgepuI/K5n0o/eq3lUyexDYcDTtN546ET6Z4I+9zlsrY1s1zOhjHIXjU9SbH4zVgXjCHtwblqkn+xHB0J9k6UV7j476EVHDLaO/lY8goNyY9xcAgtqTzxtA7NqpzwaXptPgOsxnyzieZHAyQCO7jOPBCXidozuHhudyaE=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Christian.Koenig@amd.com; 
+Received: from DM5PR12MB1705.namprd12.prod.outlook.com (2603:10b6:3:10c::22)
+ by DM5PR12MB1675.namprd12.prod.outlook.com (2603:10b6:4:5::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2772.14; Mon, 2 Mar 2020 09:49:51 +0000
+Received: from DM5PR12MB1705.namprd12.prod.outlook.com
+ ([fe80::d40e:7339:8605:bc92]) by DM5PR12MB1705.namprd12.prod.outlook.com
+ ([fe80::d40e:7339:8605:bc92%11]) with mapi id 15.20.2772.019; Mon, 2 Mar 2020
+ 09:49:51 +0000
+Subject: Re: [PATCH 1/3] drm/amdgpu: fix IB test MCBP bug
+To: "Liu, Monk" <Monk.Liu@amd.com>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu: disable 3D pipe 1 on Navi1x
-Thread-Topic: [PATCH] drm/amdgpu: disable 3D pipe 1 on Navi1x
-Thread-Index: AQHV8DXs8c/IOH8RoUSvTISN+H5ILKg1CoGAgAAAy4CAAAHyzg==
-Date: Mon, 2 Mar 2020 09:42:20 +0000
-Message-ID: <MN2PR12MB2957E12293081257D05165B395E70@MN2PR12MB2957.namprd12.prod.outlook.com>
-References: <20200302015713.14355-1-tianci.yin@amd.com>
- <CH2PR12MB376760616A6D5482F486FFDAFEE70@CH2PR12MB3767.namprd12.prod.outlook.com>,
- <MN2PR12MB3933E900710ED92A0F80E93E84E70@MN2PR12MB3933.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB3933E900710ED92A0F80E93E84E70@MN2PR12MB3933.namprd12.prod.outlook.com>
-Accept-Language: en-US, zh-CN
+References: <1583140927-19809-1-git-send-email-Monk.Liu@amd.com>
+ <63e00945-68e3-f128-5a78-51c1d87bc778@gmail.com>
+ <MN2PR12MB3933638FC598F979E2F3E65384E70@MN2PR12MB3933.namprd12.prod.outlook.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <dd4754ee-054f-48b5-582d-29c58ba38d68@amd.com>
+Date: Mon, 2 Mar 2020 10:49:46 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+In-Reply-To: <MN2PR12MB3933638FC598F979E2F3E65384E70@MN2PR12MB3933.namprd12.prod.outlook.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-03-02T09:41:29.254Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Tianci.Yin@amd.com; 
-x-originating-ip: [180.167.199.182]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: cde81d3a-ef1b-410b-0bb9-08d7be8e00b4
-x-ms-traffictypediagnostic: MN2SPR01MB0026:|MN2SPR01MB0026:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2SPR01MB002647882862A341A17D3ADB95E70@MN2SPR01MB0026.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1227;
-x-forefront-prvs: 033054F29A
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(39860400002)(366004)(136003)(346002)(396003)(189003)(199004)(9686003)(2906002)(55016002)(54906003)(186003)(26005)(6506007)(81156014)(81166006)(110136005)(33656002)(7696005)(8936002)(53546011)(52536014)(19627405001)(5660300002)(71200400001)(4326008)(966005)(66946007)(66476007)(66556008)(64756008)(478600001)(316002)(66446008)(91956017)(86362001)(8676002)(45080400002)(76116006)(32563001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2SPR01MB0026;
- H:MN2PR12MB2957.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: DvBb/1wAl0APPqcEOOWN9D/SuqgDchsANa/BurdiZBNprIca05celZuiaVNxuC3tQKpm3U1uf9CyU8sJ5SF2qRo7k9DKxkUxAUcWJLv9HMj0v62UFHmBymFs6KZCBsdj1yopc2NQsGtHii/HcS1Dvzv/whVDr1mnFkvtt7sXgdcAvhZCy9WDcIbgvSYn00An3S0R56vRSvUtky5mMglA/0gaSTmlUJMYuICSYexzmf4DSvqsz1L1Vlj4W+yhv5Zsoc/WffuHHCcibTf2Ing67dBbw9GUi6+6ChySaKDmwuxgS76Znd6E2sXHGISaehKdB6YCBGpD+jn6BJBYO5Ibo/cCidgpGDekerfKIGG1kPb73kdYREs8Ml4Ki5buuRES6FGH8Ie53OK5NAU/TV86uYJG6iVWR5px3hnlp5VkRmvb5mnaQ1BgmqLumGdrr+zY0m40eO5EjCkVlo9FHhoIyvLThDC4oRjRuUWk2c0Ry7yQOMZYlXyp2XwJC7dPSqNiU68RgJQslxPKAMYSZmfHCA==
-x-ms-exchange-antispam-messagedata: d7MXCySNgoqNUr/3A1q+v85ItZWHJv2rBJV0E4/JB4VvbApyUpY0/obqIsH/8SlaQYoHf3A56GX4D/Ms94OMwfFTUrKnXw7SJf9KFxil0oF/dO2tiAyn401bwBQKEwVC/3y0k8SsxyVAOscvrLL1pw==
+X-ClientProxiedBy: AM0PR10CA0059.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:150::39) To DM5PR12MB1705.namprd12.prod.outlook.com
+ (2603:10b6:3:10c::22)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+ (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
+ AM0PR10CA0059.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:150::39) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15 via Frontend
+ Transport; Mon, 2 Mar 2020 09:49:50 +0000
+X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: dfa38b95-324b-4d49-8e70-08d7be8f0d4c
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1675:|DM5PR12MB1675:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1675AFDF5A46D8DBA5213FEA83E70@DM5PR12MB1675.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Forefront-PRVS: 033054F29A
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(376002)(396003)(346002)(366004)(39860400002)(136003)(189003)(199004)(66556008)(66476007)(66946007)(110136005)(2616005)(316002)(2906002)(5660300002)(53546011)(8676002)(81166006)(478600001)(6486002)(31696002)(8936002)(31686004)(36756003)(6666004)(81156014)(86362001)(186003)(66574012)(52116002)(16526019);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1675;
+ H:DM5PR12MB1705.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9+CN8vjp78OPmfKixM+Tlz2xhZInQq8M/snpvL36kt9PxCVI0WPqWtBwQoYdB3BZs4K9sVPQPh8LeHw93u0eqwMA5rspC0Fw5lF2BnEZw35QtyhzA4XRKlLT7T/oW3warzVE1u4iqFQ8+60FQi5iMOMLOZIgJsoBCGlm7PmLsHrxvKPGJsIbJvPrUmiufTlSmWa02T5n+PqzjOxs1uZrzorqDrBf/ZS7bdsfhkLAA4onz3SpubnyOGzgICR77RSiv3fKfv2nWOey04zi2GqnGI6dbZBafM1nN1OmIpGZQTZtgU8EwELA9W/60B/ttcvXFTxaBmhx/9VfpG1LdKEP4f/dBJbv0njDn11rr3HwJusgVCS7+uG8wiA1cROl+nhp3rUbFQe6Ywe27eoUIQGr8SckCIjFyR8upeR2L6uLmwkjBrr4Bla4aSgS/+iUfWT0
+X-MS-Exchange-AntiSpam-MessageData: MVQz8y20aXdRjttzgk7nYpkGgIVMnRT5yomLUpNrc/cl1eMACBmqzT/FDhudPmxdiEaIme3Xy1ulYpXbDFgeUD3n0Z/HGMJ1STZxwxNP4zeVfSG57+HnoZqawY70wQ4rZTF21V4WzvonMZ3Lz6wkkiLu9xwtjR6yPpCKkpsG0oEw2z4LsLcirlnPUntj9HfdfzNcKt3Vm+wffPPl2Z/1rA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cde81d3a-ef1b-410b-0bb9-08d7be8e00b4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Mar 2020 09:42:20.1618 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0WcyF3NbOHz1FFRNugoUBWQcAEaqGjD1O8erF8xe/RMURoyZg9QYFfOK0xuF9GHL7tUk44gr4hzzXho5+kY9Ew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2SPR01MB0026
+X-MS-Exchange-CrossTenant-Network-Message-Id: dfa38b95-324b-4d49-8e70-08d7be8f0d4c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 09:49:51.1285 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0MrWlHs6qxiDq/gLzHRv4Yq+vy7SO+2W+hI82TOp7ZPYPDGdCwXXiTaM+wyEwe58
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1675
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,606 +101,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Long, Gang" <Gang.Long@amd.com>, "Li, Pauline" <Pauline.Li@amd.com>, "Yuan,
- Xiaojie" <Xiaojie.Yuan@amd.com>, "Gao, Likun" <Likun.Gao@amd.com>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>
-Content-Type: multipart/mixed; boundary="===============0633593952=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0633593952==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB2957E12293081257D05165B395E70MN2PR12MB2957namp_"
-
---_000_MN2PR12MB2957E12293081257D05165B395E70MN2PR12MB2957namp_
-Content-Type: text/plain; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks Feifei and Monk!
-________________________________
-From: Liu, Monk <Monk.Liu@amd.com>
-Sent: Monday, March 2, 2020 17:35
-To: Xu, Feifei <Feifei.Xu@amd.com>; Yin, Tianci (Rico) <Tianci.Yin@amd.com>=
-; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Long, Gang <Gang.Long@amd.com>; Li, Pauline <Pauline.Li@amd.com>; Yin, =
-Tianci (Rico) <Tianci.Yin@amd.com>; Gao, Likun <Likun.Gao@amd.com>; Zhang, =
-Hawking <Hawking.Zhang@amd.com>; Yuan, Xiaojie <Xiaojie.Yuan@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: disable 3D pipe 1 on Navi1x
-
-Reviewed-by: Monk Liu <monk.liu@amd.com>
-
-_____________________________________
-Monk Liu|GPU Virtualization Team |AMD
-
-
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Xu, Feif=
-ei
-Sent: Monday, March 2, 2020 5:32 PM
-To: Yin, Tianci (Rico) <Tianci.Yin@amd.com>; amd-gfx@lists.freedesktop.org
-Cc: Long, Gang <Gang.Long@amd.com>; Li, Pauline <Pauline.Li@amd.com>; Yin, =
-Tianci (Rico) <Tianci.Yin@amd.com>; Gao, Likun <Likun.Gao@amd.com>; Zhang, =
-Hawking <Hawking.Zhang@amd.com>; Yuan, Xiaojie <Xiaojie.Yuan@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: disable 3D pipe 1 on Navi1x
-
-[AMD Official Use Only - Internal Distribution Only]
-
-
-
-Reviewed-by: Feifei Xu <Feifei.Xu@amd.com>
-
-
------Original Message-----
-From: Tianci Yin <tianci.yin@amd.com>
-Sent: 2020=1B$BG/=1B(B3=1B$B7n=1B(B2=1B$BF|=1B(B 9:57
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Xu, Feifei <Feifei.Xu@amd.com>;=
- Gao, Likun <Likun.Gao@amd.com>; Yuan, Xiaojie <Xiaojie.Yuan@amd.com>; Long=
-, Gang <Gang.Long@amd.com>; Li, Pauline <Pauline.Li@amd.com>; Yin, Tianci (=
-Rico) <Tianci.Yin@amd.com>
-Subject: [PATCH] drm/amdgpu: disable 3D pipe 1 on Navi1x
-
-From: "Tianci.Yin" <tianci.yin@amd.com>
-
-[why]
-CP firmware decide to skip setting the state for 3D pipe 1 for Navi1x as th=
-ere is no use case.
-
-[how]
-Disable 3D pipe 1 on Navi1x.
-
-Change-Id: I6898bdfe31d4e7908bd9bcfa82b6a75e118e8727
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 97 ++++++++++++++------------
- 1 file changed, 51 insertions(+), 46 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v10_0.c
-index 760fe2ebe799..f348512eb8c3 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -52,7 +52,7 @@
-  * 1. Primary ring
-  * 2. Async ring
-  */
--#define GFX10_NUM_GFX_RINGS    2
-+#define GFX10_NUM_GFX_RINGS_NV1X       1
- #define GFX10_MEC_HPD_SIZE      2048
-
- #define F32_CE_PROGRAM_RAM_SIZE         65536
-@@ -1305,7 +1305,7 @@ static int gfx_v10_0_sw_init(void *handle)
-         case CHIP_NAVI14:
-         case CHIP_NAVI12:
-                 adev->gfx.me.num_me =3D 1;
--               adev->gfx.me.num_pipe_per_me =3D 2;
-+               adev->gfx.me.num_pipe_per_me =3D 1;
-                 adev->gfx.me.num_queue_per_pipe =3D 1;
-                 adev->gfx.mec.num_mec =3D 2;
-                 adev->gfx.mec.num_pipe_per_mec =3D 4;
-@@ -2711,18 +2711,20 @@ static int gfx_v10_0_cp_gfx_start(struct amdgpu_dev=
-ice *adev)
-         amdgpu_ring_commit(ring);
-
-         /* submit cs packet to copy state 0 to next available state */
--       ring =3D &adev->gfx.gfx_ring[1];
--       r =3D amdgpu_ring_alloc(ring, 2);
--       if (r) {
--               DRM_ERROR("amdgpu: cp failed to lock ring (%d).\n", r);
--               return r;
--       }
--
--       amdgpu_ring_write(ring, PACKET3(PACKET3_CLEAR_STATE, 0));
--       amdgpu_ring_write(ring, 0);
-+       if (adev->gfx.num_gfx_rings > 1) {
-+               /* maximum supported gfx ring is 2 */
-+               ring =3D &adev->gfx.gfx_ring[1];
-+               r =3D amdgpu_ring_alloc(ring, 2);
-+               if (r) {
-+                       DRM_ERROR("amdgpu: cp failed to lock ring (%d).\n",=
- r);
-+                       return r;
-+               }
-
--       amdgpu_ring_commit(ring);
-+               amdgpu_ring_write(ring, PACKET3(PACKET3_CLEAR_STATE, 0));
-+               amdgpu_ring_write(ring, 0);
-
-+               amdgpu_ring_commit(ring);
-+       }
-         return 0;
- }
-
-@@ -2819,39 +2821,41 @@ static int gfx_v10_0_cp_gfx_resume(struct amdgpu_de=
-vice *adev)
-         mutex_unlock(&adev->srbm_mutex);
-
-         /* Init gfx ring 1 for pipe 1 */
--       mutex_lock(&adev->srbm_mutex);
--       gfx_v10_0_cp_gfx_switch_pipe(adev, PIPE_ID1);
--       ring =3D &adev->gfx.gfx_ring[1];
--       rb_bufsz =3D order_base_2(ring->ring_size / 8);
--       tmp =3D REG_SET_FIELD(0, CP_RB1_CNTL, RB_BUFSZ, rb_bufsz);
--       tmp =3D REG_SET_FIELD(tmp, CP_RB1_CNTL, RB_BLKSZ, rb_bufsz - 2);
--       WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tmp);
--       /* Initialize the ring buffer's write pointers */
--       ring->wptr =3D 0;
--       WREG32_SOC15(GC, 0, mmCP_RB1_WPTR, lower_32_bits(ring->wptr));
--       WREG32_SOC15(GC, 0, mmCP_RB1_WPTR_HI, upper_32_bits(ring->wptr));
--       /* Set the wb address wether it's enabled or not */
--       rptr_addr =3D adev->wb.gpu_addr + (ring->rptr_offs * 4);
--       WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADDR, lower_32_bits(rptr_addr));
--       WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADDR_HI, upper_32_bits(rptr_addr)=
- &
--               CP_RB1_RPTR_ADDR_HI__RB_RPTR_ADDR_HI_MASK);
--       wptr_gpu_addr =3D adev->wb.gpu_addr + (ring->wptr_offs * 4);
--       WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_LO,
--               lower_32_bits(wptr_gpu_addr));
--       WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_HI,
--               upper_32_bits(wptr_gpu_addr));
--
--       mdelay(1);
--       WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tmp);
--
--       rb_addr =3D ring->gpu_addr >> 8;
--       WREG32_SOC15(GC, 0, mmCP_RB1_BASE, rb_addr);
--       WREG32_SOC15(GC, 0, mmCP_RB1_BASE_HI, upper_32_bits(rb_addr));
--       WREG32_SOC15(GC, 0, mmCP_RB1_ACTIVE, 1);
--
--       gfx_v10_0_cp_gfx_set_doorbell(adev, ring);
--       mutex_unlock(&adev->srbm_mutex);
--
-+       if (adev->gfx.num_gfx_rings > 1) {
-+               mutex_lock(&adev->srbm_mutex);
-+               gfx_v10_0_cp_gfx_switch_pipe(adev, PIPE_ID1);
-+               /* maximum supported gfx ring is 2 */
-+               ring =3D &adev->gfx.gfx_ring[1];
-+               rb_bufsz =3D order_base_2(ring->ring_size / 8);
-+               tmp =3D REG_SET_FIELD(0, CP_RB1_CNTL, RB_BUFSZ, rb_bufsz);
-+               tmp =3D REG_SET_FIELD(tmp, CP_RB1_CNTL, RB_BLKSZ, rb_bufsz =
-- 2);
-+               WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tmp);
-+               /* Initialize the ring buffer's write pointers */
-+               ring->wptr =3D 0;
-+               WREG32_SOC15(GC, 0, mmCP_RB1_WPTR, lower_32_bits(ring->wptr=
-));
-+               WREG32_SOC15(GC, 0, mmCP_RB1_WPTR_HI, upper_32_bits(ring->w=
-ptr));
-+               /* Set the wb address wether it's enabled or not */
-+               rptr_addr =3D adev->wb.gpu_addr + (ring->rptr_offs * 4);
-+               WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADDR, lower_32_bits(rptr_=
-addr));
-+               WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADDR_HI, upper_32_bits(rp=
-tr_addr) &
-+                            CP_RB1_RPTR_ADDR_HI__RB_RPTR_ADDR_HI_MASK);
-+               wptr_gpu_addr =3D adev->wb.gpu_addr + (ring->wptr_offs * 4)=
-;
-+               WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_LO,
-+                            lower_32_bits(wptr_gpu_addr));
-+               WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_HI,
-+                            upper_32_bits(wptr_gpu_addr));
-+
-+               mdelay(1);
-+               WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tmp);
-+
-+               rb_addr =3D ring->gpu_addr >> 8;
-+               WREG32_SOC15(GC, 0, mmCP_RB1_BASE, rb_addr);
-+               WREG32_SOC15(GC, 0, mmCP_RB1_BASE_HI, upper_32_bits(rb_addr=
-));
-+               WREG32_SOC15(GC, 0, mmCP_RB1_ACTIVE, 1);
-+
-+               gfx_v10_0_cp_gfx_set_doorbell(adev, ring);
-+               mutex_unlock(&adev->srbm_mutex);
-+       }
-         /* Switch to pipe 0 */
-         mutex_lock(&adev->srbm_mutex);
-         gfx_v10_0_cp_gfx_switch_pipe(adev, PIPE_ID0); @@ -3967,7 +3971,8 @=
-@ static int gfx_v10_0_early_init(void *handle)  {
-         struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-
--       adev->gfx.num_gfx_rings =3D GFX10_NUM_GFX_RINGS;
-+       adev->gfx.num_gfx_rings =3D GFX10_NUM_GFX_RINGS_NV1X;
-+
-         adev->gfx.num_compute_rings =3D AMDGPU_MAX_COMPUTE_RINGS;
-
-         gfx_v10_0_set_kiq_pm4_funcs(adev);
---
-2.17.1
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D02%7C01%7Cmonk.liu=
-%40amd.com%7C76b6cb68c8524e24a71a08d7be8c9b91%7C3dd8961fe4884e608e11a82d994=
-e183d%7C0%7C0%7C637187383465069039&amp;sdata=3D5CYyoryFFaDwGEuB%2F1jyI5FuZC=
-M2kM7hUKD2OuKN%2BhU%3D&amp;reserved=3D0
-
---_000_MN2PR12MB2957E12293081257D05165B395E70MN2PR12MB2957namp_
-Content-Type: text/html; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-2022-=
-jp">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks Feifei and Monk!</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Liu, Monk &lt;Monk.Li=
-u@amd.com&gt;<br>
-<b>Sent:</b> Monday, March 2, 2020 17:35<br>
-<b>To:</b> Xu, Feifei &lt;Feifei.Xu@amd.com&gt;; Yin, Tianci (Rico) &lt;Tia=
-nci.Yin@amd.com&gt;; amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freede=
-sktop.org&gt;<br>
-<b>Cc:</b> Long, Gang &lt;Gang.Long@amd.com&gt;; Li, Pauline &lt;Pauline.Li=
-@amd.com&gt;; Yin, Tianci (Rico) &lt;Tianci.Yin@amd.com&gt;; Gao, Likun &lt=
-;Likun.Gao@amd.com&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;; Yuan,=
- Xiaojie &lt;Xiaojie.Yuan@amd.com&gt;<br>
-<b>Subject:</b> RE: [PATCH] drm/amdgpu: disable 3D pipe 1 on Navi1x</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Reviewed-by: Monk Liu &lt;monk.liu@amd.com&gt;<br>
-<br>
-_____________________________________<br>
-Monk Liu|GPU Virtualization Team |AMD<br>
-<br>
-<br>
------Original Message-----<br>
-From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; On Behalf Of Xu=
-, Feifei<br>
-Sent: Monday, March 2, 2020 5:32 PM<br>
-To: Yin, Tianci (Rico) &lt;Tianci.Yin@amd.com&gt;; amd-gfx@lists.freedeskto=
-p.org<br>
-Cc: Long, Gang &lt;Gang.Long@amd.com&gt;; Li, Pauline &lt;Pauline.Li@amd.co=
-m&gt;; Yin, Tianci (Rico) &lt;Tianci.Yin@amd.com&gt;; Gao, Likun &lt;Likun.=
-Gao@amd.com&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;; Yuan, Xiaoji=
-e &lt;Xiaojie.Yuan@amd.com&gt;<br>
-Subject: RE: [PATCH] drm/amdgpu: disable 3D pipe 1 on Navi1x<br>
-<br>
-[AMD Official Use Only - Internal Distribution Only]<br>
-<br>
-<br>
-<br>
-Reviewed-by: Feifei Xu &lt;Feifei.Xu@amd.com&gt;<br>
-<br>
-<br>
------Original Message-----<br>
-From: Tianci Yin &lt;tianci.yin@amd.com&gt; <br>
-Sent: 2020=1B$BG/=1B(B3=1B$B7n=1B(B2=1B$BF|=1B(B 9:57<br>
-To: amd-gfx@lists.freedesktop.org<br>
-Cc: Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;; Xu, Feifei &lt;Feifei.Xu@=
-amd.com&gt;; Gao, Likun &lt;Likun.Gao@amd.com&gt;; Yuan, Xiaojie &lt;Xiaoji=
-e.Yuan@amd.com&gt;; Long, Gang &lt;Gang.Long@amd.com&gt;; Li, Pauline &lt;P=
-auline.Li@amd.com&gt;; Yin, Tianci (Rico) &lt;Tianci.Yin@amd.com&gt;<br>
-Subject: [PATCH] drm/amdgpu: disable 3D pipe 1 on Navi1x<br>
-<br>
-From: &quot;Tianci.Yin&quot; &lt;tianci.yin@amd.com&gt;<br>
-<br>
-[why]<br>
-CP firmware decide to skip setting the state for 3D pipe 1 for Navi1x as th=
-ere is no use case.<br>
-<br>
-[how]<br>
-Disable 3D pipe 1 on Navi1x.<br>
-<br>
-Change-Id: I6898bdfe31d4e7908bd9bcfa82b6a75e118e8727<br>
-Reviewed-by: Hawking Zhang &lt;Hawking.Zhang@amd.com&gt;<br>
-Signed-off-by: Tianci.Yin &lt;tianci.yin@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 97 &#43;&#43;&#43;&#43;&#43;=
-&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;------------<br>
-&nbsp;1 file changed, 51 insertions(&#43;), 46 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v10_0.c<br>
-index 760fe2ebe799..f348512eb8c3 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-@@ -52,7 &#43;52,7 @@<br>
-&nbsp; * 1. Primary ring<br>
-&nbsp; * 2. Async ring<br>
-&nbsp; */<br>
--#define GFX10_NUM_GFX_RINGS&nbsp;&nbsp;&nbsp; 2<br>
-&#43;#define GFX10_NUM_GFX_RINGS_NV1X&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1=
-<br>
-&nbsp;#define GFX10_MEC_HPD_SIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2048<br>
-&nbsp;<br>
-&nbsp;#define F32_CE_PROGRAM_RAM_SIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; 65536<br>
-@@ -1305,7 &#43;1305,7 @@ static int gfx_v10_0_sw_init(void *handle)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI14:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case CHIP_NAVI12:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.me.num_me =3D 1;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; adev-&gt;gfx.me.num_pipe_per_me =3D 2;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; adev-&gt;gfx.me.num_pipe_per_me =3D 1;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.me.num_queue_per_pipe =3D 1;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.mec.num_mec =3D 2;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.mec.num_pipe_per_mec =3D 4;<br>
-@@ -2711,18 &#43;2711,20 @@ static int gfx_v10_0_cp_gfx_start(struct amdgpu=
-_device *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ring_commit(ring);<=
-br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* submit cs packet to cop=
-y state 0 to next available state */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ring =3D &amp;adev-&gt;gfx.gfx_ring[1=
-];<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_ring_alloc(ring, 2);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; DRM_ERROR(&quot;amdgpu: cp failed to lock ring (%d).\n&quot;, r)=
-;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; return r;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
--<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ring_write(ring, PACKET3(PACKE=
-T3_CLEAR_STATE, 0));<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ring_write(ring, 0);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;gfx.num_gfx_rings &g=
-t; 1) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; /* maximum supported gfx ring is 2 */<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ring =3D &amp;adev-&gt;gfx.gfx_ring[1];<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; r =3D amdgpu_ring_alloc(ring, 2);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; if (r) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_ERROR(&q=
-uot;amdgpu: cp failed to lock ring (%d).\n&quot;, r);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br=
->
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; }<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ring_commit(ring);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; amdgpu_ring_write(ring, PACKET3(PACKET3_CLEAR_STATE, 0));<br=
->
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; amdgpu_ring_write(ring, 0);<br>
-&nbsp;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; amdgpu_ring_commit(ring);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-&nbsp;<br>
-@@ -2819,39 &#43;2821,41 @@ static int gfx_v10_0_cp_gfx_resume(struct amdgp=
-u_device *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;adev-&gt=
-;srbm_mutex);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Init gfx ring 1 for pip=
-e 1 */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;srbm_mutex);=
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gfx_v10_0_cp_gfx_switch_pipe(adev, PI=
-PE_ID1);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ring =3D &amp;adev-&gt;gfx.gfx_ring[1=
-];<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rb_bufsz =3D order_base_2(ring-&gt;ri=
-ng_size / 8);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp =3D REG_SET_FIELD(0, CP_RB1_CNTL,=
- RB_BUFSZ, rb_bufsz);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp =3D REG_SET_FIELD(tmp, CP_RB1_CNT=
-L, RB_BLKSZ, rb_bufsz - 2);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tm=
-p);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Initialize the ring buffer's write=
- pointers */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ring-&gt;wptr =3D 0;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_WPTR, lo=
-wer_32_bits(ring-&gt;wptr));<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_WPTR_HI,=
- upper_32_bits(ring-&gt;wptr));<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Set the wb address wether it's ena=
-bled or not */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rptr_addr =3D adev-&gt;wb.gpu_addr &#=
-43; (ring-&gt;rptr_offs * 4);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADD=
-R, lower_32_bits(rptr_addr));<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADD=
-R_HI, upper_32_bits(rptr_addr) &amp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; CP_RB1_RPTR_ADDR_HI__RB_RPTR_ADDR_HI_MASK);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wptr_gpu_addr =3D adev-&gt;wb.gpu_add=
-r &#43; (ring-&gt;wptr_offs * 4);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL=
-_ADDR_LO,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; lower_32_bits(wptr_gpu_addr));<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL=
-_ADDR_HI,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; upper_32_bits(wptr_gpu_addr));<br>
--<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mdelay(1);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tm=
-p);<br>
--<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rb_addr =3D ring-&gt;gpu_addr &gt;&gt=
-; 8;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_BASE, rb=
-_addr);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_BASE_HI,=
- upper_32_bits(rb_addr));<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_ACTIVE, =
-1);<br>
--<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gfx_v10_0_cp_gfx_set_doorbell(adev, r=
-ing);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;adev-&gt;srbm_mutex=
-);<br>
--<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;gfx.num_gfx_rings &g=
-t; 1) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;srbm_mutex);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; gfx_v10_0_cp_gfx_switch_pipe(adev, PIPE_ID1);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; /* maximum supported gfx ring is 2 */<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ring =3D &amp;adev-&gt;gfx.gfx_ring[1];<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; rb_bufsz =3D order_base_2(ring-&gt;ring_size / 8);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; tmp =3D REG_SET_FIELD(0, CP_RB1_CNTL, RB_BUFSZ, rb_bufsz);<b=
-r>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; tmp =3D REG_SET_FIELD(tmp, CP_RB1_CNTL, RB_BLKSZ, rb_bufsz -=
- 2);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tmp);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; /* Initialize the ring buffer's write pointers */<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ring-&gt;wptr =3D 0;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_WPTR, lower_32_bits(ring-&gt;wp=
-tr));<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_WPTR_HI, upper_32_bits(ring-&gt=
-;wptr));<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; /* Set the wb address wether it's enabled or not */<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; rptr_addr =3D adev-&gt;wb.gpu_addr &#43; (ring-&gt;rptr_offs=
- * 4);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADDR, lower_32_bits(rptr_a=
-ddr));<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADDR_HI, upper_32_bits(rpt=
-r_addr) &amp;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; CP_RB1_RPTR_ADDR_HI__RB_RPTR_ADDR_HI_MASK);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; wptr_gpu_addr =3D adev-&gt;wb.gpu_addr &#43; (ring-&gt;wptr_=
-offs * 4);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_LO,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; lower_32_bits(wptr_gpu_addr));<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_HI,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; upper_32_bits(wptr_gpu_addr));<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; mdelay(1);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tmp);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; rb_addr =3D ring-&gt;gpu_addr &gt;&gt; 8;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_BASE, rb_addr);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_BASE_HI, upper_32_bits(rb_addr)=
-);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; WREG32_SOC15(GC, 0, mmCP_RB1_ACTIVE, 1);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; gfx_v10_0_cp_gfx_set_doorbell(adev, ring);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; mutex_unlock(&amp;adev-&gt;srbm_mutex);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Switch to pipe 0 */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;s=
-rbm_mutex);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gfx_v10_0_cp_gfx_switch_pi=
-pe(adev, PIPE_ID0); @@ -3967,7 &#43;3971,8 @@ static int gfx_v10_0_early_in=
-it(void *handle)&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev=
- =3D (struct amdgpu_device *)handle;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.num_gfx_rings =3D GFX10_=
-NUM_GFX_RINGS;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.num_gfx_rings =3D GF=
-X10_NUM_GFX_RINGS_NV1X;<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.num_compute_r=
-ings =3D AMDGPU_MAX_COMPUTE_RINGS;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gfx_v10_0_set_kiq_pm4_func=
-s(adev);<br>
---<br>
-2.17.1<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
-F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%=
-7C01%7Cmonk.liu%40amd.com%7C76b6cb68c8524e24a71a08d7be8c9b91%7C3dd8961fe488=
-4e608e11a82d994e183d%7C0%7C0%7C637187383465069039&amp;amp;sdata=3D5CYyoryFF=
-aDwGEuB%2F1jyI5FuZCM2kM7hUKD2OuKN%2BhU%3D&amp;amp;reserved=3D0">https://nam=
-11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.freedesktop.=
-org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%7C01%7Cmonk.liu%40amd.=
-com%7C76b6cb68c8524e24a71a08d7be8c9b91%7C3dd8961fe4884e608e11a82d994e183d%7=
-C0%7C0%7C637187383465069039&amp;amp;sdata=3D5CYyoryFFaDwGEuB%2F1jyI5FuZCM2k=
-M7hUKD2OuKN%2BhU%3D&amp;amp;reserved=3D0</a><br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_MN2PR12MB2957E12293081257D05165B395E70MN2PR12MB2957namp_--
-
---===============0633593952==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0633593952==--
+QW0gMDIuMDMuMjAgdW0gMTA6Mzkgc2NocmllYiBMaXUsIE1vbms6Cj4+IC0JCWlmICghKGliLT5m
+bGFncyAmIEFNREdQVV9JQl9GTEFHX0NFKSkKPj4gKwkJaWYgKCEoaWItPmZsYWdzICYgQU1ER1BV
+X0lCX0ZMQUdfQ0UpICYmIHZtaWQpCj4gS2VybmVsIGNvcGllcyBhbHNvIGRvbid0IHVzZSBhIFZN
+SUQsIHNvIEkgdGhpbmsgdGhhdCB0aGlzIHdvbid0IHdvcmsgY29ycmVjdGx5Lgo+Cj4gRG8geW91
+IGhhdmUgdGhlIGpvYiBhdmFpbGFibGUgYXMgd2VsbD8gVGhhdCB3b3VsZCBwcm9iYWJseSBiZSBi
+ZXR0ZXIgdG8gdGVzdCBmb3Igc2luY2Ugb25seSBJQiB0ZXN0cyBkb24ndCB1c2UgYSBqb2IuCj4K
+PiBbTUxdCj4gVGhlIEBqb2IgaXMgbm90IHBhc3NlZCB0byB0aGUgZ2Z4X3YxMF8wX3JpbmdfZW1p
+dF9pYl9nZngoKSByb3V0aW5lIHNvIEkgdGVuZCB0byBtb2RpZnkgYXMgbGVzcyBhcyBwb3NzaWJs
+ZQo+IEJlc2lkZXMsIGZvciBrZXJuZWwgY29waWVzOiBJIGJlbGlldmUgdGhleSBhbHNvIGRvIG5v
+dCBzdXBwb3J0IE1DQlAgKGNhbiB5b3UgcG9pbnQgbWUgdGhlIGNvZGUgaW4gc291cmNlIG9mIHRo
+b3NlIGtlcm5lbCBjb3BpZXMgPykgLCBzbyB1c2UgVk1JRCB0byB0ZXN0IGlzIGZpbmUgKFRvIHN1
+cHBvcnQgTUNCUCBvbiBnZnggcmluZyB5b3UgbmVlZCBhIHNldCBvZiBhZGRpdGlvbmFsIHByZWFt
+YmxlIElCIGNvIHdvcmsgd2l0aCB5b3VyIHdvcmtsb2FkIGlCIGFuZCBrZXJuZWwgY29waWVzIGFw
+cGFyZW50bHkgZG9uJ3QgaGF2ZSB0aG9zZSBzdHVmZnMpCgpBaCwgc29ycnkhIE15IGluY29ycmVj
+dCB0aGlua2luZywga2VybmVsIGNvcGllcyBhbHNvIGRvbid0IHVzZSB0aGUgQ1AgCmJ1dCByYXRo
+ZXIgdGhlIFNETUEuIFNvIHRoZSBjaGFuZ2UgaXMgY29tcGxldGVseSBpcnJlbGV2YW50IGZvciB0
+aGUgY29waWVzLgoKQWNrZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdA
+YW1kLmNvbT4gZm9yIHRoZSBwYXRjaC4KClJlZ2FyZHMsCkNocmlzdGlhbi4KCj4KPiBUaGFua3MK
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTW9uayBMaXV8R1BVIFZp
+cnR1YWxpemF0aW9uIFRlYW0gfEFNRAo+Cj4KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+
+IEZyb206IENocmlzdGlhbiBLw7ZuaWcgPGNrb2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwuY29t
+Pgo+IFNlbnQ6IE1vbmRheSwgTWFyY2ggMiwgMjAyMCA1OjM1IFBNCj4gVG86IExpdSwgTW9uayA8
+TW9uay5MaXVAYW1kLmNvbT47IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gU3ViamVj
+dDogUmU6IFtQQVRDSCAxLzNdIGRybS9hbWRncHU6IGZpeCBJQiB0ZXN0IE1DQlAgYnVnCj4KPiBB
+bSAwMi4wMy4yMCB1bSAxMDoyMiBzY2hyaWViIE1vbmsgTGl1Ogo+PiAxKWZvciBnZnggSUIgdGVz
+dCB3ZSBzaG91bGRuJ3QgaW5zZXJ0IERFIG1ldGEgZGF0YQo+Pgo+PiAyKXdlIHNob3VsZCBtYWtl
+IHN1cmUgSUIgdGVzdCBmaW5pc2hlZCBiZWZvcmUgd2Ugc2VuZCBldmVudCAzIHRvCj4+IGh5cGVy
+dmlzb3Igb3RoZXJ3aXNlIHRoZSBJRExFIGZyb20gZXZlbnQgMyB3aWxsIHByZWVtcHQgSUIgdGVz
+dCwgd2hpY2gKPj4gaXMgbm90IGRlc2lnbmVkIGFzIGEgY29tcGF0aWJsZSBzdHJ1Y3R1cmUgZm9y
+IE1DQlAKPj4KPj4gU2lnbmVkLW9mZi1ieTogTW9uayBMaXUgPE1vbmsuTGl1QGFtZC5jb20+Cj4+
+IC0tLQo+PiAgICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMgfCA2
+ICsrKysrKwo+PiAgICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfa21zLmMgICAg
+fCAzIC0tLQo+PiAgICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYyAgICAg
+fCAyICstCj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OF8wLmMgICAgICB8
+IDIgKy0KPj4gICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYyAgICAgIHwg
+MiArLQo+PiAgICA1IGZpbGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMo
+LSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9k
+ZXZpY2UuYwo+PiBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwo+
+PiBpbmRleCAzNTEwOTZhLi41NzJlYjZlIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X2RldmljZS5jCj4+IEBAIC0zMTk1LDYgKzMxOTUsMTIgQEAgdm9pZCBhbWRn
+cHVfZGV2aWNlX2Zpbmkoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4+ICAgIAlmbHVzaF9k
+ZWxheWVkX3dvcmsoJmFkZXYtPmRlbGF5ZWRfaW5pdF93b3JrKTsKPj4gICAgCWFkZXYtPnNodXRk
+b3duID0gdHJ1ZTsKPj4gICAgCj4+ICsJLyogbWFrZSBzdXJlIElCIHRlc3QgZmluaXNoZWQgYmVm
+b3JlIGVudGVyaW5nIGV4Y2x1c2l2ZSBtb2RlCj4+ICsJICogdG8gYXZvaWQgcHJlZW1wdGlvbiBv
+biBJQiB0ZXN0Cj4+ICsJICogKi8KPj4gKwlpZiAoYW1kZ3B1X3NyaW92X3ZmKGFkZXYpKQo+PiAr
+CQlhbWRncHVfdmlydF9yZXF1ZXN0X2Z1bGxfZ3B1KGFkZXYsIGZhbHNlKTsKPj4gKwo+PiAgICAJ
+LyogZGlzYWJsZSBhbGwgaW50ZXJydXB0cyAqLwo+PiAgICAJYW1kZ3B1X2lycV9kaXNhYmxlX2Fs
+bChhZGV2KTsKPj4gICAgCWlmIChhZGV2LT5tb2RlX2luZm8ubW9kZV9jb25maWdfaW5pdGlhbGl6
+ZWQpewo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2tt
+cy5jCj4+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ttcy5jCj4+IGluZGV4
+IDBmMzU2MzkuLjBiMTUxMWEgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV9rbXMuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
+cHVfa21zLmMKPj4gQEAgLTg4LDkgKzg4LDYgQEAgdm9pZCBhbWRncHVfZHJpdmVyX3VubG9hZF9r
+bXMoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPj4gICAgCWlmIChhZGV2LT5ybW1pbyA9PSBOVUxM
+KQo+PiAgICAJCWdvdG8gZG9uZV9mcmVlOwo+PiAgICAKPj4gLQlpZiAoYW1kZ3B1X3NyaW92X3Zm
+KGFkZXYpKQo+PiAtCQlhbWRncHVfdmlydF9yZXF1ZXN0X2Z1bGxfZ3B1KGFkZXYsIGZhbHNlKTsK
+Pj4gLQo+PiAgICAJaWYgKGFkZXYtPnJ1bnBtKSB7Cj4+ICAgIAkJcG1fcnVudGltZV9nZXRfc3lu
+YyhkZXYtPmRldik7Cj4+ICAgIAkJcG1fcnVudGltZV9mb3JiaWQoZGV2LT5kZXYpOwo+PiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMF8wLmMKPj4gYi9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYwo+PiBpbmRleCA5NGNhOWZmLi4wNTU1
+OTg5IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAu
+Ywo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYwo+PiBAQCAt
+NDQzMiw3ICs0NDMyLDcgQEAgc3RhdGljIHZvaWQgZ2Z4X3YxMF8wX3JpbmdfZW1pdF9pYl9nZngo
+c3RydWN0IGFtZGdwdV9yaW5nICpyaW5nLAo+PiAgICAJCWlmIChmbGFncyAmIEFNREdQVV9JQl9Q
+UkVFTVBURUQpCj4+ICAgIAkJCWNvbnRyb2wgfD0gSU5ESVJFQ1RfQlVGRkVSX1BSRV9SRVNVTUUo
+MSk7Cj4+ICAgIAo+PiAtCQlpZiAoIShpYi0+ZmxhZ3MgJiBBTURHUFVfSUJfRkxBR19DRSkpCj4+
+ICsJCWlmICghKGliLT5mbGFncyAmIEFNREdQVV9JQl9GTEFHX0NFKSAmJiB2bWlkKQo+PiAgICAJ
+CQlnZnhfdjEwXzBfcmluZ19lbWl0X2RlX21ldGEocmluZywKPj4gICAgCQkJCSAgICAoIWFtZGdw
+dV9zcmlvdl92ZihyaW5nLT5hZGV2KSAmJiBmbGFncyAmIEFNREdQVV9JQl9QUkVFTVBURUQpID8g
+dHJ1ZSA6IGZhbHNlKTsKPj4gICAgCX0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvYW1kZ3B1L2dmeF92OF8wLmMKPj4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhf
+djhfMC5jCj4+IGluZGV4IDM5M2ExMzIuLmIxNGY0NmEzIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjhfMC5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvYW1kZ3B1L2dmeF92OF8wLmMKPj4gQEAgLTYxMTYsNyArNjExNiw3IEBAIHN0YXRpYyB2b2lk
+IGdmeF92OF8wX3JpbmdfZW1pdF9pYl9nZngoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nLAo+PiAg
+ICAJaWYgKGFtZGdwdV9zcmlvdl92ZihyaW5nLT5hZGV2KSAmJiAoaWItPmZsYWdzICYgQU1ER1BV
+X0lCX0ZMQUdfUFJFRU1QVCkpIHsKPj4gICAgCQljb250cm9sIHw9IElORElSRUNUX0JVRkZFUl9Q
+UkVfRU5CKDEpOwo+PiAgICAKPj4gLQkJaWYgKCEoaWItPmZsYWdzICYgQU1ER1BVX0lCX0ZMQUdf
+Q0UpKQo+PiArCQlpZiAoIShpYi0+ZmxhZ3MgJiBBTURHUFVfSUJfRkxBR19DRSkgJiYgdm1pZCkK
+PiBLZXJuZWwgY29waWVzIGFsc28gZG9uJ3QgdXNlIGEgVk1JRCwgc28gSSB0aGluayB0aGF0IHRo
+aXMgd29uJ3Qgd29yayBjb3JyZWN0bHkuCj4KPiBEbyB5b3UgaGF2ZSB0aGUgam9iIGF2YWlsYWJs
+ZSBhcyB3ZWxsPyBUaGF0IHdvdWxkIHByb2JhYmx5IGJlIGJldHRlciB0byB0ZXN0IGZvciBzaW5j
+ZSBvbmx5IElCIHRlc3RzIGRvbid0IHVzZSBhIGpvYi4KPgo+IENocmlzdGlhbi4KPgo+PiAgICAJ
+CQlnZnhfdjhfMF9yaW5nX2VtaXRfZGVfbWV0YShyaW5nKTsKPj4gICAgCX0KPj4gICAgCj4+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jCj4+IGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYwo+PiBpbmRleCAwMTU2NDc5Li5kOGQy
+NTZlNiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAu
+Ywo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jCj4+IEBAIC00
+OTg1LDcgKzQ5ODUsNyBAQCBzdGF0aWMgdm9pZCBnZnhfdjlfMF9yaW5nX2VtaXRfaWJfZ2Z4KHN0
+cnVjdCBhbWRncHVfcmluZyAqcmluZywKPj4gICAgCWlmIChhbWRncHVfc3Jpb3ZfdmYocmluZy0+
+YWRldikgJiYgKGliLT5mbGFncyAmIEFNREdQVV9JQl9GTEFHX1BSRUVNUFQpKSB7Cj4+ICAgIAkJ
+Y29udHJvbCB8PSBJTkRJUkVDVF9CVUZGRVJfUFJFX0VOQigxKTsKPj4gICAgCj4+IC0JCWlmICgh
+KGliLT5mbGFncyAmIEFNREdQVV9JQl9GTEFHX0NFKSkKPj4gKwkJaWYgKCEoaWItPmZsYWdzICYg
+QU1ER1BVX0lCX0ZMQUdfQ0UpICYmIHZtaWQpCj4+ICAgIAkJCWdmeF92OV8wX3JpbmdfZW1pdF9k
+ZV9tZXRhKHJpbmcpOwo+PiAgICAJfQo+PiAgICAKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vYW1kLWdmeAo=
