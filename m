@@ -2,48 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9E217604E
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FE9C176051
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F25546E5BB;
-	Mon,  2 Mar 2020 16:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE18A6E5D1;
+	Mon,  2 Mar 2020 16:48:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-BL2-obe.outbound.protection.outlook.com
  (mail-eopbgr750089.outbound.protection.outlook.com [40.107.75.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10D9F6E5AE
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:48:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99A4B6E5BB
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:48:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SEuMrv8ms1ybl13FYi5UeY3MBaU/7gSseOlkGgdtBhUID6OBCm3t3EdQDsTFi0QSB+ci0iengpD5nQHdPoL87VrMls/fRGkCCEoOsmf9eAdgLF5f3bOsB6yTZXI8QKiWsqkkdVAuaVI5fzLScQ9/wmbP7DFL9ALIL8d1/wpU5wdeCOtoFv/fQs50cwHqz05nBNB4H3aVr/hMBmBXt72mTnQTWvsR4QsRNHOUTQWFs8R67dRi2FCJKPs/wtu+hjE/QBsrJ4jatn5D6mJNQ3GXUOKxfYIZQcnzpupTvvmCCsxsx9HxRW2ebYK9JyLbRKu9XGV2hadwl8GmV3DasnTmgw==
+ b=LDPQo6QAqwHykOeXGFlhoYNOwjAlLOtK0aAKhhwsEXSc4GATkHQFsDbLaIMwgUkOWwsczEHppF5Rf6Rq8dtdQCubjYOUswA47zvEMIHCmC1XGicpAa5jZqmJPYZFAVcevH++7x2Gnm4j/slZChv5iP4iLA6M5cZD8M/CjO3kJiPuDGEMTsXcwX8poWWOdMkLhkI/ErNXia2ltARxE1l9TOH9SMuSVI73kQ6Mb0/pYfxm0Rlu0wzM81V5K5+EBmZ9s/bZT/5qHaE2eVsp96U+HCeMizYVzKtlrnnn9D3YiWQaMszpG5mfxo4atyEU68VjH4gB2v32o36FOLqt9lhPxA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TZZlKCGRHxW+qHPOQsTPsGlB/jZTtJLe1KoGEVGHr1U=;
- b=I974ECt/an9/JN+BcDkG9kXZwnmGY6zR2NxJ/y4iuKTaagr32bCmq8DpRyHA0yXLjo2xLbnNxM2z6x0Z8ZTcalRha+9/TGjwMcjizOGdKQvKC1jmaZTF/5BNJtOGBwMv5oNf4gQ8aISgpy6Q7Qx3eHW3rgpy1FB/3FOr6xpbrtzEmgQuQvQHCLGxiZoYstZwr8Tp/jKvCXgjCK5Eq31OnuaoaZWTdUWO3c+aC/1oEEnx25ovvRxzpxoLEUssK1UcoG0du9s/hMfCUvadJpAlBQLW7nPbBlbY56Oc3zJGfipG2vSCrFXrv6zbl6kpzCl1okHIzZ/nY6WLq7u1QEoz+g==
+ bh=mfr4z+NdJPK3tLtKCN7E4VR7S7gHVbWimIz6yPJgYRw=;
+ b=m312fvRgJ1X+fsVIGdJyBI6yzFbHTnnmMpezwFFDBCdXCUiJnOF/CjS3PR6px5GH6gXQwHwtlHC4vFhnUyqJWfAwXpHkSt9P1tPp2UgKR5oOJtN72RCTkD8y8jj17K4E/OrdlefkSFjgMEUx2KzB/W04K0Z1jtOaNkXz3Dd5DQlZlclxnJH0MQQM4pUYOD+a9I13VhG01J0miWfBG/6g419+BfU2mbIH4bUFYrrTH4gcqycvsDstz1rmJTbWCFLcHkyCSpVRAI+54FqugxVJqI4xw4xm33vOSrYyuOoMgRuhxZnFMK5aETxHkdi4KuYzq8v3lxtazABiRQDLWJy7aw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TZZlKCGRHxW+qHPOQsTPsGlB/jZTtJLe1KoGEVGHr1U=;
- b=hcYdmMy/igbNvHCeRf9/cV+I2yeQ76pXD2DoM9EUiE1uRcqcVowrVmk2/KqaZPIGE2ElLGifUE2txH0E4YHIxc0pfBQX51aVnIaUg4ewN4AxOdHcSoLg10ccOnNfmAcj3HMy6Vngu87XYVXLFDW2UI6f+qhzYo9K3VGTnxQlmEs=
+ bh=mfr4z+NdJPK3tLtKCN7E4VR7S7gHVbWimIz6yPJgYRw=;
+ b=CJQnanuLp8w/AIDGlDDHuhcDGcryI1CMk/8di/a3d0Ge6sCiU7YbMIgGcuIEK29G/vU3EQDBT6dtWHgRE9h9vcLaiiFEVEiezjgebHiVfb8eye4leWKmc/mi1RO8sl5HbVnD6KPNkTf9OOb1pJX1WGX7xwxzvM4rriJrkmU6kAY=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2411.namprd12.prod.outlook.com (2603:10b6:907:10::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.19; Mon, 2 Mar
- 2020 16:47:58 +0000
+ 2020 16:47:59 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2772.019; Mon, 2 Mar 2020
- 16:47:58 +0000
+ 16:47:59 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 09/22] drm/amd/display: program DPG_OFFSET_SEGMENT for odm_pipe
-Date: Mon,  2 Mar 2020 11:47:23 -0500
-Message-Id: <20200302164736.89429-10-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 10/22] drm/amd/display: fix image corruption with ODM 2:1 DSC
+ 2 slice
+Date: Mon,  2 Mar 2020 11:47:24 -0500
+Message-Id: <20200302164736.89429-11-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
 References: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
@@ -55,16 +56,16 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.amd.com (165.204.55.250) by
  YTBPR01CA0021.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::34) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:47:57 +0000
+ 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:47:58 +0000
 X-Mailer: git-send-email 2.25.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 9c416a1d-1b07-4e7b-e864-08d7bec97649
+X-MS-Office365-Filtering-Correlation-Id: 4c8d69fa-ecd6-40c3-56b3-08d7bec976ea
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2411:|MW2PR12MB2411:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB241170D26FDC2A881A34E5AD98E70@MW2PR12MB2411.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB241179EE981E52D955016EC998E70@MW2PR12MB2411.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
 X-Forefront-PRVS: 033054F29A
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(39860400002)(396003)(346002)(136003)(376002)(366004)(199004)(189003)(66946007)(6916009)(6666004)(54906003)(8676002)(316002)(4326008)(66556008)(478600001)(36756003)(66476007)(8936002)(2616005)(1076003)(956004)(81156014)(186003)(81166006)(16526019)(86362001)(2906002)(52116002)(7696005)(26005)(6486002)(5660300002);
@@ -75,15 +76,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TIU3UhHT20tLKtgyntG9NzMgBzlI9XEaLm9QeaECQoe7Ru3OotyJQH4XyGeS04uwsCq4TiqMF9rbmAlUhV/ZLjTx8I3NoSyidArpy7VglMefc6/1VegNDmI9xvCre3FL/v862hYJyDa7bd/Dlg/PighKGC1UY6Fqyl02GIu1+lbjim2M+a4EqxhKotCt2v0jpS3+Wx5e6xzo+vNmgs+hVPuMpqqILkfmAPqnoZcce+vrrJg61VYxLn4X0aQhRhvAt7m8Dtk/UMM3SgzKW6KPhUyYHSSRKyXch3/IWjWPQwsHsNSK9+xUFL+GKGt0CqSgr1apuDhqzSWwSvd2c5luAiyq56jvaWZ2slAYuASemZcATsRzn8L45F+iuQopHpovzL5bqlpBrRvm6HPC9GdJVkkSmtHRrplDpPQWgBeXpvpxlebMmEAfzfeflppep9dk
-X-MS-Exchange-AntiSpam-MessageData: DYcOvC+3CHohX+813YaSpAmGxSQj2ZRuyMBvqwrrfDodS2u1G3Z438VpiGLEn0t1ixSKppZGvyJ03tKls8+b1o1ZTTZxPWXMxye5ldp7Qw5wwhu1Km9sB+aA7nUx72FIlZGxJBBwBZWVQ7XLWuQmTg==
+X-Microsoft-Antispam-Message-Info: tn7Tzl97a3/xlY03y9SlnJ9We7WkX2dPMEN59SnJ5B8KJjwUjtXnENjgqZyLYHAZLu0E5hy5AeSC9jDgfKRKhZW+rA7sbUZSHdWtccXQSFPFZZio5tPkFUsSfQggmKvWaE6AtPcMBMwvoukSTT+qq02eyD0rQMudzFCDEb1/52QqEKf1hmB0F6oSFzTYxGI0QJak3Z279Q5/XJuSRTT1k21BD9iM7BpY/XvmuEVCE35Oz5grM08G4Lkg0aMjbMAgv9NXhB4O0DN4Xu+oxZ5SLxTYCzANefHSMGC2grV4mInePu/NapMVNQrgDFmRf/c8Olsd7UZq8wwGgdM3KxBRNW/p+o9nCU+814t4GcHn3X6RfNtCPHy+cqTL7j2nlfouESTDTYG+UNT4covyYHOl6GPYNUeD6MulSU+pCTIDSXAfR5SH7TlIWn7J9m/V8f3W
+X-MS-Exchange-AntiSpam-MessageData: a5h+j0uZvvzNeBZE7f6ezLC9eNSBy1QmlHZ3dR+Ooe9TUAlN6wpphk2hCbo4SpiF9D5FzulLSjkHwXH7XyVZVePiLMmdvX6TdMVxiEKtCRTKWVeGJO7rMzPYIECEAWxp/6TGJUAPP7vc5lZfTxFBrA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c416a1d-1b07-4e7b-e864-08d7bec97649
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:47:58.1291 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c8d69fa-ecd6-40c3-56b3-08d7bec976ea
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:47:59.3205 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x9t4jJUN4ASsIOl23llzwZzTvhfPuTlGzRPsWnfQ0Od1vr/CMw2SG31l3KW+T1aYFWg0zge8i6qwlG0kHl05pA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3urJvL6CYzzb9T+Z0+yRthxOK2IuX4RzJ/L5M6Vl3VThTdnEfumBnr0bqkiZijGA0rXxrvoosMqhg38/FVuA2A==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2411
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -107,249 +108,94 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wenjing Liu <Wenjing.Liu@amd.com>
 
 [why]
-When test pattern is enabled with ODM combine, test pattern is generated
-by piecing multiple DPGs image together.  The current code will program
-all DPGs with horizontal offset of 0. This will cause all DPGs to output
-the beginning of the pattern. Instead each DPG should program a
-horizontal offset of its x position to form a continous pattern when
-pieced together.
+When combining two or more pipes in DSC mode, there will always be more
+than 1 slice per line.  In this case, as per DSC rules, the sink device
+is expecting that the ICH is reset at the end of each slice line (i.e.
+ICH_RESET_AT_END_OF_LINE must be configured based on the number of
+slices at the output of ODM).  It is recommended that software set
+ICH_RESET_AT_END_OF_LINE = 0xF for each DSC in the ODM combine.  However
+the current code only set ICH_RESET_AT_END_OF_LINE = 0xF when number of
+slice per DSC engine is greater than 1 instead of number of slice per
+output after ODM combine.
+
+[how]
+Add is_odm in dsc config. Set ICH_RESET_AT_END_OF_LINE = 0xF if either
+is_odm or number of slice per DSC engine is greater than 1.
 
 Signed-off-by: Wenjing Liu <Wenjing.Liu@amd.com>
 Reviewed-by: Nikola Cornij <Nikola.Cornij@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 40 +++++++++++--------
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 12 ++++--
- .../gpu/drm/amd/display/dc/dcn20/dcn20_opp.c  |  8 +++-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_opp.h  |  9 ++++-
- drivers/gpu/drm/amd/display/dc/inc/hw/opp.h   |  3 +-
- 5 files changed, 49 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c    | 2 ++
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c      | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 1 +
+ drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h           | 1 +
+ 4 files changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index c81f55b28497..bf5406eaf7b7 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -3720,6 +3720,8 @@ static void set_crtc_test_pattern(struct dc_link *link,
- 			struct pipe_ctx *odm_pipe;
- 			enum controller_dp_color_space controller_color_space;
- 			int opp_cnt = 1;
-+			int offset = 0;
-+			int dpg_width = width;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
+index 58634f191a55..51e0ee6e7695 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
+@@ -431,6 +431,7 @@ void dp_set_dsc_on_stream(struct pipe_ctx *pipe_ctx, bool enable)
+ 		dsc_cfg.pic_height = stream->timing.v_addressable + stream->timing.v_border_top + stream->timing.v_border_bottom;
+ 		dsc_cfg.pixel_encoding = stream->timing.pixel_encoding;
+ 		dsc_cfg.color_depth = stream->timing.display_color_depth;
++		dsc_cfg.is_odm = pipe_ctx->next_odm_pipe ? true : false;
+ 		dsc_cfg.dc_dsc_cfg = stream->timing.dsc_cfg;
+ 		ASSERT(dsc_cfg.dc_dsc_cfg.num_slices_h % opp_cnt == 0);
+ 		dsc_cfg.dc_dsc_cfg.num_slices_h /= opp_cnt;
+@@ -535,6 +536,7 @@ bool dp_set_dsc_pps_sdp(struct pipe_ctx *pipe_ctx, bool enable)
+ 		dsc_cfg.pic_height = stream->timing.v_addressable + stream->timing.v_border_top + stream->timing.v_border_bottom;
+ 		dsc_cfg.pixel_encoding = stream->timing.pixel_encoding;
+ 		dsc_cfg.color_depth = stream->timing.display_color_depth;
++		dsc_cfg.is_odm = pipe_ctx->next_odm_pipe ? true : false;
+ 		dsc_cfg.dc_dsc_cfg = stream->timing.dsc_cfg;
  
- 			switch (test_pattern_color_space) {
- 			case DP_TEST_PATTERN_COLOR_SPACE_RGB:
-@@ -3741,28 +3743,31 @@ static void set_crtc_test_pattern(struct dc_link *link,
+ 		DC_LOG_DSC(" ");
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
+index 6bdfee20b6a7..1b1ae9ce2799 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
+@@ -369,6 +369,7 @@ static bool dsc_prepare_config(const struct dsc_config *dsc_cfg, struct dsc_reg_
+ 	dsc_reg_vals->pps.block_pred_enable = dsc_cfg->dc_dsc_cfg.block_pred_enable;
+ 	dsc_reg_vals->pps.line_buf_depth = dsc_cfg->dc_dsc_cfg.linebuf_depth;
+ 	dsc_reg_vals->alternate_ich_encoding_en = dsc_reg_vals->pps.dsc_version_minor == 1 ? 0 : 1;
++	dsc_reg_vals->ich_reset_at_eol = (dsc_cfg->is_odm || dsc_reg_vals->num_slices_h > 1) ? 0xF : 0;
  
- 			for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe)
- 				opp_cnt++;
-+			dpg_width = width / opp_cnt;
-+			offset = dpg_width;
+ 	// TODO: in addition to validating slice height (pic height must be divisible by slice height),
+ 	// see what happens when the same condition doesn't apply for slice_width/pic_width.
+@@ -531,7 +532,6 @@ static void dsc_update_from_dsc_parameters(struct dsc_reg_values *reg_vals, cons
+ 		reg_vals->pps.rc_buf_thresh[i] = reg_vals->pps.rc_buf_thresh[i] >> 6;
  
--			width /= opp_cnt;
-+			opp->funcs->opp_set_disp_pattern_generator(opp,
-+				controller_test_pattern,
-+				controller_color_space,
-+				color_depth,
-+				NULL,
-+				dpg_width,
-+				height,
-+				0);
+ 	reg_vals->rc_buffer_model_size = dsc_params->rc_buffer_model_size;
+-	reg_vals->ich_reset_at_eol = reg_vals->num_slices_h == 1 ? 0 : 0xf;
+ }
  
- 			for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe) {
- 				struct output_pixel_processor *odm_opp = odm_pipe->stream_res.opp;
--
- 				odm_opp->funcs->opp_program_bit_depth_reduction(odm_opp, &params);
- 				odm_opp->funcs->opp_set_disp_pattern_generator(odm_opp,
- 					controller_test_pattern,
- 					controller_color_space,
- 					color_depth,
- 					NULL,
--					width,
--					height);
-+					dpg_width,
-+					height,
-+					offset);
-+				offset += offset;
- 			}
--			opp->funcs->opp_set_disp_pattern_generator(opp,
--				controller_test_pattern,
--				controller_color_space,
--				color_depth,
--				NULL,
--				width,
--				height);
- 		}
- 	}
- 	break;
-@@ -3779,11 +3784,12 @@ static void set_crtc_test_pattern(struct dc_link *link,
- 		else if (opp->funcs->opp_set_disp_pattern_generator) {
- 			struct pipe_ctx *odm_pipe;
- 			int opp_cnt = 1;
-+			int dpg_width = width;
+ static void dsc_write_to_registers(struct display_stream_compressor *dsc, const struct dsc_reg_values *reg_vals)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 8a81ae562f6e..4ce701877ffa 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -2299,6 +2299,7 @@ bool dcn20_validate_dsc(struct dc *dc, struct dc_state *new_ctx)
+ 				+ stream->timing.v_border_bottom;
+ 		dsc_cfg.pixel_encoding = stream->timing.pixel_encoding;
+ 		dsc_cfg.color_depth = stream->timing.display_color_depth;
++		dsc_cfg.is_odm = pipe_ctx->next_odm_pipe ? true : false;
+ 		dsc_cfg.dc_dsc_cfg = stream->timing.dsc_cfg;
+ 		dsc_cfg.dc_dsc_cfg.num_slices_h /= opp_cnt;
  
- 			for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe)
- 				opp_cnt++;
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h
+index c59740084ebc..7c2a3328b208 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h
+@@ -39,6 +39,7 @@ struct dsc_config {
+ 	uint32_t pic_height;
+ 	enum dc_pixel_encoding pixel_encoding;
+ 	enum dc_color_depth color_depth;  /* Bits per component */
++	bool is_odm;
+ 	struct dc_dsc_config dc_dsc_cfg;
+ };
  
--			width /= opp_cnt;
-+			dpg_width = width / opp_cnt;
- 			for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe) {
- 				struct output_pixel_processor *odm_opp = odm_pipe->stream_res.opp;
- 
-@@ -3793,16 +3799,18 @@ static void set_crtc_test_pattern(struct dc_link *link,
- 					CONTROLLER_DP_COLOR_SPACE_UDEFINED,
- 					color_depth,
- 					NULL,
--					width,
--					height);
-+					dpg_width,
-+					height,
-+					0);
- 			}
- 			opp->funcs->opp_set_disp_pattern_generator(opp,
- 				CONTROLLER_DP_TEST_PATTERN_VIDEOMODE,
- 				CONTROLLER_DP_COLOR_SPACE_UDEFINED,
- 				color_depth,
- 				NULL,
--				width,
--				height);
-+				dpg_width,
-+				height,
-+				0);
- 		}
- 	}
- 	break;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index 97c0c8ced8e5..49f5af9e3016 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -307,7 +307,8 @@ void dcn20_init_blank(
- 			COLOR_DEPTH_UNDEFINED,
- 			&black_color,
- 			otg_active_width,
--			otg_active_height);
-+			otg_active_height,
-+			0);
- 
- 	if (num_opps == 2) {
- 		bottom_opp->funcs->opp_set_disp_pattern_generator(
-@@ -317,7 +318,8 @@ void dcn20_init_blank(
- 				COLOR_DEPTH_UNDEFINED,
- 				&black_color,
- 				otg_active_width,
--				otg_active_height);
-+				otg_active_height,
-+				0);
- 	}
- 
- 	hws->funcs.wait_for_blank_complete(opp);
-@@ -974,7 +976,8 @@ void dcn20_blank_pixel_data(
- 			stream->timing.display_color_depth,
- 			&black_color,
- 			width,
--			height);
-+			height,
-+			0);
- 
- 	for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe) {
- 		odm_pipe->stream_res.opp->funcs->opp_set_disp_pattern_generator(
-@@ -985,7 +988,8 @@ void dcn20_blank_pixel_data(
- 				stream->timing.display_color_depth,
- 				&black_color,
- 				width,
--				height);
-+				height,
-+				0);
- 	}
- 
- 	if (!blank)
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_opp.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_opp.c
-index 023cc71fad0f..138321e151eb 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_opp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_opp.c
-@@ -45,7 +45,8 @@ void opp2_set_disp_pattern_generator(
- 		enum dc_color_depth color_depth,
- 		const struct tg_color *solid_color,
- 		int width,
--		int height)
-+		int height,
-+		int offset)
- {
- 	struct dcn20_opp *oppn20 = TO_DCN20_OPP(opp);
- 	enum test_pattern_color_format bit_depth;
-@@ -92,6 +93,11 @@ void opp2_set_disp_pattern_generator(
- 		DPG_ACTIVE_WIDTH, width,
- 		DPG_ACTIVE_HEIGHT, height);
- 
-+	/* set DPG offset */
-+	REG_SET_2(DPG_OFFSET_SEGMENT, 0,
-+		DPG_X_OFFSET, offset,
-+		DPG_SEGMENT_WIDTH, 0);
-+
- 	switch (test_pattern) {
- 	case CONTROLLER_DP_TEST_PATTERN_COLORSQUARES:
- 	case CONTROLLER_DP_TEST_PATTERN_COLORSQUARES_CEA:
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_opp.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_opp.h
-index 4093bec172c1..64c5b429c79a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_opp.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_opp.h
-@@ -36,6 +36,7 @@
- #define OPP_DPG_REG_LIST(id) \
- 	SRI(DPG_CONTROL, DPG, id), \
- 	SRI(DPG_DIMENSIONS, DPG, id), \
-+	SRI(DPG_OFFSET_SEGMENT, DPG, id), \
- 	SRI(DPG_COLOUR_B_CB, DPG, id), \
- 	SRI(DPG_COLOUR_G_Y, DPG, id), \
- 	SRI(DPG_COLOUR_R_CR, DPG, id), \
-@@ -53,6 +54,7 @@
- 	uint32_t FMT_422_CONTROL; \
- 	uint32_t DPG_CONTROL; \
- 	uint32_t DPG_DIMENSIONS; \
-+	uint32_t DPG_OFFSET_SEGMENT; \
- 	uint32_t DPG_COLOUR_B_CB; \
- 	uint32_t DPG_COLOUR_G_Y; \
- 	uint32_t DPG_COLOUR_R_CR; \
-@@ -68,6 +70,8 @@
- 	OPP_SF(DPG0_DPG_CONTROL, DPG_HRES, mask_sh), \
- 	OPP_SF(DPG0_DPG_DIMENSIONS, DPG_ACTIVE_WIDTH, mask_sh), \
- 	OPP_SF(DPG0_DPG_DIMENSIONS, DPG_ACTIVE_HEIGHT, mask_sh), \
-+	OPP_SF(DPG0_DPG_OFFSET_SEGMENT, DPG_X_OFFSET, mask_sh), \
-+	OPP_SF(DPG0_DPG_OFFSET_SEGMENT, DPG_SEGMENT_WIDTH, mask_sh), \
- 	OPP_SF(DPG0_DPG_COLOUR_R_CR, DPG_COLOUR0_R_CR, mask_sh), \
- 	OPP_SF(DPG0_DPG_COLOUR_R_CR, DPG_COLOUR1_R_CR, mask_sh), \
- 	OPP_SF(DPG0_DPG_COLOUR_B_CB, DPG_COLOUR0_B_CB, mask_sh), \
-@@ -97,6 +101,8 @@
- 	type DPG_HRES; \
- 	type DPG_ACTIVE_WIDTH; \
- 	type DPG_ACTIVE_HEIGHT; \
-+	type DPG_X_OFFSET; \
-+	type DPG_SEGMENT_WIDTH; \
- 	type DPG_COLOUR0_R_CR; \
- 	type DPG_COLOUR1_R_CR; \
- 	type DPG_COLOUR0_B_CB; \
-@@ -144,7 +150,8 @@ void opp2_set_disp_pattern_generator(
- 	enum dc_color_depth color_depth,
- 	const struct tg_color *solid_color,
- 	int width,
--	int height);
-+	int height,
-+	int offset);
- 
- bool opp2_dpg_is_blanked(struct output_pixel_processor *opp);
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/opp.h b/drivers/gpu/drm/amd/display/dc/inc/hw/opp.h
-index 7575564b2265..2717352eb697 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/opp.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/opp.h
-@@ -310,7 +310,8 @@ struct opp_funcs {
- 			enum dc_color_depth color_depth,
- 			const struct tg_color *solid_color,
- 			int width,
--			int height);
-+			int height,
-+			int offset);
- 
- 	bool (*dpg_is_blanked)(
- 			struct output_pixel_processor *opp);
 -- 
 2.25.1
 
