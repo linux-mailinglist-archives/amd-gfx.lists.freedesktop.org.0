@@ -1,50 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD59176050
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45174176053
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36D516E5BF;
-	Mon,  2 Mar 2020 16:48:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B55A6E5D3;
+	Mon,  2 Mar 2020 16:48:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750073.outbound.protection.outlook.com [40.107.75.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04B576E5BF
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:48:03 +0000 (UTC)
+ (mail-eopbgr750043.outbound.protection.outlook.com [40.107.75.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4855F6E5D2
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:48:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gfsbG41bASGo0CLp+fJ0HkCxl4+y37QqpOQPmGr6i/W8fK2DRrODgod7mq4a2Z4bMBppfs16eQZPUg0MnqhY9DLxEvobcp/g78Jf01beYPvNllLwSEkIXeGlP4ahytQH7ek2s+9+ko7vNUBOGYuKVepIHPNcol1ZQVPs0jfDSkzqVvh6NyuUdB/lMkkzyOgD7c4z+EF0OfjkGo6219/4/m+ZPasFJ38j1WmGd903U9rzoWC4KgTN2QbqGkIc9CHOh59L3/yvKZLk7Yd72sIzgofcTR0UVr9FHiCmLaYjCrajPGbqMcAN/vM96obuZ4GoEtyi8oV99yYaWsBsFIMZzg==
+ b=HoyLQFI7qUhLLED0dQUSEr9knc3aTLaRGooqVJ5tUHUhOXka3Cl1db2uzZ5ntKGkOoGCkHG1rQCM/LL/Lr7P6q1oKLoaGQNjZbMEL1LOmjqd4CdvWNehMiNZCCscRFoyd72WdaAx+yGyIeVVxoqXRjNM0UP/tgCgfGiW/zfULgnRaDSj4JAIQbzqpf2ommgrDvYnAXahtT/l5qysm6ylqcCyFSf2XfeRdSXmlIkBXt5RIyYoIAZGsQU7owRC5trq29kmd22iU5YYPqTqHc36xpiTxzUpTGJZmQp2pSRFxhmQC3nf9Wsns2Nd6zWQ5nepofe50+Cqnt/9+ZNlwTnn1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WIUf9NfDfc85hIyxl2ySh3TCieOiiblSpIH8gDcUR/0=;
- b=HAiuLWjp6+0DwoVBC+kHbe9vr2N1+7BHmTS7/WpZnGzbsaqL78Y/4uE7fyMW1JBjxCbSqvwUz8wsJZOfkVpCIJnB1y39YUuiTGXOFqD7Brhs+EYjC7xIx7i1PAVx/1XZ8uKgOImcRAcPUErEBPL/o4rvs/fvyuUsC5AR1efRIkJr9D999K5adqq+yFCC6zHHk7uf9k1i8UCFZnk6ACWV3+juhXy5CpNcxiGLSXmNtAJvL6Dmbw/n4zxpKwnl9tUolNfrwTpEJG84Mkqh/AAKJPW9UpaCZ/fJQ7qscRHctgShF78492srpfC/nCIAD//j7WZUaWFmp1zK56YHgtZkGA==
+ bh=V98WPUsQ2InYztd9WOSX8LyDdzJYqmXUbyL+2vpI9BE=;
+ b=DTTRj7268uCY81NnHB0vecgepQR44a9jdY3J+qHJVps2SKpYTAhRcNSX3HOc0t0vysCTLGoATrvIWcoEPEp4KxstjzcmqPq/IM5wpXxHaOTrI7hBMecgmzXnSrDXmz5mMIKMc5sQ5JuyvRJ++cCU9iwWvn7TQt5cu7gNBv56KsTvw85nvqG1FJ0FgnRu6fHh4qC05YKhGH9G/+L/OaXUgcvJolUKRryNw6Qi6zsxKsHxAjqNwli4oxNq0qAKAFJdqAe0g6R2jFU9coLSaV4mKy2H42f14TDnLCSKLrAP/5yltQedDcIvJyaBw/F8JHUPvmBXBCCwuPLQ7F2utMy9jw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WIUf9NfDfc85hIyxl2ySh3TCieOiiblSpIH8gDcUR/0=;
- b=3yBZ+K5x/lUDRG1gjjLwf2TYxxZZDXBe/tjC+4v4kABQujbCJZGgt1bCpfcMgJwG+f0i1cuRZrCtJaASaJdQ0glCr6bJlHjcUI6HTO/u11P6CYiPaua+GBRltutke/kmNFVOSo7OWmiEadxzIkNVL9iDsbaPpKgrTQIO/S9WlPU=
+ bh=V98WPUsQ2InYztd9WOSX8LyDdzJYqmXUbyL+2vpI9BE=;
+ b=MOiuD/CQ/YOxZG3ZbKy4N1LGIKmEBkvriRF8wTYz62kKSGnMW2I4FwMftMxxeyxaziv3jQ9sWwGku1emUfoZxWIcRIzobbZZgiT6leFVguXWd9T5sa00oSLkgZckhwv7MS0xg14rBwEEV39VItcnjSktaJsDN32ac1cvZL9u7Q4=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2411.namprd12.prod.outlook.com (2603:10b6:907:10::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.19; Mon, 2 Mar
- 2020 16:48:01 +0000
+ 2020 16:48:02 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2772.019; Mon, 2 Mar 2020
- 16:48:01 +0000
+ 16:48:02 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 12/22] drm/amd/display: Remove DISPCLK Limit Floor for Certain
- SMU Versions
-Date: Mon,  2 Mar 2020 11:47:26 -0500
-Message-Id: <20200302164736.89429-13-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 13/22] drm/amd/display: Disable freesync borderless on Renoir
+Date: Mon,  2 Mar 2020 11:47:27 -0500
+Message-Id: <20200302164736.89429-14-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
 References: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
@@ -56,16 +55,16 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.amd.com (165.204.55.250) by
  YTBPR01CA0021.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::34) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:48:00 +0000
+ 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:48:01 +0000
 X-Mailer: git-send-email 2.25.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 8e1b6131-274f-46d3-666f-08d7bec97837
+X-MS-Office365-Filtering-Correlation-Id: 6e5a4260-b5d3-43a8-6895-08d7bec978d3
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2411:|MW2PR12MB2411:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB241173F5499B7AB4291CBCD898E70@MW2PR12MB2411.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB241152D82C2E17C2E914E69C98E70@MW2PR12MB2411.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-Forefront-PRVS: 033054F29A
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(39860400002)(396003)(346002)(136003)(376002)(366004)(199004)(189003)(66946007)(6916009)(6666004)(54906003)(8676002)(316002)(4326008)(66556008)(478600001)(36756003)(66476007)(8936002)(2616005)(1076003)(956004)(81156014)(186003)(81166006)(16526019)(86362001)(2906002)(52116002)(7696005)(26005)(6486002)(5660300002);
@@ -76,15 +75,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wnVbajjZ45utq4AP9nYo7WVZ2nFsM+rUBuS18knez9Of24sL5Zmbhi7xd11yafppWflSCXy4ep+swIFl+Nh+s2q11yzR0ar+5doklMnVznuf6ZwtF8XFvcdZ0sD5kRABzTLSbHxNBrJZoRJmiBKiE8mncjk2JjJ1tOu33W5HDl2qBD6IPP0MbcM2vPVkgCKhLgtfITx2u2ZEm+GaievTDo568odYdN67t7KCNHZwNpnBEx09FXMvEHNq3QMVJW58SrIDYH4QIVbRYzw7V8D7yH0/6lyPbxqgvLXInSjVPyXT885Wga4KpDH34zyXePLRbMCUmz1mrt1f0XMaRgM8Whn5OCT6RQ50FYCz33msiGLjhzStRfP93/ti96nsNoossBGa4gaNtqUcH9oFIb9y2J8bfjMZRvSLMsb4LwpOflokLQrV7ZHnkSwRedhCOA5P
-X-MS-Exchange-AntiSpam-MessageData: 1P5BLE8X8kBLOtIAeT05e6ztkt/uKSjevG8HbEF2Qg0Qxz8iVtoN54B8oT8Z/HlCP7MzMREnQ9ejxc6PqZk4hG8jClMGZ5jubFEjwJDki4o5bnane0a2TR4v1kXL7LLtPcKb8J4Ezldkj5TOHWbbnA==
+X-Microsoft-Antispam-Message-Info: kRW6wuF90a7MX3yv4eGjrvOWO/Yot2TArfvtaXT7qkRv1+jSkZqi4PWbotkgl11rLBgRyKmLSYMguH4BY7vKTJUWU+f7RryJxw58Mnv/gJW/fhSzxO+s0GFd60LW9jO3jJml3A+e0ZGmLvnqpFhdlE9KBpi5O/5ctkXaeYNSx2KjnG6DiyrknpHo8iWhiku/ivDXbaB1smq/Ii7wUIqSz8eG0aXijISedt9cJ9p5bvc9svM5GyY1C+BB1rd/GKKVuRsyCE9DXeeoUWRev0O2jG6xRRxDZm76XJ4BUGWhPznucBHZu4AxEIJWW1CRx1dt9Jyn1mQZZEKtqdEJUu4irw1MZJHZtg56Zxn5uga0GDg9Pmh5MWnFsBImGqBOxgulM5wUQIjEIpHw1quoQ9AGFuKmzT/7sSLR1FUqolCI6FfdBHUdWjI3aSG6ZsbvLzwF
+X-MS-Exchange-AntiSpam-MessageData: ogPuChI+Hza4V25qJoH3ek43zfwfGlocum/xqTQ7eSjqXXa33wxFdefqmbs0FNv22Qiv1jvcStc0F92/5gUmP2QvSzL78jJmEFeMnUG2hXRvOaZUPX33f+Kg82tPzdog1uM8diWqmfCJHbfzTmOHyw==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e1b6131-274f-46d3-666f-08d7bec97837
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:48:01.3793 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e5a4260-b5d3-43a8-6895-08d7bec978d3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:48:02.5226 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eKxoASTvcAMdFY877xc90jCMK7vN2A9QWPB9p9Ol64GMB2itaWq4zSY9RRWCSLC81OpRQFhfIk3BP48nGxuMAQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: eZA19iVmgr2Nmq6hpGuT9WRuRN/ypDXR9ON+EiMqYRUPXW+T+ObVHkI9MCTKmt+Sfw4GY0OzANMBXiCeT4UFZQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2411
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,57 +96,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sung Lee <sung.lee@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Rodrigo.Siqueira@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>,
- Bhawanpreet.Lakha@amd.com
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Yongqiang Sun <yongqiang.sun@amd.com>,
+ Michael Strauss <michael.strauss@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
+From: Michael Strauss <michael.strauss@amd.com>
 
 [WHY]
-SMU FW previously had an issue with lowering display clock to below 100
-MHz, and a workaround was put in to limit it.  Newest SMU FW does not
-have this issue, and no longer needs the 100MHz cap.
+Freesync borderless is not meant to be enabled on any APUs
 
 [HOW]
-Remove the 100MHz cap based on the SMU FW version.
+Add is_apu cap to dcn21_resource_construct for correct recognition
 
-Signed-off-by: Sung Lee <sung.lee@amd.com>
+Signed-off-by: Michael Strauss <michael.strauss@amd.com>
 Reviewed-by: Yongqiang Sun <yongqiang.sun@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-index 64cbd5462c79..ab267ddd4abe 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-@@ -46,6 +46,7 @@
- /* Constants */
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+index cae3f49416b5..c87eb7b9c060 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+@@ -1799,6 +1799,7 @@ static bool dcn21_resource_construct(
+ 	dc->caps.force_dp_tps4_for_cp2520 = true;
+ 	dc->caps.extended_aux_timeout_support = true;
+ 	dc->caps.dmcub_support = true;
++	dc->caps.is_apu = true;
  
- #define LPDDR_MEM_RETRAIN_LATENCY 4.977 /* Number obtained from LPDDR4 Training Counter Requirement doc */
-+#define SMU_VER_55_51_0 0x373300 /* SMU Version that is able to set DISPCLK below 100MHz */
- 
- /* Macros */
- 
-@@ -720,6 +721,13 @@ void rn_clk_mgr_construct(
- 	} else {
- 		struct clk_log_info log_info = {0};
- 
-+		clk_mgr->smu_ver = rn_vbios_smu_get_smu_version(clk_mgr);
-+
-+		/* SMU Version 55.51.0 and up no longer have an issue
-+		 * that needs to limit minimum dispclk */
-+		if (clk_mgr->smu_ver >= SMU_VER_55_51_0)
-+			debug->min_disp_clk_khz = 0;
-+
- 		/* TODO: Check we get what we expect during bringup */
- 		clk_mgr->base.dentist_vco_freq_khz = get_vco_frequency_from_reg(clk_mgr);
- 
+ 	if (dc->ctx->dce_environment == DCE_ENV_PRODUCTION_DRV)
+ 		dc->debug = debug_defaults_drv;
 -- 
 2.25.1
 
