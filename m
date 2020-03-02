@@ -2,49 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7322017604B
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B473F17604D
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB126E5CE;
-	Mon,  2 Mar 2020 16:47:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B74B76E5AE;
+	Mon,  2 Mar 2020 16:48:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on20607.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe59::607])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FEAB6E5CA
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:47:57 +0000 (UTC)
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+ (mail-eopbgr750089.outbound.protection.outlook.com [40.107.75.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 746C56E5D2
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:47:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VEKZBH6j0AxyNl6MtEzOxAQCtM+MmB2xYgaZZHGnp9NvRUHE0FGSDAmjmVxcsfbdZ4Fn2xYVBsgfTo38WkETMEizXIF8HJzCb2c0k43AsNLkWYg2Jz18vDF//LmFf1ZVKaWx0dfLT21oX6z0tLxMGdHOMZEzxGs78jU9j7rwUvIuhsdUkMDZNfYkol7IgQDopGGzjOmNwnXcIKle2Vixa/tC0rs8IfDETs2Nvnxst1dv8qJ8RfaojGUocliQJiBZkSS2tX18cHFuHVzvSdhpHETLrMqC9feQ2B3JcVoX2hRAoSWphBI8RpbAU9unEZ7bk8bkZYpfbkrgJ/ZkYxyFoA==
+ b=ExzJuxFhrxvSpaOHil8dwR5O8SjxTbgBSOiuWzgwBDL5c9zUvy2UZb+TfTNd9+lV4JfVVhBVBfXuG8rjWoErGSlaeY+RBqzWhKK1NQWTEVTICL5ag8oxPKcTM9NnnlbDI02Y3HwZP5SJv2Wc3NHOmQAjXF1cQjTmwfhKq0oL6TMENVbdUPvVJmWEviJzTZw79I8DfY15yhgIjr8XL6an4aKEd0APQlON+84JrPHefULSGq/dUjrYOljSqiT9MRSr6mfLdIHUzLAWdk8yULXXxtDotHN2R73FGbjj5k3/HdpceNpbu6vb8hh+hTey0c5hrUmc5JIpB3W1QMOcOSnxpw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PkbiBg7GMpfvb7AAcv84pqAsua36cI5BlB5nok3RZYY=;
- b=MccNv64Jfr1pYpCiTB3C7MTLdPrbY+5fj9vr0E7Abplh4SgbapuH9Y62xByv1WB5Zb8anGz0WROvcKmBmaM1HQPt/QtXGgT8wsYbmzJqZu5xzXijXsxUfSmzRt0wVyielB12gn6/WH5TiN+GQnTSdJZb9ohqIWXFjQWekd6ldjZRVXPGt9d/0WJ41umbSdH2YBJfAq5PYw1YmjH9vTBEt1qRdsla1fK2SGZSO+/7Ixoq/tcN4+t397uiLt7BHaUdiwRyb815YzaCss1URHteUcdzNdVcnvnnumH7qH6wgoD5etmqU2boQR3GJTXknJGJHixplhfvNnofW9BiEBhKtQ==
+ bh=gEQ5uEunDhum++h6zabEAoEgTboBxjYKDjVszStUCzc=;
+ b=AhcAvrQVDFD1lbb39jchtD6CMtLCPQK94BIOrLgAraKLt0Elqot5KxIpR627omNKbr9mspo9pj3Mo96iCSIBvjbZrkpSLUx8j9mt/t51QDBQ95fUpUve35MF1o41PmY7IrbPwi5H3L+7ZJP6TeKuwoIiOccRqC9wN1xdqOyTceUYcye3RnJE86E32Yy1spjWReOdUBApXDhQapmh6F67C08SVn3zC+o49t2xFg5AcrBVIYYb3/tjlZ5xhtM9N9Q+73aTZ1lU6qEo6x+RIRL8/lWqPZNqj0fMeSugAyjnpFozjL1xuj637opnMwp+VZuuTqLFGDjyRf/Q33oMBAfxOQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PkbiBg7GMpfvb7AAcv84pqAsua36cI5BlB5nok3RZYY=;
- b=hkMfsDDSyJF0BVi0j5INzV7Z7cqvb9cVfGiRpRigwt5hGhL/jLftQpit5kiUKLxHmRAz9sW4Di/8khwPQbIEfi4XiCJrvM+EL1+wMt210KmI2XXJKe1gwBxAVFrmKik1JxsBpMks5vf+PLsL+lVMTHLoFf3RtS5G0K3mUtOWIkY=
+ bh=gEQ5uEunDhum++h6zabEAoEgTboBxjYKDjVszStUCzc=;
+ b=ARTm+TdbPDimMJyJk7p3MzlYXDeL18ZbF3lE8T22hbFcG4mkho5+xs9MxgLAgIWLZynTyiMe7kWQQnS+LlSF2UYmuNubgMCD9VPoCv8jFQWt3/OV/o0BTBUqZs1sx2V/TBxFXra3p4nEEPp5K9NYFw0NKNnBxd4o5fYVhtpy6jw=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
- by MW2PR12MB2540.namprd12.prod.outlook.com (2603:10b6:907:7::20) with
+ by MW2PR12MB2411.namprd12.prod.outlook.com (2603:10b6:907:10::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15; Mon, 2 Mar
- 2020 16:47:55 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.19; Mon, 2 Mar
+ 2020 16:47:56 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2772.019; Mon, 2 Mar 2020
- 16:47:55 +0000
+ 16:47:56 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/22] drm/amd/display: Make clock table struct more accessible
-Date: Mon,  2 Mar 2020 11:47:20 -0500
-Message-Id: <20200302164736.89429-7-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 07/22] drm/amd/display: fix typo "to found" -> "to find"
+Date: Mon,  2 Mar 2020 11:47:21 -0500
+Message-Id: <20200302164736.89429-8-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
 References: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
@@ -56,36 +55,36 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.amd.com (165.204.55.250) by
  YTBPR01CA0021.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::34) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:47:54 +0000
+ 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:47:55 +0000
 X-Mailer: git-send-email 2.25.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: b71526d0-1b7c-4af5-bd01-08d7bec97497
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2540:|MW2PR12MB2540:
+X-MS-Office365-Filtering-Correlation-Id: 9c138149-7b01-4ebe-2394-08d7bec9752a
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2411:|MW2PR12MB2411:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB25404CE65C9BA5056C77794398E70@MW2PR12MB2540.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB24112AE7272E02D92AED0DD598E70@MW2PR12MB2411.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
 X-Forefront-PRVS: 033054F29A
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(39860400002)(376002)(366004)(346002)(396003)(189003)(199004)(54906003)(316002)(7696005)(52116002)(8936002)(6486002)(86362001)(6666004)(36756003)(81166006)(81156014)(8676002)(1076003)(5660300002)(16526019)(2616005)(4326008)(2906002)(186003)(956004)(478600001)(6916009)(66556008)(66946007)(66476007)(26005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2540;
+ SFS:(10009020)(4636009)(39860400002)(396003)(346002)(136003)(376002)(366004)(199004)(189003)(66946007)(6916009)(6666004)(54906003)(8676002)(316002)(4326008)(66556008)(478600001)(36756003)(66476007)(8936002)(2616005)(1076003)(956004)(81156014)(186003)(81166006)(16526019)(86362001)(2906002)(52116002)(7696005)(26005)(6486002)(5660300002)(37363001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2411;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
+ PTR:InfoNoRecords; A:1; MX:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mslZOaS8EuESeoIEDu58JiwaXau2Fwx9+h0otPn/Peg0aoaruUdJWbWjFUHZBiS3kVZNbnOm4ObYuCR9yfWkFkTU9Mtm95xM+l/4StWDs3D8t1MDjFpOsNlJ8nyDTkbpSnI/o6NXkvEjlTjn79p9LgsL07njsfw3kojUgKCoTp0Fn70/J0LdEmTCVN+S5uirUHEkkAMImNCWDkgmg5wPH0Xc1+gKYoh040Od9fQRW1QnVWq4TwLI4vKZXhCjrRBBSFmXGCg6J96U93scrudga/erTdMfgBwpP0SogWu+97jBXHB2j7slMHR1vKC3KA9L/dhl3EUqBtKhP6zWCaSrf4MOtTpDkq4nmvXhovWdEljFwaLSgWCfz6an7cIXVHtT6ua1YjAhORge9cZ/rblf8mSDx/bpc9L8WOCH0+E9WXmXrsDCnDVu3XqCFwH4/345
-X-MS-Exchange-AntiSpam-MessageData: bByu/V1hxHD621mlXnGoq7nHoowsc9Nph1uzbLC9OUo5bfFHysoFUUDxzXs9cjxpCWRYN41pseZQ/JjeX0acs2TQWTRamxfDZarng+W/Iam4MzRdbfa41IlAdxpiSX48vrzHZtITBQbZIZ059rnRjw==
+X-Microsoft-Antispam-Message-Info: 9Z4TwHiuZyTSoDvL1ePf+4dRYr+6tBFv8fXKGfmN1PZX2gbKdbUUCUZ0p6I+CaFAmGDb50+MEIO0Z7knhLyedthPbPOHYt3x+9aM0sZoAOFn9k83Wgcxqx9aaGD7hy1oh/lVC3bavnbeFf+uCsBKbftdQcIs7ZhxLFj+t+iTaDyZpyJTqj0Smgl83zYea88+5Noypf8HDEs0cQD0CXVSP/MnECExg4t4HSHhjKnUjzQG3lr4FmtFOYMP8LDLFqYquDyOjr2R2wRsecF5quqQNplU/k/CJ8ojOfCmBXf+pgnYNRw4ZU8QTVa77HeP0BOYxfbhRtQ8JThOnm7rUFobba3SiEF/1/oOUJHdY2McZladjKB1241yAMt8bdYKGfiat2UldqLTbUk14bzuPbmG911xfPEcEw1heSRoC9C2kQBFoDwYdAPXJev97d/t+xO2gBOf//KCDhTuke6QOL+FXZ2qusy6DIPFqbMrxgWkMCEIzoJ/S7zaCl82/KbIfMNU
+X-MS-Exchange-AntiSpam-MessageData: roNVNMBeqhhYAmBbcYEVH1kB/4sqqv7OqGARLMSnigwawh2OQqZ5oCD0OMkkoa99zG4j5XdwLs0wYChlFkiPiZMznSGNTR9G0B5EJWJPyU2Nq+W8r7+1ew95Yc5TYG+Vc+5JFGxqWWwnhjvy4YKctg==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b71526d0-1b7c-4af5-bd01-08d7bec97497
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:47:55.2358 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c138149-7b01-4ebe-2394-08d7bec9752a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:47:56.1913 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0MO4xSlT9CCWsPGSODQbL84+MaGH9U/0H12DpEc6qJyTAyEGSoa+KyywVx8Gd9nbZOGo4IuR7YoPNPNOR6viXA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2540
+X-MS-Exchange-CrossTenant-UserPrincipalName: v47mBWlh8/oI6+xtGNO1n4lNWEqLIQbqDRVh6gNq5A3h2Pyqrv1OPFqooQDAx1krWjJhOhx2dAfoolBCCbQ4Jw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2411
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,48 +96,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sung Lee <sung.lee@amd.com>, Eric Yang <eric.yang2@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+Cc: Zhan Liu <Zhan.Liu@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Rodrigo.Siqueira@amd.com, Roman Li <roman.li@amd.com>,
  Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
+From: Roman Li <roman.li@amd.com>
 
-[WHY & HOW]
-In order to correctly intepret clock table, num_states is also needed.
-This field did not get moved with clock_table but should next to it for
-easier access/viewing.
+[Why]
+Typo in amdgpu_dm error message:
+"Failed to found connector for link!"
+[How]
+1. Replace with:
+"Failed to find connector for link!"
+2. Fix indentation checkpatch warnings.
 
-Signed-off-by: Sung Lee <sung.lee@amd.com>
-Reviewed-by: Eric Yang <eric.yang2@amd.com>
+Signed-off-by: Roman Li <roman.li@amd.com>
+Reviewed-by: Zhan Liu <Zhan.Liu@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c    | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-index a56b611db15e..a1d68e06cf21 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-@@ -69,6 +69,7 @@ struct _vcs_dpi_voltage_scaling_st {
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index 318b474ff20e..2f2b0eb4ebcd 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -400,8 +400,8 @@ bool dm_helpers_dp_mst_start_top_mgr(
+ 	struct amdgpu_dm_connector *aconnector = link->priv;
  
- struct _vcs_dpi_soc_bounding_box_st {
- 	struct _vcs_dpi_voltage_scaling_st clock_limits[MAX_CLOCK_LIMIT_STATES];
-+	unsigned int num_states;
- 	double sr_exit_time_us;
- 	double sr_enter_plus_exit_time_us;
- 	double urgent_latency_us;
-@@ -111,7 +112,6 @@ struct _vcs_dpi_soc_bounding_box_st {
- 	double xfc_bus_transport_time_us;
- 	double xfc_xbuf_latency_tolerance_us;
- 	int use_urgent_burst_bw;
--	unsigned int num_states;
- 	double min_dcfclk;
- 	bool do_urgent_latency_adjustment;
- 	double urgent_latency_adjustment_fabric_clock_component_us;
+ 	if (!aconnector) {
+-			DRM_ERROR("Failed to found connector for link!");
+-			return false;
++		DRM_ERROR("Failed to find connector for link!");
++		return false;
+ 	}
+ 
+ 	if (boot) {
+@@ -423,8 +423,8 @@ void dm_helpers_dp_mst_stop_top_mgr(
+ 	struct amdgpu_dm_connector *aconnector = link->priv;
+ 
+ 	if (!aconnector) {
+-			DRM_ERROR("Failed to found connector for link!");
+-			return;
++		DRM_ERROR("Failed to find connector for link!");
++		return;
+ 	}
+ 
+ 	DRM_INFO("DM_MST: stopping TM on aconnector: %p [id: %d]\n",
+@@ -445,7 +445,7 @@ bool dm_helpers_dp_read_dpcd(
+ 	struct amdgpu_dm_connector *aconnector = link->priv;
+ 
+ 	if (!aconnector) {
+-		DRM_ERROR("Failed to found connector for link!");
++		DRM_ERROR("Failed to find connector for link!");
+ 		return false;
+ 	}
+ 
+@@ -463,7 +463,7 @@ bool dm_helpers_dp_write_dpcd(
+ 	struct amdgpu_dm_connector *aconnector = link->priv;
+ 
+ 	if (!aconnector) {
+-		DRM_ERROR("Failed to found connector for link!");
++		DRM_ERROR("Failed to find connector for link!");
+ 		return false;
+ 	}
+ 
+@@ -483,7 +483,7 @@ bool dm_helpers_submit_i2c(
+ 	bool result;
+ 
+ 	if (!aconnector) {
+-		DRM_ERROR("Failed to found connector for link!");
++		DRM_ERROR("Failed to find connector for link!");
+ 		return false;
+ 	}
+ 
+@@ -538,7 +538,7 @@ bool dm_helpers_is_dp_sink_present(struct dc_link *link)
+ 	struct amdgpu_dm_connector *aconnector = link->priv;
+ 
+ 	if (!aconnector) {
+-		BUG_ON("Failed to found connector for link!");
++		BUG_ON("Failed to find connector for link!");
+ 		return true;
+ 	}
+ 
 -- 
 2.25.1
 
