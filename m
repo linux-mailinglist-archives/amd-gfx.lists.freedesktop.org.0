@@ -1,51 +1,51 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08E6E176055
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64125176058
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 17:48:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 784DA6E5CF;
-	Mon,  2 Mar 2020 16:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97C196E5CC;
+	Mon,  2 Mar 2020 16:48:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on20631.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe59::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C02946E5CF
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:48:09 +0000 (UTC)
+ (mail-dm6nam12on2062f.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe59::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D84676E5C6
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:48:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JQLL4nLI2OLsWcFmeOAXcH8T+0hkTsALYZ27idB9X9mwTGUeofUmmQjzq4TrvRnOUG/cLiLEkmbHa9D1zP/zzobZREDLC408HdP8imyIVr9/SAw4PR3YlRq6x1a4Uw4GMMpl/oszeYdwYgqv8DgRwQyT+lV06BhaC9yJXb+31zwc/LWRJE1aew1166YoMv02w8dr04DneU8bVTxEH0axsxUUMmXbLz6Q4UFjc2RAyjnyrKACXNLgTEq8ctI4bi7wYffNA1DZx3kULE1CbrHapK5b3bblrysgMdw2awxoOhV8dqhCxtKoLUx8nIzPTHCIVFUFwx/0g7ccoqdQc6NyeA==
+ b=NNQow5/CgjU2rjzGw2NS0tBDvb74cGlmlNHWWZESWyfIevM/DL+YjtWYY9XjLoxz7aF1r6n5Xv38HqBs3jOYd56qFnppUH/IY15lLAeBEBIieuaDZPn1/PDshVjERFzw9j0EbN39h5S7X1cGXVWdPyJ/CSCmqpH97oQZASnZJ01DgCk+//75PFu4avHwO0z8iPUyI/jSfyXgUQRfxTt8R0ub/XqF7VhJoPwSS82DoTAbfMVYkp4+oFHVYum3f8b2ywXd0XJ4Y3wCLjx7RYFJofLpU4pwqjC5G6P8RS1Iu2E4omFgEQO07whdJ5QTcMW3xSWnv6p8FlTvZja0AHkskQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MZG94jivEDXBeb8gYMEwD2JEjA88UmSoc35uIhRHG2E=;
- b=bRAO91YRX2qXiM5piD0SOhNx9+SJ1z3Ljz5L/2njdKL9vFkscN8NXIJExbyuRJ6+e0ayTCJWZLYF+COPCC0YK0x8wYqPZmN0L0iPHH8dUhSpmtozO/nGSghygruGUqH4T1NmD/DlfVUW2Sh6tfGsnyeSkotkCN1kN/NZfLTlZjqOtTHxLBwnEp/RR+PzEzASg12lhhdE2zuTpY/pQ7qFSogWO7yuPM6XiV3SCqZYTKJ25nxEAH+d7B5VmtZz4eX/kNCYH9Lypumi2rSRtl/DlCs7Cul9xezsBUYtKiqm6mYVSYXv8BV889TuBspRg1la/Yv0QtlV8nb4Q+85HEdGGA==
+ bh=7RedYPETO3EUYjDTYtymt8mlHxCQEx1Re2yoqooGpV4=;
+ b=lvxrnaAiUo68ZBpTKVNjU8mUWivVb7rjRIM7lnvUJOiLRBzc+euKsOuRlKw4TH1ryV9TtWkw3Ob19IDRoDsFGGmwfHPNUOvo67ldMdx9naeWrZpEf1Y4U3czSzaoYjNOqVJQgb0SkWI0IGt5KQo8sMZC0vms5z3c4+qv/8qcDQPXRKWDuJ6XM8zFqhqDzP6lh1tNSEgRZZRiDn310eSRtablK1vlanOg1GM1hMCvJeAjBTBmVcvS8SrU/BY3iAOM5nidz0wMcILJEEhkdqz8Zfi8nNtHxoaGznhTnvjnz2zZ7I3pcdFFdsnlsdc/m+M99cTkTPOVtFYI+OCOY4erKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MZG94jivEDXBeb8gYMEwD2JEjA88UmSoc35uIhRHG2E=;
- b=gxE6h8yGKSBITj8OUwb9Ft4pLt2Hry7A2q6khbrUJCDPy+BONDCZVez4kdkScjPYLsS6lsaiP0Dq2A4KPkp2Ez2iB8JXs6Siuq+ICOdKoFczI+VY7ut84AQw7jjYPkvZByVfOhci6mfGgcdQ4F5PVm6MJXp37reM2A/xcElxmvs=
+ bh=7RedYPETO3EUYjDTYtymt8mlHxCQEx1Re2yoqooGpV4=;
+ b=YhbR5sBFNxn6SmR8RLAZ8agaz613GzggF1/On4G1aMdNBgG8PXsyVLziDRjjUZyQbu/sQAkmNDFJujsfBMTszdPSFAPhhQ36D73nX2xThFdTEX6EUsnWNW+jwdDuuxwHnlpHQLhHKhuERTKzoykOkiw7YVfEwEHyKudaNb8H2RE=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2540.namprd12.prod.outlook.com (2603:10b6:907:7::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15; Mon, 2 Mar
- 2020 16:48:05 +0000
+ 2020 16:48:09 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2772.019; Mon, 2 Mar 2020
- 16:48:05 +0000
+ 16:48:09 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 16/22] drm/amd/display: Set clock optimization required after
- update clocks
-Date: Mon,  2 Mar 2020 11:47:30 -0500
-Message-Id: <20200302164736.89429-17-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 17/22] drm/amd/display: Add 'disable FEC for specific monitor'
+ infrastructure to DC
+Date: Mon,  2 Mar 2020 11:47:31 -0500
+Message-Id: <20200302164736.89429-18-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
 References: <20200302164736.89429-1-Rodrigo.Siqueira@amd.com>
@@ -57,19 +57,19 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.amd.com (165.204.55.250) by
  YTBPR01CA0021.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::34) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:48:04 +0000
+ 15.20.2772.14 via Frontend Transport; Mon, 2 Mar 2020 16:48:05 +0000
 X-Mailer: git-send-email 2.25.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: b69815ac-4206-48e5-0ee9-08d7bec97aaf
+X-MS-Office365-Filtering-Correlation-Id: d76ef6bd-262e-4749-3be8-08d7bec97b52
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2540:|MW2PR12MB2540:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB254017345E2E0BDD3C40982098E70@MW2PR12MB2540.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB25402293B29127980C2E268898E70@MW2PR12MB2540.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
 X-Forefront-PRVS: 033054F29A
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(39860400002)(376002)(366004)(346002)(396003)(189003)(199004)(54906003)(316002)(7696005)(52116002)(8936002)(6486002)(86362001)(6666004)(36756003)(81166006)(81156014)(8676002)(1076003)(5660300002)(16526019)(2616005)(4326008)(4744005)(2906002)(186003)(956004)(478600001)(6916009)(66556008)(66946007)(66476007)(26005);
+ SFS:(10009020)(4636009)(136003)(39860400002)(376002)(366004)(346002)(396003)(189003)(199004)(54906003)(316002)(7696005)(52116002)(8936002)(6486002)(86362001)(6666004)(36756003)(81166006)(81156014)(8676002)(1076003)(5660300002)(16526019)(2616005)(4326008)(2906002)(186003)(956004)(478600001)(6916009)(66556008)(66946007)(66476007)(26005);
  DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2540;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; MX:1; A:1; 
@@ -77,15 +77,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iA4ts2AjLnXRuUwM6p6OpFpcSUqah6XefcgGLaNAVvUxblKili7Kwl24ySCw7lI8gmwR4ZfYZTCze0oQN1SI5Z4PzLPOCGnbhaJqKYYZBJUPXxMryHYag3DCKoz7mCEVi6VZ1Amid7c65m5tHmnqLN6d6hC/R57ojZABOmtJerBgekStLs9jWOJd358CWqbcXicfAcRA06vqhaAEQIpvIS0gKDd9QvbZjUC2s0SzYOgQ5vTzD8T2exYY0KD2eD4CMsKn5URQaBoKCJZdVRgoADtGOdGEYZ0wdb2ipnVi/OY/3V9AQPh+3CwhJkPdS+sMKe9kb201mC/GckaCYZ2+J7x6i1rYmMsCuTJ+xmWG5arC/uBOfgI+vVaoYL12+9HZwtNFN0JJbgluUC77x1EwPITqHk6NzQQJUN38nJVsQoCf6Ichmfv+1fRCiPFCYAyM
-X-MS-Exchange-AntiSpam-MessageData: 8yD+yppZLIgdKap0Cc9hAp8z0IJOrRhHqTAeFNQCKlO5etwFiePESt05mHsYrKw7VJiY3CXd3J1J03Be5Zz4QTnfk1G7gqQShZlM+W9IeHzA3CF6jTk5JhmPuGNWRTJp6+lVpkLBxR4pAYlDQTpRkQ==
+X-Microsoft-Antispam-Message-Info: 9KkVjXiIhSdQA1awlcxZX0WGrMZmKw0qc/UkBbNumm0BVFwid3BPapJ/F+R7PZFsyZo23cHdL2lt/SqS2meQ1JVNlvmCjRfkEMKnN9yc0emgs0sq3z1GWq6rTHyfs8c/VbEPpfuS69DqJvRd83LVo5ybMTnMcUhIpYWBZHrnwsH77WRwbpus5DizoZ3olgiDdXo9bGycamxG44rrPUwoido/AyoHBNiTLUnOABrL3HxhC4aFw2fsENPpPg2UGNNGnHYDwgOf8dnF144jG0cnDFtkyCfnE8Bnh4Pur0IxTjHty8zEPhMhmIv/xVTPJmJXHqDbsDTIjh7lb52jvbOCeBl9Hgn37IPaXefQbrRayVLljR6MgbeKHTFIEdFNibsXRYaoh0BDhkkY6sAH6jR5L3nfvD4nyhSes7xLG2BI1f4QGfBjZ1Qti40PiiIIsbNZ
+X-MS-Exchange-AntiSpam-MessageData: +NhKhgTtxUuhnjitQ4VRfaRNS/4vMg8Rol7tUxJRWNaJYdQKdKqyYaEmwVrg62UvXKnIibPO5xrSefFiFjzQaCgBBQ8U807fql8og59hs73psSDihlwDV/jPW2V//MpRq93ARHcymXK+5mIs7Tc4Aw==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b69815ac-4206-48e5-0ee9-08d7bec97aaf
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:48:05.5549 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d76ef6bd-262e-4749-3be8-08d7bec97b52
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 16:48:06.5543 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GHZqkKshoIVdKFsuTVXcpek6vvbUl6QT5COKpJWk4p2lCcT05n5YKx3HhzWHnjRhauA1W6JBOwqRGbnyoABoZw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: r7qvnNI4ynLh5pjPvaKE6MINPAmTH9kMY0ym5/EOx8MKnG00OyTkWhahPdmMmS8V5Ax/4UjxIM2IUVE2LAHdQw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2540
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,44 +98,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sung Lee <sung.lee@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Rodrigo.Siqueira@amd.com, Tony Cheng <Tony.Cheng@amd.com>,
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Nikola Cornij <nikola.cornij@amd.com>, Alvin Lee <Alvin.Lee2@amd.com>,
  Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
+From: Nikola Cornij <nikola.cornij@amd.com>
 
-[WHY]
-We see an issue that caused clk_optimized_required to be set true in
-certain cases, causing passive flips to fail. This is because of a typo
-where wm_optimized_required was set twice.
+Disabling FEC for specific monitors is sometimes required for debugging
+while in the monitor bringup phase
 
-[HOW]
-Set clk_optimized_required to false after updating clocks.
-
-Signed-off-by: Sung Lee <sung.lee@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Signed-off-by: Nikola Cornij <nikola.cornij@amd.com>
+Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 3 +++
+ drivers/gpu/drm/amd/display/dc/dc_types.h     | 1 +
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index 49f5af9e3016..045ba08c85b4 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -1674,7 +1674,7 @@ void dcn20_optimize_bandwidth(
- 				dc->clk_mgr,
- 				context,
- 				true);
--		dc->wm_optimized_required = false;
-+		dc->clk_optimized_required = false;
- 	}
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 951b43dde4e5..a4680968c8f4 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -970,6 +970,9 @@ static bool dc_link_detect_helper(struct dc_link *link,
+ 			break;
+ 		}
  
++		if (link->local_sink->edid_caps.panel_patch.disable_fec)
++			link->ctx->dc->debug.disable_fec = true;
++
+ 		// Check if edid is the same
+ 		if ((prev_sink != NULL) && ((edid_status == EDID_THE_SAME) || (edid_status == EDID_OK)))
+ 			same_edid = is_same_edid(&prev_sink->dc_edid, &sink->dc_edid);
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
+index 299f6e00f576..0d210104ba0a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
+@@ -231,6 +231,7 @@ struct dc_panel_patch {
+ 	unsigned int extra_t7_ms;
+ 	unsigned int skip_scdc_overwrite;
+ 	unsigned int delay_ignore_msa;
++	unsigned int disable_fec;
+ };
+ 
+ struct dc_edid_caps {
 -- 
 2.25.1
 
