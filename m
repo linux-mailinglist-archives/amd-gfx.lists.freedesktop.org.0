@@ -1,95 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA5C1757A8
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 10:49:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1B471757A3
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Mar 2020 10:49:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BAF86E23D;
-	Mon,  2 Mar 2020 09:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 685376E207;
+	Mon,  2 Mar 2020 09:49:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr700040.outbound.protection.outlook.com [40.107.70.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01D0E6E23D
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 09:49:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U3RGKaQcv5xclKL8SJ6COvEg+wdwzR++mzotGqsnbmIgdevSqWLVkueyBa3ohgYeSB/JR/MBbxsXoD5R7/GPl6z25SmHONW0vHS6IF7mF+AHHY6DTKh5uigHn6mSXRaRpH4ri3xR/uRg0Hhd4XKUoBKI/bcf/Xw7y4ae4fwyXfFcTevkuf4ftP3QSjJsTTsliTn8/JhTty7TGgDPvX2OSSgWQvtM+Boi0kHyIEfDIdHJ4AtTrgFGSXS3HUcCsja5a9KsUTLdmmQqBJZu2TSKItVEL2WOEPDaTcsS8WPZiR10U3F57a/XmH+69hMj4Qy4THdkKPtbljZE9wYywjmpkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y1qyv9ZrpFZqIGuIZMpPghWsQGoMG7rYI9xWCeD7H2M=;
- b=gmYkS6i6LqcgyAiD1y1O0n5pvE7IOq32ehqBa8Of5qMd3HZF0vss+XQ71mf0yYZYUAM5vsqv+KsTYP9kocsiT71u+lSsxFln2lKY1P473mbxT6chTbZyoBE2TXpTbpY85aU0SZHCP7uTG+iqpzgBmZzeBDhYkJwUFwMj189i2Q/udyX5N5Qd5vn4aJ/XjIk6x2q/hD71tB5727YujEm6+WOYsWuQQMmCQCyxhckHtJ7PFYWn+1iAy3+wplaW03gse4nFytudJ9b5tlu/A7PAz7kavWgHifUyPFfkwBct6rCs/tQLpjCMkCYdqVyKB6aZm0jrjn8TyOokrzsEVfPMbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y1qyv9ZrpFZqIGuIZMpPghWsQGoMG7rYI9xWCeD7H2M=;
- b=rZHTtksgepuI/K5n0o/eq3lUyexDYcDTtN546ET6Z4I+9zlsrY1s1zOhjHIXjU9SbH4zVgXjCHtwblqkn+xHB0J9k6UV7j476EVHDLaO/lY8goNyY9xcAgtqTzxtA7NqpzwaXptPgOsxnyzieZHAyQCO7jOPBCXidozuHhudyaE=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Christian.Koenig@amd.com; 
-Received: from DM5PR12MB1705.namprd12.prod.outlook.com (2603:10b6:3:10c::22)
- by DM5PR12MB1675.namprd12.prod.outlook.com (2603:10b6:4:5::21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2772.14; Mon, 2 Mar 2020 09:49:51 +0000
-Received: from DM5PR12MB1705.namprd12.prod.outlook.com
- ([fe80::d40e:7339:8605:bc92]) by DM5PR12MB1705.namprd12.prod.outlook.com
- ([fe80::d40e:7339:8605:bc92%11]) with mapi id 15.20.2772.019; Mon, 2 Mar 2020
- 09:49:51 +0000
-Subject: Re: [PATCH 1/3] drm/amdgpu: fix IB test MCBP bug
-To: "Liu, Monk" <Monk.Liu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <1583140927-19809-1-git-send-email-Monk.Liu@amd.com>
- <63e00945-68e3-f128-5a78-51c1d87bc778@gmail.com>
- <MN2PR12MB3933638FC598F979E2F3E65384E70@MN2PR12MB3933.namprd12.prod.outlook.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <dd4754ee-054f-48b5-582d-29c58ba38d68@amd.com>
-Date: Mon, 2 Mar 2020 10:49:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-In-Reply-To: <MN2PR12MB3933638FC598F979E2F3E65384E70@MN2PR12MB3933.namprd12.prod.outlook.com>
-Content-Language: en-US
-X-ClientProxiedBy: AM0PR10CA0059.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:150::39) To DM5PR12MB1705.namprd12.prod.outlook.com
- (2603:10b6:3:10c::22)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17D396E207
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 09:49:22 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id a132so317030wme.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 02 Mar 2020 01:49:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=+4hKWR52olDY/l26sa14FgxNo+6SkyOW28TMHqw4jh8=;
+ b=Zy/78CMij5Tq8EQQH9IW9jvbMCpzIhVcZCdd315jUcAqM2jFSG5dkyUGyZ8roF0I7h
+ Pg1Zu4+XvEmyQzhsv7X6t/9IkW24t8HKjCtbuCBku2C5V079mlC+Vm8RQAyMFmuLf8Ap
+ o8/2AsoU+5Rkvbpd6BC01jXUXo73ezMGtCl/J5U3z7axGVGKZvJN2GR5KWSBtMjxvktj
+ G2jeCgN6vP3LRhmKffmno6aE9wc4+iKa2rf2GE3gp7AXH+EeIuMhAfd1vxY88+1ZePQ+
+ 0Kboq025b2SqvZdBDcPIZlIYZAefw5U6zM+u6IZYnuPAukuyiCHFwwPa37QypZ4LjZb1
+ 7/jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=+4hKWR52olDY/l26sa14FgxNo+6SkyOW28TMHqw4jh8=;
+ b=hQc+ZAL7achmguKF0fbV3USVv4sIrdY+TTdJ0B0U4G2axuZ8ZmQQj8r0Z5OHjlA8sB
+ rSk0xP+WMHN+WePbYYV/Trm12Tp37vKEBoK0fcU8T3iD4nctXhhp+Qoxk4pAvEGuhJ/1
+ ZnzkKJF5ed+qMIkR+iWxDQ+COGRdD9zy742qtukuSpaiBzK9rDQd5hd302JMqL4Q73SU
+ avBIhz/QxxTvPa7dep7KYw3zp6uqC83v/Qc3xETa1f+7Axo3Hm7BKYWvQC6qC17A71xx
+ FCxi+uGMtAq8WBGbgKtrkWDV9/0BP3TcMh+SOC614xiRi0tK6c2ATVEPFtmePAXCo8q1
+ vLWg==
+X-Gm-Message-State: APjAAAWZYHzEU4J8EJ0JF39ZJoXiPVPw5tSubVY9H8V32fkhmgeYc5bd
+ d2aju6RzdN98nT3UvJjXZgSYj58kocM=
+X-Google-Smtp-Source: APXvYqwppavgtRsYe8/6i+zReavHAW9MePscjwm+jAPiWitB0aqNkR7pMYhqtoWDlBDgNH2zj9UhPQ==
+X-Received: by 2002:a1c:80d4:: with SMTP id b203mr19643885wmd.91.1583142559968; 
+ Mon, 02 Mar 2020 01:49:19 -0800 (PST)
+Received: from brihaspati.fritz.box
+ (p200300C58F21FC009E54A4A7C1B66128.dip0.t-ipconnect.de.
+ [2003:c5:8f21:fc00:9e54:a4a7:c1b6:6128])
+ by smtp.gmail.com with ESMTPSA id b13sm511230wme.2.2020.03.02.01.49.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 02 Mar 2020 01:49:19 -0800 (PST)
+From: Nirmoy Das <nirmoy.aiemd@gmail.com>
+X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH v4 1/4] drm/amdgpu: set compute queue priority at mqd_init
+Date: Mon,  2 Mar 2020 10:52:31 +0100
+Message-Id: <20200302095234.3638-1-nirmoy.das@amd.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- AM0PR10CA0059.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:150::39) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15 via Frontend
- Transport; Mon, 2 Mar 2020 09:49:50 +0000
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: dfa38b95-324b-4d49-8e70-08d7be8f0d4c
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1675:|DM5PR12MB1675:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1675AFDF5A46D8DBA5213FEA83E70@DM5PR12MB1675.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-Forefront-PRVS: 033054F29A
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(396003)(346002)(366004)(39860400002)(136003)(189003)(199004)(66556008)(66476007)(66946007)(110136005)(2616005)(316002)(2906002)(5660300002)(53546011)(8676002)(81166006)(478600001)(6486002)(31696002)(8936002)(31686004)(36756003)(6666004)(81156014)(86362001)(186003)(66574012)(52116002)(16526019);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1675;
- H:DM5PR12MB1705.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9+CN8vjp78OPmfKixM+Tlz2xhZInQq8M/snpvL36kt9PxCVI0WPqWtBwQoYdB3BZs4K9sVPQPh8LeHw93u0eqwMA5rspC0Fw5lF2BnEZw35QtyhzA4XRKlLT7T/oW3warzVE1u4iqFQ8+60FQi5iMOMLOZIgJsoBCGlm7PmLsHrxvKPGJsIbJvPrUmiufTlSmWa02T5n+PqzjOxs1uZrzorqDrBf/ZS7bdsfhkLAA4onz3SpubnyOGzgICR77RSiv3fKfv2nWOey04zi2GqnGI6dbZBafM1nN1OmIpGZQTZtgU8EwELA9W/60B/ttcvXFTxaBmhx/9VfpG1LdKEP4f/dBJbv0njDn11rr3HwJusgVCS7+uG8wiA1cROl+nhp3rUbFQe6Ywe27eoUIQGr8SckCIjFyR8upeR2L6uLmwkjBrr4Bla4aSgS/+iUfWT0
-X-MS-Exchange-AntiSpam-MessageData: MVQz8y20aXdRjttzgk7nYpkGgIVMnRT5yomLUpNrc/cl1eMACBmqzT/FDhudPmxdiEaIme3Xy1ulYpXbDFgeUD3n0Z/HGMJ1STZxwxNP4zeVfSG57+HnoZqawY70wQ4rZTF21V4WzvonMZ3Lz6wkkiLu9xwtjR6yPpCKkpsG0oEw2z4LsLcirlnPUntj9HfdfzNcKt3Vm+wffPPl2Z/1rA==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfa38b95-324b-4d49-8e70-08d7be8f0d4c
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2020 09:49:51.1285 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0MrWlHs6qxiDq/gLzHRv4Yq+vy7SO+2W+hI82TOp7ZPYPDGdCwXXiTaM+wyEwe58
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1675
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,107 +66,394 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: alexander.deucher@amd.com, Ray.Huang@amd.com, nirmoy.das@amd.com,
+ christian.koenig@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMDIuMDMuMjAgdW0gMTA6Mzkgc2NocmllYiBMaXUsIE1vbms6Cj4+IC0JCWlmICghKGliLT5m
-bGFncyAmIEFNREdQVV9JQl9GTEFHX0NFKSkKPj4gKwkJaWYgKCEoaWItPmZsYWdzICYgQU1ER1BV
-X0lCX0ZMQUdfQ0UpICYmIHZtaWQpCj4gS2VybmVsIGNvcGllcyBhbHNvIGRvbid0IHVzZSBhIFZN
-SUQsIHNvIEkgdGhpbmsgdGhhdCB0aGlzIHdvbid0IHdvcmsgY29ycmVjdGx5Lgo+Cj4gRG8geW91
-IGhhdmUgdGhlIGpvYiBhdmFpbGFibGUgYXMgd2VsbD8gVGhhdCB3b3VsZCBwcm9iYWJseSBiZSBi
-ZXR0ZXIgdG8gdGVzdCBmb3Igc2luY2Ugb25seSBJQiB0ZXN0cyBkb24ndCB1c2UgYSBqb2IuCj4K
-PiBbTUxdCj4gVGhlIEBqb2IgaXMgbm90IHBhc3NlZCB0byB0aGUgZ2Z4X3YxMF8wX3JpbmdfZW1p
-dF9pYl9nZngoKSByb3V0aW5lIHNvIEkgdGVuZCB0byBtb2RpZnkgYXMgbGVzcyBhcyBwb3NzaWJs
-ZQo+IEJlc2lkZXMsIGZvciBrZXJuZWwgY29waWVzOiBJIGJlbGlldmUgdGhleSBhbHNvIGRvIG5v
-dCBzdXBwb3J0IE1DQlAgKGNhbiB5b3UgcG9pbnQgbWUgdGhlIGNvZGUgaW4gc291cmNlIG9mIHRo
-b3NlIGtlcm5lbCBjb3BpZXMgPykgLCBzbyB1c2UgVk1JRCB0byB0ZXN0IGlzIGZpbmUgKFRvIHN1
-cHBvcnQgTUNCUCBvbiBnZnggcmluZyB5b3UgbmVlZCBhIHNldCBvZiBhZGRpdGlvbmFsIHByZWFt
-YmxlIElCIGNvIHdvcmsgd2l0aCB5b3VyIHdvcmtsb2FkIGlCIGFuZCBrZXJuZWwgY29waWVzIGFw
-cGFyZW50bHkgZG9uJ3QgaGF2ZSB0aG9zZSBzdHVmZnMpCgpBaCwgc29ycnkhIE15IGluY29ycmVj
-dCB0aGlua2luZywga2VybmVsIGNvcGllcyBhbHNvIGRvbid0IHVzZSB0aGUgQ1AgCmJ1dCByYXRo
-ZXIgdGhlIFNETUEuIFNvIHRoZSBjaGFuZ2UgaXMgY29tcGxldGVseSBpcnJlbGV2YW50IGZvciB0
-aGUgY29waWVzLgoKQWNrZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdA
-YW1kLmNvbT4gZm9yIHRoZSBwYXRjaC4KClJlZ2FyZHMsCkNocmlzdGlhbi4KCj4KPiBUaGFua3MK
-PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTW9uayBMaXV8R1BVIFZp
-cnR1YWxpemF0aW9uIFRlYW0gfEFNRAo+Cj4KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+
-IEZyb206IENocmlzdGlhbiBLw7ZuaWcgPGNrb2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwuY29t
-Pgo+IFNlbnQ6IE1vbmRheSwgTWFyY2ggMiwgMjAyMCA1OjM1IFBNCj4gVG86IExpdSwgTW9uayA8
-TW9uay5MaXVAYW1kLmNvbT47IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gU3ViamVj
-dDogUmU6IFtQQVRDSCAxLzNdIGRybS9hbWRncHU6IGZpeCBJQiB0ZXN0IE1DQlAgYnVnCj4KPiBB
-bSAwMi4wMy4yMCB1bSAxMDoyMiBzY2hyaWViIE1vbmsgTGl1Ogo+PiAxKWZvciBnZnggSUIgdGVz
-dCB3ZSBzaG91bGRuJ3QgaW5zZXJ0IERFIG1ldGEgZGF0YQo+Pgo+PiAyKXdlIHNob3VsZCBtYWtl
-IHN1cmUgSUIgdGVzdCBmaW5pc2hlZCBiZWZvcmUgd2Ugc2VuZCBldmVudCAzIHRvCj4+IGh5cGVy
-dmlzb3Igb3RoZXJ3aXNlIHRoZSBJRExFIGZyb20gZXZlbnQgMyB3aWxsIHByZWVtcHQgSUIgdGVz
-dCwgd2hpY2gKPj4gaXMgbm90IGRlc2lnbmVkIGFzIGEgY29tcGF0aWJsZSBzdHJ1Y3R1cmUgZm9y
-IE1DQlAKPj4KPj4gU2lnbmVkLW9mZi1ieTogTW9uayBMaXUgPE1vbmsuTGl1QGFtZC5jb20+Cj4+
-IC0tLQo+PiAgICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMgfCA2
-ICsrKysrKwo+PiAgICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfa21zLmMgICAg
-fCAzIC0tLQo+PiAgICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYyAgICAg
-fCAyICstCj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OF8wLmMgICAgICB8
-IDIgKy0KPj4gICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYyAgICAgIHwg
-MiArLQo+PiAgICA1IGZpbGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMo
-LSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9k
-ZXZpY2UuYwo+PiBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwo+
-PiBpbmRleCAzNTEwOTZhLi41NzJlYjZlIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvYW1kZ3B1X2RldmljZS5jCj4+IEBAIC0zMTk1LDYgKzMxOTUsMTIgQEAgdm9pZCBhbWRn
-cHVfZGV2aWNlX2Zpbmkoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4+ICAgIAlmbHVzaF9k
-ZWxheWVkX3dvcmsoJmFkZXYtPmRlbGF5ZWRfaW5pdF93b3JrKTsKPj4gICAgCWFkZXYtPnNodXRk
-b3duID0gdHJ1ZTsKPj4gICAgCj4+ICsJLyogbWFrZSBzdXJlIElCIHRlc3QgZmluaXNoZWQgYmVm
-b3JlIGVudGVyaW5nIGV4Y2x1c2l2ZSBtb2RlCj4+ICsJICogdG8gYXZvaWQgcHJlZW1wdGlvbiBv
-biBJQiB0ZXN0Cj4+ICsJICogKi8KPj4gKwlpZiAoYW1kZ3B1X3NyaW92X3ZmKGFkZXYpKQo+PiAr
-CQlhbWRncHVfdmlydF9yZXF1ZXN0X2Z1bGxfZ3B1KGFkZXYsIGZhbHNlKTsKPj4gKwo+PiAgICAJ
-LyogZGlzYWJsZSBhbGwgaW50ZXJydXB0cyAqLwo+PiAgICAJYW1kZ3B1X2lycV9kaXNhYmxlX2Fs
-bChhZGV2KTsKPj4gICAgCWlmIChhZGV2LT5tb2RlX2luZm8ubW9kZV9jb25maWdfaW5pdGlhbGl6
-ZWQpewo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2tt
-cy5jCj4+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ttcy5jCj4+IGluZGV4
-IDBmMzU2MzkuLjBiMTUxMWEgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2FtZGdwdV9rbXMuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfa21zLmMKPj4gQEAgLTg4LDkgKzg4LDYgQEAgdm9pZCBhbWRncHVfZHJpdmVyX3VubG9hZF9r
-bXMoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPj4gICAgCWlmIChhZGV2LT5ybW1pbyA9PSBOVUxM
-KQo+PiAgICAJCWdvdG8gZG9uZV9mcmVlOwo+PiAgICAKPj4gLQlpZiAoYW1kZ3B1X3NyaW92X3Zm
-KGFkZXYpKQo+PiAtCQlhbWRncHVfdmlydF9yZXF1ZXN0X2Z1bGxfZ3B1KGFkZXYsIGZhbHNlKTsK
-Pj4gLQo+PiAgICAJaWYgKGFkZXYtPnJ1bnBtKSB7Cj4+ICAgIAkJcG1fcnVudGltZV9nZXRfc3lu
-YyhkZXYtPmRldik7Cj4+ICAgIAkJcG1fcnVudGltZV9mb3JiaWQoZGV2LT5kZXYpOwo+PiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMF8wLmMKPj4gYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYwo+PiBpbmRleCA5NGNhOWZmLi4wNTU1
-OTg5IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAu
-Ywo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYwo+PiBAQCAt
-NDQzMiw3ICs0NDMyLDcgQEAgc3RhdGljIHZvaWQgZ2Z4X3YxMF8wX3JpbmdfZW1pdF9pYl9nZngo
-c3RydWN0IGFtZGdwdV9yaW5nICpyaW5nLAo+PiAgICAJCWlmIChmbGFncyAmIEFNREdQVV9JQl9Q
-UkVFTVBURUQpCj4+ICAgIAkJCWNvbnRyb2wgfD0gSU5ESVJFQ1RfQlVGRkVSX1BSRV9SRVNVTUUo
-MSk7Cj4+ICAgIAo+PiAtCQlpZiAoIShpYi0+ZmxhZ3MgJiBBTURHUFVfSUJfRkxBR19DRSkpCj4+
-ICsJCWlmICghKGliLT5mbGFncyAmIEFNREdQVV9JQl9GTEFHX0NFKSAmJiB2bWlkKQo+PiAgICAJ
-CQlnZnhfdjEwXzBfcmluZ19lbWl0X2RlX21ldGEocmluZywKPj4gICAgCQkJCSAgICAoIWFtZGdw
-dV9zcmlvdl92ZihyaW5nLT5hZGV2KSAmJiBmbGFncyAmIEFNREdQVV9JQl9QUkVFTVBURUQpID8g
-dHJ1ZSA6IGZhbHNlKTsKPj4gICAgCX0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1L2dmeF92OF8wLmMKPj4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhf
-djhfMC5jCj4+IGluZGV4IDM5M2ExMzIuLmIxNGY0NmEzIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjhfMC5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1L2dmeF92OF8wLmMKPj4gQEAgLTYxMTYsNyArNjExNiw3IEBAIHN0YXRpYyB2b2lk
-IGdmeF92OF8wX3JpbmdfZW1pdF9pYl9nZngoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nLAo+PiAg
-ICAJaWYgKGFtZGdwdV9zcmlvdl92ZihyaW5nLT5hZGV2KSAmJiAoaWItPmZsYWdzICYgQU1ER1BV
-X0lCX0ZMQUdfUFJFRU1QVCkpIHsKPj4gICAgCQljb250cm9sIHw9IElORElSRUNUX0JVRkZFUl9Q
-UkVfRU5CKDEpOwo+PiAgICAKPj4gLQkJaWYgKCEoaWItPmZsYWdzICYgQU1ER1BVX0lCX0ZMQUdf
-Q0UpKQo+PiArCQlpZiAoIShpYi0+ZmxhZ3MgJiBBTURHUFVfSUJfRkxBR19DRSkgJiYgdm1pZCkK
-PiBLZXJuZWwgY29waWVzIGFsc28gZG9uJ3QgdXNlIGEgVk1JRCwgc28gSSB0aGluayB0aGF0IHRo
-aXMgd29uJ3Qgd29yayBjb3JyZWN0bHkuCj4KPiBEbyB5b3UgaGF2ZSB0aGUgam9iIGF2YWlsYWJs
-ZSBhcyB3ZWxsPyBUaGF0IHdvdWxkIHByb2JhYmx5IGJlIGJldHRlciB0byB0ZXN0IGZvciBzaW5j
-ZSBvbmx5IElCIHRlc3RzIGRvbid0IHVzZSBhIGpvYi4KPgo+IENocmlzdGlhbi4KPgo+PiAgICAJ
-CQlnZnhfdjhfMF9yaW5nX2VtaXRfZGVfbWV0YShyaW5nKTsKPj4gICAgCX0KPj4gICAgCj4+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jCj4+IGIvZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYwo+PiBpbmRleCAwMTU2NDc5Li5kOGQy
-NTZlNiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAu
-Ywo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jCj4+IEBAIC00
-OTg1LDcgKzQ5ODUsNyBAQCBzdGF0aWMgdm9pZCBnZnhfdjlfMF9yaW5nX2VtaXRfaWJfZ2Z4KHN0
-cnVjdCBhbWRncHVfcmluZyAqcmluZywKPj4gICAgCWlmIChhbWRncHVfc3Jpb3ZfdmYocmluZy0+
-YWRldikgJiYgKGliLT5mbGFncyAmIEFNREdQVV9JQl9GTEFHX1BSRUVNUFQpKSB7Cj4+ICAgIAkJ
-Y29udHJvbCB8PSBJTkRJUkVDVF9CVUZGRVJfUFJFX0VOQigxKTsKPj4gICAgCj4+IC0JCWlmICgh
-KGliLT5mbGFncyAmIEFNREdQVV9JQl9GTEFHX0NFKSkKPj4gKwkJaWYgKCEoaWItPmZsYWdzICYg
-QU1ER1BVX0lCX0ZMQUdfQ0UpICYmIHZtaWQpCj4+ICAgIAkJCWdmeF92OV8wX3JpbmdfZW1pdF9k
-ZV9tZXRhKHJpbmcpOwo+PiAgICAJfQo+PiAgICAKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vYW1kLWdmeAo=
+We were changing compute ring priority while rings were being used
+before every job submission which is not recommended. This patch
+sets compute queue priority at mqd initialization for gfx8, gfx9 and
+gfx10.
+
+Policy: make queue 0 of each pipe as high priority compute queue
+
+High/normal priority compute sched lists are generated from set of high/normal
+priority compute queues. At context creation, entity of compute queue
+get a sched list from high or normal priority depending on ctx->priority
+
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c   |  4 --
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c  | 61 +++++++++++++++++++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c  |  8 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h  | 15 +++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  |  6 ---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  1 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   | 19 ++++++++
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c    | 23 +++++++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    | 20 ++++++++
+ 9 files changed, 136 insertions(+), 21 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index f397ff97b4e4..8304d0c87899 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -1205,7 +1205,6 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
+ 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
+ 	struct drm_sched_entity *entity = p->entity;
+ 	enum drm_sched_priority priority;
+-	struct amdgpu_ring *ring;
+ 	struct amdgpu_bo_list_entry *e;
+ 	struct amdgpu_job *job;
+ 	uint64_t seq;
+@@ -1258,9 +1257,6 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
+ 	priority = job->base.s_priority;
+ 	drm_sched_entity_push_job(&job->base, entity);
+
+-	ring = to_amdgpu_ring(entity->rq->sched);
+-	amdgpu_ring_priority_get(ring, priority);
+-
+ 	amdgpu_vm_move_to_lru_tail(p->adev, &fpriv->vm);
+
+ 	ttm_eu_fence_buffer_objects(&p->ticket, &p->validated, p->fence);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index 94a6c42f29ea..4266da1f3977 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -61,12 +61,30 @@ static int amdgpu_ctx_priority_permit(struct drm_file *filp,
+ 	return -EACCES;
+ }
+
++static enum gfx_pipe_priority amdgpu_ctx_sched_prio_to_compute_prio(enum drm_sched_priority prio)
++{
++	switch(prio) {
++	case DRM_SCHED_PRIORITY_MIN:
++	case DRM_SCHED_PRIORITY_NORMAL:
++		return AMDGPU_GFX_PIPE_PRIO_NORMAL;
++	case DRM_SCHED_PRIORITY_HIGH_SW:
++	case DRM_SCHED_PRIORITY_HIGH_HW:
++	case DRM_SCHED_PRIORITY_KERNEL:
++		return AMDGPU_GFX_PIPE_PRIO_HIGH;
++	default:
++		return AMDGPU_GFX_PIPE_PRIO_NORMAL;
++	}
++
++	return AMDGPU_GFX_PIPE_PRIO_NORMAL;
++}
++
+ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, const u32 hw_ip, const u32 ring)
+ {
+ 	struct amdgpu_device *adev = ctx->adev;
+ 	struct amdgpu_ctx_entity *entity;
+ 	struct drm_gpu_scheduler **scheds = NULL, *sched = NULL;
+ 	unsigned num_scheds = 0;
++	enum gfx_pipe_priority compute_priority;
+ 	enum drm_sched_priority priority;
+ 	int r;
+
+@@ -85,8 +103,10 @@ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, const u32 hw_ip, const
+ 			num_scheds = 1;
+ 			break;
+ 		case AMDGPU_HW_IP_COMPUTE:
+-			scheds = adev->gfx.compute_sched;
+-			num_scheds = adev->gfx.num_compute_sched;
++			compute_priority =
++				amdgpu_ctx_sched_prio_to_compute_prio(priority);
++			scheds = adev->gfx.compute_prio_sched[compute_priority];
++			num_scheds = adev->gfx.num_compute_sched[compute_priority];
+ 			break;
+ 		case AMDGPU_HW_IP_DMA:
+ 			scheds = adev->sdma.sdma_sched;
+@@ -628,20 +648,47 @@ void amdgpu_ctx_mgr_fini(struct amdgpu_ctx_mgr *mgr)
+ 	mutex_destroy(&mgr->lock);
+ }
+
++
++static void amdgpu_ctx_init_compute_sched(struct amdgpu_device *adev)
++{
++	int num_compute_sched_normal = 0;
++	int num_compute_sched_high = AMDGPU_MAX_COMPUTE_RINGS - 1;
++	int i;
++
++	/* fill compute_sched array as: start from 0th index for normal priority scheds and
++	 * start from (last_index - num_compute_sched_normal) for high priority
++	 * queue */
++	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
++		if (!adev->gfx.compute_ring[i].high_priority)
++			adev->gfx.compute_sched[num_compute_sched_normal++] =
++				&adev->gfx.compute_ring[i].sched;
++		else
++			adev->gfx.compute_sched[num_compute_sched_high--] =
++				&adev->gfx.compute_ring[i].sched;
++	}
++
++	/* compute ring only has two priority for now */
++	i = AMDGPU_GFX_PIPE_PRIO_NORMAL;
++	adev->gfx.compute_prio_sched[i] = &adev->gfx.compute_sched[0];
++	adev->gfx.num_compute_sched[i] = num_compute_sched_normal;
++
++	i = AMDGPU_GFX_PIPE_PRIO_HIGH;
++	adev->gfx.compute_prio_sched[i] =
++		&adev->gfx.compute_sched[num_compute_sched_high - 1];
++	adev->gfx.num_compute_sched[i] =
++		adev->gfx.num_compute_rings - num_compute_sched_normal;
++}
++
+ void amdgpu_ctx_init_sched(struct amdgpu_device *adev)
+ {
+ 	int i, j;
+
++	amdgpu_ctx_init_compute_sched(adev);
+ 	for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+ 		adev->gfx.gfx_sched[i] = &adev->gfx.gfx_ring[i].sched;
+ 		adev->gfx.num_gfx_sched++;
+ 	}
+
+-	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-		adev->gfx.compute_sched[i] = &adev->gfx.compute_ring[i].sched;
+-		adev->gfx.num_compute_sched++;
+-	}
+-
+ 	for (i = 0; i < adev->sdma.num_instances; i++) {
+ 		adev->sdma.sdma_sched[i] = &adev->sdma.instance[i].ring.sched;
+ 		adev->sdma.num_sdma_sched++;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index 7403588684b3..952725e7243c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -192,6 +192,14 @@ static bool amdgpu_gfx_is_multipipe_capable(struct amdgpu_device *adev)
+ 	return adev->gfx.mec.num_mec > 1;
+ }
+
++bool amdgpu_gfx_is_high_priority_compute_queue(struct amdgpu_device *adev,
++					       int queue)
++{
++	/* Policy: make queue 0 of each pipe as high priority compute queue */
++	return (queue == 0);
++
++}
++
+ void amdgpu_gfx_compute_queue_acquire(struct amdgpu_device *adev)
+ {
+ 	int i, queue, pipe, mec;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index 37ba05b63b2a..c948a0dfb677 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -40,6 +40,16 @@
+
+ #define AMDGPU_MAX_GFX_QUEUES KGD_MAX_QUEUES
+ #define AMDGPU_MAX_COMPUTE_QUEUES KGD_MAX_QUEUES
++enum gfx_pipe_priority {
++	AMDGPU_GFX_PIPE_PRIO_LOW = 0,
++	AMDGPU_GFX_PIPE_PRIO_NORMAL,
++	AMDGPU_GFX_PIPE_PRIO_HIGH,
++	AMDGPU_GFX_PIPE_PRIO_MAX
++
++};
++
++#define AMDGPU_GFX_QUEUE_PRIORITY_MINIMUM  0
++#define AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM  15
+
+ struct amdgpu_mec {
+ 	struct amdgpu_bo	*hpd_eop_obj;
+@@ -280,8 +290,9 @@ struct amdgpu_gfx {
+ 	uint32_t			num_gfx_sched;
+ 	unsigned			num_gfx_rings;
+ 	struct amdgpu_ring		compute_ring[AMDGPU_MAX_COMPUTE_RINGS];
++	struct drm_gpu_scheduler        **compute_prio_sched[AMDGPU_GFX_PIPE_PRIO_MAX];
+ 	struct drm_gpu_scheduler	*compute_sched[AMDGPU_MAX_COMPUTE_RINGS];
+-	uint32_t			num_compute_sched;
++	uint32_t                        num_compute_sched[DRM_SCHED_PRIORITY_MAX];
+ 	unsigned			num_compute_rings;
+ 	struct amdgpu_irq_src		eop_irq;
+ 	struct amdgpu_irq_src		priv_reg_irq;
+@@ -363,6 +374,8 @@ void amdgpu_gfx_bit_to_mec_queue(struct amdgpu_device *adev, int bit,
+ 				 int *mec, int *pipe, int *queue);
+ bool amdgpu_gfx_is_mec_queue_enabled(struct amdgpu_device *adev, int mec,
+ 				     int pipe, int queue);
++bool amdgpu_gfx_is_high_priority_compute_queue(struct amdgpu_device *adev,
++					       int queue);
+ int amdgpu_gfx_me_queue_to_bit(struct amdgpu_device *adev, int me,
+ 			       int pipe, int queue);
+ void amdgpu_gfx_bit_to_me_queue(struct amdgpu_device *adev, int bit,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index d42be880a236..4981e443a884 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -117,12 +117,10 @@ void amdgpu_job_free_resources(struct amdgpu_job *job)
+
+ static void amdgpu_job_free_cb(struct drm_sched_job *s_job)
+ {
+-	struct amdgpu_ring *ring = to_amdgpu_ring(s_job->sched);
+ 	struct amdgpu_job *job = to_amdgpu_job(s_job);
+
+ 	drm_sched_job_cleanup(s_job);
+
+-	amdgpu_ring_priority_put(ring, s_job->s_priority);
+ 	dma_fence_put(job->fence);
+ 	amdgpu_sync_free(&job->sync);
+ 	amdgpu_sync_free(&job->sched_sync);
+@@ -143,7 +141,6 @@ int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
+ 		      void *owner, struct dma_fence **f)
+ {
+ 	enum drm_sched_priority priority;
+-	struct amdgpu_ring *ring;
+ 	int r;
+
+ 	if (!f)
+@@ -158,9 +155,6 @@ int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
+ 	priority = job->base.s_priority;
+ 	drm_sched_entity_push_job(&job->base, entity);
+
+-	ring = to_amdgpu_ring(entity->rq->sched);
+-	amdgpu_ring_priority_get(ring, priority);
+-
+ 	return 0;
+ }
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 24caff085d00..34fcd467f18d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -222,6 +222,7 @@ struct amdgpu_ring {
+ 	struct mutex		priority_mutex;
+ 	/* protected by priority_mutex */
+ 	int			priority;
++	bool			high_priority;
+
+ #if defined(CONFIG_DEBUG_FS)
+ 	struct dentry *ent;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 96cf617e41d1..5dc8f2446c89 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -3211,6 +3211,22 @@ static int gfx_v10_0_cp_async_gfx_ring_resume(struct amdgpu_device *adev)
+ 	return r;
+ }
+
++static void gfx_v10_0_compute_mqd_set_priority(struct amdgpu_ring *ring, struct v10_compute_mqd *mqd)
++{
++	struct amdgpu_device *adev = ring->adev;
++
++	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
++		if (amdgpu_gfx_is_high_priority_compute_queue(adev, ring->queue)) {
++			mqd->cp_hqd_pipe_priority = AMDGPU_GFX_PIPE_PRIO_HIGH;
++			ring->high_priority = true;
++			mqd->cp_hqd_queue_priority =
++				AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM;
++		} else {
++			ring->high_priority = false;
++		}
++	}
++}
++
+ static int gfx_v10_0_compute_mqd_init(struct amdgpu_ring *ring)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+@@ -3336,6 +3352,9 @@ static int gfx_v10_0_compute_mqd_init(struct amdgpu_ring *ring)
+ 	tmp = REG_SET_FIELD(tmp, CP_HQD_IB_CONTROL, MIN_IB_AVAIL_SIZE, 3);
+ 	mqd->cp_hqd_ib_control = tmp;
+
++	/* set static priority for a compute queue/ring */
++	gfx_v10_0_compute_mqd_set_priority(ring, mqd);
++
+ 	/* map_queues packet doesn't need activate the queue,
+ 	 * so only kiq need set this field.
+ 	 */
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+index 393a1324daa9..a222de088af7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+@@ -4430,6 +4430,22 @@ static int gfx_v8_0_deactivate_hqd(struct amdgpu_device *adev, u32 req)
+ 	return r;
+ }
+
++static void gfx_v8_0_mqd_set_priority(struct amdgpu_ring *ring, struct vi_mqd *mqd)
++{
++	struct amdgpu_device *adev = ring->adev;
++
++	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
++		if (amdgpu_gfx_is_high_priority_compute_queue(adev, ring->queue)) {
++			mqd->cp_hqd_pipe_priority = AMDGPU_GFX_PIPE_PRIO_HIGH;
++			ring->high_priority = true;
++			mqd->cp_hqd_queue_priority =
++				AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM;
++		} else {
++			ring->high_priority = false;
++		}
++	}
++}
++
+ static int gfx_v8_0_mqd_init(struct amdgpu_ring *ring)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+@@ -4553,9 +4569,6 @@ static int gfx_v8_0_mqd_init(struct amdgpu_ring *ring)
+ 	/* defaults */
+ 	mqd->cp_hqd_eop_rptr = RREG32(mmCP_HQD_EOP_RPTR);
+ 	mqd->cp_hqd_eop_wptr = RREG32(mmCP_HQD_EOP_WPTR);
+-	mqd->cp_hqd_pipe_priority = RREG32(mmCP_HQD_PIPE_PRIORITY);
+-	mqd->cp_hqd_queue_priority = RREG32(mmCP_HQD_QUEUE_PRIORITY);
+-	mqd->cp_hqd_quantum = RREG32(mmCP_HQD_QUANTUM);
+ 	mqd->cp_hqd_ctx_save_base_addr_lo = RREG32(mmCP_HQD_CTX_SAVE_BASE_ADDR_LO);
+ 	mqd->cp_hqd_ctx_save_base_addr_hi = RREG32(mmCP_HQD_CTX_SAVE_BASE_ADDR_HI);
+ 	mqd->cp_hqd_cntl_stack_offset = RREG32(mmCP_HQD_CNTL_STACK_OFFSET);
+@@ -4567,6 +4580,10 @@ static int gfx_v8_0_mqd_init(struct amdgpu_ring *ring)
+ 	mqd->cp_hqd_eop_wptr_mem = RREG32(mmCP_HQD_EOP_WPTR_MEM);
+ 	mqd->cp_hqd_eop_dones = RREG32(mmCP_HQD_EOP_DONES);
+
++	/* set static priority for a queue/ring */
++	gfx_v8_0_mqd_set_priority(ring, mqd);
++	mqd->cp_hqd_quantum = RREG32(mmCP_HQD_QUANTUM);
++
+ 	/* map_queues packet doesn't need activate the queue,
+ 	 * so only kiq need set this field.
+ 	 */
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 015647959d69..e1a4e7796dd6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -3314,6 +3314,22 @@ static void gfx_v9_0_kiq_setting(struct amdgpu_ring *ring)
+ 	WREG32_SOC15_RLC(GC, 0, mmRLC_CP_SCHEDULERS, tmp);
+ }
+
++static void gfx_v9_0_mqd_set_priority(struct amdgpu_ring *ring, struct v9_mqd *mqd)
++{
++	struct amdgpu_device *adev = ring->adev;
++
++	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
++		if (amdgpu_gfx_is_high_priority_compute_queue(adev, ring->queue)) {
++			mqd->cp_hqd_pipe_priority = AMDGPU_GFX_PIPE_PRIO_HIGH;
++			ring->high_priority = true;
++			mqd->cp_hqd_queue_priority =
++				AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM;
++		} else {
++			ring->high_priority = false;
++		}
++	}
++}
++
+ static int gfx_v9_0_mqd_init(struct amdgpu_ring *ring)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+@@ -3450,6 +3466,10 @@ static int gfx_v9_0_mqd_init(struct amdgpu_ring *ring)
+ 	tmp = REG_SET_FIELD(tmp, CP_HQD_IB_CONTROL, MIN_IB_AVAIL_SIZE, 3);
+ 	mqd->cp_hqd_ib_control = tmp;
+
++	/* set static priority for a queue/ring */
++	gfx_v9_0_mqd_set_priority(ring, mqd);
++	mqd->cp_hqd_quantum = RREG32(mmCP_HQD_QUANTUM);
++
+ 	/* map_queues packet doesn't need activate the queue,
+ 	 * so only kiq need set this field.
+ 	 */
+--
+2.25.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
