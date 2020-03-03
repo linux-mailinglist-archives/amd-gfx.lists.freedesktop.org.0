@@ -1,30 +1,31 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C3D17712F
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Mar 2020 09:25:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 572DF17711C
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Mar 2020 09:25:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 069346EA37;
-	Tue,  3 Mar 2020 08:24:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 873CC6EA33;
+	Tue,  3 Mar 2020 08:24:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from yyz.mikelr.com (unknown
- [IPv6:2602:ffb6:2:0:f816:3eff:fe0d:377b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FC6C6E968
+X-Greylist: delayed 412 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Mar 2020 03:41:56 UTC
+Received: from yyz.mikelr.com (yyz.mikelr.com [170.75.163.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AE8C6E975
  for <amd-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 03:41:56 +0000 (UTC)
 Received: from glidewell.ykf.mikelr.com (198-84-194-208.cpe.teksavvy.com
  [198.84.194.208])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (Client did not present a certificate)
- by yyz.mikelr.com (Postfix) with ESMTPSA id 1FCFC3CF26;
+ by yyz.mikelr.com (Postfix) with ESMTPSA id 525E63CF2A;
  Mon,  2 Mar 2020 22:35:03 -0500 (EST)
 From: Mikel Rychliski <mikel@mikelr.com>
 To: amd-gfx@lists.freedesktop.org,
 	linux-pci@vger.kernel.org
-Subject: [PATCH 3/4] drm/radeon: iounmap unused mapping
-Date: Mon,  2 Mar 2020 22:34:56 -0500
-Message-Id: <20200303033457.12180-4-mikel@mikelr.com>
+Subject: [PATCH 4/4] drm/amdgpu: iounmap unused mapping
+Date: Mon,  2 Mar 2020 22:34:57 -0500
+Message-Id: <20200303033457.12180-5-mikel@mikelr.com>
 X-Mailer: git-send-email 2.13.7
 In-Reply-To: <20200303033457.12180-1-mikel@mikelr.com>
 References: <20200303033457.12180-1-mikel@mikelr.com>
@@ -56,21 +57,21 @@ image, we should remove this mapping after extracting the BIOS.
 
 Signed-off-by: Mikel Rychliski <mikel@mikelr.com>
 ---
- drivers/gpu/drm/radeon/radeon_bios.c | 1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_bios.c b/drivers/gpu/drm/radeon/radeon_bios.c
-index c3ae4c92a115..712b88d88957 100644
---- a/drivers/gpu/drm/radeon/radeon_bios.c
-+++ b/drivers/gpu/drm/radeon/radeon_bios.c
-@@ -123,6 +123,7 @@ static bool radeon_read_platform_bios(struct radeon_device *rdev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+index 50dff69a0f6e..ea6a1fa98ad9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+@@ -207,6 +207,7 @@ static bool amdgpu_read_platform_bios(struct amdgpu_device *adev)
  		return false;
  
- 	memcpy_fromio(rdev->bios, bios, size);
+ 	memcpy_fromio(adev->bios, bios, size);
 +	iounmap(bios);
  
- 	if (size == 0 || rdev->bios[0] != 0x55 || rdev->bios[1] != 0xaa) {
- 		kfree(rdev->bios);
+ 	if (!check_atom_bios(adev->bios, size)) {
+ 		kfree(adev->bios);
 -- 
 2.13.7
 
