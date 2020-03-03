@@ -1,59 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26239177659
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Mar 2020 13:47:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CFAA17765C
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Mar 2020 13:47:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC7E89CD8;
-	Tue,  3 Mar 2020 12:47:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C04D86EA2C;
+	Tue,  3 Mar 2020 12:47:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFC8E89CD8
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 12:47:24 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id j7so4092790wrp.13
- for <amd-gfx@lists.freedesktop.org>; Tue, 03 Mar 2020 04:47:24 -0800 (PST)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F4ED89CD8
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 12:47:25 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id z15so4209658wrl.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 03 Mar 2020 04:47:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=/txvtdGiFWBPElOMTAqNXlZAjku3Lbx6fhtyAHfW/XI=;
- b=Z5XM3WaVtu/f4Hf9d/K9l6a2HON1HJ88UpDP2WkRpSEuTvn5F/UehoywA0ZJty/0M6
- s7Z/Vjm+VNuykW7MooRy0+8qzRcWJSFycofXrlaFOqgsuPKu8Q7rMO+WvrgXpILG1CEx
- NKjdHek8hzSAQso+XK3y84tV3mGkkcu9e35sBOne3s+dR+VUlJw0Y4JOfpVJl7Sa2+AA
- rTNXKOPFOkR67610l9wzRvBfD3c2SAk21FtR9kUjFHNASt6BNa0HEA9Lwvo53EgyQI2E
- vH+PdY6xkpgJ75ykdpW+cXudvcfJ7SaO1oJwnO3sFoQewcl7Q6pz9gRccncDskuFSfLQ
- pG4w==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=y70ZWJg2MqIcap4IHImwxTsaUh3eQBnQEMR7Yl4Nubg=;
+ b=HKpcIAE1p3V1QOCYF6hNHJoZX7WbJsvS383rozCra6VYsLwOYXct+bzD1HFRnUeBQE
+ 9ysBtjiwDMzd888k1sV4f1nwrlXsZjo6dpXRHUxUInGlt+ZGPtR/a2cL5vxGpgbWpq5T
+ NgdGgJ87lT9w4ILFRj6OC8xgE39Lo45cki4ok5S3TWebq8LgCz+7izELFsnpACPD22vd
+ +NnJVH6l94HW/nf6OuQygrMvLkZ4IS0CGw1j7/EsN4bJi+lSjV+esF9hW9ZnShbV8fnv
+ v6gsho6tNZ3EgrLOh68e8czM/ZMky6HFa6pGAoB0DA3CZ7fCrsElbbVju7bHCSyBqaei
+ Uwaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=/txvtdGiFWBPElOMTAqNXlZAjku3Lbx6fhtyAHfW/XI=;
- b=HNam5msDx8Pf5nQgCX6gsA5CSJWFWPL+ZlUAFVmzkV086+6plmP6OZhpnQFY9eo0SG
- btvIRLc53vHBcWHykVPhkx0vjl2cC6UjLHQKUmcpzoEbWjtDm4cKY4oomVYX5d33nFyf
- YbpuAfN4Hts9wD91yCmL0xU+EOPJPzuytPtNYg6CXMRV+fxJPC4rurmTUbftoGBpmpBL
- H+p/PG4WbfD/CmmCON9S51OtsGNPIhuf0b5KI+1yJtUDRyi0MITW8Za5u3r2tf8cwtjh
- c1LMhq4JBsrFY5s0garm2PaiyEujiCuki+qNTfkmfPcEu6khNawDsYHkIQT9aSbuc2hQ
- RZjg==
-X-Gm-Message-State: ANhLgQ1ybPyq4woL9EIUdiobg2G4dnJzP2Jh+8i/q9lBWJZ2ibr8YN1u
- qAeKWMTLcRNwBSJamr/RlruP/vha
-X-Google-Smtp-Source: ADFU+vtPC6O+hG7vSXg0ozS/II70PueAHUVYkYnhe6MT87xIOj9SXCcg4c60prWaZbNsoeIPgVsCtQ==
-X-Received: by 2002:adf:9cc7:: with SMTP id h7mr5200472wre.369.1583239642891; 
- Tue, 03 Mar 2020 04:47:22 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=y70ZWJg2MqIcap4IHImwxTsaUh3eQBnQEMR7Yl4Nubg=;
+ b=aW11gKvrxt/qOdGiUJA3P/RY+NMr9MWPfqGg70MegSTMcylns7QJrfAcBT0Eaypf56
+ bwdOfwYR2lmkBlWtDjjko0//VajTtzNoJWgi6pL37smMKhcl0FC1VaH70Y0gvYkrpS4n
+ mNNfOCia2sl3YOcV8EjMVRD0VgoAUQG4S0tXpRRYMgWHohhau4oiSs/snmteYfPsB7Sm
+ ZLLQ8mhZ/5s2dKWeKB1e6ldaD2YRPtZWGIgBQn7F1gk4e1Kvkf3IM5CziDvCv3qP8NPt
+ 1+3ifsDh10jg7z9l8wjgNfpfE1T0AmgfynWEsKrG6OaRMd/WfbWsll6CcQQmGYinavpm
+ UMwg==
+X-Gm-Message-State: ANhLgQ2D/5WREJLkG06YChN69tUmhEK5alYbSGXHFkidHI1cSs1ZG15v
+ HeFS/BxG0N9dV7TUsO7d9kFhJtp+
+X-Google-Smtp-Source: ADFU+vthFkqUJZvql7fleBMX45ham7CuRE0EAInO+AgRe/kTf//91ZKwk8D3ya7PO1c7rXll+zjlYw==
+X-Received: by 2002:a5d:5706:: with SMTP id a6mr5247560wrv.318.1583239643783; 
+ Tue, 03 Mar 2020 04:47:23 -0800 (PST)
 Received: from brihaspati.fritz.box
  (p200300C58F27F600CCD821CDE339F0DA.dip0.t-ipconnect.de.
  [2003:c5:8f27:f600:ccd8:21cd:e339:f0da])
- by smtp.gmail.com with ESMTPSA id x8sm21760468wro.55.2020.03.03.04.47.21
+ by smtp.gmail.com with ESMTPSA id x8sm21760468wro.55.2020.03.03.04.47.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Mar 2020 04:47:21 -0800 (PST)
+ Tue, 03 Mar 2020 04:47:23 -0800 (PST)
 From: Nirmoy Das <nirmoy.aiemd@gmail.com>
 X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v6 1/1] drm/amdgpu: set compute queue priority at mqd_init
-Date: Tue,  3 Mar 2020 13:50:36 +0100
-Message-Id: <20200303125039.53141-1-nirmoy.das@amd.com>
+Subject: [PATCH v2 2/4] drm/scheduler: implement a function to modify sched
+ list
+Date: Tue,  3 Mar 2020 13:50:37 +0100
+Message-Id: <20200303125039.53141-2-nirmoy.das@amd.com>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200303125039.53141-1-nirmoy.das@amd.com>
+References: <20200303125039.53141-1-nirmoy.das@amd.com>
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,391 +71,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: alexander.deucher@amd.com, Ray.Huang@amd.com, nirmoy.das@amd.com,
  christian.koenig@amd.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We were changing compute ring priority while rings were being used
-before every job submission which is not recommended. This patch
-sets compute queue priority at mqd initialization for gfx8, gfx9 and
-gfx10.
-
-Policy: make queue 0 of each pipe as high priority compute queue
-
-High/normal priority compute sched lists are generated from set of high/normal
-priority compute queues. At context creation, entity of compute queue
-get a sched list from high or normal priority depending on ctx->priority
-
-Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c   |  4 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c  | 60 +++++++++++++++++++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c  |  8 ++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h  | 15 +++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  |  6 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  1 +
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   | 19 ++++++++
- drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c    | 23 +++++++--
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    | 20 ++++++++
- 9 files changed, 135 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index f397ff97b4e4..8304d0c87899 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1205,7 +1205,6 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
- 	struct drm_sched_entity *entity = p->entity;
- 	enum drm_sched_priority priority;
--	struct amdgpu_ring *ring;
- 	struct amdgpu_bo_list_entry *e;
- 	struct amdgpu_job *job;
- 	uint64_t seq;
-@@ -1258,9 +1257,6 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- 	priority = job->base.s_priority;
- 	drm_sched_entity_push_job(&job->base, entity);
-
--	ring = to_amdgpu_ring(entity->rq->sched);
--	amdgpu_ring_priority_get(ring, priority);
--
- 	amdgpu_vm_move_to_lru_tail(p->adev, &fpriv->vm);
-
- 	ttm_eu_fence_buffer_objects(&p->ticket, &p->validated, p->fence);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-index 94a6c42f29ea..4ad944f85672 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-@@ -61,12 +61,30 @@ static int amdgpu_ctx_priority_permit(struct drm_file *filp,
- 	return -EACCES;
- }
-
-+static enum gfx_pipe_priority amdgpu_ctx_sched_prio_to_compute_prio(enum drm_sched_priority prio)
-+{
-+	switch(prio) {
-+	case DRM_SCHED_PRIORITY_MIN:
-+	case DRM_SCHED_PRIORITY_NORMAL:
-+	case DRM_SCHED_PRIORITY_HIGH_SW:
-+		return AMDGPU_GFX_PIPE_PRIO_NORMAL;
-+	case DRM_SCHED_PRIORITY_HIGH_HW:
-+	case DRM_SCHED_PRIORITY_KERNEL:
-+		return AMDGPU_GFX_PIPE_PRIO_HIGH;
-+	default:
-+		return AMDGPU_GFX_PIPE_PRIO_NORMAL;
-+	}
-+
-+	return AMDGPU_GFX_PIPE_PRIO_NORMAL;
-+}
-+
- static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, const u32 hw_ip, const u32 ring)
- {
- 	struct amdgpu_device *adev = ctx->adev;
- 	struct amdgpu_ctx_entity *entity;
- 	struct drm_gpu_scheduler **scheds = NULL, *sched = NULL;
- 	unsigned num_scheds = 0;
-+	enum gfx_pipe_priority hw_prio;
- 	enum drm_sched_priority priority;
- 	int r;
-
-@@ -85,8 +103,9 @@ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, const u32 hw_ip, const
- 			num_scheds = 1;
- 			break;
- 		case AMDGPU_HW_IP_COMPUTE:
--			scheds = adev->gfx.compute_sched;
--			num_scheds = adev->gfx.num_compute_sched;
-+			hw_prio = amdgpu_ctx_sched_prio_to_compute_prio(priority);
-+			scheds = adev->gfx.compute_prio_sched[hw_prio];
-+			num_scheds = adev->gfx.num_compute_sched[hw_prio];
- 			break;
- 		case AMDGPU_HW_IP_DMA:
- 			scheds = adev->sdma.sdma_sched;
-@@ -628,20 +647,47 @@ void amdgpu_ctx_mgr_fini(struct amdgpu_ctx_mgr *mgr)
- 	mutex_destroy(&mgr->lock);
- }
-
-+
-+static void amdgpu_ctx_init_compute_sched(struct amdgpu_device *adev)
-+{
-+	int num_compute_sched_normal = 0;
-+	int num_compute_sched_high = AMDGPU_MAX_COMPUTE_RINGS - 1;
-+	int i;
-+
-+	/* fill compute_sched array as: start from 0th index for normal priority scheds and
-+	 * start from (last_index - num_compute_sched_normal) for high priority
-+	 * scheds */
-+	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-+		if (!adev->gfx.compute_ring[i].has_high_prio)
-+			adev->gfx.compute_sched[num_compute_sched_normal++] =
-+				&adev->gfx.compute_ring[i].sched;
-+		else
-+			adev->gfx.compute_sched[num_compute_sched_high--] =
-+				&adev->gfx.compute_ring[i].sched;
-+	}
-+
-+	/* compute ring only has two priority for now */
-+	i = AMDGPU_GFX_PIPE_PRIO_NORMAL;
-+	adev->gfx.compute_prio_sched[i] = &adev->gfx.compute_sched[0];
-+	adev->gfx.num_compute_sched[i] = num_compute_sched_normal;
-+
-+	i = AMDGPU_GFX_PIPE_PRIO_HIGH;
-+	adev->gfx.compute_prio_sched[i] =
-+		&adev->gfx.compute_sched[num_compute_sched_high - 1];
-+	adev->gfx.num_compute_sched[i] =
-+		adev->gfx.num_compute_rings - num_compute_sched_normal;
-+}
-+
- void amdgpu_ctx_init_sched(struct amdgpu_device *adev)
- {
- 	int i, j;
-
-+	amdgpu_ctx_init_compute_sched(adev);
- 	for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
- 		adev->gfx.gfx_sched[i] = &adev->gfx.gfx_ring[i].sched;
- 		adev->gfx.num_gfx_sched++;
- 	}
-
--	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
--		adev->gfx.compute_sched[i] = &adev->gfx.compute_ring[i].sched;
--		adev->gfx.num_compute_sched++;
--	}
--
- 	for (i = 0; i < adev->sdma.num_instances; i++) {
- 		adev->sdma.sdma_sched[i] = &adev->sdma.instance[i].ring.sched;
- 		adev->sdma.num_sdma_sched++;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 7403588684b3..952725e7243c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -192,6 +192,14 @@ static bool amdgpu_gfx_is_multipipe_capable(struct amdgpu_device *adev)
- 	return adev->gfx.mec.num_mec > 1;
- }
-
-+bool amdgpu_gfx_is_high_priority_compute_queue(struct amdgpu_device *adev,
-+					       int queue)
-+{
-+	/* Policy: make queue 0 of each pipe as high priority compute queue */
-+	return (queue == 0);
-+
-+}
-+
- void amdgpu_gfx_compute_queue_acquire(struct amdgpu_device *adev)
- {
- 	int i, queue, pipe, mec;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index 37ba05b63b2a..47a5cdae28c5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -41,6 +41,16 @@
- #define AMDGPU_MAX_GFX_QUEUES KGD_MAX_QUEUES
- #define AMDGPU_MAX_COMPUTE_QUEUES KGD_MAX_QUEUES
-
-+enum gfx_pipe_priority {
-+	AMDGPU_GFX_PIPE_PRIO_NORMAL = 1,
-+	AMDGPU_GFX_PIPE_PRIO_HIGH,
-+	AMDGPU_GFX_PIPE_PRIO_MAX
-+
-+};
-+
-+#define AMDGPU_GFX_QUEUE_PRIORITY_MINIMUM  0
-+#define AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM  15
-+
- struct amdgpu_mec {
- 	struct amdgpu_bo	*hpd_eop_obj;
- 	u64			hpd_eop_gpu_addr;
-@@ -280,8 +290,9 @@ struct amdgpu_gfx {
- 	uint32_t			num_gfx_sched;
- 	unsigned			num_gfx_rings;
- 	struct amdgpu_ring		compute_ring[AMDGPU_MAX_COMPUTE_RINGS];
-+	struct drm_gpu_scheduler        **compute_prio_sched[AMDGPU_GFX_PIPE_PRIO_MAX];
- 	struct drm_gpu_scheduler	*compute_sched[AMDGPU_MAX_COMPUTE_RINGS];
--	uint32_t			num_compute_sched;
-+	uint32_t                        num_compute_sched[AMDGPU_GFX_PIPE_PRIO_MAX];
- 	unsigned			num_compute_rings;
- 	struct amdgpu_irq_src		eop_irq;
- 	struct amdgpu_irq_src		priv_reg_irq;
-@@ -363,6 +374,8 @@ void amdgpu_gfx_bit_to_mec_queue(struct amdgpu_device *adev, int bit,
- 				 int *mec, int *pipe, int *queue);
- bool amdgpu_gfx_is_mec_queue_enabled(struct amdgpu_device *adev, int mec,
- 				     int pipe, int queue);
-+bool amdgpu_gfx_is_high_priority_compute_queue(struct amdgpu_device *adev,
-+					       int queue);
- int amdgpu_gfx_me_queue_to_bit(struct amdgpu_device *adev, int me,
- 			       int pipe, int queue);
- void amdgpu_gfx_bit_to_me_queue(struct amdgpu_device *adev, int bit,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index d42be880a236..4981e443a884 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -117,12 +117,10 @@ void amdgpu_job_free_resources(struct amdgpu_job *job)
-
- static void amdgpu_job_free_cb(struct drm_sched_job *s_job)
- {
--	struct amdgpu_ring *ring = to_amdgpu_ring(s_job->sched);
- 	struct amdgpu_job *job = to_amdgpu_job(s_job);
-
- 	drm_sched_job_cleanup(s_job);
-
--	amdgpu_ring_priority_put(ring, s_job->s_priority);
- 	dma_fence_put(job->fence);
- 	amdgpu_sync_free(&job->sync);
- 	amdgpu_sync_free(&job->sched_sync);
-@@ -143,7 +141,6 @@ int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
- 		      void *owner, struct dma_fence **f)
- {
- 	enum drm_sched_priority priority;
--	struct amdgpu_ring *ring;
- 	int r;
-
- 	if (!f)
-@@ -158,9 +155,6 @@ int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
- 	priority = job->base.s_priority;
- 	drm_sched_entity_push_job(&job->base, entity);
-
--	ring = to_amdgpu_ring(entity->rq->sched);
--	amdgpu_ring_priority_get(ring, priority);
--
- 	return 0;
- }
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index 24caff085d00..dcea1ef92883 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -222,6 +222,7 @@ struct amdgpu_ring {
- 	struct mutex		priority_mutex;
- 	/* protected by priority_mutex */
- 	int			priority;
-+	bool			has_high_prio;
-
- #if defined(CONFIG_DEBUG_FS)
- 	struct dentry *ent;
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index 96cf617e41d1..c1da41e35323 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -3211,6 +3211,22 @@ static int gfx_v10_0_cp_async_gfx_ring_resume(struct amdgpu_device *adev)
- 	return r;
- }
-
-+static void gfx_v10_0_compute_mqd_set_priority(struct amdgpu_ring *ring, struct v10_compute_mqd *mqd)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+
-+	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
-+		if (amdgpu_gfx_is_high_priority_compute_queue(adev, ring->queue)) {
-+			mqd->cp_hqd_pipe_priority = AMDGPU_GFX_PIPE_PRIO_HIGH;
-+			ring->has_high_prio = true;
-+			mqd->cp_hqd_queue_priority =
-+				AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM;
-+		} else {
-+			ring->has_high_prio = false;
-+		}
-+	}
-+}
-+
- static int gfx_v10_0_compute_mqd_init(struct amdgpu_ring *ring)
- {
- 	struct amdgpu_device *adev = ring->adev;
-@@ -3336,6 +3352,9 @@ static int gfx_v10_0_compute_mqd_init(struct amdgpu_ring *ring)
- 	tmp = REG_SET_FIELD(tmp, CP_HQD_IB_CONTROL, MIN_IB_AVAIL_SIZE, 3);
- 	mqd->cp_hqd_ib_control = tmp;
-
-+	/* set static priority for a compute queue/ring */
-+	gfx_v10_0_compute_mqd_set_priority(ring, mqd);
-+
- 	/* map_queues packet doesn't need activate the queue,
- 	 * so only kiq need set this field.
- 	 */
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-index 393a1324daa9..668c8eb2b2cc 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-@@ -4430,6 +4430,22 @@ static int gfx_v8_0_deactivate_hqd(struct amdgpu_device *adev, u32 req)
- 	return r;
- }
-
-+static void gfx_v8_0_mqd_set_priority(struct amdgpu_ring *ring, struct vi_mqd *mqd)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+
-+	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
-+		if (amdgpu_gfx_is_high_priority_compute_queue(adev, ring->queue)) {
-+			mqd->cp_hqd_pipe_priority = AMDGPU_GFX_PIPE_PRIO_HIGH;
-+			ring->has_high_prio = true;
-+			mqd->cp_hqd_queue_priority =
-+				AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM;
-+		} else {
-+			ring->has_high_prio = false;
-+		}
-+	}
-+}
-+
- static int gfx_v8_0_mqd_init(struct amdgpu_ring *ring)
- {
- 	struct amdgpu_device *adev = ring->adev;
-@@ -4553,9 +4569,6 @@ static int gfx_v8_0_mqd_init(struct amdgpu_ring *ring)
- 	/* defaults */
- 	mqd->cp_hqd_eop_rptr = RREG32(mmCP_HQD_EOP_RPTR);
- 	mqd->cp_hqd_eop_wptr = RREG32(mmCP_HQD_EOP_WPTR);
--	mqd->cp_hqd_pipe_priority = RREG32(mmCP_HQD_PIPE_PRIORITY);
--	mqd->cp_hqd_queue_priority = RREG32(mmCP_HQD_QUEUE_PRIORITY);
--	mqd->cp_hqd_quantum = RREG32(mmCP_HQD_QUANTUM);
- 	mqd->cp_hqd_ctx_save_base_addr_lo = RREG32(mmCP_HQD_CTX_SAVE_BASE_ADDR_LO);
- 	mqd->cp_hqd_ctx_save_base_addr_hi = RREG32(mmCP_HQD_CTX_SAVE_BASE_ADDR_HI);
- 	mqd->cp_hqd_cntl_stack_offset = RREG32(mmCP_HQD_CNTL_STACK_OFFSET);
-@@ -4567,6 +4580,10 @@ static int gfx_v8_0_mqd_init(struct amdgpu_ring *ring)
- 	mqd->cp_hqd_eop_wptr_mem = RREG32(mmCP_HQD_EOP_WPTR_MEM);
- 	mqd->cp_hqd_eop_dones = RREG32(mmCP_HQD_EOP_DONES);
-
-+	/* set static priority for a queue/ring */
-+	gfx_v8_0_mqd_set_priority(ring, mqd);
-+	mqd->cp_hqd_quantum = RREG32(mmCP_HQD_QUANTUM);
-+
- 	/* map_queues packet doesn't need activate the queue,
- 	 * so only kiq need set this field.
- 	 */
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 015647959d69..726d1ac41637 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -3314,6 +3314,22 @@ static void gfx_v9_0_kiq_setting(struct amdgpu_ring *ring)
- 	WREG32_SOC15_RLC(GC, 0, mmRLC_CP_SCHEDULERS, tmp);
- }
-
-+static void gfx_v9_0_mqd_set_priority(struct amdgpu_ring *ring, struct v9_mqd *mqd)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+
-+	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
-+		if (amdgpu_gfx_is_high_priority_compute_queue(adev, ring->queue)) {
-+			mqd->cp_hqd_pipe_priority = AMDGPU_GFX_PIPE_PRIO_HIGH;
-+			ring->has_high_prio = true;
-+			mqd->cp_hqd_queue_priority =
-+				AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM;
-+		} else {
-+			ring->has_high_prio = false;
-+		}
-+	}
-+}
-+
- static int gfx_v9_0_mqd_init(struct amdgpu_ring *ring)
- {
- 	struct amdgpu_device *adev = ring->adev;
-@@ -3450,6 +3466,10 @@ static int gfx_v9_0_mqd_init(struct amdgpu_ring *ring)
- 	tmp = REG_SET_FIELD(tmp, CP_HQD_IB_CONTROL, MIN_IB_AVAIL_SIZE, 3);
- 	mqd->cp_hqd_ib_control = tmp;
-
-+	/* set static priority for a queue/ring */
-+	gfx_v9_0_mqd_set_priority(ring, mqd);
-+	mqd->cp_hqd_quantum = RREG32(mmCP_HQD_QUANTUM);
-+
- 	/* map_queues packet doesn't need activate the queue,
- 	 * so only kiq need set this field.
- 	 */
---
-2.25.0
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+aW1wbGVtZW50IGRybV9zY2hlZF9lbnRpdHlfbW9kaWZ5X3NjaGVkKCkgd2hpY2ggY2FuIG1vZGlm
+eSBleGlzdGluZwpzY2hlZF9saXN0IHdpdGggYSBkaWZmZXJlbnQgb25lLiBUaGlzIGlzIGdvaW5n
+IHRvIGJlIGhlbHBmdWwgd2hlbgp1c2Vyc3BhY2UgY2hhbmdlcyBwcmlvcml0eSBvZiBhIGN0eC9l
+bnRpdHkgdGhlbiBkcml2ZXIgY2FuIHN3aXRjaCB0bwpjb3JyZXNwb25kaW5nIGh3IHNoY2VkIGxp
+c3QgZm9yIHRoYXQgcHJpb3JpdHkKClNpZ25lZC1vZmYtYnk6IE5pcm1veSBEYXMgPG5pcm1veS5k
+YXNAYW1kLmNvbT4KUmV2aWV3ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2Vu
+aWdAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vc2NoZWR1bGVyL3NjaGVkX2VudGl0eS5j
+IHwgMTkgKysrKysrKysrKysrKysrKysrKwogaW5jbHVkZS9kcm0vZ3B1X3NjaGVkdWxlci5oICAg
+ICAgICAgICAgICB8ICA0ICsrKysKIDIgZmlsZXMgY2hhbmdlZCwgMjMgaW5zZXJ0aW9ucygrKQoK
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9zY2hlZHVsZXIvc2NoZWRfZW50aXR5LmMgYi9k
+cml2ZXJzL2dwdS9kcm0vc2NoZWR1bGVyL3NjaGVkX2VudGl0eS5jCmluZGV4IDYzYmNjZDIwMWI5
+Ny4uYjk0MzEyMTU0ZTU2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vc2NoZWR1bGVyL3Nj
+aGVkX2VudGl0eS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9zY2hlZHVsZXIvc2NoZWRfZW50aXR5
+LmMKQEAgLTgzLDYgKzgzLDI1IEBAIGludCBkcm1fc2NoZWRfZW50aXR5X2luaXQoc3RydWN0IGRy
+bV9zY2hlZF9lbnRpdHkgKmVudGl0eSwKIH0KIEVYUE9SVF9TWU1CT0woZHJtX3NjaGVkX2VudGl0
+eV9pbml0KTsKCisvKioKKyAqIGRybV9zY2hlZF9lbnRpdHlfbW9kaWZ5X3NjaGVkIC0gTW9kaWZ5
+IHNjaGVkIG9mIGFuIGVudGl0eQorICoKKyAqIEBlbnRpdHk6IHNjaGVkdWxlciBlbnRpdHkgdG8g
+aW5pdAorICogQHNjaGVkX2xpc3Q6IHRoZSBsaXN0IG9mIG5ldyBkcm0gc2NoZWRzIHdoaWNoIHdp
+bGwgcmVwbGFjZQorICoJCWV4aXN0aW5nIGVudGl0eS0+c2NoZWRfbGlzdAorICogQG51bV9zY2hl
+ZF9saXN0OiBudW1iZXIgb2YgZHJtIHNjaGVkIGluIHNjaGVkX2xpc3QKKyAqLwordm9pZCBkcm1f
+c2NoZWRfZW50aXR5X21vZGlmeV9zY2hlZChzdHJ1Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5
+LAorCQkJCSAgc3RydWN0IGRybV9ncHVfc2NoZWR1bGVyICoqc2NoZWRfbGlzdCwKKwkJCQkgIHVu
+c2lnbmVkIGludCBudW1fc2NoZWRfbGlzdCkKK3sKKwlXQVJOX09OKCFudW1fc2NoZWRfbGlzdCB8
+fCAhc2NoZWRfbGlzdCk7CisKKwllbnRpdHktPnNjaGVkX2xpc3QgPSBzY2hlZF9saXN0OworCWVu
+dGl0eS0+bnVtX3NjaGVkX2xpc3QgPSBudW1fc2NoZWRfbGlzdDsKK30KK0VYUE9SVF9TWU1CT0wo
+ZHJtX3NjaGVkX2VudGl0eV9tb2RpZnlfc2NoZWQpOworCiAvKioKICAqIGRybV9zY2hlZF9lbnRp
+dHlfaXNfaWRsZSAtIENoZWNrIGlmIGVudGl0eSBpcyBpZGxlCiAgKgpkaWZmIC0tZ2l0IGEvaW5j
+bHVkZS9kcm0vZ3B1X3NjaGVkdWxlci5oIGIvaW5jbHVkZS9kcm0vZ3B1X3NjaGVkdWxlci5oCmlu
+ZGV4IDU4OWJlODUxZjhhMS4uZjcwYTg0YWFhZjdhIDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9n
+cHVfc2NoZWR1bGVyLmgKKysrIGIvaW5jbHVkZS9kcm0vZ3B1X3NjaGVkdWxlci5oCkBAIC0yOTcs
+NiArMjk3LDEwIEBAIHZvaWQgZHJtX3NjaGVkX2Zpbmkoc3RydWN0IGRybV9ncHVfc2NoZWR1bGVy
+ICpzY2hlZCk7CiBpbnQgZHJtX3NjaGVkX2pvYl9pbml0KHN0cnVjdCBkcm1fc2NoZWRfam9iICpq
+b2IsCiAJCSAgICAgICBzdHJ1Y3QgZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5LAogCQkgICAgICAg
+dm9pZCAqb3duZXIpOwordm9pZCBkcm1fc2NoZWRfZW50aXR5X21vZGlmeV9zY2hlZChzdHJ1Y3Qg
+ZHJtX3NjaGVkX2VudGl0eSAqZW50aXR5LAorCQkJCSAgc3RydWN0IGRybV9ncHVfc2NoZWR1bGVy
+ICoqc2NoZWRfbGlzdCwKKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25l
+ZCBpbnQgbnVtX3NjaGVkX2xpc3QpOworCiB2b2lkIGRybV9zY2hlZF9qb2JfY2xlYW51cChzdHJ1
+Y3QgZHJtX3NjaGVkX2pvYiAqam9iKTsKIHZvaWQgZHJtX3NjaGVkX3dha2V1cChzdHJ1Y3QgZHJt
+X2dwdV9zY2hlZHVsZXIgKnNjaGVkKTsKIHZvaWQgZHJtX3NjaGVkX3N0b3Aoc3RydWN0IGRybV9n
+cHVfc2NoZWR1bGVyICpzY2hlZCwgc3RydWN0IGRybV9zY2hlZF9qb2IgKmJhZCk7Ci0tCjIuMjUu
+MAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdm
+eCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
