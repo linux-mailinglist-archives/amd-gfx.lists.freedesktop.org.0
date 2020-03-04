@@ -1,25 +1,26 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D47521794F4
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Mar 2020 17:23:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25AF81794F2
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Mar 2020 17:23:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67D6C6E081;
-	Wed,  4 Mar 2020 16:23:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2A26E073;
+	Wed,  4 Mar 2020 16:23:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr700058.outbound.protection.outlook.com [40.107.70.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6C486E081
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 16:23:50 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-cys01nam02on0613.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe45::613])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C7086E073
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 16:23:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JLQ1Ko9foShx5uRB7H/hmqEW7qqI3muL6IDJZjUvWvHO/xehuIjth+nKpwqwRCVfGEKL9ild96PDZ4KbcR4YIH/WMSLm5X74i90UHZDD8MNH+8GK0cMtWqCK1D57mutnOu/oS/YlJe+PIBEeU7o+mCtK0RbdfyISL3qOTgy+rFzHEWG6omXQPNXkiU7jwfraK8/rhcMCDOSJlvGdjpQsnM16uiPNf8aIDfDzxtx8hSNPeZLFBomooJlNVJA+zAfc2DqFLtSDwBMITqD5obNAGDNUY0/2pSVPlASeZSg69AwbTHPOJd6I18+dx6/3fNCz6ANLIpMBR8oLut+kVhSSnQ==
+ b=fWQ2Du423/540s/kFZJel841nlwh3Cc0NtrY1M8X7mJzJ4W/kevCZuJQLZ3p5L9QAZU+PjCQ+A59G5bbMIn0ErKcWoQNXx7fY6+SdPp9homc9260+PiW5ex/OzHk4NGkJMhDxi8X2j6BmYWmd/KwTUYAPhlpAo9OYLgvJfA7so2vQ7502uFtyU2MesILcffyu58I33xXg/sGrJY31ZGSqn7OV7olMJUbnufwTdYRzT1C37dySNUSt0Wxm7WLm8V7BcZygBgLixvVY1UTFn9vsCjNs3P/pia5WEoz60QC/wp/9UbsZoR/AEureD+iTmeJtmqxvVy/f2PA5qS6PgrbQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZatrMGEjYvCjKzF3mcEFZH7JbLciavIFMfm+nBPnVmA=;
- b=W8U6hVX7/i8XdKQLVjmDdt054JXuUbwE4aRVWMiY0kOSRaXQyB0fxu2SiZVmkFTR706vqkjQqI99J6QRnFRlhCfZ+6aGOF/KH01lLxtrrXgDyxT3UjCk7tfV4DYYsVQk0bk0VF49VjPvGS9SIyy5aQ2GZDwhfuF4nYScBTszABKAlq7KatBPb9hZC2BXaM1jRNgKRnA9SxdgqO6rCSWg7UF2sTMik8d7CVUl/VQG2+qpYXROaTpV1rySZoTr41jmY5oGYniw373NrBv5q6pZl04r53hELN8ao4AMzMbj91bZIHEHa7oA30Ad3pjMnMScFv4CO/kC0pYxICoDuhyNog==
+ bh=9pXeskakAZCERczY24sCFSNNNA+u9kKf2SC5pC6aok8=;
+ b=E0P79kJE2RFJnNyQ8H2LEeJGfDh7fdSyAFRRO3eh+8SwCBIe8216kYs2OAq5gmt+03j5p1jz4Im2jBmtvaqnK6fAZHzqC07MLwgAH14yFC76KA6tXSzAIwuAhkNCfyqpyOnrlIAOfsmJ3JjwBqK1VTrNiUrR54srnCSbNb3TAyF7vvoMlSL8PdOXwh/5gO0TtgJQSkaODDyG8dAonu5y45202flctjTtfx8gwVBF4Su67CQnWE++CgT6knWSATovUk3VxqBoFbcs01rs0UBj4DPK3zUFXDdbKtKCwMjgVyNrNGgI0PfstA+cCnTFTcNOFUR4Vjl/xPrOJhkQC/bp1g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +28,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZatrMGEjYvCjKzF3mcEFZH7JbLciavIFMfm+nBPnVmA=;
- b=ebaXOy3v4BX+o9EKojDhA6HCFoi6ljeKRQYK5MWKVvVilgx86zdQQRvvSmJEZOqgOllAkvrp9qCRfOCRh7KDN10QAAOvoO8jW5s2lgS1BvHDAuJfyiTmJvds3iYCpK+MiYPQ8lxOgqbrN99OIbhin/RaODShGgzUMByVaUhP3iY=
-Received: from MN2PR07CA0003.namprd07.prod.outlook.com (2603:10b6:208:1a0::13)
- by MWHPR12MB1133.namprd12.prod.outlook.com (2603:10b6:300:d::15) with
+ bh=9pXeskakAZCERczY24sCFSNNNA+u9kKf2SC5pC6aok8=;
+ b=nNkdWJcwoHVbtOhHRIKcxPy6GprE2OF//J78wmIabaCCP7os77IPt1XFVs3tAjtbSYf/rAdMkl1hQbfNZ6LOKPKYTD/IUtcqYDgELzAn6slXip/riamXk7RJPFYg9OsLKbVeCKYcs4QTHe6syX4pCOLvOB1vcrWEQ4A0dMVOoag=
+Received: from MN2PR07CA0022.namprd07.prod.outlook.com (2603:10b6:208:1a0::32)
+ by DM6PR12MB3099.namprd12.prod.outlook.com (2603:10b6:5:38::31) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.18; Wed, 4 Mar
- 2020 16:23:46 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.19; Wed, 4 Mar
+ 2020 16:23:47 +0000
 Received: from BN8NAM11FT019.eop-nam11.prod.protection.outlook.com
- (2603:10b6:208:1a0:cafe::63) by MN2PR07CA0003.outlook.office365.com
- (2603:10b6:208:1a0::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.18 via Frontend
- Transport; Wed, 4 Mar 2020 16:23:46 +0000
+ (2603:10b6:208:1a0:cafe::10) by MN2PR07CA0022.outlook.office365.com
+ (2603:10b6:208:1a0::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15 via Frontend
+ Transport; Wed, 4 Mar 2020 16:23:47 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -48,19 +49,19 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
  BN8NAM11FT019.mail.protection.outlook.com (10.13.176.158) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2793.11 via Frontend Transport; Wed, 4 Mar 2020 16:23:46 +0000
+ 15.20.2793.11 via Frontend Transport; Wed, 4 Mar 2020 16:23:47 +0000
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 4 Mar 2020
- 10:23:45 -0600
+ 10:23:46 -0600
 Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
  SATLEXMB01.amd.com (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5
- via Frontend Transport; Wed, 4 Mar 2020 10:23:44 -0600
+ via Frontend Transport; Wed, 4 Mar 2020 10:23:45 -0600
 From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v4 2/3] drm/amdgpu: Add USBC PD FW load to PSP 11
-Date: Wed, 4 Mar 2020 11:23:40 -0500
-Message-ID: <1583339021-12298-3-git-send-email-andrey.grodzovsky@amd.com>
+Subject: [PATCH v4 3/3] drm/amdgpu: Add support for USBC PD FW download
+Date: Wed, 4 Mar 2020 11:23:41 -0500
+Message-ID: <1583339021-12298-4-git-send-email-andrey.grodzovsky@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1583339021-12298-1-git-send-email-andrey.grodzovsky@amd.com>
 References: <1583339021-12298-1-git-send-email-andrey.grodzovsky@amd.com>
@@ -69,26 +70,26 @@ X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(428003)(189003)(199004)(2906002)(6666004)(8676002)(81166006)(81156014)(426003)(356004)(54906003)(36756003)(8936002)(6916009)(7696005)(5660300002)(70586007)(186003)(26005)(44832011)(86362001)(498600001)(70206006)(2616005)(4326008)(336012);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1133; H:SATLEXMB02.amd.com; FPR:;
- SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
+ SFS:(10009020)(4636009)(136003)(376002)(346002)(39860400002)(396003)(428003)(199004)(189003)(26005)(4326008)(44832011)(36756003)(7696005)(54906003)(6916009)(316002)(2616005)(426003)(186003)(70586007)(81166006)(6666004)(356004)(5660300002)(8676002)(8936002)(70206006)(336012)(2906002)(478600001)(81156014)(86362001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3099; H:SATLEXMB02.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; A:1; MX:1; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f97b024c-a0a1-42e4-929d-08d7c05869ef
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1133:
-X-Microsoft-Antispam-PRVS: <MWHPR12MB11339EAB302293724D54BDCFEAE50@MWHPR12MB1133.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-MS-Office365-Filtering-Correlation-Id: ed26344c-dd16-4ead-7a35-08d7c0586a8e
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3099:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3099D5FA2774BD640BDF823FEAE50@DM6PR12MB3099.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-Forefront-PRVS: 0332AACBC3
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iYEtQHb5HOSdm9pJ2ACz1gNTcrkTd/7i5jtp6abjwuIgwDrSzu5nvHlFc4WSSP5IbEYMPqrj63U7mdrUMiRMzfXXut7nyQLmv3Ap1I5aluvn6yWOj9rzBsCcVpH2uk1VKBDYQGmQBPEE8sNVZ+5fSzQVaTEWTwiRuS6Z6tp2dCVlfKiYtIlUqV/hiRPIUFFYfczAZTMHuhuAPTzJWqRKRSbkr/M/B9Fh1TAME0A85SpRzvhgaIC7EYVxRGxbcpYNRRqLx8fnbprX8K2pbZjwuY1Yx6G1FtMCFv3sfSyJXqQ6AsvATpBMy7IJ31q1hL0d5z7mVm9TKsXz2WKjRtAzC3onfToXw9cJ7+n3+JNVeSHoFEaJB7MvhmCo1HXBZEZuJv1OH1YQ1gw1SKIooOlLGIXQ7e0YxtssM+ao8nuXTYMJ5CPCstqjbO9Bkrduvwsp
+X-Microsoft-Antispam-Message-Info: XWNGtJU9QWs7EFstT63RjzAPhK1Gd9BRbv1txckECj+Kh7AvxY6X3Lwl72NFH809nXT6TO9sQfMW9iZhAooIMidyoJWKgnHmDCdsXWwspUNarlZVfIc61ZjYlz0WGbF+8oAQx/SUjevQNx2/H/0JqPm1Hy0NHVddkb+q3pGcMh1J6WQ6nhoh0BXDCHaM1DWdtd+k54tCt/aHwdFOYJRzI4S3pGx3xax6Jsow7t4HYQqNFHgLYParknsEE6dqUhMJ1NThGEvyapnlrzl1X/x3IFfCxsB/AZ59+LXUkkcV2tVHL68g72AOEfG61E0WUWqS16QQItspOKV4z93MWHmCW+9XSxkQI2oaxQ2IiRhVmdhIphQDrxzzBw/IJRVHlPV1xrPBkzzdI+daILxbumDAm2kHdDG1tRAA3TksoBKPz0iKjp53zn0gZIyvM5dvkgHG
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2020 16:23:46.2748 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f97b024c-a0a1-42e4-929d-08d7c05869ef
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2020 16:23:47.3162 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed26344c-dd16-4ead-7a35-08d7c0586a8e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1133
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3099
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,142 +108,176 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add the programming sequence.
+Starts USBC PD FW download and reads back the latest FW version.
 
 v2:
-Change donwload wait loop to more efficient.
-Move C2PMSG_CMD_GFX_USB_PD_FW_VER defintion
-
-v3: Fix lack of loop counter increment typo
-
-v4: Remove superflous status reg read
+Move sysfs file creation to late init
+Add locking around PSP calls to avoid concurrent access to PSP's C2P registers
 
 Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h |  3 ++
- drivers/gpu/drm/amd/amdgpu/psp_v11_0.c  | 81 +++++++++++++++++++++++++++++++++
- 2 files changed, 84 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 110 +++++++++++++++++++++++++++++++-
+ 1 file changed, 109 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
-index 36b6579..a44fd60 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
-@@ -31,6 +31,9 @@
- #define GFX_CMD_RESERVED_MASK       0x7FF00000
- #define GFX_CMD_RESPONSE_MASK       0x80000000
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index d33f741..cff0fd2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -24,6 +24,7 @@
+  */
  
-+/* USBC PD FW version retrieval command */
-+#define C2PMSG_CMD_GFX_USB_PD_FW_VER 0x2000000
-+
- /* TEE Gfx Command IDs for the register interface.
- *  Command ID must be between 0x00010000 and 0x000F0000.
- */
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-index 8ab3bf3..67dd9d2 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-@@ -65,6 +65,9 @@ MODULE_FIRMWARE("amdgpu/arcturus_ta.bin");
- /* memory training timeout define */
- #define MEM_TRAIN_SEND_MSG_TIMEOUT_US	3000000
+ #include <linux/firmware.h>
++#include <linux/dma-mapping.h>
  
-+/* For large FW files the time to complete can be very long */
-+#define USBC_PD_POLLING_LIMIT_S 240
+ #include "amdgpu.h"
+ #include "amdgpu_psp.h"
+@@ -38,6 +39,9 @@
+ 
+ static void psp_set_funcs(struct amdgpu_device *adev);
+ 
++static int psp_sysfs_init(struct amdgpu_device *adev);
++static void psp_sysfs_fini(struct amdgpu_device *adev);
 +
- static int psp_v11_0_init_microcode(struct psp_context *psp)
- {
- 	struct amdgpu_device *adev = psp->adev;
-@@ -1109,6 +1112,82 @@ static void psp_v11_0_ring_set_wptr(struct psp_context *psp, uint32_t value)
- 		WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_67, value);
+ /*
+  * Due to DF Cstate management centralized to PMFW, the firmware
+  * loading sequence will be updated as below:
+@@ -113,6 +117,16 @@ static int psp_early_init(void *handle)
+ 	return 0;
  }
  
-+static int psp_v11_0_load_usbc_pd_fw(struct psp_context *psp, dma_addr_t dma_addr)
++static int psp_late_init(void *handle)
 +{
-+	struct amdgpu_device *adev = psp->adev;
-+	uint32_t reg_status;
-+	int ret, i = 0;
++	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
 +
-+	/* Write lower 32-bit address of the PD Controller FW */
-+	WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_36, lower_32_bits(dma_addr));
-+	ret = psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_35),
-+			     0x80000000, 0x80000000, false);
-+	if (ret)
-+		return ret;
-+
-+	/* Fireup interrupt so PSP can pick up the lower address */
-+	WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_35, 0x800000);
-+	ret = psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_35),
-+			     0x80000000, 0x80000000, false);
-+	if (ret)
-+		return ret;
-+
-+	reg_status = RREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_35);
-+
-+	if ((reg_status & 0xFFFF) != 0) {
-+		DRM_ERROR("Lower address load failed - MP0_SMN_C2PMSG_35.Bits [15:0] = %02x...\n",
-+				reg_status & 0xFFFF);
-+		return -EIO;
-+	}
-+
-+	/* Write upper 32-bit address of the PD Controller FW */
-+	WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_36, upper_32_bits(dma_addr));
-+
-+	ret = psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_35),
-+			     0x80000000, 0x80000000, false);
-+	if (ret)
-+		return ret;
-+
-+	/* Fireup interrupt so PSP can pick up the upper address */
-+	WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_35, 0x4000000);
-+
-+	/* FW load takes very long time */
-+	do {
-+		msleep(1000);
-+		reg_status = RREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_35);
-+
-+		if (reg_status & 0x80000000)
-+			goto done;
-+
-+	} while (++i < USBC_PD_POLLING_LIMIT_S);
-+
-+	return -ETIME;
-+done:
-+
-+	if ((reg_status & 0xFFFF) != 0) {
-+		DRM_ERROR("Upper address load failed - MP0_SMN_C2PMSG_35.Bits [15:0] = x%04x\n",
-+				reg_status & 0xFFFF);
-+		return -EIO;
-+	}
++	if (adev->asic_type == CHIP_NAVI10)
++		return psp_sysfs_init(adev);
 +
 +	return 0;
 +}
 +
-+static int psp_v11_0_read_usbc_pd_fw(struct psp_context *psp, uint32_t *fw_ver)
+ static int psp_sw_init(void *handle)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+@@ -152,6 +166,10 @@ static int psp_sw_fini(void *handle)
+ 		release_firmware(adev->psp.ta_fw);
+ 		adev->psp.ta_fw = NULL;
+ 	}
++
++	if (adev->asic_type == CHIP_NAVI10)
++		psp_sysfs_fini(adev);
++
+ 	return 0;
+ }
+ 
+@@ -1816,10 +1834,85 @@ static int psp_set_powergating_state(void *handle,
+ 	return 0;
+ }
+ 
++static ssize_t psp_usbc_pd_fw_sysfs_read(struct device *dev,
++					 struct device_attribute *attr,
++					 char *buf)
 +{
-+	struct amdgpu_device *adev = psp->adev;
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = ddev->dev_private;
++	uint32_t fw_ver;
 +	int ret;
 +
-+	WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_35, C2PMSG_CMD_GFX_USB_PD_FW_VER);
++	mutex_lock(&adev->psp.mutex);
++	ret = psp_read_usbc_pd_fw(&adev->psp, &fw_ver);
++	mutex_unlock(&adev->psp.mutex);
 +
-+	ret = psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_35),
-+				     0x80000000, 0x80000000, false);
-+	if (!ret)
-+		*fw_ver = RREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_36);
++	if (ret) {
++		DRM_ERROR("Failed to read USBC PD FW, err = %d", ret);
++		return ret;
++	}
++
++	return snprintf(buf, PAGE_SIZE, "%x\n", fw_ver);
++}
++
++static ssize_t psp_usbc_pd_fw_sysfs_write(struct device *dev,
++						       struct device_attribute *attr,
++						       const char *buf,
++						       size_t count)
++{
++	struct drm_device *ddev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = ddev->dev_private;
++	void *cpu_addr;
++	dma_addr_t dma_addr;
++	int ret;
++	char fw_name[100];
++	const struct firmware *usbc_pd_fw;
++
++
++	snprintf(fw_name, sizeof(fw_name), "amdgpu/%s", buf);
++	ret = request_firmware(&usbc_pd_fw, fw_name, adev->dev);
++	if (ret)
++		goto fail;
++
++	/* We need contiguous physical mem to place the FW  for psp to access */
++	cpu_addr = dma_alloc_coherent(adev->dev, usbc_pd_fw->size, &dma_addr, GFP_KERNEL);
++
++	ret = dma_mapping_error(adev->dev, dma_addr);
++	if (ret)
++		goto rel_buf;
++
++	memcpy_toio(cpu_addr, usbc_pd_fw->data, usbc_pd_fw->size);
++
++	/*TODO Remove once PSP starts snooping CPU cache */
++	clflush_cache_range(cpu_addr, (usbc_pd_fw->size & ~(L1_CACHE_BYTES - 1)));
++
++	mutex_lock(&adev->psp.mutex);
++	ret = psp_load_usbc_pd_fw(&adev->psp, dma_addr);
++	mutex_unlock(&adev->psp.mutex);
++
++rel_buf:
++	dma_free_coherent(adev->dev, usbc_pd_fw->size, cpu_addr, dma_addr);
++	release_firmware(usbc_pd_fw);
++
++fail:
++	if (ret) {
++		DRM_ERROR("Failed to load USBC PD FW, err = %d", ret);
++		return ret;
++	}
++
++	return count;
++}
++
++static DEVICE_ATTR(usbc_pd_fw, S_IRUGO | S_IWUSR,
++		   psp_usbc_pd_fw_sysfs_read,
++		   psp_usbc_pd_fw_sysfs_write);
++
++
++
+ const struct amd_ip_funcs psp_ip_funcs = {
+ 	.name = "psp",
+ 	.early_init = psp_early_init,
+-	.late_init = NULL,
++	.late_init = psp_late_init,
+ 	.sw_init = psp_sw_init,
+ 	.sw_fini = psp_sw_fini,
+ 	.hw_init = psp_hw_init,
+@@ -1834,6 +1927,21 @@ const struct amd_ip_funcs psp_ip_funcs = {
+ 	.set_powergating_state = psp_set_powergating_state,
+ };
+ 
++static int psp_sysfs_init(struct amdgpu_device *adev)
++{
++	int ret = device_create_file(adev->dev, &dev_attr_usbc_pd_fw);
++
++	if (ret)
++		DRM_ERROR("Failed to create USBC PD FW control file!");
 +
 +	return ret;
 +}
 +
- static const struct psp_funcs psp_v11_0_funcs = {
- 	.init_microcode = psp_v11_0_init_microcode,
- 	.bootloader_load_kdb = psp_v11_0_bootloader_load_kdb,
-@@ -1133,6 +1212,8 @@ static const struct psp_funcs psp_v11_0_funcs = {
- 	.mem_training = psp_v11_0_memory_training,
- 	.ring_get_wptr = psp_v11_0_ring_get_wptr,
- 	.ring_set_wptr = psp_v11_0_ring_set_wptr,
-+	.load_usbc_pd_fw = psp_v11_0_load_usbc_pd_fw,
-+	.read_usbc_pd_fw = psp_v11_0_read_usbc_pd_fw
++static void psp_sysfs_fini(struct amdgpu_device *adev)
++{
++	device_remove_file(adev->dev, &dev_attr_usbc_pd_fw);
++}
++
+ static const struct amdgpu_psp_funcs psp_funcs = {
+ 	.check_fw_loading_status = psp_check_fw_loading_status,
  };
- 
- void psp_v11_0_set_psp_funcs(struct psp_context *psp)
 -- 
 2.7.4
 
