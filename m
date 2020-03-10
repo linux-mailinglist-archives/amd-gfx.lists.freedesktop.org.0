@@ -2,72 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F0717F764
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2020 13:27:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F7EF17F74F
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2020 13:21:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B15CA6E1F9;
-	Tue, 10 Mar 2020 12:27:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCE5089E5B;
+	Tue, 10 Mar 2020 12:21:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 940FB6E1F9
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:27:23 +0000 (UTC)
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
- by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02ACR8Rs120091;
- Tue, 10 Mar 2020 12:27:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=419/3qfNRI8VkaUuRu3FSlC0+xOR4+hyqZQGRQkdgtE=;
- b=xAqtZPO/pAc5XvFSBJtbRIt5SVFIXrBwi6XkCcXR3B3bm9y6MTF/fOeNruoPsp+Zwzf2
- VwA0Ii/+jyDpu4Dp9CAXcHbRXznI5glFQq/6xAQqXxc3HKMBJrfkDOcGnVYI+UXQXzdz
- K2StFp5CUJBHoJsMcv5Zk+Q91nCQJAKC0c/nfkskEmVXlDNUDw23Lddtq1wqTV0rq16I
- G4r3oEdPyXloNWcgb6ju2Sn4zl/9YH1kxiNMSghaRQwZJ03G0KwLhvwJwP815IEFLUbE
- d7GytZfgtfnAFPKtycykpuhi2AidscGukL45SXE85UC6gjj0ZJhU+q3F8ojjarxamWN3 Mg== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
- by userp2120.oracle.com with ESMTP id 2yp7hm1jrf-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 10 Mar 2020 12:27:10 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
- by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02ACHhOH005221;
- Tue, 10 Mar 2020 12:23:52 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
- by userp3020.oracle.com with ESMTP id 2yp8rhpk79-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 10 Mar 2020 12:23:51 +0000
-Received: from abhmp0012.oracle.com (abhmp0012.oracle.com [141.146.116.18])
- by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 02ACNo23011577;
- Tue, 10 Mar 2020 12:23:50 GMT
-Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Tue, 10 Mar 2020 05:23:50 -0700
-Date: Tue, 10 Mar 2020 15:23:45 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Tom St Denis <tom.stdenis@amd.com>
-Subject: Re: [bug report] drm/amd/amdgpu: Add debugfs support for reading
- GPRs (v2)
-Message-ID: <20200310122344.GA11601@kadam>
-References: <20171128142919.4n4d5qfx6so6mllr@mwanda>
- <87088974-95bb-6b3c-a200-60169ec961e5@amd.com>
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72FB289E5B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:21:22 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id a141so1116276wme.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 05:21:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=XaTAu9Rbw8cbZ3eH4AvoWuAFSYiglI4EjVAj8kZM92s=;
+ b=haCeh8l4pVqJB2euGuX7FLUL7JKQPUhjT5bly4y1OwCUYx5tUFaiXbDmBpVpoq3spI
+ GPJQgivWoriqReQuPZvuRJS7NPHHm+Uj0ziN8CQwAU4u2t8mPZHFqnVXkAv5l4sS1k8E
+ 1M9VhZHzZ7MB89UdU3ifrBbpw0E3I7RLUzF4RLGm3165CDzSQK9078ZmWuZHE3Oxo4mp
+ Hic41eYcz6xZMWgMscBS0ff2tOVbHecxSAWNj6fLuJqC66tIGkmdl9i7iBXtUofFqN71
+ rCdD2IMFPJZu67LM2IwWwe/tyFwOW6QRZ8WWDicV2SPQyF+5Y0zPF7EXALCjy7avHdQW
+ mjRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=XaTAu9Rbw8cbZ3eH4AvoWuAFSYiglI4EjVAj8kZM92s=;
+ b=sA/ttyl1+WJTrgkWwUKNVoghVTmN0uDjwEi4xEeieXzwEq+Z79aN9vNJZ7dVuNMaQe
+ SNtiePwiLDpfCgsUb0gKysMgPUlCbNQiPs1/bcy9UCF0XRQnsRiwN8T4gUVv+SG5EW4a
+ OpB5aOEvBtSryHqexe7As1jtaR3pdXCvQandVJ/wRdTKsTycyWMDZiKaK4srnqq2Jcqa
+ 0g1A7fWr0YEALFNEinNP7qEsNKOa5Ydw+g3gTdcpKlm68f1Xn/fhBOkNJG96JovMl+Xq
+ x0vQMvWQbM4dVwRaUYQzl41GF6nOmvV9I+x/hbTfA/daxOHMvNrzOrJg3FZt1iebRsaH
+ iLwg==
+X-Gm-Message-State: ANhLgQ2OwUiK9FrIkmfPvag76Bz8aVkvpWrNqj0EVnXG9zNSy/ljgDl7
+ k7qgY0foeMAlsdSPHGvozsttfFMQPrWfUA==
+X-Google-Smtp-Source: ADFU+vtmJwKhWktDUzXWoHefZMjBa7ZuEozW9pD0MPj8lW+gbcGxOeSyd4UDMrtp4p3wU6l5vTArXw==
+X-Received: by 2002:a05:600c:2942:: with SMTP id
+ n2mr1869688wmd.87.1583842880573; 
+ Tue, 10 Mar 2020 05:21:20 -0700 (PDT)
+Received: from brihaspati.fritz.box
+ (p200300C58F32A80070E0F409F1853DFD.dip0.t-ipconnect.de.
+ [2003:c5:8f32:a800:70e0:f409:f185:3dfd])
+ by smtp.gmail.com with ESMTPSA id z19sm3970972wma.41.2020.03.10.05.21.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Mar 2020 05:21:19 -0700 (PDT)
+From: Nirmoy Das <nirmoy.aiemd@gmail.com>
+X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amdgpu: do not set nil entry in compute_prio_sched
+Date: Tue, 10 Mar 2020 13:24:55 +0100
+Message-Id: <20200310122456.3240-1-nirmoy.das@amd.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87088974-95bb-6b3c-a200-60169ec961e5@amd.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9555
- signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
- phishscore=0 mlxscore=0
- spamscore=0 malwarescore=0 bulkscore=0 adultscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
- definitions=main-2003100083
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9555
- signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- spamscore=0
- priorityscore=1501 clxscore=1011 mlxscore=0 impostorscore=0
- mlxlogscore=999 suspectscore=0 phishscore=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2003100083
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,92 +67,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, Ray.Huang@amd.com, nirmoy.das@amd.com,
+ christian.koenig@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2017 at 09:37:44AM -0500, Tom St Denis wrote:
-> On 28/11/17 09:29 AM, Dan Carpenter wrote:
-> > Hello Tom St Denis,
-> > 
-> > The patch c5a60ce81b49: "drm/amd/amdgpu: Add debugfs support for
-> > reading GPRs (v2)" from Dec 5, 2016, leads to the following static
-> > checker warning:
-> > 
-> > 	drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:3774 amdgpu_debugfs_gpr_read()
-> > 	error: buffer overflow 'data' 1024 <= 4095
-> > 
-> > drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >    3731  static ssize_t amdgpu_debugfs_gpr_read(struct file *f, char __user *buf,
-> >    3732                                          size_t size, loff_t *pos)
-> >    3733  {
-> >    3734          struct amdgpu_device *adev = f->f_inode->i_private;
-> >    3735          int r;
-> >    3736          ssize_t result = 0;
-> >    3737          uint32_t offset, se, sh, cu, wave, simd, thread, bank, *data;
-> >    3738
-> >    3739          if (size & 3 || *pos & 3)
-> >    3740                  return -EINVAL;
-> >    3741
-> >    3742          /* decode offset */
-> >    3743          offset = *pos & GENMASK_ULL(11, 0);
-> >                  ^^^^^^
-> > offset is set to 0-4095.
-> > 
-> >    3744          se = (*pos & GENMASK_ULL(19, 12)) >> 12;
-> >    3745          sh = (*pos & GENMASK_ULL(27, 20)) >> 20;
-> >    3746          cu = (*pos & GENMASK_ULL(35, 28)) >> 28;
-> >    3747          wave = (*pos & GENMASK_ULL(43, 36)) >> 36;
-> >    3748          simd = (*pos & GENMASK_ULL(51, 44)) >> 44;
-> >    3749          thread = (*pos & GENMASK_ULL(59, 52)) >> 52;
-> >    3750          bank = (*pos & GENMASK_ULL(61, 60)) >> 60;
-> >    3751
-> >    3752          data = kmalloc_array(1024, sizeof(*data), GFP_KERNEL);
-> >                                       ^^^^
-> > data is a 1024 element array
-> > 
-> >    3753          if (!data)
-> >    3754                  return -ENOMEM;
-> >    3755
-> >    3756          /* switch to the specific se/sh/cu */
-> >    3757          mutex_lock(&adev->grbm_idx_mutex);
-> >    3758          amdgpu_gfx_select_se_sh(adev, se, sh, cu);
-> >    3759
-> >    3760          if (bank == 0) {
-> >    3761                  if (adev->gfx.funcs->read_wave_vgprs)
-> >    3762                          adev->gfx.funcs->read_wave_vgprs(adev, simd, wave, thread, offset, size>>2, data);
-> >    3763          } else {
-> >    3764                  if (adev->gfx.funcs->read_wave_sgprs)
-> >    3765                          adev->gfx.funcs->read_wave_sgprs(adev, simd, wave, offset, size>>2, data);
-> >    3766          }
-> >    3767
-> >    3768          amdgpu_gfx_select_se_sh(adev, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
-> >    3769          mutex_unlock(&adev->grbm_idx_mutex);
-> >    3770
-> >    3771          while (size) {
-> >    3772                  uint32_t value;
-> >    3773
-> >    3774                  value = data[offset++];
-> >                                  ^^^^^^^^^^^^^^
-> > We're possibly reading beyond the end of the array.  Maybe we are
-> > supposed to divide the offset /= sizeof(*data)?
-> 
-> Hi Dan,
-> 
-> 
-> umr only reads from offset zero but to be consistent I think yes the offset
-> should be /= 4 first since we ensure it's 4 byte aligned it's clearly a 4
-> byte offset.
-> 
-> Thanks for finding this, I'll craft up a patch shortly.
-> 
+If there are no high priority compute queues available then set normal
+priority sched array to compute_prio_sched[AMDGPU_GFX_PIPE_PRIO_HIGH]
 
-What ever happened with this?
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-regards,
-dan carpenter
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index 3b2370ad1e47..fa575bdc03c8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -686,10 +686,17 @@ static void amdgpu_ctx_init_compute_sched(struct amdgpu_device *adev)
+ 	adev->gfx.num_compute_sched[i] = num_compute_sched_normal;
+ 
+ 	i = AMDGPU_GFX_PIPE_PRIO_HIGH;
+-	adev->gfx.compute_prio_sched[i] =
+-		&adev->gfx.compute_sched[num_compute_sched_high - 1];
+-	adev->gfx.num_compute_sched[i] =
+-		adev->gfx.num_compute_rings - num_compute_sched_normal;
++	if (num_compute_sched_high == (AMDGPU_MAX_COMPUTE_RINGS - 1)) {
++		/* When compute has no high priority rings then use */
++		/* normal priority sched array */
++		adev->gfx.compute_prio_sched[i] = &adev->gfx.compute_sched[0];
++		adev->gfx.num_compute_sched[i] = num_compute_sched_normal;
++	} else {
++		adev->gfx.compute_prio_sched[i] =
++			&adev->gfx.compute_sched[num_compute_sched_high - 1];
++		adev->gfx.num_compute_sched[i] =
++			adev->gfx.num_compute_rings - num_compute_sched_normal;
++	}
+ }
+ 
+ void amdgpu_ctx_init_sched(struct amdgpu_device *adev)
+-- 
+2.25.0
 
 _______________________________________________
 amd-gfx mailing list
