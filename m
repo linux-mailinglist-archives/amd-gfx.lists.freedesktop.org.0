@@ -2,61 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868AE17F750
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2020 13:21:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB7717F87D
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Mar 2020 13:48:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C48289F03;
-	Tue, 10 Mar 2020 12:21:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F02886E25B;
+	Tue, 10 Mar 2020 12:48:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C73C89F03
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:21:23 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id a132so1163036wme.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 05:21:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=xv/UAICwVD0l64A7KPfhhkf8porEhYjen3A1KMVwO2U=;
- b=gIh1/TIbuCsma0swWNAsl/XkjlCZIt8kFnDH1c9rY1lFXRBLW29+0iwetRzGHhEGx9
- /DsWHNkTltNYqYOiz1xtcpnTUSvLHHhiQMu4k4DYr7aoL5DrAPyYsHW+pntfE/vD8ojZ
- RUeOef0WhuRXlFstFgUujiqAu9/8LKTZbfKYwhY0i2I6w5nykERp2ntYp8mfH/OFX1Rs
- OiHa4WiBVhrAihCVKCx2VeVW0wJ24ToTS8z//+srz+/ICjNZ85XO6JhixcGwzfpTRbiF
- HMHaODfjkUVaFkpE1pXpdW1hX+XjdjlY0T+cdV4TuphnnEPC8KGnukKSeBU2/l5IzsfA
- hk6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=xv/UAICwVD0l64A7KPfhhkf8porEhYjen3A1KMVwO2U=;
- b=pHAcmMEdgT96ZIY3wY65cnlke5lDPHrh8holGSlP8CFnU+INcLa3n5fdkIWP5oN/Tp
- eaLBYQLwVa0j3GIW8F6lPRZ8dWchPUG8QlVYangDgjTtMY9NY7L9CPlp9sWs+2F7JuMz
- 7Wn7e/QMGPUCcrU+rXaEmIy3O/mTd/i54bXIXBrw2wbe/A3HqIy1thD55zJxMumEhzSU
- WhjiZKbNdVDx46Sui8uaWCm2Ozf2UH3UmM6YoEGLRgFPVVHFVx4got6fvXOWL+yvF7W5
- uQivgSoN/7Zrr2cToGeSSkAXgZjVfY0APlgewaR1HZCALtDXFLWlY0ZXENtV4vJv8X02
- mZiA==
-X-Gm-Message-State: ANhLgQ3jhgoek9IHI8dzm3rc59XRNtaoHAhpp2VL6c9/BmNzHVhCzv7Z
- NxUcBLT+71j2oB09TwNQ7reY8KqQvpIc4Q==
-X-Google-Smtp-Source: ADFU+vvhYLamgq8kNkbFALKLTfFGypZXSd7GHmBNjFEpO/MHw06gdOrT7/695VQAPcIRRIzoResHrA==
-X-Received: by 2002:a1c:e913:: with SMTP id q19mr2027756wmc.31.1583842881727; 
- Tue, 10 Mar 2020 05:21:21 -0700 (PDT)
-Received: from brihaspati.fritz.box
- (p200300C58F32A80070E0F409F1853DFD.dip0.t-ipconnect.de.
- [2003:c5:8f32:a800:70e0:f409:f185:3dfd])
- by smtp.gmail.com with ESMTPSA id z19sm3970972wma.41.2020.03.10.05.21.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Mar 2020 05:21:21 -0700 (PDT)
-From: Nirmoy Das <nirmoy.aiemd@gmail.com>
-X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdgpu: cleanup drm_gpu_scheduler array creation
-Date: Tue, 10 Mar 2020 13:24:56 +0100
-Message-Id: <20200310122456.3240-2-nirmoy.das@amd.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200310122456.3240-1-nirmoy.das@amd.com>
-References: <20200310122456.3240-1-nirmoy.das@amd.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2063.outbound.protection.outlook.com [40.107.220.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 224A46E25B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:48:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cOXye13z5TrMGPXkdsG9ns9TXMkBRMjXTqEkA8OXaRNYqzXcKf+tnIa5Y7b5CoRB/vPBtqFUYRybd8foMXCSxjTTFrlIfp5MT7FiG67bC/wrl39FKyZdVmbd2mVxLibrylkEOXShXg0QRjiPRw2n7yo0gZR/9RIT1m07XjeMImAYTyf2HK05NZSNnxE1ro/aZZ58wwjF9zogJ5uNCQKV5SqbslDgi24QzBCzA1lCpIiA865uD+GFiLmOz1jqbrX5pL81ZDQDzqyuWoly3sfTFegxz09OlKQfL0XJKmSty+h1GtDkbm6NFkOPP/BmaEtXYTUbMeI3CVnktYhXKVGexw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FVMk4BLvWTj3QseBiAQODC/CkGspug9kF7KFHOSHPhg=;
+ b=AHXawTeeSPU3KOvxMMm7NUul6fKwA3GItd2WI3FARNs9UcO3ZNNGSq9GUF6DJ2+U9zNwQDxJyrZ63Ny0JMdCzRAqKVKksOsZ5n4Gi0TGRRWQJLHGOcNgNXzUXWnnGNqvV4UoDpE6M4LNKTRyjh1ViIYoz6XjwOXFZp/YdDmquNar2gtaQA7T6cxy+aZW8xl2LFS4IHG0kaqD1zzgwyykrxe82th18EBfW6Kp3tM54gLwX68FqkLOeEAz6s8guhiC1ARBCS56i9nyu6Kre8R/gBxfa1Eanqr6XKfW0tNK9bGC03ArMHoPSbvcHAAXd93g8/Q3YnCdinaM5q2EtqLquw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FVMk4BLvWTj3QseBiAQODC/CkGspug9kF7KFHOSHPhg=;
+ b=uT4wLE42V7zC0YKgyo0oEvzCVLm1MjGH3dBhVlDkPUx7dzpwCRU/5I+Ia0Tm6N8MgUVoljwZZyZOmmB/SKMCpNxJXmIrVMzzUeTajAC7klRTAt9Bs6ljmti7G0CRyZKcKwQ2CYODvxEHww/WpjMWLK05o1OipdTZ7qqXwIDXNBE=
+Received: from MWHPR19CA0018.namprd19.prod.outlook.com (2603:10b6:300:d4::28)
+ by MN2PR12MB3069.namprd12.prod.outlook.com (2603:10b6:208:c4::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2793.17; Tue, 10 Mar
+ 2020 12:48:38 +0000
+Received: from CO1NAM11FT045.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:d4:cafe::76) by MWHPR19CA0018.outlook.office365.com
+ (2603:10b6:300:d4::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2793.16 via Frontend
+ Transport; Tue, 10 Mar 2020 12:48:38 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ CO1NAM11FT045.mail.protection.outlook.com (10.13.175.181) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2793.11 via Frontend Transport; Tue, 10 Mar 2020 12:48:38 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 10 Mar
+ 2020 07:48:37 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 10 Mar
+ 2020 07:48:37 -0500
+Received: from ubuntu.amd.com (10.180.168.240) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Tue, 10 Mar 2020 07:48:36 -0500
+From: Jack Zhang <Jack.Zhang1@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu/sriov refine vcn_v2_5_early_init func
+Date: Tue, 10 Mar 2020 20:48:34 +0800
+Message-ID: <1583844514-28921-1-git-send-email-Jack.Zhang1@amd.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(428003)(189003)(199004)(8676002)(8936002)(356004)(81166006)(6916009)(81156014)(5660300002)(4326008)(336012)(2616005)(70206006)(36756003)(2906002)(186003)(70586007)(498600001)(26005)(54906003)(426003)(7696005)(86362001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3069; H:SATLEXMB02.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9038ba88-273e-4140-0ced-08d7c4f15adf
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3069:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3069A05F75C25D26B4E4D557BBFF0@MN2PR12MB3069.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
+X-Forefront-PRVS: 033857D0BD
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KUrJkHkEX+QN33NaR4qCzp82HnN9QKNSaQM/q20BYPHG+hsovfEcb53/yB9mUkJOMAbU07M9rMXXq/QgckS9Cui+vIls2pKb7Km/BgA+lCFqVS1u2NKXFXZnO2sjmTcFefNh0inVWip1XGtdVqRgye5zlKCQzxy3OvF26EcLl1L2Dz8nBpnBduzBF5EWkZZ7du0G134QekLl9djeyE/q0zT6rdcwrYRAu1covVV5nuC5v5m+eO1J172tfNqtxASxeKI+hvdZe7iIo4jBJllG33a1AurU8+V+qYo7AcrqGMgWB+Kv2huxsRUEojUE4bftG70cEEmasiix6ipm/QOFstpA+hBdZlKWEPRIb/njRs5k79sWtoDG7UX4WyeZfw6mIKa3CKLUMrwzQrzpHaiwAdU+BxRnGqiUcPb3wHJxn1jp4aLoUW33phEkjQK1gGWC
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2020 12:48:38.5335 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9038ba88-273e-4140-0ced-08d7c4f15adf
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3069
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,239 +102,74 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Ray.Huang@amd.com, nirmoy.das@amd.com,
- christian.koenig@amd.com
+Cc: jazha@amd.com, Jack Zhang <Jack.Zhang1@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Move initialization of struct drm_gpu_scheduler array,
-amdgpu_ctx_init_sched() to amdgpu_ring.c.
+refine the assignment for vcn.num_vcn_inst,
+vcn.harvest_config, vcn.num_enc_rings in VF
 
-Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+Signed-off-by: Jack Zhang <Jack.Zhang1@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c    | 75 -------------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h    |  3 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c   | 85 ++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |  2 +
- 5 files changed, 88 insertions(+), 79 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c | 35 ++++++++++++++++++-----------------
+ 1 file changed, 18 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-index fa575bdc03c8..06d151c0fe4e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-@@ -661,78 +661,3 @@ void amdgpu_ctx_mgr_fini(struct amdgpu_ctx_mgr *mgr)
- 	idr_destroy(&mgr->ctx_handles);
- 	mutex_destroy(&mgr->lock);
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+index 2d64ba1..9b22e2b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+@@ -74,29 +74,30 @@ static int amdgpu_ih_clientid_vcns[] = {
+ static int vcn_v2_5_early_init(void *handle)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	if (adev->asic_type == CHIP_ARCTURUS) {
+-		u32 harvest;
+-		int i;
 -
+-		adev->vcn.num_vcn_inst = VCN25_MAX_HW_INSTANCES_ARCTURUS;
+-		for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-			harvest = RREG32_SOC15(UVD, i, mmCC_UVD_HARVESTING);
+-			if (harvest & CC_UVD_HARVESTING__UVD_DISABLE_MASK)
+-				adev->vcn.harvest_config |= 1 << i;
+-		}
 -
--static void amdgpu_ctx_init_compute_sched(struct amdgpu_device *adev)
--{
--	int num_compute_sched_normal = 0;
--	int num_compute_sched_high = AMDGPU_MAX_COMPUTE_RINGS - 1;
--	int i;
--
--	/* use one drm sched array, gfx.compute_sched to store both high and
--	 * normal priority drm compute schedulers */
--	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
--		if (!adev->gfx.compute_ring[i].has_high_prio)
--			adev->gfx.compute_sched[num_compute_sched_normal++] =
--				&adev->gfx.compute_ring[i].sched;
--		else
--			adev->gfx.compute_sched[num_compute_sched_high--] =
--				&adev->gfx.compute_ring[i].sched;
--	}
--
--	/* compute ring only has two priority for now */
--	i = AMDGPU_GFX_PIPE_PRIO_NORMAL;
--	adev->gfx.compute_prio_sched[i] = &adev->gfx.compute_sched[0];
--	adev->gfx.num_compute_sched[i] = num_compute_sched_normal;
--
--	i = AMDGPU_GFX_PIPE_PRIO_HIGH;
--	if (num_compute_sched_high == (AMDGPU_MAX_COMPUTE_RINGS - 1)) {
--		/* When compute has no high priority rings then use */
--		/* normal priority sched array */
--		adev->gfx.compute_prio_sched[i] = &adev->gfx.compute_sched[0];
--		adev->gfx.num_compute_sched[i] = num_compute_sched_normal;
--	} else {
--		adev->gfx.compute_prio_sched[i] =
--			&adev->gfx.compute_sched[num_compute_sched_high - 1];
--		adev->gfx.num_compute_sched[i] =
--			adev->gfx.num_compute_rings - num_compute_sched_normal;
--	}
--}
--
--void amdgpu_ctx_init_sched(struct amdgpu_device *adev)
--{
--	int i, j;
--
--	amdgpu_ctx_init_compute_sched(adev);
--	for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
--		adev->gfx.gfx_sched[i] = &adev->gfx.gfx_ring[i].sched;
--		adev->gfx.num_gfx_sched++;
--	}
--
--	for (i = 0; i < adev->sdma.num_instances; i++) {
--		adev->sdma.sdma_sched[i] = &adev->sdma.instance[i].ring.sched;
--		adev->sdma.num_sdma_sched++;
--	}
--
--	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
--		if (adev->vcn.harvest_config & (1 << i))
--			continue;
--		adev->vcn.vcn_dec_sched[adev->vcn.num_vcn_dec_sched++] =
--			&adev->vcn.inst[i].ring_dec.sched;
--	}
--
--	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
--		if (adev->vcn.harvest_config & (1 << i))
--			continue;
--		for (j = 0; j < adev->vcn.num_enc_rings; ++j)
--			adev->vcn.vcn_enc_sched[adev->vcn.num_vcn_enc_sched++] =
--				&adev->vcn.inst[i].ring_enc[j].sched;
--	}
--
--	for (i = 0; i < adev->jpeg.num_jpeg_inst; ++i) {
--		if (adev->jpeg.harvest_config & (1 << i))
--			continue;
--		adev->jpeg.jpeg_sched[adev->jpeg.num_jpeg_sched++] =
--			&adev->jpeg.inst[i].ring_dec.sched;
--	}
--}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-index de490f183af2..f54e10314661 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-@@ -88,7 +88,4 @@ void amdgpu_ctx_mgr_entity_fini(struct amdgpu_ctx_mgr *mgr);
- long amdgpu_ctx_mgr_entity_flush(struct amdgpu_ctx_mgr *mgr, long timeout);
- void amdgpu_ctx_mgr_fini(struct amdgpu_ctx_mgr *mgr);
+-		if (adev->vcn.harvest_config == (AMDGPU_VCN_HARVEST_VCN0 |
+-						 AMDGPU_VCN_HARVEST_VCN1))
+-			/* both instances are harvested, disable the block */
+-			return -ENOENT;
+-	} else
+-		adev->vcn.num_vcn_inst = 1;
  
--void amdgpu_ctx_init_sched(struct amdgpu_device *adev);
--
--
- #endif
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 572eb6ea8eab..b2a99f9fc223 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3092,7 +3092,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 			adev->gfx.config.max_cu_per_sh,
- 			adev->gfx.cu_info.number);
+ 	if (amdgpu_sriov_vf(adev)) {
+ 		adev->vcn.num_vcn_inst = 2;
+ 		adev->vcn.harvest_config = 0;
+ 		adev->vcn.num_enc_rings = 1;
+ 	} else {
++		if (adev->asic_type == CHIP_ARCTURUS) {
++			u32 harvest;
++			int i;
++
++			adev->vcn.num_vcn_inst = VCN25_MAX_HW_INSTANCES_ARCTURUS;
++			for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
++				harvest = RREG32_SOC15(UVD, i, mmCC_UVD_HARVESTING);
++				if (harvest & CC_UVD_HARVESTING__UVD_DISABLE_MASK)
++					adev->vcn.harvest_config |= 1 << i;
++			}
++
++			if (adev->vcn.harvest_config == (AMDGPU_VCN_HARVEST_VCN0 |
++						AMDGPU_VCN_HARVEST_VCN1))
++				/* both instances are harvested, disable the block */
++				return -ENOENT;
++		} else
++			adev->vcn.num_vcn_inst = 1;
++
+ 		adev->vcn.num_enc_rings = 2;
+ 	}
  
--	amdgpu_ctx_init_sched(adev);
-+	amdgpu_ring_init_sched(adev);
- 
- 	adev->accel_working = true;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-index a7e1d0425ed0..01faeb8b4ef2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -454,3 +454,88 @@ int amdgpu_ring_test_helper(struct amdgpu_ring *ring)
- 	ring->sched.ready = !r;
- 	return r;
- }
-+
-+static void amdgpu_ring_init_compute_sched(struct amdgpu_device *adev)
-+{
-+	int num_compute_sched_normal = 0;
-+	int num_compute_sched_high = AMDGPU_MAX_COMPUTE_RINGS - 1;
-+	int i;
-+
-+	/* use one drm sched array, gfx.compute_sched to store both high and */
-+	/* normal priority drm compute schedulers */
-+	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-+		if (!adev->gfx.compute_ring[i].has_high_prio)
-+			adev->gfx.compute_sched[num_compute_sched_normal++] =
-+				&adev->gfx.compute_ring[i].sched;
-+		else
-+			adev->gfx.compute_sched[num_compute_sched_high--] =
-+				&adev->gfx.compute_ring[i].sched;
-+	}
-+
-+	/* compute ring only has two priority for now */
-+	i = AMDGPU_GFX_PIPE_PRIO_NORMAL;
-+	adev->gfx.compute_prio_sched[i] = &adev->gfx.compute_sched[0];
-+	adev->gfx.num_compute_sched[i] = num_compute_sched_normal;
-+
-+	i = AMDGPU_GFX_PIPE_PRIO_HIGH;
-+	if (num_compute_sched_high == (AMDGPU_MAX_COMPUTE_RINGS - 1)) {
-+		/* When compute has no high priority rings then use */
-+		/* normal priority sched array */
-+		adev->gfx.compute_prio_sched[i] = &adev->gfx.compute_sched[0];
-+		adev->gfx.num_compute_sched[i] = num_compute_sched_normal;
-+	} else {
-+
-+		adev->gfx.compute_prio_sched[i] =
-+			&adev->gfx.compute_sched[num_compute_sched_high - 1];
-+		adev->gfx.num_compute_sched[i] =
-+			adev->gfx.num_compute_rings - num_compute_sched_normal;
-+	}
-+}
-+
-+/**
-+ * amdgpu_ring_init_sched - populate array of drm scheds for each HW IP
-+ *
-+ * @adev: amdgpu_device pointer
-+ *
-+ * Populate an array of struct drm_gpu_schedulers for each HW IP which
-+ * can be use by amdgpu_ctx_get_entity() to initialize an entity.
-+ *
-+ */
-+
-+void amdgpu_ring_init_sched(struct amdgpu_device *adev)
-+{
-+	int i, j;
-+
-+	amdgpu_ring_init_compute_sched(adev);
-+	for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
-+		adev->gfx.gfx_sched[i] = &adev->gfx.gfx_ring[i].sched;
-+		adev->gfx.num_gfx_sched++;
-+	}
-+
-+	for (i = 0; i < adev->sdma.num_instances; i++) {
-+		adev->sdma.sdma_sched[i] = &adev->sdma.instance[i].ring.sched;
-+		adev->sdma.num_sdma_sched++;
-+	}
-+
-+	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
-+		if (adev->vcn.harvest_config & (1 << i))
-+			continue;
-+		adev->vcn.vcn_dec_sched[adev->vcn.num_vcn_dec_sched++] =
-+			&adev->vcn.inst[i].ring_dec.sched;
-+	}
-+
-+	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
-+		if (adev->vcn.harvest_config & (1 << i))
-+			continue;
-+		for (j = 0; j < adev->vcn.num_enc_rings; ++j)
-+			adev->vcn.vcn_enc_sched[adev->vcn.num_vcn_enc_sched++] =
-+				&adev->vcn.inst[i].ring_enc[j].sched;
-+	}
-+
-+	for (i = 0; i < adev->jpeg.num_jpeg_inst; ++i) {
-+		if (adev->jpeg.harvest_config & (1 << i))
-+			continue;
-+		adev->jpeg.jpeg_sched[adev->jpeg.num_jpeg_sched++] =
-+			&adev->jpeg.inst[i].ring_dec.sched;
-+	}
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index 9a443013d70d..4ccd056d4353 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -326,4 +326,6 @@ int amdgpu_debugfs_ring_init(struct amdgpu_device *adev,
- 			     struct amdgpu_ring *ring);
- void amdgpu_debugfs_ring_fini(struct amdgpu_ring *ring);
- 
-+void amdgpu_ring_init_sched(struct amdgpu_device *adev);
-+
- #endif
 -- 
-2.25.0
+2.7.4
 
 _______________________________________________
 amd-gfx mailing list
