@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83898182380
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2020 21:49:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB29A182382
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Mar 2020 21:49:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26E0C89276;
-	Wed, 11 Mar 2020 20:49:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 015E66E50C;
+	Wed, 11 Mar 2020 20:49:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2056.outbound.protection.outlook.com [40.107.220.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0CDB6E4DE
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 20:49:45 +0000 (UTC)
+ (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93CC26E4DE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 20:49:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kI3n49QJwreQUOEDpcwIzvQRHl82e20eHjImBQL8vL1up48Vs4siPtzyqILJjLbzAPna0mxoW/sF1iUn0cqMUVgedcWFnEKRwlYYJBvv3KoZ3Hrl9AXrmE4XPa8cInesI9zKAU3LZ3ugqYOBQIG+8SECHqk4Yvqdmk8j9d5CMV0C/q+c2pRhuGdwSNH5zJUt+vUwwoBFFhoOb3yudJ9gv/+t5Vm88posJLiUuk7U3mOaoknmRrNYO3l2gJHadslAFx8tGpQAxoZdxsYzOAytCPCW1bd/JQpxkMcZ0vdJgneTKaWBTkKDuBNsFUQmzTP94+KXhiUZ7dRaZ6ZcB+rM7w==
+ b=B2prYbeG9w0Mjdja3zTKXThd0tgPlS7Vpca7WQ+eAxyjr7OVDhtGFr9Y8TbQYdrxqU0oB6wH2nps8/QRbbu1Segw6BP3kvFptXFvySS/F5Insc/tAFrlnnpoqDH5mmmo7GCBHXKlIBr4d1rQv3s0ejkd0YmPngDWE7UAIHEtrW2TSBbW+Fh5jx5X0NIUH2yv49R/4HuOC4wJw9fmzLoRw6/AJQCe0tCq+fnmVvxRq+4TwRsx/E/74l+7snSy5bXP1S/csTPfogvlySWVPXv7bADSHm1z0pRm2xc7KjAalelTzcyzff+BwxUleLh67nCpVzKtW3xtldIdcwzLG79sEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1vbnJG9+aSY0ZsnG8N6Q7DFVUobt0waYhgHxXsPLHVw=;
- b=f+JhWafRxBeyNx2e+ACJwe0FeV/gXCZDHn7GJyI8CoJHUta9rAlv6GARHguSL1OCojHCFY1aNb3AfiST2n3MEgibMmMT9dh29VEMrtHDM5En66aoKxipFG2I9AXfkTT29I5Y9g4Yp8gppYvKdJFu8CZ3wX9zzuv4hWZgS4aXZJROUuzJzivbVhylK6lXercAynsnJNewEwTD3CHSOjMoCtVnY9wdrahuglE0fG9HTPrTL+4LaU2BMfPGPyd7EDKH167WMVTLCqBLYx8PivF5xQiaPyiRhWmvgwvIxJ/TffXZ3STbwUqZrOFhDcrl3YL3cKMAqMx0pUPa7iNo6nwZYQ==
+ bh=NApPKa9kl+1asER9pOXrXJk9B+6Oa1f66Xuqg0YsUA8=;
+ b=MJx35RCBvenvWqOCw5me2oJuuEX6L1cMBVmb28SBrifPwPu8Y1ucTGntrgs89hl/PG8Bcl6faPcLMq5tA/qGhkRcrjHriW6dA2HXoiHmfyEiAE/qdXcQpJGCZjiGAx/3h+80o/FbYuajpiAAh7OEyf1LDccmzZ4WZ4rRZ9RONNEV9N3HrBR90swxeJeFHqIXthFiP3NWhxBEUGZR/GQpAigd1DeDCd7CZdqNbW9D7XokQJqba0tLkK+z2fZ9/b+KPnfPDIeHd29bErh75ePHeOWv9pbL4XXyM4lki+MDPJ792uEi0JpLAtZ+5gsd8oFAUtsanO3WQaJMH1TN28Up/w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1vbnJG9+aSY0ZsnG8N6Q7DFVUobt0waYhgHxXsPLHVw=;
- b=U14SCelrnkdPPBvGxwJzKea7/gdIq1LqRAbcJockxWT/WRhEqhFbnmOI2VwfA3MjCV40s72TUoNqKvGQ6tD3e6IXQNakfrJUF7R3rvALJ0PIN++M1ZocuZS5ceQiooXjm4sOt5Z+OLkkaehCRBNMx9a+IF4/H5dwYuQqW7KUwzI=
+ bh=NApPKa9kl+1asER9pOXrXJk9B+6Oa1f66Xuqg0YsUA8=;
+ b=S1fhdrWqdv1dmU4eg5px0hFJT4WYcbzgaq4SpjIkxhkIv0l8WkbzFmsKqWzVavTy/JnjPqy5u2B5I5dP9IFMs4P6ckhU1uHRtK3EcbnizwLNr3zMYXWw3EmoTXTMJwtTqmeQ5IV77eyrbVwLZsR9SIj/lsqGgu1askTlMOua54U=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=James.Zhu@amd.com; 
 Received: from BYAPR12MB3285.namprd12.prod.outlook.com (2603:10b6:a03:134::14)
@@ -41,10 +41,10 @@ Received: from BYAPR12MB3285.namprd12.prod.outlook.com
  20:49:45 +0000
 From: James Zhu <James.Zhu@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v5 2/4] drm/amdgpu/vcn: fix race condition issue for dpg
- unpause mode switch
-Date: Wed, 11 Mar 2020 16:49:32 -0400
-Message-Id: <1583959774-16570-2-git-send-email-James.Zhu@amd.com>
+Subject: [PATCH v5 3/4] drm/amdgpu/vcn2.0: add sync when WPTR/RPTR reset under
+ DPG mode
+Date: Wed, 11 Mar 2020 16:49:33 -0400
+Message-Id: <1583959774-16570-3-git-send-email-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1583959774-16570-1-git-send-email-James.Zhu@amd.com>
 References: <1583959774-16570-1-git-send-email-James.Zhu@amd.com>
@@ -56,16 +56,16 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from work_495456.amd.com (165.204.55.251) by
  YTBPR01CA0020.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::33) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.2793.16 via Frontend Transport; Wed, 11 Mar 2020 20:49:44 +0000
+ 15.20.2793.16 via Frontend Transport; Wed, 11 Mar 2020 20:49:45 +0000
 X-Mailer: git-send-email 2.7.4
 X-Originating-IP: [165.204.55.251]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 1d5ce2fa-0369-419b-ccbe-08d7c5fdbac2
+X-MS-Office365-Filtering-Correlation-Id: bd7621a8-2ea0-41da-579c-08d7c5fdbb3c
 X-MS-TrafficTypeDiagnostic: BYAPR12MB3079:|BYAPR12MB3079:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR12MB30791EAA89F276681F029146E4FC0@BYAPR12MB3079.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-Microsoft-Antispam-PRVS: <BYAPR12MB30792C4269C76E9D7F270907E4FC0@BYAPR12MB3079.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:353;
 X-Forefront-PRVS: 0339F89554
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(39860400002)(376002)(346002)(366004)(396003)(136003)(199004)(66946007)(26005)(66476007)(4326008)(2906002)(66556008)(6666004)(5660300002)(7696005)(52116002)(6916009)(316002)(81166006)(8676002)(478600001)(6486002)(8936002)(81156014)(86362001)(956004)(186003)(2616005)(36756003)(16526019);
@@ -76,15 +76,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0wmU0CN3Xx3EhwRl1/XPKJ+YTQGsZQ8bB58B1QUaUNjuQnpDhQppGHMFcrgjEwNsYbpvvAeQkkGyNmUr/L/16rsIGaaG4l0DVw8s/luFTo5yto80n+v8XaLm+SpGWw+Ag8i3QH+OkY49tL9ZEQgB/uqZc0NNpnKalrQfnrcPMNObK5G7AESYRqWZaoOSiO23HcFjfasb+1SzjaRUU0xSadOPyL//aMfBRW6dg4ZxW9fGRlTsDZNakeXo6lhCreXQm3j4WdwJLBdqhRCCkF3xE3idhNvCQd/aRfcKHJ3H2DsSEkIvQnZPPCbQLR0o32AoUlGPDcE83espO7FUQc084PvDiV9nuFxH8qnRXbKlF3Fhq82vJpZSn9ZkVzrhFCavCFE3/HUYodSWXjkjSYPmQJTKhiGRZRw18oefxer67Y6r3lZkztMOMMLgXeipO8tR
-X-MS-Exchange-AntiSpam-MessageData: vwngryWR3F9qplFCuaRBPndKhJorhHBlGqM3kYn9JG0NSIrH+pyyO+aj9TiZ79GJLvp+XQ2vOu2iuWlk2KLGOHi7aMHw3uAS/inO+1fMekGnQjavhphPTpAfRfrL8gTmb1XQxtQvjXSCkEi7pviH0g==
+X-Microsoft-Antispam-Message-Info: j/b/0Jbf8PcYXj4GYefhiCevGAOWfmRg+LVqj///U2Ej+CAqXGb6hTUpIDBAN1/0Kb2HWXJUBcs4qQfHoIHXv8uyMwCuDXJPpRQD9X/xBmI4drv6NoHaFquj9ZEJLTE0H7h677j8xPIf2thZgHHZ9HRWSKXFUv6pNRmhfMY6CiTEfwcXeKcHSO1/HEGazVz4hZov2OPl3g5QfW+cENy3gNrJvuDpqrIHpFH8KqdZraPhWJ9HsaF+AoqWbyWgHnsn3YpeTvP2gecyC1gBds+/qki+M4YU1FS3j/RSe87mt+Zupq11KJGkZQm1TlI9SpapzUtxHoTMVYD8Kz7SxiIZBR3agHM8Y4nQ5ODzjbilmR+G3CkQzRA8VyWRLXUzujjROUXCFAatE41Zg8Mug6boNnWiowvK9e3pR9EzKWlzAWmF1ND18DBDqLtMzGFiUQnh
+X-MS-Exchange-AntiSpam-MessageData: ln3R/42l6A2IU7LQd+jF1ktZRJEOwnaYlykvrhY0qLHud4jToozg0/6kUq2UWo+clIOIWPgrdf82ycwlAfakm2NhsRq+ZIj77TGWQ5IShTBCD7ZgCutjlY/uPjL65lX1kYYyURkCBbJzFHY5iI7HZg==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d5ce2fa-0369-419b-ccbe-08d7c5fdbac2
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2020 20:49:45.0468 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd7621a8-2ea0-41da-579c-08d7c5fdbb3c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2020 20:49:45.7634 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5XyQLcV2C6FCHhzu+Fh4TIuMRnXTIuJdTUBBEQ3LbEokxqD/r9INPZ3BE/jKBUeX
+X-MS-Exchange-CrossTenant-UserPrincipalName: TlYco5WlDxnneMRIwFyG1KS7SXv3wPfea5tTjhIgG8BXhO+KFBmVdYjiZ2+/MN2o
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3079
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -103,101 +103,73 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Couldn't only rely on enc fence to decide switching to dpg unpaude mode.
-Since a enc thread may not schedule a fence in time during multiple
-threads running situation.
-
-v3: 1. Rename enc_submission_cnt to dpg_enc_submission_cnt
-    2. Add dpg_enc_submission_cnt check in idle_work_handler
-
-v4:  Remove extra counter check, and reduce counter before idle
-    work schedule
+Add vcn harware and firmware synchronization to fix race condition
+issue among vcn driver, hardware and firmware under DPG mode
 
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 32 +++++++++++++++++++++-----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h |  1 +
- 2 files changed, 22 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-index 6dacf78..0110610 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -65,6 +65,8 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev)
- 	INIT_DELAYED_WORK(&adev->vcn.idle_work, amdgpu_vcn_idle_work_handler);
- 	mutex_init(&adev->vcn.vcn_pg_lock);
- 	atomic_set(&adev->vcn.total_submission_cnt, 0);
-+	for (i = 0; i < adev->vcn.num_vcn_inst; i++)
-+		atomic_set(&adev->vcn.inst[i].dpg_enc_submission_cnt, 0);
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+index f2745fd..415d65c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+@@ -872,6 +872,11 @@ static int vcn_v2_0_start_dpg_mode(struct amdgpu_device *adev, bool indirect)
+ 	tmp = REG_SET_FIELD(tmp, UVD_RBC_RB_CNTL, RB_RPTR_WR_EN, 1);
+ 	WREG32_SOC15(UVD, 0, mmUVD_RBC_RB_CNTL, tmp);
  
- 	switch (adev->asic_type) {
- 	case CHIP_RAVEN:
-@@ -298,7 +300,8 @@ static void amdgpu_vcn_idle_work_handler(struct work_struct *work)
- 		if (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)	{
- 			struct dpg_pause_state new_state;
- 
--			if (fence[j])
-+			if (fence[j] ||
-+				unlikely(atomic_read(&adev->vcn.inst[j].dpg_enc_submission_cnt)))
- 				new_state.fw_based = VCN_DPG_STATE__PAUSE;
- 			else
- 				new_state.fw_based = VCN_DPG_STATE__UNPAUSE;
-@@ -333,19 +336,22 @@ void amdgpu_vcn_ring_begin_use(struct amdgpu_ring *ring)
- 
- 	if (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)	{
- 		struct dpg_pause_state new_state;
--		unsigned int fences = 0;
--		unsigned int i;
- 
--		for (i = 0; i < adev->vcn.num_enc_rings; ++i) {
--			fences += amdgpu_fence_count_emitted(&adev->vcn.inst[ring->me].ring_enc[i]);
--		}
--		if (fences)
-+		if (ring->funcs->type == AMDGPU_RING_TYPE_VCN_ENC) {
-+			atomic_inc(&adev->vcn.inst[ring->me].dpg_enc_submission_cnt);
- 			new_state.fw_based = VCN_DPG_STATE__PAUSE;
--		else
--			new_state.fw_based = VCN_DPG_STATE__UNPAUSE;
-+		} else {
-+			unsigned int fences = 0;
-+			unsigned int i;
- 
--		if (ring->funcs->type == AMDGPU_RING_TYPE_VCN_ENC)
--			new_state.fw_based = VCN_DPG_STATE__PAUSE;
-+			for (i = 0; i < adev->vcn.num_enc_rings; ++i)
-+				fences += amdgpu_fence_count_emitted(&adev->vcn.inst[ring->me].ring_enc[i]);
++	/* Stall DPG before WPTR/RPTR reset */
++	WREG32_P(SOC15_REG_OFFSET(UVD, 0, mmUVD_POWER_STATUS),
++		UVD_POWER_STATUS__STALL_DPG_POWER_UP_MASK,
++		~UVD_POWER_STATUS__STALL_DPG_POWER_UP_MASK);
 +
-+			if (fences || atomic_read(&adev->vcn.inst[ring->me].dpg_enc_submission_cnt))
-+				new_state.fw_based = VCN_DPG_STATE__PAUSE;
-+			else
-+				new_state.fw_based = VCN_DPG_STATE__UNPAUSE;
-+		}
+ 	/* set the write pointer delay */
+ 	WREG32_SOC15(UVD, 0, mmUVD_RBC_RB_WPTR_CNTL, 0);
  
- 		adev->vcn.pause_dpg_mode(adev, ring->me, &new_state);
- 	}
-@@ -354,6 +360,10 @@ void amdgpu_vcn_ring_begin_use(struct amdgpu_ring *ring)
+@@ -894,6 +899,10 @@ static int vcn_v2_0_start_dpg_mode(struct amdgpu_device *adev, bool indirect)
+ 	WREG32_SOC15(UVD, 0, mmUVD_RBC_RB_WPTR,
+ 		lower_32_bits(ring->wptr));
  
- void amdgpu_vcn_ring_end_use(struct amdgpu_ring *ring)
- {
-+	if (ring->adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG &&
-+		ring->funcs->type == AMDGPU_RING_TYPE_VCN_ENC)
-+		atomic_dec(&ring->adev->vcn.inst[ring->me].dpg_enc_submission_cnt);
++	/* Unstall DPG */
++	WREG32_P(SOC15_REG_OFFSET(UVD, 0, mmUVD_POWER_STATUS),
++		0, ~UVD_POWER_STATUS__STALL_DPG_POWER_UP_MASK);
 +
- 	atomic_dec(&ring->adev->vcn.total_submission_cnt);
+ 	return 0;
+ }
  
- 	schedule_delayed_work(&ring->adev->vcn.idle_work, VCN_IDLE_TIMEOUT);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-index 111c4cc..e913de8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-@@ -183,6 +183,7 @@ struct amdgpu_vcn_inst {
- 	void			*dpg_sram_cpu_addr;
- 	uint64_t		dpg_sram_gpu_addr;
- 	uint32_t		*dpg_sram_curr_addr;
-+	atomic_t		dpg_enc_submission_cnt;
- };
+@@ -1189,8 +1198,13 @@ static int vcn_v2_0_pause_dpg_mode(struct amdgpu_device *adev,
+ 					   UVD_DPG_PAUSE__NJ_PAUSE_DPG_ACK_MASK,
+ 					   UVD_DPG_PAUSE__NJ_PAUSE_DPG_ACK_MASK, ret_code);
  
- struct amdgpu_vcn {
++				/* Stall DPG before WPTR/RPTR reset */
++				WREG32_P(SOC15_REG_OFFSET(UVD, 0, mmUVD_POWER_STATUS),
++					   UVD_POWER_STATUS__STALL_DPG_POWER_UP_MASK,
++					   ~UVD_POWER_STATUS__STALL_DPG_POWER_UP_MASK);
+ 				/* Restore */
+ 				ring = &adev->vcn.inst->ring_enc[0];
++				ring->wptr = 0;
+ 				WREG32_SOC15(UVD, 0, mmUVD_RB_BASE_LO, ring->gpu_addr);
+ 				WREG32_SOC15(UVD, 0, mmUVD_RB_BASE_HI, upper_32_bits(ring->gpu_addr));
+ 				WREG32_SOC15(UVD, 0, mmUVD_RB_SIZE, ring->ring_size / 4);
+@@ -1198,6 +1212,7 @@ static int vcn_v2_0_pause_dpg_mode(struct amdgpu_device *adev,
+ 				WREG32_SOC15(UVD, 0, mmUVD_RB_WPTR, lower_32_bits(ring->wptr));
+ 
+ 				ring = &adev->vcn.inst->ring_enc[1];
++				ring->wptr = 0;
+ 				WREG32_SOC15(UVD, 0, mmUVD_RB_BASE_LO2, ring->gpu_addr);
+ 				WREG32_SOC15(UVD, 0, mmUVD_RB_BASE_HI2, upper_32_bits(ring->gpu_addr));
+ 				WREG32_SOC15(UVD, 0, mmUVD_RB_SIZE2, ring->ring_size / 4);
+@@ -1206,6 +1221,9 @@ static int vcn_v2_0_pause_dpg_mode(struct amdgpu_device *adev,
+ 
+ 				WREG32_SOC15(UVD, 0, mmUVD_RBC_RB_WPTR,
+ 					   RREG32_SOC15(UVD, 0, mmUVD_SCRATCH2) & 0x7FFFFFFF);
++				/* Unstall DPG */
++				WREG32_P(SOC15_REG_OFFSET(UVD, 0, mmUVD_POWER_STATUS),
++					   0, ~UVD_POWER_STATUS__STALL_DPG_POWER_UP_MASK);
+ 
+ 				SOC15_WAIT_ON_RREG(UVD, 0, mmUVD_POWER_STATUS,
+ 					   UVD_PGFSM_CONFIG__UVDM_UVDU_PWR_ON,
 -- 
 2.7.4
 
