@@ -2,58 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80F0818269F
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2020 02:28:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E05EC1826A6
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2020 02:33:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCC3D6EA03;
-	Thu, 12 Mar 2020 01:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 792836EA0E;
+	Thu, 12 Mar 2020 01:33:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from hqnvemgate26.nvidia.com (hqnvemgate26.nvidia.com
- [216.228.121.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F1026EA03;
- Thu, 12 Mar 2020 01:28:32 +0000 (UTC)
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5e6990320000>; Wed, 11 Mar 2020 18:28:18 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate102.nvidia.com (PGP Universal service);
- Wed, 11 Mar 2020 18:28:31 -0700
-X-PGP-Universal: processed;
- by hqpgpgate102.nvidia.com on Wed, 11 Mar 2020 18:28:31 -0700
-Received: from rcampbell-dev.nvidia.com (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3;
- Thu, 12 Mar 2020 01:28:30 +0000
-Subject: Re: [PATCH hmm 1/8] mm/hmm: add missing unmaps of the ptep during
- hmm_vma_handle_pte()
-To: Jason Gunthorpe <jgg@ziepe.ca>, Jerome Glisse <jglisse@redhat.com>,
- <Felix.Kuehling@amd.com>
-References: <20200311183506.3997-1-jgg@ziepe.ca>
- <20200311183506.3997-2-jgg@ziepe.ca>
-From: Ralph Campbell <rcampbell@nvidia.com>
-X-Nvconfidentiality: public
-Message-ID: <1cfdfdff-6d41-b73a-fe48-c7a10c221482@nvidia.com>
-Date: Wed, 11 Mar 2020 18:28:30 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from smtprelay.hostedemail.com (smtprelay0007.hostedemail.com
+ [216.40.44.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D77758931D;
+ Wed, 11 Mar 2020 22:11:09 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay07.hostedemail.com (Postfix) with ESMTP id F39FF181D330D;
+ Wed, 11 Mar 2020 22:11:08 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 50, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
+ RULES_HIT:41:355:379:599:800:967:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1540:1568:1593:1594:1711:1714:1730:1747:1777:1792:2393:2525:2566:2682:2685:2828:2859:2902:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3622:3865:3866:3867:3870:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:4362:5007:9025:10004:10400:11232:11658:11914:12043:12297:12438:12555:12679:12740:12760:12895:12986:13069:13311:13357:13439:14181:14659:14721:21080:21433:21627:21740:21811:21939:30054:30091,
+ 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
+ DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
+ LFtime:1, LUA_SUMMARY:none
+X-HE-Tag: loaf59_60ffb32fe5a07
+X-Filterd-Recvd-Size: 1958
+Received: from XPS-9350 (unknown [172.58.78.137])
+ (Authenticated sender: joe@perches.com)
+ by omf08.hostedemail.com (Postfix) with ESMTPA;
+ Wed, 11 Mar 2020 22:11:06 +0000 (UTC)
+Message-ID: <3fc2c61e4c1c25d847fd7f284c818b664b64441c.camel@perches.com>
+Subject: Re: [PATCH -next 023/491] AMD KFD: Use fallthrough;
+From: Joe Perches <joe@perches.com>
+To: Felix Kuehling <felix.kuehling@amd.com>
+Date: Wed, 11 Mar 2020 15:09:22 -0700
+In-Reply-To: <12c75b17-1d0e-6cc4-4ed1-a6f5003772ae@amd.com>
+References: <cover.1583896344.git.joe@perches.com>
+ <3cfc40c8f750abc672d6a60418fe220cb663a0f5.1583896349.git.joe@perches.com>
+ <12c75b17-1d0e-6cc4-4ed1-a6f5003772ae@amd.com>
+User-Agent: Evolution 3.34.1-2 
 MIME-Version: 1.0
-In-Reply-To: <20200311183506.3997-2-jgg@ziepe.ca>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1583976498; bh=EHutxl2gy79IofDsdKbyczDfHdWQ2w9tZDEpao1aPoI=;
- h=X-PGP-Universal:Subject:To:CC:References:From:X-Nvconfidentiality:
- Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
- X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
- Content-Transfer-Encoding;
- b=rs6KvATAP7bVK2aijXNSVUJhskyJV8LMYyzLv/oG+mRxQGAclrCq/Mp6mugY11kJo
- wMkgLPz8J14xin3aL+5G176lScaimgFdcMyAoSKgJfemy68BU5tsR+gyIGrnc/PIA/
- xnUNjg4bgGiIEQDIuzjDmI6jNlmwIU6gV9/kTQGhaTUkEIDLJ5TKbiS3mucJmI1tNM
- LcynFXlAfFJ6sj7QHwcoi5Kc/Km0KWd6rZziAFNpj9bQ0xVONQ6yr13q3PZkZ8iw7w
- 6p+YYKDXdmDODPJKSsfk9aH36pCF/Q0y9QNAEZYseed7CkFxnMReljBnJ7h72wYkr4
- FGr9kqcGnQaNg==
+X-Mailman-Approved-At: Thu, 12 Mar 2020 01:33:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,80 +52,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Philip Yang <Philip.Yang@amd.com>, John Hubbard <jhubbard@nvidia.com>,
- amd-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- Jason Gunthorpe <jgg@mellanox.com>, dri-devel@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>
+Cc: "David \(ChunMing\)
+ Zhou" <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 2020-03-11 at 17:50 -0400, Felix Kuehling wrote:
+> On 2020-03-11 12:51 a.m., Joe Perches wrote:
+> > Convert the various uses of fallthrough comments to fallthrough;
+> > 
+> > Done via script
+> > Link: https://lore.kernel.org/lkml/b56602fcf79f849e733e7b521bb0e17895d390fa.1582230379.git.joe.com/
+> 
+> The link seems to be broken. This one works: 
+> https://lore.kernel.org/lkml/b56602fcf79f849e733e7b521bb0e17895d390fa.1582230379.git.joe@perches.com/
 
-On 3/11/20 11:34 AM, Jason Gunthorpe wrote:
-> From: Jason Gunthorpe <jgg@mellanox.com>
-> 
-> Many of the direct returns of error skipped doing the pte_unmap(). All non
-> zero exit paths must unmap the pte.
-> 
-> The pte_unmap() is split unnaturally like this because some of the error
-> exit paths trigger a sleep and must release the lock before sleeping.
-> 
-> Fixes: 992de9a8b751 ("mm/hmm: allow to mirror vma of a file on a DAX backed filesystem")
-> Fixes: 53f5c3f489ec ("mm/hmm: factor out pte and pmd handling to simplify hmm_vma_walk_pmd()")
-> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
+Thanks.
 
-The changes look OK to me but one issue noted below.
-In any case, you can add:
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
+I neglected to use a backslash on the generating script.
+In the script in 0/491,
 
-> ---
->   mm/hmm.c | 8 ++++++--
->   1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/mm/hmm.c b/mm/hmm.c
-> index 72e5a6d9a41756..35f85424176d14 100644
-> --- a/mm/hmm.c
-> +++ b/mm/hmm.c
-> @@ -325,6 +325,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
->   		}
->   
->   		/* Report error for everything else */
-> +		pte_unmap(ptep);
->   		*pfn = range->values[HMM_PFN_ERROR];
->   		return -EFAULT;
->   	} else {
-> @@ -339,10 +340,13 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
->   	if (pte_devmap(pte)) {
->   		hmm_vma_walk->pgmap = get_dev_pagemap(pte_pfn(pte),
->   					      hmm_vma_walk->pgmap);
-> -		if (unlikely(!hmm_vma_walk->pgmap))
-> +		if (unlikely(!hmm_vma_walk->pgmap)) {
-> +			pte_unmap(ptep);
->   			return -EBUSY;
-> +		}
->   	} else if (IS_ENABLED(CONFIG_ARCH_HAS_PTE_SPECIAL) && pte_special(pte)) {
->   		if (!is_zero_pfn(pte_pfn(pte))) {
-> +			pte_unmap(ptep);
->   			*pfn = range->values[HMM_PFN_SPECIAL];
->   			return -EFAULT;
->   		}
-> @@ -437,7 +441,7 @@ static int hmm_vma_walk_pmd(pmd_t *pmdp,
->   
->   		r = hmm_vma_handle_pte(walk, addr, end, pmdp, ptep, &pfns[i]);
->   		if (r) {
-> -			/* hmm_vma_handle_pte() did unmap pte directory */
-> +			/* hmm_vma_handle_pte() did pte_unmap() */
->   			hmm_vma_walk->last = addr;
->   			return r;
->   		}
-> 
+Link: https://lore.kernel.org/lkml/b56602fcf79f849e733e7b521bb0e17895d390fa.1582230379.git.joe@perches.com/
 
-I think there is a case where hmm_vma_handle_pte() is called, a fault is requested,
-pte_unmap() and hmm_vma_walk_hole_() are called, the latter returns zero (the fault
-was handled OK), but now the page table is unmapped for successive loop iterations
-and pte_unmap(ptep - 1) is called at the loop end.
-Since this isn't an issue on x86_64 but is on x86_32, I can see how it could be missed.
+likely should have been:
+
+Link: https://lore.kernel.org/lkml/b56602fcf79f849e733e7b521bb0e17895d390fa.1582230379.git.joe\@perches.com/
+
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
