@@ -1,46 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E05EC1826A6
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2020 02:33:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0443B1826C1
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2020 02:44:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 792836EA0E;
-	Thu, 12 Mar 2020 01:33:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CC506E029;
+	Thu, 12 Mar 2020 01:44:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtprelay.hostedemail.com (smtprelay0007.hostedemail.com
- [216.40.44.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D77758931D;
- Wed, 11 Mar 2020 22:11:09 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay07.hostedemail.com (Postfix) with ESMTP id F39FF181D330D;
- Wed, 11 Mar 2020 22:11:08 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 50, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:41:355:379:599:800:967:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1540:1568:1593:1594:1711:1714:1730:1747:1777:1792:2393:2525:2566:2682:2685:2828:2859:2902:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3622:3865:3866:3867:3870:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:4362:5007:9025:10004:10400:11232:11658:11914:12043:12297:12438:12555:12679:12740:12760:12895:12986:13069:13311:13357:13439:14181:14659:14721:21080:21433:21627:21740:21811:21939:30054:30091,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:1, LUA_SUMMARY:none
-X-HE-Tag: loaf59_60ffb32fe5a07
-X-Filterd-Recvd-Size: 1958
-Received: from XPS-9350 (unknown [172.58.78.137])
- (Authenticated sender: joe@perches.com)
- by omf08.hostedemail.com (Postfix) with ESMTPA;
- Wed, 11 Mar 2020 22:11:06 +0000 (UTC)
-Message-ID: <3fc2c61e4c1c25d847fd7f284c818b664b64441c.camel@perches.com>
-Subject: Re: [PATCH -next 023/491] AMD KFD: Use fallthrough;
-From: Joe Perches <joe@perches.com>
-To: Felix Kuehling <felix.kuehling@amd.com>
-Date: Wed, 11 Mar 2020 15:09:22 -0700
-In-Reply-To: <12c75b17-1d0e-6cc4-4ed1-a6f5003772ae@amd.com>
-References: <cover.1583896344.git.joe@perches.com>
- <3cfc40c8f750abc672d6a60418fe220cb663a0f5.1583896349.git.joe@perches.com>
- <12c75b17-1d0e-6cc4-4ed1-a6f5003772ae@amd.com>
-User-Agent: Evolution 3.34.1-2 
+Received: from hqnvemgate24.nvidia.com (hqnvemgate24.nvidia.com
+ [216.228.121.143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD786E029
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 01:44:44 +0000 (UTC)
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5e69902a0000>; Wed, 11 Mar 2020 18:28:11 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+ by hqpgpgate101.nvidia.com (PGP Universal service);
+ Wed, 11 Mar 2020 18:29:42 -0700
+X-PGP-Universal: processed;
+ by hqpgpgate101.nvidia.com on Wed, 11 Mar 2020 18:29:42 -0700
+Received: from rcampbell-dev.nvidia.com (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3;
+ Thu, 12 Mar 2020 01:29:37 +0000
+Subject: Re: [PATCH hmm 2/8] mm/hmm: don't free the cached pgmap while scanning
+To: Jason Gunthorpe <jgg@ziepe.ca>, Jerome Glisse <jglisse@redhat.com>,
+ <Felix.Kuehling@amd.com>
+References: <20200311183506.3997-1-jgg@ziepe.ca>
+ <20200311183506.3997-3-jgg@ziepe.ca>
+X-Nvconfidentiality: public
+From: Ralph Campbell <rcampbell@nvidia.com>
+Message-ID: <b9e1d7d9-954f-c1ab-5c31-47f0db747984@nvidia.com>
+Date: Wed, 11 Mar 2020 18:29:37 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 12 Mar 2020 01:33:17 +0000
+In-Reply-To: <20200311183506.3997-3-jgg@ziepe.ca>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1583976491; bh=vvQwvOjCh/DlYeQK6g90hZNrTaVRDvFsFH5OQm4yQEM=;
+ h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+ Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+ X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+ Content-Transfer-Encoding;
+ b=TKd7C5wkPf0VcULY3c+shsY/7ftoIUWajrvx66bKbgN/D0HM2HxNPyNfz4qZR2Jrv
+ cuzHFY3ATRsbAKtVMq6H0uLUIV3MU6oTt1zyeKQpoA02unkvmzjFNfF6mL8cOs1zX1
+ 47fRhhLEtThcvN3OahDysxVm32f44Jp8noOHHAwT+colYVNkk5ejbW2x3w1f2olsab
+ W1IHpqeIhqYuNR5JQCuh5kPc+SbAbrw+l/0kgyhUeIFSfW4CzAm8PUQed2CiJ2/aX/
+ FoEqE4v/GariLk9qmP8Pm3nkAy+0HaS+s6nVVkP3QuCIBJjDBWn7VMOf9ndoqe/fcg
+ bCR3A8WHN8B6g==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,39 +64,113 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\)
- Zhou" <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Philip Yang <Philip.Yang@amd.com>, John Hubbard <jhubbard@nvidia.com>,
+ amd-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ Jason Gunthorpe <jgg@mellanox.com>, dri-devel@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2020-03-11 at 17:50 -0400, Felix Kuehling wrote:
-> On 2020-03-11 12:51 a.m., Joe Perches wrote:
-> > Convert the various uses of fallthrough comments to fallthrough;
-> > 
-> > Done via script
-> > Link: https://lore.kernel.org/lkml/b56602fcf79f849e733e7b521bb0e17895d390fa.1582230379.git.joe.com/
+
+On 3/11/20 11:35 AM, Jason Gunthorpe wrote:
+> From: Jason Gunthorpe <jgg@mellanox.com>
 > 
-> The link seems to be broken. This one works: 
-> https://lore.kernel.org/lkml/b56602fcf79f849e733e7b521bb0e17895d390fa.1582230379.git.joe@perches.com/
+> The pgmap is held in the hmm_vma_walk variable in hope of speeding up
+> future get_dev_pagemap() calls by hitting the same pointer. The algorithm
+> doesn't actually care about how long the pgmap is held for.
+> 
+> Move the put of the cached pgmap to after the walk is completed and delete
+> all the other now redundant puts.
+> 
+> This solves a possible leak of the reference in hmm_vma_walk_pmd() if a
+> hmm_vma_handle_pte() fails while looping.
+> 
+> Fixes: 992de9a8b751 ("mm/hmm: allow to mirror vma of a file on a DAX backed filesystem")
+> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
 
-Thanks.
+Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
 
-I neglected to use a backslash on the generating script.
-In the script in 0/491,
-
-Link: https://lore.kernel.org/lkml/b56602fcf79f849e733e7b521bb0e17895d390fa.1582230379.git.joe@perches.com/
-
-likely should have been:
-
-Link: https://lore.kernel.org/lkml/b56602fcf79f849e733e7b521bb0e17895d390fa.1582230379.git.joe\@perches.com/
-
-
+> ---
+>   mm/hmm.c | 31 +++++++++----------------------
+>   1 file changed, 9 insertions(+), 22 deletions(-)
+> 
+> We talked about just deleting this stuff, but I think it makes alot sense for
+> hmm_range_fault() to trigger fault on devmap pages that are not compatible
+> with the caller - so lets just fix the leak on error path for now.
+> 
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index 35f85424176d14..9e8f68eb83287a 100644
+> --- a/mm/hmm.c
+> +++ b/mm/hmm.c
+> @@ -239,10 +239,6 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk, unsigned long addr,
+>   		}
+>   		pfns[i] = hmm_device_entry_from_pfn(range, pfn) | cpu_flags;
+>   	}
+> -	if (hmm_vma_walk->pgmap) {
+> -		put_dev_pagemap(hmm_vma_walk->pgmap);
+> -		hmm_vma_walk->pgmap = NULL;
+> -	}
+>   	hmm_vma_walk->last = end;
+>   	return 0;
+>   }
+> @@ -360,10 +356,6 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+>   	return 0;
+>   
+>   fault:
+> -	if (hmm_vma_walk->pgmap) {
+> -		put_dev_pagemap(hmm_vma_walk->pgmap);
+> -		hmm_vma_walk->pgmap = NULL;
+> -	}
+>   	pte_unmap(ptep);
+>   	/* Fault any virtual address we were asked to fault */
+>   	return hmm_vma_walk_hole_(addr, end, fault, write_fault, walk);
+> @@ -446,16 +438,6 @@ static int hmm_vma_walk_pmd(pmd_t *pmdp,
+>   			return r;
+>   		}
+>   	}
+> -	if (hmm_vma_walk->pgmap) {
+> -		/*
+> -		 * We do put_dev_pagemap() here and not in hmm_vma_handle_pte()
+> -		 * so that we can leverage get_dev_pagemap() optimization which
+> -		 * will not re-take a reference on a pgmap if we already have
+> -		 * one.
+> -		 */
+> -		put_dev_pagemap(hmm_vma_walk->pgmap);
+> -		hmm_vma_walk->pgmap = NULL;
+> -	}
+>   	pte_unmap(ptep - 1);
+>   
+>   	hmm_vma_walk->last = addr;
+> @@ -529,10 +511,6 @@ static int hmm_vma_walk_pud(pud_t *pudp, unsigned long start, unsigned long end,
+>   			pfns[i] = hmm_device_entry_from_pfn(range, pfn) |
+>   				  cpu_flags;
+>   		}
+> -		if (hmm_vma_walk->pgmap) {
+> -			put_dev_pagemap(hmm_vma_walk->pgmap);
+> -			hmm_vma_walk->pgmap = NULL;
+> -		}
+>   		hmm_vma_walk->last = end;
+>   		goto out_unlock;
+>   	}
+> @@ -694,6 +672,15 @@ long hmm_range_fault(struct hmm_range *range, unsigned int flags)
+>   			return -EBUSY;
+>   		ret = walk_page_range(mm, hmm_vma_walk.last, range->end,
+>   				      &hmm_walk_ops, &hmm_vma_walk);
+> +		/*
+> +		 * A pgmap is kept cached in the hmm_vma_walk to avoid expensive
+> +		 * searching in the probably common case that the pgmap is the
+> +		 * same for the entire requested range.
+> +		 */
+> +		if (hmm_vma_walk.pgmap) {
+> +			put_dev_pagemap(hmm_vma_walk.pgmap);
+> +			hmm_vma_walk.pgmap = NULL;
+> +		}
+>   	} while (ret == -EBUSY);
+>   
+>   	if (ret)
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
