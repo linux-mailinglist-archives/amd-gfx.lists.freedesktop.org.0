@@ -1,38 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B081835F5
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2020 17:16:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1FBB183841
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Mar 2020 19:08:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65D996E241;
-	Thu, 12 Mar 2020 16:16:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FDB66E037;
+	Thu, 12 Mar 2020 18:08:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 162226E241;
- Thu, 12 Mar 2020 16:16:36 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4FFCA30E;
- Thu, 12 Mar 2020 09:16:36 -0700 (PDT)
-Received: from [10.57.15.252] (unknown [10.57.15.252])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E971F3F6CF;
- Thu, 12 Mar 2020 09:16:34 -0700 (PDT)
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
+ [IPv6:2607:f8b0:4864:20::741])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF40F6EB02
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 16:37:36 +0000 (UTC)
+Received: by mail-qk1-x741.google.com with SMTP id f198so7237670qke.11
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 09:37:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=fmA8zKRe76L9QKXynKJ5M/zisBlIkbsLwFQy3LQahYI=;
+ b=KnteymGLpkCc/QfvlROTLY5FU+cvnMfHx3Z/DRw8BCFXZt7iuH6QM2L8dGPveQUUn3
+ Xlhpfnj22gbb00Ajojd+xRnUeKGKFC/Zglayy3ZU7Fb8m4VFbcrwr40XiWp3ov1/ykVn
+ 50j0Xys2kPWj8lJQThzi6h+Abasy7fco7NKHepLokp4T3nUslp5eA0azM8UN5ShssXcR
+ /coFE6WQnM7yvxRwRmdgJOv84KxclHIi1t/Vuh6HvLG48YWad9Scekhq9v5t4slQNOVw
+ VUBakr2wwlLvqTGCCgx2gzI5gxsHdjkTDbdmt7DrBlCzDNkcudKItHAvui1LdFqzC7SL
+ O7vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=fmA8zKRe76L9QKXynKJ5M/zisBlIkbsLwFQy3LQahYI=;
+ b=n1b+gQisUilYQI5cTYh6+V4wuSmlnQABXElL3XkkPJWXkgFKlMqf+XKsTUMb4V8YhI
+ WzJvUfNRz7ErdJk2bGBEbaLhE4Z5pnEO/FmpCH749z2kBbDeI92KZLE4ecJjKIHfaCRy
+ hhMxCil8S1oe3P86WP6PpElstlOGVzY+IS4lHhnQE8ANaeMfWeLpHmWfUsqzT3qXJCPN
+ RyEJXnhbbdLV5ZBrRdks0T09qmB2/YiZElN+CzQRd/xGat+0XKYf+aa2vQE7WlWx2xce
+ 1UgvSwm74Crql3mLD4oWQoLkUSpIeOf35CxoTahqidVU8Ukx1fBPFVYD+xZtFZTIC26Q
+ wljw==
+X-Gm-Message-State: ANhLgQ1sTYVeRwPEvaoPQEkW5N+OSOIIhTrtZhOhHqJh0grAWVm4udvi
+ SP2ALryxn2w/qZbJ9kg+wDcZ7Q==
+X-Google-Smtp-Source: ADFU+vsCZGS3KHARg6F0Q8AUmySkB/O1C49CFLK8V1S8E9P7Q1oeOBUV0BmgWYk1CW/U1GncetrzAg==
+X-Received: by 2002:ae9:e509:: with SMTP id w9mr8707944qkf.26.1584031055747;
+ Thu, 12 Mar 2020 09:37:35 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.68.57.212])
+ by smtp.gmail.com with ESMTPSA id f26sm12590660qkl.119.2020.03.12.09.37.35
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 12 Mar 2020 09:37:35 -0700 (PDT)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+ (envelope-from <jgg@ziepe.ca>)
+ id 1jCQpy-0008RM-Kv; Thu, 12 Mar 2020 13:37:34 -0300
+Date: Thu, 12 Mar 2020 13:37:34 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Steven Price <steven.price@arm.com>
 Subject: Re: [PATCH] mm/hmm: Simplify hmm_vma_walk_pud slightly
-To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <20200312163734.GR31668@ziepe.ca>
 References: <5bd778fa-51e5-3e0c-d9bb-b38539b03c8d@arm.com>
  <20200312102813.56699-1-steven.price@arm.com>
  <20200312142749.GM31668@ziepe.ca>
  <58e296a6-d32b-bb37-28ce-ade0f784454d@arm.com>
  <20200312151113.GO31668@ziepe.ca>
-From: Steven Price <steven.price@arm.com>
-Message-ID: <689d3c56-3d19-4655-21f5-f9aeab3089df@arm.com>
-Date: Thu, 12 Mar 2020 16:16:33 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ <689d3c56-3d19-4655-21f5-f9aeab3089df@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20200312151113.GO31668@ziepe.ca>
-Content-Language: en-GB
+Content-Disposition: inline
+In-Reply-To: <689d3c56-3d19-4655-21f5-f9aeab3089df@arm.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Mailman-Approved-At: Thu, 12 Mar 2020 18:08:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,60 +84,59 @@ Cc: Philip Yang <Philip.Yang@amd.com>, Ralph Campbell <rcampbell@nvidia.com>,
  "linux-mm@kvack.org" <linux-mm@kvack.org>, Jerome Glisse <jglisse@redhat.com>,
  "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
  Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 12/03/2020 15:11, Jason Gunthorpe wrote:
-> On Thu, Mar 12, 2020 at 02:40:08PM +0000, Steven Price wrote:
->> On 12/03/2020 14:27, Jason Gunthorpe wrote:
->>> On Thu, Mar 12, 2020 at 10:28:13AM +0000, Steven Price wrote:
->>>> By refactoring to deal with the !pud_huge(pud) || !pud_devmap(pud)
->>>> condition early it's possible to remove the 'ret' variable and remove a
->>>> level of indentation from half the function making the code easier to
->>>> read.
->>>>
->>>> No functional change.
->>>>
->>>> Signed-off-by: Steven Price <steven.price@arm.com>
->>>> Thanks to Jason's changes there were only two code paths left using
->>>> the out_unlock label so it seemed like a good opportunity to
->>>> refactor.
->>>
->>> Yes, I made something very similar, what do you think of this:
->>>
->>> https://github.com/jgunthorpe/linux/commit/93f0ed42ab3f9ceb27b58fb7c7c3ecaf60f16b36
->>
->> Even better! Sorry I didn't realise you'd already done this. I just saw that
->> the function was needlessly complicated after your fix, so I thought I'd do
->> a drive-by cleanup since part of the mess was my fault! :)
+On Thu, Mar 12, 2020 at 04:16:33PM +0000, Steven Price wrote:
+> > Actually, while you are looking at this, do you think we should be
+> > adding at least READ_ONCE in the pagewalk.c walk_* functions? The
+> > multiple references of pmd, pud, etc without locking seems sketchy to
+> > me.
 > 
-> No worries, I've got a lot of patches for hmm_range_fault right now,
-> just trying to organize them, test them and post them. Haven't posted
-> that one yet.
-> 
-> Actually, while you are looking at this, do you think we should be
-> adding at least READ_ONCE in the pagewalk.c walk_* functions? The
-> multiple references of pmd, pud, etc without locking seems sketchy to
-> me.
+> I agree it seems worrying. I'm not entirely sure whether the holding of
+> mmap_sem is sufficient,
 
-I agree it seems worrying. I'm not entirely sure whether the holding of 
-mmap_sem is sufficient, this isn't something that I changed so I've just 
-been hoping that it's sufficient since it seems to have been working 
-(whether that's by chance because the compiler didn't generate multiple 
-reads I've no idea). For walking the kernel's page tables the lack of 
-READ_ONCE is also not great, but at least for PTDUMP we don't care too 
-much about accuracy and it should be crash proof because there's no RCU 
-grace period. And again the code I was replacing didn't have any special 
-protection.
+I looked at this question, and at least for PMD, mmap_sem is not
+sufficient. I didn't easilly figure it out for the other ones
 
-I can't see any harm in updating the code to include READ_ONCE and I'm 
-happy to review a patch.
+I'm guessing if PMD is not safe then none of them are.
 
-Thanks,
+> this isn't something that I changed so I've just
+> been hoping that it's sufficient since it seems to have been working
+> (whether that's by chance because the compiler didn't generate multiple
+> reads I've no idea). For walking the kernel's page tables the lack of
+> READ_ONCE is also not great, but at least for PTDUMP we don't care too much
+> about accuracy and it should be crash proof because there's no RCU grace
+> period. And again the code I was replacing didn't have any special
+> protection.
+>
+> I can't see any harm in updating the code to include READ_ONCE and I'm happy
+> to review a patch.
 
-Steve
+The reason I ask is because hmm's walkers often have this pattern
+where they get the pointer and then de-ref it (again) then
+immediately have to recheck the 'again' conditions of the walker
+itself because the re-read may have given a different value.
+
+Having the walker deref the pointer and pass the value it into the ops
+for use rather than repeatedly de-refing an unlocked value seems like
+a much safer design to me.
+
+If this also implicitly relies on a RCU grace period then it is also
+missing RCU locking...
+
+I also didn't quite understand why walk_pte_range() skipped locking
+the pte in the no_vma case - I don't get why vma would be related to
+locking here.
+
+I also saw that hmm open coded the pte walk, presumably for
+performance, so I was thinking of adding some kind of pte_range()
+callback to avoid the expensive indirect function call per pte, but
+hmm also can't have the pmd locked...
+
+Jason
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
