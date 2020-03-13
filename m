@@ -1,34 +1,74 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD24218664F
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 09:22:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0F3B186651
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 09:22:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28C106E366;
-	Mon, 16 Mar 2020 08:22:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 463486E36F;
+	Mon, 16 Mar 2020 08:22:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from yyz.mikelr.com (unknown
- [IPv6:2602:ffb6:2:0:f816:3eff:fe0d:377b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3D646EC74;
- Fri, 13 Mar 2020 22:23:09 +0000 (UTC)
-Received: from glidewell.ykf.mikelr.com (198-84-194-208.cpe.teksavvy.com
- [198.84.194.208])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (Client did not present a certificate)
- by yyz.mikelr.com (Postfix) with ESMTPSA id 77EF23D5C9;
- Fri, 13 Mar 2020 18:23:08 -0400 (EDT)
-From: Mikel Rychliski <mikel@mikelr.com>
-To: amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org,
- nouveau@lists.freedesktop.org
-Subject: [PATCH RESEND v2 2/2] PCI: Use ioremap(),
- not phys_to_virt() for platform ROM
-Date: Fri, 13 Mar 2020 18:22:58 -0400
-Message-Id: <20200313222258.15659-3-mikel@mikelr.com>
-X-Mailer: git-send-email 2.13.7
-In-Reply-To: <20200313222258.15659-1-mikel@mikelr.com>
-References: <20200313222258.15659-1-mikel@mikelr.com>
+Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com
+ [IPv6:2607:f8b0:4864:20::f44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C86D6EC7A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 22:52:00 +0000 (UTC)
+Received: by mail-qv1-xf44.google.com with SMTP id cz10so5587692qvb.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 15:52:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=pnEWT5exzE8VNu4uP9aWxirCjTGDlMeZrBFn4okz7EY=;
+ b=Q2YVEh2mTyNrujOq2W42VrodkM3tb5wDoyO3GCTU9cStXcr06aCbXttMPTosmjn2uF
+ K09UEgvt4RldFZJxIPJIFOYgCpPc4UJ9Ft2myme5EtjlQSfX5PeXhDpuEmeOQCXVX809
+ uRG5r/blZpuWxkNimYtvArbCVFAgPqF7oxLaifB+l1KBSCZ0iOQLyTNVsJZuQntwNkeT
+ svCjJndRKtajjPu8wfb7nDRTUGRLJKeUawhNZQbZ1uR6C2t1hAGqZ7QAJ2XPcdMNO96L
+ p6fVD9Y9FcQvhr4tiFJh8PvW5HEzM7O6/LEbVxsaW5N+swJVENseaveM2mFQT9e4YQXo
+ IY4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=pnEWT5exzE8VNu4uP9aWxirCjTGDlMeZrBFn4okz7EY=;
+ b=Sbn3ECZTpA2srORwD1eaWdM7TUAI8Bp+5g1ByQii5cBx9xFnYFj8wTNLxljQHkvdSp
+ 9wou8RnypskbBmBqyLFMTKoL7chi3Ij9dRDOU7vAHcyFIf57WK98DHmuOuSodgGthIot
+ iLsMM7OGVc3AJ33Y5Mu5T98O3rN7JUmB51l8G5QYBYnjlRfqY75dcbZvBJDDb/uMN1cc
+ /eCKvPt7Ln2t7Jk6/5o7GXHk6W4rbzZpoVHGeFMNAU3+M7bKwpydUxavJTgekrG2Yneu
+ Ni4WEXicAn2TG3P5tK15qopyZfA6lagc+VRl4/FTJRDbS31p/Oe+tcqsU3Wtfvjn/Mgc
+ ktow==
+X-Gm-Message-State: ANhLgQ2Oy6SXZid/uJowlvKtYGW9zMHV+lS+wlBSggzu0GZEQ5lBStH1
+ ncLsZfiUhO1zAncAP2fSgE09HA==
+X-Google-Smtp-Source: ADFU+vvXWaP3fRj/KPrE6Z5f5i6cOnkWg08gknIHvw6A2Y52E3vHJqQUV+svDxlJJrQAl4dNNJtp9A==
+X-Received: by 2002:a0c:fcc4:: with SMTP id i4mr14219926qvq.191.1584139919208; 
+ Fri, 13 Mar 2020 15:51:59 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.68.57.212])
+ by smtp.gmail.com with ESMTPSA id u13sm29863801qtg.64.2020.03.13.15.51.58
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 13 Mar 2020 15:51:58 -0700 (PDT)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+ (envelope-from <jgg@ziepe.ca>)
+ id 1jCt9p-0005N0-T2; Fri, 13 Mar 2020 19:51:57 -0300
+Date: Fri, 13 Mar 2020 19:51:57 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Matthew Wilcox <willy@infradead.org>
+Subject: Re: [PATCH] mm/hmm: Simplify hmm_vma_walk_pud slightly
+Message-ID: <20200313225157.GA20412@ziepe.ca>
+References: <5bd778fa-51e5-3e0c-d9bb-b38539b03c8d@arm.com>
+ <20200312102813.56699-1-steven.price@arm.com>
+ <20200312142749.GM31668@ziepe.ca>
+ <58e296a6-d32b-bb37-28ce-ade0f784454d@arm.com>
+ <20200312151113.GO31668@ziepe.ca>
+ <689d3c56-3d19-4655-21f5-f9aeab3089df@arm.com>
+ <20200312163734.GR31668@ziepe.ca>
+ <bf9b38ae-edd5-115f-e1ca-d769872f994a@arm.com>
+ <20200313195550.GH31668@ziepe.ca>
+ <20200313210446.GP22433@bombadil.infradead.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200313210446.GP22433@bombadil.infradead.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Mailman-Approved-At: Mon, 16 Mar 2020 08:22:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -41,167 +81,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- Matthew Garrett <matthewgarrett@google.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Ben Skeggs <bskeggs@redhat.com>,
- Mikel Rychliski <mikel@mikelr.com>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-MIME-Version: 1.0
+Cc: Philip Yang <Philip.Yang@amd.com>, Ralph Campbell <rcampbell@nvidia.com>,
+ John Hubbard <jhubbard@nvidia.com>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Steven Price <steven.price@arm.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ Jerome Glisse <jglisse@redhat.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On some EFI systems, the video BIOS is provided by the EFI firmware.  The
-boot stub code stores the physical address of the ROM image in pdev->rom.
-Currently we attempt to access this pointer using phys_to_virt(), which
-doesn't work with CONFIG_HIGHMEM.
+On Fri, Mar 13, 2020 at 02:04:46PM -0700, Matthew Wilcox wrote:
+> On Fri, Mar 13, 2020 at 04:55:50PM -0300, Jason Gunthorpe wrote:
+> > On Thu, Mar 12, 2020 at 05:02:18PM +0000, Steven Price wrote:
+> > > On 12/03/2020 16:37, Jason Gunthorpe wrote:
+> > > > On Thu, Mar 12, 2020 at 04:16:33PM +0000, Steven Price wrote:
+> > > > > > Actually, while you are looking at this, do you think we should be
+> > > > > > adding at least READ_ONCE in the pagewalk.c walk_* functions? The
+> > > > > > multiple references of pmd, pud, etc without locking seems sketchy to
+> > > > > > me.
+> > > > > 
+> > > > > I agree it seems worrying. I'm not entirely sure whether the holding of
+> > > > > mmap_sem is sufficient,
+> > > > 
+> > > > I looked at this question, and at least for PMD, mmap_sem is not
+> > > > sufficient. I didn't easilly figure it out for the other ones
+> > > > 
+> > > > I'm guessing if PMD is not safe then none of them are.
+> > > > 
+> > > > > this isn't something that I changed so I've just
+> > > > > been hoping that it's sufficient since it seems to have been working
+> > > > > (whether that's by chance because the compiler didn't generate multiple
+> > > > > reads I've no idea). For walking the kernel's page tables the lack of
+> > > > > READ_ONCE is also not great, but at least for PTDUMP we don't care too much
+> > > > > about accuracy and it should be crash proof because there's no RCU grace
+> > > > > period. And again the code I was replacing didn't have any special
+> > > > > protection.
+> > > > > 
+> > > > > I can't see any harm in updating the code to include READ_ONCE and I'm happy
+> > > > > to review a patch.
+> > > > 
+> > > > The reason I ask is because hmm's walkers often have this pattern
+> > > > where they get the pointer and then de-ref it (again) then
+> > > > immediately have to recheck the 'again' conditions of the walker
+> > > > itself because the re-read may have given a different value.
+> > > > 
+> > > > Having the walker deref the pointer and pass the value it into the ops
+> > > > for use rather than repeatedly de-refing an unlocked value seems like
+> > > > a much safer design to me.
+> > > 
+> > > Yeah that sounds like a good idea.
+> > 
+> > I'm looking at this now.. The PUD is also changing under the read
+> > mmap_sem - and I was able to think up some race conditiony bugs
+> > related to this. Have some patches now..
+> > 
+> > However, I haven't been able to understand why walk_page_range()
+> > doesn't check pud_present() or pmd_present() before calling
+> > pmd_offset_map() or pte_offset_map().
+> > 
+> > As far as I can see a non-present entry has a swap entry encoded in
+> > it, and thus it seems like it is a bad idea to pass a non-present
+> > entry to the two map functions. I think those should only be called
+> > when the entry points to the next level in the page table  (so there
+> > is something to map?)
+> > 
+> > I see you added !present tests for the !vma case, but why only there?
+> > 
+> > Is this a bug? Do you know how it works?
+> > 
+> > Is it something that was missed when people added non-present PUD and
+> > PMD's?
+> 
+> ... I'm sorry, I did what now? 
 
-On these systems, attempting to load the radeon module on a x86_32 kernel
-can result in the following:
+No, no, just widening to see if someone knows
 
-    BUG: unable to handle page fault for address: 3e8ed03c
-    #PF: supervisor read access in kernel mode
-    #PF: error_code(0x0000) - not-present page
-    *pde = 00000000
-    Oops: 0000 [#1] PREEMPT SMP
-    CPU: 0 PID: 317 Comm: systemd-udevd Not tainted 5.6.0-rc3-next-20200228 #2
-    Hardware name: Apple Computer, Inc. MacPro1,1/Mac-F4208DC8, BIOS     MP11.88Z.005C.B08.0707021221 07/02/07
-    EIP: radeon_get_bios+0x5ed/0xe50 [radeon]
-    Code: 00 00 84 c0 0f 85 12 fd ff ff c7 87 64 01 00 00 00 00 00 00 8b 47 08 8b 55 b0 e8 1e 83 e1 d6 85 c0 74 1a 8b 55 c0 85 d2 74 13 <80> 38 55 75 0e 80 78 01 aa 0f 84 a4 03 00 00 8d 74 26 00 68 dc 06
-    EAX: 3e8ed03c EBX: 00000000 ECX: 3e8ed03c EDX: 00010000
-    ESI: 00040000 EDI: eec04000 EBP: eef3fc60 ESP: eef3fbe0
-    DS: 007b ES: 007b FS: 00d8 GS: 00e0 SS: 0068 EFLAGS: 00010206
-    CR0: 80050033 CR2: 3e8ed03c CR3: 2ec77000 CR4: 000006d0
-    Call Trace:
-     ? register_client+0x34/0xe0
-     ? register_client+0xab/0xe0
-     r520_init+0x26/0x240 [radeon]
-     radeon_device_init+0x533/0xa50 [radeon]
-     radeon_driver_load_kms+0x80/0x220 [radeon]
-     drm_dev_register+0xa7/0x180 [drm]
-     radeon_pci_probe+0x10f/0x1a0 [radeon]
-     pci_device_probe+0xd4/0x140
-     really_probe+0x13d/0x3b0
-     driver_probe_device+0x56/0xd0
-     device_driver_attach+0x49/0x50
-     __driver_attach+0x79/0x130
-     ? device_driver_attach+0x50/0x50
-     bus_for_each_dev+0x5b/0xa0
-     driver_attach+0x19/0x20
-     ? device_driver_attach+0x50/0x50
-     bus_add_driver+0x117/0x1d0
-     ? pci_bus_num_vf+0x20/0x20
-     driver_register+0x66/0xb0
-     ? 0xf80f4000
-     __pci_register_driver+0x3d/0x40
-     radeon_init+0x82/0x1000 [radeon]
-     do_one_initcall+0x42/0x200
-     ? kvfree+0x25/0x30
-     ? __vunmap+0x206/0x230
-     ? kmem_cache_alloc_trace+0x16f/0x220
-     ? do_init_module+0x21/0x220
-     do_init_module+0x50/0x220
-     load_module+0x1f26/0x2200
-     sys_init_module+0x12d/0x160
-     do_fast_syscall_32+0x82/0x250
-     entry_SYSENTER_32+0xa5/0xf8
+> As far as I can tell, you're talking
+> about mm/pagewalk.c, and the only commit I have in that file is
+> a00cc7d9dd93d66a3fb83fc52aa57a4bec51c517 ("mm, x86: add support for
+> PUD-sized transparent hugepages", which I think I was pretty clear
+> from the commit message is basically copy-and-paste from the PMD
+> code.
 
-Fix the issue by using ioremap() instead of phys_to_virt() in
-pci_platform_rom().
+Right, which added the split_huge_pud() which seems maybe related to
+pud_present, or maybe not, I don't know.
 
-Now that pci_platform_rom() creates a new mapping to access the ROM
-image, update all callers to remove this mapping after extracting the
-BIOS.
+> I have no clue why most of the decisions in the MM were made.
 
-Signed-off-by: Mikel Rychliski <mikel@mikelr.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c             |  1 +
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c | 11 ++++++++++-
- drivers/gpu/drm/radeon/radeon_bios.c                 |  1 +
- drivers/pci/rom.c                                    |  9 ++++++---
- 4 files changed, 18 insertions(+), 4 deletions(-)
+Fun!
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index 50dff69a0f6e..ea6a1fa98ad9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -207,6 +207,7 @@ static bool amdgpu_read_platform_bios(struct amdgpu_device *adev)
- 		return false;
- 
- 	memcpy_fromio(adev->bios, bios, size);
-+	iounmap(bios);
- 
- 	if (!check_atom_bios(adev->bios, size)) {
- 		kfree(adev->bios);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
-index 9b91da09dc5f..8a60a0db7b14 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
-@@ -111,11 +111,20 @@ platform_init(struct nvkm_bios *bios, const char *name)
- 	return ERR_PTR(ret);
- }
- 
-+static void
-+platform_fini(void *data)
-+{
-+	struct priv *priv = data;
-+
-+	iounmap(priv->rom);
-+	kfree(priv);
-+}
-+
- const struct nvbios_source
- nvbios_platform = {
- 	.name = "PLATFORM",
- 	.init = platform_init,
--	.fini = (void(*)(void *))kfree,
-+	.fini = platform_fini,
- 	.read = pcirom_read,
- 	.rw = true,
- };
-diff --git a/drivers/gpu/drm/radeon/radeon_bios.c b/drivers/gpu/drm/radeon/radeon_bios.c
-index c3ae4c92a115..712b88d88957 100644
---- a/drivers/gpu/drm/radeon/radeon_bios.c
-+++ b/drivers/gpu/drm/radeon/radeon_bios.c
-@@ -123,6 +123,7 @@ static bool radeon_read_platform_bios(struct radeon_device *rdev)
- 		return false;
- 
- 	memcpy_fromio(rdev->bios, bios, size);
-+	iounmap(bios);
- 
- 	if (size == 0 || rdev->bios[0] != 0x55 || rdev->bios[1] != 0xaa) {
- 		kfree(rdev->bios);
-diff --git a/drivers/pci/rom.c b/drivers/pci/rom.c
-index 137bf0cee897..b38257d23e6e 100644
---- a/drivers/pci/rom.c
-+++ b/drivers/pci/rom.c
-@@ -197,16 +197,19 @@ void pci_unmap_rom(struct pci_dev *pdev, void __iomem *rom)
- EXPORT_SYMBOL(pci_unmap_rom);
- 
- /**
-- * pci_platform_rom - provides a pointer to any ROM image provided by the
-- * platform
-+ * pci_platform_rom - ioremap() the ROM image provided by the platform
-  * @pdev: pointer to pci device struct
-  * @size: pointer to receive size of pci window over ROM
-+ *
-+ * Return: kernel virtual pointer to image of ROM
-+ *
-+ * The caller is responsible for removing the mapping with iounmap()
-  */
- void __iomem *pci_platform_rom(struct pci_dev *pdev, size_t *size)
- {
- 	if (pdev->rom && pdev->romlen) {
- 		*size = pdev->romlen;
--		return phys_to_virt((phys_addr_t)pdev->rom);
-+		return ioremap(pdev->rom, pdev->romlen);
- 	}
- 
- 	return NULL;
--- 
-2.13.7
-
+Jason
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
