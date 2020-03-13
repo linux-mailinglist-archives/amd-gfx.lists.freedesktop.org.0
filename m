@@ -2,90 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4898C1848B4
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2020 15:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C50F01848A8
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Mar 2020 15:00:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA14E6E9CD;
-	Fri, 13 Mar 2020 14:02:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1007D6E9CD;
+	Fri, 13 Mar 2020 14:00:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680049.outbound.protection.outlook.com [40.107.68.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90F3A6E9CD
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 14:02:26 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2084.outbound.protection.outlook.com [40.107.244.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FEAA6E9CD
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 14:00:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Bk5P3euDMuwpEhv7FNpivwuPesmANeCp3Z3RLRKJtJBwKw62EHr3MMJiCYoxcdMEYsRNCXjksQ5fBZhIN4FGnngFKT1OBH+73G0L33zknMlG+UHZB65jCVbmdgUU7YtYrsz9lyKXeAh1WBrd/q7NIvFRNnaBgNev37UbgYzfryFQ3Q96mEliAtZ24UgOlDutnSPQAOKeWeacNPBSyGAn7E1bNDF5ziS40pertYSsNlSyqGJL0hoijBdiv7yxjrg2GW97oWLYYix4jFgDfXfqzkRd3IVo5ovog2ftIsQ19/qopMf+Pkscql+yzFs2JFkurwSgwFFh/y+dJFmhoJiEqg==
+ b=L+1VsCyfDkhdCVxZbUQQMdf6dJxQEERzvRIAz5MukOXZRu+dau3UJsXqrZg9AAIuNb1616Zw7N0i6SNHR77v6dEv2yp5goDUKoNRQL5L7MTPlSLPc+T7A8kGZYzdUF3chP5vKlYRxa5DzA0Pz4EHdMQ5H7ifbA/c+cGcjqE1K7w9epvTrl+HM079qiTDoDdYdxU2OIu48mpRX6rhr4w8RdMAx+3PiW2JuayuZC2Fem562QpQiwIsbPMRUIE9XXfSqeYt3Cm/YbfzlHhYv856WM+gpw3x9BKVV2TUBiPPxaDqekTjxKt2vbJXmlXrCYT21InpJ5oKcYs286JlNbg65Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PhV4b3UHq7d77dWL77R0jmX9iIkM9JAxDbKwT4Ghgjc=;
- b=BfdSQmWJ7cReIlB4VaAL4TV/6BGxKotPSudzkWzpe8Q2akvtsH6JKj1NUfMT4NqTz8xFGTmA428SiPJnArWQC39E9cda/qQhvSPyeUi5C1b7WnCJeIGZQeilCbW9x/hIkJQHJU/v8GlzBY7OTkYI/wBAt1NFTVSeG3zZCg+mbv89NHgGJVhTRswmWSxpTu/MwFdShpgyOkY59kQRobYme1wS+qNMT5FelhNiqSRk4njxN/zBBipW2yQcN/FdTny+UnJEXh09yrp6pPt661YRToOiNp+9fqR0lWA/z5n2aIu0LcSgBKpkYiR4bicD8oLt2ChIpTdrcUrkcYKWRUG1TA==
+ bh=ojk+BbBKCBFiBcENeke5kxrwQ4rNrP0IabPpYbrmPZ4=;
+ b=N0VS0XgnuNwCE6JVGOeVQE5PTXb8KvJqWvaso6qiZ06RjC6wQLYKKVuWYjxCX0Knv44pWmgRz4rMUcHzSTbBvvGCrk/1JFMQB/ptoNo6BjYkd9y+L1L5oaXcDXV0oTtdLsV9OLz3PValBYuRzxvvE4es3fL9W8PH5DycG3xk2GYEzOTPs/cV92eBdGU/GKJAJCK7Hk2OmeC9/tksT8vK954N+wKz31QvLtudNJkg8b+U2s2K9AumAuG1GzK5odHY6unBQspEgWqu4/pn+7OXnLaG6x2JhF1J+OmAcGbcKF9+zDTbluFVa99zBitp4R5H8M9MWvPMHQn7s2WS9pzaPA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PhV4b3UHq7d77dWL77R0jmX9iIkM9JAxDbKwT4Ghgjc=;
- b=h13FyWkXhci8Q9W8LDcs0Reo1YvlH7XUlZIX2PtEczPEqDFXdrYrCmncsIH2X0859tk1O/hufTaog1qxdK93vs5Ujlc/SewonsVEy0nx5Ij1bUBiwojv2kig+lUWuK0m0EtJ3rliUrH/YIDGz12FMKlyZ5p2nMKPV1x6oh/EAto=
+ bh=ojk+BbBKCBFiBcENeke5kxrwQ4rNrP0IabPpYbrmPZ4=;
+ b=aqjrmg3H6arNMzdHXdwrHpqwCpZHGETjYyOgtmJLzVoKp2KpTVYPqsJu/lR5Wsbg+yiY6C8hRPt5IGbVxiASuetg0yuEFUXD4Zjs++G02Y1leeQs6RXaFDu9hksN4Wn4WFoky1zB8y5+9/WuAcQhpdkl6gUR71Yx9bn27RHJQek=
 Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Christian.Koenig@amd.com; 
-Received: from DM5PR12MB1578.namprd12.prod.outlook.com (2603:10b6:4:e::7) by
- DM5PR12MB1724.namprd12.prod.outlook.com (2603:10b6:3:10f::13) with Microsoft
+ smtp.mailfrom=Nirmoy.Das@amd.com; 
+Received: from DM5PR12MB2376.namprd12.prod.outlook.com (2603:10b6:4:b9::11) by
+ DM5PR12MB1769.namprd12.prod.outlook.com (2603:10b6:3:10f::22) with
+ Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.13; Fri, 13 Mar 2020 14:02:24 +0000
-Received: from DM5PR12MB1578.namprd12.prod.outlook.com
- ([fe80::113e:3059:1470:c73c]) by DM5PR12MB1578.namprd12.prod.outlook.com
- ([fe80::113e:3059:1470:c73c%7]) with mapi id 15.20.2793.021; Fri, 13 Mar 2020
- 14:02:24 +0000
+ 15.20.2814.14; Fri, 13 Mar 2020 14:00:07 +0000
+Received: from DM5PR12MB2376.namprd12.prod.outlook.com
+ ([fe80::ac12:6413:cd14:4904]) by DM5PR12MB2376.namprd12.prod.outlook.com
+ ([fe80::ac12:6413:cd14:4904%4]) with mapi id 15.20.2814.018; Fri, 13 Mar 2020
+ 14:00:07 +0000
 Subject: Re: [PATCH v2 1/2] drm/sched: implement and export drm_sched_pick_best
 To: Nirmoy Das <nirmoy.aiemd@gmail.com>, amd-gfx@lists.freedesktop.org
 References: <20200313135953.68418-1-nirmoy.das@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <2674c3a0-7651-0f64-552f-ce3918fdac59@amd.com>
-Date: Fri, 13 Mar 2020 15:02:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+From: Nirmoy <nirmodas@amd.com>
+Message-ID: <a536f004-fa82-1ed1-fb0a-420201047ad4@amd.com>
+Date: Fri, 13 Mar 2020 15:03:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 In-Reply-To: <20200313135953.68418-1-nirmoy.das@amd.com>
 Content-Language: en-US
-X-ClientProxiedBy: AM0P190CA0017.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:208:190::27) To DM5PR12MB1578.namprd12.prod.outlook.com
- (2603:10b6:4:e::7)
+X-ClientProxiedBy: AM0PR05CA0002.eurprd05.prod.outlook.com
+ (2603:10a6:208:55::15) To DM5PR12MB2376.namprd12.prod.outlook.com
+ (2603:10b6:4:b9::11)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- AM0P190CA0017.EURP190.PROD.OUTLOOK.COM (2603:10a6:208:190::27) with Microsoft
+Received: from [IPv6:2003:c5:8f29:a900:db15:8106:d933:a960]
+ (2003:c5:8f29:a900:db15:8106:d933:a960) by
+ AM0PR05CA0002.eurprd05.prod.outlook.com (2603:10a6:208:55::15) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2793.20 via Frontend Transport; Fri, 13 Mar 2020 14:02:23 +0000
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+ 15.20.2814.13 via Frontend Transport; Fri, 13 Mar 2020 14:00:05 +0000
+X-Originating-IP: [2003:c5:8f29:a900:db15:8106:d933:a960]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 0e67477e-6169-477d-b749-08d7c75727f8
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1724:|DM5PR12MB1724:
+X-MS-Office365-Filtering-Correlation-Id: 4f8df785-c950-4184-f517-08d7c756d645
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1769:|DM5PR12MB1769:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB172438657A451515F1DB4DBA83FA0@DM5PR12MB1724.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:261;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB17692689BCA2CFFDB76EFBEF8BFA0@DM5PR12MB1769.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:341;
 X-Forefront-PRVS: 034119E4F6
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(39860400002)(396003)(366004)(346002)(376002)(136003)(199004)(316002)(52116002)(36756003)(2616005)(478600001)(66946007)(66476007)(66556008)(6666004)(5660300002)(6486002)(4326008)(31686004)(31696002)(86362001)(81166006)(8936002)(186003)(16526019)(2906002)(81156014)(8676002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1724;
- H:DM5PR12MB1578.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(39860400002)(376002)(136003)(346002)(396003)(366004)(199004)(8676002)(6486002)(31686004)(36756003)(31696002)(66476007)(2616005)(16526019)(66556008)(186003)(8936002)(66946007)(81166006)(6666004)(5660300002)(4326008)(478600001)(316002)(2906002)(81156014)(53546011)(52116002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1769;
+ H:DM5PR12MB2376.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: axzPCoxerXImIRfpLxAlPm2QqY463MrkKY4znI9t/1AEPdRNKNXTZ9JqbT+psXxdKcVpOP+Pe341Mqf027Pfmtr48vJqD/3Y3lgaj5fhSFekLL134dbZOJ3tFJV/DD3Pu7E3/42lyBAXmMQcCuU/e+/FVu+aleiKkgQJlbNrqVhr+B+nHumZ9X14tXSktsRKnwyHNu7IXFb0FoUUIsbNbL5gJ7CNdzzIMO+I2bXicCEZOrYq/IFhozqIGdQdCb5OQgdmxunc2VRPlWA/d6ywbWtGYoQBd+9dfuSCBxqMgd6hfHMpJZP20SiLF35gYylwDd5eV9W9WipEGb+bMFB1vZI7Ye6LEkIBfZYxXqVY1g5g47MP64ppzp4dQaruGRvkrcdLo7BDuEO+75rx9UDiK9G31YC8gwf4D42N/NcBF2wBbkOg1vEXsVQhtMd4l5IW
-X-MS-Exchange-AntiSpam-MessageData: EB51Ja/M61cXv2dGm2QdlrBoVWv1R7rcHSbOnPjit5rNniad5GOU4YgZntVOByUvFnxPAe6kJtZQePYATVbqafNIyjmW9DdKeb9DaTwjM+nH/noJkvUVuylUQudV4eTGElV82TvLPNQdPnzJdavpdfMHx0VCvLnz1+cmJCvV/iaXc/eIB4kJR6Jg5cuy4LevXJCMZ1ORj+zpjfS398ZQRQ==
+X-Microsoft-Antispam-Message-Info: DdQGtZ8xEVWNC6nxmOySkpEWtYgJsSQQNf4M88cYVgyNFkwJU+zD8nfR/aVYTicPF9Fqfw/4jh451ru+TGrCTqUc2oDt0q7S4nh4XxzaQx1J5JI1u75IbM9VXmwyrLMa1Zzm2GWlYuzaBTW2BNR4o+gHw7wRKSEoDrpV81qqSxcHdnOnA3Wd78T4thioBUcSr9lwutWWy/yW6IyC1W085Uwk7R/d0XflMr5bFP4JC+Q9m+gzEH490JE3kP0rNPGaD/QDH783o0oAtLinBoGBfBpUfEvWAeRrDpg6J36nHVfjQv3Q9b418Ro8xonHaqXQWniQttZOj4Q38wrZAtNC32aM/LTqJq7JgJ3dMuQYIrmEEtZkteavhudyqAYFuES84wicrwWHv7V9kKVHUgEYqmN5QbNG7ShxvTwbLUX1Pq48nyuBylNM/2raQVj8z/eK
+X-MS-Exchange-AntiSpam-MessageData: 5CxMN5gJWWynSyDkRnRV31pAxETnBlq8p6AcI2hd7CCYRP0rCW5uYMdHQys2Hu4FOOEhNm5GOL18MU86o3M8gFSmyv8xyWpog5ApJCFE2GInQMV4FRsgyJkHD1JEium1wCzezLumWqii+oBkCh+TsIZimUGSYuKv2G/IdjTsxrkHwdT3W6zIk2BdW6A4XSx5uMmQnr4DruQQk9k5vgYwPQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e67477e-6169-477d-b749-08d7c75727f8
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2020 14:02:24.5666 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f8df785-c950-4184-f517-08d7c756d645
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2020 14:00:07.4217 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i1rX/y9z9BszIdA6I2CaVyReF7CKx6eZEVaVA9jrthnLpEz35pfo5wHAPA7tU0rB
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1724
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1q2q5IJQ6uFGXz7E4ufkSqqjLJ0VMdpP/92rjjoYKNCUznV3SMTC9qXz8dpEygFcWCNT6Tq8NlU9Rn51eXob2Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1769
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,14 +98,16 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Boyuan.Zhang@amd.com, nirmoy.das@amd.com,
- Leo.Liu@amd.com, James.Zhu@amd.com
+Cc: Boyuan.Zhang@amd.com, nirmoy.das@amd.com, alexander.deucher@amd.com,
+ James.Zhu@amd.com, Leo.Liu@amd.com, christian.koenig@amd.com
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 13.03.20 um 14:59 schrieb Nirmoy Das:
+ah please ignore this I forgot to change the "sched" -> "scheduler"
+
+On 3/13/20 2:59 PM, Nirmoy Das wrote:
 > Remove drm_sched_entity_get_free_sched() and use the logic of picking
 > the least loaded drm scheduler from a drm scheduler list to implement
 > drm_sched_pick_best(). This patch also exports drm_sched_pick_best() so
@@ -178,13 +181,6 @@ Am 13.03.20 um 14:59 schrieb Nirmoy Das:
 > +	sched = drm_sched_pick_best(entity->sched_list, entity->num_sched_list);
 > +	if (sched)
 > +		rq = &sched->sched_rq[entity->priority];
-
-Maybe write this as "rq = sched ? &sched->sched_rq[entity->priority] : 
-NULL" and drop the NULL initialization above.
-
-Apart from that looks good to me,
-Christian.
-
 > +
 >   	if (rq != entity->rq) {
 >   		drm_sched_rq_remove_entity(entity->rq, entity);
@@ -251,7 +247,6 @@ Christian.
 > --
 > 2.25.0
 >
-
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
