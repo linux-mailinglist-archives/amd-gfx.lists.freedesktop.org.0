@@ -2,49 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010C5186C7F
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 14:50:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E5AF186C7C
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 14:50:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C81E6E462;
-	Mon, 16 Mar 2020 13:50:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EFF96E46B;
+	Mon, 16 Mar 2020 13:50:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on20606.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e89::606])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D74B6E454
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 13:50:01 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80E4E6E462
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 13:50:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bHjCcdnd8xt718odFiafwDFxL4+ulSM6M0VQcZprEmQm/26RQKoMKENiy7sjS1HHyKK99WbWKYiJK+v1rWRSHXPboSWpkDxg5GkNSCmu7tw4t8KZXxchYnVdPVjQbj3FUgYmk5Bug66FaFFH9gscNuP6SF4irA0YjxLrrT5Pxi8o6Ijt3We21ad+A4YngyFHP5mktDcATOa9BtuBtvpqBzPYKeIslsuRQII20oBjYdSVHsD0nvTy5DQ4cJlwAW0+3YUGsL6EdS1IlH7dFvS9ihTE9kab8qJQQZtt7/7a5hE4a/lb3Ldf9lzKzxaWO87vtatRD+kqdPkSfJvxk6fLmg==
+ b=f+SCbsDl6Jp3YvI+kVmpeDxiryqEKgtiklHiopyNKfbTBC4wAKAGrV+h5k1Zwi2UWirtyLZBhtnkE6m4IT/aNxqzLg/xh5gEeSNz1+b2oln6xTniGKSl4i77y3peDwzdvB6/3JwYqC+1//DbnHRBGO36D7m+jgtrthq42Wh00UTPSGe61yGWHyDLEm2z/qXgyTbmIb9QxCNIyFDxAS1Jtn4kSalbSHqpdJRlxAh+8at4oi1KQyThDOYs58ir+lXU3a1yr2afMBGcqIjoCbxWFbpC4L9HeBwpa7WpTaClW/YYmd1om9x+GAfzCNSwGVIJmxTNu662y1P5x2DpNtLurQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lJZ3xW86FDL9+UE3imXkh+FOw07vMndXV+lLsxNzxc0=;
- b=KWJmBqJErhCrafw7Ku9qu+fH7INuEYHlCd/CnPRzO1laySxchnXIi18ewz+UsW3bj41iDhAphqs7zuyEfuY+c5BBNJpMfTvHmQY2IXhs3fdQ7OxumMEvIVxHFNTkBmwkLRQXiVkPaChwDD3cr472yVeCR2GNX2tjM74WkiYdSHTQXVWW/nRDUTjlnmLiAWBod7cvgL8IacVz3r2cRQQJF5CZPa/zQadGP4DKwhLnOIN+RdXOQMHR4+epuPycC/nmMKSVfUMhVvU0Bo2QrwdGvX3ZJKlsSJGRbwAnsFzuVsZ1pnjPAHCqfk1Yrg4obUE2gBdqDlplfnQ/GBVaUh711g==
+ bh=zdfLIeYkU2jG1CgFnc4LAd9mjepVaKM33L6dWLRNzYQ=;
+ b=nIpSDnoSdZWAvcTgrgVoQ970P2sLtIZ5kZ010UbOzRVZYuVsnwEdTWJTRG7yteBjt+1ajMUtxEc06pzap5pz84U8sXMNOQdhhq+FQD0VvlWYfhoi/A41s+5NURFHofIMKSaSygEPtjHMXmrc5SLbiMQNhDevSTZsywbRheUK27szan3n40mxdWSRloZZ+UpEM/yLftgQ+YGzjeeHSr3t7gvylTD7NZBznKalz7qbUZGBFQYvimWG4oKGv40lWE1/3ytwdj6MbkHiRDigqn+yjTuQ53tvnKRIE+rvlyl4YlmPTwL/hfoLSFfJHQJO/ChvVU9ddutvlhDF8x7AtO5FIw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lJZ3xW86FDL9+UE3imXkh+FOw07vMndXV+lLsxNzxc0=;
- b=1J+B311EQLpCA6InDKGhZonzr5Dtv2V6yHgjFtUBZZaonDGQ/VI24YrVm9P33RJ0XDf/bg4wVLqsUmxdMnpT0FBZs28eLxfRGryl/01pyXaDKQUS/KQHLWpKvLGEoHhZaO4mz/Pcfr5/yJGt/eINqwCa8a2ELLy0nLnAccfrMc8=
+ bh=zdfLIeYkU2jG1CgFnc4LAd9mjepVaKM33L6dWLRNzYQ=;
+ b=ZqVuA3KUt2jTYtRPg4G5DAGWzXLqNaqLYxdlmVdex1HTIGVtDDEQjz2DZ3YhSJ4k/r66gQaztVVBvyCDIgSDoqA9XkGrtES9GOxPb+ty5YFlhI+MMB6gEI6QfD5HnLrVLe7vUG65zB4ZiI9XDxRUnZ9xDyET4BJI91jD/NuuQ+4=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2396.namprd12.prod.outlook.com (2603:10b6:907:9::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.14; Mon, 16 Mar
- 2020 13:50:00 +0000
+ 2020 13:50:01 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2814.021; Mon, 16 Mar 2020
- 13:50:00 +0000
+ 13:50:01 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 08/19] drm/amd/display: Remove PSR dependency on swizzle mode
-Date: Mon, 16 Mar 2020 09:49:09 -0400
-Message-Id: <20200316134920.2526155-9-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 09/19] drm/amd/display: Set disable_dmcu flag properly per asic
+Date: Mon, 16 Mar 2020 09:49:10 -0400
+Message-Id: <20200316134920.2526155-10-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200316134920.2526155-1-Rodrigo.Siqueira@amd.com>
 References: <20200316134920.2526155-1-Rodrigo.Siqueira@amd.com>
@@ -56,16 +55,16 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.amd.com (165.204.55.250) by
  YTXPR0101CA0009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.14 via Frontend Transport; Mon, 16 Mar 2020 13:49:59 +0000
+ 15.20.2814.14 via Frontend Transport; Mon, 16 Mar 2020 13:50:00 +0000
 X-Mailer: git-send-email 2.25.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 953af3f6-c1cd-44ea-6a61-08d7c9b0eba6
+X-MS-Office365-Filtering-Correlation-Id: 3fee3fb7-3055-4e99-5565-08d7c9b0ec55
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2396:|MW2PR12MB2396:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2396D02D70116701450177DB98F90@MW2PR12MB2396.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:274;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2396FE6BAB6A632F88C6D2C098F90@MW2PR12MB2396.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1201;
 X-Forefront-PRVS: 03449D5DD1
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(136003)(366004)(346002)(376002)(396003)(39860400002)(199004)(7696005)(6916009)(5660300002)(54906003)(26005)(36756003)(52116002)(1076003)(86362001)(66556008)(66946007)(66476007)(8936002)(6666004)(81166006)(81156014)(316002)(478600001)(2616005)(16526019)(2906002)(956004)(4326008)(8676002)(186003)(6486002);
@@ -76,15 +75,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0WUV0sJJCMvaoxJaCT5r+ETiMoZZBoDJxyIhaWAvEmIql8Gvi0QHdYNLEHfKWvykpbnJu0hlIz/pXBWUB4yWUIxhCOmT0fZTKpALLXXZhWAMA0H5DwDxYCAh5K2tlx7bSEjDvqSMQoXgynPBky7cnAwNP77ygSHp4ctFyouTsxgJxFuY6kU8KWRX9D+TMqGioNnT8gG7gSu0dd1dMLxZtlpC4vs5tsQXj70lLP1ck8NMv9EbVoVHWZF1348gH0Vdbx+l8+qi1xas+Y0XSyyyvA0Qv51XKHlbh2TK2QkgaLkZnSkdOjCzCrGEv0QhCzJo4OUmX2S1Nd6HY9zYEO7NUrrsuarUM/IsFsn8xUcY93LLLCpGqnrWGFrc5ApdVkV4uSyZxsWx+H0uCWNdUlvLfjXwXTPhB49zhIUEFH5sa2yV/fFayaHWfEbtx1jTMEYf
-X-MS-Exchange-AntiSpam-MessageData: cnZCZQEY7XVHpCZDoMs9t38FUulPswrdb0xVmK2uRKi8HLi91k/MmVGlELUOLNfROIA2bQ0UMiXKdPH2i9UtPNE5M3vtivrdhMTxE3KQh/S0c5wVbVfL3tt6elUzsOnM6OUw3F1BRQFuV1vNQ8yyAA==
+X-Microsoft-Antispam-Message-Info: /kw0zxlw2DFi22WIHPPyy1e6hnOGloIuoJUmLsXuHqV7QgTP9UFXCHLxGKTQF4Vl8UTw/UfFs2fpSJW2eVi105oy2bi19lNp/K22VZmltweRoJMzXhR4RHtWmfRdhWHhmVSSAjXQZTDwJ/FVH50zbixc1IHNBQvaph4+ji3LOpX/m7f1pr1UV7/DCOMYOrwfAzJGOzRseTAtMZ6FAIoKFB1W6Byru4q5J/FgqsJuJ7Mt3ClCPeCkUL8YryrXNzm5NMJAPDPNG21PEZ0WQPR8fgg5o3Js+64tghPtXQDMRwG4b+HJeDyYPaYrQJ20KQjnXaADoXvtDjiVJLMGYX6gbTNsdt82quGRb5Q6aUweIculPA+aVHlGieS4DM387Ep63pOLbXE7KIyR9lcHZksgPBSVaJ7q5k0WzD+AzlDCQoPu5vxTiAzoEvBLxtqJs9Of
+X-MS-Exchange-AntiSpam-MessageData: fwgJsUzGqCwsRG04LywJVgR9MwvSDsUEFJ/nmE+dRt0miAwMs3LNqOuSl82PFq6eR3jpkjifnseJpuVvyso2QIfaVOG2snMzp8v4yixNSE2DuLOT3zubQ5+mEaxML4whTFTcUoifZoVGTubPi6NE6g==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 953af3f6-c1cd-44ea-6a61-08d7c9b0eba6
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2020 13:50:00.3582 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3fee3fb7-3055-4e99-5565-08d7c9b0ec55
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2020 13:50:01.5775 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lsqJOxiSVcLNGCCloPAUcxA0p+QnH9SxRQwMvRCmgwweWqk8LNEJmH3V+PK3VyVG9qMQR2CILxUlMcFOloM0pw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: ef6mppthxycbv22JjF6YfmftH4PcnWJG/cjzLMG0oEjeCoBIfefFpPoAirf18BZsQcntfCu5VVHVdkCROEgksw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2396
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,61 +97,97 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
- Roman Li <roman.li@amd.com>, Bhawanpreet.Lakha@amd.com,
+ Wyatt Wood <wyatt.wood@amd.com>, Bhawanpreet.Lakha@amd.com,
  Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <roman.li@amd.com>
+From: Wyatt Wood <wyatt.wood@amd.com>
 
 [Why]
-The PSR enablement was dependent on swizzle as a workaround for
-non-pageflipping fb console. It's no longer required.
+The default value for disable_dmcu is true, even for asics that require
+dmcu.
 
 [How]
-Remove PSR-enable dependency on swizzle mode.
+Set flag properly per asic.
 
-Signed-off-by: Roman Li <roman.li@amd.com>
+Signed-off-by: Wyatt Wood <wyatt.wood@amd.com>
 Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c | 4 ++--
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 4 ++--
+ drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index db578d8092d9..676ec4d797e5 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6639,7 +6639,6 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 	uint32_t target_vblank, last_flip_vblank;
- 	bool vrr_active = amdgpu_dm_vrr_active(acrtc_state);
- 	bool pflip_present = false;
--	bool swizzle = true;
- 	struct {
- 		struct dc_surface_update surface_updates[MAX_SURFACES];
- 		struct dc_plane_info plane_infos[MAX_SURFACES];
-@@ -6685,9 +6684,6 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+index 95fda0b7523e..261bdc3a8218 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+@@ -570,7 +570,7 @@ static const struct dc_plane_cap plane_cap = {
  
- 		dc_plane = dm_new_plane_state->dc_state;
+ static const struct dc_debug_options debug_defaults_drv = {
+ 		.sanity_checks = true,
+-		.disable_dmcu = true,
++		.disable_dmcu = false,
+ 		.force_abm_enable = false,
+ 		.timing_trace = false,
+ 		.clock_trace = true,
+@@ -598,7 +598,7 @@ static const struct dc_debug_options debug_defaults_drv = {
+ };
  
--		if (dc_plane && !dc_plane->tiling_info.gfx9.swizzle)
--			swizzle = false;
--
- 		bundle->surface_updates[planes_count].surface = dc_plane;
- 		if (new_pcrtc_state->color_mgmt_changed) {
- 			bundle->surface_updates[planes_count].gamma = dc_plane->gamma_correction;
-@@ -6898,8 +6894,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 			amdgpu_dm_link_setup_psr(acrtc_state->stream);
- 		else if ((acrtc_state->update_type == UPDATE_TYPE_FAST) &&
- 						acrtc_state->stream->link->psr_feature_enabled &&
--						!acrtc_state->stream->link->psr_allow_active &&
--						swizzle) {
-+						!acrtc_state->stream->link->psr_allow_active) {
- 			amdgpu_dm_psr_enable(acrtc_state->stream);
- 		}
+ static const struct dc_debug_options debug_defaults_diags = {
+-		.disable_dmcu = true,
++		.disable_dmcu = false,
+ 		.force_abm_enable = false,
+ 		.timing_trace = true,
+ 		.clock_trace = true,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index faf4f5ef1795..e25ed6235812 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -1041,7 +1041,7 @@ static const struct resource_caps res_cap_nv14 = {
+ };
  
+ static const struct dc_debug_options debug_defaults_drv = {
+-		.disable_dmcu = true,
++		.disable_dmcu = false,
+ 		.force_abm_enable = false,
+ 		.timing_trace = false,
+ 		.clock_trace = true,
+@@ -1060,7 +1060,7 @@ static const struct dc_debug_options debug_defaults_drv = {
+ };
+ 
+ static const struct dc_debug_options debug_defaults_diags = {
+-		.disable_dmcu = true,
++		.disable_dmcu = false,
+ 		.force_abm_enable = false,
+ 		.timing_trace = true,
+ 		.clock_trace = true,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+index 158f7c8b55ae..37f9a71eb4c1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+@@ -855,7 +855,7 @@ static const struct dc_plane_cap plane_cap = {
+ };
+ 
+ static const struct dc_debug_options debug_defaults_drv = {
+-		.disable_dmcu = true,
++		.disable_dmcu = false,
+ 		.force_abm_enable = false,
+ 		.timing_trace = false,
+ 		.clock_trace = true,
+@@ -876,7 +876,7 @@ static const struct dc_debug_options debug_defaults_drv = {
+ };
+ 
+ static const struct dc_debug_options debug_defaults_diags = {
+-		.disable_dmcu = true,
++		.disable_dmcu = false,
+ 		.force_abm_enable = false,
+ 		.timing_trace = true,
+ 		.clock_trace = true,
 -- 
 2.25.1
 
