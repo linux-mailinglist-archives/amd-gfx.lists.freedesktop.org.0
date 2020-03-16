@@ -1,30 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2622186BC7
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 14:07:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CB6F186BBD
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 14:07:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F212F6E443;
-	Mon, 16 Mar 2020 13:06:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D5A889DC5;
+	Mon, 16 Mar 2020 13:06:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF09289950;
- Mon, 16 Mar 2020 09:11:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E24EF6E398;
+ Mon, 16 Mar 2020 09:12:14 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 4C8EE68CEC; Mon, 16 Mar 2020 10:11:25 +0100 (CET)
-Date: Mon, 16 Mar 2020 10:11:25 +0100
+ id 0355A68CEC; Mon, 16 Mar 2020 10:12:13 +0100 (CET)
+Date: Mon, 16 Mar 2020 10:12:12 +0100
 From: Christoph Hellwig <hch@lst.de>
 To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH  hmm 6/8] mm/hmm: reorganize how !pte_present is
- handled in hmm_vma_handle_pte()
-Message-ID: <20200316091125.GF12439@lst.de>
+Subject: Re: [PATCH  hmm 7/8] mm/hmm: return -EFAULT when setting
+ HMM_PFN_ERROR on requested valid pages
+Message-ID: <20200316091212.GG12439@lst.de>
 References: <20200311183506.3997-1-jgg@ziepe.ca>
- <20200311183506.3997-7-jgg@ziepe.ca>
+ <20200311183506.3997-8-jgg@ziepe.ca>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200311183506.3997-7-jgg@ziepe.ca>
+In-Reply-To: <20200311183506.3997-8-jgg@ziepe.ca>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Mon, 16 Mar 2020 13:06:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -48,7 +48,19 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Looks good:
+On Wed, Mar 11, 2020 at 03:35:05PM -0300, Jason Gunthorpe wrote:
+> From: Jason Gunthorpe <jgg@mellanox.com>
+> 
+> hmm_range_fault() should never return 0 if the caller requested a valid
+> page, but the pfns output for that page would be HMM_PFN_ERROR.
+> 
+> hmm_pte_need_fault() must always be called before setting HMM_PFN_ERROR to
+> detect if the page is in faulting mode or not.
+> 
+> Fix two cases in hmm_vma_walk_pmd() and reorganize some of the duplicated
+> code.
+
+Looks good,
 
 Reviewed-by: Christoph Hellwig <hch@lst.de>
 _______________________________________________
