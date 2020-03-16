@@ -1,69 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BF811871EB
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 19:08:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5488218721C
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 19:18:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB2F86E210;
-	Mon, 16 Mar 2020 18:08:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A7FD6E49F;
+	Mon, 16 Mar 2020 18:18:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8467E6E499
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 18:07:15 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id f3so27848618qkh.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 11:07:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=BL4dn+rFA5hNgcpGIcpSUF3dGv9P3+nzjxB+rkZXdM4=;
- b=DKEnDkSOlfzjpgSnrXBEjUC1923pN4NQuhu8yekYIb9Cl/gcjD29oe7Zwom9ayo1l6
- ii/cMSB9TjmDtSmwKOfTrPDuuuDeMFvopq04LstsyTdRjPRJ3uMeZZgL6GohqV80EcBA
- ckySb0cXjAfeZzaSxXhVL0vckuNrSqYx+CTuNhNhQ8glRsJSUgFoipt9jfreFxXj+wzr
- +6+mSPQyLs/j+LIHlg/ZEFHwtEkLK/uwwz06tBZw7JOq2pDMUDodMqQ78UusyshS4ecy
- 0YdLlpeOTbhQpt6Btu4zmOeR/h1+J13FplibFTzuwj/MzVZ3OTbxBvz9zD/JX6ulW387
- iQvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=BL4dn+rFA5hNgcpGIcpSUF3dGv9P3+nzjxB+rkZXdM4=;
- b=FS3zmq+kzDMEm2HnHtMqc+46OiLuqm+0wuIFpMuoevB7pZmY++RDM+1MmEy8/xTcG8
- S8HWc4g+vcTSCht/NT4GCl5uQ7St7uoMx7/bSDH2PgjSw9AkJk7i9n7cqlJIgiWzfFlL
- 9JqZA4KzvuUYcnD78Y2EeHqDkUzygSdOs97oQUTYKcIsLmNyYaSkAEFBB6sUYKANh8Te
- MkxelIdEa5o4E5OmbHeD6Hu+gRPBlly7ETA8LoanxZu8Vicr9wu9ReLsuYygltRNeaOI
- ni/VO+f62TXR6KoenWvtaC2LEnmCG5vdKmYox6bGnlBFRk5QbyIKYXZhnYJf+sp8+f19
- 2IMA==
-X-Gm-Message-State: ANhLgQ0cfFjivpprivxrTyqPAmDehViZmNlyUVKy9VXzrQ+iGBSpkb/W
- KikYwAyLT1MM5XArC5XZ0EH/AQ==
-X-Google-Smtp-Source: ADFU+vtIq8ax1/sBMUy0L6xn/rwaL8F9DxFBkYRulC2VO6q8JD8eKOdnZIYjW2re88h1P9q0ynL8UA==
-X-Received: by 2002:a37:9d8f:: with SMTP id g137mr902005qke.133.1584382034472; 
- Mon, 16 Mar 2020 11:07:14 -0700 (PDT)
-Received: from ziepe.ca
- (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.68.57.212])
- by smtp.gmail.com with ESMTPSA id 68sm254723qkh.75.2020.03.16.11.07.13
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 16 Mar 2020 11:07:13 -0700 (PDT)
-Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
- (envelope-from <jgg@ziepe.ca>)
- id 1jDu8v-0005Nz-7D; Mon, 16 Mar 2020 15:07:13 -0300
-Date: Mon, 16 Mar 2020 15:07:13 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Christoph Hellwig <hch@lst.de>
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D05AD6E210;
+ Mon, 16 Mar 2020 18:13:26 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 63BBC68BFE; Mon, 16 Mar 2020 19:13:24 +0100 (CET)
+Date: Mon, 16 Mar 2020 19:13:24 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Jason Gunthorpe <jgg@ziepe.ca>
 Subject: Re: [PATCH  hmm 2/8] mm/hmm: don't free the cached pgmap while
  scanning
-Message-ID: <20200316180713.GI20941@ziepe.ca>
+Message-ID: <20200316181324.GA24533@lst.de>
 References: <20200311183506.3997-1-jgg@ziepe.ca>
- <20200311183506.3997-3-jgg@ziepe.ca>
- <20200316090250.GB12439@lst.de>
+ <20200311183506.3997-3-jgg@ziepe.ca> <20200316090250.GB12439@lst.de>
+ <20200316180713.GI20941@ziepe.ca>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200316090250.GB12439@lst.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Mailman-Approved-At: Mon, 16 Mar 2020 18:08:35 +0000
+In-Reply-To: <20200316180713.GI20941@ziepe.ca>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Mailman-Approved-At: Mon, 16 Mar 2020 18:18:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,100 +42,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Cc: Philip Yang <Philip.Yang@amd.com>, Ralph Campbell <rcampbell@nvidia.com>,
  John Hubbard <jhubbard@nvidia.com>, Felix.Kuehling@amd.com,
  dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- Jerome Glisse <jglisse@redhat.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Jerome Glisse <jglisse@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 16, 2020 at 10:02:50AM +0100, Christoph Hellwig wrote:
-> On Wed, Mar 11, 2020 at 03:35:00PM -0300, Jason Gunthorpe wrote:
-> > @@ -694,6 +672,15 @@ long hmm_range_fault(struct hmm_range *range, unsigned int flags)
-> >  			return -EBUSY;
-> >  		ret = walk_page_range(mm, hmm_vma_walk.last, range->end,
-> >  				      &hmm_walk_ops, &hmm_vma_walk);
-> > +		/*
-> > +		 * A pgmap is kept cached in the hmm_vma_walk to avoid expensive
-> > +		 * searching in the probably common case that the pgmap is the
-> > +		 * same for the entire requested range.
-> > +		 */
-> > +		if (hmm_vma_walk.pgmap) {
-> > +			put_dev_pagemap(hmm_vma_walk.pgmap);
-> > +			hmm_vma_walk.pgmap = NULL;
-> > +		}
-> >  	} while (ret == -EBUSY);
-> 
-> In which case it should only be put on return, and not for every loop.
-
-I chose this to be simple without having to goto unwind it.
-
-So, instead like this:
-
-@@ -683,21 +661,33 @@ long hmm_range_fault(struct hmm_range *range, unsigned int flags)
- 		.flags = flags,
- 	};
- 	struct mm_struct *mm = range->notifier->mm;
--	int ret;
-+	long ret;
- 
- 	lockdep_assert_held(&mm->mmap_sem);
- 
- 	do {
- 		/* If range is no longer valid force retry. */
- 		if (mmu_interval_check_retry(range->notifier,
--					     range->notifier_seq))
--			return -EBUSY;
-+					     range->notifier_seq)) {
-+			ret = -EBUSY;
-+			goto out;
-+		}
- 		ret = walk_page_range(mm, hmm_vma_walk.last, range->end,
- 				      &hmm_walk_ops, &hmm_vma_walk);
- 	} while (ret == -EBUSY);
- 
- 	if (ret)
--		return ret;
--	return (hmm_vma_walk.last - range->start) >> PAGE_SHIFT;
-+		goto out;
-+	ret = (hmm_vma_walk.last - range->start) >> PAGE_SHIFT;
-+
-+out:
-+	/*
-+	 * A pgmap is kept cached in the hmm_vma_walk to avoid expensive
-+	 * searching in the probably common case that the pgmap is the
-+	 * same for the entire requested range.
-+	 */
-+	if (hmm_vma_walk.pgmap)
-+		put_dev_pagemap(hmm_vma_walk.pgmap);
-+	return ret;
- }
- EXPORT_SYMBOL(hmm_range_fault);
-
-?
-
-> I still think the right fix is to just delete all the unused and broken
-> pgmap handling code.  If we ever need to add it back it can be added
-> in a proper understood and tested way.
-
-What I want to add is something like
-
- if (pgmap != walk->required_pgmap)
-     cpu_flags = 0
- hmm_range_need_fault(..., cpu_flags, ...)
-
-Which will fix a bug in nouveau where it blindly assumes any device
-pages are its own, IIRC.
-
-I think Ralph observed it needs to be here, because if the pgmap
-doesn't match then it should trigger migration, in a single call,
-rather than iterating.
-
-I'm mostly expecting to replace all the other pgmap code, but keep the
-pgmap caching. The existing pgmap stuff seems approx right, but
-useless..
-
-Jason
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gTW9uLCBNYXIgMTYsIDIwMjAgYXQgMDM6MDc6MTNQTSAtMDMwMCwgSmFzb24gR3VudGhvcnBl
+IHdyb3RlOgo+IEkgY2hvc2UgdGhpcyB0byBiZSBzaW1wbGUgd2l0aG91dCBoYXZpbmcgdG8gZ290
+byB1bndpbmQgaXQuCj4gCj4gU28sIGluc3RlYWQgbGlrZSB0aGlzOgoKQXMg0ZVhaWQsIGFuZCBw
+ZXIgdGhlIHByZXZpb3VzIGRpc2N1c3Npb246ICBJIHRoaW5rIGp1c3QgcmVtb3ZpbmcgdGhlCnBn
+bWFwIGxvb2t1cCBpcyB0aGUgcmlnaHQgdGhpbmcgdG8gZG8gaGVyZS4gIFNvbWV0aGluZyBsaWtl
+IHRoaXMgcGF0Y2g6CgpkaWZmIC0tZ2l0IGEvbW0vaG1tLmMgYi9tbS9obW0uYwppbmRleCAzZDEw
+NDg1YmYzMjMuLjlmMTA0OTgxNWQ0NCAxMDA2NDQKLS0tIGEvbW0vaG1tLmMKKysrIGIvbW0vaG1t
+LmMKQEAgLTI4LDcgKzI4LDYgQEAKIAogc3RydWN0IGhtbV92bWFfd2FsayB7CiAJc3RydWN0IGht
+bV9yYW5nZQkqcmFuZ2U7Ci0Jc3RydWN0IGRldl9wYWdlbWFwCSpwZ21hcDsKIAl1bnNpZ25lZCBs
+b25nCQlsYXN0OwogCXVuc2lnbmVkIGludAkJZmxhZ3M7CiB9OwpAQCAtMTk4LDE1ICsxOTcsOCBA
+QCBzdGF0aWMgaW50IGhtbV92bWFfaGFuZGxlX3BtZChzdHJ1Y3QgbW1fd2FsayAqd2FsaywgdW5z
+aWduZWQgbG9uZyBhZGRyLAogCQlyZXR1cm4gaG1tX3ZtYV9mYXVsdChhZGRyLCBlbmQsIGZhdWx0
+LCB3cml0ZV9mYXVsdCwgd2Fsayk7CiAKIAlwZm4gPSBwbWRfcGZuKHBtZCkgKyAoKGFkZHIgJiB+
+UE1EX01BU0spID4+IFBBR0VfU0hJRlQpOwotCWZvciAoaSA9IDA7IGFkZHIgPCBlbmQ7IGFkZHIg
+Kz0gUEFHRV9TSVpFLCBpKyssIHBmbisrKSB7Ci0JCWlmIChwbWRfZGV2bWFwKHBtZCkpIHsKLQkJ
+CWhtbV92bWFfd2Fsay0+cGdtYXAgPSBnZXRfZGV2X3BhZ2VtYXAocGZuLAotCQkJCQkgICAgICBo
+bW1fdm1hX3dhbGstPnBnbWFwKTsKLQkJCWlmICh1bmxpa2VseSghaG1tX3ZtYV93YWxrLT5wZ21h
+cCkpCi0JCQkJcmV0dXJuIC1FQlVTWTsKLQkJfQorCWZvciAoaSA9IDA7IGFkZHIgPCBlbmQ7IGFk
+ZHIgKz0gUEFHRV9TSVpFLCBpKyssIHBmbisrKQogCQlwZm5zW2ldID0gaG1tX2RldmljZV9lbnRy
+eV9mcm9tX3BmbihyYW5nZSwgcGZuKSB8IGNwdV9mbGFnczsKLQl9CiAJaG1tX3ZtYV93YWxrLT5s
+YXN0ID0gZW5kOwogCXJldHVybiAwOwogfQpAQCAtMjc3LDE1ICsyNjksNiBAQCBzdGF0aWMgaW50
+IGhtbV92bWFfaGFuZGxlX3B0ZShzdHJ1Y3QgbW1fd2FsayAqd2FsaywgdW5zaWduZWQgbG9uZyBh
+ZGRyLAogCWlmIChmYXVsdCB8fCB3cml0ZV9mYXVsdCkKIAkJZ290byBmYXVsdDsKIAotCWlmIChw
+dGVfZGV2bWFwKHB0ZSkpIHsKLQkJaG1tX3ZtYV93YWxrLT5wZ21hcCA9IGdldF9kZXZfcGFnZW1h
+cChwdGVfcGZuKHB0ZSksCi0JCQkJCSAgICAgIGhtbV92bWFfd2Fsay0+cGdtYXApOwotCQlpZiAo
+dW5saWtlbHkoIWhtbV92bWFfd2Fsay0+cGdtYXApKSB7Ci0JCQlwdGVfdW5tYXAocHRlcCk7Ci0J
+CQlyZXR1cm4gLUVCVVNZOwotCQl9Ci0JfQotCiAJLyoKIAkgKiBTaW5jZSBlYWNoIGFyY2hpdGVj
+dHVyZSBkZWZpbmVzIGEgc3RydWN0IHBhZ2UgZm9yIHRoZSB6ZXJvIHBhZ2UsIGp1c3QKIAkgKiBm
+YWxsIHRocm91Z2ggYW5kIHRyZWF0IGl0IGxpa2UgYSBub3JtYWwgcGFnZS4KQEAgLTQ1NSwxMiAr
+NDM4LDYgQEAgc3RhdGljIGludCBobW1fdm1hX3dhbGtfcHVkKHB1ZF90ICpwdWRwLCB1bnNpZ25l
+ZCBsb25nIHN0YXJ0LCB1bnNpZ25lZCBsb25nIGVuZCwKIAogCQlwZm4gPSBwdWRfcGZuKHB1ZCkg
+KyAoKGFkZHIgJiB+UFVEX01BU0spID4+IFBBR0VfU0hJRlQpOwogCQlmb3IgKGkgPSAwOyBpIDwg
+bnBhZ2VzOyArK2ksICsrcGZuKSB7Ci0JCQlobW1fdm1hX3dhbGstPnBnbWFwID0gZ2V0X2Rldl9w
+YWdlbWFwKHBmbiwKLQkJCQkJICAgICAgaG1tX3ZtYV93YWxrLT5wZ21hcCk7Ci0JCQlpZiAodW5s
+aWtlbHkoIWhtbV92bWFfd2Fsay0+cGdtYXApKSB7Ci0JCQkJcmV0ID0gLUVCVVNZOwotCQkJCWdv
+dG8gb3V0X3VubG9jazsKLQkJCX0KIAkJCXBmbnNbaV0gPSBobW1fZGV2aWNlX2VudHJ5X2Zyb21f
+cGZuKHJhbmdlLCBwZm4pIHwKIAkJCQkgIGNwdV9mbGFnczsKIAkJfQpAQCAtNjE0LDE1ICs1OTEs
+NiBAQCBsb25nIGhtbV9yYW5nZV9mYXVsdChzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSwgdW5zaWdu
+ZWQgaW50IGZsYWdzKQogCQkJcmV0dXJuIC1FQlVTWTsKIAkJcmV0ID0gd2Fsa19wYWdlX3Jhbmdl
+KG1tLCBobW1fdm1hX3dhbGsubGFzdCwgcmFuZ2UtPmVuZCwKIAkJCQkgICAgICAmaG1tX3dhbGtf
+b3BzLCAmaG1tX3ZtYV93YWxrKTsKLQkJLyoKLQkJICogQSBwZ21hcCBpcyBrZXB0IGNhY2hlZCBp
+biB0aGUgaG1tX3ZtYV93YWxrIHRvIGF2b2lkIGV4cGVuc2l2ZQotCQkgKiBzZWFyY2hpbmcgaW4g
+dGhlIHByb2JhYmx5IGNvbW1vbiBjYXNlIHRoYXQgdGhlIHBnbWFwIGlzIHRoZQotCQkgKiBzYW1l
+IGZvciB0aGUgZW50aXJlIHJlcXVlc3RlZCByYW5nZS4KLQkJICovCi0JCWlmIChobW1fdm1hX3dh
+bGsucGdtYXApIHsKLQkJCXB1dF9kZXZfcGFnZW1hcChobW1fdm1hX3dhbGsucGdtYXApOwotCQkJ
+aG1tX3ZtYV93YWxrLnBnbWFwID0gTlVMTDsKLQkJfQogCX0gd2hpbGUgKHJldCA9PSAtRUJVU1kp
+OwogCiAJaWYgKHJldCkKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
