@@ -1,50 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88729186C75
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 14:49:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34CD4186C77
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 14:50:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B00DA6E450;
-	Mon, 16 Mar 2020 13:49:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AEF46E451;
+	Mon, 16 Mar 2020 13:49:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2074.outbound.protection.outlook.com [40.107.94.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 937856E44F
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 13:49:54 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2042.outbound.protection.outlook.com [40.107.236.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BD7B6E44F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 13:49:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M+NGIWcTKLqhQj8x9WpXJEAG4uysFbX5UTJss5LfHUzKPS6VLEoSBuiugEzPS0Rl8M3cqNRzI/SUs4AlKzJmcv3J4CCZcTSJSbXdcKtjPg2L+ECQZVRs5YLKI2Xv5hVzRGQUCtwawt1XQ0Y0IC9voDMwunSxl/WHCMDbhsgt2DfgH+OlB4qxh4eTnwBEusL5RkCs2X6+LmTxhB4i2uz8cfbl1Vg4q6rF7ecFTp8DYyMEtUJgggPEbj+xMuGujpdcdagsF9gagqeCKF9K01WckbsmF102SBIYZ4EsyjD5qNHItI9MxULuSXNtb22dVQbMquUarGTyQ7oPD6DqikIKTg==
+ b=G1k9y3WnfJlJ/7oejqZyEbVqh8YEaU3mwmmg/TiVAwE8t3eawkNZ7bHeBH21mo2V5fTJGIGMAnz8xVR8JEoICfjo0s/wbhFbOEoS+bka+ZcOAd+8pNn+y4JiDcBmWIpLrieQ4f7/i5IQR8wq3zoTb/xVEJdmB0YVKvFeZrChoOLyTd5OT/kXY/Gf5x1775PKpGRSDazFLg5SvMvr6tfE46c2S9Nqhq6ju6Yjviq5WZ4L4s840hfveVG+Qx2j0Oo+OMS3j1crN+lA6Ddl+hKs6uputBno3Rv8pvy1BMXrAn6QKrsft+UbzR7i009ERsW9hPIlUxKRDbHwVF5n8JEu+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KEiQfwsmnBOpJZfQF7wXaTj2sv2Q14QlyNmLiHvJNUs=;
- b=T8BmaMBINnP27z6AHxFABIS13xf//lb1+uljmQAqD6wCkB13mCGjlPBt7z/doDbRzkE/3I642Zi7OAPJIOYWfoVMB2M/oT89ynJ3Qa0CHWXhw1z+2TtlWlGo+dnRqfrJsVc6WnjRTlkEU3idSnIjdYpdpKtPbh3H/3fPADMs/ebX3EAy3RvaouHP2fWOamuLKfWbB3KbXq39qRFN/fBuhKiG4baQjx/FZiGi7/5cr6Kb+lFHBq1FC+oKyUlBis2moTpB4xNYDVpsmBggGgMuC/dGODixKZUX4wRUMKg/7k4SjSioccZXkwCZNgFGPHHXq9Kj4IQfWFCM7xzXoCvzHg==
+ bh=wFLNqg05ZRdF07375UA4z7gxj6zPoazCE4NN/pV+F/w=;
+ b=jKoaNXvSY4FVgQCvCwoTq52IcXF+yMw7cxC1oXaKLVYK1gzzF8xvSB2ADEp0XLeF/FMYsRuMcy88akZMVYM+o+9E2PbOCzmcigKHZfPlYshrFgKZwStYE8yvdpsX2np+zVJ/MEu0Qmw/f7a9PPVMi7Zab6RDglfF7t7BF2cqbnoqq/tItmZ/0hEGq3cK1LQlhbjQccQ366yt/W+GKCfg3IV7x+hxLc/cQ34FST3S+WldPakE+c5ZJ5GFtZ0JzDVdqsDnsjEKujFrn8KPOyaARXRo2RPeUL+lCp6l+/zC3EK34tdmJ5Wkb/rES/v5VS+KeokkhylBwSWGPJBQw19XZg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KEiQfwsmnBOpJZfQF7wXaTj2sv2Q14QlyNmLiHvJNUs=;
- b=tSnKO9Ez2g9Il6zGWxsU/1LSfk0aZJ4ytKPCH/CtVp+tXImglpxSIzgZetDFZeXxoYPxOaKF1bmLA5n1uCSMDg9yNUTduEAhdvI4YRxQiSlqS0Z5ugehFe6bY4j97Avb/74XTsSOXLveP6Ofzx12bccz5tHQEm8PI5w4mowtd+g=
+ bh=wFLNqg05ZRdF07375UA4z7gxj6zPoazCE4NN/pV+F/w=;
+ b=DciNIGIhAMJ/LuDXjFWGlfDJcmNgfBOcjrfgLBgmKl4P4CU9eOgBV4pZs5Y1hCcF8koWNrXBh47dyVmVGR4WEKayfqseUBae2p2GkYmwMPp2mC66+Urzg36QnzraLWdNaUE/9xvJJEmXCaO1+ysJVsWXXOAF27ubpM92lL7cRTs=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
- by MW2PR12MB2396.namprd12.prod.outlook.com (2603:10b6:907:9::19) with
+ by MW2PR12MB2363.namprd12.prod.outlook.com (2603:10b6:907:f::33) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.14; Mon, 16 Mar
- 2020 13:49:53 +0000
+ 2020 13:49:54 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2814.021; Mon, 16 Mar 2020
- 13:49:53 +0000
+ 13:49:54 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 01/19] drm/amd/display: update connector->display_info after
- read edid
-Date: Mon, 16 Mar 2020 09:49:02 -0400
-Message-Id: <20200316134920.2526155-2-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 02/19] drm/amd/display: Fix test pattern color space
+ inconsistency for Linux
+Date: Mon, 16 Mar 2020 09:49:03 -0400
+Message-Id: <20200316134920.2526155-3-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200316134920.2526155-1-Rodrigo.Siqueira@amd.com>
 References: <20200316134920.2526155-1-Rodrigo.Siqueira@amd.com>
@@ -56,36 +56,36 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.amd.com (165.204.55.250) by
  YTXPR0101CA0009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.14 via Frontend Transport; Mon, 16 Mar 2020 13:49:52 +0000
+ 15.20.2814.14 via Frontend Transport; Mon, 16 Mar 2020 13:49:53 +0000
 X-Mailer: git-send-email 2.25.1
 X-Originating-IP: [165.204.55.250]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 62f7a8ed-6b88-445d-b4e4-08d7c9b0e743
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2396:|MW2PR12MB2396:
+X-MS-Office365-Filtering-Correlation-Id: fad0857b-edc3-4083-e793-08d7c9b0e7d2
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2363:|MW2PR12MB2363:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2396BFA48F4A46EAADC1FA9898F90@MW2PR12MB2396.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:530;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2363486C792FFFE1873F358A98F90@MW2PR12MB2363.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
 X-Forefront-PRVS: 03449D5DD1
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(366004)(346002)(376002)(396003)(39860400002)(199004)(7696005)(6916009)(5660300002)(26005)(36756003)(52116002)(1076003)(86362001)(66556008)(66946007)(15650500001)(66476007)(8936002)(6666004)(81166006)(81156014)(316002)(478600001)(2616005)(16526019)(2906002)(956004)(4326008)(8676002)(186003)(6486002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2396;
+ SFS:(10009020)(4636009)(396003)(136003)(346002)(376002)(39860400002)(366004)(199004)(8936002)(16526019)(478600001)(8676002)(7696005)(52116002)(186003)(81156014)(81166006)(6666004)(26005)(6916009)(54906003)(316002)(5660300002)(36756003)(66556008)(66476007)(86362001)(66946007)(2616005)(956004)(2906002)(6486002)(1076003)(4326008);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2363;
  H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ma5NSTw1Byo2gle60NccBkGoDkSurgjEfov/LNuerzmqMipCvEys54Xj8KsK78o93kcFKa1ziNYK23hQSrcVGHDdIUVFxVqVmZNpabkvWBVpAy7xZAvB0ideeRm2hsD++DEXOrV/RPM7Yf1g2xknaCoB8rqlEnb/haU9ZpCESxFSgbaORC7FIAs1xn5aNhPTp1+2qWqWnWDbqoiGPbmB9ZPegwMB+Kebu7eGNm2LdG9gx+Y0yG0F8tAiqLFTDj4YoDJJzNB3O8nBUOLz9GLBHyARthsM6w0gaPkFAeop2w9Y/OZptEJP630GJsuoDagG5jvgf/8wwpasn5UabkdLaRT6rS5TlrRvV3y96wNZzM7m0WpuKvkTvCvUG9c/Qg+g09PaRDRapByQshaR2AQjkzYECeLtqxdQixC1MPN2+w2LkhK7H0Qf4KJHwf0ZbwtL
-X-MS-Exchange-AntiSpam-MessageData: qVfuAJaxK+3EbqrIswG8W7vgc5Q4NyXuKX71abdktGLSHui9OXZUwDBKbfnkffSU6PVBchIKTK6aAHcn+7yiSLIKP+WtsL+hpDUZ/p57TjY5ti5V3dsW8gjuCyx9Uap+iddr/cnd2faSeE3PvL9c8A==
+X-Microsoft-Antispam-Message-Info: eW5z3Lmh//PJ447yBNbou8jbu6JLvE6mXMt1O70aEbfvkgVIzTY6G3d9YjLHdbcz27RDhMbaBuPMTskDvwc4TUs/yAsEvCVNAlI9m7nNnjRycNBZkQ0L5yAtfWJ+29nq0IbwIWVe4J9b8T5Xu5K2aVeBgJrrpb5f8VMoUQx+ZzLvm6Cz/kSi0moMz27eekrWHMdztRzD/bD10bPsFlfPGB56GiWHACSBNaDo3r5Q5wyScH6SDmfOMxmriOQYjNUTE2Yz0L1asnQieTANA3w6tQQyPeAhLz+8FGv76pDiW7iMVzgEeG92AU1x7K3wOFVT0eiUXDJ6cRPNzF83Uf237lQ7OMDmJGJ2TZ0YlJ+l0tKQZYc+FlvgFiyuoL5WB3QqybBrrJ0FiMhP+oLQgivVk9pxvyUdO0jL9cpYja8zA2Smue8C3feTzVaoYzv/frnn
+X-MS-Exchange-AntiSpam-MessageData: kH0UzLZt4b9ebA71BQmYPryY96F2LXH4gXS3tcXHR1ZUkopZvxK10nnWVXC+YYaJfuQACyISShy+jGrgPVc9TUBGf6h4qVhWzmZOUtPuwS+94IVRW3WsfZra17YjrF1qNbN42KcsLZMZVcTuMKGO1w==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62f7a8ed-6b88-445d-b4e4-08d7c9b0e743
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2020 13:49:52.9934 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fad0857b-edc3-4083-e793-08d7c9b0e7d2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2020 13:49:54.1577 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: q9CvRWePE35aX8AXDPPPDCteL1PexLLY2pLVO9UhYELVYDvPBAEoniCe/9PIsk4eTPxEF6MWa/y2Je7M086Z1w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2396
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7WezYvD/2VmEd8wxdOzbZDvnrl4ElrZmZ43HnikIFlzwGDoEFuqFKc+eAyVZBqBuCXwBoD6zvvtc50s/VYel8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2363
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,98 +97,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Rodrigo.Siqueira@amd.com,
- Harry.Wentland@amd.com, Hersen Wu <hersenxs.wu@amd.com>
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ "Jerry \(Fangzhi\) Zuo" <Jerry.Zuo@amd.com>, Hersen Wu <hersenxs.wu@amd.com>,
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Hersen Wu <hersenxs.wu@amd.com>
+From: "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>
 
-[Why]
-drm_connector->display_info is not passed to amdgpu_dm right way after
-read edid.
+[why]
+When reprogram MSA with updated color space, the test color space shows
+inconsistency. Linux has separate routine to set up test pattern color
+space, but it fails to configure RGB.
 
 [How]
-display_info is parsed from edid and saved into drm_connector by
-drm_connector_update_edid_proerty which is called within
-amdgpu_dm_update_connector_after_detect. call this function after read
-edid to update drm_connector->display_info
+Add RGB to test pattern.
 
-Signed-off-by: Hersen Wu <hersenxs.wu@amd.com>
-Reviewed-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Fixes: 282243fab ("dc: update MSA and VSC SDP on video test pattern request")
+Signed-off-by: Jerry (Fangzhi) Zuo <Jerry.Zuo@amd.com>
+Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  7 ++-----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h  |  3 +++
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c  | 14 ++++++++++++++
- 3 files changed, 19 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 53e64d1a923d..914ab411955a 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -132,9 +132,6 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev);
- /* removes and deallocates the drm structures, created by the above function */
- static void amdgpu_dm_destroy_drm_device(struct amdgpu_display_manager *dm);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index f822049cc590..7cbb1efb4f68 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -2674,9 +2674,12 @@ static void dp_test_send_link_test_pattern(struct dc_link *link)
+ 	break;
+ 	}
  
--static void
--amdgpu_dm_update_connector_after_detect(struct amdgpu_dm_connector *aconnector);
--
- static int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
- 				struct drm_plane *plane,
- 				unsigned long possible_crtcs,
-@@ -1896,8 +1893,8 @@ static void update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
- 	caps->aux_min_input_signal = min;
- }
+-	test_pattern_color_space = dpcd_test_params.bits.YCBCR_COEFS ?
+-			DP_TEST_PATTERN_COLOR_SPACE_YCBCR709 :
+-			DP_TEST_PATTERN_COLOR_SPACE_YCBCR601;
++	if (dpcd_test_params.bits.CLR_FORMAT == 0)
++		test_pattern_color_space = DP_TEST_PATTERN_COLOR_SPACE_RGB;
++	else
++		test_pattern_color_space = dpcd_test_params.bits.YCBCR_COEFS ?
++				DP_TEST_PATTERN_COLOR_SPACE_YCBCR709 :
++				DP_TEST_PATTERN_COLOR_SPACE_YCBCR601;
  
--static void
--amdgpu_dm_update_connector_after_detect(struct amdgpu_dm_connector *aconnector)
-+void amdgpu_dm_update_connector_after_detect(
-+		struct amdgpu_dm_connector *aconnector)
- {
- 	struct drm_connector *connector = &aconnector->base;
- 	struct drm_device *dev = connector->dev;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index ae25c4c2e18e..3f0c6298b588 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -484,6 +484,9 @@ int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc);
- int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
- 				      struct dc_plane_state *dc_plane_state);
- 
-+void amdgpu_dm_update_connector_after_detect(
-+		struct amdgpu_dm_connector *aconnector);
-+
- extern const struct drm_encoder_helper_funcs amdgpu_dm_encoder_helper_funcs;
- 
- #endif /* __AMDGPU_DM_H__ */
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index 2f2b0eb4ebcd..c20fb08c450b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -580,6 +580,20 @@ enum dc_edid_status dm_helpers_read_local_edid(
- 		/* We don't need the original edid anymore */
- 		kfree(edid);
- 
-+		/* connector->display_info will be parsed from EDID and saved
-+		 * into drm_connector->display_info from edid by call stack
-+		 * below:
-+		 * drm_parse_ycbcr420_deep_color_info
-+		 * drm_parse_hdmi_forum_vsdb
-+		 * drm_parse_cea_ext
-+		 * drm_add_display_info
-+		 * drm_connector_update_edid_property
-+		 *
-+		 * drm_connector->display_info will be used by amdgpu_dm funcs,
-+		 * like fill_stream_properties_from_drm_display_mode
-+		 */
-+		amdgpu_dm_update_connector_after_detect(aconnector);
-+
- 		edid_status = dm_helpers_parse_edid_caps(
- 						ctx,
- 						&sink->dc_edid,
+ 	dc_link_dp_set_test_pattern(
+ 			link,
 -- 
 2.25.1
 
