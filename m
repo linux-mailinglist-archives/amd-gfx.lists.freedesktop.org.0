@@ -1,91 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4EED186C86
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 14:50:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C81D418711F
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Mar 2020 18:27:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85FFB6E484;
-	Mon, 16 Mar 2020 13:50:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA616E212;
+	Mon, 16 Mar 2020 17:27:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2049.outbound.protection.outlook.com [40.107.243.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7AEF6E479
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 13:50:14 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760045.outbound.protection.outlook.com [40.107.76.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA1F66E20A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 17:27:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lyE8B1JltnPCmdJCMLHTDL1XbtSgTyw/AQAMHUWMSnuCqYJQlB9NuuCKizeS2m3AV+VCwf+ebAAOtmLCF+Xc25VHZita8vPA2VjBqDuHEJVvjdXeuW1rOeeDrRy2ymjKK5fyNnR+wQOkPouKWYNZELjgn5EOF61XKQ+QU4NeHqSxlRHGxS6CvPcuR6myij7A+I6t3wqz0HzKZC3c1BYNl/eaxjfB7ghRfNRpJ65y0AS4JfvYGpynimT2HFnTgM9bRXpNH9haKD4JfVkX86rau5N820nJhJyaq2ulMAPbQKBWTxBM/EokPTm+oshjUob8M9Jq/NiHKzRVHnBBjRIguA==
+ b=jLBkXO7PofFL5glm/9fx/zkJTT72LL1+NjSoisvTxQsphQEyMOdHmv7OUf6CaSjn0ASu0RQEop/aSN+cja5EMgSSQXBmTG//DqvKGX6qF2ohGfthEehmzouG55X9OgblPmJM1zEwRw2UBTLPFfH9vR7QGqpk1RIwhj3iB+m+F6rrbvvXFmavXn1WoHcS2lXVvHkRnecMVW3jc1p09/2Q8qfqooiRLjcPouWtQAVW3tC0tuRp0PCIuPK14KfMS1R1HqKmxH6bdRs4nu/DED1CmmbI3v2lLlQXDDb9+dexYoyca8BjdT76Zwt9RAweZWasqqv9ebHtIY3jtv0tjTODZg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4racHfru8klXxlDm5fet7rLmj0xmNEGJe/XaP7VwsxU=;
- b=nEJsydOyLhkOJaeiD6Vt7/1wjgURnW84I75hnyTLNZHXbcphQhCW7wXtnxAoQZ39b/wCFPHIlPUWR/ZKFZ78BvYYDlsdTyrMmL09EFK4Eb2h4Ol2cqZPqbSvR5OapHSaaSGdbrorhiAbI6pjt7Iic43R0JWg9FtfAhWDaYLzkjaimMJDosOyh6udwlk9Mnkn8/xRi2Tl4rRORxdTQNPEDNez9o9+P11E2sik6C9oUB9uvONxtNGEO1+fm/3IN5L9NlKEchZNJ+p6omoBkD3qxhT59O7sy5qiKA92loB3RS16yHyJYUI0KfxSHEEu+r7qhpc9sgkxoOWEJyam9CV02g==
+ bh=EdB4ifAuN6T46FhzNLqU0/e/u2KkCVY85i/FSwy63kI=;
+ b=kMR2rLlWRPCuHB9ben+y0wHiryoPZqjTOKXuY22vmz6MJE29Fr8uBue5gc7ejMqKuLkf4ExzncWwRY+MjMUslXF7ryZQe1ByoDoY9kdnDgWu/fhvBln9fhu2x6vKhxAVSNr0D2BEc++RF97kB0tHjyWIvHJHeTRnj0g7U+jdLBhjvgpqAzwoRZNJZUIG8XLKQ2aqE5PhflLT6rZb28s0uiAT/yul7PcedWE4BpfYA8eJpsMKQTq4hQabPoIH7FW6FSZAB+Uo3ms1cJkKvx8mdVr3Qzi7XeKuHAtTgGOuiLbI8P+6Lo4iW0Z5UbVC0PfX6NeuY+wnmEdLxLrQPXW3gA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4racHfru8klXxlDm5fet7rLmj0xmNEGJe/XaP7VwsxU=;
- b=A0pgMb30vDk/ZVzH3hsIBQdVUHOTXSYwhLirYubQIbP+28FeDtGyNG01/NXrboU879tQArka47YGCmaX4A2mxyFf0G63BlFeN+sDYEoqR7/AijbVKmiSEA1xueFus+HqDb+vJcMJJEj4N7JS35yWq9Lf671W5UwDw8vGIiv5Rf8=
+ bh=EdB4ifAuN6T46FhzNLqU0/e/u2KkCVY85i/FSwy63kI=;
+ b=tfc2dZSY92k9LcdyFDoqmiqAp9+euQYm8fnLF0lRJnuwGz1CMzuRB15vXEzmuFLn9uoM5O68SeaDhAWpPZMKkSgsID9JXoUceVdxpBv2vI0DJcfY/gCPHX4SZe6iHpLBgTzYDP0urd1HDia/C7eBxP/Vv4jMPYQAg/T4JWFGzf4=
 Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
-Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
- by MW2PR12MB2396.namprd12.prod.outlook.com (2603:10b6:907:9::19) with
+ smtp.mailfrom=Andrey.Grodzovsky@amd.com; 
+Received: from MWHPR12MB1453.namprd12.prod.outlook.com (2603:10b6:301:e::22)
+ by MWHPR12MB1693.namprd12.prod.outlook.com (2603:10b6:301:10::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.14; Mon, 16 Mar
- 2020 13:50:13 +0000
-Received: from MW2PR12MB2524.namprd12.prod.outlook.com
- ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
- ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2814.021; Mon, 16 Mar 2020
- 13:50:13 +0000
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.18; Mon, 16 Mar
+ 2020 17:27:38 +0000
+Received: from MWHPR12MB1453.namprd12.prod.outlook.com
+ ([fe80::610d:b9b1:dbd1:1150]) by MWHPR12MB1453.namprd12.prod.outlook.com
+ ([fe80::610d:b9b1:dbd1:1150%6]) with mapi id 15.20.2814.021; Mon, 16 Mar 2020
+ 17:27:38 +0000
+Subject: Re: [PATCH v3] drm/amdgpu: Move EEPROM I2C adapter to amdgpu_device
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 19/19] drm/amd/display: add on demand pipe merge logic for
- dcn2+
-Date: Mon, 16 Mar 2020 09:49:20 -0400
-Message-Id: <20200316134920.2526155-20-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200316134920.2526155-1-Rodrigo.Siqueira@amd.com>
-References: <20200316134920.2526155-1-Rodrigo.Siqueira@amd.com>
-X-ClientProxiedBy: YTXPR0101CA0009.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00::22) To MW2PR12MB2524.namprd12.prod.outlook.com
- (2603:10b6:907:9::27)
+References: <1584155137-9628-1-git-send-email-andrey.grodzovsky@amd.com>
+From: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
+Message-ID: <e0599f52-5cc7-e030-327d-350e9b8a1831@amd.com>
+Date: Mon, 16 Mar 2020 13:27:35 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
+In-Reply-To: <1584155137-9628-1-git-send-email-andrey.grodzovsky@amd.com>
+Content-Language: en-US
+X-ClientProxiedBy: YT1PR01CA0022.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::35)
+ To MWHPR12MB1453.namprd12.prod.outlook.com
+ (2603:10b6:301:e::22)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from atma2.amd.com (165.204.55.250) by
- YTXPR0101CA0009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::22) with Microsoft
+Received: from [172.27.231.243] (165.204.55.251) by
+ YT1PR01CA0022.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::35) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.14 via Frontend Transport; Mon, 16 Mar 2020 13:50:12 +0000
-X-Mailer: git-send-email 2.25.1
-X-Originating-IP: [165.204.55.250]
+ 15.20.2814.14 via Frontend Transport; Mon, 16 Mar 2020 17:27:37 +0000
+X-Originating-IP: [165.204.55.251]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2725cb85-5cc0-43e8-beb9-08d7c9b0f381
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2396:|MW2PR12MB2396:
+X-MS-Office365-Filtering-Correlation-Id: 73ba1d0e-c641-4743-963c-08d7c9cf5285
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1693:|MWHPR12MB1693:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB23968A2EF6F7B32F20F314AE98F90@MW2PR12MB2396.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-Microsoft-Antispam-PRVS: <MWHPR12MB1693B715ED13435EE91B26A6EAF90@MWHPR12MB1693.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
 X-Forefront-PRVS: 03449D5DD1
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(366004)(346002)(376002)(396003)(39860400002)(199004)(7696005)(6916009)(5660300002)(54906003)(26005)(36756003)(52116002)(1076003)(86362001)(66556008)(66946007)(66476007)(8936002)(6666004)(81166006)(81156014)(316002)(478600001)(2616005)(16526019)(2906002)(956004)(4326008)(8676002)(186003)(6486002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2396;
- H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ SFS:(10009020)(4636009)(346002)(396003)(136003)(376002)(366004)(39860400002)(199004)(66946007)(36756003)(2906002)(66476007)(53546011)(81166006)(86362001)(2616005)(4326008)(66556008)(31696002)(16576012)(81156014)(6486002)(956004)(8936002)(8676002)(6916009)(31686004)(52116002)(5660300002)(316002)(186003)(478600001)(16526019)(26005)(30864003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1693;
+ H:MWHPR12MB1453.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YMJW6z4vS6BRjOEyRiiEqXHC0LKfkPhcW2xoKzuoCgjBf8nb/L3aGSsjysIrpVaIKbVUPAAkRVDC3s5PM0eS5M0He1dDui1zrzKw05GKoT2TZWTBG/iutxEUBZNUh5aDermbf+Md3GPu/j3apTpZfiX+l6HZGmOBC0sldxzCZ+kX99wMPaOkvTRfUMYqzemNpjXTM0vSkuwWQLf4OL+OI0rca+7hzGWY/2w4ECkwtIqJkFDvL0j0VPqLo68XkpU20FzVtHqhMNJ2PmdCqnnT+rgGk6ZFgfSQQny76GY/slFz/JLcvomZouMj+RsTc//ivFWfJHgkxrWSxKGTnzMjHARuafV9JLbGB94rOThAATIOBvLcFG99RPWTkbFTLSnn3Uyw+rBAkRwwQ2GXoto7QOfYMPx+wubIhvUBxWPF7RgLTiDNAsvDwJ+wHfsBwCc7
-X-MS-Exchange-AntiSpam-MessageData: zmE922jUJqG6SfAwcwKVCUMVGutpnVFP7hNChEj640gNFemrIRR5jO0hSAiVl4t5PLK1OiE0uAP7aYUrsp+GhLIIHztakM02vF11JkP6eii7etB4CpewFNoNqZNB1Nj/exN3VBi+09is7GUjOZg8ow==
+X-Microsoft-Antispam-Message-Info: QSaCCeXiCCN8g1Gbe6TEy1hPIO/fkF9IcF8gU7vmB7YSTLqXy1GjWF1D57CEOlf/3uLxnKiiNt/6GgKPuIERnvpMHx4PdwC4KLf6La2N3ChYOOfTz0BLbjkS3Z01sTxf52IWYZRx3UBlqWbUK5Ni4fiTW9nvOGmaHoxRZNNCEj3DDskTbdC8P16ybe8xwg4OGfy7VeKtaua6g0rrw1H2QLEbJQpNNuyomT1INRYlrW9WK9uLnXmo/jpyHoayKzXrjSoDZ9nfm1KXFLsOK7dcCA5MPvDhEvvsqkNsqYmO3Qsv7bxui6MR6o1qyx4LKVLcuipMVvR6cVPOR4KoGwsTbKQuJ9G/pN75fRlJFdyimYHHprGCbldToL4y5UW9aijDLH5Duzb+dhDZyK70D3jH8ssFVKxfbZzLQtoiRBboTHa4Qu498RFCvRoZgPuS0Q84
+X-MS-Exchange-AntiSpam-MessageData: NoICTd4FByFyN7zbZNxkPuOKKZi8sTb5AdrJWkDUzFyCLL3XA+wlIfHZb3hjc/n29BxsUdRe0lDxkP5tXZiFuAXAQCSrmMsjudQhnKGYTpmRGWXYILQV585KIPJAu559l+iK8vLZAf18lM0Ot7FF5Q==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2725cb85-5cc0-43e8-beb9-08d7c9b0f381
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2020 13:50:13.6136 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73ba1d0e-c641-4743-963c-08d7c9cf5285
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2020 17:27:37.9182 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MGSueK6dIYQPlVJ7iNIrjo1mJTxHJ2fVKkLpd7a3vzWY4AcjXVozZQM+ry6iKgiRTmjRtrZPiXqDBTNmrBEcJQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2396
+X-MS-Exchange-CrossTenant-UserPrincipalName: MU5atoqpoO403NubLFyELzeIoqAi+2uqFbxljhPWEAEPrACeKgbk+ML2d1PGCLBr73yYHSdC3ChIq7sXD6LPFw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1693
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,203 +97,324 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Park <Chris.Park@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Rodrigo.Siqueira@amd.com, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- Bhawanpreet.Lakha@amd.com
-Content-Type: text/plain; charset="us-ascii"
+Cc: Alexander.Deucher@amd.com, Kent.Russell@amd.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Ping
 
-Adds logic that will determine if pipes need merging during validation.
+Andrey
 
-Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
-Reviewed-by: Chris Park <Chris.Park@amd.com>
-Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
----
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  7 ++-
- .../drm/amd/display/dc/dcn20/dcn20_resource.c | 56 +++++++++++++++----
- .../drm/amd/display/dc/dcn20/dcn20_resource.h |  9 +--
- 3 files changed, 56 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 3a1a5aef524d..75c7ce4c7581 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -893,6 +893,7 @@ static void calculate_inits_and_adj_vp(struct pipe_ctx *pipe_ctx)
- 	int vpc_div = (data->format == PIXEL_FORMAT_420BPP8
- 			|| data->format == PIXEL_FORMAT_420BPP10) ? 2 : 1;
- 	bool orthogonal_rotation, flip_vert_scan_dir, flip_horz_scan_dir;
-+	int odm_idx = 0;
- 
- 	/*
- 	 * Need to calculate the scan direction for viewport to make adjustments
-@@ -924,11 +925,13 @@ static void calculate_inits_and_adj_vp(struct pipe_ctx *pipe_ctx)
- 					* stream->dst.width / stream->src.width -
- 					src.x * plane_state->dst_rect.width / src.width
- 					* stream->dst.width / stream->src.width);
--	/*modified recout_skip_h calculation due to odm having no recout offset caused by split*/
-+	/*modified recout_skip_h calculation due to odm having no recout offset*/
- 	while (odm_pipe) {
--		recout_skip_h += odm_pipe->plane_res.scl_data.recout.width + odm_pipe->plane_res.scl_data.recout.x;
-+		odm_idx++;
- 		odm_pipe = odm_pipe->prev_odm_pipe;
- 	}
-+	if (odm_idx)
-+		recout_skip_h += odm_idx * data->recout.width;
- 
- 	recout_skip_v = data->recout.y - (stream->dst.y + (plane_state->dst_rect.y - stream->src.y)
- 					* stream->dst.height / stream->src.height -
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index e25ed6235812..a67395208991 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -1671,7 +1671,7 @@ static void acquire_dsc(struct resource_context *res_ctx,
- 		}
- }
- 
--static void release_dsc(struct resource_context *res_ctx,
-+void dcn20_release_dsc(struct resource_context *res_ctx,
- 			const struct resource_pool *pool,
- 			struct display_stream_compressor **dsc)
- {
-@@ -1731,7 +1731,7 @@ static enum dc_status remove_dsc_from_stream_resource(struct dc *dc,
- 			pipe_ctx = &new_ctx->res_ctx.pipe_ctx[i];
- 
- 			if (pipe_ctx->stream_res.dsc)
--				release_dsc(&new_ctx->res_ctx, dc->res_pool, &pipe_ctx->stream_res.dsc);
-+				dcn20_release_dsc(&new_ctx->res_ctx, dc->res_pool, &pipe_ctx->stream_res.dsc);
- 		}
- 	}
- 
-@@ -2502,7 +2502,7 @@ struct pipe_ctx *dcn20_find_secondary_pipe(struct dc *dc,
- 	return secondary_pipe;
- }
- 
--void dcn20_merge_pipes_for_validate(
-+static void dcn20_merge_pipes_for_validate(
- 		struct dc *dc,
- 		struct dc_state *context)
- {
-@@ -2527,7 +2527,7 @@ void dcn20_merge_pipes_for_validate(
- 			odm_pipe->prev_odm_pipe = NULL;
- 			odm_pipe->next_odm_pipe = NULL;
- 			if (odm_pipe->stream_res.dsc)
--				release_dsc(&context->res_ctx, dc->res_pool, &odm_pipe->stream_res.dsc);
-+				dcn20_release_dsc(&context->res_ctx, dc->res_pool, &odm_pipe->stream_res.dsc);
- 			/* Clear plane_res and stream_res */
- 			memset(&odm_pipe->plane_res, 0, sizeof(odm_pipe->plane_res));
- 			memset(&odm_pipe->stream_res, 0, sizeof(odm_pipe->stream_res));
-@@ -2565,7 +2565,8 @@ int dcn20_validate_apply_pipe_split_flags(
- 		struct dc *dc,
- 		struct dc_state *context,
- 		int vlevel,
--		bool *split)
-+		bool *split,
-+		bool *merge)
- {
- 	int i, pipe_idx, vlevel_split;
- 	int plane_count = 0;
-@@ -2609,11 +2610,12 @@ int dcn20_validate_apply_pipe_split_flags(
- 	/* Split loop sets which pipe should be split based on dml outputs and dc flags */
- 	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
- 		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
-+		int pipe_plane = context->bw_ctx.dml.vba.pipe_plane[pipe_idx];
- 
- 		if (!context->res_ctx.pipe_ctx[i].stream)
- 			continue;
- 
--		if (force_split || context->bw_ctx.dml.vba.NoOfDPP[vlevel][context->bw_ctx.dml.vba.maxMpcComb][pipe_idx] > 1)
-+		if (force_split || context->bw_ctx.dml.vba.NoOfDPP[vlevel][context->bw_ctx.dml.vba.maxMpcComb][pipe_plane] > 1)
- 			split[i] = true;
- 		if ((pipe->stream->view_format ==
- 				VIEW_3D_FORMAT_SIDE_BY_SIDE ||
-@@ -2626,10 +2628,44 @@ int dcn20_validate_apply_pipe_split_flags(
- 			split[i] = true;
- 		if (dc->debug.force_odm_combine & (1 << pipe->stream_res.tg->inst)) {
- 			split[i] = true;
--			context->bw_ctx.dml.vba.ODMCombineEnablePerState[vlevel][pipe_idx] = dm_odm_combine_mode_2to1;
-+			context->bw_ctx.dml.vba.ODMCombineEnablePerState[vlevel][pipe_plane] = dm_odm_combine_mode_2to1;
- 		}
--		context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_idx] =
--			context->bw_ctx.dml.vba.ODMCombineEnablePerState[vlevel][pipe_idx];
-+		context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_plane] =
-+			context->bw_ctx.dml.vba.ODMCombineEnablePerState[vlevel][pipe_plane];
-+
-+		if (pipe->prev_odm_pipe && context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_plane] != dm_odm_combine_mode_disabled) {
-+			/*Already split odm pipe tree, don't try to split again*/
-+			split[i] = false;
-+			split[pipe->prev_odm_pipe->pipe_idx] = false;
-+		} else if (pipe->top_pipe && pipe->plane_state == pipe->top_pipe->plane_state
-+				&& context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_plane] == dm_odm_combine_mode_disabled) {
-+			/*Already split mpc tree, don't try to split again, assumes only 2x mpc combine*/
-+			split[i] = false;
-+			split[pipe->top_pipe->pipe_idx] = false;
-+		} else if (pipe->prev_odm_pipe || (pipe->top_pipe && pipe->plane_state == pipe->top_pipe->plane_state)) {
-+			if (split[i] == false) {
-+				/*Exiting mpc/odm combine*/
-+				merge[i] = true;
-+				if (pipe->prev_odm_pipe) {
-+					ASSERT(0); /*should not actually happen yet*/
-+					merge[pipe->prev_odm_pipe->pipe_idx] = true;
-+				} else
-+					merge[pipe->top_pipe->pipe_idx] = true;
-+			} else {
-+				/*Transition from mpc combine to odm combine or vice versa*/
-+				ASSERT(0); /*should not actually happen yet*/
-+				split[i] = true;
-+				merge[i] = true;
-+				if (pipe->prev_odm_pipe) {
-+					split[pipe->prev_odm_pipe->pipe_idx] = true;
-+					merge[pipe->prev_odm_pipe->pipe_idx] = true;
-+				} else {
-+					split[pipe->top_pipe->pipe_idx] = true;
-+					merge[pipe->top_pipe->pipe_idx] = true;
-+				}
-+			}
-+		}
-+
- 		/* Adjust dppclk when split is forced, do not bother with dispclk */
- 		if (split[i] && context->bw_ctx.dml.vba.NoOfDPP[vlevel][context->bw_ctx.dml.vba.maxMpcComb][pipe_idx] == 1)
- 			context->bw_ctx.dml.vba.RequiredDPPCLK[vlevel][context->bw_ctx.dml.vba.maxMpcComb][pipe_idx] /= 2;
-@@ -2671,7 +2707,7 @@ bool dcn20_fast_validate_bw(
- 	if (vlevel > context->bw_ctx.dml.soc.num_states)
- 		goto validate_fail;
- 
--	vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split);
-+	vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, NULL);
- 
- 	/*initialize pipe_just_split_from to invalid idx*/
- 	for (i = 0; i < MAX_PIPES; i++)
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-index 5eadca0ae7ec..9d5bff9455fd 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-@@ -119,14 +119,15 @@ void dcn20_set_mcif_arb_params(
- 		display_e2e_pipe_params_st *pipes,
- 		int pipe_cnt);
- bool dcn20_validate_bandwidth(struct dc *dc, struct dc_state *context, bool fast_validate);
--void dcn20_merge_pipes_for_validate(
--		struct dc *dc,
--		struct dc_state *context);
- int dcn20_validate_apply_pipe_split_flags(
- 		struct dc *dc,
- 		struct dc_state *context,
- 		int vlevel,
--		bool *split);
-+		bool *split,
-+		bool *merge);
-+void dcn20_release_dsc(struct resource_context *res_ctx,
-+			const struct resource_pool *pool,
-+			struct display_stream_compressor **dsc);
- bool dcn20_validate_dsc(struct dc *dc, struct dc_state *new_ctx);
- void dcn20_split_stream_for_mpc(
- 		struct resource_context *res_ctx,
--- 
-2.25.1
-
+On 3/13/20 11:05 PM, Andrey Grodzovsky wrote:
+> Puts the i2c adapter in common place for sharing by RAS
+> and upcoming data read from FRU EEPROM feature.
+>
+> v2:
+> Move i2c adapter to amdgpu_pm and rename it.
+>
+> v3: Move i2c adapter init to ASIC specific code and get rid
+> of the switch case in amdgpu_device
+>
+> Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h            |  2 +
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c     | 48 ++++------------------
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h     |  2 -
+>   drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c         | 14 ++++---
+>   drivers/gpu/drm/amd/powerplay/amdgpu_smu.c         | 10 +++++
+>   drivers/gpu/drm/amd/powerplay/arcturus_ppt.c       |  4 +-
+>   .../gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c   | 11 +++++
+>   7 files changed, 41 insertions(+), 50 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
+> index 1685794..936d85a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
+> @@ -448,6 +448,8 @@ struct amdgpu_pm {
+>   	/* powerplay feature */
+>   	uint32_t pp_feature;
+>   
+> +	/* Used for I2C access to various EEPROMs on relevant ASICs */
+> +	struct i2c_adapter smu_i2c;
+>   };
+>   
+>   #define R600_SSTU_DFLT                               0
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> index ed15b1f..c009609 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+> @@ -25,7 +25,6 @@
+>   #include "amdgpu.h"
+>   #include "amdgpu_ras.h"
+>   #include <linux/bits.h>
+> -#include "smu_v11_0_i2c.h"
+>   #include "atom.h"
+>   
+>   #define EEPROM_I2C_TARGET_ADDR_VEGA20    	0xA0
+> @@ -124,6 +123,7 @@ static int __update_table_header(struct amdgpu_ras_eeprom_control *control,
+>   				 unsigned char *buff)
+>   {
+>   	int ret = 0;
+> +	struct amdgpu_device *adev = to_amdgpu_device(control);
+>   	struct i2c_msg msg = {
+>   			.addr	= 0,
+>   			.flags	= 0,
+> @@ -137,7 +137,7 @@ static int __update_table_header(struct amdgpu_ras_eeprom_control *control,
+>   
+>   	msg.addr = control->i2c_address;
+>   
+> -	ret = i2c_transfer(&control->eeprom_accessor, &msg, 1);
+> +	ret = i2c_transfer(&adev->pm.smu_i2c, &msg, 1);
+>   	if (ret < 1)
+>   		DRM_ERROR("Failed to write EEPROM table header, ret:%d", ret);
+>   
+> @@ -251,33 +251,18 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control)
+>   			.buf	= buff,
+>   	};
+>   
+> +	/* Verify i2c adapter is initialized */
+> +	if (!adev->pm.smu_i2c.algo)
+> +		return -ENOENT;
+> +
+>   	if (!__get_eeprom_i2c_addr(adev, &control->i2c_address))
+>   		return -EINVAL;
+>   
+>   	mutex_init(&control->tbl_mutex);
+>   
+> -	switch (adev->asic_type) {
+> -	case CHIP_VEGA20:
+> -		ret = smu_v11_0_i2c_eeprom_control_init(&control->eeprom_accessor);
+> -		break;
+> -
+> -	case CHIP_ARCTURUS:
+> -		ret = smu_i2c_eeprom_init(&adev->smu, &control->eeprom_accessor);
+> -		break;
+> -
+> -	default:
+> -		return 0;
+> -	}
+> -
+> -	if (ret) {
+> -		DRM_ERROR("Failed to init I2C controller, ret:%d", ret);
+> -		return ret;
+> -	}
+> -
+>   	msg.addr = control->i2c_address;
+> -
+>   	/* Read/Create table header from EEPROM address 0 */
+> -	ret = i2c_transfer(&control->eeprom_accessor, &msg, 1);
+> +	ret = i2c_transfer(&adev->pm.smu_i2c, &msg, 1);
+>   	if (ret < 1) {
+>   		DRM_ERROR("Failed to read EEPROM table header, ret:%d", ret);
+>   		return ret;
+> @@ -303,23 +288,6 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control)
+>   	return ret == 1 ? 0 : -EIO;
+>   }
+>   
+> -void amdgpu_ras_eeprom_fini(struct amdgpu_ras_eeprom_control *control)
+> -{
+> -	struct amdgpu_device *adev = to_amdgpu_device(control);
+> -
+> -	switch (adev->asic_type) {
+> -	case CHIP_VEGA20:
+> -		smu_v11_0_i2c_eeprom_control_fini(&control->eeprom_accessor);
+> -		break;
+> -	case CHIP_ARCTURUS:
+> -		smu_i2c_eeprom_fini(&adev->smu, &control->eeprom_accessor);
+> -		break;
+> -
+> -	default:
+> -		return;
+> -	}
+> -}
+> -
+>   static void __encode_table_record_to_buff(struct amdgpu_ras_eeprom_control *control,
+>   					  struct eeprom_table_record *record,
+>   					  unsigned char *buff)
+> @@ -476,7 +444,7 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+>   		control->next_addr += EEPROM_TABLE_RECORD_SIZE;
+>   	}
+>   
+> -	ret = i2c_transfer(&control->eeprom_accessor, msgs, num);
+> +	ret = i2c_transfer(&adev->pm.smu_i2c, msgs, num);
+>   	if (ret < 1) {
+>   		DRM_ERROR("Failed to process EEPROM table records, ret:%d", ret);
+>   
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+> index ca78f81..7e8647a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+> @@ -44,7 +44,6 @@ struct amdgpu_ras_eeprom_table_header {
+>   
+>   struct amdgpu_ras_eeprom_control {
+>   	struct amdgpu_ras_eeprom_table_header tbl_hdr;
+> -	struct i2c_adapter eeprom_accessor;
+>   	uint32_t next_addr;
+>   	unsigned int num_recs;
+>   	struct mutex tbl_mutex;
+> @@ -79,7 +78,6 @@ struct eeprom_table_record {
+>   }__attribute__((__packed__));
+>   
+>   int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control);
+> -void amdgpu_ras_eeprom_fini(struct amdgpu_ras_eeprom_control *control);
+>   int amdgpu_ras_eeprom_reset_table(struct amdgpu_ras_eeprom_control *control);
+>   
+>   int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c b/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
+> index c902f26..9bffbab 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
+> @@ -46,8 +46,7 @@
+>   #define I2C_NO_STOP	1
+>   #define I2C_RESTART	2
+>   
+> -#define to_amdgpu_device(x) (container_of(x, struct amdgpu_ras, eeprom_control.eeprom_accessor))->adev
+> -#define to_eeprom_control(x) container_of(x, struct amdgpu_ras_eeprom_control, eeprom_accessor)
+> +#define to_amdgpu_device(x) (container_of(x, struct amdgpu_device, pm.smu_i2c))
+>   
+>   static void smu_v11_0_i2c_set_clock_gating(struct i2c_adapter *control, bool en)
+>   {
+> @@ -592,7 +591,8 @@ static uint32_t smu_v11_0_i2c_eeprom_write_data(struct i2c_adapter *control,
+>   
+>   static void lock_bus(struct i2c_adapter *i2c, unsigned int flags)
+>   {
+> -	struct amdgpu_ras_eeprom_control *control = to_eeprom_control(i2c);
+> +	struct amdgpu_device *adev = to_amdgpu_device(i2c);
+> +	struct amdgpu_ras_eeprom_control *control = &adev->psp.ras.ras->eeprom_control;
+>   
+>   	if (!smu_v11_0_i2c_bus_lock(i2c)) {
+>   		DRM_ERROR("Failed to lock the bus from SMU");
+> @@ -610,7 +610,8 @@ static int trylock_bus(struct i2c_adapter *i2c, unsigned int flags)
+>   
+>   static void unlock_bus(struct i2c_adapter *i2c, unsigned int flags)
+>   {
+> -	struct amdgpu_ras_eeprom_control *control = to_eeprom_control(i2c);
+> +	struct amdgpu_device *adev = to_amdgpu_device(i2c);
+> +	struct amdgpu_ras_eeprom_control *control = &adev->psp.ras.ras->eeprom_control;
+>   
+>   	if (!smu_v11_0_i2c_bus_unlock(i2c)) {
+>   		DRM_ERROR("Failed to unlock the bus from SMU");
+> @@ -630,7 +631,8 @@ static int smu_v11_0_i2c_eeprom_i2c_xfer(struct i2c_adapter *i2c_adap,
+>   			      struct i2c_msg *msgs, int num)
+>   {
+>   	int i, ret;
+> -	struct amdgpu_ras_eeprom_control *control = to_eeprom_control(i2c_adap);
+> +	struct amdgpu_device *adev = to_amdgpu_device(i2c_adap);
+> +	struct amdgpu_ras_eeprom_control *control = &adev->psp.ras.ras->eeprom_control;
+>   
+>   	if (!control->bus_locked) {
+>   		DRM_ERROR("I2C bus unlocked, stopping transaction!");
+> @@ -679,7 +681,7 @@ int smu_v11_0_i2c_eeprom_control_init(struct i2c_adapter *control)
+>   	control->class = I2C_CLASS_SPD;
+>   	control->dev.parent = &adev->pdev->dev;
+>   	control->algo = &smu_v11_0_i2c_eeprom_i2c_algo;
+> -	snprintf(control->name, sizeof(control->name), "RAS EEPROM");
+> +	snprintf(control->name, sizeof(control->name), "AMDGPU EEPROM");
+>   	control->lock_ops = &smu_v11_0_i2c_i2c_lock_ops;
+>   
+>   	res = i2c_add_adapter(control);
+> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> index 8de8436..0273c63 100644
+> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> @@ -932,6 +932,13 @@ static int smu_sw_init(void *handle)
+>   		return ret;
+>   	}
+>   
+> +	if (adev->smu.ppt_funcs->i2c_eeprom_init) {
+> +		ret = smu_i2c_eeprom_init(smu, &adev->pm.smu_i2c);
+> +
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>   	return 0;
+>   }
+>   
+> @@ -941,6 +948,9 @@ static int smu_sw_fini(void *handle)
+>   	struct smu_context *smu = &adev->smu;
+>   	int ret;
+>   
+> +	if (adev->smu.ppt_funcs->i2c_eeprom_fini)
+> +		smu_i2c_eeprom_fini(smu, &adev->pm.smu_i2c);
+> +
+>   	kfree(smu->irq_source);
+>   	smu->irq_source = NULL;
+>   
+> diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+> index 61596e8..c6d3bef 100644
+> --- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+> +++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+> @@ -41,7 +41,7 @@
+>   #include <linux/pci.h>
+>   #include "amdgpu_ras.h"
+>   
+> -#define to_amdgpu_device(x) (container_of(x, struct amdgpu_ras, eeprom_control.eeprom_accessor))->adev
+> +#define to_amdgpu_device(x) (container_of(x, struct amdgpu_device, pm.smu_i2c))
+>   
+>   #define CTF_OFFSET_EDGE			5
+>   #define CTF_OFFSET_HOTSPOT		5
+> @@ -2190,7 +2190,7 @@ static int arcturus_i2c_eeprom_control_init(struct i2c_adapter *control)
+>   	control->class = I2C_CLASS_SPD;
+>   	control->dev.parent = &adev->pdev->dev;
+>   	control->algo = &arcturus_i2c_eeprom_i2c_algo;
+> -	snprintf(control->name, sizeof(control->name), "RAS EEPROM");
+> +	snprintf(control->name, sizeof(control->name), "AMDGPU EEPROM");
+>   
+>   	res = i2c_add_adapter(control);
+>   	if (res)
+> diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c b/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c
+> index 49e5ef3..16aa171 100644
+> --- a/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c
+> +++ b/drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c
+> @@ -33,6 +33,8 @@
+>   #include "smu7_smumgr.h"
+>   #include "vega20_hwmgr.h"
+>   
+> +#include "smu_v11_0_i2c.h"
+> +
+>   /* MP Apertures */
+>   #define MP0_Public			0x03800000
+>   #define MP0_SRAM			0x03900000
+> @@ -406,6 +408,7 @@ static int vega20_smu_init(struct pp_hwmgr *hwmgr)
+>   	struct vega20_smumgr *priv;
+>   	unsigned long tools_size = 0x19000;
+>   	int ret = 0;
+> +	struct amdgpu_device *adev = hwmgr->adev;
+>   
+>   	struct cgs_firmware_info info = {0};
+>   
+> @@ -505,6 +508,10 @@ static int vega20_smu_init(struct pp_hwmgr *hwmgr)
+>   	priv->smu_tables.entry[TABLE_ACTIVITY_MONITOR_COEFF].version = 0x01;
+>   	priv->smu_tables.entry[TABLE_ACTIVITY_MONITOR_COEFF].size = sizeof(DpmActivityMonitorCoeffInt_t);
+>   
+> +	ret = smu_v11_0_i2c_eeprom_control_init(&adev->pm.smu_i2c);
+> +	if (ret)
+> +		goto err4;
+> +
+>   	return 0;
+>   
+>   err4:
+> @@ -537,6 +544,9 @@ static int vega20_smu_fini(struct pp_hwmgr *hwmgr)
+>   {
+>   	struct vega20_smumgr *priv =
+>   			(struct vega20_smumgr *)(hwmgr->smu_backend);
+> +	struct amdgpu_device *adev = hwmgr->adev;
+> +
+> +	smu_v11_0_i2c_eeprom_control_fini(&adev->pm.smu_i2c);
+>   
+>   	if (priv) {
+>   		amdgpu_bo_free_kernel(&priv->smu_tables.entry[TABLE_PPTABLE].handle,
+> @@ -560,6 +570,7 @@ static int vega20_smu_fini(struct pp_hwmgr *hwmgr)
+>   		kfree(hwmgr->smu_backend);
+>   		hwmgr->smu_backend = NULL;
+>   	}
+> +
+>   	return 0;
+>   }
+>   
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
