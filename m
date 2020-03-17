@@ -1,42 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 951F618864E
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2020 14:50:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03FCC188653
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2020 14:50:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E53F66E154;
-	Tue, 17 Mar 2020 13:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A731D6E16D;
+	Tue, 17 Mar 2020 13:50:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-40132.protonmail.ch (mail-40132.protonmail.ch
- [185.70.40.132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB991898C4;
- Tue, 17 Mar 2020 07:51:34 +0000 (UTC)
-Date: Tue, 17 Mar 2020 07:51:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=default; t=1584431492;
- bh=EMEzGbH6WJQeMEfxN2A/GbEd2U+BF9wqqyChVAQMkhE=;
- h=Date:To:From:Reply-To:Subject:Feedback-ID:From;
- b=JPgYX9TLqIoTOB7e7l2l6ATtohqNCUVI1trv340NRMugeAsRquBaoHRfaauHFCwQV
- yILKLrmsiEBt73+YXTJqXtLKqEdqPjMZMbrHDcYm4e/xuhXcLa4Q49zi1beD/IWdWS
- fPJO/0OqEwrTFjNVh1JElFyygc1T8K+NKuX/06JA=
-To: "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "David1.Zhou@amd.com" <David1.Zhou@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "airlied@linux.ie" <airlied@linux.ie>, "daniel@ffwll.ch" <daniel@ffwll.ch>
-From: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH] Remove stable HAINAN board from max_sclk override check in
- radeon and amdgpu modules
-Message-ID: <SXhX80OoFKMCVNQM9khl9rN_3bsGdi2f6kiyvATRPj9w6_VqgIMqDqd5pPYK3OMFlHFaW1ln8wYqg2DXk4yyZIHJHeaCoaYj8EMmR52vf1U=@protonmail.com>
-Feedback-ID: v3gTakqywBIYXeKntrQ6yy6583pNqH_nSJEjbgzjmBjMaZTDq3nLe0D-jSYppQY2NgolnS_R3Ad-LHjkRMDnTQ==:Ext:ProtonMail
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5308C89CE2;
+ Tue, 17 Mar 2020 11:47:51 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1jEAhI-0001oQ-SQ; Tue, 17 Mar 2020 11:47:49 +0000
+From: Colin King <colin.king@canonical.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Zhou <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH][next] drm: amd: fix spelling mistake "shoudn't" -> "shouldn't"
+Date: Tue, 17 Mar 2020 11:47:48 +0000
+Message-Id: <20200317114748.388420-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=7.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
- autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on mail.protonmail.ch
 X-Mailman-Approved-At: Tue, 17 Mar 2020 13:50:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,43 +41,63 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+From: Colin Ian King <colin.king@canonical.com>
+
+There are spelling mistakes in pr_err messages and a comment. Fix these.
+
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
 ---
- drivers/gpu/drm/amd/amdgpu/si_dpm.c | 1 -
- drivers/gpu/drm/radeon/si_dpm.c     | 1 -
- 2 files changed, 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c       | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c        | 2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/si_dpm.c b/drivers/gpu/drm/amd/amdgpu/si_dpm.c
-index 4cb4c891120b..0860e85a2d35 100644
---- a/drivers/gpu/drm/amd/amdgpu/si_dpm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/si_dpm.c
-@@ -3439,7 +3439,6 @@ static void si_apply_state_adjust_rules(struct amdgpu_device *adev,
-
- 	if (adev->asic_type == CHIP_HAINAN) {
- 		if ((adev->pdev->revision == 0x81) ||
--		    (adev->pdev->revision == 0x83) ||
- 		    (adev->pdev->revision == 0xC3) ||
- 		    (adev->pdev->device == 0x6664) ||
- 		    (adev->pdev->device == 0x6665) ||
-diff --git a/drivers/gpu/drm/radeon/si_dpm.c b/drivers/gpu/drm/radeon/si_dpm.c
-index 05e8b4d0af3f..2cb85dbe728f 100644
---- a/drivers/gpu/drm/radeon/si_dpm.c
-+++ b/drivers/gpu/drm/radeon/si_dpm.c
-@@ -2979,7 +2979,6 @@ static void si_apply_state_adjust_rules(struct radeon_device *rdev,
-
- 	if (rdev->family == CHIP_HAINAN) {
- 		if ((rdev->pdev->revision == 0x81) ||
--		    (rdev->pdev->revision == 0x83) ||
- 		    (rdev->pdev->revision == 0xC3) ||
- 		    (rdev->pdev->device == 0x6664) ||
- 		    (rdev->pdev->device == 0x6665) ||
---
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index d1cdcb404f7c..4bdf425ca6d8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -246,7 +246,7 @@ static void gfx_v10_rlcg_wreg(struct amdgpu_device *adev, u32 offset, u32 v)
+ 	grbm_idx = adev->reg_offset[GC_HWIP][0][mmGRBM_GFX_INDEX_BASE_IDX] + mmGRBM_GFX_INDEX;
+ 
+ 	if (amdgpu_sriov_runtime(adev)) {
+-		pr_err("shoudn't call rlcg write register during runtime\n");
++		pr_err("shouldn't call rlcg write register during runtime\n");
+ 		return;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 7bc2486167e7..2dd40f23ce83 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -747,7 +747,7 @@ void gfx_v9_0_rlcg_wreg(struct amdgpu_device *adev, u32 offset, u32 v)
+ 	grbm_idx = adev->reg_offset[GC_HWIP][0][mmGRBM_GFX_INDEX_BASE_IDX] + mmGRBM_GFX_INDEX;
+ 
+ 	if (amdgpu_sriov_runtime(adev)) {
+-		pr_err("shoudn't call rlcg write register during runtime\n");
++		pr_err("shouldn't call rlcg write register during runtime\n");
+ 		return;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
+index bb77b8890e77..78714f9a8b11 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
+@@ -316,7 +316,7 @@ static void kfd_init_apertures_vi(struct kfd_process_device *pdd, uint8_t id)
+ {
+ 	/*
+ 	 * node id couldn't be 0 - the three MSB bits of
+-	 * aperture shoudn't be 0
++	 * aperture shouldn't be 0
+ 	 */
+ 	pdd->lds_base = MAKE_LDS_APP_BASE_VI();
+ 	pdd->lds_limit = MAKE_LDS_APP_LIMIT(pdd->lds_base);
+-- 
 2.25.1
 
 _______________________________________________
