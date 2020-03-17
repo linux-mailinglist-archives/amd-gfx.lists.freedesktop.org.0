@@ -1,56 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D7CD188652
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2020 14:50:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03DA218864D
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2020 14:50:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE196E16B;
-	Tue, 17 Mar 2020 13:50:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2CCC6E151;
+	Tue, 17 Mar 2020 13:50:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
- [IPv6:2607:f8b0:4864:20::542])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 312F96E0B6;
- Tue, 17 Mar 2020 11:56:59 +0000 (UTC)
-Received: by mail-pg1-x542.google.com with SMTP id 7so11623800pgr.2;
- Tue, 17 Mar 2020 04:56:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=reLOWOkyOr/OEERg8SMjO4vQQYztbY0LPaW1Ag7Mvu0=;
- b=a5dL+3hZYsRgN+XL4RosZQPVyQLcy0j1su9Kf57V6u2Jr/P3sqGGhHYMIWlZv3oIxF
- ztkVNkJhzj/t8Ru4sXhR0EvUpnx0W6rGsUGJyS22tr3oGpybjDfSlAwLNMT07FKcGPx5
- gQP/ymAfjCI1/QEnZdEqDRx2MBdhJhGm5gU8YpiNj2lQw0dUYhggrlbrtaCUgOPRAD5P
- HxMfha+m+rLlO223wfXTmat4mLe4LZMQLtE+k7wQZcIBMIu5IpeYh7o+M4Os3Nm2hIo7
- 54gmj3aPVEPKNuPumepEG6kl4kMGKz4qS1rwIM7Pn9NA4D+vx79sLBh1Rd3l2fjYPnaO
- p75g==
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
+ [IPv6:2607:f8b0:4864:20::843])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECDEA89E23
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 12:15:39 +0000 (UTC)
+Received: by mail-qt1-x843.google.com with SMTP id m33so17137630qtb.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 05:15:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=embLdYCC+n7Oc9s6Q8ZHyjDJLIa4kBbr1h9BCOMYbH4=;
+ b=SQzUEb66s7EkVHhGjTvINACKhElAAylB3fP+JIE5uJtINxUSWP+viORRExV6sx6htD
+ HpVjFFlfhYosV5Dtv6arQkz6yiV2Baf2i4b1LfAOirqSi7orDhzKcNalylzPx3FE1iin
+ oP+wLU4hopi4dKyJTpvXWz51qQrzPAGcS4kKz84+9KAoAC2yW49o3KG6agUJaN37k6yK
+ HuepGzVyNECsPyMpp1CtLxq1h9Taueop5kQtr0Zv8iKdXRs41vSS5Kb4H/Sh9sxSVbBi
+ Mn9h5qwb5Z+4eSnt+xfXYW9HjJYHq+hghoj++xGbpVpzLV1xGx/h/5X4aTndQ1jk78Xd
+ Y1OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=reLOWOkyOr/OEERg8SMjO4vQQYztbY0LPaW1Ag7Mvu0=;
- b=DQCm82hNaWPR8lbazadJI4aYWmMnxsZkFNUuLGyl6DQ0Kvk5v6Z0NKD+d+MO4VEWMT
- PY2OJ78ci+Py96XHHffqAIDu0/EgTs5ilM+BUeERcXG29t/sE0P1CRp1EMIK8lk+V0tP
- vFPbUmr846uSFq0EnkYP8qkNUffze9spJo7lUl5FYTjGp2bO9akVzb+CIcsa3uaJTLGx
- L8in43mahslqD8hi+GLJ42A2du5qCaeXrdls3IR+sd9Hkr0BHqhY7DZirBq7KqeQwbPV
- X52IjBMbNttPfUJHOsKzk53J70kWsjTAjr3vH3LPTX/OXXz+GPY5s5IUG4kNLx6r4ISI
- glsw==
-X-Gm-Message-State: ANhLgQ3aH9S3tg+Zyn/0pripwb9QTyIQPMrYkknbVDsw0dw0T03FzdQv
- GTMoiQ65FbS2jX9PpBtQxFk=
-X-Google-Smtp-Source: ADFU+vsonZ4VgH7OBfq/2iUoI9YURQEAVqgFARtnFAPYb/E8KAYpc3AGx2SzdldWShrappeNUHCsMA==
-X-Received: by 2002:a63:fc52:: with SMTP id r18mr4561213pgk.96.1584446218828; 
- Tue, 17 Mar 2020 04:56:58 -0700 (PDT)
-Received: from localhost ([161.117.239.120])
- by smtp.gmail.com with ESMTPSA id 8sm3129051pfv.65.2020.03.17.04.56.57
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=embLdYCC+n7Oc9s6Q8ZHyjDJLIa4kBbr1h9BCOMYbH4=;
+ b=PuTCHCsfXngTmtSPloaHy0/5etDp20xxO+rgcxjtfBMTfucpBE7YXj9wGhcFDNQzy6
+ Q1RXPwJ6/mVe2IDLzdvoF24d7CwvHamgV4sErfnRdYNhL8ZyCiaHrdT/8dzkga1ycXtZ
+ hVTaMW14SsXPaF+yurRDvT5I7HNvcUIjxMSRQCyxmeCJiLstNmmTdkDZXOSwACCi+Zna
+ xivik4Ur1ynuH0Op6s0Jq8YMiNDTk+AJ33G6xPRZLMEgeQHQ7M/KZCi+FIWbCxhKees1
+ OeSuPMyXWeq3DMWjUAOiFDy2xKCoRqG0dSZIiODjR2DjgDKGXLKXyBuLetYF4/vetF0u
+ bqYw==
+X-Gm-Message-State: ANhLgQ1wpoOPWfTOItEPz354ysyyzsaFLzfqM+C/q7wcp8LWhMTBhVXx
+ kXC4h50Xrkj24umFqgovOiIGkA==
+X-Google-Smtp-Source: ADFU+vsrbs1FMDMvrBo9cu5QRVB0IZzDlkTw1XDG3EBbGMsL3EdtYUQXQDIyFHCwplMScIrZT+xPIg==
+X-Received: by 2002:aed:2ba2:: with SMTP id e31mr4988796qtd.286.1584447338651; 
+ Tue, 17 Mar 2020 05:15:38 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.68.57.212])
+ by smtp.gmail.com with ESMTPSA id k13sm2042705qtm.11.2020.03.17.05.15.38
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 17 Mar 2020 04:56:58 -0700 (PDT)
-From: Qiujun Huang <hqjagain@gmail.com>
-To: evan.quan@amd.com,
-	alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/powerplay: remove redundant check in
- smu_set_soft_freq_range
-Date: Tue, 17 Mar 2020 19:56:53 +0800
-Message-Id: <20200317115653.9463-1-hqjagain@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ Tue, 17 Mar 2020 05:15:38 -0700 (PDT)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+ (envelope-from <jgg@ziepe.ca>)
+ id 1jEB8C-00012L-NV; Tue, 17 Mar 2020 09:15:36 -0300
+Date: Tue, 17 Mar 2020 09:15:36 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH 3/4] mm: simplify device private page handling in
+ hmm_range_fault
+Message-ID: <20200317121536.GQ20941@ziepe.ca>
+References: <20200316193216.920734-1-hch@lst.de>
+ <20200316193216.920734-4-hch@lst.de>
+ <7256f88d-809e-4aba-3c46-a223bd8cc521@nvidia.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <7256f88d-809e-4aba-3c46-a223bd8cc521@nvidia.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Mailman-Approved-At: Tue, 17 Mar 2020 13:50:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,41 +75,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David1.Zhou@amd.com, airlied@linux.ie, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- daniel@ffwll.ch, christian.koenig@amd.com, Qiujun Huang <hqjagain@gmail.com>
-MIME-Version: 1.0
+Cc: amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kvm-ppc@vger.kernel.org,
+ Christoph Hellwig <hch@lst.de>, linux-mm@kvack.org,
+ Jerome Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Dan Williams <dan.j.williams@intel.com>, Bharata B Rao <bharata@linux.ibm.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-min(max) is type of uint32_t, min < 0(max < 0) is never true.
-move it.
+On Mon, Mar 16, 2020 at 03:49:51PM -0700, Ralph Campbell wrote:
+> 
+> On 3/16/20 12:32 PM, Christoph Hellwig wrote:
+> > Remove the code to fault device private pages back into system memory
+> > that has never been used by any driver.  Also replace the usage of the
+> > HMM_PFN_DEVICE_PRIVATE flag in the pfns array with a simple
+> > is_device_private_page check in nouveau.
+> > 
+> > Signed-off-by: Christoph Hellwig <hch@lst.de>
+> 
+> Getting rid of HMM_PFN_DEVICE_PRIVATE seems reasonable to me since a driver can
+> look at the struct page but what if a driver needs to fault in a page from
+> another device's private memory? Should it call handle_mm_fault()?
 
-Addressed-Coverity: ("Unsigned compared against 0")
-Signed-off-by: Qiujun Huang <hqjagain@gmail.com>
----
- drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 3 ---
- 1 file changed, 3 deletions(-)
+Isn't that what this series basically does?
 
-diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-index 96e81c7bc266..fdaea0cc2828 100644
---- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-@@ -222,9 +222,6 @@ int smu_set_soft_freq_range(struct smu_context *smu, enum smu_clk_type clk_type,
- {
- 	int ret = 0;
- 
--	if (min < 0 && max < 0)
--		return -EINVAL;
--
- 	if (!smu_clk_dpm_is_enabled(smu, clk_type))
- 		return 0;
- 
--- 
-2.17.1
+The dev_private_owner is set to the type of pgmap the device knows how
+to handle, and everything else is automatically faulted for the
+device.
 
+If the device does not know how to handle device_private then it sets
+dev_private_owner to NULL and it never gets device_private pfns.
+
+Since the device_private pfn cannot be dma mapped, drivers must have
+explicit support for them.
+
+Jason
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
