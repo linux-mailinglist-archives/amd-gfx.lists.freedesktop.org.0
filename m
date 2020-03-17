@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 187FA188645
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2020 14:50:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A89B18864A
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Mar 2020 14:50:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC3A16E13D;
-	Tue, 17 Mar 2020 13:50:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50E8E6E14C;
+	Tue, 17 Mar 2020 13:50:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9639D6E0E8;
- Tue, 17 Mar 2020 12:28:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBF3389F43;
+ Tue, 17 Mar 2020 12:32:12 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 1763568BFE; Tue, 17 Mar 2020 13:28:14 +0100 (CET)
-Date: Tue, 17 Mar 2020 13:28:13 +0100
+ id 6DC3F68BFE; Tue, 17 Mar 2020 13:32:10 +0100 (CET)
+Date: Tue, 17 Mar 2020 13:32:10 +0100
 From: Christoph Hellwig <hch@lst.de>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH 3/4] mm: simplify device private page handling in
- hmm_range_fault
-Message-ID: <20200317122813.GA11866@lst.de>
-References: <20200316193216.920734-1-hch@lst.de>
- <20200316193216.920734-4-hch@lst.de>
- <7256f88d-809e-4aba-3c46-a223bd8cc521@nvidia.com>
- <20200317121536.GQ20941@ziepe.ca> <20200317122445.GA11662@lst.de>
+To: Jason Gunthorpe <jgg@mellanox.com>
+Subject: Re: [PATCH  hmm 8/8] mm/hmm: add missing call to
+ hmm_pte_need_fault in HMM_PFN_SPECIAL handling
+Message-ID: <20200317123210.GA12058@lst.de>
+References: <20200311183506.3997-1-jgg@ziepe.ca>
+ <20200311183506.3997-9-jgg@ziepe.ca> <20200316091347.GH12439@lst.de>
+ <20200316121053.GP13183@mellanox.com> <20200316124953.GC17386@lst.de>
+ <20200316130458.GQ13183@mellanox.com> <20200316131201.GA17955@lst.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200317122445.GA11662@lst.de>
+In-Reply-To: <20200316131201.GA17955@lst.de>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Tue, 17 Mar 2020 13:50:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -40,54 +40,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kvm-ppc@vger.kernel.org, Christoph Hellwig <hch@lst.de>, linux-mm@kvack.org,
- Jerome Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
- Dan Williams <dan.j.williams@intel.com>, Bharata B Rao <bharata@linux.ibm.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Philip Yang <Philip.Yang@amd.com>, Ralph Campbell <rcampbell@nvidia.com>,
+ John Hubbard <jhubbard@nvidia.com>, Felix.Kuehling@amd.com,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ Jerome Glisse <jglisse@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 17, 2020 at 01:24:45PM +0100, Christoph Hellwig wrote:
-> On Tue, Mar 17, 2020 at 09:15:36AM -0300, Jason Gunthorpe wrote:
-> > > Getting rid of HMM_PFN_DEVICE_PRIVATE seems reasonable to me since a driver can
-> > > look at the struct page but what if a driver needs to fault in a page from
-> > > another device's private memory? Should it call handle_mm_fault()?
+On Mon, Mar 16, 2020 at 02:12:01PM +0100, Christoph Hellwig wrote:
+> On Mon, Mar 16, 2020 at 10:04:58AM -0300, Jason Gunthorpe wrote:
+> > > Ok.  I had some cleanups like this based of older trees, but if you are
+> > > active in this area I think I'll let you handle it.
 > > 
-> > Isn't that what this series basically does?
-> >
-> > The dev_private_owner is set to the type of pgmap the device knows how
-> > to handle, and everything else is automatically faulted for the
-> > device.
+> > You once said you wanted to loose the weird pfn flags scheme, so
+> > before putting hmm_range_fault in ODP I planned to do that.
 > > 
-> > If the device does not know how to handle device_private then it sets
-> > dev_private_owner to NULL and it never gets device_private pfns.
-> > 
-> > Since the device_private pfn cannot be dma mapped, drivers must have
-> > explicit support for them.
+> > If you have your series someplace send me a URL and I'll look on it
 > 
-> No, with this series (and all actual callers before this series)
-> we never fault in device private pages.
+> I have a local branch I just started hacking on, but it is rather broken
+> based on various discussions we had.  But for a basic one I'd suggest
+> something like:
+> 
+>  - kill HMM_PFN_SPECIAL as it serves no purpose
+>  - split the ->pfns array into an input flags (optional) and an output
+>    pfn (mandtory) one, using new flags for the input side
+>  - replace the output flags/values indirection with a bunch of values
+>    encoded in the high bits of a u64, with the rest used for the pfn
 
-IFF we want to fault it in we'd need something like this.  But I'd
-really prefer to see test cases for that first.
+Thinking out loud a bit more:
 
-diff --git a/mm/hmm.c b/mm/hmm.c
-index b75b3750e03d..2884a3d11a1f 100644
---- a/mm/hmm.c
-+++ b/mm/hmm.c
-@@ -276,7 +276,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 		if (!fault && !write_fault)
- 			return 0;
- 
--		if (!non_swap_entry(entry))
-+		if (!non_swap_entry(entry) || is_device_private_entry(entry))
- 			goto fault;
- 
- 		if (is_migration_entry(entry)) {
+ - do we really need HMM_PFN_ERROR, or is just a return value from
+   hmm_range_fault enough?
+ - because if it is we don't need output flags at all, and the output
+   array could be struct pages, which would make for a much easier
+   to use API
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
