@@ -2,38 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A905118A89E
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2020 23:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FD8E18A89F
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2020 23:52:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EBA56E983;
-	Wed, 18 Mar 2020 22:52:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F4376E987;
+	Wed, 18 Mar 2020 22:52:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690072.outbound.protection.outlook.com [40.107.69.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7FC56E97F
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 22:52:22 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2065.outbound.protection.outlook.com [40.107.93.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCD066E983
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 22:52:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ro6jfh0EIweP68YQ9OxBliGhTL0dSsJ3aHuRNlQVnlWG1nqGyPknva3sfnVt/UB8ZXC0q56G9o+QXTEqNisZmfJhLFSUtdpUFsvRZKkq8VWCJRMxbjHr1rd9AGpVDIToEBmmPl4hwexzitAMCKgpohDBQRoJ7p43VNPdjzSjA7x0F1h1Pm6ro7wyLXKkTpRq4fDLiknjdU9CxqYeYvXEI6nsY3K5oALLLZa5KWwudMPB4bN39RxhnxfesYsKwAqPDTK9pBuXaL822tYAwd+GXK3VDiEM+n9pdy+N7diEqQWcWGENpawFTDwQT4tO0YwfIYvK7jGEcJg7oYp4W+K8ag==
+ b=NWNn+qyzjAnmmsO2LzL6JgYdyBbkALCyUbQkj6ihSG7Gk1nQQmcTyLpeQYNsnTO2HtPosVzZFfiYRos0aMtwSb7rq2l4+5xcToMv3aU/CHW1hs1B0ag8PtXzJSWKwXtKlFJ4tvo5IsuZlsgxMxwRyUFk/8yrsteMSlwY/AayplXcPAzblN2ZmN11JXPpqiDnMQCXs5tKgp85pRHkWEvHW8DhtpLJiCbrCNTqx8ct7wgavrttx8qJBZ9QzOcS6W+OWg0y/HvTP7gTJU4gosT4R2uhQ1+1tNyxw/dgyeMj9emeBhm5hdkT0c8yLoAvZpNHMZqKDh3W9FXmjgvQ8fHbfA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9juZrGbtrpFgN4gETSgsl1ZqeRe9JPOJMvFfJY7TnNI=;
- b=fn2jSBGzGSff6kZg7G/FTwVOx31oxYI2lQN5jEj4L+bkM0M3LtivbvaVzBN/o8qcDnBSHONLQeuCZVwncPUpblI8sOTO5TaSGBBrDbWjTCfNZpLtJtcpC9pX09Zil1LYos2mOYXJr/sYTGiNJkR2ZhlaWSqOq/qLUkWUmozf2wdpOtOAY+DPAbyOckUUKt1m5KkGQyjqLBa2mg1/obz3mOfd5uxdxPSmN52tStTTjVL7UncjE6VsJV6NppqM9BqV0IaUavtrz1lSCim08yFb0OjuOom8AcYGQyv3Fjka7syX5hFRUOawbIMpU6J4Ab1sTHFj0VInzpoVUSxWHdJxiw==
+ bh=ZYYEQbOZ9+E/UWsm1odDnqASOFzSJnH1csOWZg7sydw=;
+ b=V9sdEbv+b/EqqcAeOPVfrpyWbTrdMXsDK4DJphydaOnL7aoDTr4jcbM+xpmftz1JCdC1e3LpOwOlw3hdv2eCXVOkbGLLjG3Zz8o79Adc8iHKjCIdvbF4juXbY97JvFVmjm5ukV+SC+LhwodgO+pYY+5z4c30QWi2XhlSl4usjvf4c3grMxaIPFP/q42YxpT2gO3hylbx5/Acq9LWcP84DBKZrY8dzv4xKH9rFEG9v1qcHsnvOJEeiv7lT1AT0NESMlwzeh3GP4hcj3KEtKvgBMvVYeV8NGaexu7WCWpLHcU0PecDhZRr6GhTq2LFOBNWETZ0zSsAt6NEqf+Fo6rUTQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9juZrGbtrpFgN4gETSgsl1ZqeRe9JPOJMvFfJY7TnNI=;
- b=U9URUFo3FUppQ4dSU74icRE4zK+dRFQBlBXhHbBJ4dpQDKDKmJ46r+IO65wwu9y902FzU6CTr6nIfCYS18XXxg48D7xRTww2BXu5ODcFyavJGc5ZFxsHIQ8C5kceHd+T9W9jcj1Km5gbH7jAEOAQ0wVUOltX4YdtjAqAgQjHJts=
+ bh=ZYYEQbOZ9+E/UWsm1odDnqASOFzSJnH1csOWZg7sydw=;
+ b=umB1hYvEz5xUL6BwWygPYfr8XvzApblPhzfDeghVNGHPwFvyc5TFk/BN52NxxiJ49KnApDjxrPvb4t5GLuB13RFt7fPUABfNC0SgEQMsIMKBLx78AKsZZwf0XuI0arfBUVJ1jLayFCBFrjqPi8nQUrgbRYS42yhOHtzuzR7QxoE=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Alex.Sierra@amd.com; 
 Received: from SA0PR12MB4576.namprd12.prod.outlook.com (2603:10b6:806:93::13)
- by SA0PR12MB4415.namprd12.prod.outlook.com (2603:10b6:806:70::17)
+ by SA0PR12MB4431.namprd12.prod.outlook.com (2603:10b6:806:95::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.16; Wed, 18 Mar
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.22; Wed, 18 Mar
  2020 22:52:22 +0000
 Received: from SA0PR12MB4576.namprd12.prod.outlook.com
  ([fe80::8d47:3ca5:5a7c:c047]) by SA0PR12MB4576.namprd12.prod.outlook.com
@@ -41,9 +41,9 @@ Received: from SA0PR12MB4576.namprd12.prod.outlook.com
  22:52:22 +0000
 From: Alex Sierra <alex.sierra@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 6/8] drm/amdgpu: remove Arcturus references from vega10 ih
-Date: Wed, 18 Mar 2020 17:51:16 -0500
-Message-Id: <20200318225118.10756-6-alex.sierra@amd.com>
+Subject: [PATCH 7/8] drm/amdgpu: add arcturus_ih.o into Makefile
+Date: Wed, 18 Mar 2020 17:51:17 -0500
+Message-Id: <20200318225118.10756-7-alex.sierra@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200318225118.10756-1-alex.sierra@amd.com>
 References: <20200318225118.10756-1-alex.sierra@amd.com>
@@ -61,31 +61,31 @@ X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [165.204.78.1]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 3dd13589-06d6-44d2-fbe0-08d7cb8f0510
-X-MS-TrafficTypeDiagnostic: SA0PR12MB4415:|SA0PR12MB4415:
+X-MS-Office365-Filtering-Correlation-Id: 274fcdad-e2b7-46cc-eada-08d7cb8f0552
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4431:|SA0PR12MB4431:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SA0PR12MB4415AE721137565F1839B5CDFDF70@SA0PR12MB4415.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:546;
+X-Microsoft-Antispam-PRVS: <SA0PR12MB44311D72D2299207E70601EFFDF70@SA0PR12MB4431.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:229;
 X-Forefront-PRVS: 03468CBA43
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(136003)(39860400002)(396003)(366004)(199004)(66476007)(66556008)(6486002)(81166006)(8676002)(44832011)(316002)(81156014)(956004)(2616005)(16526019)(26005)(186003)(8936002)(52116002)(86362001)(7696005)(66946007)(478600001)(2906002)(4744005)(6916009)(1076003)(4326008)(6666004)(36756003)(5660300002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:SA0PR12MB4415;
+ SFS:(10009020)(4636009)(366004)(346002)(376002)(396003)(136003)(39860400002)(199004)(316002)(1076003)(6486002)(2906002)(956004)(5660300002)(2616005)(4326008)(44832011)(4744005)(66476007)(6916009)(66556008)(16526019)(86362001)(186003)(26005)(52116002)(7696005)(8676002)(66946007)(36756003)(81166006)(81156014)(478600001)(6666004)(8936002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:SA0PR12MB4431;
  H:SA0PR12MB4576.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8bbUxwCKlH+SCMmK24tjg1bnFbjF2acAxHgHgQTEcWeHIiNDfARNAcaiFmC1OnUqxskiTMDz9Rw25fImZUEdIC1dlFb99mDZPTyxazVGVfpfKR9+t6KVtBBPUqffRtmvx+0PcoCQfHfQmB9h1gxEuJYpuKRr6lK9Sbo9Ub385NI33qeGoEAaNuzg5PRyzsyBYJKKQSeqkCxjYtYOLvlTstszRykExbUCVnpEx1CzAYlUDmkxdu8LoPemp/7KVORzIs4gQ3VrbEwwhfaAtKdYm2n3TzxKeKFpBgPWncyDD1FXSfW7TIweERY9fugKGVOv0qiU4u10b4PWl9ukJe5G1mXOMf18No+2cnnT1Z6bprwhA6HCXxoocP/MzqZCZdvo/H4QFh4JtjmFWHlhypRd4cl3GLWBFn8JwQJWaXC74SCyuZFYaZeOZdvAdEEVMFvn
-X-MS-Exchange-AntiSpam-MessageData: wtgcMHTjD4oTYbJ9JvyWOlBF4bijf1/8r3muB6lBAkH8CIIG359hysW9109VoTKF/jS020YXy7A7bYZg9fVTYVvTzxeHQ6CD0b3FA1e3JCVCQWB4OCYaZyJ45M4oAZFweGEAgo1hqQW98fp3Vj7p6A==
+X-Microsoft-Antispam-Message-Info: GvD7YC+rDk1YXjlN5XQf3XbOfmprbt3a8KJp+UzYI0Hi1rGr7XPuNeHXiPbiS1iU3kLNx2I1mGqR/QVHHWlCc0DlYjxFOy/Ct7cOso6PsJjTcGG0GZj5i+/WpAJ3L7XNcZ/GtAH/9l/vf2+d/FGJs6lE44RlGYfH+UzBSXWe11EOz5BxClx6zwDdn0wtv7oqZn/p8376xP2E2831s68Jdn69m4wQtmBQh8fxXK6KIfKWj2hwBUOHF+7K0AHZY6yI5K0id4uEPT3Ge67mVfvMwvwXAX3F1buNf+JeiPY8BN3arEtN6ghOwcYblLLg4KMEBKQGLoPlzIHf4HbQ4gAt98rmQlCzo59D+W8yHalzfuUpvbtjAGOFZm2Ht1dhcFL5g2M9J9Pz3FBKWVxftDjz7pOZ+zlJ+kUdlGPKvgavKdLi53qtnow8YeDyIwxZBXnp
+X-MS-Exchange-AntiSpam-MessageData: /nTH3E1jLZd/3f6ESCEw+hjRGyNzWn1KKUgl6eVg4vnGVbXzqr0IcJjG3fTmV36K8xxS99gmHUUvcZj6T+G26PGkst1KYbdHUKjeRZY1a+a3DcGxpQ029dp26zobjhRU5EyQe+qJz1AmlVTmSBGXuQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3dd13589-06d6-44d2-fbe0-08d7cb8f0510
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 22:52:22.3458 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 274fcdad-e2b7-46cc-eada-08d7cb8f0552
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 22:52:22.7879 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HeHq5lo/hhoDB2SS22xtPmx1xHLeMiGr04HOwrLHjkrx+/NX1Oh6L2iIAYRdfAJ7lt2pl/dmKviImufWLKWFYQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4415
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0xVhMKwEdyS/Ts4wep8ieh003PRrvAGjVN13TIprJn3DbN9JJ6/iG9NzG3VRoaVZ+fpliJhAKrdVcRJ6GAu1gA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4431
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,30 +103,26 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Arcturus has its own ih implementation. There's no need to support
-this on vega10 ih anymore.
-
-Change-Id: I29c843e0b12a458d2915129503c0ad852bcebc48
+Change-Id: I4701d12bff12052774562e666f95b5978097b5e4
 Signed-off-by: Alex Sierra <alex.sierra@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/vega10_ih.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/Makefile | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
-index 407c6093c2ec..608e8da9b962 100644
---- a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
-@@ -246,9 +246,7 @@ static int vega10_ih_irq_init(struct amdgpu_device *adev)
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL, ih_rb_cntl);
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+index c2bbcdd9c875..2da7922c166d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/Makefile
++++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+@@ -94,7 +94,8 @@ amdgpu-y += \
+ 	tonga_ih.o \
+ 	cz_ih.o \
+ 	vega10_ih.o \
+-	navi10_ih.o
++	navi10_ih.o \
++	arcturus_ih.o
  
--	if ((adev->asic_type == CHIP_ARCTURUS &&
--	     adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT) ||
--	    adev->asic_type == CHIP_RENOIR) {
-+	if (adev->asic_type == CHIP_RENOIR) {
- 		ih_chicken = RREG32_SOC15(OSSSYS, 0, mmIH_CHICKEN);
- 		if (adev->irq.ih.use_bus_addr) {
- 			ih_chicken = REG_SET_FIELD(ih_chicken, IH_CHICKEN,
+ # add PSP block
+ amdgpu-y += \
 -- 
 2.17.1
 
