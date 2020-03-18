@@ -1,56 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725DA18A65F
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2020 22:08:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E423D18A6D3
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2020 22:15:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE686E96E;
-	Wed, 18 Mar 2020 21:07:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF79C6E58E;
+	Wed, 18 Mar 2020 21:14:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com
- [IPv6:2607:f8b0:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 690C46E89F
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 21:07:48 +0000 (UTC)
-Received: by mail-pf1-x443.google.com with SMTP id 3so150965pff.4
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 14:07:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UnW3oRxVQHnYvwZ2+HCKUVYxiIim+eBLvaQELpxrRqU=;
- b=qN4+WX6llXdXg7OP2ngw/tmuSenPNNwNDboXm8R0BqN7TKq6AnxLkKLG8Q99y9IZ6T
- YDfO8JIUTC9v2tBafpZVOOd0JFYHC0mDB+lxnynMKQQLixMFCn9aOM1p/8pLBMWijDoE
- rLQazFqDavwllYsf3wPN4aql2BpoZjato+DcTWKqNtpooKdE/nwFO0dcUImcroRCILJO
- aPVcdVsQK6Yfq1FM6t0YjsW0hhvgLZRy2qsN7Ze0/hX0uJaqnU3valz6jPspG792A5BE
- UiFdDU6CdJPC5k87CYj8sMC2aAKdppbSCjkh0rgWDLetIMv33zXhdzo2jCnPehDY1cV5
- BkdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=UnW3oRxVQHnYvwZ2+HCKUVYxiIim+eBLvaQELpxrRqU=;
- b=m7jypk1BjRoAS7S+i/+Y81ODZHboxBkrabQb2VyLh1VcPbyvHYzqME+o4X32/LP8yz
- eMjKRnGEm+VqgOZVI/3C55bkreSP8fwEXk16AF6eS41wKJo28IWTqQKi5WBiA35MUPN0
- IK7fwKRgaOe8aSrv0OhmWyD0pL0K7j2hJEyP6fzPrkKzGdCd5SMj0G485V6up7Vsxbx7
- 0F5poUAGWeQVyJ/0X3qjEgLXOviSYwdtuTKmiXEymkqkQBqkkM5JX+hj6c5SMYnM/44i
- fljXHzdW2b+ejBhhi8MrmfsfEzmKgxX++e+CrDIahAQNFbPRvDh8aYW5iNOoQVIGIfdQ
- Cs8w==
-X-Gm-Message-State: ANhLgQ1z7jfh445tlkiICgwR2/vUvY7/dXEj5AktzH3swuca1lMLtIL3
- gEI2FDpZw/08TkCV3N39uzAYJhlvjx+DUu5nMokZ2A==
-X-Google-Smtp-Source: ADFU+vtrCbWLsD9Kl2sgpRCLWJgG9WETEekWUwb95aIHCLvQp5JpBJCHYMAZGw01/Hcy77aG8jAmyFceFlIcLkd5Les=
-X-Received: by 2002:aa7:8b54:: with SMTP id i20mr215129pfd.39.1584565667463;
- Wed, 18 Mar 2020 14:07:47 -0700 (PDT)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2064.outbound.protection.outlook.com [40.107.93.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFA976E1F3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 21:14:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Gdg7AzM/WZqI0nLUNYGFVqpWAu+bmDpCiRWMzMZPNK2n5s6DTBd9k0g258WmceUVgNxFJr475WenPTLltUOZoI8jEiyxAi/pPRekyTUy4LJlOeReUZoVDY2ENr7UIXhvuzI9nBPU3d894e8HXvFiE4KGpTIxNsTPqLwMe5RaItfLYcCJ7JXzszS0nRkVKVcctFJK9INA1vkXKwLDfvjlXcouU8PXG9SYK0cea/88w7/zyqJIw+2e97tI6ntXjFWQlLxzMIUKGi/PzWcefwHlp8PUSZvp/My4OEVJimFjWVEmMrMDMI7LpabbScmD1h8wtvTJR1Lnc+gM0kjP9I3ghQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h2hlmF8upSWthcs0NCEbkGO5CBa8BMu6nf77TSlJXvc=;
+ b=UL0DGxdhQUfhZ8vZ7FLpmZX7bu8s9e4UXZww3H2oK0fgjXjx39PYNOSyUvNeXRoDXuy6ektwo2BT5ft2H/vGIGeczExCnIrj6zDkgYHsSlpN/1UygZgyVH6FsRaVnM+HTRTlnmqyHb+Ze0TlN2/TAzGxztmxRKcFdnvvDgSNh9V9i2qGtlfdmrXDurKvinEi9q98EPkyIQJhqpRzw+iMw6InJBoVAE8qRBRuaaOGJZPL/rMyiP//g56pcYt/CQvk7/WSmuedfU7LrDDbyY8JGEYPeJhwJ1/LJdjBfWzc6RwzUO61V2HwqVC8rzpceyFD0iZ/lmZYEPzDIngSyEcrBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h2hlmF8upSWthcs0NCEbkGO5CBa8BMu6nf77TSlJXvc=;
+ b=faH3XnUJTiLdpeT7DS9+5SIUwgRbbdGwSgljcGYyejxa9mhBiTBBCjQFmc+BKQ+LYc2Z/nsX9sBenWRPdMND+AWjvdnDHmXacwJw6T/BKmCP7caaqTDITRrxugsqivBbnjWIkiw2V/ZRAReu5kE+UFZvanT4dRE6Otw05BYntk0=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=James.Zhu@amd.com; 
+Received: from BYAPR12MB3285.namprd12.prod.outlook.com (2603:10b6:a03:134::14)
+ by BYAPR12MB2998.namprd12.prod.outlook.com (2603:10b6:a03:dd::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.18; Wed, 18 Mar
+ 2020 21:14:52 +0000
+Received: from BYAPR12MB3285.namprd12.prod.outlook.com
+ ([fe80::7827:1c37:4c53:b74b]) by BYAPR12MB3285.namprd12.prod.outlook.com
+ ([fe80::7827:1c37:4c53:b74b%7]) with mapi id 15.20.2835.017; Wed, 18 Mar 2020
+ 21:14:52 +0000
+From: James Zhu <James.Zhu@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/3] drm/amdgpu: fix typo for vcn1 idle check
+Date: Wed, 18 Mar 2020 17:14:42 -0400
+Message-Id: <1584566084-23428-1-git-send-email-James.Zhu@amd.com>
+X-Mailer: git-send-email 2.7.4
+X-ClientProxiedBy: YT1PR01CA0027.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::40)
+ To BYAPR12MB3285.namprd12.prod.outlook.com
+ (2603:10b6:a03:134::14)
 MIME-Version: 1.0
-References: <20200318002500.52471-1-natechancellor@gmail.com>
- <20200318210408.4113-1-natechancellor@gmail.com>
-In-Reply-To: <20200318210408.4113-1-natechancellor@gmail.com>
-From: Nick Desaulniers <ndesaulniers@google.com>
-Date: Wed, 18 Mar 2020 14:07:34 -0700
-Message-ID: <CAKwvOdmjzemFW9jF-CW1RhLJJbMvFO_NrPUeyi=rdLNVZURsfw@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/amdgpu: Remove unnecessary variable shadow in
- gfx_v9_0_rlcg_wreg
-To: Nathan Chancellor <natechancellor@gmail.com>
-X-Mailman-Approved-At: Wed, 18 Mar 2020 21:07:57 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from work_495456.amd.com (165.204.55.251) by
+ YT1PR01CA0027.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.2835.19 via Frontend Transport; Wed, 18 Mar 2020 21:14:51 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [165.204.55.251]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 68c48539-def4-4f09-ab43-08d7cb816638
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2998:|BYAPR12MB2998:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BYAPR12MB2998D60A9D68A88C31AB837AE4F70@BYAPR12MB2998.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
+X-Forefront-PRVS: 03468CBA43
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(396003)(366004)(376002)(346002)(39860400002)(136003)(199004)(186003)(7696005)(66476007)(52116002)(26005)(66946007)(316002)(66556008)(4744005)(5660300002)(6486002)(2906002)(6916009)(6666004)(16526019)(478600001)(36756003)(4326008)(8676002)(86362001)(81166006)(956004)(8936002)(2616005)(81156014);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:BYAPR12MB2998;
+ H:BYAPR12MB3285.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lVWFeJPyZOEXBYqYEOF/ho3LtSujkbzKgceaqY016m7gHqU+rkeVZ328tJNU8uVzBpKO5E4ZDSen31t2dPxrWgTuQv0yLdBqm6QbaSgQ2LMD3zcYluAEt3Q5ivGJUfIJPH4bF2/arJ9oXW+coZ127x24i/dwhIShfuiWy1YG8OhDm3+hfzlQHAbF0WY1I5mTZcNN7d3F6hqS0L89+PJOG4bCSf2nlDKvEVxBngOn17Y4KxrBHwwpIIZbFD80ssJQhtc9gWmp8bU3bk85CLaZrmKIdBf3f20ub2SJpuUv0V2HtBGFAlvuXLsyGkMEUdnXXQJmRPn03BbPYxLQTxH1TbCOuzRHS3rOk0wxGOxECPYksoenC2D6XWFSXKrU7aAzAa389Wbs9+YWJIZbZ8QwK/w2VuJq5OVj+pKTdlSni4IT0PejZFwbtAInGLFLWr7i
+X-MS-Exchange-AntiSpam-MessageData: Ut3S6muMuMU5mXvYQTLAJfKCslZHOxVCIn3L2TCFqckyJpKbohwDTGAorvwIHulqQAVd8A+PlFkgHOnU4TAT2Ciuru4s0S5sZCGIVMBfxMhHmYwJBdiUsJ1q7+/UN0ZDKONXCiKoVyY9O5chGqOisA==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68c48539-def4-4f09-ab43-08d7cb816638
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 21:14:52.4872 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Bhr4T9xbZ6ZzuNA562n/xol0znvVAiaadap2BL08/g8qXdaFl0Iy1J9+eMpKsC2c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2998
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,97 +94,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>, Joe Perches <joe@perches.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: jamesz@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 18, 2020 at 2:05 PM Nathan Chancellor
-<natechancellor@gmail.com> wrote:
->
-> clang warns:
->
-> drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:754:6: warning: variable 'shadow'
-> is used uninitialized whenever 'if' condition is
-> false [-Wsometimes-uninitialized]
->         if (offset == grbm_cntl || offset == grbm_idx)
->             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:757:6: note: uninitialized use
-> occurs here
->         if (shadow) {
->             ^~~~~~
-> drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:754:2: note: remove the 'if' if
-> its condition is always true
->         if (offset == grbm_cntl || offset == grbm_idx)
->         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:738:13: note: initialize the
-> variable 'shadow' to silence this warning
->         bool shadow;
->                    ^
->                     = 0
-> 1 warning generated.
->
-> shadow is only assigned in one condition and used as the condition for
-> another if statement; combine the two if statements and remove shadow
-> to make the code cleaner and resolve this warning.
->
-> Fixes: 2e0cc4d48b91 ("drm/amdgpu: revise RLCG access path")
-> Link: https://github.com/ClangBuiltLinux/linux/issues/936
-> Suggested-by: Joe Perches <joe@perches.com>
-> Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
-> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
-> ---
->
-> v1 -> v2:
->
-> * Remove shadow altogether, as suggested by Joe Perches.
-> * Add Nick's Reviewed-by, as I assume it still stands.
+fix typo for vcn1 idle check
 
-yep, thanks
+Signed-off-by: James Zhu <James.Zhu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index 7bc2486167e7..496b9edca3c3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -735,7 +735,6 @@ void gfx_v9_0_rlcg_wreg(struct amdgpu_device *adev, u32 offset, u32 v)
->         static void *spare_int;
->         static uint32_t grbm_cntl;
->         static uint32_t grbm_idx;
-> -       bool shadow;
->
->         scratch_reg0 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG0_BASE_IDX] + mmSCRATCH_REG0)*4;
->         scratch_reg1 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG1_BASE_IDX] + mmSCRATCH_REG1)*4;
-> @@ -751,10 +750,7 @@ void gfx_v9_0_rlcg_wreg(struct amdgpu_device *adev, u32 offset, u32 v)
->                 return;
->         }
->
-> -       if (offset == grbm_cntl || offset == grbm_idx)
-> -               shadow = true;
-> -
-> -       if (shadow) {
-> +       if (offset == grbm_cntl || offset == grbm_idx) {
->                 if (offset  == grbm_cntl)
->                         writel(v, scratch_reg2);
->                 else if (offset == grbm_idx)
-> --
-> 2.26.0.rc1
->
-
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
+index 71f61af..09b0572 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
+@@ -1352,7 +1352,7 @@ static int vcn_v1_0_set_clockgating_state(void *handle,
+ 
+ 	if (enable) {
+ 		/* wait for STATUS to clear */
+-		if (vcn_v1_0_is_idle(handle))
++		if (!vcn_v1_0_is_idle(handle))
+ 			return -EBUSY;
+ 		vcn_v1_0_enable_clock_gating(adev);
+ 	} else {
 -- 
-Thanks,
-~Nick Desaulniers
+2.7.4
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
