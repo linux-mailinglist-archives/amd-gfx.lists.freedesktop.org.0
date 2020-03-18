@@ -2,48 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C204F18A89C
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2020 23:52:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C165818A89D
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2020 23:52:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A590C6E982;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9CB56E984;
 	Wed, 18 Mar 2020 22:52:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM04-CO1-obe.outbound.protection.outlook.com
  (mail-eopbgr690072.outbound.protection.outlook.com [40.107.69.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F2F66E97F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8A1D6E982
  for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 22:52:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hu7Tj7E6BXc6xyb69Q9HSDP4A9nc5TgbkeJzS+PK+88Z07FDo3YhvYCs/nCoyc+VLI87vQ9OMT+KJ/Uhd285iicbZxGISBv3ZajQnZKgdLI2UWic/ji+C3w81PLjjGYBajS15M4Ib/Yh10dG7AFCOUoov8jNYgx9AweYEADWNwwXCd3cKv58m5hBI5QTZQOWkLwj5vEDYrONoJ79KH/uUiNRQFsvIeLtX1bK7Yi+z0lA9j5PI9tXL4QOqFgZ6iqfjs/brs+XgCM2rYSYCr+LWfHJYsN7S3poN2Nz2zduHQgTRL97RA2KgrLsIkzf94F0ZLNyBSk4YKKhn6AG3yDjhQ==
+ b=H9DBWgP3E0sf+eo034AdYjxtneKzfKi9iQjQQIv8JiUcEVheJ+GuGLbHch/aEuOqJfIzeR5BEK898TrDz/gS+4O3HQFdbUP98fhiRJNPGYxRlkb52qZwCWPUJW56lEVTqaEmqrRycB5MMjpVcdJnodNo6SEtAbX66jfQunTb//AQIhon6K/07IivMIjqgOKiTwbfHmMdtd8psQVYyHr3mv9EnujKUwpRGmO40X648OR/mE9V0UWeryngABXGTx49LF+QTOwTzQSlcy8se2eoyUtGqFqjr2GB0xRSklNZ5ddDnbht6bd3Y/kIJ4RxEhY2aUKyFo7hHLwY6yWZIH2VMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4nmotxlbZQe59ED0G57xjOgJiBLzDWZv8nHwunTyuQs=;
- b=mneohQV4pCeB4z2onj1JLFK2Err6JazrHgGY6vrsJBkBF3nTT45rMlGzkqqVDT37xaI9RrMyMF1hPEIBr9iA8LcLs3cEN7/rfukujFgd4pMpQtdJDYnqw12G4lM5Ab/qsi4x4eqSADqd6MZ7lzOxsh4ipDXYP7cDeMrNho9jQB6KREFebJ5hb/C1r3SSqnteGd34OtMrZ20GuG3jnOoUH5sITyhkq1fuUdibLArrhIoj/1iWLxIsQ9PaKG5b6Aab6gcL6CxYAhiEAFq5cdVNiwz1u55g9OGHXl/KWpZDreJLmkioCO3dT2PMdzVCSfasWr56DaNQ9aES+mGXihxiMw==
+ bh=MglOmO0ssK+INTmjDgTt4zpYJ+7Pg+dz5ots7hdTsQ8=;
+ b=kxa42c7naHJg4cVZKs5HqitGMJdOYXPi3L8cGQaaIKEQkOY97o8U3n3rqT83sJoopdcZyRC2aAnYmCysAclHbhQt1Yu7/V8aqJFw3UWHgY79TV6Fdi9RqmSEse3zBoadFgvCWs2+1GVCvl+bOADNYPlp/QEB/30jSqF2hQEY2frqIsJby0HLiiLpQr8XL7dgbvEw/pK7czONr0Cq6z1wqYvzJEfQd9dYpokxsso/4JEuC9ru6XugCgpZTyeGkFdZvi1Zfjpr+kD6lXtHNGcN1SbflxorDYlN2DGrVoe8NKj0Ft6mZL3s5MabuhKC2rd0fnixexVv5jtaM/fexsrpog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4nmotxlbZQe59ED0G57xjOgJiBLzDWZv8nHwunTyuQs=;
- b=kjeGhoRCMTAV3FmJA8h/Am/Nwrz98YM9P+QrbAzZ1ePU6H/CiCXptTf3HAKnZ8l4VKwgcgrK+XUXgu3M/i+AtRs2uSK+ERrhLlb1wWjHvvKwWuBlHHRVTe6bzsQTnuvxrJt9iif9V5Hny14XQFo0uMB1tYnzfwxroOVYqwRUz44=
+ bh=MglOmO0ssK+INTmjDgTt4zpYJ+7Pg+dz5ots7hdTsQ8=;
+ b=ryz+TuyoGp93W9klK9tRiNhoT9iXBMavgUBb0WGfQT6jT6fetCUytv4U/ZHJ1QqyLMjDUzSX//K5rYk2F2lU+KwtUQfi9BZbzePs8jE6kc040qDCwPAPQ1jk0cBUc8EPRlHJ3Sfq7eEfVkdbzmZW5I3w5E7r6yORFpfLsvr2E8c=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Alex.Sierra@amd.com; 
 Received: from SA0PR12MB4576.namprd12.prod.outlook.com (2603:10b6:806:93::13)
  by SA0PR12MB4415.namprd12.prod.outlook.com (2603:10b6:806:70::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.16; Wed, 18 Mar
- 2020 22:52:21 +0000
+ 2020 22:52:22 +0000
 Received: from SA0PR12MB4576.namprd12.prod.outlook.com
  ([fe80::8d47:3ca5:5a7c:c047]) by SA0PR12MB4576.namprd12.prod.outlook.com
  ([fe80::8d47:3ca5:5a7c:c047%7]) with mapi id 15.20.2835.017; Wed, 18 Mar 2020
- 22:52:21 +0000
+ 22:52:22 +0000
 From: Alex Sierra <alex.sierra@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 4/8] drm/amdgpu: replace function prefix names
-Date: Wed, 18 Mar 2020 17:51:14 -0500
-Message-Id: <20200318225118.10756-4-alex.sierra@amd.com>
+Subject: [PATCH 5/8] drm/amdgpu: reroute VMC and UMD to IH ring 1 for arcturus
+Date: Wed, 18 Mar 2020 17:51:15 -0500
+Message-Id: <20200318225118.10756-5-alex.sierra@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200318225118.10756-1-alex.sierra@amd.com>
 References: <20200318225118.10756-1-alex.sierra@amd.com>
@@ -61,14 +61,14 @@ X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [165.204.78.1]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 19c8656e-a023-4ea9-727f-08d7cb8f0497
+X-MS-Office365-Filtering-Correlation-Id: d60f6da4-ee75-4426-c280-08d7cb8f04d3
 X-MS-TrafficTypeDiagnostic: SA0PR12MB4415:|SA0PR12MB4415:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SA0PR12MB441588FE96EEDC1913ADE9F2FDF70@SA0PR12MB4415.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
+X-Microsoft-Antispam-PRVS: <SA0PR12MB44150E11CDAD0E74F5755A5BFDF70@SA0PR12MB4415.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1227;
 X-Forefront-PRVS: 03468CBA43
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(136003)(39860400002)(396003)(366004)(199004)(66476007)(66556008)(6486002)(81166006)(8676002)(44832011)(316002)(81156014)(956004)(2616005)(16526019)(26005)(186003)(8936002)(52116002)(86362001)(7696005)(66946007)(30864003)(478600001)(2906002)(6916009)(1076003)(4326008)(6666004)(36756003)(5660300002)(309714004);
+ SFS:(10009020)(4636009)(376002)(346002)(136003)(39860400002)(396003)(366004)(199004)(66476007)(66556008)(6486002)(81166006)(8676002)(44832011)(316002)(81156014)(956004)(2616005)(16526019)(26005)(186003)(8936002)(52116002)(86362001)(7696005)(66946007)(478600001)(2906002)(6916009)(1076003)(4326008)(6666004)(36756003)(5660300002);
  DIR:OUT; SFP:1101; SCL:1; SRVR:SA0PR12MB4415;
  H:SA0PR12MB4576.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; 
@@ -76,15 +76,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8fL2JoWHfBPUsCO77v301hDA9ZL8XX3a7UsFlBM7jPwCeLjQBI1RbOR7hPgp+C29bv3WjYVibZQHhgIyrBx+PyjpqgSCkGlWIjWpFgkaWrToMbWzT8ceKMaSZCmNVnsLzneJU98ZPDXFhQrySIL7eGAZ4mYS+syWQKClbrJ33MX5XxdwIDnGl7RV8KvZqrhNQFaErqg0r0uybJK1knV/zDqlHz+DzkkURQQY1pQ/7hjKmkvgiW/V1vK4emaJgrF7cqfSmbB82tQF5YWzCcVRueKsKGh/S4iuSxqyK5TAhKBLEXNBwzcGrmix146uFvV/zgmW1pKh5souKV4PLJdjReU4Xld3e7rxgMRcYKd62cwjUgZQlkkhrTJBgyt07C7ebhZA7g0fkKWDrn49TEscj4OSVH0rMBtnNsFL+lMTR+DWVMrG1BgL0evLT6yvN/Opd0AOb5nhUJiMzv0qnG1tcoKLEbxrkXMkDatG0DHxGHUNETE/HllXjag1GaSql1pv
-X-MS-Exchange-AntiSpam-MessageData: 3bUe06rmrdo7/lLf2YKrGH1+uDuyVXCizIEDF9ZODU0D/zrN68wJiE/8f665z89i6uSuKouuGoP5+s1XWOtKyc4WbMzRhHgzZRA/bYb7CqXWIsWer0Cc7ncfHlCPYvaq4vXdn2gn2BshFWJuBMBT8w==
+X-Microsoft-Antispam-Message-Info: nWjXMYyxNbvTgegQsoeF4IhyZ2raTmeOZbkcFm9gJBai/f0xtM8fPzRj5GyZIZzupnAESOexdNJhg8BIPDaYAwtcgmXPlWGLVQ0XkJ3z29wvGL7NXzv9BwTf0Ny8smE1XN5ymVHkE7KjXj4VzDYidtKpLxHqg2t+VVi13bEr5J2G1OqN3VI8HHgAzWhdD6hOqMOViBafyGF2909pNIpCvr+UAfbNxb4IxJRWGkwcAakI4inTDY7IN4uoKLzkTdLdv2BAKjHYQ6ecPXfI85yVe1AQSw0UtSLIHCK5AEptSc+9XEBW9dCmajKMKWu1rrn1k4bkg+wPTA3VyHCPEIfV2uZyMvPp3b/5nE8ddNmzkS8jN+BzU/tkxM7DVxlnHglTmUQgGXBwCL1tlMOUJuyXjtUSSYneneQqGF2N5oSeYxnZmqlOtmbNOWUQGp2vRU9q
+X-MS-Exchange-AntiSpam-MessageData: kG517oeEyuMOQRDbH535GQaWvBdkIJF4X0Z3+mCDYQL4IdApr8NfJuoCNwA9dJSShbN5SwSJFcb+vJdd43EPx9ZFxe352I3ezcIbqUreflmbfgZ4/G7durY/22G0aytO/hKXaashPc0HWaSltKUIIg==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19c8656e-a023-4ea9-727f-08d7cb8f0497
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 22:52:21.5374 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d60f6da4-ee75-4426-c280-08d7cb8f04d3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 22:52:21.9237 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mXf2/4RP2tyoMBE9myPRQnhnWUx5ztsKXcZebEtapj2stR+wCrGK1TjjX2VQSzu6J+D7k/4fW+22gsGk44JPow==
+X-MS-Exchange-CrossTenant-UserPrincipalName: MvEqnNiy6JGj6tEViJrfzD6Nxo68VkolAbOz23eGLdAC4yfNfaA9op4YceU3qmHCv8TAfjMg9laKOpl5a3qtEQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4415
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -103,495 +103,61 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Replace function prefix name from vega10 to arcturus
+[Why]
+Same reason as commit "reroute VMC and UMD to IH ring 1" for vega10.
+Due Page faults can easily overwhelm the interrupt handler.
+So to make sure that we never lose valuable interrupts on the primary ring
+we re-route page faults to IH ring 1.
+It also facilitates the recovery page process, since it's already
+running from a process context.
 
-Change-Id: Ic21713f2dda30a0bc28c7b525e20d5f1fcde96dd
+[How]
+Setting IH_CLIENT_CFG_DATA for VMC and UMD IH clients.
+
+Change-Id: I189a6b35c9f5bd55d001fa9672d7d08ba4e8591e
 Signed-off-by: Alex Sierra <alex.sierra@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/arcturus_ih.c | 162 +++++++++++------------
- drivers/gpu/drm/amd/amdgpu/arcturus_ih.h |   8 +-
- 2 files changed, 85 insertions(+), 85 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/arcturus_ih.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/arcturus_ih.c b/drivers/gpu/drm/amd/amdgpu/arcturus_ih.c
-index b8cd5c3c8a36..b687fcc4c9b6 100644
+index b687fcc4c9b6..73a00e752ead 100644
 --- a/drivers/gpu/drm/amd/amdgpu/arcturus_ih.c
 +++ b/drivers/gpu/drm/amd/amdgpu/arcturus_ih.c
-@@ -35,16 +35,16 @@
+@@ -205,6 +205,24 @@ static uint32_t arcturus_ih_doorbell_rptr(struct amdgpu_ih_ring *ih)
+ 	return ih_doorbell_rtpr;
+ }
  
- #define MAX_REARM_RETRY 10
- 
--static void vega10_ih_set_interrupt_funcs(struct amdgpu_device *adev);
-+static void arcturus_ih_set_interrupt_funcs(struct amdgpu_device *adev);
- 
++static void arcturus_ih_reroute_ih(struct amdgpu_device *adev)
++{
++	uint32_t tmp;
++
++	/* Reroute to IH ring 1 for VMC */
++	WREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_INDEX, 0x12);
++	tmp = RREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_DATA);
++	tmp = REG_SET_FIELD(tmp, IH_CLIENT_CFG_DATA, CLIENT_TYPE, 1);
++	tmp = REG_SET_FIELD(tmp, IH_CLIENT_CFG_DATA, RING_ID, 1);
++	WREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_DATA, tmp);
++
++	/* Reroute IH ring 1 for UMC */
++	WREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_INDEX, 0x1B);
++	tmp = RREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_DATA);
++	tmp = REG_SET_FIELD(tmp, IH_CLIENT_CFG_DATA, RING_ID, 1);
++	WREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_DATA, tmp);
++}
++
  /**
-- * vega10_ih_enable_interrupts - Enable the interrupt ring buffer
-+ * arcturus_ih_enable_interrupts - Enable the interrupt ring buffer
+  * arcturus_ih_irq_init - init and enable the interrupt ring
   *
-  * @adev: amdgpu_device pointer
-  *
-- * Enable the interrupt ring buffer (VEGA10).
-+ * Enable the interrupt ring buffer (ARCTURUS).
-  */
--static void vega10_ih_enable_interrupts(struct amdgpu_device *adev)
-+static void arcturus_ih_enable_interrupts(struct amdgpu_device *adev)
- {
- 	u32 ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL);
- 
-@@ -94,13 +94,13 @@ static void vega10_ih_enable_interrupts(struct amdgpu_device *adev)
- }
- 
- /**
-- * vega10_ih_disable_interrupts - Disable the interrupt ring buffer
-+ * arcturus_ih_disable_interrupts - Disable the interrupt ring buffer
-  *
-  * @adev: amdgpu_device pointer
-  *
-- * Disable the interrupt ring buffer (VEGA10).
-+ * Disable the interrupt ring buffer (ARCTURUS).
-  */
--static void vega10_ih_disable_interrupts(struct amdgpu_device *adev)
-+static void arcturus_ih_disable_interrupts(struct amdgpu_device *adev)
- {
- 	u32 ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL);
- 
-@@ -163,7 +163,7 @@ static void vega10_ih_disable_interrupts(struct amdgpu_device *adev)
- 	}
- }
- 
--static uint32_t vega10_ih_rb_cntl(struct amdgpu_ih_ring *ih, uint32_t ih_rb_cntl)
-+static uint32_t arcturus_ih_rb_cntl(struct amdgpu_ih_ring *ih, uint32_t ih_rb_cntl)
- {
- 	int rb_bufsz = order_base_2(ih->ring_size / 4);
- 
-@@ -186,7 +186,7 @@ static uint32_t vega10_ih_rb_cntl(struct amdgpu_ih_ring *ih, uint32_t ih_rb_cntl
- 	return ih_rb_cntl;
- }
- 
--static uint32_t vega10_ih_doorbell_rptr(struct amdgpu_ih_ring *ih)
-+static uint32_t arcturus_ih_doorbell_rptr(struct amdgpu_ih_ring *ih)
- {
- 	u32 ih_doorbell_rtpr = 0;
- 
-@@ -206,7 +206,7 @@ static uint32_t vega10_ih_doorbell_rptr(struct amdgpu_ih_ring *ih)
- }
- 
- /**
-- * vega10_ih_irq_init - init and enable the interrupt ring
-+ * arcturus_ih_irq_init - init and enable the interrupt ring
-  *
-  * @adev: amdgpu_device pointer
-  *
-@@ -216,7 +216,7 @@ static uint32_t vega10_ih_doorbell_rptr(struct amdgpu_ih_ring *ih)
-  * Called at device load and reume.
-  * Returns 0 for success, errors for failure.
-  */
--static int vega10_ih_irq_init(struct amdgpu_device *adev)
-+static int arcturus_ih_irq_init(struct amdgpu_device *adev)
- {
- 	struct amdgpu_ih_ring *ih;
- 	u32 ih_rb_cntl, ih_chicken;
-@@ -224,7 +224,7 @@ static int vega10_ih_irq_init(struct amdgpu_device *adev)
- 	u32 tmp;
- 
- 	/* disable irqs */
--	vega10_ih_disable_interrupts(adev);
-+	arcturus_ih_disable_interrupts(adev);
- 
- 	adev->nbio.funcs->ih_control(adev);
- 
-@@ -234,7 +234,7 @@ static int vega10_ih_irq_init(struct amdgpu_device *adev)
- 	WREG32_SOC15(OSSSYS, 0, mmIH_RB_BASE_HI, (ih->gpu_addr >> 40) & 0xff);
- 
- 	ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL);
--	ih_rb_cntl = vega10_ih_rb_cntl(ih, ih_rb_cntl);
-+	ih_rb_cntl = arcturus_ih_rb_cntl(ih, ih_rb_cntl);
- 	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, RPTR_REARM,
- 				   !!adev->irq.msi_enabled);
- 	if (amdgpu_sriov_vf(adev)) {
-@@ -269,7 +269,7 @@ static int vega10_ih_irq_init(struct amdgpu_device *adev)
- 	WREG32_SOC15(OSSSYS, 0, mmIH_RB_RPTR, 0);
- 
- 	WREG32_SOC15(OSSSYS, 0, mmIH_DOORBELL_RPTR,
--		     vega10_ih_doorbell_rptr(ih));
-+		     arcturus_ih_doorbell_rptr(ih));
- 
- 	ih = &adev->irq.ih1;
- 	if (ih->ring_size) {
-@@ -278,7 +278,7 @@ static int vega10_ih_irq_init(struct amdgpu_device *adev)
- 			     (ih->gpu_addr >> 40) & 0xff);
- 
- 		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING1);
--		ih_rb_cntl = vega10_ih_rb_cntl(ih, ih_rb_cntl);
-+		ih_rb_cntl = arcturus_ih_rb_cntl(ih, ih_rb_cntl);
- 		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL,
- 					   WPTR_OVERFLOW_ENABLE, 0);
- 		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL,
-@@ -298,7 +298,7 @@ static int vega10_ih_irq_init(struct amdgpu_device *adev)
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_RPTR_RING1, 0);
- 
- 		WREG32_SOC15(OSSSYS, 0, mmIH_DOORBELL_RPTR_RING1,
--			     vega10_ih_doorbell_rptr(ih));
-+			     arcturus_ih_doorbell_rptr(ih));
+@@ -246,6 +264,8 @@ static int arcturus_ih_irq_init(struct amdgpu_device *adev)
+ 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL, ih_rb_cntl);
  	}
  
- 	ih = &adev->irq.ih2;
-@@ -308,7 +308,7 @@ static int vega10_ih_irq_init(struct amdgpu_device *adev)
- 			     (ih->gpu_addr >> 40) & 0xff);
- 
- 		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2);
--		ih_rb_cntl = vega10_ih_rb_cntl(ih, ih_rb_cntl);
-+		ih_rb_cntl = arcturus_ih_rb_cntl(ih, ih_rb_cntl);
- 
- 		if (amdgpu_sriov_vf(adev)) {
- 			if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL_RING2,
-@@ -325,7 +325,7 @@ static int vega10_ih_irq_init(struct amdgpu_device *adev)
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_RPTR_RING2, 0);
- 
- 		WREG32_SOC15(OSSSYS, 0, mmIH_DOORBELL_RPTR_RING2,
--			     vega10_ih_doorbell_rptr(ih));
-+			     arcturus_ih_doorbell_rptr(ih));
- 	}
- 
- 	tmp = RREG32_SOC15(OSSSYS, 0, mmIH_STORM_CLIENT_LIST_CNTL);
-@@ -340,37 +340,37 @@ static int vega10_ih_irq_init(struct amdgpu_device *adev)
- 	pci_set_master(adev->pdev);
- 
- 	/* enable interrupts */
--	vega10_ih_enable_interrupts(adev);
-+	arcturus_ih_enable_interrupts(adev);
- 
- 	return ret;
- }
- 
- /**
-- * vega10_ih_irq_disable - disable interrupts
-+ * arcturus_ih_irq_disable - disable interrupts
-  *
-  * @adev: amdgpu_device pointer
-  *
-- * Disable interrupts on the hw (VEGA10).
-+ * Disable interrupts on the hw (ARCTURUS).
-  */
--static void vega10_ih_irq_disable(struct amdgpu_device *adev)
-+static void arcturus_ih_irq_disable(struct amdgpu_device *adev)
- {
--	vega10_ih_disable_interrupts(adev);
-+	arcturus_ih_disable_interrupts(adev);
- 
- 	/* Wait and acknowledge irq */
- 	mdelay(1);
- }
- 
- /**
-- * vega10_ih_get_wptr - get the IH ring buffer wptr
-+ * arcturus_ih_get_wptr - get the IH ring buffer wptr
-  *
-  * @adev: amdgpu_device pointer
-  *
-  * Get the IH ring buffer wptr from either the register
-- * or the writeback memory buffer (VEGA10).  Also check for
-+ * or the writeback memory buffer (ARCTURUS).  Also check for
-  * ring buffer overflow and deal with it.
-  * Returns the value of the wptr.
-  */
--static u32 vega10_ih_get_wptr(struct amdgpu_device *adev,
-+static u32 arcturus_ih_get_wptr(struct amdgpu_device *adev,
- 			      struct amdgpu_ih_ring *ih)
- {
- 	u32 wptr, reg, tmp;
-@@ -425,14 +425,14 @@ static u32 vega10_ih_get_wptr(struct amdgpu_device *adev,
- }
- 
- /**
-- * vega10_ih_decode_iv - decode an interrupt vector
-+ * arcturus_ih_decode_iv - decode an interrupt vector
-  *
-  * @adev: amdgpu_device pointer
-  *
-  * Decodes the interrupt vector at the current rptr
-  * position and also advance the position.
-  */
--static void vega10_ih_decode_iv(struct amdgpu_device *adev,
-+static void arcturus_ih_decode_iv(struct amdgpu_device *adev,
- 				struct amdgpu_ih_ring *ih,
- 				struct amdgpu_iv_entry *entry)
- {
-@@ -468,12 +468,12 @@ static void vega10_ih_decode_iv(struct amdgpu_device *adev,
- }
- 
- /**
-- * vega10_ih_irq_rearm - rearm IRQ if lost
-+ * arcturus_ih_irq_rearm - rearm IRQ if lost
-  *
-  * @adev: amdgpu_device pointer
-  *
-  */
--static void vega10_ih_irq_rearm(struct amdgpu_device *adev,
-+static void arcturus_ih_irq_rearm(struct amdgpu_device *adev,
- 			       struct amdgpu_ih_ring *ih)
- {
- 	uint32_t reg_rptr = 0;
-@@ -500,13 +500,13 @@ static void vega10_ih_irq_rearm(struct amdgpu_device *adev,
- }
- 
- /**
-- * vega10_ih_set_rptr - set the IH ring buffer rptr
-+ * arcturus_ih_set_rptr - set the IH ring buffer rptr
-  *
-  * @adev: amdgpu_device pointer
-  *
-  * Set the IH ring buffer rptr.
-  */
--static void vega10_ih_set_rptr(struct amdgpu_device *adev,
-+static void arcturus_ih_set_rptr(struct amdgpu_device *adev,
- 			       struct amdgpu_ih_ring *ih)
- {
- 	if (ih->use_doorbell) {
-@@ -515,7 +515,7 @@ static void vega10_ih_set_rptr(struct amdgpu_device *adev,
- 		WDOORBELL32(ih->doorbell_index, ih->rptr);
- 
- 		if (amdgpu_sriov_vf(adev))
--			vega10_ih_irq_rearm(adev, ih);
-+			arcturus_ih_irq_rearm(adev, ih);
- 	} else if (ih == &adev->irq.ih) {
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_RPTR, ih->rptr);
- 	} else if (ih == &adev->irq.ih1) {
-@@ -526,7 +526,7 @@ static void vega10_ih_set_rptr(struct amdgpu_device *adev,
- }
- 
- /**
-- * vega10_ih_self_irq - dispatch work for ring 1 and 2
-+ * arcturus_ih_self_irq - dispatch work for ring 1 and 2
-  *
-  * @adev: amdgpu_device pointer
-  * @source: irq source
-@@ -534,7 +534,7 @@ static void vega10_ih_set_rptr(struct amdgpu_device *adev,
-  *
-  * Update the WPTR from the IV and schedule work to handle the entries.
-  */
--static int vega10_ih_self_irq(struct amdgpu_device *adev,
-+static int arcturus_ih_self_irq(struct amdgpu_device *adev,
- 			      struct amdgpu_irq_src *source,
- 			      struct amdgpu_iv_entry *entry)
- {
-@@ -555,26 +555,26 @@ static int vega10_ih_self_irq(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static const struct amdgpu_irq_src_funcs vega10_ih_self_irq_funcs = {
--	.process = vega10_ih_self_irq,
-+static const struct amdgpu_irq_src_funcs arcturus_ih_self_irq_funcs = {
-+	.process = arcturus_ih_self_irq,
- };
- 
--static void vega10_ih_set_self_irq_funcs(struct amdgpu_device *adev)
-+static void arcturus_ih_set_self_irq_funcs(struct amdgpu_device *adev)
- {
- 	adev->irq.self_irq.num_types = 0;
--	adev->irq.self_irq.funcs = &vega10_ih_self_irq_funcs;
-+	adev->irq.self_irq.funcs = &arcturus_ih_self_irq_funcs;
- }
- 
--static int vega10_ih_early_init(void *handle)
-+static int arcturus_ih_early_init(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	vega10_ih_set_interrupt_funcs(adev);
--	vega10_ih_set_self_irq_funcs(adev);
-+	arcturus_ih_set_interrupt_funcs(adev);
-+	arcturus_ih_set_self_irq_funcs(adev);
- 	return 0;
- }
- 
--static int vega10_ih_sw_init(void *handle)
-+static int arcturus_ih_sw_init(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 	int r;
-@@ -610,7 +610,7 @@ static int vega10_ih_sw_init(void *handle)
- 	return r;
- }
- 
--static int vega10_ih_sw_fini(void *handle)
-+static int arcturus_ih_sw_fini(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
-@@ -622,61 +622,61 @@ static int vega10_ih_sw_fini(void *handle)
- 	return 0;
- }
- 
--static int vega10_ih_hw_init(void *handle)
-+static int arcturus_ih_hw_init(void *handle)
- {
- 	int r;
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	r = vega10_ih_irq_init(adev);
-+	r = arcturus_ih_irq_init(adev);
- 	if (r)
- 		return r;
- 
- 	return 0;
- }
- 
--static int vega10_ih_hw_fini(void *handle)
-+static int arcturus_ih_hw_fini(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	vega10_ih_irq_disable(adev);
-+	arcturus_ih_irq_disable(adev);
- 
- 	return 0;
- }
- 
--static int vega10_ih_suspend(void *handle)
-+static int arcturus_ih_suspend(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	return vega10_ih_hw_fini(adev);
-+	return arcturus_ih_hw_fini(adev);
- }
- 
--static int vega10_ih_resume(void *handle)
-+static int arcturus_ih_resume(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	return vega10_ih_hw_init(adev);
-+	return arcturus_ih_hw_init(adev);
- }
- 
--static bool vega10_ih_is_idle(void *handle)
-+static bool arcturus_ih_is_idle(void *handle)
- {
- 	/* todo */
- 	return true;
- }
- 
--static int vega10_ih_wait_for_idle(void *handle)
-+static int arcturus_ih_wait_for_idle(void *handle)
- {
- 	/* todo */
- 	return -ETIMEDOUT;
- }
- 
--static int vega10_ih_soft_reset(void *handle)
-+static int arcturus_ih_soft_reset(void *handle)
- {
- 	/* todo */
- 
- 	return 0;
- }
- 
--static void vega10_ih_update_clockgating_state(struct amdgpu_device *adev,
-+static void arcturus_ih_update_clockgating_state(struct amdgpu_device *adev,
- 					       bool enable)
- {
- 	uint32_t data, def, field_val;
-@@ -703,55 +703,55 @@ static void vega10_ih_update_clockgating_state(struct amdgpu_device *adev,
- 	}
- }
- 
--static int vega10_ih_set_clockgating_state(void *handle,
-+static int arcturus_ih_set_clockgating_state(void *handle,
- 					  enum amd_clockgating_state state)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	vega10_ih_update_clockgating_state(adev,
-+	arcturus_ih_update_clockgating_state(adev,
- 				state == AMD_CG_STATE_GATE);
- 	return 0;
- 
- }
- 
--static int vega10_ih_set_powergating_state(void *handle,
-+static int arcturus_ih_set_powergating_state(void *handle,
- 					  enum amd_powergating_state state)
- {
- 	return 0;
- }
- 
--const struct amd_ip_funcs vega10_ih_ip_funcs = {
--	.name = "vega10_ih",
--	.early_init = vega10_ih_early_init,
-+const struct amd_ip_funcs arcturus_ih_ip_funcs = {
-+	.name = "arcturus_ih",
-+	.early_init = arcturus_ih_early_init,
- 	.late_init = NULL,
--	.sw_init = vega10_ih_sw_init,
--	.sw_fini = vega10_ih_sw_fini,
--	.hw_init = vega10_ih_hw_init,
--	.hw_fini = vega10_ih_hw_fini,
--	.suspend = vega10_ih_suspend,
--	.resume = vega10_ih_resume,
--	.is_idle = vega10_ih_is_idle,
--	.wait_for_idle = vega10_ih_wait_for_idle,
--	.soft_reset = vega10_ih_soft_reset,
--	.set_clockgating_state = vega10_ih_set_clockgating_state,
--	.set_powergating_state = vega10_ih_set_powergating_state,
-+	.sw_init = arcturus_ih_sw_init,
-+	.sw_fini = arcturus_ih_sw_fini,
-+	.hw_init = arcturus_ih_hw_init,
-+	.hw_fini = arcturus_ih_hw_fini,
-+	.suspend = arcturus_ih_suspend,
-+	.resume = arcturus_ih_resume,
-+	.is_idle = arcturus_ih_is_idle,
-+	.wait_for_idle = arcturus_ih_wait_for_idle,
-+	.soft_reset = arcturus_ih_soft_reset,
-+	.set_clockgating_state = arcturus_ih_set_clockgating_state,
-+	.set_powergating_state = arcturus_ih_set_powergating_state,
- };
- 
--static const struct amdgpu_ih_funcs vega10_ih_funcs = {
--	.get_wptr = vega10_ih_get_wptr,
--	.decode_iv = vega10_ih_decode_iv,
--	.set_rptr = vega10_ih_set_rptr
-+static const struct amdgpu_ih_funcs arcturus_ih_funcs = {
-+	.get_wptr = arcturus_ih_get_wptr,
-+	.decode_iv = arcturus_ih_decode_iv,
-+	.set_rptr = arcturus_ih_set_rptr
- };
- 
--static void vega10_ih_set_interrupt_funcs(struct amdgpu_device *adev)
-+static void arcturus_ih_set_interrupt_funcs(struct amdgpu_device *adev)
- {
--	adev->irq.ih_funcs = &vega10_ih_funcs;
-+	adev->irq.ih_funcs = &arcturus_ih_funcs;
- }
- 
--const struct amdgpu_ip_block_version vega10_ih_ip_block = {
-+const struct amdgpu_ip_block_version arcturus_ih_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_IH,
- 	.major = 4,
- 	.minor = 0,
- 	.rev = 0,
--	.funcs = &vega10_ih_ip_funcs,
-+	.funcs = &arcturus_ih_ip_funcs,
- };
-diff --git a/drivers/gpu/drm/amd/amdgpu/arcturus_ih.h b/drivers/gpu/drm/amd/amdgpu/arcturus_ih.h
-index 54daf8cf6ff3..56da58ac0e97 100644
---- a/drivers/gpu/drm/amd/amdgpu/arcturus_ih.h
-+++ b/drivers/gpu/drm/amd/amdgpu/arcturus_ih.h
-@@ -21,10 +21,10 @@
-  *
-  */
- 
--#ifndef __VEGA10_IH_H__
--#define __VEGA10_IH_H__
-+#ifndef __ARCTURUS_IH_H__
-+#define __ARCTURUS_IH_H__
- 
--extern const struct amd_ip_funcs vega10_ih_ip_funcs;
--extern const struct amdgpu_ip_block_version vega10_ih_ip_block;
-+extern const struct amd_ip_funcs arcturus_ih_ip_funcs;
-+extern const struct amdgpu_ip_block_version arcturus_ih_ip_block;
- 
- #endif
++	arcturus_ih_reroute_ih(adev);
++
+ 	if (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT) {
+ 		ih_chicken = RREG32_SOC15(OSSSYS, 0, mmIH_CHICKEN);
+ 		if (adev->irq.ih.use_bus_addr) {
 -- 
 2.17.1
 
