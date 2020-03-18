@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9469E18A6D2
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2020 22:14:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 439C518A6D4
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Mar 2020 22:15:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAF2F6E1F3;
-	Wed, 18 Mar 2020 21:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 361F16E89F;
+	Wed, 18 Mar 2020 21:15:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com
  (mail-dm6nam10on2064.outbound.protection.outlook.com [40.107.93.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1C466E1F3
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 21:14:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 197676E1F3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 21:14:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fwYBIdgNUOXQ9SmLB1Avf+/RzF0car0vlHTbT/4ChTzPjvUVeLvLhR/Jt/qF6f1QUPu8FznOISMyFh09TmSz7b4kWnv7X8YvDRbcqpRwuDGn0HgDWmo994nCwY9bqxNMM4goy7MM9kNWt5DedaZd3PyExT/zWqQCFF1vaFUKOyJLQs1XTK236srqDBzyFoAz9D55ZxjvuMnnx+piu1nhJD0VcNCIGxsY0RUfc7V4tVVh/bsZKrwNODd8uBNZHRTZsjyvycuHCXwsI+UasgwDi5PdkilC61oh67utLVkZ/1poI3bfCSG2sjzLoEB/7GxA7gsQE3D1CItSrcVA7mTt9Q==
+ b=FCDVkM99VxpBRoFFm3keMooti2jZwgOqppqFXmfmrO4sW2R/IIkQH3ES/vWIdcfVSSD41vlzGJJ+AOEtAcNIKSIy2Z5zQ8TacpNO2xzCTKmFAzg6keUm7kM0jDJUVElRU/R+hq5kVFu7N7A50RHqpwKlFs35qmDktK+/otJdr+QHhlyAcpnIS7yOKQodyR4pVFdxzTLRj9nWZ7ouL7AVdaQYpy2TsMqcS1kbM6Dyw3ILTZP6yfZxzK4o+r9qVFcyxt9jzGFsFaprWT6F7dkJQiqEqjIWOAYjknljaI5beT6NzB5VIvFDr4RBZ5xOntOZZPASYFx9cpOOkHT6SADWng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WnNG3F55+L/Xo+1Mwk9KWKT9Yzeck7U96jehkfNjfaY=;
- b=WqjA7QgRFncJf9uCLRahnInQT/FswrLB/rF6XInGGsPqprK8FZd+4WpOkEIQVp1udl6VzvtOQaUnRzfK7v85pBds5XNj9tY4sm1heNuben4Gd7j0BHPnKMJuN+kLRbnr/Az5zN0h7ct9btnNEY9IrvgoB7gYr1fzks5/d6f++PadjgO/9e1gD9v3sofrCLY7x3GIyZVLyFzUaKjgUUOgLzpqdE6/TLnmGzBEXtr0Yliujen2IbtD4OdZGwq6nBO0VUTronQ2OlVJxaDV/MLYDMx7Ob2OU+OckZ6ihods1ZC1uEveTjrX0XYaZ74LgmqU8k8iG6l+uizgG+qNxpsaCg==
+ bh=DMqeJAtyS6gZgUIzL98R5xmDTiIMGBy5UPQ/sOFYouI=;
+ b=agfhr4/gj7/eUEXcPfT0K7y8XTW/1CCbu9+UMozgYoJ4DdfaMT28/ikIfh2uhjfuFwu6ao6SZTwoogONmugDwu6yBqwVT9LKt9UXdv4z1JoBrXfI2yxYCesTYaW96ed/RPFDVWi/Zj/1ZVLPHHQyZDTwhnXfpEDrrfCanh0DIxxKUslDKCHVE1plDBkyNTetWNYZ2+qWPz00jRd60aWSSm0vQN61A51IcgICT/iR8sr4advWtgR90VrnidqG2JX2SpevuM/AkDZ54XscGGEjW/gm42L7hv4YpR0Gkr4ylpKL7/taLQqUTKv9GAxehF6V3F7qt2Q0q8hZfBpOHqaUxg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WnNG3F55+L/Xo+1Mwk9KWKT9Yzeck7U96jehkfNjfaY=;
- b=qt4XE9rJxfHnK+1WJD0Q2gzLIh4xmO10G1XkJY8m1WgVuLsZv6zGWzVDIZJhTzzRJ0TOnU9nPaA71JWoLsS+B5Mz3Z8/1ZqGO/s116oQvY7BkmCGIKCmCXG9wB3flvAwJ4t850nJ4MkTuYig7AS/QkP6hWY2XHHn3jOlfLqrXmU=
+ bh=DMqeJAtyS6gZgUIzL98R5xmDTiIMGBy5UPQ/sOFYouI=;
+ b=Q85K0zOVznqsoZf/mpDjcYt/M3QILATPR9mL1Sb/dV8enwmzXjKhIa+UJp6FR5TKb2yBmdw/gNjG2rxUINUTFYNuW+mRfvA057MI37DXH/vjS3QDx8HOgcGmfzz6VdLpMw6ugfkH/d9K4r9QZ2yqzIvyVXlBq2aCRhd5ZxGNzbw=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=James.Zhu@amd.com; 
 Received: from BYAPR12MB3285.namprd12.prod.outlook.com (2603:10b6:a03:134::14)
@@ -41,9 +41,9 @@ Received: from BYAPR12MB3285.namprd12.prod.outlook.com
  21:14:53 +0000
 From: James Zhu <James.Zhu@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/amdgpu: fix typo for vcn2/jpeg2 idle check
-Date: Wed, 18 Mar 2020 17:14:43 -0400
-Message-Id: <1584566084-23428-2-git-send-email-James.Zhu@amd.com>
+Subject: [PATCH 3/3] drm/amdgpu: fix typo for vcn2.5/jpeg2.5 idle check
+Date: Wed, 18 Mar 2020 17:14:44 -0400
+Message-Id: <1584566084-23428-3-git-send-email-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1584566084-23428-1-git-send-email-James.Zhu@amd.com>
 References: <1584566084-23428-1-git-send-email-James.Zhu@amd.com>
@@ -55,16 +55,16 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from work_495456.amd.com (165.204.55.251) by
  YT1PR01CA0027.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::40) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.2835.19 via Frontend Transport; Wed, 18 Mar 2020 21:14:52 +0000
+ 15.20.2835.19 via Frontend Transport; Wed, 18 Mar 2020 21:14:53 +0000
 X-Mailer: git-send-email 2.7.4
 X-Originating-IP: [165.204.55.251]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 900c9b63-d2b0-40b4-fa70-08d7cb8166a0
+X-MS-Office365-Filtering-Correlation-Id: 922d4e0d-6ee5-4708-cc37-08d7cb816703
 X-MS-TrafficTypeDiagnostic: BYAPR12MB2998:|BYAPR12MB2998:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR12MB29984E5F2CBA7A6BB20C5202E4F70@BYAPR12MB2998.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
+X-Microsoft-Antispam-PRVS: <BYAPR12MB2998533E61AD781402F879B4E4F70@BYAPR12MB2998.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1013;
 X-Forefront-PRVS: 03468CBA43
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(396003)(366004)(376002)(346002)(39860400002)(136003)(199004)(186003)(7696005)(66476007)(52116002)(26005)(66946007)(316002)(66556008)(5660300002)(6486002)(2906002)(6916009)(6666004)(16526019)(478600001)(36756003)(4326008)(8676002)(86362001)(81166006)(956004)(8936002)(2616005)(81156014);
@@ -75,15 +75,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Cm6IJ0cGk86RZ1cccMSqSYpHlZf9s4ftMppKvyDyLhkVkznm08m2OdDchAdc/iKnw707AoV1OtXOGuDbaS2KkCd7RUgcLLhIZMmt2RDU8nsK/WGbreMy5nY4++6HANQpEhDYok9Eo7SUh0AJOmDN1b5RCbDUtBM8b1ksA9HvY2vEfBE9RqxAc7tR0NxDiA74ILJoUhQQOA0atZPgGTAeBmXObyCuefQyDuUPm57Ph9FSrqAxBGce0nJBgdT1mIDNyCkYdJyeS8J8LTNFQ7zY3Z5fUkKCbZfJgr04/jgnqEDfMiUZbeZXZezhZottxQkQA1/HKBOFEz3pBUxT5/VzVjE807pGP+xjsAu3IhiEErird55wkE5rWZF7J8NxLC2qy7RTDg8qxyLVKuL0ebGEZRaVZLoO0mMN6D9BUQZPVLjQtgINKsuIWs7K8ragjoVI
-X-MS-Exchange-AntiSpam-MessageData: s00pbAocZh3w9O4kGvxBZGgxr86U3zRVzOWtszLc3IbHtkObShhXjADu4Hwm/gm7Fu8vL0OGfmavUyuPBXZO5pwgGeyyXo1sLH6tk98aYVzqJ9ChD7voq6HiceiEWJpQ8NXFXdTISHsEbgh49DhKNw==
+X-Microsoft-Antispam-Message-Info: UrT2cxSOG6r285UwvlLbn2bzPUSQNjzvXWNABHAgLpxf36b5qy6i7kusoSF/RnzfOiXEiroE9eycNx6LnRHdOAmosO6SW4QbHMF72YZ3xpiUHPuOhuS7KPKoUy3ev8a9/U5oopC6jpKm/zSgpGl7pGQSmuXaHvONl7hygSo5/uq3HE6lLDOK78gfmuH9b2O1zsXj01kA81XIfb+UfviKIR/4DJU5Drr4d6FSLEv3LEFJ7UZVQdycj3sMm6tBTxVO5Z+AxQBhaYMe/p6KPqQzYF1Z/5T3jYLmG0/NiYOEca5QKHG+KWAHxZeaRHUGZsbGr6J3DspbGY6B70g9xP89qUBVktUEKeYPA5xopXgZBtKQBsIo2Z22tR0OkoTTFvSYrbSulAJe+zgbSOsVYtMynrtTtmA+RM8x/GKGMs+OhoKoeyeQM461vKkKmbfvILEv
+X-MS-Exchange-AntiSpam-MessageData: 3tXraCNIFO+bEAbSKE5MnnF9JHXAjQJknPT2QOPhkDaYGTHaMOX8uyVlSc2rPWH4ikdvcH/ql/z7gaUiVXlr9yDCYkvdrCRjjhDHTxIAOw6JBnNbagCYEOCyiDq5urz+OSz91GVNvX+c2/q8yQfY1g==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 900c9b63-d2b0-40b4-fa70-08d7cb8166a0
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 21:14:53.1418 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 922d4e0d-6ee5-4708-cc37-08d7cb816703
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 21:14:53.7905 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: c1iKcT7Sli230gVBeiSOmBDmhIG21DmzWWSGp1OFPASb1eQUSZ9tTqakBi8aQgAA
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2c5pspWkn5MCXh4a5EdVyrsaT4tjsFMV70JS7mu7Cd6wl1o13eq35M/wAR7I1RyD
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2998
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,39 +102,39 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-fix typo for vcn2/jpeg2 idle check
+fix typo for vcn2.5/jpeg2.5 idle check
 
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c  | 2 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c  | 2 +-
  2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-index ff2e6e1..6173951 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-@@ -693,7 +693,7 @@ static int jpeg_v2_0_set_clockgating_state(void *handle,
- 	bool enable = (state == AMD_CG_STATE_GATE);
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
+index c6d046d..c04c207 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
+@@ -477,7 +477,7 @@ static int jpeg_v2_5_set_clockgating_state(void *handle,
+ 			continue;
+ 
+ 		if (enable) {
+-			if (jpeg_v2_5_is_idle(handle))
++			if (!jpeg_v2_5_is_idle(handle))
+ 				return -EBUSY;
+ 			jpeg_v2_5_enable_clock_gating(adev, i);
+ 		} else {
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+index 9b22e2b..c6363f5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+@@ -1673,7 +1673,7 @@ static int vcn_v2_5_set_clockgating_state(void *handle,
+ 		return 0;
  
  	if (enable) {
--		if (jpeg_v2_0_is_idle(handle))
-+		if (!jpeg_v2_0_is_idle(handle))
+-		if (vcn_v2_5_is_idle(handle))
++		if (!vcn_v2_5_is_idle(handle))
  			return -EBUSY;
- 		jpeg_v2_0_enable_clock_gating(adev);
- 	} else {
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-index f2745fd..ec8091a 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-@@ -1251,7 +1251,7 @@ static int vcn_v2_0_set_clockgating_state(void *handle,
- 
- 	if (enable) {
- 		/* wait for STATUS to clear */
--		if (vcn_v2_0_is_idle(handle))
-+		if (!vcn_v2_0_is_idle(handle))
- 			return -EBUSY;
- 		vcn_v2_0_enable_clock_gating(adev);
+ 		vcn_v2_5_enable_clock_gating(adev);
  	} else {
 -- 
 2.7.4
