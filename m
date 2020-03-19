@@ -2,90 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E059A18A955
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2020 00:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0F5F18AA66
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2020 02:42:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26CEE6E99C;
-	Wed, 18 Mar 2020 23:38:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 728446E0A6;
+	Thu, 19 Mar 2020 01:42:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2076.outbound.protection.outlook.com [40.107.94.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D18E6E99C
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 23:38:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JFLG6EElcAFQk6UDKtQjyt43pFCFteP6YQkies4XE8st4IsRde7iNOGPPhme9wxXYlfcNhG2RM13KDyzAUTQNxJhFA14HtKrEgd9CyFOQ0s46PB1AqRebngEJPRci1VLS2xMgHtPAGW73SPUaIF1Phi5+J2UtUrZ+bEYN4FJ9e0Y4VluApQaMK6VoC4ZodLjwIR3tBw+0PhJFVXcX8Gz0NKr2SW6myzbtmu+0g5jDVdQKgYmPsYxOyU2UCq1LL5JLPmjOYSGqJo5XnwvL0nPU7LYFSlA1tPT1Ft6KoNHe/enBEkyftO8aUcVeeHvqUqAdM7u8gBYDOakf/lqPMwtMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VxUC8lu65AxSbQYpD3zkxVOqy5zMQoz0450AJSplO4Y=;
- b=GQ/6vB/VrJgjwNHAO9gNKx3L0wZ3v3YrfQDUBopJcuAjVoc6/T01aO7gRXMRsOteXA3LkcIyKM9kTBIJ1vBv/kZSHcesLpM7bn6LWcK0FVQ9UlN0wdHxa/GnKHA19hp6FLJWLlWOPas6IjtWezhK/oypsH83ImXCaDAL7ggVHBN3pnC+rLdk4jhj420FdpmWvkU44M+MW08aJaqcrICWZLuAnoTuIGD5I07pRuFdksYqPVZLlgg9/+JbeWHmtkhXnufdrv4vB9x22aLFcH6FkcG8feQ7Zkgjvcn07pc3vrIC2weqGn+CknSFSKRiA2uCzi+r9WZC9By0Fb7pEIrVZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VxUC8lu65AxSbQYpD3zkxVOqy5zMQoz0450AJSplO4Y=;
- b=Uyuifpb0sebdtqlo9ie4gaakFLZjglXtBmDBEpenWFvHXKqI9SLFg706Kw0cU3RUF1pfBwk/rkLuGzisBMKfAn/RY3c5QQo7e83HoYyeeVCj9lThxXrluAV+AYTHvkfy/UBBrlYG7Ot1sECa5jduNzSbjuFISTCxHzTF8/QWfiw=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alex.Sierra@amd.com; 
-Received: from SA0PR12MB4576.namprd12.prod.outlook.com (2603:10b6:806:93::13)
- by SA0PR12MB4352.namprd12.prod.outlook.com (2603:10b6:806:9c::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.16; Wed, 18 Mar
- 2020 23:38:24 +0000
-Received: from SA0PR12MB4576.namprd12.prod.outlook.com
- ([fe80::8d47:3ca5:5a7c:c047]) by SA0PR12MB4576.namprd12.prod.outlook.com
- ([fe80::8d47:3ca5:5a7c:c047%7]) with mapi id 15.20.2835.017; Wed, 18 Mar 2020
- 23:38:24 +0000
-From: Alex Sierra <alex.sierra@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdgpu: ih doorbell size of range changed for nbio
- v7.4
-Date: Wed, 18 Mar 2020 18:38:01 -0500
-Message-Id: <20200318233801.11866-2-alex.sierra@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200318233801.11866-1-alex.sierra@amd.com>
-References: <20200318233801.11866-1-alex.sierra@amd.com>
-X-ClientProxiedBy: DM5PR05CA0023.namprd05.prod.outlook.com
- (2603:10b6:3:d4::33) To SA0PR12MB4576.namprd12.prod.outlook.com
- (2603:10b6:806:93::13)
+Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com
+ [IPv6:2607:f8b0:4864:20::f41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE1AC6E9A3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 00:28:51 +0000 (UTC)
+Received: by mail-qv1-xf41.google.com with SMTP id v38so118480qvf.6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 17:28:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=DIzPGl46tibPTC4Nr1Fne3idEkZVxe0vRVzC9BmYyk8=;
+ b=a9OAhtzpaqy8M7ZOiBkM5EuSVHd4yNecpRtC8dRP+l2pPqyfnSd8K92zu0TfGABk1Q
+ hYEfZ+7acI2k/zKRdQldlZU6QmFtX2HRogB/BKnbdEtsKAhQeU6fd+MnUlz8ghM8TEw4
+ 4FSfDydFj/Zz5Td34FIN8pCf7ZG9IBYZHl9AGTNXWI1pvNTxE9cBf86JQxD+vBXs5Fu+
+ P3YN0S0cijWwxtWJa0nTOxVZ/FIsv/TFStTBQI0wKucqAubr3tyWjsrl2pHJSEDRw/1M
+ 2hLIJPL3HFVUmwFiwQrI21J4bRRmujEiUZiEYQWN4CJhod6KqfASdjQsItMOv/RwHOO/
+ 50tA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=DIzPGl46tibPTC4Nr1Fne3idEkZVxe0vRVzC9BmYyk8=;
+ b=hl2mOVVicEDFsbvAL2p0YHFcn6kLN0onMVczXRXRVmKPDvMq/a+Wnm+DvpGJS04q8u
+ ll3Pc2NOWbwQGhagRNhURpRgFOGeH8QF0h9HKM8Y3egj1ZtQmZiYMUcHSFgPN04bMKQB
+ YUrVaZbIgCaej4y1TTKgZDDbEsh4lduq2mcgc/bpUzeUgjygqWnAaj7LqaQUU6fmyLRZ
+ BTEzj3kpdTOuobTkcSU7qYsuqGvKrSE0OkosdCNk6dSpm8Wc0wzyme04P6WLes//ksiK
+ 9Y0X5LNXnNmu3JGfesX/q9EV/WLvXFFsk3OzdwjAvOH2m6lVVlV+XsJmuK32n/4/6FdD
+ iqRg==
+X-Gm-Message-State: ANhLgQ1yx2IRBsowpcSk9dnz6eWIKjIVAfbQNGLsRrovO35b5SmItZoU
+ awJEwcLpEjaEbO3Xa3rEQpFF9A==
+X-Google-Smtp-Source: ADFU+vvSjLkx34MB68Vj6dW6PS73cWO5A0gn+n/cmS/y+KLQ6+BjGr0q6lYXU7A7Xm/H0ApV84kRRw==
+X-Received: by 2002:a0c:e7c3:: with SMTP id c3mr620345qvo.62.1584577730703;
+ Wed, 18 Mar 2020 17:28:50 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.68.57.212])
+ by smtp.gmail.com with ESMTPSA id u123sm433965qkf.77.2020.03.18.17.28.50
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 18 Mar 2020 17:28:50 -0700 (PDT)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+ (envelope-from <jgg@ziepe.ca>)
+ id 1jEj3J-000273-Ln; Wed, 18 Mar 2020 21:28:49 -0300
+Date: Wed, 18 Mar 2020 21:28:49 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Christoph Hellwig <hch@lst.de>
+Subject: Re: ensure device private pages have an owner v2
+Message-ID: <20200319002849.GG20941@ziepe.ca>
+References: <20200316193216.920734-1-hch@lst.de>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from alex-MS-7B09.amd.com (165.204.78.1) by
- DM5PR05CA0023.namprd05.prod.outlook.com (2603:10b6:3:d4::33) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2835.12 via Frontend Transport; Wed, 18 Mar 2020 23:38:23 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [165.204.78.1]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 66a53670-155d-4645-6770-08d7cb957356
-X-MS-TrafficTypeDiagnostic: SA0PR12MB4352:|SA0PR12MB4352:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SA0PR12MB43525B3648018B1F36BA5A98FDF70@SA0PR12MB4352.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:551;
-X-Forefront-PRVS: 03468CBA43
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(366004)(346002)(396003)(136003)(39860400002)(199004)(81166006)(2906002)(8936002)(81156014)(8676002)(6666004)(36756003)(44832011)(2616005)(956004)(6486002)(478600001)(66946007)(52116002)(16526019)(7696005)(5660300002)(6916009)(66476007)(316002)(66556008)(26005)(86362001)(4326008)(1076003)(186003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:SA0PR12MB4352;
- H:SA0PR12MB4576.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GcUDNiWMtK7XxDMSdJy1SzpPiesceRiP37/7HKyGWbDvxjq3dajhl7EtJ2534KM6vFc/ezvgk+FHgy28sf9htEykwr26xEh+Ru+ZK9uZsO5TsEa1dprdgpPW7AStZDDhNf/SfCim66zoA/LSrN2HJfayviMne+3ZM9U6V7pEI2yFT23NesRvmHkAGhRszk/QZPvdtMqsvsVK+/gERvq9rVRb2Vzdya4ACTJTqM+nY7gPOEkAmKusULiaFMUI7D+wMplZChWjpJtuVSupND+GjjqJbAtRdRkizWsIiauqQ/B7jVgZmcoPVzWph2h9u66uwTCDQr07Jb0NEmn+9EOSBV42stuSVurNfMxsRhRr1OJK3ppynTwRqjhJTmJ+He/LZjIX1Gtqfp8kulujAsUSJOU39ZSkWXPm0X6r9AKYmhiIUoaHbwPho289Sf1xoHbh
-X-MS-Exchange-AntiSpam-MessageData: 51gDcOlXCRgxvRSKsnnVt6RMaNFBkJZdqHnCSVt+ljpJRlOk1GX4DHP7rh/ZFbg7w1SKlE5DNFB612ihqPvNhmc+2w3n5cwhOF8cth1hYMC4hO2L+MYoeousg46UuI+u50EWC3rsMpPUxhJe8ebf8A==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 66a53670-155d-4645-6770-08d7cb957356
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 23:38:24.3963 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SDwnf8XG2J+JnWX4C4PyY4ZU1azQMygSt6MXV1AMeMA1z/z2jeecBupM6CRYGUmxBQuTkcJ8Iwz1r/47QEu5CA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4352
+Content-Disposition: inline
+In-Reply-To: <20200316193216.920734-1-hch@lst.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Mailman-Approved-At: Thu, 19 Mar 2020 01:42:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,41 +72,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kvm-ppc@vger.kernel.org,
+ Bharata B Rao <bharata@linux.ibm.com>, linux-mm@kvack.org,
+ Jerome Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-nbio v7.4 size of ih doorbell range is 64 bit. This requires 2 DWords per register.
+On Mon, Mar 16, 2020 at 08:32:12PM +0100, Christoph Hellwig wrote:
+> When acting on device private mappings a driver needs to know if the
+> device (or other entity in case of kvmppc) actually owns this private
+> mapping.  This series adds an owner field and converts the migrate_vma
+> code over to check it.  I looked into doing the same for
+> hmm_range_fault, but as far as I can tell that code has never been
+> wired up to actually work for device private memory, so instead of
+> trying to fix some unused code the second patch just remove the code.
+> We can add it back once we have a working and fully tested code, and
+> then should pass the expected owner in the hmm_range structure.
+> 
+> Changes since v1:
+>  - split out the pgmap->owner addition into a separate patch
+>  - check pgmap->owner is set for device private mappings
+>  - rename the dev_private_owner field in struct migrate_vma to src_owner
+>  - refuse to migrate private pages if src_owner is not set
+>  - keep the non-fault device private handling in hmm_range_fault
 
-[How]
-Change ih doorbell size from 2 to 4. This means two Dwords per ring.
-Current configuration uses two ih rings.
+I'm happy enough to take this, did you have plans for a v3?
 
-Change-Id: Iae28c22dd6e650f56286bfa0d9e002a8562fa855
-Signed-off-by: Alex Sierra <alex.sierra@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
-index 149d386590df..263dbb1f92ee 100644
---- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
-@@ -185,7 +185,7 @@ static void nbio_v7_4_ih_doorbell_range(struct amdgpu_device *adev,
- 
- 	if (use_doorbell) {
- 		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, OFFSET, doorbell_index);
--		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, SIZE, 2);
-+		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, SIZE, 4);
- 	} else
- 		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, SIZE, 0);
- 
--- 
-2.17.1
-
+Thanks,
+Jason
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
