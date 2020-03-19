@@ -1,54 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE77618AAFB
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2020 04:11:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DEB818AB02
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2020 04:12:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6B16E981;
-	Thu, 19 Mar 2020 03:11:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD9CB6E981;
+	Thu, 19 Mar 2020 03:12:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9595E6E97F;
- Thu, 19 Mar 2020 03:10:59 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id f3so900816wrw.7;
- Wed, 18 Mar 2020 20:10:59 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03CF96E981
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 03:12:25 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id c187so429252wme.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 20:12:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0PbEVnPMN2MJETRJ/beHdjai+kDkd1vOhYugO2rPEs8=;
- b=bvjcInVk0w5Aga/UGdqj1hEY4Ynhx9oV7IpR4MXUvBalcxgYkpZnSbw3iRV1p9w1OR
- WCQqQbekNyhfkdLKdvCEeTgHK3SOR7ohpnNqJevCFxKOeUbPmxMC310ChfJagsqfybEx
- +ZjRAmDrVsFinrPklnymNG+vOTsNMSyKoV2YdgURGil2t32W0UJGjq1/1VePrcMYEmqg
- Fy1R0IahA7qoJWnBY0LFkzgqqwITnl2fkMeZyKYtHtoz89WunQfe0VR9x5t6WJL89LPP
- z90qJILdBU20Af1HdxivAv7enIyOg+s1edXbwCE/I5okp0tp62kG/yI2VPUG80OydD5v
- VtnQ==
+ :cc; bh=reWgl3NCiZCZNzrop4L8QcFpOwgi7TMAXzwkT2C5CcA=;
+ b=bz1jgRBSZXa/pMgxPmoG0BJLCNSuE9ieLzLHb9NQGIEuPjw+4buq6h78aR1R5xkmLV
+ sKVugx4R4D0RF6M2S167n6qp1qRMXuRov5vFTGnBA7qon1UL1wgsZFgcUYNoP/Nx8whP
+ nk/bXSGkN9uvWKOn95pJOFbIW/efWpfaBvALErBFW/OfuEkSPzVJ8TR6rsbdkb9VAYGL
+ IDRjxokqLYxD0DT2TsalCDiPFRntkFkRssrkSRX2JAI1/pWPiMqd4kW5z7BZ+Z5YUOGx
+ yqqJ0WQVNqSueiwGMizeLpIQ3xCmqckBzRlYz2H6S0TFExhaPeCO/OHNF4QUruyDEXuB
+ N07w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=0PbEVnPMN2MJETRJ/beHdjai+kDkd1vOhYugO2rPEs8=;
- b=PcHXWwuesFe0xrzYjV/QCGUFgKNC/VS0awQt7ymIGW0tCwJbYKg20D47y+XTnFJcWj
- Nl0CnmaXe+amSEioyS9Qpt/c1Lq8/lIyn/eP/I+wR0AojVcNOuI5sN3Fr0upzaDDKa8F
- lIsEHdIe6yWBbHWRBEXRbsD3hiJvaNZedyW9tprZoh6dEU6rPRvtW7atzO9ipH9cIi6I
- mjuqoYR4ocF+LEr+cFD9a+kZmow0MMsuu+FhQJCPqlEVVh2BHHZ0cMBlclEsrSnWK/m3
- +wLDknMimo76tYc8iiQETPKp+uG4ppNXJ+c/WdUEayOODehVu5RIf4vFsCyb0+SCRobo
- G8OQ==
-X-Gm-Message-State: ANhLgQ3cZ70AaFAliyqc1O1liKlgR/waQGwvmp5dVt5ir1rZXBTuCZaZ
- g7940LSQYgdvHZXnbzKwXWYI/DBTnHc06Cn67DM=
-X-Google-Smtp-Source: ADFU+vugH3dqSBl+xKkWc8E05RpY1YdIeD+1zAQpVyPrfmmrhyEY5oVhwEWdnhf3FHZ/BEBiDfkzNF2Fo8uU0Bx4shk=
-X-Received: by 2002:adf:e447:: with SMTP id t7mr1239757wrm.374.1584587458151; 
- Wed, 18 Mar 2020 20:10:58 -0700 (PDT)
+ bh=reWgl3NCiZCZNzrop4L8QcFpOwgi7TMAXzwkT2C5CcA=;
+ b=Qje/gNuGlT2EKh/x4C1Md9QpTweMyoVWdXxHMISKs22G8kv3h8gFsSLuGiFlMRDvRk
+ HCNQ4hbv4g1DIYkNAL5fvYt9d/d2RdvuruMFLq4ZBeejjIJGXyntZZq+x2CFZPCTk3y+
+ R1V7X9GViOS4OHUi2iQU88TalOMrRLouj+TQ5K4lCnLcajgHiUXmYPtyIKdkchXXbrPI
+ Q8c8EJvkmJaaMUKe56DkSVL8Ek9FOs3DSSMTd602T55AmZ54gRIPfkozjY6gWNZhN4S0
+ F+T3ia2Kg3+YF1dOxTlohXsQiZ23aExii8LSGD1Z/n0SPLIBv9uEJ7wKVQ3S1+9eWlW6
+ H6vQ==
+X-Gm-Message-State: ANhLgQ17d8mSigzN817LauQn89cpBpngCGl4vEJuIOzT4x6G2DSAeoDV
+ M9FCyv36mQj+7F7CWFXROVoVsDg4c/nwuYRB3IM=
+X-Google-Smtp-Source: ADFU+vvCej+BPydar0GxLaQN91Uh2/hYLAfdOLFvubEgVDEDaG0n3BW9uDDp0Nh4PraQEOxvcKorC5S5gFuOzplgbuU=
+X-Received: by 2002:a7b:c542:: with SMTP id j2mr962515wmk.39.1584587543650;
+ Wed, 18 Mar 2020 20:12:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200317114748.388420-1-colin.king@canonical.com>
-In-Reply-To: <20200317114748.388420-1-colin.king@canonical.com>
+References: <1584464097-12866-1-git-send-email-shaoyun.liu@amd.com>
+In-Reply-To: <1584464097-12866-1-git-send-email-shaoyun.liu@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 18 Mar 2020 23:10:47 -0400
-Message-ID: <CADnq5_NbdBhz+TQ0Ldng8fLjnRmDiuKDhTrqsC0WDt8-0Vq41g@mail.gmail.com>
-Subject: Re: [PATCH][next] drm: amd: fix spelling mistake "shoudn't" ->
- "shouldn't"
-To: Colin King <colin.king@canonical.com>
+Date: Wed, 18 Mar 2020 23:12:12 -0400
+Message-ID: <CADnq5_PDj_stFK0AEpASi4bQxDbfzjG-AHB8t51WensO7ni=NQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/sriov : Don't resume RLCG for SRIOV guest
+To: shaoyunl <shaoyun.liu@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,84 +59,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Zhou <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
- Felix Kuehling <Felix.Kuehling@amd.com>, kernel-janitors@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 17, 2020 at 7:47 AM Colin King <colin.king@canonical.com> wrote:
+On Tue, Mar 17, 2020 at 12:55 PM shaoyunl <shaoyun.liu@amd.com> wrote:
 >
-> From: Colin Ian King <colin.king@canonical.com>
+> RLCG is enabled by host driver, no need to enable it in guest for none-PSP load path
 >
-> There are spelling mistakes in pr_err messages and a comment. Fix these.
->
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+> Change-Id: I2f313743bf3d492f06aaef07224da6eda3878a28
+> Signed-off-by: shaoyunl <shaoyun.liu@amd.com>
 
-The relevant code was recently dropped so no longer applies.
-
-Thanks!
-
-Alex
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
 > ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c       | 2 +-
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c        | 2 +-
->  drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> index d1cdcb404f7c..4bdf425ca6d8 100644
+> index d1cdcb4..e134bb2 100644
 > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
 > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -246,7 +246,7 @@ static void gfx_v10_rlcg_wreg(struct amdgpu_device *adev, u32 offset, u32 v)
->         grbm_idx = adev->reg_offset[GC_HWIP][0][mmGRBM_GFX_INDEX_BASE_IDX] + mmGRBM_GFX_INDEX;
+> @@ -1940,6 +1940,11 @@ static int gfx_v10_0_rlc_resume(struct amdgpu_device *adev)
+>                 if (!amdgpu_sriov_vf(adev)) /* enable RLC SRM */
+>                         gfx_v10_0_rlc_enable_srm(adev);
+>         } else {
+> +               if (amdgpu_sriov_vf(adev)) {
+> +                       gfx_v10_0_init_csb(adev);
+> +                       return 0;
+> +               }
+> +
+>                 adev->gfx.rlc.funcs->stop(adev);
 >
->         if (amdgpu_sriov_runtime(adev)) {
-> -               pr_err("shoudn't call rlcg write register during runtime\n");
-> +               pr_err("shouldn't call rlcg write register during runtime\n");
->                 return;
->         }
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index 7bc2486167e7..2dd40f23ce83 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -747,7 +747,7 @@ void gfx_v9_0_rlcg_wreg(struct amdgpu_device *adev, u32 offset, u32 v)
->         grbm_idx = adev->reg_offset[GC_HWIP][0][mmGRBM_GFX_INDEX_BASE_IDX] + mmGRBM_GFX_INDEX;
->
->         if (amdgpu_sriov_runtime(adev)) {
-> -               pr_err("shoudn't call rlcg write register during runtime\n");
-> +               pr_err("shouldn't call rlcg write register during runtime\n");
->                 return;
->         }
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-> index bb77b8890e77..78714f9a8b11 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-> @@ -316,7 +316,7 @@ static void kfd_init_apertures_vi(struct kfd_process_device *pdd, uint8_t id)
->  {
->         /*
->          * node id couldn't be 0 - the three MSB bits of
-> -        * aperture shoudn't be 0
-> +        * aperture shouldn't be 0
->          */
->         pdd->lds_base = MAKE_LDS_APP_BASE_VI();
->         pdd->lds_limit = MAKE_LDS_APP_LIMIT(pdd->lds_base);
+>                 /* disable CG */
 > --
-> 2.25.1
+> 2.7.4
 >
 > _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
