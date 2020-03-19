@@ -2,61 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB32118B837
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2020 14:41:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99BE518B83D
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Mar 2020 14:42:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BFF66E2C0;
-	Thu, 19 Mar 2020 13:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28F166E2C0;
+	Thu, 19 Mar 2020 13:42:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60BC66E2C0
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 13:41:05 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id h6so3037042wrs.6
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 06:41:05 -0700 (PDT)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA376E2C0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 13:42:25 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id v11so3024751wrm.9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 06:42:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=KzoYWUVshcvDRLZnIswhpn9rLpepvBtU5vUrhU2NxT0=;
- b=ZPHQuDlRPAbJ+DdE4t64nsf/VWxtigLgBWrqbcJQL4s9VGk4pYmdVwyNxiFj6fckIe
- 7IF/d8eHSAjjaRswU+5NMz9vcxL24sGW7ajKE/Q1HjVW4j+AIDJ+ipHhgf9a34/YQOoo
- BCvOqi2y+0vBkbaOjsYgCVwnWCrEDJdCeYCAz+G0rakQfdk9MZ6qMHRK2Rw1bltwQm+Z
- 89OA3090X2GG5XfKvGp8Gm7Na/bv/FgrtWLAWMYQ/Watwil85REcVSgn0B8kmJxglgVg
- 6IdO8rLOq63GeLzowF8kbfisjY59PfeUK+l7oO2/ybJYefcwCyQdSHSZs9QiAOU/IXzJ
- rpnw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=K401O2dZT+UpPpUG8W+LRSAk9mlnYFpXdP9sNjxryC0=;
+ b=hiLCzJTrlbyaTrfoRaDcp014nuH2yr6o2E9ZeZsLbEgGc2cWL+rzN24IxtuyKgf1X4
+ UthIALPayt/+cOOsKBnxl8zL6yOWwgjY8gMA//kb+LZPFpxFR6L9RO0oDfxbjA+Lr6YB
+ GUh4IORxsfUBj56lUCR3fRpzgt6J0/5TYEsiYnR2J3l4LnmhZ5dZ2yDkdqG7deR0wI4r
+ M9bo32PjyWce7xBnnsWIzO/MW+mwIXHNVbIjtOpxySh46W/EM3E50y9ftxbPXjbQEdEb
+ AYSsFiemgfJc9fTpNKEPzSC68EUBEIKO1Go6bUASNXaIFhV+vaA3i3sPEknVwuQMQiAy
+ qKYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=KzoYWUVshcvDRLZnIswhpn9rLpepvBtU5vUrhU2NxT0=;
- b=F3IvemYK39pW2nNLsD0+IlVeYs6J07Sv/MwmjECCWrE9BODN0U8r7gta2On3i73H3r
- IlzdrVcaAs5GJsQifm0Q3ZUA2gwwgaCHL5DqcTU0DPxK3IL/sxsPKTXP5k0d7HGJSQay
- NvCznYNpgFM9vRv17QC9Ah1dwmLspXopH/eNzCtdbhPIjZCMJMCmu55m5JbLoVCV297l
- QIdtHOSCn5vyOwmQ1FDG/Awxh2CYbwbeCdyahlsxphtgfnjda3/4PT5UyTfYRbLn66tp
- 9+nHnKA5qhik13pWQ1OrxVwtQiSwRqiKwQNcYgx5caJZ0m2MRQQu/W9w55S5dYPejNRP
- bp3g==
-X-Gm-Message-State: ANhLgQ0UGZFfmaXSJNRU7EVsIvHOhXjBj7dmjPWSMfPgBHkpdx9t7Od3
- AisZ2yHWOkUoVzC+Co80np/8P1mY
-X-Google-Smtp-Source: ADFU+vshF9r10HoDg1Y5ZFuVrmwlhfISYxU8vLux93sNVExNK4BbfTtUYLzzkSiF2qbtiffE6Zr+Mw==
-X-Received: by 2002:adf:fc8c:: with SMTP id g12mr4550393wrr.277.1584625263882; 
- Thu, 19 Mar 2020 06:41:03 -0700 (PDT)
-Received: from abel.fritz.box ([2a02:908:1252:fb60:eca2:7dcd:fca0:220d])
- by smtp.gmail.com with ESMTPSA id s131sm3243833wmf.35.2020.03.19.06.41.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Mar 2020 06:41:03 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdgpu: add full TMZ support into
- amdgpu_ttm_map_buffer
-Date: Thu, 19 Mar 2020 14:41:02 +0100
-Message-Id: <20200319134102.25679-2-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200319134102.25679-1-christian.koenig@amd.com>
-References: <20200319134102.25679-1-christian.koenig@amd.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=K401O2dZT+UpPpUG8W+LRSAk9mlnYFpXdP9sNjxryC0=;
+ b=pOL1lhu0tbOq6JFdDQ/MSO4zziKft+0wohuLesuaw182DshwbG7ztzb9C5+Zp9TxoY
+ DjH74KCNY30/AZ1XAbLxkavxXVnYYolHsSfvMdFa0QMFXw2aP22m/RFejNt2OOsBeozj
+ 8lsU6HDnFlPUd4P347ATFmj85DA5L6oGxnWEkckXZ4FyKdbznleOjg8oB33dmuvW2yqW
+ F9T2dmL27fovghmeKK1++djtGFl4dWj/KAqhwY07vFODK41qWVUT2yTseIwExP5TerBQ
+ 3dIwVjqaAJqXUa/iSxBNpl0REaO8aDhJHdr9kH0tMLL1WQX7YQxtOmp8PLNRowclLA4Q
+ o75Q==
+X-Gm-Message-State: ANhLgQ0Cu/wLekbERvfOyIm+dRAWrmJp2mtbAtpWSjX3UlFcGsYqUqzW
+ 8RHsCo5ycD8wg4LVm04+JCix33RnArDFV11EG5c=
+X-Google-Smtp-Source: ADFU+vtQ11bS9THs+F93BVLtfCGmWbl2w9Sh9nIS/ii/QL026O9qUjTygFwGeVtf2bOLXUs7cYveUr3Dgqr4WwTRu3E=
+X-Received: by 2002:adf:e447:: with SMTP id t7mr4480078wrm.374.1584625344132; 
+ Thu, 19 Mar 2020 06:42:24 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200318233801.11866-1-alex.sierra@amd.com>
+ <20200318233801.11866-2-alex.sierra@amd.com>
+In-Reply-To: <20200318233801.11866-2-alex.sierra@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 19 Mar 2020 09:42:12 -0400
+Message-ID: <CADnq5_Md=yU2GWdR_9_U2_5LvURU_5br_s6JbX4u8uJEXKZHMA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu: ih doorbell size of range changed for
+ nbio v7.4
+To: Alex Sierra <alex.sierra@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,56 +61,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix.Kuehling@amd.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBzaG91bGQgYWxsb3cgdXMgdG8gYWxzbyBzdXBwb3J0IFZSQU0tPkdUVCBtb3Zlcy4KClNp
-Z25lZC1vZmYtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4K
-LS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMgfCAzNiArKysrKysr
-KysrKysrKysrKysrLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMjggaW5zZXJ0aW9ucygrKSwgOCBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfdHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMKaW5kZXgg
-MmI1OTc0MjY4ZTYzLi5jN2VkNGUyZjg0NjAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1L2FtZGdwdV90dG0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
-bWRncHVfdHRtLmMKQEAgLTMwNywyMSArMzA3LDIxIEBAIHN0YXRpYyBpbnQgYW1kZ3B1X3R0bV9t
-YXBfYnVmZmVyKHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm8sCiAJCQkJIHVuc2lnbmVkIHdp
-bmRvdywgc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nLAogCQkJCSBib29sIHRteiwgdWludDY0X3Qg
-KmFkZHIpCiB7Ci0Jc3RydWN0IHR0bV9kbWFfdHQgKmRtYSA9IGNvbnRhaW5lcl9vZihiby0+dHRt
-LCBzdHJ1Y3QgdHRtX2RtYV90dCwgdHRtKTsKIAlzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiA9
-IHJpbmctPmFkZXY7CiAJc3RydWN0IGFtZGdwdV9qb2IgKmpvYjsKIAl1bnNpZ25lZCBudW1fZHcs
-IG51bV9ieXRlczsKLQlkbWFfYWRkcl90ICpkbWFfYWRkcmVzczsKIAlzdHJ1Y3QgZG1hX2ZlbmNl
-ICpmZW5jZTsKIAl1aW50NjRfdCBzcmNfYWRkciwgZHN0X2FkZHI7CisJdm9pZCAqY3B1X2FkZHI7
-CiAJdWludDY0X3QgZmxhZ3M7CisJdW5zaWduZWQgaW50IGk7CiAJaW50IHI7CiAKIAlCVUdfT04o
-YWRldi0+bW1hbi5idWZmZXJfZnVuY3MtPmNvcHlfbWF4X2J5dGVzIDwKIAkgICAgICAgQU1ER1BV
-X0dUVF9NQVhfVFJBTlNGRVJfU0laRSAqIDgpOwogCiAJLyogTWFwIG9ubHkgd2hhdCBjYW4ndCBi
-ZSBhY2Nlc3NlZCBkaXJlY3RseSAqLwotCWlmIChtZW0tPnN0YXJ0ICE9IEFNREdQVV9CT19JTlZB
-TElEX09GRlNFVCkgeworCWlmICghdG16ICYmIG1lbS0+c3RhcnQgIT0gQU1ER1BVX0JPX0lOVkFM
-SURfT0ZGU0VUKSB7CiAJCSphZGRyID0gYW1kZ3B1X21tX25vZGVfYWRkcihibywgbW1fbm9kZSwg
-bWVtKSArIG9mZnNldDsKIAkJcmV0dXJuIDA7CiAJfQpAQCAtMzQ5LDE1ICszNDksMzUgQEAgc3Rh
-dGljIGludCBhbWRncHVfdHRtX21hcF9idWZmZXIoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpi
-bywKIAlhbWRncHVfcmluZ19wYWRfaWIocmluZywgJmpvYi0+aWJzWzBdKTsKIAlXQVJOX09OKGpv
-Yi0+aWJzWzBdLmxlbmd0aF9kdyA+IG51bV9kdyk7CiAKLQlkbWFfYWRkcmVzcyA9ICZkbWEtPmRt
-YV9hZGRyZXNzW29mZnNldCA+PiBQQUdFX1NISUZUXTsKIAlmbGFncyA9IGFtZGdwdV90dG1fdHRf
-cHRlX2ZsYWdzKGFkZXYsIGJvLT50dG0sIG1lbSk7CiAJaWYgKHRteikKIAkJZmxhZ3MgfD0gQU1E
-R1BVX1BURV9UTVo7CiAKLQlyID0gYW1kZ3B1X2dhcnRfbWFwKGFkZXYsIDAsIG51bV9wYWdlcywg
-ZG1hX2FkZHJlc3MsIGZsYWdzLAotCQkJICAgICZqb2ItPmlic1swXS5wdHJbbnVtX2R3XSk7Ci0J
-aWYgKHIpCi0JCWdvdG8gZXJyb3JfZnJlZTsKKwljcHVfYWRkciA9ICZqb2ItPmlic1swXS5wdHJb
-bnVtX2R3XTsKKworCWlmIChtZW0tPm1lbV90eXBlID09IFRUTV9QTF9UVCkgeworCQlzdHJ1Y3Qg
-dHRtX2RtYV90dCAqZG1hOworCQlkbWFfYWRkcl90ICpkbWFfYWRkcmVzczsKKworCQlkbWEgPSBj
-b250YWluZXJfb2YoYm8tPnR0bSwgc3RydWN0IHR0bV9kbWFfdHQsIHR0bSk7CisJCWRtYV9hZGRy
-ZXNzID0gJmRtYS0+ZG1hX2FkZHJlc3Nbb2Zmc2V0ID4+IFBBR0VfU0hJRlRdOworCQlyID0gYW1k
-Z3B1X2dhcnRfbWFwKGFkZXYsIDAsIG51bV9wYWdlcywgZG1hX2FkZHJlc3MsIGZsYWdzLAorCQkJ
-CSAgICBjcHVfYWRkcik7CisJCWlmIChyKQorCQkJZ290byBlcnJvcl9mcmVlOworCX0gZWxzZSB7
-CisJCWRtYV9hZGRyX3QgZG1hX2FkZHJlc3M7CisKKwkJZG1hX2FkZHJlc3MgPSAobW1fbm9kZS0+
-c3RhcnQgPDwgUEFHRV9TSElGVCkgKyBvZmZzZXQ7CisJCWZvciAoaSA9IDA7IGkgPCBudW1fcGFn
-ZXM7ICsraSkgeworCQkJciA9IGFtZGdwdV9nYXJ0X21hcChhZGV2LCBpIDw8IFBBR0VfU0hJRlQs
-IDEsCisJCQkJCSAgICAmZG1hX2FkZHJlc3MsIGZsYWdzLCBjcHVfYWRkcik7CisJCQlpZiAocikK
-KwkJCQlnb3RvIGVycm9yX2ZyZWU7CisKKwkJCWRtYV9hZGRyZXNzICs9IFBBR0VfU0laRTsKKwkJ
-fQorCX0KIAogCXIgPSBhbWRncHVfam9iX3N1Ym1pdChqb2IsICZhZGV2LT5tbWFuLmVudGl0eSwK
-IAkJCSAgICAgIEFNREdQVV9GRU5DRV9PV05FUl9VTkRFRklORUQsICZmZW5jZSk7Ci0tIAoyLjE3
-LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1n
-ZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+On Wed, Mar 18, 2020 at 7:38 PM Alex Sierra <alex.sierra@amd.com> wrote:
+>
+> [Why]
+> nbio v7.4 size of ih doorbell range is 64 bit. This requires 2 DWords per register.
+>
+> [How]
+> Change ih doorbell size from 2 to 4. This means two Dwords per ring.
+> Current configuration uses two ih rings.
+>
+> Change-Id: Iae28c22dd6e650f56286bfa0d9e002a8562fa855
+> Signed-off-by: Alex Sierra <alex.sierra@amd.com>
+
+Series is:
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> index 149d386590df..263dbb1f92ee 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> @@ -185,7 +185,7 @@ static void nbio_v7_4_ih_doorbell_range(struct amdgpu_device *adev,
+>
+>         if (use_doorbell) {
+>                 ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, OFFSET, doorbell_index);
+> -               ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, SIZE, 2);
+> +               ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, SIZE, 4);
+>         } else
+>                 ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, SIZE, 0);
+>
+> --
+> 2.17.1
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
