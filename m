@@ -2,48 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1631618D291
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 16:12:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D9DD18D293
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 16:12:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55CE06E19B;
-	Fri, 20 Mar 2020 15:11:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98A986E176;
+	Fri, 20 Mar 2020 15:12:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770040.outbound.protection.outlook.com [40.107.77.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 121396E19B
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 15:11:56 +0000 (UTC)
+ (mail-eopbgr770082.outbound.protection.outlook.com [40.107.77.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 504D16E196
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 15:11:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KjZ8IWaAwQ2g/tDFH/5CHaPi/FSkprh1QsU8ucKPI4F2QY4DKHjtZZebBd9w5Zpox4FUaYr2+1k8ZleDhjo7zDWbuzEvHYuh2TIo9Rj+yoeFY/xCYX/eETBhejukUq597vqUngV7iZNXW5GOo/oZ89tPHMLvA5MWers49CVMD9WabF9ffJ1L9WR54VXtyXnsy+IhyN9Ipl3ObsD6eexuJio0VUz7JjWdPQ3S+v3dJ9JmgD8GU+Fz1NcEAWeg3JcywnQ3zQLsFXimwA4s/bpxwqJ5W9GNmVhYF04Y48M57sWS0+RSfiF3HoI4zu1BiVmDSS58ZVW+SmlyeTMkCVkA3A==
+ b=S4sfVWUQGw1jYCDFVaIuhVRQz2L6uPH1+1R5TydAo4sw+/aOhLZ7K08QYboLP/ie8s/BbgRKwc8Pa/oaBwDMqPHxVDlu3eY6pEj7yFcStHTMK1gMeT0wxNQ+ZV/aqAa1TX1tXEa0hDwkylxK6v9U9BOnuWs8A4pKBuEESI6cqYFzbhcrNLPv2IVHTsWenG87AZdA/9kI9J1VpyErZYvgW3nqWtHqrJnTcoN1fYA3IqfgleURbim9AlfVXcnovYQklR5fSzOim6tBtwXDEz/7Stw11VhDB9T8r7/+7NQUGCDclSADMSJ+t5KaizvC6U9sAdrcQb4XZGMjDx79O8NT+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A5lVZR8OLz5OC+vwDcV8ShZ3EpKk0f9NQBQQZhGrqk4=;
- b=YhmFEhpXe5LlSzON5LBvNsH/O1m3LUAIOu8UsvF+XwkjlhxYPISepB7cGYzO8qoSVZ3RL5s960bGYuQuLq3wWnMiuqihm+VXI5E2WRAMT1Htdamt+6k4AAGii1Gzw/uR9b2mh2ZEQTlgQNUeNFr9HclrN8Th6BaXA0NPalP/XGk5AY8oQogYEDSyqblr2RVtq+n8M2+Caf9h/7WiYTp3Easo4euagb4zS1Y5zh60umzk/cBuFqIOSKE6VtAUerO/+oRl7H4RHihl53Dgu9L/mjoCz1nweMKAy+GHDvq1iY+YkOcFyreirdoIgL/W0iJ1K3U3S+k1xGB8x2N8wP3Fdg==
+ bh=YamA3EZKLqki1IOmJpSZ14noWesS3sVW5msMN0KhKjs=;
+ b=AayjoSj1b8OG7YyS+4nwt68og0JBJWCtT/0CwCPZhDgBbElizyj2qdAcouQPRPGgR/jNc3aAqPIpW1fW1kklkzhLX+ck5+ZVW2+1L9VPJMKhTDU4lgxT7YtU+Htfxj3xXkstAdGNU9XJuGq7qi1rwVzFe600AWodSUB+Yeg71ghRAnLyTdRiJpYJjsLeE9HrqfYdW4i2KApGSRgZKzLmHG5uRj8ZUs25K2fE+cy4hSr0HzzT28KgBlmLq/iFVpbshxEYRyOGi+NaOUUKgePp+1+BQ9UfPNg1KRG3SXWxf27idNgYwDEE7Gzj11Ers9BVw3ZDWRK8jydFdQTEuqW57w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A5lVZR8OLz5OC+vwDcV8ShZ3EpKk0f9NQBQQZhGrqk4=;
- b=LAwILo36n75lNWMpNcr++LJj8ZkxAw6c9000EJDK/ZTHEw3I3+++b8TfvFJUuxvhIE28iSwLcordxEUisCsIjgR69sibeTzmx9dS/9848asCHSRJ6Wy+ehfWNBlmzBw2XrTVB1/umAtlbeOWhIgFfrLZiHbDz/1jRBecSopimfI=
+ bh=YamA3EZKLqki1IOmJpSZ14noWesS3sVW5msMN0KhKjs=;
+ b=09vDrSz61WKlculjxPbUVMyHW0l3Yoj1K/KtW1gqvpIBCClCA7VdkxwHwH9ls0rXfl3bYk+0YpfZRgS5r4xYZ/wqq/Vv5RbJA/IxhclXE7TPigZVlEUJWcjFe5J0JNI9SZaEHERPuscysk1nNucYTP1twAPPNWyH8KkIpj74sT4=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2572.namprd12.prod.outlook.com (2603:10b6:907:6::27) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.18; Fri, 20 Mar
- 2020 15:11:55 +0000
+ 2020 15:11:56 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2814.021; Fri, 20 Mar 2020
  15:11:55 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 10/12] drm/amd/display: Move backlight pwm enable function call
-Date: Fri, 20 Mar 2020 11:11:26 -0400
-Message-Id: <20200320151128.2039940-11-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 11/12] drm/amd/display: Enable BT2020 in COLOR_ENCODING
+ property
+Date: Fri, 20 Mar 2020 11:11:27 -0400
+Message-Id: <20200320151128.2039940-12-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.2
 In-Reply-To: <20200320151128.2039940-1-Rodrigo.Siqueira@amd.com>
 References: <20200320151128.2039940-1-Rodrigo.Siqueira@amd.com>
@@ -56,16 +57,16 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
  YTXPR0101CA0055.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.18 via Frontend
- Transport; Fri, 20 Mar 2020 15:11:54 +0000
+ Transport; Fri, 20 Mar 2020 15:11:55 +0000
 X-Mailer: git-send-email 2.25.2
 X-Originating-IP: [2607:fea8:56a0:11a1::4]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: b6e2b666-74df-4dce-4094-08d7cce106ac
+X-MS-Office365-Filtering-Correlation-Id: a6aa8f06-0914-42e0-e90b-08d7cce10732
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2572:|MW2PR12MB2572:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2572AA998DA177A4079E723298F50@MW2PR12MB2572.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB25720F3DAE07EF7B8A32A91198F50@MW2PR12MB2572.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-Forefront-PRVS: 03484C0ABF
 X-Forefront-Antispam-Report: SFV:NSPM;
  SFS:(10009020)(4636009)(346002)(366004)(39860400002)(376002)(396003)(136003)(199004)(81156014)(66556008)(6506007)(54906003)(4326008)(16526019)(2906002)(8936002)(186003)(81166006)(52116002)(2616005)(1076003)(8676002)(86362001)(66476007)(316002)(66946007)(6666004)(6486002)(36756003)(5660300002)(6512007)(6916009)(478600001);
@@ -76,15 +77,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s1mUPRdX7mSKytFpcsjVfcm7gduG7O5Y2TfI5IgF2SsuB+Pl+tFa5e/VNyfuCfwNoxE6PqJMoaYHdgko18Fvt3ToQXxQ3n2xqLmpgxLR6ZaMJgFkdNIAwGA8EgmAuTig/i3Dq9HHyDa/Lo2oswPjBvssaJOGTH5owhfhLpECjNNlPBhSSHivWQg9krN9wfb4recsJXCLhqgJOVlgZJdJ8smO+V0264DOkRFxRAVP6v/hV5lsYAhsjRRcPyQvlBZ7CibMi34wLUi2nR4pHZpMHE8aMVK+4wU7414Lh6KBbHaxKAcgfeidZFQK5yTczmKFwtt/AcJrxDbo+W8O1W9WRZPvoQ7Q8Ga36W1uMZjpCeGVxPTQuhmQmvU2RLjRdYcyvd+sz0RhDporelTousHIih0/ILKDpehb7thZ6UtSA+OFDJ3+0O0dYBTyTxZOtq0l
-X-MS-Exchange-AntiSpam-MessageData: rlwGLki3w6oJAi1+ubfIuj7OjLDiI3evW9N5umQGj2Qm1Y7MLnd+UNe8EtAiMk9KuQB+Pt2rismclwNZLteJQu2AUBBFSqDCbwNBT0jXUOkrCaagCgXf/WcuCre/EIMGV/p/s07QfXJyTzUnDIOuR8uVM4LsA1SrRYJHrmP2ODU=
+X-Microsoft-Antispam-Message-Info: x6hCy/pr9PKo+tEuwCxYxYjNo+nYDkq/R7XAz2rDSWyoR6+/gWG9Z8mSDiZydDwsIRGTPze8mdCkfIe2TggniPpaHsjOA2bdd8p3KjRrOFqx2vMWWteoWs+4SLl9fojvjLfzqXTfC1UGGl1scfQe9ntbs5O9UK49oZxycoxwBtPxTA6637Ko/HAJ2UyZAXcw1kASnaV9ArhKlTOR1e9KqJVvDyC8a8WkQD+EGirzFjzQZ1IxzoQZMyUQ9KyJ4YkJzfRzeCQrihSAdtSVC0cTC/qfJU/7VwuELPoz+N1MWmJFgug+fykrDJlL8L62h6UXt64+Oe3IVsxOv0dDSkd6x+4hKsY4rBA5FDOz2Vjj/uS2xMI2/RwAiPXNBym8qP98Zv13sTwP/xVpSCtgazgYOxpVvPl82O6isgrzOXwG4LnHnDkIBgIvTQqWBoKjER00
+X-MS-Exchange-AntiSpam-MessageData: fsJToq2CO3s9/dj69ht50odQdwhlFVGFcZm/70/sUME2FQSEqUATkeM1kzGv2pYA+d0JdCG3fq67jvJgavp8Vrmet0dEEdg9YhxdOa1zrDNY/yb25zka5a4JSTR4KCHlNjDtwIlV5agfwN/OrrNtuMCokVAMoTOrzsYPWPdoCbg=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6e2b666-74df-4dce-4094-08d7cce106ac
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2020 15:11:54.9603 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a6aa8f06-0914-42e0-e90b-08d7cce10732
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2020 15:11:55.8178 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +lDWjfLwSHuj24MGJ0s96EidPxiEcevhZrLLXxnNRbZRjqXc+DfhJ8T9QgGY1gqGPYeZNnfelDN4Ucl86BvsVg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2xS/P1OMotjxGUIsq0fM4c3wJvG+PqUeLEPZ0hl6gxSV879AT8m8qTwQEtzY0rGC0vgaIfbjMKhLgXWnYDgyTA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2572
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,96 +98,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Harry.Wentland@amd.com,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
- Wyatt Wood <wyatt.wood@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
+ Stylon Wang <stylon.wang@amd.com>, Harry.Wentland@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wyatt Wood <wyatt.wood@amd.com>
+From: Stylon Wang <stylon.wang@amd.com>
 
 [Why]
-Can't call dmub_abm_enable_fractional_pwm from dmub_abm_create as
-dmub_srv is still null at this init stage, and therefore can't call to
-fw.
+BT2020 is not supported in COLOR_ENCODING property of planes.  Only
+BT601 and BT709 was available.
 
 [How]
-Move call to dmub_abm_init_backlight. This should be the first call from
-the driver for ABM.
+Allow BT2020 as legit value in setting COLOR_ENCODING property.
 
-Signed-off-by: Wyatt Wood <wyatt.wood@amd.com>
+Signed-off-by: Stylon Wang <stylon.wang@amd.com>
 Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c | 34 +++++++++----------
- 1 file changed, 17 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-index 1d9100f8c0ba..81c967917c5b 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-@@ -257,11 +257,28 @@ static bool dmub_abm_immediate_disable(struct abm *abm)
- 	return true;
- }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 32d946fa7d89..4f58810e770f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -5674,12 +5674,15 @@ static int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+ 	}
  
-+static void dmub_abm_enable_fractional_pwm(struct dc_context *dc)
-+{
-+	union dmub_rb_cmd cmd;
-+	uint32_t fractional_pwm = (dc->dc->config.disable_fractional_pwm == false) ? 1 : 0;
-+
-+	cmd.abm_set_pwm_frac.header.type = DMUB_CMD__ABM;
-+	cmd.abm_set_pwm_frac.header.sub_type = DMUB_CMD__ABM_SET_PWM_FRAC;
-+	cmd.abm_set_pwm_frac.abm_set_pwm_frac_data.fractional_pwm = fractional_pwm;
-+	cmd.abm_set_pwm_frac.header.payload_bytes = sizeof(struct dmub_cmd_abm_set_pwm_frac_data);
-+
-+	dc_dmub_srv_cmd_queue(dc->dmub_srv, &cmd.abm_set_pwm_frac.header);
-+	dc_dmub_srv_cmd_execute(dc->dmub_srv);
-+	dc_dmub_srv_wait_idle(dc->dmub_srv);
-+}
-+
- static bool dmub_abm_init_backlight(struct abm *abm)
- {
- 	struct dce_abm *dce_abm = TO_DMUB_ABM(abm);
- 	uint32_t value;
- 
-+	dmub_abm_enable_fractional_pwm(abm->ctx);
-+
- 	/* It must not be 0, so we have to restore them
- 	 * Bios bug w/a - period resets to zero,
- 	 * restoring to cache values which is always correct
-@@ -331,21 +348,6 @@ static bool dmub_abm_set_backlight_level_pwm(
- 	return true;
- }
- 
--static void dmub_abm_enable_fractional_pwm(struct dc_context *dc)
--{
--	union dmub_rb_cmd cmd;
--	uint32_t fractional_pwm = (dc->dc->config.disable_fractional_pwm == false) ? 1 : 0;
--
--	cmd.abm_set_pwm_frac.header.type = DMUB_CMD__ABM;
--	cmd.abm_set_pwm_frac.header.sub_type = DMUB_CMD__ABM_SET_PWM_FRAC;
--	cmd.abm_set_pwm_frac.abm_set_pwm_frac_data.fractional_pwm = fractional_pwm;
--	cmd.abm_set_pwm_frac.header.payload_bytes = sizeof(struct dmub_cmd_abm_set_pwm_frac_data);
--
--	dc_dmub_srv_cmd_queue(dc->dmub_srv, &cmd.abm_set_pwm_frac.header);
--	dc_dmub_srv_cmd_execute(dc->dmub_srv);
--	dc_dmub_srv_wait_idle(dc->dmub_srv);
--}
--
- static bool dmub_abm_load_config(struct abm *abm,
- 	unsigned int start_offset,
- 	const char *src,
-@@ -386,8 +388,6 @@ static void dmub_abm_construct(
- 	abm_dce->regs = regs;
- 	abm_dce->abm_shift = abm_shift;
- 	abm_dce->abm_mask = abm_mask;
--
--	dmub_abm_enable_fractional_pwm(ctx);
- }
- 
- struct abm *dmub_abm_create(
+ 	if (plane->type == DRM_PLANE_TYPE_PRIMARY &&
+-	    plane_cap && plane_cap->pixel_format_support.nv12) {
++	    plane_cap &&
++	    (plane_cap->pixel_format_support.nv12 ||
++	     plane_cap->pixel_format_support.p010)) {
+ 		/* This only affects YUV formats. */
+ 		drm_plane_create_color_properties(
+ 			plane,
+ 			BIT(DRM_COLOR_YCBCR_BT601) |
+-			BIT(DRM_COLOR_YCBCR_BT709),
++			BIT(DRM_COLOR_YCBCR_BT709) |
++			BIT(DRM_COLOR_YCBCR_BT2020),
+ 			BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
+ 			BIT(DRM_COLOR_YCBCR_FULL_RANGE),
+ 			DRM_COLOR_YCBCR_BT709, DRM_COLOR_YCBCR_LIMITED_RANGE);
 -- 
 2.25.2
 
