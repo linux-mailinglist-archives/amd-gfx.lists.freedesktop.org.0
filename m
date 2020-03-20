@@ -2,105 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7757F18D395
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 17:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3922318D5A7
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 18:21:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 851EE6E195;
-	Fri, 20 Mar 2020 16:09:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E91136E1D2;
+	Fri, 20 Mar 2020 17:21:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2054.outbound.protection.outlook.com [40.107.220.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1C2A6E195
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 16:09:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aullVTL3ohQ0cOyTysz+QTknu8QqaDZFY3xwYbr0HDeuBy1pBc/emitXQfkKSRNoDP0cb9igF63bDWIHZzQ+RMLtNK956eTGG1wSZ8La8Xifv0AfFoCrmMP1cnBbqtnaoG7wHEIPREsKR5Eibea7GtKVkWyF7pGbYd9azpk6UgbmfROPjgThgDEBzIOM11AQz1R/8ILnjOrABqw/Ua+iP2pMU81sT90saDoZn+a3sTjEX+3Nz9QtAX3/ykH1yO5og+C8JdSu+rR4u3tz8FLwgK8vadYd8+KN9pElgJbE9pu62G6XByXAcu7vgR0jAVfN9bcwo6JfqgZc8uUHpJiYuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QC9HvXFSUPR2+4VF9zG0OcjVu141tDdnOe2aumok/qk=;
- b=X/XVtydcCPElDXzlZv+7JBcuV7KfgRlvuQA+YUIi8//RNezDfXp1NNUXXAECVN6Gq0ZexecR+Zelpg2eSn9peAa3Izwfwj4KRB4uH6lu6K+Vl38LcxqXv9e90zSngeQEJwMbxSbgQL3Dp48ML57Vgf1v6Bsuwhgbl7SzTmi8nVdM4Y7Hu3M+g3X4vd0/Qi7KAhSsgZkYQKA4hku/NvK9go76IdgVCdAvwHUJXp3VSabqqBPG5gsqhOg0rlpGfMtLRzYLRdyinp6hGR3J/4hjZmYSSNQGTvKOmOXYunsZERMz3Qx9UuRUNwiQE+2UtqmMNhpwZN+aSzjx238H691nVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QC9HvXFSUPR2+4VF9zG0OcjVu141tDdnOe2aumok/qk=;
- b=DdI+nU4X8J56vI7Ml0sIwMbvuKuuqhLYqy3twgVer+aJgRmzEqLNb0ezha2Dm3WN6UfWMnmP3nxluWl7+cxPbiSbsTxJN+7x68lxOQvZtz2DlvjSn93mG2h2nCYbydqouuAoRc0b5HZxKWi5TscRbpbmIu9DIIAV8QGY2wq1GWA=
-Received: from SA0PR12MB4576.namprd12.prod.outlook.com (2603:10b6:806:93::13)
- by SA0PR12MB4591.namprd12.prod.outlook.com (2603:10b6:806:9d::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.18; Fri, 20 Mar
- 2020 16:08:58 +0000
-Received: from SA0PR12MB4576.namprd12.prod.outlook.com
- ([fe80::8d47:3ca5:5a7c:c047]) by SA0PR12MB4576.namprd12.prod.outlook.com
- ([fe80::8d47:3ca5:5a7c:c047%7]) with mapi id 15.20.2835.017; Fri, 20 Mar 2020
- 16:08:58 +0000
-From: "Sierra Guiza, Alejandro (Alex)" <Alex.Sierra@amd.com>
-To: "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 1/6] drm/amdgpu: ih doorbell size of range changed for
- nbio v7.4
-Thread-Topic: [PATCH 1/6] drm/amdgpu: ih doorbell size of range changed for
- nbio v7.4
-Thread-Index: AQHV/k30SQE8lee6zU6Y6SzxiB+fTKhRjYmAgAAZH7A=
-Date: Fri, 20 Mar 2020 16:08:58 +0000
-Message-ID: <SA0PR12MB457651A2AFB664A8BF69B417FDF50@SA0PR12MB4576.namprd12.prod.outlook.com>
-References: <20200320002421.14984-1-alex.sierra@amd.com>
- <5e11d408-bb69-9b84-20d3-50c72d8967c7@amd.com>
-In-Reply-To: <5e11d408-bb69-9b84-20d3-50c72d8967c7@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-03-20T16:08:56Z; 
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
- Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=a974c70b-8fbc-4d4d-bd3c-00002395886f;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=1
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-03-20T16:08:56Z
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
- Unrestricted
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: 293dd489-696a-40eb-ade3-00001c75decc
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Alex.Sierra@amd.com; 
-x-originating-ip: [165.204.77.1]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 8d209c17-be9b-46a4-51b4-08d7cce8ff6f
-x-ms-traffictypediagnostic: SA0PR12MB4591:|SA0PR12MB4591:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SA0PR12MB4591D71FB174ED563788BDBAFDF50@SA0PR12MB4591.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3383;
-x-forefront-prvs: 03484C0ABF
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(39860400002)(136003)(396003)(346002)(366004)(199004)(53546011)(9686003)(66946007)(55016002)(71200400001)(76116006)(186003)(26005)(64756008)(66476007)(66446008)(33656002)(66556008)(6506007)(7696005)(8936002)(110136005)(5660300002)(478600001)(8676002)(81156014)(52536014)(2906002)(81166006)(316002)(86362001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:SA0PR12MB4591;
- H:SA0PR12MB4576.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: rHs2uy5crmhoHhKjWKtvNxrGkQe76ejajYV8zPgsDgqDue/ZyBx6zHJsSnfwycOu42wgfGUfm1ov4oQ+5Hn+CmxSfNr1aoXCb/hhzQA3vvQvDI30A2vGYRvT9j+E+elxephW8ou9zKiO/SsKvOzGBhFOg02RRxDGNQWjv6v5gAkpHDWF7g/6x4+yQ5WBWzKfD+SHOR4+9CVOVRN0XVNPWeijqh+x6BnV8mXfFGQBHdkEqtxkDsqHBV3TCmndcF5wmABSWsIAICR+KmqFlh9AeDIZJMyA3B2d6oiYT+QoT/BSNYlkx7Ka2Hkg+MW+G7Gpbg6HAOQ8FkVjufM4CQi943e0+G0I4adi46aO56z5SbRI5m3iqIIcXsK3T2uda4w2K0dv2wLv3WPgsIIaVgrOHWDIOhAc/YKmL/rmUrQu4d88z8MV99SThnWJwPYEPRdV
-x-ms-exchange-antispam-messagedata: ohdYqsagPJwvtFKiD9bsUNjyTDfb4hmnY6A6oHqYrfed7jy36nwQAKhIA44QlQmvIcCI4Vtu21i5vGuW+TpYVMrNJl2+J+9cT6DJP8wMwrQygpcM1FzvpR//IQJNWBlf/EenOJomiS0g0muoDq/jTw==
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com
+ [IPv6:2607:f8b0:4864:20::d30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3205089650
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 15:21:29 +0000 (UTC)
+Received: by mail-io1-xd30.google.com with SMTP id h8so6349480iob.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 08:21:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=oHe2EPIf9l8Ynr628oSDUTLbngyd2BsgIH02FtuZ6ME=;
+ b=pY5eGQ0/lF+jndw9zrKS7VekA4qVf3vUE9QsU+MX1ZSHW+QeOsLEIrsodZzvZE5FVI
+ qZr/zvQSWmvB63e5QAZUCzU+SPbDKGvy9LD0kvYwdKl/OwF+/2WyWb45tkn4SvxEFujA
+ SIlTFySLxZQLkyZTiVTZZcNXy4gZDD3KMLfEveD6Dv7Yudb9op5IANyKBETqp7t9NaWr
+ ZcG3AGMvRIMdX7sCmzhRRGl5DWzqRpW+BzNsAaBWCU5w2DOdP5pT+xYTgN8jcDZojYT+
+ kb6XPCijW80DmZtYpI0gIXPfcRAiCs3XBigJ8HgtSESOV+QWUXEts35ZjuffV5dRC0A8
+ l/3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=oHe2EPIf9l8Ynr628oSDUTLbngyd2BsgIH02FtuZ6ME=;
+ b=G8TmqYqPSBRoecEwPBlzGFPUXE1hsz/exmqPuxk/VEx760jVQAC4k6C3E0yDg+y4dE
+ pyj/9LSb+w9Hl45r2tWdNDwkUmKLqaRy+kn/p615nslc5azqPz/lM37mKpJxa7/4IkA3
+ lPFgoy4LulqBKXRDgxvG+ZZorzfGixU70sCYBYuwT1vte6LDEPpnKN3gg2ydJIkrGbdV
+ wcNa2WbnzOHoN0ZkrtdR6vFzqB3Z5kOLiInWSYcWM9Rh412zwZkU6MpaFyNnhQ7uQ5IG
+ z8BfCG0ump8i+PzxkiYs/jAd4kQV6KG3+9wFD7kfv0Wyn//EAsaNpIZ8fLYuprVMv9yP
+ eqgg==
+X-Gm-Message-State: ANhLgQ31k/AJl0GDvrtVQHW3FpXMlr+ifMNf+FMk2FOQEkxemUzyK3Vz
+ GGgT6ywB9edEgfry95YIeb07IIrjEzbPAFGLA0c=
+X-Google-Smtp-Source: ADFU+vuXDicWC8OWd0xrrKcdYutAD6kkivAvEisP/dT59Fdz/nGwJpT9D/ztXsBO/Jp3NXwA2hO6OW7PLm0zSNY+mFI=
+X-Received: by 2002:a5d:8744:: with SMTP id k4mr8006890iol.106.1584717688590; 
+ Fri, 20 Mar 2020 08:21:28 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d209c17-be9b-46a4-51b4-08d7cce8ff6f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2020 16:08:58.5332 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dzhWOC2qV79r83cl3qOBHVzB2k+ThE4iDISmrJ1Kn9D23Mb++XE6UXSalQDeix7Zr12NJdOtUYw/T+oT2jOi2w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4591
+References: <CAETxV2a+OdyQ_tB0jFHA6n1Ci7kPH6ATBSuHNo4Uq_AuZEFEqg@mail.gmail.com>
+ <CADnq5_PryLuSMHW_NuJHq7RKDxNR5-8+qEdK7WfxAg-1YNSE5w@mail.gmail.com>
+In-Reply-To: <CADnq5_PryLuSMHW_NuJHq7RKDxNR5-8+qEdK7WfxAg-1YNSE5w@mail.gmail.com>
+From: Tristan Vroom <tristan.a.vroom@gmail.com>
+Date: Fri, 20 Mar 2020 11:21:18 -0400
+Message-ID: <CAETxV2bUaxGJbrx9NjSBG3FUJu0BMJS_wVrVL+vMQ5ng+HsvHw@mail.gmail.com>
+Subject: Re: amdgpu kernel oops?
+To: Alex Deucher <alexdeucher@gmail.com>
+X-Mailman-Approved-At: Fri, 20 Mar 2020 17:21:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,61 +61,102 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1784838465=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
+--===============1784838465==
+Content-Type: multipart/alternative; boundary="000000000000e5d4a105a14ad621"
 
-My bad, please ignore this.
-I re-sent this in a separate one patch.
+--000000000000e5d4a105a14ad621
+Content-Type: text/plain; charset="UTF-8"
 
-Alejandro S
+Yes, it worked.
 
------Original Message-----
-From: Kuehling, Felix <Felix.Kuehling@amd.com> 
-Sent: Friday, March 20, 2020 9:37 AM
-To: Sierra Guiza, Alejandro (Alex) <Alex.Sierra@amd.com>; amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/6] drm/amdgpu: ih doorbell size of range changed for nbio v7.4
+Thanks!
 
-On 2020-03-19 20:24, Alex Sierra wrote:
-> [Why]
-> nbio v7.4 size of ih doorbell range is 64 bit. This requires 2 DWords per register.
+Tristan
+
+On Wed, Mar 18, 2020 at 9:53 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+
+> On Tue, Mar 17, 2020 at 6:24 PM Tristan Vroom <tristan.a.vroom@gmail.com>
+> wrote:
+> >
+> > I don't have a lot of experience reading kernel logs, so I apologize if
+> I misread something, but it seems like I'm having some trouble with amdgpu
+> in kernel 5.5.9.
+> >
+> > Here's the gist of the bug.
 >
-> [How]
-> Change ih doorbell size from 2 to 4. This means two Dwords per ring.
-> Current configuration uses two ih rings.
+> Does this patch fix the issue?
 >
-> Signed-off-by: Alex Sierra <alex.sierra@amd.com>
-
-Why is the subject "PATCH 1/6"? It makes me wonder, what are the other 5 patches. Anyway, this patch is
-
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
-
-
-> ---
->   drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> https://cgit.freedesktop.org/~agd5f/linux/commit/?h=drm-next&id=6c62ce8073daf27ae3fd03b6929d6cea3887eeb2
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c 
-> b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
-> index 149d386590df..263dbb1f92ee 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
-> @@ -185,7 +185,7 @@ static void nbio_v7_4_ih_doorbell_range(struct 
-> amdgpu_device *adev,
->   
->   	if (use_doorbell) {
->   		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, OFFSET, doorbell_index);
-> -		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, SIZE, 2);
-> +		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, 
-> +BIF_IH_DOORBELL_RANGE, SIZE, 4);
->   	} else
->   		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, 
-> BIF_IH_DOORBELL_RANGE, SIZE, 0);
->   
+> Alex
+>
+> >
+> > Thank you for your help.
+> >
+> > Tristan
+> > _______________________________________________
+> > amd-gfx mailing list
+> > amd-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+>
+
+--000000000000e5d4a105a14ad621
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Yes, it worked.=C2=A0<br><div><br></div><div>Thanks!</div>=
+<div><br></div><div>Tristan</div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar 18, 2020 at 9:53 AM Alex Deuch=
+er &lt;<a href=3D"mailto:alexdeucher@gmail.com">alexdeucher@gmail.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Tue=
+, Mar 17, 2020 at 6:24 PM Tristan Vroom &lt;<a href=3D"mailto:tristan.a.vro=
+om@gmail.com" target=3D"_blank">tristan.a.vroom@gmail.com</a>&gt; wrote:<br=
+>
+&gt;<br>
+&gt; I don&#39;t have a lot of experience reading kernel logs, so I apologi=
+ze if I misread something, but it seems like I&#39;m having some trouble wi=
+th amdgpu in kernel 5.5.9.<br>
+&gt;<br>
+&gt; Here&#39;s the gist of the bug.<br>
+<br>
+Does this patch fix the issue?<br>
+<a href=3D"https://cgit.freedesktop.org/~agd5f/linux/commit/?h=3Ddrm-next&a=
+mp;id=3D6c62ce8073daf27ae3fd03b6929d6cea3887eeb2" rel=3D"noreferrer" target=
+=3D"_blank">https://cgit.freedesktop.org/~agd5f/linux/commit/?h=3Ddrm-next&=
+amp;id=3D6c62ce8073daf27ae3fd03b6929d6cea3887eeb2</a><br>
+<br>
+Alex<br>
+<br>
+&gt;<br>
+&gt; Thank you for your help.<br>
+&gt;<br>
+&gt; Tristan<br>
+&gt; _______________________________________________<br>
+&gt; amd-gfx mailing list<br>
+&gt; <a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd=
+-gfx@lists.freedesktop.org</a><br>
+&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/lis=
+tinfo/amd-gfx</a><br>
+</blockquote></div>
+
+--000000000000e5d4a105a14ad621--
+
+--===============1784838465==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1784838465==--
