@@ -2,66 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A51C18D5A9
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 18:21:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAD3C18D6FF
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 19:27:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F5336E1D8;
-	Fri, 20 Mar 2020 17:21:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0FE6EB5C;
+	Fri, 20 Mar 2020 18:27:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com
- [IPv6:2607:f8b0:4864:20::e43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6611E6E1A4
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 16:59:28 +0000 (UTC)
-Received: by mail-vs1-xe43.google.com with SMTP id o25so696270vsp.7
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 09:59:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=xRjX7T7eft/qC+6bf7FfyU/mPCvn6DuztC5RzuHCyVc=;
- b=WmQkIo8wgTcT+49UEOC761MjUtOoLumkxcQrNLGTV5XIF/8lT1bx+3pCSL8T9xMdZY
- cWLs8vQSQKBV1VXMxQM5NR78QAl2OuRSqAVNbbPsuMvJzg/GjnWpmqSoglfFIAkV31+z
- MP+DUTjrCLJ6J7p5c6jvdGCaDAE5JuorkDPWMCl3cc8f1/br3nbePeINlV2no2Zpv0lA
- x996mvxPsYAJubp73Du4S2nS/wtnN/9QxMhJQCWR+gg4WbHEtK82IFnTkGk0BMjclTq/
- UasFQVqNKpkfmX/un/MPsIzZfDYZXMiTwx9ovm8X8Wk5Xzm8VVcGiy4D9LEPu/vagLD/
- G03A==
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
+ [IPv6:2607:f8b0:4864:20::542])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 266806EB48
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 18:27:51 +0000 (UTC)
+Received: by mail-pg1-x542.google.com with SMTP id d17so2935864pgo.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 11:27:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Hl8dBoKRKHEgUBGqdOBVKbo+anx261TFHiMTTazQpos=;
+ b=m59Wa9OXsDx4l9J9Dg1MAOcm7KWXSbQYWSEJpVMsmwAhzMKaTNHYrwUkqmDWJ6ISYD
+ iIdB8w2Rg5MlcTbqEQR3WEXlkAoAyhCXyLeFgP/hV1aZeAeMyE9445L1ohn8WsYVv1R1
+ 3uqSE/Nmv9RAqIxlHO9Qg1la5Hw0QpOAudN06cutkdhTpqFKnqjjLSpxweBSj01OinoE
+ XeZGIFg0eKaQZZpcFGZ4liNSv0kMLZadiwSkk57oixHm+C1qnOMqHurEoSUV8QIsC4FN
+ 8ok8CTa1VmXubgg1M+Wq0aCIi1kD20UZ2biTcSwcEJFWMxc6dpWOo08dj4R3ggXCw+hM
+ JNDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=xRjX7T7eft/qC+6bf7FfyU/mPCvn6DuztC5RzuHCyVc=;
- b=GpbKT5M1GQo+67NxUaSJjWjsLUFETtrQjQB2Vj9V9L1ynwY3EhUOflWlkDgmAVYb8u
- a7ydNfpIwEzVO+V4rCgVEcrqVFRN3uABiJg8i2/w3fBJ12pO/+iqvTWePN6B7HuvIWkI
- 6otcjhaH9Zu0tw6JM6hSNQ3w9wjK3/qhIgpRFe5D+BBkhlASzke6dJV+CXvEEieemy0a
- PZQaZ/bU/8wt1LF7rvCpfubXQ+8dDjLLewOO+LAWqKqC3IbgI9cr2ZdCB6zhd149eBzp
- DQwYB1ptMFZKYNBH406XUnJR3r3qS1weOo2l2suv986fsfruW40OgAD/X78YtoBvCp89
- E0ew==
-X-Gm-Message-State: ANhLgQ2xolOAnW7wTqWhKEO2XD2TRPARYyPFomv0p+bH2ecJxw4KGk9w
- 4codlZQmz2K6tUAWk7LmEcueKF1w9I+PLw==
-X-Google-Smtp-Source: ADFU+vtbRR/MYq87zJZvXdzKsxYqiR4x6njtZJXIu9qf6nhgSPf391EA27m+Q0Bt/DeLj3EN/58FoA==
-X-Received: by 2002:a05:6214:12c7:: with SMTP id
- s7mr9363766qvv.218.1584723027380; 
- Fri, 20 Mar 2020 09:50:27 -0700 (PDT)
-Received: from ziepe.ca
- (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.68.57.212])
- by smtp.gmail.com with ESMTPSA id e2sm4452824qkg.63.2020.03.20.09.50.24
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Fri, 20 Mar 2020 09:50:24 -0700 (PDT)
-Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
- (envelope-from <jgg@ziepe.ca>)
- id 1jFKql-0005kU-FT; Fri, 20 Mar 2020 13:50:23 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Jerome Glisse <jglisse@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>,
- Felix.Kuehling@amd.com
-Subject: [PATCH hmm 6/6] mm/hmm: use device_private_entry_to_pfn()
-Date: Fri, 20 Mar 2020 13:49:05 -0300
-Message-Id: <20200320164905.21722-7-jgg@ziepe.ca>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Hl8dBoKRKHEgUBGqdOBVKbo+anx261TFHiMTTazQpos=;
+ b=rVqeJAffkNb36YKSjl1g7D/B8wGLLzNoNMDo5Wg30TQ6+rHtEye502OsZrK2dJPS4Z
+ f6zekmMY92dctf2yZAXfdi95nA8pGG8ker3DyFg0VX3NUTTvD6ua07ce1qruEoQWlrOZ
+ I5MjshHcwrvngBERx6D9QNiYpoYyAmjbsMWL6iQFfehAkoMzu8XqYRZNHuXRIZ+T2Iq+
+ HE6yyDpX3tZyitv0UEwj13Pkt4Nt8ZoX78+kAQoqnLWqP0ajpBuoBLz2sQnT3aIQhfhE
+ IXMZcPUiTFFcQnR6u4BE/OUNA2v/YIqUfZFEw8DEJ8+EMaB5l+0q6DJ7BqIhIShKTfaU
+ IPxA==
+X-Gm-Message-State: ANhLgQ2CWgT8HvWxoZ/swWt+W2+C1Xo0ty47aTR2D9zoIa1R2lU3HGWs
+ 88oneAEgsisxUtI8Hx13llmUx0OZ
+X-Google-Smtp-Source: ADFU+vsDfgMKU13ONWK7Ae1frrwPnk7KDO2N+jVx+MVEkZ4LN4zkfv9ACN+zhs/zjDkbVZH/h2LHbA==
+X-Received: by 2002:a65:428a:: with SMTP id j10mr6579290pgp.272.1584728870509; 
+ Fri, 20 Mar 2020 11:27:50 -0700 (PDT)
+Received: from localhost.localdomain ([71.219.40.23])
+ by smtp.gmail.com with ESMTPSA id v185sm6233850pfv.32.2020.03.20.11.27.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 20 Mar 2020 11:27:49 -0700 (PDT)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/8] drm/amd/swSMU: add callback to set AC/DC power source
+Date: Fri, 20 Mar 2020 14:27:20 -0400
+Message-Id: <20200320182727.3805-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200320164905.21722-1-jgg@ziepe.ca>
-References: <20200320164905.21722-1-jgg@ziepe.ca>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 20 Mar 2020 17:21:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,41 +64,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Philip Yang <Philip.Yang@amd.com>, John Hubbard <jhubbard@nvidia.com>,
- amd-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- Jason Gunthorpe <jgg@mellanox.com>, dri-devel@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>
+Cc: Alex Deucher <alexander.deucher@amd.com>, mcoffin13@gmail.com,
+ Evan Quan <evan.quan@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jason Gunthorpe <jgg@mellanox.com>
+From: Evan Quan <evan.quan@amd.com>
 
-swp_offset() should not be called directly, the wrappers are supposed to
-abstract away the encoding of the device_private specific information in
-the swap entry.
+This is needed to tell the SMU firmware what state is in
+in certain cases.  DC mode does not allow overclocking
+for example.
 
-Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
+Signed-off-by: Evan Quan <evan.quan@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- mm/hmm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h | 1 +
+ drivers/gpu/drm/amd/powerplay/smu_internal.h   | 3 +++
+ 2 files changed, 4 insertions(+)
 
-diff --git a/mm/hmm.c b/mm/hmm.c
-index a09b4908e9c81a..fd9ee2b5fd9989 100644
---- a/mm/hmm.c
-+++ b/mm/hmm.c
-@@ -259,8 +259,8 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 		 * the PFN even if not present.
- 		 */
- 		if (hmm_is_device_private_entry(range, entry)) {
--			*pfn = hmm_device_entry_from_pfn(range,
--					    swp_offset(entry));
-+			*pfn = hmm_device_entry_from_pfn(
-+				range, device_private_entry_to_pfn(entry));
- 			*pfn |= range->flags[HMM_PFN_VALID];
- 			if (is_write_device_private_entry(entry))
- 				*pfn |= range->flags[HMM_PFN_WRITE];
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+index 657a6f17e91f..323e7e61493b 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+@@ -570,6 +570,7 @@ struct pptable_funcs {
+ 	int (*override_pcie_parameters)(struct smu_context *smu);
+ 	uint32_t (*get_pptable_power_limit)(struct smu_context *smu);
+ 	int (*disable_umc_cdr_12gbps_workaround)(struct smu_context *smu);
++	int (*set_power_source)(struct smu_context *smu, enum smu_power_src_type power_src);
+ };
+ 
+ int smu_load_microcode(struct smu_context *smu);
+diff --git a/drivers/gpu/drm/amd/powerplay/smu_internal.h b/drivers/gpu/drm/amd/powerplay/smu_internal.h
+index 6900877de845..40c35bcc5a0a 100644
+--- a/drivers/gpu/drm/amd/powerplay/smu_internal.h
++++ b/drivers/gpu/drm/amd/powerplay/smu_internal.h
+@@ -211,4 +211,7 @@ static inline int smu_send_smc_msg(struct smu_context *smu, enum smu_message_typ
+ #define smu_disable_umc_cdr_12gbps_workaround(smu) \
+ 	((smu)->ppt_funcs->disable_umc_cdr_12gbps_workaround ? (smu)->ppt_funcs->disable_umc_cdr_12gbps_workaround((smu)) : 0)
+ 
++#define smu_set_power_source(smu, power_src) \
++	((smu)->ppt_funcs->set_power_source ? (smu)->ppt_funcs->set_power_source((smu), (power_src)) : 0)
++
+ #endif
 -- 
 2.25.1
 
