@@ -2,63 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E801418D6FE
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 19:27:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 443CD18D7D7
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 19:51:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71BCC6EB60;
-	Fri, 20 Mar 2020 18:27:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC2D96EB4A;
+	Fri, 20 Mar 2020 18:51:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D2626E0DF
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 18:27:48 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id h4so8765296wru.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 11:27:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=SWYdA8Gs7J51OhiGl1EEANQQ2xKQWx3/7m76fwCheSs=;
- b=TRcBt7WN+Z9dyj/wH/9jCfaX5jDWfLv4WhM5W/wjyeKexkatmFV8rQssudE30FFifL
- BxxSRUXwWw8aIxzQnKSKf+aAIfuOpliLYqYAbiFwJf9toBDAQ8CnJxM4RFSWdsZh5o1e
- 4xXe1dUlwyLOpHH1lwMn59oxgHUWshpiVnnzaJPlGSaDiG8b2ltBjesQFYNu13NUhwpM
- 9jovB2JSVG8kcuqyBoX316r9DrRheOerYHo6u1x/60g/p5IUJ991ox1q1uO38mBKlG8C
- dZOQBK/QFsFFaNsNn5MJsjXiSun2AHhGOLkeV+qdjsf+Acwu7zQbBkLhzqKQxAj9cGDg
- vbCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=SWYdA8Gs7J51OhiGl1EEANQQ2xKQWx3/7m76fwCheSs=;
- b=pSM3wxoDh7NNuli5xm46l3ibIZMLC7Cwu7+HFKpvbzmQcCe/mqTVDte//1BYxH3HCI
- ZCEEMSTsfyrxB71tjnlH2JY5uWr+MYE34LsaxeMOywz+0RMnjmuQSAUPxGelER9pslF5
- uw/zykvhf/OpsfFBsSjTIcz1i7c/MzN/xBpc+tq/oQfRYTzaAP8Ey7nj1zk2w09dORSh
- MpgzOPJsmMQ+iKx/CcfRx/ZKlSyz55P5mY1Ljjpycf6MklrWv1J/ihFseq/9KYz0TouL
- vWj0TpBoz9rTYGHNYllpjLSSK6kmnYqu9WGOB2U2Ehwk0kywub/5OaxsG0yfLPiNzkLf
- Fb9w==
-X-Gm-Message-State: ANhLgQ1L3UUxR5VopmBrAaX9uaQDEul3jPLN91MQJtQmS8mHfLzxK7gk
- FdKy1AcR7Pvu5oMuPaNdicRgGJ87
-X-Google-Smtp-Source: ADFU+vt85veOUOwfTBA923ZNO+9Umz8VIAJtWLNFSUrIacJLb187DdAcwF7MEW8oo92EO5QpJgAfZA==
-X-Received: by 2002:a5d:56cd:: with SMTP id m13mr12414541wrw.236.1584728866839; 
- Fri, 20 Mar 2020 11:27:46 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id d21sm9272037wrb.51.2020.03.20.11.27.45
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 20 Mar 2020 11:27:46 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu: fix size validation failure in large buffer
- creation
-To: Tianci Yin <tianci.yin@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20200320094615.5524-1-tianci.yin@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <cb153afb-1e3c-e512-7775-ae144db9aff9@gmail.com>
-Date: Fri, 20 Mar 2020 19:27:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from hqnvemgate24.nvidia.com (hqnvemgate24.nvidia.com
+ [216.228.121.143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B36616EB4A;
+ Fri, 20 Mar 2020 18:51:51 +0000 (UTC)
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5e7510630000>; Fri, 20 Mar 2020 11:50:12 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+ by hqpgpgate101.nvidia.com (PGP Universal service);
+ Fri, 20 Mar 2020 11:51:51 -0700
+X-PGP-Universal: processed;
+ by hqpgpgate101.nvidia.com on Fri, 20 Mar 2020 11:51:51 -0700
+Received: from rcampbell-dev.nvidia.com (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 20 Mar
+ 2020 18:51:50 +0000
+Subject: Re: [PATCH hmm 0/6] Small hmm_range_fault() cleanups
+To: Jason Gunthorpe <jgg@ziepe.ca>, Jerome Glisse <jglisse@redhat.com>,
+ <Felix.Kuehling@amd.com>
+References: <20200320164905.21722-1-jgg@ziepe.ca>
+X-Nvconfidentiality: public
+From: Ralph Campbell <rcampbell@nvidia.com>
+Message-ID: <030773be-3ea0-033e-051e-a3c0a13ef709@nvidia.com>
+Date: Fri, 20 Mar 2020 11:51:47 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <20200320094615.5524-1-tianci.yin@amd.com>
+In-Reply-To: <20200320164905.21722-1-jgg@ziepe.ca>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
 Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1584730212; bh=mAHlRo9I+8ZujdHfQUk9hCx9q7hSh43W1iBJqagD9Xk=;
+ h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+ Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+ X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+ Content-Transfer-Encoding;
+ b=FAg58DBz5loqn5y66iUh+WutDhpP9oPgedbSCv9lTmIWXG164FfMzE1ccDDSlG9bx
+ ZDI9l997OQRTzzltvaGVp7CBqjov1sydGtA7dzKn5/xEaUDzp3pp4a7mL4o/QJTP7K
+ AQ+Dlst+Zr+zM6ST/6QXjGp0HnpoVsivK6zpf6gHgoK2DrBC/sOBqnOf/LpWsbrR7S
+ TvISRxRmEy4i5g+tLkZP+hE5BCWU9WBU7ifs9vv21PX0MecykCjBHlQIBKchlbhLQb
+ fwzApm6cJxvxaIaeCznSdDH7rMXZezhQv/rE0FWAE6braynOB20zBwGx/+504WHWkw
+ VIqaxAh6CJoog==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,74 +63,89 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: Feifei Xu <Feifei.Xu@amd.com>, Pauline Li <pauline.li@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>, Long Gang <Gang.Long@amd.com>
+Cc: Philip Yang <Philip.Yang@amd.com>, John Hubbard <jhubbard@nvidia.com>,
+ amd-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ Jason Gunthorpe <jgg@mellanox.com>, dri-devel@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 20.03.20 um 10:46 schrieb Tianci Yin:
-> From: "Tianci.Yin" <tianci.yin@amd.com>
->
-> [why]
-> When GTT domain size is smaller than VRAM, if APP apply a very large
-> buffer whose size is larger than GTT but smaller than VRAM, the size
-> validation will fail.
->
-> [how]
-> Validate VRAM domain size at first place, then GTT domain.
 
-NAK, this is intended behavior. VRAM allocations larger than GTT 
-allocations are illegal and can crash the memory management.
+On 3/20/20 9:48 AM, Jason Gunthorpe wrote:
+> From: Jason Gunthorpe <jgg@mellanox.com>
+> 
+> I've had these in my work queue for a bit, nothing profound here, just some
+> small edits for clarity.
 
-Regards,
-Christian.
+The hmm tester changes are clear enough but I'm having a bit of trouble figuring out
+what this series applies cleanly to since I'm trying to apply it on top of the
+other patches you and Christoph have sent out.
+Is there a private git tree/branch where everything is applied?
 
->
-> Change-Id: Ic1d31b9b0a4939e6bba0241ff79ae9aa2225ee05
-> Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 18 +++++++++---------
->   1 file changed, 9 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> index 84745f9e7408..bab134b6369f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> @@ -464,21 +464,21 @@ static bool amdgpu_bo_validate_size(struct amdgpu_device *adev,
->   {
->   	struct ttm_mem_type_manager *man = NULL;
->   
-> -	/*
-> -	 * If GTT is part of requested domains the check must succeed to
-> -	 * allow fall back to GTT
-> -	 */
-> -	if (domain & AMDGPU_GEM_DOMAIN_GTT) {
-> -		man = &adev->mman.bdev.man[TTM_PL_TT];
-> +	if (domain & AMDGPU_GEM_DOMAIN_VRAM) {
-> +		man = &adev->mman.bdev.man[TTM_PL_VRAM];
->   
->   		if (size < (man->size << PAGE_SHIFT))
->   			return true;
-> -		else
-> +		else if (!(domain & AMDGPU_GEM_DOMAIN_GTT))
->   			goto fail;
->   	}
->   
-> -	if (domain & AMDGPU_GEM_DOMAIN_VRAM) {
-> -		man = &adev->mman.bdev.man[TTM_PL_VRAM];
-> +	/*
-> +	 * If GTT is part of requested domains the check must succeed to
-> +	 * allow fall back to GTT
-> +	 */
-> +	if (domain & AMDGPU_GEM_DOMAIN_GTT) {
-> +		man = &adev->mman.bdev.man[TTM_PL_TT];
->   
->   		if (size < (man->size << PAGE_SHIFT))
->   			return true;
 
+> Ralph's hmm tester will need a small diff to work after this - which
+> illustrates how setting default_flags == 0 is the same as what was called
+> SNAPSHOT:
+> 
+> diff --git a/lib/test_hmm.c b/lib/test_hmm.c
+> index 6ca953926dc13f..5f31f5b3e64cb9 100644
+> --- a/lib/test_hmm.c
+> +++ b/lib/test_hmm.c
+> @@ -300,7 +300,7 @@ static int dmirror_range_fault(struct dmirror *dmirror,
+>   
+>   		range->notifier_seq = mmu_interval_read_begin(range->notifier);
+>   		down_read(&mm->mmap_sem);
+> -		count = hmm_range_fault(range, 0);
+> +		count = hmm_range_fault(range);
+>   		up_read(&mm->mmap_sem);
+>   		if (count <= 0) {
+>   			if (count == 0 || count == -EBUSY)
+> @@ -337,8 +337,7 @@ static int dmirror_fault(struct dmirror *dmirror, unsigned long start,
+>   		.flags = dmirror_hmm_flags,
+>   		.values = dmirror_hmm_values,
+>   		.pfn_shift = DPT_SHIFT,
+> -		.pfn_flags_mask = ~(dmirror_hmm_flags[HMM_PFN_VALID] |
+> -				    dmirror_hmm_flags[HMM_PFN_WRITE]),
+> +		.pfn_flags_mask = 0,
+>   		.default_flags = dmirror_hmm_flags[HMM_PFN_VALID] |
+>   				(write ? dmirror_hmm_flags[HMM_PFN_WRITE] : 0),
+>   		.dev_private_owner = dmirror->mdevice,
+> @@ -872,7 +871,7 @@ static int dmirror_range_snapshot(struct dmirror *dmirror,
+>   		range->notifier_seq = mmu_interval_read_begin(range->notifier);
+>   
+>   		down_read(&mm->mmap_sem);
+> -		count = hmm_range_fault(range, HMM_FAULT_SNAPSHOT);
+> +		count = hmm_range_fault(range);
+>   		up_read(&mm->mmap_sem);
+>   		if (count <= 0) {
+>   			if (count == 0 || count == -EBUSY)
+> @@ -916,7 +915,7 @@ static int dmirror_snapshot(struct dmirror *dmirror,
+>   		.flags = dmirror_hmm_flags,
+>   		.values = dmirror_hmm_values,
+>   		.pfn_shift = DPT_SHIFT,
+> -		.pfn_flags_mask = ~0ULL,
+> +		.pfn_flags_mask = 0,
+>   		.dev_private_owner = dmirror->mdevice,
+>   	};
+>   	int ret = 0;
+> 
+> Jason Gunthorpe (6):
+>    mm/hmm: remove pgmap checking for devmap pages
+>    mm/hmm: return the fault type from hmm_pte_need_fault()
+>    mm/hmm: remove unused code and tidy comments
+>    mm/hmm: remove HMM_FAULT_SNAPSHOT
+>    mm/hmm: remove the CONFIG_TRANSPARENT_HUGEPAGE #ifdef
+>    mm/hmm: use device_private_entry_to_pfn()
+> 
+>   Documentation/vm/hmm.rst                |  12 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |   2 +-
+>   drivers/gpu/drm/nouveau/nouveau_svm.c   |   2 +-
+>   include/linux/hmm.h                     |  55 +-----
+>   mm/hmm.c                                | 238 +++++++++---------------
+>   5 files changed, 98 insertions(+), 211 deletions(-)
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
