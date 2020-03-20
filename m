@@ -2,90 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC3E118D290
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 16:12:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7757F18D395
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 17:09:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FF456E196;
-	Fri, 20 Mar 2020 15:11:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 851EE6E195;
+	Fri, 20 Mar 2020 16:09:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770088.outbound.protection.outlook.com [40.107.77.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15DE26E196
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 15:11:58 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2054.outbound.protection.outlook.com [40.107.220.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1C2A6E195
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 16:09:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qmf11JBjGG1MJB3nluuzdvge4ghUEnirpP1mIQwz85xrAuYXyIQWCsSu/Hzj5b6t+grO1JMEvI76twE6bS6DLwSCBAdQ6kqIHr5QHqfPyZabqdfI7rQv1hYs5emkwvMFg1yPRMph+C4Ctk0ztbQ+ydMlOUfaOkjyl7LsUrNbH/ugk8/0k/rOjtOyg36JBk0jRbRWvw2nWMR37TW+tqebVxNHXyP4JjvbJrYlFKOgT+FJuI0j6EQ/u6MNNKB/M0p1UoFxBvDlnHUTTdiTskbU0uqcxPqdo7P9gf5Ar5j6ep066oMdZRCuYU42bKaxPDBojPiDgwaHxigk/v8A7Pd9aA==
+ b=aullVTL3ohQ0cOyTysz+QTknu8QqaDZFY3xwYbr0HDeuBy1pBc/emitXQfkKSRNoDP0cb9igF63bDWIHZzQ+RMLtNK956eTGG1wSZ8La8Xifv0AfFoCrmMP1cnBbqtnaoG7wHEIPREsKR5Eibea7GtKVkWyF7pGbYd9azpk6UgbmfROPjgThgDEBzIOM11AQz1R/8ILnjOrABqw/Ua+iP2pMU81sT90saDoZn+a3sTjEX+3Nz9QtAX3/ykH1yO5og+C8JdSu+rR4u3tz8FLwgK8vadYd8+KN9pElgJbE9pu62G6XByXAcu7vgR0jAVfN9bcwo6JfqgZc8uUHpJiYuA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cdLskfZV9EkSc0DFh8qzibkXU49O2mYH1lb+gY2UiWs=;
- b=XTE5T9UXsvU6mU15ofZLSQ2W1hOyIaAd3s96tQD7v/zndNmZsfT09IBpTbOAk1HCGgm3tdzXJxYUOIXnFF4bG2dBuY8sOVBoLNDEk9ccqt04ZNVEF872/g1+rYJ0oNLVdQGC/dGtVnqGlfuLrjdUuX8wb31CLx/YJ3Ayo7jlg0nWfL/6D7KwI8itYalWf7g4U3S/VpCLMQ7RgofGlQ1PkzucjYeUyclium8azZ23aL4C1AO/qZiHD1iBB7c+v4UcNE0L6VOvhjAUvA2i1Ya0LLerX1WTrCPmz+28ffTMROOfjCJnZAD0Q4V9iXsiKle8+3u5FZ/1x0/pBzIDQ7D7rg==
+ bh=QC9HvXFSUPR2+4VF9zG0OcjVu141tDdnOe2aumok/qk=;
+ b=X/XVtydcCPElDXzlZv+7JBcuV7KfgRlvuQA+YUIi8//RNezDfXp1NNUXXAECVN6Gq0ZexecR+Zelpg2eSn9peAa3Izwfwj4KRB4uH6lu6K+Vl38LcxqXv9e90zSngeQEJwMbxSbgQL3Dp48ML57Vgf1v6Bsuwhgbl7SzTmi8nVdM4Y7Hu3M+g3X4vd0/Qi7KAhSsgZkYQKA4hku/NvK9go76IdgVCdAvwHUJXp3VSabqqBPG5gsqhOg0rlpGfMtLRzYLRdyinp6hGR3J/4hjZmYSSNQGTvKOmOXYunsZERMz3Qx9UuRUNwiQE+2UtqmMNhpwZN+aSzjx238H691nVA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cdLskfZV9EkSc0DFh8qzibkXU49O2mYH1lb+gY2UiWs=;
- b=yWwEMCKA2/jXlV7rO2Nzehn0iFJHtV3OSf7tB6mR220x64l/3kg/6fFH6J02DPia17kD9BUJ90neU0nPxQFSZWKoIHT+R9aS4XQb7GCui1TgMr+0PjKGgqbX7nBjAPruuaLPP5fv7m2Y/vQ7sXpC5MqYSg5+bB41vNdchuGRVdE=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
-Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
- by MW2PR12MB2572.namprd12.prod.outlook.com (2603:10b6:907:6::27) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=QC9HvXFSUPR2+4VF9zG0OcjVu141tDdnOe2aumok/qk=;
+ b=DdI+nU4X8J56vI7Ml0sIwMbvuKuuqhLYqy3twgVer+aJgRmzEqLNb0ezha2Dm3WN6UfWMnmP3nxluWl7+cxPbiSbsTxJN+7x68lxOQvZtz2DlvjSn93mG2h2nCYbydqouuAoRc0b5HZxKWi5TscRbpbmIu9DIIAV8QGY2wq1GWA=
+Received: from SA0PR12MB4576.namprd12.prod.outlook.com (2603:10b6:806:93::13)
+ by SA0PR12MB4591.namprd12.prod.outlook.com (2603:10b6:806:9d::23)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.18; Fri, 20 Mar
- 2020 15:11:56 +0000
-Received: from MW2PR12MB2524.namprd12.prod.outlook.com
- ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
- ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2814.021; Fri, 20 Mar 2020
- 15:11:56 +0000
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 12/12] drm/amd/display: Fix dcn21 num_states
-Date: Fri, 20 Mar 2020 11:11:28 -0400
-Message-Id: <20200320151128.2039940-13-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.25.2
-In-Reply-To: <20200320151128.2039940-1-Rodrigo.Siqueira@amd.com>
-References: <20200320151128.2039940-1-Rodrigo.Siqueira@amd.com>
-X-ClientProxiedBy: YTXPR0101CA0055.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:1::32) To MW2PR12MB2524.namprd12.prod.outlook.com
- (2603:10b6:907:9::27)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
- YTXPR0101CA0055.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.18 via Frontend
- Transport; Fri, 20 Mar 2020 15:11:55 +0000
-X-Mailer: git-send-email 2.25.2
-X-Originating-IP: [2607:fea8:56a0:11a1::4]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 0b088a04-852a-4628-8da2-08d7cce107b2
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2572:|MW2PR12MB2572:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB25720CF9E6E749A0A41A568998F50@MW2PR12MB2572.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
-X-Forefront-PRVS: 03484C0ABF
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(366004)(39860400002)(376002)(396003)(136003)(199004)(81156014)(66556008)(6506007)(54906003)(4326008)(16526019)(2906002)(8936002)(186003)(81166006)(52116002)(2616005)(1076003)(8676002)(86362001)(66476007)(316002)(66946007)(6666004)(6486002)(36756003)(5660300002)(6512007)(6916009)(478600001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR12MB2572;
- H:MW2PR12MB2524.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ 2020 16:08:58 +0000
+Received: from SA0PR12MB4576.namprd12.prod.outlook.com
+ ([fe80::8d47:3ca5:5a7c:c047]) by SA0PR12MB4576.namprd12.prod.outlook.com
+ ([fe80::8d47:3ca5:5a7c:c047%7]) with mapi id 15.20.2835.017; Fri, 20 Mar 2020
+ 16:08:58 +0000
+From: "Sierra Guiza, Alejandro (Alex)" <Alex.Sierra@amd.com>
+To: "Kuehling, Felix" <Felix.Kuehling@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH 1/6] drm/amdgpu: ih doorbell size of range changed for
+ nbio v7.4
+Thread-Topic: [PATCH 1/6] drm/amdgpu: ih doorbell size of range changed for
+ nbio v7.4
+Thread-Index: AQHV/k30SQE8lee6zU6Y6SzxiB+fTKhRjYmAgAAZH7A=
+Date: Fri, 20 Mar 2020 16:08:58 +0000
+Message-ID: <SA0PR12MB457651A2AFB664A8BF69B417FDF50@SA0PR12MB4576.namprd12.prod.outlook.com>
+References: <20200320002421.14984-1-alex.sierra@amd.com>
+ <5e11d408-bb69-9b84-20d3-50c72d8967c7@amd.com>
+In-Reply-To: <5e11d408-bb69-9b84-20d3-50c72d8967c7@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-03-20T16:08:56Z; 
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
+ Unrestricted;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=a974c70b-8fbc-4d4d-bd3c-00002395886f;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=1
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-03-20T16:08:56Z
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
+ Unrestricted
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: 293dd489-696a-40eb-ade3-00001c75decc
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Alex.Sierra@amd.com; 
+x-originating-ip: [165.204.77.1]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 8d209c17-be9b-46a4-51b4-08d7cce8ff6f
+x-ms-traffictypediagnostic: SA0PR12MB4591:|SA0PR12MB4591:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <SA0PR12MB4591D71FB174ED563788BDBAFDF50@SA0PR12MB4591.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3383;
+x-forefront-prvs: 03484C0ABF
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(376002)(39860400002)(136003)(396003)(346002)(366004)(199004)(53546011)(9686003)(66946007)(55016002)(71200400001)(76116006)(186003)(26005)(64756008)(66476007)(66446008)(33656002)(66556008)(6506007)(7696005)(8936002)(110136005)(5660300002)(478600001)(8676002)(81156014)(52536014)(2906002)(81166006)(316002)(86362001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:SA0PR12MB4591;
+ H:SA0PR12MB4576.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
+received-spf: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gHgQ2VENNaK5oF2M3T41evPGpN7L46/gDbURa2KvIal7OYjy3hFrL0CZc/Crple2e7rqHQ5oNnga/U3N4bZ75rpE3eYtpzKcsuWb+1v4Qzp3wqxfF9xFZHfZC2QrajtpNrSBcOIJA9qh2a3+1aFBWwvEvWYmMqrEnOBkgSRpK4c80UntV2h358Ad2HSw1NPfxKdDS/FqXXdCUosWqXMbw58txF5XleGi912VWfd4te6w1Mks568Tz88PbqJqaTgJ9iAxk1z7dOUqgo/0yrqhXrgn8R310I9dmly+KiCgy+uoqZx32rJdx4FVtM8kEpkOycwwQqL463EHmzJ3oGSJaqNr7TF9VmBdd2+ESvCSHOa9EzpFowe+Loh1kHO+Q0N5SvWFo2Wzp3E5xc//ShUBYz08ca47PQUJEyb3s7/7byjlx4qHfocSwC6tsXzxUkeh
-X-MS-Exchange-AntiSpam-MessageData: 2JMuiDqQyi2OZjLdHpLkwpFSJX9/fw64/BjErYY+i7FU2CFCcf4NTdsiYa97AI1VFsjroRk7iQKEUOKRt47lOC/lb5k2ytvvopObX6/REcYcNZDDp2JiTySn1X1PiGY8YMNmZ3QPAvJcxoPUWYeJODhkeQPA1DlB/g/zXyhDh2c=
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rHs2uy5crmhoHhKjWKtvNxrGkQe76ejajYV8zPgsDgqDue/ZyBx6zHJsSnfwycOu42wgfGUfm1ov4oQ+5Hn+CmxSfNr1aoXCb/hhzQA3vvQvDI30A2vGYRvT9j+E+elxephW8ou9zKiO/SsKvOzGBhFOg02RRxDGNQWjv6v5gAkpHDWF7g/6x4+yQ5WBWzKfD+SHOR4+9CVOVRN0XVNPWeijqh+x6BnV8mXfFGQBHdkEqtxkDsqHBV3TCmndcF5wmABSWsIAICR+KmqFlh9AeDIZJMyA3B2d6oiYT+QoT/BSNYlkx7Ka2Hkg+MW+G7Gpbg6HAOQ8FkVjufM4CQi943e0+G0I4adi46aO56z5SbRI5m3iqIIcXsK3T2uda4w2K0dv2wLv3WPgsIIaVgrOHWDIOhAc/YKmL/rmUrQu4d88z8MV99SThnWJwPYEPRdV
+x-ms-exchange-antispam-messagedata: ohdYqsagPJwvtFKiD9bsUNjyTDfb4hmnY6A6oHqYrfed7jy36nwQAKhIA44QlQmvIcCI4Vtu21i5vGuW+TpYVMrNJl2+J+9cT6DJP8wMwrQygpcM1FzvpR//IQJNWBlf/EenOJomiS0g0muoDq/jTw==
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b088a04-852a-4628-8da2-08d7cce107b2
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2020 15:11:56.6463 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KcpfydCv3OfmWfdzPnHaqN4yaDMQbeoKneWIWgKf67lZ7AhehAyVchu6shYXr71TvJDFChtAtDZx67KPQyx+Dw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2572
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d209c17-be9b-46a4-51b4-08d7cce8ff6f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2020 16:08:58.5332 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dzhWOC2qV79r83cl3qOBHVzB2k+ThE4iDISmrJ1Kn9D23Mb++XE6UXSalQDeix7Zr12NJdOtUYw/T+oT2jOi2w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4591
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,168 +112,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Harry.Wentland@amd.com,
- George Shen <george.shen@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+[AMD Official Use Only - Internal Distribution Only]
 
-[Why]
-DML expects num_states to exclude the duplicate state.
+My bad, please ignore this.
+I re-sent this in a separate one patch.
 
-[How]
-Set num_states to correct value to prevent array off-by-one error.  Also
-refactor max clock level code for diags.
+Alejandro S
 
-Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
-Signed-off-by: George Shen <george.shen@amd.com>
-Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
-Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
----
- .../drm/amd/display/dc/dcn20/dcn20_resource.c |  2 +-
- .../drm/amd/display/dc/dcn21/dcn21_resource.c | 37 ++++++-------------
- .../gpu/drm/amd/display/dc/dml/dc_features.h  |  2 +-
- .../amd/display/dc/dml/display_mode_structs.h |  7 ++--
- 4 files changed, 18 insertions(+), 30 deletions(-)
+-----Original Message-----
+From: Kuehling, Felix <Felix.Kuehling@amd.com> 
+Sent: Friday, March 20, 2020 9:37 AM
+To: Sierra Guiza, Alejandro (Alex) <Alex.Sierra@amd.com>; amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/6] drm/amdgpu: ih doorbell size of range changed for nbio v7.4
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 54e096055c6f..5cdbba0cd873 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -3343,7 +3343,7 @@ void dcn20_cap_soc_clocks(
- void dcn20_update_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_st *bb,
- 		struct pp_smu_nv_clock_table *max_clocks, unsigned int *uclk_states, unsigned int num_states)
- {
--	struct _vcs_dpi_voltage_scaling_st calculated_states[MAX_CLOCK_LIMIT_STATES];
-+	struct _vcs_dpi_voltage_scaling_st calculated_states[DC__VOLTAGE_STATES];
- 	int i;
- 	int num_calculated_states = 0;
- 	int min_dcfclk = 0;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 1849f7f9142c..17cef02f7327 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -301,7 +301,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn2_1_soc = {
- 	.xfc_bus_transport_time_us = 4,
- 	.xfc_xbuf_latency_tolerance_us = 4,
- 	.use_urgent_burst_bw = 1,
--	.num_states = 9
-+	.num_states = 8
- };
- 
- #ifndef MAX
-@@ -1381,21 +1381,8 @@ static void update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_param
- 	unsigned int i, j, k;
- 	int closest_clk_lvl;
- 
--	// diags does not retrieve proper values from SMU
--	// cap states to 5 and make state 5 the max state
--	if (IS_FPGA_MAXIMUS_DC(dc->ctx->dce_environment) || IS_DIAG_DC(dc->ctx->dce_environment)) {
--		dcn2_1_soc.num_states = 5;
--
--		dcn2_1_soc.clock_limits[5].state = 5;
--		dcn2_1_soc.clock_limits[5].dcfclk_mhz = 810.0;
--		dcn2_1_soc.clock_limits[5].fabricclk_mhz = 1600.0;
--		dcn2_1_soc.clock_limits[5].dispclk_mhz = 1395.0;
--		dcn2_1_soc.clock_limits[5].dppclk_mhz = 1285.0;
--		dcn2_1_soc.clock_limits[5].phyclk_mhz = 1325.0;
--		dcn2_1_soc.clock_limits[5].socclk_mhz = 953.0;
--		dcn2_1_soc.clock_limits[5].dscclk_mhz = 489.0;
--		dcn2_1_soc.clock_limits[5].dram_speed_mts = 4266.0;
--	} else {
-+	// Default clock levels are used for diags, which may lead to overclocking.
-+	if (!IS_FPGA_MAXIMUS_DC(dc->ctx->dce_environment) && !IS_DIAG_DC(dc->ctx->dce_environment)) {
- 		dcn2_1_ip.max_num_otg = pool->base.res_cap->num_timing_generator;
- 		dcn2_1_ip.max_num_dpp = pool->base.pipe_count;
- 		dcn2_1_soc.num_chans = bw_params->num_channels;
-@@ -1408,16 +1395,16 @@ static void update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_param
- 		dcn2_1_soc.clock_limits[0].dram_speed_mts = clk_table->entries[0].memclk_mhz * 2;
- 
- 		/*
--		 * Other levels: find cloest DCN clocks that fit the given clock limit using dcfclk
--		 * as indicater
-+		 * Other levels: find closest DCN clocks that fit the given clock limit using dcfclk
-+		 * as indicator
- 		 */
- 
- 		closest_clk_lvl = -1;
- 		/* index currently being filled */
- 		k = 1;
- 		for (i = 1; i < clk_table->num_entries; i++) {
--			/* loop backwards, skip duplicate state, +1 because SMU has precision issue */
--			for (j = dcn2_1_soc.num_states - 2; j >= k; j--) {
-+			/* loop backwards, skip duplicate state*/
-+			for (j = dcn2_1_soc.num_states - 1; j >= k; j--) {
- 				if ((unsigned int) dcn2_1_soc.clock_limits[j].dcfclk_mhz <= clk_table->entries[i].dcfclk_mhz) {
- 					closest_clk_lvl = j;
- 					break;
-@@ -1442,13 +1429,13 @@ static void update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_param
- 				k++;
- 			}
- 		}
--
--		/* duplicate last level */
--		dcn2_1_soc.clock_limits[k] = dcn2_1_soc.clock_limits[k - 1];
--		dcn2_1_soc.clock_limits[k].state = k;
--		dcn2_1_soc.num_states = k + 1;
-+		dcn2_1_soc.num_states = k;
- 	}
- 
-+	/* duplicate last level */
-+	dcn2_1_soc.clock_limits[dcn2_1_soc.num_states] = dcn2_1_soc.clock_limits[dcn2_1_soc.num_states - 1];
-+	dcn2_1_soc.clock_limits[dcn2_1_soc.num_states].state = dcn2_1_soc.num_states;
-+
- 	dml_init_instance(&dc->dml, &dcn2_1_soc, &dcn2_1_ip, DML_PROJECT_DCN21);
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dc_features.h b/drivers/gpu/drm/amd/display/dc/dml/dc_features.h
-index ea4cde952f4f..2a1983324629 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dc_features.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dc_features.h
-@@ -29,7 +29,7 @@
- #define DC__PRESENT 1
- #define DC__PRESENT__1 1
- #define DC__NUM_DPP 4
--#define DC__VOLTAGE_STATES 7
-+#define DC__VOLTAGE_STATES 9
- #define DC__NUM_DPP__4 1
- #define DC__NUM_DPP__0_PRESENT 1
- #define DC__NUM_DPP__1_PRESENT 1
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-index dfd3be452766..687010c17324 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-@@ -22,11 +22,12 @@
-  * Authors: AMD
-  *
-  */
-+
-+#include "dc_features.h"
-+
- #ifndef __DISPLAY_MODE_STRUCTS_H__
- #define __DISPLAY_MODE_STRUCTS_H__
- 
--#define MAX_CLOCK_LIMIT_STATES 9
--
- typedef struct _vcs_dpi_voltage_scaling_st voltage_scaling_st;
- typedef struct _vcs_dpi_soc_bounding_box_st soc_bounding_box_st;
- typedef struct _vcs_dpi_ip_params_st ip_params_st;
-@@ -68,7 +69,7 @@ struct _vcs_dpi_voltage_scaling_st {
- };
- 
- struct _vcs_dpi_soc_bounding_box_st {
--	struct _vcs_dpi_voltage_scaling_st clock_limits[MAX_CLOCK_LIMIT_STATES];
-+	struct _vcs_dpi_voltage_scaling_st clock_limits[DC__VOLTAGE_STATES];
- 	unsigned int num_states;
- 	double sr_exit_time_us;
- 	double sr_enter_plus_exit_time_us;
--- 
-2.25.2
+On 2020-03-19 20:24, Alex Sierra wrote:
+> [Why]
+> nbio v7.4 size of ih doorbell range is 64 bit. This requires 2 DWords per register.
+>
+> [How]
+> Change ih doorbell size from 2 to 4. This means two Dwords per ring.
+> Current configuration uses two ih rings.
+>
+> Signed-off-by: Alex Sierra <alex.sierra@amd.com>
 
+Why is the subject "PATCH 1/6"? It makes me wonder, what are the other 5 patches. Anyway, this patch is
+
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+
+
+> ---
+>   drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c 
+> b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> index 149d386590df..263dbb1f92ee 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> @@ -185,7 +185,7 @@ static void nbio_v7_4_ih_doorbell_range(struct 
+> amdgpu_device *adev,
+>   
+>   	if (use_doorbell) {
+>   		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, OFFSET, doorbell_index);
+> -		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, BIF_IH_DOORBELL_RANGE, SIZE, 2);
+> +		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, 
+> +BIF_IH_DOORBELL_RANGE, SIZE, 4);
+>   	} else
+>   		ih_doorbell_range = REG_SET_FIELD(ih_doorbell_range, 
+> BIF_IH_DOORBELL_RANGE, SIZE, 0);
+>   
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
