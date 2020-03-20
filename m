@@ -2,48 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA2E618CEC1
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 14:24:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29CEA18CEC3
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 14:24:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23D626EB31;
-	Fri, 20 Mar 2020 13:24:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CA156EB37;
+	Fri, 20 Mar 2020 13:24:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2053.outbound.protection.outlook.com [40.107.236.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04BC36EB31
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 13:24:27 +0000 (UTC)
+ (mail-bn8nam11on2049.outbound.protection.outlook.com [40.107.236.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2214E6EB34
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 13:24:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DPxcdVrcrQnhVXUxpyG8Gkql3p+5Ymm7+m5hUmNXBLaZ5kUSV/tChLQ9GEsCTXuWpFaWTV5KluOHklCsk73zaa9IUg5d1mlw/yQ0oyjCXD8nQUQjryqPdB6pp2qq45p0cNiXx1nbS1DUyQOefs+ygsSxNHXLPkbc52yYbmZWf5acSj3dvVrPxTW1kXCp7h6nA0L2cJo2nV2NCE3eWzuFgz/nahodl50g9EPn57MVckId/Spr4uYI57XTperTaoEQzExg6Y3EuJrpJJtFVlFq9NAOq9eE3BeimQQl+stwa0QwltJPBF+dYSu93ppPpN8eEDGnpZQ3Z1jozZ8cf8FZtQ==
+ b=VcwmkeQWWp4LA0f9Uhd9ZrmK6vOXgw9age0tn69IDg+lbheCb/iVYz2bjt1+yCHTIasQacblBATNRghUAdvGgNvZT/dAyBAc7iOwcfa617dM0O3KEY1LIudB328FcnZRV9IE/Rigqs6/pti7B4F+FLxpsU3F7DCX9ZFcpfWY2pNpYZqdhsOjz848lbieg3pwDuBq63FxOX/Vk8GQS35T+Mrb9Y2N1DnaylyFIaj+13B6NA1K/VMdKrp2a5owWGAeMlo+fUHG6pGa/2uptvUm14bLlxwJkG0ZUF15LdrLOcYkAur3GbuMBXBjc8jIGy99Qo/J0eJC4QBMRaqAIzsCiw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tpySs0/1BA+YvBv5HrRSsGXUFqGVZJADgCLth543dmc=;
- b=TV6ALDplaDvzPdz++bQmuLG5O6Wf+9OEAFoW/K4YuFgyP1gKqgwqQg0SKGmqO2ikkldMyiLfDpwkgKpTC14Ke4zqlABSgc50/WdbyygRZL/uYij0DOnnVG2myTFlC0osMumr3TOOH3Xe2nofhXKIMuBe0rkEAYXRXorOVb5cfH0QUrjaMCgJ9XtnWDw+ZaxJgzkaWhJjdA/xO0PLo0XyGuQ3NJ5izo2lpPi8yv5Oxxgfrgyidiqa3QDMFqu/Epqo23UrkpoudwdGXfBUKyFW4C+aJLweoScPsCEI+l4H+XCo8DVUjV/Rr5+ISQKH+LTW6p6rwfnnmFQpKrGwyGN8Sw==
+ bh=tIDimZOGEd2akL1y/wNhi2ZpVi4XHBAY1blJr2eqL3A=;
+ b=SnDGq+wjWTaKXDjnD8y5y3i+Q6gRKFOIyZl6q9FbdHam7QbF0uV5mN8UliRM4gcEzXCnBKq6PLe0etmMs7BsHZzUbbU2T3hGc5d92FR6LpSUPWImhtTG2NF2AFLEHw6GPoNsrn1SdMe3oHC5zG/L1FYzDxrJLkVWmm90/zJ4Olcke471ns/Qsh+2s3CeyuoGbsDPlClq5XjUQ9+8Q5fyg7F1ResQN7MVVMngegmKSr9IOimeB0pj0rmGuGtsxzyybCQ8ecUsuYTVAsZUPzo5gmjwsP/YXYMZFZm7QvpwZ5msW+dUoeo+shmc7Xr5Twn1MbWz8NlHboSt1vZC4SqPnA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tpySs0/1BA+YvBv5HrRSsGXUFqGVZJADgCLth543dmc=;
- b=N8ogZQF2m5/mLUxCsA1uVHRNVHzdU5rbqY0HoVQw2W4uSdOMldrdhX/Rv5YMFcmPt3qpXnsWAba/qotakDWDypTr+dhTvUtxt1za2HcO1VToAvC2mY+2Gw42gjtyd8lESoEZHUyf460SjQxur/KWwHHYnHt1x9sJVT/fJEK6iDA=
+ bh=tIDimZOGEd2akL1y/wNhi2ZpVi4XHBAY1blJr2eqL3A=;
+ b=UiRk31G6bwRRac7bW6YKZ/++Xo090gxvT1wfoTX0UXnU5apg0/JJ7NbMchFdOu1Io+4SY8n6JQ7ukCojoVYU3GdtKqKPTMne6QSQQSywI6luq8DqbL4avYvk4tVRvsh0ZCFT2VTcRPeRde5OZGok0/CT+N5ZEpusIuSubzu42J0=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Kent.Russell@amd.com; 
 Received: from DM6PR12MB3721.namprd12.prod.outlook.com (2603:10b6:5:1c2::18)
  by DM6PR12MB3178.namprd12.prod.outlook.com (2603:10b6:5:18d::11) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.20; Fri, 20 Mar
- 2020 13:24:25 +0000
+ 2020 13:24:27 +0000
 Received: from DM6PR12MB3721.namprd12.prod.outlook.com
  ([fe80::f8bd:4765:eb5b:a7a5]) by DM6PR12MB3721.namprd12.prod.outlook.com
  ([fe80::f8bd:4765:eb5b:a7a5%2]) with mapi id 15.20.2814.025; Fri, 20 Mar 2020
- 13:24:25 +0000
+ 13:24:27 +0000
 From: Kent Russell <kent.russell@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/amdgpu: Add documentation for PCIe accounting
-Date: Fri, 20 Mar 2020 09:24:06 -0400
-Message-Id: <20200320132407.9902-2-kent.russell@amd.com>
+Subject: [PATCH 3/3] drm/amdgpu: Add documentation for unique_id
+Date: Fri, 20 Mar 2020 09:24:07 -0400
+Message-Id: <20200320132407.9902-3-kent.russell@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200320132407.9902-1-kent.russell@amd.com>
 References: <20200320132407.9902-1-kent.russell@amd.com>
@@ -55,19 +55,19 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from krussell.amd.com (165.204.55.251) by
  YT1PR01CA0003.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::16) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2835.17 via Frontend Transport; Fri, 20 Mar 2020 13:24:25 +0000
+ 15.20.2835.17 via Frontend Transport; Fri, 20 Mar 2020 13:24:27 +0000
 X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [165.204.55.251]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 26354188-62ed-472a-59a3-08d7ccd202a4
+X-MS-Office365-Filtering-Correlation-Id: 8c96fe24-af0f-4925-3325-08d7ccd203c3
 X-MS-TrafficTypeDiagnostic: DM6PR12MB3178:|DM6PR12MB3178:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3178457FC448914884E73DCA85F50@DM6PR12MB3178.namprd12.prod.outlook.com>
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3178B0FE58C7781E3E9DC06085F50@DM6PR12MB3178.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
 X-Forefront-PRVS: 03484C0ABF
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(136003)(366004)(39860400002)(376002)(396003)(346002)(199004)(44832011)(16526019)(2906002)(26005)(66476007)(52116002)(316002)(7696005)(956004)(36756003)(2616005)(5660300002)(186003)(66946007)(66556008)(8936002)(1076003)(6486002)(8676002)(6666004)(81166006)(81156014)(15650500001)(6916009)(478600001)(4326008)(86362001);
+ SFS:(10009020)(4636009)(136003)(366004)(39860400002)(376002)(396003)(346002)(199004)(44832011)(16526019)(2906002)(26005)(66476007)(52116002)(316002)(7696005)(956004)(36756003)(2616005)(5660300002)(186003)(66946007)(66556008)(8936002)(4744005)(1076003)(6486002)(8676002)(6666004)(81166006)(81156014)(6916009)(478600001)(4326008)(86362001);
  DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3178;
  H:DM6PR12MB3721.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; A:1; 
@@ -75,15 +75,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SZFGzJTfZGTOBe+wHqNp2PVzEbeCHltxkIg6mp23SiiobThFcOh9Ql7nbHQYtX7rmqIqjZzhYBvTGeP+KWnFS4pYZulh9vBjlOPVE/2dqjJoxwP3DMFHiaZp7fdvI8LkxyOl2akGuxbINJs+4RlkVtjMC4Ct5lmE267jhVdqMd64AQDOOPLK5J1G05uBf/MEchNHdUESTVym6UJqTcG7EIqT1sQuCugkg9TRQZ0m/I6O1urhjatHOk+XOk0Sp+1EJ4O2diUar7aS8t4eTe6GacD14JAVdAOURnoAmqJs3eUPxEk4u9fhFKdJuX0cFy8f0pPRnASNVtiZy0aixK+p//Q99iAD39iJJuYUt2TAGCUz9yFNLVg4txVI3/cZuCSBjRDN4B7QDGXu1J8JUuenUyMVONhV4uyKxmitmaOFF1R/nZt5zjTEajJIIM7iUI0d
-X-MS-Exchange-AntiSpam-MessageData: h0ej/ygf2dtjJW9Ky2GLXtDUnu0Ri2Pe7J2EHNSj58J2j8MuPROE0uk5+SAMtkinSNnFBv1RCez9AaCcl9LYxImjVOF5NxUKW0Gky9Wu23e7QrwXskC15OGAHwsfHhk8AmeOCN3uq6Q/LTJRS+hTvw==
+X-Microsoft-Antispam-Message-Info: wLAquVESvwSUnNovmgWP62x7cMnVBAZ4L7ENUqc83uJ6F5ypdz6o5s6MnsOd4pm1IudZBj3/qCCNlR3vq2Vod60HuitGbZFg73T8ifKG37o4WwOUVxckf1D1r2kjzxs0u5KE7auoHYt0L2VdAoeIfeawYGBQcqLSOomYV8b1z6gNMo6yA6Hx4Q9oKrmwQzTAUGJdvZOkETkXKRK0Zo/credkqkF0mnOGGD/FFMERurlIKXlqUC36Bu8HF6nPj6EM8Ybn6PNTSW5Z0A+er/QdxD5aOWqvx60eV0F+MxCY4HfHUSUYDl9A6lBOSN5vQUJK6ssCh5/CpBnHwxTMVPeZT8C8rZPBHqAxNKNCJfytqMv5GLKFtCsWoD1e70HP+e4yVfmftvOnE7/pGpIbuuBrHFKEBkIPKGaJbvG9/EYzr3htCdIucBvMgvQRj2bzAYXP
+X-MS-Exchange-AntiSpam-MessageData: 1Iwtef2MBwwv14Ip4gPywxzTkc0y1s6Slrbg50T8oVwv6iaLSieOn0RZ6jgPnIZEfv1e2labO9vlJnGbZjvj/huNfA/8GDey2LaABzliLJrpUvLM4L51zudOEVLZ3n4vmz+MjkeYgsJKVXb5+VFyxg==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26354188-62ed-472a-59a3-08d7ccd202a4
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2020 13:24:25.7956 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c96fe24-af0f-4925-3325-08d7ccd203c3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2020 13:24:27.6416 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TatfkgI0uOEeFos0oXQckWr4RN7w50QXYoxEcpKYQcsZSG2sloZYCj8pgVssAY4zmULXLN0BinPePuv4mh5f2g==
+X-MS-Exchange-CrossTenant-UserPrincipalName: SsLaK5bh1UmF/o2UN9GR26kuVoQEmgTSAj43HN6LM1wktplJMVs7ycimABNN0fFhHPJFrO9pjz77FlfoPCvtPg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3178
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,50 +102,30 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add the amdgpu.rst tie-ins for the pcie accounting documentation
+Add the amdgpu.rst tie-ins for the unique_id documentation
 
 Signed-off-by: Kent Russell <kent.russell@amd.com>
 ---
- Documentation/gpu/amdgpu.rst | 21 +++++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+ Documentation/gpu/amdgpu.rst | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/Documentation/gpu/amdgpu.rst b/Documentation/gpu/amdgpu.rst
-index cb689fab94c7..9afcc30e0f42 100644
+index 9afcc30e0f42..4cc74325bf91 100644
 --- a/Documentation/gpu/amdgpu.rst
 +++ b/Documentation/gpu/amdgpu.rst
-@@ -257,13 +257,30 @@ mem_info_vis_vram_used
-    :doc: mem_info_vis_vram_used
+@@ -227,6 +227,12 @@ serial_number
+ .. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+    :doc: serial_number
  
- mem_info_gtt_total
-------------------------
-+------------------
- 
- .. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-    :doc: mem_info_gtt_total
- 
- mem_info_gtt_used
--------------------
-+-----------------
- 
- .. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-    :doc: mem_info_gtt_used
-+
-+PCIe Accounting Information
-+===========================
-+
-+pcie_bw
-+-------
++unique_id
++---------
 +
 +.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-+   :doc: pcie_bw
++   :doc: unique_id
 +
-+pcie_replay_count
-+-----------------
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+   :doc: pcie_replay_count
-+
-+
+ GPU Memory Usage Information
+ ============================
+ 
 -- 
 2.17.1
 
