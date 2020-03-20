@@ -1,54 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3922318D5A7
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 18:21:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 307AE18D5A2
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 18:21:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E91136E1D2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 213C36E1BA;
 	Fri, 20 Mar 2020 17:21:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com
- [IPv6:2607:f8b0:4864:20::d30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3205089650
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 15:21:29 +0000 (UTC)
-Received: by mail-io1-xd30.google.com with SMTP id h8so6349480iob.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 08:21:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=oHe2EPIf9l8Ynr628oSDUTLbngyd2BsgIH02FtuZ6ME=;
- b=pY5eGQ0/lF+jndw9zrKS7VekA4qVf3vUE9QsU+MX1ZSHW+QeOsLEIrsodZzvZE5FVI
- qZr/zvQSWmvB63e5QAZUCzU+SPbDKGvy9LD0kvYwdKl/OwF+/2WyWb45tkn4SvxEFujA
- SIlTFySLxZQLkyZTiVTZZcNXy4gZDD3KMLfEveD6Dv7Yudb9op5IANyKBETqp7t9NaWr
- ZcG3AGMvRIMdX7sCmzhRRGl5DWzqRpW+BzNsAaBWCU5w2DOdP5pT+xYTgN8jcDZojYT+
- kb6XPCijW80DmZtYpI0gIXPfcRAiCs3XBigJ8HgtSESOV+QWUXEts35ZjuffV5dRC0A8
- l/3Q==
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
+ [IPv6:2607:f8b0:4864:20::743])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DAE56E1A5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 16:58:23 +0000 (UTC)
+Received: by mail-qk1-x743.google.com with SMTP id e11so7545297qkg.9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 09:58:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=87iKgwaPy8pXzXL9YA5WV3WZml27jYwBmFGI1UGSVUk=;
+ b=NaCjjzldyTssF/3z0KZL0Fqab/MMlCzRVjrru2siMv9BUoCtsVnQTd1gi0e4g7Bv7C
+ 7lWk8bdKCdsAa8UzZNISAM9HmDetrX83wCNt9BSFlOheErwFqT8tMGKNvHewjQr45veO
+ HWg6Vy16BlP0KGklKKcCiS4VNcLzsIKutYoiODMmJPm1d2altsZ0q+sdSgGp2+g62JZb
+ 3CyCsoqW0ZnZ0HCHgfI/B0TdbvC598XLc03bFzjXoW1P352HHxZ0KJ8lx/pW9bAVegn3
+ mG+bqtTK0HVO+f8zqeTr/natEqIDzoAw+jhHbk3xIlfLbjCkv7KSx/3qYUaodlY+D0bf
+ kGQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=oHe2EPIf9l8Ynr628oSDUTLbngyd2BsgIH02FtuZ6ME=;
- b=G8TmqYqPSBRoecEwPBlzGFPUXE1hsz/exmqPuxk/VEx760jVQAC4k6C3E0yDg+y4dE
- pyj/9LSb+w9Hl45r2tWdNDwkUmKLqaRy+kn/p615nslc5azqPz/lM37mKpJxa7/4IkA3
- lPFgoy4LulqBKXRDgxvG+ZZorzfGixU70sCYBYuwT1vte6LDEPpnKN3gg2ydJIkrGbdV
- wcNa2WbnzOHoN0ZkrtdR6vFzqB3Z5kOLiInWSYcWM9Rh412zwZkU6MpaFyNnhQ7uQ5IG
- z8BfCG0ump8i+PzxkiYs/jAd4kQV6KG3+9wFD7kfv0Wyn//EAsaNpIZ8fLYuprVMv9yP
- eqgg==
-X-Gm-Message-State: ANhLgQ31k/AJl0GDvrtVQHW3FpXMlr+ifMNf+FMk2FOQEkxemUzyK3Vz
- GGgT6ywB9edEgfry95YIeb07IIrjEzbPAFGLA0c=
-X-Google-Smtp-Source: ADFU+vuXDicWC8OWd0xrrKcdYutAD6kkivAvEisP/dT59Fdz/nGwJpT9D/ztXsBO/Jp3NXwA2hO6OW7PLm0zSNY+mFI=
-X-Received: by 2002:a5d:8744:: with SMTP id k4mr8006890iol.106.1584717688590; 
- Fri, 20 Mar 2020 08:21:28 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=87iKgwaPy8pXzXL9YA5WV3WZml27jYwBmFGI1UGSVUk=;
+ b=KS0Ob183muhQHKd82jQcxdAmJM6OBkvkA2DzdOBpw08sttgFHSwGrE+T3wNN2ScPgV
+ h976aKyRURNanw4354zokvXUTqF6GUc3wmh2iu4g+V0WyfufpfO4n+vTLqNd2a7oPfkF
+ Vjitpy8R/VUF7f+xovkP5c8vGUN4HJ3ZwdpLE8OcZ83ssi2z1NP6Zd5co2rOFOCfgTVh
+ WI1dGvq6i1yew9n7FkJAqR2Slt/Uko2NZJ+3OpjcyL/MJcbYoq6aFQMvzCSvoo+TtYHg
+ ViGBiZxq/87/2xJQqSm/u4RwuBz7n0c8gzaXn87JgUIB3EXfGEQcxFu1vvjjMW/RBjfJ
+ 0Y+g==
+X-Gm-Message-State: ANhLgQ23llL58G/5JidzoA6cPNoAmYwZjkVWkveMhMWWgUgMq00xCwlD
+ vzulpVhf884yz38JDjh0GzRQkDwDoLYX+A==
+X-Google-Smtp-Source: ADFU+vvveuclm6zQpq1BtpQVw2AZCya6AVI9ugZ2/VnoudKnWPkwAxuYh/+4WEp0jmf9H9GqVc8R6Q==
+X-Received: by 2002:a37:8581:: with SMTP id h123mr8465387qkd.158.1584723024381; 
+ Fri, 20 Mar 2020 09:50:24 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.68.57.212])
+ by smtp.gmail.com with ESMTPSA id x74sm4382043qkb.40.2020.03.20.09.50.23
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 20 Mar 2020 09:50:23 -0700 (PDT)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+ (envelope-from <jgg@ziepe.ca>)
+ id 1jFKql-0005jg-5N; Fri, 20 Mar 2020 13:50:23 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Jerome Glisse <jglisse@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>,
+ Felix.Kuehling@amd.com
+Subject: [PATCH hmm 0/6] Small hmm_range_fault() cleanups
+Date: Fri, 20 Mar 2020 13:48:59 -0300
+Message-Id: <20200320164905.21722-1-jgg@ziepe.ca>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <CAETxV2a+OdyQ_tB0jFHA6n1Ci7kPH6ATBSuHNo4Uq_AuZEFEqg@mail.gmail.com>
- <CADnq5_PryLuSMHW_NuJHq7RKDxNR5-8+qEdK7WfxAg-1YNSE5w@mail.gmail.com>
-In-Reply-To: <CADnq5_PryLuSMHW_NuJHq7RKDxNR5-8+qEdK7WfxAg-1YNSE5w@mail.gmail.com>
-From: Tristan Vroom <tristan.a.vroom@gmail.com>
-Date: Fri, 20 Mar 2020 11:21:18 -0400
-Message-ID: <CAETxV2bUaxGJbrx9NjSBG3FUJu0BMJS_wVrVL+vMQ5ng+HsvHw@mail.gmail.com>
-Subject: Re: amdgpu kernel oops?
-To: Alex Deucher <alexdeucher@gmail.com>
 X-Mailman-Approved-At: Fri, 20 Mar 2020 17:21:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,102 +70,85 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1784838465=="
+Cc: Philip Yang <Philip.Yang@amd.com>, John Hubbard <jhubbard@nvidia.com>,
+ amd-gfx@lists.freedesktop.org, linux-mm@kvack.org,
+ Jason Gunthorpe <jgg@mellanox.com>, dri-devel@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1784838465==
-Content-Type: multipart/alternative; boundary="000000000000e5d4a105a14ad621"
+From: Jason Gunthorpe <jgg@mellanox.com>
 
---000000000000e5d4a105a14ad621
-Content-Type: text/plain; charset="UTF-8"
+I've had these in my work queue for a bit, nothing profound here, just some
+small edits for clarity.
 
-Yes, it worked.
+Ralph's hmm tester will need a small diff to work after this - which
+illustrates how setting default_flags == 0 is the same as what was called
+SNAPSHOT:
 
-Thanks!
+diff --git a/lib/test_hmm.c b/lib/test_hmm.c
+index 6ca953926dc13f..5f31f5b3e64cb9 100644
+--- a/lib/test_hmm.c
++++ b/lib/test_hmm.c
+@@ -300,7 +300,7 @@ static int dmirror_range_fault(struct dmirror *dmirror,
+ 
+ 		range->notifier_seq = mmu_interval_read_begin(range->notifier);
+ 		down_read(&mm->mmap_sem);
+-		count = hmm_range_fault(range, 0);
++		count = hmm_range_fault(range);
+ 		up_read(&mm->mmap_sem);
+ 		if (count <= 0) {
+ 			if (count == 0 || count == -EBUSY)
+@@ -337,8 +337,7 @@ static int dmirror_fault(struct dmirror *dmirror, unsigned long start,
+ 		.flags = dmirror_hmm_flags,
+ 		.values = dmirror_hmm_values,
+ 		.pfn_shift = DPT_SHIFT,
+-		.pfn_flags_mask = ~(dmirror_hmm_flags[HMM_PFN_VALID] |
+-				    dmirror_hmm_flags[HMM_PFN_WRITE]),
++		.pfn_flags_mask = 0,
+ 		.default_flags = dmirror_hmm_flags[HMM_PFN_VALID] |
+ 				(write ? dmirror_hmm_flags[HMM_PFN_WRITE] : 0),
+ 		.dev_private_owner = dmirror->mdevice,
+@@ -872,7 +871,7 @@ static int dmirror_range_snapshot(struct dmirror *dmirror,
+ 		range->notifier_seq = mmu_interval_read_begin(range->notifier);
+ 
+ 		down_read(&mm->mmap_sem);
+-		count = hmm_range_fault(range, HMM_FAULT_SNAPSHOT);
++		count = hmm_range_fault(range);
+ 		up_read(&mm->mmap_sem);
+ 		if (count <= 0) {
+ 			if (count == 0 || count == -EBUSY)
+@@ -916,7 +915,7 @@ static int dmirror_snapshot(struct dmirror *dmirror,
+ 		.flags = dmirror_hmm_flags,
+ 		.values = dmirror_hmm_values,
+ 		.pfn_shift = DPT_SHIFT,
+-		.pfn_flags_mask = ~0ULL,
++		.pfn_flags_mask = 0,
+ 		.dev_private_owner = dmirror->mdevice,
+ 	};
+ 	int ret = 0;
 
-Tristan
+Jason Gunthorpe (6):
+  mm/hmm: remove pgmap checking for devmap pages
+  mm/hmm: return the fault type from hmm_pte_need_fault()
+  mm/hmm: remove unused code and tidy comments
+  mm/hmm: remove HMM_FAULT_SNAPSHOT
+  mm/hmm: remove the CONFIG_TRANSPARENT_HUGEPAGE #ifdef
+  mm/hmm: use device_private_entry_to_pfn()
 
-On Wed, Mar 18, 2020 at 9:53 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+ Documentation/vm/hmm.rst                |  12 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_svm.c   |   2 +-
+ include/linux/hmm.h                     |  55 +-----
+ mm/hmm.c                                | 238 +++++++++---------------
+ 5 files changed, 98 insertions(+), 211 deletions(-)
 
-> On Tue, Mar 17, 2020 at 6:24 PM Tristan Vroom <tristan.a.vroom@gmail.com>
-> wrote:
-> >
-> > I don't have a lot of experience reading kernel logs, so I apologize if
-> I misread something, but it seems like I'm having some trouble with amdgpu
-> in kernel 5.5.9.
-> >
-> > Here's the gist of the bug.
->
-> Does this patch fix the issue?
->
-> https://cgit.freedesktop.org/~agd5f/linux/commit/?h=drm-next&id=6c62ce8073daf27ae3fd03b6929d6cea3887eeb2
->
-> Alex
->
-> >
-> > Thank you for your help.
-> >
-> > Tristan
-> > _______________________________________________
-> > amd-gfx mailing list
-> > amd-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
->
-
---000000000000e5d4a105a14ad621
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Yes, it worked.=C2=A0<br><div><br></div><div>Thanks!</div>=
-<div><br></div><div>Tristan</div></div><br><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar 18, 2020 at 9:53 AM Alex Deuch=
-er &lt;<a href=3D"mailto:alexdeucher@gmail.com">alexdeucher@gmail.com</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Tue=
-, Mar 17, 2020 at 6:24 PM Tristan Vroom &lt;<a href=3D"mailto:tristan.a.vro=
-om@gmail.com" target=3D"_blank">tristan.a.vroom@gmail.com</a>&gt; wrote:<br=
->
-&gt;<br>
-&gt; I don&#39;t have a lot of experience reading kernel logs, so I apologi=
-ze if I misread something, but it seems like I&#39;m having some trouble wi=
-th amdgpu in kernel 5.5.9.<br>
-&gt;<br>
-&gt; Here&#39;s the gist of the bug.<br>
-<br>
-Does this patch fix the issue?<br>
-<a href=3D"https://cgit.freedesktop.org/~agd5f/linux/commit/?h=3Ddrm-next&a=
-mp;id=3D6c62ce8073daf27ae3fd03b6929d6cea3887eeb2" rel=3D"noreferrer" target=
-=3D"_blank">https://cgit.freedesktop.org/~agd5f/linux/commit/?h=3Ddrm-next&=
-amp;id=3D6c62ce8073daf27ae3fd03b6929d6cea3887eeb2</a><br>
-<br>
-Alex<br>
-<br>
-&gt;<br>
-&gt; Thank you for your help.<br>
-&gt;<br>
-&gt; Tristan<br>
-&gt; _______________________________________________<br>
-&gt; amd-gfx mailing list<br>
-&gt; <a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd=
--gfx@lists.freedesktop.org</a><br>
-&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/amd-gfx" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/lis=
-tinfo/amd-gfx</a><br>
-</blockquote></div>
-
---000000000000e5d4a105a14ad621--
-
---===============1784838465==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1784838465==--
