@@ -2,60 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB89218D706
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 19:28:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E801418D6FE
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Mar 2020 19:27:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 224026EB5D;
-	Fri, 20 Mar 2020 18:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71BCC6EB60;
+	Fri, 20 Mar 2020 18:27:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com
- [IPv6:2607:f8b0:4864:20::642])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E6D96EB58
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 18:28:01 +0000 (UTC)
-Received: by mail-pl1-x642.google.com with SMTP id g6so2874323plt.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 11:28:01 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D2626E0DF
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 18:27:48 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id h4so8765296wru.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 11:27:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=9hcDrrvElZeuqsqFKuLu/YBXfd7bxU6CI88wJ211B28=;
- b=KIYpczMEvvp4jCK4RpuBBB4cz4rpdMK6w2Kft2o2WpSiLMIc/pOrZaHZznc8MLsZvE
- VoDEVOLluFMCJPjTJdlcrvUzvYvc755tJrrdm8w6YEmDY582wwi2xiNf9vfC7Q16P4/k
- LdSkxtJUnO+lryVc7bRpViNGKPY5qfME3Kr4Os2ycsB9NWVjANcDz1vEsaZ6DXCGXpfT
- IdSgyOzkJ3U1P7zn/koh1j3H1c6d0B8S3S+QYKwx9CSEWCmN0iat6gAwp8GPV4/3WUmD
- lyLbHv98s46RNKfVxLxtmg8rHZLKJ2b62h76KB7PMyvG/z3CCDHHViRRdSld3tsUmqQj
- FsAA==
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=SWYdA8Gs7J51OhiGl1EEANQQ2xKQWx3/7m76fwCheSs=;
+ b=TRcBt7WN+Z9dyj/wH/9jCfaX5jDWfLv4WhM5W/wjyeKexkatmFV8rQssudE30FFifL
+ BxxSRUXwWw8aIxzQnKSKf+aAIfuOpliLYqYAbiFwJf9toBDAQ8CnJxM4RFSWdsZh5o1e
+ 4xXe1dUlwyLOpHH1lwMn59oxgHUWshpiVnnzaJPlGSaDiG8b2ltBjesQFYNu13NUhwpM
+ 9jovB2JSVG8kcuqyBoX316r9DrRheOerYHo6u1x/60g/p5IUJ991ox1q1uO38mBKlG8C
+ dZOQBK/QFsFFaNsNn5MJsjXiSun2AHhGOLkeV+qdjsf+Acwu7zQbBkLhzqKQxAj9cGDg
+ vbCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=9hcDrrvElZeuqsqFKuLu/YBXfd7bxU6CI88wJ211B28=;
- b=AitvMsziwkqc+DmzYbRw9P5do8ahoFuy4H/ewkiVXBK7BG6y+XxNrs/fsLRiQUoNJe
- FCa7Q8m2nNFobv+YEymv4K0gRHpthmZfXyFjuU/n4l+lchADOK+s6DJaj9GGKoYGgw4c
- e49jp3vIlKx9uRiFfvGdCXTnewwvQNCG+5iEoAH/D8Ob7S5qYgD+XJIEz9RewcLcOLUH
- dcbzkJvTTOkVwLnDswPQRxVVBAJVHjBZ85Q4rr1gnQrxnTpzxuPW+3vb9fsCxuR0VSZk
- qFnC+tp9YkhTOHj3gPOTtDV6mgW9xS8WScu7fjKszO32adA80/duiYvsHja012pfEeo7
- nysg==
-X-Gm-Message-State: ANhLgQ1Mdt3FKD0XdMgZrO0hOZK+wwnjjjSXLeOPFOsHr+DC6U0V6Qgj
- KLQhEWpt/OagLU76AFxM7JP/Veh6
-X-Google-Smtp-Source: ADFU+vvhAxqyk0ifBRVxwK6NOxYntBzPL/fyBnr/3S4j1XSZOCIKtoLCaOaqf5da3wR5nN3lbwFymw==
-X-Received: by 2002:a17:902:bccb:: with SMTP id
- o11mr9942677pls.281.1584728880424; 
- Fri, 20 Mar 2020 11:28:00 -0700 (PDT)
-Received: from localhost.localdomain ([71.219.40.23])
- by smtp.gmail.com with ESMTPSA id v185sm6233850pfv.32.2020.03.20.11.27.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Mar 2020 11:27:59 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 8/8] drm/amdgpu/smu11: add support for SMU AC/DC interrupts
-Date: Fri, 20 Mar 2020 14:27:27 -0400
-Message-Id: <20200320182727.3805-8-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200320182727.3805-1-alexander.deucher@amd.com>
-References: <20200320182727.3805-1-alexander.deucher@amd.com>
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=SWYdA8Gs7J51OhiGl1EEANQQ2xKQWx3/7m76fwCheSs=;
+ b=pSM3wxoDh7NNuli5xm46l3ibIZMLC7Cwu7+HFKpvbzmQcCe/mqTVDte//1BYxH3HCI
+ ZCEEMSTsfyrxB71tjnlH2JY5uWr+MYE34LsaxeMOywz+0RMnjmuQSAUPxGelER9pslF5
+ uw/zykvhf/OpsfFBsSjTIcz1i7c/MzN/xBpc+tq/oQfRYTzaAP8Ey7nj1zk2w09dORSh
+ MpgzOPJsmMQ+iKx/CcfRx/ZKlSyz55P5mY1Ljjpycf6MklrWv1J/ihFseq/9KYz0TouL
+ vWj0TpBoz9rTYGHNYllpjLSSK6kmnYqu9WGOB2U2Ehwk0kywub/5OaxsG0yfLPiNzkLf
+ Fb9w==
+X-Gm-Message-State: ANhLgQ1L3UUxR5VopmBrAaX9uaQDEul3jPLN91MQJtQmS8mHfLzxK7gk
+ FdKy1AcR7Pvu5oMuPaNdicRgGJ87
+X-Google-Smtp-Source: ADFU+vt85veOUOwfTBA923ZNO+9Umz8VIAJtWLNFSUrIacJLb187DdAcwF7MEW8oo92EO5QpJgAfZA==
+X-Received: by 2002:a5d:56cd:: with SMTP id m13mr12414541wrw.236.1584728866839; 
+ Fri, 20 Mar 2020 11:27:46 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id d21sm9272037wrb.51.2020.03.20.11.27.45
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 20 Mar 2020 11:27:46 -0700 (PDT)
+Subject: Re: [PATCH] drm/amdgpu: fix size validation failure in large buffer
+ creation
+To: Tianci Yin <tianci.yin@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20200320094615.5524-1-tianci.yin@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <cb153afb-1e3c-e512-7775-ae144db9aff9@gmail.com>
+Date: Fri, 20 Mar 2020 19:27:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
+In-Reply-To: <20200320094615.5524-1-tianci.yin@amd.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,65 +70,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, mcoffin13@gmail.com
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: christian.koenig@amd.com
+Cc: Feifei Xu <Feifei.Xu@amd.com>, Pauline Li <pauline.li@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Long Gang <Gang.Long@amd.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Driver needs to send the ack message when it receives the
-AC/DC interrupt from the SMU.
+Am 20.03.20 um 10:46 schrieb Tianci Yin:
+> From: "Tianci.Yin" <tianci.yin@amd.com>
+>
+> [why]
+> When GTT domain size is smaller than VRAM, if APP apply a very large
+> buffer whose size is larger than GTT but smaller than VRAM, the size
+> validation will fail.
+>
+> [how]
+> Validate VRAM domain size at first place, then GTT domain.
 
-TODO: verify the client and src ids.
+NAK, this is intended behavior. VRAM allocations larger than GTT 
+allocations are illegal and can crash the memory management.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/powerplay/smu_v11_0.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Regards,
+Christian.
 
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-index 20174bed11ce..d19e1d0d56c0 100644
---- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-@@ -1525,6 +1525,13 @@ int smu_v11_0_set_xgmi_pstate(struct smu_context *smu,
- 	return ret;
- }
- 
-+static int smu_v11_0_ack_ac_dc_interrupt(struct smu_context *smu)
-+{
-+	return smu_send_smc_msg(smu,
-+				SMU_MSG_ReenableAcDcInterrupt,
-+				NULL);
-+}
-+
- #define THM_11_0__SRCID__THM_DIG_THERM_L2H		0		/* ASIC_TEMP > CG_THERMAL_INT.DIG_THERM_INTH  */
- #define THM_11_0__SRCID__THM_DIG_THERM_H2L		1		/* ASIC_TEMP < CG_THERMAL_INT.DIG_THERM_INTL  */
- 
-@@ -1558,6 +1565,9 @@ static int smu_v11_0_irq_process(struct amdgpu_device *adev,
- 		break;
- 
- 		}
-+	} else if (client_id == SOC15_IH_CLIENTID_MP1) {
-+		if (src_id == 0xfe)
-+			smu_v11_0_ack_ac_dc_interrupt(&adev->smu);
- 	}
- 
- 	return 0;
-@@ -1597,6 +1607,12 @@ int smu_v11_0_register_irq_handler(struct smu_context *smu)
- 	if (ret)
- 		return ret;
- 
-+	ret = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_MP1,
-+				0xfe,
-+				irq_src);
-+	if (ret)
-+		return ret;
-+
- 	return ret;
- }
- 
--- 
-2.25.1
+>
+> Change-Id: Ic1d31b9b0a4939e6bba0241ff79ae9aa2225ee05
+> Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 18 +++++++++---------
+>   1 file changed, 9 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> index 84745f9e7408..bab134b6369f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> @@ -464,21 +464,21 @@ static bool amdgpu_bo_validate_size(struct amdgpu_device *adev,
+>   {
+>   	struct ttm_mem_type_manager *man = NULL;
+>   
+> -	/*
+> -	 * If GTT is part of requested domains the check must succeed to
+> -	 * allow fall back to GTT
+> -	 */
+> -	if (domain & AMDGPU_GEM_DOMAIN_GTT) {
+> -		man = &adev->mman.bdev.man[TTM_PL_TT];
+> +	if (domain & AMDGPU_GEM_DOMAIN_VRAM) {
+> +		man = &adev->mman.bdev.man[TTM_PL_VRAM];
+>   
+>   		if (size < (man->size << PAGE_SHIFT))
+>   			return true;
+> -		else
+> +		else if (!(domain & AMDGPU_GEM_DOMAIN_GTT))
+>   			goto fail;
+>   	}
+>   
+> -	if (domain & AMDGPU_GEM_DOMAIN_VRAM) {
+> -		man = &adev->mman.bdev.man[TTM_PL_VRAM];
+> +	/*
+> +	 * If GTT is part of requested domains the check must succeed to
+> +	 * allow fall back to GTT
+> +	 */
+> +	if (domain & AMDGPU_GEM_DOMAIN_GTT) {
+> +		man = &adev->mman.bdev.man[TTM_PL_TT];
+>   
+>   		if (size < (man->size << PAGE_SHIFT))
+>   			return true;
 
 _______________________________________________
 amd-gfx mailing list
