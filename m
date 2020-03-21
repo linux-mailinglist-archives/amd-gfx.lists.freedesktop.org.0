@@ -1,32 +1,31 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D26318DF9A
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2020 11:45:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23A4C18DF98
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2020 11:45:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A3306E314;
-	Sat, 21 Mar 2020 10:45:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8D16E31D;
+	Sat, 21 Mar 2020 10:45:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFB006E2DC;
- Sat, 21 Mar 2020 08:43:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 276136E2DC;
+ Sat, 21 Mar 2020 08:43:49 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 7EE7268AFE; Sat, 21 Mar 2020 09:43:17 +0100 (CET)
-Date: Sat, 21 Mar 2020 09:43:17 +0100
+ id 4566468AFE; Sat, 21 Mar 2020 09:43:47 +0100 (CET)
+Date: Sat, 21 Mar 2020 09:43:47 +0100
 From: Christoph Hellwig <hch@lst.de>
 To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH hmm 5/6] mm/hmm: remove the CONFIG_TRANSPARENT_HUGEPAGE
- #ifdef
-Message-ID: <20200321084317.GE28695@lst.de>
+Subject: Re: [PATCH hmm 6/6] mm/hmm: use device_private_entry_to_pfn()
+Message-ID: <20200321084347.GF28695@lst.de>
 References: <20200320164905.21722-1-jgg@ziepe.ca>
- <20200320164905.21722-6-jgg@ziepe.ca>
+ <20200320164905.21722-7-jgg@ziepe.ca>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200320164905.21722-6-jgg@ziepe.ca>
+In-Reply-To: <20200320164905.21722-7-jgg@ziepe.ca>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Mailman-Approved-At: Sat, 21 Mar 2020 10:44:50 +0000
+X-Mailman-Approved-At: Sat, 21 Mar 2020 10:44:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,16 +47,32 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 20, 2020 at 01:49:04PM -0300, Jason Gunthorpe wrote:
+On Fri, Mar 20, 2020 at 01:49:05PM -0300, Jason Gunthorpe wrote:
 > From: Jason Gunthorpe <jgg@mellanox.com>
 > 
-> This code can be compiled when CONFIG_TRANSPARENT_HUGEPAGE is off, so
-> remove the ifdef.
+> swp_offset() should not be called directly, the wrappers are supposed to
+> abstract away the encoding of the device_private specific information in
+> the swap entry.
+> 
+> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
+> ---
+>  mm/hmm.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index a09b4908e9c81a..fd9ee2b5fd9989 100644
+> --- a/mm/hmm.c
+> +++ b/mm/hmm.c
+> @@ -259,8 +259,8 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+>  		 * the PFN even if not present.
+>  		 */
+>  		if (hmm_is_device_private_entry(range, entry)) {
+> -			*pfn = hmm_device_entry_from_pfn(range,
+> -					    swp_offset(entry));
+> +			*pfn = hmm_device_entry_from_pfn(
+> +				range, device_private_entry_to_pfn(entry));
 
-It can compile, but will the compiler optimize it away?  Seems like
-both pmd_trans_huge and pmd_devmap are stubs for
-!CONFIG_TRANSPARENT_HUGEPAGE, so yes.  But that should be mentioned
-in the commit message.
+The range parameter can stay on the first line..
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
