@@ -1,58 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A73918DF59
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2020 11:08:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F1018DF9C
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2020 11:45:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAD176E2E2;
-	Sat, 21 Mar 2020 10:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D10936E320;
+	Sat, 21 Mar 2020 10:45:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com
- [IPv6:2607:f8b0:4864:20::52d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E00816E2E2
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2020 10:08:23 +0000 (UTC)
-Received: by mail-pg1-x52d.google.com with SMTP id z72so4396063pgz.3
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Mar 2020 03:08:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=Zd50zph/DVCHGwO7MQoDZUqDKLF5Me8P8SPvJd1kNlM=;
- b=l2RrNjZj1NsQEqvtV/MnqAYDknUPTUc5jtseIAdOYGrbGVu//ychOs32h2S97PVOTy
- 1v7i0wqMsYI+Ypi+zkCPtN9cgFM3KXLfGFnjA/JSsbVRvYa2aVZ3spzr1qJFfzUa/NKK
- Ug/P0meFmOiN63TxBS2PmJ1ZcphA27EbMUCXlHu3y5TsvU1rgEiTwBXgOPmOHgFTRNKW
- fICA6hqXgQmBpZZgR3feJ7i8brUJkWPUElhQecCcsnntG0hJN7pVAp6HM8wAl4IGEoKL
- jUIdwf7OwK7W+aauz/Wvo6zeVM9QOkhCLP5bVTvCrh6zDVs+Ddvijs+RWQAoXFpPyCmI
- mvqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=Zd50zph/DVCHGwO7MQoDZUqDKLF5Me8P8SPvJd1kNlM=;
- b=GTJV+YHJqQErlb+zSq9LTYtkuf3s1X/RZxSsnpJgddIFaAPd1ZSwJnXouHJ+hWxdcO
- KWGcfUCy5ru+ChtOuSN2z8WZodYyFNCHwSNu89ZOnmBy7bSVYSRhoSUb1r48iRSs/yG5
- MIPdfkjjpfT9NPFTMbvLAlADYKfG5kKf3FsZM6ZfbcsDwHLQDIXSeWz93wo4fWy1zpth
- G9iIP87Vh6o+CC032eW+G8KB41EOSDXt94gqxCx9IAcC+1/BYP+9hoGfEhsc0LDzSiqk
- 5rwFy0Z9IhNnMZwJIV1EHYnsW3LknQVJ9cP6VUWlcyrZYmGddHMoyOXvFI7bQ9IWkwwh
- KpNA==
-X-Gm-Message-State: ANhLgQ0891sSupU60aZtrjRkM6vHtNhDVW7X5n7byBN0CvQJZ/PSivUz
- Tgqcr7ERkntSG2KDuKBF+BM3C8jmyc3R5l/w4XlsEAv8
-X-Google-Smtp-Source: ADFU+vs2T7Ac7aY8d908/fbiGqrKmF97hdIik9mdQY+yL5K7BKYWXCF2UXOsm8JSzOOaNuYgzYJJqd2Ola+JQECCSXs=
-X-Received: by 2002:a63:4555:: with SMTP id u21mr12865121pgk.66.1584785303386; 
- Sat, 21 Mar 2020 03:08:23 -0700 (PDT)
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B0C56E0D9;
+ Sat, 21 Mar 2020 08:20:46 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id C3FCA68AFE; Sat, 21 Mar 2020 09:20:41 +0100 (CET)
+Date: Sat, 21 Mar 2020 09:20:41 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [PATCH 3/4] mm: simplify device private page handling in
+ hmm_range_fault
+Message-ID: <20200321082041.GA28613@lst.de>
+References: <7256f88d-809e-4aba-3c46-a223bd8cc521@nvidia.com>
+ <20200317121536.GQ20941@ziepe.ca> <20200317122445.GA11662@lst.de>
+ <20200317122813.GA11866@lst.de> <20200317124755.GR20941@ziepe.ca>
+ <20200317125955.GA12847@lst.de>
+ <24fca825-3b0f-188f-bcf2-fadcf3a9f05a@nvidia.com>
+ <20200319181716.GK20941@ziepe.ca>
+ <89e33770-a0ab-e1ec-d5e5-535edefd3fd3@nvidia.com>
+ <20200320000345.GO20941@ziepe.ca>
 MIME-Version: 1.0
-References: <CAFvQSYQqneGVka+uyZjs1RsFNFkXZqYmz9pTP6=8uhUP0ddHAQ@mail.gmail.com>
- <DM6PR12MB30977EA10F8FDF64778C18CAE8E10@DM6PR12MB3097.namprd12.prod.outlook.com>
- <DM6PR12MB309791830A01031827FE2DCAE8E10@DM6PR12MB3097.namprd12.prod.outlook.com>
- <CAFvQSYTm0ivSvTrFGUQ3S81+Q_SvbhZxaAQScOX3-kySWJPYUg@mail.gmail.com>
- <DM6PR12MB3097728439238BA34015B087E8FE0@DM6PR12MB3097.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB3097728439238BA34015B087E8FE0@DM6PR12MB3097.namprd12.prod.outlook.com>
-From: Clemens Eisserer <linuxhippy@gmail.com>
-Date: Sat, 21 Mar 2020 11:08:12 +0100
-Message-ID: <CAFvQSYQbwnpGL13-pwY959yAiPXaE85teROVhiFoCOs+K86S8Q@mail.gmail.com>
-Subject: Re: Possibility of RX570 responsible for spontaneous reboots (MCE)
- with Ryzen 3700x?
-To: "Bridgman, John" <John.Bridgman@amd.com>, amd-gfx@lists.freedesktop.org
+Content-Disposition: inline
+In-Reply-To: <20200320000345.GO20941@ziepe.ca>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Mailman-Approved-At: Sat, 21 Mar 2020 10:44:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +44,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Ralph Campbell <rcampbell@nvidia.com>, amd-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kvm-ppc@vger.kernel.org, Christoph Hellwig <hch@lst.de>, linux-mm@kvack.org,
+ Jerome Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-kselftest@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>,
+ Bharata B Rao <bharata@linux.ibm.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi John,
+On Thu, Mar 19, 2020 at 09:03:45PM -0300, Jason Gunthorpe wrote:
+> > Should tests enable the feature or the feature enable the test?
+> > IMHO, if the feature is being compiled into the kernel, that should
+> > enable the menu item for the test. If the feature isn't selected,
+> > no need to test it :-)
+> 
+> I ment if DEVICE_PRIVATE should be a user selectable option at all, or
+> should it be turned on when a driver like nouveau is selected.
 
-> >I know RX570 (polaris) should stay at PCI3 as far as I know.
->
-> Yep... thought I remembered you mentioning having a 5700XT though... is that in a different system ?
+I don't think it should be user selectable.  This is an implementation
+detail users can't know about.
 
-I am using a RX570, the guy from reddit changed from R600 to an 5700XT
-and it seems it did solve his reboot problems.
+> Is there some downside to enabling DEVICE_PRIVATE?
 
-As the system is rock solid with windows-10 and others seem to
-experience similar behaviour I've decided to file a bug at the
-kernel's bugzilla:
-https://bugzilla.kernel.org/show_bug.cgi?id=206903
+The option itself adds a little more code to the core kernel, and
+introduces a few additional branches in core mm code.
 
-Thanks for your suggestions & best regards, Clemens
-
-
->
-> ________________________________
-> From: Clemens Eisserer <linuxhippy@gmail.com>
-> Sent: March 9, 2020 2:30 AM
-> To: Bridgman, John <John.Bridgman@amd.com>; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-> Subject: Re: Possibility of RX570 responsible for spontaneous reboots (MCE) with Ryzen 3700x?
->
-> Hi John,
->
-> Thanks a lot for taking the time to look at this, even if it doesn't
-> seem to be GPU related at first.
->
-> > OK, that's a bit strange... I found mce log and MCE-Ryzen-Decoder as options for decoding.
-> Sorry for omitting that information - indeed I was using
-> MCE-Ryzen-Decoder, thanks for pointing to mcelog.
-> The mce log output definitivly makes more sense, I'll try to
-> experiment a bit with RAM.
->
-> Thanks also for the link to the forum, seems of all the affected users,
-> no one reported success in that thread.
->
-> > For something as simple as the GPU bus interface not responding to an access
-> > by the CPU I think you would get a different error (bus error) but not 100% sure about that.
-> >
-> > My first thought would be to see if your mobo BIOS has an option to force PCIE
-> > gen3 instead of 4 and see if that makes a difference. There are some amdgpu module parms
-> > related to PCIE as well but I'm not sure which ones to recommend.
->
-> I'll give it a try and have a look at the pcie options - but as far as
-> I know RX570 (polaris) should stay at PCI3 as far as I know.
-> Disabling IOMMU didn't help as far as I recall.
->
-> Thanks & best regards, Clemens
+But more importantly it pulls in the whole pgmap infrastructure.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
