@@ -2,30 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A4C18DF98
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Mar 2020 11:45:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37B9718E79F
+	for <lists+amd-gfx@lfdr.de>; Sun, 22 Mar 2020 09:33:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8D16E31D;
-	Sat, 21 Mar 2020 10:45:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D4A36E060;
+	Sun, 22 Mar 2020 08:33:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 276136E2DC;
- Sat, 21 Mar 2020 08:43:49 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 4566468AFE; Sat, 21 Mar 2020 09:43:47 +0100 (CET)
-Date: Sat, 21 Mar 2020 09:43:47 +0100
-From: Christoph Hellwig <hch@lst.de>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH hmm 6/6] mm/hmm: use device_private_entry_to_pfn()
-Message-ID: <20200321084347.GF28695@lst.de>
-References: <20200320164905.21722-1-jgg@ziepe.ca>
- <20200320164905.21722-7-jgg@ziepe.ca>
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr690051.outbound.protection.outlook.com [40.107.69.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66F936E060
+ for <amd-gfx@lists.freedesktop.org>; Sun, 22 Mar 2020 08:33:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=T+LUaZkfS+AeIpsCF8aNk0VsOSOKI7FBAcBmEP5ml9riceGtgcuqt8QP/0EHGV2eatODWPLYfr0ILjWVzXJ7vRcyAr/6NMfCzPzpRGM3o0Mk/ttiKt17aZ0U5fh5qyrwEB47AuLsWzfI3IIJQ799XFDjKhb/uSdg8BkIsk1/xN4ju3Y8uHYqIpUHVlKtLkiFVpSpjkX4Xk/KBr2lJFqYOI4YfNvE+m3ZIJPGhydyIuXwW/QfUQGKZq+NZsl6vOLdN1btsZNJrcXARDWcVQpMdd+1WMm6h1+dIxMNE5JIELoMeLTmaxbLkxMK3puCx06d1rAMmQauQfhNEf8z+jEe+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=82EZUbPPkgqCGNO4lUipW42Xdngn98mk8utBGot1fuQ=;
+ b=j0KNvIk0DoHtZUuBmI2d8tjlVNRctoY9fnzP5ok2QnjTi3GMnndCj6uK3+FlaQbWtEEbjMXLo1yf1H19Hq64g0S17RbHDGtB/gvVphQyBHtpMrRoPyDPaJHy4GbXnPQBnAZ5yXj7CAhfLEaGSvIdDTZn9ejbQqTpz4go9EM22+NaX5FFVj1ddBbGGkQ3jiaGgFzfWB4axF03k/2dCcpKg8kspN8FZP9qDE0w79AbaTg0CpGfo4u2pWwBSbtiBtCAMwEG9hmzDrjJoxpRPwdlcqrgTQGO7zO3Oh+j91kgboV7eqBgbVFQiBFIEW1Tf7qypwnU98p+ZBq1qef62ON0Iw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=82EZUbPPkgqCGNO4lUipW42Xdngn98mk8utBGot1fuQ=;
+ b=foI4byh/TF/wmXawtWQ1ISl7BzxSMeAn3D3/d2M7j1Dj0u5qzIb98+IwNG1+p9sFmsSwaog5EdMYm3Jy6sgPrNJx0ufV2uySLnRxh17SUoJqQ34i4uwfRBwtJQvldbCnkrJGl2qBopd9neZKlRIYUb6VUK8G+D0rrTDXhHMa/EY=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Guchun.Chen@amd.com; 
+Received: from CY4PR12MB1287.namprd12.prod.outlook.com (2603:10b6:903:40::8)
+ by CY4PR12MB1653.namprd12.prod.outlook.com (2603:10b6:910:f::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.18; Sun, 22 Mar
+ 2020 08:33:11 +0000
+Received: from CY4PR12MB1287.namprd12.prod.outlook.com
+ ([fe80::74d2:68e2:beee:e901]) by CY4PR12MB1287.namprd12.prod.outlook.com
+ ([fe80::74d2:68e2:beee:e901%11]) with mapi id 15.20.2835.021; Sun, 22 Mar
+ 2020 08:33:11 +0000
+From: Guchun Chen <guchun.chen@amd.com>
+To: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, Dennis.Li@amd.com,
+ Tao.Zhou1@amd.com, John.Clements@amd.com, alexander.deucher@amd.com
+Subject: [PATCH] drm/amdgpu: record correct sram correctable error count on
+ arcturus
+Date: Sun, 22 Mar 2020 16:32:49 +0800
+Message-Id: <20200322083249.25573-1-guchun.chen@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: HK2PR06CA0016.apcprd06.prod.outlook.com
+ (2603:1096:202:2e::28) To CY4PR12MB1287.namprd12.prod.outlook.com
+ (2603:10b6:903:40::8)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200320164905.21722-7-jgg@ziepe.ca>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Mailman-Approved-At: Sat, 21 Mar 2020 10:44:49 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from guchchen-System-Product-Name.amd.com (180.167.199.189) by
+ HK2PR06CA0016.apcprd06.prod.outlook.com (2603:1096:202:2e::28) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2835.19 via Frontend Transport; Sun, 22 Mar 2020 08:33:08 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [180.167.199.189]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 6fff77a5-d7ef-4602-1340-08d7ce3ba79b
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1653:|CY4PR12MB1653:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1653277128576535785755AEF1F30@CY4PR12MB1653.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2512;
+X-Forefront-PRVS: 0350D7A55D
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(136003)(366004)(346002)(376002)(396003)(199004)(478600001)(6636002)(6486002)(66946007)(44832011)(316002)(26005)(36756003)(86362001)(1076003)(66556008)(66476007)(4326008)(956004)(16526019)(7696005)(52116002)(186003)(6666004)(81156014)(8936002)(5660300002)(2616005)(2906002)(8676002)(81166006);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR12MB1653;
+ H:CY4PR12MB1287.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NfjgswFjS9FlOuZNqFmPvnqJKrTWB2pl1+5k2Whs++lRJgfKEmWNKqfN/oCSGs5ahtBpv/6G/Sgj26Q1i2pztKHU7jvwGPlJiSe97pihGkWo6uh4Ti8udFMpUjOaTv9UqzUf7PHZ/lHnRelQc1F7kGEJf5YClCUB0aYGhxoZ+qj//THt2me9ZyHNHAgwDGqYRKRX5IE7xmlhy13xHYbByLtBfwCl0lNJCYF1/UnzNdKuxYQNfw1osIGL3w3WKlf0NFsSb52cJq0HepGuiBT1srb3ND4l9iKvswyp3naEkjOB5J2fmUgyQagePaEsrWY89YbO8oH/HAfKUcdVV6R5wGg5HBZbN5RRpFnQRosAE6V58ugr8r2R/JnuH2ZDwPDhZfIbFC/EU1DP7tyiPT41zwzGGYJE9KbCxpw3aA/9Joshsegy+P6pZhjtFDq3QJQG
+X-MS-Exchange-AntiSpam-MessageData: TyUvTHLoJeB276kMmJHstiZ87fjObqwrL+6fKQmm6PkmFz1Dw6bNvwNIFF2XPUnVvdkq6VZ1PGY50T+8zMoFqGbKnbiiX8IYFGCNVM+73nH7euvvI7PGQ0wXF3ssVciXuqhIB/ebwmbI4EY8MjYu3g==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6fff77a5-d7ef-4602-1340-08d7ce3ba79b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2020 08:33:10.9373 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c74C4bQbj/fo/eTNAoc+1bcJZ2tTGbceKB/2oGQ+T2HultrqY4RW5m0uwWQAsdC6x1+TODGeygZDExYIf7OpRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1653
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,42 +96,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Philip Yang <Philip.Yang@amd.com>, Ralph Campbell <rcampbell@nvidia.com>,
- John Hubbard <jhubbard@nvidia.com>, Felix.Kuehling@amd.com,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- Jerome Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>,
- amd-gfx@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>
+Cc: Candice.Li@amd.com, Guchun Chen <guchun.chen@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 20, 2020 at 01:49:05PM -0300, Jason Gunthorpe wrote:
-> From: Jason Gunthorpe <jgg@mellanox.com>
-> 
-> swp_offset() should not be called directly, the wrappers are supposed to
-> abstract away the encoding of the device_private specific information in
-> the swap entry.
-> 
-> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
-> ---
->  mm/hmm.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/mm/hmm.c b/mm/hmm.c
-> index a09b4908e9c81a..fd9ee2b5fd9989 100644
-> --- a/mm/hmm.c
-> +++ b/mm/hmm.c
-> @@ -259,8 +259,8 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
->  		 * the PFN even if not present.
->  		 */
->  		if (hmm_is_device_private_entry(range, entry)) {
-> -			*pfn = hmm_device_entry_from_pfn(range,
-> -					    swp_offset(entry));
-> +			*pfn = hmm_device_entry_from_pfn(
-> +				range, device_private_entry_to_pfn(entry));
+On arcturus, only sram correctable error is stable after correctable
+error injection, so reduce check conditions to record hardware status.
 
-The range parameter can stay on the first line..
+Signed-off-by: Guchun Chen <guchun.chen@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/umc_v6_1.c | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v6_1.c b/drivers/gpu/drm/amd/amdgpu/umc_v6_1.c
+index 77122a7282e7..57e8f72cc96d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umc_v6_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/umc_v6_1.c
+@@ -138,10 +138,21 @@ static void umc_v6_1_query_correctable_error_count(struct amdgpu_device *adev,
+ 	/* check for SRAM correctable error
+ 	  MCUMC_STATUS is a 64 bit register */
+ 	mc_umc_status = RREG64_PCIE((mc_umc_status_addr + umc_reg_offset) * 4);
+-	if (REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, ErrorCodeExt) == 6 &&
+-	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, Val) == 1 &&
+-	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, CECC) == 1)
+-		*error_count += 1;
++	if (REG_GET_FIELD(mc_umc_status,
++		MCA_UMC_UMC0_MCUMC_STATUST0, Val) == 1 &&
++		REG_GET_FIELD(mc_umc_status,
++		MCA_UMC_UMC0_MCUMC_STATUST0, CECC) == 1) {
++		/*
++		 * On arcturus, only sram correctable error is stable after
++		 * error injection, so bypass the check of ErrorCodeExt bit
++		 * field in MCUMC_STATUS register to record correct status.
++		 */
++		if (adev->asic_type == CHIP_ARCTURUS)
++			*error_count += 1;
++		else if (REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0,
++				ErrorCodeExt) == 6)
++			*error_count += 1;
++	}
+ }
+ 
+ static void umc_v6_1_querry_uncorrectable_error_count(struct amdgpu_device *adev,
+-- 
+2.17.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
