@@ -1,49 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94184191C5C
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2020 22:58:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C99C191C5E
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2020 22:58:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECA2D6E550;
-	Tue, 24 Mar 2020 21:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 920546E560;
+	Tue, 24 Mar 2020 21:58:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2075.outbound.protection.outlook.com [40.107.220.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E38BB6E550
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 21:58:07 +0000 (UTC)
+ (mail-co1nam11on2052.outbound.protection.outlook.com [40.107.220.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A02846E55C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 21:58:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wf2QUJMLDJNR/qVAZ7CCa9NVRIgrLva3uUfE8Iq3wZGpBJ1zCfZk26X+OmrkRpdC4SrmOuYdkzBs8alYRFI9hnL1sR6A3GuBBSmlHi6uFJs5L2e2fp+O9HEItwupLu57EiNSuAH534Kbnll1oLzfvN5W9vBo0fbbjuHMRC50gmwGtTqMtvYINaniIsYWen1dgtwJXm5aUWVyObpEF2H0snyu+DKqyxeCzRXRTjnblRiGd2biDktOahYYMLdz+2WPhTG06cxiwyYr0/WniIOpwdJQBQiMT+dZ6GwOHzI8W2oNobEa3J4XrOKXezkvf9xgZS0Xf/9xDvJW1fZGrLZ7MA==
+ b=Y0GgFsW74KKjvyDJjOgScdXbIvqJcFdcPXJUt6YuasllOgELW9FkL6DyjQ58WGCVXFTyduTB0ujf3oQUVuD6poWqDyElCOPBYF+fewC9kRQmy8JgAK6jQW6eX/n+BEo/2e9MshEn2/DNMmoDWUqqgw53mMumI7e/+osnGPHQdQCXv97I1QcELQXTAJCfj3bjw4rFDZsVXR6HStLOwZUQLnVsUtwK2iW4PhJo91XXt+h/fkdqvxk27Ds7wODCF9papbw3n3FZKFsi9krB6S0XZSLTUtDmaUzGEZE4vxJhhWdQ30hRUb7Vi48lQHIEX9uthrHhkXiTtbDw9mRyZQP9zQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iHfItaMVD/zBSQPNYCQTN8y9XbygtMkgdomqKErKBuY=;
- b=O2bKfZvGT4pQ4TyUiaZDlsCoxuw096ZVeGSbiY0b54GKmr4itQQt/VUVH+57MRkZNwSxbD1nSvvZbDwbVNlhGKUngOpSf2tG6YCC9saqTHhDjfACnam/+zCdaixIjBec9635o5zGxWQpIb9uNcYyN+6PcwNk0AFOtb2SGVe7aFjpjlpDaka9/IdWGV85DY/+eXplc3dt24EM91TgiHchysZjZnYw0I/shp3B4iPK6Kcv4NR+NPwz9qFptvpU4stBJwkd96auRVh+OQqdaxdJfuFYBUkzJbUE4ZzFICxEYGfLmXtyIDXkJYWj8xKqH0/aZZOT/95cHss9OoEyKTDjYg==
+ bh=PpQTGpu7w+JYiz1mjwUHqijVZ97kwwNk/bz2PYlh8yY=;
+ b=CetdD6VjrCDoUTKFANCjYdbhqrCk3f+5n1tw4D+ljGDnpPj2eAUfIaHGjVzsLECFSwQfe9gXpNn868e5McyeLxCh9voOXwVi77H/doewFyPqLVhIrI+JgEiXULDfIFycBpfnDIIJ9Wjnxv4jM+2Ug36z05/xTEpD2clb+OtOAtYurKvBe8Nnox+vkLktJjjc1tCks98BDQp5OHhX7fd+txUlWui4OC07uC+bHvh5SgFug3snRB+6I/XfjDZQyJqvk8LPI5dRgAGEAnyfhShBiSK4ZuWE/dzij4YlGPdeYBOVm1ZdS5ZOR9zjYpXeR+C8m3GSRWWZ27xFDRrv2wM5ZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iHfItaMVD/zBSQPNYCQTN8y9XbygtMkgdomqKErKBuY=;
- b=Jf3QzZFURHbmm1WSo+2Txs21bCZOndtHaBM1/DGtQv3Sb95Vm5aF5FCp18ofT8dY+RtoZNwjtuZ6PURsYh7lWIOQ7fk4H9v83xr+wUGhSnJAA12ortJDavErD6uTSOCRHmV8OgrENsseA0Q66bjBNsjYHWwGjhXo6oLZj2Pbq74=
+ bh=PpQTGpu7w+JYiz1mjwUHqijVZ97kwwNk/bz2PYlh8yY=;
+ b=SX0T+nHybF5gaX4vBmAKLMOua7/SoQnCuRc2YUvXQ5toVWYeRs1d4a16BtKmabBouEbqh8q0MNQmgxEn/7DTNFXgTo8GdSEPSVVrtk8GeucHWhSRfQ8X5tWSapYpfHPLne9FNhgpRpGglBKPTWCuUF9H3EOKpRh3zjEirAI5YfI=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Alex.Sierra@amd.com; 
 Received: from SA0PR12MB4576.namprd12.prod.outlook.com (2603:10b6:806:93::13)
  by SA0PR12MB4383.namprd12.prod.outlook.com (2603:10b6:806:94::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.20; Tue, 24 Mar
- 2020 21:58:07 +0000
+ 2020 21:58:09 +0000
 Received: from SA0PR12MB4576.namprd12.prod.outlook.com
  ([fe80::8d47:3ca5:5a7c:c047]) by SA0PR12MB4576.namprd12.prod.outlook.com
  ([fe80::8d47:3ca5:5a7c:c047%7]) with mapi id 15.20.2835.021; Tue, 24 Mar 2020
- 21:58:07 +0000
+ 21:58:09 +0000
 From: Alex Sierra <alex.sierra@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/4] drm/amdgpu: call psp to program ih cntl in SR-IOV for Navi
-Date: Tue, 24 Mar 2020 16:57:47 -0500
-Message-Id: <20200324215749.29169-2-alex.sierra@amd.com>
+Subject: [PATCH 3/4] drm/amdgpu: reroute VMC and UMD to IH ring 1 for oss v5
+Date: Tue, 24 Mar 2020 16:57:48 -0500
+Message-Id: <20200324215749.29169-3-alex.sierra@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200324215749.29169-1-alex.sierra@amd.com>
 References: <20200324215749.29169-1-alex.sierra@amd.com>
@@ -55,19 +55,19 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from alex-MS-7B09.amd.com (165.204.78.1) by
  DM5PR1401CA0011.namprd14.prod.outlook.com (2603:10b6:4:4a::21) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2835.20 via Frontend Transport; Tue, 24 Mar 2020 21:58:06 +0000
+ 15.20.2835.20 via Frontend Transport; Tue, 24 Mar 2020 21:58:08 +0000
 X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [165.204.78.1]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 11130e30-2a4e-402d-f400-08d7d03e6f13
+X-MS-Office365-Filtering-Correlation-Id: c9c531c1-01ef-4ae4-7017-08d7d03e7047
 X-MS-TrafficTypeDiagnostic: SA0PR12MB4383:|SA0PR12MB4383:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SA0PR12MB4383B393D1E2A6A501D8BBB1FDF10@SA0PR12MB4383.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
+X-Microsoft-Antispam-PRVS: <SA0PR12MB43834C200A89FC0BA9EAB8CEFDF10@SA0PR12MB4383.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
 X-Forefront-PRVS: 03524FBD26
 X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(39860400002)(366004)(136003)(396003)(376002)(8676002)(16526019)(52116002)(186003)(81156014)(86362001)(66556008)(26005)(7696005)(316002)(8936002)(66476007)(81166006)(66946007)(44832011)(6486002)(478600001)(2906002)(956004)(36756003)(6916009)(5660300002)(4326008)(2616005)(6666004)(1076003)(309714004);
+ SFS:(10009020)(4636009)(346002)(39860400002)(366004)(136003)(396003)(376002)(8676002)(16526019)(52116002)(186003)(81156014)(86362001)(66556008)(26005)(7696005)(316002)(8936002)(66476007)(81166006)(66946007)(44832011)(6486002)(478600001)(2906002)(956004)(36756003)(6916009)(5660300002)(4326008)(2616005)(6666004)(1076003);
  DIR:OUT; SFP:1101; SCL:1; SRVR:SA0PR12MB4383;
  H:SA0PR12MB4576.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
  PTR:InfoNoRecords; 
@@ -75,15 +75,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2GuAs+7VpbMG+npNcZEoltD8fxJnL2cMUc44bcIx2Y2UxZmnUxltn18K5daeIAQz/hETwJ6eDxUaAnT/IjgR9l4MwMC8b47XUa95zg8y0FYKNYda6BzL6Ty2fGZ1XgWBs4mGp8yUSbdA5oo3WidDBEvcA0WG6Ddw5xRqEt3u4eG+DbA7zrg9nQ7+ZBx/TVsqndP64oYKqXlra4gXPWARQ5Nik7siaufdl3Q7lTEphsJ2Quu/MC5nbeqC/H3Y+9YZxVVroHgCIQrdDoOTiejWzlp74X/X2WEDoLo+M98m5lcW5dcW4zHOOgh9TBWYSWO3JUg/xSl/fN4eOmdw/mSC5ftdUeRHzcd5ACO/LTguhfZOXljXGmZ7IMzuCMBGo6PJYvz9nisGTd/JQ1zryLjm1/4H2RM0rPV+q1BbtNtqR/Ox9PRkPXN6iw68a/p+wZ8zVULRBH4mQu+6TDJ1OPP1MXNB4lY5/tJyfr/tnlKAC18=
-X-MS-Exchange-AntiSpam-MessageData: 8sj4WBf/lafrgb5w8mKKRFbOlYbpn2/Zh9mThgsMRVG+B31WGm8xXNwrgZk+nglJyvpMHOS6wTgmsxxcILuMg2hBYVzQKZKgD7memUOGAYQMLoPOquWMCJLAtOpUk3fDOMktZ40Z6EV+HWHsY3X0FQ==
+X-Microsoft-Antispam-Message-Info: /0QeFESW0Hs8X6vnOd+XNnEsI8syFn79sKUxpcDA2uYeEVYw6eeizZDgpfiEpen+gBNTh84gDkMeWZvcvG3z//spj5NMmYlOXTDrjahvtVH4ugZ5VkvrV9fSqGmRhF78myIrnT2fdQITM5N8JoWbyEsnf6jECwK8cc5aUgrObs7vvza2mdWYaUgqKBIZwZOEfprmCSRX2FSAeVGhlw0qAwUeUNbYAgAHuVC3FrXaX/8dt0EuZIkJfs6QC/pEOire6RVAdtTqErbioqr2YT/Q1+d8S/ygAWFub7VZh2+KLzfUsuaGUhYqETT+jEHgRPiXm5a9rMbI6S/RJMKpu7HMwGQuAWef2EXjZO7VyCJkIPcknURr6FexSWfI/FMzGjq2p3H9cXEje/W9hJWNP2ZtNmigJuLruaMs0s3qx+Hr5l9OdRuBBfft1nuhvO5uiZiL
+X-MS-Exchange-AntiSpam-MessageData: K+EpaT6irzOmEXR7ZO3gNvRDTe+DzqwB9uZ8m7mc78c6P2ta/pSrtxJFmBI7Vcq63IfMIsgd3klrjivFM5yokmVkXJnD47bCvQxHkfkyCl7n04rD/VJ7E8kXXULETZAjdGEtFyQ4LVseVMdPp+lQvA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11130e30-2a4e-402d-f400-08d7d03e6f13
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2020 21:58:06.8921 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9c531c1-01ef-4ae4-7017-08d7d03e7047
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2020 21:58:08.8794 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fQmc9cx8bQ1kpJ1xYmepY590tYi4O2Mu5CU4CLHr+7+boaORpZoSgfuLEDfmBIiHk7SndQ5NpEqRQWfTjOPQLg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: lycsM5p5cKAE1S4YSAQdUgUDWBvHcPeNBxDF/ekcskvbND4jY5pbE5zzIPMfRHvLyjlbbkR3xtj/v6kvAZhQ1g==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4383
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,176 +102,59 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-call psp to program ih cntl in SR-IOV if supported on Navi and Arcturus.
+[Why]
+Due Page faults can easily overwhelm the interrupt handler.
+So to make sure that we never lose valuable interrupts on the primary ring
+we re-route page faults to IH ring 1.
+It also facilitates the recovery page process, since it's already
+running from a process context.
+This is valid for Arcturus and future Navi generation GPUs.
+
+[How]
+Setting IH_CLIENT_CFG_DATA for VMC and UMD IH clients.
 
 Signed-off-by: Alex Sierra <alex.sierra@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/navi10_ih.c | 90 +++++++++++++++++++++++---
- 1 file changed, 80 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/navi10_ih.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
-index 0c0ba572d7a3..4ce42635787a 100644
+index 4ce42635787a..6fca5206833d 100644
 --- a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
 +++ b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
-@@ -49,14 +49,30 @@ static void navi10_ih_enable_interrupts(struct amdgpu_device *adev)
- 
- 	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, RB_ENABLE, 1);
- 	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, ENABLE_INTR, 1);
--	WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL, ih_rb_cntl);
-+	if (amdgpu_sriov_vf(adev)) {
-+		if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL, ih_rb_cntl)) {
-+			DRM_ERROR("PSP program IH_RB_CNTL failed!\n");
-+			return;
-+		}
-+	} else {
-+		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL, ih_rb_cntl);
-+	}
-+
- 	adev->irq.ih.enabled = true;
- 
- 	if (adev->irq.ih1.ring_size) {
- 		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING1);
- 		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING1,
- 					   RB_ENABLE, 1);
--		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING1, ih_rb_cntl);
-+		if (amdgpu_sriov_vf(adev)) {
-+			if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL_RING1,
-+						ih_rb_cntl)) {
-+				DRM_ERROR("program IH_RB_CNTL_RING1 failed!\n");
-+				return;
-+			}
-+		} else {
-+			WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING1, ih_rb_cntl);
-+		}
- 		adev->irq.ih1.enabled = true;
- 	}
- 
-@@ -64,7 +80,15 @@ static void navi10_ih_enable_interrupts(struct amdgpu_device *adev)
- 		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2);
- 		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING2,
- 					   RB_ENABLE, 1);
--		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2, ih_rb_cntl);
-+		if (amdgpu_sriov_vf(adev)) {
-+			if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL_RING2,
-+						ih_rb_cntl)) {
-+				DRM_ERROR("program IH_RB_CNTL_RING2 failed!\n");
-+				return;
-+			}
-+		} else {
-+			WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2, ih_rb_cntl);
-+		}
- 		adev->irq.ih2.enabled = true;
- 	}
+@@ -205,6 +205,24 @@ static uint32_t navi10_ih_doorbell_rptr(struct amdgpu_ih_ring *ih)
+ 	return ih_doorbell_rtpr;
  }
-@@ -82,7 +106,15 @@ static void navi10_ih_disable_interrupts(struct amdgpu_device *adev)
  
- 	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, RB_ENABLE, 0);
- 	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, ENABLE_INTR, 0);
--	WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL, ih_rb_cntl);
-+	if (amdgpu_sriov_vf(adev)) {
-+		if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL, ih_rb_cntl)) {
-+			DRM_ERROR("PSP program IH_RB_CNTL failed!\n");
-+			return;
-+		}
-+	} else {
-+		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL, ih_rb_cntl);
-+	}
++static void navi10_ih_reroute_ih(struct amdgpu_device *adev)
++{
++	uint32_t tmp;
 +
- 	/* set rptr, wptr to 0 */
- 	WREG32_SOC15(OSSSYS, 0, mmIH_RB_RPTR, 0);
- 	WREG32_SOC15(OSSSYS, 0, mmIH_RB_WPTR, 0);
-@@ -93,7 +125,15 @@ static void navi10_ih_disable_interrupts(struct amdgpu_device *adev)
- 		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING1);
- 		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING1,
- 					   RB_ENABLE, 0);
--		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING1, ih_rb_cntl);
-+		if (amdgpu_sriov_vf(adev)) {
-+			if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL_RING1,
-+						ih_rb_cntl)) {
-+				DRM_ERROR("program IH_RB_CNTL_RING1 failed!\n");
-+				return;
-+			}
-+		} else {
-+			WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING1, ih_rb_cntl);
-+		}
- 		/* set rptr, wptr to 0 */
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_RPTR_RING1, 0);
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_WPTR_RING1, 0);
-@@ -105,7 +145,15 @@ static void navi10_ih_disable_interrupts(struct amdgpu_device *adev)
- 		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2);
- 		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING2,
- 					   RB_ENABLE, 0);
--		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2, ih_rb_cntl);
-+		if (amdgpu_sriov_vf(adev)) {
-+			if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL_RING2,
-+						ih_rb_cntl)) {
-+				DRM_ERROR("program IH_RB_CNTL_RING2 failed!\n");
-+				return;
-+			}
-+		} else {
-+			WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2, ih_rb_cntl);
-+		}
- 		/* set rptr, wptr to 0 */
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_RPTR_RING2, 0);
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_WPTR_RING2, 0);
-@@ -187,6 +235,14 @@ static int navi10_ih_irq_init(struct amdgpu_device *adev)
- 	ih_rb_cntl = navi10_ih_rb_cntl(ih, ih_rb_cntl);
- 	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, RPTR_REARM,
- 				   !!adev->irq.msi_enabled);
-+	if (amdgpu_sriov_vf(adev)) {
-+		if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL, ih_rb_cntl)) {
-+			DRM_ERROR("PSP program IH_RB_CNTL failed!\n");
-+			return -ETIMEDOUT;
-+		}
-+	} else {
-+		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL, ih_rb_cntl);
-+	}
++	/* Reroute to IH ring 1 for VMC */
++	WREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_INDEX, 0x12);
++	tmp = RREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_DATA);
++	tmp = REG_SET_FIELD(tmp, IH_CLIENT_CFG_DATA, CLIENT_TYPE, 1);
++	tmp = REG_SET_FIELD(tmp, IH_CLIENT_CFG_DATA, RING_ID, 1);
++	WREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_DATA, tmp);
++
++	/* Reroute IH ring 1 for UMC */
++	WREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_INDEX, 0x1B);
++	tmp = RREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_DATA);
++	tmp = REG_SET_FIELD(tmp, IH_CLIENT_CFG_DATA, RING_ID, 1);
++	WREG32_SOC15(OSSSYS, 0, mmIH_CLIENT_CFG_DATA, tmp);
++}
++
+ /**
+  * navi10_ih_irq_init - init and enable the interrupt ring
+  *
+@@ -243,6 +261,7 @@ static int navi10_ih_irq_init(struct amdgpu_device *adev)
+ 	} else {
+ 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL, ih_rb_cntl);
+ 	}
++	navi10_ih_reroute_ih(adev);
  
  	if (unlikely(adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT)) {
  		if (ih->use_bus_addr) {
-@@ -197,8 +253,6 @@ static int navi10_ih_irq_init(struct amdgpu_device *adev)
- 		}
- 	}
- 
--	WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL, ih_rb_cntl);
--
- 	/* set the writeback address whether it's enabled or not */
- 	WREG32_SOC15(OSSSYS, 0, mmIH_RB_WPTR_ADDR_LO,
- 		     lower_32_bits(ih->wptr_addr));
-@@ -227,7 +281,15 @@ static int navi10_ih_irq_init(struct amdgpu_device *adev)
- 					   WPTR_OVERFLOW_ENABLE, 0);
- 		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL,
- 					   RB_FULL_DRAIN_ENABLE, 1);
--		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING1, ih_rb_cntl);
-+		if (amdgpu_sriov_vf(adev)) {
-+			if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL_RING1,
-+						ih_rb_cntl)) {
-+				DRM_ERROR("program IH_RB_CNTL_RING1 failed!\n");
-+				return -ETIMEDOUT;
-+			}
-+		} else {
-+			WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING1, ih_rb_cntl);
-+		}
- 		/* set rptr, wptr to 0 */
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_WPTR_RING1, 0);
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_RPTR_RING1, 0);
-@@ -245,7 +307,15 @@ static int navi10_ih_irq_init(struct amdgpu_device *adev)
- 		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2);
- 		ih_rb_cntl = navi10_ih_rb_cntl(ih, ih_rb_cntl);
- 
--		WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2, ih_rb_cntl);
-+		if (amdgpu_sriov_vf(adev)) {
-+			if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL_RING2,
-+						ih_rb_cntl)) {
-+				DRM_ERROR("program IH_RB_CNTL_RING2 failed!\n");
-+				return -ETIMEDOUT;
-+			}
-+		} else {
-+			WREG32_SOC15(OSSSYS, 0, mmIH_RB_CNTL_RING2, ih_rb_cntl);
-+		}
- 		/* set rptr, wptr to 0 */
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_WPTR_RING2, 0);
- 		WREG32_SOC15(OSSSYS, 0, mmIH_RB_RPTR_RING2, 0);
 -- 
 2.17.1
 
