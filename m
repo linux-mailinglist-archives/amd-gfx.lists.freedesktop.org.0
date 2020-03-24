@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 606E9190759
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2020 09:14:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D46190755
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Mar 2020 09:14:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A19C96E479;
-	Tue, 24 Mar 2020 08:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E96AB6E46D;
+	Tue, 24 Mar 2020 08:14:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D54596E07D;
- Tue, 24 Mar 2020 07:37:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC5B6E07D;
+ Tue, 24 Mar 2020 07:38:32 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 6123068BFE; Tue, 24 Mar 2020 08:37:46 +0100 (CET)
-Date: Tue, 24 Mar 2020 08:37:46 +0100
+ id 287FC68BFE; Tue, 24 Mar 2020 08:38:30 +0100 (CET)
+Date: Tue, 24 Mar 2020 08:38:29 +0100
 From: Christoph Hellwig <hch@lst.de>
 To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH v2 hmm 7/9] mm/hmm: do not unconditionally set pfns
- when returning EBUSY
-Message-ID: <20200324073746.GF23447@lst.de>
+Subject: Re: [PATCH v2 hmm 8/9] mm/hmm: do not set pfns when returning an
+ error code
+Message-ID: <20200324073829.GG23447@lst.de>
 References: <20200324011457.2817-1-jgg@ziepe.ca>
- <20200324011457.2817-8-jgg@ziepe.ca>
+ <20200324011457.2817-9-jgg@ziepe.ca>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200324011457.2817-8-jgg@ziepe.ca>
+In-Reply-To: <20200324011457.2817-9-jgg@ziepe.ca>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Mailman-Approved-At: Tue, 24 Mar 2020 08:14:13 +0000
+X-Mailman-Approved-At: Tue, 24 Mar 2020 08:14:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,29 +48,24 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 23, 2020 at 10:14:55PM -0300, Jason Gunthorpe wrote:
->  	if (pte_none(pte)) {
->  		required_fault = hmm_pte_need_fault(hmm_vma_walk, orig_pfn, 0);
->  		if (required_fault)
->  			goto fault;
-> +		*pfn = range->values[HMM_PFN_NONE];
->  		return 0;
->  	}
->  
-> @@ -274,8 +274,10 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
->  		}
->  
->  		required_fault = hmm_pte_need_fault(hmm_vma_walk, orig_pfn, 0);
-> -		if (!required_fault)
-> +		if (!required_fault) {
-> +			*pfn = range->values[HMM_PFN_NONE];
->  			return 0;
-> +		}
+On Mon, Mar 23, 2020 at 10:14:56PM -0300, Jason Gunthorpe wrote:
+> From: Jason Gunthorpe <jgg@mellanox.com>
+> 
+> Most places that return an error code, like -EFAULT, do not set
+> HMM_PFN_ERROR, only two places do this.
+> 
+> Resolve this inconsistency by never setting the pfns on an error
+> exit. This doesn't seem like a worthwhile thing to do anyhow.
+> 
+> If for some reason it becomes important, it makes more sense to directly
+> return the address of the failing page rather than have the caller scan
+> for the HMM_PFN_ERROR.
+> 
+> No caller inspects the pnfs output array if hmm_range_fault() fails.
+> 
+> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
 
-Maybe throw in a goto hole to consolidaste the set PFN and return
-0 cases?
-
-Otherwise looks good:
+Looks good,
 
 Reviewed-by: Christoph Hellwig <hch@lst.de>
 _______________________________________________
