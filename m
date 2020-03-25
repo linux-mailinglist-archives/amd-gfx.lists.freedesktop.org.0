@@ -1,60 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60204192C1E
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2020 16:20:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88C6E192C9D
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2020 16:33:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6FE56E879;
-	Wed, 25 Mar 2020 15:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 766416E15D;
+	Wed, 25 Mar 2020 15:33:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1D2F6E879
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 15:20:22 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id c81so2895558wmd.4
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 08:20:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=SWqbPGWK93FlJzuUBlN43kKP46R8Axekrd2GqBO2O58=;
- b=Po5MnDKdRq1kV5FfQ2+NogsK/AiDLVqTymuDKDY7bTVvDisbZzBAXC8hkJiqfNoAmX
- EYXmODAt7Px4nGzESMEFwKXnhb5hlggLjryWS5rw+ZJcbNVr634rl9a9yj/QJadbbpRQ
- n4ntx8xkXux9b8thb420gxIMwCwzM/7yomDA3Up+0ieXmRvcoupqgYl89iDB5oZg5x3C
- 34AvoAXLADJZjKilfiNLUFd4cFMK8vqstvtKxEaTcFT+oj+8EqvRoaHCXGBTtc1OQlQ6
- kLtUJcij+q4faVLaBYdJntP6xBTbKrytnkpm4ZIPEEXJ/P+IXXBBTo6FtSKmjA1k+JuX
- CV/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=SWqbPGWK93FlJzuUBlN43kKP46R8Axekrd2GqBO2O58=;
- b=gqZL0VPAAkADOg4Q0U/xxX2WThJRp9DpwsRhQPxkGsM0FZsDx0j+cYMLFT89ijaumX
- MCVjaWp0RUcsuOuAymcUEINg5wbTtS/nv1DlfBoaszPv5ZJSiQV1IsQI/qNcbkCZ/pJ5
- jvC7gCSqwfgaFvtZDv9ixN0a4H7RS7vxklthd7bniw+v8xPGly1plOJlwFikwhhI4RUX
- gF5tN/tqBycA8+OMqSHkwD1vE/BG2oeE5dUfP0AqQP6rj4x2hBjRSSHxy06VUeAWnl1L
- SnOBkHjJFYE7uVLjzNjyPg1XB1Z42StYucyC3TdufOQsiUbrqrBhpfwJpWYmo0LzAZDe
- OWxg==
-X-Gm-Message-State: ANhLgQ0PjmByTWLUyYLXfPHqchaHqEARPfos4EAoVFdaMfx4apbHQA4j
- 9fNvw2VwSFUqhCaIjI6JuFKa1n2h
-X-Google-Smtp-Source: ADFU+vtk2U66vgbBBkx0HIBT5WXhObjaAzXplvDP6W3rFcHNw3npoTx27iMP4CI6F4to25QYWmGCzA==
-X-Received: by 2002:a7b:c0d7:: with SMTP id s23mr3972031wmh.104.1585149620886; 
- Wed, 25 Mar 2020 08:20:20 -0700 (PDT)
-Received: from brihaspati.fritz.box
- (p200300C58F2F7F00F7F461FB9D1716C0.dip0.t-ipconnect.de.
- [2003:c5:8f2f:7f00:f7f4:61fb:9d17:16c0])
- by smtp.gmail.com with ESMTPSA id r3sm35150794wrm.35.2020.03.25.08.20.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Mar 2020 08:20:19 -0700 (PDT)
-From: Nirmoy Das <nirmoy.aiemd@gmail.com>
-X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/1] drm/amdgpu: add missing if clause guard
-Date: Wed, 25 Mar 2020 16:24:25 +0100
-Message-Id: <20200325152425.43179-1-nirmoy.das@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A7956E15D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 15:33:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iRDTt7l0oVX4I9bCit8BdgUFhbFhCbDUKMYAeiT5lqRivXyglnQcFLEBvMyEU/ofbxFvyZHuix0pYB/v2EOaZq47KzdwzZJ6LZvgHuJZiLvA7kaLMVcYNw6PIhzTQTop+27WSHt2dGBWwraR4whMXQ/C+QN58Lc1HyJ4XTnGWrhI5yVS+dUqhYccbpP76ml1VBm+a3yS2/uVm9BWftZc5jOgPlLPHrHbYXWP1/9MGtJ+7dBg9nxI9CjpiivfS0eFwYaXSYT2GOVFnHfEznREy1wcpNNeOSn+tIEVAvZZ9Gwkq+eN5eutlUY0IiOjFgqZ0HG/sgeRLwUTgiPQWJZjSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Y7deMKCdWPzVC/hopHX82SabWrx+6YL5u29aD7ABJMM=;
+ b=cUaONkx4bJ9CKAktls4bbSTmpXJor5+kvgibaZGPyEkgczaH7D7Uvxqwu+yo4Wn01QGac7tHQlHP3bVSIgYNNAdNwX+TBLc0LrYZKKRFkNpEvQe20vmx756ppTxhIBW10SQbqBM2UwD9SuXRhpAn728/wh500Zpad2gv64Y3RS1/cOWyfXnGOn+7I+ZGEkEfmK4TF+03p58jKLPtjvdRq8cafSn0ik5idi7tMwi6dgpCpo59dSCTOr6cwIeQ6XYALGElH6ma6uIZMyRyHolSWVY9riz+CiBRLOuaCKSrp5uiXObiCpkAjUbMSpOSp39TsIxOzT618szJeQruM9BpqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Y7deMKCdWPzVC/hopHX82SabWrx+6YL5u29aD7ABJMM=;
+ b=WflYnhApqLKyYiJLixYeSIkwtjGzBfvRiNPUmxqG/XEAID3CsUXnz7a/tsaQTy8iOCPdDvCbxzHx97ca+Mch0aaf4LGfhjQLuIAGTPsNOIeDd4eKmBxMk+FaL3r2umioHwDivw1+k91aSiZz5elH8A3YFDcHo56Esb9jBSbvORg=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Luben.Tuikov@amd.com; 
+Received: from DM6PR12MB3355.namprd12.prod.outlook.com (2603:10b6:5:115::26)
+ by DM6PR12MB3162.namprd12.prod.outlook.com (2603:10b6:5:15c::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.18; Wed, 25 Mar
+ 2020 15:33:39 +0000
+Received: from DM6PR12MB3355.namprd12.prod.outlook.com
+ ([fe80::9505:d766:9ac9:2bfd]) by DM6PR12MB3355.namprd12.prod.outlook.com
+ ([fe80::9505:d766:9ac9:2bfd%6]) with mapi id 15.20.2835.023; Wed, 25 Mar 2020
+ 15:33:39 +0000
+Subject: Re: [PATCH 2/4] SWDEV-227334 - No need support vcn decode
+To: Emily Deng <Emily.Deng@amd.com>
+References: <1585125181-14195-1-git-send-email-Emily.Deng@amd.com>
+From: Luben Tuikov <luben.tuikov@amd.com>
+Message-ID: <b71027e4-4e0d-d577-fb07-11b471a7c977@amd.com>
+Date: Wed, 25 Mar 2020 11:33:35 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+In-Reply-To: <1585125181-14195-1-git-send-email-Emily.Deng@amd.com>
+Content-Language: en-CA
+X-ClientProxiedBy: YTXPR0101CA0004.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00::17) To DM6PR12MB3355.namprd12.prod.outlook.com
+ (2603:10b6:5:115::26)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.252.35.64] (165.204.54.211) by
+ YTXPR0101CA0004.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2856.18 via Frontend Transport; Wed, 25 Mar 2020 15:33:38 +0000
+X-Originating-IP: [165.204.54.211]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 45389c87-5796-4cba-bebd-08d7d0d1e401
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3162:|DM6PR12MB3162:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB31623ECE365AA621B63A8D7D99CE0@DM6PR12MB3162.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
+X-Forefront-PRVS: 0353563E2B
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(366004)(39860400002)(136003)(346002)(396003)(376002)(6862004)(186003)(6486002)(31696002)(5660300002)(8676002)(6666004)(16526019)(4744005)(31686004)(86362001)(2906002)(81166006)(81156014)(26005)(8936002)(66946007)(36756003)(956004)(4326008)(16576012)(37006003)(66476007)(66556008)(316002)(2616005)(52116002)(6636002)(53546011)(44832011)(478600001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3162;
+ H:DM6PR12MB3355.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vYJRVl6xOBo5yJAkT9npSZq5T57SsRtphKvFW5YuUrq6INotN+rNPqci0LygyzMux4h/Lsmlrw+eX/rwQI6cE56FudMHuNjvzeAeJuREswtxf+ydNPNbl5dbKBgln1HVGh6PoF5vnyYXHr+gFpgCo/sHPDLVsf/KmggapKWKOuevNPhdlqZkliw8KB7bg0to7/5SfGSHHOI2oNQyzyTSAX+fM1oGmcRwZDRZZC1qtmV6XNxtqSRFNWo+7bIjOlj0MNZkMCg67XcB/FiX5JjB7C/9e6sB1h/N6O7vGXezrOtStXHYOsjRuIILz2ZP3P/28XHPCjff/8zLYkc8YwfHY0GxnjJuuW+kodxptV9vYwYn3wnUYoPxkNyXBNb+HX58gbQwP9g99dNR3BymMIfkbZMoJaBkNNMj1LcP0clr+Ek91EppjLpAiYGXIQcAFGqQ
+X-MS-Exchange-AntiSpam-MessageData: QUxXpaNtqVotEVjNintZgtXtkk5TNSbH6s3CEf0t3z2BrRWN0OCpoUmi3DewR7hrXygI7SaYudXG8+JClasEQGjlo6NW8ZOk4Ik11fBk3/+zRqdiNSkws+vpcsjD9HJtS+dZSqR/gfBfTM6Xee4Kxw==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45389c87-5796-4cba-bebd-08d7d0d1e401
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2020 15:33:38.9885 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qObthObcln5K+z+k2DQnAzALB/6hA6dKhm5d5iY2UXm2BpozV6tk8LxhUEc7QzZm
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3162
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,34 +97,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, nirmoy.das@amd.com, christian.koenig@amd.com,
- Monk.Liu@amd.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXM6IDYzNWYzNzkwYWM5NjQgKGRybS9hbWRncHU6IGRvbid0IHRyeSB0byByZXNlcnZlIHRy
-YWluaW5nIGJvIGZvciBzcmlvdikKCmNvbXBpbGF0aW9uIHdhcm5pbmc6CmRyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYzogSW4gZnVuY3Rpb24g4oCYYW1kZ3B1X3R0bV9pbml0
-4oCZOgpkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmM6MTg2MjoyOiB3YXJu
-aW5nOiB0aGlzIOKAmGlm4oCZIGNsYXVzZSBkb2VzIG5vdCBndWFyZC4uLiBbLVdtaXNsZWFkaW5n
-LWluZGVudGF0aW9uXQogMTg2MiB8ICBpZiAoIWFtZGdwdV9zcmlvdl92ZihhZGV2KSkKClNpZ25l
-ZC1vZmYtYnk6IE5pcm1veSBEYXMgPG5pcm1veS5kYXNAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMgfCAzICsrLQogMSBmaWxlIGNoYW5nZWQsIDIg
-aW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
-ZGdwdV90dG0uYwppbmRleCA1NGNmYTNhMTIxMzUuLmUxOTI1NTdkYjQyMSAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3R0bS5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwpAQCAtMTg1OSwxMCArMTg1OSwxMSBAQCBpbnQg
-YW1kZ3B1X3R0bV9pbml0KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogCSAqVGhlIHJlc2Vy
-dmVkIHZyYW0gZm9yIG1lbW9yeSB0cmFpbmluZyBtdXN0IGJlIHBpbm5lZCB0byB0aGUgc3BlY2lm
-aWVkCiAJICpwbGFjZSBvbiB0aGUgVlJBTSwgc28gcmVzZXJ2ZSBpdCBlYXJseS4KIAkgKi8KLQlp
-ZiAoIWFtZGdwdV9zcmlvdl92ZihhZGV2KSkKKwlpZiAoIWFtZGdwdV9zcmlvdl92ZihhZGV2KSkg
-ewogCQlyID0gYW1kZ3B1X3R0bV90cmFpbmluZ19yZXNlcnZlX3ZyYW1faW5pdChhZGV2KTsKIAkJ
-aWYgKHIpCiAJCQlyZXR1cm4gcjsKKwl9CiAKIAkvKiBhbGxvY2F0ZSBtZW1vcnkgYXMgcmVxdWly
-ZWQgZm9yIFZHQQogCSAqIFRoaXMgaXMgdXNlZCBmb3IgVkdBIGVtdWxhdGlvbiBhbmQgcHJlLU9T
-IHNjYW5vdXQgYnVmZmVycyB0bwotLSAKMi4yNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2FtZC1nZngK
+On 2020-03-25 04:32, Emily Deng wrote:
+> As no need to support vcn decode feature, so diable the
+> ring.
+
+"diable" --> "disable"
+
+> 
+> Signed-off-by: Emily Deng <Emily.Deng@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+> index ec8091a..febd4c2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+> @@ -223,6 +223,10 @@ static int vcn_v2_0_hw_init(void *handle)
+>  	if (r)
+>  		goto done;
+>  
+> +	//Disable vcn decode for sriov
+> +	if (amdgpu_sriov_vf(adev))
+> +		ring->sched.ready = false;
+> +
+
+This is really just,
+
+ring->sched.ready = !amdgpu_sriov_vf(adev);
+
+But I think the compiler is already optimizing it.
+
+Regards,
+Luben
+
+>  	for (i = 0; i < adev->vcn.num_enc_rings; ++i) {
+>  		ring = &adev->vcn.inst->ring_enc[i];
+>  		r = amdgpu_ring_test_helper(ring);
+> 
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
