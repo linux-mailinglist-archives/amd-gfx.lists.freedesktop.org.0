@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30E0C191FE8
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2020 04:58:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EB2F191FEA
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Mar 2020 04:58:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFDF6E030;
-	Wed, 25 Mar 2020 03:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAA96E0F8;
+	Wed, 25 Mar 2020 03:58:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2072.outbound.protection.outlook.com [40.107.94.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25FBC6E030
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 03:58:50 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2052.outbound.protection.outlook.com [40.107.223.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 870196E05F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 03:58:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XdSIHEhB67wwQxUDZyBkoVsJC6/D+ctVjslwarZeT7HiTM2Esr+qJUnIrWfmWZxOjmBp56IhW7vcwzmWVdUxHkPpxsIwZjg3VZRqgWHklz0+O0rN1f3lFstrxAKdHhHP0zW8NYqypH7KuON+KdtNipLVeoKS2LYZ3n8VhCcENxFEexk3JhbG1vty3BDHIjZbd5+TZjr1COe4Ts5cDYl/W+C5eSlvB0zacAuUmPXJY/LsM9sQSM/zXjAOQwosupfTdqt+EA9+w+t83t8Gk6MbT+eMHJzM1AoFRJpYmRjbjpMgk3YQ2pPZa4ciBNBH/O7WwjuOq1Q0Lb/p1mbZRUcwlA==
+ b=lCo8ppSErAvxyPhfphBHF8aBnx+rqUVnVC25RBiCd0DUQ2QkNMQ8do7Tyag6wTK0JeG23TsJmTfvQbJaJrZ4Z9ChKsGvtRt/mQ7L/YOiB+hEpy6lUMsbGUSe1cak6Lrups9P6VkGxIQT4BEA+pIc77CdL+eo8Nxi45N4Kqi0RlQZgyKfYuCir5g1kSlr6QPXr/fdynwOY99Rqbbe7LEkAXoIhVrlfY7n7jhRVB7txihonVST8e4KI1JXKExqHt0mGeAQ+nGQ13L89Lt6Yaf0HdW4IntUzekQqa7A5Js1ASLD50x6Ecaee95lPHzBm8GJxDnHrvPO/MG2dpJghVSS9g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8aOUyIddsp0knSU4NLkeFz+OgVMcaI3n6qzFG6i86mg=;
- b=mDvT2AGc4iB2Sj9qO6jgxzNqDMTZ8SKygQu7g5ENcsJVEV6fFV2H+hVHDc0Z7nao8/PGVQ0fhHAE139RITzJ4Zgz+WNFm5jEMfHQKYIHUbjrRG8vQOB6NLj+T8cauOE79IWikBJ48I+WdQSKTvGwkMrPnh6hMdRkCWYpwrchPj9WmA3050CFVkHB+5fowZfJ9P6gq/0tUssHZCUb/0YEkBk7J4hJR4eJGrh6eTIjSX4NZ0LL2zKV3BcIW9oPMTjjricrJE9x12NsgtJ6PseeQ/40NdFiXFVsc9opk0I2xaWj4BO2ALDwB6snKC5UynXp9SEdiK42A5t91kad5/eBvA==
+ bh=qCN4rk/lu+840hI2T36CI3xfuIQDhdXrbEyU/z2JA6k=;
+ b=G3ue/D1qWQBNHLg4y4bFUvtx/tvyZgFNV/zYleymY7fP/kEIGsbhS87RQo734LJiVCpFJz4IiXtV+SyV3CSW+mTh6C8zEABAJCTcTLOffrqAa3290Ciw8KZEAU0oVbViJ4/VRRJwCgav5Qf+N5RbR2F8gUxEN/GzTyUlf66D8BaVna7KBgUXn0WQIem/kmLA129evbSOBJOUYVm5/yFpxFoyYqOLMYpw4W/Hjop0V+dY8XMSQp1oislu4dqaY5Oqd+s5SeEzLG3vylUnAZo3Xk4UHC7XXuHwkPMIX/n4wYxOXfQ0AOGwR3s8sZ2GCNNue8pBtmhfhqlOli+i1Q5WaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,70 +27,72 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8aOUyIddsp0knSU4NLkeFz+OgVMcaI3n6qzFG6i86mg=;
- b=W6wzBXUUSIsSrOiLRm1/U1LQYcJ6+U3EwpGqZ9fctMoojdVHSIzdJ0IcEbBUPwfbgqWs02pUFVeUH2Q6tOU/PEbYPVLBOzSmPcPvRSHjClVqa2TMIenPYq89MvWSwyb0TC7tr1IftILgahQ0f5tMPMjG0D3xpWK7mweWFeZLIxk=
-Received: from BL0PR0102CA0021.prod.exchangelabs.com (2603:10b6:207:18::34) by
- SN1PR12MB2432.namprd12.prod.outlook.com (2603:10b6:802:29::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2835.22; Wed, 25 Mar 2020 03:58:48 +0000
-Received: from BN8NAM11FT056.eop-nam11.prod.protection.outlook.com
- (2603:10b6:207:18:cafe::d9) by BL0PR0102CA0021.outlook.office365.com
- (2603:10b6:207:18::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.20 via Frontend
- Transport; Wed, 25 Mar 2020 03:58:48 +0000
+ bh=qCN4rk/lu+840hI2T36CI3xfuIQDhdXrbEyU/z2JA6k=;
+ b=jLO5SvMsNsPyG4p6jda3o0VtbCm4LbMcgy+h5AHPy7LjLDBNPpmKOiyqjKfoWNIuwCAY34N08N0Vf86vE8JsVHV3G/1K5TJB66J0pLUfU74pfPuRH2b9AhzfGHWomRNIrT8oqZaBsykUWgM8foZ8mqgHyGFKfzwT0i6GU8X0JkY=
+Received: from CO2PR04CA0187.namprd04.prod.outlook.com (2603:10b6:104:5::17)
+ by MWHPR12MB1213.namprd12.prod.outlook.com (2603:10b6:300:f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.18; Wed, 25 Mar
+ 2020 03:58:50 +0000
+Received: from CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:104:5:cafe::25) by CO2PR04CA0187.outlook.office365.com
+ (2603:10b6:104:5::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.19 via Frontend
+ Transport; Wed, 25 Mar 2020 03:58:50 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT056.mail.protection.outlook.com (10.13.177.26) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ CO1NAM11FT050.mail.protection.outlook.com (10.13.174.79) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2814.13 via Frontend Transport; Wed, 25 Mar 2020 03:58:47 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.2814.13 via Frontend Transport; Wed, 25 Mar 2020 03:58:49 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 24 Mar
- 2020 22:58:47 -0500
+ 2020 22:58:48 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 24 Mar
- 2020 22:58:46 -0500
+ 2020 22:58:48 -0500
 Received: from monk-build.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Tue, 24 Mar 2020 22:58:46 -0500
+ Transport; Tue, 24 Mar 2020 22:58:47 -0500
 From: Monk Liu <Monk.Liu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/7] drm/amdgpu: cleanup idh event/req for NV headers
-Date: Wed, 25 Mar 2020 11:58:36 +0800
-Message-ID: <1585108722-19098-1-git-send-email-Monk.Liu@amd.com>
+Subject: [PATCH 2/7] drm/amdgpu: introduce new idh_request/event enum
+Date: Wed, 25 Mar 2020 11:58:37 +0800
+Message-ID: <1585108722-19098-2-git-send-email-Monk.Liu@amd.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1585108722-19098-1-git-send-email-Monk.Liu@amd.com>
+References: <1585108722-19098-1-git-send-email-Monk.Liu@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
  SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(376002)(136003)(396003)(39860400002)(428003)(46966005)(478600001)(6916009)(47076004)(7696005)(186003)(5660300002)(4326008)(26005)(2906002)(336012)(2616005)(36756003)(82740400003)(426003)(6666004)(86362001)(8936002)(356004)(316002)(70586007)(81166006)(81156014)(8676002)(70206006);
- DIR:OUT; SFP:1101; SCL:1; SRVR:SN1PR12MB2432; H:SATLEXMB01.amd.com; FPR:;
+ SFS:(10009020)(4636009)(346002)(396003)(136003)(376002)(39860400002)(428003)(46966005)(4744005)(26005)(36756003)(86362001)(82740400003)(47076004)(6916009)(2616005)(81156014)(186003)(426003)(336012)(8936002)(8676002)(81166006)(70206006)(7696005)(356004)(316002)(6666004)(4326008)(5660300002)(2906002)(478600001)(70586007);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1213; H:SATLEXMB02.amd.com; FPR:;
  SPF:None; LANG:en; PTR:InfoDomainNonexistent; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4dcf28ea-93b2-498d-b8ae-08d7d070d215
-X-MS-TrafficTypeDiagnostic: SN1PR12MB2432:
-X-Microsoft-Antispam-PRVS: <SN1PR12MB243284230B848E2B24F3ACCC84CE0@SN1PR12MB2432.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: 7e1f34aa-e203-4cb3-b4d1-08d7d070d323
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1213:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB12130D6F9BBEDAA2C363124884CE0@MWHPR12MB1213.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
 X-Forefront-PRVS: 0353563E2B
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OHIYK7ouRDUZ2/VUF2EO/2X58swqQLnZmZhs1ofgO4L7KjrK/oKkPj4JTKyF+5h1oyMvDLo4x2eU8eetVUWp/36sh1fX3OYn48QHpTwOxm6EgXkZpWsUIFT3ZO5/n8oyNmGupT9il4hHQfrsOQUQzZj/HPb/F2Qiq1JFuf16104alUDWEDZ/5KlfSVXpbPn9LM06BpBOxCXj6ONzhb3tLpeMVlvKeXMVkwgOXy4FQbOBViCEIfZzjf1Xz1sDws3zcbuhdSM0bbnirEaqUeZfc7sx5pdNY1ItnQKXPAYcYOV3pG83UYd7UJonvqzvgrBMm5PlTTdb13t5hWZm83djb6/rEBaZlKmOemjZ2ztSWQaWcyEWiqKWxKNuoJBVa1YcAtnf8qSM65TxDIcPy/fmc7L0DIfk/sACdw83NKWcotTIbhONgCmXcmxzvJ7NW7Rw8226UMoQzXoxtsWJqszvKB9sS76wWUpoEHy4/VoFOFtGYTu9pvJx9Tz/yChF7/SozsA3HzZ6/CKqAzW25JpX+g==
+X-Microsoft-Antispam-Message-Info: Vv0JrqDNX/278DNHPzW68Zk0myezXAxh/4vZHT00UN3pYPFs3axYwdsr3umqoukyz/YyNdTKT0bHka49rZbQUq1EFjjpMeBxBPZhJIxRTXOMvj/D6Xs5ttvBz+qbPQ24BKS1w73g1Wm+1kCwYh16rz5+LhW71JJoNdTQ4ynmBTKUl+tlzn5AKaXxUsfMzwHDf3r9LPHoGH0bu49yOCNCLQ4p5tMKlx5pE/FzUFYstR1w7rB5krMq5CrumSGMfWR0cf13vPx/Y8+rqqf1bzd2v77W6WG3HXTNp4ploqQiqhxyv0biSgvd4aGbnet/a3SCvdC7yBGX7a6TDL3B1CzhoMsLhNfg4cRS5kMvPTNep2M371AXnvkVPOQKuD0AhklhVBPN1Dym6+l6JjouZa6hYwowdhN2BO+yVCcsVc3oNJiMrfTUpwQ/0UjSPcFU0fLG14BeTlhKPoE0Bpebl0VM2Fd3aZ5BzBwgUi/UZCGFveWUXKLm0GWbuNcJk5TOGLSquaGlOkBcG88E7utOZ+RY6w==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2020 03:58:47.5318 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4dcf28ea-93b2-498d-b8ae-08d7d070d215
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2020 03:58:49.1882 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e1f34aa-e203-4cb3-b4d1-08d7d070d323
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
+ Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2432
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1213
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,93 +110,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-1) drop the headers from AI in mxgpu_nv.c, should refer to mxgpu_nv.h
-
-2) the IDH_EVENT_MAX is not used and not aligned with host side
-   so drop it
-3) the IDH_TEXT_MESSAG was provided in host but not defined in guest
+new idh_request and ihd_event to prepare for the
+new handshake protocol implementation later
 
 Signed-off-by: Monk Liu <Monk.Liu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/mxgpu_ai.h |  3 ++-
- drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c |  1 -
- drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h | 22 ++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/mxgpu_vi.h |  3 ++-
- 4 files changed, 26 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.h b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.h
-index 37dbe0f..52a6975 100644
---- a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.h
-+++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.h
-@@ -46,7 +46,8 @@ enum idh_event {
+diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h
+index c80bbc7..598ed2c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h
++++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h
+@@ -34,6 +34,7 @@ enum idh_request {
+ 	IDH_REQ_GPU_FINI_ACCESS,
+ 	IDH_REL_GPU_FINI_ACCESS,
+ 	IDH_REQ_GPU_RESET_ACCESS,
++	IDH_REQ_GPU_INIT_DATA,
+ 
+ 	IDH_LOG_VF_ERROR       = 200,
+ };
+@@ -46,6 +47,7 @@ enum idh_event {
  	IDH_SUCCESS,
  	IDH_FAIL,
  	IDH_QUERY_ALIVE,
--	IDH_EVENT_MAX
-+
-+	IDH_TEXT_MESSAGE = 255,
++	IDH_REQ_GPU_INIT_DATA_READY,
+ 
+ 	IDH_TEXT_MESSAGE = 255,
  };
- 
- extern const struct amdgpu_virt_ops xgpu_ai_virt_ops;
-diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
-index 237fa5e..d9ce12c 100644
---- a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
-@@ -30,7 +30,6 @@
- #include "navi10_ih.h"
- #include "soc15_common.h"
- #include "mxgpu_nv.h"
--#include "mxgpu_ai.h"
- 
- static void xgpu_nv_mailbox_send_ack(struct amdgpu_device *adev)
- {
-diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h
-index 99b15f6..c80bbc7 100644
---- a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h
-+++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h
-@@ -28,6 +28,28 @@
- #define NV_MAILBOX_POLL_MSG_TIMEDOUT	12000
- #define NV_MAILBOX_POLL_FLR_TIMEDOUT	500
- 
-+enum idh_request {
-+	IDH_REQ_GPU_INIT_ACCESS = 1,
-+	IDH_REL_GPU_INIT_ACCESS,
-+	IDH_REQ_GPU_FINI_ACCESS,
-+	IDH_REL_GPU_FINI_ACCESS,
-+	IDH_REQ_GPU_RESET_ACCESS,
-+
-+	IDH_LOG_VF_ERROR       = 200,
-+};
-+
-+enum idh_event {
-+	IDH_CLR_MSG_BUF	= 0,
-+	IDH_READY_TO_ACCESS_GPU,
-+	IDH_FLR_NOTIFICATION,
-+	IDH_FLR_NOTIFICATION_CMPL,
-+	IDH_SUCCESS,
-+	IDH_FAIL,
-+	IDH_QUERY_ALIVE,
-+
-+	IDH_TEXT_MESSAGE = 255,
-+};
-+
- extern const struct amdgpu_virt_ops xgpu_nv_virt_ops;
- 
- void xgpu_nv_mailbox_set_irq_funcs(struct amdgpu_device *adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_vi.h b/drivers/gpu/drm/amd/amdgpu/mxgpu_vi.h
-index f13dc6c..713ee66 100644
---- a/drivers/gpu/drm/amd/amdgpu/mxgpu_vi.h
-+++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_vi.h
-@@ -43,7 +43,8 @@ enum idh_event {
- 	IDH_READY_TO_ACCESS_GPU,
- 	IDH_FLR_NOTIFICATION,
- 	IDH_FLR_NOTIFICATION_CMPL,
--	IDH_EVENT_MAX
-+
-+	IDH_TEXT_MESSAGE = 255
- };
- 
- extern const struct amdgpu_virt_ops xgpu_vi_virt_ops;
 -- 
 2.7.4
 
