@@ -1,61 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6028A195F9B
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2020 21:24:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B52195F99
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2020 21:24:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 039336EA78;
-	Fri, 27 Mar 2020 20:24:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8327A6EA75;
+	Fri, 27 Mar 2020 20:24:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
- [IPv6:2607:f8b0:4864:20::744])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B7476EA73
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 20:00:34 +0000 (UTC)
-Received: by mail-qk1-x744.google.com with SMTP id v7so12237038qkc.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 13:00:34 -0700 (PDT)
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
+ [IPv6:2607:f8b0:4864:20::742])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9F56EA75
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 20:00:33 +0000 (UTC)
+Received: by mail-qk1-x742.google.com with SMTP id v7so12236976qkc.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 13:00:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=TyPTTIrgr5jFkg31+AHSLRGpSHCvL1+EWcgijYv1QPM=;
- b=noYJUaxTqgZy/wHPJ7HGyMyohSauQN1H/BBlkuBWc8iQCW/ZppJ+LwXNIRokuECBml
- u6KEyLpSSemzeGjYlvPG3hJinN1mPYzfpw2TKQpLGrRm3QkSvLfqx+7sdqisc85aoNbF
- dAE0zPXSTZ5VOOUE4p3EJNV+nlIxlCbdWMU7jIWo61XJz2jsxynfZ8Jsv8TM8jKjjwLg
- W/OnoLB7/2LjBbA/03Wp1larZqxPw94OAM/d0G0vnQYlKbXBzvfptKdfRp2LDnmVwPiJ
- NmoLTGimt357fCiaJDyo9V+hfs+zQXXNlC4UR7IdT0Vh9odOWaoD5d7y5ym3WEq75ble
- uW1w==
+ bh=w7HT384dLquXkifrMSaPZlakZIt6uG6pSy8/vMIPtTg=;
+ b=LO8u6Sf1tFMYHfFgs/mRngqSax2KnXlZcJO3p0Dc+bnFdWQ3mFI2oTFey6thDTmmaF
+ 6vQSVW9hkX0MF2gHtADWhz2PG6//81Sy+koWSRmlUtdE4JkEDlbi+Hl7e9/fJkqBDQ1W
+ wZGR9Wj/y9vVjDnX6QH2oWytEcLS1b2oPoz2PvXkTnw7cdsqRkzHAarbUERdJ7ThoQ/X
+ cjfSJj6agzko8pFrT99pB+ejxChHQOTwCS/jnyQVX3vj5kkIgnEKBBVdjZ6Uyg+MCpb7
+ McioaeQ1NszNr6YE8lMUcEsAudEty68BJWZfarn6H3IuArhauChB9pgs+awHkyiMwPkH
+ VdsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=TyPTTIrgr5jFkg31+AHSLRGpSHCvL1+EWcgijYv1QPM=;
- b=GD/oGFNNJBWIrV5jDiod8Ua3yR+NDhOYGT6bJlfy4OZSSKIAWq2av41UI/1ErY8HNE
- Cp9PBXgN9EDChE0sqqqq7+QNy+8ZLTxOsB8VjWW0sJRZzDVpIBr7c6KqBPUj6abQZ4zZ
- rMJlXX8JooC/YwE+q1TwK9l6/bB+lmD/WRCbqrcTPPvGpT9ItLHnwiYI8Cxppk0r76sg
- SCne3jrMiewFN3BdpO/6b99lY/bbSANhDrXDsQVMJqrb963mk8mXocJlLQ21dtWPQ7Bf
- PMLBgb6+jBG8023z4lWXlnxq7RI4l/16HX0FyH5stB9wx6RbAumd4xl67czqLTS8xUmF
- HQtQ==
-X-Gm-Message-State: ANhLgQ1UshG7z2qAT33OyR7FMI4Wh9geCvB6gI+1mAVHPp3jp3aCHFas
- Etd76hAm5Ol2oQervJXvbTVKqA==
-X-Google-Smtp-Source: ADFU+vusyRe6ojBp5llZXnMxLYofwoFjLl3UfJlP4qaMzbvBMyNTtVgrylTbiL3g/n+IqSKDUu4X9Q==
-X-Received: by 2002:a37:30f:: with SMTP id 15mr1101270qkd.44.1585339233822;
- Fri, 27 Mar 2020 13:00:33 -0700 (PDT)
+ bh=w7HT384dLquXkifrMSaPZlakZIt6uG6pSy8/vMIPtTg=;
+ b=uNZtqeXRak1bJHZ00W76p/9wlWZUxA2eLjMC/KoWmJ0Y6D82Q2EWTOG8NJDCRLBoRp
+ kRxRDWVM4LTz2F0efvsaSg2hyQ/LpfxG+41XNGvmLGB0ZNOMHIBlrGtG+eSQcQr82dfh
+ REtQHr5X/82DSSudOd1erurX/VlAKX4wA3eoVRf+auye4V7lDoI9rij8spse21sLR+tU
+ sooN4DCA79O1eTevKowU5XyP4IlGGbIQMzISLkUG8ieo+x9Lsf5DHv8MPK25mLIwZY0x
+ ih7IPYhWVBcb3IOOlQYeIMPxFGWuMoWFXDNHyzp5VqQP31Bcgwox05R+eQcdNklvpyZW
+ eWwQ==
+X-Gm-Message-State: ANhLgQ3fjG3xujmwyHk+VWeKKy7cz1hSICDSgvdY5CwpmX2OutNhC/4s
+ GkzFwOFVKel5GB43fxMaCk35gPPWqdp4Hw==
+X-Google-Smtp-Source: ADFU+vsV4R08VNgi3U0EcEDSpq36V0bb1XOE53WhiumJ5wLNMq9YlKH0bNPjhSJsWggFm8HqFwZeRw==
+X-Received: by 2002:a37:86c4:: with SMTP id i187mr1090284qkd.110.1585339232485; 
+ Fri, 27 Mar 2020 13:00:32 -0700 (PDT)
 Received: from ziepe.ca
  (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
  [142.68.57.212])
- by smtp.gmail.com with ESMTPSA id f1sm3946514qkl.91.2020.03.27.13.00.25
+ by smtp.gmail.com with ESMTPSA id n64sm4367174qkf.23.2020.03.27.13.00.25
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Fri, 27 Mar 2020 13:00:27 -0700 (PDT)
+ Fri, 27 Mar 2020 13:00:25 -0700 (PDT)
 Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
  (envelope-from <jgg@ziepe.ca>)
- id 1jHv9V-0007fy-6Y; Fri, 27 Mar 2020 17:00:25 -0300
+ id 1jHv9V-0007g4-98; Fri, 27 Mar 2020 17:00:25 -0300
 From: Jason Gunthorpe <jgg@ziepe.ca>
 To: Jerome Glisse <jglisse@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>,
  Felix.Kuehling@amd.com
-Subject: [PATCH v2 hmm 6/9] mm/hmm: use device_private_entry_to_pfn()
-Date: Fri, 27 Mar 2020 17:00:18 -0300
-Message-Id: <20200327200021.29372-7-jgg@ziepe.ca>
+Subject: [PATCH v2 hmm 7/9] mm/hmm: do not unconditionally set pfns when
+ returning EBUSY
+Date: Fri, 27 Mar 2020 17:00:19 -0300
+Message-Id: <20200327200021.29372-8-jgg@ziepe.ca>
 X-Mailer: git-send-email 2.25.2
 In-Reply-To: <20200327200021.29372-1-jgg@ziepe.ca>
 References: <20200327200021.29372-1-jgg@ziepe.ca>
@@ -83,31 +84,60 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jason Gunthorpe <jgg@mellanox.com>
 
-swp_offset() should not be called directly, the wrappers are supposed to
-abstract away the encoding of the device_private specific information in
-the swap entry.
+In hmm_vma_handle_pte() and hmm_vma_walk_hugetlb_entry() if fault happens
+then -EBUSY will be returned and the pfns input flags will have been
+destroyed.
 
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
+For hmm_vma_handle_pte() set HMM_PFN_NONE only on the success returns that
+don't otherwise store to pfns.
+
+For hmm_vma_walk_hugetlb_entry() all exit paths already set pfns, so
+remove the redundant store.
+
+Fixes: 2aee09d8c116 ("mm/hmm: change hmm_vma_fault() to allow write fault on page basis")
 Reviewed-by: Christoph Hellwig <hch@lst.de>
-Tested-by: Ralph Campbell <rcampbell@nvidia.com>
 Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
 ---
- mm/hmm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ mm/hmm.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/mm/hmm.c b/mm/hmm.c
-index 3a71ec72b0a42f..3303686bf16d24 100644
+index 3303686bf16d24..dc826898979bc5 100644
 --- a/mm/hmm.c
 +++ b/mm/hmm.c
-@@ -261,7 +261,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 		 */
- 		if (hmm_is_device_private_entry(range, entry)) {
- 			*pfn = hmm_device_entry_from_pfn(range,
--					    swp_offset(entry));
-+				device_private_entry_to_pfn(entry));
- 			*pfn |= range->flags[HMM_PFN_VALID];
- 			if (is_write_device_private_entry(entry))
- 				*pfn |= range->flags[HMM_PFN_WRITE];
+@@ -244,11 +244,11 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+ 	pte_t pte = *ptep;
+ 	uint64_t orig_pfn = *pfn;
+ 
+-	*pfn = range->values[HMM_PFN_NONE];
+ 	if (pte_none(pte)) {
+ 		required_fault = hmm_pte_need_fault(hmm_vma_walk, orig_pfn, 0);
+ 		if (required_fault)
+ 			goto fault;
++		*pfn = range->values[HMM_PFN_NONE];
+ 		return 0;
+ 	}
+ 
+@@ -269,8 +269,10 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+ 		}
+ 
+ 		required_fault = hmm_pte_need_fault(hmm_vma_walk, orig_pfn, 0);
+-		if (!required_fault)
++		if (!required_fault) {
++			*pfn = range->values[HMM_PFN_NONE];
+ 			return 0;
++		}
+ 
+ 		if (!non_swap_entry(entry))
+ 			goto fault;
+@@ -488,7 +490,6 @@ static int hmm_vma_walk_hugetlb_entry(pte_t *pte, unsigned long hmask,
+ 
+ 	i = (start - range->start) >> PAGE_SHIFT;
+ 	orig_pfn = range->pfns[i];
+-	range->pfns[i] = range->values[HMM_PFN_NONE];
+ 	cpu_flags = pte_to_hmm_pfn_flags(range, entry);
+ 	required_fault = hmm_pte_need_fault(hmm_vma_walk, orig_pfn, cpu_flags);
+ 	if (required_fault) {
 -- 
 2.25.2
 
