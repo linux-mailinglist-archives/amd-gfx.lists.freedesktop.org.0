@@ -2,61 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92B52195F99
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2020 21:24:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3BB195FA1
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Mar 2020 21:24:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8327A6EA75;
-	Fri, 27 Mar 2020 20:24:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 838DD6EA7E;
+	Fri, 27 Mar 2020 20:24:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9F56EA75
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 20:00:33 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id v7so12236976qkc.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 13:00:33 -0700 (PDT)
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
+ [IPv6:2607:f8b0:4864:20::744])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3DFF6EA76
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 20:00:35 +0000 (UTC)
+Received: by mail-qk1-x744.google.com with SMTP id u4so12143814qkj.13
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 13:00:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=w7HT384dLquXkifrMSaPZlakZIt6uG6pSy8/vMIPtTg=;
- b=LO8u6Sf1tFMYHfFgs/mRngqSax2KnXlZcJO3p0Dc+bnFdWQ3mFI2oTFey6thDTmmaF
- 6vQSVW9hkX0MF2gHtADWhz2PG6//81Sy+koWSRmlUtdE4JkEDlbi+Hl7e9/fJkqBDQ1W
- wZGR9Wj/y9vVjDnX6QH2oWytEcLS1b2oPoz2PvXkTnw7cdsqRkzHAarbUERdJ7ThoQ/X
- cjfSJj6agzko8pFrT99pB+ejxChHQOTwCS/jnyQVX3vj5kkIgnEKBBVdjZ6Uyg+MCpb7
- McioaeQ1NszNr6YE8lMUcEsAudEty68BJWZfarn6H3IuArhauChB9pgs+awHkyiMwPkH
- VdsQ==
+ bh=TDrjscj5VUbtTUg81Gj8EA5DAPIuadUuhV+FJXt/EPU=;
+ b=CBwtBrf0j+KndtyNs7QkByd1ivDhH+r1q5a3WPT7JV3TLYd84eFuXNa2pjKTL8rR01
+ fA3p/7kp415/LAwD4p4mKcIE3bas9ZhxZsIJyoLJH+hfkHIcJdPy+u+exZl/5J8jDK0m
+ oDQomhjKgAoTF1Yp1ZL0iWj90lQAGleiyozXgaTgCoPdHdnpi3iFynvjUkd/iN5cdCLs
+ opnE1kFN8Bgi3em7/ZY3yGrQbvWohI5okMJe51Qfr4N93myf/IcQCqmPms9ivBuiGyDH
+ g+Rcmc1/kxA/RlbxIu3x8QQJQmnwm+/FkuKvDPbBSX5n058qaQBKousHs+ZmXxlOaPtP
+ FDMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=w7HT384dLquXkifrMSaPZlakZIt6uG6pSy8/vMIPtTg=;
- b=uNZtqeXRak1bJHZ00W76p/9wlWZUxA2eLjMC/KoWmJ0Y6D82Q2EWTOG8NJDCRLBoRp
- kRxRDWVM4LTz2F0efvsaSg2hyQ/LpfxG+41XNGvmLGB0ZNOMHIBlrGtG+eSQcQr82dfh
- REtQHr5X/82DSSudOd1erurX/VlAKX4wA3eoVRf+auye4V7lDoI9rij8spse21sLR+tU
- sooN4DCA79O1eTevKowU5XyP4IlGGbIQMzISLkUG8ieo+x9Lsf5DHv8MPK25mLIwZY0x
- ih7IPYhWVBcb3IOOlQYeIMPxFGWuMoWFXDNHyzp5VqQP31Bcgwox05R+eQcdNklvpyZW
- eWwQ==
-X-Gm-Message-State: ANhLgQ3fjG3xujmwyHk+VWeKKy7cz1hSICDSgvdY5CwpmX2OutNhC/4s
- GkzFwOFVKel5GB43fxMaCk35gPPWqdp4Hw==
-X-Google-Smtp-Source: ADFU+vsV4R08VNgi3U0EcEDSpq36V0bb1XOE53WhiumJ5wLNMq9YlKH0bNPjhSJsWggFm8HqFwZeRw==
-X-Received: by 2002:a37:86c4:: with SMTP id i187mr1090284qkd.110.1585339232485; 
- Fri, 27 Mar 2020 13:00:32 -0700 (PDT)
+ bh=TDrjscj5VUbtTUg81Gj8EA5DAPIuadUuhV+FJXt/EPU=;
+ b=BXbBvc/UnPBUH6RSfppObIkXBXvAPt0G/s5VAGH+HgbfVJPFPPZv5BIPnIFhtosvnE
+ kG2XtvsqRrVISWfbwKtPC2lwUUzP0mxax76t0z1ITLxMGb++dj3wu+s/hwzX6hCATId4
+ ZqJUFC563GC8lbdXQUhBM/GeOt6C04/N8KMmG5yFuHVFqMLErygIbLTnOEjO1tN7mvcr
+ EmcjOoZQltpyizy9ytk2pF6sQjNKYne2F/L5oZZ6FPHwvUSmPsXj2dbrbyADdMgCnHb3
+ SxlowqQSTx05NbazNNPyezRxTvmF0XQynYQGSFtRyFohxrISV6p5o0kJsaZzYo+1608a
+ f1SQ==
+X-Gm-Message-State: ANhLgQ28U/ogyC2wRdL4Qe6lke1SlkV/pHjecwJmMIzMmZ5XCYs8kkXP
+ 2cDeDg8Dhk4Zdl8tuF+XondKIw==
+X-Google-Smtp-Source: ADFU+vtbEMaje0l8Yq/7uiD0ikZWgvPtViAmPYH3kZWMXZUn8JFdaevM0Ixe5LKqy7XPslfAtSA1jw==
+X-Received: by 2002:a37:e40d:: with SMTP id y13mr1045203qkf.39.1585339234848; 
+ Fri, 27 Mar 2020 13:00:34 -0700 (PDT)
 Received: from ziepe.ca
  (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
  [142.68.57.212])
- by smtp.gmail.com with ESMTPSA id n64sm4367174qkf.23.2020.03.27.13.00.25
+ by smtp.gmail.com with ESMTPSA id y127sm4512371qkb.76.2020.03.27.13.00.25
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Fri, 27 Mar 2020 13:00:25 -0700 (PDT)
+ Fri, 27 Mar 2020 13:00:28 -0700 (PDT)
 Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
  (envelope-from <jgg@ziepe.ca>)
- id 1jHv9V-0007g4-98; Fri, 27 Mar 2020 17:00:25 -0300
+ id 1jHv9V-0007gA-B2; Fri, 27 Mar 2020 17:00:25 -0300
 From: Jason Gunthorpe <jgg@ziepe.ca>
 To: Jerome Glisse <jglisse@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>,
  Felix.Kuehling@amd.com
-Subject: [PATCH v2 hmm 7/9] mm/hmm: do not unconditionally set pfns when
- returning EBUSY
-Date: Fri, 27 Mar 2020 17:00:19 -0300
-Message-Id: <20200327200021.29372-8-jgg@ziepe.ca>
+Subject: [PATCH v2 hmm 8/9] mm/hmm: do not set pfns when returning an error
+ code
+Date: Fri, 27 Mar 2020 17:00:20 -0300
+Message-Id: <20200327200021.29372-9-jgg@ziepe.ca>
 X-Mailer: git-send-email 2.25.2
 In-Reply-To: <20200327200021.29372-1-jgg@ziepe.ca>
 References: <20200327200021.29372-1-jgg@ziepe.ca>
@@ -84,60 +84,83 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jason Gunthorpe <jgg@mellanox.com>
 
-In hmm_vma_handle_pte() and hmm_vma_walk_hugetlb_entry() if fault happens
-then -EBUSY will be returned and the pfns input flags will have been
-destroyed.
+Most places that return an error code, like -EFAULT, do not set
+HMM_PFN_ERROR, only two places do this.
 
-For hmm_vma_handle_pte() set HMM_PFN_NONE only on the success returns that
-don't otherwise store to pfns.
+Resolve this inconsistency by never setting the pfns on an error
+exit. This doesn't seem like a worthwhile thing to do anyhow.
 
-For hmm_vma_walk_hugetlb_entry() all exit paths already set pfns, so
-remove the redundant store.
+If for some reason it becomes important, it makes more sense to directly
+return the address of the failing page rather than have the caller scan
+for the HMM_PFN_ERROR.
 
-Fixes: 2aee09d8c116 ("mm/hmm: change hmm_vma_fault() to allow write fault on page basis")
+No caller inspects the pnfs output array if hmm_range_fault() fails.
+
 Reviewed-by: Christoph Hellwig <hch@lst.de>
 Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
 ---
- mm/hmm.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ mm/hmm.c | 18 +++---------------
+ 1 file changed, 3 insertions(+), 15 deletions(-)
 
 diff --git a/mm/hmm.c b/mm/hmm.c
-index 3303686bf16d24..dc826898979bc5 100644
+index dc826898979bc5..e875d9ef0968fd 100644
 --- a/mm/hmm.c
 +++ b/mm/hmm.c
-@@ -244,11 +244,11 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 	pte_t pte = *ptep;
- 	uint64_t orig_pfn = *pfn;
+@@ -77,17 +77,14 @@ static int hmm_vma_fault(unsigned long addr, unsigned long end,
+ 			 unsigned int required_fault, struct mm_walk *walk)
+ {
+ 	struct hmm_vma_walk *hmm_vma_walk = walk->private;
+-	struct hmm_range *range = hmm_vma_walk->range;
+ 	struct vm_area_struct *vma = walk->vma;
+-	uint64_t *pfns = range->pfns;
+-	unsigned long i = (addr - range->start) >> PAGE_SHIFT;
+ 	unsigned int fault_flags = FAULT_FLAG_REMOTE;
  
--	*pfn = range->values[HMM_PFN_NONE];
- 	if (pte_none(pte)) {
- 		required_fault = hmm_pte_need_fault(hmm_vma_walk, orig_pfn, 0);
- 		if (required_fault)
- 			goto fault;
-+		*pfn = range->values[HMM_PFN_NONE];
- 		return 0;
+ 	WARN_ON_ONCE(!required_fault);
+ 	hmm_vma_walk->last = addr;
+ 
+ 	if (!vma)
+-		goto out_error;
++		return -EFAULT;
+ 
+ 	if (required_fault & HMM_NEED_WRITE_FAULT) {
+ 		if (!(vma->vm_flags & VM_WRITE))
+@@ -95,15 +92,10 @@ static int hmm_vma_fault(unsigned long addr, unsigned long end,
+ 		fault_flags |= FAULT_FLAG_WRITE;
  	}
  
-@@ -269,8 +269,10 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 		}
+-	for (; addr < end; addr += PAGE_SIZE, i++)
++	for (; addr < end; addr += PAGE_SIZE)
+ 		if (handle_mm_fault(vma, addr, fault_flags) & VM_FAULT_ERROR)
+-			goto out_error;
+-
++			return -EFAULT;
+ 	return -EBUSY;
+-
+-out_error:
+-	pfns[i] = range->values[HMM_PFN_ERROR];
+-	return -EFAULT;
+ }
  
- 		required_fault = hmm_pte_need_fault(hmm_vma_walk, orig_pfn, 0);
--		if (!required_fault)
-+		if (!required_fault) {
-+			*pfn = range->values[HMM_PFN_NONE];
- 			return 0;
-+		}
+ static unsigned int hmm_pte_need_fault(const struct hmm_vma_walk *hmm_vma_walk,
+@@ -286,7 +278,6 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
  
- 		if (!non_swap_entry(entry))
- 			goto fault;
-@@ -488,7 +490,6 @@ static int hmm_vma_walk_hugetlb_entry(pte_t *pte, unsigned long hmask,
+ 		/* Report error for everything else */
+ 		pte_unmap(ptep);
+-		*pfn = range->values[HMM_PFN_ERROR];
+ 		return -EFAULT;
+ 	}
  
- 	i = (start - range->start) >> PAGE_SHIFT;
- 	orig_pfn = range->pfns[i];
--	range->pfns[i] = range->values[HMM_PFN_NONE];
- 	cpu_flags = pte_to_hmm_pfn_flags(range, entry);
- 	required_fault = hmm_pte_need_fault(hmm_vma_walk, orig_pfn, cpu_flags);
- 	if (required_fault) {
+@@ -572,9 +563,6 @@ static const struct mm_walk_ops hmm_walk_ops = {
+  *
+  * This is similar to get_user_pages(), except that it can read the page tables
+  * without mutating them (ie causing faults).
+- *
+- * On error, for one virtual address in the range, the function will mark the
+- * corresponding HMM pfn entry with an error flag.
+  */
+ long hmm_range_fault(struct hmm_range *range)
+ {
 -- 
 2.25.2
 
