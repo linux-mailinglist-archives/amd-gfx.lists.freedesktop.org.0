@@ -1,93 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 751831982F7
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Mar 2020 20:06:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E630F198D2D
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2020 09:39:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE40C6E0C4;
-	Mon, 30 Mar 2020 18:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 585D66E584;
+	Tue, 31 Mar 2020 07:39:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2070.outbound.protection.outlook.com [40.107.236.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE2BD6E0C4
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 18:06:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=irxbcsj2OS717U044lJFpL+SD2LJjdkikWoGwqSHFC1vZqUqidTfP/Kx7GOW1Jxr4Y/oSfxob1YLOsl1CTLjU/6o7iKfYJulwFtn31p12YrKlk8TdMROzvjMEbASdI6Jmi51jdQrsBZqtfIJOOj8qEM6JVKmjuf3TQRkLswQZfEsPoZgdIj61pHEhXruVTT1su8/taqB3OUtcBshx1IaFXPAKAJArodC7QpE5dQ3UWCYZIxpM9SFDMLvxAJcP9+Gt01q4PLkyTwjN3Isx6Q5kiKhROoJGr0O0ZxH7oOwEKxjzBMaC3xelOs+LfGxjWGDto9TMIKvojMwfOKijPjjJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RQS8MxBerv87/KH7u2+pmAc4F5XDRDwmVMnejAr/JkY=;
- b=e9f2gGsiSx6DRmf5plbDepq91yjAbLvijzTMGy2fo6z0dWWZbVJOjpDdWHZAyqA+rIzRJ3I5sxpVS4G7tz6Qec5ar9LMVnsfvmHw/3Qn2t1nGzK8vcSeY+oTMwupDQb+uV3h6KAsA++vHv+PC+YdW1lVvGhjqWsUJtfguW92JYxjT4z/ZuQ6jx2GYERoUdWWY0xgXRl0G6PlxzYlByqiqMdrXTVD+aJM4vmnOF05ogOIN8/2Jyw+wKAeL25AVOZigdwrBydckpLXt3K0b1AsA5/HegQvEaFTAz5mHQeOk7wxd2UiEHCKkJ2CxPbx7y0lGLXpTFeisoPWft9Flj9UWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RQS8MxBerv87/KH7u2+pmAc4F5XDRDwmVMnejAr/JkY=;
- b=sbUBvisQECF2r1HxrADuEghZcwztWpcgp2Qhx6+uqDFjyyfdMa/MWuMd+UvTkUpCu56jZOA3iTxfJ0ixTNfuZGVmqlz908VfhUEACBkGbiDO62LggN9GK+Rd4Fga57+kTh4CLymdWuFnrhjyBrcvwsR4EDHuIFcEKnlpjKheNKI=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Nicholas.Kazlauskas@amd.com; 
-Received: from BYAPR12MB3560.namprd12.prod.outlook.com (2603:10b6:a03:ae::10)
- by BYAPR12MB3237.namprd12.prod.outlook.com (2603:10b6:a03:13a::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20; Mon, 30 Mar
- 2020 18:06:39 +0000
-Received: from BYAPR12MB3560.namprd12.prod.outlook.com
- ([fe80::e8:c007:9a5:da4d]) by BYAPR12MB3560.namprd12.prod.outlook.com
- ([fe80::e8:c007:9a5:da4d%5]) with mapi id 15.20.2835.023; Mon, 30 Mar 2020
- 18:06:39 +0000
-Subject: Re: [PATCH 3/3] drm/amd/display: increase HDCP authentication delay
-To: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, alexander.deucher@amd.com, 
- amd-gfx@lists.freedesktop.org
-References: <20200330180025.21433-1-Bhawanpreet.Lakha@amd.com>
- <20200330180025.21433-3-Bhawanpreet.Lakha@amd.com>
-From: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
-Message-ID: <4f699a2b-36ee-f6d9-dc1f-b8d23d3fedb1@amd.com>
-Date: Mon, 30 Mar 2020 14:06:36 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-In-Reply-To: <20200330180025.21433-3-Bhawanpreet.Lakha@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: YTXPR0101CA0036.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00::49) To BYAPR12MB3560.namprd12.prod.outlook.com
- (2603:10b6:a03:ae::10)
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
+ [IPv6:2607:f8b0:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0114F89E01;
+ Mon, 30 Mar 2020 22:16:34 +0000 (UTC)
+Received: by mail-oi1-x244.google.com with SMTP id y71so17176640oia.7;
+ Mon, 30 Mar 2020 15:16:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=rHTfazG0JcHchUkZkwqmfv3skWoFel0RHtJDeLWFMUQ=;
+ b=Ca92LU24QgTe15iUum7o+GWCCxrpDi/NBlydV3Y7UaeHp3UkpEJ0w3PsnajA8/jp1R
+ xa4eS5TvtcurrFF8L9WuPHdSCuUhFfYlAomFz951J9FAMhgAfJkK33UVCRcVBw2m52Wd
+ ZK+i/Q8HIqIYIVo9n2fKbgbduGG394emhSQyh6rPbdXWu9dxOcpPGwj3Ql7/+b7FvLDw
+ wrgqKKtyJBby4Qq2AHh2zf6iDd6ex8sq8izmSMRGf0W8M+Gtr6xKUbo00XLWOS8R5dsx
+ RTEvjWV+Vxu/htwiMLb+gkKPSMgSTF+GuUwxTfPNyiSsp4kLGyPP9oFgjobop6Cffs86
+ 4GAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=rHTfazG0JcHchUkZkwqmfv3skWoFel0RHtJDeLWFMUQ=;
+ b=XT2vSDiq4ec+MsJeyA9wF4RX7Jb4ks1DS5Va3FVFA2AmxQ9mR7sKOU0i6TTHJqAX+M
+ /SNsaF05MfZEWX46WHD47RZ+Efx/8ZMeSF2/iGjf+J3AFK99B29vOceb7DS2du68WlR5
+ XSnkqhXbvPdCNaDgu+3ClMmXF9hk6Pmm2iYcGarDn/bBmZFnXCijJ9jswOppoJuLRWTS
+ eK3uhlZBd4OBltx0sKFD7Xo3cUfaLrIMjiXYvpPcgs66PP4WpQz+Em1CV+bpMjsGKc2G
+ t9ALFArxhRRGc36hd5jaIp/cqz/5XDW4+XOsro2oPHtz+Gsuoim3FTOPED8JaiKqdgdC
+ 4waw==
+X-Gm-Message-State: ANhLgQ3rpINfFUC3QE1J54SfQe1yyaYrWiKqYLCFWAL6WEUpkTHSj1+g
+ LmWx6USlqWXaC7M7wftxu/k=
+X-Google-Smtp-Source: ADFU+vtRqzG9oYmCmjI3rVBaaXZZBnhy9DdhlKuP9NiWmIWqtTC/fMZaYpnYKJ/MHG2Na6JPD8ApJg==
+X-Received: by 2002:aca:646:: with SMTP id 67mr202286oig.4.1585606593916;
+ Mon, 30 Mar 2020 15:16:33 -0700 (PDT)
+Received: from localhost.localdomain ([2604:1380:4111:8b00::1])
+ by smtp.gmail.com with ESMTPSA id c18sm4680750ooa.8.2020.03.30.15.16.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 30 Mar 2020 15:16:32 -0700 (PDT)
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "David (ChunMing) Zhou" <David1.Zhou@amd.com>
+Subject: [PATCH] drm/amd/display: Fix 64-bit division error on 32-bit
+ platforms in mod_freesync_build_vrr_params
+Date: Mon, 30 Mar 2020 15:16:14 -0700
+Message-Id: <20200330221614.7661-1-natechancellor@gmail.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.31.148.234] (165.204.55.211) by
- YTXPR0101CA0036.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::49) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.20 via Frontend Transport; Mon, 30 Mar 2020 18:06:38 +0000
-X-Originating-IP: [165.204.55.211]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 1ad287da-10bc-4d62-3f81-08d7d4d5182a
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3237:|BYAPR12MB3237:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR12MB3237F71BE5D457AAD9AA4ED0ECCB0@BYAPR12MB3237.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2803;
-X-Forefront-PRVS: 0358535363
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB3560.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10009020)(4636009)(346002)(396003)(136003)(366004)(39860400002)(376002)(26005)(5660300002)(16526019)(186003)(31686004)(8936002)(81166006)(8676002)(81156014)(2906002)(36756003)(478600001)(31696002)(86362001)(6486002)(4326008)(53546011)(956004)(16576012)(316002)(66556008)(66946007)(2616005)(52116002)(66476007);
- DIR:OUT; SFP:1101; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lwgrZadZNsc7wZpAXNug6T81JC24nMQw5BrZoZl2rITgrhNenGcRBFVA5BAbiRsfSWnQw70Kumn0FCcatKX73nOIlf8rtnfGvypDmFN4qMIs4UZOUDmXfjCLi1RJ6IC5lRPQaQMSJVjldXoHwADvGJn30gTjrZC3k3R8SIjn9j1bw3HDsw9XUctWBJ4+CX0uq8TJ9FclSeBlYgLTjcwVQRPt1h7+FL4cP8FsejWeCpOPS5C1HwBY0Pn0/gRQI5pSez7UQ3fkns7NyS6aL305E/0+k6iGNBy6eC1cWak4SeU8dTjoBwr1TRTsTSaOWq/dG7XhCkDATOq5xE8sq+BFhmDSgWsT04VletTQ1XvSMycGI1mOztYUG6mpepU6HevfrKyUfMa0iXPzoEmS8O8McG4HDYuHTl4wkBgPrS5N0QY8G16qaT5xkzanwuyV27Uu
-X-MS-Exchange-AntiSpam-MessageData: 8ZDbgHD8Jyrq+I01xks7rPSST5TGl9PQZXcbYQ2N8UUGbC3AIfZldvT4v4Fp4M5cGCQU1FGv2TamFBSh+vCoHPHD456QkSnU5Iju5rbYkBIezyK1Qe9B/cTwqaID9Gqw0NsAbJ2fpsUTa+ExIbETKg==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ad287da-10bc-4d62-3f81-08d7d4d5182a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2020 18:06:39.6897 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 43ww2MGpE6pB6aQwlDnvu9VMev15DLd27FGDBA+A1C/0nhmbgtqojwVMrJFVpzlIcY1nfa78yeY4t3rLyYCEfQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3237
+X-Patchwork-Bot: notify
+X-Mailman-Approved-At: Tue, 31 Mar 2020 07:39:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,52 +69,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: harry.wentland@amd.com
+Cc: Nathan Chancellor <natechancellor@gmail.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2020-03-30 2:00 p.m., Bhawanpreet Lakha wrote:
-> [Why]
-> Some displays have an issue where the hdcp chips are initialized after the
-> display has already lit up. This means we can sometimes authentication too early
-> and cause authentication failures.
-> 
-> This happens when HDCP is enabled and the display is power cycled. Normally we
-> will authenticate 2 seconds after the display is lit, but some displays need a
-> bit more time.
-> 
-> [How]
-> Increase delay to 3 second before we start authentication.
-> 
-> Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+When building arm32 allyesconfig,
 
-Series is:
+ld.lld: error: undefined symbol: __aeabi_uldivmod
+>>> referenced by freesync.c
+>>>               gpu/drm/amd/display/modules/freesync/freesync.o:(mod_freesync_build_vrr_params) in archive drivers/built-in.a
+>>> did you mean: __aeabi_uidivmod
+>>> defined in: arch/arm/lib/lib.a(lib1funcs.o)
 
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Use div_u64 in the two locations that do 64-bit divisior, which both
+have a u64 dividend and u32 divisor.
 
-Regards,
-Nicholas Kazlauskas
+Fixes: 349a370781de ("drm/amd/display: LFC not working on 2.0x range monitors")
+Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+---
+ drivers/gpu/drm/amd/display/modules/freesync/freesync.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> ---
->   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-> index 39804d2df9df..78e1c11d4ae5 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-> @@ -419,7 +419,7 @@ static void update_config(void *handle, struct cp_psp_stream_config *config)
->   	link->dp.rev = aconnector->dc_link->dpcd_caps.dpcd_rev.raw;
->   	link->dp.mst_supported = config->mst_supported;
->   	display->adjust.disable = 1;
-> -	link->adjust.auth_delay = 2;
-> +	link->adjust.auth_delay = 3;
->   	link->adjust.hdcp1.disable = 0;
->   
->   	hdcp_update_display(hdcp_work, link_index, aconnector, DRM_MODE_HDCP_CONTENT_TYPE0, false);
-> 
+diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+index 8911f01671aa..c33454a9e0b4 100644
+--- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
++++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+@@ -761,10 +761,10 @@ void mod_freesync_build_vrr_params(struct mod_freesync *mod_freesync,
+ 
+ 	// If a monitor reports exactly max refresh of 2x of min, enforce it on nominal
+ 	rounded_nominal_in_uhz =
+-			((nominal_field_rate_in_uhz + 50000) / 100000) * 100000;
++			div_u64(nominal_field_rate_in_uhz + 50000, 100000) * 100000;
+ 	if (in_config->max_refresh_in_uhz == (2 * in_config->min_refresh_in_uhz) &&
+ 		in_config->max_refresh_in_uhz == rounded_nominal_in_uhz)
+-		min_refresh_in_uhz = nominal_field_rate_in_uhz / 2;
++		min_refresh_in_uhz = div_u64(nominal_field_rate_in_uhz, 2);
+ 
+ 	if (!vrr_settings_require_update(core_freesync,
+ 			in_config, (unsigned int)min_refresh_in_uhz, (unsigned int)max_refresh_in_uhz,
+-- 
+2.26.0
 
 _______________________________________________
 amd-gfx mailing list
