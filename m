@@ -1,63 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A9C1996D7
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2020 14:54:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3059A1996CC
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2020 14:50:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22A736E2FF;
-	Tue, 31 Mar 2020 12:54:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADCE56E2FF;
+	Tue, 31 Mar 2020 12:50:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4D086E2FF
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 12:54:11 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id t7so25749818wrw.12
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 05:54:11 -0700 (PDT)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50DB46E2FF
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 12:50:29 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id s1so25744609wrv.5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 05:50:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=+/WMsa9NsgUVBMM7lVOXMFOI1EKhxgDcHybbMYgDUms=;
- b=ujdYA4NGTLiQ2Lp2igomBV5MqYM5OS5mYID87CJvPwRFAb5W/Gb7kGlz4ihQPu0sCi
- Fycv+ZEPSHWfhX0+lAoFed6KswOxJZS2pASBJV4cr+MOqNmz/QnRK/+45X0Es9LGNkTG
- iM5q3KYcJVkT9UGyn7UlC3WN2gxZ5zIFw1L2WZH/NHdp9CdZh8p587Nx4E9Apq9xlaIE
- NSV+T/a6+jKrG7KfqZjjb5ITUKzc8D64Zo1aXGvKOGPSUT6ivl3yUulghbdkJ0HEZCj2
- u65J7DVkByDpGkG8vd91ppgSXsstJC/m4r9esNK9I2/q8NV/xo4sFkH6NJkzqaaw8foz
- ZiWQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=NbJufFMOaT9Yc0FI2nUL1WarjNeur5eI0HflmrFiKZk=;
+ b=RmKJzhLpDitmDPtb7Q8vBdHwAHwl6oXOXwx1KIwoDMBRll7sGOEWU9ExGOIM1ReIx+
+ UozyuqV3204/HYFTIzzwt8Hcgot7r47US7OEUK99EZaThgWSzjnKXqAvD1Q9NQB15tSP
+ efD/DeXR6I2vsZJ0Uwa0jd6RVGYB8t0E57gfICTpAGZczKGDGMs9H1hYprc4uJ0vKQKV
+ cEZoT6+F9+4Ca9gDfSmqz5De3P/hbpOFkUYKIFXDZMUiBitAvFNBFA1sK87HqhsaP+4Y
+ IdZxrzcUnbgildABgzUIQyKFcoLj40YzcP2PHl9pgiLYvt8i1ycRFz7BBboS+fjsVMZY
+ 4aqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=+/WMsa9NsgUVBMM7lVOXMFOI1EKhxgDcHybbMYgDUms=;
- b=MEsvrk7n2pvyvFjokEYIA8FaqzB1YvXebUM5aJnGmZlVFHcRb+BelFUjXwOHA5zXm4
- 76d9Hc7x2/tGqVSFH+USX9eSGNHF5CjtU/tUcxkG+JgwEs4s8HPcyYXdrre0gPp3z0lP
- g5FEQzK5vFAPBmfcCyPuD11pAbg4bvPm+Wa3IEMnPZDsnBRJyz5+thHbDpty21BJk1Hb
- TakEPUsvK6gXYHfa3bJp5dCGuJLPj6H7pmuHeqNKNdfeD99bMoLw5jkpDhdOj1kGkZuJ
- P+ZdY48RwvYg/6nDCHjnsQJ7El/KKFxxhcHSVFM/WvSe87ZdnoevHViRiZ8S1WlabJnm
- w82g==
-X-Gm-Message-State: ANhLgQ1EDBOLXEjC6dAnMzmXBNj9I3IXTQsPAqxwQz3YhUxDV6eoMRGi
- ddJ+RrTl01wdzwg5lwEAR9Ei1Ru6
-X-Google-Smtp-Source: ADFU+vvjTGVGV8STJkgYQ/jJ9za7ubWhPqq8MNwPvFkOXMQU765sglyvxemCy6/PeYdsLurqEeCzKA==
-X-Received: by 2002:adf:afdb:: with SMTP id y27mr20623083wrd.208.1585659250546; 
- Tue, 31 Mar 2020 05:54:10 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id b67sm3793842wmh.29.2020.03.31.05.54.09
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 31 Mar 2020 05:54:10 -0700 (PDT)
-Subject: Re: [PATCH 1/2] drm/amdgpu: sync ring type with drm hw_ip type
-To: Nirmoy Das <nirmoy.aiemd@gmail.com>, amd-gfx@lists.freedesktop.org
-References: <20200331125448.47874-1-nirmoy.das@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <c6eab496-d709-9068-c233-c1811ce5d13c@gmail.com>
-Date: Tue, 31 Mar 2020 14:54:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=NbJufFMOaT9Yc0FI2nUL1WarjNeur5eI0HflmrFiKZk=;
+ b=dtcn8esFnpUcpEzmzYbN8kycWDo9G4cO5xvgW5x9gYX5cu8cIYR+HdcA1/jFG04C4q
+ xkg3UjLVwotWP7knstFGywK+IujVLreQdBwo0FWWO4QIajv985dz8lgcE00uOc9M+Yjy
+ IZJ3ghquB4I4LUdOgkA5pyaClw+J+ZMenW0Lf99IDElaElkxpIhT979VAheS03ApsCq1
+ QB1paJ6gD1hp6Ph4MBf3MulQHXxjE2P9qM2d9QayhmqOqjGAGheBrjYMzCRL1c+v0Mka
+ HyqXiqJHgwkRggEdD7ER8TT1PVr9DlI0eAuR49V+x/zIwfj5oQgchISJ6PR5tQv8SEzE
+ YmpQ==
+X-Gm-Message-State: ANhLgQ0jGrZXHVSH0BX6ZO3q8nsx0lhCm29ULLZV3nFmjNRlpifEms29
+ X3od1cz3fMAFT412RbB5ooCDPSV+
+X-Google-Smtp-Source: ADFU+vs3kMgg5ru4VWBpMoz7KyCybxipIwaOUL+ul6+RBF0/mfK2VE9Oa+S4Hb0rnYUjVDH6wtZI+g==
+X-Received: by 2002:adf:afcb:: with SMTP id y11mr19526127wrd.141.1585659027221; 
+ Tue, 31 Mar 2020 05:50:27 -0700 (PDT)
+Received: from brihaspati.fritz.box
+ (p200300C58F2E74000298C664B0CADE76.dip0.t-ipconnect.de.
+ [2003:c5:8f2e:7400:298:c664:b0ca:de76])
+ by smtp.gmail.com with ESMTPSA id b203sm3760946wmc.45.2020.03.31.05.50.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 31 Mar 2020 05:50:26 -0700 (PDT)
+From: Nirmoy Das <nirmoy.aiemd@gmail.com>
+X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amdgpu: sync ring type with drm hw_ip type
+Date: Tue, 31 Mar 2020 14:54:47 +0200
+Message-Id: <20200331125448.47874-1-nirmoy.das@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20200331125448.47874-1-nirmoy.das@amd.com>
-Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,57 +66,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
 Cc: alexander.deucher@amd.com, ray.huang@amd.com, nirmoy.das@amd.com,
  christian.koenig@amd.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 31.03.20 um 14:54 schrieb Nirmoy Das:
-> Move AMDGPU_RING_TYPE_KIQ at the end of amdgpu_ring_type enum
-> to sync amdgpu_ring_type values with AMDGPU_HW_IP_*
->
-> Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> index 080024d21d3e..121041369c42 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> @@ -52,11 +52,11 @@ enum amdgpu_ring_type {
->   	AMDGPU_RING_TYPE_SDMA,
->   	AMDGPU_RING_TYPE_UVD,
->   	AMDGPU_RING_TYPE_VCE,
-> -	AMDGPU_RING_TYPE_KIQ,
->   	AMDGPU_RING_TYPE_UVD_ENC,
->   	AMDGPU_RING_TYPE_VCN_DEC,
->   	AMDGPU_RING_TYPE_VCN_ENC,
-> -	AMDGPU_RING_TYPE_VCN_JPEG
-> +	AMDGPU_RING_TYPE_VCN_JPEG,
-> +	AMDGPU_RING_TYPE_KIQ
+Move AMDGPU_RING_TYPE_KIQ at the end of amdgpu_ring_type enum
+to sync amdgpu_ring_type values with AMDGPU_HW_IP_*
 
-That is most likely not sufficient to keep the two enums in sync since 
-we are getting even more kernel internal ring types in the future.
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-We either need some form of static assert or your original approach of 
-defining AMDGPU_RING_TYPE_SDMA = AMDGPU_HW_IP_SDMA.....
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 080024d21d3e..121041369c42 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -52,11 +52,11 @@ enum amdgpu_ring_type {
+ 	AMDGPU_RING_TYPE_SDMA,
+ 	AMDGPU_RING_TYPE_UVD,
+ 	AMDGPU_RING_TYPE_VCE,
+-	AMDGPU_RING_TYPE_KIQ,
+ 	AMDGPU_RING_TYPE_UVD_ENC,
+ 	AMDGPU_RING_TYPE_VCN_DEC,
+ 	AMDGPU_RING_TYPE_VCN_ENC,
+-	AMDGPU_RING_TYPE_VCN_JPEG
++	AMDGPU_RING_TYPE_VCN_JPEG,
++	AMDGPU_RING_TYPE_KIQ
+ };
 
-Christian.
-
->   };
->
->   struct amdgpu_device;
-> --
-> 2.25.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+ struct amdgpu_device;
+--
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
