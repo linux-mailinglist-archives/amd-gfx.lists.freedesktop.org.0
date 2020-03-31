@@ -2,45 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F32E019A04D
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2020 22:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB1E19A04B
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Mar 2020 22:58:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88D066E88F;
-	Tue, 31 Mar 2020 20:58:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D75D26E88D;
+	Tue, 31 Mar 2020 20:57:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93B5D6E88E
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 20:57:58 +0000 (UTC)
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3DEA6E88C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 20:57:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1585688277;
+ s=mimecast20190719; t=1585688274;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=qXwJ6P01usnj3n8GpAUGcfZ6SN4qPkwbrrUG0deRB5k=;
- b=de1IvRR10eGiF76d+iWOMQJczhgjzgngPJj2g7vv2UafW7LmgKDIx1QbAAlHJZQ1T7WXWd
- P2IXyAUOk/GGQOQngv0T6X219MZEZS9yIStNjny71m5oUN3liP7jZxjUkPN2TCXLYGJTma
- q+Yui/8hN68f7EYXwIJjKZ7sbRA2auA=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=RT7YcYvPXgQSj7BD5jsv2sgp21ReQU5d7+m4XV0mPYY=;
+ b=B1uS6vRb8jIt19lmseS0VLDunPKStFk/jeuPlYbV04/agoi1SRgeRtAKG7lC2w1cZUKgaN
+ amD6+r06Q4lXP+OnuCJNCyuzkYt0CgO6mhMxcLLpC15/IoscAFVQiaMdeKZVbE422+oL5O
+ 75SgXHWRFoHG+yMd6p6NtjOYcHiXih8=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-185-Dif1_LD1PJSp7HZe4pV2Ng-1; Tue, 31 Mar 2020 16:57:49 -0400
-X-MC-Unique: Dif1_LD1PJSp7HZe4pV2Ng-1
+ us-mta-372-wJmpsAMgPYy-FzNIsGhyfA-1; Tue, 31 Mar 2020 16:57:52 -0400
+X-MC-Unique: wJmpsAMgPYy-FzNIsGhyfA-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D22468018D1;
- Tue, 31 Mar 2020 20:57:46 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 288B010CE78F;
+ Tue, 31 Mar 2020 20:57:50 +0000 (UTC)
 Received: from Ruby.redhat.com (ovpn-113-88.rdu2.redhat.com [10.10.113.88])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 0B05D97B19;
- Tue, 31 Mar 2020 20:57:43 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 247B097B19;
+ Tue, 31 Mar 2020 20:57:48 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: amd-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH 0/4] drm/dp_mst: Remove ->destroy_connector() callback
-Date: Tue, 31 Mar 2020 16:57:33 -0400
-Message-Id: <20200331205740.135525-1-lyude@redhat.com>
+Subject: [PATCH 1/4] drm/amd/amdgpu_dm/mst: Remove unneeded edid assignment
+ when destroying connectors
+Date: Tue, 31 Mar 2020 16:57:34 -0400
+Message-Id: <20200331205740.135525-2-lyude@redhat.com>
+In-Reply-To: <20200331205740.135525-1-lyude@redhat.com>
+References: <20200331205740.135525-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -54,45 +58,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <david1.zhou@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Leo Li <sunpeng.li@amd.com>,
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ Leo Li <sunpeng.li@amd.com>,
  Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
- David Francis <david.francis@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Wenjing Liu <wenjing.liu@amd.com>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Siqueira <rodrigo.siqueira@amd.com>,
- Mikita Lipski <mikita.lipski@amd.com>,
- Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
+ David Francis <David.Francis@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ Wenjing Liu <Wenjing.Liu@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Mikita Lipski <mikita.lipski@amd.com>, Harry Wentland <harry.wentland@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This finishes up the work that Pankaj Bharadiya started in:
+Doesn't do anything, noticed this while cleaning up some unrelated
+stuff.
 
-https://patchwork.freedesktop.org/series/74412/
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-And allows us to entirely remove ->destroy_connector()
-
-Lyude Paul (4):
-  drm/amd/amdgpu_dm/mst: Remove unneeded edid assignment when destroying
-    connectors
-  drm/amd/amdgpu_dm/mst: Remove ->destroy_connector() callback
-  drm/amd/amdgpu_dm/mst: Stop printing extra messages in
-    dm_dp_add_mst_connector()
-  drm/dp_mst: Remove drm_dp_mst_topology_cbs.destroy_connector
-
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 45 +++++--------------
- drivers/gpu/drm/drm_dp_mst_topology.c         | 16 ++-----
- include/drm/drm_dp_mst_helper.h               |  2 -
- 3 files changed, 15 insertions(+), 48 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index e8208df420d9..7b3303efb1ff 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -140,7 +140,6 @@ dm_dp_mst_connector_destroy(struct drm_connector *connector)
+ 	struct amdgpu_encoder *amdgpu_encoder = amdgpu_dm_connector->mst_encoder;
+ 
+ 	kfree(amdgpu_dm_connector->edid);
+-	amdgpu_dm_connector->edid = NULL;
+ 
+ 	drm_encoder_cleanup(&amdgpu_encoder->base);
+ 	kfree(amdgpu_encoder);
 -- 
 2.25.1
 
