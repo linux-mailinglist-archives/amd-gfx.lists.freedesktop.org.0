@@ -2,95 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E60419AB68
-	for <lists+amd-gfx@lfdr.de>; Wed,  1 Apr 2020 14:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 197C019ABA3
+	for <lists+amd-gfx@lfdr.de>; Wed,  1 Apr 2020 14:27:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C24456E92A;
-	Wed,  1 Apr 2020 12:12:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E56D6E072;
+	Wed,  1 Apr 2020 12:27:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750051.outbound.protection.outlook.com [40.107.75.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B56966E92A
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 12:12:48 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C5236E072
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 12:27:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aefgJlNU8oeIVyKbTCr0tZD8SHb2xnpnbv2Er9D1pmmkj/5G6l0uu716js22keGmARBffZ1WYN3+8W3IK1FRuW5el7iLeFzfmwM5wgIdsH9p9+A6mrEyNXFCQsmHhIsSHZ6YfuVNysHsb8Z3J8WzuJWHNB2ZynBPzD5Qb4xl1llC5WrbDi3oVrP+dEp4vD/NDTISN/k2vnG+RCFUtg4WNnUkYCyejLpL24R3/ZwrvXktB+d/dyUBwTJNhMD1X8ASyDOcX5J1Qo43aDzbuUXGF8n7/AV8h1Omch7mKGETgi+z/g4OZgb/NfzkbPqV55DS0vzqxoQtBxUd7Rus3EWZfg==
+ b=b8G+mKkBWsjgXsXZ+SpRnb5buGTfzc7LwXS+Uz07oqaDd9hHUEtEuhczR82Ny0oDWpQJCIt52GxehpLRQMla77eCy3fMjp1edH9MY/+2anB5luvPGwjvIDR4MhO4ySwiXe1GU9GEbcij8VXGLTyl4I+8r+CEKV6izEOEr0BGsEvfg6wr5aQTpOmHL7lLrOrhG0VZOEsaCD/9e9V7u0vjbaeJR0Hyk9jARk4BmZPb/05uCTL/J3GBFsZKBCTVLoxYTuryl+RF5pJ+0ovEz+kOaNYyFbw/+QbfuCbAnubUfcvfAcdBaZDJvh8GvErgqBj18VBc6ktPNPD/1WdZgfqAfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DWbt+JK3JzcHFVx6rJWXPPsyCObus7fqQ6ZzgqQGLpw=;
- b=khWUwtYbHql2L8cFbP/xD383KVkl9jF1TcL9TuWDAPyTD95AkbycajjScGUbkAX5GsGOpAVjYRQNqWcAWKNMc5aySQmS57SzBsHEoe6vHLras9qHtVnMG2mHJkIqZePb7sO76EP4k3NTX1CXJnexzwzWDC2y952vngi+jf9toWln0WxEHYiGmyCYrA3vYYyGBgGrqutFPf5LKtogKOBWaDdnswTdXjRLwX3HN2OArgevFjVmj43Y7DkwiNRqyINTtI9KvCtJt5paqHc4IAVeSdyTmVVJRFvC4KGTCkHpVe9Md60JAxgkLHHNFXLQ6wPs2T6nriDiTdsH/Avcmz+rCQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
+ bh=/Neesj9wY7QfTxj4tCI+rXPssoYhA+dmUleQdOVEEn8=;
+ b=dFhemGkQEe+o9mNm3FEGHblNnyZSorsHkBIs+PPLc168yVnZSCHC6lFwgTCtETfNSh5E3HxRtTqgcf/rqNgYqicHR4ae9jWWzm0H1ReeBxFxHTcxn6wca5QiDSBEsqzE/NflQbqHJHiYfe0ax3/SY1zpU5UIWsDhJs60vm4FT2Wwe3scuxsTjhgSQtb5er5HrbgmqY94cNRHaCe/+roC5wuoOgLUY8RFETyqHJWxGW/OUbeLy4GSS69jRQKOZtf+hfzFXMegFcuxZCynu9DJh942e6nbuFEO9CMeKeN+7TiqEGhRy153CCML6JPm30r6OqPpgKWKApcveGMu+DdEHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DWbt+JK3JzcHFVx6rJWXPPsyCObus7fqQ6ZzgqQGLpw=;
- b=XSApi6W7NNFFuKTg6as8gVY/wnwaQ0OJ6pcHajcAf2NKygaWeteP4E34sPnKqmAk5mkkOZgA5xUAj0c4N4QaEm/wXA82F5uAwwZinCiqPOdWIgBPTCKw+IByyemq14ThtOtdt8kXJD52qjTvY2dw0FGmOzOmQi0ouYCCZ8lBRqI=
-Received: from MWHPR13CA0027.namprd13.prod.outlook.com (2603:10b6:300:95::13)
- by BN8PR12MB3572.namprd12.prod.outlook.com (2603:10b6:408:47::12)
+ bh=/Neesj9wY7QfTxj4tCI+rXPssoYhA+dmUleQdOVEEn8=;
+ b=wv0anrzjYQBd4ykfbSY6uLSnGM5QFwHQJf+V6azS8BV3qiM5VWUHr3K9NiPgIJKVTuUrIXYK+uCmeyBApFqUjyQeSAuVY5G3x2DX9qK+8rDwme6E+S11o041T7UVRPybhnnbFmYc57KCe8eM26yYrwsK1OBo82dAaT9mI7pWIXo=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Nirmoy.Das@amd.com; 
+Received: from MN2PR12MB3872.namprd12.prod.outlook.com (2603:10b6:208:168::17)
+ by MN2PR12MB4062.namprd12.prod.outlook.com (2603:10b6:208:1d0::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Wed, 1 Apr
- 2020 12:12:45 +0000
-Received: from CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:95:cafe::bb) by MWHPR13CA0027.outlook.office365.com
- (2603:10b6:300:95::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.12 via Frontend
- Transport; Wed, 1 Apr 2020 12:12:45 +0000
-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- CO1NAM11FT047.mail.protection.outlook.com (10.13.174.132) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2878.15 via Frontend Transport; Wed, 1 Apr 2020 12:12:45 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 1 Apr 2020
- 07:12:44 -0500
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 1 Apr 2020
- 07:12:44 -0500
-Received: from ubuntu.amd.com (10.180.168.240) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Wed, 1 Apr 2020 07:12:43 -0500
-From: Jack Zhang <Jack.Zhang1@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdkfd: kfree the wrong pointer
-Date: Wed, 1 Apr 2020 20:12:40 +0800
-Message-ID: <1585743160-30110-1-git-send-email-Jack.Zhang1@amd.com>
-X-Mailer: git-send-email 2.7.4
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20; Wed, 1 Apr
+ 2020 12:27:00 +0000
+Received: from MN2PR12MB3872.namprd12.prod.outlook.com
+ ([fe80::d8e1:aec7:6c60:d13c]) by MN2PR12MB3872.namprd12.prod.outlook.com
+ ([fe80::d8e1:aec7:6c60:d13c%3]) with mapi id 15.20.2856.019; Wed, 1 Apr 2020
+ 12:27:00 +0000
+Subject: Re: [PATCH] drm/amdkfd: kfree the wrong pointer
+To: amd-gfx@lists.freedesktop.org
+References: <1585743160-30110-1-git-send-email-Jack.Zhang1@amd.com>
+From: Nirmoy <nirmodas@amd.com>
+Message-ID: <12479d62-7971-8cb5-24e5-13d2abde183d@amd.com>
+Date: Wed, 1 Apr 2020 14:31:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+In-Reply-To: <1585743160-30110-1-git-send-email-Jack.Zhang1@amd.com>
+Content-Language: en-US
+X-ClientProxiedBy: AM0PR01CA0026.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:69::39) To MN2PR12MB3872.namprd12.prod.outlook.com
+ (2603:10b6:208:168::17)
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFTY:;
- SFS:(10009020)(4636009)(396003)(136003)(346002)(39860400002)(376002)(428003)(199004)(46966005)(2906002)(8936002)(478600001)(186003)(70586007)(70206006)(5660300002)(7696005)(81156014)(426003)(4744005)(336012)(2616005)(81166006)(8676002)(47076004)(86362001)(26005)(356004)(4326008)(316002)(6916009)(36756003);
- DIR:OUT; SFP:1101; 
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2003:c5:8f2b:1800:463:6d89:d3d:5f49]
+ (2003:c5:8f2b:1800:463:6d89:d3d:5f49) by
+ AM0PR01CA0026.eurprd01.prod.exchangelabs.com (2603:10a6:208:69::39) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15 via Frontend
+ Transport; Wed, 1 Apr 2020 12:26:59 +0000
+X-Originating-IP: [2003:c5:8f2b:1800:463:6d89:d3d:5f49]
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6df5a011-9ddc-48e5-8968-08d7d635fc99
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3572:
-X-Microsoft-Antispam-PRVS: <BN8PR12MB3572309A4CAD3538A1C42173BBC90@BN8PR12MB3572.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 3644f1e2-ccfd-4c00-0830-08d7d637f9cf
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4062:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4062D079D6C31E07C43A05688BC90@MN2PR12MB4062.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
 X-Forefront-PRVS: 03607C04F0
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3872.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(136003)(366004)(39860400002)(376002)(396003)(346002)(4744005)(8676002)(2906002)(52116002)(53546011)(81156014)(81166006)(6486002)(316002)(8936002)(6666004)(66476007)(16526019)(31686004)(36756003)(478600001)(66946007)(31696002)(5660300002)(6916009)(2616005)(66556008)(186003);
+ DIR:OUT; SFP:1101; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: frAeZyvZYR4s9sf56TqutN+n8mTYVRXBKu9L+g+FioSnAVIgPohhwUVQWOe17CIhy3nxFdgEt3DEWjdySF2gXzFoJP37TB7bXi+TQeyc8vDZ7MH2zpGDNvudtKo0p9RsEuljiWU+nM78ScOjxGt7zmTCUN6xvrZYTGqT8FOfJP9q6+AtakOKj85GEGywkZRLCAWBeovkCU7444NDaqsrRUMJ1kdhmNYl5LZSxSM2A26oxClNxbXORozIN8v5gx1De61soHsdvO9XbwQfr/CiKkIU4b+84vm1ffczwOalwlG6XOhwOVYVzKapfoEdZvfPCkIZabeshTNzTHka7Yi7sg9cMAbQl6Z+xrH1Dc6twlQScC1++FfXa681n3fg9IzM1Ux/mCi6+D/tG2jFO8cl+ewccfmZwi3XTR+Yrxd5OxaJ/IksMHQNvayG4HIncPP+jCdZwBewiF7RFKd0vRZpn0rnBVAOwhV1EIlgyujDF4Mf9shB5FegAhxNDpuhPZdErGF6MZgvL3O36qhwGRQdKQ==
+X-Microsoft-Antispam-Message-Info: +GgNLTUV81H9zScBMFTtozd2gqmyq3qYKyHZRNZ6whi3zzUK7LbNksXhynK7lvhEVltFGNa3H9flv8kTlK34IQp3tNCipFZ+S6goIE/3ArKrV034Z7KFG2WTfIbfjn5Nd2J4OiNS1oCtoksHIWoTA9Bbz7FvCGEGPQSyj8V3TRjXMAabLDDFm7h/bzT+odBi3CwtaQuAXo1RYrGPvc+JhwxUvzt8EatW6dpbhigrZqwFA6nOpId6ycgK+BKl9bAdbUFPVAXgxWpJ/VggCCJBPk2THFn+BybsUbratfeIC+B3Fu+MGN3rrZO35qECgdXk16JJOPRfaTkqr0EyYkp8MLB1MikgFqmU4JzFz47uVW78isqwYB4GDMl6aZZT0sC2WlRNsYHAzGIrW8jA+YgN2m1WSJLnGOQTFEJuCcQCI+fb+eXYivLB0xzn1vVkVt1I
+X-MS-Exchange-AntiSpam-MessageData: PA3sbuMT60zlr7b1slfArMGkTJgWnkxve5a9NWJhXRuqqpC1ehOc076iEFVdqNBG5NoK3Z8GXDNTdXOSHbqgE+wt0X2kldrKdyfjh13kcNW/v8pWLEZt4+UiHSBQt06L+LB+AAr8Zv5l827gwWa+e1RVgpt8CmPU/UnudtNYeTnmls0Le/YrXLJ0JnETPMlNjQW2KVHbnkC6mYXiyi0ScA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2020 12:12:45.4116 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6df5a011-9ddc-48e5-8968-08d7d635fc99
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3644f1e2-ccfd-4c00-0830-08d7d637f9cf
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2020 12:27:00.1533 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3572
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QAC8oYFf+TqN0utGgefUR4P/lVm3EEUTSSi4AiZ0AAQDoYKe0q6zeDKnAUCMiA7jQGvi7c7SlBFrfNx9bNLJsw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4062
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,39 +98,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jack Zhang <Jack.Zhang1@amd.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Originally, it kfrees the wrong pointer for mem_obj.
-It would cause memory leak under stress test.
 
-Signed-off-by: Jack Zhang <Jack.Zhang1@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 4/1/20 2:12 PM, Jack Zhang wrote:
+> Originally, it kfrees the wrong pointer for mem_obj.
+> It would cause memory leak under stress test.
+>
+> Signed-off-by: Jack Zhang <Jack.Zhang1@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index 7866cd06..0491ab2 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -1134,9 +1134,9 @@ int kfd_gtt_sa_allocate(struct kfd_dev *kfd, unsigned int size,
- 	return 0;
- 
- kfd_gtt_no_free_chunk:
--	pr_debug("Allocation failed with mem_obj = %p\n", mem_obj);
-+	pr_debug("Allocation failed with mem_obj = %p\n", *mem_obj);
- 	mutex_unlock(&kfd->gtt_sa_lock);
--	kfree(mem_obj);
-+	kfree(*mem_obj);
- 	return -ENOMEM;
- }
- 
--- 
-2.7.4
 
+Acked-by: Nirmoy Das <nirmoy.das@amd.com>
+
+
+> ---
+>   drivers/gpu/drm/amd/amdkfd/kfd_device.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> index 7866cd06..0491ab2 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> @@ -1134,9 +1134,9 @@ int kfd_gtt_sa_allocate(struct kfd_dev *kfd, unsigned int size,
+>   	return 0;
+>   
+>   kfd_gtt_no_free_chunk:
+> -	pr_debug("Allocation failed with mem_obj = %p\n", mem_obj);
+> +	pr_debug("Allocation failed with mem_obj = %p\n", *mem_obj);
+>   	mutex_unlock(&kfd->gtt_sa_lock);
+> -	kfree(mem_obj);
+> +	kfree(*mem_obj);
+>   	return -ENOMEM;
+>   }
+>   
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
