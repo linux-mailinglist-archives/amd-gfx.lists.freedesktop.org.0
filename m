@@ -1,57 +1,90 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBD5D19C1CA
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Apr 2020 15:11:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0691219BE74
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Apr 2020 11:15:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21E926EA8A;
-	Thu,  2 Apr 2020 13:11:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89C0D6EA25;
+	Thu,  2 Apr 2020 09:15:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com
- [IPv6:2a00:1450:4864:20::144])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF32D6EA00
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 07:56:46 +0000 (UTC)
-Received: by mail-lf1-x144.google.com with SMTP id q5so1869265lfb.13
- for <amd-gfx@lists.freedesktop.org>; Thu, 02 Apr 2020 00:56:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=NLxAfO/+CXjGBU0lneDYEfTm3/RVeCex0QsJS4HUhZc=;
- b=RmbAMcl888PHsTzOLIAl3LFnAF/LaClsZoOPozQJSeYjsZqb0oxpAyEx6/MxUb3vFY
- Q2kOTxQb/Gp67rDIH00o5g7ZBUV1U1VoYnaTHxaeGVwNWK6fkxOQODwh+Z2bnvv5ymsJ
- sijSpJjrPsy8TmsG2arBREV/jexcBBiKN+uhkIlwRKTF08AOQJKOujRbDytrEkKempwC
- hmbnjA5WnLz0YNt8y32d+aeA89hLAOiBH1eWsnssiGJIqFn8K+dZST9PfqBKJWg1FXy8
- DnviHEtx46AAaVg5SurPy8EP3SIZDbX1Ukd8lM/iwKozhzQUzTok7u1zT18BzBpufgPQ
- LHNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=NLxAfO/+CXjGBU0lneDYEfTm3/RVeCex0QsJS4HUhZc=;
- b=hWBkIEFdlr/KUxlQXpHjB8txW/lWyP1BCciCkrIds4S7Z6dC/bptoDjn+FSoYb0VFv
- vz0Ge/NZepdvJAJ15MojJwaAINHP5RaNfJ5HdUGzHavubRNTbnJCLU4K4xCYLI6TKCCz
- PN4vz3/cvO+RzbSSoF775tVrPuySmMpDooORvrZ6Y1xxRhs2HNH3fKpDDwxTwuzLbbaR
- JuLDJ/kmHteWE9Ocp0V5Z1OIteAHULVbjHlpGdFONyoZOpKfuNwYiSNkE9O1agCENM6N
- 08Q9OAZRMTnO1+F9c7aO89A8bfVwlaX9jUeXArZ3KK8/WgWYmhVzhnD8E5R/V0ibbZIm
- U4cQ==
-X-Gm-Message-State: AGi0PubzS6pUkLlHxdteebMber9jvLHBpUw5LKxsd84T8OfYjkHe6sko
- 5qUeh0iQAQ8GQazYdkuNb+re67D6Bdz5pp7aCLL03uF+BZaXrQ==
-X-Google-Smtp-Source: APiQypJ4cqTyHEJt4zQugpcoHs1N3egWTunLDxTUril9LnntFZT1U1twMztpRgVqvm7g5n1lG3YDWUTVbxU80Ip3k7A=
-X-Received: by 2002:a19:6e47:: with SMTP id q7mr1311472lfk.164.1585814204978; 
- Thu, 02 Apr 2020 00:56:44 -0700 (PDT)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF2506EA25
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 09:15:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LC1Pxoje+StP2ni73v0xrV5dQizUAD8Lh/BBR2ajLQaStZ96UpIfYBrTHil97piqePWLXPfnQmOmLhhLzYMXs0RV2NBdzV+Uxv8NWzNnfMzsKUiE+iu2vuS8GQ9oATNMQeU331yMtV9pTCoxI8qNyYDKYm6VIgCXpA1SPrvjT3a7w1/YlmJdy301TDBiccl5JiIu3GpSLOdCsFg39ZhF/X75sp25cHReqlV0zdZtoJKhk3L3fAx4vsVPgjywElKNZAzCN4/q9ek6tYA7S6iSPWYG4rYJUdQzJ6v8aNGlS2R4BeZteOy4qwS9lApGzjoYNlCugPBRSY/ziQt1KXx/dA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CZyuK93Pf0U3rW4BMVK5580bjAwhzw5UxfypN4MrDl0=;
+ b=GoYdux6EsYZm7OaHP8ohu1FegbHLpTC40zYZhfW0HmzHUyt53E7G1snnvZpcsmX+OeF43PALok0OortBxlqbpBSalCSeILscFRBMXDhSz1HFAqafkW58aFls/O0j861Ua7KIjkCYM5Vxxi8vRKfZBeTP22hJSAM8bH7nmuLMJP/9B0VFoSopKWGidOhUv+tv2rVZw4ODMlR9YDwolsjgkQsJ48+4pOYd4I1wpTQo41JIkV9yl9kU59sR9fml9WNH+yO2e//9QsD4JmrCGpUFyTBPnHXDsOAALJkyCyQlhaZNq1L18TxOM1XwFocMBuU+67I+qQHQh7Ct+Tbqvm9LFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CZyuK93Pf0U3rW4BMVK5580bjAwhzw5UxfypN4MrDl0=;
+ b=UezV6rpzggByXC80u5CDX4mb0gi8uYAwvXdZQrekS83myPT+Q6jMzzfjlLZFroevRPMSfugU9COlVWvYreD6rNEDf+75qMqpICxXE25/lhBVfIiYIMgM/3dXFsVi0TBxo+ZPaMrFMdVWzoxVcm+3wIDurHbW4H5RqspBTMw8lKc=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Shirish.S@amd.com; 
+Received: from CH2PR12MB3941.namprd12.prod.outlook.com (2603:10b6:610:28::14)
+ by CH2PR12MB4262.namprd12.prod.outlook.com (2603:10b6:610:af::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16; Thu, 2 Apr
+ 2020 09:15:37 +0000
+Received: from CH2PR12MB3941.namprd12.prod.outlook.com
+ ([fe80::98e6:cf91:dc50:625e]) by CH2PR12MB3941.namprd12.prod.outlook.com
+ ([fe80::98e6:cf91:dc50:625e%7]) with mapi id 15.20.2856.019; Thu, 2 Apr 2020
+ 09:15:37 +0000
+From: Shirish S <shirish.s@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>
+Subject: [PATCH] drm/amd/display: re-order asic declarations
+Date: Thu,  2 Apr 2020 14:45:15 +0530
+Message-Id: <20200402091515.121824-1-shirish.s@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: MA1PR0101CA0061.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:20::23) To CH2PR12MB3941.namprd12.prod.outlook.com
+ (2603:10b6:610:28::14)
 MIME-Version: 1.0
-References: <CAG48ez2Sx4ELkM94aD_h_J7K7KBOeuGmvZLKRkg3n_f2WoZ_cg@mail.gmail.com>
- <4c5fe55d-9db9-2f61-59b2-1fb2e1b45ed0@amd.com>
-In-Reply-To: <4c5fe55d-9db9-2f61-59b2-1fb2e1b45ed0@amd.com>
-From: Jann Horn <jannh@google.com>
-Date: Thu, 2 Apr 2020 09:56:18 +0200
-Message-ID: <CAG48ez1nHt2BRApHPp2S6rd4kr3P2kFsgHvStUsW7rqHSJprgg@mail.gmail.com>
-Subject: Re: AMD DC graphics display code enables -mhard-float, -msse, -msse2
- without any visible FPU state protection
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-X-Mailman-Approved-At: Thu, 02 Apr 2020 13:11:23 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from amd-WhiteHaven.amd.com (165.204.156.251) by
+ MA1PR0101CA0061.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:20::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15 via Frontend
+ Transport; Thu, 2 Apr 2020 09:15:35 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.156.251]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: e3f97e03-e1a5-4acf-8783-08d7d6e667ff
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4262:|CH2PR12MB4262:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4262CA184F16B7469E0D6FB2F2C60@CH2PR12MB4262.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:843;
+X-Forefront-PRVS: 0361212EA8
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB3941.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(366004)(376002)(346002)(396003)(39860400002)(136003)(52116002)(7696005)(5660300002)(6666004)(81166006)(8936002)(8676002)(6636002)(2906002)(86362001)(110136005)(36756003)(316002)(4326008)(66556008)(66946007)(6486002)(956004)(66476007)(2616005)(1076003)(81156014)(478600001)(26005)(16526019)(186003)(169823001);
+ DIR:OUT; SFP:1101; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Sv+NkhiTNA+un8Kzcsyayj+zCCXqk1gClKsRWA19chSuwk47o64M6z3SqO3pJHsbfUR46+uN/cQfon6Evd1FMN84GG20DumqyMVdJf+2onaVdmgb492UCCuNr1q+r9OB7VPcvsm60wr0pKr+gHx6tq3cGezSsXf73kD5n7FWgOogPQNZXFmfOySIy5cSNjlW9ftyF430oDhdl7mR6/TatwSHP99wSsQEZFYQMqMPqWFihJ3UUWuYmPxy2y9i6ufaW2cIyllWlEaXCcYCUVqMPCzOCUBo5WvQkKQ4/LlC+uGpMcuOF2T28dMep0GZFcrPHqXTTfnAoTf9Cv+o1nm+oLxGIBGjva4BqYYG5xk0edLxpr5BgFwehIh84QBOI/K3ILY3/PmPQE2NeuF0WBgRyIRG6LKcfWrv+KYaJhKIUdgkKgN8XwRtzyguq5xRfnZX2x4ko+9rMmi6npmKEYdZu9ODhHnVuzTUho6x094R6Y7kfmcaNUV5pH8sFqO1uRwo
+X-MS-Exchange-AntiSpam-MessageData: yQT1UT+npZlox1qWVn/gf3rvR3pwIkTRWxq+SSW863Zbib1TEMpbLERncDGnqdXAG9dyrrNPXEGwzc8J8AzAA+ZBmFJk+2bQhpY+KhL4oHSB7T2MsDOSUlofU77tEudwJ33Jf2M9iLXqUDNUEjoDFQ==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3f97e03-e1a5-4acf-8783-08d7d6e667ff
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2020 09:15:37.4184 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LEN9FNU0LLvpINoQp7RV0k6EYrgpsPCLByzTEs4RLH7nnBrqBmQCH9550tMd7W0eO+qQCgg+FJRv00+7apC4CA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4262
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,61 +96,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- Josh Poimboeuf <jpoimboe@redhat.com>, Leo Li <sunpeng.li@amd.com>,
- the arch/x86 maintainers <x86@kernel.org>,
- kernel list <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Andy Lutomirski <luto@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>,
- Alex Deucher <alexander.deucher@amd.com>, Thomas Gleixner <tglx@linutronix.de>,
- Harry Wentland <harry.wentland@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: amd-gfx@lists.freedesktop.org, Shirish S <shirish.s@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBBcHIgMiwgMjAyMCBhdCA5OjM0IEFNIENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlh
-bi5rb2VuaWdAYW1kLmNvbT4gd3JvdGU6Cj4gQW0gMDIuMDQuMjAgdW0gMDQ6MzQgc2NocmllYiBK
-YW5uIEhvcm46Cj4gPiBbeDg2IGZvbGtzIGluIENDIHNvIHRoYXQgdGhleSBjYW4gY2hpbWUgaW4g
-b24gdGhlIHByZWNpc2UgcnVsZXMgZm9yIHRoaXMgc3R1ZmZdCj4gPiBJIG5vdGljZWQgdGhhdCBz
-ZXZlcmFsIG1ha2VmaWxlcyB1bmRlciBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvCj4g
-PiB0dXJuIG9uIGZsb2F0aW5nLXBvaW50IGluc3RydWN0aW9ucyBpbiB0aGUgY29tcGlsZXIgZmxh
-Z3MKPiA+ICgtbWhhcmQtZmxvYXQsIC1tc3NlIGFuZCAtbXNzZTIpIGluIG9yZGVyIHRvIG1ha2Ug
-dGhlICJmbG9hdCIgYW5kCj4gPiAiZG91YmxlIiB0eXBlcyB1c2FibGUgZnJvbSBDIGNvZGUgd2l0
-aG91dCByZXF1aXJpbmcgaGVscGVyIGZ1bmN0aW9ucy4KPiA+Cj4gPiBIb3dldmVyLCBhcyBmYXIg
-YXMgSSBrbm93LCBjb2RlIHJ1bm5pbmcgaW4gbm9ybWFsIGtlcm5lbCBjb250ZXh0IGlzbid0Cj4g
-PiBhbGxvd2VkIHRvIHVzZSBmbG9hdGluZy1wb2ludCByZWdpc3RlcnMgd2l0aG91dCBzcGVjaWFs
-IHByb3RlY3Rpb24KPiA+IHVzaW5nIGhlbHBlcnMgbGlrZSBrZXJuZWxfZnB1X2JlZ2luKCkgYW5k
-IGtlcm5lbF9mcHVfZW5kKCkgKHdoaWNoIGFsc28KPiA+IHJlcXVpcmUgdGhhdCB0aGUgcHJvdGVj
-dGVkIGNvZGUgbmV2ZXIgYmxvY2tzKS4gSWYgeW91IHZpb2xhdGUgdGhhdAo+ID4gcnVsZSwgdGhh
-dCBjYW4gbGVhZCB0byB2YXJpb3VzIGlzc3VlcyAtIGFtb25nIG90aGVyIHRoaW5ncywgSSB0aGlu
-awo+ID4gdGhlIGtlcm5lbCB3aWxsIGNsb2JiZXIgdXNlcnNwYWNlIEZQVSByZWdpc3RlciBzdGF0
-ZSwgYW5kIEkgdGhpbmsgdGhlCj4gPiBrZXJuZWwgY29kZSBjYW4gYmxvdyB1cCBpZiBhIGNvbnRl
-eHQgc3dpdGNoIGhhcHBlbnMgYXQgdGhlIHdyb25nIHRpbWUsCj4gPiBzaW5jZSBpbi1rZXJuZWwg
-dGFzayBzd2l0Y2hlcyBkb24ndCBwcmVzZXJ2ZSBGUFUgc3RhdGUuCj4gPgo+ID4gSXMgdGhlcmUg
-c29tZSBoaWRkZW4gdHJpY2sgSSdtIG1pc3NpbmcgdGhhdCBtYWtlcyBpdCBva2F5IHRvIHVzZSBG
-UFUKPiA+IHJlZ2lzdGVycyBoZXJlPwo+ID4KPiA+IEkgd291bGQgdHJ5IHRlc3RpbmcgdGhpcywg
-YnV0IHVuZm9ydHVuYXRlbHkgbm9uZSBvZiB0aGUgQU1EIGRldmljZXMgSQo+ID4gaGF2ZSBoZXJl
-IGhhdmUgdGhlIGFwcHJvcHJpYXRlIGdyYXBoaWNzIGhhcmR3YXJlLi4uCj4KPiB5ZXMsIHVzaW5n
-IHRoZSBmbG9hdGluZyBwb2ludCBjYWxjdWxhdGlvbnMgaW4gdGhlIGRpc3BsYXkgY29kZSBoYXMg
-YmVlbgo+IGEgc291cmNlIG9mIG51bWVyb3VzIHByb2JsZW1zIGFuZCBjb25mdXNpb24gaW4gdGhl
-IHBhc3QuCj4KPiBUaGUgY2FsbHMgdG8ga2VybmVsX2ZwdV9iZWdpbigpIGFuZCBrZXJuZWxfZnB1
-X2VuZCgpIGFyZSBoaWRkZW4gYmVoaW5kCj4gdGhlIERDX0ZQX1NUQVJUKCkgYW5kIERDX0ZQX0VO
-RCgpIG1hY3JvcyB3aGljaCBhcmUgc3VwcG9zZWQgdG8gaGlkZSB0aGUKPiBhcmNoaXRlY3R1cmUg
-ZGVwZW5kIGhhbmRsaW5nIGZvciB4ODYgYW5kIFBQQzY0LgoKSG1tLi4uIGJ1dCBhcyBmYXIgYXMg
-SSBjYW4gdGVsbCwgeW91J3JlIHVzaW5nIHRob3NlIG1hY3JvcyBmcm9tIGluc2lkZQpmdW5jdGlv
-bnMgdGhhdCBhcmUgYWxyZWFkeSBjb21waWxlZCB3aXRoIHRoZSBGUFUgb246CgogLSBkcml2ZXJz
-L2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvY2FsY3MvZGNuX2NhbGNzLmMgdXNlcyB0aGUgbWFjcm9z
-LApidXQgaXMgYWxyZWFkeSBjb21waWxlZCB3aXRoIGNhbGNzX2NjZmxhZ3MKIC0gZHJpdmVycy9n
-cHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjbjIwL2RjbjIwX3Jlc291cmNlLmMgdXNlcyB0aGUKbWFj
-cm9zLCBidXQgaXMgYWxyZWFkeSBjb21waWxlZCB3aXRoICItbWhhcmQtZmxvYXQgLW1zc2UgLW1z
-c2UyIgogLSBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNuMjEvZGNuMjFfcmVzb3Vy
-Y2UuYyB1c2VzIHRoZQptYWNyb3MsIGJ1dCBpcyBhbHJlYWR5IGNvbXBpbGVkIHdpdGggIi1taGFy
-ZC1mbG9hdCAtbXNzZSAtbXNzZTIiCgpBRkFJSyBhcyBzb29uIGFzIHlvdSBlbnRlciBhbnkgZnVu
-Y3Rpb24gaW4gYW55IGZpbGUgY29tcGlsZWQgd2l0aCBGUFUKaW5zdHJ1Y3Rpb25zLCB5b3UgbWF5
-IGVuY291bnRlciBTU0UgaW5zdHJ1Y3Rpb25zLCBlLmcuIHZpYSB0aGluZ3MgbGlrZQpjb21waWxl
-ci1nZW5lcmF0ZWQgbWVtb3J5LXplcm9pbmcgY29kZSAtIG5vdCBqdXN0IHdoZW4geW91J3JlIGFj
-dHVhbGx5CnVzaW5nIGRvdWJsZXMgb3IgZmxvYXRzLgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2FtZC1nZngK
+"1382d6409891 drm/amd/display: Fix RV2 Variant Detection"
+introduces build error of:
+"use of undeclared identifier 'RENOIR_A0'"
+
+To fix the same, this patch re-orders the
+ASIC declarations accordingly.
+
+Signed-off-by: Shirish S <shirish.s@amd.com>
+---
+ drivers/gpu/drm/amd/display/include/dal_asic_id.h | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/include/dal_asic_id.h b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+index 8a87d0ed90ae..2359e88d6029 100644
+--- a/drivers/gpu/drm/amd/display/include/dal_asic_id.h
++++ b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+@@ -136,6 +136,7 @@
+ #define RAVEN2_A0 0x81
+ #define RAVEN1_F0 0xF0
+ #define RAVEN_UNKNOWN 0xFF
++#define RENOIR_A0 0x91
+ #ifndef ASICREV_IS_RAVEN
+ #define ASICREV_IS_RAVEN(eChipRev) ((eChipRev >= RAVEN_A0) && eChipRev < RAVEN_UNKNOWN)
+ #endif
+@@ -171,8 +172,6 @@ enum {
+ #define ASICREV_IS_NAVI10_P(eChipRev)        (eChipRev < NV_NAVI12_P_A0)
+ #define ASICREV_IS_NAVI12_P(eChipRev)        ((eChipRev >= NV_NAVI12_P_A0) && (eChipRev < NV_NAVI14_M_A0))
+ #define ASICREV_IS_NAVI14_M(eChipRev)        ((eChipRev >= NV_NAVI14_M_A0) && (eChipRev < NV_UNKNOWN))
+-#define RENOIR_A0 0x91
+-#define DEVICE_ID_RENOIR_1636 0x1636   // Renoir
+ #define ASICREV_IS_RENOIR(eChipRev) ((eChipRev >= RENOIR_A0) && (eChipRev < RAVEN1_F0))
+ 
+ /*
+@@ -183,6 +182,9 @@ enum {
+ #define DEVICE_ID_TEMASH_9839 0x9839
+ #define DEVICE_ID_TEMASH_983D 0x983D
+ 
++/* RENOIR */
++#define DEVICE_ID_RENOIR_1636 0x1636
++
+ /* Asic Family IDs for different asic family. */
+ #define FAMILY_CI 120 /* Sea Islands: Hawaii (P), Bonaire (M) */
+ #define FAMILY_KV 125 /* Fusion => Kaveri: Spectre, Spooky; Kabini: Kalindi */
+-- 
+2.17.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
