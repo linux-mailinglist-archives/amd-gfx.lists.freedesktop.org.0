@@ -2,54 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DAAD19BCA6
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Apr 2020 09:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8D419BB61
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Apr 2020 07:39:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2DC6E9E9;
-	Thu,  2 Apr 2020 07:26:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A88846E9C9;
+	Thu,  2 Apr 2020 05:39:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
- [IPv6:2a00:1450:4864:20::230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D66D56E109
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 02:35:20 +0000 (UTC)
-Received: by mail-lj1-x230.google.com with SMTP id 19so1587842ljj.7
- for <amd-gfx@lists.freedesktop.org>; Wed, 01 Apr 2020 19:35:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to:cc;
- bh=ce4+jt1QnAedyVF+O0B43RTY85VjYC1oRuPq2H/Wy7k=;
- b=A6wogXWb5tIgKQaMIGu+zexhgOwdF6lvWAZm6SmTGOJJnskmH/gBZkeLs280lc9mCO
- 76K5tHRHF4bNPBFY1Vw3xv/9kq5Dr5z498LI8cgExeQLhvzQx1m2F7QHYF4+dItfiqPC
- ECRlkqxZn7xuEYE0nqIxocSu12YOryDxx7NKkYYfx5xOoD2qPQsMG09WDVc0TQHDFAwe
- FoOp3yCdSi2sIKf8B95fjPdXWjsMhNsoPcv2TnpUkB9dote+qhBOl3SM4hrV0s3OsqhX
- gqlCnOtXyW93zxJkpnd1o7QcfHXxxDy3zwD2Doa4MmUyJV1LZeCgrJFBmMpEXVg0B+Fo
- 5HVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=ce4+jt1QnAedyVF+O0B43RTY85VjYC1oRuPq2H/Wy7k=;
- b=IU9Y73TguHSsEwjPs5vWJqoJacJSeOKQ8UA9Xh7na9048aLrHS4c94OW6MLQn+xFuU
- OLiRTOtGYWf4Md4KdAo4BIymbvchpqdgpWAY//vVUS9FB33JIPjPH63tPH+4nf4f4Lfr
- vwrO4aDfS1tCz9KV11EP8+Saep2G10/8Fploses15vPHBeT46pCwYH5V9E7THMogaI5i
- HXZsxMAfmNyvb/c9KBX7kSRZmUmFzqLW3JyMSfrHQNrYoGKE9C/52KDLEj3hG3aWvq3l
- +cNHlbISA1fTbV/2JiPC9dQdqUKwFEQwYNK/5HK+h5GZ6HqkqdsKm5Se3zoJt5e/Ln9V
- wkTg==
-X-Gm-Message-State: AGi0PuZwoh5DbkO3sQmfYDZJSJiSNshjVxHxzaIMAbDIHWleC+X5EY8r
- UswN2fVVFGInyetDVII/1dymbEzaEFkVyfxKjjJusA==
-X-Google-Smtp-Source: APiQypJpsCcfgA88Rqg61SjKw/yEVQICGOjzMNwDc7ZgAnbArwj2jd/Vav3GV4epq4pobOo308nYOYZ95TdiDSNZSBI=
-X-Received: by 2002:a2e:9247:: with SMTP id v7mr575345ljg.215.1585794918859;
- Wed, 01 Apr 2020 19:35:18 -0700 (PDT)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2060.outbound.protection.outlook.com [40.107.244.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5956B6E9C9
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Apr 2020 05:39:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZODEQqSZmmX86Smg+J6txEEAqiVj3Xe5ZuFNDwZMfTHsvzXk/1j54HlOCZf8JyKfvLkx8qjMv34qxlAjToRoUryhUZk9vMiFhY1C5q/yJ16l8ZVF9Rpz0T90w7ygCcfGRtFmi2Z3lK7QZPZD9tKEFObv8JW1s26t6CpZes+VvKNRE3X6myN5r2wJEuP5G7+u+ScSihThoVGx+SiP9kxEPyFyPU9c+GP2q3IjapwrFVIemdKfe+LcoZPacOLoOD8qWch53XCvStopmVF5nKcJp23Dlz8YiI34/wFlt5nDPxteUzcLnZSnmp16yiDXPKt2/nvDNV15NUzXYjuU4LLTLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tgLtZd7KbXhrPbF8kXkfupRkMPK1Id//GoBmsU9XJRU=;
+ b=nKEMGGnCHX6aC+PxO88qnZ+yuAbV3MLR2k3xX64kwirHJyZxNJl7X5NTty401++2uH6UKryS7M3lvrlmUAjq8Cto/pK6oek+y5EJODQrPVnPokIf/IV67foVSs/fljSe5qk55k7brxQTQsyaGIH+El1/pNVPobVob7OumLtNClux0qcpKhirWlemaLTbYLXDMDhoHH82UrTLt/e9dXbaQCnWDc7QByVr2oIobVbTbHyOYDOHIqtVtvYWNDY0cBnJqVBII6Du+YV76IuHjOwKkSPNPCe/iS21NHEVE8bpkTCXn3UQQMP6xrkKkCdXhkbyJRpgCQDesLHu69+TNKYvSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tgLtZd7KbXhrPbF8kXkfupRkMPK1Id//GoBmsU9XJRU=;
+ b=uNIGtUf81wb/mLRV2Tg93s4qmBmc1E/fqSFRMkmxIXK4vSmc+FBImnY8YGNny+9HMZDdgUhF4rtOs1G3Z5O3kl+wcxneOmNqZHIVQddF+3zFoXeaqpb60k22WQu9d4tRt2m2oG6oWOhz1xiTUbUeFEfSEpor09wyArYpuDKG3hg=
+Received: from MN2PR17CA0022.namprd17.prod.outlook.com (2603:10b6:208:15e::35)
+ by DM5PR12MB1419.namprd12.prod.outlook.com (2603:10b6:3:77::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.18; Thu, 2 Apr
+ 2020 05:39:49 +0000
+Received: from BN8NAM11FT046.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:208:15e:cafe::dd) by MN2PR17CA0022.outlook.office365.com
+ (2603:10b6:208:15e::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15 via Frontend
+ Transport; Thu, 2 Apr 2020 05:39:49 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT046.mail.protection.outlook.com (10.13.177.127) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2878.15 via Frontend Transport; Thu, 2 Apr 2020 05:39:49 +0000
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 2 Apr 2020
+ 00:39:48 -0500
+Received: from gamma.amd.com (10.180.168.240) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Thu, 2 Apr 2020 00:39:47 -0500
+From: Tiecheng Zhou <Tiecheng.Zhou@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd/powerplay: determine pm_en at amd_powerplay_create
+Date: Thu, 2 Apr 2020 13:39:34 +0800
+Message-ID: <20200402053934.28834-1-Tiecheng.Zhou@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-From: Jann Horn <jannh@google.com>
-Date: Thu, 2 Apr 2020 04:34:52 +0200
-Message-ID: <CAG48ez2Sx4ELkM94aD_h_J7K7KBOeuGmvZLKRkg3n_f2WoZ_cg@mail.gmail.com>
-Subject: AMD DC graphics display code enables -mhard-float, -msse, -msse2
- without any visible FPU state protection
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- "David (ChunMing) Zhou" <David1.Zhou@amd.com>
-X-Mailman-Approved-At: Thu, 02 Apr 2020 07:26:17 +0000
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(39860400002)(136003)(346002)(376002)(396003)(428003)(46966005)(26005)(186003)(6916009)(5660300002)(2906002)(426003)(478600001)(7696005)(70206006)(82740400003)(336012)(2616005)(70586007)(47076004)(8676002)(86362001)(1076003)(36756003)(316002)(4326008)(6666004)(81156014)(356004)(8936002)(81166006);
+ DIR:OUT; SFP:1101; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d970ec9f-e030-45f1-989c-08d7d6c842a8
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1419:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1419A8BF286F96C12D67069BE4C60@DM5PR12MB1419.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1824;
+X-Forefront-PRVS: 0361212EA8
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7fQvl0W4t9qIemKxXqvSVjrOOG3GKBnXmcuBuu7pUG7N0ZqWsT6GmaHGOFpaW7iIH8H6CCrm/6QW63TRymxWo3vaujwSPY/WwN6wLXi86fv0+ByI0XbfT+f/lhpkkoXRGDIq85Pj1/WogIbWfsWz6Rr15yjICXbUwp0MsUlwYObE2sWsLQ24zxBWGiV2YcFxjJ6fzB9/TVMRP15gVCujkZRDxhlI39sEaKZCyWyq1sHCSibmov7YtUdS2D2MW5nld65RpwibKmHWqA73ZkZ6UQ1pSvq5LOsNKYqE12SJn5r2FBm1HlzhXWNBY9HCrUeEsIR1EbzSfxd0xG30iYvITDTM39JAoRyb6vs23GRuvhx4YwoSdU2mQqz4rxoPtWxhzxi1aO5ZMXjd0vTlk1+c5u3ft+V80GEYzYheQPqhoVexTFZQrts3U0sNGz9bjkFubJkME2SEbjCJZd+9rnwGtYNOFgrYH9APdrQ2OXBi/rHcILPU3F+vH4EU9WYq6Nfn5yeIzNKueKRn6Yg3dBs2oA==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2020 05:39:49.5933 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d970ec9f-e030-45f1-989c-08d7d6c842a8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1419
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,39 +98,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Josh Poimboeuf <jpoimboe@redhat.com>,
- the arch/x86 maintainers <x86@kernel.org>,
- kernel list <linux-kernel@vger.kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Andy Lutomirski <luto@kernel.org>,
- "H. Peter Anvin" <hpa@zytor.com>, Thomas Gleixner <tglx@linutronix.de>
+Cc: Tiecheng.Zhou@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[x86 folks in CC so that they can chime in on the precise rules for this stuff]
+Need to determine pm_en at amd_powerplay_create of early_init stage.
 
-Hi!
+Signed-off-by: Tiecheng Zhou <Tiecheng.Zhou@amd.com>
+---
+ drivers/gpu/drm/amd/powerplay/amd_powerplay.c | 3 +++
+ drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c   | 3 ---
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-I noticed that several makefiles under drivers/gpu/drm/amd/display/dc/
-turn on floating-point instructions in the compiler flags
-(-mhard-float, -msse and -msse2) in order to make the "float" and
-"double" types usable from C code without requiring helper functions.
+diff --git a/drivers/gpu/drm/amd/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/powerplay/amd_powerplay.c
+index 71b843f542d8..a37dc37dfe49 100644
+--- a/drivers/gpu/drm/amd/powerplay/amd_powerplay.c
++++ b/drivers/gpu/drm/amd/powerplay/amd_powerplay.c
+@@ -48,6 +48,9 @@ static int amd_powerplay_create(struct amdgpu_device *adev)
+ 
+ 	hwmgr->adev = adev;
+ 	hwmgr->not_vf = !amdgpu_sriov_vf(adev);
++	hwmgr->pp_one_vf = amdgpu_sriov_is_pp_one_vf(adev);
++	hwmgr->pm_en = (amdgpu_dpm && (hwmgr->not_vf || hwmgr->pp_one_vf))
++				? true : false;
+ 	hwmgr->device = amdgpu_cgs_create_device(adev);
+ 	mutex_init(&hwmgr->smu_lock);
+ 	mutex_init(&hwmgr->msg_lock);
+diff --git a/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c b/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c
+index f48fdc7f0382..7aee382fc1f9 100644
+--- a/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c
++++ b/drivers/gpu/drm/amd/powerplay/hwmgr/hwmgr.c
+@@ -221,9 +221,6 @@ int hwmgr_hw_init(struct pp_hwmgr *hwmgr)
+ {
+ 	int ret = 0;
+ 
+-	hwmgr->pp_one_vf = amdgpu_sriov_is_pp_one_vf((struct amdgpu_device *)hwmgr->adev);
+-	hwmgr->pm_en = (amdgpu_dpm && (hwmgr->not_vf || hwmgr->pp_one_vf))
+-			? true : false;
+ 	if (!hwmgr->pm_en)
+ 		return 0;
+ 
+-- 
+2.17.1
 
-However, as far as I know, code running in normal kernel context isn't
-allowed to use floating-point registers without special protection
-using helpers like kernel_fpu_begin() and kernel_fpu_end() (which also
-require that the protected code never blocks). If you violate that
-rule, that can lead to various issues - among other things, I think
-the kernel will clobber userspace FPU register state, and I think the
-kernel code can blow up if a context switch happens at the wrong time,
-since in-kernel task switches don't preserve FPU state.
-
-Is there some hidden trick I'm missing that makes it okay to use FPU
-registers here?
-
-I would try testing this, but unfortunately none of the AMD devices I
-have here have the appropriate graphics hardware...
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
