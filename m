@@ -1,53 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9BF619D984
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Apr 2020 16:53:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9499919D9FA
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Apr 2020 17:21:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2A16EBFF;
-	Fri,  3 Apr 2020 14:53:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CB706E159;
+	Fri,  3 Apr 2020 15:21:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E4B46EBFF
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 14:53:42 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id h9so8876980wrc.8
- for <amd-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 07:53:42 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2A06E159
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 15:21:50 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id d77so7550784wmd.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 08:21:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=i/qT8CiO//53Z0QVFUU96GpaG0f3S+Zkj08FnU/ETC4=;
- b=eSLQR5zKEKCw+ScWWUvqMlu103pbZoqM2N/ggCjUnnoBPzu/oxCg5SPvttHnCn5HPj
- I0+7oc3ZzjTyN6kowUFOXgGmIKa8Kp7GO8YHEPvfBXl6ySIcbUsUvDmVFRTkjlz7EIKT
- +pa1KBw36rbMPxUGZSMd3XEGcKhZZYLzXSMI6hMkXm+CrkBDov2zfUOsNXfNePDTXvM/
- AS8egr+wmx41yymyIfESbTNbMkDikxb+RGe2tZ8YzWsFxPt8wYcKHvNPAJnofywWIuQz
- dpHvcUkIMJFErLOxoJv9sveUS1BlI9DzYxCLtcc6R3tDmqm/Jk70QaC2o6XFkN4eGq0Q
- Zxug==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=EfXCOuTLg1+MluS/N/oSWoIlYQttdhidQaMCI2QdZrE=;
+ b=QQmrV83s9Ddz8Q1SdmQP76ctDYo8k2g3AYeSLQVW2X+gMPJWZ/NaL9s0DlWhA5nE+V
+ aW6r6pWmilmqQu0JRJ3rRk7BpCXLKZILqG9lf7/w36OR8WKAA3fAGC3YDa5dPOsOkaa8
+ Yx1qxONGWexOhnsgTMiEVA7iPL9dfEzkwjxtnd5ejOjUKPlqNlZk/5b4bcWw9TWxircd
+ 8lwnwnFoJrJNfS2NoTqs7jjT7K4IbCVVt6nlIbPiipgihP4ICcJkya+GzqYorSN1pWLP
+ x3RnP1OAN5SB3fOBcAuGw3Y/UfAi+ktBPe7Adm5aHM3iT8mR6KwJxWO4hktPtkB97kbv
+ jypA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=i/qT8CiO//53Z0QVFUU96GpaG0f3S+Zkj08FnU/ETC4=;
- b=a2IFMQ8iZfMr7EG0ymK2Jg5rWwYaD6T9wpXOQi1yHCl/019zPJhy1yA995AIVKdfLl
- RgSbfgYibHLYDf0ar5AskL7OU/2Ra57FZpOPJZlMFnmj4jFDjMkggHXlZls6tyN79ppY
- K0PFoJK0+1qK0by46oJu2Ry654mOOOi2nFBSh544rIREWt+IgH7l+4CDtChQupmJsugP
- ByovLCVD3ddBjiIHsr/mXF9EVXpLENP9Rq5E1UHt8XKnXfb+jHD12oQC1b0bLrzo/ZX5
- EXi5WEKIKMRQ9TsyDqNJbKM1g1Ezbhd6p52qa/2xDN0WJPelKcrF7TYFYQLCXFJdiIwm
- Cgpg==
-X-Gm-Message-State: AGi0PuZ0rT8HntfkKl4s/qr4k15mSUS0Bw5kvGR9chPh23377/uJ2ZeH
- xMfA3x3ByJsAZUeiXJy1xAvsTwtzUIArk5yTzyivGmNH
-X-Google-Smtp-Source: APiQypIWA7hjdIfGvSputoq7MxvMdjEtgfrBwp1v46sUz0bPNkHPw7DZkxf/glcSb9Vee7PS8Hs7YMQT7A0HHfDc+DM=
-X-Received: by 2002:adf:f50d:: with SMTP id q13mr9694655wro.374.1585925620801; 
- Fri, 03 Apr 2020 07:53:40 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=EfXCOuTLg1+MluS/N/oSWoIlYQttdhidQaMCI2QdZrE=;
+ b=ReOZK7i2hnQ2aHb1h805ITAr3dYiJSwMBdGhbOkMMIBZwHsHBMQSOAiyUe3ioa9axi
+ LGpidZwGckTW6Beg5pu60rGNDqEcQ6o8A0QGzPVc7VZ4Mj1wcGRRl6THbV1cFF5Vq0Nz
+ PKZyvkoiMA8svK197XkSW3I/iXgMxhLV9xbfjqLXNb6TO5tuwXmdkKCO6YTCHKvxSHDc
+ fFXHmfiAnhl4ZzaABGmeArOwW2lm24lpcMTmQxt9ZEdccPaeA7P1qRNZPzvBroKkOLni
+ SPk+YelxNpOSG3r0eJBN/bCTOh/9Fp4JKOjLCf76IqeoSLxEiyB+9aDD+S5pKOgr3nX0
+ aLGA==
+X-Gm-Message-State: AGi0PuZb9su6RK0nOVHKl8PHtJ68rAZ0LBrYvfg+8P6P8ek3NhgkBPIE
+ wy6JgLOpg9XDJroYntcQF3ojwKQq
+X-Google-Smtp-Source: APiQypIPrjAad39CGK1eJ0HKXBU102/a00qb3dl82pUhVjr21GtGrwa9JYzEibimcMjEntxx5dFhUA==
+X-Received: by 2002:a1c:2d10:: with SMTP id t16mr6503026wmt.155.1585927308362; 
+ Fri, 03 Apr 2020 08:21:48 -0700 (PDT)
+Received: from abel.fritz.box ([2a02:908:1252:fb60:7478:da75:f9d6:e948])
+ by smtp.gmail.com with ESMTPSA id 138sm11774900wmb.21.2020.04.03.08.21.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 Apr 2020 08:21:47 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: fix size calculation in amdgpu_ttm_copy_mem_to_mem
+Date: Fri,  3 Apr 2020 17:21:47 +0200
+Message-Id: <20200403152147.1485-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20200403052948.23664-1-tianci.yin@amd.com>
-In-Reply-To: <20200403052948.23664-1-tianci.yin@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 3 Apr 2020 10:53:29 -0400
-Message-ID: <CADnq5_OF=MFbH5uqKGzCkL_oWuDUhQdv4QJh6spSdy9TLqhWpw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: add SPM golden settings for Navi10
-To: Tianci Yin <tianci.yin@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,77 +65,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Deucher Alexander <Alexander.Deucher@amd.com>,
- Feifei Xu <Feifei.Xu@amd.com>, Hesik Christopher <Christopher.Hesik@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Hawking Zhang <Hawking.Zhang@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Felix.Kuehling@amd.com, Candice.Li@amd.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 3, 2020 at 1:30 AM Tianci Yin <tianci.yin@amd.com> wrote:
->
-> From: "Tianci.Yin" <tianci.yin@amd.com>
->
-> Add RLC_SPM golden settings
->
-> Change-Id: I616e127171293d915cb3a05dee02f51cec8d8f6f
-> Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c        |    9 +
->  .../gpu/drm/amd/amdgpu/golden_gc_spm_10_1_0.h | 1058 +++++++++++++++++
->  2 files changed, 1067 insertions(+)
->  create mode 100644 drivers/gpu/drm/amd/amdgpu/golden_gc_spm_10_1_0.h
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> index 70edbbf84338..7c96a894ad37 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -48,6 +48,7 @@
->  #include "v10_structs.h"
->  #include "gfx_v10_0.h"
->  #include "nbio_v2_3.h"
-> +#include "golden_gc_spm_10_1_0.h"
-
-Can we just include the table directly in this file instead of a
-separate header?  One more comment below.
-
->
->  /**
->   * Navi10 has two graphic rings to share each graphic pipe.
-> @@ -138,6 +139,11 @@ static const struct soc15_reg_golden golden_settings_gc_10_0_nv10[] =
->         /* Pending on emulation bring up */
->  };
->
-> +static const struct soc15_reg_golden golden_settings_gc_rlc_spm_10_0_nv10[] =
-> +{
-> +       GOLDEN_GC_SPM_10_1_0
-> +};
-> +
->  static const struct soc15_reg_golden golden_settings_gc_10_1_1[] =
->  {
->         SOC15_REG_GOLDEN_VALUE(GC, 0, mmCB_HW_CONTROL_4, 0xffffffff, 0x003c0014),
-> @@ -388,6 +394,9 @@ static void gfx_v10_0_init_golden_registers(struct amdgpu_device *adev)
->                 soc15_program_register_sequence(adev,
->                                                 golden_settings_gc_10_0_nv10,
->                                                 (const u32)ARRAY_SIZE(golden_settings_gc_10_0_nv10));
-> +               soc15_program_register_sequence(adev,
-> +                                               golden_settings_gc_rlc_spm_10_0_nv10,
-> +                                               (const u32)ARRAY_SIZE(golden_settings_gc_rlc_spm_10_0_nv10));
->                 break;
->         case CHIP_NAVI14:
->                 soc15_program_register_sequence(adev,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/golden_gc_spm_10_1_0.h b/drivers/gpu/drm/amd/amdgpu/golden_gc_spm_10_1_0.h
-> new file mode 100644
-> index 000000000000..e65af4a6fcdd
-> --- /dev/null
-> +++ b/drivers/gpu/drm/amd/amdgpu/golden_gc_spm_10_1_0.h
-
-This file is missing a license.
-
-Alex
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+V2hlbiB0aGUgbm9kZSBpcyBsYXJnZXIgdGhhbiA0R0Igd2Ugb3ZlcnJ1biB0aGUgc2l6ZSBjYWxj
+dWxhdGlvbi4KCkZpeCB0aGlzIGJ5IGNvcnJlY3RseSBsaW1pdGluZyB0aGUgc2l6ZSB0byB0aGUg
+d2luZG93IGFzIHdlbGwuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3Rp
+YW4ua29lbmlnQGFtZC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+X3R0bS5jIHwgNiArKystLS0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVs
+ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+X3R0bS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3R0bS5jCmluZGV4IDAy
+OWI2NjFmYWVmNi4uMWI2NThlOTA1NjIwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9hbWRncHVfdHRtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X3R0bS5jCkBAIC00NTQsOSArNDU0LDkgQEAgaW50IGFtZGdwdV90dG1fY29weV9tZW1fdG9f
+bWVtKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LAogCQkvKiBDb3B5IHNpemUgY2Fubm90IGV4
+Y2VlZCBHVFRfTUFYX0JZVEVTLiBTbyBpZiBzcmMgb3IgZHN0CiAJCSAqIGJlZ2lucyBhdCBhbiBv
+ZmZzZXQsIHRoZW4gYWRqdXN0IHRoZSBzaXplIGFjY29yZGluZ2x5CiAJCSAqLwotCQljdXJfc2l6
+ZSA9IG1pbjMoc3JjX25vZGVfc2l6ZSwgZHN0X25vZGVfc2l6ZSwgc2l6ZSk7Ci0JCWN1cl9zaXpl
+ID0gbWluKEdUVF9NQVhfQllURVMgLSBzcmNfcGFnZV9vZmZzZXQsIGN1cl9zaXplKTsKLQkJY3Vy
+X3NpemUgPSBtaW4oR1RUX01BWF9CWVRFUyAtIGRzdF9wYWdlX29mZnNldCwgY3VyX3NpemUpOwor
+CQljdXJfc2l6ZSA9IG1heChzcmNfcGFnZV9vZmZzZXQsIGRzdF9wYWdlX29mZnNldCk7CisJCWN1
+cl9zaXplID0gbWluKG1pbjMoc3JjX25vZGVfc2l6ZSwgZHN0X25vZGVfc2l6ZSwgc2l6ZSksCisJ
+CQkgICAgICAgKHVpbnQ2NF90KShHVFRfTUFYX0JZVEVTIC0gY3VyX3NpemUpKTsKIAogCQkvKiBN
+YXAgc3JjIHRvIHdpbmRvdyAwIGFuZCBkc3QgdG8gd2luZG93IDEuICovCiAJCXIgPSBhbWRncHVf
+dHRtX21hcF9idWZmZXIoc3JjLT5ibywgc3JjLT5tZW0sIHNyY19tbSwKLS0gCjIuMTcuMQoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWls
+aW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
