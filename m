@@ -2,55 +2,116 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA64519E039
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Apr 2020 23:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B36419EBC6
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 15:54:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B633E6ECAE;
-	Fri,  3 Apr 2020 21:16:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF5396E291;
+	Sun,  5 Apr 2020 13:54:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C84456ECAE
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 21:16:43 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id d77so8602984wmd.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 03 Apr 2020 14:16:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=f/2NJ9TllPCgydq0YObvtRRJQ0xbAWsV8tzwtD+2Ais=;
- b=ASm/hNs9auJ4dDG/+uHYkjPinPn1dJeDH/8nsdsH1D5YGo8lGh+8PN95dRCfdcBTif
- JpxRfcglcr1PAT5iO1tNFIAOTTD36oSfNDWK8UOo6CSXhNgAFs1BA4DRlV4w56GzA5l1
- 2O0guQy32OJWauWkfkL8Y8v9nSN0q6TWU4/OBpecSdzBkHG1Lqnf3cZKLYoRMJIlDtoL
- 8TUcJPRqazoxpQaotNjmOCHHoD5/pFNdWl2x6p5OXdUhVP3CIS/ugwP1eyCV9D6MNhNR
- UI4K20qR2p+9bezMGBDvoM11cgx11U3+A7aYLpPdwa/AolmVyGi+wGqldpjO32sFToQ8
- DXGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=f/2NJ9TllPCgydq0YObvtRRJQ0xbAWsV8tzwtD+2Ais=;
- b=n7lAHqBhLjzBn4Tsf1c0jcW4dKTuMF9UIJvr2lNRUkGmqNJ0G0J2FZ3MWLzLTkOn5n
- ueOPdyGN9aIxJM0sjgNNuFppjAWhPv/nbM8uGBuGyoawfr2Kk4wGBfWh8MjZTTrzXxvP
- quJz3K0QUfxA/ZsSHCa0IzdVc1zvqFbbScVQJT7E/mIdn/agkuG7SdOX4R4CwQM6vUP9
- X9jI7aupUOvpgL2QZwnPj/1oxd0zwowOEmU1dZCddDl0SFft4k+io1wqzHcFTbY2hTb2
- /2pfCSOxuZAvopnN/00SeOaZgvVtr5WNK3ELedjG/LUqBT0ofjEdrGDQInjVPKqzBEWc
- K9Pg==
-X-Gm-Message-State: AGi0PuYIuFYHH79gGaBOodTjLQNVNlWh943HwZyFc60aJkUypriGmR5H
- zODPisiw+DCpP6T5zwzk/ZUc5gim8qsUfxZOd3STyg==
-X-Google-Smtp-Source: APiQypKXQOOFq1zna/kWs/ZHYZi57/XSP4bDdd6+g+QUiMo3oO+MU435onrOA0HRm+T3x8g6SOU8KCi9ZIGKLSJzKnM=
-X-Received: by 2002:a1c:2842:: with SMTP id o63mr10535638wmo.73.1585948602463; 
- Fri, 03 Apr 2020 14:16:42 -0700 (PDT)
+X-Greylist: delayed 2846 seconds by postgrey-1.36 at gabe;
+ Fri, 03 Apr 2020 23:24:43 UTC
+Received: from mx0a-00082601.pphosted.com (mx0a-00082601.pphosted.com
+ [67.231.145.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8FF6ECC1
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 23:24:43 +0000 (UTC)
+Received: from pps.filterd (m0109333.ppops.net [127.0.0.1])
+ by mx0a-00082601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 033MV5Ab022207; Fri, 3 Apr 2020 15:37:13 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com;
+ h=date : from : to : cc :
+ subject : message-id : references : content-type : in-reply-to :
+ mime-version; s=facebook; bh=orVTRiVunI3muYjWiUhSjohyYMfn4ykT064MFswaZ7k=;
+ b=pIsRWgso+tw0W/eVTxNm9b+Y8ztUl78s8dkeZlQ4Szknny2Cv8W+Wcibm9Fh3CAww57n
+ 0nrs9mh2KN2Taey07JRKjgfXegpuzjx35WbEeSsQbmxMkq3VWPa8iv6uKFnb4b1yEZV8
+ NwK8TGkqqnOtu1D5WyEvUxtHv/riI7EvDt8= 
+Received: from maileast.thefacebook.com ([163.114.130.16])
+ by mx0a-00082601.pphosted.com with ESMTP id 30671528nq-2
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+ Fri, 03 Apr 2020 15:37:12 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (100.104.31.183)
+ by o365-in.thefacebook.com (100.104.35.175) with Microsoft SMTP
+ Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1847.3; Fri, 3 Apr 2020 15:37:10 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IojIATX1K9TXVV2LCBvB4ykFawUrS7+FrxMne4Ys9643vdo8LiLbKM8YiFgCCN3Dri0KISudhsjqm/MdpRuez0W3A/Ft1Wka/1+jyNnIaCHIDRoCbaiJE3zEviQO6I1HFtszETBY7qA0gNElTQzQbuL9Yr+3mwPTR2w1Z7RvLcKYvSMrnGk9pH2qXQ8Hq73L14rYfbT5Yyjxop9EmFbXBs6PJsPzOinAAmMHNRSB80qguhf/b57Bb91nuf51B4dKeCWHoKOx9xC3RvPBG/UQ5h9fVQqElEQK+VVmU4/9za1PQ7aJHsFiBdemW4CS2tAulAqj+oByeeUCWhKcEZGjHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=orVTRiVunI3muYjWiUhSjohyYMfn4ykT064MFswaZ7k=;
+ b=DWE8snAEMH+yxy/+L+8CUyBTyGm9NgmyvNG3ZWDa83tLgSC8Ec/7pAyMklD7fNuYYWFxxLqYX6QOv5oF3T51sdY1Le//3W9RhFZDLcbrpp8dZheyjADGstZ7xMaUmIPa6NkYaXRhp2m41Zmi9y88KrZjoovRxj7ORg9AWoofEs1FKE1zaONGmBJm5M5lkaaqXO5rN05pYz4KqaGDBlBoaSv4oovi4BN5SfInCn3OETN0OP6ThpGMQSYb8ELSUiZJDPZO6M7Og5XsB5KJgSj8He4VD/jh9tviDGvLk9FIQhpWYuDkF7P+F1vU5kmUGxMBDtpJoUEJ95elCbJU+RXJPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fb.com; dmarc=pass action=none header.from=fb.com; dkim=pass
+ header.d=fb.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.onmicrosoft.com;
+ s=selector2-fb-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=orVTRiVunI3muYjWiUhSjohyYMfn4ykT064MFswaZ7k=;
+ b=AeFC5HydC2rMv/8IRToJj53O1u6zL1hRNZ5Z90MgzjxX/9X3am84SvdSzd/3tAWPXgcdNTUrF9lWCbCtm7fcBUIunjMNTrgF0WZXEIx908nFYRcHJlCKL/XSd2C/MPbE0fhtMjxZAxOFpKCXwsVYTOG+xUCZNtFX+uamQCr1J04=
+Received: from BYAPR15MB4136.namprd15.prod.outlook.com (20.177.229.24) by
+ BYAPR15MB2887.namprd15.prod.outlook.com (20.178.237.209) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2878.19; Fri, 3 Apr 2020 22:37:09 +0000
+Received: from BYAPR15MB4136.namprd15.prod.outlook.com
+ ([fe80::bdf9:6577:1d2a:a275]) by BYAPR15MB4136.namprd15.prod.outlook.com
+ ([fe80::bdf9:6577:1d2a:a275%7]) with mapi id 15.20.2856.019; Fri, 3 Apr 2020
+ 22:37:09 +0000
+Date: Fri, 3 Apr 2020 15:37:04 -0700
+From: Roman Gushchin <guro@fb.com>
+To: Odin Ugedal <odin@ugedal.com>
+Subject: Re: [PATCH] device_cgroup: Cleanup cgroup eBPF device filter code
+Message-ID: <20200403223704.GA306670@carbon.dhcp.thefacebook.com>
+References: <20200403175528.225990-1-odin@ugedal.com>
+Content-Disposition: inline
+In-Reply-To: <20200403175528.225990-1-odin@ugedal.com>
+X-ClientProxiedBy: CO2PR04CA0152.namprd04.prod.outlook.com (2603:10b6:104::30)
+ To BYAPR15MB4136.namprd15.prod.outlook.com
+ (2603:10b6:a03:96::24)
 MIME-Version: 1.0
-References: <20200403170856.7397-1-kent.russell@amd.com>
- <CADnq5_NfjqeS0AaEom0sTMjs2cD8kzcaw3ZxXMVg8Er-f8676w@mail.gmail.com>
- <DM6PR12MB3721A86D7E52F644CC97860E85C70@DM6PR12MB3721.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB3721A86D7E52F644CC97860E85C70@DM6PR12MB3721.namprd12.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 3 Apr 2020 17:16:31 -0400
-Message-ID: <CADnq5_OOCm676Zh8tS_Yo9PpNTSwnTo_mB+Z+A8oApxWqq13-Q@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Re-enable FRU check for most models v3
-To: "Russell, Kent" <Kent.Russell@amd.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from carbon.dhcp.thefacebook.com (2620:10d:c090:400::5:71d6) by
+ CO2PR04CA0152.namprd04.prod.outlook.com (2603:10b6:104::30) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2878.15 via Frontend Transport; Fri, 3 Apr 2020 22:37:08 +0000
+X-Originating-IP: [2620:10d:c090:400::5:71d6]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: dd6d0a80-23b9-4f07-37d7-08d7d81f8b5e
+X-MS-TrafficTypeDiagnostic: BYAPR15MB2887:
+X-Microsoft-Antispam-PRVS: <BYAPR15MB2887E8AD37FE718C555ACEE1BEC70@BYAPR15MB2887.namprd15.prod.outlook.com>
+X-FB-Source: Internal
+X-MS-Oob-TLC-OOBClassifiers: OLM:1227;
+X-Forefront-PRVS: 0362BF9FDB
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR15MB4136.namprd15.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10019020)(366004)(346002)(136003)(376002)(39860400002)(396003)(81166006)(478600001)(66946007)(86362001)(6916009)(52116002)(6506007)(2906002)(7696005)(66476007)(66556008)(316002)(81156014)(55016002)(5660300002)(4326008)(9686003)(6666004)(186003)(8936002)(8676002)(33656002)(16526019)(1076003)(4744005);
+ DIR:OUT; SFP:1102; 
+Received-SPF: None (protection.outlook.com: fb.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: I2gzfofFl/6VmFzQlEgVA+ey0W7Zn3/ie8CrZlVOPtZDO6GS3UttuWLpM6g8XNzGAEyswiI70KpYq/6rXGobWpbeh/GjoCTCryWGTnkxRQtWcbQrkpUIbiKtFGMVizOIVtJjd2AbzVpBJOroqVtHuBpHXFi+8o/X4P3noJv57jgYte0eyjY3jCAguGJOxAilP5PSps/OqbEaYHiTP9s35JU+fbMlSp5Ov8vdVdkZgZyjAz46QEVzOQ/8lIzgae6yF77WY7IZ+uS6ZkNTqpCy4O5+XIMBHkq35YjGOvcQdDA1csIFnCzKz+DBDGJlxiIOenhPooktK/2l08LXoYkhHvFK+xwjNpaRSVzQcf091SQuT/LjuwN88rlQRaXqelv51LPz0A9e4TFJjXCXZbQE0AfztNfEfr1nEjVlKfhb9P7uY71x6pgSI2dW3U0ui7oh
+X-MS-Exchange-AntiSpam-MessageData: zPnNOeLuXvygXAsutdLup0oQbXCvwQHRi8I+CeC7lFFgLmD779VOeXOikCX7S+nVCT7K3vRgRSV5fQ9qHF7jWqrpee1h0suG+DiPpH4t4RJ+SlgaRnUMAnIFe12QMgL3tuGpY9TwNsGnY9SclMHVkOPJsIcKjdzXiCv0/NPqRKPcBjN8VqR30x3S1g8//t7Y
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd6d0a80-23b9-4f07-37d7-08d7d81f8b5e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2020 22:37:09.2076 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ae927fe-1255-47a7-a2af-5f3a069daaa2
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: B7jJ36HbcgBEBVnE9nVGIG/eySBgjBIu15HNpzPHEseQ1d3+sI0hWOJ0sAYUgquR
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR15MB2887
+X-OriginatorOrg: fb.com
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138, 18.0.676
+ definitions=2020-04-03_19:2020-04-03,
+ 2020-04-03 signatures=0
+X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0
+ mlxlogscore=953
+ spamscore=0 clxscore=1011 phishscore=0 mlxscore=0 impostorscore=0
+ adultscore=0 lowpriorityscore=0 suspectscore=1 malwarescore=0
+ priorityscore=1501 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2003020000 definitions=main-2004030173
+X-FB-Internal: deliver
+X-Mailman-Approved-At: Sun, 05 Apr 2020 13:54:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,113 +123,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: Harish.Kasiviswanathan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-security-module@vger.kernel.org,
+ tj@kernel.org, bpf@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 3, 2020 at 5:02 PM Russell, Kent <Kent.Russell@amd.com> wrote:
->
-> [AMD Official Use Only - Internal Distribution Only]
->
-> > -----Original Message-----
-> > From: Alex Deucher <alexdeucher@gmail.com>
-> > Sent: Friday, April 3, 2020 4:51 PM
-> > To: Russell, Kent <Kent.Russell@amd.com>
-> > Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
-> > Subject: Re: [PATCH] drm/amdgpu: Re-enable FRU check for most models v3
-> >
-> > On Fri, Apr 3, 2020 at 1:09 PM Kent Russell <kent.russell@amd.com> wrote:
-> > >
-> > > There are 2 VG20 SKUs that do not have the FRU on there, and trying to
-> > > read that will cause a hang. For now, check for the gaming SKU until a
-> > > proper fix can be implemented. This re-enables serial number reporting
-> > > for server cards
-> > >
-> > > v2: Add ASIC check
-> > > v3: Don't default to true for pre-VG10
-> > >
-> > > Signed-off-by: Kent Russell <kent.russell@amd.com>
-> > > ---
-> > >  .../gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c    | 22
-> > +++++++++++++++++--
-> > >  1 file changed, 20 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
-> > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
-> > > index bfe4259f9508..508906177cad 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
-> > > @@ -31,9 +31,27 @@
-> > >
-> > >  bool is_fru_eeprom_supported(struct amdgpu_device *adev)  {
-> > > -       /* TODO: Resolve supported ASIC type */
-> > > +       struct atom_context *atom_ctx = adev->mode_info.atom_context;
-> > >
-> > > -       return false;
-> > > +       if (!atom_ctx)
-> > > +               return false;
-> > > +
-> > > +       /* TODO: Gaming SKUs don't have the FRU EEPROM.
-> > > +        * Use this to address hangs on modprobe on gaming SKUs
-> > > +        * until a proper solution can be implemented
-> > > +        */
-> > > +       switch (adev->asic_type) {
-> > > +       case CHIP_VEGA20:
-> > > +               if (strnstr(atom_ctx->vbios_version, "D360",
-> > > +                               sizeof(atom_ctx->vbios_version)))
-> > > +                       return false;
-> >
-> > Most skus are separated by pci revision ids.  Maybe it would be more
-> > reliable to check that than a vbios string?
-> I can look into that. This was really meant as a temporary workaround until we found the right way to poll the card altogether. I lifted this from John Clements' patch to isolate the D342 variant of Arcturus due to that whole EEPROM addressing thing. I'll see if I can find the revision IDs for those and see if they can be used instead. Maybe I can use that for John's D342 check as well.
+On Fri, Apr 03, 2020 at 07:55:28PM +0200, Odin Ugedal wrote:
+> Original cgroup v2 eBPF code for filtering device access made it
+> possible to compile with CONFIG_CGROUP_DEVICE=n and still use the eBPF
+> filtering. Change 
+> commit 4b7d4d453fc4 ("device_cgroup: Export devcgroup_check_permission")
+> reverted this, making it required to set it to y.
+> 
+> Since the device filtering (and all the docs) for cgroup v2 is no longer
+> a "device controller" like it was in v1, someone might compile their
+> kernel with CONFIG_CGROUP_DEVICE=n. Then (for linux 5.5+) the eBPF
+> filter will not be invoked, and all processes will be allowed access
+> to all devices, no matter what the eBPF filter says.
+> 
+> Signed-off-by: Odin Ugedal <odin@ugedal.com>
 
-In that case, we have two of the same sku, but with different EEPROM
-chips, so the vbios version was the only thing we could use to
-differentiate.  Really the EEPROM stuff should live in a vbios table
-so we can query it.  For the pci revision id, in most cases there are
-different revision ids for each sku.  There are generally more client
-skus than server skus, so it's probably best to match on the server
-sku and return true in that case.  I think the same logic also makes
-sense if you end up having to use the vbios version (i.e., reverse the
-current logic in this hunk of the patch).  I'd prefer to match the
-vbios version of the server skus and return true for them and false
-for everything else because I'm not sure what the vbios string will be
-on AIB boards.  The DXXX naming is an AMD thing as far I know.
+Hello, Odin!
 
-Alex
+The patch makes perfect sense to me.
 
->
->
-> >
-> > Alex
-> >
-> >
-> > > +               return true;
-> > > +       case CHIP_ARCTURUS:
-> > > +               /* There are no gaming Arcturus SKUs */
-> > > +               return true;
-> > > +       default:
-> > > +               return false;
-> > > +       }
-> > >  }
-> > >
-> > >  int amdgpu_fru_read_eeprom(struct amdgpu_device *adev, uint32_t
-> > addrptr,
-> > > --
-> > > 2.17.1
-> > >
-> > > _______________________________________________
-> > > amd-gfx mailing list
-> > > amd-gfx@lists.freedesktop.org
-> > >
-> > https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.fr
-> > eedesktop.org%2Fmailman%2Flistinfo%2Famd-
-> > gfx&amp;data=02%7C01%7Ckent.russell%40amd.com%7Cd1d72c89825549c6f
-> > 06e08d7d810c83e%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6
-> > 37215438899199940&amp;sdata=BnHE%2BT8D0j%2BHKD7s9J%2BXePsSYcXLG
-> > bEYkmawDv3GNbw%3D&amp;reserved=0
+Acked-by: Roman Gushchin <guro@fb.com>
+
+Thanks!
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
