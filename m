@@ -1,35 +1,89 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C9119D9F3
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Apr 2020 17:18:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 747D519D95A
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Apr 2020 16:43:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB08C6E159;
-	Fri,  3 Apr 2020 15:18:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4613C6E14F;
+	Fri,  3 Apr 2020 14:43:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4F566EBFB;
- Fri,  3 Apr 2020 14:35:49 +0000 (UTC)
-Received: from [123.118.214.4] (helo=localhost.localdomain)
- by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <aaron.ma@canonical.com>)
- id 1jKNQ8-0003KD-Dj; Fri, 03 Apr 2020 14:35:47 +0000
-From: Aaron Ma <aaron.ma@canonical.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com,
- airlied@linux.ie, daniel@ffwll.ch, Hawking.Zhang@amd.com,
- xiaojie.yuan@amd.com, Felix.Kuehling@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, aaron.ma@canonical.com
-Subject: [PATCH] drm/amdgpu: Fix oops when pp_funcs is unset in ACPI event
-Date: Fri,  3 Apr 2020 22:34:19 +0800
-Message-Id: <20200403143419.155503-1-aaron.ma@canonical.com>
-X-Mailer: git-send-email 2.26.0
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A35406E14F
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 14:43:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=flCSsNuphLA5jxnQMrQkHNry+R/xf4DTVWzN+HOFt+05iwyyKwYIOyempdtbMpe60PuLMrvWzsAHsNbQdKM6Iwg7h32ORQjZFwgdzQTx7tDS+lBsWjRu1xKe5cnnOHNsKAnYQcvngv69zjKhg7UkVp0T/C76kqMTJEf4NFAMGldfs/TUvj+CJU8Cr3fHwG7h7sjpz68kwfLDfa7Mg+clyDeVtxYHEiJDfmaRW9KLgDfkL83xBq8e/f8ZcXwrjjfEUOnVQb3CScQCPMasdSUVUR6HrtrrrWwfoXx3QbujaooeLqPG0J2oqK1drKEsyD+ZuBUa7vvG7vohmEpGxcYDJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IZXQsumocu7Ub8QoRq2exG9ZVlokTZYWOTRigYF7eXc=;
+ b=fyeOAxm0d5f3OSv8Jx3kOcS9BT7VyI4DlTgEMvwsMfOhc01QLIzBaywyrSfIOMlJFMAZxkLPWSUlAshlCRwQA+E9LOvMxEv5dG8kyR/u6bftX17cklIRf/kh7W2lWXVYUTkx9JJXwxv//vg0yiJmTvbZV+gSUFszokNiwe1/dc7RMQqFovSIDc3SXREwY5bMJvz1yb99r3VKM32Xp/9ul5/3mt0TsTypnkqVZeHbDpvBlPfjxAtOkma+pOnItascBNb+r8G79giHK+CWXZfYYnpLd0Jn/dOl6mnDmX5uo7dp2sGjTbYoTxE5QJ5qajgSo++JgYjs10V4HBmM6IDnVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IZXQsumocu7Ub8QoRq2exG9ZVlokTZYWOTRigYF7eXc=;
+ b=rVw/z0XwJar9wgb+pwpfoMQnnS34pc3kC42/mPCo4Cjc2bA3T4/LOMhM8upU67k7dcZZP/+ep1xvfi+6dT4tW+ur2YxZ37Rh2qGgmFCiXzwIoNfKdd7h7rAvOZzouvpeHKRoH8HBpuRBkDJcrQTtdLy2yamzlakRnLU6zJ3OPfs=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Kent.Russell@amd.com; 
+Received: from DM6PR12MB3721.namprd12.prod.outlook.com (2603:10b6:5:1c2::18)
+ by DM6PR12MB4155.namprd12.prod.outlook.com (2603:10b6:5:221::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.17; Fri, 3 Apr
+ 2020 14:43:39 +0000
+Received: from DM6PR12MB3721.namprd12.prod.outlook.com
+ ([fe80::f8bd:4765:eb5b:a7a5]) by DM6PR12MB3721.namprd12.prod.outlook.com
+ ([fe80::f8bd:4765:eb5b:a7a5%2]) with mapi id 15.20.2878.018; Fri, 3 Apr 2020
+ 14:43:39 +0000
+From: Kent Russell <kent.russell@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: Re-enable FRU check for most models
+Date: Fri,  3 Apr 2020 10:43:29 -0400
+Message-Id: <20200403144329.30127-1-kent.russell@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: YTOPR0101CA0061.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:14::38) To DM6PR12MB3721.namprd12.prod.outlook.com
+ (2603:10b6:5:1c2::18)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 03 Apr 2020 15:18:42 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from krussell.amd.com (165.204.55.251) by
+ YTOPR0101CA0061.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::38) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15 via Frontend
+ Transport; Fri, 3 Apr 2020 14:43:39 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.55.251]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: ef4f6418-e03d-4a80-44cc-08d7d7dd65d4
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4155:|DM6PR12MB4155:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4155A2BEE57D1971EDB6DE3285C70@DM6PR12MB4155.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Forefront-PRVS: 0362BF9FDB
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3721.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(376002)(136003)(396003)(39860400002)(346002)(366004)(4326008)(186003)(8676002)(8936002)(36756003)(26005)(81156014)(81166006)(52116002)(16526019)(86362001)(7696005)(6666004)(6916009)(44832011)(2616005)(6486002)(66476007)(66556008)(66946007)(956004)(5660300002)(316002)(2906002)(478600001)(1076003)(170073001);
+ DIR:OUT; SFP:1101; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rj1LjIUxQRU9gvQx+Zj5+BsYYaLy+YsYJRzxwxjaMMMKfBNcnZ6SnMZHOlcBqnB/jFspNG25M0eT3wiPO5SVeawrJHMNcagWFjpsa674Ol8tqTCfRnlJceGSjAjXwZTAAJXEsoY6xo+hWZ1bCoH21zB1hpYKlHRsraqtWDIKsaoOz5wOdgSKt85YwuuzjFQKPUZCH3qX+5Vb0nHhWTM2/W9AV/1vwDbuwZyd2WHPszUHaAvQ36a+M7Vx/Tk582tS+YC9xAA8kAzKjVXDo9VqZ9SQ6U0pzcTOiAc9N+UJ6kKyW5DrvuqunlaLVMYNIVRYjOYAGuLi/8XW4CkbBARirZFvZte14nN9fVplQAZyfKE81FSXyFI6rhFpdxZBeD3EHuuD2FbVvPckZmLmrdG1Q56loaZ7q7goqmJgojXOfO0M/iA5uWg8pKM0K+vJy1Eb2JG5et02IHCyoHelDu8dCFzhWcch4zq/Rhw/Ps1zOHA2YoZJ0NiUjBORH/WD6/D3
+X-MS-Exchange-AntiSpam-MessageData: dKJLyMcfHL+e9nIAG73TeDZmz6D+WjCkv16y+FZh0YEmgOZyB38kRjeBfnfAgyNEkEzGtUet4GIVLWB5EjMQK/JCLO5SB2PAEe5vICQLOuMNP21/jjUTRay+leUZ+bPMwnGcE75z5+mA7QVqvaco2A==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef4f6418-e03d-4a80-44cc-08d7d7dd65d4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2020 14:43:39.4517 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Sv+9tbleWDS/oy4DGFTOnzBOMk7p5zNt7+A1TepqhUMBsOOnImL5I7wTS4CeGNtYAFPYWoiVMeAsDxoSmc3xPw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4155
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,35 +95,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Kent Russell <kent.russell@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On ARCTURUS and RENOIR, powerplay is not supported yet.
-When plug in or unplug power jack, ACPI event will issue.
-Then kernel NULL pointer BUG will be triggered.
-Check for NULL pointers before calling.
+There are 2 SKUs that do not have the FRU on there, and trying to read
+that will cause a hang. For now, check for the gaming SKU until a proper
+fix can be implemented. This re-enables serial number reporting for
+server cards
 
-Signed-off-by: Aaron Ma <aaron.ma@canonical.com>
+Signed-off-by: Kent Russell <kent.russell@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-index f197f1be0969..611de69f9d48 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-@@ -89,7 +89,8 @@ void amdgpu_pm_acpi_event_handler(struct amdgpu_device *adev)
- 			adev->pm.ac_power = true;
- 		else
- 			adev->pm.ac_power = false;
--		if (adev->powerplay.pp_funcs->enable_bapm)
-+		if (adev->powerplay.pp_funcs &&
-+				adev->powerplay.pp_funcs->enable_bapm)
- 			amdgpu_dpm_enable_bapm(adev, adev->pm.ac_power);
- 		mutex_unlock(&adev->pm.mutex);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
+index bfe4259f9508..281bdfd4630a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
+@@ -31,9 +31,20 @@
  
+ bool is_fru_eeprom_supported(struct amdgpu_device *adev)
+ {
+-	/* TODO: Resolve supported ASIC type */
++	struct atom_context *atom_ctx = adev->mode_info.atom_context;
+ 
+-	return false;
++	if (!atom_ctx)
++		return false;
++
++	/* TODO: Gaming SKUs don't have the FRU EEPROM.
++	 * Use this to address hangs on modprobe on gaming SKUs
++	 * until a proper solution can be implemented
++	 */
++	if (strnstr(atom_ctx->vbios_version, "D360",
++			sizeof(atom_ctx->vbios_version)))
++		return false;
++
++	return true;
+ }
+ 
+ int amdgpu_fru_read_eeprom(struct amdgpu_device *adev, uint32_t addrptr,
 -- 
 2.17.1
 
