@@ -1,55 +1,35 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5938E19D8BB
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Apr 2020 16:12:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53C9119D9F3
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Apr 2020 17:18:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2F0F8982A;
-	Fri,  3 Apr 2020 14:12:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB08C6E159;
+	Fri,  3 Apr 2020 15:18:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
- by gabe.freedesktop.org (Postfix) with ESMTP id 971A789DA2;
- Fri,  3 Apr 2020 14:12:27 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id 585162A6046;
- Fri,  3 Apr 2020 16:12:26 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id O6xArAKyTSx0; Fri,  3 Apr 2020 16:12:26 +0200 (CEST)
-Received: from thor (252.80.76.83.dynamic.wline.res.cust.swisscom.ch
- [83.76.80.252])
- by netline-mail3.netline.ch (Postfix) with ESMTPSA id B49212A6016;
- Fri,  3 Apr 2020 16:12:25 +0200 (CEST)
-Received: from [::1] by thor with esmtp (Exim 4.93)
- (envelope-from <michel@daenzer.net>)
- id 1jKN3Y-000EoF-Oa; Fri, 03 Apr 2020 16:12:24 +0200
-Subject: Re: [Mesa-dev] [Intel-gfx] gitlab.fd.o financial situation and impact
- on services
-To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>,
- Nicolas Dufresne <nicolas@ndufresne.ca>
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
- <ece8ebe3-40ec-2457-02da-4fef19cbe8f6@intel.com>
- <6d2ec570f957b4504fb70e0b1f0632712a99dc0c.camel@collabora.com>
- <CAPj87rO7BuKQj2Kei3T7RdkFq5=TiuShBvtrPU2sn0iqMfXSTg@mail.gmail.com>
- <59f4ea1f13a9a9d37f7801b93061b4ae7dd595e2.camel@gmail.com>
- <d0ef47e45c83b342494e6781b808b4831a008836.camel@ndufresne.ca>
- <d9dca12759fd6a549dc4cd71b5f210a4dced01cd.camel@gmail.com>
- <CAOFGe96WqRTagf=Lhp6j9aMnB6hxwog7t93t=4r6QE_4f+HpeQ@mail.gmail.com>
- <5551426acf99f73d3ce8234c14c176c1c7a1fe44.camel@ndufresne.ca>
- <CAAxE2A5zSy7Rh6xyPW8NCqj3q0_8F7yw8tAXx=_z8+mJ-u2uWw@mail.gmail.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Message-ID: <3cddf1aa-5072-af7c-c51e-c16039176f6c@daenzer.net>
-Date: Fri, 3 Apr 2020 16:12:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4F566EBFB;
+ Fri,  3 Apr 2020 14:35:49 +0000 (UTC)
+Received: from [123.118.214.4] (helo=localhost.localdomain)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <aaron.ma@canonical.com>)
+ id 1jKNQ8-0003KD-Dj; Fri, 03 Apr 2020 14:35:47 +0000
+From: Aaron Ma <aaron.ma@canonical.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch, Hawking.Zhang@amd.com,
+ xiaojie.yuan@amd.com, Felix.Kuehling@amd.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, aaron.ma@canonical.com
+Subject: [PATCH] drm/amdgpu: Fix oops when pp_funcs is unset in ACPI event
+Date: Fri,  3 Apr 2020 22:34:19 +0800
+Message-Id: <20200403143419.155503-1-aaron.ma@canonical.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-In-Reply-To: <CAAxE2A5zSy7Rh6xyPW8NCqj3q0_8F7yw8tAXx=_z8+mJ-u2uWw@mail.gmail.com>
-Content-Language: en-CA
+X-Mailman-Approved-At: Fri, 03 Apr 2020 15:18:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,33 +41,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Erik Faye-Lund <erik.faye-lund@collabora.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Timur_Krist=c3=b3f?= <timur.kristof@gmail.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>, dri-devel <dri-devel@lists.freedesktop.org>,
- Jason Ekstrand <jason@jlekstrand.net>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- Discussion of the development of and with GStreamer
- <gstreamer-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0wMy0wMSA2OjQ2IGEubS4sIE1hcmVrIE9sxaHDoWsgd3JvdGU6Cj4gRm9yIE1lc2Es
-IHdlIGNvdWxkIHJ1biBDSSBvbmx5IHdoZW4gTWFyZ2UgcHVzaGVzLCBzbyB0aGF0IGl0J3MgYSBz
-dHJpY3RseQo+IHByZS1tZXJnZSBDSS4KClRoYW5rcyBmb3IgdGhlIHN1Z2dlc3Rpb24hIEkgaW1w
-bGVtZW50ZWQgc29tZXRoaW5nIGxpa2UgdGhpcyBmb3IgTWVzYToKCmh0dHBzOi8vZ2l0bGFiLmZy
-ZWVkZXNrdG9wLm9yZy9tZXNhL21lc2EvLS9tZXJnZV9yZXF1ZXN0cy80NDMyCgoKLS0gCkVhcnRo
-bGluZyBNaWNoZWwgRMOkbnplciAgICAgICAgICAgICAgIHwgICAgICAgICAgICAgICBodHRwczov
-L3JlZGhhdC5jb20KTGlicmUgc29mdHdhcmUgZW50aHVzaWFzdCAgICAgICAgICAgICB8ICAgICAg
-ICAgICAgIE1lc2EgYW5kIFggZGV2ZWxvcGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vYW1kLWdmeAo=
+On ARCTURUS and RENOIR, powerplay is not supported yet.
+When plug in or unplug power jack, ACPI event will issue.
+Then kernel NULL pointer BUG will be triggered.
+Check for NULL pointers before calling.
+
+Signed-off-by: Aaron Ma <aaron.ma@canonical.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+index f197f1be0969..611de69f9d48 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+@@ -89,7 +89,8 @@ void amdgpu_pm_acpi_event_handler(struct amdgpu_device *adev)
+ 			adev->pm.ac_power = true;
+ 		else
+ 			adev->pm.ac_power = false;
+-		if (adev->powerplay.pp_funcs->enable_bapm)
++		if (adev->powerplay.pp_funcs &&
++				adev->powerplay.pp_funcs->enable_bapm)
+ 			amdgpu_dpm_enable_bapm(adev, adev->pm.ac_power);
+ 		mutex_unlock(&adev->pm.mutex);
+ 
+-- 
+2.17.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
