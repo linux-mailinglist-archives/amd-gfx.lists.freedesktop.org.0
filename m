@@ -1,73 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A557419EBC5
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 15:54:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5631419EBBD
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 15:54:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B232B6E28E;
-	Sun,  5 Apr 2020 13:54:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 861C16E249;
+	Sun,  5 Apr 2020 13:54:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12FA56E222;
- Sat,  4 Apr 2020 13:55:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1586008543;
- bh=EtLjZbkZvUJ4TUi1cb0SFS01/z7Ls5VvvG8RavCWlVE=;
- h=X-UI-Sender-Class:References:In-Reply-To:From:Date:Subject:To:Cc;
- b=VMMDMk6TJq3Q8s4s5zLGxi8DqboNquFzilysfcrJX7mu8d+HgVN1nkzOssvlCUUhh
- jHQrVCqgWt36M3BaUdyjLeMf0U05uQ61QpGHZwF6e/21lRaJ5akU+7rcU2rCtZDOq+
- /qyK/VRb4dw7CX9fvECWhPFwF1nqzkFRY8+QFTCk=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from mail-yb1-f171.google.com ([209.85.219.171]) by mail.gmx.com
- (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1MdvmO-1in3970gzO-00azwk; Sat, 04 Apr 2020 15:55:43 +0200
-Received: by mail-yb1-f171.google.com with SMTP id g6so5959190ybh.12;
- Sat, 04 Apr 2020 06:55:42 -0700 (PDT)
-X-Gm-Message-State: AGi0PuZNhrw8MY8GaJlJel/0GfRLVpJNAr0O9SmCsqkLA8e64cLMwORl
- SeWSRxa1nm1RtZcyphj6b9TbhRSVLuU3W68mOzA=
-X-Google-Smtp-Source: APiQypL18jvzEVqhv+aWV1i9xpxQ6vs/zCiw23fcCZ1wAJGnmzp80hWH7WbvtKMl6RPqXo19QhpiwgsD6YK0q9CbuRs=
-X-Received: by 2002:a25:c643:: with SMTP id k64mr21656006ybf.194.1586008541471; 
- Sat, 04 Apr 2020 06:55:41 -0700 (PDT)
+Received: from merlin.infradead.org (merlin.infradead.org
+ [IPv6:2001:8b0:10b:1231::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4735A6E09C
+ for <amd-gfx@lists.freedesktop.org>; Sat,  4 Apr 2020 14:32:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=merlin.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=dBfBsCmH+Eo1IEVIov38NE0cr2dP5E/BRHhdQtoIDak=; b=zuv5E7NjreiQ5XBFzn1PjCMVNV
+ 5jlV9xfeyuYdiFQDdIRKMCVcHcR7OrMF8OAi/cb5kWg2eHOLySIleDucXovsfjveBE5dBEfeOnEJ5
+ xsf/mpIZYKRsNwcAOBoysY7X4sjUDDX9+F1Drp9vz/ft02QfFO3C9Ava5WHPWQtbN1a2u6VWKpHh+
+ IOUVxvbxQkUagwelFrXW1GOjQ8vB6FFg+A7tRCvITwxk0ajpOTFj7oBMN6LBb8gEL8901GSrdKqD9
+ tR8vLwcHLqSSFTZCIFQDgCsmVr9OAeBqyoB/7oykglpseUcht3wj4PGhIdxS5Q/elLYDQJmY0t62n
+ ACn+msaA==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=worktop.programming.kicks-ass.net)
+ by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jKjqV-0000fy-P3; Sat, 04 Apr 2020 14:32:28 +0000
+Received: by worktop.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 5AE919834EB; Sat,  4 Apr 2020 16:32:24 +0200 (CEST)
+Date: Sat, 4 Apr 2020 16:32:24 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Masami Hiramatsu <mhiramat@kernel.org>
+Subject: Re: AMD DC graphics display code enables -mhard-float, -msse, -msse2
+ without any visible FPU state protection
+Message-ID: <20200404143224.GL2452@worktop.programming.kicks-ass.net>
+References: <CAG48ez2Sx4ELkM94aD_h_J7K7KBOeuGmvZLKRkg3n_f2WoZ_cg@mail.gmail.com>
+ <4c5fe55d-9db9-2f61-59b2-1fb2e1b45ed0@amd.com>
+ <20200402141308.GB20730@hirez.programming.kicks-ass.net>
+ <20200403142837.f61a18d7bd32fd73777479ad@kernel.org>
+ <20200403112113.GN20730@hirez.programming.kicks-ass.net>
+ <20200404120808.05e9aa61500265be2e031bd6@kernel.org>
 MIME-Version: 1.0
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <CAPj87rM76W9y_76WUHR35NS3V4_-RFi9ZM3GA=aED3dD3hWYkg@mail.gmail.com>
- <CAPM=9txN-RKGwinzsSPrmT_xFjS2J_XUhXVsRQ2pSSe529wpEA@mail.gmail.com>
- <CADaigPUjYZ-Mqd91eyR3Luo=PxLHratUhvodJmCJHf__MnPozA@mail.gmail.com>
-In-Reply-To: <CADaigPUjYZ-Mqd91eyR3Luo=PxLHratUhvodJmCJHf__MnPozA@mail.gmail.com>
-From: Andreas Bergmeier <abergmeier@gmx.net>
-Date: Sat, 4 Apr 2020 15:55:30 +0200
-X-Gmail-Original-Message-ID: <CABfF9mMwcTL3qx=F_Ep0X0Zh-pb_ZKxrhEwWP-wc3jkVHDaAMg@mail.gmail.com>
-Message-ID: <CABfF9mMwcTL3qx=F_Ep0X0Zh-pb_ZKxrhEwWP-wc3jkVHDaAMg@mail.gmail.com>
-Subject: Re: [Mesa-dev] [Intel-gfx] gitlab.fd.o financial situation and impact
- on services
-To: Eric Anholt <eric@anholt.net>
-X-Provags-ID: V03:K1:DK6ByxLXdGDADickGSSqJpzSkqcWRJK+CQzXnMDW3/MD5CXyFKh
- b6pyBszGhQoqgO/AwIneUff7D1MA+m+E0lwEvvGuHvzmf9hWtOlqyZSgWSRAn8/S59yKJ6a
- X/ESxP1qjwG52gJoUoLYRY5FAFH6Ekwqdm3OStwOZZkvLZkwiud1WdhrZYI/OMHoax/GCXq
- ilhZW9uw8x17ztkdzn8lA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:xG6+chRmIDs=:Fy/8w3VPlsw4eOYFeeoqWX
- J746U/hu0Ws3bHH8HvPu/PmK+RzvJuXvuT8qAx18ac9yNomBerWt12RU+aO0YO4be8mbSEDIG
- pr/H/cEyWyLVFMKg/viCiLKsnQcRnLhJQ5QJ1JB+mbusLiXyp90ErIunJAmHDuL0xfu1s5CmU
- fRsWyy7FgDcCnPWmWOvMGiXN/K8x1m/GTHG9vll0Paz3XRbUsWpMKKyMiAO4DyGkG/HtWgWHx
- 5trHZoIsVnLJ0z3GEIKIWRE+b23u7mlYwcG8ZSrc06Vc1vQbYQgPY8nFvdsqQ28ubkaN0jUpa
- o9oqE+LeZgVFmtfd5dPzQXygs/fHUfv2+hm6B+x97W3I+JEJqRZHYmkX7DiaqJ9sA60Uh/RB+
- +ubOcQ54c9bSFV8w2SHWPUKkRv2E/echHuwx+oKGBQgIEB3mmly9aBwtIMTcLBXFPj9xK8fPQ
- 3V7K1+xTDJjRdSCox5CM2nbukFpsW1e/rgX8RbuxfDTScU3aUjX6vEX6Fg3lnsRisl78Pf5GM
- STBfpKPBRJ40P5PFx8BgW/zMMqgjcwCsRlf8CKH/aHsYA+a2XJ9Cx0dPXzvUm6HyPcmwOGBUO
- gx7Gc8F7cQjJw2RkJnU6OJ60C3xbsnIIWq88CSVDMYqoBbXLfk/W/HAtVeoSwhfxqaiX7O+/5
- UxtKPuQhqF6Kh6CylucGuiOmcN7gwwljfubVbV2t865N3gb+vWSwaNoKO0905xtB2CTNIssuy
- ivSKNYVKS2U4spFikQ8Fs9qP3YBKmQZPtb9COInMeysAagfcRZ0yonugfHqhVG/7lRxYvRwdI
- lzoRWgdTOTexqFMA/96aAIgd1KgS/Ze0zLKFBtY1gd4Txkrc7vI209eEeD6WT1SciQ2bVotz5
- xqBk0ibNypCAZ9idKdnSaCmeyJeHyqwT0LRtoiNrXTNu7aw64kKKR4CD1xtBE9VLqZDwDSAjM
- DdXgTn/d4s0taj3z9PmGzOIklBq5AmVnszs7n2Gf3Y6uMsDfYHECJJdz32IQlGL2hxVVqpIWE
- rVUNifvf0B2d4IXolPWaUY1PvTvohhQ6I9NZfHfCZz3fXCw4NKRR4GgHM6UepdqUwkcoxQjW9
- JpE7+cZGfx6wnIAJoD/OrwQv9OmsCszYjkrIodOTexbLqXKUqNYVjFXZeJA+xHrA4ENxch2L5
- YBIe76erNNnIxTKQwVs1MlMBzXCYLtvvtV2DxckVOn0FV2F5qK5l05ZIfXg7q/9TBJih7ORqR
- hSGA97G1jRoeODRtj
+Content-Disposition: inline
+In-Reply-To: <20200404120808.05e9aa61500265be2e031bd6@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Mailman-Approved-At: Sun, 05 Apr 2020 13:54:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,284 +57,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>,
- gstreamer-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0187344243=="
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ Josh Poimboeuf <jpoimboe@redhat.com>, Jann Horn <jannh@google.com>,
+ Leo Li <sunpeng.li@amd.com>, the arch/x86 maintainers <x86@kernel.org>,
+ kernel list <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Andy Lutomirski <luto@kernel.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Harry Wentland <harry.wentland@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0187344243==
-Content-Type: multipart/alternative; boundary="000000000000b9a91a05a2776337"
+On Sat, Apr 04, 2020 at 12:08:08PM +0900, Masami Hiramatsu wrote:
+> From c609be0b6403245612503fca1087628655bab96c Mon Sep 17 00:00:00 2001
+> From: Masami Hiramatsu <mhiramat@kernel.org>
+> Date: Fri, 3 Apr 2020 16:58:22 +0900
+> Subject: [PATCH] x86: insn: Add insn_is_fpu()
+> 
+> Add insn_is_fpu(insn) which tells that the insn is
+> whether touch the MMX/XMM/YMM register or the instruction
+> of FP coprocessor.
 
---000000000000b9a91a05a2776337
-Content-Type: text/plain; charset="UTF-8"
+Looks good, although I changed it a little like so:
 
-The problem of data transfer costs is not new in Cloud environments. At
-work we usually just opt for paying for it since dev time is scarser. For
-private projects though, I opt for aggressive (remote) caching.
-So you can setup a global cache in Google Cloud Storage and more local
-caches wherever your executors are (reduces egress as much as possible).
-This setup works great with Bazel and Pants among others. Note that these
-systems are pretty hermetic in contrast to Meson.
-IIRC Eric by now works at Google. They internally use Blaze which AFAIK
-does aggressive caching, too.
-So maybe using any of these systems would be a way of not having to
-sacrifice any of the current functionality.
-Downside is that you have lower a bit of dev productivity since you cannot
-eyeball your build definitions anymore.
-
-ym2c
-
-
-On Fri, 28 Feb 2020 at 20:34, Eric Anholt <eric@anholt.net> wrote:
-
-> On Fri, Feb 28, 2020 at 12:48 AM Dave Airlie <airlied@gmail.com> wrote:
-> >
-> > On Fri, 28 Feb 2020 at 18:18, Daniel Stone <daniel@fooishbar.org> wrote:
-> > >
-> > > On Fri, 28 Feb 2020 at 03:38, Dave Airlie <airlied@gmail.com> wrote:
-> > > > b) we probably need to take a large step back here.
-> > > >
-> > > > Look at this from a sponsor POV, why would I give X.org/fd.o
-> > > > sponsorship money that they are just giving straight to google to pay
-> > > > for hosting credits? Google are profiting in some minor way from
-> these
-> > > > hosting credits being bought by us, and I assume we aren't getting
-> any
-> > > > sort of discounts here. Having google sponsor the credits costs
-> google
-> > > > substantially less than having any other company give us money to do
-> > > > it.
-> > >
-> > > The last I looked, Google GCP / Amazon AWS / Azure were all pretty
-> > > comparable in terms of what you get and what you pay for them.
-> > > Obviously providers like Packet and Digital Ocean who offer bare-metal
-> > > services are cheaper, but then you need to find someone who is going
-> > > to properly administer the various machines, install decent
-> > > monitoring, make sure that more storage is provisioned when we need
-> > > more storage (which is basically all the time), make sure that the
-> > > hardware is maintained in decent shape (pretty sure one of the fd.o
-> > > machines has had a drive in imminent-failure state for the last few
-> > > months), etc.
-> > >
-> > > Given the size of our service, that's a much better plan (IMO) than
-> > > relying on someone who a) isn't an admin by trade, b) has a million
-> > > other things to do, and c) hasn't wanted to do it for the past several
-> > > years. But as long as that's the resources we have, then we're paying
-> > > the cloud tradeoff, where we pay more money in exchange for fewer
-> > > problems.
-> >
-> > Admin for gitlab and CI is a full time role anyways. The system is
-> > definitely not self sustaining without time being put in by you and
-> > anholt still. If we have $75k to burn on credits, and it was diverted
-> > to just pay an admin to admin the real hw + gitlab/CI would that not
-> > be a better use of the money? I didn't know if we can afford $75k for
-> > an admin, but suddenly we can afford it for gitlab credits?
->
-> As I think about the time that I've spent at google in less than a
-> year on trying to keep the lights on for CI and optimize our
-> infrastructure in the current cloud environment, that's more than the
-> entire yearly budget you're talking about here.  Saying "let's just
-> pay for people to do more work instead of paying for full-service
-> cloud" is not a cost optimization.
->
->
-> > > Yes, we could federate everything back out so everyone runs their own
-> > > builds and executes those. Tinderbox did something really similar to
-> > > that IIRC; not sure if Buildbot does as well. Probably rules out
-> > > pre-merge testing, mind.
-> >
-> > Why? does gitlab not support the model? having builds done in parallel
-> > on runners closer to the test runners seems like it should be a thing.
-> > I guess artifact transfer would cost less then as a result.
->
-> Let's do some napkin math.  The biggest artifacts cost we have in Mesa
-> is probably meson-arm64/meson-arm (60MB zipped from meson-arm64,
-> downloaded by 4 freedreno and 6ish lava, about 100 pipelines/day,
-> makes ~1.8TB/month ($180 or so).  We could build a local storage next
-> to the lava dispatcher so that the artifacts didn't have to contain
-> the rootfs that came from the container (~2/3 of the insides of the
-> zip file), but that's another service to build and maintain.  Building
-> the drivers once locally and storing it would save downloading the
-> other ~1/3 of the inside of the zip file, but that requires a big
-> enough system to do builds in time.
->
-> I'm planning on doing a local filestore for google's lava lab, since I
-> need to be able to move our xml files off of the lava DUTs to get the
-> xml results we've become accustomed to, but this would not bubble up
-> to being a priority for my time if I wasn't doing it anyway.  If it
-> takes me a single day to set all this up (I estimate a couple of
-> weeks), that costs my employer a lot more than sponsoring the costs of
-> the inefficiencies of the system that has accumulated.
-> _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
->
-
---000000000000b9a91a05a2776337
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">The problem of data transfer costs is not new in Cloud env=
-ironments. At work we usually just opt for paying for it since dev time is =
-scarser. For private projects though, I opt for aggressive (remote) caching=
-.<div>So you can setup a global cache in Google Cloud Storage and more loca=
-l caches wherever your executors are (reduces egress as much as possible).<=
-/div><div>This setup works great with Bazel and Pants among others. Note th=
-at these systems are pretty hermetic in contrast to Meson.</div><div>IIRC E=
-ric by now works at Google. They internally use Blaze which AFAIK does aggr=
-essive caching, too.</div><div>So maybe using any of these systems would be=
- a way of not having to sacrifice any of the current functionality.</div><d=
-iv>Downside is that you have lower a bit of dev productivity since you cann=
-ot eyeball your build definitions anymore.</div><div><br></div><div>ym2c</d=
-iv><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Fri, 28 Feb 2020 at 20:34, Eric Anholt &lt;<a href=3D"=
-mailto:eric@anholt.net">eric@anholt.net</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">On Fri, Feb 28, 2020 at 12:48 AM Dav=
-e Airlie &lt;<a href=3D"mailto:airlied@gmail.com" target=3D"_blank">airlied=
-@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; On Fri, 28 Feb 2020 at 18:18, Daniel Stone &lt;<a href=3D"mailto:danie=
-l@fooishbar.org" target=3D"_blank">daniel@fooishbar.org</a>&gt; wrote:<br>
-&gt; &gt;<br>
-&gt; &gt; On Fri, 28 Feb 2020 at 03:38, Dave Airlie &lt;<a href=3D"mailto:a=
-irlied@gmail.com" target=3D"_blank">airlied@gmail.com</a>&gt; wrote:<br>
-&gt; &gt; &gt; b) we probably need to take a large step back here.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Look at this from a sponsor POV, why would I give X.org/fd.o=
-<br>
-&gt; &gt; &gt; sponsorship money that they are just giving straight to goog=
-le to pay<br>
-&gt; &gt; &gt; for hosting credits? Google are profiting in some minor way =
-from these<br>
-&gt; &gt; &gt; hosting credits being bought by us, and I assume we aren&#39=
-;t getting any<br>
-&gt; &gt; &gt; sort of discounts here. Having google sponsor the credits co=
-sts google<br>
-&gt; &gt; &gt; substantially less than having any other company give us mon=
-ey to do<br>
-&gt; &gt; &gt; it.<br>
-&gt; &gt;<br>
-&gt; &gt; The last I looked, Google GCP / Amazon AWS / Azure were all prett=
-y<br>
-&gt; &gt; comparable in terms of what you get and what you pay for them.<br=
->
-&gt; &gt; Obviously providers like Packet and Digital Ocean who offer bare-=
-metal<br>
-&gt; &gt; services are cheaper, but then you need to find someone who is go=
-ing<br>
-&gt; &gt; to properly administer the various machines, install decent<br>
-&gt; &gt; monitoring, make sure that more storage is provisioned when we ne=
-ed<br>
-&gt; &gt; more storage (which is basically all the time), make sure that th=
-e<br>
-&gt; &gt; hardware is maintained in decent shape (pretty sure one of the fd=
-.o<br>
-&gt; &gt; machines has had a drive in imminent-failure state for the last f=
-ew<br>
-&gt; &gt; months), etc.<br>
-&gt; &gt;<br>
-&gt; &gt; Given the size of our service, that&#39;s a much better plan (IMO=
-) than<br>
-&gt; &gt; relying on someone who a) isn&#39;t an admin by trade, b) has a m=
-illion<br>
-&gt; &gt; other things to do, and c) hasn&#39;t wanted to do it for the pas=
-t several<br>
-&gt; &gt; years. But as long as that&#39;s the resources we have, then we&#=
-39;re paying<br>
-&gt; &gt; the cloud tradeoff, where we pay more money in exchange for fewer=
-<br>
-&gt; &gt; problems.<br>
-&gt;<br>
-&gt; Admin for gitlab and CI is a full time role anyways. The system is<br>
-&gt; definitely not self sustaining without time being put in by you and<br=
->
-&gt; anholt still. If we have $75k to burn on credits, and it was diverted<=
-br>
-&gt; to just pay an admin to admin the real hw + gitlab/CI would that not<b=
-r>
-&gt; be a better use of the money? I didn&#39;t know if we can afford $75k =
-for<br>
-&gt; an admin, but suddenly we can afford it for gitlab credits?<br>
-<br>
-As I think about the time that I&#39;ve spent at google in less than a<br>
-year on trying to keep the lights on for CI and optimize our<br>
-infrastructure in the current cloud environment, that&#39;s more than the<b=
-r>
-entire yearly budget you&#39;re talking about here.=C2=A0 Saying &quot;let&=
-#39;s just<br>
-pay for people to do more work instead of paying for full-service<br>
-cloud&quot; is not a cost optimization.<br>
-<br>
-<br>
-&gt; &gt; Yes, we could federate everything back out so everyone runs their=
- own<br>
-&gt; &gt; builds and executes those. Tinderbox did something really similar=
- to<br>
-&gt; &gt; that IIRC; not sure if Buildbot does as well. Probably rules out<=
-br>
-&gt; &gt; pre-merge testing, mind.<br>
-&gt;<br>
-&gt; Why? does gitlab not support the model? having builds done in parallel=
-<br>
-&gt; on runners closer to the test runners seems like it should be a thing.=
-<br>
-&gt; I guess artifact transfer would cost less then as a result.<br>
-<br>
-Let&#39;s do some napkin math.=C2=A0 The biggest artifacts cost we have in =
-Mesa<br>
-is probably meson-arm64/meson-arm (60MB zipped from meson-arm64,<br>
-downloaded by 4 freedreno and 6ish lava, about 100 pipelines/day,<br>
-makes ~1.8TB/month ($180 or so).=C2=A0 We could build a local storage next<=
-br>
-to the lava dispatcher so that the artifacts didn&#39;t have to contain<br>
-the rootfs that came from the container (~2/3 of the insides of the<br>
-zip file), but that&#39;s another service to build and maintain.=C2=A0 Buil=
-ding<br>
-the drivers once locally and storing it would save downloading the<br>
-other ~1/3 of the inside of the zip file, but that requires a big<br>
-enough system to do builds in time.<br>
-<br>
-I&#39;m planning on doing a local filestore for google&#39;s lava lab, sinc=
-e I<br>
-need to be able to move our xml files off of the lava DUTs to get the<br>
-xml results we&#39;ve become accustomed to, but this would not bubble up<br=
->
-to being a priority for my time if I wasn&#39;t doing it anyway.=C2=A0 If i=
-t<br>
-takes me a single day to set all this up (I estimate a couple of<br>
-weeks), that costs my employer a lot more than sponsoring the costs of<br>
-the inefficiencies of the system that has accumulated.<br>
-_______________________________________________<br>
-mesa-dev mailing list<br>
-<a href=3D"mailto:mesa-dev@lists.freedesktop.org" target=3D"_blank">mesa-de=
-v@lists.freedesktop.org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/mesa-dev" rel=3D"=
-noreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/listinf=
-o/mesa-dev</a><br>
-</blockquote></div>
-
---000000000000b9a91a05a2776337--
-
---===============0187344243==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+--- a/arch/x86/include/asm/insn.h
++++ b/arch/x86/include/asm/insn.h
+@@ -133,11 +133,12 @@ static inline int insn_is_fpu(struct ins
+ {
+ 	if (!insn->opcode.got)
+ 		insn_get_opcode(insn);
+-	if (inat_is_fpu(insn->attr)) {
++	if (inat_is_fpu(insn->attr)) {
+ 		if (insn->attr & INAT_FPUIFVEX)
+ 			return insn_is_avx(insn);
+ 		return 1;
+ 	}
++	return 0;
+ }
+ 
+ static inline int insn_has_emulate_prefix(struct insn *insn)
+--- a/arch/x86/lib/x86-opcode-map.txt
++++ b/arch/x86/lib/x86-opcode-map.txt
+@@ -269,14 +269,14 @@ d4: AAM Ib (i64)
+ d5: AAD Ib (i64)
+ d6:
+ d7: XLAT/XLATB
+-d8: ESC
+-d9: ESC
+-da: ESC
+-db: ESC
+-dc: ESC
+-dd: ESC
+-de: ESC
+-df: ESC
++d8: FPU
++d9: FPU
++da: FPU
++db: FPU
++dc: FPU
++dd: FPU
++de: FPU
++df: FPU
+ # 0xe0 - 0xef
+ # Note: "forced64" is Intel CPU behavior: they ignore 0x66 prefix
+ # in 64-bit mode. AMD CPUs accept 0x66 prefix, it causes RIP truncation
+--- a/arch/x86/tools/gen-insn-attr-x86.awk
++++ b/arch/x86/tools/gen-insn-attr-x86.awk
+@@ -65,10 +65,11 @@ BEGIN {
+ 	modrm_expr = "^([CDEGMNPQRSUVW/][a-z]+|NTA|T[012])"
+ 	force64_expr = "\\([df]64\\)"
+ 	rex_expr = "^REX(\\.[XRWB]+)*"
+-	mmxreg_expr = "^[HLNPQUVW][a-z]+"
+-	mmx_expr = "^\\((emms|fxsave|fxrstor|ldmxcsr|stmxcsr)\\)"
+-	mmxifvex_expr = "^CMOV" # CMOV is non-vex non-mmx
+-	fpu_expr = "^ESC"
++
++	mmxreg_expr = "^[HLNPQUVW][a-z]+" # MMX/SSE register operands
++	mmx_expr = "^\\(emms\\)"	  # MMX/SSE nmemonics lacking operands
++	mmxifvex_expr = "^CMOV"		  # nmemonics NOT an AVX
++	fpu_expr = "^FPU"
+ 
+ 	lprefix1_expr = "\\((66|!F3)\\)"
+ 	lprefix2_expr = "\\(F3\\)"
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0187344243==--
