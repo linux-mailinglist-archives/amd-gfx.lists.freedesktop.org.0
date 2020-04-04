@@ -2,50 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB8319EBBA
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 15:54:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F169C19E606
+	for <lists+amd-gfx@lfdr.de>; Sat,  4 Apr 2020 17:11:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A2DB89233;
-	Sun,  5 Apr 2020 13:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E60876E15A;
+	Sat,  4 Apr 2020 15:11:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0704897F9
- for <amd-gfx@lists.freedesktop.org>; Sat,  4 Apr 2020 14:36:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=I+r4x9xNZsFWPlGZuxANeH7KhfgG+dmZr3efwChpjZ0=; b=nHrGeW4dN3kR6ZE9RShN4Xjat8
- WgyRgjI7qix21+1tQoPymXFmvCGxR7RZIKFti0FCCcbBcPIFyxIlsOJ4ytKugjbviP5yxuO3Aq2uf
- DGDNV5kZyfVtwZYNwQBRbHzfvLAC+RlYdiQ7mhYW0nKs8srPnNhkw3f/gQ/IoF87IFv3fP9fDglG1
- NUNegaIAcQlDNIhuRrBXIJgaTCso8NeOxAWGh4Vu72ZnWK9Q2n5sw/ljGjpdnFpXExQlfNAs+iQVP
- T1xESqjIr/BM1/d9euhgRtOmHYAEQAQJftMXo7Q6FQvFKdKsFpI8SLTa9V8AokYCPAnFNPH6aBj15
- 3utuQ3rA==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=worktop.programming.kicks-ass.net)
- by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jKjuJ-0003vD-77; Sat, 04 Apr 2020 14:36:23 +0000
-Received: by worktop.programming.kicks-ass.net (Postfix, from userid 1000)
- id 6F7659834EB; Sat,  4 Apr 2020 16:36:20 +0200 (CEST)
-Date: Sat, 4 Apr 2020 16:36:20 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Masami Hiramatsu <mhiramat@kernel.org>
-Subject: Re: AMD DC graphics display code enables -mhard-float, -msse, -msse2
- without any visible FPU state protection
-Message-ID: <20200404143620.GM2452@worktop.programming.kicks-ass.net>
-References: <CAG48ez2Sx4ELkM94aD_h_J7K7KBOeuGmvZLKRkg3n_f2WoZ_cg@mail.gmail.com>
- <4c5fe55d-9db9-2f61-59b2-1fb2e1b45ed0@amd.com>
- <20200402141308.GB20730@hirez.programming.kicks-ass.net>
- <20200403142837.f61a18d7bd32fd73777479ad@kernel.org>
- <20200403112113.GN20730@hirez.programming.kicks-ass.net>
- <20200404120808.05e9aa61500265be2e031bd6@kernel.org>
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
+ [IPv6:2a00:1450:4864:20::52a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DB5E6E15A;
+ Sat,  4 Apr 2020 15:11:25 +0000 (UTC)
+Received: by mail-ed1-x52a.google.com with SMTP id w26so13013832edu.7;
+ Sat, 04 Apr 2020 08:11:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=0ei6i/+VGJhIvoDfkwW5mzuzQfMnSAhEY9hUkVjXVmA=;
+ b=HhHZROjEuw6Fus4iZtJT8fKvJYJnQFzXHB/gchKvrpELkfMW3FLHuIQOzbJ8CDDXl8
+ KQ4HGuFzSuQ6g83SeFMTTee/FKj2qQLR+5DIztpIu1+BPdyLEbiZnlF42WTMC0oWIo8/
+ mPghZscP1DEMtjLiuZzO1Eo1jthENJ0NyQLFzJJyzmoVKEdlAmXtW+jVSRCERuY5yzQs
+ oz0VWpviOAiwJa8av5sviptlhHymquLz1k7e03+xPESlDxyQpI/RRzP3gNQmyGvF6NnV
+ Ci4mzk5RmLDhu2+P3K9CcUJryKlcPygEXF2XI4kYLgCD9WQgcjJlTvHm+1GxQdEEHrMb
+ KQrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=0ei6i/+VGJhIvoDfkwW5mzuzQfMnSAhEY9hUkVjXVmA=;
+ b=HVp8jVU2kebNmDTQRcWOPzAXmvO2rGrvwST+J4Rxg6MMWO3lMwbm3GShDkpUfSaHvy
+ OOEqskHoTCtHiBo5eesl7GRhdkb3+EiZMRi6oTtyqw5+OzTQPlyrIvVvKPo46Sh07AL3
+ VchqMytEkriFPek53NTEnXXQW2JozQbDWNyw3EKREVZW4u1FGKsMt87bNMs+uZL5Ig5E
+ DI/mujTgdBLjjshPBVHRfsjLYb0XyPLtEaoQzjts2fvxw0URAKCE19mWvwbyX/NDbQON
+ Jjppn299SCuc+7vGNnJ4Yv3HZp4aZP0w0rtM/Tak34/yWEuGWUyedqEpHhGvAkAXm5GG
+ rhyQ==
+X-Gm-Message-State: AGi0PuYquSLFSVuvJTxyXLp1FfMgEXLWemTVKQTPF+Tnbuy6W2TsS9gV
+ a4Nqjmmb+rti1W4h6GFZzvvhmpgXSYW/g7EgqbI=
+X-Google-Smtp-Source: APiQypKnKcPHewvob8kHiGKubsSx6yoHJrFkHA8LrBnpSpmtTM0YWBRdM4SaIw2DBiZSSM87nEOYFu4MHEFS4DHiTVs=
+X-Received: by 2002:a17:906:6992:: with SMTP id
+ i18mr13107081ejr.293.1586013084543; 
+ Sat, 04 Apr 2020 08:11:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200404120808.05e9aa61500265be2e031bd6@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Mailman-Approved-At: Sun, 05 Apr 2020 13:54:42 +0000
+References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+ <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
+ <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
+ <ece8ebe3-40ec-2457-02da-4fef19cbe8f6@intel.com>
+ <6d2ec570f957b4504fb70e0b1f0632712a99dc0c.camel@collabora.com>
+ <CAPj87rO7BuKQj2Kei3T7RdkFq5=TiuShBvtrPU2sn0iqMfXSTg@mail.gmail.com>
+ <59f4ea1f13a9a9d37f7801b93061b4ae7dd595e2.camel@gmail.com>
+ <d0ef47e45c83b342494e6781b808b4831a008836.camel@ndufresne.ca>
+ <d9dca12759fd6a549dc4cd71b5f210a4dced01cd.camel@gmail.com>
+ <CAOFGe96WqRTagf=Lhp6j9aMnB6hxwog7t93t=4r6QE_4f+HpeQ@mail.gmail.com>
+ <5551426acf99f73d3ce8234c14c176c1c7a1fe44.camel@ndufresne.ca>
+ <CAAxE2A5zSy7Rh6xyPW8NCqj3q0_8F7yw8tAXx=_z8+mJ-u2uWw@mail.gmail.com>
+ <3cddf1aa-5072-af7c-c51e-c16039176f6c@daenzer.net>
+In-Reply-To: <3cddf1aa-5072-af7c-c51e-c16039176f6c@daenzer.net>
+From: Rob Clark <robdclark@gmail.com>
+Date: Sat, 4 Apr 2020 08:11:23 -0700
+Message-ID: <CAF6AEGuNTtHfNm_nRhPFX5wPRmKkjnFEKqTdTSBDjpLkaiN8Fw@mail.gmail.com>
+Subject: Re: [Mesa-dev] [Intel-gfx] gitlab.fd.o financial situation and impact
+ on services
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,316 +74,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- Josh Poimboeuf <jpoimboe@redhat.com>, Jann Horn <jannh@google.com>,
- Leo Li <sunpeng.li@amd.com>, the arch/x86 maintainers <x86@kernel.org>,
- kernel list <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Andy Lutomirski <luto@kernel.org>,
- "H. Peter Anvin" <hpa@zytor.com>, Alex Deucher <alexander.deucher@amd.com>,
- Thomas Gleixner <tglx@linutronix.de>, Harry Wentland <harry.wentland@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Erik Faye-Lund <erik.faye-lund@collabora.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>,
+ =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "X.Org development" <xorg-devel@lists.x.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Nicolas Dufresne <nicolas@ndufresne.ca>,
+ "X.Org Foundation Board" <board@foundation.x.org>,
+ Xorg Members List <members@x.org>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Jason Ekstrand <jason@jlekstrand.net>,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>,
+ wayland <wayland-devel@lists.freedesktop.org>,
+ Discussion of the development of and with GStreamer
+ <gstreamer-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Apr 04, 2020 at 12:08:08PM +0900, Masami Hiramatsu wrote:
-> From c609be0b6403245612503fca1087628655bab96c Mon Sep 17 00:00:00 2001
-> From: Masami Hiramatsu <mhiramat@kernel.org>
-> Date: Fri, 3 Apr 2020 16:58:22 +0900
-> Subject: [PATCH] x86: insn: Add insn_is_fpu()
-> 
-> Add insn_is_fpu(insn) which tells that the insn is
-> whether touch the MMX/XMM/YMM register or the instruction
-> of FP coprocessor.
-> 
-> Signed-off-by: Masami Hiramatsu <mhiramat@kernel.org>
-
-With that I get a lot of warnings:
-
-  FPU instruction outside of kernel_fpu_{begin,end}()
-
-two random examples (x86-64-allmodconfig build):
-
-arch/x86/xen/enlighten.o: warning: objtool: xen_vcpu_restore()+0x341: FPU instruction outside of kernel_fpu_{begin,end}()
-
-$ ./objdump-func.sh defconfig-build/arch/x86/xen/enlighten.o xen_vcpu_restore | grep 341
-0341  841:      0f 92 c3                setb   %bl
-
-arch/x86/events/core.o: warning: objtool: x86_pmu_stop()+0x6d: FPU instruction outside of kernel_fpu_{begin,end}()
-
-$ ./objdump-func.sh defconfig-build/arch/x86/events/core.o x86_pmu_stop | grep 6d
-006d     23ad:  41 0f 92 c6             setb   %r14b
-
-Which seems to suggest something goes wobbly with SETB, but I'm not
-seeing what in a hurry.
-
-
----
---- a/arch/x86/include/asm/fpu/api.h
-+++ b/arch/x86/include/asm/fpu/api.h
-@@ -12,6 +12,13 @@
- #define _ASM_X86_FPU_API_H
- #include <linux/bottom_half.h>
-
-+#define annotate_fpu() ({						\
-+	asm volatile("%c0:\n\t"						\
-+		     ".pushsection .discard.fpu_safe\n\t"		\
-+		     ".long %c0b - .\n\t"				\
-+		     ".popsection\n\t" : : "i" (__COUNTER__));		\
-+})
-+
- /*
-  * Use kernel_fpu_begin/end() if you intend to use FPU in kernel context. It
-  * disables preemption so be careful if you intend to use it for long periods
---- a/arch/x86/include/asm/fpu/internal.h
-+++ b/arch/x86/include/asm/fpu/internal.h
-@@ -437,6 +437,7 @@ static inline int copy_fpregs_to_fpstate
- 	 * Legacy FPU register saving, FNSAVE always clears FPU registers,
- 	 * so we have to mark them inactive:
- 	 */
-+	annotate_fpu();
- 	asm volatile("fnsave %[fp]; fwait" : [fp] "=m" (fpu->state.fsave));
-
- 	return 0;
-@@ -462,6 +463,7 @@ static inline void copy_kernel_to_fpregs
- 	 * "m" is a random variable that should be in L1.
- 	 */
- 	if (unlikely(static_cpu_has_bug(X86_BUG_FXSAVE_LEAK))) {
-+		annotate_fpu();
- 		asm volatile(
- 			"fnclex\n\t"
- 			"emms\n\t"
---- a/arch/x86/kernel/fpu/init.c
-+++ b/arch/x86/kernel/fpu/init.c
-@@ -38,7 +38,10 @@ static void fpu__init_cpu_generic(void)
- 		fpstate_init_soft(&current->thread.fpu.state.soft);
- 	else
- #endif
-+	{
-+		annotate_fpu();
- 		asm volatile ("fninit");
-+	}
- }
-
- /*
-@@ -61,6 +64,7 @@ static bool fpu__probe_without_cpuid(voi
- 	cr0 &= ~(X86_CR0_TS | X86_CR0_EM);
- 	write_cr0(cr0);
-
-+	annotate_fpu();
- 	asm volatile("fninit ; fnstsw %0 ; fnstcw %1" : "+m" (fsw), "+m" (fcw));
-
- 	pr_info("x86/fpu: Probing for FPU: FSW=0x%04hx FCW=0x%04hx\n", fsw, fcw);
---- a/tools/objtool/arch.h
-+++ b/tools/objtool/arch.h
-@@ -27,6 +27,7 @@ enum insn_type {
- 	INSN_CLAC,
- 	INSN_STD,
- 	INSN_CLD,
-+	INSN_FPU,
- 	INSN_OTHER,
- };
-
---- a/tools/objtool/arch/x86/decode.c
-+++ b/tools/objtool/arch/x86/decode.c
-@@ -92,6 +92,11 @@ int arch_decode_instruction(struct elf *
- 	*len = insn.length;
- 	*type = INSN_OTHER;
-
-+	if (insn_is_fpu(&insn)) {
-+		*type = INSN_FPU;
-+		return 0;
-+	}
-+
- 	if (insn.vex_prefix.nbytes)
- 		return 0;
-
-@@ -357,48 +362,54 @@ int arch_decode_instruction(struct elf *
-
- 	case 0x0f:
-
--		if (op2 == 0x01) {
--
-+		switch (op2) {
-+		case 0x01:
- 			if (modrm == 0xca)
- 				*type = INSN_CLAC;
- 			else if (modrm == 0xcb)
- 				*type = INSN_STAC;
-+			break;
-
--		} else if (op2 >= 0x80 && op2 <= 0x8f) {
--
-+		case 0x80 ... 0x8f: /* Jcc */
- 			*type = INSN_JUMP_CONDITIONAL;
-+			break;
-
--		} else if (op2 == 0x05 || op2 == 0x07 || op2 == 0x34 ||
--			   op2 == 0x35) {
--
--			/* sysenter, sysret */
-+		case 0x05: /* syscall */
-+		case 0x07: /* sysret */
-+		case 0x34: /* sysenter */
-+		case 0x35: /* sysexit */
- 			*type = INSN_CONTEXT_SWITCH;
-+			break;
-
--		} else if (op2 == 0x0b || op2 == 0xb9) {
--
--			/* ud2 */
-+		case 0xff: /* ud0 */
-+		case 0xb9: /* ud1 */
-+		case 0x0b: /* ud2 */
- 			*type = INSN_BUG;
-+			break;
-
--		} else if (op2 == 0x0d || op2 == 0x1f) {
--
-+		case 0x0d:
-+		case 0x1f:
- 			/* nopl/nopw */
- 			*type = INSN_NOP;
-+			break;
-
--		} else if (op2 == 0xa0 || op2 == 0xa8) {
--
--			/* push fs/gs */
-+		case 0xa0: /* push fs */
-+		case 0xa8: /* push gs */
- 			*type = INSN_STACK;
- 			op->src.type = OP_SRC_CONST;
- 			op->dest.type = OP_DEST_PUSH;
-+			break;
-
--		} else if (op2 == 0xa1 || op2 == 0xa9) {
--
--			/* pop fs/gs */
-+		case 0xa1: /* pop fs */
-+		case 0xa9: /* pop gs */
- 			*type = INSN_STACK;
- 			op->src.type = OP_SRC_POP;
- 			op->dest.type = OP_DEST_MEM;
--		}
-+			break;
-
-+		default:
-+			break;
-+		}
- 		break;
-
- 	case 0xc9:
---- a/tools/objtool/check.c
-+++ b/tools/objtool/check.c
-@@ -1316,6 +1316,43 @@ static int read_unwind_hints(struct objt
- 	return 0;
- }
-
-+static int read_fpu_hints(struct objtool_file *file)
-+{
-+	struct section *sec;
-+	struct instruction *insn;
-+	struct rela *rela;
-+
-+	sec = find_section_by_name(file->elf, ".rela.discard.fpu_safe");
-+	if (!sec)
-+		return 0;
-+
-+	list_for_each_entry(rela, &sec->rela_list, list) {
-+		if (rela->sym->type != STT_SECTION) {
-+			WARN("unexpected relocation symbol type in %s", sec->name);
-+			return -1;
-+		}
-+
-+		insn = find_insn(file, rela->sym->sec, rela->addend);
-+		if (!insn) {
-+			WARN("bad .discard.fpu_safe entry");
-+			return -1;
-+		}
-+
-+		if (insn->type != INSN_FPU) {
-+			WARN_FUNC("fpu_safe hint not an FPU instruction",
-+				  insn->sec, insn->offset);
-+//			return -1;
-+		}
-+
-+		while (insn && insn->type == INSN_FPU) {
-+			insn->fpu_safe = true;
-+			insn = next_insn_same_func(file, insn);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int read_retpoline_hints(struct objtool_file *file)
- {
- 	struct section *sec;
-@@ -1422,6 +1459,10 @@ static int decode_sections(struct objtoo
- 	if (ret)
- 		return ret;
-
-+	ret = read_fpu_hints(file);
-+	if (ret)
-+		return ret;
-+
- 	return 0;
- }
-
-@@ -2167,6 +2208,16 @@ static int validate_branch(struct objtoo
- 			if (dead_end_function(file, insn->call_dest))
- 				return 0;
-
-+			if (insn->call_dest) {
-+				if (!strcmp(insn->call_dest->name, "kernel_fpu_begin") ||
-+				    !strcmp(insn->call_dest->name, "emulator_get_fpu"))
-+					state.fpu = true;
-+
-+				if (!strcmp(insn->call_dest->name, "kernel_fpu_end") ||
-+				    !strcmp(insn->call_dest->name, "emulator_put_fpu"))
-+					state.fpu = false;
-+			}
-+
- 			break;
-
- 		case INSN_JUMP_CONDITIONAL:
-@@ -2275,6 +2326,13 @@ static int validate_branch(struct objtoo
- 			state.df = false;
- 			break;
-
-+		case INSN_FPU:
-+			if (!state.fpu && !insn->fpu_safe) {
-+				WARN_FUNC("FPU instruction outside of kernel_fpu_{begin,end}()", sec, insn->offset);
-+				return 1;
-+			}
-+			break;
-+
- 		default:
- 			break;
- 		}
---- a/tools/objtool/check.h
-+++ b/tools/objtool/check.h
-@@ -20,6 +20,7 @@ struct insn_state {
- 	unsigned char type;
- 	bool bp_scratch;
- 	bool drap, end, uaccess, df;
-+	bool fpu;
- 	unsigned int uaccess_stack;
- 	int drap_reg, drap_offset;
- 	struct cfi_reg vals[CFI_NUM_REGS];
-@@ -34,7 +35,7 @@ struct instruction {
- 	enum insn_type type;
- 	unsigned long immediate;
- 	bool alt_group, dead_end, ignore, hint, save, restore, ignore_alts;
--	bool retpoline_safe;
-+	bool retpoline_safe, fpu_safe;
- 	u8 visited;
- 	struct symbol *call_dest;
- 	struct instruction *jump_dest;
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gRnJpLCBBcHIgMywgMjAyMCBhdCA3OjEyIEFNIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFl
+bnplci5uZXQ+IHdyb3RlOgo+Cj4gT24gMjAyMC0wMy0wMSA2OjQ2IGEubS4sIE1hcmVrIE9sxaHD
+oWsgd3JvdGU6Cj4gPiBGb3IgTWVzYSwgd2UgY291bGQgcnVuIENJIG9ubHkgd2hlbiBNYXJnZSBw
+dXNoZXMsIHNvIHRoYXQgaXQncyBhIHN0cmljdGx5Cj4gPiBwcmUtbWVyZ2UgQ0kuCj4KPiBUaGFu
+a3MgZm9yIHRoZSBzdWdnZXN0aW9uISBJIGltcGxlbWVudGVkIHNvbWV0aGluZyBsaWtlIHRoaXMg
+Zm9yIE1lc2E6Cj4KPiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvbWVzYS9tZXNhLy0v
+bWVyZ2VfcmVxdWVzdHMvNDQzMgo+CgpJIHdvdWxkbid0IG1pbmQgbWFudWFsbHkgdHJpZ2dlcmlu
+ZyBwaXBlbGluZXMsIGJ1dCB1bmxlc3MgdGhlcmUgaXMKc29tZSB0cmljayBJJ20gbm90IHJlYWxp
+emluZywgaXQgaXMgc3VwZXIgY3VtYmVyc29tZS4gIEllLiB5b3UgaGF2ZSB0bwpjbGljayBmaXJz
+dCB0aGUgY29udGFpbmVyIGpvYnMuLiB0aGVuIHdhaXQuLiB0aGVuIHRoZSBidWlsZCBqb2JzLi4K
+dGhlbiB3YWl0IHNvbWUgbW9yZS4uIGFuZCB0aGVuIGZpbmFsbHkgdGhlIGFjdHVhbCBydW5uZXJz
+LiAgVGhhdCB3b3VsZApiZSBhIHJlYWwgc3RlcCBiYWNrIGluIHRlcm1zIG9mIHVzZWZ1bG5lc3Mg
+b2YgQ0kuLiBvbmUgbWlnaHQgY2FsbCBpdCBhCnJlZ3Jlc3Npb24gOi0oCgpJcyB0aGVyZSBhIHBv
+c3NpYmxlIG1pZGRsZSBncm91bmQgd2hlcmUgcHJlLW1hcmdlIHBpcGVsaW5lcyB0aGF0IHRvdWNo
+CmEgcGFydGljdWxhciBkcml2ZXIgdHJpZ2dlciB0aGF0IGRyaXZlcidzIENJIGpvYnMsIGJ1dCBN
+UnMgdGhhdCBkb24ndAp0b3VjaCB0aGF0IGRyaXZlciBidXQgZG8gdG91Y2ggc2hhcmVkIGNvZGUg
+ZG9uJ3QgdW50aWwgdHJpZ2dlcmVkIGJ5Cm1hcmdlPyAgSWUuIGlmIEkgaGF2ZSBhIE1SIHRoYXQg
+b25seSB0b3VjaGVzIG5pciwgaXQncyBwcm9iYWJseSBvayB0bwpub3QgcnVuIGZyZWVkcmVubyBq
+b2JzIHVudGlsIG1hcmdlIHRyaWdnZXJzIGl0LiAgQnV0IGlmIEkgaGF2ZSBhIE1SCnRoYXQgaXMg
+dG91Y2hpbmcgZnJlZWRyZW5vLCBJJ2QgcmVhbGx5IHJhdGhlciBub3QgaGF2ZSB0byB3YWl0IHVu
+dGlsCm1hcmdlIHRyaWdnZXJzIHRoZSBmcmVlZHJlbm8gQ0kgam9icy4KCkJ0dywgSSB3YXMgdW5k
+ZXIgdGhlIGltcHJlc3Npb24gKGZyb20gcGVyaW9kaWNhbGx5IHNraW1taW5nIHRoZSBsb2dzCmlu
+ICNmcmVlZGVza3RvcCwgc28gSSBjb3VsZCB3ZWxsIGJlIG1pc3Npbmcgb3IgbWlzdW5kZXJzdGFu
+ZGluZwpzb21ldGhpbmcpIHRoYXQgY2FjaGluZy9ldGMgaGFkIGJlZW4gaW1wcm92ZWQgYW5kIG1l
+c2EncyBwYXJ0IG9mIHRoZQplZ3Jlc3Mgd2Fzbid0IHRoZSBiaWdnZXIgaXNzdWUgYXQgdGhpcyBw
+b2ludD8KCkJSLAotUgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
