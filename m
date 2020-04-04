@@ -2,116 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B36419EBC6
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 15:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E20619E26E
+	for <lists+amd-gfx@lfdr.de>; Sat,  4 Apr 2020 05:08:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF5396E291;
-	Sun,  5 Apr 2020 13:54:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90D0B6ECDD;
+	Sat,  4 Apr 2020 03:08:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 2846 seconds by postgrey-1.36 at gabe;
- Fri, 03 Apr 2020 23:24:43 UTC
-Received: from mx0a-00082601.pphosted.com (mx0a-00082601.pphosted.com
- [67.231.145.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8FF6ECC1
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Apr 2020 23:24:43 +0000 (UTC)
-Received: from pps.filterd (m0109333.ppops.net [127.0.0.1])
- by mx0a-00082601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 033MV5Ab022207; Fri, 3 Apr 2020 15:37:13 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com;
- h=date : from : to : cc :
- subject : message-id : references : content-type : in-reply-to :
- mime-version; s=facebook; bh=orVTRiVunI3muYjWiUhSjohyYMfn4ykT064MFswaZ7k=;
- b=pIsRWgso+tw0W/eVTxNm9b+Y8ztUl78s8dkeZlQ4Szknny2Cv8W+Wcibm9Fh3CAww57n
- 0nrs9mh2KN2Taey07JRKjgfXegpuzjx35WbEeSsQbmxMkq3VWPa8iv6uKFnb4b1yEZV8
- NwK8TGkqqnOtu1D5WyEvUxtHv/riI7EvDt8= 
-Received: from maileast.thefacebook.com ([163.114.130.16])
- by mx0a-00082601.pphosted.com with ESMTP id 30671528nq-2
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Fri, 03 Apr 2020 15:37:12 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (100.104.31.183)
- by o365-in.thefacebook.com (100.104.35.175) with Microsoft SMTP
- Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1847.3; Fri, 3 Apr 2020 15:37:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IojIATX1K9TXVV2LCBvB4ykFawUrS7+FrxMne4Ys9643vdo8LiLbKM8YiFgCCN3Dri0KISudhsjqm/MdpRuez0W3A/Ft1Wka/1+jyNnIaCHIDRoCbaiJE3zEviQO6I1HFtszETBY7qA0gNElTQzQbuL9Yr+3mwPTR2w1Z7RvLcKYvSMrnGk9pH2qXQ8Hq73L14rYfbT5Yyjxop9EmFbXBs6PJsPzOinAAmMHNRSB80qguhf/b57Bb91nuf51B4dKeCWHoKOx9xC3RvPBG/UQ5h9fVQqElEQK+VVmU4/9za1PQ7aJHsFiBdemW4CS2tAulAqj+oByeeUCWhKcEZGjHQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=orVTRiVunI3muYjWiUhSjohyYMfn4ykT064MFswaZ7k=;
- b=DWE8snAEMH+yxy/+L+8CUyBTyGm9NgmyvNG3ZWDa83tLgSC8Ec/7pAyMklD7fNuYYWFxxLqYX6QOv5oF3T51sdY1Le//3W9RhFZDLcbrpp8dZheyjADGstZ7xMaUmIPa6NkYaXRhp2m41Zmi9y88KrZjoovRxj7ORg9AWoofEs1FKE1zaONGmBJm5M5lkaaqXO5rN05pYz4KqaGDBlBoaSv4oovi4BN5SfInCn3OETN0OP6ThpGMQSYb8ELSUiZJDPZO6M7Og5XsB5KJgSj8He4VD/jh9tviDGvLk9FIQhpWYuDkF7P+F1vU5kmUGxMBDtpJoUEJ95elCbJU+RXJPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=fb.com; dmarc=pass action=none header.from=fb.com; dkim=pass
- header.d=fb.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.onmicrosoft.com;
- s=selector2-fb-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=orVTRiVunI3muYjWiUhSjohyYMfn4ykT064MFswaZ7k=;
- b=AeFC5HydC2rMv/8IRToJj53O1u6zL1hRNZ5Z90MgzjxX/9X3am84SvdSzd/3tAWPXgcdNTUrF9lWCbCtm7fcBUIunjMNTrgF0WZXEIx908nFYRcHJlCKL/XSd2C/MPbE0fhtMjxZAxOFpKCXwsVYTOG+xUCZNtFX+uamQCr1J04=
-Received: from BYAPR15MB4136.namprd15.prod.outlook.com (20.177.229.24) by
- BYAPR15MB2887.namprd15.prod.outlook.com (20.178.237.209) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2878.19; Fri, 3 Apr 2020 22:37:09 +0000
-Received: from BYAPR15MB4136.namprd15.prod.outlook.com
- ([fe80::bdf9:6577:1d2a:a275]) by BYAPR15MB4136.namprd15.prod.outlook.com
- ([fe80::bdf9:6577:1d2a:a275%7]) with mapi id 15.20.2856.019; Fri, 3 Apr 2020
- 22:37:09 +0000
-Date: Fri, 3 Apr 2020 15:37:04 -0700
-From: Roman Gushchin <guro@fb.com>
-To: Odin Ugedal <odin@ugedal.com>
-Subject: Re: [PATCH] device_cgroup: Cleanup cgroup eBPF device filter code
-Message-ID: <20200403223704.GA306670@carbon.dhcp.thefacebook.com>
-References: <20200403175528.225990-1-odin@ugedal.com>
-Content-Disposition: inline
-In-Reply-To: <20200403175528.225990-1-odin@ugedal.com>
-X-ClientProxiedBy: CO2PR04CA0152.namprd04.prod.outlook.com (2603:10b6:104::30)
- To BYAPR15MB4136.namprd15.prod.outlook.com
- (2603:10b6:a03:96::24)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from carbon.dhcp.thefacebook.com (2620:10d:c090:400::5:71d6) by
- CO2PR04CA0152.namprd04.prod.outlook.com (2603:10b6:104::30) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2878.15 via Frontend Transport; Fri, 3 Apr 2020 22:37:08 +0000
-X-Originating-IP: [2620:10d:c090:400::5:71d6]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: dd6d0a80-23b9-4f07-37d7-08d7d81f8b5e
-X-MS-TrafficTypeDiagnostic: BYAPR15MB2887:
-X-Microsoft-Antispam-PRVS: <BYAPR15MB2887E8AD37FE718C555ACEE1BEC70@BYAPR15MB2887.namprd15.prod.outlook.com>
-X-FB-Source: Internal
-X-MS-Oob-TLC-OOBClassifiers: OLM:1227;
-X-Forefront-PRVS: 0362BF9FDB
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR15MB4136.namprd15.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10019020)(366004)(346002)(136003)(376002)(39860400002)(396003)(81166006)(478600001)(66946007)(86362001)(6916009)(52116002)(6506007)(2906002)(7696005)(66476007)(66556008)(316002)(81156014)(55016002)(5660300002)(4326008)(9686003)(6666004)(186003)(8936002)(8676002)(33656002)(16526019)(1076003)(4744005);
- DIR:OUT; SFP:1102; 
-Received-SPF: None (protection.outlook.com: fb.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: I2gzfofFl/6VmFzQlEgVA+ey0W7Zn3/ie8CrZlVOPtZDO6GS3UttuWLpM6g8XNzGAEyswiI70KpYq/6rXGobWpbeh/GjoCTCryWGTnkxRQtWcbQrkpUIbiKtFGMVizOIVtJjd2AbzVpBJOroqVtHuBpHXFi+8o/X4P3noJv57jgYte0eyjY3jCAguGJOxAilP5PSps/OqbEaYHiTP9s35JU+fbMlSp5Ov8vdVdkZgZyjAz46QEVzOQ/8lIzgae6yF77WY7IZ+uS6ZkNTqpCy4O5+XIMBHkq35YjGOvcQdDA1csIFnCzKz+DBDGJlxiIOenhPooktK/2l08LXoYkhHvFK+xwjNpaRSVzQcf091SQuT/LjuwN88rlQRaXqelv51LPz0A9e4TFJjXCXZbQE0AfztNfEfr1nEjVlKfhb9P7uY71x6pgSI2dW3U0ui7oh
-X-MS-Exchange-AntiSpam-MessageData: zPnNOeLuXvygXAsutdLup0oQbXCvwQHRi8I+CeC7lFFgLmD779VOeXOikCX7S+nVCT7K3vRgRSV5fQ9qHF7jWqrpee1h0suG+DiPpH4t4RJ+SlgaRnUMAnIFe12QMgL3tuGpY9TwNsGnY9SclMHVkOPJsIcKjdzXiCv0/NPqRKPcBjN8VqR30x3S1g8//t7Y
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd6d0a80-23b9-4f07-37d7-08d7d81f8b5e
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2020 22:37:09.2076 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ae927fe-1255-47a7-a2af-5f3a069daaa2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: B7jJ36HbcgBEBVnE9nVGIG/eySBgjBIu15HNpzPHEseQ1d3+sI0hWOJ0sAYUgquR
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR15MB2887
-X-OriginatorOrg: fb.com
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138, 18.0.676
- definitions=2020-04-03_19:2020-04-03,
- 2020-04-03 signatures=0
-X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0
- mlxlogscore=953
- spamscore=0 clxscore=1011 phishscore=0 mlxscore=0 impostorscore=0
- adultscore=0 lowpriorityscore=0 suspectscore=1 malwarescore=0
- priorityscore=1501 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2003020000 definitions=main-2004030173
-X-FB-Internal: deliver
-X-Mailman-Approved-At: Sun, 05 Apr 2020 13:54:42 +0000
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 958806ECDD
+ for <amd-gfx@lists.freedesktop.org>; Sat,  4 Apr 2020 03:08:19 +0000 (UTC)
+Received: from devnote2 (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id BF97B2072B;
+ Sat,  4 Apr 2020 03:08:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1585969699;
+ bh=e/yNSdgbEIWUwfYz0z3Pr5AJ4wh9kn+3CIJpBSQ4o6w=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=Elv6LC4/TYX5AYW7RwWcmEgec4jNoB+JZq68BnK0W44eJtsB7pOVLxSjckO+njhRr
+ orza5m5rf5is6+xFW+O39w7GC1Iont+WzKg3L+zdw1SP1JImUQ6x1Ak2iF1Bxm53UC
+ 84AAyGCyNNc6ApvtQPmw/nPGvZcDP0dXm0AFPPSA=
+Date: Sat, 4 Apr 2020 12:08:08 +0900
+From: Masami Hiramatsu <mhiramat@kernel.org>
+To: Peter Zijlstra <peterz@infradead.org>
+Subject: Re: AMD DC graphics display code enables -mhard-float, -msse,
+ -msse2 without any visible FPU state protection
+Message-Id: <20200404120808.05e9aa61500265be2e031bd6@kernel.org>
+In-Reply-To: <20200403112113.GN20730@hirez.programming.kicks-ass.net>
+References: <CAG48ez2Sx4ELkM94aD_h_J7K7KBOeuGmvZLKRkg3n_f2WoZ_cg@mail.gmail.com>
+ <4c5fe55d-9db9-2f61-59b2-1fb2e1b45ed0@amd.com>
+ <20200402141308.GB20730@hirez.programming.kicks-ass.net>
+ <20200403142837.f61a18d7bd32fd73777479ad@kernel.org>
+ <20200403112113.GN20730@hirez.programming.kicks-ass.net>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,36 +49,511 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harish.Kasiviswanathan@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-security-module@vger.kernel.org,
- tj@kernel.org, bpf@vger.kernel.org
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ Josh Poimboeuf <jpoimboe@redhat.com>, Jann Horn <jannh@google.com>,
+ Leo Li <sunpeng.li@amd.com>, the arch/x86 maintainers <x86@kernel.org>,
+ kernel list <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Andy Lutomirski <luto@kernel.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Harry Wentland <harry.wentland@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 03, 2020 at 07:55:28PM +0200, Odin Ugedal wrote:
-> Original cgroup v2 eBPF code for filtering device access made it
-> possible to compile with CONFIG_CGROUP_DEVICE=n and still use the eBPF
-> filtering. Change 
-> commit 4b7d4d453fc4 ("device_cgroup: Export devcgroup_check_permission")
-> reverted this, making it required to set it to y.
+On Fri, 3 Apr 2020 13:21:13 +0200
+Peter Zijlstra <peterz@infradead.org> wrote:
+
+> On Fri, Apr 03, 2020 at 02:28:37PM +0900, Masami Hiramatsu wrote:
+> > On Thu, 2 Apr 2020 16:13:08 +0200
+> > Peter Zijlstra <peterz@infradead.org> wrote:
 > 
-> Since the device filtering (and all the docs) for cgroup v2 is no longer
-> a "device controller" like it was in v1, someone might compile their
-> kernel with CONFIG_CGROUP_DEVICE=n. Then (for linux 5.5+) the eBPF
-> filter will not be invoked, and all processes will be allowed access
-> to all devices, no matter what the eBPF filter says.
+> > > Masami, Boris, is there any semi-sane way we can have insn_is_fpu() ?
+> > > While digging through various opcode manuals is of course forever fun, I
+> > > do feel like it might not be the best way.
+> > 
+> > Yes, it is possible to add INAT_FPU and insn_is_fpu().
+> > But it seems that the below patch needs more classification based on
+> > nmemonic or opcodes.
 > 
-> Signed-off-by: Odin Ugedal <odin@ugedal.com>
+> I went with opcode, and I think I did a fairly decent job, but I did
+> find a few problems on a second look at things.
+> 
+> I don't think nmemonic are going to help, the x86 nmemonics are a mess
+> (much like its opcode tables), there's no way to sanely detect what
+> registers are effected by an instruction based on name.
+> 
+> The best I came up with is operand class, see below.
 
-Hello, Odin!
+Yeah, so we need another map, current inat map is optimized for
+decoding, and lack of some information for reducing size.
+E.g. it mixed up the VEX prefix instruction with non-VEX one.
 
-The patch makes perfect sense to me.
+> 
+> > IMHO, it is the time to expand gen-insn-attr.awk or clone it to
+> > generate another opcode map, so that user will easily extend the
+> > insn infrastructure.
+> > (e.g. I had made an in-kernel disassembler, which generates a mnemonic
+> >  maps from x86-opcode-map.txt)
+> >  https://github.com/mhiramat/linux/commits/inkernel-disasm-20130414
+> 
+> Cute, and I'm thinking we might want that eventually, people have been
+> asking for a kernel specific objdump, one that knows about and shows all
+> the magical things the kernel does, like alternative, jump-labels and
+> soon the static_call stuff, but also things like the exception handling.
+> 
+> Objtool actually knows about much of that, and pairing it with your
+> disassembler could print it.
+> 
+> > > +	if (insn.vex_prefix.nbytes) {
+> > > +		*type = INSN_FPU;
+> > >  		return 0;
+> > > +	}
+> 
+> So that's the AVX nonsense dealt with; right until they stick an integer
+> instruction in the AVX space I suppose :/ Please tell me they didn't
+> already do that..
 
-Acked-by: Roman Gushchin <guro@fb.com>
+I'm not so sure.
+Theoretically, x86 instruction can be encoded with VEX prefix instead of
+REX prefix (most compiler may not output such inefficient code.)
 
-Thanks!
+> > >  	op1 = insn.opcode.bytes[0];
+> > >  	op2 = insn.opcode.bytes[1];
+> > > @@ -357,48 +359,71 @@ int arch_decode_instruction(struct elf *elf, struct section *sec,
+> > >  
+> > >  	case 0x0f:
+> > >  
+> > > +		switch (op2) {
+> 
+> > > +		case 0xae:
+> > > +			/* insane!! */
+> > > +			if ((modrm_reg >= 0 && modrm_reg <= 3) && modrm_mod != 3 && !insn.prefixes.nbytes)
+> > > +				*type = INSN_FPU;
+> > > +			break;
+> 
+> This is crazy, but I was trying to get at the x86 FPU control
+> instructions:
+> 
+>   FXSAVE, FXRSTOR, LDMXCSR and STMXCSR
+> 
+> Which are in Grp15
+
+Yes, that is a complex part.
+
+> Now arguably, I could skip them, the compiler should never emit those,
+> and the newer, fancier, XSAV family isn't marked as FPU either, even
+> though it will save/restore the FPU/MMX/SSE/AVX states too.
+> 
+> So I think I'll remove this part, it'll also make the fpu_safe
+> annotations easier.
+> 
+> > > +		case 0x10 ... 0x17:
+> > > +		case 0x28 ... 0x2f:
+> > > +		case 0x3a:
+> > > +		case 0x50 ... 0x77:
+> > > +		case 0x7a ... 0x7f:
+> > > +		case 0xc2:
+> > > +		case 0xc4 ... 0xc6:
+> > > +		case 0xd0 ... 0xff:
+> > > +			/* MMX, SSE, VMX */
+> 
+> So afaict these are the MMX and SSE instruction (clearly the VMX is my
+> brain loosing it).
+> 
+> I went with the coder64 opcode tables, but our x86-opcode-map.txt seems
+> to agree, mostly.
+> 
+> I now see that 0f 3a is not all mmx/sse, it also includes RORX which is
+> an integer instruction. Also, may I state that the opcode map is a
+> sodding disgrace? Why is an integer instruction stuck in the middle of
+> SSE instructions like that ?!?!
+> 
+> And I should shorten the last range to 0xd0 ... 0xfe, as 0f ff is UD0.
+> 
+> Other than that I think this is pretty accurate.
+> 
+> > > +			*type = INSN_FPU;
+> > > +			break;
+> > > +
+> > > +		default:
+> > > +			break;
+> > > +		}
+> > >  		break;
+> > >  
+> > >  	case 0xc9:
+> > > @@ -414,6 +439,10 @@ int arch_decode_instruction(struct elf *elf, struct section *sec,
+> > >  
+> > >  		break;
+> > >  
+> > > +	case 0xd8 ... 0xdf: /* x87 FPU range */
+> > > +		*type = INSN_FPU;
+> > > +		break;
+> 
+> Our x86-opcode-map.txt lists that as ESC, but doesn't have an escape
+> table for it. Per:
+> 
+>   http://ref.x86asm.net/coder64.html
+> 
+> these are all the traditional x87 FPU ops.
+
+Yes, for decoding, we don't need those tables.
+
+> > > +
+> > >  	case 0xe3:
+> > >  		/* jecxz/jrcxz */
+> > >  		*type = INSN_JUMP_CONDITIONAL;
+> 
+> 
+> Now; I suppose I need our x86-opcode-map.txt extended in at least two
+> ways:
+> 
+>  - all those x87 FPU instructions need adding
+>  - a way of detecting the affected register set
+> 
+> Now, I suspect we can do that latter by the instruction operands that
+> are already there, although I've not managed to untangle them fully
+> (hint, we really should improve the comments on top). Operands seem to
+> have one capital that denotes the class:
+> 
+>  - I: immediate
+>  - G: general purpose
+>  - E
+>  - P,Q: MMX
+>  - V,M,W,H: SSE
+> 
+> So if we can extend the awk magic to provide operand classes for each
+> decoded instruction, then that would simplify this lots.
+
+Hmm, it requires to generate another tables. Instead, what about below?
+I've added INAT_FPU (and INAT_FPUIFVEX*) flag to find FPU related code.
+
+*) actually, current inat tables have variant tables for the last prefix
+variations. But it doesn't have vex variations which doubles the size
+of table, that is too much just for FPU opcode.
+
+From c609be0b6403245612503fca1087628655bab96c Mon Sep 17 00:00:00 2001
+From: Masami Hiramatsu <mhiramat@kernel.org>
+Date: Fri, 3 Apr 2020 16:58:22 +0900
+Subject: [PATCH] x86: insn: Add insn_is_fpu()
+
+Add insn_is_fpu(insn) which tells that the insn is
+whether touch the MMX/XMM/YMM register or the instruction
+of FP coprocessor.
+
+Signed-off-by: Masami Hiramatsu <mhiramat@kernel.org>
+---
+ arch/x86/include/asm/inat.h                |  7 +++++++
+ arch/x86/include/asm/insn.h                | 11 +++++++++++
+ arch/x86/lib/x86-opcode-map.txt            | 22 +++++++++++-----------
+ arch/x86/tools/gen-insn-attr-x86.awk       | 21 ++++++++++++++++-----
+ tools/arch/x86/include/asm/inat.h          |  7 +++++++
+ tools/arch/x86/include/asm/insn.h          | 11 +++++++++++
+ tools/arch/x86/lib/x86-opcode-map.txt      | 22 +++++++++++-----------
+ tools/arch/x86/tools/gen-insn-attr-x86.awk | 21 ++++++++++++++++-----
+ 8 files changed, 90 insertions(+), 32 deletions(-)
+
+diff --git a/arch/x86/include/asm/inat.h b/arch/x86/include/asm/inat.h
+index 4cf2ad521f65..ffce45178c08 100644
+--- a/arch/x86/include/asm/inat.h
++++ b/arch/x86/include/asm/inat.h
+@@ -77,6 +77,8 @@
+ #define INAT_VEXOK	(1 << (INAT_FLAG_OFFS + 5))
+ #define INAT_VEXONLY	(1 << (INAT_FLAG_OFFS + 6))
+ #define INAT_EVEXONLY	(1 << (INAT_FLAG_OFFS + 7))
++#define INAT_FPU	(1 << (INAT_FLAG_OFFS + 8))
++#define INAT_FPUIFVEX	(1 << (INAT_FLAG_OFFS + 9))
+ /* Attribute making macros for attribute tables */
+ #define INAT_MAKE_PREFIX(pfx)	(pfx << INAT_PFX_OFFS)
+ #define INAT_MAKE_ESCAPE(esc)	(esc << INAT_ESC_OFFS)
+@@ -227,4 +229,9 @@ static inline int inat_must_evex(insn_attr_t attr)
+ {
+ 	return attr & INAT_EVEXONLY;
+ }
++
++static inline int inat_is_fpu(insn_attr_t attr)
++{
++	return attr & INAT_FPU;
++}
+ #endif
+diff --git a/arch/x86/include/asm/insn.h b/arch/x86/include/asm/insn.h
+index 5c1ae3eff9d4..03e711668839 100644
+--- a/arch/x86/include/asm/insn.h
++++ b/arch/x86/include/asm/insn.h
+@@ -129,6 +129,17 @@ static inline int insn_is_evex(struct insn *insn)
+ 	return (insn->vex_prefix.nbytes == 4);
+ }
+ 
++static inline int insn_is_fpu(struct insn *insn)
++{
++	if (!insn->opcode.got)
++		insn_get_opcode(insn);
++	if (inat_is_fpu(insn->attr)) {
++		if (insn->attr & INAT_FPUIFVEX)
++			return insn_is_avx(insn);
++		return 1;
++	}
++}
++
+ static inline int insn_has_emulate_prefix(struct insn *insn)
+ {
+ 	return !!insn->emulate_prefix_size;
+diff --git a/arch/x86/lib/x86-opcode-map.txt b/arch/x86/lib/x86-opcode-map.txt
+index ec31f5b60323..f139bfccfdb9 100644
+--- a/arch/x86/lib/x86-opcode-map.txt
++++ b/arch/x86/lib/x86-opcode-map.txt
+@@ -404,17 +404,17 @@ AVXcode: 1
+ 3f:
+ # 0x0f 0x40-0x4f
+ 40: CMOVO Gv,Ev
+-41: CMOVNO Gv,Ev | kandw/q Vk,Hk,Uk | kandb/d Vk,Hk,Uk (66)
+-42: CMOVB/C/NAE Gv,Ev | kandnw/q Vk,Hk,Uk | kandnb/d Vk,Hk,Uk (66)
++41: CMOVNO Gv,Ev | kandw/q Vk,Hk,Uk (v) | kandb/d Vk,Hk,Uk (66),(v)
++42: CMOVB/C/NAE Gv,Ev | kandnw/q Vk,Hk,Uk (v) | kandnb/d Vk,Hk,Uk (66),(v)
+ 43: CMOVAE/NB/NC Gv,Ev
+-44: CMOVE/Z Gv,Ev | knotw/q Vk,Uk | knotb/d Vk,Uk (66)
+-45: CMOVNE/NZ Gv,Ev | korw/q Vk,Hk,Uk | korb/d Vk,Hk,Uk (66)
+-46: CMOVBE/NA Gv,Ev | kxnorw/q Vk,Hk,Uk | kxnorb/d Vk,Hk,Uk (66)
+-47: CMOVA/NBE Gv,Ev | kxorw/q Vk,Hk,Uk | kxorb/d Vk,Hk,Uk (66)
++44: CMOVE/Z Gv,Ev | knotw/q Vk,Uk (v) | knotb/d Vk,Uk (66),(v)
++45: CMOVNE/NZ Gv,Ev | korw/q Vk,Hk,Uk (v) | korb/d Vk,Hk,Uk (66),(v)
++46: CMOVBE/NA Gv,Ev | kxnorw/q Vk,Hk,Uk (v) | kxnorb/d Vk,Hk,Uk (66),(v)
++47: CMOVA/NBE Gv,Ev | kxorw/q Vk,Hk,Uk (v) | kxorb/d Vk,Hk,Uk (66),(v)
+ 48: CMOVS Gv,Ev
+ 49: CMOVNS Gv,Ev
+-4a: CMOVP/PE Gv,Ev | kaddw/q Vk,Hk,Uk | kaddb/d Vk,Hk,Uk (66)
+-4b: CMOVNP/PO Gv,Ev | kunpckbw Vk,Hk,Uk (66) | kunpckwd/dq Vk,Hk,Uk
++4a: CMOVP/PE Gv,Ev | kaddw/q Vk,Hk,Uk (v) | kaddb/d Vk,Hk,Uk (66),(v)
++4b: CMOVNP/PO Gv,Ev | kunpckbw Vk,Hk,Uk (66),(v) | kunpckwd/dq Vk,Hk,Uk (v)
+ 4c: CMOVL/NGE Gv,Ev
+ 4d: CMOVNL/GE Gv,Ev
+ 4e: CMOVLE/NG Gv,Ev
+@@ -1037,9 +1037,9 @@ EndTable
+ 
+ GrpTable: Grp15
+ 0: fxsave | RDFSBASE Ry (F3),(11B)
+-1: fxstor | RDGSBASE Ry (F3),(11B)
+-2: vldmxcsr Md (v1) | WRFSBASE Ry (F3),(11B)
+-3: vstmxcsr Md (v1) | WRGSBASE Ry (F3),(11B)
++1: fxrstor | RDGSBASE Ry (F3),(11B)
++2: ldmxcsr | vldmxcsr Md (v1) | WRFSBASE Ry (F3),(11B)
++3: stmxcsr | vstmxcsr Md (v1) | WRGSBASE Ry (F3),(11B)
+ 4: XSAVE | ptwrite Ey (F3),(11B)
+ 5: XRSTOR | lfence (11B) | INCSSPD/Q Ry (F3),(11B)
+ 6: XSAVEOPT | clwb (66) | mfence (11B) | TPAUSE Rd (66),(11B) | UMONITOR Rv (F3),(11B) | UMWAIT Rd (F2),(11B) | CLRSSBSY Mq (F3)
+diff --git a/arch/x86/tools/gen-insn-attr-x86.awk b/arch/x86/tools/gen-insn-attr-x86.awk
+index a42015b305f4..2b1ab6673bd3 100644
+--- a/arch/x86/tools/gen-insn-attr-x86.awk
++++ b/arch/x86/tools/gen-insn-attr-x86.awk
+@@ -65,7 +65,10 @@ BEGIN {
+ 	modrm_expr = "^([CDEGMNPQRSUVW/][a-z]+|NTA|T[012])"
+ 	force64_expr = "\\([df]64\\)"
+ 	rex_expr = "^REX(\\.[XRWB]+)*"
+-	fpu_expr = "^ESC" # TODO
++	mmxreg_expr = "^[HLNPQUVW][a-z]+"
++	mmx_expr = "^\\((emms|fxsave|fxrstor|ldmxcsr|stmxcsr)\\)"
++	mmxifvex_expr = "^CMOV" # CMOV is non-vex non-mmx
++	fpu_expr = "^ESC"
+ 
+ 	lprefix1_expr = "\\((66|!F3)\\)"
+ 	lprefix2_expr = "\\(F3\\)"
+@@ -236,10 +239,11 @@ function add_flags(old,new) {
+ }
+ 
+ # convert operands to flags.
+-function convert_operands(count,opnd,       i,j,imm,mod)
++function convert_operands(count,opnd,       i,j,imm,mod,mmx)
+ {
+ 	imm = null
+ 	mod = null
++	mmx = null
+ 	for (j = 1; j <= count; j++) {
+ 		i = opnd[j]
+ 		if (match(i, imm_expr) == 1) {
+@@ -253,7 +257,12 @@ function convert_operands(count,opnd,       i,j,imm,mod)
+ 				imm = imm_flag[i]
+ 		} else if (match(i, modrm_expr))
+ 			mod = "INAT_MODRM"
++		if (match(i, mmxreg_expr) == 1) {
++			mmx = "INAT_FPU"
++		}
+ 	}
++	if (mmx)
++		imm = add_flags(imm, mmx)
+ 	return add_flags(imm, mod)
+ }
+ 
+@@ -318,9 +327,11 @@ function convert_operands(count,opnd,       i,j,imm,mod)
+ 		if (match(opcode, rex_expr))
+ 			flags = add_flags(flags, "INAT_MAKE_PREFIX(INAT_PFX_REX)")
+ 
+-		# check coprocessor escape : TODO
+-		if (match(opcode, fpu_expr))
+-			flags = add_flags(flags, "INAT_MODRM")
++		# check coprocessor escape
++		if (match(opcode, fpu_expr) || match(opcode, mmx_expr))
++			flags = add_flags(flags, "INAT_MODRM | INAT_FPU")
++		if (match(opcode, mmxifvex_expr))
++			flags = add_flags(flags, "INAT_FPUIFVEX")
+ 
+ 		# check VEX codes
+ 		if (match(ext, evexonly_expr))
+diff --git a/tools/arch/x86/include/asm/inat.h b/tools/arch/x86/include/asm/inat.h
+index 877827b7c2c3..2e6a05290efd 100644
+--- a/tools/arch/x86/include/asm/inat.h
++++ b/tools/arch/x86/include/asm/inat.h
+@@ -77,6 +77,8 @@
+ #define INAT_VEXOK	(1 << (INAT_FLAG_OFFS + 5))
+ #define INAT_VEXONLY	(1 << (INAT_FLAG_OFFS + 6))
+ #define INAT_EVEXONLY	(1 << (INAT_FLAG_OFFS + 7))
++#define INAT_FPU	(1 << (INAT_FLAG_OFFS + 8))
++#define INAT_FPUIFVEX	(1 << (INAT_FLAG_OFFS + 9))
+ /* Attribute making macros for attribute tables */
+ #define INAT_MAKE_PREFIX(pfx)	(pfx << INAT_PFX_OFFS)
+ #define INAT_MAKE_ESCAPE(esc)	(esc << INAT_ESC_OFFS)
+@@ -227,4 +229,9 @@ static inline int inat_must_evex(insn_attr_t attr)
+ {
+ 	return attr & INAT_EVEXONLY;
+ }
++
++static inline int inat_is_fpu(insn_attr_t attr)
++{
++	return attr & INAT_FPU;
++}
+ #endif
+diff --git a/tools/arch/x86/include/asm/insn.h b/tools/arch/x86/include/asm/insn.h
+index 568854b14d0a..d21b1debd230 100644
+--- a/tools/arch/x86/include/asm/insn.h
++++ b/tools/arch/x86/include/asm/insn.h
+@@ -129,6 +129,17 @@ static inline int insn_is_evex(struct insn *insn)
+ 	return (insn->vex_prefix.nbytes == 4);
+ }
+ 
++static inline int insn_is_fpu(struct insn *insn)
++{
++	if (!insn->opcode.got)
++		insn_get_opcode(insn);
++	if (inat_is_fpu(insn->attr)) {
++		if (insn->attr & INAT_FPUIFVEX)
++			return insn_is_avx(insn);
++		return 1;
++	}
++}
++
+ static inline int insn_has_emulate_prefix(struct insn *insn)
+ {
+ 	return !!insn->emulate_prefix_size;
+diff --git a/tools/arch/x86/lib/x86-opcode-map.txt b/tools/arch/x86/lib/x86-opcode-map.txt
+index ec31f5b60323..f139bfccfdb9 100644
+--- a/tools/arch/x86/lib/x86-opcode-map.txt
++++ b/tools/arch/x86/lib/x86-opcode-map.txt
+@@ -404,17 +404,17 @@ AVXcode: 1
+ 3f:
+ # 0x0f 0x40-0x4f
+ 40: CMOVO Gv,Ev
+-41: CMOVNO Gv,Ev | kandw/q Vk,Hk,Uk | kandb/d Vk,Hk,Uk (66)
+-42: CMOVB/C/NAE Gv,Ev | kandnw/q Vk,Hk,Uk | kandnb/d Vk,Hk,Uk (66)
++41: CMOVNO Gv,Ev | kandw/q Vk,Hk,Uk (v) | kandb/d Vk,Hk,Uk (66),(v)
++42: CMOVB/C/NAE Gv,Ev | kandnw/q Vk,Hk,Uk (v) | kandnb/d Vk,Hk,Uk (66),(v)
+ 43: CMOVAE/NB/NC Gv,Ev
+-44: CMOVE/Z Gv,Ev | knotw/q Vk,Uk | knotb/d Vk,Uk (66)
+-45: CMOVNE/NZ Gv,Ev | korw/q Vk,Hk,Uk | korb/d Vk,Hk,Uk (66)
+-46: CMOVBE/NA Gv,Ev | kxnorw/q Vk,Hk,Uk | kxnorb/d Vk,Hk,Uk (66)
+-47: CMOVA/NBE Gv,Ev | kxorw/q Vk,Hk,Uk | kxorb/d Vk,Hk,Uk (66)
++44: CMOVE/Z Gv,Ev | knotw/q Vk,Uk (v) | knotb/d Vk,Uk (66),(v)
++45: CMOVNE/NZ Gv,Ev | korw/q Vk,Hk,Uk (v) | korb/d Vk,Hk,Uk (66),(v)
++46: CMOVBE/NA Gv,Ev | kxnorw/q Vk,Hk,Uk (v) | kxnorb/d Vk,Hk,Uk (66),(v)
++47: CMOVA/NBE Gv,Ev | kxorw/q Vk,Hk,Uk (v) | kxorb/d Vk,Hk,Uk (66),(v)
+ 48: CMOVS Gv,Ev
+ 49: CMOVNS Gv,Ev
+-4a: CMOVP/PE Gv,Ev | kaddw/q Vk,Hk,Uk | kaddb/d Vk,Hk,Uk (66)
+-4b: CMOVNP/PO Gv,Ev | kunpckbw Vk,Hk,Uk (66) | kunpckwd/dq Vk,Hk,Uk
++4a: CMOVP/PE Gv,Ev | kaddw/q Vk,Hk,Uk (v) | kaddb/d Vk,Hk,Uk (66),(v)
++4b: CMOVNP/PO Gv,Ev | kunpckbw Vk,Hk,Uk (66),(v) | kunpckwd/dq Vk,Hk,Uk (v)
+ 4c: CMOVL/NGE Gv,Ev
+ 4d: CMOVNL/GE Gv,Ev
+ 4e: CMOVLE/NG Gv,Ev
+@@ -1037,9 +1037,9 @@ EndTable
+ 
+ GrpTable: Grp15
+ 0: fxsave | RDFSBASE Ry (F3),(11B)
+-1: fxstor | RDGSBASE Ry (F3),(11B)
+-2: vldmxcsr Md (v1) | WRFSBASE Ry (F3),(11B)
+-3: vstmxcsr Md (v1) | WRGSBASE Ry (F3),(11B)
++1: fxrstor | RDGSBASE Ry (F3),(11B)
++2: ldmxcsr | vldmxcsr Md (v1) | WRFSBASE Ry (F3),(11B)
++3: stmxcsr | vstmxcsr Md (v1) | WRGSBASE Ry (F3),(11B)
+ 4: XSAVE | ptwrite Ey (F3),(11B)
+ 5: XRSTOR | lfence (11B) | INCSSPD/Q Ry (F3),(11B)
+ 6: XSAVEOPT | clwb (66) | mfence (11B) | TPAUSE Rd (66),(11B) | UMONITOR Rv (F3),(11B) | UMWAIT Rd (F2),(11B) | CLRSSBSY Mq (F3)
+diff --git a/tools/arch/x86/tools/gen-insn-attr-x86.awk b/tools/arch/x86/tools/gen-insn-attr-x86.awk
+index a42015b305f4..2b1ab6673bd3 100644
+--- a/tools/arch/x86/tools/gen-insn-attr-x86.awk
++++ b/tools/arch/x86/tools/gen-insn-attr-x86.awk
+@@ -65,7 +65,10 @@ BEGIN {
+ 	modrm_expr = "^([CDEGMNPQRSUVW/][a-z]+|NTA|T[012])"
+ 	force64_expr = "\\([df]64\\)"
+ 	rex_expr = "^REX(\\.[XRWB]+)*"
+-	fpu_expr = "^ESC" # TODO
++	mmxreg_expr = "^[HLNPQUVW][a-z]+"
++	mmx_expr = "^\\((emms|fxsave|fxrstor|ldmxcsr|stmxcsr)\\)"
++	mmxifvex_expr = "^CMOV" # CMOV is non-vex non-mmx
++	fpu_expr = "^ESC"
+ 
+ 	lprefix1_expr = "\\((66|!F3)\\)"
+ 	lprefix2_expr = "\\(F3\\)"
+@@ -236,10 +239,11 @@ function add_flags(old,new) {
+ }
+ 
+ # convert operands to flags.
+-function convert_operands(count,opnd,       i,j,imm,mod)
++function convert_operands(count,opnd,       i,j,imm,mod,mmx)
+ {
+ 	imm = null
+ 	mod = null
++	mmx = null
+ 	for (j = 1; j <= count; j++) {
+ 		i = opnd[j]
+ 		if (match(i, imm_expr) == 1) {
+@@ -253,7 +257,12 @@ function convert_operands(count,opnd,       i,j,imm,mod)
+ 				imm = imm_flag[i]
+ 		} else if (match(i, modrm_expr))
+ 			mod = "INAT_MODRM"
++		if (match(i, mmxreg_expr) == 1) {
++			mmx = "INAT_FPU"
++		}
+ 	}
++	if (mmx)
++		imm = add_flags(imm, mmx)
+ 	return add_flags(imm, mod)
+ }
+ 
+@@ -318,9 +327,11 @@ function convert_operands(count,opnd,       i,j,imm,mod)
+ 		if (match(opcode, rex_expr))
+ 			flags = add_flags(flags, "INAT_MAKE_PREFIX(INAT_PFX_REX)")
+ 
+-		# check coprocessor escape : TODO
+-		if (match(opcode, fpu_expr))
+-			flags = add_flags(flags, "INAT_MODRM")
++		# check coprocessor escape
++		if (match(opcode, fpu_expr) || match(opcode, mmx_expr))
++			flags = add_flags(flags, "INAT_MODRM | INAT_FPU")
++		if (match(opcode, mmxifvex_expr))
++			flags = add_flags(flags, "INAT_FPUIFVEX")
+ 
+ 		# check VEX codes
+ 		if (match(ext, evexonly_expr))
+-- 
+2.20.1
+
+
+
+
+
+-- 
+Masami Hiramatsu <mhiramat@kernel.org>
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
