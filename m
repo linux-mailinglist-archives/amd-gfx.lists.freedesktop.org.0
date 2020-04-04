@@ -1,110 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE49719EBC0
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 15:54:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4129619E539
+	for <lists+amd-gfx@lfdr.de>; Sat,  4 Apr 2020 15:51:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E18776E25B;
-	Sun,  5 Apr 2020 13:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 617C46E11E;
+	Sat,  4 Apr 2020 13:51:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDD4B6E0A1;
- Sat,  4 Apr 2020 13:08:35 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id c195so4185835wme.1;
- Sat, 04 Apr 2020 06:08:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=to:cc:references:from:autocrypt:subject:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=g0lhfmepuqxhkSzHeSEIiTb4vyevQh1xR17a67PwJQQ=;
- b=dri6mJYtciFG4/ZrwuqQCU7c4IS9vONkv8q4vmhBQEpUdqKGcpRPW/npcbLU1edukx
- yiBxoc3c+BjEFjYpu5MBAEWNGYlm96JrWvx7bgShueCqpuG/I22f565wbJO+P+em0K3W
- 6hqruMAWMS6niWUvgYJ1F9Rs6PGC2wzAauiMSE8+L7CHoh9OjsESG7lEhCvEjdZwopB0
- qwRveLIJ9agq47IsCnLHWAoyuREzPAwbygJyAFKVbrZwc+eXe9dnQhIFRUTFJFA2QOYE
- EEk25wlmEpjI7NCUggZJgRo3e8iFbc0QZJDlmNsGXUdAQjzLhLGUQUaQ9fhGkDsweY1/
- oxOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:to:cc:references:from:autocrypt:subject
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=g0lhfmepuqxhkSzHeSEIiTb4vyevQh1xR17a67PwJQQ=;
- b=FL6lEizUiuCExtwt4bDW/n+4s6XUQJuETk3I1bREsrLcGckAHwEB75i9Mc40932ZUQ
- qfUHUp+Y379cSi6lbJE/N/L1SdzIMxGAqkfzVRR9Cpsb34MagTDyyMChwiv8dpLOG9UT
- O7owiyE911mZr5Pdo7GeZalDWoP7E+RVf9TQa7kyX0pRgqJQKi/OZH2C1TJEO3bsSMh9
- F7zryPkfdXMtl49XJS4h/KcfOGmmqFE4q/q4BIR0wf7xh62ic8R3Ajk6nHH351ZQa363
- kFm6LhY8s7qGyhlaShHZiEWwLc7NjHQOZtn9vgXx2av9oD7lfdgNBLOinXBqLPF03raj
- ioCw==
-X-Gm-Message-State: AGi0PubSpaSJONp77b71NTa0rssbYwaVvorvB7y3HP+M8s6DPJ9eaCHC
- tSP28aqa5eBSnY5DCqzQWWA=
-X-Google-Smtp-Source: APiQypI6hvMZkNwvsVxpYR5i02eTANSRy4tAI7LcYtYqoPJlBQhAQ1XfVNnuj0VEh0Xt5PF6ZJvYNw==
-X-Received: by 2002:a1c:9c15:: with SMTP id f21mr13348654wme.18.1586005714207; 
- Sat, 04 Apr 2020 06:08:34 -0700 (PDT)
-Received: from [192.168.43.88] ([109.126.129.227])
- by smtp.gmail.com with ESMTPSA id w81sm16009467wmg.19.2020.04.04.06.08.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 04 Apr 2020 06:08:33 -0700 (PDT)
-To: Christoph Hellwig <hch@lst.de>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Andrew Morton <akpm@linux-foundation.org>
-References: <20200404094101.672954-1-hch@lst.de>
- <20200404094101.672954-6-hch@lst.de>
-From: Pavel Begunkov <asml.silence@gmail.com>
-Autocrypt: addr=asml.silence@gmail.com; prefer-encrypt=mutual; keydata=
- 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 bA==
-Subject: Re: [Intel-gfx] [PATCH 5/6] kernel: better document the
- use_mm/unuse_mm API contract
-Message-ID: <8c1e6600-bee3-d074-28e6-813a6dbf5fd0@gmail.com>
-Date: Sat, 4 Apr 2020 16:07:31 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2086.outbound.protection.outlook.com [40.107.244.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AFE38923C
+ for <amd-gfx@lists.freedesktop.org>; Sat,  4 Apr 2020 13:51:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=d40xnAmMp9Bn3qB4nIVoD3eu3co0J1/fx2LMH/fNbbQB8tGYwsiZHuBZwsZMe8nzVURhfSlbdw+obREKGX2eCpdHChzjgvdllVsmGZ7Z8dgO+VhttvPiTNb62RObX9R6JwXl+tv8f23g/4G56g/+5nyLr4o7vA+79QKQyhfFeVFt1AT+tcxTf3jlxqPko/IQpGZpBT2qWYnLrvzInqMuLRmWdh6fEM5pl0cboMaNAGlY0+XUNs5tZoIIzdDlu4Mp25XrY/sVL9cEKv6I341Ri1Ub7q3yq1+adcTLGG9xKxHCYePSv5top2mWBGpKU9ibV3zWV5vs6Lk3dwaEk86RAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=48bmAHi4+KFeIOYRhu0dRUur0U0T58hU+gIaUBByDN4=;
+ b=kjXr3vTmZaos4wKNg3b+JLFjfV1mR0++rk08zto+zlt2vQO6SoC4QtBFr6o8gKXjxkQY9RVu+5jNzXFTmRvUj8VQWotON5+daAA+2BsH2Yo/gXVoj1WXd5GjlZKDDxuv8qBDODU/wsNQv0osLdJvVskB5gH8/lx5vBRyFS2+/AJrLRkpGHeuLm58PuC7mfVB8v0YFxMoikpogIkGyZzTNjq8f4tAZSF5+cC5L6Lw45hbfvmpg1CGqPX2KW2YQnqqj0AycJLbrHjYSJ6+pdPWvLIDBoc+YoEi+qSApxkun34FA/y6Cv6lU5cE04amvsrUTTLEKJ5OeBvn5QrFT+BRow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=48bmAHi4+KFeIOYRhu0dRUur0U0T58hU+gIaUBByDN4=;
+ b=HwSbtKnwVEP7r4OK2JW5NY8AZpcLi1Osyr4P0Vlx6XNrow+Aoelgo594nmbaJs9qxBm6Zqya3acoff3ikmra/NG7bdqTgf4x5dSqHkeSh4Br5Dv7AQJsgdJNCdCKgs2gc3rTiMgQ/3fEnH7tCnAAu74g7bjuSSIz3srnZwutH7Y=
+Received: from DM5PR07CA0112.namprd07.prod.outlook.com (2603:10b6:4:ae::41) by
+ MN2PR12MB3280.namprd12.prod.outlook.com (2603:10b6:208:ad::29) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2878.17; Sat, 4 Apr 2020 13:51:44 +0000
+Received: from DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:ae:cafe::19) by DM5PR07CA0112.outlook.office365.com
+ (2603:10b6:4:ae::41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
+ Transport; Sat, 4 Apr 2020 13:51:44 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ DM6NAM11FT020.mail.protection.outlook.com (10.13.172.224) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2878.15 via Frontend Transport; Sat, 4 Apr 2020 13:51:43 +0000
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sat, 4 Apr 2020
+ 08:51:43 -0500
+Received: from yifan-AX370-Gaming-5.amd.com (10.180.168.240) by
+ SATLEXMB01.amd.com (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5
+ via Frontend Transport; Sat, 4 Apr 2020 08:51:42 -0500
+From: Yifan Zhang <yifan1.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd/display: fix the broken logic in dc_link.c
+Date: Sat, 4 Apr 2020 21:51:40 +0800
+Message-ID: <20200404135140.24935-1-yifan1.zhang@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20200404094101.672954-6-hch@lst.de>
-Content-Language: en-US
-X-Mailman-Approved-At: Sun, 05 Apr 2020 13:54:42 +0000
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(346002)(39860400002)(376002)(136003)(396003)(428003)(46966005)(86362001)(336012)(36756003)(4744005)(1076003)(8936002)(81156014)(478600001)(356004)(4326008)(6916009)(2906002)(8676002)(81166006)(7696005)(186003)(316002)(47076004)(70206006)(26005)(70586007)(82740400003)(5660300002)(426003)(2616005);
+ DIR:OUT; SFP:1101; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 55b71efc-5b10-4e61-229a-08d7d89f4f74
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3280:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3280BCAE5CA1E2570FA7918AC1C40@MN2PR12MB3280.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:923;
+X-Forefront-PRVS: 03630A6A4A
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rYTIOpVqsHIcy0i7G3ox5J7ooVWhFWEc68HPVys7TcEnotQpPSBcMu2Z2LSBnlGMyqwWN7DIDnO0oJKMSjrrKe3EAtuz239Idx/Engqkj9JY98uESLbv6oYfmN8Z6qlsd7jaioV4/OApgnP5WHIetVOdNQlLpsmRCOnc0E1nKQ0PUXXrtXU2i1TB5BcRX0PznO2gXrWnHg96G+YgDKsE1UE+MdivirwkhH2hV+VMkjaKRrlg05zkM+UW5TdjHNZpcrn8rVhauuJ1T2zvpDO7E6Q8ZxxWAxOy/jP+2wwjec317wtijbx/vecReIPo4lbNHhpSG5f8L+rAZiRAW4+wxPaA673j9goJ0FCQ9VB3rGiOMPiSJSZw3NNzk7C/4p0SX1SVmtdP0v3Rwesym+b3Q8smNLwFT6LCi9RZKEY+nQCFdf1f7plbzZEC6722ekLSsfnqu8UtMwQlo3tc9DBhhchVJuEib45ao7NNVjIvT3Q5c3pAqmUd7MYQhiUPFi45cdEcKaZ+57ilSXUFKLLo3g==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2020 13:51:43.9785 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55b71efc-5b10-4e61-229a-08d7d89f4f74
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3280
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,54 +98,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jens Axboe <axboe@kernel.dk>, Felipe Balbi <balbi@kernel.org>,
- "Michael S. Tsirkin" <mst@redhat.com>, Jason Wang <jasowang@redhat.com>,
- intel-gvt-dev@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linux-mm@kvack.org, Al Viro <viro@zeniv.linux.org.uk>,
- linux-fsdevel@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
- intel-gfx@lists.freedesktop.org, io-uring@vger.kernel.org
+Cc: Yifan Zhang <yifan1.zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 04/04/2020 12:41, Christoph Hellwig wrote:
-> Switch the function documentation to kerneldoc comments, and add
-> WARN_ON_ONCE asserts that the calling thread is a kernel thread and
-> does not have ->mm set (or has ->mm set in the case of unuse_mm).
-> 
-> Also give the functions a kthread_ prefix to better document the
-> use case.
-> 
+Change-Id: I8ea2eb01709878436fdab19e1267406afa95b232
+Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-io_uring and io-wq bits LGTM.
-
-> --- a/include/linux/kthread.h
-> +++ b/include/linux/kthread.h
-...
-> -/*
-> - * unuse_mm
-> - *	Reverses the effect of use_mm, i.e. releases the
-> - *	specified mm context which was earlier taken on
-> - *	by the calling kernel thread
-> - *	(Note: this routine is intended to be called only
-> - *	from a kernel thread context)
-> +/**
-> + * kthread_use_mm - reverse the effect of kthread_use_mm()
-
-s/kthread_use_mm/kthread_unuse_mm/
-for the first one
-
-> + * @mm: address space to operate on
->   */
-> -void unuse_mm(struct mm_struct *mm)
-> +void kthread_unuse_mm(struct mm_struct *mm)
->  {
-
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 7e0d797d8973..ad9875e64872 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -422,8 +422,9 @@ static enum signal_type link_detect_sink(struct dc_link *link,
+ 	 */
+ 
+ 	/* PCIE detects the actual connector on add-on board */
+-	if (link->link_id.id == CONNECTOR_ID_PCIE)
++	if (link->link_id.id == CONNECTOR_ID_PCIE) {
+ 		/* ZAZTODO implement PCIE add-on card detection */
++	}
+ 
+ 	switch (link->link_id.id) {
+ 	case CONNECTOR_ID_HDMI_TYPE_A: {
 -- 
-Pavel Begunkov
+2.17.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
