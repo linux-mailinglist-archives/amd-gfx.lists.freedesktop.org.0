@@ -2,49 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A22CC19EDFA
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:41:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0220019EE00
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:41:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9307E89FE6;
-	Sun,  5 Apr 2020 20:41:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66C656E218;
+	Sun,  5 Apr 2020 20:41:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2057.outbound.protection.outlook.com [40.107.236.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF9689EB1
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:41:46 +0000 (UTC)
+ (mail-bn8nam11on2070.outbound.protection.outlook.com [40.107.236.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB40989FF6
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:41:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NNPz8FIhWJnoA7kWoBCE+G4ul7LeqlFSwx+p8+HGgCXT+3RrMlfsGHKpv4jBj887iyacQbx0WLo7SnTzZaRMHlDHZuGeRt/7eVkpZykbJqlkwrLQJaFP0p/0QALdeCFvZmZLBckW/QPPznYFPiGC7ZBJjxwheutMBs1Byxvt8xplBnH7sHominiaBshVlIvsSGfTtf3sw+KT4dZ6MwThDiZyux+WQRFyvY8s9sbssKWRnBCXrArzGH/8WpbAZFqzxPfpH283zLTHKiI+3fQ08/muHOV6BjkwW7f/xA38netzF/0Lwp0hd3jo7FLmQqUFu1XQFZ830TJRsc4qjm2q3Q==
+ b=DfGR43A6XAQOBhYsm2Da8do6ATm9uyLY4E78hxzgZGdzDRtVIzr2QZwurFLAp1VfYhN44tzoZ7shQABwji1BkSALhQslmLDZtQSi0tdeXmAFskf4oJpmhWBXFrYWTqzS/VPLhRyTFzzUCj9gKqes6EPO9Ebpg4EeyOSflvsMsD2Ey0KO9ikRk5waingKmKXDNedwTSdXoLrouloQk0i9P+9jf9b2Gq0XGROaeaReMxlobE3fzVMHMJePDI62L7la1DgpYHMc+5rwsw8B9wAVhr27HdKUVIR3kwU20A3pNQgPW56U0INchmnpUPafFuYr4mKJOrVA+ob1XQ5jDwFtlA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ye4WfzgbF7DBoP82WouMD0KuHHSWva36O33DQIqFAOk=;
- b=LvhxTfF/P1c0R10KsPj60XW91rSGCnWPKOSPeYjwdbH3aDTeuhymB7QUap1lmcmL4DmXcWb19zJq7CQJ7ydMQu87qUPka7a8yqMd8i3rZ4W44/6GK7SF8NjrbbvaXXrux0q66qcCj8HSQnKij39yhkQu0OAbwOnmEjVyuu0JUfTxM2Cw9otc4EcY1TZbtgmxnykG8SimQDJhm73ZRYIr3k8xHaz9/hASlj6jnp7FXQiwcq94g8tAVc9MjVVMdbkfxFj4DdeudS6xZ/l9dMzCe86VawpsFYBfgijO7YNBfvpnQGnxy38kaBReUbmg5JMO4rrjgWUpu9s04yk0YjRUag==
+ bh=VaUKQMNVnexwbdDs+euUABaRTds7wwNxjP32SLHKEuQ=;
+ b=YVO4V4Dxcl6ZYCN88DTUi7N9iPuB5vMdJ/7XcMK3ymty2NdirV6tJr/dllgELTsD0Hv7/KvUww7byL4DJs+djIBVYNGkIOctl/DxJNst2sh/cNybHRj7uhtFsWghP/t2S/mwLLzBa6BWO15paCv/tFDSAKYujKvqkQlcYZ0JnmzmKCaYvp4ooDt+4MWEQB6ST0Vk68yd3VYY4VgiLbKphIKY8/UThpt/LpNXx7sJeYZaTiKaixvk/VU6EetiZhvSM9W6rmIIzK4SzZW/1aVBeN0JEuaJfR265MeYwIBTNWVkzN6CSZtNHJv9LlHLyx2JdB/L6bQI/Jo03a9Blb/KLQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ye4WfzgbF7DBoP82WouMD0KuHHSWva36O33DQIqFAOk=;
- b=WxqJ7cjr4nMxFI0Nk7B7fLD4u1ol5bmJPfOFl26/QicIc+QivOWTTktyhrvilfbdfve/Hv5R9vxRciTQhtk+qBTTEYQD0vIbSnw1HszqSZuwLLy5ELfhc59LgL6SSLItkyJvcpH+bY/Y/9bx90sLCQjlz+eNlB7nA0hjjnTlaxQ=
+ bh=VaUKQMNVnexwbdDs+euUABaRTds7wwNxjP32SLHKEuQ=;
+ b=YWyPMMzW4XiHfXBU8TpGHrST6wJSCvDZKVuCyc5zXEvFuQ8rK3f5UIL0FLEVkxb9E36gZ/lYjqaNBAEyfOQMJETOANZwDo5veI7vtYYmYN0l22AR0GH4Dw4vCMO3DAMcUpAaihCH+YRzB420im6zQeUHsNLmQ+lNgQlj6yuvYmM=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2555.namprd12.prod.outlook.com (2603:10b6:907:b::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Sun, 5 Apr
- 2020 20:41:45 +0000
+ 2020 20:41:46 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2878.018; Sun, 5 Apr 2020
- 20:41:45 +0000
+ 20:41:46 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 07/36] drm/amd/display: blank dp stream before power off
- receiver
-Date: Sun,  5 Apr 2020 16:40:46 -0400
-Message-Id: <20200405204115.683559-8-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 08/36] drm/amd/display: Don't change mpcc tree for medium
+ updates on DCN20 hwseq
+Date: Sun,  5 Apr 2020 16:40:47 -0400
+Message-Id: <20200405204115.683559-9-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
 References: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
@@ -57,35 +57,35 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
  YTXPR0101CA0049.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
- Transport; Sun, 5 Apr 2020 20:41:44 +0000
+ Transport; Sun, 5 Apr 2020 20:41:45 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [2607:fea8:56a0:11a1::4]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 603cf411-6aca-44a6-2619-08d7d9a1c15a
+X-MS-Office365-Filtering-Correlation-Id: 6287d30a-a445-4897-2239-08d7d9a1c20a
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2555:|MW2PR12MB2555:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2555D0D3809005523C7ACCC998C50@MW2PR12MB2555.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:147;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB255575838D1D45EE2612BEE598C50@MW2PR12MB2555.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-Forefront-PRVS: 03648EFF89
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(478600001)(4326008)(5660300002);
+ SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(15650500001)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(478600001)(4326008)(5660300002);
  DIR:OUT; SFP:1101; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: h93zriY2dwnZHpDegYQCOr82uw9KkhzMbKMwXBU0lkrHhflR8vlnaoSpUEsgyX5isSJJnIRUShsEadM7ti0S5cpMl5M/JaNL2wYMIIKBX9U8jrslhSeFUhhYFWLMkQci/qo4LDvXrzlx82DJMQm3F7a+kn/u1o6LEXNOlqULxiYc4KSeocJDtNfK4QQOAzWesRaHNtEcpKC31PnT4SurgJKVLaF1lVWRPP4j4If/zZ2bcRkHEyo63ytqjf9R0qi6pdZHx2rgFQG7BXDunFcajRASKDFM5n3kXOXoiO2pQEZwzJCY2OEv00kC0FL6GeVWEG4/YSmuFNivPKgIaPmbkZozURqfCcMwqx9J9KCpO5j633Ut5x576EOliGgGZ4mT265uNp/kKr5PUQDMUwbPHRpRcyOU1t3VDl7YyGpB9ZojuhGirZSOw0CvCOtw4Inj
-X-MS-Exchange-AntiSpam-MessageData: G8cp4akyHQ/RYiEbyLJwOIESDfTfSyP2Gg0iGJqinRYam2FGDby71oFSiP9q85nFqZlBYzoCcxldQr+nsWv1OTRkzl87YG15dDN0vCDILc0cRfQPxlGJMoxaBqrvvl80DVnjXaRchmjdeI8pNhlaL7/Ti6WbIXrsXi77/Not1CY=
+X-Microsoft-Antispam-Message-Info: rDcaJlKM1th1Yi+TmUlRMk2fx0Vne2oxl+9FpJWIrMxJm2lVm1tmXPCkpC1SMKwKW5NgP1X2incQ8iF5iLRxGEi3jetbrTK0IUcnE5brV2idYqpegXIhu7+1+Ruf1Zs/d1uHfFwHNlM78oCGNx+kIspM4BbaPPMJz99k40A8X9X09TGNRoeDKbLm3kZcMjwYKc2M63MhPq1uX6Yqc1TRX7lHXSWidRTPFpGrv4l0Hbqt1eS+pb3XCwRzeffOQagkpwqbeZ5DANmBmJH+svpjTykWBAqrVMt+ti3wZjoP98goJFRzQSWNvYeak7ZrI52zaK9ZYSB4ouSLbrh9c97lPr3lgCkRFJVCs+UiZ39DmQbKarNmzn1X5gYyL5aL1R8LcwVwESIZdhNZzLscEiTVL16I9oPIblJd3y+WkUEOwUSciLq+GNUir+85XI31gC3r
+X-MS-Exchange-AntiSpam-MessageData: yhrfo5zKlndM99X5hEm9evkw3roXbsfn59qNXdHLyfQIqB7ppkARJWK0IdJJGlPX6Sr3jmPp2P27YTrUa4tpFvKapgbCUYjK+slmQMA91HxTchaVp+zUYuepRXretgYXXWXmZLeJyjnAiMmvEOoiGQu5+9VADjM57Owzr1vbwzM=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 603cf411-6aca-44a6-2619-08d7d9a1c15a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:41:45.7334 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6287d30a-a445-4897-2239-08d7d9a1c20a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:41:46.6479 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gpl3B4GEinGPKk8kqUEdzx8Speh6BvMPmbEasVUxJL1kQuhzag9N9nSTP9Yftc/K9r8czl1HgISLmnoH7/v+Dg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: PQOSSbNQntqX4mNY234S9DyIhriA+yKIPpw/FMTJ0ONzDUZh1sXsNwWxyNlWUohlZszzUd7fx3M35SZQBviqtA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2555
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,47 +99,69 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Xiaodong Yan <Xiaodong.Yan@amd.com>, Harry.Wentland@amd.com,
- Tony Cheng <Tony.Cheng@amd.com>
+ Chris Park <Chris.Park@amd.com>, Harry.Wentland@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Xiaodong Yan <Xiaodong.Yan@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-[why]
-power off dp receiver directly cause garbage during hw init
+[Why]
+Overlay planes disappear when the plane's alpha blending mode or global
+opacity is modified.
 
-[how]
-blank dp stream and then power off receiver
+These are considered UPDATE_TYPE_MEDIUM and trigger the update_mpcc path
+in the DCN hardware sequencer.
 
-Signed-off-by: Xiaodong Yan <Xiaodong.Yan@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+On DCN10 we have an "optimization" to avoid touching the blending tree
+on these updates, but this is actually required behavior based on how
+update_mpcc is structured.
+
+For full updates we acquire a MPCC for the plane, remove it if it
+already exists then reinsert it after with insert_plane.
+
+The call to insert_plane can take an optional mpcc to insert the new one
+above to preserve the current blending order. The update_mpcc hwseq
+function doesn't do this so the overlay gets sent to the very bottom
+of the tree.
+
+[How]
+Copy the check over from DCN10 to DCN20. The only time we need to
+actually touch the tree really is the full update, so this is also
+an optimization on top of the fix.
+
+Fixing the logic for insert_plane is rather simple (cache the bot_mpcc
+and pass it to insert_plane) but is a change that impacts most display
+usecases.
+
+For now stick with the optimization.
+
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Chris Park <Chris.Park@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index dad95f1a7041..079a33a96f90 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -1328,6 +1328,14 @@ void dcn10_init_hw(struct dc *dc)
- 		uint8_t dpcd_power_state = '\0';
- 		enum dc_status status = DC_ERROR_UNEXPECTED;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 233318260da4..674e4b8abdfb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -2170,6 +2170,12 @@ void dcn20_update_mpcc(struct dc *dc, struct pipe_ctx *pipe_ctx)
+ 	 */
+ 	mpcc_id = hubp->inst;
  
-+		/* blank all dp streams before power off receiver,
-+		 * this should only impact DP
-+		 */
-+		for (i = 0; i < dc->res_pool->stream_enc_count; i++) {
-+			dc->res_pool->stream_enc[i]->funcs->dp_blank(
-+						dc->res_pool->stream_enc[i]);
-+		}
++	/* If there is no full update, don't need to touch MPC tree*/
++	if (!pipe_ctx->plane_state->update_flags.bits.full_update) {
++		mpc->funcs->update_blending(mpc, &blnd_cfg, mpcc_id);
++		return;
++	}
 +
- 		for (i = 0; i < dc->link_count; i++) {
- 			if (dc->links[i]->connector_signal != SIGNAL_TYPE_DISPLAY_PORT)
- 				continue;
+ 	/* check if this MPCC is already being used */
+ 	new_mpcc = mpc->funcs->get_mpcc_for_dpp(mpc_tree_params, mpcc_id);
+ 	/* remove MPCC if being used */
 -- 
 2.26.0
 
