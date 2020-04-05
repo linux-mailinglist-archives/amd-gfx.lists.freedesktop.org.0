@@ -2,48 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A6E19EE11
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E97C19EE13
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0135E6E2B4;
-	Sun,  5 Apr 2020 20:42:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 930B16E2BC;
+	Sun,  5 Apr 2020 20:42:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2075.outbound.protection.outlook.com [40.107.236.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7AE6E29B
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:06 +0000 (UTC)
+ (mail-bn8nam11on2053.outbound.protection.outlook.com [40.107.236.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 058326E2BC
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l9qQa948HKEe0SApQ+z8TMQCKXyCiltIoc4pd0FxV4Ko++djZaA6Sm9hNaDtHKy2yzyWorzQSLNs0Lsz+WN1dil5GeSGbWaLrfrFTomjjdobGbUu9Ya2wrD1k8/vhPX/i8HwJJcJ0hoy6sN3bMmQKW/um4QE08L2WAa3+PPHHe3uQ3JkvsVyRDulv7T5EAyyP5do6QmaDLbiy+M4ZfKh9FN183xw1VuaQ6slFL9KqYsAK+mSPlYlkyE5IzYlSVVfFf0GTJL/7Z35vruX0iLhgSUnpVxp7UgYHMBmvtZzdxSymO4iobxscfrjOLYy7AaBv+Es5HRVZAdKsfMIdRsAnA==
+ b=FculP76XbaHE1UBNmqxO1l3dLMT/gEZp7ACURztMl0qYKZN7OJMO0M94YfZWbRwNbPNLGLPxzxYZTBwfbX/0nN555ZzQ+L//0hyRMC9BvywCKMbJgNBF9Ob1U1RnR0quPSQuQwccdPr3sC48LlQwiaUBEbCNGRsi4UYUgmLLswTnPD7YSQ3GFCXsI+QPJEpQLxhh6Yt40utn3jFAf2aGYHp4DcFS0LJLJuHcE89D36rhJReMuwXRx6C6x0vEZ4PbXp+mHxo/nQtUgfaxdkC458dAMbp6/CcikbJKZet5Wd69ohJNHc8It0C1m75M2JoTkFBbpZLQcNbjXosjYqjQBA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z0QRBefMCqhKyzkzIkfcnigonSl08QzEoDh8qGvkdHU=;
- b=FnE0977Y0n42qRx4IngUty6fJk4wxLo0tsSHVRdFj3SbmHCvExPDVg3idYqKt2kWCxiiK6fS2iOy9ZAQtAsljOLx0xXsvvtLZHzoz2cdebXVwFk7GxD8GaNiultUwhRDlTBsxuFxg8gvdzf1PZzFJRytsZYvXRJCTVQVesJfa6tGviJDwECB/AoucDMIzVjYytWytV1TMn/bXkHPVssiX9V2g9InpK+3Y9A4KA6+j9seOsdf+FGuvUYo5K3yKW7ZScBZoaqGxCOoL6laC1qjToV8/NyzOW2vnybygQxnzaxFRQDo5BKBZygX5JsWWNU2ZiOdbz/e2fsIcX9t3bPH/Q==
+ bh=ZJGaUNNnJ4tgqmPF6eccCsBWttOkeDWedmayaiHGo+I=;
+ b=CidliWEQWfIDAt/cTh36O5P8FKqW1robU20RS7HqvW8mY62j6aBbh2QTUrpp8Cy0m71wvSAPkeiO08IYXTPEmIjvdKyR7XvRQoK1JNwQfEaoQeQqqYwdaqh5xh0k3YgN5nde5dtcctDlOEbtwKz3zMx/nUQ0PhTaxqv+Ld2yX6XUOJLT3GAxDcJ9htw1jVU7jJYjQpxflBFOaOz4Y49iTtw7/MdRKKarifc7LUIC4VkOf8vjsqpqPn8pluHv6RGzcBxNe2elmkjYFNcl6USe8lnaPm7hctuGK/IENNLjF2icVNQQqWsrpp8iMFyuvcQCmeZI4cxMRPIRKyrkFEDGOg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z0QRBefMCqhKyzkzIkfcnigonSl08QzEoDh8qGvkdHU=;
- b=ydUxtksdlYAXx9t6NEhva99eYZYFxQJiE7E7tSDAhqo6TMZVM+T84FWfBMFLiTw80JJGAcsi8J8ftZdaFVMqb9Ln5LgmBaUSm0KONyUiXBFUeOevTuV71LaK9MMCUJs5Wap8W5pwwn/E1W4yi0pabnMgX718SUl2B52ixXJ12/0=
+ bh=ZJGaUNNnJ4tgqmPF6eccCsBWttOkeDWedmayaiHGo+I=;
+ b=YvtybuH/0QW3gYUlOc4X8vRLsXhtf1QSgDRGMvHQPW52xKK4xIxtwyRT3pznKZsEuSx2ARdrVR82nIHcjICoHYwtR6SDIC9OsqgVXPJNXOoap9stW73YtP+YZxIn+gB6MXEN5NVhJ6PB2jC2rP5ola1948HWCtoeDroIX6E8XeI=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2555.namprd12.prod.outlook.com (2603:10b6:907:b::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Sun, 5 Apr
- 2020 20:42:05 +0000
+ 2020 20:42:06 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2878.018; Sun, 5 Apr 2020
- 20:42:05 +0000
+ 20:42:06 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 27/36] drm/amd/display: Properly map audio to engine on NV14
-Date: Sun,  5 Apr 2020 16:41:06 -0400
-Message-Id: <20200405204115.683559-28-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 28/36] drm/amd/display: Don't verify DP caps again
+Date: Sun,  5 Apr 2020 16:41:07 -0400
+Message-Id: <20200405204115.683559-29-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
 References: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
@@ -56,35 +56,35 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
  YTXPR0101CA0049.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
- Transport; Sun, 5 Apr 2020 20:42:04 +0000
+ Transport; Sun, 5 Apr 2020 20:42:05 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [2607:fea8:56a0:11a1::4]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: fc6fe2f7-b675-4e2c-7e8e-08d7d9a1cd25
+X-MS-Office365-Filtering-Correlation-Id: 7d553356-e9b8-4834-211a-08d7d9a1cdc0
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2555:|MW2PR12MB2555:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2555CF0589C8B556E1C5268D98C50@MW2PR12MB2555.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:24;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2555A3A0453323885860D2AD98C50@MW2PR12MB2555.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
 X-Forefront-PRVS: 03648EFF89
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(478600001)(4326008)(5660300002);
+ SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(15650500001)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(478600001)(4326008)(5660300002);
  DIR:OUT; SFP:1101; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XtULdeoOTcCmWQCilFW0043vGvewHVxWJEEs9XKGwJt+mEKcyLsiV+ghrsLwa6/nO50XZKW1MwyaY7a0/6yuFAqYNYk2mZwCwtefbFdl9K19esLa+/xoyZ0bCEMSMaOqk4JgLsbU36LxN81iFnC2j7dS5Tv4OQOGM6v1dkDXsiQldshiDwc0nd40EdRhiMlLJXks5xVpBiHMYiU6dCtbqV6HcRxPBf17tQYpXx2QT2rxCrZSyd52NDN3lF2qatGrRHpwNOHFVMQBm5BLgK2k438+UOOOlbuFrU8bvsoXgAMqg+03gyKZstSTuo8j5Sja9sQguTcDZPfR/vT8BJNj0HUEfco3jfuAhNBWwtbkx4WcZaGAlzOK2gtxECRKhFouPtuhtBPL5lHFNVuv+Skiqqf4qWdjU9Y0xUgyDX0OwmWIhJUG0vMr9B4jPkovtWOl
-X-MS-Exchange-AntiSpam-MessageData: XjfNTxN2cDdvako4e/BncC+pshNwXcYxtcTVt5lE0Eczhp66pUY2VW0eU4c14yrE0krfjmH+T21T2dd5EdBmt9TduKRatFGDxSu8xZSjqd7EkzgNyR0NM5SnBT49glyQ4YowB1vviilu18gEDAyUHcYtfZnc6FSDjNstfyrro5Y=
+X-Microsoft-Antispam-Message-Info: 7GyLYrUgPHILrGVk3O7fHfRQrcdSQkDkVspVc0qpUDjliXwYHO5rqwcmuGdSzM8StK3guj5IHhP+U3ntKUcUyK5cp/o3hhxIKQTD50PJbnjs56G8Ndhq+tB8HDA59xJPxxzHK4nv/hMsGbx7ljds3D2mLFib/BJYiT2X9aqbBRj4tALN/N4HrWN23RdNPXAGMYW7FFX+4tEY2ttRV7lPUH2GZzbGCWLTl64g64f7NwWc9FdNa0EPGqDokVtoJYVXg3AdHp/xnHSe9Tf7Rwi0aVCiAvovxdr50obqNOyUMklZ2p06AhvVFYB61BO2hEKsaiE8dWLp5pK+OOsmyQVFsIczutsXiwc+AlzsfTvzlgtljQeqCQWVTU4skyHBkaV/ASIoazDrlEEXD1UR4PYWBr9JE9HZA0g3ThhBRhvFhC97FPu/7RtbjfwaHVwvI6B3
+X-MS-Exchange-AntiSpam-MessageData: k+vIFNXsC95lJQLfICFWzbHULeNqHtVaTwBgSM5NeWDwY4sODPFuxK1eoTL2UWkNWpb++LKEUdOAyPoJuOWPDmZEwQ3LiJyM5ZdR9WcSCYLucharLMpfP8hrhK5toezUSM9i6lQdLAnSwmyiBUrGhzGZc7eX9dK+rdYnu/IxDoU=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc6fe2f7-b675-4e2c-7e8e-08d7d9a1cd25
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:05.3821 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d553356-e9b8-4834-211a-08d7d9a1cdc0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:06.2756 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0bkxgopZyyafeqNry/gUYhGKqpcKC4yHtwYKW6q64adkySwJFw968m6rU4LapqN7bcDEPQqwbOu+a0B40+bmrg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: /kMuuPSk5lkGEaITZAUJkHUeGxgJy79odrGPdYBdIDUweq72u008YuCyaKaI2/qnVudpferWbVoUB59EmWWjuQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2555
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,43 +98,58 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Martin Leung <Martin.Leung@amd.com>, Harry.Wentland@amd.com,
- Charlene Liu <Charlene.Liu@amd.com>
+ Dale Zhao <dale.zhao@amd.com>, Jun Lei <Jun.Lei@amd.com>,
+ Harry.Wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Charlene Liu <Charlene.Liu@amd.com>
+From: Dale Zhao <dale.zhao@amd.com>
 
-[why]
-This reverts commit c30259abddf924533e9452f71ee03819fd6e949d.
+[Why]:
+We will do deffer call back for display detection now. For S4/PM
+resuming case, if SST DP monitor has been lighted up, verify DP caps
+again and reenable stream during detection will black screen and light
+again. Which is a flash problem.
 
-Signed-off-by: Martin Leung <martin.leung@amd.com>
-Reviewed-by: Martin Leung <Martin.Leung@amd.com>
+[How]:
+Shoudn't do verify SST DP caps if link has been active, and skip
+reenable stream.
+
+Change-Id: I5267db502e5fab0102a0db4d520bfa9282aa050e
+Signed-off-by: Dale Zhao <dale.zhao@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 7 -------
- 1 file changed, 7 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index ede0723e667d..9e1d2b2e58f9 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -1324,13 +1324,6 @@ static void read_dce_straps(
- static struct audio *dcn20_create_audio(
- 		struct dc_context *ctx, unsigned int inst)
- {
--	/* Navi 14 has no DIGD */
--	if (ASICREV_IS_NAVI14_M(ctx->asic_id.hw_internal_rev)) {
--		if (inst >= ENGINE_ID_DIGD) {
--			inst++;
--		}
--	}
--
- 	return dce_audio_create(ctx, inst,
- 			&audio_regs[inst], &audio_shift, &audio_mask);
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index ecbf165b5775..574612ddd5d2 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -987,11 +987,15 @@ static bool dc_link_detect_helper(struct dc_link *link,
+ 			 *  two link trainings
+ 			 */
+ 
+-			// verify link cap for SST non-seamless boot
+-			if (!perform_dp_seamless_boot)
+-				dp_verify_link_cap_with_retries(link,
+-						&link->reported_link_cap,
+-						LINK_TRAINING_MAX_VERIFY_RETRY);
++			// verify link cap for SST non-seamless boot, skip re-verify if link is active
++			if (!perform_dp_seamless_boot) {
++				if (!link->link_status.link_active ||
++					link->verified_link_cap.link_rate == LINK_RATE_UNKNOWN ||
++					link->verified_link_cap.lane_count == LANE_COUNT_UNKNOWN)
++					dp_verify_link_cap_with_retries(link,
++									&link->reported_link_cap,
++									LINK_TRAINING_MAX_VERIFY_RETRY);
++			}
+ 		} else {
+ 			// If edid is the same, then discard new sink and revert back to original sink
+ 			if (same_edid) {
 -- 
 2.26.0
 
