@@ -2,48 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 171F219EE18
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 095BB19EE1C
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 624CA89FE6;
-	Sun,  5 Apr 2020 20:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DEDE6E2C7;
+	Sun,  5 Apr 2020 20:42:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2048.outbound.protection.outlook.com [40.107.94.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACA6789EA6
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:39 +0000 (UTC)
+ (mail-mw2nam10on2080.outbound.protection.outlook.com [40.107.94.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53B0389EA6
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AGufQnb8qF+P8htqqAZ10hyCeRuy6HjNojekwC177YeYPc725Wc1f7qo7QAm3IGKzLjDiCUQLroZSGuAy1n+fp34m5ZXF5VfmBGBGQ7zELCLp13YdWXqXRCI22L7RYhp2fRPlUOoGZ0wdKODn8hiZLJbekDlMn9aSt3F4Jrb4btZutVPGqYKv+zG56+U5/uWEzlM/b4NBrWRkfmmwU3qfsFnXH9AUixvaetEG53cIET63FmhfHsBGADuLnmxdF7XxRdkiZCH2wPMIrTbc7mv3BfwjjQyvHNAvgYvdTxS5nota8gWSsl5xbNa0+mBf3Y7CbyarBlL7ysTc2cLyUY7IQ==
+ b=mEfpbvEC/XiIWMsS7F6AMa1BKDBZw56NeVYkxOVxV7EUpCk3AQb2NMTigmgEvt3LSur5zY6nQDDT4zFpM22TxbJQnHszEVgyKWufmQIKTMZU8tUq5rlltdZe3r83c9uQWBVV0FnLL/HyZ0mLkvDTufBYhSlAKSRfP1S8CdQxY8kv2+4u15wD9GYo5rvhtxBbp0p744Q7VMuEQfpDFGWmKqwYKOC9AMkzSc+OsgejqnqKGCe0TkhQ/Ad/qlglxhXFwuQn9WqlcC2pUt0l1oDJZivzf5isBlaxIYjB2f2afOzsv0l1+VESNhTS7yJjMJgB6Gz5yjj0MTYIN4aeKEPi7w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=so2fqKc0tLgx/rMOEX0nd52PKBYyWSko429VBnWKPdo=;
- b=KuXXWwCf/XGTCDaJ2HOTsh50Q6nt9gl3Ne/rxbFwIbcHEJ2/vbAtkGiyVMhuIDQHsZn9QWKM+hRLleBPkrGLX22fXE2j5tlGHbKlmNnCb4ihNwUNo6ZClkDgdqyZSSL3+moAPdAkcqAOzuY/rdfA8jXtw8UF3M4AE9KKqINdH1M1O5ZPFN+kFEOigfEhYieXwUIAsOJdJsTKbnGhA+9gh7O3HaXkzBKJjAENbrktlYG8eEkcLG12M2yYL8EjBuwPbc7NrA0FxYa32cxlZuw2VIYEOiKK1QkdrDD60ZzATdfyzGSV8FvBV1eia5Kr/2JO01MGbQuGB01rxrL7qzfJGQ==
+ bh=Zu+JM8hgDQjwU8Hutvw4O+uo9ZU3sVOgGAPd7XC68yY=;
+ b=MXRkKvJOMNYWE8/IYAiKMrMXVcukxOr8sbP1fBivhPy1d96HgZRS+hb3dHWbxQ2MCa0kuI3jThv5A8K3ftcYC+oWWxqTKDgQP37B6IidZrvf9kYpZ63o5XSebhUupfINU0lKYRoVD2R0rfgnLrU2lUJCZiOUwp51SabEXoI1JZZXbONXESGMftdtTPs83CS0uBPo5C2Qic1UZFa5vAbDhSCPpatsKqsubdJ60KXy3smWh42Y4XiMoCftbAQmCVhpAp1yqUesvJnn4vKkxAqTxXLWtaPdOocUPseSjPfePQ0l94Caeohk2eauagA3+AcZyBtA/ZmxDewXLTSK3pwPbQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=so2fqKc0tLgx/rMOEX0nd52PKBYyWSko429VBnWKPdo=;
- b=mw74XC1+5AL5HF6s1BGp5aTsz//vst6MCyMUsfxEr1IuJBdoQM1/UfWLbwSUSeZdPBZvqJ6m62m2PAW3MMp3kwIHiIZMKSQ80rJIjHtrGISUKNYZKWu1DhETRqGmvrkeVIqw62b8hlX6UcT3ZO5R01l2cEN3xGhxuT5rl/OV/jE=
+ bh=Zu+JM8hgDQjwU8Hutvw4O+uo9ZU3sVOgGAPd7XC68yY=;
+ b=eXzd7lwXHiOt2jRVJe88X54xmhlEbq9SB0VlxpTy2WGciq7rH59Jyt3mzFxVx24owLlLXgKWceG04aE5NmUY1NEZqSTieDxfeyRbJntMLIQaqubBLWHgw/tcOBQGQD09zilJUDnPnfxZiLlmPUFa3QprI4dmZzbdGk5t8Z1+W3I=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2555.namprd12.prod.outlook.com (2603:10b6:907:b::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Sun, 5 Apr
- 2020 20:42:38 +0000
+ 2020 20:42:39 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2878.018; Sun, 5 Apr 2020
- 20:42:38 +0000
+ 20:42:39 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 32/36] drm/amd/display: Acknowledge wm_optimized_required
-Date: Sun,  5 Apr 2020 16:41:11 -0400
-Message-Id: <20200405204115.683559-33-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 33/36] drm/amd/display: Check for null fclk voltage when
+ parsing clock table
+Date: Sun,  5 Apr 2020 16:41:12 -0400
+Message-Id: <20200405204115.683559-34-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
 References: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
@@ -56,35 +57,35 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
  YTXPR0101CA0049.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
- Transport; Sun, 5 Apr 2020 20:42:09 +0000
+ Transport; Sun, 5 Apr 2020 20:42:10 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [2607:fea8:56a0:11a1::4]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2b8c4787-0c26-46fd-6067-08d7d9a1d03a
+X-MS-Office365-Filtering-Correlation-Id: a8133f4b-2a02-401e-0c88-08d7d9a1d0c8
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2555:|MW2PR12MB2555:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB255507DA5C7EFFF384C96A1398C50@MW2PR12MB2555.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB255591926C62D09A949A92CF98C50@MW2PR12MB2555.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-Forefront-PRVS: 03648EFF89
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(6666004)(478600001)(4326008)(5660300002);
+ SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(478600001)(4326008)(5660300002);
  DIR:OUT; SFP:1101; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4ZHbf85qEYVrMQw7g3BJhdvXPr6Wa0TLrj6KJzl6V1ihGdc3xceQqb3aHHcz4pVlwFHKfSK5udddztUHR6hZVoUtcnqGv4hanlNR3KKM7TunaWVFp8bGuu3O3LiSqnc4hcc8EkDL9VeEki9GxiUblLpNy+HPYtH7PhIfwpALHmAsDfctUZytoRUvnS68NyL8aHZgh8a/VFdC6bJfGGxAbwx3V2iI1aNWg3pw9w88Ec2S5mJaBzALjfNV5yjYfv2p6DHXNhspd+yJ79ob9cQShdg/lHoCXzir79JG/m8lQOANx92j/7DpzjxxH13U2cMJbD7dpotd7VmDZogH7xKhowYLyJlUyNCAoHNTY0o0jUuqLuhtUQ1vlruhFUycOIH1Qh1lm5DwZTfoScw9Q+sX+XKDffN+qibT1hzL0jHc5Q3yYdnxlVPgcMcbUHY67GI8
-X-MS-Exchange-AntiSpam-MessageData: 8+o/gqp80PwQI0BTDlhSJNagA/Ya+aoUpzpxgirOzhXtJ+YB65DCdmQas0LdlRW6csUW2aAgoCUfyYfN2/A/lRNFVqt/dkwnV7u0QaDkMHQ62i6G6GnIUHzTPpyWYpRigJvBAruVfKYXKaaHueeqtMbcsxWKZYCU58Ve8oOTzAk=
+X-Microsoft-Antispam-Message-Info: UEbBIdAe3PZ+jOefaaugej+ATQDooKwvxW7Xm3sQl7gisfqxnPtXiZto0PVVwmBzUqTcTLYPvoqfsf2CGGJbglFWsif413j44//fDeTEeiWuIVPgULBhQD+1ogRdi4q8pWhSKyZT0RwrF5ePdxoWgFCIWPHr4NTsBHRJI614cfr8DN6TYB8khk30+9ZeAGRhxvxussTQqheBSZHZSNiTHb4Bt5vGo692r82NdmW+PmwB909EkRUg/bKuXIit+jl59tL15DagY73M1iI+DDh/yaGtYxgJu1r1dUps+C+II660K2OltKTnQDShXyT8UDOy0fG21NoSXt3jZQ9y59pzQpvzqdEHj15Np2fUDgRSnVUMLqYpOFrNiOxpGrp1ZexhzVJ6Cqbj9vp4klIYP73cgg3acYsF6AYTVXmIo2axDvbhlpURwnbWudyU4wkk8ncI
+X-MS-Exchange-AntiSpam-MessageData: aKd0WreTd/4Y8rKyTvO2VnrA+1GwvZAkSL7uMeijjFZje/D6Xq3BO9iXxXg5kOdcPCrkZKJhmrtluf2L9Z5G6t9vHzfJGfoKPPtqzl5KIm4DL32nL4YeXoWUF9olSbLQnzevpG4gmp+X96vS9zpN5gqxVr01kMZbVu6sPA+CEHc=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b8c4787-0c26-46fd-6067-08d7d9a1d03a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:10.4881 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a8133f4b-2a02-401e-0c88-08d7d9a1d0c8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:11.4776 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: w+MdRL54orvtfFyePEMls4mFlJikBw2ZY3bKlRA7MUBYCW9eN/kQl/EIfspRbs4E13cm5bLm1F+tEnfLURnseg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0bbGcdW17fQlIDoiQZQ16Pt8TKI5WbLnpcMhgHCCXOH4mO2Hmy/VSXV41v51kLiTFwVlvYLXbnMUmJCSiFh1Zg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2555
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,51 +98,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Joshua Aberback <joshua.aberback@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>,
- Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Harry.Wentland@amd.com,
+ Eric Yang <eric.yang2@amd.com>, Michael Strauss <michael.strauss@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Joshua Aberback <joshua.aberback@amd.com>
+From: Michael Strauss <michael.strauss@amd.com>
 
-[Why]
-If dc->clk_mgr->funcs->are_clock_states_equal is set, then
-wm_optimized_required is never checked. In that case, when going from a
-higher mode to a lower mode, wm_optimized_required remains true until
-the next mode change.
+[WHY]
+In cases where a clock table is malformed such that fclk entries have
+frequencies but not voltages listed, we don't catch the error and set
+clocks to 0 instead of using hardcoded values as we should.
 
-[How]
- - move from else-if to unconditional or
+[HOW]
+Add check for clock tables fclk entry's voltage as well
 
-Signed-off-by: Joshua Aberback <joshua.aberback@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
-Reviewed-by: Yongqiang Sun <yongqiang.sun@amd.com>
+Signed-off-by: Michael Strauss <michael.strauss@amd.com>
+Reviewed-by: Eric Yang <eric.yang2@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 512703eeaf82..8489f1e56892 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1861,8 +1861,9 @@ enum surface_update_type dc_check_update_surfaces_for_stream(
- 		// Else we fallback to mem compare.
- 		} else if (memcmp(&dc->current_state->bw_ctx.bw.dcn.clk, &dc->clk_mgr->clks, offsetof(struct dc_clocks, prev_p_state_change_support)) != 0) {
- 			dc->optimized_required = true;
--		} else if (dc->wm_optimized_required)
--			dc->optimized_required = true;
-+		}
-+
-+		dc->optimized_required |= dc->wm_optimized_required;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+index ab267ddd4abe..24c5765890fa 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+@@ -643,7 +643,7 @@ static void rn_clk_mgr_helper_populate_bw_params(struct clk_bw_params *bw_params
+ 	/* Find lowest DPM, FCLK is filled in reverse order*/
  
- 	return type;
+ 	for (i = PP_SMU_NUM_FCLK_DPM_LEVELS - 1; i >= 0; i--) {
+-		if (clock_table->FClocks[i].Freq != 0) {
++		if (clock_table->FClocks[i].Freq != 0 && clock_table->FClocks[i].Vol != 0) {
+ 			j = i;
+ 			break;
+ 		}
 -- 
 2.26.0
 
