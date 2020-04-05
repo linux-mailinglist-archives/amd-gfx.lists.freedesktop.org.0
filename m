@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30EC819EE17
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 171F219EE18
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8176E89EA6;
-	Sun,  5 Apr 2020 20:42:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 624CA89FE6;
+	Sun,  5 Apr 2020 20:42:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52F2F89EA6
+ (mail-mw2nam10on2048.outbound.protection.outlook.com [40.107.94.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACA6789EA6
  for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aLPcBoMWR8JvcYZvOAnpN+8Yh4rMHgtyA0bDrIPCsjZ6fNaWTaflA3UIuUIoVMGK1LyR4q1gXBIWED1kO3FnjKJTdLuGjdd7nI0FZ1+XBWimyd0ZYhiiAYvdddI4XEIJ5vXep2OV4FSrpjuAgPsaxy/UZE1hMib81RaxBPsVUc9IBJooETPLKUIsCtTSfLDq2Doc2x+dwWz9LoG4C9NqRFxz+QX6zvYrOBvHzEF4fLbF0TmkwG+91no8znXpkdAyHmMdr9wKsTQs74rmwAfyMlZnJh4hJAmId6utZk9dxZ1K5l8s10Z6S3ckJ1GgBxzhAF8M+Yre4PS8Ag5amrXdmQ==
+ b=AGufQnb8qF+P8htqqAZ10hyCeRuy6HjNojekwC177YeYPc725Wc1f7qo7QAm3IGKzLjDiCUQLroZSGuAy1n+fp34m5ZXF5VfmBGBGQ7zELCLp13YdWXqXRCI22L7RYhp2fRPlUOoGZ0wdKODn8hiZLJbekDlMn9aSt3F4Jrb4btZutVPGqYKv+zG56+U5/uWEzlM/b4NBrWRkfmmwU3qfsFnXH9AUixvaetEG53cIET63FmhfHsBGADuLnmxdF7XxRdkiZCH2wPMIrTbc7mv3BfwjjQyvHNAvgYvdTxS5nota8gWSsl5xbNa0+mBf3Y7CbyarBlL7ysTc2cLyUY7IQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i4OV4JCnwA1zZ1jZTDEwPUmtA19o3G6Qx2U2scwo69I=;
- b=CxvxvMcBvsCh5ED21qnhl0EhZW7bF2idr/O9Pgh9jrjl8aqlTwPidttH8AGsfHIcdUfn9o55zaWOLJeVOvIY5k4p1qINYqHakO44WwoY6HETnpOeyBvizJWadD+LX6zXgQkpnme9o/IWedi3qyn2jjQA/q8PjJ9wMpUkdDoXp+Ba/3EPX5S0apabGE8hvNcYV+OVFtlOTgpnSWwe3015j/QMM/zAoAWwgU+asq7tC+dHaETyZ2n9aBUCU0zezRG1BNryjaIxVrkJ8107rx5Lf/8jADtCPAOePlEoP6gljTkjr/g91IWoR52ppNdIYzMSTM9+zxy+I5zUxRU3dSYvNQ==
+ bh=so2fqKc0tLgx/rMOEX0nd52PKBYyWSko429VBnWKPdo=;
+ b=KuXXWwCf/XGTCDaJ2HOTsh50Q6nt9gl3Ne/rxbFwIbcHEJ2/vbAtkGiyVMhuIDQHsZn9QWKM+hRLleBPkrGLX22fXE2j5tlGHbKlmNnCb4ihNwUNo6ZClkDgdqyZSSL3+moAPdAkcqAOzuY/rdfA8jXtw8UF3M4AE9KKqINdH1M1O5ZPFN+kFEOigfEhYieXwUIAsOJdJsTKbnGhA+9gh7O3HaXkzBKJjAENbrktlYG8eEkcLG12M2yYL8EjBuwPbc7NrA0FxYa32cxlZuw2VIYEOiKK1QkdrDD60ZzATdfyzGSV8FvBV1eia5Kr/2JO01MGbQuGB01rxrL7qzfJGQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i4OV4JCnwA1zZ1jZTDEwPUmtA19o3G6Qx2U2scwo69I=;
- b=m3C8oa0blmV9hR0fpaCxPhsg2xdEO/ilJ3gTesHo8Ts4PCK0VLp59UI8+z1D2tetXL6hMr8M9F8u6YiotXmI3QkdJGbRjIKHAvyObTTp1QdOm217PZfDnQ6m/0MJwJox4XCNNk83ppllpADP+2cCh3+YIx2KrkPpNozUQkdQ4L0=
+ bh=so2fqKc0tLgx/rMOEX0nd52PKBYyWSko429VBnWKPdo=;
+ b=mw74XC1+5AL5HF6s1BGp5aTsz//vst6MCyMUsfxEr1IuJBdoQM1/UfWLbwSUSeZdPBZvqJ6m62m2PAW3MMp3kwIHiIZMKSQ80rJIjHtrGISUKNYZKWu1DhETRqGmvrkeVIqw62b8hlX6UcT3ZO5R01l2cEN3xGhxuT5rl/OV/jE=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
@@ -41,10 +41,9 @@ Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  20:42:38 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 31/36] drm/amd/display: Update DRAM watermark before checking
- to update TTU
-Date: Sun,  5 Apr 2020 16:41:10 -0400
-Message-Id: <20200405204115.683559-32-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 32/36] drm/amd/display: Acknowledge wm_optimized_required
+Date: Sun,  5 Apr 2020 16:41:11 -0400
+Message-Id: <20200405204115.683559-33-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
 References: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
@@ -57,35 +56,35 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
  YTXPR0101CA0049.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
- Transport; Sun, 5 Apr 2020 20:42:08 +0000
+ Transport; Sun, 5 Apr 2020 20:42:09 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [2607:fea8:56a0:11a1::4]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 426dca11-60a3-4579-2aa4-08d7d9a1cf9b
+X-MS-Office365-Filtering-Correlation-Id: 2b8c4787-0c26-46fd-6067-08d7d9a1d03a
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2555:|MW2PR12MB2555:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2555B5AA95610FA139F813F898C50@MW2PR12MB2555.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB255507DA5C7EFFF384C96A1398C50@MW2PR12MB2555.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
 X-Forefront-PRVS: 03648EFF89
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(15650500001)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(6666004)(478600001)(4326008)(5660300002);
+ SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(6666004)(478600001)(4326008)(5660300002);
  DIR:OUT; SFP:1101; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: b0A0FqXXlhzglqH0CJYr7Vd6LxhEK5MJN59yv5TZeOX54VdvZFsmwUdq6cwcmA7l/qSTGUjcmaivwURlE+CcZwkUc7oVuDiUkNbpx+86rxy5CwOCDPuAX2GceZ5eX/fGTf1UYK1N2YANIJ08uxjoSX4uthA8782yGypgjjf7QUKOlojckNZHL3GQDA1eL93xpxSNzTFc0UoMTrNbBdnPu4XivPv1pF2jBii9XLCyLsHZyQDBnZt9jSiNQq6eftZpK6CwmNmqUuE5QspO2tkXDYoZJK5RuLI/4x6ekeScIMJ2e9+TFO9H+9NPd+5cBB0nzeIDPal8zkrb2z9g8H7Vgy4EAmQgLMQdjx9De5x1s7K+88PboiM0yRzaLRQ9wl9wrTjWGs71TrYUgJvwrF5UwVvDN29bykH/RfvJSfzO/U0mSJaRldF6OICcFl+0vpPT
-X-MS-Exchange-AntiSpam-MessageData: HozBbwi5ogKLASM9E19RhDOjr6wTj9rrslXqGui6sWjjS7ckn9l9/JAZcSoGZnXJHYBeDGT2aGccrF+yuzJVNX48+wwBRwWAbSSirEmh5yHm75ZFhqT8g3gpcxAVErWOxSKieWRsJTKDzLI3YXKMwBxX8oDocm3Jk171XA7Zj2U=
+X-Microsoft-Antispam-Message-Info: 4ZHbf85qEYVrMQw7g3BJhdvXPr6Wa0TLrj6KJzl6V1ihGdc3xceQqb3aHHcz4pVlwFHKfSK5udddztUHR6hZVoUtcnqGv4hanlNR3KKM7TunaWVFp8bGuu3O3LiSqnc4hcc8EkDL9VeEki9GxiUblLpNy+HPYtH7PhIfwpALHmAsDfctUZytoRUvnS68NyL8aHZgh8a/VFdC6bJfGGxAbwx3V2iI1aNWg3pw9w88Ec2S5mJaBzALjfNV5yjYfv2p6DHXNhspd+yJ79ob9cQShdg/lHoCXzir79JG/m8lQOANx92j/7DpzjxxH13U2cMJbD7dpotd7VmDZogH7xKhowYLyJlUyNCAoHNTY0o0jUuqLuhtUQ1vlruhFUycOIH1Qh1lm5DwZTfoScw9Q+sX+XKDffN+qibT1hzL0jHc5Q3yYdnxlVPgcMcbUHY67GI8
+X-MS-Exchange-AntiSpam-MessageData: 8+o/gqp80PwQI0BTDlhSJNagA/Ya+aoUpzpxgirOzhXtJ+YB65DCdmQas0LdlRW6csUW2aAgoCUfyYfN2/A/lRNFVqt/dkwnV7u0QaDkMHQ62i6G6GnIUHzTPpyWYpRigJvBAruVfKYXKaaHueeqtMbcsxWKZYCU58Ve8oOTzAk=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 426dca11-60a3-4579-2aa4-08d7d9a1cf9b
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:09.4198 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b8c4787-0c26-46fd-6067-08d7d9a1d03a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:10.4881 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KlwpfTkxVI7O7CxQyj1DDEBM7FpRkZO0QMuUZmHj/rrKufFWM1bJADiXho54ei/VguBGq3abYnvwGShJnaBfbg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: w+MdRL54orvtfFyePEMls4mFlJikBw2ZY3bKlRA7MUBYCW9eN/kQl/EIfspRbs4E13cm5bLm1F+tEnfLURnseg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2555
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,55 +97,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Jaehyun Chung <jaehyun.chung@amd.com>, Harry.Wentland@amd.com,
- Jun Lei <Jun.Lei@amd.com>
+Cc: Joshua Aberback <joshua.aberback@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>,
+ Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jaehyun Chung <jaehyun.chung@amd.com>
+From: Joshua Aberback <joshua.aberback@amd.com>
 
 [Why]
-In most cases, DRAM watermark is large enough that the result of the
-condition to increase TTU doesn't change after DRAM watermark is
-increased. However, there is are cases where the condition fails and
-becomes true after DRAM watermark is increased. This results in minTTU <
-DRAM watermarks which leads to PSR hang since p-state is requested but
-not allowed.
+If dc->clk_mgr->funcs->are_clock_states_equal is set, then
+wm_optimized_required is never checked. In that case, when going from a
+higher mode to a lower mode, wm_optimized_required remains true until
+the next mode change.
 
 [How]
-Check whether to update TTU after DRAM watermark is updated.
+ - move from else-if to unconditional or
 
-Signed-off-by: Jaehyun Chung <jaehyun.chung@amd.com>
+Signed-off-by: Joshua Aberback <joshua.aberback@amd.com>
 Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Reviewed-by: Yongqiang Sun <yongqiang.sun@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c   | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
-index 5bbbafacc720..922ab7169e52 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
-@@ -2614,6 +2614,7 @@ static void dml20v2_DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndP
- 
- 	if (mode_lib->vba.DRAMClockChangeSupportsVActive &&
- 			mode_lib->vba.MinActiveDRAMClockChangeMargin > 60) {
-+		mode_lib->vba.DRAMClockChangeWatermark += 25;
- 
- 		for (k = 0; k < mode_lib->vba.NumberOfActivePlanes; ++k) {
- 			if (mode_lib->vba.PrefetchMode[mode_lib->vba.VoltageLevel][mode_lib->vba.maxMpcComb] == 0) {
-@@ -2622,7 +2623,7 @@ static void dml20v2_DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndP
- 					mode_lib->vba.MinTTUVBlank[k] += 25;
- 			}
- 		}
--		mode_lib->vba.DRAMClockChangeWatermark += 25;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 512703eeaf82..8489f1e56892 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -1861,8 +1861,9 @@ enum surface_update_type dc_check_update_surfaces_for_stream(
+ 		// Else we fallback to mem compare.
+ 		} else if (memcmp(&dc->current_state->bw_ctx.bw.dcn.clk, &dc->clk_mgr->clks, offsetof(struct dc_clocks, prev_p_state_change_support)) != 0) {
+ 			dc->optimized_required = true;
+-		} else if (dc->wm_optimized_required)
+-			dc->optimized_required = true;
++		}
 +
- 		mode_lib->vba.DRAMClockChangeSupport[0][0] = dm_dram_clock_change_vactive;
- 	} else if (mode_lib->vba.DummyPStateCheck &&
- 			mode_lib->vba.MinActiveDRAMClockChangeMargin > 0) {
++		dc->optimized_required |= dc->wm_optimized_required;
+ 	}
+ 
+ 	return type;
 -- 
 2.26.0
 
