@@ -2,49 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D81E719EE10
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2629D19EE12
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 269CA6E29B;
-	Sun,  5 Apr 2020 20:42:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5766E2BE;
+	Sun,  5 Apr 2020 20:42:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2075.outbound.protection.outlook.com [40.107.236.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97F446E29B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E26526E2B4
  for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lm+KVTQ1sPL6czq58lVWXu7CLxAhRhch5XMA+HmxT/+8cb5+b9W++dyHV369/UZT3frn+CJkh85ZLwk0bH4frTBcThbW3YPEMZwvqX58Fxmfr6KHwdaoMaJrPsGmQO/EGKohanEI30Zz3lNgVs4/S9Eycgv1bbisbMXFlWadH091BILQ+NTyiYoLifozk8B6iViY2ghi1WFIRSTq4/QEY9Asqu7mb4kqY0+y0mPxPDs15fPIOMDLGSIswQbaXvMdvcJfa5D5duMK4C87v/APVMZxND0EejRQjmOQ20xn2xIZ4MriIJljgOy93obYAm/k/K9bxrQ8tUrMbS4a3p/uMQ==
+ b=Ur3F+lbac7WLHTQF6t1LT1Z4WTxeHwBC+x5oFzZn+trAV1idh7ezeiOJ+Q/1MFulTCK/Zinlu7vH1oKnF/vpTVSEDT95cukHSb9RisrgizQrRXMOebyfdO55A88y7LpLlLf9keJwdhjpZIUFNEskbgdlPi3UQcxm6QJehwjumszsU5KT1UjIwsM8+AklbCDJjUH65LzfkrKe3QBGphIIfWMF5VuIEKXzGHApHB3FozgNFMa3hFa+GWhN+YEVVyjpMR+YcOyr5X1qw284uzHnxFDjAekFxu/ZjSgbW4Gz0E9xmcgChy0bwoQDEaxp/nAllBvU0LLwfrtqspMwq1Pslw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z1ySdAXahJvs/9fsazcpIeRiq5cwPkl1Y46Kk+WgRwY=;
- b=frrYUCLHm7xblB5IIElxwQau5FxdufkCzSwYAKD5Or8pHFWbmHZk37YrkUSQNIQ/GZjwvTPs/eMyl6VLl8HwjIUox+hwSpICiwsdmXFBhrRPWx4BVOvHzlLCAVf+E/tZbsr2cSvBed/EyVMA5y0GLaRWzhP3kLygt4XEEQv7QkLjCdBJkpZsuVQSWXXNKM/FvsSl0bJSxHQ2vU4KGhxfeDNmOmYYR9O/d4iTrBhhZTyGrAML2TfNLq1MTo6ribsXIyBCIv0mtetmkr/zAOizfwAMXHDzPWnISYI0m5IkD1lCkLJoxbR1abRoiL43PriZdb71muQUSLWFTInIQVcm7w==
+ bh=5A9ljRsMKLR2gZlk61TaXKhSqZ2razAUndJFTkBRtZ0=;
+ b=fwDMBr1Tvx8wWOq29j/BCZB+TPEvOeexmN1CsiLlHPCOnTuue/z6Q2M4AKn/B8U7/bjDl7qTZLiR3vnJJ9QhdOUaQW2M1lmJmrP7gp55bI/Jb681m3O/HrtfLno3Pl0aIKF58eBbMQqlsaM7PmKiiGJPo0iVl1MER25SPlBojrhzf/KfApO+bKt8H9EPqqWXPlRS1p2+mEaT2XcyLVZSXjOsyLMyErpLm5qfzpmvJ1Gu2tjv3bFyxM8BdPpvkTWv7S1DtOzuhCbGfxrDoVygha0knnzxMJxXTGG8xu8dUhBAuWzWkURfkMIhn/yXsNc7XQ5zzVzV8kow86z2g2ygEg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z1ySdAXahJvs/9fsazcpIeRiq5cwPkl1Y46Kk+WgRwY=;
- b=zpPBLEYldwqDsvek3CY610l99pmmNvvoLN3n695IaVJSiDFMVTMgiA5FpReqUBN7z6BnCkX/yy7mxEz242/ZDkf+/QJz41puuxOayQ3l4buY9bSB8+68eqWITC8VB5OChMASSWk7rG6Ro4mWA/ZTDDlWoppZ5B+LQXxFMvT03l4=
+ bh=5A9ljRsMKLR2gZlk61TaXKhSqZ2razAUndJFTkBRtZ0=;
+ b=1KuIQ1G0bJPRDUNQykx0TieDaOqActKCEK1ldUp+57eoon3L89PRtnhOD9IE7kt1yQxRmLgA3kWsKo8n2JW6lIdq5izSda76qckgPmzSkLIQffA6d5tDC+vNv0Tw4OTclyOpPwiT8UULvEQfAtaV7tfBNAm36gEIPALv8nTVWaM=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2555.namprd12.prod.outlook.com (2603:10b6:907:b::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Sun, 5 Apr
- 2020 20:42:03 +0000
+ 2020 20:42:04 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2878.018; Sun, 5 Apr 2020
- 20:42:03 +0000
+ 20:42:04 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 25/36] drm/amd/display: Refactor color management to take dm
- plane state
-Date: Sun,  5 Apr 2020 16:41:04 -0400
-Message-Id: <20200405204115.683559-26-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 26/36] drm/amd/display: Revert to old formula in set_vtg_params
+Date: Sun,  5 Apr 2020 16:41:05 -0400
+Message-Id: <20200405204115.683559-27-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
 References: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
@@ -57,16 +56,16 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
  YTXPR0101CA0049.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
- Transport; Sun, 5 Apr 2020 20:42:02 +0000
+ Transport; Sun, 5 Apr 2020 20:42:03 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [2607:fea8:56a0:11a1::4]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 90488083-7793-4da5-0d4b-08d7d9a1cbfb
+X-MS-Office365-Filtering-Correlation-Id: 78318ce5-2274-42cd-663b-08d7d9a1cc93
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2555:|MW2PR12MB2555:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2555F4162666C0C87FD3625D98C50@MW2PR12MB2555.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB25557C424D4ADDAB96B292D398C50@MW2PR12MB2555.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1186;
 X-Forefront-PRVS: 03648EFF89
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
@@ -77,15 +76,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TsPCVWaVWQMMrx3Q3XxBpkzLYAc4eL6tjeR16l9QXCOZfHDru01gEsxY+5wCDH+EoKSkaObytXkbDEebz93Yi8jFO6UZdw+xW7DRer/AvsBq9oJSJUtf8ltU6ohOYRdqrrx0SC+z3plgJ6IyPKZIidPHl5IfI+SiA9zgBkOCQrDWGpYfOW/doO6TKBk1+uI+z+7IWDbC3NPKvYf+Ydk39bEdlcjw2QakEqqPAMmD7OlEhCZo/uVRZZurwROiiv2O+eesI8hM8/cshGoNZwmj71LGU7EJ3laeKXNQ/xyJOirpWOzvFW86PxGaRoGPVgzkkBzVT/QbNGVvf2tDTIn1lIA1aDafmVaioghMr2UHYvd/DR/CscQLGNbfWR/8ztxkqvJi12P6R+KeU6RmizdXpbxf5OMh1bCwUi9uIRZfWRyF7Laaw/c8zH/3ht/gyHsr
-X-MS-Exchange-AntiSpam-MessageData: aiJg3pytgXDmLPEY/zXTQBAoPzczQIfzBlcxQnd6UOQvCzQIfH7Ieuh+uSmyyLSpL1J49pBRSF1JyteLYqewFD5W1ELCSE80E5c1b4NEjsxmRQQmo/vrXs2QJceQ30CpJWl9OpBOoLDhAvlfn7LeepmS+yC0xTZuV17/ofYDwGs=
+X-Microsoft-Antispam-Message-Info: 5uTHHBjHntoQV7/82ozYIeS82WH9ry6+wF3jIyMa5MWJa+hArJPhcdRP7d14KSfRSClcyRJGilNrBncYg4z/NWBsnoHyvcW56cXe3bHpStSZoQq4d8S+kntVBR6pWIcM+Wf93bfePcxDXUApIc2A9VQ7Of9tPOcUIdXZ4G1EU3tWAA7GAsvK32MQwsm7JokOmzphLyZKNIyA+TevlGJ9TbXg85Blm2pcqKXNoHq01KaAqrgSMPClR+UnifEouRp4AaZhgQX2v+qex0juwx2lpGHixlewLAjTH+ox4HRmg9+QJKoZkll7aaN507Lo9+0GwVGjk9+RUvqrrmdlJp2546PROjSjHOoEVLZR1gRpnb+xOrKDq1clxpXzBrImJzkFn3MEIhOP5RWUmzquBWyFe2OcOuJ3giVwoGJm+nDnuZeKQUR7gm+UzMcXqJcjerPq
+X-MS-Exchange-AntiSpam-MessageData: ct9TBkAwyXOB8cLXTIFI5xCs+2r3WsLU2iCzVPmUy+DCWFs1RwWTvgPUt7mdQh/23UcAHL6cXfzNFlCg2oaaLTR2ICAcJP6eByYcF/AOuzHOiVKSaXDEVuYRnx4eCRFxb5kaTPLkuA+rOA15/5woASQllx9ysX/u94w76LmW2Vc=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90488083-7793-4da5-0d4b-08d7d9a1cbfb
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:03.4682 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 78318ce5-2274-42cd-663b-08d7d9a1cc93
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:04.3647 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1j2wiLMt5gO7qczMkt261uWNaBtCUnxUhwvP2WYEEBMRIvSgrNhiokcinayEcGxHChkWFGza+BUVCoKinBHN6A==
+X-MS-Exchange-CrossTenant-UserPrincipalName: oX3LJxPCSb+B6TzbnSVH9u2b6IEbDc1dhmPNewSkANUT5kO+YGxPSME4AtssLAKqxtQcvGfPvpiLIZ8tK/DsNQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2555
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,122 +98,53 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Stylon Wang <stylon.wang@amd.com>, Harry.Wentland@amd.com,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+ Yongqiang Sun <yongqiang.sun@amd.com>, Harry.Wentland@amd.com,
+ Alvin Lee <alvin.lee2@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Stylon Wang <stylon.wang@amd.com>
+From: Alvin Lee <alvin.lee2@amd.com>
 
 [Why]
-- In amdgpu_dm_update_plane_color_mgmt() it is inconsistent in taking in
-dm_crtc_state and dc_plane_state.
-- Makes supporting plane-level color management with proper guard more
-complicated than necessary.
+New formula + cursor change causing underflow
+on certain configs
 
 [How]
-Pass in dm_plane_state in place of dc_plane_state in
-amdgpu_dm_update_plane_color_mgmt().
+Rever to old formula
 
-Signed-off-by: Stylon Wang <stylon.wang@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+Reviewed-by: Yongqiang Sun <yongqiang.sun@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 +++++++++----------
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  3 ++-
- 3 files changed, 14 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 3dcd4de0b2b3..47af6e9a31bc 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3772,11 +3772,12 @@ fill_dc_plane_info_and_addr(struct amdgpu_device *adev,
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+index 17d96ec6acd8..ec0ab42becba 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+@@ -299,6 +299,7 @@ void optc1_set_vtg_params(struct timing_generator *optc,
+ 	uint32_t asic_blank_end;
+ 	uint32_t v_init;
+ 	uint32_t v_fp2 = 0;
++	int32_t vertical_line_start;
  
- static int fill_dc_plane_attributes(struct amdgpu_device *adev,
--				    struct dc_plane_state *dc_plane_state,
-+				    struct dm_plane_state *dm_plane_state,
- 				    struct drm_plane_state *plane_state,
- 				    struct drm_crtc_state *crtc_state)
- {
- 	struct dm_crtc_state *dm_crtc_state = to_dm_crtc_state(crtc_state);
-+	struct dc_plane_state *dc_plane_state = dm_plane_state->dc_state;
- 	const struct amdgpu_framebuffer *amdgpu_fb =
- 		to_amdgpu_framebuffer(plane_state->fb);
- 	struct dc_scaling_info scaling_info;
-@@ -3824,7 +3825,7 @@ static int fill_dc_plane_attributes(struct amdgpu_device *adev,
- 	 * Always set input transfer function, since plane state is refreshed
- 	 * every time.
- 	 */
--	ret = amdgpu_dm_update_plane_color_mgmt(dm_crtc_state, dc_plane_state);
-+	ret = amdgpu_dm_update_plane_color_mgmt(dm_crtc_state, dm_plane_state);
- 	if (ret)
- 		return ret;
+ 	struct optc *optc1 = DCN10TG_FROM_TG(optc);
  
-@@ -8027,16 +8028,6 @@ static int dm_update_plane_state(struct dc *dc,
- 		DRM_DEBUG_DRIVER("Enabling DRM plane: %d on DRM crtc %d\n",
- 				plane->base.id, new_plane_crtc->base.id);
+@@ -315,8 +316,9 @@ void optc1_set_vtg_params(struct timing_generator *optc,
+ 			patched_crtc_timing.v_border_top;
  
--		ret = fill_dc_plane_attributes(
--			new_plane_crtc->dev->dev_private,
--			dc_new_plane_state,
--			new_plane_state,
--			new_crtc_state);
--		if (ret) {
--			dc_plane_state_release(dc_new_plane_state);
--			return ret;
--		}
--
- 		ret = dm_atomic_get_state(state, &dm_state);
- 		if (ret) {
- 			dc_plane_state_release(dc_new_plane_state);
-@@ -8062,6 +8053,14 @@ static int dm_update_plane_state(struct dc *dc,
+ 	/* if VSTARTUP is before VSYNC, FP2 is the offset, otherwise 0 */
+-	if (optc1->vstartup_start > asic_blank_end)
+-		v_fp2 = optc1->vstartup_start - asic_blank_end;
++	vertical_line_start = asic_blank_end - optc1->vstartup_start + 1;
++	if (vertical_line_start < 0)
++		v_fp2 = -vertical_line_start;
  
- 		dm_new_plane_state->dc_state = dc_new_plane_state;
- 
-+		ret = fill_dc_plane_attributes(
-+			new_plane_crtc->dev->dev_private,
-+			dm_new_plane_state,
-+			new_plane_state,
-+			new_crtc_state);
-+		if (ret)
-+			return ret;
-+
- 		/* Tell DC to do a full surface update every time there
- 		 * is a plane change. Inefficient, but works for now.
- 		 */
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index 3f0c6298b588..f30dc004bf2b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -482,7 +482,7 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
- void amdgpu_dm_init_color_mod(void);
- int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc);
- int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
--				      struct dc_plane_state *dc_plane_state);
-+				      struct dm_plane_state *plane);
- 
- void amdgpu_dm_update_connector_after_detect(
- 		struct amdgpu_dm_connector *aconnector);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-index 2233d293a707..6b58761e4b04 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-@@ -416,9 +416,10 @@ int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc)
-  * Returns 0 on success.
-  */
- int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
--				      struct dc_plane_state *dc_plane_state)
-+				      struct dm_plane_state *plane)
- {
- 	const struct drm_color_lut *degamma_lut;
-+	struct dc_plane_state *dc_plane_state = plane->dc_state;
- 	uint32_t degamma_size;
- 	int r;
- 
+ 	/* Interlace */
+ 	if (REG(OTG_INTERLACE_CONTROL)) {
 -- 
 2.26.0
 
