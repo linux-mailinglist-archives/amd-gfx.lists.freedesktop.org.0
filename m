@@ -1,50 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AAD119EE14
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1307019EE16
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA67F6E2B6;
-	Sun,  5 Apr 2020 20:42:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1A189EB1;
+	Sun,  5 Apr 2020 20:42:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2053.outbound.protection.outlook.com [40.107.236.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DDAF6E2C0
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:08 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2040.outbound.protection.outlook.com [40.107.94.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10FC489EA6
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PCDW9Mqx9YmEzHZRLzEI4XInvwWgeM1UxrtiKTEC05bmNL4s0+mKvVqYDEnHx5GdXlIJ0gv/Rs8vY53nCcaadvHOsnWzqt/PE98pE0d+raNV9CL19gdqFym+dWvRR3TbE/ZXX+gZtIdn2MqhqzAOA00QVvrxMKk5rtedG0cK8Aj6h15HHOG2NnwZAmt/yVvus3dgJ0cnmvbrtXBxC05OfsBVzmpLZybCw5fhjQ6Yql+KTmChGwee/Qokj99xD1oXi1oolQ10ryxjdOr5rnJasAy14xuLhK70xhfGtcD/nMRCsBbhTkQpparObb15uKb77aVTEjqfRB2s50JPlNvPlA==
+ b=ofJy1feIQ6nRtsRHjr+CwY/tFxN5oZV2hn4tCou8QPvVSnqbM43IcwoG5F6TMopmvKi+eB4bthEos/aJZ8yTG1opt/wXpvu6JUNW1Umsp2mldn7U7WswqNhYHVs2iytdXT52RZzyRvffrEPWSvK/3neMcSXjtRuw4nGcJghwryVagcwx5X6JU4SiOVJgEs8ACEqD+ssF0H8JZ6VUqoVI/v0c2ilPglH/MAIhDWepn583vv6R4SqdOjc2IKKPCB1M12FIOBT+CxuNxfpW2RQRBcEljH3KArwYAZzLxcX6DmG+SH/nPbdmEjetfgxmf28ldTjCHmkC2MAhp+fCBC91FQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qagxajxGlsAHJnSAN8Z8TtOqaPAPOObL3QXgu8N4O2M=;
- b=g4QJBWUnI1QXHfrfbRB/lFbXIANZvPwmGEKYQmC/xoA0b4oOyxkI1y/lJKbBP1kpU/EZidzP2l5CKXVY58xEbci5fNdtMe34+TaUY0h5frEl+QTVH0Z7KE0vYGfrRueJx/+emL2NFQa1E17/GN+jOvFSE4TVAgQH9sQMBiiewMYFLAprqQ5shMXRgsuiuQoNZAwlZi+/EZGUludElKKlXLU50ag3XD/OQyGUFcxP47IB8L8P9lXYuC/k5SVN/EYt/G3DhTdw+1/iQXhcp7T580yCtlrQn6rkxDgYflJJQbvbvRpERY92Elf/dOwFvbHrTCBe9jvTWeiZbn7roTjGGw==
+ bh=1n/pgZnpKLqVfa8c4w7Ht8tmmnIKQ8qStWPrk1F0USo=;
+ b=iUaobtmHeiErCdFIBHSL4tItS4QFOAB/FN2xG5ZipwbmrKGb3Nue3+8J8kEnU7CeIX7mLHtzq7m6T5b6KBIRL1rJOdFDvFCjzpt3jAT3ADjzTeFqZK5rPtKLfV8dSDCvF0vih0mkIHyAEKr4s4YxwEg3YAiAuO9y8/ZT5L16gaG+qtU8ZyJ0ZOGTL8ZzQ07sJI6qOxrpEHIAFZFjEAX2wPAfNJgFLmX7ZMeh9sfRCkJ/N//b7Mjd5pAky2eN8/5Er3ee1MkYNH4JXx6QvEWj8F0YVahp7n31jTolwV/aWNZgI7r+FacuzPFba79CfiO4E5sLTf7o/dK46AHsNrtRZw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qagxajxGlsAHJnSAN8Z8TtOqaPAPOObL3QXgu8N4O2M=;
- b=aEa/Hhp/miKE7RHzboxAVZu6pHXnAPOvXh9OEOvgfq0QfDY5EW2d5PEqVleZ3Of9nlCrgZkzrGPDA873VBbghOmtKKP2OXy/Oslb7R2utsXQTXJg2BOB+MmhsJh6CU3TC2Znhj3OoOlb9ugf9gCBRDRRmPcPYgLLBrgEoz1ZsN4=
+ bh=1n/pgZnpKLqVfa8c4w7Ht8tmmnIKQ8qStWPrk1F0USo=;
+ b=dFoE9BZheAo+3cXP46TmnFgwxGrl0OJ14ZOJ7WxoLChw2w3B9SK9ASMVAIsx+ocz7cKyrZMP8DDoxx+wuqCOqcRl9mMRkSx3jZinvq2vtbN0FqQLYTxME3PJyVLjIsFqJbXEe56ODNR6doXdYq/LOJheT+Q4CfQhGuEn0hvtBH0=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2555.namprd12.prod.outlook.com (2603:10b6:907:b::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Sun, 5 Apr
- 2020 20:42:07 +0000
+ 2020 20:42:38 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2878.018; Sun, 5 Apr 2020
- 20:42:07 +0000
+ 20:42:38 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 29/36] drm/amd/display: Make cursor source translation
- adjustment optional
-Date: Sun,  5 Apr 2020 16:41:08 -0400
-Message-Id: <20200405204115.683559-30-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 30/36] drm/amd/display: Avoid create MST prop after
+ registration
+Date: Sun,  5 Apr 2020 16:41:09 -0400
+Message-Id: <20200405204115.683559-31-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
 References: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
@@ -57,16 +57,16 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
  YTXPR0101CA0049.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
- Transport; Sun, 5 Apr 2020 20:42:06 +0000
+ Transport; Sun, 5 Apr 2020 20:42:07 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [2607:fea8:56a0:11a1::4]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2c8d4d18-edc5-46ba-4777-08d7d9a1ce43
+X-MS-Office365-Filtering-Correlation-Id: 4fe8d63d-3ba4-4e9e-0586-08d7d9a1cec9
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2555:|MW2PR12MB2555:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2555DDCCEC6E407DCDA6514F98C50@MW2PR12MB2555.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2555A64B49F6FDCC85FDC7B698C50@MW2PR12MB2555.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-Forefront-PRVS: 03648EFF89
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
@@ -77,15 +77,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZePg7psi6kw8E9lRDG/LQrL0EOCFjTrRo2YbOJ5VjaWnrXpkdlKifJWckX4ikqYv+XsSoQ5KNFfh5XmkZIHJN7H/b7XTUrdAU725q8/2QrENCRT7KC+0bFRWhlslcqM3MHfTw0e9RYSRwhiB78hButv02f5hFW11SlYL7PtlfOn1vCOIODFx9K+nfFe9kGMQb8VjILzNOdrDtySUWjlZnCmbK4j2bueaz+LeZz7Zadlem7wUve2DCgh35gm4/1aQTGOY/9BYx8oww2doFskMR/eZEOau3LaaDSgq7Ko/g9/PMhnQbu9R3pB/3JJdC5rqK6xvcrdfzX1I/Eap6WMXqjRMJ4kD47sVanqpM/y69aGMV9J8u83ASFbKMs81Z/AyrWFOyf+cEBHcWU8GSaB4LpfjQH2J7QGWPTJivupsiD7m0VLgMA8gv+tue2zPBfbo
-X-MS-Exchange-AntiSpam-MessageData: CdgGRP3WW2Jpyr3lq19JBzSQQtPBtbr99XQd/6RcKWw4Q9lpO/9VKvdTxgaWdMGLMoggLh2pR9D0i2Xs65xJbBb/zeEdgSika3wkC/kgrVfjEnr/9kdPWGYIKplezY9osc2LvrwZfBInjiEIbEcURgu9aCfgueVqIQEbwi+2Ark=
+X-Microsoft-Antispam-Message-Info: jeq7cDhxZsGbhhYPbND/jO3dUh9i0/98GGrQeDBLUjuXjVVTBG6CrEwUBJF6BNLKaNkgKflwtjsJyua2tdgDLsQnu4CEafekq9jIrRKVOShYpFOX2bFOqt7AqUk+lzLp+FttrL8gh2qFPQ5iblxSjtslTR9QgCFNM/FCxM3X6v3ey7L51skL09Fy1APuBAFDsaFM/yWwkJ944ih1kOTC0ghDXjQF3+1DdVJjfrpLBwRRsHMqZRLi/rmWoILf1NG6MnVMuos5qrizdZRw51ra99hQCG5MkGNsnG3vjdsLTNjkZ94898K6RCNQvCIJexW2lRxFd0LUNUX6VUmyN8F/AXcoWmIO5tixcqRb0kjmVmyaZoawZ7+NTJsFL0F1mWY3a/DQaSVoNR167/nixOWZSbV6WAlLIn8kgdHzjyzXeyWsZjfQBmjFd71cWrxCuJq7
+X-MS-Exchange-AntiSpam-MessageData: ce7pKGqsMND6FWwjSzlaKqJ3dL9Fo/GMzB8Pd53y0Jow3/48Wntxd1U3+oPzmaYrEkFPLyfRQIHBTCJgHBzk1gb2pTLmZYBzn1tSxQrrmrgMLJo0M2+6UzbEe94rjU2C6B16yooUBpu96B5eWZ/qIbMGI7Ijrrj4smV1oTh+EME=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c8d4d18-edc5-46ba-4777-08d7d9a1ce43
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:07.1541 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fe8d63d-3ba4-4e9e-0586-08d7d9a1cec9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:08.0655 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sBd89QH5g/dNDpvWhW5hNBGpAmmkAbihWv2igZq1/Oq8aCXs044UFZ5jEKHEb//6IKr3geHeJSfpkfnljRxXVg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: kFOsoxx+CErttSgyE/l4hj6fRMC1R+HLpOR4hwoBK9WSAcoRrEQ/MVdRNJYxJ6kblXTfc3OpZccDt8MjLmdgsw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2555
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,123 +99,75 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Tony Cheng <Tony.Cheng@amd.com>, Harry.Wentland@amd.com,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+ "Jerry \(Fangzhi\) Zuo" <Jerry.Zuo@amd.com>, Harry.Wentland@amd.com,
+ Hersen Wu <hersenxs.wu@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>
 
 [Why]
-In some usecases, like tiled display, the stream and plane configuration
-can be setup in a way where the caller expects DAL to perform the
-clipping, eg:
-
-P0:
-src_rect(0, 0, w, h)
-dst_rect(0, 0, w, h)
-
-P1:
-src_rect(w, 0, w, h)
-dst_rect(0, 0, w, h)
-
-Cursor is enabled on both streams with the same position.
-
-This can result in double cursor on tiled display, even though this
-behavior is technically correct from the DC interface point of view.
-
-We need a mechanism to control this dynamically.
+Prop are created at boot stage, and not allowed to create new prop
+after device registration.
 
 [How]
-This is something that should live in the DM layer based on detection
-of the specified configuration but it's not something that we really
-have enough information to deal with today.
+Reuse the connector property from SST if exist.
 
-Add a flag to the cursor position state that specifies whether we
-want DC to do the translation or not and make it opt-in and let
-the DM decide when to do it.
-
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Signed-off-by: Jerry (Fangzhi) Zuo <Jerry.Zuo@amd.com>
+Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c      |  1 +
- drivers/gpu/drm/amd/display/dc/dc_hw_types.h           |  2 ++
- .../drm/amd/display/dc/dce110/dce110_hw_sequencer.c    | 10 ++++++++--
- .../gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c  | 10 ++++++++--
- 4 files changed, 19 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c         | 8 +++++---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c   | 8 ++++++++
+ 2 files changed, 13 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 47af6e9a31bc..4b791e6909c4 100644
+index 4b791e6909c4..ca7489cbba94 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6380,6 +6380,7 @@ static int get_cursor_position(struct drm_plane *plane, struct drm_crtc *crtc,
- 		y = 0;
- 	}
- 	position->enable = true;
-+	position->translate_by_source = true;
- 	position->x = x;
- 	position->y = y;
- 	position->x_hotspot = xorigin;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-index 25c50bcab9e9..a8dc3082e3e1 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-@@ -385,6 +385,8 @@ struct dc_cursor_position {
- 	 */
- 	bool enable;
+@@ -6024,7 +6024,8 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
+ 				adev->mode_info.underscan_vborder_property,
+ 				0);
  
-+	/* Translate cursor x/y by the source rectangle for each plane. */
-+	bool translate_by_source;
- };
+-	drm_connector_attach_max_bpc_property(&aconnector->base, 8, 16);
++	if (!aconnector->mst_port)
++		drm_connector_attach_max_bpc_property(&aconnector->base, 8, 16);
  
- struct dc_cursor_mi_param {
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-index 67f7ca346696..c279982947e1 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-@@ -2692,9 +2692,15 @@ void dce110_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 	 *
- 	 * This translation isn't affected by scaling so it needs to be
- 	 * done *after* we adjust the position for the scale factor.
-+	 *
-+	 * This is only done by opt-in for now since there are still
-+	 * some usecases like tiled display that might enable the
-+	 * cursor on both streams while expecting dc to clip it.
- 	 */
--	pos_cpy.x += pipe_ctx->plane_state->src_rect.x;
--	pos_cpy.y += pipe_ctx->plane_state->src_rect.y;
-+	if (pos_cpy.translate_by_source) {
-+		pos_cpy.x += pipe_ctx->plane_state->src_rect.x;
-+		pos_cpy.y += pipe_ctx->plane_state->src_rect.y;
-+	}
+ 	/* This defaults to the max in the range, but we want 8bpc for non-edp. */
+ 	aconnector->base.state->max_bpc = (connector_type == DRM_MODE_CONNECTOR_eDP) ? 16 : 8;
+@@ -6043,8 +6044,9 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
+ 			&aconnector->base.base,
+ 			dm->ddev->mode_config.hdr_output_metadata_property, 0);
  
- 	if (pipe_ctx->plane_state->address.type
- 			== PLN_ADDR_TYPE_VIDEO_PROGRESSIVE)
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index 9ef5747e5077..9f41efddc9bc 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -3095,9 +3095,15 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 	 *
- 	 * This translation isn't affected by scaling so it needs to be
- 	 * done *after* we adjust the position for the scale factor.
-+	 *
-+	 * This is only done by opt-in for now since there are still
-+	 * some usecases like tiled display that might enable the
-+	 * cursor on both streams while expecting dc to clip it.
- 	 */
--	x_pos += pipe_ctx->plane_state->src_rect.x;
--	y_pos += pipe_ctx->plane_state->src_rect.y;
-+	if (pos_cpy.translate_by_source) {
-+		x_pos += pipe_ctx->plane_state->src_rect.x;
-+		y_pos += pipe_ctx->plane_state->src_rect.y;
-+	}
+-		drm_connector_attach_vrr_capable_property(
+-			&aconnector->base);
++		if (!aconnector->mst_port)
++			drm_connector_attach_vrr_capable_property(&aconnector->base);
++
+ #ifdef CONFIG_DRM_AMD_DC_HDCP
+ 		if (adev->dm.hdcp_workqueue)
+ 			drm_connector_attach_content_protection_property(&aconnector->base, true);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index cc1b52b72c0b..b401dc44ff1d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -410,6 +410,14 @@ dm_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
+ 	drm_connector_attach_encoder(&aconnector->base,
+ 				     &aconnector->mst_encoder->base);
  
- 	/**
- 	 * If the position is negative then we need to add to the hotspot
++	connector->max_bpc_property = master->base.max_bpc_property;
++	if (connector->max_bpc_property)
++		drm_connector_attach_max_bpc_property(connector, 8, 16);
++
++	connector->vrr_capable_property = master->base.vrr_capable_property;
++	if (connector->vrr_capable_property)
++		drm_connector_attach_vrr_capable_property(connector);
++
+ 	drm_object_attach_property(
+ 		&connector->base,
+ 		dev->mode_config.path_property,
 -- 
 2.26.0
 
