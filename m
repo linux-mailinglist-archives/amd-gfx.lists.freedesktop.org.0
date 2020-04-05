@@ -2,49 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8156419EDFB
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86BF219EDFC
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:41:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CB7989F75;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D322989FE8;
 	Sun,  5 Apr 2020 20:41:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2070.outbound.protection.outlook.com [40.107.236.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8A5089EA6
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:41:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 369B789EA6
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:41:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b84mnUvuuzeeuxsaP7O98DjuEWdE0RFEVlZEbMzRGxLBNC7gIle6TRzz0FWfwop90ak5lDxW++114Lr7/T1Muq7OGUcq9vajhV4K9VGq5VyhY0IlegGUgL/tmslVuVBJ+kS0ZyJlix+RSuKIYP1HzLanTMOfqkjQAcMCEaI4LnHscHKdVA8heMs0/nHrHen8oHjH2X8lT5sdGITFd+r08BH42tIDuxAg9LV5lkR+M2iMpTnr9L+uklfktDUvDFQr9s6oTeK4M+HFtTeLxNPmPxpXM1tDSaZbPD9VUoEKJ0231gRTKD9Tc3TEWSWSMqPUXJRWBbCig8u++3koeChmyQ==
+ b=nAc0StDz9Tqdbp/HZt0bHzrd/fWdXThTiKh8Pk7s0q3gKRaaaDm/AaHu6YNiizPSoo5My/G1T7VSqEcckvmh5n9fa6cxlfLk77q3PcqBIjir8OuIEXsApblYggMfFva/E0GKAwOWzLwMEUJvyaTBdafXSuQgPC/GtoHAi/qw0s9IrcqwHuU6HhOPGlDdoID6uSXo0V1QpMJuK8WXJHrXbBPFct+B7YUy8/xG/KBcRws7dV+s7nNRkkSC9tmPW7vgOjNC8eMyS3vXh9a8mhYeTLewfJp3HoTIuN9BgwqkXDl7WwktOJtW3hXkBN0e9UBwQID6Fwm8m8bCdiiznONiWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8tJi52JEjbzl4AuXcoKwmgcacc+GBQFpSNyv8eyHsGc=;
- b=PiPxv4li8EwaIB1rmcaGfFPoU+pKVl88qEigRISWNultJfkO2h2xx6zyQd5w/9UtYzOExh+eGy5g/ldZdwPL8EnizJrjV34kzbJz+1p6QpB6NCuI8mPrjF0c0XfcthIICqB4vf6BUUK040cZm7jzdOPZcTQG+4a4J+NxIcGsUDSTBTiZKxRDehU4x26rWw0Gl3Akr5yiySmPGqjABJxR6JRoHUwoXVUcKDIxZVUakYXZ1ASogTDw3OY8X6QH8cVo9CW/twm/F96sMZTT8V376F2jgRRAWHW44tsM6fasj+AfV55bP8sSHCNMpBwmQmrhbV8LLSyOTxeE2vIIWcPGYg==
+ bh=eY6kGJzED/j8YdJ7iaR7/bh02/NkzoZgZKXag93Wtlg=;
+ b=VLTz4mH7dr5dAGvzMpfyIrM3NGNF7G0YtglEOLwNywmr4ruWAI78I/vEN9QH8+NeZAiwdf2IrtctmrlqmDeu+9ewClG7TI4ODv/qut3a81ZwpubWKsk4ngTm60aanxyS/uOvsKn5WklG2RjbzYgJYNYrZ+X5l33RKvKaZu5NfRHaMmjR+2eCfbgAO5w+d4usei01j9U8eHcs0ZPqSCtaQVbJRtF+f574fqEnImhr5IjU9XacUQeOQa2iOFELY7YQVfPq8Ea7/h6RtZrhEBt3w2q4r6T+yWRDsao3HZRB0yrTo5p2v9VfgqweQShuMmDHtcV3GkCwQ0Uz3BGV9sQIBg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8tJi52JEjbzl4AuXcoKwmgcacc+GBQFpSNyv8eyHsGc=;
- b=J0VQa/zeVBVubfmbPpU3HQA0SIwhXavYZAGoCavmL4wHm8AgyvdLys9XjLr6WhbcS1uWyhFVP0A2VlXOWkBr5bBkONG4gaVMwohVmmu0kFVfHeCXEYS1I3ue9KWUAquGuS250/a8QJo4V3IT7j3m/+b3ofziIWsSAPpidoaAQnY=
+ bh=eY6kGJzED/j8YdJ7iaR7/bh02/NkzoZgZKXag93Wtlg=;
+ b=FWLa6vSMSaOVBI8TXq7hJ0DfyY4GamQJm0nevz8SPx7Nc0XGZbiv7zxiHDTJEhwQGS3nzE2hQYCLGF9J2wNSmJsnmYp0WpQJRfaKfkuRaE1fcxfQcDJTpB+kUoRfZEEjpWamP2aKXv/qt5PJxZLHCTHnSvRGQ8ZC0/BAX/sLizM=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2555.namprd12.prod.outlook.com (2603:10b6:907:b::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Sun, 5 Apr
- 2020 20:41:42 +0000
+ 2020 20:41:43 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2878.018; Sun, 5 Apr 2020
- 20:41:42 +0000
+ 20:41:43 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 04/36] drm/amd/display: Implement abm config table copy to
- dmcub
-Date: Sun,  5 Apr 2020 16:40:43 -0400
-Message-Id: <20200405204115.683559-5-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 05/36] drm/amd/display: Remove hdcp display state with mst fix
+Date: Sun,  5 Apr 2020 16:40:44 -0400
+Message-Id: <20200405204115.683559-6-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
 References: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
@@ -57,35 +56,35 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
  YTXPR0101CA0049.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
- Transport; Sun, 5 Apr 2020 20:41:41 +0000
+ Transport; Sun, 5 Apr 2020 20:41:42 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [2607:fea8:56a0:11a1::4]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 755a0459-cf61-403b-1f2f-08d7d9a1bf98
+X-MS-Office365-Filtering-Correlation-Id: 65dc49d4-3314-4329-b445-08d7d9a1c038
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2555:|MW2PR12MB2555:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB255506AE3A7FE1BDD776BBEB98C50@MW2PR12MB2555.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2555B8EC03C255A0F240B16398C50@MW2PR12MB2555.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:169;
 X-Forefront-PRVS: 03648EFF89
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(478600001)(4326008)(5660300002);
+ SFS:(10009020)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(1076003)(8676002)(6916009)(8936002)(6486002)(81156014)(81166006)(30864003)(16526019)(52116002)(36756003)(2906002)(6512007)(186003)(86362001)(316002)(54906003)(6506007)(66556008)(66476007)(2616005)(66946007)(478600001)(4326008)(5660300002);
  DIR:OUT; SFP:1101; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tP+D1MVh15HMUufWs7To2y6eXGi11MI/ejnM5DQ3JK/TlFn4jIakrQsq3rKS0tGIXb8+/oIbjIHSCEWjh0t4cQOGtr2L33tC0EMLAHrn3VEwMMi2FYGVyoElxETLzTkUCQPSQkhN7LdP68U8cgKzVDb/lZboFPXvqjBplkgBIBxqOaMehQ8Wd7SostjoxWuPUtXNoz5WzpzRqNNYppo9T579rt2IsV54srBY9f3j1Xu02anR1+VZPzYP+drGMsT95/YLGjXyQ7EsmeOtjdaZo7OvKC8GHkBfHZpuJcPEqjKZMiMlR0AHPRZYqsDFT5DNaJc5aQKXt9mBe3sxO910HqJn6td8U1vH+E9hCu8s5JmAQKL9wsyTPwI/J3ynZ+PcXaL7U/pwZ8JIgBRt1S54jCiAC+4q0ARJ0xR1NyeDK4DTvuBoG0YAq7MRVh/HZGco
-X-MS-Exchange-AntiSpam-MessageData: F9/HQmgqyuw9ntKChO+OhQZW+CBOnlDDGK286IV/bgNNmHhFups3VJPraWQWlfCFwDaH0jGMJYzoQW33jZ5E8wve/xyIRNJYR5IJB4k5NV/1A06w+CGYJ5vHQM3RRb5NKRLuIdsBsK4GIZELYsDvprqEq2MRmg10ZpCzt6GsjBs=
+X-Microsoft-Antispam-Message-Info: +bITeBTNGGSx3Gr8/U/hQV6vl5uvK/NOpqjpXSSsN3vz8Xtk1wbjk17HJvAbA998s0KKLsBa8ncliCoVj3U2owhJ3Sgz9FQIFshLOVFci+NMgK/UwV4UuBxYDX2Xtx2wpTZYctkRJFUv1R3fm9KZZySoRJZJKKMm2tlezFKAXQy2bll3Pgm856lQSgUPvFV5hsKm9mk8AGs63aBdiEcvjxLV0wgyWabA6FsLsS2XsYnVMpQLeDqFRF+5TJZ+NVUM6D2clHsx8VxTN/bOjAN5FHr7XsKITDR6NqQAfVkfjtpbzT4LrBbw5E23CM0SfyaMjQlopVdYZ6sATSFUUdN6wYUX7iwSUJH/OlWP/tnNDsIUVRNG5QDoPjsetnGXkEX/lMwlCMCMzUXtTz7HDElW7IRDbT+EdBMTUz9CJBxB0lUag4m/VVL26U5HWGJMuSFT
+X-MS-Exchange-AntiSpam-MessageData: 9tmP3ZlGG307tvMga/Rj/8DDWFHBxtM/0evj9LXnyTMWA2DpzcUBbwRU1WdSbE1bEMYSTm5pHEyiQnawKVYhy5HsBVwhduwlZbbZCpFTLwZtCt1q45uN3h7S1Kct/N4FBiXpcfth9LOpmM4CsBWix6Y+AgoATlyNUnkRHE+wmEE=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 755a0459-cf61-403b-1f2f-08d7d9a1bf98
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:41:42.7072 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65dc49d4-3314-4329-b445-08d7d9a1c038
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:41:43.5967 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yppkhk6Wg6WsaoctZMQTNCAgrE9zobgGKMRWIfQdxZM53qEZeLGnk7P2CZ3bxo6Dw6ZCzzZKTSigo6LoyelLHw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: AGsw+t20Z49CORH3K9lkJ4z0L7c5rM4r3DD9V5ODaBwjV+E0X81sixCQQbwo7JxPtISWewFf1RsVOWjQwZfzrQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2555
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,160 +97,297 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Tony Cheng <Tony.Cheng@amd.com>,
- Wyatt Wood <wyatt.wood@amd.com>, Harry.Wentland@amd.com,
- Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Harry.Wentland@amd.com,
+ Wenjing Liu <Wenjing.Liu@amd.com>, Isabel Zhang <isabel.zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wyatt Wood <wyatt.wood@amd.com>
+From: Isabel Zhang <isabel.zhang@amd.com>
 
 [Why]
-Driver must pass abm config table to dmub fw. This provides various
-parameters for abm functionality.
+Due to previous code changes, displays transition from active to active
+and added state immediately, making it redundant to have both display
+states. Previous change to fix this caused HDCP to get into a bad state
+when monitor is connected to MST hub, this change fixes that issue.
 
 [How]
-There is too much data to be passed in an inbox message, so we must pass
-this data using an indirect buffer.  Copy the table to cw7 via x86,
-driver copies to fw_state structure.
+Change code behavior so when a device is added successfully the state
+remains as active and when addition is unsuccessful change state to
+inactive. This removes need for added and active state.
 
-Signed-off-by: Wyatt Wood <wyatt.wood@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Signed-off-by: Isabel Zhang <isabel.zhang@amd.com>
+Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Acked-by: Tony Cheng <Tony.Cheng@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_abm.c  |  2 +-
- drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c | 25 ++++++++++++++++---
- drivers/gpu/drm/amd/display/dc/inc/hw/abm.h   |  3 +--
- .../gpu/drm/amd/display/dmub/inc/dmub_srv.h   | 10 ++++++++
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |  2 +-
- .../amd/display/modules/power/power_helpers.c |  4 +--
- 6 files changed, 37 insertions(+), 9 deletions(-)
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.c   |  5 ++-
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.h   | 28 +++----------
+ .../display/modules/hdcp/hdcp1_execution.c    |  2 +-
+ .../display/modules/hdcp/hdcp2_execution.c    |  2 +-
+ .../drm/amd/display/modules/hdcp/hdcp_psp.c   | 40 +++++++++----------
+ .../drm/amd/display/modules/inc/mod_hdcp.h    |  1 -
+ 6 files changed, 29 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_abm.c b/drivers/gpu/drm/amd/display/dc/dce/dce_abm.c
-index a4dae31400fa..e345df621a6a 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_abm.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_abm.c
-@@ -447,7 +447,7 @@ static const struct abm_funcs dce_funcs = {
- 	.set_backlight_level_pwm = dce_abm_set_backlight_level_pwm,
- 	.get_current_backlight = dce_abm_get_current_backlight,
- 	.get_target_backlight = dce_abm_get_target_backlight,
--	.load_abm_config = NULL,
-+	.init_abm_config = NULL,
- 	.set_abm_immediate_disable = dce_abm_immediate_disable
- };
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
+index cc1d3f470b99..e9fbd94f8635 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
+@@ -328,7 +328,8 @@ enum mod_hdcp_status mod_hdcp_add_display(struct mod_hdcp *hdcp,
+ 	/* add display to connection */
+ 	hdcp->connection.link = *link;
+ 	*display_container = *display;
+-	status = mod_hdcp_add_display_to_topology(hdcp, display->index);
++	status = mod_hdcp_add_display_to_topology(hdcp, display_container);
++
+ 	if (status != MOD_HDCP_STATUS_SUCCESS)
+ 		goto out;
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-index 81c967917c5b..06435ecaf6a3 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-@@ -348,11 +348,30 @@ static bool dmub_abm_set_backlight_level_pwm(
- 	return true;
+@@ -374,7 +375,7 @@ enum mod_hdcp_status mod_hdcp_remove_display(struct mod_hdcp *hdcp,
+ 	status = mod_hdcp_remove_display_from_topology(hdcp, index);
+ 	if (status != MOD_HDCP_STATUS_SUCCESS)
+ 		goto out;
+-	display->state = MOD_HDCP_DISPLAY_INACTIVE;
++	memset(display, 0, sizeof(struct mod_hdcp_display));
+ 
+ 	/* request authentication when connection is not reset */
+ 	if (current_state(hdcp) != HDCP_UNINITIALIZED)
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+index 5cb4546be0ef..60ff1a0028ac 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+@@ -328,7 +328,7 @@ void mod_hdcp_dump_binary_message(uint8_t *msg, uint32_t msg_size,
+ 
+ /* psp functions */
+ enum mod_hdcp_status mod_hdcp_add_display_to_topology(
+-		struct mod_hdcp *hdcp, uint8_t index);
++		struct mod_hdcp *hdcp, struct mod_hdcp_display *display);
+ enum mod_hdcp_status mod_hdcp_remove_display_from_topology(
+ 		struct mod_hdcp *hdcp, uint8_t index);
+ enum mod_hdcp_status mod_hdcp_hdcp1_create_session(struct mod_hdcp *hdcp);
+@@ -503,11 +503,6 @@ static inline uint8_t is_display_active(struct mod_hdcp_display *display)
+ 	return display->state >= MOD_HDCP_DISPLAY_ACTIVE;
  }
  
--static bool dmub_abm_load_config(struct abm *abm,
--	unsigned int start_offset,
-+static bool dmub_abm_init_config(struct abm *abm,
- 	const char *src,
- 	unsigned int bytes)
+-static inline uint8_t is_display_added(struct mod_hdcp_display *display)
+-{
+-	return display->state >= MOD_HDCP_DISPLAY_ACTIVE_AND_ADDED;
+-}
+-
+ static inline uint8_t is_display_encryption_enabled(struct mod_hdcp_display *display)
  {
-+	union dmub_rb_cmd cmd;
-+	struct dc_context *dc = abm->ctx;
-+
-+	// TODO: Optimize by only reading back final 4 bytes
-+	dmub_flush_buffer_mem(&dc->dmub_srv->dmub->scratch_mem_fb);
-+
-+	// Copy iramtable into cw7
-+	memcpy(dc->dmub_srv->dmub->scratch_mem_fb.cpu_addr, (void *)src, bytes);
-+
-+	// Fw will copy from cw7 to fw_state
-+	cmd.abm_init_config.header.type = DMUB_CMD__ABM;
-+	cmd.abm_init_config.header.sub_type = DMUB_CMD__ABM_INIT_CONFIG;
-+	cmd.abm_init_config.abm_init_config_data.src.quad_part = dc->dmub_srv->dmub->scratch_mem_fb.gpu_addr;
-+	cmd.abm_init_config.abm_init_config_data.bytes = bytes;
-+	cmd.abm_init_config.header.payload_bytes = sizeof(struct dmub_cmd_abm_init_config_data);
-+
-+	dc_dmub_srv_cmd_queue(dc->dmub_srv, &cmd.abm_init_config.header);
-+	dc_dmub_srv_cmd_execute(dc->dmub_srv);
-+	dc_dmub_srv_wait_idle(dc->dmub_srv);
-+
- 	return true;
- }
+ 	return display->state >= MOD_HDCP_DISPLAY_ENCRYPTION_ENABLED;
+@@ -515,34 +510,23 @@ static inline uint8_t is_display_encryption_enabled(struct mod_hdcp_display *dis
  
-@@ -365,7 +384,7 @@ static const struct abm_funcs abm_funcs = {
- 	.get_current_backlight = dmub_abm_get_current_backlight,
- 	.get_target_backlight = dmub_abm_get_target_backlight,
- 	.set_abm_immediate_disable = dmub_abm_immediate_disable,
--	.load_abm_config = dmub_abm_load_config,
-+	.init_abm_config = dmub_abm_init_config,
- };
- 
- static void dmub_abm_construct(
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/abm.h b/drivers/gpu/drm/amd/display/dc/inc/hw/abm.h
-index 9cca0ca30fee..0cae258a903e 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/abm.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/abm.h
-@@ -60,8 +60,7 @@ struct abm_funcs {
- 
- 	unsigned int (*get_current_backlight)(struct abm *abm);
- 	unsigned int (*get_target_backlight)(struct abm *abm);
--	bool (*load_abm_config)(struct abm *abm,
--			unsigned int start_offset,
-+	bool (*init_abm_config)(struct abm *abm,
- 			const char *src,
- 			unsigned int bytes);
- };
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_srv.h
-index c2671f2616c8..af678462f0e6 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_srv.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_srv.h
-@@ -565,6 +565,16 @@ dmub_srv_send_gpint_command(struct dmub_srv *dmub,
- enum dmub_status dmub_srv_get_gpint_response(struct dmub_srv *dmub,
- 					     uint32_t *response);
- 
-+/**
-+ * dmub_flush_buffer_mem() - Read back entire frame buffer region.
-+ * This ensures that the write from x86 has been flushed and will not
-+ * hang the DMCUB.
-+ * @fb: frame buffer to flush
-+ *
-+ * Can be called after software initialization.
-+ */
-+void dmub_flush_buffer_mem(const struct dmub_fb *fb);
-+
- #if defined(__cplusplus)
- }
- #endif
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-index ce32cc7933c4..0be8a54cc475 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-@@ -70,7 +70,7 @@ static inline uint32_t dmub_align(uint32_t val, uint32_t factor)
- 	return (val + factor - 1) / factor * factor;
- }
- 
--static void dmub_flush_buffer_mem(const struct dmub_fb *fb)
-+void dmub_flush_buffer_mem(const struct dmub_fb *fb)
+ static inline uint8_t get_active_display_count(struct mod_hdcp *hdcp)
  {
- 	const uint8_t *base = (const uint8_t *)fb->cpu_addr;
- 	uint8_t buf[64];
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-index 8bf1bdd0f457..c1a95da6706f 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-@@ -671,8 +671,8 @@ bool dmcu_load_iram(struct dmcu *dmcu,
- 	// ABM 2.4 and up are implemented on dmcub
- 	if (dmcu == NULL) {
- 		fill_iram_v_2_3((struct iram_table_v_2_2 *)ram_table, params);
--		result = abm->funcs->load_abm_config(
--			abm, 0, (char *)(&ram_table), IRAM_RESERVE_AREA_START_V2_2);
-+		result = abm->funcs->init_abm_config(
-+			abm, (char *)(&ram_table), IRAM_RESERVE_AREA_START_V2_2);
- 	} else if (dmcu->dmcu_version.abm_version == 0x24) {
- 		fill_iram_v_2_3((struct iram_table_v_2_2 *)ram_table, params);
- 			result = dmcu->funcs->load_iram(
+-	uint8_t added_count = 0;
++	uint8_t active_count = 0;
+ 	uint8_t i;
+ 
+ 	for (i = 0; i < MAX_NUM_OF_DISPLAYS; i++)
+ 		if (is_display_active(&hdcp->displays[i]))
+-			added_count++;
+-	return added_count;
+-}
+-
+-static inline uint8_t get_added_display_count(struct mod_hdcp *hdcp)
+-{
+-	uint8_t added_count = 0;
+-	uint8_t i;
+-
+-	for (i = 0; i < MAX_NUM_OF_DISPLAYS; i++)
+-		if (is_display_added(&hdcp->displays[i]))
+-			added_count++;
+-	return added_count;
++			active_count++;
++	return active_count;
+ }
+ 
+-static inline struct mod_hdcp_display *get_first_added_display(
++static inline struct mod_hdcp_display *get_first_active_display(
+ 		struct mod_hdcp *hdcp)
+ {
+ 	uint8_t i;
+ 	struct mod_hdcp_display *display = NULL;
+ 
+ 	for (i = 0; i < MAX_NUM_OF_DISPLAYS; i++)
+-		if (is_display_added(&hdcp->displays[i])) {
++		if (is_display_active(&hdcp->displays[i])) {
+ 			display = &hdcp->displays[i];
+ 			break;
+ 		}
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+index 37c8c05497d6..f244b72e74e0 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+@@ -129,7 +129,7 @@ static inline uint8_t get_device_count(struct mod_hdcp *hdcp)
+ static inline enum mod_hdcp_status check_device_count(struct mod_hdcp *hdcp)
+ {
+ 	/* device count must be greater than or equal to tracked hdcp displays */
+-	return (get_device_count(hdcp) < get_added_display_count(hdcp)) ?
++	return (get_device_count(hdcp) < get_active_display_count(hdcp)) ?
+ 			MOD_HDCP_STATUS_HDCP1_DEVICE_COUNT_MISMATCH_FAILURE :
+ 			MOD_HDCP_STATUS_SUCCESS;
+ }
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
+index 491c00f48026..549c113abcf7 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
+@@ -208,7 +208,7 @@ static inline uint8_t get_device_count(struct mod_hdcp *hdcp)
+ static enum mod_hdcp_status check_device_count(struct mod_hdcp *hdcp)
+ {
+ 	/* device count must be greater than or equal to tracked hdcp displays */
+-	return (get_device_count(hdcp) < get_added_display_count(hdcp)) ?
++	return (get_device_count(hdcp) < get_active_display_count(hdcp)) ?
+ 			MOD_HDCP_STATUS_HDCP2_DEVICE_COUNT_MISMATCH_FAILURE :
+ 			MOD_HDCP_STATUS_SUCCESS;
+ }
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
+index c2929815c3ee..1b54f169392a 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
+@@ -54,7 +54,7 @@ enum mod_hdcp_status mod_hdcp_remove_display_from_topology(
+ 
+ 	dtm_cmd = (struct ta_dtm_shared_memory *)psp->dtm_context.dtm_shared_buf;
+ 
+-	if (!display || !is_display_added(display))
++	if (!display || !is_display_active(display))
+ 		return MOD_HDCP_STATUS_DISPLAY_NOT_FOUND;
+ 
+ 	memset(dtm_cmd, 0, sizeof(struct ta_dtm_shared_memory));
+@@ -75,23 +75,19 @@ enum mod_hdcp_status mod_hdcp_remove_display_from_topology(
+  	return MOD_HDCP_STATUS_SUCCESS;
+  
+ }
+-enum mod_hdcp_status mod_hdcp_add_display_to_topology(struct mod_hdcp *hdcp,
+-						      uint8_t index)
++enum mod_hdcp_status mod_hdcp_add_display_to_topology(
++			struct mod_hdcp *hdcp, struct mod_hdcp_display *display)
+ {
+ 	struct psp_context *psp = hdcp->config.psp.handle;
+ 	struct ta_dtm_shared_memory *dtm_cmd;
+-	struct mod_hdcp_display *display =
+-			get_active_display_at_index(hdcp, index);
+ 	struct mod_hdcp_link *link = &hdcp->connection.link;
+ 
+ 	if (!psp->dtm_context.dtm_initialized) {
+ 		DRM_ERROR("Failed to add display topology, DTM TA is not initialized.");
++		display->state = MOD_HDCP_DISPLAY_INACTIVE;
+ 		return MOD_HDCP_STATUS_FAILURE;
+ 	}
+ 
+-	if (!display || is_display_added(display))
+-		return MOD_HDCP_STATUS_UPDATE_TOPOLOGY_FAILURE;
+-
+ 	dtm_cmd = (struct ta_dtm_shared_memory *)psp->dtm_context.dtm_shared_buf;
+ 
+ 	memset(dtm_cmd, 0, sizeof(struct ta_dtm_shared_memory));
+@@ -113,10 +109,11 @@ enum mod_hdcp_status mod_hdcp_add_display_to_topology(struct mod_hdcp *hdcp,
+ 
+ 	psp_dtm_invoke(psp, dtm_cmd->cmd_id);
+ 
+-	if (dtm_cmd->dtm_status != TA_DTM_STATUS__SUCCESS)
++	if (dtm_cmd->dtm_status != TA_DTM_STATUS__SUCCESS) {
++		display->state = MOD_HDCP_DISPLAY_INACTIVE;
+ 		return MOD_HDCP_STATUS_UPDATE_TOPOLOGY_FAILURE;
++	}
+ 
+-	display->state = MOD_HDCP_DISPLAY_ACTIVE_AND_ADDED;
+ 	HDCP_TOP_ADD_DISPLAY_TRACE(hdcp, display->index);
+ 
+ 	return MOD_HDCP_STATUS_SUCCESS;
+@@ -126,7 +123,7 @@ enum mod_hdcp_status mod_hdcp_hdcp1_create_session(struct mod_hdcp *hdcp)
+ {
+ 
+ 	struct psp_context *psp = hdcp->config.psp.handle;
+-	struct mod_hdcp_display *display = get_first_added_display(hdcp);
++	struct mod_hdcp_display *display = get_first_active_display(hdcp);
+ 	struct ta_hdcp_shared_memory *hdcp_cmd;
+ 
+ 	if (!psp->hdcp_context.hdcp_initialized) {
+@@ -179,7 +176,7 @@ enum mod_hdcp_status mod_hdcp_hdcp1_destroy_session(struct mod_hdcp *hdcp)
+ 		if (is_display_encryption_enabled(
+ 				&hdcp->displays[i])) {
+ 			hdcp->displays[i].state =
+-					MOD_HDCP_DISPLAY_ACTIVE_AND_ADDED;
++								MOD_HDCP_DISPLAY_ACTIVE;
+ 			HDCP_HDCP1_DISABLED_TRACE(hdcp,
+ 					hdcp->displays[i].index);
+ 		}
+@@ -231,7 +228,7 @@ enum mod_hdcp_status mod_hdcp_hdcp1_enable_encryption(struct mod_hdcp *hdcp)
+ {
+ 	struct psp_context *psp = hdcp->config.psp.handle;
+ 	struct ta_hdcp_shared_memory *hdcp_cmd;
+-	struct mod_hdcp_display *display = get_first_added_display(hdcp);
++	struct mod_hdcp_display *display = get_first_active_display(hdcp);
+ 
+ 	hdcp_cmd = (struct ta_hdcp_shared_memory *)psp->hdcp_context.hdcp_shared_buf;
+ 	memset(hdcp_cmd, 0, sizeof(struct ta_hdcp_shared_memory));
+@@ -301,9 +298,8 @@ enum mod_hdcp_status mod_hdcp_hdcp1_enable_dp_stream_encryption(struct mod_hdcp
+ 
+ 	for (i = 0; i < MAX_NUM_OF_DISPLAYS; i++) {
+ 
+-		if (hdcp->displays[i].state != MOD_HDCP_DISPLAY_ACTIVE_AND_ADDED ||
+-		    hdcp->displays[i].adjust.disable)
+-			continue;
++		if (hdcp->displays[i].adjust.disable || hdcp->displays[i].state != MOD_HDCP_DISPLAY_ACTIVE)
++				continue;
+ 
+ 		memset(hdcp_cmd, 0, sizeof(struct ta_hdcp_shared_memory));
+ 
+@@ -364,7 +360,7 @@ enum mod_hdcp_status mod_hdcp_hdcp2_create_session(struct mod_hdcp *hdcp)
+ {
+ 	struct psp_context *psp = hdcp->config.psp.handle;
+ 	struct ta_hdcp_shared_memory *hdcp_cmd;
+-	struct mod_hdcp_display *display = get_first_added_display(hdcp);
++	struct mod_hdcp_display *display = get_first_active_display(hdcp);
+ 
+ 	if (!psp->hdcp_context.hdcp_initialized) {
+ 		DRM_ERROR("Failed to create hdcp session, HDCP TA is not initialized");
+@@ -423,7 +419,7 @@ enum mod_hdcp_status mod_hdcp_hdcp2_destroy_session(struct mod_hdcp *hdcp)
+ 		if (is_display_encryption_enabled(
+ 				&hdcp->displays[i])) {
+ 			hdcp->displays[i].state =
+-					MOD_HDCP_DISPLAY_ACTIVE_AND_ADDED;
++								MOD_HDCP_DISPLAY_ACTIVE;
+ 			HDCP_HDCP2_DISABLED_TRACE(hdcp,
+ 					hdcp->displays[i].index);
+ 		}
+@@ -662,7 +658,7 @@ enum mod_hdcp_status mod_hdcp_hdcp2_enable_encryption(struct mod_hdcp *hdcp)
+ {
+ 	struct psp_context *psp = hdcp->config.psp.handle;
+ 	struct ta_hdcp_shared_memory *hdcp_cmd;
+-	struct mod_hdcp_display *display = get_first_added_display(hdcp);
++	struct mod_hdcp_display *display = get_first_active_display(hdcp);
+ 
+ 	hdcp_cmd = (struct ta_hdcp_shared_memory *)psp->hdcp_context.hdcp_shared_buf;
+ 	memset(hdcp_cmd, 0, sizeof(struct ta_hdcp_shared_memory));
+@@ -747,9 +743,9 @@ enum mod_hdcp_status mod_hdcp_hdcp2_enable_dp_stream_encryption(struct mod_hdcp
+ 
+ 
+ 	for (i = 0; i < MAX_NUM_OF_DISPLAYS; i++) {
+-		if (hdcp->displays[i].state != MOD_HDCP_DISPLAY_ACTIVE_AND_ADDED ||
+-		    hdcp->displays[i].adjust.disable)
+-			continue;
++		if (hdcp->displays[i].adjust.disable || hdcp->displays[i].state != MOD_HDCP_DISPLAY_ACTIVE)
++				continue;
++
+ 		hdcp_cmd->in_msg.hdcp2_enable_dp_stream_encryption.display_handle = hdcp->displays[i].index;
+ 		hdcp_cmd->in_msg.hdcp2_enable_dp_stream_encryption.session_handle = hdcp->auth.id;
+ 
+diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
+index c088602bc1a0..eae9309cfb24 100644
+--- a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
++++ b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
+@@ -117,7 +117,6 @@ enum mod_hdcp_operation_mode {
+ enum mod_hdcp_display_state {
+ 	MOD_HDCP_DISPLAY_INACTIVE = 0,
+ 	MOD_HDCP_DISPLAY_ACTIVE,
+-	MOD_HDCP_DISPLAY_ACTIVE_AND_ADDED,
+ 	MOD_HDCP_DISPLAY_ENCRYPTION_ENABLED
+ };
+ 
 -- 
 2.26.0
 
