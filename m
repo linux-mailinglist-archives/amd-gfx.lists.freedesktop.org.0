@@ -2,48 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0189819EE0F
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D81E719EE10
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Apr 2020 22:42:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 131216E2B2;
-	Sun,  5 Apr 2020 20:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 269CA6E29B;
+	Sun,  5 Apr 2020 20:42:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2051.outbound.protection.outlook.com [40.107.236.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E6636E2B2
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:03 +0000 (UTC)
+ (mail-bn8nam11on2075.outbound.protection.outlook.com [40.107.236.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97F446E29B
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Apr 2020 20:42:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A26PeALTvt0od0C5drvMOJKn/MOHoybbpz2HlIwS1y90502jBcHtzh+H+AeZZbbKgMo3nlLXcY42Xdf0j/b7Ua44rA9plaVkgjBXgXhtq4H7ZX9S3dvEnb07krz2Wjg8n4kS2vsA/8cOR1M5Y0vJ8EGAbZLkPVqV/iq8K68/b/vP1tTE0IoxcMy2aLxn3oQNGyFNoVGtyQhV9xU+fSDXC/rDBNh4IJ7it8C7R5kUFYkY6uLqesXmxSRtxXR6dUYN+mR1QOE3IyKoWm9XiONbZ0HCLKvqdmwmvu1L2GAiJPYPqQhhJQlhQFJ1JjC1cwKebByv9/tu35XX4QcZHpLwJQ==
+ b=lm+KVTQ1sPL6czq58lVWXu7CLxAhRhch5XMA+HmxT/+8cb5+b9W++dyHV369/UZT3frn+CJkh85ZLwk0bH4frTBcThbW3YPEMZwvqX58Fxmfr6KHwdaoMaJrPsGmQO/EGKohanEI30Zz3lNgVs4/S9Eycgv1bbisbMXFlWadH091BILQ+NTyiYoLifozk8B6iViY2ghi1WFIRSTq4/QEY9Asqu7mb4kqY0+y0mPxPDs15fPIOMDLGSIswQbaXvMdvcJfa5D5duMK4C87v/APVMZxND0EejRQjmOQ20xn2xIZ4MriIJljgOy93obYAm/k/K9bxrQ8tUrMbS4a3p/uMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Smao8KKamYU047t3HtN4/1YNM8LyknODszMg/69T/w=;
- b=dCn0BHVNHhYv3vUUX4+atDOaPpvOYn7MyaCGI1qjfflCfCE03AJKNqu3e5EvkpPSAHLdDbw9Ij+io81Dy1N5ABk8MClmirgkbaILIpC3cdYi8xt4O1nRw/jb2QCQzzxgeVqAFZDEvcr6iHqVHX9Vo8lp1ZdsUJIO/R1Lje0Tqo584rYDU25YH4SEFBqBfJprva+qqHlKi5Lw1x6MpSjGfoua5WOYSCyOrzGZKwQUSyAUmuQppisbpBgP+ovkTDzBd8puHCcRDLKZPbcoJ4M5In2EpGl4rqzF2lxf5ivvBh/LQQJtgoZeYH+YwyxpSeMj5K3ge+o3OI7/Hzuoys6Rew==
+ bh=Z1ySdAXahJvs/9fsazcpIeRiq5cwPkl1Y46Kk+WgRwY=;
+ b=frrYUCLHm7xblB5IIElxwQau5FxdufkCzSwYAKD5Or8pHFWbmHZk37YrkUSQNIQ/GZjwvTPs/eMyl6VLl8HwjIUox+hwSpICiwsdmXFBhrRPWx4BVOvHzlLCAVf+E/tZbsr2cSvBed/EyVMA5y0GLaRWzhP3kLygt4XEEQv7QkLjCdBJkpZsuVQSWXXNKM/FvsSl0bJSxHQ2vU4KGhxfeDNmOmYYR9O/d4iTrBhhZTyGrAML2TfNLq1MTo6ribsXIyBCIv0mtetmkr/zAOizfwAMXHDzPWnISYI0m5IkD1lCkLJoxbR1abRoiL43PriZdb71muQUSLWFTInIQVcm7w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Smao8KKamYU047t3HtN4/1YNM8LyknODszMg/69T/w=;
- b=a9ZN6pDczdDomnQFNrx0zygNAbxiMThoGHNlW34VHLkxNtC3Tpc03OrFvBNE752Q29C95uKXb83XNXWYBpPV7lNKqOtFaw2xeT/+ajjzyMgim5sTBMrnFdI0ryaS8Fden5uWXNagR3ZRWsN9QlLqblUBFJ1KC5uY5m/5b/mFQTs=
+ bh=Z1ySdAXahJvs/9fsazcpIeRiq5cwPkl1Y46Kk+WgRwY=;
+ b=zpPBLEYldwqDsvek3CY610l99pmmNvvoLN3n695IaVJSiDFMVTMgiA5FpReqUBN7z6BnCkX/yy7mxEz242/ZDkf+/QJz41puuxOayQ3l4buY9bSB8+68eqWITC8VB5OChMASSWk7rG6Ro4mWA/ZTDDlWoppZ5B+LQXxFMvT03l4=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2555.namprd12.prod.outlook.com (2603:10b6:907:b::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Sun, 5 Apr
- 2020 20:42:02 +0000
+ 2020 20:42:03 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2878.018; Sun, 5 Apr 2020
- 20:42:02 +0000
+ 20:42:03 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 24/36] drm/amd/display: initialize get_max_link_cap
-Date: Sun,  5 Apr 2020 16:41:03 -0400
-Message-Id: <20200405204115.683559-25-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 25/36] drm/amd/display: Refactor color management to take dm
+ plane state
+Date: Sun,  5 Apr 2020 16:41:04 -0400
+Message-Id: <20200405204115.683559-26-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
 References: <20200405204115.683559-1-Rodrigo.Siqueira@amd.com>
@@ -56,16 +57,16 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::4) by
  YTXPR0101CA0049.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
- Transport; Sun, 5 Apr 2020 20:42:01 +0000
+ Transport; Sun, 5 Apr 2020 20:42:02 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [2607:fea8:56a0:11a1::4]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c712c4fb-6826-4b7c-de99-08d7d9a1cb72
+X-MS-Office365-Filtering-Correlation-Id: 90488083-7793-4da5-0d4b-08d7d9a1cbfb
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2555:|MW2PR12MB2555:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB25556417FEDB86B5469A82B098C50@MW2PR12MB2555.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2555F4162666C0C87FD3625D98C50@MW2PR12MB2555.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
 X-Forefront-PRVS: 03648EFF89
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
@@ -76,15 +77,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bXcq4WiJKCXIA3++Kh83bdt6xbFKEJVC40saCyAyt7D7Rylzp/u9f8kI1zspukEa6FOULviLgmPhzH6ykuB+/fVxV3Vt29q4c7C79UkMxgSq36rgy2/l2tmOcalENui0LXeE+nGOHwvzJ4ehRqoB8bumAZIP7bIRR0SHig/BZB2wmTSi4sSWxZ1AnBGa2xHCt6Xq5afMA3y+WE9qrBNYMLx7eZ3TFYbmFZKS2NwJRE3u+ff2gCG3k/dpcQmVLv8ck0wFS6zSc7GVk878arQiFosGY+mmLvWp8N8lLbAoiTx9yPOg+UDHhnO5fo3ktnCY+pQ4KzPF8jXFzRjCd+1EmetSC11AB/tMb+V4fF+h68r92dFLGhawHmrQPI1lnWA3j5/Zj+m7iW9b0gRXsDuLcoapVh8DTno7XVVJLYJWT7yZpOeUu194yyL0XNCxPGDr
-X-MS-Exchange-AntiSpam-MessageData: otNsda/eSgm+aLjN0qsgtXbF0wKEmAuOYr3wphe41Luvjj0FAJNGZTgySpJB/OBJth6faujYsUUz2fydpHJ2rh5SBHLfdwEVKmp/2H1/aW+cnMGEvrvn8YvGkZICJJopMrPMexy9L7hPJeclDqA4aPS5wcN2C0+LgOb8BcHifCc=
+X-Microsoft-Antispam-Message-Info: TsPCVWaVWQMMrx3Q3XxBpkzLYAc4eL6tjeR16l9QXCOZfHDru01gEsxY+5wCDH+EoKSkaObytXkbDEebz93Yi8jFO6UZdw+xW7DRer/AvsBq9oJSJUtf8ltU6ohOYRdqrrx0SC+z3plgJ6IyPKZIidPHl5IfI+SiA9zgBkOCQrDWGpYfOW/doO6TKBk1+uI+z+7IWDbC3NPKvYf+Ydk39bEdlcjw2QakEqqPAMmD7OlEhCZo/uVRZZurwROiiv2O+eesI8hM8/cshGoNZwmj71LGU7EJ3laeKXNQ/xyJOirpWOzvFW86PxGaRoGPVgzkkBzVT/QbNGVvf2tDTIn1lIA1aDafmVaioghMr2UHYvd/DR/CscQLGNbfWR/8ztxkqvJi12P6R+KeU6RmizdXpbxf5OMh1bCwUi9uIRZfWRyF7Laaw/c8zH/3ht/gyHsr
+X-MS-Exchange-AntiSpam-MessageData: aiJg3pytgXDmLPEY/zXTQBAoPzczQIfzBlcxQnd6UOQvCzQIfH7Ieuh+uSmyyLSpL1J49pBRSF1JyteLYqewFD5W1ELCSE80E5c1b4NEjsxmRQQmo/vrXs2QJceQ30CpJWl9OpBOoLDhAvlfn7LeepmS+yC0xTZuV17/ofYDwGs=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c712c4fb-6826-4b7c-de99-08d7d9a1cb72
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:02.4378 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90488083-7793-4da5-0d4b-08d7d9a1cbfb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2020 20:42:03.4682 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xOkapmNFSrzh6uYpwwg4tEAqFYnhFGudCQZQKQw7yPzlFTQR9vY8d8UcdBKz2s8uySQV30uap3nXciCMDXmvMQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1j2wiLMt5gO7qczMkt261uWNaBtCUnxUhwvP2WYEEBMRIvSgrNhiokcinayEcGxHChkWFGza+BUVCoKinBHN6A==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2555
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,72 +99,122 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Chris Park <Chris.Park@amd.com>, Harry.Wentland@amd.com,
- Charlene Liu <Charlene.Liu@amd.com>
+ Stylon Wang <stylon.wang@amd.com>, Harry.Wentland@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Charlene Liu <Charlene.Liu@amd.com>
+From: Stylon Wang <stylon.wang@amd.com>
 
-[why]
-usb3->usb2 switch system hang.
-driver needs to limit the max sink cap based on DP4 mode.
+[Why]
+- In amdgpu_dm_update_plane_color_mgmt() it is inconsistent in taking in
+dm_crtc_state and dc_plane_state.
+- Makes supporting plane-level color management with proper guard more
+complicated than necessary.
 
-[how]
-based on s_dpalt check and DP4 check:
-limit the USB-C DPALT DP maximum supported lane count.
+[How]
+Pass in dm_plane_state in place of dc_plane_state in
+amdgpu_dm_update_plane_color_mgmt().
 
-Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
-Reviewed-by: Chris Park <Chris.Park@amd.com>
+Signed-off-by: Stylon Wang <stylon.wang@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../amd/display/dc/dcn20/dcn20_link_encoder.c | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 +++++++++----------
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  3 ++-
+ 3 files changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.c
-index e4ac73035c84..15d513b79667 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.c
-@@ -311,6 +311,28 @@ void enc2_hw_init(struct link_encoder *enc)
- 	dcn10_aux_initialize(enc10);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 3dcd4de0b2b3..47af6e9a31bc 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3772,11 +3772,12 @@ fill_dc_plane_info_and_addr(struct amdgpu_device *adev,
  }
  
-+void dcn20_link_encoder_get_max_link_cap(struct link_encoder *enc,
-+	struct dc_link_settings *link_settings)
-+{
-+	struct dcn10_link_encoder *enc10 = TO_DCN10_LINK_ENC(enc);
-+	uint32_t value;
-+
-+	REG_GET(RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DP4, &value);
-+
-+	if (!value && link_settings->lane_count > LANE_COUNT_TWO)
-+		link_settings->lane_count = LANE_COUNT_TWO;
-+}
-+bool dcn20_link_encoder_is_in_alt_mode(struct link_encoder *enc)
-+{
-+	struct dcn10_link_encoder *enc10 = TO_DCN10_LINK_ENC(enc);
-+	uint32_t value;
-+
-+	REG_GET(RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DISABLE, &value);
-+
-+	// if value == 1 alt mode is disabled, otherwise it is enabled
-+	return !value;
-+}
-+
- static const struct link_encoder_funcs dcn20_link_enc_funcs = {
- 	.read_state = link_enc2_read_state,
- 	.validate_output_with_stream =
-@@ -338,6 +360,8 @@ static const struct link_encoder_funcs dcn20_link_enc_funcs = {
- 	.fec_is_active = enc2_fec_is_active,
- 	.get_dig_mode = dcn10_get_dig_mode,
- 	.get_dig_frontend = dcn10_get_dig_frontend,
-+	.is_in_alt_mode = dcn20_link_encoder_is_in_alt_mode,
-+	.get_max_link_cap = dcn20_link_encoder_get_max_link_cap,
- };
+ static int fill_dc_plane_attributes(struct amdgpu_device *adev,
+-				    struct dc_plane_state *dc_plane_state,
++				    struct dm_plane_state *dm_plane_state,
+ 				    struct drm_plane_state *plane_state,
+ 				    struct drm_crtc_state *crtc_state)
+ {
+ 	struct dm_crtc_state *dm_crtc_state = to_dm_crtc_state(crtc_state);
++	struct dc_plane_state *dc_plane_state = dm_plane_state->dc_state;
+ 	const struct amdgpu_framebuffer *amdgpu_fb =
+ 		to_amdgpu_framebuffer(plane_state->fb);
+ 	struct dc_scaling_info scaling_info;
+@@ -3824,7 +3825,7 @@ static int fill_dc_plane_attributes(struct amdgpu_device *adev,
+ 	 * Always set input transfer function, since plane state is refreshed
+ 	 * every time.
+ 	 */
+-	ret = amdgpu_dm_update_plane_color_mgmt(dm_crtc_state, dc_plane_state);
++	ret = amdgpu_dm_update_plane_color_mgmt(dm_crtc_state, dm_plane_state);
+ 	if (ret)
+ 		return ret;
  
- void dcn20_link_encoder_construct(
+@@ -8027,16 +8028,6 @@ static int dm_update_plane_state(struct dc *dc,
+ 		DRM_DEBUG_DRIVER("Enabling DRM plane: %d on DRM crtc %d\n",
+ 				plane->base.id, new_plane_crtc->base.id);
+ 
+-		ret = fill_dc_plane_attributes(
+-			new_plane_crtc->dev->dev_private,
+-			dc_new_plane_state,
+-			new_plane_state,
+-			new_crtc_state);
+-		if (ret) {
+-			dc_plane_state_release(dc_new_plane_state);
+-			return ret;
+-		}
+-
+ 		ret = dm_atomic_get_state(state, &dm_state);
+ 		if (ret) {
+ 			dc_plane_state_release(dc_new_plane_state);
+@@ -8062,6 +8053,14 @@ static int dm_update_plane_state(struct dc *dc,
+ 
+ 		dm_new_plane_state->dc_state = dc_new_plane_state;
+ 
++		ret = fill_dc_plane_attributes(
++			new_plane_crtc->dev->dev_private,
++			dm_new_plane_state,
++			new_plane_state,
++			new_crtc_state);
++		if (ret)
++			return ret;
++
+ 		/* Tell DC to do a full surface update every time there
+ 		 * is a plane change. Inefficient, but works for now.
+ 		 */
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+index 3f0c6298b588..f30dc004bf2b 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+@@ -482,7 +482,7 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ void amdgpu_dm_init_color_mod(void);
+ int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc);
+ int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
+-				      struct dc_plane_state *dc_plane_state);
++				      struct dm_plane_state *plane);
+ 
+ void amdgpu_dm_update_connector_after_detect(
+ 		struct amdgpu_dm_connector *aconnector);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+index 2233d293a707..6b58761e4b04 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+@@ -416,9 +416,10 @@ int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc)
+  * Returns 0 on success.
+  */
+ int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
+-				      struct dc_plane_state *dc_plane_state)
++				      struct dm_plane_state *plane)
+ {
+ 	const struct drm_color_lut *degamma_lut;
++	struct dc_plane_state *dc_plane_state = plane->dc_state;
+ 	uint32_t degamma_size;
+ 	int r;
+ 
 -- 
 2.26.0
 
