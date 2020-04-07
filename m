@@ -2,91 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A734A1A1107
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Apr 2020 18:13:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E8421A138E
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Apr 2020 20:30:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32AED6E120;
-	Tue,  7 Apr 2020 16:13:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EFF26E8CC;
+	Tue,  7 Apr 2020 18:30:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690060.outbound.protection.outlook.com [40.107.69.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1D5C6E121
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 16:13:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VD23P81kicVGCIm7Gz+xguBs3UBl/wAtcbYOLU/Pyx2liKEnenLx8sIKyfSKjOndKu4rZEdtFA230bJT7x3sl3DHTAXUauwi40awUAV9Id+AWVN1z9821PPiRR15gTnYIPQbV8jLr8QL4rBaJnap1H0FWWvNoMozGV3LVeVeNqHDE8zbmupR492nFwGe96LjnadCrrBUu50bmd0D5AgQSGLjwpShIHFzmh2N+iPtEFivZmOm/zIUlABABINgyxmlMFt5M+LCkADGhM2v0QG2npFS2hl+BH03PAq84TryFuUfqg7Eh5ECkUSXjtMIZLCvI+L3SQrAUjHefCjOJs6Xfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nk45kd934yKo5aUfN901yHNrBWmlnD0atOPwDFVd5s4=;
- b=Hs4brfA5hqtlxhT0RdEeRPR65Ll27Ao2SMsTvu97sCavioocuPrDAQk+g/zRLbhL7MVzUchTZOFpV4mWQBmBzW60Qe3scRIYwO8b8ly3RhQsA2FGKM1oRFGLLPQ1uknWPbXmYLH99pPCq5BJ4icPo+o8agiKi56PUpAzWR6snhaHqHA6loiuZvDDj3uLOHFMbXNJ4saIYelN57uRUtmEIGSbiM/ozm3YfG9dQzkrFFQFaMyxAggCE93BfDX8xnSRysX9lASCDOQCALGb4c1IFe2R4LCaTXhHFm6A2wyMWDofhwg89jK9FW2Nqw6IzlUBaF4G9njONPJBVaMel0OiMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nk45kd934yKo5aUfN901yHNrBWmlnD0atOPwDFVd5s4=;
- b=BObTdjTEOWDioZ5YfOED5EwIImWqQERcidinHRub0sG14B9fy7pH6ytAZSIu86nCeg+cI6DMe8iDi5RHzB/lC6hm/O/18tedMy0Iy+gudcJy0XsOhhc3ejWDSMTRFEKJbxUoFyLsyHsrwLkeMJTmxwPXzQuL0i86Z+OOlX7cx5s=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Felix.Kuehling@amd.com; 
-Received: from SN1PR12MB2414.namprd12.prod.outlook.com (2603:10b6:802:2e::31)
- by SN1PR12MB2430.namprd12.prod.outlook.com (2603:10b6:802:30::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Tue, 7 Apr
- 2020 16:08:53 +0000
-Received: from SN1PR12MB2414.namprd12.prod.outlook.com
- ([fe80::38ef:1510:9525:f806]) by SN1PR12MB2414.namprd12.prod.outlook.com
- ([fe80::38ef:1510:9525:f806%7]) with mapi id 15.20.2878.018; Tue, 7 Apr 2020
- 16:08:53 +0000
-Subject: Re: [PATCH 2/2] drm/amdgpu/sriov add amdgpu_amdkfd_pre_reset in gpu
- reset
-To: Jack Zhang <Jack.Zhang1@amd.com>, amd-gfx@lists.freedesktop.org
-References: <1586247246-823-1-git-send-email-Jack.Zhang1@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Message-ID: <a9f3a445-fe79-cda3-cf7e-a3c6448f28aa@amd.com>
-Date: Tue, 7 Apr 2020 12:08:51 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-In-Reply-To: <1586247246-823-1-git-send-email-Jack.Zhang1@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: YTBPR01CA0010.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:14::23) To SN1PR12MB2414.namprd12.prod.outlook.com
- (2603:10b6:802:2e::31)
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
+ [IPv6:2607:f8b0:4864:20::741])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10E7B89F38
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 18:26:24 +0000 (UTC)
+Received: by mail-qk1-x741.google.com with SMTP id i186so428028qke.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 07 Apr 2020 11:26:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aurabindo.in; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=tIzZDxt4owy5jO/YbfXWS31RiPx2ETthbOiAb1EV9P4=;
+ b=YtVBKm457AxFLluMcN6Nh5lxMwkhKLfQcFmIzF16UjpYwbi574i9IUsdKd+i1y8jEZ
+ QO7YgInPHWArXiIBcjFTESZaFPpm/XZUbS9LyoPsfi1H5/izGjt26qENa5Ffhy2rpsAf
+ kRbqe9ODSQeEpnL+6EleAyr9WmqvD6gXi++mPr+wsYADbd9cXnt4oPEXFO3pqcvfrQ3x
+ X6hUV8VWzIz1RB8h0egnBjFrOPNp5ewI4jMMUYtXnxzdx1hqS4quXLMc1USlubqy7332
+ HSu19PvLsoWcJkcu6IrFEeYVF9yuwTMSCOnTnl7maeVFD3V58yJZBio0R7w8JP8TRr3Y
+ NOuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=tIzZDxt4owy5jO/YbfXWS31RiPx2ETthbOiAb1EV9P4=;
+ b=PTQrIcnNaGG0hPn3bs03dtX9ljR9WgnLMZRk8+9CwNeSf6hPnJHlrZd/R8+8J84WzL
+ rlXQY8d5mvXcH5TqN1bbSGNGzhtonuXejKQakbfsNc2y3ILdoCMkTB38t9VatFG3ktcw
+ 3IxHnoTgziFVdIPe+0EbRt/48VWiBcKCMFwiFlfOqT0TO6PooWwzUwRQKKmtlrx+vqaP
+ zFjygfgUMuXhDpcabyGMXDE+23d9bH8nltw1SpyJ3mYm7UL63KeGul9YlNxdUC2IOb4a
+ s40TT+Rm/qUu1XY0bL59slhnIw3TBJ14nzXjExhw4M68O7377MgIBa7Qegj4vXEyZXfY
+ lj+g==
+X-Gm-Message-State: AGi0PubhVd3BAN9ootTcvZWHbgSdaUJroUnZpgWwN3Uo0+9lwC6A7Zzz
+ Rh+gvcZJh0IsEu138gH1CnSPbw==
+X-Google-Smtp-Source: APiQypI8YWAgQPWSYcS57KN14S6Q6DPtZWqlj+0qOHI2e6co5FZjn/hZaZ4asuloc3R4ftyLEEuEsA==
+X-Received: by 2002:a37:6356:: with SMTP id x83mr3757099qkb.339.1586283984192; 
+ Tue, 07 Apr 2020 11:26:24 -0700 (PDT)
+Received: from localhost.localdomain (135-23-249-169.cpe.pppoe.ca.
+ [135.23.249.169])
+ by smtp.gmail.com with ESMTPSA id f1sm16232830qkl.72.2020.04.07.11.26.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Apr 2020 11:26:21 -0700 (PDT)
+From: Aurabindo Pillai <mail@aurabindo.in>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com
+Subject: [PATCH] amdgpu_kms: Remove unnecessary condition check
+Date: Tue,  7 Apr 2020 14:26:18 -0400
+Message-Id: <20200407182618.2488-1-mail@aurabindo.in>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.2.100] (142.116.63.128) by
- YTBPR01CA0010.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2900.15 via Frontend Transport; Tue, 7 Apr 2020 16:08:52 +0000
-X-Originating-IP: [142.116.63.128]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c8129dce-abdd-43b5-16e0-08d7db0df772
-X-MS-TrafficTypeDiagnostic: SN1PR12MB2430:|SN1PR12MB2430:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN1PR12MB24304FBFEE029E111B126ACB92C30@SN1PR12MB2430.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-Forefront-PRVS: 036614DD9C
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN1PR12MB2414.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10009020)(4636009)(396003)(366004)(346002)(376002)(136003)(39860400002)(81166006)(478600001)(5660300002)(2616005)(8936002)(316002)(36756003)(44832011)(956004)(81156014)(16576012)(8676002)(52116002)(86362001)(186003)(66556008)(31696002)(66476007)(66946007)(26005)(6486002)(16526019)(2906002)(31686004);
- DIR:OUT; SFP:1101; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zTRUZRDq2rMbHGSERuocxK3eIAUuO5jU09l8LqhPV+oC+NjSpJUJpenn5yJSfP7vLi2mt4DcRqwLIVZxrDiMMvtQHM1D9M4OaeD6S6I5pk2kbDHupf0BQtiFsQsgMqh44Lk3xKM8igDXPZs8KpuwbUvym5QzjisaQNH+aPmCmMLAiafOX3B97C89fAxDUW/6PQldlRMOKj9A9vZDklVi9lUIJD5wbE6eB0uH32UCpbET70VaNAqoV7zxjd3ZYcYdjyc103DeI5TgjlD1/Yz50dady0KpLxEx4hLOhdWhKSS15Joh/3Qt9SNCOWM55viQ/oH1855VwrP3pOr+JeowahUA1eAXIFMmDAkbUCFY7wa8xrkw/3CYkUrvzsx9SDR7IW3tAbqUIt6zN93KAkuoNJ4Frj8MK/m75MHfpL6CjQ/2YiULw2ocvmPeJHL20Kkj
-X-MS-Exchange-AntiSpam-MessageData: NEWJEswihtdEQo+sik5u/oXIGouPofMbF+dFN2J1779LkNXE2SoAWi5JTvYr+S6TrL1jcfv55RJ2vQZG2YcMZvux2Vltsg5gI5N5Wo3nmMZmlLl5i/ojbziKggGb6iDophhHNmZG0arF+ui0JCPTWA==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8129dce-abdd-43b5-16e0-08d7db0df772
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2020 16:08:53.0470 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +nRkjAfxAGjDYpQCqFp70gL/A//7bgnV3bIS2Wb8x0baNbGY4xoWySGPFQuLSx5BvskkGBSdqOwjVfcSidOCZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2430
+X-Mailman-Approved-At: Tue, 07 Apr 2020 18:30:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,29 +65,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: airlied@linux.ie, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SSBkb24ndCBrbm93IHdoYXQgaGFwcGVuZWQgdG8gcGF0Y2ggMyBpbiB0aGlzIGxhc3QgcmV2aXNp
-b24uIEFueXdheSwgdGhlCnNlcmllcyBpcwpSZXZpZXdlZC1ieTogRmVsaXggS3VlaGxpbmcgPEZl
-bGl4Lkt1ZWhsaW5nQGFtZC5jb20+CgpUaGFua3MsCsKgIEZlbGl4CgpBbSAyMDIwLTA0LTA3IHVt
-IDQ6MTQgYS5tLiBzY2hyaWViIEphY2sgWmhhbmc6Cj4gW1BBVENIIDIvMl0KPiBrZmRfcHJlX3Jl
-c2V0IHdpbGwgZnJlZSBtZW1fb2JqcyBhbGxvY2F0ZWQgYnkga2ZkX2d0dF9zYV9hbGxvY2F0ZQo+
-Cj4gV2l0aG91dCB0aGlzIGNoYW5nZSwgc3Jpb3YgdGRyIGNvZGUgcGF0aCB3aWxsIG5ldmVyIGZy
-ZWUgdGhvc2UKPiBhbGxvY2F0ZWQgbWVtb3JpZXMgYW5kIGdldCBtZW1vcnkgbGVhay4KPgo+IFNp
-Z25lZC1vZmYtYnk6IEphY2sgWmhhbmcgPEphY2suWmhhbmcxQGFtZC5jb20+Cj4gLS0tCj4gIGRy
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYyB8IDIgKysKPiAgMSBmaWxl
-IGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
-L2FtZGdwdV9kZXZpY2UuYwo+IGluZGV4IGQ5NGVmZjkuLjJlMWY5NTUgMTAwNjQ0Cj4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RldmljZS5jCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RldmljZS5jCj4gQEAgLTM4NTIsNiArMzg1Miw4
-IEBAIHN0YXRpYyBpbnQgYW1kZ3B1X2RldmljZV9yZXNldF9zcmlvdihzdHJ1Y3QgYW1kZ3B1X2Rl
-dmljZSAqYWRldiwKPiAgCWlmIChyKQo+ICAJCXJldHVybiByOwo+ICAKPiArCWFtZGdwdV9hbWRr
-ZmRfcHJlX3Jlc2V0KGFkZXYpOwo+ICsKPiAgCS8qIFJlc3VtZSBJUCBwcmlvciB0byBTTUMgKi8K
-PiAgCXIgPSBhbWRncHVfZGV2aWNlX2lwX3JlaW5pdF9lYXJseV9zcmlvdihhZGV2KTsKPiAgCWlm
-IChyKQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQt
-Z2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+Execution will only reach here if the asserted condition is true.
+Hence there is no need for the additional check.
+
+Signed-off-by: Aurabindo Pillai <mail@aurabindo.in>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 60591dbc2..9fedfa531 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -179,12 +179,10 @@ int amdgpu_driver_load_kms(struct drm_device *dev, unsigned long flags)
+ 	/* Call ACPI methods: require modeset init
+ 	 * but failure is not fatal
+ 	 */
+-	if (!r) {
+-		acpi_status = amdgpu_acpi_init(adev);
+-		if (acpi_status)
+-			dev_dbg(&dev->pdev->dev,
+-				"Error during ACPI methods call\n");
+-	}
++
++	acpi_status = amdgpu_acpi_init(adev);
++	if (acpi_status)
++		dev_dbg(&dev->pdev->dev, "Error during ACPI methods call\n");
+ 
+ 	if (adev->runpm) {
+ 		dev_pm_set_driver_flags(dev->dev, DPM_FLAG_NEVER_SKIP);
+-- 
+2.26.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
