@@ -1,60 +1,96 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E59DF1A11D9
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Apr 2020 18:39:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C13A71A1106
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Apr 2020 18:13:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAFBB6E113;
-	Tue,  7 Apr 2020 16:39:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF7A26E124;
+	Tue,  7 Apr 2020 16:13:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1C9F89C55
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Apr 2020 15:54:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=evMROeiOPSEkTnQc1NkJrMpIxagj6DaDwYzvXfWtXk0=; b=u5kSqJxduuO9fYXZ3frJ35LDTQ
- u4TE3Sro3SU6PZZxQlQijr/vWMx/RVh4apLfQxiRt2B8MtVSYq3CD1UHyLgyy7L0RGU6PMVPXvMh7
- TqE0Jg5bc2seVALXHMZGoGQ1REQBZ8ZL1F4mEHW9hZC2HKFLvsXR2qzOpkevZTklYKQ/frNhDOc42
- xOkgD7i1RFuljZNlpUkagNBwD8pmh0lAkVRYHTR8N+CvdjuU7GnnfnrSlA00fDxfP8Mgsh0bVSA1x
- I7xicMeSV1OJaxTbzJvsmJdTaag12QxQhTFtGQSwsG1h/UFn3QkIqKn9P7NM6kwSMxq28mmMgBl3g
- FhDGxsCw==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=noisy.programming.kicks-ass.net)
- by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jLqYv-0002Jv-Kr; Tue, 07 Apr 2020 15:54:53 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id F0B023010C8;
- Tue,  7 Apr 2020 17:54:49 +0200 (CEST)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id D96D62B99BB3E; Tue,  7 Apr 2020 17:54:49 +0200 (CEST)
-Date: Tue, 7 Apr 2020 17:54:49 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Masami Hiramatsu <mhiramat@kernel.org>
-Subject: Re: AMD DC graphics display code enables -mhard-float, -msse, -msse2
- without any visible FPU state protection
-Message-ID: <20200407155449.GF20730@hirez.programming.kicks-ass.net>
-References: <20200402141308.GB20730@hirez.programming.kicks-ass.net>
- <20200403142837.f61a18d7bd32fd73777479ad@kernel.org>
- <20200403112113.GN20730@hirez.programming.kicks-ass.net>
- <20200404120808.05e9aa61500265be2e031bd6@kernel.org>
- <20200404143224.GL2452@worktop.programming.kicks-ass.net>
- <20200405121930.e3ea3e7acc7588102de483e2@kernel.org>
- <20200406102107.GI20730@hirez.programming.kicks-ass.net>
- <20200407185008.c819005f0174cae76c44a135@kernel.org>
- <20200407111535.GT20730@hirez.programming.kicks-ass.net>
- <20200408004111.3dd597f2a7c6172b4c71a9ba@kernel.org>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86DA26E044;
+ Tue,  7 Apr 2020 16:13:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e+xR0RgQR9Lv2Q0lGVhAfb6CXlOH99cU2QFKKQlgYmtN53MnJly4DiEkTKcah/Ge3jaLHfN99L28LuQN4fbICflavoQDFy2vU/kboEBL76ABa6TGq6LcJna5sCyzEhySpdGapnb9GJYR7mpsXbFFg4hqKhdv6okUm/U/9KLmMY4rD2C4psHc6m38wxw9+YS/qOk/49Vb9motFM9Bskp38G1Ff74IiV3a9U+tBgeiws5NIKf0wrGY6MfdeUWSXRsUcfH0Qtb9N2511v5wCYWpDOxfOY3rWpl+i8ElQYIfyP+R/wjUHLlrCCUfWsESBHcaEVtrsvJUz38rrd1k81syTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oes81vBT9H4q5sd6RMyHphDhAEnivdn1V6yanqL+Uu0=;
+ b=hlfRjrRENzT3/wrTVv1OQH3El7mr5I8eIg9OcRH16GvnbM3MpmWCC85tDFMQ/gmItpSeqKNYRCXuC32Vwxy9iR72EbTJ0gDb4/IQNq22V2aYThV1V2CJtPZd/dO9bqhhEa1ho5Xce3njown3X/rA/dcSEufUJ2McZ8asY8tkTOjMshNNg1h0uxEOOnozVNR35NMfJ3UCzmQKdUlSi0ZO10ukaXFC2NKb7lHx2ttD0WNa7MjQNV/ZEBubhpkx3Az98/E3XmvvPgyFNn4lEeIz0A6/U/+DF2c2fDfuyh9I2tHe87Ry6Jv61S7E7X96aTB377cEOjai46mT2J0El7rXlQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oes81vBT9H4q5sd6RMyHphDhAEnivdn1V6yanqL+Uu0=;
+ b=xOMJ6UNuGVwymy3RPNq3RCrPbLk59PgeKliuYMYo3dQQ1EF0HLT9eJBPypCCl5gCNz0OY23PwUSKnRcg3nug+gPhOQNWGTeJGlQKBh86obnD01KmPaZEy+BxQRt6g2zxiuTFfpDnWQIzUPfqUwY0EozNLmhIfTqh682LpWDeWX0=
+Received: from MN2PR16CA0028.namprd16.prod.outlook.com (2603:10b6:208:134::41)
+ by DM5PR12MB2488.namprd12.prod.outlook.com (2603:10b6:4:b5::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.20; Tue, 7 Apr
+ 2020 16:07:25 +0000
+Received: from BN8NAM11FT045.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:208:134:cafe::7) by MN2PR16CA0028.outlook.office365.com
+ (2603:10b6:208:134::41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend
+ Transport; Tue, 7 Apr 2020 16:07:25 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT045.mail.protection.outlook.com (10.13.177.47) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2878.15 via Frontend Transport; Tue, 7 Apr 2020 16:07:25 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 7 Apr 2020
+ 11:07:25 -0500
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 7 Apr 2020
+ 11:07:24 -0500
+Received: from mlipski-pc.amd.com (10.180.168.240) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Tue, 7 Apr 2020 11:07:24 -0500
+From: <mikita.lipski@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+Subject: [PATCH] drm/dp_mst: Zero assigned PBN when releasing VCPI slots
+Date: Tue, 7 Apr 2020 12:07:17 -0400
+Message-ID: <20200407160717.27976-1-mikita.lipski@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200408004111.3dd597f2a7c6172b4c71a9ba@kernel.org>
-X-Mailman-Approved-At: Tue, 07 Apr 2020 16:39:54 +0000
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(346002)(39860400002)(136003)(376002)(396003)(428003)(46966005)(70586007)(2616005)(1076003)(336012)(54906003)(478600001)(110136005)(81156014)(8676002)(36756003)(81166006)(86362001)(316002)(26005)(8936002)(2906002)(2876002)(7696005)(186003)(356004)(426003)(6666004)(4744005)(47076004)(70206006)(5660300002)(4326008)(82740400003)(16060500001);
+ DIR:OUT; SFP:1101; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8b23ba6c-b6d6-424a-73bd-08d7db0dc367
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2488:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB2488CCC7341E164B8AD82703E4C30@DM5PR12MB2488.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-Forefront-PRVS: 036614DD9C
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: y3ZdqQkqIlEnLVFLojMuyKkV9YtJm7rKaDLmutv39+lculUZhH/T8DCcMW1vGPAV5qz294v8wQBBCTLyptNQAMhgBBrXk8jmyInfc/c0yDmybsFEKxzmHo4Tvg6t/Ia43+jnXMU1ZMe9aVDYy//g4iGcfIPSPQoZr1+A7s4nPihzue6Hqr7xbNj9Z+TkANLVh7a4Cp049tDITZHzrmz3lOD5VL+v0+esu1i0MmYDt/y7lqh9zG/L/J38/8BpXRSi0ia0Ujs6V0c+IKGmICL96/WiHTnth2l3OrOFRpZqrW7kWBRKxDh9dK2tE3g2ACbvYLdrz0Do9K2blRSpCFWvHy5KdC9mszW2lkLBrgXqCWa46VgcQZ6/sTc1CNSOoKCX6ykGwCzGCu20HUG6tROqefQTfqEiKrPt+5OCmE7am2eePpvvDZt3DQf0l9bnkXK5gOJQSD+ig9EhLRtuV+zhDCgIGtsjtIc22ThYqKY/KxKfA34h0iC1yMkHGLQp5G7WaOm22bKKG5VbKyeYSGs4pkmNsj//qqbeHVLv5j6Wrvc=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2020 16:07:25.5179 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b23ba6c-b6d6-424a-73bd-08d7db0dc367
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2488
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,100 +102,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- Josh Poimboeuf <jpoimboe@redhat.com>, Jann Horn <jannh@google.com>,
- Leo Li <sunpeng.li@amd.com>, the arch/x86 maintainers <x86@kernel.org>,
- kernel list <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Andy Lutomirski <luto@kernel.org>,
- "H. Peter Anvin" <hpa@zytor.com>, Alex Deucher <alexander.deucher@amd.com>,
- Thomas Gleixner <tglx@linutronix.de>, Harry Wentland <harry.wentland@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Alexander.Deucher@amd.com, harry.wentland@amd.com,
+ Mikita Lipski <mikita.lipski@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 08, 2020 at 12:41:11AM +0900, Masami Hiramatsu wrote:
-> On Tue, 7 Apr 2020 13:15:35 +0200
-> Peter Zijlstra <peterz@infradead.org> wrote:
+From: Mikita Lipski <mikita.lipski@amd.com>
 
-> > > > Also, all the VMX bits seems to qualify as FPU (I can't remember seeing
-> > > > that previously):
-> > > 
-> > > Oops, let me check it.
-> > 
-> > I just send you another patch that could do with insn_is_vmx()
-> > (sorry!!!)
-> 
-> Hmm, it is hard to find out the vmx insns. Maybe we need to clarify it by
-> opcode pattern. (like "VM.*")
+Zero Port's PBN together with VCPI slots when releasing
+allocated VCPI slots. That way when disabling the connector
+it will not cause issues in drm_dp_mst_atomic_check verifying
+branch bw limit.
 
-Yeah, I know. Maybe I should just keep it as I have for now.
-
-One thing I thought of is we could perhaps add manual markers in
-x86-opcode-map.txt. The '{','}' characters appear unused so far, we
-perhaps we can use them to classify things.
-
-That could maybe replace "mmx_expr" as well. That is, something like so:
-
+Signed-off-by: Mikita Lipski <mikita.lipski@amd.com>
 ---
+ drivers/gpu/drm/drm_dp_mst_topology.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/x86/lib/x86-opcode-map.txt b/arch/x86/lib/x86-opcode-map.txt
-index ec31f5b60323..e01b76e0a294 100644
---- a/arch/x86/lib/x86-opcode-map.txt
-+++ b/arch/x86/lib/x86-opcode-map.txt
-@@ -462,9 +462,9 @@ AVXcode: 1
- 75: pcmpeqw Pq,Qq | vpcmpeqw Vx,Hx,Wx (66),(v1)
- 76: pcmpeqd Pq,Qq | vpcmpeqd Vx,Hx,Wx (66),(v1)
- # Note: Remove (v), because vzeroall and vzeroupper becomes emms without VEX.
--77: emms | vzeroupper | vzeroall
--78: VMREAD Ey,Gy | vcvttps2udq/pd2udq Vx,Wpd (evo) | vcvttsd2usi Gv,Wx (F2),(ev) | vcvttss2usi Gv,Wx (F3),(ev) | vcvttps2uqq/pd2uqq Vx,Wx (66),(ev)
--79: VMWRITE Gy,Ey | vcvtps2udq/pd2udq Vx,Wpd (evo) | vcvtsd2usi Gv,Wx (F2),(ev) | vcvtss2usi Gv,Wx (F3),(ev) | vcvtps2uqq/pd2uqq Vx,Wx (66),(ev)
-+77: emms {FPU} | vzeroupper | vzeroall
-+78: VMREAD Ey,Gy {VMX} | vcvttps2udq/pd2udq Vx,Wpd (evo) | vcvttsd2usi Gv,Wx (F2),(ev) | vcvttss2usi Gv,Wx (F3),(ev) | vcvttps2uqq/pd2uqq Vx,Wx (66),(ev)
-+79: VMWRITE Gy,Ey {VMX} | vcvtps2udq/pd2udq Vx,Wpd (evo) | vcvtsd2usi Gv,Wx (F2),(ev) | vcvtss2usi Gv,Wx (F3),(ev) | vcvtps2uqq/pd2uqq Vx,Wx (66),(ev)
- 7a: vcvtudq2pd/uqq2pd Vpd,Wx (F3),(ev) | vcvtudq2ps/uqq2ps Vpd,Wx (F2),(ev) | vcvttps2qq/pd2qq Vx,Wx (66),(ev)
- 7b: vcvtusi2sd Vpd,Hpd,Ev (F2),(ev) | vcvtusi2ss Vps,Hps,Ev (F3),(ev) | vcvtps2qq/pd2qq Vx,Wx (66),(ev)
- 7c: vhaddpd Vpd,Hpd,Wpd (66) | vhaddps Vps,Hps,Wps (F2)
-@@ -965,9 +965,9 @@ GrpTable: Grp6
- EndTable
+diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+index 38bf111e5f9b..ed109dd15df6 100644
+--- a/drivers/gpu/drm/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+@@ -4276,6 +4276,7 @@ int drm_dp_atomic_release_vcpi_slots(struct drm_atomic_state *state,
+ 	if (pos->vcpi) {
+ 		drm_dp_mst_put_port_malloc(port);
+ 		pos->vcpi = 0;
++		pos->pbn = 0;
+ 	}
  
- GrpTable: Grp7
--0: SGDT Ms | VMCALL (001),(11B) | VMLAUNCH (010),(11B) | VMRESUME (011),(11B) | VMXOFF (100),(11B) | PCONFIG (101),(11B) | ENCLV (000),(11B)
-+0: SGDT Ms | VMCALL (001),(11B) {VMX} | VMLAUNCH (010),(11B) {VMX} | VMRESUME (011),(11B) {VMX} | VMXOFF (100),(11B) {VMX} | PCONFIG (101),(11B) | ENCLV (000),(11B)
- 1: SIDT Ms | MONITOR (000),(11B) | MWAIT (001),(11B) | CLAC (010),(11B) | STAC (011),(11B) | ENCLS (111),(11B)
--2: LGDT Ms | XGETBV (000),(11B) | XSETBV (001),(11B) | VMFUNC (100),(11B) | XEND (101)(11B) | XTEST (110)(11B) | ENCLU (111),(11B)
-+2: LGDT Ms | XGETBV (000),(11B) | XSETBV (001),(11B) | VMFUNC (100),(11B) {VMX} | XEND (101)(11B) | XTEST (110)(11B) | ENCLU (111),(11B)
- 3: LIDT Ms
- 4: SMSW Mw/Rv
- 5: rdpkru (110),(11B) | wrpkru (111),(11B) | SAVEPREVSSP (F3),(010),(11B) | RSTORSSP Mq (F3) | SETSSBSY (F3),(000),(11B)
-@@ -987,8 +987,8 @@ GrpTable: Grp9
- 3: xrstors
- 4: xsavec
- 5: xsaves
--6: VMPTRLD Mq | VMCLEAR Mq (66) | VMXON Mq (F3) | RDRAND Rv (11B)
--7: VMPTRST Mq | VMPTRST Mq (F3) | RDSEED Rv (11B)
-+6: VMPTRLD Mq {VMX} | VMCLEAR Mq (66) {VMX} | VMXON Mq (F3) {VMX} | RDRAND Rv (11B)
-+7: VMPTRST Mq {VMX} | VMPTRST Mq (F3) {VMX} | RDSEED Rv (11B)
- EndTable
- 
- GrpTable: Grp10
-@@ -1036,10 +1036,10 @@ GrpTable: Grp14
- EndTable
- 
- GrpTable: Grp15
--0: fxsave | RDFSBASE Ry (F3),(11B)
--1: fxstor | RDGSBASE Ry (F3),(11B)
--2: vldmxcsr Md (v1) | WRFSBASE Ry (F3),(11B)
--3: vstmxcsr Md (v1) | WRGSBASE Ry (F3),(11B)
-+0: fxsave {FPU} | RDFSBASE Ry (F3),(11B)
-+1: fxrstor {FPU} | RDGSBASE Ry (F3),(11B)
-+2: ldmxcsr {FPU} | vldmxcsr Md (v1) | WRFSBASE Ry (F3),(11B)
-+3: stmxcsr {FPU} | vstmxcsr Md (v1) | WRGSBASE Ry (F3),(11B)
- 4: XSAVE | ptwrite Ey (F3),(11B)
- 5: XRSTOR | lfence (11B) | INCSSPD/Q Ry (F3),(11B)
- 6: XSAVEOPT | clwb (66) | mfence (11B) | TPAUSE Rd (66),(11B) | UMONITOR Rv (F3),(11B) | UMWAIT Rd (F2),(11B) | CLRSSBSY Mq (F3)
+ 	return 0;
+-- 
+2.17.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
