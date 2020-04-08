@@ -2,58 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EE811A2BDC
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Apr 2020 00:23:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1AD1A2D6C
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Apr 2020 03:42:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9F1E6EB0D;
-	Wed,  8 Apr 2020 22:22:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 729DB6EB36;
+	Thu,  9 Apr 2020 01:42:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com
- [IPv6:2607:f8b0:4864:20::f2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D38956E062;
- Wed,  8 Apr 2020 22:22:57 +0000 (UTC)
-Received: by mail-qv1-xf2b.google.com with SMTP id q73so4576332qvq.2;
- Wed, 08 Apr 2020 15:22:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=L81ln5oXJbeXyAF5yWJrG2bGIx1HQKbTu9eVwydnDvE=;
- b=HrdXC1rJGt57H+lKojEsG5VxA4pCy6MIS9ia7KcPKaV54P2+Fv9ScUgoteN8tuHn8J
- 2rCFDPq2nsg3EmG3m0z38ZQ33/sQhPnPpi/A+bqAG7qX4r/dHzOe5jwcTDs6kB/5q+on
- z7riWhuy+pVXHqgWM6JZZLomU1cVea5TxMBoR/SH0DrozgXht0GmUFwkYIu9ZeT87ZN3
- aCDUzPK1cVINs4ag+xGEeMU2Ao1/ahp6F8+AAGRraX6amHQgHgK7q8/Ti/xRdHqb0977
- 9DNfW5nVrXlZ2r1Q39JiTzuMGUtm8aDcmZlR1kI28OweQmM2SF5wWVZdSJ3F4Cu+RLH4
- 6s1Q==
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com
+ [IPv6:2607:f8b0:4864:20::143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 472806EB12
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Apr 2020 23:18:56 +0000 (UTC)
+Received: by mail-il1-x143.google.com with SMTP id a6so8529635ilr.4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 16:18:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aurabindo.in; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=xIQm6fd8XzuEF+zm8pOL7pNaI9rUwGZpiWPVM8H1bSE=;
+ b=RR3inxHNUItmUkfN6BIANFJr5kU1yf5GC8vhL8B+NMY7ovOMiXXmaF3Og/C7qSnUzt
+ YKfEmLLfMm8RLstk1uRScsR279J+7GPXncEpu3UrO6NEGN+m0bPVlcdRQnQlfOk674qo
+ +JMnVpY4lYtYwUq3+rAqxr9kPhTKkH6ROO/jQ1rCh2Wj1r+c4rL3GuT7c0mDqzVYmrCh
+ FnbrrIH7DkAcNOlqSwgSm8RQKxoTvpOB2wmA1JoK9zlbRcw0O16NMd68q1pvmuguFjU0
+ 09wHePpXkryGQ8UZFezGovxC+hWSNPz0dC83e92HLT+RkNsVHc8Z2M8atHdycjYmcqyx
+ afbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=L81ln5oXJbeXyAF5yWJrG2bGIx1HQKbTu9eVwydnDvE=;
- b=e7dUO0TfAiCokF2XQBF3YoROHYu9qlWBiLAXeLdvPdNxUATyMbcl823CG8G03cfKe1
- VhxmjLxsQ3CDb6cFX0CAnobFwBFEMf8V5fKZ7mDlfav9VOyewbqU4ESi7vj/NVeDU1CR
- ilpHgqqEekKuuMWWbEjHXg1FhrBrLPpbskDPKFgaALm8MeJYk21OGlQYt2R7t3PpExRd
- HpBZVk00actSoWATnv5QGnuarja16Dd8jNfCaPVQWAMkG2/+v6J07pSNfdSGoaPVsjlb
- 4fYTBeCYXHrDCrZqFG/3V1GsvMTAhRv/v8sTOdELfwS4ZGGqZ+vHxjVnHMzPSBJeI52h
- qw/w==
-X-Gm-Message-State: AGi0PubEASgmIfQqd83ulbwylqGc3NQAvCwkXXEYWsp5myhLPfgVjVQE
- SbQRv6Dt2L2QbA1XQMeLTR/nMFqq
-X-Google-Smtp-Source: APiQypJ4dsWBiOQk2bSbfUEcWCxFDbDprJmTUWY5PV6WKXahEeuipPfgOR5h+onoZLBmoTTVTRLSkA==
-X-Received: by 2002:a0c:cc90:: with SMTP id f16mr9902002qvl.236.1586384576650; 
- Wed, 08 Apr 2020 15:22:56 -0700 (PDT)
-Received: from localhost.localdomain ([71.219.40.23])
- by smtp.gmail.com with ESMTPSA id c8sm4170378qtp.31.2020.04.08.15.22.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2020 15:22:55 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, daniel.vetter@ffwll.ch
-Subject: [pull] amdgpu drm-fixes-5.7
-Date: Wed,  8 Apr 2020 18:22:40 -0400
-Message-Id: <20200408222240.3942-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.25.2
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=xIQm6fd8XzuEF+zm8pOL7pNaI9rUwGZpiWPVM8H1bSE=;
+ b=Shp8Tf58YzCeViDF4aT6UiESyTSYWSjBcp66CIskaG7/wZS65t+Gxy5n53I0B9geN/
+ hOHp5CSG3ay1jlDqpHFlpqV+3FlDciJ3U7nrIuTazQsszCJgQ/eaIs1sRTTaZ8c+CfdD
+ WkLC28XlwMfEPP3TEeoh4njilzylJiwemykUIAykIlndykX0Gt3KGF4ksqjhimhTyGQH
+ +NuWDsTox9vJJkjvMf+/T7jc/kASbUSb4FykeoyFTqZvgP2rHrNmxlNGbfQNDwikBbcD
+ Q3voaeN0tJBaWLTC3KhAxAcTsFFrG5Q/O8DVqyGQZ9dguN/OFMiiWgTZpyobDLV1lNrO
+ MAIA==
+X-Gm-Message-State: AGi0PuaH5eHAEbZTqV+hKqEpxejLAFAz3nX7YdvptfNc5DgM7he29F8e
+ vvIz+rc29s8der6ieWGPWiPA7q13X0tILYYkfPsKQQ==
+X-Google-Smtp-Source: APiQypKEwbFd6R9kEli2dzEGIji7GKMCjLR71i+SQ8NDaynvVQfLOCGvH4kxXequfugwVmVUaRoYsPr0x4OsopRMnPk=
+X-Received: by 2002:a92:5e14:: with SMTP id s20mr10401973ilb.210.1586387935478; 
+ Wed, 08 Apr 2020 16:18:55 -0700 (PDT)
 MIME-Version: 1.0
+References: <20200408133735.7679-1-mail@aurabindo.in>
+ <bfa1a07f6f2046d5edac80d282cc710328d84d72.camel@perches.com>
+In-Reply-To: <bfa1a07f6f2046d5edac80d282cc710328d84d72.camel@perches.com>
+From: Aurabindo Pillai <mail@aurabindo.in>
+Date: Wed, 8 Apr 2020 19:18:44 -0400
+Message-ID: <CAMu4TMv5DuAW3WtDOFx2xoQc_EYURZjnF722QA9mMCdUFGkBBg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/amdgpu: add prefix for pr_* prints
+To: Joe Perches <joe@perches.com>
+X-Mailman-Approved-At: Thu, 09 Apr 2020 01:42:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,121 +61,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: David1.Zhou@amd.com, David Airlie <airlied@linux.ie>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+Hi Joe,
 
-Fixes for 5.7.
+On Wed, Apr 8, 2020 at 11:37 AM Joe Perches <joe@perches.com> wrote:
+>
+> All the embedded uses of "amdgpu:" in logging
+> messages should also be deleted.
+>
+> $ git grep -P '(?:dev_|pr_).*"amdgpu:' drivers/gpu/drm/amd/amdgpu/
+> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c:               pr_err("amdgpu: failed to validate PT BOs\n");
+> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c:               pr_err("amdgpu: failed to validate PD\n");
+> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c:                       pr_err("amdgpu: failed to kmap PD, ret=%d\n", ret);
+> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:             pr_info("amdgpu: switched on\n");
+> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:             pr_info("amdgpu: switched off\n");
+> drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c:                        dev_dbg(adev->dev, "amdgpu: using MSI/MSI-X.\n");
+> drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c:          dev_warn(adev->dev, "amdgpu: No suitable DMA available.\n");
+> drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c:          pr_warn("amdgpu: No suitable DMA available\n");
+> drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c:          pr_warn("amdgpu: No suitable DMA available\n");
+>
+>
+>
 
-The following changes since commit 3148a6a0ef3cf93570f30a477292768f7eb5d3c3:
+Thanks for the heads up, I shall submit another set with those changes
+you suggested.
 
-  drm/amdkfd: kfree the wrong pointer (2020-04-01 14:44:22 -0400)
+-- 
 
-are available in the Git repository at:
+Thanks and Regards,
 
-  git://people.freedesktop.org/~agd5f/linux tags/amd-drm-fixes-5.7-2020-04-08
-
-for you to fetch changes up to 7e7ea24f0b46cd3078bc9af29d1c1aced89d1c8e:
-
-  drm/amdgpu/display: fix warning when compiling without debugfs (2020-04-08 17:53:11 -0400)
-
-----------------------------------------------------------------
-amd-drm-fixes-5.7-2020-04-08:
-
-amdgpu:
-- Various Renoir fixes
-- Fix gfx clockgating sequence on gfx10
-- RAS fixes
-- Avoid MST property creation after registration
-- Various cursor/viewport fixes
-- Fix a confusing log message about optional firmwares
-
-----------------------------------------------------------------
-Aaron Liu (1):
-      drm/amdgpu: unify fw_write_wait for new gfx9 asics
-
-Aaron Ma (1):
-      drm/amdgpu: Fix oops when pp_funcs is unset in ACPI event
-
-Alex Deucher (2):
-      drm/amdgpu/psp: dont warn on missing optional TA's
-      drm/amdgpu/display: fix warning when compiling without debugfs
-
-Chengming Gui (1):
-      drm/amd/amdgpu: Correct gfx10's CG sequence
-
-Eric Yang (1):
-      drm/amd/display: change default pipe_split policy for DCN1
-
-Evan Quan (1):
-      drm/amd/powerplay: error out on forcing clock setting not supported
-
-Isabel Zhang (1):
-      drm/amd/display: Update stream adjust in dc_stream_adjust_vmin_vmax
-
-Jerry (Fangzhi) Zuo (1):
-      drm/amd/display: Avoid create MST prop after registration
-
-John Clements (2):
-      drm/amdgpu: resolve mGPU RAS query instability
-      drm/amdgpu: update RAS related dmesg print
-
-Joshua Aberback (1):
-      drm/amd/display: Acknowledge wm_optimized_required
-
-Likun Gao (1):
-      drm/amdgpu: change SH MEM alignment mode for gfx10
-
-Michael Strauss (1):
-      drm/amd/display: Check for null fclk voltage when parsing clock table
-
-Nicholas Kazlauskas (5):
-      drm/amd/display: Translate cursor position by source rect
-      drm/amd/display: Fix incorrect cursor pos on scaled primary plane
-      drm/amd/display: Program viewport when source pos changes for DCN20 hw seq
-      drm/amd/display: Calculate scaling ratios on every medium/full update
-      drm/amd/display: Make cursor source translation adjustment optional
-
-Prike Liang (2):
-      drm/amd/powerplay: implement the is_dpm_running()
-      drm/amdgpu: fix gfx hang during suspend with video playback (v2)
-
-Shirish S (1):
-      drm/amd/display: re-order asic declarations
-
-Tiecheng Zhou (1):
-      drm/amd/powerplay: avoid using pm_en before it is initialized
-
-Yuxian Dai (1):
-      drm/amdgpu/powerplay: using the FCLK DPM table to set the MCLK
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |  5 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c             |  3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c            |  6 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c            | 20 ++++++---
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c             | 25 +++++++-----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c              |  2 +
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4.c              |  6 ++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c            | 13 +++---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 17 ++++----
- .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |  8 ++++
- .../drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c  |  2 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c           | 20 +++++++--
- drivers/gpu/drm/amd/display/dc/dc_hw_types.h       |  2 +
- .../amd/display/dc/dce110/dce110_hw_sequencer.c    | 17 ++++++++
- .../drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c  | 40 +++++++++++++++++-
- .../gpu/drm/amd/display/dc/dcn10/dcn10_resource.c  |  2 +-
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c |  1 +
- drivers/gpu/drm/amd/display/include/dal_asic_id.h  |  6 ++-
- drivers/gpu/drm/amd/powerplay/amd_powerplay.c      |  3 +-
- drivers/gpu/drm/amd/powerplay/arcturus_ppt.c       | 47 +++++++++++++++++++++-
- drivers/gpu/drm/amd/powerplay/renoir_ppt.c         | 18 +++++++++
- drivers/gpu/drm/amd/powerplay/renoir_ppt.h         |  2 +-
- 22 files changed, 217 insertions(+), 48 deletions(-)
+Aurabindo J Pillai
+https://aurabindo.in
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
