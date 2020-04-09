@@ -1,63 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 530821A3D1B
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2020 01:52:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5039D1A3D22
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2020 01:57:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA1AD6E19B;
-	Thu,  9 Apr 2020 23:52:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D87456E1A3;
+	Thu,  9 Apr 2020 23:57:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 342 seconds by postgrey-1.36 at gabe;
- Thu, 09 Apr 2020 23:52:23 UTC
 Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com
  [66.111.4.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF69D6E19B
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 23:52:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2DCA6E1A3
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 23:57:23 +0000 (UTC)
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailout.nyi.internal (Postfix) with ESMTP id DE6DA5C01B9
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 19:46:40 -0400 (EDT)
+ by mailout.nyi.internal (Postfix) with ESMTP id 231305C01CE
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 19:50:52 -0400 (EDT)
 Received: from imap3 ([10.202.2.53])
- by compute4.internal (MEProxy); Thu, 09 Apr 2020 19:46:40 -0400
+ by compute4.internal (MEProxy); Thu, 09 Apr 2020 19:50:52 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.com; h=
  mime-version:message-id:date:from:to:subject:content-type; s=
- fm2; bh=oLrWM1x0ys/SwjJhbhz2GoauKZrsYC4VVYxinoCSROs=; b=ANPsVH7n
- btRVV9PGIGx/hrzancE4Bwg1qfNlO/GikKbwm1rIBfMbTVIvDBVr0wl66kPccA1M
- A2eJnlI6yYU/MQXJhDNVLr/xY8VJ8IzIdnVUFvSwRvOgs2DjuRb5mA9ntZxiGa8n
- FqT87vHMkjdLb/pVcRc+6sS1AknPApGamNq2NPk12QcjAR76TIXkoLNbTqXhsKAs
- /22wdagg0/PJtoRv57mPdadbzWWpgWrwE7JLwTbK75kWvuyKMJD1oVJWe1O53xEL
- k5r9n2xAyF4KzuWkDofi7qsdtZqOjjI+1YfYm6ISjaDV4bIUv2n5wNTGFt3gMNRu
- pn4ecNK3wxBckg==
+ fm2; bh=oLrWM1x0ys/SwjJhbhz2GoauKZrsYC4VVYxinoCSROs=; b=UkbYb8JI
+ 7xb0/qDUKrUhYB9NucGOgajcPYP4QB7IvpcRlr7t7Tc6O7PK3wF8IsdLZoOhx4ok
+ Tc4Icg8uzLOksaKoGjMVJPwF4hXYw8HzDviN2xFdc+Cj8wtB0i11y5WG08jv2LjX
+ /aaCbWi16PmLzTeX/ml01Jg0/aNZ5593x+ox/u6oHk5r78G6NHXf1sJiv0ldOrCG
+ 52nWkRun0LOyG3uDq2kT1hJaucf9K45HRzZHvNtgUE0pKdIe217uM6QhQQ0VgPFn
+ H7KmDi/1L+Ca33zPBbjkYTMsYZ98MdWm7qi58GdbDSlZdOURTl0P+ZGJBfyX4IWS
+ fY6ORtVxpvmkVg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=content-type:date:from:message-id
  :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
  :x-me-sender:x-sasl-enc; s=fm2; bh=oLrWM1x0ys/SwjJhbhz2GoauKZrsY
- C4VVYxinoCSROs=; b=RbrGXbC/gFNr9P3q8Lqy0bkbQ/TNgxRehiWenwtnYeHeW
- XVvBlzh9U/WV06jaehGJgv0S/jZBs1zlXIUFICWKgkwJ69xsPvxkEsnJV5LFKmFu
- 3Uk0QmKVDVV2bXAp5mvArUZuk2V8a+lEVDTY7peOTWH4vh1BdF8ZKZqsozd7LQI6
- qJIrFaZZU9LlRW15lfVdsG8Chqo6SIoXQwC6d6HJpEKfNhl+IGJDz4z+yBTT/2JL
- cfQUV0FqoTQQMp+pkd/3XPc1eHNEFZkYjFqqHmAX53/o+FEPge73nXo1o0rhjFW4
- /14O4CFVxQ/wypG8ZAu+52qJQpii/Wn/+eIgLphoQ==
-X-ME-Sender: <xms:4LOPXgmV-eakHeou3HsGN-ex1zhqk2cwn2krQBbjkX2PCkeh6WVbbA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrvddugddvhecutefuodetggdotefrodftvf
+ C4VVYxinoCSROs=; b=fKHapJHIyCFVqlAmI07dKa9L+TFWOxtvK4v6jwBNP1fAO
+ VaT8h2R1+1PZ+feornapIMhUoHcO3T0hsspuEHyHi7GeaPLe+3ZWDBLf7EL2+3+E
+ m9hSMwD0tzz45P2S67MNkuV+NOkvG3q4hhuBPKK50KAvLgmda4zkMU2PgTRZTKE9
+ D/Up8Zqc4P+drErJG+uQOeS8NORiWvuaFI0fW/SWiRl9j9U/75FArrTo3IR3kWe1
+ ua1Dv03XoNub1oaHVOkx+OBqbu2g1APPoV211Z1xl5rP2CYaCMN2u22/V8BK5VsM
+ Kgh4FsX/EEDefE8lv7HeLdsDAK2I8QNW4xyP1BB9w==
+X-ME-Sender: <xms:27SPXpAUd9Tij0wO_Zk9OThaqyGUKCP2CJ4S_p4sD6Ky1t_pBMQ8Ew>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrvddugddviecutefuodetggdotefrodftvf
  curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
  uegrihhlohhuthemuceftddtnecunecujfgurhepofgfggfkfffhvffutgesthdtredtre
  erjeenucfhrhhomhepfdevhhgvnhcuvehhvghnfdcuoegthhgvnhgthhgvnhesfhgrshht
  mhgrihhlrdgtohhmqeenucffohhmrghinhepfedurdhsohenucevlhhushhtvghrufhiii
  gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegthhgvnhgthhgvnhesfhgrshhtmhgr
  ihhlrdgtohhm
-X-ME-Proxy: <xmx:4LOPXrY0rtS6k1i_5eI57ecA_RkApv-yZc68JNVPR8Xj2R-s_Bi1sA>
- <xmx:4LOPXl4_H7Io0k2w9cuaW1IOIHaGibt1iyEw5SJ7FArwlMeXzYzufw>
- <xmx:4LOPXk-yuCjR3uOy7hpHf5sKGOe6XCm7W905VPnkB191Wo2bwgaBIw>
- <xmx:4LOPXhkMLTSehoYEsIiEf36zKQ4jHBzrKIbrYfWltlSWXfH8Ip3v0w>
+X-ME-Proxy: <xmx:27SPXoHVnVpilXhABM1fh5NU2mbXDYX2E62zIzo6ZC1j1ssumxLS-A>
+ <xmx:27SPXv_gA3-_0mZK09ZdIhkIGc7GG0ltgFdM2k8JOFeI9vd2_6ExAQ>
+ <xmx:27SPXmbzeV58fO8-D6jlrtZRIECnwe1COoSdU1u9qEK0PePDKzkWaw>
+ <xmx:3LSPXqwn6d62z9M3ApeSndWzcCaB0IOJsbU3jtjq94X-W6cG3mG1Zw>
 Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id 700EF4E009F; Thu,  9 Apr 2020 19:46:40 -0400 (EDT)
+ id D77FB4E009F; Thu,  9 Apr 2020 19:50:51 -0400 (EDT)
 X-Mailer: MessagingEngine.com Webmail Interface
 User-Agent: Cyrus-JMAP/3.1.7-1104-g203475c-fmstable-20200408v2
 Mime-Version: 1.0
-Message-Id: <36b6e024-9704-475e-8b35-1fb26b22ec27@www.fastmail.com>
-Date: Thu, 09 Apr 2020 18:46:20 -0500
+x-forwarded-message-id: <36b6e024-9704-475e-8b35-1fb26b22ec27@www.fastmail.com>
+Message-Id: <e8a2d5e8-3d11-4576-b4e2-ba6e9ad2c2a7@www.fastmail.com>
+Date: Thu, 09 Apr 2020 18:50:30 -0500
 From: "Chen Chen" <chenchen@fastmail.com>
 To: amd-gfx@lists.freedesktop.org
 Subject: =?UTF-8?Q?Significant_window_rendering_time_of_GPU-accelerated_apps_on_x?=
