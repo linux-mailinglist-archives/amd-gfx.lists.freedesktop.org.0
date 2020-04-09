@@ -2,57 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8B321A2D6B
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Apr 2020 03:42:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B1E1A2D68
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Apr 2020 03:42:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27AE96EB35;
-	Thu,  9 Apr 2020 01:42:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 528A46EB32;
+	Thu,  9 Apr 2020 01:42:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com
- [IPv6:2607:f8b0:4864:20::72a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09E2E6EB2E
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 01:28:19 +0000 (UTC)
-Received: by mail-qk1-x72a.google.com with SMTP id c63so2488797qke.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 18:28:19 -0700 (PDT)
+Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com
+ [IPv6:2607:f8b0:4864:20::f44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67AC86EB2D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Apr 2020 01:28:21 +0000 (UTC)
+Received: by mail-qv1-xf44.google.com with SMTP id g4so4742100qvo.12
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Apr 2020 18:28:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aurabindo.in; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=W+2Y0Xi530M87fNTrtIwP1pMSm7GqwPkRfMOed11GCs=;
- b=N5VA5PzWygwcF51uf54k+ipqv7JgkBJdnFyoVNkSZM2Y5Bl7CGNj1MEyoXmsSDXGiV
- tGmSgTfxguxY7RCreRX1mU1o7GwN2vzb8xJIQgiHGtvLCgqt/fvNs71MJR6ZKjMHhA4R
- lt+IQNlGF0X/xUSNtXAXNNVICu97RIexts3lt+IaZLSfr5FtJjFlTi1gWyvJ/7b1k14k
- zgWwfyNLYfNfUiCDTFwhJoWNEyszdYTyWtjsMtTPvFJm2VL/IxwXxox+6hgRy02EQlRv
- sGfEuGn3eDWrOKwKq2r/XI4vPkjlB0p8ZdV7huJhorql6JWRl/I6WjMUdNgDnu9XFblg
- nwng==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=a8mBf/x6tKmxXEyAN6VSKYHc9JSU+mIaA50Z6TnFau4=;
+ b=NlMqSZt8QFI8sd/DDnRRiuydXjaYLzxItlei1QSWHbiyShTaKKSGURBOkhrkk91CxW
+ /X+Qgb5kT/Tps0tzjntpYhBtxqSIyEiUAJrD28KSW+Ak6UERz5KiIAuFmidnFOXF3saq
+ y5hxwSo82HWB2DKzD+N3OLxUlzmHRmC7x9lEqr/VOOaWRmBSLLr5JZ1o1m2bcGFp2N8K
+ CMMceFTqTpBOdT8lUa6F6lNm7O38kfcGVYWCp2tJIxAZHD7mDG/r8vp2SL6SxRNJ0j6b
+ ewLTd/FthX6hcv+JmkjXbKfzvZNfibmvWUqRC0qmB1IZrqJkjbZSCFgDsIDSquzFIxOR
+ J1KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=W+2Y0Xi530M87fNTrtIwP1pMSm7GqwPkRfMOed11GCs=;
- b=oyfkyFNwfwIGPhlu2u4ps4QYjUkXCFgo6SZ3E34Mzw86+Dyy8LG0dcQA6+fcKp6wwB
- MU/fai93GaZvMvh/X448cAk7OabPi+Qi9ymnVly8ITE6gBpx1pmWjiTrkNZ+BLVT9EwW
- e/9DVQ88G5f4Sg7rtMh2J0YXmcy3Yffk/zl7xczmJNJmtEveV65akKLbOW8hmg8Qq5Kp
- ROLISycg6KBf61iqSvrw1q5S89hDSj94h0bm3lSNF64GKJ7+1SznaBj5iPhjEAJrydAp
- 3qAOCpTcC0kL8WMOL5C04qyixzA3D4pMEK75/Sp1Y1mOtoNwWVMD8hA9RO/A+5C1gK3K
- Yz0g==
-X-Gm-Message-State: AGi0PuanRtcrx5GtTXTVcS82KQozIBDZW2XLNQTHDqn+VQro63x/Rnjl
- SByjE8q042u3a2lSiN0vnJvTIQ==
-X-Google-Smtp-Source: APiQypIcnFZuNeQsehdaKyuMo95ePmC43hl4IAy8auSxxePTv47MMvGLLjTgt/bXZQrCEEnI0SdLgA==
-X-Received: by 2002:a05:620a:15d1:: with SMTP id
- o17mr10479294qkm.457.1586395698825; 
- Wed, 08 Apr 2020 18:28:18 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=a8mBf/x6tKmxXEyAN6VSKYHc9JSU+mIaA50Z6TnFau4=;
+ b=qVw5HOd5Vwj3KJkZV4fJo00MODsjX1CSiDqOIhDOvt4pN7tq0caWUPU9yy8FFV419p
+ iFahmilhRyYN70c1FbhqG2UhcFTvahhnr3W6b6Nfn2Un2MIEcDR59Ay17P0Rnme3iT08
+ xcQDQQLVWJVuLYVsPULlpMfvGuICXe3HEKnlHkqs2LkC7Pdgl1tr14G9RZg+MrpPuPUa
+ oYtpIN+a0Fzzyi9B2JdFhQDxk5aLrlpnzwTaua3bihaj3MiYwaYL/bfTPUJF/DCbdRUR
+ 2eoN/zBE864rcUQBNE77bSBEjOZy3P1tFK3NzpE6jufRBpnu8IvtY7oHzBmReyOEXgNm
+ S5dA==
+X-Gm-Message-State: AGi0PubmvRmSM5t7cKaj/T88vUo9KzKVNSfJt5mtrGhY1YgScP66LOGx
+ m479DgLfRXWivLyARov4Unlsaw==
+X-Google-Smtp-Source: APiQypLHyltpW2woM041SGTay/GRNOYCz+x3AjvXnaurPcRm5EFzWLaZMasX8iJ0rPqFFM0GH+KX3Q==
+X-Received: by 2002:a0c:bd99:: with SMTP id n25mr10491345qvg.149.1586395700553; 
+ Wed, 08 Apr 2020 18:28:20 -0700 (PDT)
 Received: from localhost.localdomain (135-23-249-169.cpe.pppoe.ca.
  [135.23.249.169])
- by smtp.gmail.com with ESMTPSA id h13sm11710186qkj.21.2020.04.08.18.28.16
+ by smtp.gmail.com with ESMTPSA id h13sm11710186qkj.21.2020.04.08.18.28.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Apr 2020 18:28:18 -0700 (PDT)
+ Wed, 08 Apr 2020 18:28:20 -0700 (PDT)
 From: Aurabindo Pillai <mail@aurabindo.in>
 To: christian.koenig@amd.com, alexander.deucher@amd.com, David1.Zhou@amd.com
-Subject: [PATCH v2 0/3] drm/amd/amdgpu: Add print format prefix
-Date: Wed,  8 Apr 2020 21:28:12 -0400
-Message-Id: <20200409012815.22309-1-mail@aurabindo.in>
+Subject: [PATCH v2 1/3] drm/amd/amdgpu: add prefix for pr_* prints
+Date: Wed,  8 Apr 2020 21:28:13 -0400
+Message-Id: <20200409012815.22309-2-mail@aurabindo.in>
 X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200409012815.22309-1-mail@aurabindo.in>
+References: <20200409012815.22309-1-mail@aurabindo.in>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Thu, 09 Apr 2020 01:42:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -74,25 +75,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Changes in v2
+amdgpu uses lots of pr_* calls for printing error messages.
+With this prefix, errors shall be more obvious to the end
+use regarding its origin, and may help debugging.
 
-* Add dev_fmt format prefix
-* Removed hardcoded module names in pr_* and dev_* prints
+Prefix format:
 
-Aurabindo Pillai (3):
-  drm/amd/amdgpu: add prefix for pr_* prints
-  drm/amd/amdgpu: add print prefix for dev_* variants
-  drm/amd/amdgpu: remove hardcoded module name in prints
+[xxx.xxxxx] amdgpu: ...
 
- drivers/gpu/drm/amd/amdgpu/amdgpu.h              | 12 ++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c |  6 +++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c       |  4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c          |  2 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c            |  2 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c            |  2 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c            |  2 +-
- 7 files changed, 21 insertions(+), 9 deletions(-)
+Signed-off-by: Aurabindo Pillai <mail@aurabindo.in>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index da3bcff61..67d654a89 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -28,6 +28,12 @@
+ #ifndef __AMDGPU_H__
+ #define __AMDGPU_H__
+ 
++#ifdef pr_fmt
++#undef pr_fmt
++#endif
++
++#define pr_fmt(fmt) "amdgpu: " fmt
++
+ #include "amdgpu_ctx.h"
+ 
+ #include <linux/atomic.h>
 -- 
 2.26.0
 
