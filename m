@@ -1,57 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE1BB1A467E
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2020 14:52:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB75E1A4680
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2020 14:52:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 651E66E1E0;
-	Fri, 10 Apr 2020 12:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A7A46ECDD;
+	Fri, 10 Apr 2020 12:52:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com
- [IPv6:2607:f8b0:4864:20::836])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EAFC6E1E0
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8C946E1E0
  for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2020 12:52:06 +0000 (UTC)
-Received: by mail-qt1-x836.google.com with SMTP id w24so1292082qts.11
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2020 05:52:05 -0700 (PDT)
+Received: by mail-qt1-x844.google.com with SMTP id q17so1039147qtp.4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2020 05:52:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=uP106l/ZvB6Gu/e/dYAw1Zrj7QRpLRNbUQXM6qGog/4=;
- b=NXhyH5WNZojrpOYzgHhcAeVrmcSzQziWzqQn/b8hLZWgFl38ria6ccUdaVPeNWX6EK
- G61F9ChZaqJVHGknOBhwg2mSXnMUbxG4hZTv9e6Oei5V6GHRAvLOe5s4rGF5UediBHlo
- xr9ac6ry4h3rXOq1Uqeib2AxS3mlf1GW8/8evzr1Wz5tqe5EQXbmjGVo9m5+qv2/GXWR
- 6rU3ZTaFTtQWzPlVC+pnyNECjxOhVvY8S8c58oWiZLngRbC/BxgUrt3CYGwMcmcr/7A/
- Fb2+5zmwUtheR17Oyfoba2KGy64/av95ZPM27HtiB89/BWfAe2+RqpQ/xHl2WMLkxHFG
- CF9Q==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=0/uGiQQylMFcCX1egQAFPs0VR0OpqEp3/ZacviSL9N8=;
+ b=BydqKFVzdudJNkDlxx/ibKVDDExTlOHFtmb3aCTNe3M7uAYQS33/bVrvzSXIqwiPxm
+ Q+euE66pjIqYYwRrGjjS79jZ074muNJeIKI4oocY1FSAyE2RBfyq8JXjGn/GWX9vJ/N+
+ gyWu4u1mU3HBTgIQ2PSFt+QOjJ2Qh5PFsUbMJGOYoiGb2ix+ZWSseo3p4VttxP1RblZE
+ B9cOIzmkLVcLbuA2A1bRt4tnFCXyv1Wej7Nbmg2A9Q+1+4Vx3RNK+H604TdywOph/swj
+ M1vgYJtj/fiCD9rqu9SkS60nlnkIls9XkmS0xQHDBq3gAQ4by52E6WbXWgpglVjUuMMB
+ FO0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=uP106l/ZvB6Gu/e/dYAw1Zrj7QRpLRNbUQXM6qGog/4=;
- b=QJSd2lAtmnRYW4h434mCGo3wgFs+D0vey0FHoGwzJNo3HKmJm9D4nuoKiLDvRKYgqI
- ZDKV0c3wLasqvTMlIeE3eUXJs684U99oTREGenhiH+TWsyibyPxAMz8vzMPg+qEBKZ9f
- 403NkSKntnf3j591KTyhuGL4twml1RXAnTMAKU53pSNSbAaHSeazL8N6pfsOZMwayJxI
- p/iNDH0Ybh+HcBvjOty/87U84JK7hwIGwqXR8E5RS2Xk3BFw5OdsW+72wPxFyermpIbc
- /+5PmnqoHRgIZ/EM/w74JZ5y08PAtUZnbOORb2S5LXL0GxCesyht4llL+vTv4Kfvonsg
- BuNw==
-X-Gm-Message-State: AGi0PuY4AbKnm/uwrMFGzW1OPPjupv+LrqYuYhPgWgx/5wLtgbJpJxfv
- cb0SvERO4SpmDIPAVIjr/EyD6SJM
-X-Google-Smtp-Source: APiQypLciw44t8hb+wWONbLw7ASpClbwKfAxsxOSDXOdXeRw5JB4/2cAtl45RRptSHxnjxWTmkkjrQ==
-X-Received: by 2002:ac8:4e56:: with SMTP id e22mr4297139qtw.185.1586523124940; 
- Fri, 10 Apr 2020 05:52:04 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=0/uGiQQylMFcCX1egQAFPs0VR0OpqEp3/ZacviSL9N8=;
+ b=iVyWDqHFRXqWAJp7JsbJ6i+Q8YMx36uO1C4nj2WoMp+2jPtZgv547Ir86Gt+Gpxlr4
+ b+vsNQgs0J5tTDs3oAsV7lmnShUlq+aKBT/jhfDxrhKz6rs9nOO8PQHEvJzHP85vYY9k
+ RFPpcwqG3wGQxXEYQ7jDXRakVVIdYeW9zfuEnT104cDM9jXT1D8Pf+Ew8dIjEGsXte4a
+ ALcLvwmyhnx8g7kNrCeQkn4aA1CzQzsJVyOWZK242X4Z9a9kPL4tMd+o0j8pXdAWVU+v
+ rbO+EU98mEqu6Yu5rTEt9+8/R5ATqWYsE7riI9JS7TAQ5Yg75Or0lCy/xLg+cum6JQLU
+ BKNw==
+X-Gm-Message-State: AGi0Pubxasv3OOmRdUMx1SBF7sYl+hbZK/GYCDl02l+kVO7PcQD8sHCv
+ rG8T9PPPtUbwPc92/cL92lBP00/Y
+X-Google-Smtp-Source: APiQypKsWac/hEnF4EvH8QDzviE+PGbDD3Ap63JMiJV+srYIcX8YmEtBoVClB3aKwf/j1NsVX2VFcQ==
+X-Received: by 2002:ac8:18c3:: with SMTP id o3mr4380376qtk.49.1586523125747;
+ Fri, 10 Apr 2020 05:52:05 -0700 (PDT)
 Received: from localhost.localdomain ([71.219.40.23])
- by smtp.gmail.com with ESMTPSA id g21sm1524536qtq.26.2020.04.10.05.52.04
+ by smtp.gmail.com with ESMTPSA id g21sm1524536qtq.26.2020.04.10.05.52.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Apr 2020 05:52:04 -0700 (PDT)
+ Fri, 10 Apr 2020 05:52:05 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/amdgpu/ring: add no_scheduler flag
-Date: Fri, 10 Apr 2020 08:49:57 -0400
-Message-Id: <20200410124959.1489394-1-alexander.deucher@amd.com>
+Subject: [PATCH 2/3] drm/amdgpu/kiq: add no_scheduler flag to KIQ
+Date: Fri, 10 Apr 2020 08:49:58 -0400
+Message-Id: <20200410124959.1489394-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.2
+In-Reply-To: <20200410124959.1489394-1-alexander.deucher@amd.com>
+References: <20200410124959.1489394-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,43 +73,26 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This allows IPs to flag whether a specific ring requires
-a GPU scheduler or not.  E.g., sometimes instances of an
-IP are asymmetric and have different capabilities.
+We don't want a GPU scheduler for this ring.
 
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 3 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 1 +
- 2 files changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-index 5f36bd58202a..4863e91c5533 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -261,7 +261,8 @@ int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
- 	mutex_init(&ring->priority_mutex);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index 92f2e59056c9..ea576b4260a4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -318,6 +318,7 @@ int amdgpu_gfx_kiq_init_ring(struct amdgpu_device *adev,
+ 		return r;
  
- 	if (ring->funcs->type >= AMDGPU_RING_TYPE_GFX &&
--	    ring->funcs->type <= AMDGPU_RING_TYPE_VCN_JPEG) {
-+	    ring->funcs->type <= AMDGPU_RING_TYPE_VCN_JPEG &&
-+	    !ring->no_scheduler) {
- 		hw_ip = ring->funcs->type;
- 		num_sched = &adev->gpu_sched[hw_ip][hw_prio].num_scheds;
- 		adev->gpu_sched[hw_ip][hw_prio].sched[(*num_sched)++] =
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index efd7627b3f69..f61664ee4940 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -238,6 +238,7 @@ struct amdgpu_ring {
- 	unsigned		vm_inv_eng;
- 	struct dma_fence	*vmid_wait;
- 	bool			has_compute_vm_bug;
-+	bool			no_scheduler;
- 
- 	atomic_t		num_jobs[DRM_SCHED_PRIORITY_MAX];
- 	struct mutex		priority_mutex;
+ 	ring->eop_gpu_addr = kiq->eop_gpu_addr;
++	ring->no_scheduler = true;
+ 	sprintf(ring->name, "kiq_%d.%d.%d", ring->me, ring->pipe, ring->queue);
+ 	r = amdgpu_ring_init(adev, ring, 1024,
+ 			     irq, AMDGPU_CP_KIQ_IRQ_DRIVER0,
 -- 
 2.25.2
 
