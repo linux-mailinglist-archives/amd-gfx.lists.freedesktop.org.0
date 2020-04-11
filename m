@@ -2,34 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F2C1A5F2F
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Apr 2020 17:24:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8D751A540A
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Apr 2020 01:04:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 749EC6E0DC;
-	Sun, 12 Apr 2020 15:24:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABA576E046;
+	Sat, 11 Apr 2020 23:04:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp.smtpout.orange.fr (smtp06.smtpout.orange.fr
- [80.12.242.128])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC14E6E32B
- for <amd-gfx@lists.freedesktop.org>; Sat, 11 Apr 2020 14:04:02 +0000 (UTC)
-Received: from localhost.localdomain ([90.126.162.40]) by mwinf5d41 with ME
- id RS3y2200H0scBcy03S3yw4; Sat, 11 Apr 2020 16:04:00 +0200
-X-ME-Helo: localhost.localdomain
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 11 Apr 2020 16:04:00 +0200
-X-ME-IP: 90.126.162.40
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com,
- airlied@linux.ie, daniel@ffwll.ch, Hawking.Zhang@amd.com,
- evan.quan@amd.com, andrey.grodzovsky@amd.com, Monk.Liu@amd.com,
- kent.russell@amd.com, le.ma@amd.com
-Subject: [PATCH] drm/amdgpu: Add missing '\n' in log messages
-Date: Sat, 11 Apr 2020 16:03:56 +0200
-Message-Id: <20200411140356.28211-1-christophe.jaillet@wanadoo.fr>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F1EE6E046;
+ Sat, 11 Apr 2020 23:04:02 +0000 (UTC)
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 3F2D3214D8;
+ Sat, 11 Apr 2020 23:04:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1586646241;
+ bh=Q99g52Fta1ZERSHsYKSqKAe6lrAJVypTbK5kyGjfU20=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=x2TWd87KqSaWTitxTQn12h6DfN2PavhYEvKc9ZW/3SDVaGAqCQAX1Kfoc5w4CjeUm
+ W+r3z2CRH9no5qBfdEIO2jcwjBGDORYNQLZrtt1r9jY/AlIxPayPJYxB35pgM3UbxH
+ 7w84O2rP2+KZUfJMBcPxZoVraLw5P824rmPbQTJQ=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.6 010/149] drm/amd/display: differentiate vsc sdp
+ colorimetry use criteria between MST and SST
+Date: Sat, 11 Apr 2020 19:01:27 -0400
+Message-Id: <20200411230347.22371-10-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200411230347.22371-1-sashal@kernel.org>
+References: <20200411230347.22371-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Sun, 12 Apr 2020 15:24:13 +0000
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,83 +49,147 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- kernel-janitors@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Sasha Levin <sashal@kernel.org>, Martin Tsai <martin.tsai@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Wenjing Liu <Wenjing.Liu@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Message logged by 'dev_xxx()' or 'pr_xxx()' should end with a '\n'.
+From: Martin Tsai <martin.tsai@amd.com>
 
-While at it, split some long lines that where not that far.
+[ Upstream commit c38cc6770fd5f78a0918ed0b01af14de31aba5cb ]
 
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+[Why]
+We should check MST BU support capability on output port before building
+vsc info packet.
+
+[How]
+Add a new definition for port and sink capability check.
+
+Signed-off-by: Martin Tsai <martin.tsai@amd.com>
+Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
-Most of them have been added in commit bd607166af7f ("drm/amdgpu: Enable reading FRU chip via I2C v3")
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 19 +++++++++++++++---
+ drivers/gpu/drm/amd/display/dc/dc.h           |  2 ++
+ .../amd/display/modules/inc/mod_info_packet.h |  3 +--
+ .../display/modules/info_packet/info_packet.c | 20 +++----------------
+ 4 files changed, 22 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 87f7c129c8ce..3d0a50e8c36b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3249,25 +3249,25 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 6240259b3a937..b9853fd724d60 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -4200,9 +4200,22 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 			struct dmcu *dmcu = core_dc->res_pool->dmcu;
  
- 	r = device_create_file(adev->dev, &dev_attr_pcie_replay_count);
- 	if (r) {
--		dev_err(adev->dev, "Could not create pcie_replay_count");
-+		dev_err(adev->dev, "Could not create pcie_replay_count\n");
- 		return r;
- 	}
- 
- 	r = device_create_file(adev->dev, &dev_attr_product_name);
- 	if (r) {
--		dev_err(adev->dev, "Could not create product_name");
-+		dev_err(adev->dev, "Could not create product_name\n");
- 		return r;
- 	}
- 
- 	r = device_create_file(adev->dev, &dev_attr_product_number);
- 	if (r) {
--		dev_err(adev->dev, "Could not create product_number");
-+		dev_err(adev->dev, "Could not create product_number\n");
- 		return r;
- 	}
- 
- 	r = device_create_file(adev->dev, &dev_attr_serial_number);
- 	if (r) {
--		dev_err(adev->dev, "Could not create serial_number");
-+		dev_err(adev->dev, "Could not create serial_number\n");
- 		return r;
- 	}
- 
-@@ -4270,7 +4270,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		job_signaled = true;
- 
- 	if (job_signaled) {
--		dev_info(adev->dev, "Guilty job already signaled, skipping HW reset");
-+		dev_info(adev->dev, "Guilty job already signaled, skipping HW reset\n");
- 		goto skip_hw_reset;
- 	}
- 
-@@ -4339,10 +4339,12 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 
- 		if (r) {
- 			/* bad news, how to tell it to userspace ? */
--			dev_info(tmp_adev->dev, "GPU reset(%d) failed\n", atomic_read(&tmp_adev->gpu_reset_counter));
-+			dev_info(tmp_adev->dev, "GPU reset(%d) failed\n",
-+				 atomic_read(&tmp_adev->gpu_reset_counter));
- 			amdgpu_vf_error_put(tmp_adev, AMDGIM_ERROR_VF_GPU_RESET_FAIL, 0, r);
- 		} else {
--			dev_info(tmp_adev->dev, "GPU reset(%d) succeeded!\n", atomic_read(&tmp_adev->gpu_reset_counter));
-+			dev_info(tmp_adev->dev, "GPU reset(%d) succeeded!\n",
-+				 atomic_read(&tmp_adev->gpu_reset_counter));
+ 			stream->psr_version = dmcu->dmcu_version.psr_version;
+-			mod_build_vsc_infopacket(stream,
+-					&stream->vsc_infopacket,
+-					&stream->use_vsc_sdp_for_colorimetry);
++
++			//
++			// should decide stream support vsc sdp colorimetry capability
++			// before building vsc info packet
++			//
++			stream->use_vsc_sdp_for_colorimetry = false;
++			if (aconnector->dc_sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT_MST) {
++				stream->use_vsc_sdp_for_colorimetry =
++					aconnector->dc_sink->is_vsc_sdp_colorimetry_supported;
++			} else {
++				if (stream->link->dpcd_caps.dpcd_rev.raw >= 0x14 &&
++					stream->link->dpcd_caps.dprx_feature.bits.VSC_SDP_COLORIMETRY_SUPPORTED) {
++					stream->use_vsc_sdp_for_colorimetry = true;
++				}
++			}
++			mod_build_vsc_infopacket(stream, &stream->vsc_infopacket);
  		}
  	}
+ finish:
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 8ff25b5dd2f6d..4afe33c6aeb5b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1019,6 +1019,8 @@ struct dc_sink {
  
+ 	struct dc_sink_dsc_caps sink_dsc_caps;
+ 
++	bool is_vsc_sdp_colorimetry_supported;
++
+ 	/* private to DC core */
+ 	struct dc_link *link;
+ 	struct dc_context *ctx;
+diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h b/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h
+index 42cbeffac6402..13c57ff2abdce 100644
+--- a/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h
++++ b/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h
+@@ -34,8 +34,7 @@ struct dc_info_packet;
+ struct mod_vrr_params;
+ 
+ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
+-		struct dc_info_packet *info_packet,
+-		bool *use_vsc_sdp_for_colorimetry);
++		struct dc_info_packet *info_packet);
+ 
+ void mod_build_hf_vsif_infopacket(const struct dc_stream_state *stream,
+ 		struct dc_info_packet *info_packet, int ALLMEnabled, int ALLMValue);
+diff --git a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
+index 6a8a056424b85..cff3ab15fc0cc 100644
+--- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
++++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
+@@ -130,8 +130,7 @@ enum ColorimetryYCCDP {
+ };
+ 
+ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
+-		struct dc_info_packet *info_packet,
+-		bool *use_vsc_sdp_for_colorimetry)
++		struct dc_info_packet *info_packet)
+ {
+ 	unsigned int vsc_packet_revision = vsc_packet_undefined;
+ 	unsigned int i;
+@@ -139,11 +138,6 @@ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
+ 	unsigned int colorimetryFormat = 0;
+ 	bool stereo3dSupport = false;
+ 
+-	/* Initialize first, later if infopacket is valid determine if VSC SDP
+-	 * should be used to signal colorimetry format and pixel encoding.
+-	 */
+-	*use_vsc_sdp_for_colorimetry = false;
+-
+ 	if (stream->timing.timing_3d_format != TIMING_3D_FORMAT_NONE && stream->view_format != VIEW_3D_FORMAT_NONE) {
+ 		vsc_packet_revision = vsc_packet_rev1;
+ 		stereo3dSupport = true;
+@@ -153,9 +147,8 @@ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
+ 	if (stream->psr_version != 0)
+ 		vsc_packet_revision = vsc_packet_rev2;
+ 
+-	/* Update to revision 5 for extended colorimetry support for DPCD 1.4+ */
+-	if (stream->link->dpcd_caps.dpcd_rev.raw >= 0x14 &&
+-			stream->link->dpcd_caps.dprx_feature.bits.VSC_SDP_COLORIMETRY_SUPPORTED)
++	/* Update to revision 5 for extended colorimetry support */
++	if (stream->use_vsc_sdp_for_colorimetry)
+ 		vsc_packet_revision = vsc_packet_rev5;
+ 
+ 	/* VSC packet not needed based on the features
+@@ -269,13 +262,6 @@ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
+ 
+ 		info_packet->valid = true;
+ 
+-		/* If we are using VSC SDP revision 05h, use this to signal for
+-		 * colorimetry format and pixel encoding. HW should later be
+-		 * programmed to set MSA MISC1 bit 6 to indicate ignore
+-		 * colorimetry format and pixel encoding in the MSA.
+-		 */
+-		*use_vsc_sdp_for_colorimetry = true;
+-
+ 		/* Set VSC SDP fields for pixel encoding and colorimetry format from DP 1.3 specs
+ 		 * Data Bytes DB 18~16
+ 		 * Bits 3:0 (Colorimetry Format)        |  Bits 7:4 (Pixel Encoding)
 -- 
 2.20.1
 
