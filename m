@@ -2,89 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35A051A6458
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2020 10:54:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05B681A656C
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2020 12:57:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB8786E419;
-	Mon, 13 Apr 2020 08:54:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75E5D89BBE;
+	Mon, 13 Apr 2020 10:57:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2060.outbound.protection.outlook.com [40.107.92.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23C136E419
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 08:54:17 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2058.outbound.protection.outlook.com [40.107.220.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3E2689BBE
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Apr 2020 10:57:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LHO1Ymddclvq6mLH6+XSWLHDNtRq38/V+kDfFJvMz0jMDLosSJI+0MmLJJM7bHqqIiPnvG60aPyCi/4UrZDABGrDq8yOcrRC0SxFUGk/Oc4h/8Vkbw5T9LCqHYiex3THK2VvKH+M/iLkS5dxmottd9PJGlaN0vr5UcB3X9vJWhpM3GmwQWtFPAt3xq/NlhLNm7Wk3O9ezh6hoNwcdyX5GJOysD0qyB/n53zqLw2I/hrTgKfbUDAdD/dAOKL/VVK8vQR7jlnN0u5oSoKpCdLSwhZcH6CmaCouiAsfhDVLvjGJFRWBm0mEb8Q/O90LT2N4HJxMO3eZHnmTDpZuBA1O1Q==
+ b=MBaxhOBZ2GAgj9oscnWF+UOaNRqvlRIPt36lBvJ3HSAr2NnrM3r2kTXqUaSfNquh0R3++eVhNt27Il7/bsXGgCRXbakMEDXhswbvQ9TUm0bKn4ZxsafgeVaGiJMsbT2pDIf4vK56qOVto6J9pA5mtjqn66kj2vQ4QHn5MoUEvxg288WwiwNZZpaMVok0NHyyjdAUkL0K6Ew4JJFSSI7pgQIouLm6YH8XWyGhf4E4GIeHqJvaQPlro2Qv/w6p9W4yvu3oOI/Nsw9zYWsZlKf7/7kZtJhtqyyXLFHt1ukoVOCqLuBp6TUZ/apwvGSnpcEod9G//k1SsGhZaFRo9jXCKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xvXHVKvWdAKZMxttQbvjpZAL58IPhr97MNMi1gpa3hA=;
- b=OPPkukj1stnqMOdGRgTEjQXGiLJJRC5E2CspUx8ywro+q/64wiO/nNnvtDcoIJHAx4i0aBsuXwoKUXDOd/yubitHxvATHhiuQ//9gNpGtiy5FAuC+e8Eo9m56gYgmaOlmj0LKQ73g1Zm63iuamYH7dTF3rrWkQxRDWy2gVYuaIRtMWU8UnVE0+Ak0tvB+klfODI9YLdztR9q4epo7ZPMajgzy95oRSgWFOwRPFOqhb6Y4r5n0sxm9dn9dMM8Cn3AWDFDRmk0FD5GfH/6PeJc78br/ynR9QNj3nzMrdc2y+CLHalUWTKSX2u9ZCFB10HfmyztKjBv+bduhvEfisKTnw==
+ bh=pJqd5rP5xA393PWkH/17tMQY3T66a5NR4nL1yclO3dc=;
+ b=OAepZpXfvSWSYwQuz3kcJJdGPDQo+24/yZCjgQcXmrx6kib2FMijFRhgoQf+rFmdgzmIeU5UD6DtKzJEV31yudEbQlmhaN57RO2gz2w9AHasNRPV44r0SzE4QAxa9wDVd1seMbrIO4lVRBBqZeFdGBfg09B93+HmoIIJqoFd1WnHpaURS3MiAwqUo1DPsVSofub9ZlHuk/gHZzcZYzs7gbEXmyMKSg0C/XKRStNulwbnwjvOc2BwAtv/jW7InBcdm0/uLo7KMsVYHdbKsUX1s+j74e8JKnGtiRy86Qj6ceru6+Xm+JSTL3vhlHPat5XuiCFZd6bPEoyPjdAtuYbP7g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xvXHVKvWdAKZMxttQbvjpZAL58IPhr97MNMi1gpa3hA=;
- b=ok4dB+1Td5GRcXRL5LlWbiO0V01q33e1aFUcu05LaIiqaxLQkKme64yO50xKZUaMu+V3hm/bQjUnvxRyIsPqqYQxRgD6/3mt5SKeDu1nNm3M4lVA8nlK7f3TAm1BKdqn3LE6GUa/lUdj48LECEHrUWG4E4d6vOlzfjOYO8ozVAU=
+ bh=pJqd5rP5xA393PWkH/17tMQY3T66a5NR4nL1yclO3dc=;
+ b=BQR/8hAAsbb53X1ZN2AzPAGUyaKDS2iP3aV65u71fsyfIo4sJRqKxOWXD2FikaRlqB2RpqoZF3/FJiO3hLVcjYOBdOj38HtsZbXUTYlTR56orw+wmBd/KASM8H7NVGP6+X6IzE0zxyhQbNRG4yU/+aXUUvWmdQwp4lDVYctuKkk=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Evan.Quan@amd.com; 
 Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
- DM6PR12MB3241.namprd12.prod.outlook.com (2603:10b6:5:186::25) with
+ DM6PR12MB2844.namprd12.prod.outlook.com (2603:10b6:5:45::32) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2900.24; Mon, 13 Apr 2020 08:54:15 +0000
+ 15.20.2900.28; Mon, 13 Apr 2020 10:57:01 +0000
 Received: from DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::5c27:185c:be20:1fb6]) by DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::5c27:185c:be20:1fb6%5]) with mapi id 15.20.2900.028; Mon, 13 Apr 2020
- 08:54:15 +0000
+ 10:57:01 +0000
 From: Evan Quan <evan.quan@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amd/powerplay: bump the NAVI10 smu-driver if version
-Date: Mon, 13 Apr 2020 16:53:47 +0800
-Message-Id: <20200413085347.590-2-evan.quan@amd.com>
+Subject: [PATCH] drm/amd/powerplay: update Arcturus smu-driver if header
+Date: Mon, 13 Apr 2020 18:56:41 +0800
+Message-Id: <20200413105641.15276-1-evan.quan@amd.com>
 X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200413085347.590-1-evan.quan@amd.com>
-References: <20200413085347.590-1-evan.quan@amd.com>
-X-ClientProxiedBy: HK2PR0302CA0015.apcprd03.prod.outlook.com
- (2603:1096:202::25) To DM6PR12MB2619.namprd12.prod.outlook.com
+X-ClientProxiedBy: HK2PR0401CA0021.apcprd04.prod.outlook.com
+ (2603:1096:202:2::31) To DM6PR12MB2619.namprd12.prod.outlook.com
  (2603:10b6:5:45::18)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from equan-buildpc.amd.com (180.167.199.189) by
- HK2PR0302CA0015.apcprd03.prod.outlook.com (2603:1096:202::25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2921.12 via Frontend Transport; Mon, 13 Apr 2020 08:54:14 +0000
+ HK2PR0401CA0021.apcprd04.prod.outlook.com (2603:1096:202:2::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.15 via Frontend
+ Transport; Mon, 13 Apr 2020 10:56:59 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [180.167.199.189]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 28aabd42-87e9-4c1e-bfb0-08d7df883e9e
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3241:|DM6PR12MB3241:
+X-MS-Office365-Filtering-Correlation-Id: b877c4f0-a9d8-4ce2-ccf7-08d7df99648c
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2844:|DM6PR12MB2844:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB32413B517E3E807A171F00AAE4DD0@DM6PR12MB3241.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:983;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB284487B9D6E400616A6C64CEE4DD0@DM6PR12MB2844.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:361;
 X-Forefront-PRVS: 037291602B
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(10009020)(4636009)(376002)(366004)(346002)(136003)(396003)(39860400002)(66946007)(66476007)(478600001)(16526019)(186003)(1076003)(316002)(4744005)(5660300002)(2616005)(66556008)(6666004)(52116002)(44832011)(7696005)(6916009)(956004)(86362001)(26005)(8936002)(6486002)(8676002)(36756003)(2906002)(4326008)(81156014);
+ SFS:(10009020)(4636009)(346002)(376002)(396003)(136003)(366004)(39860400002)(66556008)(66476007)(5660300002)(1076003)(2906002)(66946007)(44832011)(956004)(316002)(6666004)(6486002)(2616005)(86362001)(8676002)(4326008)(81156014)(26005)(36756003)(8936002)(186003)(16526019)(52116002)(478600001)(7696005)(6916009);
  DIR:OUT; SFP:1101; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: W0Wo0pbLRndnzVq3lv9rBL7MW72cHrWnkRIG+a4AL+6yG/j8nKTgYfK+Vxv1zxTZTq3RP7Cl4X+3CQRL0thlpOvyNEYHIZ+lohGepxY5hw8OKKkfi+8AhpSNgAbRVzhd+usnDZMy1W4tY3L3iFpSJKjADRx2NRi0SYjk9HHrWEsWU+xzfNZv7qYiD4MyEhLbATwCgyoCHp8a3MdKhQ20Y9/u1BHyl33yxGGDE8kPKaD/fglm/x6liJYcce/ZwmMp3B90c6p+ohdk6Hw4CBDkMMrZehTCUjyspKqS0FonX8A8vzjCSvI5lrzal874ClmPmoB8LH+KhmNlVQpH3FAyF4ef7RVdcFu3RECmH40NlDrVZTVU0F0FMGQ6DZ2l5fgWQicXHqZjCxvly1tjrZAIQU/JJ+ITgpe99+ftdvahakK5p/WmxUqjW7WdoSO31e8t
-X-MS-Exchange-AntiSpam-MessageData: jgxp+Qf83eUkAJZmvjXyvAk1Vn6ldsPkLXFzic6R+od/4PelRCQxYRIp5GVnsnQnlJVWS5zUIRpZM3gQHBeOvWcnrr0g1eZwoXb3ppQdDUd3qc9edhh02dBhzoLTvv1CW0Zu/P6OLHLx7XvW2ea20Q==
+X-Microsoft-Antispam-Message-Info: PElkPUN8XIMvrMkCZTrOPboXJ3ew4oqOjnl66euxXYFKb0b8KTaVYwBDBKh+bAd5ya9aUujg7UQeb6yxqNUDakLqsWpUrSCyPqqptq02uA0I6G1KpoSvRD1hJhtRaSuyOd5LZEi6e8sapc+iMW5uZ/3I5b/JB9noaIF99v8XcS89jEe3Snup4aex3x6axOUv916UPINhet/Gi5iroIkgKqCDlrq4orHaH/gtSmx2Y4eRCirCiRmUq1L65qGMs8sNTT3k+sL/LDhNS3HAy81eDnZCQeRTG1BeV8HKrO6CxXiEMTSUVh/P8S0Pw8uy+yZymdGk1tfuMBzm7l8EWWLbjnU+Ah6957+JyBYyUj1K9+QCuPjGnnTJmNs3p/rQuMJoCqxY5je/lBx/EIHg0dxZsMaysrCYJQ1ohZK4b1inj/aMI2/ySF/73TRWzw58Mom0
+X-MS-Exchange-AntiSpam-MessageData: LctqmhBa2CGMzuCDMEdvCaxcEkGIXFyqrTwiH4KYYXzcBkSDvg1x15ACj4MT5jfz2kIghxRllZNblQ1M2Myl0rpEyBGuFwVsXAnB+W9kEgkKaPFzRxqe6vmLTQta7S5l8El5ZAkhlCeUrQV3wG8lvw==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28aabd42-87e9-4c1e-bfb0-08d7df883e9e
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2020 08:54:15.9309 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b877c4f0-a9d8-4ce2-ccf7-08d7df99648c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2020 10:57:01.0341 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pZ/UFAzfPzGPgH6D4sqBS5Qpx2W7c15YrFZwf2hKlUJtgPyI71NuHQCYbX1/N9wM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3241
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9zvHB1jgWD/55DoqCMv6bL3YcBz9XsHbboNSJtHTnHbLMgeoduXf1RdyF5OW0sXf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2844
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,35 +95,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Evan Quan <evan.quan@amd.com>,
- kenneth.feng@amd.com
+Cc: Evan Quan <evan.quan@amd.com>, kenneth.feng@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-To fit the latest SMC firmware 42.53 and eliminate the
-warning on driver loading.
+To fit the latest PMFW.
 
-Change-Id: I3f524d03e53ec6778b7118ef72652a538eec4ace
+Change-Id: I1ebc5a4c3386e07a9fed73e4bec2c5d1ab8d4b23
 Signed-off-by: Evan Quan <evan.quan@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../amd/powerplay/inc/smu11_driver_if_arcturus.h  | 15 +++++++++++++--
+ drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h     |  2 +-
+ 2 files changed, 14 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu11_driver_if_arcturus.h b/drivers/gpu/drm/amd/powerplay/inc/smu11_driver_if_arcturus.h
+index ce5b5011c122..8b82059d97e7 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/smu11_driver_if_arcturus.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/smu11_driver_if_arcturus.h
+@@ -82,8 +82,8 @@
+ // Other
+ #define FEATURE_OUT_OF_BAND_MONITOR_BIT 24
+ #define FEATURE_TEMP_DEPENDENT_VMIN_BIT 25
++#define FEATURE_PER_PART_VMIN_BIT       26
+ 
+-#define FEATURE_SPARE_26_BIT            26
+ #define FEATURE_SPARE_27_BIT            27
+ #define FEATURE_SPARE_28_BIT            28
+ #define FEATURE_SPARE_29_BIT            29
+@@ -154,6 +154,7 @@
+ 
+ #define FEATURE_OUT_OF_BAND_MONITOR_MASK  (1 << FEATURE_OUT_OF_BAND_MONITOR_BIT   )
+ #define FEATURE_TEMP_DEPENDENT_VMIN_MASK  (1 << FEATURE_TEMP_DEPENDENT_VMIN_BIT )
++#define FEATURE_PER_PART_VMIN_MASK        (1 << FEATURE_PER_PART_VMIN_BIT        )
+ 
+ 
+ //FIXME need updating
+@@ -628,8 +629,14 @@ typedef struct {
+   uint16_t BasePerformanceFrequencyCap;   //In Mhz
+   uint16_t MaxPerformanceFrequencyCap;    //In Mhz
+ 
++  // Per-Part Vmin
++  uint16_t VDDGFX_VminLow;        // mv Q2
++  uint16_t VDDGFX_TVminLow;       //Celcius
++  uint16_t VDDGFX_VminLow_HiTemp; // mv Q2
++  uint16_t VDDGFX_VminLow_LoTemp; // mv Q2
++
+   // SECTION: Reserved
+-  uint32_t     Reserved[9];
++  uint32_t     Reserved[7];
+ 
+   // SECTION: BOARD PARAMETERS
+ 
+@@ -869,6 +876,10 @@ typedef struct {
+   uint8_t   Mem_DownHystLimit;
+   uint16_t  Mem_Fps;
+ 
++  uint32_t  BusyThreshold;                  // Q16
++  uint32_t  BusyHyst;
++  uint32_t  IdleHyst;
++
+   uint32_t  MmHubPadding[8]; // SMU internal use
+ } DpmActivityMonitorCoeffInt_t;
+ 
 diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
-index 674e426ed59b..e786d63b1e79 100644
+index e786d63b1e79..464d40983de9 100644
 --- a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
 +++ b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
-@@ -28,7 +28,7 @@
+@@ -27,7 +27,7 @@
+ 
  #define SMU11_DRIVER_IF_VERSION_INV 0xFFFFFFFF
  #define SMU11_DRIVER_IF_VERSION_VG20 0x13
- #define SMU11_DRIVER_IF_VERSION_ARCT 0x12
--#define SMU11_DRIVER_IF_VERSION_NV10 0x35
-+#define SMU11_DRIVER_IF_VERSION_NV10 0x36
+-#define SMU11_DRIVER_IF_VERSION_ARCT 0x12
++#define SMU11_DRIVER_IF_VERSION_ARCT 0x14
+ #define SMU11_DRIVER_IF_VERSION_NV10 0x36
  #define SMU11_DRIVER_IF_VERSION_NV12 0x33
  #define SMU11_DRIVER_IF_VERSION_NV14 0x36
- 
 -- 
 2.26.0
 
