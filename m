@@ -2,44 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D922B1A7BB3
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2020 15:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61ED11A7A4E
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2020 14:05:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D48B6E4CB;
-	Tue, 14 Apr 2020 13:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 863676E0D5;
+	Tue, 14 Apr 2020 12:05:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 383 seconds by postgrey-1.36 at gabe;
- Tue, 14 Apr 2020 11:41:50 UTC
-Received: from m17618.mail.qiye.163.com (m17618.mail.qiye.163.com
- [59.111.176.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 745AE89A0E;
- Tue, 14 Apr 2020 11:41:50 +0000 (UTC)
-Received: from ubuntu.localdomain (unknown [157.0.31.122])
- by m17618.mail.qiye.163.com (Hmail) with ESMTPA id 8F71F4E1434;
- Tue, 14 Apr 2020 19:35:23 +0800 (CST)
-From: Bernard Zhao <bernard@vivo.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "David (ChunMing) Zhou" <David1.Zhou@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Felix Kuehling <Felix.Kuehling@amd.com>, Bernard Zhao <bernard@vivo.com>,
- Xiaojie Yuan <xiaojie.yuan@amd.com>, Oak Zeng <Oak.Zeng@amd.com>,
- Sam Ravnborg <sam@ravnborg.org>, Alex Sierra <alex.sierra@amd.com>,
- Huang Rui <ray.huang@amd.com>, Kent Russell <kent.russell@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] Optimized division operation to shift operation
-Date: Tue, 14 Apr 2020 04:35:08 -0700
-Message-Id: <1586864113-30682-1-git-send-email-bernard@vivo.com>
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770041.outbound.protection.outlook.com [40.107.77.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96C056E0D5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 12:05:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e9Aph4wtAS4GYBaOcV79rqu6s8y3wHPweoUD7Rdfr+mCg/GQS50qZ2g+KEXM2LjuFB/cfWszuQP/MGxJ+G7AcBY+DubOvJS6zFcHdMreznp0kJ+32nDQ36Ypv5A66lUnCEEG7GnwoyS+gHdjIFCuCjl9yKFGLZcll1KBu1PuLf6GoEKd3h15jrlxD9cmYZPb5ewCXc+AJe6WzASK8UyL4wF1nu5y/jbljEWLHIErTfzI0hXTu4M25xaWYT2iUFhy5YXjVk65LBvdLEdSMBx5C3Nco5tzkkgLsP8FD9X1Nro+j/cq4pSH8MJ1GHs33415vwE8PmtK7jS/VSveBeY7uA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yg9zbVSQpLtorRQh5EoGiA52jMsPyycCRODQz4eur6c=;
+ b=AAZLML0xt2G4Owe6MeEYmC7V22DGr+bFN+mSOObH6Tx7joPgB4aOU0+hGgdikn46fZdr+DtniDj4cM0At/ScOcRkYmcS4kVzhyX28Rh0tY44e9pmDm4cRyW709aectNMpkJPt6YkiZwOwFp/OrgdzdwTUh/cnvBbwewkm7+ozgRbjI3dT8j2JuWYmzf6xksWvE6bn6/u8i2ptgA8y40774IEcQpiWWFbGsdJ5vfxu8MDV/M76a4SDWDzVgPI9+oFwV80hWvE/6kz20CKO8mzVn9tBaHNAkStRcaGzPwDtWU/BOyMO4NVjOEVqeoL8HZUtYO1oSuWeLGd6be4YoxhjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yg9zbVSQpLtorRQh5EoGiA52jMsPyycCRODQz4eur6c=;
+ b=n2bOZHPevudPuGE3iwWv1+PETXWcMPAiNsjzOOp1aO9Q4AvGI9mHeDi7qSzWRnlsejutuBVIiNjrqDMOEo1wLFT+6avMfhYW9d9p69kppeD9or60iBUYDhe42LJBpkV4B3jP8hXMOi22KQz8YH+wEyhgFTzPUSXQGQi6Vm8T4dI=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=James.Zhu@amd.com; 
+Received: from DM5PR12MB2517.namprd12.prod.outlook.com (2603:10b6:4:bb::13) by
+ DM5PR12MB1499.namprd12.prod.outlook.com (2603:10b6:4:8::21) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2900.17; Tue, 14 Apr 2020 12:05:21 +0000
+Received: from DM5PR12MB2517.namprd12.prod.outlook.com
+ ([fe80::5cda:77e2:a6d3:7135]) by DM5PR12MB2517.namprd12.prod.outlook.com
+ ([fe80::5cda:77e2:a6d3:7135%5]) with mapi id 15.20.2900.028; Tue, 14 Apr 2020
+ 12:05:21 +0000
+From: James Zhu <James.Zhu@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu/vcn: fix gfxoff issue
+Date: Tue, 14 Apr 2020 08:05:13 -0400
+Message-Id: <1586865913-11415-1-git-send-email-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.7.4
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZT1VOS01LS0tLT0pCTUpNTFlXWShZQU
- hPN1dZLVlBSVdZCQ4XHghZQVk1NCk2OjckKS43PlkG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nxw6Ajo*Tjg1TwoNNAg1Fz4v
- Lk0KFDJVSlVKTkNNQ01PSklIQk5OVTMWGhIXVRkeCRUaCR87DRINFFUYFBZFWVdZEgtZQVlKTkxV
- S1VISlVKSUlZV1kIAVlBT0NPSTcG
-X-HM-Tid: 0a717878efd19376kuws8f71f4e1434
-X-Mailman-Approved-At: Tue, 14 Apr 2020 13:05:05 +0000
+X-ClientProxiedBy: YTOPR0101CA0030.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:15::43) To DM5PR12MB2517.namprd12.prod.outlook.com
+ (2603:10b6:4:bb::13)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from work_495456.amd.com (165.204.55.251) by
+ YTOPR0101CA0030.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::43) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.2900.15 via Frontend
+ Transport; Tue, 14 Apr 2020 12:05:19 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [165.204.55.251]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: eba36fd3-90d5-4e8f-9445-08d7e06c1a31
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1499:|DM5PR12MB1499:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1499C7CC038B402021087FB2E4DA0@DM5PR12MB1499.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:346;
+X-Forefront-PRVS: 0373D94D15
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB2517.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(136003)(376002)(366004)(39860400002)(346002)(396003)(186003)(956004)(2616005)(6916009)(2906002)(478600001)(6486002)(5660300002)(26005)(4326008)(8676002)(8936002)(81156014)(52116002)(4744005)(7696005)(86362001)(16526019)(66946007)(66556008)(6666004)(316002)(66476007)(36756003);
+ DIR:OUT; SFP:1101; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hBoavVqJ/iq5Ep+x4axEUfPvSSY5rr/0i4I2k2+BLHTyTPjodRbdkV/PfvHMhqTWS9Tm4Xp/tWRxFpfjUgVJ5Cdb4YE9A5q5bursgLqClTMUzkMwUCE6fXr8FvDAR4DSeZZMXYz3zqWwQ5w6UCVVtTbrOAiCAxGMApuSE9x8FzI86+EPvw/GiK/WsMtmqgkdbr7u3I+4NWTLO+PT554NXGHOyfbkwGLMGkbOsS9MNoVDY8EMqGNCdN7zPQwDoVbdWDAFovBZjWQXWCfksUmzox4kawNTcTBG5SOX3sIPRpyZjzLgE8JVD0ACBwYAdCj2SfekwyM2QRwN2JVZLIEZ0ngB+92dxFfahVAXZPO6yERaf0O2Co10+xPFEqcD5RPDO0uRUdLJ9MeXtdYtKSbPDFYsPR6jYT2P8CUkgnnXyOJpQoDADIQa+fpxhon87NFo
+X-MS-Exchange-AntiSpam-MessageData: UFd3XXjhDFePmwXcH1rHunGmP4/i+Bl1B3GUd/DgkcnSjP5+lbhGjpW6hRTltN8Av9dv8lX06EgvUF+mBkIjvaa8s81S7aU+IFB8aypkHlmoSl8tHQI6/J48Dlp0hT1aG3mUE2zEMECrS5KbGbHuzA==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eba36fd3-90d5-4e8f-9445-08d7e06c1a31
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2020 12:05:20.7255 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: i4FMXI1BdBdbL9hfK8FUjTgL4b8Yen4b7jfiuVZ1ZbmrL176xbMq2VFZEbNEQbRf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1499
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,76 +95,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel@vivo.com
-MIME-Version: 1.0
+Cc: jamesz@amd.com, Changfeng.Zhu@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On some processors, the / operate will call the compiler`s div lib,
-which is low efficient, We can replace the / operation with shift,
-so that we can replace the call of the division library with one
-shift assembly instruction.
+Turn off gfxoff control when vcn is gated.
 
-Signed-off-by: Bernard Zhao <bernard@vivo.com>
+Signed-off-by: James Zhu <James.Zhu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c | 4 ++--
- drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c | 4 ++--
- drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-index b205039..66cd078 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-@@ -175,10 +175,10 @@ static int gmc_v6_0_mc_load_microcode(struct amdgpu_device *adev)
- 	amdgpu_ucode_print_mc_hdr(&hdr->header);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+index dab34f6..aa9a7a5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+@@ -369,9 +369,11 @@ void amdgpu_vcn_ring_begin_use(struct amdgpu_ring *ring)
+ 	cancel_delayed_work_sync(&adev->vcn.idle_work);
  
- 	adev->gmc.fw_version = le32_to_cpu(hdr->header.ucode_version);
--	regs_size = le32_to_cpu(hdr->io_debug_size_bytes) / (4 * 2);
-+	regs_size = le32_to_cpu(hdr->io_debug_size_bytes) >> 3;
- 	new_io_mc_regs = (const __le32 *)
- 		(adev->gmc.fw->data + le32_to_cpu(hdr->io_debug_array_offset_bytes));
--	ucode_size = le32_to_cpu(hdr->header.ucode_size_bytes) / 4;
-+	ucode_size = le32_to_cpu(hdr->header.ucode_size_bytes) >> 2;
- 	new_fw_data = (const __le32 *)
- 		(adev->gmc.fw->data + le32_to_cpu(hdr->header.ucode_array_offset_bytes));
+ 	mutex_lock(&adev->vcn.vcn_pg_lock);
+-	amdgpu_gfx_off_ctrl(adev, false);
+-	amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VCN,
+-	       AMD_PG_STATE_UNGATE);
++	if (adev->vcn.cur_state == AMD_PG_STATE_GATE) {
++		amdgpu_gfx_off_ctrl(adev, false);
++		amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VCN,
++		       AMD_PG_STATE_UNGATE);
++	}
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-index 9da9596..ca26d63 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-@@ -193,10 +193,10 @@ static int gmc_v7_0_mc_load_microcode(struct amdgpu_device *adev)
- 	amdgpu_ucode_print_mc_hdr(&hdr->header);
- 
- 	adev->gmc.fw_version = le32_to_cpu(hdr->header.ucode_version);
--	regs_size = le32_to_cpu(hdr->io_debug_size_bytes) / (4 * 2);
-+	regs_size = le32_to_cpu(hdr->io_debug_size_bytes) >> 3;
- 	io_mc_regs = (const __le32 *)
- 		(adev->gmc.fw->data + le32_to_cpu(hdr->io_debug_array_offset_bytes));
--	ucode_size = le32_to_cpu(hdr->header.ucode_size_bytes) / 4;
-+	ucode_size = le32_to_cpu(hdr->header.ucode_size_bytes) >> 2;
- 	fw_data = (const __le32 *)
- 		(adev->gmc.fw->data + le32_to_cpu(hdr->header.ucode_array_offset_bytes));
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-index 27d83204..295039c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-@@ -318,10 +318,10 @@ static int gmc_v8_0_tonga_mc_load_microcode(struct amdgpu_device *adev)
- 	amdgpu_ucode_print_mc_hdr(&hdr->header);
- 
- 	adev->gmc.fw_version = le32_to_cpu(hdr->header.ucode_version);
--	regs_size = le32_to_cpu(hdr->io_debug_size_bytes) / (4 * 2);
-+	regs_size = le32_to_cpu(hdr->io_debug_size_bytes) >> 3;
- 	io_mc_regs = (const __le32 *)
- 		(adev->gmc.fw->data + le32_to_cpu(hdr->io_debug_array_offset_bytes));
--	ucode_size = le32_to_cpu(hdr->header.ucode_size_bytes) / 4;
-+	ucode_size = le32_to_cpu(hdr->header.ucode_size_bytes) >> 2;
- 	fw_data = (const __le32 *)
- 		(adev->gmc.fw->data + le32_to_cpu(hdr->header.ucode_array_offset_bytes));
- 
+ 	if (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)	{
+ 		struct dpg_pause_state new_state;
 -- 
 2.7.4
 
