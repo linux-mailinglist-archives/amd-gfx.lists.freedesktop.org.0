@@ -2,105 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 259B61A7187
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2020 05:11:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7A51A743A
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2020 09:06:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9592389CD4;
-	Tue, 14 Apr 2020 03:11:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 666C26E46C;
+	Tue, 14 Apr 2020 07:06:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770052.outbound.protection.outlook.com [40.107.77.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56D6889CD4
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Apr 2020 03:11:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NaIj+ilHYmBRkyPQaDUusrQVWPRC4TANeYDvCSA1bOzEBV1fAR7AZuVbwYVRXSDAE7sesD3PswXkJs14insnU1E2DYGryV/96D7+8v0kQOVCfG6OFzGavMdBKSo9cWrgmiLzuze1PLOiJw7GEHMmpvyLKV4N8ylJJAtlg6RvadbVqvsi2w+rabaeUkH0WtSTcpW6+dpgA8hyALTZP8WFybZ9y9YnEXivNTELnjP2zI//ThCVX/Uazh/wPTS4mcVFx8QywGinWbtcySZz7woUH6TZXWF0VM3Voz71Qxv4JAr/gX2z1LrORBPKyFFhJnlhLry/aVlXur72cq/ELtLxLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TrLJ6qc21/ajL/dC/EiP6cipZ5ThfgdWZjqYt4vMVPg=;
- b=FeAyJhCeN5b67l2+W3iB5ep8AH6fSg5CooMvuIJTyrPPiT5vaIgcNn5wA89OPx33DKIXM7fNe25BMIvurjTDZg5rdsfnaSS8oDvat0FO71rfcmtfv2LSoCZ5UTXwtWtJPt5lc2WvNT2h3jhdoANM049TZPPvjpwuW1HhvPM/DbHP7T7kpd8aGtRPj4xW0jyNJuqg0R4l/YKA+FECH+SepemzbaizTKRLn/3mocYweE4sLJoWdmH3ozn7yQrXBeWmJz1A1w4U5k+FCQOBlk07x5XF4nV0Ct9qbUaNWsYtEZ7FTLDylMHuCIBUNCaKru7knZUaa7j/teNWkckCvHnl7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TrLJ6qc21/ajL/dC/EiP6cipZ5ThfgdWZjqYt4vMVPg=;
- b=xjFxaxwb02LdU0pHmFBFz7pE2xLZD+HnOHEmddTfCY1r6MskaahmuNFSYrxX33YTrdPjunoCIjvaUk3MqrDh/Sgjj3fQJQlrZvCNMfXLS73dKyYVUIkKaByjcB7Hffb41+d/UQMU/Ris2Y/4RocukBy2or8yt7WoAHQiYsut+Go=
-Received: from MN2PR12MB3598.namprd12.prod.outlook.com (2603:10b6:208:d1::20)
- by MN2PR12MB3773.namprd12.prod.outlook.com (2603:10b6:208:164::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.26; Tue, 14 Apr
- 2020 03:11:29 +0000
-Received: from MN2PR12MB3598.namprd12.prod.outlook.com
- ([fe80::5178:7eda:e982:2871]) by MN2PR12MB3598.namprd12.prod.outlook.com
- ([fe80::5178:7eda:e982:2871%5]) with mapi id 15.20.2900.028; Tue, 14 Apr 2020
- 03:11:29 +0000
-From: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-To: "Quan, Evan" <Evan.Quan@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 2/2] drm/amd/powerplay: bump the NAVI10 smu-driver if
- version
-Thread-Topic: [PATCH 2/2] drm/amd/powerplay: bump the NAVI10 smu-driver if
- version
-Thread-Index: AQHWEXEcKNfAflWKzkmj+YcIRg4/k6h38d0A
-Date: Tue, 14 Apr 2020 03:11:28 +0000
-Message-ID: <MN2PR12MB3598B9A313C31F31E5F27C0F8EDA0@MN2PR12MB3598.namprd12.prod.outlook.com>
-References: <20200413085347.590-1-evan.quan@amd.com>
- <20200413085347.590-2-evan.quan@amd.com>
-In-Reply-To: <20200413085347.590-2-evan.quan@amd.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-04-14T03:11:27Z; 
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
- Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=655d20ff-8352-49c4-9060-00006795509f;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=1
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-04-14T03:11:27Z
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
- Unrestricted
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: e7859c6d-b93e-4d20-829a-0000e7ff26a9
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Kenneth.Feng@amd.com; 
-x-originating-ip: [240e:e0:8f58:a400:eca4:7196:e5b9:a351]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: ad3ac3cc-2f98-4fcc-823d-08d7e0218673
-x-ms-traffictypediagnostic: MN2PR12MB3773:|MN2PR12MB3773:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB3773B41368DD37539DB7D8AF8EDA0@MN2PR12MB3773.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1201;
-x-forefront-prvs: 0373D94D15
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3598.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10009020)(4636009)(366004)(346002)(376002)(39860400002)(136003)(396003)(81156014)(8936002)(186003)(4326008)(86362001)(478600001)(55016002)(9686003)(7696005)(8676002)(2906002)(110136005)(316002)(66556008)(66476007)(66446008)(64756008)(71200400001)(53546011)(33656002)(6506007)(5660300002)(76116006)(66946007)(52536014);
- DIR:OUT; SFP:1101; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iQt59HGXQN87WsKlK43lsmwVDncdztYVSu1uGrVk9784WQk84zIqmRONPE69XkzhYcgnmXHUOQaZAMbTH8WmB2mUOBaqrDZ4KnZfd16BClAcJqm+8oUfbaNKs3IBC/baSxIFCB3E4zYicevtm+bfgtIrruFj5vLivUSGeV3Yfw0W7jl7q7C+MqN3HEcbZwBpLFUgp8OvRjtr7by4l/1kM5I5IjpX8yLfvMZRAXebP1K+MaIirTRt6V5ByNoIKPsmuqg3tbAkorxduQ4ChKAh10cIIT9yMxPEAksVUuMMjQHy40R+4ws1VC5hYOTv5KvYLmc7pEambtYH6XPhes5yR6IL+Hugm/LSI6Cl8qp45OGTcBLmyBq6KK0MFDMK2JXZRYPBbtqr+psZTuHijetoI95Mn4fRwyfxnM0EEOEvqpEO1F9N2NU/pHVG5FqwrPkf
-x-ms-exchange-antispam-messagedata: NePKHsWVre8Ko7Q9T92eCUwZNfXVv3uaGkD2+6rb4jnF5jSOSwOePO3+EGkWYXdIFgLuFT3VAjtWMzDuf+WJgg384TESim+QYldwKXeOTXIsQZ+OM02RZQp0Qw5PuqNityEDCEubMdbG1JO0zxok1nrTT2pgFNxpDo0xxuOBAPWHERhWg056B7JGQbuAW4a6LeNC7H3yO+s0ipNUXQKweQ==
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E89D6E456;
+ Tue, 14 Apr 2020 07:00:19 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 024D068BEB; Tue, 14 Apr 2020 09:00:13 +0200 (CEST)
+Date: Tue, 14 Apr 2020 09:00:13 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Yan Zhao <yan.y.zhao@intel.com>
+Subject: Re: [PATCH 2/6] i915/gvt/kvm: a NULL ->mm does not mean a thread
+ is a kthread
+Message-ID: <20200414070013.GA23680@lst.de>
+References: <20200404094101.672954-1-hch@lst.de>
+ <20200404094101.672954-3-hch@lst.de>
+ <20200407030845.GA10586@joy-OptiPlex-7040> <20200413132730.GB14455@lst.de>
+ <20200414000410.GE10586@joy-OptiPlex-7040>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad3ac3cc-2f98-4fcc-823d-08d7e0218673
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2020 03:11:28.9094 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 96LFdEp4DLIhluoTDjPpRram9oRBeIf1bPLr3A4zMsyYUrnOaVZtzeitmCG0B1be
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3773
+Content-Disposition: inline
+In-Reply-To: <20200414000410.GE10586@joy-OptiPlex-7040>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Mailman-Approved-At: Tue, 14 Apr 2020 07:06:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,43 +40,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: Jens Axboe <axboe@kernel.dk>, Felipe Balbi <balbi@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ "Michael S. Tsirkin" <mst@redhat.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Jason Wang <jasowang@redhat.com>, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ io-uring@vger.kernel.org, linux-mm@kvack.org,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ virtualization@lists.linux-foundation.org, intel-gvt-dev@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>, Zhi Wang <zhi.a.wang@intel.com>,
+ Al Viro <viro@zeniv.linux.org.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
+On Mon, Apr 13, 2020 at 08:04:10PM -0400, Yan Zhao wrote:
+> > I can't think of another way for a kernel thread to have a mm indeed.
+> for example, before calling to vfio_dma_rw(), a kernel thread has already
+> called use_mm(), then its current->mm is not null, and it has flag
+> PF_KTHREAD.
+> in this case, we just want to allow the copy_to_user() directly if
+> current->mm == mm, rather than call another use_mm() again.
+> 
+> do you think it makes sense?
 
-Reviewed-by: Kenneth Feng <kenneth.feng@amd.com>
-
-
------Original Message-----
-From: Quan, Evan <Evan.Quan@amd.com> 
-Sent: Monday, April 13, 2020 4:54 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>; Quan, Evan <Evan.Quan@amd.com>
-Subject: [PATCH 2/2] drm/amd/powerplay: bump the NAVI10 smu-driver if version
-
-To fit the latest SMC firmware 42.53 and eliminate the warning on driver loading.
-
-Change-Id: I3f524d03e53ec6778b7118ef72652a538eec4ace
-Signed-off-by: Evan Quan <evan.quan@amd.com>
----
- drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
-index 674e426ed59b..e786d63b1e79 100644
---- a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
-+++ b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
-@@ -28,7 +28,7 @@
- #define SMU11_DRIVER_IF_VERSION_INV 0xFFFFFFFF  #define SMU11_DRIVER_IF_VERSION_VG20 0x13  #define SMU11_DRIVER_IF_VERSION_ARCT 0x12 -#define SMU11_DRIVER_IF_VERSION_NV10 0x35
-+#define SMU11_DRIVER_IF_VERSION_NV10 0x36
- #define SMU11_DRIVER_IF_VERSION_NV12 0x33  #define SMU11_DRIVER_IF_VERSION_NV14 0x36
- 
---
-2.26.0
+I mean no other way than using use_mm.  That being said nesting
+potentional use_mm callers sounds like a rather bad idea, and we
+should avoid that.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
