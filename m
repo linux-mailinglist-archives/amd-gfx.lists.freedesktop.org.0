@@ -1,93 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C54AD1ACFDB
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2020 20:43:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5873D1AD040
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2020 21:23:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F9E26EA92;
-	Thu, 16 Apr 2020 18:43:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C45796E0D2;
+	Thu, 16 Apr 2020 19:23:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2070.outbound.protection.outlook.com [40.107.244.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 625936EA92
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 18:43:05 +0000 (UTC)
+ (mail-mw2nam12on2065.outbound.protection.outlook.com [40.107.244.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 984B26E0D2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 19:23:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RHpDrkDRgWsJgRdOZtgfDBQ+97TaUD3VwlaOYU5CmgIzwDkwMfYZHiPZ90MmARAYE3Pp0vfFbT25h0VakF/OKXSCbhP1Gw9CqmCsrexpg2Fl3kA3xA7Zr6tBWXamfYYIy8jgtIidEIDpdI5Z3er38XyE4dvJhYejD0HZl8NTKkcahz8jPZfnzzYPW1Eb4KJH3hpUviP09aSfDYGPCR6pLj0QKd62Joj0GWSfEeWw7sVrqvNMTTF5ED1bUVAAny0IDqLNmyoK44od3kJbOAAoSMSTKGz7JwI1c/oJ2FChB67WAWg6wtQdCyDg5lHVj3NH+qXFls4HHkuUTwOn0T95gg==
+ b=Qv1qIjLAoHZUzsuKlltrGLjAH3AVs87uSZbW8jO01BcfYWgWNLk7n24xtdhU5oj5ystr6ixQOH258NwHTrwLZC0Nc4i2NQNmxZxyShWpiUVUQvpJkXO6BayuTXY7TcwWXmBabEz/4U01FD2kNFhqI2PZdrsXF6mjtn2/EZkbN1eD+uQT2719s1YEwq0XaYeR5K9PpY+hRuP3vsT8EEQ2rTkoywfHyUJT/gCxnmTKQI2QNMHcztWaxZTXwdUeEhyExkvKtW71VzA1InXkhOEu5PJepUeYbRD2f4S7fPLq2QDzWCgOlyplYxOb1WfOgfFqEtwHKb/3Y/gflxXbcBiNGA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1K/wWAZ1xD/6wxwGB44apaYihCink27ENLcQLTgisOg=;
- b=QUnu/1VXU49atstmZvs20NmVBVgUr+0xEVewX60sqHTdlkBBs5OZC9ZRGyOtoPnoxfra2Ngvngn/LKT/4fXr8emg6DAFBaUHfK2RnyagAua6FX/Ijq7UFcm21l1KKPSD+rWMDLd/bNsoNsMnRgYGsNGEeEa0/gw9naIJ4ocdwJL4oZNBwxLRZxyvgoIx5/aix5Edi/gJYIl5mLcwGqA/rbVm0A12bCz4afCAHppmd68X6EvAe6/Kha87/d0g3Z6XnN0tg2S+RvwtLmoC6IyZjI+mlKfk3VjH6pm/jXkvNrHfFGCkZEH/pqtIZz8/Kp4v8OvnQwE/tN9r7RxZ5niIZQ==
+ bh=Q/oOdcNUn4Jh9Wm7ChL3Ih5DGNIMaWTpSVpZkCns9p8=;
+ b=h0gNV97kYe2fN+S0W9164fYJkR/7bv/XYRyVz56X6eTqC2LhnooUyhruIZRSKXoA02thCpiguci1AbnAjkwD6N08qOe1CjczXWpnLIsyw9rdzKzl5lW+mKH1Ul89ixPY3uwM5OJRLgHvMHjphjNjmhTribi/bKoDBAkcXQA5mfSbjcj7Spis+aUzEZ0hhFGSFb0wahgVe159iwW43Qa84OQuarxv8Dl6LkGTaDYP1RxaJRhE2lAt4L1SE31blZ0UNR16vGKobwHFgwrNYEJeu7f8j59mZr+aDB1bqF6PeK3RVukCTaaxfp3MJhOc1E+qQ/erMptAikY0mi1v/KKPkA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1K/wWAZ1xD/6wxwGB44apaYihCink27ENLcQLTgisOg=;
- b=McEo4EBpbFol9ES5mX5Tm9qPIoq+5wHh9xPLtAlzgiHbk20fkCYz3QANZQ0yo1flPb7RXT/8FVu6HwCtKWusJCwEPN2IumbCdqozyh4A60wB2knXMNEcJIaz7QzwtHkIr+srQf/dO4n2uSZAHRlmftZrfirdAtr53POvSsP6Q+8=
-Received: from MW3PR12MB4554.namprd12.prod.outlook.com (2603:10b6:303:55::21)
- by MW3PR12MB4364.namprd12.prod.outlook.com (2603:10b6:303:5c::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.17; Thu, 16 Apr
- 2020 18:43:04 +0000
-Received: from MW3PR12MB4554.namprd12.prod.outlook.com
- ([fe80::758f:7609:b573:448d]) by MW3PR12MB4554.namprd12.prod.outlook.com
- ([fe80::758f:7609:b573:448d%6]) with mapi id 15.20.2921.024; Thu, 16 Apr 2020
- 18:43:04 +0000
-From: "Lakha, Bhawanpreet" <Bhawanpreet.Lakha@amd.com>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Subject: Re: [bug report] drm/amd/display: Add HDCP module
-Thread-Topic: [bug report] drm/amd/display: Add HDCP module
-Thread-Index: AQHWE/JY6In4jWCQrE2xvM8YOwU6Qah8FUb+
-Date: Thu, 16 Apr 2020 18:43:04 +0000
-Message-ID: <MW3PR12MB455448E77485AFA60BB8F3F8F9D80@MW3PR12MB4554.namprd12.prod.outlook.com>
-References: <20200416132413.GA628534@mwanda>
-In-Reply-To: <20200416132413.GA628534@mwanda>
-Accept-Language: en-CA, en-US
-Content-Language: en-CA
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-04-16T18:43:03.179Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Bhawanpreet.Lakha@amd.com; 
-x-originating-ip: [99.252.25.5]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 64fe0042-efc7-410d-9274-08d7e235ff79
-x-ms-traffictypediagnostic: MW3PR12MB4364:
-x-microsoft-antispam-prvs: <MW3PR12MB43640E30248CD918747E2101F9D80@MW3PR12MB4364.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0375972289
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW3PR12MB4554.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10009020)(4636009)(39860400002)(366004)(376002)(136003)(396003)(346002)(66446008)(9686003)(52536014)(55016002)(76116006)(2906002)(64756008)(66556008)(66476007)(86362001)(66946007)(33656002)(7696005)(6916009)(478600001)(53546011)(81156014)(8676002)(71200400001)(26005)(4326008)(316002)(6506007)(5660300002)(8936002)(19627405001)(186003);
- DIR:OUT; SFP:1101; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KIMPIIg4YsTFsSQUbKKbhG4zmv3lz45/8cy4jKfhMquSY0FH/EC3FV1n9Q8OWod6jp7TmC5fwqMl7noJeKD9ZGrvC/0iEvA9F1BjiggfWpN9SH+f4dRZThE/AXnR2UQnmg6KqxOCpSPCZk4UnSjdeXAg0HiIjk05CLlOIOK/kVV/k0W92NahHF7v42pX7tK1b+CA1+Dn9m+l4wIYUOxd4DyUB6Nid9OF/3joGharkOWNxIiEowZkmbMWnef0BNnhYPuE2+eK0+wTdaypdbdmodTsoO76BrlJkgA8zMjIuJhnEMl7KZ+jNtwOibtoibgbANegP4AZvT93t0DvOoTVUB9TA/sZ7GF0SE4QnXkDQz3uyBmRDm8dBzj+6j4fiGSgmNmGvXjAnFiK8Z2u6i7RsOlu29Ahu1XiSjLrrgCpkSSj5mJJYKft21fTpt9vOVVa
-x-ms-exchange-antispam-messagedata: +afVBro7nZ9HWjqVFJ4u8o73DSFfwWmMHloqwylBRE+X32oHw93u7WUowUpR2m/UGzVhUVjVQDb49GWZfYjM3aCp0xq1z7S9+ahjYMnoNI+LwHJon+MxfDAPh34jPrTa9vTopqVQWEZCgzYoH5/k3w==
-x-ms-exchange-transport-forked: True
+ bh=Q/oOdcNUn4Jh9Wm7ChL3Ih5DGNIMaWTpSVpZkCns9p8=;
+ b=mse3TBsOza0AIb5W2DWebQ+KjIqw19jIK2sBcUTy2Mt4AldJGoXfVWFIrEVo11Q7lzdYd0Tm8WEQyYlHpLt+ZTFFyC0zwxGB9kznGZDqJiZkMIEPnqPrh+czG/0qBdO+PjLc6VQB2Mk0OcexDwI7XH5H/O9yArMRyDSrQPh4bEo=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Zhan.Liu@amd.com; 
+Received: from DM6PR12MB2971.namprd12.prod.outlook.com (2603:10b6:5:118::28)
+ by DM6PR12MB3803.namprd12.prod.outlook.com (2603:10b6:5:1ce::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.26; Thu, 16 Apr
+ 2020 19:23:44 +0000
+Received: from DM6PR12MB2971.namprd12.prod.outlook.com
+ ([fe80::20a0:763f:f871:29d7]) by DM6PR12MB2971.namprd12.prod.outlook.com
+ ([fe80::20a0:763f:f871:29d7%7]) with mapi id 15.20.2921.027; Thu, 16 Apr 2020
+ 19:23:44 +0000
+From: Zhan Liu <zhan.liu@amd.com>
+To: amd-gfx@lists.freedesktop.org,
+	zhan.liu@amd.com
+Subject: [PATCH] drm/amd/display: Remove aconnector condition check for dpcd
+ read
+Date: Thu, 16 Apr 2020 15:23:30 -0400
+Message-Id: <20200416192330.22317-1-zhan.liu@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: YTOPR0101CA0031.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:15::44) To DM6PR12MB2971.namprd12.prod.outlook.com
+ (2603:10b6:5:118::28)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from a.amd.com (165.204.54.211) by
+ YTOPR0101CA0031.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::44) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25 via Frontend
+ Transport; Thu, 16 Apr 2020 19:23:44 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.54.211]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 5706573f-ebc1-4b2f-7b0d-08d7e23badde
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3803:|DM6PR12MB3803:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB38034E2BD40A14A109FA5BBD9ED80@DM6PR12MB3803.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Forefront-PRVS: 0375972289
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB2971.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(396003)(346002)(136003)(376002)(39860400002)(366004)(956004)(44832011)(2616005)(86362001)(2906002)(6486002)(5660300002)(1076003)(81156014)(16526019)(36756003)(26005)(66946007)(186003)(66556008)(66476007)(7696005)(52116002)(316002)(8936002)(478600001)(8676002)(6666004);
+ DIR:OUT; SFP:1101; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Pu8e8yrC5pge8eZA0lWLR2nV0fu2+GrfoPU7YUrln+/S7X0mUq3wm4two3JxcJYOrrsd5AojrBb2ck9Edgeh3RIghvuzLHtjQlfXcuCuIg7b1tVqR5J3kMh+JaXJuWZBWQGOhws2aMj2qtD5Rz0gnah01F6sbppxDSioeKaQeJWzzLoWbwCw/p9JNReRBJM11WxTRtEnEaoZLzg8itnOhiQQFHeYngAmHe2gCU+rvHLP+UMhZ4+yj7sKV0mjdK+zPcXiajaaAsHkQsFaYL/lnjZEYzkymlKAH4NKqnUV+JhwM7v54kmxQ/cH2inpYoSaJzyo/BfJful/Tkd/7wcUbHsw+CAntpzFRyTNvd/Gdzev86MgApoVTf1s2D7ZvYRH8oVSqLsgKFdBCqSw2EaiK0V1BHzhiGbsxbk+4EUZCxj6smXrUZ/AFmNI+omDzzNZ
+X-MS-Exchange-AntiSpam-MessageData: Yq9Yuo7D0ZBw9RLZsrVjFM965ZaBw0XkStuyAzXootqDLylZJyMKhNAo9dw1GWEgl6tX5jWsrgkdbalJI49KviFQFEaCVjnaBhQEHtqP0ouvwja2c5n173gPfNrcgi8/vwq+e+9yvD76k3myMb5LqQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64fe0042-efc7-410d-9274-08d7e235ff79
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2020 18:43:04.2311 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CQnon98N1KQn6AutpkEIJAuC3/41O9jOHVTfg0NGpYyZeLR7YOKCu4jpxe50Hr3Y
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4364
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5706573f-ebc1-4b2f-7b0d-08d7e23badde
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2020 19:23:44.5690 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Gip64cRQGe2/GsWF74G5HVafEJP8VwpboG6eykz9oBTabB4cE/avBx4So80UUGkI
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3803
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,332 +97,82 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0596627088=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0596627088==
-Content-Language: en-CA
-Content-Type: multipart/alternative;
-	boundary="_000_MW3PR12MB455448E77485AFA60BB8F3F8F9D80MW3PR12MB4554namp_"
+[Why]
+Aconnector is not necessary to be NULL in order to read dpcd
+successfully.
 
---_000_MW3PR12MB455448E77485AFA60BB8F3F8F9D80MW3PR12MB4554namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Actually if we rely on checking aconnector here, we won't be able
+to turn off all displays before doing display detection. That will
+cause some MST hubs not able to light up.
 
-[AMD Official Use Only - Internal Distribution Only]
+[How]
+Remove aconnector check when turning off all displays at
+hardware initialization stage.
 
-Hi,
+Signed-off-by: Zhan Liu <zhan.liu@amd.com>
+---
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 36 ++++++++-----------
+ 1 file changed, 14 insertions(+), 22 deletions(-)
 
-I will look into it, thanks.
-
-Bhawan
-________________________________
-From: Dan Carpenter <dan.carpenter@oracle.com>
-Sent: April 16, 2020 9:24 AM
-To: Lakha, Bhawanpreet <Bhawanpreet.Lakha@amd.com>
-Cc: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Subject: [bug report] drm/amd/display: Add HDCP module
-
-Hello Bhawanpreet Lakha,
-
-The patch 4c283fdac08a: "drm/amd/display: Add HDCP module" from Aug
-6, 2019, leads to the following static checker warning:
-
-        drivers/gpu/drm/amd/amdgpu/../display/dc/hdcp/hdcp_msg.c:132 hdmi_1=
-4_process_transaction()
-        error: buffer overflow 'hdcp_i2c_offsets' 32 <=3D 32
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/hdcp/hdcp_msg.c
-    77
-    78  static const uint8_t hdcp_i2c_offsets[] =3D {
-    79          [HDCP_MESSAGE_ID_READ_BKSV] =3D 0x0,
-    80          [HDCP_MESSAGE_ID_READ_RI_R0] =3D 0x8,
-    81          [HDCP_MESSAGE_ID_READ_PJ] =3D 0xA,
-    82          [HDCP_MESSAGE_ID_WRITE_AKSV] =3D 0x10,
-    83          [HDCP_MESSAGE_ID_WRITE_AINFO] =3D 0x15,
-    84          [HDCP_MESSAGE_ID_WRITE_AN] =3D 0x18,
-    85          [HDCP_MESSAGE_ID_READ_VH_X] =3D 0x20,
-    86          [HDCP_MESSAGE_ID_READ_VH_0] =3D 0x20,
-    87          [HDCP_MESSAGE_ID_READ_VH_1] =3D 0x24,
-    88          [HDCP_MESSAGE_ID_READ_VH_2] =3D 0x28,
-    89          [HDCP_MESSAGE_ID_READ_VH_3] =3D 0x2C,
-    90          [HDCP_MESSAGE_ID_READ_VH_4] =3D 0x30,
-    91          [HDCP_MESSAGE_ID_READ_BCAPS] =3D 0x40,
-    92          [HDCP_MESSAGE_ID_READ_BSTATUS] =3D 0x41,
-    93          [HDCP_MESSAGE_ID_READ_KSV_FIFO] =3D 0x43,
-    94          [HDCP_MESSAGE_ID_READ_BINFO] =3D 0xFF,
-    95          [HDCP_MESSAGE_ID_HDCP2VERSION] =3D 0x50,
-    96          [HDCP_MESSAGE_ID_WRITE_AKE_INIT] =3D 0x60,
-    97          [HDCP_MESSAGE_ID_READ_AKE_SEND_CERT] =3D 0x80,
-    98          [HDCP_MESSAGE_ID_WRITE_AKE_NO_STORED_KM] =3D 0x60,
-    99          [HDCP_MESSAGE_ID_WRITE_AKE_STORED_KM] =3D 0x60,
-   100          [HDCP_MESSAGE_ID_READ_AKE_SEND_H_PRIME] =3D 0x80,
-   101          [HDCP_MESSAGE_ID_READ_AKE_SEND_PAIRING_INFO] =3D 0x80,
-   102          [HDCP_MESSAGE_ID_WRITE_LC_INIT] =3D 0x60,
-   103          [HDCP_MESSAGE_ID_READ_LC_SEND_L_PRIME] =3D 0x80,
-   104          [HDCP_MESSAGE_ID_WRITE_SKE_SEND_EKS] =3D 0x60,
-   105          [HDCP_MESSAGE_ID_READ_REPEATER_AUTH_SEND_RECEIVERID_LIST] =
-=3D 0x80,
-   106          [HDCP_MESSAGE_ID_WRITE_REPEATER_AUTH_SEND_ACK] =3D 0x60,
-   107          [HDCP_MESSAGE_ID_WRITE_REPEATER_AUTH_STREAM_MANAGE] =3D 0x6=
-0,
-   108          [HDCP_MESSAGE_ID_READ_REPEATER_AUTH_STREAM_READY] =3D 0x80,
-   109          [HDCP_MESSAGE_ID_READ_RXSTATUS] =3D 0x70
-
-HDCP_MESSAGE_ID_WRITE_CONTENT_STREAM_TYPE is missing.  This array should
-have HDCP_MESSAGE_ID_MAX elements.
-
-   110  };
-   111
-   112  struct protection_properties {
-   113          bool supported;
-   114          bool (*process_transaction)(
-   115                  struct dc_link *link,
-   116                  struct hdcp_protection_message *message_info);
-   117  };
-   118
-   119  static const struct protection_properties non_supported_protection =
-=3D {
-   120          .supported =3D false
-   121  };
-   122
-   123  static bool hdmi_14_process_transaction(
-   124          struct dc_link *link,
-   125          struct hdcp_protection_message *message_info)
-   126  {
-   127          uint8_t *buff =3D NULL;
-   128          bool result;
-   129          const uint8_t hdcp_i2c_addr_link_primary =3D 0x3a; /* 0x74 =
->> 1*/
-   130          const uint8_t hdcp_i2c_addr_link_secondary =3D 0x3b; /* 0x7=
-6 >> 1*/
-   131          struct i2c_command i2c_command;
-   132          uint8_t offset =3D hdcp_i2c_offsets[message_info->msg_id];
-                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Potential out of bounds access.
-
-   133          struct i2c_payload i2c_payloads[] =3D {
-   134                  { true, 0, 1, &offset },
-   135                  /* actual hdcp payload, will be filled later, zeroe=
-d for now*/
-   136                  { 0 }
-   137          };
-   138
-
-regards,
-dan carpenter
-
---_000_MW3PR12MB455448E77485AFA60BB8F3F8F9D80MW3PR12MB4554namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
-ign=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Hi,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-I will look into it, thanks.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Bhawan<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Dan Carpenter &lt;dan=
-.carpenter@oracle.com&gt;<br>
-<b>Sent:</b> April 16, 2020 9:24 AM<br>
-<b>To:</b> Lakha, Bhawanpreet &lt;Bhawanpreet.Lakha@amd.com&gt;<br>
-<b>Cc:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Subject:</b> [bug report] drm/amd/display: Add HDCP module</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Hello Bhawanpreet Lakha,<br>
-<br>
-The patch 4c283fdac08a: &quot;drm/amd/display: Add HDCP module&quot; from A=
-ug<br>
-6, 2019, leads to the following static checker warning:<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/../di=
-splay/dc/hdcp/hdcp_msg.c:132 hdmi_14_process_transaction()<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; error: buffer overflow 'hdcp_i2c=
-_offsets' 32 &lt;=3D 32<br>
-<br>
-drivers/gpu/drm/amd/amdgpu/../display/dc/hdcp/hdcp_msg.c<br>
-&nbsp;&nbsp;&nbsp; 77&nbsp; <br>
-&nbsp;&nbsp;&nbsp; 78&nbsp; static const uint8_t hdcp_i2c_offsets[] =3D {<b=
-r>
-&nbsp;&nbsp;&nbsp; 79&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_BKSV] =3D 0x0,<br>
-&nbsp;&nbsp;&nbsp; 80&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_RI_R0] =3D 0x8,<br>
-&nbsp;&nbsp;&nbsp; 81&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_PJ] =3D 0xA,<br>
-&nbsp;&nbsp;&nbsp; 82&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_WRITE_AKSV] =3D 0x10,<br>
-&nbsp;&nbsp;&nbsp; 83&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_WRITE_AINFO] =3D 0x15,<br>
-&nbsp;&nbsp;&nbsp; 84&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_WRITE_AN] =3D 0x18,<br>
-&nbsp;&nbsp;&nbsp; 85&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_VH_X] =3D 0x20,<br>
-&nbsp;&nbsp;&nbsp; 86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_VH_0] =3D 0x20,<br>
-&nbsp;&nbsp;&nbsp; 87&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_VH_1] =3D 0x24,<br>
-&nbsp;&nbsp;&nbsp; 88&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_VH_2] =3D 0x28,<br>
-&nbsp;&nbsp;&nbsp; 89&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_VH_3] =3D 0x2C,<br>
-&nbsp;&nbsp;&nbsp; 90&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_VH_4] =3D 0x30,<br>
-&nbsp;&nbsp;&nbsp; 91&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_BCAPS] =3D 0x40,<br>
-&nbsp;&nbsp;&nbsp; 92&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_BSTATUS] =3D 0x41,<br>
-&nbsp;&nbsp;&nbsp; 93&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_KSV_FIFO] =3D 0x43,<br>
-&nbsp;&nbsp;&nbsp; 94&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_BINFO] =3D 0xFF,<br>
-&nbsp;&nbsp;&nbsp; 95&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_HDCP2VERSION] =3D 0x50,<br>
-&nbsp;&nbsp;&nbsp; 96&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_WRITE_AKE_INIT] =3D 0x60,<br>
-&nbsp;&nbsp;&nbsp; 97&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_READ_AKE_SEND_CERT] =3D 0x80,<br>
-&nbsp;&nbsp;&nbsp; 98&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_WRITE_AKE_NO_STORED_KM] =3D 0x60,<br>
-&nbsp;&nbsp;&nbsp; 99&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- [HDCP_MESSAGE_ID_WRITE_AKE_STORED_KM] =3D 0x60,<br>
-&nbsp;&nbsp; 100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_READ_AKE_SEND_H_PRIME] =3D 0x80,<br>
-&nbsp;&nbsp; 101&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_READ_AKE_SEND_PAIRING_INFO] =3D 0x80,<br>
-&nbsp;&nbsp; 102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_WRITE_LC_INIT] =3D 0x60,<br>
-&nbsp;&nbsp; 103&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_READ_LC_SEND_L_PRIME] =3D 0x80,<br>
-&nbsp;&nbsp; 104&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_WRITE_SKE_SEND_EKS] =3D 0x60,<br>
-&nbsp;&nbsp; 105&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_READ_REPEATER_AUTH_SEND_RECEIVERID_LIST] =3D 0x80,<br>
-&nbsp;&nbsp; 106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_WRITE_REPEATER_AUTH_SEND_ACK] =3D 0x60,<br>
-&nbsp;&nbsp; 107&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_WRITE_REPEATER_AUTH_STREAM_MANAGE] =3D 0x60,<br>
-&nbsp;&nbsp; 108&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_READ_REPEATER_AUTH_STREAM_READY] =3D 0x80,<br>
-&nbsp;&nbsp; 109&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [HDC=
-P_MESSAGE_ID_READ_RXSTATUS] =3D 0x70<br>
-<br>
-HDCP_MESSAGE_ID_WRITE_CONTENT_STREAM_TYPE is missing.&nbsp; This array shou=
-ld<br>
-have HDCP_MESSAGE_ID_MAX elements.<br>
-<br>
-&nbsp;&nbsp; 110&nbsp; };<br>
-&nbsp;&nbsp; 111&nbsp; <br>
-&nbsp;&nbsp; 112&nbsp; struct protection_properties {<br>
-&nbsp;&nbsp; 113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool=
- supported;<br>
-&nbsp;&nbsp; 114&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool=
- (*process_transaction)(<br>
-&nbsp;&nbsp; 115&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dc_link *link,<br>
-&nbsp;&nbsp; 116&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct hdcp_protection_message =
-*message_info);<br>
-&nbsp;&nbsp; 117&nbsp; };<br>
-&nbsp;&nbsp; 118&nbsp; <br>
-&nbsp;&nbsp; 119&nbsp; static const struct protection_properties non_suppor=
-ted_protection =3D {<br>
-&nbsp;&nbsp; 120&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .sup=
-ported =3D false<br>
-&nbsp;&nbsp; 121&nbsp; };<br>
-&nbsp;&nbsp; 122&nbsp; <br>
-&nbsp;&nbsp; 123&nbsp; static bool hdmi_14_process_transaction(<br>
-&nbsp;&nbsp; 124&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stru=
-ct dc_link *link,<br>
-&nbsp;&nbsp; 125&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stru=
-ct hdcp_protection_message *message_info)<br>
-&nbsp;&nbsp; 126&nbsp; {<br>
-&nbsp;&nbsp; 127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint=
-8_t *buff =3D NULL;<br>
-&nbsp;&nbsp; 128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool=
- result;<br>
-&nbsp;&nbsp; 129&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cons=
-t uint8_t hdcp_i2c_addr_link_primary =3D 0x3a; /* 0x74 &gt;&gt; 1*/<br>
-&nbsp;&nbsp; 130&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cons=
-t uint8_t hdcp_i2c_addr_link_secondary =3D 0x3b; /* 0x76 &gt;&gt; 1*/<br>
-&nbsp;&nbsp; 131&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stru=
-ct i2c_command i2c_command;<br>
-&nbsp;&nbsp; 132&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint=
-8_t offset =3D hdcp_i2c_offsets[message_info-&gt;msg_id];<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
-^^^^^^<br>
-Potential out of bounds access.<br>
-<br>
-&nbsp;&nbsp; 133&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stru=
-ct i2c_payload i2c_payloads[] =3D {<br>
-&nbsp;&nbsp; 134&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { true, 0, 1, &amp;offset },<br=
->
-&nbsp;&nbsp; 135&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* actual hdcp payload, will be=
- filled later, zeroed for now*/<br>
-&nbsp;&nbsp; 136&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 0 }<br>
-&nbsp;&nbsp; 137&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<b=
-r>
-&nbsp;&nbsp; 138&nbsp; <br>
-<br>
-regards,<br>
-dan carpenter<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_MW3PR12MB455448E77485AFA60BB8F3F8F9D80MW3PR12MB4554namp_--
-
---===============0596627088==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+index 9f41efddc9bc..6f33f3f0d023 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+@@ -1332,31 +1332,23 @@ void dcn10_init_hw(struct dc *dc)
+ 			if (dc->links[i]->connector_signal != SIGNAL_TYPE_DISPLAY_PORT)
+ 				continue;
+ 
+-			/*
+-			 * core_link_read_dpcd() will invoke dm_helpers_dp_read_dpcd(),
+-			 * which needs to read dpcd info with the help of aconnector.
+-			 * If aconnector (dc->links[i]->prev) is NULL, then dpcd status
+-			 * cannot be read.
+-			 */
+-			if (dc->links[i]->priv) {
+-				/* if any of the displays are lit up turn them off */
+-				status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
+-								&dpcd_power_state, sizeof(dpcd_power_state));
+-				if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0) {
+-					/* blank dp stream before power off receiver*/
+-					if (dc->links[i]->link_enc->funcs->get_dig_frontend) {
+-						unsigned int fe = dc->links[i]->link_enc->funcs->get_dig_frontend(dc->links[i]->link_enc);
+-
+-						for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
+-							if (fe == dc->res_pool->stream_enc[j]->id) {
+-								dc->res_pool->stream_enc[j]->funcs->dp_blank(
+-											dc->res_pool->stream_enc[j]);
+-								break;
+-							}
++			/* if any of the displays are lit up turn them off */
++			status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
++							&dpcd_power_state, sizeof(dpcd_power_state));
++			if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0) {
++				/* blank dp stream before power off receiver*/
++				if (dc->links[i]->link_enc->funcs->get_dig_frontend) {
++					unsigned int fe = dc->links[i]->link_enc->funcs->get_dig_frontend(dc->links[i]->link_enc);
++
++					for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
++						if (fe == dc->res_pool->stream_enc[j]->id) {
++							dc->res_pool->stream_enc[j]->funcs->dp_blank(
++										dc->res_pool->stream_enc[j]);
++							break;
+ 						}
+ 					}
+-					dp_receiver_power_ctrl(dc->links[i], false);
+ 				}
++				dp_receiver_power_ctrl(dc->links[i], false);
+ 			}
+ 		}
+ 	}
+-- 
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0596627088==--
