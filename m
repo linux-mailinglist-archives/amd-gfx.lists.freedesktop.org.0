@@ -1,50 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA441AD371
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2020 01:41:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D12A1AD372
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2020 01:42:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AAE56E35D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A42FA6E365;
 	Thu, 16 Apr 2020 23:41:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2049.outbound.protection.outlook.com [40.107.243.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 007F76E365
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 23:41:55 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2044.outbound.protection.outlook.com [40.107.220.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C5A66E35D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 23:41:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JMXk5kSKXTPQqXFL36WNXPgyXdwOhIoDgP0haUkbRlWzX4v9GOX0DHoyNwcbjnqrdEHNzh2Gx1yipsZsG2iYtFTVZWU2fhKxefd83DPDl4xWGPeeoDDviIa7scH0Fp/qYqCaCxp1juJLglB4T1Bqa495/qWEc6biZXt55JQuq3ofGU1ADEuVFtQJY/xGHgg30ZwNnaL6EF2oIxSLIQfx9udvUCU0PKuZpaXqnkXlfSziOobfxcc877JbihP24dIO6O/MpQ/97FVgXboG5t8oBFInCcr8Fjb2A9+bx8vMwDtw/odWYTVcwvuam8NbrAshmAM+RHa1EH39qk1KLFC2xA==
+ b=SoJx99EcpUKm+DHg/pGDNJRs9f2zDkbaBjDEBf7yCOyqD3i7Weuyqdwjx6IenoN1FwpCVXp4eG35bbjhFv0u/ZHfaWIkpNz6LjHuvF9RtvhOaW2h8sKcT06CdzW3UyRr0RP/VihGtKAKZadDXImKHdDrzn6f6ENXUnXZJJxpk68pCS04Z1VzmmPO6fJfLguWlfblFfQ6lJCN+Hu8aBVHitKwhIzXtIrtB7fMkaVmHUvPv2fLsqJxaYIcre7+i/EyAn/5s1hcGfGMUYxlC+yU5UQKFNexP5mnFJeuCvqZxDXqIyBW+odwBVgOiTjZkN21TaaAQEOu6NXrD/ulwQaHEQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SveugjNRxUBvN/5pqcC4rI21xRXEuTnVpSfkFdzvnsA=;
- b=OJRE6T8qdLGQr7h8E+8SPRVu4maM/dIdz3cCyZfv2zSL0OCkEMMg3sI8CbkLBPvT7NGL/ayJYbmIL7S9w3IG+usB0arLF+puIry5+m1z74g/jKEusKrADOvsRWDnZr5uxGp/pzVLDCffyWl+IZqdoqjwS9lnv2TC0qjEshmGk1qrpSoIZkrjczJFG7Fr92RL9oSm4mrFskzQnI90Ds6KhLgn0MRhKpebem1gA9JxF1iAHBbk3mBa4euXjOsv0tLsrJoVUxmRWLaQD+3VxJZQYGQ/07ZnSV2EZcTnq9E1726nsahTzUaGnaH/J696omefqJ93bMTuCUv4+8YXlrGYGQ==
+ bh=64jcBA7a2OP0g/i34ULc84xx0We9ANdP9xWN/oGf/80=;
+ b=I1+m4T6K58iPtSQrgqbp4KP3ZYRhvceh/o/INUfZuTt7oO+Sl5hnyK5qkBYE2WwHsDe3T9NZIuu//ISn8yTx3aT0yaXnVYeXPMkVhV7d1cQW7F9oeBcAvp5mvtDa20r1HRqcvSTebALVk4C7jpve2tdRg/fETxQsbv47GBi6K/ztQIqWw9FFa4nB5eRgbZ+e+N72NHkmAn7sOmHLL491pTWLUoAccTCy1Dwe+2Lu1oXY98Qapf6w11EG1FIbLBgtDV+8QjPhbE38QXMCOYzJVtY0YSUH5HpyIQvoS0VhD758UgL6cQxil3pcOrZ7RWJzBQppbuFRyt70fssJFkQerg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SveugjNRxUBvN/5pqcC4rI21xRXEuTnVpSfkFdzvnsA=;
- b=B9q5vy9I75fO9UdW91d5Syj26sWCRmjO5I510Wo8D0Mab/vcW7bccjq9OC5CfS4JYKNoloM+MyTdg6MxB73+CJbF+bTs7XB4CRibpgvssDUOovKNhAbduPLNU6ZUhuLFjfIey2vFAisjrdEIfKuRPDdJi8zQzWE7XGBotisoqjw=
+ bh=64jcBA7a2OP0g/i34ULc84xx0We9ANdP9xWN/oGf/80=;
+ b=Hck/GqlEeuubLmj62ZXCw4c7VvyVLaO1E/ELGk5ickCdQLKi3v3qv8LfF6g26o7eZ2IvuoyM57nu70D2ohWwVJ55fTnbYZdxKFoer+FJqb89WBg4tskalr8/3UXSTehuH3if6mOXV+LBi7S4D5j6xXrHkls3Lm46uqlcv5ZEAqE=
 Authentication-Results: spf=none (sender IP is )
  smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
  by MW2PR12MB2459.namprd12.prod.outlook.com (2603:10b6:907:c::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.15; Thu, 16 Apr
- 2020 23:41:55 +0000
+ 2020 23:41:56 +0000
 Received: from MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
  ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2921.027; Thu, 16 Apr 2020
- 23:41:55 +0000
+ 23:41:56 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 32/35] drm/amd/display: blank dp stream before re-train the
- link
-Date: Thu, 16 Apr 2020 19:40:41 -0400
-Message-Id: <20200416234044.2082886-33-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 33/35] drm/amd/display: access ABM from stream resource.
+Date: Thu, 16 Apr 2020 19:40:42 -0400
+Message-Id: <20200416234044.2082886-34-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20200416234044.2082886-1-Rodrigo.Siqueira@amd.com>
 References: <20200416234044.2082886-1-Rodrigo.Siqueira@amd.com>
@@ -56,16 +55,16 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::2) by
  BN8PR12CA0012.namprd12.prod.outlook.com (2603:10b6:408:60::25) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2921.25 via Frontend Transport; Thu, 16 Apr 2020 23:41:53 +0000
+ 15.20.2921.25 via Frontend Transport; Thu, 16 Apr 2020 23:41:55 +0000
 X-Mailer: git-send-email 2.26.0
 X-Originating-IP: [2607:fea8:56a0:11a1::2]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c287b942-f430-44ac-7f8a-08d7e25fbec7
+X-MS-Office365-Filtering-Correlation-Id: 2d3e82cc-37c9-462c-a0a6-08d7e25fbf9b
 X-MS-TrafficTypeDiagnostic: MW2PR12MB2459:|MW2PR12MB2459:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR12MB245940F9FFE799AB4E40CDDC98D80@MW2PR12MB2459.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2459360904448A52B7DD725298D80@MW2PR12MB2459.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:843;
 X-Forefront-PRVS: 0375972289
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
@@ -76,15 +75,15 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9CSYFuKF15lRKbIDF6dxA1fjmxWEGMDo1AKiZikSFuNj+JY+/5FXIGeMnnnHtMHZbC/1VKqGJNBtcSQbZYH06JnfFT+ystYaElSNC0T5y6Mw+XfBJh+Qb+uTiWDTWfuYrUyflAJLsp6RIC3kXGOVvQwAPOiMLnVXFDDFy+o6jB34cZZXd17iNL7CRTcIygeZswoJN3KQYyo3t16ZzH84UtrYlLyp7JF1Fb1rreuf/s21h5bGe55S1nx2a9EmMXN5kUWf2yYG7g/c0w7L38m4dJkcPUuULPf4pYxL+GpipBVVZ/m45HZYrOgxeHtyNwHukALeUyOQudm8/2ax+7w6Hel5BsxOqymTZZVMpWz+A3vdEBB3CzvZgK3Th/FRUnHFPSgZmNtrGl3PjWtLiUzVKCgW4fq0wMUS8DPimogkVCSqyb/W0jtSYCh1g6bVuVcN
-X-MS-Exchange-AntiSpam-MessageData: TJWUnwncFGwMAiTyAK4f1DPDg6pMTkgZzbP5JfeoMsPm9p3lrfyhOVdLhcHiQ+HO/Xq6e7BR1F/aPUeXZ7IgM29BB/fgFMdw7wYp+5ly+IS7sveVerxI7xviLFVeTJe89wvrrytbw12D8DhkLSjhSveMA4KHpJaYtgONUnYnCaE=
+X-Microsoft-Antispam-Message-Info: 4i+aZiEbE4cEJD9999RQ3NAPhGmeV58SFGXuSQlcLmwW67tJfffayrQcO0Wzy+Ea1LFRdSxdF6bTD1Bs9fc5phYUF1kYS6LfdLmZXpvV5FZEPTA7h1Gadivdx0MMtDAoMwWyAN+KgrErK5ay6vOwraBSNYtJGiSlBGZQcprJHZM7pEXhDU+Xue6d5aDApVI0fUJG8GYQUHxzrB6nder2JW8CC3x7Y2LVucqD1KKmE1/yGpE36x/iuztOKgK2ZmY3QqNjWqr5nMRQP7dExF93TBuf8LB3URG4DpoyTXoSzrHRtlh5FebdxdBDN4mVbygiFZkYqXfKuefzc/GbN5InAz1FvgwxccrgmKS4yA9CP2/mMGPpBurlRew8/TMF8xm+ZFRa9BIWKvWdepl45bGrL6dT+NurCGxbG9qTuEUm2ruhdTOdCq/nsJ3Q65UmacDy
+X-MS-Exchange-AntiSpam-MessageData: DWnv6GtZzoNeDhoVZRT9lf/TOQMBUW4KCakjSVjM2lyj0naewHnWrJA/c4O6OkLBz/TsC7BjLFh84s/3aunK0a7hOh4YKHtT2dTz0tol1rMugJ+jfDr7QQQU+fwBscX0IqbHZ5wHgRILjX+DjPIO4JxE7YUdWoJUwt0yQLMQSXk=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c287b942-f430-44ac-7f8a-08d7e25fbec7
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2020 23:41:54.9268 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d3e82cc-37c9-462c-a0a6-08d7e25fbf9b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2020 23:41:56.3310 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tlkoD4HO5s9Gq5YBSCRf32iFBx7KDtkvshX4pKe5C82aDBAvGrkKm3VqG4r4LrIqv9r104aQJcNuxWATtIpiXQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: zs0BJN9MCcgyXXvdejilqtWxaGR7E8ivTznfsQNco8I3rd6pV61OjgNdiPm9qrwYLtoyLCh8DvX9uQ068u2KzA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2459
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,61 +96,104 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
- Xiaodong Yan <Xiaodong.Yan@amd.com>, Tony Cheng <Tony.Cheng@amd.com>,
- Bhawanpreet.Lakha@amd.com
+Cc: Sunpeng.Li@amd.com, Tony Cheng <Tony.Cheng@amd.com>,
+ Rodrigo.Siqueira@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>,
+ Harry.Wentland@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Xiaodong Yan <Xiaodong.Yan@amd.com>
+From: Yongqiang Sun <yongqiang.sun@amd.com>
 
 [Why]
-When link loss happened, monitor can not light up if only re-train the
-link.
+Since ABM resource is mapped to stream res, all the ABM access should
+via stream res.
 
 [How]
-Blank all the DP streams on this link before re-train the link, and then
-unblank the stream
+Get ABM instance from stream res instead of resource pool.
 
-Signed-off-by: Xiaodong Yan <Xiaodong.Yan@amd.com>
+Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
 Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 39 +++++++++++--------
+ 1 file changed, 23 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 5d2ae2fb7e45..a87302f729c7 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -2899,6 +2899,12 @@ bool dc_link_handle_hpd_rx_irq(struct dc_link *link, union hpd_irq_data *out_hpd
- 					sizeof(hpd_irq_dpcd_data),
- 					"Status: ");
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 0d8fae4e9441..9c4686edcf3e 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -2465,9 +2465,28 @@ enum dc_status dc_link_validate_mode_timing(
+ 	return DC_OK;
+ }
  
-+		for (i = 0; i < MAX_PIPES; i++) {
-+			pipe_ctx = &link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream && pipe_ctx->stream->link == link)
-+				link->dc->hwss.blank_stream(pipe_ctx);
-+		}
++static struct abm *get_abm_from_stream_res(const struct dc_link *link)
++{
++	int i;
++	struct dc *dc = link->ctx->dc;
++	struct abm *abm = NULL;
 +
- 		for (i = 0; i < MAX_PIPES; i++) {
- 			pipe_ctx = &link->dc->current_state->res_ctx.pipe_ctx[i];
- 			if (pipe_ctx && pipe_ctx->stream && pipe_ctx->stream->link == link)
-@@ -2918,6 +2924,12 @@ bool dc_link_handle_hpd_rx_irq(struct dc_link *link, union hpd_irq_data *out_hpd
- 		if (pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST)
- 			dc_link_reallocate_mst_payload(link);
++	for (i = 0; i < MAX_PIPES; i++) {
++		struct pipe_ctx pipe_ctx = dc->current_state->res_ctx.pipe_ctx[i];
++		struct dc_stream_state *stream = pipe_ctx.stream;
++
++		if (stream && stream->link == link) {
++			abm = pipe_ctx.stream_res.abm;
++			break;
++		}
++	}
++	return abm;
++}
++
+ int dc_link_get_backlight_level(const struct dc_link *link)
+ {
+-	struct abm *abm = link->ctx->dc->res_pool->abm;
++
++	struct abm *abm = get_abm_from_stream_res(link);
  
-+		for (i = 0; i < MAX_PIPES; i++) {
-+			pipe_ctx = &link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream && pipe_ctx->stream->link == link)
-+				link->dc->hwss.unblank_stream(pipe_ctx, &previous_link_settings);
-+		}
-+
- 		status = false;
- 		if (out_link_loss)
- 			*out_link_loss = true;
+ 	if (abm == NULL || abm->funcs->get_current_backlight == NULL)
+ 		return DC_ERROR_UNEXPECTED;
+@@ -2477,7 +2496,7 @@ int dc_link_get_backlight_level(const struct dc_link *link)
+ 
+ int dc_link_get_target_backlight_pwm(const struct dc_link *link)
+ {
+-	struct abm *abm = link->ctx->dc->res_pool->abm;
++	struct abm *abm = get_abm_from_stream_res(link);
+ 
+ 	if (abm == NULL || abm->funcs->get_target_backlight == NULL)
+ 		return DC_ERROR_UNEXPECTED;
+@@ -2490,7 +2509,7 @@ bool dc_link_set_backlight_level(const struct dc_link *link,
+ 		uint32_t frame_ramp)
+ {
+ 	struct dc  *dc = link->ctx->dc;
+-	struct abm *abm = dc->res_pool->abm;
++	struct abm *abm = get_abm_from_stream_res(link);
+ 	struct dmcu *dmcu = dc->res_pool->dmcu;
+ 	unsigned int controller_id = 0;
+ 	bool fw_set_brightness = true;
+@@ -2541,20 +2560,8 @@ bool dc_link_set_backlight_level(const struct dc_link *link,
+ 
+ bool dc_link_set_abm_disable(const struct dc_link *link)
+ {
+-	struct dc  *dc = link->ctx->dc;
+-	struct abm *abm = NULL;
++	struct abm *abm = get_abm_from_stream_res(link);
+ 	bool success = false;
+-	int i;
+-
+-	for (i = 0; i < MAX_PIPES; i++) {
+-		struct pipe_ctx pipe_ctx = dc->current_state->res_ctx.pipe_ctx[i];
+-		struct dc_stream_state *stream = pipe_ctx.stream;
+-
+-		if (stream && stream->link == link) {
+-			abm = pipe_ctx.stream_res.abm;
+-			break;
+-		}
+-	}
+ 
+ 	if (abm)
+ 		success = abm->funcs->set_abm_immediate_disable(abm);
 -- 
 2.26.0
 
