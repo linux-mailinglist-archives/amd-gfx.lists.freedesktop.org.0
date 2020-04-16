@@ -1,42 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D40B1AB927
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2020 09:01:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1A421ABD6C
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2020 11:56:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 507BD6EB1D;
-	Thu, 16 Apr 2020 07:01:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E5846E2BD;
+	Thu, 16 Apr 2020 09:56:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 518B76EACE;
- Thu, 16 Apr 2020 06:43:43 +0000 (UTC)
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
- [83.86.89.107])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id B4DA8206D6;
- Thu, 16 Apr 2020 06:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1587019423;
- bh=BKmhwxbmr2z9YCdItTQJHwRjKGeTBBS+eQgot1INXhM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=mWchGAC+vAFFSp6qh9NsLKsGlU90wq24zkjqWRuJQDRzI7cr9AxDmicO2eD+IzJ3c
- sGCzNz3JCiuBvIVBeRdXO2UQKyfJ3SXnfZbVTf7z3X6+UWo1V7dQ9GHa/KBptAxeB3
- icdyyi0gEO6PLAhNJ9+K2CaqqrQu1Y95AIUwfP44=
-Date: Thu, 16 Apr 2020 08:43:41 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Christoph Hellwig <hch@lst.de>
-Subject: Re: [PATCH 2/3] kernel: better document the use_mm/unuse_mm API
- contract
-Message-ID: <20200416064341.GB300290@kroah.com>
-References: <20200416053158.586887-1-hch@lst.de>
- <20200416053158.586887-3-hch@lst.de>
+Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6E9F36E2BD
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Apr 2020 09:56:51 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by netline-mail3.netline.ch (Postfix) with ESMTP id 4F4CC2A6042;
+ Thu, 16 Apr 2020 11:56:50 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
+Received: from netline-mail3.netline.ch ([127.0.0.1])
+ by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id DibL0WAgAd5P; Thu, 16 Apr 2020 11:56:49 +0200 (CEST)
+Received: from thor (252.80.76.83.dynamic.wline.res.cust.swisscom.ch
+ [83.76.80.252])
+ by netline-mail3.netline.ch (Postfix) with ESMTPSA id 6E05D2A6016;
+ Thu, 16 Apr 2020 11:56:49 +0200 (CEST)
+Received: from localhost ([::1]) by thor with esmtp (Exim 4.93)
+ (envelope-from <michel@daenzer.net>)
+ id 1jP1GK-001Oxm-EV; Thu, 16 Apr 2020 11:56:48 +0200
+Subject: Re: [PATCH] drm/amdgpu: change SH MEM alignment mode for gfx10
+To: Likun Gao <likun.gao@amd.com>, =?UTF-8?B?TWFyZWsgT2zFocOhaw==?=
+ <maraeo@gmail.com>, Pierre-Eric Pelloux-Prayer <pelloux@gmail.com>
+References: <1585909202-1350-1-git-send-email-likun.gao@amd.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Message-ID: <58b63f21-69e7-abd0-8d49-6699e88d172a@daenzer.net>
+Date: Thu, 16 Apr 2020 11:56:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200416053158.586887-3-hch@lst.de>
-X-Mailman-Approved-At: Thu, 16 Apr 2020 07:01:35 +0000
+In-Reply-To: <1585909202-1350-1-git-send-email-likun.gao@amd.com>
+Content-Language: en-CA
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,35 +49,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jens Axboe <axboe@kernel.dk>, Felipe Balbi <balbi@kernel.org>,
- amd-gfx@lists.freedesktop.org, "Michael S. Tsirkin" <mst@redhat.com>,
- intel-gvt-dev@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
- linux-usb@vger.kernel.org, io-uring@vger.kernel.org,
- linux-kernel@vger.kernel.org, Zhenyu Wang <zhenyuw@linux.intel.com>,
- virtualization@lists.linux-foundation.org, linux-mm@kvack.org,
- linux-fsdevel@vger.kernel.org, Al Viro <viro@zeniv.linux.org.uk>,
- intel-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Jason Wang <jasowang@redhat.com>, Zhi Wang <zhi.a.wang@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: amd-gfx@lists.freedesktop.org, Hawking Zhang <hawking.zhang@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 16, 2020 at 07:31:57AM +0200, Christoph Hellwig wrote:
-> Switch the function documentation to kerneldoc comments, and add
-> WARN_ON_ONCE asserts that the calling thread is a kernel thread and
-> does not have ->mm set (or has ->mm set in the case of unuse_mm).
-> 
-> Also give the functions a kthread_ prefix to better document the
-> use case.
-> 
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
-
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org> [usb]
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gMjAyMC0wNC0wMyAxMjoyMCBwLm0uLCBMaWt1biBHYW8gd3JvdGU6Cj4gRnJvbTogTGlrdW4g
+R2FvIDxMaWt1bi5HYW9AYW1kLmNvbT4KPiAKPiBDaGFuZ2UgU0hfTUVNX0NPTkZJRyBBbGlnbm1l
+bnQgbW9kZSB0byBBdXRvbWF0aWMsIGFzOgo+IDEpT0dMIGZuX2FtZF9jb21wdXRlX3NoYWRlciB3
+aWxsIGZhaWxlZCB3aXRoIHVuYWxpZ25lZCBtb2RlLgo+IDIpVGhlIGRlZmF1bHQgYWxpZ25tZW50
+IG1vZGUgd2FzIGRlZmluZWQgdG8gYXV0b21hdGljIG9uIGdmeDEwCj4gc3BlY2lmaWNhdGlvbi4K
+PiAKPiBTaWduZWQtb2ZmLWJ5OiBMaWt1biBHYW8gPExpa3VuLkdhb0BhbWQuY29tPgo+IC0tLQo+
+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYyB8IDIgKy0KPiAgMSBmaWxl
+IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTBfMC5jIGIvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvZ2Z4X3YxMF8wLmMKPiBpbmRleCA1YTY3MzA2Li5kOGYwYzBkIDEwMDY0NAo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTBfMC5jCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMF8wLmMKPiBAQCAtMjc5LDcgKzI3OSw3IEBA
+IHN0YXRpYyBjb25zdCBzdHJ1Y3Qgc29jMTVfcmVnX2dvbGRlbiBnb2xkZW5fc2V0dGluZ3NfZ2Nf
+MTBfMV8yX252MTJbXSA9Cj4gIAo+ICAjZGVmaW5lIERFRkFVTFRfU0hfTUVNX0NPTkZJRyBcCj4g
+IAkoKFNIX01FTV9BRERSRVNTX01PREVfNjQgPDwgU0hfTUVNX0NPTkZJR19fQUREUkVTU19NT0RF
+X19TSElGVCkgfCBcCj4gLQkgKFNIX01FTV9BTElHTk1FTlRfTU9ERV9VTkFMSUdORUQgPDwgU0hf
+TUVNX0NPTkZJR19fQUxJR05NRU5UX01PREVfX1NISUZUKSB8IFwKPiArCSAoU0hfTUVNX0FMSUdO
+TUVOVF9NT0RFX0RXT1JEIDw8IFNIX01FTV9DT05GSUdfX0FMSUdOTUVOVF9NT0RFX19TSElGVCkg
+fCBcCj4gIAkgKFNIX01FTV9SRVRSWV9NT0RFX0FMTCA8PCBTSF9NRU1fQ09ORklHX19SRVRSWV9N
+T0RFX19TSElGVCkgfCBcCj4gIAkgKDMgPDwgU0hfTUVNX0NPTkZJR19fSU5JVElBTF9JTlNUX1BS
+RUZFVENIX19TSElGVCkpCj4gIAo+IAoKSSBiaXNlY3RlZCBhIGJ1bmNoIG9mIHBpZ2xpdCByZWdy
+ZXNzaW9ucyAobW9zdGx5IGhhbGYtZmxvYXQgcmVsYXRlZCwKZS5nLiBkcmF3LXZlcnRpY2VzLWhh
+bGYtZmxvYXRfZ2xlczIpIHdpdGggcmFkZW9uc2kgb24gTmF2aSAxMCB0byB0aGlzCmNoYW5nZS4K
+CkRvZXMgcmFkZW9uc2kvTExWTSBuZWVkIGNvcnJlc3BvbmRpbmcgY2hhbmdlcz8KCgotLSAKRWFy
+dGhsaW5nIE1pY2hlbCBEw6RuemVyICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgIGh0dHBz
+Oi8vcmVkaGF0LmNvbQpMaWJyZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAgICAgICAgICAgIHwgICAg
+ICAgICAgICAgTWVzYSBhbmQgWCBkZXZlbG9wZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9hbWQtZ2Z4Cg==
