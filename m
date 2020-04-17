@@ -1,90 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C4CC1AE7C1
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2020 23:46:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67A711AEB53
+	for <lists+amd-gfx@lfdr.de>; Sat, 18 Apr 2020 11:27:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21EB96EABC;
-	Fri, 17 Apr 2020 21:46:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 957EF6EC74;
+	Sat, 18 Apr 2020 09:27:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2042.outbound.protection.outlook.com [40.107.92.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6D066EABC
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 21:46:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gvY2ELhN+IEx/tb3ZwAujX0+YnNVILJRqeP2sySCcavqkxjSMEHfqS0+LW9crLwawebjNLs04d3/NNMcLeWnTKS8OYk3OMUgfz2oOoAPFvwENJ4JzpBR3R/mrp+v7MGx4oexY+gzEUPMwY97wqooLs9POYB3ckxXQ8FHCAhHEjKy/Cju7vTAD+tyRu92k28cj4OSX2K11Jk9aHVuCRlYr4UUwTIbP0HFa90QP21wfJD+2PwNRnF+JZCTnpNUVQo2EHHkPuMJarcVyK5jrATxChxr+OAU5TgGx1wEPRDxgJtSccPfYQLtu6IMYkuSnLqUDg70pNjf8fVlqI9FUB6Zcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wmrtGuSbFET/fdVVCh6gT6fcGBdU7jMG+43W8g1kKPU=;
- b=DOnCKTaDmsXBmSt7ZDjEM5kxfXtKLjJ99EK2/d7mCfb0dT1+pitts/u1jpLhuCZJXy7Ruzi5aOGTW1e8TEJmSe8co+XY7SKDWkpI+WQBnyAuyC31ROv0Se+kEWE8TuIVd7tV0S5rZKbGrNR+QnzpVQHZtZ4DKHLUkvQIU0EXClR+f3pvjO87Hr1m87B4hjjf6xjDOUlS9Y+pWVlfwl/qs/Bf5M1FO0YHPsaSC8noFxX40xFMuOY1NreWeuiC1jYiz4Za36G37+FS6llOYL3tQxL0M67Ddx2Orm32f+AvCkJZYqsM8kkWWT1daprfJPIdOswqNUA3KsiE8M4SvuZLkA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wmrtGuSbFET/fdVVCh6gT6fcGBdU7jMG+43W8g1kKPU=;
- b=m3YQ4eH2yzeJI1noI3HXeYUGhNM6uk3Wy4zjlClYuovXGfT+zhNgtG5Yau/iTMe7QA7Yrh0Ql0Guh9MocS8d02Qjna3yWnKeYmRDShNigZe3GGMR/dFdECvCFW7AMRK1pT0swg+XOIdOB0mUFIIcFKCUv8+810IkjTTrEhljE2c=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Yong.Zhao@amd.com; 
-Received: from DM6PR12MB4482.namprd12.prod.outlook.com (2603:10b6:5:2a8::23)
- by DM6PR12MB3228.namprd12.prod.outlook.com (2603:10b6:5:18c::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.28; Fri, 17 Apr
- 2020 21:46:40 +0000
-Received: from DM6PR12MB4482.namprd12.prod.outlook.com
- ([fe80::e058:9371:1bd6:9b4a]) by DM6PR12MB4482.namprd12.prod.outlook.com
- ([fe80::e058:9371:1bd6:9b4a%3]) with mapi id 15.20.2921.027; Fri, 17 Apr 2020
- 21:46:40 +0000
-From: Yong Zhao <Yong.Zhao@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: Print CU information by default during
- initialization
-Date: Fri, 17 Apr 2020 17:46:24 -0400
-Message-Id: <20200417214624.20047-1-Yong.Zhao@amd.com>
-X-Mailer: git-send-email 2.17.1
-X-ClientProxiedBy: YTOPR0101CA0060.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::37) To DM6PR12MB4482.namprd12.prod.outlook.com
- (2603:10b6:5:2a8::23)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACC306EC22
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2020 21:56:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=35vQ9aG9jAJX5dHI+t+djpgDpVwXXiguJrlhJzWaW7c=; b=BGtWiYh0RS7ttpR4W03t1QeP99
+ qbjQwmzdfQIJ8bHYM2mzvjtjypH+TLr0rppcWiJEJsGOudrXda5BSF3LL993XPI6h4JDk06nM/pqe
+ tFjnFKck1c/5vw345vzsesdo7VacT2LUGt9nqz/gXP/Ejpi5DboMfsi2P8RJDkfBLRsdF9ne0vyNh
+ J0pWHSN4bgiXIQ6Yxxj6gInU8xy8iIFEKCnVBPrxi4gvk1ccskebNgNXNX7FDvx1wZz25Z73Ek2nL
+ xyffkQ9KLt5IDSZLZk0HgV8YLWXpCFTSeyq959CXt6V2ojRY2/acTjTRaLzT+xJhfiJzLOnRCEurf
+ RQ+7fk0g==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=worktop.programming.kicks-ass.net)
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jPYxv-0001UZ-Rk; Fri, 17 Apr 2020 21:56:04 +0000
+Received: by worktop.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 153689834C7; Fri, 17 Apr 2020 23:56:01 +0200 (CEST)
+Date: Fri, 17 Apr 2020 23:56:01 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Subject: Re: AMD DC graphics display code enables -mhard-float, -msse, -msse2
+ without any visible FPU state protection
+Message-ID: <20200417215601.GQ2483@worktop.programming.kicks-ass.net>
+References: <CAG48ez2Sx4ELkM94aD_h_J7K7KBOeuGmvZLKRkg3n_f2WoZ_cg@mail.gmail.com>
+ <4c5fe55d-9db9-2f61-59b2-1fb2e1b45ed0@amd.com>
+ <20200402141308.GB20730@hirez.programming.kicks-ass.net>
+ <20200409155956.GQ20760@hirez.programming.kicks-ass.net>
+ <20200409170916.GR20760@hirez.programming.kicks-ass.net>
+ <87a2f2fc-972d-ab9b-a29d-72f02d94e60e@amd.com>
+ <20200409200125.GB2483@worktop.programming.kicks-ass.net>
+ <20200417202728.w2v3frkxqsgutb7h@outlook.office365.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from yong-dev.amd.com (165.204.55.251) by
- YTOPR0101CA0060.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::37) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25 via Frontend
- Transport; Fri, 17 Apr 2020 21:46:39 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [165.204.55.251]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 5951708f-26cc-4f76-eadf-08d7e318cfc9
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3228:|DM6PR12MB3228:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3228FA9C95D4F65F6D0E154EF0D90@DM6PR12MB3228.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
-X-Forefront-PRVS: 0376ECF4DD
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4482.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10009020)(4636009)(366004)(136003)(396003)(346002)(39860400002)(376002)(4744005)(66556008)(66476007)(66946007)(26005)(1076003)(4326008)(2906002)(6486002)(5660300002)(478600001)(8936002)(6666004)(6916009)(36756003)(7696005)(316002)(8676002)(81156014)(16526019)(186003)(86362001)(956004)(2616005)(52116002);
- DIR:OUT; SFP:1101; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QhntnzvaGdIhra0OYb2FEj13cgdHHiphNBeYRwMktUnwdw0BNlJpqFwZkOOjXBeJlJW7bE8jWm8XubyzbSxnYKzZlczCopihzAic+/PeqPmgwYq8mM+iNLeC2Vxi1A6yvBz7cy07wGUD/rvEx8pqS7ks7EvqleS9QsZEnBftOlgNxQKTiUhGtdFVZSc8Pi05weley+h1zMPO0WMfS5/3b0ona+9R5LKBHhJr7gJ2l2qxSraT01Qw5EFmwOeiHXzIth48X2OrNb+P4wS5YkUbJdII8xRcjiBBbo5Sxrt7u+taMIIUzWy2Fm0HdWLrZ8aGfiPFgmzJKnEDQ+TUG/p0yeOZovTs1B63i8hD+zeuQ+XJM3zoG84uHGl9FtCVF2f1rATEIeYZP+XGNBOqentmYEBR014oDiZ3t27g204ltpxXP84A61HyvIkm6nxenGOp
-X-MS-Exchange-AntiSpam-MessageData: BKW7tOPDGE0XCGPc+Q4qKSaMUSINp0ehz4ped+29Zj2YZdSQyXobYF0N4Eb8MEO6aLblU7RJkqFoolWULHlLkcgwFjwFn1pNu69qMe4Zu1EtrKlNXJAY0wFO9T2CrTEFCKFaOAUmZKuVP/UfdNVT+w==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5951708f-26cc-4f76-eadf-08d7e318cfc9
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2020 21:46:40.7622 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7m8JstqCknAI7txUPe9AXRdEdha3QoNqWBYMmncCq8NrVx0ZHlUdnxBD7nVeHEa+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3228
+Content-Disposition: inline
+In-Reply-To: <20200417202728.w2v3frkxqsgutb7h@outlook.office365.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Approved-At: Sat, 18 Apr 2020 09:27:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,36 +59,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yong Zhao <Yong.Zhao@amd.com>
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ "H. Peter Anvin" <hpa@zytor.com>, Jann Horn <jannh@google.com>,
+ Leo Li <sunpeng.li@amd.com>, the arch/x86 maintainers <x86@kernel.org>,
+ kernel list <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Andy Lutomirski <luto@kernel.org>,
+ Josh Poimboeuf <jpoimboe@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Harry Wentland <harry.wentland@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ mhiramat@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is convenient for multiple teams to obtain the information. Also,
-add device info by using dev_info().
+On Fri, Apr 17, 2020 at 04:27:28PM -0400, Rodrigo Siqueira wrote:
+> I'm going to work on the FPU issues in the display code. In this sense,
+> could you clarify a little bit more about the Makefile issues?
 
-Signed-off-by: Yong Zhao <Yong.Zhao@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I think it might have been PEBKAC, I assumed allmodconfig would end up
+selecting the driver, it doesn't!
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 71ea56e220ae..423eed223aa5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3170,7 +3170,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 		goto failed;
- 	}
- 
--	DRM_DEBUG("SE %d, SH per SE %d, CU per SH %d, active_cu_number %d\n",
-+	dev_info(adev->dev,
-+		"SE %d, SH per SE %d, CU per SH %d, active_cu_number %d\n",
- 			adev->gfx.config.max_shader_engines,
- 			adev->gfx.config.max_sh_per_se,
- 			adev->gfx.config.max_cu_per_sh,
--- 
-2.17.1
+Adding "AMD GPU" to a defconfig seems to make it work:
+
+$ make O=defconfig-build/ drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calcs.o
+
+Sorry about the confusion.
+
+> Also, I applied the patch `[PATCH v4] x86: insn: Add insn_is_fpu()` and
+> tried to reproduce the warning that you described but I didn't see it.
+> Could you explain to me how I can check those warnings?
+
+grab:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/peterz/queue.git x86/fpu
+
+Then build like above:
+
+$ make O=defconfig-build/ drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calcs.o
+
+And manually validate:
+
+$ defconfig-build/tools/objtool/objtool check -Ffa defconfig-build/drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calcs.o
+defconfig-build/drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calcs.o: warning: objtool: dcn_validate_bandwidth()+0x1b17: FPU instruction outside of kernel_fpu_{begin,end}()
+
 
 _______________________________________________
 amd-gfx mailing list
