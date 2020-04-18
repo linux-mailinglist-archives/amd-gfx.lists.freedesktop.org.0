@@ -1,37 +1,36 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CBB31AECED
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Apr 2020 15:48:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA5251AECF9
+	for <lists+amd-gfx@lfdr.de>; Sat, 18 Apr 2020 15:49:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C6E36EC8A;
-	Sat, 18 Apr 2020 13:48:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AAC96EC8B;
+	Sat, 18 Apr 2020 13:49:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D5216EC87;
- Sat, 18 Apr 2020 13:48:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F85F6EC8B;
+ Sat, 18 Apr 2020 13:49:08 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 28E6022250;
- Sat, 18 Apr 2020 13:48:44 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 1BDEB22264;
+ Sat, 18 Apr 2020 13:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1587217725;
- bh=ktOL1ydxzqjwgC18kkjSNwKIWzjyXW14+koKA7uZfqk=;
+ s=default; t=1587217747;
+ bh=Q+1ZS5W6jXT+EKzQgp5O3Yy0jxmJ2fHRHozCR6SdLn4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jTr6u198wX9KaGosz0zQPFqq1/Q3CHBeJzsOydehTxkJLlig6LXi1UoMlUO1KtAPs
- AIKzZ0XQz5vIm2QDcuVInoK/xjmoA6uZnr0vGpm2ymgKYfYBqviqnkGxisy7i76VGs
- zRgoeV+OaugVl6n5SQ/qiN3ZxntiznAwdQnrLde4=
+ b=RUSO2epRig3pCJhFjzgutEumObPx9PCdD4qw/p29RcRhi7aV3WhGpOrdRXwUmGsM2
+ WFK6hOXwZze9d6BeCGrnP4woHBLH882wAVwnNF4G8ZP7IEgocCUxe8Px09ki0Nhz8H
+ 4bUuwjmdMTctGMD0OgJwRTc/slQswD4EI8usWW00=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.6 24/73] drm/amd/display: Update stream adjust in
- dc_stream_adjust_vmin_vmax
-Date: Sat, 18 Apr 2020 09:47:26 -0400
-Message-Id: <20200418134815.6519-24-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.6 41/73] drm/amdkfd: kfree the wrong pointer
+Date: Sat, 18 Apr 2020 09:47:43 -0400
+Message-Id: <20200418134815.6519-41-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200418134815.6519-1-sashal@kernel.org>
 References: <20200418134815.6519-1-sashal@kernel.org>
@@ -49,49 +48,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Isabel Zhang <isabel.zhang@amd.com>,
- dri-devel@lists.freedesktop.org, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- amd-gfx@lists.freedesktop.org, Alvin Lee <Alvin.Lee2@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, Jack Zhang <Jack.Zhang1@amd.com>,
+ dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@amd.com>,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Isabel Zhang <isabel.zhang@amd.com>
+From: Jack Zhang <Jack.Zhang1@amd.com>
 
-[ Upstream commit 346d8a0a3c91888a412c2735d69daa09c00f0203 ]
+[ Upstream commit 3148a6a0ef3cf93570f30a477292768f7eb5d3c3 ]
 
-[Why]
-After v_total_min and max are updated in vrr structure, the changes are
-not reflected in stream adjust. When these values are read from stream
-adjust it does not reflect the actual state of the system.
+Originally, it kfrees the wrong pointer for mem_obj.
+It would cause memory leak under stress test.
 
-[How]
-Set stream adjust values equal to vrr adjust values after vrr adjust
-values are updated.
-
-Signed-off-by: Isabel Zhang <isabel.zhang@amd.com>
-Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
-Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: Jack Zhang <Jack.Zhang1@amd.com>
+Acked-by: Nirmoy Das <nirmoy.das@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 04441dbcba76f..fc25600107050 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -283,6 +283,8 @@ bool dc_stream_adjust_vmin_vmax(struct dc *dc,
- 	int i = 0;
- 	bool ret = false;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index 2a9e401317353..0d70cb2248fe9 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -1104,9 +1104,9 @@ int kfd_gtt_sa_allocate(struct kfd_dev *kfd, unsigned int size,
+ 	return 0;
  
-+	stream->adjust = *adjust;
-+
- 	for (i = 0; i < MAX_PIPES; i++) {
- 		struct pipe_ctx *pipe = &dc->current_state->res_ctx.pipe_ctx[i];
+ kfd_gtt_no_free_chunk:
+-	pr_debug("Allocation failed with mem_obj = %p\n", mem_obj);
++	pr_debug("Allocation failed with mem_obj = %p\n", *mem_obj);
+ 	mutex_unlock(&kfd->gtt_sa_lock);
+-	kfree(mem_obj);
++	kfree(*mem_obj);
+ 	return -ENOMEM;
+ }
  
 -- 
 2.20.1
