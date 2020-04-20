@@ -2,92 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1E681B0C57
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 15:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BCAA1B0EEB
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 16:54:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA7046E558;
-	Mon, 20 Apr 2020 13:14:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFCB6E5B0;
+	Mon, 20 Apr 2020 14:54:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770075.outbound.protection.outlook.com [40.107.77.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DF9C6E558
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 13:14:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AbzwEE8YNYmNWN7LHpLWMUTv+3yEScPcUF6FopM6NXJJQ5h2bS+6pzJtzOFreDGXVZ9DQBpHf/+8mavd0iq8h2WoQkqWDHd8QS9kBsDWCwuAdOnA4/IQFTT2OY9MxGwYr0SWAtpvuQak8xf88162Gqd7RjC6gkhd+5pExHbL79iGN/gg8YY43u3UsheNL4OxtqrYrPBi9jKUBXvvkn0TlXFUT1qhfnMqfMGM/ogDXVqBYGbFTh1RQ/D9j3zt0rRrDzMHDuF+k/MrQWTRNygtkEH0SPhgM1XQEkShKt2zrS2GD9zmCfbe7NKp/FsQAvzYOcr2MPur0wUIw2ulSEzxdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d5/u11w11Ze/7avh3wmyHHTkhgd3PRdQfJJI7Kb1WgE=;
- b=Pz/FvtL1q17tE8U93YtF5YQMFS9SVy+DQ8Ac50RL4m6UILyAVTBGUdSKCLSUa6ncLKkS/vogyQxWDvDVBbZjIyHC6os+Pgm7uMxx5YOW21JX0Ymv6YHsNmN8alGCLkMzpvgZ8tjChDjk5Gd5E3VEEfm44418CA7V/zMzpfjxiWcxCO0qMzMMDu4xP0Tx1OCgZzZZD1OakelpuLPbvTgo5vTKTiDFtxGRgz9U+cwSj1+XzooDKuaLbOZ/b/2mCi7FtTVTN/Sy6XZ3pbvgkZbd2/L8KG5dwiRJeBf0amyivKjhcpb8hjl9SS7vSX72592K8ljpjY0iqGbxvr3SNqKkLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d5/u11w11Ze/7avh3wmyHHTkhgd3PRdQfJJI7Kb1WgE=;
- b=iWErdlJ7yLDxGqxmlVIPNMsYZQ3avq9GaW5HWqhd3aIXglcqPKsVuB8xKqbB54rCdnMzImMnjyZcoTt+UmXlGdj69SZIcecHrzW3HnLU7egImD4qSgF8Rqx1LRnXiBbZMHORVNuW6JMXgBVFO8pQ0e4+IkOJE3hIvvm7QRfFX7s=
-Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
- by MN2PR12MB3534.namprd12.prod.outlook.com (2603:10b6:208:108::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.29; Mon, 20 Apr
- 2020 13:14:14 +0000
-Received: from MN2PR12MB4488.namprd12.prod.outlook.com
- ([fe80::9dee:2a71:22d6:2941]) by MN2PR12MB4488.namprd12.prod.outlook.com
- ([fe80::9dee:2a71:22d6:2941%6]) with mapi id 15.20.2921.027; Mon, 20 Apr 2020
- 13:14:14 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: =?Windows-1252?Q?Marek_Ol=9A=E1k?= <maraeo@gmail.com>, amd-gfx mailing
- list <amd-gfx@lists.freedesktop.org>
-Subject: Re: drm/amdgpu: add tiling flags from Mesa
-Thread-Topic: drm/amdgpu: add tiling flags from Mesa
-Thread-Index: AQHWFR3T3Y7G3ILKtUiYq8PuGJIJyqiCANqC
-Date: Mon, 20 Apr 2020 13:14:13 +0000
-Message-ID: <MN2PR12MB4488A1E959574A7590429E5EF7D40@MN2PR12MB4488.namprd12.prod.outlook.com>
-References: <CAAxE2A4YRokWUdNBhy_Tse4W51waGmrgjvs86XdZ0MNibXe+xw@mail.gmail.com>
-In-Reply-To: <CAAxE2A4YRokWUdNBhy_Tse4W51waGmrgjvs86XdZ0MNibXe+xw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=True;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-04-20T13:14:13.236Z;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=AMD
- Public; MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=0;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged; 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
-x-originating-ip: [71.219.72.172]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: b064a2b5-2891-44cd-6ad5-08d7e52cb8f0
-x-ms-traffictypediagnostic: MN2PR12MB3534:
-x-microsoft-antispam-prvs: <MN2PR12MB3534EF08DAA81B2F834DFC2BF7D40@MN2PR12MB3534.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 03793408BA
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10009020)(4636009)(39860400002)(346002)(396003)(376002)(136003)(366004)(71200400001)(9686003)(8676002)(5660300002)(55016002)(4744005)(81156014)(8936002)(33656002)(2906002)(19627405001)(86362001)(66476007)(7696005)(26005)(186003)(478600001)(52536014)(316002)(76116006)(66446008)(64756008)(66556008)(66946007)(110136005)(53546011)(6506007);
- DIR:OUT; SFP:1101; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yNvQJk+NRxr+HdR7KU8Lcdamn8nHI5itU9Z9RFiN4Y1dsVWhTaMkXZ1GGdvFg40hN95lXV1mKuIM9q90VEJlZPtMS33i8o/CaQQqoUr6/mRIiKO8x/GLXt+pFE7hEItxu6SRDo36Z/uM0XusRkvmiS0C6qDSieQw5lcOonBR0mXf88jA6M+6PCaEOMeHwh7tBHrz2BUTNC6TQupf8WbCeGoI5bn8rm+18H9jOO97uNieFDHpRphXestYHGtAOp/PCQ9qFl8jK9rQ/aJhUDCM5hh+FYwGqjlQuD9KThBFyJ1RggEZDulxXUd/3VLHrjcwcAyuDlZpU1F3OX09V7tKuyK/sw2QSe0Tb86P7yZ2HZsdP9EDHgCJdsB867ol3NqooRSjx655m9snIy61j2OcfXHMcCa1Xvx45brkAIUpc9xq0eIO09DN2Bk8SDj9NFXV
-x-ms-exchange-antispam-messagedata: ITuKAnwlOChC+v7IIk+QG7W3Qf4nGTIoGclixXIoyAYNk6clC5wDZmqYZ7P+toraKCdzWUR1s4n5h1cf9xIxMYAIfUMlW8q6XIC+6gsZou+QfV/UwUvk/khAF3RJLZkMBIVdRx4Vkcg1NGQJtY6A7A==
-x-ms-exchange-transport-forked: True
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB59288C5A;
+ Mon, 20 Apr 2020 14:08:49 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1jQX6N-0006NI-2h; Mon, 20 Apr 2020 14:08:47 +0000
+From: Colin King <colin.king@canonical.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Zhou <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH][next] drm/amdgpu: fix a dereference on pointer hive before it
+ is null checked
+Date: Mon, 20 Apr 2020 15:08:46 +0100
+Message-Id: <20200420140846.78062-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b064a2b5-2891-44cd-6ad5-08d7e52cb8f0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2020 13:14:13.8249 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 68m1RDNYAj46wl4S7AHVj9xgHepcBpLL/C6vDVHNub72JG8iB7pvq0mYPhu6S8l7J2LJBL/VCLGtYp+Ks6xrEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3534
+X-Mailman-Approved-At: Mon, 20 Apr 2020 14:54:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,105 +42,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1032297564=="
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1032297564==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB4488A1E959574A7590429E5EF7D40MN2PR12MB4488namp_"
+From: Colin Ian King <colin.king@canonical.com>
 
---_000_MN2PR12MB4488A1E959574A7590429E5EF7D40MN2PR12MB4488namp_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Currently pointer hive is being dereferenced before it is being null
+checked and hence can lead to null pointer dereference issues. Fix this
+by only dereferencing pointer hive after it has been null checked.
 
-[AMD Public Use]
+Addresses-Coverity: ("Dereference before null check")
+Fixes: 25d4275e1931 ("drm/amdgpu: fix race between pstate and remote buffer map")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Marek Ol=
-=9A=E1k <maraeo@gmail.com>
-Sent: Friday, April 17, 2020 9:06 PM
-To: amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
-Subject: drm/amdgpu: add tiling flags from Mesa
-
-Hi,
-
-This is needed for displayable DCC on gfx10. Mesa will add the first flag s=
-oon or after DAL starts using it on gfx10.
-
-Please review.
-
-Thanks,
-Marek
-
---_000_MN2PR12MB4488A1E959574A7590429E5EF7D40MN2PR12MB4488namp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#317100;margin:15pt;" al=
-ign=3D"Left">
-[AMD Public Use]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Marek Ol=9A=E1k &lt;maraeo@gm=
-ail.com&gt;<br>
-<b>Sent:</b> Friday, April 17, 2020 9:06 PM<br>
-<b>To:</b> amd-gfx mailing list &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Subject:</b> drm/amdgpu: add tiling flags from Mesa</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div>Hi,</div>
-<div><br>
-</div>
-<div>This is needed for displayable DCC on gfx10. Mesa will add the first f=
-lag soon or after DAL starts using it on gfx10.<br>
-</div>
-<div><br>
-</div>
-<div>Please review.</div>
-<div><br>
-</div>
-<div>Thanks,</div>
-<div>Marek<br>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_MN2PR12MB4488A1E959574A7590429E5EF7D40MN2PR12MB4488namp_--
-
---===============1032297564==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 54d8a3e7e75c..2c0a59ba2826 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -389,15 +389,17 @@ int amdgpu_xgmi_set_pstate(struct amdgpu_device *adev, int pstate)
+ {
+ 	int ret = 0;
+ 	struct amdgpu_hive_info *hive = amdgpu_get_xgmi_hive(adev, 0);
+-	struct amdgpu_device *request_adev = hive->hi_req_gpu ?
+-						hive->hi_req_gpu : adev;
++	struct amdgpu_device *request_adev;
+ 	bool is_hi_req = pstate == AMDGPU_XGMI_PSTATE_MAX_VEGA20;
+-	bool init_low = hive->pstate == AMDGPU_XGMI_PSTATE_UNKNOWN;
++	bool init_low;
+ 
+ 	/* fw bug so temporarily disable pstate switching */
+ 	if (!hive || adev->asic_type == CHIP_VEGA20)
+ 		return 0;
+ 
++	request_adev = hive->hi_req_gpu ? hive->hi_req_gpu : adev;
++	init_low = hive->pstate == AMDGPU_XGMI_PSTATE_UNKNOWN;
++
+ 	mutex_lock(&hive->hive_lock);
+ 
+ 	if (is_hi_req)
+-- 
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1032297564==--
