@@ -1,63 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 693DA1B107F
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 17:45:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 915001B13E3
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 20:05:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAFAA6E5D3;
-	Mon, 20 Apr 2020 15:45:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04BED6E833;
+	Mon, 20 Apr 2020 18:05:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FAD46E5D3
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 15:45:34 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id k11so12794761wrp.5
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 08:45:34 -0700 (PDT)
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com
+ [IPv6:2607:f8b0:4864:20::736])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 941AD6E7D5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 16:04:55 +0000 (UTC)
+Received: by mail-qk1-x736.google.com with SMTP id j4so11115495qkc.11
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 09:04:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=usxdzY/5RGl2FYINStu8F2vBVIc5GkxC7V7OYWvXnnc=;
- b=VtYfkXnXfNB7dpVX55+QhdXKGShDfmxs22bNq1lH67UfhfjYr+c/QDHqBpQ2Eh2BWQ
- NodN/ycniPB88KAUDbcvSsQWFnRIpiPLJCQkkZCts9MPhVhFJO+UQKex6YFDEYUWw9fe
- K1+xzF/EMWhJqfbzTTRa7JJLeMZMCpW1qSjnO6MEXkWtOW2w7kUz3KHkJagglm/6Qzdr
- WdQrWKkQF3iTNri4/sONVpJRzZkvmfYnfmFugJ7CfD15QtKSc3nB87IK0aSUpA67g06I
- IlBaVkPiVhOIssPzWRYJtnbjnhOk7FDP7pGiDOu5eM6Nxo4chK9sCkvBVHRoCIV7/wst
- x1TA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=mTM20ystUbYtsKRZ3ZxlxWVHLxZs3H2mGqURbXZMtWg=;
+ b=YLZPLXgnTc/eNlM33yiTl/8hoD/W16WPAt/cfTYm+r1k4FxwO60I9wjwvFAXuY1m5L
+ deFEhGWLZ4Kt0pJTVbIXXayiWGOuAe85sbrN7CTDhdW9zAKtoiy3elbjex51OPqiWW6T
+ ACFAdhHjpqdf88tYDwhz2CCMIAY0cqv4Ayf1cbFL6xY3lT79IRNHieVXlY8N9P/jSkDX
+ U+ox5kjAE6J5MRuUH5605Nxqa0PZ59zX6xPB3/UPE19plpL23lwR6Gd3CoyrWOvZbKZB
+ t1cTsob0ulSEpAOLjYoveqEXqlfHRsrCXV+05XHzE49oD3k885KsvDsurB5WYpRmMgnc
+ F7JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=usxdzY/5RGl2FYINStu8F2vBVIc5GkxC7V7OYWvXnnc=;
- b=krRcobOTiOeUm3GV72oOGJt6yKQo8q2ZwIh6PAL1EgMr8t9y0Q5XQHJvJEX3PUWw0E
- M2PytuKZULp6bJyQw6S12tFTKAKI5vBLCwrlTvNA9sqxEWpsyfRcOgnMfo0TliyAg/Dl
- nBe3sYLirJth8NHy52T6hG8Ygdjgp+XZSsEMUfqrne19gjLM0sQ5HypoRjakO6MtD5zL
- cuaINZ+hMG7Efjvy56x3qsmbflvBAFnePUFb1vF83xbT0BJAGW97yA9REtARmvXUtQAB
- vPH67nF/q/Dab580n6T9gl1lzY6VWyWgy/cBbYjHxYSE3U5pP2ALLVlCl+3pRIupkUGF
- DImw==
-X-Gm-Message-State: AGi0PuatXIJQS2v2d/ULBAJn3eGsodNwAJGUlKavhEn3AQHopELSNkmW
- XNcZcUXRa3o2Bp4Q2Jr8F4Ts40/D
-X-Google-Smtp-Source: APiQypKmlT9aq/TzxS5uBTxcsjHpC4xVZm8qNsGXCnXcX3FOQuT35eiGxbnsDadikqWxxWPWRKeQeg==
-X-Received: by 2002:adf:dec9:: with SMTP id i9mr16052755wrn.197.1587397533146; 
- Mon, 20 Apr 2020 08:45:33 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id i17sm1646635wru.39.2020.04.20.08.45.32
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 20 Apr 2020 08:45:32 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu: clean up unused variable about ring lru
-To: Kevin Wang <kevin1.wang@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20200420152706.37360-1-kevin1.wang@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <cf3cefe5-1ff4-81d9-060f-39eb9cef6cd4@gmail.com>
-Date: Mon, 20 Apr 2020 17:45:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=mTM20ystUbYtsKRZ3ZxlxWVHLxZs3H2mGqURbXZMtWg=;
+ b=IRVDXuQYYMpYokphxWcQKSxYzkWccNWpuDrkCCqg3rQZNqavf93mOQG9+3bMgFwv8r
+ lAdRkc6Xm1gwdSAGqhrXQj+RQ7vnuZBeiFUkK8YvMIJ3pmk6t1TU+D5kxlF+r39qpBw2
+ BTRNc4r4EcqTZAPNAT2IU2oYTGZfr53JdZZTSeSOhuXDxvAtvxJN/KZJFn4m2kJc1BXN
+ xuFBY4BTltN6CwSf8OKLUFsebbVQkmNUaNgjdzbzebZXYK60hzwcOoLdtPoGtkK7rv4r
+ IfL0yZvB8+WuCYoRrRbpM7ws7lWuVuuXO+f+4laGUOqQsoyi7JhEWoQBJzRkTIn+Pypy
+ w6+A==
+X-Gm-Message-State: AGi0Pua6/nyRIpZcLNHzqWKP9LHMR2yap+84rbCN5N9Q1C4zDZviAnEo
+ BBPyyZxVd7B07Sl/aDJg4WNoHpAUHVE1WY6k/qStvBKY
+X-Google-Smtp-Source: APiQypINl/AD5GIXpA5/lhmxbbMbEQg/B6PrB/Xn+fqkvm01JJT9tK2RnUCtCIQdy+gmCecait5bZ4hfEyjuaIwQxcM=
+X-Received: by 2002:a37:6287:: with SMTP id w129mr16706022qkb.34.1587398694662; 
+ Mon, 20 Apr 2020 09:04:54 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200420152706.37360-1-kevin1.wang@amd.com>
-Content-Language: en-US
+References: <CAGcx_0Z4Lz4x5xxahtQJwaysGcQz9frLctYMg3z1Num3y+LUyw@mail.gmail.com>
+ <ab5fd92f-c0e3-8647-80e7-00d4ad397582@daenzer.net>
+In-Reply-To: <ab5fd92f-c0e3-8647-80e7-00d4ad397582@daenzer.net>
+From: uday kiran pichika <udaykiran.pichika@gmail.com>
+Date: Mon, 20 Apr 2020 21:34:43 +0530
+Message-ID: <CAGcx_0ZoYz9jJQCWceTkN_X0dGdc+fTEaZytEx152SNLavAPRQ@mail.gmail.com>
+Subject: Re: Reg. Adaptive Sync feature in xf86-video-amdgpu
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
+X-Mailman-Approved-At: Mon, 20 Apr 2020 18:05:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,45 +61,224 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: Alexander.Deucher@amd.com, christian.koenig@amd.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0570544027=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjAuMDQuMjAgdW0gMTc6Mjcgc2NocmllYiBLZXZpbiBXYW5nOgo+IGNsZWFuIHVwIHVudXNl
-ZCB2YXJpYWJsZToKPiAxLiByaW5nX2xydV9saXN0Cj4gMi4gcmluZ19scnVfbGlzdF9sb2NrCj4K
-PiByZWxhdGVkLWNvbW1pdDoKPiBkcm0vYW1kZ3B1OiByZW1vdmUgcmluZyBscnUgaGFuZGxpbmcK
-Pgo+IFNpZ25lZC1vZmYtYnk6IEtldmluIFdhbmcgPGtldmluMS53YW5nQGFtZC5jb20+CgpSZXZp
-ZXdlZC1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgoKRm91
-bmQgYnkgYWNjaWRlbnQgb3IgdXNlZCBzb21lIHRvb2w/IEknbSBhc2tpbmcgYmVjYXVzZSBJJ20g
-cHJldHR5IHN1cmUgCndlIGhhdmUgbW9yZSBsaWtlIHRob3NlLgoKVGhhbmtzLApDaHJpc3RpYW4u
-Cgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1LmggICAgICAgIHwg
-MyAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYyB8IDMg
-LS0tCj4gICAyIGZpbGVzIGNoYW5nZWQsIDYgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1LmggYi9kcml2ZXJzL2dwdS9kcm0vYW1k
-L2FtZGdwdS9hbWRncHUuaAo+IGluZGV4IDk0ZGZmODk5MjQ4ZC4uZThhYjNkZGU2YTY2IDEwMDY0
-NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdS5oCj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1LmgKPiBAQCAtOTUzLDkgKzk1Myw2IEBAIHN0
-cnVjdCBhbWRncHVfZGV2aWNlIHsKPiAgIAkvKiBsaW5rIGFsbCBzaGFkb3cgYm8gKi8KPiAgIAlz
-dHJ1Y3QgbGlzdF9oZWFkICAgICAgICAgICAgICAgIHNoYWRvd19saXN0Owo+ICAgCXN0cnVjdCBt
-dXRleCAgICAgICAgICAgICAgICAgICAgc2hhZG93X2xpc3RfbG9jazsKPiAtCS8qIGtlZXAgYW4g
-bHJ1IGxpc3Qgb2YgcmluZ3MgYnkgSFcgSVAgKi8KPiAtCXN0cnVjdCBsaXN0X2hlYWQJCXJpbmdf
-bHJ1X2xpc3Q7Cj4gLQlzcGlubG9ja190CQkJcmluZ19scnVfbGlzdF9sb2NrOwo+ICAgCj4gICAJ
-LyogcmVjb3JkIGh3IHJlc2V0IGlzIHBlcmZvcm1lZCAqLwo+ICAgCWJvb2wgaGFzX2h3X3Jlc2V0
-Owo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNl
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMKPiBpbmRleCA3
-MWVhNTZlMjIwYWUuLjM4ZWI3MzYwOTFkMCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS9hbWRncHVfZGV2aWNlLmMKPiBAQCAtMjk5MCw5ICsyOTkwLDYgQEAgaW50IGFtZGdwdV9k
-ZXZpY2VfaW5pdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwKPiAgIAlJTklUX0xJU1RfSEVB
-RCgmYWRldi0+c2hhZG93X2xpc3QpOwo+ICAgCW11dGV4X2luaXQoJmFkZXYtPnNoYWRvd19saXN0
-X2xvY2spOwo+ICAgCj4gLQlJTklUX0xJU1RfSEVBRCgmYWRldi0+cmluZ19scnVfbGlzdCk7Cj4g
-LQlzcGluX2xvY2tfaW5pdCgmYWRldi0+cmluZ19scnVfbGlzdF9sb2NrKTsKPiAtCj4gICAJSU5J
-VF9ERUxBWUVEX1dPUksoJmFkZXYtPmRlbGF5ZWRfaW5pdF93b3JrLAo+ICAgCQkJICBhbWRncHVf
-ZGV2aWNlX2RlbGF5ZWRfaW5pdF93b3JrX2hhbmRsZXIpOwo+ICAgCUlOSVRfREVMQVlFRF9XT1JL
-KCZhZGV2LT5nZnguZ2Z4X29mZl9kZWxheV93b3JrLAoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9hbWQtZ2Z4Cg==
+--===============0570544027==
+Content-Type: multipart/alternative; boundary="0000000000004ff5f805a3bb0f01"
+
+--0000000000004ff5f805a3bb0f01
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks for the information Michel.
+
+Even in amdgpu_present_flip(), there is a check
+for amdgpu_window_has_variable_refresh() which actually checks whether
+window has a variable_refresh property set from the MESA or not ? this
+check is failing in my case and never calls amdgpu_present_set_screen_vrr.
+Is there any way that i can check whether MESA is setting this property ?
+
+To my understanding, MESA will set this property to true or false based on
+whether application is running in Full screen mode or in normal mode.
+Please correct me if I am wrong.
+
+Thanks
+Uday Kiran
+
+On Mon, Apr 20, 2020 at 8:14 PM Michel D=C3=A4nzer <michel@daenzer.net> wro=
+te:
+
+> On 2020-04-20 6:12 a.m., uday kiran pichika wrote:
+> > Hello Team,
+> >
+> > I'm working on adding Adaptive Sync feature in Xserver/modesetting. Whe=
+n
+> > understanding the existing AMD's implementation, I've few doubts
+> regarding
+> > the vrr property being set on the Window from MESA.
+> >
+> > I have made the modifications in xserver/modesetting but when i launch
+> the
+> > application(DOTA2), below condition gets failed
+> >
+> https://gitlab.freedesktop.org/xorg/driver/xf86-video-amdgpu/-/blob/maste=
+r/src/amdgpu_kms.c#L110
+>
+> BTW, one should always use a specific Git commit for this kind of
+> reference, otherwise it will tend to point to unrelated code or even
+> nirvana as time passes.
+>
+>
+> > As per the code, i had a confusion that this condition will never met.
+> >
+> > *I had analysed the code and here is the analysis made when the flip
+> > happens in xserver When full screen gaming application is opened,
+> > variable_refresh property is being set in MESA and xserver will get
+> > notified with amdgpu_change_property() method(Same method we registered
+> > with the client during AMDGPUScreenInit_KMS()). *
+> >
+> > *Below actions will happen in ms_change_property() *
+> >
+> > *1. Create Local WindowPtr and copy the data from Stuff->window to this
+> > WindowPtr*
+> >
+> > *2. Call amdgpu_vrr_property_update() based on the property set in Stuf=
+f
+> by
+> > passing the WindowPtr to it.*
+> >
+> > *    a. Read Private Keys for WindowPtr in amdgpu_vrr_property_update()=
+.
+> *
+> >
+> > *    b. Compare info->flip_window and this WindowPtr and make a call to
+> > amdgpu_present_set_screen_vrr().  =E2=86=92 But this method will never =
+gets
+> called
+> > due to the condition mismatch every time. Why ? *
+> >
+> > *Why ?*
+> >
+> > *info->flip_window gets updated with window (WindowPtr)
+> > in amdgpu_present_check_flip() when amdgpu_present_flip() method gets
+> > called from DIX. This pointer will never same as the WindowPtr created =
+in
+> > amdgpu_change_property() and variable_refresh flag is being set for in
+> > amdgpu_change_property() WindowPtr only. *
+> >
+> > Can  you please help me in understanding on this ?
+>
+> This code in amdgpu_vrr_property_update is for the case when the
+> ChangeProperty request is called for a window which is already flipping.
+>
+> In the case you're looking at, the window only starts flipping later,
+> and the KMS property is enabled from amdgpu_present_flip =3D>
+> amdgpu_present_set_screen_vrr.
+>
+>
+> --
+> Earthling Michel D=C3=A4nzer               |               https://redhat=
+.com
+> Libre software enthusiast             |             Mesa and X developer
+>
+
+--0000000000004ff5f805a3bb0f01
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks for the information Michel.=C2=A0<div><br><div>Even=
+ in amdgpu_present_flip(), there is a check for=C2=A0amdgpu_window_has_vari=
+able_refresh() which actually checks whether window has a variable_refresh =
+property set from the MESA or not ? this check is failing in my case and ne=
+ver calls amdgpu_present_set_screen_vrr. Is there any way that i can check =
+whether MESA is setting this property ?</div><div><br></div><div>To my unde=
+rstanding, MESA will set this property to true or false based on whether ap=
+plication=C2=A0is running in Full screen mode or in normal mode.=C2=A0 Plea=
+se correct=C2=A0me if I am wrong.=C2=A0</div></div><div><br></div><div>Than=
+ks=C2=A0</div><div>Uday Kiran</div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 20, 2020 at 8:14 PM Michel D=
+=C3=A4nzer &lt;<a href=3D"mailto:michel@daenzer.net">michel@daenzer.net</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 2=
+020-04-20 6:12 a.m., uday kiran pichika wrote:<br>
+&gt; Hello Team,<br>
+&gt; <br>
+&gt; I&#39;m working on adding Adaptive Sync feature in Xserver/modesetting=
+. When<br>
+&gt; understanding the existing AMD&#39;s implementation, I&#39;ve few doub=
+ts regarding<br>
+&gt; the vrr property being set on the Window from MESA.<br>
+&gt; <br>
+&gt; I have made the modifications in xserver/modesetting but when i launch=
+ the<br>
+&gt; application(DOTA2), below condition gets failed<br>
+&gt; <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-amdgp=
+u/-/blob/master/src/amdgpu_kms.c#L110" rel=3D"noreferrer" target=3D"_blank"=
+>https://gitlab.freedesktop.org/xorg/driver/xf86-video-amdgpu/-/blob/master=
+/src/amdgpu_kms.c#L110</a><br>
+<br>
+BTW, one should always use a specific Git commit for this kind of<br>
+reference, otherwise it will tend to point to unrelated code or even<br>
+nirvana as time passes.<br>
+<br>
+<br>
+&gt; As per the code, i had a confusion that this condition will never met.=
+<br>
+&gt; <br>
+&gt; *I had analysed the code and here is the analysis made when the flip<b=
+r>
+&gt; happens in xserver When full screen gaming application is opened,<br>
+&gt; variable_refresh property is being set in MESA and xserver will get<br=
+>
+&gt; notified with amdgpu_change_property() method(Same method we registere=
+d<br>
+&gt; with the client during AMDGPUScreenInit_KMS()). *<br>
+&gt; <br>
+&gt; *Below actions will happen in ms_change_property() *<br>
+&gt; <br>
+&gt; *1. Create Local WindowPtr and copy the data from Stuff-&gt;window to =
+this<br>
+&gt; WindowPtr*<br>
+&gt; <br>
+&gt; *2. Call amdgpu_vrr_property_update() based on the property set in Stu=
+ff by<br>
+&gt; passing the WindowPtr to it.*<br>
+&gt; <br>
+&gt; *=C2=A0 =C2=A0 a. Read Private Keys for WindowPtr in amdgpu_vrr_proper=
+ty_update(). *<br>
+&gt; <br>
+&gt; *=C2=A0 =C2=A0 b. Compare info-&gt;flip_window and this WindowPtr and =
+make a call to<br>
+&gt; amdgpu_present_set_screen_vrr().=C2=A0 =E2=86=92 But this method will =
+never gets called<br>
+&gt; due to the condition mismatch every time. Why ? *<br>
+&gt; <br>
+&gt; *Why ?*<br>
+&gt; <br>
+&gt; *info-&gt;flip_window gets updated with window (WindowPtr)<br>
+&gt; in amdgpu_present_check_flip() when amdgpu_present_flip() method gets<=
+br>
+&gt; called from DIX. This pointer will never same as the WindowPtr created=
+ in<br>
+&gt; amdgpu_change_property() and variable_refresh flag is being set for in=
+<br>
+&gt; amdgpu_change_property() WindowPtr only. *<br>
+&gt; <br>
+&gt; Can=C2=A0 you please help me in understanding on this ?<br>
+<br>
+This code in amdgpu_vrr_property_update is for the case when the<br>
+ChangeProperty request is called for a window which is already flipping.<br=
+>
+<br>
+In the case you&#39;re looking at, the window only starts flipping later,<b=
+r>
+and the KMS property is enabled from amdgpu_present_flip =3D&gt;<br>
+amdgpu_present_set_screen_vrr.<br>
+<br>
+<br>
+-- <br>
+Earthling Michel D=C3=A4nzer=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=
+=3D"https://redhat.com" rel=3D"noreferrer" target=3D"_blank">https://redhat=
+.com</a><br>
+Libre software enthusiast=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Mesa and X developer<br>
+</blockquote></div>
+
+--0000000000004ff5f805a3bb0f01--
+
+--===============0570544027==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0570544027==--
