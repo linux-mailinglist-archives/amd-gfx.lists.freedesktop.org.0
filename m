@@ -2,33 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6C141B0EEA
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 16:54:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A69D1B0EC7
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 16:44:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDEFF6E0E5;
-	Mon, 20 Apr 2020 14:54:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACC6A6E5A4;
+	Mon, 20 Apr 2020 14:44:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85EDD6E59D;
- Mon, 20 Apr 2020 14:21:40 +0000 (UTC)
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id A013A13B50DC346F49ED;
- Mon, 20 Apr 2020 22:21:37 +0800 (CST)
-Received: from localhost (10.166.215.154) by DGGEMS412-HUB.china.huawei.com
- (10.3.19.212) with Microsoft SMTP Server id 14.3.487.0; Mon, 20 Apr 2020
- 22:21:30 +0800
-From: YueHaibing <yuehaibing@huawei.com>
-To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <David1.Zhou@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>
-Subject: [PATCH -next] drm/amdgpu/gfx10: remove unused variables
-Date: Mon, 20 Apr 2020 22:21:11 +0800
-Message-ID: <20200420142111.29184-1-yuehaibing@huawei.com>
-X-Mailer: git-send-email 2.10.2.windows.1
+Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 38E136E5A9
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 14:44:17 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by netline-mail3.netline.ch (Postfix) with ESMTP id 477FD2A6045;
+ Mon, 20 Apr 2020 16:44:16 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
+Received: from netline-mail3.netline.ch ([127.0.0.1])
+ by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id CYQ2zTuUVl9M; Mon, 20 Apr 2020 16:44:16 +0200 (CEST)
+Received: from thor (252.80.76.83.dynamic.wline.res.cust.swisscom.ch
+ [83.76.80.252])
+ by netline-mail3.netline.ch (Postfix) with ESMTPSA id F33192A6016;
+ Mon, 20 Apr 2020 16:44:15 +0200 (CEST)
+Received: from [::1] by thor with esmtp (Exim 4.93)
+ (envelope-from <michel@daenzer.net>)
+ id 1jQXeh-001ozu-EM; Mon, 20 Apr 2020 16:44:15 +0200
+Subject: Re: Reg. Adaptive Sync feature in xf86-video-amdgpu
+To: uday kiran pichika <udaykiran.pichika@gmail.com>
+References: <CAGcx_0Z4Lz4x5xxahtQJwaysGcQz9frLctYMg3z1Num3y+LUyw@mail.gmail.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Message-ID: <ab5fd92f-c0e3-8647-80e7-00d4ad397582@daenzer.net>
+Date: Mon, 20 Apr 2020 16:44:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-X-Originating-IP: [10.166.215.154]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Mon, 20 Apr 2020 14:54:10 +0000
+In-Reply-To: <CAGcx_0Z4Lz4x5xxahtQJwaysGcQz9frLctYMg3z1Num3y+LUyw@mail.gmail.com>
+Content-Language: en-CA
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,58 +48,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: YueHaibing <yuehaibing@huawei.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c: In function gfx_v10_rlcg_wreg:
-drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c:1291:18: warning: variable grbm_idx set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c:1290:18: warning: variable grbm_cntl set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c:1288:15: warning: variable scratch_reg3 set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c:1287:15: warning: variable scratch_reg2 set but not used [-Wunused-but-set-variable]
-
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: YueHaibing <yuehaibing@huawei.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 9 ---------
- 1 file changed, 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index 0a03e2ad5d95..942842424ea1 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -1284,23 +1284,14 @@ static void gfx_v10_rlcg_wreg(struct amdgpu_device *adev, u32 offset, u32 v)
- {
- 	static void *scratch_reg0;
- 	static void *scratch_reg1;
--	static void *scratch_reg2;
--	static void *scratch_reg3;
- 	static void *spare_int;
--	static uint32_t grbm_cntl;
--	static uint32_t grbm_idx;
- 	uint32_t i = 0;
- 	uint32_t retries = 50000;
- 
- 	scratch_reg0 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG0_BASE_IDX] + mmSCRATCH_REG0)*4;
- 	scratch_reg1 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG1_BASE_IDX] + mmSCRATCH_REG1)*4;
--	scratch_reg2 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG1_BASE_IDX] + mmSCRATCH_REG2)*4;
--	scratch_reg3 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG1_BASE_IDX] + mmSCRATCH_REG3)*4;
- 	spare_int = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmRLC_SPARE_INT_BASE_IDX] + mmRLC_SPARE_INT)*4;
- 
--	grbm_cntl = adev->reg_offset[GC_HWIP][0][mmGRBM_GFX_CNTL_BASE_IDX] + mmGRBM_GFX_CNTL;
--	grbm_idx = adev->reg_offset[GC_HWIP][0][mmGRBM_GFX_INDEX_BASE_IDX] + mmGRBM_GFX_INDEX;
--
- 	if (amdgpu_sriov_runtime(adev)) {
- 		pr_err("shouldn't call rlcg write register during runtime\n");
- 		return;
--- 
-2.17.1
-
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gMjAyMC0wNC0yMCA2OjEyIGEubS4sIHVkYXkga2lyYW4gcGljaGlrYSB3cm90ZToKPiBIZWxs
+byBUZWFtLAo+IAo+IEknbSB3b3JraW5nIG9uIGFkZGluZyBBZGFwdGl2ZSBTeW5jIGZlYXR1cmUg
+aW4gWHNlcnZlci9tb2Rlc2V0dGluZy4gV2hlbgo+IHVuZGVyc3RhbmRpbmcgdGhlIGV4aXN0aW5n
+IEFNRCdzIGltcGxlbWVudGF0aW9uLCBJJ3ZlIGZldyBkb3VidHMgcmVnYXJkaW5nCj4gdGhlIHZy
+ciBwcm9wZXJ0eSBiZWluZyBzZXQgb24gdGhlIFdpbmRvdyBmcm9tIE1FU0EuCj4gCj4gSSBoYXZl
+IG1hZGUgdGhlIG1vZGlmaWNhdGlvbnMgaW4geHNlcnZlci9tb2Rlc2V0dGluZyBidXQgd2hlbiBp
+IGxhdW5jaCB0aGUKPiBhcHBsaWNhdGlvbihET1RBMiksIGJlbG93IGNvbmRpdGlvbiBnZXRzIGZh
+aWxlZAo+IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy94b3JnL2RyaXZlci94Zjg2LXZp
+ZGVvLWFtZGdwdS8tL2Jsb2IvbWFzdGVyL3NyYy9hbWRncHVfa21zLmMjTDExMAoKQlRXLCBvbmUg
+c2hvdWxkIGFsd2F5cyB1c2UgYSBzcGVjaWZpYyBHaXQgY29tbWl0IGZvciB0aGlzIGtpbmQgb2YK
+cmVmZXJlbmNlLCBvdGhlcndpc2UgaXQgd2lsbCB0ZW5kIHRvIHBvaW50IHRvIHVucmVsYXRlZCBj
+b2RlIG9yIGV2ZW4KbmlydmFuYSBhcyB0aW1lIHBhc3Nlcy4KCgo+IEFzIHBlciB0aGUgY29kZSwg
+aSBoYWQgYSBjb25mdXNpb24gdGhhdCB0aGlzIGNvbmRpdGlvbiB3aWxsIG5ldmVyIG1ldC4KPiAK
+PiAqSSBoYWQgYW5hbHlzZWQgdGhlIGNvZGUgYW5kIGhlcmUgaXMgdGhlIGFuYWx5c2lzIG1hZGUg
+d2hlbiB0aGUgZmxpcAo+IGhhcHBlbnMgaW4geHNlcnZlciBXaGVuIGZ1bGwgc2NyZWVuIGdhbWlu
+ZyBhcHBsaWNhdGlvbiBpcyBvcGVuZWQsCj4gdmFyaWFibGVfcmVmcmVzaCBwcm9wZXJ0eSBpcyBi
+ZWluZyBzZXQgaW4gTUVTQSBhbmQgeHNlcnZlciB3aWxsIGdldAo+IG5vdGlmaWVkIHdpdGggYW1k
+Z3B1X2NoYW5nZV9wcm9wZXJ0eSgpIG1ldGhvZChTYW1lIG1ldGhvZCB3ZSByZWdpc3RlcmVkCj4g
+d2l0aCB0aGUgY2xpZW50IGR1cmluZyBBTURHUFVTY3JlZW5Jbml0X0tNUygpKS4gKgo+IAo+ICpC
+ZWxvdyBhY3Rpb25zIHdpbGwgaGFwcGVuIGluIG1zX2NoYW5nZV9wcm9wZXJ0eSgpICoKPiAKPiAq
+MS4gQ3JlYXRlIExvY2FsIFdpbmRvd1B0ciBhbmQgY29weSB0aGUgZGF0YSBmcm9tIFN0dWZmLT53
+aW5kb3cgdG8gdGhpcwo+IFdpbmRvd1B0cioKPiAKPiAqMi4gQ2FsbCBhbWRncHVfdnJyX3Byb3Bl
+cnR5X3VwZGF0ZSgpIGJhc2VkIG9uIHRoZSBwcm9wZXJ0eSBzZXQgaW4gU3R1ZmYgYnkKPiBwYXNz
+aW5nIHRoZSBXaW5kb3dQdHIgdG8gaXQuKgo+IAo+ICogICAgYS4gUmVhZCBQcml2YXRlIEtleXMg
+Zm9yIFdpbmRvd1B0ciBpbiBhbWRncHVfdnJyX3Byb3BlcnR5X3VwZGF0ZSgpLiAqCj4gCj4gKiAg
+ICBiLiBDb21wYXJlIGluZm8tPmZsaXBfd2luZG93IGFuZCB0aGlzIFdpbmRvd1B0ciBhbmQgbWFr
+ZSBhIGNhbGwgdG8KPiBhbWRncHVfcHJlc2VudF9zZXRfc2NyZWVuX3ZycigpLiAg4oaSIEJ1dCB0
+aGlzIG1ldGhvZCB3aWxsIG5ldmVyIGdldHMgY2FsbGVkCj4gZHVlIHRvIHRoZSBjb25kaXRpb24g
+bWlzbWF0Y2ggZXZlcnkgdGltZS4gV2h5ID8gKgo+IAo+ICpXaHkgPyoKPiAKPiAqaW5mby0+Zmxp
+cF93aW5kb3cgZ2V0cyB1cGRhdGVkIHdpdGggd2luZG93IChXaW5kb3dQdHIpCj4gaW4gYW1kZ3B1
+X3ByZXNlbnRfY2hlY2tfZmxpcCgpIHdoZW4gYW1kZ3B1X3ByZXNlbnRfZmxpcCgpIG1ldGhvZCBn
+ZXRzCj4gY2FsbGVkIGZyb20gRElYLiBUaGlzIHBvaW50ZXIgd2lsbCBuZXZlciBzYW1lIGFzIHRo
+ZSBXaW5kb3dQdHIgY3JlYXRlZCBpbgo+IGFtZGdwdV9jaGFuZ2VfcHJvcGVydHkoKSBhbmQgdmFy
+aWFibGVfcmVmcmVzaCBmbGFnIGlzIGJlaW5nIHNldCBmb3IgaW4KPiBhbWRncHVfY2hhbmdlX3By
+b3BlcnR5KCkgV2luZG93UHRyIG9ubHkuICoKPiAKPiBDYW4gIHlvdSBwbGVhc2UgaGVscCBtZSBp
+biB1bmRlcnN0YW5kaW5nIG9uIHRoaXMgPwoKVGhpcyBjb2RlIGluIGFtZGdwdV92cnJfcHJvcGVy
+dHlfdXBkYXRlIGlzIGZvciB0aGUgY2FzZSB3aGVuIHRoZQpDaGFuZ2VQcm9wZXJ0eSByZXF1ZXN0
+IGlzIGNhbGxlZCBmb3IgYSB3aW5kb3cgd2hpY2ggaXMgYWxyZWFkeSBmbGlwcGluZy4KCkluIHRo
+ZSBjYXNlIHlvdSdyZSBsb29raW5nIGF0LCB0aGUgd2luZG93IG9ubHkgc3RhcnRzIGZsaXBwaW5n
+IGxhdGVyLAphbmQgdGhlIEtNUyBwcm9wZXJ0eSBpcyBlbmFibGVkIGZyb20gYW1kZ3B1X3ByZXNl
+bnRfZmxpcCA9PgphbWRncHVfcHJlc2VudF9zZXRfc2NyZWVuX3Zyci4KCgotLSAKRWFydGhsaW5n
+IE1pY2hlbCBEw6RuemVyICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgIGh0dHBzOi8vcmVk
+aGF0LmNvbQpMaWJyZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAgICAgICAgICAgIHwgICAgICAgICAg
+ICAgTWVzYSBhbmQgWCBkZXZlbG9wZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
+bWQtZ2Z4Cg==
