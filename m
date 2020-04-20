@@ -2,94 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FCAF1B0ECA
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 16:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A511B0F0C
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 16:58:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0226E5AE;
-	Mon, 20 Apr 2020 14:45:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3313B6E5B4;
+	Mon, 20 Apr 2020 14:58:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2060c.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe59::60c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11E026E5AE
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 14:45:38 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-cys01nam02on0624.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe45::624])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA1056E5B4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 14:58:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LqAqbkAOygR7W6i44nif1wxoPZk2Fac4Nqllf69f3h57nFC7dfqmJpd/k/vfM2/MZKVBL5j0mDbL2CtvcILx66G1owwTU66l5NZD/nLVTY4m4BDnqXWCoLxTRqWUsxcjusLTpLRhBchfKHk9TFJIzCcjVV/cIP5+xs5woI4HDgOGXpt69qo7ohOf4ZdhEYTKthjCQzOZE1/hkBa2Z/KxmtbSufX3YsSrs6xfLeQEfbc5tR9LoKNAJkmqRIyU/qDlHzc4DcVutwKt4UXVcds7rA6gG9SNtbTPH+aT0lhRBdJk3ylZO7e8ka4CDSv8zp3xhQfT9aE7HcJNDnF7WNOl/w==
+ b=ESMG0aw2D64a96y+dc/4D5Q8wRl5viTR6SB4XSZwy6b+Uo7M3qvIGhHGS7iexBii4d2qqd8ghwSSvccdW7i50p3O10Meq4bwu3bbTCAoCoNoDQfPbptWK9E5dx+jvgI2YaHLrvx+RmT9h438154YCHgdzv20kRqPBYQDIU0nAgJYFZeeEuDBKcOzk6Ln0gWPUROHdWCmCwdXQ0saedmWER10bc31hqy3p/qB/yXyJGDbGySDwu7KbCuCF0wPnT52wXpxCsz/OC5drUITTdEWNiRg5lV2dqVCm4mAidTGaYPlYYoXNkCsc1CUiTQcKhh7las5a5gVPtZYM/KR3fgQ0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=unKK7Otqo72yvDjduHvwVBEqES2XU7oHD+wZPXj3R4U=;
- b=AVrTz1MuKj8mdwaz9fwLgUTda2cAz02qAdffPQDk5RdSyWm42i2y8d2Q4qrrty0ZvHCrPuI3EzB0eY1Nn8MY6vXWy09bPMiiLoEGQ/vGUZe1B09qc+sPfGXINWZrSarDOA1wvxpTyiEwC/cF2TWEjAyslN29mTgy7gdTw7AyLQrjQkRtPl5i6nRo56B8QI0j1DMOciHPIq3eLbpWRdoJGWMni5aGGUxVD35Wb+rBIzr5XDVym4beu3pUFeBdfKmg6rrJbsVR22AwfoIa7co+alUI6fnTP69KjBADNg6ebV3dAifvs0HK4unVlKbv0gIp5TfvdJWOGaukq+4dG+Z1iw==
+ bh=fn16Pbnymqpr52RgyjhRNifany2/6gkESuwRWNe3lYo=;
+ b=FI+Spwh6n5tG3rd13wnSzHiAU8yrWkcVZsQx/AisGerEOmcrVN1SDEmcL8IfPe7MmE3A+l+bIHMGwX95HrddlPAF6DTAkrh9n9hF931HljxbUmzjFx9a3T7a310tYtD61lBE4ew/TM8qT3Ymei1O6Nc8ZMnvAG+fuq6ESw+co22qLmssezD3nvTe3GQJqIn0KG0T5rkzyEqEFbT/mTXii+rgNbJfIFbf1pM/VB86QnsAvZV8iN8lPlP7H1SscWtwu2+FSOdD1EI3uJOM/PvFv9RbbTyCrPM+7EJbJU/+c3YHZZ3DSDScbv6WnqnwXapRMEEKmbTafLxhD4gcxjb+5A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=unKK7Otqo72yvDjduHvwVBEqES2XU7oHD+wZPXj3R4U=;
- b=LcL5aHLwdSu1oy/CsuNFvWxvFs7FksLF2VEwQk4Pq2llwzgLhm2RpSrj1ym0CsSq2xBajx+s2MECKxDcN8CJoXmCy8h6bER7b+gzrs0/j9kcaX9DQd+JMkFCQG5DPnDkBHZ+6be2Tj2v0/K69+OTVdI2WUYmSwcXnXxBh51zbOA=
+ bh=fn16Pbnymqpr52RgyjhRNifany2/6gkESuwRWNe3lYo=;
+ b=wgK1aI99/kL6p/frJauHPAV/Weqb5p+QwqEYoFQlHhqiEic4sS6KhryzxW8N2QuFs27uMuMR6tW+vI8aqb4unXGLg5fg38TO/E97tqntFFLXjA0OjAedzFKrauC/ePsbRUFX6vuNvrKYDj7uCSu76G3fhxOoX/ertbpncla21F8=
 Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Luben.Tuikov@amd.com; 
-Received: from DM6PR12MB3355.namprd12.prod.outlook.com (2603:10b6:5:115::26)
- by DM6PR12MB2762.namprd12.prod.outlook.com (2603:10b6:5:45::15) with
+ smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
+Received: from MW2PR12MB2524.namprd12.prod.outlook.com (2603:10b6:907:9::27)
+ by MW2PR12MB2410.namprd12.prod.outlook.com (2603:10b6:907:f::23) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.29; Mon, 20 Apr
- 2020 14:45:35 +0000
-Received: from DM6PR12MB3355.namprd12.prod.outlook.com
- ([fe80::cd6e:7536:4dbb:aa85]) by DM6PR12MB3355.namprd12.prod.outlook.com
- ([fe80::cd6e:7536:4dbb:aa85%5]) with mapi id 15.20.2921.027; Mon, 20 Apr 2020
- 14:45:35 +0000
-Subject: Re: [PATCH 3/8] drm/amdgpu: retire unused check_fw_loading status
-To: Hawking Zhang <Hawking.Zhang@amd.com>, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- John Clements <john.clements@amd.com>, Guchun Chen <Guchun.Chen@amd.com>
-References: <1587377804-3836-1-git-send-email-Hawking.Zhang@amd.com>
- <1587377804-3836-4-git-send-email-Hawking.Zhang@amd.com>
-From: Luben Tuikov <luben.tuikov@amd.com>
-Message-ID: <abee97af-1506-8a38-9852-7684f24ce940@amd.com>
-Date: Mon, 20 Apr 2020 10:45:32 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-In-Reply-To: <1587377804-3836-4-git-send-email-Hawking.Zhang@amd.com>
-Content-Language: en-CA
-X-ClientProxiedBy: BN6PR08CA0071.namprd08.prod.outlook.com
- (2603:10b6:404:b9::33) To DM6PR12MB3355.namprd12.prod.outlook.com
- (2603:10b6:5:115::26)
+ 2020 14:58:28 +0000
+Received: from MW2PR12MB2524.namprd12.prod.outlook.com
+ ([fe80::91a7:e6f7:b17a:bfa5]) by MW2PR12MB2524.namprd12.prod.outlook.com
+ ([fe80::91a7:e6f7:b17a:bfa5%6]) with mapi id 15.20.2921.027; Mon, 20 Apr 2020
+ 14:58:28 +0000
+Date: Mon, 20 Apr 2020 10:58:22 -0400
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Subject: Re: [PATCH 05/35] drm/amd/display: Remove byte swapping for dmcub
+ abm config table
+Message-ID: <20200420145822.f5v32z62y4lrgpg6@outlook.office365.com>
+References: <20200416234044.2082886-1-Rodrigo.Siqueira@amd.com>
+ <20200416234044.2082886-6-Rodrigo.Siqueira@amd.com>
+ <MN2PR12MB4488B2003904110CAE92E166F7D90@MN2PR12MB4488.namprd12.prod.outlook.com>
+ <c3f3fef6-6c35-7201-c75e-2a72dca42350@gmail.com>
+ <20200417214308.347n7xk2d46zx3nd@outlook.office365.com>
+ <25091e0c-c465-d455-f991-581aeae744c3@amd.com>
+In-Reply-To: <25091e0c-c465-d455-f991-581aeae744c3@amd.com>
+X-ClientProxiedBy: BN6PR13CA0060.namprd13.prod.outlook.com
+ (2603:10b6:404:11::22) To MW2PR12MB2524.namprd12.prod.outlook.com
+ (2603:10b6:907:9::27)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (165.204.84.11) by
- BN6PR08CA0071.namprd08.prod.outlook.com (2603:10b6:404:b9::33) with Microsoft
+Received: from outlook.office365.com (2607:fea8:56a0:11a1::2) by
+ BN6PR13CA0060.namprd13.prod.outlook.com (2603:10b6:404:11::22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2921.27 via Frontend Transport; Mon, 20 Apr 2020 14:45:34 +0000
-X-Originating-IP: [165.204.84.11]
+ 15.20.2937.6 via Frontend Transport; Mon, 20 Apr 2020 14:58:27 +0000
+X-Originating-IP: [2607:fea8:56a0:11a1::2]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 04ca1983-ed68-4bd6-597c-08d7e5397c15
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2762:|DM6PR12MB2762:
+X-MS-Office365-Filtering-Correlation-Id: 0686ea0b-00c6-482b-a324-08d7e53b48b8
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2410:|MW2PR12MB2410:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB2762886987C793CE376A486899D40@DM6PR12MB2762.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:158;
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2410F440FE167A8C2F2E7F0398D40@MW2PR12MB2410.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-Forefront-PRVS: 03793408BA
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3355.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:MW2PR12MB2524.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(10009020)(4636009)(346002)(376002)(39860400002)(366004)(136003)(396003)(86362001)(30864003)(81156014)(8676002)(26005)(31696002)(6512007)(8936002)(36756003)(316002)(2906002)(16526019)(5660300002)(186003)(110136005)(44832011)(478600001)(31686004)(2616005)(956004)(53546011)(66946007)(6486002)(52116002)(66556008)(66476007)(6506007)(6636002);
+ SFS:(10009020)(4636009)(366004)(346002)(396003)(376002)(136003)(39860400002)(21480400003)(966005)(5660300002)(6636002)(4326008)(9686003)(16526019)(186003)(52116002)(2906002)(7696005)(6666004)(6506007)(81156014)(316002)(66476007)(54906003)(66556008)(66946007)(8676002)(86362001)(55016002)(6862004)(66574012)(1076003)(44144004)(478600001)(8936002)(2700100001);
  DIR:OUT; SFP:1101; 
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +gS9gv4ITVW/4fKMJhBoRSVP0vCN5KhnjYCpjpmL6bcmUWCwXfPRyrTNMwBhwQEiEX0aXgNSpBRWxdCCLMdBIt3hq2Z68U1yfp6UwO+q022FeBLD5mAq+47A5tL69cVRR96FX6UmywURkj+pKfvSFPkTtiQkrO/Cboxc+FrpxS1Y9hyY5ObWxntiXydO1wAAjyhHXcRy6xpMX6FMkgXXYPATFYElpXhdO6WYHU9pO01AtP2AN5sH9DVFGyQKJSPSVcdoDlroA1TEvYpGH8BD0MkI3StDz0NH5gEiAXZYpuh62ese0puLmDzjivTun8TzdYjV17ozjLBkYPpMR9n0r0mC8PFIpthNhx5vOGyi9ecyw3S0YXE343zKpXLSUcwlhcOg66JEz7yyP5EZGconqgWduh9HpFfH/kQTj+6wqDnc9onZQqtKcufS5u6Cl+AA
-X-MS-Exchange-AntiSpam-MessageData: x8aWb3/QVNgiGBzRfE89ZMPY//COYxQCpMNhBs5QNjWvkdAZ6xoCCDVwpGWZ0+T7mqM+T4oBivowaVDjh3HUY8JdGoxmqgN45eqUhqIyjmA21j7vHSbfX1bP+32PH9VGjk/LYuxxUj+Es7QlCdKnLQUh1/GnbPGRTmvbiLita/V1xQfj+EbsXNryH+w58nDK6eRoo60Paz9qUrisEWtfmhXo+cv2Ohv/f2C25Hk/0VsK6cMdNU0dXCn4S9TimM9gviauKiyvAAKT6Yt2XpnlID4EYcRAWe84tceRoIQ6EAY1NsnV/TTnLbjkO7JYbskI02MiPz2EO4hL5PxkRs3owUNSArGOKzRgh3Wzx5jkqlc0HJgR37ofyzISjeDESjSrt2Pcx8Y74uy4mHrUbnev/mgmIy+3kWSirSNUgbDUC1Ti3mzs0PVCIpy6K2JRpMra0yUUG6ZZRZmEDSMIyLtOZD35EBZm9WLLmpuUo3RO5aqZh7mdn6vYXRTdtSvFmVrAbhyzbBaYU+A1frS5AfnQgumv15vh1mM1E9W0BP8/AHpf+xbifrpdP62K2eEcMqWoDHykRXfGvOYAnuMvHrmc7cUQQvJKQwOUZ0wbPH6/Z9LXiJ6IOp4s64Mkmo77w+9RAFxdAEek50g/3c/7VKwO/ubHKAjjToXuKYdUlJMDmhUXGmez4ypNK/CE+uWKPl1FmLcgTJFt2GhbacPe0x++TKuVw3LIyHVZIWke1oGzq+n26JEVa59guen3xuMgaWyihUVdjDku32AxDlANjMjcDUNjBFCAh7Sq2rS+ufdCU3w=
+X-Microsoft-Antispam-Message-Info: gks6GBLWnDBzVqxT9OuNrYbasWcwB6x0U4LDg9iQ85RJJG1KsuC/Qy27odSvR31+yW8Luh7nUYttKuBQ/DLBPGT7q9evagJk7t5xJEOkFW2SQVj5NLkF3XjbDv9jvW9t1asmbWd4JlAlbPGocRWcg32YUBvuJrg9vsgsk9qEbpGLyckSw2+Aa7gOwPyblgk6HrzkU7npb38t3Ot8sbOZWTspw2HpEw8mN3tB0MlDOqx3P4WD4zUo0D+YzJX3EkqDIwHrG6lXXoOtqqlXusPWeJlI6vjbEBqSlqW2iMGLPWUWHP2xsw2b+UOeYCyOLeDWSix5Jid8LSH5RokmC42EtLYfqaVppKVEtmzpjH/rOJqDXmjbA23QBwHY+MI2KyRbSByP3zc5HILDl5LZEzqn2noVYzqbrJkdLltV5w5JwDVoNvLSmAhVYDTseuLrJPmbD3NGcVGrTMGHfN8+YgGWkBtRYnMtKb+k/+Wj0nWDfZalWvQ1QQDtUcq8J4QG/27JnFGwl8H8RGg4choJd8UP4rJ2i7rcFibfUwOFlLZW3Df4MgVisvYoJ0EHf58ly+vm
+X-MS-Exchange-AntiSpam-MessageData: O+YGEExsx3lD9lznyPDHslYIfz5d1ev29PQhCmtg+xnSMfUW3R/w3He6TDHtLaKdINn4D/6Ii+YFSIzNDBGQBQro2Eyz07akKOm6gOlZSfBj5X7xeit/gaGiif/QBgbewellkIqTsWKCrK6plM7Dn4n1zQU6c2wj4Vm7G9vp7NzZBUH4sWUoKAaaH5viRQuCVI40aWhCOSKxyhpHRql9C0nQZaxT5AKDTCMDeZMUXNznSTg5AOWx+h4p3oWVPe1n91WuydUtLsUJ1GFtujLJ0YBiWtCktUofnZ6ctDG82XQzcRC1Re13glTNFA9Rw/HAC6TlocXfZSoBv+GmxFVaH6AGeHpshpHaMyIYzd+AdEa1VRsx2DmSsgDE9DbwPoRn0leKPAOGQ3JpzvZtbsGbJcGzjZuElgyJljYir3oHHEjMiY9hwhCCR2cRYtrtAx2itJI3gJ1WaKtuTlpw6+C7C3QQPYV3Ayq89tXXMlM+UhZXC4pfYJd4W1b1dKnvXtK49elCkG6rRck4x4zJ/+BqVeXRfHzdmfFk2azK64zMLlsxjQphyyY6yaEnAZ3GslcovSs6Bd4xNavWEgiToaw4DAkKpD7juhnT5KOClqMyIRORNWddtrisv+Ww1XK/etTntcL93v4amhMtNBujoMOjEVQ/33BSVEkdueC0TUpZH+Wrj45lrG5of9Ekfzm5pYzmL1RJjCR7g6xzNlrgAAE6kgOMLPQOKgwkvIvPIkIXhaR27wT6nJXQhonSFP/W8mj+Az4Z7rHDU4E3EQlUO8lwsBkPIVaeGo/N5wwzRf5/BQAKBKtb26XAUj+wfkAacncT
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04ca1983-ed68-4bd6-597c-08d7e5397c15
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2020 14:45:35.7463 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0686ea0b-00c6-482b-a324-08d7e53b48b8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2020 14:58:28.6812 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VQMP5+1P6B94LuZLVqnHV7jpzJe8SXUqkFgS44J9Kuu2iLEW9eUtBI6kmoyZwUd5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2762
+X-MS-Exchange-CrossTenant-UserPrincipalName: RKSzA8gPAlA5rIFfAeiyFgCSgV8+yFQOjnfVD002TMS7lbtN4E1vGu9cBKbTWIvIUvu07cmp5dnSb+EjnwLcog==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2410
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,716 +101,233 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Li, Sun peng \(Leo\)" <Sunpeng.Li@amd.com>, "Lakha,
+ Bhawanpreet" <Bhawanpreet.Lakha@amd.com>, "Wood, Wyatt" <Wyatt.Wood@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Wentland,
+ Harry" <Harry.Wentland@amd.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "Koo, Anthony" <Anthony.Koo@amd.com>
+Content-Type: multipart/mixed; boundary="===============2016912111=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2020-04-20 6:16 a.m., Hawking Zhang wrote:
-> It is not allowed to read out engine sram via registers
-> to check the fw loading status.
-> 
+--===============2016912111==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3mgpeptjq64bjedo"
+Content-Disposition: inline
 
-Who or what is "It"--do you mean "The driver"?
+--3mgpeptjq64bjedo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Abbreviations should be capitalized: SRAM, ASIC, etc.
+On 04/19, Christian K=F6nig wrote:
+> Am 17.04.20 um 23:43 schrieb Rodrigo Siqueira:
+> > Hi,
+> >=20
+> > Wyatt made the below patch for fixing this issue. I can apply it on top
+> > of this patchset if you all agree.
+> >=20
+> > [Why]
+> > Current code does not guarantee the correct endianness of memory being
+> > copied to fw, specifically in the case where cpu isn't little endian.
+> >=20
+> > [How]
+> > Windows and Diags are always little endian, so we define a macro that
+> > does nothing.  Linux already defines this macro and will do the correct
+> > endianness conversion.
+> >=20
+> > Signed-off-by: Wyatt Wood <wyatt.wood@amd.com>
+> > Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
+> > Acked-by: Anthony Koo <Anthony.Koo@amd.com>
+> > Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> > ---
+> >   .../amd/display/modules/power/power_helpers.c | 58 ++++++++++---------
+> >   1 file changed, 31 insertions(+), 27 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c =
+b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+> > index edb446455f6b..8c37bcc27132 100644
+> > --- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+> > +++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+> > @@ -265,9 +265,11 @@ static void fill_backlight_transform_table_v_2_2(s=
+truct dmcu_iram_parameters par
+> >   		ASSERT(lut_index < params.backlight_lut_array_size);
+> >   		table->backlight_thresholds[i] =3D (big_endian) ?
+> > -			cpu_to_be16(DIV_ROUNDUP((i * 65536), num_entries)) : DIV_ROUNDUP((i=
+ * 65536), num_entries);
+> > +			cpu_to_be16(DIV_ROUNDUP((i * 65536), num_entries)) :
+> > +			cpu_to_le16(DIV_ROUNDUP((i * 65536), num_entries));
+> >   		table->backlight_offsets[i] =3D (big_endian) ?
+> > -			cpu_to_be16(params.backlight_lut_array[lut_index]) : params.backlig=
+ht_lut_array[lut_index];
+> > +			cpu_to_be16(params.backlight_lut_array[lut_index]) :
+> > +			cpu_to_le16(params.backlight_lut_array[lut_index]);
+> >   	}
+> >   }
+> > @@ -596,7 +598,9 @@ void fill_iram_v_2_3(struct iram_table_v_2_2 *ram_t=
+able, struct dmcu_iram_parame
+> >   	unsigned int set =3D params.set;
+> >   	ram_table->flags =3D 0x0;
+> > -	ram_table->min_abm_backlight =3D (big_endian) ? cpu_to_be16(params.mi=
+n_abm_backlight) : params.min_abm_backlight;
+> > +	ram_table->min_abm_backlight =3D (big_endian) ?
+> > +		cpu_to_be16(params.min_abm_backlight) :
+> > +		cpu_to_le16(params.min_abm_backlight);
+> >   	for (i =3D 0; i < NUM_AGGR_LEVEL; i++) {
+> >   		ram_table->hybrid_factor[i] =3D abm_settings[set][i].brightness_gai=
+n;
+> > @@ -620,30 +624,30 @@ void fill_iram_v_2_3(struct iram_table_v_2_2 *ram=
+_table, struct dmcu_iram_parame
+> >   	ram_table->iir_curve[4] =3D 0x65;
+> >   	//Gamma 2.2
+> > -	ram_table->crgb_thresh[0] =3D (big_endian) ? cpu_to_be16(0x127c) : 0x=
+127c;
+> > -	ram_table->crgb_thresh[1] =3D (big_endian) ? cpu_to_be16(0x151b) : 0x=
+151b;
+> > -	ram_table->crgb_thresh[2] =3D (big_endian) ? cpu_to_be16(0x17d5) : 0x=
+17d5;
+> > -	ram_table->crgb_thresh[3] =3D (big_endian) ? cpu_to_be16(0x1a56) : 0x=
+1a56;
+> > -	ram_table->crgb_thresh[4] =3D (big_endian) ? cpu_to_be16(0x1c83) : 0x=
+1c83;
+> > -	ram_table->crgb_thresh[5] =3D (big_endian) ? cpu_to_be16(0x1e72) : 0x=
+1e72;
+> > -	ram_table->crgb_thresh[6] =3D (big_endian) ? cpu_to_be16(0x20f0) : 0x=
+20f0;
+> > -	ram_table->crgb_thresh[7] =3D (big_endian) ? cpu_to_be16(0x232b) : 0x=
+232b;
+> > -	ram_table->crgb_offset[0] =3D (big_endian) ? cpu_to_be16(0x2999) : 0x=
+2999;
+> > -	ram_table->crgb_offset[1] =3D (big_endian) ? cpu_to_be16(0x3999) : 0x=
+3999;
+> > -	ram_table->crgb_offset[2] =3D (big_endian) ? cpu_to_be16(0x4666) : 0x=
+4666;
+> > -	ram_table->crgb_offset[3] =3D (big_endian) ? cpu_to_be16(0x5999) : 0x=
+5999;
+> > -	ram_table->crgb_offset[4] =3D (big_endian) ? cpu_to_be16(0x6333) : 0x=
+6333;
+> > -	ram_table->crgb_offset[5] =3D (big_endian) ? cpu_to_be16(0x7800) : 0x=
+7800;
+> > -	ram_table->crgb_offset[6] =3D (big_endian) ? cpu_to_be16(0x8c00) : 0x=
+8c00;
+> > -	ram_table->crgb_offset[7] =3D (big_endian) ? cpu_to_be16(0xa000) : 0x=
+a000;
+> > -	ram_table->crgb_slope[0]  =3D (big_endian) ? cpu_to_be16(0x3609) : 0x=
+3609;
+> > -	ram_table->crgb_slope[1]  =3D (big_endian) ? cpu_to_be16(0x2dfa) : 0x=
+2dfa;
+> > -	ram_table->crgb_slope[2]  =3D (big_endian) ? cpu_to_be16(0x27ea) : 0x=
+27ea;
+> > -	ram_table->crgb_slope[3]  =3D (big_endian) ? cpu_to_be16(0x235d) : 0x=
+235d;
+> > -	ram_table->crgb_slope[4]  =3D (big_endian) ? cpu_to_be16(0x2042) : 0x=
+2042;
+> > -	ram_table->crgb_slope[5]  =3D (big_endian) ? cpu_to_be16(0x1dc3) : 0x=
+1dc3;
+> > -	ram_table->crgb_slope[6]  =3D (big_endian) ? cpu_to_be16(0x1b1a) : 0x=
+1b1a;
+> > -	ram_table->crgb_slope[7]  =3D (big_endian) ? cpu_to_be16(0x1910) : 0x=
+1910;
+> > +	ram_table->crgb_thresh[0] =3D (big_endian) ? cpu_to_be16(0x127c) : cp=
+u_to_le16(0x127c);
+> > +	ram_table->crgb_thresh[1] =3D (big_endian) ? cpu_to_be16(0x151b) : cp=
+u_to_le16(0x151b);
+> > +	ram_table->crgb_thresh[2] =3D (big_endian) ? cpu_to_be16(0x17d5) : cp=
+u_to_le16(0x17d5);
+> > +	ram_table->crgb_thresh[3] =3D (big_endian) ? cpu_to_be16(0x1a56) : cp=
+u_to_le16(0x1a56);
+> > +	ram_table->crgb_thresh[4] =3D (big_endian) ? cpu_to_be16(0x1c83) : cp=
+u_to_le16(0x1c83);
+> > +	ram_table->crgb_thresh[5] =3D (big_endian) ? cpu_to_be16(0x1e72) : cp=
+u_to_le16(0x1e72);
+> > +	ram_table->crgb_thresh[6] =3D (big_endian) ? cpu_to_be16(0x20f0) : cp=
+u_to_le16(0x20f0);
+> > +	ram_table->crgb_thresh[7] =3D (big_endian) ? cpu_to_be16(0x232b) : cp=
+u_to_le16(0x232b);
+> > +	ram_table->crgb_offset[0] =3D (big_endian) ? cpu_to_be16(0x2999) : cp=
+u_to_le16(0x2999);
+> > +	ram_table->crgb_offset[1] =3D (big_endian) ? cpu_to_be16(0x3999) : cp=
+u_to_le16(0x3999);
+> > +	ram_table->crgb_offset[2] =3D (big_endian) ? cpu_to_be16(0x4666) : cp=
+u_to_le16(0x4666);
+> > +	ram_table->crgb_offset[3] =3D (big_endian) ? cpu_to_be16(0x5999) : cp=
+u_to_le16(0x5999);
+> > +	ram_table->crgb_offset[4] =3D (big_endian) ? cpu_to_be16(0x6333) : cp=
+u_to_le16(0x6333);
+> > +	ram_table->crgb_offset[5] =3D (big_endian) ? cpu_to_be16(0x7800) : cp=
+u_to_le16(0x7800);
+> > +	ram_table->crgb_offset[6] =3D (big_endian) ? cpu_to_be16(0x8c00) : cp=
+u_to_le16(0x8c00);
+> > +	ram_table->crgb_offset[7] =3D (big_endian) ? cpu_to_be16(0xa000) : cp=
+u_to_le16(0xa000);
+> > +	ram_table->crgb_slope[0]  =3D (big_endian) ? cpu_to_be16(0x3609) : cp=
+u_to_le16(0x3609);
+> > +	ram_table->crgb_slope[1]  =3D (big_endian) ? cpu_to_be16(0x2dfa) : cp=
+u_to_le16(0x2dfa);
+> > +	ram_table->crgb_slope[2]  =3D (big_endian) ? cpu_to_be16(0x27ea) : cp=
+u_to_le16(0x27ea);
+> > +	ram_table->crgb_slope[3]  =3D (big_endian) ? cpu_to_be16(0x235d) : cp=
+u_to_le16(0x235d);
+> > +	ram_table->crgb_slope[4]  =3D (big_endian) ? cpu_to_be16(0x2042) : cp=
+u_to_le16(0x2042);
+> > +	ram_table->crgb_slope[5]  =3D (big_endian) ? cpu_to_be16(0x1dc3) : cp=
+u_to_le16(0x1dc3);
+> > +	ram_table->crgb_slope[6]  =3D (big_endian) ? cpu_to_be16(0x1b1a) : cp=
+u_to_le16(0x1b1a);
+> > +	ram_table->crgb_slope[7]  =3D (big_endian) ? cpu_to_be16(0x1910) : cp=
+u_to_le16(0x1910);
+>=20
+> That you have to duplicate the values is rather ugly here.
+>=20
+> Since this is all in one file maybe come up with a helper for this? E.g.
+> conditional_bswap16(big_endian, value)
 
-Regards,
-Luben
+I'm going to prepare a patch with your suggestion.
 
-> Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c |  34 --------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |   7 --
->  drivers/gpu/drm/amd/amdgpu/psp_v10_0.c  | 124 -----------------------------
->  drivers/gpu/drm/amd/amdgpu/psp_v11_0.c  | 133 --------------------------------
->  drivers/gpu/drm/amd/amdgpu/psp_v12_0.c  | 123 -----------------------------
->  drivers/gpu/drm/amd/amdgpu/psp_v3_1.c   | 123 -----------------------------
->  6 files changed, 544 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> index 901ee79..7797065 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> @@ -37,8 +37,6 @@
->  
->  #include "amdgpu_ras.h"
->  
-> -static void psp_set_funcs(struct amdgpu_device *adev);
-> -
->  static int psp_sysfs_init(struct amdgpu_device *adev);
->  static void psp_sysfs_fini(struct amdgpu_device *adev);
->  
-> @@ -82,8 +80,6 @@ static int psp_early_init(void *handle)
->  	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
->  	struct psp_context *psp = &adev->psp;
->  
-> -	psp_set_funcs(adev);
-> -
->  	switch (adev->asic_type) {
->  	case CHIP_VEGA10:
->  	case CHIP_VEGA12:
-> @@ -1487,11 +1483,6 @@ static int psp_np_fw_load(struct psp_context *psp)
->  				return ret;
->  			}
->  		}
-> -#if 0
-> -		/* check if firmware loaded sucessfully */
-> -		if (!amdgpu_psp_check_fw_loading_status(adev, i))
-> -			return -EINVAL;
-> -#endif
->  	}
->  
->  	return 0;
-> @@ -1849,21 +1840,6 @@ int psp_ring_cmd_submit(struct psp_context *psp,
->  	return 0;
->  }
->  
-> -static bool psp_check_fw_loading_status(struct amdgpu_device *adev,
-> -					enum AMDGPU_UCODE_ID ucode_type)
-> -{
-> -	struct amdgpu_firmware_info *ucode = NULL;
-> -
-> -	if (!adev->firmware.fw_size)
-> -		return false;
-> -
-> -	ucode = &adev->firmware.ucode[ucode_type];
-> -	if (!ucode->fw || !ucode->ucode_size)
-> -		return false;
-> -
-> -	return psp_compare_sram_data(&adev->psp, ucode, ucode_type);
-> -}
-> -
->  static int psp_set_clockgating_state(void *handle,
->  				     enum amd_clockgating_state state)
->  {
-> @@ -2000,16 +1976,6 @@ static void psp_sysfs_fini(struct amdgpu_device *adev)
->  	device_remove_file(adev->dev, &dev_attr_usbc_pd_fw);
->  }
->  
-> -static const struct amdgpu_psp_funcs psp_funcs = {
-> -	.check_fw_loading_status = psp_check_fw_loading_status,
-> -};
-> -
-> -static void psp_set_funcs(struct amdgpu_device *adev)
-> -{
-> -	if (NULL == adev->firmware.funcs)
-> -		adev->firmware.funcs = &psp_funcs;
-> -}
-> -
->  const struct amdgpu_ip_block_version psp_v3_1_ip_block =
->  {
->  	.type = AMD_IP_BLOCK_TYPE_PSP,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-> index 65a7d0a..f8b1f03 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-> @@ -93,9 +93,6 @@ struct psp_funcs
->  			    enum psp_ring_type ring_type);
->  	int (*ring_destroy)(struct psp_context *psp,
->  			    enum psp_ring_type ring_type);
-> -	bool (*compare_sram_data)(struct psp_context *psp,
-> -				  struct amdgpu_firmware_info *ucode,
-> -				  enum AMDGPU_UCODE_ID ucode_type);
->  	bool (*smu_reload_quirk)(struct psp_context *psp);
->  	int (*mode1_reset)(struct psp_context *psp);
->  	int (*xgmi_get_node_id)(struct psp_context *psp, uint64_t *node_id);
-> @@ -307,8 +304,6 @@ struct amdgpu_psp_funcs {
->  #define psp_ring_create(psp, type) (psp)->funcs->ring_create((psp), (type))
->  #define psp_ring_stop(psp, type) (psp)->funcs->ring_stop((psp), (type))
->  #define psp_ring_destroy(psp, type) ((psp)->funcs->ring_destroy((psp), (type)))
-> -#define psp_compare_sram_data(psp, ucode, type) \
-> -		(psp)->funcs->compare_sram_data((psp), (ucode), (type))
->  #define psp_init_microcode(psp) \
->  		((psp)->funcs->init_microcode ? (psp)->funcs->init_microcode((psp)) : 0)
->  #define psp_bootloader_load_kdb(psp) \
-> @@ -340,8 +335,6 @@ struct amdgpu_psp_funcs {
->  #define psp_mem_training(psp, ops) \
->  	((psp)->funcs->mem_training ? (psp)->funcs->mem_training((psp), (ops)) : 0)
->  
-> -#define amdgpu_psp_check_fw_loading_status(adev, i) (adev)->firmware.funcs->check_fw_loading_status((adev), (i))
-> -
->  #define psp_ras_trigger_error(psp, info) \
->  	((psp)->funcs->ras_trigger_error ? \
->  	(psp)->funcs->ras_trigger_error((psp), (info)) : -EINVAL)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v10_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v10_0.c
-> index 7539104..6e041b7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/psp_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/psp_v10_0.c
-> @@ -230,129 +230,6 @@ static int psp_v10_0_ring_destroy(struct psp_context *psp,
->  	return ret;
->  }
->  
-> -static int
-> -psp_v10_0_sram_map(struct amdgpu_device *adev,
-> -		   unsigned int *sram_offset, unsigned int *sram_addr_reg_offset,
-> -		   unsigned int *sram_data_reg_offset,
-> -		   enum AMDGPU_UCODE_ID ucode_id)
-> -{
-> -	int ret = 0;
-> -
-> -	switch(ucode_id) {
-> -/* TODO: needs to confirm */
-> -#if 0
-> -	case AMDGPU_UCODE_ID_SMC:
-> -		*sram_offset = 0;
-> -		*sram_addr_reg_offset = 0;
-> -		*sram_data_reg_offset = 0;
-> -		break;
-> -#endif
-> -
-> -	case AMDGPU_UCODE_ID_CP_CE:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_PFP:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_ME:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_MEC1:
-> -		*sram_offset = 0x10000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_MEC2:
-> -		*sram_offset = 0x10000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_RLC_G:
-> -		*sram_offset = 0x2000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_SDMA0:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_DATA);
-> -		break;
-> -
-> -/* TODO: needs to confirm */
-> -#if 0
-> -	case AMDGPU_UCODE_ID_SDMA1:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_UVD:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_VCE:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -#endif
-> -
-> -	case AMDGPU_UCODE_ID_MAXIMUM:
-> -	default:
-> -		ret = -EINVAL;
-> -		break;
-> -	}
-> -
-> -	return ret;
-> -}
-> -
-> -static bool psp_v10_0_compare_sram_data(struct psp_context *psp,
-> -					struct amdgpu_firmware_info *ucode,
-> -					enum AMDGPU_UCODE_ID ucode_type)
-> -{
-> -	int err = 0;
-> -	unsigned int fw_sram_reg_val = 0;
-> -	unsigned int fw_sram_addr_reg_offset = 0;
-> -	unsigned int fw_sram_data_reg_offset = 0;
-> -	unsigned int ucode_size;
-> -	uint32_t *ucode_mem = NULL;
-> -	struct amdgpu_device *adev = psp->adev;
-> -
-> -	err = psp_v10_0_sram_map(adev, &fw_sram_reg_val, &fw_sram_addr_reg_offset,
-> -				&fw_sram_data_reg_offset, ucode_type);
-> -	if (err)
-> -		return false;
-> -
-> -	WREG32(fw_sram_addr_reg_offset, fw_sram_reg_val);
-> -
-> -	ucode_size = ucode->ucode_size;
-> -	ucode_mem = (uint32_t *)ucode->kaddr;
-> -	while (!ucode_size) {
-> -		fw_sram_reg_val = RREG32(fw_sram_data_reg_offset);
-> -
-> -		if (*ucode_mem != fw_sram_reg_val)
-> -			return false;
-> -
-> -		ucode_mem++;
-> -		/* 4 bytes */
-> -		ucode_size -= 4;
-> -	}
-> -
-> -	return true;
-> -}
-> -
-> -
->  static int psp_v10_0_mode1_reset(struct psp_context *psp)
->  {
->  	DRM_INFO("psp mode 1 reset not supported now! \n");
-> @@ -379,7 +256,6 @@ static const struct psp_funcs psp_v10_0_funcs = {
->  	.ring_create = psp_v10_0_ring_create,
->  	.ring_stop = psp_v10_0_ring_stop,
->  	.ring_destroy = psp_v10_0_ring_destroy,
-> -	.compare_sram_data = psp_v10_0_compare_sram_data,
->  	.mode1_reset = psp_v10_0_mode1_reset,
->  	.ring_get_wptr = psp_v10_0_ring_get_wptr,
->  	.ring_set_wptr = psp_v10_0_ring_set_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-> index 20fbd43..f633577 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-> @@ -554,138 +554,6 @@ static int psp_v11_0_ring_destroy(struct psp_context *psp,
->  	return ret;
->  }
->  
-> -static int
-> -psp_v11_0_sram_map(struct amdgpu_device *adev,
-> -		  unsigned int *sram_offset, unsigned int *sram_addr_reg_offset,
-> -		  unsigned int *sram_data_reg_offset,
-> -		  enum AMDGPU_UCODE_ID ucode_id)
-> -{
-> -	int ret = 0;
-> -
-> -	switch (ucode_id) {
-> -/* TODO: needs to confirm */
-> -#if 0
-> -	case AMDGPU_UCODE_ID_SMC:
-> -		*sram_offset = 0;
-> -		*sram_addr_reg_offset = 0;
-> -		*sram_data_reg_offset = 0;
-> -		break;
-> -#endif
-> -
-> -	case AMDGPU_UCODE_ID_CP_CE:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_PFP:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_ME:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_MEC1:
-> -		*sram_offset = 0x10000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_MEC2:
-> -		*sram_offset = 0x10000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_RLC_G:
-> -		*sram_offset = 0x2000;
-> -		if (adev->asic_type < CHIP_NAVI10) {
-> -			*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_ADDR);
-> -			*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_DATA);
-> -		} else {
-> -			*sram_addr_reg_offset = adev->reg_offset[GC_HWIP][0][1] + mmRLC_GPM_UCODE_ADDR_NV10;
-> -			*sram_data_reg_offset = adev->reg_offset[GC_HWIP][0][1] + mmRLC_GPM_UCODE_DATA_NV10;
-> -		}
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_SDMA0:
-> -		*sram_offset = 0x0;
-> -		if (adev->asic_type < CHIP_NAVI10) {
-> -			*sram_addr_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_ADDR);
-> -			*sram_data_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_DATA);
-> -		} else {
-> -			*sram_addr_reg_offset = adev->reg_offset[GC_HWIP][0][1] + mmSDMA0_UCODE_ADDR_NV10;
-> -			*sram_data_reg_offset = adev->reg_offset[GC_HWIP][0][1] + mmSDMA0_UCODE_DATA_NV10;
-> -		}
-> -		break;
-> -
-> -/* TODO: needs to confirm */
-> -#if 0
-> -	case AMDGPU_UCODE_ID_SDMA1:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_UVD:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_VCE:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -#endif
-> -
-> -	case AMDGPU_UCODE_ID_MAXIMUM:
-> -	default:
-> -		ret = -EINVAL;
-> -		break;
-> -	}
-> -
-> -	return ret;
-> -}
-> -
-> -static bool psp_v11_0_compare_sram_data(struct psp_context *psp,
-> -				       struct amdgpu_firmware_info *ucode,
-> -				       enum AMDGPU_UCODE_ID ucode_type)
-> -{
-> -	int err = 0;
-> -	unsigned int fw_sram_reg_val = 0;
-> -	unsigned int fw_sram_addr_reg_offset = 0;
-> -	unsigned int fw_sram_data_reg_offset = 0;
-> -	unsigned int ucode_size;
-> -	uint32_t *ucode_mem = NULL;
-> -	struct amdgpu_device *adev = psp->adev;
-> -
-> -	err = psp_v11_0_sram_map(adev, &fw_sram_reg_val, &fw_sram_addr_reg_offset,
-> -				&fw_sram_data_reg_offset, ucode_type);
-> -	if (err)
-> -		return false;
-> -
-> -	WREG32(fw_sram_addr_reg_offset, fw_sram_reg_val);
-> -
-> -	ucode_size = ucode->ucode_size;
-> -	ucode_mem = (uint32_t *)ucode->kaddr;
-> -	while (ucode_size) {
-> -		fw_sram_reg_val = RREG32(fw_sram_data_reg_offset);
-> -
-> -		if (*ucode_mem != fw_sram_reg_val)
-> -			return false;
-> -
-> -		ucode_mem++;
-> -		/* 4 bytes */
-> -		ucode_size -= 4;
-> -	}
-> -
-> -	return true;
-> -}
-> -
->  static int psp_v11_0_mode1_reset(struct psp_context *psp)
->  {
->  	int ret;
-> @@ -1190,7 +1058,6 @@ static const struct psp_funcs psp_v11_0_funcs = {
->  	.ring_create = psp_v11_0_ring_create,
->  	.ring_stop = psp_v11_0_ring_stop,
->  	.ring_destroy = psp_v11_0_ring_destroy,
-> -	.compare_sram_data = psp_v11_0_compare_sram_data,
->  	.mode1_reset = psp_v11_0_mode1_reset,
->  	.xgmi_get_topology_info = psp_v11_0_xgmi_get_topology_info,
->  	.xgmi_set_topology_info = psp_v11_0_xgmi_set_topology_info,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c
-> index d3c86a0..42c485b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c
-> @@ -324,128 +324,6 @@ static int psp_v12_0_ring_destroy(struct psp_context *psp,
->  	return ret;
->  }
->  
-> -static int
-> -psp_v12_0_sram_map(struct amdgpu_device *adev,
-> -		  unsigned int *sram_offset, unsigned int *sram_addr_reg_offset,
-> -		  unsigned int *sram_data_reg_offset,
-> -		  enum AMDGPU_UCODE_ID ucode_id)
-> -{
-> -	int ret = 0;
-> -
-> -	switch (ucode_id) {
-> -/* TODO: needs to confirm */
-> -#if 0
-> -	case AMDGPU_UCODE_ID_SMC:
-> -		*sram_offset = 0;
-> -		*sram_addr_reg_offset = 0;
-> -		*sram_data_reg_offset = 0;
-> -		break;
-> -#endif
-> -
-> -	case AMDGPU_UCODE_ID_CP_CE:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_PFP:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_ME:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_MEC1:
-> -		*sram_offset = 0x10000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_MEC2:
-> -		*sram_offset = 0x10000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_RLC_G:
-> -		*sram_offset = 0x2000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_SDMA0:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_DATA);
-> -		break;
-> -
-> -/* TODO: needs to confirm */
-> -#if 0
-> -	case AMDGPU_UCODE_ID_SDMA1:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_UVD:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_VCE:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -#endif
-> -
-> -	case AMDGPU_UCODE_ID_MAXIMUM:
-> -	default:
-> -		ret = -EINVAL;
-> -		break;
-> -	}
-> -
-> -	return ret;
-> -}
-> -
-> -static bool psp_v12_0_compare_sram_data(struct psp_context *psp,
-> -				       struct amdgpu_firmware_info *ucode,
-> -				       enum AMDGPU_UCODE_ID ucode_type)
-> -{
-> -	int err = 0;
-> -	unsigned int fw_sram_reg_val = 0;
-> -	unsigned int fw_sram_addr_reg_offset = 0;
-> -	unsigned int fw_sram_data_reg_offset = 0;
-> -	unsigned int ucode_size;
-> -	uint32_t *ucode_mem = NULL;
-> -	struct amdgpu_device *adev = psp->adev;
-> -
-> -	err = psp_v12_0_sram_map(adev, &fw_sram_reg_val, &fw_sram_addr_reg_offset,
-> -				&fw_sram_data_reg_offset, ucode_type);
-> -	if (err)
-> -		return false;
-> -
-> -	WREG32(fw_sram_addr_reg_offset, fw_sram_reg_val);
-> -
-> -	ucode_size = ucode->ucode_size;
-> -	ucode_mem = (uint32_t *)ucode->kaddr;
-> -	while (ucode_size) {
-> -		fw_sram_reg_val = RREG32(fw_sram_data_reg_offset);
-> -
-> -		if (*ucode_mem != fw_sram_reg_val)
-> -			return false;
-> -
-> -		ucode_mem++;
-> -		/* 4 bytes */
-> -		ucode_size -= 4;
-> -	}
-> -
-> -	return true;
-> -}
-> -
->  static int psp_v12_0_mode1_reset(struct psp_context *psp)
->  {
->  	int ret;
-> @@ -512,7 +390,6 @@ static const struct psp_funcs psp_v12_0_funcs = {
->  	.ring_create = psp_v12_0_ring_create,
->  	.ring_stop = psp_v12_0_ring_stop,
->  	.ring_destroy = psp_v12_0_ring_destroy,
-> -	.compare_sram_data = psp_v12_0_compare_sram_data,
->  	.mode1_reset = psp_v12_0_mode1_reset,
->  	.ring_get_wptr = psp_v12_0_ring_get_wptr,
->  	.ring_set_wptr = psp_v12_0_ring_set_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c b/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
-> index ab03190..9ca37d0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
-> @@ -398,128 +398,6 @@ static int psp_v3_1_ring_destroy(struct psp_context *psp,
->  	return ret;
->  }
->  
-> -static int
-> -psp_v3_1_sram_map(struct amdgpu_device *adev,
-> -		  unsigned int *sram_offset, unsigned int *sram_addr_reg_offset,
-> -		  unsigned int *sram_data_reg_offset,
-> -		  enum AMDGPU_UCODE_ID ucode_id)
-> -{
-> -	int ret = 0;
-> -
-> -	switch(ucode_id) {
-> -/* TODO: needs to confirm */
-> -#if 0
-> -	case AMDGPU_UCODE_ID_SMC:
-> -		*sram_offset = 0;
-> -		*sram_addr_reg_offset = 0;
-> -		*sram_data_reg_offset = 0;
-> -		break;
-> -#endif
-> -
-> -	case AMDGPU_UCODE_ID_CP_CE:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_PFP:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_ME:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_MEC1:
-> -		*sram_offset = 0x10000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_CP_MEC2:
-> -		*sram_offset = 0x10000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_RLC_G:
-> -		*sram_offset = 0x2000;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_DATA);
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_SDMA0:
-> -		*sram_offset = 0x0;
-> -		*sram_addr_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_ADDR);
-> -		*sram_data_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_DATA);
-> -		break;
-> -
-> -/* TODO: needs to confirm */
-> -#if 0
-> -	case AMDGPU_UCODE_ID_SDMA1:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_UVD:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -
-> -	case AMDGPU_UCODE_ID_VCE:
-> -		*sram_offset = ;
-> -		*sram_addr_reg_offset = ;
-> -		break;
-> -#endif
-> -
-> -	case AMDGPU_UCODE_ID_MAXIMUM:
-> -	default:
-> -		ret = -EINVAL;
-> -		break;
-> -	}
-> -
-> -	return ret;
-> -}
-> -
-> -static bool psp_v3_1_compare_sram_data(struct psp_context *psp,
-> -				       struct amdgpu_firmware_info *ucode,
-> -				       enum AMDGPU_UCODE_ID ucode_type)
-> -{
-> -	int err = 0;
-> -	unsigned int fw_sram_reg_val = 0;
-> -	unsigned int fw_sram_addr_reg_offset = 0;
-> -	unsigned int fw_sram_data_reg_offset = 0;
-> -	unsigned int ucode_size;
-> -	uint32_t *ucode_mem = NULL;
-> -	struct amdgpu_device *adev = psp->adev;
-> -
-> -	err = psp_v3_1_sram_map(adev, &fw_sram_reg_val, &fw_sram_addr_reg_offset,
-> -				&fw_sram_data_reg_offset, ucode_type);
-> -	if (err)
-> -		return false;
-> -
-> -	WREG32(fw_sram_addr_reg_offset, fw_sram_reg_val);
-> -
-> -	ucode_size = ucode->ucode_size;
-> -	ucode_mem = (uint32_t *)ucode->kaddr;
-> -	while (ucode_size) {
-> -		fw_sram_reg_val = RREG32(fw_sram_data_reg_offset);
-> -
-> -		if (*ucode_mem != fw_sram_reg_val)
-> -			return false;
-> -
-> -		ucode_mem++;
-> -		/* 4 bytes */
-> -		ucode_size -= 4;
-> -	}
-> -
-> -	return true;
-> -}
-> -
->  static bool psp_v3_1_smu_reload_quirk(struct psp_context *psp)
->  {
->  	struct amdgpu_device *adev = psp->adev;
-> @@ -596,7 +474,6 @@ static const struct psp_funcs psp_v3_1_funcs = {
->  	.ring_create = psp_v3_1_ring_create,
->  	.ring_stop = psp_v3_1_ring_stop,
->  	.ring_destroy = psp_v3_1_ring_destroy,
-> -	.compare_sram_data = psp_v3_1_compare_sram_data,
->  	.smu_reload_quirk = psp_v3_1_smu_reload_quirk,
->  	.mode1_reset = psp_v3_1_mode1_reset,
->  	.ring_get_wptr = psp_v3_1_ring_get_wptr,
-> 
+Thanks
+=20
+> Regards,
+> Christian.
+>=20
+> >   	fill_backlight_transform_table_v_2_2(
+> >   			params, ram_table, big_endian);
+>=20
+
+--=20
+Rodrigo Siqueira
+https://siqueira.tech
+
+--3mgpeptjq64bjedo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl6duIoACgkQWJzP/com
+vP8GYw//ewVXfQl0H5uUHGZgEIgMHelzimYnIsNrjjsN7OSCXvElFRzrFFqktbr5
+lIsRmn3vKY0sMOnaeWJZTsMSmlCBMvYTKvQiPBMUBiiKCmPPCagUrDHXSOMqQUd2
+bHlg7u3QtAQsW3O5ZOde9GmVzdSNTBzC7GbEcBXPO7sZ/XMuY3xQqnn6iP2LRVE/
++TxE6BuBKpqvQKZuuBzIaUmpWtcg7kvVzMQuJK5vpyMaJM8eB/PJc2iCcOZhoHFa
+DFqFCCYtvytJ/D2/i3xe8As4TzauALW0hG+8phwbgIBaPrmR/tU0880HCTNozzfo
+A3mH/RZ/JbUAN6KFVx+HVDnV2CRqmEq23tC0fK4nQ3l/t4GGAbxm+s5Sk6EMpO3b
+/W82CQE2d7lAgoHi27+Aa2DpncW6y3I5orq9bzTTgORP+t62jz0QEpOEP3Li+5zi
+8vx3dvRztfWy9P2YmzI2Y21FQj6CtfEetgT6nxJgO51XgJYcthXTRSHBrKymNsUK
+kqKeGnyP22xcdfT5Fg2r6mUMGgvra3hqsupHaKofiZnZuo2Yu6m0Guy68Cp1B5bv
+0f1CoKIvhfpggmyu412ut68EJ0HFwopRSzuYjzVtg9wFSlVuepPf1b0qHXKWcfVQ
+mCND5S0jpRP0jjyND7JIll+thKM/hflvRpjd++MOrNEYR9FIy7g=
+=uuY+
+-----END PGP SIGNATURE-----
+
+--3mgpeptjq64bjedo--
+
+--===============2016912111==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============2016912111==--
