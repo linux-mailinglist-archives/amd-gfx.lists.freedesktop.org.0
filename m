@@ -2,54 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2ADD1B1353
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 19:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8028B1B141B
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 20:13:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B5916E82C;
-	Mon, 20 Apr 2020 17:40:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 062826E5A3;
+	Mon, 20 Apr 2020 18:13:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4F906E82C
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 17:40:06 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id u13so13263465wrp.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 10:40:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZTaQqoxu95/D9YR+ktKf51v3VBNqPxU80TMeTgMD3EQ=;
- b=NR5dH7Ys9t3fTl6IIGXTUeDSuMdOcFrJQv3wElQQOzALEtIgpRGMl5nSESO1vaJPhu
- L+6iWgC2vfe9RhvWJ7brutc3l3yca7G8t1Ufk79rWs9hFVER10mlCDvk0G5+ocNmvGNp
- KBt/ZMCck54D2by5PJm5+r8J7Gxw/MjXtqPaSBKMUemHoK8E7FTJiIsUr2LSwm+Y0t4a
- 4wg6uYtHzxMKouo+ArH/hN6ZpIQfPQJCfYiHdz6FpTRSleoh0fnHTJVLZT7qYfJPu4fr
- 6EBFhzvtpX68UzZnePtLfC0CYr9aoHyLmh8RRmFSyhzRuqP9Sb7h2T4iMet+tehj6ZRs
- O5cQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZTaQqoxu95/D9YR+ktKf51v3VBNqPxU80TMeTgMD3EQ=;
- b=MfXSjISjcTkSilivh+S5i0BkGP9TRjEJnb3rWRN+1t7UIqE1zbbBMr6ADrQMzH26II
- 3otdZAAQIWHW9QXWSQ2RZlPl19qfenfgoZEQ5sNwi3R88KCWKNgkxtQjMFMXpecXaavv
- RlaRR45Iha+/E3K/7GeoSQlh5AszEEXFrxGc+u7mkJ73VJVCyOV0A2JdifQookFMrEfJ
- 5FilqG039O8BK6McunpypqhS8twq3pzl6Q3BkHbC75OKKUnhf6eqdQBD4re/japxYhlS
- oikmE0Pdqcw42BQMZoDQoDpGaXWwjmZ72RQGNo86/x7agjxKj23pmoCxoK6MpZ9VVqqG
- FfkQ==
-X-Gm-Message-State: AGi0PuZXqBQ30MOO4tVdX4f0H/bcus9peRA6oZtlCwbsrrOp9Rbl0tW4
- Unv8jU3/nktRRBB1y9zgwAS+hb9TqvwpBjDn/CU=
-X-Google-Smtp-Source: APiQypJl6N+zsWaDuSRrPqLR+eFpuR7dvYpJgGU7HZZg0T8qgPe1PV4Wv0IrW6oCSW3THNd764Luq17CWu8IqSV78yk=
-X-Received: by 2002:adf:fe45:: with SMTP id m5mr21165674wrs.124.1587404405268; 
- Mon, 20 Apr 2020 10:40:05 -0700 (PDT)
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700086.outbound.protection.outlook.com [40.107.70.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 232836E575
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 18:13:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i0UzBeoPQ2eyBvPqGAuMsbT8HbE/eeSAAmdOZvgylFxyj+YLWAkJp03yeQnKI0duVK198Zsyq6YEdQkfPWKHqqtSlofPPptX+80XYIL5vFvAqsgkz4Cs9c0eS7ATqZ76Mik6nwKEexRqR9m/IukNgrOK0yXGiqzL2xQTF5GNhYrx/twhvXkfSs+2KstCiKehtjC1ZNKTkiL8uJeTC7N/1FbcIHOYZwzTbuBaccyL1DTnvU06W6nmvYhdTDdO+xY86x1mRYVcpXTBz//kqhu+a3KQsIudjGTmb2XVc/Nt5A+OaIMOyDqPQzROlVhJNRi0UxLj2HP5EjeENeAkcEn3pQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r6VCZKySz0Ifd5T+Jcxz+3H3iSUtF4h6T4pPAG7IovA=;
+ b=FcbNBaE47bMOsB54mYQo0BA5URQEn25TWeoPh6XNvXQLZPhlUNXkkpt7DBuD9O+ATeVaU/LDCiQA9E7MUvtOWR19vkLVBZSlRduX4+I7aRkYuuxiLzRiO/1aySOhXzEpLEM9doVGrq4j7XdsUVfsizhQOtkBQW4CcAOiSitLVhO7lKtvmNvd/35Et1PhdXJBt/NIHUd/YXPWgdfWe/YW7Qm0GuhYBUCMbDcn9y//6VtbIiF3WaXyJsj9vKZCinyZhQHNM0TjZVjFW5V03p1XjrfQvoeE1cKwhJVVql4QDEJFfXc4zJHf6Cp6twkv1ne/kqRIVY8zCl8OwU7zxA7azQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r6VCZKySz0Ifd5T+Jcxz+3H3iSUtF4h6T4pPAG7IovA=;
+ b=PFHSM1yY2XaW6uKpQrc/7z600MEqY45RF4aTFyoAbKt1mlgHuMEi81KwvUqPt0F/DVThgnMaIaR3G9biA6hdClTPtyN7/GF7IdL/kAuM+QsCJ/2dDKuVB6kaaxw/ByWbPfV1ntFsZ0aZ8yOpa7/94sqrlwIwMbovcMFhzXCt4co=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Felix.Kuehling@amd.com; 
+Received: from SN1PR12MB2414.namprd12.prod.outlook.com (2603:10b6:802:2e::31)
+ by SN1PR12MB2541.namprd12.prod.outlook.com (2603:10b6:802:24::30)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25; Mon, 20 Apr
+ 2020 18:13:01 +0000
+Received: from SN1PR12MB2414.namprd12.prod.outlook.com
+ ([fe80::38ef:1510:9525:f806]) by SN1PR12MB2414.namprd12.prod.outlook.com
+ ([fe80::38ef:1510:9525:f806%7]) with mapi id 15.20.2921.027; Mon, 20 Apr 2020
+ 18:13:01 +0000
+Subject: Re: [PATCH v7 1/2] drm/amdkfd: Provide SMI events watch
+To: Amber Lin <Amber.Lin@amd.com>, amd-gfx@lists.freedesktop.org
+References: <1587212889-18763-1-git-send-email-Amber.Lin@amd.com>
+From: Felix Kuehling <felix.kuehling@amd.com>
+Message-ID: <0f82de39-15d1-1dd9-c29c-e65b2914a4e9@amd.com>
+Date: Mon, 20 Apr 2020 14:12:59 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+In-Reply-To: <1587212889-18763-1-git-send-email-Amber.Lin@amd.com>
+Content-Language: en-US
+X-ClientProxiedBy: YT1PR01CA0106.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2c::15) To SN1PR12MB2414.namprd12.prod.outlook.com
+ (2603:10b6:802:2e::31)
 MIME-Version: 1.0
-References: <1587377804-3836-1-git-send-email-Hawking.Zhang@amd.com>
- <1587377804-3836-4-git-send-email-Hawking.Zhang@amd.com>
- <abee97af-1506-8a38-9852-7684f24ce940@amd.com>
-In-Reply-To: <abee97af-1506-8a38-9852-7684f24ce940@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 20 Apr 2020 13:39:53 -0400
-Message-ID: <CADnq5_MgZrWVQaARPkviaw8reUA4WQ3VxC5q9RPFW5pcfedBjw@mail.gmail.com>
-Subject: Re: [PATCH 3/8] drm/amdgpu: retire unused check_fw_loading status
-To: Luben Tuikov <luben.tuikov@amd.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.2.100] (142.116.63.128) by
+ YT1PR01CA0106.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2c::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2921.30 via Frontend Transport; Mon, 20 Apr 2020 18:13:00 +0000
+X-Originating-IP: [142.116.63.128]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: ac53c1c2-9eac-49f3-5f80-08d7e5567655
+X-MS-TrafficTypeDiagnostic: SN1PR12MB2541:|SN1PR12MB2541:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SN1PR12MB2541DB0F4871B0AA7A455AB292D40@SN1PR12MB2541.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-Forefront-PRVS: 03793408BA
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN1PR12MB2414.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(376002)(346002)(39860400002)(366004)(396003)(136003)(36756003)(6486002)(86362001)(31696002)(44832011)(956004)(31686004)(2906002)(52116002)(16526019)(2616005)(186003)(316002)(66556008)(478600001)(66476007)(81156014)(66946007)(8676002)(16576012)(8936002)(30864003)(5660300002)(26005)(966005);
+ DIR:OUT; SFP:1101; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BURI7wjNiC1v41hgb6JFt1wTV+RnNRJMBzTsC46MOPNk52c7U+QkPu2j0rhgqva6prLLu78dxUbX9LqMGxMHFOK/jrCH3bEIxcMVX1GEU5bfAiCIj9o3hJVIT4HU2b7pC5mR1we2xDjveSEzila/xxUfp4af5bySfkrY2phoPP7ZgwK5xVAIT8z+W3vuHDAjl/v9cYOTPMpkrmHt8HMFlkQnDo8wfgRumms2tJ3XYp/yaCafyjpUXngGuHFuaV260KLwIAs2JdzAQLn2C6IE61Z7vOp6umrjtIuIx6QGA4zYEnZnuzHHecHkTspjh7YcvHQpdXkcjTf1ZkgLtn2+knrerBmr0oJPsdyPusdRVqeXgoYWCu1voSwiPLLXZyjDH4czwXjYaNWGmI04jGu7Y4RP2+SOxXEcawHsCjMIqpLxvQsfTRNK7azfOZ+HTkkCZHek8gNrC9YAJySldn1liMEb/b9kTi2rwgoaGW3SmqZpEsWeAwwtZjsA+Vkino17Ygwqh6YiDqpL6CJnR5Fjsw==
+X-MS-Exchange-AntiSpam-MessageData: CQeNWrQcoLWSkuv5BtkeuKCwjY54SchMoPzaplK/XLPH99jEHREC0BaFQSO1TQUbGFPC1t94mLCtYSXpkBbriBSQwnZdYrVIvy9Rqg7yHgbHcFrr9txa3K5pORBibyWOoB3krHReNVhx9+9lnaoW9Q==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac53c1c2-9eac-49f3-5f80-08d7e5567655
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2020 18:13:01.5766 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LpmsepZWNFb7CoCq5IQbB9lEORrw91rleanT5EJO1jsjd5B7K/aAC2m1sQ06d89IQDRaMMI/D92F6yhaaPyRIQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2541
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,733 +97,311 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- John Clements <john.clements@amd.com>, Guchun Chen <Guchun.Chen@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Hawking Zhang <Hawking.Zhang@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 20, 2020 at 10:45 AM Luben Tuikov <luben.tuikov@amd.com> wrote:
->
-> On 2020-04-20 6:16 a.m., Hawking Zhang wrote:
-> > It is not allowed to read out engine sram via registers
-> > to check the fw loading status.
-> >
->
-> Who or what is "It"--do you mean "The driver"?
->
-
-The driver can't access these registers on production boards.  These
-are leftover from bring up.  Adding a sentence like that should help
-clarify.
-
-Alex
-
-> Abbreviations should be capitalized: SRAM, ASIC, etc.
->
-> Regards,
-> Luben
->
-> > Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c |  34 --------
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |   7 --
-> >  drivers/gpu/drm/amd/amdgpu/psp_v10_0.c  | 124 -----------------------------
-> >  drivers/gpu/drm/amd/amdgpu/psp_v11_0.c  | 133 --------------------------------
-> >  drivers/gpu/drm/amd/amdgpu/psp_v12_0.c  | 123 -----------------------------
-> >  drivers/gpu/drm/amd/amdgpu/psp_v3_1.c   | 123 -----------------------------
-> >  6 files changed, 544 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> > index 901ee79..7797065 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> > @@ -37,8 +37,6 @@
-> >
-> >  #include "amdgpu_ras.h"
-> >
-> > -static void psp_set_funcs(struct amdgpu_device *adev);
-> > -
-> >  static int psp_sysfs_init(struct amdgpu_device *adev);
-> >  static void psp_sysfs_fini(struct amdgpu_device *adev);
-> >
-> > @@ -82,8 +80,6 @@ static int psp_early_init(void *handle)
-> >       struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-> >       struct psp_context *psp = &adev->psp;
-> >
-> > -     psp_set_funcs(adev);
-> > -
-> >       switch (adev->asic_type) {
-> >       case CHIP_VEGA10:
-> >       case CHIP_VEGA12:
-> > @@ -1487,11 +1483,6 @@ static int psp_np_fw_load(struct psp_context *psp)
-> >                               return ret;
-> >                       }
-> >               }
-> > -#if 0
-> > -             /* check if firmware loaded sucessfully */
-> > -             if (!amdgpu_psp_check_fw_loading_status(adev, i))
-> > -                     return -EINVAL;
-> > -#endif
-> >       }
-> >
-> >       return 0;
-> > @@ -1849,21 +1840,6 @@ int psp_ring_cmd_submit(struct psp_context *psp,
-> >       return 0;
-> >  }
-> >
-> > -static bool psp_check_fw_loading_status(struct amdgpu_device *adev,
-> > -                                     enum AMDGPU_UCODE_ID ucode_type)
-> > -{
-> > -     struct amdgpu_firmware_info *ucode = NULL;
-> > -
-> > -     if (!adev->firmware.fw_size)
-> > -             return false;
-> > -
-> > -     ucode = &adev->firmware.ucode[ucode_type];
-> > -     if (!ucode->fw || !ucode->ucode_size)
-> > -             return false;
-> > -
-> > -     return psp_compare_sram_data(&adev->psp, ucode, ucode_type);
-> > -}
-> > -
-> >  static int psp_set_clockgating_state(void *handle,
-> >                                    enum amd_clockgating_state state)
-> >  {
-> > @@ -2000,16 +1976,6 @@ static void psp_sysfs_fini(struct amdgpu_device *adev)
-> >       device_remove_file(adev->dev, &dev_attr_usbc_pd_fw);
-> >  }
-> >
-> > -static const struct amdgpu_psp_funcs psp_funcs = {
-> > -     .check_fw_loading_status = psp_check_fw_loading_status,
-> > -};
-> > -
-> > -static void psp_set_funcs(struct amdgpu_device *adev)
-> > -{
-> > -     if (NULL == adev->firmware.funcs)
-> > -             adev->firmware.funcs = &psp_funcs;
-> > -}
-> > -
-> >  const struct amdgpu_ip_block_version psp_v3_1_ip_block =
-> >  {
-> >       .type = AMD_IP_BLOCK_TYPE_PSP,
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-> > index 65a7d0a..f8b1f03 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-> > @@ -93,9 +93,6 @@ struct psp_funcs
-> >                           enum psp_ring_type ring_type);
-> >       int (*ring_destroy)(struct psp_context *psp,
-> >                           enum psp_ring_type ring_type);
-> > -     bool (*compare_sram_data)(struct psp_context *psp,
-> > -                               struct amdgpu_firmware_info *ucode,
-> > -                               enum AMDGPU_UCODE_ID ucode_type);
-> >       bool (*smu_reload_quirk)(struct psp_context *psp);
-> >       int (*mode1_reset)(struct psp_context *psp);
-> >       int (*xgmi_get_node_id)(struct psp_context *psp, uint64_t *node_id);
-> > @@ -307,8 +304,6 @@ struct amdgpu_psp_funcs {
-> >  #define psp_ring_create(psp, type) (psp)->funcs->ring_create((psp), (type))
-> >  #define psp_ring_stop(psp, type) (psp)->funcs->ring_stop((psp), (type))
-> >  #define psp_ring_destroy(psp, type) ((psp)->funcs->ring_destroy((psp), (type)))
-> > -#define psp_compare_sram_data(psp, ucode, type) \
-> > -             (psp)->funcs->compare_sram_data((psp), (ucode), (type))
-> >  #define psp_init_microcode(psp) \
-> >               ((psp)->funcs->init_microcode ? (psp)->funcs->init_microcode((psp)) : 0)
-> >  #define psp_bootloader_load_kdb(psp) \
-> > @@ -340,8 +335,6 @@ struct amdgpu_psp_funcs {
-> >  #define psp_mem_training(psp, ops) \
-> >       ((psp)->funcs->mem_training ? (psp)->funcs->mem_training((psp), (ops)) : 0)
-> >
-> > -#define amdgpu_psp_check_fw_loading_status(adev, i) (adev)->firmware.funcs->check_fw_loading_status((adev), (i))
-> > -
-> >  #define psp_ras_trigger_error(psp, info) \
-> >       ((psp)->funcs->ras_trigger_error ? \
-> >       (psp)->funcs->ras_trigger_error((psp), (info)) : -EINVAL)
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v10_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v10_0.c
-> > index 7539104..6e041b7 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/psp_v10_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/psp_v10_0.c
-> > @@ -230,129 +230,6 @@ static int psp_v10_0_ring_destroy(struct psp_context *psp,
-> >       return ret;
-> >  }
-> >
-> > -static int
-> > -psp_v10_0_sram_map(struct amdgpu_device *adev,
-> > -                unsigned int *sram_offset, unsigned int *sram_addr_reg_offset,
-> > -                unsigned int *sram_data_reg_offset,
-> > -                enum AMDGPU_UCODE_ID ucode_id)
-> > -{
-> > -     int ret = 0;
-> > -
-> > -     switch(ucode_id) {
-> > -/* TODO: needs to confirm */
-> > -#if 0
-> > -     case AMDGPU_UCODE_ID_SMC:
-> > -             *sram_offset = 0;
-> > -             *sram_addr_reg_offset = 0;
-> > -             *sram_data_reg_offset = 0;
-> > -             break;
-> > -#endif
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_CE:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_PFP:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_ME:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_MEC1:
-> > -             *sram_offset = 0x10000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_MEC2:
-> > -             *sram_offset = 0x10000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_RLC_G:
-> > -             *sram_offset = 0x2000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_SDMA0:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_DATA);
-> > -             break;
-> > -
-> > -/* TODO: needs to confirm */
-> > -#if 0
-> > -     case AMDGPU_UCODE_ID_SDMA1:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_UVD:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_VCE:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -#endif
-> > -
-> > -     case AMDGPU_UCODE_ID_MAXIMUM:
-> > -     default:
-> > -             ret = -EINVAL;
-> > -             break;
-> > -     }
-> > -
-> > -     return ret;
-> > -}
-> > -
-> > -static bool psp_v10_0_compare_sram_data(struct psp_context *psp,
-> > -                                     struct amdgpu_firmware_info *ucode,
-> > -                                     enum AMDGPU_UCODE_ID ucode_type)
-> > -{
-> > -     int err = 0;
-> > -     unsigned int fw_sram_reg_val = 0;
-> > -     unsigned int fw_sram_addr_reg_offset = 0;
-> > -     unsigned int fw_sram_data_reg_offset = 0;
-> > -     unsigned int ucode_size;
-> > -     uint32_t *ucode_mem = NULL;
-> > -     struct amdgpu_device *adev = psp->adev;
-> > -
-> > -     err = psp_v10_0_sram_map(adev, &fw_sram_reg_val, &fw_sram_addr_reg_offset,
-> > -                             &fw_sram_data_reg_offset, ucode_type);
-> > -     if (err)
-> > -             return false;
-> > -
-> > -     WREG32(fw_sram_addr_reg_offset, fw_sram_reg_val);
-> > -
-> > -     ucode_size = ucode->ucode_size;
-> > -     ucode_mem = (uint32_t *)ucode->kaddr;
-> > -     while (!ucode_size) {
-> > -             fw_sram_reg_val = RREG32(fw_sram_data_reg_offset);
-> > -
-> > -             if (*ucode_mem != fw_sram_reg_val)
-> > -                     return false;
-> > -
-> > -             ucode_mem++;
-> > -             /* 4 bytes */
-> > -             ucode_size -= 4;
-> > -     }
-> > -
-> > -     return true;
-> > -}
-> > -
-> > -
-> >  static int psp_v10_0_mode1_reset(struct psp_context *psp)
-> >  {
-> >       DRM_INFO("psp mode 1 reset not supported now! \n");
-> > @@ -379,7 +256,6 @@ static const struct psp_funcs psp_v10_0_funcs = {
-> >       .ring_create = psp_v10_0_ring_create,
-> >       .ring_stop = psp_v10_0_ring_stop,
-> >       .ring_destroy = psp_v10_0_ring_destroy,
-> > -     .compare_sram_data = psp_v10_0_compare_sram_data,
-> >       .mode1_reset = psp_v10_0_mode1_reset,
-> >       .ring_get_wptr = psp_v10_0_ring_get_wptr,
-> >       .ring_set_wptr = psp_v10_0_ring_set_wptr,
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-> > index 20fbd43..f633577 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-> > @@ -554,138 +554,6 @@ static int psp_v11_0_ring_destroy(struct psp_context *psp,
-> >       return ret;
-> >  }
-> >
-> > -static int
-> > -psp_v11_0_sram_map(struct amdgpu_device *adev,
-> > -               unsigned int *sram_offset, unsigned int *sram_addr_reg_offset,
-> > -               unsigned int *sram_data_reg_offset,
-> > -               enum AMDGPU_UCODE_ID ucode_id)
-> > -{
-> > -     int ret = 0;
-> > -
-> > -     switch (ucode_id) {
-> > -/* TODO: needs to confirm */
-> > -#if 0
-> > -     case AMDGPU_UCODE_ID_SMC:
-> > -             *sram_offset = 0;
-> > -             *sram_addr_reg_offset = 0;
-> > -             *sram_data_reg_offset = 0;
-> > -             break;
-> > -#endif
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_CE:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_PFP:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_ME:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_MEC1:
-> > -             *sram_offset = 0x10000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_MEC2:
-> > -             *sram_offset = 0x10000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_RLC_G:
-> > -             *sram_offset = 0x2000;
-> > -             if (adev->asic_type < CHIP_NAVI10) {
-> > -                     *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_ADDR);
-> > -                     *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_DATA);
-> > -             } else {
-> > -                     *sram_addr_reg_offset = adev->reg_offset[GC_HWIP][0][1] + mmRLC_GPM_UCODE_ADDR_NV10;
-> > -                     *sram_data_reg_offset = adev->reg_offset[GC_HWIP][0][1] + mmRLC_GPM_UCODE_DATA_NV10;
-> > -             }
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_SDMA0:
-> > -             *sram_offset = 0x0;
-> > -             if (adev->asic_type < CHIP_NAVI10) {
-> > -                     *sram_addr_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_ADDR);
-> > -                     *sram_data_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_DATA);
-> > -             } else {
-> > -                     *sram_addr_reg_offset = adev->reg_offset[GC_HWIP][0][1] + mmSDMA0_UCODE_ADDR_NV10;
-> > -                     *sram_data_reg_offset = adev->reg_offset[GC_HWIP][0][1] + mmSDMA0_UCODE_DATA_NV10;
-> > -             }
-> > -             break;
-> > -
-> > -/* TODO: needs to confirm */
-> > -#if 0
-> > -     case AMDGPU_UCODE_ID_SDMA1:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_UVD:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_VCE:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -#endif
-> > -
-> > -     case AMDGPU_UCODE_ID_MAXIMUM:
-> > -     default:
-> > -             ret = -EINVAL;
-> > -             break;
-> > -     }
-> > -
-> > -     return ret;
-> > -}
-> > -
-> > -static bool psp_v11_0_compare_sram_data(struct psp_context *psp,
-> > -                                    struct amdgpu_firmware_info *ucode,
-> > -                                    enum AMDGPU_UCODE_ID ucode_type)
-> > -{
-> > -     int err = 0;
-> > -     unsigned int fw_sram_reg_val = 0;
-> > -     unsigned int fw_sram_addr_reg_offset = 0;
-> > -     unsigned int fw_sram_data_reg_offset = 0;
-> > -     unsigned int ucode_size;
-> > -     uint32_t *ucode_mem = NULL;
-> > -     struct amdgpu_device *adev = psp->adev;
-> > -
-> > -     err = psp_v11_0_sram_map(adev, &fw_sram_reg_val, &fw_sram_addr_reg_offset,
-> > -                             &fw_sram_data_reg_offset, ucode_type);
-> > -     if (err)
-> > -             return false;
-> > -
-> > -     WREG32(fw_sram_addr_reg_offset, fw_sram_reg_val);
-> > -
-> > -     ucode_size = ucode->ucode_size;
-> > -     ucode_mem = (uint32_t *)ucode->kaddr;
-> > -     while (ucode_size) {
-> > -             fw_sram_reg_val = RREG32(fw_sram_data_reg_offset);
-> > -
-> > -             if (*ucode_mem != fw_sram_reg_val)
-> > -                     return false;
-> > -
-> > -             ucode_mem++;
-> > -             /* 4 bytes */
-> > -             ucode_size -= 4;
-> > -     }
-> > -
-> > -     return true;
-> > -}
-> > -
-> >  static int psp_v11_0_mode1_reset(struct psp_context *psp)
-> >  {
-> >       int ret;
-> > @@ -1190,7 +1058,6 @@ static const struct psp_funcs psp_v11_0_funcs = {
-> >       .ring_create = psp_v11_0_ring_create,
-> >       .ring_stop = psp_v11_0_ring_stop,
-> >       .ring_destroy = psp_v11_0_ring_destroy,
-> > -     .compare_sram_data = psp_v11_0_compare_sram_data,
-> >       .mode1_reset = psp_v11_0_mode1_reset,
-> >       .xgmi_get_topology_info = psp_v11_0_xgmi_get_topology_info,
-> >       .xgmi_set_topology_info = psp_v11_0_xgmi_set_topology_info,
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c
-> > index d3c86a0..42c485b 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c
-> > @@ -324,128 +324,6 @@ static int psp_v12_0_ring_destroy(struct psp_context *psp,
-> >       return ret;
-> >  }
-> >
-> > -static int
-> > -psp_v12_0_sram_map(struct amdgpu_device *adev,
-> > -               unsigned int *sram_offset, unsigned int *sram_addr_reg_offset,
-> > -               unsigned int *sram_data_reg_offset,
-> > -               enum AMDGPU_UCODE_ID ucode_id)
-> > -{
-> > -     int ret = 0;
-> > -
-> > -     switch (ucode_id) {
-> > -/* TODO: needs to confirm */
-> > -#if 0
-> > -     case AMDGPU_UCODE_ID_SMC:
-> > -             *sram_offset = 0;
-> > -             *sram_addr_reg_offset = 0;
-> > -             *sram_data_reg_offset = 0;
-> > -             break;
-> > -#endif
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_CE:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_PFP:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_ME:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_MEC1:
-> > -             *sram_offset = 0x10000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_MEC2:
-> > -             *sram_offset = 0x10000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_RLC_G:
-> > -             *sram_offset = 0x2000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_SDMA0:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_DATA);
-> > -             break;
-> > -
-> > -/* TODO: needs to confirm */
-> > -#if 0
-> > -     case AMDGPU_UCODE_ID_SDMA1:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_UVD:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_VCE:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -#endif
-> > -
-> > -     case AMDGPU_UCODE_ID_MAXIMUM:
-> > -     default:
-> > -             ret = -EINVAL;
-> > -             break;
-> > -     }
-> > -
-> > -     return ret;
-> > -}
-> > -
-> > -static bool psp_v12_0_compare_sram_data(struct psp_context *psp,
-> > -                                    struct amdgpu_firmware_info *ucode,
-> > -                                    enum AMDGPU_UCODE_ID ucode_type)
-> > -{
-> > -     int err = 0;
-> > -     unsigned int fw_sram_reg_val = 0;
-> > -     unsigned int fw_sram_addr_reg_offset = 0;
-> > -     unsigned int fw_sram_data_reg_offset = 0;
-> > -     unsigned int ucode_size;
-> > -     uint32_t *ucode_mem = NULL;
-> > -     struct amdgpu_device *adev = psp->adev;
-> > -
-> > -     err = psp_v12_0_sram_map(adev, &fw_sram_reg_val, &fw_sram_addr_reg_offset,
-> > -                             &fw_sram_data_reg_offset, ucode_type);
-> > -     if (err)
-> > -             return false;
-> > -
-> > -     WREG32(fw_sram_addr_reg_offset, fw_sram_reg_val);
-> > -
-> > -     ucode_size = ucode->ucode_size;
-> > -     ucode_mem = (uint32_t *)ucode->kaddr;
-> > -     while (ucode_size) {
-> > -             fw_sram_reg_val = RREG32(fw_sram_data_reg_offset);
-> > -
-> > -             if (*ucode_mem != fw_sram_reg_val)
-> > -                     return false;
-> > -
-> > -             ucode_mem++;
-> > -             /* 4 bytes */
-> > -             ucode_size -= 4;
-> > -     }
-> > -
-> > -     return true;
-> > -}
-> > -
-> >  static int psp_v12_0_mode1_reset(struct psp_context *psp)
-> >  {
-> >       int ret;
-> > @@ -512,7 +390,6 @@ static const struct psp_funcs psp_v12_0_funcs = {
-> >       .ring_create = psp_v12_0_ring_create,
-> >       .ring_stop = psp_v12_0_ring_stop,
-> >       .ring_destroy = psp_v12_0_ring_destroy,
-> > -     .compare_sram_data = psp_v12_0_compare_sram_data,
-> >       .mode1_reset = psp_v12_0_mode1_reset,
-> >       .ring_get_wptr = psp_v12_0_ring_get_wptr,
-> >       .ring_set_wptr = psp_v12_0_ring_set_wptr,
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c b/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
-> > index ab03190..9ca37d0 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
-> > @@ -398,128 +398,6 @@ static int psp_v3_1_ring_destroy(struct psp_context *psp,
-> >       return ret;
-> >  }
-> >
-> > -static int
-> > -psp_v3_1_sram_map(struct amdgpu_device *adev,
-> > -               unsigned int *sram_offset, unsigned int *sram_addr_reg_offset,
-> > -               unsigned int *sram_data_reg_offset,
-> > -               enum AMDGPU_UCODE_ID ucode_id)
-> > -{
-> > -     int ret = 0;
-> > -
-> > -     switch(ucode_id) {
-> > -/* TODO: needs to confirm */
-> > -#if 0
-> > -     case AMDGPU_UCODE_ID_SMC:
-> > -             *sram_offset = 0;
-> > -             *sram_addr_reg_offset = 0;
-> > -             *sram_data_reg_offset = 0;
-> > -             break;
-> > -#endif
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_CE:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_CE_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_PFP:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_PFP_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_ME:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_ME_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_MEC1:
-> > -             *sram_offset = 0x10000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME1_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_CP_MEC2:
-> > -             *sram_offset = 0x10000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmCP_HYP_MEC2_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_RLC_G:
-> > -             *sram_offset = 0x2000;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(GC, 0, mmRLC_GPM_UCODE_DATA);
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_SDMA0:
-> > -             *sram_offset = 0x0;
-> > -             *sram_addr_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_ADDR);
-> > -             *sram_data_reg_offset = SOC15_REG_OFFSET(SDMA0, 0, mmSDMA0_UCODE_DATA);
-> > -             break;
-> > -
-> > -/* TODO: needs to confirm */
-> > -#if 0
-> > -     case AMDGPU_UCODE_ID_SDMA1:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_UVD:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -
-> > -     case AMDGPU_UCODE_ID_VCE:
-> > -             *sram_offset = ;
-> > -             *sram_addr_reg_offset = ;
-> > -             break;
-> > -#endif
-> > -
-> > -     case AMDGPU_UCODE_ID_MAXIMUM:
-> > -     default:
-> > -             ret = -EINVAL;
-> > -             break;
-> > -     }
-> > -
-> > -     return ret;
-> > -}
-> > -
-> > -static bool psp_v3_1_compare_sram_data(struct psp_context *psp,
-> > -                                    struct amdgpu_firmware_info *ucode,
-> > -                                    enum AMDGPU_UCODE_ID ucode_type)
-> > -{
-> > -     int err = 0;
-> > -     unsigned int fw_sram_reg_val = 0;
-> > -     unsigned int fw_sram_addr_reg_offset = 0;
-> > -     unsigned int fw_sram_data_reg_offset = 0;
-> > -     unsigned int ucode_size;
-> > -     uint32_t *ucode_mem = NULL;
-> > -     struct amdgpu_device *adev = psp->adev;
-> > -
-> > -     err = psp_v3_1_sram_map(adev, &fw_sram_reg_val, &fw_sram_addr_reg_offset,
-> > -                             &fw_sram_data_reg_offset, ucode_type);
-> > -     if (err)
-> > -             return false;
-> > -
-> > -     WREG32(fw_sram_addr_reg_offset, fw_sram_reg_val);
-> > -
-> > -     ucode_size = ucode->ucode_size;
-> > -     ucode_mem = (uint32_t *)ucode->kaddr;
-> > -     while (ucode_size) {
-> > -             fw_sram_reg_val = RREG32(fw_sram_data_reg_offset);
-> > -
-> > -             if (*ucode_mem != fw_sram_reg_val)
-> > -                     return false;
-> > -
-> > -             ucode_mem++;
-> > -             /* 4 bytes */
-> > -             ucode_size -= 4;
-> > -     }
-> > -
-> > -     return true;
-> > -}
-> > -
-> >  static bool psp_v3_1_smu_reload_quirk(struct psp_context *psp)
-> >  {
-> >       struct amdgpu_device *adev = psp->adev;
-> > @@ -596,7 +474,6 @@ static const struct psp_funcs psp_v3_1_funcs = {
-> >       .ring_create = psp_v3_1_ring_create,
-> >       .ring_stop = psp_v3_1_ring_stop,
-> >       .ring_destroy = psp_v3_1_ring_destroy,
-> > -     .compare_sram_data = psp_v3_1_compare_sram_data,
-> >       .smu_reload_quirk = psp_v3_1_smu_reload_quirk,
-> >       .mode1_reset = psp_v3_1_mode1_reset,
-> >       .ring_get_wptr = psp_v3_1_ring_get_wptr,
-> >
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+QW0gMjAyMC0wNC0xOCB1bSA4OjI4IGEubS4gc2NocmllYiBBbWJlciBMaW46Cj4gV2hlbiB0aGUg
+Y29tcHV0ZSBpcyBtYWxmdW5jdGlvbmluZyBvciBwZXJmb3JtYW5jZSBkcm9wcywgdGhlIHN5c3Rl
+bSBhZG1pbgo+IHdpbGwgdXNlIFNNSSAoU3lzdGVtIE1hbmFnZW1lbnQgSW50ZXJmYWNlKSB0b29s
+IHRvIG1vbml0b3IvZGlhZ25vc3RpYyB3aGF0Cj4gd2VudCB3cm9uZy4gVGhpcyBwYXRjaCBwcm92
+aWRlcyBhbiBldmVudCB3YXRjaCBpbnRlcmZhY2UgZm9yIHRoZSB1c2VyCj4gc3BhY2UgdG8gcmVn
+aXN0ZXIgZGV2aWNlcyBhbmQgc3Vic2NyaWJlIGV2ZW50cyB0aGV5IGFyZSBpbnRlcmVzdGVkLiBB
+ZnRlcgo+IHJlZ2lzdGVyZWQsIHRoZSB1c2VyIGNhbiB1c2UgYW5ub3ltb3VzIGZpbGUgZGVzY3Jp
+cHRvcidzIHBvbGwgZnVuY3Rpb24KPiB3aXRoIHdhaXQtdGltZSBzcGVjaWZpZWQgYW5kIHdhaXQg
+Zm9yIGV2ZW50cyB0byBoYXBwZW4uIE9uY2UgYW4gZXZlbnQKPiBoYXBwZW5zLCB0aGUgdXNlciBj
+YW4gdXNlIHJlYWQoKSB0byByZXRyaWV2ZSBpbmZvcm1hdGlvbiByZWxhdGVkIHRvIHRoZQo+IGV2
+ZW50Lgo+Cj4gVk0gZmF1bHQgZXZlbnQgaXMgZG9uZSBpbiB0aGlzIHBhdGNoLgo+Cj4gdjI6IC0g
+cmVtb3ZlIFVOUkVHSVNURVIgYW5kIGFkZCBldmVudCBFTkFCTEUvRElTQUJMRQo+ICAgICAtIGNv
+cnJlY3Qga2ZpZm8gdXNhZ2UKPiAgICAgLSBtb3ZlIGV2ZW50IG1lc3NhZ2UgQVBJIHRvIGtmZF9p
+b2N0bC5oCj4gdjM6IHNlbmQgdGhlIGV2ZW50IG1zZyBpbiB0ZXh0IHRoYW4gaW4gYmluYXJ5Cj4g
+djQ6IHN1cHBvcnQgbXVsdGlwbGUgY2xpZW50cwo+IHY1OiBtb3ZlIGV2ZW50cyBlbmFibGVtZW50
+IGZyb20gaW9jdGwgdG8gZmQgd3JpdGUKPgo+IFNpZ25lZC1vZmYtYnk6IEFtYmVyIExpbiA8QW1i
+ZXIuTGluQGFtZC5jb20+CgpJIGZvdW5kIHR3byBtb3JlIHByb2JsZW1zIGlubGluZS4gV2l0aCB0
+aG9zZSBmaXhlZCwgdGhlIHNlcmllcyBpcwoKUmV2aWV3ZWQtYnk6IEZlbGl4IEt1ZWhsaW5nIDxG
+ZWxpeC5LdWVobGluZ0BhbWQuY29tPgoKRG8gd2UgaGF2ZSB1c2VyIG1vZGUgY29kZSBkZW1vbnN0
+cmF0aW5nIHRoZSB1c2Ugb2YgdGhpcyBBUEkgeWV0LCBzbyB3ZQpjYW4ganVzdGlmeSBwdXNoaW5n
+IGl0IHVwc3RyZWFtPwoKT25jZSB0aGlzIGdldHMgc3VibWl0dGVkLCB3ZSBuZWVkIHRvIHdvcmsg
+d2l0aCB0aGUgREtNUyBkcml2ZXIgdGVhbQpiZWNhdXNlIHdlJ2xsIG5lZWQgdG8gdXBkYXRlIHRo
+ZSBpb2N0bCBudW1iZXJzIG9mIHRoZSBub24tdXBzdHJlYW0KaW9jdGxzLiBNYXliZSB3ZSBzaG91
+bGQgbGVhdmUgc29tZSBnYXAgaW4gZnJvbnQgb2YgdGhlIG5vbi11cHN0cmVhbQppb2N0bCBudW1i
+ZXJzIHNvIHdlIGhhdmUgbW9yZSByb29tIHRvIGFkZCBuZXcgdXBzdHJlYW0gaW9jdGxzIHdpdGhv
+dXQKYnJlYWtpbmcgdGhlIG5vbi11cHN0cmVhbSBBQkkgZXZlcnkgdGltZS4gSSBiZWxpZXZlIHRo
+ZSBuZXh0IHRoaW5nIHdpbGwKYmUgdGhlIG5ldyBTVk0gbWVtb3J5IG1hbmFnZXIgQVBJLgoKCj4g
+LS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL01ha2VmaWxlICAgICAgICAgICAgICB8
+ICAgMSArCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2Npa19ldmVudF9pbnRlcnJ1cHQu
+YyB8ICAgMiArCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9jaGFyZGV2LmMgICAg
+ICAgICB8ICAxOCArKwo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfZGV2aWNlLmMg
+ICAgICAgICAgfCAgIDcgKwo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfaW50X3By
+b2Nlc3NfdjkuYyAgfCAgIDIgKwo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfcHJp
+di5oICAgICAgICAgICAgfCAgIDQgKwo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRf
+c21pX2V2ZW50cy5jICAgICAgfCAyMTAgKysrKysrKysrKysrKysrKysrKysrKysKPiAgZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX3NtaV9ldmVudHMuaCAgICAgIHwgIDI5ICsrKysKPiAg
+aW5jbHVkZS91YXBpL2xpbnV4L2tmZF9pb2N0bC5oICAgICAgICAgICAgICAgICAgIHwgIDE2ICst
+Cj4gIDkgZmlsZXMgY2hhbmdlZCwgMjg4IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPiAg
+Y3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9zbWlfZXZl
+bnRzLmMKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tm
+ZF9zbWlfZXZlbnRzLmgKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtm
+ZC9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL01ha2VmaWxlCj4gaW5kZXgg
+NjE0NzQ2Mi4uZTFlNDExNSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtm
+ZC9NYWtlZmlsZQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL01ha2VmaWxlCj4g
+QEAgLTUzLDYgKzUzLDcgQEAgQU1ES0ZEX0ZJTEVTCTo9ICQoQU1ES0ZEX1BBVEgpL2tmZF9tb2R1
+bGUubyBcCj4gIAkJJChBTURLRkRfUEFUSCkva2ZkX2ludF9wcm9jZXNzX3Y5Lm8gXAo+ICAJCSQo
+QU1ES0ZEX1BBVEgpL2tmZF9kYmdkZXYubyBcCj4gIAkJJChBTURLRkRfUEFUSCkva2ZkX2RiZ21n
+ci5vIFwKPiArCQkkKEFNREtGRF9QQVRIKS9rZmRfc21pX2V2ZW50cy5vIFwKPiAgCQkkKEFNREtG
+RF9QQVRIKS9rZmRfY3JhdC5vCj4gIAo+ICBpZm5lcSAoJChDT05GSUdfQU1EX0lPTU1VX1YyKSwp
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2Npa19ldmVudF9pbnRl
+cnJ1cHQuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2Npa19ldmVudF9pbnRlcnJ1cHQu
+Ywo+IGluZGV4IDlmNTliYTkuLjI0YjQ3MTcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRrZmQvY2lrX2V2ZW50X2ludGVycnVwdC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRrZmQvY2lrX2V2ZW50X2ludGVycnVwdC5jCj4gQEAgLTI0LDYgKzI0LDcgQEAKPiAg
+I2luY2x1ZGUgImtmZF9ldmVudHMuaCIKPiAgI2luY2x1ZGUgImNpa19pbnQuaCIKPiAgI2luY2x1
+ZGUgImFtZGdwdV9hbWRrZmQuaCIKPiArI2luY2x1ZGUgImtmZF9zbWlfZXZlbnRzLmgiCj4gIAo+
+ICBzdGF0aWMgYm9vbCBjaWtfZXZlbnRfaW50ZXJydXB0X2lzcihzdHJ1Y3Qga2ZkX2RldiAqZGV2
+LAo+ICAJCQkJCWNvbnN0IHVpbnQzMl90ICppaF9yaW5nX2VudHJ5LAo+IEBAIC0xMDcsNiArMTA4
+LDcgQEAgc3RhdGljIHZvaWQgY2lrX2V2ZW50X2ludGVycnVwdF93cShzdHJ1Y3Qga2ZkX2RldiAq
+ZGV2LAo+ICAJCWlocmUtPnNvdXJjZV9pZCA9PSBDSUtfSU5UU1JDX0dGWF9NRU1fUFJPVF9GQVVM
+VCkgewo+ICAJCXN0cnVjdCBrZmRfdm1fZmF1bHRfaW5mbyBpbmZvOwo+ICAKPiArCQlrZmRfc21p
+X2V2ZW50X3VwZGF0ZV92bWZhdWx0KGRldiwgcGFzaWQpOwo+ICAJCWtmZF9wcm9jZXNzX3ZtX2Zh
+dWx0KGRldi0+ZHFtLCBwYXNpZCk7Cj4gIAo+ICAJCW1lbXNldCgmaW5mbywgMCwgc2l6ZW9mKGlu
+Zm8pKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2NoYXJk
+ZXYuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9jaGFyZGV2LmMKPiBpbmRleCBm
+OGZhMDNhLi4yYmFhYWVjIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2Zk
+L2tmZF9jaGFyZGV2LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfY2hh
+cmRldi5jCj4gQEAgLTM5LDYgKzM5LDcgQEAKPiAgI2luY2x1ZGUgImtmZF9kZXZpY2VfcXVldWVf
+bWFuYWdlci5oIgo+ICAjaW5jbHVkZSAia2ZkX2RiZ21nci5oIgo+ICAjaW5jbHVkZSAiYW1kZ3B1
+X2FtZGtmZC5oIgo+ICsjaW5jbHVkZSAia2ZkX3NtaV9ldmVudHMuaCIKPiAgCj4gIHN0YXRpYyBs
+b25nIGtmZF9pb2N0bChzdHJ1Y3QgZmlsZSAqLCB1bnNpZ25lZCBpbnQsIHVuc2lnbmVkIGxvbmcp
+Owo+ICBzdGF0aWMgaW50IGtmZF9vcGVuKHN0cnVjdCBpbm9kZSAqLCBzdHJ1Y3QgZmlsZSAqKTsK
+PiBAQCAtMTczMiw2ICsxNzMzLDIwIEBAIHN0YXRpYyBpbnQga2ZkX2lvY3RsX2ltcG9ydF9kbWFi
+dWYoc3RydWN0IGZpbGUgKmZpbGVwLAo+ICAJcmV0dXJuIHI7Cj4gIH0KPiAgCj4gKy8qIEhhbmRs
+ZSByZXF1ZXN0cyBmb3Igd2F0Y2hpbmcgU01JIGV2ZW50cyAqLwo+ICtzdGF0aWMgaW50IGtmZF9p
+b2N0bF9zbWlfZXZlbnRzKHN0cnVjdCBmaWxlICpmaWxlcCwKPiArCQkJCXN0cnVjdCBrZmRfcHJv
+Y2VzcyAqcCwgdm9pZCAqZGF0YSkKPiArewo+ICsJc3RydWN0IGtmZF9pb2N0bF9zbWlfZXZlbnRz
+X2FyZ3MgKmFyZ3MgPSBkYXRhOwo+ICsJc3RydWN0IGtmZF9kZXYgKmRldjsKPiArCj4gKwlkZXYg
+PSBrZmRfZGV2aWNlX2J5X2lkKGFyZ3MtPmdwdWlkKTsKPiArCWlmICghZGV2KQo+ICsJCXJldHVy
+biAtRUlOVkFMOwo+ICsKPiArCXJldHVybiBrZmRfc21pX2V2ZW50X29wZW4oZGV2LCAmYXJncy0+
+YW5vbl9mZCk7Cj4gK30KPiArCj4gICNkZWZpbmUgQU1ES0ZEX0lPQ1RMX0RFRihpb2N0bCwgX2Z1
+bmMsIF9mbGFncykgXAo+ICAJW19JT0NfTlIoaW9jdGwpXSA9IHsuY21kID0gaW9jdGwsIC5mdW5j
+ID0gX2Z1bmMsIC5mbGFncyA9IF9mbGFncywgXAo+ICAJCQkgICAgLmNtZF9kcnYgPSAwLCAubmFt
+ZSA9ICNpb2N0bH0KPiBAQCAtMTgyNyw2ICsxODQyLDkgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBh
+bWRrZmRfaW9jdGxfZGVzYyBhbWRrZmRfaW9jdGxzW10gPSB7Cj4gIAo+ICAJQU1ES0ZEX0lPQ1RM
+X0RFRihBTURLRkRfSU9DX0FMTE9DX1FVRVVFX0dXUywKPiAgCQkJa2ZkX2lvY3RsX2FsbG9jX3F1
+ZXVlX2d3cywgMCksCj4gKwo+ICsJQU1ES0ZEX0lPQ1RMX0RFRihBTURLRkRfSU9DX1NNSV9FVkVO
+VFMsCj4gKwkJCWtmZF9pb2N0bF9zbWlfZXZlbnRzLCAwKSwKPiAgfTsKPiAgCj4gICNkZWZpbmUg
+QU1ES0ZEX0NPUkVfSU9DVExfQ09VTlQJQVJSQVlfU0laRShhbWRrZmRfaW9jdGxzKQo+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfZGV2aWNlLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfZGV2aWNlLmMKPiBpbmRleCAwNDkxYWIyLi4yYzAzMGMy
+IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9kZXZpY2UuYwo+
+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9kZXZpY2UuYwo+IEBAIC01ODYs
+NiArNTg2LDExIEBAIHN0YXRpYyBpbnQga2ZkX2d3c19pbml0KHN0cnVjdCBrZmRfZGV2ICprZmQp
+Cj4gIAlyZXR1cm4gcmV0Owo+ICB9Cj4gIAo+ICtzdGF0aWMgdm9pZCBrZmRfc21pX2luaXQoc3Ry
+dWN0IGtmZF9kZXYgKmRldikgewo+ICsJSU5JVF9MSVNUX0hFQUQoJmRldi0+c21pX2NsaWVudHMp
+Owo+ICsJc3Bpbl9sb2NrX2luaXQoJmRldi0+c21pX2xvY2spOwo+ICt9Cj4gKwo+ICBib29sIGtn
+ZDJrZmRfZGV2aWNlX2luaXQoc3RydWN0IGtmZF9kZXYgKmtmZCwKPiAgCQkJIHN0cnVjdCBkcm1f
+ZGV2aWNlICpkZGV2LAo+ICAJCQkgY29uc3Qgc3RydWN0IGtnZDJrZmRfc2hhcmVkX3Jlc291cmNl
+cyAqZ3B1X3Jlc291cmNlcykKPiBAQCAtNzAwLDYgKzcwNSw4IEBAIGJvb2wga2dkMmtmZF9kZXZp
+Y2VfaW5pdChzdHJ1Y3Qga2ZkX2RldiAqa2ZkLAo+ICAJCWdvdG8ga2ZkX3RvcG9sb2d5X2FkZF9k
+ZXZpY2VfZXJyb3I7Cj4gIAl9Cj4gIAo+ICsJa2ZkX3NtaV9pbml0KGtmZCk7Cj4gKwo+ICAJa2Zk
+LT5pbml0X2NvbXBsZXRlID0gdHJ1ZTsKPiAgCWRldl9pbmZvKGtmZF9kZXZpY2UsICJhZGRlZCBk
+ZXZpY2UgJXg6JXhcbiIsIGtmZC0+cGRldi0+dmVuZG9yLAo+ICAJCSBrZmQtPnBkZXYtPmRldmlj
+ZSk7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9pbnRfcHJv
+Y2Vzc192OS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2ludF9wcm9jZXNzX3Y5
+LmMKPiBpbmRleCBlMDVkNzVlLi4xNTFlODNlIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1ka2ZkL2tmZF9pbnRfcHJvY2Vzc192OS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRrZmQva2ZkX2ludF9wcm9jZXNzX3Y5LmMKPiBAQCAtMjQsNiArMjQsNyBAQAo+ICAj
+aW5jbHVkZSAia2ZkX2V2ZW50cy5oIgo+ICAjaW5jbHVkZSAic29jMTVfaW50LmgiCj4gICNpbmNs
+dWRlICJrZmRfZGV2aWNlX3F1ZXVlX21hbmFnZXIuaCIKPiArI2luY2x1ZGUgImtmZF9zbWlfZXZl
+bnRzLmgiCj4gIAo+ICBzdGF0aWMgYm9vbCBldmVudF9pbnRlcnJ1cHRfaXNyX3Y5KHN0cnVjdCBr
+ZmRfZGV2ICpkZXYsCj4gIAkJCQkJY29uc3QgdWludDMyX3QgKmloX3JpbmdfZW50cnksCj4gQEAg
+LTExNyw2ICsxMTgsNyBAQCBzdGF0aWMgdm9pZCBldmVudF9pbnRlcnJ1cHRfd3Ffdjkoc3RydWN0
+IGtmZF9kZXYgKmRldiwKPiAgCQlpbmZvLnByb3RfcmVhZCAgPSByaW5nX2lkICYgMHgxMDsKPiAg
+CQlpbmZvLnByb3Rfd3JpdGUgPSByaW5nX2lkICYgMHgyMDsKPiAgCj4gKwkJa2ZkX3NtaV9ldmVu
+dF91cGRhdGVfdm1mYXVsdChkZXYsIHBhc2lkKTsKPiAgCQlrZmRfcHJvY2Vzc192bV9mYXVsdChk
+ZXYtPmRxbSwgcGFzaWQpOwo+ICAJCWtmZF9zaWduYWxfdm1fZmF1bHRfZXZlbnQoZGV2LCBwYXNp
+ZCwgJmluZm8pOwo+ICAJfQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtm
+ZC9rZmRfcHJpdi5oIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX3ByaXYuaAo+IGlu
+ZGV4IDQzYjg4OGIuLmRjODczYjAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRrZmQva2ZkX3ByaXYuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9w
+cml2LmgKPiBAQCAtMzA5LDYgKzMwOSwxMCBAQCBzdHJ1Y3Qga2ZkX2RldiB7Cj4gIAo+ICAJLyog
+R2xvYmFsIEdXUyByZXNvdXJjZSBzaGFyZWQgYi90IHByb2Nlc3NlcyovCj4gIAl2b2lkICpnd3M7
+Cj4gKwo+ICsJLyogQ2xpZW50cyB3YXRjaGluZyBTTUkgZXZlbnRzICovCj4gKwlzdHJ1Y3QgbGlz
+dF9oZWFkIHNtaV9jbGllbnRzOwo+ICsJc3BpbmxvY2tfdCBzbWlfbG9jazsKPiAgfTsKPiAgCj4g
+IGVudW0ga2ZkX21lbXBvb2wgewo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
+ZGtmZC9rZmRfc21pX2V2ZW50cy5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX3Nt
+aV9ldmVudHMuYwo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMC4uOTFiMzg4
+NQo+IC0tLSAvZGV2L251bGwKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRf
+c21pX2V2ZW50cy5jCj4gQEAgLTAsMCArMSwyMTAgQEAKPiArLyoKPiArICogQ29weXJpZ2h0IDIw
+MjAgQWR2YW5jZWQgTWljcm8gRGV2aWNlcywgSW5jLgo+ICsgKgo+ICsgKiBQZXJtaXNzaW9uIGlz
+IGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcg
+YQo+ICsgKiBjb3B5IG9mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlv
+biBmaWxlcyAodGhlICJTb2Z0d2FyZSIpLAo+ICsgKiB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3
+aXRob3V0IHJlc3RyaWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uCj4gKyAqIHRo
+ZSByaWdodHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRl
+LCBzdWJsaWNlbnNlLAo+ICsgKiBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBh
+bmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUKPiArICogU29mdHdhcmUgaXMgZnVybmlz
+aGVkIHRvIGRvIHNvLCBzdWJqZWN0IHRvIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKPiArICoK
+PiArICogVGhlIGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3Rp
+Y2Ugc2hhbGwgYmUgaW5jbHVkZWQgaW4KPiArICogYWxsIGNvcGllcyBvciBzdWJzdGFudGlhbCBw
+b3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuCj4gKyAqCj4gKyAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9W
+SURFRCAiQVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCj4g
+KyAqIElNUExJRUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMg
+T0YgTUVSQ0hBTlRBQklMSVRZLAo+ICsgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9T
+RSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKPiArICogVEhFIENPUFlS
+SUdIVCBIT0xERVIoUykgT1IgQVVUSE9SKFMpIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlNLCBEQU1B
+R0VTIE9SCj4gKyAqIE9USEVSIExJQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0YgQ09O
+VFJBQ1QsIFRPUlQgT1IgT1RIRVJXSVNFLAo+ICsgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJ
+TiBDT05ORUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IKPiArICogT1RIRVIg
+REVBTElOR1MgSU4gVEhFIFNPRlRXQVJFLgo+ICsgKi8KPiArCj4gKyNpbmNsdWRlIDxsaW51eC9w
+b2xsLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC93YWl0Lmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9hbm9u
+X2lub2Rlcy5oPgo+ICsjaW5jbHVkZSA8dWFwaS9saW51eC9rZmRfaW9jdGwuaD4KPiArI2luY2x1
+ZGUgImFtZGdwdV92bS5oIgo+ICsjaW5jbHVkZSAia2ZkX3ByaXYuaCIKPiArI2luY2x1ZGUgImtm
+ZF9zbWlfZXZlbnRzLmgiCj4gKwo+ICtzdHJ1Y3Qga2ZkX3NtaV9jbGllbnQgewo+ICsJc3RydWN0
+IGxpc3RfaGVhZCBsaXN0Owo+ICsJc3RydWN0IGtmaWZvIGZpZm87Cj4gKwl3YWl0X3F1ZXVlX2hl
+YWRfdCB3YWl0X3F1ZXVlOwo+ICsJLyogZXZlbnRzIGVuYWJsZWQgKi8KPiArCXVpbnQ2NF90IGV2
+ZW50czsKPiArCXN0cnVjdCBrZmRfZGV2ICpkZXY7Cj4gKwlzcGlubG9ja190IGxvY2s7Cj4gK307
+Cj4gKwo+ICsjZGVmaW5lIE1BWF9LRklGT19TSVpFCTEwMjQKPiArCj4gK3N0YXRpYyBfX3BvbGxf
+dCBrZmRfc21pX2V2X3BvbGwoc3RydWN0IGZpbGUgKiwgc3RydWN0IHBvbGxfdGFibGVfc3RydWN0
+ICopOwo+ICtzdGF0aWMgc3NpemVfdCBrZmRfc21pX2V2X3JlYWQoc3RydWN0IGZpbGUgKiwgY2hh
+ciBfX3VzZXIgKiwgc2l6ZV90LCBsb2ZmX3QgKik7Cj4gK3N0YXRpYyBzc2l6ZV90IGtmZF9zbWlf
+ZXZfd3JpdGUoc3RydWN0IGZpbGUgKiwgY29uc3QgY2hhciBfX3VzZXIgKiwgc2l6ZV90LAo+ICsJ
+CQkJbG9mZl90ICopOwo+ICtzdGF0aWMgaW50IGtmZF9zbWlfZXZfcmVsZWFzZShzdHJ1Y3QgaW5v
+ZGUgKiwgc3RydWN0IGZpbGUgKik7Cj4gKwo+ICtzdGF0aWMgY29uc3QgY2hhciBrZmRfc21pX25h
+bWVbXSA9ICJrZmRfc21pX2V2IjsKPiArCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgZmlsZV9vcGVy
+YXRpb25zIGtmZF9zbWlfZXZfZm9wcyA9IHsKPiArCS5vd25lciA9IFRISVNfTU9EVUxFLAo+ICsJ
+LnBvbGwgPSBrZmRfc21pX2V2X3BvbGwsCj4gKwkucmVhZCA9IGtmZF9zbWlfZXZfcmVhZCwKPiAr
+CS53cml0ZSA9IGtmZF9zbWlfZXZfd3JpdGUsCj4gKwkucmVsZWFzZSA9IGtmZF9zbWlfZXZfcmVs
+ZWFzZQo+ICt9Owo+ICsKPiArc3RhdGljIF9fcG9sbF90IGtmZF9zbWlfZXZfcG9sbChzdHJ1Y3Qg
+ZmlsZSAqZmlsZXAsCj4gKwkJCQlzdHJ1Y3QgcG9sbF90YWJsZV9zdHJ1Y3QgKndhaXQpCj4gK3sK
+PiArCV9fcG9sbF90IG1hc2s7Cj4gKwlzdHJ1Y3Qga2ZkX3NtaV9jbGllbnQgKmNsaWVudCA9IGZp
+bGVwLT5wcml2YXRlX2RhdGE7Cj4gKwo+ICsJcG9sbF93YWl0KGZpbGVwLCAmY2xpZW50LT53YWl0
+X3F1ZXVlLCB3YWl0KTsKPiArCj4gKwlzcGluX2xvY2soJmNsaWVudC0+bG9jayk7Cj4gKwltYXNr
+ID0ga2ZpZm9faXNfZW1wdHkoJmNsaWVudC0+ZmlmbykgPyAwIDogUE9MTElOIHwgUE9MTFJETk9S
+TTsKPiArCXNwaW5fdW5sb2NrKCZjbGllbnQtPmxvY2spOwo+ICsKPiArCXJldHVybiBtYXNrOwo+
+ICt9Cj4gKwo+ICtzdGF0aWMgc3NpemVfdCBrZmRfc21pX2V2X3JlYWQoc3RydWN0IGZpbGUgKmZp
+bGVwLCBjaGFyIF9fdXNlciAqdXNlciwKPiArCQkJICAgICAgIHNpemVfdCBzaXplLCBsb2ZmX3Qg
+Km9mZnNldCkKPiArewo+ICsJaW50IHJldDsKPiArCXNpemVfdCB0b19jb3B5Owo+ICsJc3RydWN0
+IGtmZF9zbWlfY2xpZW50ICpjbGllbnQgPSBmaWxlcC0+cHJpdmF0ZV9kYXRhOwo+ICsJdW5zaWdu
+ZWQgY2hhciBidWZbTUFYX0tGSUZPX1NJWkVdOwo+ICsKPiArCUJVSUxEX0JVR19PTihNQVhfS0ZJ
+Rk9fU0laRSA+IDEwMjQpOwo+ICsKPiArCS8qIGtmaWZvX3RvX3VzZXIgY2FuIHNsZWVwIHNvIHdl
+IGNhbid0IHVzZSBzcGlubG9jayBwcm90ZWN0aW9uIGFyb3VuZAo+ICsJICogaXQuIEluc3RlYWQs
+IHdlIGtmaWZvIG91dCBhcyBzcGlubG9ja2VkIHRoZW4gY29weSB0aGVtIHRvIHRoZSB1c2VyLgo+
+ICsJICovCj4gKwlzcGluX2xvY2soJmNsaWVudC0+bG9jayk7Cj4gKwl0b19jb3B5ID0ga2ZpZm9f
+bGVuKCZjbGllbnQtPmZpZm8pOwo+ICsJaWYgKCF0b19jb3B5KSB7Cj4gKwkJc3Bpbl91bmxvY2so
+JmNsaWVudC0+bG9jayk7Cj4gKwkJcmV0dXJuIC1FQUdBSU47Cj4gKwl9Cj4gKwl0b19jb3B5ID0g
+bWluMyhzaXplLCBzaXplb2YoYnVmKSwgdG9fY29weSk7Cj4gKwlyZXQgPSBrZmlmb19vdXQoJmNs
+aWVudC0+ZmlmbywgYnVmLCB0b19jb3B5KTsKPiArCXNwaW5fdW5sb2NrKCZjbGllbnQtPmxvY2sp
+Owo+ICsJaWYgKHJldCA8PSAwKQo+ICsJCXJldHVybiAtRUFHQUlOOwo+ICsKPiArCXJldCA9IGNv
+cHlfdG9fdXNlcih1c2VyLCBidWYsIHRvX2NvcHkpOwo+ICsJaWYgKHJldCkKPiArCQlyZXR1cm4g
+cmV0OwoKUmV0dXJuaW5nIHJldCBoZXJlIGlzIHByb2JhYmx5IG5vdCBjb3JyZWN0LiBjb3B5X3Rv
+X3VzZXIgcmV0dXJucyBob3cKbWFueSBieXRlcyB3ZXJlIE5PVCBjb3BpZWQgKHNlZQpodHRwczov
+L3d3dy5rZXJuZWwub3JnL2RvYy9odG1sZG9jcy9rZXJuZWwtaGFja2luZy9yb3V0aW5lcy1jb3B5
+Lmh0bWwpLgpTbyAwIG1lYW5zIHN1Y2Nlc3MuIEluIGNhc2Ugb2YgZXJyb3JzIHlvdSBnZXQgYSBw
+b3NpdGl2ZSB2YWx1ZSwgd2hpY2ggaXMKbm90IHRoZSBudW1iZXIgb2YgYnl0ZXMgY29waWVzLiBU
+aGF0IHdvdWxkIGNvbmZ1c2UgdGhlIGNhbGxlciBpbiB1c2VyCm1vZGUuIFlvdSBzaG91bGQgcHJv
+YmFibHkgcmV0dXJuIC1FRkFVTFQgaGVyZS4KCgo+ICsKPiArCXJldHVybiB0b19jb3B5Owo+ICt9
+Cj4gKwo+ICtzdGF0aWMgc3NpemVfdCBrZmRfc21pX2V2X3dyaXRlKHN0cnVjdCBmaWxlICpmaWxl
+cCwgY29uc3QgY2hhciBfX3VzZXIgKnVzZXIsCj4gKwkJCQlzaXplX3Qgc2l6ZSwgbG9mZl90ICpv
+ZmZzZXQpCj4gK3sKPiArCXN0cnVjdCBrZmRfc21pX2NsaWVudCAqY2xpZW50ID0gZmlsZXAtPnBy
+aXZhdGVfZGF0YTsKPiArCXVpbnQ2NF90IGV2ZW50czsKPiArCj4gKwlpZiAoIWFjY2Vzc19vayh1
+c2VyLCBzaXplKSB8fCBzaXplIDwgc2l6ZW9mKGV2ZW50cykpCj4gKwkJcmV0dXJuIC1FRkFVTFQ7
+Cj4gKwlpZiAoY29weV9mcm9tX3VzZXIoJmV2ZW50cywgdXNlciwgc2l6ZW9mKGV2ZW50cykpKQo+
+ICsJCXJldHVybiAtRUZBVUxUOwo+ICsKPiArCVdSSVRFX09OQ0UoY2xpZW50LT5ldmVudHMsIGV2
+ZW50cyk7Cj4gKwo+ICsJcmV0dXJuIHNpemVvZihldmVudHMpOwo+ICt9Cj4gKwo+ICtzdGF0aWMg
+aW50IGtmZF9zbWlfZXZfcmVsZWFzZShzdHJ1Y3QgaW5vZGUgKmlub2RlLCBzdHJ1Y3QgZmlsZSAq
+ZmlsZXApCj4gK3sKPiArCXN0cnVjdCBrZmRfc21pX2NsaWVudCAqY2xpZW50ID0gZmlsZXAtPnBy
+aXZhdGVfZGF0YTsKPiArCXN0cnVjdCBrZmRfZGV2ICpkZXYgPSBjbGllbnQtPmRldjsKPiArCj4g
+KwlzcGluX2xvY2soJmRldi0+c21pX2xvY2spOwo+ICsJbGlzdF9kZWxfcmN1KCZjbGllbnQtPmxp
+c3QpOwo+ICsJc3Bpbl91bmxvY2soJmRldi0+c21pX2xvY2spOwo+ICsKPiArCXN5bmNocm9uaXpl
+X3JjdSgpOwo+ICsJa2ZpZm9fZnJlZSgmY2xpZW50LT5maWZvKTsKPiArCWtmcmVlKGNsaWVudCk7
+Cj4gKwo+ICsJcmV0dXJuIDA7Cj4gK30KPiArCj4gK3ZvaWQga2ZkX3NtaV9ldmVudF91cGRhdGVf
+dm1mYXVsdChzdHJ1Y3Qga2ZkX2RldiAqZGV2LCB1aW50MTZfdCBwYXNpZCkKPiArewo+ICsJc3Ry
+dWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSAoc3RydWN0IGFtZGdwdV9kZXZpY2UgKilkZXYtPmtn
+ZDsKPiArCXN0cnVjdCBhbWRncHVfdGFza19pbmZvIHRhc2tfaW5mbzsKPiArCS8qIFZtRmF1bHQg
+bXNnID0gKGhleCl1aW50MzJfcGlkKDgpICsgOigxKSArIHRhc2sgbmFtZSgxNikgPSAyNSAqLwo+
+ICsJLyogMTYgYnl0ZXMgZXZlbnQgKyAxIGJ5dGUgc3BhY2UgKyAyNSBieXRlcyBtc2cgKyAxIGJ5
+dGUgXG4gPSA0Mwo+ICsJICovCj4gKwljaGFyIGZpZm9faW5bNDNdOwo+ICsJc3RydWN0IGtmZF9z
+bWlfY2xpZW50ICpjbGllbnQ7Cj4gKwo+ICsJaWYgKGxpc3RfZW1wdHkoJmRldi0+c21pX2NsaWVu
+dHMpKXsKPiArCQlyY3VfcmVhZF91bmxvY2soKTsKPiArCQlyZXR1cm47Cj4gKwl9Cj4gKwo+ICsJ
+YW1kZ3B1X3ZtX2dldF90YXNrX2luZm8oYWRldiwgcGFzaWQsICZ0YXNrX2luZm8pOwo+ICsJc25w
+cmludGYoZmlmb19pbiwgNDMsICIleCAleDolc1xuIiwgS0ZEX1NNSV9FVkVOVF9WTUZBVUxULAo+
+ICsJCXRhc2tfaW5mby5waWQsIHRhc2tfaW5mby50YXNrX25hbWUpOwo+ICsKPiArCXJjdV9yZWFk
+X2xvY2soKTsKPiArCj4gKwlsaXN0X2Zvcl9lYWNoX2VudHJ5X3JjdShjbGllbnQsICZkZXYtPnNt
+aV9jbGllbnRzLCBsaXN0KSB7Cj4gKwkJaWYgKCEoUkVBRF9PTkNFKGNsaWVudC0+ZXZlbnRzKSAm
+IEtGRF9TTUlfRVZFTlRfVk1GQVVMVCkpCj4gKwkJCWNvbnRpbnVlOwo+ICsJCXNwaW5fbG9jaygm
+Y2xpZW50LT5sb2NrKTsKPiArCQlpZiAoa2ZpZm9fYXZhaWwoJmNsaWVudC0+ZmlmbykgPCBzaXpl
+b2YoZmlmb19pbikpIHsKPiArCQkJcHJfZGVidWcoInNtaV9ldmVudCh2bWZhdWx0KTogbm8gc3Bh
+Y2UgbGVmdFxuIik7CgpZb3UgbmVlZCB0byBzcGluLXVubG9jayBoZXJlLgoKSXQgbWF5IGJlIGJl
+dHRlciB0byByZXN0cnVjdHVyZSB0aGUgY29kZSB0byBkbyB0aGUga2ZpZm9faW4gYW5kIHdha2V1
+cAppbnNpZGUgdGhlIGlmIChvciBpbiBhbiBlbHNlLWJyYW5jaCkgaW5zdGVhZCwgYW5kIG5vdCB1
+c2UgY29udGludWUgdW5kZXIKdGhlIHNwaW5sb2NrLgoKUmVnYXJkcywKwqAgRmVsaXgKCgo+ICsJ
+CQljb250aW51ZTsKPiArCQl9Cj4gKwkJa2ZpZm9faW4oJmNsaWVudC0+ZmlmbywgZmlmb19pbiwg
+c2l6ZW9mKGZpZm9faW4pKTsKPiArCQl3YWtlX3VwX2FsbCgmY2xpZW50LT53YWl0X3F1ZXVlKTsK
+PiArCQlzcGluX3VubG9jaygmY2xpZW50LT5sb2NrKTsKPiArCX0KPiArCj4gKwlyY3VfcmVhZF91
+bmxvY2soKTsKPiArfQo+ICsKPiAraW50IGtmZF9zbWlfZXZlbnRfb3BlbihzdHJ1Y3Qga2ZkX2Rl
+diAqZGV2LCB1aW50MzJfdCAqZmQpCj4gK3sKPiArCXN0cnVjdCBrZmRfc21pX2NsaWVudCAqY2xp
+ZW50Owo+ICsJaW50IHJldDsKPiArCj4gKwljbGllbnQgPSBremFsbG9jKHNpemVvZihzdHJ1Y3Qg
+a2ZkX3NtaV9jbGllbnQpLCBHRlBfS0VSTkVMKTsKPiArCWlmICghY2xpZW50KQo+ICsJCXJldHVy
+biAtRU5PTUVNOwo+ICsJSU5JVF9MSVNUX0hFQUQoJmNsaWVudC0+bGlzdCk7Cj4gKwo+ICsJcmV0
+ID0ga2ZpZm9fYWxsb2MoJmNsaWVudC0+ZmlmbywgTUFYX0tGSUZPX1NJWkUsIEdGUF9LRVJORUwp
+Owo+ICsJaWYgKHJldCkgewo+ICsJCWtmcmVlKGNsaWVudCk7Cj4gKwkJcmV0dXJuIHJldDsKPiAr
+CX0KPiArCj4gKwlyZXQgPSBhbm9uX2lub2RlX2dldGZkKGtmZF9zbWlfbmFtZSwgJmtmZF9zbWlf
+ZXZfZm9wcywgKHZvaWQgKiljbGllbnQsCj4gKwkJCSAgICAgICBPX1JEV1IpOwo+ICsJaWYgKHJl
+dCA8IDApIHsKPiArCQlrZmlmb19mcmVlKCZjbGllbnQtPmZpZm8pOwo+ICsJCWtmcmVlKGNsaWVu
+dCk7Cj4gKwkJcmV0dXJuIHJldDsKPiArCX0KPiArCSpmZCA9IHJldDsKPiArCj4gKwlpbml0X3dh
+aXRxdWV1ZV9oZWFkKCZjbGllbnQtPndhaXRfcXVldWUpOwo+ICsJc3Bpbl9sb2NrX2luaXQoJmNs
+aWVudC0+bG9jayk7Cj4gKwljbGllbnQtPmV2ZW50cyA9IDA7Cj4gKwljbGllbnQtPmRldiA9IGRl
+djsKPiArCj4gKwlzcGluX2xvY2soJmRldi0+c21pX2xvY2spOwo+ICsJbGlzdF9hZGRfcmN1KCZj
+bGllbnQtPmxpc3QsICZkZXYtPnNtaV9jbGllbnRzKTsKPiArCXNwaW5fdW5sb2NrKCZkZXYtPnNt
+aV9sb2NrKTsKPiArCj4gKwlyZXR1cm4gMDsKPiArfQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGtmZC9rZmRfc21pX2V2ZW50cy5oIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRrZmQva2ZkX3NtaV9ldmVudHMuaAo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAw
+MDAwMC4uYTljYjIxOAo+IC0tLSAvZGV2L251bGwKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGtmZC9rZmRfc21pX2V2ZW50cy5oCj4gQEAgLTAsMCArMSwyOSBAQAo+ICsvKgo+ICsgKiBD
+b3B5cmlnaHQgMjAyMCBBZHZhbmNlZCBNaWNybyBEZXZpY2VzLCBJbmMuCj4gKyAqCj4gKyAqIFBl
+cm1pc3Npb24gaXMgaGVyZWJ5IGdyYW50ZWQsIGZyZWUgb2YgY2hhcmdlLCB0byBhbnkgcGVyc29u
+IG9idGFpbmluZyBhCj4gKyAqIGNvcHkgb2YgdGhpcyBzb2Z0d2FyZSBhbmQgYXNzb2NpYXRlZCBk
+b2N1bWVudGF0aW9uIGZpbGVzICh0aGUgIlNvZnR3YXJlIiksCj4gKyAqIHRvIGRlYWwgaW4gdGhl
+IFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRp
+b24KPiArICogdGhlIHJpZ2h0cyB0byB1c2UsIGNvcHksIG1vZGlmeSwgbWVyZ2UsIHB1Ymxpc2gs
+IGRpc3RyaWJ1dGUsIHN1YmxpY2Vuc2UsCj4gKyAqIGFuZC9vciBzZWxsIGNvcGllcyBvZiB0aGUg
+U29mdHdhcmUsIGFuZCB0byBwZXJtaXQgcGVyc29ucyB0byB3aG9tIHRoZQo+ICsgKiBTb2Z0d2Fy
+ZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8gdGhlIGZvbGxvd2luZyBjb25kaXRp
+b25zOgo+ICsgKgo+ICsgKiBUaGUgYWJvdmUgY29weXJpZ2h0IG5vdGljZSBhbmQgdGhpcyBwZXJt
+aXNzaW9uIG5vdGljZSBzaGFsbCBiZSBpbmNsdWRlZCBpbgo+ICsgKiBhbGwgY29waWVzIG9yIHN1
+YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KPiArICoKPiArICogVEhFIFNPRlRX
+QVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQsIEVY
+UFJFU1MgT1IKPiArICogSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBUTyBUSEUg
+V0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksCj4gKyAqIEZJVE5FU1MgRk9SIEEgUEFSVElD
+VUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuICBJTiBOTyBFVkVOVCBTSEFMTAo+ICsg
+KiBUSEUgQ09QWVJJR0hUIEhPTERFUihTKSBPUiBBVVRIT1IoUykgQkUgTElBQkxFIEZPUiBBTlkg
+Q0xBSU0sIERBTUFHRVMgT1IKPiArICogT1RIRVIgTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFD
+VElPTiBPRiBDT05UUkFDVCwgVE9SVCBPUiBPVEhFUldJU0UsCj4gKyAqIEFSSVNJTkcgRlJPTSwg
+T1VUIE9GIE9SIElOIENPTk5FQ1RJT04gV0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUgo+
+ICsgKiBPVEhFUiBERUFMSU5HUyBJTiBUSEUgU09GVFdBUkUuCj4gKyAqLwo+ICsKPiArI2lmbmRl
+ZiBLRkRfU01JX0VWRU5UU19IX0lOQ0xVREVECj4gKyNkZWZpbmUgS0ZEX1NNSV9FVkVOVFNfSF9J
+TkNMVURFRAo+ICsKPiAraW50IGtmZF9zbWlfZXZlbnRfb3BlbihzdHJ1Y3Qga2ZkX2RldiAqZGV2
+LCB1aW50MzJfdCAqZmQpOwo+ICt2b2lkIGtmZF9zbWlfZXZlbnRfdXBkYXRlX3ZtZmF1bHQoc3Ry
+dWN0IGtmZF9kZXYgKmRldiwgdWludDE2X3QgcGFzaWQpOwo+ICsKPiArI2VuZGlmCj4gZGlmZiAt
+LWdpdCBhL2luY2x1ZGUvdWFwaS9saW51eC9rZmRfaW9jdGwuaCBiL2luY2x1ZGUvdWFwaS9saW51
+eC9rZmRfaW9jdGwuaAo+IGluZGV4IDRmNjY3NjQuLmFkMzNjMTggMTAwNjQ0Cj4gLS0tIGEvaW5j
+bHVkZS91YXBpL2xpbnV4L2tmZF9pb2N0bC5oCj4gKysrIGIvaW5jbHVkZS91YXBpL2xpbnV4L2tm
+ZF9pb2N0bC5oCj4gQEAgLTQ0Miw2ICs0NDIsMTcgQEAgc3RydWN0IGtmZF9pb2N0bF9pbXBvcnRf
+ZG1hYnVmX2FyZ3Mgewo+ICAJX191MzIgZG1hYnVmX2ZkOwkvKiB0byBLRkQgKi8KPiAgfTsKPiAg
+Cj4gKy8qCj4gKyAqIEtGRCBTTUkoU3lzdGVtIE1hbmFnZW1lbnQgSW50ZXJmYWNlKSBldmVudHMK
+PiArICovCj4gKy8qIEV2ZW50IHR5cGUgKGRlZmluZWQgYnkgYml0bWFzaykgKi8KPiArI2RlZmlu
+ZSBLRkRfU01JX0VWRU5UX1ZNRkFVTFQgICAgIDB4MDAwMDAwMDAwMDAwMDAwMQo+ICsKPiArc3Ry
+dWN0IGtmZF9pb2N0bF9zbWlfZXZlbnRzX2FyZ3Mgewo+ICsJX191MzIgZ3B1aWQ7CS8qIHRvIEtG
+RCAqLwo+ICsJX191MzIgYW5vbl9mZDsJLyogZnJvbSBLRkQgKi8KPiArfTsKPiArCj4gIC8qIFJl
+Z2lzdGVyIG9mZnNldCBpbnNpZGUgdGhlIHJlbWFwcGVkIG1taW8gcGFnZQo+ICAgKi8KPiAgZW51
+bSBrZmRfbW1pb19yZW1hcCB7Cj4gQEAgLTU0Niw3ICs1NTcsMTAgQEAgZW51bSBrZmRfbW1pb19y
+ZW1hcCB7Cj4gICNkZWZpbmUgQU1ES0ZEX0lPQ19BTExPQ19RVUVVRV9HV1MJCVwKPiAgCQlBTURL
+RkRfSU9XUigweDFFLCBzdHJ1Y3Qga2ZkX2lvY3RsX2FsbG9jX3F1ZXVlX2d3c19hcmdzKQo+ICAK
+PiArI2RlZmluZSBBTURLRkRfSU9DX1NNSV9FVkVOVFMJCQlcCj4gKwkJQU1ES0ZEX0lPV1IoMHgx
+Riwgc3RydWN0IGtmZF9pb2N0bF9zbWlfZXZlbnRzX2FyZ3MpCj4gKwo+ICAjZGVmaW5lIEFNREtG
+RF9DT01NQU5EX1NUQVJUCQkweDAxCj4gLSNkZWZpbmUgQU1ES0ZEX0NPTU1BTkRfRU5ECQkweDFG
+Cj4gKyNkZWZpbmUgQU1ES0ZEX0NPTU1BTkRfRU5ECQkweDIwCj4gIAo+ICAjZW5kaWYKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5n
+IGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
