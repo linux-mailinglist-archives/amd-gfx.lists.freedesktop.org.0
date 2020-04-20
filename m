@@ -2,56 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A681B13E4
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 20:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 629451B123E
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2020 18:48:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 319E86E838;
-	Mon, 20 Apr 2020 18:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B49F6E819;
+	Mon, 20 Apr 2020 16:48:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com
- [IPv6:2607:f8b0:4864:20::f32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC76D6E81C
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 16:45:29 +0000 (UTC)
-Received: by mail-qv1-xf32.google.com with SMTP id h6so1491743qvz.8
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 09:45:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6oUqvlfqqRTiVN7e5S6r4vOPITt4A0zv1VIgw212qq0=;
- b=A5EvYsN4XjdWqEfg8/R9nTa/ntSr6wx9NxydP4maJMMAX0LrGPzdBHG1hGxgPQHLvh
- Emifm2RWnJ35fxNb19ZKaM9Ytb8fvHw9lvKdkbv+3hKM1ggE7hMyGzETYSFJrfHwRLkr
- gZpT6ObQa23gDZ7mz6lDK20LAtSg5zk35RvE0Ef1SNa7sB6VJUMhQSJrHO1j1lApdQSN
- /WGyiFOyZMQ6dh9M5pfVHxVPlkuUBcFMsoqOX+Twb28NfxARbJwzo2Nqo6i+2HszGAR5
- +GGIRCTgzNZZhrQN1rXcJ5ebBZMSuB+t2hpc1xvs2JpYfQY3hENAJ0tdJZnXM0gLfErr
- mHag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=6oUqvlfqqRTiVN7e5S6r4vOPITt4A0zv1VIgw212qq0=;
- b=IqgxSXvya/RBEmyS3FWuj+4CqOKEqIJCNRCLF8fHtG0QhVtUCzSdH7jTimaEJBvMvH
- 3DMvVhHzR0QNjDWCqbML4h6YbmlWZyf8B+YKswHkbzxslI5VKzv4+FFeN49MM0DV6QZd
- wVV4z//bDTPiggrkN26JIaMm4/pWkOXa8BtOe/++XdoqyFEzXoPjkDSdadYTWHNan2HO
- FvHUvGFIsN3gKDAAwvwIvIalusa9ke+aqf4qW27DnbpkmLdw1xDPWbQbvUm0NrKWQ+1H
- FcJRPKIfCSA/gCeB+GBudPylaKlQSnS0qhJC2muz7UtNySd8SoYlQZWylhHTq5X0swYb
- BcQQ==
-X-Gm-Message-State: AGi0PuaxvFbQZXEEpZaClrBjjpouTIpr9btSThmlqZFj7FA8PlS6Xf7W
- p3LkLBCIEjTLaRBpMK5PdCCCyxz4LYhJQNJz4rwPk21t
-X-Google-Smtp-Source: APiQypLBvCT0v2SZJOS7eXxqPYCOXvmioBqwztRBXUkiJrLQVSopolBkK7IQav909VZga8yxzARunVFHJJ8rbUbncY0=
-X-Received: by 2002:a0c:f34b:: with SMTP id e11mr12834693qvm.76.1587401128987; 
- Mon, 20 Apr 2020 09:45:28 -0700 (PDT)
-MIME-Version: 1.0
+Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E511D6E819
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2020 16:48:47 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by netline-mail3.netline.ch (Postfix) with ESMTP id 55D0F2A6042;
+ Mon, 20 Apr 2020 18:48:47 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
+Received: from netline-mail3.netline.ch ([127.0.0.1])
+ by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 6HjR3y_3WVhV; Mon, 20 Apr 2020 18:48:47 +0200 (CEST)
+Received: from thor (252.80.76.83.dynamic.wline.res.cust.swisscom.ch
+ [83.76.80.252])
+ by netline-mail3.netline.ch (Postfix) with ESMTPSA id 0BB022A6016;
+ Mon, 20 Apr 2020 18:48:47 +0200 (CEST)
+Received: from localhost ([::1]) by thor with esmtp (Exim 4.93)
+ (envelope-from <michel@daenzer.net>)
+ id 1jQZbC-001ptP-II; Mon, 20 Apr 2020 18:48:46 +0200
+Subject: Re: Reg. Adaptive Sync feature in xf86-video-amdgpu
+To: uday kiran pichika <udaykiran.pichika@gmail.com>
 References: <CAGcx_0Z4Lz4x5xxahtQJwaysGcQz9frLctYMg3z1Num3y+LUyw@mail.gmail.com>
  <ab5fd92f-c0e3-8647-80e7-00d4ad397582@daenzer.net>
  <CAGcx_0ZoYz9jJQCWceTkN_X0dGdc+fTEaZytEx152SNLavAPRQ@mail.gmail.com>
  <71874997-8503-27eb-b16e-bad70472041c@daenzer.net>
-In-Reply-To: <71874997-8503-27eb-b16e-bad70472041c@daenzer.net>
-From: uday kiran pichika <udaykiran.pichika@gmail.com>
-Date: Mon, 20 Apr 2020 22:15:17 +0530
-Message-ID: <CAGcx_0aAbMviGJMtZP3jSpLr8OayUDMOwFkUd70j=SY-qmbGyg@mail.gmail.com>
-Subject: Re: Reg. Adaptive Sync feature in xf86-video-amdgpu
-To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
-X-Mailman-Approved-At: Mon, 20 Apr 2020 18:05:05 +0000
+ <CAGcx_0aAbMviGJMtZP3jSpLr8OayUDMOwFkUd70j=SY-qmbGyg@mail.gmail.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Message-ID: <1e659586-2ba8-6791-01b6-30c69f211d82@daenzer.net>
+Date: Mon, 20 Apr 2020 18:48:46 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <CAGcx_0aAbMviGJMtZP3jSpLr8OayUDMOwFkUd70j=SY-qmbGyg@mail.gmail.com>
+Content-Language: en-CA
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,146 +53,36 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0130841784=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0130841784==
-Content-Type: multipart/alternative; boundary="00000000000068d1be05a3bba059"
-
---00000000000068d1be05a3bba059
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Apr 20, 2020 at 9:45 PM Michel D=C3=A4nzer <michel@daenzer.net> wro=
-te:
-
-> On 2020-04-20 6:04 p.m., uday kiran pichika wrote:
-> >
-> > Even in amdgpu_present_flip(), there is a check
-> > for amdgpu_window_has_variable_refresh() which actually checks whether
-> > window has a variable_refresh property set from the MESA or not ? this
-> > check is failing in my case and never calls
-> amdgpu_present_set_screen_vrr.
->
-> This should be set by
->
->         get_window_priv(window)->variable_refresh =3D variable_refresh;
->
-> in amdgpu_vrr_property_update.
->
-
-I amdgpu_vrr_property_update method gets called from amdgpu_change_property
-when the property is being added to the window. though variable_refresh
-property is updating from the below call, this window is not same as the
-one(info->flip_window) in amdgpu_present_flip.
-*get_window_priv(window)*->variable_refresh =3D variable_refresh;
-
-Could you please let me know you IRC ID to have a chat in that for more
-information.
-
->
->
-> > Is there any way that i can check whether MESA is setting this property=
- ?
-> >
-> > To my understanding, MESA will set this property to true or false based
-> on
-> > whether application is running in Full screen mode or in normal mode.
->
-> Mesa always sets the window property by default, unless the driconf
-> option "adaptive_sync" is disabled, e.g. via the application blacklist
-> in /usr/share/drirc.d/00-mesa-defaults.conf (mostly for compositors /
-> browsers / video players).
->
-Yes.. I had verified this too from
-https://patchwork.freedesktop.org/patch/257941/?series=3D51388&rev=3D1
-
-
->
->
-> --
-> Earthling Michel D=C3=A4nzer               |               https://redhat=
-.com
-> Libre software enthusiast             |             Mesa and X developer
->
-
---00000000000068d1be05a3bba059
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 20, 2020 at 9:45 PM Miche=
-l D=C3=A4nzer &lt;<a href=3D"mailto:michel@daenzer.net">michel@daenzer.net<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">O=
-n 2020-04-20 6:04 p.m., uday kiran pichika wrote:<br>
-&gt; <br>
-&gt; Even in amdgpu_present_flip(), there is a check<br>
-&gt; for amdgpu_window_has_variable_refresh() which actually checks whether=
-<br>
-&gt; window has a variable_refresh property set from the MESA or not ? this=
-<br>
-&gt; check is failing in my case and never calls amdgpu_present_set_screen_=
-vrr.<br>
-<br>
-This should be set by<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 get_window_priv(window)-&gt;variable_refresh =
-=3D variable_refresh;<br>
-<br>
-in amdgpu_vrr_property_update.<br></blockquote><div><br></div><div>I=C2=A0a=
-mdgpu_vrr_property_update method gets called from amdgpu_change_property wh=
-en the property is being added to the window. though variable_refresh prope=
-rty is updating from the below call, this window is not same as the one(inf=
-o-&gt;flip_window) in amdgpu_present_flip.</div><div><b>get_window_priv(win=
-dow)</b>-&gt;variable_refresh =3D variable_refresh;=C2=A0</div><div><br></d=
-iv><div>Could you please let me know you IRC ID to have a chat in that for =
-more information.=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">
-<br>
-<br>
-&gt; Is there any way that i can check whether MESA is setting this propert=
-y ?<br>
-&gt; <br>
-&gt; To my understanding, MESA will set this property to true or false base=
-d on<br>
-&gt; whether application is running in Full screen mode or in normal mode.<=
-br>
-<br>
-Mesa always sets the window property by default, unless the driconf<br>
-option &quot;adaptive_sync&quot; is disabled, e.g. via the application blac=
-klist<br>
-in /usr/share/drirc.d/00-mesa-defaults.conf (mostly for compositors /<br>
-browsers / video players).<br></blockquote><div>Yes.. I had verified this t=
-oo from=C2=A0<a href=3D"https://patchwork.freedesktop.org/patch/257941/?ser=
-ies=3D51388&amp;rev=3D1">https://patchwork.freedesktop.org/patch/257941/?se=
-ries=3D51388&amp;rev=3D1</a></div><div>=C2=A0</div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex">
-<br>
-<br>
--- <br>
-Earthling Michel D=C3=A4nzer=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=
-=3D"https://redhat.com" rel=3D"noreferrer" target=3D"_blank">https://redhat=
-.com</a><br>
-Libre software enthusiast=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Mesa and X developer<br>
-</blockquote></div></div>
-
---00000000000068d1be05a3bba059--
-
---===============0130841784==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0130841784==--
+T24gMjAyMC0wNC0yMCA2OjQ1IHAubS4sIHVkYXkga2lyYW4gcGljaGlrYSB3cm90ZToKPiBPbiBN
+b24sIEFwciAyMCwgMjAyMCBhdCA5OjQ1IFBNIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnpl
+ci5uZXQ+IHdyb3RlOgo+PiBPbiAyMDIwLTA0LTIwIDY6MDQgcC5tLiwgdWRheSBraXJhbiBwaWNo
+aWthIHdyb3RlOgo+Pj4KPj4+IEV2ZW4gaW4gYW1kZ3B1X3ByZXNlbnRfZmxpcCgpLCB0aGVyZSBp
+cyBhIGNoZWNrCj4+PiBmb3IgYW1kZ3B1X3dpbmRvd19oYXNfdmFyaWFibGVfcmVmcmVzaCgpIHdo
+aWNoIGFjdHVhbGx5IGNoZWNrcyB3aGV0aGVyCj4+PiB3aW5kb3cgaGFzIGEgdmFyaWFibGVfcmVm
+cmVzaCBwcm9wZXJ0eSBzZXQgZnJvbSB0aGUgTUVTQSBvciBub3QgPyB0aGlzCj4+PiBjaGVjayBp
+cyBmYWlsaW5nIGluIG15IGNhc2UgYW5kIG5ldmVyIGNhbGxzCj4+IGFtZGdwdV9wcmVzZW50X3Nl
+dF9zY3JlZW5fdnJyLgo+Pgo+PiBUaGlzIHNob3VsZCBiZSBzZXQgYnkKPj4KPj4gICAgICAgICBn
+ZXRfd2luZG93X3ByaXYod2luZG93KS0+dmFyaWFibGVfcmVmcmVzaCA9IHZhcmlhYmxlX3JlZnJl
+c2g7Cj4+Cj4+IGluIGFtZGdwdV92cnJfcHJvcGVydHlfdXBkYXRlLgo+Pgo+IAo+IEkgYW1kZ3B1
+X3Zycl9wcm9wZXJ0eV91cGRhdGUgbWV0aG9kIGdldHMgY2FsbGVkIGZyb20gYW1kZ3B1X2NoYW5n
+ZV9wcm9wZXJ0eQo+IHdoZW4gdGhlIHByb3BlcnR5IGlzIGJlaW5nIGFkZGVkIHRvIHRoZSB3aW5k
+b3cuIHRob3VnaCB2YXJpYWJsZV9yZWZyZXNoCj4gcHJvcGVydHkgaXMgdXBkYXRpbmcgZnJvbSB0
+aGUgYmVsb3cgY2FsbCwgdGhpcyB3aW5kb3cgaXMgbm90IHNhbWUgYXMgdGhlCj4gb25lKGluZm8t
+PmZsaXBfd2luZG93KSBpbiBhbWRncHVfcHJlc2VudF9mbGlwLgo+ICpnZXRfd2luZG93X3ByaXYo
+d2luZG93KSotPnZhcmlhYmxlX3JlZnJlc2ggPSB2YXJpYWJsZV9yZWZyZXNoOwoKVGhlbiBpdCdz
+IHByb2JhYmx5IG5vdCB0aGUgYXBwbGljYXRpb24ncyB3aW5kb3cgd2hpY2ggaXMgcGFnZSBmbGlw
+cGluZywKYnV0IGUuZy4gdGhlIGNvbXBvc2l0b3Incy4gTWFrZSBzdXJlIHlvdXIgY29tcG9zaXRv
+ciBzdXBwb3J0cwp1bnJlZGlyZWN0aW5nIGZ1bGxzY3JlZW4gd2luZG93cy4KCgo+IENvdWxkIHlv
+dSBwbGVhc2UgbGV0IG1lIGtub3cgeW91IElSQyBJRCB0byBoYXZlIGEgY2hhdCBpbiB0aGF0IGZv
+ciBtb3JlCj4gaW5mb3JtYXRpb24uCgpJJ20gTXJDb29wZXIgb24gSVJDLgoKCi0tIApFYXJ0aGxp
+bmcgTWljaGVsIETDpG56ZXIgICAgICAgICAgICAgICB8ICAgICAgICAgICAgICAgaHR0cHM6Ly9y
+ZWRoYXQuY29tCkxpYnJlIHNvZnR3YXJlIGVudGh1c2lhc3QgICAgICAgICAgICAgfCAgICAgICAg
+ICAgICBNZXNhIGFuZCBYIGRldmVsb3BlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2FtZC1nZngK
