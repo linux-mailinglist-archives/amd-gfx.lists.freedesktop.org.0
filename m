@@ -2,33 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127281B27D3
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2020 15:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6446A1B27D5
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2020 15:28:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C60A26E953;
-	Tue, 21 Apr 2020 13:28:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41F226E95A;
+	Tue, 21 Apr 2020 13:28:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [217.72.192.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCD176E8FE;
- Tue, 21 Apr 2020 10:00:24 +0000 (UTC)
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0E16E895;
+ Tue, 21 Apr 2020 11:12:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1587463214;
- bh=j3SZwNEHSqu2cbxR5ko6PkLrb6LJcz2rET5qZgSrXoo=;
+ s=dbaedf251592; t=1587467549;
+ bh=O5UFoBp/u/YGve2539Ml1suvS962s7VYeI16yybZvPs=;
  h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
- b=Pdh1ABmN13DL/NFY0Udx5t5Ejyri28GzsGnJ5eP8smPpIogcifxiILS+7IhWlJyTs
- MTa7WLIWrhK7olISrZdsUrfE2XKvbQisXMKk9L3McXgdulFT48g7RjPsapF/nIqhgT
- Ph+d3NdGJXfBBlBIHm9gj1GT5YA0v+W4G3DnkzYo=
+ b=fr+vNmxvF6ksTrRXdZK4j5atjhg2vhao13RM4Ppg20XbCXSsutf+cN6EBspZT/WyG
+ uWYJIqKKcVVluYAxcrLJPco5hDKyGSAwL9Y6JqY7Jh9bug0T1nMdSy4MqX+8w5WCfh
+ g0lmlKKuJUSCvIHQDIZyRzYTlnvzm+jQdMzyDeII=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.2] ([2.243.91.59]) by smtp.web.de (mrweb101
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0MYNrh-1jn5fr2Pfl-00V5GH; Tue, 21
- Apr 2020 12:00:14 +0200
+Received: from [192.168.1.2] ([2.243.91.59]) by smtp.web.de (mrweb103
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0M9XM3-1jW7E33KOd-00D1e6; Tue, 21
+ Apr 2020 13:12:28 +0200
 Subject: Re: [V3] amdgpu: remove unnecessary condition check
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- =?UTF-8?B?6LW15Yab5aWO?= <bernard@vivo.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+To: =?UTF-8?B?6LW15Yab5aWO?= <bernard@vivo.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 References: <AIsA-wCZCFCxiq0WKb3WjKr*.3.1587458683834.Hmail.bernard@vivo.com>
- <ccd14dee-f275-5de4-b5c1-4f359d155288@amd.com>
 From: Markus Elfring <Markus.Elfring@web.de>
 Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  mQINBFg2+xABEADBJW2hoUoFXVFWTeKbqqif8VjszdMkriilx90WB5c0ddWQX14h6w5bT/A8
@@ -73,37 +71,37 @@ Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  Z/wsLiWTgKlih2QYULvW61XU+mWsK8+ZlYUrRMpkauN4CJ5yTpvp+Orcz5KixHQmc5tbkLWf
  x0n1QFc1xxJhbzN+r9djSGGN/5IBDfUqSANC8cWzHpWaHmSuU3JSAMB/N+yQjIad2ztTckZY
  pwT6oxng29LzZspTYUEzMz3wK2jQHw+U66qBFk8whA7B2uAU1QdGyPgahLYSOa4XAEGb6wbI FEE=
-Message-ID: <aa0a34ce-714f-a637-d1a8-54de94a09e75@web.de>
-Date: Tue, 21 Apr 2020 12:00:12 +0200
+Message-ID: <c12c2bfe-785a-3279-721e-3efd2e0f7b2c@web.de>
+Date: Tue, 21 Apr 2020 13:12:27 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <ccd14dee-f275-5de4-b5c1-4f359d155288@amd.com>
+In-Reply-To: <AIsA-wCZCFCxiq0WKb3WjKr*.3.1587458683834.Hmail.bernard@vivo.com>
 Content-Language: en-US
-X-Provags-ID: V03:K1:pk/aytSaSu7CRTb7AZCjmXG2USN5K3WKY69mNifyeD28BWJwfdQ
- 5VmoPgJ9gC7OphwTRVvtK/U/o8NUxcA2d2E5qw64m+E32MHxKecKPRFMDAthmKt8AMJX3ps
- 697iWwCIMDSRFxpDITUOxKaN7g6N9ZVGiT28OgR2vuwwcREs5DYt5NEGG7QbuGnJnd8kU/3
- cKJotNNqskj/rWwkawKBA==
+X-Provags-ID: V03:K1:mCPUfKMzwUiOkjUTV5F70mtnY9PpBoYAwL6Vc5A1nyuUxnokLJA
+ TKqhFejjfmU1T/A/0WsYdV3do9OwELrcIioUHURJ9EkSzwsBCfzctvY1a8V+a70GWTFcdxd
+ foCVKbcaPlim5xA0GbRH9rrGNNexa6L1/MO5heq1uKVww5EehFEEJr7qtTQs6eo1COqLHE2
+ J+34otu69y2xq9aISg2hg==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:jPwsHXYQWG0=:ogabPJ9yTcpW281r9UWgVS
- Iwmr6mXIfaCahwEKocticVKc+q92MgdbsVjvhSK0GjdA8sTsvTqULhI+BVYSADV3kEuxRM5lk
- oT1WBLGD46WoagDmyaLige9C+1dO3YAfM28yQt8+wHD6kd9CxBrrQJb9PYubPgxHy2JIoIM82
- Hzjxul8NCTiqJD1hxpoJhiOqqmSOPsSro9BAfYEz/HAJr3i1TP90uXJ3yZ1GRYH8EkYdWzOqJ
- mLdgm3RwzSdtQSVhchNdrZknTZEuvyeBlcs7znAmxAexPY/LisIjt3rVxpWcKZp0YvcvW7vGm
- oPfsZOsMqsQpZ0XA/vxn1s4fYD0ylgeHBcEK+fh3iYwU0eUO6ZYLBXyObSPjn5MdPgUvQL77H
- oM7C+0l0bM75QBjPKjzwBeSQ8NfjXa/ePjqfae8bwnL7F5H5cOF70z+YL+tRp16w4zNqlAoUq
- st7UDMx9v2nNGFE/fWUTtGjY2oHDbT6L4LApq7CVCCkamoc+/S/Rg7Yh/jloMlFZ5VV9O5UlF
- m5bI5g8SjqtRDjtP4lD+s45OjgE4Ec5liRkjSPzcRH49fvsinxM9Hwc6LSRm+odvAerxL/ZzD
- 95icMAVqPoDjoHtnrsTvP5CL42iYgVYeHQYwTSSJu4E1+J8RiOnUygl9969ufxzmJsDk1m6ti
- 4nTmdJ3oOWZInDyOv9tNZq/3D44ruDg0jVYF/CNfxpAnLCDg4rs+VgxS7vXKSwoVJBd2KENHS
- q9M798DtDwlb0HPqoGV+hG/bDOXtfWRBGwERQs3zt1ZBD7urBd3TwI5wRgIKquTZClo+bfC65
- Dq3f884RnOcWMQ5Kyp0jZfCek7RhgO1nCrYHOLVOAaqZfDWzj4g7mfI9VtpJyituLPP3hB2sa
- OInrD7tvTUVDKw6VHaINJZiI39hyBYZ8xwnjSmep120aRw6Z9hfcU/NPuh9Lh6js/str0ERpC
- oDYhwg4khwjsOkwMr/ZskNu+m8/anJTq64aYoOKTdhKb29T5Kbncw2czWgpz2+chWLom8ZaC/
- KhshE2uMlAR28HPwvC91J8J+NY8X57Oqu3/ksfokk2P4pMkoSYtxSebBcglAQI8GUNv5cfiQp
- I0wnmnXEIx7eaNyjbLrOi7pnJvOUSZ9/jDtqumOIIMPdeCAkQ8UoFyTe9lsKF+f9brZmCfj23
- 1891BVGu13JMjYcQUs3tZSXEokroz6215yHiEYKRAl9pbVN0tFwXR0l1mG0hRV86UXCtGXXTI
- JMCI60+EKjtQVNSrW
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dya4Us5oLyU=:mCwa85+cUoC74r+ODmJtK9
+ 3IktGA0M6a4qXuHi2rnC13RGVR7OYOnenC06SkYnsX//MGRUs+wgqEab4iAcCR0d5342wFDfN
+ dk+fOJInAdBdpnjg2/f3VLQ3hHW+y1Ubd/v5ejQmzaXQFvsweXXYTlXuJmOe4NotJKQBvZ/7T
+ CM347BMEen7iBEeu0cxinWBEn6z+8/Gwcl/xgBpHDPm1KXLoa8hJK78mUnHM21IbwV6K7ePo7
+ ziBSdUkuuQk1duiEjskgTvM6ppXFC5R12Skm9EUCnrbwy6yG7yhbeJGqy+icBUa/JBUiNpJxD
+ dqPyzRX0KO4raZSlc21BtCKpVq+OjFR627f1MrTZlNpzRzzhU4nHqENhtR69c7dBRIn4bDcJc
+ FdpsxWzTRXHnV/x4izp8vS3TEl0ihr0GRXiCPA8BcpNQUw3OMye/TWa0qiBo9v7NBiTdLUb2P
+ kuKayIgYydA1EKcFX0H1eXzUZpSyJ3YEeA3Npef1LWpZ7GmvnEgvqXHysFF3+HnP+vKjbYW/s
+ 5mZ7J54tTeTDJL39kddWqi58c9meTtrQKhIwEUlyafbWh6Td5FdB5zESI7fe4qdf+hVUfJYQB
+ jnhd3rVVtcQCqHS9bcU5WiBNzrnCjeiKUtcdup/vkDGj257HlewCryakTA4/h9t0h/rbhrdST
+ mrE9BynDQNhCp2wJuDc9m1YAuti/2k1GTq+D1nocFOQ76nskfAEHZL3TdZtBSjqg+Cr6dTJDH
+ JEjEofGDL5o0NXd/DHJMkk7wyDrQo3+oNcVY5ieaf24V5tYxk+66KPVcDrzqfgYI0d2wkVy2A
+ flGw0TtivNkjfwWQRyN/NvNwusrjs9NoWR0iGkWcbks62U+hvOpoNEywz6i2mBG2DsPM7vtWt
+ 9nCLjO0gfoXVulHPwT73Xz4ftuUAnVIFxO9561ufTiQTQHFDP2S0JTFAihOjiNXZF1e5GPtBJ
+ YdRZvP5DprdD6a24ii0nObrHlEdR8lySSQNsW6UZCHBwhDXy1F/M35PIgCqsXmF9XslQ7N+MZ
+ mSr69H+tixc7gg4tU8FR1WSyTcSbVc431mTpLklI/WnvI6ROBPA0ziyecoEapwClaizfoF786
+ mJ+rrs1KDrcThhFWYE6VW+mARpBrnJvruuDCbQEI7iIMyx1MPhzu7fMEdCIVoID8+6X/EsYvV
+ n1CbacYxkUYKg2SHewoGOTVPBPOey0Krujf1fm8oWixjscDkJuBjsDdCZdafHQxDG8dIdlbqu
+ YPiYhR3cMcue0F7+8
 X-Mailman-Approved-At: Tue, 21 Apr 2020 13:28:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -116,26 +114,23 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chunming Zhou <David1.Zhou@amd.com>, opensource.kernel@vivo.com,
+Cc: opensource.kernel@vivo.com, Chunming Zhou <David1.Zhou@amd.com>,
  David Airlie <airlied@linux.ie>,
  =?UTF-8?Q?Felix_K=c3=bchling?= <Felix.Kuehling@amd.com>,
- kernel-janitors@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Coccinelle <cocci@systeme.lip6.fr>
+ linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
->> But i have to say there are so many code not follow the kernel code-style in amdgpu module.
->> And also the ./scripts/checkpatch.pl did not throw any warning or error.
->
-> That is unfortunately true, yes. But we try to push new code through the usual code review and improve things as we go.
->
-> On the other hand patches just to fix the coding style are usually seen as an unnecessary interruption and just a waste of time.
+>>> There is no need to if check again, maybe we could merge
+>>> into the above else branch.
 
-Would you become interested in adjusting deviations from known programming guidelines
-in an automatic way with the help of corresponding advanced development tools?
+I find also this commit message still improvable (besides the mentioned
+implementation details around coding style concerns).
+How will corresponding review comments be taken better into account?
 
 Regards,
 Markus
