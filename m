@@ -1,89 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E34CE1B257C
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2020 14:00:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 124A71B27CE
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2020 15:28:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4276E923;
-	Tue, 21 Apr 2020 12:00:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5009F6E950;
+	Tue, 21 Apr 2020 13:28:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680085.outbound.protection.outlook.com [40.107.68.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 457BF6E923
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 12:00:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ivx21x3aAhQ55dE4RkoQZ4MYoWyPrb3sGcJ2U5amBI1wx04WB5VJlu53pwvtTBChB34hi4hELJNRoz4HCL4wuoXLKzz9dDjJiVSNQIClNr8AlVLfzW5jnEZxIRH6HxwiJxw0EYrzprxGGYSyNTT1HeM9EJ9UqFcltN31U5BPyY8XbgzS7GzVHwOWvlN4Ih23LNsQ9kVJKfTmUbBe5j6pT7XcxRW1F5Qyrmtz18Kxddls6R+tDmK6UbL2sU1fyhBSf+KoeZaptTuKyEzyeq28eE13jyae/VHyW67K+VxRgMuHvjEvxBhQHlvfviwH7odarjXhGz2X2zyHH1SBTOLQ1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H0b7obXSD7pc4RIBkwY3t1DSnI5vpemG+kaad73E5yU=;
- b=Ue0nSibnjKe6qkZNuDt18bvZ7+kP40Beuj/X3mqvDV3XDGztTsg31irzH6QpMlG9q+gh87M4izoguCWiuSm+abxUgW07FBElF7iLF+hat3Ot+Srfil4SETOIiUElLYa5TcSLI4VhuGBy+LbCY40kAuu1o7SnfvX/XRA7oXfbQbX1Z4UdJxQiOj999tUJWmd1tf10Ue3kCouiAd+CNOKoWkF5LiTlQ3LRDTbz16XkRSJhblNmE/Epu21c9pR6S/wkOeP0Arcx+/oNG4dG8vLdu9YBrZx2Wlvxq7gR7ScJiD49xgWzrxWia5sjyf1Q96liPp7xCEi/61ywheUsaSo1Nw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H0b7obXSD7pc4RIBkwY3t1DSnI5vpemG+kaad73E5yU=;
- b=UBrPNASY2miRN7YYNRajYw3BtgkgABo5oVheILXVvoYUkSqd2BcTnMsC+1IS//gfenBb28n9vhB39Cs1m2bumoad0E/EGnuiy1aNeNyGui7jybSVEthqnjES6BQo5N566+apAtXneDiiaVlP7yEJJFA2Qsf1XDDNji/2qtdGrhY=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Evan.Quan@amd.com; 
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
- DM6PR12MB3081.namprd12.prod.outlook.com (2603:10b6:5:38::27) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2921.29; Tue, 21 Apr 2020 12:00:36 +0000
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::5c27:185c:be20:1fb6]) by DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::5c27:185c:be20:1fb6%5]) with mapi id 15.20.2921.027; Tue, 21 Apr 2020
- 12:00:36 +0000
-From: Evan Quan <evan.quan@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: put the audio codec into suspend state before gpu
- reset
-Date: Tue, 21 Apr 2020 20:00:18 +0800
-Message-Id: <20200421120018.11399-1-evan.quan@amd.com>
-X-Mailer: git-send-email 2.26.2
-X-ClientProxiedBy: HK0PR03CA0104.apcprd03.prod.outlook.com
- (2603:1096:203:b0::20) To DM6PR12MB2619.namprd12.prod.outlook.com
- (2603:10b6:5:45::18)
+Received: from m176149.mail.qiye.163.com (m176149.mail.qiye.163.com
+ [59.111.176.149])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F2FE6E937
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 12:10:27 +0000 (UTC)
+Received: from vivo.com (wm-9.qy.internal [127.0.0.1])
+ by m176149.mail.qiye.163.com (Hmail) with ESMTP id 905DC282636;
+ Tue, 21 Apr 2020 20:09:43 +0800 (CST)
+Message-ID: <AIEABQDACBGx7eaGVybumqrT.3.1587470983521.Hmail.bernard@vivo.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: =?UTF-8?B?UmU6UmU6IFtQQVRDSF0gYW1kZ3B1OiBmaXhlcyBtZW1sZWFrIGlzc3VlIHdoZW4gaW5pdCBmYWlsZWQ=?=
+X-Priority: 3
+X-Mailer: HMail Webmail Server V2.0 Copyright (c) 2016-163.com
+X-Originating-IP: 157.0.31.122
+In-Reply-To: <738537e5-9a1a-25c8-3dd0-b1f5fd045979@amd.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from equan-buildpc.amd.com (180.167.199.189) by
- HK0PR03CA0104.apcprd03.prod.outlook.com (2603:1096:203:b0::20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2921.25 via Frontend Transport; Tue, 21 Apr 2020 12:00:34 +0000
-X-Mailer: git-send-email 2.26.2
-X-Originating-IP: [180.167.199.189]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 4e805ac0-43d7-4d8f-1e35-08d7e5eb99f3
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3081:|DM6PR12MB3081:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB308102BF9D3EAB3450D78654E4D50@DM6PR12MB3081.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-Forefront-PRVS: 038002787A
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10009020)(4636009)(376002)(136003)(366004)(346002)(39860400002)(396003)(86362001)(7696005)(52116002)(16526019)(186003)(956004)(2616005)(6916009)(8676002)(6666004)(44832011)(66946007)(26005)(66556008)(66476007)(5660300002)(1076003)(36756003)(4326008)(478600001)(15650500001)(2906002)(316002)(81156014)(8936002)(6486002);
- DIR:OUT; SFP:1101; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2C/alOBhNd80LT5YeMwhZP9SyDYr1HlHsa6lWtmoOYZ2jVIhbONCe0VffeXvLzPWTJM1gY2cNcWyEexcrNmTSJRaaYXiYECWOKVbQGGtt/s8J6Vo0Au5mdyIydLvUuq+DEDDrCZxXPV4RgvdGOi1rbVDQyiTrmlzgKjSdgIZ+sRt+1fw4SweU9WizPZsAi/fLNCUkrjvPKqEsxNS61BrrJ3v7pqipPsODifTqNkElcUwmN+JLYftYfXSp/UAv6FsTY7GIEx5CBxfBQVIJCJHRW19MgeGe1GajgSeVBLEnbZBRU5Pmu6V1j7mtdhSXw8pgY7VP+4Z9p1Xi/C3lnH5UjIHUBxCmhz+mxJJ24jeowecrvw/kzTdyCvmCOogn4OyIYU1zUDfyuD1eJ/znnfz/5PCOKuLFVrdPNdqK3pU34s0rJGytOnqSym32eTvadhc
-X-MS-Exchange-AntiSpam-MessageData: x6NJI/FRRARNmir2AZlKY1nLAh99xnLCMypd5m+HkpYG3rJ0QTXM3v42RMypZQar1sVNXH2S/ssWRIr0VlR+rH6zyJQN35B4kpu+hXNeaemIs+fLHXkSNo2Kn8tP/KqsgO6yGpgTK8EF+39yC18kkg==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e805ac0-43d7-4d8f-1e35-08d7e5eb99f3
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2020 12:00:36.1935 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /Ln8pBYq9Q63OrbOF336zcpD+v0b4gcK1Hds2KwQGVEPuJpz4DzjgVDpsbna33ia
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3081
+Received: from bernard@vivo.com( [157.0.31.122) ] by ajax-webmail (
+ [127.0.0.1] ) ; Tue, 21 Apr 2020 20:09:43 +0800 (GMT+08:00)
+From: =?UTF-8?B?6LW15Yab5aWO?= <bernard@vivo.com>
+Date: Tue, 21 Apr 2020 20:09:43 +0800 (GMT+08:00)
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZSFVMQ0lCQkJCQklITEtNSllXWShZQU
+ hPN1dZLVlBSVdZCQ4XHghZQVk1NCk2OjckKS43PlkG
+X-HM-Sender-Digest: e1kJHlYWEh9ZQUhMSE9IQkhLTExJN1dZDB4ZWUEPCQ4eV1kSHx4VD1lB
+ WUc6Mj46OSo*Ojg5PANMHho8LQIZDhYKCS9VSFVKTkNMT0xLQkNITU5CVTMWGhIXVRkeCRUaCR87
+ DRINFFUYFBZFWVdZEgtZQVlKTkxVS1VISlVKSUlZV1kIAVlBTU1CTDcG
+X-HM-Tid: 0a719ca4e1ad9395kuws905dc282636
+X-Mailman-Approved-At: Tue, 21 Apr 2020 13:28:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,133 +46,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Evan Quan <evan.quan@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Tom St Denis <tom.stdenis@amd.com>,
+ "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ Ori Messinger <Ori.Messinger@amd.com>, opensource.kernel@vivo.com,
+ David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Sam Ravnborg <sam@ravnborg.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-At default, the autosuspend delay of audio controller is 3S. If the
-gpu reset is triggered within 3S(after audio controller idle),
-the audio controller may be unable into suspended state. Then
-the sudden gpu reset will cause some audio errors. The change
-here is targeted to resolve this.
-
-However if the audio controller is in use when the gpu reset
-triggered, this change may be still not enough to put the
-audio controller into suspend state. Under this case, the
-gpu reset will still proceed but there will be a warning
-message printed("failed to suspend display audio").
-
-Change-Id: I33d85e6fcad1882eb33f9cde8916d57be8d5a87a
-Signed-off-by: Evan Quan <evan.quan@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 60 ++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 2d4b78d96426..983e294d0300 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -69,6 +69,7 @@
- 
- #include <linux/suspend.h>
- #include <drm/task_barrier.h>
-+#include <linux/pm_runtime.h>
- 
- MODULE_FIRMWARE("amdgpu/vega10_gpu_info.bin");
- MODULE_FIRMWARE("amdgpu/vega12_gpu_info.bin");
-@@ -4146,6 +4147,49 @@ static void amdgpu_device_unlock_adev(struct amdgpu_device *adev)
- 	mutex_unlock(&adev->lock_reset);
- }
- 
-+static void amdgpu_device_resume_display_audio(struct amdgpu_device *adev)
-+{
-+	struct pci_dev *p = NULL;
-+
-+	p = pci_get_domain_bus_and_slot(pci_domain_nr(adev->pdev->bus),
-+			adev->pdev->bus->number, 1);
-+	if (p) {
-+		pm_runtime_enable(&(p->dev));
-+		pm_runtime_resume(&(p->dev));
-+	}
-+}
-+
-+static int amdgpu_device_suspend_display_audio(struct amdgpu_device *adev)
-+{
-+	struct pci_dev *p = NULL;
-+	unsigned long end_jiffies;
-+
-+	p = pci_get_domain_bus_and_slot(pci_domain_nr(adev->pdev->bus),
-+			adev->pdev->bus->number, 1);
-+	if (!p)
-+		return -ENODEV;
-+
-+	/*
-+	 * 3S is the audio controller default autosuspend delay setting.
-+	 * 4S used here is guaranteed to cover that.
-+	 */
-+	end_jiffies = msecs_to_jiffies(4000) + jiffies;
-+	while (!pm_runtime_status_suspended(&(p->dev))) {
-+		if (!pm_runtime_suspend(&(p->dev)))
-+			break;
-+
-+		if (time_after(jiffies, end_jiffies)) {
-+			dev_warn(adev->dev, "failed to suspend display audio\n");
-+			/* TODO: abort the succeeding gpu reset? */
-+			return -ETIMEDOUT;
-+		}
-+	}
-+
-+	pm_runtime_disable(&(p->dev));
-+
-+	return 0;
-+}
-+
- /**
-  * amdgpu_device_gpu_recover - reset the asic and recover scheduler
-  *
-@@ -4170,6 +4214,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 	bool use_baco =
- 		(amdgpu_asic_reset_method(adev) == AMD_RESET_METHOD_BACO) ?
- 		true : false;
-+	bool audio_suspended = false;
- 
- 	/*
- 	 * Flush RAM to disk so that after reboot
-@@ -4227,6 +4272,19 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 			return 0;
- 		}
- 
-+		/*
-+		 * Try to put the audio codec into suspend state
-+		 * before gpu reset started.
-+		 *
-+		 * Due to the power domain of the graphics device
-+		 * is shared with AZ power domain. Without this,
-+		 * we may change the audio hardware from behind
-+		 * the audio driver's back. That will trigger
-+		 * some audio codec errors.
-+		 */
-+		if (!amdgpu_device_suspend_display_audio(tmp_adev))
-+			audio_suspended = true;
-+
- 		amdgpu_ras_set_error_query_ready(tmp_adev, false);
- 
- 		cancel_delayed_work_sync(&tmp_adev->delayed_init_work);
-@@ -4339,6 +4397,8 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		/*unlock kfd: SRIOV would do it separately */
- 		if (!(in_ras_intr && !use_baco) && !amdgpu_sriov_vf(tmp_adev))
- 	                amdgpu_amdkfd_post_reset(tmp_adev);
-+		if (audio_suspended)
-+			amdgpu_device_resume_display_audio(tmp_adev);
- 		amdgpu_device_unlock_adev(tmp_adev);
- 	}
- 
--- 
-2.26.2
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+CkZyb206ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgpEYXRl
+OiAyMDIwLTA0LTIxIDE5OjIyOjQ5ClRvOiAgQmVybmFyZCBaaGFvIDxiZXJuYXJkQHZpdm8uY29t
+PixBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+LCJEYXZpZCAoQ2h1bk1p
+bmcpIFpob3UiIDxEYXZpZDEuWmhvdUBhbWQuY29tPixEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGlu
+dXguaWU+LERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4sVG9tIFN0IERlbmlzIDx0b20u
+c3RkZW5pc0BhbWQuY29tPixPcmkgTWVzc2luZ2VyIDxPcmkuTWVzc2luZ2VyQGFtZC5jb20+LFNh
+bSBSYXZuYm9yZyA8c2FtQHJhdm5ib3JnLm9yZz4sYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcsZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZyxsaW51eC1rZXJuZWxAdmdlci5rZXJu
+ZWwub3JnCkNjOiAgb3BlbnNvdXJjZS5rZXJuZWxAdml2by5jb20KU3ViamVjdDogUmU6IFtQQVRD
+SF0gYW1kZ3B1OiBmaXhlcyBtZW1sZWFrIGlzc3VlIHdoZW4gaW5pdCBmYWlsZWQ+QW0gMjEuMDQu
+MjAgdW0gMTM6MTcgc2NocmllYiBCZXJuYXJkIFpoYW86Cj4+IFZSQU0gbWFuYWdlciBhbmQgRFJN
+IE1NIHdoZW4gaW5pdCBmYWlsZWQsIHRoZXJlIGlzIG5vIG9wZXJhY3Rpb24KPj4gdG8gZnJlZSBr
+emFsbG9jIG1lbW9yeSAmIHJlbW92ZSBkZXZpY2UgZmlsZS4KPj4gVGhpcyB3aWxsIGxlYWQgdG8g
+bWVtbGVhayAmIGNhdXNlIHN0YWJpbGl0eSBpc3N1ZS4KPgo+TkFLLCBmYWlsdXJlIHRvIGNyZWF0
+ZSBzeXNmcyBub2RlcyBhcmUgbm90IGNyaXRpY2FsLgo+Cj5DaHJpc3RpYW4uCj4KCk9LLCBnZXQg
+aXQuCkJ5IHRoZSB3YXksIHNob3VsZCBpIG1vZGlmeSB0aGlzIHBhdGNoIHRvIGp1c3QgaGFuZGxl
+IDxrZnJlZShtZ3IpPiBpbiBlcnJvciBicmFuY2gsIG9yIHRoYXQgaXQgaXMgYWxzbyB1bm5lY2Vz
+c2FyeT8KClJlZ2FyZHMsCkJlcm5hcmQKCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IEJlcm5hcmQgWmhh
+byA8YmVybmFyZEB2aXZvLmNvbT4KPj4gLS0tCj4+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X3ZyYW1fbWdyLmMgfCAyNCArKysrKysrKysrKysrKysrLS0tLQo+PiAgIDEgZmls
+ZSBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZyYW1fbWdyLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdnJhbV9tZ3IuYwo+PiBpbmRleCA4MmEzMjk5
+ZTUzYzAuLjRjNWZiMTUzZTZiNCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X3ZyYW1fbWdyLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X3ZyYW1fbWdyLmMKPj4gQEAgLTE3NSwzMCArMTc1LDQ0IEBAIHN0YXRpYyBpbnQg
+YW1kZ3B1X3ZyYW1fbWdyX2luaXQoc3RydWN0IHR0bV9tZW1fdHlwZV9tYW5hZ2VyICptYW4sCj4+
+ICAgCXJldCA9IGRldmljZV9jcmVhdGVfZmlsZShhZGV2LT5kZXYsICZkZXZfYXR0cl9tZW1faW5m
+b192cmFtX3RvdGFsKTsKPj4gICAJaWYgKHJldCkgewo+PiAgIAkJRFJNX0VSUk9SKCJGYWlsZWQg
+dG8gY3JlYXRlIGRldmljZSBmaWxlIG1lbV9pbmZvX3ZyYW1fdG90YWxcbiIpOwo+PiAtCQlyZXR1
+cm4gcmV0Owo+PiArCQlnb3RvIFZSQU1fVE9UQUxfRkFJTDsKPj4gICAJfQo+PiAgIAlyZXQgPSBk
+ZXZpY2VfY3JlYXRlX2ZpbGUoYWRldi0+ZGV2LCAmZGV2X2F0dHJfbWVtX2luZm9fdmlzX3ZyYW1f
+dG90YWwpOwo+PiAgIAlpZiAocmV0KSB7Cj4+ICAgCQlEUk1fRVJST1IoIkZhaWxlZCB0byBjcmVh
+dGUgZGV2aWNlIGZpbGUgbWVtX2luZm9fdmlzX3ZyYW1fdG90YWxcbiIpOwo+PiAtCQlyZXR1cm4g
+cmV0Owo+PiArCQlnb3RvIFZJU19WUkFNX1RPVEFfRkFJTDsKPj4gICAJfQo+PiAgIAlyZXQgPSBk
+ZXZpY2VfY3JlYXRlX2ZpbGUoYWRldi0+ZGV2LCAmZGV2X2F0dHJfbWVtX2luZm9fdnJhbV91c2Vk
+KTsKPj4gICAJaWYgKHJldCkgewo+PiAgIAkJRFJNX0VSUk9SKCJGYWlsZWQgdG8gY3JlYXRlIGRl
+dmljZSBmaWxlIG1lbV9pbmZvX3ZyYW1fdXNlZFxuIik7Cj4+IC0JCXJldHVybiByZXQ7Cj4+ICsJ
+CWdvdG8gVlJBTV9VU0VEX0ZBSUw7Cj4+ICAgCX0KPj4gICAJcmV0ID0gZGV2aWNlX2NyZWF0ZV9m
+aWxlKGFkZXYtPmRldiwgJmRldl9hdHRyX21lbV9pbmZvX3Zpc192cmFtX3VzZWQpOwo+PiAgIAlp
+ZiAocmV0KSB7Cj4+ICAgCQlEUk1fRVJST1IoIkZhaWxlZCB0byBjcmVhdGUgZGV2aWNlIGZpbGUg
+bWVtX2luZm9fdmlzX3ZyYW1fdXNlZFxuIik7Cj4+IC0JCXJldHVybiByZXQ7Cj4+ICsJCWdvdG8g
+VklTX1ZSQU1fVVNFRF9GQUlMOwo+PiAgIAl9Cj4+ICAgCXJldCA9IGRldmljZV9jcmVhdGVfZmls
+ZShhZGV2LT5kZXYsICZkZXZfYXR0cl9tZW1faW5mb192cmFtX3ZlbmRvcik7Cj4+ICAgCWlmIChy
+ZXQpIHsKPj4gICAJCURSTV9FUlJPUigiRmFpbGVkIHRvIGNyZWF0ZSBkZXZpY2UgZmlsZSBtZW1f
+aW5mb192cmFtX3ZlbmRvclxuIik7Cj4+IC0JCXJldHVybiByZXQ7Cj4+ICsJCWdvdG8gVlJBTV9W
+RVJET1JfRkFJTDsKPj4gICAJfQo+PiAgIAo+PiAgIAlyZXR1cm4gMDsKPj4gKwo+PiArVlJBTV9W
+RVJET1JfRkFJTDoKPj4gKwlkZXZpY2VfcmVtb3ZlX2ZpbGUoYWRldi0+ZGV2LCAmZGV2X2F0dHJf
+bWVtX2luZm9fdmlzX3ZyYW1fdXNlZCk7Cj4+ICtWSVNfVlJBTV9VU0VEX0ZBSUw6Cj4+ICsJZGV2
+aWNlX3JlbW92ZV9maWxlKGFkZXYtPmRldiwgJmRldl9hdHRyX21lbV9pbmZvX3ZyYW1fdXNlZCk7
+Cj4+ICtSVkFNX1VTRURfRkFJTDoKPj4gKwlkZXZpY2VfcmVtb3ZlX2ZpbGUoYWRldi0+ZGV2LCAm
+ZGV2X2F0dHJfbWVtX2luZm9fdmlzX3ZyYW1fdG90YWwpOwo+PiArVklTX1ZSQU1fVE9UQV9GQUlM
+Ogo+PiArCWRldmljZV9yZW1vdmVfZmlsZShhZGV2LT5kZXYsICZkZXZfYXR0cl9tZW1faW5mb192
+cmFtX3RvdGFsKTsKPj4gK1ZSQU1fVE9UQUxfRkFJTDoKPj4gKwlrZnJlZShtZ3IpOwo+PiArCW1h
+bi0+cHJpdiA9IE5VTEw7Cj4+ICsKPj4gKwlyZXR1cm4gcmV0Owo+PiAgIH0KPj4gICAKPj4gICAv
+KioKPgoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+YW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
