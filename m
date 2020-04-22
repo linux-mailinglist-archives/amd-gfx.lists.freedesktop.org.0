@@ -2,90 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037121B339A
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Apr 2020 01:44:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B41A41B382E
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 Apr 2020 08:55:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75CC66E34A;
-	Tue, 21 Apr 2020 23:44:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FE2D6E9C3;
+	Wed, 22 Apr 2020 06:54:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2081.outbound.protection.outlook.com [40.107.93.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71DAF6E34A
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 23:44:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oe2bhE0Uv3vlH1iMxuWTrpvMGE5vPfDcDH645J/v4vWDW+Ej4UeMt05uSUAlyf3Erpej2z+oipJAT6mnhVjq4JyYBD4YC8eoFFYXyBEkvMEJuKBZRJrZb57k7YpgZ6E9r+PZ+eN1D4O9XU6o2Bzjwtn1RH0sctHCYKrDlvIn2nVm7FL4HuFH5loA6lb4dpCr8PJcUM3EJSI5LTgzgmprv4aMUDjVdXgVR6HWMKzM+GZ0WuJIsSeRNsudPuJpWeZfqzTFMs1DHLxUASa9ON2ByDSzDPQuuif2p5D4Sz72C7v18LU828hq6eGRHIDnL61Z1ikgZ+RLG16On6F/e0hQ4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rsv4NejG7/ZgnFUiN3FpZSU64PN6Ug21QiF/OE/ZbX0=;
- b=mGiZ9/ROc02+YKWajp65fSbIXa7/zyC7tGHEChti0hDbQqIQlG/BGoBVcXrz0/Uk+h7S6xi9EiYIxf2J7cxJkyWEh3gODWtjXYdR/8VO5wMhYYU3tUC7K6Lx8gRjnlzC6GFFvtb2Al/h3X71sRAfSqox8T6iqLsH8KZkXJCgSR88GOr/0E0Howx94LC65xk9GxpS0+roic4Za0C8XSJ36zaeCo3ES2Hy+++33Ut+YCfkzJRCSlGv/xB4AUZh7K4hmhBGxovoqXX5tyv91gfzonyQBgaPkiZVC/fTfOzTwMNEjheJ1g3rlUQoLEyWAuwrCkRRLyAMOZp4hN74gEcvBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rsv4NejG7/ZgnFUiN3FpZSU64PN6Ug21QiF/OE/ZbX0=;
- b=rBBDZc0a57mGAkeU9H53a7KuGR4dGsGULXzTchqgnTkCeWYQB7RwMMabMVY7UcByOsA4McZTcwxI6Q+ZH9rvfhSK8eBENPVYXTlbzOnXntPGjmPCxCv8qbHRWCAKs4IFMhOtuNFoh3KfGWZwVOtqCVzbfEdPM/JFXVdRgeBACcw=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Felix.Kuehling@amd.com; 
-Received: from SN1PR12MB2414.namprd12.prod.outlook.com (2603:10b6:802:2e::31)
- by SN1PR12MB2382.namprd12.prod.outlook.com (2603:10b6:802:2e::30)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.29; Tue, 21 Apr
- 2020 23:44:00 +0000
-Received: from SN1PR12MB2414.namprd12.prod.outlook.com
- ([fe80::38ef:1510:9525:f806]) by SN1PR12MB2414.namprd12.prod.outlook.com
- ([fe80::38ef:1510:9525:f806%7]) with mapi id 15.20.2921.030; Tue, 21 Apr 2020
- 23:44:00 +0000
-Subject: Re: [PATCH] drm/amdkfd: Track GPU memory utilization per process
-To: Mukul Joshi <mukul.joshi@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20200420015831.13632-1-mukul.joshi@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Message-ID: <a9c188fc-41d9-f60a-4c8f-d628263be692@amd.com>
-Date: Tue, 21 Apr 2020 19:43:58 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-In-Reply-To: <20200420015831.13632-1-mukul.joshi@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: YTBPR01CA0032.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:14::45) To SN1PR12MB2414.namprd12.prod.outlook.com
- (2603:10b6:802:2e::31)
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
+ [IPv6:2607:f8b0:4864:20::842])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91C7F89B27
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 00:21:48 +0000 (UTC)
+Received: by mail-qt1-x842.google.com with SMTP id w29so340277qtv.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Apr 2020 17:21:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DOrXrBA8QTub/2t4P8iuXJjEm4ygMvU/FqA4XiW8uMI=;
+ b=QqRL1zP89wuwpYO4tjdu5tQyhiJKZz+123CtN7/lSOHBgi0BEsWgVLQtWqFkF0Hxyv
+ i3YnSB79YQLqZfUqs5VQ7ORnBAyiLhFYAln1p5Tnm/66Ok8O2embqN8L6iR1Sj0Ort0y
+ NiL7//AOzryih+UFlmGnfx6bobjRIrul/aI3C+e5/SiAT+H7LGnV5wHUTpPuLEv055M1
+ uMHLaK7/BuqPaleUtPgV4/1Ef1uoO3rlJPwt0B/OnMxSwsCx6SyQqweIoXubAzBYVdiU
+ hAM6PcjZ4PVCa1LC7dZTxqVcSv+QUxA3OnGMRz1ddHlWleWeR0SrIXcEJ0Gh53ILWxgL
+ YmMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DOrXrBA8QTub/2t4P8iuXJjEm4ygMvU/FqA4XiW8uMI=;
+ b=sQvj9y/Ehp+Q3qXkb7Dx1FImKuXVxQEhYwyXExtf62dSEzCsDAHUgmelPb4B+i1P7a
+ 7ssSFyS+2OLnmi143c1XMtfm5TLNjqtsM6DCF/wnNmwStYFGlR9hv1xFAlfiljxdQd3f
+ W1Oyx+0Kpyk9wrMnUgMK9j1nJeKb/gthgrjChwJNbCcE8Rvn+o63WRCLWzbuKwDV98PM
+ c1ZktEAxW5uG37B0LZzvwgE7b8gGh7zrJcbYxuO8recSigtBBwK6ZJRp3ewKVZHM2xDl
+ egVgzPotIrOY+adtZhxiKMMJbtS7nWNoDQWZPLXFaeS+abnlIGaZ61KbrUSSDtgSKcEc
+ ATZw==
+X-Gm-Message-State: AGi0PubG8ECUysCAwls1gH7yqpPHuyV2EJ8J6/5O4RYyz6cymhaVpxlk
+ 2xdNNXGREs1vPkn+VlOppt5mDw==
+X-Google-Smtp-Source: APiQypI+VXdJnBmgFU/RD6dwwKcyUmh89IKsfPkwPYI8eruL612VHTCsM8nTWqECUcuFa61w7n1eEg==
+X-Received: by 2002:ac8:31e1:: with SMTP id i30mr23775526qte.74.1587514907550; 
+ Tue, 21 Apr 2020 17:21:47 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.68.57.212])
+ by smtp.gmail.com with ESMTPSA id u190sm2815110qkb.102.2020.04.21.17.21.46
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 21 Apr 2020 17:21:46 -0700 (PDT)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+ (envelope-from <jgg@ziepe.ca>)
+ id 1jR398-0000As-9O; Tue, 21 Apr 2020 21:21:46 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: linux-mm@kvack.org,
+	Ralph Campbell <rcampbell@nvidia.com>
+Subject: [PATCH hmm 0/5] Adjust hmm_range_fault() API
+Date: Tue, 21 Apr 2020 21:21:41 -0300
+Message-Id: <0-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.2.100] (142.116.63.128) by
- YTBPR01CA0032.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::45) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2937.13 via Frontend Transport; Tue, 21 Apr 2020 23:43:59 +0000
-X-Originating-IP: [142.116.63.128]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: b53e768f-92e7-4a52-0339-08d7e64ddd7b
-X-MS-TrafficTypeDiagnostic: SN1PR12MB2382:|SN1PR12MB2382:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN1PR12MB2382D7A03C36EBF83DD8FEE392D50@SN1PR12MB2382.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-Forefront-PRVS: 038002787A
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN1PR12MB2414.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(10009020)(4636009)(136003)(39860400002)(376002)(366004)(346002)(396003)(8936002)(478600001)(66476007)(44832011)(66946007)(316002)(16576012)(6486002)(36756003)(5660300002)(2616005)(52116002)(86362001)(81156014)(26005)(956004)(2906002)(8676002)(31686004)(66556008)(16526019)(31696002)(186003);
- DIR:OUT; SFP:1101; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LL2czaApMmKYcept/mWkok54G92025CQdEP3rjsJ+htqR+Fih2HEgTe4REEcHBe8i3NqMfn7vTJqNTWIO7rHM9G9haND10pwkjq1bksdFFJUS4IOSWHwpmvPXBSNmmz4LuOxHqiUVrzyc3nSupgB0D3X+jlVo1GHl1vTuTk2YNQBNMxE5gxcPu7zxMyB+1XL1g30lgWFqErPtTI+AZOD25y1vZe3VH9YSVNcHk+DG2REMTQX+/IpJ2IHOs5HK9s8NE35RdMOwXaadHZm87hSv5pwBKTt6+p1vYt1NJ0y/d1UnqdHp96xt/yXFLF2vLsAL/Lzze37rrEnYdXBF+kmUSXaRz0SRQmmwDUHilRYlXtUm7VFsdTVrHKaFudTLqhEG6IqfGqKXkYXt/WUv3wwCtzacNmM1sNXDLjc7ciHV1zr9O3lYXNEVnXZhy/G1/XI
-X-MS-Exchange-AntiSpam-MessageData: hSkOyIkozfl/5W3JKmOmFQFqvP5eTQqsaCG/9xwCqkmO8zeMbjQDz+QoHyUtrJ9JCufi7ruD1NSuCIEfhzvSdhSTrVTU2dkqE/sehUy8DzLrrzx2Ufd/Eznj0dhO69Ezv3YNjNAgWp8zsUaTEjEjFg==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b53e768f-92e7-4a52-0339-08d7e64ddd7b
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2020 23:44:00.0390 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: H8OxPwBCxVxfQFbFyi83bNcX2256h304elJqPoq7e7x6koNRttd1qGCJeWkgyoEXL3nqkT9dkVfhxkTOxcdluA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2382
+X-Mailman-Approved-At: Wed, 22 Apr 2020 06:54:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,139 +69,269 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ amd-gfx@lists.freedesktop.org, John Hubbard <jhubbard@nvidia.com>, "Kuehling,
+ Felix" <Felix.Kuehling@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>,
+ =?utf-8?b?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
+ Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-U2VlIGNvbW1lbnRzIGlubGluZS4KCkFtIDIwMjAtMDQtMTkgdW0gOTo1OCBwLm0uIHNjaHJpZWIg
-TXVrdWwgSm9zaGk6Cj4gVHJhY2sgR1BVIG1lbW9yeSB1c2FnZSBvbiBhIHBlciBwcm9jZXNzIGJh
-c2lzIGFuZCByZXBvcnQgaXQgdGhyb3VnaAo+IHN5c2ZzLgo+Cj4gU2lnbmVkLW9mZi1ieTogTXVr
-dWwgSm9zaGkgPG11a3VsLmpvc2hpQGFtZC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1ka2ZkL2tmZF9jaGFyZGV2LmMgfCAxMiArKysrKysKPiAgZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRrZmQva2ZkX3ByaXYuaCAgICB8ICA3ICsrKysKPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRrZmQva2ZkX3Byb2Nlc3MuYyB8IDUxICsrKysrKysrKysrKysrKysrKysrKystLQo+ICAzIGZp
-bGVzIGNoYW5nZWQsIDY2IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2NoYXJkZXYuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9jaGFyZGV2LmMKPiBpbmRleCBmOGZhMDNhMTJhZGQuLjkx
-ZDRmNDU3MzBhZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRf
-Y2hhcmRldi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2NoYXJkZXYu
-Ywo+IEBAIC0zOSw2ICszOSw3IEBACj4gICNpbmNsdWRlICJrZmRfZGV2aWNlX3F1ZXVlX21hbmFn
-ZXIuaCIKPiAgI2luY2x1ZGUgImtmZF9kYmdtZ3IuaCIKPiAgI2luY2x1ZGUgImFtZGdwdV9hbWRr
-ZmQuaCIKPiArI2luY2x1ZGUgImFtZGdwdV9vYmplY3QuaCIKPiAgCj4gIHN0YXRpYyBsb25nIGtm
-ZF9pb2N0bChzdHJ1Y3QgZmlsZSAqLCB1bnNpZ25lZCBpbnQsIHVuc2lnbmVkIGxvbmcpOwo+ICBz
-dGF0aWMgaW50IGtmZF9vcGVuKHN0cnVjdCBpbm9kZSAqLCBzdHJ1Y3QgZmlsZSAqKTsKPiBAQCAt
-MTMyMiw2ICsxMzIzLDkgQEAgc3RhdGljIGludCBrZmRfaW9jdGxfYWxsb2NfbWVtb3J5X29mX2dw
-dShzdHJ1Y3QgZmlsZSAqZmlsZXAsCj4gIAkJZ290byBlcnJfZnJlZTsKPiAgCX0KPiAgCj4gKwkv
-KiBVcGRhdGUgdGhlIFZSQU0gdXNhZ2UgY291bnQgKi8KPiArCXBkZC0+dnJhbV91c2FnZSArPSBh
-cmdzLT5zaXplOwo+ICsKPiAgCW11dGV4X3VubG9jaygmcC0+bXV0ZXgpOwo+ICAKPiAgCWFyZ3Mt
-PmhhbmRsZSA9IE1BS0VfSEFORExFKGFyZ3MtPmdwdV9pZCwgaWRyX2hhbmRsZSk7Cj4gQEAgLTEz
-NTEsNiArMTM1NSw3IEBAIHN0YXRpYyBpbnQga2ZkX2lvY3RsX2ZyZWVfbWVtb3J5X29mX2dwdShz
-dHJ1Y3QgZmlsZSAqZmlsZXAsCj4gIAl2b2lkICptZW07Cj4gIAlzdHJ1Y3Qga2ZkX2RldiAqZGV2
-Owo+ICAJaW50IHJldDsKPiArCXVpbnQ2NF90IHNpemUgPSAwOwo+ICAKPiAgCWRldiA9IGtmZF9k
-ZXZpY2VfYnlfaWQoR0VUX0dQVV9JRChhcmdzLT5oYW5kbGUpKTsKPiAgCWlmICghZGV2KQo+IEBA
-IC0xMzcyLDYgKzEzNzcsMTEgQEAgc3RhdGljIGludCBrZmRfaW9jdGxfZnJlZV9tZW1vcnlfb2Zf
-Z3B1KHN0cnVjdCBmaWxlICpmaWxlcCwKPiAgCQlnb3RvIGVycl91bmxvY2s7Cj4gIAl9Cj4gIAo+
-ICsJaWYgKCgoc3RydWN0IGtnZF9tZW0gKiltZW0pLT5ibykKPiArCQlzaXplID0gKChzdHJ1Y3Qg
-a2dkX21lbSAqKW1lbSktPmJvLT50Ym8ubWVtLnNpemU7Cj4gKwllbHNlCj4gKwkJcHJfZGVidWco
-IkJPIGlzIE5VTExcbiIpOwoKTGlrZSBIYXJpc2ggc2FpZCwgeW91J2xsIG5lZWQgdG8gZmluZCBv
-dXQgd2hldGhlciB0aGUgQk8gaXMgaW4gVlJBTSBieQpjaGVja2luZyBiby0+cHJlZmVycmVkX2Rv
-bWFpbiA9PSBBTURHUFVfR0VNX0RPTUFJTl9WUkFNLiBBbHNvLCBpdCB3b3VsZApiZSBjbGVhbmVy
-IHRvIGltcGxlbWVudCB0aGUgQU1ER1BVIEJPLXNwZWNpZmljIGRldGFpbHMgb2YgdGhpcyBpbgph
-bWRncHVfYW1ka2ZkX2dwdXZtX2ZyZWVfbWVtb3J5X29mX2dwdS4gSSBoYWQgc3VnZ2VzdGVkIHJl
-dHVybmluZyB0aGUKZnJlZWQgVlJBTSBzaXplIGFzIGFuIG91dHB1dCBwYXJhbWV0ZXIgb2YgdGhh
-dCBmdW5jdGlvbiB0byBLRkQuCgpJIHJlYWxpemVkIHRoYXQgdGhlcmUgaXMgYW5vdGhlciBwcm9i
-bGVtIHdlIG5lZWQgdG8gYWNjb3VudCBmb3IuCmtmZF9pb2N0bF9mcmVlX21lbW9yeV9vZl9ncHUg
-aXMgYWxzbyB1c2VkIGZvciB1bnJlZmVyZW5jaW5nIGltcG9ydGVkCm1lbW9yeSAoaW1wb3J0ZWQg
-Z3JhcGhpY3MgYnVmZmVycyBhbmQgSVBDIGJ1ZmZlcnMpLiBXZSBkb24ndCBjb3VudCB0aGVpcgpW
-UkFNIHVzYWdlIGR1cmluZyBpbXBvcnQsIHNvIHdlIHNob3VsZG4ndCBjb3VudCBpdCBkdXJpbmcg
-ZnJlZSBlaXRoZXIuCkZvciB0aGF0IHdlJ2QgcHJvYmFibHkgbmVlZCB0byBhZGQgYSBmbGFnIGlu
-IHN0cnVjdCBrZ2RfbWVtIHRvIGluZGljYXRlCnRoYXQgaXQncyBpbXBvcnRlZCwgc28gd2UgZG9u
-J3QgY291bnQgaXRzIFZSQU0gdXNhZ2UgZHVyaW5nIGZyZWUuCgpBbHRlcm5hdGl2ZWx5LCB3ZSBj
-b3VsZCB0byBjb3VudCB0aGUgVlJBTSB1c2FnZSBkdXJpbmcgaW1wb3J0LiBUaGF0IHdheSwKc29t
-ZSBtZW1vcnkgbWlnaHQgYmUgY291bnRlZCBtdWx0aXBsZSB0aW1lcyAoaW4gZWFjaCBpbXBvcnRp
-bmcgcHJvY2VzcykuCkJ1dCBJIHRoaW5rIHRoYXQncyBub3QgdW5yZWFzb25hYmxlLgoKUmVnYXJk
-cywKwqAgRmVsaXgKCgo+ICsKPiAgCXJldCA9IGFtZGdwdV9hbWRrZmRfZ3B1dm1fZnJlZV9tZW1v
-cnlfb2ZfZ3B1KGRldi0+a2dkLAo+ICAJCQkJCQkoc3RydWN0IGtnZF9tZW0gKiltZW0pOwo+ICAK
-PiBAQCAtMTM4Miw2ICsxMzkyLDggQEAgc3RhdGljIGludCBrZmRfaW9jdGxfZnJlZV9tZW1vcnlf
-b2ZfZ3B1KHN0cnVjdCBmaWxlICpmaWxlcCwKPiAgCQlrZmRfcHJvY2Vzc19kZXZpY2VfcmVtb3Zl
-X29ial9oYW5kbGUoCj4gIAkJCXBkZCwgR0VUX0lEUl9IQU5ETEUoYXJncy0+aGFuZGxlKSk7Cj4g
-IAo+ICsJcGRkLT52cmFtX3VzYWdlIC09IHNpemU7Cj4gKwo+ICBlcnJfdW5sb2NrOgo+ICAJbXV0
-ZXhfdW5sb2NrKCZwLT5tdXRleCk7Cj4gIAlyZXR1cm4gcmV0Owo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfcHJpdi5oIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRrZmQva2ZkX3ByaXYuaAo+IGluZGV4IDQzYjg4OGIzMTFjNy4uZTc5MThmYzNjZWU1IDEwMDY0
-NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9wcml2LmgKPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfcHJpdi5oCj4gQEAgLTYxNiw2ICs2MTYsOCBA
-QCBlbnVtIGtmZF9wZGRfYm91bmQgewo+ICAJUEREX0JPVU5EX1NVU1BFTkRFRCwKPiAgfTsKPiAg
-Cj4gKyNkZWZpbmUgTUFYX1ZSQU1fRklMRU5BTUVfTEVOIDExCj4gKwo+ICAvKiBEYXRhIHRoYXQg
-aXMgcGVyLXByb2Nlc3MtcGVyIGRldmljZS4gKi8KPiAgc3RydWN0IGtmZF9wcm9jZXNzX2Rldmlj
-ZSB7Cj4gIAkvKgo+IEBAIC02NTgsNiArNjYwLDExIEBAIHN0cnVjdCBrZmRfcHJvY2Vzc19kZXZp
-Y2Ugewo+ICAKPiAgCS8qIElzIHRoaXMgcHJvY2Vzcy9wYXNpZCBib3VuZCB0byB0aGlzIGRldmlj
-ZT8gKGFtZF9pb21tdV9iaW5kX3Bhc2lkKSAqLwo+ICAJZW51bSBrZmRfcGRkX2JvdW5kIGJvdW5k
-Owo+ICsKPiArCS8qIFZSQU0gdXNhZ2UgKi8KPiArCXVpbnQ2NF90IHZyYW1fdXNhZ2U7Cj4gKwlz
-dHJ1Y3QgYXR0cmlidXRlIGF0dHJfdnJhbTsKPiArCWNoYXIgdnJhbV9maWxlbmFtZVtNQVhfVlJB
-TV9GSUxFTkFNRV9MRU5dOwo+ICB9Owo+ICAKPiAgI2RlZmluZSBxcGRfdG9fcGRkKHgpIGNvbnRh
-aW5lcl9vZih4LCBzdHJ1Y3Qga2ZkX3Byb2Nlc3NfZGV2aWNlLCBxcGQpCj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9wcm9jZXNzLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGtmZC9rZmRfcHJvY2Vzcy5jCj4gaW5kZXggZmUwY2Q0OWQ0ZWE3Li5jN2YxZTVk
-ODliZDkgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX3Byb2Nl
-c3MuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9wcm9jZXNzLmMKPiBA
-QCAtNzksMTggKzc5LDIyIEBAIHN0YXRpYyBzdHJ1Y3Qga2ZkX3Byb2Nmc190cmVlIHByb2NmczsK
-PiAgc3RhdGljIHNzaXplX3Qga2ZkX3Byb2Nmc19zaG93KHN0cnVjdCBrb2JqZWN0ICprb2JqLCBz
-dHJ1Y3QgYXR0cmlidXRlICphdHRyLAo+ICAJCQkgICAgICAgY2hhciAqYnVmZmVyKQo+ICB7Cj4g
-LQlpbnQgdmFsID0gMDsKPiAtCj4gIAlpZiAoc3RyY21wKGF0dHItPm5hbWUsICJwYXNpZCIpID09
-IDApIHsKPiAgCQlzdHJ1Y3Qga2ZkX3Byb2Nlc3MgKnAgPSBjb250YWluZXJfb2YoYXR0ciwgc3Ry
-dWN0IGtmZF9wcm9jZXNzLAo+ICAJCQkJCQkgICAgIGF0dHJfcGFzaWQpOwo+IC0JCXZhbCA9IHAt
-PnBhc2lkOwo+ICsKPiArCQlyZXR1cm4gc25wcmludGYoYnVmZmVyLCBQQUdFX1NJWkUsICIlZFxu
-IiwgcC0+cGFzaWQpOwo+ICsJfSBlbHNlIGlmIChzdHJuY21wKGF0dHItPm5hbWUsICJ2cmFtXyIs
-IDUpID09IDApIHsKPiArCQlzdHJ1Y3Qga2ZkX3Byb2Nlc3NfZGV2aWNlICpwZGQgPSBjb250YWlu
-ZXJfb2YoYXR0ciwgc3RydWN0IGtmZF9wcm9jZXNzX2RldmljZSwKPiArCQkJCQkJCSAgICAgIGF0
-dHJfdnJhbSk7Cj4gKwkJaWYgKHBkZCkKPiArCQkJcmV0dXJuIHNucHJpbnRmKGJ1ZmZlciwgUEFH
-RV9TSVpFLCAiJWxsdVxuIiwgcGRkLT52cmFtX3VzYWdlKTsKPiAgCX0gZWxzZSB7Cj4gIAkJcHJf
-ZXJyKCJJbnZhbGlkIGF0dHJpYnV0ZSIpOwo+ICAJCXJldHVybiAtRUlOVkFMOwo+ICAJfQo+ICAK
-PiAtCXJldHVybiBzbnByaW50ZihidWZmZXIsIFBBR0VfU0laRSwgIiVkXG4iLCB2YWwpOwo+ICsJ
-cmV0dXJuIDA7Cj4gIH0KPiAgCj4gIHN0YXRpYyB2b2lkIGtmZF9wcm9jZnNfa29ial9yZWxlYXNl
-KHN0cnVjdCBrb2JqZWN0ICprb2JqKQo+IEBAIC0yMDYsNiArMjEwLDM0IEBAIGludCBrZmRfcHJv
-Y2ZzX2FkZF9xdWV1ZShzdHJ1Y3QgcXVldWUgKnEpCj4gIAlyZXR1cm4gMDsKPiAgfQo+ICAKPiAr
-aW50IGtmZF9wcm9jZnNfYWRkX3ZyYW1fdXNhZ2Uoc3RydWN0IGtmZF9wcm9jZXNzICpwKQo+ICt7
-Cj4gKwlpbnQgcmV0ID0gMDsKPiArCXN0cnVjdCBrZmRfcHJvY2Vzc19kZXZpY2UgKnBkZDsKPiAr
-Cj4gKwlpZiAoIXApCj4gKwkJcmV0dXJuIC1FSU5WQUw7Cj4gKwo+ICsJaWYgKCFwLT5rb2JqKQo+
-ICsJCXJldHVybiAtRUZBVUxUOwo+ICsKPiArCS8qIENyZWF0ZSBwcm9jLzxwaWQ+L3ZyYW1fPGdw
-dWlkPiBmaWxlIGZvciBlYWNoIEdQVSAqLwo+ICsJbGlzdF9mb3JfZWFjaF9lbnRyeShwZGQsICZw
-LT5wZXJfZGV2aWNlX2RhdGEsIHBlcl9kZXZpY2VfbGlzdCkgewo+ICsJCXNucHJpbnRmKHBkZC0+
-dnJhbV9maWxlbmFtZSwgTUFYX1ZSQU1fRklMRU5BTUVfTEVOLCAidnJhbV8ldSIsCj4gKwkJCSBw
-ZGQtPmRldi0+aWQpOwo+ICsJCXBkZC0+YXR0cl92cmFtLm5hbWUgPSBwZGQtPnZyYW1fZmlsZW5h
-bWU7Cj4gKwkJcGRkLT5hdHRyX3ZyYW0ubW9kZSA9IEtGRF9TWVNGU19GSUxFX01PREU7Cj4gKwkJ
-c3lzZnNfYXR0cl9pbml0KCZwZGQtPmF0dHJfdnJhbSk7Cj4gKwkJcmV0ID0gc3lzZnNfY3JlYXRl
-X2ZpbGUocC0+a29iaiwgJnBkZC0+YXR0cl92cmFtKTsKPiArCQlpZiAocmV0KQo+ICsJCQlwcl93
-YXJuKCJDcmVhdGluZyB2cmFtIHVzYWdlIGZvciBncHUgaWQgJWQgZmFpbGVkIiwKPiArCQkJCShp
-bnQpcGRkLT5kZXYtPmlkKTsKPiArCX0KPiArCj4gKwlyZXR1cm4gcmV0Owo+ICt9Cj4gKwo+ICsK
-PiAgdm9pZCBrZmRfcHJvY2ZzX2RlbF9xdWV1ZShzdHJ1Y3QgcXVldWUgKnEpCj4gIHsKPiAgCWlm
-ICghcSkKPiBAQCAtNDExLDYgKzQ0MywxMSBAQCBzdHJ1Y3Qga2ZkX3Byb2Nlc3MgKmtmZF9jcmVh
-dGVfcHJvY2VzcyhzdHJ1Y3QgZmlsZSAqZmlsZXApCj4gIAkJCQkJCQlwcm9jZXNzLT5rb2JqKTsK
-PiAgCQlpZiAoIXByb2Nlc3MtPmtvYmpfcXVldWVzKQo+ICAJCQlwcl93YXJuKCJDcmVhdGluZyBL
-RkQgcHJvYy9xdWV1ZXMgZm9sZGVyIGZhaWxlZCIpOwo+ICsKPiArCQlyZXQgPSBrZmRfcHJvY2Zz
-X2FkZF92cmFtX3VzYWdlKHByb2Nlc3MpOwo+ICsJCWlmIChyZXQpCj4gKwkJCXByX3dhcm4oIkNy
-ZWF0aW5nIHZyYW0gdXNhZ2UgZmlsZSBmb3IgcGlkICVkIGZhaWxlZCIsCj4gKwkJCQkoaW50KXBy
-b2Nlc3MtPmxlYWRfdGhyZWFkLT5waWQpOwo+ICAJfQo+ICBvdXQ6Cj4gIAlpZiAoIUlTX0VSUihw
-cm9jZXNzKSkKPiBAQCAtNTUxLDYgKzU4OCw3IEBAIHN0YXRpYyB2b2lkIGtmZF9wcm9jZXNzX3dx
-X3JlbGVhc2Uoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQo+ICB7Cj4gIAlzdHJ1Y3Qga2ZkX3By
-b2Nlc3MgKnAgPSBjb250YWluZXJfb2Yod29yaywgc3RydWN0IGtmZF9wcm9jZXNzLAo+ICAJCQkJ
-CSAgICAgcmVsZWFzZV93b3JrKTsKPiArCXN0cnVjdCBrZmRfcHJvY2Vzc19kZXZpY2UgKnBkZDsK
-PiAgCj4gIAkvKiBSZW1vdmUgdGhlIHByb2NmcyBmaWxlcyAqLwo+ICAJaWYgKHAtPmtvYmopIHsK
-PiBAQCAtNTU4LDYgKzU5NiwxMCBAQCBzdGF0aWMgdm9pZCBrZmRfcHJvY2Vzc193cV9yZWxlYXNl
-KHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiAgCQlrb2JqZWN0X2RlbChwLT5rb2JqX3F1ZXVl
-cyk7Cj4gIAkJa29iamVjdF9wdXQocC0+a29ial9xdWV1ZXMpOwo+ICAJCXAtPmtvYmpfcXVldWVz
-ID0gTlVMTDsKPiArCj4gKwkJbGlzdF9mb3JfZWFjaF9lbnRyeShwZGQsICZwLT5wZXJfZGV2aWNl
-X2RhdGEsIHBlcl9kZXZpY2VfbGlzdCkKPiArCQkJc3lzZnNfcmVtb3ZlX2ZpbGUocC0+a29iaiwg
-JnBkZC0+YXR0cl92cmFtKTsKPiArCj4gIAkJa29iamVjdF9kZWwocC0+a29iaik7Cj4gIAkJa29i
-amVjdF9wdXQocC0+a29iaik7Cj4gIAkJcC0+a29iaiA9IE5VTEw7Cj4gQEAgLTg2Miw2ICs5MDQs
-NyBAQCBzdHJ1Y3Qga2ZkX3Byb2Nlc3NfZGV2aWNlICprZmRfY3JlYXRlX3Byb2Nlc3NfZGV2aWNl
-X2RhdGEoc3RydWN0IGtmZF9kZXYgKmRldiwKPiAgCXBkZC0+Ym91bmQgPSBQRERfVU5CT1VORDsK
-PiAgCXBkZC0+YWxyZWFkeV9kZXF1ZXVlZCA9IGZhbHNlOwo+ICAJcGRkLT5ydW50aW1lX2ludXNl
-ID0gZmFsc2U7Cj4gKwlwZGQtPnZyYW1fdXNhZ2UgPSAwOwo+ICAJbGlzdF9hZGQoJnBkZC0+cGVy
-X2RldmljZV9saXN0LCAmcC0+cGVyX2RldmljZV9kYXRhKTsKPiAgCj4gIAkvKiBJbml0IGlkciB1
-c2VkIGZvciBtZW1vcnkgaGFuZGxlIHRyYW5zbGF0aW9uICovCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vYW1kLWdmeAo=
+From: Jason Gunthorpe <jgg@mellanox.com>
+
+The API is a bit complicated for the uses we actually have, and
+disucssions for simplifying have come up a number of times.
+
+This small series removes the customizable pfn format and simplifies the
+return code of hmm_range_fault()
+
+All the drivers are adjusted to process in the simplified format.
+I would appreciated tested-by's for the two drivers, thanks!
+
+This passes the hmm tester with the following diff:
+
+diff --git a/lib/test_hmm.c b/lib/test_hmm.c
+index d75e18f2ffd245..a2442efa038c41 100644
+--- a/lib/test_hmm.c
++++ b/lib/test_hmm.c
+@@ -47,23 +47,8 @@ struct dmirror_bounce {
+ 	unsigned long		cpages;
+ };
+ 
+-#define DPT_SHIFT PAGE_SHIFT
+-#define DPT_VALID (1UL << 0)
+-#define DPT_WRITE (1UL << 1)
+-
+ #define DPT_XA_TAG_WRITE 3UL
+ 
+-static const uint64_t dmirror_hmm_flags[HMM_PFN_FLAG_MAX] = {
+-	[HMM_PFN_VALID] = DPT_VALID,
+-	[HMM_PFN_WRITE] = DPT_WRITE,
+-};
+-
+-static const uint64_t dmirror_hmm_values[HMM_PFN_VALUE_MAX] = {
+-	[HMM_PFN_NONE]    = 0,
+-	[HMM_PFN_ERROR]   = 0x10,
+-	[HMM_PFN_SPECIAL] = 0x10,
+-};
+-
+ /*
+  * Data structure to track address ranges and register for mmu interval
+  * notifier updates.
+@@ -175,7 +160,7 @@ static inline struct dmirror_device *dmirror_page_to_device(struct page *page)
+ 
+ static int dmirror_do_fault(struct dmirror *dmirror, struct hmm_range *range)
+ {
+-	uint64_t *pfns = range->pfns;
++	unsigned long *pfns = range->hmm_pfns;
+ 	unsigned long pfn;
+ 
+ 	for (pfn = (range->start >> PAGE_SHIFT);
+@@ -188,15 +173,16 @@ static int dmirror_do_fault(struct dmirror *dmirror, struct hmm_range *range)
+ 		 * Since we asked for hmm_range_fault() to populate pages,
+ 		 * it shouldn't return an error entry on success.
+ 		 */
+-		WARN_ON(*pfns == range->values[HMM_PFN_ERROR]);
++		WARN_ON(*pfns & HMM_PFN_ERROR);
++		WARN_ON(!(*pfns & HMM_PFN_VALID));
+ 
+-		page = hmm_device_entry_to_page(range, *pfns);
++		page = hmm_pfn_to_page(*pfns);
+ 		WARN_ON(!page);
+ 
+ 		entry = page;
+-		if (*pfns & range->flags[HMM_PFN_WRITE])
++		if (*pfns & HMM_PFN_WRITE)
+ 			entry = xa_tag_pointer(entry, DPT_XA_TAG_WRITE);
+-		else if (range->default_flags & range->flags[HMM_PFN_WRITE])
++		else if (WARN_ON(range->default_flags & HMM_PFN_WRITE))
+ 			return -EFAULT;
+ 		entry = xa_store(&dmirror->pt, pfn, entry, GFP_ATOMIC);
+ 		if (xa_is_err(entry))
+@@ -260,8 +246,6 @@ static int dmirror_range_fault(struct dmirror *dmirror,
+ 	int ret;
+ 
+ 	while (true) {
+-		long count;
+-
+ 		if (time_after(jiffies, timeout)) {
+ 			ret = -EBUSY;
+ 			goto out;
+@@ -269,12 +253,11 @@ static int dmirror_range_fault(struct dmirror *dmirror,
+ 
+ 		range->notifier_seq = mmu_interval_read_begin(range->notifier);
+ 		down_read(&mm->mmap_sem);
+-		count = hmm_range_fault(range);
++		ret = hmm_range_fault(range);
+ 		up_read(&mm->mmap_sem);
+-		if (count <= 0) {
+-			if (count == 0 || count == -EBUSY)
++		if (ret) {
++			if (ret == -EBUSY)
+ 				continue;
+-			ret = count;
+ 			goto out;
+ 		}
+ 
+@@ -299,16 +282,13 @@ static int dmirror_fault(struct dmirror *dmirror, unsigned long start,
+ {
+ 	struct mm_struct *mm = dmirror->notifier.mm;
+ 	unsigned long addr;
+-	uint64_t pfns[64];
++	unsigned long pfns[64];
+ 	struct hmm_range range = {
+ 		.notifier = &dmirror->notifier,
+-		.pfns = pfns,
+-		.flags = dmirror_hmm_flags,
+-		.values = dmirror_hmm_values,
+-		.pfn_shift = DPT_SHIFT,
++		.hmm_pfns = pfns,
+ 		.pfn_flags_mask = 0,
+-		.default_flags = dmirror_hmm_flags[HMM_PFN_VALID] |
+-				(write ? dmirror_hmm_flags[HMM_PFN_WRITE] : 0),
++		.default_flags =
++			HMM_PFN_REQ_FAULT | (write ? HMM_PFN_REQ_WRITE : 0),
+ 		.dev_private_owner = dmirror->mdevice,
+ 	};
+ 	int ret = 0;
+@@ -754,19 +734,20 @@ static int dmirror_migrate(struct dmirror *dmirror,
+ }
+ 
+ static void dmirror_mkentry(struct dmirror *dmirror, struct hmm_range *range,
+-			    unsigned char *perm, uint64_t entry)
++			    unsigned char *perm, unsigned long entry)
+ {
+ 	struct page *page;
+ 
+-	if (entry == range->values[HMM_PFN_ERROR]) {
++	if (entry & HMM_PFN_ERROR) {
+ 		*perm = HMM_DMIRROR_PROT_ERROR;
+ 		return;
+ 	}
+-	page = hmm_device_entry_to_page(range, entry);
+-	if (!page) {
++	if (!(entry & HMM_PFN_VALID)) {
+ 		*perm = HMM_DMIRROR_PROT_NONE;
+ 		return;
+ 	}
++
++	page = hmm_pfn_to_page(entry);
+ 	if (is_device_private_page(page)) {
+ 		/* Is the page migrated to this device or some other? */
+ 		if (dmirror->mdevice == dmirror_page_to_device(page))
+@@ -777,7 +758,7 @@ static void dmirror_mkentry(struct dmirror *dmirror, struct hmm_range *range,
+ 		*perm = HMM_DMIRROR_PROT_ZERO;
+ 	else
+ 		*perm = HMM_DMIRROR_PROT_NONE;
+-	if (entry & range->flags[HMM_PFN_WRITE])
++	if (entry & HMM_PFN_WRITE)
+ 		*perm |= HMM_DMIRROR_PROT_WRITE;
+ 	else
+ 		*perm |= HMM_DMIRROR_PROT_READ;
+@@ -832,8 +813,6 @@ static int dmirror_range_snapshot(struct dmirror *dmirror,
+ 		return ret;
+ 
+ 	while (true) {
+-		long count;
+-
+ 		if (time_after(jiffies, timeout)) {
+ 			ret = -EBUSY;
+ 			goto out;
+@@ -842,12 +821,11 @@ static int dmirror_range_snapshot(struct dmirror *dmirror,
+ 		range->notifier_seq = mmu_interval_read_begin(range->notifier);
+ 
+ 		down_read(&mm->mmap_sem);
+-		count = hmm_range_fault(range);
++		ret = hmm_range_fault(range);
+ 		up_read(&mm->mmap_sem);
+-		if (count <= 0) {
+-			if (count == 0 || count == -EBUSY)
++		if (ret) {
++			if (ret == -EBUSY)
+ 				continue;
+-			ret = count;
+ 			goto out;
+ 		}
+ 
+@@ -862,7 +840,7 @@ static int dmirror_range_snapshot(struct dmirror *dmirror,
+ 
+ 	n = (range->end - range->start) >> PAGE_SHIFT;
+ 	for (i = 0; i < n; i++)
+-		dmirror_mkentry(dmirror, range, perm + i, range->pfns[i]);
++		dmirror_mkentry(dmirror, range, perm + i, range->hmm_pfns[i]);
+ 
+ 	mutex_unlock(&dmirror->mutex);
+ out:
+@@ -878,15 +856,11 @@ static int dmirror_snapshot(struct dmirror *dmirror,
+ 	unsigned long size = cmd->npages << PAGE_SHIFT;
+ 	unsigned long addr;
+ 	unsigned long next;
+-	uint64_t pfns[64];
++	unsigned long pfns[64];
+ 	unsigned char perm[64];
+ 	char __user *uptr;
+ 	struct hmm_range range = {
+-		.pfns = pfns,
+-		.flags = dmirror_hmm_flags,
+-		.values = dmirror_hmm_values,
+-		.pfn_shift = DPT_SHIFT,
+-		.pfn_flags_mask = 0,
++		.hmm_pfns = pfns,
+ 		.dev_private_owner = dmirror->mdevice,
+ 	};
+ 	int ret = 0;
+@@ -1097,6 +1071,7 @@ static int dmirror_device_init(struct dmirror_device *mdevice, int id)
+ 	spin_lock_init(&mdevice->lock);
+ 
+ 	cdev_init(&mdevice->cdevice, &dmirror_fops);
++	mdevice->cdevice.owner = THIS_MODULE;
+ 	ret = cdev_add(&mdevice->cdevice, dev, 1);
+ 	if (ret)
+ 		return ret;
+diff --git a/tools/testing/selftests/vm/hmm-tests.c b/tools/testing/selftests/vm/hmm-tests.c
+index 033a12c7ab5b6d..da15471a2bbf9a 100644
+--- a/tools/testing/selftests/vm/hmm-tests.c
++++ b/tools/testing/selftests/vm/hmm-tests.c
+@@ -1274,7 +1274,7 @@ TEST_F(hmm2, snapshot)
+ 	/* Check what the device saw. */
+ 	m = buffer->mirror;
+ 	ASSERT_EQ(m[0], HMM_DMIRROR_PROT_ERROR);
+-	ASSERT_EQ(m[1], HMM_DMIRROR_PROT_NONE);
++	ASSERT_EQ(m[1], HMM_DMIRROR_PROT_ERROR);
+ 	ASSERT_EQ(m[2], HMM_DMIRROR_PROT_ZERO | HMM_DMIRROR_PROT_READ);
+ 	ASSERT_EQ(m[3], HMM_DMIRROR_PROT_READ);
+ 	ASSERT_EQ(m[4], HMM_DMIRROR_PROT_WRITE);
+
+Jason Gunthorpe (5):
+  mm/hmm: make CONFIG_DEVICE_PRIVATE into a select
+  mm/hmm: make hmm_range_fault return 0 or -1
+  drm/amdgpu: remove dead code after hmm_range_fault()
+  mm/hmm: remove HMM_PFN_SPECIAL
+  mm/hmm: remove the customizable pfn format from hmm_range_fault
+
+ Documentation/vm/hmm.rst                |  28 ++--
+ arch/powerpc/Kconfig                    |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  56 +++----
+ drivers/gpu/drm/nouveau/Kconfig         |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_dmem.c  |  60 ++++++--
+ drivers/gpu/drm/nouveau/nouveau_dmem.h  |   4 +-
+ drivers/gpu/drm/nouveau/nouveau_svm.c   |  59 ++++----
+ include/linux/hmm.h                     | 109 +++++---------
+ mm/Kconfig                              |   7 +-
+ mm/hmm.c                                | 185 +++++++++++-------------
+ 10 files changed, 229 insertions(+), 283 deletions(-)
+
+-- 
+2.26.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
