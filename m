@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B63D81B4FE1
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2020 00:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A97E51B4FE5
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2020 00:08:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 082D189E0C;
-	Wed, 22 Apr 2020 22:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E14516E120;
+	Wed, 22 Apr 2020 22:08:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2064.outbound.protection.outlook.com [40.107.92.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACCA989E0C
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 22:08:21 +0000 (UTC)
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700085.outbound.protection.outlook.com [40.107.70.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A621889E0C
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 22:08:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HuTtV8RGnM+F8w/mAemPKi2iQmzupYvdTIvu6vht/0nIZsalmIelesAf1X6iciRHnMKnlGd4eVR9EWvPOl+aK38dmNlm9GjcBVlA6jwdTUC6NG6wuB8guhgUcsjbXVkiKi4lN6ufeXqHeMnPRfZA1xzXJN6FBXHi7rbvEtog1T0aQrx0LmA4E5/Z07ZnLrP/sulN2C3Y5wAKHd8onJ3JeJMWKkcqIdR3EW77kCyHQMdqImT015Gxh8cZOWEYNWnZEM3bH1H9MoWWOXLz84nMlwTS7AKEsgpe7xtlLA+MnDrCjARWbeOI30kUht1pSKGsm+Dcpsevq+ZbijlzRd+t2A==
+ b=ZIG1iX/cwOVqEJVsARKXfhQguoRwuQyH8Vf8ViavYMADrRRHtBy2geJ6mf17+9ZWBJO1cmTTylY73ELTCxG5nT4HHhE6vIXSESrSX10mCoCEfa/el1zLQe2z25ZXz9b1CmIXQdIC6qz5C7/KGbM2urRqicBKU9cdlVQphp4MBFlPOeur0EXxS24W/nKDD/s1njDWgRBJriV5iCnujmq481xezDhmxks9vYzeKr1P6TXJtr5srJPNrMP3sGcTMUAg2Sd/9kD23J4S80fK8GZZ0gJ9yYkSB5Yjipg7bbdDqXFs+/rA96UqWQJDfy3N6UKLyoAbEI2q7X/ot4q7F8g8uw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZmY2npw9nRqey5W+QN3+sjLE7RwokVPDf5fjwFKtUgs=;
- b=k7RWK7IxhxAQ+ITz9dFyD76pGK739B0D9TGyuIiCKWb4yZ3a6ZvkseX30tiyaDpa/oX/pj4QVisjvEclZ6rlJ0o8LqAfGskLvLEAFbpOLSA94KB/gTG4Q99mjLSj1y3Ax8kKgFWozuh1saqGotRv6US9859rRcmQrzIaz4RHHkXLd+C4P0vXzVnfJ08aI4b2gWVElQNY532+7r4EbaE7V9HoIw6sq/6PA3j48FWvD6SRdJKKGcb2+RJ//kGZjSJv7r7+zDiUWnqMqdEYIvyI1xi3RxQbpfALHBeoZm+NR6Tqppjd5tKg8j4oCdopr6zlX79WgY14XQG9b9WXhTn7Gg==
+ bh=MbrkDAi/7MBtnI7Sp38eIFhp2oaGnAJC0zx7+Y5hC40=;
+ b=fKDMRIY7VPJd8E9w0ffHHFJbVBkOZYCicY82xSjVwqJkRoKaQvLsld1yYMsSquqPYuYGRO6LeMEGFON9um0ANmVOkafghJlH9P04lhHnGBgXdYdlKhc+7SyOm0zSNHIiCjij3VuXz4Wg4kDJ3og9CjjDSpAsnpYyITd6FU07faUu7+WY8YZsrRFmVeeZ3MvL4ikB78Q+HCiTp9RJ56oLk6oYwsoveSOcLUGVcUukYa+h852ML7FMWhjzYtL+0xY5Z4m9Ktik61zPvkvur1FhB4Vrnf6D8o7u3HM4ENcu3SEnFdrjK/26zI3RaXaFo+KZPmECHQE2RxugDhEu4VZHtA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,41 +27,44 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZmY2npw9nRqey5W+QN3+sjLE7RwokVPDf5fjwFKtUgs=;
- b=DpokhzbIUw5QuKozepng18usO3vtD8GQP5o3+21ALJoB9h+kRZbjR5AfcsryRqMbTzAbmG0V4h1ecidaB9KUgsBHs88Ou9W0P67T0WdOtSg/HsXaSuZz7smdz/6gDJPZmV3li5L2ld9wDt3rPJI/kH5nvzdeFxkDxaQBM04aaj4=
-Received: from MWHPR1701CA0020.namprd17.prod.outlook.com
- (2603:10b6:301:14::30) by DM5PR12MB1756.namprd12.prod.outlook.com
- (2603:10b6:3:108::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.29; Wed, 22 Apr
- 2020 22:08:20 +0000
-Received: from CO1NAM11FT051.eop-nam11.prod.protection.outlook.com
- (2603:10b6:301:14:cafe::30) by MWHPR1701CA0020.outlook.office365.com
- (2603:10b6:301:14::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.13 via Frontend
- Transport; Wed, 22 Apr 2020 22:08:19 +0000
+ bh=MbrkDAi/7MBtnI7Sp38eIFhp2oaGnAJC0zx7+Y5hC40=;
+ b=QHpWwvchVQLaFc4PzMNslXRb61HfTimiR3XFaB6iOIhz8v21KdMlEoly7caSEU5X7liNXP7jNuwRpG1X/Uty59g0qjoKnpSVoVbd1UATQH7Ndmh4n+3WV0Ix4ig48tt0an2QvSxeu65rqTBIR7Ppv1j446UinlsHScN7XLIeXGk=
+Received: from CO2PR04CA0109.namprd04.prod.outlook.com (2603:10b6:104:7::11)
+ by MWHPR12MB1807.namprd12.prod.outlook.com (2603:10b6:300:113::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.27; Wed, 22 Apr
+ 2020 22:08:22 +0000
+Received: from CO1NAM11FT010.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:104:7:cafe::98) by CO2PR04CA0109.outlook.office365.com
+ (2603:10b6:104:7::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.29 via Frontend
+ Transport; Wed, 22 Apr 2020 22:08:22 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- CO1NAM11FT051.mail.protection.outlook.com (10.13.174.114) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT010.mail.protection.outlook.com (10.13.175.88) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2937.15 via Frontend Transport; Wed, 22 Apr 2020 22:08:19 +0000
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.2937.15 via Frontend Transport; Wed, 22 Apr 2020 22:08:21 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 22 Apr
- 2020 17:08:18 -0500
+ 2020 17:08:19 -0500
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 22 Apr
+ 2020 17:08:19 -0500
 Received: from aes.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Wed, 22 Apr 2020 17:08:17 -0500
+ Transport; Wed, 22 Apr 2020 17:08:18 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/19] drm/amd/display: Fail validation if building scaling
- params fails
-Date: Wed, 22 Apr 2020 18:07:54 -0400
-Message-ID: <20200422220805.15759-9-aurabindo.pillai@amd.com>
+Subject: [PATCH 09/19] drm/amd/display: Change viewport limit to 12 for DCN2
+Date: Wed, 22 Apr 2020 18:07:55 -0400
+Message-ID: <20200422220805.15759-10-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200422220805.15759-1-aurabindo.pillai@amd.com>
 References: <20200422220805.15759-1-aurabindo.pillai@amd.com>
@@ -69,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(10009020)(4636009)(136003)(376002)(39860400002)(396003)(346002)(428003)(46966005)(82310400002)(6916009)(70586007)(70206006)(81156014)(186003)(47076004)(8676002)(4326008)(81166007)(26005)(5660300002)(8936002)(36756003)(7696005)(316002)(356005)(54906003)(86362001)(1076003)(478600001)(336012)(2906002)(426003)(82740400003)(44832011)(6666004)(2616005);
+ SFS:(10009020)(4636009)(376002)(396003)(39860400002)(346002)(136003)(428003)(46966005)(47076004)(2906002)(478600001)(5660300002)(82310400002)(82740400003)(6916009)(70586007)(81166007)(4326008)(356005)(81156014)(8676002)(336012)(26005)(8936002)(2616005)(36756003)(86362001)(54906003)(426003)(44832011)(316002)(6666004)(1076003)(7696005)(70206006)(186003);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 66cb31ce-ec85-4315-ed94-08d7e709aa55
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1756:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB175679CBC2DF408BE9E2D5FE8BD20@DM5PR12MB1756.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1775;
+X-MS-Office365-Filtering-Correlation-Id: 813e3d72-8feb-44c1-5fa1-08d7e709abc2
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1807:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB180767C594AAB01C078558CC8BD20@MWHPR12MB1807.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
 X-Forefront-PRVS: 03818C953D
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4emH+6eyNTvXCeNho5VJ7kzgdQO3OcXQvSSVowJlWiPv0lLNBramTmCGq92mX/kkOSQMn1yCne7G1sM5VQ62JF/0GGYdB5YF1VcTKB2oU5+bgIG2hLwlistfxiesOkT9jUhPXABHUWIKKgNvfVWJ2PXnMrYhQITpHbzFcWAVISSpMRC6hX4aVBBk89RPLHnsxAMTKg0XjjGcOKmCwBVA6mh72qzs5QPqAszRNJBjEBKkwhxSkvJxiAJEONkotdMASbG5mnnaNOYZFFVX/MWY1kjqNfX6QoN79Q9ftoF/qyP9rv2WaM/jDBHTBwsqRNqMVKKh+ano/siQFGIWd2ONbptvLkbfdLqiRdV6Ems1r1Rs2ehhHuyk1Nf7r9Mon/B/DFowbqNUwWXXoDg2QuV78TkFQqKM8l/9zrNRMCPzMBUjesX9nSpIYgQCIej44TZ7eq/DtI1kaNv3lz+zAivwot5mrhJ1e0F4PuZY9m8VeJ+l8Lqyn0gptP7FuW7nVnO/F1YDsRy0byvNQWRzAi9nag==
+X-Microsoft-Antispam-Message-Info: ng6FflbCmUMtQp+6nlBuZtnootISph3d7ye5a3ICz3I49CENUNcj+pCPkKuptJU5JCMjNhM/G/4fh4VC0cXDcGOY0JTthhvog1kPoY82CVqzJGgzsannI35GRym7Naa2FxMuzXN9xXNnOw4eJLrXJ2YcxP6RLp3H5oqAW0AtaOFG7tLBJRgyMgjnA8HxHzbY7RTOODoT/cY6RzUtSNzKXPRfOvd02aiug4IHRqoNxSF9+/J1IZrGPLK2nY5K5RIZzg5JTnCX4yJg01CObDgmWvNhRSis/0uBa6+byx1u/kCjQ29UQ/wfNyLUS43by9asCJi9lKaTK+zbQHn9A7x0QmYf37e1i4tlY1PE8HMEaIRl0VClTeUSlcRyXbpQ8+UhvLen5yeXga3Gnw/EcUk94nJTBQRxZVa2u0GxArTTkO8Nc3w7PUx/7FkfWAGxxhKUKfpTTLPTIkh4oe/ze1d8Y5AEo9DFgfqntT5w0pwyQwkMA8mUsIq+I+FiM+RNFnFdMn1Q0bIkpSTrmvJwfTdPhA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2020 22:08:19.3085 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 66cb31ce-ec85-4315-ed94-08d7e709aa55
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2020 22:08:21.6979 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 813e3d72-8feb-44c1-5fa1-08d7e709abc2
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
+ Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1756
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1807
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,71 +114,32 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Sung Lee <sung.lee@amd.com>
 
 [WHY & HOW]
-If building scaling parameters fails, validation
-should also fail.
+Viewport limit was set to 16 pixels due to an issue with MPO
+on small viewports. This restriction does not apply and the
+viewport limit can now be lowered.
 
 Signed-off-by: Sung Lee <sung.lee@amd.com>
 Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../drm/amd/display/dc/dcn20/dcn20_resource.c    | 16 ++++++++++------
- .../drm/amd/display/dc/dcn20/dcn20_resource.h    |  2 +-
- 2 files changed, 11 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index f41fc322d50a..3a8a4c54738a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -1936,7 +1936,7 @@ bool dcn20_split_stream_for_odm(
- 	return true;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 12f5c6881cd0..1a01c038632b 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -1064,8 +1064,8 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
  
--void dcn20_split_stream_for_mpc(
-+bool dcn20_split_stream_for_mpc(
- 		struct resource_context *res_ctx,
- 		const struct resource_pool *pool,
- 		struct pipe_ctx *primary_pipe,
-@@ -1965,8 +1965,11 @@ void dcn20_split_stream_for_mpc(
- 	secondary_pipe->top_pipe = primary_pipe;
+ 	calculate_viewport(pipe_ctx);
  
- 	ASSERT(primary_pipe->plane_state);
--	resource_build_scaling_params(primary_pipe);
--	resource_build_scaling_params(secondary_pipe);
-+	if (!resource_build_scaling_params(primary_pipe) ||
-+			!resource_build_scaling_params(secondary_pipe))
-+		return false;
-+
-+	return true;
- }
- 
- void dcn20_populate_dml_writeback_from_context(
-@@ -2796,9 +2799,10 @@ bool dcn20_fast_validate_bw(
- 						goto validate_fail;
- 					dcn20_build_mapped_resource(dc, context, pipe->stream);
- 				} else
--					dcn20_split_stream_for_mpc(
--						&context->res_ctx, dc->res_pool,
--						pipe, hsplit_pipe);
-+					if (!dcn20_split_stream_for_mpc(
-+							&context->res_ctx, dc->res_pool,
-+							pipe, hsplit_pipe))
-+						goto validate_fail;
- 				pipe_split_from[hsplit_pipe->pipe_idx] = pipe_idx;
- 			}
- 		} else if (hsplit_pipe && hsplit_pipe->plane_state == pipe->plane_state) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-index 9d5bff9455fd..578265ccbf5b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-@@ -129,7 +129,7 @@ void dcn20_release_dsc(struct resource_context *res_ctx,
- 			const struct resource_pool *pool,
- 			struct display_stream_compressor **dsc);
- bool dcn20_validate_dsc(struct dc *dc, struct dc_state *new_ctx);
--void dcn20_split_stream_for_mpc(
-+bool dcn20_split_stream_for_mpc(
- 		struct resource_context *res_ctx,
- 		const struct resource_pool *pool,
- 		struct pipe_ctx *primary_pipe,
+-	if (pipe_ctx->plane_res.scl_data.viewport.height < 16 ||
+-		pipe_ctx->plane_res.scl_data.viewport.width < 16) {
++	if (pipe_ctx->plane_res.scl_data.viewport.height < 12 ||
++		pipe_ctx->plane_res.scl_data.viewport.width < 12) {
+ 		if (store_h_border_left) {
+ 			restore_border_left_from_dst(pipe_ctx,
+ 				store_h_border_left);
 -- 
 2.17.1
 
