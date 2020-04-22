@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 190C51B4FE9
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2020 00:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D002D1B4FEC
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2020 00:08:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6293A89FCA;
-	Wed, 22 Apr 2020 22:08:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AEBC6E13C;
+	Wed, 22 Apr 2020 22:08:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2058.outbound.protection.outlook.com [40.107.94.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35ECB6E12A
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 22:08:31 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770040.outbound.protection.outlook.com [40.107.77.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C0176E12E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2020 22:08:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ntqsMKO/O+/yR8YvCT4NsxGgnwZnUuG6ddMZLROLNBstwL/eLBYaLJj3hIHmFU9jg4ZVzTkX/IiYGTke1Y7zXD89ogcXJHA7oPqdug5Por95uSqQ9oGntsNo45uWSOMZckjwmKXBky1lptDhbqRf3ZK8pfTF3jnbdAWqiSpmY5o4Mj2WUWYZnprWfy8ZvF1Ifv6xGFdPkgUTmS+6s8JUWVorP3AhQzaSCtHQpazp81j+mKMI6KcuQpo19m0VthAYZb451F7Fn3S7gav2Y+TIBHevoBjcWBCPrp8GMTqEKOH7VGBoF5YLpm11nsC8jeKlz43zPJwQyh4l2FgiWZRCLw==
+ b=YX/il9ZTAqX78ofD/oNrqxPPrTvqlOnTLesI6mUENpY/pKUWv/y+7j7pZGUtxwXik5fLO3b7Hv5CLqw7rBkmYCBakeRsqnXbT8fkCeaW/0/nhPb7O7mVEOL+Lgdd06iIym6cAEuABazp10XFPGTBZhWX+C7GWezVPmNoe2ZhV2/PiYPge59Js3n1zcAMTzs3hLnZfSqIL5694ki7S3x0aEyBmh0ofXnWy+ubHQTqkd2k7RUetKygTCnU+1XWY7XBiaRB6e7aniKi/gPJh+oLPAhNeUUcpTLRw5Y7zy+zeNs/Ii35/nNcDLHB1PdPKnZU1lXHKRitz/xAJZS9s3qsgA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gUnZXmITy+Oi8AQTlTS4pxADenp8O6AjgvhlBhuUQ+c=;
- b=QqCLINoQca1jXtdKo4sNHew3KGhd3YZyQkuLbz6Mk7CQkJUPttMhBpfSaBfGC9/b7aR5z5ZlA+TSn1nFx7E8Njn8WttXT9pZwW+ILaDlHJp7lRYy2d3cNrFwYm7KsS2mUsI0Utz/sSe5k9KMME1UB4YwxcaLz0hJhVOI95QGbJf5QUztMaHUf1SpAkAHMb/yqFzuYwFl8rGfQlGX7l5qVoUSwt468FPnz+6yF1cc53zvzkgm+9VgoSX75SDY2OVJAaha80+NC8ZZG9Mr9wbTkjoZgWNtksl9pLgV9wyexZHsbTlIxlHFrXEgcGf3LIRomjB9SSBw7Ci0LsPcpQwkDQ==
+ bh=ryfQqJb32/IvfhObhHesH+qmMZozJRVv9QcaVbWZVKc=;
+ b=TdHdMf1nGjufkq+E863i7qzxBCDLnayvYXYsts50+NOIGkYkPKd9526P59ye/g8QMkX7kH6l53cT2d4VCcXjKBNITExtZAEhDw6VCe9hQMhL3UOWTgM1zhkby7vUP0U3sDAu+eVfqCoklIkoKpXYzo6cJlMgSTlYyLNrC83hGw0kNJCOYcc6pccEnsFbclYOyXGcfn+amBYiF2nZsaQmZIE3IDR+nYO6aOmxrDl/CIpmgdiNs3C50+cE9JhoKLj1XnrRguYPB/2SRMqVmudFvzxjrZb8hL+Ni0KVF9do1ZOKilGOpivcFyRxuoT3Yt6EMbHuTFskPZQSn46RNAEdCQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gUnZXmITy+Oi8AQTlTS4pxADenp8O6AjgvhlBhuUQ+c=;
- b=0SQV6tEHPZb79V+9paLInXA/+bIkIPaK+1YwTW1EgefRef3gMRw3I/FthSnEu48nTssuzXUxO6aL+rdLkHYL5Sf/3syic5eI+mLhBkoFk1VKMo4DXDvJYbj292OFgpvCb05jM4/BFxkCCJCYIC6UM7NPkBW73Roc7ve7kcxn5rI=
-Received: from MWHPR20CA0017.namprd20.prod.outlook.com (2603:10b6:300:13d::27)
- by SN6PR12MB2623.namprd12.prod.outlook.com (2603:10b6:805:6f::12)
+ bh=ryfQqJb32/IvfhObhHesH+qmMZozJRVv9QcaVbWZVKc=;
+ b=LINOgAwX1c6LapuV3necgW0m2w5gAVvhnkBoGgLGy58adICiYoQ8sI57BJBg7p84BvT0O7sLPJI51/siaFW9lJKXC0qOyzlr7L24osk7qepDVXTHLq7mwXVHDPBz8b8DppE5j74nxIr42aplUAjyk/isKAgtl9+L+oKN2+WSQxw=
+Received: from MWHPR20CA0014.namprd20.prod.outlook.com (2603:10b6:300:13d::24)
+ by CY4PR1201MB0230.namprd12.prod.outlook.com (2603:10b6:910:1e::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.27; Wed, 22 Apr
- 2020 22:08:30 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25; Wed, 22 Apr
+ 2020 22:08:31 +0000
 Received: from CO1NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:13d:cafe::f0) by MWHPR20CA0017.outlook.office365.com
- (2603:10b6:300:13d::27) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:300:13d:cafe::7c) by MWHPR20CA0014.outlook.office365.com
+ (2603:10b6:300:13d::24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.13 via Frontend
- Transport; Wed, 22 Apr 2020 22:08:30 +0000
+ Transport; Wed, 22 Apr 2020 22:08:31 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -48,23 +48,24 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
  CO1NAM11FT031.mail.protection.outlook.com (10.13.174.118) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2937.15 via Frontend Transport; Wed, 22 Apr 2020 22:08:29 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB02.amd.com
+ 15.20.2937.15 via Frontend Transport; Wed, 22 Apr 2020 22:08:30 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 22 Apr
- 2020 17:08:28 -0500
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 17:08:29 -0500
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 22 Apr
- 2020 17:08:28 -0500
+ 2020 17:08:29 -0500
 Received: from aes.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Wed, 22 Apr 2020 17:08:26 -0500
+ Transport; Wed, 22 Apr 2020 17:08:28 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 15/19] drm/amd/display: Add set backlight to hw sequencer.
-Date: Wed, 22 Apr 2020 18:08:01 -0400
-Message-ID: <20200422220805.15759-16-aurabindo.pillai@amd.com>
+Subject: [PATCH 16/19] drm/amd/display: Internal refactoring to abstract color
+ caps
+Date: Wed, 22 Apr 2020 18:08:02 -0400
+Message-ID: <20200422220805.15759-17-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200422220805.15759-1-aurabindo.pillai@amd.com>
 References: <20200422220805.15759-1-aurabindo.pillai@amd.com>
@@ -74,25 +75,25 @@ X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(10009020)(4636009)(39860400002)(136003)(376002)(396003)(346002)(428003)(46966005)(8936002)(81166007)(6916009)(336012)(186003)(316002)(44832011)(54906003)(70586007)(70206006)(2616005)(47076004)(6666004)(82310400002)(8676002)(478600001)(426003)(26005)(7696005)(1076003)(36756003)(4326008)(5660300002)(81156014)(82740400003)(86362001)(2906002)(356005);
+ SFS:(10009020)(4636009)(376002)(39860400002)(136003)(346002)(396003)(428003)(46966005)(478600001)(70586007)(44832011)(6666004)(7696005)(2906002)(82310400002)(81166007)(336012)(426003)(70206006)(36756003)(81156014)(8936002)(26005)(6916009)(316002)(47076004)(356005)(30864003)(82740400003)(54906003)(1076003)(4326008)(186003)(5660300002)(8676002)(2616005)(86362001);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d95d587e-e3d4-48ef-07de-08d7e709b04b
-X-MS-TrafficTypeDiagnostic: SN6PR12MB2623:
-X-Microsoft-Antispam-PRVS: <SN6PR12MB2623855A7578ED7F624536438BD20@SN6PR12MB2623.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-MS-Office365-Filtering-Correlation-Id: 07261971-bf07-4557-3018-08d7e709b102
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0230:
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB02304D0F699E77E102DCB9DB8BD20@CY4PR1201MB0230.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-Forefront-PRVS: 03818C953D
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hpGCRveoA7KxIGDB4PZO9qg/UcaDfRem7Wlk+cTP50aLe4rOfs6LmHQRZS558wWqenAT2522f3JdkgE7Zu4fJBKMpLAov6AQEa3ksmUFEdNXGckBMbkldViR1j91eSmKaz07tf5VbwdHDE1CF5dRBLWQCM7xCiQWowftewYkSzQPKkmlx/YdCeuLIyP8kmp0dWBk3hD2uquIb9wWRUCu9ZzhgFmoHU/hvkGttJBKIXNZtbK26YLVZH5BJZkM+NdFqugXNXO+BdQFwwiXCPxJhMDcPVIDvSKLZaRubFyUaX6yEJMOIYr2ZoFMxzTmOnaNzQHmLY+NdSIev3szwMiucqCwLuFBcWZ2EGvilzskr3YEu7jmoY37t6lJ/dVzJ7+7Eq42QHr2UiNHW87akswtSeOE+RuhQ6K+DOrWNkwlgOJbKLFLGRZxiWfXAkN/nhMCXUK/nXk29Gu2l9ryOmLDsbfpAlEAfadka4UmkeIar1ZGDhC+NC4kyO8mJp85K3+d8VgbahFaw8Pj9iP3Mxn7Fg==
+X-Microsoft-Antispam-Message-Info: tXN07I1N8cokGs20FW2lrjrkIF1FQWGDf1A4t/YKY3+iiFXr+AhThCi4R4CsQ+JHRcRVv9jV9pRiZKg2S1WipIglGYvfPXvk/y4zUNopngh/ZDdfnc3P64JHuVTeogSO/WIfqBxjk5DyqBcM8vMBHJggbQURz/CM0ceqKsqouecCtWYWWzgBClAaY5ZVp4htIsxfC5dgqW35IS/pvZimAVhL54wLaF+heOxLO8VdD3zD9nSol3YuHQ5GJqeWYfpXwfyu9DZdKIMo6X4TTPMImXcrGoVmUBE2SCdGX2TJ7yKivOFFGMpoV1yEaFH57VPRRxLCHGlB3ugaMmC3vJR+8vGNuFDDzTT1NNbbXo/Fo6OaGdt+bLIsDoC2IDi9so+lmgLpynQXz+AsgbxJO+THywIcf7X1RKo/GLrzvv7DKFJGBKUHekGS17sR3iKwylyF0egupyy4ViOngeeLIK9lIFiXuyI8GxQ/uDV8yCVep1MLlt4GLJFVy10eSHpkpGon7IIBOajUaF2qToIjumli6g==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2020 22:08:29.3064 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d95d587e-e3d4-48ef-07de-08d7e709b04b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2020 22:08:30.5067 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07261971-bf07-4557-3018-08d7e709b102
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2623
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0230
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,213 +106,351 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Rodrigo.Siqueira@amd.com,
- Harry.Wentland@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>
+ Harry.Wentland@amd.com, Krunoslav Kovac <Krunoslav.Kovac@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yongqiang Sun <yongqiang.sun@amd.com>
+From: Krunoslav Kovac <Krunoslav.Kovac@amd.com>
 
-[Why & How]
-Add set backlight to hw sequencer, dmu communication will
-be handled in hw sequencer for new asics.
+[Why&How]
+modules/color calculates various colour operations which are translated
+to abstracted HW. DCE 5-12 had almost no important changes, but
+starting with DCN1, every new generation comes with fairly major
+differences in color pipeline.
+We would hack it with some DCN checks, but a better approach is to
+abstract color pipe capabilities so modules/DM can decide mapping to
+HW block based on logical capabilities,
 
-Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Signed-off-by: Krunoslav Kovac <Krunoslav.Kovac@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+Acked-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 35 ++++++-------------
- .../display/dc/dce110/dce110_hw_sequencer.c   | 34 +++++++++++++++++-
- .../display/dc/dce110/dce110_hw_sequencer.h   |  4 +++
- .../gpu/drm/amd/display/dc/dcn10/dcn10_init.c |  1 +
- .../gpu/drm/amd/display/dc/dcn20/dcn20_init.c |  1 +
- .../gpu/drm/amd/display/dc/dcn21/dcn21_init.c |  1 +
- .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |  4 +++
- 7 files changed, 55 insertions(+), 25 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  7 +--
+ drivers/gpu/drm/amd/display/dc/dc.h           | 45 ++++++++++++++++++-
+ .../drm/amd/display/dc/dcn10/dcn10_resource.c | 34 ++++++++++++++
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c | 35 ++++++++++++++-
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c | 35 ++++++++++++++-
+ .../amd/display/modules/color/color_gamma.c   | 31 ++++++++++---
+ .../amd/display/modules/color/color_gamma.h   |  4 +-
+ 7 files changed, 178 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index a54b3e05f66b..67c5342cf89a 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -2509,35 +2509,21 @@ bool dc_link_set_backlight_level(const struct dc_link *link,
- 		uint32_t frame_ramp)
- {
- 	struct dc  *dc = link->ctx->dc;
--	struct abm *abm = get_abm_from_stream_res(link);
--	struct dmcu *dmcu = dc->res_pool->dmcu;
--	unsigned int controller_id = 0;
--	bool fw_set_brightness = true;
- 	int i;
--	DC_LOGGER_INIT(link->ctx->logger);
--
--	if (abm == NULL || (abm->funcs->set_backlight_level_pwm == NULL))
--		return false;
--
--	if (dmcu)
--		fw_set_brightness = dmcu->funcs->is_dmcu_initialized(dmcu);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+index 838f35668f12..4dfb6b55bb2e 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+@@ -239,7 +239,8 @@ static int __set_output_tf(struct dc_transfer_func *func,
+ 		 * instead to simulate this.
+ 		 */
+ 		gamma->type = GAMMA_CUSTOM;
+-		res = mod_color_calculate_degamma_params(func, gamma, true);
++		res = mod_color_calculate_degamma_params(NULL, func,
++							gamma, true);
+ 	} else {
+ 		/*
+ 		 * Assume sRGB. The actual mapping will depend on whether the
+@@ -271,7 +272,7 @@ static int __set_input_tf(struct dc_transfer_func *func,
  
-+	DC_LOGGER_INIT(link->ctx->logger);
- 	DC_LOG_BACKLIGHT("New Backlight level: %d (0x%X)\n",
- 			backlight_pwm_u16_16, backlight_pwm_u16_16);
+ 	__drm_lut_to_dc_gamma(lut, gamma, false);
  
- 	if (dc_is_embedded_signal(link->connector_signal)) {
-+		struct pipe_ctx *pipe_ctx = NULL;
+-	res = mod_color_calculate_degamma_params(func, gamma, true);
++	res = mod_color_calculate_degamma_params(NULL, func, gamma, true);
+ 	dc_gamma_release(&gamma);
+ 
+ 	return res ? 0 : -ENOMEM;
+@@ -485,7 +486,7 @@ int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
+ 		dc_plane_state->in_transfer_func->tf = tf;
+ 
+ 		if (tf != TRANSFER_FUNCTION_SRGB &&
+-		    !mod_color_calculate_degamma_params(
++		    !mod_color_calculate_degamma_params(NULL,
+ 			    dc_plane_state->in_transfer_func, NULL, false))
+ 			return -ENOMEM;
+ 	} else {
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 99c8e40049e6..b4aeb5d8a818 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -98,6 +98,49 @@ struct dc_plane_cap {
+ 	} max_downscale_factor;
+ };
+ 
++// Color management caps (DPP and MPC)
++struct rom_curve_caps {
++	uint16_t srgb : 1;
++	uint16_t bt2020 : 1;
++	uint16_t gamma2_2 : 1;
++	uint16_t pq : 1;
++	uint16_t hlg : 1;
++};
 +
- 		for (i = 0; i < MAX_PIPES; i++) {
- 			if (dc->current_state->res_ctx.pipe_ctx[i].stream) {
- 				if (dc->current_state->res_ctx.
- 						pipe_ctx[i].stream->link
- 						== link) {
--					/* DMCU -1 for all controller id values,
--					 * therefore +1 here
--					 */
--					controller_id =
--						dc->current_state->
--						res_ctx.pipe_ctx[i].stream_res.tg->inst +
--						1;
-+					pipe_ctx = &dc->current_state->res_ctx.pipe_ctx[i];
- 
- 					/* Disable brightness ramping when the display is blanked
- 					 * as it can hang the DMCU
-@@ -2547,13 +2533,14 @@ bool dc_link_set_backlight_level(const struct dc_link *link,
- 				}
- 			}
- 		}
--		abm->funcs->set_backlight_level_pwm(
--				abm,
++struct dpp_color_caps {
++	uint16_t dcn_arch : 1; // all DCE generations treated the same
++	// input lut is different than most LUTs, just plain 256-entry lookup
++	uint16_t input_lut_shared : 1; // shared with DGAM
++	uint16_t icsc : 1;
++	uint16_t dgam_ram : 1;
++	uint16_t post_csc : 1; // before gamut remap
++	uint16_t gamma_corr : 1;
 +
-+		if (pipe_ctx == NULL)
-+			ASSERT(false);
++	// hdr_mult and gamut remap always available in DPP (in that order)
++	// 3d lut implies shaper LUT,
++	// it may be shared with MPC - check MPC:shared_3d_lut flag
++	uint16_t hw_3d_lut : 1;
++	uint16_t ogam_ram : 1; // blnd gam
++	uint16_t ocsc : 1;
++	struct rom_curve_caps dgam_rom_caps;
++	struct rom_curve_caps ogam_rom_caps;
++};
 +
-+		dc->hwss.set_backlight_level(
-+				pipe_ctx,
- 				backlight_pwm_u16_16,
--				frame_ramp,
--				controller_id,
--				link->panel_cntl->inst,
--				fw_set_brightness);
-+				frame_ramp);
- 	}
++struct mpc_color_caps {
++	uint16_t gamut_remap : 1;
++	uint16_t ogam_ram : 1;
++	uint16_t ocsc : 1;
++	uint16_t num_3dluts : 3; //3d lut always assumes a preceding shaper LUT
++	uint16_t shared_3d_lut:1; //can be in either DPP or MPC, but single instance
++
++	struct rom_curve_caps ogam_rom_caps;
++};
++
++struct dc_color_caps {
++	struct dpp_color_caps dpp;
++	struct mpc_color_caps mpc;
++};
++
+ struct dc_caps {
+ 	uint32_t max_streams;
+ 	uint32_t max_links;
+@@ -120,9 +163,9 @@ struct dc_caps {
+ 	bool psp_setup_panel_mode;
+ 	bool extended_aux_timeout_support;
+ 	bool dmcub_support;
+-	bool hw_3d_lut;
+ 	enum dp_protocol_version max_dp_protocol_version;
+ 	struct dc_plane_cap planes[MAX_PLANES];
++	struct dc_color_caps color;
+ };
  
- 	return true;
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-index 9cd130c8894a..30469026c642 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-@@ -2714,6 +2714,37 @@ void dce110_set_cursor_attribute(struct pipe_ctx *pipe_ctx)
- 				pipe_ctx->plane_res.xfm, attributes);
+ struct dc_bug_wa {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+index 43116749af9f..6d506c37fc71 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+@@ -1384,6 +1384,40 @@ static bool dcn10_resource_construct(
+ 	/* Raven DP PHY HBR2 eye diagram pattern is not stable. Use TP4 */
+ 	dc->caps.force_dp_tps4_for_cp2520 = true;
+ 
++	/* Color pipeline capabilities */
++	dc->caps.color.dpp.dcn_arch = 1;
++	dc->caps.color.dpp.input_lut_shared = 1;
++	dc->caps.color.dpp.icsc = 1;
++	dc->caps.color.dpp.dgam_ram = 1;
++	dc->caps.color.dpp.dgam_rom_caps.srgb = 1;
++	dc->caps.color.dpp.dgam_rom_caps.bt2020 = 1;
++	dc->caps.color.dpp.dgam_rom_caps.gamma2_2 = 0;
++	dc->caps.color.dpp.dgam_rom_caps.pq = 0;
++	dc->caps.color.dpp.dgam_rom_caps.hlg = 0;
++	dc->caps.color.dpp.post_csc = 0;
++	dc->caps.color.dpp.gamma_corr = 0;
++
++	dc->caps.color.dpp.hw_3d_lut = 0;
++	dc->caps.color.dpp.ogam_ram = 1; // RGAM on DCN1
++	dc->caps.color.dpp.ogam_rom_caps.srgb = 1;
++	dc->caps.color.dpp.ogam_rom_caps.bt2020 = 1;
++	dc->caps.color.dpp.ogam_rom_caps.gamma2_2 = 0;
++	dc->caps.color.dpp.ogam_rom_caps.pq = 0;
++	dc->caps.color.dpp.ogam_rom_caps.hlg = 0;
++	dc->caps.color.dpp.ocsc = 1;
++
++	/* no post-blend color operations */
++	dc->caps.color.mpc.gamut_remap = 0;
++	dc->caps.color.mpc.num_3dluts = 0;
++	dc->caps.color.mpc.shared_3d_lut = 0;
++	dc->caps.color.mpc.ogam_ram = 0;
++	dc->caps.color.mpc.ogam_rom_caps.srgb = 0;
++	dc->caps.color.mpc.ogam_rom_caps.bt2020 = 0;
++	dc->caps.color.mpc.ogam_rom_caps.gamma2_2 = 0;
++	dc->caps.color.mpc.ogam_rom_caps.pq = 0;
++	dc->caps.color.mpc.ogam_rom_caps.hlg = 0;
++	dc->caps.color.mpc.ocsc = 0;
++
+ 	if (dc->ctx->dce_environment == DCE_ENV_PRODUCTION_DRV)
+ 		dc->debug = debug_defaults_drv;
+ 	else
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index b7e4d0c2432c..f04d0872a8ed 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -3709,9 +3709,42 @@ static bool dcn20_resource_construct(
+ 	dc->caps.max_slave_planes = 1;
+ 	dc->caps.post_blend_color_processing = true;
+ 	dc->caps.force_dp_tps4_for_cp2520 = true;
+-	dc->caps.hw_3d_lut = true;
+ 	dc->caps.extended_aux_timeout_support = true;
+ 
++	/* Color pipeline capabilities */
++	dc->caps.color.dpp.dcn_arch = 1;
++	dc->caps.color.dpp.input_lut_shared = 0;
++	dc->caps.color.dpp.icsc = 1;
++	dc->caps.color.dpp.dgam_ram = 1;
++	dc->caps.color.dpp.dgam_rom_caps.srgb = 1;
++	dc->caps.color.dpp.dgam_rom_caps.bt2020 = 1;
++	dc->caps.color.dpp.dgam_rom_caps.gamma2_2 = 0;
++	dc->caps.color.dpp.dgam_rom_caps.pq = 0;
++	dc->caps.color.dpp.dgam_rom_caps.hlg = 0;
++	dc->caps.color.dpp.post_csc = 0;
++	dc->caps.color.dpp.gamma_corr = 0;
++
++	dc->caps.color.dpp.hw_3d_lut = 1;
++	dc->caps.color.dpp.ogam_ram = 1;
++	// no OGAM ROM on DCN2, only MPC ROM
++	dc->caps.color.dpp.ogam_rom_caps.srgb = 0;
++	dc->caps.color.dpp.ogam_rom_caps.bt2020 = 0;
++	dc->caps.color.dpp.ogam_rom_caps.gamma2_2 = 0;
++	dc->caps.color.dpp.ogam_rom_caps.pq = 0;
++	dc->caps.color.dpp.ogam_rom_caps.hlg = 0;
++	dc->caps.color.dpp.ocsc = 0;
++
++	dc->caps.color.mpc.gamut_remap = 0;
++	dc->caps.color.mpc.num_3dluts = 0;
++	dc->caps.color.mpc.shared_3d_lut = 0;
++	dc->caps.color.mpc.ogam_ram = 1;
++	dc->caps.color.mpc.ogam_rom_caps.srgb = 0;
++	dc->caps.color.mpc.ogam_rom_caps.bt2020 = 0;
++	dc->caps.color.mpc.ogam_rom_caps.gamma2_2 = 0;
++	dc->caps.color.mpc.ogam_rom_caps.pq = 0;
++	dc->caps.color.mpc.ogam_rom_caps.hlg = 0;
++	dc->caps.color.mpc.ocsc = 1;
++
+ 	if (dc->ctx->dce_environment == DCE_ENV_PRODUCTION_DRV) {
+ 		dc->debug = debug_defaults_drv;
+ 	} else if (dc->ctx->dce_environment == DCE_ENV_FPGA_MAXIMUS) {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+index 802372f09dc7..d771fe1e2c4e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+@@ -1798,7 +1798,6 @@ static bool dcn21_resource_construct(
+ 	dc->caps.i2c_speed_in_khz = 100;
+ 	dc->caps.max_cursor_size = 256;
+ 	dc->caps.dmdata_alloc_size = 2048;
+-	dc->caps.hw_3d_lut = true;
+ 
+ 	dc->caps.max_slave_planes = 1;
+ 	dc->caps.post_blend_color_processing = true;
+@@ -1807,6 +1806,40 @@ static bool dcn21_resource_construct(
+ 	dc->caps.dmcub_support = true;
+ 	dc->caps.is_apu = true;
+ 
++	/* Color pipeline capabilities */
++	dc->caps.color.dpp.dcn_arch = 1;
++	dc->caps.color.dpp.input_lut_shared = 0;
++	dc->caps.color.dpp.icsc = 1;
++	dc->caps.color.dpp.dgam_ram = 1;
++	dc->caps.color.dpp.dgam_rom_caps.srgb = 1;
++	dc->caps.color.dpp.dgam_rom_caps.bt2020 = 1;
++	dc->caps.color.dpp.dgam_rom_caps.gamma2_2 = 0;
++	dc->caps.color.dpp.dgam_rom_caps.pq = 0;
++	dc->caps.color.dpp.dgam_rom_caps.hlg = 0;
++	dc->caps.color.dpp.post_csc = 0;
++	dc->caps.color.dpp.gamma_corr = 0;
++
++	dc->caps.color.dpp.hw_3d_lut = 1;
++	dc->caps.color.dpp.ogam_ram = 1;
++	// no OGAM ROM on DCN2
++	dc->caps.color.dpp.ogam_rom_caps.srgb = 0;
++	dc->caps.color.dpp.ogam_rom_caps.bt2020 = 0;
++	dc->caps.color.dpp.ogam_rom_caps.gamma2_2 = 0;
++	dc->caps.color.dpp.ogam_rom_caps.pq = 0;
++	dc->caps.color.dpp.ogam_rom_caps.hlg = 0;
++	dc->caps.color.dpp.ocsc = 0;
++
++	dc->caps.color.mpc.gamut_remap = 0;
++	dc->caps.color.mpc.num_3dluts = 0;
++	dc->caps.color.mpc.shared_3d_lut = 0;
++	dc->caps.color.mpc.ogam_ram = 1;
++	dc->caps.color.mpc.ogam_rom_caps.srgb = 0;
++	dc->caps.color.mpc.ogam_rom_caps.bt2020 = 0;
++	dc->caps.color.mpc.ogam_rom_caps.gamma2_2 = 0;
++	dc->caps.color.mpc.ogam_rom_caps.pq = 0;
++	dc->caps.color.mpc.ogam_rom_caps.hlg = 0;
++	dc->caps.color.mpc.ocsc = 1;
++
+ 	if (dc->ctx->dce_environment == DCE_ENV_PRODUCTION_DRV)
+ 		dc->debug = debug_defaults_drv;
+ 	else if (dc->ctx->dce_environment == DCE_ENV_FPGA_MAXIMUS) {
+diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+index d47253cdcc4e..9431b48aecb4 100644
+--- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
++++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+@@ -1782,7 +1782,8 @@ bool calculate_user_regamma_ramp(struct dc_transfer_func *output_tf,
+ 	return ret;
  }
  
-+bool dce110_set_backlight_level(struct pipe_ctx *pipe_ctx,
-+		uint32_t backlight_pwm_u16_16,
-+		uint32_t frame_ramp)
-+{
-+	struct dc_link *link = pipe_ctx->stream->link;
-+	struct dc  *dc = link->ctx->dc;
-+	struct abm *abm = pipe_ctx->stream_res.abm;
-+	struct dmcu *dmcu = dc->res_pool->dmcu;
-+	bool fw_set_brightness = true;
-+	/* DMCU -1 for all controller id values,
-+	 * therefore +1 here
-+	 */
-+	uint32_t controller_id = pipe_ctx->stream_res.tg->inst + 1;
+-bool mod_color_calculate_degamma_params(struct dc_transfer_func *input_tf,
++bool mod_color_calculate_degamma_params(struct dc_color_caps *dc_caps,
++		struct dc_transfer_func *input_tf,
+ 		const struct dc_gamma *ramp, bool mapUserRamp)
+ {
+ 	struct dc_transfer_func_distributed_points *tf_pts = &input_tf->tf_pts;
+@@ -1801,11 +1802,29 @@ bool mod_color_calculate_degamma_params(struct dc_transfer_func *input_tf,
+ 	/* we can use hardcoded curve for plain SRGB TF
+ 	 * If linear, it's bypass if on user ramp
+ 	 */
+-	if (input_tf->type == TF_TYPE_PREDEFINED &&
+-			(input_tf->tf == TRANSFER_FUNCTION_SRGB ||
+-					input_tf->tf == TRANSFER_FUNCTION_LINEAR) &&
+-					!mapUserRamp)
+-		return true;
++	if (input_tf->type == TF_TYPE_PREDEFINED) {
++		if ((input_tf->tf == TRANSFER_FUNCTION_SRGB ||
++				input_tf->tf == TRANSFER_FUNCTION_LINEAR) &&
++				!mapUserRamp)
++			return true;
 +
-+	if (abm == NULL || (abm->funcs->set_backlight_level_pwm == NULL))
-+		return false;
++		if (dc_caps != NULL &&
++			dc_caps->dpp.dcn_arch == 1) {
 +
-+	if (dmcu)
-+		fw_set_brightness = dmcu->funcs->is_dmcu_initialized(dmcu);
++			if (input_tf->tf == TRANSFER_FUNCTION_PQ &&
++					dc_caps->dpp.dgam_rom_caps.pq == 1)
++				return true;
 +
-+	abm->funcs->set_backlight_level_pwm(
-+			abm,
-+			backlight_pwm_u16_16,
-+			frame_ramp,
-+			controller_id,
-+			link->panel_cntl->inst,
-+			fw_set_brightness);
++			if (input_tf->tf == TRANSFER_FUNCTION_GAMMA22 &&
++					dc_caps->dpp.dgam_rom_caps.gamma2_2 == 1)
++				return true;
 +
-+	return true;
-+}
-+
- static const struct hw_sequencer_funcs dce110_funcs = {
- 	.program_gamut_remap = program_gamut_remap,
- 	.program_output_csc = program_output_csc,
-@@ -2747,7 +2778,8 @@ static const struct hw_sequencer_funcs dce110_funcs = {
- 	.edp_power_control = dce110_edp_power_control,
- 	.edp_wait_for_hpd_ready = dce110_edp_wait_for_hpd_ready,
- 	.set_cursor_position = dce110_set_cursor_position,
--	.set_cursor_attribute = dce110_set_cursor_attribute
-+	.set_cursor_attribute = dce110_set_cursor_attribute,
-+	.set_backlight_level = dce110_set_backlight_level,
- };
++			// HLG OOTF not accounted for
++			if (input_tf->tf == TRANSFER_FUNCTION_HLG &&
++					dc_caps->dpp.dgam_rom_caps.hlg == 1)
++				return true;
++		}
++	}
  
- static const struct hwseq_private_funcs dce110_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.h
-index 26a9c14a58b1..e609a72b4634 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.h
-@@ -85,5 +85,9 @@ void dce110_edp_wait_for_hpd_ready(
- 		struct dc_link *link,
- 		bool power_up);
+ 	input_tf->type = TF_TYPE_DISTRIBUTED_POINTS;
  
-+bool dce110_set_backlight_level(struct pipe_ctx *pipe_ctx,
-+		uint32_t backlight_pwm_u16_16,
-+		uint32_t frame_ramp);
-+
- #endif /* __DC_HWSS_DCE110_H__ */
+diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
+index 9994817a9a03..7f56226ba77a 100644
+--- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
++++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
+@@ -30,6 +30,7 @@ struct dc_transfer_func;
+ struct dc_gamma;
+ struct dc_transfer_func_distributed_points;
+ struct dc_rgb_fixed;
++struct dc_color_caps;
+ enum dc_transfer_func_predefined;
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c
-index b88ef9703b2b..6f3dbcdb06f5 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c
-@@ -71,6 +71,7 @@ static const struct hw_sequencer_funcs dcn10_funcs = {
- 	.set_clock = dcn10_set_clock,
- 	.get_clock = dcn10_get_clock,
- 	.get_vupdate_offset_from_vsync = dcn10_get_vupdate_offset_from_vsync,
-+	.set_backlight_level = dce110_set_backlight_level,
- };
+ /* For SetRegamma ADL interface support
+@@ -100,7 +101,8 @@ bool mod_color_calculate_regamma_params(struct dc_transfer_func *output_tf,
+ 		const struct dc_gamma *ramp, bool mapUserRamp, bool canRomBeUsed,
+ 		const struct freesync_hdr_tf_params *fs_params);
  
- static const struct hwseq_private_funcs dcn10_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
-index 1642bf546ceb..1e33e29b37f8 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
-@@ -82,6 +82,7 @@ static const struct hw_sequencer_funcs dcn20_funcs = {
- 	.init_vm_ctx = dcn20_init_vm_ctx,
- 	.set_flip_control_gsl = dcn20_set_flip_control_gsl,
- 	.get_vupdate_offset_from_vsync = dcn10_get_vupdate_offset_from_vsync,
-+	.set_backlight_level = dce110_set_backlight_level,
- };
+-bool mod_color_calculate_degamma_params(struct dc_transfer_func *output_tf,
++bool mod_color_calculate_degamma_params(struct dc_color_caps *dc_caps,
++		struct dc_transfer_func *output_tf,
+ 		const struct dc_gamma *ramp, bool mapUserRamp);
  
- static const struct hwseq_private_funcs dcn20_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
-index 8410a6305a9a..128d5e3729c6 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
-@@ -91,6 +91,7 @@ static const struct hw_sequencer_funcs dcn21_funcs = {
- 	.optimize_pwr_state = dcn21_optimize_pwr_state,
- 	.exit_optimized_pwr_state = dcn21_exit_optimized_pwr_state,
- 	.power_down = dce110_power_down,
-+	.set_backlight_level = dce110_set_backlight_level,
- };
- 
- static const struct hwseq_private_funcs dcn21_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
-index 9380721f28b8..ed3505cbba6e 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
-@@ -191,6 +191,10 @@ struct hw_sequencer_funcs {
- 			unsigned int bufSize, unsigned int mask);
- 	void (*clear_status_bits)(struct dc *dc, unsigned int mask);
- 
-+	bool (*set_backlight_level)(struct pipe_ctx *pipe_ctx,
-+			uint32_t backlight_pwm_u16_16,
-+			uint32_t frame_ramp);
-+
- 
- };
- 
+ bool mod_color_calculate_degamma_curve(enum dc_transfer_func_predefined trans,
 -- 
 2.17.1
 
