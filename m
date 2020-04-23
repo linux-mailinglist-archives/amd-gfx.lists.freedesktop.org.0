@@ -1,33 +1,96 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C241B55E2
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2020 09:37:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E671B550F
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2020 09:01:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F2A36E271;
-	Thu, 23 Apr 2020 07:37:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A6B89DB8;
+	Thu, 23 Apr 2020 07:01:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75C8F6E135;
- Thu, 23 Apr 2020 06:10:28 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id B47E6227A81; Thu, 23 Apr 2020 08:10:23 +0200 (CEST)
-Date: Thu, 23 Apr 2020 08:10:23 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH hmm 5/5] mm/hmm: remove the customizable pfn format
- from hmm_range_fault
-Message-ID: <20200423061023.GA9856@lst.de>
-References: <0-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com>
- <5-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com>
- <20200422060329.GD22366@lst.de> <20200422123911.GV26002@ziepe.ca>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2085.outbound.protection.outlook.com [40.107.237.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EEB889DB8
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2020 07:01:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LKgVATGYtC1O7oemosNDbJWXD9vxyxsrihLZ1uXs88W2DSsBeS2Ibi+y+2ic5plYE4psuooZ848MFXeHqDWgw9eypZurAn0LEtCVs6bf1w1IpmI1+/lkFRAPF/YTMgqrVgucIa37+T00vRVM4/oKjn7vNXMVeuOUgr6h1640fY3wsxIkDnnrXgkVR4QqKznn/DMP0nXqkJmZTZyFkWJjey45m/A4RFWmjEyHu2V+W4yJbLBc5ChNLfRwZ6CurEWHEuwHxdA6El3hxERNMom675pPybQiPm8kzlqTtoeuC4k+TPkHQWttr1ZqFh9hpIPcBuYMCtjGIdaAgUWZGpXvlQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v/lbRPc6mc6Q7YobvBb2U/LySWIh7T4aj4e6tNUyUl0=;
+ b=bxcBx5z8h1F4X/UfQA06JPqBMEegxM/bCuIZrcklpnOkmsFQiOIKN8UQlWE4j6JD+kcQemO7GupFqvb4NckRcG7b3UJfJFgyu1vNsisOANnTtVlIK4wZRa0pJveD9EBCAHF1WK2yqhBcJiELnIqNYPdysnI5CyKFzzPvTsLaAAhVfYSlcc0pzRakLLp8I6eWSVLl/lQml0bYafBl65y7goczqg6USMBBAKH5XipxLjDYWlnoNM9ljSFc5IFjBI3PAFOP+cQrOQgjDZ9MPpwFbXRJd8eiek+ID6rVIknL8wvF7/HMFqiSy/e2tLPZRMxVIdg8Hx6eAqtyi8WYXe9s7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v/lbRPc6mc6Q7YobvBb2U/LySWIh7T4aj4e6tNUyUl0=;
+ b=LuEafzHPn28xFb0Cdt6jaiv0xhUd/MG1ePhwq0RExuTG7BJMLB6XGu7koKCdJFHI2k8H5Uj42J1zS5SBUXaY3jtHudzvEuZx+Uvjztr54SJOcy3PAujaz1rnOHWD7zdegV2ZCFhqpyXmDwcuCTm3zyvBi1eWXSJ4nYzTdMtmtIg=
+Received: from BN6PR1701CA0011.namprd17.prod.outlook.com
+ (2603:10b6:405:15::21) by BY5PR12MB4225.namprd12.prod.outlook.com
+ (2603:10b6:a03:211::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.13; Thu, 23 Apr
+ 2020 07:01:51 +0000
+Received: from BN8NAM11FT005.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:405:15:cafe::1) by BN6PR1701CA0011.outlook.office365.com
+ (2603:10b6:405:15::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.13 via Frontend
+ Transport; Thu, 23 Apr 2020 07:01:51 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ BN8NAM11FT005.mail.protection.outlook.com (10.13.176.69) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2937.15 via Frontend Transport; Thu, 23 Apr 2020 07:01:50 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 23 Apr
+ 2020 02:01:50 -0500
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 23 Apr
+ 2020 02:01:50 -0500
+Received: from monk-build.amd.com (10.180.168.240) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Thu, 23 Apr 2020 02:01:49 -0500
+From: Monk Liu <Monk.Liu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/8] drm/amdgpu: ignore TA ucode for SRIOV
+Date: Thu, 23 Apr 2020 15:01:39 +0800
+Message-ID: <1587625306-20704-1-git-send-email-Monk.Liu@amd.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200422123911.GV26002@ziepe.ca>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Mailman-Approved-At: Thu, 23 Apr 2020 07:37:22 +0000
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(346002)(136003)(376002)(39860400002)(396003)(428003)(46966005)(8676002)(8936002)(81156014)(47076004)(82740400003)(36756003)(186003)(86362001)(4326008)(478600001)(2906002)(81166007)(70206006)(70586007)(316002)(6916009)(7696005)(426003)(6666004)(2616005)(82310400002)(26005)(336012)(356005)(5660300002)(4744005);
+ DIR:OUT; SFP:1101; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7e05995c-aef7-4e9b-8c09-08d7e7543284
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4225:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB4225840C8CD3867A1214D55584D30@BY5PR12MB4225.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:346;
+X-Forefront-PRVS: 03827AF76E
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jBOWoYj/LhR/5Aa4M6jcAa19lPSx+oD78FlKoMk705RjMqX8adqTVhrOGUNFxH1XyVLKfAA4ZALmbJeUAOCRFNHxeoaVJZ5lCMqliwy6IB6v0YrrWZyIGmdx1Qh9opuSnuEVb0fqB8fIYTqyzks8tgo3r41n6odSshFc6N46CAMV4FRA6fPaug6sq1zv0lEQ4G6YgTYZ3b4S9VJQXrt+j4M8QGtgx5rYjm/ibATcz9JF9zvKO/iZ5G5bFDNGn4WMmWW1eXeekYYydAIgvkseldRNbPbtqcQorW7pkYTqcC6oPploeSSVaS81ImrUCOnYgfXCwNAszb7tJkJislUa8cs2PO5hHqZ0ewSdRVO3MaKJPCu6jR5Mcb6URiX996t9RkVxpS2QsqOozCnlHEFfffXaZvLqoeDg7R52ssTg4pAcSQUHNOyzo5LJVCvDz85npcqLZ1jZHyW5FTJDT3SAiBViNr024SOLXrWxtFJzQI5A2q6Rx8g2mlGv/8Q+rg/bZmIO2IXzukk1gtZrpDVfWg==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2020 07:01:50.6601 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e05995c-aef7-4e9b-8c09-08d7e7543284
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4225
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,64 +102,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- Ralph Campbell <rcampbell@nvidia.com>, John Hubbard <jhubbard@nvidia.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- linux-mm@kvack.org, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, "Kuehling,
- Felix" <Felix.Kuehling@amd.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-gfx@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>
+Cc: Monk Liu <Monk.Liu@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 22, 2020 at 09:39:11AM -0300, Jason Gunthorpe wrote:
-> > Nice callchain from hell..  Unfortunately such "code listings" tend to
-> > get out of date very quickly, so I'm not sure it is worth keeping in
-> > the code.  What would be really worthile is consolidating the two
-> > different sets of defines (NVIF_VMM_PFNMAP_V0_ vs NVKM_VMM_PFN_)
-> > to make the code a little easier to follow.
-> 
-> I was mainly concerned that this function is using hmm properly,
-> becuase it sure looks like it is just forming the CPU physical address
-> into a HW specific data. But it turns out it is just an internal data
-> for some other code and the dma_map is impossibly far away
-> 
-> It took forever to find, I figured I'd leave a hint for the next poor
-> soul that has to look at this.. 
-> 
-> Also, I think it shows there is no 'performance' argument here, if
-> this path needs more performance the above should be cleaned
-> before we abuse hmm_range_fault.
-> 
-> Put it in the commit message instead?
+Signed-off-by: Monk Liu <Monk.Liu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/psp_v11_0.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Yes, the graph itself sounds reasonable for the commit log as a point
-of time information.
+diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+index 0afd610..b4b0242 100644
+--- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+@@ -194,6 +194,8 @@ static int psp_v11_0_init_microcode(struct psp_context *psp)
+ 	case CHIP_NAVI10:
+ 	case CHIP_NAVI14:
+ 	case CHIP_NAVI12:
++		if (amdgpu_sriov_vf(adev))
++			break;
+ 		snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_ta.bin", chip_name);
+ 		err = request_firmware(&adev->psp.ta_fw, fw_name, adev->dev);
+ 		if (err) {
+-- 
+2.7.4
 
-> > >  	npages = (range->end - range->start) >> PAGE_SHIFT;
-> > >  	for (i = 0; i < npages; ++i) {
-> > >  		struct page *page;
-> > >  
-> > > +		if (!(range->hmm_pfns[i] & HMM_PFN_VALID)) {
-> > > +			ioctl_addr[i] = 0;
-> > >  			continue;
-> > > +		}
-> > 
-> > Can't we rely on the caller pre-zeroing the array?
-> 
-> This ends up as args.phys in nouveau_svm_fault - I didn't see a
-> zeroing?
-> 
-> I think it makes sense that this routine fully sets the output array
-> and does not assume pre-initialize
-
-Ok.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
