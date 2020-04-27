@@ -1,49 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F0EA1B987D
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2020 09:25:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C5AD1B9501
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2020 03:57:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4CB06E071;
-	Mon, 27 Apr 2020 07:25:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9510B6E041;
+	Mon, 27 Apr 2020 01:57:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtprelay.hostedemail.com (smtprelay0145.hostedemail.com
- [216.40.44.145])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8EEB89C98;
- Sun, 26 Apr 2020 18:06:31 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay07.hostedemail.com (Postfix) with ESMTP id B5871181D341E;
- Sun, 26 Apr 2020 18:06:30 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:1:2:41:355:379:599:960:973:988:989:1028:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1593:1594:1605:1730:1747:1777:1792:2194:2199:2393:2559:2562:2828:2915:3138:3139:3140:3141:3142:3865:3867:3868:3870:3871:3872:3874:4052:4321:4384:4605:5007:8957:9108:9592:10004:10848:11026:11473:11657:11658:11914:12043:12048:12291:12295:12296:12297:12438:12555:12679:12683:12760:12986:13018:13019:13161:13229:13439:13972:14659:14877:21080:21433:21451:21627,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:1, LUA_SUMMARY:none
-X-HE-Tag: soup82_389f1b58a7502
-X-Filterd-Recvd-Size: 10978
-Received: from XPS-9350.home (unknown [47.151.136.130])
- (Authenticated sender: joe@perches.com)
- by omf13.hostedemail.com (Postfix) with ESMTPA;
- Sun, 26 Apr 2020 18:06:28 +0000 (UTC)
-Message-ID: <8b9bf44c9f823b887ca3477f3b6bca383c0eba4e.camel@perches.com>
-Subject: Re: [PATCH] drm/radeon: cleanup coding style a bit
-From: Joe Perches <joe@perches.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Bernard
- Zhao <bernard@vivo.com>, Alex Deucher <alexander.deucher@amd.com>, "David
- (ChunMing) Zhou" <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Sun, 26 Apr 2020 11:06:27 -0700
-In-Reply-To: <2c67e29b-df17-6ae3-cb55-af950acc022c@amd.com>
-References: <20200426131244.22293-1-bernard@vivo.com>
- <2c67e29b-df17-6ae3-cb55-af950acc022c@amd.com>
-User-Agent: Evolution 3.36.1-2 
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 188D289E2A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2020 01:57:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TVSyVYt0QjIXPzMKr1c+z61YlFI8e+Ji3fn2RSzIBP2mLIn2F++1LZ9O6PHlnzY/n+vVSIUDQNmryg9/GtPr16rLlf58MMJFRVhXdnOWQ87xMm7vuE18YAgPtjn1dGU1voEeynLFOhZdLs4wARcjy4n4HfRqDbJGuuoqgyV7RKyVhPcxKuLnvePKD311GeYqe8J/1McGwn+Nbe+b39F1Jy8FqRwEBpa+uNB+Yev5GThibp1Fz6+RODn64R4XLmGhnbQocBpEt2z3jn7q3i3hNHRHdGYoXxTwu5Tl+44YoyAKnlarEl8n4MMhYJBcdp8MqhRwQqQmA6Rw/latYsbSyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=92L+GqXcmXmZOvYyCJq0kSPw45bOLIM6BUMS5+QzfT8=;
+ b=kNwOlbAst3QGuW3+WgKwnbf7fLPCNSX+xYIACEdD+KFt713iZ77kRosizYAGyM/FEbp+djEwVdoF0JNudlX7wT75BQkBsKCxS1pMc1xoz+AWbbnvRDdGU+IFSneVSI6dz67jQEYZD0r+uO4iEyERW+JfKHswgkxa+kVyAUqmeV1v3anjb0ESfj32s8tHgsz0kYQQ7PxjsUfvZ0S6DJoaAfycGNmIMF4RVsEXY0tgHKPSVuh1lxKDKY/9b7HDwZ1VE+x1Jve05GHQLLDa51J2jBcalqqA/uzAG/XE0SShG8LP+3m0s5b36aPGOtF/CCkqfq5FHuRKRn+xdC3NAwcJyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=92L+GqXcmXmZOvYyCJq0kSPw45bOLIM6BUMS5+QzfT8=;
+ b=MBL4G1MSmoNJOXnijWeD8olVR86TEUXOCUyaGEV5BZpirCAjun91IV9wBc4i8d/lGnEzf2iJ73HkqugwpEGM6ZqY+WfBcDZZSzPs1cKrJ5NWAyj5xl57G+1+UCghR1EYfukTPdOsOiOZb1gF00XvPKs36hbcLamRv+ByI7gjRN0=
+Received: from DM5PR13CA0003.namprd13.prod.outlook.com (2603:10b6:3:23::13) by
+ BYAPR12MB3255.namprd12.prod.outlook.com (2603:10b6:a03:12e::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.22; Mon, 27 Apr
+ 2020 01:57:13 +0000
+Received: from DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:23:cafe::99) by DM5PR13CA0003.outlook.office365.com
+ (2603:10b6:3:23::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.14 via Frontend
+ Transport; Mon, 27 Apr 2020 01:57:13 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ DM6NAM11FT029.mail.protection.outlook.com (10.13.173.23) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2937.15 via Frontend Transport; Mon, 27 Apr 2020 01:57:12 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sun, 26 Apr
+ 2020 20:57:12 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sun, 26 Apr
+ 2020 20:57:12 -0500
+Received: from gamma.amd.com (10.180.168.240) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Sun, 26 Apr 2020 20:57:11 -0500
+From: Tiecheng Zhou <Tiecheng.Zhou@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] Revert "drm/amd/powerplay: avoid using pm_en before it is
+ initialized"
+Date: Mon, 27 Apr 2020 09:57:08 +0800
+Message-ID: <20200427015708.12423-1-Tiecheng.Zhou@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 27 Apr 2020 07:25:30 +0000
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(428003)(46966005)(81156014)(8676002)(6666004)(8936002)(2616005)(7696005)(4744005)(426003)(4326008)(70586007)(70206006)(47076004)(1076003)(336012)(186003)(5660300002)(86362001)(356005)(6916009)(36756003)(81166007)(82310400002)(2906002)(26005)(498600001);
+ DIR:OUT; SFP:1101; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 833a24bf-cb1b-4229-fda7-08d7ea4e4dd7
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3255:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB325585AD02E52423EC61EC43E4AF0@BYAPR12MB3255.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:352;
+X-Forefront-PRVS: 0386B406AA
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2Bip2xUjOY3lQQvn1XUeD7FxOoHaRLQED7l5YrLuvnqwJ6f0+rgyxv9r8Pq0l8q3/gUdfnrU7nDsvjL4t3BKRcfzCFiOoTnDgy7YvUucu8TNEG5M1uTSal+tf6lH1q3szGwK4kRDqlegZG3bJnsXTkDHYSvoDgThK5nkRmJTjUq3lOT0+UKIB5BhIO6EfSQK4LavR03GhOfqFDC5CyuRCKekxzPvN6pwd9B5vHDMCx3pX3qr23O+M+GUO5JQKr7cCAAk6veoTdqCGGLmSED7RJj3hK8xWdrNT8FtEMIr939PNN0AbfXnuNiOREi+WExUJas01iDSvP3EefUxh0th7G6gMHTy3A9lgAphHjL/aZ2wAd/LNXBjd1CON4X+1M6jkegPjg7BnQx7+tEtU2yXp3Qv1X8glPTwK3l7h6hkDAXQJ26wLgfy/feRlMGFxzhQWupBQZuXZRfya9nUXI0DDp1KH2UBHXOeeX9L7ne9/EZUdn/sGUoibr9ul3ua7omyrvt9n3Gp0kGF1m9DJQAfpg==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2020 01:57:12.9654 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 833a24bf-cb1b-4229-fda7-08d7ea4e4dd7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3255
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,356 +103,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: opensource.kernel@vivo.com
+Cc: Tiecheng.Zhou@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-btw:  the debugging macros in atom.c are not good.
+This reverts commit 764a21cb085b8d7d754b5d74e2ecc6adc064e3e7.
 
-It could be something like the below as the output logging is
-at best poorly formatted due to the many individual printks
-without KERN_<LEVEL> that are emitted on separate lines.
+The commit being reverted changed the wrong place, it should have
+changed in func get_asic_baco_capability.
 
-#define ATOM_DEBUG
-
-should probably be commented out.
-
-The debugging macros and #include file should be better formatted.
-
-The no_printk macro is useful to verify formats and arguments when
-not debugging and removing the ATOM_DEBUG from atom-names.h does
-not cause the unused char *arrays to be added to the object file
-as the compiler elides unused arrays.
-
+Signed-off-by: Tiecheng Zhou <Tiecheng.Zhou@amd.com>
 ---
- drivers/gpu/drm/radeon/atom-names.h | 266 +++++++++++++++++++++++++++---------
- drivers/gpu/drm/radeon/atom.c       |  23 ++--
- 2 files changed, 218 insertions(+), 71 deletions(-)
+ drivers/gpu/drm/amd/powerplay/amd_powerplay.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/atom-names.h b/drivers/gpu/drm/radeon/atom-names.h
-index 6f907a5..055775 100644
---- a/drivers/gpu/drm/radeon/atom-names.h
-+++ b/drivers/gpu/drm/radeon/atom-names.h
-@@ -27,74 +27,218 @@
+diff --git a/drivers/gpu/drm/amd/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/powerplay/amd_powerplay.c
+index fdff3e1c5e95..71b843f542d8 100644
+--- a/drivers/gpu/drm/amd/powerplay/amd_powerplay.c
++++ b/drivers/gpu/drm/amd/powerplay/amd_powerplay.c
+@@ -1455,8 +1455,7 @@ static int pp_get_asic_baco_state(void *handle, int *state)
+ 	if (!hwmgr)
+ 		return -EINVAL;
  
- #include "atom.h"
+-	if (!(hwmgr->not_vf && amdgpu_dpm) ||
+-		!hwmgr->hwmgr_func->get_asic_baco_state)
++	if (!hwmgr->pm_en || !hwmgr->hwmgr_func->get_asic_baco_state)
+ 		return 0;
  
--#ifdef ATOM_DEBUG
--
- #define ATOM_OP_NAMES_CNT 123
--static char *atom_op_names[ATOM_OP_NAMES_CNT] = {
--"RESERVED", "MOVE_REG", "MOVE_PS", "MOVE_WS", "MOVE_FB", "MOVE_PLL",
--"MOVE_MC", "AND_REG", "AND_PS", "AND_WS", "AND_FB", "AND_PLL", "AND_MC",
--"OR_REG", "OR_PS", "OR_WS", "OR_FB", "OR_PLL", "OR_MC", "SHIFT_LEFT_REG",
--"SHIFT_LEFT_PS", "SHIFT_LEFT_WS", "SHIFT_LEFT_FB", "SHIFT_LEFT_PLL",
--"SHIFT_LEFT_MC", "SHIFT_RIGHT_REG", "SHIFT_RIGHT_PS", "SHIFT_RIGHT_WS",
--"SHIFT_RIGHT_FB", "SHIFT_RIGHT_PLL", "SHIFT_RIGHT_MC", "MUL_REG",
--"MUL_PS", "MUL_WS", "MUL_FB", "MUL_PLL", "MUL_MC", "DIV_REG", "DIV_PS",
--"DIV_WS", "DIV_FB", "DIV_PLL", "DIV_MC", "ADD_REG", "ADD_PS", "ADD_WS",
--"ADD_FB", "ADD_PLL", "ADD_MC", "SUB_REG", "SUB_PS", "SUB_WS", "SUB_FB",
--"SUB_PLL", "SUB_MC", "SET_ATI_PORT", "SET_PCI_PORT", "SET_SYS_IO_PORT",
--"SET_REG_BLOCK", "SET_FB_BASE", "COMPARE_REG", "COMPARE_PS",
--"COMPARE_WS", "COMPARE_FB", "COMPARE_PLL", "COMPARE_MC", "SWITCH",
--"JUMP", "JUMP_EQUAL", "JUMP_BELOW", "JUMP_ABOVE", "JUMP_BELOW_OR_EQUAL",
--"JUMP_ABOVE_OR_EQUAL", "JUMP_NOT_EQUAL", "TEST_REG", "TEST_PS", "TEST_WS",
--"TEST_FB", "TEST_PLL", "TEST_MC", "DELAY_MILLISEC", "DELAY_MICROSEC",
--"CALL_TABLE", "REPEAT", "CLEAR_REG", "CLEAR_PS", "CLEAR_WS", "CLEAR_FB",
--"CLEAR_PLL", "CLEAR_MC", "NOP", "EOT", "MASK_REG", "MASK_PS", "MASK_WS",
--"MASK_FB", "MASK_PLL", "MASK_MC", "POST_CARD", "BEEP", "SAVE_REG",
--"RESTORE_REG", "SET_DATA_BLOCK", "XOR_REG", "XOR_PS", "XOR_WS", "XOR_FB",
--"XOR_PLL", "XOR_MC", "SHL_REG", "SHL_PS", "SHL_WS", "SHL_FB", "SHL_PLL",
--"SHL_MC", "SHR_REG", "SHR_PS", "SHR_WS", "SHR_FB", "SHR_PLL", "SHR_MC",
--"DEBUG", "CTB_DS",
-+static const char * const atom_op_names[ATOM_OP_NAMES_CNT] = {
-+	"RESERVED",
-+	"MOVE_REG",
-+	"MOVE_PS",
-+	"MOVE_WS",
-+	"MOVE_FB",
-+	"MOVE_PLL",
-+	"MOVE_MC",
-+	"AND_REG",
-+	"AND_PS",
-+	"AND_WS",
-+	"AND_FB",
-+	"AND_PLL",
-+	"AND_MC",
-+	"OR_REG",
-+	"OR_PS",
-+	"OR_WS",
-+	"OR_FB",
-+	"OR_PLL",
-+	"OR_MC",
-+	"SHIFT_LEFT_REG",
-+	"SHIFT_LEFT_PS",
-+	"SHIFT_LEFT_WS",
-+	"SHIFT_LEFT_FB",
-+	"SHIFT_LEFT_PLL",
-+	"SHIFT_LEFT_MC",
-+	"SHIFT_RIGHT_REG",
-+	"SHIFT_RIGHT_PS",
-+	"SHIFT_RIGHT_WS",
-+	"SHIFT_RIGHT_FB",
-+	"SHIFT_RIGHT_PLL",
-+	"SHIFT_RIGHT_MC",
-+	"MUL_REG",
-+	"MUL_PS",
-+	"MUL_WS",
-+	"MUL_FB",
-+	"MUL_PLL",
-+	"MUL_MC",
-+	"DIV_REG",
-+	"DIV_PS",
-+	"DIV_WS",
-+	"DIV_FB",
-+	"DIV_PLL",
-+	"DIV_MC",
-+	"ADD_REG",
-+	"ADD_PS",
-+	"ADD_WS",
-+	"ADD_FB",
-+	"ADD_PLL",
-+	"ADD_MC",
-+	"SUB_REG",
-+	"SUB_PS",
-+	"SUB_WS",
-+	"SUB_FB",
-+	"SUB_PLL",
-+	"SUB_MC",
-+	"SET_ATI_PORT",
-+	"SET_PCI_PORT",
-+	"SET_SYS_IO_PORT",
-+	"SET_REG_BLOCK",
-+	"SET_FB_BASE",
-+	"COMPARE_REG",
-+	"COMPARE_PS",
-+	"COMPARE_WS",
-+	"COMPARE_FB",
-+	"COMPARE_PLL",
-+	"COMPARE_MC",
-+	"SWITCH",
-+	"JUMP",
-+	"JUMP_EQUAL",
-+	"JUMP_BELOW",
-+	"JUMP_ABOVE",
-+	"JUMP_BELOW_OR_EQUAL",
-+	"JUMP_ABOVE_OR_EQUAL",
-+	"JUMP_NOT_EQUAL",
-+	"TEST_REG",
-+	"TEST_PS",
-+	"TEST_WS",
-+	"TEST_FB",
-+	"TEST_PLL",
-+	"TEST_MC",
-+	"DELAY_MILLISEC",
-+	"DELAY_MICROSEC",
-+	"CALL_TABLE",
-+	"REPEAT",
-+	"CLEAR_REG",
-+	"CLEAR_PS",
-+	"CLEAR_WS",
-+	"CLEAR_FB",
-+	"CLEAR_PLL",
-+	"CLEAR_MC",
-+	"NOP",
-+	"EOT",
-+	"MASK_REG",
-+	"MASK_PS",
-+	"MASK_WS",
-+	"MASK_FB",
-+	"MASK_PLL",
-+	"MASK_MC",
-+	"POST_CARD",
-+	"BEEP",
-+	"SAVE_REG",
-+	"RESTORE_REG",
-+	"SET_DATA_BLOCK",
-+	"XOR_REG",
-+	"XOR_PS",
-+	"XOR_WS",
-+	"XOR_FB",
-+	"XOR_PLL",
-+	"XOR_MC",
-+	"SHL_REG",
-+	"SHL_PS",
-+	"SHL_WS",
-+	"SHL_FB",
-+	"SHL_PLL",
-+	"SHL_MC",
-+	"SHR_REG",
-+	"SHR_PS",
-+	"SHR_WS",
-+	"SHR_FB",
-+	"SHR_PLL",
-+	"SHR_MC",
-+	"DEBUG",
-+	"CTB_DS",
- };
- 
- #define ATOM_TABLE_NAMES_CNT 74
--static char *atom_table_names[ATOM_TABLE_NAMES_CNT] = {
--"ASIC_Init", "GetDisplaySurfaceSize", "ASIC_RegistersInit",
--"VRAM_BlockVenderDetection", "SetClocksRatio", "MemoryControllerInit",
--"GPIO_PinInit", "MemoryParamAdjust", "DVOEncoderControl",
--"GPIOPinControl", "SetEngineClock", "SetMemoryClock", "SetPixelClock",
--"DynamicClockGating", "ResetMemoryDLL", "ResetMemoryDevice",
--"MemoryPLLInit", "EnableMemorySelfRefresh", "AdjustMemoryController",
--"EnableASIC_StaticPwrMgt", "ASIC_StaticPwrMgtStatusChange",
--"DAC_LoadDetection", "TMDS2EncoderControl", "LCD1OutputControl",
--"DAC1EncoderControl", "DAC2EncoderControl", "DVOOutputControl",
--"CV1OutputControl", "SetCRTC_DPM_State", "TVEncoderControl",
--"TMDS1EncoderControl", "LVDSEncoderControl", "TV1OutputControl",
--"EnableScaler", "BlankCRTC", "EnableCRTC", "GetPixelClock",
--"EnableVGA_Render", "EnableVGA_Access", "SetCRTC_Timing",
--"SetCRTC_OverScan", "SetCRTC_Replication", "SelectCRTC_Source",
--"EnableGraphSurfaces", "UpdateCRTC_DoubleBufferRegisters",
--"LUT_AutoFill", "EnableHW_IconCursor", "GetMemoryClock",
--"GetEngineClock", "SetCRTC_UsingDTDTiming", "TVBootUpStdPinDetection",
--"DFP2OutputControl", "VRAM_BlockDetectionByStrap", "MemoryCleanUp",
--"ReadEDIDFromHWAssistedI2C", "WriteOneByteToHWAssistedI2C",
--"ReadHWAssistedI2CStatus", "SpeedFanControl", "PowerConnectorDetection",
--"MC_Synchronization", "ComputeMemoryEnginePLL", "MemoryRefreshConversion",
--"VRAM_GetCurrentInfoBlock", "DynamicMemorySettings", "MemoryTraining",
--"EnableLVDS_SS", "DFP1OutputControl", "SetVoltage", "CRT1OutputControl",
--"CRT2OutputControl", "SetupHWAssistedI2CStatus", "ClockSource",
--"MemoryDeviceInit", "EnableYUV",
-+static const char * const atom_table_names[ATOM_TABLE_NAMES_CNT] = {
-+	"ASIC_Init",
-+	"GetDisplaySurfaceSize",
-+	"ASIC_RegistersInit",
-+	"VRAM_BlockVenderDetection",
-+	"SetClocksRatio",
-+	"MemoryControllerInit",
-+	"GPIO_PinInit",
-+	"MemoryParamAdjust",
-+	"DVOEncoderControl",
-+	"GPIOPinControl",
-+	"SetEngineClock",
-+	"SetMemoryClock",
-+	"SetPixelClock",
-+	"DynamicClockGating",
-+	"ResetMemoryDLL",
-+	"ResetMemoryDevice",
-+	"MemoryPLLInit",
-+	"EnableMemorySelfRefresh",
-+	"AdjustMemoryController",
-+	"EnableASIC_StaticPwrMgt",
-+	"ASIC_StaticPwrMgtStatusChange",
-+	"DAC_LoadDetection",
-+	"TMDS2EncoderControl",
-+	"LCD1OutputControl",
-+	"DAC1EncoderControl",
-+	"DAC2EncoderControl",
-+	"DVOOutputControl",
-+	"CV1OutputControl",
-+	"SetCRTC_DPM_State",
-+	"TVEncoderControl",
-+	"TMDS1EncoderControl",
-+	"LVDSEncoderControl",
-+	"TV1OutputControl",
-+	"EnableScaler",
-+	"BlankCRTC",
-+	"EnableCRTC",
-+	"GetPixelClock",
-+	"EnableVGA_Render",
-+	"EnableVGA_Access",
-+	"SetCRTC_Timing",
-+	"SetCRTC_OverScan",
-+	"SetCRTC_Replication",
-+	"SelectCRTC_Source",
-+	"EnableGraphSurfaces",
-+	"UpdateCRTC_DoubleBufferRegisters",
-+	"LUT_AutoFill",
-+	"EnableHW_IconCursor",
-+	"GetMemoryClock",
-+	"GetEngineClock",
-+	"SetCRTC_UsingDTDTiming",
-+	"TVBootUpStdPinDetection",
-+	"DFP2OutputControl",
-+	"VRAM_BlockDetectionByStrap",
-+	"MemoryCleanUp",
-+	"ReadEDIDFromHWAssistedI2C",
-+	"WriteOneByteToHWAssistedI2C",
-+	"ReadHWAssistedI2CStatus",
-+	"SpeedFanControl",
-+	"PowerConnectorDetection",
-+	"MC_Synchronization",
-+	"ComputeMemoryEnginePLL",
-+	"MemoryRefreshConversion",
-+	"VRAM_GetCurrentInfoBlock",
-+	"DynamicMemorySettings",
-+	"MemoryTraining",
-+	"EnableLVDS_SS",
-+	"DFP1OutputControl",
-+	"SetVoltage",
-+	"CRT1OutputControl",
-+	"CRT2OutputControl",
-+	"SetupHWAssistedI2CStatus",
-+	"ClockSource",
-+	"MemoryDeviceInit",
-+	"EnableYUV",
- };
- 
- #define ATOM_IO_NAMES_CNT 5
--static char *atom_io_names[ATOM_IO_NAMES_CNT] = {
--"MM", "PLL", "MC", "PCIE", "PCIE PORT",
-+static const char * const atom_io_names[ATOM_IO_NAMES_CNT] = {
-+	"MM",
-+	"PLL",
-+	"MC",
-+	"PCIE",
-+	"PCIE PORT",
- };
- 
--#else
--
--#define ATOM_OP_NAMES_CNT 0
--#define ATOM_TABLE_NAMES_CNT 0
--#define ATOM_IO_NAMES_CNT 0
--
--#endif
--
- #endif
-diff --git a/drivers/gpu/drm/radeon/atom.c b/drivers/gpu/drm/radeon/atom.c
-index 2c2762..892eeb 100644
---- a/drivers/gpu/drm/radeon/atom.c
-+++ b/drivers/gpu/drm/radeon/atom.c
-@@ -91,17 +91,20 @@ static int atom_def_dst[8] = { 0, 0, 1, 2, 0, 1, 2, 3 };
- 
- static int debug_depth = 0;
- #ifdef ATOM_DEBUG
--static void debug_print_spaces(int n)
--{
--	while (n--)
--		printk("   ");
--}
--
--#define DEBUG(...) do if (atom_debug) { printk(KERN_DEBUG __VA_ARGS__); } while (0)
--#define SDEBUG(...) do if (atom_debug) { printk(KERN_DEBUG); debug_print_spaces(debug_depth); printk(__VA_ARGS__); } while (0)
-+#define DEBUG(fmt, ...)							\
-+do {									\
-+	if (atom_debug)							\
-+		printk(KERN_DEBUG fmt, ##__VA_ARGS__);			\
-+} while (0)
-+#define SDEBUG(fmt, ...)						\
-+do {									\
-+	if (atom_debug)							\
-+		printk(KERN_DEBUG "%*s" fmt,				\
-+		       debug_depth * 3, "", ##__VA_ARGS__);		\
-+} while (0)
- #else
--#define DEBUG(...) do { } while (0)
--#define SDEBUG(...) do { } while (0)
-+#define DEBUG(fmt, ...)		no_printk(fmt, ##__VA_ARGS__)
-+#define SDEBUG(fmt, ...)	no_printk(fmt, ##__VA_ARGS__)
- #endif
- 
- static uint32_t atom_iio_execute(struct atom_context *ctx, int base,
-
-
-
+ 	mutex_lock(&hwmgr->smu_lock);
+-- 
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
