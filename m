@@ -1,92 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC75A1BC083
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2020 16:04:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F2231BC12A
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2020 16:27:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6160D6E443;
-	Tue, 28 Apr 2020 14:04:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB156E7EA;
+	Tue, 28 Apr 2020 14:27:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2048.outbound.protection.outlook.com [40.107.243.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5FA66E443
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2020 14:04:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ESc3QcjMXUodrq9axZOM8JQaT+K2PGPT10kH72asU+Dt6rfS3aC5NMPrZhdk0s1Wk41tBDlLgqLkDX88zfdJB4KvCNQ924e/i10ZdQlQviItdGlG0DrhCZf31l6Q4ITlyZUIulMETTCrorM3MY0E+wOanaa17qwUsWg2Fb7CRtmH2/3hfVQ2l1hq1IH5Wf+qm/U26Wvd8V0E1XbBS021T/ud5yrNOhofbCL1UayG9aEg3CqcgtG72zHl8w7zBeiuIDF2QkSJ1DqUjPYBVSdjkpQl44sfpJC24t9q6uRDiIIS8S5OsvgRT0+cJbc+ICnh7H+tLIhMzzZN4UKu10cZ9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KzHHqOxCgmPIw2a/sgV6s6LAMoxuS6NfvezsF/W/IBs=;
- b=bknZVdiRjsFbmXUrPB9b3jLwSa9qNBfgJnMCJ6Cm2Q0uPLCzPNZWhAVvFQt1sFXv6S+/A5Dr5MsCCo/h/gB6r8CU8hiiZeeeijRoUGTN5OjCQO3jJJtC7V4vX4P7NwFCp1lZnid2tDfcF9UIWh3nasiZb3Ka3y6xjP6cPLueOIybAmAs4Zlq5rZ4kVUWGsQp5PRA8sZWAK2ZyddTZMaAdfcqpgG3ffwWemBlFlubRJJs/c2fc78E1jHQIdEfZNwTPx7672l5xAyXnnsZ+klXywBw2/vk7TGQwLcYJDoAGjDRG6NYKbRJFa/ck7zlP0KpaXUw1wOZ2ZLf0XfbL7EJMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KzHHqOxCgmPIw2a/sgV6s6LAMoxuS6NfvezsF/W/IBs=;
- b=U2ygRWplqhP0UupeCFHTVxVS13iUTf3Hwr6RgYuqk002F+P0USkAe81nC6P6HWn9A8QM0SEXQpl33JQP79HooYjbu22m7GqbNYR5rfZj0mWGSQrTJQSvPeAcEjkH70KUtmPX16gSeklsxBvPoJwXicSLKK/dH8HvJMkJGIOICzw=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM5PR12MB1787.namprd12.prod.outlook.com (2603:10b6:3:113::12)
- by DM5PR12MB1402.namprd12.prod.outlook.com (2603:10b6:3:73::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.22; Tue, 28 Apr
- 2020 14:04:18 +0000
-Received: from DM5PR12MB1787.namprd12.prod.outlook.com
- ([fe80::3dfe:f611:26be:9121]) by DM5PR12MB1787.namprd12.prod.outlook.com
- ([fe80::3dfe:f611:26be:9121%8]) with mapi id 15.20.2937.023; Tue, 28 Apr 2020
- 14:04:18 +0000
-Subject: Re: [PATCH] drm/amdgpu/vcn2.5: wait for tiles off after unpause
-To: James Zhu <James.Zhu@amd.com>, amd-gfx@lists.freedesktop.org
-References: <1588017957-6910-1-git-send-email-James.Zhu@amd.com>
-From: Leo Liu <leo.liu@amd.com>
-Message-ID: <8af10763-aec5-0924-56f6-0d1c938fb4c7@amd.com>
-Date: Tue, 28 Apr 2020 10:04:09 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B1A96E35F;
+ Tue, 28 Apr 2020 14:27:36 +0000 (UTC)
+IronPort-SDR: zaa0JB47grjpVzd7O1yLikK45uvPfryEUXt+B8/OZAlEuhxXSO+dH5hhPbIcYLkkZUjvjzfvYn
+ qd51VgoS+ZtA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2020 07:27:35 -0700
+IronPort-SDR: jNARB9oOaVwR8a2RkUVAoMTAEt2QguGl2UzmS9sk7DF6E3Z1+74FSZGnqvuhXyVsoJGRusoA09
+ F4hn13yZQXyw==
+X-IronPort-AV: E=Sophos;i="5.73,328,1583222400"; d="scan'208";a="432201047"
+Received: from mzacniex-mobl1.ger.corp.intel.com (HELO [10.252.53.85])
+ ([10.252.53.85])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2020 07:27:31 -0700
+Subject: Re: [Intel-gfx] [RFC 06/17] drm: i915: fix sg_table nents vs.
+ orig_nents misuse
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+ dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org
+References: <20200428132005.21424-1-m.szyprowski@samsung.com>
+ <CGME20200428132025eucas1p21580e634500a3e85564551cddf168b4a@eucas1p2.samsung.com>
+ <20200428132005.21424-7-m.szyprowski@samsung.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <88c841d0-c64c-f1db-b91a-2c4fe7097ccf@linux.intel.com>
+Date: Tue, 28 Apr 2020 15:27:29 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
-In-Reply-To: <1588017957-6910-1-git-send-email-James.Zhu@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: YTOPR0101CA0060.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::37) To DM5PR12MB1787.namprd12.prod.outlook.com
- (2603:10b6:3:113::12)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2607:fea8:a200:445:e2d5:5eff:fe20:5971]
- (2607:fea8:a200:445:e2d5:5eff:fe20:5971) by
- YTOPR0101CA0060.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::37) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.13 via Frontend
- Transport; Tue, 28 Apr 2020 14:04:17 +0000
-X-Originating-IP: [2607:fea8:a200:445:e2d5:5eff:fe20:5971]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 417a688d-6c5d-4ee5-57b1-08d7eb7d0aac
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1402:|DM5PR12MB1402:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1402D4EA859987CE55D84594E5AC0@DM5PR12MB1402.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
-X-Forefront-PRVS: 0387D64A71
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB1787.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(366004)(5660300002)(44832011)(31686004)(186003)(16526019)(8936002)(2616005)(81156014)(66476007)(36756003)(6666004)(8676002)(66556008)(316002)(66946007)(53546011)(52116002)(31696002)(6486002)(478600001)(86362001)(2906002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: C1JVrqViJyM2N7Os67zkliPkZvB5Tx3UEoXN4X5IeSxvDSaNtsW/vMEtm1Lw48R8hD0bgGqhXzBIiDySch0oCf4jT54wzxEj0NzGkWkddrT40z5fhRJLk6CzPpWjNqC+5J9WAqW4hjJYFW72NSCyYxlZ1sPjL4zbOxt6Lzzl2bP4zUfAlqJF5ncU44QC/FJjL7JTRBAyNWxac255XVKih1w2EfJa3j/3UpRKn5PVA3VF2sMAtBEbMuz1vx3eqlaojUp0GTSx89Nqv+0HYZUoLJuiGDmPuhnceOjuqxQ3kjUPfzkEnhvb5C3wcf6WDk66Ml1WwkYdhB335kJwpbFh0vuBoPuRwnQAdcsOE0IoMQWLK3oSDBMHLdhAWljwK779bC8e/6lxraLLoYEvm4Rzs3k6wG8i1wiNpTNV2U18htgPp2PrqbjsSr+NVDmtbcar
-X-MS-Exchange-AntiSpam-MessageData: x9JGFxJBaJlGQuqq3H5Vp58jsuvv0IyEolFS0+TJSM+AeMX4wcxNLIxgJNYMQrCisKXSbfdriSah7BNOzaS/OzVWN6dfXck5NvqfPTYkXuhru3KAcZNlq4yPrZntZjBcpF4TMYqvKUVqCJoXRdKDfhrkHDgGIksWBIGHppe0nYdRijhpSS1eD1rs4BUrULsPYH62bN15zdbEKcR/WPCvgLOtsZOssG05sNp/1HYdN59GrVSamXD+OHzx2bjf51Ni02+EQue5bHXQEpyMmAafAEfNSyh0T+5w6quPwBVsfu5ZeTmbdo4f5wTEaj3GYZiLjug39b6LeU3WWLh6WdJfjWp/dde2pOgDj7MzZft8njsN8SA0BTcMeoeJQLKJCe1hhwNfRRfOeuEPZCX/yJXjMNWwB8iYLg3PHnugfI//eoUTwMDCUloK0GdHmrY7mOSFqByXfk0GHcAaIbet7BeBkKyeJDO/cz8C9CZH/fTtyK1ZONHs/iV3BV9weuP+NAtyCM/Sk+/o1FgVJUz8842875vpKQP8pi5kHwQHTkv3I3eImsNGQ5WpLkXmWpj939DetoQlzogASH3mRuabrDtTLDgLpQ6wfwto1odTw+25bcubvF0ThLiSa6ZVMIFkDeULxBIMGd2aJUyfxGWkpAM5DfyBzz5Ns7fnr5qHaGU8BuYUwEkEMHRh3qqMUEh0axYkD4a3x/tk5S2oIp4pvDfKYrka16gFtF+dqAozSB2PkbJdur2A/JluDLvNUzm0/deJd9tfPjBrvHA8ya20ge0aXUKC8xet2Z99Y8meVhv9LZ6L1UTbW/4LBgctp3v0ZoksGKojHm+HIz6GkYNGLI0CDnnDhoi8lbDsQjlCHJ9Tjsg=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 417a688d-6c5d-4ee5-57b1-08d7eb7d0aac
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2020 14:04:18.3768 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PUb52O29dzG9+J5TCCWdjtaV+cSfZaFn2HRjSg+ZO+61+UkYD/TI4Svs6IgDfvgE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1402
+In-Reply-To: <20200428132005.21424-7-m.szyprowski@samsung.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,55 +54,374 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>,
+ linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Leo Liu <leo.liu@amd.com>
 
-On 2020-04-27 4:05 p.m., James Zhu wrote:
-> Wait for tiles off after unpause to fix transcode timeout issue.
-> It is a work around.
->
-> Signed-off-by: James Zhu <James.Zhu@amd.com>
+On 28/04/2020 14:19, Marek Szyprowski wrote:
+> The Documentation/DMA-API-HOWTO.txt states that dma_map_sg returns the
+> numer of the created entries in the DMA address space. However the
+> subsequent calls to dma_sync_sg_for_{device,cpu} and dma_unmap_sg must be
+> called with the original number of entries passed to dma_map_sg. The
+> sg_table->nents in turn holds the result of the dma_map_sg call as stated
+> in include/linux/scatterlist.h. Adapt the code to obey those rules.
+> 
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> index 0fa1c5c..38ca4a7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> @@ -1404,7 +1404,7 @@ static int vcn_v2_5_pause_dpg_mode(struct amdgpu_device *adev,
->   {
->   	struct amdgpu_ring *ring;
->   	uint32_t reg_data = 0;
-> -	int ret_code;
-> +	int ret_code = 0;
->   
->   	/* pause/unpause if state is changed */
->   	if (adev->vcn.inst[inst_idx].pause_state.fw_based != new_state->fw_based) {
-> @@ -1414,7 +1414,6 @@ static int vcn_v2_5_pause_dpg_mode(struct amdgpu_device *adev,
->   			(~UVD_DPG_PAUSE__NJ_PAUSE_DPG_ACK_MASK);
->   
->   		if (new_state->fw_based == VCN_DPG_STATE__PAUSE) {
-> -			ret_code = 0;
->   			SOC15_WAIT_ON_RREG(UVD, inst_idx, mmUVD_POWER_STATUS, 0x1,
->   				UVD_POWER_STATUS__UVD_POWER_STATUS_MASK, ret_code);
->   
-> @@ -1469,9 +1468,10 @@ static int vcn_v2_5_pause_dpg_mode(struct amdgpu_device *adev,
->   					   UVD_PGFSM_CONFIG__UVDM_UVDU_PWR_ON, UVD_POWER_STATUS__UVD_POWER_STATUS_MASK, ret_code);
->   			}
->   		} else {
-> -			/* unpause dpg, no need to wait */
->   			reg_data &= ~UVD_DPG_PAUSE__NJ_PAUSE_DPG_REQ_MASK;
->   			WREG32_SOC15(UVD, inst_idx, mmUVD_DPG_PAUSE, reg_data);
-> +			SOC15_WAIT_ON_RREG(UVD, inst_idx, mmUVD_POWER_STATUS, 0x1,
-> +				UVD_POWER_STATUS__UVD_POWER_STATUS_MASK, ret_code);
->   		}
->   		adev->vcn.inst[inst_idx].pause_state.fw_based = new_state->fw_based;
+>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c       | 13 +++++++------
+>   drivers/gpu/drm/i915/gem/i915_gem_internal.c     |  4 ++--
+>   drivers/gpu/drm/i915/gem/i915_gem_region.c       |  4 ++--
+>   drivers/gpu/drm/i915/gem/i915_gem_shmem.c        |  5 +++--
+>   drivers/gpu/drm/i915/gem/selftests/huge_pages.c  | 10 +++++-----
+>   drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c |  5 +++--
+>   drivers/gpu/drm/i915/gt/intel_ggtt.c             | 12 ++++++------
+>   drivers/gpu/drm/i915/i915_gem_gtt.c              | 12 +++++++-----
+>   drivers/gpu/drm/i915/i915_scatterlist.c          |  4 ++--
+>   drivers/gpu/drm/i915/selftests/scatterlist.c     |  8 ++++----
+>   10 files changed, 41 insertions(+), 36 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> index 7db5a79..d829852 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> @@ -36,21 +36,22 @@ static struct sg_table *i915_gem_map_dma_buf(struct dma_buf_attachment *attachme
+>   		goto err_unpin_pages;
 >   	}
+>   
+> -	ret = sg_alloc_table(st, obj->mm.pages->nents, GFP_KERNEL);
+> +	ret = sg_alloc_table(st, obj->mm.pages->orig_nents, GFP_KERNEL);
+>   	if (ret)
+>   		goto err_free;
+>   
+>   	src = obj->mm.pages->sgl;
+>   	dst = st->sgl;
+> -	for (i = 0; i < obj->mm.pages->nents; i++) {
+> +	for (i = 0; i < obj->mm.pages->orig_nents; i++) {
+>   		sg_set_page(dst, sg_page(src), src->length, 0);
+>   		dst = sg_next(dst);
+>   		src = sg_next(src);
+>   	}
+>   
+> -	if (!dma_map_sg_attrs(attachment->dev,
+> -			      st->sgl, st->nents, dir,
+> -			      DMA_ATTR_SKIP_CPU_SYNC)) {
+> +	st->nents = dma_map_sg_attrs(attachment->dev,
+> +				     st->sgl, st->orig_nents, dir,
+> +				     DMA_ATTR_SKIP_CPU_SYNC);
+> +	if (!st->nents) {
+>   		ret = -ENOMEM;
+>   		goto err_free_sg;
+>   	}
+> @@ -74,7 +75,7 @@ static void i915_gem_unmap_dma_buf(struct dma_buf_attachment *attachment,
+>   	struct drm_i915_gem_object *obj = dma_buf_to_obj(attachment->dmabuf);
+>   
+>   	dma_unmap_sg_attrs(attachment->dev,
+> -			   sg->sgl, sg->nents, dir,
+> +			   sg->sgl, sg->orig_nents, dir,
+>   			   DMA_ATTR_SKIP_CPU_SYNC);
+>   	sg_free_table(sg);
+>   	kfree(sg);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.c b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
+> index cbbff81..a8ebfdd 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_internal.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
+> @@ -73,7 +73,7 @@ static int i915_gem_object_get_pages_internal(struct drm_i915_gem_object *obj)
+>   	}
+>   
+>   	sg = st->sgl;
+> -	st->nents = 0;
+> +	st->nents = st->orig_nents = 0;
+>   	sg_page_sizes = 0;
+>   
+>   	do {
+> @@ -94,7 +94,7 @@ static int i915_gem_object_get_pages_internal(struct drm_i915_gem_object *obj)
+>   
+>   		sg_set_page(sg, page, PAGE_SIZE << order, 0);
+>   		sg_page_sizes |= PAGE_SIZE << order;
+> -		st->nents++;
+> +		st->nents = st->orig_nents = st->nents + 1;
+>   
+>   		npages -= 1 << order;
+>   		if (!npages) {
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+> index 1515384..58ca560 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+> @@ -53,7 +53,7 @@
+>   	GEM_BUG_ON(list_empty(blocks));
+>   
+>   	sg = st->sgl;
+> -	st->nents = 0;
+> +	st->nents = st->orig_nents = 0;
+>   	sg_page_sizes = 0;
+>   	prev_end = (resource_size_t)-1;
+>   
+> @@ -78,7 +78,7 @@
+>   
+>   			sg->length = block_size;
+>   
+> -			st->nents++;
+> +			st->nents = st->orig_nents = st->nents + 1;
+>   		} else {
+>   			sg->length += block_size;
+>   			sg_dma_len(sg) += block_size;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index 5d5d7ee..851a732 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -80,7 +80,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+>   	noreclaim |= __GFP_NORETRY | __GFP_NOWARN;
+>   
+>   	sg = st->sgl;
+> -	st->nents = 0;
+> +	st->nents = st->orig_nents = 0;
+>   	sg_page_sizes = 0;
+>   	for (i = 0; i < page_count; i++) {
+>   		const unsigned int shrink[] = {
+> @@ -140,7 +140,8 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+>   				sg_page_sizes |= sg->length;
+>   				sg = sg_next(sg);
+>   			}
+> -			st->nents++;
+> +			st->nents = st->orig_nents = st->nents + 1;
+
+A bit higher up, not shown in the patch, we have allocated a table via 
+sg_alloc_table giving it a pessimistic max nents, sometimes much larger 
+than the st->nents this loops will create. But orig_nents has been now 
+been overwritten. Will that leak memory come sg_table_free?
+
+As minimum it will nerf our i915_sg_trim optimization a bit lower down, 
+also not shown in the diff.
+
+Regards,
+
+Tvrtko
+
+> +
+>   			sg_set_page(sg, page, PAGE_SIZE, 0);
+>   		} else {
+>   			sg->length += PAGE_SIZE;
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> index c9988b6..bd141f9 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> @@ -76,7 +76,7 @@ static int get_huge_pages(struct drm_i915_gem_object *obj)
+>   
+>   	rem = obj->base.size;
+>   	sg = st->sgl;
+> -	st->nents = 0;
+> +	st->nents = st->orig_nents = 0;
+>   	sg_page_sizes = 0;
+>   
+>   	/*
+> @@ -99,7 +99,7 @@ static int get_huge_pages(struct drm_i915_gem_object *obj)
+>   
+>   			sg_set_page(sg, page, page_size, 0);
+>   			sg_page_sizes |= page_size;
+> -			st->nents++;
+> +			st->nents = st->orig_nents = st->nents + 1;
+>   
+>   			rem -= page_size;
+>   			if (!rem) {
+> @@ -201,7 +201,7 @@ static int fake_get_huge_pages(struct drm_i915_gem_object *obj)
+>   	/* Use optimal page sized chunks to fill in the sg table */
+>   	rem = obj->base.size;
+>   	sg = st->sgl;
+> -	st->nents = 0;
+> +	st->nents = st->orig_nents = 0;
+>   	sg_page_sizes = 0;
+>   	do {
+>   		unsigned int page_size = get_largest_page_size(i915, rem);
+> @@ -217,7 +217,7 @@ static int fake_get_huge_pages(struct drm_i915_gem_object *obj)
+>   
+>   		sg_page_sizes |= len;
+>   
+> -		st->nents++;
+> +		st->nents = st->orig_nents = st->nents + 1;
+>   
+>   		rem -= len;
+>   		if (!rem) {
+> @@ -252,7 +252,7 @@ static int fake_get_huge_pages_single(struct drm_i915_gem_object *obj)
+>   	}
+>   
+>   	sg = st->sgl;
+> -	st->nents = 1;
+> +	st->nents = st->orig_nents = 1;
+>   
+>   	page_size = get_largest_page_size(i915, obj->base.size);
+>   	GEM_BUG_ON(!page_size);
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+> index debaf7b..5723525 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c
+> @@ -28,7 +28,8 @@ static struct sg_table *mock_map_dma_buf(struct dma_buf_attachment *attachment,
+>   		sg = sg_next(sg);
+>   	}
+>   
+> -	if (!dma_map_sg(attachment->dev, st->sgl, st->nents, dir)) {
+> +	st->nents = dma_map_sg(attachment->dev, st->sgl, st->orig_nents, dir);
+> +	if (!st->nents) {
+>   		err = -ENOMEM;
+>   		goto err_st;
+>   	}
+> @@ -46,7 +47,7 @@ static void mock_unmap_dma_buf(struct dma_buf_attachment *attachment,
+>   			       struct sg_table *st,
+>   			       enum dma_data_direction dir)
+>   {
+> -	dma_unmap_sg(attachment->dev, st->sgl, st->nents, dir);
+> +	dma_unmap_sg(attachment->dev, st->sgl, st->orig_nents, dir);
+>   	sg_free_table(st);
+>   	kfree(st);
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index 66165b1..9a298bf 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -1221,7 +1221,7 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+>   	for (column = 0; column < width; column++) {
+>   		src_idx = stride * (height - 1) + column + offset;
+>   		for (row = 0; row < height; row++) {
+> -			st->nents++;
+> +			st->nents = st->orig_nents = st->nents + 1;
+>   			/*
+>   			 * We don't need the pages, but need to initialize
+>   			 * the entries so the sg list can be happily traversed.
+> @@ -1259,7 +1259,7 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+>   	if (ret)
+>   		goto err_sg_alloc;
+>   
+> -	st->nents = 0;
+> +	st->nents = st->orig_nents = 0;
+>   	sg = st->sgl;
+>   
+>   	for (i = 0 ; i < ARRAY_SIZE(rot_info->plane); i++) {
+> @@ -1306,7 +1306,7 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+>   
+>   			length = min(left, length);
+>   
+> -			st->nents++;
+> +			st->nents = st->orig_nents = st->nents + 1;
+>   
+>   			sg_set_page(sg, NULL, length, 0);
+>   			sg_dma_address(sg) = addr;
+> @@ -1343,7 +1343,7 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+>   	if (ret)
+>   		goto err_sg_alloc;
+>   
+> -	st->nents = 0;
+> +	st->nents = st->orig_nents = 0;
+>   	sg = st->sgl;
+>   
+>   	for (i = 0 ; i < ARRAY_SIZE(rem_info->plane); i++) {
+> @@ -1389,7 +1389,7 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+>   	GEM_BUG_ON(!iter);
+>   
+>   	sg = st->sgl;
+> -	st->nents = 0;
+> +	st->nents = st->orig_nents = 0;
+>   	do {
+>   		unsigned int len;
+>   
+> @@ -1400,7 +1400,7 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+>   			sg_dma_address(iter) + (offset << PAGE_SHIFT);
+>   		sg_dma_len(sg) = len;
+>   
+> -		st->nents++;
+> +		st->nents = st->orig_nents = st->nents + 1;
+>   		count -= len >> PAGE_SHIFT;
+>   		if (count == 0) {
+>   			sg_mark_end(sg);
+> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+> index cb43381..c4122cd3 100644
+> --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
+> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+> @@ -28,10 +28,11 @@ int i915_gem_gtt_prepare_pages(struct drm_i915_gem_object *obj,
+>   			       struct sg_table *pages)
+>   {
+>   	do {
+> -		if (dma_map_sg_attrs(&obj->base.dev->pdev->dev,
+> -				     pages->sgl, pages->nents,
+> -				     PCI_DMA_BIDIRECTIONAL,
+> -				     DMA_ATTR_NO_WARN))
+> +		pages->nents = dma_map_sg_attrs(&obj->base.dev->pdev->dev,
+> +						pages->sgl, pages->orig_nents,
+> +						PCI_DMA_BIDIRECTIONAL,
+> +						DMA_ATTR_NO_WARN);
+> +		if (page->nents)
+>   			return 0;
+>   
+>   		/*
+> @@ -68,7 +69,8 @@ void i915_gem_gtt_finish_pages(struct drm_i915_gem_object *obj,
+>   		}
+>   	}
+>   
+> -	dma_unmap_sg(kdev, pages->sgl, pages->nents, PCI_DMA_BIDIRECTIONAL);
+> +	dma_unmap_sg(kdev, pages->sgl, pages->orig_nents,
+> +		     PCI_DMA_BIDIRECTIONAL);
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.c b/drivers/gpu/drm/i915/i915_scatterlist.c
+> index cc6b384..05bee13 100644
+> --- a/drivers/gpu/drm/i915/i915_scatterlist.c
+> +++ b/drivers/gpu/drm/i915/i915_scatterlist.c
+> @@ -15,11 +15,11 @@ bool i915_sg_trim(struct sg_table *orig_st)
+>   	if (orig_st->nents == orig_st->orig_nents)
+>   		return false;
+>   
+> -	if (sg_alloc_table(&new_st, orig_st->nents, GFP_KERNEL | __GFP_NOWARN))
+> +	if (sg_alloc_table(&new_st, orig_st->orig_nents, GFP_KERNEL | __GFP_NOWARN))
+>   		return false;
+>   
+>   	new_sg = new_st.sgl;
+> -	for_each_sg(orig_st->sgl, sg, orig_st->nents, i) {
+> +	for_each_sg(orig_st->sgl, sg, orig_st->orig_nents, i) {
+>   		sg_set_page(new_sg, sg_page(sg), sg->length, 0);
+>   		sg_dma_address(new_sg) = sg_dma_address(sg);
+>   		sg_dma_len(new_sg) = sg_dma_len(sg);
+> diff --git a/drivers/gpu/drm/i915/selftests/scatterlist.c b/drivers/gpu/drm/i915/selftests/scatterlist.c
+> index d599186..4456fe5 100644
+> --- a/drivers/gpu/drm/i915/selftests/scatterlist.c
+> +++ b/drivers/gpu/drm/i915/selftests/scatterlist.c
+> @@ -48,9 +48,9 @@ static noinline int expect_pfn_sg(struct pfn_table *pt,
+>   	unsigned long pfn, n;
+>   
+>   	pfn = pt->start;
+> -	for_each_sg(pt->st.sgl, sg, pt->st.nents, n) {
+> +	for_each_sg(pt->st.sgl, sg, pt->st.orig_nents, n) {
+>   		struct page *page = sg_page(sg);
+> -		unsigned int npages = npages_fn(n, pt->st.nents, rnd);
+> +		unsigned int npages = npages_fn(n, pt->st.orig_nents, rnd);
+>   
+>   		if (page_to_pfn(page) != pfn) {
+>   			pr_err("%s: %s left pages out of order, expected pfn %lu, found pfn %lu (using for_each_sg)\n",
+> @@ -86,7 +86,7 @@ static noinline int expect_pfn_sg_page_iter(struct pfn_table *pt,
+>   	unsigned long pfn;
+>   
+>   	pfn = pt->start;
+> -	for_each_sg_page(pt->st.sgl, &sgiter, pt->st.nents, 0) {
+> +	for_each_sg_page(pt->st.sgl, &sgiter, pt->st.orig_nents, 0) {
+>   		struct page *page = sg_page_iter_page(&sgiter);
+>   
+>   		if (page != pfn_to_page(pfn)) {
+> @@ -256,7 +256,7 @@ static int alloc_table(struct pfn_table *pt,
+>   		pfn += npages;
+>   	}
+>   	sg_mark_end(sg);
+> -	pt->st.nents = n;
+> +	pt->st.nents = pt->st.orig_nents = n;
+>   	pt->end = pfn;
+>   
+>   	return 0;
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
