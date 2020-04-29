@@ -1,92 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7E321BD3E4
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2020 07:08:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B4B11BD607
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2020 09:29:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46B736E14F;
-	Wed, 29 Apr 2020 05:08:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F17146ED10;
+	Wed, 29 Apr 2020 07:29:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2072.outbound.protection.outlook.com [40.107.93.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C2DF6E14F
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 05:08:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z6nF9a5G9ZfNenKTt6PEFRD12w6oL3HD2xjOZEKmB5gaHrYlCHNs+KTK0l/+NIoP/Pnz+Z99gkHXfJvzztfuSTK4A/b6HujKrV6QYlWdQdH/Wsfg2pKgKBH/W5UJCi+LQpK/+zgLpyNNH5TdsJ+7VJub9atjJD7wVvqgEJ8wZVwbFxeh9ZAmfDo+E46lb69wePUE3abAoymzKVIR0NhcWKeBkLjhHbl2I7KtuWeJXx2ddiM7WJTJf+VtSNUApPyBvANIxrNcN4mao6U2xJJS3ONBIH/BiHvzFEZGlwYPfl3sS9/o/YTq+skxqPfEgHYJYb64vWKlGl/7zSZOOyPdrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jfxCQipaTIW4fKZvIo0o0AKV9JUi8uwPRZOdOeNKiDQ=;
- b=N01bLXDp4HUwvFN7J3c9ZSZi3eN+rQ+keje+4+KbOWwp18sAvJCgAecLj50Euu6GF0g/9uXA9QKthsC2i7pKdvfqm0NcyqQdrhrfgVLBuKF7iOqMZYVq4wg+phOrO8w0adrJclYqfpac0y9wKZtgiIas+Aab/p/GsF1VSuSto0oQit+qsokb01dAu7BWMXIYPgUoS0sp0BrAz1B3uY0xB6osVFSTfhQa/S3IrF1MfWAiUa0ZYDHex+w+ycz04vsjyrvPkVD1y/wjd2tj1peduBhpegjfCdKVXgVr3zjrFk1QOvs9/jwupPVYGoTVkaKB29Kx5jTM1bIaJPdKgiE7dg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jfxCQipaTIW4fKZvIo0o0AKV9JUi8uwPRZOdOeNKiDQ=;
- b=gS2WGVi3g7EINyFYxur/e2OdNLd991ZtP8ib7IILiEMNd26BMmHq6wNOMSspi+gj8IQ7USz2fZKqh/mubP8WaIW1llkXpdUTHu2F8uny+OuKb6SQPPL3WsIKnZ12Ik0h6dDCqW9H1k+GHEuPBPk2lLAQk+9B5hQdTNMhgv0fE0U=
-Received: from BY5PR12MB3844.namprd12.prod.outlook.com (2603:10b6:a03:1ad::24)
- by BY5PR12MB4084.namprd12.prod.outlook.com (2603:10b6:a03:205::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.22; Wed, 29 Apr
- 2020 05:08:26 +0000
-Received: from BY5PR12MB3844.namprd12.prod.outlook.com
- ([fe80::28a7:8f61:f016:d829]) by BY5PR12MB3844.namprd12.prod.outlook.com
- ([fe80::28a7:8f61:f016:d829%6]) with mapi id 15.20.2937.028; Wed, 29 Apr 2020
- 05:08:26 +0000
-From: "Zhao, Jiange" <Jiange.Zhao@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu: Add autodump debugfs node for gpu reset v4
-Thread-Topic: [PATCH] drm/amdgpu: Add autodump debugfs node for gpu reset v4
-Thread-Index: AQHWHeQFneDjep8xxUawreSEa51HXqiPjHKk
-Date: Wed, 29 Apr 2020 05:08:26 +0000
-Message-ID: <BY5PR12MB38443C7B1DE143B954671CECE1AD0@BY5PR12MB3844.namprd12.prod.outlook.com>
-References: <20200429050639.20859-1-jianzh@amd.com>
-In-Reply-To: <20200429050639.20859-1-jianzh@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-04-29T05:08:25.538Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-x-originating-ip: [58.247.170.242]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 75308fc7-3573-4302-0830-08d7ebfb5931
-x-ms-traffictypediagnostic: BY5PR12MB4084:|BY5PR12MB4084:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR12MB4084738D6D3619D31BA4DBF4E1AD0@BY5PR12MB4084.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 03883BD916
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR12MB3844.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(376002)(39860400002)(346002)(366004)(136003)(396003)(54906003)(7696005)(19627405001)(53546011)(6506007)(55016002)(316002)(9686003)(8936002)(66476007)(33656002)(66556008)(8676002)(66946007)(4326008)(64756008)(66446008)(186003)(478600001)(6916009)(2906002)(86362001)(91956017)(76116006)(5660300002)(52536014)(26005)(71200400001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zD/E53PHROfpo1or6+TMyFw+dDqssLJHsEsf0ENEfYJAJ2LHL821m9BrQT2das/9zOLH0gpwYbv2wyT3lr+oUf6W1IpCT7wlu4xYPhPX8r8XJtcr2wW8pzi8Tb3WnV5GZoZK60tQO8j3Th3Qen6fH55DnJZZ7YETxzD4Zj5aaagoOmbI2VuwGBB4yyn4UzYWaCy/JImyeBPtugJdvEo7tvY5zm68mhb+vb+ZE2yQVTi4BIkKE8AJhiIBbQtD+KIDuXn7zxwOaAMe1LqQxQuL+okySM1m/dssuJwjWekNMdb5pOGA55B63fhkzFWit3Pwt3rDZnNAticwl3A9Pxodjdlb2/+ftdg6Kmv3lROLTlOeS4SOmbNi5zLB0SIE1QBBmCK8/ELaufN6Ls309sHovMxZRQjaaaO7JS5+GwVOUlMdWDo81EwdnYxmBHPE8UfQ
-x-ms-exchange-antispam-messagedata: OhJ+1p2clROtliYxHkzT2E7+E9wMgMIK6Hx3gQSxH1uoFnQkJQxOhNcDMv2UBlOskCxKLkBxVh45yeC3c9+tqMC1d0GLSEjmkk/7kwFKJZ+SUzJYIm5wTwNCl++GsxDEnaXuU6UtMc48+Wb+S3ZmWfX6kwFA2ahcsSeFxTL/qRtvud9kGRsNYOvEsaNImcOfOkMvriCb2KgFmXj/FMPhpt2Cdv5GG3NaUk3DYc25h0C5kEsEuXrb+XlvtT9twdcw3Mz7swpPhcZ49dU3uE1Q+WVL7Rf4lW9hC+xD24wQPvGbcTYHkqRZ1wlyy9yP9KxkGDhyDETxPE0bkTnLtd3hKhGc++ZgJw1tf2Bwqf8rDGNjtW3sCzCcpqKpIjIFxicx36lHk3YeoFtcpSAbSa7rFxNE4ucI33wi9aznZnhmEAc+6g9d7cZ7POLqe3tLt/f1Cd9RTCmuKRVP6nUusbn2iR7PET+Wi1G/yleKK2KTRNIfC+qNiwD+3WUZlN3LV0Zm2HQjCw97liO/RT8GypcEaQS9JLUm2eHGnkK6RiBHhy7bLuTAMD+vNMOZH5HJOQumETxfuOwONSTTtdCgwMjlo1KRnIe1jAQJSDoW7OkEcvLLga+4iq0P+pl9BjGl5s0yvj6vPt2kQZxT2j2XGbC9P4GL//AO+B1F0tai+o4s//JR+0nNzsmdIOjHT+Wvy8xCTQjRIIXhc/X9q6pljW12C+rFjmLx6o8jgIiDQj1Prm9mivDKmBbx6VGr7oiIwisPP/eddg99/qj9X4PBEXKiLtH7zDEaMZmMNV2YUa0KKQI=
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
+ [209.85.208.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3AF56ED12
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 07:29:14 +0000 (UTC)
+Received: by mail-lj1-f177.google.com with SMTP id f18so1463108lja.13
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2020 00:29:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:to:from:subject:openpgp:autocrypt:message-id
+ :date:user-agent:mime-version:content-language
+ :content-transfer-encoding;
+ bh=ZULs35QrIOCrUWSoio2TY2qESNezPY77OrX0tXeO8Lk=;
+ b=TxJ8L1Hs9+ASakWebt9XXCJK2bhf5Q1V23QsQkYgTislb5ZV+wtkUsZmxN/yR2TTum
+ BfwqrAru/r10ZBICJy7/k8a++7XF1S4fRY+wUf+xyAw86TX5Q7Xmf/3TqR2BM3AiImZu
+ GD8Z9UzwxaV1u76b45LqtNAne9VeYCrcZ397tPl4YUNHyxTlrdjm9Egb0gtY8rFG6k9M
+ RDTCvrCWp14YH328a1FeR15TqhzJy4iIYMBbK7PZF4TtIRVphDYGR+DDwB0sJUul0+o7
+ 6/Ke9KUx4i9wQZuWDZMFp11Bh/nB+zwUWrj5duuaaAjHuWr61wu4cq/M1EMiuYJEeeax
+ /C4w==
+X-Gm-Message-State: AGi0PuZ3VgAC02jLYD7YZra+YHnx9lLY/FFSE/fhSuNQ9LwymECw/OG1
+ 2s6F7O75bQE9Sa0uDNPJFvU+qxy4lLY=
+X-Google-Smtp-Source: APiQypIU8mL8N+lHk/4ct34aFvZpoQ7HT4cxx2XM9UkjERcZScAzjWA4FCdOcObl0P5KE2505elHpw==
+X-Received: by 2002:a2e:700e:: with SMTP id l14mr20501936ljc.135.1588145352721; 
+ Wed, 29 Apr 2020 00:29:12 -0700 (PDT)
+Received: from [192.168.0.88] (east.meadow.volia.net. [93.72.151.96])
+ by smtp.googlemail.com with ESMTPSA id o25sm1804303lfg.41.2020.04.29.00.29.11
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 29 Apr 2020 00:29:11 -0700 (PDT)
+To: amd-gfx@lists.freedesktop.org
+From: Andriy Gapon <avg@FreeBSD.org>
+Subject: amdgpu, dc, backlight brightness
+Openpgp: preference=signencrypt
+Autocrypt: addr=avg@FreeBSD.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <8db5ae80-0b9d-7d44-18b6-5641eab0ac0d@FreeBSD.org>
+Date: Wed, 29 Apr 2020 10:29:10 +0300
+User-Agent: Mozilla/5.0 (X11; FreeBSD amd64; rv:60.0) Gecko/20100101
+ Firefox/60.0 Thunderbird/60.9.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75308fc7-3573-4302-0830-08d7ebfb5931
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2020 05:08:26.0879 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7eh2HTfgYCrTy1OKeT+gvfLDke02Wqx6r+K9RTIq+UifHEE7MjqaBhxw9JGbaAKf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4084
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,667 +101,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pelloux-prayer, Pierre-eric" <Pierre-eric.Pelloux-prayer@amd.com>,
- "Kuehling, Felix" <Felix.Kuehling@amd.com>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, "Liu, 
- Monk" <Monk.Liu@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
-Content-Type: multipart/mixed; boundary="===============0486735764=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0486735764==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BY5PR12MB38443C7B1DE143B954671CECE1AD0BY5PR12MB3844namp_"
 
---_000_BY5PR12MB38443C7B1DE143B954671CECE1AD0BY5PR12MB3844namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+I see that amdgpu_atif_handler() has this comment and code:
+                /* todo: add DC handling */
+                if ((req.pending & ATIF_PANEL_BRIGHTNESS_CHANGE_REQUEST) &&
+                    !amdgpu_device_has_dc_support(adev)) {
+...
+                }
 
-[AMD Official Use Only - Internal Distribution Only]
+So, this makes me curious how a typical Linux distribution handles backlight
+brightness change via special keys hooked to ACPI.
 
-Hi all,
+This is what I see on FreeBSD.
+- a special key is pressed
+- there is a bunch of uninteresting ACPI and kernel stuff involving EC
+- ACPI notification 0x86 on VGA.LCD device is handled by acpi_video driver
+- the driver invokes VGA.LCD._BCM method
+- if I read the ASL of my system correctly, ACPI does not touch any hardware
+  but simply saves some things like the requested brightness level
+- then ACPI posts notification 0x81 on VGA device
+- the notification gets routed to amdgpu
+- amdgpu invokes VGA.ATIF and gets some interesting data from ACPI
+- and this is where things stop in the DC case (because of the code above)
 
-I worked out the race condition and here is version 5. Please have a look.
+In the non-DC case amdgpu would actually set the brightness based on the data
+returned from ATIF.  radeon driver also did the same as far as I can see.
 
-Jiange
-________________________________
-From: Zhao, Jiange <Jiange.Zhao@amd.com>
-Sent: Wednesday, April 29, 2020 1:06 PM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Koenig, Christian <Christian.Koenig@amd.com>; Kuehling, Felix <Felix.Ku=
-ehling@amd.com>; Pelloux-prayer, Pierre-eric <Pierre-eric.Pelloux-prayer@am=
-d.com>; Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Hawking <Haw=
-king.Zhang@amd.com>; Liu, Monk <Monk.Liu@amd.com>; Zhao, Jiange <Jiange.Zha=
-o@amd.com>
-Subject: [PATCH] drm/amdgpu: Add autodump debugfs node for gpu reset v4
+So, how things work in the DC case?
 
-From: Jiange Zhao <Jiange.Zhao@amd.com>
+I see that Linux acpi_video does something that FreeBSD doesn't do, it posts
+KEY_BRIGHTNESSUP / KEY_BRIGHTNESSDOWN / etc.  I guess that in the end this is
+similar to just having the corresponding multimedia keys on a keyboard.
+Is this how the brightness control supposed to work?
+So, there must be some userland program listening for those keys and somehow
+knowing about amdgpu backlight controls (e.g., /sys/class/backlight/amdgpu_bl0).
+Is that correct?
 
-When GPU got timeout, it would notify an interested part
-of an opportunity to dump info before actual GPU reset.
+I tried a live image of Void Linux (LXQT flavor).  While it does handle the
+special brightness keys it seems to do it without actually controlling the
+backlight.  That is, it makes the picture lighter / darker, but values under
+/sys/class/backlight/amdgpu_bl0 do not change.  If I set brightness under
+/sys/class/backlight/amdgpu_bl0 to some low level then the brightness up key
+cannot make the screen brighter.  So, it appears to be just a rendering /
+composition trick.
 
-A usermode app would open 'autodump' node under debugfs system
-and poll() for readable/writable. When a GPU reset is due,
-amdgpu would notify usermode app through wait_queue_head and give
-it 10 minutes to dump info.
-
-After usermode app has done its work, this 'autodump' node is closed.
-On node closure, amdgpu gets to know the dump is done through
-the completion that is triggered in release().
-
-There is no write or read callback because necessary info can be
-obtained through dmesg and umr. Messages back and forth between
-usermode app and amdgpu are unnecessary.
-
-v2: (1) changed 'registered' to 'app_listening'
-    (2) add a mutex in open() to prevent race condition
-
-v3 (chk): grab the reset lock to avoid race in autodump_open,
-          rename debugfs file to amdgpu_autodump,
-          provide autodump_read as well,
-          style and code cleanups
-
-v4: add 'bool app_listening' to differentiate situations, so that
-    the node can be reopened; also, there is no need to wait for
-    completion when no app is waiting for a dump.
-
-v5: change 'bool app_listening' to 'enum amdgpu_autodump_state'
-    add 'app_state_mutex' for race conditions:
-        (1)Only 1 user can open this file node
-        (2)wait_dump() can only take effect after poll() executed.
-        (3)eliminated the race condition between release() and
-           wait_dump()
-
-Signed-off-by: Jiange Zhao <Jiange.Zhao@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h         |  2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 92 ++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h | 14 ++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  2 +
- 4 files changed, 109 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdg=
-pu/amdgpu.h
-index bc1e0fd71a09..6f8ef98c4b97 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -990,6 +990,8 @@ struct amdgpu_device {
-         char                            product_number[16];
-         char                            product_name[32];
-         char                            serial[16];
-+
-+       struct amdgpu_autodump          autodump;
- };
-
- static inline struct amdgpu_device *amdgpu_ttm_adev(struct ttm_bo_device *=
-bdev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_debugfs.c
-index 1a4894fa3693..1d4a95e8ad5b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-@@ -27,7 +27,7 @@
- #include <linux/pci.h>
- #include <linux/uaccess.h>
- #include <linux/pm_runtime.h>
--
-+#include <linux/poll.h>
- #include <drm/drm_debugfs.h>
-
- #include "amdgpu.h"
-@@ -74,8 +74,96 @@ int amdgpu_debugfs_add_files(struct amdgpu_device *adev,
-         return 0;
- }
-
-+int amdgpu_debugfs_wait_dump(struct amdgpu_device *adev)
-+{
-+#if defined(CONFIG_DEBUG_FS)
-+       unsigned long timeout =3D 600 * HZ;
-+       int ret;
-+
-+       mutex_lock(&adev->autodump.app_state_mutex);
-+       if (adev->autodump.app_state !=3D AMDGPU_AUTODUMP_LISTENING) {
-+               mutex_unlock(&adev->autodump.app_state_mutex);
-+               return 0;
-+       }
-+       mutex_unlock(&adev->autodump.app_state_mutex);
-+
-+       wake_up_interruptible(&adev->autodump.gpu_hang);
-+
-+       ret =3D wait_for_completion_interruptible_timeout(&adev->autodump.d=
-umping, timeout);
-+       if (ret =3D=3D 0) {
-+               pr_err("autodump: timeout, move on to gpu recovery\n");
-+               return -ETIMEDOUT;
-+       }
-+#endif
-+       return 0;
-+}
-+
- #if defined(CONFIG_DEBUG_FS)
-
-+static int amdgpu_debugfs_autodump_open(struct inode *inode, struct file *=
-file)
-+{
-+       struct amdgpu_device *adev =3D inode->i_private;
-+       int ret;
-+
-+       file->private_data =3D adev;
-+
-+       mutex_lock(&adev->autodump.app_state_mutex);
-+       if (adev->autodump.app_state =3D=3D AMDGPU_AUTODUMP_NO_APP) {
-+               adev->autodump.app_state =3D AMDGPU_AUTODUMP_REGISTERED;
-+               ret =3D 0;
-+       } else {
-+               ret =3D -EBUSY;
-+       }
-+       mutex_unlock(&adev->autodump.app_state_mutex);
-+
-+       return ret;
-+}
-+
-+static int amdgpu_debugfs_autodump_release(struct inode *inode, struct fil=
-e *file)
-+{
-+       struct amdgpu_device *adev =3D file->private_data;
-+
-+       mutex_lock(&adev->autodump.app_state_mutex);
-+       complete(&adev->autodump.dumping);
-+       adev->autodump.app_state =3D AMDGPU_AUTODUMP_NO_APP;
-+       mutex_unlock(&adev->autodump.app_state_mutex);
-+       return 0;
-+}
-+
-+static unsigned int amdgpu_debugfs_autodump_poll(struct file *file, struct=
- poll_table_struct *poll_table)
-+{
-+       struct amdgpu_device *adev =3D file->private_data;
-+
-+       mutex_lock(&adev->autodump.app_state_mutex);
-+       poll_wait(file, &adev->autodump.gpu_hang, poll_table);
-+       adev->autodump.app_state =3D AMDGPU_AUTODUMP_LISTENING;
-+       mutex_unlock(&adev->autodump.app_state_mutex);
-+
-+       if (adev->in_gpu_reset)
-+               return POLLIN | POLLRDNORM | POLLWRNORM;
-+
-+       return 0;
-+}
-+
-+static const struct file_operations autodump_debug_fops =3D {
-+       .owner =3D THIS_MODULE,
-+       .open =3D amdgpu_debugfs_autodump_open,
-+       .poll =3D amdgpu_debugfs_autodump_poll,
-+       .release =3D amdgpu_debugfs_autodump_release,
-+};
-+
-+static void amdgpu_debugfs_autodump_init(struct amdgpu_device *adev)
-+{
-+       init_completion(&adev->autodump.dumping);
-+       init_waitqueue_head(&adev->autodump.gpu_hang);
-+       adev->autodump.app_state =3D AMDGPU_AUTODUMP_NO_APP;
-+       mutex_init(&adev->autodump.app_state_mutex);
-+
-+       debugfs_create_file("amdgpu_autodump", 0600,
-+               adev->ddev->primary->debugfs_root,
-+               adev, &autodump_debug_fops);
-+}
-+
- /**
-  * amdgpu_debugfs_process_reg_op - Handle MMIO register reads/writes
-  *
-@@ -1434,6 +1522,8 @@ int amdgpu_debugfs_init(struct amdgpu_device *adev)
-
-         amdgpu_ras_debugfs_create_all(adev);
-
-+       amdgpu_debugfs_autodump_init(adev);
-+
-         return amdgpu_debugfs_add_files(adev, amdgpu_debugfs_list,
-                                         ARRAY_SIZE(amdgpu_debugfs_list));
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_debugfs.h
-index de12d1101526..51b4ea790686 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
-@@ -31,6 +31,19 @@ struct amdgpu_debugfs {
-         unsigned                num_files;
- };
-
-+enum amdgpu_autodump_state {
-+       AMDGPU_AUTODUMP_NO_APP,
-+       AMDGPU_AUTODUMP_REGISTERED,
-+       AMDGPU_AUTODUMP_LISTENING
-+};
-+
-+struct amdgpu_autodump {
-+       struct mutex                    app_state_mutex;
-+       enum amdgpu_autodump_state      app_state;
-+       struct completion               dumping;
-+       struct wait_queue_head          gpu_hang;
-+};
-+
- int amdgpu_debugfs_regs_init(struct amdgpu_device *adev);
- int amdgpu_debugfs_init(struct amdgpu_device *adev);
- void amdgpu_debugfs_fini(struct amdgpu_device *adev);
-@@ -40,3 +53,4 @@ int amdgpu_debugfs_add_files(struct amdgpu_device *adev,
- int amdgpu_debugfs_fence_init(struct amdgpu_device *adev);
- int amdgpu_debugfs_firmware_init(struct amdgpu_device *adev);
- int amdgpu_debugfs_gem_init(struct amdgpu_device *adev);
-+int amdgpu_debugfs_wait_dump(struct amdgpu_device *adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_device.c
-index e6978a2c26b7..8109946075b1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3912,6 +3912,8 @@ static int amdgpu_device_pre_asic_reset(struct amdgpu=
-_device *adev,
-         int i, r =3D 0;
-         bool need_full_reset  =3D *need_full_reset_arg;
-
-+       amdgpu_debugfs_wait_dump(adev);
-+
-         /* block all schedulers and reset given job's ring */
-         for (i =3D 0; i < AMDGPU_MAX_RINGS; ++i) {
-                 struct amdgpu_ring *ring =3D adev->rings[i];
---
-2.20.1
-
-
---_000_BY5PR12MB38443C7B1DE143B954671CECE1AD0BY5PR12MB3844namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
-ign=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Hi all,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-I worked out the race condition and here is version 5. Please have a look.<=
-/div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Jiange<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Zhao, Jiange &lt;Jian=
-ge.Zhao@amd.com&gt;<br>
-<b>Sent:</b> Wednesday, April 29, 2020 1:06 PM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Koenig, Christian &lt;Christian.Koenig@amd.com&gt;; Kuehling, Fe=
-lix &lt;Felix.Kuehling@amd.com&gt;; Pelloux-prayer, Pierre-eric &lt;Pierre-=
-eric.Pelloux-prayer@amd.com&gt;; Deucher, Alexander &lt;Alexander.Deucher@a=
-md.com&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;; Liu,
- Monk &lt;Monk.Liu@amd.com&gt;; Zhao, Jiange &lt;Jiange.Zhao@amd.com&gt;<br=
->
-<b>Subject:</b> [PATCH] drm/amdgpu: Add autodump debugfs node for gpu reset=
- v4</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">From: Jiange Zhao &lt;Jiange.Zhao@amd.com&gt;<br>
-<br>
-When GPU got timeout, it would notify an interested part<br>
-of an opportunity to dump info before actual GPU reset.<br>
-<br>
-A usermode app would open 'autodump' node under debugfs system<br>
-and poll() for readable/writable. When a GPU reset is due,<br>
-amdgpu would notify usermode app through wait_queue_head and give<br>
-it 10 minutes to dump info.<br>
-<br>
-After usermode app has done its work, this 'autodump' node is closed.<br>
-On node closure, amdgpu gets to know the dump is done through<br>
-the completion that is triggered in release().<br>
-<br>
-There is no write or read callback because necessary info can be<br>
-obtained through dmesg and umr. Messages back and forth between<br>
-usermode app and amdgpu are unnecessary.<br>
-<br>
-v2: (1) changed 'registered' to 'app_listening'<br>
-&nbsp;&nbsp;&nbsp; (2) add a mutex in open() to prevent race condition<br>
-<br>
-v3 (chk): grab the reset lock to avoid race in autodump_open,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rename debugfs file =
-to amdgpu_autodump,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; provide autodump_rea=
-d as well,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; style and code clean=
-ups<br>
-<br>
-v4: add 'bool app_listening' to differentiate situations, so that<br>
-&nbsp;&nbsp;&nbsp; the node can be reopened; also, there is no need to wait=
- for<br>
-&nbsp;&nbsp;&nbsp; completion when no app is waiting for a dump.<br>
-<br>
-v5: change 'bool app_listening' to 'enum amdgpu_autodump_state'<br>
-&nbsp;&nbsp;&nbsp; add 'app_state_mutex' for race conditions:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (1)Only 1 user can open this fil=
-e node<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2)wait_dump() can only take eff=
-ect after poll() executed.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (3)eliminated the race condition=
- between release() and<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wait_dump()<br=
->
-<br>
-Signed-off-by: Jiange Zhao &lt;Jiange.Zhao@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; |&nbsp; 2 &#43;<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 92 &#43;&#43;&#43;&#43;=
-&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;=
-&#43;-<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h | 14 &#43;&#43;&#43;&#43;=
-<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_device.c&nbsp; |&nbsp; 2 &#43;<br>
-&nbsp;4 files changed, 109 insertions(&#43;), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdg=
-pu/amdgpu.h<br>
-index bc1e0fd71a09..6f8ef98c4b97 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
-@@ -990,6 &#43;990,8 @@ struct amdgpu_device {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; product_n=
-umber[16];<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; product_n=
-ame[32];<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; serial[16=
-];<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_autodump&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; autodump;<br>
-&nbsp;};<br>
-&nbsp;<br>
-&nbsp;static inline struct amdgpu_device *amdgpu_ttm_adev(struct ttm_bo_dev=
-ice *bdev)<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_debugfs.c<br>
-index 1a4894fa3693..1d4a95e8ad5b 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c<br>
-@@ -27,7 &#43;27,7 @@<br>
-&nbsp;#include &lt;linux/pci.h&gt;<br>
-&nbsp;#include &lt;linux/uaccess.h&gt;<br>
-&nbsp;#include &lt;linux/pm_runtime.h&gt;<br>
--<br>
-&#43;#include &lt;linux/poll.h&gt;<br>
-&nbsp;#include &lt;drm/drm_debugfs.h&gt;<br>
-&nbsp;<br>
-&nbsp;#include &quot;amdgpu.h&quot;<br>
-@@ -74,8 &#43;74,96 @@ int amdgpu_debugfs_add_files(struct amdgpu_device *a=
-dev,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-&nbsp;<br>
-&#43;int amdgpu_debugfs_wait_dump(struct amdgpu_device *adev)<br>
-&#43;{<br>
-&#43;#if defined(CONFIG_DEBUG_FS)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned long timeout =3D 600 * H=
-Z;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;autodump=
-.app_state_mutex);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;autodump.app_state !=
-=3D AMDGPU_AUTODUMP_LISTENING) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; mutex_unlock(&amp;adev-&gt;autodump.app_state_mutex);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; return 0;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;adev-&gt;autodu=
-mp.app_state_mutex);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wake_up_interruptible(&amp;adev-&=
-gt;autodump.gpu_hang);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D wait_for_completion_inter=
-ruptible_timeout(&amp;adev-&gt;autodump.dumping, timeout);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret =3D=3D 0) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; pr_err(&quot;autodump: timeout, move on to gpu recovery\n&qu=
-ot;);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; return -ETIMEDOUT;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&#43;#endif<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&#43;}<br>
-&#43;<br>
-&nbsp;#if defined(CONFIG_DEBUG_FS)<br>
-&nbsp;<br>
-&#43;static int amdgpu_debugfs_autodump_open(struct inode *inode, struct fi=
-le *file)<br>
-&#43;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D in=
-ode-&gt;i_private;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file-&gt;private_data =3D adev;<b=
-r>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;autodump=
-.app_state_mutex);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;autodump.app_state =
-=3D=3D AMDGPU_AUTODUMP_NO_APP) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; adev-&gt;autodump.app_state =3D AMDGPU_AUTODUMP_REGISTERED;<=
-br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ret =3D 0;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ret =3D -EBUSY;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;adev-&gt;autodu=
-mp.app_state_mutex);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&#43;}<br>
-&#43;<br>
-&#43;static int amdgpu_debugfs_autodump_release(struct inode *inode, struct=
- file *file)<br>
-&#43;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D fi=
-le-&gt;private_data;<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;autodump=
-.app_state_mutex);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; complete(&amp;adev-&gt;autodump.d=
-umping);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;autodump.app_state =3D A=
-MDGPU_AUTODUMP_NO_APP;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;adev-&gt;autodu=
-mp.app_state_mutex);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&#43;}<br>
-&#43;<br>
-&#43;static unsigned int amdgpu_debugfs_autodump_poll(struct file *file, st=
-ruct poll_table_struct *poll_table)<br>
-&#43;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D fi=
-le-&gt;private_data;<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;autodump=
-.app_state_mutex);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poll_wait(file, &amp;adev-&gt;aut=
-odump.gpu_hang, poll_table);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;autodump.app_state =3D A=
-MDGPU_AUTODUMP_LISTENING;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;adev-&gt;autodu=
-mp.app_state_mutex);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;in_gpu_reset)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; return POLLIN | POLLRDNORM | POLLWRNORM;<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&#43;}<br>
-&#43;<br>
-&#43;static const struct file_operations autodump_debug_fops =3D {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .owner =3D THIS_MODULE,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .open =3D amdgpu_debugfs_autodump=
-_open,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .poll =3D amdgpu_debugfs_autodump=
-_poll,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .release =3D amdgpu_debugfs_autod=
-ump_release,<br>
-&#43;};<br>
-&#43;<br>
-&#43;static void amdgpu_debugfs_autodump_init(struct amdgpu_device *adev)<b=
-r>
-&#43;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; init_completion(&amp;adev-&gt;aut=
-odump.dumping);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; init_waitqueue_head(&amp;adev-&gt=
-;autodump.gpu_hang);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;autodump.app_state =3D A=
-MDGPU_AUTODUMP_NO_APP;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_init(&amp;adev-&gt;autodump=
-.app_state_mutex);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; debugfs_create_file(&quot;amdgpu_=
-autodump&quot;, 0600,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; adev-&gt;ddev-&gt;primary-&gt;debugfs_root,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; adev, &amp;autodump_debug_fops);<br>
-&#43;}<br>
-&#43;<br>
-&nbsp;/**<br>
-&nbsp; * amdgpu_debugfs_process_reg_op - Handle MMIO register reads/writes<=
-br>
-&nbsp; *<br>
-@@ -1434,6 &#43;1522,8 @@ int amdgpu_debugfs_init(struct amdgpu_device *ade=
-v)<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ras_debugfs_create_=
-all(adev);<br>
-&nbsp;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_debugfs_autodump_init(adev=
-);<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return amdgpu_debugfs_add_=
-files(adev, amdgpu_debugfs_list,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ARRAY_SIZE(amdgpu_debugfs_list));<br>
-&nbsp;}<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_debugfs.h<br>
-index de12d1101526..51b4ea790686 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h<br>
-@@ -31,6 &#43;31,19 @@ struct amdgpu_debugfs {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nu=
-m_files;<br>
-&nbsp;};<br>
-&nbsp;<br>
-&#43;enum amdgpu_autodump_state {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_AUTODUMP_NO_APP,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_AUTODUMP_REGISTERED,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_AUTODUMP_LISTENING<br>
-&#43;};<br>
-&#43;<br>
-&#43;struct amdgpu_autodump {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct mutex&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; app_state_mutex;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enum amdgpu_autodump_state&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; app_state;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct completion&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dumpin=
-g;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct wait_queue_head&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gpu_hang;<br>
-&#43;};<br>
-&#43;<br>
-&nbsp;int amdgpu_debugfs_regs_init(struct amdgpu_device *adev);<br>
-&nbsp;int amdgpu_debugfs_init(struct amdgpu_device *adev);<br>
-&nbsp;void amdgpu_debugfs_fini(struct amdgpu_device *adev);<br>
-@@ -40,3 &#43;53,4 @@ int amdgpu_debugfs_add_files(struct amdgpu_device *ad=
-ev,<br>
-&nbsp;int amdgpu_debugfs_fence_init(struct amdgpu_device *adev);<br>
-&nbsp;int amdgpu_debugfs_firmware_init(struct amdgpu_device *adev);<br>
-&nbsp;int amdgpu_debugfs_gem_init(struct amdgpu_device *adev);<br>
-&#43;int amdgpu_debugfs_wait_dump(struct amdgpu_device *adev);<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_device.c<br>
-index e6978a2c26b7..8109946075b1 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br>
-@@ -3912,6 &#43;3912,8 @@ static int amdgpu_device_pre_asic_reset(struct am=
-dgpu_device *adev,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i, r =3D 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool need_full_reset&nbsp;=
- =3D *need_full_reset_arg;<br>
-&nbsp;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_debugfs_wait_dump(adev);<b=
-r>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* block all schedulers an=
-d reset given job's ring */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; AMDGP=
-U_MAX_RINGS; &#43;&#43;i) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; struct amdgpu_ring *ring =3D adev-&gt;rings[i];<br>
--- <br>
-2.20.1<br>
-<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_BY5PR12MB38443C7B1DE143B954671CECE1AD0BY5PR12MB3844namp_--
-
---===============0486735764==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Thank you.
+-- 
+Andriy Gapon
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0486735764==--
