@@ -2,56 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F13881C04F1
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2020 20:37:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ED9E1C04F2
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2020 20:37:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31E826E941;
-	Thu, 30 Apr 2020 18:37:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C5C46E949;
+	Thu, 30 Apr 2020 18:37:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
- [IPv6:2607:f8b0:4864:20::741])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A4C86E941
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 18:37:34 +0000 (UTC)
-Received: by mail-qk1-x741.google.com with SMTP id g74so6762702qke.13
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 11:37:34 -0700 (PDT)
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
+ [IPv6:2607:f8b0:4864:20::742])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66CD46E949
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 18:37:36 +0000 (UTC)
+Received: by mail-qk1-x742.google.com with SMTP id b188so6780623qkd.9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 11:37:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Zigw6+WYw0oSbjw+jcghbiFGb2BvOKDGZzBSuQWDqmQ=;
- b=ObM5K9tppEfZSOSshc3Cy3z6C49TgZ7lhNlIkHYEDuLTT0XIVUR2Ns5EJWLeRcjglQ
- LgbwZTDbcXb91pb8bgZdDG35pnAaFoKKWsqeSIPCO903gjEbbSBDIrUDzKK0/PVT0E5r
- 7kZXcYKhMlrzmz/oxTjxBHn2gJI5dzl2d2uGhXAeVLkB3GM8CP7lB2NpHtdvuEIKukbz
- UvOLYQ2nFh49/SEFUOuA/rk+HRuoJvgUjJelsyJDO6S5LSr1QUrzWPENznWoTkdEpUlC
- JS1C7blE1Y+cVsNyBDypw+oVrFFsjA21KMOGqr3jMmvKeE/FbINKG2JQqqxy0zq6I+Pw
- uomA==
+ bh=kzwPRcago+dpueqUi1I/BpUlg6h/D1sAs7XiVfoo+gU=;
+ b=hoxAPT+pk8d7u2XGiz/tZwlFH2zdU4Se0xuXvlORV3LFYkwhvqPrtXVBdoCyIzaiPC
+ lsWxpgM53XtH4hfAPQ38OUplXy739fgwU52ne7eP5xHCYhtt0V96zsnaVJ7ecGUnFPCU
+ ARSe9hLAQSC2m88O6szYAF26mHc38HewYjegBzhhBNiWRkvNSMmnmbMLDZC0yGA07dNP
+ xWPjuFNew/j+4Dip14omHido0OExm4zhfIRDMb6njHxEVRh+Z6CdNMMrodNFcs4wZ0yC
+ VSdiGJwbTNivImyPk7MBfIIsLFnGHyF4qCuHv4xxzTXq2dNAmJPI/gGhVPaADDM3Q1H+
+ 3MxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Zigw6+WYw0oSbjw+jcghbiFGb2BvOKDGZzBSuQWDqmQ=;
- b=o17x1COHLANLScig88Pe21M8S0PQItH2yRoWtAihcET6HZnO3F5ZiwfgT0jjyAefyB
- pHloeT1wT8R/V6tw7h55GrPV0r8wMDOwDlEP/0dBkNhYNKJts6qIFIAQdQox9wovK9Ss
- ZcYL8zl53VBmG601gJ8ETbMqtR/RvCbU5ZErht7a9GZ4Im5m9AmvqBp8pxLhX+4aXfO2
- 3k6HdjsFeoDJHaPIjLVJ2sEiQMsTj8qXSZvCPpWmhw4UogeiAEkmdHEBzebFaKoB1LQM
- yNhPP+9XwE0w8QTLUPCtRDqY5y7dyqEwrGFvfb0YvkWUsJxOVW4gu5iwB7gvo2Z4bX1X
- T3Ig==
-X-Gm-Message-State: AGi0Pubj9+L7lLl0i7MUZNNGe0QAhGUMFH/XbfXPp7++6FslWaPVUv8e
- hZb6yjmd8Pg88Hv3XtNn4ZWyrQLM
-X-Google-Smtp-Source: APiQypJ7SlpZjbMKm1cpjfvF0XvHYiJcvVf4rsiZ8IqXeHfo1bre79zYmThDopfKwt10zIyjxmTfUA==
-X-Received: by 2002:a05:620a:949:: with SMTP id
- w9mr5008356qkw.217.1588271853430; 
- Thu, 30 Apr 2020 11:37:33 -0700 (PDT)
+ bh=kzwPRcago+dpueqUi1I/BpUlg6h/D1sAs7XiVfoo+gU=;
+ b=QQwoK/K/RdhZ6p5MB3BFDAPPRRU9a/dUIA0oT3+98GXVZxegTtksuUFuRBrNXicLf1
+ nkTvzan7lYb3N9vkEu5oeRr5Nzu6OKn+Vo8TMuBq8IalontKZNkfjZtOhyK5KiA84lE3
+ bt/Jm3C0hM6Y3x1yd9t23B4i5/h0QfwEbCHXxD4qn5hiQO9p4Q05hlYrzCUTsIslxEHC
+ xAOq7p0zc5XEIjq7WnH72YItGLaC25UnA0RuyH40vWgl+u6cznLlkfBY6doFw1Szw5M5
+ tMqgrIaQITPIw/Ar13ICcMLWRP88OKsOmIyilONPkgS2aRDeRtaobL84f3xmybCKFgNR
+ u7ow==
+X-Gm-Message-State: AGi0PubFh4TGecYW4obS0gOvN0twWRfUQ8VDvtIygJouuvnE1lR6eh3v
+ ljPj0OIauAts8jp8KYRYxC4lKUnj
+X-Google-Smtp-Source: APiQypJnjiHrgwFDTqLr4ZOBnbEagRE+8lQNANntKB2xJumyR/JKBJqW9oFPfhBujG7rqfvs91nJlQ==
+X-Received: by 2002:a05:620a:13bc:: with SMTP id
+ m28mr4243660qki.211.1588271855237; 
+ Thu, 30 Apr 2020 11:37:35 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id c139sm693510qkg.8.2020.04.30.11.37.32
+ by smtp.gmail.com with ESMTPSA id c139sm693510qkg.8.2020.04.30.11.37.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Apr 2020 11:37:32 -0700 (PDT)
+ Thu, 30 Apr 2020 11:37:34 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/8] drm/amdgpu: update the method to set kcq queue mask
-Date: Thu, 30 Apr 2020 14:37:14 -0400
-Message-Id: <20200430183719.419549-3-alexander.deucher@amd.com>
+Subject: [PATCH 4/8] drm/amdgpu: re-structue members for ip discovery
+Date: Thu, 30 Apr 2020 14:37:15 -0400
+Message-Id: <20200430183719.419549-4-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200430183719.419549-1-alexander.deucher@amd.com>
 References: <20200430183719.419549-1-alexander.deucher@amd.com>
@@ -68,57 +68,251 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- Huang Rui <ray.huang@amd.com>
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Likun Gao <Likun.Gao@amd.com>
+From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-Use a common method to set queue mask before set kiq resource.
-The value of queue mask must suitablt for the designated form.
+This is to prepare for initializing discovery tmr size per
+ASIC type
 
-Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Reviewed-by: Huang Rui <ray.huang@amd.com>
+Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Reviewed-by: Likun Gao <Likun.Gao@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 56 ++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 12 ++--
+ 3 files changed, 38 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 0103acc57474..ed212c070e8e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -485,6 +485,19 @@ int amdgpu_gfx_disable_kcq(struct amdgpu_device *adev)
- 	return amdgpu_ring_test_helper(kiq_ring);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index bc1e0fd71a09..6048c5902fad 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -768,7 +768,6 @@ struct amdgpu_device {
+ 	uint8_t				*bios;
+ 	uint32_t			bios_size;
+ 	struct amdgpu_bo		*stolen_vga_memory;
+-	struct amdgpu_bo		*discovery_memory;
+ 	uint32_t			bios_scratch_reg_offset;
+ 	uint32_t			bios_scratch[AMDGPU_BIOS_NUM_SCRATCH];
+ 
+@@ -921,7 +920,9 @@ struct amdgpu_device {
+ 	struct amdgpu_display_manager dm;
+ 
+ 	/* discovery */
+-	uint8_t				*discovery;
++	uint8_t				*discovery_bin;
++	uint32_t			discovery_tmr_size;
++	struct amdgpu_bo		*discovery_memory;
+ 
+ 	/* mes */
+ 	bool                            enable_mes;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 43bb22ad8add..b5d6274952a5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -133,9 +133,10 @@ static int hw_id_map[MAX_HWIP] = {
+ static int amdgpu_discovery_read_binary(struct amdgpu_device *adev, uint8_t *binary)
+ {
+ 	uint64_t vram_size = (uint64_t)RREG32(mmRCC_CONFIG_MEMSIZE) << 20;
+-	uint64_t pos = vram_size - DISCOVERY_TMR_SIZE;
++	uint64_t pos = vram_size - adev->discovery_tmr_size;
+ 
+-	amdgpu_device_vram_access(adev, pos, (uint32_t *)binary, DISCOVERY_TMR_SIZE, false);
++	amdgpu_device_vram_access(adev, pos, (uint32_t *)binary,
++				  adev->discovery_tmr_size, false);
+ 	return 0;
  }
  
-+int amdgpu_gfx_kcq_queue_mask_transform(struct amdgpu_device *adev,
-+					int queue_bit)
-+{
-+	int mec, pipe, queue;
-+	int queue_kcq_bit = 0;
-+
-+	amdgpu_gfx_bit_to_mec_queue(adev, queue_bit, &mec, &pipe, &queue);
-+
-+	queue_kcq_bit = mec * 4 * 8 + pipe * 8 + queue;
-+
-+	return queue_kcq_bit;
-+}
-+
- int amdgpu_gfx_enable_kcq(struct amdgpu_device *adev)
- {
- 	struct amdgpu_kiq *kiq = &adev->gfx.kiq;
-@@ -507,7 +520,7 @@ int amdgpu_gfx_enable_kcq(struct amdgpu_device *adev)
- 			break;
- 		}
+@@ -167,17 +168,18 @@ static int amdgpu_discovery_init(struct amdgpu_device *adev)
+ 	uint16_t checksum;
+ 	int r;
  
--		queue_mask |= (1ull << i);
-+		queue_mask |= (1ull << amdgpu_gfx_kcq_queue_mask_transform(adev, i));
+-	adev->discovery = kzalloc(DISCOVERY_TMR_SIZE, GFP_KERNEL);
+-	if (!adev->discovery)
++	adev->discovery_tmr_size = DISCOVERY_TMR_SIZE;
++	adev->discovery_bin = kzalloc(adev->discovery_tmr_size, GFP_KERNEL);
++	if (!adev->discovery_bin)
+ 		return -ENOMEM;
+ 
+-	r = amdgpu_discovery_read_binary(adev, adev->discovery);
++	r = amdgpu_discovery_read_binary(adev, adev->discovery_bin);
+ 	if (r) {
+ 		DRM_ERROR("failed to read ip discovery binary\n");
+ 		goto out;
  	}
  
- 	DRM_INFO("kiq ring mec %d pipe %d q %d\n", kiq_ring->me, kiq_ring->pipe,
+-	bhdr = (struct binary_header *)adev->discovery;
++	bhdr = (struct binary_header *)adev->discovery_bin;
+ 
+ 	if (le32_to_cpu(bhdr->binary_signature) != BINARY_SIGNATURE) {
+ 		DRM_ERROR("invalid ip discovery binary signature\n");
+@@ -190,7 +192,7 @@ static int amdgpu_discovery_init(struct amdgpu_device *adev)
+ 	size = bhdr->binary_size - offset;
+ 	checksum = bhdr->binary_checksum;
+ 
+-	if (!amdgpu_discovery_verify_checksum(adev->discovery + offset,
++	if (!amdgpu_discovery_verify_checksum(adev->discovery_bin + offset,
+ 					      size, checksum)) {
+ 		DRM_ERROR("invalid ip discovery binary checksum\n");
+ 		r = -EINVAL;
+@@ -200,7 +202,7 @@ static int amdgpu_discovery_init(struct amdgpu_device *adev)
+ 	info = &bhdr->table_list[IP_DISCOVERY];
+ 	offset = le16_to_cpu(info->offset);
+ 	checksum = le16_to_cpu(info->checksum);
+-	ihdr = (struct ip_discovery_header *)(adev->discovery + offset);
++	ihdr = (struct ip_discovery_header *)(adev->discovery_bin + offset);
+ 
+ 	if (le32_to_cpu(ihdr->signature) != DISCOVERY_TABLE_SIGNATURE) {
+ 		DRM_ERROR("invalid ip discovery data table signature\n");
+@@ -208,7 +210,7 @@ static int amdgpu_discovery_init(struct amdgpu_device *adev)
+ 		goto out;
+ 	}
+ 
+-	if (!amdgpu_discovery_verify_checksum(adev->discovery + offset,
++	if (!amdgpu_discovery_verify_checksum(adev->discovery_bin + offset,
+ 					      ihdr->size, checksum)) {
+ 		DRM_ERROR("invalid ip discovery data table checksum\n");
+ 		r = -EINVAL;
+@@ -218,9 +220,9 @@ static int amdgpu_discovery_init(struct amdgpu_device *adev)
+ 	info = &bhdr->table_list[GC];
+ 	offset = le16_to_cpu(info->offset);
+ 	checksum = le16_to_cpu(info->checksum);
+-	ghdr = (struct gpu_info_header *)(adev->discovery + offset);
++	ghdr = (struct gpu_info_header *)(adev->discovery_bin + offset);
+ 
+-	if (!amdgpu_discovery_verify_checksum(adev->discovery + offset,
++	if (!amdgpu_discovery_verify_checksum(adev->discovery_bin + offset,
+ 				              ghdr->size, checksum)) {
+ 		DRM_ERROR("invalid gc data table checksum\n");
+ 		r = -EINVAL;
+@@ -230,16 +232,16 @@ static int amdgpu_discovery_init(struct amdgpu_device *adev)
+ 	return 0;
+ 
+ out:
+-	kfree(adev->discovery);
+-	adev->discovery = NULL;
++	kfree(adev->discovery_bin);
++	adev->discovery_bin = NULL;
+ 
+ 	return r;
+ }
+ 
+ void amdgpu_discovery_fini(struct amdgpu_device *adev)
+ {
+-	kfree(adev->discovery);
+-	adev->discovery = NULL;
++	kfree(adev->discovery_bin);
++	adev->discovery_bin = NULL;
+ }
+ 
+ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+@@ -263,8 +265,8 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+ 		return r;
+ 	}
+ 
+-	bhdr = (struct binary_header *)adev->discovery;
+-	ihdr = (struct ip_discovery_header *)(adev->discovery +
++	bhdr = (struct binary_header *)adev->discovery_bin;
++	ihdr = (struct ip_discovery_header *)(adev->discovery_bin +
+ 			le16_to_cpu(bhdr->table_list[IP_DISCOVERY].offset));
+ 	num_dies = le16_to_cpu(ihdr->num_dies);
+ 
+@@ -272,7 +274,7 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+ 
+ 	for (i = 0; i < num_dies; i++) {
+ 		die_offset = le16_to_cpu(ihdr->die_info[i].die_offset);
+-		dhdr = (struct die_header *)(adev->discovery + die_offset);
++		dhdr = (struct die_header *)(adev->discovery_bin + die_offset);
+ 		num_ips = le16_to_cpu(dhdr->num_ips);
+ 		ip_offset = die_offset + sizeof(*dhdr);
+ 
+@@ -286,7 +288,7 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+ 				le16_to_cpu(dhdr->die_id), num_ips);
+ 
+ 		for (j = 0; j < num_ips; j++) {
+-			ip = (struct ip *)(adev->discovery + ip_offset);
++			ip = (struct ip *)(adev->discovery_bin + ip_offset);
+ 			num_base_address = ip->num_base_address;
+ 
+ 			DRM_DEBUG("%s(%d) #%d v%d.%d.%d:\n",
+@@ -335,24 +337,24 @@ int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id,
+ 	uint16_t num_ips;
+ 	int i, j;
+ 
+-	if (!adev->discovery) {
++	if (!adev->discovery_bin) {
+ 		DRM_ERROR("ip discovery uninitialized\n");
+ 		return -EINVAL;
+ 	}
+ 
+-	bhdr = (struct binary_header *)adev->discovery;
+-	ihdr = (struct ip_discovery_header *)(adev->discovery +
++	bhdr = (struct binary_header *)adev->discovery_bin;
++	ihdr = (struct ip_discovery_header *)(adev->discovery_bin +
+ 			le16_to_cpu(bhdr->table_list[IP_DISCOVERY].offset));
+ 	num_dies = le16_to_cpu(ihdr->num_dies);
+ 
+ 	for (i = 0; i < num_dies; i++) {
+ 		die_offset = le16_to_cpu(ihdr->die_info[i].die_offset);
+-		dhdr = (struct die_header *)(adev->discovery + die_offset);
++		dhdr = (struct die_header *)(adev->discovery_bin + die_offset);
+ 		num_ips = le16_to_cpu(dhdr->num_ips);
+ 		ip_offset = die_offset + sizeof(*dhdr);
+ 
+ 		for (j = 0; j < num_ips; j++) {
+-			ip = (struct ip *)(adev->discovery + ip_offset);
++			ip = (struct ip *)(adev->discovery_bin + ip_offset);
+ 
+ 			if (le16_to_cpu(ip->hw_id) == hw_id) {
+ 				if (major)
+@@ -375,13 +377,13 @@ int amdgpu_discovery_get_gfx_info(struct amdgpu_device *adev)
+ 	struct binary_header *bhdr;
+ 	struct gc_info_v1_0 *gc_info;
+ 
+-	if (!adev->discovery) {
++	if (!adev->discovery_bin) {
+ 		DRM_ERROR("ip discovery uninitialized\n");
+ 		return -EINVAL;
+ 	}
+ 
+-	bhdr = (struct binary_header *)adev->discovery;
+-	gc_info = (struct gc_info_v1_0 *)(adev->discovery +
++	bhdr = (struct binary_header *)adev->discovery_bin;
++	gc_info = (struct gc_info_v1_0 *)(adev->discovery_bin +
+ 			le16_to_cpu(bhdr->table_list[GC].offset));
+ 
+ 	adev->gfx.config.max_shader_engines = le32_to_cpu(gc_info->gc_num_se);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index ea0199a8f9c9..085d7c238163 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1958,15 +1958,15 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+ 		return r;
+ 
+ 	/*
+-	 * reserve one TMR (64K) memory at the top of VRAM which holds
++	 * reserve TMR memory at the top of VRAM which holds
+ 	 * IP Discovery data and is protected by PSP.
+ 	 */
+ 	r = amdgpu_bo_create_kernel_at(adev,
+-				       adev->gmc.real_vram_size - DISCOVERY_TMR_SIZE,
+-				       DISCOVERY_TMR_SIZE,
+-				       AMDGPU_GEM_DOMAIN_VRAM,
+-				       &adev->discovery_memory,
+-				       NULL);
++			adev->gmc.real_vram_size - adev->discovery_tmr_size,
++			adev->discovery_tmr_size,
++			AMDGPU_GEM_DOMAIN_VRAM,
++			&adev->discovery_memory,
++			NULL);
+ 	if (r)
+ 		return r;
+ 
 -- 
 2.25.4
 
