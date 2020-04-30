@@ -1,34 +1,87 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75CE71BF187
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2020 09:33:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6285C1BF072
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2020 08:43:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C5F36EB78;
-	Thu, 30 Apr 2020 07:33:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AFBF6E110;
+	Thu, 30 Apr 2020 06:43:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCFF16EA9C;
- Thu, 30 Apr 2020 06:32:30 +0000 (UTC)
-Received: from DGGEMS409-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id 3764C666960B98EABF5F;
- Thu, 30 Apr 2020 14:32:27 +0800 (CST)
-Received: from linux-lmwb.huawei.com (10.175.103.112) by
- DGGEMS409-HUB.china.huawei.com (10.3.19.209) with Microsoft SMTP Server id
- 14.3.487.0; Thu, 30 Apr 2020 14:32:16 +0800
-From: Zou Wei <zou_wei@huawei.com>
-To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <David1.Zhou@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>
-Subject: [PATCH -next] drm/amdgpu: Fix warning Comparison to bool
-Date: Thu, 30 Apr 2020 14:38:29 +0800
-Message-ID: <1588228709-13512-1-git-send-email-zou_wei@huawei.com>
-X-Mailer: git-send-email 2.6.2
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2071.outbound.protection.outlook.com [40.107.236.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EBA56E110
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 06:43:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k47PuUZIXKLd7B9PkG8T8EiPtrVL+as9N7tjSY5mSLRj9jztNXQi7hhW1TSdEiSm4piZXkXvUxRIsFOVtDcgKJQWYfoHEqiZsCnF68FSmG8Txx85oii+c1SZGL8ykqjq5Vwuzt4eMM7phOubthLeZ0BaOe4w86GwdfDehmM0winUk3EXPOda+2o7JY+HR2aW9GikY0ZCXg0yZj7fNTgEUL79RXiZJikJS4AuSpII1ts9Vb2FjV8QJUOODqWzEKuG4DG2d7R9FdyygGdc4PaIgkuWn77wRH3D5eKRMCWJQQ2s6NF6SwCpVa9T3vhpj1+N71kO7PQQ0PXKNMVlZqRhew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0JtgIQiNGAD3lMjzqa70OlfyqTQRDFVnUw5IFlsVibM=;
+ b=UzFqlmy3gguxW82pqh1l28mqo3ikRfVlI1ZTcAR/tEg6g7YIfhjzOPhXQZj6Qk8jGqiKW9mWZZ2lPkgxgGe+rqnVRK65X1mPy/+0POQ41ov+GovZAMB19HCzjBRC/n449hP7nqQ7NM7QNxU2v75PGIkkN7rIPHJCZ26lWiQHsGMjg4uPv/E7SM+1gr5yOAYveJoUlNrBQCwEzvO9LYShpu3Bu0Qw4NnKaRjhBVhhw3zOZdZJWeQNVMZaReIJW9T5K/vC43I+T3PpGIuZJzwSD0B2au2f2ogIUHeFAhRQ3mN+nFz0OvAAALXsZSkCj71V8RvJSDr1zOjKhoRaqNec+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0JtgIQiNGAD3lMjzqa70OlfyqTQRDFVnUw5IFlsVibM=;
+ b=SrHmSmoB8IRoIQjWvsY2OGJFSs8HeuRGjSZbNHC3ENEVhUp7ibyLbGlwXuVanwoLIB2BB3axRzxCSHMhy6Cn1HH6fDE6y3V+2l6WAWqQaONdoj8DvsFWduSufZcDKFg9yfKy/SI/D/JZeW53HOUqEwEb//pNPsPnFMAOrrKikMQ=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
+ DM6PR12MB3114.namprd12.prod.outlook.com (2603:10b6:5:11e::13) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2958.20; Thu, 30 Apr 2020 06:43:53 +0000
+Received: from DM6PR12MB2619.namprd12.prod.outlook.com
+ ([fe80::5c27:185c:be20:1fb6]) by DM6PR12MB2619.namprd12.prod.outlook.com
+ ([fe80::5c27:185c:be20:1fb6%5]) with mapi id 15.20.2937.023; Thu, 30 Apr 2020
+ 06:43:53 +0000
+From: Evan Quan <evan.quan@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/3] drm/amdgpu: disable MGCG/MGLS also on gfx CG ungate
+Date: Thu, 30 Apr 2020 14:43:29 +0800
+Message-Id: <20200430064331.23502-1-evan.quan@amd.com>
+X-Mailer: git-send-email 2.26.2
+X-ClientProxiedBy: HK2PR0302CA0015.apcprd03.prod.outlook.com
+ (2603:1096:202::25) To DM6PR12MB2619.namprd12.prod.outlook.com
+ (2603:10b6:5:45::18)
 MIME-Version: 1.0
-X-Originating-IP: [10.175.103.112]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Thu, 30 Apr 2020 07:33:10 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from equan-buildpc.amd.com (58.247.170.242) by
+ HK2PR0302CA0015.apcprd03.prod.outlook.com (2603:1096:202::25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2979.14 via Frontend Transport; Thu, 30 Apr 2020 06:43:52 +0000
+X-Mailer: git-send-email 2.26.2
+X-Originating-IP: [58.247.170.242]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 9e1be876-e08c-4141-9ac7-08d7ecd1d918
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3114:|DM6PR12MB3114:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3114A85F91D71C7FC3A573FDE4AA0@DM6PR12MB3114.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1824;
+X-Forefront-PRVS: 0389EDA07F
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MaWsETvw7PM3P3/LG+8BYYn4bQi+mVGE/7wVRBeIY9exh6tXHRPBCZByAYZJdTJpmBLzRuzcOhu6UKXBO6BQHeX5Dbe8/2c8m0yBJ9tRIYzumKIJIt08SEomY2Vltb3R0TxriUSy+J+Zbfo7oqCIrg3o+1BszmXHnTWkVKOSm/bkJ2Dzf/P0YPHkLeWF9ovPighEekHh+G81BqCtghHY5p1z1A4FHvNTXZFH79N5mcM52jf7l/f4BR5hNs4ecRI48kDjO6nmzxHm4ESMRV7tzPJk7dgifcna7448AERn1Au6805FILGCyIBO/b0lR7YeC9QNKlbBKV8GX58Aeh+G/xSXj/lNbMzU3KmKq5uO0FttqKXPvg6lxqx8JSkFLbia0ElSYXes+Ym249+pcH56rVypYYjPB97mpBCLjpXAp1cKdrSxPIqdiftNKwqUeowl
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(136003)(396003)(366004)(39860400002)(346002)(376002)(16526019)(6486002)(186003)(8676002)(8936002)(5660300002)(7696005)(52116002)(26005)(4744005)(6666004)(316002)(86362001)(36756003)(1076003)(2906002)(2616005)(956004)(4326008)(44832011)(6916009)(478600001)(66556008)(66476007)(66946007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: A5u8HGyqawgk1OBiJstfgsJFn8YsoVCB/A44skr/rXeZtJ0VzVIR0lIuuDqsBtW9EaSInKSrOioLIuDkcxb2p0jvBrssYb8Bo3NVqZRY6D+ZXPKj0lKQP0wG37Feugmq/n0vwOKCDnmJZlttJfrVptAw/EWMrOqMaXO/MluJ+U2HXcLlZT1xDtyfukqA4ImVQXqK02n+6MVW3s5tC+bTrHkZ2iqUP8UFSQDcpnfJI4nJlS6r0oNR8hYmGSXOcYtXQIs0hGIRBdIq8p1KE4p9OkS9ooeU6qJlgjcVTWw1yozsNvP/UStxeZgjQa2c2XPqx8tqxxzKnqC7vmxAeOvFYSNXDzYYR7rjNTsTZuxajhwb42Y54oEpTdrrs9gCQIPOQqSVFvJhDlkt4rrAtzC7m6QfvJ0ZaJSjV9gBTlfJMM+o2sgP4E/DScsNP18gJlg1H8H7FjWflhOxPOrpX4grpBgisnbwsac/1b6eOb/zHsmcEnoG7rIzMn3qOkr1HocHGyatUN8tjhCCOnGCPiNKG2K7462WDZh3rC4AUe4MzRMBaVrqqElr97wngZ3Z54A3Fcytlj0GJbrSiZxWCvoheNMMiWMaT5CG/TmAWoEvQM9A6QTvjbiPHJcW1GS3AKvIUsmHba2dU9erY8VTIVpEii8rIH5uAKBeXvZkyWnCyidjTXmmjvFh9LCAkFx6Bh4fNqKJjMRoLp7b1a6v9okVpiavwAyq5CInonnSj2R8YiEsRV9LjqcRkH5dvcnIO62S5xwhWc8Wm5ecMaGyegtkaYWo2u6OxEixZKozXvXC81I=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e1be876-e08c-4141-9ac7-08d7ecd1d918
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2020 06:43:53.4770 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rFjIgSbhyI4YlO2eWqV0O8mOAvVZcShA+7agwqg4h8w9ThZYXUQlwC+ROeKJqBSZ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3114
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,38 +93,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zou Wei <zou_wei@huawei.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Alexander.Deucher@amd.com, Evan Quan <evan.quan@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-fix below warnings reported by coccicheck
+Otherwise, MGCG/MGLS will be left enabled.
 
-drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c:630:5-11: WARNING: Comparison to bool
-
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Zou Wei <zou_wei@huawei.com>
+Change-Id: I620c5a58b814ae4a0f6005bbc467d7cc2b6d0d66
+Signed-off-by: Evan Quan <evan.quan@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-index b544baf..10080e4 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-@@ -627,7 +627,7 @@ static void sdma_v5_0_enable(struct amdgpu_device *adev, bool enable)
- 	u32 f32_cntl;
- 	int i;
- 
--	if (enable == false) {
-+	if (!enable) {
- 		sdma_v5_0_gfx_stop(adev);
- 		sdma_v5_0_rlc_stop(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index f059c1c546ec..5519f31b2c00 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -7027,7 +7027,7 @@ static int gfx_v10_0_update_gfx_clock_gating(struct amdgpu_device *adev,
+ 		/* ===  CGCG /CGLS for GFX 3D Only === */
+ 		gfx_v10_0_update_3d_clock_gating(adev, enable);
+ 		/* ===  MGCG + MGLS === */
+-		/* gfx_v10_0_update_medium_grain_clock_gating(adev, enable); */
++		gfx_v10_0_update_medium_grain_clock_gating(adev, enable);
  	}
+ 
+ 	if (adev->cg_flags &
 -- 
-2.6.2
+2.26.2
 
 _______________________________________________
 amd-gfx mailing list
