@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1E591BECCD
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2020 02:01:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D959F1BECD1
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2020 02:01:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23BD96E10C;
-	Thu, 30 Apr 2020 00:01:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 939126EB2D;
+	Thu, 30 Apr 2020 00:01:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2052.outbound.protection.outlook.com [40.107.220.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 656196E119
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 00:01:22 +0000 (UTC)
+ (mail-co1nam11on2084.outbound.protection.outlook.com [40.107.220.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FFA36E10C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 00:01:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LcXa3gdDrDyYrTHTbbItFTEngq/91shYiOctlH0kwyH6/28f9qyN8aCLcgYU+jE+sEtes2ZWhoY7ucr6XYPZ+doZb41+QkkjKQ6jTcamk7kB0osPhrWb5gNF4hILP+B0E5gZ+8VZXdV6aTS3gRuFutBN6BsdJH2df5n9k0MDkGOkXSTB4G/c9I0/Bo/Ov4XdAFyjAWqx95sYWUiCCIbL7WYEUQ0FVxrJBHyY3sjOxnorWFSnxtAGhiDjCj9RicBT7KQ1HFoJK4jF0+duL530PRO7pggSaK0QKxKZEccXZQ3SUwJJ8OFYyJhE6U+0D/eVnB3Y2pop/K9NzZHjdJg2TQ==
+ b=MPXZKsF5K4NcV7U2ns8N2PARtha2NPomCntxVvviJcVhvKPKDm3nzisM9MP7bWBOaOVSw3j3bwiRVLfc7creTBA8KAJStLsRKQY33tGGCvAmpFUYZWiSSm91QPYiIKlIVAo8l4vc7DSgkxe8kwJaq2Sj9kwbLCj1nWF2NjzNytq61aLSeQ20jV9DIsbC7MKI1BeAsf1GR6iuN9NsHVzeN/sM4gT6X6QI2DHLVwhB7hFbrc54+H/h17o8GWa6xuYDbgzlo/xRY2zTQlMvbqdX4C4EzrFfSpNtLKAiFka+IM1FrTmQM72yfYPVHhWeXmTJzGdcr1O+1O/+wI3ysiyVRQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BLNygWqSuFICd7s74BoicrbdmUjzaoW6KJeiqIq5yCY=;
- b=LvMPXpMvlB+rngrLZxVzhHgn6le/Vl1H4nWV3wLFfJsl+G36Gh/z9OPax7HwJVlwO+BiDjNttGEybxVY53/c0hQVxp64mJKCKPJFuoJIS7PxjvTnrKBq+jawsuOy4aiwKzfnJtiz+qTprxwlo1WflRBQTbRMBdDPUt1RziOeu3VUUNK8pAXrUVU/itwLM8DhZdyHh9svRMXyq79Yc1MfG38Wa3yDkWQzHO2kOTb9Umd9E8xGttWztdINhqp8QstIFXWwWeDgSI/MBZbtErz1Im/joxXipZl3SE2NhDBt3ZDDsbqQDWU3IFdhOELBNEr/3zsgyVOJznmwwsStZkDPfg==
+ bh=eoR8MaeoJ/1IzMxQRHn68AO85/QWZ/TpaMZ45x2NaMY=;
+ b=XktPTTnVa2LiUjC/ZMEAu/2sL3DchJNqYrlqOqKSKjj3zwLaYxn3E6nHovNyF61iganRLJz8V64awt/97wmPZTTkaXNsTjPZpQC2ziZKJlhyFFPw7PpOzu3Fpa+M2zDSoFN6yeGLeUm8liUAAuk8G0nyOfJ9HH4owZNKnf6xY9eF09lGA5GeWwemm9VULq4fdlpqrp6e6tXdtb0EsujxMw9PIHp1wjPHDt0m0tR4ZovmjWMeIOOKV8BdJoFkaMsddAqXTyPciqctIMaC90HduPBryxvfMXA4qwPpQRPK4gJZdjzhZ7BYlgS0xg1VVOeHt/1pdLXvtWAKubwTlLCI7Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BLNygWqSuFICd7s74BoicrbdmUjzaoW6KJeiqIq5yCY=;
- b=ui9Gw3FZAKLjMJAkUwP3JWcy0MmZCOvR6MMbwbnluEpwifv9REyDSFTSjduOJLjxe0vJUqFBYjlGnxqb/fnSTzomNoFYdYzEJOo+0QlvedX2FObc6bzHDU8kWVy6EtLhw4ihUghRfdEO3J64UVcymvn08OVSfYmFc6hL+pfuicc=
+ bh=eoR8MaeoJ/1IzMxQRHn68AO85/QWZ/TpaMZ45x2NaMY=;
+ b=ungcLXP711wYuu/BCxQlHnBsCUEWz9aTw0g7XUuSM3+5nF7gTtPt0CYiu5F5pSF2HU0d3FyyqiPGFuzkSaOp+BdH8+7W/mmNMf7fGaIv6cr/qtCoKfu6LN/UvpeMgml9xxVxgXKuUYPeLpI0Q8bYga9T7ZglwesEFP4ao9e4ArI=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,16 +35,16 @@ Received: from SN1PR12MB2414.namprd12.prod.outlook.com (2603:10b6:802:2e::31)
  by SN1PR12MB2575.namprd12.prod.outlook.com (2603:10b6:802:25::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.22; Thu, 30 Apr
- 2020 00:01:21 +0000
+ 2020 00:01:22 +0000
 Received: from SN1PR12MB2414.namprd12.prod.outlook.com
  ([fe80::38ef:1510:9525:f806]) by SN1PR12MB2414.namprd12.prod.outlook.com
  ([fe80::38ef:1510:9525:f806%7]) with mapi id 15.20.2937.023; Thu, 30 Apr 2020
- 00:01:21 +0000
+ 00:01:22 +0000
 From: Felix Kuehling <Felix.Kuehling@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/amdkfd: Report domain with topology
-Date: Wed, 29 Apr 2020 20:00:44 -0400
-Message-Id: <20200430000047.31083-2-Felix.Kuehling@amd.com>
+Subject: [PATCH 2/4] drm/amdgpu: Changed CU reservation golden settings
+Date: Wed, 29 Apr 2020 20:00:45 -0400
+Message-Id: <20200430000047.31083-3-Felix.Kuehling@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200430000047.31083-1-Felix.Kuehling@amd.com>
 References: <20200430000047.31083-1-Felix.Kuehling@amd.com>
@@ -57,16 +57,16 @@ Received: from localhost.localdomain (165.204.55.211) by
  YTXPR0101CA0047.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.19 via Frontend
- Transport; Thu, 30 Apr 2020 00:01:20 +0000
+ Transport; Thu, 30 Apr 2020 00:01:21 +0000
 X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [165.204.55.211]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 31c6a062-7888-4103-ce15-08d7ec999d73
+X-MS-Office365-Filtering-Correlation-Id: 34285125-a49a-4c9a-6f49-08d7ec999de3
 X-MS-TrafficTypeDiagnostic: SN1PR12MB2575:|SN1PR12MB2575:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN1PR12MB2575EB83199B35036B9AEFB592AA0@SN1PR12MB2575.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-Microsoft-Antispam-PRVS: <SN1PR12MB2575CC105DCC066B746EEB6192AA0@SN1PR12MB2575.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
 X-Forefront-PRVS: 0389EDA07F
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN1PR12MB2414.namprd12.prod.outlook.com; PTR:; CAT:NONE;
@@ -75,15 +75,15 @@ X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gWSR4D1qrcgW42BYETeq/VP2uwBEpUaN8TCwOsWdqr0F3omWK3Vah1rbBfw7jYm3nXo7c87uIMmkWzgE0Hc1IzUXAXVIFaNEtD/BQOwm6qflaSPzf/rdIZt6YfmRpmJxEyiB1nmSBJ29t0TAw/KFIuGyv8M0l1Ue2cFF7YwpqmHbWVR7nyg3ywVOLmQvJeuJXWCJWTfdiGXXmWB9UTbEAPkNe3p7Yh1b37vNnLOaL9ccFF8XhSHHhB4LhmB0TAPNmJvPKvgiLZEhJ6hApBVmNhAZeeBWXgcihixyv/1KAiQE/ZTG38cLBV+fKsKoSnO8nV9OclKhyS78Nww8SJQhTHqjgtEvLUWYq8EWRT7DRfVd19UDQ3rivOjbf9m3tyvWFIx1k4QxN5bTtKUEGcrj9uaCaKkiSsNemVIRio/lx3Fzh2J8VFU9kQ3zFHERjYTrd/ebOE9r6SCUlhFBi6B/iKcuyI3CCQzEMoEIz6rwdvv67fV0cpIgG7Cw5ubkH7pW
-X-MS-Exchange-AntiSpam-MessageData: Ig2C/1Qf7BFBWFY6zWqtW8U93gecxt+aRa1KxrDM9Mj+FeOk+g0y+2yu/f9uXqT+jav+oxu/BC0eWyYQxI1Ix3frL4nmXzUmNWhZUtrw2nlZ4Ib8Bn6Jt3O6m6i2h67nMoMX4OjrmsMul1NU9xsD11PkxdlAf9tgZtgq15BUcl69IwFYnBw1RcG9M0oyjPUUCEhKDPaf8VO9PMVYy5KnGMe7C/NXSM6rupbVyr+K4SpI5te6Gbz5LF/kTn/hrGGnVWOIGvpdLHlVWtOPdubvuh5TVoX5l2jYvaCdo6lLH5342VU5As6RbN4wTd6HMxxY1a1/QiPQFCMyIHB6uxu73OkPnX27G+nAGBF7V9wXgE9wWJhY2D3kIeSFTzjs8V7j38cQvSITle7RrNypnEStzqNfLs7DN+NRsLDXxqX8L16V7V+BTQf0t/h+AYno2BQ61cZ44/QKzPhXWT+MRgEh1oz59ksl1/LHvMap+aTcQxWE5YKbUmM68pgqB4GGkVmIor5zAeU1dMnNKsf6UY6qPy7qLr0lQ4V1/8U2qsDXBMge2f1mDPpG0n7D0p5PohDXct1fIapuaDnoquVse+bDATCV9e73d8H8/6cAnMabz4jgKKxj0gAHenqXbJExEzWxCRBWLSiActc9byB88pCJOxgNWLhYymniPOljuwDUQ+QwQRRjtelTC6HJRzx1VmUwzFaHLWVbNx6NJTGqN8fzTTQgFhgxbafI9hfV2A2f9WsN/LwDefItkSLfobhC2AV9Sw9MG9I3AWuadW5NdkOyjGrxCIg5bvhJGcFpjXPnZTw=
+X-Microsoft-Antispam-Message-Info: Qs5U8AqJR3SrK6TqQDXZXDlsZIALJr4Z00szlA3FIHXR68IxvWC2CfPc5hipGwyElF0makKQIajRKCiKwL5w4Ku5XICXPA4GZreivO6JoG3Robb2Q6/JxR45q/qcEm7V+jA+8YWcGjLdxGNgG+huxNwBpA+owBQ2ftTGL1gZGzybn+u8Au57sM9D7MzU9MJJucB1t9ni6AhBgPBdDEZhApQ0/qYNYwpE12VDDfj8onsFdvHqmBj+zX866qMGv2ez5hLdNpJMTGnzLiXtem/2UE0Q+aQKZrK4bLlBOCadoaiT7H7O0FlyVJCeOK6/tIzxdVr9mXwX8qFc/vBabIP9aoPuGIcdhh/U4noX+fqPkee7r28pxo36mdk4LB2gTTZBdaBPXprDxoDtyE7EbffluwsiZoB3CETMmXkJukR6Pgr4Y0k5FiwdByMeOCVxLwbnTMR0SidT0vDX6SBmg0FoOJySJzWh/sY9vfDvByLrXKQjsRtN2m6E7Hbpr3gyyorG
+X-MS-Exchange-AntiSpam-MessageData: p7asw9ZusFDf3HoAVDXTSQoJFDRnaqqSFpzpC+2W57gotkJML4yeDw8Xa15NxUSfacjhfqklwEfrcszda8HFtiEriano7K2/wJXKlkVJbOarYyWUqeYLrCgjotbBTv7VbOsTcIT3/gzpFO3GJINEi5zCc2R0w5asHpd+pTTnr7IF3sxStivVG6/WY8KSQC5IxNWl8SFqUmtfuxYzfFzOxZWjuJKmrLT81LP/jrXqADdVfPEUFtkJ2MLpCWkQjWyN6UH7Zdi/FacTRtXXXWL8rovhy5OteAnkeKnh/8oF+oJ8Y5/Ouvr93U/or1uJXVHspNuSCK8uXU6ol3n4we1khtFgxbOHSOpx6ZrpLYqXfRUdJPInZ5aDJFfZc8fCDGe30VGw53e3nIciETK7ow69SsZdVUOmDQwAdImCCSPpZeF8QyOPLzt3uscXnG6fjYnAIZmuzZTB8be9vlr2clu1lRCG4i+853nqoxo73YGZJTsfE4cTwNNv9oIhpliyFwrhY3YOkP5n7FXwAigI5F6y0oH9PvMrh1VjdIvBO+JQg+RAcOnufTkJDrUMCWeXRtHoPdJ0jpbHyUnS/JU6X9D+4x7K9FsiUJhkZKot4rKIVO9RdyUgkLr5vVPFHAFydVFbFe0dmTqy9VYcmtrY1NgrZlymLWANkTR3qkd1nouq48rIEiRrCe8tDZ0o0JXtBdLgT/v+wpc31tICm59XHotA+l1YzNX9cOyQJ9AVE+nl8UT9fbAyBiA/Z05LpHDRBiYWjwCU78HwJOmSNqDR6s5xmWnBk0t1JtPYg6AhCO2iAAY=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31c6a062-7888-4103-ce15-08d7ec999d73
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2020 00:01:21.4656 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34285125-a49a-4c9a-6f49-08d7ec999de3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2020 00:01:22.1752 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P5ph6GF26cQOIodkK5FuEEOBYujWNE9rFftPspx4Te22QIkaTLyq6UzPRhGhTNNYFIP4hZAEqa4DkSSW8Ym01A==
+X-MS-Exchange-CrossTenant-UserPrincipalName: uyblgIHW/sGCZVvvdOjkOI6jDrU7y6nQLF5FXbyJLlyqVDXLCYpHi4dliLcLlL+BdW8JVAJyd6r5bsDWuKN0sA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2575
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,62 +96,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ori Messinger <ori.messinger@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Oak Zeng <Oak.Zeng@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ori Messinger <Ori.Messinger@amd.com>
+From: Oak Zeng <Oak.Zeng@amd.com>
 
-PCI domain has moved to 32-bits to accommodate virtualization,
-so a 32-bit integer is exposed for domain to reflect this change.
+With previous golden settings, compute task can't use
+reserved LDS (32K) on CU0 and CU1. On 64K LDS system,
+if compute work group allocate more than 32K LDS, then
+it can't be dispatched to CU0 and CU1 because of the
+reservation. This enables compute task to use reserved
+LDS on CU0 and CU1.
 
-Domain can be found in here:
-/sys/class/kfd/kfd/topology/nodes/X/properties
-Where X is the card number
-
-Signed-off-by: Ori Messinger <ori.messinger@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 3 +++
- drivers/gpu/drm/amd/amdkfd/kfd_topology.h | 1 +
- 2 files changed, 4 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-index bc4a22df12d7..bb77f7af2b6d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-@@ -478,6 +478,8 @@ static ssize_t node_show(struct kobject *kobj, struct attribute *attr,
- 			dev->node_props.device_id);
- 	sysfs_show_32bit_prop(buffer, "location_id",
- 			dev->node_props.location_id);
-+	sysfs_show_32bit_prop(buffer, "domain",
-+			dev->node_props.domain);
- 	sysfs_show_32bit_prop(buffer, "drm_render_minor",
- 			dev->node_props.drm_render_minor);
- 	sysfs_show_64bit_prop(buffer, "hive_id",
-@@ -1306,6 +1308,7 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
- 			HSA_CAP_ASIC_REVISION_SHIFT) &
- 			HSA_CAP_ASIC_REVISION_MASK);
- 	dev->node_props.location_id = pci_dev_id(gpu->pdev);
-+	dev->node_props.domain = pci_domain_nr(gpu->pdev->bus);
- 	dev->node_props.max_engine_clk_fcompute =
- 		amdgpu_amdkfd_get_max_engine_clock_in_mhz(dev->gpu->kgd);
- 	dev->node_props.max_engine_clk_ccompute =
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.h b/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
-index 0c51bd3dcd59..326d9b26b7aa 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
-@@ -80,6 +80,7 @@ struct kfd_node_properties {
- 	uint32_t vendor_id;
- 	uint32_t device_id;
- 	uint32_t location_id;
-+	uint32_t domain;
- 	uint32_t max_engine_clk_fcompute;
- 	uint32_t max_engine_clk_ccompute;
- 	int32_t  drm_render_minor;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 2767c6d03370..a4e95e03d97c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -507,8 +507,8 @@ static const struct soc15_reg_golden golden_settings_gc_9_0[] =
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSH_MEM_CONFIG, 0x00001000, 0x00001000),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_CU_0, 0x0007ffff, 0x00000800),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_CU_1, 0x0007ffff, 0x00000800),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_EN_CU_0, 0x01ffffff, 0x0000ff87),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_EN_CU_1, 0x01ffffff, 0x0000ff8f),
++	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_EN_CU_0, 0x01ffffff, 0x00ffff87),
++	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_EN_CU_1, 0x01ffffff, 0x00ffff8f),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSQC_CONFIG, 0x03000000, 0x020a2000),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmTA_CNTL_AUX, 0xfffffeef, 0x010b0000),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmTCP_CHAN_STEER_HI, 0xffffffff, 0x4a2c0e68),
 -- 
 2.17.1
 
