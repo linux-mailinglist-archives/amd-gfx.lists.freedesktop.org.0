@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D959F1BECD1
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2020 02:01:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E79A91BECCF
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2020 02:01:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 939126EB2D;
-	Thu, 30 Apr 2020 00:01:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58AA56EAD6;
+	Thu, 30 Apr 2020 00:01:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
  (mail-co1nam11on2084.outbound.protection.outlook.com [40.107.220.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FFA36E10C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C7FF6E119
  for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2020 00:01:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MPXZKsF5K4NcV7U2ns8N2PARtha2NPomCntxVvviJcVhvKPKDm3nzisM9MP7bWBOaOVSw3j3bwiRVLfc7creTBA8KAJStLsRKQY33tGGCvAmpFUYZWiSSm91QPYiIKlIVAo8l4vc7DSgkxe8kwJaq2Sj9kwbLCj1nWF2NjzNytq61aLSeQ20jV9DIsbC7MKI1BeAsf1GR6iuN9NsHVzeN/sM4gT6X6QI2DHLVwhB7hFbrc54+H/h17o8GWa6xuYDbgzlo/xRY2zTQlMvbqdX4C4EzrFfSpNtLKAiFka+IM1FrTmQM72yfYPVHhWeXmTJzGdcr1O+1O/+wI3ysiyVRQ==
+ b=aIeQREH8Ahrt0bZfxsyh41nHyPyR9Xueb+vYTqBcANA/hU0d9njSumekOx3v10zyzWzSFDFIw2JIIBxEBW/orEeYbC5Yvee0Maro5CyvACZ2R8Ov1wmYnka0Bvrtftx9Km+bgk/x2Nqv+ocAnqGiczhbxXiQDtraXagBbY9FCdAX841Kx1f/fTjEC8CRJgu+K5DssDolVV69GUukJiIZ9dDe+p/NkxkArjR1SvwjbNm7EUeqtVAlMMACFCKbwDBEErctdv2pXDTz6E9yaKlQpTE6KjlXvKfKbpJ/TmQwWTSCqI7V4rNM5SaTdzz3Mbv9yPDTtJ7Z288Zs+dkJOLWdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eoR8MaeoJ/1IzMxQRHn68AO85/QWZ/TpaMZ45x2NaMY=;
- b=XktPTTnVa2LiUjC/ZMEAu/2sL3DchJNqYrlqOqKSKjj3zwLaYxn3E6nHovNyF61iganRLJz8V64awt/97wmPZTTkaXNsTjPZpQC2ziZKJlhyFFPw7PpOzu3Fpa+M2zDSoFN6yeGLeUm8liUAAuk8G0nyOfJ9HH4owZNKnf6xY9eF09lGA5GeWwemm9VULq4fdlpqrp6e6tXdtb0EsujxMw9PIHp1wjPHDt0m0tR4ZovmjWMeIOOKV8BdJoFkaMsddAqXTyPciqctIMaC90HduPBryxvfMXA4qwPpQRPK4gJZdjzhZ7BYlgS0xg1VVOeHt/1pdLXvtWAKubwTlLCI7Q==
+ bh=rlyIEzfsTVEhwkHHju6gO9DDjW1i+iEDgkBeJCM9AUc=;
+ b=kw0kSRDot9P8mOJaB8nt0mV62t3aU7k/CNPuKF8InLbvOEkG867iGydR52Ol2+VRFkRqcO4l3M8yCk+GeF2S+FLJQzDCIeq1rH+iHzoHHx+Y+onftH/uov1MNmxV2AOIInnnBAoSA8AlhQOGbrMHTWphyO1CdXbt65fiAfxHlIsmEXJPRSTRUAwfZPR+lVMvrggJok4LVNCMGnrTfTemxTSPDQegVk5uAEk/qjB7/NLQXaC0wfMGFgiJzDG3a3L7sa0TcTGS0d23h7CgrknufoGU2TklUS+Cpsvyp4/It6IFkxgyWcu7CcS66dOH6QT5dG16aF/TElNhj3barNoQ8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eoR8MaeoJ/1IzMxQRHn68AO85/QWZ/TpaMZ45x2NaMY=;
- b=ungcLXP711wYuu/BCxQlHnBsCUEWz9aTw0g7XUuSM3+5nF7gTtPt0CYiu5F5pSF2HU0d3FyyqiPGFuzkSaOp+BdH8+7W/mmNMf7fGaIv6cr/qtCoKfu6LN/UvpeMgml9xxVxgXKuUYPeLpI0Q8bYga9T7ZglwesEFP4ao9e4ArI=
+ bh=rlyIEzfsTVEhwkHHju6gO9DDjW1i+iEDgkBeJCM9AUc=;
+ b=EIaJ+Rbwmx4AO/jHY9ajG14RQ3QPSy45SJUnszWwQ/yzjyX8zmi+9Svb6R4Jm56HIzsSe36jHhOBqiPY1Nz6RFlrtar8UdVKzUaFsj4bhl5Na2DEj3o9xDGDREbuiPPu6ISJ3F5satc5P9MykD8SDTjmaEn+a6Btavg3RFyLmvM=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,16 +35,16 @@ Received: from SN1PR12MB2414.namprd12.prod.outlook.com (2603:10b6:802:2e::31)
  by SN1PR12MB2575.namprd12.prod.outlook.com (2603:10b6:802:25::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.22; Thu, 30 Apr
- 2020 00:01:22 +0000
+ 2020 00:01:23 +0000
 Received: from SN1PR12MB2414.namprd12.prod.outlook.com
  ([fe80::38ef:1510:9525:f806]) by SN1PR12MB2414.namprd12.prod.outlook.com
  ([fe80::38ef:1510:9525:f806%7]) with mapi id 15.20.2937.023; Thu, 30 Apr 2020
  00:01:22 +0000
 From: Felix Kuehling <Felix.Kuehling@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/4] drm/amdgpu: Changed CU reservation golden settings
-Date: Wed, 29 Apr 2020 20:00:45 -0400
-Message-Id: <20200430000047.31083-3-Felix.Kuehling@amd.com>
+Subject: [PATCH 3/4] drm/amdkfd: Fix comment formatting
+Date: Wed, 29 Apr 2020 20:00:46 -0400
+Message-Id: <20200430000047.31083-4-Felix.Kuehling@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200430000047.31083-1-Felix.Kuehling@amd.com>
 References: <20200430000047.31083-1-Felix.Kuehling@amd.com>
@@ -57,33 +57,32 @@ Received: from localhost.localdomain (165.204.55.211) by
  YTXPR0101CA0047.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.19 via Frontend
- Transport; Thu, 30 Apr 2020 00:01:21 +0000
+ Transport; Thu, 30 Apr 2020 00:01:22 +0000
 X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [165.204.55.211]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 34285125-a49a-4c9a-6f49-08d7ec999de3
-X-MS-TrafficTypeDiagnostic: SN1PR12MB2575:|SN1PR12MB2575:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN1PR12MB2575CC105DCC066B746EEB6192AA0@SN1PR12MB2575.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
+X-MS-Office365-Filtering-Correlation-Id: 73ae9c41-a7a6-4d94-7121-08d7ec999e42
+X-MS-TrafficTypeDiagnostic: SN1PR12MB2575:
+X-Microsoft-Antispam-PRVS: <SN1PR12MB257546B5835D5CE84985B8C992AA0@SN1PR12MB2575.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1201;
 X-Forefront-PRVS: 0389EDA07F
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN1PR12MB2414.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(396003)(366004)(136003)(346002)(39860400002)(6512007)(54906003)(186003)(6666004)(6486002)(16526019)(956004)(86362001)(2616005)(4326008)(478600001)(66946007)(69590400007)(36756003)(8676002)(2906002)(6916009)(52116002)(316002)(26005)(5660300002)(1076003)(66556008)(66476007)(6506007)(8936002);
+ SFS:(4636009)(376002)(396003)(366004)(136003)(346002)(39860400002)(6512007)(186003)(6666004)(6486002)(16526019)(956004)(86362001)(2616005)(478600001)(66946007)(69590400007)(36756003)(8676002)(2906002)(6916009)(52116002)(316002)(26005)(5660300002)(1076003)(66556008)(66476007)(6506007)(8936002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Qs5U8AqJR3SrK6TqQDXZXDlsZIALJr4Z00szlA3FIHXR68IxvWC2CfPc5hipGwyElF0makKQIajRKCiKwL5w4Ku5XICXPA4GZreivO6JoG3Robb2Q6/JxR45q/qcEm7V+jA+8YWcGjLdxGNgG+huxNwBpA+owBQ2ftTGL1gZGzybn+u8Au57sM9D7MzU9MJJucB1t9ni6AhBgPBdDEZhApQ0/qYNYwpE12VDDfj8onsFdvHqmBj+zX866qMGv2ez5hLdNpJMTGnzLiXtem/2UE0Q+aQKZrK4bLlBOCadoaiT7H7O0FlyVJCeOK6/tIzxdVr9mXwX8qFc/vBabIP9aoPuGIcdhh/U4noX+fqPkee7r28pxo36mdk4LB2gTTZBdaBPXprDxoDtyE7EbffluwsiZoB3CETMmXkJukR6Pgr4Y0k5FiwdByMeOCVxLwbnTMR0SidT0vDX6SBmg0FoOJySJzWh/sY9vfDvByLrXKQjsRtN2m6E7Hbpr3gyyorG
-X-MS-Exchange-AntiSpam-MessageData: p7asw9ZusFDf3HoAVDXTSQoJFDRnaqqSFpzpC+2W57gotkJML4yeDw8Xa15NxUSfacjhfqklwEfrcszda8HFtiEriano7K2/wJXKlkVJbOarYyWUqeYLrCgjotbBTv7VbOsTcIT3/gzpFO3GJINEi5zCc2R0w5asHpd+pTTnr7IF3sxStivVG6/WY8KSQC5IxNWl8SFqUmtfuxYzfFzOxZWjuJKmrLT81LP/jrXqADdVfPEUFtkJ2MLpCWkQjWyN6UH7Zdi/FacTRtXXXWL8rovhy5OteAnkeKnh/8oF+oJ8Y5/Ouvr93U/or1uJXVHspNuSCK8uXU6ol3n4we1khtFgxbOHSOpx6ZrpLYqXfRUdJPInZ5aDJFfZc8fCDGe30VGw53e3nIciETK7ow69SsZdVUOmDQwAdImCCSPpZeF8QyOPLzt3uscXnG6fjYnAIZmuzZTB8be9vlr2clu1lRCG4i+853nqoxo73YGZJTsfE4cTwNNv9oIhpliyFwrhY3YOkP5n7FXwAigI5F6y0oH9PvMrh1VjdIvBO+JQg+RAcOnufTkJDrUMCWeXRtHoPdJ0jpbHyUnS/JU6X9D+4x7K9FsiUJhkZKot4rKIVO9RdyUgkLr5vVPFHAFydVFbFe0dmTqy9VYcmtrY1NgrZlymLWANkTR3qkd1nouq48rIEiRrCe8tDZ0o0JXtBdLgT/v+wpc31tICm59XHotA+l1YzNX9cOyQJ9AVE+nl8UT9fbAyBiA/Z05LpHDRBiYWjwCU78HwJOmSNqDR6s5xmWnBk0t1JtPYg6AhCO2iAAY=
+X-Microsoft-Antispam-Message-Info: GLE6RgWht+Gi9jxPBIbmeJyjXExA1mVA+Jq7JWJFXukczDY/ma/4YnHSFYpkG6MX9YaLR+B/V4MRtzSntHtTvCHljehuQUed94JDL5QI2kROJRjYfEjmTiTLKRbwXkibfDIiYYO7s/cvAd5obb9WXUG49+cfDKQhIPZzrlGxKoGMYSZa6D+imwMzNPek5C11iBwW3L27KBSbcLvsad7aDcbzwOmOxmGczw5SBvChwSj9YAUd6r3G3OoQOHFxcL7bU+YosyddQBPBI4YhgjnO2/Rs+W7Vpla6zgUOHq1QwktzkshS0y0D080pWSG9wIWzKh+0N5V8d/NTX4aohbsn9ydzhQoVbGW/hOzBsI5PE6H2pvOYEQ25vMTYbFqm1+ccDr4Dtqa+gm/9ajyjxsEtWXFq7I6j6LVHFyhUxqRO3FsZHuMm+71RGOcBeb7ZbGFrjLi6tWmkHT1GgTrg+iMrDIC2FfGFQ0nojKUF7Diz7TfEYIvEzv/rTb0pPNPZZDtp
+X-MS-Exchange-AntiSpam-MessageData: GD2vOj2qkJWDiZCJkLUe4fn1O6Zvz5Fp9cxA5xr9pDQk8w017D75o6KUiqR4eHZACeoVkauA09khNcXmuYFSXqN2v/hNgIXuS3dOraPyg+FnN4ZFe+lUGHFVWmmc3f83JU9JJoTrHeN1v2/gwTKrXUnPYGboiZL8F6EpBiHqA9xMkxV723jUtPnLgQMyB6O9Hu/gHiqsMlpTECxz5PSEM3xfJfda3W+XtXlPmrga9syeolG3CyfPDZyhGbGnIyoAS2Wc2G4Cx1FfmBw59TY6Zvq43LcFsSqp/tT2A0HRpjUJr6qqb7PlCSE3gmIRSeg+I+U+viNKWCAxzNow5x0sBbomdHrLtedkoL4uq7K3h3A9Nj/hVWgFrqnKvv81Jc5Ln6BlUJyUYURtEzdi3v10YAOjBzOZWkH51feIjH4E0dTgAF94SICnuK4FytZ/Qbq2aDKuyyOlq3wQg4wCpe/nXJEOljy1iDbICfV/f8ehyUSAkYscgNiX2epocMFXrs/rD7FpvLfGkxeM939AYaNevQmaLMUWU1fbtJhzguEyKmlI8/+Trl3gIhAL8+YN26YMd9oe+za0C3cqlpL6E31Qg4s7iLOreBdvYpNmq/gCJwY2AVxM7bcV5Ai3+41RZyh/EKZ3j0Ufb3YjUtwdVqvgQaj1PfNkpimHQTz8+RjbwmvPr9rXJL4DWdkaQelIElyxXkqf4gP/F7/02n4haTL8Mi1xAODe8015MsFyoccbjNhDvEY5u1vgnsE26MrGQGtr8xo5usEzpDHdBekrEid6R52HEoHU8NiKpaJTvsYLM4c=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34285125-a49a-4c9a-6f49-08d7ec999de3
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2020 00:01:22.1752 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73ae9c41-a7a6-4d94-7121-08d7ec999e42
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2020 00:01:22.8088 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uyblgIHW/sGCZVvvdOjkOI6jDrU7y6nQLF5FXbyJLlyqVDXLCYpHi4dliLcLlL+BdW8JVAJyd6r5bsDWuKN0sA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: xlq3vTzZj57Lh3FnPSVwYkqHihWzV1811WpeuTuGu5cfvppaXE0E0l3SQfOGPwtNk4dWuoGf+muYdq3lZyIM7g==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2575
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,45 +95,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Oak Zeng <Oak.Zeng@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Oak Zeng <Oak.Zeng@amd.com>
+Corrected two function names. Added a missing space.
 
-With previous golden settings, compute task can't use
-reserved LDS (32K) on CU0 and CU1. On 64K LDS system,
-if compute work group allocate more than 32K LDS, then
-it can't be dispatched to CU0 and CU1 because of the
-reservation. This enables compute task to use reserved
-LDS on CU0 and CU1.
-
-Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c | 4 ++--
+ include/uapi/linux/kfd_ioctl.h           | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 2767c6d03370..a4e95e03d97c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -507,8 +507,8 @@ static const struct soc15_reg_golden golden_settings_gc_9_0[] =
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSH_MEM_CONFIG, 0x00001000, 0x00001000),
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_CU_0, 0x0007ffff, 0x00000800),
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_CU_1, 0x0007ffff, 0x00000800),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_EN_CU_0, 0x01ffffff, 0x0000ff87),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_EN_CU_1, 0x01ffffff, 0x0000ff8f),
-+	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_EN_CU_0, 0x01ffffff, 0x00ffff87),
-+	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSPI_RESOURCE_RESERVE_EN_CU_1, 0x01ffffff, 0x00ffff8f),
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmSQC_CONFIG, 0x03000000, 0x020a2000),
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmTA_CNTL_AUX, 0xfffffeef, 0x010b0000),
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmTCP_CHAN_STEER_HI, 0xffffffff, 0x4a2c0e68),
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index 598296034b43..d27221ddcdeb 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -1122,7 +1122,7 @@ struct kfd_process *kfd_lookup_process_by_mm(const struct mm_struct *mm)
+ 	return p;
+ }
+ 
+-/* process_evict_queues - Evict all user queues of a process
++/* kfd_process_evict_queues - Evict all user queues of a process
+  *
+  * Eviction is reference-counted per process-device. This means multiple
+  * evictions from different sources can be nested safely.
+@@ -1162,7 +1162,7 @@ int kfd_process_evict_queues(struct kfd_process *p)
+ 	return r;
+ }
+ 
+-/* process_restore_queues - Restore all user queues of a process */
++/* kfd_process_restore_queues - Restore all user queues of a process */
+ int kfd_process_restore_queues(struct kfd_process *p)
+ {
+ 	struct kfd_process_device *pdd;
+diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
+index 4f6676428c5c..b6be62356d34 100644
+--- a/include/uapi/linux/kfd_ioctl.h
++++ b/include/uapi/linux/kfd_ioctl.h
+@@ -251,7 +251,7 @@ struct kfd_memory_exception_failure {
+ 	__u32 imprecise;	/* Can't determine the	exact fault address */
+ };
+ 
+-/* memory exception data*/
++/* memory exception data */
+ struct kfd_hsa_memory_exception_data {
+ 	struct kfd_memory_exception_failure failure;
+ 	__u64 va;
 -- 
 2.17.1
 
