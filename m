@@ -2,55 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC92D1C1A4D
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 May 2020 18:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 962FF1C1A58
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 May 2020 18:09:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB6F46ECD1;
-	Fri,  1 May 2020 16:03:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D20E46ECE0;
+	Fri,  1 May 2020 16:09:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com
- [IPv6:2607:f8b0:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA276ECD1
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2020 16:03:29 +0000 (UTC)
-Received: by mail-pg1-x536.google.com with SMTP id l20so4720025pgb.11
- for <amd-gfx@lists.freedesktop.org>; Fri, 01 May 2020 09:03:29 -0700 (PDT)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com
+ [IPv6:2607:f8b0:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8304B6ECE0
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2020 16:09:44 +0000 (UTC)
+Received: by mail-pl1-x631.google.com with SMTP id s10so3802644plr.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 01 May 2020 09:09:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=p0k8PcvcNDx7iwKhoZNIjffnigKAqLbPR61bF4A9z38=;
- b=PhuDD1Wbisgh9O8oMi5DEI8cCZAoB7gLFIMJ3jh9wfbVIkFXqVmc50RLK2PWLNE4zw
- mWeBG8A1dYj53/feJNydDob7vSwkvtpcrD93w0MnoEDl6koY+FPqxsQYSTFKGcGLVWsw
- 3aWgD0FHE3E1v+DCnlIiEEsk0VYWw8k4QoseGumoHEK2s908/VCtbPuFh0gXryR98U85
- 7zuPMgreKC8TXwc459B9+lsM6UMQ9KCkBTAScFKAWh8Qk8xmkEE3Xf+exKVOzCnzm3uR
- qABzRTvf/rTHb6w7Aa77Od49H+zx9E3PWnJdEheaK15xR+1h6TbCsX7MW7W4ZzX4kWkT
- LA+A==
+ :cc; bh=8kryNQR1O3lIIQ3RhEjrzCgWegQXSzpzP8Uvge5pnjU=;
+ b=B9nNQR/1rB0WSxuhSsr2vSDxjkfnyRI86LdT11wpe5A8EvGxLmUc3Iwr/qyamEFpfJ
+ /sAAbK7WfXnTRkWhx0Z0jdFnT0p6svBnDzA4bRxL0pDE/yaNJ4Vrrxnj4v3bB3K4TrnS
+ 6V00cTVuXKJhS7jNGxxt215Nxmm6U+JRlrk3nTRBiT3/Dj5GrZzz45PbucLRFVOLdVW6
+ 5LLB5Vnlb/BOZVvVioU3VjtUM3I+IIWKSdx/IEjC8LInjVedEz+iPWr3S9FjkX+MrSn3
+ nEsY/Xfb1jourRPESQOIzXVfe7kTTsGoUSAssfTACMlJsh6paW8BcnWlh3bV7PjBuOlt
+ qPIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=p0k8PcvcNDx7iwKhoZNIjffnigKAqLbPR61bF4A9z38=;
- b=flPrLmUrSw/F32B9Joo/UYk9ZX2qGNlfFboIb+ECAEddvzEpEad5LobyQ66CNvAD9C
- kyfl5be80+IefxnfQHB5TF+9D+2rhVI0yqxUbveW8nisJ1+VGb6Gb/w7nO9gVAtpuimL
- 7eZsagL6mrEywl6QXzDualky3Vnoz2wkjZTf5kGf+G+YKqGkiikL/c4nVLDzvGCY1vhP
- /wH2Y7HpnrLcWpQ6r+fneGxi9eae8f/IGq1MuKOLRXTz+UDA/I+7lbSYxrrJrLXjYpj2
- Z39jg5bubG1EsA3JfJc7Hrh5xETjKLm/5i+M6bTsg15bcot5pA3zMfL2zuzxpzVBfveq
- fEEQ==
-X-Gm-Message-State: AGi0PubXFMq96ZLOz0KN9auKEv5rHOStVD0+/xf7wW2BSaXA3OCn8h8C
- QAN139On3j/yhWUU83SHw8FhhMiNUXhtdhNf528=
-X-Google-Smtp-Source: APiQypL3zvYps9lX0dFAiJ2D+fAEkd5kCCjZX4CQ9jLLLSzP9rg4dYW/DrK+4zgS+bcVIOKSmdx2zKUR9fcgBhMLEHg=
-X-Received: by 2002:a63:da10:: with SMTP id c16mr4784334pgh.208.1588349008731; 
- Fri, 01 May 2020 09:03:28 -0700 (PDT)
+ bh=8kryNQR1O3lIIQ3RhEjrzCgWegQXSzpzP8Uvge5pnjU=;
+ b=H6pHngMdguA60oeS+MMXwTELrWFfPshymo3V2RtyU39uSgZiJqyM9VrF2EcTwt1NZj
+ eJ0AHpOZqs4xEzVW8ixHLlSH7mfbqV2Lf6X/S/MOz3tRO3JV9Um3J9lSjYgHEzRNn213
+ /t04pGj35EGZ3LrfIX8ox2LtJYgYg1i9fcCg4Lxs6ke4KcTyrqzUN3dwc+8uh3empugF
+ pyy1i3u2QYWC+M5LrXVRUQtn1Jfs5BUQwI+rNjFFS67KRmDqR0v3JtNCgUsF2xRIXjiC
+ E1IHKc8AWdZN0Rr4QBZQ69DodISUiS9xucwO3wn6ZpPeq3o3UKJcX+5/fVJTlayBt+Cx
+ Etfw==
+X-Gm-Message-State: AGi0PuYifj4mBAzYKnocUco7AOrRhlTv5OvrrTf2ctLvuAnCeL2bXhry
+ D7BoGNRK5S9awlnEoLBkJXnn0r+Y0RT9+3XyIMkjlOpF
+X-Google-Smtp-Source: APiQypIX8Ql1UDDkJ+RI9xolhv9LJKzGjf1pkRCuZ8tsWxeA4h+l2GbCkdjoQRAnjVehcC2ZOBT5pfvgezvBAbfO3Ts=
+X-Received: by 2002:a17:902:b617:: with SMTP id
+ b23mr5514539pls.194.1588349383589; 
+ Fri, 01 May 2020 09:09:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAAxE2A7M8Lcf5EG5TxyZXt+ogL0Zh=jL-foW3aVd2A++Y-RSVg@mail.gmail.com>
- <DM5PR12MB170843C25AC1D5342A0726BF84AD0@DM5PR12MB1708.namprd12.prod.outlook.com>
- <DM5PR12MB170863A130B7FFDBC2511CE584AD0@DM5PR12MB1708.namprd12.prod.outlook.com>
- <79a48794-e539-f67f-13b3-0fa678ef94e7@amd.com>
- <DM5PR12MB170826866E450B9772D1A9CC84AD0@DM5PR12MB1708.namprd12.prod.outlook.com>
-In-Reply-To: <DM5PR12MB170826866E450B9772D1A9CC84AD0@DM5PR12MB1708.namprd12.prod.outlook.com>
+References: <CAAxE2A64Z91LiB9FduJf-8OO3He+1gZ9sxDfD+BVwc+-9Z7BnA@mail.gmail.com>
+ <DM5PR12MB17083F16D0A988CAE033A14A84AC0@DM5PR12MB1708.namprd12.prod.outlook.com>
+In-Reply-To: <DM5PR12MB17083F16D0A988CAE033A14A84AC0@DM5PR12MB1708.namprd12.prod.outlook.com>
 From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Fri, 1 May 2020 12:02:52 -0400
-Message-ID: <CAAxE2A4aB-9oxD7Wp_RTvbnbz79-vPP7myyvT6BR4MjTD6EYwg@mail.gmail.com>
-Subject: Re: drm/amdgpu: invalidate L2 before SDMA IBs (on gfx10)
+Date: Fri, 1 May 2020 12:09:07 -0400
+Message-ID: <CAAxE2A4vefw7D3+J7i-=h4RCXabhfGrXBgJBHwU6YOaYh=5Q_A@mail.gmail.com>
+Subject: Re: drm/amdgpu: apply AMDGPU_IB_FLAG_EMIT_MEM_SYNC to compute IBs too
 To: "Liu, Monk" <Monk.Liu@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,171 +61,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Koenig, Christian" <Christian.Koenig@amd.com>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1243171157=="
+Cc: amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1453508261=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1243171157==
-Content-Type: multipart/related; boundary="00000000000072ae8005a498525b"
+--===============1453508261==
+Content-Type: multipart/related; boundary="000000000000cdec7005a4986885"
 
---00000000000072ae8005a498525b
-Content-Type: multipart/alternative; boundary="00000000000072ae7e05a498525a"
+--000000000000cdec7005a4986885
+Content-Type: multipart/alternative; boundary="000000000000cdec6f05a4986884"
 
---00000000000072ae7e05a498525a
+--000000000000cdec6f05a4986884
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I'll answer two questions asked:
-
-1) SDMA doesn't need GCR at the end of IBs. It's because SDMA writes bypass
-GL2 and at the same time they invalidate all cache lines they touch.
-
-2)
-> If we always insert a GL2C invalidate at every EOP of every IB from every
-engine, why we need a GL2C invalidate before IB  execute ?
-
-I just sent you a counterexample on a private thread that proves that
-invalidation in RELEASE_MEM doesn't accomplish anything. The invalidation
-flag is there because:
-1) it was inherited from gfx9, which was inherited from gfx8, which was
-inherited from gfx7, which doesn't have the WB flag, so INV has to be used
-instead.
-2) to hide bugs
+The gfx ring already has this.
 
 Marek
 
-On Wed, Apr 29, 2020 at 7:24 AM Liu, Monk <Monk.Liu@amd.com> wrote:
+On Tue, Apr 28, 2020 at 5:50 AM Liu, Monk <Monk.Liu@amd.com> wrote:
 
-> >> Well from my understanding I think that a G2LC invalidation is still
-> necessary before an IB executes.
->
-> Agree, I think before an IB executes the only thing we need on GL2C is th=
-e
-> invalidation, not the flush .
->
->
-> >> The problem is that the memory of the IB could also be cached because
-> of some activity of the GFX or Compute rings.
->
-> If we always insert a GL2C invalidate at every EOP of every IB from every
-> engine, why we need a GL2C invalidate before IB  execute ?
->
-> _____________________________________
->
-> Monk Liu|GPU Virtualization Team |AMD
->
-> [image: sig-cloud-gpu]
+> Hi Marek
 >
 >
 >
-> *From:* Koenig, Christian <Christian.Koenig@amd.com>
-> *Sent:* Wednesday, April 29, 2020 5:38 PM
-> *To:* Liu, Monk <Monk.Liu@amd.com>; Marek Ol=C5=A1=C3=A1k <maraeo@gmail.c=
-om>;
-> amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
-> *Subject:* Re: drm/amdgpu: invalidate L2 before SDMA IBs (on gfx10)
+> I=E2=80=99m not very familiar with the background of your patch, but I ha=
+ve a
+> question: why you only apply this change on SDMA and compute ring, but
+> ignore GFX ring ?
 >
 >
 >
-> Well from my understanding I think that a G2LC invalidation is still
-> necessary before an IB executes.
->
-> The problem is that the memory of the IB could also be cached because of
-> some activity of the GFX or Compute rings.
->
-> Regards,
-> Christian.
->
-> Am 29.04.20 um 11:35 schrieb Liu, Monk:
->
-> Here is the reason we should always insert a =E2=80=9Csync mem=E2=80=9D p=
-acket at the
-> FENCE place of SDMA, not before IB emit.
+> Thanks
 >
 >
->
-> By always inserting =E2=80=9Csync mem=E2=80=9D in the FENCE place we can =
-make sure:1
->
->    1. data is really flushed to system memory before CPU try to read it
->    2. all the G2LC is invalidated by =E2=80=9Csync mem=E2=80=9D, thus in =
-the next round
->    SDMA IB, it won=E2=80=99t get staled data from G2LC cache
->
->
->
-> by inserting =E2=80=9Csync mem=E2=80=9D in prior to IB could only achieve=
- :  Avoid get
-> staled data in g2lc during IB execution
->
->
->
-> for GFX/COMPUTE ring since they have release_mem packet so it is
-> inherently doing the G2LC flush and invalidate upon a fence signaled
->
->
->
-> _____________________________________
->
-> Monk Liu|GPU Virtualization Team |AMD
->
-> [image: sig-cloud-gpu]
->
->
->
-> *From:* Liu, Monk
-> *Sent:* Wednesday, April 29, 2020 5:06 PM
-> *To:* 'Marek Ol=C5=A1=C3=A1k' <maraeo@gmail.com> <maraeo@gmail.com>; amd-=
-gfx
-> mailing list <amd-gfx@lists.freedesktop.org>
-> <amd-gfx@lists.freedesktop.org>; Koenig, Christian
-> <Christian.Koenig@amd.com> <Christian.Koenig@amd.com>
-> *Subject:* RE: drm/amdgpu: invalidate L2 before SDMA IBs (on gfx10)
->
->
->
-> Hi @Koenig, Christian <Christian.Koenig@amd.com> & Marek
->
->
->
-> I still have some concerns regarding Marek=E2=80=99s patch, correct me if=
- I=E2=80=99m wrong
->
->
->
-> See that Marek put a SDMA_OP_GCR_REQ before emitting IB, to make sure SDM=
-A
-> won=E2=80=99t get stale cache data during the IB execution.
->
->
->
-> But that =E2=80=9CSDMA_OP_GCR_REQ=E2=80=9D only invalidate/flush the GFXH=
-UB=E2=80=99s G2LC cache
-> right ?  what if the memory is changed by MM or CPU (out side of GFXHUB) =
-?
->
->
->
-> Can this =E2=80=9C SDMA_OP_GCR_REQ=E2=80=9D force MMHUB or even CPU to fl=
-ush their
-> operation result from their cache to memory ??
->
->
->
-> Besides, with my understanding the =E2=80=9CEOP=E2=80=9D of gfx ring is d=
-oing the thing of
-> =E2=80=9Cinvalidate/flush=E2=80=9D L2 cache upon a fence signaled, so wha=
-t we should do on
-> SDMA5 is to insert this =E2=80=9CSDMA_OP_GCR_REQ=E2=80=9D
->
-> Right before thee =E2=80=9Cemit_fence=E2=80=9D of SDMA  (this is what win=
-dows KMD do)
->
->
->
-> thanks
 >
 > _____________________________________
 >
@@ -240,240 +108,90 @@ dows KMD do)
 > *From:* amd-gfx <amd-gfx-bounces@lists.freedesktop.org> *On Behalf Of *Ma=
 rek
 > Ol?=C3=A1k
-> *Sent:* Saturday, April 25, 2020 4:52 PM
+> *Sent:* Saturday, April 25, 2020 4:53 PM
 > *To:* amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
-> *Subject:* drm/amdgpu: invalidate L2 before SDMA IBs (on gfx10)
+> *Subject:* drm/amdgpu: apply AMDGPU_IB_FLAG_EMIT_MEM_SYNC to compute IBs
+> too
 >
 >
 >
-> This should fix SDMA hangs on gfx10.
+> This was missed.
 >
 >
 >
 > Marek
 >
->
->
 
---00000000000072ae7e05a498525a
+--000000000000cdec6f05a4986884
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I&#39;ll answer two questions asked:</div><div><br></=
-div><div>1) SDMA doesn&#39;t need GCR at the end of IBs. It&#39;s because S=
-DMA writes bypass GL2 and at the same time they invalidate all cache lines =
-they touch.</div><div><br></div><div>2)</div><div>&gt; <span style=3D"color=
-:windowtext">If we always insert a GL2C invalidate at=20
-every EOP of every IB from every engine, why we need a GL2C invalidate=20
-before IB=C2=A0 execute ?</span></div><div><span style=3D"color:windowtext"=
-><br></span></div><div><span style=3D"color:windowtext">I just sent you a c=
-ounterexample on a private thread that proves that invalidation in RELEASE_=
-MEM doesn&#39;t accomplish anything. The invalidation flag is there because=
-:</span></div><div><span style=3D"color:windowtext">1) it was inherited fro=
-m gfx9, which was inherited from gfx8, which was inherited from gfx7, which=
- doesn&#39;t have the WB flag, so INV has to be used instead.</span></div><=
-div><span style=3D"color:windowtext">2) to hide bugs<br></span></div><div><=
-span style=3D"color:windowtext"><br></span></div><div><span style=3D"color:=
-windowtext">Marek<br></span></div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 29, 2020 at 7:24 AM Liu, Monk=
- &lt;<a href=3D"mailto:Monk.Liu@amd.com">Monk.Liu@amd.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr"><div>The gfx ring already has this.</div><div><br></div><d=
+iv>Marek<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Tue, Apr 28, 2020 at 5:50 AM Liu, Monk &lt;<a href=3D"=
+mailto:Monk.Liu@amd.com">Monk.Liu@amd.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex">
 
 
 
 
 
-<div bgcolor=3D"white" lang=3D"EN-US">
-<div class=3D"gmail-m_-2967598555427486213WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">&gt;&gt;</span> Wel=
-l from my understanding I think that a G2LC invalidation is still necessary=
- before an IB executes.<u></u><u></u></p>
-<p class=3D"MsoNormal">Agree, I think before an IB executes the only thing =
-we need on GL2C is the invalidation, not the flush .<u></u><u></u></p>
-<p class=3D"MsoNormal"><br>
-&gt;&gt; The problem is that the memory of the IB could also be cached beca=
-use of some activity of the GFX or Compute rings.<u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">If we always insert=
- a GL2C invalidate at every EOP of every IB from every engine, why we need =
-a GL2C invalidate before IB=C2=A0 execute ?<u></u><u></u></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">___________________=
-__________________<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt;background:white none =
-repeat scroll 0% 0%">Monk Liu|GPU Virtualization Team |</span><span style=
-=3D"font-size:12pt;color:rgb(200,38,19);border:1pt none windowtext;padding:=
-0in;background:white none repeat scroll 0% 0%">AMD<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext"><img style=3D"width=
-: 0.8333in; height: 0.8333in;" id=3D"gmail-m_-2967598555427486213_x0000_i10=
-27" src=3D"cid:171d0f0a62b4cff311" alt=3D"sig-cloud-gpu" width=3D"80" heigh=
-t=3D"80"><u></u><u></u></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext"><u></u>=C2=A0<u></u=
-></span></p>
-<div>
-<div style=3D"border-color:rgb(225,225,225) currentcolor currentcolor;borde=
-r-style:solid none none;border-width:1pt medium medium;padding:3pt 0in 0in"=
->
-<p class=3D"MsoNormal"><b><span style=3D"color:windowtext">From:</span></b>=
-<span style=3D"color:windowtext"> Koenig, Christian &lt;<a href=3D"mailto:C=
-hristian.Koenig@amd.com" target=3D"_blank">Christian.Koenig@amd.com</a>&gt;
-<br>
-<b>Sent:</b> Wednesday, April 29, 2020 5:38 PM<br>
-<b>To:</b> Liu, Monk &lt;<a href=3D"mailto:Monk.Liu@amd.com" target=3D"_bla=
-nk">Monk.Liu@amd.com</a>&gt;; Marek Ol=C5=A1=C3=A1k &lt;<a href=3D"mailto:m=
-araeo@gmail.com" target=3D"_blank">maraeo@gmail.com</a>&gt;; amd-gfx mailin=
-g list &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blan=
-k">amd-gfx@lists.freedesktop.org</a>&gt;<br>
-<b>Subject:</b> Re: drm/amdgpu: invalidate L2 before SDMA IBs (on gfx10)<u>=
-</u><u></u></span></p>
-</div>
-</div>
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_7187377260159243831WordSection1">
+<p class=3D"MsoNormal">Hi Marek<u></u><u></u></p>
 <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">Well from my understanding I think that a G2LC inval=
-idation is still necessary before an IB executes.<br>
-<br>
-The problem is that the memory of the IB could also be cached because of so=
-me activity of the GFX or Compute rings.<br>
-<br>
-Regards,<br>
-Christian.<br>
-<br>
-Am 29.04.20 um 11:35 schrieb Liu, Monk:<u></u><u></u></p>
-</div>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<p class=3D"MsoNormal">Here is the reason we should always insert a =E2=80=
-=9Csync mem=E2=80=9D packet at the FENCE place of SDMA, not before IB emit.=
-<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">By always inserting =E2=80=9Csync mem=E2=80=9D in th=
-e FENCE place we can make sure:1<u></u><u></u></p>
-<ol style=3D"margin-top:0in" type=3D"1" start=3D"1">
-<li class=3D"gmail-m_-2967598555427486213MsoListParagraph" style=3D"margin-=
-left:0in">data is really flushed to system memory before CPU try to read it
-<u></u><u></u></li><li class=3D"gmail-m_-2967598555427486213MsoListParagrap=
-h" style=3D"margin-left:0in">all the G2LC is invalidated by =E2=80=9Csync m=
-em=E2=80=9D, thus in the next round SDMA IB, it won=E2=80=99t get staled da=
-ta from G2LC cache
-<u></u><u></u></li></ol>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">by inserting =E2=80=9Csync mem=E2=80=9D in prior to =
-IB could only achieve :=C2=A0 Avoid get staled data in g2lc during IB execu=
-tion
-<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">for GFX/COMPUTE ring since they have release_mem pac=
-ket so it is inherently doing the G2LC flush and invalidate upon a fence si=
-gnaled
-<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<div>
+<p class=3D"MsoNormal">I=E2=80=99m not very familiar with the background of=
+ your patch, but I have a question: why you only apply this change on SDMA =
+and compute ring, but ignore GFX ring ?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks <u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">_____________________________________<u></u><u></u><=
 /p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt;background:white none =
-repeat scroll 0% 0%">Monk Liu|GPU Virtualization Team |</span><span style=
-=3D"font-size:12pt;color:rgb(200,38,19);border:1pt none windowtext;padding:=
-0in;background:white none repeat scroll 0% 0%">AMD</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;color:black;background=
+:white none repeat scroll 0% 0%">Monk Liu|GPU Virtualization Team |</span><=
+span style=3D"font-size:12pt;color:rgb(200,38,19);border:1pt none windowtex=
+t;padding:0in;background:white none repeat scroll 0% 0%">AMD<u></u><u></u><=
+/span></p>
 <p class=3D"MsoNormal"><img style=3D"width: 0.8333in; height: 0.8333in;" id=
-=3D"gmail-m_-2967598555427486213_x0000_i1025" src=3D"cid:171d0f0a62b4cff311=
-" alt=3D"sig-cloud-gpu" width=3D"80" height=3D"80"><u></u><u></u></p>
-</div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<div>
-<div style=3D"border-color:rgb(225,225,225) currentcolor currentcolor;borde=
-r-style:solid none none;border-width:1pt medium medium;padding:3pt 0in 0in"=
->
-<p class=3D"MsoNormal"><b>From:</b> Liu, Monk <br>
-<b>Sent:</b> Wednesday, April 29, 2020 5:06 PM<br>
-<b>To:</b> &#39;Marek Ol=C5=A1=C3=A1k&#39; <a href=3D"mailto:maraeo@gmail.c=
-om" target=3D"_blank">&lt;maraeo@gmail.com&gt;</a>; amd-gfx mailing list
-<a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">&lt;amd-=
-gfx@lists.freedesktop.org&gt;</a>; Koenig, Christian
-<a href=3D"mailto:Christian.Koenig@amd.com" target=3D"_blank">&lt;Christian=
-.Koenig@amd.com&gt;</a><br>
-<b>Subject:</b> RE: drm/amdgpu: invalidate L2 before SDMA IBs (on gfx10)<u>=
-</u><u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Hi <a id=3D"gmail-m_-2967598555427486213OWAAM709EE8E=
-0E6054CD48698E878A98E9795" href=3D"mailto:Christian.Koenig@amd.com" target=
-=3D"_blank">
-<span style=3D"font-family:&quot;Calibri&quot;,sans-serif;text-decoration:n=
-one">@Koenig, Christian</span></a> &amp; Marek<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I still have some concerns regarding Marek=E2=80=99s=
- patch, correct me if I=E2=80=99m wrong<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">See that Marek put a SDMA_OP_GCR_REQ before emitting=
- IB, to make sure SDMA won=E2=80=99t get stale cache data during the IB exe=
-cution.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">But that =E2=80=9CSDMA_OP_GCR_REQ=E2=80=9D only inva=
-lidate/flush the GFXHUB=E2=80=99s G2LC cache right ? =C2=A0what if the memo=
-ry is changed by MM or CPU (out side of GFXHUB) ?<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Can this =E2=80=9C SDMA_OP_GCR_REQ=E2=80=9D force MM=
-HUB or even CPU to flush their operation result from their cache to memory =
-??<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Besides, with my understanding the =E2=80=9CEOP=E2=
-=80=9D of gfx ring is doing the thing of =E2=80=9Cinvalidate/flush=E2=80=9D=
- L2 cache upon a fence signaled, so what we should do on SDMA5 is to insert=
- this =E2=80=9CSDMA_OP_GCR_REQ=E2=80=9D<u></u><u></u></p>
-<p class=3D"MsoNormal">Right before thee =E2=80=9Cemit_fence=E2=80=9D of SD=
-MA =C2=A0(this is what windows KMD do)<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">thanks <u></u><u></u></p>
-<p class=3D"MsoNormal">_____________________________________<u></u><u></u><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt;background:white none =
-repeat scroll 0% 0%">Monk Liu|GPU Virtualization Team |</span><span style=
-=3D"font-size:12pt;color:rgb(200,38,19);border:1pt none windowtext;padding:=
-0in;background:white none repeat scroll 0% 0%">AMD</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><img style=3D"width: 0.8333in; height: 0.8333in;" id=
-=3D"gmail-m_-2967598555427486213Picture_x0020_1" src=3D"cid:171d0f0a62b4cff=
-311" alt=3D"sig-cloud-gpu" width=3D"80" height=3D"80" border=3D"0"><u></u><=
-u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+=3D"gmail-m_7187377260159243831Picture_x0020_1" src=3D"cid:171d0ff88064cff3=
+11" alt=3D"sig-cloud-gpu" width=3D"80" height=3D"80"><u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal"><b>From:</b> amd-gfx &lt;<a href=3D"mailto:amd-gfx-b=
 ounces@lists.freedesktop.org" target=3D"_blank">amd-gfx-bounces@lists.freed=
 esktop.org</a>&gt;
 <b>On Behalf Of </b>Marek Ol?=C3=A1k<br>
-<b>Sent:</b> Saturday, April 25, 2020 4:52 PM<br>
+<b>Sent:</b> Saturday, April 25, 2020 4:53 PM<br>
 <b>To:</b> amd-gfx mailing list &lt;<a href=3D"mailto:amd-gfx@lists.freedes=
 ktop.org" target=3D"_blank">amd-gfx@lists.freedesktop.org</a>&gt;<br>
-<b>Subject:</b> drm/amdgpu: invalidate L2 before SDMA IBs (on gfx10)<u></u>=
-<u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<b>Subject:</b> drm/amdgpu: apply AMDGPU_IB_FLAG_EMIT_MEM_SYNC to compute I=
+Bs too<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <div>
 <div>
-<p class=3D"MsoNormal">This should fix SDMA hangs on gfx10.<u></u><u></u></=
-p>
+<p class=3D"MsoNormal">This was missed.<u></u><u></u></p>
 </div>
 <div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 </div>
 <div>
 <p class=3D"MsoNormal">Marek<u></u><u></u></p>
 </div>
 </div>
-</blockquote>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 </div>
 </div>
 
 </blockquote></div>
 
---00000000000072ae7e05a498525a--
+--000000000000cdec6f05a4986884--
 
---00000000000072ae8005a498525b
+--000000000000cdec7005a4986885
 Content-Type: image/png; name="image001.png"
 Content-Disposition: inline; filename="image001.png"
 Content-Transfer-Encoding: base64
-Content-ID: <171d0f0a62b4cff311>
-X-Attachment-Id: 171d0f0a62b4cff311
+Content-ID: <171d0ff88064cff311>
+X-Attachment-Id: 171d0ff88064cff311
 
 iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAIAAAF2dFVsAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAC9oSURBVGhDzXt3eFbHma/+2E3WIFRQ7x0JkESJ
@@ -690,9 +408,9 @@ Z4oleCRmI/CAUxanqgCFAX8dzRd22KZ+CQneFJBi4o5U+Sn+8JTDEVTgxFV6Lo2RnkrILbVM3dwB
 GAwGf4JjDIJjIcECaU1pEFiKynGioEJM4/mQIJ1cnE+iy7Qm/v4GB25Jx7RLx6UaaUVpZQaPH55z
 g3lgwdJECWeMARRsEXNNdLHVQS/G8zDRIyJiRh09uOIRBojxIAluDdOl1fhXgGAoolNIpTSBu0Tk
 I/YY60ijpR4ewPK71GlCTDomXtoeFDL8H3b6tzRnrCr7AAAAAElFTkSuQmCC
---00000000000072ae8005a498525b--
+--000000000000cdec7005a4986885--
 
---===============1243171157==
+--===============1453508261==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -703,4 +421,4 @@ amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
---===============1243171157==--
+--===============1453508261==--
