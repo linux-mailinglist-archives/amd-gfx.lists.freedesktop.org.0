@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D3F31C2860
-	for <lists+amd-gfx@lfdr.de>; Sat,  2 May 2020 23:34:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DEEB1C2864
+	for <lists+amd-gfx@lfdr.de>; Sat,  2 May 2020 23:34:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7577C6E11C;
-	Sat,  2 May 2020 21:34:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 689136E126;
+	Sat,  2 May 2020 21:34:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760074.outbound.protection.outlook.com [40.107.76.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BA106E0F4
- for <amd-gfx@lists.freedesktop.org>; Sat,  2 May 2020 21:34:50 +0000 (UTC)
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700089.outbound.protection.outlook.com [40.107.70.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 554C86E124
+ for <amd-gfx@lists.freedesktop.org>; Sat,  2 May 2020 21:34:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cPhCi5g6L0i1SozithmSaBmSY1V+vMvhUEQ7wiTmCu9nTFsEvA3Zrg02ZrcpaPkkn5hmvgQuciVGroP/sOciEv0+36MqQ1NoJhgSTfcwGHCo3xFxWzLfK7ZcOU6zLoDVWTa2OcIB+Y9JsOZJ5rwwdXJ/DN09UtLiS7zgfEHQZThyiooek82jhwjIyEjNHRWymjbhaN85IZP/npOxbQOBuReFhTcflPZEeu08xcVoAqNhQvkFIxSc63qllHwhicI18ihdIIR4t6wDtCXFnhq9QiQBMPr/vET3naoBKm3y+3O30yO6w/DYPzrThkg4/By6L0uosRjnfvPiVFROfLwcRg==
+ b=NyD2zKO7mhnuxrYN2zzWKPkjyHOzE5xma82zR5ftZwDjrbdxLDLj1IL5qVgSDcspUHLtTf2FLxbecQWSda0mKXJmojYz/z9tyr+4XK1rNhSvWIl2DUxUEzSBn4xgL3tXWqyy6lv4WOxsvHSpJKWOwhz71T0Yc1GKkejrMR9gdU803PYSbLKEgbA3sW1QRe3aY2fNUvVmR+GDvmIJ9zgJCUeURVik1wMwAK9o1JyvSSNhEkXBLx1W8juZL/BeXrT72uxff7ExNUBwVpcN/mvIIKDHBSs01sfiEnqB+mqHgwZSCl+uSYHRQYDrealf3/vG79/XsSqvjP9T79AHTgXaYg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AWjyWLo/WppgiIy/ZloWZ1sPmb7vqNvLAycPUWH5UjU=;
- b=APJghaIkkf8p9r8/pTbDU5CS+wZbd7WKVRZGFkLSYm8yuiDPQhq2kRdXfY4IgxNyYGAaSvqfDJ8wgslWvV+BHT7v+t9gu9FHFLp1tt3es03AGPs4SuQcRVy+b8JoGlTVkkx1G8s9octK05Zy7+vY2MWFTSL5cI8ts9CcBbJCSPoyv79MPweNDuwPj2A7o4q/pz4645fMIprMd/IpskagpwhlQka9ZR+7fYfPHzqqIfOgOwZGhZEG7rdmwuJsMTGmDyiMNE+XipVSm3px0bLSNaTdc9NpeVA5X/Kf4frwiKbt6CWTibD/5/eS5oowrWqzIm99f4kW4zyH6mGUBdAt3Q==
+ bh=3lEMQM+ZiB5zRd+5s1JJGNMD8y/Ho5b9dZCl6SEVGws=;
+ b=l9qViMzguwy4Elk5FmGKfns74Yspr0ABBHmWds2xvhLik/A8I7bW4uALu33zgK3KYt0O4gVUh6Q1C4sqDGY2Y2fDLZjHthvXB+bguia2W1eelx9eH0BQE64VdVWJLx2E9LebLDeKxwvsFhFB8GdIuZieB5Nt6M9Q9t12UxNjaAzHTYIjUkuSr4RK3ZAIcm5YG0uICJStqRJIO7N9mZbrctkcU7NnipCcGzeNFomLRl7sv+5/gw+V10i7gCGFb0AD7JN1bXJMMHNZys4wq7jpWh0WiaK+NAnD7CoI+dlcHhVv/UTMQAyL/we5jpaRAhRjPbG30rJ2pcKsfsEwjXCahw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,44 +27,45 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AWjyWLo/WppgiIy/ZloWZ1sPmb7vqNvLAycPUWH5UjU=;
- b=P6reiwsnI7n8IOjtLHha7laDPdX4kS+VTSllqPEJFubBPekY3em+iIAq03TcDJhd9K298Z/2DTGf6/6nPXK8FVuTGY0gV1ZbooWOaq5YbRe87TiVA7/PygTB8KIT56wTsNb/8vMOKWdPtFli1iRnUnUXj5AZUzxysD/7OXUbG04=
-Received: from BN6PR17CA0045.namprd17.prod.outlook.com (2603:10b6:405:75::34)
- by DM6PR12MB4268.namprd12.prod.outlook.com (2603:10b6:5:223::15) with
+ bh=3lEMQM+ZiB5zRd+5s1JJGNMD8y/Ho5b9dZCl6SEVGws=;
+ b=Cx84NgyqjtzhxFXNlO2hawXwLiOts5W5P51Kv5wE5drc+eUmD4Txc1ticAo3M2G48WbRnML2Lb4kI6TkjR/S4mVz9+x3e043BPhd1qdtqhnTUXsufxnWnK9YmWJn8IJcZGokH1MZGTdtFTpYcVRmXC+lcmEEOfDSAlgK+Yj+MTI=
+Received: from MWHPR22CA0060.namprd22.prod.outlook.com (2603:10b6:300:12a::22)
+ by BN6PR12MB1604.namprd12.prod.outlook.com (2603:10b6:405:c::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.19; Sat, 2 May
- 2020 21:34:48 +0000
-Received: from BN8NAM11FT064.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:75:cafe::e4) by BN6PR17CA0045.outlook.office365.com
- (2603:10b6:405:75::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.20 via Frontend
- Transport; Sat, 2 May 2020 21:34:48 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.27; Sat, 2 May
+ 2020 21:34:50 +0000
+Received: from CO1NAM11FT048.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:12a:cafe::25) by MWHPR22CA0060.outlook.office365.com
+ (2603:10b6:300:12a::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.29 via Frontend
+ Transport; Sat, 2 May 2020 21:34:50 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT064.mail.protection.outlook.com (10.13.176.160) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ CO1NAM11FT048.mail.protection.outlook.com (10.13.175.148) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2958.19 via Frontend Transport; Sat, 2 May 2020 21:34:48 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.2958.19 via Frontend Transport; Sat, 2 May 2020 21:34:49 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sat, 2 May 2020
- 16:34:47 -0500
+ 16:34:49 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sat, 2 May 2020
- 16:34:47 -0500
+ 16:34:48 -0500
 Received: from sudo.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Sat, 2 May 2020 16:34:46 -0500
+ Transport; Sat, 2 May 2020 16:34:47 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 02/16] drm/amd/display: Update DCN2.1 DV Code Revision
-Date: Sat, 2 May 2020 17:34:29 -0400
-Message-ID: <20200502213443.39232-4-aurabindo.pillai@amd.com>
+Subject: [PATCH 03/16] drm/amd/display: Mode change with same timing causing
+ long display blank
+Date: Sat, 2 May 2020 17:34:30 -0400
+Message-ID: <20200502213443.39232-5-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200502213443.39232-1-aurabindo.pillai@amd.com>
 References: <20200502213443.39232-1-aurabindo.pillai@amd.com>
@@ -72,27 +73,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(39860400002)(376002)(346002)(136003)(396003)(46966005)(44832011)(7696005)(36756003)(2906002)(1076003)(186003)(26005)(54906003)(6916009)(316002)(86362001)(8936002)(82740400003)(5660300002)(8676002)(70206006)(70586007)(4326008)(426003)(81166007)(336012)(6666004)(478600001)(2616005)(82310400002)(356005)(47076004);
+ SFS:(4636009)(39860400002)(136003)(396003)(376002)(346002)(46966005)(82740400003)(70206006)(316002)(54906003)(47076004)(6916009)(4326008)(44832011)(336012)(8936002)(426003)(8676002)(2616005)(478600001)(186003)(82310400002)(356005)(86362001)(1076003)(2906002)(26005)(36756003)(7696005)(70586007)(81166007)(6666004)(5660300002);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b176acdd-7f36-4417-65d9-08d7eee0a3bb
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4268:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4268F8A96B855948FE3DC7E98BA80@DM6PR12MB4268.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:813;
+X-MS-Office365-Filtering-Correlation-Id: 6e74e9ea-01cf-484a-b9cd-08d7eee0a4c2
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1604:
+X-Microsoft-Antispam-PRVS: <BN6PR12MB160485B297CFEA8F2077AF658BA80@BN6PR12MB1604.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
 X-Forefront-PRVS: 039178EF4A
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KwpVaxJbHUU0RbTIqbqFp9VmNXjUAw+haotyC9a1lEMPMEBAI4Jy5zQ4+wVQj/QEboGCwgV4rLeeLTqAxwFUQzGTfPNT8l5q5ukkgosSTN6sDanuECm0221jb38GD1Akd2PtLm4bTxiUHBtZ0cb/dM1ztv2ETYf/xxlkGGhcLewjJWY1lhoHwJVtTfcTkM4/Qp4IsiRAdiqZlqu+9DdkubVkJv5gRf6lVxrAzLcdw7g4dyLUoqkXuLzt6cnQ1i0vCf4oKL/GikxsFkktogi7LLtwQLMyHWVWJabdNh6Yuw6petUizvaYsxQXnXbYBvyMFCAfVuGW2zH1lVAIezQpf+IjAgWW1zyDETlQPaRQnUFn3NPXIUXzkmaFpnr8B0V58jfB5XsnxicH7eYnS23Ejqsbimq/CWgdXZoFp3/rEdaNEURxHd1bMbDbiR5k/bjI8os8RmiRU18sQlfyU+rH+0TB1hTtxJZ7ZaOVw0xq9ehMw2dlr/vyWGzb7hfBEQPVxQyGvmAfeWGKYiCO3MokNA==
+X-Microsoft-Antispam-Message-Info: q6yrPMv0By5a/eQP/G5TD+zAUNiMppcxT2CZhJnDalCWdAH4I8dn4m18zKmGEx0wWYNULB1GDDE3P9JGMAw8Jfwd/G8+vHC+yCuTeYhcl2ZT8hALQ0FrMLsm8p+0H4OTr2nrQPcpjDAT4X28XBiWobAHRUpng9I6SMRGCITu+ia/bVoqMam1ALY1a+rh8uBGrID+Jo5ArGK4vUIAbVU0VDN7/7FB4lDqN5H73a43BnJOVmFxr5Ce5/mkJOtvgzVjNCZ2RXzjnSrLr2srDpSVvHQchfK+/XptJzbCUe6TdI/kE+wZbo8/OyAD6jkKx68ib5+G9NcaVo3/Dan3u1oJXrq609j9XNnmm2rL9JGXf+LzbO+9sV5xrsiQ6HkdsBYQdotnc8fWVKf9WNx4uXuKrTI9a/njff+5QCZisgEeCHvkPJKGClI99VWsl769dsWtRCpBLDi94q2Oh8mATWS0ZbjRW9KCGpmKcFPS6gJRe5pWk6y9VVtmA6YeN5/Ob8pDjYRi3L54yu6djfJM2mQqeA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2020 21:34:48.2837 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b176acdd-7f36-4417-65d9-08d7eee0a3bb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2020 21:34:49.8825 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e74e9ea-01cf-484a-b9cd-08d7eee0a4c2
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
+ Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4268
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1604
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,62 +105,219 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sung Lee <sung.lee@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Rodrigo.Siqueira@amd.com, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- Bhawanpreet.Lakha@amd.com
+Cc: Aric Cyr <aric.cyr@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Rodrigo.Siqueira@amd.com, Bhawanpreet.Lakha@amd.com,
+ Anthony Koo <Anthony.Koo@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
+From: Aric Cyr <aric.cyr@amd.com>
 
-[WHY & HOW]
-There is a problem in hscale_pixel_rate, the bug
-causes DCN to be more optimistic (more likely to underflow)
-in upscale cases during prefetch.
-This commit ports the fix from DV code to address these issues.
+[Why]
+What a mode change is requested for the same timing a full stream reset
+can occur in some cases which causes monitor to blank for a few seconds.
 
-Signed-off-by: Sung Lee <sung.lee@amd.com>
-Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+[How]
+Do not consider infoframe updates as needing a full stream reset as they
+will be handled on the first flip after a modeset when surface
+information is available.
+
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 67 -------------------
+ .../drm/amd/display/dc/dcn10/dcn10_resource.c | 18 -----
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c | 18 -----
+ drivers/gpu/drm/amd/display/dc/inc/resource.h |  3 -
+ 4 files changed, 106 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-index 193f31b8ac4a..90a5fefef05b 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-@@ -1200,7 +1200,7 @@ static void dml_rq_dlg_get_dlg_params(
- 	min_hratio_fact_l = 1.0;
- 	min_hratio_fact_c = 1.0;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 1a01c038632b..cb5d11f11cad 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -1547,35 +1547,6 @@ bool dc_add_all_planes_for_stream(
+ 	return add_all_planes_for_stream(dc, stream, &set, 1, context);
+ }
  
--	if (htaps_l <= 1)
-+	if (hratio_l <= 1)
- 		min_hratio_fact_l = 2.0;
- 	else if (htaps_l <= 6) {
- 		if ((hratio_l * 2.0) > 4.0)
-@@ -1216,7 +1216,7 @@ static void dml_rq_dlg_get_dlg_params(
+-
+-static bool is_hdr_static_meta_changed(struct dc_stream_state *cur_stream,
+-	struct dc_stream_state *new_stream)
+-{
+-	if (cur_stream == NULL)
+-		return true;
+-
+-	if (memcmp(&cur_stream->hdr_static_metadata,
+-			&new_stream->hdr_static_metadata,
+-			sizeof(struct dc_info_packet)) != 0)
+-		return true;
+-
+-	return false;
+-}
+-
+-static bool is_vsc_info_packet_changed(struct dc_stream_state *cur_stream,
+-		struct dc_stream_state *new_stream)
+-{
+-	if (cur_stream == NULL)
+-		return true;
+-
+-	if (memcmp(&cur_stream->vsc_infopacket,
+-			&new_stream->vsc_infopacket,
+-			sizeof(struct dc_info_packet)) != 0)
+-		return true;
+-
+-	return false;
+-}
+-
+ static bool is_timing_changed(struct dc_stream_state *cur_stream,
+ 		struct dc_stream_state *new_stream)
+ {
+@@ -1610,15 +1581,9 @@ static bool are_stream_backends_same(
+ 	if (is_timing_changed(stream_a, stream_b))
+ 		return false;
  
- 	hscale_pixel_rate_l = min_hratio_fact_l * dppclk_freq_in_mhz;
+-	if (is_hdr_static_meta_changed(stream_a, stream_b))
+-		return false;
+-
+ 	if (stream_a->dpms_off != stream_b->dpms_off)
+ 		return false;
  
--	if (htaps_c <= 1)
-+	if (hratio_c <= 1)
- 		min_hratio_fact_c = 2.0;
- 	else if (htaps_c <= 6) {
- 		if ((hratio_c * 2.0) > 4.0)
-@@ -1533,8 +1533,8 @@ static void dml_rq_dlg_get_dlg_params(
+-	if (is_vsc_info_packet_changed(stream_a, stream_b))
+-		return false;
+-
+ 	return true;
+ }
  
- 	disp_dlg_regs->refcyc_per_vm_group_vblank   = get_refcyc_per_vm_group_vblank(mode_lib, e2e_pipe_param, num_pipes, pipe_idx) * refclk_freq_in_mhz;
- 	disp_dlg_regs->refcyc_per_vm_group_flip     = get_refcyc_per_vm_group_flip(mode_lib, e2e_pipe_param, num_pipes, pipe_idx) * refclk_freq_in_mhz;
--	disp_dlg_regs->refcyc_per_vm_req_vblank     = get_refcyc_per_vm_req_vblank(mode_lib, e2e_pipe_param, num_pipes, pipe_idx) * refclk_freq_in_mhz;
--	disp_dlg_regs->refcyc_per_vm_req_flip       = get_refcyc_per_vm_req_flip(mode_lib, e2e_pipe_param, num_pipes, pipe_idx) * refclk_freq_in_mhz;
-+	disp_dlg_regs->refcyc_per_vm_req_vblank     = get_refcyc_per_vm_req_vblank(mode_lib, e2e_pipe_param, num_pipes, pipe_idx) * refclk_freq_in_mhz * dml_pow(2, 10);
-+	disp_dlg_regs->refcyc_per_vm_req_flip       = get_refcyc_per_vm_req_flip(mode_lib, e2e_pipe_param, num_pipes, pipe_idx) * refclk_freq_in_mhz * dml_pow(2, 10);
+@@ -1758,21 +1723,6 @@ static struct audio *find_first_free_audio(
+ 	return 0;
+ }
  
- 	// Clamp to max for now
- 	if (disp_dlg_regs->refcyc_per_vm_group_vblank >= (unsigned int)dml_pow(2, 23))
+-bool resource_is_stream_unchanged(
+-	struct dc_state *old_context, struct dc_stream_state *stream)
+-{
+-	int i;
+-
+-	for (i = 0; i < old_context->stream_count; i++) {
+-		struct dc_stream_state *old_stream = old_context->streams[i];
+-
+-		if (are_stream_backends_same(old_stream, stream))
+-				return true;
+-	}
+-
+-	return false;
+-}
+-
+ /**
+  * dc_add_stream_to_ctx() - Add a new dc_stream_state to a dc_state.
+  */
+@@ -2027,17 +1977,6 @@ enum dc_status resource_map_pool_resources(
+ 	int pipe_idx = -1;
+ 	struct dc_bios *dcb = dc->ctx->dc_bios;
+ 
+-	/* TODO Check if this is needed */
+-	/*if (!resource_is_stream_unchanged(old_context, stream)) {
+-			if (stream != NULL && old_context->streams[i] != NULL) {
+-				stream->bit_depth_params =
+-						old_context->streams[i]->bit_depth_params;
+-				stream->clamping = old_context->streams[i]->clamping;
+-				continue;
+-			}
+-		}
+-	*/
+-
+ 	calculate_phy_pix_clks(stream);
+ 
+ 	/* TODO: Check Linux */
+@@ -2720,15 +2659,9 @@ bool pipe_need_reprogram(
+ 	if (is_timing_changed(pipe_ctx_old->stream, pipe_ctx->stream))
+ 		return true;
+ 
+-	if (is_hdr_static_meta_changed(pipe_ctx_old->stream, pipe_ctx->stream))
+-		return true;
+-
+ 	if (pipe_ctx_old->stream->dpms_off != pipe_ctx->stream->dpms_off)
+ 		return true;
+ 
+-	if (is_vsc_info_packet_changed(pipe_ctx_old->stream, pipe_ctx->stream))
+-		return true;
+-
+ 	if (false == pipe_ctx_old->stream->link->link_state_valid &&
+ 		false == pipe_ctx_old->stream->dpms_off)
+ 		return true;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+index bacf865f55c0..17d5cb422025 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+@@ -1121,24 +1121,6 @@ static enum dc_status build_mapped_resource(
+ {
+ 	struct pipe_ctx *pipe_ctx = resource_get_head_pipe_for_stream(&context->res_ctx, stream);
+ 
+-	/*TODO Seems unneeded anymore */
+-	/*	if (old_context && resource_is_stream_unchanged(old_context, stream)) {
+-			if (stream != NULL && old_context->streams[i] != NULL) {
+-				 todo: shouldn't have to copy missing parameter here
+-				resource_build_bit_depth_reduction_params(stream,
+-						&stream->bit_depth_params);
+-				stream->clamping.pixel_encoding =
+-						stream->timing.pixel_encoding;
+-
+-				resource_build_bit_depth_reduction_params(stream,
+-								&stream->bit_depth_params);
+-				build_clamping_params(stream);
+-
+-				continue;
+-			}
+-		}
+-	*/
+-
+ 	if (!pipe_ctx)
+ 		return DC_ERROR_UNEXPECTED;
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 60ea499c1ca8..1a525c423911 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -1653,24 +1653,6 @@ enum dc_status dcn20_build_mapped_resource(const struct dc *dc, struct dc_state
+ 	enum dc_status status = DC_OK;
+ 	struct pipe_ctx *pipe_ctx = resource_get_head_pipe_for_stream(&context->res_ctx, stream);
+ 
+-	/*TODO Seems unneeded anymore */
+-	/*	if (old_context && resource_is_stream_unchanged(old_context, stream)) {
+-			if (stream != NULL && old_context->streams[i] != NULL) {
+-				 todo: shouldn't have to copy missing parameter here
+-				resource_build_bit_depth_reduction_params(stream,
+-						&stream->bit_depth_params);
+-				stream->clamping.pixel_encoding =
+-						stream->timing.pixel_encoding;
+-
+-				resource_build_bit_depth_reduction_params(stream,
+-								&stream->bit_depth_params);
+-				build_clamping_params(stream);
+-
+-				continue;
+-			}
+-		}
+-	*/
+-
+ 	if (!pipe_ctx)
+ 		return DC_ERROR_UNEXPECTED;
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+index ca4c36c0c9bc..109c589eb97c 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+@@ -138,9 +138,6 @@ struct pipe_ctx *find_idle_secondary_pipe(
+ 		const struct resource_pool *pool,
+ 		const struct pipe_ctx *primary_pipe);
+ 
+-bool resource_is_stream_unchanged(
+-	struct dc_state *old_context, struct dc_stream_state *stream);
+-
+ bool resource_validate_attach_surfaces(
+ 		const struct dc_validation_set set[],
+ 		int set_count,
 -- 
 2.25.1
 
