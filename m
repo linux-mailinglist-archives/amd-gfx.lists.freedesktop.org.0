@@ -1,60 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382501C220D
-	for <lists+amd-gfx@lfdr.de>; Sat,  2 May 2020 02:53:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7C31C2427
+	for <lists+amd-gfx@lfdr.de>; Sat,  2 May 2020 10:35:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF5616ED74;
-	Sat,  2 May 2020 00:53:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B2016EDA3;
+	Sat,  2 May 2020 08:35:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
- [216.228.121.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE8A06E042;
- Sat,  2 May 2020 00:53:27 +0000 (UTC)
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5eacc4430000>; Fri, 01 May 2020 17:52:19 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate101.nvidia.com (PGP Universal service);
- Fri, 01 May 2020 17:53:27 -0700
-X-PGP-Universal: processed;
- by hqpgpgate101.nvidia.com on Fri, 01 May 2020 17:53:27 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 2 May
- 2020 00:53:27 +0000
-Received: from rcampbell-dev.nvidia.com (10.124.1.5) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3;
- Sat, 2 May 2020 00:53:26 +0000
-Subject: Re: [PATCH hmm v2 5/5] mm/hmm: remove the customizable pfn format
- from hmm_range_fault
-To: Jason Gunthorpe <jgg@ziepe.ca>, <linux-mm@kvack.org>
-References: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-From: Ralph Campbell <rcampbell@nvidia.com>
-X-Nvconfidentiality: public
-Message-ID: <3c06a94c-c17f-dc31-537e-f3f6e1ace9a2@nvidia.com>
-Date: Fri, 1 May 2020 17:53:26 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com
+ [IPv6:2607:f8b0:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E261E6ED79;
+ Sat,  2 May 2020 03:11:50 +0000 (UTC)
+Received: by mail-ot1-x344.google.com with SMTP id j26so4194702ots.0;
+ Fri, 01 May 2020 20:11:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=TRgN7dqYpnfJ32iv0mEp+A1meuKHRpjuIr6fo6bZQDI=;
+ b=RxJsTXbup9QlEvWS3tzliDOKUX4V8Ve9nGRFJT1tPzsN41ZaP28hHRRjaQmVMXYH4X
+ jxts4KMj4xPuN0zLE+MUuwbxdM6n4rfUiJea6QlzNwcT5eJJQJclqPnYZbAM/QvpGcsR
+ GxXMEB+FoAwX7zEcUWqYGmcYoGW10XFa9/FwFp7y9pF7D/Q5qN362YPRXDPgtyLgisqZ
+ kzGuKyegQx5QjgazWys8w7f6+/aSLhn5Bp01HY+CiRPNiKZ2vp6+JaBOyJ3OVjRY39PW
+ SGq2AzacvGQsBFLshM9JVauz2hcankfK0kJmBIJcB6CgNRNYP6pEqmmtpSr/XZ+jvudK
+ Cv+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=TRgN7dqYpnfJ32iv0mEp+A1meuKHRpjuIr6fo6bZQDI=;
+ b=T2N29MbIcu0DbktImyCP0uBucgdIpkBUWRb8txhfsq1EMRLTQcOMKAS0gOSwK1yVHK
+ YNNVSzCD++b8M8BAWEjYCBTyN0NoCdLqx4wKvBexK+wRq25ql4aNNw9GIiymM8oHQCAJ
+ xZcJfsNwKLaek0lq/4r4uPo4IU0rufUEQKomcs2DQ65Vy2qD7bM0TWPpMToxAxk6R4Px
+ a6pJ0hZGvT/ccEI5C4uQipnt5yIxmfxLomdb0E0NFXQJTxn2Ik5wHVdPgUqRMeJSXoBC
+ 1JkGGWDFO1bTReFLG5M5MBtrkqa7gTCuYUjrqGEiBBMjV4Wrr0T0LzC8cjpJQDjUXgV+
+ qBiQ==
+X-Gm-Message-State: AGi0PuYUF43GC3lVtamNVeRSqKsB6ibDTI7XKyP6U5KdGUiZ/lzSENeG
+ FfUdSVOgwZDi50teodnyMcI=
+X-Google-Smtp-Source: APiQypKZcYdkpeLuzk63sx5uVK3c25pfnOfguhe3seCLZhWjtHD4C6Zuh/aw67LW6ih2Vhcg2sVuWw==
+X-Received: by 2002:a9d:57cb:: with SMTP id q11mr6060158oti.11.1588389110029; 
+ Fri, 01 May 2020 20:11:50 -0700 (PDT)
+Received: from localhost.localdomain ([2604:1380:4111:8b00::1])
+ by smtp.gmail.com with ESMTPSA id l6sm1317704otq.48.2020.05.01.20.11.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 01 May 2020 20:11:49 -0700 (PDT)
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "David (ChunMing) Zhou" <David1.Zhou@amd.com>
+Subject: [PATCH] drm/amdgpu: Avoid integer overflow in
+ amdgpu_device_suspend_display_audio
+Date: Fri,  1 May 2020 20:11:41 -0700
+Message-Id: <20200502031141.2732221-1-natechancellor@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1588380739; bh=EV3nm763BNlVbz3132Rm5ScZ/T6SWXq2x/ZiKuEfuP8=;
- h=X-PGP-Universal:Subject:To:CC:References:From:X-Nvconfidentiality:
- Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
- X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
- Content-Transfer-Encoding;
- b=nh1pY9Fz7u8s1vJpgRxLXu08giXCQDP363xmg6l0tAXktkX3k7JoYV9gKXZk8ciil
- SsUuIaFfjBxg5B2mGb0w6MYWHWVDSBFSOtvOJA4iKUWDR+lt/J5OTKRwsPFmkGiB2p
- KWQ21HmxXBvfqDQSqQP6ezOvrHGsyqrA94xl/oK9cAXsp7wfeJ4axVyFAWoGkFtyRZ
- 74F/UacwzaZaSglpWi4zAE3eIiU+E+80I57OOsg05kYPRSD7GKDMp+tkSbIK6Dy1QA
- ibQfUJa5jPZvKQfDqst9zXF+/N3IiDcejcNSN7m9HKNOHjmzXFxQdHg1RNqoA6EH6G
- vipRDrDiXDJSg==
+X-Patchwork-Bot: notify
+X-Mailman-Approved-At: Sat, 02 May 2020 08:35:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,107 +68,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- amd-gfx@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>,
- John Hubbard <jhubbard@nvidia.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>,
- =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, Niranjana
- Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: clang-built-linux@googlegroups.com,
+ Nathan Chancellor <natechancellor@gmail.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+When building with Clang:
 
-On 5/1/20 11:20 AM, Jason Gunthorpe wrote:
-> From: Jason Gunthorpe <jgg@mellanox.com>
-> 
-> Presumably the intent here was that hmm_range_fault() could put the data
-> into some HW specific format and thus avoid some work. However, nothing
-> actually does that, and it isn't clear how anything actually could do that
-> as hmm_range_fault() provides CPU addresses which must be DMA mapped.
-> 
-> Perhaps there is some special HW that does not need DMA mapping, but we
-> don't have any examples of this, and the theoretical performance win of
-> avoiding an extra scan over the pfns array doesn't seem worth the
-> complexity. Plus pfns needs to be scanned anyhow to sort out any
-> DEVICE_PRIVATE pages.
-> 
-> This version replaces the uint64_t with an usigned long containing a pfn
-> and fixed flags. On input flags is filled with the HMM_PFN_REQ_* values,
-> on successful output it is filled with HMM_PFN_* values, describing the
-> state of the pages.
-> 
-> amdgpu is simple to convert, it doesn't use snapshot and doesn't use
-> per-page flags.
-> 
-> nouveau uses only 16 hmm_pte entries at most (ie fits in a few cache
-> lines), and it sweeps over its pfns array a couple of times anyhow. It
-> also has a nasty call chain before it reaches the dma map and hardware
-> suggesting performance isn't important:
-> 
->     nouveau_svm_fault():
->       args.i.m.method = NVIF_VMM_V0_PFNMAP
->       nouveau_range_fault()
->        nvif_object_ioctl()
->         client->driver->ioctl()
-> 	  struct nvif_driver nvif_driver_nvkm:
-> 	    .ioctl = nvkm_client_ioctl
-> 	   nvkm_ioctl()
-> 	    nvkm_ioctl_path()
-> 	      nvkm_ioctl_v0[type].func(..)
-> 	      nvkm_ioctl_mthd()
-> 	       nvkm_object_mthd()
-> 		  struct nvkm_object_func nvkm_uvmm:
-> 		    .mthd = nvkm_uvmm_mthd
-> 		   nvkm_uvmm_mthd()
-> 		    nvkm_uvmm_mthd_pfnmap()
-> 		     nvkm_vmm_pfn_map()
-> 		      nvkm_vmm_ptes_get_map()
-> 		       func == gp100_vmm_pgt_pfn
-> 			struct nvkm_vmm_desc_func gp100_vmm_desc_spt:
-> 			  .pfn = gp100_vmm_pgt_pfn
-> 			 nvkm_vmm_iter()
-> 			  REF_PTES == func == gp100_vmm_pgt_pfn()
-> 			    dma_map_page()
-> 
-> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> Tested-by: Ralph Campbell <rcampbell@nvidia.com>
-> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> ---
->   Documentation/vm/hmm.rst                |  26 ++--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  35 ++----
->   drivers/gpu/drm/nouveau/nouveau_dmem.c  |  27 +---
->   drivers/gpu/drm/nouveau/nouveau_dmem.h  |   3 +-
->   drivers/gpu/drm/nouveau/nouveau_svm.c   |  87 ++++++++-----
->   include/linux/hmm.h                     |  99 ++++++---------
->   mm/hmm.c                                | 160 +++++++++++-------------
->   7 files changed, 192 insertions(+), 245 deletions(-)
-> 
+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4160:53: warning: overflow in
+expression; result is -294967296 with type 'long' [-Winteger-overflow]
+                expires = ktime_get_mono_fast_ns() + NSEC_PER_SEC * 4L;
+                                                                  ^
+1 warning generated.
 
-...snip...
+Multiplication happens first due to order of operations and both
+NSEC_PER_SEC and 4 are long literals so the expression overflows. To
+avoid this, make 4 an unsigned long long literal, which matches the
+type of expires (u64).
 
->   
-> +static void nouveau_hmm_convert_pfn(struct nouveau_drm *drm,
-> +				    struct hmm_range *range, u64 *ioctl_addr)
-> +{
-> +	unsigned long i, npages;
-> +
-> +	/*
-> +	 * The ioctl_addr prepared here is passed through nvif_object_ioctl()
-> +	 * to an eventual DMA map in something like gp100_vmm_pgt_pfn()
-> +	 *
-> +	 * This is all just encoding the internal hmm reprensetation into a
+Fixes: 3f12acc8d6d4 ("drm/amdgpu: put the audio codec into suspend state before gpu reset V3")
+Link: https://github.com/ClangBuiltLinux/linux/issues/1017
+Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-s/reprensetation/representation/
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 6f93af972b0a..caa38e7d502e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4157,7 +4157,7 @@ static int amdgpu_device_suspend_display_audio(struct amdgpu_device *adev)
+ 		 * the audio controller default autosuspend delay setting.
+ 		 * 4S used here is guaranteed to cover that.
+ 		 */
+-		expires = ktime_get_mono_fast_ns() + NSEC_PER_SEC * 4L;
++		expires = ktime_get_mono_fast_ns() + NSEC_PER_SEC * 4ULL;
+ 
+ 	while (!pm_runtime_status_suspended(&(p->dev))) {
+ 		if (!pm_runtime_suspend(&(p->dev)))
 
-Looks good and still tests OK with nouveau.
+base-commit: fb9d670f57e3f6478602328bbbf71138be06ca4f
+-- 
+2.26.2
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
