@@ -1,64 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 173011C2426
-	for <lists+amd-gfx@lfdr.de>; Sat,  2 May 2020 10:35:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C3771C23BB
+	for <lists+amd-gfx@lfdr.de>; Sat,  2 May 2020 09:12:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA5B6ED99;
-	Sat,  2 May 2020 08:35:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C12A26E02F;
+	Sat,  2 May 2020 07:12:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 300 seconds by postgrey-1.36 at gabe;
- Sat, 02 May 2020 05:52:40 UTC
-Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
- [216.228.121.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38FBA6E02E;
- Sat,  2 May 2020 05:52:40 +0000 (UTC)
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5ead09360000>; Fri, 01 May 2020 22:46:31 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate101.nvidia.com (PGP Universal service);
- Fri, 01 May 2020 22:47:39 -0700
-X-PGP-Universal: processed;
- by hqpgpgate101.nvidia.com on Fri, 01 May 2020 22:47:39 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 2 May
- 2020 05:47:38 +0000
-Received: from [10.2.59.220] (10.124.1.5) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 2 May 2020
- 05:47:37 +0000
-Subject: Re: [PATCH hmm v2 1/5] mm/hmm: make CONFIG_DEVICE_PRIVATE into a
- select
-To: Jason Gunthorpe <jgg@ziepe.ca>, <linux-mm@kvack.org>, Ralph Campbell
- <rcampbell@nvidia.com>
-References: <1-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-X-Nvconfidentiality: public
-From: John Hubbard <jhubbard@nvidia.com>
-Message-ID: <17b40a00-658a-1bf4-c14a-7543dd0d2f8c@nvidia.com>
-Date: Fri, 1 May 2020 22:47:37 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <1-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1588398391; bh=9WVhNWEwbrdSv0IZ+XjrYrQTjZYFLJxQOn+wzBze+IE=;
- h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
- Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
- X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
- Content-Transfer-Encoding;
- b=jJbUjZIFpsl+z/WpjRf+dQtCXmX45b2domJ6ui2m0qQLXPCNWeAK2d+Lt4SbMdTHW
- g6h3pk5CkJS4IW8FgDWLONNamvZn4bouhO81p+K/1DKwCbicz1zs5jlW7h5lYehaw/
- clXb1ncut+A5uh78Ae8RCl1Pxjlxo56PG1PTgpCitHzCJSjToSTeViTPgNwElLgtfg
- qk2aJkzLeiGCZUHBkqurTPk4fTAp+5LR5mZhDn33zl2pf7bJhWSK1TYnaIbhFSoqYr
- /cE70NsFQkUcb0lx6FJJ0mKaFJCNfqcecIhbKwZbc17bnzzdzQMurqGa0/qeJJkiSP
- Uti4fpB1h8oTA==
-X-Mailman-Approved-At: Sat, 02 May 2020 08:35:44 +0000
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2F386E02F
+ for <amd-gfx@lists.freedesktop.org>; Sat,  2 May 2020 07:12:00 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 54861AF2B;
+ Sat,  2 May 2020 07:11:59 +0000 (UTC)
+Date: Sat, 02 May 2020 09:11:58 +0200
+Message-ID: <s5h7dxuizep.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Nicholas Johnson <nicholas.johnson-opensource@outlook.com.au>
+Subject: Re: [PATCH 0/1] Fiji GPU audio register timeout when in BACO state
+In-Reply-To: <s5h1ro4kgog.wl-tiwai@suse.de>
+References: <s5hv9lkm49n.wl-tiwai@suse.de>
+ <PSXP216MB043899DC52E6C6BF728D77CD80AC0@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
+ <s5ha72ulp2y.wl-tiwai@suse.de>
+ <PSXP216MB043822350CDE9E7EEA37730880AD0@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
+ <CADnq5_MCQ7xHY=yhNtRW=ze0LRPzxuu-Mm7pD4kFa5R52UrGSw@mail.gmail.com>
+ <s5h1ro6jn0v.wl-tiwai@suse.de>
+ <CADnq5_Mjb_FnNOzjUfJZ7GSDzi-+Cfc1ZTuqm7UWCWVvY6DU_w@mail.gmail.com>
+ <s5hwo5xj98v.wl-tiwai@suse.de>
+ <PSXP216MB0438FE3E1CA577805BEC23C880AA0@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
+ <s5hh7x0kiwb.wl-tiwai@suse.de>
+ <PSXP216MB04381A30909F66867E6B6BCC80AA0@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
+ <s5h1ro4kgog.wl-tiwai@suse.de>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
+ (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,103 +49,182 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- amd-gfx@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>,
- nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>,
- =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
- Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>,
+ "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Takashi Iwai <tiwai@suse.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, Lukas Wunner <lukas@wunner.de>,
+ Alex Deucher <alexdeucher@gmail.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2020-05-01 11:20, Jason Gunthorpe wrote:
-> From: Jason Gunthorpe <jgg@mellanox.com>
+On Thu, 30 Apr 2020 19:49:03 +0200,
+Takashi Iwai wrote:
 > 
-> There is no reason for a user to select this or not directly - it should
-> be selected by drivers that are going to use the feature, similar to how
-> CONFIG_HMM_MIRROR works.
+> On Thu, 30 Apr 2020 19:38:16 +0200,
+> Nicholas Johnson wrote:
+> > 
+> > On Thu, Apr 30, 2020 at 07:01:08PM +0200, Takashi Iwai wrote:
+> > > On Thu, 30 Apr 2020 18:52:20 +0200,
+> > > Nicholas Johnson wrote:
+> > > > 
+> > > > On Thu, Apr 30, 2020 at 05:14:56PM +0200, Takashi Iwai wrote:
+> > > > > On Wed, 29 Apr 2020 18:19:57 +0200,
+> > > > > Alex Deucher wrote:
+> > > > > > 
+> > > > > > On Wed, Apr 29, 2020 at 12:05 PM Takashi Iwai <tiwai@suse.de> wrote:
+> > > > > > > Well, but the code path there is the runtime PM resume of the audio
+> > > > > > > device and it means that GPU must have been runtime-resumed again
+> > > > > > > beforehand via the device link.  So, it should have worked from the
+> > > > > > > beginning but in reality not -- that is, apparently some inconsistency
+> > > > > > > is found in the initial attempt of the runtime resume...
+> > > > > > 
+> > > > > > Yeah, it should be covered, but I wonder if there is something in the
+> > > > > > ELD update sequence that needs to call pm_runtime_get_sync()?  The ELD
+> > > > > > sequence on AMD GPUs doesn't work the same as on other vendors.  The
+> > > > > > GPU driver has a backdoor into the HDA device's verbs to set update
+> > > > > > the audio state rather than doing it via an ELD buffer update.  We
+> > > > > > still update the ELD buffer for consistency.  Maybe when the GPU
+> > > > > > driver sets the audio state at monitor detection time that triggers an
+> > > > > > interrupt or something on the HDA side which races with the CPU and
+> > > > > > the power down of the GPU.  That still seems unlikely though since the
+> > > > > > runtime pm on the GPU side defaults to a 5 second suspend timer.
+> > > > > 
+> > > > > I'm not sure whether it's the race between runtime suspend of GPU vs
+> > > > > runtime resume of audio.  My wild guess is rather that it's the timing
+> > > > > GPU notifies to the audio; then the audio driver notifies to
+> > > > > user-space and user-space opens the stream, which in turn invokes the
+> > > > > runtime resume of GPU. But in GPU side, it's still under processing,
+> > > > > so it proceeds before the GPU finishes its initialization job.
+> > > > > 
+> > > > > Nicholas, could you try the patch below and see whether the problem
+> > > > > still appears?  The patch artificially delays the notification and ELD
+> > > > > update for 300msec.  If this works, it means the timing problem.
+> > > > The bug still occurred after applying the patch.
+> > > > 
+> > > > But you were absolutely correct - it just needed to be increased to 
+> > > > 3000ms - then the bug stopped.
+> > > 
+> > > Interesting.  3 seconds are too long, but I guess 1 second would work
+> > > as well?
+> > 1000ms indeed worked as well.
+> > 
+> > > 
+> > > In anyway, the success with a long delay means that the sound setup
+> > > after the full runtime resume of GPU seems working.
+> > > 
+> > > > Now the question is, what do we do now that we know this?
+> > > > 
+> > > > Also, are you still interested in the contents of the ELD# files? I can 
+> > > > dump them all into a file at some specific moment in time which you 
+> > > > request, if needed.
+> > > 
+> > > Yes, please take the snapshot before plugging, right after plugging
+> > > and right after enabling.  I'm not sure whether your monitor supports
+> > > the audio, and ELD contents should show that, at least.
+> > The monitor supports the audio. There is 3.5mm audio out jack. No 
+> > inbuilt speakers, although Samsung did sell a sound bar to suit it. The 
+> > sound bar, which I do not own, presumably attaches via 3.5mm jack.
+> > 
+> > I am not sure if by plugging, you mean hot-adding Thunderbolt GPU or 
+> > plugging the monitor to the GPU, so I have covered extra cases to be 
+> > sure. I have taken the eld# files with the 1000ms patch applied, so the 
+> > error is not triggered.
+> 
+> OK, thanks.  If I understand correctly...
+> 
+> > ####
+> > Before hot-adding the Thunderbolt GPU:
+> > /proc/asound/card1 not present
+> > ####
+> > ####
+> > After hot-adding the GPU with no monitor attached:
+> > 
+> > /proc/asound/card1 contains:
+> > eld#0.0  eld#0.1  eld#0.2  eld#0.3  eld#0.4  eld#0.5
+> > 
+> > All of the above have the same contents:
+> > 
+> > monitor_present         0
+> > eld_valid               0
+> > ####
+> > ####
+> > Monitor attached to Fiji GPU but not enabled:
+> > 
+> > Same as above
+> > ####
+> > ####
+> > Monitor enabled:
+> 
+> ... the error is triggered at this moment, right?
+> 
+> 
+> > All files with same contents except for eld#0.1 which looks like:
+> > 
+> > monitor_present         1
+> > eld_valid               1
+> > monitor_name            U32E850
+> > connection_type         DisplayPort
+> > eld_version             [0x2] CEA-861D or below
+> > edid_version            [0x3] CEA-861-B, C or D
+> > manufacture_id          0x2d4c
+> > product_id              0xce3
+> > port_id                 0x0
+> > support_hdcp            0
+> > support_ai              0
+> > audio_sync_delay        0
+> > speakers                [0x1] FL/FR
+> > sad_count               1
+> > sad0_coding_type        [0x1] LPCM
+> > sad0_channels           2
+> > sad0_rates              [0xe0] 32000 44100 48000
+> > sad0_bits               [0xe0000] 16 20 24
+> 
+> So your monitor supports the audio :)
 
-Yes, this is a nice touch.
+Now I took a look at the actual code again, and I found that I
+remembered wrongly.  Namely, the device link isn't created in the
+audio component framework but only in the graphics side, so currently
+only i915 has it.
 
-Reviewed-by: John Hubbard <jhubbard@nvidia.com>
+Could you try the patch below?
+
+Note that i915 binding has no DL_FLAG_PM_RUNTIME as it manages the
+power via get_power/put_power ops pair.
+
 
 thanks,
--- 
-John Hubbard
-NVIDIA
 
-> 
-> Currently all drivers provide a feature kconfig that will disable use of
-> DEVICE_PRIVATE in that driver, allowing users to avoid enabling this if
-> they don't want the overhead.
-> 
-> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
-> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
-> ---
->   arch/powerpc/Kconfig            | 2 +-
->   drivers/gpu/drm/nouveau/Kconfig | 2 +-
->   mm/Kconfig                      | 7 +------
->   3 files changed, 3 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/powerpc/Kconfig b/arch/powerpc/Kconfig
-> index 924c541a926008..8de52aefdc74cc 100644
-> --- a/arch/powerpc/Kconfig
-> +++ b/arch/powerpc/Kconfig
-> @@ -455,7 +455,7 @@ config PPC_TRANSACTIONAL_MEM
->   config PPC_UV
->   	bool "Ultravisor support"
->   	depends on KVM_BOOK3S_HV_POSSIBLE
-> -	depends on DEVICE_PRIVATE
-> +	select DEVICE_PRIVATE
->   	default n
->   	help
->   	  This option paravirtualizes the kernel to run in POWER platforms that
-> diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
-> index d6e4ae1ef7053a..af5793f3e7c2cf 100644
-> --- a/drivers/gpu/drm/nouveau/Kconfig
-> +++ b/drivers/gpu/drm/nouveau/Kconfig
-> @@ -86,10 +86,10 @@ config DRM_NOUVEAU_BACKLIGHT
->   
->   config DRM_NOUVEAU_SVM
->   	bool "(EXPERIMENTAL) Enable SVM (Shared Virtual Memory) support"
-> -	depends on DEVICE_PRIVATE
->   	depends on DRM_NOUVEAU
->   	depends on MMU
->   	depends on STAGING
-> +	select DEVICE_PRIVATE
->   	select HMM_MIRROR
->   	select MMU_NOTIFIER
->   	default n
-> diff --git a/mm/Kconfig b/mm/Kconfig
-> index c1acc34c1c358c..7ca36bf5f5058e 100644
-> --- a/mm/Kconfig
-> +++ b/mm/Kconfig
-> @@ -805,15 +805,10 @@ config HMM_MIRROR
->   	depends on MMU
->   
->   config DEVICE_PRIVATE
-> -	bool "Unaddressable device memory (GPU memory, ...)"
-> +	bool
->   	depends on ZONE_DEVICE
->   	select DEV_PAGEMAP_OPS
->   
-> -	help
-> -	  Allows creation of struct pages to represent unaddressable device
-> -	  memory; i.e., memory that is only accessible from the device (or
-> -	  group of devices). You likely also want to select HMM_MIRROR.
-> -
->   config FRAME_VECTOR
->   	bool
->   
-> 
+Takashi
 
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -673,6 +673,12 @@ static int amdgpu_dm_audio_component_bind(struct device *kdev,
+ 	struct amdgpu_device *adev = dev->dev_private;
+ 	struct drm_audio_component *acomp = data;
+ 
++	if (!device_link_add(hda_kdev, kdev, DL_FLAG_STATELESS |
++			     DL_FLAG_PM_RUNTIME)) {
++		DRM_ERROR("DM: cannot add device link to audio device\n");
++		return -ENOMEM;
++	}
++
+ 	acomp->ops = &amdgpu_dm_audio_component_ops;
+ 	acomp->dev = kdev;
+ 	adev->dm.audio_component = acomp;
+@@ -690,6 +696,8 @@ static void amdgpu_dm_audio_component_unbind(struct device *kdev,
+ 	acomp->ops = NULL;
+ 	acomp->dev = NULL;
+ 	adev->dm.audio_component = NULL;
++
++	device_link_remove(hda_kdev, kdev);
+ }
+ 
+ static const struct component_ops amdgpu_dm_audio_component_bind_ops = {
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
