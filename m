@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16E501C2863
-	for <lists+amd-gfx@lfdr.de>; Sat,  2 May 2020 23:34:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDC631C2865
+	for <lists+amd-gfx@lfdr.de>; Sat,  2 May 2020 23:34:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55F076E123;
-	Sat,  2 May 2020 21:34:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 021C06E127;
+	Sat,  2 May 2020 21:34:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2068.outbound.protection.outlook.com [40.107.93.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E89446E121
- for <amd-gfx@lists.freedesktop.org>; Sat,  2 May 2020 21:34:52 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770053.outbound.protection.outlook.com [40.107.77.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDAFB6E127
+ for <amd-gfx@lists.freedesktop.org>; Sat,  2 May 2020 21:34:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZHWYAaYnAHhQaPRhPxZsJb3caGBaJZFvIBJCwPdosvIx9CwCQn4Fgy8VW7Jg3Zw3Q8F63rGCCIgFf4E6bu2BrWVbcZeISiDchQ4mIOpZZYP1sWUnr39jv/F/8qXRjWvQic+5BZTHP/7gGRh0tBvoTHvjsok29J0rYV/r5xjOUsUkA9rNpI3Sy31OXpU4rAVntNpy6ggeMXc0D3EvOZFYUfW2MV3YsR3/mwRR3b6sBdqakUKNVcA6nHGfrD8SqU0RWutKS+fj27VXhzRC8059ATi2pQ3bsdkmDB/q4TFZstLAYlatA+OKkEWmXgNDCSuz8ejvEqVgxvTsCS7D7OTyoQ==
+ b=hjbS/sqyH7jlIl90qdAcbPQbYZmsQck2vJA14OXqwb0j52pFc/QDZrHVdP+PJBgR9LYoClBMDnR0B+xGj+mbjjM620qfp3qb+zMIxFT8nSbhZ8dDcILbM0A6y80zmXLDkHXSCXPmb3Yp+ptxs/eLPRlItu5JCPppYbVABuB3X6t3MBiAEjYXFLDUkGx76lvSkfV/LQeySAU3PvhIgpuhJgpecRRFBJiSPnEYLmQPAlOg4OcuT0EM0YTNicKges+D8OQ9dSBn+c8lc5UezjN+43hvUZw8LmOaRbdgvhf31ZhucegKbNiKRoA7hHvBfe6VAviIM5BRY5EH8SPZDjOYqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bE9QjoSpVYs2zm7Tyr1YGs8wSl6xZ7CW5/RMYq5DIQE=;
- b=PCNnbVeFAnYl2r8L6s28m9P7oeDOyuXTJCtFFA7tOoNDF7PecwTHHWJsQnEULwApxph71w2Hd2PD7CMiYTmLswqFkaQKneOuDvNgHIdDcQVBOez8ox41tdHmh+htsnDG1oGOdbiH0giB/sOBkHwTvGJdedloy2pmTXUs0fmvweAFyw7djH9XNrOngjLuaBOakxEl/AB+OifRmS0hAU6RjWxyb2LLo/m19r+DWd0XVaYlopWpOpo9BzE/GcowkmoUPR64Np7r01rrPo7AFXvwycQI831ZIj+s4ddwMlZL/J7onAxQEhsa9hySsQ858qQLWiUUIap22SmFHK5FbIUoFA==
+ bh=EegaoSWLMAH+yCc/9Wn+79fi30No4e5CDK1/t/FGRnA=;
+ b=jhvhk+bdF/svAW3f53dxN1IgDKhIQNWDEfdIw449LkaBv/XmVjEXX/7NCUheG9NwJnS5RRDjHTdNtqoKKuwVOw6sBM/gcRkYBcC6VLPHz+jP3VnWNlmbCaZWahTYJFKdL6xnBX0N3x4VfYtzzh+kgq8yO+ThqYAlbTczkoUgiD79Vr4rnpbOzYEwelCOs78hrTmEhFdOkwhadCi7n+d89pyTAbA8ZSZjObR8GKSYTzrfPw2TzQV2uIX9yLYt6IBAEyl12hlcKif3YT3w7F9HhxH8kljP/utA4aFJJIwIhXmAEoBi2GqqX4s5wU7jguH9KVh8F/xAC/xJOUYRbhCMqw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,45 +27,45 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bE9QjoSpVYs2zm7Tyr1YGs8wSl6xZ7CW5/RMYq5DIQE=;
- b=2RZxmPeJ4K+egKdThGTqKoJl6H4fPpGFoBc36AveqVro0j80zFyHEDOszKcxm9XD36cqcdoKQrkOd+0UTfY6e53YcQ5jE/aULEnywMAeozimwRRP5c83cwvyxbeWiESzx1bwJoK54q+uJ0dpNUZGa7j2abtYpqxODKPSgPWrSiQ=
-Received: from BN6PR2001CA0027.namprd20.prod.outlook.com
- (2603:10b6:405:16::13) by BY5PR12MB4196.namprd12.prod.outlook.com
- (2603:10b6:a03:205::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.20; Sat, 2 May
- 2020 21:34:51 +0000
-Received: from BN8NAM11FT063.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:16:cafe::2e) by BN6PR2001CA0027.outlook.office365.com
- (2603:10b6:405:16::13) with Microsoft SMTP Server (version=TLS1_2,
+ bh=EegaoSWLMAH+yCc/9Wn+79fi30No4e5CDK1/t/FGRnA=;
+ b=QXJBawCn2oTpPZiBrR0+4VWVd2ypHPG69rPuv8gUystMNXyQbOZMG0pHroArAjPnLc4TQJK6fc5M5NQXK7fjrr7NxkrUb1G1kSttUgA1Va/+xnhNnNTrSH7eHznf0KRIc1XySIFw9a9Bt5kOHrKnv1veW/7DbVRtASKSLViD92k=
+Received: from MWHPR22CA0062.namprd22.prod.outlook.com (2603:10b6:300:12a::24)
+ by DM6PR12MB2811.namprd12.prod.outlook.com (2603:10b6:5:45::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.19; Sat, 2 May
+ 2020 21:34:53 +0000
+Received: from CO1NAM11FT048.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:12a:cafe::7d) by MWHPR22CA0062.outlook.office365.com
+ (2603:10b6:300:12a::24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.20 via Frontend
- Transport; Sat, 2 May 2020 21:34:50 +0000
+ Transport; Sat, 2 May 2020 21:34:52 +0000
 Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT063.mail.protection.outlook.com (10.13.177.110) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ CO1NAM11FT048.mail.protection.outlook.com (10.13.175.148) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2958.19 via Frontend Transport; Sat, 2 May 2020 21:34:50 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.2958.19 via Frontend Transport; Sat, 2 May 2020 21:34:52 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sat, 2 May 2020
- 16:34:49 -0500
+ 16:34:51 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sat, 2 May 2020
- 16:34:49 -0500
+ 16:34:50 -0500
 Received: from sudo.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
  Transport; Sat, 2 May 2020 16:34:49 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 04/16] drm/amd/display: fix counter in
- wait_for_no_pipes_pending
-Date: Sat, 2 May 2020 17:34:31 -0400
-Message-ID: <20200502213443.39232-6-aurabindo.pillai@amd.com>
+Subject: [PATCH 05/16] drm/amd/display: Allow PState switch in VBLANK one
+ display VACTIVE
+Date: Sat, 2 May 2020 17:34:32 -0400
+Message-ID: <20200502213443.39232-7-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200502213443.39232-1-aurabindo.pillai@amd.com>
 References: <20200502213443.39232-1-aurabindo.pillai@amd.com>
@@ -73,27 +73,28 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(39860400002)(136003)(376002)(346002)(396003)(46966005)(54906003)(336012)(426003)(316002)(4326008)(6666004)(70586007)(70206006)(6916009)(44832011)(81166007)(2616005)(356005)(82740400003)(82310400002)(47076004)(478600001)(36756003)(2906002)(186003)(86362001)(7696005)(1076003)(8936002)(8676002)(5660300002)(26005);
+ SFS:(4636009)(346002)(136003)(39860400002)(396003)(376002)(46966005)(2616005)(54906003)(70586007)(44832011)(1076003)(47076004)(5660300002)(6666004)(426003)(70206006)(8676002)(82740400003)(336012)(6916009)(81166007)(356005)(186003)(36756003)(478600001)(2906002)(4326008)(82310400002)(26005)(8936002)(86362001)(7696005)(316002);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fa76c0ca-94b5-48f3-75c3-08d7eee0a4f2
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4196:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB4196B04417449201634313FB8BA80@BY5PR12MB4196.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2449;
+X-MS-Office365-Filtering-Correlation-Id: 9f60a7f2-289a-4764-3e5d-08d7eee0a610
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2811:|DM6PR12MB2811:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2811FFB35A2DE704C06B65158BA80@DM6PR12MB2811.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:514;
 X-Forefront-PRVS: 039178EF4A
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: owWA4vJQ41GpXWfJAjjF09EtOzOsCFD1+iefaR6bQ9U2zyV6eg2ogl7E+DH/hFlakOfm7Cj0UEvUdcJHWTl3xFIOwpvJohLPU0y5ygsFito4pPGlFQdOFoV52JicSVrj75pkq8c/qxGCzYmUiBQfCBMduEmpL+vPSnOa2BNMS+l9zPlhMIdP3f948mz/y1GAK0vDJkqgl4Sn2UZLgPCVArmC+Mf+hh03poShi8OD4wbVMXZk/xZdyiL/uZhsFkw9WLc9mWA5bSl0G1iwNZo4Zb58Wfh2pYK8bToOD4rOUaf58/w9waY3Ro+9npfHpAKtbMo9znDYtRqHiIpLfSrZ1MCf+RgyNB96pBce76BUQFb64gOIoM5rbbc7BA2p3soAPQ5fGC4HJkZsXmNoqlajltEaYkTdoCkD0/L5Adet8z/bAtLqjfvRVgSG/msmM3pLXDX09uehoYhfOse8bdS2GxrbxbS+CrpOTXaJ+1L1vC98f0fy/KUU6BJ8Vfn5q2iH2AbMQoeXGtGxibX9MYvQEA==
+X-Microsoft-Antispam-Message-Info: EBM1yZgXrDcWHSvoLoofxzC6PojBKRnFnT50JCh8tiR3elAjoh8vU+qm7PLb3SNpKs4u8QO7T/uPW7tt/dbBXVB18wBvzdYW7fZqM7bgTrOHIUwAGygd5BRsB0p2Gru+VReTEa6Oj8oTE7j48QpCpWBkffqzTufKB5ghtrzg1n/jpmoQmuo9THY5ONJaBNl6wHRAx38a3yojlrneYgUKx3IWFijf9lElivCjza7bzDtTQioL1YHkDV92WdNHRL0hNV7E5w1w/+cProvoNkhRkTEp6FbAEzwhqkYyo1hborqTrKy6Mck+gv1cLyAsMOCPYzQXny4R9Rkm9lRjVqYFboPwUvTHUczw2/XyIU1ilY6bPMEveWlQx+7mtPUCciv3IkQWzDuyrWIkKr0jWUqdX1eQWtrMQxhP9vEyRr4SuryWkE2jTA6I0sk7PAvi/XU7rQ9EzW49s55n9TlwM5stpFRsmIKv/X8m8l/hFTuSb7ugooWlIOp7ydmsNfaA59kvIm9uoSnT4lRQ23uYQE/shA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2020 21:34:50.3223 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa76c0ca-94b5-48f3-75c3-08d7eee0a4f2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2020 21:34:52.0682 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f60a7f2-289a-4764-3e5d-08d7eee0a610
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
+ Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4196
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2811
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,47 +106,164 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhan Liu <Zhan.Liu@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Rodrigo.Siqueira@amd.com, Roman Li <roman.li@amd.com>,
- Bhawanpreet.Lakha@amd.com
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ Alvin Lee <alvin.lee2@amd.com>, Jun
+ Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <roman.li@amd.com>
+From: Alvin Lee <alvin.lee2@amd.com>
 
 [Why]
-Wait counter is not being reset for each pipe.
+For certain display configurations we want to allow PSTATE
+switch when one display can switch in VACTIVE and the
+other display can switch in VBLANK
 
 [How]
-Move counter reset into pipe loop scope.
+Add extra condition to dcn2 pstate support check
 
-Signed-off-by: Roman Li <roman.li@amd.com>
-Reviewed-by: Zhan Liu <Zhan.Liu@amd.com>
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c |  2 ++
+ .../dc/dml/dcn20/display_mode_vba_20v2.c      | 29 ++++++++++++++++++-
+ .../amd/display/dc/dml/display_mode_structs.h |  1 +
+ .../drm/amd/display/dc/dml/display_mode_vba.c |  1 +
+ .../drm/amd/display/dc/dml/display_mode_vba.h |  1 +
+ 6 files changed, 34 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index f47acf30acd2..0a12d13349c1 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -839,11 +839,10 @@ static void disable_dangling_plane(struct dc *dc, struct dc_state *context)
- static void wait_for_no_pipes_pending(struct dc *dc, struct dc_state *context)
- {
- 	int i;
--	int count = 0;
--	struct pipe_ctx *pipe;
- 	PERF_TRACE();
- 	for (i = 0; i < MAX_PIPES; i++) {
--		pipe = &context->res_ctx.pipe_ctx[i];
-+		int count = 0;
-+		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 17075f99bc54..636cf5c3a709 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -476,6 +476,7 @@ struct dc_debug_options {
+ 	bool enable_dmcub_surface_flip;
+ 	bool usbc_combo_phy_reset_wa;
+ 	bool disable_dsc;
++	bool enable_dram_clock_change_one_display_vactive;
+ };
  
- 		if (!pipe->plane_state)
- 			continue;
+ struct dc_debug_data {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 1a525c423911..96b5a451cf26 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -3102,6 +3102,8 @@ bool dcn20_validate_bandwidth(struct dc *dc, struct dc_state *context,
+ 	p_state_latency_us = context->bw_ctx.dml.soc.dram_clock_change_latency_us;
+ 	context->bw_ctx.dml.soc.disable_dram_clock_change_vactive_support =
+ 		dc->debug.disable_dram_clock_change_vactive_support;
++	context->bw_ctx.dml.soc.allow_dram_clock_one_display_vactive =
++		dc->debug.enable_dram_clock_change_one_display_vactive;
+ 
+ 	if (fast_validate) {
+ 		voltage_supported = dcn20_validate_bandwidth_internal(dc, context, true);
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
+index 922ab7169e52..80170f9721ce 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
+@@ -2599,18 +2599,40 @@ static void dml20v2_DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndP
+ 		}
+ 	}
+ 
++	{
++	float SecondMinActiveDRAMClockChangeMarginOneDisplayInVBLank = 999999;
++	int PlaneWithMinActiveDRAMClockChangeMargin = -1;
++
+ 	mode_lib->vba.MinActiveDRAMClockChangeMargin = 999999;
+ 	for (k = 0; k < mode_lib->vba.NumberOfActivePlanes; ++k) {
+ 		if (mode_lib->vba.ActiveDRAMClockChangeLatencyMargin[k]
+ 				< mode_lib->vba.MinActiveDRAMClockChangeMargin) {
+ 			mode_lib->vba.MinActiveDRAMClockChangeMargin =
+ 					mode_lib->vba.ActiveDRAMClockChangeLatencyMargin[k];
++			if (mode_lib->vba.BlendingAndTiming[k] == k) {
++				PlaneWithMinActiveDRAMClockChangeMargin = k;
++			} else {
++				for (j = 0; j < mode_lib->vba.NumberOfActivePlanes; ++j) {
++					if (mode_lib->vba.BlendingAndTiming[k] == j) {
++						PlaneWithMinActiveDRAMClockChangeMargin = j;
++					}
++				}
++			}
+ 		}
+ 	}
+ 
+ 	mode_lib->vba.MinActiveDRAMClockChangeLatencySupported =
+ 			mode_lib->vba.MinActiveDRAMClockChangeMargin
+ 					+ mode_lib->vba.DRAMClockChangeLatency;
++	for (k = 0; k < mode_lib->vba.NumberOfActivePlanes; ++k) {
++		if (!((k == PlaneWithMinActiveDRAMClockChangeMargin) && (mode_lib->vba.BlendingAndTiming[k] == k))
++				&& !(mode_lib->vba.BlendingAndTiming[k] == PlaneWithMinActiveDRAMClockChangeMargin)
++				&& mode_lib->vba.ActiveDRAMClockChangeLatencyMargin[k]
++						< SecondMinActiveDRAMClockChangeMarginOneDisplayInVBLank) {
++			SecondMinActiveDRAMClockChangeMarginOneDisplayInVBLank =
++					mode_lib->vba.ActiveDRAMClockChangeLatencyMargin[k];
++		}
++	}
+ 
+ 	if (mode_lib->vba.DRAMClockChangeSupportsVActive &&
+ 			mode_lib->vba.MinActiveDRAMClockChangeMargin > 60) {
+@@ -2629,7 +2651,11 @@ static void dml20v2_DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndP
+ 			mode_lib->vba.MinActiveDRAMClockChangeMargin > 0) {
+ 		mode_lib->vba.DRAMClockChangeSupport[0][0] = dm_dram_clock_change_vactive;
+ 	} else {
+-		if (mode_lib->vba.SynchronizedVBlank || mode_lib->vba.NumberOfActivePlanes == 1) {
++		if ((mode_lib->vba.SynchronizedVBlank
++				|| mode_lib->vba.NumberOfActivePlanes == 1
++				|| (SecondMinActiveDRAMClockChangeMarginOneDisplayInVBLank > 0 &&
++						mode_lib->vba.AllowDramClockChangeOneDisplayVactive))
++					&& mode_lib->vba.PrefetchMode[mode_lib->vba.VoltageLevel][mode_lib->vba.maxMpcComb] == 0) {
+ 			mode_lib->vba.DRAMClockChangeSupport[0][0] = dm_dram_clock_change_vblank;
+ 			for (k = 0; k < mode_lib->vba.NumberOfActivePlanes; ++k) {
+ 				if (!mode_lib->vba.AllowDRAMClockChangeDuringVBlank[k]) {
+@@ -2641,6 +2667,7 @@ static void dml20v2_DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndP
+ 			mode_lib->vba.DRAMClockChangeSupport[0][0] = dm_dram_clock_change_unsupported;
+ 		}
+ 	}
++	}
+ 	for (k = 0; k <= mode_lib->vba.soc.num_states; k++)
+ 		for (j = 0; j < 2; j++)
+ 			mode_lib->vba.DRAMClockChangeSupport[k][j] = mode_lib->vba.DRAMClockChangeSupport[0][0];
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
+index b2ecb174a93f..439ffd04be34 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
+@@ -118,6 +118,7 @@ struct _vcs_dpi_soc_bounding_box_st {
+ 	double urgent_latency_adjustment_fabric_clock_component_us;
+ 	double urgent_latency_adjustment_fabric_clock_reference_mhz;
+ 	bool disable_dram_clock_change_vactive_support;
++	bool allow_dram_clock_one_display_vactive;
+ };
+ 
+ struct _vcs_dpi_ip_params_st {
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
+index 6e4e8a452e66..b19988f54721 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
+@@ -224,6 +224,7 @@ static void fetch_socbb_params(struct display_mode_lib *mode_lib)
+ 	mode_lib->vba.DummyPStateCheck = soc->dram_clock_change_latency_us == soc->dummy_pstate_latency_us;
+ 	mode_lib->vba.DRAMClockChangeSupportsVActive = !soc->disable_dram_clock_change_vactive_support ||
+ 			mode_lib->vba.DummyPStateCheck;
++	mode_lib->vba.AllowDramClockChangeOneDisplayVactive = soc->allow_dram_clock_one_display_vactive;
+ 
+ 	mode_lib->vba.Downspreading = soc->downspread_percent;
+ 	mode_lib->vba.DRAMChannelWidth = soc->dram_channel_width_bytes;   // new!
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+index a1884ffe63ae..6a7b20927a6b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+@@ -899,6 +899,7 @@ struct vba_vars_st {
+ 	double BPP;
+ 	enum odm_combine_policy ODMCombinePolicy;
+ 	bool UseMinimumRequiredDCFCLK;
++	bool AllowDramClockChangeOneDisplayVactive;
+ };
+ 
+ bool CalculateMinAndMaxPrefetchMode(
 -- 
 2.25.1
 
