@@ -1,54 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE0D1C48A2
-	for <lists+amd-gfx@lfdr.de>; Mon,  4 May 2020 22:55:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 428C51C4EA3
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 May 2020 08:59:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B55FF897F0;
-	Mon,  4 May 2020 20:55:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3040B6E52D;
+	Tue,  5 May 2020 06:59:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCA3689385;
- Mon,  4 May 2020 20:55:34 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id v8so914185wma.0;
- Mon, 04 May 2020 13:55:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=D74sKgkjH8kEt1DBLxWzvZF+Obr5z/6LSX69jqkqQw8=;
- b=HvHUZNe65rDYdW4kKTWoeqknOC1SQWoSE8cIVsqrb86YZT6cata1M3ML3uHUNzbBKo
- X0DsxVHHB6e+2nV7y6OCfjmxdZGCoI0JP8mZpgg4q5Rh2wAjiKVoYi93uu+V+7GgefZX
- MtJEwSslqt6DWRLbeKOW54pHSHXY7qzbOUQP0Yg1Cbn/ITDWTS91tt2YmGZIfS+w1+DI
- /mO3lCOlfL5krGrqb1mCStLgIhz7KlrkVY9+z8jcR7ys/IIWbcxK3vFg3HDbiTdiZg4X
- YwcqHqylvpDWQRA3P3CK8c6i6rX9ZFGzSuSIkFzZSNEuXBnIyPZeEU2dFafZLrI5HKnp
- E57Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=D74sKgkjH8kEt1DBLxWzvZF+Obr5z/6LSX69jqkqQw8=;
- b=pTjk+jrtroeItyeihF9KPfBn79w02fljWGFV8vS3qLcfsj4Oi0tFdAE3YluOQK97Ms
- 7bEqpHRaXU9DwwqyXCZEcyu9BIWelO4oNVmQjTiflymh+RMaJS19jWLECVelrlKIptVh
- P+AyA/qdq8BuHBLbwqjguM24fgnlYm3qOEjvT2UF+5Jaruhw15/QYyHhHKLvEoARGQWa
- EcjQ6nJbGZGmyPrWDvpMHdmU3Jn+xYe0+DW52++0sFuTkB3Z5WMV6A2dcVQncZGkHdcu
- yeCMdfDl0NhD862KqvE+okrMyAGmjd3TyqgtoyhK749CKVLZeJB6P/kUiYJK9BbqvJic
- upvg==
-X-Gm-Message-State: AGi0PuZRlK6597zeGnCPs9pMdG6nTmYtN3Z+a6J/5vGNV8RLDm+mT7Gz
- uREiS/rP+cnfPEOxug2s0ZGgChaN/mTWzojBNrw=
-X-Google-Smtp-Source: APiQypLEqt41go0K6FSI41aP25wXmLXUEZ/h96Kj/ynd2shsYPGH60k9MDypR3NiiQ0YH7znFbTDOvS5DtN4lfu61iE=
-X-Received: by 2002:a7b:cc8e:: with SMTP id p14mr16270788wma.70.1588625733293; 
- Mon, 04 May 2020 13:55:33 -0700 (PDT)
+Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
+ [216.228.121.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16BE289DBC;
+ Tue,  5 May 2020 00:21:00 +0000 (UTC)
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5eb0b1260000>; Mon, 04 May 2020 17:19:50 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+ by hqpgpgate101.nvidia.com (PGP Universal service);
+ Mon, 04 May 2020 17:20:59 -0700
+X-PGP-Universal: processed;
+ by hqpgpgate101.nvidia.com on Mon, 04 May 2020 17:20:59 -0700
+Received: from [10.2.56.198] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 5 May
+ 2020 00:20:59 +0000
+Subject: Re: [PATCH hmm v2 2/5] mm/hmm: make hmm_range_fault return 0 or -1
+To: Jason Gunthorpe <jgg@ziepe.ca>, <linux-mm@kvack.org>, Ralph Campbell
+ <rcampbell@nvidia.com>
+References: <2-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+X-Nvconfidentiality: public
+From: John Hubbard <jhubbard@nvidia.com>
+Message-ID: <9cf9f4f0-58b7-1992-6c6e-eed226ba42c0@nvidia.com>
+Date: Mon, 4 May 2020 17:20:58 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-References: <20200504113213.40403-1-yanaijie@huawei.com>
-In-Reply-To: <20200504113213.40403-1-yanaijie@huawei.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 4 May 2020 16:55:22 -0400
-Message-ID: <CADnq5_Ogi0eYn-U_171Pi71EhVOm7_htoT7-ROaSWyOT8_FQWQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: remove unused variable 'ret' in
- dm_suspend()
-To: Jason Yan <yanaijie@huawei.com>
+In-Reply-To: <2-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1588637990; bh=IxP1FX28IvHHn1UJ333IIWhaZQbrlpthRJPkCq5tlOE=;
+ h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+ Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+ X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+ Content-Transfer-Encoding;
+ b=jlUDA7Xe/cEVYvcoOLBLT9WxsiTxB4eaIcRkJbYt7sChT+skJNIVNGkwSxeX311N9
+ 8Icf+Bb+N7FsISzQG4Ci4zeBXx95nSpEwUjZe7BytMfOd9TIqtDhoWdCDk3g2renix
+ JJp4862GZJKQrIMSPPWchAxpo2TL3LdIgZ1nciGXyRvtuaWnU7bnlRQkU6QhCIwddA
+ zZt1IUaeh+IgfHdHcJKHNaZAmd2XKaHg3iGk3SkLeBMTYoH9nYDLidjG4h/hxqZ6a6
+ Hae57Q5zwNGF0Ax1wOvaZcYkMzvipoDz/QPdM+7uCWP3VezcDvR1L7Kvdm3oMQaoTe
+ S2aJNC1fom1GQ==
+X-Mailman-Approved-At: Tue, 05 May 2020 06:58:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,62 +64,81 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chunming Zhou <David1.Zhou@amd.com>,
- "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>, LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, "Deucher,
- Alexander" <alexander.deucher@amd.com>, "Wentland,
- Harry" <harry.wentland@amd.com>, Christian Koenig <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ amd-gfx@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>,
+ nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>,
+ =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
+On 2020-05-01 11:20, Jason Gunthorpe wrote:
+> From: Jason Gunthorpe <jgg@mellanox.com>
+> 
+> hmm_vma_walk->last is supposed to be updated after every write to the
+> pfns, so that it can be returned by hmm_range_fault(). However, this is
+> not done consistently. Fortunately nothing checks the return code of
+> hmm_range_fault() for anything other than error.
+> 
+> More importantly last must be set before returning -EBUSY as it is used to
+> prevent reading an output pfn as an input flags when the loop restarts.
+> 
+> For clarity and simplicity make hmm_range_fault() return 0 or -ERRNO. Only
+> set last when returning -EBUSY.
 
-Alex
+Yes, this is also a nice simplification.
 
-On Mon, May 4, 2020 at 9:20 AM Jason Yan <yanaijie@huawei.com> wrote:
->
-> Fix the following coccicheck warning:
->
-> drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:1574:5-8: Unneeded
-> variable: "ret". Return "0" on line 1586
->
-> Signed-off-by: Jason Yan <yanaijie@huawei.com>
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 9c2a07626d2c..2b7588371170 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -1571,7 +1571,6 @@ static int dm_suspend(void *handle)
->  {
->         struct amdgpu_device *adev = handle;
->         struct amdgpu_display_manager *dm = &adev->dm;
-> -       int ret = 0;
->
->         WARN_ON(adev->dm.cached_state);
->         adev->dm.cached_state = drm_atomic_helper_suspend(adev->ddev);
-> @@ -1583,7 +1582,7 @@ static int dm_suspend(void *handle)
->
->         dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D3);
->
-> -       return ret;
-> +       return 0;
->  }
->
->  static struct amdgpu_dm_connector *
-> --
-> 2.21.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+> ...
+> @@ -590,10 +580,13 @@ long hmm_range_fault(struct hmm_range *range)
+>   			return -EBUSY;
+>   		ret = walk_page_range(mm, hmm_vma_walk.last, range->end,
+>   				      &hmm_walk_ops, &hmm_vma_walk);
+> +		/*
+> +		 * When -EBUSY is returned the loop restarts with
+> +		 * hmm_vma_walk.last set to an address that has not been stored
+> +		 * in pfns. All entries < last in the pfn array are set to their
+> +		 * output, and all >= are still at their input values.
+> +		 */
+
+I'm glad you added that comment. This is much easier to figure out with
+that in place. After poking around this patch and eventually understanding the
+.last handling, I wondered if you might like this slightly tweaked wording
+instead:
+
+		/*
+		 * Each of the hmm_walk_ops routines returns -EBUSY if and only
+		 * hmm_vma_walk.last has been set to an address that has not yet
+		 * been stored in pfns. All entries < last in the pfn array are
+		 * set to their output, and all >= are still at their input
+		 * values.
+		 */
+
+Either way,
+
+     Reviewed-by: John Hubbard <jhubbard@nvidia.com>
+
+thanks,
+-- 
+John Hubbard
+NVIDIA
+
+>   	} while (ret == -EBUSY);
+> -
+> -	if (ret)
+> -		return ret;
+> -	return (hmm_vma_walk.last - range->start) >> PAGE_SHIFT;
+> +	return ret;
+>   }
+>   EXPORT_SYMBOL(hmm_range_fault);
+> 
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
