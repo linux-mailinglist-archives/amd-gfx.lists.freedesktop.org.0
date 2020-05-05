@@ -1,50 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11ECB1C5A03
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 May 2020 16:50:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B48491C598C
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 May 2020 16:30:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73A726E5CC;
-	Tue,  5 May 2020 14:50:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4056289CC1;
+	Tue,  5 May 2020 14:30:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1348E6E5BD;
- Tue,  5 May 2020 14:25:35 +0000 (UTC)
-Received: from localhost.localdomain ([149.172.19.189]) by
- mrelayeu.kundenserver.de (mreue010 [212.227.15.129]) with ESMTPA (Nemesis) id
- 1MJVU0-1jpiHq2SC0-00Jpo7; Tue, 05 May 2020 16:25:22 +0200
-From: Arnd Bergmann <arnd@arndb.de>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "David (ChunMing) Zhou" <David1.Zhou@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH] drm/amdgpu/dc: don't pass -mhard-float to clang
-Date: Tue,  5 May 2020 16:24:56 +0200
-Message-Id: <20200505142519.1138945-1-arnd@arndb.de>
-X-Mailer: git-send-email 2.26.0
+Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com
+ [IPv6:2607:f8b0:4864:20::f43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C4EE89CC1
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 May 2020 14:30:20 +0000 (UTC)
+Received: by mail-qv1-xf43.google.com with SMTP id fb4so1061876qvb.7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 05 May 2020 07:30:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=PIoM2uL8A4Uh4CHUrXMCs6xlTekZ0buffPHKViZhjm0=;
+ b=A3giufVDKn8OtlnQ/A+cCnz/DeFu2x37uvgq37kzzYWSvptblClLfloX4PfOTxcQGk
+ XX50vaOIPIhu2unRqW07CcC3E7Fudb+2TfHX6JQ5oZKWP4Oj1+8DlFD8IKpwzYUjvqv2
+ oFWbjTyqmAKfbJ3mWPbHBquch852WaDtx4raFNyiE4vmAwXUkTV6tUchQXSl9YUc8etn
+ ZI0nR0ya+rzLhTByIIywIXZTT67QauN903BGtIPA6C6Eux6hWDYvLGgRR1OJgUbVn9cv
+ 7nL/PpZ/DrkxNqN3aC8ibRyyH1uyL5bqEvLZwejUluHUCxiDzM7XX7+WviCkDOl8Ku8k
+ avGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=PIoM2uL8A4Uh4CHUrXMCs6xlTekZ0buffPHKViZhjm0=;
+ b=rWmyMrxtTCEOcJJ+NE+W4gp4IpJSdVTVKisuUzC4FyhzwARVHjSE07dlfxGXfw5OM9
+ Y6PsYnJECl752gg3ASvUb/AgffQRQGEzs9XEyZsWtZb0lef+l9RVh4yAj0rINA/B0bCx
+ HJg2SkOfJcerFRNOf5pyh6Dakd98eokwIsglBINpQ4ireRGbqKRc9wGmoO37SAaxHzH1
+ PiPhYTeZTvVSeGT3DtUyip2R2zMPAR0LIqw37RBNr9iYzJGe56HfvjoTpoyr3BWsxepT
+ i2kGPwkzW+REEr/v8Pnjtj7N7ck4iD5vYqDZVF63Yx47/9miHoetJtnKd9cQUSJ7Ioar
+ bUuw==
+X-Gm-Message-State: AGi0PuaXIvpNtnbrbicyP/jsWbgPjiF8OHeiX4zsfYXAyKELsCIrFhUe
+ JQHf4Kh18nLJgCyDizHzo4TFhrN4
+X-Google-Smtp-Source: APiQypIuF7Pau9a3z7neTRLRQAn+Sm5pEQ/aNksYvJgwIkO9B6HeeDhgooZfVhX6sHl17iSAKWd+4Q==
+X-Received: by 2002:a0c:eb50:: with SMTP id c16mr2833570qvq.151.1588689018978; 
+ Tue, 05 May 2020 07:30:18 -0700 (PDT)
+Received: from localhost.localdomain ([71.219.37.167])
+ by smtp.gmail.com with ESMTPSA id o68sm1855740qka.110.2020.05.05.07.30.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 05 May 2020 07:30:18 -0700 (PDT)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu/fb: use virt_to_phys to get smem_start
+Date: Tue,  5 May 2020 10:30:06 -0400
+Message-Id: <20200505143006.5608-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:kyuCbCEFYOcHR9DitYTjAbdHsjMrBAl6tRD/hASI8cLhgsKb51z
- 4SM5jXD33rd9/xC4Ev/039yaCDjFmF940iPtDNjHpkoyNLksYCThRDq3NxoD5XAj9b56A+N
- Wn1FMJsGA+XcWsm8tu1gT6IJamHNPqS//MWiN5SJg/G/fHJknT72vtObM6aOgfGAKtrJpXy
- 2uj8DD9Q4oJPQ0wB4c8yg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:zuXYTAazwNE=:PutM/bcLCGJjXJnOuEuYkH
- ZYpn4w7i2HwOMEBxnl8nED8rAiamNiwCxhrgA18hTQyg/lkPUp39/qIPXLPi3Z0xE83px2DKu
- ktQ86tTo2g5qB588P9fOBUEiVXI0iu3VX9yzyocfYCaCB0fz+MHFjKeiSV1q55BtLzDGOqWG1
- 9VoJ+D3p5nhYeRUyWS4H8XoojR+X2Ne3OfTL5pPuTW8NMIfF7twoyVo+L897h7mmku9BKWJqR
- ahqfIzW13oTTMA3W/PoKXRtWxpzNEQ0HEbYykyVAoQbGdVJq30sfAiXLGaFUw6MyGjPfLqBxv
- EN9q2TxRx+wyFVulikYVOaduHdAwjG6FU1maMCdzIcNP5rE1OLjQLywYBBCziS46+obh9J4dV
- K1cdjItfVQUFOoKzmZTEpHcdS0xkbPRQARihqQcuYmI0qug3JwpQo/Si19/NoVYvUZNHdL+Z7
- ksMqzvtFiE74x5kMdFAAmDTvCqY/7X3hq8T6kR9aCFNN2giRR909dKlMC76msaQFcdfggubY1
- yIBDsnLNXTQPcr3pIPWbxt1Mo6rY6j4kaoEJjXQ2AWEq7z06KQNGV87ooVcyi2Wag3NcUDcmK
- SQ+AvWrCQ4spBhCBt+RawkuBvWH4emWNZ//soISOPpuCipnlu+XkdidFfYhfCTYx/5LdPPUo4
- JK1mGkJAe4P7+JEqTKlxn8bwSv7eGO+a0OvJKK2nsrv/aOSvUd7UYH/0T7i2dt3RmkjGKRyzA
- Q00x5Iezmpf4ojKXOh+y7MBF9RbadJpAEiStCnqyCN7juVfsCadGE2d+BXgkE/FmZmpyZ2B2t
- avuyqPcFNOJpGaZHCb1llcI/0ZQQm3FbIKEJqyQXc7iUb5dP9s=
-X-Mailman-Approved-At: Tue, 05 May 2020 14:50:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,143 +64,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Charlene Liu <charlene.liu@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- clang-built-linux@googlegroups.com, Marc Zyngier <maz@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Masahiro Yamada <yamada.masahiro@socionext.com>,
- Timothy Pearson <tpearson@raptorengineering.com>,
- dri-devel@lists.freedesktop.org, Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- Anthony Koo <Anthony.Koo@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Clang does not appear to care, and instead prints a warning:
+We set the fb smem pointer to the offset into the BAR which doesn't
+handle framebuffers in system memory. Use virt_to_phys which should
+handle both BARs and system memory.
 
-clang: warning: argument unused during compilation: '-mhard-float' [-Wunused-command-line-argument]
-
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Bug: https://bugzilla.kernel.org/show_bug.cgi?id=207581
+Fixes: 6c8d74caa2fa33 ("drm/amdgpu: Enable scatter gather display support")
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/calcs/Makefile | 5 +++--
- drivers/gpu/drm/amd/display/dc/dcn20/Makefile | 5 +++--
- drivers/gpu/drm/amd/display/dc/dcn21/Makefile | 5 +++--
- drivers/gpu/drm/amd/display/dc/dml/Makefile   | 5 +++--
- drivers/gpu/drm/amd/display/dc/dsc/Makefile   | 5 +++--
- 5 files changed, 15 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/calcs/Makefile b/drivers/gpu/drm/amd/display/dc/calcs/Makefile
-index 4674aca8f206..64195cacf6fc 100644
---- a/drivers/gpu/drm/amd/display/dc/calcs/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/calcs/Makefile
-@@ -26,14 +26,15 @@
- #
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
+index 25ddb482466a..caef156fbd1f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
+@@ -205,7 +205,6 @@ static int amdgpufb_create(struct drm_fb_helper *helper,
+ 	struct drm_gem_object *gobj = NULL;
+ 	struct amdgpu_bo *abo = NULL;
+ 	int ret;
+-	unsigned long tmp;
  
- ifdef CONFIG_X86
--calcs_ccflags := -mhard-float -msse
-+calcs_ccflags := -msse
- endif
+ 	mode_cmd.width = sizes->surface_width;
+ 	mode_cmd.height = sizes->surface_height;
+@@ -245,8 +244,7 @@ static int amdgpufb_create(struct drm_fb_helper *helper,
  
- ifdef CONFIG_PPC64
--calcs_ccflags := -mhard-float -maltivec
-+calcs_ccflags := -maltivec
- endif
+ 	info->fbops = &amdgpufb_ops;
  
- ifdef CONFIG_CC_IS_GCC
-+calcs_ccflags += -mhard-float
- ifeq ($(call cc-ifversion, -lt, 0701, y), y)
- IS_OLD_GCC = 1
- endif
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/Makefile b/drivers/gpu/drm/amd/display/dc/dcn20/Makefile
-index 5fcaf78334ff..0d3ce716c753 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/Makefile
-@@ -10,14 +10,15 @@ DCN20 = dcn20_resource.o dcn20_init.o dcn20_hwseq.o dcn20_dpp.o dcn20_dpp_cm.o d
- DCN20 += dcn20_dsc.o
- 
- ifdef CONFIG_X86
--CFLAGS_$(AMDDALPATH)/dc/dcn20/dcn20_resource.o := -mhard-float -msse
-+CFLAGS_$(AMDDALPATH)/dc/dcn20/dcn20_resource.o := -msse
- endif
- 
- ifdef CONFIG_PPC64
--CFLAGS_$(AMDDALPATH)/dc/dcn20/dcn20_resource.o := -mhard-float -maltivec
-+CFLAGS_$(AMDDALPATH)/dc/dcn20/dcn20_resource.o := -maltivec
- endif
- 
- ifdef CONFIG_CC_IS_GCC
-+CFLAGS_$(AMDDALPATH)/dc/dcn20/dcn20_resource.o += -mhard-float
- ifeq ($(call cc-ifversion, -lt, 0701, y), y)
- IS_OLD_GCC = 1
- endif
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/Makefile b/drivers/gpu/drm/amd/display/dc/dcn21/Makefile
-index 07684d3e375a..fd209d1cf6bb 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/Makefile
-@@ -6,14 +6,15 @@ DCN21 = dcn21_init.o dcn21_hubp.o dcn21_hubbub.o dcn21_resource.o \
- 	 dcn21_hwseq.o dcn21_link_encoder.o
- 
- ifdef CONFIG_X86
--CFLAGS_$(AMDDALPATH)/dc/dcn21/dcn21_resource.o := -mhard-float -msse
-+CFLAGS_$(AMDDALPATH)/dc/dcn21/dcn21_resource.o := -msse
- endif
- 
- ifdef CONFIG_PPC64
--CFLAGS_$(AMDDALPATH)/dc/dcn21/dcn21_resource.o := -mhard-float -maltivec
-+CFLAGS_$(AMDDALPATH)/dc/dcn21/dcn21_resource.o := -maltivec
- endif
- 
- ifdef CONFIG_CC_IS_GCC
-+CFLAGS_$(AMDDALPATH)/dc/dcn21/dcn21_resource.o += -mhard-float
- ifeq ($(call cc-ifversion, -lt, 0701, y), y)
- IS_OLD_GCC = 1
- endif
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-index 7ee8b8460a9b..fb74e79e15a2 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-@@ -26,14 +26,15 @@
- # subcomponents.
- 
- ifdef CONFIG_X86
--dml_ccflags := -mhard-float -msse
-+dml_ccflags := -msse
- endif
- 
- ifdef CONFIG_PPC64
--dml_ccflags := -mhard-float -maltivec
-+dml_ccflags := -maltivec
- endif
- 
- ifdef CONFIG_CC_IS_GCC
-+dml_ccflags += -mhard-float
- ifeq ($(call cc-ifversion, -lt, 0701, y), y)
- IS_OLD_GCC = 1
- endif
-diff --git a/drivers/gpu/drm/amd/display/dc/dsc/Makefile b/drivers/gpu/drm/amd/display/dc/dsc/Makefile
-index 3f66868df171..b0077f5c318d 100644
---- a/drivers/gpu/drm/amd/display/dc/dsc/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dsc/Makefile
-@@ -3,14 +3,15 @@
- # Makefile for the 'dsc' sub-component of DAL.
- 
- ifdef CONFIG_X86
--dsc_ccflags := -mhard-float -msse
-+dsc_ccflags := -msse
- endif
- 
- ifdef CONFIG_PPC64
--dsc_ccflags := -mhard-float -maltivec
-+dsc_ccflags := -maltivec
- endif
- 
- ifdef CONFIG_CC_IS_GCC
-+dsc_ccflags += -mhard-float
- ifeq ($(call cc-ifversion, -lt, 0701, y), y)
- IS_OLD_GCC = 1
- endif
+-	tmp = amdgpu_bo_gpu_offset(abo) - adev->gmc.vram_start;
+-	info->fix.smem_start = adev->gmc.aper_base + tmp;
++	info->fix.smem_start = virt_to_phys(amdgpu_bo_kptr(abo));
+ 	info->fix.smem_len = amdgpu_bo_size(abo);
+ 	info->screen_base = amdgpu_bo_kptr(abo);
+ 	info->screen_size = amdgpu_bo_size(abo);
 -- 
-2.26.0
+2.25.4
 
 _______________________________________________
 amd-gfx mailing list
