@@ -1,63 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9DBE1C72EA
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 May 2020 16:34:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C78901C7662
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 May 2020 18:31:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DED06E038;
-	Wed,  6 May 2020 14:34:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C0366E8AA;
+	Wed,  6 May 2020 16:31:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 116166E038
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 May 2020 14:34:23 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id l18so2473348wrn.6
- for <amd-gfx@lists.freedesktop.org>; Wed, 06 May 2020 07:34:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=PE/opDAWC1cK9EQ6E1J7Uki/BZUIov6IqqroqoZUaSM=;
- b=msIGKH2OTw39PcpHnna7t0IypUbCYunrmCk75Ws756tRKX2wi91OGw811EPwtD5o8n
- 3xXmjipSNFtOHILBUmY8vekQN6iafO936HMR7ufZcbsf17FbHUPu0RotIVDrRPvoeBOB
- XmVc1GQ/IRaXKMtpR1yZIve3m3MOgwDU6ZmFpWUgkO7HM9rf3T2ci5VnukYO/GT3OA+s
- /Dpn1fxlq+UPwbPJdFfpeaCROeNQFrKYppC3bbMf+BleoPm6/DRR53cji+Cx091EjTel
- jeKoGSTr88l0Ylk/i9XT3YC7LsLtLejp76P/lh/Z8PJBJosbKiMyaQ3VTwYzdbmCf26m
- Bp/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=PE/opDAWC1cK9EQ6E1J7Uki/BZUIov6IqqroqoZUaSM=;
- b=J5p09Gfb5AW9T4uIR4XBYTsVmko5qNbpIQ6VILGmP2goDZySIgOj6JcLxnVNI2vMii
- VjQO7p5kXTRxsoOLt+tUEOomQDmnIO+B10YmATk/Wpi1thVmQaxyb1PLHlJrsotcFK7L
- lY6UM/CaOzuJ3d2d9BNR1ZUoToYyy7J93+9SCCYm0unyTlzNf2xCYGcbpWQyH46HryFI
- Kv679e8nw6YsTYqoMgzFVuIDs6jZqGEJ25xzFK9I99wtvEwPGQzig84L36vgfVkFKx5t
- 2jI7GBsmRXjiR0mAm4Ux5oW0ZXYG69v9sV3ZOW6jxeJhI6cE1/4QHWrr3sn+h5BZ4AO/
- Nzyw==
-X-Gm-Message-State: AGi0PubKwY5mDYB8v5Lp8TsndYtEc6lOovyqcaBr3hraJ0giuwnKvzc6
- +0TBrJ7MAO/8rC72aoPfKio=
-X-Google-Smtp-Source: APiQypKKiRMwT61/9SWDEq/OXhv5/i7TbjcxprZZ4Qe3ze3vn5BCYeywx4MSl+AvWA+rJ5uFVeTcUg==
-X-Received: by 2002:adf:e751:: with SMTP id c17mr10586231wrn.351.1588775661749; 
- Wed, 06 May 2020 07:34:21 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id w18sm2797869wrn.55.2020.05.06.07.34.20
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 06 May 2020 07:34:21 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu: force fbdev into vram
-To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
-References: <20200506141411.860444-1-alexander.deucher@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <73391113-203a-cfdb-471f-0eca7e2ea64f@gmail.com>
-Date: Wed, 6 May 2020 16:34:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from APC01-PU1-obe.outbound.protection.outlook.com
+ (mail-oln040092254100.outbound.protection.outlook.com [40.92.254.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F8096E86C
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 May 2020 15:15:50 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mr3xND6MI/Am3TP/x+KKG0+cR2hKuGchycm1L4JX2JbuqWRmicWRr8rlwrY72kglGmqGDd7AsIbnGavRh3C2yLGyNWO7pPF9zvzgqCOsOtAkHHIORzdAnY06d+XwnNp5qdBV3ir5RXxVEzOH5ivoiqzsL7F4fDslrcAY2rt81wg+OHbTgAes9uuCARAlqN2u4y9i7rxLN/cFMu30Ai46BGSwStMipfKodfEpLT5/uvK8wGbYavkQuy6eRtih9BJCYjhdkgUjmjJQnLG+eEZa3CxXMf8T0dLm1WgnJFiYdayTXJmje80zu0w1PkiyRsaAyh6/+xjaESoHwaXuSyILrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RI4ZvFeMjLzYlGY1rF1hJ/6aYiLbdudKeutSOZqRRQg=;
+ b=lH2EF5cTvwYtGMUab1n67O+1uM3POxnxmolGoLRbQx0u6F1YJy0SU3uuVOOVsj97VEr6x5HQYqVedPdQ9sXYD4JCbRbBXDs50a34voeWarLyoaOzhy9F6cKyo7k0F4QZZMflILS1GAmQa3EQPJqQPIID4ofBXylNOHrSUt69BvWEz+fuSksT7+AFGFNLWtbaHidDzg0CgP3Ys1wnv09CcD1yqcH6xqY2RZJxwXWJQjKPWjk4wL40afPgIdf6CA7xVUTg1Zcdm41rQLfSTnNz7W+5y4DgZw+lcqTEZscH1Dc03cJisvrrqPkvWjncLsoZBduyrInmXtYdA/ZFOIOO2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=outlook.com.au; dmarc=pass action=none
+ header.from=outlook.com.au; dkim=pass header.d=outlook.com.au; arc=none
+Received: from HK2APC01FT026.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebc::4b) by
+ HK2APC01HT238.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebc::490)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2979.27; Wed, 6 May
+ 2020 15:15:47 +0000
+Received: from PSXP216MB0438.KORP216.PROD.OUTLOOK.COM (10.152.248.53) by
+ HK2APC01FT026.mail.protection.outlook.com (10.152.248.174) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2979.27 via Frontend Transport; Wed, 6 May 2020 15:15:47 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:700999ACCD16A2AFF04FE910C14BCBEE942B6EEEC7A4D6D4100AA494BB72F075;
+ UpperCasedChecksum:34E65D70D797FC91C0465C7C0162B7E24C00D4C5A55E5D55CB9095B1A76B7D04;
+ SizeAsReceived:8489; Count:48
+Received: from PSXP216MB0438.KORP216.PROD.OUTLOOK.COM
+ ([fe80::21f1:20fb:d1f:8e25]) by PSXP216MB0438.KORP216.PROD.OUTLOOK.COM
+ ([fe80::21f1:20fb:d1f:8e25%7]) with mapi id 15.20.2979.028; Wed, 6 May 2020
+ 15:15:46 +0000
+Date: Wed, 6 May 2020 23:15:36 +0800
+From: Nicholas Johnson <nicholas.johnson-opensource@outlook.com.au>
+To: Takashi Iwai <tiwai@suse.de>
+Subject: Re: [PATCH 0/1] Fiji GPU audio register timeout when in BACO state
+Message-ID: <PSXP216MB0438F42EB2405C4215DF0BF280A40@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
+References: <CADnq5_Mjb_FnNOzjUfJZ7GSDzi-+Cfc1ZTuqm7UWCWVvY6DU_w@mail.gmail.com>
+ <s5hwo5xj98v.wl-tiwai@suse.de>
+ <PSXP216MB0438FE3E1CA577805BEC23C880AA0@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
+ <s5hh7x0kiwb.wl-tiwai@suse.de>
+ <PSXP216MB04381A30909F66867E6B6BCC80AA0@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
+ <s5h1ro4kgog.wl-tiwai@suse.de> <s5h7dxuizep.wl-tiwai@suse.de>
+ <20200502071728.fn2fcqvt6aies3zu@wunner.de>
+ <s5h368iiyos.wl-tiwai@suse.de> <s5hpnbmhcmu.wl-tiwai@suse.de>
+Content-Disposition: inline
+In-Reply-To: <s5hpnbmhcmu.wl-tiwai@suse.de>
+X-ClientProxiedBy: SYAPR01CA0034.ausprd01.prod.outlook.com (2603:10c6:1:1::22)
+ To PSXP216MB0438.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:300:d::20)
+X-Microsoft-Original-Message-ID: <20200506151536.GA4636@nicholas-dell-linux>
 MIME-Version: 1.0
-In-Reply-To: <20200506141411.860444-1-alexander.deucher@amd.com>
-Content-Language: en-US
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from nicholas-dell-linux (2001:44b8:605f:11:45ec:d37e:a989:bf24) by
+ SYAPR01CA0034.ausprd01.prod.outlook.com (2603:10c6:1:1::22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2979.26 via Frontend Transport; Wed, 6 May 2020 15:15:42 +0000
+X-Microsoft-Original-Message-ID: <20200506151536.GA4636@nicholas-dell-linux>
+X-TMN: [ZFrRSr9vjLRyEvwVgo3i/0Zmw7a1m9PV7o4xUgDwV/s2y3VWHBIesyYDYIIOArlX]
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 48
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: 03fab1b8-c161-455e-05e3-08d7f1d0592c
+X-MS-TrafficTypeDiagnostic: HK2APC01HT238:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YFzYRAoBbjotzjAlpBV/qB1xfckF1pztQsz+6mgOuEc7L0PkkGca/inFo3/AzjPrSi+szvPbO1O9YFo3Sha/qGI6UH4k5YBnUhWE63bLpNsqfX2tzNndFYuc5co/u4ePN/Xls5SlfZMGZjIokqvUGYW1H1+F0VC1Q55W33kxdE+FAkONYYaMJlNdl+qlw0glYyft6Y88Kyi7/IVlN/r7Jw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:0; SRV:;
+ IPV:NLI; SFV:NSPM; H:PSXP216MB0438.KORP216.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFTY:; SFS:; DIR:OUT; SFP:1901; 
+X-MS-Exchange-AntiSpam-MessageData: H+qiLUzndFozG4cbIahV27ULRI5oAOHjUib5yboapRrMuugOUHkgbSa3HUuCKYPPYCKoptmL5wWb8Ol6Nu95YJw6uxUgzkkyRKjob8IPhhLjSfNEGk5+GuAvHNNQIMODV5ex6TCdAsG6oMyLozZtpLOljl2W//vTcQfOEg2mXrgCqooPsHzFnqib5GFB7GRAXPCgzTiMARL9uZNz231Lcg==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03fab1b8-c161-455e-05e3-08d7f1d0592c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2020 15:15:46.5255 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2APC01HT238
+X-Mailman-Approved-At: Wed, 06 May 2020 16:31:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,34 +98,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>,
+ "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Takashi Iwai <tiwai@suse.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, Lukas Wunner <lukas@wunner.de>,
+ Alex Deucher <alexdeucher@gmail.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMDYuMDUuMjAgdW0gMTY6MTQgc2NocmllYiBBbGV4IERldWNoZXI6Cj4gV2Ugc2V0IHRoZSBm
-YiBzbWVtIHBvaW50ZXIgdG8gdGhlIG9mZnNldCBpbnRvIHRoZSBCQVIsIHNvIGtlZXAKPiB0aGUg
-ZmJkZXYgYm8gaW4gdnJhbS4KPgo+IEJ1ZzogaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3No
-b3dfYnVnLmNnaT9pZD0yMDc1ODEKPiBGaXhlczogNmM4ZDc0Y2FhMmZhMzMgKCJkcm0vYW1kZ3B1
-OiBFbmFibGUgc2NhdHRlciBnYXRoZXIgZGlzcGxheSBzdXBwb3J0IikKPiBTaWduZWQtb2ZmLWJ5
-OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+CgpSZXZpZXdlZC1ieTog
-Q2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgoKPiAtLS0KPiAgIGRy
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mYi5jIHwgMyArLS0KPiAgIDEgZmlsZSBj
-aGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMiBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmIuYyBiL2RyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1L2FtZGdwdV9mYi5jCj4gaW5kZXggOWFlN2I2MWY2OTZhLi4yNWRkYjQ4MjQ2NmEg
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ZiLmMKPiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmIuYwo+IEBAIC0xMzMsOCAr
-MTMzLDcgQEAgc3RhdGljIGludCBhbWRncHVmYl9jcmVhdGVfcGlubmVkX29iamVjdChzdHJ1Y3Qg
-YW1kZ3B1X2ZiZGV2ICpyZmJkZXYsCj4gICAJdTMyIGNwcDsKPiAgIAl1NjQgZmxhZ3MgPSBBTURH
-UFVfR0VNX0NSRUFURV9DUFVfQUNDRVNTX1JFUVVJUkVEIHwKPiAgIAkJCSAgICAgICBBTURHUFVf
-R0VNX0NSRUFURV9WUkFNX0NPTlRJR1VPVVMgICAgIHwKPiAtCQkJICAgICAgIEFNREdQVV9HRU1f
-Q1JFQVRFX1ZSQU1fQ0xFQVJFRCAJICAgICB8Cj4gLQkJCSAgICAgICBBTURHUFVfR0VNX0NSRUFU
-RV9DUFVfR1RUX1VTV0M7Cj4gKwkJCSAgICAgICBBTURHUFVfR0VNX0NSRUFURV9WUkFNX0NMRUFS
-RUQ7Cj4gICAKPiAgIAlpbmZvID0gZHJtX2dldF9mb3JtYXRfaW5mbyhhZGV2LT5kZGV2LCBtb2Rl
-X2NtZCk7Cj4gICAJY3BwID0gaW5mby0+Y3BwWzBdOwoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9hbWQtZ2Z4Cg==
+On Sat, May 02, 2020 at 12:09:13PM +0200, Takashi Iwai wrote:
+> On Sat, 02 May 2020 09:27:31 +0200,
+> Takashi Iwai wrote:
+> > 
+> > On Sat, 02 May 2020 09:17:28 +0200,
+> > Lukas Wunner wrote:
+> > > 
+> > > On Sat, May 02, 2020 at 09:11:58AM +0200, Takashi Iwai wrote:
+> > > > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > > > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > > > @@ -673,6 +673,12 @@ static int amdgpu_dm_audio_component_bind(struct device *kdev,
+> > > >  	struct amdgpu_device *adev = dev->dev_private;
+> > > >  	struct drm_audio_component *acomp = data;
+> > > >  
+> > > > +	if (!device_link_add(hda_kdev, kdev, DL_FLAG_STATELESS |
+> > > > +			     DL_FLAG_PM_RUNTIME)) {
+> > > > +		DRM_ERROR("DM: cannot add device link to audio device\n");
+> > > > +		return -ENOMEM;
+> > > > +	}
+> > > > +
+> > > 
+> > > Doesn't this duplicate drivers/pci/quirks.c:quirk_gpu_hda() ?
+> > 
+> > Gah, you're right, that was the place I overlooked.
+> > It was a typical "false Eureka right-after-wakeup" phenomenon :)
+> > Need a vaccine aka coffee...
+> > 
+> > So the runtime PM dependency must be already placed there, and the
+> > problem is not the lack of the dependency tree but the really other
+> > timing issue.  Back to square.
+> 
+> One interesting test is to open the stream while the mode isn't set
+> yet and see whether the same problem appears.
+> Namely, after the monitor is connected but no mode is set, run
+> directly like
+>    aplay -Dhdmi:1,0 foo.wav
+> You might need to wrap the command with pasuspender if PA is active.
+I could not figure out how to get the interface for aplay set other than 
+not specifying it and having it find the default device (which can 
+change). I even used aplay -L and aplay -l to show devices. I could not 
+get it working.
+
+Is there anything else I can try? I did not apply the last patch when it 
+was pointed out that it is already a quirk.
+
+Regards,
+Nicholas
+> 
+> 
+> Takashi
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
