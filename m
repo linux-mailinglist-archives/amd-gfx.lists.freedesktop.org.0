@@ -1,43 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E73CA1C8E6E
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 May 2020 16:29:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B8A1C93EC
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 May 2020 17:11:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E4506E9C4;
-	Thu,  7 May 2020 14:29:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA4236E9FC;
+	Thu,  7 May 2020 15:11:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD0A6E9C3;
- Thu,  7 May 2020 14:29:06 +0000 (UTC)
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3AFB72184D;
- Thu,  7 May 2020 14:29:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1588861746;
- bh=MZoJruzevu0Mqm1XG+YDSEIaVLGDBxikzdKGaPu4uuM=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=kW+J2htEAL1H1HndU6CWy0/3crLNewSkRIL8sT6fZTLUZSsyEKTwaitrxIKsc5d2+
- w9LAiBYEszMI386dzljCEAaLy3XQikj7eZJdN/aNskSLWIWdVo+TttGMAZ8r4Yx24q
- QEadb5h1iwLyj7SFupEr3ZMMezIvG16FGT1JJQqQ=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 28/35] drm/amd/display: Update downspread percent
- to match spreadsheet for DCN2.1
-Date: Thu,  7 May 2020 10:28:22 -0400
-Message-Id: <20200507142830.26239-28-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200507142830.26239-1-sashal@kernel.org>
-References: <20200507142830.26239-1-sashal@kernel.org>
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 388FE6E9FA;
+ Thu,  7 May 2020 15:11:01 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id s8so6841608wrt.9;
+ Thu, 07 May 2020 08:11:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=rLELSkIkXqc4MjKeYvGm92qJZ3Zy9onyXpkjbBhy6wg=;
+ b=Yr+Vmi6QKlnofxOYiNtwd3eAoXde2UhusYr5PcDyQb5Z0Q9cLezYKD/VJtzOzfR5xu
+ fd19PV2zRLEhANF8hyKJJvBU/zWK/xen+TJ8UZbAdaFqN20+qNCke0BmfE042HaBY/p3
+ EOWFnlGN9cSqctiNA8dM3UnFj2LjE8W8K91UFnP56MkgmmwkmT4L2n8aos6fSsfPWM/T
+ yDzb1ZUpi/+1byj1vqHXbCaN/Cq1l0+3Gi8+CCGbZbII8WNsFvimC7QW3bskOuvA4xAn
+ 7F2L0UvG2ZRdp6SNhnTL8AJHzvPFH8kzdoIgoXV/QLK21JGlkG22hwcby4W58H0ngVKe
+ DhfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=rLELSkIkXqc4MjKeYvGm92qJZ3Zy9onyXpkjbBhy6wg=;
+ b=QOpy9+8n0/TXtAvfceDacO6XlJTODGtNvEzdKB/Il1GJvT0BcGpzxMyK0ibTxk+KTs
+ COs3J52VwdZ9WaImV+dQZUwgHK5Ckip//mwqGR9No5GHEvJMqMYGqnTjspF2Url4A+C8
+ oDslHKGI15vg2CFOk5+CwE0PNwTUnA8h0AbbPnHok+zKe+efjaDzPXH1ILafijmRHQGt
+ Ydb9VFe7yxZpB1XdMATtjx52WekQoLbIpsDwLFVyE6DVIdf7H3Ga04XE2eLqDXYAfU6C
+ /ykpiZChUcJEKRF5Sq0W41xkerQaQjMZKsacfjrOOeY4W3XsPSBquXCp2/8P5QQ/L0zl
+ dWjw==
+X-Gm-Message-State: AGi0Pubqgv5TnWMAf+rkO4D4vMPlyt4iuOCGclHAcBuKdFLc2T3AOyZ6
+ rCHe+FmtZ+JVC8ETZcbiQN+EYQj/
+X-Google-Smtp-Source: APiQypKaNSaGj3/LMepeWJU0dApnhwNxtE8TWXTJaCbSNqB3o/LoIfwsHTqlbZro+OBCI6xtsDPPag==
+X-Received: by 2002:a5d:49c3:: with SMTP id t3mr14981243wrs.94.1588864259352; 
+ Thu, 07 May 2020 08:10:59 -0700 (PDT)
+Received: from arch-x1c3.cbg.collabora.co.uk
+ ([2a00:5f00:102:0:9665:9cff:feee:aa4d])
+ by smtp.gmail.com with ESMTPSA id b66sm8704247wmh.12.2020.05.07.08.10.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 07 May 2020 08:10:58 -0700 (PDT)
+From: Emil Velikov <emil.l.velikov@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH 06/36] drm/amdgpu: use the unlocked drm_gem_object_put
+Date: Thu,  7 May 2020 16:07:52 +0100
+Message-Id: <20200507150822.114464-7-emil.l.velikov@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200507150822.114464-1-emil.l.velikov@gmail.com>
+References: <20200507150822.114464-1-emil.l.velikov@gmail.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,55 +66,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Sung Lee <sung.lee@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Yongqiang Sun <yongqiang.sun@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Alex Deucher <alexander.deucher@amd.com>, emil.l.velikov@gmail.com,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
-
-[ Upstream commit 668a6741f809f2d15d125cfe2b39661e8f1655ea ]
-
-[WHY]
-The downspread percentage was copied over from a previous version
-of the display_mode_lib spreadsheet. This value has been updated,
-and the previous value is too high to allow for such modes as
-4K120hz. The new value is sufficient for such modes.
-
-[HOW]
-Update the value in dcn21_resource to match the spreadsheet.
-
-Signed-off-by: Sung Lee <sung.lee@amd.com>
-Reviewed-by: Yongqiang Sun <yongqiang.sun@amd.com>
-Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 161bf7caf3ae0..bb7add5ea2273 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -247,7 +247,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn2_1_soc = {
- 	.dram_channel_width_bytes = 4,
- 	.fabric_datapath_to_dcn_data_return_bytes = 32,
- 	.dcn_downspread_percent = 0.5,
--	.downspread_percent = 0.5,
-+	.downspread_percent = 0.38,
- 	.dram_page_open_time_ns = 50.0,
- 	.dram_rw_turnaround_time_ns = 17.5,
- 	.dram_return_buffer_per_channel_bytes = 8192,
--- 
-2.20.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+RnJvbTogRW1pbCBWZWxpa292IDxlbWlsLnZlbGlrb3ZAY29sbGFib3JhLmNvbT4KClRoZSBkcml2
+ZXIgZG9lcyBub3QgaG9sZCBzdHJ1Y3RfbXV0ZXgsIHRodXMgdXNpbmcgdGhlIGxvY2tlZCB2ZXJz
+aW9uIG9mCnRoZSBoZWxwZXIgaXMgaW5jb3JyZWN0LgoKQ2M6IEFsZXggRGV1Y2hlciA8YWxleGFu
+ZGVyLmRldWNoZXJAYW1kLmNvbT4KQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2Vu
+aWdAYW1kLmNvbT4KQ2M6IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkZpeGVzOiBhMzk0
+MTQ3MTZjYTAgKCJkcm0vYW1kZ3B1OiBhZGQgaW5kZXBlbmRlbnQgRE1BLWJ1ZiBpbXBvcnQgdjki
+KToKU2lnbmVkLW9mZi1ieTogRW1pbCBWZWxpa292IDxlbWlsLmwudmVsaWtvdkBnbWFpbC5jb20+
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuYyB8IDIgKy0K
+IDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kbWFfYnVmLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5jCmluZGV4IDQzZDhlZDdkYmQwMC4u
+NjUyYzU3YTNiODQ3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
+cHVfZG1hX2J1Zi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kbWFf
+YnVmLmMKQEAgLTU4Nyw3ICs1ODcsNyBAQCBzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKmFtZGdwdV9n
+ZW1fcHJpbWVfaW1wb3J0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiAJYXR0YWNoID0gZG1hX2J1
+Zl9keW5hbWljX2F0dGFjaChkbWFfYnVmLCBkZXYtPmRldiwKIAkJCQkJJmFtZGdwdV9kbWFfYnVm
+X2F0dGFjaF9vcHMsIG9iaik7CiAJaWYgKElTX0VSUihhdHRhY2gpKSB7Ci0JCWRybV9nZW1fb2Jq
+ZWN0X3B1dChvYmopOworCQlkcm1fZ2VtX29iamVjdF9wdXRfdW5sb2NrZWQob2JqKTsKIAkJcmV0
+dXJuIEVSUl9DQVNUKGF0dGFjaCk7CiAJfQogCi0tIAoyLjI1LjEKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
