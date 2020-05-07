@@ -2,52 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C32B91C8B7B
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 May 2020 14:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E70A1C9507
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 May 2020 17:27:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBE9E6E97D;
-	Thu,  7 May 2020 12:55:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1A666EA1B;
+	Thu,  7 May 2020 15:27:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97B0B6E97D
- for <amd-gfx@lists.freedesktop.org>; Thu,  7 May 2020 12:55:22 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id e16so6264621wra.7
- for <amd-gfx@lists.freedesktop.org>; Thu, 07 May 2020 05:55:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=m2C6e/ybGxHsVZlCeU9V8hJ6yYItPtEe1cKHHNbYSpk=;
- b=nFHpMlgboBa7tmvz4u/9TVYzP8H+sGmLl5Rf9WhHZSoTY3qqE70Dik5NqpJuhRlkjT
- z6Q4g3F5lJQ/D4LlTCJDnwDmQeo86PU+YzPcykQTOvphktj1r/rhZ5fzc2eYCzAb82WB
- j9bbW6zZZTbQZrfiVGBOhClwIuE7idxicnFyewAwfXkfgMCRxlRfCzrQZDuXKqgPRGTX
- 4HI3dqMWtixAjZD0Vk6rGN246itMIXmXfTAlPq3pSm4PZjJwznWW6hVE2B7ckVyvrOyb
- 0xdY/IJ0hLh7CnvG4/xJlYNEMWZiKdye63nsHVSv2i6nF5zifPIMDu9uLI+GeKgNUmGy
- dggA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=m2C6e/ybGxHsVZlCeU9V8hJ6yYItPtEe1cKHHNbYSpk=;
- b=tGQ/uQhQHMoPIRaAeq5JrtlRenaAcHlcZKinQ3L9KCKenyYuXPr6IdU9EQSB6bkjO5
- zs4Q1p44/ktoJeAPOtIrr8uBajBx/slFAfWEjmhgmEDHI2xquSs4LZ596jM0ZFlkp03B
- jcrR17BuRcqDozF3uG25sPYrnv8d34D0/v7RSbPmKjihO05lp1K9Nt4w8AI3LTn5axtr
- hMA8ekCySQw6AncUxpZjZgQ+CkebItwH659N+4/YsT2YSEsNhSjwI8FEnO2OM//gCPj2
- Gb+pngu1pqADl+0GRjFeo+leBhdyPLj7yAOKyG16NtyQTz8Ar+zVK0qcwORGEU+JatVr
- z3vA==
-X-Gm-Message-State: AGi0Pubi3ngUewJONg4INgQMEu8Isw+TzSWS0Y0By5DEKw/ShlD9wyOa
- 1/U+3ah+Quuru/gyK6d2JjeT5TF9f6boI02Se5c=
-X-Google-Smtp-Source: APiQypK4/vuPApOW8E6YkLDVgUGLjG/+UOI4KD0x/OUBlP8hh8+Gfq/JEVdT7XafLP79rDPggdgt+TqKhN7LgZQF5bA=
-X-Received: by 2002:a5d:4151:: with SMTP id c17mr15121421wrq.111.1588856121352; 
- Thu, 07 May 2020 05:55:21 -0700 (PDT)
+Received: from huawei.com (szxga06-in.huawei.com [45.249.212.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 015A589831;
+ Thu,  7 May 2020 13:46:35 +0000 (UTC)
+Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id 978D565548E3BE610F5E;
+ Thu,  7 May 2020 21:46:32 +0800 (CST)
+Received: from localhost.localdomain.localdomain (10.175.113.25) by
+ DGGEMS403-HUB.china.huawei.com (10.3.19.203) with Microsoft SMTP Server id
+ 14.3.487.0; Thu, 7 May 2020 21:46:26 +0800
+From: Chen Zhou <chenzhou10@huawei.com>
+To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
+ <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <David1.Zhou@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>
+Subject: [PATCH -next] drm/amd/display: remove duplicate headers
+Date: Thu, 7 May 2020 21:50:23 +0800
+Message-ID: <20200507135023.33073-1-chenzhou10@huawei.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20200507102544.6915-1-evan.quan@amd.com>
-In-Reply-To: <20200507102544.6915-1-evan.quan@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 7 May 2020 08:55:10 -0400
-Message-ID: <CADnq5_OGCnjXmD3ZVGw2+od+kiWaAo_zqwVNASdyv9X2R4tAzQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: enable hibernate support on Navi1X
-To: Evan Quan <evan.quan@amd.com>
+X-Originating-IP: [10.175.113.25]
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Thu, 07 May 2020 15:27:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,74 +41,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: chenzhou10@huawei.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 7, 2020 at 6:26 AM Evan Quan <evan.quan@amd.com> wrote:
->
-> BACO is needed to support hibernate on Navi1X.
->
-> Change-Id: Ia283612919e9a5b4e1e198ab2cc0bc15f7f94760
-> Signed-off-by: Evan Quan <evan.quan@amd.com>
+Remove duplicate headers which are included twice.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 2 ++
->  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 2 +-
->  3 files changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index 5bd213f88ae5..e649a3d3fd7c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -1010,6 +1010,7 @@ struct amdgpu_device {
->
->         /* s3/s4 mask */
->         bool                            in_suspend;
-> +       bool                            in_hibernate;
->
->         bool                            in_gpu_reset;
->         enum pp_mp1_state               mp1_state;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index eb351844e46c..5eaa5ea83d0c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -1260,7 +1260,9 @@ static int amdgpu_pmops_freeze(struct device *dev)
->         struct amdgpu_device *adev = drm_dev->dev_private;
->         int r;
->
-> +       adev->in_hibernate = true;
->         r = amdgpu_device_suspend(drm_dev, true);
-> +       adev->in_hibernate = false;
->         if (r)
->                 return r;
->         return amdgpu_asic_reset(adev);
-> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> index 8a0c37dc5182..f1621147db61 100644
-> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> @@ -1500,7 +1500,7 @@ static int smu_disable_dpm(struct smu_context *smu)
->         bool use_baco = !smu->is_apu &&
->                 ((adev->in_gpu_reset &&
->                   (amdgpu_asic_reset_method(adev) == AMD_RESET_METHOD_BACO)) ||
-> -                (adev->in_runpm && amdgpu_asic_supports_baco(adev)));
-> +                ((adev->in_runpm || adev->in_hibernate) && amdgpu_asic_supports_baco(adev)));
->
->         ret = smu_get_smc_version(smu, NULL, &smu_version);
->         if (ret) {
-> --
-> 2.26.2
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 9ef9e50a34fa..1db592372435 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -13,7 +13,6 @@
+ #include "core_status.h"
+ #include "dpcd_defs.h"
+ 
+-#include "resource.h"
+ #define DC_LOGGER \
+ 	link->ctx->logger
+ 
+-- 
+2.20.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
