@@ -1,33 +1,87 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 777781C8C75
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 May 2020 15:35:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 217821C8B20
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 May 2020 14:38:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21E166E984;
-	Thu,  7 May 2020 13:35:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93C936E12D;
+	Thu,  7 May 2020 12:38:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF6A76E979;
- Thu,  7 May 2020 11:25:07 +0000 (UTC)
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.58])
- by Forcepoint Email with ESMTP id B8738379BE6317962F8C;
- Thu,  7 May 2020 19:25:03 +0800 (CST)
-Received: from huawei.com (10.67.174.156) by DGGEMS403-HUB.china.huawei.com
- (10.3.19.203) with Microsoft SMTP Server id 14.3.487.0; Thu, 7 May 2020
- 19:24:57 +0800
-From: ChenTao <chentao107@huawei.com>
-To: <airlied@linux.ie>, <daniel@ffwll.ch>
-Subject: [PATCH -next] drm/amd/dc: Remove a useless comparison
-Date: Thu, 7 May 2020 19:24:12 +0800
-Message-ID: <20200507112412.10829-1-chentao107@huawei.com>
-X-Mailer: git-send-email 2.22.0
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1C716E12D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  7 May 2020 12:38:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q1tLhkhTIB6gAS+i6v0NkHpAtx2sbwFKoPO0Ov9u0l0qBHhn84PRdFCxkRGGaIsJHrVVqk+MELZPAViP+pZcENPT4NmJHNS0ua07wmbpjVNWSdewk63N6puHg+C0biOUypPZpc93zoMlwkyzPKYkzw+UWZIPQbnpowGC2pWI4AkKHcVcTvXVVCMTZ0O9+565tek9KQ1k7tEdjAKXWnqpHkg66k9I3biu43LQD2lRgG3SayAeUrTr3izD5TwJpz8BeXCXWZH2rMpr7Z2TPucXxsjP+1Sqhw/DQm6mDrBAk3h+ASyVyBKd9+7iPVuOAyy8CCogAVQNIcDvvVUpiUveuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tsCmFJ/EB/LJJH+ykft+59GTTpyDl+8wjxBetfPsDyM=;
+ b=bRP94wDeN8pwNYkIHRFYHSsuk/WV6XA+vThOs01X/SDvhD4neV4T8pK8oynI9Rt5NxahjqqTZ6Zm1BEYjfFkj87LpTFG5l6jYUI/qy7JWM4OT90UbfG1r+GHAEqBqRKMMbzAfcPgIoiwbk4kmv5mQpU5sJAaZj3VpFct/yFOGlWlRlgFilTM1tMacJGHVW3VNMPpRqReB/XK3f+zo0ZMS3fZrU5dgS31+mpmLoxjn7Ju2hc9sKdDgM5FgCDSgBp4dJ//EYJLV0ukgfEoI8u3zN4F8N2xAGcjxZYFykVA75m9UImZvH07NPtYdgipSdPsIOHciSzTk/l6mUlNym7ngg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tsCmFJ/EB/LJJH+ykft+59GTTpyDl+8wjxBetfPsDyM=;
+ b=0WG2wsuqfC3BH8kI64NGWgAEBMHpQJRDsI0kdmxPZdLq4mvrRrLp9tbeKtx6V5FXEEBmchGC7G2XqwSTMX1xO/+s9beqdlBdwul+kB1WR3UG+ZOlyGv84qnOuzzvVsPEf0MUGJ/oaNfh6En3rPl+DfPQivm86CEu0kxUFMJGwYs=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM5PR12MB1674.namprd12.prod.outlook.com (2603:10b6:4:11::15) by
+ DM5PR12MB2408.namprd12.prod.outlook.com (2603:10b6:4:b9::14) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2979.28; Thu, 7 May 2020 12:38:18 +0000
+Received: from DM5PR12MB1674.namprd12.prod.outlook.com
+ ([fe80::c0af:ab9b:b8de:7c4d]) by DM5PR12MB1674.namprd12.prod.outlook.com
+ ([fe80::c0af:ab9b:b8de:7c4d%4]) with mapi id 15.20.2958.030; Thu, 7 May 2020
+ 12:38:18 +0000
+From: Tom St Denis <tom.stdenis@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/amdgpu: add raven1 part to the gfxoff quirk list
+Date: Thu,  7 May 2020 08:38:04 -0400
+Message-Id: <20200507123804.8376-1-tom.stdenis@amd.com>
+X-Mailer: git-send-email 2.26.2
+X-ClientProxiedBy: BN6PR08CA0059.namprd08.prod.outlook.com
+ (2603:10b6:404:b9::21) To DM5PR12MB1674.namprd12.prod.outlook.com
+ (2603:10b6:4:11::15)
 MIME-Version: 1.0
-X-Originating-IP: [10.67.174.156]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Thu, 07 May 2020 13:35:20 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from ws.amd.com (165.204.84.11) by
+ BN6PR08CA0059.namprd08.prod.outlook.com (2603:10b6:404:b9::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2979.28 via Frontend Transport; Thu, 7 May 2020 12:38:17 +0000
+X-Mailer: git-send-email 2.26.2
+X-Originating-IP: [165.204.84.11]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 1a2a354d-b996-4ba8-c788-08d7f28384be
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2408:|DM5PR12MB2408:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB2408E8333F978445E9246472F7A50@DM5PR12MB2408.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-Forefront-PRVS: 03965EFC76
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mkkTCooH2DIAEkx/7wRgtk0WRPiUSK0mP2ojDg1rmBGfcSydy5GanF3dgNGA2UIlIlsAS01yAPtW1Wzj1b7SZxJ6lQIv6nQN+6bK/xTn6ScE//YWWtcQAJouIRBWQ/yjbkSRegD4Cjt4n1u7LgBas18h0ajGsBezs17SlCNwH27fveeYTmiLrt4TNs9HFd5Y/SsE243vscIrXwF8sjUuet6wudRf0MnXeA9bU1FjNPB0BZofOWGec+K6NBvzEVndSo9Gl+dYNfOwMFkvt5A4aaR4stBz3O31rc1RGBtv4Lo53SAo+ONMdehnH2MTFFb8cll2UqpBU/TismHXGtQ5ZsiNQYZItduShwZ1zKpszQs5VKrgt7NsfMlKKS3kwsPHvirkdO71slrLGcZ7LqlW1KodEGjrSCzkzNYhnb/OFRp61N30bmWmQnejp2X0gWdRZFztpyqkjSVwBkPGYmk7iUVprp8V/JdUUuAU6JSEtc4ejUbzpbzQdfGgiPrZl/gPnSU7jzXeakQhdiKYmSSKkdNy/BRgnQpUcKk6RSwmOV+cgVmaiapauSUKu4ZdQchzGAjiP/VLmzyjfKJHFCtbueRVtP19WqkWYyiyUU9v7X0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB1674.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(366004)(39860400002)(396003)(346002)(136003)(376002)(33430700001)(186003)(16526019)(8936002)(7696005)(4326008)(6916009)(52116002)(86362001)(26005)(33440700001)(83300400001)(83280400001)(83320400001)(83290400001)(83310400001)(966005)(66556008)(66946007)(1076003)(6486002)(5660300002)(66476007)(4744005)(2616005)(956004)(8676002)(6666004)(2906002)(316002)(478600001)(36756003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: wGR5CJCDxpzcK113aFbnoFtMfPvv4sP681X80w0t0qvReDh+Crv+tHMh2hcXx7MyWVYt3AVnASfIgHoeGjW+TJNaTY5IL3fKCRuxKVAvzvi0G8SGDuKE2/Sk9P3WOKuKT/HFitiA8Ecjq/crLRmjbQolaI+44y+IrLU8R0U50e+Z3hjQzjHlbxE735IIBPd5nhwgJCcxq504ehyRWmgn0Besxu79EVa/NgbfwyqVfGkuOttr/Mo7cHlpaxSfQ7WCdbWmeeYCkmlGwg+7WTw80PaSKgev4nD00JXHy9i4gr9XwP1rnIYSYnrueUg+tY8HE2ycdTzYP97ye5jlRz/oHP7XG/PiMpuhqGMca+jYCSlbn0xFELljsDq/ooR63/HiqFuFZyF87baP6FRgcSFTUioELhlAhicYxX7AluCLqZ/4QWtVTY+LjziA1kPgQhWkt2D5Qk+Ji90QpeUjzqmgKqVoaI6HBgLvNt5llWK21PeBKgLNr80ZLPIh2cS4MuZWtdLaXDSi5XniBem5BnGBenmfT/BsAkwCnFrVpGIzrvx9yrzgd6WfjsPacEdMrQHNlKyMzSulwgNkssJkeG0T9zZ684KRKuiDLanln96lGuzFNygBrSkHh3sFAkR+376mnyioFkUVUS06OM+uGvqtnugGGl9QrrFjlg8eEOmtn/G8KrCphwpgZhB3g9VwXxLyuIzr50ZcnZdZVTTmy7Paxp/Og0O9MboTGgpy5YTFGSXcL4UPL0TTTtdOteRcmDwt6Fynwc9kyGk/OTJPSBQrHAxvvspD/C4E5Cr2dAQWCTY=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a2a354d-b996-4ba8-c788-08d7f28384be
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2020 12:38:18.2815 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rORqotVYcf6/w5g5ej+nV3vWp4EDcEz1ccBQ37B664feLq0aUo8Jpsl2Q70B5meLqFB0oamJZRXFD24bYBeQDQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2408
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,62 +93,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric.Cyr@amd.com, sunpeng.li@amd.com, Anthony.Koo@amd.com,
- Rodrigo.Siqueira@amd.com, murton.liu@amd.com, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, chentao107@huawei.com,
- dri-devel@lists.freedesktop.org, harry.wentland@amd.com, sam@ravnborg.org,
- christian.koenig@amd.com, Su.Chung@amd.com
+Cc: Tom St Denis <tom.stdenis@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix the following warning:
+On my raven1 system (rev c6) with VBIOS 113-RAVEN-114 GFXOFF is
+not stable (resulting in large block tiling noise in some applications).
 
-'en' is uint32_t and can never be negative.
+Disabling GFXOFF via the quirk list fixes the problems for me.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/hw_hpd.c:132:10: warning:
-comparison of unsigned expression < 0 is always false [-Wtype-limits]
-  if ((en < GPIO_DDC_LINE_MIN) || (en > GPIO_DDC_LINE_MAX)) {
-drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/hw_generic.c:109:10: warning:
-comparison of unsigned expression < 0 is always false [-Wtype-limits]
-  if ((en < GPIO_DDC_LINE_MIN) || (en > GPIO_DDC_LINE_MAX)) {
-
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: ChenTao <chentao107@huawei.com>
+Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/gpio/hw_generic.c | 2 +-
- drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c     | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_generic.c b/drivers/gpu/drm/amd/display/dc/gpio/hw_generic.c
-index f9e847e6555d..6cd50232c432 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/hw_generic.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_generic.c
-@@ -106,7 +106,7 @@ void dal_hw_generic_init(
- 	enum gpio_id id,
- 	uint32_t en)
- {
--	if ((en < GPIO_DDC_LINE_MIN) || (en > GPIO_DDC_LINE_MAX)) {
-+	if (en > GPIO_DDC_LINE_MAX) {
- 		ASSERT_CRITICAL(false);
- 		*hw_generic = NULL;
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-index 692f29de7797..f91f426699c0 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-@@ -129,7 +129,7 @@ void dal_hw_hpd_init(
- 	enum gpio_id id,
- 	uint32_t en)
- {
--	if ((en < GPIO_DDC_LINE_MIN) || (en > GPIO_DDC_LINE_MAX)) {
-+	if (en > GPIO_DDC_LINE_MAX) {
- 		ASSERT_CRITICAL(false);
- 		*hw_hpd = NULL;
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index fbd54d347d91..1573ac1f03b2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -1233,6 +1233,8 @@ static const struct amdgpu_gfxoff_quirk amdgpu_gfxoff_quirk_list[] = {
+ 	{ 0x1002, 0x15dd, 0x1002, 0x15dd, 0xc8 },
+ 	/* https://bugzilla.kernel.org/show_bug.cgi?id=207171 */
+ 	{ 0x1002, 0x15dd, 0x103c, 0x83e7, 0xd3 },
++	/* GFXOFF is unstable on C6 parts with a VBIOS 113-RAVEN-114 */
++	{ 0x1002, 0x15dd, 0x1002, 0x15dd, 0xc6 },
+ 	{ 0, 0, 0, 0, 0 },
+ };
+ 
 -- 
-2.22.0
+2.26.2
 
 _______________________________________________
 amd-gfx mailing list
