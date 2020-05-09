@@ -2,52 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 203D51CC1CF
-	for <lists+amd-gfx@lfdr.de>; Sat,  9 May 2020 15:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD511CC3C5
+	for <lists+amd-gfx@lfdr.de>; Sat,  9 May 2020 20:52:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01AAE6E34C;
-	Sat,  9 May 2020 13:35:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29B176E392;
+	Sat,  9 May 2020 18:52:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A5846E353
- for <amd-gfx@lists.freedesktop.org>; Sat,  9 May 2020 13:35:46 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id e16so5180163wra.7
- for <amd-gfx@lists.freedesktop.org>; Sat, 09 May 2020 06:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=TYC+RVToqMKv2SfxT8G5JOuCt9k4rDSr4NzPE3lC1nE=;
- b=qQ9LU9NPMjmJEIIH/p05AX++FPYTMlbE1reaA+lOWIMVyTQjZbke9Nh60oQqfC/xP7
- norE4z/eA/RumgW5nX7RyeDTNIQLOIVhInVISuOXbeBjEaihQIxbrPRwzsbwnt7M/0XI
- tDF9hWNZwtlfYvpWr3zG4SKbmCvhi8k+lVq4oW1nNDm3Ev4Ppy7CaGntUykonrasANjG
- MI0+8i8gYcxlpDek8gIPYkh6Z7OIW2MO/a95pblpg9TPSxbOt0Q8X8CGAMbg1LtL3r9K
- HPjrcqgLzLK6JSuFgCxMoHLygsjQ+sXyeLAj5k4ZrnLuJ6by/m4PCpMHkvQBUksBYbAO
- 0GBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=TYC+RVToqMKv2SfxT8G5JOuCt9k4rDSr4NzPE3lC1nE=;
- b=Vi2J2b7Il4+qJVxZxYJQYl0i6F43mDrYQ6JqdbHgFkwoQ4W3fTbxLJnNjvvu7aSVb3
- NnWIbjX8Oky1vx0qgQ7pYoOtrT+/c5k2SAy9hES3HEA24Jo5r5T6cIh0u/iUwiDZR/v7
- nN/IzjXCPu+GBs+YvKPQpnELEp8/ESpVByw0zOzCOBiqQEFq/kj5LsAxYhCsjNxGIeNo
- Y3/DKvX376+5x08KGizGCgbTl4mLefwt/6n2pS4DH5+0BckVacRz/gtMBwxkTalAbmtO
- WLAw+AISdZXLCvi8+I+bCehun9DOZyk0FqH9ErZLjTMoEVz+dkOQh4y6rsTPaAjedo1t
- Z6Qw==
-X-Gm-Message-State: AGi0PuZzMLEe+bgHwldMGM0gQ0VCJ3Vlzy/LlCOqtpk/NfVMRJHJLqCI
- hmJ7I9SGkNcbV2mmY9/HLAvaZ1Vdo1lbsWa1MZLrm8gg
-X-Google-Smtp-Source: APiQypJGE6KN9oKNEy+SmIjOS175e+a13ORSkbUh4Uh+X/s0iqCgd1IB75O5IlXqKibyczTXI7XvPuLxXS3WFiIuHgY=
-X-Received: by 2002:adf:ee86:: with SMTP id b6mr9019687wro.419.1589031345593; 
- Sat, 09 May 2020 06:35:45 -0700 (PDT)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2072.outbound.protection.outlook.com [40.107.243.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FE846E0AD;
+ Sat,  9 May 2020 18:52:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R864ti6LqPVS1B3wTZX9CCvf0uN00YhmOtkhOubZkGDmRlyBR35/GYmM1iWoPxm3f6iQp/fTCbDkC/i8Uc7/IoIhcmVquFIrPoK9N0EAEL4P0vpfAncaWsVnrtwPxMiI/ulLdQcXWV9Nk2iZJW8JzNuNnr+6Sylm2GNC9klWzKjep6HSaK9vWgNGccwLj/rYkfOO6y3523iBATq9OrHnE+efy+hGQUhXSvazGfEklxyTan0U8qC60KJdj/XokadkNhja5O+VECgA7Mx6Nnckcw0EJZDQ4ASxOX70E24Y5J0pCTFxeOqoI1Ic4FgWHqoWDqaYKXBtEXlapSkB787plw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ddLhqsdBYVQtYUlz2eYTBDUfGpkYvsnvy1s7sgvSqP0=;
+ b=ctiPrpWy9QzXBFBQcymxzEN4A57iS2+4RIWfQEx0bdqgUji3Fv8fpZAmcu3VjNQ5KR3MK1ZmBn9gUUbr5W1KlhIbXAiuxgkMs5EkF6eac2PxOS/4P+ARm3p5ttjT71izKEU9HJCjrPoYdNjLYO5URVzT/dl2jU6vPjgZEmwdYt+cu8Ajro6QvRsQGFEtwO+0XuP/F21lXEvzrccghz9JazbnFbKwCtfbl4y1mPk2QgAs/VnH5SbvYz/nHGGUzB0c0w+40HZaPD5BaLrbnd+pgZGTVkD/hbpQOFL984kKrO+QEURu9nRbfnxvgtTu5dSU6xFQTIDbDhvDX7bF/V4QHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ddLhqsdBYVQtYUlz2eYTBDUfGpkYvsnvy1s7sgvSqP0=;
+ b=xNvWorOz6CD3q5lvVFYk03AXb8ZX2mVri9TSWP+B2VLxICTINvNNTWh4Nm9BSlzjn/wTzpls8BEUyhG3TW/vpei/165fpdyvD93feToscJ/GxnTvH5lMZbtN7kMCSQPWJsifxMACjfQe0zETr+uFRi1VEYDqllVn/ew8yqI3jHg=
+Received: from MWHPR22CA0018.namprd22.prod.outlook.com (2603:10b6:300:ef::28)
+ by CY4PR12MB1766.namprd12.prod.outlook.com (2603:10b6:903:122::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2979.26; Sat, 9 May
+ 2020 18:52:13 +0000
+Received: from CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:ef:cafe::e6) by MWHPR22CA0018.outlook.office365.com
+ (2603:10b6:300:ef::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2979.26 via Frontend
+ Transport; Sat, 9 May 2020 18:52:13 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT050.mail.protection.outlook.com (10.13.174.79) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2979.27 via Frontend Transport; Sat, 9 May 2020 18:52:12 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sat, 9 May 2020
+ 13:52:11 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sat, 9 May 2020
+ 13:52:11 -0500
+Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
+ SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5
+ via Frontend Transport; Sat, 9 May 2020 13:52:10 -0500
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+Subject: [PATCH 0/6] RFC Support hot device unplug in amdgpu
+Date: Sat, 9 May 2020 14:51:44 -0400
+Message-ID: <1589050310-19666-1-git-send-email-andrey.grodzovsky@amd.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20200509054834.21484-1-zhoubb.aaron@gmail.com>
-In-Reply-To: <20200509054834.21484-1-zhoubb.aaron@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Sat, 9 May 2020 09:35:34 -0400
-Message-ID: <CADnq5_Ms1oyxqODE4j_-4+WKwUbE6VthECRgA8cvsYBzMwzs5g@mail.gmail.com>
-Subject: Re: [PATCH] drm/admgpu: check HDMI HPD status after ddc probe
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(39860400002)(346002)(136003)(376002)(396003)(46966005)(33430700001)(81166007)(2906002)(82310400002)(966005)(2616005)(36756003)(4326008)(26005)(426003)(336012)(33440700001)(86362001)(186003)(44832011)(7696005)(478600001)(5660300002)(6666004)(54906003)(8936002)(82740400003)(47076004)(8676002)(356005)(70586007)(70206006)(110136005)(316002);
+ DIR:OUT; SFP:1101; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8ae27a34-671f-4fc9-2bb0-08d7f44a15c0
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1766:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1766495508E000D6E17F8924EAA30@CY4PR12MB1766.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Forefront-PRVS: 03982FDC1D
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: EiMvav51yb0cHhv+WZftKF3pB2ITGjfaFN+OLSGQGapSNJGyFfCIx7edbG+afqLn31M7H4hZdBp1tg3N5MSk7NOvEtKU2wMB9gL/X3PtwWkb6F/KzXj5YbzZFkkYlE7nzpZ8Lvebx0VSK7b3NF1yTQ5xp1lBAB+Q72WjFa0lC9doqaxsOQ5ey4B2mz1w2K31PvknstcbCWR5+olqVkmOHy9dSbLStvDI/Et9/4PLljHW6N33YVXAv5wroHOzKQoyOcp++ZsnTfBSJVYi+z6HWtJeinTwjN9fvCX+oGSFjXwCzZjh5fLYDXnMMh9+a/kZegdX3H/9V6Fw3n5FtZ1ibCui5WPDHV4oteC2E0rHTdh8/kOGZarTydt+CyzlWzQ6XH5MUBYMiqERKd9L9i0wS7LZlwx+OCIJ61pt38UoESplF0uIYpH9s7S7Exhl2vZzCz+Fp43XaipgqnMBY/yfOL279lNZm7xjPI+/BYjpA3guPiJNkTxT7xbeSoPLkpa+RJoAL9QcwXHKTF0NJl4U+sGtByLuCr6obig2CMqIeaCMwA+/HL+rnUY0/zH35g4zlezcSHmyQVbeEhTb7MUe7cBLSPFoVCtZN6zWqDc+kCs=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2020 18:52:12.4158 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ae27a34-671f-4fc9-2bb0-08d7f44a15c0
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1766
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,93 +102,82 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- zhoubinbin <zhoubinbin@uniontech.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, hristian.koenig@amd.com
+Cc: alexdeucher@gmail.com, daniel.vetter@ffwll.ch, michel@daenzer.net,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ ckoenig.leichtzumerken@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, May 9, 2020 at 1:48 AM Binbin Zhou <zhoubb.aaron@gmail.com> wrote:
->
-> Now, we check the presence of the EDID to determine if there is a monitor
-> present.
->
-> DVI-I connectors have both analog and digital encoders and the HPD pin
-> is only reliable on the digital part.
->
-> But when I pull out the Radeon HD8570's HDMI connector, the HDMI status
-> in system is still perform connected.
->
-> asd@asd-PC:~$ cat /sys/class/drm/card0-HDMI-A-1/status
-> connected
->
-> At this moment, if I want to read the EDID by /dev/i2c-X with I2C
-> driver, there is no EDID can be read.
->
-> Dmesg witha drm.debug=0x6, we can find the following message:
->
-> [drm:drm_helper_hpd_irq_event] [CONNECTOR:41:HDMI-A-1] status
-> updated from connected to connected
->
-> Based on the appearance, I thought to check the HPD status again, because
-> the HPD status is perform disconnected, after amdgpu_display_ddc_probe().
-> If the amdgpu_display_hpd_sense() return false, I think the HDMI connector
-> status is undefined, and just return disconnected simply.
->
-> I'm not sure if it happened to other AMD cards.
+This RFC is a more of a proof of concept then a fully working solution as there are a few unresolved issues we are hopping to get advise on from people on the mailing list.
+Until now extracting a card either by physical extraction (e.g. eGPU with thunderbold connection or by emulation through syfs -> /sys/bus/pci/devices/device_id/remove) 
+would cause random crashes in user apps. The random crashes in apps were mostly due to the app having mapped a device backed BO into it's adress space was still 
+trying to access the BO while the backing device was gone. 
+To answer this first problem Christian suggested to fix the handling of mapped memory in the clients when the device goes away by forcibly unmap all buffers 
+the user processes has by clearing their respective VMAs mapping the device BOs. Then when the VMAs try to fill in the page tables again we check in the fault handler 
+if the device is removed and if so, return an error. This will generate a SIGBUS to the application which can then cleanly terminate. 
+This indeed was done but this in turn created a problem of kernel OOPs were the OOPSes were due to the fact that while the app was terminating because of the SIGBUS 
+it would trigger use after free in the driver by calling to accesses device structures that were already released from the pci remove sequence. 
+This we handled by introducing a 'flush' seqence during device removal were we wait for drm file reference to drop to 0 meaning all user clients directly using this device terminated. 
+With this I was able to cleanly emulate device unplug with X and glxgears running and later emulate device plug back and restart of X and glxgears.
 
-This is the part I don't understand.  The logic already checks the HPD
-status in amdgpu_connector_check_hpd_status_unchanged().  Does it
-still report connected at that point?  After that it tires to read the
-EDID in amdgpu_display_ddc_probe().  If the monitor is disconnected,
-there should be no EDID so dret should be false.  We should try and
-figure out why the first HPD check reports connected and the EDID
-probe returns true.
+But this use case is only partial and as I see it all the use cases are as follwing and the questions it raises.
 
-Alex
+1) Application accesses a BO by opening drm file
+	1.1) BO is mapped into applications address space (BO is CPU visible) - this one we have a solution for by invaldating BO's CPU mapping casuing SIGBUS 
+	     and termination and waiting for drm file refcound to drop to 0 before releasing the device
+	1.2) BO is not mapped into applcation address space (BO is CPU invisible) - no solution yet because how we force the application to terminate in this case ?
 
->
-> Signed-off-by: Binbin Zhou <zhoubb.aaron@gmail.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> index f355d9a752d2..ee657db9a228 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> @@ -973,7 +973,7 @@ amdgpu_connector_dvi_detect(struct drm_connector *connector, bool force)
->         const struct drm_encoder_helper_funcs *encoder_funcs;
->         int r;
->         enum drm_connector_status ret = connector_status_disconnected;
-> -       bool dret = false, broken_edid = false;
-> +       bool dret = false, broken_edid = false, undefined_flag = false;
->
->         if (!drm_kms_helper_is_poll_worker()) {
->                 r = pm_runtime_get_sync(connector->dev->dev);
-> @@ -988,7 +988,12 @@ amdgpu_connector_dvi_detect(struct drm_connector *connector, bool force)
->
->         if (amdgpu_connector->ddc_bus)
->                 dret = amdgpu_display_ddc_probe(amdgpu_connector, false);
-> -       if (dret) {
-> +
-> +       /* Check the HDMI HPD pin status again */
-> +       if (!amdgpu_display_hpd_sense(adev, amdgpu_connector->hpd.hpd))
-> +               undefined_flag = true;
-> +
-> +       if (dret && !undefined_flag) {
->                 amdgpu_connector->detected_by_load = false;
->                 amdgpu_connector_free_edid(connector);
->                 amdgpu_connector_get_edid(connector);
-> --
-> 2.17.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+2) Application accesses a BO by importing a DMA-BUF
+	2.1)  BO is mapped into applications address space (BO is CPU visible) - solution is same as 1.1 but instead of waiting for drm file release we wait for the 
+	      imported dma-buf's file release
+	2.2)  BO is not mapped into applcation address space (BO is CPU invisible) - our solution is to invalidate GPUVM page tables and destroy backing storage for 
+              all exported BOs which will in turn casue VM faults in the importing device and then when the importing driver will try to re-attach the imported BO to 
+	      update mappings we return -ENODEV in the import hook which hopeffuly will cause the user app to terminate.
+
+3) Applcation opens a drm file or imports a dma-bud and holds a reference but never access any BO or does access but never more after device was unplug - how would we 
+   force this applcation to termiante before proceeding with device removal code ? Otherwise the wait in pci remove just hangs for ever.
+
+The attached patches adress 1.1, 2.1 and 2.2, for now only 1.1 fully tested and I am still testing the others but I will be happy for any advise on all the 
+described use cases and maybe some alternative and better (more generic) approach to this like maybe obtaining PIDs of relevant processes through some revere 
+mapping from device file and exported dma-buf files and send them SIGKILL - would this make more sense or any other method ? 
+
+Patches 1-3 address 1.1
+Patch 4 addresses 2.1
+Pathces 5-6 address 2.2
+
+Reference: https://gitlab.freedesktop.org/drm/amd/-/issues/1081
+
+Andrey Grodzovsky (6):
+  drm/ttm: Add unampping of the entire device address space
+  drm/amdgpu: Force unmap all user VMAs on device removal.
+  drm/amdgpu: Wait for all user clients
+  drm/amdgpu: Wait for all clients importing out dma-bufs.
+  drm/ttm: Add destroy flag in TTM BO eviction interface
+  drm/amdgpu: Use TTM MMs destroy interface
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h         |  3 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  7 +++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 27 ++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c     | 22 ++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c     |  9 +++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     |  4 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  | 17 +++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h  |  1 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c       |  2 +-
+ drivers/gpu/drm/qxl/qxl_object.c            |  4 +-
+ drivers/gpu/drm/radeon/radeon_object.c      |  2 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                | 63 +++++++++++++++++++++--------
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c         |  6 +--
+ include/drm/ttm/ttm_bo_api.h                |  2 +-
+ include/drm/ttm/ttm_bo_driver.h             |  2 +
+ 16 files changed, 139 insertions(+), 34 deletions(-)
+
+-- 
+2.7.4
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
