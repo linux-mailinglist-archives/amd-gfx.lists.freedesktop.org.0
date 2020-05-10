@@ -1,98 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D7EC1CC3D0
-	for <lists+amd-gfx@lfdr.de>; Sat,  9 May 2020 20:52:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC48A1CD271
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2020 09:19:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 639406E3BB;
-	Sat,  9 May 2020 18:52:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39A3F6E248;
+	Mon, 11 May 2020 07:19:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2082.outbound.protection.outlook.com [40.107.243.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4231A6E3AA;
- Sat,  9 May 2020 18:52:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Reyl+T6yfme4nl0QNheDO/Bv4N8euU3Sxf8J36lE9Za3WjVChJCMedu1NYbwKGTj9i38Rhd0lyErXSn+Xl/V8OFBnwwIn/1mUTSYgvrMFl8nw3zykuLtFNC9p+CBcMML7uxtpgokMbVTmZwgO+i+OZLQWjM6n1A9MovlcicqRE5N0P3Lq/Zd0787atom+ggtOh5ST1w38w0SuDxM+u0iSp8rljq8/hdZ+dIkiPGNz9ZuFau3mwNl2y2q3O8ZX+4SdMqcLkO3XCcy9T5hXggssBqgXTMYpapIy3CF9lw8b9K2J1zkLIhhjP3mzvOuAQbZcRgS3Kn7LU9DxtLmMQx07Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GTlcwSYa5JrGVeAxmWhBbCz16wSKrkzCfnRUtvpEEpk=;
- b=fDu4ecsaUV9qiFf3QK9rmfOXRXfuqLXNTvvLDaK+p2yUf5RIQ259+v6MGnQww91lhtjzkZ2nRRfpWvwpW4Pk8xib0pLRu5IVKkfDScnsQP4QsFfAV531jmH7z0d1T0NWZk2zLeP4IKbFNHhwSRAtdTfKp0+2m09u/lUbDVdwikYjiZaXkULA1pksvapy18aYQyHNXgXXPrNG7jTWW1uBwEgRA906cyu8VX9liLRXoXwqOSU7nYGV09w7ZdnrSMxjeG1LDZBro0/9k4N2jfnVJ9hDLm24u0fupAS9iivBTOudO5Yag+zA3BC/uM6lJIVS0L7wvQJIIjPsvvwbbR6xwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GTlcwSYa5JrGVeAxmWhBbCz16wSKrkzCfnRUtvpEEpk=;
- b=ZH0eLpmf3wZ9PLvTWtjz/4DbNjf6UW7z0/Mv0Lfww9sEM4WOKh6oVQeUwgkPJsMzuk2OmkzriDrmoUr7g7vzjeDKN/mtRelFn1V895eHuzYOCmugscKWkMAp9UfVWIVi7hjl2h+PxYVUeTBTLu78/IskIgo3JhdfVw3mv6HQHY0=
-Received: from MW2PR16CA0054.namprd16.prod.outlook.com (2603:10b6:907:1::31)
- by CY4PR12MB1749.namprd12.prod.outlook.com (2603:10b6:903:11d::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2979.34; Sat, 9 May
- 2020 18:52:21 +0000
-Received: from CO1NAM11FT024.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:1:cafe::11) by MW2PR16CA0054.outlook.office365.com
- (2603:10b6:907:1::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2979.27 via Frontend
- Transport; Sat, 9 May 2020 18:52:21 +0000
-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT024.mail.protection.outlook.com (10.13.174.162) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.2979.27 via Frontend Transport; Sat, 9 May 2020 18:52:21 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sat, 9 May 2020
- 13:52:20 -0500
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sat, 9 May 2020
- 13:52:19 -0500
-Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
- SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5
- via Frontend Transport; Sat, 9 May 2020 13:52:19 -0500
-From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-Subject: [PATCH 6/6] drm/amdgpu: Use TTM MMs destroy interface
-Date: Sat, 9 May 2020 14:51:50 -0400
-Message-ID: <1589050310-19666-7-git-send-email-andrey.grodzovsky@amd.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1589050310-19666-1-git-send-email-andrey.grodzovsky@amd.com>
-References: <1589050310-19666-1-git-send-email-andrey.grodzovsky@amd.com>
-MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFTY:;
- SFS:(4636009)(346002)(376002)(39860400002)(396003)(136003)(46966005)(33430700001)(186003)(26005)(36756003)(2616005)(5660300002)(47076004)(7696005)(44832011)(82740400003)(478600001)(336012)(6666004)(2906002)(356005)(8936002)(316002)(4326008)(33440700001)(426003)(82310400002)(86362001)(54906003)(8676002)(70586007)(70206006)(81166007)(110136005);
- DIR:OUT; SFP:1101; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4cb8c349-46fe-4eaa-fee5-08d7f44a1aec
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1749:
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1749E5BF5A3C3B8A270EAA4CEAA30@CY4PR12MB1749.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:33;
-X-Forefront-PRVS: 03982FDC1D
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s9RdyIQVkJYlz4WmvapVJDRS0D3diogpflmcuzlt0GTo5MS+G4qS38kh3nVslMAkWmzyyebcu2bGjAq35fXAO/VDEnjQRFnD1gh1FRim+JSqh8+2kX6wVB7Qfo2yygI2VEAY1hwbRIYrwzkK3emJW9758eu63cgrbFc93kAEUlIrM30TcLRNZXj000tz5NqwP0JuSCyNdW3gpab6hUAtecU566oZOFspdhSMq/emzO2B+/ArRwHxR9XW7928OhdQGL3Gav26n4CPP344O3y+D1JcT0J38R3+lUGl2HvgFdivqQLkajzbkpF3IpgQXElhhq1BoxgfOQAlh3td+/BbWeODwqzIvtw3HD2CtDQ/yKTmmT38w+dh0VzyQcnIoclqJwvqVTU7w0hFbwFQB69WvgMpJRyt9Eam9rDVtuRyOO7zRAz32lrxa9YUqjadK+KrW/bX0qRuBWoBnL1Wl3zOnBgywjWgmvE5IfTchgcplaYG6u1lv82xm+Rd80L8OB64ILW79bYPELhZ7HoNCr1PNJmb7we15SrrMr6I05MumfhnqLwb0SrDg26zdK4xPPyZBNrWaIpoKLblFQTjEiv5jg==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2020 18:52:21.1022 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4cb8c349-46fe-4eaa-fee5-08d7f44a1aec
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1749
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F89E8970B;
+ Sun, 10 May 2020 00:16:14 +0000 (UTC)
+Received: from localhost.localdomain (c-73-231-172-41.hsd1.ca.comcast.net
+ [73.231.172.41])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 924AF20735;
+ Sun, 10 May 2020 00:16:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1589069774;
+ bh=rcEsrsDljCvjlGQcVUHPCm18WB0VkP4lxtaiG5DbAyw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=W/CJP4rfOuAYUekGlno04mT1Bs4lSQLdciQD+tx1rHltWBYBtvFb+B4LUrQlbHjBw
+ UW04g6EtzWPm5sfdxjNzKUcndsgGiQnoKqJbwTmr1gRmhfy5sziX1U8aQ0QHjqGc6a
+ IYL4qvBvGH/VJgSMEmkxSCU36sL9Vj/k7/fB2KjE=
+Date: Sat, 9 May 2020 17:16:12 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [PATCH hmm v2 1/5] mm/hmm: make CONFIG_DEVICE_PRIVATE into a
+ select
+Message-Id: <20200509171612.94ee332ad4f494521d911ac0@linux-foundation.org>
+In-Reply-To: <1-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+References: <0-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+ <1-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+X-Mailman-Approved-At: Mon, 11 May 2020 07:19:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,73 +48,63 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexdeucher@gmail.com, daniel.vetter@ffwll.ch, michel@daenzer.net,
- Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- ckoenig.leichtzumerken@gmail.com
+Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ Ralph Campbell <rcampbell@nvidia.com>, "Yang, Philip" <Philip.Yang@amd.com>,
+ John Hubbard <jhubbard@nvidia.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>, linux-mm@kvack.org,
+ =?ISO-8859-1?Q?J=E9r=F4me?= Glisse <jglisse@redhat.com>,
+ Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  4 ++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  1 +
- 3 files changed, 16 insertions(+)
+On Fri,  1 May 2020 15:20:44 -0300 Jason Gunthorpe <jgg@ziepe.ca> wrote:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 11410a9..338b946 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1145,7 +1145,11 @@ amdgpu_pci_remove(struct pci_dev *pdev)
- 
- 	drm_dev_unplug(dev);
- 
-+	/* Will trigger SIGBUS on all subsequent CPU accesses */
- 	amdgpu_force_unmap_user_space_mappings(dev);
-+
-+	/* Will trigger VMFAULTs on all subsequent GPU successes */
-+	amdgpu_bo_destroy_mms(adev);
- 	wait_event(adev->user_clients_done,
- 		   !atomic_read(&dev->open_count) &&
- 		   !atomic_read(&adev->exported_dma_bufs_count));
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 82d43d0..7eac00b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1049,6 +1049,17 @@ int amdgpu_bo_evict_vram(struct amdgpu_device *adev)
- 	return ttm_bo_evict_mm(&adev->mman.bdev, TTM_PL_VRAM, false);
- }
- 
-+int amdgpu_bo_destroy_mms(struct amdgpu_device *adev)
-+{
-+	int r;
-+
-+	r = ttm_bo_evict_mm(&adev->mman.bdev, TTM_PL_VRAM, true);
-+	if (!r)
-+		return ttm_bo_evict_mm(&adev->mman.bdev, TTM_PL_TT, true);
-+
-+	return r;
-+}
-+
- static const char *amdgpu_vram_names[] = {
- 	"UNKNOWN",
- 	"GDDR1",
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-index 7d41f7b..4892265 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-@@ -269,6 +269,7 @@ int amdgpu_bo_pin_restricted(struct amdgpu_bo *bo, u32 domain,
- 			     u64 min_offset, u64 max_offset);
- int amdgpu_bo_unpin(struct amdgpu_bo *bo);
- int amdgpu_bo_evict_vram(struct amdgpu_device *adev);
-+int amdgpu_bo_destroy_mms(struct amdgpu_device *adev);
- int amdgpu_bo_init(struct amdgpu_device *adev);
- int amdgpu_bo_late_init(struct amdgpu_device *adev);
- void amdgpu_bo_fini(struct amdgpu_device *adev);
--- 
-2.7.4
+> From: Jason Gunthorpe <jgg@mellanox.com>
+> 
+> There is no reason for a user to select this or not directly - it should
+> be selected by drivers that are going to use the feature, similar to how
+> CONFIG_HMM_MIRROR works.
+> 
+> Currently all drivers provide a feature kconfig that will disable use of
+> DEVICE_PRIVATE in that driver, allowing users to avoid enabling this if
+> they don't want the overhead.
+> 
+
+I'm not too sure what's going on here, but i386 allmodconfig broke.
+
+kernel/resource.c: In function '__request_free_mem_region':
+kernel/resource.c:1653:28: error: 'PA_SECTION_SHIFT' undeclared (first use in this function); did you mean 'SECTIONS_PGSHIFT'?
+  size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
+
+because in current mainline, allmodconfig produces
+CONFIG_DEVICE_PRIVATE=n but in current linux-next, allmodconfig
+produces CONFIG_DEVICE_PRIVATE=y.  But CONFIG_SPARSEMEM=n so the build
+breaks.
+
+Bisection fingers this commit, but reverting it doesn't seem to fix
+things.  Could you take a look please?
+
+I'm seeing this from menuconfig:
+
+WARNING: unmet direct dependencies detected for DEVICE_PRIVATE
+  Depends on [n]: ZONE_DEVICE [=n]
+  Selected by [m]:
+  - DRM_NOUVEAU_SVM [=y] && HAS_IOMEM [=y] && DRM_NOUVEAU [=m] && MMU [=y] && STAGING [=y]
+  - TEST_HMM [=m] && RUNTIME_TESTING_MENU [=y] && TRANSPARENT_HUGEPAGE [=y]
+
+`select' rather sucks this way - easy to break dependencies.  Quite a
+number of years ago the Kconfig gurus were saying "avoid", but I don't
+recall the details.
+
+
 
 _______________________________________________
 amd-gfx mailing list
