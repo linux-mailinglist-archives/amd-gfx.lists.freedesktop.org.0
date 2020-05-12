@@ -2,66 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF28E1CF496
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2020 14:41:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3472F1CF5DC
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2020 15:31:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EAED6E12B;
-	Tue, 12 May 2020 12:41:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1C6289CF3;
+	Tue, 12 May 2020 13:31:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
- [IPv6:2607:f8b0:4864:20::744])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F03B289DA8
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2020 12:09:54 +0000 (UTC)
-Received: by mail-qk1-x744.google.com with SMTP id a136so4261850qkg.6
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2020 05:09:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=0E+w23r0rm59Sttp+Cx0/u2Fxv6Zhza30yRDAxBOwIM=;
- b=XRnT+4+TWQyHNmyGS+cSdisYi0zNeQpz5uND4j+3R32mzcUZGCtrhnUZduANVucjLs
- fPeDcZnf0jJZdFR18+rXBGExeB/xOfjO6j5ubgczrNSIabiDm3PpWhxkNKaizLg4FP0J
- sa50sZfadORNY04EFhJQrsRUYbYc9oVcbKS2sMEoCu11o9nPs7ZSUus3alQ+pAkKbMAV
- aWmgipf3DUd2+yiqRDwFz9qMTz3IWl1iCgmhXs/gmp7BDs1Z+Hp9W9wAYy5ZacibQ3td
- xqUancRvGLhZbF4o+FHI7mZTtBugkHa1LurSn3oFjsiEMnHhi/WOIzp2ySY0+TXNYike
- G58w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=0E+w23r0rm59Sttp+Cx0/u2Fxv6Zhza30yRDAxBOwIM=;
- b=Kdq/bDm9+v+1CxGszlj6nUfgQws5uI6mgeu/LV+TYw00CebBzbi2/xPiV/iA4nLRDU
- csOdx3kH8OWn+OUaYlYzBoDvSp1d2q4zS829DAjbPxf9FTYECWFhGQFHVNSdvQEgNKVd
- d5R2TdDXVwAZo9y4vmsc2uPKZVwM2pbIqXT9LQH4U0RAInrHyxZMRh11l4+4N0YQencR
- N0iHrc6KP70M9pyTQ7pWHClwYhZ9X6IZYLZJEje/ItZt2cVMRw8BHWJi4X+86hO+5xwa
- FAhhc1j0HxqxJuoKRE/Zu/irt86KwUgIjLckcxBrTEgKPhuWEuaXDXZdXhsTej8DISCT
- i61w==
-X-Gm-Message-State: AGi0Pub6qMvRepqNjstFnGjEFHyfdh42vSHDt8E6RQ7olTQedjzbDgc5
- PL6aWdbtk1qz6q0oplgC6ALYuQ==
-X-Google-Smtp-Source: APiQypKyJUyUDzstE5W+rLlCHv8FxVxdeZGVjAl1eRUGduGzlJpYQ83iKZf1ZsgDC1FOpB7AS1NLBw==
-X-Received: by 2002:a37:484c:: with SMTP id v73mr8524856qka.496.1589285394059; 
- Tue, 12 May 2020 05:09:54 -0700 (PDT)
-Received: from ziepe.ca
- (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.68.57.212])
- by smtp.gmail.com with ESMTPSA id y18sm12534463qty.41.2020.05.12.05.09.53
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 12 May 2020 05:09:53 -0700 (PDT)
-Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
- (envelope-from <jgg@ziepe.ca>)
- id 1jYTjM-0003lT-T7; Tue, 12 May 2020 09:09:52 -0300
-Date: Tue, 12 May 2020 09:09:52 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [RFC 02/17] dma-fence: basic lockdep annotations
-Message-ID: <20200512120952.GG26002@ziepe.ca>
-References: <20200512085944.222637-1-daniel.vetter@ffwll.ch>
- <20200512085944.222637-3-daniel.vetter@ffwll.ch>
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC08A89C2C;
+ Tue, 12 May 2020 12:48:08 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1jYUKM-00007g-AO; Tue, 12 May 2020 12:48:06 +0000
+From: Colin King <colin.king@canonical.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH][next] drm/amdgpu: remove redundant assignment to variable ret
+Date: Tue, 12 May 2020 13:48:06 +0100
+Message-Id: <20200512124806.195856-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200512085944.222637-3-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Mailman-Approved-At: Tue, 12 May 2020 12:41:18 +0000
+X-Mailman-Approved-At: Tue, 12 May 2020 13:31:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,44 +40,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 12, 2020 at 10:59:29AM +0200, Daniel Vetter wrote:
-> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-> index 6802125349fb..d5c0fd2efc70 100644
-> +++ b/drivers/dma-buf/dma-fence.c
-> @@ -110,6 +110,52 @@ u64 dma_fence_context_alloc(unsigned num)
->  }
->  EXPORT_SYMBOL(dma_fence_context_alloc);
->  
-> +#ifdef CONFIG_LOCKDEP
-> +struct lockdep_map	dma_fence_lockdep_map = {
-> +	.name = "dma_fence_map"
-> +};
-> +
-> +bool dma_fence_begin_signalling(void)
-> +{
+From: Colin Ian King <colin.king@canonical.com>
 
-Why is this global? I would have expected it to be connected to a
-single fence?
+The variable ret is being initializeed with a value that is never read
+and it is being updated later with a new value. The initialization
+is redundant and can be removed.
 
-It would also be alot nicer if this was some general lockdep feature,
-not tied to dmabuf. This exact problem also strikes anyone using
-completions, for instance, and the same solution should be
-applicable??
+Addresses-Coverity: ("Unused value")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Jason
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 90610b4f2c75..e9e59bc68c9f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -441,7 +441,7 @@ int amdgpu_xgmi_set_pstate(struct amdgpu_device *adev, int pstate)
+ 
+ int amdgpu_xgmi_update_topology(struct amdgpu_hive_info *hive, struct amdgpu_device *adev)
+ {
+-	int ret = -EINVAL;
++	int ret;
+ 
+ 	/* Each psp need to set the latest topology */
+ 	ret = psp_xgmi_set_topology_info(&adev->psp,
+-- 
+2.25.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
