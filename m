@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 593151D58CE
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 490681D58D0
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07F366ED21;
-	Fri, 15 May 2020 18:13:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F6A46ED26;
+	Fri, 15 May 2020 18:13:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
  (mail-bn7nam10on2079.outbound.protection.outlook.com [40.107.92.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F7396ED1E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF4EA6ED20
  for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O6ZUM4DFLWMRPZGcuO+zOWLwJqbGQGNBeRZfQi0DMLrFf69p/bWF9c0cfMKFr8xzAMYejoxlsmraEOqPZB4GzcBLnuWog0HF7QX15SFIf/PMW8jyT6dZm+Pci0WxfqmTzcwGieo/qlNQJ0Lm5nZKR8Wiy8MXHfUOhk25kITZY/BK0qVDy8c6Znmk6yPuyM8aO5Nkt5B4yW/Xqa6YaXPXIRBjxJUWTE26QMpDjCEUCFeR9awVfMfI96FhSuLvSFeHFoV+pttl7ZjZTHbrTN62flmyX8eeNKpesvym3GxXlyEMbfbFD5/uWuwrOjdWVkysGKeUJbvxhfM/NF4VZn6LPg==
+ b=XvHsgnyr0CJ52RIi8OvrOszDSx6+ecf+5AMpcOOIfK6oLu66bjYsYo7F7I+Cf74j9hxvBLl1VXxbhcJqlnQLvQNGviV40V0aqBYADTv+t766NXXR5TF+BlU48LW76NlbJQb0se2/NgInsC7TafKpJaMyGHaNZM6TVU7Yd/HtJQa8KW+5JWMuCZKvk1kBHtQlMfDaaCeAj3FCkXv6hp7UseHhgS5cFrL4jOgJSiSVXNZyqCIgGIot7FRzrto+h2e1U2ccPlURMk1i7R3C9zTG8oHBsNxa0oXWsHpUfxZTc1IkiPvMi4LatjgP6SEjmcA9Y9Avvz9ZYO4Puj8oi3iliQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JY6coKBSjiEu/L4fGQ8odg7J1+u4OgiIdNnezi4r5Rs=;
- b=cLb4CXD475D8bJl2O3Fmtemg+Wkx+fbWFSfrClxotSP6h9VA7rpOVMxIc/94GyegOROuG3Erxd9O8JG7I6vo/UGBrMTrINSwF29/aM2ZymY49wfLyfkYY1TwHMkaizux7IclkJqiywj1nNSHHPPO1W11wVxRIY0ymAyAT0bRmAtF5u+sNpXNmApBOTFD/HUf4BlPHNBUdbWJFwDDTdz6SXmisuRcfYwDNBKJjkBVc/MkhKkYYWwB1ZvxK8x0FqXQWSDREaTo1bIEvFlxRqntZmfEtooWjvSntuK0rEXAldWOjitxrjUGxDElqCiqdbwV8GxbuvrF+8TQi97c81uNRQ==
+ bh=3yKE4KdGa++Jg8JXeSWXVD8ua3OmdJA1DPNTRJVBCDM=;
+ b=j/GJKVlXWoMEudtE6SgIgpgr+wdNclpDp7LvXZ615lTT2gIXWzG9KVRvjkBychJzMzuvy/8cSdjbX9F6PC8aG1yW3T+vmyA6uDUgClIdvao9qdCJHBDcEa7HK48SnMymFcqPW2nt5GhDxjbHT2v27sIb2riXv9ytOfvOZoXcC8EWHHWJllgVkn/QHSGUpnUgsiA5HNVNLRsRy/Pt6OgT+5aMhudZTsa/25maFKN4dRshN//LwTUbX6H86E/qrqqfOIDPRpux2deRRXooH8HWCx5bRsC7Ir1TiIG8GG3xspmJ408LB5/TYMDKGPmDuZrmWc5V+bFiRpIevAn8wAacBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JY6coKBSjiEu/L4fGQ8odg7J1+u4OgiIdNnezi4r5Rs=;
- b=Lokp5CjS0d0LrJcYOE2KXgWp8auMNKcURydQIBlsTeafSDaKfsnspa5cHi6FzVQVpAfXgYDu0hlN8KN5ygC3DdTVfYWyu7ak5SRzKu0XFirzmPbB43nyZQ6pxOiBJc2n0yStxHPhW4Fos/CS3ZZSlBuHBfPTnLrslCxnRjo4S+4=
+ bh=3yKE4KdGa++Jg8JXeSWXVD8ua3OmdJA1DPNTRJVBCDM=;
+ b=hlmyWy7i2IjV7ri0x3gW2NjFE+5gG3YQ2LYZodT1QvlE64QQHocW0ucJxSPqwk6sUTUwlAhyZ/hQISxUS+2lz4gumj69NtM1Em56NmJKpe8l5fX6ins9eSLhft28/O58DPFiQ9mTCD/zgKXKmSPrsdcFI3Cl2CjeAUc7IArpNrU=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,16 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
  by CH2PR12MB3848.namprd12.prod.outlook.com (2603:10b6:610:16::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.20; Fri, 15 May
- 2020 18:13:53 +0000
+ 2020 18:13:54 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580%9]) with mapi id 15.20.3000.022; Fri, 15 May 2020
  18:13:53 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 15/27] drm/amd/display: DP link layer test 4.2.1.1 fix due to
- specs update
-Date: Fri, 15 May 2020 14:13:02 -0400
-Message-Id: <20200515181315.1237251-16-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 16/27] drm/amd/display: vbios data table packing
+Date: Fri, 15 May 2020 14:13:03 -0400
+Message-Id: <20200515181315.1237251-17-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
 References: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
@@ -57,33 +56,33 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::2) by
  BN7PR02CA0034.namprd02.prod.outlook.com (2603:10b6:408:20::47) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:51 +0000
+ 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:52 +0000
 X-Mailer: git-send-email 2.26.2
 X-Originating-IP: [2607:fea8:56a0:11a1::2]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 4bd0fe08-3722-4b5a-19e7-08d7f8fbb951
+X-MS-Office365-Filtering-Correlation-Id: 65c794e5-99a9-407b-6dfe-08d7f8fbb9f3
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3848:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB384890616D54D723A1DFC8C598BD0@CH2PR12MB3848.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB3848A7E7158CBA7766C34DB098BD0@CH2PR12MB3848.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
 X-Forefront-PRVS: 04041A2886
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vXMXgYCnShmRhj8WJcZrBQ1CPFH2u0D6yBdGI67fFaE++J7cLlG+9Q9XrMyEczWmIgHRDL/s7YBuKIHj4NTaesNerzJveFkWy9D6TyyI4AgAGtiN+NrG2bJZuCgC/F0eVjEE9edMsDOSuuOOVQgPWHyru7FBXRE8cpWg78ls9Lt81rfRzG3cwEDUuzV2qr3x72RpfZNFucog9mjpuIqAG/HuvSPZKa5tIy4XjMUjOgfu3fz/d83T05GA5i9XUXbaLSo0g6Sonws+sBypQjN1arulbmWcBnjZBlR19Wq61XZXQVa1fks4OEki23AkkHBZe+4XEm1TawSC89WrHg4wtCxaKYsg/D7nLCpD/pc5+PV9gZOO0zS8pioB3WSRLJMYAwptHxt2lym3hbYzxipZPmNPqd5oF/JQowp++jurZg0X/PGQprFu+MpJHeOiF7RE
+X-Microsoft-Antispam-Message-Info: 6STGWNso9/2KJTSDwTR/TxfSmPzJxRY9GW66N7GiWeEtBP509IpW+u7Bl3mVk36OyhorTuMQ4w8MSX3PxqB9yHloa5sf36Tbk4Ns7yeKrpKK7abTb39FDVa/V/tOG1IZvd87+f/8i4Z8AqToUj8qBvCFl+esHC37kZfFrW4UGXu79A9cyr9NnSw7Dp/cjG6HhhqEXCkEL6bv1AaLCiIEaYkdLuZLY1GgTh6Z3GkA47+NWOJrpfIG5tFD/GzUZ4H4m35e3CZOm00OtpFlD/faTp/MOHwtLy/Jjy/GVtkY147cafIy8Y9EIlGc8ULvF81GjlkJT8oxrhrfcIM+Nw3YoeYtosJ9GgPd8m6ksomLGDleKN5cfDRWUaOZ8wfX5bU8RRbCVtLwLHd8vjePiExR16/KnKX1UV28aUPRR97c0IHxTVOOp/Dt/IRbitPz84Z6
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(346002)(366004)(39860400002)(136003)(396003)(54906003)(86362001)(2906002)(186003)(8936002)(52116002)(6506007)(6512007)(8676002)(36756003)(316002)(5660300002)(15650500001)(16526019)(4326008)(6916009)(66556008)(478600001)(1076003)(66946007)(6486002)(66476007)(6666004)(30864003)(2616005);
+ SFS:(4636009)(376002)(346002)(366004)(39860400002)(136003)(396003)(54906003)(86362001)(2906002)(186003)(8936002)(52116002)(6506007)(6512007)(8676002)(36756003)(316002)(5660300002)(16526019)(4326008)(6916009)(66556008)(478600001)(1076003)(66946007)(6486002)(66476007)(6666004)(2616005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: pceKfv07VwLPLe5RjGiMjwPrsh21FloQ6ZCma8fNweCeYeCCsWGpgYQo0Ona7crNzRBbpBXQrKcFhEwQ5j1UXLyscoEkkT4Jk7tLL8FYnqpUZnwyiB8cAlY6OWG9uXhr4zX0UjWyDojNKPQUhU71XsA8fEhZgXXAO0r8JDDCB/Ni9ilSh4c6N/gTRA85zKjsiOiRVEaggjsIJnXCtg94R0d3cz5iaW2Ecq0Hyh+pnn/nPqmLloKUKwFVN41dEYvFL506XHg0EATUoSF6M4UyeLzsU2mEK7xTXlcmrkfZ1swJXDRL7uqCrAZgZJX3YBvCBBJcXGjl96jQYKzacRUq87mqgWA3ID/bENgUqM3W4ZwM/xvegAKWsGWQS1KYCfT/EOMraxXMwsSok9eRip88+9xg252ep8/Jklkp5WKlRQvA5uwThmGIMnwazPV5zieYt2NtIfLMgWtIgo0E485a2lvTM9a/Kvd10QmYGIcDdRROuCmbrbI5GI0DiG3ivi0U
+X-MS-Exchange-AntiSpam-MessageData: ooG3oZ8ptrjSgEhgI5tSvb68N2834/SUxYxxi2yv1gUajR/dDfu5TaTVuRxehavfQfMHlfWsO3rtYnoGyG3rWSWQWRyLhrqgKoE0VYFhI6QyofIu7I+igI0nmantDVAJv3i1XxL0itfttgSk0fgZO14ukDV0AloHvoJhr8EXDaCkXB9vHnWZPeg/xEHU9itlDf8aGm3gNRXQ/QeCeodN0CwkUZVTllPH0HEw+IUITkcQq59rMc7mUEmbyGcaTseYyGpZ0rTy0wJqzcVkZWvhBryAIG32uD+SsF92yq0MVHRgMs+IInQ0NF1qdXOeEFLCciH+1OK9nE/V0NCsm6J1yJIhkKKZt8ZFCT7XXdXxG3+8V0Z+XhBobG3vQlpAV0z4TEtnrKb4PwPwYxirt5MSHCyj8dkB3LG5fKTwONYg13LApZvGfou3kMOb9lRaNyO2Xr+Z0Jowj9wALAqKZ4pw07Jr3Xl27TZ4VRUnfN3ce3/IXmijM4AABrdxACSqIepc
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4bd0fe08-3722-4b5a-19e7-08d7f8fbb951
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:52.8054 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65c794e5-99a9-407b-6dfe-08d7f8fbb9f3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:53.8304 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8RAsLDSEtsIq2kIRaHa7DQssrP+uI15dL+YvKSnHnumOURtSnqNldQ5acesRG61ZuTqIT+aqyWWNDprqGk5zzg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8Sk0traduTdlCH1a7PR7lPJRYqAgT6Fqj0d6BQHa1hrMDBIoNZ061s6PR7QOGZoOhhOUpmBe7Ap1RKrmZHGCww==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3848
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,298 +95,175 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
- Wenjing Liu <wenjing.liu@amd.com>, Aurabindo.Pillai@amd.com,
- Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com
+Cc: Jake Wang <haonan.wang2@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
+ Tony Cheng <Tony.Cheng@amd.com>, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wenjing Liu <wenjing.liu@amd.com>
+From: Jake Wang <haonan.wang2@amd.com>
 
-[why]
-DP link layer CTS specs updated to change the test parameters in test
-4.2.1.1.
-Before it requires source to delay 400us on aux no reply.
-With the specs updates Errata5, it requires source to delay 3.2ms
-(based on LTTPR aux timeout)
-This causes our test to fail after updating with the latest test
-equipment firmware.
+[WHY]
+Currently we're copying the entire bios image into vbios.  Loading time
+for FW with entire bios(54272 bytes) is 105138us.  By copying only the
+sections of bios we're using(4436 bytes), loading time drops to 104326us
+which saves us 812us.
 
-[how]
-the change is to allow LTTPR 3.2ms aux timeout delay by default.
-And only set to 400us if LTTPR is not present.
-Before this piece of logic is interwined with LTTPR support.
-Now we will default to 3.2ms aux timeout even if LTTPR support is not
-enabled by driver.
+[HOW]
+ROM header, master data table, and all data tables will be packed in
+contiguous manner. The offsets for the data tables are remapped to their
+newly packed location.
 
-Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Signed-off-by: Jake Wang <haonan.wang2@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Acked-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c |  3 +-
- .../gpu/drm/amd/display/dc/core/dc_link_ddc.c | 13 ++--
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 59 +++++++++----------
- .../drm/amd/display/dc/core/dc_link_hwss.c    |  2 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  1 +
- .../gpu/drm/amd/display/dc/inc/dc_link_ddc.h  |  2 +-
- .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |  2 +-
- 8 files changed, 42 insertions(+), 42 deletions(-)
+ .../drm/amd/display/dc/bios/bios_parser2.c    | 98 +++++++++++++++++++
+ .../gpu/drm/amd/display/dc/dc_bios_types.h    |  4 +-
+ 2 files changed, 101 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index c08de6823db4..e920d046f026 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -691,10 +691,9 @@ static bool detect_dp(struct dc_link *link,
- 	if (sink_caps->transaction_type == DDC_TRANSACTION_TYPE_I2C_OVER_AUX) {
- 		sink_caps->signal = SIGNAL_TYPE_DISPLAY_PORT;
- 
--		dpcd_set_source_specific_data(link);
--
- 		if (!detect_dp_sink_caps(link))
- 			return false;
-+		dpcd_set_source_specific_data(link);
- 
- 		if (is_mst_supported(link)) {
- 			sink_caps->signal = SIGNAL_TYPE_DISPLAY_PORT_MST;
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-index aefd29a440b5..242ed5976cdb 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-@@ -648,16 +648,17 @@ bool dc_link_aux_transfer_with_retries(struct ddc_service *ddc,
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index 37fa7b48250e..7fb62780e8cf 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -1877,6 +1877,103 @@ static enum bp_result bios_get_board_layout_info(
+ 	return BP_RESULT_OK;
  }
  
- 
--uint32_t dc_link_aux_configure_timeout(struct ddc_service *ddc,
-+bool dc_link_aux_try_to_configure_timeout(struct ddc_service *ddc,
- 		uint32_t timeout)
- {
--	uint32_t prev_timeout = 0;
-+	bool result = false;
- 	struct ddc *ddc_pin = ddc->ddc_pin;
- 
--	if (ddc->ctx->dc->res_pool->engines[ddc_pin->pin_data->en]->funcs->configure_timeout)
--		prev_timeout =
--				ddc->ctx->dc->res_pool->engines[ddc_pin->pin_data->en]->funcs->configure_timeout(ddc, timeout);
--	return prev_timeout;
-+	if (ddc->ctx->dc->res_pool->engines[ddc_pin->pin_data->en]->funcs->configure_timeout) {
-+		ddc->ctx->dc->res_pool->engines[ddc_pin->pin_data->en]->funcs->configure_timeout(ddc, timeout);
-+		result = true;
-+	}
-+	return result;
- }
- 
- /*test only function*/
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 6db1f16957ac..b578687f2b38 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -245,7 +245,7 @@ static uint8_t dc_dp_initialize_scrambling_data_symbols(
- 
- static inline bool is_repeater(struct dc_link *link, uint32_t offset)
- {
--	return (!link->is_lttpr_mode_transparent && offset != 0);
-+	return (link->lttpr_non_transparent_mode && offset != 0);
- }
- 
- static void dpcd_set_lt_pattern_and_lane_settings(
-@@ -1038,7 +1038,7 @@ static enum link_training_result perform_clock_recovery_sequence(
- 		/* 3. wait receiver to lock-on*/
- 		wait_time_microsec = lt_settings->cr_pattern_time;
- 
--		if (!link->is_lttpr_mode_transparent)
-+		if (link->lttpr_non_transparent_mode)
- 			wait_time_microsec = TRAINING_AUX_RD_INTERVAL;
- 
- 		wait_for_training_aux_rd_interval(
-@@ -1268,7 +1268,7 @@ static void configure_lttpr_mode(struct dc_link *link)
- 		link->dpcd_caps.lttpr_caps.mode = repeater_mode;
- 	}
- 
--	if (!link->is_lttpr_mode_transparent) {
-+	if (link->lttpr_non_transparent_mode) {
- 
- 		DC_LOG_HW_LINK_TRAINING("%s\n Set LTTPR to Non Transparent Mode\n", __func__);
- 
-@@ -1473,7 +1473,7 @@ enum link_training_result dc_link_dp_perform_link_training(
- 			&lt_settings);
- 
- 	/* Configure lttpr mode */
--	if (!link->is_lttpr_mode_transparent)
-+	if (link->lttpr_non_transparent_mode)
- 		configure_lttpr_mode(link);
- 
- 	if (link->ctx->dc->work_arounds.lt_early_cr_pattern)
-@@ -1489,7 +1489,7 @@ enum link_training_result dc_link_dp_perform_link_training(
- 
- 	dp_set_fec_ready(link, fec_enable);
- 
--	if (!link->is_lttpr_mode_transparent) {
-+	if (link->lttpr_non_transparent_mode) {
- 
- 		/* 2. perform link training (set link training done
- 		 *  to false is done as well)
-@@ -1756,7 +1756,7 @@ static struct dc_link_settings get_max_link_cap(struct dc_link *link)
- 	 * account for lttpr repeaters cap
- 	 * notes: repeaters do not snoop in the DPRX Capabilities addresses (3.6.3).
- 	 */
--	if (!link->is_lttpr_mode_transparent) {
-+	if (link->lttpr_non_transparent_mode) {
- 		if (link->dpcd_caps.lttpr_caps.max_lane_count < max_link_cap.lane_count)
- 			max_link_cap.lane_count = link->dpcd_caps.lttpr_caps.max_lane_count;
- 
-@@ -1914,7 +1914,7 @@ bool dp_verify_link_cap(
- 	max_link_cap = get_max_link_cap(link);
- 
- 	/* Grant extended timeout request */
--	if (!link->is_lttpr_mode_transparent && link->dpcd_caps.lttpr_caps.max_ext_timeout > 0) {
-+	if (link->lttpr_non_transparent_mode && link->dpcd_caps.lttpr_caps.max_ext_timeout > 0) {
- 		uint8_t grant = link->dpcd_caps.lttpr_caps.max_ext_timeout & 0x80;
- 
- 		core_link_write_dpcd(link, DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT, &grant, sizeof(grant));
-@@ -3255,17 +3255,7 @@ static bool retrieve_link_cap(struct dc_link *link)
- 	uint32_t read_dpcd_retry_cnt = 3;
- 	int i;
- 	struct dp_sink_hw_fw_revision dp_hw_fw_revision;
--
--	/* Set default timeout to 3.2ms and read LTTPR capabilities */
--	bool ext_timeout_support = link->dc->caps.extended_aux_timeout_support &&
--			!link->dc->config.disable_extended_timeout_support;
--
--	link->is_lttpr_mode_transparent = true;
--
--	if (ext_timeout_support) {
--		dc_link_aux_configure_timeout(link->ddc,
--					LINK_AUX_DEFAULT_EXTENDED_TIMEOUT_PERIOD);
--	}
-+	bool is_lttpr_present = false;
- 
- 	memset(dpcd_data, '\0', sizeof(dpcd_data));
- 	memset(lttpr_dpcd_data, '\0', sizeof(lttpr_dpcd_data));
-@@ -3274,6 +3264,13 @@ static bool retrieve_link_cap(struct dc_link *link)
- 	memset(&edp_config_cap, '\0',
- 		sizeof(union edp_configuration_cap));
- 
-+	/* if extended timeout is supported in hardware,
-+	 * default to LTTPR timeout (3.2ms) first as a W/A for DP link layer
-+	 * CTS 4.2.1.1 regression introduced by CTS specs requirement update.
++static uint16_t bios_parser_pack_data_tables(
++	struct dc_bios *dcb,
++	void *dst)
++{
++	struct bios_parser *bp = BP_FROM_DCB(dcb);
++	struct atom_rom_header_v2_2 *rom_header = NULL;
++	struct atom_rom_header_v2_2 *packed_rom_header = NULL;
++	struct atom_common_table_header *data_tbl_header = NULL;
++	struct atom_master_list_of_data_tables_v2_1 *data_tbl_list = NULL;
++	struct atom_master_data_table_v2_1 *packed_master_data_tbl = NULL;
++	struct atom_data_revision tbl_rev = {0};
++	uint16_t *rom_header_offset = NULL;
++	const uint8_t *bios = bp->base.bios;
++	uint8_t *bios_dst = (uint8_t *)dst;
++	uint16_t packed_rom_header_offset;
++	uint16_t packed_masterdatatable_offset;
++	uint16_t packed_data_tbl_offset;
++	uint16_t data_tbl_offset;
++	unsigned int i;
++
++	rom_header_offset =
++		GET_IMAGE(uint16_t, OFFSET_TO_ATOM_ROM_HEADER_POINTER);
++
++	if (!rom_header_offset)
++		return 0;
++
++	rom_header = GET_IMAGE(struct atom_rom_header_v2_2, *rom_header_offset);
++
++	if (!rom_header)
++		return 0;
++
++	get_atom_data_table_revision(&rom_header->table_header, &tbl_rev);
++	if (!(tbl_rev.major >= 2 && tbl_rev.minor >= 2))
++		return 0;
++
++	get_atom_data_table_revision(&bp->master_data_tbl->table_header, &tbl_rev);
++	if (!(tbl_rev.major >= 2 && tbl_rev.minor >= 1))
++		return 0;
++
++	packed_rom_header_offset =
++		OFFSET_TO_ATOM_ROM_HEADER_POINTER + sizeof(*rom_header_offset);
++
++	packed_masterdatatable_offset =
++		packed_rom_header_offset + rom_header->table_header.structuresize;
++
++	packed_data_tbl_offset =
++		packed_masterdatatable_offset +
++		bp->master_data_tbl->table_header.structuresize;
++
++	packed_rom_header =
++		(struct atom_rom_header_v2_2 *)(bios_dst + packed_rom_header_offset);
++
++	packed_master_data_tbl =
++		(struct atom_master_data_table_v2_1 *)(bios_dst +
++		packed_masterdatatable_offset);
++
++	memcpy(bios_dst, bios, OFFSET_TO_ATOM_ROM_HEADER_POINTER);
++
++	*((uint16_t *)(bios_dst + OFFSET_TO_ATOM_ROM_HEADER_POINTER)) =
++		packed_rom_header_offset;
++
++	memcpy(bios_dst + packed_rom_header_offset, rom_header,
++		rom_header->table_header.structuresize);
++
++	packed_rom_header->masterdatatable_offset = packed_masterdatatable_offset;
++
++	memcpy(&packed_master_data_tbl->table_header,
++		&bp->master_data_tbl->table_header,
++		sizeof(bp->master_data_tbl->table_header));
++
++	data_tbl_list = &bp->master_data_tbl->listOfdatatables;
++
++	/* Each data table offset in data table list is 2 bytes,
++	 * we can use that to iterate through listOfdatatables
++	 * without knowing the name of each member.
 +	 */
-+	dc_link_aux_try_to_configure_timeout(link->ddc,
-+			LINK_AUX_DEFAULT_LTTPR_TIMEOUT_PERIOD);
++	for (i = 0; i < sizeof(*data_tbl_list)/sizeof(uint16_t); i++) {
++		data_tbl_offset = *((uint16_t *)data_tbl_list + i);
 +
- 	status = core_link_read_dpcd(link, DP_SET_POWER,
- 				&dpcd_power_state, sizeof(dpcd_power_state));
++		if (data_tbl_offset) {
++			data_tbl_header =
++				(struct atom_common_table_header *)(bios + data_tbl_offset);
++
++			memcpy(bios_dst + packed_data_tbl_offset, data_tbl_header,
++				data_tbl_header->structuresize);
++
++			*((uint16_t *)&packed_master_data_tbl->listOfdatatables + i) =
++				packed_data_tbl_offset;
++
++			packed_data_tbl_offset += data_tbl_header->structuresize;
++		} else {
++			*((uint16_t *)&packed_master_data_tbl->listOfdatatables + i) = 0;
++		}
++	}
++	return packed_data_tbl_offset;
++}
++
+ static const struct dc_vbios_funcs vbios_funcs = {
+ 	.get_connectors_number = bios_parser_get_connectors_number,
  
-@@ -3300,8 +3297,9 @@ static bool retrieve_link_cap(struct dc_link *link)
- 		return false;
- 	}
+@@ -1925,6 +2022,7 @@ static const struct dc_vbios_funcs vbios_funcs = {
+ 	.bios_parser_destroy = firmware_parser_destroy,
  
--	if (ext_timeout_support) {
+ 	.get_board_layout_info = bios_get_board_layout_info,
++	.pack_data_tables = bios_parser_pack_data_tables,
+ };
+ 
+ static bool bios_parser2_construct(
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
+index b1dd0d60d98e..441768aa53ff 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
+@@ -89,7 +89,6 @@ struct dc_vbios_funcs {
+ 	bool (*is_device_id_supported)(
+ 		struct dc_bios *bios,
+ 		struct device_id id);
 -
-+	if (link->dc->caps.extended_aux_timeout_support) {
-+		/* By reading LTTPR capability, RX assumes that we will enable LTTPR extended aux timeout if LTTPR is present.
-+		 * Therefore, only query LTTPR capability when LTTPR extended aux timeout is supported by hardware */
- 		status = core_link_read_dpcd(
- 				link,
- 				DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV,
-@@ -3332,20 +3330,21 @@ static bool retrieve_link_cap(struct dc_link *link)
- 				lttpr_dpcd_data[DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT -
- 								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+ 	/* COMMANDS */
  
--		if (link->dpcd_caps.lttpr_caps.phy_repeater_cnt > 0 &&
-+		is_lttpr_present = (link->dpcd_caps.lttpr_caps.phy_repeater_cnt > 0 &&
- 				link->dpcd_caps.lttpr_caps.max_lane_count > 0 &&
- 				link->dpcd_caps.lttpr_caps.max_lane_count <= 4 &&
--				link->dpcd_caps.lttpr_caps.revision.raw >= 0x14) {
--			link->is_lttpr_mode_transparent = false;
--		} else {
--			/*No lttpr reset timeout to its default value*/
--			link->is_lttpr_mode_transparent = true;
--			dc_link_aux_configure_timeout(link->ddc, LINK_AUX_DEFAULT_TIMEOUT_PERIOD);
--		}
--
--		CONN_DATA_DETECT(link, lttpr_dpcd_data, sizeof(lttpr_dpcd_data), "LTTPR Caps: ");
-+				link->dpcd_caps.lttpr_caps.revision.raw >= 0x14);
-+		if (is_lttpr_present)
-+			CONN_DATA_DETECT(link, lttpr_dpcd_data, sizeof(lttpr_dpcd_data), "LTTPR Caps: ");
- 	}
+ 	enum bp_result (*encoder_control)(
+@@ -131,6 +130,9 @@ struct dc_vbios_funcs {
+ 	enum bp_result (*get_board_layout_info)(
+ 		struct dc_bios *dcb,
+ 		struct board_layout_info *board_layout_info);
++	uint16_t (*pack_data_tables)(
++		struct dc_bios *dcb,
++		void *dst);
+ };
  
-+	/* decide lttpr non transparent mode */
-+	link->lttpr_non_transparent_mode = is_lttpr_present && link->dc->config.allow_lttpr_non_transparent_mode;
-+
-+	if (!is_lttpr_present)
-+		dc_link_aux_try_to_configure_timeout(link->ddc, LINK_AUX_DEFAULT_TIMEOUT_PERIOD);
-+
-+
- 	{
- 		union training_aux_rd_interval aux_rd_interval;
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
-index 6590f51caefa..6bbe4e775832 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
-@@ -281,7 +281,7 @@ void dp_set_hw_lane_settings(
- {
- 	struct link_encoder *encoder = link->link_enc;
- 
--	if (!link->is_lttpr_mode_transparent && !is_immediate_downstream(link, offset))
-+	if (link->lttpr_non_transparent_mode && !is_immediate_downstream(link, offset))
- 		return;
- 
- 	/* call Encoder to set lane settings */
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index a4b30233aee3..391691c70805 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -274,7 +274,7 @@ struct dc_config {
- 	bool edp_not_connected;
- 	bool force_enum_edp;
- 	bool forced_clocks;
--	bool disable_extended_timeout_support; // Used to disable extended timeout and lttpr feature as well
-+	bool allow_lttpr_non_transparent_mode;
- 	bool multi_mon_pp_mclk_switch;
- 	bool disable_dmcu;
- 	bool enable_4to1MPC;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index f63fc25aa6c5..5c60c2f9779a 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -101,6 +101,7 @@ struct dc_link {
- 	bool aux_access_disabled;
- 	bool sync_lt_in_progress;
- 	bool is_lttpr_mode_transparent;
-+	bool lttpr_non_transparent_mode;
- 
- 	/* caps is the same as reported_link_cap. link_traing use
- 	 * reported_link_cap. Will clean up.  TODO
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/dc_link_ddc.h b/drivers/gpu/drm/amd/display/dc/inc/dc_link_ddc.h
-index de2d160114db..b324e13f3f78 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/dc_link_ddc.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/dc_link_ddc.h
-@@ -105,7 +105,7 @@ int dc_link_aux_transfer_raw(struct ddc_service *ddc,
- bool dc_link_aux_transfer_with_retries(struct ddc_service *ddc,
- 		struct aux_payload *payload);
- 
--uint32_t dc_link_aux_configure_timeout(struct ddc_service *ddc,
-+bool dc_link_aux_try_to_configure_timeout(struct ddc_service *ddc,
- 		uint32_t timeout);
- 
- void dal_ddc_service_write_scdc_data(
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
-index e94e5fbf2aa2..b970a32177af 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
-@@ -28,7 +28,7 @@
- 
- #define LINK_TRAINING_ATTEMPTS 4
- #define LINK_TRAINING_RETRY_DELAY 50 /* ms */
--#define LINK_AUX_DEFAULT_EXTENDED_TIMEOUT_PERIOD 3200 /*us*/
-+#define LINK_AUX_DEFAULT_LTTPR_TIMEOUT_PERIOD 3200 /*us*/
- #define LINK_AUX_DEFAULT_TIMEOUT_PERIOD 552 /*us*/
- 
- struct dc_link;
+ struct bios_registers {
 -- 
 2.26.2
 
