@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA7AA1D58D3
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:14:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 495C71D58D6
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:14:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A8F56ED24;
-	Fri, 15 May 2020 18:14:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 625D46ED2D;
+	Fri, 15 May 2020 18:14:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2051.outbound.protection.outlook.com [40.107.92.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 876EF6ED25
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:58 +0000 (UTC)
+ (mail-bn7nam10on2049.outbound.protection.outlook.com [40.107.92.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B8F56ED24
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ImSIG09GFBDKnzsZruCSC9Lo95GlYHios1rceTkZi/KL21yaN0rnYCGgFPYFke5FIEF+Fc6qxutj0a3prrnRheK1fvGklXkQXuvcBdHTBRZLcGZeU7tyHPPbv4C+WpWp+FZGws6CfOOaQOFqSm01Ma5LVgU65UtSb5FhSjGRQg8T2tklt8G9q8zGOSm2IvSYdGzRru2dLOMEj+Fb8lX2FSn12zHjG1TesKHM+sMfhHUU57uon1EABFl5uEn2FrfgB/PNN81+Gweik2IC8gy/lZSqsinE99J9YLaspgmhRZvs7+p3iDPWu1AHoQ7iHFBOWw0h5uQ20T03wmhtTZ3w0Q==
+ b=Nz1SUX5ytHkAEtwLMHP2tNBE1mWIDg0Ri7Oe/a1NemKrCbsFuV5K8OfRyFI+TxZzb+SM6XtgUyk12n90DU7tuJ88RopTrX68Crk6GPoB7luFYmHfu7a78QaUtgyk53n/FpDR2gKnYT2RljmWP+FD1eF7kBf5bkW+jZH5jFJIGSsThA91dFRvbJy1WofhJpgK2XFVDm9tLGsJCkcatWFoWl5HrOS5s1xzUzVZSYRNQLv2PipHRs0iUOwMfD7sRMQI+GdGDiVQAH4TC7LYzK3OYNpcfhOM06kvvx7lGAhr+Fw5FB+71FfAT8avMLMPzhmFilsksAas5zppl26iCE7FIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YDieuEl8J4bW5i1NHwuqPXOqIq7Zl58Onhv5t8/7MhM=;
- b=gfZzsrY/XeR4JsPrJrWzIx30HeDajaq/i/BewGAf4jxEcxMwvtEy6CeDFquICerndHshgRyba2gfFqemXx5c8NFVsRqYnjL3aDoRUKuhEizQX1UyqO3XQQb1PksQ7P/QmfJjRQKPIQfXrSPA8ZpaNBRuQi5CUww05PfYQ20SxDNJ3HW6eBslQICUIbePJxIzL5YgZYACACSsKQ/5NRDDVMobob+2tdJDz4/Vd1/kbdzMVVI7BUC231PaOQlPQBGTqk+6cs4C8VAtYfHP0wrIVIeUyH3Hn4k6wEAiL02gpNZDEq6V2z5bT0n/MxHo6JW55W2+32Ekhpol6H5Nb63pNA==
+ bh=mBRFSHh6RheGEnm3OxmPUwhn/+MakalztIURuFEnyOI=;
+ b=c5OciNvNinggwkDKalh3I0c+JIZxZV6aHGKpSVapGPybMPGqNOw5kM9gSTufQx2KAFqVz2NStIbVkKw82SU9nBreZ1XrU7et865AhlPKqLTI2MnV7G4cbsZAsUGLRgjoYtqW5IHrjJyZdkufTDOTfmZjmd/o0OLWzHhr14eisGgj79HUGq5KHZriUkWY1hWE2GNdlW9W4voNECnulUmQ7Gp4UZDo2H6iInFqpmGewMhIR0Wih50M8pGNymOs0xMOQQP7s6ODqEY2gA/pwYIcf1zHqGtufaQxQ/uI3U2/EE3ZWWv190pYFdSwdhquFEj5tTIofieFe2W131zgXuaeUg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YDieuEl8J4bW5i1NHwuqPXOqIq7Zl58Onhv5t8/7MhM=;
- b=3FuhpWC4WZh72OTITSu8KTDMlQkoEfMIuyY7wEkbkYakZVgHmO3iQdpFQZ7InF82MACvL6s9OEi6mePGja14fQrPZXyHrfjPhkTkCcQuPkaj2h6Rlw1jvEUKiCQA98QywwrJcUv1ndNSwvcV9URz2Q6pyh/jnr/yaR6bhQe/IXM=
+ bh=mBRFSHh6RheGEnm3OxmPUwhn/+MakalztIURuFEnyOI=;
+ b=GDfYugOvQ+VuW8ZZUQCqPjU1lvoHEgYDtuewCanR99oFDZsSDLyHmJu2gGcGFt2lK8wx3AS0zpG60RvlwHdWwVS37uRDs4wRMBW7SbL970XHQ6phtfV29pRlbDdt+1PCbwOO4gt+VJF5wKFlmQLra1rEua+uMWhr0WkKhr4cP4U=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,16 +35,17 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
  by CH2PR12MB3848.namprd12.prod.outlook.com (2603:10b6:610:16::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.20; Fri, 15 May
- 2020 18:13:57 +0000
+ 2020 18:13:58 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580%9]) with mapi id 15.20.3000.022; Fri, 15 May 2020
- 18:13:57 +0000
+ 18:13:58 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 19/27] drm/amd/display: correct rn NUM_VMID
-Date: Fri, 15 May 2020 14:13:06 -0400
-Message-Id: <20200515181315.1237251-20-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 20/27] drm/amd/display: Fix incorrectly pruned modes with deep
+ color
+Date: Fri, 15 May 2020 14:13:07 -0400
+Message-Id: <20200515181315.1237251-21-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
 References: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
@@ -56,33 +57,33 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::2) by
  BN7PR02CA0034.namprd02.prod.outlook.com (2603:10b6:408:20::47) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:56 +0000
+ 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:57 +0000
 X-Mailer: git-send-email 2.26.2
 X-Originating-IP: [2607:fea8:56a0:11a1::2]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 927e9a5f-cc5d-4d12-fea1-08d7f8fbbbca
+X-MS-Office365-Filtering-Correlation-Id: 0ba43c27-efc4-4814-795f-08d7f8fbbc67
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3848:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB3848C0F68ADD74A8757C645E98BD0@CH2PR12MB3848.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB3848A8D98B78514C56980CF898BD0@CH2PR12MB3848.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2449;
 X-Forefront-PRVS: 04041A2886
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zeeej5VtbVADCxt6LR4q9NRYYi0JawA0inxcelkEBhNO/Bt5kmBZ3NKL019ywKlfYOvL6lQmE9AGaxuUOP5DNF55dL3+dbjBxpTIneG4Ye0pDk7RQNqpJqc5Y9/MADTveOC9yhVSP/hc54agW77IQvbSBaILY8APNbWQcIUMQNWu8mdLLa/AY11aNIMSVo+QYNjTSgDNSEWttnBdNvCAH8UtI3IHCIg7Su5V+0qf6WdacHxIl3NLFzMIO30aDrrQOLGsnjqv+2pCwwsVuJKvihZKD8ueGayLlfOP6eU9QFt1tMDWBlyLe7AiLX9rRxlS50K9Go+guGSkZDDv3GqIGVX9vQc20JOBI+FCdhaUHFVJTX3hdtm8ZA2waFNdrfCHlr5qaDWdUydbfc1pefc5jnsAUAk2Jh4kE+R94lcFpKPX4tlebG0LTZbpXX+DBSRX
+X-Microsoft-Antispam-Message-Info: kerYN8Kp/hgCWozJOeEyoU+fWDt2yY2J1Ol49YoP62WLPRJg4vgwwOWhLRlqHgn9Wv2LzCsSZRJTcKGpiLnohIdVG8hzNb8OP7E74PSPnAG8LzCa+XGKpnlYpwClGs2ZXYA2ryBZuv4fAV8fhvg9G8p7iYdSK2snMd25jubpiup3mviaoamougROiNAD9DPdSwKQpHXdOnAuX8QOgK0mTHdQvCHP6MNZWL4jzPEw8qOdDUvEYRkiQkt/Dxfi53zn0xspIyWgUHNLxSQJ/A16o7fOg5mBpbXFNNbTyjLpzV+LtOoZG5iseJ58WSm5oPnH29vh8g00JTWVvGMewjH8VvaeJGhl3jeSsX6jSDVdCSfnWW0M601BSrbOkH1eECOwOOiV+t38FvpbwU5+p20wsRdVUotjujW1Itx0QJLaQj7DVGuUo6Ocsyh6QcbJb6UH
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
  SFS:(4636009)(376002)(346002)(366004)(39860400002)(136003)(396003)(54906003)(86362001)(2906002)(186003)(8936002)(52116002)(6506007)(6512007)(8676002)(36756003)(316002)(5660300002)(16526019)(4326008)(6916009)(66556008)(478600001)(1076003)(66946007)(6486002)(66476007)(6666004)(2616005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: MPW+HbBHxSgEXet92MB9ScoD3+eXImKgSHFh9AweDOVX6Wb8Wi1q7cGhb9kiIaN7jwcTcJBRw6B+xzBv0lQ27VJNUGdDZE95l1hW2inZ+paap5/1gI880kd30X15bWGQjRw4CMAPpOHtjVWssqowsDT17bzurmlZNiz8aajYT/nH+itV36lAUF3TACX1A9uhiHAFa8DSspjuFFMcsBw3YsbImxOTFK2efsCg4C7cmsLAl6NbtzG8R7z12C3bXxBzohkematHpmN+D4dMc85igZkvxZ7yDyhkzl4k/OYk/vIjkgo3suEeNpb2n1nDMxFeuvPikyM3mq2SoexuMWk4Sz1LQ6Qc0hZWjhP6wi8r3JY+btQtfPERmGLD/dCykEaG0G4da0wS6ybAMwvkKy6IYMDjPbYz6Agu4nXNXlQcaBLf3RNUL1UOxj2/SpIuaqwauxA1jDcepwVxGRNI/8YgUn1eIl2llJhK0Z72FhnL4bayjAzD92Pafh8tDCM8eHmy
+X-MS-Exchange-AntiSpam-MessageData: 5QNGP1TitUT1qoMk7kmY8o0dYNAR9tq2aru15CK2DbEjWjj89eGkQrTHNd2X3LIpkFnZiN6kHRF9xADsiqztL562rPf3Va3HqHJeDKZgWPhp7OHGHnBN5yPYoDDD5+qjUSUuQ6iTaH/0jPzmPsHimfEqBVQSIZHDU9QdtbDOwjsyJXvrjdRM0Nr4SDegZPiln2E0JlPMtyXs075fnZ+QQQKKWhJZp8mrxcsWvKtGbaqlY9lRRq3tfa6ABYvQGGUUBHGGrhUv7x4mImU7Y1iiUkDJjbPm/TXfOLepf2wmdCaWUD2qnrht3JNUaJHinomrw02RS18JnX+2SD/D3D+qyd6prRwF/dN4QlCLeIxQhzyeYOwbEYFAHU1O6tWl5n+bLDYpqBmR7wNBbVI/GwspTicS34uSm2oyFY6JfAbtSTstXXZeDiHgozkOZVp8ndpgOAK2LMYKKYpZljCFIjbJdVQMMUT9j8ax5zOnqhKh4iEGlSgorOOUQvZxWEqwlSxp
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 927e9a5f-cc5d-4d12-fea1-08d7f8fbbbca
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:56.9323 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ba43c27-efc4-4814-795f-08d7f8fbbc67
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:57.9747 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MD+P+1i28pYQ8MAQ1DNsZAuMOc06ahBeeUsrg4JZ2jipr8VWZcqIiKZQ/OTae1c1U4hD5VMvs++b+oNU8Z83Jw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: WVqS/LxqefYzZREW2FiZDYbxNEobRPO+gdgMdGL5eOmQ2ZVao0JjELRjKaEnQsgyEOU46vyJLhmo03QtItvkNw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3848
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,107 +96,228 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
- Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- Eric Bernstein <Eric.Bernstein@amd.com>, Aurabindo.Pillai@amd.com,
- Bhawanpreet.Lakha@amd.com
+Cc: Stylon Wang <stylon.wang@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
+ Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+From: Stylon Wang <stylon.wang@amd.com>
 
-Save the correct num vmid during resource creation and fix RN gpuvm
-level from 1 to 16 vmid entries.
+[Why]
+When "max bpc" is set to enable deep color, some modes are removed from
+the list if they fail validation on max bpc. These modes should be kept
+if they validates fine with lower bpc.
 
-Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
-Reviewed-by: Eric Bernstein <Eric.Bernstein@amd.com>
+[How]
+- Retry with lower bpc in mode validation.
+- Same in atomic commit to apply working bpc, not necessarily max bpc.
+
+Signed-off-by: Stylon Wang <stylon.wang@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.h   | 1 +
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubbub.c   | 7 +------
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 3 ++-
- drivers/gpu/drm/amd/display/modules/vmid/vmid.c       | 7 +++++--
- 4 files changed, 9 insertions(+), 9 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 102 +++++++++++-------
+ 1 file changed, 64 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.h
-index 501532dd523a..c478213ba7ad 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.h
-@@ -80,6 +80,7 @@ struct dcn20_hubbub {
- 	const struct dcn_hubbub_mask *masks;
- 	unsigned int debug_test_index_pstate;
- 	struct dcn_watermark_set watermarks;
-+	int num_vmid;
- 	struct dcn20_vmid vmid[16];
- 	unsigned int detile_buf_size;
- };
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubbub.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubbub.c
-index 5e2d14b897af..129f0b62f751 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hubbub.c
-@@ -49,11 +49,6 @@
- #define FN(reg_name, field_name) \
- 	hubbub1->shifts->field_name, hubbub1->masks->field_name
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index d2bb0d9839c9..2c3a443771ea 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3895,8 +3895,7 @@ static void update_stream_scaling_settings(const struct drm_display_mode *mode,
  
--#ifdef NUM_VMID
--#undef NUM_VMID
--#endif
--#define NUM_VMID 16
+ static enum dc_color_depth
+ convert_color_depth_from_display_info(const struct drm_connector *connector,
+-				      const struct drm_connector_state *state,
+-				      bool is_y420)
++				      bool is_y420, int requested_bpc)
+ {
+ 	uint8_t bpc;
+ 
+@@ -3916,10 +3915,7 @@ convert_color_depth_from_display_info(const struct drm_connector *connector,
+ 		bpc = bpc ? bpc : 8;
+ 	}
+ 
+-	if (!state)
+-		state = connector->state;
 -
- static uint32_t convert_and_clamp(
- 	uint32_t wm_ns,
- 	uint32_t refclk_mhz,
-@@ -138,7 +133,7 @@ int hubbub21_init_dchub(struct hubbub *hubbub,
+-	if (state) {
++	if (requested_bpc > 0) {
+ 		/*
+ 		 * Cap display bpc based on the user requested value.
+ 		 *
+@@ -3928,7 +3924,7 @@ convert_color_depth_from_display_info(const struct drm_connector *connector,
+ 		 * or if this was called outside of atomic check, so it
+ 		 * can't be used directly.
+ 		 */
+-		bpc = min(bpc, state->max_requested_bpc);
++		bpc = min_t(u8, bpc, requested_bpc);
  
- 	dcn21_dchvm_init(hubbub);
+ 		/* Round down to the nearest even number. */
+ 		bpc = bpc - (bpc & 1);
+@@ -4050,7 +4046,8 @@ static void fill_stream_properties_from_drm_display_mode(
+ 	const struct drm_display_mode *mode_in,
+ 	const struct drm_connector *connector,
+ 	const struct drm_connector_state *connector_state,
+-	const struct dc_stream_state *old_stream)
++	const struct dc_stream_state *old_stream,
++	int requested_bpc)
+ {
+ 	struct dc_crtc_timing *timing_out = &stream->timing;
+ 	const struct drm_display_info *info = &connector->display_info;
+@@ -4080,8 +4077,9 @@ static void fill_stream_properties_from_drm_display_mode(
  
--	return NUM_VMID;
-+	return hubbub1->num_vmid;
+ 	timing_out->timing_3d_format = TIMING_3D_FORMAT_NONE;
+ 	timing_out->display_color_depth = convert_color_depth_from_display_info(
+-		connector, connector_state,
+-		(timing_out->pixel_encoding == PIXEL_ENCODING_YCBCR420));
++		connector,
++		(timing_out->pixel_encoding == PIXEL_ENCODING_YCBCR420),
++		requested_bpc);
+ 	timing_out->scan_type = SCANNING_TYPE_NODATA;
+ 	timing_out->hdmi_vic = 0;
+ 
+@@ -4287,7 +4285,8 @@ static struct dc_stream_state *
+ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 		       const struct drm_display_mode *drm_mode,
+ 		       const struct dm_connector_state *dm_state,
+-		       const struct dc_stream_state *old_stream)
++		       const struct dc_stream_state *old_stream,
++		       int requested_bpc)
+ {
+ 	struct drm_display_mode *preferred_mode = NULL;
+ 	struct drm_connector *drm_connector;
+@@ -4372,10 +4371,10 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 	*/
+ 	if (!scale || mode_refresh != preferred_refresh)
+ 		fill_stream_properties_from_drm_display_mode(stream,
+-			&mode, &aconnector->base, con_state, NULL);
++			&mode, &aconnector->base, con_state, NULL, requested_bpc);
+ 	else
+ 		fill_stream_properties_from_drm_display_mode(stream,
+-			&mode, &aconnector->base, con_state, old_stream);
++			&mode, &aconnector->base, con_state, old_stream, requested_bpc);
+ 
+ 	stream->timing.flags.DSC = 0;
+ 
+@@ -4907,16 +4906,54 @@ static void handle_edid_mgmt(struct amdgpu_dm_connector *aconnector)
+ 	create_eml_sink(aconnector);
  }
  
- bool hubbub21_program_urgent_watermarks(
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 419cdde624f5..f00a56835084 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -805,7 +805,7 @@ static const struct resource_caps res_cap_rn = {
- 		.num_pll = 5,  // maybe 3 because the last two used for USB-c
- 		.num_dwb = 1,
- 		.num_ddc = 5,
--		.num_vmid = 1,
-+		.num_vmid = 16,
- 		.num_dsc = 3,
- };
++static struct dc_stream_state *
++create_validate_stream_for_sink(struct amdgpu_dm_connector *aconnector,
++				const struct drm_display_mode *drm_mode,
++				const struct dm_connector_state *dm_state,
++				const struct dc_stream_state *old_stream)
++{
++	struct drm_connector *connector = &aconnector->base;
++	struct amdgpu_device *adev = connector->dev->dev_private;
++	struct dc_stream_state *stream;
++	int requested_bpc = connector->state ? connector->state->max_requested_bpc : 8;
++	enum dc_status dc_result = DC_OK;
++
++	do {
++		stream = create_stream_for_sink(aconnector, drm_mode,
++						dm_state, old_stream,
++						requested_bpc);
++		if (stream == NULL) {
++			DRM_ERROR("Failed to create stream for sink!\n");
++			break;
++		}
++
++		dc_result = dc_validate_stream(adev->dm.dc, stream);
++
++		if (dc_result != DC_OK) {
++			DRM_DEBUG_KMS("Mode %dx%d (clk %d) failed DC validation with error %d\n",
++				      drm_mode->hdisplay,
++				      drm_mode->vdisplay,
++				      drm_mode->clock,
++				      dc_result);
++
++			dc_stream_release(stream);
++			stream = NULL;
++			requested_bpc -= 2; /* lower bpc to retry validation */
++		}
++
++	} while (stream == NULL && requested_bpc >= 6);
++
++	return stream;
++}
++
+ enum drm_mode_status amdgpu_dm_connector_mode_valid(struct drm_connector *connector,
+ 				   struct drm_display_mode *mode)
+ {
+ 	int result = MODE_ERROR;
+ 	struct dc_sink *dc_sink;
+-	struct amdgpu_device *adev = connector->dev->dev_private;
+ 	/* TODO: Unhardcode stream count */
+ 	struct dc_stream_state *stream;
+ 	struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
+-	enum dc_status dc_result = DC_OK;
  
-@@ -1295,6 +1295,7 @@ static struct hubbub *dcn21_hubbub_create(struct dc_context *ctx)
- 		vmid->shifts = &vmid_shifts;
- 		vmid->masks = &vmid_masks;
+ 	if ((mode->flags & DRM_MODE_FLAG_INTERLACE) ||
+ 			(mode->flags & DRM_MODE_FLAG_DBLSCAN))
+@@ -4937,24 +4974,11 @@ enum drm_mode_status amdgpu_dm_connector_mode_valid(struct drm_connector *connec
+ 		goto fail;
  	}
-+	hubbub->num_vmid = res_cap_rn.num_vmid;
  
- 	return &hubbub->base;
- }
-diff --git a/drivers/gpu/drm/amd/display/modules/vmid/vmid.c b/drivers/gpu/drm/amd/display/modules/vmid/vmid.c
-index 00f132f8ad55..61ee4be35d27 100644
---- a/drivers/gpu/drm/amd/display/modules/vmid/vmid.c
-+++ b/drivers/gpu/drm/amd/display/modules/vmid/vmid.c
-@@ -112,9 +112,12 @@ uint8_t mod_vmid_get_for_ptb(struct mod_vmid *mod_vmid, uint64_t ptb)
- 			evict_vmids(core_vmid);
+-	stream = create_stream_for_sink(aconnector, mode, NULL, NULL);
+-	if (stream == NULL) {
+-		DRM_ERROR("Failed to create stream for sink!\n");
+-		goto fail;
+-	}
+-
+-	dc_result = dc_validate_stream(adev->dm.dc, stream);
+-
+-	if (dc_result == DC_OK)
++	stream = create_validate_stream_for_sink(aconnector, mode, NULL, NULL);
++	if (stream) {
++		dc_stream_release(stream);
+ 		result = MODE_OK;
+-	else
+-		DRM_DEBUG_KMS("Mode %dx%d (clk %d) failed DC validation with error %d\n",
+-			      mode->hdisplay,
+-			      mode->vdisplay,
+-			      mode->clock,
+-			      dc_result);
+-
+-	dc_stream_release(stream);
++	}
  
- 		vmid = get_next_available_vmid(core_vmid);
--		add_ptb_to_table(core_vmid, vmid, ptb);
-+		if (vmid != -1) {
-+			add_ptb_to_table(core_vmid, vmid, ptb);
+ fail:
+ 	/* TODO: error handling*/
+@@ -5277,10 +5301,12 @@ static int dm_encoder_helper_atomic_check(struct drm_encoder *encoder,
+ 		return 0;
  
--		dc_setup_vm_context(core_vmid->dc, &va_config, vmid);
-+			dc_setup_vm_context(core_vmid->dc, &va_config, vmid);
-+		} else
-+			ASSERT(0);
- 	}
+ 	if (!state->duplicated) {
++		int max_bpc = conn_state->max_requested_bpc;
+ 		is_y420 = drm_mode_is_420_also(&connector->display_info, adjusted_mode) &&
+ 				aconnector->force_yuv420_output;
+-		color_depth = convert_color_depth_from_display_info(connector, conn_state,
+-								    is_y420);
++		color_depth = convert_color_depth_from_display_info(connector,
++								    is_y420,
++								    max_bpc);
+ 		bpp = convert_dc_color_depth_into_bpc(color_depth) * 3;
+ 		clock = adjusted_mode->clock;
+ 		dm_new_connector_state->pbn = drm_dp_calc_pbn_mode(clock, bpp, false);
+@@ -7711,10 +7737,10 @@ static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
+ 		if (!drm_atomic_crtc_needs_modeset(new_crtc_state))
+ 			goto skip_modeset;
  
- 	return vmid;
+-		new_stream = create_stream_for_sink(aconnector,
+-						     &new_crtc_state->mode,
+-						    dm_new_conn_state,
+-						    dm_old_crtc_state->stream);
++		new_stream = create_validate_stream_for_sink(aconnector,
++							     &new_crtc_state->mode,
++							     dm_new_conn_state,
++							     dm_old_crtc_state->stream);
+ 
+ 		/*
+ 		 * we can have no stream on ACTION_SET if a display
 -- 
 2.26.2
 
