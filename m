@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B48BC1D58C4
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8B31D58C6
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5067C6ED16;
-	Fri, 15 May 2020 18:13:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 058696ED1A;
+	Fri, 15 May 2020 18:13:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr700045.outbound.protection.outlook.com [40.107.70.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD6F6ECEE
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:42 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F7556ED18
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n68BetZbKC7zB1hNuhnHqRhws+96irxpv8nCR2PlRCoxh+IBDCEC/TD4lHSaUyfs7g2ZgF4rbXbESnthNV9dj/wfZ6lfyp+ObfX8jVInL6aVbYBd0OWyHCtcdJxh0cbRFAbK2CYpr4tPnwHNaigCt21KZQO5UiRR1GFPZ7MJHnzqtyyRYhkdNztNBVGaBDvCwNZcmZDity3P4kJOP5MpIFVAgJ+XGlDW83mDgnnJdG0ZyVoVMfTun7OmSt2ilPyrTA6PLyjt2v7KIq+w5x9KZqFSmGA60X/+PwPEkhW8vsv6Hd/egsNyegMpN7947SF8J5Rd+wg8xyD84MBALNOHZA==
+ b=F8hNh4WYIaEBGjrJqL1PxppbCy4OePMwYKCpXEvPjgZP/BVNzMfxN+GBj3IHKPSqtzWQU4n9CQbOJ8MgQcGvuhnMfLNIlmPJgc70UjTKVMFYK/z+tg1/FJIqQ12hTlFI2eQ0Sx7qJS9Df1T3jc+iiYzZ6EvkgeGFZVWnAflDvJctlO7pcarDo+LzZ+m8zIfpL7H/uLXMcbmYJDBc8aXRmCgllVAQnWNpFQznvE2UWWomz5eievnmQrsg5LbRko63zeTflTvAlJvH6RflYyEssKgGtdXhTmkn6uksm3SFIaeK8sL7am3tlkymghMz/zVXdg8X0LJBn5550Opa4xWpAw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qdBzmsHPi1lR4X+eNB3kHl1fbX+OKcjYV12ss6y1XvM=;
- b=V1RzZSPrbDoutRDycKRnN8Fw3EFabIAGkDyvl9om1hqiv3SZNM7wOE/AgurFcMOxGg+GWpoETKeHPl8g0SvomwYx3V9EmnhE13wgV/K3fV6tF40hNmtyW+zOf4rXth5gO0+bFKmwvXm4pL0psQoxJvQfw309o6Li9eJ9a5rUpP4cjj1tiBcdsGm7pSN+eXcvwqkE2oQz2ObOzd9pwBS7hXRiND6Pqdg2d9HttD5wzzH80aBXI96bZey6iCDrh6SJos+3srem6ZJwKm+NixDg32beI7w5AlReLsHF1VmGhTAChuVCEYUvPcmdPNjZfoPmKrvv7xGj6xfyptxkOkax3w==
+ bh=wyhD74m9EsamaLSHQjKObpHdhsHS4dEme9o26qk+ekU=;
+ b=CcwgyyXuYroUwMO/Hwa7dM+f04Kwy2ipKaqmpTFkcj25aOMfI33V/LzcHAcip+EvMb1LP+WWasmIILFfP6wV26sQ2Csx5NX/bZCu+hIsKZq/0WDehJbwbfAwV88nVtT1gNO55R2FKYiJ84ncDIzjgzSFwH2g7Bmd/tNlcdX02fM5r4o1eC+paUGzInxmzjn9eu+XNd0mBab1Q0yEuufOYnoVxTmiJLzNJh8M8nW07TgeLPEbOzYD3XES5ZY2zO8IBmZ+r0HvFg6Q1jiWKYF2zERq6Pt7g52lYtsvtP6xG/GsyKK45ifwKglMXmj/5aZ1vGh5bQDxz5rgHrU8EhzRyw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qdBzmsHPi1lR4X+eNB3kHl1fbX+OKcjYV12ss6y1XvM=;
- b=0U6nAYK3ZYE9WWBMX40tnXc6gtpkK2HIHB3Es9wXhfxWeSKoXh9vfPNOqLsrQchndl/9Hh0I01KHNlKE695DXePaGDmfuAulZ0uK0/C+LL+wraiiSD7JLtdJMsPcwURCKf9mEiDUnSANWSepf0lyo1CPj5bvz38BXRsu2tcEVqs=
+ bh=wyhD74m9EsamaLSHQjKObpHdhsHS4dEme9o26qk+ekU=;
+ b=pGTbILMfX5lAjOaJ4c560mFqqGUC2Rek3ITOKE9ML3/yFuumWbbZEVUIZ0BXPDMozS1g8pwa4g2ZvGiN0ATbzKD2tykq40dykZdBEHNXLWdUtgCGUzXn3Lit63QbChvFo+Yr2euRiTDafgAPq17VdV3dbZRIZNfplkZnZtMJ+M0=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,17 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
  by CH2PR12MB3974.namprd12.prod.outlook.com (2603:10b6:610:2e::27)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26; Fri, 15 May
- 2020 18:13:41 +0000
+ 2020 18:13:42 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580%9]) with mapi id 15.20.3000.022; Fri, 15 May 2020
- 18:13:41 +0000
+ 18:13:42 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 04/27] drm/amd/display: Do not fail if build scaling params
- fails
-Date: Fri, 15 May 2020 14:12:51 -0400
-Message-Id: <20200515181315.1237251-5-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 05/27] drm/amd/display: DP training to set properly
+ SCRAMBLING_DISABLE
+Date: Fri, 15 May 2020 14:12:52 -0400
+Message-Id: <20200515181315.1237251-6-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
 References: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
@@ -57,33 +57,33 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::2) by
  BN7PR02CA0034.namprd02.prod.outlook.com (2603:10b6:408:20::47) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:40 +0000
+ 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:41 +0000
 X-Mailer: git-send-email 2.26.2
 X-Originating-IP: [2607:fea8:56a0:11a1::2]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 61343d62-6300-45bd-6e43-08d7f8fbb27a
+X-MS-Office365-Filtering-Correlation-Id: 9f32d57a-7bdc-4b63-4de4-08d7f8fbb322
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3974:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB397470CCEF2A00D67FB3903498BD0@CH2PR12MB3974.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB397493DF4C4E20BAB70C14AE98BD0@CH2PR12MB3974.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
 X-Forefront-PRVS: 04041A2886
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6B01EqLKmrJIoX7LHluuW/n004igtg/MovTFmR3C5keS4v2C5mVdOK9HwQ59ix8XIa3Cua2HEhWYeIqvsxJLk1kGpxShvWyKHkMS/mS4Zb1mgseUe56frLMAcdqwWIXYaYjLelBLL+4Ssuru2qkR/dxMhwi3oQGqGB7cuLyajy0v02m4mSkZXxWBH0KdaQrAhJN9OJviRbZGHaWgz409rplhgGmJZze/54hGarndHUu6cTHOSpmNFZ/tgL3aqzIKzxd173kSbq63/vzpCJA7c3h0rNYq6jYZkPfsuswm78y/vIu9WuGIPZxbnCn5S2TsWDMrVme3vj3PWUJvO7qKHkhe9/GCubhy8CF7SGJZ5b+yc6ImeFEzLnByrnlDA4UD9UbQ9YkomKcOPsaZsHsprzM1jmunz1+LuIlWUREsdb8Gf8LtY499KwuQckvCz6Qv
+X-Microsoft-Antispam-Message-Info: eUNLtQGhRr2q2karpTQGBk1jZFkVp2KjTGBW8jsfahWmE2WP476VmdhpSiO7tIwIaN+4zNNrKteam0ksi/3jwC0ISgqUDNNqwgARrPhv7T06cdAX/u/omAhOGiIwB9ULtOPdFMh9gx5afBBc/Fr4lU52pFEGz6tSYsddFWxpoH5D4YHeLhcDESaML5hrsmgaqe+iqn3s3B5Bs5FxqDPcjoHdkuOqFbmuLk5HNGddBoQeODHX50G1YnA2NzpGhKO3jr3+FHvZcvRSc77qC5Xqu5x+YNlr5GaazwFyr7RSdkfs6VYdZtj/9DPLYgLCMn7x9tITnPBAoR/4VhQPLQ5Y1XtZSpL9avS6NakwF7qA0k7UB712POCtBHgzFpASRUX3F/B/3vxEZmg9jY6sWl5sjCCtbpIvhX+qAHHg1aSRFYW4rvePomzXjmeDLayWZGOR
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
  SFS:(4636009)(346002)(376002)(366004)(396003)(136003)(39860400002)(6506007)(316002)(8676002)(8936002)(86362001)(6486002)(54906003)(6666004)(5660300002)(6916009)(478600001)(6512007)(2906002)(36756003)(66556008)(1076003)(52116002)(16526019)(186003)(2616005)(66476007)(66946007)(4326008);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: liOmQShIKIbEehUQ+Id0nZq3xym1nYvllQZyJKXcgujj6Mdi63VqZ8J2E/18MTm4fNYH82HZ6WjYCZp8v4KuLoRsz4XUm/ZoquhUeMnZQd1pONNJFqBSvgY4FjgzCLFWgCTmeMcxZ6a5capR1CCqM+SjaIR7WuTUqwaTLFe7PRB2GNZpTBhqeITh6nzk9ZFI/blbI7dDzggDFLslSKgTGAuC/bPEtEe6uBFGEe8u99gtkcLf7FWjCMlVNxinHf+iDA1hfIAy4k+y/0aGsStdQoSy516YOi4Dmqkap1io2neDnQQTxp9urTo4fklrSr+45quC7jsXfywGKYUJ/JmXAYMzO5jChdsOnS5Hrcwt3SRXGeTAwZ2QYwrQIQM5ngMuJTTSU780GoaqHXEC/RCvgT4gGUeXkgstjJcKZqq5RhSitY1L060Sjc67bfFSQiXjnfy0ATJqZ8enLayEMnYATq5wEaQpD/+fU803321bVqeIxdiesBZjWaFUpHAAw08qkeTe371azTnSpXHv+VXVXQ==
+X-MS-Exchange-AntiSpam-MessageData: DLlcPnB2kHHCjZWKg65fqd7+kya194pT1N1rMINWxRQp4XPxkfz0GF9NuiJZevYITAiqFjoD9trT4oUG9CWYaJ7V8WfC2G2esr5PPjbwdN6T2zgOcBzgkO6x8bnRqwVkdVy7lgxAVfSvKTIJFoDFZHN8nvAlhAIPmhtqz6gj8L47IonPTmMV1+k48OrbGsWXUKq8M8PnC/Z/DJyM5VD3cZXPepRrJOUM7CKGTiq394gxaEwBAv60xkrQNZgWWqZ9NmGwkw6UZ2pEabMwBV6PYBmp23XEJ8aijK/Te3hEx6SDmduW5MRt8fi6aA2J00yPtZ/sJU3QkZILUqWtzi1KexRoWwGpV60lI9oJOsJKNHrenOPH1e0iBgLNs+Ld1uDmSal7WFGnvGqyUm2CxqTr2oWzCQBO7PG5IxGe7KA45fbsB7fUrvM3sy3+n5WQbEFHbdFaZmux9ucQzBJhO0RkrI6NvkLaAOtmL2+f3+pRSGuUei9XS5D9i5LsqKPuhcTOLeAn1VmuKLU8llitgnBYlA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61343d62-6300-45bd-6e43-08d7f8fbb27a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:41.3621 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f32d57a-7bdc-4b63-4de4-08d7f8fbb322
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:42.4189 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8HOLl8iHheEN99fIjWXWDSbWtehgSSnj3u7gWrrFo32GGkdS9xJKD4ftbkvX46wJ5Qg50V3JEnW2tUTROAsqyA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: QCz30AYW0xeBS+yxguDFvwxbuVhEunkk9ETJgCZnAqQrDJAU7NljRIVVz+ToQNHcCkgM8+VbZlg9Q2a/pP0l7A==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3974
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,48 +96,77 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sung Lee <sung.lee@amd.com>,
- Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
+Cc: Vladimir Stempen <Vladimir.Stempen@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Wenjing Liu <Wenjing.Liu@amd.com>, Aurabindo.Pillai@amd.com,
  Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
+From: Vladimir Stempen <vladimir.stempen@amd.com>
 
-[WHY]
-Failing validation when building scaling parameters causes corruption to
-occur due to pipe splitting with smaller pixel widths than HW supports.
-This needs to fail silently for now to hide the corruption until the
-corruption itself can be fixed.
+[Why]
+DP training sequence to set SCRAMBLING_DISABLE bit properly based on
+training pattern - per DP Spec.
 
-[HOW]
-Do not fail validation if building scaling params fails.
+[How]
+Update dpcd_pattern.v1_4.SCRAMBLING_DISABLE with 1 for TPS1, TPS2, TPS3,
+but not for TPS4.
 
-Signed-off-by: Sung Lee <sung.lee@amd.com>
-Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Signed-off-by: Vladimir Stempen <Vladimir.Stempen@amd.com>
+Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 4190ee592e6d..d00de61ac720 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -2824,8 +2824,8 @@ bool dcn20_fast_validate_bw(
- 					dcn20_split_stream_for_mpc(
- 							&context->res_ctx, dc->res_pool,
- 							pipe, hsplit_pipe);
--					if (!resource_build_scaling_params(pipe) || !resource_build_scaling_params(hsplit_pipe))
--						goto validate_fail;
-+					resource_build_scaling_params(pipe);
-+					resource_build_scaling_params(hsplit_pipe);
- 				}
- 				pipe_split_from[hsplit_pipe->pipe_idx] = pipe_idx;
- 			}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index ebad1787f5cb..6db1f16957ac 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -219,6 +219,30 @@ static enum dpcd_training_patterns
+ 	return dpcd_tr_pattern;
+ }
+ 
++static uint8_t dc_dp_initialize_scrambling_data_symbols(
++	struct dc_link *link,
++	enum dc_dp_training_pattern pattern)
++{
++	uint8_t disable_scrabled_data_symbols = 0;
++
++	switch (pattern) {
++	case DP_TRAINING_PATTERN_SEQUENCE_1:
++	case DP_TRAINING_PATTERN_SEQUENCE_2:
++	case DP_TRAINING_PATTERN_SEQUENCE_3:
++		disable_scrabled_data_symbols = 1;
++		break;
++	case DP_TRAINING_PATTERN_SEQUENCE_4:
++		disable_scrabled_data_symbols = 0;
++		break;
++	default:
++		ASSERT(0);
++		DC_LOG_HW_LINK_TRAINING("%s: Invalid HW Training pattern: %d\n",
++			__func__, pattern);
++		break;
++	}
++	return disable_scrabled_data_symbols;
++}
++
+ static inline bool is_repeater(struct dc_link *link, uint32_t offset)
+ {
+ 	return (!link->is_lttpr_mode_transparent && offset != 0);
+@@ -251,6 +275,9 @@ static void dpcd_set_lt_pattern_and_lane_settings(
+ 	dpcd_pattern.v1_4.TRAINING_PATTERN_SET =
+ 		dc_dp_training_pattern_to_dpcd_training_pattern(link, pattern);
+ 
++	dpcd_pattern.v1_4.SCRAMBLING_DISABLE =
++		dc_dp_initialize_scrambling_data_symbols(link, pattern);
++
+ 	dpcd_lt_buffer[DP_TRAINING_PATTERN_SET - DP_TRAINING_PATTERN_SET]
+ 		= dpcd_pattern.raw;
+ 
 -- 
 2.26.2
 
