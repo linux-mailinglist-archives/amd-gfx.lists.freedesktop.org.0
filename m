@@ -1,50 +1,51 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9D71D58C2
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B48BC1D58C4
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0A256ECEE;
-	Fri, 15 May 2020 18:13:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5067C6ED16;
+	Fri, 15 May 2020 18:13:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760084.outbound.protection.outlook.com [40.107.76.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 703566ECEF
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:41 +0000 (UTC)
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700045.outbound.protection.outlook.com [40.107.70.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD6F6ECEE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AwIh5147LxQAnmdvNRc/YCH21Cii2BrIFel2Hfq2d0uMbO9Uln4OwltBzj+/eYh+NngxdCx0qkpowWD+1gAZEkgpaNb2Frtqx81piHAMV5xfXYgikiLfc0PtzM+KgLuinWM2EzK4yPQS17chCyn7xSI1ANZ5DcJ9BzWJdQzPVnGtiDpwXoRxLmtukKK/7rILuAWPdIvGot63NCLqYBB0gxZhoFpTPcC1dCm64JxDcNqRyFcRDGK5VSSuA1N7pv24ZtyelcAsZ9ERnIuNXbnGH3UEWTrrPgWbvjytue6UMswf4icjGHEHlKlXbjPZZKkkmC3yvT8j60HesBc0PVdEJA==
+ b=n68BetZbKC7zB1hNuhnHqRhws+96irxpv8nCR2PlRCoxh+IBDCEC/TD4lHSaUyfs7g2ZgF4rbXbESnthNV9dj/wfZ6lfyp+ObfX8jVInL6aVbYBd0OWyHCtcdJxh0cbRFAbK2CYpr4tPnwHNaigCt21KZQO5UiRR1GFPZ7MJHnzqtyyRYhkdNztNBVGaBDvCwNZcmZDity3P4kJOP5MpIFVAgJ+XGlDW83mDgnnJdG0ZyVoVMfTun7OmSt2ilPyrTA6PLyjt2v7KIq+w5x9KZqFSmGA60X/+PwPEkhW8vsv6Hd/egsNyegMpN7947SF8J5Rd+wg8xyD84MBALNOHZA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZdIlT5vbgBhiIIE4CQig7tO2I0Fp6WZbCMfZ3htmuMk=;
- b=BbHTlQHkd3eW3dDWgxYJ44yNlhvXIA1/Hp30CcXKdT5WN8FXDPTbYtoO1iJzR3OOKcDvNSaCsFGHvI0qo98+TgarrrIg/QlbAsJdPGOLoIv/1hAYkZluileyPVtle9AA6gOIwRKOc8YHfRDtT0vJtzy620JF2vW/lTgRjxFW6qK1J/hGmhVqi3V5sB1tdwOWVHScgUIhmmoKqs351na0gZ6DfyQUjNqKa8Wq+rkEde0MbO/ckGLC7STOkp8zVHqT5uq2baj9z46j/obv+iPShkHPTBpONx+WVN83TAC/2QhcCuCh2BLmpOGr2L2I9e9GgK/6AQS9updkqtJqdmpNcA==
+ bh=qdBzmsHPi1lR4X+eNB3kHl1fbX+OKcjYV12ss6y1XvM=;
+ b=V1RzZSPrbDoutRDycKRnN8Fw3EFabIAGkDyvl9om1hqiv3SZNM7wOE/AgurFcMOxGg+GWpoETKeHPl8g0SvomwYx3V9EmnhE13wgV/K3fV6tF40hNmtyW+zOf4rXth5gO0+bFKmwvXm4pL0psQoxJvQfw309o6Li9eJ9a5rUpP4cjj1tiBcdsGm7pSN+eXcvwqkE2oQz2ObOzd9pwBS7hXRiND6Pqdg2d9HttD5wzzH80aBXI96bZey6iCDrh6SJos+3srem6ZJwKm+NixDg32beI7w5AlReLsHF1VmGhTAChuVCEYUvPcmdPNjZfoPmKrvv7xGj6xfyptxkOkax3w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZdIlT5vbgBhiIIE4CQig7tO2I0Fp6WZbCMfZ3htmuMk=;
- b=fwTR5ddWo0Oh5mvMJpxQdQfb9PHy4PfiPtsCKT5XBrajBDu0CEoiTj0lqJN1Mj48bQa46SwrZRlCORRmJHAIT86jm+H9wfcVLYHz0nZM/h/xcKZO8u02YY1DpJbAAhmkb/9yA6mMIq70oYURn/jgk7jfEeq9MnG6KIK5miZjkaU=
+ bh=qdBzmsHPi1lR4X+eNB3kHl1fbX+OKcjYV12ss6y1XvM=;
+ b=0U6nAYK3ZYE9WWBMX40tnXc6gtpkK2HIHB3Es9wXhfxWeSKoXh9vfPNOqLsrQchndl/9Hh0I01KHNlKE695DXePaGDmfuAulZ0uK0/C+LL+wraiiSD7JLtdJMsPcwURCKf9mEiDUnSANWSepf0lyo1CPj5bvz38BXRsu2tcEVqs=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
- by CH2PR12MB3848.namprd12.prod.outlook.com (2603:10b6:610:16::18)
+ by CH2PR12MB3974.namprd12.prod.outlook.com (2603:10b6:610:2e::27)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.20; Fri, 15 May
- 2020 18:13:40 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26; Fri, 15 May
+ 2020 18:13:41 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580%9]) with mapi id 15.20.3000.022; Fri, 15 May 2020
- 18:13:40 +0000
+ 18:13:41 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 03/27] drm/amd/display: Handle persistence in DM
-Date: Fri, 15 May 2020 14:12:50 -0400
-Message-Id: <20200515181315.1237251-4-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 04/27] drm/amd/display: Do not fail if build scaling params
+ fails
+Date: Fri, 15 May 2020 14:12:51 -0400
+Message-Id: <20200515181315.1237251-5-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
 References: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
@@ -56,34 +57,34 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::2) by
  BN7PR02CA0034.namprd02.prod.outlook.com (2603:10b6:408:20::47) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:39 +0000
+ 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:40 +0000
 X-Mailer: git-send-email 2.26.2
 X-Originating-IP: [2607:fea8:56a0:11a1::2]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c1eeab44-e4b9-4770-ed5e-08d7f8fbb1e5
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3848:
+X-MS-Office365-Filtering-Correlation-Id: 61343d62-6300-45bd-6e43-08d7f8fbb27a
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3974:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB38483F87072B8CE7D32BD0EF98BD0@CH2PR12MB3848.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB397470CCEF2A00D67FB3903498BD0@CH2PR12MB3974.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
 X-Forefront-PRVS: 04041A2886
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OQv8Sc58t5ihQ7IpCsB7JUlDqOyqR5kjjoXHqbaua52tTJJ+rPmdYox1vvc6ThkYjD+icCozEdfQPgqW8saboHgso3sqssTgaGVoKaMMriJW88MCHL+BzQu2Azn8+iY0lqM2KEjFcvRJ9WbEKs+J9E2Wz2EcHn4xyB3AY1I63pYnFuCFiQhEmgPwgrrIrIJbfV9joLd57EN3/TtIvIFGQ1Vou6B53jTKu/jFbBAbHIHvtDvtdFZADO+BLwBgFWRUB6r9YkR4O0FEVo61GG14Z7IzqHm5uxDD+1EFfsigdZNrK4OZaJQlsdlz0+flIPKEzWNjHCG8/x8bvuMJXl2fh+O6SML4ruE1CDb77n0h3zPNtoz+EN6eQVp0Tm9eMuLspsAd53qajihNVqACYTq9rZYafnTvd5sNAUb3Pt74rG2/h2SP5cFUMAWw5SproAUi
+X-Microsoft-Antispam-Message-Info: 6B01EqLKmrJIoX7LHluuW/n004igtg/MovTFmR3C5keS4v2C5mVdOK9HwQ59ix8XIa3Cua2HEhWYeIqvsxJLk1kGpxShvWyKHkMS/mS4Zb1mgseUe56frLMAcdqwWIXYaYjLelBLL+4Ssuru2qkR/dxMhwi3oQGqGB7cuLyajy0v02m4mSkZXxWBH0KdaQrAhJN9OJviRbZGHaWgz409rplhgGmJZze/54hGarndHUu6cTHOSpmNFZ/tgL3aqzIKzxd173kSbq63/vzpCJA7c3h0rNYq6jYZkPfsuswm78y/vIu9WuGIPZxbnCn5S2TsWDMrVme3vj3PWUJvO7qKHkhe9/GCubhy8CF7SGJZ5b+yc6ImeFEzLnByrnlDA4UD9UbQ9YkomKcOPsaZsHsprzM1jmunz1+LuIlWUREsdb8Gf8LtY499KwuQckvCz6Qv
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(346002)(366004)(39860400002)(136003)(396003)(54906003)(86362001)(2906002)(186003)(8936002)(52116002)(6506007)(6512007)(8676002)(36756003)(316002)(5660300002)(16526019)(4326008)(6916009)(66556008)(478600001)(1076003)(66946007)(6486002)(66476007)(6666004)(2616005);
+ SFS:(4636009)(346002)(376002)(366004)(396003)(136003)(39860400002)(6506007)(316002)(8676002)(8936002)(86362001)(6486002)(54906003)(6666004)(5660300002)(6916009)(478600001)(6512007)(2906002)(36756003)(66556008)(1076003)(52116002)(16526019)(186003)(2616005)(66476007)(66946007)(4326008);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: jeve85juPSxfezKUZ7C64N4DU1PQESSKXOpia7+9umj9NshiGwSZ1vdfVwhimbwqLlAmzaGmu9hwp3x4fmaj1UkdRPRUeEqQC4vjGpX9n7I3ML3GBZcxQRfQm7mIt5fpkYb+Bkx1qiREMpARGQV4A0bYlO2u6BCY8fp4V66afmPpQl5t5JKI0NqpB7SstfdmF/m6PrEr3UcV0qld/pnK/716Yj7K/nGaUznmhZ4o/hU6Yt3VlhieUc7eMmhxJN8C8i0zt6k8+MxBBH591A5cfOmzS7cgSjpifvYTRDzTF6dCDigTqjwHZZoCeHVZ5U0lYtFiA+6A4JeylAGNBSN2dCaUt4n2iW7EQlWGyvxX5Si6oLnudN6PKlIxGabY3my0+yPd8xSPYqpt2WI3E9fXzz9AWXCQy2drsOBaXavO2cDKrdyDbbSXc+HlFu46exEIl/QrSgDPh7T+gEDctbBuXCqGaqWD+altJhXlnyvUKG0pZx2j3/Y0m51f5hOhjlMVge4t8RraD4qWeMzBVkIeng==
+X-MS-Exchange-AntiSpam-MessageData: liOmQShIKIbEehUQ+Id0nZq3xym1nYvllQZyJKXcgujj6Mdi63VqZ8J2E/18MTm4fNYH82HZ6WjYCZp8v4KuLoRsz4XUm/ZoquhUeMnZQd1pONNJFqBSvgY4FjgzCLFWgCTmeMcxZ6a5capR1CCqM+SjaIR7WuTUqwaTLFe7PRB2GNZpTBhqeITh6nzk9ZFI/blbI7dDzggDFLslSKgTGAuC/bPEtEe6uBFGEe8u99gtkcLf7FWjCMlVNxinHf+iDA1hfIAy4k+y/0aGsStdQoSy516YOi4Dmqkap1io2neDnQQTxp9urTo4fklrSr+45quC7jsXfywGKYUJ/JmXAYMzO5jChdsOnS5Hrcwt3SRXGeTAwZ2QYwrQIQM5ngMuJTTSU780GoaqHXEC/RCvgT4gGUeXkgstjJcKZqq5RhSitY1L060Sjc67bfFSQiXjnfy0ATJqZ8enLayEMnYATq5wEaQpD/+fU803321bVqeIxdiesBZjWaFUpHAAw08qkeTe371azTnSpXHv+VXVXQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1eeab44-e4b9-4770-ed5e-08d7f8fbb1e5
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:40.3301 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61343d62-6300-45bd-6e43-08d7f8fbb27a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:41.3621 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P4Qp2LMO/r2CbaOmUwQQ4dOU6yIhukIYmH37HZ/EiElDSXpNK9VsiEufSHCyolYy/Z2cF7P2Ru22YImQCf/Jdw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3848
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8HOLl8iHheEN99fIjWXWDSbWtehgSSnj3u7gWrrFo32GGkdS9xJKD4ftbkvX46wJ5Qg50V3JEnW2tUTROAsqyA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3974
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,166 +96,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jaehyun Chung <jaehyun.chung@amd.com>, Sunpeng.Li@amd.com,
+Cc: Sung Lee <sung.lee@amd.com>,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Sunpeng.Li@amd.com,
  Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- Bhawanpreet.Lakha@amd.com, Anthony Koo <Anthony.Koo@amd.com>
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jaehyun Chung <jaehyun.chung@amd.com>
+From: Sung Lee <sung.lee@amd.com>
 
-[Why]
-Remove dm_write_persistent_data and dm_read_persistent_data as
-persistence should be handled in DM.
+[WHY]
+Failing validation when building scaling parameters causes corruption to
+occur due to pipe splitting with smaller pixel widths than HW supports.
+This needs to fail silently for now to hide the corruption until the
+corruption itself can be fixed.
 
-[How]
-Remove functions. Move read/write calls into DM layer while maintaining
-logic.
+[HOW]
+Do not fail validation if building scaling params fails.
 
-Signed-off-by: Jaehyun Chung <jaehyun.chung@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Signed-off-by: Sung Lee <sung.lee@amd.com>
+Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../display/amdgpu_dm/amdgpu_dm_services.c    | 25 -------
- drivers/gpu/drm/amd/display/dc/dm_services.h  | 69 -------------------
- .../drm/amd/display/modules/inc/mod_stats.h   |  8 ++-
- 3 files changed, 7 insertions(+), 95 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c
-index 022da5d45d4d..51f57420fadd 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c
-@@ -47,29 +47,4 @@ void dm_perf_trace_timestamp(const char *func_name, unsigned int line)
- {
- }
- 
--bool dm_write_persistent_data(struct dc_context *ctx,
--		const struct dc_sink *sink,
--		const char *module_name,
--		const char *key_name,
--		void *params,
--		unsigned int size,
--		struct persistent_data_flag *flag)
--{
--	/*TODO implement*/
--	return false;
--}
--
--bool dm_read_persistent_data(struct dc_context *ctx,
--				const struct dc_sink *sink,
--				const char *module_name,
--				const char *key_name,
--				void *params,
--				unsigned int size,
--				struct persistent_data_flag *flag)
--{
--	/*TODO implement*/
--	return false;
--}
--
- /**** power component interfaces ****/
--
-diff --git a/drivers/gpu/drm/amd/display/dc/dm_services.h b/drivers/gpu/drm/amd/display/dc/dm_services.h
-index 968ff1fef486..fdd1943c828d 100644
---- a/drivers/gpu/drm/amd/display/dc/dm_services.h
-+++ b/drivers/gpu/drm/amd/display/dc/dm_services.h
-@@ -261,75 +261,6 @@ struct persistent_data_flag {
- 	bool save_per_edid;
- };
- 
--/* Call to write data in registry editor for persistent data storage.
-- *
-- * \inputs      sink - identify edid/link for registry folder creation
-- *              module name - identify folders for registry
-- *              key name - identify keys within folders for registry
-- *              params - value to write in defined folder/key
-- *              size - size of the input params
-- *              flag - determine whether to save by link or edid
-- *
-- * \returns     true - call is successful
-- *              false - call failed
-- *
-- * sink         module         key
-- * -----------------------------------------------------------------------------
-- * NULL         NULL           NULL     - failure
-- * NULL         NULL           -        - create key with param value
-- *                                                      under base folder
-- * NULL         -              NULL     - create module folder under base folder
-- * -            NULL           NULL     - failure
-- * NULL         -              -        - create key under module folder
-- *                                            with no edid/link identification
-- * -            NULL           -        - create key with param value
-- *                                                       under base folder
-- * -            -              NULL     - create module folder under base folder
-- * -            -              -        - create key under module folder
-- *                                              with edid/link identification
-- */
--bool dm_write_persistent_data(struct dc_context *ctx,
--		const struct dc_sink *sink,
--		const char *module_name,
--		const char *key_name,
--		void *params,
--		unsigned int size,
--		struct persistent_data_flag *flag);
--
--
--/* Call to read data in registry editor for persistent data storage.
-- *
-- * \inputs      sink - identify edid/link for registry folder creation
-- *              module name - identify folders for registry
-- *              key name - identify keys within folders for registry
-- *              size - size of the output params
-- *              flag - determine whether it was save by link or edid
-- *
-- * \returns     params - value read from defined folder/key
-- *              true - call is successful
-- *              false - call failed
-- *
-- * sink         module         key
-- * -----------------------------------------------------------------------------
-- * NULL         NULL           NULL     - failure
-- * NULL         NULL           -        - read key under base folder
-- * NULL         -              NULL     - failure
-- * -            NULL           NULL     - failure
-- * NULL         -              -        - read key under module folder
-- *                                             with no edid/link identification
-- * -            NULL           -        - read key under base folder
-- * -            -              NULL     - failure
-- * -            -              -        - read key under module folder
-- *                                              with edid/link identification
-- */
--bool dm_read_persistent_data(struct dc_context *ctx,
--		const struct dc_sink *sink,
--		const char *module_name,
--		const char *key_name,
--		void *params,
--		unsigned int size,
--		struct persistent_data_flag *flag);
--
- bool dm_query_extended_brightness_caps
- 	(struct dc_context *ctx, enum dm_acpi_display_type display,
- 			struct dm_acpi_atif_backlight_caps *pCaps);
-diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_stats.h b/drivers/gpu/drm/amd/display/modules/inc/mod_stats.h
-index 3812094b52e8..4220fd8fdd60 100644
---- a/drivers/gpu/drm/amd/display/modules/inc/mod_stats.h
-+++ b/drivers/gpu/drm/amd/display/modules/inc/mod_stats.h
-@@ -36,7 +36,13 @@ struct mod_stats_caps {
- 	bool dummy;
- };
- 
--struct mod_stats *mod_stats_create(struct dc *dc);
-+struct mod_stats_init_params {
-+	unsigned int stats_enable;
-+	unsigned int stats_entries;
-+};
-+
-+struct mod_stats *mod_stats_create(struct dc *dc,
-+		struct mod_stats_init_params *init_params);
- 
- void mod_stats_destroy(struct mod_stats *mod_stats);
- 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 4190ee592e6d..d00de61ac720 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -2824,8 +2824,8 @@ bool dcn20_fast_validate_bw(
+ 					dcn20_split_stream_for_mpc(
+ 							&context->res_ctx, dc->res_pool,
+ 							pipe, hsplit_pipe);
+-					if (!resource_build_scaling_params(pipe) || !resource_build_scaling_params(hsplit_pipe))
+-						goto validate_fail;
++					resource_build_scaling_params(pipe);
++					resource_build_scaling_params(hsplit_pipe);
+ 				}
+ 				pipe_split_from[hsplit_pipe->pipe_idx] = pipe_idx;
+ 			}
 -- 
 2.26.2
 
