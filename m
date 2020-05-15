@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CF441D58C7
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E35BB1D58CB
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91EC16ED19;
-	Fri, 15 May 2020 18:13:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3958E6ED14;
+	Fri, 15 May 2020 18:13:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0451E6ED18
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE4F6ED19
  for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cl2rXNUsrVP7eYVWXbbcQdxqi2XWTsPUecZkZzux7gYi8p35kqMUNpHt9VgsFK994cyE4PLbC31V2LRtrTMguC+InFv09HLo8ZxT7IEc444tCtCueWoTBLq377QiFBEeCH7KBK8w5338gKLKh32kKYO18+jM28BYnPiYYX83hk9DRu+h/jtJ9nGxhISvnl07o5/8p3LPY4ozmEjLDDF58ttRKwjZxHSLwcpwhCM2ZZXWnaPzcZ1KMp8xoCIPXTjuPLVj17+AdWseIhjqydSKjQSarVxdm5JdculSbN67NQmZ8LsRe20fEoL54mG+UVfxYmhd/d+d+V1pk0E/1uGvTA==
+ b=AtFHwJ1d7kgVniuAOK6OqBzcphg+j8zQ9EjSmT2cw1zVfkXnyYybuU991E8hwYRvLnzXfgovhy2ITifbPqO6RE+7Kfad42yX7pMrZ/0qR3MdKPUwxznXv8Arz7HrvZC0tR0eNmS4ETfX+VBt9vutLsWNs3R13yi+HLyy+WMQqs1yIH0CC5c8gFSTtB5qOQLnqSzDa7qdVa9YWCkqUVbMo74yVE1IIXT4OM2djTpXAZxqVZPRUXD6Vmamd/+x3MVxd2id1UcuH7jseZCVjQczHs7tgNVTKvAMGL/obcwkN/pBKkv+4E2bHVfvna0d87SFSvl3yCMCEzGuwRlbpwAoug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4Qkao+BD7Udy7z8tbIQq9n4rTTZz6WxCFhNCtMLKvXU=;
- b=LhFornAu+bnWOvcUC7aAkMOcLnjs66E7Jtac8QevWE8OLOqPL7xuCYoqZ7kcsHUr/IrKNJnrRkwi/Evj1EbXGk6jctqvdhpdmsd38Nio5Acj5RyT2NzbV/Qcz+XDBH6Dyn/h/kx0ihiq2bM5XLne7Z0Ynblw4ULQyHvaxP3wOmL/4cfpzq0jqR2CJQAII5dTMXzR05oSJhGWJLHeihDjOvHkvijLwl1ccQXUgAY011uAaIBTJbwM2BslGdKF+xUB0kbx2XApgxCb/oTGlEJTK0yz629YOuMpNf+m+rnNVoWLttFDWW2qBoJZIM7sQH8+xpM0Wib3Gm4glOCWtthbkQ==
+ bh=dfvPYAfxDncgXH7z/xkXTd7RZJTvt9Oj0HjCSbydKb4=;
+ b=nL6Plyn0iKpkgYIOfkZ/c+Ib3NmSd3Ucvt4bybIZz6ZiMtPRRbcYQXLXS9IHT+zf66aEZjIyWR7gf6PL9pMU1gW6whgR3JDhNFCZWgIQBVsQjTfsovJU1+YVMZtbvEn512Q9EW1OMer0MWsZ+capdPk6jGr7sBO7z/FQmt9Z1gjzcN/OZHsRF4IIXxHAs9MyjQqoJLKM7ywwEt0dFWiR3dcmu/L9mrsY7dqhoXc7px3Tm/xJ7zdemI9Eu23nV3hWipEicEWZ6pvbRL1fLqgJB4/fs0DIPJdW5Oy8764NHUsCJa0Yjfcz3vgT7Lvt3trfvYnR1NWkj75NGmF9ituAOw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4Qkao+BD7Udy7z8tbIQq9n4rTTZz6WxCFhNCtMLKvXU=;
- b=DI/GAjgfmRA4IUEj5PiX4oo4VouAsjx6wntfwMvC7WoWWOlbp+Cd3y6+68Bo9L+0Nl5k7sERHf7h5V/ZLEB79Fjr6z42cdRuhKwK7L41V7wA5bE9D2t3h4+1wove+iF4UNtkKxENCV7W1C7/CwwdSpAo/OxONgytsWrgV3n10+0=
+ bh=dfvPYAfxDncgXH7z/xkXTd7RZJTvt9Oj0HjCSbydKb4=;
+ b=fSIcRfRe8882CX60yUBrqyNm3ESgMM8DZnCd1UnnRdMAAQwQfURh3RCCm76ONZL/Wwp87cvRt8o5K/52xWzzV40PrKly0/0JdRbbc6jugg5digRFhJSOaXc6jvlP996clzMdf8MvxuCF+xASJIZYs08LoyiHv57hX0cAO0ctll0=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,16 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
  by CH2PR12MB3974.namprd12.prod.outlook.com (2603:10b6:610:2e::27)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26; Fri, 15 May
- 2020 18:13:44 +0000
+ 2020 18:13:45 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580%9]) with mapi id 15.20.3000.022; Fri, 15 May 2020
- 18:13:44 +0000
+ 18:13:45 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 07/27] drm/amd/display: Don't pass invalid fw_bss_data pointer
- into DMUB srv
-Date: Fri, 15 May 2020 14:12:54 -0400
-Message-Id: <20200515181315.1237251-8-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 08/27] drm/amd/display: Add bit swap helper based on endianness
+Date: Fri, 15 May 2020 14:12:55 -0400
+Message-Id: <20200515181315.1237251-9-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
 References: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
@@ -57,33 +56,33 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::2) by
  BN7PR02CA0034.namprd02.prod.outlook.com (2603:10b6:408:20::47) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:43 +0000
+ 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:44 +0000
 X-Mailer: git-send-email 2.26.2
 X-Originating-IP: [2607:fea8:56a0:11a1::2]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c2b926ce-c191-402d-535a-08d7f8fbb456
+X-MS-Office365-Filtering-Correlation-Id: 1f1fd3f8-eaf7-42ca-b390-08d7f8fbb4e2
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3974:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB39743F10836423BD5EBD3F9898BD0@CH2PR12MB3974.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2803;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB3974B7E4C17F2A9216CCD7F598BD0@CH2PR12MB3974.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:612;
 X-Forefront-PRVS: 04041A2886
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8oDFXgAcyGdzPJRPwphUfixy7CwIuleiZou3xE1VBS+xu4tWGEUcJMS3JoOFjHW9iu96pRmg+Jfndlq/uVS6z+nuW+WQChGkHDEzw8k4MWyKVmhO8EdaNxnXips9SjpKSnVeYIIvnh3qclCEbYi+m0e3JOcIAwl1vvduM2lHpwOSc5RN/n9R/zZUj0t7VpGmyWbGWeEJtypREpKRFyC4+PrfpIpNAXirb1Z08FcyH6ahRNamK9qoZzyjV8N0DrjMZRc8Rsgk6LoqA1V9Kl9yZL4TVAS6oBP4xlsKGUZDeFX7nAUvr8ZcJk7EtX4/Cb0VzAAIWTpASSttvBnToH7oe9U3glvOPOAlaqBslO4cmZJ7dpSyBiw9YDFH/jl6Gn9FkrV9kwnoDQlkTeT+YMh6V/hrGB5tNEvZyvZgEQEBgZeR64hncGkhh5ifx6ZJB4kL
+X-Microsoft-Antispam-Message-Info: kDuZh2AA99r1PbyuyBhqASTGUfH2YQQMj7bMsZcc0fZJ8JiWefsJ2aztgnX1kXup07t+lezt8leskQDHLBFTBHYLqeyZOVq7UqmSW26jnzZxZaaegbyzrfvkeWQFRE742TtiKaWdnNjA+ZgJj+MQoTW5wANbltC/Zb87DYOYbv1H16OAvGKCLJOPK+6InSoIrT5BoWDjxSilT36wTlHt39BnyCKJZHqaQL/pkf8fToNDBOj3qmK82j8ccx04DZCWS3V+N+mu5GBSFjja5pCG917VUxp6UAhhiGON9rkKSG+WcS31Skeg7qlXhANM/3pXDLevA8Ni5TQHH2ubOxM+k/ZU6zieFq9hhaEZz5MqnMsA/+HiwtGHyFbbXf3D4Rf2GVo6ZI5M8O55ELK0/aBfHK7NI8UzPI3hNNWJQUDHRljWRgnlTVZuv8aHPSwhEax+
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(346002)(376002)(366004)(396003)(136003)(39860400002)(6506007)(316002)(8676002)(8936002)(86362001)(6486002)(54906003)(6666004)(5660300002)(6916009)(478600001)(6512007)(2906002)(36756003)(66556008)(1076003)(52116002)(16526019)(186003)(2616005)(66476007)(66946007)(4326008);
+ SFS:(4636009)(346002)(376002)(366004)(396003)(136003)(39860400002)(6506007)(316002)(8676002)(8936002)(86362001)(6486002)(6666004)(5660300002)(6916009)(478600001)(6512007)(2906002)(36756003)(66556008)(1076003)(52116002)(16526019)(186003)(2616005)(66476007)(66946007)(4326008);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: 1Ekv3Q+Td4m+MMTjC/BJD18b/DSdNkOTmLu4U2lSvMm5vlbXYYHCxOLHajz9j3734++3nl3m7qdZHjZ2ITCCoN+WgWufMRbJRYirmpzeb/SrgVqDGmiS/nixrUWnxfOj6V56C7vXh3l6pVycIGUYX3RZihjcyXXUckBSqd2Hl1s5Q1gtJQJ9Sj0BAhKLEvPeYjonn38alJg1+JRpZfJFtbox1Emoxo8Q+xMnu9WEGCdu+TcY2gaLV12xf9q83QQZ4qhvzRFyNcfALa/OvH+Fx+zz1jjhDoTDQrF6WPMve/7FsCzh8cRm7GlpG3J9xlRyfQTGfYtrHspewhKNVmHd2Z4eNNgtpneyavHvnPzVPfI42RyVktvm9oAe6utuLRtAdDN0tMbrnbCpMuVDKJ9hM4/h62ByEDq5RO2RvMKO5O9LGM+eRphzvzGN45/l1L1nLZpOJTk+O3MTRL68lV1IYRZHrbebE4rEfS8dTKFmv61bnLgb7ErZ9BCyGloqs/0hVpMVWVfHfZKZHuzaYFQ9eQ==
+X-MS-Exchange-AntiSpam-MessageData: 2gddtRLJdUNTW9oINFmQlo3HHDy3nuv0xofqekvblnXoLP0OUldj1ygBcvzyO9C3qX4lyXnmF+XuYEkwsWsKenpzVY83dsS6hUXrXRZqyi1jB8kOCju90yuUl14viPb984lEFMt5Qll2GaVV4dcvqvsSMbqxjexwoxR/Gq0VgPjwb8YOfeF8xc/ouT6Ac7TvfbU5vaj0p/9yNk1pvUvl7gbqWcXoM32CZLrelA5jr+qUR41eVWsx60Fpy15o9+mC1BRRVyXxF7gj6ZITY/e6FCcWhlPcjCrrx/lXT/WXccrQXYDn57Zqf/v73+c/TWO+ctrbPu12Sz/0XYjoGoPKbd1ZGumnWPFNbQnjvjHgYxW/uRPg5jzUmBuMEt85Zxm/7dQbpUALJrNXVkkxlVPPGktau0xDQBEbbmZqK/xcnHkmlLxKr37twkra2AoKeU4WdTWvbP4PfKJ1KS0upP7Hq4i1kscYwha4JOM+c5Cww1EZc8o1v4NtmVryUbbkYATub/7jh8zRMZxwYklqJEF+kA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c2b926ce-c191-402d-535a-08d7f8fbb456
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:44.4057 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f1fd3f8-eaf7-42ca-b390-08d7f8fbb4e2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:45.3824 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XaJRg1Gf0LAnvSrJV5YGCRVqD+xYqym+Hzo3aVWKo1niU4EOr0zJ7YjDIkmCtdGWhUwTGpAjQL1pGP8e9wNwXw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: KnOIJPbNFXYauLsrd5EGKFS07T1mnwr4I6nSE7LJ8Y5/L+hahha8fJTyGdzwd6viM72E8ZB3N/X0q2oE9MijWw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3974
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,47 +95,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhan Liu <Zhan.Liu@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo.Pillai@amd.com, Wyatt Wood <Wyatt.Wood@amd.com>,
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Christian Koenig pointed out a code duplication related to bit swap in
+case of big-endian manipulation. This commit adds a helper for handling
+this verification and reduces the requirement of replicate some part of
+the code.
 
-[Why]
-If bss_data_size is 0 then we shouldn't be passing down fw_bss_data into
-the DMUB service since the region isn't really "valid."
-
-[How]
-Pass NULL instead if the size is 0.
-
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Reviewed-by: Zhan Liu <Zhan.Liu@amd.com>
+Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Reviewed-by: Wyatt Wood <Wyatt.Wood@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../amd/display/modules/power/power_helpers.c | 50 ++++++++++---------
+ 1 file changed, 26 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 60fe64aef11b..d2bb0d9839c9 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1211,10 +1211,10 @@ static int dm_dmub_sw_init(struct amdgpu_device *adev)
- 					PSP_HEADER_BYTES - PSP_FOOTER_BYTES;
- 	region_params.bss_data_size = le32_to_cpu(hdr->bss_data_bytes);
- 	region_params.vbios_size = adev->bios_size;
--	region_params.fw_bss_data =
-+	region_params.fw_bss_data = region_params.bss_data_size ?
- 		adev->dm.dmub_fw->data +
- 		le32_to_cpu(hdr->header.ucode_array_offset_bytes) +
--		le32_to_cpu(hdr->inst_const_bytes);
-+		le32_to_cpu(hdr->inst_const_bytes) : NULL;
- 	region_params.fw_inst_const =
- 		adev->dm.dmub_fw->data +
- 		le32_to_cpu(hdr->header.ucode_array_offset_bytes) +
+diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+index 8c37bcc27132..60b92f099af5 100644
+--- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
++++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+@@ -29,6 +29,8 @@
+ #include "core_types.h"
+ 
+ #define DIV_ROUNDUP(a, b) (((a)+((b)/2))/(b))
++#define bswap16_based_on_endian(big_endian, value) \
++	(big_endian) ? cpu_to_be16(value) : cpu_to_le16(value)
+ 
+ /* Possible Min Reduction config from least aggressive to most aggressive
+  *  0    1     2     3     4     5     6     7     8     9     10    11   12
+@@ -624,30 +626,30 @@ void fill_iram_v_2_3(struct iram_table_v_2_2 *ram_table, struct dmcu_iram_parame
+ 	ram_table->iir_curve[4] = 0x65;
+ 
+ 	//Gamma 2.2
+-	ram_table->crgb_thresh[0] = (big_endian) ? cpu_to_be16(0x127c) : cpu_to_le16(0x127c);
+-	ram_table->crgb_thresh[1] = (big_endian) ? cpu_to_be16(0x151b) : cpu_to_le16(0x151b);
+-	ram_table->crgb_thresh[2] = (big_endian) ? cpu_to_be16(0x17d5) : cpu_to_le16(0x17d5);
+-	ram_table->crgb_thresh[3] = (big_endian) ? cpu_to_be16(0x1a56) : cpu_to_le16(0x1a56);
+-	ram_table->crgb_thresh[4] = (big_endian) ? cpu_to_be16(0x1c83) : cpu_to_le16(0x1c83);
+-	ram_table->crgb_thresh[5] = (big_endian) ? cpu_to_be16(0x1e72) : cpu_to_le16(0x1e72);
+-	ram_table->crgb_thresh[6] = (big_endian) ? cpu_to_be16(0x20f0) : cpu_to_le16(0x20f0);
+-	ram_table->crgb_thresh[7] = (big_endian) ? cpu_to_be16(0x232b) : cpu_to_le16(0x232b);
+-	ram_table->crgb_offset[0] = (big_endian) ? cpu_to_be16(0x2999) : cpu_to_le16(0x2999);
+-	ram_table->crgb_offset[1] = (big_endian) ? cpu_to_be16(0x3999) : cpu_to_le16(0x3999);
+-	ram_table->crgb_offset[2] = (big_endian) ? cpu_to_be16(0x4666) : cpu_to_le16(0x4666);
+-	ram_table->crgb_offset[3] = (big_endian) ? cpu_to_be16(0x5999) : cpu_to_le16(0x5999);
+-	ram_table->crgb_offset[4] = (big_endian) ? cpu_to_be16(0x6333) : cpu_to_le16(0x6333);
+-	ram_table->crgb_offset[5] = (big_endian) ? cpu_to_be16(0x7800) : cpu_to_le16(0x7800);
+-	ram_table->crgb_offset[6] = (big_endian) ? cpu_to_be16(0x8c00) : cpu_to_le16(0x8c00);
+-	ram_table->crgb_offset[7] = (big_endian) ? cpu_to_be16(0xa000) : cpu_to_le16(0xa000);
+-	ram_table->crgb_slope[0]  = (big_endian) ? cpu_to_be16(0x3609) : cpu_to_le16(0x3609);
+-	ram_table->crgb_slope[1]  = (big_endian) ? cpu_to_be16(0x2dfa) : cpu_to_le16(0x2dfa);
+-	ram_table->crgb_slope[2]  = (big_endian) ? cpu_to_be16(0x27ea) : cpu_to_le16(0x27ea);
+-	ram_table->crgb_slope[3]  = (big_endian) ? cpu_to_be16(0x235d) : cpu_to_le16(0x235d);
+-	ram_table->crgb_slope[4]  = (big_endian) ? cpu_to_be16(0x2042) : cpu_to_le16(0x2042);
+-	ram_table->crgb_slope[5]  = (big_endian) ? cpu_to_be16(0x1dc3) : cpu_to_le16(0x1dc3);
+-	ram_table->crgb_slope[6]  = (big_endian) ? cpu_to_be16(0x1b1a) : cpu_to_le16(0x1b1a);
+-	ram_table->crgb_slope[7]  = (big_endian) ? cpu_to_be16(0x1910) : cpu_to_le16(0x1910);
++	ram_table->crgb_thresh[0] = bswap16_based_on_endian(big_endian, 0x127c);
++	ram_table->crgb_thresh[1] = bswap16_based_on_endian(big_endian, 0x151b);
++	ram_table->crgb_thresh[2] = bswap16_based_on_endian(big_endian, 0x17d5);
++	ram_table->crgb_thresh[3] = bswap16_based_on_endian(big_endian, 0x1a56);
++	ram_table->crgb_thresh[4] = bswap16_based_on_endian(big_endian, 0x1c83);
++	ram_table->crgb_thresh[5] = bswap16_based_on_endian(big_endian, 0x1e72);
++	ram_table->crgb_thresh[6] = bswap16_based_on_endian(big_endian, 0x20f0);
++	ram_table->crgb_thresh[7] = bswap16_based_on_endian(big_endian, 0x232b);
++	ram_table->crgb_offset[0] = bswap16_based_on_endian(big_endian, 0x2999);
++	ram_table->crgb_offset[1] = bswap16_based_on_endian(big_endian, 0x3999);
++	ram_table->crgb_offset[2] = bswap16_based_on_endian(big_endian, 0x4666);
++	ram_table->crgb_offset[3] = bswap16_based_on_endian(big_endian, 0x5999);
++	ram_table->crgb_offset[4] = bswap16_based_on_endian(big_endian, 0x6333);
++	ram_table->crgb_offset[5] = bswap16_based_on_endian(big_endian, 0x7800);
++	ram_table->crgb_offset[6] = bswap16_based_on_endian(big_endian, 0x8c00);
++	ram_table->crgb_offset[7] = bswap16_based_on_endian(big_endian, 0xa000);
++	ram_table->crgb_slope[0]  = bswap16_based_on_endian(big_endian, 0x3609);
++	ram_table->crgb_slope[1]  = bswap16_based_on_endian(big_endian, 0x2dfa);
++	ram_table->crgb_slope[2]  = bswap16_based_on_endian(big_endian, 0x27ea);
++	ram_table->crgb_slope[3]  = bswap16_based_on_endian(big_endian, 0x235d);
++	ram_table->crgb_slope[4]  = bswap16_based_on_endian(big_endian, 0x2042);
++	ram_table->crgb_slope[5]  = bswap16_based_on_endian(big_endian, 0x1dc3);
++	ram_table->crgb_slope[6]  = bswap16_based_on_endian(big_endian, 0x1b1a);
++	ram_table->crgb_slope[7]  = bswap16_based_on_endian(big_endian, 0x1910);
+ 
+ 	fill_backlight_transform_table_v_2_2(
+ 			params, ram_table, big_endian);
 -- 
 2.26.2
 
