@@ -1,50 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC52E1D58C3
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA201D58C1
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2020 20:13:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4E416ECFF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A160E6ECEF;
 	Fri, 15 May 2020 18:13:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760053.outbound.protection.outlook.com [40.107.76.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48C796E193
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:39 +0000 (UTC)
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700082.outbound.protection.outlook.com [40.107.70.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6522B6ECEE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2020 18:13:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VzdRS3tYTaUcc31ieuESXcAGC/0xXV18NWG2Cx2uHbdlqi8VEb8eI9svU3nDRtpGUlMxmMikFCGQEyQn5ww+HrsaZNwlszwWJDg2GmQXDz/6a8LI6yD8OIQVyDviXD6GvhZQZ42U9zUc7qdNjJC/Gty6/MlgtB0ldXpasFF6dd0+gx33K3ZJ26kWTuxF9MucJHmzM9WTwOpc9wW/FHWhtSZ4MwpiNvfwSfEXc0yM1pw/hkpCZvMVmNrctkn5iXa+Mm2CyPBMcbGZeeJCnMI3lBmYezdAmw0RuMJ+GkgWoRHJo2/pIve1II6iX80mP2WxcAik6ffnUwJFIhNeceNVKQ==
+ b=VfPBf1zO7slx7zIwwrZDoaIlrrLz5uLIcPWkewko//TqQLTuJjgr68QXRCskCpVKHf3QM72gTPgf7scxJpgJ6OA77zL0t2/OxQmg+CqCBnJ22ZmMCQtSzssAAboCSRma56HiN4hiUf7jZoIBOe8QftM0vZRlSqqupZosWMNyTjfxVE4ryr1VGeH5es1mSD6bRgTcmGdaB8zldGSCDT5tmGA3KT83vWo3i47hrTtoPhC2keF8d4iFB3sKvHA0Mr4nxSI5XV9WssKDIayBCM9PTs5hEXX/Hp+Ht4EUh/hm/XPdnAUqTrNz8uWkzs7tImxKK+jMIqDfZelttQhLe+ndGw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UTCjGAarx/sRCsSxtXWHtuP8Gi0awW5EZWJUBbfj48c=;
- b=MFLsK7I6enA6Y6Gwc/IZJNVQnW5iguDBhiULMLeWJF6nwVzZacSjpey2AnHhwzpdhpzWaDM5H4os2tVHBzCMM1y2AKrJ3tnGQKgLk6UwqaNzbFR3fZZLV7MMYQzc3jy+mSNYZHqE9niplZF5RXI26bZjuU8shVJxTd9niygsyxLYf7XOoR53hh+3BKL4bwm7cD15I2LZXDgvQGkhqOdpvD8XcyNfFlCru4JoCvOQpKRYIHC8tbhInbWYX/J28+mNnGPQsDr/sicMGBmD+iC5rjpjx2H4u8S/VQtuJzQ7okn9oEB761QmmZBh0FNRSf95HtmaFLAqb4LYOproW56Pqg==
+ bh=BlZyQa1g1ycoxZrcGl6R7f9hrrrmRV2lAsT3u8cDvFU=;
+ b=YH+mpt0b+RtIQbPVkXQftfsrbF6JlfpJCMFc9blP80/X3DQfxQIT6EiCtfKWSNCPBXS1xsux/lwGocXluT4qVeTfj/D7cZ/uhxmPwLJj8Z6AUXKnNpFIgvUqbcsbsgR4v3wdwGd2A+qFZnTB3/luCwgZjVzJeRFLIMif4vWU5QUmubYcCngt2SbemuVtiZ2y/c/U2XbNpn4sw2ViBxP0xw1Khhxv6MvVIq9DeYM2dFwFaWwqy8vwDyYdzP/av5/SGSnp5fc0/6RRwOY6G4D/6FpbwmLXkSo3WzUfamOBSboMSU/nT5zdYl9jXSSK3Oyk0Aq2lJUOIHlzpRn+Ihnu6g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UTCjGAarx/sRCsSxtXWHtuP8Gi0awW5EZWJUBbfj48c=;
- b=m3W/ecfg8hVxixutzRVste6oB2crwi/9CzAtBXl89vASkosaGjukhdVdD1Ul7kh8/QBMJGR0NyFVCa6Mpts/eQ0MaT9k068Aoc0CIR9IibJuSnj5QvSy08jaUBL6YoiD4c/TQ9EeOZqdGZ+wA3lMtZLBD6loET2Ak2yJc1cfU9k=
+ bh=BlZyQa1g1ycoxZrcGl6R7f9hrrrmRV2lAsT3u8cDvFU=;
+ b=HpbCNm/wQEDD8uxmLKABp/RozUFWEvdxa47xtPosffNYtwgRxAQ1sEO+m3AuXRICql29kAvMpa2SnfMqzGGh1ORokZc4ZWRohupm5YEZouYb3up+lFXBUEwd51siUg4uAKXIZQmFwU3Aheq5HEHiur85VN8waAF3SeF6DM0ro68=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
- by CH2PR12MB3848.namprd12.prod.outlook.com (2603:10b6:610:16::18)
+ by CH2PR12MB3974.namprd12.prod.outlook.com (2603:10b6:610:2e::27)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.20; Fri, 15 May
- 2020 18:13:38 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.26; Fri, 15 May
+ 2020 18:13:39 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580%9]) with mapi id 15.20.3000.022; Fri, 15 May 2020
- 18:13:38 +0000
+ 18:13:39 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 01/27] drm/amd/display: Minimize DSC resource re-assignment
-Date: Fri, 15 May 2020 14:12:48 -0400
-Message-Id: <20200515181315.1237251-2-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 02/27] drm/amd/display: fix and simplify pipe split logic
+Date: Fri, 15 May 2020 14:12:49 -0400
+Message-Id: <20200515181315.1237251-3-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
 References: <20200515181315.1237251-1-Rodrigo.Siqueira@amd.com>
@@ -56,34 +56,34 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:11a1::2) by
  BN7PR02CA0034.namprd02.prod.outlook.com (2603:10b6:408:20::47) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:37 +0000
+ 15.20.3000.20 via Frontend Transport; Fri, 15 May 2020 18:13:38 +0000
 X-Mailer: git-send-email 2.26.2
 X-Originating-IP: [2607:fea8:56a0:11a1::2]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: ddb64504-cb93-4a26-2adf-08d7f8fbb097
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3848:
+X-MS-Office365-Filtering-Correlation-Id: b0e53c35-6874-4f95-c5e2-08d7f8fbb12f
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3974:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB3848F0E4C720EDBEE7A145DE98BD0@CH2PR12MB3848.namprd12.prod.outlook.com>
+X-Microsoft-Antispam-PRVS: <CH2PR12MB39746E0629085635C3FF97DB98BD0@CH2PR12MB3974.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
 X-Forefront-PRVS: 04041A2886
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HF44Y6eNJaD2SLW2APQBI09eTty+Jbf7VnbXeDnnw1nn+mBeJe9JcOKlGuCjt0gvPmMveY0iLcbNUTlBCPQhyG1THeT3Wt9WvGEqn2eGREhIL3W8Nx19i5SPffjXRrEHjQ8uCXlyUkrQYFHNINT5pr7mHrYcJYQOyyIYfhsdrNLE5pGDQnNC9/WJtf5IVbO7mo4WlF2mTstqEjhIYDmwQi5jHLw+FiRz9pe7RY+2A0duwDkrok1mAdUJgUcvjwn10Gktzq4RW6vmbghiAg2vpFwxUrTJvvRzyEiFu+yqFOY3zPMaiF3dJrqoxSCO/+i96UMv8FZGg8LYLASoJKCV5K3NByMH91fqhiIt4uPFNeM7IQUA1UXPiJ3sJfu9zmDB5lFpA+WYdrTfY+wLi3XeT0ja1gkY9etiy9NP1CEJmoLCt0usyEwyyHM4QP+KYcsk
+X-Microsoft-Antispam-Message-Info: taU+hZJS5Dwfh8tu+f4m13lp12e0UFZrUP1/ZJUZjOsczOR6+8ewjAqrYNbnGiKme+SZIFdqokMG5SLLmOVELJcPD6XHI+L8ZoxjMhmbEzDsx4R55+f4F2b8nWP3GXSE00u06wubK0lP1D4tPpWWVN7Ki08jj6QJUaxoE6jkORBp7BxvHbKINrvI56P13F3IBVqyP2A1SbzHlfoMxWaEcpkgCOIt43frsvtIn2v66kwGUbi+U6gHockyRjYB1bMn8YQnNuwJ4lI8huxx1oxXDyd0dNt/Kdr7EHG/U3i+X4qfWDqD7HBfgoD5S4jlLAG28P5H9M4hT2in22QwWeIYW3bQPgb8pMuNVOUPmz7gThflFGftS25u2LWb31XtMjAhBizrCQVFEUtRzwpAqLgYtBPxL4ssrN+eE/vHCiGNJG2HPrcdp0gxLkIBb7v/MgUr
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(346002)(366004)(39860400002)(136003)(396003)(86362001)(2906002)(186003)(8936002)(52116002)(6506007)(6512007)(8676002)(36756003)(316002)(5660300002)(16526019)(4326008)(6916009)(66556008)(478600001)(1076003)(66946007)(6486002)(66476007)(6666004)(2616005);
+ SFS:(4636009)(346002)(376002)(366004)(396003)(136003)(39860400002)(6506007)(316002)(8676002)(8936002)(86362001)(6486002)(54906003)(6666004)(30864003)(5660300002)(6916009)(478600001)(6512007)(2906002)(36756003)(66556008)(1076003)(52116002)(16526019)(186003)(2616005)(66476007)(66946007)(4326008);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: c3+APQogDedGW8gbi8c5NF1R1swjMRVQGuOD5HYiFqxW0K53iYoUGzAxSoNoyoq9yIs0ADyjGpHvK1YZVaIbR0wmh28/mW/nSoQARuvThcIVRgTCfnbzWifZ8ecCqutXjlguptZZqNMuZauVNG+Lwb00ECIsFbWITF+pxXA9+SYQ3BPuoA1gJcq0Ep3OCzReiDASVvtO28TeB/GBsITSuhYgv3qcSNLIDjeTdiBC0N6DoOD1h3NTYd4TTnSPzPxHYeg2oC+tWV9xdwjfpu/Vj6FZoqz/X5Rase9xP3gyK0RsfTR1cnfhLm2eCqcoeBIYGm6ToJ4NI/kDPEcpNnbnINC0OGRNpXBVvCm+ydYUza91snsoCogg12tun/j3XmaGmWkmbQRSezKyp66AX5wMuxDi81iAmNaZ7fdVpIwbnxnntoQa8QEe7ctXdUsycq/W+weBoaLQtnTklkcBjU76g9LXLvpzKuo6JHeG8VSN1pql/4ritFotPa5tp0w/QSzFXcvsdryftVUqF5UjOu3KVg==
+X-MS-Exchange-AntiSpam-MessageData: oZX8uzL91y1IUHRtPAyo2cPlnxLED2GJSLCDq+y/ZzDOchVkbzVJ3VmZcUw1UgznNhk05B67wabOYSy2SKMxbMfHaW0h2CPbrEt7fJfljl2owM4Lb2XHoqSXgWceKqJqCU/079jY0mtMlZEdZ2W3mt0ItxG4VwPpuDJrHhEsAwI0l646fVjA5464LGZ9UBkOoQMyqADLR0PL9lYD+wzkJS/ENhXzpoZ2CqIJYaVXumia8Z8GvFx4CEF8yqx9PECHn/o56D2Mj6cUat6GmP6MVn3bY5WZkqVlTYTCgeVTNFavZzonuVc0Su/5A73lPhiI+WJsPEvJ2WEjDtwM/o2VHOTpg4lHCO/5pJPpFFKJeMJwaEg9Tj+CnMvNaYdPMPWDjyZ+4muoGRCxxkwbiDP4uLlmOfA+XdkjFZxaUkWuL+oQALHJORgYDxidCdb45Mbz67sxbzriafT6Kb9/r6DcWIvxit4CTxKkZRlFI2ALjlWFQzNJkJN6HtfuJr9OotLyzbohR5EjViFVN/5ogpbLuA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ddb64504-cb93-4a26-2adf-08d7f8fbb097
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:38.1641 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0e53c35-6874-4f95-c5e2-08d7f8fbb12f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2020 18:13:39.1886 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: o3qG36uuqli5bSt1r87PoEyMox6NPJi7IBiZyTvhCTiAqzFeiixNLfUlOY7MKOdFuTzv9i5Xmjn6bETo+6aDWA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3848
+X-MS-Exchange-CrossTenant-UserPrincipalName: uFCPuewU9TjLM+YoGP7czILy2zOkU+LCKFtPEVH0bq97cF8Lt9n4Ly0LDx5cHO6+6YWHojiuZ7pYImf3bxZclg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3974
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,159 +96,352 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
- Nikola Cornij <nikola.cornij@amd.com>, Aurabindo.Pillai@amd.com,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ Eric Bernstein <Eric.Bernstein@amd.com>, Aurabindo.Pillai@amd.com,
  Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nikola Cornij <nikola.cornij@amd.com>
+From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-[why]
-Assigning a different DSC resource than the one previosly used is
-currently not handled. This causes black screen on mode change when more
-than one monitor is connected on some ASICs.
+Current odm/mpc combine logic to detect which pipes need to split
+logically is flawed leading to incorrect pipe merge/split operations
+being taken.
 
-[how]
-- Acquire the previously used DSC if available
-- Make sure re-program is triggered if new DSC is used
+This change cleans up the logic and fixes the logical errors.
 
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Reviewed-by: Eric Bernstein <Eric.Bernstein@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Nikola Cornij <nikola.cornij@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  3 ++
- .../drm/amd/display/dc/dcn20/dcn20_resource.c | 28 +++++++++++++------
- .../drm/amd/display/dc/dcn20/dcn20_resource.h |  2 +-
- 3 files changed, 23 insertions(+), 10 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  25 ++-
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c | 153 ++++++++----------
+ .../drm/amd/display/dc/dcn20/dcn20_resource.h |   5 +-
+ drivers/gpu/drm/amd/display/dc/inc/resource.h |   2 +
+ 4 files changed, 94 insertions(+), 91 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index cb5d11f11cad..bbef8c67d1db 100644
+index bbef8c67d1db..0c5619364e7d 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -2666,6 +2666,9 @@ bool pipe_need_reprogram(
- 		false == pipe_ctx_old->stream->dpms_off)
- 		return true;
+@@ -532,6 +532,24 @@ static inline void get_vp_scan_direction(
+ 		*flip_horz_scan_dir = !*flip_horz_scan_dir;
+ }
  
-+	if (pipe_ctx_old->stream_res.dsc != pipe_ctx->stream_res.dsc)
-+		return true;
++int get_num_mpc_splits(struct pipe_ctx *pipe)
++{
++	int mpc_split_count = 0;
++	struct pipe_ctx *other_pipe = pipe->bottom_pipe;
 +
- 	return false;
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 778e2e8fd2c6..4912160f81b3 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -1663,22 +1663,32 @@ enum dc_status dcn20_build_mapped_resource(const struct dc *dc, struct dc_state
- }
- 
- 
--static void acquire_dsc(struct resource_context *res_ctx,
--			const struct resource_pool *pool,
-+static void acquire_dsc(const struct dc *dc,
-+			struct resource_context *res_ctx,
- 			struct display_stream_compressor **dsc,
- 			int pipe_idx)
- {
- 	int i;
-+	const struct resource_pool *pool = dc->res_pool;
-+	struct display_stream_compressor *dsc_old = dc->current_state->res_ctx.pipe_ctx[pipe_idx].stream_res.dsc;
- 
--	ASSERT(*dsc == NULL);
-+	ASSERT(*dsc == NULL); /* If this ASSERT fails, dsc was not released properly */
- 	*dsc = NULL;
- 
-+	/* Always do 1-to-1 mapping when number of DSCs is same as number of pipes */
- 	if (pool->res_cap->num_dsc == pool->res_cap->num_opp) {
- 		*dsc = pool->dscs[pipe_idx];
- 		res_ctx->is_dsc_acquired[pipe_idx] = true;
- 		return;
- 	}
- 
-+	/* Return old DSC to avoid the need for re-programming */
-+	if (dsc_old && !res_ctx->is_dsc_acquired[dsc_old->inst]) {
-+		*dsc = dsc_old;
-+		res_ctx->is_dsc_acquired[dsc_old->inst] = true;
-+		return ;
++	while (other_pipe && other_pipe->plane_state == pipe->plane_state) {
++		mpc_split_count++;
++		other_pipe = other_pipe->bottom_pipe;
++	}
++	other_pipe = pipe->top_pipe;
++	while (other_pipe && other_pipe->plane_state == pipe->plane_state) {
++		mpc_split_count++;
++		other_pipe = other_pipe->top_pipe;
 +	}
 +
- 	/* Find first free DSC */
- 	for (i = 0; i < pool->res_cap->num_dsc; i++)
- 		if (!res_ctx->is_dsc_acquired[i]) {
-@@ -1710,7 +1720,6 @@ enum dc_status dcn20_add_dsc_to_stream_resource(struct dc *dc,
++	return mpc_split_count;
++}
++
+ int get_num_odm_splits(struct pipe_ctx *pipe)
  {
- 	enum dc_status result = DC_OK;
- 	int i;
--	const struct resource_pool *pool = dc->res_pool;
+ 	int odm_split_count = 0;
+@@ -556,16 +574,11 @@ static void calculate_split_count_and_index(struct pipe_ctx *pipe_ctx, int *spli
+ 		/*Check for mpc split*/
+ 		struct pipe_ctx *split_pipe = pipe_ctx->top_pipe;
  
- 	/* Get a DSC if required and available */
- 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-@@ -1722,7 +1731,7 @@ enum dc_status dcn20_add_dsc_to_stream_resource(struct dc *dc,
++		*split_count = get_num_mpc_splits(pipe_ctx);
+ 		while (split_pipe && split_pipe->plane_state == pipe_ctx->plane_state) {
+ 			(*split_idx)++;
+-			(*split_count)++;
+ 			split_pipe = split_pipe->top_pipe;
+ 		}
+-		split_pipe = pipe_ctx->bottom_pipe;
+-		while (split_pipe && split_pipe->plane_state == pipe_ctx->plane_state) {
+-			(*split_count)++;
+-			split_pipe = split_pipe->bottom_pipe;
+-		}
+ 	} else {
+ 		/*Get odm split index*/
+ 		struct pipe_ctx *split_pipe = pipe_ctx->prev_odm_pipe;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 4912160f81b3..4190ee592e6d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -1663,7 +1663,7 @@ enum dc_status dcn20_build_mapped_resource(const struct dc *dc, struct dc_state
+ }
+ 
+ 
+-static void acquire_dsc(const struct dc *dc,
++void dcn20_acquire_dsc(const struct dc *dc,
+ 			struct resource_context *res_ctx,
+ 			struct display_stream_compressor **dsc,
+ 			int pipe_idx)
+@@ -1731,7 +1731,7 @@ enum dc_status dcn20_add_dsc_to_stream_resource(struct dc *dc,
  		if (pipe_ctx->stream_res.dsc)
  			continue;
  
--		acquire_dsc(&dc_ctx->res_ctx, pool, &pipe_ctx->stream_res.dsc, i);
-+		acquire_dsc(dc, &dc_ctx->res_ctx, &pipe_ctx->stream_res.dsc, i);
+-		acquire_dsc(dc, &dc_ctx->res_ctx, &pipe_ctx->stream_res.dsc, i);
++		dcn20_acquire_dsc(dc, &dc_ctx->res_ctx, &pipe_ctx->stream_res.dsc, i);
  
  		/* The number of DSCs can be less than the number of pipes */
  		if (!pipe_ctx->stream_res.dsc) {
-@@ -1850,12 +1859,13 @@ static void swizzle_to_dml_params(
- }
- 
- bool dcn20_split_stream_for_odm(
-+		const struct dc *dc,
- 		struct resource_context *res_ctx,
--		const struct resource_pool *pool,
- 		struct pipe_ctx *prev_odm_pipe,
- 		struct pipe_ctx *next_odm_pipe)
- {
- 	int pipe_idx = next_odm_pipe->pipe_idx;
-+	const struct resource_pool *pool = dc->res_pool;
- 
- 	*next_odm_pipe = *prev_odm_pipe;
- 
-@@ -1913,7 +1923,7 @@ bool dcn20_split_stream_for_odm(
+@@ -1923,7 +1923,7 @@ bool dcn20_split_stream_for_odm(
  	}
  	next_odm_pipe->stream_res.opp = pool->opps[next_odm_pipe->pipe_idx];
  	if (next_odm_pipe->stream->timing.flags.DSC == 1) {
--		acquire_dsc(res_ctx, pool, &next_odm_pipe->stream_res.dsc, next_odm_pipe->pipe_idx);
-+		acquire_dsc(dc, res_ctx, &next_odm_pipe->stream_res.dsc, next_odm_pipe->pipe_idx);
+-		acquire_dsc(dc, res_ctx, &next_odm_pipe->stream_res.dsc, next_odm_pipe->pipe_idx);
++		dcn20_acquire_dsc(dc, res_ctx, &next_odm_pipe->stream_res.dsc, next_odm_pipe->pipe_idx);
  		ASSERT(next_odm_pipe->stream_res.dsc);
  		if (next_odm_pipe->stream_res.dsc == NULL)
  			return false;
-@@ -2792,7 +2802,7 @@ bool dcn20_fast_validate_bw(
- 			hsplit_pipe = dcn20_find_secondary_pipe(dc, &context->res_ctx, dc->res_pool, pipe);
- 			ASSERT(hsplit_pipe);
- 			if (!dcn20_split_stream_for_odm(
--					&context->res_ctx, dc->res_pool,
-+					dc, &context->res_ctx,
- 					pipe, hsplit_pipe))
- 				goto validate_fail;
- 			pipe_split_from[hsplit_pipe->pipe_idx] = pipe_idx;
-@@ -2821,7 +2831,7 @@ bool dcn20_fast_validate_bw(
+@@ -2586,27 +2586,6 @@ static void dcn20_merge_pipes_for_validate(
+ 	}
+ }
+ 
+-int dcn20_find_previous_split_count(struct pipe_ctx *pipe)
+-{
+-	int previous_split = 1;
+-	struct pipe_ctx *current_pipe = pipe;
+-
+-	while (current_pipe->bottom_pipe) {
+-		if (current_pipe->plane_state != current_pipe->bottom_pipe->plane_state)
+-			break;
+-		previous_split++;
+-		current_pipe = current_pipe->bottom_pipe;
+-	}
+-	current_pipe = pipe;
+-	while (current_pipe->top_pipe) {
+-		if (current_pipe->plane_state != current_pipe->top_pipe->plane_state)
+-			break;
+-		previous_split++;
+-		current_pipe = current_pipe->top_pipe;
+-	}
+-	return previous_split;
+-}
+-
+ int dcn20_validate_apply_pipe_split_flags(
+ 		struct dc *dc,
+ 		struct dc_state *context,
+@@ -2618,6 +2597,8 @@ int dcn20_validate_apply_pipe_split_flags(
+ 	int plane_count = 0;
+ 	bool force_split = false;
+ 	bool avoid_split = dc->debug.pipe_split_policy == MPC_SPLIT_AVOID;
++	struct vba_vars_st *v = &context->bw_ctx.dml.vba;
++	int max_mpc_comb = v->maxMpcComb;
+ 
+ 	if (context->stream_count > 1) {
+ 		if (dc->debug.pipe_split_policy == MPC_SPLIT_AVOID_MULT_DISP)
+@@ -2638,15 +2619,13 @@ int dcn20_validate_apply_pipe_split_flags(
+ 
+ 	/* Avoid split loop looks for lowest voltage level that allows most unsplit pipes possible */
+ 	if (avoid_split) {
+-		int max_mpc_comb = context->bw_ctx.dml.vba.maxMpcComb;
+-
+ 		for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
+ 			if (!context->res_ctx.pipe_ctx[i].stream)
+ 				continue;
+ 
+ 			for (vlevel_split = vlevel; vlevel <= context->bw_ctx.dml.soc.num_states; vlevel++)
+-				if (context->bw_ctx.dml.vba.NoOfDPP[vlevel][0][pipe_idx] == 1 &&
+-						context->bw_ctx.dml.vba.ModeSupport[vlevel][0])
++				if (v->NoOfDPP[vlevel][0][pipe_idx] == 1 &&
++						v->ModeSupport[vlevel][0])
+ 					break;
+ 			/* Impossible to not split this pipe */
+ 			if (vlevel > context->bw_ctx.dml.soc.num_states)
+@@ -2655,21 +2634,21 @@ int dcn20_validate_apply_pipe_split_flags(
+ 				max_mpc_comb = 0;
+ 			pipe_idx++;
+ 		}
+-		context->bw_ctx.dml.vba.maxMpcComb = max_mpc_comb;
++		v->maxMpcComb = max_mpc_comb;
+ 	}
+ 
+ 	/* Split loop sets which pipe should be split based on dml outputs and dc flags */
+ 	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
+ 		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
+-		int pipe_plane = context->bw_ctx.dml.vba.pipe_plane[pipe_idx];
++		int pipe_plane = v->pipe_plane[pipe_idx];
++		bool split4mpc = context->stream_count == 1 && plane_count == 1
++				&& dc->config.enable_4to1MPC && dc->res_pool->pipe_count >= 4;
+ 
+ 		if (!context->res_ctx.pipe_ctx[i].stream)
+ 			continue;
+ 
+-		if (force_split
+-				|| context->bw_ctx.dml.vba.NoOfDPP[vlevel][context->bw_ctx.dml.vba.maxMpcComb][pipe_plane] > 1) {
+-			if (context->stream_count == 1 && plane_count == 1
+-					&& dc->config.enable_4to1MPC && dc->res_pool->pipe_count >= 4)
++		if (force_split || v->NoOfDPP[vlevel][max_mpc_comb][pipe_plane] > 1) {
++			if (split4mpc)
+ 				split[i] = 4;
+ 			else
+ 				split[i] = 2;
+@@ -2685,66 +2664,72 @@ int dcn20_validate_apply_pipe_split_flags(
+ 			split[i] = 2;
+ 		if (dc->debug.force_odm_combine & (1 << pipe->stream_res.tg->inst)) {
+ 			split[i] = 2;
+-			context->bw_ctx.dml.vba.ODMCombineEnablePerState[vlevel][pipe_plane] = dm_odm_combine_mode_2to1;
++			v->ODMCombineEnablePerState[vlevel][pipe_plane] = dm_odm_combine_mode_2to1;
+ 		}
+-		context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_plane] =
+-			context->bw_ctx.dml.vba.ODMCombineEnablePerState[vlevel][pipe_plane];
+-
+-		if (pipe->prev_odm_pipe && context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_plane] != dm_odm_combine_mode_disabled) {
+-			/*Already split odm pipe tree, don't try to split again*/
+-			split[i] = 0;
+-			split[pipe->prev_odm_pipe->pipe_idx] = 0;
+-		} else if (pipe->top_pipe && pipe->plane_state == pipe->top_pipe->plane_state
+-				&& context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_plane] == dm_odm_combine_mode_disabled) {
+-			/*If 2 way split but can support 4 way split, then split each pipe again*/
+-			if (context->stream_count == 1 && plane_count == 1
+-					&& dc->config.enable_4to1MPC && dc->res_pool->pipe_count >= 4) {
+-				split[i] = 2;
+-			} else {
++		v->ODMCombineEnabled[pipe_plane] =
++			v->ODMCombineEnablePerState[vlevel][pipe_plane];
++
++		if (v->ODMCombineEnabled[pipe_plane] == dm_odm_combine_mode_disabled) {
++			if (get_num_mpc_splits(pipe) == 1) {
++				/*If need split for mpc but 2 way split already*/
++				if (split[i] == 4)
++					split[i] = 2; /* 2 -> 4 MPC */
++				else if (split[i] == 2)
++					split[i] = 0; /* 2 -> 2 MPC */
++				else if (pipe->top_pipe && pipe->top_pipe->plane_state == pipe->plane_state)
++					merge[i] = true; /* 2 -> 1 MPC */
++			} else if (get_num_mpc_splits(pipe) == 3) {
++				/*If need split for mpc but 4 way split already*/
++				if (split[i] == 2 && ((pipe->top_pipe && !pipe->top_pipe->top_pipe)
++						|| !pipe->bottom_pipe)) {
++					merge[i] = true; /* 4 -> 2 MPC */
++				} else if (split[i] == 0 && pipe->top_pipe &&
++						pipe->top_pipe->plane_state == pipe->plane_state)
++					merge[i] = true; /* 4 -> 1 MPC */
+ 				split[i] = 0;
+-				split[pipe->top_pipe->pipe_idx] = 0;
+-			}
+-		} else if (pipe->prev_odm_pipe || (dcn20_find_previous_split_count(pipe) == 2 && pipe->top_pipe)) {
+-			if (split[i] == 0) {
+-				/*Exiting mpc/odm combine*/
+-				merge[i] = true;
+-			} else {
+-				/*Transition from mpc combine to odm combine or vice versa*/
+-				ASSERT(0); /*should not actually happen yet*/
+-				split[i] = 2;
+-				merge[i] = true;
++			} else if (get_num_odm_splits(pipe)) {
++				/* ODM -> MPC transition */
++				ASSERT(0); /* NOT expected yet */
+ 				if (pipe->prev_odm_pipe) {
+-					split[pipe->prev_odm_pipe->pipe_idx] = 2;
+-					merge[pipe->prev_odm_pipe->pipe_idx] = true;
+-				} else {
+-					split[pipe->top_pipe->pipe_idx] = 2;
+-					merge[pipe->top_pipe->pipe_idx] = true;
++					split[i] = 0;
++					merge[i] = true;
  				}
- 				if (context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_idx]) {
- 					if (!dcn20_split_stream_for_odm(
--							&context->res_ctx, dc->res_pool,
-+							dc, &context->res_ctx,
- 							pipe, hsplit_pipe))
- 						goto validate_fail;
- 					dcn20_build_mapped_resource(dc, context, pipe->stream);
+ 			}
+-		} else if (dcn20_find_previous_split_count(pipe) == 3) {
+-			if (split[i] == 0 && !pipe->top_pipe) {
+-				merge[pipe->bottom_pipe->pipe_idx] = true;
+-				merge[pipe->bottom_pipe->bottom_pipe->pipe_idx] = true;
+-			} else if (split[i] == 2 && !pipe->top_pipe) {
+-				merge[pipe->bottom_pipe->bottom_pipe->pipe_idx] = true;
+-				split[i] = 0;
+-			}
+-		} else if (dcn20_find_previous_split_count(pipe) == 4) {
+-			if (split[i] == 0 && !pipe->top_pipe) {
+-				merge[pipe->bottom_pipe->pipe_idx] = true;
+-				merge[pipe->bottom_pipe->bottom_pipe->pipe_idx] = true;
+-				merge[pipe->bottom_pipe->bottom_pipe->bottom_pipe->pipe_idx] = true;
+-			} else if (split[i] == 2 && !pipe->top_pipe) {
+-				merge[pipe->bottom_pipe->bottom_pipe->pipe_idx] = true;
+-				merge[pipe->bottom_pipe->bottom_pipe->bottom_pipe->pipe_idx] = true;
++		} else {
++			if (get_num_odm_splits(pipe) == 1) {
++				/*If need split for odm but 2 way split already*/
++				if (split[i] == 4)
++					split[i] = 2; /* 2 -> 4 ODM */
++				else if (split[i] == 2)
++					split[i] = 0; /* 2 -> 2 ODM */
++				else if (pipe->prev_odm_pipe) {
++					ASSERT(0); /* NOT expected yet */
++					merge[i] = true; /* exit ODM */
++				}
++			} else if (get_num_odm_splits(pipe) == 3) {
++				/*If need split for odm but 4 way split already*/
++				if (split[i] == 2 && ((pipe->prev_odm_pipe && !pipe->prev_odm_pipe->prev_odm_pipe)
++						|| !pipe->next_odm_pipe)) {
++					ASSERT(0); /* NOT expected yet */
++					merge[i] = true; /* 4 -> 2 ODM */
++				} else if (split[i] == 0 && pipe->prev_odm_pipe) {
++					ASSERT(0); /* NOT expected yet */
++					merge[i] = true; /* exit ODM */
++				}
+ 				split[i] = 0;
++			} else if (get_num_mpc_splits(pipe)) {
++				/* MPC -> ODM transition */
++				ASSERT(0); /* NOT expected yet */
++				if (pipe->top_pipe && pipe->top_pipe->plane_state == pipe->plane_state) {
++					split[i] = 0;
++					merge[i] = true;
++				}
+ 			}
+ 		}
+ 
+ 		/* Adjust dppclk when split is forced, do not bother with dispclk */
+-		if (split[i] != 0
+-				&& context->bw_ctx.dml.vba.NoOfDPP[vlevel][context->bw_ctx.dml.vba.maxMpcComb][pipe_idx] == 1)
+-			context->bw_ctx.dml.vba.RequiredDPPCLK[vlevel][context->bw_ctx.dml.vba.maxMpcComb][pipe_idx] /= 2;
++		if (split[i] != 0 && v->NoOfDPP[vlevel][max_mpc_comb][pipe_idx] == 1)
++			v->RequiredDPPCLK[vlevel][max_mpc_comb][pipe_idx] /= 2;
+ 		pipe_idx++;
+ 	}
+ 
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-index d5448c9b0e15..ed5d31253314 100644
+index ed5d31253314..2c1959845c29 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
 +++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-@@ -136,8 +136,8 @@ void dcn20_split_stream_for_mpc(
- 		struct pipe_ctx *primary_pipe,
- 		struct pipe_ctx *secondary_pipe);
- bool dcn20_split_stream_for_odm(
-+		const struct dc *dc,
+@@ -119,7 +119,6 @@ void dcn20_set_mcif_arb_params(
+ 		display_e2e_pipe_params_st *pipes,
+ 		int pipe_cnt);
+ bool dcn20_validate_bandwidth(struct dc *dc, struct dc_state *context, bool fast_validate);
+-int dcn20_find_previous_split_count(struct pipe_ctx *pipe);
+ int dcn20_validate_apply_pipe_split_flags(
+ 		struct dc *dc,
+ 		struct dc_state *context,
+@@ -140,6 +139,10 @@ bool dcn20_split_stream_for_odm(
  		struct resource_context *res_ctx,
--		const struct resource_pool *pool,
  		struct pipe_ctx *prev_odm_pipe,
  		struct pipe_ctx *next_odm_pipe);
++void dcn20_acquire_dsc(const struct dc *dc,
++			struct resource_context *res_ctx,
++			struct display_stream_compressor **dsc,
++			int pipe_idx);
  struct pipe_ctx *dcn20_find_secondary_pipe(struct dc *dc,
+ 		struct resource_context *res_ctx,
+ 		const struct resource_pool *pool,
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+index 109c589eb97c..a9be495af922 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+@@ -177,6 +177,8 @@ unsigned int resource_pixel_format_to_bpp(enum surface_pixel_format format);
+ void get_audio_check(struct audio_info *aud_modes,
+ 	struct audio_check *aud_chk);
+ 
++int get_num_mpc_splits(struct pipe_ctx *pipe);
++
+ int get_num_odm_splits(struct pipe_ctx *pipe);
+ 
+ #endif /* DRIVERS_GPU_DRM_AMD_DC_DEV_DC_INC_RESOURCE_H_ */
 -- 
 2.26.2
 
