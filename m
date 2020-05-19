@@ -2,52 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63BA51D9BF1
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2020 18:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D641D9FE5
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2020 20:45:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5863B6E362;
-	Tue, 19 May 2020 16:06:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 318196E453;
+	Tue, 19 May 2020 18:45:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA4E889D6C;
- Tue, 19 May 2020 16:06:19 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id f13so3615171wmc.5;
- Tue, 19 May 2020 09:06:19 -0700 (PDT)
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com
+ [IPv6:2607:f8b0:4864:20::236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 690D06E453
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 18:45:43 +0000 (UTC)
+Received: by mail-oi1-x236.google.com with SMTP id l6so642047oic.9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 11:45:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=guiQOg83wk8Re5uEuJo1BoPo7XFCPazuk/VvCpyeK1M=;
- b=mXPf5Ms8ET6YablA99JN6u4VA/YVAadQQ7qlTUqWiZa4Yy/4v1W/A6Hv8uDOCqKDBt
- wHLXvP92KiOdRfjd4mtpEoNpOKuApoZeyI4+FEWwTxp8Y1Rv+kYjTTfYUyOeMGkNmxz/
- sSk1e675A9gKKswjNZfpBOf2SylUC6w60t6FM6t2Sd7OYy+S6MV3GLkFeUUBuzZ8Xrww
- mEBRF42H5WAodaO+zprmH8O6EfTarkUc7fySKqO5yt6mNJypof+qVkczsBHnxAUpzdMQ
- toDM2XnrMZeD/g1mLak/DlAd8BCI0ibMIWMHKRtvuMW4JJ0QFKXx0dJc7QcfM0ga4yH5
- Wt9Q==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=k3FC/20Mj5OPsflmNW3rWXC8fBeDPR0+/vOg2n8J8Kg=;
+ b=QzhBZqaSo132xKC2AQ68oK2mvwNUvQUb4ChovKPJXaA/f+Zxzexv1Btab8WnHmyFu0
+ EuXYmg8QHDnHsp4skYsjYWKHrBh+PrQ2KJitoxQMOH8a8t9UAtSgnrwdDKUwp2nuYbeb
+ Ge+qEZvi/S2CrmWocKgLEN+7yxA7Qj+T8zHxS5wUe1W5kvVaxaq5JntsKRGdRyWHTeEL
+ cqUpnCC/nJArGfdBqxLW4G9Pd6+3FtNqXdBU+DKxCPN8YjoCQMLZXhc49VqqV/LWcHh+
+ a1FIZoTHn35XzlOldbBIihtCzKJfTQs2XVAe9X/y13MsgdlxJQaNMqorBH8sUM1i6r24
+ TRdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=guiQOg83wk8Re5uEuJo1BoPo7XFCPazuk/VvCpyeK1M=;
- b=R3MY1OwHNAeYCuKfsKAAnmflIR8qt9J8FPkfsIrzJRQtrkJXFrUIL4fxA0W8THsQRl
- B9l2ErC42xAaw55TDyD4Wi7RODvowuTZQvs6/548SFhHdkFIbMvT+nnn5yhNFX1g8V6A
- BL/hUrSuuRk3SrAZmCymG4QxEtG68h/GZ4HOonxuhnfjGbckAgMSwICz3XgK6xGHEvUt
- Vi7kun6e++SI+XXx3edRYqcpIlhAJ6xadc5ynOharNZZJ0W9wAjEaAkauDgcsU7mYLLM
- HxTF/gXUEM5vqNpAhJYWgub9nB+d/8gycvOgFY+wTwjxWouEmyYhs1NKsup0+X7cbMV3
- igGw==
-X-Gm-Message-State: AOAM530F/YikLMj5ptc+qpJ5caT33LK3gZwrNURU12WnApo4SouOCVi7
- MiVa5dRhLRwxQINWtGP5Twfo7mFg39i3dkfo/fw=
-X-Google-Smtp-Source: ABdhPJzL5f1OBDcocPrtJ6fbylZ/xk9NChZVvHdXkRF7kKd7yOgiz/X65De/UPsERoG9SUFs6bKzwUqLMWaPLIl68ac=
-X-Received: by 2002:a1c:29c4:: with SMTP id p187mr94893wmp.73.1589904378124;
- Tue, 19 May 2020 09:06:18 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=k3FC/20Mj5OPsflmNW3rWXC8fBeDPR0+/vOg2n8J8Kg=;
+ b=IgKnVgyomxjrta0wjbQ+4aHqHUg+/qsZlPT5PsVv0NCyHsqWl47K+liiNxBJcWuFUh
+ vtZD5k3jNRgoP0YBTelficLmfzy69sLHi4oCsfDqT0+z/49M/SWGxoVkX/I4UmSgVS6G
+ WUGE2n2jZu/2m1tGwDwcSJlemjq4G3nPUJjKrOA3kYG96tgVEwiATSDENUZnw52I8E6x
+ +x3d550QOFfBsKzJhQJRuAwI7Xg1FsHRiXlRvcRCSNpFBs12dXE9vUkiA8nLFhgcYSQS
+ 4c+UZBJWGYBvNCuT6jJNoxANsuvy00XO0bg82P7uNzRX23oJecJJ7PyJcenKzsRbxIzh
+ E5eA==
+X-Gm-Message-State: AOAM530Hner3rT/WaIWxiONM5MASrEe5VdhNjSBhGi73uWmUvbIgk3Ju
+ 9+cKedYCpU/93tZmnQOnOv1vtLZzbPWJyuMuXyRzbAthKas=
+X-Google-Smtp-Source: ABdhPJy+SSSnrTZGQd2VWclE6SeSzO+4ERYukWrkll2UOsg7Y0b5/dN3pYQd59o/AvxVqxcXYtyiyiIOsCt5ARziTMw=
+X-Received: by 2002:a54:418f:: with SMTP id 15mr593423oiy.109.1589913942331;
+ Tue, 19 May 2020 11:45:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200518162312.18059-1-aishwaryarj100@gmail.com>
-In-Reply-To: <20200518162312.18059-1-aishwaryarj100@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 19 May 2020 12:06:06 -0400
-Message-ID: <CADnq5_N4u5GD+j=RSsTzpdOmZjAKV45aAtN2ffb+cizMcB9ygg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdkfd: Fix boolreturn.cocci warnings
-To: Aishwarya Ramakrishnan <aishwaryarj100@gmail.com>
+From: Javad Karabi <karabijavad@gmail.com>
+Date: Tue, 19 May 2020 13:45:31 -0500
+Message-ID: <CAEOHGO=uKYs0YQyG5K2BGd=_83j_m6nfompstAF-znRfus69Hw@mail.gmail.com>
+Subject: regarding vcn
+To: amd-gfx@lists.freedesktop.org
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,68 +56,19 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- David Airlie <airlied@linux.ie>, Felix Kuehling <Felix.Kuehling@amd.com>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 18, 2020 at 12:37 PM Aishwarya Ramakrishnan
-<aishwaryarj100@gmail.com> wrote:
->
-> Return statements in functions returning bool should use
-> true/false instead of 1/0.
->
-> drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c:40:9-10:
-> WARNING: return of 0/1 in function 'event_interrupt_isr_v9' with return type bool
->
-> Generated by: scripts/coccinelle/misc/boolreturn.cocci
->
-> Signed-off-by: Aishwarya Ramakrishnan <aishwaryarj100@gmail.com>
+for a rx 5600 xt graphics card, is VCN supposed to be set to disabled?
 
-Applied.  Thanks!
+if i understand correctly, 5600 is navi10, which has vcn
 
-Alex
+but i currently see VCN: disabled
 
-> ---
->  drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
-> index e05d75ecda21..fce6ccabe38b 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
-> @@ -37,7 +37,7 @@ static bool event_interrupt_isr_v9(struct kfd_dev *dev,
->         vmid = SOC15_VMID_FROM_IH_ENTRY(ih_ring_entry);
->         if (vmid < dev->vm_info.first_vmid_kfd ||
->             vmid > dev->vm_info.last_vmid_kfd)
-> -               return 0;
-> +               return false;
->
->         source_id = SOC15_SOURCE_ID_FROM_IH_ENTRY(ih_ring_entry);
->         client_id = SOC15_CLIENT_ID_FROM_IH_ENTRY(ih_ring_entry);
-> @@ -69,7 +69,7 @@ static bool event_interrupt_isr_v9(struct kfd_dev *dev,
->
->         /* If there is no valid PASID, it's likely a bug */
->         if (WARN_ONCE(pasid == 0, "Bug: No PASID in KFD interrupt"))
-> -               return 0;
-> +               return false;
->
->         /* Interrupt types we care about: various signals and faults.
->          * They will be forwarded to a work queue (see below).
-> --
-> 2.17.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+$ sudo grep VCN /sys/kernel/debug/dri/1/amdgpu_pm_info
+VCN: Disabled
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
