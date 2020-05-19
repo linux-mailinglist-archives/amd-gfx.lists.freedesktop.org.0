@@ -2,56 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF681D9B8C
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2020 17:44:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB0261D9B8D
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2020 17:44:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1CD6E359;
-	Tue, 19 May 2020 15:44:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8DD6E35D;
+	Tue, 19 May 2020 15:44:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com
- [IPv6:2607:f8b0:4864:20::f2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2ABA6E359
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 15:44:44 +0000 (UTC)
-Received: by mail-qv1-xf2b.google.com with SMTP id v15so6701207qvr.8
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 08:44:44 -0700 (PDT)
+Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com
+ [IPv6:2607:f8b0:4864:20::f41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0AF36E35D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 15:44:46 +0000 (UTC)
+Received: by mail-qv1-xf41.google.com with SMTP id z9so6694379qvi.12
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 08:44:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=F4gAJkHhAk6tySRbF+2MiJDfgMQcFfYYiH2kfejQ1s8=;
- b=MOoZs338WZOI6ZL5rQNmuHxSil6PLEsh3JcJXxQ03gawds37a05NX7uvOLFbUzXsNc
- OXB92Z6CDK0sK2h7ZVU3/Z8Geb0gG5JWOlaEhrV83jAObbvSCi6EhR4kq9xCLaJ39Ndx
- f7sFJLd1uhotqvAsfIBtMMxYLdLLVhWZ3fasQlshpDvfK02Pb68JP79qaArsBfZU6436
- E/JU7pL37OJznmvotm4xNMjTI9iFNvcpKgxmmeqFkAm0D5R+zrUM6B1MotAHHZ9v31E/
- zCViahfYmkpkVOe7UV+B3arPE4KZFuUi9pKsoy26zaMqVsQisCcKjj7zYb2MwXAdcgSU
- a5dA==
+ bh=YRutuulz+e3pQe7Dl0nFWcti//PFSbcU+4dVRYu888s=;
+ b=K/0CBLiUuXTXv0V91Mc1oHQ5EHsJpsjRIpzbmVC2C5FYK757sAoY0dwBks//wwcB4B
+ YVuipydzSfWRtRygINMCcZGPlR/nC5kyffEX5/6zeNJ1NDRHDPt12377JMsz8589BCXR
+ RH5JiexYg5cBW4ZtiCQWsx0hEt4rhBTBDUvI2Tfg3sJcevVnArI3x3SkDQ0Yd/BCBsHc
+ 6/bPVH8gLD45Ynaa8b0H/+xFwAgKZBt9oo4lOesUTMJCdz39OJQrqb8pAMS/q4n8rprO
+ 2CwbutcLf2CR/9IUm16D8x0SLwzhzo9LXg091puj4VEAmfEttsA+JU28/neG2/PPBLUI
+ WLHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=F4gAJkHhAk6tySRbF+2MiJDfgMQcFfYYiH2kfejQ1s8=;
- b=RBdWUUaYNR9xL1xMB3R51gzS0NX+NVdiZMZVk2rKUgaU0MPW7m6Cm76w+uRDaMrGoE
- IwNn/tEGiG4Q5/j/wX1GenoEmmwKAubIxItj4NGpXx0kdpmO2XI+WGmh8cllD4Y4voCR
- 9tqrWxjbz81r3dRGa9OyvQfbF7ljpaQNTdj8u9bTzgaBNuL79rAamqk3eiLgHiEjopmV
- tIYrGv5HW999Kg/o0EqZ7vXiSe2vSZI1NhKNNmvVdUyZFmN88lQ53SEpITiLDiaYxGp7
- k+zoPiKlPixHcOQq4nlmpp5ntJvSs2LO9SgOnuwW1GkCmwiKibIBSUOJjSeg10QGbNgj
- 6Hfw==
-X-Gm-Message-State: AOAM530sCaB6Ujt012EW84b8YIJJ8yPuhxrgDsrwBSTrkmCrJ17ia4D8
- 12/H9p4nRUuOjWD0J0FeiJSYsTaj
-X-Google-Smtp-Source: ABdhPJyrLnTVw4JZPmi4B9G5Eqi9WQJSJNgg5iOlQmosQyR4vxLsJ89SX8EH2zkiTB7popgIlV+PXA==
-X-Received: by 2002:a05:6214:1c2:: with SMTP id
- c2mr145707qvt.185.1589903083783; 
- Tue, 19 May 2020 08:44:43 -0700 (PDT)
+ bh=YRutuulz+e3pQe7Dl0nFWcti//PFSbcU+4dVRYu888s=;
+ b=i8gQfckPxUXDrXG3h4fWmLvmC4aXVDWoS5e9xuso8FB+pBWiTWdbji9qUz/AmH7H6Q
+ Qq5/7/gGfTBeNylPBumpBqoq8oc5MMeLkG3NSeVhhHgYenPY6b4R5S7xNgpLiX9yjPTy
+ 2rOq9nk7Bp3bDMOqM3/TFXwyxk/DgWH2b+l53WjkUkExf1Zp5MvMJmyYqMeyp1BItpRl
+ I5C+34ToluAZK9VNkz6ddf9x49d2zgGZhCF9VNlMQFPOt7c9r8z9qK0jV4VXgfcflgeG
+ nwd1LZBCofEt7xFvAhPp0voaFEkOn+x7LZZQSD++Ab6p6kSi9wLUwCL2IDBDlrnz8qFv
+ 128Q==
+X-Gm-Message-State: AOAM531pRDQrLimjAa10D8L60ty8Z58mv3HKIIV5pJQ0jP4IR3D+UuVn
+ 2sox6c5EywRU8V3gEKdGFUybbzNi
+X-Google-Smtp-Source: ABdhPJyXqOlZgYJ1sS02TWoIjBEIKGcs/8QyWyqkRMDgWivean0YuXrWDIrcUU6GR263gCZkO8vEPg==
+X-Received: by 2002:a0c:ab19:: with SMTP id h25mr207902qvb.108.1589903085177; 
+ Tue, 19 May 2020 08:44:45 -0700 (PDT)
 Received: from localhost.localdomain ([71.51.180.250])
- by smtp.gmail.com with ESMTPSA id l133sm10819975qke.105.2020.05.19.08.44.42
+ by smtp.gmail.com with ESMTPSA id l133sm10819975qke.105.2020.05.19.08.44.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 May 2020 08:44:43 -0700 (PDT)
+ Tue, 19 May 2020 08:44:44 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 4/7] drm/amdgpu: simplify CZ/ST and KV/KB/ML checks
-Date: Tue, 19 May 2020 11:44:23 -0400
-Message-Id: <20200519154426.1752937-4-alexander.deucher@amd.com>
+Subject: [PATCH 5/7] drm/amdgpu: simplify mec2 fw check
+Date: Tue, 19 May 2020 11:44:24 -0400
+Message-Id: <20200519154426.1752937-5-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200519154426.1752937-1-alexander.deucher@amd.com>
 References: <20200519154426.1752937-1-alexander.deucher@amd.com>
@@ -73,54 +72,27 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Just check for APU.
+Check if mec2 fw exists rather than checking asic types.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 ++++----
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c     | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index e036c868e354..80a6c3156766 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1699,7 +1699,7 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
- 	case CHIP_VEGAM:
- 	case CHIP_CARRIZO:
- 	case CHIP_STONEY:
--		if (adev->asic_type == CHIP_CARRIZO || adev->asic_type == CHIP_STONEY)
-+		if (adev->flags & AMD_IS_APU)
- 			adev->family = AMDGPU_FAMILY_CZ;
- 		else
- 			adev->family = AMDGPU_FAMILY_VI;
-@@ -1726,10 +1726,10 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
- 	case CHIP_KAVERI:
- 	case CHIP_KABINI:
- 	case CHIP_MULLINS:
--		if ((adev->asic_type == CHIP_BONAIRE) || (adev->asic_type == CHIP_HAWAII))
--			adev->family = AMDGPU_FAMILY_CI;
--		else
-+		if (adev->flags & AMD_IS_APU)
- 			adev->family = AMDGPU_FAMILY_KV;
-+		else
-+			adev->family = AMDGPU_FAMILY_CI;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 4e4c9550dcf8..4d0bd149e1b8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -1339,8 +1339,7 @@ static int amdgpu_debugfs_firmware_info(struct seq_file *m, void *data)
+ 		   fw_info.feature, fw_info.ver);
  
- 		r = cik_set_ip_blocks(adev);
- 		if (r)
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-index 2584ff74423b..0a6be88ebad9 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-@@ -2342,7 +2342,7 @@ static u32 dce_v11_0_pick_pll(struct drm_crtc *crtc)
- 
- 	/* XXX need to determine what plls are available on each DCE11 part */
- 	pll_in_use = amdgpu_pll_get_use_mask(crtc);
--	if (adev->asic_type == CHIP_CARRIZO || adev->asic_type == CHIP_STONEY) {
-+	if (adev->flags & AMD_IS_APU) {
- 		if (!(pll_in_use & (1 << ATOM_PPLL1)))
- 			return ATOM_PPLL1;
- 		if (!(pll_in_use & (1 << ATOM_PPLL0)))
+ 	/* MEC2 */
+-	if (adev->asic_type == CHIP_KAVERI ||
+-	    (adev->asic_type > CHIP_TOPAZ && adev->asic_type != CHIP_STONEY)) {
++	if (adev->gfx.mec2_fw) {
+ 		query_fw.index = 1;
+ 		ret = amdgpu_firmware_info(&fw_info, &query_fw, adev);
+ 		if (ret)
 -- 
 2.25.4
 
