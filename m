@@ -2,55 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB0261D9B8D
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2020 17:44:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4DD91D9B8E
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2020 17:44:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8DD6E35D;
-	Tue, 19 May 2020 15:44:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2565E6E369;
+	Tue, 19 May 2020 15:44:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com
- [IPv6:2607:f8b0:4864:20::f41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0AF36E35D
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 15:44:46 +0000 (UTC)
-Received: by mail-qv1-xf41.google.com with SMTP id z9so6694379qvi.12
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 08:44:46 -0700 (PDT)
+Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com
+ [IPv6:2607:f8b0:4864:20::f44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08A056E362
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 15:44:48 +0000 (UTC)
+Received: by mail-qv1-xf44.google.com with SMTP id g20so6700324qvb.9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 08:44:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=YRutuulz+e3pQe7Dl0nFWcti//PFSbcU+4dVRYu888s=;
- b=K/0CBLiUuXTXv0V91Mc1oHQ5EHsJpsjRIpzbmVC2C5FYK757sAoY0dwBks//wwcB4B
- YVuipydzSfWRtRygINMCcZGPlR/nC5kyffEX5/6zeNJ1NDRHDPt12377JMsz8589BCXR
- RH5JiexYg5cBW4ZtiCQWsx0hEt4rhBTBDUvI2Tfg3sJcevVnArI3x3SkDQ0Yd/BCBsHc
- 6/bPVH8gLD45Ynaa8b0H/+xFwAgKZBt9oo4lOesUTMJCdz39OJQrqb8pAMS/q4n8rprO
- 2CwbutcLf2CR/9IUm16D8x0SLwzhzo9LXg091puj4VEAmfEttsA+JU28/neG2/PPBLUI
- WLHA==
+ bh=nlFHWArWoqOK3CumI5M6Tbe9Nk7KAOuK8vFgZUTAgwg=;
+ b=ihit5e8b/aUQNQfXnBBonpgShvCXICuIbZxZ23ios22f+Ibt5RAxzr33ZpSKZf8CKd
+ g64m755nx4LZhJVBEUzQvrouUhTRq5B/hbXs95+pGrjyHnvYYdwt375o4ekhhhhYOBtf
+ 6XZWEgTOggc8NJ+oFjXZWM3jT/Zok2xs1FAuynANTiPKSmErDbkb6EM6LpFUSAKdPAUV
+ H/i7cl+G9JPpB64ukYfAgCUx2SpZxTO6SsaZ57BDhqQacQ4WePUUDA1I7taXblbDR3NH
+ wlYTU96VUOlnm2ci1ZI8iFTlJFUlzLgNVBVtUXbRtcrvyYe2js/7b7ZumsuLc7NkUERf
+ yIdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=YRutuulz+e3pQe7Dl0nFWcti//PFSbcU+4dVRYu888s=;
- b=i8gQfckPxUXDrXG3h4fWmLvmC4aXVDWoS5e9xuso8FB+pBWiTWdbji9qUz/AmH7H6Q
- Qq5/7/gGfTBeNylPBumpBqoq8oc5MMeLkG3NSeVhhHgYenPY6b4R5S7xNgpLiX9yjPTy
- 2rOq9nk7Bp3bDMOqM3/TFXwyxk/DgWH2b+l53WjkUkExf1Zp5MvMJmyYqMeyp1BItpRl
- I5C+34ToluAZK9VNkz6ddf9x49d2zgGZhCF9VNlMQFPOt7c9r8z9qK0jV4VXgfcflgeG
- nwd1LZBCofEt7xFvAhPp0voaFEkOn+x7LZZQSD++Ab6p6kSi9wLUwCL2IDBDlrnz8qFv
- 128Q==
-X-Gm-Message-State: AOAM531pRDQrLimjAa10D8L60ty8Z58mv3HKIIV5pJQ0jP4IR3D+UuVn
- 2sox6c5EywRU8V3gEKdGFUybbzNi
-X-Google-Smtp-Source: ABdhPJyXqOlZgYJ1sS02TWoIjBEIKGcs/8QyWyqkRMDgWivean0YuXrWDIrcUU6GR263gCZkO8vEPg==
-X-Received: by 2002:a0c:ab19:: with SMTP id h25mr207902qvb.108.1589903085177; 
+ bh=nlFHWArWoqOK3CumI5M6Tbe9Nk7KAOuK8vFgZUTAgwg=;
+ b=PcrqI/rgS1Y8CR/AiZ9nSN45eZ5gqobMtx5k1t/bt6KuFAu9WX1YE5hWQEKkrjh77N
+ 0PMcAsDaeEygt/PmgyRqYeMd/l8WwY0aqbDClwe/JUxtQEU+7cnHHU0g67EdZDee8jJd
+ l/pKQmleymCbpvW6Obfy/1WZeX2SDJJVMLdRdst7wQVFMUdIH3DYgAg7l+n3UK1s9Fqh
+ yE+bqJYWuXoGJz3Q4AT6jC74XCsO8VqYxx7Xp7v3Zr682A3bWOEY0ZWErC5V1OXdrKKh
+ gcn7AHWGJhBPesFhS49Ymo3LDDNv+FjCbMpkPENdunKzZHyVEiuDPBEv295BTN2wNfyz
+ p7NA==
+X-Gm-Message-State: AOAM5323vmJpW0pDse+OdaylZTxRkPhUN2LVtvBdZ+BOSFjII5ZGKYGc
+ Hyff6BnbPAHP271tJ5Z3O94HFmmp
+X-Google-Smtp-Source: ABdhPJxSl4i4zKPodMRN97Em9Fh2D5yAxDnJaXPBuYQd7nHSl/nACbUO6RDLUHVtyqef3cou3f2PLw==
+X-Received: by 2002:a0c:ed21:: with SMTP id u1mr184080qvq.206.1589903085970;
  Tue, 19 May 2020 08:44:45 -0700 (PDT)
 Received: from localhost.localdomain ([71.51.180.250])
- by smtp.gmail.com with ESMTPSA id l133sm10819975qke.105.2020.05.19.08.44.43
+ by smtp.gmail.com with ESMTPSA id l133sm10819975qke.105.2020.05.19.08.44.45
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 May 2020 08:44:44 -0700 (PDT)
+ Tue, 19 May 2020 08:44:45 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/7] drm/amdgpu: simplify mec2 fw check
-Date: Tue, 19 May 2020 11:44:24 -0400
-Message-Id: <20200519154426.1752937-5-alexander.deucher@amd.com>
+Subject: [PATCH 6/7] drm/amdgpu/sdma4: simplify the logic around powering up
+ sdma
+Date: Tue, 19 May 2020 11:44:25 -0400
+Message-Id: <20200519154426.1752937-6-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200519154426.1752937-1-alexander.deucher@amd.com>
 References: <20200519154426.1752937-1-alexander.deucher@amd.com>
@@ -72,27 +73,48 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Check if mec2 fw exists rather than checking asic types.
+Just check if it's an APU.  The checks for the ppfuncs are
+pointless because if we don't have them we can't power up
+sdma anyway so we shouldn't even be in this code in the first
+place.  I'm not sure about the in_gpu_reset check.  This
+probably needs to be double checked.  The fini logic doesn't
+match the init logic however with that in_gpu_reset check
+in place which seems odd.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 4e4c9550dcf8..4d0bd149e1b8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1339,8 +1339,7 @@ static int amdgpu_debugfs_firmware_info(struct seq_file *m, void *data)
- 		   fw_info.feature, fw_info.ver);
+Can someone test this on renoir?
+
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
+index 8545018747d6..4b47a267cbe8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
+@@ -1913,9 +1913,7 @@ static int sdma_v4_0_hw_init(void *handle)
+ 	int r;
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
  
- 	/* MEC2 */
--	if (adev->asic_type == CHIP_KAVERI ||
--	    (adev->asic_type > CHIP_TOPAZ && adev->asic_type != CHIP_STONEY)) {
-+	if (adev->gfx.mec2_fw) {
- 		query_fw.index = 1;
- 		ret = amdgpu_firmware_info(&fw_info, &query_fw, adev);
- 		if (ret)
+-	if ((adev->asic_type == CHIP_RAVEN && adev->powerplay.pp_funcs &&
+-			adev->powerplay.pp_funcs->set_powergating_by_smu) ||
+-			(adev->asic_type == CHIP_RENOIR && !adev->in_gpu_reset))
++	if (adev->flags & AMD_IS_APU)
+ 		amdgpu_dpm_set_powergating_by_smu(adev, AMD_IP_BLOCK_TYPE_SDMA, false);
+ 
+ 	if (!amdgpu_sriov_vf(adev))
+@@ -1942,9 +1940,7 @@ static int sdma_v4_0_hw_fini(void *handle)
+ 	sdma_v4_0_ctx_switch_enable(adev, false);
+ 	sdma_v4_0_enable(adev, false);
+ 
+-	if ((adev->asic_type == CHIP_RAVEN && adev->powerplay.pp_funcs
+-			&& adev->powerplay.pp_funcs->set_powergating_by_smu) ||
+-			adev->asic_type == CHIP_RENOIR)
++	if (adev->flags & AMD_IS_APU)
+ 		amdgpu_dpm_set_powergating_by_smu(adev, AMD_IP_BLOCK_TYPE_SDMA, true);
+ 
+ 	return 0;
 -- 
 2.25.4
 
