@@ -2,89 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544651DA63C
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 May 2020 02:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4837D1DA70F
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 May 2020 03:16:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C58776E06B;
-	Wed, 20 May 2020 00:14:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13C326E3B2;
+	Wed, 20 May 2020 01:16:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2052.outbound.protection.outlook.com [40.107.220.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28C3C6E06B
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2020 00:14:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UBj8QXJsagJA07frKtvzaH3XE2FXm7aB9IWwRvNjkf1Pz2ltqCpo0wSnFdsEgTS3bjwvFhXk5Ok/O2DSPnCw2j+O/eCEDGE9gMqCDQ34tmJBNiVKAr6K16z5x9XNhgNIxNmI1Kyzwd/dsa/GuGKEYLLs/3dajRCF7AINDBDRwL8sSwwxzIOTgekTDf1GwYelfBpByfKlEuS8PUbHoKaLzhk1yty094Q6I4ab8aFaDl3UHeOwRnsAGSZaKqYRwDbZ9/v/GmvS/feCoW8m5ZlKh2nxi+GNzDGfylvTy9hEfbV6uOR4ZsC0s0PhBhkbMrgVx2jXawSSZLjMpGX3kcVc/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=My6OVCAFakKpumUF4EYWIsyiVWYiwDQPBH0FkG15rlo=;
- b=RHrk4H6R4YhIaJovG5jfSSMSnRCdAhXixYfyaRa4O8aIzKk1m+/MvnqY52o8ILZjtPvbBkTtZQ1K2PwV8+8KPFG2yMCDZbebAkBf70m3EMZrofWBmByZoHMT1J4o4zrKDcVT421OlAgbT8K3hKZclFOMIVbmNXRk8gnYzuoUcxjP7Ggm+QegYjTy0O7Vzdqpf298+f7gXFw9kYNY88hRjV330xfZ6+QrASAwzE+dleE2WgRL52NOdxe6wbJomLXElAI63w2tCd7pauvwtnvSQOD8MncTdBXQPt5Pl6noqoqVp7GSnjneE0XYtQbkEennadNTqaLUxSQUoP1w/UvCKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=My6OVCAFakKpumUF4EYWIsyiVWYiwDQPBH0FkG15rlo=;
- b=gMpSbVekb5ZS0DLM2UNjLxRfTN9D1YrHx8iOqJCSY+1eH6l1aZQmNrUjjIiw6UoB4pebVPaYktiYr5J3c5si+UxSMhpf4lTp3fK9iU/j4K+ttGRIWZ4p7wnMh3RXhxW0s6OjiVkXdCjz8oHuzix4+LYYhU/9ZSXK6khUWDqctFw=
-Received: from DM5PR1201MB0204.namprd12.prod.outlook.com (2603:10b6:4:51::10)
- by DM5PR1201MB0220.namprd12.prod.outlook.com (2603:10b6:4:4e::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3000.27; Wed, 20 May
- 2020 00:14:13 +0000
-Received: from DM5PR1201MB0204.namprd12.prod.outlook.com
- ([fe80::151:afe4:587f:3a86]) by DM5PR1201MB0204.namprd12.prod.outlook.com
- ([fe80::151:afe4:587f:3a86%9]) with mapi id 15.20.3000.034; Wed, 20 May 2020
- 00:14:13 +0000
-From: "Zhang, Jack (Jian)" <Jack.Zhang1@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu fix incorrect sysfs remove behavior for xgmi
-Thread-Topic: [PATCH] drm/amdgpu fix incorrect sysfs remove behavior for xgmi
-Thread-Index: AQHWLPLqvQTd3jSgtkOrLSClRe4bxaiwHTvF
-Date: Wed, 20 May 2020 00:14:13 +0000
-Message-ID: <DM5PR1201MB02048EE6C1CB0A03088D910FBBB60@DM5PR1201MB0204.namprd12.prod.outlook.com>
-References: <1589792453-10553-1-git-send-email-Jack.Zhang1@amd.com>
-In-Reply-To: <1589792453-10553-1-git-send-email-Jack.Zhang1@amd.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-05-20T00:14:01.8317726Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Privileged
-authentication-results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-x-originating-ip: [112.65.13.35]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 8cf1930b-b637-46a2-cf46-08d7fc52ba3b
-x-ms-traffictypediagnostic: DM5PR1201MB0220:
-x-microsoft-antispam-prvs: <DM5PR1201MB0220E9B7A5B68471B091F4CFBBB60@DM5PR1201MB0220.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3631;
-x-forefront-prvs: 04097B7F7F
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: k0Kw8WY+jsD+x6jDeyErxu0ADzcQQbIcj0wkw+pmzTzGrh62qAI7Cmh/skXG/XW7bsb2ywCWj9gBXxX2gphJ/XRAP+m5i1eva9Iau8qdXjh+5EK85xJG2YeRn84M4F1Glj/1YE28Wqg/8EbkHqsbvhzgHIUpg1fCALi5HyERsy/lxZVHxNSuI9xCG8ofSyeGcbZa4RAOCUqltuv91kiekyURwyB7ys7Q7K2ORsK78Q6clwPhMfRD+0j5HFdrqn+aQ74SSlCowambBCvEAXy341eFjOVV2thbwjhNIZmTjA1QnU01q16rnG+1yOdkh92EUTQ1w8lyEY1rtNBpnAJgm4kPx0UWMnkS3U90E/Y43KqJ+vVYR/4UaPErMi+srsFw513s3crr1zFmCOzlOMczAFy9HoWHq/WyJxJMSG+4yFv8FALQjrErwKQ2BOITtfJovc8PH7Ic3npy1JZVG41BpBYad+lX5Wzy+/ALqgnVPzS0yFuGzZjl9K1kJ0Uc3OWLoFJ6aeq1C2Bp9WtVL/D/Tg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR1201MB0204.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(396003)(366004)(39850400004)(136003)(346002)(376002)(45080400002)(186003)(316002)(86362001)(166002)(478600001)(66946007)(6916009)(91956017)(66476007)(5660300002)(64756008)(66556008)(76116006)(66446008)(26005)(9686003)(8676002)(33656002)(8936002)(52536014)(55016002)(2906002)(71200400001)(53546011)(7696005)(6506007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: IFuHY9tMcpLRoqNOAHWp0eaqgRcYQHxEwnMQpq5MUNFCjAgwRYaAIGp+6DURZ2SwnIWRP11ZAc93PXZu1OQL5QnMMBQu+x63CaYBDWOkPuixbuV49TiKMxJlq/QKRL470PyPj+JODODEtrGYQc/HpRf063hA/vfxeZ+BiCR/IqVFH/fxFgeOytEnLt3KjnMGBK4Ej5AwYviPuID9Enc6a3FrcINR9lyd8yH88MiaOdMPQWubw244A1+RzvFh3R1W30c5UXp0xJCWW/kqMlpja7DcN9kgS8wMtIN+zf6Tpw0UeuNV0Xg7iyCDH8hTgiQVwrYWvQmTkkGJHGHZS70mC75K6AgJ6Sb1KCFJbuAYDgdGY93MN0Rj9FS5EV7yRIp7PMbqZgqeSvyC5kX3Nd5FMhVvvemtHxRktFDwoUvL/DxWWA1THdg92D8JqObyMhWAIGvgcYMkBSLIQQS9hrUDlf0Zywu1kE76jILtvdv1vs4=
-x-ms-exchange-transport-forked: True
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
+ [IPv6:2607:f8b0:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C81CC6E3B2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2020 01:16:55 +0000 (UTC)
+Received: by mail-oi1-x244.google.com with SMTP id x23so1547873oic.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2020 18:16:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=jH3PJ1evS0WtXEq6q8AW2icpPJ7tvAC+wH6e5VP4HtE=;
+ b=nJNd/DwOzGRSl0TglEsqIIOrx3Cmjo5ECJMnmh/CBiwqKHzvBSSEqZzxKZ/7F1UEPl
+ nTvr9XKwxXGLixdMLXsV75eB8ZoIONTtJs28g9JgRfhaFfYnQroYtSUx1m8flXoraAFC
+ rbgbP568/47jjlespvbZQIYKr5BlxAJ3HUCXRvsZ+hBfwvqqA9JYf6kJ2/aZDVjp5qml
+ OdtZ/wWdg28ttS5D/+eCnuiVm0e5OJoF/pdakzMjZyUJDp7kebV6t+aAAa0zesoBCtU6
+ uNzhKK+Cc/xlpY92h/dAoT80oypz5X69oualQgX3+QE7rRPaVaYiDGuzMq8mU8bV9rqM
+ ZelA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=jH3PJ1evS0WtXEq6q8AW2icpPJ7tvAC+wH6e5VP4HtE=;
+ b=Qq1C8ianb/QPkBHvGSL57woWzcfcHFa0EpoCYET3iuRv4uZnWewUGEiZGU4EuKRLrr
+ 8vUYAI8HEhbyKojb7+9/9RxBkhtYFCQKcHCNNowf2d9zPtPEs3flsUxsqCNJc8jCgK3b
+ +rMJT74zq5JQO0a3f8+S39HIwpWgD7GpYIUz9Y462+LTAMqox8Z2aS3Xzx7aK+5tV2/v
+ RWKGOyPFRpzTuDIs2WiaodZD9F6SMnaI31phzbXiAwic+SLhOfv5iifebbU1+33267cm
+ 6GBMZLyrpHgkRTxhE4FwEojqa+EnsJdzFWjIsv749nmpi8qxkGAZck63pYAgfSVt1QdT
+ +z8Q==
+X-Gm-Message-State: AOAM532GqtoT8/CPNx6XhijDNNazivqWbxGxkS61AlShn+3kc1pL3r7A
+ 5O5GKEKSSIGwLRMKjCL/pWxB3nTzLR7dUXBlmwM=
+X-Google-Smtp-Source: ABdhPJx4xHHmrU2PN1pS5y+qA7V1v6UCQWym5OP7IWaHkgYCmbKOELMolYPm3RpMpPf/xhUMgxBxMfCFNqXWZWhG4+k=
+X-Received: by 2002:aca:b5d5:: with SMTP id e204mr1666956oif.108.1589937414765; 
+ Tue, 19 May 2020 18:16:54 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8cf1930b-b637-46a2-cf46-08d7fc52ba3b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2020 00:14:13.6874 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8xFt8PaV7X9cqlLTXdBIFVyzHAwGSmPxU2HSb3+TDshjCVT6OTOJnB22LxeFoVyi
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0220
+References: <CAEOHGOm=g_VGa5939Qi_HEXAfuUKuy3tXURx9TKg+n==dUDqPQ@mail.gmail.com>
+ <CADnq5_N-vLuyqo_rqjy44nwdKPWyiO8cpAJN9pFk79wjwKi7gw@mail.gmail.com>
+ <CAEOHGOkbu5jy_1_bUD4H0U89YEc_9zOxsSdyZqmtqZNsdOyDkg@mail.gmail.com>
+ <CAEOHGOkRYXZWN-20VagBEFFywRT=26xphP3JQeQD4AJuxxzg+Q@mail.gmail.com>
+ <CADnq5_Nc+eoCKsQrHA-u0d7trv=MM=5iKv5G1R3TMCyot40OjA@mail.gmail.com>
+ <CAEOHGOk-YO_B3gS7WayrBEAO4oxrUAGtR0o9ZzW8ehOypuc1YA@mail.gmail.com>
+ <CADnq5_M2R93S6aQn8XtrC_JdHhB=ajC17D780koNvdnDFbWCpA@mail.gmail.com>
+In-Reply-To: <CADnq5_M2R93S6aQn8XtrC_JdHhB=ajC17D780koNvdnDFbWCpA@mail.gmail.com>
+From: Javad Karabi <karabijavad@gmail.com>
+Date: Tue, 19 May 2020 20:16:43 -0500
+Message-ID: <CAEOHGO=Tgook7i5R5Ucxn3Pg4ovZe+Fak5rntZ2P+UuwDJ+-Vg@mail.gmail.com>
+Subject: Re: slow rx 5600 xt fps
+To: Alex Deucher <alexdeucher@gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,263 +65,241 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1462281301=="
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1462281301==
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR1201MB02048EE6C1CB0A03088D910FBBB60DM5PR1201MB0204_"
+thanks for the answers alex.
 
---_000_DM5PR1201MB02048EE6C1CB0A03088D910FBBB60DM5PR1201MB0204_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+so, i went ahead and got a displayport cable to see if that changes
+anything. and now, when i run monitor only, and the monitor connected
+to the card, it has no issues like before! so i am thinking that
+somethings up with either the hdmi cable, or some hdmi related setting
+in my system? who knows, but im just gonna roll with only using
+displayport cables now.
+the previous hdmi cable was actually pretty long, because i was
+extending it with an hdmi extension cable, so maybe the signal was
+really bad or something :/
 
-[AMD Official Use Only - Internal Distribution Only]
+but yea, i guess the only real issue now is maybe something simple
+related to some sysfs entry about enabling some powermode, voltage,
+clock frequency, or something, so that glxgears will give me more than
+300 fps. but atleast now i can use a single monitor configuration with
+the monitor displayported up to the card.
 
-ping
+also, one other thing i think you might be interested in, that was
+happening before.
 
- Outlook for Android<https://aka.ms/ghei36>
-________________________________
-From: Jack Zhang <Jack.Zhang1@amd.com>
-Sent: Monday, May 18, 2020 5:00:53 PM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Zhang, Jack (Jian) <Jack.Zhang1@amd.com>
-Subject: [PATCH] drm/amdgpu fix incorrect sysfs remove behavior for xgmi
+so, previously, with laptop -tb3-> egpu-hdmi> monitor, there was a
+funny thing happening which i never could figure out.
+when i would look at the X logs, i would see that "modesetting" (for
+the intel integrated graphics) was reporting that MonitorA was used
+with "eDP-1",  which is correct and what i expected.
+when i scrolled further down, i then saw that "HDMI-A-1-2" was being
+used for another MonitorB, which also is what i expected (albeit i
+have no idea why its saying A-1-2)
+but amdgpu was _also_ saying that DisplayPort-1-2 (a port on the
+radeon card) was being used for MonitorA, which is the same Monitor
+that the modesetting driver had claimed to be using with eDP-1!
 
-Under xgmi setup,some sysfs fail to create for the second time of kmd
-driver loading. It's due to sysfs nodes are not removed appropriately
-in the last unlod time.
+so the point is that amdgpu was "using" Monitor0 with DisplayPort-1-2,
+although that is what modesetting was using for eDP-1.
 
-Changes of this patch:
-1. remove sysfs for dev_attr_xgmi_error
-2. remove sysfs_link adev->dev->kobj with target name.
-   And it only needs to be removed once for a xgmi setup
-3. remove sysfs_link hive->kobj with target name
+anyway, thats a little aside, i doubt it was related to the terrible
+hdmi experience i was getting, since its about display port and stuff,
+but i thought id let you know about that.
 
-In amdgpu_xgmi_remove_device:
-1. amdgpu_xgmi_sysfs_rem_dev_info needs to be run per device
-2. amdgpu_xgmi_sysfs_destroy needs to be run on the last node of
-device.
+if you think that is a possible issue, im more than happy to plug the
+hdmi setup back in and create an issue on gitlab with the logs and
+everything
 
-v2: initialize array with memset
-
-Signed-off-by: Jack Zhang <Jack.Zhang1@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 24 +++++++++++++++++-------
- 1 file changed, 17 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_xgmi.c
-index e9e59bc..3b46ea8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-@@ -325,9 +325,19 @@ static int amdgpu_xgmi_sysfs_add_dev_info(struct amdgp=
-u_device *adev,
- static void amdgpu_xgmi_sysfs_rem_dev_info(struct amdgpu_device *adev,
-                                           struct amdgpu_hive_info *hive)
- {
-+       char node[10];
-+       memset(node, 0, sizeof(node));
-+
-         device_remove_file(adev->dev, &dev_attr_xgmi_device_id);
--       sysfs_remove_link(&adev->dev->kobj, adev->ddev->unique);
--       sysfs_remove_link(hive->kobj, adev->ddev->unique);
-+       device_remove_file(adev->dev, &dev_attr_xgmi_error);
-+
-+       if (adev !=3D hive->adev) {
-+               sysfs_remove_link(&adev->dev->kobj,"xgmi_hive_info");
-+       }
-+
-+       sprintf(node, "node%d", hive->number_devices);
-+       sysfs_remove_link(hive->kobj, node);
-+
- }
-
-
-@@ -583,14 +593,14 @@ int amdgpu_xgmi_remove_device(struct amdgpu_device *a=
-dev)
-         if (!hive)
-                 return -EINVAL;
-
--       if (!(hive->number_devices--)) {
-+       task_barrier_rem_task(&hive->tb);
-+       amdgpu_xgmi_sysfs_rem_dev_info(adev, hive);
-+       mutex_unlock(&hive->hive_lock);
-+
-+       if(!(--hive->number_devices)){
-                 amdgpu_xgmi_sysfs_destroy(adev, hive);
-                 mutex_destroy(&hive->hive_lock);
-                 mutex_destroy(&hive->reset_lock);
--       } else {
--               task_barrier_rem_task(&hive->tb);
--               amdgpu_xgmi_sysfs_rem_dev_info(adev, hive);
--               mutex_unlock(&hive->hive_lock);
-         }
-
-         return psp_xgmi_terminate(&adev->psp);
---
-2.7.4
-
-
---_000_DM5PR1201MB02048EE6C1CB0A03088D910FBBB60DM5PR1201MB0204_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Tue, May 19, 2020 at 4:42 PM Alex Deucher <alexdeucher@gmail.com> wrote:
 >
-</head>
-<body>
-<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
-ign=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
- text-align: left;" dir=3D"auto">
-ping</div>
-<div id=3D"ms-outlook-mobile-signature">
-<div><br>
-</div>
-&nbsp;<a href=3D"https://aka.ms/ghei36">Outlook for Android</a></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jack Zhang &lt;Jack.Z=
-hang1@amd.com&gt;<br>
-<b>Sent:</b> Monday, May 18, 2020 5:00:53 PM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Zhang, Jack (Jian) &lt;Jack.Zhang1@amd.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amdgpu fix incorrect sysfs remove behavior for =
-xgmi</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Under xgmi setup,some sysfs fail to create for the=
- second time of kmd<br>
-driver loading. It's due to sysfs nodes are not removed appropriately<br>
-in the last unlod time.<br>
-<br>
-Changes of this patch:<br>
-1. remove sysfs for dev_attr_xgmi_error<br>
-2. remove sysfs_link adev-&gt;dev-&gt;kobj with target name.<br>
-&nbsp;&nbsp; And it only needs to be removed once for a xgmi setup<br>
-3. remove sysfs_link hive-&gt;kobj with target name<br>
-<br>
-In amdgpu_xgmi_remove_device:<br>
-1. amdgpu_xgmi_sysfs_rem_dev_info needs to be run per device<br>
-2. amdgpu_xgmi_sysfs_destroy needs to be run on the last node of<br>
-device.<br>
-<br>
-v2: initialize array with memset<br>
-<br>
-Signed-off-by: Jack Zhang &lt;Jack.Zhang1@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 24 &#43;&#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;-------<br>
-&nbsp;1 file changed, 17 insertions(&#43;), 7 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_xgmi.c<br>
-index e9e59bc..3b46ea8 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c<br>
-@@ -325,9 &#43;325,19 @@ static int amdgpu_xgmi_sysfs_add_dev_info(struct a=
-mdgpu_device *adev,<br>
-&nbsp;static void amdgpu_xgmi_sysfs_rem_dev_info(struct amdgpu_device *adev=
-,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_hive_info *hive)<br>
-&nbsp;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char node[10];<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; memset(node, 0, sizeof(node));<br=
+> On Tue, May 19, 2020 at 5:22 PM Javad Karabi <karabijavad@gmail.com> wrote:
+> >
+> > lol youre quick!
+> >
+> > "Windows has supported peer to peer DMA for years so it already has a
+> > numbers of optimizations that are only now becoming possible on Linux"
+> >
+> > whoa, i figured linux would be ahead of windows when it comes to
+> > things like that. but peer-to-peer dma is something that is only
+> > recently possible on linux, but has been possible on windows? what
+> > changed recently that allows for peer to peer dma in linux?
+> >
 >
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&g=
-t;dev, &amp;dev_attr_xgmi_device_id);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sysfs_remove_link(&amp;adev-&gt;dev-&=
-gt;kobj, adev-&gt;ddev-&gt;unique);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sysfs_remove_link(hive-&gt;kobj, adev=
--&gt;ddev-&gt;unique);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; device_remove_file(adev-&gt;dev, =
-&amp;dev_attr_xgmi_error);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev !=3D hive-&gt;adev) {<br=
+> A few things that made this more complicated on Linux:
+> 1. Linux uses IOMMUs more extensively than windows so you can't just
+> pass around physical bus addresses.
+> 2. Linux supports lots of strange architectures that have a lot of
+> limitations with respect to peer to peer transactions
 >
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; sysfs_remove_link(&amp;adev-&gt;dev-&gt;kobj,&quot;xgmi_hive=
-_info&quot;);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sprintf(node, &quot;node%d&quot;,=
- hive-&gt;number_devices);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sysfs_remove_link(hive-&gt;kobj, =
-node);<br>
-&#43;<br>
-&nbsp;}<br>
-&nbsp;<br>
-&nbsp;<br>
-@@ -583,14 &#43;593,14 @@ int amdgpu_xgmi_remove_device(struct amdgpu_devic=
-e *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!hive)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!(hive-&gt;number_devices--)) {<b=
-r>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_barrier_rem_task(&amp;hive-&=
-gt;tb);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_xgmi_sysfs_rem_dev_info(ad=
-ev, hive);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;hive-&gt;hive_l=
-ock);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(!(--hive-&gt;number_devices)){=
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; amdgpu_xgmi_sysfs_destroy(adev, hive);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; mutex_destroy(&amp;hive-&gt;hive_lock);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; mutex_destroy(&amp;hive-&gt;reset_lock);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; task_barrier_rem_task(&amp;hive-&gt;tb);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_xgmi_sysfs_rem_dev_info(adev, hive);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; mutex_unlock(&amp;hive-&gt;hive_lock);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return psp_xgmi_terminate(=
-&amp;adev-&gt;psp);<br>
--- <br>
-2.7.4<br>
-<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_DM5PR1201MB02048EE6C1CB0A03088D910FBBB60DM5PR1201MB0204_--
-
---===============1462281301==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> It just took years to get all the necessary bits in place in Linux and
+> make everyone happy.
+>
+> > also, in the context of a game running opengl on some gpu, is the
+> > "peer-to-peer" dma transfer something like: the game draw's to some
+> > memory it has allocated, then a DMA transfer gets that and moves it
+> > into the graphics card output?
+>
+> Peer to peer DMA just lets devices access another devices local memory
+> directly.  So if you have a buffer in vram on one device, you can
+> share that directly with another device rather than having to copy it
+> to system memory first.  For example, if you have two GPUs, you can
+> have one of them copy it's content directly to a buffer in the other
+> GPU's vram rather than having to go through system memory first.
+>
+> >
+> > also, i know it can be super annoying trying to debug an issue like
+> > this, with someone like me who has all types of differences from a
+> > normal setup (e.g. using it via egpu, using a kernel with custom
+> > configs and stuff) so as a token of my appreciation i donated 50$ to
+> > the red cross' corona virus outbreak charity thing, on behalf of
+> > amd-gfx.
+>
+> Thanks,
+>
+> Alex
+>
+> >
+> > On Tue, May 19, 2020 at 4:13 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+> > >
+> > > On Tue, May 19, 2020 at 3:44 PM Javad Karabi <karabijavad@gmail.com> wrote:
+> > > >
+> > > > just a couple more questions:
+> > > >
+> > > > - based on what you are aware of, the technical details such as
+> > > > "shared buffers go through system memory", and all that, do you see
+> > > > any issues that might exist that i might be missing in my setup? i
+> > > > cant imagine this being the case because the card works great in
+> > > > windows, unless the windows driver does something different?
+> > > >
+> > >
+> > > Windows has supported peer to peer DMA for years so it already has a
+> > > numbers of optimizations that are only now becoming possible on Linux.
+> > >
+> > > > - as far as kernel config, is there anything in particular which
+> > > > _should_ or _should not_ be enabled/disabled?
+> > >
+> > > You'll need the GPU drivers for your devices and dma-buf support.
+> > >
+> > > >
+> > > > - does the vendor matter? for instance, this is an xfx card. when it
+> > > > comes to different vendors, are there interface changes that might
+> > > > make one vendor work better for linux than another? i dont really
+> > > > understand the differences in vendors, but i imagine that the vbios
+> > > > differs between vendors, and as such, the linux compatibility would
+> > > > maybe change?
+> > >
+> > > board vendor shouldn't matter.
+> > >
+> > > >
+> > > > - is the pcie bandwidth possible an issue? the pcie_bw file changes
+> > > > between values like this:
+> > > > 18446683600662707640 18446744071581623085 128
+> > > > and sometimes i see this:
+> > > > 4096 0 128
+> > > > as you can see, the second value seems significantly lower. is that
+> > > > possibly an issue? possibly due to aspm?
+> > >
+> > > pcie_bw is not implemented for navi yet so you are just seeing
+> > > uninitialized data.  This patch set should clear that up.
+> > > https://patchwork.freedesktop.org/patch/366262/
+> > >
+> > > Alex
+> > >
+> > > >
+> > > > On Tue, May 19, 2020 at 2:20 PM Javad Karabi <karabijavad@gmail.com> wrote:
+> > > > >
+> > > > > im using Driver "amdgpu" in my xorg conf
+> > > > >
+> > > > > how does one verify which gpu is the primary? im assuming my intel
+> > > > > card is the primary, since i have not done anything to change that.
+> > > > >
+> > > > > also, if all shared buffers have to go through system memory, then
+> > > > > that means an eGPU amdgpu wont work very well in general right?
+> > > > > because going through system memory for the egpu means going over the
+> > > > > thunderbolt connection
+> > > > >
+> > > > > and what are the shared buffers youre referring to? for example, if an
+> > > > > application is drawing to a buffer, is that an example of a shared
+> > > > > buffer that has to go through system memory? if so, thats fine, right?
+> > > > > because the application's memory is in system memory, so that copy
+> > > > > wouldnt be an issue.
+> > > > >
+> > > > > in general, do you think the "copy buffer across system memory might
+> > > > > be a hindrance for thunderbolt? im trying to figure out which
+> > > > > directions to go to debug and im totally lost, so maybe i can do some
+> > > > > testing that direction?
+> > > > >
+> > > > > and for what its worth, when i turn the display "off" via the gnome
+> > > > > display settings, its the same issue as when the laptop lid is closed,
+> > > > > so unless the motherboard reads the "closed lid" the same as "display
+> > > > > off", then im not sure if its thermal issues.
+> > > > >
+> > > > > On Tue, May 19, 2020 at 2:14 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+> > > > > >
+> > > > > > On Tue, May 19, 2020 at 2:59 PM Javad Karabi <karabijavad@gmail.com> wrote:
+> > > > > > >
+> > > > > > > given this setup:
+> > > > > > > laptop -thunderbolt-> razer core x -> xfx rx 5600 xt raw 2 -hdmi-> monitor
+> > > > > > > DRI_PRIME=1 glxgears gears gives me ~300fps
+> > > > > > >
+> > > > > > > given this setup:
+> > > > > > > laptop -thunderbolt-> razer core x -> xfx rx 5600 xt raw 2
+> > > > > > > laptop -hdmi-> monitor
+> > > > > > >
+> > > > > > > glx gears gives me ~1800fps
+> > > > > > >
+> > > > > > > this doesnt make sense to me because i thought that having the monitor
+> > > > > > > plugged directly into the card should give best performance.
+> > > > > > >
+> > > > > >
+> > > > > > Do you have displays connected to both GPUs?  If you are using X which
+> > > > > > ddx are you using?  xf86-video-modesetting or xf86-video-amdgpu?
+> > > > > > IIRC, xf86-video-amdgpu has some optimizations for prime which are not
+> > > > > > yet in xf86-video-modesetting.  Which GPU is set up as the primary?
+> > > > > > Note that the GPU which does the rendering is not necessarily the one
+> > > > > > that the displays are attached to.  The render GPU renders to it's
+> > > > > > render buffer and then that data may end up being copied other GPUs
+> > > > > > for display.  Also, at this point, all shared buffers have to go
+> > > > > > through system memory (this will be changing eventually now that we
+> > > > > > support device memory via dma-buf), so there is often an extra copy
+> > > > > > involved.
+> > > > > >
+> > > > > > > theres another really weird issue...
+> > > > > > >
+> > > > > > > given setup 1, where the monitor is plugged in to the card:
+> > > > > > > when i close the laptop lid, my monitor is "active" and whatnot, and i
+> > > > > > > can "use it" in a sense
+> > > > > > >
+> > > > > > > however, heres the weirdness:
+> > > > > > > the mouse cursor will move along the monitor perfectly smooth and
+> > > > > > > fine, but all the other updates to the screen are delayed by about 2
+> > > > > > > or 3 seconds.
+> > > > > > > that is to say, its as if the laptop is doing everything (e.g. if i
+> > > > > > > open a terminal, the terminal will open, but it will take 2 seconds
+> > > > > > > for me to see it)
+> > > > > > >
+> > > > > > > its almost as if all the frames and everything are being drawn, and
+> > > > > > > the laptop is running fine and everything, but i simply just dont get
+> > > > > > > to see it on the monitor, except for one time every 2 seconds.
+> > > > > > >
+> > > > > > > its hard to articulate, because its so bizarre. its not like, a "low
+> > > > > > > fps" per se, because the cursor is totally smooth. but its that
+> > > > > > > _everything else_ is only updated once every couple seconds.
+> > > > > >
+> > > > > > This might also be related to which GPU is the primary.  It still may
+> > > > > > be the integrated GPU since that is what is attached to the laptop
+> > > > > > panel.  Also the platform and some drivers may do certain things when
+> > > > > > the lid is closed.  E.g., for thermal reasons, the integrated GPU or
+> > > > > > CPU may have a more limited TDP because the laptop cannot cool as
+> > > > > > efficiently.
+> > > > > >
+> > > > > > Alex
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1462281301==--
