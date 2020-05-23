@@ -2,54 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1337C1DF691
-	for <lists+amd-gfx@lfdr.de>; Sat, 23 May 2020 12:17:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B7331DF6FA
+	for <lists+amd-gfx@lfdr.de>; Sat, 23 May 2020 13:53:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A55C6E1F1;
-	Sat, 23 May 2020 10:17:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A72026E057;
+	Sat, 23 May 2020 11:53:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
- by gabe.freedesktop.org (Postfix) with ESMTP id 119A66E1F1
- for <amd-gfx@lists.freedesktop.org>; Sat, 23 May 2020 10:17:11 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id 494722A604A;
- Sat, 23 May 2020 12:17:10 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id GtU81RKjU99D; Sat, 23 May 2020 12:17:10 +0200 (CEST)
-Received: from thor (252.80.76.83.dynamic.wline.res.cust.swisscom.ch
- [83.76.80.252])
- by netline-mail3.netline.ch (Postfix) with ESMTPSA id 10BB92A6048;
- Sat, 23 May 2020 12:17:10 +0200 (CEST)
-Received: from localhost ([::1]) by thor with esmtp (Exim 4.93)
- (envelope-from <michel@daenzer.net>)
- id 1jcRDJ-0009kp-5h; Sat, 23 May 2020 12:17:09 +0200
-Subject: Re: slow rx 5600 xt fps
-To: Javad Karabi <karabijavad@gmail.com>, Alex Deucher <alexdeucher@gmail.com>
-References: <CAEOHGOm=g_VGa5939Qi_HEXAfuUKuy3tXURx9TKg+n==dUDqPQ@mail.gmail.com>
- <CAEOHGOkbu5jy_1_bUD4H0U89YEc_9zOxsSdyZqmtqZNsdOyDkg@mail.gmail.com>
- <CAEOHGOkRYXZWN-20VagBEFFywRT=26xphP3JQeQD4AJuxxzg+Q@mail.gmail.com>
- <CADnq5_Nc+eoCKsQrHA-u0d7trv=MM=5iKv5G1R3TMCyot40OjA@mail.gmail.com>
- <CAEOHGOk-YO_B3gS7WayrBEAO4oxrUAGtR0o9ZzW8ehOypuc1YA@mail.gmail.com>
- <CADnq5_M2R93S6aQn8XtrC_JdHhB=ajC17D780koNvdnDFbWCpA@mail.gmail.com>
- <CAEOHGO=Tgook7i5R5Ucxn3Pg4ovZe+Fak5rntZ2P+UuwDJ+-Vg@mail.gmail.com>
- <CADnq5_Mef-FCri1_wriYgvmnkTNQpxaUfba9_hLSB-yVQHU9cQ@mail.gmail.com>
- <CAEOHGOm+ooti4JX6OD2zd7rOxbAVn1yQ22TwgS0hmiy8Ssf-Kg@mail.gmail.com>
- <CADnq5_O-u_dX84-=y8itZzsrxGLtboBaT5jPY4izzqSjwVtiqg@mail.gmail.com>
- <CAEOHGOmoyyiOSmTPP21mhavJ-qzgPSnWiLb9VFz4z9aSwao3Aw@mail.gmail.com>
- <CADnq5_P9pBvnHjeTDdcocQi1HnK4d6h-a+gsjpgfZ_zEjpDH3g@mail.gmail.com>
- <CAEOHGOmSDy2LRzexvUwqc8R4D5XWHmOO_r+9uh7To6BaH6ik6g@mail.gmail.com>
- <CAEOHGOkFBatRPaskkYv_c84sf-opOFTAi=j=NPj-qOePtdXYXg@mail.gmail.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Message-ID: <dc6af43c-07bb-e334-79f7-80b4cb5135a8@daenzer.net>
-Date: Sat, 23 May 2020 12:17:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Received: from mail-40131.protonmail.ch (mail-40131.protonmail.ch
+ [185.70.40.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4AA96E057
+ for <amd-gfx@lists.freedesktop.org>; Sat, 23 May 2020 11:53:50 +0000 (UTC)
+Date: Sat, 23 May 2020 11:53:41 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail; t=1590234828;
+ bh=zKEAmbr9V1bPLCNBFpsV9zuulffTZwiGATDStCEVeCY=;
+ h=Date:To:From:Cc:Reply-To:Subject:From;
+ b=en1QUJ+l9hkRjAnagjGy5NPtcJxRdQgCJ1d9+CRZT5v61C1EpYuhIUEPBPhrcKJbR
+ +M2/TAZ++HdE7T1gp7aSjLKPbAzqdNeF6x1p8eFl08ee1JDaQGZgr0UFIHM1zpOTjz
+ nXhAFzCuKLgJvTpNLF5k7Q5QQxx+z9xbS7/v6h60=
+To: amd-gfx@lists.freedesktop.org
+From: Simon Ser <contact@emersion.fr>
+Subject: [PATCH] drm/amd/display: drop cursor position check in atomic test
+Message-ID: <HB1_5z8Vnk8KvqVJezbdCJ0uUkI29R_Q7ksMByqCNQ3DG9HWd_iJP6b0WL1jIIJLBPdN25D8iC4BN-Jbf8NbKSL_Ep6IKVn3DaHpe_h5Ljg=@emersion.fr>
 MIME-Version: 1.0
-In-Reply-To: <CAEOHGOkFBatRPaskkYv_c84sf-opOFTAi=j=NPj-qOePtdXYXg@mail.gmail.com>
-Content-Language: en-CA
+X-Spam-Status: No, score=-1.2 required=7.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on mail.protonmail.ch
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,21 +41,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Simon Ser <contact@emersion.fr>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0wNS0yMyAxMjo0OCBhLm0uLCBKYXZhZCBLYXJhYmkgd3JvdGU6Cj4gCj4gYWxzbywg
-dGhlIHdob2xlIHRoaW5nIGFib3V0ICJtb25pdG9yIHVwZGF0aW5nIG9uY2UgZXZlcnkgMyBzZWNv
-bmRzIgo+IHdoZW4gaSBjbG9zZSB0aGUgbGlkIGlzIGJlY2F1c2UgbXV0dGVyIHdpbGwgZ28gZG93
-biB0byAxZnBzIHdoZW4gaXQKPiBkZXRlY3RzIHRoYXQgdGhlIGxpZCBpcyBjbG9zZWQuCgpYb3Jn
-J3MgUHJlc2VudCBleHRlbnNpb24gY29kZSBlbmRzIHVwIGRvaW5nIHRoYXQgKGJlY2F1c2UgaXQg
-aGFzIG5vCnN1cHBvcnQgZm9yIHNlY29uZGFyeSBHUFVzKSwgbm90IG11dHRlci4KCgotLSAKRWFy
-dGhsaW5nIE1pY2hlbCBEw6RuemVyICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgIGh0dHBz
-Oi8vcmVkaGF0LmNvbQpMaWJyZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAgICAgICAgICAgIHwgICAg
-ICAgICAgICAgTWVzYSBhbmQgWCBkZXZlbG9wZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9hbWQtZ2Z4Cg==
+get_cursor_position already handles the case where the cursor has
+negative off-screen coordinates by not setting
+dc_cursor_position.enabled.
+
+Signed-off-by: Simon Ser <contact@emersion.fr>
+Fixes: 626bf90fe03f ("drm/amd/display: add basic atomic check for cursor plane")
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 28e651b173ab..7fc15b82fe48 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -7880,13 +7880,6 @@ static int dm_update_plane_state(struct dc *dc,
+ 			return -EINVAL;
+ 		}
+ 
+-		if (new_plane_state->crtc_x <= -new_acrtc->max_cursor_width ||
+-			new_plane_state->crtc_y <= -new_acrtc->max_cursor_height) {
+-			DRM_DEBUG_ATOMIC("Bad cursor position %d, %d\n",
+-							 new_plane_state->crtc_x, new_plane_state->crtc_y);
+-			return -EINVAL;
+-		}
+-
+ 		return 0;
+ 	}
+ 
+-- 
+2.26.2
+
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
