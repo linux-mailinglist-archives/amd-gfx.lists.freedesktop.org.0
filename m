@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A39C11E13D4
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2020 20:13:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C4D1E13DA
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2020 20:13:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A462C89BF1;
-	Mon, 25 May 2020 18:13:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 025A389C1B;
+	Mon, 25 May 2020 18:13:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2051.outbound.protection.outlook.com [40.107.243.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED1F289BC2
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2020 18:13:12 +0000 (UTC)
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700047.outbound.protection.outlook.com [40.107.70.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6866A89C18
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2020 18:13:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K1mWCYf7VssMavIoqcbvOX/S48vDFbfJkEP0i0hjjkCq69+xtyjm6mm3UPmHuX0cgthzlYLc/hYXWRmgbrmMNO3orM+EeQsVG44XnG4+RIVA+WzyKnIY/wRNf4B3qo4Hdsx6Xswz3oLnC/sSFbhtrMlswm556ug1zcB9TktVdWJb/p8CRnr8UYTEcPIZMPSRGoh2J6Y+YML5HzKHArND8/Sljw64qM51IKFrO3vTFjzq2rfKxbg9ifU9tXPRN7sK5NEjKgCVHL8iA0vuInit6Cxjn27wCfCWio046tcEVdtkcFw7wnkCKMXmmuz2tMNfLIC+mmm5idQPI0eZgJXgsA==
+ b=NfqOXeMkjJpNwyGO3vL/DbTjY84NV87zitQOHSUoApwXeBbn4ehxRkrjqDVHqUeCRyaYAtiV51lcrBaMwF2AKZMvWoKoes6GJqqlo27To1r+tCw2S/L5QKO0TNXapLz/EEK7Fk8A7REnVs3YLTFgPp2ODoc4UBmL97hP9o0Pt3LwbVyhfh3rFzl3vSggaYrOkXu0sWWcmr9I2QX/Wj5NB77RNaEnDvXN/ZW/JlbWqQC/MENUbh8yoa2XhVtDs17VrOpkgD58f0CjgZgPTXjjqMfVrFODHCSi+q1XVcZtR9mtqFeVBCVqJlwJtlbaZMF22laXDpfz8+AGF5Shq/e2Lg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0XMJafdPeQ/cZqjrCqYh3/NHMWixD9WGkhs3B0db1xU=;
- b=T7rFsWgz3hJIBnxzjZSRiZzRQ6lAF5ZBjNjaFVWQSjNw8DtGiqY/sfaHcVdNpwDzkavcDUWtWNmlsGqUxKZsxsev+cdHfZ7fjcrqWK0YzyQ+9iYonZfE49TApCi1/ic4UrO5ZSkiGohbN44shxbqPPyzU8fBQz0XqcpYQxA7Wu9ZKNx+dS/o2LNoUiVxVvvN4kvwKsWtAKBO6iZSLu7112yIhmXpiB318Cor4I7mDerWrpr1sN4+f/shzABUNmVMJR1mr6G/qUXDq+UJzy6+Qo8GUVlWhIg5uC1EJICwRdlj4P2RkvGRTAPQpivPLkmPUknc5n1+e+i70Nh7/wn7Tw==
+ bh=upy1nNsCwo1CBZwX9ol7kHeF4lcEmpzVILKyWFshv2c=;
+ b=E75vOv2+KuUkcigU9Bz+fVG605d6IE59QSMBGLPnUBQhLSMKO4BW2yW96HVlRByWTfRqohxeZfHYecu3l4kO0mzMZwoCWrzemmSh9mvytozNUU4yobMUwTauf+CRysN5RBehBDtQzrTBR1V4R+ymOi2YoM2dYTNZfzuoEoxZVph+kjU4RjMbzFZQtD+UB9XOYu+Of8LXKWZlXDepJGKccTo/N08HXd1/81QllJ1BEAgfTa2g15GTmUvIR4VG5vjehaDOD2E9nFRSjnEHy+Bkvxtd1DFxX2s4fTmTyupCiFIWLg1xZ2z5p7qtG6JGPOICeGkf00ReVmss3uNVi1Dd9g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,44 +27,44 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0XMJafdPeQ/cZqjrCqYh3/NHMWixD9WGkhs3B0db1xU=;
- b=tcxMpXWNN/mq/Jbnshc7YNTOXWctQC4SLujNH2UxIlSCb90rl7oQhOrIvWh7J+vigVi1/5eENrWLrrnpI6/HwzXwH4G1t57X/apbKEPUQFbNHvcbj+AMIF9MMiQ947WRCmbD/tAPdQ7HdxRJQsC7eyQ2SPjMiz8DPbhng7IqSO8=
-Received: from DM6PR02CA0055.namprd02.prod.outlook.com (2603:10b6:5:177::32)
- by MN2PR12MB4301.namprd12.prod.outlook.com (2603:10b6:208:1d4::22) with
+ bh=upy1nNsCwo1CBZwX9ol7kHeF4lcEmpzVILKyWFshv2c=;
+ b=aLNjalFgvuETRC1MEy6KtVK3V6R0npNczh7yY249oFsQUjDhPYaLq/NUvaPUP2lZf/yjwjGkYDDMGX0GMXjBuhNSiMAXMNkeV5epMFk4D5MS3VyoM2/oJWYNhW+13bbiDniieUzBJvbxrWAEnLDGGpfV52FlZyu2rv0chUAeKgY=
+Received: from MWHPR15CA0058.namprd15.prod.outlook.com (2603:10b6:301:4c::20)
+ by DM6PR12MB3004.namprd12.prod.outlook.com (2603:10b6:5:11b::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.23; Mon, 25 May
- 2020 18:13:11 +0000
-Received: from DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:177:cafe::59) by DM6PR02CA0055.outlook.office365.com
- (2603:10b6:5:177::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.26 via Frontend
- Transport; Mon, 25 May 2020 18:13:11 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.26; Mon, 25 May
+ 2020 18:13:13 +0000
+Received: from CO1NAM11FT024.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:301:4c:cafe::74) by MWHPR15CA0058.outlook.office365.com
+ (2603:10b6:301:4c::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.23 via Frontend
+ Transport; Mon, 25 May 2020 18:13:13 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- DM6NAM11FT011.mail.protection.outlook.com (10.13.172.108) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT024.mail.protection.outlook.com (10.13.174.162) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3021.23 via Frontend Transport; Mon, 25 May 2020 18:13:10 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3021.23 via Frontend Transport; Mon, 25 May 2020 18:13:12 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Mon, 25 May
- 2020 13:13:09 -0500
+ 2020 13:13:10 -0500
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Mon, 25 May
  2020 13:13:09 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Mon, 25 May 2020 13:13:08 -0500
+ Transport; Mon, 25 May 2020 13:13:09 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/16] drm/amd/display: Fix incorrect HDCP caps for dongle
-Date: Mon, 25 May 2020 14:12:53 -0400
-Message-ID: <20200525181306.3749-4-qingqing.zhuo@amd.com>
+Subject: [PATCH 04/16] drm/amd/display: simplify dml log2 function
+Date: Mon, 25 May 2020 14:12:54 -0400
+Message-ID: <20200525181306.3749-5-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200525181306.3749-1-qingqing.zhuo@amd.com>
 References: <20200525181306.3749-1-qingqing.zhuo@amd.com>
@@ -72,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(136003)(376002)(346002)(39860400002)(396003)(46966005)(316002)(26005)(4326008)(186003)(8936002)(86362001)(44832011)(70586007)(70206006)(8676002)(1076003)(5660300002)(47076004)(6666004)(54906003)(356005)(478600001)(6916009)(36756003)(82310400002)(336012)(81166007)(82740400003)(426003)(2616005)(2906002);
+ SFS:(4636009)(346002)(396003)(39860400002)(136003)(376002)(46966005)(2616005)(44832011)(6916009)(336012)(426003)(478600001)(36756003)(26005)(186003)(86362001)(356005)(1076003)(82310400002)(70206006)(70586007)(82740400003)(47076004)(81166007)(8676002)(54906003)(5660300002)(2906002)(4326008)(8936002)(316002)(6666004);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fb2a3811-40f2-48fc-5638-08d800d74881
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4301:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB430144C14EC2924BB52F9A71FBB30@MN2PR12MB4301.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
+X-MS-Office365-Filtering-Correlation-Id: 53d80937-5a31-455e-ae66-08d800d749d5
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3004:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB300492760D7CF397941CD1EAFBB30@DM6PR12MB3004.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
 X-Forefront-PRVS: 0414DF926F
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: soZcZaAw47O1sf+Em3XkrDZfvLPuxYAxfMXXHETkspceNLrHoo3MFoSFro+MEnRSpPEBdsGs71QYvTjjStZa/I/zby7zE9VIQmuDmpHehcuzDhHzRulfUx/NgIrg/zuT4t+bwWDYasR/6X0O8TbGc+CpgNrRmmOhQ+Z6wdrNoI5PdY97SqKk1s7BritUnUD5gRGJDznudbsz4cY+DkmhTjVqAcEhmZNkz1IT1XLVEAEo13uujD2EWG2TQZjjyCjeUVfRuyacJRL1JZ9C35Xi7SJHj/sTk41258jzFk+A3SNMMN/b5uFaTQBepdQP6kt0Z8b9GWuup8BB66bIrr64rt7Mo/P5z7z7dGUJYtgS9x/jP0q91BS8woM3l8K9/yK5N3NIVtQzhXqATEKbEP0Qwg==
+X-Microsoft-Antispam-Message-Info: F9eawCcHRSmX9O28UVbrIpTfqZXP0/xSEGf6Zjdm2xE34rzgmDmT10mbT8s+4CGEXBAIE1+HHd4+pzwqg85eP+OuUYlW8f3oRNGE1wbTHP03HsMLUDsxI5O7UzDQunt4lPeG1V0QRZgyvaWVmpR9yb4iA3doOpY7csynOEx+SMPs6dKyDrzxKOyMyHAIANNDTsG8GmoBfWtbSsTwliE23MFWXx5j2Gc+naiHNftrcs8nu7Lp8AgfdBJb74/FWnddC65e1HN1PvT6TBI6QvBt2+r/bcPlDxm06tG7Gw+oyMbRQ0KWVggSNDBhN9lZEK+5uEuiXNCzuKJ4D4JfiS63c7eiMU/lygMcN8z05I6dynA4GhpnXen5hE5tJJtP2jMpS+YR0p7lmWSwY0xsWHU47g==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2020 18:13:10.6340 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb2a3811-40f2-48fc-5638-08d800d74881
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2020 18:13:12.8045 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53d80937-5a31-455e-ae66-08d800d749d5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
+ Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4301
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3004
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,93 +104,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Rodrigo.Siqueira@amd.com,
- Harry.Wentland@amd.com, Aurabindo.Pillai@amd.com
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Aurabindo.Pillai@amd.com,
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-[Why]
-Previously we used link signal type to get the caps. We should use the
-sink signal type
+Current implementation is slightly inaccurate and will often
+result in truncation/floor operation decrementing an exact
+integer output by 1.
 
-[How]
-Use sink signal type instead of link signal type
+Only rounded down output is ever expected, just extract the fp
+exponent for this to increase performance and avoid any
+truncation issues.
 
-Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
-Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Reviewed-by: Eric Bernstein <Eric.Bernstein@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 4 ++--
- drivers/gpu/drm/amd/display/dc/core/dc_link.c             | 8 ++++----
- drivers/gpu/drm/amd/display/dc/dc_link.h                  | 4 ++--
- 3 files changed, 8 insertions(+), 8 deletions(-)
+ .../drm/amd/display/dc/dml/dml_inline_defs.h  | 20 ++++++++++++-------
+ 1 file changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 076af267b488..7b8968baaeb9 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -859,8 +859,8 @@ static int hdcp_sink_capability_show(struct seq_file *m, void *data)
- 
- 	seq_printf(m, "%s:%d HDCP version: ", connector->name, connector->base.id);
- 
--	hdcp_cap = dc_link_is_hdcp14(aconnector->dc_link);
--	hdcp2_cap = dc_link_is_hdcp22(aconnector->dc_link);
-+	hdcp_cap = dc_link_is_hdcp14(aconnector->dc_link, aconnector->dc_sink->sink_signal);
-+	hdcp2_cap = dc_link_is_hdcp22(aconnector->dc_link, aconnector->dc_sink->sink_signal);
- 
- 
- 	if (hdcp_cap)
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index d80b2de3ee82..c00f656e22ff 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -521,11 +521,11 @@ static void link_disconnect_remap(struct dc_sink *prev_sink, struct dc_link *lin
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dml_inline_defs.h b/drivers/gpu/drm/amd/display/dc/dml/dml_inline_defs.h
+index ab0870e2a103..479d7d83220c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dml_inline_defs.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/dml_inline_defs.h
+@@ -86,9 +86,20 @@ static inline double dml_round(double a)
+ 		return floor;
  }
  
- #if defined(CONFIG_DRM_AMD_DC_HDCP)
--bool dc_link_is_hdcp14(struct dc_link *link)
-+bool dc_link_is_hdcp14(struct dc_link *link, enum signal_type signal)
+-static inline double dml_log2(double x)
++/* float
++static inline int dml_log2(float x)
  {
- 	bool ret = false;
- 
--	switch (link->connector_signal)	{
-+	switch (signal)	{
- 	case SIGNAL_TYPE_DISPLAY_PORT:
- 	case SIGNAL_TYPE_DISPLAY_PORT_MST:
- 		ret = link->hdcp_caps.bcaps.bits.HDCP_CAPABLE;
-@@ -545,11 +545,11 @@ bool dc_link_is_hdcp14(struct dc_link *link)
- 	return ret;
+-	return (double) dcn_bw_log(x, 2);
++	unsigned int ix = *((unsigned int *)&x);
++
++	return (int)((ix >> 23) & 0xff) - 127;
++}*/
++
++/* double */
++static inline int dml_log2(double x)
++{
++	unsigned long long ix = *((unsigned long long *)&x);
++
++	return (int)((ix >> 52) & 0x7ff) - 1023;
  }
  
--bool dc_link_is_hdcp22(struct dc_link *link)
-+bool dc_link_is_hdcp22(struct dc_link *link, enum signal_type signal)
- {
- 	bool ret = false;
+ static inline double dml_pow(double a, int exp)
+@@ -116,11 +127,6 @@ static inline double dml_floor_ex(double x, double granularity)
+ 	return (double) dcn_bw_floor2(x, granularity);
+ }
  
--	switch (link->connector_signal)	{
-+	switch (signal)	{
- 	case SIGNAL_TYPE_DISPLAY_PORT:
- 	case SIGNAL_TYPE_DISPLAY_PORT_MST:
- 		ret = (link->hdcp_caps.bcaps.bits.HDCP_CAPABLE &&
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index 5c60c2f9779a..aec514e52e4d 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -312,8 +312,8 @@ bool dc_link_detect_sink(struct dc_link *link, enum dc_connection_type *type);
-  */
- 
- #ifdef CONFIG_DRM_AMD_DC_HDCP
--bool dc_link_is_hdcp14(struct dc_link *link);
--bool dc_link_is_hdcp22(struct dc_link *link);
-+bool dc_link_is_hdcp14(struct dc_link *link, enum signal_type signal);
-+bool dc_link_is_hdcp22(struct dc_link *link, enum signal_type signal);
- #endif
- void dc_link_set_drive_settings(struct dc *dc,
- 				struct link_training_settings *lt_settings,
+-static inline double dml_log(double x, double base)
+-{
+-	return (double) dcn_bw_log(x, base);
+-}
+-
+ static inline unsigned int dml_round_to_multiple(unsigned int num,
+ 						 unsigned int multiple,
+ 						 unsigned char up)
 -- 
 2.17.1
 
