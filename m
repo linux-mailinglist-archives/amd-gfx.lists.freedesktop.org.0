@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 492781E13D7
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2020 20:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74D581E13DF
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2020 20:13:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1370B89C13;
-	Mon, 25 May 2020 18:13:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC23D6E10B;
+	Mon, 25 May 2020 18:13:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2056.outbound.protection.outlook.com [40.107.94.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14F5289C13
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2020 18:13:16 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2050.outbound.protection.outlook.com [40.107.92.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7615389C21
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2020 18:13:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c6rtoi+KStqP/62PpYsADsl3xCgjOPIGuLJu3EmsB4V1fsgT2wvXMiBPQ7r0AaW063XmVIcAtFhfpEiNp+sH+tI9sWZ6S5/1K0d95zwb4PlrtRpPwpEwnTb4H1MV95U5FQnSOPXpJk7A1o6p8rJ66MQArDc3/zhK3CBLEDBS2PLj2AdY8OkbVZadUG/5YcMm2QSBmDbE6Dstv74uKaXiby+0MaCUWnbCNnLcpqHKYwPz8GcXn+gnTvBxzYxJNNX4KzH/OVC5FlGpr49kt2WFuH0PlywHxVjvVnD2PeKr52PcA8Twv617/mCaG5Tg6jMFrZz7apjdDxia/tzHvdVcSg==
+ b=nJkgSbIGl9Yscpue1MvbgcJEL1xnYV7XuTgvvBOFSHIRSdwLTPyqwEk9xdExTp8nNt8rxBM3sL0pFbW5Lz+XQnzWc2HRpFv52aJCve+DoSrgiGDFbTNZ75S5jmQHliGUF/is94qBAd0JifgFEyvwLn8VAYA7V+HNFzmd6eYGcJ4wf0TU9vcEcQyVu1DgIufMbFt8Hb9K5aTQmjFcTuUIbNaWixU85z8Hbff7E29sOIAW03XNF4D+PE0XiXmMJ+jAMzDrTDRMJYe2/LVPw5QnB8MGajdB9UhQQRDAfqBEG3kwGaia61EEWM+OMEXnc7sd+IpY1Q/V/1w8dQy+ZA2XNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y7ZdzepiscCS26ZblxQKgCzPxLGGVBU5DH7AyhvnEG8=;
- b=LeqiR5VjLeFupRpQAHxItCbq1DPIrKZWkiR7UPbYNfKtn7ILIOwmZfcp++9RonxfjDd8kXTg3O0XVM5tTMio/2H4ysdkH8hsAyn2qRbKKkJbFrKqH4z1fBys3wPdNW7YOI1n0ndrnG4pM3K3Pzf7RkSjDit2vj7BOayEUxBdEV1RgGhl0Ba67jSK120vKJqARBkG6I1PSC3MvHu57Lmu8Fwb9mrs0+ToQsW0+RtebaEwMoBULeOHEKrBGYt/NUit7bLSfzfifKMf+7/SZKmmts7Ci61lEwBUQxaZNqYXvbXutsM5HIxL9bdm4Kiz2Oi0XzO9C/uUeSf/OM6SSA77rg==
+ bh=7P0E0cO222j6Mn4Fog58GNSVxo1PDIOyBXh5np13EEM=;
+ b=aL1ySJIe3gyMBtvVXd1aK37P9mwZDxFvR3BkPnSU3UArBxa0ytdtvaJ8o5kzLXcUV0rF+3G93mEtKdSa6HMXxn73EHj/tikh+Vc0xsjNzpW5Ie8jvnDjezje6tuLYaUpjV0EPIyP3l336Y/Zy825mcm6g/8QNLdq5C5o0x0Zwmj7jyhThP0qjuAkjr0guEnMdsBX39Cv4gtALbH6lwJcsr8DyccFVabiBuI7C3JXG5ljv0YKfjs3GybInN41BPJerlIN46LOCmPe/zExNMmJ35MQr16ycJE7yQGzQZn1NS5ZyU24Jv+34BbQbO4TGlC/WTExdXqJtxSUmJ7n9Eh1IA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,44 +27,40 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y7ZdzepiscCS26ZblxQKgCzPxLGGVBU5DH7AyhvnEG8=;
- b=Swp8T34W3cYIZJ7dRiRVZiSNBNTr3R776i11b7VOWJWz5MSX0QDDhGPxdtvoETBQh4Zo/JtT6v6iOpqznTobX37lbuPtd3goCwmvd+HPoqAfRxuL6M1co1rIDviPOwXBwRzZiuArdluILFfsWa3U5BKW4dOYOE03d/iuyMo9lGk=
-Received: from MWHPR22CA0034.namprd22.prod.outlook.com (2603:10b6:300:69::20)
- by SA0PR12MB4382.namprd12.prod.outlook.com (2603:10b6:806:9a::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.23; Mon, 25 May
- 2020 18:13:14 +0000
-Received: from CO1NAM11FT065.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:69:cafe::dd) by MWHPR22CA0034.outlook.office365.com
- (2603:10b6:300:69::20) with Microsoft SMTP Server (version=TLS1_2,
+ bh=7P0E0cO222j6Mn4Fog58GNSVxo1PDIOyBXh5np13EEM=;
+ b=dD/ONV5P1FmzoQVejFy6lGHuB1Ts3xzvtWnlhhXlBsmpBudR/f/D9JVcR8UQkTNHvfix3dDa25hT23y+KW0XM1t8hDc6HZwDZFj9h2bJ2kdKBtoNEfcwIWxosmw7Gcp8vmo+jVd4v68Sp2v22KqpD8Zrvn0Vy4EigTVFgRS/+6U=
+Received: from DM5PR20CA0005.namprd20.prod.outlook.com (2603:10b6:3:93::15) by
+ DM6PR12MB3097.namprd12.prod.outlook.com (2603:10b6:5:11d::25) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3021.23; Mon, 25 May 2020 18:13:15 +0000
+Received: from DM6NAM11FT044.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:93:cafe::61) by DM5PR20CA0005.outlook.office365.com
+ (2603:10b6:3:93::15) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3021.23 via Frontend
- Transport; Mon, 25 May 2020 18:13:14 +0000
+ Transport; Mon, 25 May 2020 18:13:15 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT065.mail.protection.outlook.com (10.13.174.62) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ DM6NAM11FT044.mail.protection.outlook.com (10.13.173.185) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3021.23 via Frontend Transport; Mon, 25 May 2020 18:13:13 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Mon, 25 May
- 2020 13:13:13 -0500
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3021.23 via Frontend Transport; Mon, 25 May 2020 18:13:14 +0000
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Mon, 25 May
  2020 13:13:13 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Mon, 25 May 2020 13:13:12 -0500
+ Transport; Mon, 25 May 2020 13:13:13 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 09/16] drm/amd/display: Guard against invalid array access
-Date: Mon, 25 May 2020 14:12:59 -0400
-Message-ID: <20200525181306.3749-10-qingqing.zhuo@amd.com>
+Subject: [PATCH 10/16] drm/amd/display: unit show garbage when do OPTC blank
+Date: Mon, 25 May 2020 14:13:00 -0400
+Message-ID: <20200525181306.3749-11-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200525181306.3749-1-qingqing.zhuo@amd.com>
 References: <20200525181306.3749-1-qingqing.zhuo@amd.com>
@@ -72,27 +68,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(39860400002)(396003)(346002)(136003)(46966005)(81166007)(82310400002)(356005)(26005)(36756003)(86362001)(47076004)(2906002)(70206006)(70586007)(4326008)(6916009)(186003)(8676002)(54906003)(2616005)(336012)(478600001)(426003)(316002)(6666004)(82740400003)(1076003)(5660300002)(44832011)(8936002);
+ SFS:(4636009)(396003)(376002)(39860400002)(346002)(136003)(46966005)(54906003)(316002)(5660300002)(44832011)(478600001)(6666004)(2616005)(426003)(82310400002)(36756003)(356005)(8936002)(1076003)(8676002)(186003)(336012)(70206006)(70586007)(2906002)(81166007)(26005)(82740400003)(4326008)(86362001)(6916009)(47076004);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cc55ba6c-c52e-440a-ff25-08d800d74a70
-X-MS-TrafficTypeDiagnostic: SA0PR12MB4382:
-X-Microsoft-Antispam-PRVS: <SA0PR12MB4382CA4192B0F1F58CC4C6E2FBB30@SA0PR12MB4382.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
+X-MS-Office365-Filtering-Correlation-Id: e2ca6f32-9b92-4da7-95d2-08d800d74ac4
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3097:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB30972DA3BA2D12419E01FA0FFBB30@DM6PR12MB3097.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:201;
 X-Forefront-PRVS: 0414DF926F
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: f+1BDbK61nhMGCVPHmAS8AOj3T7tV6P9xGhDVqDxUkvsEKmqCJEsdCAtnG714zbVcpP9Hqg7+MZJCt1zCJ/3CQ/7jkrI3pCJagn68qXuosBFY/rl1/92lncAgvx15wOEK4iRFiik+yKJDFBuPEpMAg/Sj4MT871LlLaSEwahbwqUxDpMzkJiLwkfTckNRFZCceLhr3nvIc57CSvnzEXis5qyEuv0q+0SR0TqoUW8gFjEI1MmgtH3kTUOlW+UOb8+ksmZSZ4/qI7UdlP81NXKpdN7S16DnT3gI487XxQZpG90E2HSrAxzyISj6DGmPML363t1jH/U3R+gcVRVNRXEY5eCWFnDgnuh0tjI9Prpvrsqeb0KW2rLwiuZbXmw8cRE1qbpoXxkIwsCRIHwGvyllQ==
+X-Microsoft-Antispam-Message-Info: +wam9D0haosLtnPIEpq0i3QkKgbaudpFubbqImWPR3englnxH41cCDBFgC8tUf7ARV6gHhFh+ZktPEyCCoO5JXc3EJSEF2kM+pBXX0vDj1NmWVZ9aF/2C+bOWkc9WhODF3IJf0CcKY/QgqN+d9HjBGJwgqF+lqbmtLClOP6hibRyRe7kWTma24JaRmTO0ioPbtj/fRvyK6xYYdAidPwDEqjl0GaZz7/woUuAMbhmvGGFzuJ2OvWpxuv9gHhlcjOWMOMcexSxkDHF677MiRcfZuH8bFQbIfTm0KTQDYHlEqPl303WcjoiR5o14WL+1E50nc/jOG8vV616nQscYa53SO0quZX9UZq6wccT+lyawAVwIQYL9+wo8T0NGDdVsFuXyF6QF347yypDNgA0zkI17w==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2020 18:13:13.8224 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc55ba6c-c52e-440a-ff25-08d800d74a70
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2020 18:13:14.4311 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2ca6f32-9b92-4da7-95d2-08d800d74ac4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
+ Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4382
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3097
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,58 +100,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <aric.cyr@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo.Pillai@amd.com, Paul Hsieh <paul.hsieh@amd.com>,
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: Paul Hsieh <paul.hsieh@amd.com>
 
 [Why]
-There are scenarios where no OPP is assigned to an OTG so its value is
-0xF which is outside the size of the OPP array causing a potential
-driver crash.
+Unit enter to S4, garbage show on screen when do OPTC blank.
 
 [How]
-Change the assert to an early return to guard against access.  If
-there's no OPP assigned already, then OTG will be blank anyways so no
-functionality should be lost.
+Wait for vblank then do OPTC blank
 
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
-Reviewed-by: Zhan Liu <Zhan.Liu@amd.com>
+Signed-off-by: Paul Hsieh <paul.hsieh@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index 26cac587c56b..223e314d26b4 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -291,12 +291,20 @@ void dcn20_init_blank(
- 
- 	/* get the OPTC source */
- 	tg->funcs->get_optc_source(tg, &num_opps, &opp_id_src0, &opp_id_src1);
--	ASSERT(opp_id_src0 < dc->res_pool->res_cap->num_opp);
-+
-+	if (opp_id_src0 >= dc->res_pool->res_cap->num_opp) {
-+		ASSERT(false);
-+		return;
-+	}
- 	opp = dc->res_pool->opps[opp_id_src0];
- 
- 	if (num_opps == 2) {
- 		otg_active_width = otg_active_width / 2;
--		ASSERT(opp_id_src1 < dc->res_pool->res_cap->num_opp);
-+
-+		if (opp_id_src1 >= dc->res_pool->res_cap->num_opp) {
-+			ASSERT(false);
-+			return;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+index 0313ca83cdb9..deaafb4782d6 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+@@ -2581,8 +2581,10 @@ void dcn10_blank_pixel_data(
+ 		}
+ 	} else if (blank) {
+ 		dc->hwss.set_abm_immediate_disable(pipe_ctx);
+-		if (stream_res->tg->funcs->set_blank)
++		if (stream_res->tg->funcs->set_blank) {
++			stream_res->tg->funcs->wait_for_state(stream_res->tg, CRTC_STATE_VBLANK);
+ 			stream_res->tg->funcs->set_blank(stream_res->tg, blank);
 +		}
- 		bottom_opp = dc->res_pool->opps[opp_id_src1];
  	}
+ }
  
 -- 
 2.17.1
