@@ -1,56 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9307C1E517B
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2020 00:52:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF6A1E51A0
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2020 01:12:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 135046E3AC;
-	Wed, 27 May 2020 22:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5BB86E118;
+	Wed, 27 May 2020 23:12:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
- [IPv6:2607:f8b0:4864:20::743])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33CB66E108
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2020 22:52:07 +0000 (UTC)
-Received: by mail-qk1-x743.google.com with SMTP id z80so1393379qka.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2020 15:52:07 -0700 (PDT)
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
+ [IPv6:2607:f8b0:4864:20::843])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E48896E114;
+ Wed, 27 May 2020 23:12:28 +0000 (UTC)
+Received: by mail-qt1-x843.google.com with SMTP id g18so3870228qtu.13;
+ Wed, 27 May 2020 16:12:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=sjLbNGstpVNxrXPru57QLFg/b5h8+sD96DTtS7SM5p4=;
- b=G7ndYpgUg3Bblc4hfQBTCV58gSIlJos1VOK3mQMYK4qgztNTehUKgOBWxv+ErxotbV
- GauxUw/An8GC0XJ7r5DEsUuUf9SyOPnw5PioJqFHBojUX21yWS3ggFoWR+0seaoiAgWM
- +SFsMmMLHeauOxAndEcgkNe/ga/pMsHQSaQey60rzXHD0q2i7VU5ST9xmisVSmrbcq4i
- G0Jl3hF13pQ7KZkr5Wk44r5XjO+9vD4UJTfZVRnYgeyLP3y60ct0ae/ch7Vh+eXxKkLZ
- ibK1urKDqPaODm6Xn2TGbL62mRW/W+x4S52uy5XXel6jT2q0RdS7Xp2BhdNMdkJqlWvr
- 7hpw==
+ bh=CzJ+0g6yX69wJemo2qd9RCJV612c0MxfOAew0VNEBVM=;
+ b=MkbcbSmSUIiY9ygD0aX9gm2YdEjeRMOpwsoak4FtccBwA62+XHfLISJUaG991l85/z
+ aAYXkk+zm0Yg1lQa04/DGumic0p4qsLYK76fUK01hqgXARkXqaAlACetalyGzSseSPi/
+ nZrTNebv0MKdR2Z+PowC0xa5NwaH04sw7cv8FCA4XTx2ds2shIvPBIZgXrwm7yxuh0yz
+ ax2rRbawbJtPGCwUfaTIgkf8CbncjgnuKIg7LNcIn1md3J8cwiIjF4gru0JKTXqbTSl+
+ ShssLk+L84J1Y6jcPPYBs4tqP0xUPSYA1bSUcgSKPx2oSzbD+LAuZ5CdhKpB0QKFWvpM
+ ng8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=sjLbNGstpVNxrXPru57QLFg/b5h8+sD96DTtS7SM5p4=;
- b=WX2mHV40MGjj4rNBwlq8TX91GQFEi4nyjVyMrcDHYLF6ryWr1R/vmaV5ocDT0d543P
- 91pDhlLm7Tba0lby+Qp4gwoP14YVRbxOdQ+w8jPHv/8/QvfR9OlKLvGCs1l0AaAf+bQo
- UGpSgNTaarwmttSdvrT20Iu6vTPGrR0qwsiWS/9DOY2Ht6cKwEIhPYrFeJm5BcqdvWrZ
- QXGzuBfzwfe6d87VZbhTKdxR+o/RFf5DKL9ylXCrwK9fe7e8+0XGU0DTLXZzuMKKLCcx
- OvhP3zAG5HzhA8H6MHmFdtdvSOd5oj0vDxXa+psUlfx1Ft70jJ+MBJ9muHfbzgtjhNP0
- Tmlw==
-X-Gm-Message-State: AOAM533TvAmZIy9mL5ZLbvdZyQqijTBMba2JyhXwpt6jzbD5P8zGb5GQ
- VQdy0Bs0JK1L/OUjvsN0P50ck8oA
-X-Google-Smtp-Source: ABdhPJyWGqMkcgbUwZoquIDk6V1+27mULn4faorrDiOqnEVkmTnfy1fIrh5lDph9S1EdCfDx0RhgsQ==
-X-Received: by 2002:a37:85c4:: with SMTP id h187mr102105qkd.179.1590619925820; 
- Wed, 27 May 2020 15:52:05 -0700 (PDT)
+ bh=CzJ+0g6yX69wJemo2qd9RCJV612c0MxfOAew0VNEBVM=;
+ b=cZRb/dRIoW7EUYpVVRqCxdYrkQZo19QkKixoEF2y3O0035euBFhUwXu/kDiLnJLJ0c
+ P0fJ0DMhc13rvvIOKvwlwXGQVuLt0zTzAX1BPvqTv4vstMy0bi/Pj/Hh7AOE/8gmAJny
+ ppv9pHGzdtUYBMB8y+IGV1UzGFZYC77LybYs7URBP892Vk0g/Sl/qOhaK2qhrf90squB
+ 9R7bsL6YpopM08dcteUodEciP4uq8BJHrBesJ3kDgZafDhfwZNAa3ga6JfTcY5nQOJJd
+ mDji10EkI6JPvSDHUzQdn3cQMbtRrKAaVMpHh/Uc2R6Nub3hVazR3L47c7eiTqkhK0L3
+ 6N0Q==
+X-Gm-Message-State: AOAM5312AGaEk/Dwyp++BAAxPUIRjjwq4vh1HT9BAxdSxnIqlk/om4rO
+ MMYzPpRkxR9+kGY5S8ecOZCSJEDT
+X-Google-Smtp-Source: ABdhPJxyrKE23cQSBu9GNlyzWWj6RcZaw2vDgnwjxEIHnyC/38S+KIIoaDch84Xh5Py5Q9f2xlf0/Q==
+X-Received: by 2002:ac8:e8f:: with SMTP id v15mr264444qti.391.1590621147573;
+ Wed, 27 May 2020 16:12:27 -0700 (PDT)
 Received: from localhost.localdomain ([71.51.180.250])
- by smtp.gmail.com with ESMTPSA id b9sm3498366qto.91.2020.05.27.15.52.04
+ by smtp.gmail.com with ESMTPSA id p25sm3694286qtj.18.2020.05.27.16.12.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 May 2020 15:52:05 -0700 (PDT)
+ Wed, 27 May 2020 16:12:27 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu/pm: don't bail for in_suspend
-Date: Wed, 27 May 2020 18:51:58 -0400
-Message-Id: <20200527225158.27756-1-alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ airlied@gmail.com, daniel.vetter@ffwll.ch
+Subject: [pull] amdgpu, amdkfd drm-next-5.8
+Date: Wed, 27 May 2020 19:12:19 -0400
+Message-Id: <20200527231219.3930-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -70,534 +71,201 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Otherwise we disable sysfs/debugfs access with runtime pm.
+Hi Dave, Daniel,
 
-Fixes: f7c8d853b029df ("drm/amdgpu/pm: return an error during GPU reset or suspend")
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 114 ++++++++++++-------------
- 1 file changed, 57 insertions(+), 57 deletions(-)
+Fixes for 5.8.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-index 808884aaf36d..775e389c9a13 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-@@ -163,7 +163,7 @@ static ssize_t amdgpu_get_power_dpm_state(struct device *dev,
- 	enum amd_pm_state_type pm;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -199,7 +199,7 @@ static ssize_t amdgpu_set_power_dpm_state(struct device *dev,
- 	enum amd_pm_state_type  state;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	if (strncmp("battery", buf, strlen("battery")) == 0)
-@@ -303,7 +303,7 @@ static ssize_t amdgpu_get_power_dpm_force_performance_level(struct device *dev,
- 	enum amd_dpm_forced_level level = 0xff;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -343,7 +343,7 @@ static ssize_t amdgpu_set_power_dpm_force_performance_level(struct device *dev,
- 	enum amd_dpm_forced_level current_level = 0xff;
- 	int ret = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	if (strncmp("low", buf, strlen("low")) == 0) {
-@@ -445,7 +445,7 @@ static ssize_t amdgpu_get_pp_num_states(struct device *dev,
- 	struct pp_states_info data;
- 	int i, buf_len, ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -487,7 +487,7 @@ static ssize_t amdgpu_get_pp_cur_state(struct device *dev,
- 	enum amd_pm_state_type pm = 0;
- 	int i = 0, ret = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -526,7 +526,7 @@ static ssize_t amdgpu_get_pp_force_state(struct device *dev,
- 	struct drm_device *ddev = dev_get_drvdata(dev);
- 	struct amdgpu_device *adev = ddev->dev_private;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	if (adev->pp_force_state_enabled)
-@@ -546,7 +546,7 @@ static ssize_t amdgpu_set_pp_force_state(struct device *dev,
- 	unsigned long idx;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	if (strlen(buf) == 1)
-@@ -604,7 +604,7 @@ static ssize_t amdgpu_get_pp_table(struct device *dev,
- 	char *table = NULL;
- 	int size, ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -646,7 +646,7 @@ static ssize_t amdgpu_set_pp_table(struct device *dev,
- 	struct amdgpu_device *adev = ddev->dev_private;
- 	int ret = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -751,7 +751,7 @@ static ssize_t amdgpu_set_pp_od_clk_voltage(struct device *dev,
- 	const char delimiter[3] = {' ', '\n', '\0'};
- 	uint32_t type;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	if (count > 127)
-@@ -843,7 +843,7 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(struct device *dev,
- 	ssize_t size;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -895,7 +895,7 @@ static ssize_t amdgpu_set_pp_features(struct device *dev,
- 	uint64_t featuremask;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = kstrtou64(buf, 0, &featuremask);
-@@ -938,7 +938,7 @@ static ssize_t amdgpu_get_pp_features(struct device *dev,
- 	ssize_t size;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -997,7 +997,7 @@ static ssize_t amdgpu_get_pp_dpm_sclk(struct device *dev,
- 	ssize_t size;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -1063,7 +1063,7 @@ static ssize_t amdgpu_set_pp_dpm_sclk(struct device *dev,
- 	int ret;
- 	uint32_t mask = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = amdgpu_read_mask(buf, count, &mask);
-@@ -1097,7 +1097,7 @@ static ssize_t amdgpu_get_pp_dpm_mclk(struct device *dev,
- 	ssize_t size;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -1127,7 +1127,7 @@ static ssize_t amdgpu_set_pp_dpm_mclk(struct device *dev,
- 	uint32_t mask = 0;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = amdgpu_read_mask(buf, count, &mask);
-@@ -1161,7 +1161,7 @@ static ssize_t amdgpu_get_pp_dpm_socclk(struct device *dev,
- 	ssize_t size;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -1191,7 +1191,7 @@ static ssize_t amdgpu_set_pp_dpm_socclk(struct device *dev,
- 	int ret;
- 	uint32_t mask = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = amdgpu_read_mask(buf, count, &mask);
-@@ -1227,7 +1227,7 @@ static ssize_t amdgpu_get_pp_dpm_fclk(struct device *dev,
- 	ssize_t size;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -1257,7 +1257,7 @@ static ssize_t amdgpu_set_pp_dpm_fclk(struct device *dev,
- 	int ret;
- 	uint32_t mask = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = amdgpu_read_mask(buf, count, &mask);
-@@ -1293,7 +1293,7 @@ static ssize_t amdgpu_get_pp_dpm_dcefclk(struct device *dev,
- 	ssize_t size;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -1323,7 +1323,7 @@ static ssize_t amdgpu_set_pp_dpm_dcefclk(struct device *dev,
- 	int ret;
- 	uint32_t mask = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = amdgpu_read_mask(buf, count, &mask);
-@@ -1359,7 +1359,7 @@ static ssize_t amdgpu_get_pp_dpm_pcie(struct device *dev,
- 	ssize_t size;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -1389,7 +1389,7 @@ static ssize_t amdgpu_set_pp_dpm_pcie(struct device *dev,
- 	int ret;
- 	uint32_t mask = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = amdgpu_read_mask(buf, count, &mask);
-@@ -1425,7 +1425,7 @@ static ssize_t amdgpu_get_pp_sclk_od(struct device *dev,
- 	uint32_t value = 0;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -1453,7 +1453,7 @@ static ssize_t amdgpu_set_pp_sclk_od(struct device *dev,
- 	int ret;
- 	long int value;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = kstrtol(buf, 0, &value);
-@@ -1494,7 +1494,7 @@ static ssize_t amdgpu_get_pp_mclk_od(struct device *dev,
- 	uint32_t value = 0;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -1522,7 +1522,7 @@ static ssize_t amdgpu_set_pp_mclk_od(struct device *dev,
- 	int ret;
- 	long int value;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = kstrtol(buf, 0, &value);
-@@ -1583,7 +1583,7 @@ static ssize_t amdgpu_get_pp_power_profile_mode(struct device *dev,
- 	ssize_t size;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
-@@ -1621,7 +1621,7 @@ static ssize_t amdgpu_set_pp_power_profile_mode(struct device *dev,
- 	long int profile_mode = 0;
- 	const char delimiter[3] = {' ', '\n', '\0'};
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	tmp[0] = *(buf);
-@@ -1683,7 +1683,7 @@ static ssize_t amdgpu_get_gpu_busy_percent(struct device *dev,
- 	struct amdgpu_device *adev = ddev->dev_private;
- 	int r, value, size = sizeof(value);
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(ddev->dev);
-@@ -1719,7 +1719,7 @@ static ssize_t amdgpu_get_mem_busy_percent(struct device *dev,
- 	struct amdgpu_device *adev = ddev->dev_private;
- 	int r, value, size = sizeof(value);
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(ddev->dev);
-@@ -1760,7 +1760,7 @@ static ssize_t amdgpu_get_pcie_bw(struct device *dev,
- 	uint64_t count0 = 0, count1 = 0;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	if (adev->flags & AMD_IS_APU)
-@@ -1799,7 +1799,7 @@ static ssize_t amdgpu_get_unique_id(struct device *dev,
- 	struct drm_device *ddev = dev_get_drvdata(dev);
- 	struct amdgpu_device *adev = ddev->dev_private;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	if (adev->unique_id)
-@@ -1996,7 +1996,7 @@ static ssize_t amdgpu_hwmon_show_temp(struct device *dev,
- 	int channel = to_sensor_dev_attr(attr)->index;
- 	int r, temp = 0, size = sizeof(temp);
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	if (channel >= PP_TEMP_MAX)
-@@ -2130,7 +2130,7 @@ static ssize_t amdgpu_hwmon_get_pwm1_enable(struct device *dev,
- 	u32 pwm_mode = 0;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2164,7 +2164,7 @@ static ssize_t amdgpu_hwmon_set_pwm1_enable(struct device *dev,
- 	int err, ret;
- 	int value;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	err = kstrtoint(buf, 10, &value);
-@@ -2216,7 +2216,7 @@ static ssize_t amdgpu_hwmon_set_pwm1(struct device *dev,
- 	u32 value;
- 	u32 pwm_mode;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	err = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2268,7 +2268,7 @@ static ssize_t amdgpu_hwmon_get_pwm1(struct device *dev,
- 	int err;
- 	u32 speed = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	err = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2301,7 +2301,7 @@ static ssize_t amdgpu_hwmon_get_fan1_input(struct device *dev,
- 	int err;
- 	u32 speed = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	err = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2333,7 +2333,7 @@ static ssize_t amdgpu_hwmon_get_fan1_min(struct device *dev,
- 	u32 size = sizeof(min_rpm);
- 	int r;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2361,7 +2361,7 @@ static ssize_t amdgpu_hwmon_get_fan1_max(struct device *dev,
- 	u32 size = sizeof(max_rpm);
- 	int r;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2388,7 +2388,7 @@ static ssize_t amdgpu_hwmon_get_fan1_target(struct device *dev,
- 	int err;
- 	u32 rpm = 0;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	err = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2420,7 +2420,7 @@ static ssize_t amdgpu_hwmon_set_fan1_target(struct device *dev,
- 	u32 value;
- 	u32 pwm_mode;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	err = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2469,7 +2469,7 @@ static ssize_t amdgpu_hwmon_get_fan1_enable(struct device *dev,
- 	u32 pwm_mode = 0;
- 	int ret;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	ret = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2504,7 +2504,7 @@ static ssize_t amdgpu_hwmon_set_fan1_enable(struct device *dev,
- 	int value;
- 	u32 pwm_mode;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	err = kstrtoint(buf, 10, &value);
-@@ -2547,7 +2547,7 @@ static ssize_t amdgpu_hwmon_show_vddgfx(struct device *dev,
- 	u32 vddgfx;
- 	int r, size = sizeof(vddgfx);
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2582,7 +2582,7 @@ static ssize_t amdgpu_hwmon_show_vddnb(struct device *dev,
- 	u32 vddnb;
- 	int r, size = sizeof(vddnb);
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	/* only APUs have vddnb */
-@@ -2622,7 +2622,7 @@ static ssize_t amdgpu_hwmon_show_power_avg(struct device *dev,
- 	int r, size = sizeof(u32);
- 	unsigned uw;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2661,7 +2661,7 @@ static ssize_t amdgpu_hwmon_show_power_cap_max(struct device *dev,
- 	ssize_t size;
- 	int r;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2693,7 +2693,7 @@ static ssize_t amdgpu_hwmon_show_power_cap(struct device *dev,
- 	ssize_t size;
- 	int r;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2726,7 +2726,7 @@ static ssize_t amdgpu_hwmon_set_power_cap(struct device *dev,
- 	int err;
- 	u32 value;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	if (amdgpu_sriov_vf(adev))
-@@ -2767,7 +2767,7 @@ static ssize_t amdgpu_hwmon_show_sclk(struct device *dev,
- 	uint32_t sclk;
- 	int r, size = sizeof(sclk);
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(adev->ddev->dev);
-@@ -2802,7 +2802,7 @@ static ssize_t amdgpu_hwmon_show_mclk(struct device *dev,
- 	uint32_t mclk;
- 	int r, size = sizeof(mclk);
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(adev->ddev->dev);
-@@ -3665,7 +3665,7 @@ static int amdgpu_debugfs_pm_info(struct seq_file *m, void *data)
- 	u32 flags = 0;
- 	int r;
- 
--	if (adev->in_gpu_reset || adev->in_suspend)
-+	if (adev->in_gpu_reset)
- 		return -EPERM;
- 
- 	r = pm_runtime_get_sync(dev->dev);
--- 
-2.25.4
+The following changes since commit c41219fda6e04255c44d37fd2c0d898c1c46abf1:
 
+  Merge tag 'drm-intel-next-fixes-2020-05-20' of git://anongit.freedesktop.org/drm/drm-intel into drm-next (2020-05-21 10:44:33 +1000)
+
+are available in the Git repository at:
+
+  git://people.freedesktop.org/~agd5f/linux tags/amd-drm-next-5.8-2020-05-27
+
+for you to fetch changes up to 185082b679b4bd6dfb69764eaa89213b26f6f703:
+
+  drm/amd/display: Fix potential integer wraparound resulting in a hang (2020-05-27 18:42:10 -0400)
+
+----------------------------------------------------------------
+amd-drm-next-5.8-2020-05-27:
+
+amdgpu:
+- SRIOV fixes
+- RAS fixes
+- VCN 2.5 DPG (Dynamic PowerGating) fixes
+- FP16 updates for display
+- CTF cleanups
+- Display fixes
+- Fix pcie bw sysfs handling
+- Enable resizeable BAR support for gmc 10.x
+- GFXOFF fixes for Raven
+- PM sysfs handling fixes
+
+amdkfd:
+- Fix a race condition
+- Warning fixes
+
+----------------------------------------------------------------
+Aishwarya Ramakrishnan (1):
+      drm/amdkfd: Fix boolreturn.cocci warnings
+
+Alan Swanson (1):
+      drm/amdgpu: resize VRAM BAR for CPU access on gfx10
+
+Alex Deucher (6):
+      drm/amdgpu: improve error handling in pcie_bw
+      drm/amdgpu: drop navi pcie bw callback
+      drm/amdgpu: move discovery gfx config fetching
+      drm/amdgpu: move gpu_info parsing after common early init
+      drm/amdgpu: fix pm sysfs node handling (v2)
+      drm/amdgpu: add apu flags (v2)
+
+Aric Cyr (1):
+      drm/amd/display: Fix potential integer wraparound resulting in a hang
+
+Bhawanpreet Lakha (1):
+      drm/amd/display: Handle GPU reset for DC block
+
+Dan Carpenter (1):
+      drm/amdgpu: off by one in amdgpu_device_attr_create_groups() error handling
+
+Dmytro Laktyushkin (2):
+      drm/amd/display: fix and simplify pipe split logic
+      drm/amd/display: correct rn NUM_VMID
+
+Evan Quan (2):
+      drm/amd/powerplay: unify the prompts on thermal interrupts
+      drm/amdkfd: report the real PCI bus number
+
+Felix Kuehling (1):
+      drm/amdgpu: Sync with VM root BO when switching VM to CPU update mode
+
+Gustavo A. R. Silva (1):
+      drm/amdgpu/smu10: Replace one-element array and use struct_size() helper
+
+Harry Wentland (3):
+      drm/amd/display: Add DC Debug mask to disable features for bringup
+      drm/amd/display: Fix disable_stutter debug option
+      drm/amd/display: Respect PP_STUTTER_MODE but don't override DC_DISABLE_STUTTER
+
+Jack Zhang (1):
+      drm/amdgpu fix incorrect sysfs remove behavior for xgmi
+
+James Zhu (2):
+      drm/amdgpu/jpeg2.5: Remove JPEG_ENC_MASK from clock ungating
+      drm/amdgpu/vcn2.5: Remove old DPG workaround
+
+Jinze Xu (1):
+      drm/amd/display: Set/Reset avmute when disable/enable stream
+
+John Clements (1):
+      drm/amdgpu: resolve ras recovery vs smi race condition
+
+Kevin Wang (2):
+      drm/amdgpu: cleanup unnecessary virt sriov check in amdgpu attribute
+      drm/amdgpu: fix device attribute node create failed with multi gpu
+
+Likun Gao (1):
+      drm/amdgpu: add condition to set MP1 state on gpu reset
+
+Mario Kleiner (2):
+      drm/amd/display: Expose support for xBGR ordered fp16 formats.
+      drm/amd/display: Enable fp16 also on DCE-11.0 - DCE-12. (v2)
+
+Nicholas Kazlauskas (2):
+      drm/amd/display: Defer cursor lock until after VUPDATE
+      drm/amd/display: Avoid pipe split when plane is too small
+
+Nikola Cornij (1):
+      drm/amd/display: Minimize DSC resource re-assignment
+
+Philip Yang (1):
+      drm/amdkfd: fix restore worker race condition
+
+Rodrigo Siqueira (1):
+      drm/amd/display: Remove dml_common_def file
+
+Simon Ser (1):
+      drm/amd/display: drop cursor position check in atomic test
+
+Stylon Wang (1):
+      drm/amd/display: Fix incorrectly pruned modes with deep color
+
+Vladimir Stempen (1):
+      drm/amd/display: DP training to set properly SCRAMBLING_DISABLE
+
+chen gong (1):
+      drm/amd/powerpay: Disable gfxoff when setting manual mode on picasso and raven
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h                |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c   |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |  19 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c        |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h            |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |   8 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c             | 212 +++++---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pm.h             |  13 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c            |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c            |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |  11 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c           |  23 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c              |  16 +-
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c           |   2 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c             |  14 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c              |   5 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c             |   1 -
+ drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c            |   2 +-
+ drivers/gpu/drm/amd/amdgpu/nv.c                    |   8 -
+ drivers/gpu/drm/amd/amdgpu/psp_v10_0.c             |   4 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c             |   6 +-
+ drivers/gpu/drm/amd/amdgpu/soc15.c                 |  17 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c              |   9 -
+ drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c    |   4 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_iommu.c             |   2 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 317 +++++++++++++++++----
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h  |   1 +
+ drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c   |  21 +-
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c      |   8 +
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c   |  27 ++
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c  |  28 +-
+ .../drm/amd/display/dc/dce112/dce112_resource.c    |   2 +-
+ .../drm/amd/display/dc/dce120/dce120_resource.c    |   2 +-
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.c    |   1 -
+ .../drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c  |  74 ++++-
+ .../drm/amd/display/dc/dcn10/dcn10_hw_sequencer.h  |   5 +
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c  |   1 +
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_hubbub.h    |   1 +
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c  |   1 +
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_resource.c  | 189 ++++++------
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_resource.h  |   7 +-
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_hubbub.c    |   7 +-
+ drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c  |   1 +
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_resource.c  |   3 +-
+ drivers/gpu/drm/amd/display/dc/dml/Makefile        |   2 -
+ .../display/dc/dml/dcn20/display_rq_dlg_calc_20.h  |   1 -
+ .../dc/dml/dcn20/display_rq_dlg_calc_20v2.h        |   1 -
+ .../display/dc/dml/dcn21/display_rq_dlg_calc_21.h  |   2 +-
+ .../gpu/drm/amd/display/dc/dml/display_mode_lib.h  |   6 +-
+ .../gpu/drm/amd/display/dc/dml/display_mode_vba.h  |   2 -
+ .../amd/display/dc/dml/display_rq_dlg_helpers.h    |   1 -
+ .../amd/display/dc/dml/dml1_display_rq_dlg_calc.h  |   2 -
+ .../gpu/drm/amd/display/dc/dml/dml_common_defs.c   |  43 ---
+ .../gpu/drm/amd/display/dc/dml/dml_common_defs.h   |  37 ---
+ .../gpu/drm/amd/display/dc/dml/dml_inline_defs.h   |  15 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h  |   5 +
+ drivers/gpu/drm/amd/display/dc/inc/resource.h      |   2 +
+ drivers/gpu/drm/amd/display/modules/vmid/vmid.c    |   7 +-
+ drivers/gpu/drm/amd/include/amd_shared.h           |  14 +
+ drivers/gpu/drm/amd/powerplay/arcturus_ppt.c       |   6 +
+ drivers/gpu/drm/amd/powerplay/hwmgr/smu10_hwmgr.c  |   9 +-
+ drivers/gpu/drm/amd/powerplay/hwmgr/smu10_hwmgr.h  |   2 +-
+ drivers/gpu/drm/amd/powerplay/hwmgr/smu_helper.c   |  38 +--
+ drivers/gpu/drm/amd/powerplay/smu_v11_0.c          |  26 +-
+ .../gpu/drm/amd/powerplay/smumgr/smu10_smumgr.c    |   3 +-
+ 65 files changed, 780 insertions(+), 535 deletions(-)
+ delete mode 100644 drivers/gpu/drm/amd/display/dc/dml/dml_common_defs.c
+ delete mode 100644 drivers/gpu/drm/amd/display/dc/dml/dml_common_defs.h
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
