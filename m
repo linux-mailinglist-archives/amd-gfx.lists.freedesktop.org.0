@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714221E6DBE
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2020 23:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB3E1E6DC0
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2020 23:35:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB7BE6E7F5;
-	Thu, 28 May 2020 21:35:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7BA96E802;
+	Thu, 28 May 2020 21:35:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
  [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99E166E7F5
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2020 21:35:42 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id w1so403774qkw.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2020 14:35:42 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BF066E7F5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2020 21:35:43 +0000 (UTC)
+Received: by mail-qk1-x742.google.com with SMTP id b27so410350qka.4
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2020 14:35:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ER+cNtYZuoeyVlg3bP6CiwSPvcL7pxu8W79p6v4Cxj8=;
- b=Qv6u3TyT+W4CHLIki4IGoZrCHLh/jINkcX/NPB7BzsAhTaJYwvoO8ejSLRiZFdlv9c
- 7NHXDhqjM22NZCk6qcSIK/EarLlVnS2HVkgoFCOvu3bCOcPOJOsjcv6JgbCyAGjNBaYA
- rprovrON4xiOr+d0CZlnffMXhwpPwl3iYaPZB/WPRr9wmtTSxJ/qb8VPdEpiqQv6tnqs
- Bap6jTYB6jhxobj48NpoWtRXm/qCJr0zAdKqZo+YhC5JH7LgLF+w6w8WLVGGEsUEzCLr
- rvabo+Pd5m1G8WudVxrrhiFSPBo9ZYbQuHGOGV1jBhxkBzeCo3zpHC2gnCDap/jKzHnZ
- Aw9Q==
+ bh=WPfX3Bk1QbG3V5AMtYKNZWP23zt5qGOSUhcrMaDIimw=;
+ b=Fa2YZUwgdlZwbSgSCDOky7jaOQ70PZDjep1ktfFP5o6u5etkMgxwi7m/FGiDHHal39
+ dKX13Y4UEbZ6zfwzyreSyHb7CLpSkBMB0nrM1PMUW1QidDLUGzK4pg3NBRuP4dE6ngwB
+ Vee8D6mbP2UJ1dyM5TJ3XEGzHd0yinrOq4rf+pNBRzQd0XzeQtuavHH0/p/pMs1VYrz4
+ Qu1u7cGrfL43laD2EeZ02RxnUJ7WKfGoaFH5quthyXP5+4S1wpbmQ9netpXdpMpc+b2C
+ 3tNhz0NqVqZ8NNE098w7+9g5lP3FChvWvuL4C1Ysck/Rfo52AMdQbzAjwtzIbjT2tbFC
+ FkAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ER+cNtYZuoeyVlg3bP6CiwSPvcL7pxu8W79p6v4Cxj8=;
- b=Pqn5jMCcwal1H7b1Q4/LSz+lu4jw6TIiluNvh0+XSWUupKUJlNOuDFlQ54SS+qmOx9
- yvLIfS92b477usFKwayZvgJT7Lnxpe5tMjB+m5gdy6xLRmXGSLN64KR6c/i3oJ5WmyaD
- 5LKzXbkvyVghv1nd3OIC9uHKVUyHP6lETYAQXtFQzVtL3jnwBFPfhyirsAztuWk3mnfW
- LN1uvIDkrJBO55OIg3czVraRWa4FaLanaQ8lKAQajTv0bJbGkAEXOXrKFd7KAdpTVPqu
- py3Ov8L7h+J05Rv1opLalrY60sx0iPVwWjWwM5CjyMQ8dQ6EjweCEgz+XOBRtTQZwRyR
- +mOQ==
-X-Gm-Message-State: AOAM532GaArL/Mlisl7zuxBT5wcga3EB3fXYsF4UuH2B1ciwXr4+6zYL
- vPNVKFYOpJjZmq11Zjw9jydfW+Up
-X-Google-Smtp-Source: ABdhPJwGbeT7m80b/lY+YiStfAODV9JInS8TuJ5r+RBpc1NyRma+L1Ci3JGiduUhRHwfjomCrZrohw==
-X-Received: by 2002:a37:9c55:: with SMTP id f82mr4854095qke.225.1590701741400; 
- Thu, 28 May 2020 14:35:41 -0700 (PDT)
+ bh=WPfX3Bk1QbG3V5AMtYKNZWP23zt5qGOSUhcrMaDIimw=;
+ b=HghBeEXzeD/CW4SAu7M9HxNbtsX5mC6gs+fXd83NCRt07vDsg00AGTCXf58qghw1dz
+ YtGsI2+LwNp9SwA4/iFFdzSVqN/oX+qq0+pqdvokP/HxxJ0h1dkMnGHqQmeUEdl7oW5N
+ hC/q/3lNtemELsYIn6j6FcAtX5JvUOXHzXnNT8EyEAM2PwPf/1sDTWkCXKX4UErNoyvD
+ bQYIS9i71Pasvx923Nh0nzQuB7nnVZ95n01n1tOLhhfd5QMCfGQvkFkz7IDbHsJgd1Nq
+ otGQgcbX5eWQdwJLPVQxvIod1WOn9ic8uBYoXyIDKrO0/G/kkswYdfZ8KQ5uCN5AXltG
+ zlfw==
+X-Gm-Message-State: AOAM532nScnIxWAMyrWOYGq4RM96fqYXCj1OVu2yI6DLUiTJ5+x/EIjn
+ uRip0ehOVsXzW8Ulk56Eo+XKflbg
+X-Google-Smtp-Source: ABdhPJxeiSsVkGOlc6/nk1cpjTqYint0sXMMeTsc1kUNf3yuFq5C/SQRnit/gvoxqx2YDiTQuhrFVA==
+X-Received: by 2002:a37:6590:: with SMTP id z138mr5172999qkb.202.1590701742543; 
+ Thu, 28 May 2020 14:35:42 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id k43sm7027851qtk.67.2020.05.28.14.35.40
+ by smtp.gmail.com with ESMTPSA id k43sm7027851qtk.67.2020.05.28.14.35.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 May 2020 14:35:40 -0700 (PDT)
+ Thu, 28 May 2020 14:35:42 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/6] drm/amdgpu/nv: remove some dead code
-Date: Thu, 28 May 2020 17:35:28 -0400
-Message-Id: <20200528213529.673145-5-alexander.deucher@amd.com>
+Subject: [PATCH 6/6] drm/amdgpu/nv: enable init reset check
+Date: Thu, 28 May 2020 17:35:29 -0400
+Message-Id: <20200528213529.673145-6-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200528213529.673145-1-alexander.deucher@amd.com>
 References: <20200528213529.673145-1-alexander.deucher@amd.com>
@@ -72,65 +72,42 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-navi never supported the pci config reset.  Neither did
-vega.
+gpu reset is implemented for navi so we can enable this.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/nv.c | 34 ---------------------------------
- 1 file changed, 34 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/nv.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 61eea26922ce..0f927fcff0d5 100644
+index 0f927fcff0d5..fd3b9e21a5bd 100644
 --- a/drivers/gpu/drm/amd/amdgpu/nv.c
 +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -254,31 +254,6 @@ static int nv_read_register(struct amdgpu_device *adev, u32 se_num,
- 	return -EINVAL;
+@@ -41,6 +41,7 @@
+ #include "hdp/hdp_5_0_0_offset.h"
+ #include "hdp/hdp_5_0_0_sh_mask.h"
+ #include "smuio/smuio_11_0_0_offset.h"
++#include "mp/mp_11_0_offset.h"
+ 
+ #include "soc15.h"
+ #include "soc15_common.h"
+@@ -514,7 +515,6 @@ static bool nv_need_full_reset(struct amdgpu_device *adev)
+ 
+ static bool nv_need_reset_on_init(struct amdgpu_device *adev)
+ {
+-#if 0
+ 	u32 sol_reg;
+ 
+ 	if (adev->flags & AMD_IS_APU)
+@@ -526,8 +526,7 @@ static bool nv_need_reset_on_init(struct amdgpu_device *adev)
+ 	sol_reg = RREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_81);
+ 	if (sol_reg)
+ 		return true;
+-#endif
+-	/* TODO: re-enable it when mode1 reset is functional */
++
+ 	return false;
  }
- 
--#if 0
--static void nv_gpu_pci_config_reset(struct amdgpu_device *adev)
--{
--	u32 i;
--
--	dev_info(adev->dev, "GPU pci config reset\n");
--
--	/* disable BM */
--	pci_clear_master(adev->pdev);
--	/* reset */
--	amdgpu_pci_config_reset(adev);
--
--	udelay(100);
--
--	/* wait for asic to come out of reset */
--	for (i = 0; i < adev->usec_timeout; i++) {
--		u32 memsize = nbio_v2_3_get_memsize(adev);
--		if (memsize != 0xffffffff)
--			break;
--		udelay(1);
--	}
--
--}
--#endif
--
- static int nv_asic_mode1_reset(struct amdgpu_device *adev)
- {
- 	u32 i;
-@@ -336,15 +311,6 @@ nv_asic_reset_method(struct amdgpu_device *adev)
- 
- static int nv_asic_reset(struct amdgpu_device *adev)
- {
--
--	/* FIXME: it doesn't work since vega10 */
--#if 0
--	amdgpu_atombios_scratch_regs_engine_hung(adev, true);
--
--	nv_gpu_pci_config_reset(adev);
--
--	amdgpu_atombios_scratch_regs_engine_hung(adev, false);
--#endif
- 	int ret = 0;
- 	struct smu_context *smu = &adev->smu;
  
 -- 
 2.25.4
