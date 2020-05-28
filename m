@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7926C1E6DBD
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2020 23:35:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72A711E6DBF
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2020 23:35:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC666E7F1;
-	Thu, 28 May 2020 21:35:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 981C06E7FE;
+	Thu, 28 May 2020 21:35:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
- [IPv6:2607:f8b0:4864:20::844])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 656426E7EF
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2020 21:35:40 +0000 (UTC)
-Received: by mail-qt1-x844.google.com with SMTP id k22so295978qtm.6
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2020 14:35:40 -0700 (PDT)
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
+ [IPv6:2607:f8b0:4864:20::741])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B4A16E7F5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2020 21:35:41 +0000 (UTC)
+Received: by mail-qk1-x741.google.com with SMTP id 205so418414qkg.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2020 14:35:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=uR1FwK2EE/Bvqc1MRxlQutKkvSGAzOOgMpAellSRaLc=;
- b=ivHSwjH/3ddPO4pc1k16Snqgq75y+l0Ex+dxGyamzjMA1gyZBP8V3//dRmd5oz5xz6
- x6I+fDFV4bYLRrDOLo0FKwWufXrqf9mboU1A/3vxswwWohUfeyDNC6Tv10+PiGWF5uB3
- n7BL0WdLr7gY9eq6gjn2zh9ApdeMTHO3+tsKQmoSGTUD+KGUPCzAiPNY6bddlMKGAeuU
- Y/G/TmXvwtUNBX0n7xoaI2hzbNNLbHz8pKgP2DHWkh2eaHwEuHwWNDh87NEDWprnbfWM
- PbLAby8n9RFgv9T/Df0FZ+s8/kPn4Gvhb+ro8b+YmSmdRuPVJ9ieDUIM9LhCZu8+ek7Q
- OQvA==
+ bh=591RdzoHFpNltjB/0pZKualOAJ1rl8Rl2iZsuE+8kO8=;
+ b=oeFQ4ejYrk1u5RrmEilnM6OwPVDBGUvzhcBQls4tAfHDiOa6ialZxBhJKkYrPp9OKD
+ SzSJB9qCrxNKc8G0pncxyJkEfX2qTixxSU8e/N2yDt8cLfjYzqe4zj8BQ+STn+PARHxD
+ 7tkep3iM/gqtSxv7r3N8S8p6+Xd3KmalYNvnIcpehaXfN114mh3QAPRMEEZIeaAic0w4
+ vxADa1mS4BWSNEPhd7Lg6eHaiNMxcmQmaOgOM41qtnNgjS/UujOcVIW8Ra3L6mDMq8Jk
+ CwiK9vh2rGexNEJqnkEe+lwRaxSsPEmXla6004zV8rBM50/9VYy1KU25pgkk1aRRXPSq
+ 2Rtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=uR1FwK2EE/Bvqc1MRxlQutKkvSGAzOOgMpAellSRaLc=;
- b=O9HpMcu8c0uZOO8PLlyq4e6xJor5wXWyMK/RSjECcx25vw2fcw1Y0nB/fEwCD2GaK0
- e3qMKpjKRaBmfHnCOdiemEQrC3FYZ6d3m/kDS5++b2pNxF0L5YzbAChD779TlU3uL5J4
- 2lFSbO0uz3+HyCrTNIaXsoiQZugLMiBFKGtwpQuxeWvaTtP++2Fe0O4vNEfN9+ZFPKNv
- Vbr3P4tas5OwPRgkm4GE7Op9OoDdee+MnBKadzLbDBqR84usgTKZWImmWJm9JlpDziQD
- kGCFz6Bd77Do67xQWaMFQfPBodiS+n4vJkPASF4sAATR9ToX8oDNr4kYCZHWW+dmCut6
- J7Jg==
-X-Gm-Message-State: AOAM533KFLgucFdW5XpB6i6jHVpJDEcrR6n/LxtA0K6yyv3HzQLalthD
- qPt5SkLhWNzoEKr0wmE/KoElPYIk
-X-Google-Smtp-Source: ABdhPJyTZXY9V47mNFYeFpvuFapz5jwSauHAkIP7+nW+/nNz+3oFTI0oeiqobtZU0xnsrmNbnf8KWw==
-X-Received: by 2002:ac8:3483:: with SMTP id w3mr5011271qtb.330.1590701739300; 
- Thu, 28 May 2020 14:35:39 -0700 (PDT)
+ bh=591RdzoHFpNltjB/0pZKualOAJ1rl8Rl2iZsuE+8kO8=;
+ b=aH3dFVkQOc3xrwBQodnpgOZyDyUsi6WqDXBcQ8R31ovtErDBNDQhFVCV8prfnBNfq4
+ VnwiED9+BNN0ZeiyMH0I0PDeqPbOacIkXdYMmUB+V5s3sPRoOalMBM2jqom2lIfo8GXH
+ gLtsyzdDLWiDBzXZQKoIgkJWhXzuukgckJjhKY4UmlvUgrszJOLDB7owB4Yu9Smg5NSz
+ +83tyfM7bR4OyRAlKpqX2mfSK8nG/WC5dpZgj06e+Fh6YaDy4uSD+5O1OZPutbS6zMCU
+ BOQcUrVystoNrl/ghkygwgWTU9aqZE+SiVp2/kZs0MDknk7jumuOGxHgLSz0ChVnktYB
+ keog==
+X-Gm-Message-State: AOAM531lqSzQG3Z+k5g27XOu/7BmEhapyo1EXCs7DUsY8+bZub49dv42
+ TbLDSOD+dAZA6IgWD/uKexXWPTec
+X-Google-Smtp-Source: ABdhPJyNTeQEdoqq9cuvrWW5pNCEvMs0umadgSGXegqJhar89G8RkEj6VACxavJ6HLU+gHsTLLS4Rw==
+X-Received: by 2002:a37:72c7:: with SMTP id n190mr4638240qkc.270.1590701740343; 
+ Thu, 28 May 2020 14:35:40 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id k43sm7027851qtk.67.2020.05.28.14.35.38
+ by smtp.gmail.com with ESMTPSA id k43sm7027851qtk.67.2020.05.28.14.35.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 May 2020 14:35:38 -0700 (PDT)
+ Thu, 28 May 2020 14:35:39 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/6] drm/amdgpu: use IP discovery table for renoir
-Date: Thu, 28 May 2020 17:35:26 -0400
-Message-Id: <20200528213529.673145-3-alexander.deucher@amd.com>
+Subject: [PATCH 4/6] drm/amdgpu/nv: allow access to SDMA status registers
+Date: Thu, 28 May 2020 17:35:27 -0400
+Message-Id: <20200528213529.673145-4-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200528213529.673145-1-alexander.deucher@amd.com>
 References: <20200528213529.673145-1-alexander.deucher@amd.com>
@@ -72,47 +72,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rather than relying on gpu info firmware.
+For access via ioctl for tools like umr and mesa.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
+ drivers/gpu/drm/amd/amdgpu/nv.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Can someone test this on renoir?
-
- drivers/gpu/drm/amd/amdgpu/soc15.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-index c7c9e07962b9..623745b2d8b3 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-@@ -670,14 +670,25 @@ static uint32_t soc15_get_rev_id(struct amdgpu_device *adev)
- 
- int soc15_set_ip_blocks(struct amdgpu_device *adev)
- {
-+	int r;
-+
- 	/* Set IP register base before any HW register access */
- 	switch (adev->asic_type) {
- 	case CHIP_VEGA10:
- 	case CHIP_VEGA12:
- 	case CHIP_RAVEN:
--	case CHIP_RENOIR:
- 		vega10_reg_base_init(adev);
- 		break;
-+	case CHIP_RENOIR:
-+		if (amdgpu_discovery) {
-+			r = amdgpu_discovery_reg_base_init(adev);
-+			if (r) {
-+				DRM_WARN("failed to init reg base from ip discovery table, "
-+					 "fallback to legacy init method\n");
-+				vega10_reg_base_init(adev);
-+			}
-+		}
-+		break;
- 	case CHIP_VEGA20:
- 		vega20_reg_base_init(adev);
- 		break;
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 6655dd2009b6..61eea26922ce 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -188,10 +188,8 @@ static struct soc15_allowed_register_entry nv_allowed_read_registers[] = {
+ 	{ SOC15_REG_ENTRY(GC, 0, mmGRBM_STATUS_SE1)},
+ 	{ SOC15_REG_ENTRY(GC, 0, mmGRBM_STATUS_SE2)},
+ 	{ SOC15_REG_ENTRY(GC, 0, mmGRBM_STATUS_SE3)},
+-#if 0	/* TODO: will set it when SDMA header is available */
+ 	{ SOC15_REG_ENTRY(SDMA0, 0, mmSDMA0_STATUS_REG)},
+ 	{ SOC15_REG_ENTRY(SDMA1, 0, mmSDMA1_STATUS_REG)},
+-#endif
+ 	{ SOC15_REG_ENTRY(GC, 0, mmCP_STAT)},
+ 	{ SOC15_REG_ENTRY(GC, 0, mmCP_STALLED_STAT1)},
+ 	{ SOC15_REG_ENTRY(GC, 0, mmCP_STALLED_STAT2)},
 -- 
 2.25.4
 
