@@ -1,42 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F801E79E4
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2020 11:56:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BBE31E7EB3
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2020 15:29:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C27056E8B4;
-	Fri, 29 May 2020 09:56:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 632266E8F4;
+	Fri, 29 May 2020 13:29:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
- by gabe.freedesktop.org (Postfix) with ESMTP id AC8516E8B4
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2020 09:56:06 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id A11FC2A6042;
- Fri, 29 May 2020 11:56:05 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id Gl_F7KtVrfNa; Fri, 29 May 2020 11:56:05 +0200 (CEST)
-Received: from thor (212.174.63.188.dynamic.wline.res.cust.swisscom.ch
- [188.63.174.212])
- by netline-mail3.netline.ch (Postfix) with ESMTPSA id 0C3D62A6016;
- Fri, 29 May 2020 11:56:04 +0200 (CEST)
-Received: from localhost ([::1]) by thor with esmtp (Exim 4.93)
- (envelope-from <michel@daenzer.net>)
- id 1jebkB-0008Gf-KJ; Fri, 29 May 2020 11:56:03 +0200
-Subject: Re: [PATCH] drm/amdgpu/pm: don't bail for in_suspend
-To: Alex Deucher <alexdeucher@gmail.com>
-References: <20200527225158.27756-1-alexander.deucher@amd.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Message-ID: <adf54b19-f620-29e1-0802-cfebb01d4548@daenzer.net>
-Date: Fri, 29 May 2020 11:56:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com
+ [IPv6:2a00:1450:4864:20::143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3CA56E864;
+ Fri, 29 May 2020 06:49:45 +0000 (UTC)
+Received: by mail-lf1-x143.google.com with SMTP id h188so631897lfd.7;
+ Thu, 28 May 2020 23:49:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=duvqSauRz0FpWQFF0Eq5g7XEMfQ1c+DCTu7LukoHlpY=;
+ b=dJkgyWD0ciBIQfF3woOJbQsYsbg0j2sy53gHMGBk66/DLQVlD2Li/OnKmZ1HHOVylg
+ OycFqaMIkKyafxY/aMbGwwkeXJiMVJUXvFG099Qsm7Y7okuRyQ5BQWOhVZuIXkhnD4dC
+ l13AE1muQIzF6gGJAoO8XCvDadFCwzfNCIi9IoIDSTQqwb1cLeUP0v98PMzsnuuj8+M8
+ YHrEkMNXcCByn5nkIKZovzH55tyS+dWSVpFQMULT8K2MK79Qy1g09WIyKItusQdo2dZZ
+ fS4J/QFUB/tnatg7f9CibGRQ8hnWVhTsMFIXxj3kQfuY8srH8ee6dw+7jqLX7lfiOQql
+ +ejA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=duvqSauRz0FpWQFF0Eq5g7XEMfQ1c+DCTu7LukoHlpY=;
+ b=OitSgkD8b9WhvqC8q9+jzd882Kzxq0su5FmGidoze6vKFkmzS2RFjIlbWLV6VS3BAR
+ Wip+cx6bzsWbvY9OJI2H2ai9x6R6ynDAMo6+uJVDQmZMLcUcvouQQe27knGdkHgxvuZL
+ BUmmE8Nq2DtYqFPVJPY5+56rmKu4c0pN1Yv3yqtUnYiSgBY4UB4aT/Wt+2XlhnEEmsJN
+ voDIyD+KdMgBzqgJSaVmHAzbS5F3fZz2i4r/MqLu49uKwa9/+bQHuSMxJ2vMPrn0/TLC
+ NrlDQ5Jod8r/v6cMc3W6DPnuLRxN+1/rpgmJqYw/007iyQMMdlIMhfup4nKHrWnPCeq+
+ 0SHw==
+X-Gm-Message-State: AOAM532OORE6ryfq6FC8XSocgeOFKG+9aURoyW+/tO6xr43s//OvOF0y
+ DbuzzPdjw/ogmeSB9u2mpSx1w5zi7kR1i5l/Wrc=
+X-Google-Smtp-Source: ABdhPJw2x0Tix5Tq5shT8N9Y2U5/m2pu3yTz3m3OmwzFD46UBDyZDMSbl4hATVzRPu6/m60TcMaci0i2xANR2AYiOTc=
+X-Received: by 2002:a19:500e:: with SMTP id e14mr3595899lfb.88.1590734982916; 
+ Thu, 28 May 2020 23:49:42 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200527225158.27756-1-alexander.deucher@amd.com>
-Content-Language: en-CA
+References: <1590526802-3008-1-git-send-email-jrdr.linux@gmail.com>
+ <69a033cf-63b2-7da6-6a5e-a5bbc94b8afb@nvidia.com>
+ <20200527084852.GN206103@phenom.ffwll.local>
+ <20200527085117.GO206103@phenom.ffwll.local>
+ <aaf62285-981e-3753-5501-07bbba98fc36@nvidia.com>
+In-Reply-To: <aaf62285-981e-3753-5501-07bbba98fc36@nvidia.com>
+From: Souptick Joarder <jrdr.linux@gmail.com>
+Date: Fri, 29 May 2020 12:19:30 +0530
+Message-ID: <CAFqt6zZVAQ3LKwud85LgHe9300xVjyGYXjvdWKTdezZA1uRewg@mail.gmail.com>
+Subject: Re: [PATCH] drm/radeon: Convert get_user_pages() --> pin_user_pages()
+To: John Hubbard <jhubbard@nvidia.com>
+X-Mailman-Approved-At: Fri, 29 May 2020 13:29:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,38 +64,140 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx@lists.freedesktop.org, "Deucher,
+ Alexander" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0wNS0yOCAxMjo1MSBhLm0uLCBBbGV4IERldWNoZXIgd3JvdGU6Cj4gT3RoZXJ3aXNl
-IHdlIGRpc2FibGUgc3lzZnMvZGVidWdmcyBhY2Nlc3Mgd2l0aCBydW50aW1lIHBtLgo+IAo+IEZp
-eGVzOiBmN2M4ZDg1M2IwMjlkZiAoImRybS9hbWRncHUvcG06IHJldHVybiBhbiBlcnJvciBkdXJp
-bmcgR1BVIHJlc2V0IG9yIHN1c3BlbmQiKQo+IFNpZ25lZC1vZmYtYnk6IEFsZXggRGV1Y2hlciA8
-YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvYW1kZ3B1X3BtLmMgfCAxMTQgKysrKysrKysrKysrLS0tLS0tLS0tLS0tLQo+ICAxIGZp
-bGUgY2hhbmdlZCwgNTcgaW5zZXJ0aW9ucygrKSwgNTcgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9wbS5jIGIvZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3BtLmMKPiBpbmRleCA4MDg4ODRhYWYzNmQuLjc3NWUz
-ODljOWExMyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-cG0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9wbS5jCj4gQEAg
-LTE2Myw3ICsxNjMsNyBAQCBzdGF0aWMgc3NpemVfdCBhbWRncHVfZ2V0X3Bvd2VyX2RwbV9zdGF0
-ZShzdHJ1Y3QgZGV2aWNlICpkZXYsCj4gIAllbnVtIGFtZF9wbV9zdGF0ZV90eXBlIHBtOwo+ICAJ
-aW50IHJldDsKPiAgCj4gLQlpZiAoYWRldi0+aW5fZ3B1X3Jlc2V0IHx8IGFkZXYtPmluX3N1c3Bl
-bmQpCj4gKwlpZiAoYWRldi0+aW5fZ3B1X3Jlc2V0KQo+ICAJCXJldHVybiAtRVBFUk07Cj4gIAo+
-ICAJcmV0ID0gcG1fcnVudGltZV9nZXRfc3luYyhkZGV2LT5kZXYpOwo+IEBAIC0xOTksNyArMTk5
-LDcgQEAgc3RhdGljIHNzaXplX3QgYW1kZ3B1X3NldF9wb3dlcl9kcG1fc3RhdGUoc3RydWN0IGRl
-dmljZSAqZGV2LAo+ICAJZW51bSBhbWRfcG1fc3RhdGVfdHlwZSAgc3RhdGU7Cj4gIAlpbnQgcmV0
-Owo+ICAKPiAtCWlmIChhZGV2LT5pbl9ncHVfcmVzZXQgfHwgYWRldi0+aW5fc3VzcGVuZCkKPiAr
-CWlmIChhZGV2LT5pbl9ncHVfcmVzZXQpCj4gIAkJcmV0dXJuIC1FUEVSTTsKPiAgCj4gIAlpZiAo
-c3RybmNtcCgiYmF0dGVyeSIsIGJ1Ziwgc3RybGVuKCJiYXR0ZXJ5IikpID09IDApCgpNaWdodCBi
-ZSB3b3J0aCBtb3ZpbmcgdGhpcyBjaGVjayBpbnRvIGEgaGVscGVyIGZ1bmN0aW9uOyB0aGF0IHdv
-dWxkIG1ha2UKc2ltaWxhciBjaGFuZ2VzIGVhc2llciBpbiB0aGUgZnV0dXJlLiA6KSBDYW4gYmUg
-YSBzZXBhcmF0ZSBjaGFuZ2UsIG9mCmNvdXJzZS4KCgotLSAKRWFydGhsaW5nIE1pY2hlbCBEw6Ru
-emVyICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgIGh0dHBzOi8vcmVkaGF0LmNvbQpMaWJy
-ZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAgICAgICAgICAgIHwgICAgICAgICAgICAgTWVzYSBhbmQg
-WCBkZXZlbG9wZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+On Thu, May 28, 2020 at 12:37 AM John Hubbard <jhubbard@nvidia.com> wrote:
+>
+> On 2020-05-27 01:51, Daniel Vetter wrote:
+> > On Wed, May 27, 2020 at 10:48:52AM +0200, Daniel Vetter wrote:
+> >> On Tue, May 26, 2020 at 03:57:45PM -0700, John Hubbard wrote:
+> >>> On 2020-05-26 14:00, Souptick Joarder wrote:
+> >>>> This code was using get_user_pages(), in a "Case 2" scenario
+> >>>> (DMA/RDMA), using the categorization from [1]. That means that it's
+> >>>> time to convert the get_user_pages() + release_pages() calls to
+> >>>> pin_user_pages() + unpin_user_pages() calls.
+> >>>>
+> >>>> There is some helpful background in [2]: basically, this is a small
+> >>>> part of fixing a long-standing disconnect between pinning pages, and
+> >>>> file systems' use of those pages.
+> >>>>
+> >>>> [1] Documentation/core-api/pin_user_pages.rst
+> >>>>
+> >>>> [2] "Explicit pinning of user-space pages":
+> >>>>       https://lwn.net/Articles/807108/
+> >>
+> >> I don't think this is a case 2 here, nor is it any of the others. Feels
+> >> like not covered at all by the doc.
+> >>
+> >> radeon has a mmu notifier (might be a bit broken, but hey whatever there's
+> >> other drivers which have the same concept, but less broken). So when you
+> >> do an munmap, radeon will release the page refcount.
+> >
+>
+> Aha, thanks Daniel. I withdraw my misinformed ACK, then.
+>
+> > I forgot to add: It's also not case 3, since there's no hw page fault
+> > support. It's all faked in software, and explicitly synchronizes against
+> > pending io (or preempts it, that depends a bit upon the jobs running).
+> >
+>
+> This is what case 3 was *intended* to cover, but it looks like case 3 needs to
+> be written a little better. I'll attempt that, and Cc you on the actual patch
+> to -mm. (I think we also need a case 5 for an unrelated scenario, too, so
+> it's time.)
+
+There were no *case 5* in the other patch posted in -mm. Do we need to add it ?
+
+>
+>
+> thanks,
+> --
+> John Hubbard
+> NVIDIA
+>
+>
+> >> Which case it that?
+> >>
+> >> Note that currently only amdgpu doesn't work like that for gpu dma
+> >> directly to userspace ranges, it uses hmm and afaiui doens't hold a full
+> >> page pin refcount.
+> >>
+> >> Cheers, Daniel
+> >>
+> >>
+> >>>>
+> >>>> Signed-off-by: Souptick Joarder <jrdr.linux@gmail.com>
+> >>>> Cc: John Hubbard <jhubbard@nvidia.com>
+> >>>>
+> >>>> Hi,
+> >>>>
+> >>>> I'm compile tested this, but unable to run-time test, so any testing
+> >>>> help is much appriciated.
+> >>>> ---
+> >>>>    drivers/gpu/drm/radeon/radeon_ttm.c | 6 +++---
+> >>>>    1 file changed, 3 insertions(+), 3 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+> >>>> index 5d50c9e..e927de2 100644
+> >>>> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
+> >>>> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+> >>>> @@ -506,7 +506,7 @@ static int radeon_ttm_tt_pin_userptr(struct ttm_tt *ttm)
+> >>>>                    uint64_t userptr = gtt->userptr + pinned * PAGE_SIZE;
+> >>>>                    struct page **pages = ttm->pages + pinned;
+> >>>> -          r = get_user_pages(userptr, num_pages, write ? FOLL_WRITE : 0,
+> >>>> +          r = pin_user_pages(userptr, num_pages, write ? FOLL_WRITE : 0,
+> >>>>                                       pages, NULL);
+> >>>>                    if (r < 0)
+> >>>>                            goto release_pages;
+> >>>> @@ -535,7 +535,7 @@ static int radeon_ttm_tt_pin_userptr(struct ttm_tt *ttm)
+> >>>>            kfree(ttm->sg);
+> >>>>    release_pages:
+> >>>> -  release_pages(ttm->pages, pinned);
+> >>>> +  unpin_user_pages(ttm->pages, pinned);
+> >>>>            return r;
+> >>>>    }
+> >>>> @@ -562,7 +562,7 @@ static void radeon_ttm_tt_unpin_userptr(struct ttm_tt *ttm)
+> >>>>                            set_page_dirty(page);
+> >>>
+> >>>
+> >>> Maybe we also need a preceding patch, to fix the above? It should be
+> >>> set_page_dirty_lock(), rather than set_page_dirty(), unless I'm overlooking
+> >>> something (which is very possible!).
+> >>>
+> >>> Either way, from a tunnel vision perspective of changing gup to pup, this
+> >>> looks good to me, so
+> >>>
+> >>>      Acked-by: John Hubbard <jhubbard@nvidia.com>
+> >>>
+> >>>
+> >>> thanks,
+> >>> --
+> >>> John Hubbard
+> >>> NVIDIA
+> >>>
+> >>>>                    mark_page_accessed(page);
+> >>>> -          put_page(page);
+> >>>> +          unpin_user_page(page);
+> >>>>            }
+> >>>>            sg_free_table(ttm->sg);
+> >>>>
+> >>>
+> >>
+> >> --
+> >> Daniel Vetter
+> >> Software Engineer, Intel Corporation
+> >> http://blog.ffwll.ch
+> >
+>
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
