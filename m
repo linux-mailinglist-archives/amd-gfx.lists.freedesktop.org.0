@@ -1,57 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3463D1EABDD
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D7121EABDF
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3BD989E5B;
-	Mon,  1 Jun 2020 18:22:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D26056E372;
+	Mon,  1 Jun 2020 18:22:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
- [IPv6:2607:f8b0:4864:20::842])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABD48931E
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:55 +0000 (UTC)
-Received: by mail-qt1-x842.google.com with SMTP id j32so8461341qte.10
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:55 -0700 (PDT)
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
+ [IPv6:2607:f8b0:4864:20::841])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97FC389E35
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:56 +0000 (UTC)
+Received: by mail-qt1-x841.google.com with SMTP id g18so8453667qtu.13
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=P3abu5elcIkI0jRcEMnQlaFlO0PYwnNBNKmd6q+JqEQ=;
- b=eBilRGm/Qtp86UJQxZuIaqswS5WntLRIq+VK4gaTyufFCJNoQOh4vnBrbJ5xHoVZJL
- y2JV8U08d/6KhzrS2mKU8zMjV/74HIz9d+ZkOXmA0QZ65rCNrJsdHsQI/h7198mTxPLm
- cDuYX+90SksuHE4eW8qkxhJiuV++qweiySEEIKNHYOkK0IgZV6hktdlSV+n/mDZPbfMe
- boWYIjVO3fUqkwSlMv7/AvL0AQ+z9O2gQJbd+LNPOnxRKIcF7HX0ipXV+Kv5rmjssPLy
- Sx/+xMDwBA90BGs+vNf6uugNb8HDlI54wSMbCut5Ink5IbEX/YJiJmX4ZVv9mvv+sZn8
- cr7A==
+ bh=Gvwad/ys1zXMbYFnphvcykZR2UmMH/gYV8Z0KLJ4qH4=;
+ b=P8c6xmGE8R3sXV8FuLFzSeoW8SomCTks8sgFG8GkjqbaFIRELXJGvJcjffyAoYiFUR
+ tPruO49dDko9i9I9foYvaslt6mahmqKlZu8PSIJpjuJ6bQa4Z2CJZo4CWr/W+c78ozrM
+ Yv691s6bWkVNjRn349eetPF2nMlunfTJngj01uoAmAB4XjvjVVS1660P9IQ7k01hvvvV
+ /qm3DR1nphF5601dugjsopVVuL4qxPVfmtmEMYnHB4SYho4HqeGRG3jWNtDw+mGxkHb0
+ HemfphHozQn8G5kPBATNrGdogEW8Eg9iPCFrzo1SOg4O6BBhSpTme6oMYpqTT/88c2+Q
+ N+rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=P3abu5elcIkI0jRcEMnQlaFlO0PYwnNBNKmd6q+JqEQ=;
- b=eWK1YUjeyTAzZyQW0DneR0J0OZiS1qJuKbJlbx+eCIG564Vi69qccXX/CxpqtIoFN9
- NpSiGYIcVkUORmH6pr26GpbkaFC1KtxOCA2g+m3YTUznZhniBKQiLqxlRjSKRUYWWOQh
- DtPBNBJVSNI2AQvGxCzOdn2lpRXWUcq1ap9f0OfeeDKfbwzqYwKS/+hvTMuGQzzu9LVZ
- 1Gl9QxDDRrNyMEHK6kc629P9hr1SM9ru/mMqYuBcNrXcAn3pFgUIWF8WJzX4W5LOw5EY
- p/Y0wComuKzMGlIXOWTGWK6KhYWFqfxr45u8O6X18PuwtDd/sOukGKiUY/wdRmXqF5hN
- gt1A==
-X-Gm-Message-State: AOAM532SfzE536Qn1k95mJiqVIVctgJNBeIEhTmk3jKYwYARwkB+ufBe
- pTIYBbsAVDzgv98I6ERescMeJ7tm
-X-Google-Smtp-Source: ABdhPJwQyichd1bZYYvC76Oh/m7lV/kKC7CqE1ipX/XeuI/jf6lSHh7q5Br33231JjDMyzghGG8eWA==
-X-Received: by 2002:ac8:67d7:: with SMTP id r23mr24109097qtp.110.1591035774465; 
- Mon, 01 Jun 2020 11:22:54 -0700 (PDT)
+ bh=Gvwad/ys1zXMbYFnphvcykZR2UmMH/gYV8Z0KLJ4qH4=;
+ b=KLswQdyD6DxXcM+xJmsVo7fVPJVvdB6DpvPVytzVE3dZurAf841GQtUV2ycc6UstUS
+ bxbDSn5I7Fypbp2auxqFyW5oMDtbWiY9892reJ7W78f47NGjAop64Ka+olMw30Eww3RF
+ j8PCeADG0cBsaLrPuE+dVu8QPWzf2EanJ37yt8158yQSLGRtEFNBNOpDoSTSXS0HnKyC
+ IuA02gjYyMzkWrf2QyFLyG+lrEx01RUBydIxUPi3YJjaIfNi4BiEt8lBTDVxCxVgNoHt
+ F+w6/EpxzcMaEA1XoBiWwYipBvwCIo03/lQ2FxWSPRs588EHx4rMBSr523RW4DAEtSO5
+ x8ZQ==
+X-Gm-Message-State: AOAM530toND0ATijn8zCg/jrDKfoz8b/y8a5YveCfjBmwumLjgv5en2F
+ h8KUg0MGIl91EGDxtg2zdQL8p4xv
+X-Google-Smtp-Source: ABdhPJzLTiTmPb9kDuIFbtwJWHzriKDwV3DXY375hCPTkFdwItOoPRAP+HKBmVBTl0LD6FvW2BlKKQ==
+X-Received: by 2002:aed:21af:: with SMTP id l44mr24137986qtc.124.1591035775601; 
+ Mon, 01 Jun 2020 11:22:55 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.53
+ by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:22:53 -0700 (PDT)
+ Mon, 01 Jun 2020 11:22:55 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 173/207] drm/amd/powerplay: drop sienna_cichlid hardcode of
- using pptable
-Date: Mon,  1 Jun 2020 14:20:20 -0400
-Message-Id: <20200601182054.1267858-84-alexander.deucher@amd.com>
+Subject: [PATCH 174/207] drm/amd/powerplay: let PMFW to handle the features
+ disablement on BACO in V2
+Date: Mon,  1 Jun 2020 14:20:21 -0400
+Message-Id: <20200601182054.1267858-85-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601182054.1267858-1-alexander.deucher@amd.com>
 References: <20200601182054.1267858-1-alexander.deucher@amd.com>
@@ -68,39 +68,71 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+ Evan Quan <evan.quan@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Likun Gao <Likun.Gao@amd.com>
+From: Evan Quan <evan.quan@amd.com>
 
-Drop the hardcode of sienna_cichlid which will force to use softpptable,
-so that it can use pptable on vbios once the value of pp_table_id get
-from vbios is 0.
+For Sienna_Cichlid, PMFW will handle the features disablement on BACO in. No
+need to have driver stepped in.
 
-Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+V2: limit this for baco really
+
+Signed-off-by: Evan Quan <evan.quan@amd.com>
+Reviewed-by: Likun Gao <Likun.Gao@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/smu_v11_0.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 24 ++++++++++++++++------
+ 1 file changed, 18 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-index 560f78a805b9..06b376a1396d 100644
---- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-@@ -366,8 +366,7 @@ int smu_v11_0_setup_pptable(struct smu_context *smu)
- 	hdr = (const struct smc_firmware_header_v1_0 *) adev->pm.fw->data;
- 	version_major = le16_to_cpu(hdr->header.header_version_major);
- 	version_minor = le16_to_cpu(hdr->header.header_version_minor);
--	if ((version_major == 2 && smu->smu_table.boot_values.pp_table_id > 0) ||
--	    adev->asic_type == CHIP_SIENNA_CICHLID) {
-+	if (version_major == 2 && smu->smu_table.boot_values.pp_table_id > 0) {
- 		pr_info("use driver provided pptable %d\n", smu->smu_table.boot_values.pp_table_id);
- 		switch (version_minor) {
- 		case 0:
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+index 870fe32437b6..343139a5c7a6 100644
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+@@ -1532,6 +1532,11 @@ static int smu_suspend(void *handle)
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 	struct smu_context *smu = &adev->smu;
+ 	int ret;
++	bool use_baco = !smu->is_apu &&
++		((adev->in_gpu_reset &&
++		  (amdgpu_asic_reset_method(adev) == AMD_RESET_METHOD_BACO)) ||
++		 (adev->in_runpm && amdgpu_asic_supports_baco(adev)));
++
+ 
+ 	if (amdgpu_sriov_vf(adev)&& !amdgpu_sriov_is_pp_one_vf(adev))
+ 		return 0;
+@@ -1549,15 +1554,22 @@ static int smu_suspend(void *handle)
+ 		return ret;
+ 	}
+ 
+-	ret = smu_disable_dpm(smu);
+-	if (ret)
+-		return ret;
++	/*
++	 * For Sienna_Cichlid, PMFW will handle the features disablement properly
++	 * on BACO in. Driver involvement is unnecessary.
++	 */
++	if ((adev->asic_type != CHIP_SIENNA_CICHLID) || !use_baco) {
++		ret = smu_disable_dpm(smu);
++		if (ret)
++			return ret;
++
++		if (adev->asic_type >= CHIP_NAVI10 &&
++		    adev->gfx.rlc.funcs->stop)
++			adev->gfx.rlc.funcs->stop(adev);
++	}
+ 
+ 	smu->watermarks_bitmap &= ~(WATERMARKS_LOADED);
+ 
+-	if (adev->asic_type >= CHIP_NAVI10 &&
+-	    adev->gfx.rlc.funcs->stop)
+-		adev->gfx.rlc.funcs->stop(adev);
+ 	if (smu->is_apu)
+ 		smu_set_gfx_cgpg(&adev->smu, false);
+ 
 -- 
 2.25.4
 
