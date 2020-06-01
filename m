@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCCD21EABC6
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B26BE1EABC8
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 652F86E34D;
-	Mon,  1 Jun 2020 18:22:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D2B56E351;
+	Mon,  1 Jun 2020 18:22:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com
- [IPv6:2607:f8b0:4864:20::f42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C39F6E34C
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:23 +0000 (UTC)
-Received: by mail-qv1-xf42.google.com with SMTP id g7so470074qvx.11
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:23 -0700 (PDT)
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
+ [IPv6:2607:f8b0:4864:20::842])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23E376E34D
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:25 +0000 (UTC)
+Received: by mail-qt1-x842.google.com with SMTP id u17so7371012qtq.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=vcCZZI7Fx/fouPF1vAwaYuX2eO7FGNDq1t/0H72iI0M=;
- b=EfEBvDaFTzktRravByStp7mc0W2HCHim8iEh4mxAad98jWHipGggq4m3MrHAciBQ1s
- r+72JZNL442UUjZD4L7g3U5QPwONlWE1WsB1YXuYNONQSgh08XudFWXGAKMm2BAiKoPg
- l6ve6Q2C8Zc/OJSI7fsWVbsTP4HUvlYeV9qrJk8GumntEONKuVWBFVdn0fmigevgbUZY
- 8HZ5aKVzU6o2yUBJaJWT3VAW0+w6tUYWc3TBN4Dt9aOhYJDPJMrZ7FspUzZexli8mdve
- tTR1zS2Dm6cBq3ahCP4cGcNeIqFsXp83XDpd7NugadDEp9Oy06trtjbs850gyQI8sGWV
- 5nkw==
+ bh=YO2N1w8vkHyJwiRHx6P1+q22wJgJ8DyOB+lTPWbm4H4=;
+ b=LagZiqtWifjuPixBKzMRQ6zt8q3CeiFLFhU07b978GY9EbhuFBCnZNabgngjCP+8N0
+ FgKqAv5bDVHJlPBkz2cS8Ku2m6QcgbnSdM8oHbbMuJyxFkOGA1xQcl4Q5K610l6uRUI3
+ M2+O3jsz0rVolzfIWRw1f78666qhCuU5gg3e9JXhxzIzyYq2WdCAzoTYTr2H4Y/1wQjK
+ DJLsqBHRc2DnCLJ/tcjtII6s/x1gfr/oGiCVL+NLmiRbdPs7uvVN7I5eeiOEc7HlXDYD
+ kHhD23wGPowAZduFqLK5pnMLFV6JSDgLVFihuNpeZHmK9zYsh5sWSWiDS1+6i0Y25UgR
+ d7hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=vcCZZI7Fx/fouPF1vAwaYuX2eO7FGNDq1t/0H72iI0M=;
- b=XcYNXcLQkHyK7ImssfCWhVDhVNza5UAE8kf6z5BRJcUpmU4I25gFaRFRPopauAkvoj
- um5+MR055/TZHbq2N5uMO+tk9AtwnDCA1G/ku617dvitEfvXzuxsRBL0yExpcjVM5vL9
- d0oJkNG6vH670bYQKKJXgvw7qNTNStsb6vSek1Ea9uUmCFH375aCW0vFO7TXFnXwE5Gm
- hQJmEIHBEH1XR/t58fYQimFuYvJ5XoBFBn+QWS+Wi4pJY2isnADoWwXKC6jtID7NwYXr
- 8x9ceqcwPvMDTDgCgccba8/0wRTKEVKD+Kard8uxr/pt40v9oMwWVnftqG0V2wb8zXsR
- /DPg==
-X-Gm-Message-State: AOAM530i7ehDJhCp/ff90inWQA/VokaEccDNAHaA2PKOCaENtrbGLVJO
- SzjA+tOI0k98/YiyMfA4T0DcZPQs
-X-Google-Smtp-Source: ABdhPJyCaJmF7I1q/YiRz+zDvryWFzPVQhAIfTLo2hDf0YintY9qOcWwrmr1SkPoPNNhxO4EV0JtgQ==
-X-Received: by 2002:a0c:b44c:: with SMTP id e12mr21609909qvf.30.1591035742615; 
- Mon, 01 Jun 2020 11:22:22 -0700 (PDT)
+ bh=YO2N1w8vkHyJwiRHx6P1+q22wJgJ8DyOB+lTPWbm4H4=;
+ b=mFKoBY8QWQwMVkhFT+t+J4sZRcKLP2MyKn2Tq+jkaFeKeDyn3wBz8MKjidyVZuq7Op
+ wWgN3C7uRDMFzoquHRcBDzK8BSrgAFjHZIFbh74OSEuZeJNPuLQbIFWoB9bBEYRClTTY
+ HgqZELYSXrMpHkP+wEcHmgYlzVzFNmfFAZFCvJ/9Z5e74Jv3M1nN8JNwdvepdtG2BeCQ
+ jgXvb4stisozudWUJ6ls9HNNM5O/gPrAo3XHPMuip0kMKd8Milf+SgaEIEwAsqL4zTiF
+ 5wllh5eF8kJUzApUyTxqvje/760fVy2nL/T1BPMfek8DGgOssSuVx5EGA3PIFFjwXrqJ
+ m0Yw==
+X-Gm-Message-State: AOAM533pkAnwChK3nyPdInm6+yjzXpuxaMSaAuowm+x6HtrE9NdsLKMO
+ NYzXAR/KJFTYD0LLduevXwMHapQW
+X-Google-Smtp-Source: ABdhPJwcJcALTDFohAStm+AmOTmkRMB+Lv0wWF0npLUO+XFsuJfI6JLj683Hd9MFlFJa0iAA3IoWJA==
+X-Received: by 2002:ac8:37ad:: with SMTP id d42mr23356551qtc.352.1591035744108; 
+ Mon, 01 Jun 2020 11:22:24 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.21
+ by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:22:22 -0700 (PDT)
+ Mon, 01 Jun 2020 11:22:23 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 150/207] drm/amdgpu: enable DPG mode for VCN3.0
-Date: Mon,  1 Jun 2020 14:19:57 -0400
-Message-Id: <20200601182054.1267858-61-alexander.deucher@amd.com>
+Subject: [PATCH 151/207] drm/amdgpu/mes10.1: add no scheduler flag for mes
+Date: Mon,  1 Jun 2020 14:19:58 -0400
+Message-Id: <20200601182054.1267858-62-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601182054.1267858-1-alexander.deucher@amd.com>
 References: <20200601182054.1267858-1-alexander.deucher@amd.com>
@@ -67,64 +67,32 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>,
- Boyuan Zhang <boyuan.zhang@amd.com>, James Zhu <james.zhu@amd.com>
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Boyuan Zhang <boyuan.zhang@amd.com>
+We don't want a gpu scheduler for mes.
 
-Enable DPG mode for VCN3.0 by updating related flag.
-
-V2: update description.
-
-Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
-Reviewed-by: James Zhu <james.zhu@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/nv.c       | 1 +
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 7 +++++--
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/mes_v10_1.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 936950fbafda..ef3f07dc89cd 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -726,6 +726,7 @@ static int nv_common_early_init(void *handle)
- 			AMD_CG_SUPPORT_IH_CG |
- 			AMD_CG_SUPPORT_MC_LS;
- 		adev->pg_flags = AMD_PG_SUPPORT_VCN |
-+			AMD_PG_SUPPORT_VCN_DPG |
- 			AMD_PG_SUPPORT_JPEG |
- 			AMD_PG_SUPPORT_ATHUB;
- 		adev->external_rev_id = adev->rev_id + 0x28;
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-index 98ba6ddde823..875bdc877c3d 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-@@ -254,7 +254,8 @@ static int vcn_v3_0_hw_init(void *handle)
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
+index 5c28868f7adc..4b746584a797 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
+@@ -846,6 +846,7 @@ static int mes_v10_1_ring_init(struct amdgpu_device *adev)
+ 	ring->use_doorbell = true;
+ 	ring->doorbell_index = adev->doorbell_index.mes_ring << 1;
+ 	ring->eop_gpu_addr = adev->mes.eop_gpu_addr;
++	ring->no_scheduler = true;
+ 	sprintf(ring->name, "mes_%d.%d.%d", ring->me, ring->pipe, ring->queue);
  
- done:
- 	if (!r)
--		DRM_INFO("VCN decode and encode initialized successfully.\n");
-+		DRM_INFO("VCN decode and encode initialized successfully(under %s).\n",
-+			(adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)?"DPG Mode":"SPG Mode");
- 
- 	return r;
- }
-@@ -278,7 +279,9 @@ static int vcn_v3_0_hw_fini(void *handle)
- 
- 		ring = &adev->vcn.inst[i].ring_dec;
- 
--		if (RREG32_SOC15(VCN, i, mmUVD_STATUS))
-+		if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
-+			(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
-+			RREG32_SOC15(VCN, i, mmUVD_STATUS)))
- 			vcn_v3_0_set_powergating_state(adev, AMD_PG_STATE_GATE);
- 
- 		ring->sched.ready = false;
+ 	r = amdgpu_ring_init(adev, ring, 1024, NULL, 0, AMDGPU_RING_PRIO_DEFAULT);
 -- 
 2.25.4
 
