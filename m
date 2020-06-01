@@ -1,56 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E871EAC10
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:30:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 384441EAC12
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:30:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5F8C6E9D7;
-	Mon,  1 Jun 2020 18:30:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 538D86E9E6;
+	Mon,  1 Jun 2020 18:30:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com
- [IPv6:2607:f8b0:4864:20::f42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E64EC6E9DA
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:30:13 +0000 (UTC)
-Received: by mail-qv1-xf42.google.com with SMTP id er17so492287qvb.8
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:30:13 -0700 (PDT)
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com
+ [IPv6:2607:f8b0:4864:20::733])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9097C6E9DA
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:30:14 +0000 (UTC)
+Received: by mail-qk1-x733.google.com with SMTP id v79so9996710qkb.10
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:30:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=fvR5nMDKsDkgNe1DkblfCbjvsxm5G0gJyon/iZHJdSo=;
- b=kp5A6woXJnTqrptSvYBnYERn4TRW2zMe0ordkud7e37NuAQdrtF7lPLML4fEOLPsaI
- UnNldpehy8Xe7jTlYppGTiHrLu60sJ1lHg9BBdo6ei9++1r6cKz2r7Emniv3rpE1zeLQ
- 6KYsWOG9/2EmU7DwsjfZO2Vn22AH9AkkbonXwAt6omE7ghcRkNcgDWip3aggYZ2mx9Du
- b1YhVftbJPzG98AXctJoRef4CqP4qZSJ+OhLPVmtGU1BM14fg6o4tj5nbbCiv7tkh/0l
- 8L9k2kzsGaid/MNKGXFrCtJbOW2/e0ziAqns4vy/3c5rau6f2ef6mitjyzE08Z/S3Y9R
- e0NA==
+ bh=nK1DUH8Z21gp7YxTDGDaTFWG6u09yLYqu5aPK63Stj0=;
+ b=g39/quie3cZrbn2yX/7pMR/Nl9Pi9NjJ5NkQkpbR5BBh1CswCLCiPlXwbtkZkADRDD
+ pU31phHyY3sxs1s4gA92Ikq59+5oTdKVL6NtWS7GM/SCHivfoHWwQv8HjDwsT2ycKZT/
+ K8a5VJnzW9uOOcKlfOxEOhich3XK9wd2AzOvdByKQOqwnVI9ZimoIajbZnLbcbCdV2S3
+ rgiVqbcErGaBGliuDUAf4I5+rIqomimn95Ujr2TVM3blDUw+SedrH2HyY3Gu/RKzkPtU
+ yQoj9CfNu4tgliYX5NWIs/E6VckwF+1KUEjBS/etJfYQJXedCoaWGsciPAjC+kSXeLBb
+ Z16g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=fvR5nMDKsDkgNe1DkblfCbjvsxm5G0gJyon/iZHJdSo=;
- b=bE4/lSViVTOeNd4JSG7zpmyck4nhPDzdblS/FPd5CvuUkvQb/Bqiqf5RpsdEe3w+yu
- XE8gHLLpVxHWkbzZw8MAJovC9TZDykfmiJcDovUHqEnqhqIMJGWxHw66LqQEPlki8/Bf
- sMmSk/iLft3/766Bl+i5zNlbC6QY6HGbRM85Q2zh9FbXo+wTodH/K4QCUZ4dy48nvVmh
- I2CsM9+ktBTd4NuEi2QGorvsLAo7hk5dfYf9+iDZ7HjYazeGQEFIz4Ean6tk3JJ/Piih
- 3LywrOgr8j4pnzwIlOuh1cSDehfuUgwCYtNs3TQBnQZl2Wdz/WRI2Ako6HrJR4KuwAqg
- cwhA==
-X-Gm-Message-State: AOAM533gh1P6BRGg5bD+ybPe4ZESNeCWEG2cO8Xzx/Vb+Jp4Nq+Y3NYO
- NbfjbiVwUs/zdeIQSQGOvRhAduDR
-X-Google-Smtp-Source: ABdhPJyxN4ueYHvBYzjz6eq2zDORgyOrCjBB9LBf77mFXd0yN5OJtTvd9t9s+/3UO2VNMtAm+9eQSQ==
-X-Received: by 2002:a0c:a3a6:: with SMTP id v35mr21967028qvv.206.1591036212263; 
- Mon, 01 Jun 2020 11:30:12 -0700 (PDT)
+ bh=nK1DUH8Z21gp7YxTDGDaTFWG6u09yLYqu5aPK63Stj0=;
+ b=cWpNLjjLLJMkJP0uSfHwALwp86gdw8h1ZAX7qYRiNKnLeTpxOxpTA5vUv5BDAr7dxe
+ 6tANykyW3DIL9vMdFgfebcaYCnk95j5NtKZLDWgELV5JFeKdLsC37Hi5zR1Z7S5E/kSX
+ W96YaublDnr1iCelT49d75ThnyBto/PmgVLGU8WOcE7NrC+tE49TqDKIqxQyMBsprUKs
+ bNURaz+hd5OTXGUAJIpkmp2M4R7q3sA0k9BacGNdQuquvOzxnNdojGKj8DHs3lqNLXZP
+ zt3OuPk01L4Ed+ohoGsTDkW+FjGVbG3t+JGJOSLdIRhnA359qJd78MwjxLFyz5rqkMSj
+ CTOA==
+X-Gm-Message-State: AOAM530svGbG32h+K5OWrHmEleMJ3y9VNhL+2gWw1cyRGbAXzKh8UVbV
+ I1uTplqmAtW/ZZfJ/1eGaStFTvEs
+X-Google-Smtp-Source: ABdhPJxljD41EqX7xJdatM7NO8HiMn4t52OfAGIi5uU+y8kbWPnj6fm/E1GLHjvb5M6IX9wrK7itdA==
+X-Received: by 2002:a37:414f:: with SMTP id o76mr20499047qka.375.1591036213268; 
+ Mon, 01 Jun 2020 11:30:13 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id z194sm8592qkb.73.2020.06.01.11.30.11
+ by smtp.gmail.com with ESMTPSA id z194sm8592qkb.73.2020.06.01.11.30.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:30:11 -0700 (PDT)
+ Mon, 01 Jun 2020 11:30:12 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 199/207] drm/amd/display: Add DCN3 AFMT
-Date: Mon,  1 Jun 2020 14:29:18 -0400
-Message-Id: <20200601182926.1267958-21-alexander.deucher@amd.com>
+Subject: [PATCH 200/207] drm/amd/display: Add DCN3 VPG
+Date: Mon,  1 Jun 2020 14:29:19 -0400
+Message-Id: <20200601182926.1267958-22-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601182926.1267958-1-alexander.deucher@amd.com>
 References: <20200601182926.1267958-1-alexander.deucher@amd.com>
@@ -74,24 +74,24 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 
-Audio formating
+Video Package generator.
 
-Audio related code for setup/control
+used to prepare avi info, DP info etc
 
 Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn30/dcn30_afmt.c | 206 ++++++++++++++++
- .../gpu/drm/amd/display/dc/dcn30/dcn30_afmt.h | 230 ++++++++++++++++++
- 2 files changed, 436 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/display/dc/dcn30/dcn30_afmt.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dcn30/dcn30_afmt.h
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_vpg.c  | 194 ++++++++++++++++++
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h  | 133 ++++++++++++
+ 2 files changed, 327 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_afmt.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_afmt.c
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.c
 new file mode 100644
-index 000000000000..2b08b1d72177
+index 000000000000..9c0020c8a730
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_afmt.c
-@@ -0,0 +1,206 @@
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.c
+@@ -0,0 +1,194 @@
 +/*
 + * Copyright 2020 Advanced Micro Devices, Inc.
 + *
@@ -119,191 +119,179 @@ index 000000000000..2b08b1d72177
 +
 +
 +#include "dc_bios_types.h"
-+#include "dcn30_afmt.h"
++#include "dcn30_vpg.h"
 +#include "reg_helper.h"
 +
 +#define DC_LOGGER \
-+		afmt3->base.ctx->logger
++		vpg3->base.ctx->logger
 +
 +#define REG(reg)\
-+	(afmt3->regs->reg)
++	(vpg3->regs->reg)
 +
 +#undef FN
 +#define FN(reg_name, field_name) \
-+	afmt3->afmt_shift->field_name, afmt3->afmt_mask->field_name
++	vpg3->vpg_shift->field_name, vpg3->vpg_mask->field_name
 +
 +
 +#define CTX \
-+	afmt3->base.ctx
++	vpg3->base.ctx
 +
 +
-+static void afmt3_setup_hdmi_audio(
-+	struct afmt *afmt)
++static void vpg3_update_generic_info_packet(
++	struct vpg *vpg,
++	uint32_t packet_index,
++	const struct dc_info_packet *info_packet)
 +{
-+	struct dcn30_afmt *afmt3 = DCN30_AFMT_FROM_AFMT(afmt);
++	struct dcn30_vpg *vpg3 = DCN30_VPG_FROM_VPG(vpg);
++	uint32_t i;
 +
-+	/* AFMT_AUDIO_PACKET_CONTROL */
-+	REG_UPDATE(AFMT_AUDIO_PACKET_CONTROL, AFMT_60958_CS_UPDATE, 1);
-+
-+	/* AFMT_AUDIO_PACKET_CONTROL2 */
-+	REG_UPDATE_2(AFMT_AUDIO_PACKET_CONTROL2,
-+			AFMT_AUDIO_LAYOUT_OVRD, 0,
-+			AFMT_60958_OSF_OVRD, 0);
-+
-+	/* AFMT_60958_0__AFMT_60958_CS_CHANNEL_NUMBER_L_MASK &
-+	 * AFMT_60958_0__AFMT_60958_CS_CLOCK_ACCURACY_MASK
++	/* TODOFPGA Figure out a proper number for max_retries polling for lock
++	 * use 50 for now.
 +	 */
-+	REG_UPDATE_2(AFMT_60958_0,
-+			AFMT_60958_CS_CHANNEL_NUMBER_L, 1,
-+			AFMT_60958_CS_CLOCK_ACCURACY, 0);
++	uint32_t max_retries = 50;
 +
-+	/* AFMT_60958_1 AFMT_60958_CS_CHALNNEL_NUMBER_R */
-+	REG_UPDATE(AFMT_60958_1, AFMT_60958_CS_CHANNEL_NUMBER_R, 2);
++	if (packet_index > 14)
++		ASSERT(0);
 +
-+	/* AFMT_60958_2 now keep this settings until
-+	 * Programming guide comes out
++	/* poll dig_update_lock is not locked -> asic internal signal
++	 * assume otg master lock will unlock it
 +	 */
-+	REG_UPDATE_6(AFMT_60958_2,
-+			AFMT_60958_CS_CHANNEL_NUMBER_2, 3,
-+			AFMT_60958_CS_CHANNEL_NUMBER_3, 4,
-+			AFMT_60958_CS_CHANNEL_NUMBER_4, 5,
-+			AFMT_60958_CS_CHANNEL_NUMBER_5, 6,
-+			AFMT_60958_CS_CHANNEL_NUMBER_6, 7,
-+			AFMT_60958_CS_CHANNEL_NUMBER_7, 8);
-+}
-+
-+static union audio_cea_channels speakers_to_channels(
-+	struct audio_speaker_flags speaker_flags)
-+{
-+	union audio_cea_channels cea_channels = {0};
-+
-+	/* these are one to one */
-+	cea_channels.channels.FL = speaker_flags.FL_FR;
-+	cea_channels.channels.FR = speaker_flags.FL_FR;
-+	cea_channels.channels.LFE = speaker_flags.LFE;
-+	cea_channels.channels.FC = speaker_flags.FC;
-+
-+	/* if Rear Left and Right exist move RC speaker to channel 7
-+	 * otherwise to channel 5
++	/* REG_WAIT(AFMT_VBI_PACKET_CONTROL, AFMT_GENERIC_LOCK_STATUS,
++	 * 		0, 10, max_retries);
 +	 */
-+	if (speaker_flags.RL_RR) {
-+		cea_channels.channels.RL_RC = speaker_flags.RL_RR;
-+		cea_channels.channels.RR = speaker_flags.RL_RR;
-+		cea_channels.channels.RC_RLC_FLC = speaker_flags.RC;
-+	} else {
-+		cea_channels.channels.RL_RC = speaker_flags.RC;
++
++	/* TODO: Check if this is required */
++	/* check if HW reading GSP memory */
++	REG_WAIT(VPG_GENERIC_STATUS, VPG_GENERIC_CONFLICT_OCCURED,
++			0, 10, max_retries);
++
++	/* HW does is not reading GSP memory not reading too long ->
++	 * something wrong. clear GPS memory access and notify?
++	 * hw SW is writing to GSP memory
++	 */
++	REG_UPDATE(VPG_GENERIC_STATUS, VPG_GENERIC_CONFLICT_CLR, 1);
++
++	/* choose which generic packet to use */
++	REG_UPDATE(VPG_GENERIC_PACKET_ACCESS_CTRL,
++			VPG_GENERIC_DATA_INDEX, packet_index*9);
++
++	/* write generic packet header
++	 * (4th byte is for GENERIC0 only)
++	 */
++	REG_SET_4(VPG_GENERIC_PACKET_DATA, 0,
++			VPG_GENERIC_DATA_BYTE0, info_packet->hb0,
++			VPG_GENERIC_DATA_BYTE1, info_packet->hb1,
++			VPG_GENERIC_DATA_BYTE2, info_packet->hb2,
++			VPG_GENERIC_DATA_BYTE3, info_packet->hb3);
++
++	/* write generic packet contents
++	 * (we never use last 4 bytes)
++	 * there are 8 (0-7) mmDIG0_AFMT_GENERIC0_x registers
++	 */
++	{
++		const uint32_t *content =
++			(const uint32_t *) &info_packet->sb[0];
++
++		for (i = 0; i < 8; i++) {
++			REG_WRITE(VPG_GENERIC_PACKET_DATA, *content++);
++		}
 +	}
 +
-+	/* FRONT Left Right Center and REAR Left Right Center are exclusive */
-+	if (speaker_flags.FLC_FRC) {
-+		cea_channels.channels.RC_RLC_FLC = speaker_flags.FLC_FRC;
-+		cea_channels.channels.RRC_FRC = speaker_flags.FLC_FRC;
-+	} else {
-+		cea_channels.channels.RC_RLC_FLC = speaker_flags.RLC_RRC;
-+		cea_channels.channels.RRC_FRC = speaker_flags.RLC_RRC;
++	/* atomically update double-buffered GENERIC0 registers in frame mode
++	 * (update at next block_update when block_update_lock == 0).
++	 */
++	switch (packet_index) {
++	case 0:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC0_FRAME_UPDATE, 1);
++		break;
++	case 1:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC1_FRAME_UPDATE, 1);
++		break;
++	case 2:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC2_FRAME_UPDATE, 1);
++		break;
++	case 3:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC3_FRAME_UPDATE, 1);
++		break;
++	case 4:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC4_FRAME_UPDATE, 1);
++		break;
++	case 5:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC5_FRAME_UPDATE, 1);
++		break;
++	case 6:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC6_FRAME_UPDATE, 1);
++		break;
++	case 7:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC7_FRAME_UPDATE, 1);
++		break;
++	case 8:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC8_FRAME_UPDATE, 1);
++		break;
++	case 9:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC9_FRAME_UPDATE, 1);
++		break;
++	case 10:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC10_FRAME_UPDATE, 1);
++		break;
++	case 11:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC11_FRAME_UPDATE, 1);
++		break;
++	case 12:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC12_FRAME_UPDATE, 1);
++		break;
++	case 13:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC13_FRAME_UPDATE, 1);
++		break;
++	case 14:
++		REG_UPDATE(VPG_GSP_FRAME_UPDATE_CTRL,
++				VPG_GENERIC14_FRAME_UPDATE, 1);
++		break;
++	default:
++		break;
 +	}
-+
-+	return cea_channels;
 +}
 +
-+static void afmt3_se_audio_setup(
-+	struct afmt *afmt,
-+	unsigned int az_inst,
-+	struct audio_info *audio_info)
-+{
-+	struct dcn30_afmt *afmt3 = DCN30_AFMT_FROM_AFMT(afmt);
-+
-+	uint32_t speakers = 0;
-+	uint32_t channels = 0;
-+
-+	ASSERT(audio_info);
-+	/* This should not happen.it does so we don't get BSOD*/
-+	if (audio_info == NULL)
-+		return;
-+
-+	speakers = audio_info->flags.info.ALLSPEAKERS;
-+	channels = speakers_to_channels(audio_info->flags.speaker_flags).all;
-+
-+	/* setup the audio stream source select (audio -> dig mapping) */
-+	REG_SET(AFMT_AUDIO_SRC_CONTROL, 0, AFMT_AUDIO_SRC_SELECT, az_inst);
-+
-+	/* Channel allocation */
-+	REG_UPDATE(AFMT_AUDIO_PACKET_CONTROL2, AFMT_AUDIO_CHANNEL_ENABLE, channels);
-+
-+	/* Disable forced mem power off */
-+	REG_UPDATE(AFMT_MEM_PWR, AFMT_MEM_PWR_FORCE, 0);
-+}
-+
-+static void afmt3_audio_mute_control(
-+	struct afmt *afmt,
-+	bool mute)
-+{
-+	struct dcn30_afmt *afmt3 = DCN30_AFMT_FROM_AFMT(afmt);
-+
-+	/* enable/disable transmission of audio packets */
-+	REG_UPDATE(AFMT_AUDIO_PACKET_CONTROL, AFMT_AUDIO_SAMPLE_SEND, !mute);
-+}
-+
-+static void afmt3_audio_info_immediate_update(
-+	struct afmt *afmt)
-+{
-+	struct dcn30_afmt *afmt3 = DCN30_AFMT_FROM_AFMT(afmt);
-+
-+	/* update double-buffered AUDIO_INFO registers immediately */
-+	REG_UPDATE(AFMT_INFOFRAME_CONTROL0, AFMT_AUDIO_INFO_UPDATE, 1);
-+}
-+
-+static void afmt3_setup_dp_audio(
-+		struct afmt *afmt)
-+{
-+	struct dcn30_afmt *afmt3 = DCN30_AFMT_FROM_AFMT(afmt);
-+
-+	/* AFMT_AUDIO_PACKET_CONTROL */
-+	REG_UPDATE(AFMT_AUDIO_PACKET_CONTROL, AFMT_60958_CS_UPDATE, 1);
-+
-+	/* AFMT_AUDIO_PACKET_CONTROL2 */
-+	/* Program the ATP and AIP next */
-+	REG_UPDATE_2(AFMT_AUDIO_PACKET_CONTROL2,
-+			AFMT_AUDIO_LAYOUT_OVRD, 0,
-+			AFMT_60958_OSF_OVRD, 0);
-+
-+	/* AFMT_INFOFRAME_CONTROL0 */
-+	REG_UPDATE(AFMT_INFOFRAME_CONTROL0, AFMT_AUDIO_INFO_UPDATE, 1);
-+
-+	/* AFMT_60958_0__AFMT_60958_CS_CLOCK_ACCURACY_MASK */
-+	REG_UPDATE(AFMT_60958_0, AFMT_60958_CS_CLOCK_ACCURACY, 0);
-+}
-+
-+static struct afmt_funcs dcn30_afmt_funcs = {
-+	.setup_hdmi_audio		= afmt3_setup_hdmi_audio,
-+	.se_audio_setup			= afmt3_se_audio_setup,
-+	.audio_mute_control		= afmt3_audio_mute_control,
-+	.audio_info_immediate_update	= afmt3_audio_info_immediate_update,
-+	.setup_dp_audio			= afmt3_setup_dp_audio,
++static struct vpg_funcs dcn30_vpg_funcs = {
++	.update_generic_info_packet	= vpg3_update_generic_info_packet,
 +};
 +
-+void afmt3_construct(struct dcn30_afmt *afmt3,
++void vpg3_construct(struct dcn30_vpg *vpg3,
 +	struct dc_context *ctx,
 +	uint32_t inst,
-+	const struct dcn30_afmt_registers *afmt_regs,
-+	const struct dcn30_afmt_shift *afmt_shift,
-+	const struct dcn30_afmt_mask *afmt_mask)
++	const struct dcn30_vpg_registers *vpg_regs,
++	const struct dcn30_vpg_shift *vpg_shift,
++	const struct dcn30_vpg_mask *vpg_mask)
 +{
-+	afmt3->base.ctx = ctx;
++	vpg3->base.ctx = ctx;
 +
-+	afmt3->base.inst = inst;
-+	afmt3->base.funcs = &dcn30_afmt_funcs;
++	vpg3->base.inst = inst;
++	vpg3->base.funcs = &dcn30_vpg_funcs;
 +
-+	afmt3->regs = afmt_regs;
-+	afmt3->afmt_shift = afmt_shift;
-+	afmt3->afmt_mask = afmt_mask;
++	vpg3->regs = vpg_regs;
++	vpg3->vpg_shift = vpg_shift;
++	vpg3->vpg_mask = vpg_mask;
 +}
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_afmt.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_afmt.h
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h
 new file mode 100644
-index 000000000000..08b2d8a8170c
+index 000000000000..0284092630f1
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_afmt.h
-@@ -0,0 +1,230 @@
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h
+@@ -0,0 +1,133 @@
 +/*
 + * Copyright 2020 Advanced Micro Devices, Inc.
 + *
@@ -329,208 +317,111 @@ index 000000000000..08b2d8a8170c
 + *
 + */
 +
-+#ifndef __DAL_DCN30_AFMT_H__
-+#define __DAL_DCN30_AFMT_H__
++#ifndef __DAL_DCN30_VPG_H__
++#define __DAL_DCN30_VPG_H__
 +
 +
-+#define DCN30_AFMT_FROM_AFMT(afmt)\
-+	container_of(afmt, struct dcn30_afmt, base)
++#define DCN30_VPG_FROM_VPG(vpg)\
++	container_of(vpg, struct dcn30_vpg, base)
 +
-+#define AFMT_DCN3_REG_LIST(id) \
-+	SRI(AFMT_INFOFRAME_CONTROL0, AFMT, id), \
-+	SRI(AFMT_VBI_PACKET_CONTROL, AFMT, id), \
-+	SRI(AFMT_AUDIO_PACKET_CONTROL, AFMT, id), \
-+	SRI(AFMT_AUDIO_PACKET_CONTROL2, AFMT, id), \
-+	SRI(AFMT_AUDIO_SRC_CONTROL, AFMT, id), \
-+	SRI(AFMT_60958_0, AFMT, id), \
-+	SRI(AFMT_60958_1, AFMT, id), \
-+	SRI(AFMT_60958_2, AFMT, id), \
-+	SRI(AFMT_MEM_PWR, AFMT, id)
++#define VPG_DCN3_REG_LIST(id) \
++	SRI(VPG_GENERIC_STATUS, VPG, id), \
++	SRI(VPG_GENERIC_PACKET_ACCESS_CTRL, VPG, id), \
++	SRI(VPG_GENERIC_PACKET_DATA, VPG, id), \
++	SRI(VPG_GSP_FRAME_UPDATE_CTRL, VPG, id)
 +
-+struct dcn30_afmt_registers {
-+	uint32_t AFMT_INFOFRAME_CONTROL0;
-+	uint32_t AFMT_VBI_PACKET_CONTROL;
-+	uint32_t AFMT_AUDIO_PACKET_CONTROL;
-+	uint32_t AFMT_AUDIO_PACKET_CONTROL2;
-+	uint32_t AFMT_AUDIO_SRC_CONTROL;
-+	uint32_t AFMT_60958_0;
-+	uint32_t AFMT_60958_1;
-+	uint32_t AFMT_60958_2;
-+	uint32_t AFMT_MEM_PWR;
++struct dcn30_vpg_registers {
++	uint32_t VPG_GENERIC_STATUS;
++	uint32_t VPG_GENERIC_PACKET_ACCESS_CTRL;
++	uint32_t VPG_GENERIC_PACKET_DATA;
++	uint32_t VPG_GSP_FRAME_UPDATE_CTRL;
 +};
 +
-+#define DCN3_AFMT_MASK_SH_LIST(mask_sh)\
-+	SE_SF(AFMT0_AFMT_INFOFRAME_CONTROL0, AFMT_AUDIO_INFO_UPDATE, mask_sh),\
-+	SE_SF(AFMT0_AFMT_AUDIO_SRC_CONTROL, AFMT_AUDIO_SRC_SELECT, mask_sh),\
-+	SE_SF(AFMT0_AFMT_AUDIO_PACKET_CONTROL2, AFMT_AUDIO_CHANNEL_ENABLE, mask_sh),\
-+	SE_SF(AFMT0_AFMT_AUDIO_PACKET_CONTROL, AFMT_60958_CS_UPDATE, mask_sh),\
-+	SE_SF(AFMT0_AFMT_AUDIO_PACKET_CONTROL2, AFMT_AUDIO_LAYOUT_OVRD, mask_sh),\
-+	SE_SF(AFMT0_AFMT_AUDIO_PACKET_CONTROL2, AFMT_60958_OSF_OVRD, mask_sh),\
-+	SE_SF(AFMT0_AFMT_60958_0, AFMT_60958_CS_CHANNEL_NUMBER_L, mask_sh),\
-+	SE_SF(AFMT0_AFMT_60958_0, AFMT_60958_CS_CLOCK_ACCURACY, mask_sh),\
-+	SE_SF(AFMT0_AFMT_60958_1, AFMT_60958_CS_CHANNEL_NUMBER_R, mask_sh),\
-+	SE_SF(AFMT0_AFMT_60958_2, AFMT_60958_CS_CHANNEL_NUMBER_2, mask_sh),\
-+	SE_SF(AFMT0_AFMT_60958_2, AFMT_60958_CS_CHANNEL_NUMBER_3, mask_sh),\
-+	SE_SF(AFMT0_AFMT_60958_2, AFMT_60958_CS_CHANNEL_NUMBER_4, mask_sh),\
-+	SE_SF(AFMT0_AFMT_60958_2, AFMT_60958_CS_CHANNEL_NUMBER_5, mask_sh),\
-+	SE_SF(AFMT0_AFMT_60958_2, AFMT_60958_CS_CHANNEL_NUMBER_6, mask_sh),\
-+	SE_SF(AFMT0_AFMT_60958_2, AFMT_60958_CS_CHANNEL_NUMBER_7, mask_sh),\
-+	SE_SF(AFMT0_AFMT_AUDIO_PACKET_CONTROL, AFMT_AUDIO_SAMPLE_SEND, mask_sh),\
-+	SE_SF(AFMT0_AFMT_MEM_PWR, AFMT_MEM_PWR_FORCE, mask_sh)
++#define DCN3_VPG_MASK_SH_LIST(mask_sh)\
++	SE_SF(VPG0_VPG_GENERIC_STATUS, VPG_GENERIC_CONFLICT_OCCURED, mask_sh),\
++	SE_SF(VPG0_VPG_GENERIC_STATUS, VPG_GENERIC_CONFLICT_CLR, mask_sh),\
++	SE_SF(VPG0_VPG_GENERIC_PACKET_ACCESS_CTRL, VPG_GENERIC_DATA_INDEX, mask_sh),\
++	SE_SF(VPG0_VPG_GENERIC_PACKET_DATA, VPG_GENERIC_DATA_BYTE0, mask_sh),\
++	SE_SF(VPG0_VPG_GENERIC_PACKET_DATA, VPG_GENERIC_DATA_BYTE1, mask_sh),\
++	SE_SF(VPG0_VPG_GENERIC_PACKET_DATA, VPG_GENERIC_DATA_BYTE2, mask_sh),\
++	SE_SF(VPG0_VPG_GENERIC_PACKET_DATA, VPG_GENERIC_DATA_BYTE3, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC0_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC1_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC2_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC3_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC4_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC5_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC6_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC7_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC8_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC9_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC10_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC11_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC12_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC13_FRAME_UPDATE, mask_sh),\
++	SE_SF(VPG0_VPG_GSP_FRAME_UPDATE_CTRL, VPG_GENERIC14_FRAME_UPDATE, mask_sh)
 +
-+#define AFMT_DCN3_REG_FIELD_LIST(type) \
-+		type AFMT_AUDIO_INFO_UPDATE;\
-+		type AFMT_AUDIO_SRC_SELECT;\
-+		type AFMT_AUDIO_CHANNEL_ENABLE;\
-+		type AFMT_60958_CS_UPDATE;\
-+		type AFMT_AUDIO_LAYOUT_OVRD;\
-+		type AFMT_60958_OSF_OVRD;\
-+		type AFMT_60958_CS_CHANNEL_NUMBER_L;\
-+		type AFMT_60958_CS_CLOCK_ACCURACY;\
-+		type AFMT_60958_CS_CHANNEL_NUMBER_R;\
-+		type AFMT_60958_CS_CHANNEL_NUMBER_2;\
-+		type AFMT_60958_CS_CHANNEL_NUMBER_3;\
-+		type AFMT_60958_CS_CHANNEL_NUMBER_4;\
-+		type AFMT_60958_CS_CHANNEL_NUMBER_5;\
-+		type AFMT_60958_CS_CHANNEL_NUMBER_6;\
-+		type AFMT_60958_CS_CHANNEL_NUMBER_7;\
-+		type AFMT_AUDIO_SAMPLE_SEND;\
-+		type AFMT_MEM_PWR_FORCE
++#define VPG_DCN3_REG_FIELD_LIST(type) \
++	type VPG_GENERIC_CONFLICT_OCCURED;\
++	type VPG_GENERIC_CONFLICT_CLR;\
++	type VPG_GENERIC_DATA_INDEX;\
++	type VPG_GENERIC_DATA_BYTE0;\
++	type VPG_GENERIC_DATA_BYTE1;\
++	type VPG_GENERIC_DATA_BYTE2;\
++	type VPG_GENERIC_DATA_BYTE3;\
++	type VPG_GENERIC0_FRAME_UPDATE;\
++	type VPG_GENERIC1_FRAME_UPDATE;\
++	type VPG_GENERIC2_FRAME_UPDATE;\
++	type VPG_GENERIC3_FRAME_UPDATE;\
++	type VPG_GENERIC4_FRAME_UPDATE;\
++	type VPG_GENERIC5_FRAME_UPDATE;\
++	type VPG_GENERIC6_FRAME_UPDATE;\
++	type VPG_GENERIC7_FRAME_UPDATE;\
++	type VPG_GENERIC8_FRAME_UPDATE;\
++	type VPG_GENERIC9_FRAME_UPDATE;\
++	type VPG_GENERIC10_FRAME_UPDATE;\
++	type VPG_GENERIC11_FRAME_UPDATE;\
++	type VPG_GENERIC12_FRAME_UPDATE;\
++	type VPG_GENERIC13_FRAME_UPDATE;\
++	type VPG_GENERIC14_FRAME_UPDATE
 +
-+struct dcn30_afmt_shift {
-+	AFMT_DCN3_REG_FIELD_LIST(uint8_t);
++
++struct dcn30_vpg_shift {
++	VPG_DCN3_REG_FIELD_LIST(uint8_t);
 +};
 +
-+struct dcn30_afmt_mask {
-+	AFMT_DCN3_REG_FIELD_LIST(uint32_t);
++struct dcn30_vpg_mask {
++	VPG_DCN3_REG_FIELD_LIST(uint32_t);
 +};
 +
++struct vpg;
 +
-+/**
-+* speakersToChannels
-+*
-+* @brief
-+*  translate speakers to channels
-+*
-+*  FL  - Front Left
-+*  FR  - Front Right
-+*  RL  - Rear Left
-+*  RR  - Rear Right
-+*  RC  - Rear Center
-+*  FC  - Front Center
-+*  FLC - Front Left Center
-+*  FRC - Front Right Center
-+*  RLC - Rear Left Center
-+*  RRC - Rear Right Center
-+*  LFE - Low Freq Effect
-+*
-+*               FC
-+*          FLC      FRC
-+*    FL                    FR
-+*
-+*                    LFE
-+*              ()
-+*
-+*
-+*    RL                    RR
-+*          RLC      RRC
-+*               RC
-+*
-+*             ch  8   7   6   5   4   3   2   1
-+* 0b00000011      -   -   -   -   -   -   FR  FL
-+* 0b00000111      -   -   -   -   -   LFE FR  FL
-+* 0b00001011      -   -   -   -   FC  -   FR  FL
-+* 0b00001111      -   -   -   -   FC  LFE FR  FL
-+* 0b00010011      -   -   -   RC  -   -   FR  FL
-+* 0b00010111      -   -   -   RC  -   LFE FR  FL
-+* 0b00011011      -   -   -   RC  FC  -   FR  FL
-+* 0b00011111      -   -   -   RC  FC  LFE FR  FL
-+* 0b00110011      -   -   RR  RL  -   -   FR  FL
-+* 0b00110111      -   -   RR  RL  -   LFE FR  FL
-+* 0b00111011      -   -   RR  RL  FC  -   FR  FL
-+* 0b00111111      -   -   RR  RL  FC  LFE FR  FL
-+* 0b01110011      -   RC  RR  RL  -   -   FR  FL
-+* 0b01110111      -   RC  RR  RL  -   LFE FR  FL
-+* 0b01111011      -   RC  RR  RL  FC  -   FR  FL
-+* 0b01111111      -   RC  RR  RL  FC  LFE FR  FL
-+* 0b11110011      RRC RLC RR  RL  -   -   FR  FL
-+* 0b11110111      RRC RLC RR  RL  -   LFE FR  FL
-+* 0b11111011      RRC RLC RR  RL  FC  -   FR  FL
-+* 0b11111111      RRC RLC RR  RL  FC  LFE FR  FL
-+* 0b11000011      FRC FLC -   -   -   -   FR  FL
-+* 0b11000111      FRC FLC -   -   -   LFE FR  FL
-+* 0b11001011      FRC FLC -   -   FC  -   FR  FL
-+* 0b11001111      FRC FLC -   -   FC  LFE FR  FL
-+* 0b11010011      FRC FLC -   RC  -   -   FR  FL
-+* 0b11010111      FRC FLC -   RC  -   LFE FR  FL
-+* 0b11011011      FRC FLC -   RC  FC  -   FR  FL
-+* 0b11011111      FRC FLC -   RC  FC  LFE FR  FL
-+* 0b11110011      FRC FLC RR  RL  -   -   FR  FL
-+* 0b11110111      FRC FLC RR  RL  -   LFE FR  FL
-+* 0b11111011      FRC FLC RR  RL  FC  -   FR  FL
-+* 0b11111111      FRC FLC RR  RL  FC  LFE FR  FL
-+*
-+* @param
-+*  speakers - speaker information as it comes from CEA audio block
-+*/
-+/* translate speakers to channels */
-+
-+union audio_cea_channels {
-+	uint8_t all;
-+	struct audio_cea_channels_bits {
-+		uint32_t FL:1;
-+		uint32_t FR:1;
-+		uint32_t LFE:1;
-+		uint32_t FC:1;
-+		uint32_t RL_RC:1;
-+		uint32_t RR:1;
-+		uint32_t RC_RLC_FLC:1;
-+		uint32_t RRC_FRC:1;
-+	} channels;
++struct vpg_funcs {
++	void (*update_generic_info_packet)(
++		struct vpg *vpg,
++		uint32_t packet_index,
++		const struct dc_info_packet *info_packet);
 +};
 +
-+struct afmt;
-+
-+struct afmt_funcs {
-+
-+	void (*setup_hdmi_audio)(
-+		struct afmt *afmt);
-+
-+	void (*se_audio_setup)(
-+		struct afmt *afmt,
-+		unsigned int az_inst,
-+		struct audio_info *audio_info);
-+
-+	void (*audio_mute_control)(
-+		struct afmt *afmt,
-+		bool mute);
-+
-+	void (*audio_info_immediate_update)(
-+		struct afmt *afmt);
-+
-+	void (*setup_dp_audio)(
-+		struct afmt *afmt);
-+};
-+
-+struct afmt {
-+	const struct afmt_funcs *funcs;
++struct vpg {
++	const struct vpg_funcs *funcs;
 +	struct dc_context *ctx;
 +	int inst;
 +};
 +
-+struct dcn30_afmt {
-+	struct afmt base;
-+	const struct dcn30_afmt_registers *regs;
-+	const struct dcn30_afmt_shift *afmt_shift;
-+	const struct dcn30_afmt_mask *afmt_mask;
++struct dcn30_vpg {
++	struct vpg base;
++	const struct dcn30_vpg_registers *regs;
++	const struct dcn30_vpg_shift *vpg_shift;
++	const struct dcn30_vpg_mask *vpg_mask;
 +};
 +
-+void afmt3_construct(struct dcn30_afmt *afmt3,
++void vpg3_construct(struct dcn30_vpg *vpg3,
 +	struct dc_context *ctx,
 +	uint32_t inst,
-+	const struct dcn30_afmt_registers *afmt_regs,
-+	const struct dcn30_afmt_shift *afmt_shift,
-+	const struct dcn30_afmt_mask *afmt_mask);
++	const struct dcn30_vpg_registers *vpg_regs,
++	const struct dcn30_vpg_shift *vpg_shift,
++	const struct dcn30_vpg_mask *vpg_mask);
 +
 +
 +#endif
