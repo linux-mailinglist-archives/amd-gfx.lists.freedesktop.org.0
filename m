@@ -1,58 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D41801EA98C
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:03:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 973131EA98D
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:03:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 596B56E271;
-	Mon,  1 Jun 2020 18:03:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15F806E27A;
+	Mon,  1 Jun 2020 18:03:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
- [IPv6:2607:f8b0:4864:20::743])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 290746E271
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:03:34 +0000 (UTC)
-Received: by mail-qk1-x743.google.com with SMTP id v79so9906987qkb.10
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
+ [IPv6:2607:f8b0:4864:20::741])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01E5D6E284
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:03:35 +0000 (UTC)
+Received: by mail-qk1-x741.google.com with SMTP id w1so9953493qkw.5
  for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:03:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Z7ff1kpHm6G/XcLPrENNGAd2XI615DzOGSb3UHKGTbE=;
- b=rB3ICZhFKgPuHZcCVGnIGSWvS3SGV2pjH+wzL0DrTnE5TQ6//UWZuY3wioCIKOBZfr
- CEiX/1lpKSN+pem/IfEkeo3X4weSs36xrbPHHKtfJdRZ4CYWMQixRMehVrRNmrO2DU9G
- o7CUG++LD6R3AuV65qUWx8HT52ccakJS9FWnreEatkXH0qwR8+jwkLC/uSvnblWjLDC9
- QOjX/trA55t2hEcl13kltIFieRaGeDYQPtqfm9YZh5TUFcC+K6SU+rEOD2i7/HYVFwcO
- Drv3tEwQucBTonNXx242NshFNlaO7A9+tf8FgDKL/ktHcKK6nFa3eaEdywRymsLBZKLv
- 1j7Q==
+ bh=2CVK8dxmX2BZikYN6juVRr5Ls4D35SI8beIUrhBXWCg=;
+ b=XvmLL9nqRgaIUSWjXVzmYhOB+BhyTno3h6k6mhaOmeOrXShCCmnCtG0CkQcsSdXI2x
+ rXUgCBnDdo9s60IKXrJ4VTdSYUNjjMlYQBgcqODnQFxlrE00zULTIuh5HT8Y9FCOrZMg
+ sDlFpSxCOUbJ5PthAQe4LmOO92g9WIdNPD396l8d/nEKB31FjZcRe+4svhXkvwMLh5ND
+ sY6mRi3FkmYOnlUSwMLoaatKb8fTTanqci5CiFLPRYieKXo4IbzcN6QpmrNFWm58gPm+
+ vYktv4rI+bk6C2ig2MmURAbi0RIQvLddeS/VElSQXtEw8PJ0dhMPaBdsYQ7x4jR+3wlS
+ Fl6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Z7ff1kpHm6G/XcLPrENNGAd2XI615DzOGSb3UHKGTbE=;
- b=HBIHh85YwQoW3cr2ZfmAgzR1Y9b6TlWgW0kzf1zpOdayb8kNopzwSkByLkv+g7zt4A
- xE627dqvB3+xgQ9VQ8SJ+YPPANus3z4ju1mrCOqwymoazcGTSv7UtLImjwsBI/ky+O5y
- kCiGu1TmMPgm/2bX5sjBZ/MId21M2ZGj2GAe3sA1tZUQvthazvTecFfoHQEawTDxb9v1
- Pq9Bc2dDmvjNYxr+OvzYXWOlnnu8yxUCxDIhAiPeJXT3TZNFTAlhzIoUD1fs6JwFw2QL
- LnOdbyfSlWcfO8CiDgiXIeWMcYClcaS7sIybdIcTa4tNtQi0xHxWE8OQNZmwus9vJ7Je
- HCPw==
-X-Gm-Message-State: AOAM533rCdbTixDReHwMCCIKW5wsP/tvpPDlQM/cDjtkvib/LZFBe956
- TVMcsZAMSS1QXMs96UZiRkFkKp2d
-X-Google-Smtp-Source: ABdhPJyAHRPrjPJT3b6nlBrLfInm3gKlU9m4xL/hXOsDu/zdBfWLNb2vHQn/xguA/ZiB1IAUMrmRuQ==
-X-Received: by 2002:a37:a6c2:: with SMTP id
- p185mr21302422qke.474.1591034612953; 
- Mon, 01 Jun 2020 11:03:32 -0700 (PDT)
+ bh=2CVK8dxmX2BZikYN6juVRr5Ls4D35SI8beIUrhBXWCg=;
+ b=UMQZ7TzTjBisfoSocaNfYM28RE4ZWNjE7bCedMYjPUEyoSNfbtZS0Wx8s12oM//BkE
+ wHrhKdOrKWyC0QNoxkuS4DMVpaB5DQTRxvWCrCDxp/mKSo6TKbpO5GEDBUHKC9iDd70V
+ 0RarlJ3u/BYht+X4KSKKZeYkYwVM1BVQow/ylCBMEAO4wkdA1zT94nCvg1BAClUKx8dA
+ 0f55cL8z8FqmZw4iLcu8oPnbT9K0aH4bUWJN+IzIkoAwB+oRC1jPskMBn2oewnksjngY
+ Mnmyw5/7CEij0rBG92m3ficIUlFgovPDbnI3vW6oaZT1lHxlnYo1IQiPtL2aFcjFi1rD
+ Nh7g==
+X-Gm-Message-State: AOAM532F7SF8d+QMSvp+Xd1dKSX6/A69OhwRMtKU4aUrS02PHT4JYWP7
+ L8au824ibaifkhL/92YeeCbBy023
+X-Google-Smtp-Source: ABdhPJw2Z7gB8eduhoj/2vgC8T81A2DTNUvFZUbXLpNMNgEcJfsz7vLzkRNJMCn4OAbDiTu/59i+dA==
+X-Received: by 2002:a37:be43:: with SMTP id o64mr20447980qkf.322.1591034614004; 
+ Mon, 01 Jun 2020 11:03:34 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id h16sm42164qtp.1.2020.06.01.11.03.31
+ by smtp.gmail.com with ESMTPSA id h16sm42164qtp.1.2020.06.01.11.03.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:03:32 -0700 (PDT)
+ Mon, 01 Jun 2020 11:03:33 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 031/207] drm/amd/powerplay: enable SOC Clock Deep Sleep for
+Subject: [PATCH 032/207] drm/amdgpu/powerplay: set Thermal control for
  sienna_cichlid
-Date: Mon,  1 Jun 2020 13:59:43 -0400
-Message-Id: <20200601180239.1267430-28-alexander.deucher@amd.com>
+Date: Mon,  1 Jun 2020 13:59:44 -0400
+Message-Id: <20200601180239.1267430-29-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601180239.1267430-1-alexander.deucher@amd.com>
 References: <20200601180239.1267430-1-alexander.deucher@amd.com>
@@ -77,7 +76,7 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Likun Gao <Likun.Gao@amd.com>
 
-Enable System On Chip Clock Deep Sleep for sienna_cichlid.
+Enable Auto Thermal Throttling for sienna_cichlid.
 
 Signed-off-by: Likun Gao <Likun.Gao@amd.com>
 Reviewed-by: Kenneth Feng <kenneth.feng@amd.com>
@@ -87,16 +86,16 @@ Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
-index 82d38eb7ba58..a046fb4db610 100644
+index a046fb4db610..a96de546c19b 100644
 --- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
 +++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
-@@ -270,7 +270,8 @@ sienna_cichlid_get_allowed_feature_mask(struct smu_context *smu,
- 
+@@ -271,7 +271,8 @@ sienna_cichlid_get_allowed_feature_mask(struct smu_context *smu,
  	*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_DPM_PREFETCHER_BIT)
  				| FEATURE_MASK(FEATURE_DPM_FCLK_BIT)
--				| FEATURE_MASK(FEATURE_DS_GFXCLK_BIT);
-+				| FEATURE_MASK(FEATURE_DS_GFXCLK_BIT)
-+				| FEATURE_MASK(FEATURE_DS_SOCCLK_BIT);
+ 				| FEATURE_MASK(FEATURE_DS_GFXCLK_BIT)
+-				| FEATURE_MASK(FEATURE_DS_SOCCLK_BIT);
++				| FEATURE_MASK(FEATURE_DS_SOCCLK_BIT)
++				| FEATURE_MASK(FEATURE_THERMAL_BIT);
  
  	if (adev->pm.pp_feature & PP_SCLK_DPM_MASK)
  		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_DPM_GFXCLK_BIT);
