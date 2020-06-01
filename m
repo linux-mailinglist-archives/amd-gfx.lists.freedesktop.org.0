@@ -1,57 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73AF01EAC02
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3BF01EAC03
 	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:29:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB9606E93F;
-	Mon,  1 Jun 2020 18:29:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32CB96E945;
+	Mon,  1 Jun 2020 18:29:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
- [IPv6:2607:f8b0:4864:20::743])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 327C26E93F
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:29:54 +0000 (UTC)
-Received: by mail-qk1-x743.google.com with SMTP id n11so10026316qkn.8
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:29:54 -0700 (PDT)
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
+ [IPv6:2607:f8b0:4864:20::842])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D41256E9D7
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:29:55 +0000 (UTC)
+Received: by mail-qt1-x842.google.com with SMTP id x29so8523371qtv.4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:29:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ZTX3qPS3Ew+OI754gcszCGEnbDqejo+K2nDyzYE5GFc=;
- b=SG2ow+qs7NBVN8hR5TFfshlbWPz6V9PxlqAqvVy2FrKlmeIt8oTPRo0kqigeRa0j3F
- PrrrXGl6F/Ux1OHvN/iqNppI1Kynai/DYNweQLKP9Ti6vCQGRjcFcjBZoY9wLfdRuS8A
- 9DdH99cuVGDa/lpHxY+QdYS3m3YZ8DoWitsc/pXeH3ZfoiM2zRiNsjPfFbreqT+jom60
- xiz4bMMkzwbj4WJF9xwF+7Av1Ki7hgjVdr7PGoSlMKifn5dNzl00U1OxXPoEA0Ki6KP4
- qsOAU2nmoqp6n7EezZfcTzDXYKiHbRtDcAj+N1vvxvfcYCwzbMJKAaVIcccSWeDSGtQg
- s1mw==
+ bh=4OyUuuqV1SUTAvwytQOPYay4tj32WqzlAXs75Xy8src=;
+ b=ZHgr10s2iIWgTpDVa1aEaMhLrEtBL8MV5JxVu7ExjLY4irVJohTJKD+MVNIwyiYab1
+ uwmGFjDtXowT46qlIvwFYcwhgrQlFfkV1cryQkqxD/ZvRJZpNE14dTVJH6LE1L8+9FqF
+ oe1vWiTQoXMH5o3aXK4pKMRJAcx+XViGB4JYRf9rCPrwFVEwpkx2lVMuE/mPkKll2iuV
+ NrnwWDJnJq25Mp3OpESx7xVFL16kB0tPJSDzfVYDxcFIBQ0f8Yxpk8qNrgWPJxx4dBQ4
+ DXGkC73/XRJr/VY0NxsrTjxatKeaxj5DzzXZ6+FolcXRixG0Y3FODJaCP/woIeNVAgGA
+ 5wIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ZTX3qPS3Ew+OI754gcszCGEnbDqejo+K2nDyzYE5GFc=;
- b=LUeJvuz7PCeRnsiwDEr8RS9XU/7u7Al0xWVVrB8AxQ3p6MlaSm/Ezx6rUhFNKJnA0t
- 3ioARbbMEwMIjeNC41A+gkXkG4KbVq382YUmlkeBnpvJakYStb4piIykpSTYxZhX35Yg
- ihSqxBRLRBwoJ4rDiSNSgNfrmmESFPEjmA9PyPwsikyMaiIHTKJwcI0NF86QHu4pdmqQ
- jC6HHFyIdAZ6fsuJBm2tHBHRSt0vA3yQDzhm2RUkEf53NokHwLyJx+FTUg3ldAN/SZEP
- EXfy7NgO7KmpaE0FEfgKPekq6ASpxf3ylzxrnDhglFlaf46u5FQagLvJNSdy7zbsqJn7
- jQXg==
-X-Gm-Message-State: AOAM533807aT4j94afQPhLQSgOMkRiP40I09n8eEN4yip/WeBMGohZav
- cdFIiDhwo5lsL8tZRrSkqvyziFwZ
-X-Google-Smtp-Source: ABdhPJzZXEYAGpMnHARLCMUjNuri85Jgw4TFTxDT4YkFlzVUjvJpJoLWS81kG6x//NWjsrZmk1ALCQ==
-X-Received: by 2002:a37:70c5:: with SMTP id
- l188mr21794787qkc.396.1591036192514; 
- Mon, 01 Jun 2020 11:29:52 -0700 (PDT)
+ bh=4OyUuuqV1SUTAvwytQOPYay4tj32WqzlAXs75Xy8src=;
+ b=Okco5cHO0tAjnHIO3wh7WVC8SKHc8MnT9CfNA6X7fF1Q4OAkSDbkgmgtRSRCyzp17m
+ AutiHOLrG7XjnO7SFV2My+NppeSWO36ip5V6ioji5IGhkXtr0UHYnVgBCSiCSpsXPDso
+ /QDT0Oc5EJ1z5v4+SXxfiB18/gmPH8gB9jI+4+RTsytIQ25XKetnqlNxFPeBNSoHXtz9
+ /jp69GT2D5zzH3qepLE0HW5nQKRcnQA3q5V2nDbDTHNIkWNe/trTLWX57915D34fSFF6
+ GHnHd4mVpK2PGNecIi78saqdEa8ZZVh14Y2mjylWY/+SWav1wKmsn33RBvEBQj/wmwsN
+ 7kMQ==
+X-Gm-Message-State: AOAM531JhHWS7BoLyhOZ+Gipo/IpW4T/XVsMuGnZHRVRdvy4ZjKmWS3N
+ ibZ1Gd0+yy9mzDthuZ1A72xvj1Dd
+X-Google-Smtp-Source: ABdhPJzUDTnIvjOyoofs4qsxBjcUytkvkahLASJhPJFW4CDJAC2EZOjC09NNlFbALTG3w+hNiuwrKQ==
+X-Received: by 2002:aed:312a:: with SMTP id 39mr23498736qtg.6.1591036194199;
+ Mon, 01 Jun 2020 11:29:54 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id z194sm8592qkb.73.2020.06.01.11.29.51
+ by smtp.gmail.com with ESMTPSA id z194sm8592qkb.73.2020.06.01.11.29.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:29:52 -0700 (PDT)
+ Mon, 01 Jun 2020 11:29:53 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 188/207] drm/amd/display: Add DCN3 HUBP
-Date: Mon,  1 Jun 2020 14:29:07 -0400
-Message-Id: <20200601182926.1267958-10-alexander.deucher@amd.com>
+Subject: [PATCH 189/207] drm/amd/display: Add DCN3 MMHUBHUB
+Date: Mon,  1 Jun 2020 14:29:08 -0400
+Message-Id: <20200601182926.1267958-11-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601182926.1267958-1-alexander.deucher@amd.com>
 References: <20200601182926.1267958-1-alexander.deucher@amd.com>
@@ -75,14 +74,13 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 
-Add support to program the DCN3 HUBP (Display to data fabric interface
-pipe)
+Add support to program the DCN3 MMHUBBUB (Multimedia HUB interface)
 
 HW Blocks:
 
- +--------++------+
- | HUBBUB || HUBP |
- +--------++------+
+ +--------++------+       +----------+
+ | HUBBUB || HUBP |  <--  | MMHUBBUB |
+ +--------++------+       +----------+
         |
         v
     +--------+
@@ -111,238 +109,67 @@ HW Blocks:
 
 Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_hw_types.h  |  35 ++
- .../gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c |  12 +
- .../gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c |  20 +
- .../gpu/drm/amd/display/dc/dcn20/dcn20_hubp.h |  41 ++
- .../gpu/drm/amd/display/dc/dcn30/dcn30_hubp.c | 532 ++++++++++++++++++
- .../gpu/drm/amd/display/dc/dcn30/dcn30_hubp.h | 292 ++++++++++
- drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |   4 +
- 7 files changed, 936 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hubp.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hubp.h
+ drivers/gpu/drm/amd/display/dc/dc_hw_types.h  |  36 ++
+ .../drm/amd/display/dc/dcn30/dcn30_mmhubbub.c | 239 +++++++++
+ .../drm/amd/display/dc/dcn30/dcn30_mmhubbub.h | 463 ++++++++++++++++++
+ .../gpu/drm/amd/display/dc/inc/hw/mcif_wb.h   |   3 +
+ 4 files changed, 741 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mmhubbub.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mmhubbub.h
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-index a8dc3082e3e1..7bc0be839c9e 100644
+index 7bc0be839c9e..a31c75d6d2cf 100644
 --- a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
 +++ b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-@@ -62,6 +62,9 @@ enum dc_plane_addr_type {
- 	PLN_ADDR_TYPE_GRAPHICS = 0,
- 	PLN_ADDR_TYPE_GRPH_STEREO,
- 	PLN_ADDR_TYPE_VIDEO_PROGRESSIVE,
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	PLN_ADDR_TYPE_RGBEA
-+#endif
+@@ -848,6 +848,42 @@ enum dwb_stereo_type {
+ 	DWB_STEREO_TYPE_FRAME_SEQUENTIAL = 3,	/* Frame sequential */
  };
  
- struct dc_plane_address {
-@@ -84,6 +87,16 @@ struct dc_plane_address {
- 			PHYSICAL_ADDRESS_LOC right_meta_addr;
- 			union large_integer right_dcc_const_color;
- 
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+			PHYSICAL_ADDRESS_LOC left_alpha_addr;
-+			PHYSICAL_ADDRESS_LOC left_alpha_meta_addr;
-+			union large_integer left_alpha_dcc_const_color;
++#ifdef CONFIG_DRM_AMD_DC_DCN3_0
 +
-+			PHYSICAL_ADDRESS_LOC right_alpha_addr;
-+			PHYSICAL_ADDRESS_LOC right_alpha_meta_addr;
-+			union large_integer right_alpha_dcc_const_color;
-+#endif
++enum dwb_out_format {
++	DWB_OUT_FORMAT_32BPP_ARGB = 0,
++	DWB_OUT_FORMAT_32BPP_RGBA = 1,
++	DWB_OUT_FORMAT_64BPP_ARGB = 2,
++	DWB_OUT_FORMAT_64BPP_RGBA = 3
++};
 +
- 		} grph_stereo;
- 
- 		/*video  progressive*/
-@@ -96,6 +109,18 @@ struct dc_plane_address {
- 			PHYSICAL_ADDRESS_LOC chroma_meta_addr;
- 			union large_integer chroma_dcc_const_color;
- 		} video_progressive;
++enum dwb_out_denorm {
++	DWB_OUT_DENORM_10BPC = 0,
++	DWB_OUT_DENORM_8BPC = 1,
++	DWB_OUT_DENORM_BYPASS = 2
++};
 +
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+		struct {
-+			PHYSICAL_ADDRESS_LOC addr;
-+			PHYSICAL_ADDRESS_LOC meta_addr;
-+			union large_integer dcc_const_color;
++enum cm_gamut_remap_select {
++	CM_GAMUT_REMAP_MODE_BYPASS = 0,
++	CM_GAMUT_REMAP_MODE_RAMA_COEFF,
++	CM_GAMUT_REMAP_MODE_RAMB_COEFF,
++	CM_GAMUT_REMAP_MODE_RESERVED
++};
 +
-+			PHYSICAL_ADDRESS_LOC alpha_addr;
-+			PHYSICAL_ADDRESS_LOC alpha_meta_addr;
-+			union large_integer alpha_dcc_const_color;
-+		} rgbea;
-+#endif
- 	};
- 
- 	union large_integer page_table_base;
-@@ -131,9 +156,15 @@ struct dc_plane_dcc_param {
- 
- 	int meta_pitch;
- 	bool independent_64b_blks;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	uint8_t dcc_ind_blk;
-+#endif
- 
- 	int meta_pitch_c;
- 	bool independent_64b_blks_c;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	uint8_t dcc_ind_blk_c;
-+#endif
- };
- 
- /*Displayable pixel format in fb*/
-@@ -169,6 +200,10 @@ enum surface_pixel_format {
- 	SURFACE_PIXEL_FORMAT_GRPH_BGR101111_FIX,
- 	SURFACE_PIXEL_FORMAT_GRPH_RGB111110_FLOAT,
- 	SURFACE_PIXEL_FORMAT_GRPH_BGR101111_FLOAT,
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	SURFACE_PIXEL_FORMAT_GRPH_RGBE,
-+	SURFACE_PIXEL_FORMAT_GRPH_RGBE_ALPHA,
-+#endif
- 	SURFACE_PIXEL_FORMAT_VIDEO_BEGIN,
- 	SURFACE_PIXEL_FORMAT_VIDEO_420_YCbCr =
- 		SURFACE_PIXEL_FORMAT_VIDEO_BEGIN,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c
-index 319366ebb44f..cedf359a00f5 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c
-@@ -326,6 +326,18 @@ void hubp1_program_pixel_format(
- 		REG_UPDATE(DCSURF_SURFACE_CONFIG,
- 				SURFACE_PIXEL_FORMAT, 119);
- 		break;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	case SURFACE_PIXEL_FORMAT_GRPH_RGBE:
-+		REG_UPDATE_2(DCSURF_SURFACE_CONFIG,
-+				SURFACE_PIXEL_FORMAT, 116,
-+				ALPHA_PLANE_EN, 0);
-+		break;
-+	case SURFACE_PIXEL_FORMAT_GRPH_RGBE_ALPHA:
-+		REG_UPDATE_2(DCSURF_SURFACE_CONFIG,
-+				SURFACE_PIXEL_FORMAT, 116,
-+				ALPHA_PLANE_EN, 1);
-+		break;
-+#endif
- 	default:
- 		BREAK_TO_DEBUGGER();
- 		break;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c
-index 84d7ac5dd206..bb920d0e0b89 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c
-@@ -336,6 +336,10 @@ void hubp2_program_size(
- 	 */
- 	use_pitch_c = format >= SURFACE_PIXEL_FORMAT_VIDEO_BEGIN
- 		&& format < SURFACE_PIXEL_FORMAT_SUBSAMPLE_END;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	use_pitch_c = use_pitch_c
-+		|| (format == SURFACE_PIXEL_FORMAT_GRPH_RGBE_ALPHA);
-+#endif
- 	if (use_pitch_c) {
- 		ASSERT(plane_size->chroma_pitch != 0);
- 		/* Chroma pitch zero can cause system hang! */
-@@ -360,6 +364,10 @@ void hubp2_program_size(
- 			PITCH, pitch, META_PITCH, meta_pitch);
- 
- 	use_pitch_c = format >= SURFACE_PIXEL_FORMAT_VIDEO_BEGIN;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	use_pitch_c = use_pitch_c
-+		|| (format == SURFACE_PIXEL_FORMAT_GRPH_RGBE_ALPHA);
-+#endif
- 	if (use_pitch_c)
- 		REG_UPDATE_2(DCSURF_SURFACE_PITCH_C,
- 			PITCH_C, pitch_c, META_PITCH_C, meta_pitch_c);
-@@ -505,6 +513,18 @@ void hubp2_program_pixel_format(
- 		REG_UPDATE(DCSURF_SURFACE_CONFIG,
- 				SURFACE_PIXEL_FORMAT, 119);
- 		break;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	case SURFACE_PIXEL_FORMAT_GRPH_RGBE:
-+		REG_UPDATE_2(DCSURF_SURFACE_CONFIG,
-+				SURFACE_PIXEL_FORMAT, 116,
-+				ALPHA_PLANE_EN, 0);
-+		break;
-+	case SURFACE_PIXEL_FORMAT_GRPH_RGBE_ALPHA:
-+		REG_UPDATE_2(DCSURF_SURFACE_CONFIG,
-+				SURFACE_PIXEL_FORMAT, 116,
-+				ALPHA_PLANE_EN, 1);
-+		break;
-+#endif
- 	default:
- 		BREAK_TO_DEBUGGER();
- 		break;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.h
-index 8c04a3606a54..4a2c93087459 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.h
-@@ -157,6 +157,12 @@
- 	uint32_t VBLANK_PARAMETERS_5;\
- 	uint32_t VBLANK_PARAMETERS_6
- 
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+#define DCN30_HUBP_REG_COMMON_VARIABLE_LIST \
-+	DCN21_HUBP_REG_COMMON_VARIABLE_LIST;\
-+	uint32_t DCN_DMDATA_VM_CNTL
++enum cm_gamut_coef_format {
++	CM_GAMUT_REMAP_COEF_FORMAT_S2_13 = 0,
++	CM_GAMUT_REMAP_COEF_FORMAT_S3_12 = 1
++};
++
++struct mcif_warmup_params {
++	union large_integer	start_address;
++	unsigned int		address_increment;
++	unsigned int		region_size;
++	unsigned int		p_vmid;
++};
++
 +#endif
 +
- #define DCN2_HUBP_REG_FIELD_VARIABLE_LIST(type) \
- 	DCN_HUBP_REG_FIELD_BASE_LIST(type); \
- 	type DMDATA_ADDRESS_HIGH;\
-@@ -192,17 +198,52 @@
- 	type REFCYC_PER_META_CHUNK_FLIP_C; \
- 	type VM_GROUP_SIZE
+ #define MCIF_BUF_COUNT	4
  
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+#define DCN30_HUBP_REG_FIELD_VARIABLE_LIST(type) \
-+	DCN21_HUBP_REG_FIELD_VARIABLE_LIST(type);\
-+	type PRIMARY_SURFACE_DCC_IND_BLK;\
-+	type SECONDARY_SURFACE_DCC_IND_BLK;\
-+	type PRIMARY_SURFACE_DCC_IND_BLK_C;\
-+	type SECONDARY_SURFACE_DCC_IND_BLK_C;\
-+	type ALPHA_PLANE_EN;\
-+	type REFCYC_PER_VM_DMDATA;\
-+	type DMDATA_VM_FAULT_STATUS;\
-+	type DMDATA_VM_FAULT_STATUS_CLEAR; \
-+	type DMDATA_VM_UNDERFLOW_STATUS;\
-+	type DMDATA_VM_LATE_STATUS;\
-+	type DMDATA_VM_UNDERFLOW_STATUS_CLEAR; \
-+	type DMDATA_VM_DONE; \
-+	type CROSSBAR_SRC_Y_G; \
-+	type CROSSBAR_SRC_ALPHA; \
-+	type PACK_3TO2_ELEMENT_DISABLE; \
-+	type ROW_TTU_MODE; \
-+	type NUM_PKRS
-+#endif
- 
- struct dcn_hubp2_registers {
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	DCN30_HUBP_REG_COMMON_VARIABLE_LIST;
-+#else
- 	DCN21_HUBP_REG_COMMON_VARIABLE_LIST;
-+#endif
- };
- 
- struct dcn_hubp2_shift {
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	DCN30_HUBP_REG_FIELD_VARIABLE_LIST(uint8_t);
-+#else
- 	DCN21_HUBP_REG_FIELD_VARIABLE_LIST(uint8_t);
-+#endif
-+
- };
- 
- struct dcn_hubp2_mask {
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	DCN30_HUBP_REG_FIELD_VARIABLE_LIST(uint32_t);
-+#else
- 	DCN21_HUBP_REG_FIELD_VARIABLE_LIST(uint32_t);
-+#endif
-+
- };
- 
- struct dcn20_hubp {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hubp.c
+ struct mcif_buf_params {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mmhubbub.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mmhubbub.c
 new file mode 100644
-index 000000000000..af462fe4260d
+index 000000000000..1c4b171c68ad
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hubp.c
-@@ -0,0 +1,532 @@
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mmhubbub.c
+@@ -0,0 +1,239 @@
 +/*
 + * Copyright 2020 Advanced Micro Devices, Inc.
 + *
@@ -368,519 +195,226 @@ index 000000000000..af462fe4260d
 + *
 + */
 +
-+#include "dcn30_hubp.h"
 +
-+#include "dm_services.h"
-+#include "dce_calcs.h"
 +#include "reg_helper.h"
-+#include "basics/conversion.h"
-+#include "dcn20/dcn20_hubp.h"
-+#include "dcn21/dcn21_hubp.h"
++#include "resource.h"
++#include "mcif_wb.h"
++#include "dcn30_mmhubbub.h"
++
 +
 +#define REG(reg)\
-+	hubp2->hubp_regs->reg
++	mcif_wb30->mcif_wb_regs->reg
 +
 +#define CTX \
-+	hubp2->base.ctx
++	mcif_wb30->base.ctx
 +
 +#undef FN
 +#define FN(reg_name, field_name) \
-+	hubp2->hubp_shift->field_name, hubp2->hubp_mask->field_name
++	mcif_wb30->mcif_wb_shift->field_name, mcif_wb30->mcif_wb_mask->field_name
 +
-+void hubp3_set_vm_system_aperture_settings(struct hubp *hubp,
-+		struct vm_system_aperture_param *apt)
++#define MCIF_ADDR(addr) (((unsigned long long)addr & 0xffffffffff) + 0xFE) >> 8
++#define MCIF_ADDR_HIGH(addr) (unsigned long long)addr >> 40
++
++/* wbif programming guide:
++ * 1. set up wbif parameter:
++ *    unsigned long long   luma_address[4];       //4 frame buffer
++ *    unsigned long long   chroma_address[4];
++ *    unsigned int	   luma_pitch;
++ *    unsigned int	   chroma_pitch;
++ *    unsigned int         warmup_pitch=0x10;     //256B align, the page size is 4KB when it is 0x10
++ *    unsigned int	   slice_lines;           //slice size
++ *    unsigned int         time_per_pixel;        // time per pixel, in ns
++ *    unsigned int         arbitration_slice;     // 0: 2048 bytes 1: 4096 bytes 2: 8192 Bytes
++ *    unsigned int         max_scaled_time;       // used for QOS generation
++ *    unsigned int         swlock=0x0;
++ *    unsigned int         cli_watermark[4];      //4 group urgent watermark
++ *    unsigned int         pstate_watermark[4];   //4 group pstate watermark
++ *    unsigned int         sw_int_en;             // Software interrupt enable, frame end and overflow
++ *    unsigned int         sw_slice_int_en;       // slice end interrupt enable
++ *    unsigned int         sw_overrun_int_en;     // overrun error interrupt enable
++ *    unsigned int         vce_int_en;            // VCE interrupt enable, frame end and overflow
++ *    unsigned int         vce_slice_int_en;      // VCE slice end interrupt enable, frame end and overflow
++ *
++ * 2. configure wbif register
++ *    a. call mmhubbub_config_wbif()
++ *
++ * 3. Enable wbif
++ *    call set_wbif_bufmgr_enable();
++ *
++ * 4. wbif_dump_status(), option, for debug purpose
++ *    the bufmgr status can show the progress of write back, can be used for debug purpose
++ */
++
++static void mmhubbub3_warmup_mcif(struct mcif_wb *mcif_wb,
++		struct mcif_warmup_params *params)
 +{
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
++	struct dcn30_mmhubbub *mcif_wb30 = TO_DCN30_MMHUBBUB(mcif_wb);
++	union large_integer start_address_shift = {.quad_part = params->start_address.quad_part >> 5};
 +
-+	PHYSICAL_ADDRESS_LOC mc_vm_apt_default;
-+	PHYSICAL_ADDRESS_LOC mc_vm_apt_low;
-+	PHYSICAL_ADDRESS_LOC mc_vm_apt_high;
++	/* Set base address and region size for warmup */
++	REG_SET(MMHUBBUB_WARMUP_BASE_ADDR_HIGH, 0, MMHUBBUB_WARMUP_BASE_ADDR_HIGH, start_address_shift.high_part);
++	REG_SET(MMHUBBUB_WARMUP_BASE_ADDR_LOW, 0, MMHUBBUB_WARMUP_BASE_ADDR_LOW, start_address_shift.low_part);
++	REG_SET(MMHUBBUB_WARMUP_ADDR_REGION, 0, MMHUBBUB_WARMUP_ADDR_REGION, params->region_size >> 5);
++//	REG_SET(MMHUBBUB_WARMUP_P_VMID, 0, MMHUBBUB_WARMUP_P_VMID, params->p_vmid);
 +
-+	// The format of default addr is 48:12 of the 48 bit addr
-+	mc_vm_apt_default.quad_part = apt->sys_default.quad_part >> 12;
++	/* Set address increment and enable warmup */
++	REG_SET_3(MMHUBBUB_WARMUP_CONTROL_STATUS, 0, MMHUBBUB_WARMUP_EN, true,
++			MMHUBBUB_WARMUP_SW_INT_EN, true,
++			MMHUBBUB_WARMUP_INC_ADDR, params->address_increment >> 5);
 +
-+	// The format of high/low are 48:18 of the 48 bit addr
-+	mc_vm_apt_low.quad_part = apt->sys_low.quad_part >> 18;
-+	mc_vm_apt_high.quad_part = apt->sys_high.quad_part >> 18;
++	/* Wait for an interrupt to signal warmup is completed */
++	REG_WAIT(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_SW_INT_STATUS, 1, 20, 100);
 +
-+	REG_SET(DCN_VM_SYSTEM_APERTURE_LOW_ADDR, 0,
-+			MC_VM_SYSTEM_APERTURE_LOW_ADDR, mc_vm_apt_low.quad_part);
++	/* Acknowledge interrupt */
++	REG_UPDATE(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_SW_INT_ACK, 1);
 +
-+	REG_SET(DCN_VM_SYSTEM_APERTURE_HIGH_ADDR, 0,
-+			MC_VM_SYSTEM_APERTURE_HIGH_ADDR, mc_vm_apt_high.quad_part);
-+
-+	REG_SET_2(DCN_VM_MX_L1_TLB_CNTL, 0,
-+			ENABLE_L1_TLB, 1,
-+			SYSTEM_ACCESS_MODE, 0x3);
++	/* Disable warmup */
++	REG_UPDATE(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_EN, false);
 +}
 +
-+bool hubp3_program_surface_flip_and_addr(
-+	struct hubp *hubp,
-+	const struct dc_plane_address *address,
-+	bool flip_immediate)
++void mmhubbub3_config_mcif_buf(struct mcif_wb *mcif_wb,
++		struct mcif_buf_params *params,
++		unsigned int dest_height)
 +{
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
++	struct dcn30_mmhubbub *mcif_wb30 = TO_DCN30_MMHUBBUB(mcif_wb);
 +
-+	//program flip type
-+	REG_UPDATE(DCSURF_FLIP_CONTROL,
-+			SURFACE_FLIP_TYPE, flip_immediate);
++	/* buffer address for packing mode or Luma in planar mode */
++	REG_UPDATE(MCIF_WB_BUF_1_ADDR_Y, MCIF_WB_BUF_1_ADDR_Y, MCIF_ADDR(params->luma_address[0]));
++	REG_UPDATE(MCIF_WB_BUF_1_ADDR_Y_HIGH, MCIF_WB_BUF_1_ADDR_Y_HIGH, MCIF_ADDR_HIGH(params->luma_address[0]));
 +
-+	// Program VMID reg
-+	if (flip_immediate == 0)
-+		REG_UPDATE(VMID_SETTINGS_0,
-+			VMID, address->vmid);
++	/* buffer address for Chroma in planar mode (unused in packing mode) */
++	REG_UPDATE(MCIF_WB_BUF_1_ADDR_C, MCIF_WB_BUF_1_ADDR_C, MCIF_ADDR(params->chroma_address[0]));
++	REG_UPDATE(MCIF_WB_BUF_1_ADDR_C_HIGH, MCIF_WB_BUF_1_ADDR_C_HIGH, MCIF_ADDR_HIGH(params->chroma_address[0]));
 +
-+	if (address->type == PLN_ADDR_TYPE_GRPH_STEREO) {
-+		REG_UPDATE(DCSURF_FLIP_CONTROL, SURFACE_FLIP_MODE_FOR_STEREOSYNC, 0x1);
-+		REG_UPDATE(DCSURF_FLIP_CONTROL, SURFACE_FLIP_IN_STEREOSYNC, 0x1);
++	/* buffer address for packing mode or Luma in planar mode */
++	REG_UPDATE(MCIF_WB_BUF_2_ADDR_Y, MCIF_WB_BUF_2_ADDR_Y, MCIF_ADDR(params->luma_address[1]));
++	REG_UPDATE(MCIF_WB_BUF_2_ADDR_Y_HIGH, MCIF_WB_BUF_2_ADDR_Y_HIGH, MCIF_ADDR_HIGH(params->luma_address[1]));
 +
-+	} else {
-+		// turn off stereo if not in stereo
-+		REG_UPDATE(DCSURF_FLIP_CONTROL, SURFACE_FLIP_MODE_FOR_STEREOSYNC, 0x0);
-+		REG_UPDATE(DCSURF_FLIP_CONTROL, SURFACE_FLIP_IN_STEREOSYNC, 0x0);
-+	}
++	/* buffer address for Chroma in planar mode (unused in packing mode) */
++	REG_UPDATE(MCIF_WB_BUF_2_ADDR_C, MCIF_WB_BUF_2_ADDR_C, MCIF_ADDR(params->chroma_address[1]));
++	REG_UPDATE(MCIF_WB_BUF_2_ADDR_C_HIGH, MCIF_WB_BUF_2_ADDR_C_HIGH, MCIF_ADDR_HIGH(params->chroma_address[1]));
 +
-+	/* HW automatically latch rest of address register on write to
-+	 * DCSURF_PRIMARY_SURFACE_ADDRESS if SURFACE_UPDATE_LOCK is not used
-+	 *
-+	 * program high first and then the low addr, order matters!
++	/* buffer address for packing mode or Luma in planar mode */
++	REG_UPDATE(MCIF_WB_BUF_3_ADDR_Y, MCIF_WB_BUF_3_ADDR_Y, MCIF_ADDR(params->luma_address[2]));
++	REG_UPDATE(MCIF_WB_BUF_3_ADDR_Y_HIGH, MCIF_WB_BUF_3_ADDR_Y_HIGH, MCIF_ADDR_HIGH(params->luma_address[2]));
++
++	/* buffer address for Chroma in planar mode (unused in packing mode) */
++	REG_UPDATE(MCIF_WB_BUF_3_ADDR_C, MCIF_WB_BUF_3_ADDR_C, MCIF_ADDR(params->chroma_address[2]));
++	REG_UPDATE(MCIF_WB_BUF_3_ADDR_C_HIGH, MCIF_WB_BUF_3_ADDR_C_HIGH, MCIF_ADDR_HIGH(params->chroma_address[2]));
++
++	/* buffer address for packing mode or Luma in planar mode */
++	REG_UPDATE(MCIF_WB_BUF_4_ADDR_Y, MCIF_WB_BUF_4_ADDR_Y, MCIF_ADDR(params->luma_address[3]));
++	REG_UPDATE(MCIF_WB_BUF_4_ADDR_Y_HIGH, MCIF_WB_BUF_4_ADDR_Y_HIGH, MCIF_ADDR_HIGH(params->luma_address[3]));
++
++	/* buffer address for Chroma in planar mode (unused in packing mode) */
++	REG_UPDATE(MCIF_WB_BUF_4_ADDR_C, MCIF_WB_BUF_4_ADDR_C, MCIF_ADDR(params->chroma_address[3]));
++	REG_UPDATE(MCIF_WB_BUF_4_ADDR_C_HIGH, MCIF_WB_BUF_4_ADDR_C_HIGH, MCIF_ADDR_HIGH(params->chroma_address[3]));
++
++	/* setup luma & chroma size
++	 * should be enough to contain a whole frame Luma data,
++	 * the programmed value is frame buffer size [27:8], 256-byte aligned
 +	 */
-+	switch (address->type) {
-+	case PLN_ADDR_TYPE_GRAPHICS:
-+		/* DCN1.0 does not support const color
-+		 * TODO: program DCHUBBUB_RET_PATH_DCC_CFGx_0/1
-+		 * base on address->grph.dcc_const_color
-+		 * x = 0, 2, 4, 6 for pipe 0, 1, 2, 3 for rgb and luma
-+		 * x = 1, 3, 5, 7 for pipe 0, 1, 2, 3 for chroma
-+		 */
++	REG_UPDATE(MCIF_WB_BUF_LUMA_SIZE, MCIF_WB_BUF_LUMA_SIZE, (params->luma_pitch>>8) * dest_height);
++	REG_UPDATE(MCIF_WB_BUF_CHROMA_SIZE, MCIF_WB_BUF_CHROMA_SIZE, (params->chroma_pitch>>8) * dest_height);
 +
-+		if (address->grph.addr.quad_part == 0)
-+			break;
++	/* enable address fence */
++	REG_UPDATE(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUF_ADDR_FENCE_EN, 1);
 +
-+		REG_UPDATE_2(DCSURF_SURFACE_CONTROL,
-+				PRIMARY_SURFACE_TMZ, address->tmz_surface,
-+				PRIMARY_META_SURFACE_TMZ, address->tmz_surface);
-+
-+		if (address->grph.meta_addr.quad_part != 0) {
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH, 0,
-+					PRIMARY_META_SURFACE_ADDRESS_HIGH,
-+					address->grph.meta_addr.high_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS, 0,
-+					PRIMARY_META_SURFACE_ADDRESS,
-+					address->grph.meta_addr.low_part);
-+		}
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH, 0,
-+				PRIMARY_SURFACE_ADDRESS_HIGH,
-+				address->grph.addr.high_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS, 0,
-+				PRIMARY_SURFACE_ADDRESS,
-+				address->grph.addr.low_part);
-+		break;
-+	case PLN_ADDR_TYPE_VIDEO_PROGRESSIVE:
-+		if (address->video_progressive.luma_addr.quad_part == 0
-+				|| address->video_progressive.chroma_addr.quad_part == 0)
-+			break;
-+
-+		REG_UPDATE_4(DCSURF_SURFACE_CONTROL,
-+				PRIMARY_SURFACE_TMZ, address->tmz_surface,
-+				PRIMARY_SURFACE_TMZ_C, address->tmz_surface,
-+				PRIMARY_META_SURFACE_TMZ, address->tmz_surface,
-+				PRIMARY_META_SURFACE_TMZ_C, address->tmz_surface);
-+
-+		if (address->video_progressive.luma_meta_addr.quad_part != 0) {
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH_C, 0,
-+					PRIMARY_META_SURFACE_ADDRESS_HIGH_C,
-+					address->video_progressive.chroma_meta_addr.high_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_C, 0,
-+					PRIMARY_META_SURFACE_ADDRESS_C,
-+					address->video_progressive.chroma_meta_addr.low_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH, 0,
-+					PRIMARY_META_SURFACE_ADDRESS_HIGH,
-+					address->video_progressive.luma_meta_addr.high_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS, 0,
-+					PRIMARY_META_SURFACE_ADDRESS,
-+					address->video_progressive.luma_meta_addr.low_part);
-+		}
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH_C, 0,
-+				PRIMARY_SURFACE_ADDRESS_HIGH_C,
-+				address->video_progressive.chroma_addr.high_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_C, 0,
-+				PRIMARY_SURFACE_ADDRESS_C,
-+				address->video_progressive.chroma_addr.low_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH, 0,
-+				PRIMARY_SURFACE_ADDRESS_HIGH,
-+				address->video_progressive.luma_addr.high_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS, 0,
-+				PRIMARY_SURFACE_ADDRESS,
-+				address->video_progressive.luma_addr.low_part);
-+		break;
-+	case PLN_ADDR_TYPE_GRPH_STEREO:
-+		if (address->grph_stereo.left_addr.quad_part == 0)
-+			break;
-+		if (address->grph_stereo.right_addr.quad_part == 0)
-+			break;
-+
-+		REG_UPDATE_8(DCSURF_SURFACE_CONTROL,
-+				PRIMARY_SURFACE_TMZ, address->tmz_surface,
-+				PRIMARY_SURFACE_TMZ_C, address->tmz_surface,
-+				PRIMARY_META_SURFACE_TMZ, address->tmz_surface,
-+				PRIMARY_META_SURFACE_TMZ_C, address->tmz_surface,
-+				SECONDARY_SURFACE_TMZ, address->tmz_surface,
-+				SECONDARY_SURFACE_TMZ_C, address->tmz_surface,
-+				SECONDARY_META_SURFACE_TMZ, address->tmz_surface,
-+				SECONDARY_META_SURFACE_TMZ_C, address->tmz_surface);
-+
-+		if (address->grph_stereo.right_meta_addr.quad_part != 0) {
-+
-+			REG_SET(DCSURF_SECONDARY_META_SURFACE_ADDRESS_HIGH_C, 0,
-+				SECONDARY_META_SURFACE_ADDRESS_HIGH_C,
-+				address->grph_stereo.right_alpha_meta_addr.high_part);
-+
-+			REG_SET(DCSURF_SECONDARY_META_SURFACE_ADDRESS_C, 0,
-+				SECONDARY_META_SURFACE_ADDRESS_C,
-+				address->grph_stereo.right_alpha_meta_addr.low_part);
-+
-+			REG_SET(DCSURF_SECONDARY_META_SURFACE_ADDRESS_HIGH, 0,
-+					SECONDARY_META_SURFACE_ADDRESS_HIGH,
-+					address->grph_stereo.right_meta_addr.high_part);
-+
-+			REG_SET(DCSURF_SECONDARY_META_SURFACE_ADDRESS, 0,
-+					SECONDARY_META_SURFACE_ADDRESS,
-+					address->grph_stereo.right_meta_addr.low_part);
-+		}
-+		if (address->grph_stereo.left_meta_addr.quad_part != 0) {
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH_C, 0,
-+				PRIMARY_META_SURFACE_ADDRESS_HIGH_C,
-+				address->grph_stereo.left_alpha_meta_addr.high_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_C, 0,
-+				PRIMARY_META_SURFACE_ADDRESS_C,
-+				address->grph_stereo.left_alpha_meta_addr.low_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH, 0,
-+					PRIMARY_META_SURFACE_ADDRESS_HIGH,
-+					address->grph_stereo.left_meta_addr.high_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS, 0,
-+					PRIMARY_META_SURFACE_ADDRESS,
-+					address->grph_stereo.left_meta_addr.low_part);
-+		}
-+
-+		REG_SET(DCSURF_SECONDARY_SURFACE_ADDRESS_HIGH_C, 0,
-+				SECONDARY_SURFACE_ADDRESS_HIGH_C,
-+				address->grph_stereo.right_alpha_addr.high_part);
-+
-+		REG_SET(DCSURF_SECONDARY_SURFACE_ADDRESS_C, 0,
-+				SECONDARY_SURFACE_ADDRESS_C,
-+				address->grph_stereo.right_alpha_addr.low_part);
-+
-+		REG_SET(DCSURF_SECONDARY_SURFACE_ADDRESS_HIGH, 0,
-+				SECONDARY_SURFACE_ADDRESS_HIGH,
-+				address->grph_stereo.right_addr.high_part);
-+
-+		REG_SET(DCSURF_SECONDARY_SURFACE_ADDRESS, 0,
-+				SECONDARY_SURFACE_ADDRESS,
-+				address->grph_stereo.right_addr.low_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH_C, 0,
-+				PRIMARY_SURFACE_ADDRESS_HIGH_C,
-+				address->grph_stereo.left_alpha_addr.high_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_C, 0,
-+				PRIMARY_SURFACE_ADDRESS_C,
-+				address->grph_stereo.left_alpha_addr.low_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH, 0,
-+				PRIMARY_SURFACE_ADDRESS_HIGH,
-+				address->grph_stereo.left_addr.high_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS, 0,
-+				PRIMARY_SURFACE_ADDRESS,
-+				address->grph_stereo.left_addr.low_part);
-+		break;
-+	case PLN_ADDR_TYPE_RGBEA:
-+		if (address->rgbea.addr.quad_part == 0
-+				|| address->rgbea.alpha_addr.quad_part == 0)
-+			break;
-+
-+		REG_UPDATE_4(DCSURF_SURFACE_CONTROL,
-+				PRIMARY_SURFACE_TMZ, address->tmz_surface,
-+				PRIMARY_SURFACE_TMZ_C, address->tmz_surface,
-+				PRIMARY_META_SURFACE_TMZ, address->tmz_surface,
-+				PRIMARY_META_SURFACE_TMZ_C, address->tmz_surface);
-+
-+		if (address->rgbea.meta_addr.quad_part != 0) {
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH_C, 0,
-+					PRIMARY_META_SURFACE_ADDRESS_HIGH_C,
-+					address->rgbea.alpha_meta_addr.high_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_C, 0,
-+					PRIMARY_META_SURFACE_ADDRESS_C,
-+					address->rgbea.alpha_meta_addr.low_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH, 0,
-+					PRIMARY_META_SURFACE_ADDRESS_HIGH,
-+					address->rgbea.meta_addr.high_part);
-+
-+			REG_SET(DCSURF_PRIMARY_META_SURFACE_ADDRESS, 0,
-+					PRIMARY_META_SURFACE_ADDRESS,
-+					address->rgbea.meta_addr.low_part);
-+		}
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH_C, 0,
-+				PRIMARY_SURFACE_ADDRESS_HIGH_C,
-+				address->rgbea.alpha_addr.high_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_C, 0,
-+				PRIMARY_SURFACE_ADDRESS_C,
-+				address->rgbea.alpha_addr.low_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH, 0,
-+				PRIMARY_SURFACE_ADDRESS_HIGH,
-+				address->rgbea.addr.high_part);
-+
-+		REG_SET(DCSURF_PRIMARY_SURFACE_ADDRESS, 0,
-+				PRIMARY_SURFACE_ADDRESS,
-+				address->rgbea.addr.low_part);
-+		break;
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		break;
-+	}
-+
-+	hubp->request_address = *address;
-+
-+	return true;
++	/* setup pitch, the programmed value is [15:8], 256B align */
++	REG_UPDATE_2(MCIF_WB_BUF_PITCH, MCIF_WB_BUF_LUMA_PITCH, params->luma_pitch >> 8,
++			MCIF_WB_BUF_CHROMA_PITCH, params->chroma_pitch >> 8);
 +}
 +
-+static void hubp3_program_tiling(
-+	struct dcn20_hubp *hubp2,
-+	const union dc_tiling_info *info,
-+	const enum surface_pixel_format pixel_format)
++static void mmhubbub3_config_mcif_arb(struct mcif_wb *mcif_wb,
++		struct mcif_arb_params *params)
 +{
-+	REG_UPDATE_4(DCSURF_ADDR_CONFIG,
-+		NUM_PIPES, log_2(info->gfx9.num_pipes),
-+		PIPE_INTERLEAVE, info->gfx9.pipe_interleave,
-+		MAX_COMPRESSED_FRAGS, log_2(info->gfx9.max_compressed_frags),
-+		NUM_PKRS, log_2(info->gfx9.num_pkrs));
++	struct dcn30_mmhubbub *mcif_wb30 = TO_DCN30_MMHUBBUB(mcif_wb);
 +
-+	REG_UPDATE_3(DCSURF_TILING_CONFIG,
-+			SW_MODE, info->gfx9.swizzle,
-+			META_LINEAR, info->gfx9.meta_linear,
-+			PIPE_ALIGNED, info->gfx9.pipe_aligned);
++	/* Programmed by the video driver based on the CRTC timing (for DWB) */
++	REG_UPDATE(MCIF_WB_ARBITRATION_CONTROL, MCIF_WB_TIME_PER_PIXEL, params->time_per_pixel);
 +
++	/* Programming dwb watermark */
++	/* Watermark to generate urgent in MCIF_WB_CLI, value is determined by MCIF_WB_CLI_WATERMARK_MASK. */
++	/* Program in ns. A formula will be provided in the pseudo code to calculate the value. */
++	REG_UPDATE(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK_MASK, 0x0);
++	/* urgent_watermarkA */
++	REG_UPDATE(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK,  params->cli_watermark[0]);
++	REG_UPDATE(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK_MASK, 0x1);
++	/* urgent_watermarkB */
++	REG_UPDATE(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK,  params->cli_watermark[1]);
++	REG_UPDATE(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK_MASK, 0x2);
++	/* urgent_watermarkC */
++	REG_UPDATE(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK,  params->cli_watermark[2]);
++	REG_UPDATE(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK_MASK, 0x3);
++	/* urgent_watermarkD */
++	REG_UPDATE(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK,  params->cli_watermark[3]);
++
++	/* Programming nb pstate watermark */
++	/* nbp_state_change_watermarkA */
++	REG_UPDATE(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, NB_PSTATE_CHANGE_WATERMARK_MASK, 0x0);
++	REG_UPDATE(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK,
++			NB_PSTATE_CHANGE_REFRESH_WATERMARK, params->pstate_watermark[0]);
++	/* nbp_state_change_watermarkB */
++	REG_UPDATE(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, NB_PSTATE_CHANGE_WATERMARK_MASK, 0x1);
++	REG_UPDATE(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK,
++			NB_PSTATE_CHANGE_REFRESH_WATERMARK, params->pstate_watermark[1]);
++	/* nbp_state_change_watermarkC */
++	REG_UPDATE(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, NB_PSTATE_CHANGE_WATERMARK_MASK, 0x2);
++	REG_UPDATE(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK,
++			NB_PSTATE_CHANGE_REFRESH_WATERMARK, params->pstate_watermark[2]);
++	/* nbp_state_change_watermarkD */
++	REG_UPDATE(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, NB_PSTATE_CHANGE_WATERMARK_MASK, 0x3);
++	REG_UPDATE(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK,
++			NB_PSTATE_CHANGE_REFRESH_WATERMARK, params->pstate_watermark[3]);
++
++	/* dram_speed_change_duration */
++	REG_UPDATE(MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI,
++			MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI, params->dram_speed_change_duration);
++
++	/* max_scaled_time */
++	REG_UPDATE(MULTI_LEVEL_QOS_CTRL, MAX_SCALED_TIME_TO_URGENT, params->max_scaled_time);
++
++	/* slice_lines */
++	REG_UPDATE(MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_SLICE_SIZE, params->slice_lines-1);
++
++	/* Set arbitration unit for Luma/Chroma */
++	/* arb_unit=2 should be chosen for more efficiency */
++	/* Arbitration size, 0: 2048 bytes 1: 4096 bytes 2: 8192 Bytes */
++	REG_UPDATE(MCIF_WB_ARBITRATION_CONTROL, MCIF_WB_CLIENT_ARBITRATION_SLICE,  params->arbitration_slice);
 +}
 +
-+void hubp3_dcc_control(struct hubp *hubp, bool enable,
-+		enum hubp_ind_block_size blk_size)
-+{
-+	uint32_t dcc_en = enable ? 1 : 0;
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-+
-+	REG_UPDATE_4(DCSURF_SURFACE_CONTROL,
-+			PRIMARY_SURFACE_DCC_EN, dcc_en,
-+			PRIMARY_SURFACE_DCC_IND_BLK, blk_size,
-+			SECONDARY_SURFACE_DCC_EN, dcc_en,
-+			SECONDARY_SURFACE_DCC_IND_BLK, blk_size);
-+}
-+
-+void hubp3_dcc_control_sienna_cichlid(struct hubp *hubp,
-+		struct dc_plane_dcc_param *dcc)
-+{
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-+
-+	/*Workaround until UMD fix the new dcc_ind_blk interface */
-+	if (dcc->independent_64b_blks && dcc->dcc_ind_blk == 0)
-+		dcc->dcc_ind_blk = 1;
-+	if (dcc->independent_64b_blks_c && dcc->dcc_ind_blk_c == 0)
-+		dcc->dcc_ind_blk_c = 1;
-+
-+	REG_UPDATE_6(DCSURF_SURFACE_CONTROL,
-+		PRIMARY_SURFACE_DCC_EN, dcc->enable,
-+		PRIMARY_SURFACE_DCC_IND_BLK, dcc->dcc_ind_blk,
-+		PRIMARY_SURFACE_DCC_IND_BLK_C, dcc->dcc_ind_blk_c,
-+		SECONDARY_SURFACE_DCC_EN, dcc->enable,
-+		SECONDARY_SURFACE_DCC_IND_BLK, dcc->dcc_ind_blk,
-+		SECONDARY_SURFACE_DCC_IND_BLK_C, dcc->dcc_ind_blk_c);
-+}
-+
-+void hubp3_dmdata_set_attributes(
-+		struct hubp *hubp,
-+		const struct dc_dmdata_attributes *attr)
-+{
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-+
-+	/*always HW mode */
-+	REG_UPDATE(DMDATA_CNTL,
-+			DMDATA_MODE, 1);
-+
-+	/* for DMDATA flip, need to use SURFACE_UPDATE_LOCK */
-+	REG_UPDATE(DCSURF_FLIP_CONTROL, SURFACE_UPDATE_LOCK, 1);
-+
-+	/* toggle DMDATA_UPDATED and set repeat and size */
-+	REG_UPDATE(DMDATA_CNTL,
-+			DMDATA_UPDATED, 0);
-+	REG_UPDATE_3(DMDATA_CNTL,
-+			DMDATA_UPDATED, 1,
-+			DMDATA_REPEAT, attr->dmdata_repeat,
-+			DMDATA_SIZE, attr->dmdata_size);
-+
-+	/* set DMDATA address */
-+	REG_WRITE(DMDATA_ADDRESS_LOW, attr->address.low_part);
-+	REG_UPDATE(DMDATA_ADDRESS_HIGH,
-+			DMDATA_ADDRESS_HIGH, attr->address.high_part);
-+
-+	REG_UPDATE(DCSURF_FLIP_CONTROL, SURFACE_UPDATE_LOCK, 0);
-+
-+}
-+
-+
-+void hubp3_program_surface_config(
-+	struct hubp *hubp,
-+	enum surface_pixel_format format,
-+	union dc_tiling_info *tiling_info,
-+	struct plane_size *plane_size,
-+	enum dc_rotation_angle rotation,
-+	struct dc_plane_dcc_param *dcc,
-+	bool horizontal_mirror,
-+	unsigned int compat_level)
-+{
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-+
-+	hubp3_dcc_control_sienna_cichlid(hubp, dcc);
-+	hubp3_program_tiling(hubp2, tiling_info, format);
-+	hubp2_program_size(hubp, format, plane_size, dcc);
-+	hubp2_program_rotation(hubp, rotation, horizontal_mirror);
-+	hubp2_program_pixel_format(hubp, format);
-+}
-+
-+static void hubp3_program_deadline(
-+		struct hubp *hubp,
-+		struct _vcs_dpi_display_dlg_regs_st *dlg_attr,
-+		struct _vcs_dpi_display_ttu_regs_st *ttu_attr)
-+{
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-+
-+	hubp2_program_deadline(hubp, dlg_attr, ttu_attr);
-+	REG_UPDATE(DCN_DMDATA_VM_CNTL,
-+			REFCYC_PER_VM_DMDATA, dlg_attr->refcyc_per_vm_dmdata);
-+}
-+
-+void hubp3_read_state(struct hubp *hubp)
-+{
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-+	struct dcn_hubp_state *s = &hubp2->state;
-+	struct _vcs_dpi_display_rq_regs_st *rq_regs = &s->rq_regs;
-+
-+	hubp2_read_state_common(hubp);
-+
-+	REG_GET_7(DCHUBP_REQ_SIZE_CONFIG,
-+		CHUNK_SIZE, &rq_regs->rq_regs_l.chunk_size,
-+		MIN_CHUNK_SIZE, &rq_regs->rq_regs_l.min_chunk_size,
-+		META_CHUNK_SIZE, &rq_regs->rq_regs_l.meta_chunk_size,
-+		MIN_META_CHUNK_SIZE, &rq_regs->rq_regs_l.min_meta_chunk_size,
-+		DPTE_GROUP_SIZE, &rq_regs->rq_regs_l.dpte_group_size,
-+		SWATH_HEIGHT, &rq_regs->rq_regs_l.swath_height,
-+		PTE_ROW_HEIGHT_LINEAR, &rq_regs->rq_regs_l.pte_row_height_linear);
-+
-+	REG_GET_7(DCHUBP_REQ_SIZE_CONFIG_C,
-+		CHUNK_SIZE_C, &rq_regs->rq_regs_c.chunk_size,
-+		MIN_CHUNK_SIZE_C, &rq_regs->rq_regs_c.min_chunk_size,
-+		META_CHUNK_SIZE_C, &rq_regs->rq_regs_c.meta_chunk_size,
-+		MIN_META_CHUNK_SIZE_C, &rq_regs->rq_regs_c.min_meta_chunk_size,
-+		DPTE_GROUP_SIZE_C, &rq_regs->rq_regs_c.dpte_group_size,
-+		SWATH_HEIGHT_C, &rq_regs->rq_regs_c.swath_height,
-+		PTE_ROW_HEIGHT_LINEAR_C, &rq_regs->rq_regs_c.pte_row_height_linear);
-+
-+}
-+
-+void hubp3_setup(
-+		struct hubp *hubp,
-+		struct _vcs_dpi_display_dlg_regs_st *dlg_attr,
-+		struct _vcs_dpi_display_ttu_regs_st *ttu_attr,
-+		struct _vcs_dpi_display_rq_regs_st *rq_regs,
-+		struct _vcs_dpi_display_pipe_dest_params_st *pipe_dest)
-+{
-+	/* otg is locked when this func is called. Register are double buffered.
-+	 * disable the requestors is not needed
-+	 */
-+	hubp2_vready_at_or_After_vsync(hubp, pipe_dest);
-+	hubp21_program_requestor(hubp, rq_regs);
-+	hubp3_program_deadline(hubp, dlg_attr, ttu_attr);
-+}
-+
-+void hubp3_init(struct hubp *hubp)
-+{
-+	// DEDCN21-133: Inconsistent row starting line for flip between DPTE and Meta
-+	// This is a chicken bit to enable the ECO fix.
-+
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-+	//hubp[i].HUBPREQ_DEBUG.HUBPREQ_DEBUG[26] = 1;
-+	REG_WRITE(HUBPREQ_DEBUG, 1 << 26);
-+}
-+
-+static struct hubp_funcs dcn30_hubp_funcs = {
-+	.hubp_enable_tripleBuffer = hubp2_enable_triplebuffer,
-+	.hubp_is_triplebuffer_enabled = hubp2_is_triplebuffer_enabled,
-+	.hubp_program_surface_flip_and_addr = hubp3_program_surface_flip_and_addr,
-+	.hubp_program_surface_config = hubp3_program_surface_config,
-+	.hubp_is_flip_pending = hubp2_is_flip_pending,
-+	.hubp_setup = hubp3_setup,
-+	.hubp_setup_interdependent = hubp2_setup_interdependent,
-+	.hubp_set_vm_system_aperture_settings = hubp3_set_vm_system_aperture_settings,
-+	.set_blank = hubp2_set_blank,
-+	.dcc_control = hubp3_dcc_control,
-+	.mem_program_viewport = min_set_viewport,
-+	.set_cursor_attributes	= hubp2_cursor_set_attributes,
-+	.set_cursor_position	= hubp2_cursor_set_position,
-+	.hubp_clk_cntl = hubp2_clk_cntl,
-+	.hubp_vtg_sel = hubp2_vtg_sel,
-+	.dmdata_set_attributes = hubp3_dmdata_set_attributes,
-+	.dmdata_load = hubp2_dmdata_load,
-+	.dmdata_status_done = hubp2_dmdata_status_done,
-+	.hubp_read_state = hubp3_read_state,
-+	.hubp_clear_underflow = hubp2_clear_underflow,
-+	.hubp_set_flip_control_surface_gsl = hubp2_set_flip_control_surface_gsl,
-+	.hubp_init = hubp3_init,
++const struct mcif_wb_funcs dcn30_mmhubbub_funcs = {
++	.warmup_mcif		= mmhubbub3_warmup_mcif,
++	.enable_mcif		= mmhubbub2_enable_mcif,
++	.disable_mcif		= mmhubbub2_disable_mcif,
++	.config_mcif_buf	= mmhubbub3_config_mcif_buf,
++	.config_mcif_arb	= mmhubbub3_config_mcif_arb,
++	.config_mcif_irq	= mmhubbub2_config_mcif_irq,
++	.dump_frame		= mcifwb2_dump_frame,
 +};
 +
-+bool hubp3_construct(
-+	struct dcn20_hubp *hubp2,
-+	struct dc_context *ctx,
-+	uint32_t inst,
-+	const struct dcn_hubp2_registers *hubp_regs,
-+	const struct dcn_hubp2_shift *hubp_shift,
-+	const struct dcn_hubp2_mask *hubp_mask)
++void dcn30_mmhubbub_construct(struct dcn30_mmhubbub *mcif_wb30,
++		struct dc_context *ctx,
++		const struct dcn30_mmhubbub_registers *mcif_wb_regs,
++		const struct dcn30_mmhubbub_shift *mcif_wb_shift,
++		const struct dcn30_mmhubbub_mask *mcif_wb_mask,
++		int inst)
 +{
-+	hubp2->base.funcs = &dcn30_hubp_funcs;
-+	hubp2->base.ctx = ctx;
-+	hubp2->hubp_regs = hubp_regs;
-+	hubp2->hubp_shift = hubp_shift;
-+	hubp2->hubp_mask = hubp_mask;
-+	hubp2->base.inst = inst;
-+	hubp2->base.opp_id = OPP_ID_INVALID;
-+	hubp2->base.mpcc_id = 0xf;
++	mcif_wb30->base.ctx = ctx;
 +
-+	return true;
++	mcif_wb30->base.inst = inst;
++	mcif_wb30->base.funcs = &dcn30_mmhubbub_funcs;
++
++	mcif_wb30->mcif_wb_regs = mcif_wb_regs;
++	mcif_wb30->mcif_wb_shift = mcif_wb_shift;
++	mcif_wb30->mcif_wb_mask = mcif_wb_mask;
 +}
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hubp.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hubp.h
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mmhubbub.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mmhubbub.h
 new file mode 100644
-index 000000000000..fd1fb3c531d1
+index 000000000000..f2580e65196c
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hubp.h
-@@ -0,0 +1,292 @@
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mmhubbub.h
+@@ -0,0 +1,463 @@
 +/*
 + * Copyright 2020 Advanced Micro Devices, Inc.
 + *
@@ -906,288 +440,458 @@ index 000000000000..fd1fb3c531d1
 + *
 + */
 +
-+#ifndef __DC_HUBP_DCN30_H__
-+#define __DC_HUBP_DCN30_H__
++#ifndef __DC_MCIF_WB_DCN30_H__
++#define __DC_MCIF_WB_DCN30_H__
 +
-+#include "dcn20/dcn20_hubp.h"
-+#include "dcn21/dcn21_hubp.h"
++#include "dcn20/dcn20_mmhubbub.h"
 +
-+#define HUBP_REG_LIST_DCN30(id)\
-+	HUBP_REG_LIST_DCN21(id),\
-+	SRI(DCN_DMDATA_VM_CNTL, HUBPREQ, id)
++#define TO_DCN30_MMHUBBUB(mcif_wb_base) \
++	container_of(mcif_wb_base, struct dcn30_mmhubbub, base)
 +
++/* DCN */
++#define BASE_INNER(seg) \
++	DCE_BASE__INST0_SEG ## seg
 +
-+#define HUBP_MASK_SH_LIST_DCN30_BASE(mask_sh)\
-+	HUBP_MASK_SH_LIST_DCN21_COMMON(mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SURFACE_CONFIG, ALPHA_PLANE_EN, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, REFCYC_PER_VM_DMDATA, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_FAULT_STATUS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_FAULT_STATUS_CLEAR, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_UNDERFLOW_STATUS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_LATE_STATUS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_UNDERFLOW_STATUS_CLEAR, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_DONE, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_ADDR_CONFIG, NUM_PKRS, mask_sh)
++#define BASE(seg) \
++	BASE_INNER(seg)
 +
++#define MCIF_WB_COMMON_REG_LIST_DCN3_0(inst) \
++	SRI(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUFMGR_STATUS, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_PITCH, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_1_STATUS, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_1_STATUS2, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_2_STATUS, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_2_STATUS2, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_3_STATUS, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_3_STATUS2, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_4_STATUS, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_4_STATUS2, MCIF_WB, inst),\
++	SRI(MCIF_WB_ARBITRATION_CONTROL, MCIF_WB, inst),\
++	SRI(MCIF_WB_SCLK_CHANGE, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_1_ADDR_Y, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_1_ADDR_C, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_2_ADDR_Y, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_2_ADDR_C, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_3_ADDR_Y, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_3_ADDR_C, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_4_ADDR_Y, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_4_ADDR_C, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB, inst),\
++	SRI2(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, MMHUBBUB, inst),\
++	SRI(MCIF_WB_NB_PSTATE_CONTROL, MCIF_WB, inst),\
++	SRI2(MCIF_WB_WATERMARK, MMHUBBUB, inst),\
++	SRI(MCIF_WB_CLOCK_GATER_CONTROL, MCIF_WB, inst),\
++	SRI(MCIF_WB_SELF_REFRESH_CONTROL, MCIF_WB, inst),\
++	SRI(MULTI_LEVEL_QOS_CTRL, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_LUMA_SIZE, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_CHROMA_SIZE, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_1_ADDR_Y_HIGH, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_1_ADDR_C_HIGH, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_2_ADDR_Y_HIGH, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_2_ADDR_C_HIGH, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_3_ADDR_Y_HIGH, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_3_ADDR_C_HIGH, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_4_ADDR_Y_HIGH, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_4_ADDR_C_HIGH, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_1_RESOLUTION, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_2_RESOLUTION, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_3_RESOLUTION, MCIF_WB, inst),\
++	SRI(MCIF_WB_BUF_4_RESOLUTION, MCIF_WB, inst),\
++	SRI2(MMHUBBUB_MEM_PWR_CNTL, MMHUBBUB, inst),\
++	SRI2(MMHUBBUB_WARMUP_ADDR_REGION, MMHUBBUB, inst),\
++	SRI2(MMHUBBUB_WARMUP_BASE_ADDR_HIGH, MMHUBBUB, inst),\
++	SRI2(MMHUBBUB_WARMUP_BASE_ADDR_LOW, MMHUBBUB, inst),\
++	SRI2(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB, inst),\
++	SRI2(MMHUBBUB_WARMUP_P_VMID, MMHUBBUB, inst),\
++	SRI(MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI, MCIF_WB, inst)
 +
-+#define HUBP_MASK_SH_LIST_DCN30(mask_sh)\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, REFCYC_PER_VM_DMDATA, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_FAULT_STATUS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_FAULT_STATUS_CLEAR, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_UNDERFLOW_STATUS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_LATE_STATUS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_UNDERFLOW_STATUS_CLEAR, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_DMDATA_VM_CNTL, DMDATA_VM_DONE, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_CNTL, HUBP_BLANK_EN, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_CNTL, HUBP_TTU_DISABLE, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_CNTL, HUBP_UNDERFLOW_STATUS, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_CNTL, HUBP_UNDERFLOW_CLEAR, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_CNTL, HUBP_NO_OUTSTANDING_REQ, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_CNTL, HUBP_VTG_SEL, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_CNTL, HUBP_DISABLE, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_ADDR_CONFIG, NUM_PIPES, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_ADDR_CONFIG, PIPE_INTERLEAVE, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_ADDR_CONFIG, MAX_COMPRESSED_FRAGS, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_ADDR_CONFIG, NUM_PKRS, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_TILING_CONFIG, SW_MODE, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_TILING_CONFIG, META_LINEAR, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_TILING_CONFIG, PIPE_ALIGNED, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_PITCH, PITCH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_PITCH, META_PITCH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_PITCH_C, PITCH_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_PITCH_C, META_PITCH_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SURFACE_CONFIG, SURFACE_PIXEL_FORMAT, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_FLIP_CONTROL, SURFACE_FLIP_TYPE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_FLIP_CONTROL, SURFACE_FLIP_MODE_FOR_STEREOSYNC, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_FLIP_CONTROL, SURFACE_FLIP_IN_STEREOSYNC, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_FLIP_CONTROL, SURFACE_FLIP_PENDING, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_FLIP_CONTROL, SURFACE_UPDATE_LOCK, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION, PRI_VIEWPORT_WIDTH, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION, PRI_VIEWPORT_HEIGHT, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_PRI_VIEWPORT_START, PRI_VIEWPORT_X_START, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_PRI_VIEWPORT_START, PRI_VIEWPORT_Y_START, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SEC_VIEWPORT_DIMENSION, SEC_VIEWPORT_WIDTH, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SEC_VIEWPORT_DIMENSION, SEC_VIEWPORT_HEIGHT, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SEC_VIEWPORT_START, SEC_VIEWPORT_X_START, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SEC_VIEWPORT_START, SEC_VIEWPORT_Y_START, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION_C, PRI_VIEWPORT_WIDTH_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION_C, PRI_VIEWPORT_HEIGHT_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_PRI_VIEWPORT_START_C, PRI_VIEWPORT_X_START_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_PRI_VIEWPORT_START_C, PRI_VIEWPORT_Y_START_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SEC_VIEWPORT_DIMENSION_C, SEC_VIEWPORT_WIDTH_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SEC_VIEWPORT_DIMENSION_C, SEC_VIEWPORT_HEIGHT_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SEC_VIEWPORT_START_C, SEC_VIEWPORT_X_START_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SEC_VIEWPORT_START_C, SEC_VIEWPORT_Y_START_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH, PRIMARY_SURFACE_ADDRESS_HIGH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_PRIMARY_SURFACE_ADDRESS, PRIMARY_SURFACE_ADDRESS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SECONDARY_SURFACE_ADDRESS_HIGH, SECONDARY_SURFACE_ADDRESS_HIGH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SECONDARY_SURFACE_ADDRESS, SECONDARY_SURFACE_ADDRESS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH, PRIMARY_META_SURFACE_ADDRESS_HIGH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_PRIMARY_META_SURFACE_ADDRESS, PRIMARY_META_SURFACE_ADDRESS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SECONDARY_META_SURFACE_ADDRESS_HIGH, SECONDARY_META_SURFACE_ADDRESS_HIGH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SECONDARY_META_SURFACE_ADDRESS, SECONDARY_META_SURFACE_ADDRESS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_PRIMARY_SURFACE_ADDRESS_HIGH_C, PRIMARY_SURFACE_ADDRESS_HIGH_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_PRIMARY_SURFACE_ADDRESS_C, PRIMARY_SURFACE_ADDRESS_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SECONDARY_SURFACE_ADDRESS_HIGH_C, SECONDARY_SURFACE_ADDRESS_HIGH_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SECONDARY_SURFACE_ADDRESS_C, SECONDARY_SURFACE_ADDRESS_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_PRIMARY_META_SURFACE_ADDRESS_HIGH_C, PRIMARY_META_SURFACE_ADDRESS_HIGH_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_PRIMARY_META_SURFACE_ADDRESS_C, PRIMARY_META_SURFACE_ADDRESS_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SECONDARY_META_SURFACE_ADDRESS_HIGH_C, SECONDARY_META_SURFACE_ADDRESS_HIGH_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SECONDARY_META_SURFACE_ADDRESS_C, SECONDARY_META_SURFACE_ADDRESS_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_INUSE, SURFACE_INUSE_ADDRESS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_INUSE_HIGH, SURFACE_INUSE_ADDRESS_HIGH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_INUSE_C, SURFACE_INUSE_ADDRESS_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_INUSE_HIGH_C, SURFACE_INUSE_ADDRESS_HIGH_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_EARLIEST_INUSE, SURFACE_EARLIEST_INUSE_ADDRESS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_EARLIEST_INUSE_HIGH, SURFACE_EARLIEST_INUSE_ADDRESS_HIGH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_EARLIEST_INUSE_C, SURFACE_EARLIEST_INUSE_ADDRESS_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_EARLIEST_INUSE_HIGH_C, SURFACE_EARLIEST_INUSE_ADDRESS_HIGH_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, PRIMARY_SURFACE_TMZ, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, PRIMARY_SURFACE_TMZ_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, PRIMARY_META_SURFACE_TMZ, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, PRIMARY_META_SURFACE_TMZ_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, PRIMARY_SURFACE_DCC_EN, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, PRIMARY_SURFACE_DCC_IND_BLK, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, PRIMARY_SURFACE_DCC_IND_BLK_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, SECONDARY_SURFACE_TMZ, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, SECONDARY_SURFACE_TMZ_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, SECONDARY_META_SURFACE_TMZ, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, SECONDARY_META_SURFACE_TMZ_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, SECONDARY_SURFACE_DCC_EN, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, SECONDARY_SURFACE_DCC_IND_BLK, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_SURFACE_CONTROL, SECONDARY_SURFACE_DCC_IND_BLK_C, mask_sh),\
-+	HUBP_SF(HUBPRET0_HUBPRET_CONTROL, DET_BUF_PLANE1_BASE_ADDRESS, mask_sh),\
-+	HUBP_SF(HUBPRET0_HUBPRET_CONTROL, CROSSBAR_SRC_CB_B, mask_sh),\
-+	HUBP_SF(HUBPRET0_HUBPRET_CONTROL, CROSSBAR_SRC_CR_R, mask_sh),\
-+	HUBP_SF(HUBPRET0_HUBPRET_CONTROL, CROSSBAR_SRC_Y_G, mask_sh),\
-+	HUBP_SF(HUBPRET0_HUBPRET_CONTROL, CROSSBAR_SRC_ALPHA, mask_sh),\
-+	HUBP_SF(HUBPRET0_HUBPRET_CONTROL, PACK_3TO2_ELEMENT_DISABLE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_EXPANSION_MODE, DRQ_EXPANSION_MODE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_EXPANSION_MODE, PRQ_EXPANSION_MODE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_EXPANSION_MODE, MRQ_EXPANSION_MODE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_EXPANSION_MODE, CRQ_EXPANSION_MODE, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG, CHUNK_SIZE, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG, MIN_CHUNK_SIZE, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG, META_CHUNK_SIZE, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG, MIN_META_CHUNK_SIZE, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG, DPTE_GROUP_SIZE, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG, SWATH_HEIGHT, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG, PTE_ROW_HEIGHT_LINEAR, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG_C, CHUNK_SIZE_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG_C, MIN_CHUNK_SIZE_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG_C, META_CHUNK_SIZE_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG_C, MIN_META_CHUNK_SIZE_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG_C, DPTE_GROUP_SIZE_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG_C, SWATH_HEIGHT_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG_C, PTE_ROW_HEIGHT_LINEAR_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_BLANK_OFFSET_0, REFCYC_H_BLANK_END, mask_sh),\
-+	HUBP_SF(HUBPREQ0_BLANK_OFFSET_0, DLG_V_BLANK_END, mask_sh),\
-+	HUBP_SF(HUBPREQ0_BLANK_OFFSET_1, MIN_DST_Y_NEXT_START, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DST_DIMENSIONS, REFCYC_PER_HTOTAL, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DST_AFTER_SCALER, REFCYC_X_AFTER_SCALER, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DST_AFTER_SCALER, DST_Y_AFTER_SCALER, mask_sh),\
-+	HUBP_SF(HUBPREQ0_VBLANK_PARAMETERS_0, DST_Y_PER_VM_VBLANK, mask_sh),\
-+	HUBP_SF(HUBPREQ0_VBLANK_PARAMETERS_0, DST_Y_PER_ROW_VBLANK, mask_sh),\
-+	HUBP_SF(HUBPREQ0_REF_FREQ_TO_PIX_FREQ, REF_FREQ_TO_PIX_FREQ, mask_sh),\
-+	HUBP_SF(HUBPREQ0_VBLANK_PARAMETERS_1, REFCYC_PER_PTE_GROUP_VBLANK_L, mask_sh),\
-+	HUBP_SF(HUBPREQ0_VBLANK_PARAMETERS_3, REFCYC_PER_META_CHUNK_VBLANK_L, mask_sh),\
-+	HUBP_SF(HUBPREQ0_NOM_PARAMETERS_4, DST_Y_PER_META_ROW_NOM_L, mask_sh),\
-+	HUBP_SF(HUBPREQ0_NOM_PARAMETERS_5, REFCYC_PER_META_CHUNK_NOM_L, mask_sh),\
-+	HUBP_SF(HUBPREQ0_PER_LINE_DELIVERY_PRE, REFCYC_PER_LINE_DELIVERY_PRE_L, mask_sh),\
-+	HUBP_SF(HUBPREQ0_PER_LINE_DELIVERY_PRE, REFCYC_PER_LINE_DELIVERY_PRE_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_PER_LINE_DELIVERY, REFCYC_PER_LINE_DELIVERY_L, mask_sh),\
-+	HUBP_SF(HUBPREQ0_PER_LINE_DELIVERY, REFCYC_PER_LINE_DELIVERY_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_VBLANK_PARAMETERS_2, REFCYC_PER_PTE_GROUP_VBLANK_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_VBLANK_PARAMETERS_4, REFCYC_PER_META_CHUNK_VBLANK_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_NOM_PARAMETERS_6, DST_Y_PER_META_ROW_NOM_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_NOM_PARAMETERS_7, REFCYC_PER_META_CHUNK_NOM_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_TTU_QOS_WM, QoS_LEVEL_LOW_WM, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_TTU_QOS_WM, QoS_LEVEL_HIGH_WM, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_GLOBAL_TTU_CNTL, MIN_TTU_VBLANK, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_GLOBAL_TTU_CNTL, QoS_LEVEL_FLIP, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_GLOBAL_TTU_CNTL, ROW_TTU_MODE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_SURF0_TTU_CNTL0, REFCYC_PER_REQ_DELIVERY, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_SURF0_TTU_CNTL0, QoS_LEVEL_FIXED, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_SURF0_TTU_CNTL0, QoS_RAMP_DISABLE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_SURF0_TTU_CNTL1, REFCYC_PER_REQ_DELIVERY_PRE, mask_sh),\
-+	HUBP_SF(HUBP0_HUBP_CLK_CNTL, HUBP_CLOCK_ENABLE, mask_sh),\
-+	HUBP_MASK_SH_LIST_DCN_VM(mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SURFACE_CONFIG, ROTATION_ANGLE, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SURFACE_CONFIG, H_MIRROR_EN, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_SURFACE_CONFIG, ALPHA_PLANE_EN, mask_sh),\
-+	HUBP_SF(HUBPREQ0_PREFETCH_SETTINGS, DST_Y_PREFETCH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_PREFETCH_SETTINGS, VRATIO_PREFETCH, mask_sh),\
-+	HUBP_SF(HUBPREQ0_PREFETCH_SETTINGS_C, VRATIO_PREFETCH_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_VM_SYSTEM_APERTURE_LOW_ADDR, MC_VM_SYSTEM_APERTURE_LOW_ADDR, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCN_VM_SYSTEM_APERTURE_HIGH_ADDR, MC_VM_SYSTEM_APERTURE_HIGH_ADDR, mask_sh),\
-+	HUBP_SF(HUBPREQ0_CURSOR_SETTINGS, CURSOR0_DST_Y_OFFSET, mask_sh), \
-+	HUBP_SF(HUBPREQ0_CURSOR_SETTINGS, CURSOR0_CHUNK_HDL_ADJUST, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_SURFACE_ADDRESS_HIGH, CURSOR_SURFACE_ADDRESS_HIGH, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_SURFACE_ADDRESS, CURSOR_SURFACE_ADDRESS, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_SIZE, CURSOR_WIDTH, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_SIZE, CURSOR_HEIGHT, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_CONTROL, CURSOR_MODE, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_CONTROL, CURSOR_2X_MAGNIFY, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_CONTROL, CURSOR_PITCH, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_CONTROL, CURSOR_LINES_PER_CHUNK, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_CONTROL, CURSOR_ENABLE, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_POSITION, CURSOR_X_POSITION, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_POSITION, CURSOR_Y_POSITION, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_HOT_SPOT, CURSOR_HOT_SPOT_X, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_HOT_SPOT, CURSOR_HOT_SPOT_Y, mask_sh), \
-+	HUBP_SF(CURSOR0_0_CURSOR_DST_OFFSET, CURSOR_DST_X_OFFSET, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_ADDRESS_HIGH, DMDATA_ADDRESS_HIGH, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_CNTL, DMDATA_MODE, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_CNTL, DMDATA_UPDATED, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_CNTL, DMDATA_REPEAT, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_CNTL, DMDATA_SIZE, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_SW_CNTL, DMDATA_SW_UPDATED, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_SW_CNTL, DMDATA_SW_REPEAT, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_SW_CNTL, DMDATA_SW_SIZE, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_QOS_CNTL, DMDATA_QOS_MODE, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_QOS_CNTL, DMDATA_QOS_LEVEL, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_QOS_CNTL, DMDATA_DL_DELTA, mask_sh), \
-+	HUBP_SF(CURSOR0_0_DMDATA_STATUS, DMDATA_DONE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_FLIP_PARAMETERS_0, DST_Y_PER_VM_FLIP, mask_sh),\
-+	HUBP_SF(HUBPREQ0_FLIP_PARAMETERS_0, DST_Y_PER_ROW_FLIP, mask_sh),\
-+	HUBP_SF(HUBPREQ0_FLIP_PARAMETERS_1, REFCYC_PER_PTE_GROUP_FLIP_L, mask_sh),\
-+	HUBP_SF(HUBPREQ0_FLIP_PARAMETERS_2, REFCYC_PER_META_CHUNK_FLIP_L, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_CNTL, HUBP_VREADY_AT_OR_AFTER_VSYNC, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_CNTL, HUBP_DISABLE_STOP_DATA_DURING_VM, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_FLIP_CONTROL, HUBPREQ_MASTER_UPDATE_LOCK_STATUS, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_FLIP_CONTROL2, SURFACE_GSL_ENABLE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_DCSURF_FLIP_CONTROL2, SURFACE_TRIPLE_BUFFER_ENABLE, mask_sh),\
-+	HUBP_SF(HUBPREQ0_VMID_SETTINGS_0, VMID, mask_sh),\
-+	HUBP_SF(HUBPREQ0_FLIP_PARAMETERS_3, REFCYC_PER_VM_GROUP_FLIP, mask_sh),\
-+	HUBP_SF(HUBPREQ0_FLIP_PARAMETERS_4, REFCYC_PER_VM_REQ_FLIP, mask_sh),\
-+	HUBP_SF(HUBPREQ0_FLIP_PARAMETERS_5, REFCYC_PER_PTE_GROUP_FLIP_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_FLIP_PARAMETERS_6, REFCYC_PER_META_CHUNK_FLIP_C, mask_sh),\
-+	HUBP_SF(HUBPREQ0_VBLANK_PARAMETERS_5, REFCYC_PER_VM_GROUP_VBLANK, mask_sh),\
-+	HUBP_SF(HUBPREQ0_VBLANK_PARAMETERS_6, REFCYC_PER_VM_REQ_VBLANK, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_REQ_SIZE_CONFIG, VM_GROUP_SIZE, mask_sh)
++#define MCIF_WB_COMMON_REG_LIST_DCN30(inst) \
++	SRI2(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUFMGR_STATUS, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_PITCH, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_1_STATUS, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_1_STATUS2, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_2_STATUS, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_2_STATUS2, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_3_STATUS, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_3_STATUS2, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_4_STATUS, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_4_STATUS2, MCIF_WB, inst),\
++	SRI2(MCIF_WB_ARBITRATION_CONTROL, MCIF_WB, inst),\
++	SRI2(MCIF_WB_SCLK_CHANGE, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_1_ADDR_Y, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_1_ADDR_C, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_2_ADDR_Y, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_2_ADDR_C, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_3_ADDR_Y, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_3_ADDR_C, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_4_ADDR_Y, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_4_ADDR_C, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB, inst),\
++	SRI2(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, MMHUBBUB, inst),\
++	SRI2(MCIF_WB_NB_PSTATE_CONTROL, MCIF_WB, inst),\
++	SRI2(MCIF_WB_WATERMARK, MMHUBBUB, inst),\
++	SRI2(MCIF_WB_CLOCK_GATER_CONTROL, MCIF_WB, inst),\
++	SRI2(MCIF_WB_SELF_REFRESH_CONTROL, MCIF_WB, inst),\
++	SRI2(MULTI_LEVEL_QOS_CTRL, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_LUMA_SIZE, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_CHROMA_SIZE, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_1_ADDR_Y_HIGH, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_1_ADDR_C_HIGH, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_2_ADDR_Y_HIGH, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_2_ADDR_C_HIGH, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_3_ADDR_Y_HIGH, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_3_ADDR_C_HIGH, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_4_ADDR_Y_HIGH, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_4_ADDR_C_HIGH, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_1_RESOLUTION, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_2_RESOLUTION, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_3_RESOLUTION, MCIF_WB, inst),\
++	SRI2(MCIF_WB_BUF_4_RESOLUTION, MCIF_WB, inst),\
++	SRI2(MMHUBBUB_MEM_PWR_CNTL, MMHUBBUB, inst),\
++	SRI2(MMHUBBUB_WARMUP_ADDR_REGION, MMHUBBUB, inst),\
++	SRI2(MMHUBBUB_WARMUP_BASE_ADDR_HIGH, MMHUBBUB, inst),\
++	SRI2(MMHUBBUB_WARMUP_BASE_ADDR_LOW, MMHUBBUB, inst),\
++	SRI2(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB, inst),\
++	SRI2(MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI, MCIF_WB, inst)
 +
-+bool hubp3_construct(
-+		struct dcn20_hubp *hubp2,
-+		struct dc_context *ctx,
-+		uint32_t inst,
-+		const struct dcn_hubp2_registers *hubp_regs,
-+		const struct dcn_hubp2_shift *hubp_shift,
-+		const struct dcn_hubp2_mask *hubp_mask);
-+
-+bool hubp3_program_surface_flip_and_addr(
-+	struct hubp *hubp,
-+	const struct dc_plane_address *address,
-+	bool flip_immediate);
-+
-+void hubp3_program_surface_config(
-+	struct hubp *hubp,
-+	enum surface_pixel_format format,
-+	union dc_tiling_info *tiling_info,
-+	struct plane_size *plane_size,
-+	enum dc_rotation_angle rotation,
-+	struct dc_plane_dcc_param *dcc,
-+	bool horizontal_mirror,
-+	unsigned int compat_level);
-+
-+void hubp3_setup(
-+		struct hubp *hubp,
-+		struct _vcs_dpi_display_dlg_regs_st *dlg_attr,
-+		struct _vcs_dpi_display_ttu_regs_st *ttu_attr,
-+		struct _vcs_dpi_display_rq_regs_st *rq_regs,
-+		struct _vcs_dpi_display_pipe_dest_params_st *pipe_dest);
-+
-+void hubp3_dcc_control(struct hubp *hubp, bool enable,
-+		enum hubp_ind_block_size blk_size);
-+
-+void hubp3_dcc_control_sienna_cichlid(struct hubp *hubp,
-+		struct dc_plane_dcc_param *dcc);
-+
-+void hubp3_dmdata_set_attributes(
-+		struct hubp *hubp,
-+		const struct dc_dmdata_attributes *attr);
-+
-+void hubp3_read_state(struct hubp *hubp);
-+
-+void hubp3_init(struct hubp *hubp);
-+
-+#endif /* __DC_HUBP_DCN30_H__ */
++#define MCIF_WB_COMMON_MASK_SH_LIST_DCN3_0(mask_sh) \
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_ENABLE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_INT_EN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_INT_ACK, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_SLICE_INT_EN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_OVERRUN_INT_EN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_LOCK, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUF_ADDR_FENCE_EN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_VCE_INT_STATUS, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_SW_INT_STATUS, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_SW_OVERRUN_INT_STATUS, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_CUR_BUF, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_BUFTAG, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_NEXT_BUF, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_PITCH, MCIF_WB_BUF_LUMA_PITCH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_PITCH, MCIF_WB_BUF_CHROMA_PITCH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_ACTIVE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_SW_LOCKED, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_VCE_LOCKED, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_OVERFLOW, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_DISABLE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_MODE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_BUFTAG, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_NXT_BUF, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_NEW_CONTENT, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_COLOR_DEPTH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_TMZ_BLACK_PIXEL, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_TMZ, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_Y_OVERRUN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_C_OVERRUN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_ACTIVE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_SW_LOCKED, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_VCE_LOCKED, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_OVERFLOW, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_DISABLE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_MODE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_BUFTAG, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_NXT_BUF, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_NEW_CONTENT, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_COLOR_DEPTH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_TMZ_BLACK_PIXEL, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_TMZ, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_Y_OVERRUN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_C_OVERRUN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_ACTIVE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_SW_LOCKED, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_VCE_LOCKED, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_OVERFLOW, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_DISABLE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_MODE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_BUFTAG, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_NXT_BUF, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_NEW_CONTENT, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_COLOR_DEPTH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_TMZ_BLACK_PIXEL, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_TMZ, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_Y_OVERRUN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_C_OVERRUN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_ACTIVE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_SW_LOCKED, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_VCE_LOCKED, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_OVERFLOW, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_DISABLE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_MODE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_BUFTAG, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_NXT_BUF, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_NEW_CONTENT, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_COLOR_DEPTH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_TMZ_BLACK_PIXEL, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_TMZ, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_Y_OVERRUN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_C_OVERRUN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_ARBITRATION_CONTROL, MCIF_WB_CLIENT_ARBITRATION_SLICE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_ARBITRATION_CONTROL, MCIF_WB_TIME_PER_PIXEL, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_SCLK_CHANGE, WM_CHANGE_ACK_FORCE_ON, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_ADDR_Y, MCIF_WB_BUF_1_ADDR_Y, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_ADDR_C, MCIF_WB_BUF_1_ADDR_C, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_ADDR_Y, MCIF_WB_BUF_2_ADDR_Y, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_ADDR_C, MCIF_WB_BUF_2_ADDR_C, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_ADDR_Y, MCIF_WB_BUF_3_ADDR_Y, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_ADDR_C, MCIF_WB_BUF_3_ADDR_C, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_ADDR_Y, MCIF_WB_BUF_4_ADDR_Y, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_ADDR_C, MCIF_WB_BUF_4_ADDR_C, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_LOCK_IGNORE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_INT_EN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_INT_ACK, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_SLICE_INT_EN, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_LOCK, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_SLICE_SIZE, mask_sh),\
++	SF(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, NB_PSTATE_CHANGE_REFRESH_WATERMARK, mask_sh),\
++	SF(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, NB_PSTATE_CHANGE_WATERMARK_MASK, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_NB_PSTATE_CONTROL, NB_PSTATE_CHANGE_URGENT_DURING_REQUEST, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_NB_PSTATE_CONTROL, NB_PSTATE_CHANGE_FORCE_ON, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_NB_PSTATE_CONTROL, NB_PSTATE_ALLOW_FOR_URGENT, mask_sh),\
++	SF(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK, mask_sh),\
++	SF(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK_MASK, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_CLOCK_GATER_CONTROL, MCIF_WB_CLI_CLOCK_GATER_OVERRIDE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_SELF_REFRESH_CONTROL, DIS_REFRESH_UNDER_NBPREQ, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_SELF_REFRESH_CONTROL, PERFRAME_SELF_REFRESH, mask_sh),\
++	SF(MCIF_WB0_MULTI_LEVEL_QOS_CTRL, MAX_SCALED_TIME_TO_URGENT, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_LUMA_SIZE, MCIF_WB_BUF_LUMA_SIZE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_CHROMA_SIZE, MCIF_WB_BUF_CHROMA_SIZE, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_ADDR_Y_HIGH, MCIF_WB_BUF_1_ADDR_Y_HIGH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_ADDR_C_HIGH, MCIF_WB_BUF_1_ADDR_C_HIGH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_ADDR_Y_HIGH, MCIF_WB_BUF_2_ADDR_Y_HIGH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_ADDR_C_HIGH, MCIF_WB_BUF_2_ADDR_C_HIGH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_ADDR_Y_HIGH, MCIF_WB_BUF_3_ADDR_Y_HIGH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_ADDR_C_HIGH, MCIF_WB_BUF_3_ADDR_C_HIGH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_ADDR_Y_HIGH, MCIF_WB_BUF_4_ADDR_Y_HIGH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_ADDR_C_HIGH, MCIF_WB_BUF_4_ADDR_C_HIGH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_RESOLUTION, MCIF_WB_BUF_1_RESOLUTION_WIDTH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_1_RESOLUTION, MCIF_WB_BUF_1_RESOLUTION_HEIGHT, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_RESOLUTION, MCIF_WB_BUF_2_RESOLUTION_WIDTH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_2_RESOLUTION, MCIF_WB_BUF_2_RESOLUTION_HEIGHT, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_RESOLUTION, MCIF_WB_BUF_3_RESOLUTION_WIDTH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_3_RESOLUTION, MCIF_WB_BUF_3_RESOLUTION_HEIGHT, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_RESOLUTION, MCIF_WB_BUF_4_RESOLUTION_WIDTH, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_BUF_4_RESOLUTION, MCIF_WB_BUF_4_RESOLUTION_HEIGHT, mask_sh),\
++	SF(MMHUBBUB_MEM_PWR_CNTL, WBIF_WHOLE_BUF_MODE, mask_sh),\
++	SF(MMHUBBUB_WARMUP_ADDR_REGION, MMHUBBUB_WARMUP_ADDR_REGION, mask_sh),\
++	SF(MMHUBBUB_WARMUP_BASE_ADDR_HIGH, MMHUBBUB_WARMUP_BASE_ADDR_HIGH, mask_sh),\
++	SF(MMHUBBUB_WARMUP_BASE_ADDR_LOW, MMHUBBUB_WARMUP_BASE_ADDR_LOW, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_EN, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_SW_INT_EN, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_SW_INT_STATUS, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_SW_INT_ACK, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_INC_ADDR, mask_sh),\
++	SF(MMHUBBUB_WARMUP_P_VMID, MMHUBBUB_WARMUP_P_VMID, mask_sh),\
++	SF(MCIF_WB0_MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI, MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI, mask_sh)
 +
 +
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h b/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
-index efce08e4c0ca..286cceeb9c24 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
-@@ -48,6 +48,10 @@ enum cursor_lines_per_chunk {
- enum hubp_ind_block_size {
- 	hubp_ind_block_unconstrained = 0,
- 	hubp_ind_block_64b,
++#define MCIF_WB_COMMON_MASK_SH_LIST_DCN30(mask_sh) \
++	SF(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_ENABLE, mask_sh),\
++	SF(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_INT_EN, mask_sh),\
++	SF(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_INT_ACK, mask_sh),\
++	SF(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_SLICE_INT_EN, mask_sh),\
++	SF(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_OVERRUN_INT_EN, mask_sh),\
++	SF(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_LOCK, mask_sh),\
++	SF(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUF_ADDR_FENCE_EN, mask_sh),\
++	SF(MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_VCE_INT_STATUS, mask_sh),\
++	SF(MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_SW_INT_STATUS, mask_sh),\
++	SF(MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_SW_OVERRUN_INT_STATUS, mask_sh),\
++	SF(MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_CUR_BUF, mask_sh),\
++	SF(MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_BUFTAG, mask_sh),\
++	SF(MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB_BUFMGR_STATUS, MCIF_WB_BUFMGR_NEXT_BUF, mask_sh),\
++	SF(MCIF_WB_BUF_PITCH, MCIF_WB_BUF_LUMA_PITCH, mask_sh),\
++	SF(MCIF_WB_BUF_PITCH, MCIF_WB_BUF_CHROMA_PITCH, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_ACTIVE, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_SW_LOCKED, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_VCE_LOCKED, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_OVERFLOW, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_DISABLE, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_MODE, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_BUFTAG, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_NXT_BUF, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS, MCIF_WB_BUF_1_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_NEW_CONTENT, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_COLOR_DEPTH, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_TMZ_BLACK_PIXEL, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_TMZ, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_Y_OVERRUN, mask_sh),\
++	SF(MCIF_WB_BUF_1_STATUS2, MCIF_WB_BUF_1_C_OVERRUN, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_ACTIVE, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_SW_LOCKED, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_VCE_LOCKED, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_OVERFLOW, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_DISABLE, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_MODE, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_BUFTAG, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_NXT_BUF, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS, MCIF_WB_BUF_2_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_NEW_CONTENT, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_COLOR_DEPTH, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_TMZ_BLACK_PIXEL, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_TMZ, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_Y_OVERRUN, mask_sh),\
++	SF(MCIF_WB_BUF_2_STATUS2, MCIF_WB_BUF_2_C_OVERRUN, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_ACTIVE, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_SW_LOCKED, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_VCE_LOCKED, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_OVERFLOW, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_DISABLE, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_MODE, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_BUFTAG, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_NXT_BUF, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS, MCIF_WB_BUF_3_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_NEW_CONTENT, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_COLOR_DEPTH, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_TMZ_BLACK_PIXEL, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_TMZ, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_Y_OVERRUN, mask_sh),\
++	SF(MCIF_WB_BUF_3_STATUS2, MCIF_WB_BUF_3_C_OVERRUN, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_ACTIVE, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_SW_LOCKED, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_VCE_LOCKED, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_OVERFLOW, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_DISABLE, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_MODE, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_BUFTAG, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_NXT_BUF, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS, MCIF_WB_BUF_4_CUR_LINE_L, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_NEW_CONTENT, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_COLOR_DEPTH, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_TMZ_BLACK_PIXEL, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_TMZ, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_Y_OVERRUN, mask_sh),\
++	SF(MCIF_WB_BUF_4_STATUS2, MCIF_WB_BUF_4_C_OVERRUN, mask_sh),\
++	SF(MCIF_WB_ARBITRATION_CONTROL, MCIF_WB_CLIENT_ARBITRATION_SLICE, mask_sh),\
++	SF(MCIF_WB_ARBITRATION_CONTROL, MCIF_WB_TIME_PER_PIXEL, mask_sh),\
++	SF(MCIF_WB_SCLK_CHANGE, WM_CHANGE_ACK_FORCE_ON, mask_sh),\
++	SF(MCIF_WB_BUF_1_ADDR_Y, MCIF_WB_BUF_1_ADDR_Y, mask_sh),\
++	SF(MCIF_WB_BUF_1_ADDR_C, MCIF_WB_BUF_1_ADDR_C, mask_sh),\
++	SF(MCIF_WB_BUF_2_ADDR_Y, MCIF_WB_BUF_2_ADDR_Y, mask_sh),\
++	SF(MCIF_WB_BUF_2_ADDR_C, MCIF_WB_BUF_2_ADDR_C, mask_sh),\
++	SF(MCIF_WB_BUF_3_ADDR_Y, MCIF_WB_BUF_3_ADDR_Y, mask_sh),\
++	SF(MCIF_WB_BUF_3_ADDR_C, MCIF_WB_BUF_3_ADDR_C, mask_sh),\
++	SF(MCIF_WB_BUF_4_ADDR_Y, MCIF_WB_BUF_4_ADDR_Y, mask_sh),\
++	SF(MCIF_WB_BUF_4_ADDR_C, MCIF_WB_BUF_4_ADDR_C, mask_sh),\
++	SF(MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_LOCK_IGNORE, mask_sh),\
++	SF(MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_INT_EN, mask_sh),\
++	SF(MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_INT_ACK, mask_sh),\
++	SF(MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_SLICE_INT_EN, mask_sh),\
++	SF(MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_VCE_LOCK, mask_sh),\
++	SF(MCIF_WB_BUFMGR_VCE_CONTROL, MCIF_WB_BUFMGR_SLICE_SIZE, mask_sh),\
++	SF(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, NB_PSTATE_CHANGE_REFRESH_WATERMARK, mask_sh),\
++	SF(MCIF_WB_NB_PSTATE_LATENCY_WATERMARK, NB_PSTATE_CHANGE_WATERMARK_MASK, mask_sh),\
++	SF(MCIF_WB_NB_PSTATE_CONTROL, NB_PSTATE_CHANGE_URGENT_DURING_REQUEST, mask_sh),\
++	SF(MCIF_WB_NB_PSTATE_CONTROL, NB_PSTATE_CHANGE_FORCE_ON, mask_sh),\
++	SF(MCIF_WB_NB_PSTATE_CONTROL, NB_PSTATE_ALLOW_FOR_URGENT, mask_sh),\
++	SF(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK, mask_sh),\
++	SF(MCIF_WB_WATERMARK, MCIF_WB_CLI_WATERMARK_MASK, mask_sh),\
++	SF(MCIF_WB_CLOCK_GATER_CONTROL, MCIF_WB_CLI_CLOCK_GATER_OVERRIDE, mask_sh),\
++	SF(MCIF_WB_SELF_REFRESH_CONTROL, DIS_REFRESH_UNDER_NBPREQ, mask_sh),\
++	SF(MCIF_WB_SELF_REFRESH_CONTROL, PERFRAME_SELF_REFRESH, mask_sh),\
++	SF(MULTI_LEVEL_QOS_CTRL, MAX_SCALED_TIME_TO_URGENT, mask_sh),\
++	SF(MCIF_WB_BUF_LUMA_SIZE, MCIF_WB_BUF_LUMA_SIZE, mask_sh),\
++	SF(MCIF_WB_BUF_CHROMA_SIZE, MCIF_WB_BUF_CHROMA_SIZE, mask_sh),\
++	SF(MCIF_WB_BUF_1_ADDR_Y_HIGH, MCIF_WB_BUF_1_ADDR_Y_HIGH, mask_sh),\
++	SF(MCIF_WB_BUF_1_ADDR_C_HIGH, MCIF_WB_BUF_1_ADDR_C_HIGH, mask_sh),\
++	SF(MCIF_WB_BUF_2_ADDR_Y_HIGH, MCIF_WB_BUF_2_ADDR_Y_HIGH, mask_sh),\
++	SF(MCIF_WB_BUF_2_ADDR_C_HIGH, MCIF_WB_BUF_2_ADDR_C_HIGH, mask_sh),\
++	SF(MCIF_WB_BUF_3_ADDR_Y_HIGH, MCIF_WB_BUF_3_ADDR_Y_HIGH, mask_sh),\
++	SF(MCIF_WB_BUF_3_ADDR_C_HIGH, MCIF_WB_BUF_3_ADDR_C_HIGH, mask_sh),\
++	SF(MCIF_WB_BUF_4_ADDR_Y_HIGH, MCIF_WB_BUF_4_ADDR_Y_HIGH, mask_sh),\
++	SF(MCIF_WB_BUF_4_ADDR_C_HIGH, MCIF_WB_BUF_4_ADDR_C_HIGH, mask_sh),\
++	SF(MCIF_WB_BUF_1_RESOLUTION, MCIF_WB_BUF_1_RESOLUTION_WIDTH, mask_sh),\
++	SF(MCIF_WB_BUF_1_RESOLUTION, MCIF_WB_BUF_1_RESOLUTION_HEIGHT, mask_sh),\
++	SF(MCIF_WB_BUF_2_RESOLUTION, MCIF_WB_BUF_2_RESOLUTION_WIDTH, mask_sh),\
++	SF(MCIF_WB_BUF_2_RESOLUTION, MCIF_WB_BUF_2_RESOLUTION_HEIGHT, mask_sh),\
++	SF(MCIF_WB_BUF_3_RESOLUTION, MCIF_WB_BUF_3_RESOLUTION_WIDTH, mask_sh),\
++	SF(MCIF_WB_BUF_3_RESOLUTION, MCIF_WB_BUF_3_RESOLUTION_HEIGHT, mask_sh),\
++	SF(MCIF_WB_BUF_4_RESOLUTION, MCIF_WB_BUF_4_RESOLUTION_WIDTH, mask_sh),\
++	SF(MCIF_WB_BUF_4_RESOLUTION, MCIF_WB_BUF_4_RESOLUTION_HEIGHT, mask_sh),\
++	SF(MMHUBBUB_WARMUP_ADDR_REGION, MMHUBBUB_WARMUP_ADDR_REGION, mask_sh),\
++	SF(MMHUBBUB_WARMUP_BASE_ADDR_HIGH, MMHUBBUB_WARMUP_BASE_ADDR_HIGH, mask_sh),\
++	SF(MMHUBBUB_WARMUP_BASE_ADDR_LOW, MMHUBBUB_WARMUP_BASE_ADDR_LOW, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_EN, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_SW_INT_EN, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_SW_INT_STATUS, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_SW_INT_ACK, mask_sh),\
++	SF(MMHUBBUB_WARMUP_CONTROL_STATUS, MMHUBBUB_WARMUP_INC_ADDR, mask_sh),\
++	SF(MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI, MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI, mask_sh)
++
++
++#define MCIF_WB_REG_FIELD_LIST_DCN3_0(type) \
++	MCIF_WB_REG_FIELD_LIST_DCN2_0(type);\
++	type WBIF_WHOLE_BUF_MODE;\
++	type MMHUBBUB_WARMUP_ADDR_REGION;\
++	type MMHUBBUB_WARMUP_BASE_ADDR_HIGH;\
++	type MMHUBBUB_WARMUP_BASE_ADDR_LOW;\
++	type MMHUBBUB_WARMUP_EN;\
++	type MMHUBBUB_WARMUP_SW_INT_EN;\
++	type MMHUBBUB_WARMUP_SW_INT_STATUS;\
++	type MMHUBBUB_WARMUP_SW_INT_ACK;\
++	type MMHUBBUB_WARMUP_INC_ADDR;\
++	type MMHUBBUB_WARMUP_P_VMID;\
++	type MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI
++
++#define MCIF_WB_REG_VARIABLE_LIST_DCN3_0 \
++	MCIF_WB_REG_VARIABLE_LIST_DCN2_0; \
++	uint32_t MMHUBBUB_MEM_PWR_CNTL;\
++	uint32_t MMHUBBUB_WARMUP_ADDR_REGION;\
++	uint32_t MMHUBBUB_WARMUP_BASE_ADDR_HIGH;\
++	uint32_t MMHUBBUB_WARMUP_BASE_ADDR_LOW;\
++	uint32_t MMHUBBUB_WARMUP_CONTROL_STATUS;\
++	uint32_t MMHUBBUB_WARMUP_P_VMID;\
++	uint32_t MCIF_WB_DRAM_SPEED_CHANGE_DURATION_VBI
++
++struct dcn30_mmhubbub_registers {
++	MCIF_WB_REG_VARIABLE_LIST_DCN3_0;
++};
++
++
++struct dcn30_mmhubbub_mask {
++	MCIF_WB_REG_FIELD_LIST_DCN3_0(uint32_t);
++};
++
++struct dcn30_mmhubbub_shift {
++	MCIF_WB_REG_FIELD_LIST_DCN3_0(uint8_t);
++};
++
++struct dcn30_mmhubbub {
++	struct mcif_wb base;
++	const struct dcn30_mmhubbub_registers *mcif_wb_regs;
++	const struct dcn30_mmhubbub_shift *mcif_wb_shift;
++	const struct dcn30_mmhubbub_mask *mcif_wb_mask;
++};
++
++void dcn30_mmhubbub_construct(struct dcn30_mmhubbub *mcif_wb30,
++	struct dc_context *ctx,
++	const struct dcn30_mmhubbub_registers *mcif_wb_regs,
++	const struct dcn30_mmhubbub_shift *mcif_wb_shift,
++	const struct dcn30_mmhubbub_mask *mcif_wb_mask,
++	int inst);
++
++#endif
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/mcif_wb.h b/drivers/gpu/drm/amd/display/dc/inc/hw/mcif_wb.h
+index a5c8d92fc5c2..553f81c731f7 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/mcif_wb.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/mcif_wb.h
+@@ -43,6 +43,9 @@ struct mcif_arb_params {
+ 	unsigned int		arbitration_slice;
+ 	unsigned int		slice_lines;
+ 	unsigned int		max_scaled_time;
 +#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	hubp_ind_block_128b,
-+	hubp_ind_block_64b_no_128bcl,
++	unsigned int		dram_speed_change_duration;
 +#endif
  };
  
- struct hubp {
+ struct mcif_irq_params {
 -- 
 2.25.4
 
