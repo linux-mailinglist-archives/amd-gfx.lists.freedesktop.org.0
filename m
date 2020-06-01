@@ -1,57 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075571EAB93
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:21:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 272401EAB94
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:21:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 799586E2F3;
-	Mon,  1 Jun 2020 18:21:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F4366E2EA;
+	Mon,  1 Jun 2020 18:21:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com
- [IPv6:2607:f8b0:4864:20::f43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 250176E2F2
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:21:19 +0000 (UTC)
-Received: by mail-qv1-xf43.google.com with SMTP id er17so477780qvb.8
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:21:19 -0700 (PDT)
+Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com
+ [IPv6:2607:f8b0:4864:20::f42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 763F56E2F2
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:21:20 +0000 (UTC)
+Received: by mail-qv1-xf42.google.com with SMTP id l3so484391qvo.7
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:21:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=W8fZRLNnAnkT+4ZOrI7VWm3M8Ce1IyX/TgbdxRXlnjE=;
- b=n125pLoB/+AswzdcHbJBrRgXLdV1I3IlVMrVk7pyjrKFYJDQJBGEX+a5MAgF0AvYRA
- jJqZ1xBsldkV46i52bLnsyLEH/zmtk8WRM82wWqU7VaioKfF2LAzrAtrPcebrd/HMGq9
- ATX5IhTOToNF7nsKoNFUR0MDvLYh0DfD2g3AUcQ13siu1zuhHyz+RKzT6VgYYJ0Duuqo
- nbyE9yWwsfwECPPwVvjPASoRss5Zvf53MC3yn5ZfQpmN1yAO1+co6pbBofQ3eTRICSQO
- /xmA4DFdn7HNtgJCNyhlYX/BvuKvIc0TKdVdO7MbsJKhuD15J498yaBn9wZoWLcg+3AV
- 6yJA==
+ bh=ajyYxbCKf2MLWhPUUsZFdWgGOfrO6nLmyxnTDXLwKBg=;
+ b=PS4l+/bW3+Rk4Gcjcto0jEnEG4xEJvVlodlE8bkcOqCOui/M5Xt5AhtCHuk7BMIY+d
+ cczhSFG4p4XQM8o3defcj8SPIl+MEpAvmvO1NS+UmHt1uUzctQNiAWvUG86WIg8DgcdQ
+ t0/5f2Y80dvKbhso4NjYhvHi7phGb6CLuqpLLsXz3ytW1drvoO/++ZfthpLRi122HHlI
+ gvB05UginASqOKLSQz3GYibxikbePF4blcFhlp6KWZA4aL180KZjygenS+s+GAfqRCTF
+ JarM9SVmhJA3z8x/F9TQqKeuz38ufKIWyjVn0sJjl4lWqNxQjDsDTIYP85oAAqX1cXbu
+ qICw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=W8fZRLNnAnkT+4ZOrI7VWm3M8Ce1IyX/TgbdxRXlnjE=;
- b=dr5nwohpw45m6cClI346PW3zXSnuOLfQkzg3pT4OSI6OpMAwQFI1Ud0ZftYTISaj3o
- NkQVDaKaXierzRXI5F8YZg7/8Cx32SNwOWtWGPRGkDDTl07ntMQJKwgOVdl71V2bL+Cp
- vRwZqUpWxzm5VaHUA+lDeE5AidBRNo8CNvd7HOVMP3we0xITHT5sPGmDug2wByoQWplW
- Lq6/f8k0vnMNBNY9YnTpAsf2e0DwUkKNe+aO4icQvh/H8ZG+Xio4nJ8oD6gshq0+wGK0
- pdpkgySI0OJkVAJAY5dznl/8mofKoj3rXd0q2f07OZZv2eO2/K727VGlmHNdTNG3rXCN
- f7pw==
-X-Gm-Message-State: AOAM531nwxKAxhPOKcuJ8JDirbMRhCVg3BEZKTKaWb6z9ge7TeRwfZMk
- crO3FMRyeHf858djKwIpptA/GNT2
-X-Google-Smtp-Source: ABdhPJyBJ5osYbntkuY9FNAUdrrObR20eh9etQwppdXrx6C2B0i2iWY08blqGZpPZZWGzgQ3ssxalw==
-X-Received: by 2002:a0c:fa4b:: with SMTP id k11mr5636323qvo.136.1591035678140; 
- Mon, 01 Jun 2020 11:21:18 -0700 (PDT)
+ bh=ajyYxbCKf2MLWhPUUsZFdWgGOfrO6nLmyxnTDXLwKBg=;
+ b=LzXkhdJVSNq/N4YB9Galf4EkdIE8kesWHuwZ7ZySTeZylatEfZNLFSwRGd0honUghq
+ 3uzgeLNUQAXNMlCdoyBW9AcBwfJvyC4uh7LyPpnMEQ0OdCwNlJVW9AXmCMHFkgTEB9w1
+ 6GdFpSlGOqWkGt0Dr0UL62azVZgFsG6nflzumpvmJDj6E2h5bH9m7Ql9RyCvOzAaFO8l
+ xJ/txS7IzasP3vuYwiCpUf2MxLC5n1LAGmxeDIfppROF3ZOhKZmExCWaF3nv/uYyTZ1W
+ d7DD/emqQTHDGk5sy4russXFufODi6aPECabcpWORUFTUueA539IqSaTgU6VsfFn0FS1
+ DblA==
+X-Gm-Message-State: AOAM530gHVDLksmhGNvJmgBJ5LHEeIAbi2uTz+RiGy3T9R6EvV6fYXDt
+ snbWPc03jBVYwgkgBiVV1c5V4YLx
+X-Google-Smtp-Source: ABdhPJzcb3mo6+XCP7B1bsecDZRQWdd/UaPVBMdf1/tAJ5WjgESC+55q65IwyrmP3yrl+fnBwAoYKA==
+X-Received: by 2002:a0c:e254:: with SMTP id x20mr20998489qvl.153.1591035679380; 
+ Mon, 01 Jun 2020 11:21:19 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.21.17
+ by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.21.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:21:17 -0700 (PDT)
+ Mon, 01 Jun 2020 11:21:18 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 100/207] drm/amdgpu: add atomfirmware helper funciton to query
- reserved fb size
-Date: Mon,  1 Jun 2020 14:19:07 -0400
-Message-Id: <20200601182054.1267858-11-alexander.deucher@amd.com>
+Subject: [PATCH 101/207] drm/amdgpu: switch to query reserved fb size from
+ vbios (v3)
+Date: Mon,  1 Jun 2020 14:19:08 -0400
+Message-Id: <20200601182054.1267858-12-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601182054.1267858-1-alexander.deucher@amd.com>
 References: <20200601182054.1267858-1-alexander.deucher@amd.com>
@@ -76,81 +76,61 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-fw_reserved_size_in_kb is introduced for driver to query
-the TMR region reserved by PSP BL in Sienna_Cichlid and onwards
+For Sienna_Cichlid, query fw_reserved_fb_size from vbios directly.
+For navi1x, fall back to default 64K TMR size.
+For pre-navi, no need to reserve tmr region in top LFB.
+
+v2: fix TMR define (Alex)
+v3: partially revert size change
 
 Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  | 38 +++++++++++++++++++
- .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h  |  1 +
- 2 files changed, 39 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 21 ++++++++++++++++-----
+ 1 file changed, 16 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-index 659d845dbebe..a9adccfda4c0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-@@ -325,6 +325,9 @@ bool amdgpu_atomfirmware_mem_ecc_supported(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index 93d057f92dcd..b5e050b82172 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -58,6 +58,7 @@
+ #include "amdgpu_amdkfd.h"
+ #include "amdgpu_sdma.h"
+ #include "amdgpu_ras.h"
++#include "amdgpu_atomfirmware.h"
+ #include "bif/bif_4_1_d.h"
  
- union firmware_info {
- 	struct atom_firmware_info_v3_1 v31;
-+	struct atom_firmware_info_v3_2 v32;
-+	struct atom_firmware_info_v3_3 v33;
-+	struct atom_firmware_info_v3_4 v34;
- };
- 
- /*
-@@ -590,3 +593,38 @@ int amdgpu_atomfirmware_get_mem_train_info(struct amdgpu_device *adev)
- 	adev->fw_vram_usage.mem_train_support = true;
- 	return 0;
- }
-+
-+int amdgpu_atomfirmware_get_fw_reserved_fb_size(struct amdgpu_device *adev)
-+{
-+	struct atom_context *ctx = adev->mode_info.atom_context;
-+	union firmware_info *firmware_info;
-+	int index;
-+	u16 data_offset, size;
-+	u8 frev, crev;
-+	int fw_reserved_fb_size;
-+
-+	index = get_index_into_master_table(atom_master_list_of_data_tables_v2_1,
-+			firmwareinfo);
-+
-+	if (!amdgpu_atom_parse_data_header(ctx, index, &size,
-+				&frev, &crev, &data_offset))
-+		/* fail to parse data_header */
-+		return 0;
-+
-+	firmware_info = (union firmware_info *)(ctx->bios + data_offset);
-+
-+	if (frev !=3)
-+		return -EINVAL;
-+
-+	switch (crev) {
-+	case 4:
-+		fw_reserved_fb_size =
-+			(firmware_info->v34.fw_reserved_size_in_kb << 10);
-+		break;
-+	default:
-+		fw_reserved_fb_size = 0;
-+		break;
+ #define AMDGPU_TTM_VRAM_MAX_DW_READ	(size_t)128
+@@ -1961,13 +1962,23 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+ 	 * reserve TMR memory at the top of VRAM which holds
+ 	 * IP Discovery data and is protected by PSP.
+ 	 */
++	adev->discovery_tmr_size =
++		amdgpu_atomfirmware_get_fw_reserved_fb_size(adev);
++	if (!adev->discovery_tmr_size &&
++	    adev->asic_type >= CHIP_NAVI10 &&
++	    amdgpu_discovery) {
++		/* if fw_reserved_fb_size is 0 from vbios,
++		 * then fallback to the default tmr_size */
++		adev->discovery_tmr_size = DISCOVERY_TMR_SIZE;
 +	}
 +
-+	return fw_reserved_fb_size;
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h
-index 434fe2fa0089..3a5ed339903e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.h
-@@ -36,5 +36,6 @@ int amdgpu_atomfirmware_get_clock_info(struct amdgpu_device *adev);
- int amdgpu_atomfirmware_get_gfx_info(struct amdgpu_device *adev);
- bool amdgpu_atomfirmware_mem_ecc_supported(struct amdgpu_device *adev);
- bool amdgpu_atomfirmware_sram_ecc_supported(struct amdgpu_device *adev);
-+int amdgpu_atomfirmware_get_fw_reserved_fb_size(struct amdgpu_device *adev);
- 
- #endif
+ 	if (adev->discovery_tmr_size > 0) {
+ 		r = amdgpu_bo_create_kernel_at(adev,
+-			adev->gmc.real_vram_size - adev->discovery_tmr_size,
+-			adev->discovery_tmr_size,
+-			AMDGPU_GEM_DOMAIN_VRAM,
+-			&adev->discovery_memory,
+-			NULL);
++					adev->gmc.real_vram_size - adev->discovery_tmr_size,
++					adev->discovery_tmr_size,
++					AMDGPU_GEM_DOMAIN_VRAM,
++					&adev->discovery_memory,
++					NULL);
+ 		if (r)
+ 			return r;
+ 	}
 -- 
 2.25.4
 
