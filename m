@@ -2,56 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134D81EAC11
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45FD81EAC16
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:30:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BC6A6E9E8;
-	Mon,  1 Jun 2020 18:30:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93F756E9ED;
+	Mon,  1 Jun 2020 18:30:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
  [IPv6:2607:f8b0:4864:20::743])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F232B6E9E6
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:30:16 +0000 (UTC)
-Received: by mail-qk1-x743.google.com with SMTP id 205so10048548qkg.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:30:16 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 821876E9ED
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:30:18 +0000 (UTC)
+Received: by mail-qk1-x743.google.com with SMTP id 205so10048618qkg.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:30:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=tBINmlmam8kXQqEoXmXJRz1H7SmtD1BeQjHwCcE2hiM=;
- b=mSvsIdCDUwrv5gXVLgy1of4Af1KwG9Ow+2HATrtF8GzP4Tj0fiCO9KlpTfJINpkB/u
- XqSTxgqmHWFZeAhlWJ6T3BAZLVDZhunq5FKwXVyeFnP1IvEF8Jmcfloeo44wpCJ1Ma5V
- AuLW5lDoN9YIuy96mKkP6TzXGbLIQedca3SRzekEZ/1QhGEK7uJUiRfyPYe2LmiCvTwK
- WSqUzbG3OOHjzg7urrf3GleisjDPGuqbCq/5hyYmx7HTiA67moSLXWR5VjDnglzxUymR
- hFeK7vxrDLLqYy91EkLpIYgMuNpRDT70TyIkMj+5zXCgghD8m1Q5oOz2gxHGfDjLpg1l
- RLaQ==
+ bh=xV5LYC2ntqUBh5Qb/8Gu60NmtZLVWqRyp/VPikjxHBc=;
+ b=fUb1bZM89iBrTFtJuAgqiH3h8phw9DTwDnF2htvjzDVAozxnmDccAPFsQ9loLUT2is
+ 0GWvDoDWBDTLvOc49AuBVW3QaQBb8P+hu+K/LqaDF9PkvuCS8/8Bkh8y4I4dUkI3Reqx
+ zVKsGNA0k08Rbb9pQqcALFEvrI8zdMiA6blm2ZDTxIljD0VaTW50koNYN5AoNzC7xiDd
+ 4y8RTcGCDTA7qXK+sYqVX7sxgekB6fj0kosriQ4EJhASXIHIYQu0MIciAs6oCh+ZI+3c
+ 0tB99odagXXvI68rWy5uW4MFup0VJ3mplN3vkiG6nIDnWKogEPY2O+CftWV9wmKiTbRM
+ GsgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=tBINmlmam8kXQqEoXmXJRz1H7SmtD1BeQjHwCcE2hiM=;
- b=DjhIBkQQ4Tfp4u+Vo9OmeRpZ8htXE2IGHfpxBywiN0W32uVzCfbVsNHXmDAbPb0dHR
- t3RFPvshfqRrVFC2bt5oz90AhwU+xD8sCQN3Su4Jdue1+luJVqhia7JKS0w5ey4KIvsz
- 7uWPhqLzMZffre1zjxzeZzSFkBNyKz7QZqu5nFPML29WdlOwTD7+fmliYA+dIxkIwf/9
- P8wG2OZMKSU4ZiuEhI0CnnB84llzQT61E0mR/1RX7tO7SmGE1INxiOhtPBTXFOVthtwO
- DhL1AsqTFW9kcWMHBANNHgtgx96gRIxJ4gaD2BJCue3R1cV0OVnk73s/f4JCMC2ywtoK
- 4LuA==
-X-Gm-Message-State: AOAM531X4j777HYCuBeJUwSyuJzmo8S8paUBem2eMpnXzRPmMQyv4a19
- OkWDtNWFICirr4y5kGahyvb2aiq9
-X-Google-Smtp-Source: ABdhPJyGMJ7dIL0mpl0gRhR+xY1R4xNCune7ZL3s+hF3Pn0pa/GmrdahuF79FMUfVfzari13AHNYCg==
-X-Received: by 2002:a37:a4ca:: with SMTP id
- n193mr20169326qke.261.1591036215849; 
- Mon, 01 Jun 2020 11:30:15 -0700 (PDT)
+ bh=xV5LYC2ntqUBh5Qb/8Gu60NmtZLVWqRyp/VPikjxHBc=;
+ b=PwhlMC7zy1EVWzh++5asDBgMF0WKPv5wd9sQUFGbkMPjqkURa3egbrOZO9XYqM+GXE
+ 1/Gbo8hzFG7LRfosOWxziQVP+l2vm/XXm7TsbFUYZLGkVa2vE1YtiMEDoRZx2yp90oKx
+ MyOFRS0urffMAJ81Nq3geDL/+d2HdgkfZeyPNgiKMsW2Ebgd6sKRtEfwHZDMvs65eXYS
+ fsof8bfeqA3rTZCU+zizvVFm+ZXGOnoGKA4IZg9VNT9FLYJf6bLS8E45hJXxcm1OnfCG
+ 4U9SIWqkngLNmrRtZpaQQHfEh5dpxzydLQ9Em/CZsLc2mu84I1mXYjw/F2A4rAE9OKBx
+ dBmg==
+X-Gm-Message-State: AOAM530Jk3u2UpRVprZuZuDfqBKwtKDGLq1u0TG4B6zMKcRkFab7oLj0
+ cxoNzsKZyjhOKUOfEam4govPGfuj
+X-Google-Smtp-Source: ABdhPJwHKvYn3lmlDDDT+xBWlLB4z8c3R3uZBX1lUPa9m/Q3OKK0LQgUVd0VhXkpu7Fgi01/IZGOTQ==
+X-Received: by 2002:a05:620a:2290:: with SMTP id
+ o16mr21626305qkh.205.1591036217435; 
+ Mon, 01 Jun 2020 11:30:17 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id z194sm8592qkb.73.2020.06.01.11.30.14
+ by smtp.gmail.com with ESMTPSA id z194sm8592qkb.73.2020.06.01.11.30.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:30:15 -0700 (PDT)
+ Mon, 01 Jun 2020 11:30:16 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 202/207] drm/amd/display: Handle RGBE_ALPHA Pixel Format
-Date: Mon,  1 Jun 2020 14:29:21 -0400
-Message-Id: <20200601182926.1267958-24-alexander.deucher@amd.com>
+Subject: [PATCH 203/207] drm/amd/display: Remove Unused Registers
+Date: Mon,  1 Jun 2020 14:29:22 -0400
+Message-Id: <20200601182926.1267958-25-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601182926.1267958-1-alexander.deucher@amd.com>
 References: <20200601182926.1267958-1-alexander.deucher@amd.com>
@@ -77,27 +77,103 @@ From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 
 Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c    | 17 -----------------
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h    | 12 ------------
+ .../amd/display/dc/dcn20/dcn20_link_encoder.h   |  3 +--
+ 3 files changed, 1 insertion(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c b/drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c
-index 1e5a92b192a1..555af29565aa 100644
---- a/drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/calcs/dcn_calcs.c
-@@ -374,6 +374,13 @@ static void pipe_ctx_to_e2e_pipe_params (
- 		input->src.viewport_width_c    = input->src.viewport_width;
- 		input->src.viewport_height_c   = input->src.viewport_height;
- 		break;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	case SURFACE_PIXEL_FORMAT_GRPH_RGBE_ALPHA:
-+		input->src.source_format = dm_rgbe_alpha;
-+		input->src.viewport_width_c    = input->src.viewport_width;
-+		input->src.viewport_height_c   = input->src.viewport_height;
-+		break;
-+#endif
- 	default:
- 		input->src.source_format = dm_444_32;
- 		input->src.viewport_width_c    = input->src.viewport_width;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
+index 1b1ae9ce2799..3c6ecfe141bb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
+@@ -717,22 +717,5 @@ static void dsc_write_to_registers(struct display_stream_compressor *dsc, const
+ 		RANGE_MAX_QP14, reg_vals->pps.rc_range_params[14].range_max_qp,
+ 		RANGE_BPG_OFFSET14, reg_vals->pps.rc_range_params[14].range_bpg_offset);
+ 
+-	if (IS_FPGA_MAXIMUS_DC(dsc20->base.ctx->dce_environment)) {
+-		/* It's safe to do this as long as debug bus is not being used in DAL Diag environment.
+-		 *
+-		 * This is because DSCC_PPS_CONFIG4.INITIAL_DEC_DELAY is a read-only register field (because it's a decoder
+-		 * value not required by DSC encoder). However, since decoding fails when this value is missing from PPS, it's
+-		 * required to communicate this value to the PPS header. When testing on FPGA, the values for PPS header are
+-		 * being read from Diag register dump. The register below is used in place of a scratch register to make
+-		 * 'initial_dec_delay' available.
+-		 */
+-
+-		temp_int = reg_vals->pps.initial_dec_delay;
+-		REG_SET_4(DSCC_TEST_DEBUG_BUS_ROTATE, 0,
+-			DSCC_TEST_DEBUG_BUS0_ROTATE, temp_int & 0x1f,
+-			DSCC_TEST_DEBUG_BUS1_ROTATE, temp_int >> 5 & 0x1f,
+-			DSCC_TEST_DEBUG_BUS2_ROTATE, temp_int >> 10 & 0x1f,
+-			DSCC_TEST_DEBUG_BUS3_ROTATE, temp_int >> 15 & 0x1);
+-	}
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h
+index 9855a7ed0387..667640c4b288 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h
+@@ -78,7 +78,6 @@
+ 	SRI(DSCC_RATE_CONTROL_BUFFER1_MAX_FULLNESS_LEVEL, DSCC, id),\
+ 	SRI(DSCC_RATE_CONTROL_BUFFER2_MAX_FULLNESS_LEVEL, DSCC, id),\
+ 	SRI(DSCC_RATE_CONTROL_BUFFER3_MAX_FULLNESS_LEVEL, DSCC, id),\
+-	SRI(DSCC_TEST_DEBUG_BUS_ROTATE, DSCC, id),\
+ 	SRI(DSCCIF_CONFIG0, DSCCIF, id),\
+ 	SRI(DSCCIF_CONFIG1, DSCCIF, id),\
+ 	SRI(DSCRM_DSC_FORWARD_CONFIG, DSCRM, id)
+@@ -95,8 +94,6 @@
+ 	DSC_SF(DSC_TOP0_DSC_TOP_CONTROL, DSC_CLOCK_EN, mask_sh), \
+ 	DSC_SF(DSC_TOP0_DSC_TOP_CONTROL, DSC_DISPCLK_R_GATE_DIS, mask_sh), \
+ 	DSC_SF(DSC_TOP0_DSC_TOP_CONTROL, DSC_DSCCLK_R_GATE_DIS, mask_sh), \
+-	DSC_SF(DSC_TOP0_DSC_DEBUG_CONTROL, DSC_DBG_EN, mask_sh), \
+-	DSC_SF(DSC_TOP0_DSC_DEBUG_CONTROL, DSC_TEST_CLOCK_MUX_SEL, mask_sh), \
+ 	DSC_SF(DSCC0_DSCC_CONFIG0, ICH_RESET_AT_END_OF_LINE, mask_sh), \
+ 	DSC_SF(DSCC0_DSCC_CONFIG0, NUMBER_OF_SLICES_PER_LINE, mask_sh), \
+ 	DSC_SF(DSCC0_DSCC_CONFIG0, ALTERNATE_ICH_ENCODING_EN, mask_sh), \
+@@ -249,10 +246,6 @@
+ 	DSC_SF(DSCC0_DSCC_RATE_CONTROL_BUFFER1_MAX_FULLNESS_LEVEL, DSCC_RATE_CONTROL_BUFFER1_MAX_FULLNESS_LEVEL, mask_sh), \
+ 	DSC_SF(DSCC0_DSCC_RATE_CONTROL_BUFFER2_MAX_FULLNESS_LEVEL, DSCC_RATE_CONTROL_BUFFER2_MAX_FULLNESS_LEVEL, mask_sh), \
+ 	DSC_SF(DSCC0_DSCC_RATE_CONTROL_BUFFER3_MAX_FULLNESS_LEVEL, DSCC_RATE_CONTROL_BUFFER3_MAX_FULLNESS_LEVEL, mask_sh), \
+-	DSC_SF(DSCC0_DSCC_TEST_DEBUG_BUS_ROTATE, DSCC_TEST_DEBUG_BUS0_ROTATE, mask_sh), \
+-	DSC_SF(DSCC0_DSCC_TEST_DEBUG_BUS_ROTATE, DSCC_TEST_DEBUG_BUS1_ROTATE, mask_sh), \
+-	DSC_SF(DSCC0_DSCC_TEST_DEBUG_BUS_ROTATE, DSCC_TEST_DEBUG_BUS2_ROTATE, mask_sh), \
+-	DSC_SF(DSCC0_DSCC_TEST_DEBUG_BUS_ROTATE, DSCC_TEST_DEBUG_BUS3_ROTATE, mask_sh), \
+ 	DSC_SF(DSCCIF0_DSCCIF_CONFIG0, INPUT_INTERFACE_UNDERFLOW_RECOVERY_EN, mask_sh), \
+ 	DSC_SF(DSCCIF0_DSCCIF_CONFIG0, INPUT_INTERFACE_UNDERFLOW_OCCURRED_INT_EN, mask_sh), \
+ 	DSC_SF(DSCCIF0_DSCCIF_CONFIG0, INPUT_INTERFACE_UNDERFLOW_OCCURRED_STATUS, mask_sh), \
+@@ -427,10 +420,6 @@
+ 	type DSCC_UPDATE_PENDING_STATUS; \
+ 	type DSCC_UPDATE_TAKEN_STATUS; \
+ 	type DSCC_UPDATE_TAKEN_ACK; \
+-	type DSCC_TEST_DEBUG_BUS0_ROTATE; \
+-	type DSCC_TEST_DEBUG_BUS1_ROTATE; \
+-	type DSCC_TEST_DEBUG_BUS2_ROTATE; \
+-	type DSCC_TEST_DEBUG_BUS3_ROTATE; \
+ 	type DSCC_RATE_BUFFER0_FULLNESS_LEVEL; \
+ 	type DSCC_RATE_BUFFER1_FULLNESS_LEVEL; \
+ 	type DSCC_RATE_BUFFER2_FULLNESS_LEVEL; \
+@@ -503,7 +492,6 @@ struct dcn20_dsc_registers {
+ 	uint32_t DSCC_RATE_CONTROL_BUFFER1_MAX_FULLNESS_LEVEL;
+ 	uint32_t DSCC_RATE_CONTROL_BUFFER2_MAX_FULLNESS_LEVEL;
+ 	uint32_t DSCC_RATE_CONTROL_BUFFER3_MAX_FULLNESS_LEVEL;
+-	uint32_t DSCC_TEST_DEBUG_BUS_ROTATE;
+ 	uint32_t DSCCIF_CONFIG0;
+ 	uint32_t DSCCIF_CONFIG1;
+ 	uint32_t DSCRM_DSC_FORWARD_CONFIG;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h
+index a6c8493001a6..db09f40075c2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h
+@@ -147,8 +147,7 @@
+ 	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_DATA_SWAP, mask_sh),\
+ 	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_DATA_ORDER_INVERT, mask_sh),\
+ 	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_FIFO_EN, mask_sh),\
+-	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_FIFO_RD_START_DELAY, mask_sh),\
+-	LE_SF(DPCSTX0_DPCSTX_DEBUG_CONFIG, DPCS_DBG_CBUS_DIS, mask_sh)
++	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_FIFO_RD_START_DELAY, mask_sh)
+ 
+ #define DPCS_DCN2_MASK_SH_LIST(mask_sh)\
+ 	DPCS_MASK_SH_LIST(mask_sh),\
 -- 
 2.25.4
 
