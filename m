@@ -1,56 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C1CA1EABB5
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77CBE1EABB7
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7694A6E32A;
-	Mon,  1 Jun 2020 18:22:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E69B16E330;
+	Mon,  1 Jun 2020 18:22:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
- [IPv6:2607:f8b0:4864:20::741])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3A056E32A
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:02 +0000 (UTC)
-Received: by mail-qk1-x741.google.com with SMTP id v79so9969976qkb.10
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:02 -0700 (PDT)
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDD446E330
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:03 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id k22so8471246qtm.6
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=/vEMzFgFwes2fGZ2pwyF3M9SooXNMyKa+YsyT0FwLKw=;
- b=D9GIH3zcDH0ZQi/ptpmG6PdTEv9FEqaVQrSq8Rmr/wjv7Zj76xZGS2bdOuzXPn+ZvA
- v3EnGXNwzSBQC17vUFgu8f+kJb/LVVQC3TXzw1A287L5qE6Dwefqz+02KwTE8qbEa9jI
- fNFUWn84cWskWdO+i8xo3dQJ8oepRuaYIxoqaJ4A6/YtYnFc6VPiEbTgR8XpTVEQ5yXG
- T65pUBIzacLAY3b6sbh+4wanfAhaIGCUxtkwzxuajWuv6S/Fd2mpxyTrTs4FMpbrfZa+
- FqBueOmgOrxtqkh7gLJDOrQ92kO8pdj8IevnnvihTv8fT5CMGUHt5xX70yG24Mqbyq7D
- lQRA==
+ bh=e9pFqXjO9M/Lpe9Ia/vNg3WdApJV3WwoiXSqeZFBonk=;
+ b=dJbQ5XlREjqUJbzrXdZUqhhR529ozXpZ+YlT2J1v1iD9wQYlFslRFWEpZJikoX4+Qm
+ vjT+YJNtlGkSYu2FAeZvuhxeFS+1lCQQmLLJ5OfFMr69xYTjnUzIn24c5wrAsZhJ2dfr
+ 00WXec0Wx2yIPBpkgxRJ10/RYHf3txVmOvVPZiDEwZtr5FmNkn5z1ljqn+1vLRapFvso
+ 7rYNnrXwYKvftc/yLDwdgIHE7uA9IU6VurTWKaBMjHqTgNdhzz+I8Y50ZbPbaxh2N+rX
+ 69CDWbvBibFzj0L9SUtxj0uXcA2JRdTCKRwXnhvtbt75FOv3sqQ/5Cy8Iu92uuJagn2F
+ o9Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=/vEMzFgFwes2fGZ2pwyF3M9SooXNMyKa+YsyT0FwLKw=;
- b=ebOSlBYzzYQhJLDMGKs3Z0bqvhQ3/+uEDGijMixElSq+0PzUkY1ol27JdakPkVcQ3r
- 4emr0QGTStCtX/t1RqK4PDGXnjjJg4F02/Uxpfx0nNpUq1ZfG6+YFUwhMebBFWCt3qu0
- UFSGQnxKPnl1cqcVBix0y7tC0312TpJTESpN6UYTvhLD5Gt30fEVo38c7upOdoQggLZa
- JREQgOYSoPG/jyPibh4b5LNaetnj/ImzJUR54BTntgfCNNCANhXuNCLaTgVJAV7s+SSR
- /zIENpeHIZUGSHd1D3EYGkWAvyGk2I/Skxzw2smvfMkDSIVqCftTMAGido8/5RfsSgcL
- 2Mew==
-X-Gm-Message-State: AOAM5339LkbplnVcZrnBF2hC1JLyGnkCiFpmR6sGoiDNCbbEPcG5a9Is
- CfaOJtYnn1Mx4uHkEGV9VbVUaf84
-X-Google-Smtp-Source: ABdhPJwK5zzLR95rV5gme8JeT7FEZRyruWsllecPnsEkryMtngZDpZpytxkIXxxID1F2IwUcfPgONA==
-X-Received: by 2002:a37:607:: with SMTP id 7mr19876066qkg.385.1591035721653;
- Mon, 01 Jun 2020 11:22:01 -0700 (PDT)
+ bh=e9pFqXjO9M/Lpe9Ia/vNg3WdApJV3WwoiXSqeZFBonk=;
+ b=Y7ng07yJsr28U2n8uBW51JNULnQuE2NWG/dtlsb1cxmPW4KEhJBXxE3/MOgTr3CpZD
+ Bc2j4tNoQJWecXbWJguMa/cv2EoU3HF4dhMDYGAvPFsSqsv777USLKIkJQdoVvDmGyHs
+ qAjMFuW+ATbNA1IWyepN25qCunJWuMkdhUXOsiDrOjoDSeafVFW67kBU6/1SWIwjGxY4
+ ukNkCtswAp1NOemd9RY9PUP7VgjLgc2bRTJgvCK+nURescxU+0cAqbCpLrAQ7X51cZpY
+ LmtXvZ+gS402rCBl9Lw5LtAI2ofrPL+4jENV88npxQ6FMiJgIGSCT/P7wssr2ANdTSU0
+ YUxA==
+X-Gm-Message-State: AOAM532LEWAhUhKeioUA2IyG08wXb0eO0KQ6QOpKtX+XbWSfuWEyfZpR
+ +c+JH9aAUgeU+6r7UmEy/nvw3WDS
+X-Google-Smtp-Source: ABdhPJy0VG9ShOWPbi+HMdlh8zwYI15BP2nsm0Dqga6FjIRo4K5dR4KSMpa9GBpe8BRdpAobmterFg==
+X-Received: by 2002:aed:21af:: with SMTP id l44mr24134180qtc.124.1591035722914; 
+ Mon, 01 Jun 2020 11:22:02 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.00
+ by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:22:01 -0700 (PDT)
+ Mon, 01 Jun 2020 11:22:02 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 134/207] drm/amd/powerplay: enable mmhub pg
-Date: Mon,  1 Jun 2020 14:19:41 -0400
-Message-Id: <20200601182054.1267858-45-alexander.deucher@amd.com>
+Subject: [PATCH 135/207] drm/amd/powerplay: enable GPO
+Date: Mon,  1 Jun 2020 14:19:42 -0400
+Message-Id: <20200601182054.1267858-46-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601182054.1267858-1-alexander.deucher@amd.com>
 References: <20200601182054.1267858-1-alexander.deucher@amd.com>
@@ -66,8 +66,8 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- Kenneth Feng <kenneth.feng@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Kenneth Feng <kenneth.feng@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
@@ -75,44 +75,43 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Kenneth Feng <kenneth.feng@amd.com>
 
-mmhub pg can be obvserved from PCTL_CTRL
+GPO is graphics power optimizer.
+SMU calculates the 16 gfxclk V/F points according to the CU numbers
+and memory activity.RLC picks one of them according to the memory
+speed requirements for the data transmission.
 
 Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
-Reviewed-by: Likun Gao <Likun.Gao@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/nv.c                    | 3 ++-
- drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c | 3 +++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/powerplay/inc/smu_types.h      | 1 +
+ drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 6ca4c6f043c6..936950fbafda 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -704,7 +704,8 @@ static int nv_common_early_init(void *handle)
- 		adev->pg_flags = AMD_PG_SUPPORT_VCN |
- 			AMD_PG_SUPPORT_VCN_DPG |
- 			AMD_PG_SUPPORT_JPEG |
--			AMD_PG_SUPPORT_ATHUB;
-+			AMD_PG_SUPPORT_ATHUB |
-+			AMD_PG_SUPPORT_MMHUB;
- 		/* guest vm gets 0xffffffff when reading RCC_DEV0_EPF0_STRAP0,
- 		 * as a consequence, the rev_id and external_rev_id are wrong.
- 		 * workaround it by hardcoding rev_id to 0 (default value).
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu_types.h b/drivers/gpu/drm/amd/powerplay/inc/smu_types.h
+index 3efadf2cff9c..dff2295705be 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/smu_types.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/smu_types.h
+@@ -260,6 +260,7 @@ enum smu_clk_type {
+        __SMU_DUMMY_MAP(MMHUB_PG),                      	\
+        __SMU_DUMMY_MAP(ATHUB_PG),                      	\
+        __SMU_DUMMY_MAP(APCC_DFLL),                     	\
++       __SMU_DUMMY_MAP(DPM_GFX_GPO),                    \
+        __SMU_DUMMY_MAP(WAFL_CG),
+ 
+ #undef __SMU_DUMMY_MAP
 diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
-index f7e67c446ae0..8fb08cae5c24 100644
+index 8fb08cae5c24..9dbf29e96312 100644
 --- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
 +++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
-@@ -335,6 +335,9 @@ sienna_cichlid_get_allowed_feature_mask(struct smu_context *smu,
- 	if (smu->adev->pg_flags & AMD_PG_SUPPORT_ATHUB)
- 		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_ATHUB_PG_BIT);
- 
-+	if (smu->adev->pg_flags & AMD_PG_SUPPORT_MMHUB)
-+		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_MMHUB_PG_BIT);
-+
- 	if (smu->adev->pg_flags & AMD_PG_SUPPORT_VCN ||
- 	    smu->adev->pg_flags & AMD_PG_SUPPORT_JPEG)
- 		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_MM_DPM_PG_BIT);
+@@ -126,6 +126,7 @@ static struct smu_11_0_cmn2aisc_mapping sienna_cichlid_clk_map[SMU_CLK_COUNT] =
+ static struct smu_11_0_cmn2aisc_mapping sienna_cichlid_feature_mask_map[SMU_FEATURE_COUNT] = {
+ 	FEA_MAP(DPM_PREFETCHER),
+ 	FEA_MAP(DPM_GFXCLK),
++	FEA_MAP(DPM_GFX_GPO),
+ 	FEA_MAP(DPM_UCLK),
+ 	FEA_MAP(DPM_SOCCLK),
+ 	FEA_MAP(DPM_MP0CLK),
 -- 
 2.25.4
 
