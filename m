@@ -2,56 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 729EF1EABCE
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4704A1EABCF
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDC516E359;
-	Mon,  1 Jun 2020 18:22:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B47DF6E362;
+	Mon,  1 Jun 2020 18:22:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
  [IPv6:2607:f8b0:4864:20::843])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 978006E359
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:33 +0000 (UTC)
-Received: by mail-qt1-x843.google.com with SMTP id e16so8523773qtg.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:33 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E9F76E359
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:34 +0000 (UTC)
+Received: by mail-qt1-x843.google.com with SMTP id x29so8503258qtv.4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=/QCteXn5FdAWX4SKYfDYey9Zjo2l8UcoogA1E/jpLPk=;
- b=W193x2txUQP+Sp5wGA/OzCiGdK7akYUOhXnE2qd4eMwSUYtfMUFKt3x0PJPdDTO9Tp
- ARl7COeXUm2MCclb3/P9y0QyGSTuMehixXm3KDMGh/JVF4pinsWQ7F7MyTjiHglk+CGb
- zzBMZRvDr1O7Yz07JnKjqqc6GzUj4WRtJmFkGrkKzZNAISo+yf4hfqhYRx/8WkJAfNdo
- 4fv4Quo7hclxzpYm1Jb0KKxCnci+FN6xr5gIA0xza9ChU/xH+Ax29q4aCCEZ+hUQ6kOw
- 01FF+fLgSVk4RwIT8OBfsG63YNfJXbE/yW3iQHNETtnYhZdS5ub9uT4jvx/fRLsNsbkD
- Zrvw==
+ bh=JwCpAdeczm6VTlnSZdoJy8lPz/uKigJr7qngJLcCPdw=;
+ b=ZrkWl36Mlprw7kwEI4qGGr2SZoupwh32WANySNkGBlwpvQ/YDQrr1kKbKidMLLbrvI
+ rar5e0JNL10L6huv662SUpAIybPr2B+iLffCTQSzQikwZr5YzSn77xBGiV7xmjeVtr5a
+ tpnt3SP6WNJfU193zcjVuQwZU2qtqMXjdeLIm25epxD0JwdU0uMOqo38z4APx9WF35nN
+ TQ1ocBaSl1oAFRrRnfb3moxU99z6W+bRzJoujjfucmnXYNcJTtyKgQW0KFksvv5kq4yV
+ hvYdsq5P2PY0XJgGMj0RMBE7iPYQArSsxGHbN0FKkKpCDntPTw+yZsQI3091XagjfDrQ
+ UeLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=/QCteXn5FdAWX4SKYfDYey9Zjo2l8UcoogA1E/jpLPk=;
- b=fpk1rFfE6sHPvCjHIJU18xWYCJbS8obveQ4asTnnQlhmLhejagEHFzVJ7Og6cNu3/2
- SZKb22R0KDxtcOJOg1q/fac+XS22DvhjzGt6/hiSyDpsy0x1ZeBOXYxaHgcIM18xFuRR
- IK9lYIaPV1DC3L5+rK9TCbpd+obtBWztc1xm8pQUCPdi9iADJAZy0AEtl6VNGU5cfpFu
- dWSVwjQeDQfbaaMfhafRrW7xxYKAkZwrtIXBqSIc5q5eunnvgN6hEoX0TJ+4Dsqhx6qr
- h/sE4IbIF9BSsPy5ZUoEj9ZwrPB9zbZzCJfC8mVZo7G49n8DUs+SKNmVNOjXi5wbILxX
- E9cg==
-X-Gm-Message-State: AOAM532C3RaUI7hb8L3iywyAMagyp9GAiCtzl2gn3LHVc00VNnw3Q3gS
- H3utVJGQHBtd9bq878+AcJA9+1Ao
-X-Google-Smtp-Source: ABdhPJyFigmX1C1Nx6atHtB3TbZdfprxYC6PCMlt86KrQ6n/ja474RYMGQJhsCD3Uq07KsgPOUMoZg==
-X-Received: by 2002:ac8:3779:: with SMTP id p54mr23779236qtb.156.1591035752619; 
- Mon, 01 Jun 2020 11:22:32 -0700 (PDT)
+ bh=JwCpAdeczm6VTlnSZdoJy8lPz/uKigJr7qngJLcCPdw=;
+ b=nPM0zg3dnQWZhI4Y+lvj/hw31XbcrxkEGUziCZvoyESWXOmxfV8/Qti7EiK8vX9myp
+ Zy/lENbQkTJXmBfaagk+BBy1u/DBhKT4Mbc4iwzPbV13IW85bXfcoBI91DTLFNvGCYnD
+ iMEXVRfOGN6SXDpTaskjF3bh/dkQVvW0DQW/NbICsyjUo1IscWKxhN3nq6idfxQUE2og
+ mzkowgJ7FCLmnYtixhstZdzpteWFqu3KJQg/woyl8bDjYYUTpKoivUoxltMHanfqzH23
+ 3ZCChVOZt4rUly2RgoaWL4vSxQofxZhZiu09sSJOkTsLjMHFiCpENrrz51p1VNf6/sMQ
+ Ueug==
+X-Gm-Message-State: AOAM531/ZVU3A5chpsXa49mbB+dTVa4pcwSizJ8+U0sUAa7vkoUOKRkM
+ S8ogy7b6bL8z2HNgnZGni6NH7upG
+X-Google-Smtp-Source: ABdhPJxnUjyufDzg9M80W9EtURig8EBeO7Cj3QmIe0IENTuUzfZucSyL+x3n9EBr2TQrEpajK4kLUQ==
+X-Received: by 2002:aed:38e4:: with SMTP id k91mr8820063qte.376.1591035753599; 
+ Mon, 01 Jun 2020 11:22:33 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.31
+ by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:22:32 -0700 (PDT)
+ Mon, 01 Jun 2020 11:22:33 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 158/207] drm/amdgpu: skip GPU scheduler setup for KIQ and MES
- ring
-Date: Mon,  1 Jun 2020 14:20:05 -0400
-Message-Id: <20200601182054.1267858-69-alexander.deucher@amd.com>
+Subject: [PATCH 159/207] drm/amd/powerplay: enable fw ctf
+Date: Mon,  1 Jun 2020 14:20:06 -0400
+Message-Id: <20200601182054.1267858-70-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601182054.1267858-1-alexander.deucher@amd.com>
 References: <20200601182054.1267858-1-alexander.deucher@amd.com>
@@ -67,37 +66,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Kenneth Feng <kenneth.feng@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Likun Gao <Likun.Gao@amd.com>
+From: Kenneth Feng <kenneth.feng@amd.com>
 
-Fix the coding error to skip GPU scheduler setup for KIQ and MES ring.
+fw ctf can be triggered if the temperature can't be throttled below the limit.
+then the gpu will be powered off and the whole system will hang.
 
-Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-index 8712a2e1b869..0ce82686c983 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-@@ -470,7 +470,7 @@ int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring,
- 		return -ENOMEM;
- 
- 	/* No need to setup the GPU scheduler for KIQ and MES ring */
--	if (ring->funcs->type != AMDGPU_RING_TYPE_KIQ ||
-+	if (ring->funcs->type != AMDGPU_RING_TYPE_KIQ &&
- 	    ring->funcs->type != AMDGPU_RING_TYPE_MES) {
- 		switch (ring->funcs->type) {
- 		case AMDGPU_RING_TYPE_GFX:
+diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+index 6223ecf3c11b..512fa07ab2b2 100644
+--- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+@@ -311,6 +311,7 @@ sienna_cichlid_get_allowed_feature_mask(struct smu_context *smu,
+ 				| FEATURE_MASK(FEATURE_TDC_BIT)
+ 				| FEATURE_MASK(FEATURE_BACO_BIT)
+ 				| FEATURE_MASK(FEATURE_APCC_DFLL_BIT)
++				| FEATURE_MASK(FEATURE_FW_CTF_BIT)
+ 				| FEATURE_MASK(FEATURE_FAN_CONTROL_BIT)
+ 				| FEATURE_MASK(FEATURE_THERMAL_BIT)
+ 				| FEATURE_MASK(FEATURE_OUT_OF_BAND_MONITOR_BIT);
 -- 
 2.25.4
 
