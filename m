@@ -1,56 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CC2F1EABC5
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCCD21EABC6
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jun 2020 20:22:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DFB16E34B;
-	Mon,  1 Jun 2020 18:22:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 652F86E34D;
+	Mon,  1 Jun 2020 18:22:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
- [IPv6:2607:f8b0:4864:20::744])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7AF6E34B
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:22 +0000 (UTC)
-Received: by mail-qk1-x744.google.com with SMTP id s1so9989957qkf.9
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:22 -0700 (PDT)
+Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com
+ [IPv6:2607:f8b0:4864:20::f42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C39F6E34C
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2020 18:22:23 +0000 (UTC)
+Received: by mail-qv1-xf42.google.com with SMTP id g7so470074qvx.11
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2020 11:22:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=6F1WwHEpK0n7vFFrLOrZPUqJUdj6ag0KBByva51RFIs=;
- b=kqFUIFoxbqzpIjQLoDjia9Is3kqAiW10ku6sovvPk0T+meE9Fw4YmFrOkctdQUij+3
- GoUTeMFuqCQNT3XM7BkK3duyy+fhWWmu1UlwfJMLE05laCJAlcjmgzJJiqqHRdtSJhlr
- tU9Vu9nj2rYKL9hT8YwsQO4h0E5rWahaaYcZTU9MI1Y+BUMiE/2jbYeDP5C6BpZg9JHz
- ZhT0l48BWqL15hFG8wzH77DuOq84vpllmsAvBjRxND01wHb8EScdYv+lLG27w47D9ZRo
- liTf7HUSR+M5vosu/C+5aRXjX/iuGOo+JBh7BXK6Ub7k0ccT/s76Xn9UloS2QvtC6V3Y
- xigQ==
+ bh=vcCZZI7Fx/fouPF1vAwaYuX2eO7FGNDq1t/0H72iI0M=;
+ b=EfEBvDaFTzktRravByStp7mc0W2HCHim8iEh4mxAad98jWHipGggq4m3MrHAciBQ1s
+ r+72JZNL442UUjZD4L7g3U5QPwONlWE1WsB1YXuYNONQSgh08XudFWXGAKMm2BAiKoPg
+ l6ve6Q2C8Zc/OJSI7fsWVbsTP4HUvlYeV9qrJk8GumntEONKuVWBFVdn0fmigevgbUZY
+ 8HZ5aKVzU6o2yUBJaJWT3VAW0+w6tUYWc3TBN4Dt9aOhYJDPJMrZ7FspUzZexli8mdve
+ tTR1zS2Dm6cBq3ahCP4cGcNeIqFsXp83XDpd7NugadDEp9Oy06trtjbs850gyQI8sGWV
+ 5nkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=6F1WwHEpK0n7vFFrLOrZPUqJUdj6ag0KBByva51RFIs=;
- b=fiA6dhy1mTdEP2jiO8mIzK4DTmU5uzHIVLlY6Yo9Wx39OBU++16QmLc3JjZJzSN16C
- y2ykryJ6Vef+MNlH9FdaEyUFmi4Mpt9pDh2xnBfUem1VvgNv/mP04B7cFPDonc7cN5+g
- 8FV/d/PFu6YgegHms4Ux4Xvatvx66jaNeB/VsV8ahclnBly3VACKwWLGJc3d4GlqTvOL
- 30ltLe4CYXo0avnfI6HztnCOx1cQ1hhLvN+DJhdqY2EdNWC3Dz10fu9g76r7WkN7EE3x
- oVT6Lcn47JDgCrhXnpvjKuC5MGFeNWACCaIJFXq2QZSb7A9Cs4JN62V51vdewZJaWrSL
- NR6w==
-X-Gm-Message-State: AOAM530RAZmlUylvNJ6RnQNVW5RWQVYmQc95A7hTx+HKB3GLy34gVS45
- 74azV8ZDi+1CsgoJj+Z0xTYkRT47
-X-Google-Smtp-Source: ABdhPJxyIs0vDcBSHURr4SoO+nLuxXPc2EwjEFTuVheECpq6PaRRzDAAetq6FSsG8ydQAI+PMTKWvQ==
-X-Received: by 2002:a37:607:: with SMTP id 7mr19877326qkg.385.1591035741532;
- Mon, 01 Jun 2020 11:22:21 -0700 (PDT)
+ bh=vcCZZI7Fx/fouPF1vAwaYuX2eO7FGNDq1t/0H72iI0M=;
+ b=XcYNXcLQkHyK7ImssfCWhVDhVNza5UAE8kf6z5BRJcUpmU4I25gFaRFRPopauAkvoj
+ um5+MR055/TZHbq2N5uMO+tk9AtwnDCA1G/ku617dvitEfvXzuxsRBL0yExpcjVM5vL9
+ d0oJkNG6vH670bYQKKJXgvw7qNTNStsb6vSek1Ea9uUmCFH375aCW0vFO7TXFnXwE5Gm
+ hQJmEIHBEH1XR/t58fYQimFuYvJ5XoBFBn+QWS+Wi4pJY2isnADoWwXKC6jtID7NwYXr
+ 8x9ceqcwPvMDTDgCgccba8/0wRTKEVKD+Kard8uxr/pt40v9oMwWVnftqG0V2wb8zXsR
+ /DPg==
+X-Gm-Message-State: AOAM530i7ehDJhCp/ff90inWQA/VokaEccDNAHaA2PKOCaENtrbGLVJO
+ SzjA+tOI0k98/YiyMfA4T0DcZPQs
+X-Google-Smtp-Source: ABdhPJyCaJmF7I1q/YiRz+zDvryWFzPVQhAIfTLo2hDf0YintY9qOcWwrmr1SkPoPNNhxO4EV0JtgQ==
+X-Received: by 2002:a0c:b44c:: with SMTP id e12mr21609909qvf.30.1591035742615; 
+ Mon, 01 Jun 2020 11:22:22 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.20
+ by smtp.gmail.com with ESMTPSA id w10sm106849qtc.15.2020.06.01.11.22.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2020 11:22:20 -0700 (PDT)
+ Mon, 01 Jun 2020 11:22:22 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 149/207] drm/amdgpu: add workaround for issue in DPG for VCN3.0
-Date: Mon,  1 Jun 2020 14:19:56 -0400
-Message-Id: <20200601182054.1267858-60-alexander.deucher@amd.com>
+Subject: [PATCH 150/207] drm/amdgpu: enable DPG mode for VCN3.0
+Date: Mon,  1 Jun 2020 14:19:57 -0400
+Message-Id: <20200601182054.1267858-61-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200601182054.1267858-1-alexander.deucher@amd.com>
 References: <20200601182054.1267858-1-alexander.deucher@amd.com>
@@ -75,7 +75,7 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Boyuan Zhang <boyuan.zhang@amd.com>
 
-To workaround an issue in DPG
+Enable DPG mode for VCN3.0 by updating related flag.
 
 V2: update description.
 
@@ -84,24 +84,47 @@ Reviewed-by: James Zhu <james.zhu@amd.com>
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/nv.c       | 1 +
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 7 +++++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 936950fbafda..ef3f07dc89cd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -726,6 +726,7 @@ static int nv_common_early_init(void *handle)
+ 			AMD_CG_SUPPORT_IH_CG |
+ 			AMD_CG_SUPPORT_MC_LS;
+ 		adev->pg_flags = AMD_PG_SUPPORT_VCN |
++			AMD_PG_SUPPORT_VCN_DPG |
+ 			AMD_PG_SUPPORT_JPEG |
+ 			AMD_PG_SUPPORT_ATHUB;
+ 		adev->external_rev_id = adev->rev_id + 0x28;
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-index c9b5d5a3e239..98ba6ddde823 100644
+index 98ba6ddde823..875bdc877c3d 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-@@ -1340,6 +1340,10 @@ static void vcn_v3_0_dec_ring_set_wptr(struct amdgpu_ring *ring)
- {
- 	struct amdgpu_device *adev = ring->adev;
+@@ -254,7 +254,8 @@ static int vcn_v3_0_hw_init(void *handle)
  
-+	if (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)
-+		WREG32_SOC15(VCN, ring->me, mmUVD_SCRATCH2,
-+			lower_32_bits(ring->wptr) | 0x80000000);
-+
- 	if (ring->use_doorbell) {
- 		adev->wb.wb[ring->wptr_offs] = lower_32_bits(ring->wptr);
- 		WDOORBELL32(ring->doorbell_index, lower_32_bits(ring->wptr));
+ done:
+ 	if (!r)
+-		DRM_INFO("VCN decode and encode initialized successfully.\n");
++		DRM_INFO("VCN decode and encode initialized successfully(under %s).\n",
++			(adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)?"DPG Mode":"SPG Mode");
+ 
+ 	return r;
+ }
+@@ -278,7 +279,9 @@ static int vcn_v3_0_hw_fini(void *handle)
+ 
+ 		ring = &adev->vcn.inst[i].ring_dec;
+ 
+-		if (RREG32_SOC15(VCN, i, mmUVD_STATUS))
++		if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
++			(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
++			RREG32_SOC15(VCN, i, mmUVD_STATUS)))
+ 			vcn_v3_0_set_powergating_state(adev, AMD_PG_STATE_GATE);
+ 
+ 		ring->sched.ready = false;
 -- 
 2.25.4
 
