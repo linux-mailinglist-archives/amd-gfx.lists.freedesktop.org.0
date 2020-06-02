@@ -1,57 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3522F1EBE41
-	for <lists+amd-gfx@lfdr.de>; Tue,  2 Jun 2020 16:36:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6967E1EBE3D
+	for <lists+amd-gfx@lfdr.de>; Tue,  2 Jun 2020 16:35:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B56916E3F5;
-	Tue,  2 Jun 2020 14:36:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E47036E3F3;
+	Tue,  2 Jun 2020 14:35:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com
- [IPv6:2607:f8b0:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38CB26E3F3;
- Tue,  2 Jun 2020 14:35:21 +0000 (UTC)
-Received: by mail-pf1-x442.google.com with SMTP id a4so5131317pfo.4;
- Tue, 02 Jun 2020 07:35:21 -0700 (PDT)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 868B56E3F3
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2020 14:35:55 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id d128so3390525wmc.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 02 Jun 2020 07:35:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=mYlS2iciwsHXiaofbZsld8ptg5tb8qfGANhtOourZvI=;
- b=mSXSlqHydsbU5VJwZsklBYuOKu4DgisHccVnCvpwG7iUPxHWtWHxBjW86nVTGr7ZUH
- T54oYG/OKUn/YXneO0NPQFRHQwMUAv7mie5yg2mtH6tJvM9m0nhsAM/N0mAPoAUYHDPl
- bhig6+z0feWmjC+0y1eO/hG48+JaRBp3QZS2G8IcS4CVypUA2mM0HsOPG64Sf0/yX/MZ
- y8HGSOlPfafdSiyijkDbRiiBBAMRpuUe6/xPYCACNg9LL/6uJwjM3t5eHV2D0FvlqP7A
- 2OSM36Icybzzkw9UXW49MiJw28t+ha37NRdx39sIVnk8u98X6zjr55Q+rdJ/qpm37DH6
- vjAQ==
+ :cc; bh=m3AlOrhw7KigbajhAs4e2difp/dv7u4ZBDcbKHEYJ/Q=;
+ b=VffLUyqADMeVAaGUij43GUUQLIrsh8oedA8aUiX0/1SzmX2nEOSgobFS6SqgvJBqik
+ iTS4eid6aH9s3Tx2b7Lv3vhaw9MenQM4ln349vdCoXT80e71dFRNyx/yNL7y//D5V2C4
+ jWuqXHCNxH8ReOhaOolLseTt1s67mPDYoHKHx5m8ldSehQVtzJytuWL4vHtL3lTt/h6M
+ h9o/2EeVTEejRJLfFHHLHpvi7ENiTLnlkNyR47NjJAz3vts3utVb9uf2oUIqaRLDAkP4
+ fFCPrj1xkzeOG93Em4koXaOBn6qVHbHctlqbr1RoaqZyMNSAn2P9KDRPEmeEmnpkTjcY
+ /6MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=mYlS2iciwsHXiaofbZsld8ptg5tb8qfGANhtOourZvI=;
- b=fkF3REqTiaKJRHM4SO4SnSAp2wDONADZ6XtOqqMLacPOfNUQEqAxN2mw8BAysoIiSu
- dgLNQWc86A2vq2SzlG8piNYAmUh3K11IWJWlkkGaDpv1+qteixMn+jywry7UAThkH+yc
- Ybz6FMlYt0ph4n2PYBCHZL+AsCdQNwg+UPEa8lOd81184BmtD8HyPeZNJZcAmytBMvfb
- MfPhpKj9W2hjYZSW8a66OSHDiM0CSzI2o3LYVLFCJI0+WFOFJRCPUMWDbTtZN9oXVldl
- jHsR0jkdY7l8f7R3G6DxKG0YGLbvhwZp25d8ouGJo4Mdi0dUsyiteWGR/Gap6SMCL1rZ
- Pe0A==
-X-Gm-Message-State: AOAM532rFSGX8zsEScc3/PxmZUqMb0S6vgcFp1JWl3x4c3MBcweBlfpb
- 72v7sBeiaNkhPVPRnP9iNvwDfLhOXzjtcKacmSM=
-X-Google-Smtp-Source: ABdhPJyCpwadTio0lN2T0Sanps9T+uhOtWpM2pkaVVZ+ZtL107eRbrGhBVpEicozrQekDLdG1bZ231XwC1g/LIyNQqE=
-X-Received: by 2002:a63:305:: with SMTP id 5mr23614425pgd.74.1591108520518;
- Tue, 02 Jun 2020 07:35:20 -0700 (PDT)
+ bh=m3AlOrhw7KigbajhAs4e2difp/dv7u4ZBDcbKHEYJ/Q=;
+ b=tbmoXXWLe4yCgLbMA3WzDG5Pzb+puh6mZ74RI9npMAJUEO9QcS4JzgluWUZy6EbxfI
+ AnXN1dkLzOFEqDuyOExXRHEACq8prpHD9dYviCH57kDPuXfsDSRxSSax+SwrVzDZK8MM
+ o1PlkwcWAcr6Iwdo6u1gUfM1eREDm/kfOPwR8bEC/5zehUW8m50MWu7WOkcKpFhQI7ip
+ kNsmJ4/cCuaRybhTnYydxe326kvZCF5RC8iln3yWHDiF3EIISlV8ws3KrhJiFEDISoFq
+ 0eIQkHkmJHl5jfuOP3iTDYH9wr+RlczR0/6H4Zq5f+fx3+TbwUY0laLrgJOLgONrl5G4
+ TGLw==
+X-Gm-Message-State: AOAM530E6f0F/wWHgcpU2VSlZEkUPwXZpx2B440MgqjDZp3frCHhdZWh
+ a21UQ3UG5mcTdvE8o+bm+h96OpvVuedO6LEHrSY0Uh1F
+X-Google-Smtp-Source: ABdhPJxfbnKQyQnbp2BRc1za57KX5McnTtGG4xTest4QDUzJxOUBsIAK0OFjPxs4H4lnEPJVukqQqLv4Z3tKgmXFgQo=
+X-Received: by 2002:a1c:29c4:: with SMTP id p187mr4387063wmp.73.1591108554218; 
+ Tue, 02 Jun 2020 07:35:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200602092030.31966-1-piotr.stankiewicz@intel.com>
- <14063C7AD467DE4B82DEDB5C278E8663010E23E538@FMSMSX108.amr.corp.intel.com>
- <CAHp75Vfe5dQkOiFoAZx5b-NS1afiD-YC_w+5LcX8P1Hm0ASenA@mail.gmail.com>
- <CADnq5_OO=gyo22ZrXp6pDtz2QZ2=LC429u_kkd0ZvX4=M3mBPw@mail.gmail.com>
-In-Reply-To: <CADnq5_OO=gyo22ZrXp6pDtz2QZ2=LC429u_kkd0ZvX4=M3mBPw@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 2 Jun 2020 17:35:08 +0300
-Message-ID: <CAHp75Vd1zVt7F2+44EFPHOrCOzexe=mLaiZixqJR9NNK9-wNQg@mail.gmail.com>
-Subject: Re: [PATCH 07/15] drm/amdgpu: use PCI_IRQ_MSI_TYPES where appropriate
-To: Alex Deucher <alexdeucher@gmail.com>
-X-Mailman-Approved-At: Tue, 02 Jun 2020 14:36:29 +0000
+References: <1590722887-9333-1-git-send-email-Prike.Liang@amd.com>
+ <BY5PR12MB430719B6351D4AD64215A7CBFB8B0@BY5PR12MB4307.namprd12.prod.outlook.com>
+ <CADnq5_Nndacwux6UQMXBvBPOxLLGT-gnMHOjoHr1u-YGed696Q@mail.gmail.com>
+ <BY5PR12MB43079E7A642EF6CAD9382393FB8B0@BY5PR12MB4307.namprd12.prod.outlook.com>
+In-Reply-To: <BY5PR12MB43079E7A642EF6CAD9382393FB8B0@BY5PR12MB4307.namprd12.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 2 Jun 2020 10:35:43 -0400
+Message-ID: <CADnq5_MGy2fOXs7q5Y8QEEPW4EPu_zwXeP6Wi1K0scvb3DmkVg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: enable renoir discovery for gc info retrieved
+To: "Liang, Prike" <Prike.Liang@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,69 +62,156 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Ruhl,
- Michael J" <michael.j.ruhl@intel.com>, "Stankiewicz,
- Piotr" <piotr.stankiewicz@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Huang,
+ Ray" <Ray.Huang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 2, 2020 at 5:21 PM Alex Deucher <alexdeucher@gmail.com> wrote:
-> On Tue, Jun 2, 2020 at 10:00 AM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Tue, Jun 2, 2020 at 4:38 PM Ruhl, Michael J <michael.j.ruhl@intel.com> wrote:
-> > > >From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of
-> > > >Piotr Stankiewicz
-
-> > > >               int nvec = pci_msix_vec_count(adev->pdev);
-> > > >               unsigned int flags;
-> > > >
-> > > >-              if (nvec <= 0) {
-> > > >+              if (nvec > 0)
-> > > >+                      flags = PCI_IRQ_MSI_TYPES;
-> > > >+              else
-> > > >                       flags = PCI_IRQ_MSI;
-> > > >-              } else {
-> > > >-                      flags = PCI_IRQ_MSI | PCI_IRQ_MSIX;
-> > > >-              }
-> > >
-> > > Minor nit:
-> > >
-> > > Is it really necessary to set do this check?  Can flags just
-> > > be set?
-> > >
-> > > I.e.:
-> > >         flags = PCI_IRQ_MSI_TYPES;
-> > >
-> > > pci_alloc_irq_vector() tries stuff in order.  If MSIX is not available,
-> > > it will try MSI.
-> >
-> > That's also what I proposed earlier. But I suggested as well to wait
-> > for AMD people to confirm that neither pci_msix_vec_count() nor flags
-> > is needed and we can directly supply MSI_TYPES to the below call.
-> >
+On Tue, Jun 2, 2020 at 9:56 AM Liang, Prike <Prike.Liang@amd.com> wrote:
 >
-> I think it was leftover from debugging and just to be careful.  We had
-> some issues when we originally enabled MSI-X on certain boards.  The
-> fix was to just allocate a single vector (since that is all we use
-> anyway) and we were using the wrong irq (pdev->irq vs
-> pci_irq_vector(pdev, 0)).
+> [AMD Official Use Only - Internal Distribution Only]
+>
+> Ah not aware the enable patch before. But the already enable patch seems can't fallback to legacy gpuinfo FW load method when not support discovery and also may miss destroy the discovery_bin object when driver shut down.
+>
 
-Do you agree that simple
+I think it's already handled.  See these patches:
+https://cgit.freedesktop.org/~agd5f/linux/commit/?h=amd-staging-drm-next&id=4d09621cc55bcec9ec0aa038c8ffcffd2017837f
+https://cgit.freedesktop.org/~agd5f/linux/commit/?h=amd-staging-drm-next&id=6206aa0f74e7d22ca43975bd8f2979cdfd128b40
 
-  nvec = pci_alloc_irq_vectors(adev->pdev, 1, 1, PCI_IRQ_MSI_TYPES);
+Alex
 
-will work and we can remove that leftover?
-
--- 
-With Best Regards,
-Andy Shevchenko
+> Thanks,
+> Prike
+> > -----Original Message-----
+> > From: Alex Deucher <alexdeucher@gmail.com>
+> > Sent: Tuesday, June 2, 2020 9:35 PM
+> > To: Liang, Prike <Prike.Liang@amd.com>
+> > Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander
+> > <Alexander.Deucher@amd.com>; Huang, Ray <Ray.Huang@amd.com>
+> > Subject: Re: [PATCH] drm/amdgpu: enable renoir discovery for gc info
+> > retrieved
+> >
+> > On Mon, Jun 1, 2020 at 10:14 PM Liang, Prike <Prike.Liang@amd.com> wrote:
+> > >
+> > > [AMD Official Use Only - Internal Distribution Only]
+> > >
+> > > Ping...
+> >
+> > Already enabled:
+> > https://nam11.safelinks.protection.outlook.com/?url=https:%2F%2Fcgit.free
+> > desktop.org%2F~agd5f%2Flinux%2Fcommit%2F%3Fh%3Damd-staging-drm-
+> > next%26id%3De467ab869f5783cf93d4cf24c6ac647cc29d1fb5&amp;data=02%
+> > 7C01%7CPrike.Liang%40amd.com%7C5bcc45116bb042163cec08d806f9bd58
+> > %7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637267016987033
+> > 430&amp;sdata=KJ0xmSPXwlZ4LEfhAYoFzAwaWyx3laoLAsQccMM0pcs%3D&
+> > amp;reserved=0
+> >
+> > Alex
+> >
+> > >
+> > > Thanks,
+> > > > -----Original Message-----
+> > > > From: Liang, Prike <Prike.Liang@amd.com>
+> > > > Sent: Friday, May 29, 2020 11:28 AM
+> > > > To: amd-gfx@lists.freedesktop.org
+> > > > Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Huang, Ray
+> > > > <Ray.Huang@amd.com>; Liang, Prike <Prike.Liang@amd.com>
+> > > > Subject: [PATCH] drm/amdgpu: enable renoir discovery for gc info
+> > > > retrieved
+> > > >
+> > > > Use ip discovery GC table instead of gpu info firmware for exporting
+> > > > gpu info to inquire interface.As Renoir discovery has same version
+> > > > with Navi1x therefore just enable it same way as Navi1x.
+> > > >
+> > > > Signed-off-by: Prike.Liang <Prike.Liang@amd.com>
+> > > > ---
+> > > >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 23
+> > > > ++++++++++++++++++++---
+> > > >  1 file changed, 20 insertions(+), 3 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > > index 2f0e8da..bff740ccd 100644
+> > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > > @@ -1528,7 +1528,7 @@ static int
+> > > > amdgpu_device_parse_gpu_info_fw(struct amdgpu_device *adev)  {
+> > > > const char *chip_name;  char fw_name[30]; -int err;
+> > > > +int err, r;
+> > > >  const struct gpu_info_firmware_header_v1_0 *hdr;
+> > > >
+> > > >  adev->firmware.gpu_info_fw = NULL;
+> > > > @@ -1578,6 +1578,23 @@ static int
+> > > > amdgpu_device_parse_gpu_info_fw(struct amdgpu_device *adev)
+> > > > chip_name = "arcturus";  break;  case CHIP_RENOIR:
+> > > > +if (amdgpu_discovery) {
+> > > > +/**
+> > > > + * For RENOIR series seems needn't reinitialize the reg base
+> > > > again as it already set during
+> > > > + * early init,if any concern here will need export
+> > > > amdgpu_discovery_init() for this case.
+> > > > + */
+> > > > +r = amdgpu_discovery_reg_base_init(adev);
+> > > > +if (r) {
+> > > > +DRM_WARN("failed to get ip discovery table,
+> > > > "
+> > > > +"fallback to get gpu info in legacy
+> > > > method\n");
+> > > > +goto legacy_gpuinfo;
+> > > > +}
+> > > > +
+> > > > +amdgpu_discovery_get_gfx_info(adev);
+> > > > +
+> > > > +return 0;
+> > > > +}
+> > > > +legacy_gpuinfo:
+> > > >  chip_name = "renoir";
+> > > >  break;
+> > > >  case CHIP_NAVI10:
+> > > > @@ -1617,7 +1634,7 @@ static int
+> > > > amdgpu_device_parse_gpu_info_fw(struct amdgpu_device *adev)  (const
+> > > > struct gpu_info_firmware_v1_0 *)(adev-
+> > > > >firmware.gpu_info_fw->data +
+> > > >
+> > > > le32_to_cpu(hdr->header.ucode_array_offset_bytes));
+> > > >
+> > > > -if (amdgpu_discovery && adev->asic_type >= CHIP_NAVI10) {
+> > > > +if (amdgpu_discovery && adev->asic_type >= CHIP_RENOIR
+> > > > && !r) {
+> > > >  amdgpu_discovery_get_gfx_info(adev);
+> > > >  goto parse_soc_bounding_box;
+> > > >  }
+> > > > @@ -3364,7 +3381,7 @@ void amdgpu_device_fini(struct
+> > amdgpu_device
+> > > > *adev)
+> > > >  sysfs_remove_files(&adev->dev->kobj, amdgpu_dev_attributes);  if
+> > > > (IS_ENABLED(CONFIG_PERF_EVENTS))  amdgpu_pmu_fini(adev); -if
+> > > > (amdgpu_discovery && adev->asic_type >= CHIP_NAVI10)
+> > > > +if (amdgpu_discovery && adev->asic_type >= CHIP_RENOIR)
+> > > >  amdgpu_discovery_fini(adev);
+> > > >  }
+> > > >
+> > > > --
+> > > > 2.7.4
+> > >
+> > > _______________________________________________
+> > > amd-gfx mailing list
+> > > amd-gfx@lists.freedesktop.org
+> > > https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flist
+> > > s.freedesktop.org%2Fmailman%2Flistinfo%2Famd-
+> > gfx&amp;data=02%7C01%7CPr
+> > >
+> > ike.Liang%40amd.com%7C5bcc45116bb042163cec08d806f9bd58%7C3dd896
+> > 1fe4884
+> > >
+> > e608e11a82d994e183d%7C0%7C0%7C637267016987033430&amp;sdata=R%
+> > 2F%2BY%2B
+> > >
+> > z%2BKHh09WazkQqS%2FbwH%2BeBM97%2Fx5hvqWAjUYEtM%3D&amp;res
+> > erved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
