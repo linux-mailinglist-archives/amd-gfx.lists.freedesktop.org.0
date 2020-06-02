@@ -1,54 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7D21EBE2F
-	for <lists+amd-gfx@lfdr.de>; Tue,  2 Jun 2020 16:32:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3522F1EBE41
+	for <lists+amd-gfx@lfdr.de>; Tue,  2 Jun 2020 16:36:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B99B96E3F0;
-	Tue,  2 Jun 2020 14:32:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B56916E3F5;
+	Tue,  2 Jun 2020 14:36:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99E846E3F0
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2020 14:32:46 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id d128so3379171wmc.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 02 Jun 2020 07:32:46 -0700 (PDT)
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com
+ [IPv6:2607:f8b0:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38CB26E3F3;
+ Tue,  2 Jun 2020 14:35:21 +0000 (UTC)
+Received: by mail-pf1-x442.google.com with SMTP id a4so5131317pfo.4;
+ Tue, 02 Jun 2020 07:35:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Pf9U0xu97gNdFtPjIGR38qEJWn/idB+yZFWdxgQw2/E=;
- b=V5O3fcjhwieYn0kOV88EjhHEwjiJuV+IQrF/t56MZumkNU4VIH6kC2kyMfgxwmbk3O
- zYQhs/6mJ/2M05Rq39Ucb4/0hWEGda3jKmAYkXrQSLxdCk2xWLp5sDTTKdozhvQUEyJq
- 9CuITgQfCn6FbGWFV8HdDZqvAUIrPTmZbEJIa2y7ld1udRMrs0EtFnJ+6P7WBZfvt01r
- FoxDUx+5l4feqcJwAjcY0BwIFP7iF4MmtN72qrp2VSgMQgJekci9R19SBVlTEqYaR21X
- kYgr5I65oJyd7uldtxVVdeTS4jvU8obo6Zx04PLUjDP+Wc3aN8HZqJiLJ7AH3PPnEZTZ
- bQ9g==
+ :cc; bh=mYlS2iciwsHXiaofbZsld8ptg5tb8qfGANhtOourZvI=;
+ b=mSXSlqHydsbU5VJwZsklBYuOKu4DgisHccVnCvpwG7iUPxHWtWHxBjW86nVTGr7ZUH
+ T54oYG/OKUn/YXneO0NPQFRHQwMUAv7mie5yg2mtH6tJvM9m0nhsAM/N0mAPoAUYHDPl
+ bhig6+z0feWmjC+0y1eO/hG48+JaRBp3QZS2G8IcS4CVypUA2mM0HsOPG64Sf0/yX/MZ
+ y8HGSOlPfafdSiyijkDbRiiBBAMRpuUe6/xPYCACNg9LL/6uJwjM3t5eHV2D0FvlqP7A
+ 2OSM36Icybzzkw9UXW49MiJw28t+ha37NRdx39sIVnk8u98X6zjr55Q+rdJ/qpm37DH6
+ vjAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Pf9U0xu97gNdFtPjIGR38qEJWn/idB+yZFWdxgQw2/E=;
- b=uCLEESbdIAhK6gxIoeHnXx55OSNE8gHrBBpcTU4X5TR00HTRonHtZTf8xlapxltL3k
- 18EVd6nFbSVnnlDwGoaTQwg4CCFRFLIC6w9sf8ABHe/YGGd7HnGrKHCEVbkdWRvelghJ
- OU/Se+SLW6VFJXNQNfHCOou9LqYM0kenSoqWbqTqtXlrc9KipV26QjwGIIoj2gWBzQLA
- 8ahJAJFodKG25ro5mAAu8M6OHQ266ioJPFKaQkgRUSWyXhV7ORHVpn734BQm7yaIXRX1
- XyAQelKrLdMpU6vLKy3SX4reYyV7mbtWAdGJn9BYPNpbrEafk6q4vm0I0s03OaH3t16U
- nEZg==
-X-Gm-Message-State: AOAM530zClvGdHnmVMcoaDPMSNW0pJOOhgnEcbMxErdEohJMAC2vgDPC
- k6jAQnJh5E1G4Bu0TDGnLvoc5/JpvsBkr90hCsBGCg==
-X-Google-Smtp-Source: ABdhPJznm6n2EbkWRifbC5wLUQ2Jmg9mW44ZEZhfaJ2+I37rQ76UU4Q7dAE7mhkYdvkBZT+vdy5hVAHSgzrj1udiH20=
-X-Received: by 2002:a7b:cd96:: with SMTP id y22mr4478219wmj.56.1591108365276; 
- Tue, 02 Jun 2020 07:32:45 -0700 (PDT)
+ bh=mYlS2iciwsHXiaofbZsld8ptg5tb8qfGANhtOourZvI=;
+ b=fkF3REqTiaKJRHM4SO4SnSAp2wDONADZ6XtOqqMLacPOfNUQEqAxN2mw8BAysoIiSu
+ dgLNQWc86A2vq2SzlG8piNYAmUh3K11IWJWlkkGaDpv1+qteixMn+jywry7UAThkH+yc
+ Ybz6FMlYt0ph4n2PYBCHZL+AsCdQNwg+UPEa8lOd81184BmtD8HyPeZNJZcAmytBMvfb
+ MfPhpKj9W2hjYZSW8a66OSHDiM0CSzI2o3LYVLFCJI0+WFOFJRCPUMWDbTtZN9oXVldl
+ jHsR0jkdY7l8f7R3G6DxKG0YGLbvhwZp25d8ouGJo4Mdi0dUsyiteWGR/Gap6SMCL1rZ
+ Pe0A==
+X-Gm-Message-State: AOAM532rFSGX8zsEScc3/PxmZUqMb0S6vgcFp1JWl3x4c3MBcweBlfpb
+ 72v7sBeiaNkhPVPRnP9iNvwDfLhOXzjtcKacmSM=
+X-Google-Smtp-Source: ABdhPJyCpwadTio0lN2T0Sanps9T+uhOtWpM2pkaVVZ+ZtL107eRbrGhBVpEicozrQekDLdG1bZ231XwC1g/LIyNQqE=
+X-Received: by 2002:a63:305:: with SMTP id 5mr23614425pgd.74.1591108520518;
+ Tue, 02 Jun 2020 07:35:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <1591020460-7020-1-git-send-email-ray.huang@amd.com>
-In-Reply-To: <1591020460-7020-1-git-send-email-ray.huang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 2 Jun 2020 10:32:34 -0400
-Message-ID: <CADnq5_NxX3rkAc__c+BZWJZSmhHuH+Bw-Y+zaQNc4M-W9nVVjg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/powerplay: use existed smu_dpm_set* interfaces to
- implement powergate functions
-To: Huang Rui <ray.huang@amd.com>
+References: <20200602092030.31966-1-piotr.stankiewicz@intel.com>
+ <14063C7AD467DE4B82DEDB5C278E8663010E23E538@FMSMSX108.amr.corp.intel.com>
+ <CAHp75Vfe5dQkOiFoAZx5b-NS1afiD-YC_w+5LcX8P1Hm0ASenA@mail.gmail.com>
+ <CADnq5_OO=gyo22ZrXp6pDtz2QZ2=LC429u_kkd0ZvX4=M3mBPw@mail.gmail.com>
+In-Reply-To: <CADnq5_OO=gyo22ZrXp6pDtz2QZ2=LC429u_kkd0ZvX4=M3mBPw@mail.gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 2 Jun 2020 17:35:08 +0300
+Message-ID: <CAHp75Vd1zVt7F2+44EFPHOrCOzexe=mLaiZixqJR9NNK9-wNQg@mail.gmail.com>
+Subject: Re: [PATCH 07/15] drm/amdgpu: use PCI_IRQ_MSI_TYPES where appropriate
+To: Alex Deucher <alexdeucher@gmail.com>
+X-Mailman-Approved-At: Tue, 02 Jun 2020 14:36:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,142 +63,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: David Airlie <airlied@linux.ie>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Ruhl,
+ Michael J" <michael.j.ruhl@intel.com>, "Stankiewicz,
+ Piotr" <piotr.stankiewicz@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 1, 2020 at 10:08 AM Huang Rui <ray.huang@amd.com> wrote:
->
-> Abstract powergate_vcn/jpeg functions, using smu_dpm_set* to implement it.
->
-> Signed-off-by: Huang Rui <ray.huang@amd.com>
-> Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
+On Tue, Jun 2, 2020 at 5:21 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+> On Tue, Jun 2, 2020 at 10:00 AM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> > On Tue, Jun 2, 2020 at 4:38 PM Ruhl, Michael J <michael.j.ruhl@intel.com> wrote:
+> > > >From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of
+> > > >Piotr Stankiewicz
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+> > > >               int nvec = pci_msix_vec_count(adev->pdev);
+> > > >               unsigned int flags;
+> > > >
+> > > >-              if (nvec <= 0) {
+> > > >+              if (nvec > 0)
+> > > >+                      flags = PCI_IRQ_MSI_TYPES;
+> > > >+              else
+> > > >                       flags = PCI_IRQ_MSI;
+> > > >-              } else {
+> > > >-                      flags = PCI_IRQ_MSI | PCI_IRQ_MSIX;
+> > > >-              }
+> > >
+> > > Minor nit:
+> > >
+> > > Is it really necessary to set do this check?  Can flags just
+> > > be set?
+> > >
+> > > I.e.:
+> > >         flags = PCI_IRQ_MSI_TYPES;
+> > >
+> > > pci_alloc_irq_vector() tries stuff in order.  If MSIX is not available,
+> > > it will try MSI.
+> >
+> > That's also what I proposed earlier. But I suggested as well to wait
+> > for AMD people to confirm that neither pci_msix_vec_count() nor flags
+> > is needed and we can directly supply MSI_TYPES to the below call.
+> >
+>
+> I think it was leftover from debugging and just to be careful.  We had
+> some issues when we originally enabled MSI-X on certain boards.  The
+> fix was to just allocate a single vector (since that is all we use
+> anyway) and we were using the wrong irq (pdev->irq vs
+> pci_irq_vector(pdev, 0)).
 
-> ---
->  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c     | 16 ++++++++++++++++
->  drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h |  2 --
->  drivers/gpu/drm/amd/powerplay/renoir_ppt.c     |  2 --
->  drivers/gpu/drm/amd/powerplay/smu_internal.h   |  7 +++----
->  drivers/gpu/drm/amd/powerplay/smu_v12_0.c      | 22 ----------------------
->  5 files changed, 19 insertions(+), 30 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> index 3bb6ab4..846d099 100644
-> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> @@ -2736,3 +2736,19 @@ uint32_t smu_get_pptable_power_limit(struct smu_context *smu)
->
->         return ret;
->  }
-> +
-> +int smu_powergate_vcn(struct smu_context *smu, bool gate)
-> +{
-> +       if (!smu->is_apu)
-> +               return 0;
-> +
-> +       return smu_dpm_set_uvd_enable(smu, !gate);
-> +}
-> +
-> +int smu_powergate_jpeg(struct smu_context *smu, bool gate)
-> +{
-> +       if (!smu->is_apu)
-> +               return 0;
-> +
-> +       return smu_dpm_set_jpeg_enable(smu, !gate);
-> +}
-> diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-> index ae2c318..e68d554 100644
-> --- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-> +++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-> @@ -508,8 +508,6 @@ struct pptable_funcs {
->         int (*populate_smc_tables)(struct smu_context *smu);
->         int (*check_fw_version)(struct smu_context *smu);
->         int (*powergate_sdma)(struct smu_context *smu, bool gate);
-> -       int (*powergate_vcn)(struct smu_context *smu, bool gate);
-> -       int (*powergate_jpeg)(struct smu_context *smu, bool gate);
->         int (*set_gfx_cgpg)(struct smu_context *smu, bool enable);
->         int (*write_pptable)(struct smu_context *smu);
->         int (*set_min_dcef_deep_sleep)(struct smu_context *smu);
-> diff --git a/drivers/gpu/drm/amd/powerplay/renoir_ppt.c b/drivers/gpu/drm/amd/powerplay/renoir_ppt.c
-> index 95eb445..6241d2e 100644
-> --- a/drivers/gpu/drm/amd/powerplay/renoir_ppt.c
-> +++ b/drivers/gpu/drm/amd/powerplay/renoir_ppt.c
-> @@ -930,8 +930,6 @@ static const struct pptable_funcs renoir_ppt_funcs = {
->         .check_fw_status = smu_v12_0_check_fw_status,
->         .check_fw_version = smu_v12_0_check_fw_version,
->         .powergate_sdma = smu_v12_0_powergate_sdma,
-> -       .powergate_vcn = smu_v12_0_powergate_vcn,
-> -       .powergate_jpeg = smu_v12_0_powergate_jpeg,
->         .send_smc_msg_with_param = smu_v12_0_send_msg_with_param,
->         .set_gfx_cgpg = smu_v12_0_set_gfx_cgpg,
->         .gfx_off_control = smu_v12_0_gfx_off_control,
-> diff --git a/drivers/gpu/drm/amd/powerplay/smu_internal.h b/drivers/gpu/drm/amd/powerplay/smu_internal.h
-> index 40c35bc..2889eb2 100644
-> --- a/drivers/gpu/drm/amd/powerplay/smu_internal.h
-> +++ b/drivers/gpu/drm/amd/powerplay/smu_internal.h
-> @@ -40,10 +40,6 @@
->         ((smu)->ppt_funcs->setup_pptable ? (smu)->ppt_funcs->setup_pptable((smu)) : 0)
->  #define smu_powergate_sdma(smu, gate) \
->         ((smu)->ppt_funcs->powergate_sdma ? (smu)->ppt_funcs->powergate_sdma((smu), (gate)) : 0)
-> -#define smu_powergate_vcn(smu, gate) \
-> -       ((smu)->ppt_funcs->powergate_vcn ? (smu)->ppt_funcs->powergate_vcn((smu), (gate)) : 0)
-> -#define smu_powergate_jpeg(smu, gate) \
-> -       ((smu)->ppt_funcs->powergate_jpeg ? (smu)->ppt_funcs->powergate_jpeg((smu), (gate)) : 0)
->
->  #define smu_get_vbios_bootup_values(smu) \
->         ((smu)->ppt_funcs->get_vbios_bootup_values ? (smu)->ppt_funcs->get_vbios_bootup_values((smu)) : 0)
-> @@ -214,4 +210,7 @@ static inline int smu_send_smc_msg(struct smu_context *smu, enum smu_message_typ
->  #define smu_set_power_source(smu, power_src) \
->         ((smu)->ppt_funcs->set_power_source ? (smu)->ppt_funcs->set_power_source((smu), (power_src)) : 0)
->
-> +int smu_powergate_vcn(struct smu_context *smu, bool gate);
-> +int smu_powergate_jpeg(struct smu_context *smu, bool gate);
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/amd/powerplay/smu_v12_0.c b/drivers/gpu/drm/amd/powerplay/smu_v12_0.c
-> index 4fc68d4..7c3da532 100644
-> --- a/drivers/gpu/drm/amd/powerplay/smu_v12_0.c
-> +++ b/drivers/gpu/drm/amd/powerplay/smu_v12_0.c
-> @@ -182,28 +182,6 @@ int smu_v12_0_powergate_sdma(struct smu_context *smu, bool gate)
->                 return smu_send_smc_msg(smu, SMU_MSG_PowerUpSdma, NULL);
->  }
->
-> -int smu_v12_0_powergate_vcn(struct smu_context *smu, bool gate)
-> -{
-> -       if (!smu->is_apu)
-> -               return 0;
-> -
-> -       if (gate)
-> -               return smu_send_smc_msg(smu, SMU_MSG_PowerDownVcn, NULL);
-> -       else
-> -               return smu_send_smc_msg(smu, SMU_MSG_PowerUpVcn, NULL);
-> -}
-> -
-> -int smu_v12_0_powergate_jpeg(struct smu_context *smu, bool gate)
-> -{
-> -       if (!smu->is_apu)
-> -               return 0;
-> -
-> -       if (gate)
-> -               return smu_send_smc_msg_with_param(smu, SMU_MSG_PowerDownJpeg, 0, NULL);
-> -       else
-> -               return smu_send_smc_msg_with_param(smu, SMU_MSG_PowerUpJpeg, 0, NULL);
-> -}
-> -
->  int smu_v12_0_set_gfx_cgpg(struct smu_context *smu, bool enable)
->  {
->         if (!(smu->adev->pg_flags & AMD_PG_SUPPORT_GFX_PG))
-> --
-> 2.7.4
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+Do you agree that simple
+
+  nvec = pci_alloc_irq_vectors(adev->pdev, 1, 1, PCI_IRQ_MSI_TYPES);
+
+will work and we can remove that leftover?
+
+-- 
+With Best Regards,
+Andy Shevchenko
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
