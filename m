@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 688A31EECBD
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Jun 2020 23:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E02891EED33
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Jun 2020 23:15:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13D516E5C1;
-	Thu,  4 Jun 2020 21:02:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7B46E5C8;
+	Thu,  4 Jun 2020 21:15:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95F976E5C1
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 21:02:21 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id u13so6549249wml.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Jun 2020 14:02:21 -0700 (PDT)
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com
+ [IPv6:2a00:1450:4864:20::642])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78D6A6E5C8
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 21:15:27 +0000 (UTC)
+Received: by mail-ej1-x642.google.com with SMTP id q19so7650546eja.7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Jun 2020 14:15:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1/aUBcPsWx9fd2spnnTKNeWeRLHbIkxTWuZFOV81/mw=;
- b=qD7qc97h4p4NSkEJ0Hk+iu2hiqVreCIo6MIylEahhYu2zvg15oM7WtoDWackSMkazB
- eG3uz/hnsGxGDSjlT+pQreInk2GbgZS3GiuJwe8PnTW+R3PVnqi4ZN5gToZKHAWdSb+b
- 9oGFmVp+CeffPKUGbevT4H1LWkQv3F3J3tUxyjf/PR+wtmO+JHcwrQ6lKSXFVYi09Q5Z
- U+/IH+3NmG7VpPkpKGr1lEc7RFDNky/kSTmfoxixxxGYMFC4aIgq4w7V0kjwZ8Q0iMdj
- AY4v+QsxqV1bl8AkCcjDEsR50ORE3dJJNVTHu599K9ihYAx+cnGuUW8mjmx2SbLk2UeM
- ZLjQ==
+ :cc; bh=c7jYt3PQwDFzvuTblloMkGQAsy1Fr8UAR/xsXwx5jq0=;
+ b=WI9ObQlZsxG458u0VHTArPCgq8wPX7IIlKuzSmQzvpng+TcS0I0JUD7pqKI8ZyhXmb
+ 5tkRRLS6Dz4DMRbVk3gyh0try/KrqLrYSjdJr3+ppkh9ElEr0HkfBt8c7RmUAmd6HBWq
+ k2JbXNxSTxWRxmxIe17GcjsNOudO7KkQz+tToXc/ph61Vg9kpFGdyX2RFPNAkkZgk2CD
+ b3/tpzmCGKyUDa0zCL+qZggz97is8SeJN4ZYhFhi2F0VRO+dh0Z5RJL5drQ9cKNfgmg3
+ LkPEAxBiKiMexsc7JrgWirSVLAiOBUgVXVSCniz1S01aI5TZoUR9giOArtz/Ryfk7wXa
+ Rl4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=1/aUBcPsWx9fd2spnnTKNeWeRLHbIkxTWuZFOV81/mw=;
- b=koIqK7H04fKqR21K2ZURaXzqYS76pVjadEIxOVTqEbKMUgPgJ1T7Ji0Io0MUHTyxi+
- BfbjVQztblRKKoBMJ11ohhYiOkV4lEqlPnBlXf4c3tOgPdhyiWtdVTXl+p54/twu5kv4
- i18qli1ygrrW28V5Agpx0rrouvP992jwIdsbsqm2m4bYA9SLCMjaTTo+I0hRbym29acq
- 5xxhzVGb+GoiUR4qwSbgcblDXW5ZW//W1eFPPioBsbKEtDXne6EP8A+1+1R7E+hgONsP
- be/gSz0gt8zG7XXnP81COlvNY5BM6KooHDmXl6LzNzPWpMxrAQQvuC2mHKns72r2d7y+
- NXnw==
-X-Gm-Message-State: AOAM533/Id9YUDI4P4EFXPuKb5cJ9ffzXq2N5OrdyPgT983yDUaoai1E
- 9raxOT+I9LIEyc+7zjDozx+AVLaER4ZrxnnoXlzks40l
-X-Google-Smtp-Source: ABdhPJx29CKNY5Pex2EBS5u0IXpdm8Yg+890SIjF5ZzBI98MWK3VOONMjHbTW0QPbNSYPLwAkab+7pY+PE0JxPxn9Gc=
-X-Received: by 2002:a7b:cd96:: with SMTP id y22mr5834841wmj.56.1591304540194; 
- Thu, 04 Jun 2020 14:02:20 -0700 (PDT)
+ bh=c7jYt3PQwDFzvuTblloMkGQAsy1Fr8UAR/xsXwx5jq0=;
+ b=ouw1iRx0cU/JGqUqtk7zFHEjVkVtqoS1oD+fh8RTEz+GPI3F7d5ydx/MUNIVvpSmEk
+ hBuIbd5dGQMsQGwzErC1YSlcRnRmNYLkP7SVLTMYwPmx5MVj5Vz/qezsgHonyI11hyZ4
+ TH9BGKPgDjphResq6jb+1gHzRNPMybKwGAwVpHAQ63FYXCPpYOnltU6fh2pm41Y+ICKq
+ 8YNiqtXWL1FZzFt1mLAJvZBOx0sZzoJvg1prxfpIo0iiombkzHJlMktto4SCsaZDCibJ
+ S6ZHtCZ/OgtL/rhJEoAa2gnprbMcwG25xSwQOu5O35uSTVYZih4v2XYz90W25llXb9fP
+ 2DWw==
+X-Gm-Message-State: AOAM5315Mp2vPK/tS3CMXoESKL09xr+hDp9KzO4OX29Hxbr40ZEEex0H
+ a6HwbnLT0eHpTPYUWvGZpGYUkp7F0Lkso5Jgb5iHmjOr
+X-Google-Smtp-Source: ABdhPJxXTPy+iOxKHIjqY2X8qi22+vllK2ZYvs6LTssK+4C/N4NfXr4pbclTckRMRo553C51WldXmrEgsUeMCGfb6ls=
+X-Received: by 2002:adf:f7ce:: with SMTP id a14mr6081550wrq.362.1591304832438; 
+ Thu, 04 Jun 2020 14:07:12 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200604044619.18658-1-evan.quan@amd.com>
- <20200604044619.18658-11-evan.quan@amd.com>
-In-Reply-To: <20200604044619.18658-11-evan.quan@amd.com>
+ <20200604044619.18658-12-evan.quan@amd.com>
+In-Reply-To: <20200604044619.18658-12-evan.quan@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 4 Jun 2020 17:02:09 -0400
-Message-ID: <CADnq5_NRG0YRyqvqaL+-Dhv4rEgWaKDzeVDAM6ntqRiiRH4bnA@mail.gmail.com>
-Subject: Re: [PATCH 11/16] drm/amd/powerplay: resort those operations
- performed in hw setup
+Date: Thu, 4 Jun 2020 17:07:01 -0400
+Message-ID: <CADnq5_OpT1bxmF-F52fN0gTMffRL49m_-Ln28JuLkCmXsdxBsA@mail.gmail.com>
+Subject: Re: [PATCH 12/16] drm/amd/powerplay: better namings
 To: Evan Quan <evan.quan@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,117 +69,90 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 On Thu, Jun 4, 2020 at 12:47 AM Evan Quan <evan.quan@amd.com> wrote:
 >
-> Those common operations(for all ASICs) are placed first and followed
-> by ASIC specific ones. While the display related are placed at the last.
+> And some minor changes as dropping unused parameter and label
+> internal used API as static.
 >
-> Change-Id: Id45caee98273c8c0b9c1c9f2713fcf8106e02000
+> Change-Id: I0af0aea029dc4fc7d8e150ab6ec984e9a5f1a74a
 > Signed-off-by: Evan Quan <evan.quan@amd.com>
-
-Typo in the subject and clarification:
-
-drm/amd/powerplay: sort the operations performed in hw setup
-
-With that fixed:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-
-
 > ---
->  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 61 +++++++++++-----------
->  1 file changed, 31 insertions(+), 30 deletions(-)
+>  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c     | 12 +++++-------
+>  drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h |  2 --
+>  2 files changed, 5 insertions(+), 9 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> index 4c1f7c36b74b..b3410d111316 100644
+> index b3410d111316..55ffbf1cf086 100644
 > --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
 > +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> @@ -1134,6 +1134,21 @@ static int smu_smc_table_hw_init(struct smu_context *smu,
->         if (ret)
->                 return ret;
->
-> +       /*
-> +        * Set PMSTATUSLOG table bo address with SetToolsDramAddr MSG for tools.
-> +        */
-> +       ret = smu_set_tool_table_location(smu);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /*
-> +        * Use msg SetSystemVirtualDramAddr and DramLogSetDramAddr can notify
-> +        * pool location.
-> +        */
-> +       ret = smu_notify_memory_pool_location(smu);
-> +       if (ret)
-> +               return ret;
-> +
->         /* smu_dump_pptable(smu); */
->         /*
->          * Copy pptable bo in the vram to smc with SMU MSGs such as
-> @@ -1147,6 +1162,7 @@ static int smu_smc_table_hw_init(struct smu_context *smu,
->         ret = smu_run_btc(smu);
->         if (ret)
->                 return ret;
-> +
->         ret = smu_feature_set_allowed_mask(smu);
->         if (ret)
->                 return ret;
-> @@ -1155,6 +1171,21 @@ static int smu_smc_table_hw_init(struct smu_context *smu,
->         if (ret)
->                 return ret;
->
-> +       if (!smu_is_dpm_running(smu))
-> +               pr_info("dpm has been disabled\n");
-> +
-> +       ret = smu_override_pcie_parameters(smu);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = smu_enable_thermal_alert(smu);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = smu_i2c_eeprom_init(smu, &adev->pm.smu_i2c);
-> +       if (ret)
-> +               return ret;
-> +
->         ret = smu_disable_umc_cdr_12gbps_workaround(smu);
->         if (ret) {
->                 pr_err("Workaround failed to disable UMC CDR feature on 12Gbps SKU!\n");
-> @@ -1185,36 +1216,6 @@ static int smu_smc_table_hw_init(struct smu_context *smu,
->         if (ret)
->                 return ret;
->
-> -       ret = smu_override_pcie_parameters(smu);
-> -       if (ret)
-> -               return ret;
-> -
-> -       /*
-> -        * Set PMSTATUSLOG table bo address with SetToolsDramAddr MSG for tools.
-> -        */
-> -       ret = smu_set_tool_table_location(smu);
-> -       if (ret)
-> -               return ret;
-> -
-> -       if (!smu_is_dpm_running(smu))
-> -               pr_info("dpm has been disabled\n");
-> -
-> -       /*
-> -        * Use msg SetSystemVirtualDramAddr and DramLogSetDramAddr can notify
-> -        * pool location.
-> -        */
-> -       ret = smu_notify_memory_pool_location(smu);
-> -       if (ret)
-> -               return ret;
-> -
-> -       ret = smu_enable_thermal_alert(smu);
-> -       if (ret)
-> -               return ret;
-> -
-> -       ret = smu_i2c_eeprom_init(smu, &adev->pm.smu_i2c);
-> -       if (ret)
-> -               return ret;
-> -
+> @@ -638,7 +638,7 @@ int smu_sys_set_pp_table(struct smu_context *smu,  void *buf, size_t size)
 >         return ret;
 >  }
 >
+> -int smu_feature_init_dpm(struct smu_context *smu)
+> +static int smu_get_driver_allowed_feature_mask(struct smu_context *smu)
+>  {
+>         struct smu_feature *feature = &smu->smu_feature;
+>         int ret = 0;
+> @@ -662,7 +662,6 @@ int smu_feature_init_dpm(struct smu_context *smu)
+>         return ret;
+>  }
+>
+> -
+>  int smu_feature_is_enabled(struct smu_context *smu, enum smu_feature_mask mask)
+>  {
+>         struct smu_feature *feature = &smu->smu_feature;
+> @@ -1115,8 +1114,7 @@ static int smu_sw_fini(void *handle)
+>         return 0;
+>  }
+>
+> -static int smu_smc_table_hw_init(struct smu_context *smu,
+> -                                bool initialize)
+> +static int smu_internal_hw_setup(struct smu_context *smu)
+
+The "internal" in the name made me think this was related to someting
+in smu_internal.h.  Maybe call it smu_smc_hw_setup()?  I guess I could
+go either way.
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+>  {
+>         struct amdgpu_device *adev = smu->adev;
+>         int ret;
+> @@ -1287,11 +1285,11 @@ static int smu_hw_init(void *handle)
+>         if (ret)
+>                 return ret;
+>
+> -       ret = smu_feature_init_dpm(smu);
+> +       ret = smu_get_driver_allowed_feature_mask(smu);
+>         if (ret)
+>                 goto failed;
+>
+> -       ret = smu_smc_table_hw_init(smu, true);
+> +       ret = smu_internal_hw_setup(smu);
+>         if (ret)
+>                 goto failed;
+>
+> @@ -1487,7 +1485,7 @@ static int smu_resume(void *handle)
+>                 goto failed;
+>         }
+>
+> -       ret = smu_smc_table_hw_init(smu, false);
+> +       ret = smu_internal_hw_setup(smu);
+>         if (ret)
+>                 goto failed;
+>
+> diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+> index b2de042493ad..5f5a210668a1 100644
+> --- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+> +++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+> @@ -656,8 +656,6 @@ extern const struct amd_ip_funcs smu_ip_funcs;
+>  extern const struct amdgpu_ip_block_version smu_v11_0_ip_block;
+>  extern const struct amdgpu_ip_block_version smu_v12_0_ip_block;
+>
+> -extern int smu_feature_init_dpm(struct smu_context *smu);
+> -
+>  extern int smu_feature_is_enabled(struct smu_context *smu,
+>                                   enum smu_feature_mask mask);
+>  extern int smu_feature_set_enabled(struct smu_context *smu,
 > --
 > 2.27.0
 >
