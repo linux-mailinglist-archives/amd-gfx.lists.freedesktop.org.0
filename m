@@ -1,51 +1,51 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D882F1EDC80
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Jun 2020 06:47:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7911EDC81
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Jun 2020 06:47:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C57E6E192;
-	Thu,  4 Jun 2020 04:47:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F39256E196;
+	Thu,  4 Jun 2020 04:47:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2057.outbound.protection.outlook.com [40.107.223.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBA5A6E191
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 04:47:09 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2053.outbound.protection.outlook.com [40.107.243.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E54B66E196
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 04:47:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BRhCvyIZtlkl00q+AC1gvCfmgURLqWGVTJd3CvP/WNpfXMIDwMKw1EnHLjy3qPjvfN8qmxLpkLmIf1Pg9E6AwZTZWsP8/lbJMLuXmCIHzIK345sdXI62sE9Md6lntuQzCKFStCDo5A/70m6rTLHciAsH2eP9+VUv3QWukgkYbcYe7akb7fVU2Aw15PvYp6T/D8sOFZMl/W9JoiWCk2oKvVc8G7eIA6ptOwSDUtXopEADWx5wbd2dwG8h3JGYde0FsgQUYFba6LaGq4MB0aMSJxM2VRiDmiJDBeRlaw/Vk+GiVS2NgdJnF5qLWNRhAyIhGzGxFtW+y7UhocN5Nip7rQ==
+ b=fH4Dpe3x6mXVHT4x91rmNZTZOXK/nKt6UL6TyzgPvoQ6ZDV1U7SkTqo0IVznon1DV+0CqwOVX4nd8XmCLicUrTWR3WXmk5BbMl/6N7M/4BXti2LWtxWANMJkTVGIKZ2gb0Ja9D7cU3Izr4Z1ttkNDyOQgG0NwRy3+y83m+0ol+pFhoNkon5DGOvwKkepW0SDI4F8sGUub9vKFkoaXHEmTuBpOU7R0Y3oiAokBBkYqIwsPdFHcnlvUakgdw/+RlcdgL3jFxXMdSw/wbkEGRPpobgcpAC/9raAPvq8NuQSMTHPKA5PJ3Fb6RiTZomr74sJal75724XeFeN5S5sumIbyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PCaHpUFo3I30BkyxyxPfx82YXiVgkgO+Zz5+vZI2F+M=;
- b=iGtqDoO73oz2a0D+LYFaf498+Z1+gLDcgORjXTeIQH+QquipTPY6Bbiv/e3VT8S1dgQKaNQjKw+LmzSk0QgmkklGk+7ST1gMwe13eneM8LtyoRxq5k3HJt3elHNDLm3CMqQwgq4FP7uwys8FFq8td78qQbz1UCQ6Kn6AJ7fIEkyh70kDIKu44JNagv3dpmrKvRIBlPvwJiGpoEMUyAxNzRm0mItTn/YzxiPAQLwhUuUBpVHKeZ3HHtBP2Ex4qohud3av1oy5qrJHna53Y6gv4DaYn9wVYR2TKlWti4sP0uLUMrvvrZczgnEwdPMq/q6wx7GCARW4k71tXmoHMwrN1g==
+ bh=5asWcYYzozYjyKd6NImgtEUvsCbgD5jJSE4AyMscy08=;
+ b=DleZ/0mkduhcjSFU+bcDSfimvpQwb2nwt/09Zoe4x67WrKv5GAbiqUmEokeP+sr4vR8/X9P4G1CJjqKuJXIG6vvgr7EExIXPhzxnC0KSW8hz9QMQchGrl1wHJDWMbRIhUyGkQI7r2iBnG9Fx38k9iSXeD1VrgwkTlGGxWrIxIXYrdB6DxmQPmPSR4txkZEUegp5Wi3Ml5EvFP7csd/HTfBu0lXUd7ixInvZaKztCMsEUvtuEo5/NoybY/G7Qdv+vAcy9rBgapeGydhcl1yoG7yy7CgkU7yRycMRJIcZ5OOyrGdBDA9genmazX/iDafUWcRNlkMPcGY0JNjkjfLOuNg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PCaHpUFo3I30BkyxyxPfx82YXiVgkgO+Zz5+vZI2F+M=;
- b=4K8boioB/d89N5XLh13DGLU9sKCof529XYH/bhrxfEPklcSCWpboISyZyYw6RUCkJCc6OhDIGTlLq457Ab8gibLlu95tP7ZH2PbNIfqJEtetuY16mk3yidXvX/mpX6NOxu+yrcNGqsI+pZZJj5UfK3kmr3plvyNIKBYyi1uqXUA=
+ bh=5asWcYYzozYjyKd6NImgtEUvsCbgD5jJSE4AyMscy08=;
+ b=QeJT1UiWE0r9AoqKJwKNfugnGGsrUdIw/1DmmAplLr+7jIaFVlcqbDPE+YwA/DpXPgfbrEVlZnZUpWFUi5eE5zTdhFJUh+crEbHseGEUjNtMFHc9yXoCaN4qEypCW2Z5V2Q6PaaHAzKYBY3DQQJbEydu3k1tSlbtg5TZSZqr2kE=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
- DM6PR12MB3002.namprd12.prod.outlook.com (2603:10b6:5:117::15) with
+ DM6PR12MB3212.namprd12.prod.outlook.com (2603:10b6:5:186::19) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3066.18; Thu, 4 Jun 2020 04:47:08 +0000
+ 15.20.3045.19; Thu, 4 Jun 2020 04:47:10 +0000
 Received: from DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::c157:8999:dcc3:536f]) by DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::c157:8999:dcc3:536f%3]) with mapi id 15.20.3045.022; Thu, 4 Jun 2020
- 04:47:08 +0000
+ 04:47:10 +0000
 From: Evan Quan <evan.quan@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 09/16] drm/amd/powerplay: move those operations not needed for
- resume out
-Date: Thu,  4 Jun 2020 12:46:12 +0800
-Message-Id: <20200604044619.18658-9-evan.quan@amd.com>
+Subject: [PATCH 10/16] drm/amd/powerplay: max code sharing between .hw_init
+ and .resume
+Date: Thu,  4 Jun 2020 12:46:13 +0800
+Message-Id: <20200604044619.18658-10-evan.quan@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200604044619.18658-1-evan.quan@amd.com>
 References: <20200604044619.18658-1-evan.quan@amd.com>
@@ -58,34 +58,34 @@ Received: from equan-buildpc.amd.com (58.247.170.242) by
  HK0PR01CA0071.apcprd01.prod.exchangelabs.com (2603:1096:203:a6::35) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18 via Frontend
- Transport; Thu, 4 Jun 2020 04:47:07 +0000
+ Transport; Thu, 4 Jun 2020 04:47:08 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [58.247.170.242]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 8438d90f-9662-4625-7a64-08d808425670
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3002:
+X-MS-Office365-Filtering-Correlation-Id: 840a3ba7-9b9e-4bb5-e297-08d80842576a
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3212:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB30025477164D40CDC3ADDC98E4890@DM6PR12MB3002.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB32120B1266CF5B127EC0E688E4890@DM6PR12MB3212.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
 X-Forefront-PRVS: 04244E0DC5
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qN5D7L1FM3zbCrnBtsOFhiL+3hC1205YsAY0mJ/avDdLmeMeh3looGmsfYUiR3+U2q2pECAb4owcu6bxXUoLnwVRcNk6kvRZNYGWqBUnu0jyHzjF9EnzITpaM65YMnih9a4I6qgm4kEkZdI6Ae2hfdgHaZ7kbJwPoY+43X0p6EmBhD4ojrJy2eoPFm2KTEVokvZtGPuIDmtd6Kb9VoCdIYOlcA4BhvUMfTKRNYX8vJPSMRsjL670wnt7uYXnL9LtziAl/vk3ryURfLaljmavynDAasNE5JAmNGjKquG27y9TxzpWe3gi5yTS6iyZ926KqHPUp8Dr+pKwWdYnQ4aKnQ==
+X-Microsoft-Antispam-Message-Info: dKc3xtj8HJ4+ER4QAEdGvtLct2herx7SX1nC/qELbAUoLpsxGS4PQ+mOgY8++81XPiw9lrGPLjsl3sABkCpTC091YqEOevpph09l2S4OqvbmbJH2Z4wdZlY3/F47AwWa0HEJv8FyNOz8juR1+pkLDVr8r3MEVFiQFqbvG1SliSGZZQsBG19/xT1Nqg+sMU1blcp8xKrZC8MhP9RMxlt6EKoz0FtCwqm21XgS7o+RnEb8aQDbutQkwbNB5PgncU/NjSs20kZ2vCVoMOug5rbghiqP+DsWpOcyXjy7CHfezRDOhGY+RSil9+JJhvyufBA/vsw0RVaqHdtwsRw/pSAIJiJX6wfpvw7CGkUepRlhP61BTzY7RzvPNICTFI48PoTW
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(39860400002)(366004)(346002)(396003)(376002)(136003)(7696005)(1076003)(52116002)(36756003)(2616005)(26005)(316002)(16526019)(83380400001)(6666004)(6486002)(86362001)(5660300002)(186003)(956004)(6916009)(4326008)(66946007)(2906002)(44832011)(8936002)(66476007)(66556008)(478600001)(8676002);
+ SFS:(4636009)(136003)(366004)(396003)(346002)(376002)(39860400002)(8936002)(8676002)(316002)(2906002)(6666004)(6916009)(956004)(186003)(66556008)(1076003)(6486002)(16526019)(478600001)(52116002)(7696005)(4326008)(83380400001)(36756003)(2616005)(66476007)(66946007)(5660300002)(86362001)(26005)(44832011)(142923001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: D8zih59gniu/AU1fmhXz//zSsQ7AHlOHmuGGlyqlScNz6CJEE7Syr1pfCa0XZO6seg4XpKHlkrM/xi/jCTGIzwdx0Z7WErc3M0eKcTD4AChOR61QbMlbGrlY2/x0bCNV4xQAS7Jygu7NWBNvalfH//vlJgu6AHKMNFyyZ8w6OEuO2keQwPQmuyvhdGNAxGAd0CiHfyPtNi40YMY4uOIXfxoorRMURWLUNArolpLKg/t/UC/pyYsboeulJSwx9ID0wCiWnUQRwaey3ZFsYDZvZXBbNeBdaLHxdz4d8Wvy1Y4vd+u90bvGPE0Pa1E3ZrWxeANYLojRU1yx9lR94jbFB54zXik7LEfziOw3gYyZs65qaAwySsd9rHOgLrmn0DRN+t6hvTOsC4au4BRQIRRvAvKd6kIhEjFX9CtjNdeV32L5LJ/vpL6ERkOw2bMyaYSxdxgg9YwvHPumXDBGO9rt3+WZLZ3X0IOu8AV1R8su2gdnTQullEXWuc5uz5oyYoAm
+X-MS-Exchange-AntiSpam-MessageData: M10s9nsWsqN7Dz3DoxrVhgWpKJI+f/gQfTLABgBnxVWooRE9qoOfCqBpMeW9P3CvtBZT0vwcBMVbTon0GB72ueQj6tY/kbrNnrYHmZQRan9r/F0R3jiC7XJDYgpaDHH8If0Jp0+LQgSjTLIVL2cRVPLmaup/uzQIslTZYdlZUnCoq9opOvnHu9HVOMFkF8IX62eLbO8xfPjZyzfTGBL3ZNEv174R7xalgk2ab56CzbI/kXYNFgHY7bjMAZ77UmFMxF63w5tDLnBIdUFgVSGDoq2qJXLPdCjmGJVFV77dYD1JItDHjVJY+ivmbc37bHtAFBMXO/0mKbudiJik9U+lplqeRkZvDhMEUb1ERueyf4NUp5Ul3cuhYPySHS9Viry2TwNT4xjhxsBw2h9STEKo2o/QNd9UNjNrnmaFOuC6HftZ2VDrQJ1KVUViYd0jKL5H6YVoqNdipd3l3YRcNFFbrUgMnqczhZChCJrkVTnZ8vEaukmHXRZvacTAPFGcOole
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8438d90f-9662-4625-7a64-08d808425670
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2020 04:47:08.6319 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 840a3ba7-9b9e-4bb5-e297-08d80842576a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2020 04:47:10.2350 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kbc/WaOhSKHU/q0r7DChob+sOSSigqe9LpFiKkkwqe54BJG14bgcVGsfSUQ6dqdw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3002
+X-MS-Exchange-CrossTenant-UserPrincipalName: fK4JvL5Svfyke6oJbEf5c+RtpRIWGcyYkf1EzQBHfYx8n9VEaFOSWdfQN++sNF2/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3212
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,83 +103,85 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Since smu_smc_table_hw_init() is needed for both .hw_init and .resume.
-By doing this, we can drop unnecessary operations on resume.
+Then redundant code can be dropped.
 
-Change-Id: I2af6277efaa9adba2de69161e20e54c4aa10a411
+Change-Id: Icbafbb7ffc8189a09f4236786aea6702ee73f9f4
 Signed-off-by: Evan Quan <evan.quan@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 40 +++++++++++-----------
- 1 file changed, 20 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 42 ++++++++++------------
+ 1 file changed, 18 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-index 78fb2b42fc93..3bd6b9a5b63c 100644
+index 3bd6b9a5b63c..4c1f7c36b74b 100644
 --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
 +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-@@ -1130,25 +1130,6 @@ static int smu_smc_table_hw_init(struct smu_context *smu,
- 	if (ret)
- 		return ret;
+@@ -1193,10 +1193,28 @@ static int smu_smc_table_hw_init(struct smu_context *smu,
+ 	 * Set PMSTATUSLOG table bo address with SetToolsDramAddr MSG for tools.
+ 	 */
+ 	ret = smu_set_tool_table_location(smu);
++	if (ret)
++		return ret;
  
--	if (initialize) {
--		/* get boot_values from vbios to set revision, gfxclk, and etc. */
--		ret = smu_get_vbios_bootup_values(smu);
--		if (ret)
--			return ret;
--
--		ret = smu_setup_pptable(smu);
--		if (ret)
--			return ret;
--
--		/*
--		 * Send msg GetDriverIfVersion to check if the return value is equal
--		 * with DRIVER_IF_VERSION of smc header.
--		 */
--		ret = smu_check_fw_version(smu);
--		if (ret)
--			return ret;
--	}
--
- 	ret = smu_set_driver_table_location(smu);
- 	if (ret)
- 		return ret;
-@@ -1236,10 +1217,20 @@ static int smu_start_smc_engine(struct smu_context *smu)
- 
- 	if (smu->ppt_funcs->check_fw_status) {
- 		ret = smu->ppt_funcs->check_fw_status(smu);
--		if (ret)
-+		if (ret) {
- 			pr_err("SMC is not ready\n");
-+			return ret;
-+		}
- 	}
+ 	if (!smu_is_dpm_running(smu))
+ 		pr_info("dpm has been disabled\n");
  
 +	/*
-+	 * Send msg GetDriverIfVersion to check if the return value is equal
-+	 * with DRIVER_IF_VERSION of smc header.
++	 * Use msg SetSystemVirtualDramAddr and DramLogSetDramAddr can notify
++	 * pool location.
 +	 */
-+	ret = smu_check_fw_version(smu);
++	ret = smu_notify_memory_pool_location(smu);
++	if (ret)
++		return ret;
++
++	ret = smu_enable_thermal_alert(smu);
++	if (ret)
++		return ret;
++
++	ret = smu_i2c_eeprom_init(smu, &adev->pm.smu_i2c);
 +	if (ret)
 +		return ret;
 +
  	return ret;
  }
  
-@@ -1268,6 +1259,15 @@ static int smu_hw_init(void *handle)
- 	if (!smu->pm_enabled)
- 		return 0;
- 
-+	/* get boot_values from vbios to set revision, gfxclk, and etc. */
-+	ret = smu_get_vbios_bootup_values(smu);
-+	if (ret)
-+		return ret;
-+
-+	ret = smu_setup_pptable(smu);
-+	if (ret)
-+		return ret;
-+
- 	ret = smu_feature_init_dpm(smu);
+@@ -1276,22 +1294,6 @@ static int smu_hw_init(void *handle)
  	if (ret)
  		goto failed;
+ 
+-	/*
+-	 * Use msg SetSystemVirtualDramAddr and DramLogSetDramAddr can notify
+-	 * pool location.
+-	 */
+-	ret = smu_notify_memory_pool_location(smu);
+-	if (ret)
+-		goto failed;
+-
+-	ret = smu_enable_thermal_alert(smu);
+-	if (ret)
+-		goto failed;
+-
+-	ret = smu_i2c_eeprom_init(smu, &adev->pm.smu_i2c);
+-	if (ret)
+-		goto failed;
+-
+ 	adev->pm.dpm_enabled = true;
+ 
+ 	pr_info("SMU is initialized successfully!\n");
+@@ -1488,14 +1490,6 @@ static int smu_resume(void *handle)
+ 	if (ret)
+ 		goto failed;
+ 
+-	ret = smu_enable_thermal_alert(smu);
+-	if (ret)
+-		goto failed;
+-
+-	ret = smu_i2c_eeprom_init(smu, &adev->pm.smu_i2c);
+-	if (ret)
+-		goto failed;
+-
+ 	if (smu->is_apu)
+ 		smu_set_gfx_cgpg(&adev->smu, true);
+ 
 -- 
 2.27.0
 
