@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B6341EF604
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jun 2020 13:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2220C1EF60D
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jun 2020 13:04:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 001A16E8BE;
-	Fri,  5 Jun 2020 11:02:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ED316E8C6;
+	Fri,  5 Jun 2020 11:04:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2066.outbound.protection.outlook.com [40.107.236.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB6056E8BE
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 11:02:45 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87A496E8C6
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 11:04:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OzTDSCm278FmrAp1+H/xSDOg2zWCRhuw9q238Fqe6nE2w6CdjnVJ46vyrT36GcWEim2nVSV1kLW5zJn2PnAW00a2TmbPsofKUydJHBsCMSWjRPENBDiTWxmSmIF+bq/r45JV0UnHiis/+lwe1vEcm1vweNjehbYBrtZa9b5oHJfHAg7cjRDMcR5qFoZQW50beBbiKLrBr0px5P6LnzefsxWfQA6QH3OtCJ0iC9GjtgpYmyvAJV27JwqwRV/TNJcWr8xodEvmRH8cHBH4MX41zAlEOvkqftz+SKPcWp4p2thfDp4C86jQ2zFcCF8UlTr8lwphqO57cuT2kBzfPBRc+g==
+ b=YNkJzuXxn9U/c48wfB2zUWtwjgrQ8a/EbNVVTZX74z2zJjB+xcumBqYuAoLOPN7X/Ib2Y6SA2S2YleAUcyvAq+9JB2W8iw9zOvqch09/N1eCaTWO94uKu41/jhGoFziLxgAL4r5uZMni/0fBvqAezImOXNBw1CXC/FSGxBGaTZ2iMkQ2iNXP5M6wOCG8HoiV7NhhbO9JBGWoUHJfJUVbHYcgQ8LbSnPvfwDebBqjgG7cCXBCdtVL43+1uUZeBLzZqgcq+tT/RyD0K2kXH/eOeQvrOGrp1RdmgIoadcMkDzGZzvFBMOsh/RBmov0VJJ/fD3mQP6R49P3pJKFs0RkZQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ukOcfrpYTEKtOWh1TjYOFBYovdmf5IJgEaZNCnbMVoo=;
- b=VSIRKiu6V2CNSfRh4b7ReBK2t70z913C2h7onUF23DMct/pppkt3GiyPz9ls2fdVnGIl61b4tzJReTdcN0SZGMrPzXegBxerymftxHAPHCmRMvnOQa8C2c97kYIeCNNoriJrfCQoiN68ioLQLo6WjU9Cv0oINrMB8oIv3fxA28WEsMETNZ3OwWOCvKkHgFGIg047dv+IHvkqB3XDI65usb8sML20Pouh/+CGssncJ/j8ohjV+uYc4UOb0cN8pAI6AsIfMTOSMUmvpNJrQY3epfzPF0fVPlRvn78Ih/YvqHygLrkYsx3t2mLPuzm4tyTyN22/lcg++kUt+XCuB16C0g==
+ bh=Ed0LTUaWAVMDOEP98FJI8F4uNRzhEL/ZSf5t6I3Z1gQ=;
+ b=FYTChpbAU4CBy22EIjWyVHHlauvEb6VRq4J4tXcjxnR4aI54rKB/Y/YdMDa+XdQDDV+VEnJkCQqxhe3PtNPxz76dwMwyVJkurE243ypgMPp////OqPvTe6ZZf+RXJvVnV0vZEt6EcWt4Rw8BtUfWvSumSP3aZq0SLR9YxQw8Hk0Ygu/2zPraXip97npd2M1/9ckmVh76Ye1c0nkWpyV0Y7elM/JmjLyVNuDFG6E/ONUNNXlYpWKfHEBD0jAZ3Cd3Cn/2RyWAMvfcTIdzMk7CQldg5QRqiPWBmz4oJ/gdyBZpd0733pXfIgs/a80MUxFv3ktKopGQ2yF9oDINNWTEZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ukOcfrpYTEKtOWh1TjYOFBYovdmf5IJgEaZNCnbMVoo=;
- b=eYtm8Qc/Z2GrZUuRfEFYuGxNY1fX7EN/Br19qUz9K8Y3K8I2uphgLIgXaa/ZCU1QcpOd5Zs5nRgN2/Eq2MAqgjRzVm38DBw+XKjNELR8TPve54k6JIB4pyTc5MpyLX23HPsimteBBftiswTynYrTSHn+3bQzcO50g0vluIM7B+s=
+ bh=Ed0LTUaWAVMDOEP98FJI8F4uNRzhEL/ZSf5t6I3Z1gQ=;
+ b=eKnk7eWrojbfR7E/onJc/MmvggX/1+RIKxKoFNkAcTMrsesxRJVPg+znAHmFddcn4ryQJj3FhPthEawNckS9d99QF9thdoLAhGVHGCdkWfV3s7TLI5UX5An+1s4vkWTVWFReiCfIHnwlCW+WbKMcbnpTtgg1iRCm4XXDJE9B60A=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,55 +35,52 @@ Received: from BYAPR12MB2615.namprd12.prod.outlook.com (2603:10b6:a03:61::29)
  by BYASPR01MB2.namprd12.prod.outlook.com (2603:10b6:a02:ce::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18; Fri, 5 Jun
- 2020 11:02:44 +0000
+ 2020 11:04:29 +0000
 Received: from BYAPR12MB2615.namprd12.prod.outlook.com
  ([fe80::4c16:1697:3e6d:9157]) by BYAPR12MB2615.namprd12.prod.outlook.com
  ([fe80::4c16:1697:3e6d:9157%7]) with mapi id 15.20.3066.019; Fri, 5 Jun 2020
- 11:02:44 +0000
+ 11:04:29 +0000
 From: Evan Quan <evan.quan@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/amd/powerplay: add error messages on some critical
- paths
-Date: Fri,  5 Jun 2020 19:02:00 +0800
-Message-Id: <20200605110200.27206-3-evan.quan@amd.com>
+Subject: [PATCH 1/3] drm/amd/powerplay: drop dead vce powergate code
+Date: Fri,  5 Jun 2020 19:04:09 +0800
+Message-Id: <20200605110411.27302-1-evan.quan@amd.com>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200605110200.27206-1-evan.quan@amd.com>
-References: <20200605110200.27206-1-evan.quan@amd.com>
-X-ClientProxiedBy: HK2PR03CA0050.apcprd03.prod.outlook.com
- (2603:1096:202:17::20) To BYAPR12MB2615.namprd12.prod.outlook.com
+X-ClientProxiedBy: HKAPR04CA0017.apcprd04.prod.outlook.com
+ (2603:1096:203:d0::27) To BYAPR12MB2615.namprd12.prod.outlook.com
  (2603:10b6:a03:61::29)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from equan-buildpc.amd.com (58.247.170.242) by
- HK2PR03CA0050.apcprd03.prod.outlook.com (2603:1096:202:17::20) with Microsoft
+ HKAPR04CA0017.apcprd04.prod.outlook.com (2603:1096:203:d0::27) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3088.7 via Frontend Transport; Fri, 5 Jun 2020 11:02:42 +0000
+ 15.20.3066.18 via Frontend Transport; Fri, 5 Jun 2020 11:04:27 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [58.247.170.242]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 82b7e121-6613-45b9-5a7e-08d8093ff90c
+X-MS-Office365-Filtering-Correlation-Id: 54286993-e3dd-4541-a2b6-08d80940379e
 X-MS-TrafficTypeDiagnostic: BYASPR01MB2:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYASPR01MB20E117E16271B2358FE69E4860@BYASPR01MB2.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:22;
+X-Microsoft-Antispam-PRVS: <BYASPR01MB232E45ADD18371F588A3BE4860@BYASPR01MB2.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
 X-Forefront-PRVS: 0425A67DEF
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QHYmEzSMzHSrXRgdxhW8DdCjGKP0HsB5uy62A7DzLfKb/BTESGWgzGUvcV7LrZbVzO2bNjR2aix8j4hJd6lEdxm2gAVRWw/zxlepXEEKVEx8mtHeyBqQll3xXN+Dgs9oS5VilYqJ1bs3RDjjSp3LLAaJUfaKycnwBMM2Y/rM4aDIEgOdENSixpni2PimNV+MVkIVPOYPpAvOa4MbOpwqVFJKzAdeoJO147U6SUEXL1PWuZ+k9Wxy8mmUvZtHvL6awwMLhbfFcpEwrPR3Fsf83xEG4ET6VZt4UoQbjisNwuI28IDWWmaZvPPrxZtjiaY3
+X-Microsoft-Antispam-Message-Info: CtY6tBbsd11rOKt2m2GQlGn/T84ftk2MDEl+GEMVkWsbAt5xAShjuzoN9XhjwUHlpsW4s58NRfw70SkrHRu+g9kJ58VR6ASFOH8lIb71K6CWA4V6LblMOlNi2cf0h8cjg3d9ahNKuRqldi7O1i2X6OfE5HBDbo7zuJU8r6gnz0bsnviEFOf3Cy0h0KbvZAgvcoey9FzS7Ybsoh41I9lEYxuIFHoLdaCZv58+hoXxd9FzORKW6bJL1zuTVq48nyxfTt2hfq//X3PozPGXw8OfyeO4ACyNORh7GTilIZEFalSuqKZWwFsoIeZmFlsgi3Wi
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR12MB2615.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(396003)(136003)(346002)(376002)(366004)(39860400002)(4326008)(8676002)(15650500001)(83380400001)(2616005)(1076003)(956004)(8936002)(6486002)(186003)(6666004)(6916009)(2906002)(16526019)(478600001)(66556008)(66946007)(26005)(36756003)(19627235002)(66476007)(5660300002)(52116002)(86362001)(66574014)(316002)(7696005)(44832011);
+ SFS:(4636009)(396003)(136003)(346002)(376002)(366004)(39860400002)(4326008)(8676002)(83380400001)(2616005)(1076003)(956004)(8936002)(6486002)(186003)(6666004)(6916009)(2906002)(16526019)(478600001)(66556008)(66946007)(26005)(36756003)(66476007)(5660300002)(52116002)(86362001)(316002)(7696005)(44832011);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: A6ejLpLa1jzVpcIkdBNb/8HtFMI9pSHfRNiGAhjIOFH7Jixxsp0sKS2aKhnoRKfv/caJSn24EQT7TJVJafKRU3jvKTDefANpnupWhwUB5/dFVdol8Vn9HHUfIZRVBKgj9gvO4sOBhOZxA65JilNizElS4GLTGa+WKOdnNezsOYlG+CbKLl1WuXXw2qzfNeD/n0c97zPDUzX7mjyxmokqqdnBhiO/8t9PMhlHQ6tb1n89Ike6f18OWfv03cIMXqFJinbpiAzVqsVSg8qsIvX9IjEusyxqHkCLbb0K4C2SPQYKif+IlocoshVuHutdHQREhv1c6TuMaXILpAL7HoHjjYFPemDO8B5wfld+1oEu+YlmU/Y+du0oATg7GU2Fm7Hqxwa/WWrmOwNKH1S4k0agdjlMm97gJfUAV2JAtYkgnRG1nn7UHtjleO0k3VzTI65ONePly8gzBDwUbUf5TKDLMmoshgMGC5WKjqqEB7ng0qyu/0YTH+D04G8ovJqstFa8
+X-MS-Exchange-AntiSpam-MessageData: XNTW0owCMzUprtYgkNiwBsx7507KdhON6gfECz/wzhzec+gziMLVbuHVNFCIWPI8eLCzVuqw97suii34gyGToBNOjV/ZINJMY2Jj9+0kcVouxaEgjfg8n8p1kdaZb2foWw5MgDyoT5FtqOMn2CeYhOmeNFQ615KzYP6VqWFLq+jC9sZ2UaIMf0wfSn5hI/wqxkO2U2Rn8J6+HBlWPHEd+uFWIhXKVlXo8u4jx9DXlD+R/JVDE1RZhCPl5O6IrASU8sSmPHKaNRVltm/crx0AVQ3P7wf9L9PV9QvJLWUj7BJZOMKClm7nyKXNC1e1LoXS+KjEZZY9URmDLgNxTHGhuADlMYc5JSpKBPmsYtZrSzNiR2/vs79/9M+Y5ebyA0fVI8klGs8K6d19tqGfm//yvUlTH/dMirnwO94mf+tdKIoBMHkwlcRyMLClkMSrBTaSISUcx2kJDWvEDumXvaHr/py+TtuKq9u7w9a/Xt/r9IF/+Y0DSFEjN3iNnKJTa1cC
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82b7e121-6613-45b9-5a7e-08d8093ff90c
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2020 11:02:44.0917 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54286993-e3dd-4541-a2b6-08d80940379e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2020 11:04:29.0626 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YUDoDIviE18bEtcmOpidwq5xGAhdN5DtBJGjnbTi4IMHzgyyP3r3p7ymIF/3FXVg
+X-MS-Exchange-CrossTenant-UserPrincipalName: y56S2rBXmeLko38ulHb/K8U+t+mbI2H9asC+R/W5bO0iQxFuTvydK8JX1cbAYLDl
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYASPR01MB2
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,323 +99,65 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Helpful for error diagnostic.
+This was for Vega20. However Vega20 support is
+already dropped from current swSMU.
 
-Change-Id: I983ca308a2ee6ed11e16ec59ad97040d98b90512
+Change-Id: I5400496dff2e338de4622823484b88cda6018ec1
 Signed-off-by: Evan Quan <evan.quan@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 118 +++++++++++++++------
- 1 file changed, 87 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c     | 6 ++----
+ drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h | 1 -
+ drivers/gpu/drm/amd/powerplay/smu_internal.h   | 2 --
+ 3 files changed, 2 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-index 0c5e062a21a7..11538477da93 100644
+index 11538477da93..00bf24c9ac45 100644
 --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
 +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-@@ -457,18 +457,30 @@ int smu_dpm_set_power_gate(struct smu_context *smu, uint32_t block_type,
- 	switch (block_type) {
- 	case AMD_IP_BLOCK_TYPE_UVD:
- 		ret = smu_dpm_set_uvd_enable(smu, !gate);
-+		if (ret)
-+			dev_err(smu->adev->dev, "Failed to power %s UVD!\n",
-+				gate ? "gate" : "ungate");
+@@ -461,9 +461,6 @@ int smu_dpm_set_power_gate(struct smu_context *smu, uint32_t block_type,
+ 			dev_err(smu->adev->dev, "Failed to power %s UVD!\n",
+ 				gate ? "gate" : "ungate");
  		break;
- 	case AMD_IP_BLOCK_TYPE_VCE:
- 		ret = smu_dpm_set_vce_enable(smu, !gate);
- 		break;
+-	case AMD_IP_BLOCK_TYPE_VCE:
+-		ret = smu_dpm_set_vce_enable(smu, !gate);
+-		break;
  	case AMD_IP_BLOCK_TYPE_GFX:
  		ret = smu_gfx_off_control(smu, gate);
-+		if (ret)
-+			dev_err(smu->adev->dev, "Failed to %s gfxoff!\n",
-+				gate ? "enable" : "disable");
- 		break;
- 	case AMD_IP_BLOCK_TYPE_SDMA:
- 		ret = smu_powergate_sdma(smu, gate);
-+		if (ret)
-+			dev_err(smu->adev->dev, "Failed to power %s SDMA!\n",
-+				gate ? "gate" : "ungate");
- 		break;
- 	case AMD_IP_BLOCK_TYPE_JPEG:
- 		ret = smu_dpm_set_jpeg_enable(smu, !gate);
-+		if (ret)
-+			dev_err(smu->adev->dev, "Failed to power %s JPEG!\n",
-+				gate ? "gate" : "ungate");
+ 		if (ret)
+@@ -483,7 +480,8 @@ int smu_dpm_set_power_gate(struct smu_context *smu, uint32_t block_type,
+ 				gate ? "gate" : "ungate");
  		break;
  	default:
- 		break;
-@@ -788,8 +800,10 @@ static int smu_late_init(void *handle)
- 		return 0;
- 
- 	ret = smu_set_default_od_settings(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to setup default OD settings!\n");
- 		return ret;
-+	}
- 
- 	/*
- 	 * Set initialized values (get from vbios) to dpm tables context such as
-@@ -797,20 +811,28 @@ static int smu_late_init(void *handle)
- 	 * type of clks.
- 	 */
- 	ret = smu_populate_smc_tables(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to setup default dpm clock tables!\n");
- 		return ret;
-+	}
- 
- 	ret = smu_init_max_sustainable_clocks(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to init max sustainable clocks!\n");
- 		return ret;
-+	}
- 
- 	ret = smu_populate_umd_state_clk(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to populate UMD state clocks!\n");
- 		return ret;
-+	}
- 
- 	ret = smu_get_power_limit(smu, &smu->default_power_limit, false, false);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to get default power limit!\n");
- 		return ret;
-+	}
- 
- 	smu_get_unique_id(smu);
- 
-@@ -954,6 +976,8 @@ static int smu_alloc_memory_pool(struct smu_context *smu)
- 					      &memory_pool->bo,
- 					      &memory_pool->mc_address,
- 					      &memory_pool->cpu_addr);
-+		if (ret)
-+			dev_err(adev->dev, "VRAM allocation for dramlog failed!\n");
- 		break;
- 	default:
- 		break;
-@@ -1147,27 +1171,35 @@ static int smu_smc_hw_setup(struct smu_context *smu)
+-		break;
++		dev_err(smu->adev->dev, "Unsupported block type!\n");
++		return -EINVAL;
  	}
  
- 	ret = smu_init_display_count(smu, 0);
--	if (ret)
-+	if (ret) {
-+		dev_info(adev->dev, "Failed to pre-set display count as 0!\n");
- 		return ret;
-+	}
- 
- 	ret = smu_set_driver_table_location(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to SetDriverDramAddr!\n");
- 		return ret;
-+	}
- 
- 	/*
- 	 * Set PMSTATUSLOG table bo address with SetToolsDramAddr MSG for tools.
- 	 */
- 	ret = smu_set_tool_table_location(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to SetToolsDramAddr!\n");
- 		return ret;
-+	}
- 
- 	/*
- 	 * Use msg SetSystemVirtualDramAddr and DramLogSetDramAddr can notify
- 	 * pool location.
- 	 */
- 	ret = smu_notify_memory_pool_location(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to SetDramLogDramAddr!\n");
- 		return ret;
-+	}
- 
- 	/* smu_dump_pptable(smu); */
- 	/*
-@@ -1175,8 +1207,10 @@ static int smu_smc_hw_setup(struct smu_context *smu)
- 	 * SetDriverDramAddr and TransferTableDram2Smu.
- 	 */
- 	ret = smu_write_pptable(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to transfer pptable to SMC!\n");
- 		return ret;
-+	}
- 
- 	/* issue Run*Btc msg */
- 	ret = smu_run_btc(smu);
-@@ -1184,12 +1218,16 @@ static int smu_smc_hw_setup(struct smu_context *smu)
- 		return ret;
- 
- 	ret = smu_feature_set_allowed_mask(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to set driver allowed features mask!\n");
- 		return ret;
-+	}
- 
- 	ret = smu_system_features_control(smu, true);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to enable requested dpm features!\n");
- 		return ret;
-+	}
- 
- 	if (!smu_is_dpm_running(smu))
- 		dev_info(adev->dev, "dpm has been disabled\n");
-@@ -1199,8 +1237,10 @@ static int smu_smc_hw_setup(struct smu_context *smu)
- 		return ret;
- 
- 	ret = smu_enable_thermal_alert(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to enable thermal alert!\n");
- 		return ret;
-+	}
- 
- 	ret = smu_i2c_eeprom_init(smu, &adev->pm.smu_i2c);
- 	if (ret)
-@@ -1284,7 +1324,7 @@ static int smu_hw_init(void *handle)
- 
- 	ret = smu_start_smc_engine(smu);
- 	if (ret) {
--		dev_err(adev->dev, "SMU is not ready yet!\n");
-+		dev_err(adev->dev, "SMC engine is not correctly up!\n");
- 		return ret;
- 	}
- 
-@@ -1300,29 +1340,32 @@ static int smu_hw_init(void *handle)
- 
- 	/* get boot_values from vbios to set revision, gfxclk, and etc. */
- 	ret = smu_get_vbios_bootup_values(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to get VBIOS boot clock values!\n");
- 		return ret;
-+	}
- 
- 	ret = smu_setup_pptable(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to setup pptable!\n");
- 		return ret;
-+	}
- 
- 	ret = smu_get_driver_allowed_feature_mask(smu);
- 	if (ret)
--		goto failed;
-+		return ret;
- 
- 	ret = smu_smc_hw_setup(smu);
--	if (ret)
--		goto failed;
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to setup smc hw!\n");
-+		return ret;
-+	}
- 
- 	adev->pm.dpm_enabled = true;
- 
- 	dev_info(adev->dev, "SMU is initialized successfully!\n");
- 
- 	return 0;
--
--failed:
--	return ret;
- }
- 
- static int smu_disable_dpms(struct smu_context *smu)
-@@ -1395,13 +1438,15 @@ static int smu_smc_hw_cleanup(struct smu_context *smu)
- 
- 	ret = smu_disable_thermal_alert(smu);
- 	if (ret) {
--		dev_warn(adev->dev, "Fail to stop thermal control!\n");
-+		dev_err(adev->dev, "Fail to disable thermal alert!\n");
- 		return ret;
- 	}
- 
- 	ret = smu_disable_dpms(smu);
--	if (ret)
-+	if (ret) {
-+		dev_err(adev->dev, "Fail to disable dpm features!\n");
- 		return ret;
-+	}
- 
- 	return 0;
- }
-@@ -1493,13 +1538,15 @@ static int smu_resume(void *handle)
- 
- 	ret = smu_start_smc_engine(smu);
- 	if (ret) {
--		dev_err(adev->dev, "SMU is not ready yet!\n");
--		goto failed;
-+		dev_err(adev->dev, "SMC engine is not correctly up!\n");
-+		return ret;
- 	}
- 
- 	ret = smu_smc_hw_setup(smu);
--	if (ret)
--		goto failed;
-+	if (ret) {
-+		dev_err(adev->dev, "Failed to setup smc hw!\n");
-+		return ret;
-+	}
- 
- 	if (smu->is_apu)
- 		smu_set_gfx_cgpg(&adev->smu, true);
-@@ -1511,9 +1558,6 @@ static int smu_resume(void *handle)
- 	dev_info(adev->dev, "SMU is resumed successfully!\n");
- 
- 	return 0;
--
--failed:
--	return ret;
- }
- 
- int smu_display_configuration_change(struct smu_context *smu,
-@@ -2589,6 +2633,9 @@ int smu_set_xgmi_pstate(struct smu_context *smu,
- 
- 	mutex_unlock(&smu->mutex);
- 
-+	if(ret)
-+		dev_err(smu->adev->dev, "Failed to set XGMI pstate!\n");
-+
  	return ret;
- }
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+index 79599c0825c3..6f31485245bb 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+@@ -454,7 +454,6 @@ struct pptable_funcs {
+ 	int (*get_power_profile_mode)(struct smu_context *smu, char *buf);
+ 	int (*set_power_profile_mode)(struct smu_context *smu, long *input, uint32_t size);
+ 	int (*dpm_set_uvd_enable)(struct smu_context *smu, bool enable);
+-	int (*dpm_set_vce_enable)(struct smu_context *smu, bool enable);
+ 	int (*dpm_set_jpeg_enable)(struct smu_context *smu, bool enable);
+ 	int (*read_sensor)(struct smu_context *smu, enum amd_pp_sensors sensor,
+ 			   void *data, uint32_t *size);
+diff --git a/drivers/gpu/drm/amd/powerplay/smu_internal.h b/drivers/gpu/drm/amd/powerplay/smu_internal.h
+index bde3912e2294..bb4eabd6664a 100644
+--- a/drivers/gpu/drm/amd/powerplay/smu_internal.h
++++ b/drivers/gpu/drm/amd/powerplay/smu_internal.h
+@@ -159,8 +159,6 @@ static inline int smu_send_smc_msg(struct smu_context *smu, enum smu_message_typ
  
-@@ -2660,6 +2707,9 @@ int smu_baco_enter(struct smu_context *smu)
- 
- 	mutex_unlock(&smu->mutex);
- 
-+	if (ret)
-+		dev_err(smu->adev->dev, "Failed to enter BACO state!\n");
-+
- 	return ret;
- }
- 
-@@ -2677,6 +2727,9 @@ int smu_baco_exit(struct smu_context *smu)
- 
- 	mutex_unlock(&smu->mutex);
- 
-+	if (ret)
-+		dev_err(smu->adev->dev, "Failed to exit BACO state!\n");
-+
- 	return ret;
- }
- 
-@@ -2694,6 +2747,9 @@ int smu_mode2_reset(struct smu_context *smu)
- 
- 	mutex_unlock(&smu->mutex);
- 
-+	if (ret)
-+		dev_err(smu->adev->dev, "Mode2 reset failed!\n");
-+
- 	return ret;
- }
+ #define smu_dpm_set_uvd_enable(smu, enable) \
+ 	((smu)->ppt_funcs->dpm_set_uvd_enable ? (smu)->ppt_funcs->dpm_set_uvd_enable((smu), (enable)) : 0)
+-#define smu_dpm_set_vce_enable(smu, enable) \
+-	((smu)->ppt_funcs->dpm_set_vce_enable ? (smu)->ppt_funcs->dpm_set_vce_enable((smu), (enable)) : 0)
+ #define smu_dpm_set_jpeg_enable(smu, enable) \
+ 	((smu)->ppt_funcs->dpm_set_jpeg_enable ? (smu)->ppt_funcs->dpm_set_jpeg_enable((smu), (enable)) : 0)
  
 -- 
 2.27.0
