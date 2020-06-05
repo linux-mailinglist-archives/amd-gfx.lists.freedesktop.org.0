@@ -2,54 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9238D1EED31
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Jun 2020 23:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B8351EEF6F
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jun 2020 04:24:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1607E6E5CD;
-	Thu,  4 Jun 2020 21:15:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8AD16E4B5;
+	Fri,  5 Jun 2020 02:24:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B69856E5CD
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2020 21:15:10 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id x14so7640653wrp.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Jun 2020 14:15:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+VBlfaHLjMIZgRgPD33JNPvrhB3HtN3ppGeLfcO+LVM=;
- b=lBh7G0tU5xqsgrLgbPnokqBGg3NrgzAWb5dazcsqqzlWtOQsBjEA6kORBaTkYv3LL+
- lx4TwmUEDX4F/pBNtHhuq4jbPNto56J16Gnl/i0LaVOkGM0ss7hv6ie1c+IkPUhSi8Eo
- 904LjVplthTb3Zyt4QDU9KtqwSm5gtPHqpKXRQS0UmexXKTilKe52ZeSN/SJxQvi5MCS
- sC9QHEBD2mpryFRrF0jpE2rP6xKz5hFj2Gwh87tUBkzvpoRb29/ldujSsx3yXM6STFQU
- ZMtflslqiYKNqWtkRfYDUeekqQRM8JE63bnJgQMIZ0ghKlsOFWRh9Kh5+ZphetdvtmMv
- b6nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=+VBlfaHLjMIZgRgPD33JNPvrhB3HtN3ppGeLfcO+LVM=;
- b=jbcwmlaH7yd2nKrQnyUZB+czyb7Ww3y2DieU1z0GXhrxCT8qJGjwEZDbJqOB6QSSqY
- toI0t+ompkVjUTaTqq81IxTYouD2/eoKwseW6cRvN7/jrLWth+If/02aQ1+adtnGIdKS
- oWi/yPP0D+ONpfU1Aao17GtIzpt8lonCwlxkx/6adBMxvsQVA3ArSngdLR9Gs1p45l8S
- kpg/WBjRJwURntE9F9O1C6+JMoJ3oark4GqpJCsVqbD3rwgqDq6s51mnHcCgpnFJc7dg
- jrhXHcFlYrtqEEft+Ux8+vjs3N/pAB5d5GTIE+yPkL4zos8gno2rULd+icoh0qaPWipO
- E2/g==
-X-Gm-Message-State: AOAM531gLnpIRQjbWxPjGX3I8eU94B+sWFxNOp+zKAPtH9ipCs7wf2x0
- 3VBNDnrssfhXaK11ltlXjqBWHUiadc7tXHqC4Q0GnrI/
-X-Google-Smtp-Source: ABdhPJy5xApZKczswv5rOMj7WjuA3sLe1IuCu3fXANYHECQ8iNubBpuuP35he1vD+tpd/JBzRxpwry7p3tb/+0BoNA4=
-X-Received: by 2002:a5d:400f:: with SMTP id n15mr6570717wrp.419.1591305309240; 
- Thu, 04 Jun 2020 14:15:09 -0700 (PDT)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2049.outbound.protection.outlook.com [40.107.236.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC7806E4B5
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 02:24:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LcJ3caDwBkP+n3U0mMUH2WAnVkGjcxFw00heKtUhqF8Cgx6yJwmQjp1cxqy8CShmAk0YT7tQlv2AmMAQHBeHWBXGMPu9qP4/TKZt5RLVfHluACe83EROJ0Py59LGE2WYm+9L5FagxsX16sRjsqKFpYARTI/lt61Ii7T2Lae8US0BQEzxvZgUewBtZpT2mXaQzsrZTMMBBrFuN92mljxl/rMNhmTZ2tc9ojeCoeQMHGPNo6I4iPPf8qCz5pqb9Lgup82yyfJSaupXb/s5g8aRmoN6a94gvxVcTeyT4i/p/1bQhzGeStmEuuTT/z7XzbZopIpw59sQMcjMRH3eY5XSwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2Y2Axl9Kp09z1nXIedPbwqezyRT4cqHM8lP/q9Wnk1U=;
+ b=IpPOkIL+QPhZ+nXN2DfOOmbzKKhbagrKugeUkNRLde+13YZLWzcxiUvUg1fgiyS4seP9d/R+rCHf5Nz3Fct41owq7Y4PDsv0VviGTrWwon4bx2SYRisrDrUQTCqPmINj+LKMnxRYwmskmhoVEhiaBKN8a4WCb9f3lmO54feEdkYJm+e8U2fGF5I4zYhcGBcLS0d6InkZTq4yyKNyA9eHjt1+dWxzkrrtNIHxKA1SVImzVCdxRQp4SxjpUBsmCtPQdUzOqxetQlnNISsBzamj2R9SCM1dKJl5hHBawg2ys9mhH9OsUAPJVYvWXuzJnsjNtB0+pG1R4YmFUJMTMOVghg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2Y2Axl9Kp09z1nXIedPbwqezyRT4cqHM8lP/q9Wnk1U=;
+ b=0hFY2xj0zWLGuWXyXU2QOIHMdaAfPqEFRw8NXuvh1lXpchGha+JKsGtDHBT315wSQ9L7BRQgUBKFW6ouPw5o99uZ9t+JY6G2LyYA5VPeB6JZ1JXdKP6vaduTS/Lg263aXs4UAtPG3fzlzq9GABHMnZIgjlAyJLD+m5yvMKG44q8=
+Received: from CY4PR12MB1287.namprd12.prod.outlook.com (2603:10b6:903:40::8)
+ by CY4PR12MB1830.namprd12.prod.outlook.com (2603:10b6:903:127::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18; Fri, 5 Jun
+ 2020 02:24:06 +0000
+Received: from CY4PR12MB1287.namprd12.prod.outlook.com
+ ([fe80::a8f9:dd91:3039:d3dc]) by CY4PR12MB1287.namprd12.prod.outlook.com
+ ([fe80::a8f9:dd91:3039:d3dc%8]) with mapi id 15.20.3066.019; Fri, 5 Jun 2020
+ 02:24:06 +0000
+From: "Chen, Guchun" <Guchun.Chen@amd.com>
+To: "Yang, Stanley" <Stanley.Yang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH V2] drm/amdgpu: support reserve bad page for virt
+Thread-Topic: [PATCH V2] drm/amdgpu: support reserve bad page for virt
+Thread-Index: AQHWOmy9rZmGlFAqRUu1PCEn7lO0RajJR8bw
+Date: Fri, 5 Jun 2020 02:24:05 +0000
+Message-ID: <CY4PR12MB1287EED837E483BAACFC187DF1860@CY4PR12MB1287.namprd12.prod.outlook.com>
+References: <20200604123602.14032-1-Stanley.Yang@amd.com>
+In-Reply-To: <20200604123602.14032-1-Stanley.Yang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-06-05T02:23:34Z; 
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=59bf89a0-b32a-4b57-ab8e-000026fd0d49;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=1
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_enabled: true
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_setdate: 2020-06-05T02:24:03Z
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_method: Privileged
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_name: Public_0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_actionid: 8844a3d0-c368-49e8-8941-0000ab4db3fa
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_contentbits: 0
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [58.247.170.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: acf46c53-9460-4bab-9032-08d808f7855b
+x-ms-traffictypediagnostic: CY4PR12MB1830:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR12MB1830725DB4C7642A725ABB78F1860@CY4PR12MB1830.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-forefront-prvs: 0425A67DEF
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: iRNg0rD0TLklc7tUT9zW8t2B3m2PaQNU9HIsXpKtMEemAUnHPYmxAswb2HKe3CRS6Ql5e2DGE33IIaK1o7LM+k8bNTc8ichMV+IZwLs4MehJ+qT6KEoewGoPYid6oNK0BaVQvp++sOgwl3DVQQW/jAued3Q6v99PdNihT0MiHnV0z9HRxs1xZ0XXJnjdVCjJyfsS6vb0ghqxV+AsZLpwxKsOPpKHEM4Nx267TfFWGMzzshwMpomGpgT0TCi1j13le+FDfZIlq4pwTN+/Yl+8yLXe863J/2WnJ9oOBrIKPA4NLOR0YgCjpyjfdZeaZ8zY
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY4PR12MB1287.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(136003)(366004)(396003)(346002)(39860400002)(376002)(52536014)(7696005)(4326008)(71200400001)(186003)(86362001)(33656002)(26005)(6506007)(5660300002)(64756008)(53546011)(2906002)(9686003)(76116006)(83380400001)(66476007)(54906003)(66446008)(55016002)(66556008)(478600001)(8936002)(110136005)(66946007)(316002)(8676002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: qjkCRltoXOxxbOkCn0/i33awBYRB/dZ7efoca4P+TqfGww8s6u1t3Q0QDbc+9/wEEBAB8P6TSUF6awjnZ2oYtIX8R5q76MsKqGTcS20HB2nZXWOvpJBOw4XfjhOsAs1Yv3JwFXevV1NOTrUaMhxlOBGP4U4rLPjd/vyXOavSwRkQ486hLTMrcgsC9howS8yteVajXCbD0LOnCVpjl7LlYC79C8w1VswME3Y9u8N1VBQQPRXwJWtQsp7Sps7MF+pA25grO+W/amZISiI7V7XIe2+f0gVKmAmPpSEq2OyjQV3CpipEs86iBX3d3DmchyLgIc50Ud3Kbh0OYZ1W7G/Hgi7r+D6uQ+tn5fzlPD36BDug1qfAD9Qh5dFTyS/LgWC33wBMdWtFRgiRYWKzvPd7a9Pmbf0HJQMCbmQF7re2+LB2tC/lTXipMTuCNGARfLcLFzZ5Oz7nb+OsDlhk2/vBsJonIbn7cPAGAAYWRHn2wKtcYPLunWRKOdIAiN+9cbpg
 MIME-Version: 1.0
-References: <20200604044619.18658-1-evan.quan@amd.com>
- <20200604044619.18658-16-evan.quan@amd.com>
-In-Reply-To: <20200604044619.18658-16-evan.quan@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 4 Jun 2020 17:14:57 -0400
-Message-ID: <CADnq5_OxKQF9FoNLCSMHs=kmRaEexCQXP8hmhLZhP=HEedb3=A@mail.gmail.com>
-Subject: Re: [PATCH 16/16] drm/amd/powerplay: skip BACO feature on DPMs
- disablement
-To: Evan Quan <evan.quan@amd.com>
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: acf46c53-9460-4bab-9032-08d808f7855b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2020 02:24:05.4022 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PKswFhubXVXAUGLX6O/Kotp6Ty+ZJtvwxfP1J4WT0mYIPeA4T9Yq+WtMU/HAn4r9ijgo4gJlverJ/1yQdq6vAw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1830
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,141 +105,328 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "Yang, Stanley" <Stanley.Yang@amd.com>,
+ "Liu, Monk" <Monk.Liu@amd.com>, "Clements, John" <John.Clements@amd.com>, "Li,
+ Dennis" <Dennis.Li@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 4, 2020 at 12:47 AM Evan Quan <evan.quan@amd.com> wrote:
->
-> Instead of disabling and reenabling it later.
->
-> Change-Id: I90775202178f3b7695f42f39ce240bbfd51a1346
-> Signed-off-by: Evan Quan <evan.quan@amd.com>
+[AMD Public Use]
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Please see my comments with prefix [Guchun].
 
-> ---
->  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 72 ++++++++++------------
->  1 file changed, 31 insertions(+), 41 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> index d9a9d9723be1..b645bba1d201 100644
-> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-> @@ -110,28 +110,32 @@ static int smu_feature_update_enable_state(struct smu_context *smu,
->                                            bool enabled)
->  {
->         struct smu_feature *feature = &smu->smu_feature;
-> -       uint32_t feature_low = 0, feature_high = 0;
->         int ret = 0;
->
-> -       feature_low = (feature_mask >> 0 ) & 0xffffffff;
-> -       feature_high = (feature_mask >> 32) & 0xffffffff;
-> -
->         if (enabled) {
-> -               ret = smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuFeaturesLow,
-> -                                                 feature_low, NULL);
-> +               ret = smu_send_smc_msg_with_param(smu,
-> +                                                 SMU_MSG_EnableSmuFeaturesLow,
-> +                                                 lower_32_bits(feature_mask),
-> +                                                 NULL);
->                 if (ret)
->                         return ret;
-> -               ret = smu_send_smc_msg_with_param(smu, SMU_MSG_EnableSmuFeaturesHigh,
-> -                                                 feature_high, NULL);
-> +               ret = smu_send_smc_msg_with_param(smu,
-> +                                                 SMU_MSG_EnableSmuFeaturesHigh,
-> +                                                 upper_32_bits(feature_mask),
-> +                                                 NULL);
->                 if (ret)
->                         return ret;
->         } else {
-> -               ret = smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmuFeaturesLow,
-> -                                                 feature_low, NULL);
-> +               ret = smu_send_smc_msg_with_param(smu,
-> +                                                 SMU_MSG_DisableSmuFeaturesLow,
-> +                                                 lower_32_bits(feature_mask),
-> +                                                 NULL);
->                 if (ret)
->                         return ret;
-> -               ret = smu_send_smc_msg_with_param(smu, SMU_MSG_DisableSmuFeaturesHigh,
-> -                                                 feature_high, NULL);
-> +               ret = smu_send_smc_msg_with_param(smu,
-> +                                                 SMU_MSG_DisableSmuFeaturesHigh,
-> +                                                 upper_32_bits(feature_mask),
-> +                                                 NULL);
->                 if (ret)
->                         return ret;
->         }
-> @@ -1305,6 +1309,7 @@ static int smu_hw_init(void *handle)
->  static int smu_disable_dpms(struct smu_context *smu)
->  {
->         struct amdgpu_device *adev = smu->adev;
-> +       uint64_t features_to_disable;
->         int ret = 0;
->         bool use_baco = !smu->is_apu &&
->                 ((adev->in_gpu_reset &&
-> @@ -1336,36 +1341,21 @@ static int smu_disable_dpms(struct smu_context *smu)
->                 return 0;
->
->         /*
-> -        * Disable all enabled SMU features.
-> -        * This should be handled in SMU FW, as a backup
-> -        * driver can issue call to SMU FW until sequence
-> -        * in SMU FW is operational.
-> -        */
-> -       ret = smu_system_features_control(smu, false);
-> -       if (ret) {
-> -               pr_err("Failed to disable smu features.\n");
-> -               return ret;
-> -       }
-> -
-> -       /*
-> -        * For baco, need to leave BACO feature enabled
-> -        *
-> -        * Correct the way for checking whether SMU_FEATURE_BACO_BIT
-> -        * is supported.
-> -        *
-> -        * Since 'smu_feature_is_enabled(smu, SMU_FEATURE_BACO_BIT)' will
-> -        * always return false as the 'smu_system_features_control(smu, false)'
-> -        * was just issued above which disabled all SMU features.
-> -        *
-> -        * Thus 'smu_feature_get_index(smu, SMU_FEATURE_BACO_BIT)' is used
-> -        * now for the checking.
-> +        * For gpu reset, runpm and hibernation through BACO,
-> +        * BACO feature has to be kept enabled.
->          */
-> -       if (use_baco && (smu_feature_get_index(smu, SMU_FEATURE_BACO_BIT) >= 0)) {
-> -               ret = smu_feature_set_enabled(smu, SMU_FEATURE_BACO_BIT, true);
-> -               if (ret) {
-> -                       pr_warn("set BACO feature enabled failed, return %d\n", ret);
-> -                       return ret;
-> -               }
-> +       if (use_baco && smu_feature_is_enabled(smu, SMU_FEATURE_BACO_BIT)) {
-> +               features_to_disable = U64_MAX &
-> +                       ~(1ULL << smu_feature_get_index(smu, SMU_FEATURE_BACO_BIT));
-> +               ret = smu_feature_update_enable_state(smu,
-> +                                                     features_to_disable,
-> +                                                     0);
-> +               if (ret)
-> +                       pr_err("Failed to disable smu features except BACO.\n");
-> +       } else {
-> +               ret = smu_system_features_control(smu, false);
-> +               if (ret)
-> +                       pr_err("Failed to disable smu features.\n");
->         }
->
->         if (adev->asic_type >= CHIP_NAVI10 &&
-> --
-> 2.27.0
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+Regards,
+Guchun
+
+-----Original Message-----
+From: Stanley.Yang <Stanley.Yang@amd.com> 
+Sent: Thursday, June 4, 2020 8:36 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Chen, Guchun <Guchun.Chen@amd.com>; Liu, Monk <Monk.Liu@amd.com>; Clements, John <John.Clements@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>; Li, Dennis <Dennis.Li@amd.com>; Yang, Stanley <Stanley.Yang@amd.com>
+Subject: [PATCH V2] drm/amdgpu: support reserve bad page for virt
+
+Changed from V1:
+	rename same functions name, only init ras error handler data for
+	supported asic.
+[Guchun] 'same' is one typo? It should be some..
+
+
+Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
+Change-Id: Ia0ad9453ac3ac929f95c73cbee5b7a8fc42a9816
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c   | 172 +++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h   |  30 +++-
+ 3 files changed, 201 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 1df28b7bf22e..668ad0e35160 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2326,6 +2326,9 @@ static int amdgpu_device_ip_fini(struct amdgpu_device *adev)  {
+ 	int i, r;
+ 
++	if (amdgpu_sriov_vf(adev) && adev->virt.ras_init_done)
++		amdgpu_virt_release_ras_err_handler_data(adev);
++
+ 	amdgpu_ras_pre_fini(adev);
+ 
+ 	if (adev->gmc.xgmi.num_physical_nodes > 1) diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+index bab9286021a7..174fcb8c8b57 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+@@ -26,6 +26,7 @@
+ #include <drm/drm_drv.h>
+ 
+ #include "amdgpu.h"
++#include "amdgpu_ras.h"
+ 
+ bool amdgpu_virt_mmio_blocked(struct amdgpu_device *adev)  { @@ -255,12 +256,169 @@ int amdgpu_virt_fw_reserve_get_checksum(void *obj,
+ 	return ret;
+ }
+ 
++static int amdgpu_virt_init_ras_err_handler_data(struct amdgpu_device 
++*adev) {
++	struct amdgpu_virt *virt = &adev->virt;
++	struct amdgpu_virt_ras_err_handler_data **data = &virt->virt_eh_data;
++	/* GPU will be marked bad on host if bp count more then 10,
++	 * so alloc 512 is enough.
++	 */
++	unsigned int align_space = 512;
++	void *bps = NULL;
++	struct amdgpu_bo **bps_bo = NULL;
++
++	*data = kmalloc(sizeof(struct amdgpu_virt_ras_err_handler_data), GFP_KERNEL);
++	if (!*data)
++		return -ENOMEM;
++
++	bps = kmalloc(align_space * sizeof((*data)->bps), GFP_KERNEL);
++	bps_bo = kmalloc(align_space * sizeof((*data)->bps_bo), GFP_KERNEL);
++
++	if (!bps || !bps_bo) {
++		kfree(bps);
++		kfree(bps_bo);
+[Guchun]It's needed to release *data as well to prevent memory leak?
+
+
++		return -ENOMEM;
++	}
++
++	(*data)->bps = bps;
++	(*data)->bps_bo = bps_bo;
++	(*data)->count = 0;
++	(*data)->last_reserved = 0;
++
++	virt->ras_init_done = true;
++
++	return 0;
++}
++
++static void amdgpu_virt_ras_release_bp(struct amdgpu_device *adev) {
++	struct amdgpu_virt *virt = &adev->virt;
++	struct amdgpu_virt_ras_err_handler_data *data = virt->virt_eh_data;
++	struct amdgpu_bo *bo;
++	int i;
++
++	if (!data)
++		return;
++
++	for (i = data->last_reserved - 1; i >= 0; i--) {
++		bo = data->bps_bo[i];
++		amdgpu_bo_free_kernel(&bo, NULL, NULL);
++		data->bps_bo[i] = bo;
++		data->last_reserved = i;
++	}
++}
++
++void amdgpu_virt_release_ras_err_handler_data(struct amdgpu_device 
++*adev) {
++	struct amdgpu_virt *virt = &adev->virt;
++	struct amdgpu_virt_ras_err_handler_data *data = virt->virt_eh_data;
++
++	virt->ras_init_done = false;
++
++	if (!data)
++		return;
++
++	amdgpu_virt_ras_release_bp(adev);
++
++	kfree(data->bps);
++	kfree(data->bps_bo);
++	kfree(data);
++	virt->virt_eh_data = NULL;
++}
++
++static void amdgpu_virt_ras_add_bps(struct amdgpu_device *adev,
++		struct eeprom_table_record *bps, int pages) {
++	struct amdgpu_virt *virt = &adev->virt;
++	struct amdgpu_virt_ras_err_handler_data *data = virt->virt_eh_data;
++
++	if (!data)
++		return;
++
++	memcpy(&data->bps[data->count], bps, pages * sizeof(*data->bps));
++	data->count += pages;
++}
++
++static void amdgpu_virt_ras_reserve_bps(struct amdgpu_device *adev) {
++	struct amdgpu_virt *virt = &adev->virt;
++	struct amdgpu_virt_ras_err_handler_data *data = virt->virt_eh_data;
++	struct amdgpu_bo *bo = NULL;
++	uint64_t bp;
++	int i;
++
++	if (!data)
++		return;
++
++	for (i = data->last_reserved; i < data->count; i++) {
++		bp = data->bps[i].retired_page;
++
++		/* There are two cases of reserve error should be ignored:
++		 * 1) a ras bad page has been allocated (used by someone);
++		 * 2) a ras bad page has been reserved (duplicate error injection
++		 *    for one page);
++		 */
++		if (amdgpu_bo_create_kernel_at(adev, bp << AMDGPU_GPU_PAGE_SHIFT,
++					       AMDGPU_GPU_PAGE_SIZE,
++					       AMDGPU_GEM_DOMAIN_VRAM,
++					       &bo, NULL))
++			DRM_DEBUG("RAS WARN: [SRV-IO] reserve vram for retired page %llx 
++fail\n", bp);
++
++		data->bps_bo[i] = bo;
++		data->last_reserved = i + 1;
++		bo = NULL;
++	}
++}
++
++static bool amdgpu_virt_ras_check_bad_page(struct amdgpu_device *adev,
++		uint64_t retired_page)
++{
++	struct amdgpu_virt *virt = &adev->virt;
++	struct amdgpu_virt_ras_err_handler_data *data = virt->virt_eh_data;
++	int i;
++
++	if (!data)
++		return true;
++
++	for (i = 0; i < data->count; i++)
++		if (retired_page == data->bps[i].retired_page)
++			return true;
++
++	return false;
++}
++
++static void amdgpu_virt_add_bad_page(struct amdgpu_device *adev,
++		uint64_t bp_block_offset, uint32_t bp_block_size) {
++	struct eeprom_table_record bp;
++	uint64_t retired_page;
++	uint32_t bp_idx, bp_cnt;
++
++	if (bp_block_size) {
++		bp_cnt = bp_block_size / sizeof(uint64_t);
++		for (bp_idx = 0; bp_idx < bp_cnt; bp_idx++) {
++			retired_page = *(uint64_t *)(adev->fw_vram_usage.va +
++					bp_block_offset + bp_idx * sizeof(uint64_t));
++			bp.retired_page = retired_page;
++
++			if (amdgpu_virt_ras_check_bad_page(adev, retired_page))
++				continue;
++
++			amdgpu_virt_ras_add_bps(adev, &bp, 1);
++
++			amdgpu_virt_ras_reserve_bps(adev);
++		}
++	}
++}
++
+ void amdgpu_virt_init_data_exchange(struct amdgpu_device *adev)  {
+ 	uint32_t pf2vf_size = 0;
+ 	uint32_t checksum = 0;
+ 	uint32_t checkval;
+ 	char *str;
++	uint64_t bp_block_offset = 0;
++	uint32_t bp_block_size = 0;
+ 
+ 	adev->virt.fw_reserve.p_pf2vf = NULL;
+ 	adev->virt.fw_reserve.p_vf2pf = NULL;
+@@ -275,6 +433,20 @@ void amdgpu_virt_init_data_exchange(struct amdgpu_device *adev)
+ 
+ 		/* pf2vf message must be in 4K */
+ 		if (pf2vf_size > 0 && pf2vf_size < 4096) {
++			if (adev->virt.fw_reserve.p_pf2vf->version == 2) {
++				struct amdgim_pf2vf_info_v2 *pf2vf_v2 = NULL;
+[Guchun]Move declare of struct amdgim_pf2vf_info_v2 *pf2vf_v2 = NULL to the first beginning of this function.
+
+
++				pf2vf_v2 = (struct amdgim_pf2vf_info_v2 *)adev->virt.fw_reserve.p_pf2vf;
++				bp_block_offset = ((uint64_t)pf2vf_v2->bp_block_offset_L & 0xFFFFFFFF) |
++						((((uint64_t)pf2vf_v2->bp_block_offset_H) << 32) & 0xFFFFFFFF00000000);
++				bp_block_size = pf2vf_v2->bp_block_size;
++
++				if (bp_block_size && !adev->virt.ras_init_done)
++					amdgpu_virt_init_ras_err_handler_data(adev);
++
++				amdgpu_virt_add_bad_page(adev, bp_block_offset, bp_block_size);
++			}
++
+ 			checkval = amdgpu_virt_fw_reserve_get_checksum(
+ 				adev->virt.fw_reserve.p_pf2vf, pf2vf_size,
+ 				adev->virt.fw_reserve.checksum_key, checksum); diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
+index b90e822cebd7..f826945989c7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
+@@ -143,19 +143,27 @@ struct  amdgim_pf2vf_info_v2 {
+ 	uint32_t vce_enc_max_pixels_count;
+ 	/* 16x16 pixels/sec, codec independent */
+ 	uint32_t vce_enc_max_bandwidth;
++	/* Bad pages block position in BYTE */
++	uint32_t bp_block_offset_L;
++	uint32_t bp_block_offset_H;
++	/* Bad pages block size in BYTE */
++	uint32_t bp_block_size;
+ 	/* MEC FW position in kb from the start of VF visible frame buffer */
+-	uint64_t mecfw_kboffset;
++	uint32_t mecfw_kboffset_L;
++	uint32_t mecfw_kboffset_H;
+ 	/* MEC FW size in KB */
+ 	uint32_t mecfw_ksize;
+ 	/* UVD FW position in kb from the start of VF visible frame buffer */
+-	uint64_t uvdfw_kboffset;
++	uint32_t uvdfw_kboffset_L;
++	uint32_t uvdfw_kboffset_H;
+ 	/* UVD FW size in KB */
+ 	uint32_t uvdfw_ksize;
+ 	/* VCE FW position in kb from the start of VF visible frame buffer */
+-	uint64_t vcefw_kboffset;
++	uint32_t vcefw_kboffset_L;
++	uint32_t vcefw_kboffset_H;
+ 	/* VCE FW size in KB */
+ 	uint32_t vcefw_ksize;
+-	uint32_t reserved[AMDGIM_GET_STRUCTURE_RESERVED_SIZE(256, 0, 0, (9 + sizeof(struct amd_sriov_msg_pf2vf_info_header)/sizeof(uint32_t)), 3)];
++	uint32_t reserved[AMDGIM_GET_STRUCTURE_RESERVED_SIZE(256, 0, 0, (18 + 
++sizeof(struct amd_sriov_msg_pf2vf_info_header)/sizeof(uint32_t)), 0)];
+ } __aligned(4);
+ 
+ 
+@@ -254,6 +262,17 @@ typedef struct amdgim_vf2pf_info_v2 amdgim_vf2pf_info ;
+ 		} \
+ 	} while (0)
+ 
++struct amdgpu_virt_ras_err_handler_data {
++	/* point to bad page records array */
++	struct eeprom_table_record *bps;
++	/* point to reserved bo array */
++	struct amdgpu_bo **bps_bo;
++	/* the count of entries */
++	int count;
++	/* last reserved entry's index + 1 */
++	int last_reserved;
++};
++
+ /* GPU virtualization */
+ struct amdgpu_virt {
+ 	uint32_t			caps;
+@@ -272,6 +291,8 @@ struct amdgpu_virt {
+ 	uint32_t reg_access_mode;
+ 	int req_init_data_ver;
+ 	bool tdr_debug;
++	struct amdgpu_virt_ras_err_handler_data *virt_eh_data;
++	bool ras_init_done;
+ };
+ 
+ #define amdgpu_sriov_enabled(adev) \
+@@ -323,6 +344,7 @@ void amdgpu_virt_free_mm_table(struct amdgpu_device *adev);  int amdgpu_virt_fw_reserve_get_checksum(void *obj, unsigned long obj_size,
+ 					unsigned int key,
+ 					unsigned int chksum);
++void amdgpu_virt_release_ras_err_handler_data(struct amdgpu_device 
++*adev);
+ void amdgpu_virt_init_data_exchange(struct amdgpu_device *adev);  void amdgpu_detect_virtualization(struct amdgpu_device *adev);
+ 
+--
+2.17.1
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
