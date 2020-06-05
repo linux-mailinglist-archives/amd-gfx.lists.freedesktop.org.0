@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9874F1EF12E
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jun 2020 08:08:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C03491EF130
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jun 2020 08:08:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F38E26E83F;
-	Fri,  5 Jun 2020 06:08:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B0FD6E843;
+	Fri,  5 Jun 2020 06:08:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2059.outbound.protection.outlook.com [40.107.236.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CF096E83F
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 06:08:06 +0000 (UTC)
+ (mail-bn8nam11on2058.outbound.protection.outlook.com [40.107.236.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B15056E842
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2020 06:08:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n2PKjZQAHhKYpBdRuBmlO/6UjI08QoSkJEaVwPnHPwsJ5QLbTF1xD5SzHtq5c+Q3Ev+qQqP56z/GX3ZzO7zFHKe+QY/oVdy1ZMr2BI8Hojgbysr+jzOtfqnQGrdkeod8CWanui8Cz+xFK+3oRGbZoNQl1vINGS7AZRbikG2lkUY83upwjBpa78lrohdxBeFKHlJS8kV+Ny5psBRX59TkNKITrnQZlslQ+AUvhY/nLyKXfvihCEJG7yERJnRgbGDtdf2GsH6EbL5P/d6U9egyuD3DJlFC/TxMl88d4weGUW90OEBzmzQfVtd6/8Ncs2rnbKhdygyf79U+V75KRBtCyw==
+ b=M+2qtkvu91gdJl7IQPOfJaoFFOvks0vwLgFlqHFJQ//6y+aTcsZpd8TcGuc4nn2q5QHLAFiVw/2iCEck6ijywRyieLQzQinUQL8hHvgo5rsUvkcMGE+Upe9c8htoOew//P4NlbfeLgeYs6HU4Pprk30qlC+4YZRc8CRPap+RsRrakMxlC63mqs6jLz0U1EiKIr9hBAzPLWaQrUzLE35OEgrj/fH0uNd7u8YG/ARV80t8m4bgTH9Kn3SFgCiCdQc7xshC5qIq4aW7AzOp9yytLfdUZdFyWmqnypuZD4Pv+yjBWoPfJLnGWFTLQvEB12/RwAAg4TNi+rOaU/+4w/00Tw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zk81jVguTWdpYYmcu8TwefUpI1teCkEr3h4mAM6omug=;
- b=h8ts65bf6H7cc7jRhK2ewnK3tv8rICkuN1NDZ9mzmXf0LL5JeH7ajprLK7fLra9nbP/2oC8gn2O0FMp81Zw22uGGPot1opOt6wy4lKGAlUxYjddm2btOQtmFlO63b7B7EfRwYBQz7SIKPS9WJK32WAvAwjBICh/bqLpst+8q8difjdIGl6h/ZBRUhRTBn3iQcAd/fh9ta02I3vL6IIe2BD83Rbd2FPTXfnTip9l+1tdL7COcnO7lSpoN6PDhn5OBTwoUp4MjHC6ka7fgYFjh94EkwWDqomL7bW/kS4gXs9oMGdoze22tWuyQBFXXeRjyz2x4Lyt5jOvhGkj7bqhOfQ==
+ bh=yNz3rvEVtTjzMfa+U3S9S6Cb/2DC/yTdk280Au+Dvco=;
+ b=m1Rrn0ppBWCb+71+id3YYZOyBtw+F2GX0XWSkQB+2xYJOsqtwoPEAfXypDv/Ror40FtDKneg7GN5eLYk035ckQAoEUN4vwOJF2k0FpAsEXfYsZFg8+XsYl6QIaCZboj/eDu3S6kplfT6ZC7CaV+nv7aob7RZ9L0f2D6nYajQwQihW6Ph1RzgE5myC+KN6UEH/OQc1wxRDdUy5LXxB8fb92o7b9cjgHh6rv/8OSZrW/SQY/N+nhwPcOlBc3grIAV8cMUFyMq9+RdZq9YjhMLizUQJ0zD2XILRZYgL5MTRTC1xkcWeeHRw+5CrttRuTqFLjRNAlkrohP2qYRUwimZDjA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zk81jVguTWdpYYmcu8TwefUpI1teCkEr3h4mAM6omug=;
- b=DdUX7l8VXqLmQpOLtS8OG+qzmhrLNfLWbLrKO1oljwuFpD/WIg7hvw3F7b7Tpsy915V49woBWtYYfsuoi5c0u1yWCIiRUU5WFSiCeqvp38zw51Hn6F9G80QVe0g5RAuzWtWYQHGOvGpOCjWjaZIuNKKzAl5kw+emKOSn0Ny3Ffc=
+ bh=yNz3rvEVtTjzMfa+U3S9S6Cb/2DC/yTdk280Au+Dvco=;
+ b=nDe1R3MXDDZZ2pf86j7IF18saYWFVw5xgRbo8+rhymshjHKFzOX4k0qp+DStcFn68yaSv6j0FGAQHE88ZO6PoT9thn18YKBmpHbj8NyG1h5Z/8q1EG8HAL+YKpWDjsueKR1OBZvon3YUGtE3C2NEsgtYzNszO5UKVQE6jrmYmsk=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,17 @@ Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
  DM6PR12MB4332.namprd12.prod.outlook.com (2603:10b6:5:21e::23) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3066.18; Fri, 5 Jun 2020 06:08:05 +0000
+ 15.20.3066.18; Fri, 5 Jun 2020 06:08:08 +0000
 Received: from DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::c157:8999:dcc3:536f]) by DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::c157:8999:dcc3:536f%3]) with mapi id 15.20.3045.022; Fri, 5 Jun 2020
- 06:08:05 +0000
+ 06:08:08 +0000
 From: Evan Quan <evan.quan@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/4] drm/amd/powerplay: update how to use metrics table on
- Navi10
-Date: Fri,  5 Jun 2020 14:07:38 +0800
-Message-Id: <20200605060741.5280-2-evan.quan@amd.com>
+Subject: [PATCH 3/4] drm/amd/powerplay: update how to use metrics table on
+ Sienna Cichlid
+Date: Fri,  5 Jun 2020 14:07:39 +0800
+Message-Id: <20200605060741.5280-3-evan.quan@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200605060741.5280-1-evan.quan@amd.com>
 References: <20200605060741.5280-1-evan.quan@amd.com>
@@ -57,33 +57,33 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from equan-buildpc.amd.com (58.247.170.242) by
  HK2PR04CA0046.apcprd04.prod.outlook.com (2603:1096:202:14::14) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3066.18 via Frontend Transport; Fri, 5 Jun 2020 06:08:03 +0000
+ 15.20.3066.18 via Frontend Transport; Fri, 5 Jun 2020 06:08:07 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [58.247.170.242]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 5e77fdba-7ba4-450f-3f78-08d80916cf91
+X-MS-Office365-Filtering-Correlation-Id: 35f9cb3f-6692-4aa7-8f2d-08d80916d1a4
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4332:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB43321A1A36D71EF43ADDCDFAE4860@DM6PR12MB4332.namprd12.prod.outlook.com>
+X-Microsoft-Antispam-PRVS: <DM6PR12MB433203C320670F83F627622FE4860@DM6PR12MB4332.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
 X-Forefront-PRVS: 0425A67DEF
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZcHRpiMxdybjgp5u5zfEY2dXi3SY6ufEQfvWxp6JYM6zvTVgPEfJHcZWl5smrrNnx5h+Fjnp6NDiG76chpsbJ2ZWG8IcUf6XCgHFmIrni5BqXdRTUlaFJnWlZL1Fb0iB/POFsenAGFRYmbIHSu1I/9LMrWDbYGIGmf1rp+h0ez1q+MnHRwnKL7sCfpYfc5OSF1YDo2awGFUIT7uz4Lgsi0Y3BZiEatEnUxCA7u7mkxUkj+DU6jvxQJMqhZ8f5r5p9obszkgn3oXlBE9xc7jSL7pXxfWllAMuENbbhZjObngNObwA+GJTCIAi/AP/iVmtFRPg/Oejve8FbDJM61WWQQ==
+X-Microsoft-Antispam-Message-Info: 17Iz4p1XY2czru9qKbkQf4eraKGVQewLUz6MtRTBcZJ/EXqEOQ1z3HfDY9ED8HK/+IHiK2Llq+QHSjz8T8juZp4nmAtu2ulbmWJjiAJBX3N8d9pwU/+Z5cWjGfG4yfhdvb1MfiT8hacsjnFB3TKp55uufCvmRpQriggkxJyiVQLR48vnohApwqo2k2foGiEgQJ5PRcJiME1QM5csThC4rB099nrjnZtVsN3FGMGsXom3fDM26xjfWFQsksTVnUliraCjy+D1gdV9i/fC4F2GwPywVWnGafnKNF8o4HPmE9/D64v/G7OW/dFsx++Lb/ExrtVoosK03Gkj6UE4Lp/MuQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
  SFS:(4636009)(396003)(136003)(366004)(39860400002)(346002)(376002)(1076003)(478600001)(83380400001)(6486002)(8936002)(2616005)(956004)(36756003)(4326008)(6916009)(8676002)(6666004)(186003)(2906002)(66946007)(44832011)(26005)(16526019)(86362001)(5660300002)(66476007)(7696005)(316002)(52116002)(66556008);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: S7bG6hqrrW9pXZgvr7Ltz7RaJFOvHWXCQDbm6YpA60HnxZAj6s+f6/GXGi5n6OygmfjbMSCJoxji6DdfYHH2WZMoJt/48aOjahAqnfBx4/GdmjtzP7ODWcA11/P3UawebG87KPP8r/ro3cTxSfIUXqC4fTtyocCCzf7DhkwYZQXA6TwNgLkNpALdf/ZZr8QNX7Gn6AYUPXgJzuWDe0Fs7U7RDcP2Jt4OUtmsQmMKTx/RjJlVRXS910Bzp/6CUEbJTE1g6JuvnJ1bl3b8i/bLQEvw5LtA9pTUzgYdElA5O6P73SrnKBZjkgZ6twPv+jrIpAim1IwZLQbfOHRrt1z0iKfQuKkwmHRb+gsar/IO6MrSeSGxvrlkyixYEfm/t6GDfJ5N+yqmWwCszSE1muoFNezHIXQ88i6Lcapvegq9PpIrrHEmma+IUHs9GBA+26s9XXd6gtpY2Jv3GECpTOhgVez3EA3Ht8E/uysQok+0aWDqKLrV3bKYkc6/568p+98A
+X-MS-Exchange-AntiSpam-MessageData: WxmUzkg6FyX3LimrwszpD2eeIjbdiI9HWVnm0m3vx4ffNwskEAuwG6mmLlbtuG0JLSbHWuVpInxfIsnw8bqIzMqyQBHFTCANJ1Ii5rolfJH2piskas0X4hRinOE+1SJcAs8u0iHb9IOttLoQvaQSsXn8mSdMTeXrUqZngGi4Krl7nRKZhuA+xaFjj7IlYi7AaGo4Ll68eIJrMPX+weccYX7VQsVtFVLUEeah2wuhY2u3KPwwlVifQlVvZTJuN/BVuZWYxMO72X3DcTG46Qi5FtTautCUYyP216+c+wYunQ8X44YiOdRG8hP4VXH6GCoRVLMvKwTcX8xGGAbIgLHL69Tpq0ynMfA4TK5NDfCzkawPkttQ98luPg4gVKRZ9MOwst/ZGvGCBm+lA4nkR77fZldIYYvGC+/hdbbqZkFXhR7ZDECjuDvj6pmYvy8wOFtsl+MRgtEY+xRLNHxBvec6XctJUD08rugFjpfgoFryKn4Tg0dTB6stB2ft05LA4Kg1
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e77fdba-7ba4-450f-3f78-08d80916cf91
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2020 06:08:05.2056 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35f9cb3f-6692-4aa7-8f2d-08d80916d1a4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2020 06:08:08.7406 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oWcwuvYdUXwPJ3gqRk0/I4+U6iUGwtr2euy9yzISA31wLDh3Q4gX0oKUD99Jl/tX
+X-MS-Exchange-CrossTenant-UserPrincipalName: BeUP3senSQ0AR665HaX1qOdrlTnlW9z9JwFmk2x1ffNBkmbjKv+Y3myYKXKcVa54
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4332
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -104,38 +104,45 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Retrieve only those data interested instead of the whole table.
 
-Change-Id: I78a3ecce1075e73b96c2ee0b13aacc469bb09021
+Change-Id: I6008351209be3b8812c547043a532e5fb90dd980
 Signed-off-by: Evan Quan <evan.quan@amd.com>
 ---
- .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h    |   1 +
- drivers/gpu/drm/amd/powerplay/navi10_ppt.c    | 180 ++++++++++++------
- 2 files changed, 127 insertions(+), 54 deletions(-)
+ .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h    |   3 +
+ .../drm/amd/powerplay/sienna_cichlid_ppt.c    | 197 +++++++++++++-----
+ 2 files changed, 146 insertions(+), 54 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-index 1bb07318efa6..7b5ec748b006 100644
+index 7b5ec748b006..79599c0825c3 100644
 --- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
 +++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-@@ -581,6 +581,7 @@ typedef enum {
+@@ -579,11 +579,14 @@ typedef enum {
+ 	METRICS_CURR_SOCCLK,
+ 	METRICS_CURR_UCLK,
  	METRICS_CURR_VCLK,
++	METRICS_CURR_VCLK1,
  	METRICS_CURR_DCLK,
++	METRICS_CURR_DCLK1,
  	METRICS_CURR_FCLK,
-+	METRICS_CURR_DCEFCLK,
+ 	METRICS_CURR_DCEFCLK,
  	METRICS_AVERAGE_GFXCLK,
  	METRICS_AVERAGE_SOCCLK,
++	METRICS_AVERAGE_FCLK,
  	METRICS_AVERAGE_UCLK,
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-index 8dd916a8e8f8..25653f5f8d16 100644
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-@@ -561,16 +561,22 @@ static int navi10_tables_init(struct smu_context *smu, struct smu_table *tables)
+ 	METRICS_AVERAGE_VCLK,
+ 	METRICS_AVERAGE_DCLK,
+diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+index d637fc4b72ac..13ec103575f9 100644
+--- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+@@ -547,16 +547,22 @@ static int sienna_cichlid_tables_init(struct smu_context *smu, struct smu_table
  	return 0;
  }
  
--static int navi10_get_metrics_table(struct smu_context *smu,
+-static int sienna_cichlid_get_metrics_table(struct smu_context *smu,
 -				    SmuMetrics_t *metrics_table)
-+static int navi10_get_smu_metrics_data(struct smu_context *smu,
-+				       MetricsMember_t member,
-+				       uint32_t *value)
++static int sienna_cichlid_get_smu_metrics_data(struct smu_context *smu,
++					       MetricsMember_t member,
++					       uint32_t *value)
  {
  	struct smu_table_context *smu_table= &smu->smu_table;
 +	SmuMetrics_t *metrics = (SmuMetrics_t *)smu_table->metrics_table;
@@ -155,7 +162,7 @@ index 8dd916a8e8f8..25653f5f8d16 100644
  		if (ret) {
  			pr_info("Failed to export SMU metrics table!\n");
  			mutex_unlock(&smu->metrics_lock);
-@@ -579,7 +585,71 @@ static int navi10_get_metrics_table(struct smu_context *smu,
+@@ -565,10 +571,81 @@ static int sienna_cichlid_get_metrics_table(struct smu_context *smu,
  		smu_table->metrics_time = jiffies;
  	}
  
@@ -171,16 +178,22 @@ index 8dd916a8e8f8..25653f5f8d16 100644
 +		*value = metrics->CurrClock[PPCLK_UCLK];
 +		break;
 +	case METRICS_CURR_VCLK:
-+		*value = metrics->CurrClock[PPCLK_VCLK];
++		*value = metrics->CurrClock[PPCLK_VCLK_0];
++		break;
++	case METRICS_CURR_VCLK1:
++		*value = metrics->CurrClock[PPCLK_VCLK_1];
 +		break;
 +	case METRICS_CURR_DCLK:
-+		*value = metrics->CurrClock[PPCLK_DCLK];
++		*value = metrics->CurrClock[PPCLK_DCLK_0];
++		break;
++	case METRICS_CURR_DCLK1:
++		*value = metrics->CurrClock[PPCLK_DCLK_1];
 +		break;
 +	case METRICS_AVERAGE_GFXCLK:
 +		*value = metrics->AverageGfxclkFrequency;
 +		break;
-+	case METRICS_AVERAGE_SOCCLK:
-+		*value = metrics->AverageSocclkFrequency;
++	case METRICS_AVERAGE_FCLK:
++		*value = metrics->AverageFclkFrequency;
 +		break;
 +	case METRICS_AVERAGE_UCLK:
 +		*value = metrics->AverageUclkFrequency;
@@ -228,14 +241,18 @@ index 8dd916a8e8f8..25653f5f8d16 100644
  	mutex_unlock(&smu->metrics_lock);
  
  	return ret;
-@@ -702,20 +772,39 @@ static int navi10_get_current_clk_freq_by_table(struct smu_context *smu,
++
+ }
+ 
+ static int sienna_cichlid_allocate_dpm_context(struct smu_context *smu)
+@@ -694,20 +771,49 @@ static int sienna_cichlid_get_current_clk_freq_by_table(struct smu_context *smu,
  				       enum smu_clk_type clk_type,
  				       uint32_t *value)
  {
 -	int ret = 0, clk_id = 0;
 -	SmuMetrics_t metrics;
 -
--	ret = navi10_get_metrics_table(smu, &metrics);
+-	ret = sienna_cichlid_get_metrics_table(smu, &metrics);
 -	if (ret)
 -		return ret;
 +	MetricsMember_t member_type;
@@ -256,11 +273,20 @@ index 8dd916a8e8f8..25653f5f8d16 100644
 +	case PPCLK_SOCCLK:
 +		member_type = METRICS_CURR_SOCCLK;
 +		break;
-+	case PPCLK_VCLK:
++	case PPCLK_FCLK:
++		member_type = METRICS_CURR_FCLK;
++		break;
++	case PPCLK_VCLK_0:
 +		member_type = METRICS_CURR_VCLK;
 +		break;
-+	case PPCLK_DCLK:
++	case PPCLK_VCLK_1:
++		member_type = METRICS_CURR_VCLK1;
++		break;
++	case PPCLK_DCLK_0:
 +		member_type = METRICS_CURR_DCLK;
++		break;
++	case PPCLK_DCLK_1:
++		member_type = METRICS_CURR_DCLK1;
 +		break;
 +	case PPCLK_DCEFCLK:
 +		member_type = METRICS_CURR_DCEFCLK;
@@ -268,17 +294,18 @@ index 8dd916a8e8f8..25653f5f8d16 100644
 +	default:
 +		return -EINVAL;
 +	}
++
++	return sienna_cichlid_get_smu_metrics_data(smu,
++						   member_type,
++						   value);
  
 -	return ret;
-+	return navi10_get_smu_metrics_data(smu,
-+					   member_type,
-+					   value);
  }
  
- static bool navi10_is_support_fine_grained_dpm(struct smu_context *smu, enum smu_clk_type clk_type)
-@@ -1125,19 +1214,12 @@ static int navi10_unforce_dpm_levels(struct smu_context *smu)
+ static bool sienna_cichlid_is_support_fine_grained_dpm(struct smu_context *smu, enum smu_clk_type clk_type)
+@@ -994,19 +1100,12 @@ static int sienna_cichlid_unforce_dpm_levels(struct smu_context *smu)
  
- static int navi10_get_gpu_power(struct smu_context *smu, uint32_t *value)
+ static int sienna_cichlid_get_gpu_power(struct smu_context *smu, uint32_t *value)
  {
 -	int ret = 0;
 -	SmuMetrics_t metrics;
@@ -286,20 +313,20 @@ index 8dd916a8e8f8..25653f5f8d16 100644
  	if (!value)
  		return -EINVAL;
  
--	ret = navi10_get_metrics_table(smu, &metrics);
+-	ret = sienna_cichlid_get_metrics_table(smu, &metrics);
 -	if (ret)
 -		return ret;
 -
 -	*value = metrics.AverageSocketPower << 8;
 -
 -	return 0;
-+	return navi10_get_smu_metrics_data(smu,
-+					   METRICS_AVERAGE_SOCKETPOWER,
-+					   value);
++	return sienna_cichlid_get_smu_metrics_data(smu,
++						   METRICS_AVERAGE_SOCKETPOWER,
++						   value);
  }
  
- static int navi10_get_current_activity_percent(struct smu_context *smu,
-@@ -1145,28 +1227,27 @@ static int navi10_get_current_activity_percent(struct smu_context *smu,
+ static int sienna_cichlid_get_current_activity_percent(struct smu_context *smu,
+@@ -1014,28 +1113,27 @@ static int sienna_cichlid_get_current_activity_percent(struct smu_context *smu,
  					       uint32_t *value)
  {
  	int ret = 0;
@@ -308,22 +335,22 @@ index 8dd916a8e8f8..25653f5f8d16 100644
  	if (!value)
  		return -EINVAL;
  
--	ret = navi10_get_metrics_table(smu, &metrics);
+-	ret = sienna_cichlid_get_metrics_table(smu, &metrics);
 -	if (ret)
 -		return ret;
 -
  	switch (sensor) {
  	case AMDGPU_PP_SENSOR_GPU_LOAD:
 -		*value = metrics.AverageGfxActivity;
-+		ret = navi10_get_smu_metrics_data(smu,
-+						  METRICS_AVERAGE_GFXACTIVITY,
-+						  value);
++		ret = sienna_cichlid_get_smu_metrics_data(smu,
++							  METRICS_AVERAGE_GFXACTIVITY,
++							  value);
  		break;
  	case AMDGPU_PP_SENSOR_MEM_LOAD:
 -		*value = metrics.AverageUclkActivity;
-+		ret = navi10_get_smu_metrics_data(smu,
-+						  METRICS_AVERAGE_MEMACTIVITY,
-+						  value);
++		ret = sienna_cichlid_get_smu_metrics_data(smu,
++							  METRICS_AVERAGE_MEMACTIVITY,
++							  value);
  		break;
  	default:
  		pr_err("Invalid sensor for retrieving clock activity\n");
@@ -334,9 +361,9 @@ index 8dd916a8e8f8..25653f5f8d16 100644
 +	return ret;
  }
  
- static bool navi10_is_dpm_running(struct smu_context *smu)
-@@ -1183,19 +1264,12 @@ static bool navi10_is_dpm_running(struct smu_context *smu)
- static int navi10_get_fan_speed_rpm(struct smu_context *smu,
+ static bool sienna_cichlid_is_dpm_running(struct smu_context *smu)
+@@ -1052,19 +1150,12 @@ static bool sienna_cichlid_is_dpm_running(struct smu_context *smu)
+ static int sienna_cichlid_get_fan_speed_rpm(struct smu_context *smu,
  				    uint32_t *speed)
  {
 -	SmuMetrics_t metrics;
@@ -345,20 +372,20 @@ index 8dd916a8e8f8..25653f5f8d16 100644
  	if (!speed)
  		return -EINVAL;
  
--	ret = navi10_get_metrics_table(smu, &metrics);
+-	ret = sienna_cichlid_get_metrics_table(smu, &metrics);
 -	if (ret)
 -		return ret;
 -
 -	*speed = metrics.CurrFanSpeed;
 -
 -	return ret;
-+	return navi10_get_smu_metrics_data(smu,
-+					   METRICS_CURR_FANSPEED,
-+					   speed);
++	return sienna_cichlid_get_smu_metrics_data(smu,
++						   METRICS_CURR_FANSPEED,
++						   speed);
  }
  
- static int navi10_get_fan_speed_percent(struct smu_context *smu,
-@@ -1550,35 +1624,33 @@ static int navi10_thermal_get_temperature(struct smu_context *smu,
+ static int sienna_cichlid_get_fan_speed_percent(struct smu_context *smu,
+@@ -1421,35 +1512,33 @@ static int sienna_cichlid_thermal_get_temperature(struct smu_context *smu,
  					     enum amd_pp_sensors sensor,
  					     uint32_t *value)
  {
@@ -368,7 +395,7 @@ index 8dd916a8e8f8..25653f5f8d16 100644
  	if (!value)
  		return -EINVAL;
  
--	ret = navi10_get_metrics_table(smu, &metrics);
+-	ret = sienna_cichlid_get_metrics_table(smu, &metrics);
 -	if (ret)
 -		return ret;
 -
@@ -376,23 +403,23 @@ index 8dd916a8e8f8..25653f5f8d16 100644
  	case AMDGPU_PP_SENSOR_HOTSPOT_TEMP:
 -		*value = metrics.TemperatureHotspot *
 -			SMU_TEMPERATURE_UNITS_PER_CENTIGRADES;
-+		ret = navi10_get_smu_metrics_data(smu,
-+						  METRICS_TEMPERATURE_HOTSPOT,
-+						  value);
++		ret = sienna_cichlid_get_smu_metrics_data(smu,
++							  METRICS_TEMPERATURE_HOTSPOT,
++							  value);
  		break;
  	case AMDGPU_PP_SENSOR_EDGE_TEMP:
 -		*value = metrics.TemperatureEdge *
 -			SMU_TEMPERATURE_UNITS_PER_CENTIGRADES;
-+		ret = navi10_get_smu_metrics_data(smu,
-+						  METRICS_TEMPERATURE_EDGE,
-+						  value);
++		ret = sienna_cichlid_get_smu_metrics_data(smu,
++							  METRICS_TEMPERATURE_EDGE,
++							  value);
  		break;
  	case AMDGPU_PP_SENSOR_MEM_TEMP:
 -		*value = metrics.TemperatureMem *
 -			SMU_TEMPERATURE_UNITS_PER_CENTIGRADES;
-+		ret = navi10_get_smu_metrics_data(smu,
-+						  METRICS_TEMPERATURE_MEM,
-+						  value);
++		ret = sienna_cichlid_get_smu_metrics_data(smu,
++							  METRICS_TEMPERATURE_MEM,
++							  value);
  		break;
  	default:
  		pr_err("Invalid sensor for retrieving temp\n");
@@ -403,7 +430,7 @@ index 8dd916a8e8f8..25653f5f8d16 100644
 +	return ret;
  }
  
- static int navi10_read_sensor(struct smu_context *smu,
+ static int sienna_cichlid_read_sensor(struct smu_context *smu,
 -- 
 2.27.0
 
