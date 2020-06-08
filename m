@@ -1,47 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C15D1F1F89
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 21:13:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95791F2048
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 21:46:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2AE6E99E;
-	Mon,  8 Jun 2020 19:13:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A82A6E99A;
+	Mon,  8 Jun 2020 19:46:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtprelay.hostedemail.com (smtprelay0166.hostedemail.com
- [216.40.44.166])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BDDD6E996;
- Mon,  8 Jun 2020 19:11:03 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay06.hostedemail.com (Postfix) with ESMTP id B0712187D2615;
- Mon,  8 Jun 2020 19:11:00 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:2:41:355:379:599:800:960:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1535:1593:1594:1605:1606:1730:1747:1777:1792:1801:1981:2194:2199:2393:2553:2559:2562:2828:3138:3139:3140:3141:3142:3622:3865:3866:3867:3868:3870:3871:3872:3874:4117:4250:4321:4605:5007:6119:6742:7903:7974:9010:10004:11026:11232:11233:11473:11657:11658:11914:12043:12114:12295:12296:12297:12438:12555:12663:12679:12740:12760:12895:12986:13138:13161:13229:13231:13439:14659:21080:21220:21325:21451:21627:21939:21990:30012:30034:30054:30064:30079:30090:30091,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:2, LUA_SUMMARY:none
-X-HE-Tag: boot46_231759b26dbc
-X-Filterd-Recvd-Size: 6430
-Received: from XPS-9350.home (unknown [47.151.136.130])
- (Authenticated sender: joe@perches.com)
- by omf13.hostedemail.com (Postfix) with ESMTPA;
- Mon,  8 Jun 2020 19:10:58 +0000 (UTC)
-Message-ID: <ed5c0b84693231ae0197e35765488a53c524f32f.camel@perches.com>
-Subject: Re: [PATCH] drm/amd/display: Fix indenting in
- dcn30_set_output_transfer_func()
-From: Joe Perches <joe@perches.com>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Date: Mon, 08 Jun 2020 12:10:57 -0700
-In-Reply-To: <20200608174943.GU22511@kadam>
-References: <20200608141657.GB1912173@mwanda>
- <dcce7f702c674999c31fd358c3970d5fee1a6725.camel@perches.com>
- <20200608174943.GU22511@kadam>
-User-Agent: Evolution 3.36.2-0ubuntu1 
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
+ [IPv6:2a00:1450:4864:20::242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C13FC89DB7;
+ Mon,  8 Jun 2020 19:39:01 +0000 (UTC)
+Received: by mail-lj1-x242.google.com with SMTP id 9so12376555ljv.5;
+ Mon, 08 Jun 2020 12:39:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=TVOtxpmeYOWD7rcQA6p6PVJsdwW/9XtVAfJ00067Jwk=;
+ b=Uw7ae4K+D9tmeKHdEU38WOe4FsdhXp1ZnKr7YKUGixiQ9oWe2zUkZdxYWRFL5TGsGn
+ +V9y94pvG0g5IXdQ2s4+PKu/NvK9GfJ5zCE2bQeGG95W+5y0fJ2+gTsk4k83rf03ItCJ
+ kLC6qXpWbigmmVckNhVl6m270lucklRJQLrGoqZmdnWFsJKpGVxCkW4TqmwNSvOiG1BH
+ d7soMSphupowplBAdx0AqVYwm0rmW0kE6W5xrmEBYPj5QQ0rsZtXxPEdj4xYSsQtECzW
+ Nrs4lqroRuljEnV+wdWyUPdWz7xp5vspC1+LTQ3C15/rCfKQ54OQWj3k6b8s7vujTbBm
+ A2bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=TVOtxpmeYOWD7rcQA6p6PVJsdwW/9XtVAfJ00067Jwk=;
+ b=aocZlLd7JIFUqc9CQ/JYS9ysr/yWA6oVbxTquwZf7pe1sMuRj41tZRBPd9v00ojMW1
+ KZyve7PI4ifEjb7MUqpgfN8hySjKiRvKBz+e/oNVIZWeOBYnOniIfomocMVxY9HyH+fG
+ i9CsrfN0scgq7zTjdU/7QjVJcqq/EvK7iJy6DvZnq2dyirj7EZs/xTC0Jwi7C+pwIrBm
+ Nuwo9AGUgqVMEd6QjA8e2v8yj9T8h4+oeuNODbC05DKlU4LzZN+fceMwON78N9qp+0P2
+ ApdZzxmMghh8pcAmnK9FIflRE8VuesDaLEhuXDN85acscG7iQ2unfunqCc0WpUGsjOk4
+ ImLA==
+X-Gm-Message-State: AOAM531jwh0xZeTDhfQ/Pa1dFX4iVzQj8ME1Yw3gPsd3VvB8DMaGtebP
+ vXxQz+k/LW8IbzGkA07RE6n9onIwCFR97WZql4c=
+X-Google-Smtp-Source: ABdhPJzj7F/aaSi7HE9SPJMq1V4yr6hfoXBgPhFqPh91CbbkatR/Ryqmnw/QWzidGESYaRxTEW2Cmw1bqOyx6OoorZ0=
+X-Received: by 2002:a2e:9147:: with SMTP id q7mr12642562ljg.430.1591645140048; 
+ Mon, 08 Jun 2020 12:39:00 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 08 Jun 2020 19:13:42 +0000
+References: <1590526802-3008-1-git-send-email-jrdr.linux@gmail.com>
+ <69a033cf-63b2-7da6-6a5e-a5bbc94b8afb@nvidia.com>
+ <20200527084852.GN206103@phenom.ffwll.local>
+ <20200527085117.GO206103@phenom.ffwll.local>
+ <aaf62285-981e-3753-5501-07bbba98fc36@nvidia.com>
+ <CAFqt6zZVAQ3LKwud85LgHe9300xVjyGYXjvdWKTdezZA1uRewg@mail.gmail.com>
+ <011353ca-39d5-a41d-477a-f67a47ebb47b@nvidia.com>
+In-Reply-To: <011353ca-39d5-a41d-477a-f67a47ebb47b@nvidia.com>
+From: Souptick Joarder <jrdr.linux@gmail.com>
+Date: Tue, 9 Jun 2020 01:08:48 +0530
+Message-ID: <CAFqt6zZPh6RazWcwmfz1oXMbHaxMOtQtVU=Cgs79M9JG+PDrSg@mail.gmail.com>
+Subject: Re: [PATCH] drm/radeon: Convert get_user_pages() --> pin_user_pages()
+To: John Hubbard <jhubbard@nvidia.com>
+X-Mailman-Approved-At: Mon, 08 Jun 2020 19:46:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,154 +66,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx@lists.freedesktop.org, "Deucher,
+ Alexander" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2020-06-08 at 20:49 +0300, Dan Carpenter wrote:
-> On Mon, Jun 08, 2020 at 10:16:27AM -0700, Joe Perches wrote:
-> > On Mon, 2020-06-08 at 17:16 +0300, Dan Carpenter wrote:
-> > > These lines are a part of the if statement and they are supposed to
-> > > be indented one more tab.
-> > > 
-> > > Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-> > > ---
-> > >  drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c | 6 +++---
-> > >  1 file changed, 3 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-> > > index ab20320ebc994..37c310dbb3665 100644
-> > > --- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-> > > +++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-> > > @@ -203,9 +203,9 @@ bool dcn30_set_output_transfer_func(struct dc *dc,
-> > >  					stream->out_transfer_func,
-> > >  					&mpc->blender_params, false))
-> > >  				params = &mpc->blender_params;
-> > > -		 /* there are no ROM LUTs in OUTGAM */
-> > > -		if (stream->out_transfer_func->type == TF_TYPE_PREDEFINED)
-> > > -			BREAK_TO_DEBUGGER();
-> > > +			 /* there are no ROM LUTs in OUTGAM */
-> > > +			if (stream->out_transfer_func->type == TF_TYPE_PREDEFINED)
-> > > +				BREAK_TO_DEBUGGER();
-> > >  		}
-> > >  	}
-> > >  
-> > 
-> > Maybe the if is at the right indentation but the
-> > close brace below the if is misplaced instead?
-> > 
-> 
-> Yeah.  I considered that, but the code is correct, it's just the
-> indenting is wrong.  I normally leave drm/amd/ code alone but this
-> indenting was so confusing that I though it was worth fixing.
+On Fri, May 29, 2020 at 12:58 PM John Hubbard <jhubbard@nvidia.com> wrote:
+>
+> On 2020-05-28 23:49, Souptick Joarder wrote:
+> ...
+> >> This is what case 3 was *intended* to cover, but it looks like case 3 needs to
+> >> be written a little better. I'll attempt that, and Cc you on the actual patch
+> >> to -mm. (I think we also need a case 5 for an unrelated scenario, too, so
+> >> it's time.)
+> >
+> > There were no *case 5* in the other patch posted in -mm. Do we need to add it ?
+> >
+>
+> Working on figuring that out [1], but it's not directly relevant to this thread.
+> Maybe I shouldn't have brought it up here. :)
+>
+>
+> [1] https://lore.kernel.org/r/20200529070343.GL14550@quack2.suse.cz
+>
+> thanks,
+> John Hubbard
+> NVIDIA
+>
+>
+>
 
-This file seems to heavily use function pointers,
-multiple dereferences
-with visually similar identifiers,
-and it generally makes my eyes hurt
-reading the code.
-
-> There are lots of ugly stuff which is not confusing like this:  (The
-> line numbers are from next-20200605).
-
-Ick.  Don't give me line numbers.  Now I might have to look...
-
-drivers/gpu/drm/amd/amdgpu/../powerplay/amd_powerplay.c:1530 pp_asic_reset_mode_2() warn: inconsistent indenting
-> drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dce_calcs.c:3387 bw_calcs() warn: inconsistent indenting
-> drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dwb.c:104 dwb2_enable() warn: inconsistent indenting
-> drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dpp_cm.c:450 dpp20_get_blndgam_current() warn: inconsistent indenting
-> drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dpp_cm.c:543 dpp20_get_shaper_current() warn: inconsistent indenting
-> drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_mpc.c:306 mpc20_get_ogam_current() warn: inconsistent indenting
-> drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.c:1519 dc_link_dp_perform_link_training() warn: inconsistent indenting
-> drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link.c:3137 core_link_enable_stream() warn: inconsistent indenting
-> drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_hwseq.c:207 dcn30_set_output_transfer_func() warn: inconsistent indenting
-> drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_dpp.c:650 dpp3_get_blndgam_current() warn: inconsistent indenting
-
-OK, so I picked this one at random.
-
-It looks like someone avoided using intentional programming
-along with copy/paste combined with being lazy.
-
-It seems as if AMD should use more code reviewers and
-perhaps some automated code reformatters before submitting
-their code.
-
-This code is:
-
-static enum dc_lut_mode dpp3_get_blndgam_current(struct dpp *dpp_base)
-{
-	enum dc_lut_mode mode;
-	uint32_t mode_current = 0;
-	uint32_t in_use = 0;
-
-	struct dcn3_dpp *dpp = TO_DCN30_DPP(dpp_base);
-
-	REG_GET(CM_BLNDGAM_CONTROL,
-			CM_BLNDGAM_MODE_CURRENT, &mode_current);
-	REG_GET(CM_BLNDGAM_CONTROL,
-			CM_BLNDGAM_SELECT_CURRENT, &in_use);
-
-		switch (mode_current) {
-		case 0:
-		case 1:
-			mode = LUT_BYPASS;
-			break;
-
-		case 2:
-			if (in_use == 0)
-				mode = LUT_RAM_A;
-			else
-				mode = LUT_RAM_B;
-			break;
-		default:
-			mode = LUT_BYPASS;
-			break;
-		}
-		return mode;
-}
-
-Generic style defects:
-
-o unnecessary initializations
-o uint32_t where u32 is simpler
-o doesn't fill to 80 columns where reasonable
-o magic numbers
-o duplicated switch/case blocks
-o unnecessary code:
-  in_use is only used by case 2
-  dpp doesn't seem used at all, but it is via a hidden CTX
-  in the REG_GET macro
-
-drivers/gpu/drm/amd/display/dc/inc/reg_helper.h:#define REG_GET(reg_name, field, val)   \
-drivers/gpu/drm/amd/display/dc/inc/reg_helper.h-                generic_reg_get(CTX, REG(reg_name), \
-drivers/gpu/drm/amd/display/dc/inc/reg_helper.h-                                FN(reg_name, field), val)
-
-And no, I'm not going to look at the entire list...
-
-But something like this could be simpler:
-
-{
-	struct dcn3_dpp *dpp = TO_DCN30_DPP(dpp_base);
-	u32 mode_current;
-	u32 in_use;
-
-	REG_GET(CM_BLNDGAM_CONTROL, CM_BLNDGAM_MODE_CURRENT, &mode_current);
-	if (mode_current != 2)
-		return LUT_BYPASS;
-
-	REG_GET(CM_BLNDGAM_CONTROL, CM_BLNDGAM_SELECT_CURRENT, &in_use);
-	return !in_use ? LUT_RAM_A : LUT_RAM_B;
-}
-
-
+As this conversion is not relevant ( mentioned above), I have dropped
+this patch.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
