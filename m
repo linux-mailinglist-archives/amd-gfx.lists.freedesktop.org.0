@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 282E91F1256
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 06:59:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15E2D1F1254
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 06:59:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8792E6E488;
-	Mon,  8 Jun 2020 04:59:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91D376E479;
+	Mon,  8 Jun 2020 04:59:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750077.outbound.protection.outlook.com [40.107.75.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 288DC6E487
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 04:59:42 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2055.outbound.protection.outlook.com [40.107.223.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA6016E479
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 04:59:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BEIl3DKsICEfx/hH2dK/lWy/JL095iPSVEF+fMJNBU/Yn5fFGvtnMU3faxLdgk/3XJRE/adzO71dmyE5K2m37SsLKZDIDEPggl8Tfe0AQ0spith/gzPwW45JEskenW50EuJ5ryg4ayVTdNRROVLRz6lhEOpNNioAHmMQyY+scXIaPNjv3V3qYz4Zcqf/99Gd7WVYL0unQZxeikzZCISqcOMBqNgA49dOZw5CrhrWauD31s3jpZoRsIY+NORPH+rHuQ96+/NB1DBL/NSB/6T83lJfTkv0CH6/oJ4Ypr/Is7oAwIoAff+0O74owtokkJA5y4UB2XO4/H4Qa/DpV7HY9g==
+ b=Wm69g+kjgGsTVlLp8VClrbdNXWaOaclW/9D0X1xefrEVFyy9e1mOWHyPNLwmtSj34yp69GCVaGJ+XAUzOSxvQlReAmR29udqhIbGpUK+6FQ4xz2xjEtrGi2ejnAo0DpSvp+d2ZClGjjjWXJ0Ipn80AvqK2vgMn20xnEnfGKXlJfT7ht0Lhpm4U1+EcHWz5ESegJPyemmRUNFSNKx9Ru9K2OBbWQ27hC+2uJl3x1GeO3MyuI8j2CvHdafXRDzTAmBK5lq8Fm0sFr+TRu0dqrdMo2mz+JJPfFq3TkMa4dAS0CJsjsap1YTTOFxM5kMrsncXIcq/Wo7oRf07lMXR0Az/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ncQf/CGOgNlq5qVQk1RO9o/gjYWZdaoLaLifoVdOL3g=;
- b=YJ4HYTTshGP2+tVFruL6L4ePJp8Yo2+C/laJzwDrkyYspikD0CK9kf20lWkpDAWk+ygfixcjG1LNOj2mHxOsXc1xF2FCrX14dVk5vXblUVLMEKItwSjgvZJcdSKMdWl2ZhTHGrvaTJ7vzVyEm8WCuk7P7je7qlV+X03pEY/1M87JH6soXm+Ghxnd0ZPt9+yCatA6cCXKyT1pzF8yAwtC5Ribvab1lqop/+GTojpt/QjFXgXK7JoTj+zEl7v75DLCvGe5+6J8ldbz6IDghvZM2ssWAeEvYizF7h6GY6Wq0SH6hf2CFF4AiURKrVPyTEWu9sFjt5YpglN5MssbCGelQA==
+ bh=YTnopXRBYVwAQI3ttoClA7qd85/MSrVw2FE4ZM27JnU=;
+ b=Yo4SeD1bYLIkVknqA1zCZmYEI4lwBg46GR+UN9uFaRbODYTFhLUXlWXcmlrDUUpR7scTpzRQ41C4U/CI86YlvMXO4Z+Towrrk6/I7oZBY9GJJdCA0khnyfy0KDCitJu+pkKF9293VDv9sZJj3iTdIyryJAjrNLR9nsC0KNUkC2NZpSK53IitmUjEsT7qy7RiHTLkY9QaZEynIYmFKdw2X0AHL2tzA+pn1nRKh5N4U8k9rIQMvIHXiVmUyCDN+rj/JIWOwctnCOCf5paM1Xk3uvnRN+ooeTTKymWPpONoBi0k2hPPeMe6dtKINukw9X5I3Ab99FGd4DlmmbkwkXORCQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ncQf/CGOgNlq5qVQk1RO9o/gjYWZdaoLaLifoVdOL3g=;
- b=xni24mMQ5YxqOw8GGO6BUADzSQn6JBUrqzibAG/TkZW3pbfBoBIW1Gfy6/93Yxlk7BNOieoS7dioaYDJKbvyytR6EGbj9oSNPY/GW/OujY5y/X58DT+xlAfE80Fi+QAftAcM4CCVsz/GZYFd0n9Cv08hygxZD0LVcspEHLGZNhs=
-Received: from MWHPR22CA0011.namprd22.prod.outlook.com (2603:10b6:300:ef::21)
- by BY5PR12MB3764.namprd12.prod.outlook.com (2603:10b6:a03:1ac::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18; Mon, 8 Jun
+ bh=YTnopXRBYVwAQI3ttoClA7qd85/MSrVw2FE4ZM27JnU=;
+ b=B41F01HaCMpQTEYR9orDqr8Qvrh5y8muADpJ+WG+jsVK1A6jHWYzQTECTl2S85mDDKZb87c7I92ka9QnxRZU8s+ipAMu2GLzB89h1z1hq443OCpypdZzS77GKquVz53ga9eZxzedxjME7HS3C+uqGxDjISBEH3XB9m5xqxRYoeE=
+Received: from CO1PR15CA0113.namprd15.prod.outlook.com (2603:10b6:101:21::33)
+ by DM6PR12MB2795.namprd12.prod.outlook.com (2603:10b6:5:41::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.20; Mon, 8 Jun
  2020 04:59:39 +0000
-Received: from CO1NAM11FT055.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:ef::4) by MWHPR22CA0011.outlook.office365.com
- (2603:10b6:300:ef::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18 via Frontend
- Transport; Mon, 8 Jun 2020 04:59:39 +0000
+Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:101:21:cafe::ed) by CO1PR15CA0113.outlook.office365.com
+ (2603:10b6:101:21::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.19 via Frontend
+ Transport; Mon, 8 Jun 2020 04:59:38 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -46,22 +46,26 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT055.mail.protection.outlook.com (10.13.175.129) with Microsoft SMTP
+ CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 04:59:39 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
+ 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 04:59:38 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sun, 7 Jun 2020
+ 23:59:33 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sun, 7 Jun 2020
  23:59:33 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Sun, 7 Jun 2020 23:59:32 -0500
+ Transport; Sun, 7 Jun 2020 23:59:33 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/28] drm/amd/display: Revert "enable plane if plane_status
- changed"
-Date: Mon, 8 Jun 2020 00:59:06 -0400
-Message-ID: <20200608045926.17197-9-qingqing.zhuo@amd.com>
+Subject: [PATCH 09/28] drm/amd/display: Fix VBA chroma calculation for pipe
+ splitting
+Date: Mon, 8 Jun 2020 00:59:07 -0400
+Message-ID: <20200608045926.17197-10-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200608045926.17197-1-qingqing.zhuo@amd.com>
 References: <20200608045926.17197-1-qingqing.zhuo@amd.com>
@@ -71,25 +75,25 @@ X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(396003)(39860400002)(346002)(376002)(136003)(46966005)(2906002)(316002)(186003)(54906003)(26005)(5660300002)(36756003)(6916009)(70586007)(70206006)(6666004)(336012)(8676002)(82740400003)(82310400002)(81166007)(356005)(4326008)(47076004)(478600001)(86362001)(44832011)(83380400001)(1076003)(8936002)(2616005)(426003);
+ SFS:(4636009)(346002)(136003)(39860400002)(396003)(376002)(46966005)(186003)(81166007)(6666004)(8936002)(86362001)(6916009)(356005)(26005)(70206006)(44832011)(478600001)(2616005)(83380400001)(1076003)(316002)(82310400002)(82740400003)(54906003)(4326008)(8676002)(47076004)(36756003)(70586007)(5660300002)(336012)(426003)(2906002);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b7ea71da-adf0-48ef-c6f2-08d80b68bf96
-X-MS-TrafficTypeDiagnostic: BY5PR12MB3764:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB3764C041E271A9B76A75B51AFB850@BY5PR12MB3764.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:74;
+X-MS-Office365-Filtering-Correlation-Id: 18ddc80f-01c4-4dda-db7b-08d80b68bf5e
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2795:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2795B2675DA7CAAA269F1C00FB850@DM6PR12MB2795.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-Forefront-PRVS: 042857DBB5
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: D6vRvGj1lhxe8KoZFQCI38oJJuUhBYkcdnhF0npAHhF2O/TjHEiz4Nkq26MsOFh66fY5H1j4Vq3FhnyaU6u0n0XpuMX4Rwgq3dXp1jk950A9VB8hJcy+csN0+j2GbisM6OMs72YXT2ymNmxEoOVcmJzeJw7rwEGA0TPXZMJqfJgmN86c3gYd3fL+pGUnp7D9g/2Rq2P/O4PsG0BLAWjLSUGoPpyz3hljHReFOAKyTgGLOugqperbsCf3NJ+BaPtWZbRfX97R4ewPZ+sFNsWetgxAhy0pb+3V6SSk1BUUT3P3K+w7zNuWGuJP7qCrzHVGkkKzayd2eV2HyyqFchJZvt9RMopCNdtDZdoz0tll+fdDd/A10bXjvcLUalhZnQsZXI1lstfG7hpJJ7YNfwVEfQ==
+X-Microsoft-Antispam-Message-Info: s5aTcTw8fuJvd6EOGE7vnhVH2nsuW0oh4Rv+nPYoXyXOr2Vt5QglrJbdLgsfX3LS18MeSP3CUu7vHfxshOyMNG8yV+n4rsZsPiNY2tHs+BDzyWgJKSGTzOG/g/RelYeSqo/xOsLpEqvkuahDKIEX5O8ps1/4ee7Z77HCmp40Wm6xpgnrLuZug3StN3rlFt05Hhak+LMlwqCIc3QCpthyPPsPY9UGjH8p3HEggyvHqUdT2ENeTAm+tHS472owYlem95vzpneshoxzjMYL/WYHDQLghwMSlMC0BdBEKDyjm4ycgz/ojLZjaFmUdxDZcDCQb7fvD1PAuLJwIYDVr18cAjmseReQhwto1XK5+zRMrP9Pb5sZbOSwgB4AUMB7VNbw2FYowzTOx+k91j16LqeEng==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 04:59:39.0020 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7ea71da-adf0-48ef-c6f2-08d80b68bf96
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 04:59:38.6495 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18ddc80f-01c4-4dda-db7b-08d80b68bf5e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3764
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2795
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,50 +105,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Hugo Hu <hugo.hu@amd.com>,
- Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Hugo Hu <hugo.hu@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-revert commit 77dcea7a0b133b362b2ebbf494eb13ee3e946836.
+[Why]
+DML failures occur for 420 modes with dynamic pipe
+splitting enabled because the ChromaViewport exceeds
+the ChromaSurfaceWidth.
 
-Signed-off-by: Hugo Hu <hugo.hu@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+This is caused by adding the viewport_width instead
+of the viewport_width_c.
+
+This similarly occurs for rotated modes due to the
+use of viewport_height instead of viewport_height_c.
+
+[How]
+Correct the calculations.
+
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index 0b318f799db3..65e83fdd7b44 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -1209,20 +1209,13 @@ void dcn20_pipe_control_lock(
- 
- static void dcn20_detect_pipe_changes(struct pipe_ctx *old_pipe, struct pipe_ctx *new_pipe)
- {
--	bool plane_state_update = false;
- 	new_pipe->update_flags.raw = 0;
- 
- 	/* Exit on unchanged, unused pipe */
- 	if (!old_pipe->plane_state && !new_pipe->plane_state)
- 		return;
--
--	/* Detect plane state update */
--	if (old_pipe->plane_state && new_pipe->plane_state
--			&& (old_pipe->plane_state != new_pipe->plane_state)) {
--		plane_state_update = true;
--	}
- 	/* Detect pipe enable/disable */
--	if ((!old_pipe->plane_state && new_pipe->plane_state) || plane_state_update) {
-+	if (!old_pipe->plane_state && new_pipe->plane_state) {
- 		new_pipe->update_flags.bits.enable = 1;
- 		new_pipe->update_flags.bits.mpcc = 1;
- 		new_pipe->update_flags.bits.dppclk = 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
+index 5a1ca8a5954c..7916a7ea9336 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
+@@ -623,14 +623,14 @@ static void fetch_pipe_params(struct display_mode_lib *mode_lib)
+ 						mode_lib->vba.ViewportWidth[mode_lib->vba.NumberOfActivePlanes] +=
+ 								src_k->viewport_width;
+ 						mode_lib->vba.ViewportWidthChroma[mode_lib->vba.NumberOfActivePlanes] +=
+-								src_k->viewport_width;
++								src_k->viewport_width_c;
+ 						mode_lib->vba.ScalerRecoutWidth[mode_lib->vba.NumberOfActivePlanes] +=
+ 								dst_k->recout_width;
+ 					} else {
+ 						mode_lib->vba.ViewportHeight[mode_lib->vba.NumberOfActivePlanes] +=
+ 								src_k->viewport_height;
+ 						mode_lib->vba.ViewportHeightChroma[mode_lib->vba.NumberOfActivePlanes] +=
+-								src_k->viewport_height;
++								src_k->viewport_height_c;
+ 					}
+ 					mode_lib->vba.NumberOfDSCSlices[mode_lib->vba.NumberOfActivePlanes] +=
+ 							dout_k->dsc_slices;
 -- 
 2.17.1
 
