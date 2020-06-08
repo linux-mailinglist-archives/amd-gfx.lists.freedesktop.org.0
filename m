@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 908B01F125A
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 06:59:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D35C1F125D
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 06:59:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 899AD6E480;
-	Mon,  8 Jun 2020 04:59:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F113D6E48B;
+	Mon,  8 Jun 2020 04:59:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2044.outbound.protection.outlook.com [40.107.237.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF166E48B
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 04:59:44 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2073.outbound.protection.outlook.com [40.107.236.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2A7E6E48D
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 04:59:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z1YRTgAF5A81sGbhvSZdYkCwQESWhpci2HB27DmeIpFyszdSm28qzMTdUMQcD1Q4Q8pN3zXymulxMq00ywKJddJvUtgiPXVHKhhpiQQKWjAWOcbo87uaYqtC0LHIWebrU2wWYrI90MLo+OglOiUnn9b1LF4pGfLaGQpv/uOnqgRwhDeizaY+6J4tL+G1EgF3bq/VPswYXm5j+fpJFXzSZaX592VtTyvFm5MlCWMs+pnEA6GBsIioWBd1wqV4N+tbJpUy3ntZ/cZ8iVDRyA+G/y3xR+oOdfC5QKTz2jKTEOGmLQzTUUOGHV0T1LGR+rcUXRK9szVS4apd4fb6ZfDntA==
+ b=TUzNviqFIdkpNeVWLlLiQScWhClBuxgpypJ7moflVAFy97b1vUmk5Hfs3CUzzn4rpQ9haaTQlt57NLA5oQf6EV0TM0Ngz8YOQsU6I/mMGGHktNDuzvHYrmEYsjN56S+wourTaSbtSxsAE0bPTMz5PU0SIot+VvD1tuT4XopG6K74JF6z3MM6Q4LBiMLk0x/uAWPq/Vlc4YXnIdn+r/mMipB/2Xte3mEnm3PWILeUz9eJdJggehjLRE9DXuD+UtWZ+Yy6WRyk1/ZkLWmk/wRXH4qGnBLzAYSJ7hyVzyI+307S6rMPBx/61ckyU1OTT2kD0SN8nAGncRsKMfVbFHHtnA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jh/IlvPVif6gt9Iw2gw82rfixjAq4f2SQmx9Nht0zEU=;
- b=evNe/hpcOQd0K9p6yd8snS5iGFMjyJUaVmdFuO07pfVpT8UP/G6M9qtYZ+Ut1YZuLOlC+lOziIyUclx8xB73N1Q1vCfK+uy5d/Ev/shTYxg4xF/QF5NoJYeWBAck/FXuwWiFjbM8Q8KPZqztzk+yLnhcAc6NxzgaGt4FWADg1CvVAsMoWBemCVSPqJipZuyPj0N55TDIaKpHVcrTcP5/pL8GKvUGf8o5qMEy2wq7Z4SjPLEcmrsY2GOtAF/RJoYHJXpzdrsFnrTABoAQXOFhWTfhsVFGrR3yohtZsLm4jiVpj6gQYxT67OCebJGHcKMrFzru/wY9qNdZc2ol/qOE+g==
+ bh=znekMGbs5v3m2DJ/GxupwIQX1D6RIBWcRL4ka5c41kQ=;
+ b=azlmmZHftq0WNqfxTVilU6FZWTvJz0540i9PndldCqOTwcTiAJFNU6C5/x8eBMj08UyUNOXOZe6TPqMFWWXt5V5ci58krIcCqh7L+c9RyBHOzJ9z3fOCtXL2v6Z9k8i3GyQ44y7UfQY6ZndRteYaTlxWgLcDnYRTl6gmw0HH71HA43jpOaUdWEOuqXwBLuSbxS4IOGMpsh/pweCZNiH9PMfpVZ2HSu53Tx9A13yDMhchjx3qnQA/72Ov9L4CLReZSh9YEE5v1ISwAVgSutGPzNAkTKGT01eFXIkw90VxoMVaofjQdrN0RIkNHL7b4+K0EaqsSwH0fJnGxIj53IDXiA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jh/IlvPVif6gt9Iw2gw82rfixjAq4f2SQmx9Nht0zEU=;
- b=2nkNxPvIfdg2il7KmqVytyb2ejkTHp7g0rRQIpKUAPgrORbkL40syxvGGwiKgVwMtWqENMqeBsAfUBvNk//KEQ1hjlGB/gSyT3GvskwerEBscXOtZjgSC6xnTzING98VXCX/pEZPG1lzQohj2jiRmwnSRr6WNGRCivJBEs6MLVg=
-Received: from CO1PR15CA0103.namprd15.prod.outlook.com (2603:10b6:101:21::23)
- by MW2PR12MB2508.namprd12.prod.outlook.com (2603:10b6:907:9::23) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=znekMGbs5v3m2DJ/GxupwIQX1D6RIBWcRL4ka5c41kQ=;
+ b=I7MFaSUIJpByvTlS7ZWIaebBCUpMA/0az0L6JWM4HrH8rJTiBEyFQkzmGdydfcmHTBHBO0/ZKgucZm4bUUdIwMMcjTO9o4hzNdqpG9LnsUNnvrzkOlLgVwuM96weNj7w7bbPS1891j+mgq5Xt6YEQccNi/QamprKakDhSHkeZZs=
+Received: from MWHPR22CA0009.namprd22.prod.outlook.com (2603:10b6:300:ef::19)
+ by CY4PR1201MB2502.namprd12.prod.outlook.com (2603:10b6:903:da::21)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.20; Mon, 8 Jun
- 2020 04:59:42 +0000
-Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:101:21:cafe::e8) by CO1PR15CA0103.outlook.office365.com
- (2603:10b6:101:21::23) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 04:59:43 +0000
+Received: from CO1NAM11FT055.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:ef:cafe::6f) by MWHPR22CA0009.outlook.office365.com
+ (2603:10b6:300:ef::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18 via Frontend
- Transport; Mon, 8 Jun 2020 04:59:41 +0000
+ Transport; Mon, 8 Jun 2020 04:59:42 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -46,9 +46,9 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
+ CO1NAM11FT055.mail.protection.outlook.com (10.13.175.129) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 04:59:41 +0000
+ 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 04:59:42 +0000
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sun, 7 Jun 2020
@@ -58,9 +58,10 @@ Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
  Transport; Sun, 7 Jun 2020 23:59:39 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 19/28] drm/amd/display: Add helper to convert DC status
-Date: Mon, 8 Jun 2020 00:59:17 -0400
-Message-ID: <20200608045926.17197-20-qingqing.zhuo@amd.com>
+Subject: [PATCH 20/28] drm/amd/display: make calculate watermarks a function
+ pointer
+Date: Mon, 8 Jun 2020 00:59:18 -0400
+Message-ID: <20200608045926.17197-21-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200608045926.17197-1-qingqing.zhuo@amd.com>
 References: <20200608045926.17197-1-qingqing.zhuo@amd.com>
@@ -70,25 +71,25 @@ X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(136003)(396003)(39860400002)(376002)(346002)(46966005)(70586007)(82310400002)(1076003)(70206006)(426003)(36756003)(83380400001)(8676002)(336012)(26005)(47076004)(316002)(6916009)(81166007)(2906002)(356005)(5660300002)(54906003)(82740400003)(8936002)(478600001)(186003)(4326008)(86362001)(6666004)(2616005)(44832011);
+ SFS:(4636009)(136003)(39860400002)(396003)(376002)(346002)(46966005)(5660300002)(82740400003)(426003)(1076003)(47076004)(336012)(2616005)(316002)(8936002)(2906002)(86362001)(8676002)(54906003)(26005)(186003)(4326008)(6916009)(70586007)(36756003)(70206006)(83380400001)(82310400002)(478600001)(44832011)(81166007)(356005)(6666004);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2cf83812-4063-4d13-f6b8-08d80b68c128
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2508:
-X-Microsoft-Antispam-PRVS: <MW2PR12MB2508CE78F04EF727D0ECCA98FB850@MW2PR12MB2508.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7;
+X-MS-Office365-Filtering-Correlation-Id: 5ce6b952-955f-498e-733d-08d80b68c1c1
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB2502:
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB2502AE45204299C3477573B5FB850@CY4PR1201MB2502.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:428;
 X-Forefront-PRVS: 042857DBB5
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rihyHnx56hAnXhAHFkx4gOhA7nWuwlpKNxUkaxZG41cLxaimXr6haC34QsqQzf04KUL7DYGkFsuxVoeWV2RdGo1efBqDpIbLmSvvLI86Ig3t0kLkC1kNcJoLlb3L2KIyV7n19zNTH852ATcUBY/cdyUFetMqNuPY9xVFmkXR8SqAVs8pqdVuWqmeLjgllqjKQDkyi34H941OsVL4A+DKsEezv1ewIknS/V6VQYmaAV3EHpzzyLNngvt+UD3ZeYP+AFP3bvJal7TMXOMe+HBTO3nMSFEwPd3zuDXEl2meculbuZuDulcV0/wdnECv5rLukdRihsxy4mIrCF+MIATG65/Q5dqMojAMgMpvH/5A9AL6zL+ZFP574mHFYlzxVzaSYJg5zc/gcLtgWG4CT6VhIw==
+X-Microsoft-Antispam-Message-Info: zfkd7ZIs/PMBbI0cMxWHPo8RPoh6tpIl+2jpR2zhANzjxpTfkpWCWKlcYNS+74Nl5JzGmDkcLnUnl6rF2Gmd5bawH0AdnuryxaIThlLnp1HDY9Qfvn/3Yft583WginySSyUlmYBEV3o+Z3r/CiFGaoXA581WIDhaB/0e4x0FdgA7hN2OMbnTNepJvbziQctTUUGGBpmEF7T5UR7UdtFiAlN2zfpZY600v22zhBacINze84puLcBdETa9Ivwd/fTpLX/9lQbppTGPTCYEHfUCe12/NMRUqt6EwpLO4BQh9eOPt8GcdT0L3br47V9/nllQi2BLL+IHzGQlN3v9b/fTIoA5+J135wMugNnHH0YHWwon2oZNfuWDLSQpEcVIh+wmmbyMs11IKw3j/tUdmQE5Cg==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 04:59:41.6537 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2cf83812-4063-4d13-f6b8-08d80b68c128
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 04:59:42.6391 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ce6b952-955f-498e-733d-08d80b68c1c1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2508
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB2502
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,152 +101,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, Rodrigo.Siqueira@amd.com,
- Harry.Wentland@amd.com, Aurabindo.Pillai@amd.com
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Aurabindo.Pillai@amd.com,
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-During the debugging process related to a hot-plug
-problem with 4k display, we realized that we had
-some issues related to the global state validation.
-This problem was not explicitly highlighted in the
-dmesg log, for this reason, this commit adds a function
-that converts `enum dc_status` to a human-readable
-string and appends the proper warning message in case
-of failure.
+To allow code reuse with minimal duplication watermark
+calculation needs to be function pointer.
 
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Reviewed-by: Eric Bernstein <Eric.Bernstein@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 13 ++--
- .../gpu/drm/amd/display/dc/core/dc_debug.c    | 59 +++++++++++++++++++
- .../gpu/drm/amd/display/dc/inc/core_status.h  |  2 +
- 3 files changed, 69 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/dc/inc/core_types.h | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f348693217d8..9ab0d8521576 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5152,11 +5152,12 @@ create_validate_stream_for_sink(struct amdgpu_dm_connector *aconnector,
- 		dc_result = dc_validate_stream(adev->dm.dc, stream);
- 
- 		if (dc_result != DC_OK) {
--			DRM_DEBUG_KMS("Mode %dx%d (clk %d) failed DC validation with error %d\n",
-+			DRM_DEBUG_KMS("Mode %dx%d (clk %d) failed DC validation with error %d (%s)\n",
- 				      drm_mode->hdisplay,
- 				      drm_mode->vdisplay,
- 				      drm_mode->clock,
--				      dc_result);
-+				      dc_result,
-+				      dc_status_to_str(dc_result));
- 
- 			dc_stream_release(stream);
- 			stream = NULL;
-@@ -8593,7 +8594,7 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 	struct drm_plane_state *old_plane_state, *new_plane_state;
- 	enum surface_update_type update_type = UPDATE_TYPE_FAST;
- 	enum surface_update_type overall_update_type = UPDATE_TYPE_FAST;
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+index 4fbed8dd0c59..5f985fcbedf1 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+@@ -101,7 +101,11 @@ struct resource_funcs {
+ 					struct dc *dc,
+ 					struct dc_state *context,
+ 					bool fast_validate);
 -
-+	enum dc_status status;
- 	int ret, i;
- 
- 	/*
-@@ -8805,8 +8806,10 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 		ret = drm_dp_mst_atomic_check(state);
- 		if (ret)
- 			goto fail;
--
--		if (dc_validate_global_state(dc, dm_state->context, false) != DC_OK) {
-+		status = dc_validate_global_state(dc, dm_state->context, false);
-+		if (status != DC_OK) {
-+			DC_LOG_WARNING("DC global validation failure: %s (%d)",
-+				       dc_status_to_str(status), status);
- 			ret = -EINVAL;
- 			goto fail;
- 		}
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_debug.c b/drivers/gpu/drm/amd/display/dc/core/dc_debug.c
-index 502ed3c7959d..87d89449b9af 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_debug.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_debug.c
-@@ -365,3 +365,62 @@ void context_clock_trace(
- 			context->bw_ctx.bw.dcn.clk.socclk_khz);
- #endif
- }
-+
-+/**
-+ * dc_status_to_str - convert dc_status to a human readable string
-+ * @status: dc_status to be converted
-+ *
-+ * Return:
-+ * A string describing the DC status.
-+ */
-+char *dc_status_to_str(enum dc_status status)
-+{
-+	switch (status) {
-+	case DC_OK:
-+		return "DC OK";
-+	case DC_NO_CONTROLLER_RESOURCE:
-+		return "No controller resource";
-+	case DC_NO_STREAM_ENC_RESOURCE:
-+		return "No stream encoder";
-+	case DC_NO_CLOCK_SOURCE_RESOURCE:
-+		return "No clock source";
-+	case DC_FAIL_CONTROLLER_VALIDATE:
-+		return "Controller validation failure";
-+	case DC_FAIL_ENC_VALIDATE:
-+		return "Encoder validation failure";
-+	case DC_FAIL_ATTACH_SURFACES:
-+		return "Surfaces attachment failure";
-+	case DC_FAIL_DETACH_SURFACES:
-+		return "Surfaces detachment failure";
-+	case DC_FAIL_SURFACE_VALIDATE:
-+		return "Surface validation failure";
-+	case DC_NO_DP_LINK_BANDWIDTH:
-+		return "No DP link bandwidth";
-+	case DC_EXCEED_DONGLE_CAP:
-+		return "Exceed dongle capability";
-+	case DC_SURFACE_PIXEL_FORMAT_UNSUPPORTED:
-+		return "Unsupported pixel format";
-+	case DC_FAIL_BANDWIDTH_VALIDATE:
-+		return "Bandwidth validation failure (BW and Watermark)";
-+	case DC_FAIL_SCALING:
-+		return "Scaling failure";
-+	case DC_FAIL_DP_LINK_TRAINING:
-+		return "DP link training failure";
-+	case DC_FAIL_DSC_VALIDATE:
-+		return "DSC validation failure";
-+	case DC_NO_DSC_RESOURCE:
-+		return "No DSC resource";
-+	case DC_FAIL_UNSUPPORTED_1:
-+		return "Unsupported";
-+	case DC_FAIL_CLK_EXCEED_MAX:
-+		return "Clk exceed max failure";
-+	case DC_FAIL_CLK_BELOW_MIN:
-+		return "Fail clk below minimum";
-+	case DC_FAIL_CLK_BELOW_CFG_REQUIRED:
-+		return "Fail clk below required CFG (hard_min in PPLIB)";
-+	case DC_ERROR_UNEXPECTED:
-+		return "Unexpected error";
-+	}
-+
-+	return "Unexpected status error";
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_status.h b/drivers/gpu/drm/amd/display/dc/inc/core_status.h
-index 4ead89dd7c41..f932801235c6 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/core_status.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/core_status.h
-@@ -53,4 +53,6 @@ enum dc_status {
- 	DC_ERROR_UNEXPECTED = -1
- };
- 
-+char *dc_status_to_str(enum dc_status status);
-+
- #endif /* _CORE_STATUS_H_ */
++	void (*calculate_wm)(
++				struct dc *dc, struct dc_state *context,
++				display_e2e_pipe_params_st *pipes,
++				int pipe_cnt,
++				int vlevel);
+ 	int (*populate_dml_pipes)(
+ 		struct dc *dc,
+ 		struct dc_state *context,
 -- 
 2.17.1
 
