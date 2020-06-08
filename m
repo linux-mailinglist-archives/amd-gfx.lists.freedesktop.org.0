@@ -1,40 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE2491F2215
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jun 2020 01:06:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F0C31F2302
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jun 2020 01:12:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5187889FD3;
-	Mon,  8 Jun 2020 23:06:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DC3189D2F;
+	Mon,  8 Jun 2020 23:12:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 101FE89FC5;
- Mon,  8 Jun 2020 23:06:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F0776E0DC;
+ Mon,  8 Jun 2020 23:12:53 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 151D920820;
- Mon,  8 Jun 2020 23:06:30 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 1701F20E65;
+ Mon,  8 Jun 2020 23:12:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1591657591;
- bh=x7XNxG+6Ey9iNd/8UiXWD76fUZIbSvQFJ+JJaQo5fqk=;
+ s=default; t=1591657973;
+ bh=AN4+Ouy4r6PuoweN6SQVEtPsqTvyyPgIEM8Ru3zOnRs=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=YP8pPkKbQFz25zt4gifp3yg/NIvpC8zOuz4CaJURDjLKfy56qMgPKgZORxfFg2ouC
- ZRHLoMuDvl1pJBaoBwjT+tJw9TTt1sImXbXbl2fr+rqhKGGEP2lqe6e7NPZrdNa4jV
- dAFWQVXNfkiio/j1THRY7vtg9uyQ/rIjo0gUxj3k=
+ b=o0TNMQPoh9l8kGsYn5opGuftNojJa322vh4xd112QfsOfX8eCHE6/lzT7qp6nX89+
+ rEJa3Ldx4WA9TzhFbUa5FkesN0T1qNhoZpeqMdn3wPXOTFsYtUBiFYiiXnTQfjQPPk
+ 0/vOrjf0K6Yncg371bZnvtIImgx/xD5r14WaWOfg=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.7 019/274] drm/amdgpu: Init data to avoid oops while
- reading pp_num_states.
-Date: Mon,  8 Jun 2020 19:01:52 -0400
-Message-Id: <20200608230607.3361041-19-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.6 035/606] drm/amd/display: add basic atomic check
+ for cursor plane
+Date: Mon,  8 Jun 2020 19:02:40 -0400
+Message-Id: <20200608231211.3363633-35-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200608230607.3361041-1-sashal@kernel.org>
-References: <20200608230607.3361041-1-sashal@kernel.org>
+In-Reply-To: <20200608231211.3363633-1-sashal@kernel.org>
+References: <20200608231211.3363633-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -49,59 +49,85 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
- zhoubinbin <zhoubinbin@uniontech.com>, limingyu <limingyu@uniontech.com>,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
+Cc: Simon Ser <contact@emersion.fr>, amd-gfx@lists.freedesktop.org,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ dri-devel@lists.freedesktop.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Harry Wentland <hwentlan@amd.com>,
+ Roman Gilg <subdiff@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: limingyu <limingyu@uniontech.com>
+From: Simon Ser <contact@emersion.fr>
 
-[ Upstream commit 6f81b2d047c59eb77cd04795a44245d6a52cdaec ]
+commit 626bf90fe03fa080d8df06bb0397c95c53ae8e27 upstream.
 
-For chip like CHIP_OLAND with si enabled(amdgpu.si_support=1),
-the amdgpu will expose pp_num_states to the /sys directory.
-In this moment, read the pp_num_states file will excute the
-amdgpu_get_pp_num_states func. In our case, the data hasn't
-been initialized, so the kernel will access some ilegal
-address, trigger the segmentfault and system will reboot soon:
+This patch adds a basic cursor check when an atomic test-only commit is
+performed. The position and size of the cursor plane is checked.
 
-    uos@uos-PC:~$ cat /sys/devices/pci0000\:00/0000\:00\:00.0/0000\:01\:00
-    .0/pp_num_states
+This should fix user-space relying on atomic checks to assign buffers to
+planes.
 
-    Message from syslogd@uos-PC at Apr 22 09:26:20 ...
-     kernel:[   82.154129] Internal error: Oops: 96000004 [#1] SMP
-
-This patch aims to fix this problem, avoid that reading file
-triggers the kernel sementfault.
-
-Signed-off-by: limingyu <limingyu@uniontech.com>
-Signed-off-by: zhoubinbin <zhoubinbin@uniontech.com>
+Signed-off-by: Simon Ser <contact@emersion.fr>
+Reported-by: Roman Gilg <subdiff@gmail.com>
+References: https://github.com/emersion/libliftoff/issues/46
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Harry Wentland <hwentlan@amd.com>
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Cc: stable@vger.kernel.org
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 26 +++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-index abe94a55ecad..49e2e43f2e4a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
-@@ -444,8 +444,11 @@ static ssize_t amdgpu_get_pp_num_states(struct device *dev,
- 		ret = smu_get_power_num_states(&adev->smu, &data);
- 		if (ret)
- 			return ret;
--	} else if (adev->powerplay.pp_funcs->get_pp_num_states)
-+	} else if (adev->powerplay.pp_funcs->get_pp_num_states) {
- 		amdgpu_dpm_get_pp_num_states(adev, &data);
-+	} else {
-+		memset(&data, 0, sizeof(data));
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 8136a58deb39..5e27a67fbc58 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -7716,6 +7716,7 @@ static int dm_update_plane_state(struct dc *dc,
+ 	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
+ 	struct dm_crtc_state *dm_new_crtc_state, *dm_old_crtc_state;
+ 	struct dm_plane_state *dm_new_plane_state, *dm_old_plane_state;
++	struct amdgpu_crtc *new_acrtc;
+ 	bool needs_reset;
+ 	int ret = 0;
+ 
+@@ -7725,9 +7726,30 @@ static int dm_update_plane_state(struct dc *dc,
+ 	dm_new_plane_state = to_dm_plane_state(new_plane_state);
+ 	dm_old_plane_state = to_dm_plane_state(old_plane_state);
+ 
+-	/*TODO Implement atomic check for cursor plane */
+-	if (plane->type == DRM_PLANE_TYPE_CURSOR)
++	/*TODO Implement better atomic check for cursor plane */
++	if (plane->type == DRM_PLANE_TYPE_CURSOR) {
++		if (!enable || !new_plane_crtc ||
++			drm_atomic_plane_disabling(plane->state, new_plane_state))
++			return 0;
++
++		new_acrtc = to_amdgpu_crtc(new_plane_crtc);
++
++		if ((new_plane_state->crtc_w > new_acrtc->max_cursor_width) ||
++			(new_plane_state->crtc_h > new_acrtc->max_cursor_height)) {
++			DRM_DEBUG_ATOMIC("Bad cursor size %d x %d\n",
++							 new_plane_state->crtc_w, new_plane_state->crtc_h);
++			return -EINVAL;
++		}
++
++		if (new_plane_state->crtc_x <= -new_acrtc->max_cursor_width ||
++			new_plane_state->crtc_y <= -new_acrtc->max_cursor_height) {
++			DRM_DEBUG_ATOMIC("Bad cursor position %d, %d\n",
++							 new_plane_state->crtc_x, new_plane_state->crtc_y);
++			return -EINVAL;
++		}
++
+ 		return 0;
 +	}
  
- 	pm_runtime_mark_last_busy(ddev->dev);
- 	pm_runtime_put_autosuspend(ddev->dev);
+ 	needs_reset = should_reset_plane(state, plane, old_plane_state,
+ 					 new_plane_state);
 -- 
 2.25.1
 
