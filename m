@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 109AF1F1262
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 06:59:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A12D11F1266
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 06:59:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EBE96E49A;
-	Mon,  8 Jun 2020 04:59:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 140D16E46B;
+	Mon,  8 Jun 2020 04:59:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2081.outbound.protection.outlook.com [40.107.244.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09D116E49A
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 04:59:51 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2047.outbound.protection.outlook.com [40.107.237.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 594B76E47A
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 04:59:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lMME5aCqfa8wdFP/IofPC2q40bPL7KRPBcyR6zKyChFK3XGB+ugFDAuS33287fRdRqcHWKog1NB1BMMGVmhKoqtgKe034NfXLHQLD+r/Ij+rqhWS2nxsJJfsxIrRD0U2zKFswz3xfBJ/ONAyJNv0Iuv6/SfzgxMbDKz85e2fEyqNrWnQAkFn8SRptZqoUhwZbAuHUYsLlHumVjMVp0kWXWHWsGIBprCPjyr5Wt+Vhn+DFBOrgw6qcGHE7hcOthaQuD2FjhI6VYIpgSPIMTTxuqTKChAP6ssIIMzETwmvvswfgZ3sCX1bgAW2xqM8Nc6RyYPYm2xwoj2KuqvBQDTjdg==
+ b=fRgGXBWl/3AL4MQkcmfsjwvNwvp01oFVm7IGjN+oi8+vlCmTHjhTuo0qBLl0TmDGH/C577RsUzFaZ/ZoxolbegqEGyNkwi5OEHkweHnw/N+k+BD7MlgKzOXT2JvqwIIkKylL3JdWujB+K2e0Mr3oR/lZEmuY3FZ7J3GohFkKjJvTWQfgNEJcUTzFSqxXXvY6IUl3N4el7IpeNSPprFjywWwn7vJumg++0IlEhQ5NFE4VKfbLwJ5FLhvEfvl5ytdLxmY5+Kw7rYntUAou5iT6J+IA63V24LuHOlJ8FtWlsWCE4xFyK81KnEOjlmVzgTUuXi5zULGhMD+MfnLRkusnHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cbiVkjP3WrKlzOIUH6GfS0CCJOKPRtPFYq/il9smkg8=;
- b=kPde+Bf2z+f5ARChdI/2JSWlhZPpreHHfniPjD29JAPr1zumuyimxtEUiDDFo13Vzx7ZlNgj/rTU1YQkB0/Z5mxdBg4otvKp9mi/ToDrcNKsgfmYMaaYpdJvU57dctXiVdkvaZEhOOeH8Av1mjpTMuefCrlgfV6tGvtDDIE/jizG6Xls54WPHgo8PGkWJmfnqyjuZv8t3B2/4ByU3zMy/9IdAEFNR7TWZVZ7nHef3QYPxjq35hNI7avaJ4Qq5Jxt5lv8fwTbVjKLuG7ZIIoB4auhimcRN0V9rOeKdKOJK8Xc6nopoidyjBUeHCXO/hkg0eV+qLyZAm8q2Bhuid0saQ==
+ bh=LXyPECH2oWb0iEM7TN/nbg+YXQsgUeYSDvnz/lXNsZw=;
+ b=XlEFN515qUER+jxKrBHiWWLt3/d6RkHo/xy0d8Iwy0IhzEe/XYjp5TID4TSOQ9DmHflzYrnS5Mq9dnFom6os35zHn5/MMh6yAbVfQiqQwK9LYdfN5u9O8oaAOKMgSHzNab0ZMKvGnB1Y1SfhwLs8f9LVXlnaKmcFgBaqlfLEa2jKm0QRxaJQDEvpZ4pa2U4P99C/nMmjR7npDlg5ynRP7YUgdiZicdXg+miw5uBU2nypC2VSebRxlJmQN/ovXRLiLwzALi3GAvyasIA0j5oooC18VVuSrGkmF/zYTsw1Hj3lo4ia7X9sGuXVoZtmNWZ2QJHWB/ESGDoZbNBTHcbLfQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,44 +27,44 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cbiVkjP3WrKlzOIUH6GfS0CCJOKPRtPFYq/il9smkg8=;
- b=XhILkcxpjbvxj1V1qTbvMd1rM6JUW85QCn74g8IKLrxhcn++RVQfo89At8kf1JoJOshkdsDlgTicypBhb6k7qMYSkjpyECGwtAZDytrPkH/ZJWDo9UAkht3SPp6vYUGReeI2KYB/B0jhB2P6mB1JqALQ4U8hBtuD4W0ulYrsiSI=
-Received: from DM5PR1101CA0021.namprd11.prod.outlook.com (2603:10b6:4:4c::31)
- by DM5PR1201MB0043.namprd12.prod.outlook.com (2603:10b6:4:57::9) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=LXyPECH2oWb0iEM7TN/nbg+YXQsgUeYSDvnz/lXNsZw=;
+ b=oxWNPLJ6rS/4gHNmaO0xnZ9nOZSi+oCIIjnwTkUHxSXJU3nIP6U+nheASpHLEWNHSzJ6R5S4hOBog8x/w46uK5sTUGAL+BWZDXttenT5x/Rfb3uULUv6zXd52JDHXwp3NMv+GionXTzeAsQAgKcnqQqqWRzuhBLAW6Ypw0vzZlw=
+Received: from MWHPR04CA0036.namprd04.prod.outlook.com (2603:10b6:300:ee::22)
+ by MN2PR12MB3583.namprd12.prod.outlook.com (2603:10b6:208:c5::12)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18; Mon, 8 Jun
- 2020 04:59:49 +0000
-Received: from DM6NAM11FT063.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:4c:cafe::64) by DM5PR1101CA0021.outlook.office365.com
- (2603:10b6:4:4c::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.19 via Frontend
- Transport; Mon, 8 Jun 2020 04:59:49 +0000
+ 2020 04:59:51 +0000
+Received: from CO1NAM11FT040.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:ee:cafe::cc) by MWHPR04CA0036.outlook.office365.com
+ (2603:10b6:300:ee::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.18 via Frontend
+ Transport; Mon, 8 Jun 2020 04:59:51 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- DM6NAM11FT063.mail.protection.outlook.com (10.13.172.219) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT040.mail.protection.outlook.com (10.13.174.140) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 04:59:49 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 04:59:50 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sun, 7 Jun 2020
- 23:59:48 -0500
+ 23:59:49 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Sun, 7 Jun 2020
- 23:59:48 -0500
+ 23:59:49 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
  Transport; Sun, 7 Jun 2020 23:59:48 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 26/28] drm/amd/display: Not doing bios data pack.
-Date: Mon, 8 Jun 2020 00:59:24 -0400
-Message-ID: <20200608045926.17197-27-qingqing.zhuo@amd.com>
+Subject: [PATCH 27/28] drm/amd/display: [FW Promotion] Release 1.0.15
+Date: Mon, 8 Jun 2020 00:59:25 -0400
+Message-ID: <20200608045926.17197-28-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200608045926.17197-1-qingqing.zhuo@amd.com>
 References: <20200608045926.17197-1-qingqing.zhuo@amd.com>
@@ -72,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(396003)(346002)(376002)(136003)(39860400002)(46966005)(2906002)(1076003)(6666004)(8676002)(36756003)(8936002)(86362001)(5660300002)(26005)(70586007)(186003)(6916009)(478600001)(70206006)(316002)(44832011)(2616005)(81166007)(54906003)(4326008)(47076004)(336012)(426003)(82740400003)(356005)(82310400002);
+ SFS:(4636009)(346002)(396003)(39860400002)(136003)(376002)(46966005)(6666004)(86362001)(316002)(81166007)(2906002)(70206006)(186003)(8676002)(82740400003)(26005)(70586007)(54906003)(47076004)(336012)(356005)(5660300002)(8936002)(6916009)(478600001)(1076003)(83380400001)(36756003)(426003)(2616005)(4326008)(82310400002)(44832011);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 13e8532e-a1fb-482a-7afe-08d80b68c5be
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0043:
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB0043F1E2296C23504D386C8BFB850@DM5PR1201MB0043.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-MS-Office365-Filtering-Correlation-Id: 8338b004-9483-4505-e7a5-08d80b68c6af
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3583:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3583EF93276375CEA844E24FFB850@MN2PR12MB3583.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
 X-Forefront-PRVS: 042857DBB5
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M7oCZy6caGAKObziz+7uacDhVmx55w8a2EjIVpdHRDQOZZwi14XJPRn0S+mSGyTTPqAFmHXyQ0SJgzBGb7W3iWA2+JBMVS6eTatXtOPjPKHhQvTZzNN9vQR1r61lsX2odMPiqzNvwPiRw1g1uKFvro5CDVFdL5F4VdPcvuvoEQ2+5tySfpoOH1h9Wcj2mvQNbZZX8LRK4SJ2TlXKCssEbDCa5PQOB5DK/0JN8JJBpj8jz8q89SAEzE7twvU/ZHfL0SnbDXLp4E7kVSeAeG0SDdRHSdGJOdCqVsS5uYrgExbzJF74NxHeqloNZV9xVvoXg3z/k03tvAfYF+fETOrPzwCfGuRphY5BNW29+xY5vbSBFzXT4XatkC6x9y0s6gr5s1wGgGMxHE5CRV0lJY/Q2g==
+X-Microsoft-Antispam-Message-Info: IHDsS6Ns4JlIV5Hi0RruNKiVnoE7qaZ8xFYTlu0K2U4uymdwpUx4vaUFnTRukO6FDlMJNgvqcM5SLFfkYrNb7sF4vrsEVkXhr4tjw0zxPsgonD4DcJzJ5qgdK4bCW3JWnDZ9zOqgA1k4XTeS/USXOfHNs3qAFnqzVhQ9m7f0JxW0s2padOP7/Dr16kcOgvWI3mMLjAIyl6PEcBD8K8fW/+MYeX+rBhNtIIWJooCYj/uQ31L0sfi0ofcRJJFp+XkpXlIQKGiGghrRwfnEW8H/cNB8rHdewmzYkcJyC6P7DBCnuy01cGvv0iTy3eV1raaPEB3EGZf2X1WTwSiXQ3W9Z8cNLY3YtkAUqdwPDwdAiVR6ZhqlHJQOPqqidOhjlZXgVWPS+dL5LBioqQbKWpJQ5w==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 04:59:49.4184 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13e8532e-a1fb-482a-7afe-08d80b68c5be
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 04:59:50.9247 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8338b004-9483-4505-e7a5-08d80b68c6af
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
+ Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0043
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3583
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,57 +105,130 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Rodrigo.Siqueira@amd.com,
- Aurabindo.Pillai@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>,
- Bhawanpreet.Lakha@amd.com
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ Anthony Koo <Anthony.Koo@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yongqiang Sun <yongqiang.sun@amd.com>
+From: Anthony Koo <Anthony.Koo@amd.com>
 
-[Why]
-dmub FW running abnormal after resume from S0i3 due
-to data aliagnment issue.
+[Header Changes]
+- Add new initialization bits for driver to check
+  firmware status
+- Add command for HW locking via DMUB
 
-[How]
-Before having a solution for this issue, temparory
-not doing data pack.
-
-Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
-Reviewed-by: Sung Lee <Sung.Lee@amd.com>
+Signed-off-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 68 ++++++++++++++++++-
+ 1 file changed, 65 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-index 150cdbc02d44..9311fec1643c 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-@@ -1880,10 +1880,12 @@ static enum bp_result bios_get_board_layout_info(
- 	return BP_RESULT_OK;
- }
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index 5066c639670e..7c03c4798348 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -36,10 +36,10 @@
  
+ /* Firmware versioning. */
+ #ifdef DMUB_EXPOSE_VERSION
+-#define DMUB_FW_VERSION_GIT_HASH 0x5470fd231
++#define DMUB_FW_VERSION_GIT_HASH 0xee850bb2f
+ #define DMUB_FW_VERSION_MAJOR 1
+ #define DMUB_FW_VERSION_MINOR 0
+-#define DMUB_FW_VERSION_REVISION 14
++#define DMUB_FW_VERSION_REVISION 15
+ #define DMUB_FW_VERSION_UCODE ((DMUB_FW_VERSION_MAJOR << 24) | (DMUB_FW_VERSION_MINOR << 16) | DMUB_FW_VERSION_REVISION)
+ #endif
+ 
+@@ -137,8 +137,31 @@ union dmub_fw_meta {
+ };
+ 
+ #pragma pack(pop)
 +
- static uint16_t bios_parser_pack_data_tables(
- 	struct dc_bios *dcb,
- 	void *dst)
- {
-+#ifdef PACK_BIOS_DATA
- 	struct bios_parser *bp = BP_FROM_DCB(dcb);
- 	struct atom_rom_header_v2_2 *rom_header = NULL;
- 	struct atom_rom_header_v2_2 *packed_rom_header = NULL;
-@@ -1975,6 +1977,9 @@ static uint16_t bios_parser_pack_data_tables(
- 		}
- 	}
- 	return packed_data_tbl_offset;
-+#endif
-+	// TODO: There is data bytes alignment issue, disable it for now.
-+	return 0;
- }
++//==============================================================================
++//< DMUB_STATUS>================================================================
++//==============================================================================
++
++/**
++ * DMCUB scratch registers can be used to determine firmware status.
++ * Current scratch register usage is as follows:
++ *
++ * SCRATCH0: Legacy status register
++ * SCRATCH1: Firmware version
++ * SCRATCH2: Firmware status bits defined by dmub_fw_status_bit
++ * SCRATCH3: Reserved firmware status bits
++ */
++
++/**
++ * DMCUB firmware status bits for SCRATCH2.
++ */
++enum dmub_fw_status_bit {
++	DMUB_FW_STATUS_BIT_DAL_FIRMWARE = (1 << 0),
++	DMUB_FW_STATUS_BIT_COMMAND_TABLE_READY = (1 << 1),
++};
++
+ //==============================================================================
+-//</DMUB_META>==================================================================
++//</DMUB_STATUS>================================================================
+ //==============================================================================
+ //< DMUB_VBIOS>=================================================================
+ //==============================================================================
+@@ -230,6 +253,7 @@ enum dmub_cmd_type {
+ 	DMUB_CMD__PLAT_54186_WA = 5,
+ 	DMUB_CMD__PSR = 64,
+ 	DMUB_CMD__ABM = 66,
++	DMUB_CMD__HW_LOCK = 69,
+ 	DMUB_CMD__VBIOS = 128,
+ };
  
- static const struct dc_vbios_funcs vbios_funcs = {
+@@ -453,6 +477,44 @@ struct dmub_rb_cmd_psr_set_version {
+ 	struct dmub_cmd_psr_set_version_data psr_set_version_data;
+ };
+ 
++union dmub_hw_lock_flags {
++	struct {
++		uint8_t lock_pipe   : 1;
++		uint8_t lock_cursor : 1;
++		uint8_t lock_dig    : 1;
++		uint8_t triple_buffer_lock : 1;
++	} bits;
++
++	uint8_t u8All;
++};
++
++struct dmub_hw_lock_inst_flags {
++	uint8_t otg_inst;
++	uint8_t opp_inst;
++	uint8_t dig_inst;
++	uint8_t pad;
++};
++
++enum hw_lock_client {
++	HW_LOCK_CLIENT_DRIVER = 0,
++	HW_LOCK_CLIENT_FW,
++	HW_LOCK_CLIENT_INVALID = 0xFFFFFFFF,
++};
++
++struct dmub_cmd_lock_hw_data {
++	enum hw_lock_client client;
++	struct dmub_hw_lock_inst_flags inst_flags;
++	union dmub_hw_lock_flags hw_locks;
++	uint8_t lock;
++	uint8_t should_release;
++	uint8_t pad;
++};
++
++struct dmub_rb_cmd_lock_hw {
++	struct dmub_cmd_header header;
++	struct dmub_cmd_lock_hw_data lock_hw_data;
++};
++
+ enum dmub_cmd_abm_type {
+ 	DMUB_CMD__ABM_INIT_CONFIG	= 0,
+ 	DMUB_CMD__ABM_SET_PIPE		= 1,
 -- 
 2.17.1
 
