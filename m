@@ -2,63 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECC061F2039
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 21:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21DFE1F205C
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 21:58:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 785DB89DB7;
-	Mon,  8 Jun 2020 19:42:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 989D189DFC;
+	Mon,  8 Jun 2020 19:58:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
- [IPv6:2a00:1450:4864:20::544])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B59A89DB7
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 19:42:43 +0000 (UTC)
-Received: by mail-ed1-x544.google.com with SMTP id m21so14412233eds.13
- for <amd-gfx@lists.freedesktop.org>; Mon, 08 Jun 2020 12:42:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=6TtIH0/X69SKy3Ns4420RcaiFgcNnfdCaNNLMnzeCjs=;
- b=gnI9iW+92rYA2WN2lIWCCQJrNKF0YJQJOm9/dqkuca+VObc5Rrk93RtVuNDsN+UvvF
- d11x36FwwEXJvB9Cx3Xg88rzcmLVkZVJcbfcVfUCBcvwOG3yub44wCUnS1Y3kQJUrwCc
- zK/hHKwrhz7PLlduybsMVQhuN/SyVLlygKTIlPYCaLtgxyUhXD3D0vhcqKUo6waTl6WR
- 8wZ67OUZ+CazJHLc77ouG3b4flgUnGQR3NdHxnscRcJDJdLH1xgAr809MF8G4M8CYqCI
- Lh0LRMCFEy0I5ePxv3uIDbF4KcOEGPKNaezM0cCHGrpV6l6o3vVooeK5WYH39Sa8YwBf
- vWMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=6TtIH0/X69SKy3Ns4420RcaiFgcNnfdCaNNLMnzeCjs=;
- b=RulG/gFMNkJ8qJMiwdgqLJIT3BUl0MoQ4Hd4SdOLwmq0VOElO6DstLAG+AoKPJBDlL
- BKXY/1lpZLW5LGOGTORf0US1xVAAK7iYVH+H/x9pykEzgwDpGZSAS6wvFdAiUT4/taP1
- hbGGvp53E3dI/cPRUecygkCsDxTUQuat7YrNfUrfAXRHAcla8updZcXsF2G8RpGHA9AA
- KIFrzX5e0LoWfhYruWZBqU8fy/FrRw6daGEp52ESn06xAy96sK3MUOkdlv1dU0lNokck
- NV7fOANuHfkox8dlRczypLb4ht6aTTx0it03SEIBcobyegRy7kOoRq3X5bM86t2h4Pmc
- OHUg==
-X-Gm-Message-State: AOAM530Nh5KVgzE9LOFWSDG6BzLSI0hv1+PenyiRmmGPq6XcsMP5avJw
- TV4sr/95uIGwp6TNqMfvKKk=
-X-Google-Smtp-Source: ABdhPJzR3okYez62vd4XTHyOehErtFtf72yTxWH0kVMl/35dz4S46Gt+bHm7BcRdnm/Sjvzj3pNhhQ==
-X-Received: by 2002:a05:6402:1597:: with SMTP id
- c23mr12756013edv.372.1591645362256; 
- Mon, 08 Jun 2020 12:42:42 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id s13sm12031313ejv.29.2020.06.08.12.42.41
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 08 Jun 2020 12:42:41 -0700 (PDT)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770077.outbound.protection.outlook.com [40.107.77.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7384B89DFC
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 19:58:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KsKAckfUOjdNOrMobfbnnoV6N/GziR1gmBhrgLCb8izTlU7OwbZNSveftcAQl8S+5SFjUdA2FBeR6qpbByGsfWhDb+CEyWKmrcnuMHPsElxI1cvgkkwQQkfeVKYC4rA5BO/lUcn7xVzOA0S8ETSxyqO4sX6UndSfJhbAfSM+Gi6hGE5GEEIjmy6Zsf7hHQHb+o/y/a/FOq2tgyPFxnAo/RB1QPwWrmQPQZnYkih+LWROBaeQcH4sSWlRLDgyoa1+ocgs6x4oocPILuZya2mdXDUXsxEsj8vmTNrD1brykge+0hZYlEp7oK8z6JZRV/hZv1+fkaUG67XCLf7pcB5xxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tQGBYt/b4hsXYvUnAdaREBN0hFCMaMwNesfbv00uD48=;
+ b=kswbYmhPLQN90MZp5yb+netQpAyi8n7w1+Ru2fTPzFy0Gi10P9lUvdupA+aRrUvRnKNH0aYXZwn2QVK2qsvjODWPaee+zkAaT9I3u7i123GkQPuOFOlQkEZfYG9AxJA6DQPwGUz7sgwdF7bF1LIT3uJ/MuZlVOWXPeHoMAliGAHhjmvbRaQ62ha6HZDBiKJFzEMn2nesJjHhcgx/1/qMWfmHX2sf4zocj9waWEukP5gORlpEFR5TTFUZhRtDeLYkz3SmmWjE6YwXyEVZKEy7gk0i4e4Ha4XC6jH3SSj0mkusizFYlBsJ1ydOY0U8gFsb2te3/X2oUPOFtVJIJz0rKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tQGBYt/b4hsXYvUnAdaREBN0hFCMaMwNesfbv00uD48=;
+ b=zH2VmgaBgWDgDkUEFzRT1bjM04/vSF8aahWYiHRzyGW0Gj5VGYCJwiZvVOe/SI+2yNAUN91Ad7OkliszdwViINXwdfNcws3t0IPAOVB2sPqIso4jxRFnxBbOE6rLSeyFzDtnEZVzf0j0xqemNykyl0Ej5fBaR9nyCGfqWrjWB84=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from SN1PR12MB2414.namprd12.prod.outlook.com (2603:10b6:802:2e::31)
+ by SN1PR12MB2544.namprd12.prod.outlook.com (2603:10b6:802:2b::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3066.22; Mon, 8 Jun
+ 2020 19:58:06 +0000
+Received: from SN1PR12MB2414.namprd12.prod.outlook.com
+ ([fe80::18d:97b:661f:9314]) by SN1PR12MB2414.namprd12.prod.outlook.com
+ ([fe80::18d:97b:661f:9314%7]) with mapi id 15.20.3066.023; Mon, 8 Jun 2020
+ 19:58:06 +0000
 Subject: Re: [PATCH] drm/amdgpu: skip BAR resizing if the bios already did it
 To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
 References: <20200608194109.224589-1-alexander.deucher@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <165599c6-750a-b6cc-5995-112564a4ba29@gmail.com>
-Date: Mon, 8 Jun 2020 21:42:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
+From: Felix Kuehling <felix.kuehling@amd.com>
+Message-ID: <cf9578a6-0fc4-14c5-6a0b-87359b0956f9@amd.com>
+Date: Mon, 8 Jun 2020 15:58:04 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 In-Reply-To: <20200608194109.224589-1-alexander.deucher@amd.com>
 Content-Language: en-US
+X-ClientProxiedBy: YT1PR01CA0041.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2e::10) To SN1PR12MB2414.namprd12.prod.outlook.com
+ (2603:10b6:802:2e::31)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.2.100] (142.116.63.128) by
+ YT1PR01CA0041.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2e::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3066.18 via Frontend Transport; Mon, 8 Jun 2020 19:58:06 +0000
+X-Originating-IP: [142.116.63.128]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 27371e5d-e5d1-484e-d157-08d80be642b3
+X-MS-TrafficTypeDiagnostic: SN1PR12MB2544:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SN1PR12MB2544163DBE1918164C73440392850@SN1PR12MB2544.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
+X-Forefront-PRVS: 042857DBB5
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: B1nQiJhqzKgjtBwT5GHXSvd3aw7c5CCtlWyi+i0bjyAYPoneuWdPb7wcniLpBgW+ViOIjeUVFGks+1rGclBkm5rTqgXatbVHyi8+XOoIXhjCKuvBPeCrbws1MXUe8Kcs0UxZJTqXlGLJFMZA551Zg8BNKglaz54co4gTUZo0DXRiIWKCONM/ETF8Q61kokKuFmK4JQAak2Ez7Cm9TP2HgqVAdFVJR/T95Xn9iSFeSD0wXvenzo4jZdNZVqN5KFK/uayJzkSxCe2hGSFQ+LPtFohl5lNttaK2Ze4xyP3QilgzNd+2QurMjIh4HP5w/owX+3IcY6egndMsiqOxqraiPMoMEXSQnq7RfG054jxj8+Avi59tVGPs2/fUoHvUbNgb
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN1PR12MB2414.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(478600001)(4326008)(52116002)(36756003)(66946007)(86362001)(5660300002)(16576012)(31696002)(66476007)(66556008)(4744005)(956004)(8676002)(44832011)(8936002)(316002)(26005)(6486002)(16526019)(2616005)(31686004)(186003)(2906002)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: OCbPOKPqnuLwp8wNPCf8sRLX7otTW9Nf9iG8tHULGzzmdSufQd2Dug9FETDPAyKxkgPqUTJ4WzTApv6Wm2lH31dAxQL6pV/28/jO2KsktK80sR92MdT2Ff/g5mXZJa2QEG5dl6UDMafT05OvcyAdAg4vv+3IpXydK5SwRgaDfQOuSkMytcWgZVwUjSvM35d7MU+5RPxkPKwV+GUpHDTooZjBMB1vMEYEk1eLS9vuASnm8qjNgWOquFD+e1D+zZvCEo9W3xt9ociLpm6Cf6L7wZysfSJzmMNwDctOKVoCv7/NNRHNHbk+nFBWZU/Of452RQ+6Bwl+KM1QnvypYQHpWtJi8u4/555UMgbJ5VXOeQRZIC4XqrVcQ0rJ5iX9CFIoVBikxcS3Z9MtmR+VmeUqM3FCzkGSGtzFCbkOzjitp1O9iVu7Ipq8L7ufFlKs+3WkMwfTAVi5GWEsa7hIvGSl5EpEApS7vI4ifnBeCLb9uSZFFnRns/nOXkLwArCatYjO
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27371e5d-e5d1-484e-d157-08d80be642b3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2020 19:58:06.5567 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LJ3sc8bR2daWLfZsQuXKjz8tUlH7FH19P6YfYH1uW/MMi3lL8Esv3lH+eoAM6bZlSRkekPog05jxqkNiEgjQtw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2544
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,30 +95,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
 Cc: Alex Deucher <alexander.deucher@amd.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMDguMDYuMjAgdW0gMjE6NDEgc2NocmllYiBBbGV4IERldWNoZXI6Cj4gTm8gbmVlZCB0byBk
-byBpdCBhZ2Fpbi4KPgo+IFNpZ25lZC1vZmYtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRl
-dWNoZXJAYW1kLmNvbT4KClJldmlld2VkLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4u
-a29lbmlnQGFtZC5jb20+Cgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X2RldmljZS5jIHwgNSArKysrKwo+ICAgMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygr
-KQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZp
-Y2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwo+IGluZGV4
-IDFkZjI4YjdiZjIyZS4uNTM5MDEwNzk4MTE2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwo+IEBAIC05MDksNiArOTA5LDExIEBAIGludCBhbWRncHVf
-ZGV2aWNlX3Jlc2l6ZV9mYl9iYXIoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gICAJaWYg
-KGFtZGdwdV9zcmlvdl92ZihhZGV2KSkKPiAgIAkJcmV0dXJuIDA7Cj4gICAKPiArCS8qIHNraXAg
-aWYgdGhlIGJpb3MgaGFzIGFscmVhZHkgZW5hYmxlZCBsYXJnZSBCQVIgKi8KPiArCWlmIChhZGV2
-LT5nbWMucmVhbF92cmFtX3NpemUgJiYKPiArCSAgICAocGNpX3Jlc291cmNlX2xlbihhZGV2LT5w
-ZGV2LCAwKSA+PSBhZGV2LT5nbWMucmVhbF92cmFtX3NpemUpKQo+ICsJCXJldHVybiAwOwo+ICsK
-PiAgIAkvKiBDaGVjayBpZiB0aGUgcm9vdCBCVVMgaGFzIDY0Yml0IG1lbW9yeSByZXNvdXJjZXMg
-Ki8KPiAgIAlyb290ID0gYWRldi0+cGRldi0+YnVzOwo+ICAgCXdoaWxlIChyb290LT5wYXJlbnQp
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4
-IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+Am 2020-06-08 um 3:41 p.m. schrieb Alex Deucher:
+> No need to do it again.
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+
+Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
+
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 1df28b7bf22e..539010798116 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -909,6 +909,11 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+>  	if (amdgpu_sriov_vf(adev))
+>  		return 0;
+>  
+> +	/* skip if the bios has already enabled large BAR */
+> +	if (adev->gmc.real_vram_size &&
+> +	    (pci_resource_len(adev->pdev, 0) >= adev->gmc.real_vram_size))
+> +		return 0;
+> +
+>  	/* Check if the root BUS has 64bit memory resources */
+>  	root = adev->pdev->bus;
+>  	while (root->parent)
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
