@@ -2,59 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95791F2048
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 21:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 166191F2035
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jun 2020 21:41:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A82A6E99A;
-	Mon,  8 Jun 2020 19:46:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3408689DB7;
+	Mon,  8 Jun 2020 19:41:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
- [IPv6:2a00:1450:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C13FC89DB7;
- Mon,  8 Jun 2020 19:39:01 +0000 (UTC)
-Received: by mail-lj1-x242.google.com with SMTP id 9so12376555ljv.5;
- Mon, 08 Jun 2020 12:39:01 -0700 (PDT)
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com
+ [IPv6:2607:f8b0:4864:20::543])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A2A889DB7
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2020 19:41:20 +0000 (UTC)
+Received: by mail-pg1-x543.google.com with SMTP id e9so9188566pgo.9
+ for <amd-gfx@lists.freedesktop.org>; Mon, 08 Jun 2020 12:41:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=TVOtxpmeYOWD7rcQA6p6PVJsdwW/9XtVAfJ00067Jwk=;
- b=Uw7ae4K+D9tmeKHdEU38WOe4FsdhXp1ZnKr7YKUGixiQ9oWe2zUkZdxYWRFL5TGsGn
- +V9y94pvG0g5IXdQ2s4+PKu/NvK9GfJ5zCE2bQeGG95W+5y0fJ2+gTsk4k83rf03ItCJ
- kLC6qXpWbigmmVckNhVl6m270lucklRJQLrGoqZmdnWFsJKpGVxCkW4TqmwNSvOiG1BH
- d7soMSphupowplBAdx0AqVYwm0rmW0kE6W5xrmEBYPj5QQ0rsZtXxPEdj4xYSsQtECzW
- Nrs4lqroRuljEnV+wdWyUPdWz7xp5vspC1+LTQ3C15/rCfKQ54OQWj3k6b8s7vujTbBm
- A2bQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=gEOG+0RtGDvvAokjSxHEOr5ksqEpIchcu1HEVfmjZNM=;
+ b=GcBDZ/iBkB+kjhe/6wNcVZki52KyVzy0MtJp1xo2zi251Tz6ZrGfAwKK+Hd0KZh41X
+ 76w0Vid7rXVaI8526Ar+sQ0r7Di6MK800SMBHkUGTUXszNubc4wJwRfe3caRp6GGtPNZ
+ g/oRBPwMgwVaaDCk08pz1RcOVe8T6enMEcTp8UtJofkpCtZsJSrPk5AaDWWVSO1vp/tw
+ rNJ+QgsEG1Gaa26gNK8jGwtQrppF/Br0PevQ8d/bNC368hmHe6gvBBrsPgT2kbbi4MR6
+ V3N4naHTBt7r+w4f7kdgwLGqKOP20si+33+gYgK0QA3S/UyJCulntM3KDMsi5kk+rdUF
+ Z/LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=TVOtxpmeYOWD7rcQA6p6PVJsdwW/9XtVAfJ00067Jwk=;
- b=aocZlLd7JIFUqc9CQ/JYS9ysr/yWA6oVbxTquwZf7pe1sMuRj41tZRBPd9v00ojMW1
- KZyve7PI4ifEjb7MUqpgfN8hySjKiRvKBz+e/oNVIZWeOBYnOniIfomocMVxY9HyH+fG
- i9CsrfN0scgq7zTjdU/7QjVJcqq/EvK7iJy6DvZnq2dyirj7EZs/xTC0Jwi7C+pwIrBm
- Nuwo9AGUgqVMEd6QjA8e2v8yj9T8h4+oeuNODbC05DKlU4LzZN+fceMwON78N9qp+0P2
- ApdZzxmMghh8pcAmnK9FIflRE8VuesDaLEhuXDN85acscG7iQ2unfunqCc0WpUGsjOk4
- ImLA==
-X-Gm-Message-State: AOAM531jwh0xZeTDhfQ/Pa1dFX4iVzQj8ME1Yw3gPsd3VvB8DMaGtebP
- vXxQz+k/LW8IbzGkA07RE6n9onIwCFR97WZql4c=
-X-Google-Smtp-Source: ABdhPJzj7F/aaSi7HE9SPJMq1V4yr6hfoXBgPhFqPh91CbbkatR/Ryqmnw/QWzidGESYaRxTEW2Cmw1bqOyx6OoorZ0=
-X-Received: by 2002:a2e:9147:: with SMTP id q7mr12642562ljg.430.1591645140048; 
- Mon, 08 Jun 2020 12:39:00 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=gEOG+0RtGDvvAokjSxHEOr5ksqEpIchcu1HEVfmjZNM=;
+ b=EiOU6fMZKaskIdyOl/yZiGESNoYLFnjH/UdSnhG1+sbsauvlBIL4eO4ryXFyZRe93F
+ zalEDBw5qCONlApkpOyI6UTDzboJKBYciE4+RHie+X+NaYA7nACpmwF+Ob5tEBWFDzqN
+ 8MGh+dMN62RH5Zyajxe9WFpfa2HcURsu71eJJ2Na3iLzOLsRxdribNC8OXxpzeWkx3pn
+ l5+guVMWWHjBKHqdpkn91shREV5aqsggeULYudSbBEQU2cfhImSCn98dMtyqIGWtuIhw
+ zapON3lfLMVQRqsQHrI61H6xNE6W7MnGCaCkBMAWzLeIsRqtH0P5UbwEHfvYVCK+xUsf
+ f4WA==
+X-Gm-Message-State: AOAM530ijExv0txJ6btHrRG0MjyAlPczF2B2jVoBjSGGJjtMfrmiywZN
+ efNo8OAgXjvXitFH/DeU2g2jfJaO
+X-Google-Smtp-Source: ABdhPJyUpduXZvjPbSt392fhdlm7IWZnpycmMNDVccUWZ8feo0Zso9iX8n4RsOtyq9Szb8s8OFKVCQ==
+X-Received: by 2002:a05:6a00:134c:: with SMTP id
+ k12mr22196500pfu.313.1591645279281; 
+ Mon, 08 Jun 2020 12:41:19 -0700 (PDT)
+Received: from localhost.localdomain ([172.58.222.239])
+ by smtp.gmail.com with ESMTPSA id h35sm287934pje.29.2020.06.08.12.41.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 08 Jun 2020 12:41:18 -0700 (PDT)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: skip BAR resizing if the bios already did it
+Date: Mon,  8 Jun 2020 15:41:09 -0400
+Message-Id: <20200608194109.224589-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-References: <1590526802-3008-1-git-send-email-jrdr.linux@gmail.com>
- <69a033cf-63b2-7da6-6a5e-a5bbc94b8afb@nvidia.com>
- <20200527084852.GN206103@phenom.ffwll.local>
- <20200527085117.GO206103@phenom.ffwll.local>
- <aaf62285-981e-3753-5501-07bbba98fc36@nvidia.com>
- <CAFqt6zZVAQ3LKwud85LgHe9300xVjyGYXjvdWKTdezZA1uRewg@mail.gmail.com>
- <011353ca-39d5-a41d-477a-f67a47ebb47b@nvidia.com>
-In-Reply-To: <011353ca-39d5-a41d-477a-f67a47ebb47b@nvidia.com>
-From: Souptick Joarder <jrdr.linux@gmail.com>
-Date: Tue, 9 Jun 2020 01:08:48 +0530
-Message-ID: <CAFqt6zZPh6RazWcwmfz1oXMbHaxMOtQtVU=Cgs79M9JG+PDrSg@mail.gmail.com>
-Subject: Re: [PATCH] drm/radeon: Convert get_user_pages() --> pin_user_pages()
-To: John Hubbard <jhubbard@nvidia.com>
-X-Mailman-Approved-At: Mon, 08 Jun 2020 19:46:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,43 +65,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>,
- amd-gfx@lists.freedesktop.org, "Deucher,
- Alexander" <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 29, 2020 at 12:58 PM John Hubbard <jhubbard@nvidia.com> wrote:
->
-> On 2020-05-28 23:49, Souptick Joarder wrote:
-> ...
-> >> This is what case 3 was *intended* to cover, but it looks like case 3 needs to
-> >> be written a little better. I'll attempt that, and Cc you on the actual patch
-> >> to -mm. (I think we also need a case 5 for an unrelated scenario, too, so
-> >> it's time.)
-> >
-> > There were no *case 5* in the other patch posted in -mm. Do we need to add it ?
-> >
->
-> Working on figuring that out [1], but it's not directly relevant to this thread.
-> Maybe I shouldn't have brought it up here. :)
->
->
-> [1] https://lore.kernel.org/r/20200529070343.GL14550@quack2.suse.cz
->
-> thanks,
-> John Hubbard
-> NVIDIA
->
->
->
+No need to do it again.
 
-As this conversion is not relevant ( mentioned above), I have dropped
-this patch.
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 1df28b7bf22e..539010798116 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -909,6 +909,11 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+ 	if (amdgpu_sriov_vf(adev))
+ 		return 0;
+ 
++	/* skip if the bios has already enabled large BAR */
++	if (adev->gmc.real_vram_size &&
++	    (pci_resource_len(adev->pdev, 0) >= adev->gmc.real_vram_size))
++		return 0;
++
+ 	/* Check if the root BUS has 64bit memory resources */
+ 	root = adev->pdev->bus;
+ 	while (root->parent)
+-- 
+2.25.4
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
