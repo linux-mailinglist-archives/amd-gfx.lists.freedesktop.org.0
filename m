@@ -2,61 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9F51F555B
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2020 15:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B9C1F5609
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2020 15:43:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 727576E578;
-	Wed, 10 Jun 2020 13:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3E9789DDF;
+	Wed, 10 Jun 2020 13:43:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8C1A89EB7;
- Wed, 10 Jun 2020 13:07:34 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id E6AD13F683;
- Wed, 10 Jun 2020 15:07:32 +0200 (CEST)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=CSFaq2l8; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.099
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 8se4flHNtQaz; Wed, 10 Jun 2020 15:07:31 +0200 (CEST)
-Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35]) (Authenticated sender: mb878879)
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id D09623F613;
- Wed, 10 Jun 2020 15:07:30 +0200 (CEST)
-Received: from localhost.localdomain (h-205-35.A357.priv.bahnhof.se
- [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 22F47360060;
- Wed, 10 Jun 2020 15:07:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1591794450; bh=IJ9u1GxVx+qsu6oG3TX7HWi7e9bnoSgVQXnBCxCvSrY=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=CSFaq2l8gV0H1uLMlTxTWB5ilfeWzJiad7o1Ei9DoLShaL8QaUdeDbLjt/qe+wgW+
- yn9NNJyKa56gDfDoXcFsVFJOkyVObxJPuPLYh/ula+z3sWXes4cnYncQPYbX5b9KQo
- gwWz7YCRYCYJTRPWHwedVmdLbCPwaFtmSfRgiIQw=
-Subject: Re: [PATCH 02/18] dma-buf: minor doc touch-ups
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-3-daniel.vetter@ffwll.ch>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <f5ffe0bf-e050-90c1-b83b-1f11fcf55012@shipmail.org>
-Date: Wed, 10 Jun 2020 15:07:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C26D289E98
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jun 2020 13:43:16 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id p5so2319930wrw.9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jun 2020 06:43:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MGiunoNygRsunQkGEDNB1Dpke6Q2VDzZatyNof89Nx4=;
+ b=pp3EeVHBhQiSvb1iSTWVF5FBeaWTmyfYIdpUcDdjYjMjl6lJuJ/PKTN6liq38vm4Fa
+ oZniulmuAp4KP7gOtok8j/vb4gN0QvY/Rq1LakuktFEk63njNkNtSfgZeYuO5yDm/+bg
+ +NcNA16YsYBg/yS0vrT3F5gx4DFrQjXBUGK3TiPVzUNY8hur6cwrkWPVfuTgMu+ElOCE
+ Y9RL1HZcKmwSLWqlYGbcJtP5/G7R+rW+wpmkSOGnw+i9H5YjkxCHhj2ysdwwkceSFzbE
+ 0nBa93Obd2qaCNUX/K3O5hPymwCO1f/YG4Tqpftod98I/22Z+4yZ4IE+CEPyjO/TYqXA
+ JnfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MGiunoNygRsunQkGEDNB1Dpke6Q2VDzZatyNof89Nx4=;
+ b=pMpcV+FAbTSQfc1H2OrAMmHuq101DAHJbVA3RpRyDoGFP7fTH00gszmBibVJaaP7Jj
+ /xDyjkVJYd4pcRUqNazYgwciB550RjNvMQAyyyWJBGpQTTAMcs0ZMEfJWboFaFBN90Ud
+ 2YfZO13DFlBEh6aoZlum1Hym1yvAt82ybZR1EVQuoiH3FUGWCWthl79o+tGE+oBAZO8k
+ ywxV71+dfOlSjwV2Q+NF23fTk20iTlxMim06bsdvDJXaiynHBGMZBXQYv3rvkmSACDV6
+ /n/aA4xUp0IOBjSf+FV8DwGdZytANJEDO0sWvMJpLoPf2Vpl3E9VodyZptFsFa0BeWyP
+ RQTg==
+X-Gm-Message-State: AOAM530a7c9lyS3KTCyCmYMcNyKxqigIfMmzFXy0RH014N/vlrkvAxXd
+ RnuQUFxHkIXNrR5nZ5/PRjyD52pFp2vZtiR7DLw=
+X-Google-Smtp-Source: ABdhPJzroB5rIUeD5XLedtgcoY8LSAe954Oafhq9JfsSOBKO3gl98N5D5iaAxyGohadJBYsXRu5EM2aSL8gDA5N2igM=
+X-Received: by 2002:a05:6000:1003:: with SMTP id
+ a3mr3742901wrx.111.1591796595312; 
+ Wed, 10 Jun 2020 06:43:15 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200604081224.863494-3-daniel.vetter@ffwll.ch>
-Content-Language: en-US
+References: <1591356897-26869-1-git-send-email-Prike.Liang@amd.com>
+In-Reply-To: <1591356897-26869-1-git-send-email-Prike.Liang@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 10 Jun 2020 09:43:03 -0400
+Message-ID: <CADnq5_PBdXS9grsaSNxaFuE9x+WMR6w5wBsb9jFdKb1+Ss_Ufw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: fix the nullptr issue as for PWR IP not
+ existing in discovery table
+To: "Prike.Liang" <Prike.Liang@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,27 +61,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ Huang Rui <ray.huang@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-On 6/4/20 10:12 AM, Daniel Vetter wrote:
-> Just some tiny edits:
-> - fix link to struct dma_fence
-> - give slightly more meaningful title - the polling here is about
->    implicit fences, explicit fences (in sync_file or drm_syncobj) also
->    have their own polling
+On Fri, Jun 5, 2020 at 7:35 AM Prike.Liang <Prike.Liang@amd.com> wrote:
 >
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-
-Reviewed-by: Thomas Hellstrom <thomas.hellstrom@intel.com>
-
-
+> fix e467ab869f57 drm/amdgpu: use IP discovery table for renoir.
+>
+> This nullptr issue should be specific on the Renoir series during try access the PWR_MISC_CNTL_STATUS
+> when PWR IP not been detected by discovery table. Moreover the PWR IP not existing in Renoir series is
+> expected therefore just avoid access PWR register in Renoir series.
+>
+> Signed-off-by: Prike.Liang <Prike.Liang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> index 22943773..6b94587 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> @@ -2856,8 +2856,8 @@ static void gfx_v9_0_init_gfx_power_gating(struct amdgpu_device *adev)
+>                 /* program GRBM_REG_SAVE_GFX_IDLE_THRESHOLD to 0x55f0 */
+>                 data |= (0x55f0 << RLC_AUTO_PG_CTRL__GRBM_REG_SAVE_GFX_IDLE_THRESHOLD__SHIFT);
+>                 WREG32(SOC15_REG_OFFSET(GC, 0, mmRLC_AUTO_PG_CTRL), data);
+> -
+> -               pwr_10_0_gfxip_control_over_cgpg(adev, true);
+> +               if (adev->asic_type != CHIP_RENOIR)
+> +                       pwr_10_0_gfxip_control_over_cgpg(adev, true);
+>         }
+>  }
+>
+> --
+> 2.7.4
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
