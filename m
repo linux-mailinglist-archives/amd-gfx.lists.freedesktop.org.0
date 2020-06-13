@@ -2,27 +2,27 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C30821F82CC
-	for <lists+amd-gfx@lfdr.de>; Sat, 13 Jun 2020 12:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B1621F82D7
+	for <lists+amd-gfx@lfdr.de>; Sat, 13 Jun 2020 12:19:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 730FE6E3E5;
-	Sat, 13 Jun 2020 10:19:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A3586E430;
+	Sat, 13 Jun 2020 10:19:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE5666E397
- for <amd-gfx@lists.freedesktop.org>; Sat, 13 Jun 2020 00:41:52 +0000 (UTC)
-IronPort-SDR: qh6ULgnIpEUFmbJTvUeHtGoZYl3Y7tRb09d7ZZYNmKyyZCKffKNAQH0JK74YgoZGPoSqwZhnzE
- kz2c7qMhF3kQ==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47E286E392
+ for <amd-gfx@lists.freedesktop.org>; Sat, 13 Jun 2020 00:41:53 +0000 (UTC)
+IronPort-SDR: NoHHGhTSrdNFCs3Mr7X1Tb1Hk0QanDq9HOyu8eFu0ASCEGZUyjsbsyrBP10xCPltIKMntM/s0j
+ nHVCvhGqCzUg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2020 17:41:52 -0700
-IronPort-SDR: BiFZdLQU/2ZsAJaAhFSUIxQzESoPLxP778H5G1z+nD1VLagLl5+itUKiQIO/7L5DmXTImtazEQ
- f+Sqx7eaG2Bg==
+ 12 Jun 2020 17:41:53 -0700
+IronPort-SDR: KuN5V3YFsnjdTehZFOVByIv/QV1gDwWNBWqBvcj9vWPSDG+gYq+BDBKdZttdP86sq3Ahzgy1hZ
+ cmCWPKOqxNeA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,505,1583222400"; d="scan'208";a="261011226"
+X-IronPort-AV: E=Sophos;i="5.73,505,1583222400"; d="scan'208";a="261011229"
 Received: from romley-ivt3.sc.intel.com ([172.25.110.60])
  by orsmga007.jf.intel.com with ESMTP; 12 Jun 2020 17:41:52 -0700
 From: Fenghua Yu <fenghua.yu@intel.com>
@@ -39,9 +39,9 @@ To: "Thomas Gleixner" <tglx@linutronix.de>, "Ingo Molnar" <mingo@redhat.com>,
  "Dave Jiang" <dave.jiang@intel.com>, "Yu-cheng Yu" <yu-cheng.yu@intel.com>,
  "Sohil Mehta" <sohil.mehta@intel.com>,
  "Ravi V Shankar" <ravi.v.shankar@intel.com>
-Subject: [PATCH v2 08/12] mm: Define pasid in mm
-Date: Fri, 12 Jun 2020 17:41:29 -0700
-Message-Id: <1592008893-9388-9-git-send-email-fenghua.yu@intel.com>
+Subject: [PATCH v2 09/12] fork: Clear PASID for new mm
+Date: Fri, 12 Jun 2020 17:41:30 -0700
+Message-Id: <1592008893-9388-10-git-send-email-fenghua.yu@intel.com>
 X-Mailer: git-send-email 2.5.0
 In-Reply-To: <1592008893-9388-1-git-send-email-fenghua.yu@intel.com>
 References: <1592008893-9388-1-git-send-email-fenghua.yu@intel.com>
@@ -67,41 +67,58 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-PASID is shared by all threads in a process. So the logical place to keep
-track of it is in the "mm". Both ARM and X86 need to use the PASID in the
-"mm".
+When a new mm is created, its PASID should be cleared, i.e. the PASID is
+initialized to its init state 0 on both ARM and X86.
 
-Suggested-by: Christoph Hellwig <hch@infradeed.org>
 Signed-off-by: Fenghua Yu <fenghua.yu@intel.com>
 Reviewed-by: Tony Luck <tony.luck@intel.com>
 ---
 v2:
-- This new patch moves "pasid" from x86 specific mm_context_t to generic
-  struct mm_struct per Christopher's comment: https://lore.kernel.org/linux-iommu/20200414170252.714402-1-jean-philippe@linaro.org/T/#mb57110ffe1aaa24750eeea4f93b611f0d1913911
-- Jean-Philippe Brucker released a virtually same patch. I still put this
-  patch in the series for better review. The upstream kernel only needs one
-  of the two patches eventually.
-https://lore.kernel.org/linux-iommu/20200519175502.2504091-2-jean-philippe@linaro.org/
-- Change CONFIG_IOASID to CONFIG_PCI_PASID (Ashok)
+- Add this patch to initialize PASID value for a new mm.
 
- include/linux/mm_types.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ include/linux/mm_types.h | 2 ++
+ kernel/fork.c            | 8 ++++++++
+ 2 files changed, 10 insertions(+)
 
 diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
-index 64ede5f150dc..5778db3aa42d 100644
+index 5778db3aa42d..904bc07411a9 100644
 --- a/include/linux/mm_types.h
 +++ b/include/linux/mm_types.h
-@@ -538,6 +538,10 @@ struct mm_struct {
- 		atomic_long_t hugetlb_usage;
+@@ -22,6 +22,8 @@
  #endif
- 		struct work_struct async_put_work;
-+
-+#ifdef CONFIG_PCI_PASID
-+		unsigned int pasid;
-+#endif
- 	} __randomize_layout;
+ #define AT_VECTOR_SIZE (2*(AT_VECTOR_SIZE_ARCH + AT_VECTOR_SIZE_BASE + 1))
  
- 	/*
++/* Initial PASID value is 0. */
++#define INIT_PASID	0
+ 
+ struct address_space;
+ struct mem_cgroup;
+diff --git a/kernel/fork.c b/kernel/fork.c
+index 142b23645d82..085e72d3e9eb 100644
+--- a/kernel/fork.c
++++ b/kernel/fork.c
+@@ -1007,6 +1007,13 @@ static void mm_init_owner(struct mm_struct *mm, struct task_struct *p)
+ #endif
+ }
+ 
++static void mm_init_pasid(struct mm_struct *mm)
++{
++#ifdef CONFIG_PCI_PASID
++	mm->pasid = INIT_PASID;
++#endif
++}
++
+ static void mm_init_uprobes_state(struct mm_struct *mm)
+ {
+ #ifdef CONFIG_UPROBES
+@@ -1035,6 +1042,7 @@ static struct mm_struct *mm_init(struct mm_struct *mm, struct task_struct *p,
+ 	mm_init_cpumask(mm);
+ 	mm_init_aio(mm);
+ 	mm_init_owner(mm, p);
++	mm_init_pasid(mm);
+ 	RCU_INIT_POINTER(mm->exe_file, NULL);
+ 	mmu_notifier_subscriptions_init(mm);
+ 	init_tlb_flush_pending(mm);
 -- 
 2.19.1
 
