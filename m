@@ -1,76 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6BFB1F8FD7
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2020 09:29:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A88DB1F8FD3
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2020 09:29:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07AC489FD7;
-	Mon, 15 Jun 2020 07:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B59F6E271;
+	Mon, 15 Jun 2020 07:27:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mta-p8.oit.umn.edu (mta-p8.oit.umn.edu [134.84.196.208])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 900226E029
- for <amd-gfx@lists.freedesktop.org>; Sun, 14 Jun 2020 02:21:25 +0000 (UTC)
-Received: from localhost (unknown [127.0.0.1])
- by mta-p8.oit.umn.edu (Postfix) with ESMTP id 49kyrP22Jwz9vYVN
- for <amd-gfx@lists.freedesktop.org>; Sun, 14 Jun 2020 02:21:25 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at umn.edu
-Received: from mta-p8.oit.umn.edu ([127.0.0.1])
- by localhost (mta-p8.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id LmL74xk3jRx0 for <amd-gfx@lists.freedesktop.org>;
- Sat, 13 Jun 2020 21:21:25 -0500 (CDT)
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mta-p8.oit.umn.edu (Postfix) with ESMTPS id 49kyrP0GJvz9vYWB
- for <amd-gfx@lists.freedesktop.org>; Sat, 13 Jun 2020 21:21:25 -0500 (CDT)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p8.oit.umn.edu 49kyrP0GJvz9vYWB
-DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p8.oit.umn.edu 49kyrP0GJvz9vYWB
-Received: by mail-il1-f200.google.com with SMTP id c11so9482795ilq.0
- for <amd-gfx@lists.freedesktop.org>; Sat, 13 Jun 2020 19:21:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=1skhAYqgTNSWsq4lvqV5pXURB90mGpd6sDboa81hzn4=;
- b=inDQYcmHcL3Cz+asrBz/w7/AH+tbLoHWzIu2j3/vBKxYRotaYrR5dtjBlReiW10muR
- JgRA7bR5vnj1ZLaL/RZraj1F3mx2KnqSqFmaI0AN1pl7t3wXWBnHQtOwIfAiEqxfhDwV
- HKUtr3/gv03Oz+PzAaaeW8sVCHIlPPzRLIpmlfBvilKpr1GJWbfuWfSLNFDpXlZKwGhc
- AjwoKU9MfTAeNWiZ1q47UyU7QzPSNrEgTkJ73Byh6v5PoKL7iiSeU/4R35njyzj/5+uT
- qCxwAwiiUTmGJIYYBX51YNcIcbOIgx4uvW6caEEPkoLiC+gnepFHBVifLyZ9PhjKnCD8
- ZIvQ==
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com
+ [IPv6:2607:f8b0:4864:20::141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E30C88985A;
+ Sun, 14 Jun 2020 07:05:38 +0000 (UTC)
+Received: by mail-il1-x141.google.com with SMTP id 9so12454031ilg.12;
+ Sun, 14 Jun 2020 00:05:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=0XuYLXE5LXbZw3w+xu/hegikrINLkb1ZDvcbBdL0ayM=;
+ b=LpaxFuy0s9GL1das7axADmDQ6Y1YqWAaWu1hxP1r1ZBSYNJpSrMug1KhN4q+TZvseA
+ 7EOd510jkNdZmnilgAEOcAOag30TLmRIMFyNaC28MKtS92uKCMwH5YPwr2KLKrxjA+KV
+ 7AMPBAiqfyWrCSV6Bkz4HekY6xGvVh0HSkrQBo9EZWnJERzqcG+jZSstD067A3CneKFG
+ D5MDWKZ3HozR1wjSWVLubkRq0yUXkPqV5kTSttF4AGXhX/J7bG7muzBSe+ybPdh9gXwk
+ jd/B50nQz8rjRmndlA4BPTIDx7DC3v43BruUxo3d3LpAL3mlY+eCMx9nz5ID7yUGQlkw
+ a1GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=1skhAYqgTNSWsq4lvqV5pXURB90mGpd6sDboa81hzn4=;
- b=o0tVPJhHz+QHCjNMMY0TiAsqpgxUdPH1RX3/LZIPQzJ5aBG/2KrY1vytrpG2X1/w0h
- tvqVZL8LDws4WldVlw78SOnJ0PxFc/kiVb0zupC76sj4mUNSfRp1xjbbHkdJhcywIxqw
- feXTVuaERrPjb2yjCcCugegqh7IheFrM4csWL/3z2YXLeOXTbY+WG/jrbrm0PoU/bR24
- NgjLTaGAOcxU7Gnc9mzVzUpEh7bQCFO5M6drj0Rlw70AmGmbt7Y4iYA6nnJVzaSJICwS
- bQzBdGwySetL/ScYAeYEwHvNJwZAzKn0qnukV4k7kNNU2Z0DQcvVmGayRmD7tvGuOUkP
- O1iQ==
-X-Gm-Message-State: AOAM533/1sijD/8GxED4uZDN5+S42+TeJpwXaz8LUfXLK+7665wCrmgE
- mWjrJccAIBUVKE8xLr3LGE9e1XnhsIBAdw25MqMz3qy5RiEv75N65fBbo3nDV0sQuh3uRpFBW3o
- FhaBuFdSovziGZayrJzHf6tFTQlwL4w==
-X-Received: by 2002:a92:6a06:: with SMTP id f6mr19738335ilc.89.1592101284491; 
- Sat, 13 Jun 2020 19:21:24 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwE+vPbigALAessccDcAKFOmVWqMDFxxHN2H7lviB9iL6LRnhGo3tuBBjuUyQNOGb53QjP8Ew==
-X-Received: by 2002:a92:6a06:: with SMTP id f6mr19738330ilc.89.1592101284325; 
- Sat, 13 Jun 2020 19:21:24 -0700 (PDT)
-Received: from syssec1.cs.umn.edu ([2607:ea00:101:3c74:49fa:9c47:e40b:9c40])
- by smtp.gmail.com with ESMTPSA id l26sm5762514ild.59.2020.06.13.19.21.23
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=0XuYLXE5LXbZw3w+xu/hegikrINLkb1ZDvcbBdL0ayM=;
+ b=IJw+WJ/x9uAqT0Wib+wH7x5aDlxlgoBscXmsXraBhtycmQIq93y0fwjWLjXc5Q0Lpk
+ oAXrUXaSfwSCbamsJ+GAE8QyYNEBJ5sqzbKu4WpL/mTMJ4Spy7IoXq5xH8pieXuVUlWG
+ GoH4KsBB8LTrR6uwshwQhC7goMCWWum3cJoLF+DlKtoquGRyQKXL5m/zhNa8Khhbh1J5
+ I6pDaPSPa1liVl7C9gWAGavrZwjS9qrIVeHkUneM6qmu/dhXKfIxpMtiXSJ1P5/F5K5r
+ Z2fQogCEhRZ74HAsiZgBGkn7jqi5Wjln1hsn6NG71NHIsrDqLDka0356Fx8fRepWZrA9
+ 6ugQ==
+X-Gm-Message-State: AOAM531aIfcfHPf5T7WIF4rEky3HO846bw3+HqOlrMMRi2gI8iInF8F/
+ /o1yfELttqiYIscD76Zu+ew=
+X-Google-Smtp-Source: ABdhPJy24po3ZTlu9/GPx5XVlvsADFJvpxCf44M5BuTfT1nO7/H8lWeq4lUmzcuJYTAkE5nprNwvcg==
+X-Received: by 2002:a92:2454:: with SMTP id k81mr20064215ilk.24.1592118338299; 
+ Sun, 14 Jun 2020 00:05:38 -0700 (PDT)
+Received: from cs-u-kase.dtc.umn.edu (cs-u-kase.cs.umn.edu. [160.94.64.2])
+ by smtp.googlemail.com with ESMTPSA id c62sm6132702ill.62.2020.06.14.00.05.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 13 Jun 2020 19:21:23 -0700 (PDT)
-From: Aditya Pakki <pakki001@umn.edu>
-To: pakki001@umn.edu
-Subject: [PATCH] drm/radeon: Fix reference count leaks caused by
- pm_runtime_get_sync
-Date: Sat, 13 Jun 2020 21:21:22 -0500
-Message-Id: <20200614022122.124908-1-pakki001@umn.edu>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+ Sun, 14 Jun 2020 00:05:37 -0700 (PDT)
+From: Navid Emamdoost <navid.emamdoost@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Lyude Paul <lyude@redhat.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+ Navid Emamdoost <navid.emamdoost@gmail.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdgpu/display: fix ref count leak when
+ pm_runtime_get_sync fails
+Date: Sun, 14 Jun 2020 02:05:28 -0500
+Message-Id: <20200614070530.56366-1-navid.emamdoost@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Mon, 15 Jun 2020 07:27:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,77 +70,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: wu000273@umn.edu, David Airlie <airlied@linux.ie>, kjlu@umn.edu,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: emamd001@umn.edu, kjlu@umn.edu, wu000273@umn.edu, smccaman@umn.edu
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On calling pm_runtime_get_sync() the reference count of the device
-is incremented. In case of failure, decrement the
-reference count before returning the error.
+The call to pm_runtime_get_sync increments the counter even in case of
+failure, leading to incorrect ref count.
+In case of failure, decrement the ref count before returning.
 
-Signed-off-by: Aditya Pakki <pakki001@umn.edu>
+Signed-off-by: Navid Emamdoost <navid.emamdoost@gmail.com>
 ---
- drivers/gpu/drm/radeon/radeon_display.c | 4 +++-
- drivers/gpu/drm/radeon/radeon_drv.c     | 4 +++-
- drivers/gpu/drm/radeon/radeon_kms.c     | 4 +++-
- 3 files changed, 9 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index 35db79a168bf..df1a7eb73651 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -635,8 +635,10 @@ radeon_crtc_set_config(struct drm_mode_set *set,
- 	dev = set->crtc->dev;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+index f355d9a752d2..a1aec205435d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+@@ -716,8 +716,10 @@ amdgpu_connector_lvds_detect(struct drm_connector *connector, bool force)
  
- 	ret = pm_runtime_get_sync(dev->dev);
--	if (ret < 0)
-+	if (ret < 0) {
-+		pm_runtime_put_autosuspend(dev->dev);
- 		return ret;
-+	}
+ 	if (!drm_kms_helper_is_poll_worker()) {
+ 		r = pm_runtime_get_sync(connector->dev->dev);
+-		if (r < 0)
++		if (r < 0) {
++			pm_runtime_put_autosuspend(connector->dev->dev);
+ 			return connector_status_disconnected;
++		}
+ 	}
  
- 	ret = drm_crtc_helper_set_config(set, ctx);
+ 	if (encoder) {
+@@ -854,8 +856,10 @@ amdgpu_connector_vga_detect(struct drm_connector *connector, bool force)
  
-diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-index bbb0883e8ce6..62b5069122cc 100644
---- a/drivers/gpu/drm/radeon/radeon_drv.c
-+++ b/drivers/gpu/drm/radeon/radeon_drv.c
-@@ -549,8 +549,10 @@ long radeon_drm_ioctl(struct file *filp,
- 	long ret;
- 	dev = file_priv->minor->dev;
- 	ret = pm_runtime_get_sync(dev->dev);
--	if (ret < 0)
-+	if (ret < 0) {
-+		pm_runtime_put_autosuspend(dev->dev);
- 		return ret;
-+	}
+ 	if (!drm_kms_helper_is_poll_worker()) {
+ 		r = pm_runtime_get_sync(connector->dev->dev);
+-		if (r < 0)
++		if (r < 0) {
++			pm_runtime_put_autosuspend(connector->dev->dev);
+ 			return connector_status_disconnected;
++		}
+ 	}
  
- 	ret = drm_ioctl(filp, cmd, arg);
- 	
-diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
-index c5d1dc9618a4..99ee60f8b604 100644
---- a/drivers/gpu/drm/radeon/radeon_kms.c
-+++ b/drivers/gpu/drm/radeon/radeon_kms.c
-@@ -638,8 +638,10 @@ int radeon_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv)
- 	file_priv->driver_priv = NULL;
+ 	encoder = amdgpu_connector_best_single_encoder(connector);
+@@ -977,8 +981,10 @@ amdgpu_connector_dvi_detect(struct drm_connector *connector, bool force)
  
- 	r = pm_runtime_get_sync(dev->dev);
--	if (r < 0)
-+	if (r < 0) {
-+		pm_runtime_put_autosuspend(dev->dev);
- 		return r;
-+	}
+ 	if (!drm_kms_helper_is_poll_worker()) {
+ 		r = pm_runtime_get_sync(connector->dev->dev);
+-		if (r < 0)
++		if (r < 0) {
++			pm_runtime_put_autosuspend(connector->dev->dev);
+ 			return connector_status_disconnected;
++		}
+ 	}
  
- 	/* new gpu have virtual address space support */
- 	if (rdev->family >= CHIP_CAYMAN) {
+ 	if (!force && amdgpu_connector_check_hpd_status_unchanged(connector)) {
+@@ -1328,8 +1334,10 @@ amdgpu_connector_dp_detect(struct drm_connector *connector, bool force)
+ 
+ 	if (!drm_kms_helper_is_poll_worker()) {
+ 		r = pm_runtime_get_sync(connector->dev->dev);
+-		if (r < 0)
++		if (r < 0) {
++			pm_runtime_put_autosuspend(connector->dev->dev);
+ 			return connector_status_disconnected;
++		}
+ 	}
+ 
+ 	if (!force && amdgpu_connector_check_hpd_status_unchanged(connector)) {
 -- 
-2.25.1
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
