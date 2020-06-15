@@ -2,55 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09C7A1FA309
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2020 23:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DEF61FA316
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2020 23:52:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 576956E527;
-	Mon, 15 Jun 2020 21:48:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C90846E530;
+	Mon, 15 Jun 2020 21:52:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AED366E512
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 21:25:01 +0000 (UTC)
-IronPort-SDR: vt1JggyX4SZrKGY6Ukq/L+H39PwnK2NCzQNwGBv6jjiTcRvm45tKV9oJz0XZO2q55QARxHoenK
- 7T/TtWTrb08A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2020 14:25:01 -0700
-IronPort-SDR: DPbSSKkl15RGLXjpYQfnrBQzsDrL2NKVfrTHzComI5JPwOJAfj8xqnwP2YPVXomnmdcjFehp/x
- VNCrnqd1nQ2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,516,1583222400"; d="scan'208";a="262830374"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
- by fmsmga008.fm.intel.com with ESMTP; 15 Jun 2020 14:25:00 -0700
-Received: from orsmsx159.amr.corp.intel.com (10.22.240.24) by
- ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 15 Jun 2020 14:25:00 -0700
-Received: from orsmsx115.amr.corp.intel.com ([169.254.4.56]) by
- ORSMSX159.amr.corp.intel.com ([169.254.11.6]) with mapi id 14.03.0439.000;
- Mon, 15 Jun 2020 14:24:59 -0700
-From: "Luck, Tony" <tony.luck@intel.com>
-To: Andy Lutomirski <luto@amacapital.net>
-Subject: RE: [PATCH v2 12/12] x86/traps: Fix up invalid PASID
-Thread-Topic: [PATCH v2 12/12] x86/traps: Fix up invalid PASID
-Thread-Index: AQHWQRt0fMmHYsE9aUKb3rSjyAIL46jZyC2AgACD5gCAAAQ1gIAAJA2AgAAFHACAAAbEgIAAA+gAgAATCICAAAmFgP//iy/ggAB8XID//4sJsA==
-Date: Mon, 15 Jun 2020 21:24:59 +0000
-Message-ID: <3908561D78D1C84285E8C5FCA982C28F7F66C93C@ORSMSX115.amr.corp.intel.com>
-References: <3908561D78D1C84285E8C5FCA982C28F7F66C849@ORSMSX115.amr.corp.intel.com>
- <E39A5DE2-5615-41FF-9953-4F4C4E8499D8@amacapital.net>
-In-Reply-To: <E39A5DE2-5615-41FF-9953-4F4C4E8499D8@amacapital.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.138]
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E7236E52F;
+ Mon, 15 Jun 2020 21:52:26 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id r9so1010716wmh.2;
+ Mon, 15 Jun 2020 14:52:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=pMrmQR08NbuxMuMQ9XTt0aege9jgLzpM8HoXAcM2lr4=;
+ b=tExXfijlyDzCgiPKBttpScZpH7EE0HQbvlprkUGn54gjurJarPMV0iKnTgho8tBucC
+ nk+dgtb0H3n7ccO1adYneQODQn9PnSRoqgDVhPAffWjhSq3p+PeGnV42A6hU3HcjR7cw
+ OCuZuQBKhZTKSRlocN73E1fSqeHc6W5WwGoEtWxsQUTIXGBLzpPOqiHkB9lQUo8kqKMI
+ LdykCrm6aFJY7yehqk1cxFzlJ3R1GIRe8uqQi1r+WXlFRc1/F57y8KV90Ga6W+S11i7n
+ 7Kb5Hcw1py9IfXCwtjD/zPBchiFqChNmuTgbcLd/9kFHBg5CzWhpBMdLfH8UHGVpFLnv
+ cEyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=pMrmQR08NbuxMuMQ9XTt0aege9jgLzpM8HoXAcM2lr4=;
+ b=UgZl3CcN0yjMz/hk/5Uti4xXkabSoG+qlnX03rpWtYdNopxl5mhXFf/4JFPtUHlRka
+ 6FCY20QR0VxX4MEQLH1KQKeqLFtZwdLVN4PwEUZKVpzVSv80jnVaRnPeBCRNi+AiGCGd
+ qKV/Ctvgowv6RGCfAGK8JBJnVZo4oYIoaf5uSR+AHz0G6UAWkSVTF4IR7Mt9WbgA/6A0
+ zz5ucI9uSY0eyxbk28dW6X98tTg7dW2ZivT6SmJamIr2gWz/ZmTw17lKpd+4sN+k2kUU
+ wS+VYJV/Fd4bmSgIIMeisoMsA8q46NXeB/GUNcDq8VmhBtqHN5L2JhwzeVbXX0PYMX/y
+ PtCQ==
+X-Gm-Message-State: AOAM532IPc+ExKaGlmZvCsyI57uGj9U1sLcBJuBCE5+/Tg0jDdYazABy
+ Ux8k+l2Gkpdz9kE0mp0IMngNsJuO1Yia9rW1jgk=
+X-Google-Smtp-Source: ABdhPJwSxUGklIsrSu/SHjWDyPn/otPVKio1ZbHbv4bC0MTX+tgbgI1YdyYgobjmthIhIY4phxxYn+K1f0UdCUPIRMU=
+X-Received: by 2002:a1c:32c4:: with SMTP id y187mr1309269wmy.79.1592257945080; 
+ Mon, 15 Jun 2020 14:52:25 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 15 Jun 2020 21:48:37 +0000
+References: <20200614015539.123654-1-pakki001@umn.edu>
+In-Reply-To: <20200614015539.123654-1-pakki001@umn.edu>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 15 Jun 2020 17:52:14 -0400
+Message-ID: <CADnq5_NK7YP-yfN1SWhXk0Kromxs46LbEtFSTfA94cbhvgUEGQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/radeon: fix multiple reference count leak
+To: Aditya Pakki <pakki001@umn.edu>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,40 +59,105 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Shankar, Ravi V" <ravi.v.shankar@intel.com>,
- Peter Zijlstra <peterz@infradead.org>, "Hansen, Dave" <dave.hansen@intel.com>,
- H Peter Anvin <hpa@zytor.com>, "Jiang, Dave" <dave.jiang@intel.com>, "Raj,
- Ashok" <ashok.raj@intel.com>, Joerg Roedel <joro@8bytes.org>,
- x86 <x86@kernel.org>, amd-gfx <amd-gfx@lists.freedesktop.org>,
- Ingo Molnar <mingo@redhat.com>, "Yu, Fenghua" <fenghua.yu@intel.com>, "Yu, 
- Yu-cheng" <yu-cheng.yu@intel.com>, Andrew
- Donnellan <ajd@linux.ibm.com>, Borislav Petkov <bp@alien8.de>, "Mehta,
- Sohil" <sohil.mehta@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>, "Pan,
- Jacob jun" <jacob.jun.pan@intel.com>, Frederic Barrat <fbarrat@linux.ibm.com>,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: David Airlie <airlied@linux.ie>, Kangjie Lu <kjlu@umn.edu>,
+ LKML <linux-kernel@vger.kernel.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, wu000273@umn.edu,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-PiBTbyB3aGF04oCZcyB0aGUgUkRNU1IgZm9yPyAgU3VyZWx5IHlvdQ0KPiBoYXZlIHNvbWUgc3Rh
-dGUgc29tZXdoZXJlIHRoYXQgc2F5cyDigJx0aGlzIHRhc2sgaGFzIGEgUEFTSUQu4oCdDQo+IENh
-buKAmXQgeW91IGp1c3QgbWFrZSBzdXJlIHRoYXQgc3RheXMgaW4gc3luYyB3aXRoIHRoZSBNU1I/
-ICBUaGVuLCBvbiAjR1AsIGlmIHRoZSB0YXNrIGFscmVhZHkgaGFzIGEgUEFTSUQsIHlvdSBrbm93
-IHRoZSBNU1IgaXMgc2V0Lg0KDQpXZSBoYXZlIHN0YXRlIHRoYXQgc2F5cyB0aGUgcHJvY2VzcyAo
-Im1tIikgaGFzIGJlZW4gYWxsb2NhdGVkIGEgUEFTSUQuIEJ1dCBub3QgZm9yIGVhY2ggdGFzay4N
-Cg0KRS5nLiBhIHByb2Nlc3MgbWF5IGNsb25lIGEgYnVuY2ggb2YgdGFza3MsIHRoZW4gb25lIG9m
-IHRoZW0gb3BlbnMgYSBkZXZpY2UgdGhhdCBuZWVkcw0KYSBQQVNJRC4gICBXZSBkaWQgaW50ZXJu
-YWxseSBoYXZlIHBhdGNoZXMgdG8gZ28gaHVudCBkb3duIGFsbCB0aG9zZSBvdGhlciB0YXNrcyBh
-bmQNCmZvcmNlIGEgUEFTSUQgb250byBlYWNoLiBCdXQgdGhlIGNvZGUgd2FzIGJpZyBhbmQgdWds
-eS4gQWxzbyBtYXliZSB0aGUgd3JvbmcgdGhpbmcNCnRvIGRvIGlmIHRob3NlIHRocmVhZHMgZGlk
-bid0IGV2ZXIgbmVlZCB0byBhY2Nlc3MgdGhlIGRldmljZS4NCg0KUGV0ZXJaIHN1Z2dlc3RlZCB0
-aGF0IHdlIGNhbiBhZGQgYSBiaXQgdG8gdGhlIHRhc2sgc3RydWN0dXJlIGZvciB0aGlzIHB1cnBv
-c2UuDQoNCkZlbmdodWEgaXMgaGVzaXRhbnQgYWJvdXQgYWRkaW5nIGFuIHg4NiBvbmx5IGJpdCB0
-aGVyZS4NCg0KLVRvbnkNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+On Mon, Jun 15, 2020 at 3:27 AM Aditya Pakki <pakki001@umn.edu> wrote:
+>
+> On calling pm_runtime_get_sync() the reference count of the device
+> is incremented. In case of failure, decrement the
+> reference count before returning the error.
+
+Is this required if pm_runtime_get_sync() fails?
+
+Alex
+
+>
+> Signed-off-by: Aditya Pakki <pakki001@umn.edu>
+> ---
+>  drivers/gpu/drm/radeon/radeon_connectors.c | 20 +++++++++++++++-----
+>  1 file changed, 15 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
+> index fe12d9d91d7a..e30834434442 100644
+> --- a/drivers/gpu/drm/radeon/radeon_connectors.c
+> +++ b/drivers/gpu/drm/radeon/radeon_connectors.c
+> @@ -879,8 +879,10 @@ radeon_lvds_detect(struct drm_connector *connector, bool force)
+>
+>         if (!drm_kms_helper_is_poll_worker()) {
+>                 r = pm_runtime_get_sync(connector->dev->dev);
+> -               if (r < 0)
+> +               if (r < 0) {
+> +                       pm_runtime_put_autosuspend(connector->dev->dev);
+>                         return connector_status_disconnected;
+> +               }
+>         }
+>
+>         if (encoder) {
+> @@ -1025,8 +1027,10 @@ radeon_vga_detect(struct drm_connector *connector, bool force)
+>
+>         if (!drm_kms_helper_is_poll_worker()) {
+>                 r = pm_runtime_get_sync(connector->dev->dev);
+> -               if (r < 0)
+> +               if (r < 0) {
+> +                       pm_runtime_put_autosuspend(connector->dev->dev);
+>                         return connector_status_disconnected;
+> +               }
+>         }
+>
+>         encoder = radeon_best_single_encoder(connector);
+> @@ -1163,8 +1167,10 @@ radeon_tv_detect(struct drm_connector *connector, bool force)
+>
+>         if (!drm_kms_helper_is_poll_worker()) {
+>                 r = pm_runtime_get_sync(connector->dev->dev);
+> -               if (r < 0)
+> +               if (r < 0) {
+> +                       pm_runtime_put_autosuspend(connector->dev->dev);
+>                         return connector_status_disconnected;
+> +               }
+>         }
+>
+>         encoder = radeon_best_single_encoder(connector);
+> @@ -1247,8 +1253,10 @@ radeon_dvi_detect(struct drm_connector *connector, bool force)
+>
+>         if (!drm_kms_helper_is_poll_worker()) {
+>                 r = pm_runtime_get_sync(connector->dev->dev);
+> -               if (r < 0)
+> +               if (r < 0) {
+> +                       pm_runtime_put_autosuspend(connector->dev->dev);
+>                         return connector_status_disconnected;
+> +               }
+>         }
+>
+>         if (radeon_connector->detected_hpd_without_ddc) {
+> @@ -1657,8 +1665,10 @@ radeon_dp_detect(struct drm_connector *connector, bool force)
+>
+>         if (!drm_kms_helper_is_poll_worker()) {
+>                 r = pm_runtime_get_sync(connector->dev->dev);
+> -               if (r < 0)
+> +               if (r < 0) {
+> +                       pm_runtime_put_autosuspend(connector->dev->dev);
+>                         return connector_status_disconnected;
+> +               }
+>         }
+>
+>         if (!force && radeon_check_hpd_status_unchanged(connector)) {
+> --
+> 2.25.1
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
