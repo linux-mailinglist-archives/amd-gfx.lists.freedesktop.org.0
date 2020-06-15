@@ -1,90 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 571051FA918
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2020 08:50:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C5E1FA9B6
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2020 09:10:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C51D76E282;
-	Tue, 16 Jun 2020 06:50:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CD436E833;
+	Tue, 16 Jun 2020 07:09:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2062.outbound.protection.outlook.com [40.107.243.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF5056E282;
- Tue, 16 Jun 2020 06:50:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bDSaQqOhtBq3zRgSFrEQ4kWOd/8gb/qofzUw3XDkyVOb+eD1jurgPU4kb/xRvlrAjsKWaBwtamLc2XoOTDWLZu1+s+gCG7s3P47pRnwRgXfoSCupQ1d8tOZIJdIAYf5LAq9yjOujSCk3zC0WAt9wvEWAWWDVuw7D3vrAxuDAlAjhgKxXCaMnABu99ISZSYCPFC+lxUG1AiDMIzBeUICQO0fJ3LucsWOs14g5CtKMBXkH1yVpl04la5nJAAgBcvauTPf0Yu4aoLBAUQObx282PKKhHPl8fqNnoGNnWHdWMSQcaIQxLsPOb4J7oQPD7k4qc33p48IOlHZT4JlJ+ig5Qw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L19XrNWBjV9theO1LQzzYw0uxSuy5nteZ/et0OBHZv4=;
- b=bTknCx1SZn3DILZV8kBVemStL7wMB8KZ0qyVBfa3OPyI2GavYv+aV/dan1cAqcALifKXwsoaNfNWo7Tr4ZYcKGgwy7ZO7CmW3Lif9cX6PR0cEL46gnH8VnXmU1iaWa2VsLngrkDUV6YuNynEuForjyF+QUOhB8T0IDy+Y50Y/bm3Z9UwigkLg2n6DX6MpnWdpvyqiwvQetPdQCI9KaYaQspS6mgClVp7Qff8NYHt5pR88xi7QN4eSOGJhet4PeJyIvqxLdaFryBn2iFSSLN4nAea15jlnx+hN6cRMW2q0e6IjoNg4kveGg7rlSZvkV0DYqdnp8Ksgdm2Co/LpW60/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L19XrNWBjV9theO1LQzzYw0uxSuy5nteZ/et0OBHZv4=;
- b=vKmKRb/0fwdRTScqTxDyZIZc0bREsat9eOAdl8ZM8PsDofr1bgztHa3ANhRJI6eYftDIQgfuHTVl3WJkwXcq9Hl4/M993IlnWADLR6jd0vRzMnyTcf61Brs07VTFd7oC8TlIreAN9BrcNPd7dmOSlOAbKqS6Jx0dlQAD4Uo1iE4=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB4401.namprd12.prod.outlook.com (2603:10b6:5:2a9::15)
- by DM5PR12MB1466.namprd12.prod.outlook.com (2603:10b6:4:d::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3088.24; Tue, 16 Jun 2020 06:50:27 +0000
-Received: from DM6PR12MB4401.namprd12.prod.outlook.com
- ([fe80::7949:b580:a2d5:f766]) by DM6PR12MB4401.namprd12.prod.outlook.com
- ([fe80::7949:b580:a2d5:f766%3]) with mapi id 15.20.3088.029; Tue, 16 Jun 2020
- 06:50:27 +0000
-Subject: Re: [PATCH 1/2] drm/amdgpu/debugfs: fix memory leak when
- pm_runtime_get_sync failed
-To: Chen Tao <chentao107@huawei.com>, airlied@linux.ie, daniel@ffwll.ch
-References: <20200616063039.260990-1-chentao107@huawei.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <a8fb3d27-d0f5-d28a-d24b-63be866ef76f@amd.com>
-Date: Tue, 16 Jun 2020 08:50:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-In-Reply-To: <20200616063039.260990-1-chentao107@huawei.com>
-Content-Language: en-US
-X-ClientProxiedBy: AM3PR03CA0058.eurprd03.prod.outlook.com
- (2603:10a6:207:5::16) To DM6PR12MB4401.namprd12.prod.outlook.com
- (2603:10b6:5:2a9::15)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C7A86E52D
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 21:54:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=UqgtxJyXNkDi+0YvkljyuVgWArZfOIPs0r0FfUbx9gk=; b=LSD5JPxkLs9AcgxjDG0aMNn4Jw
+ ezfvCVV68rnipIJFxD+zL54W/CRA6wrZNbxCvhOd6Mz7U+W2zW4wsDHPxzgoKaFhBJD/n3Zjy7JMH
+ 6um/p8pHUjP0zSfu0a9ckO4OA4+X/O4P3ODIkp052EI+ae0Ov9jbkACGWf3ReTnI7WWUn/tC+xmZu
+ 8eVWcz2CKDjEdXIdRpMjJ2J6ThhGnBBtRaM5AQ9Suas4+u33Wd8ORKSREHPhi7o4HYYJe3r11ww+v
+ 4P0e1eL/oZSJ5XVvmaCITCLoQ0QQtgLOV5+U/+4qVP+6DsaxaqIHRyoONo5PFTrbUO1kt2FFz1wcK
+ NP6xRd8w==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=noisy.programming.kicks-ass.net)
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jkx3F-0001qx-4m; Mon, 15 Jun 2020 21:53:57 +0000
+Received: from hirez.programming.kicks-ass.net
+ (hirez.programming.kicks-ass.net [192.168.1.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (Client did not present a certificate)
+ by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 7C474301A32;
+ Mon, 15 Jun 2020 23:53:53 +0200 (CEST)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 6897E2BDC14F9; Mon, 15 Jun 2020 23:53:53 +0200 (CEST)
+Date: Mon, 15 Jun 2020 23:53:53 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Fenghua Yu <fenghua.yu@intel.com>
+Subject: Re: [PATCH v2 12/12] x86/traps: Fix up invalid PASID
+Message-ID: <20200615215353.GH2514@hirez.programming.kicks-ass.net>
+References: <1592008893-9388-1-git-send-email-fenghua.yu@intel.com>
+ <1592008893-9388-13-git-send-email-fenghua.yu@intel.com>
+ <20200615075649.GK2497@hirez.programming.kicks-ass.net>
+ <20200615154854.GB13792@romley-ivt3.sc.intel.com>
+ <20200615160357.GA2531@hirez.programming.kicks-ass.net>
+ <20200615181259.GC13792@romley-ivt3.sc.intel.com>
+ <20200615183116.GD2531@hirez.programming.kicks-ass.net>
+ <20200615185529.GD13792@romley-ivt3.sc.intel.com>
+ <20200615190928.GJ2531@hirez.programming.kicks-ass.net>
+ <20200615201735.GE13792@romley-ivt3.sc.intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:f0d9:5706:e415:3724]
- (2a02:908:1252:fb60:f0d9:5706:e415:3724) by
- AM3PR03CA0058.eurprd03.prod.outlook.com (2603:10a6:207:5::16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3088.19 via Frontend Transport; Tue, 16 Jun 2020 06:50:25 +0000
-X-Originating-IP: [2a02:908:1252:fb60:f0d9:5706:e415:3724]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 6a7114ce-8b40-4aa0-0f8d-08d811c18d54
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1466:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB14668C6CA09802AE8D401377839D0@DM5PR12MB1466.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
-X-Forefront-PRVS: 04362AC73B
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fZy9kUai8VqzaujvbidEL0uxegf0w9+alabJtRvC9yfgaQJLUMT7RHMaQhygrHPoWYyOm+YxsGYOKEoMOTH4sqVdDgzNPkPkuCfrx6cqa6FLunP5iHIDhdJq4V8rhCtSgE+PONnx4sqKdm8cOqTTTjOfWtPIFxP5mesFqb6XUyVXIIJK7/vnSxwCjG0NhCPGzVPA1B9kzAq8t/DjaQdzly0g2eQJSjHw/ECUQ3ymDqe9G2N75C9LWaGE+UJEgxcW7f3iqBdLA6AIoN5wimTR0oeMLlsOsGuF94SbwA+QgcgVg+Bo7bWlyW4rWCUQdMe3LWigtp1f8fA8LQtx762s7Qzn9BLZJ8ihCngc+KyudkShQEXOUYCVw0HvQoX/nT7m
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4401.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(136003)(39860400002)(376002)(396003)(366004)(346002)(31686004)(6666004)(36756003)(186003)(16526019)(5660300002)(66556008)(66946007)(66476007)(31696002)(6486002)(86362001)(2906002)(478600001)(8676002)(4326008)(83380400001)(2616005)(316002)(8936002)(52116002)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: lElqRiAzyGRigPJ3o735nzE+giJ2xPxESnm4lc93mNaCc8G4u0M68wm6EvkYSHyq32ZwiUzw33HlUfIJBihMt+TAXmJqYHlg2xOR25TrKjtIKzAM1z1ZY3neDs96MPr1xw19NzU/MmUZPub2MlIMZtBT8hPwEUSEfUTuq2Okrp0lmKpgmFsyUgmdoU1QuxrNqSdPrjhjp3oxDl2VzZFf6zFRV5FCLFr4EiEXr6P6jf+7Eoyq3bqYOfL3c7StjYeTaADPjDxUq1j9XSERs7oR3O11zERC26B0BTytIFcKcDFi6SytMBAspFwU47/2L0UHkfSo8+cydRLJNWTyVeQ5eCeDTPnSmB95ddy9BThhaXjcRbLUqBCmR/bjGxTm1FWtVinGdNdcM6s9K/YGCcxAaNj4WlOl5hRfUiCHGJQoC1ZqizJ1aFaA1xZCYejAe729AlhwohS+LrHzYZ1b4e9+2wgWEXyCVY4PkNGqHFWmHN7Ios+vqTfie/QEdnYMTouQ1r7OXCy67eW//+yIYMZsH/oow/1R6rjxBDDB6u2fCBjIpApE1Ii4wvH90uif4Vi9
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a7114ce-8b40-4aa0-0f8d-08d811c18d54
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2020 06:50:27.1845 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rLkuRgF6F7bfhcxA4ZMlQ3F6+olgS9B084QdY8hff2EikFQBUg9XrZhUtaZJBkgC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1466
+Content-Disposition: inline
+In-Reply-To: <20200615201735.GE13792@romley-ivt3.sc.intel.com>
+X-Mailman-Approved-At: Tue, 16 Jun 2020 07:09:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,47 +65,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tom.stdenis@amd.com, David1.Zhou@amd.com, Jack.Xiao@amd.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, alexander.deucher@amd.com, yttao@amd.com
+Cc: Dave Hansen <dave.hansen@intel.com>, H Peter Anvin <hpa@zytor.com>,
+ Dave Jiang <dave.jiang@intel.com>, Ashok Raj <ashok.raj@intel.com>,
+ Joerg Roedel <joro@8bytes.org>, x86 <x86@kernel.org>,
+ amd-gfx <amd-gfx@lists.freedesktop.org>, Ingo Molnar <mingo@redhat.com>,
+ Ravi V Shankar <ravi.v.shankar@intel.com>, Yu-cheng Yu <yu-cheng.yu@intel.com>,
+ Andrew Donnellan <ajd@linux.ibm.com>, Borislav Petkov <bp@alien8.de>,
+ Sohil Mehta <sohil.mehta@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Tony Luck <tony.luck@intel.com>, linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>, iommu@lists.linux-foundation.org,
+ Jacob Jun Pan <jacob.jun.pan@intel.com>,
+ Frederic Barrat <fbarrat@linux.ibm.com>, David Woodhouse <dwmw2@infradead.org>,
+ Lu Baolu <baolu.lu@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 16.06.20 um 08:30 schrieb Chen Tao:
-> Fix memory leak in amdgpu_debugfs_gpr_read not freeing data when
-> pm_runtime_get_sync failed.
->
-> Fixes: a9ffe2a983383 ("drm/amdgpu/debugfs: properly handle runtime pm")
-> Signed-off-by: Chen Tao <chentao107@huawei.com>
+On Mon, Jun 15, 2020 at 01:17:35PM -0700, Fenghua Yu wrote:
+> Hi, Peter,
+> 
+> On Mon, Jun 15, 2020 at 09:09:28PM +0200, Peter Zijlstra wrote:
+> > On Mon, Jun 15, 2020 at 11:55:29AM -0700, Fenghua Yu wrote:
+> > 
+> > > Or do you suggest to add a random new flag in struct thread_info instead
+> > > of a TIF flag?
+> > 
+> > Why thread_info? What's wrong with something simple like the below. It
+> > takes a bit from the 'strictly current' flags word.
+> > 
+> > 
+> > diff --git a/include/linux/sched.h b/include/linux/sched.h
+> > index b62e6aaf28f0..fca830b97055 100644
+> > --- a/include/linux/sched.h
+> > +++ b/include/linux/sched.h
+> > @@ -801,6 +801,9 @@ struct task_struct {
+> >  	/* Stalled due to lack of memory */
+> >  	unsigned			in_memstall:1;
+> >  #endif
+> > +#ifdef CONFIG_PCI_PASID
+> > +	unsigned			has_valid_pasid:1;
+> > +#endif
+> >  
+> >  	unsigned long			atomic_flags; /* Flags requiring atomic access. */
+> >  
+> > diff --git a/kernel/fork.c b/kernel/fork.c
+> > index 142b23645d82..10b3891be99e 100644
+> > --- a/kernel/fork.c
+> > +++ b/kernel/fork.c
+> > @@ -955,6 +955,10 @@ static struct task_struct *dup_task_struct(struct task_struct *orig, int node)
+> >  	tsk->use_memdelay = 0;
+> >  #endif
+> >  
+> > +#ifdef CONFIG_PCI_PASID
+> > +	tsk->has_valid_pasid = 0;
+> > +#endif
+> > +
+> >  #ifdef CONFIG_MEMCG
+> >  	tsk->active_memcg = NULL;
+> >  #endif
+> 
+> The PASID MSR is x86 specific although PASID is PCIe concept and per-mm.
+> Checking if the MSR has valid PASID (bit31=1) is an x86 specifc work.
+> The flag should be cleared in cloned()/forked() and is only set and
+> read in fixup() in x86 #GP for heuristic. It's not used anywhere outside
+> of x86.
+> 
+> That's why we think the flag should be in x86 struct thread_info instead
+> of in generice struct task_struct.
 
-Probably better to remove the duplication of result and r here and then 
-use "goto err".
+I don't think anybody really cares, it's just one bit, we have plenty
+left.
 
-Regards,
-Christian
+On x86_64 there's a u32 sized alignment hole in thread_info, also we
+don't use the upper 32bit of thread_info::flags, however using those
+would still mean you have to use atomic ops, which you really don't
+need.
 
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> index 1a4894fa3693..bea8c36a53a4 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> @@ -862,8 +862,10 @@ static ssize_t amdgpu_debugfs_gpr_read(struct file *f, char __user *buf,
->   		return -ENOMEM;
->   
->   	r = pm_runtime_get_sync(adev->ddev->dev);
-> -	if (r < 0)
-> +	if (r < 0) {
-> +		kfree(data);
->   		return r;
-> +	}
->   
->   	r = amdgpu_virt_enable_access_debugfs(adev);
->   	if (r < 0)
 
 _______________________________________________
 amd-gfx mailing list
