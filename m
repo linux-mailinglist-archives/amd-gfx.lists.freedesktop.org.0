@@ -2,52 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6371B1F8FD8
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2020 09:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 312701F8FDF
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2020 09:29:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC8576E283;
-	Mon, 15 Jun 2020 07:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8426E2BD;
+	Mon, 15 Jun 2020 07:29:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DACE989E47
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 02:17:48 +0000 (UTC)
-IronPort-SDR: WDc83yEvThZyZ89RQU/Z5Kb+1v3Pbi7Anx9d2dnmKmICEECRTU6wOQkuKFfaJQ1hTRwJIymwyV
- UZjemxadFF5A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2020 19:17:48 -0700
-IronPort-SDR: Uob3CZWz0xNCSTRrbf7iB54YQSoy4usLaGVasoq/ksqhTs/VRiosycehEva16KGBqYrPirqqzE
- ar0CvARaiFHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,513,1583222400"; d="scan'208";a="298321650"
-Received: from allen-box.sh.intel.com (HELO [10.239.159.139])
- ([10.239.159.139])
- by fmsmga004.fm.intel.com with ESMTP; 14 Jun 2020 19:17:43 -0700
-Subject: Re: [PATCH v2 11/12] x86/mmu: Allocate/free PASID
-To: Fenghua Yu <fenghua.yu@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- H Peter Anvin <hpa@zytor.com>, David Woodhouse <dwmw2@infradead.org>,
- Frederic Barrat <fbarrat@linux.ibm.com>, Andrew Donnellan
- <ajd@linux.ibm.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Dave Hansen <dave.hansen@intel.com>,
- Tony Luck <tony.luck@intel.com>, Ashok Raj <ashok.raj@intel.com>,
- Jacob Jun Pan <jacob.jun.pan@intel.com>, Dave Jiang <dave.jiang@intel.com>,
- Yu-cheng Yu <yu-cheng.yu@intel.com>, Sohil Mehta <sohil.mehta@intel.com>,
- Ravi V Shankar <ravi.v.shankar@intel.com>
-References: <1592008893-9388-1-git-send-email-fenghua.yu@intel.com>
- <1592008893-9388-12-git-send-email-fenghua.yu@intel.com>
-From: Lu Baolu <baolu.lu@linux.intel.com>
-Message-ID: <4d759c15-d539-cd1a-569d-eefa5fb6f039@linux.intel.com>
-Date: Mon, 15 Jun 2020 10:13:42 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+X-Greylist: delayed 906 seconds by postgrey-1.36 at gabe;
+ Mon, 15 Jun 2020 07:28:58 UTC
+Received: from m1382.mail.163.com (m1382.mail.163.com [220.181.13.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 354746E2B2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jun 2020 07:28:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=MinxN
+ B2rtPLm+WPE9jcC+0KeFgL8vITTt2/LRkTCfzw=; b=ohFavSo+n4Ls9Zpscx+Uj
+ eG4brTzsa1uegntN7JKZuAXUTZiXwa+tTu8oZhYt61lW2lk1PcfWqHVgR4j8AYOX
+ jvhLht7wetKgJATsJb9aQpIJ2XM2VuaveAHKnY1HrMuFDUswcwovndZ2o1aUZ4vu
+ oegpJpG2jeqLTjMgtQXMOY=
+Received: from raykwok1150$163.com ( [118.242.3.34] ) by
+ ajax-webmail-wmsvr82 (Coremail) ; Mon, 15 Jun 2020 15:13:42 +0800 (CST)
+X-Originating-IP: [118.242.3.34]
+Date: Mon, 15 Jun 2020 15:13:42 +0800 (CST)
+From: "Guo Lei" <raykwok1150@163.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: Fix incorrect firmware size calculation
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.10 build 20190724(ac680a23)
+ Copyright (c) 2002-2020 www.mailtech.cn 163com
+X-CM-CTRLDATA: KAQsKWZvb3Rlcl9odG09MjQ5MDo1Ng==
 MIME-Version: 1.0
-In-Reply-To: <1592008893-9388-12-git-send-email-fenghua.yu@intel.com>
-Content-Language: en-US
-X-Mailman-Approved-At: Mon, 15 Jun 2020 07:27:54 +0000
+Message-ID: <611402e8.64f3.172b6d3a40c.Coremail.raykwok1150@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: UsGowABXY2amH+dedhdUAA--.61412W
+X-CM-SenderInfo: 5ud1y41rnrikqq6rljoofrz/1tbitB9EYFSIhcSzUgABsy
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,140 +48,103 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: x86 <x86@kernel.org>, linux-kernel <linux-kernel@vger.kernel.org>,
- amd-gfx <amd-gfx@lists.freedesktop.org>, iommu@lists.linux-foundation.org,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, baolu.lu@linux.intel.com
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============1925081485=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Fenghua,
+--===============1925081485==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_93883_1020225277.1592205222924"
 
-On 6/13/20 8:41 AM, Fenghua Yu wrote:
-> A PASID is allocated for an "mm" the first time any thread attaches
-> to an SVM capable device. Later device attachments (whether to the same
-> device or another SVM device) will re-use the same PASID.
-> 
-> The PASID is freed when the process exits (so no need to keep
-> reference counts on how many SVM devices are sharing the PASID).
-> 
-> Signed-off-by: Fenghua Yu <fenghua.yu@intel.com>
-> Reviewed-by: Tony Luck <tony.luck@intel.com>
-> ---
-> v2:
-> - Define a helper free_bind() to simplify error exit code in bind_mm()
->    (Thomas)
-> - Fix a ret error code in bind_mm() (Thomas)
-> - Change pasid's type from "int" to "unsigned int" to have consistent
->    pasid type in iommu (Thomas)
-> - Simplify alloc_pasid() a bit.
-> 
->   arch/x86/include/asm/iommu.h       |   2 +
->   arch/x86/include/asm/mmu_context.h |  14 ++++
->   drivers/iommu/intel/svm.c          | 101 +++++++++++++++++++++++++----
->   3 files changed, 105 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/x86/include/asm/iommu.h b/arch/x86/include/asm/iommu.h
-> index bf1ed2ddc74b..ed41259fe7ac 100644
-> --- a/arch/x86/include/asm/iommu.h
-> +++ b/arch/x86/include/asm/iommu.h
-> @@ -26,4 +26,6 @@ arch_rmrr_sanity_check(struct acpi_dmar_reserved_memory *rmrr)
->   	return -EINVAL;
->   }
->   
-> +void __free_pasid(struct mm_struct *mm);
-> +
->   #endif /* _ASM_X86_IOMMU_H */
-> diff --git a/arch/x86/include/asm/mmu_context.h b/arch/x86/include/asm/mmu_context.h
-> index 47562147e70b..f8c91ce8c451 100644
-> --- a/arch/x86/include/asm/mmu_context.h
-> +++ b/arch/x86/include/asm/mmu_context.h
-> @@ -13,6 +13,7 @@
->   #include <asm/tlbflush.h>
->   #include <asm/paravirt.h>
->   #include <asm/debugreg.h>
-> +#include <asm/iommu.h>
->   
->   extern atomic64_t last_mm_ctx_id;
->   
-> @@ -117,9 +118,22 @@ static inline int init_new_context(struct task_struct *tsk,
->   	init_new_context_ldt(mm);
->   	return 0;
->   }
-> +
-> +static inline void free_pasid(struct mm_struct *mm)
-> +{
-> +	if (!IS_ENABLED(CONFIG_INTEL_IOMMU_SVM))
-> +		return;
-> +
-> +	if (!cpu_feature_enabled(X86_FEATURE_ENQCMD))
-> +		return;
-> +
-> +	__free_pasid(mm);
-> +}
-> +
->   static inline void destroy_context(struct mm_struct *mm)
->   {
->   	destroy_context_ldt(mm);
-> +	free_pasid(mm);
->   }
->   
->   extern void switch_mm(struct mm_struct *prev, struct mm_struct *next,
-> diff --git a/drivers/iommu/intel/svm.c b/drivers/iommu/intel/svm.c
-> index 4e775e12ae52..27dc866b8461 100644
-> --- a/drivers/iommu/intel/svm.c
-> +++ b/drivers/iommu/intel/svm.c
-> @@ -425,6 +425,53 @@ int intel_svm_unbind_gpasid(struct device *dev, unsigned int pasid)
->   	return ret;
->   }
->   
-> +static void free_bind(struct intel_svm *svm, struct intel_svm_dev *sdev,
-> +		      bool new_pasid)
-> +{
-> +	if (new_pasid)
-> +		ioasid_free(svm->pasid);
-> +	kfree(svm);
-> +	kfree(sdev);
-> +}
-> +
-> +/*
-> + * If this mm already has a PASID, use it. Otherwise allocate a new one.
-> + * Let the caller know if a new PASID is allocated via 'new_pasid'.
-> + */
-> +static int alloc_pasid(struct intel_svm *svm, struct mm_struct *mm,
-> +		       unsigned int pasid_max, bool *new_pasid,
-> +		       unsigned int flags)
-> +{
-> +	unsigned int pasid;
-> +
-> +	*new_pasid = false;
-> +
-> +	/*
-> +	 * Reuse the PASID if the mm already has a PASID and not a private
-> +	 * PASID is requested.
-> +	 */
-> +	if (mm && mm->pasid && !(flags & SVM_FLAG_PRIVATE_PASID)) {
-> +		/*
-> +		 * Once a PASID is allocated for this mm, the PASID
-> +		 * stays with the mm until the mm is dropped. Reuse
-> +		 * the PASID which has been already allocated for the
-> +		 * mm instead of allocating a new one.
-> +		 */
-> +		ioasid_set_data(mm->pasid, svm);
+------=_Part_93883_1020225277.1592205222924
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-How about adding some sanity checks here? For example,
+RnJvbSAwMTQxNjJmNjliOTA5YTU5YzI0MWU3ZjczYzM2MzBkMWRhMzQ2OTZjIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQoKRnJvbTogTGVpIEd1byA8cmF5a3dvazExNTBAMTYzLmNvbT4KCkRhdGU6
+IE1vbiwgMTUgSnVuIDIwMjAgMTM6NTQ6MjYgKzA4MDAKClN1YmplY3Q6IFtQQVRDSF0gZHJtL2Ft
+ZGdwdTogRml4IGluY29ycmVjdCBmaXJtd2FyZSBzaXplIGNhbGN1bGF0aW9uCgoKCgpbV0hZXQoK
+VGhlIG1lbWNweSgpIGZ1bmN0aW9uIGNvcGllcyBuIGJ5dGVzIGZyb20gbWVtb3J5IGFyZWEgc3Jj
+IHRvIG1lbW9yeSBhcmVhCgpkZXN0LiBTbyBzcGVjaWZ5IHRoZSBmaXJtd2FyZSBzaXplIGluIGJ5
+dGVzLgoKCgoKW0hvd10KCkNvcnJlY3QgdGhlIGNhbGN1bGF0aW9uLgoKCgoKU2lnbmVkLW9mZi1i
+eTogTGVpIEd1byA8cmF5a3dvazExNTBAMTYzLmNvbT4KClJldmlld2VkLWJ5OiBKdW53ZWkgWmhh
+bmcgPHpqdW53ZWloaXRAMTYzLmNvbT4KCi0tLQoKIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
+L2dmeF92OV8wLmMgfCAyICstCgogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRl
+bGV0aW9uKC0pCgoKCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4
+X3Y5XzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OV8wLmMKCmluZGV4IDZi
+OTQ1ODdkZjQwNy4uYzNlNTliNzY1MjY4IDEwMDY0NAoKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9hbWRncHUvZ2Z4X3Y5XzAuYwoKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4
+X3Y5XzAuYwoKQEAgLTE5NjAsNyArMTk2MCw3IEBAIHN0YXRpYyBpbnQgZ2Z4X3Y5XzBfbWVjX2lu
+aXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCgogZndfZGF0YSA9IChjb25zdCBfX2xlMzIg
+KikKCiAoYWRldi0+Z2Z4Lm1lY19mdy0+ZGF0YSArCgogIGxlMzJfdG9fY3B1KG1lY19oZHItPmhl
+YWRlci51Y29kZV9hcnJheV9vZmZzZXRfYnl0ZXMpKTsKCi1md19zaXplID0gbGUzMl90b19jcHUo
+bWVjX2hkci0+aGVhZGVyLnVjb2RlX3NpemVfYnl0ZXMpIC8gNDsKCitmd19zaXplID0gbGUzMl90
+b19jcHUobWVjX2hkci0+aGVhZGVyLnVjb2RlX3NpemVfYnl0ZXMpOwoKIAoKIHIgPSBhbWRncHVf
+Ym9fY3JlYXRlX3Jlc2VydmVkKGFkZXYsIG1lY19oZHItPmhlYWRlci51Y29kZV9zaXplX2J5dGVz
+LAoKICAgICAgIFBBR0VfU0laRSwgQU1ER1BVX0dFTV9ET01BSU5fR1RULAoKLS0gCgoyLjE3LjEK
+Cgo=
+------=_Part_93883_1020225277.1592205222924
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
-	void *p = ioasid_find(NULL, mm->pasid, NULL);
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6QXJpYWwiPjxwIHN0eWxlPSJtYXJnaW46MDsiPkZyb20gMDE0MTYyZjY5Yjkw
+OWE1OWMyNDFlN2Y3M2MzNjMwZDFkYTM0Njk2YyBNb24gU2VwIDE3IDAwOjAwOjAwIDIwMDE8L3A+
+PHAgc3R5bGU9Im1hcmdpbjowOyI+RnJvbTogTGVpIEd1byAmbHQ7cmF5a3dvazExNTBAMTYzLmNv
+bSZndDs8L3A+PHAgc3R5bGU9Im1hcmdpbjowOyI+RGF0ZTogTW9uLCAxNSBKdW4gMjAyMCAxMzo1
+NDoyNiArMDgwMDwvcD48cCBzdHlsZT0ibWFyZ2luOjA7Ij5TdWJqZWN0OiBbUEFUQ0hdIGRybS9h
+bWRncHU6IEZpeCBpbmNvcnJlY3QgZmlybXdhcmUgc2l6ZSBjYWxjdWxhdGlvbjwvcD48cCBzdHls
+ZT0ibWFyZ2luOjA7Ij48YnI+PC9wPjxwIHN0eWxlPSJtYXJnaW46MDsiPltXSFldPC9wPjxwIHN0
+eWxlPSJtYXJnaW46MDsiPlRoZSBtZW1jcHkoKSBmdW5jdGlvbiBjb3BpZXMgbiBieXRlcyBmcm9t
+IG1lbW9yeSBhcmVhIHNyYyB0byBtZW1vcnkgYXJlYTwvcD48cCBzdHlsZT0ibWFyZ2luOjA7Ij5k
+ZXN0LiBTbyBzcGVjaWZ5IHRoZSBmaXJtd2FyZSBzaXplIGluIGJ5dGVzLjwvcD48cCBzdHlsZT0i
+bWFyZ2luOjA7Ij48YnI+PC9wPjxwIHN0eWxlPSJtYXJnaW46MDsiPltIb3ddPC9wPjxwIHN0eWxl
+PSJtYXJnaW46MDsiPkNvcnJlY3QgdGhlIGNhbGN1bGF0aW9uLjwvcD48cCBzdHlsZT0ibWFyZ2lu
+OjA7Ij48YnI+PC9wPjxwIHN0eWxlPSJtYXJnaW46MDsiPlNpZ25lZC1vZmYtYnk6IExlaSBHdW8g
+Jmx0O3JheWt3b2sxMTUwQDE2My5jb20mZ3Q7PC9wPjxwIHN0eWxlPSJtYXJnaW46MDsiPlJldmll
+d2VkLWJ5OiBKdW53ZWkgWmhhbmcgJmx0O3pqdW53ZWloaXRAMTYzLmNvbSZndDs8L3A+PHAgc3R5
+bGU9Im1hcmdpbjowOyI+LS0tPC9wPjxwIHN0eWxlPSJtYXJnaW46MDsiPiZuYnNwO2RyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OV8wLmMgfCAyICstPC9wPjxwIHN0eWxlPSJtYXJnaW46
+MDsiPiZuYnNwOzEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKTwv
+cD48cCBzdHlsZT0ibWFyZ2luOjA7Ij48YnI+PC9wPjxwIHN0eWxlPSJtYXJnaW46MDsiPmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jIGIvZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYzwvcD48cCBzdHlsZT0ibWFyZ2luOjA7Ij5pbmRl
+eCA2Yjk0NTg3ZGY0MDcuLmMzZTU5Yjc2NTI2OCAxMDA2NDQ8L3A+PHAgc3R5bGU9Im1hcmdpbjow
+OyI+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYzwvcD48cCBzdHls
+ZT0ibWFyZ2luOjA7Ij4rKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5j
+PC9wPjxwIHN0eWxlPSJtYXJnaW46MDsiPkBAIC0xOTYwLDcgKzE5NjAsNyBAQCBzdGF0aWMgaW50
+IGdmeF92OV8wX21lY19pbml0KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KTwvcD48cCBzdHls
+ZT0ibWFyZ2luOjA7Ij4mbmJzcDs8c3BhbiBzdHlsZT0id2hpdGUtc3BhY2U6cHJlIj4JPC9zcGFu
+PmZ3X2RhdGEgPSAoY29uc3QgX19sZTMyICopPC9wPjxwIHN0eWxlPSJtYXJnaW46MDsiPiZuYnNw
+OzxzcGFuIHN0eWxlPSJ3aGl0ZS1zcGFjZTpwcmUiPgkJPC9zcGFuPihhZGV2LSZndDtnZngubWVj
+X2Z3LSZndDtkYXRhICs8L3A+PHAgc3R5bGU9Im1hcmdpbjowOyI+Jm5ic3A7PHNwYW4gc3R5bGU9
+IndoaXRlLXNwYWNlOnByZSI+CQk8L3NwYW4+IGxlMzJfdG9fY3B1KG1lY19oZHItJmd0O2hlYWRl
+ci51Y29kZV9hcnJheV9vZmZzZXRfYnl0ZXMpKTs8L3A+PHAgc3R5bGU9Im1hcmdpbjowOyI+LTxz
+cGFuIHN0eWxlPSJ3aGl0ZS1zcGFjZTpwcmUiPgk8L3NwYW4+Zndfc2l6ZSA9IGxlMzJfdG9fY3B1
+KG1lY19oZHItJmd0O2hlYWRlci51Y29kZV9zaXplX2J5dGVzKSAvIDQ7PC9wPjxwIHN0eWxlPSJt
+YXJnaW46MDsiPis8c3BhbiBzdHlsZT0id2hpdGUtc3BhY2U6cHJlIj4JPC9zcGFuPmZ3X3NpemUg
+PSBsZTMyX3RvX2NwdShtZWNfaGRyLSZndDtoZWFkZXIudWNvZGVfc2l6ZV9ieXRlcyk7PC9wPjxw
+IHN0eWxlPSJtYXJnaW46MDsiPiZuYnNwOzwvcD48cCBzdHlsZT0ibWFyZ2luOjA7Ij4mbmJzcDs8
+c3BhbiBzdHlsZT0id2hpdGUtc3BhY2U6cHJlIj4JPC9zcGFuPnIgPSBhbWRncHVfYm9fY3JlYXRl
+X3Jlc2VydmVkKGFkZXYsIG1lY19oZHItJmd0O2hlYWRlci51Y29kZV9zaXplX2J5dGVzLDwvcD48
+cCBzdHlsZT0ibWFyZ2luOjA7Ij4mbmJzcDs8c3BhbiBzdHlsZT0id2hpdGUtc3BhY2U6cHJlIj4J
+CQkJPC9zcGFuPiZuYnNwOyAmbmJzcDsgJm5ic3A7IFBBR0VfU0laRSwgQU1ER1BVX0dFTV9ET01B
+SU5fR1RULDwvcD48cCBzdHlsZT0ibWFyZ2luOjA7Ij4tLSZuYnNwOzwvcD48cCBzdHlsZT0ibWFy
+Z2luOjA7Ij4yLjE3LjE8L3A+PGRpdj48YnI+PC9kaXY+PC9kaXY+PGJyPjxicj48c3BhbiB0aXRs
+ZT0ibmV0ZWFzZWZvb3RlciI+PHA+Jm5ic3A7PC9wPjwvc3Bhbj4=
+------=_Part_93883_1020225277.1592205222924--
 
-	if (!p)
-		ioasid_set_data(mm->pasid, svm);
-	else if (IS_ERR(p) || p != svm)
-		return INVALID_IOSASID;
 
-Best regards,
-baolu
+--===============1925081485==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1925081485==--
+
