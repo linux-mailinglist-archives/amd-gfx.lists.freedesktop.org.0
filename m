@@ -2,37 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3C91FB611
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2020 17:24:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8016F1FB60C
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2020 17:24:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BDE96E8EF;
-	Tue, 16 Jun 2020 15:24:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 026A76E02F;
+	Tue, 16 Jun 2020 15:24:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2123F6E064;
- Tue, 16 Jun 2020 08:43:02 +0000 (UTC)
-IronPort-SDR: ZJv6PeF/YEzzIA35Y9XP0xhbscEpQZOXQUSCSdg/RVO+V0z2AuMRsBtmYncI10HAFMUpD7ncjW
- kLVVopJ8COHA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2020 01:43:00 -0700
-IronPort-SDR: ESwecSLyQfPyKt5v+QA7YVSN7oPk6dEwv7A7LD3l65xfCRDTw98JDvGguFbLjsPh4m0pT64k9+
- 4LLFQ1luX1oA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,518,1583222400"; d="scan'208";a="449726556"
-Received: from gklab-125-110.igk.intel.com ([10.91.125.110])
- by orsmga005.jf.intel.com with ESMTP; 16 Jun 2020 01:42:57 -0700
-From: Piotr Stankiewicz <piotr.stankiewicz@intel.com>
-To: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: Simplify IRQ vector request logic
-Date: Tue, 16 Jun 2020 10:42:41 +0200
-Message-Id: <20200616084243.18544-1-piotr.stankiewicz@intel.com>
-X-Mailer: git-send-email 2.17.2
-In-Reply-To: <CADnq5_N95PjqU4nMgZBL_PoNKk8ourb_k9HLGvR_RN5FeZ3tkg@mail.gmail.com>
-References: <CADnq5_N95PjqU4nMgZBL_PoNKk8ourb_k9HLGvR_RN5FeZ3tkg@mail.gmail.com>
+Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC9F36E07F;
+ Tue, 16 Jun 2020 11:04:38 +0000 (UTC)
+Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id 4FF21990F3B21C913701;
+ Tue, 16 Jun 2020 19:04:33 +0800 (CST)
+Received: from [10.166.212.221] (10.166.212.221) by smtp.huawei.com
+ (10.3.19.213) with Microsoft SMTP Server (TLS) id 14.3.487.0; Tue, 16 Jun
+ 2020 19:04:28 +0800
+Subject: Re: [PATCH 1/2] drm/amdgpu/debugfs: fix memory leak when
+ pm_runtime_get_sync failed
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ <airlied@linux.ie>, <daniel@ffwll.ch>
+References: <20200616063039.260990-1-chentao107@huawei.com>
+ <a8fb3d27-d0f5-d28a-d24b-63be866ef76f@amd.com>
+From: "chentao (AS)" <chentao107@huawei.com>
+Message-ID: <882dba73-8384-919d-671c-a300db4ef0cf@huawei.com>
+Date: Tue, 16 Jun 2020 19:04:28 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.2
+MIME-Version: 1.0
+In-Reply-To: <a8fb3d27-d0f5-d28a-d24b-63be866ef76f@amd.com>
+Content-Language: en-US
+X-Originating-IP: [10.166.212.221]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 16 Jun 2020 15:24:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -45,58 +46,17 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Aurabindo Pillai <mail@aurabindo.in>,
+Cc: tom.stdenis@amd.com, David1.Zhou@amd.com, Jack.Xiao@amd.com,
  linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Emily Deng <Emily.Deng@amd.com>,
- Piotr Stankiewicz <piotr.stankiewicz@intel.com>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- shaoyunl <shaoyun.liu@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ dri-devel@lists.freedesktop.org, alexander.deucher@amd.com, yttao@amd.com
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-pci_alloc_irq_vectors() will handle fallback from MSI-X to MSI
-internally, if necessary. So remove checks which determine if we are
-dealing with MSI or MSI-X and rely on pci_alloc_irq_vectors() to do the
-right thing.
-
-Signed-off-by: Piotr Stankiewicz <piotr.stankiewicz@intel.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 11 +----------
- 1 file changed, 1 insertion(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-index 0cc4c67f95f7..2d68ad7d45d4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-@@ -248,17 +248,8 @@ int amdgpu_irq_init(struct amdgpu_device *adev)
- 	adev->irq.msi_enabled = false;
- 
- 	if (amdgpu_msi_ok(adev)) {
--		int nvec = pci_msix_vec_count(adev->pdev);
--		unsigned int flags;
--
--		if (nvec <= 0) {
--			flags = PCI_IRQ_MSI;
--		} else {
--			flags = PCI_IRQ_MSI | PCI_IRQ_MSIX;
--		}
- 		/* we only need one vector */
--		nvec = pci_alloc_irq_vectors(adev->pdev, 1, 1, flags);
--		if (nvec > 0) {
-+		if (pci_alloc_irq_vectors(adev->pdev, 1, 1, PCI_IRQ_MSI | PCI_IRQ_MSIX) > 0) {
- 			adev->irq.msi_enabled = true;
- 			dev_dbg(adev->dev, "using MSI/MSI-X.\n");
- 		}
--- 
-2.17.2
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T2ssIGkgd2lsbCBtb2RpZnkgaXQgaW4gdjIgcGF0Y2guCgpPbiAyMDIwLzYvMTYgMTQ6NTAsIENo
+cmlzdGlhbiBLw7ZuaWcgd3JvdGU6Cj4gUHJvYmFibHkgYmV0dGVyIHRvIHJlbW92ZSB0aGUgZHVw
+bGljYXRpb24gb2YgcmVzdWx0IGFuZCByIGhlcmUgYW5kIAo+IHRoZW4gdXNlICJnb3RvIGVyciIu
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZngg
+bWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
