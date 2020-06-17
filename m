@@ -1,89 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B431FD818
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 00:01:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE511FD860
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 00:07:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B323F6E908;
-	Wed, 17 Jun 2020 22:01:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8116F6E919;
+	Wed, 17 Jun 2020 22:07:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2042.outbound.protection.outlook.com [40.107.236.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 026B66E908
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 22:01:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z+W5GR22ShqjB02CPs8u8eFph34HFC3viDj+BC3h2oiXfyATGzE8rpLLk8FgdpXKnTtM6qpEu7EA7U60uA7NksB30Kw6SimmmiRAfMLPI12B6l8DqG0x0R1OW5eJP2hOaWUXxTW8b5XJ87gScssfO84+cweIkBjU+NSCixYx2icQ7Epvk4JJNboofLFA3qIYgguSJQH2zgHmgk+qTbSIfRIVQLTAlisrUt/gmoh9EQ2HVkpyKgY43v2Wv6q2GD88siLrmVpGFlEw9kMWqQZbxHGoQv5lV7BbfNgE6w1ApUrQwnPBnWh8cIEpo8wdy4rS5J7SaXtnK3NCjRAidKjQBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8k3gw2jZEP7ABkcDh7rYyCyDHSaWChidR2W9c0fPFyk=;
- b=dfziyCinR9OQux5Y65pNlg8ADJD0pZyPo30ch/AK+YZVXN667db/zVtV3yGoFa1hqzePraZyWr6y2w9DyzuzQd0w20wuXO+AZ6AbpBTjKIyytYqtv8yupVgrUlzPuyhA9ItW2P8Eh7mKuf3qiTQXRpTtTWxMXiKa32kOmlRcW31Ti6iAdFqtGynUS4j5gr5S1Yl9ojwimJDBDOMq1q/oLckdFKd09mKV4u6XnN6GC0E5bqffZtCsYgpnqJgxIG7NvTClYS6dDqCPl7hnBjqQFPmLLekrUUOShaaTMVwg/j2KQT5JcFYh0j1UyetLUcaf2E+FxVVtjZPENxGUgN69Xg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8k3gw2jZEP7ABkcDh7rYyCyDHSaWChidR2W9c0fPFyk=;
- b=yUH0kVcsuUnmwQnaj43FoO3xO7d8Pp9GPpQ7rDllRztD+yZSr+2TF7b1/aEn2bPpZdpg8bg30D5FTWTtOnTBeYoab4iYGSpsGHeIMce2qbljYg18YkcaS+okdvggZiDnl/RoQnGYiZwcfCnkFhgnu2a3fB0L/D1wC+7XZvE6G5U=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3433.namprd12.prod.outlook.com (2603:10b6:5:38::14) by
- DM5PR1201MB0185.namprd12.prod.outlook.com (2603:10b6:4:55::10) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3109.22; Wed, 17 Jun 2020 22:01:00 +0000
-Received: from DM6PR12MB3433.namprd12.prod.outlook.com
- ([fe80::64ab:bf43:33df:e88c]) by DM6PR12MB3433.namprd12.prod.outlook.com
- ([fe80::64ab:bf43:33df:e88c%7]) with mapi id 15.20.3109.021; Wed, 17 Jun 2020
- 22:01:00 +0000
-From: Sonny Jiang <sonny.jiang@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 7/7] drm amdgpu: SI UVD enabled on Verde, Tahiti, Pitcairn
-Date: Wed, 17 Jun 2020 18:00:16 -0400
-Message-Id: <20200617220016.4844-7-sonny.jiang@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200617220016.4844-1-sonny.jiang@amd.com>
-References: <20200617220016.4844-1-sonny.jiang@amd.com>
-X-ClientProxiedBy: BN6PR07CA0021.namprd07.prod.outlook.com
- (2603:10b6:404:8c::31) To DM6PR12MB3433.namprd12.prod.outlook.com
- (2603:10b6:5:38::14)
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com
+ [IPv6:2607:f8b0:4864:20::72c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99FA66E1A3;
+ Wed, 17 Jun 2020 22:07:52 +0000 (UTC)
+Received: by mail-qk1-x72c.google.com with SMTP id b4so3621604qkn.11;
+ Wed, 17 Jun 2020 15:07:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=uFlkTlA3a1jIkp/uIQ1lT7+XHzRWxghrvYHHu6hHp4k=;
+ b=pb8YWAbNJHvWAh7BqnqcGJtnl85jqErNX4o4yHSfH1jRGmN6LLACf3YPy8d0e5PcJi
+ AWi0PHBmH9BSNB0Avv36f18+6oOa45aK+gjKOdGnUWVJ29qygyIfsjdgOq6bjeHqpD2X
+ YVk83U0DnulDxqnr9xydfgPVDUTo7mD/9yXzRo0lRK9zByB/bI4jUDuiQe/YhowaahB9
+ SmgdlIP0U7V4cGfTrgrUddAFvY7UJEhN1zv2kagrC60DxNgnnJmqoCZV8Ge1ySmew4Kk
+ 2Ntbq880vUuJ40WR6yzD7gx0i8mxoYY8z5nbSk6YNiWngxKpt2c+ggquwuwcqoCahvOZ
+ tg2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=uFlkTlA3a1jIkp/uIQ1lT7+XHzRWxghrvYHHu6hHp4k=;
+ b=OowqArIRYCyyjNwRf6GuvaXMGFEGqmVU0kKoBf/p2U9bRqWYxvPIN16ZFyOJtdYA54
+ 9suoteHmYvg298gYBFuSffoohP3TqfPYRrN8pUPp7z5DMsH1V6w8tDL6wFBdLYEyC9e/
+ Y4doAgogLYawJOJkVSACETppzIwTfgwNzw23DM4f5K/YrPqzRJKFvmhJMCbkTtOGUFfL
+ 8eaCQOsheCP+zTq+HGziWfHCynSdyBeSiDiUjXQAQECoExQ4NM/z65wuTC+AVlQGJcpj
+ 1bTYwGC5prbfgPleiMPW7zW9agUJod9/hJ1nhnOTGzWi9D1Y0lH4XCO+7AdbetRgnqLy
+ MACg==
+X-Gm-Message-State: AOAM531Eb19XLSyCkFrKwaD9tqnlqq3woG6ikWt1m3smShTGMoElpwBg
+ qQZAcW1Ue9eMqQtnPih2PQUf4o5+
+X-Google-Smtp-Source: ABdhPJxc2vMx2ucm3nMe7TO2XqzPqiQL9pi5E3ARzRRNs94kgAOywm7c04qJshVqDbTQ/uX6YJnp5Q==
+X-Received: by 2002:a05:620a:1132:: with SMTP id
+ p18mr812026qkk.494.1592431671444; 
+ Wed, 17 Jun 2020 15:07:51 -0700 (PDT)
+Received: from localhost.localdomain ([71.219.51.205])
+ by smtp.gmail.com with ESMTPSA id v69sm1077892qkb.96.2020.06.17.15.07.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 17 Jun 2020 15:07:50 -0700 (PDT)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ airlied@gmail.com, daniel.vetter@ffwll.ch
+Subject: [pull] amdgpu, amdkfd drm-fixes-5.8
+Date: Wed, 17 Jun 2020 18:07:33 -0400
+Message-Id: <20200617220733.3773183-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (165.204.84.11) by
- BN6PR07CA0021.namprd07.prod.outlook.com (2603:10b6:404:8c::31) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3109.22 via Frontend Transport; Wed, 17 Jun 2020 22:00:59 +0000
-X-Mailer: git-send-email 2.25.1
-X-Originating-IP: [165.204.84.11]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 0c1442bd-2e62-4ff7-82d3-08d81309eb7a
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0185:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB0185764C8C8C005F7FD64559FD9A0@DM5PR1201MB0185.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:747;
-X-Forefront-PRVS: 04371797A5
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rZvk56d8rdqpBIfPc+0+N032y5ybJmXlhSAWvsu1IXx4QrSEQxYbzq1ysUJ8bRs8YOMkdyNJ/wlBIIj49wlUuzBDH4Zz75dqzODsbRvpkiyedpIg8691rjapDvT7GsAPkiSDrUMQPPfZkuMK2en1TQ5q9DUOTm6knb2mGo+vkzkUkCVnxV6CC/65nwWsAEIoqozZzKevKl+DFGWLY0zT6HMnZLuCSubVVD7EWrMH+gDr9SZw4VoqrG1cQ59z+68vCNRqlcO9W/0vBdRMLoww7g8XbfkWm+PnJqZJac1V6XAc1N+4HMemzGHO8gGOduNZeheQzqbNuahiMXHwO7S5dczzZrq+sUfN7hN1vBTrOPrziYuMZ4ng4uOn42C8eH6t
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3433.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(366004)(346002)(376002)(396003)(136003)(39860400002)(5660300002)(316002)(6666004)(86362001)(4744005)(6512007)(186003)(4326008)(1076003)(16526019)(26005)(66946007)(2616005)(8676002)(6916009)(44832011)(6486002)(66476007)(66556008)(478600001)(36756003)(52116002)(6506007)(8936002)(83380400001)(69590400007)(956004)(2906002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: BCX9bc5lvK+Q1NlikT+UTMBJJDnh3PL3X2q3r1W4iR/oOZqSmLX3WiE5hXJMKWq8PBkDJVFRR2ErnFkXIPmTuIIvp3SREOfl+0G0wujNJTsayv28zlnTRwYXqgTY3nXGiQZrPXY0A7Grp8TqnasQqEsHDa0bwgPljScylH2QJrJipig+Ycf1bSf2ieqj2kx5ljLJ7NPoIidQwEKi5RUYVQ02ir+h71Sr/Zv8uZNcmogFeKNo6mXepw/lKsuPqXkvaz3zKVr3d5dYqDUxWrbbvJdb6Qcglaq0dZgmVPsQ2RVGdtnAqs/vvWAA2SOJUd2UOosfCI0bAWZFA8jk0KVIk8OcF8UqlIuLe739r342WepGERJn0WmiwvBzq5Pof5u4wVQXId2mv9T8/gzXV/FmLWhW0iQkasU86ZrwSDQlBNTcw7jgcEyz8CoYB4PHdo9/Vmvju7uvyTVmoyLe6w2hWzs+IIT/pK2PcsrtqC893cd8ZCHfUNBGiKVM2ynp8w2G
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c1442bd-2e62-4ff7-82d3-08d81309eb7a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2020 22:01:00.1481 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Pi1NdJfgOyDJxFz0+U/khrylJlO/BPArCRQcJmqBGUlVIqv6Oaf69DZg4k/+DCijJ7NvzApGv1q98G6B0xwI2Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0185
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,32 +66,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sonny Jiang <sonny.jiang@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
----
- drivers/gpu/drm/amd/amdgpu/si.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Dave, Daniel,
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
-index e21561fbfb82..cda9aa5e4b9e 100644
---- a/drivers/gpu/drm/amd/amdgpu/si.c
-+++ b/drivers/gpu/drm/amd/amdgpu/si.c
-@@ -2196,7 +2196,7 @@ int si_set_ip_blocks(struct amdgpu_device *adev)
- 			amdgpu_device_ip_block_add(adev, &dce_virtual_ip_block);
- 		else
- 			amdgpu_device_ip_block_add(adev, &dce_v6_0_ip_block);
--		/* amdgpu_device_ip_block_add(adev, &uvd_v3_1_ip_block); */
-+		amdgpu_device_ip_block_add(adev, &uvd_v3_1_ip_block);
- 		/* amdgpu_device_ip_block_add(adev, &vce_v1_0_ip_block); */
- 		break;
- 	case CHIP_OLAND:
--- 
-2.25.1
+Fixes for 5.8.
 
+The following changes since commit 8d286e2ff4400d313955b4203fc640ca6fd9228b:
+
+  Merge tag 'drm-intel-next-fixes-2020-06-04' of git://anongit.freedesktop.org/drm/drm-intel into drm-next (2020-06-08 11:59:57 +1000)
+
+are available in the Git repository at:
+
+  git://people.freedesktop.org/~agd5f/linux tags/amd-drm-fixes-5.8-2020-06-17
+
+for you to fetch changes up to da9cebe16930f0273278fe893f2809450c61ae41:
+
+  drm/amdgpu: fix documentation around busy_percentage (2020-06-17 17:42:43 -0400)
+
+----------------------------------------------------------------
+amd-drm-fixes-5.8-2020-06-17:
+
+amdgpu:
+- Fix kvfree/kfree mixup
+- Fix hawaii device id in powertune configuration
+- Display FP fixes
+- Documentation fixes
+
+amdkfd:
+- devcgroup check fix
+
+----------------------------------------------------------------
+Alex Deucher (2):
+      drm/amdgpu/pm: update comment to clarify Overdrive interfaces
+      drm/amdgpu: fix documentation around busy_percentage
+
+Denis Efremov (2):
+      drm/amd/display: Use kvfree() to free coeff in build_regamma()
+      drm/amd/display: Use kfree() to free rgb_user in calculate_user_regamma_ramp()
+
+Lorenz Brun (1):
+      drm/amdkfd: Use correct major in devcgroup check
+
+Rodrigo Siqueira (1):
+      drm/amd/display: Rework dsc to isolate FPU operations
+
+Sandeep Raghuraman (1):
+      drm/amdgpu: Replace invalid device ID with a valid device ID
+
+ Documentation/gpu/amdgpu.rst                       |   9 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c             |   4 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h              |   3 +-
+ drivers/gpu/drm/amd/display/dc/dsc/Makefile        |   2 -
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c        |  18 +--
+ drivers/gpu/drm/amd/display/dc/dsc/rc_calc.c       | 151 ++++++++++++++++++++-
+ drivers/gpu/drm/amd/display/dc/dsc/rc_calc.h       |   5 +-
+ drivers/gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c   |  27 +---
+ .../drm/amd/display/modules/color/color_gamma.c    |   4 +-
+ drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c   |   2 +-
+ 10 files changed, 166 insertions(+), 59 deletions(-)
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
