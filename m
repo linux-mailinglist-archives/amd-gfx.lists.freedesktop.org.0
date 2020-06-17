@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 911A91FD815
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 00:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 885591FD814
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 00:01:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 923046E8E7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 714676E82B;
 	Wed, 17 Jun 2020 22:00:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADE3F6E1F1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 303EC6E1F1
  for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 22:00:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AIgeOAT3e8SuiOO828zFSji9UzCAoF0vJQ1/g07h4bHCqv8A9N1yCRJL5rwljeTh90b0zc/UxAcx/QsiSTuo61K/ftSWTZXZ4u5yXagct58YkuXUROVUam9TVasTpeMrOZiWND9Q1gGK/GaLHGDhmxCiCpjIpRNhrZOoHOpE04rCSx/OtWDgIYOF9b8smfO2Db68OB/AGn4waFkeEuMhzkvUdqPA5dvPE/qPuzul3H6a1jF4KM6IPD1j36+PqbVUOW+avK7/VgZ8Sq0DBERjIp+y48Abog7VCeP+ZBSXB9MNgSmI+2dBRnLCs6r7DVvElVX7sf+LjFvrBm3xstWtDQ==
+ b=YUNTZ7fWSKH8M95h6RX+UFwEDM8umYEyhdf5btll+8c39y9XM9Nt6/BT8UAXk2JBtIevUgn4fgiW9uRUpf6zl9W6tZDlKPdeF0z3W7hsbGaj2+KmbgJGHINX8jwBaKyAnPCr32TGULLZTfh0G9yYM/4RZYel5AK+3q+qdRNdZp1dXAdlnrHskMHkFNPm9ISAig02IJkiqZekJRbXjoyYMiX91mrblqKv30+la0VzcTG++J7rH1TNpp+W3mUk1BJqqlPAgdp38S/3siUMITLt6Uglh2odE9Rt6u+V6G3DlXIfpEVJZLYL+czJ+tVRRZiZZL4Z9vOxULE6+6xUZI6evw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4s9Q6TnVXefAiat5l783uf+7ldwrPzjyegmVLPoPS3o=;
- b=H0UyhKNHe9YPhdAj2shK2N9qYcIKjQTTZpLnaAJ+tVx0KDKlJGYc4/MMXDS3NfB+MtOs4GFBfy2YSp+13bNuKbu98PvmHXiw3IlWAHPr0/70d1StbBoFMU0VmEfT+++uah8x8jwsdPxXInWfz6o1vg9g16xSXXPlfjC6W8Jch02LWYv1WeqxbpWcE6bZc4PAYiXXr0dv0MBy/aC4uumdahezJQLFZPRf1b3jS0CrxFUXQFheSEfiY7z7/fzbZf3QO8oF7NaoEKISjZ1qTE6aQK0Y3w5R/ceLYQikMmbTWRT/Eko40rAaQpBcVbbU1K4JRJ0qiVQ4NFGDxnzFSj9eJQ==
+ bh=PoHSebiVP7zebSFROHrPQSbvb2lMelpgQpzbnfWtiqU=;
+ b=BmH6PBSAr4P5gLWY9BqJceWyRw5+Yv6XEwDEpYbyEc9HgqhStou40azHeXBa4xnGxYkG3maMn6qB9wNedXOksybKlYqQcMqAGn4PV3eVLyJTy3m29KVkMNqtMLoEMDXuBNg4IUAmOvZfdyJjI204TJYLHxIBgq+VekaV1UsZiZBP77YbZrjEWjFlQpJtMSi4UdI+xuWc0+o+ShwIfotE6LIWvnWl+M6+hTL59OltQzl+VWUUr3N5OyR0DWlvsxtwTQM4Y1AD+2wtKRT9ZOOeeuVkLv3fn1e5mwBtFHYJ/GqFiLHhs5BEXtnJvwxSKRMNq93drmwxW+v6AxUjOd4ZVA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4s9Q6TnVXefAiat5l783uf+7ldwrPzjyegmVLPoPS3o=;
- b=ilU60Q44hMFb63RABrUHDpaRfdNyJkMnTj8Tmuz3zM3rswbyzVirG64AJJX9HAb3PcpPSYFizpicviIMx2dBEWXwBUe+C3X8VnMaZXVCXG0V6Ykh3XZ+4I/mUvsHJ+FVSrB7fHpbh1IDk4ZuFmnbzgJXQf8Oege9EdkAvXSDpwk=
+ bh=PoHSebiVP7zebSFROHrPQSbvb2lMelpgQpzbnfWtiqU=;
+ b=ZLzzVRepRqKF5wUB87DxE9thkT7zjifFHN3re6uawezLUQkIgBuLNmgvM0kmbu/+jAFXC7A7f4ctvxVBZLQyWFCdHqcphk2tVm2aRj9etdfwxs8sbtYytpay6cEpp/g3qYGZwsA8K+m+qgkYOLuCUqT7UtjxEOEmFMpl2ybnnxY=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,16 +35,16 @@ Received: from DM6PR12MB3433.namprd12.prod.outlook.com (2603:10b6:5:38::14) by
  DM5PR1201MB0185.namprd12.prod.outlook.com (2603:10b6:4:55::10) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3109.22; Wed, 17 Jun 2020 22:00:54 +0000
+ 15.20.3109.22; Wed, 17 Jun 2020 22:00:55 +0000
 Received: from DM6PR12MB3433.namprd12.prod.outlook.com
  ([fe80::64ab:bf43:33df:e88c]) by DM6PR12MB3433.namprd12.prod.outlook.com
  ([fe80::64ab:bf43:33df:e88c%7]) with mapi id 15.20.3109.021; Wed, 17 Jun 2020
- 22:00:54 +0000
+ 22:00:55 +0000
 From: Sonny Jiang <sonny.jiang@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/7] drm amdgpu: SI UVD registers
-Date: Wed, 17 Jun 2020 18:00:11 -0400
-Message-Id: <20200617220016.4844-2-sonny.jiang@amd.com>
+Subject: [PATCH 3/7] drm amdgpu: SI UVD v3_1
+Date: Wed, 17 Jun 2020 18:00:12 -0400
+Message-Id: <20200617220016.4844-3-sonny.jiang@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200617220016.4844-1-sonny.jiang@amd.com>
 References: <20200617220016.4844-1-sonny.jiang@amd.com>
@@ -56,33 +56,33 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (165.204.84.11) by
  BN6PR07CA0021.namprd07.prod.outlook.com (2603:10b6:404:8c::31) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3109.22 via Frontend Transport; Wed, 17 Jun 2020 22:00:53 +0000
+ 15.20.3109.22 via Frontend Transport; Wed, 17 Jun 2020 22:00:54 +0000
 X-Mailer: git-send-email 2.25.1
 X-Originating-IP: [165.204.84.11]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 866e11ab-99c3-4e22-77a0-08d81309e7c2
+X-MS-Office365-Filtering-Correlation-Id: 44f314b8-47ea-4a3f-5834-08d81309e87e
 X-MS-TrafficTypeDiagnostic: DM5PR1201MB0185:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB01856393315D007AC19ACE58FD9A0@DM5PR1201MB0185.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-Microsoft-Antispam-PRVS: <DM5PR1201MB0185F95DF3FD244E4F933DAFFD9A0@DM5PR1201MB0185.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:298;
 X-Forefront-PRVS: 04371797A5
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sMTlkK0SPZmRJCeT3PhpFY4YFaz8EqxL8gms/ucRO2+XUn/h8TozRtkM3Qi4rCi1+Y+f1Qdr2jwVEJASDvqI0AG9t3UEKLbjj+m+ct6elrs9tMaVUQ0kZiUu3x7L29FGxNV3JSZtszShZhrPT6vb41E82fVaysza+07nA6pN29f1prjoODTncZct4x59R8ZlYRB+wGYJoag1/cyIWnXiYnSi2xDIdl0ZiBBlDGuqk88Rr/rojg6IcNeR6W0n1xR1Vl1GfpD+r/VfN7wu+NiXHFnvt9UZS7zmuc43txVWMhj6ukakViMQHjf9JppkA/0NKzSAJIgMrGoU2stZGNZbjiNdEI7kVgKZDD1PTQ80RA6OPf06RcGz0Dm7tnMd8V5D
+X-Microsoft-Antispam-Message-Info: mlDU4Aa7uSLmPIt4whdLN5ljqU+0pcRQQ62NJ3ydyBCIgvb1uMl1l7ywNzYRQcYbW/m5WqZWunzB15zczniOJrhVjIBu8kb0Az4EqIcmxIEBmC899b9PFRpTabWykEvBDRiQTtBbGS04I9FB4hdAqwd8sUiyK1zvOa+NgFFCfvzbuZ0zb/A+Svxr/ueaAerfPkEbr4YgfUPYPdQ3DBUb7h+1lwS/S/De+hmixnXdn6cci4GZZ06toRGQAlxp2Ps4YjLzk8Cdwv+WLkgWpF2AuewnQwf/zhmsqgr1DwjinbRsHnktnY1eIkCJ58/3P5TV7GMKlpQa9sBv+2Lz3m5YS8iGTJckDVFe+xWWes+CLIq9rzTiida2semAbdnZcDtE
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB3433.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(366004)(346002)(376002)(396003)(136003)(39860400002)(5660300002)(316002)(6666004)(30864003)(86362001)(6512007)(186003)(4326008)(1076003)(16526019)(26005)(66946007)(2616005)(8676002)(6916009)(44832011)(6486002)(66476007)(66556008)(478600001)(36756003)(52116002)(6506007)(8936002)(83380400001)(69590400007)(956004)(2906002)(579004)(559001);
+ SFS:(4636009)(366004)(346002)(376002)(396003)(136003)(39860400002)(5660300002)(316002)(6666004)(30864003)(86362001)(6512007)(186003)(4326008)(1076003)(16526019)(26005)(66946007)(2616005)(8676002)(6916009)(44832011)(6486002)(66476007)(66556008)(478600001)(36756003)(52116002)(6506007)(8936002)(83380400001)(69590400007)(956004)(2906002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: P09LpavRm8LugK3y0L9Q1KivL8/w5fhfMj4iZBUR+rZXx5ktzoS+Xt6h03prOdkOhsQTLs0PCtuAgYYeS1jGIeuw/7qWrYfVkilTStzHzeyVNSfY5joznOSrPMSqQxddwTj1JgraibOU1CYsQIEtYYr4yVuG+aUgK1XSMQvBRB6iWNHEkYu/oROW6hQYahHGI2S3Np8EGG6QyFcISdr98ud/Bm9M/OqgM414VZVZpMA+R/tSEiPIAgyCvrjnGRAX84xOaSEEpidB4qCSSyAcZ4nxJwCPaCMRw/xGplMBZQC2zD/R+Q+C/huXBOSOIwG4MZLR2YQ3gOebi1uAQ6ubcSg3OzEDmhREJtwx/MFeyiX8ma8ZZUZiW68LLoPdrROelxS51FUZXIZf6yW6ZuDMzxUUx4rpR5JzVVO87ugSC8RJkC6sHIQNgtseDEzgUMziZppg4FqszzQ5W9RQ5HXeKb3P68S68pTN5crT4iqVIPI=
+X-MS-Exchange-AntiSpam-MessageData: AD+jiyevdP0IKq4/kFmlva+y8fAfOOkxO+HMMiMhLdgNIwYxAKrZjBi9qTHWHaFSyFEjp6EcHKd32GI7LD1RvjfFKTX3TTPIfFhRXGjBP26u6d742VaNn+C86LJI42TKOQBWeHg84fz5JGy0/eox1yak9J49UzFzp48B3261B5OXraZpuXHPL0w9w1FB+m9qBACs6xpO+JvYSjG/cyB2kNfLYlI1lGF0YrPFFMJX81xmpkCqs1VZXDJOEERZt+tAXDlE8Nj2aC9lhTo7DW/7tSVOFZ+VBU4YxqeWYe3c7vaeLrzVcWhGnmD4eMNxsGJSW9xHGakNH/d242Nw+fkd3T47ylSQuY2X2EXaoA5/ozIPrVenYXiwvLYTKf60UmOg2UydtxRk7I80xBvkrqRaDA3upjN8CRs/dPrkygLoCGs+A6C4EOVnjG/TCkLIsKE1fvgmHaCAmoO7JYJivVagCLjV1ltw4bdocyDmFphky4mmjDteLU/YaK3QE03bk1GT
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 866e11ab-99c3-4e22-77a0-08d81309e7c2
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2020 22:00:54.2276 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44f314b8-47ea-4a3f-5834-08d81309e87e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2020 22:00:55.3010 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QBXO5UvzJgNRVi+B+foTK23+r1DP8B+t8KXVwYDDwit3C3Tt6A3NxA3cvamNlybxETl/ZoD1zloHucpt+o6Jyw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5zW17uCv7aRBgB50f4vmjbUFNezJmBrp55ph3ErDZG4Lj2twHcEdGj+kyB1SsnfbUdb6OSUNUrHdgHw9exXTrw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0185
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,22 +102,20 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 ---
- .../drm/amd/include/asic_reg/uvd/uvd_3_1_d.h  |  98 +++
- .../include/asic_reg/uvd/uvd_3_1_sh_mask.h    | 804 ++++++++++++++++++
- 2 files changed, 902 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_3_1_d.h
- create mode 100644 drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_3_1_sh_mask.h
+ drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c | 792 ++++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/uvd_v3_1.h |  29 +
+ 2 files changed, 821 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/uvd_v3_1.h
 
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_3_1_d.h b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_3_1_d.h
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
 new file mode 100644
-index 000000000000..0d78806938f2
+index 000000000000..14866f9a0e95
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_3_1_d.h
-@@ -0,0 +1,98 @@
++++ b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
+@@ -0,0 +1,792 @@
 +/*
-+ * UVD_3_1 Register documentation
-+ *
-+ * Copyright (C) 2020  Advanced Micro Devices, Inc.
++ * Copyright 2020 Advanced Micro Devices, Inc.
 + *
 + * Permission is hereby granted, free of charge, to any person obtaining a
 + * copy of this software and associated documentation files (the "Software"),
@@ -126,102 +124,796 @@ index 000000000000..0d78806938f2
 + * and/or sell copies of the Software, and to permit persons to whom the
 + * Software is furnished to do so, subject to the following conditions:
 + *
-+ * The above copyright notice and this permission notice shall be included
-+ * in all copies or substantial portions of the Software.
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
 + *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
-+ * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ * Authors: Sonny Jiang <sonny.jiang@amd.com>
 + */
 +
-+#ifndef UVD_3_1_D_H
-+#define UVD_3_1_D_H
++#include <linux/firmware.h>
 +
-+#define mmUVD_SEMA_ADDR_LOW                                                     0x3bc0
-+#define mmUVD_SEMA_ADDR_HIGH                                                    0x3bc1
-+#define mmUVD_SEMA_CMD                                                          0x3bc2
-+#define mmUVD_GPCOM_VCPU_CMD                                                    0x3bc3
-+#define mmUVD_GPCOM_VCPU_DATA0                                                  0x3bc4
-+#define mmUVD_GPCOM_VCPU_DATA1                                                  0x3bc5
-+#define mmUVD_ENGINE_CNTL                                                       0x3bc6
-+#define mmUVD_UDEC_ADDR_CONFIG                                                  0x3bd3
-+#define mmUVD_UDEC_DB_ADDR_CONFIG                                               0x3bd4
-+#define mmUVD_UDEC_DBW_ADDR_CONFIG                                              0x3bd5
-+#define mmUVD_NO_OP                                                             0x3bff
-+#define mmUVD_SEMA_CNTL                                                         0x3d00
-+#define mmUVD_LMI_EXT40_ADDR                                                    0x3d26
-+#define mmUVD_CTX_INDEX                                                         0x3d28
-+#define mmUVD_CTX_DATA                                                          0x3d29
-+#define mmUVD_CGC_GATE                                                          0x3d2a
-+#define mmUVD_CGC_STATUS                                                        0x3d2b
-+#define mmUVD_CGC_CTRL                                                          0x3d2c
-+#define mmUVD_CGC_UDEC_STATUS                                                   0x3d2d
-+#define mmUVD_LMI_CTRL2                                                         0x3d3d
-+#define mmUVD_MASTINT_EN                                                        0x3d40
-+#define mmUVD_FW_START                                                          0x3d47
-+#define mmUVD_FW_STATUS                                                         0x3d57
-+#define mmUVD_LMI_ADDR_EXT                                                      0x3d65
-+#define mmUVD_LMI_CTRL                                                          0x3d66
-+#define mmUVD_LMI_STATUS                                                        0x3d67
-+#define mmUVD_LMI_SWAP_CNTL                                                     0x3d6d
-+#define mmUVD_MP_SWAP_CNTL                                                      0x3d6f
-+#define mmUVD_MPC_CNTL                                                          0x3d77
-+#define mmUVD_MPC_SET_MUXA0                                                     0x3d79
-+#define mmUVD_MPC_SET_MUXA1                                                     0x3d7a
-+#define mmUVD_MPC_SET_MUXB0                                                     0x3d7b
-+#define mmUVD_MPC_SET_MUXB1                                                     0x3d7c
-+#define mmUVD_MPC_SET_MUX                                                       0x3d7d
-+#define mmUVD_MPC_SET_ALU                                                       0x3d7e
-+#define mmUVD_VCPU_CACHE_OFFSET0                                                0x3d82
-+#define mmUVD_VCPU_CACHE_SIZE0                                                  0x3d83
-+#define mmUVD_VCPU_CACHE_OFFSET1                                                0x3d84
-+#define mmUVD_VCPU_CACHE_SIZE1                                                  0x3d85
-+#define mmUVD_VCPU_CACHE_OFFSET2                                                0x3d86
-+#define mmUVD_VCPU_CACHE_SIZE2                                                  0x3d87
-+#define mmUVD_VCPU_CNTL                                                         0x3d98
-+#define mmUVD_SOFT_RESET                                                        0x3da0
-+#define mmUVD_RBC_IB_BASE                                                       0x3da1
-+#define mmUVD_RBC_IB_SIZE                                                       0x3da2
-+#define mmUVD_RBC_RB_BASE                                                       0x3da3
-+#define mmUVD_RBC_RB_RPTR                                                       0x3da4
-+#define mmUVD_RBC_RB_WPTR                                                       0x3da5
-+#define mmUVD_RBC_RB_WPTR_CNTL                                                  0x3da6
-+#define mmUVD_RBC_RB_CNTL                                                       0x3da9
-+#define mmUVD_RBC_RB_RPTR_ADDR                                                  0x3daa
-+#define mmUVD_STATUS                                                            0x3daf
-+#define mmUVD_SEMA_TIMEOUT_STATUS                                               0x3db0
-+#define mmUVD_SEMA_WAIT_INCOMPLETE_TIMEOUT_CNTL                                 0x3db1
-+#define mmUVD_SEMA_WAIT_FAULT_TIMEOUT_CNTL                                      0x3db2
-+#define mmUVD_SEMA_SIGNAL_INCOMPLETE_TIMEOUT_CNTL                               0x3db3
-+#define mmUVD_CONTEXT_ID                                                        0x3dbd
-+#define mmUVD_RBC_IB_SIZE_UPDATE                                                0x3df1
-+#define ixUVD_LMI_CACHE_CTRL                                                    0x9b
-+#define ixUVD_LMI_SWAP_CNTL2                                                    0xaa
-+#define ixUVD_LMI_ADDR_EXT2                                                     0xab
-+#define ixUVD_CGC_MEM_CTRL                                                      0xc0
-+#define ixUVD_CGC_CTRL2                                                         0xc1
-+#define mmUVD_PGFSM_CONFIG                                                      0x38f8
-+#define mmUVD_PGFSM_READ_TILE1                                                  0x38fa
-+#define mmUVD_PGFSM_READ_TILE2                                                  0x38fb
-+#define mmUVD_POWER_STATUS                                                      0x38fc
-+#define ixUVD_MIF_CURR_ADDR_CONFIG                                              0x48
-+#define ixUVD_MIF_REF_ADDR_CONFIG                                               0x4c
-+#define ixUVD_MIF_RECON1_ADDR_CONFIG                                            0x114
++#include "amdgpu.h"
++#include "amdgpu_uvd.h"
++#include "sid.h"
 +
-+#endif /* UVD_3_1_D_H */
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_3_1_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_3_1_sh_mask.h
-new file mode 100644
-index 000000000000..eb6d9b62496b
---- /dev/null
-+++ b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_3_1_sh_mask.h
-@@ -0,0 +1,804 @@
-+/*
-+ * UVD_3_1 Register documentation
++#include "uvd/uvd_3_1_d.h"
++#include "uvd/uvd_3_1_sh_mask.h"
++
++#include "oss/oss_1_0_d.h"
++#include "oss/oss_1_0_sh_mask.h"
++
++/**
++ * uvd_v3_1_ring_get_rptr - get read pointer
 + *
-+ * Copyright (C) 2020  Advanced Micro Devices, Inc.
++ * @ring: amdgpu_ring pointer
++ *
++ * Returns the current hardware read pointer
++ */
++static uint64_t uvd_v3_1_ring_get_rptr(struct amdgpu_ring *ring)
++{
++    struct amdgpu_device *adev = ring->adev;
++
++    return RREG32(mmUVD_RBC_RB_RPTR);
++}
++
++/**
++ * uvd_v3_1_ring_get_wptr - get write pointer
++ *
++ * @ring: amdgpu_ring pointer
++ *
++ * Returns the current hardware write pointer
++ */
++static uint64_t uvd_v3_1_ring_get_wptr(struct amdgpu_ring *ring)
++{
++    struct amdgpu_device *adev = ring->adev;
++
++    return RREG32(mmUVD_RBC_RB_WPTR);
++}
++
++/**
++ * uvd_v3_1_ring_set_wptr - set write pointer
++ *
++ * @ring: amdgpu_ring pointer
++ *
++ * Commits the write pointer to the hardware
++ */
++static void uvd_v3_1_ring_set_wptr(struct amdgpu_ring *ring)
++{
++    struct amdgpu_device *adev = ring->adev;
++
++    WREG32(mmUVD_RBC_RB_WPTR, lower_32_bits(ring->wptr));
++}
++
++/**
++ * uvd_v3_1_ring_emit_ib - execute indirect buffer
++ *
++ * @ring: amdgpu_ring pointer
++ * @ib: indirect buffer to execute
++ *
++ * Write ring commands to execute the indirect buffer
++ */
++static void uvd_v3_1_ring_emit_ib(struct amdgpu_ring *ring,
++                                  struct amdgpu_job *job,
++                                  struct amdgpu_ib *ib,
++                                  uint32_t flags)
++{
++    amdgpu_ring_write(ring, PACKET0(mmUVD_RBC_IB_BASE, 0));
++    amdgpu_ring_write(ring, ib->gpu_addr);
++    amdgpu_ring_write(ring, PACKET0(mmUVD_RBC_IB_SIZE, 0));
++    amdgpu_ring_write(ring, ib->length_dw);
++}
++
++/**
++ * uvd_v3_1_ring_emit_fence - emit an fence & trap command
++ *
++ * @ring: amdgpu_ring pointer
++ * @fence: fence to emit
++ *
++ * Write a fence and a trap command to the ring.
++ */
++static void uvd_v3_1_ring_emit_fence(struct amdgpu_ring *ring, u64 addr, u64 seq,
++                                     unsigned flags)
++{
++    WARN_ON(flags & AMDGPU_FENCE_FLAG_64BIT);
++
++    amdgpu_ring_write(ring, PACKET0(mmUVD_CONTEXT_ID, 0));
++    amdgpu_ring_write(ring, seq);
++    amdgpu_ring_write(ring, PACKET0(mmUVD_GPCOM_VCPU_DATA0, 0));
++    amdgpu_ring_write(ring, addr & 0xffffffff);
++    amdgpu_ring_write(ring, PACKET0(mmUVD_GPCOM_VCPU_DATA1, 0));
++    amdgpu_ring_write(ring, upper_32_bits(addr) & 0xff);
++    amdgpu_ring_write(ring, PACKET0(mmUVD_GPCOM_VCPU_CMD, 0));
++    amdgpu_ring_write(ring, 0);
++
++    amdgpu_ring_write(ring, PACKET0(mmUVD_GPCOM_VCPU_DATA0, 0));
++    amdgpu_ring_write(ring, 0);
++    amdgpu_ring_write(ring, PACKET0(mmUVD_GPCOM_VCPU_DATA1, 0));
++    amdgpu_ring_write(ring, 0);
++    amdgpu_ring_write(ring, PACKET0(mmUVD_GPCOM_VCPU_CMD, 0));
++    amdgpu_ring_write(ring, 2);
++}
++
++/**
++ * uvd_v3_1_ring_test_ring - register write test
++ *
++ * @ring: amdgpu_ring pointer
++ *
++ * Test if we can successfully write to the context register
++ */
++static int uvd_v3_1_ring_test_ring(struct amdgpu_ring *ring)
++{
++    struct amdgpu_device *adev = ring->adev;
++    uint32_t tmp = 0;
++    unsigned i;
++    int r;
++
++    WREG32(mmUVD_CONTEXT_ID, 0xCAFEDEAD);
++    r = amdgpu_ring_alloc(ring, 3);
++    if (r)
++        return r;
++
++    amdgpu_ring_write(ring, PACKET0(mmUVD_CONTEXT_ID, 0));
++    amdgpu_ring_write(ring, 0xDEADBEEF);
++    amdgpu_ring_commit(ring);
++    for (i = 0; i < adev->usec_timeout; i++) {
++        tmp = RREG32(mmUVD_CONTEXT_ID);
++        if (tmp == 0xDEADBEEF)
++            break;
++        udelay(1);
++    }
++
++    if (i >= adev->usec_timeout)
++        r = -ETIMEDOUT;
++
++    return r;
++}
++
++static void uvd_v3_1_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
++{
++    int i;
++
++    WARN_ON(ring->wptr % 2 || count % 2);
++
++    for (i = 0; i < count / 2; i++) {
++        amdgpu_ring_write(ring, PACKET0(mmUVD_NO_OP, 0));
++        amdgpu_ring_write(ring, 0);
++    }
++}
++
++static const struct amdgpu_ring_funcs uvd_v3_1_ring_funcs = {
++    .type = AMDGPU_RING_TYPE_UVD,
++    .align_mask = 0xf,
++    .support_64bit_ptrs = false,
++    .no_user_fence = true,
++    .get_rptr = uvd_v3_1_ring_get_rptr,
++    .get_wptr = uvd_v3_1_ring_get_wptr,
++    .set_wptr = uvd_v3_1_ring_set_wptr,
++    .parse_cs = amdgpu_uvd_ring_parse_cs,
++    .emit_frame_size =
++            14, /* uvd_v3_1_ring_emit_fence  x1 no user fence */
++    .emit_ib_size = 4, /* uvd_v3_1_ring_emit_ib */
++    .emit_ib = uvd_v3_1_ring_emit_ib,
++    .emit_fence = uvd_v3_1_ring_emit_fence,
++    .test_ring = uvd_v3_1_ring_test_ring,
++    .test_ib = amdgpu_uvd_ring_test_ib,
++    .insert_nop = uvd_v3_1_ring_insert_nop,
++    .pad_ib = amdgpu_ring_generic_pad_ib,
++    .begin_use = amdgpu_uvd_ring_begin_use,
++    .end_use = amdgpu_uvd_ring_end_use,
++};
++
++static void uvd_v3_1_set_ring_funcs(struct amdgpu_device *adev)
++{
++    adev->uvd.inst->ring.funcs = &uvd_v3_1_ring_funcs;
++}
++
++static void uvd_v3_1_set_dcm(struct amdgpu_device *adev,
++                             bool sw_mode)
++{
++    u32 tmp, tmp2;
++
++    WREG32_FIELD(UVD_CGC_GATE, REGS, 0);
++
++    tmp = RREG32(mmUVD_CGC_CTRL);
++    tmp &= ~(UVD_CGC_CTRL__CLK_OFF_DELAY_MASK | UVD_CGC_CTRL__CLK_GATE_DLY_TIMER_MASK);
++    tmp |= UVD_CGC_CTRL__DYN_CLOCK_MODE_MASK |
++            (1 << UVD_CGC_CTRL__CLK_GATE_DLY_TIMER__SHIFT) |
++            (4 << UVD_CGC_CTRL__CLK_OFF_DELAY__SHIFT);
++
++    if (sw_mode) {
++        tmp &= ~0x7ffff800;
++        tmp2 = UVD_CGC_CTRL2__DYN_OCLK_RAMP_EN_MASK |
++                UVD_CGC_CTRL2__DYN_RCLK_RAMP_EN_MASK |
++                (7 << UVD_CGC_CTRL2__GATER_DIV_ID__SHIFT);
++    } else {
++        tmp |= 0x7ffff800;
++        tmp2 = 0;
++    }
++
++    WREG32(mmUVD_CGC_CTRL, tmp);
++    WREG32_UVD_CTX(ixUVD_CGC_CTRL2, tmp2);
++}
++
++/**
++ * uvd_v3_1_mc_resume - memory controller programming
++ *
++ * @adev: amdgpu_device pointer
++ *
++ * Let the UVD memory controller know it's offsets
++ */
++static void uvd_v3_1_mc_resume(struct amdgpu_device *adev)
++{
++    uint64_t addr;
++    uint32_t size;
++
++    /* programm the VCPU memory controller bits 0-27 */
++    addr = (adev->uvd.inst->gpu_addr + AMDGPU_UVD_FIRMWARE_OFFSET) >> 3;
++    size = AMDGPU_UVD_FIRMWARE_SIZE(adev) >> 3;
++    WREG32(mmUVD_VCPU_CACHE_OFFSET0, addr);
++    WREG32(mmUVD_VCPU_CACHE_SIZE0, size);
++
++    addr += size;
++    size = AMDGPU_UVD_HEAP_SIZE >> 3;
++    WREG32(mmUVD_VCPU_CACHE_OFFSET1, addr);
++    WREG32(mmUVD_VCPU_CACHE_SIZE1, size);
++
++    addr += size;
++    size = (AMDGPU_UVD_STACK_SIZE +
++            (AMDGPU_UVD_SESSION_SIZE * adev->uvd.max_handles)) >> 3;
++    WREG32(mmUVD_VCPU_CACHE_OFFSET2, addr);
++    WREG32(mmUVD_VCPU_CACHE_SIZE2, size);
++
++    /* bits 28-31 */
++    addr = (adev->uvd.inst->gpu_addr >> 28) & 0xF;
++    WREG32(mmUVD_LMI_ADDR_EXT, (addr << 12) | (addr << 0));
++
++    /* bits 32-39 */
++    addr = (adev->uvd.inst->gpu_addr >> 32) & 0xFF;
++    WREG32(mmUVD_LMI_EXT40_ADDR, addr | (0x9 << 16) | (0x1 << 31));
++
++    WREG32(mmUVD_UDEC_ADDR_CONFIG, adev->gfx.config.gb_addr_config);
++    WREG32(mmUVD_UDEC_DB_ADDR_CONFIG, adev->gfx.config.gb_addr_config);
++    WREG32(mmUVD_UDEC_DBW_ADDR_CONFIG, adev->gfx.config.gb_addr_config);
++}
++
++/**
++ * uvd_v3_1_fw_validate - FW validation operation
++ *
++ * @adev: amdgpu_device pointer
++ *
++ * Initialate and check UVD validation.
++ */
++static int uvd_v3_1_fw_validate(struct amdgpu_device *adev)
++{
++    void *ptr;
++    uint32_t ucode_len, i;
++    uint32_t keysel;
++
++    ptr = adev->uvd.inst[0].cpu_addr;
++    ptr += 192 + 16;
++    memcpy(&ucode_len, ptr, 4);
++    ptr += ucode_len;
++    memcpy(&keysel, ptr, 4);
++
++    WREG32(mmUVD_FW_START, keysel);
++
++    for (i = 0; i < 10; ++i) {
++        mdelay(10);
++        if (RREG32(mmUVD_FW_STATUS) & UVD_FW_STATUS__DONE_MASK)
++            break;
++    }
++
++    if (i == 10)
++        return -ETIMEDOUT;
++
++    if (!(RREG32(mmUVD_FW_STATUS) & UVD_FW_STATUS__PASS_MASK))
++        return -EINVAL;
++
++    for (i = 0; i < 10; ++i) {
++        mdelay(10);
++        if (!(RREG32(mmUVD_FW_STATUS) & UVD_FW_STATUS__BUSY_MASK))
++            break;
++    }
++
++    if (i == 10)
++        return -ETIMEDOUT;
++
++    return 0;
++}
++
++/**
++ * uvd_v3_1_start - start UVD block
++ *
++ * @adev: amdgpu_device pointer
++ *
++ * Setup and start the UVD block
++ */
++static int uvd_v3_1_start(struct amdgpu_device *adev)
++{
++    struct amdgpu_ring *ring = &adev->uvd.inst->ring;
++    uint32_t rb_bufsz;
++    int i, j, r;
++    u32 tmp;
++    /* disable byte swapping */
++    u32 lmi_swap_cntl = 0;
++    u32 mp_swap_cntl = 0;
++
++    /* set uvd busy */
++    WREG32_P(mmUVD_STATUS, 1<<2, ~(1<<2));
++
++    uvd_v3_1_set_dcm(adev, true);
++    WREG32(mmUVD_CGC_GATE, 0);
++
++    /* take UVD block out of reset */
++    WREG32_P(mmSRBM_SOFT_RESET, 0, ~SRBM_SOFT_RESET__SOFT_RESET_UVD_MASK);
++    mdelay(5);
++
++    /* enable VCPU clock */
++    WREG32(mmUVD_VCPU_CNTL,  1 << 9);
++
++    /* disable interupt */
++    WREG32_P(mmUVD_MASTINT_EN, 0, ~(1 << 1));
++
++#ifdef __BIG_ENDIAN
++    /* swap (8 in 32) RB and IB */
++    lmi_swap_cntl = 0xa;
++    mp_swap_cntl = 0;
++#endif
++    WREG32(mmUVD_LMI_SWAP_CNTL, lmi_swap_cntl);
++    WREG32(mmUVD_MP_SWAP_CNTL, mp_swap_cntl);
++
++    /* initialize UVD memory controller */
++    WREG32(mmUVD_LMI_CTRL, 0x40 | (1 << 8) | (1 << 13) |
++           (1 << 21) | (1 << 9) | (1 << 20));
++
++    tmp = RREG32(mmUVD_MPC_CNTL);
++    WREG32(mmUVD_MPC_CNTL, tmp | 0x10);
++
++    WREG32(mmUVD_MPC_SET_MUXA0, 0x40c2040);
++    WREG32(mmUVD_MPC_SET_MUXA1, 0x0);
++    WREG32(mmUVD_MPC_SET_MUXB0, 0x40c2040);
++    WREG32(mmUVD_MPC_SET_MUXB1, 0x0);
++    WREG32(mmUVD_MPC_SET_ALU, 0);
++    WREG32(mmUVD_MPC_SET_MUX, 0x88);
++
++    tmp = RREG32_UVD_CTX(ixUVD_LMI_CACHE_CTRL);
++    WREG32_UVD_CTX(ixUVD_LMI_CACHE_CTRL, tmp & (~0x10));
++
++    /* enable UMC */
++    WREG32_P(mmUVD_LMI_CTRL2, 0, ~(1 << 8));
++
++    WREG32_P(mmUVD_SOFT_RESET, 0, ~UVD_SOFT_RESET__LMI_SOFT_RESET_MASK);
++
++    WREG32_P(mmUVD_SOFT_RESET, 0, ~UVD_SOFT_RESET__LMI_UMC_SOFT_RESET_MASK);
++
++    WREG32_P(mmUVD_SOFT_RESET, 0, ~UVD_SOFT_RESET__VCPU_SOFT_RESET_MASK);
++
++    mdelay(10);
++
++    for (i = 0; i < 10; ++i) {
++        uint32_t status;
++        for (j = 0; j < 100; ++j) {
++            status = RREG32(mmUVD_STATUS);
++            if (status & 2)
++                break;
++            mdelay(10);
++        }
++        r = 0;
++        if (status & 2)
++            break;
++
++        DRM_ERROR("UVD not responding, trying to reset the VCPU!!!\n");
++        WREG32_P(mmUVD_SOFT_RESET, UVD_SOFT_RESET__VCPU_SOFT_RESET_MASK,
++                 ~UVD_SOFT_RESET__VCPU_SOFT_RESET_MASK);
++        mdelay(10);
++        WREG32_P(mmUVD_SOFT_RESET, 0, ~UVD_SOFT_RESET__VCPU_SOFT_RESET_MASK);
++        mdelay(10);
++        r = -1;
++    }
++
++    if (r) {
++        DRM_ERROR("UVD not responding, giving up!!!\n");
++        return r;
++    }
++
++    /* enable interupt */
++    WREG32_P(mmUVD_MASTINT_EN, 3<<1, ~(3 << 1));
++
++    WREG32_P(mmUVD_STATUS, 0, ~(1<<2));
++
++    /* force RBC into idle state */
++    WREG32(mmUVD_RBC_RB_CNTL, 0x11010101);
++
++    /* Set the write pointer delay */
++    WREG32(mmUVD_RBC_RB_WPTR_CNTL, 0);
++
++    /* programm the 4GB memory segment for rptr and ring buffer */
++    WREG32(mmUVD_LMI_EXT40_ADDR, upper_32_bits(ring->gpu_addr) |
++           (0x7 << 16) | (0x1 << 31));
++
++    /* Initialize the ring buffer's read and write pointers */
++    WREG32(mmUVD_RBC_RB_RPTR, 0x0);
++
++    ring->wptr = RREG32(mmUVD_RBC_RB_RPTR);
++    WREG32(mmUVD_RBC_RB_WPTR, lower_32_bits(ring->wptr));
++
++    /* set the ring address */
++    WREG32(mmUVD_RBC_RB_BASE, ring->gpu_addr);
++
++    /* Set ring buffer size */
++    rb_bufsz = order_base_2(ring->ring_size);
++    rb_bufsz = (0x1 << 8) | rb_bufsz;
++    WREG32_P(mmUVD_RBC_RB_CNTL, rb_bufsz, ~0x11f1f);
++
++    return 0;
++}
++
++/**
++ * uvd_v3_1_stop - stop UVD block
++ *
++ * @adev: amdgpu_device pointer
++ *
++ * stop the UVD block
++ */
++static void uvd_v3_1_stop(struct amdgpu_device *adev)
++{
++    uint32_t i, j;
++    uint32_t status;
++
++    WREG32(mmUVD_RBC_RB_CNTL, 0x11010101);
++
++    for (i = 0; i < 10; ++i) {
++        for (j = 0; j < 100; ++j) {
++            status = RREG32(mmUVD_STATUS);
++            if (status & 2)
++                break;
++            mdelay(1);
++        }
++        if (status & 2)
++            break;
++    }
++
++    for (i = 0; i < 10; ++i) {
++        for (j = 0; j < 100; ++j) {
++            status = RREG32(mmUVD_LMI_STATUS);
++            if (status & 0xf)
++                break;
++            mdelay(1);
++        }
++        if (status & 0xf)
++            break;
++    }
++
++    /* Stall UMC and register bus before resetting VCPU */
++    WREG32_P(mmUVD_LMI_CTRL2, 1 << 8, ~(1 << 8));
++
++    for (i = 0; i < 10; ++i) {
++        for (j = 0; j < 100; ++j) {
++            status = RREG32(mmUVD_LMI_STATUS);
++            if (status & 0x240)
++                break;
++            mdelay(1);
++        }
++        if (status & 0x240)
++            break;
++    }
++
++    WREG32_P(0x3D49, 0, ~(1 << 2));
++
++    WREG32_P(mmUVD_VCPU_CNTL, 0, ~(1 << 9));
++
++    /* put LMI, VCPU, RBC etc... into reset */
++    WREG32(mmUVD_SOFT_RESET, UVD_SOFT_RESET__LMI_SOFT_RESET_MASK |
++           UVD_SOFT_RESET__VCPU_SOFT_RESET_MASK |
++           UVD_SOFT_RESET__LMI_UMC_SOFT_RESET_MASK);
++
++    WREG32(mmUVD_STATUS, 0);
++
++    uvd_v3_1_set_dcm(adev, false);
++}
++
++static int uvd_v3_1_set_interrupt_state(struct amdgpu_device *adev,
++                                        struct amdgpu_irq_src *source,
++                                        unsigned type,
++                                        enum amdgpu_interrupt_state state)
++{
++    return 0;
++}
++
++static int uvd_v3_1_process_interrupt(struct amdgpu_device *adev,
++                                      struct amdgpu_irq_src *source,
++                                      struct amdgpu_iv_entry *entry)
++{
++    DRM_DEBUG("IH: UVD TRAP\n");
++    amdgpu_fence_process(&adev->uvd.inst->ring);
++    return 0;
++}
++
++
++static const struct amdgpu_irq_src_funcs uvd_v3_1_irq_funcs = {
++    .set = uvd_v3_1_set_interrupt_state,
++    .process = uvd_v3_1_process_interrupt,
++};
++
++static void uvd_v3_1_set_irq_funcs(struct amdgpu_device *adev)
++{
++    adev->uvd.inst->irq.num_types = 1;
++    adev->uvd.inst->irq.funcs = &uvd_v3_1_irq_funcs;
++}
++
++
++static int uvd_v3_1_early_init(void *handle)
++{
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++    adev->uvd.num_uvd_inst = 1;
++
++    uvd_v3_1_set_ring_funcs(adev);
++    uvd_v3_1_set_irq_funcs(adev);
++
++    return 0;
++}
++
++static int uvd_v3_1_sw_init(void *handle)
++{
++    struct amdgpu_ring *ring;
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++    int r;
++
++    /* UVD TRAP */
++    r = amdgpu_irq_add_id(adev, AMDGPU_IRQ_CLIENTID_LEGACY, 124, &adev->uvd.inst->irq);
++    if (r)
++        return r;
++
++    r = amdgpu_uvd_sw_init(adev);
++    if (r)
++        return r;
++
++    ring = &adev->uvd.inst->ring;
++    sprintf(ring->name, "uvd");
++    r = amdgpu_ring_init(adev, ring, 512, &adev->uvd.inst->irq, 0,
++                         AMDGPU_RING_PRIO_DEFAULT);
++    if (r)
++        return r;
++
++    r = amdgpu_uvd_resume(adev);
++    if (r)
++        return r;
++
++    r = amdgpu_uvd_entity_init(adev);
++
++    return r;
++}
++
++static int uvd_v3_1_sw_fini(void *handle)
++{
++    int r;
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++    r = amdgpu_uvd_suspend(adev);
++    if (r)
++        return r;
++
++    return amdgpu_uvd_sw_fini(adev);
++}
++
++static void uvd_v3_1_enable_mgcg(struct amdgpu_device *adev,
++                                 bool enable)
++{
++    u32 orig, data;
++
++    if (enable && (adev->cg_flags & AMD_CG_SUPPORT_UVD_MGCG)) {
++        data = RREG32_UVD_CTX(ixUVD_CGC_MEM_CTRL);
++        data |= 0x3fff;
++        WREG32_UVD_CTX(ixUVD_CGC_MEM_CTRL, data);
++
++        orig = data = RREG32(mmUVD_CGC_CTRL);
++        data |= UVD_CGC_CTRL__DYN_CLOCK_MODE_MASK;
++        if (orig != data)
++            WREG32(mmUVD_CGC_CTRL, data);
++    } else {
++        data = RREG32_UVD_CTX(ixUVD_CGC_MEM_CTRL);
++        data &= ~0x3fff;
++        WREG32_UVD_CTX(ixUVD_CGC_MEM_CTRL, data);
++
++        orig = data = RREG32(mmUVD_CGC_CTRL);
++        data &= ~UVD_CGC_CTRL__DYN_CLOCK_MODE_MASK;
++        if (orig != data)
++            WREG32(mmUVD_CGC_CTRL, data);
++    }
++}
++
++/**
++ * uvd_v3_1_hw_init - start and test UVD block
++ *
++ * @adev: amdgpu_device pointer
++ *
++ * Initialize the hardware, boot up the VCPU and do some testing
++ */
++static int uvd_v3_1_hw_init(void *handle)
++{
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++    struct amdgpu_ring *ring = &adev->uvd.inst->ring;
++    uint32_t tmp;
++    int r;
++
++    uvd_v3_1_mc_resume(adev);
++
++    r = uvd_v3_1_fw_validate(adev);
++    if (r) {
++        DRM_ERROR("amdgpu: UVD Firmware validate fail (%d).\n", r);
++        return r;
++    }
++
++    uvd_v3_1_enable_mgcg(adev, true);
++    amdgpu_asic_set_uvd_clocks(adev, 53300, 40000);
++
++    uvd_v3_1_start(adev);
++
++    r = amdgpu_ring_test_helper(ring);
++    if (r)
++        DRM_ERROR("amdgpu: UVD ring test fail (%d).\n", r);
++    goto done;
++
++    r = amdgpu_ring_alloc(ring, 10);
++    if (r) {
++        DRM_ERROR("amdgpu: ring failed to lock UVD ring (%d).\n", r);
++        goto done;
++    }
++
++    tmp = PACKET0(mmUVD_SEMA_WAIT_FAULT_TIMEOUT_CNTL, 0);
++    amdgpu_ring_write(ring, tmp);
++    amdgpu_ring_write(ring, 0xFFFFF);
++
++    tmp = PACKET0(mmUVD_SEMA_WAIT_INCOMPLETE_TIMEOUT_CNTL, 0);
++    amdgpu_ring_write(ring, tmp);
++    amdgpu_ring_write(ring, 0xFFFFF);
++
++    tmp = PACKET0(mmUVD_SEMA_SIGNAL_INCOMPLETE_TIMEOUT_CNTL, 0);
++    amdgpu_ring_write(ring, tmp);
++    amdgpu_ring_write(ring, 0xFFFFF);
++
++    /* Clear timeout status bits */
++    amdgpu_ring_write(ring, PACKET0(mmUVD_SEMA_TIMEOUT_STATUS, 0));
++    amdgpu_ring_write(ring, 0x8);
++
++    amdgpu_ring_write(ring, PACKET0(mmUVD_SEMA_CNTL, 0));
++    amdgpu_ring_write(ring, 3);
++
++    amdgpu_ring_commit(ring);
++
++done:
++    if (!r)
++        DRM_INFO("UVD initialized successfully.\n");
++
++    return r;
++}
++
++/**
++ * uvd_v3_1_hw_fini - stop the hardware block
++ *
++ * @adev: amdgpu_device pointer
++ *
++ * Stop the UVD block, mark ring as not ready any more
++ */
++static int uvd_v3_1_hw_fini(void *handle)
++{
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++    if (RREG32(mmUVD_STATUS) != 0)
++        uvd_v3_1_stop(adev);
++
++    return 0;
++}
++
++static int uvd_v3_1_suspend(void *handle)
++{
++    int r;
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++    r = uvd_v3_1_hw_fini(adev);
++    if (r)
++        return r;
++
++    return amdgpu_uvd_suspend(adev);
++}
++
++static int uvd_v3_1_resume(void *handle)
++{
++    int r;
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++    r = amdgpu_uvd_resume(adev);
++    if (r)
++        return r;
++
++    return uvd_v3_1_hw_init(adev);
++}
++
++static bool uvd_v3_1_is_idle(void *handle)
++{
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++    return !(RREG32(mmSRBM_STATUS) & SRBM_STATUS__UVD_BUSY_MASK);
++}
++
++static int uvd_v3_1_wait_for_idle(void *handle)
++{
++    unsigned i;
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++    for (i = 0; i < adev->usec_timeout; i++) {
++        if (!(RREG32(mmSRBM_STATUS) & SRBM_STATUS__UVD_BUSY_MASK))
++            return 0;
++    }
++    return -ETIMEDOUT;
++}
++
++static int uvd_v3_1_soft_reset(void *handle)
++{
++    struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++    uvd_v3_1_stop(adev);
++
++    WREG32_P(mmSRBM_SOFT_RESET, SRBM_SOFT_RESET__SOFT_RESET_UVD_MASK,
++             ~SRBM_SOFT_RESET__SOFT_RESET_UVD_MASK);
++    mdelay(5);
++
++    return uvd_v3_1_start(adev);
++}
++
++static int uvd_v3_1_set_clockgating_state(void *handle,
++                                          enum amd_clockgating_state state)
++{
++    return 0;
++}
++
++static int uvd_v3_1_set_powergating_state(void *handle,
++                                          enum amd_powergating_state state)
++{
++    return 0;
++}
++
++static const struct amd_ip_funcs uvd_v3_1_ip_funcs = {
++    .name = "uvd_v3_1",
++    .early_init = uvd_v3_1_early_init,
++    .late_init = NULL,
++    .sw_init = uvd_v3_1_sw_init,
++    .sw_fini = uvd_v3_1_sw_fini,
++    .hw_init = uvd_v3_1_hw_init,
++    .hw_fini = uvd_v3_1_hw_fini,
++    .suspend = uvd_v3_1_suspend,
++    .resume = uvd_v3_1_resume,
++    .is_idle = uvd_v3_1_is_idle,
++    .wait_for_idle = uvd_v3_1_wait_for_idle,
++    .soft_reset = uvd_v3_1_soft_reset,
++    .set_clockgating_state = uvd_v3_1_set_clockgating_state,
++    .set_powergating_state = uvd_v3_1_set_powergating_state,
++};
++
++const struct amdgpu_ip_block_version uvd_v3_1_ip_block =
++{
++    .type = AMD_IP_BLOCK_TYPE_UVD,
++    .major = 3,
++    .minor = 1,
++    .rev = 0,
++    .funcs = &uvd_v3_1_ip_funcs,
++};
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.h b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.h
+new file mode 100644
+index 000000000000..8c2f9b207574
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.h
+@@ -0,0 +1,29 @@
++/*
++ * Copyright 2020 Advanced Micro Devices, Inc.
 + *
 + * Permission is hereby granted, free of charge, to any person obtaining a
 + * copy of this software and associated documentation files (the "Software"),
@@ -230,798 +922,25 @@ index 000000000000..eb6d9b62496b
 + * and/or sell copies of the Software, and to permit persons to whom the
 + * Software is furnished to do so, subject to the following conditions:
 + *
-+ * The above copyright notice and this permission notice shall be included
-+ * in all copies or substantial portions of the Software.
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
 + *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
-+ * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
 + */
 +
-+#ifndef UVD_3_1_SH_MASK_H
-+#define UVD_3_1_SH_MASK_H
++#ifndef __UVD_V3_1_H__
++#define __UVD_V3_1_H__
 +
-+#define UVD_SEMA_ADDR_LOW__ADDR_22_3_MASK 0xfffff
-+#define UVD_SEMA_ADDR_LOW__ADDR_22_3__SHIFT 0x0
-+#define UVD_SEMA_ADDR_HIGH__ADDR_42_23_MASK 0xfffff
-+#define UVD_SEMA_ADDR_HIGH__ADDR_42_23__SHIFT 0x0
-+#define UVD_SEMA_CMD__REQ_CMD_MASK 0xf
-+#define UVD_SEMA_CMD__REQ_CMD__SHIFT 0x0
-+#define UVD_SEMA_CMD__WR_PHASE_MASK 0x30
-+#define UVD_SEMA_CMD__WR_PHASE__SHIFT 0x4
-+#define UVD_SEMA_CMD__MODE_MASK 0x40
-+#define UVD_SEMA_CMD__MODE__SHIFT 0x6
-+#define UVD_SEMA_CMD__VMID_EN_MASK 0x80
-+#define UVD_SEMA_CMD__VMID_EN__SHIFT 0x7
-+#define UVD_SEMA_CMD__VMID_MASK 0xf00
-+#define UVD_SEMA_CMD__VMID__SHIFT 0x8
-+#define UVD_GPCOM_VCPU_CMD__CMD_SEND_MASK 0x1
-+#define UVD_GPCOM_VCPU_CMD__CMD_SEND__SHIFT 0x0
-+#define UVD_GPCOM_VCPU_CMD__CMD_MASK 0x7ffffffe
-+#define UVD_GPCOM_VCPU_CMD__CMD__SHIFT 0x1
-+#define UVD_GPCOM_VCPU_CMD__CMD_SOURCE_MASK 0x80000000
-+#define UVD_GPCOM_VCPU_CMD__CMD_SOURCE__SHIFT 0x1f
-+#define UVD_GPCOM_VCPU_DATA0__DATA0_MASK 0xffffffff
-+#define UVD_GPCOM_VCPU_DATA0__DATA0__SHIFT 0x0
-+#define UVD_GPCOM_VCPU_DATA1__DATA1_MASK 0xffffffff
-+#define UVD_GPCOM_VCPU_DATA1__DATA1__SHIFT 0x0
-+#define UVD_ENGINE_CNTL__ENGINE_START_MASK 0x1
-+#define UVD_ENGINE_CNTL__ENGINE_START__SHIFT 0x0
-+#define UVD_ENGINE_CNTL__ENGINE_START_MODE_MASK 0x2
-+#define UVD_ENGINE_CNTL__ENGINE_START_MODE__SHIFT 0x1
-+#define UVD_UDEC_ADDR_CONFIG__NUM_PIPES_MASK 0x7
-+#define UVD_UDEC_ADDR_CONFIG__NUM_PIPES__SHIFT 0x0
-+#define UVD_UDEC_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE_MASK 0x70
-+#define UVD_UDEC_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE__SHIFT 0x4
-+#define UVD_UDEC_ADDR_CONFIG__BANK_INTERLEAVE_SIZE_MASK 0x700
-+#define UVD_UDEC_ADDR_CONFIG__BANK_INTERLEAVE_SIZE__SHIFT 0x8
-+#define UVD_UDEC_ADDR_CONFIG__NUM_SHADER_ENGINES_MASK 0x3000
-+#define UVD_UDEC_ADDR_CONFIG__NUM_SHADER_ENGINES__SHIFT 0xc
-+#define UVD_UDEC_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE_MASK 0x70000
-+#define UVD_UDEC_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE__SHIFT 0x10
-+#define UVD_UDEC_ADDR_CONFIG__NUM_GPUS_MASK 0x700000
-+#define UVD_UDEC_ADDR_CONFIG__NUM_GPUS__SHIFT 0x14
-+#define UVD_UDEC_ADDR_CONFIG__MULTI_GPU_TILE_SIZE_MASK 0x3000000
-+#define UVD_UDEC_ADDR_CONFIG__MULTI_GPU_TILE_SIZE__SHIFT 0x18
-+#define UVD_UDEC_ADDR_CONFIG__ROW_SIZE_MASK 0x30000000
-+#define UVD_UDEC_ADDR_CONFIG__ROW_SIZE__SHIFT 0x1c
-+#define UVD_UDEC_ADDR_CONFIG__NUM_LOWER_PIPES_MASK 0x40000000
-+#define UVD_UDEC_ADDR_CONFIG__NUM_LOWER_PIPES__SHIFT 0x1e
-+#define UVD_UDEC_DB_ADDR_CONFIG__NUM_PIPES_MASK 0x7
-+#define UVD_UDEC_DB_ADDR_CONFIG__NUM_PIPES__SHIFT 0x0
-+#define UVD_UDEC_DB_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE_MASK 0x70
-+#define UVD_UDEC_DB_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE__SHIFT 0x4
-+#define UVD_UDEC_DB_ADDR_CONFIG__BANK_INTERLEAVE_SIZE_MASK 0x700
-+#define UVD_UDEC_DB_ADDR_CONFIG__BANK_INTERLEAVE_SIZE__SHIFT 0x8
-+#define UVD_UDEC_DB_ADDR_CONFIG__NUM_SHADER_ENGINES_MASK 0x3000
-+#define UVD_UDEC_DB_ADDR_CONFIG__NUM_SHADER_ENGINES__SHIFT 0xc
-+#define UVD_UDEC_DB_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE_MASK 0x70000
-+#define UVD_UDEC_DB_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE__SHIFT 0x10
-+#define UVD_UDEC_DB_ADDR_CONFIG__NUM_GPUS_MASK 0x700000
-+#define UVD_UDEC_DB_ADDR_CONFIG__NUM_GPUS__SHIFT 0x14
-+#define UVD_UDEC_DB_ADDR_CONFIG__MULTI_GPU_TILE_SIZE_MASK 0x3000000
-+#define UVD_UDEC_DB_ADDR_CONFIG__MULTI_GPU_TILE_SIZE__SHIFT 0x18
-+#define UVD_UDEC_DB_ADDR_CONFIG__ROW_SIZE_MASK 0x30000000
-+#define UVD_UDEC_DB_ADDR_CONFIG__ROW_SIZE__SHIFT 0x1c
-+#define UVD_UDEC_DB_ADDR_CONFIG__NUM_LOWER_PIPES_MASK 0x40000000
-+#define UVD_UDEC_DB_ADDR_CONFIG__NUM_LOWER_PIPES__SHIFT 0x1e
-+#define UVD_UDEC_DBW_ADDR_CONFIG__NUM_PIPES_MASK 0x7
-+#define UVD_UDEC_DBW_ADDR_CONFIG__NUM_PIPES__SHIFT 0x0
-+#define UVD_UDEC_DBW_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE_MASK 0x70
-+#define UVD_UDEC_DBW_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE__SHIFT 0x4
-+#define UVD_UDEC_DBW_ADDR_CONFIG__BANK_INTERLEAVE_SIZE_MASK 0x700
-+#define UVD_UDEC_DBW_ADDR_CONFIG__BANK_INTERLEAVE_SIZE__SHIFT 0x8
-+#define UVD_UDEC_DBW_ADDR_CONFIG__NUM_SHADER_ENGINES_MASK 0x3000
-+#define UVD_UDEC_DBW_ADDR_CONFIG__NUM_SHADER_ENGINES__SHIFT 0xc
-+#define UVD_UDEC_DBW_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE_MASK 0x70000
-+#define UVD_UDEC_DBW_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE__SHIFT 0x10
-+#define UVD_UDEC_DBW_ADDR_CONFIG__NUM_GPUS_MASK 0x700000
-+#define UVD_UDEC_DBW_ADDR_CONFIG__NUM_GPUS__SHIFT 0x14
-+#define UVD_UDEC_DBW_ADDR_CONFIG__MULTI_GPU_TILE_SIZE_MASK 0x3000000
-+#define UVD_UDEC_DBW_ADDR_CONFIG__MULTI_GPU_TILE_SIZE__SHIFT 0x18
-+#define UVD_UDEC_DBW_ADDR_CONFIG__ROW_SIZE_MASK 0x30000000
-+#define UVD_UDEC_DBW_ADDR_CONFIG__ROW_SIZE__SHIFT 0x1c
-+#define UVD_UDEC_DBW_ADDR_CONFIG__NUM_LOWER_PIPES_MASK 0x40000000
-+#define UVD_UDEC_DBW_ADDR_CONFIG__NUM_LOWER_PIPES__SHIFT 0x1e
-+#define UVD_SEMA_CNTL__SEMAPHORE_EN_MASK 0x1
-+#define UVD_SEMA_CNTL__SEMAPHORE_EN__SHIFT 0x0
-+#define UVD_SEMA_CNTL__ADVANCED_MODE_DIS_MASK 0x2
-+#define UVD_SEMA_CNTL__ADVANCED_MODE_DIS__SHIFT 0x1
-+#define UVD_LMI_EXT40_ADDR__ADDR_MASK 0xff
-+#define UVD_LMI_EXT40_ADDR__ADDR__SHIFT 0x0
-+#define UVD_LMI_EXT40_ADDR__INDEX_MASK 0x1f0000
-+#define UVD_LMI_EXT40_ADDR__INDEX__SHIFT 0x10
-+#define UVD_LMI_EXT40_ADDR__WRITE_ADDR_MASK 0x80000000
-+#define UVD_LMI_EXT40_ADDR__WRITE_ADDR__SHIFT 0x1f
-+#define UVD_CTX_INDEX__INDEX_MASK 0x1ff
-+#define UVD_CTX_INDEX__INDEX__SHIFT 0x0
-+#define UVD_CTX_DATA__DATA_MASK 0xffffffff
-+#define UVD_CTX_DATA__DATA__SHIFT 0x0
-+#define UVD_CGC_GATE__SYS_MASK 0x1
-+#define UVD_CGC_GATE__SYS__SHIFT 0x0
-+#define UVD_CGC_GATE__UDEC_MASK 0x2
-+#define UVD_CGC_GATE__UDEC__SHIFT 0x1
-+#define UVD_CGC_GATE__MPEG2_MASK 0x4
-+#define UVD_CGC_GATE__MPEG2__SHIFT 0x2
-+#define UVD_CGC_GATE__REGS_MASK 0x8
-+#define UVD_CGC_GATE__REGS__SHIFT 0x3
-+#define UVD_CGC_GATE__RBC_MASK 0x10
-+#define UVD_CGC_GATE__RBC__SHIFT 0x4
-+#define UVD_CGC_GATE__LMI_MC_MASK 0x20
-+#define UVD_CGC_GATE__LMI_MC__SHIFT 0x5
-+#define UVD_CGC_GATE__LMI_UMC_MASK 0x40
-+#define UVD_CGC_GATE__LMI_UMC__SHIFT 0x6
-+#define UVD_CGC_GATE__IDCT_MASK 0x80
-+#define UVD_CGC_GATE__IDCT__SHIFT 0x7
-+#define UVD_CGC_GATE__MPRD_MASK 0x100
-+#define UVD_CGC_GATE__MPRD__SHIFT 0x8
-+#define UVD_CGC_GATE__MPC_MASK 0x200
-+#define UVD_CGC_GATE__MPC__SHIFT 0x9
-+#define UVD_CGC_GATE__LBSI_MASK 0x400
-+#define UVD_CGC_GATE__LBSI__SHIFT 0xa
-+#define UVD_CGC_GATE__LRBBM_MASK 0x800
-+#define UVD_CGC_GATE__LRBBM__SHIFT 0xb
-+#define UVD_CGC_GATE__UDEC_RE_MASK 0x1000
-+#define UVD_CGC_GATE__UDEC_RE__SHIFT 0xc
-+#define UVD_CGC_GATE__UDEC_CM_MASK 0x2000
-+#define UVD_CGC_GATE__UDEC_CM__SHIFT 0xd
-+#define UVD_CGC_GATE__UDEC_IT_MASK 0x4000
-+#define UVD_CGC_GATE__UDEC_IT__SHIFT 0xe
-+#define UVD_CGC_GATE__UDEC_DB_MASK 0x8000
-+#define UVD_CGC_GATE__UDEC_DB__SHIFT 0xf
-+#define UVD_CGC_GATE__UDEC_MP_MASK 0x10000
-+#define UVD_CGC_GATE__UDEC_MP__SHIFT 0x10
-+#define UVD_CGC_GATE__WCB_MASK 0x20000
-+#define UVD_CGC_GATE__WCB__SHIFT 0x11
-+#define UVD_CGC_GATE__VCPU_MASK 0x40000
-+#define UVD_CGC_GATE__VCPU__SHIFT 0x12
-+#define UVD_CGC_GATE__SCPU_MASK 0x80000
-+#define UVD_CGC_GATE__SCPU__SHIFT 0x13
-+#define UVD_CGC_STATUS__SYS_SCLK_MASK 0x1
-+#define UVD_CGC_STATUS__SYS_SCLK__SHIFT 0x0
-+#define UVD_CGC_STATUS__SYS_DCLK_MASK 0x2
-+#define UVD_CGC_STATUS__SYS_DCLK__SHIFT 0x1
-+#define UVD_CGC_STATUS__SYS_VCLK_MASK 0x4
-+#define UVD_CGC_STATUS__SYS_VCLK__SHIFT 0x2
-+#define UVD_CGC_STATUS__UDEC_SCLK_MASK 0x8
-+#define UVD_CGC_STATUS__UDEC_SCLK__SHIFT 0x3
-+#define UVD_CGC_STATUS__UDEC_DCLK_MASK 0x10
-+#define UVD_CGC_STATUS__UDEC_DCLK__SHIFT 0x4
-+#define UVD_CGC_STATUS__UDEC_VCLK_MASK 0x20
-+#define UVD_CGC_STATUS__UDEC_VCLK__SHIFT 0x5
-+#define UVD_CGC_STATUS__MPEG2_SCLK_MASK 0x40
-+#define UVD_CGC_STATUS__MPEG2_SCLK__SHIFT 0x6
-+#define UVD_CGC_STATUS__MPEG2_DCLK_MASK 0x80
-+#define UVD_CGC_STATUS__MPEG2_DCLK__SHIFT 0x7
-+#define UVD_CGC_STATUS__MPEG2_VCLK_MASK 0x100
-+#define UVD_CGC_STATUS__MPEG2_VCLK__SHIFT 0x8
-+#define UVD_CGC_STATUS__REGS_SCLK_MASK 0x200
-+#define UVD_CGC_STATUS__REGS_SCLK__SHIFT 0x9
-+#define UVD_CGC_STATUS__REGS_VCLK_MASK 0x400
-+#define UVD_CGC_STATUS__REGS_VCLK__SHIFT 0xa
-+#define UVD_CGC_STATUS__RBC_SCLK_MASK 0x800
-+#define UVD_CGC_STATUS__RBC_SCLK__SHIFT 0xb
-+#define UVD_CGC_STATUS__LMI_MC_SCLK_MASK 0x1000
-+#define UVD_CGC_STATUS__LMI_MC_SCLK__SHIFT 0xc
-+#define UVD_CGC_STATUS__LMI_UMC_SCLK_MASK 0x2000
-+#define UVD_CGC_STATUS__LMI_UMC_SCLK__SHIFT 0xd
-+#define UVD_CGC_STATUS__IDCT_SCLK_MASK 0x4000
-+#define UVD_CGC_STATUS__IDCT_SCLK__SHIFT 0xe
-+#define UVD_CGC_STATUS__IDCT_VCLK_MASK 0x8000
-+#define UVD_CGC_STATUS__IDCT_VCLK__SHIFT 0xf
-+#define UVD_CGC_STATUS__MPRD_SCLK_MASK 0x10000
-+#define UVD_CGC_STATUS__MPRD_SCLK__SHIFT 0x10
-+#define UVD_CGC_STATUS__MPRD_DCLK_MASK 0x20000
-+#define UVD_CGC_STATUS__MPRD_DCLK__SHIFT 0x11
-+#define UVD_CGC_STATUS__MPRD_VCLK_MASK 0x40000
-+#define UVD_CGC_STATUS__MPRD_VCLK__SHIFT 0x12
-+#define UVD_CGC_STATUS__MPC_SCLK_MASK 0x80000
-+#define UVD_CGC_STATUS__MPC_SCLK__SHIFT 0x13
-+#define UVD_CGC_STATUS__MPC_DCLK_MASK 0x100000
-+#define UVD_CGC_STATUS__MPC_DCLK__SHIFT 0x14
-+#define UVD_CGC_STATUS__LBSI_SCLK_MASK 0x200000
-+#define UVD_CGC_STATUS__LBSI_SCLK__SHIFT 0x15
-+#define UVD_CGC_STATUS__LBSI_VCLK_MASK 0x400000
-+#define UVD_CGC_STATUS__LBSI_VCLK__SHIFT 0x16
-+#define UVD_CGC_STATUS__LRBBM_SCLK_MASK 0x800000
-+#define UVD_CGC_STATUS__LRBBM_SCLK__SHIFT 0x17
-+#define UVD_CGC_STATUS__WCB_SCLK_MASK 0x1000000
-+#define UVD_CGC_STATUS__WCB_SCLK__SHIFT 0x18
-+#define UVD_CGC_STATUS__VCPU_SCLK_MASK 0x2000000
-+#define UVD_CGC_STATUS__VCPU_SCLK__SHIFT 0x19
-+#define UVD_CGC_STATUS__VCPU_VCLK_MASK 0x4000000
-+#define UVD_CGC_STATUS__VCPU_VCLK__SHIFT 0x1a
-+#define UVD_CGC_STATUS__SCPU_SCLK_MASK 0x8000000
-+#define UVD_CGC_STATUS__SCPU_SCLK__SHIFT 0x1b
-+#define UVD_CGC_STATUS__SCPU_VCLK_MASK 0x10000000
-+#define UVD_CGC_STATUS__SCPU_VCLK__SHIFT 0x1c
-+#define UVD_CGC_CTRL__DYN_CLOCK_MODE_MASK 0x1
-+#define UVD_CGC_CTRL__DYN_CLOCK_MODE__SHIFT 0x0
-+#define UVD_CGC_CTRL__CLK_GATE_DLY_TIMER_MASK 0x3c
-+#define UVD_CGC_CTRL__CLK_GATE_DLY_TIMER__SHIFT 0x2
-+#define UVD_CGC_CTRL__CLK_OFF_DELAY_MASK 0x7c0
-+#define UVD_CGC_CTRL__CLK_OFF_DELAY__SHIFT 0x6
-+#define UVD_CGC_CTRL__UDEC_RE_MODE_MASK 0x800
-+#define UVD_CGC_CTRL__UDEC_RE_MODE__SHIFT 0xb
-+#define UVD_CGC_CTRL__UDEC_CM_MODE_MASK 0x1000
-+#define UVD_CGC_CTRL__UDEC_CM_MODE__SHIFT 0xc
-+#define UVD_CGC_CTRL__UDEC_IT_MODE_MASK 0x2000
-+#define UVD_CGC_CTRL__UDEC_IT_MODE__SHIFT 0xd
-+#define UVD_CGC_CTRL__UDEC_DB_MODE_MASK 0x4000
-+#define UVD_CGC_CTRL__UDEC_DB_MODE__SHIFT 0xe
-+#define UVD_CGC_CTRL__UDEC_MP_MODE_MASK 0x8000
-+#define UVD_CGC_CTRL__UDEC_MP_MODE__SHIFT 0xf
-+#define UVD_CGC_CTRL__SYS_MODE_MASK 0x10000
-+#define UVD_CGC_CTRL__SYS_MODE__SHIFT 0x10
-+#define UVD_CGC_CTRL__UDEC_MODE_MASK 0x20000
-+#define UVD_CGC_CTRL__UDEC_MODE__SHIFT 0x11
-+#define UVD_CGC_CTRL__MPEG2_MODE_MASK 0x40000
-+#define UVD_CGC_CTRL__MPEG2_MODE__SHIFT 0x12
-+#define UVD_CGC_CTRL__REGS_MODE_MASK 0x80000
-+#define UVD_CGC_CTRL__REGS_MODE__SHIFT 0x13
-+#define UVD_CGC_CTRL__RBC_MODE_MASK 0x100000
-+#define UVD_CGC_CTRL__RBC_MODE__SHIFT 0x14
-+#define UVD_CGC_CTRL__LMI_MC_MODE_MASK 0x200000
-+#define UVD_CGC_CTRL__LMI_MC_MODE__SHIFT 0x15
-+#define UVD_CGC_CTRL__LMI_UMC_MODE_MASK 0x400000
-+#define UVD_CGC_CTRL__LMI_UMC_MODE__SHIFT 0x16
-+#define UVD_CGC_CTRL__IDCT_MODE_MASK 0x800000
-+#define UVD_CGC_CTRL__IDCT_MODE__SHIFT 0x17
-+#define UVD_CGC_CTRL__MPRD_MODE_MASK 0x1000000
-+#define UVD_CGC_CTRL__MPRD_MODE__SHIFT 0x18
-+#define UVD_CGC_CTRL__MPC_MODE_MASK 0x2000000
-+#define UVD_CGC_CTRL__MPC_MODE__SHIFT 0x19
-+#define UVD_CGC_CTRL__LBSI_MODE_MASK 0x4000000
-+#define UVD_CGC_CTRL__LBSI_MODE__SHIFT 0x1a
-+#define UVD_CGC_CTRL__LRBBM_MODE_MASK 0x8000000
-+#define UVD_CGC_CTRL__LRBBM_MODE__SHIFT 0x1b
-+#define UVD_CGC_CTRL__WCB_MODE_MASK 0x10000000
-+#define UVD_CGC_CTRL__WCB_MODE__SHIFT 0x1c
-+#define UVD_CGC_CTRL__VCPU_MODE_MASK 0x20000000
-+#define UVD_CGC_CTRL__VCPU_MODE__SHIFT 0x1d
-+#define UVD_CGC_CTRL__SCPU_MODE_MASK 0x40000000
-+#define UVD_CGC_CTRL__SCPU_MODE__SHIFT 0x1e
-+#define UVD_CGC_UDEC_STATUS__RE_SCLK_MASK 0x1
-+#define UVD_CGC_UDEC_STATUS__RE_SCLK__SHIFT 0x0
-+#define UVD_CGC_UDEC_STATUS__RE_DCLK_MASK 0x2
-+#define UVD_CGC_UDEC_STATUS__RE_DCLK__SHIFT 0x1
-+#define UVD_CGC_UDEC_STATUS__RE_VCLK_MASK 0x4
-+#define UVD_CGC_UDEC_STATUS__RE_VCLK__SHIFT 0x2
-+#define UVD_CGC_UDEC_STATUS__CM_SCLK_MASK 0x8
-+#define UVD_CGC_UDEC_STATUS__CM_SCLK__SHIFT 0x3
-+#define UVD_CGC_UDEC_STATUS__CM_DCLK_MASK 0x10
-+#define UVD_CGC_UDEC_STATUS__CM_DCLK__SHIFT 0x4
-+#define UVD_CGC_UDEC_STATUS__CM_VCLK_MASK 0x20
-+#define UVD_CGC_UDEC_STATUS__CM_VCLK__SHIFT 0x5
-+#define UVD_CGC_UDEC_STATUS__IT_SCLK_MASK 0x40
-+#define UVD_CGC_UDEC_STATUS__IT_SCLK__SHIFT 0x6
-+#define UVD_CGC_UDEC_STATUS__IT_DCLK_MASK 0x80
-+#define UVD_CGC_UDEC_STATUS__IT_DCLK__SHIFT 0x7
-+#define UVD_CGC_UDEC_STATUS__IT_VCLK_MASK 0x100
-+#define UVD_CGC_UDEC_STATUS__IT_VCLK__SHIFT 0x8
-+#define UVD_CGC_UDEC_STATUS__DB_SCLK_MASK 0x200
-+#define UVD_CGC_UDEC_STATUS__DB_SCLK__SHIFT 0x9
-+#define UVD_CGC_UDEC_STATUS__DB_DCLK_MASK 0x400
-+#define UVD_CGC_UDEC_STATUS__DB_DCLK__SHIFT 0xa
-+#define UVD_CGC_UDEC_STATUS__DB_VCLK_MASK 0x800
-+#define UVD_CGC_UDEC_STATUS__DB_VCLK__SHIFT 0xb
-+#define UVD_CGC_UDEC_STATUS__MP_SCLK_MASK 0x1000
-+#define UVD_CGC_UDEC_STATUS__MP_SCLK__SHIFT 0xc
-+#define UVD_CGC_UDEC_STATUS__MP_DCLK_MASK 0x2000
-+#define UVD_CGC_UDEC_STATUS__MP_DCLK__SHIFT 0xd
-+#define UVD_CGC_UDEC_STATUS__MP_VCLK_MASK 0x4000
-+#define UVD_CGC_UDEC_STATUS__MP_VCLK__SHIFT 0xe
-+#define UVD_LMI_CTRL2__SPH_DIS_MASK 0x1
-+#define UVD_LMI_CTRL2__SPH_DIS__SHIFT 0x0
-+#define UVD_LMI_CTRL2__STALL_ARB_MASK 0x2
-+#define UVD_LMI_CTRL2__STALL_ARB__SHIFT 0x1
-+#define UVD_LMI_CTRL2__ASSERT_UMC_URGENT_MASK 0x4
-+#define UVD_LMI_CTRL2__ASSERT_UMC_URGENT__SHIFT 0x2
-+#define UVD_LMI_CTRL2__MASK_UMC_URGENT_MASK 0x8
-+#define UVD_LMI_CTRL2__MASK_UMC_URGENT__SHIFT 0x3
-+#define UVD_LMI_CTRL2__MCIF_WR_WATERMARK_MASK 0x70
-+#define UVD_LMI_CTRL2__MCIF_WR_WATERMARK__SHIFT 0x4
-+#define UVD_LMI_CTRL2__DRCITF_BUBBLE_FIX_DIS_MASK 0x80
-+#define UVD_LMI_CTRL2__DRCITF_BUBBLE_FIX_DIS__SHIFT 0x7
-+#define UVD_LMI_CTRL2__STALL_ARB_UMC_MASK 0x100
-+#define UVD_LMI_CTRL2__STALL_ARB_UMC__SHIFT 0x8
-+#define UVD_LMI_CTRL2__MC_READ_ID_SEL_MASK 0x600
-+#define UVD_LMI_CTRL2__MC_READ_ID_SEL__SHIFT 0x9
-+#define UVD_LMI_CTRL2__MC_WRITE_ID_SEL_MASK 0x1800
-+#define UVD_LMI_CTRL2__MC_WRITE_ID_SEL__SHIFT 0xb
-+#define UVD_LMI_CTRL2__VCPU_NC0_EXT_EN_MASK 0x2000
-+#define UVD_LMI_CTRL2__VCPU_NC0_EXT_EN__SHIFT 0xd
-+#define UVD_LMI_CTRL2__VCPU_NC1_EXT_EN_MASK 0x4000
-+#define UVD_LMI_CTRL2__VCPU_NC1_EXT_EN__SHIFT 0xe
-+#define UVD_LMI_CTRL2__SPU_EXTRA_CID_EN_MASK 0x8000
-+#define UVD_LMI_CTRL2__SPU_EXTRA_CID_EN__SHIFT 0xf
-+#define UVD_MASTINT_EN__OVERRUN_RST_MASK 0x1
-+#define UVD_MASTINT_EN__OVERRUN_RST__SHIFT 0x0
-+#define UVD_MASTINT_EN__VCPU_EN_MASK 0x2
-+#define UVD_MASTINT_EN__VCPU_EN__SHIFT 0x1
-+#define UVD_MASTINT_EN__SYS_EN_MASK 0x4
-+#define UVD_MASTINT_EN__SYS_EN__SHIFT 0x2
-+#define UVD_MASTINT_EN__INT_OVERRUN_MASK 0x7ffff0
-+#define UVD_MASTINT_EN__INT_OVERRUN__SHIFT 0x4
-+#define UVD_LMI_ADDR_EXT__VCPU_ADDR_EXT_MASK 0xf
-+#define UVD_LMI_ADDR_EXT__VCPU_ADDR_EXT__SHIFT 0x0
-+#define UVD_LMI_ADDR_EXT__CM_ADDR_EXT_MASK 0xf0
-+#define UVD_LMI_ADDR_EXT__CM_ADDR_EXT__SHIFT 0x4
-+#define UVD_LMI_ADDR_EXT__IT_ADDR_EXT_MASK 0xf00
-+#define UVD_LMI_ADDR_EXT__IT_ADDR_EXT__SHIFT 0x8
-+#define UVD_LMI_ADDR_EXT__VCPU_VM_ADDR_EXT_MASK 0xf000
-+#define UVD_LMI_ADDR_EXT__VCPU_VM_ADDR_EXT__SHIFT 0xc
-+#define UVD_LMI_ADDR_EXT__RE_ADDR_EXT_MASK 0xf0000
-+#define UVD_LMI_ADDR_EXT__RE_ADDR_EXT__SHIFT 0x10
-+#define UVD_LMI_ADDR_EXT__MP_ADDR_EXT_MASK 0xf00000
-+#define UVD_LMI_ADDR_EXT__MP_ADDR_EXT__SHIFT 0x14
-+#define UVD_LMI_ADDR_EXT__VCPU_NC0_ADDR_EXT_MASK 0xf000000
-+#define UVD_LMI_ADDR_EXT__VCPU_NC0_ADDR_EXT__SHIFT 0x18
-+#define UVD_LMI_ADDR_EXT__VCPU_NC1_ADDR_EXT_MASK 0xf0000000
-+#define UVD_LMI_ADDR_EXT__VCPU_NC1_ADDR_EXT__SHIFT 0x1c
-+#define UVD_LMI_CTRL__WRITE_CLEAN_TIMER_MASK 0xff
-+#define UVD_LMI_CTRL__WRITE_CLEAN_TIMER__SHIFT 0x0
-+#define UVD_LMI_CTRL__WRITE_CLEAN_TIMER_EN_MASK 0x100
-+#define UVD_LMI_CTRL__WRITE_CLEAN_TIMER_EN__SHIFT 0x8
-+#define UVD_LMI_CTRL__REQ_MODE_MASK 0x200
-+#define UVD_LMI_CTRL__REQ_MODE__SHIFT 0x9
-+#define UVD_LMI_CTRL__ASSERT_MC_URGENT_MASK 0x800
-+#define UVD_LMI_CTRL__ASSERT_MC_URGENT__SHIFT 0xb
-+#define UVD_LMI_CTRL__MASK_MC_URGENT_MASK 0x1000
-+#define UVD_LMI_CTRL__MASK_MC_URGENT__SHIFT 0xc
-+#define UVD_LMI_CTRL__DATA_COHERENCY_EN_MASK 0x2000
-+#define UVD_LMI_CTRL__DATA_COHERENCY_EN__SHIFT 0xd
-+#define UVD_LMI_CTRL__CRC_RESET_MASK 0x4000
-+#define UVD_LMI_CTRL__CRC_RESET__SHIFT 0xe
-+#define UVD_LMI_CTRL__CRC_SEL_MASK 0xf8000
-+#define UVD_LMI_CTRL__CRC_SEL__SHIFT 0xf
-+#define UVD_LMI_CTRL__DISABLE_ON_FWV_FAIL_MASK 0x100000
-+#define UVD_LMI_CTRL__DISABLE_ON_FWV_FAIL__SHIFT 0x14
-+#define UVD_LMI_CTRL__VCPU_DATA_COHERENCY_EN_MASK 0x200000
-+#define UVD_LMI_CTRL__VCPU_DATA_COHERENCY_EN__SHIFT 0x15
-+#define UVD_LMI_CTRL__CM_DATA_COHERENCY_EN_MASK 0x400000
-+#define UVD_LMI_CTRL__CM_DATA_COHERENCY_EN__SHIFT 0x16
-+#define UVD_LMI_CTRL__DB_DB_DATA_COHERENCY_EN_MASK 0x800000
-+#define UVD_LMI_CTRL__DB_DB_DATA_COHERENCY_EN__SHIFT 0x17
-+#define UVD_LMI_CTRL__DB_IT_DATA_COHERENCY_EN_MASK 0x1000000
-+#define UVD_LMI_CTRL__DB_IT_DATA_COHERENCY_EN__SHIFT 0x18
-+#define UVD_LMI_CTRL__IT_IT_DATA_COHERENCY_EN_MASK 0x2000000
-+#define UVD_LMI_CTRL__IT_IT_DATA_COHERENCY_EN__SHIFT 0x19
-+#define UVD_LMI_CTRL__MIF_MIF_DATA_COHERENCY_EN_MASK 0x4000000
-+#define UVD_LMI_CTRL__MIF_MIF_DATA_COHERENCY_EN__SHIFT 0x1a
-+#define UVD_LMI_CTRL__RFU_MASK 0xf8000000
-+#define UVD_LMI_CTRL__RFU__SHIFT 0x1b
-+#define UVD_LMI_STATUS__READ_CLEAN_MASK 0x1
-+#define UVD_LMI_STATUS__READ_CLEAN__SHIFT 0x0
-+#define UVD_LMI_STATUS__WRITE_CLEAN_MASK 0x2
-+#define UVD_LMI_STATUS__WRITE_CLEAN__SHIFT 0x1
-+#define UVD_LMI_STATUS__WRITE_CLEAN_RAW_MASK 0x4
-+#define UVD_LMI_STATUS__WRITE_CLEAN_RAW__SHIFT 0x2
-+#define UVD_LMI_STATUS__VCPU_LMI_WRITE_CLEAN_MASK 0x8
-+#define UVD_LMI_STATUS__VCPU_LMI_WRITE_CLEAN__SHIFT 0x3
-+#define UVD_LMI_STATUS__UMC_READ_CLEAN_MASK 0x10
-+#define UVD_LMI_STATUS__UMC_READ_CLEAN__SHIFT 0x4
-+#define UVD_LMI_STATUS__UMC_WRITE_CLEAN_MASK 0x20
-+#define UVD_LMI_STATUS__UMC_WRITE_CLEAN__SHIFT 0x5
-+#define UVD_LMI_STATUS__UMC_WRITE_CLEAN_RAW_MASK 0x40
-+#define UVD_LMI_STATUS__UMC_WRITE_CLEAN_RAW__SHIFT 0x6
-+#define UVD_LMI_STATUS__PENDING_UVD_MC_WRITE_MASK 0x80
-+#define UVD_LMI_STATUS__PENDING_UVD_MC_WRITE__SHIFT 0x7
-+#define UVD_LMI_STATUS__READ_CLEAN_RAW_MASK 0x100
-+#define UVD_LMI_STATUS__READ_CLEAN_RAW__SHIFT 0x8
-+#define UVD_LMI_STATUS__UMC_READ_CLEAN_RAW_MASK 0x200
-+#define UVD_LMI_STATUS__UMC_READ_CLEAN_RAW__SHIFT 0x9
-+#define UVD_LMI_STATUS__UMC_UVD_IDLE_MASK 0x400
-+#define UVD_LMI_STATUS__UMC_UVD_IDLE__SHIFT 0xa
-+#define UVD_LMI_STATUS__UMC_AVP_IDLE_MASK 0x800
-+#define UVD_LMI_STATUS__UMC_AVP_IDLE__SHIFT 0xb
-+#define UVD_LMI_STATUS__ADP_MC_READ_CLEAN_MASK 0x1000
-+#define UVD_LMI_STATUS__ADP_MC_READ_CLEAN__SHIFT 0xc
-+#define UVD_LMI_STATUS__ADP_UMC_READ_CLEAN_MASK 0x2000
-+#define UVD_LMI_STATUS__ADP_UMC_READ_CLEAN__SHIFT 0xd
-+#define UVD_LMI_SWAP_CNTL__RB_MC_SWAP_MASK 0x3
-+#define UVD_LMI_SWAP_CNTL__RB_MC_SWAP__SHIFT 0x0
-+#define UVD_LMI_SWAP_CNTL__IB_MC_SWAP_MASK 0xc
-+#define UVD_LMI_SWAP_CNTL__IB_MC_SWAP__SHIFT 0x2
-+#define UVD_LMI_SWAP_CNTL__RB_RPTR_MC_SWAP_MASK 0x30
-+#define UVD_LMI_SWAP_CNTL__RB_RPTR_MC_SWAP__SHIFT 0x4
-+#define UVD_LMI_SWAP_CNTL__VCPU_R_MC_SWAP_MASK 0xc0
-+#define UVD_LMI_SWAP_CNTL__VCPU_R_MC_SWAP__SHIFT 0x6
-+#define UVD_LMI_SWAP_CNTL__VCPU_W_MC_SWAP_MASK 0x300
-+#define UVD_LMI_SWAP_CNTL__VCPU_W_MC_SWAP__SHIFT 0x8
-+#define UVD_LMI_SWAP_CNTL__CM_MC_SWAP_MASK 0xc00
-+#define UVD_LMI_SWAP_CNTL__CM_MC_SWAP__SHIFT 0xa
-+#define UVD_LMI_SWAP_CNTL__IT_MC_SWAP_MASK 0x3000
-+#define UVD_LMI_SWAP_CNTL__IT_MC_SWAP__SHIFT 0xc
-+#define UVD_LMI_SWAP_CNTL__DB_R_MC_SWAP_MASK 0xc000
-+#define UVD_LMI_SWAP_CNTL__DB_R_MC_SWAP__SHIFT 0xe
-+#define UVD_LMI_SWAP_CNTL__DB_W_MC_SWAP_MASK 0x30000
-+#define UVD_LMI_SWAP_CNTL__DB_W_MC_SWAP__SHIFT 0x10
-+#define UVD_LMI_SWAP_CNTL__CSM_MC_SWAP_MASK 0xc0000
-+#define UVD_LMI_SWAP_CNTL__CSM_MC_SWAP__SHIFT 0x12
-+#define UVD_LMI_SWAP_CNTL__MP_REF16_MC_SWAP_MASK 0xc00000
-+#define UVD_LMI_SWAP_CNTL__MP_REF16_MC_SWAP__SHIFT 0x16
-+#define UVD_LMI_SWAP_CNTL__DBW_MC_SWAP_MASK 0x3000000
-+#define UVD_LMI_SWAP_CNTL__DBW_MC_SWAP__SHIFT 0x18
-+#define UVD_LMI_SWAP_CNTL__RB_WR_MC_SWAP_MASK 0xc000000
-+#define UVD_LMI_SWAP_CNTL__RB_WR_MC_SWAP__SHIFT 0x1a
-+#define UVD_LMI_SWAP_CNTL__RE_MC_SWAP_MASK 0x30000000
-+#define UVD_LMI_SWAP_CNTL__RE_MC_SWAP__SHIFT 0x1c
-+#define UVD_LMI_SWAP_CNTL__MP_MC_SWAP_MASK 0xc0000000
-+#define UVD_LMI_SWAP_CNTL__MP_MC_SWAP__SHIFT 0x1e
-+#define UVD_MP_SWAP_CNTL__MP_REF0_MC_SWAP_MASK 0x3
-+#define UVD_MP_SWAP_CNTL__MP_REF0_MC_SWAP__SHIFT 0x0
-+#define UVD_MP_SWAP_CNTL__MP_REF1_MC_SWAP_MASK 0xc
-+#define UVD_MP_SWAP_CNTL__MP_REF1_MC_SWAP__SHIFT 0x2
-+#define UVD_MP_SWAP_CNTL__MP_REF2_MC_SWAP_MASK 0x30
-+#define UVD_MP_SWAP_CNTL__MP_REF2_MC_SWAP__SHIFT 0x4
-+#define UVD_MP_SWAP_CNTL__MP_REF3_MC_SWAP_MASK 0xc0
-+#define UVD_MP_SWAP_CNTL__MP_REF3_MC_SWAP__SHIFT 0x6
-+#define UVD_MP_SWAP_CNTL__MP_REF4_MC_SWAP_MASK 0x300
-+#define UVD_MP_SWAP_CNTL__MP_REF4_MC_SWAP__SHIFT 0x8
-+#define UVD_MP_SWAP_CNTL__MP_REF5_MC_SWAP_MASK 0xc00
-+#define UVD_MP_SWAP_CNTL__MP_REF5_MC_SWAP__SHIFT 0xa
-+#define UVD_MP_SWAP_CNTL__MP_REF6_MC_SWAP_MASK 0x3000
-+#define UVD_MP_SWAP_CNTL__MP_REF6_MC_SWAP__SHIFT 0xc
-+#define UVD_MP_SWAP_CNTL__MP_REF7_MC_SWAP_MASK 0xc000
-+#define UVD_MP_SWAP_CNTL__MP_REF7_MC_SWAP__SHIFT 0xe
-+#define UVD_MP_SWAP_CNTL__MP_REF8_MC_SWAP_MASK 0x30000
-+#define UVD_MP_SWAP_CNTL__MP_REF8_MC_SWAP__SHIFT 0x10
-+#define UVD_MP_SWAP_CNTL__MP_REF9_MC_SWAP_MASK 0xc0000
-+#define UVD_MP_SWAP_CNTL__MP_REF9_MC_SWAP__SHIFT 0x12
-+#define UVD_MP_SWAP_CNTL__MP_REF10_MC_SWAP_MASK 0x300000
-+#define UVD_MP_SWAP_CNTL__MP_REF10_MC_SWAP__SHIFT 0x14
-+#define UVD_MP_SWAP_CNTL__MP_REF11_MC_SWAP_MASK 0xc00000
-+#define UVD_MP_SWAP_CNTL__MP_REF11_MC_SWAP__SHIFT 0x16
-+#define UVD_MP_SWAP_CNTL__MP_REF12_MC_SWAP_MASK 0x3000000
-+#define UVD_MP_SWAP_CNTL__MP_REF12_MC_SWAP__SHIFT 0x18
-+#define UVD_MP_SWAP_CNTL__MP_REF13_MC_SWAP_MASK 0xc000000
-+#define UVD_MP_SWAP_CNTL__MP_REF13_MC_SWAP__SHIFT 0x1a
-+#define UVD_MP_SWAP_CNTL__MP_REF14_MC_SWAP_MASK 0x30000000
-+#define UVD_MP_SWAP_CNTL__MP_REF14_MC_SWAP__SHIFT 0x1c
-+#define UVD_MP_SWAP_CNTL__MP_REF15_MC_SWAP_MASK 0xc0000000
-+#define UVD_MP_SWAP_CNTL__MP_REF15_MC_SWAP__SHIFT 0x1e
-+#define UVD_MPC_CNTL__REPLACEMENT_MODE_MASK 0x38
-+#define UVD_MPC_CNTL__REPLACEMENT_MODE__SHIFT 0x3
-+#define UVD_MPC_CNTL__PERF_RST_MASK 0x40
-+#define UVD_MPC_CNTL__PERF_RST__SHIFT 0x6
-+#define UVD_MPC_CNTL__DBG_MUX_MASK 0x700
-+#define UVD_MPC_CNTL__DBG_MUX__SHIFT 0x8
-+#define UVD_MPC_CNTL__AVE_WEIGHT_MASK 0x30000
-+#define UVD_MPC_CNTL__AVE_WEIGHT__SHIFT 0x10
-+#define UVD_MPC_CNTL__URGENT_EN_MASK 0x40000
-+#define UVD_MPC_CNTL__URGENT_EN__SHIFT 0x12
-+#define UVD_MPC_SET_MUXA0__VARA_0_MASK 0x3f
-+#define UVD_MPC_SET_MUXA0__VARA_0__SHIFT 0x0
-+#define UVD_MPC_SET_MUXA0__VARA_1_MASK 0xfc0
-+#define UVD_MPC_SET_MUXA0__VARA_1__SHIFT 0x6
-+#define UVD_MPC_SET_MUXA0__VARA_2_MASK 0x3f000
-+#define UVD_MPC_SET_MUXA0__VARA_2__SHIFT 0xc
-+#define UVD_MPC_SET_MUXA0__VARA_3_MASK 0xfc0000
-+#define UVD_MPC_SET_MUXA0__VARA_3__SHIFT 0x12
-+#define UVD_MPC_SET_MUXA0__VARA_4_MASK 0x3f000000
-+#define UVD_MPC_SET_MUXA0__VARA_4__SHIFT 0x18
-+#define UVD_MPC_SET_MUXA1__VARA_5_MASK 0x3f
-+#define UVD_MPC_SET_MUXA1__VARA_5__SHIFT 0x0
-+#define UVD_MPC_SET_MUXA1__VARA_6_MASK 0xfc0
-+#define UVD_MPC_SET_MUXA1__VARA_6__SHIFT 0x6
-+#define UVD_MPC_SET_MUXA1__VARA_7_MASK 0x3f000
-+#define UVD_MPC_SET_MUXA1__VARA_7__SHIFT 0xc
-+#define UVD_MPC_SET_MUXB0__VARB_0_MASK 0x3f
-+#define UVD_MPC_SET_MUXB0__VARB_0__SHIFT 0x0
-+#define UVD_MPC_SET_MUXB0__VARB_1_MASK 0xfc0
-+#define UVD_MPC_SET_MUXB0__VARB_1__SHIFT 0x6
-+#define UVD_MPC_SET_MUXB0__VARB_2_MASK 0x3f000
-+#define UVD_MPC_SET_MUXB0__VARB_2__SHIFT 0xc
-+#define UVD_MPC_SET_MUXB0__VARB_3_MASK 0xfc0000
-+#define UVD_MPC_SET_MUXB0__VARB_3__SHIFT 0x12
-+#define UVD_MPC_SET_MUXB0__VARB_4_MASK 0x3f000000
-+#define UVD_MPC_SET_MUXB0__VARB_4__SHIFT 0x18
-+#define UVD_MPC_SET_MUXB1__VARB_5_MASK 0x3f
-+#define UVD_MPC_SET_MUXB1__VARB_5__SHIFT 0x0
-+#define UVD_MPC_SET_MUXB1__VARB_6_MASK 0xfc0
-+#define UVD_MPC_SET_MUXB1__VARB_6__SHIFT 0x6
-+#define UVD_MPC_SET_MUXB1__VARB_7_MASK 0x3f000
-+#define UVD_MPC_SET_MUXB1__VARB_7__SHIFT 0xc
-+#define UVD_MPC_SET_MUX__SET_0_MASK 0x7
-+#define UVD_MPC_SET_MUX__SET_0__SHIFT 0x0
-+#define UVD_MPC_SET_MUX__SET_1_MASK 0x38
-+#define UVD_MPC_SET_MUX__SET_1__SHIFT 0x3
-+#define UVD_MPC_SET_MUX__SET_2_MASK 0x1c0
-+#define UVD_MPC_SET_MUX__SET_2__SHIFT 0x6
-+#define UVD_MPC_SET_ALU__FUNCT_MASK 0x7
-+#define UVD_MPC_SET_ALU__FUNCT__SHIFT 0x0
-+#define UVD_MPC_SET_ALU__OPERAND_MASK 0xff0
-+#define UVD_MPC_SET_ALU__OPERAND__SHIFT 0x4
-+#define UVD_VCPU_CACHE_OFFSET0__CACHE_OFFSET0_MASK 0x1ffffff
-+#define UVD_VCPU_CACHE_OFFSET0__CACHE_OFFSET0__SHIFT 0x0
-+#define UVD_VCPU_CACHE_SIZE0__CACHE_SIZE0_MASK 0x1fffff
-+#define UVD_VCPU_CACHE_SIZE0__CACHE_SIZE0__SHIFT 0x0
-+#define UVD_VCPU_CACHE_OFFSET1__CACHE_OFFSET1_MASK 0x1ffffff
-+#define UVD_VCPU_CACHE_OFFSET1__CACHE_OFFSET1__SHIFT 0x0
-+#define UVD_VCPU_CACHE_SIZE1__CACHE_SIZE1_MASK 0x1fffff
-+#define UVD_VCPU_CACHE_SIZE1__CACHE_SIZE1__SHIFT 0x0
-+#define UVD_VCPU_CACHE_OFFSET2__CACHE_OFFSET2_MASK 0x1ffffff
-+#define UVD_VCPU_CACHE_OFFSET2__CACHE_OFFSET2__SHIFT 0x0
-+#define UVD_VCPU_CACHE_SIZE2__CACHE_SIZE2_MASK 0x1fffff
-+#define UVD_VCPU_CACHE_SIZE2__CACHE_SIZE2__SHIFT 0x0
-+#define UVD_VCPU_CNTL__IRQ_ERR_MASK 0xf
-+#define UVD_VCPU_CNTL__IRQ_ERR__SHIFT 0x0
-+#define UVD_VCPU_CNTL__AXI_MAX_BRST_SIZE_IS_4_MASK 0x10
-+#define UVD_VCPU_CNTL__AXI_MAX_BRST_SIZE_IS_4__SHIFT 0x4
-+#define UVD_VCPU_CNTL__PMB_ED_ENABLE_MASK 0x20
-+#define UVD_VCPU_CNTL__PMB_ED_ENABLE__SHIFT 0x5
-+#define UVD_VCPU_CNTL__PMB_SOFT_RESET_MASK 0x40
-+#define UVD_VCPU_CNTL__PMB_SOFT_RESET__SHIFT 0x6
-+#define UVD_VCPU_CNTL__RBBM_SOFT_RESET_MASK 0x80
-+#define UVD_VCPU_CNTL__RBBM_SOFT_RESET__SHIFT 0x7
-+#define UVD_VCPU_CNTL__ABORT_REQ_MASK 0x100
-+#define UVD_VCPU_CNTL__ABORT_REQ__SHIFT 0x8
-+#define UVD_VCPU_CNTL__CLK_EN_MASK 0x200
-+#define UVD_VCPU_CNTL__CLK_EN__SHIFT 0x9
-+#define UVD_VCPU_CNTL__TRCE_EN_MASK 0x400
-+#define UVD_VCPU_CNTL__TRCE_EN__SHIFT 0xa
-+#define UVD_VCPU_CNTL__TRCE_MUX_MASK 0x1800
-+#define UVD_VCPU_CNTL__TRCE_MUX__SHIFT 0xb
-+#define UVD_VCPU_CNTL__DBG_MUX_MASK 0xe000
-+#define UVD_VCPU_CNTL__DBG_MUX__SHIFT 0xd
-+#define UVD_VCPU_CNTL__JTAG_EN_MASK 0x10000
-+#define UVD_VCPU_CNTL__JTAG_EN__SHIFT 0x10
-+#define UVD_VCPU_CNTL__CLK_ACTIVE_MASK 0x20000
-+#define UVD_VCPU_CNTL__CLK_ACTIVE__SHIFT 0x11
-+#define UVD_VCPU_CNTL__TIMEOUT_DIS_MASK 0x40000
-+#define UVD_VCPU_CNTL__TIMEOUT_DIS__SHIFT 0x12
-+#define UVD_VCPU_CNTL__PRB_TIMEOUT_VAL_MASK 0xff00000
-+#define UVD_VCPU_CNTL__PRB_TIMEOUT_VAL__SHIFT 0x14
-+#define UVD_VCPU_CNTL__CABAC_MB_ACC_MASK 0x10000000
-+#define UVD_VCPU_CNTL__CABAC_MB_ACC__SHIFT 0x1c
-+#define UVD_VCPU_CNTL__ECPU_AM32_EN_MASK 0x20000000
-+#define UVD_VCPU_CNTL__ECPU_AM32_EN__SHIFT 0x1d
-+#define UVD_VCPU_CNTL__WMV9_EN_MASK 0x40000000
-+#define UVD_VCPU_CNTL__WMV9_EN__SHIFT 0x1e
-+#define UVD_SOFT_RESET__RBC_SOFT_RESET_MASK 0x1
-+#define UVD_SOFT_RESET__RBC_SOFT_RESET__SHIFT 0x0
-+#define UVD_SOFT_RESET__LBSI_SOFT_RESET_MASK 0x2
-+#define UVD_SOFT_RESET__LBSI_SOFT_RESET__SHIFT 0x1
-+#define UVD_SOFT_RESET__LMI_SOFT_RESET_MASK 0x4
-+#define UVD_SOFT_RESET__LMI_SOFT_RESET__SHIFT 0x2
-+#define UVD_SOFT_RESET__VCPU_SOFT_RESET_MASK 0x8
-+#define UVD_SOFT_RESET__VCPU_SOFT_RESET__SHIFT 0x3
-+#define UVD_SOFT_RESET__UDEC_SOFT_RESET_MASK 0x10
-+#define UVD_SOFT_RESET__UDEC_SOFT_RESET__SHIFT 0x4
-+#define UVD_SOFT_RESET__CSM_SOFT_RESET_MASK 0x20
-+#define UVD_SOFT_RESET__CSM_SOFT_RESET__SHIFT 0x5
-+#define UVD_SOFT_RESET__CXW_SOFT_RESET_MASK 0x40
-+#define UVD_SOFT_RESET__CXW_SOFT_RESET__SHIFT 0x6
-+#define UVD_SOFT_RESET__TAP_SOFT_RESET_MASK 0x80
-+#define UVD_SOFT_RESET__TAP_SOFT_RESET__SHIFT 0x7
-+#define UVD_SOFT_RESET__MPC_SOFT_RESET_MASK 0x100
-+#define UVD_SOFT_RESET__MPC_SOFT_RESET__SHIFT 0x8
-+#define UVD_SOFT_RESET__FWV_SOFT_RESET_MASK 0x200
-+#define UVD_SOFT_RESET__FWV_SOFT_RESET__SHIFT 0x9
-+#define UVD_SOFT_RESET__IH_SOFT_RESET_MASK 0x400
-+#define UVD_SOFT_RESET__IH_SOFT_RESET__SHIFT 0xa
-+#define UVD_SOFT_RESET__MPRD_SOFT_RESET_MASK 0x800
-+#define UVD_SOFT_RESET__MPRD_SOFT_RESET__SHIFT 0xb
-+#define UVD_SOFT_RESET__IDCT_SOFT_RESET_MASK 0x1000
-+#define UVD_SOFT_RESET__IDCT_SOFT_RESET__SHIFT 0xc
-+#define UVD_SOFT_RESET__LMI_UMC_SOFT_RESET_MASK 0x2000
-+#define UVD_SOFT_RESET__LMI_UMC_SOFT_RESET__SHIFT 0xd
-+#define UVD_SOFT_RESET__SPH_SOFT_RESET_MASK 0x4000
-+#define UVD_SOFT_RESET__SPH_SOFT_RESET__SHIFT 0xe
-+#define UVD_SOFT_RESET__MIF_SOFT_RESET_MASK 0x8000
-+#define UVD_SOFT_RESET__MIF_SOFT_RESET__SHIFT 0xf
-+#define UVD_SOFT_RESET__LCM_SOFT_RESET_MASK 0x10000
-+#define UVD_SOFT_RESET__LCM_SOFT_RESET__SHIFT 0x10
-+#define UVD_RBC_IB_BASE__IB_BASE_MASK 0xffffffc0
-+#define UVD_RBC_IB_BASE__IB_BASE__SHIFT 0x6
-+#define UVD_RBC_IB_SIZE__IB_SIZE_MASK 0x7ffff0
-+#define UVD_RBC_IB_SIZE__IB_SIZE__SHIFT 0x4
-+#define UVD_RBC_RB_BASE__RB_BASE_MASK 0xffffffc0
-+#define UVD_RBC_RB_BASE__RB_BASE__SHIFT 0x6
-+#define UVD_RBC_RB_RPTR__RB_RPTR_MASK 0x7ffff0
-+#define UVD_RBC_RB_RPTR__RB_RPTR__SHIFT 0x4
-+#define UVD_RBC_RB_WPTR__RB_WPTR_MASK 0x7ffff0
-+#define UVD_RBC_RB_WPTR__RB_WPTR__SHIFT 0x4
-+#define UVD_RBC_RB_CNTL__RB_BUFSZ_MASK 0x1f
-+#define UVD_RBC_RB_CNTL__RB_BUFSZ__SHIFT 0x0
-+#define UVD_RBC_RB_CNTL__RB_BLKSZ_MASK 0x1f00
-+#define UVD_RBC_RB_CNTL__RB_BLKSZ__SHIFT 0x8
-+#define UVD_RBC_RB_CNTL__RB_NO_FETCH_MASK 0x10000
-+#define UVD_RBC_RB_CNTL__RB_NO_FETCH__SHIFT 0x10
-+#define UVD_RBC_RB_CNTL__RB_WPTR_POLL_EN_MASK 0x100000
-+#define UVD_RBC_RB_CNTL__RB_WPTR_POLL_EN__SHIFT 0x14
-+#define UVD_RBC_RB_CNTL__RB_NO_UPDATE_MASK 0x1000000
-+#define UVD_RBC_RB_CNTL__RB_NO_UPDATE__SHIFT 0x18
-+#define UVD_RBC_RB_CNTL__RB_RPTR_WR_EN_MASK 0x10000000
-+#define UVD_RBC_RB_CNTL__RB_RPTR_WR_EN__SHIFT 0x1c
-+#define UVD_RBC_RB_RPTR_ADDR__RB_RPTR_ADDR_MASK 0xffffffff
-+#define UVD_RBC_RB_RPTR_ADDR__RB_RPTR_ADDR__SHIFT 0x0
-+#define UVD_STATUS__RBC_BUSY_MASK 0x1
-+#define UVD_STATUS__RBC_BUSY__SHIFT 0x0
-+#define UVD_STATUS__VCPU_REPORT_MASK 0xfe
-+#define UVD_STATUS__VCPU_REPORT__SHIFT 0x1
-+#define UVD_SEMA_TIMEOUT_STATUS__SEMAPHORE_WAIT_INCOMPLETE_TIMEOUT_STAT_MASK 0x1
-+#define UVD_SEMA_TIMEOUT_STATUS__SEMAPHORE_WAIT_INCOMPLETE_TIMEOUT_STAT__SHIFT 0x0
-+#define UVD_SEMA_TIMEOUT_STATUS__SEMAPHORE_WAIT_FAULT_TIMEOUT_STAT_MASK 0x2
-+#define UVD_SEMA_TIMEOUT_STATUS__SEMAPHORE_WAIT_FAULT_TIMEOUT_STAT__SHIFT 0x1
-+#define UVD_SEMA_TIMEOUT_STATUS__SEMAPHORE_SIGNAL_INCOMPLETE_TIMEOUT_STAT_MASK 0x4
-+#define UVD_SEMA_TIMEOUT_STATUS__SEMAPHORE_SIGNAL_INCOMPLETE_TIMEOUT_STAT__SHIFT 0x2
-+#define UVD_SEMA_TIMEOUT_STATUS__SEMAPHORE_TIMEOUT_CLEAR_MASK 0x8
-+#define UVD_SEMA_TIMEOUT_STATUS__SEMAPHORE_TIMEOUT_CLEAR__SHIFT 0x3
-+#define UVD_SEMA_WAIT_INCOMPLETE_TIMEOUT_CNTL__WAIT_INCOMPLETE_EN_MASK 0x1
-+#define UVD_SEMA_WAIT_INCOMPLETE_TIMEOUT_CNTL__WAIT_INCOMPLETE_EN__SHIFT 0x0
-+#define UVD_SEMA_WAIT_INCOMPLETE_TIMEOUT_CNTL__WAIT_INCOMPLETE_COUNT_MASK 0x1ffffe
-+#define UVD_SEMA_WAIT_INCOMPLETE_TIMEOUT_CNTL__WAIT_INCOMPLETE_COUNT__SHIFT 0x1
-+#define UVD_SEMA_WAIT_INCOMPLETE_TIMEOUT_CNTL__RESEND_TIMER_MASK 0x7000000
-+#define UVD_SEMA_WAIT_INCOMPLETE_TIMEOUT_CNTL__RESEND_TIMER__SHIFT 0x18
-+#define UVD_SEMA_WAIT_FAULT_TIMEOUT_CNTL__WAIT_FAULT_EN_MASK 0x1
-+#define UVD_SEMA_WAIT_FAULT_TIMEOUT_CNTL__WAIT_FAULT_EN__SHIFT 0x0
-+#define UVD_SEMA_WAIT_FAULT_TIMEOUT_CNTL__WAIT_FAULT_COUNT_MASK 0x1ffffe
-+#define UVD_SEMA_WAIT_FAULT_TIMEOUT_CNTL__WAIT_FAULT_COUNT__SHIFT 0x1
-+#define UVD_SEMA_WAIT_FAULT_TIMEOUT_CNTL__RESEND_TIMER_MASK 0x7000000
-+#define UVD_SEMA_WAIT_FAULT_TIMEOUT_CNTL__RESEND_TIMER__SHIFT 0x18
-+#define UVD_SEMA_SIGNAL_INCOMPLETE_TIMEOUT_CNTL__SIGNAL_INCOMPLETE_EN_MASK 0x1
-+#define UVD_SEMA_SIGNAL_INCOMPLETE_TIMEOUT_CNTL__SIGNAL_INCOMPLETE_EN__SHIFT 0x0
-+#define UVD_SEMA_SIGNAL_INCOMPLETE_TIMEOUT_CNTL__SIGNAL_INCOMPLETE_COUNT_MASK 0x1ffffe
-+#define UVD_SEMA_SIGNAL_INCOMPLETE_TIMEOUT_CNTL__SIGNAL_INCOMPLETE_COUNT__SHIFT 0x1
-+#define UVD_SEMA_SIGNAL_INCOMPLETE_TIMEOUT_CNTL__RESEND_TIMER_MASK 0x7000000
-+#define UVD_SEMA_SIGNAL_INCOMPLETE_TIMEOUT_CNTL__RESEND_TIMER__SHIFT 0x18
-+#define UVD_CONTEXT_ID__CONTEXT_ID_MASK 0xffffffff
-+#define UVD_CONTEXT_ID__CONTEXT_ID__SHIFT 0x0
-+#define UVD_LMI_CACHE_CTRL__IT_EN_MASK 0x1
-+#define UVD_LMI_CACHE_CTRL__IT_EN__SHIFT 0x0
-+#define UVD_LMI_CACHE_CTRL__IT_FLUSH_MASK 0x2
-+#define UVD_LMI_CACHE_CTRL__IT_FLUSH__SHIFT 0x1
-+#define UVD_LMI_CACHE_CTRL__CM_EN_MASK 0x4
-+#define UVD_LMI_CACHE_CTRL__CM_EN__SHIFT 0x2
-+#define UVD_LMI_CACHE_CTRL__CM_FLUSH_MASK 0x8
-+#define UVD_LMI_CACHE_CTRL__CM_FLUSH__SHIFT 0x3
-+#define UVD_LMI_CACHE_CTRL__VCPU_EN_MASK 0x10
-+#define UVD_LMI_CACHE_CTRL__VCPU_EN__SHIFT 0x4
-+#define UVD_LMI_CACHE_CTRL__VCPU_FLUSH_MASK 0x20
-+#define UVD_LMI_CACHE_CTRL__VCPU_FLUSH__SHIFT 0x5
-+#define UVD_LMI_SWAP_CNTL2__SCPU_R_MC_SWAP_MASK 0x3
-+#define UVD_LMI_SWAP_CNTL2__SCPU_R_MC_SWAP__SHIFT 0x0
-+#define UVD_LMI_SWAP_CNTL2__SCPU_W_MC_SWAP_MASK 0xc
-+#define UVD_LMI_SWAP_CNTL2__SCPU_W_MC_SWAP__SHIFT 0x2
-+#define UVD_LMI_ADDR_EXT2__SCPU_ADDR_EXT_MASK 0xf
-+#define UVD_LMI_ADDR_EXT2__SCPU_ADDR_EXT__SHIFT 0x0
-+#define UVD_LMI_ADDR_EXT2__SCPU_VM_ADDR_EXT_MASK 0xf0
-+#define UVD_LMI_ADDR_EXT2__SCPU_VM_ADDR_EXT__SHIFT 0x4
-+#define UVD_LMI_ADDR_EXT2__SCPU_NC0_ADDR_EXT_MASK 0xf00
-+#define UVD_LMI_ADDR_EXT2__SCPU_NC0_ADDR_EXT__SHIFT 0x8
-+#define UVD_LMI_ADDR_EXT2__SCPU_NC1_ADDR_EXT_MASK 0xf000
-+#define UVD_LMI_ADDR_EXT2__SCPU_NC1_ADDR_EXT__SHIFT 0xc
-+#define UVD_CGC_MEM_CTRL__LMI_MC_LS_EN_MASK 0x1
-+#define UVD_CGC_MEM_CTRL__LMI_MC_LS_EN__SHIFT 0x0
-+#define UVD_CGC_MEM_CTRL__MPC_LS_EN_MASK 0x2
-+#define UVD_CGC_MEM_CTRL__MPC_LS_EN__SHIFT 0x1
-+#define UVD_CGC_MEM_CTRL__MPRD_LS_EN_MASK 0x4
-+#define UVD_CGC_MEM_CTRL__MPRD_LS_EN__SHIFT 0x2
-+#define UVD_CGC_MEM_CTRL__WCB_LS_EN_MASK 0x8
-+#define UVD_CGC_MEM_CTRL__WCB_LS_EN__SHIFT 0x3
-+#define UVD_CGC_MEM_CTRL__UDEC_RE_LS_EN_MASK 0x10
-+#define UVD_CGC_MEM_CTRL__UDEC_RE_LS_EN__SHIFT 0x4
-+#define UVD_CGC_MEM_CTRL__UDEC_CM_LS_EN_MASK 0x20
-+#define UVD_CGC_MEM_CTRL__UDEC_CM_LS_EN__SHIFT 0x5
-+#define UVD_CGC_MEM_CTRL__UDEC_IT_LS_EN_MASK 0x40
-+#define UVD_CGC_MEM_CTRL__UDEC_IT_LS_EN__SHIFT 0x6
-+#define UVD_CGC_MEM_CTRL__UDEC_DB_LS_EN_MASK 0x80
-+#define UVD_CGC_MEM_CTRL__UDEC_DB_LS_EN__SHIFT 0x7
-+#define UVD_CGC_MEM_CTRL__UDEC_MP_LS_EN_MASK 0x100
-+#define UVD_CGC_MEM_CTRL__UDEC_MP_LS_EN__SHIFT 0x8
-+#define UVD_CGC_MEM_CTRL__SYS_LS_EN_MASK 0x200
-+#define UVD_CGC_MEM_CTRL__SYS_LS_EN__SHIFT 0x9
-+#define UVD_CGC_MEM_CTRL__VCPU_LS_EN_MASK 0x400
-+#define UVD_CGC_MEM_CTRL__VCPU_LS_EN__SHIFT 0xa
-+#define UVD_CGC_MEM_CTRL__SCPU_LS_EN_MASK 0x800
-+#define UVD_CGC_MEM_CTRL__SCPU_LS_EN__SHIFT 0xb
-+#define UVD_CGC_MEM_CTRL__MIF_LS_EN_MASK 0x1000
-+#define UVD_CGC_MEM_CTRL__MIF_LS_EN__SHIFT 0xc
-+#define UVD_CGC_MEM_CTRL__LCM_LS_EN_MASK 0x2000
-+#define UVD_CGC_MEM_CTRL__LCM_LS_EN__SHIFT 0xd
-+#define UVD_CGC_MEM_CTRL__LS_SET_DELAY_MASK 0xf0000
-+#define UVD_CGC_MEM_CTRL__LS_SET_DELAY__SHIFT 0x10
-+#define UVD_CGC_MEM_CTRL__LS_CLEAR_DELAY_MASK 0xf00000
-+#define UVD_CGC_MEM_CTRL__LS_CLEAR_DELAY__SHIFT 0x14
-+#define UVD_CGC_CTRL2__DYN_OCLK_RAMP_EN_MASK 0x1
-+#define UVD_CGC_CTRL2__DYN_OCLK_RAMP_EN__SHIFT 0x0
-+#define UVD_CGC_CTRL2__DYN_RCLK_RAMP_EN_MASK 0x2
-+#define UVD_CGC_CTRL2__DYN_RCLK_RAMP_EN__SHIFT 0x1
-+#define UVD_CGC_CTRL2__GATER_DIV_ID_MASK 0x1c
-+#define UVD_CGC_CTRL2__GATER_DIV_ID__SHIFT 0x2
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_FSM_ADDR_MASK 0xff
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_FSM_ADDR__SHIFT 0x0
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_POWER_DOWN_MASK 0x100
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_POWER_DOWN__SHIFT 0x8
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_POWER_UP_MASK 0x200
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_POWER_UP__SHIFT 0x9
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_P1_SELECT_MASK 0x400
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_P1_SELECT__SHIFT 0xa
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_P2_SELECT_MASK 0x800
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_P2_SELECT__SHIFT 0xb
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_WRITE_MASK 0x1000
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_WRITE__SHIFT 0xc
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_READ_MASK 0x2000
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_READ__SHIFT 0xd
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_REG_ADDR_MASK 0xf0000000
-+#define UVD_PGFSM_CONFIG__UVD_PGFSM_REG_ADDR__SHIFT 0x1c
-+#define UVD_PGFSM_READ_TILE1__UVD_PGFSM_READ_TILE1_VALUE_MASK 0xffffff
-+#define UVD_PGFSM_READ_TILE1__UVD_PGFSM_READ_TILE1_VALUE__SHIFT 0x0
-+#define UVD_PGFSM_READ_TILE2__UVD_PGFSM_READ_TILE2_VALUE_MASK 0xffffff
-+#define UVD_PGFSM_READ_TILE2__UVD_PGFSM_READ_TILE2_VALUE__SHIFT 0x0
-+#define UVD_POWER_STATUS__UVD_POWER_STATUS_MASK 0x1
-+#define UVD_POWER_STATUS__UVD_POWER_STATUS__SHIFT 0x0
-+#define UVD_MIF_CURR_ADDR_CONFIG__NUM_PIPES_MASK 0x7
-+#define UVD_MIF_CURR_ADDR_CONFIG__NUM_PIPES__SHIFT 0x0
-+#define UVD_MIF_CURR_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE_MASK 0x70
-+#define UVD_MIF_CURR_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE__SHIFT 0x4
-+#define UVD_MIF_CURR_ADDR_CONFIG__BANK_INTERLEAVE_SIZE_MASK 0x700
-+#define UVD_MIF_CURR_ADDR_CONFIG__BANK_INTERLEAVE_SIZE__SHIFT 0x8
-+#define UVD_MIF_CURR_ADDR_CONFIG__NUM_SHADER_ENGINES_MASK 0x3000
-+#define UVD_MIF_CURR_ADDR_CONFIG__NUM_SHADER_ENGINES__SHIFT 0xc
-+#define UVD_MIF_CURR_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE_MASK 0x70000
-+#define UVD_MIF_CURR_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE__SHIFT 0x10
-+#define UVD_MIF_CURR_ADDR_CONFIG__NUM_GPUS_MASK 0x700000
-+#define UVD_MIF_CURR_ADDR_CONFIG__NUM_GPUS__SHIFT 0x14
-+#define UVD_MIF_CURR_ADDR_CONFIG__MULTI_GPU_TILE_SIZE_MASK 0x3000000
-+#define UVD_MIF_CURR_ADDR_CONFIG__MULTI_GPU_TILE_SIZE__SHIFT 0x18
-+#define UVD_MIF_CURR_ADDR_CONFIG__ROW_SIZE_MASK 0x30000000
-+#define UVD_MIF_CURR_ADDR_CONFIG__ROW_SIZE__SHIFT 0x1c
-+#define UVD_MIF_CURR_ADDR_CONFIG__NUM_LOWER_PIPES_MASK 0x40000000
-+#define UVD_MIF_CURR_ADDR_CONFIG__NUM_LOWER_PIPES__SHIFT 0x1e
-+#define UVD_MIF_REF_ADDR_CONFIG__NUM_PIPES_MASK 0x7
-+#define UVD_MIF_REF_ADDR_CONFIG__NUM_PIPES__SHIFT 0x0
-+#define UVD_MIF_REF_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE_MASK 0x70
-+#define UVD_MIF_REF_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE__SHIFT 0x4
-+#define UVD_MIF_REF_ADDR_CONFIG__BANK_INTERLEAVE_SIZE_MASK 0x700
-+#define UVD_MIF_REF_ADDR_CONFIG__BANK_INTERLEAVE_SIZE__SHIFT 0x8
-+#define UVD_MIF_REF_ADDR_CONFIG__NUM_SHADER_ENGINES_MASK 0x3000
-+#define UVD_MIF_REF_ADDR_CONFIG__NUM_SHADER_ENGINES__SHIFT 0xc
-+#define UVD_MIF_REF_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE_MASK 0x70000
-+#define UVD_MIF_REF_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE__SHIFT 0x10
-+#define UVD_MIF_REF_ADDR_CONFIG__NUM_GPUS_MASK 0x700000
-+#define UVD_MIF_REF_ADDR_CONFIG__NUM_GPUS__SHIFT 0x14
-+#define UVD_MIF_REF_ADDR_CONFIG__MULTI_GPU_TILE_SIZE_MASK 0x3000000
-+#define UVD_MIF_REF_ADDR_CONFIG__MULTI_GPU_TILE_SIZE__SHIFT 0x18
-+#define UVD_MIF_REF_ADDR_CONFIG__ROW_SIZE_MASK 0x30000000
-+#define UVD_MIF_REF_ADDR_CONFIG__ROW_SIZE__SHIFT 0x1c
-+#define UVD_MIF_REF_ADDR_CONFIG__NUM_LOWER_PIPES_MASK 0x40000000
-+#define UVD_MIF_REF_ADDR_CONFIG__NUM_LOWER_PIPES__SHIFT 0x1e
-+#define UVD_MIF_RECON1_ADDR_CONFIG__NUM_PIPES_MASK 0x7
-+#define UVD_MIF_RECON1_ADDR_CONFIG__NUM_PIPES__SHIFT 0x0
-+#define UVD_MIF_RECON1_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE_MASK 0x70
-+#define UVD_MIF_RECON1_ADDR_CONFIG__PIPE_INTERLEAVE_SIZE__SHIFT 0x4
-+#define UVD_MIF_RECON1_ADDR_CONFIG__BANK_INTERLEAVE_SIZE_MASK 0x700
-+#define UVD_MIF_RECON1_ADDR_CONFIG__BANK_INTERLEAVE_SIZE__SHIFT 0x8
-+#define UVD_MIF_RECON1_ADDR_CONFIG__NUM_SHADER_ENGINES_MASK 0x3000
-+#define UVD_MIF_RECON1_ADDR_CONFIG__NUM_SHADER_ENGINES__SHIFT 0xc
-+#define UVD_MIF_RECON1_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE_MASK 0x70000
-+#define UVD_MIF_RECON1_ADDR_CONFIG__SHADER_ENGINE_TILE_SIZE__SHIFT 0x10
-+#define UVD_MIF_RECON1_ADDR_CONFIG__NUM_GPUS_MASK 0x700000
-+#define UVD_MIF_RECON1_ADDR_CONFIG__NUM_GPUS__SHIFT 0x14
-+#define UVD_MIF_RECON1_ADDR_CONFIG__MULTI_GPU_TILE_SIZE_MASK 0x3000000
-+#define UVD_MIF_RECON1_ADDR_CONFIG__MULTI_GPU_TILE_SIZE__SHIFT 0x18
-+#define UVD_MIF_RECON1_ADDR_CONFIG__ROW_SIZE_MASK 0x30000000
-+#define UVD_MIF_RECON1_ADDR_CONFIG__ROW_SIZE__SHIFT 0x1c
-+#define UVD_MIF_RECON1_ADDR_CONFIG__NUM_LOWER_PIPES_MASK 0x40000000
-+#define UVD_MIF_RECON1_ADDR_CONFIG__NUM_LOWER_PIPES__SHIFT 0x1e
-+// UVD_FW_STATUS
-+#define UVD_FW_STATUS__BUSY_MASK                           0x00000001L
-+#define UVD_FW_STATUS__ACTIVE_MASK                         0x00000002L
-+#define UVD_FW_STATUS__SEND_EFUSE_REQ_MASK                 0x00000004L
-+#define UVD_FW_STATUS__DONE_MASK                           0x00000100L
-+#define UVD_FW_STATUS__PASS_MASK                           0x00010000L
-+#define UVD_FW_STATUS__FAIL_MASK                           0x00020000L
-+#define UVD_FW_STATUS__INVALID_LEN_MASK                    0x00040000L
-+#define UVD_FW_STATUS__INVALID_0_PADDING_MASK              0x00080000L
-+#define UVD_FW_STATUS__INVALID_NONCE_MASK                  0x00100000L
++extern const struct amdgpu_ip_block_version uvd_v3_1_ip_block;
 +
-+#endif /* UVD_3_1_SH_MASK_H */
++#endif
 -- 
 2.25.1
 
