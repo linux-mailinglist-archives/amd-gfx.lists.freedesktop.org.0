@@ -1,45 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7D331FD2F2
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2020 18:57:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 920591FD39D
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2020 19:40:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF9146E93A;
-	Wed, 17 Jun 2020 16:56:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A3126E9FA;
+	Wed, 17 Jun 2020 17:40:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 942E96E91D;
- Wed, 17 Jun 2020 16:56:56 +0000 (UTC)
-IronPort-SDR: BUWrs/fvy5QG2WLU0KhgWbv1MTinRW0GAfXnwmpzM0wEfP5p2WHD8g6FgcohYzWLBLdCFf1jIA
- YS7kA/PH1fow==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2020 09:56:56 -0700
-IronPort-SDR: dFqCGMaIpq2xwCF+QDieVsbtLmS6tYzBnknmVMdNeZzOrJwIKHz75SWvgLVvLL8NUb+UHNcTUQ
- 1agitdfDbBRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.73,523,1583222400"; d="scan'208";a="261778716"
-Received: from lkp-server02.sh.intel.com (HELO cd649bb48ab3) ([10.239.97.151])
- by fmsmga007.fm.intel.com with ESMTP; 17 Jun 2020 09:56:53 -0700
-Received: from kbuild by cd649bb48ab3 with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1jlbMq-00002Z-Tu; Wed, 17 Jun 2020 16:56:52 +0000
-Date: Thu, 18 Jun 2020 00:56:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Boyuan Zhang <boyuan.zhang@amd.com>
-Subject: [RFC PATCH linux-next] drm/amdgpu: vcn_v2_5_mc_resume_dpg_mode() can
- be static
-Message-ID: <20200617165618.GA10958@961301d82108>
-References: <202006180056.7SwSBIaS%lkp@intel.com>
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75E256E9FA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 17:40:21 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id t13so826363wrs.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 10:40:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=63cN0m61X8b9N+4yp6ILdvxaKksaON8Wc9AsnJeypO4=;
+ b=ueq3Sx0mFHjFhFlTPYWMick+m38TAAqjKbCH6Ety+MfJafteYuI4vjOzQyzh76z/uX
+ Wm+lMZvLBt0wvwghOuqEE7dB4vp67VrPCYvAtOPBc9/tyfqjReY+I5+CrOjQoqdQz0gf
+ 0ru5U59g2+S1/iRkuRH6xGiQHbE7pEKoYsJvCIza1e9Kl+mju5++R7FGoV705y+ArHMj
+ kzYdpWVFsUku6CiLIbKQW4TMam1HDUhx8ilOvKjYgVZbwhI0lfwHVPZXk3GFuJSpMJ0q
+ lhzAyBnf8xo34S5QhU6EVE2AOFrHFPvbhWRH8HUzRbaUWQoDPBwidECzxF0IXaC5SqXP
+ OPaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=63cN0m61X8b9N+4yp6ILdvxaKksaON8Wc9AsnJeypO4=;
+ b=lIC/MgmgqcHNMg3DBiPovQtOqrv5GLWD7ilYTe3rPETXXQFmjRm7h09GszbI4FniqT
+ 4ZXWVwcXt2twOCj9LB/8fMNVu63PNdczRea2YNBndrIF97EpT/CHAWhZWhsaNIR6u9ri
+ wPKcBULLSwmuiwqfqA4AcTFj/t944eZ4cQ3cpA+uZhuY9MM0GTTCx31etGrfd0KON24D
+ /O0i64FfXwVuew+Vja1v7CgIsI7ywSNliOk+1aTh7UL5w/xsby461DCJN8LAM0m0GVhs
+ ABcW0aKMUmmcnp75+i1BNSO1/tV5xEZ/j4oDjnZ5Oqwmcwe9+00lFU4rMfr6ycSKkEPh
+ Bh1w==
+X-Gm-Message-State: AOAM530L5Sg0PrZuv1fPmwvII6YMiNkPDuO+FKHwjao5RG3s+YxTy09n
+ A/2OmjGaNPoV7C8F4OLEUpHbGJsWGHgUHjkuZUQ=
+X-Google-Smtp-Source: ABdhPJx0GYcj5A0/nQSoMsp10/CBx47C7DDsbpVFp/aigZ2mnF7PH09b18Vu3p7nPpVe3dugi6fTOTpKPv3IQI0C7tI=
+X-Received: by 2002:adf:f7ce:: with SMTP id a14mr375067wrq.362.1592415620116; 
+ Wed, 17 Jun 2020 10:40:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <202006180056.7SwSBIaS%lkp@intel.com>
-X-Patchwork-Hint: ignore
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20200617071631.7274-1-pmenzel@molgen.mpg.de>
+In-Reply-To: <20200617071631.7274-1-pmenzel@molgen.mpg.de>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 17 Jun 2020 13:40:09 -0400
+Message-ID: <CADnq5_O+ciZU7YnmWA=f3yi4J8y7kDN+gZxgxPwosjM1JtxUBg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Warn about disabled DPM
+To: Paul Menzel <pmenzel@molgen.mpg.de>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,55 +59,81 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, Jane Jian <Jane.Jian@amd.com>,
- David Airlie <airlied@linux.ie>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, James Zhu <james.zhu@amd.com>,
- Leo Liu <leo.liu@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Jun 17, 2020 at 3:34 AM Paul Menzel <pmenzel@molgen.mpg.de> wrote:
+>
+> Currently, besides there is no explicit message, that DPM is disabled.
+> The user would need to know, that the missing success line is an
+> indicator.
+>
+>     [drm] amdgpu: dpm initialized
+>
+> So, add an explicit message, and make it log level warning, as disabling
+> dpm is not the default.
+>
+> Resolves: https://gitlab.freedesktop.org/drm/amd/-/issues/1173
+> Cc: amd-gfx@lists.freedesktop.org
+> Signed-off-by: Paul Menzel <pmenzel@molgen.mpg.de>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/kv_dpm.c | 4 +++-
+>  drivers/gpu/drm/amd/amdgpu/si_dpm.c | 4 +++-
+>  2 files changed, 6 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/kv_dpm.c b/drivers/gpu/drm/amd/amdgpu/kv_dpm.c
+> index 4b3faaccecb9..071215e8039a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/kv_dpm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/kv_dpm.c
+> @@ -3014,8 +3014,10 @@ static int kv_dpm_sw_init(void *handle)
+>         adev->pm.current_mclk = adev->clock.default_mclk;
+>         adev->pm.int_thermal_type = THERMAL_TYPE_NONE;
+>
+> -       if (amdgpu_dpm == 0)
+> +       if (amdgpu_dpm == 0) {
+> +               DRM_WARN("amdgpu: dpm disabled\n");
+>                 return 0;
+> +       }
+>
+>         INIT_WORK(&adev->pm.dpm.thermal.work, amdgpu_dpm_thermal_work_handler);
+>         mutex_lock(&adev->pm.mutex);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/si_dpm.c b/drivers/gpu/drm/amd/amdgpu/si_dpm.c
+> index c00ba4b23c9a..6af89587f80c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/si_dpm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/si_dpm.c
+> @@ -7687,8 +7687,10 @@ static int si_dpm_sw_init(void *handle)
+>         adev->pm.current_mclk = adev->clock.default_mclk;
+>         adev->pm.int_thermal_type = THERMAL_TYPE_NONE;
+>
+> -       if (amdgpu_dpm == 0)
+> +       if (amdgpu_dpm == 0) {
+> +               DRM_INFO("amdgpu: dpm disabled\n");
 
-Fixes: c422a628925d ("drm/amdgpu: rename macro for VCN2.0 2.5 and 3.0")
-Signed-off-by: kernel test robot <lkp@intel.com>
----
- vcn_v2_5.c |    6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+These should both be WARN or both be INFO for consistency.  Also,
+please use dev_info or dev_warn rather than the old DRM macros.  They
+provide better information when multiple GPUs are present.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-index 261afbb504bd0..ba1c4fbc19dc5 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-@@ -443,7 +443,7 @@ static void vcn_v2_5_mc_resume(struct amdgpu_device *adev)
- 	}
- }
- 
--void vcn_v2_5_mc_resume_dpg_mode(struct amdgpu_device *adev, int inst_idx, bool indirect)
-+static void vcn_v2_5_mc_resume_dpg_mode(struct amdgpu_device *adev, int inst_idx, bool indirect)
- {
- 	uint32_t size = AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
- 	uint32_t offset;
-@@ -657,7 +657,7 @@ static void vcn_v2_5_disable_clock_gating(struct amdgpu_device *adev)
- 	}
- }
- 
--void vcn_v2_5_clock_gating_dpg_mode(struct amdgpu_device *adev,
-+static void vcn_v2_5_clock_gating_dpg_mode(struct amdgpu_device *adev,
- 		uint8_t sram_sel, int inst_idx, uint8_t indirect)
- {
- 	uint32_t reg_data = 0;
-@@ -1300,7 +1300,7 @@ static int vcn_v2_5_sriov_start(struct amdgpu_device *adev)
- 	return vcn_v2_5_mmsch_start(adev, &adev->virt.mm_table);
- }
- 
--int vcn_v2_5_stop_dpg_mode(struct amdgpu_device *adev, int inst_idx)
-+static int vcn_v2_5_stop_dpg_mode(struct amdgpu_device *adev, int inst_idx)
- {
- 	int ret_code = 0;
- 	uint32_t tmp;
+Thanks,
+
+Alex
+
+>                 return 0;
+> +       }
+>
+>         ret = si_dpm_init_microcode(adev);
+>         if (ret)
+> --
+> 2.27.0
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
