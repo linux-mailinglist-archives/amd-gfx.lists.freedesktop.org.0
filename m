@@ -1,43 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20001FDCAC
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 03:21:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D8F1FE079
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 03:48:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA536EA4D;
-	Thu, 18 Jun 2020 01:21:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44FAE6EA50;
+	Thu, 18 Jun 2020 01:48:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AFB86EA4B;
- Thu, 18 Jun 2020 01:21:23 +0000 (UTC)
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 10C8B20CC7;
- Thu, 18 Jun 2020 01:21:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1592443282;
- bh=Cub4vj9nLqVHK+vP9cLZf3O/SAGabxVQiO5LtqWPr3Q=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=C0pG6APArivPVS1UhMa9kylHSmrRtNWZuVYdwW927Evr9PoDOS4LcsiQeq4QtU+FO
- 2V2TGK8H4mZ5H/oQ4HwBPgS6Se2vveXFnuYkfp+4gADmRL9w8dBpXy1M5eQKMTVl9i
- 1+un2skuDuMYT2V3TCOGI+/C8zKGlbiSNpCuEMUA=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 226/266] drm/amd/display: Revalidate bandwidth
- before commiting DC updates
-Date: Wed, 17 Jun 2020 21:15:51 -0400
-Message-Id: <20200618011631.604574-226-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200618011631.604574-1-sashal@kernel.org>
-References: <20200618011631.604574-1-sashal@kernel.org>
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
+ [IPv6:2607:f8b0:4864:20::843])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 412F56EA50
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 01:48:53 +0000 (UTC)
+Received: by mail-qt1-x843.google.com with SMTP id z2so1184203qts.5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2020 18:48:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Eznk364WTeVuO/KdGInkjNvyQXyMDBHlJsoIoglL+yQ=;
+ b=kL7kw7ZraetBWdvYaEf+IuBQE2q7oC/jfp72IUHAnAo19rW1jGbqo0wEEHaN2VdeEW
+ dbFBiZzw5I62ZHsRTXGQE7eQ0oPHRweapQ/3wXamz6fgDePZpBaXTibMPBkgsp+eR2hf
+ iWTkolApUL2mZSXN/MG7rZV5fouvzNankHREM4HErNDJphH2+dfTSeJA9Q2KHhnjrDyq
+ cUhR5XwdHTTbVIkBXXWH7ii1SG/tKy5xEdHo9ErGAgu3q92BdZPtVjECn+ZyLNV8D/0w
+ 61o973YAjeq1IBwbH5vPXvsVFlNCf1ej4SA4KNAcp4jXEQHWz9PsJI8oIyZM5xt8kFOA
+ 3pWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Eznk364WTeVuO/KdGInkjNvyQXyMDBHlJsoIoglL+yQ=;
+ b=iAqvazR1SIB0P7UN3q2xXEL0d46MP9IiucCPSTAUlrqwuNG5aIdG53+t2WU3J2ue5c
+ /pTS43wPYZM0lLue+T+tRQMwJsRsV2jU46GjRZK2RYubBu7sHG3gVWo3ZpFMX3/ftK6z
+ 9jG2iyK7RhHyAZDC4WO2MS49mz8NyXmQ0esxU3g4tFkN9yt1ThvF9c8CDdIwl3+HSN0c
+ 6UbS2R1UGI+Xn3llo0TmJRxY7/rLGa7XnIPa3mEffsmxotFGYuEzoolYqIHt285M0PS+
+ QZkYNlG6sGvFfZn+ODU0xbW6REqsR3xLHc/nJecHV4D+NE/ADMJ/5zRhqjwoGD1zuNsD
+ aOpg==
+X-Gm-Message-State: AOAM530t9K/sqTiT4+TWWOwJS65iQ5qNvCi1/jq/2ufWCS1fIIKftP8w
+ LSykhN/zvggJk6p2WjWnyBzkYXlm
+X-Google-Smtp-Source: ABdhPJyPpJ3SibLT7JBhlBvz3rGqmVB6KJVzPclnXmxGDihrkzrBGx6pqMsgb/RBZtbjTHzz4bkpfg==
+X-Received: by 2002:aed:2a67:: with SMTP id k36mr2208554qtf.359.1592444932167; 
+ Wed, 17 Jun 2020 18:48:52 -0700 (PDT)
+Received: from localhost.localdomain ([71.219.51.205])
+ by smtp.gmail.com with ESMTPSA id c4sm1684705qko.118.2020.06.17.18.48.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 17 Jun 2020 18:48:51 -0700 (PDT)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amdgpu/display bail early in dm_pp_get_static_clocks
+Date: Wed, 17 Jun 2020 21:48:34 -0400
+Message-Id: <20200618014835.3775523-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,70 +64,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
- Hersen Wu <hersenxs.wu@amd.com>, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+If there are no supported callbacks.  We'll fall back to the
+nominal clocks.
 
-[ Upstream commit a24eaa5c51255b344d5a321f1eeb3205f2775498 ]
-
-[Why]
-Whenever we switch between tiled formats without also switching pixel
-formats or doing anything else that recreates the DC plane state we
-can run into underflow or hangs since we're not updating the
-DML parameters before committing to the hardware.
-
-[How]
-If the update type is FULL then call validate_bandwidth again to update
-the DML parmeters before committing the state.
-
-This is basically just a workaround and protective measure against
-update types being added DC where we could run into this issue in
-the future.
-
-We can only fully validate the state in advance before applying it to
-the hardware if we recreate all the plane and stream states since
-we can't modify what's currently in use.
-
-The next step is to update DM to ensure that we're creating the plane
-and stream states for whatever could potentially be a full update in
-DC to pre-emptively recreate the state for DC global validation.
-
-The workaround can stay until this has been fixed in DM.
-
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
+Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1170
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 2028dc017f7a..b95a58aa82d9 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2230,6 +2230,12 @@ void dc_commit_updates_for_stream(struct dc *dc,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+index a2e1a73f66b8..7cee8070cb11 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+@@ -530,6 +530,8 @@ bool dm_pp_get_static_clocks(
+ 			&pp_clk_info);
+ 	else if (adev->smu.ppt_funcs)
+ 		ret = smu_get_current_clocks(&adev->smu, &pp_clk_info);
++	else
++		return false;
+ 	if (ret)
+ 		return false;
  
- 	copy_stream_update_to_stream(dc, context, stream, stream_update);
- 
-+	if (!dc->res_pool->funcs->validate_bandwidth(dc, context, false)) {
-+		DC_ERROR("Mode validation failed for stream update!\n");
-+		dc_release_state(context);
-+		return;
-+	}
-+
- 	commit_planes_for_stream(
- 				dc,
- 				srf_updates,
 -- 
-2.25.1
+2.25.4
 
 _______________________________________________
 amd-gfx mailing list
