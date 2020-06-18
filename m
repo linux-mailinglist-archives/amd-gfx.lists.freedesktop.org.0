@@ -1,40 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988111FDBD4
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 03:15:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C20001FDCAC
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 03:21:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD9F6EA38;
-	Thu, 18 Jun 2020 01:15:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA536EA4D;
+	Thu, 18 Jun 2020 01:21:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4E376E388;
- Thu, 18 Jun 2020 01:15:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AFB86EA4B;
+ Thu, 18 Jun 2020 01:21:23 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id B7BD4221ED;
- Thu, 18 Jun 2020 01:15:09 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 10C8B20CC7;
+ Thu, 18 Jun 2020 01:21:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1592442910;
- bh=21amvfPGX3hDybz2dRXi+ckX1IpZeShBQQLLp7v3wQM=;
+ s=default; t=1592443282;
+ bh=Cub4vj9nLqVHK+vP9cLZf3O/SAGabxVQiO5LtqWPr3Q=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DnVJ46bFKVS9PRyMS+MKqgFFv5Rw74IdNnUMm10xMfvfX5WC9QrMGTwvNjMFnbDhK
- smKe97Zets8J4ysvnBx51cu+8G+XqeenZNAFgoFXBdjOb/O6dqYAt7D1/TqbtbA+i9
- ZnyaGJ5TOmosZ91oytSH6P2AEzud+yqOTSDM22mI=
+ b=C0pG6APArivPVS1UhMa9kylHSmrRtNWZuVYdwW927Evr9PoDOS4LcsiQeq4QtU+FO
+ 2V2TGK8H4mZ5H/oQ4HwBPgS6Se2vveXFnuYkfp+4gADmRL9w8dBpXy1M5eQKMTVl9i
+ 1+un2skuDuMYT2V3TCOGI+/C8zKGlbiSNpCuEMUA=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.7 329/388] drm/amd/display: Revalidate bandwidth
+Subject: [PATCH AUTOSEL 5.4 226/266] drm/amd/display: Revalidate bandwidth
  before commiting DC updates
-Date: Wed, 17 Jun 2020 21:07:06 -0400
-Message-Id: <20200618010805.600873-329-sashal@kernel.org>
+Date: Wed, 17 Jun 2020 21:15:51 -0400
+Message-Id: <20200618011631.604574-226-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200618010805.600873-1-sashal@kernel.org>
-References: <20200618010805.600873-1-sashal@kernel.org>
+In-Reply-To: <20200618011631.604574-1-sashal@kernel.org>
+References: <20200618011631.604574-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -95,10 +95,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 47431ca6986d..4a619328101c 100644
+index 2028dc017f7a..b95a58aa82d9 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2517,6 +2517,12 @@ void dc_commit_updates_for_stream(struct dc *dc,
+@@ -2230,6 +2230,12 @@ void dc_commit_updates_for_stream(struct dc *dc,
  
  	copy_stream_update_to_stream(dc, context, stream, stream_update);
  
