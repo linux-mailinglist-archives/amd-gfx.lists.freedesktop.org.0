@@ -1,63 +1,80 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 584B11FF4A3
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 16:24:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1A41FF4FF
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 16:42:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C143F6EA7E;
-	Thu, 18 Jun 2020 14:24:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44C676E47E;
+	Thu, 18 Jun 2020 14:42:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com
- [IPv6:2607:f8b0:4864:20::730])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61CBE6EA7E
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 14:24:37 +0000 (UTC)
-Received: by mail-qk1-x730.google.com with SMTP id l6so2040530qkc.6
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 07:24:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=DUZGCD7qn4ZSclPZ1a7jX00Jd6/sIcuV0VJWB8j8e/M=;
- b=N6RkocJrkkLkpu3fNfWvujwcrl4FvqsZBq7tLEcALd+mrLVyO8+TwJ768BUvHxLKO5
- t67bQf/aWqqtnXsYLqccSpR167no1duZx+7tBRTJP0ocNZzoEPGBmzUeOu2cOCoS4wfl
- F0JBNdVemhc9SCtSbYqlo7SXmnJu+gYiztpOV3gmnRCi+zQT59hyXu0AuoTz9czJdIAh
- eCCVlOWhZR65vrDj2cMvNBCHmV2lXfNl1HMubm/H3Y5Wgli7x/Fr9+EUDFgYV2uwN3k2
- bFEx05K7qYbfhq6hcTUWQWDkXijvYkzTd9Hj4IJAtbVxT+sy8PjbGgpqiq1GyzjNtkUO
- 1dAg==
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFCD66E3FE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 14:42:40 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id r7so6360783wro.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 07:42:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=pdYzXGFouE6m4FSIkgrBziaqe3C5lzqdVFEvi65td6k=;
+ b=Yv00WEyiSIg66gxJEUUQwcy2Tlc1E6Wc6zvKRDzYUlRDO6iCWLetHtRbnLoDvvQlXe
+ zOvWWpAvNNuvZIWHgr0fKWDsU8iNkZKTU9Ci4Vt8EkYVQUyV00qvQSrVYglPeqw2m8hn
+ YqvRGf3NKI0NMSmp82ufCgdaCILt0ba9vFJX0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=DUZGCD7qn4ZSclPZ1a7jX00Jd6/sIcuV0VJWB8j8e/M=;
- b=sr6SW+tNLEm9euLbvZZT/ye2SHP8NwzYmjMCUGe0YXMi5mSTAHPVIsa50KzwEjryJB
- f1+q0y7bG41mRHtsNF8/dTt6EMRhhyW7upePuaOQKJ7iMD5xHG67cNZfuiQ2VBdjUtQP
- L0NDR71qypBFrKZtVCNaBc4GSJXpjBg1osttxG1Y6rImqxV7XSFibXMR3+xA0f0pRo/a
- VCWA7Vs9cGL1j/eyhGFi0rQ1ByYRQ03cNeedfC2LH5o2/g1FThXCM+lANJWgd29/gY09
- LRr+0PEVqsWPbsh0SRTQry/U4FOndXRA6QdglvYgQjWt45e/e1u3xVER4ubJe2857y1y
- akOw==
-X-Gm-Message-State: AOAM531NKXeakVqK1OdQq1RHCTvQIZ6vyPzQu9darvT2mBg31sYdCQU7
- 2HQsvRoGwojI+2QKJscLUzphndr6xA/SxA==
-X-Google-Smtp-Source: ABdhPJxcP5cZiE2uHDGghxfbnvk0oqmulp0NmyuD2sGnryk4+YfDpxsx7/ctaTi6omxWNaLNovWLsw==
-X-Received: by 2002:a37:2795:: with SMTP id n143mr3969018qkn.298.1592490276063; 
- Thu, 18 Jun 2020 07:24:36 -0700 (PDT)
-Received: from brihaspati.amd.com
- (p200300c58f2304001ed633024609edb3.dip0.t-ipconnect.de.
- [2003:c5:8f23:400:1ed6:3302:4609:edb3])
- by smtp.gmail.com with ESMTPSA id g4sm3028529qka.97.2020.06.18.07.24.34
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=pdYzXGFouE6m4FSIkgrBziaqe3C5lzqdVFEvi65td6k=;
+ b=gavpJd6EjwNXOf+GayAMMmJRrYtPdlYHmHZ+XOEa/DARDwOQDmLofMFpCWvyY9lU17
+ 6MmYNd3eNmwpdILssHNvUUGX5cuEHdTnqwUScC6UJ05DCqG/pHNJ59umWddkGtVbuPKU
+ 8rkdHpxSDQb32moRh6y1TezB766YdpNMKX6C2K8KWY1sKAJ6NhQa+7t8Hyu5lytvQjHE
+ isApt/DYDFlddOZz2PszE3ZXnmBWwCFN01uQ4cMYXA5AhYV6mqHPMl9c9mI4koLRN/3m
+ ZrzJObGOghL3X4FDYtkreDe+9v9glBVtWyEJzqAEsuZS/Vc2E+dxoQ+gFKSkeBlJ+QG6
+ TQlw==
+X-Gm-Message-State: AOAM533RWreGfjFo9R1rGLJjdA8N5MSg0kO5QHfs7ASj4SE8pp7b2Tud
+ n/nY4R+Ecx9+ye9SvID9UnjYFw==
+X-Google-Smtp-Source: ABdhPJxnVXjNFjlZjZjkcFFWafgkcwR6ZwnMtNAx31PJPXgT9P8/Pv/85bqfzuCJe/q/lkXd/e/Xbg==
+X-Received: by 2002:adf:cf0c:: with SMTP id o12mr4325124wrj.265.1592491359458; 
+ Thu, 18 Jun 2020 07:42:39 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id g25sm3649693wmh.18.2020.06.18.07.42.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Jun 2020 07:24:35 -0700 (PDT)
-From: Nirmoy Das <nirmoy.aiemd@gmail.com>
-X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 4/4 v2] drm/amd/display: label internally used symbols as
- static
-Date: Thu, 18 Jun 2020 16:25:42 +0200
-Message-Id: <20200618142542.77714-4-nirmoy.das@amd.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200618142542.77714-1-nirmoy.das@amd.com>
-References: <20200618142542.77714-1-nirmoy.das@amd.com>
+ Thu, 18 Jun 2020 07:42:38 -0700 (PDT)
+Date: Thu, 18 Jun 2020 16:42:36 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime lockdep annotations
+Message-ID: <20200618144236.GR20149@phenom.ffwll.local>
+Mail-Followup-To: Jason Gunthorpe <jgg@ziepe.ca>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>
+References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
+ <20200604081224.863494-5-daniel.vetter@ffwll.ch>
+ <b11c2140-1b9c-9013-d9bb-9eb2c1906710@shipmail.org>
+ <20200611083430.GD20149@phenom.ffwll.local>
+ <20200611141515.GW6578@ziepe.ca>
+ <20200616120719.GL20149@phenom.ffwll.local>
+ <20200616145312.GC6578@ziepe.ca>
+ <CAKMK7uER6ax1zr14xYLKqDfDZp+ycBsY9Yx7JaVkKQ849VfSPg@mail.gmail.com>
+ <20200617152940.GG6578@ziepe.ca>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200617152940.GG6578@ziepe.ca>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,278 +86,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, nirmoy.das@amd.com
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Used sparse(make C=1) to find these loose ends.
+On Wed, Jun 17, 2020 at 12:29:40PM -0300, Jason Gunthorpe wrote:
+> On Wed, Jun 17, 2020 at 09:57:54AM +0200, Daniel Vetter wrote:
+> 
+> > > At the very least I think there should be some big warning that
+> > > dma_fence in notifiers should be avoided.
+> > 
+> > Yeah I'm working on documentation, and also the notifiers here
+> > hopefully make it clear it's massive pain. I think we could even make
+> > a hard rule that dma_fence in mmu notifier outside of drivers/gpu is a
+> > bug/misfeature.
+> 
+> Yep!
+>
+> > Might be a good idea to add a MAINTAINERS entry with a K: regex
+> > pattern, so that you can catch such modifiers. We do already have such
+> > a pattern for dma-fence, to catch abuse. So if you want I could type
+> > up a documentation patch for this, get your and others acks and the
+> > dri-devel folks would enforce that the dma_fence_wait madness doesn't
+> > leak beyond drivers/gpu
+> 
+> It seems like the best thing
 
-Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 ++++----
- .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c  | 24 ++++++++++---------
- .../drm/amd/display/dc/dce/dce_panel_cntl.c   | 10 ++++----
- .../drm/amd/display/dc/dcn20/dcn20_resource.c | 10 ++++----
- 4 files changed, 28 insertions(+), 26 deletions(-)
+Just thought about where to best put this, and I think including it as
+another paragraph in the next round of this series makes the most sense.
+You'll get cc'ed for acking when that happens - might take a while since
+there's a lot of details here all over to sort out.
+-Daniel
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 9ab0d8521576..93ba4ba9e564 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -700,7 +700,7 @@ static void amdgpu_dm_audio_fini(struct amdgpu_device *adev)
- 	adev->mode_info.audio.enabled = false;
- }
+>  
+> > Oded has agreed to remove the dma-fence usage, since they really don't
+> > need it (and all the baggage that comes with it), plain old completion
+> > is enough for their use. This use is also why I added the regex to
+> > MAINTAINERS, so that in the future we can catch people who try to use
+> > dma_fence because it looks cute and useful, and are completely
+> > oblivious to all the pain and headaches involved.
+> 
+> This is good!
+> 
+> Thanks,
+> Jason 
 
--void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin)
-+static  void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin)
- {
- 	struct drm_audio_component *acomp = adev->dm.audio_component;
-
-@@ -1586,7 +1586,7 @@ static void dm_gpureset_toggle_interrupts(struct amdgpu_device *adev,
-
- }
-
--enum dc_status amdgpu_dm_commit_zero_streams(struct dc *dc)
-+static enum dc_status amdgpu_dm_commit_zero_streams(struct dc *dc)
- {
- 	struct dc_state *context = NULL;
- 	enum dc_status res = DC_ERROR_UNEXPECTED;
-@@ -2706,7 +2706,7 @@ static int dm_atomic_get_state(struct drm_atomic_state *state,
- 	return 0;
- }
-
--struct dm_atomic_state *
-+static struct dm_atomic_state *
- dm_atomic_get_new_state(struct drm_atomic_state *state)
- {
- 	struct drm_device *dev = state->dev;
-@@ -2724,7 +2724,7 @@ dm_atomic_get_new_state(struct drm_atomic_state *state)
- 	return NULL;
- }
-
--struct dm_atomic_state *
-+static struct dm_atomic_state *
- dm_atomic_get_old_state(struct drm_atomic_state *state)
- {
- 	struct drm_device *dev = state->dev;
-@@ -5650,7 +5650,7 @@ dm_drm_plane_duplicate_state(struct drm_plane *plane)
- 	return &dm_plane_state->base;
- }
-
--void dm_drm_plane_destroy_state(struct drm_plane *plane,
-+static void dm_drm_plane_destroy_state(struct drm_plane *plane,
- 				struct drm_plane_state *state)
- {
- 	struct dm_plane_state *dm_plane_state = to_dm_plane_state(state);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-index a2e1a73f66b8..484171241330 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-@@ -660,7 +660,7 @@ void pp_rv_set_hard_min_fclk_by_freq(struct pp_smu *pp, int mhz)
- 	pp_funcs->set_hard_min_fclk_by_freq(pp_handle, mhz);
- }
-
--enum pp_smu_status pp_nv_set_wm_ranges(struct pp_smu *pp,
-+static enum pp_smu_status pp_nv_set_wm_ranges(struct pp_smu *pp,
- 		struct pp_smu_wm_range_sets *ranges)
- {
- 	const struct dc_context *ctx = pp->dm;
-@@ -728,7 +728,7 @@ enum pp_smu_status pp_nv_set_pme_wa_enable(struct pp_smu *pp)
- 	return PP_SMU_RESULT_OK;
- }
-
--enum pp_smu_status pp_nv_set_display_count(struct pp_smu *pp, int count)
-+static enum pp_smu_status pp_nv_set_display_count(struct pp_smu *pp, int count)
- {
- 	const struct dc_context *ctx = pp->dm;
- 	struct amdgpu_device *adev = ctx->driver_context;
-@@ -744,7 +744,8 @@ enum pp_smu_status pp_nv_set_display_count(struct pp_smu *pp, int count)
- 	return PP_SMU_RESULT_OK;
- }
-
--enum pp_smu_status pp_nv_set_min_deep_sleep_dcfclk(struct pp_smu *pp, int mhz)
-+static enum pp_smu_status
-+pp_nv_set_min_deep_sleep_dcfclk(struct pp_smu *pp, int mhz)
- {
- 	const struct dc_context *ctx = pp->dm;
- 	struct amdgpu_device *adev = ctx->driver_context;
-@@ -760,7 +761,7 @@ enum pp_smu_status pp_nv_set_min_deep_sleep_dcfclk(struct pp_smu *pp, int mhz)
- 	return PP_SMU_RESULT_OK;
- }
-
--enum pp_smu_status pp_nv_set_hard_min_dcefclk_by_freq(
-+static enum pp_smu_status pp_nv_set_hard_min_dcefclk_by_freq(
- 		struct pp_smu *pp, int mhz)
- {
- 	const struct dc_context *ctx = pp->dm;
-@@ -783,7 +784,8 @@ enum pp_smu_status pp_nv_set_hard_min_dcefclk_by_freq(
- 	return PP_SMU_RESULT_OK;
- }
-
--enum pp_smu_status pp_nv_set_hard_min_uclk_by_freq(struct pp_smu *pp, int mhz)
-+static enum pp_smu_status
-+pp_nv_set_hard_min_uclk_by_freq(struct pp_smu *pp, int mhz)
- {
- 	const struct dc_context *ctx = pp->dm;
- 	struct amdgpu_device *adev = ctx->driver_context;
-@@ -805,7 +807,7 @@ enum pp_smu_status pp_nv_set_hard_min_uclk_by_freq(struct pp_smu *pp, int mhz)
- 	return PP_SMU_RESULT_OK;
- }
-
--enum pp_smu_status pp_nv_set_pstate_handshake_support(
-+static enum pp_smu_status pp_nv_set_pstate_handshake_support(
- 	struct pp_smu *pp, BOOLEAN pstate_handshake_supported)
- {
- 	const struct dc_context *ctx = pp->dm;
-@@ -818,7 +820,7 @@ enum pp_smu_status pp_nv_set_pstate_handshake_support(
- 	return PP_SMU_RESULT_OK;
- }
-
--enum pp_smu_status pp_nv_set_voltage_by_freq(struct pp_smu *pp,
-+static enum pp_smu_status pp_nv_set_voltage_by_freq(struct pp_smu *pp,
- 		enum pp_smu_nv_clock_id clock_id, int mhz)
- {
- 	const struct dc_context *ctx = pp->dm;
-@@ -853,7 +855,7 @@ enum pp_smu_status pp_nv_set_voltage_by_freq(struct pp_smu *pp,
- 	return PP_SMU_RESULT_OK;
- }
-
--enum pp_smu_status pp_nv_get_maximum_sustainable_clocks(
-+static enum pp_smu_status pp_nv_get_maximum_sustainable_clocks(
- 		struct pp_smu *pp, struct pp_smu_nv_clock_table *max_clocks)
- {
- 	const struct dc_context *ctx = pp->dm;
-@@ -872,7 +874,7 @@ enum pp_smu_status pp_nv_get_maximum_sustainable_clocks(
- 	return PP_SMU_RESULT_FAIL;
- }
-
--enum pp_smu_status pp_nv_get_uclk_dpm_states(struct pp_smu *pp,
-+static enum pp_smu_status pp_nv_get_uclk_dpm_states(struct pp_smu *pp,
- 		unsigned int *clock_values_in_khz, unsigned int *num_states)
- {
- 	const struct dc_context *ctx = pp->dm;
-@@ -892,7 +894,7 @@ enum pp_smu_status pp_nv_get_uclk_dpm_states(struct pp_smu *pp,
- 	return PP_SMU_RESULT_FAIL;
- }
-
--enum pp_smu_status pp_rn_get_dpm_clock_table(
-+static enum pp_smu_status pp_rn_get_dpm_clock_table(
- 		struct pp_smu *pp, struct dpm_clocks *clock_table)
- {
- 	const struct dc_context *ctx = pp->dm;
-@@ -911,7 +913,7 @@ enum pp_smu_status pp_rn_get_dpm_clock_table(
- 	return PP_SMU_RESULT_FAIL;
- }
-
--enum pp_smu_status pp_rn_set_wm_ranges(struct pp_smu *pp,
-+static enum pp_smu_status pp_rn_set_wm_ranges(struct pp_smu *pp,
- 		struct pp_smu_wm_range_sets *ranges)
- {
- 	const struct dc_context *ctx = pp->dm;
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.c b/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.c
-index ebff9b1e312e..43781e77be43 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.c
-@@ -95,7 +95,7 @@ static unsigned int calculate_16_bit_backlight_from_pwm(struct dce_panel_cntl *d
- 	return (uint32_t)(current_backlight);
- }
-
--uint32_t dce_panel_cntl_hw_init(struct panel_cntl *panel_cntl)
-+static uint32_t dce_panel_cntl_hw_init(struct panel_cntl *panel_cntl)
- {
- 	struct dce_panel_cntl *dce_panel_cntl = TO_DCE_PANEL_CNTL(panel_cntl);
- 	uint32_t value;
-@@ -155,7 +155,7 @@ uint32_t dce_panel_cntl_hw_init(struct panel_cntl *panel_cntl)
- 	return current_backlight;
- }
-
--bool dce_is_panel_backlight_on(struct panel_cntl *panel_cntl)
-+static bool dce_is_panel_backlight_on(struct panel_cntl *panel_cntl)
- {
- 	struct dce_panel_cntl *dce_panel_cntl = TO_DCE_PANEL_CNTL(panel_cntl);
- 	uint32_t value;
-@@ -165,7 +165,7 @@ bool dce_is_panel_backlight_on(struct panel_cntl *panel_cntl)
- 	return value;
- }
-
--bool dce_is_panel_powered_on(struct panel_cntl *panel_cntl)
-+static bool dce_is_panel_powered_on(struct panel_cntl *panel_cntl)
- {
- 	struct dce_panel_cntl *dce_panel_cntl = TO_DCE_PANEL_CNTL(panel_cntl);
- 	uint32_t pwr_seq_state, dig_on, dig_on_ovrd;
-@@ -177,7 +177,7 @@ bool dce_is_panel_powered_on(struct panel_cntl *panel_cntl)
- 	return (pwr_seq_state == 1) || (dig_on == 1 && dig_on_ovrd == 1);
- }
-
--void dce_store_backlight_level(struct panel_cntl *panel_cntl)
-+static void dce_store_backlight_level(struct panel_cntl *panel_cntl)
- {
- 	struct dce_panel_cntl *dce_panel_cntl = TO_DCE_PANEL_CNTL(panel_cntl);
-
-@@ -192,7 +192,7 @@ void dce_store_backlight_level(struct panel_cntl *panel_cntl)
- 		&panel_cntl->stored_backlight_registers.LVTMA_PWRSEQ_REF_DIV_BL_PWM_REF_DIV);
- }
-
--void dce_driver_set_backlight(struct panel_cntl *panel_cntl,
-+static void dce_driver_set_backlight(struct panel_cntl *panel_cntl,
- 		uint32_t backlight_pwm_u16_16)
- {
- 	uint32_t backlight_16bit;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index fb167393b8fe..8f51f9cbe32a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -157,7 +157,7 @@ struct _vcs_dpi_ip_params_st dcn2_0_ip = {
- 	.number_of_cursors = 1,
- };
-
--struct _vcs_dpi_ip_params_st dcn2_0_nv14_ip = {
-+static struct _vcs_dpi_ip_params_st dcn2_0_nv14_ip = {
- 	.odm_capable = 1,
- 	.gpuvm_enable = 0,
- 	.hostvm_enable = 0,
-@@ -226,7 +226,7 @@ struct _vcs_dpi_ip_params_st dcn2_0_nv14_ip = {
- 	.number_of_cursors = 1,
- };
-
--struct _vcs_dpi_soc_bounding_box_st dcn2_0_soc = {
-+static struct _vcs_dpi_soc_bounding_box_st dcn2_0_soc = {
- 	/* Defaults that get patched on driver load from firmware. */
- 	.clock_limits = {
- 			{
-@@ -338,7 +338,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn2_0_soc = {
- 	.use_urgent_burst_bw = 0
- };
-
--struct _vcs_dpi_soc_bounding_box_st dcn2_0_nv14_soc = {
-+static struct _vcs_dpi_soc_bounding_box_st dcn2_0_nv14_soc = {
- 	.clock_limits = {
- 			{
- 				.state = 0,
-@@ -449,7 +449,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn2_0_nv14_soc = {
- 	.use_urgent_burst_bw = 0
- };
-
--struct _vcs_dpi_soc_bounding_box_st dcn2_0_nv12_soc = { 0 };
-+static struct _vcs_dpi_soc_bounding_box_st dcn2_0_nv12_soc = { 0 };
-
- #ifndef mmDP0_DP_DPHY_INTERNAL_CTRL
- 	#define mmDP0_DP_DPHY_INTERNAL_CTRL		0x210f
-@@ -1323,7 +1323,7 @@ static struct panel_cntl *dcn20_panel_cntl_create(const struct panel_cntl_init_d
- 	return &panel_cntl->base;
- }
-
--struct clock_source *dcn20_clock_source_create(
-+static struct clock_source *dcn20_clock_source_create(
- 	struct dc_context *ctx,
- 	struct dc_bios *bios,
- 	enum clock_source_id id,
---
-2.27.0
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
