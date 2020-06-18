@@ -2,59 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE511FD860
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 00:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 988111FDBD4
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 03:15:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8116F6E919;
-	Wed, 17 Jun 2020 22:07:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD9F6EA38;
+	Thu, 18 Jun 2020 01:15:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com
- [IPv6:2607:f8b0:4864:20::72c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99FA66E1A3;
- Wed, 17 Jun 2020 22:07:52 +0000 (UTC)
-Received: by mail-qk1-x72c.google.com with SMTP id b4so3621604qkn.11;
- Wed, 17 Jun 2020 15:07:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=uFlkTlA3a1jIkp/uIQ1lT7+XHzRWxghrvYHHu6hHp4k=;
- b=pb8YWAbNJHvWAh7BqnqcGJtnl85jqErNX4o4yHSfH1jRGmN6LLACf3YPy8d0e5PcJi
- AWi0PHBmH9BSNB0Avv36f18+6oOa45aK+gjKOdGnUWVJ29qygyIfsjdgOq6bjeHqpD2X
- YVk83U0DnulDxqnr9xydfgPVDUTo7mD/9yXzRo0lRK9zByB/bI4jUDuiQe/YhowaahB9
- SmgdlIP0U7V4cGfTrgrUddAFvY7UJEhN1zv2kagrC60DxNgnnJmqoCZV8Ge1ySmew4Kk
- 2Ntbq880vUuJ40WR6yzD7gx0i8mxoYY8z5nbSk6YNiWngxKpt2c+ggquwuwcqoCahvOZ
- tg2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=uFlkTlA3a1jIkp/uIQ1lT7+XHzRWxghrvYHHu6hHp4k=;
- b=OowqArIRYCyyjNwRf6GuvaXMGFEGqmVU0kKoBf/p2U9bRqWYxvPIN16ZFyOJtdYA54
- 9suoteHmYvg298gYBFuSffoohP3TqfPYRrN8pUPp7z5DMsH1V6w8tDL6wFBdLYEyC9e/
- Y4doAgogLYawJOJkVSACETppzIwTfgwNzw23DM4f5K/YrPqzRJKFvmhJMCbkTtOGUFfL
- 8eaCQOsheCP+zTq+HGziWfHCynSdyBeSiDiUjXQAQECoExQ4NM/z65wuTC+AVlQGJcpj
- 1bTYwGC5prbfgPleiMPW7zW9agUJod9/hJ1nhnOTGzWi9D1Y0lH4XCO+7AdbetRgnqLy
- MACg==
-X-Gm-Message-State: AOAM531Eb19XLSyCkFrKwaD9tqnlqq3woG6ikWt1m3smShTGMoElpwBg
- qQZAcW1Ue9eMqQtnPih2PQUf4o5+
-X-Google-Smtp-Source: ABdhPJxc2vMx2ucm3nMe7TO2XqzPqiQL9pi5E3ARzRRNs94kgAOywm7c04qJshVqDbTQ/uX6YJnp5Q==
-X-Received: by 2002:a05:620a:1132:: with SMTP id
- p18mr812026qkk.494.1592431671444; 
- Wed, 17 Jun 2020 15:07:51 -0700 (PDT)
-Received: from localhost.localdomain ([71.219.51.205])
- by smtp.gmail.com with ESMTPSA id v69sm1077892qkb.96.2020.06.17.15.07.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Jun 2020 15:07:50 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, daniel.vetter@ffwll.ch
-Subject: [pull] amdgpu, amdkfd drm-fixes-5.8
-Date: Wed, 17 Jun 2020 18:07:33 -0400
-Message-Id: <20200617220733.3773183-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.25.4
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4E376E388;
+ Thu, 18 Jun 2020 01:15:10 +0000 (UTC)
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id B7BD4221ED;
+ Thu, 18 Jun 2020 01:15:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1592442910;
+ bh=21amvfPGX3hDybz2dRXi+ckX1IpZeShBQQLLp7v3wQM=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=DnVJ46bFKVS9PRyMS+MKqgFFv5Rw74IdNnUMm10xMfvfX5WC9QrMGTwvNjMFnbDhK
+ smKe97Zets8J4ysvnBx51cu+8G+XqeenZNAFgoFXBdjOb/O6dqYAt7D1/TqbtbA+i9
+ ZnyaGJ5TOmosZ91oytSH6P2AEzud+yqOTSDM22mI=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.7 329/388] drm/amd/display: Revalidate bandwidth
+ before commiting DC updates
+Date: Wed, 17 Jun 2020 21:07:06 -0400
+Message-Id: <20200618010805.600873-329-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200618010805.600873-1-sashal@kernel.org>
+References: <20200618010805.600873-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,69 +49,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
+ Hersen Wu <hersenxs.wu@amd.com>, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-Fixes for 5.8.
+[ Upstream commit a24eaa5c51255b344d5a321f1eeb3205f2775498 ]
 
-The following changes since commit 8d286e2ff4400d313955b4203fc640ca6fd9228b:
+[Why]
+Whenever we switch between tiled formats without also switching pixel
+formats or doing anything else that recreates the DC plane state we
+can run into underflow or hangs since we're not updating the
+DML parameters before committing to the hardware.
 
-  Merge tag 'drm-intel-next-fixes-2020-06-04' of git://anongit.freedesktop.org/drm/drm-intel into drm-next (2020-06-08 11:59:57 +1000)
+[How]
+If the update type is FULL then call validate_bandwidth again to update
+the DML parmeters before committing the state.
 
-are available in the Git repository at:
+This is basically just a workaround and protective measure against
+update types being added DC where we could run into this issue in
+the future.
 
-  git://people.freedesktop.org/~agd5f/linux tags/amd-drm-fixes-5.8-2020-06-17
+We can only fully validate the state in advance before applying it to
+the hardware if we recreate all the plane and stream states since
+we can't modify what's currently in use.
 
-for you to fetch changes up to da9cebe16930f0273278fe893f2809450c61ae41:
+The next step is to update DM to ensure that we're creating the plane
+and stream states for whatever could potentially be a full update in
+DC to pre-emptively recreate the state for DC global validation.
 
-  drm/amdgpu: fix documentation around busy_percentage (2020-06-17 17:42:43 -0400)
+The workaround can stay until this has been fixed in DM.
 
-----------------------------------------------------------------
-amd-drm-fixes-5.8-2020-06-17:
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-amdgpu:
-- Fix kvfree/kfree mixup
-- Fix hawaii device id in powertune configuration
-- Display FP fixes
-- Documentation fixes
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 47431ca6986d..4a619328101c 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -2517,6 +2517,12 @@ void dc_commit_updates_for_stream(struct dc *dc,
+ 
+ 	copy_stream_update_to_stream(dc, context, stream, stream_update);
+ 
++	if (!dc->res_pool->funcs->validate_bandwidth(dc, context, false)) {
++		DC_ERROR("Mode validation failed for stream update!\n");
++		dc_release_state(context);
++		return;
++	}
++
+ 	commit_planes_for_stream(
+ 				dc,
+ 				srf_updates,
+-- 
+2.25.1
 
-amdkfd:
-- devcgroup check fix
-
-----------------------------------------------------------------
-Alex Deucher (2):
-      drm/amdgpu/pm: update comment to clarify Overdrive interfaces
-      drm/amdgpu: fix documentation around busy_percentage
-
-Denis Efremov (2):
-      drm/amd/display: Use kvfree() to free coeff in build_regamma()
-      drm/amd/display: Use kfree() to free rgb_user in calculate_user_regamma_ramp()
-
-Lorenz Brun (1):
-      drm/amdkfd: Use correct major in devcgroup check
-
-Rodrigo Siqueira (1):
-      drm/amd/display: Rework dsc to isolate FPU operations
-
-Sandeep Raghuraman (1):
-      drm/amdgpu: Replace invalid device ID with a valid device ID
-
- Documentation/gpu/amdgpu.rst                       |   9 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c             |   4 +-
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h              |   3 +-
- drivers/gpu/drm/amd/display/dc/dsc/Makefile        |   2 -
- drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c        |  18 +--
- drivers/gpu/drm/amd/display/dc/dsc/rc_calc.c       | 151 ++++++++++++++++++++-
- drivers/gpu/drm/amd/display/dc/dsc/rc_calc.h       |   5 +-
- drivers/gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c   |  27 +---
- .../drm/amd/display/modules/color/color_gamma.c    |   4 +-
- drivers/gpu/drm/amd/powerplay/smumgr/ci_smumgr.c   |   2 +-
- 10 files changed, 166 insertions(+), 59 deletions(-)
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
