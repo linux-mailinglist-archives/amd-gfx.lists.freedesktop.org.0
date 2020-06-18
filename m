@@ -2,96 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38C5F1FEEAA
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 11:30:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF431FF2A5
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2020 15:07:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CB3C6EB32;
-	Thu, 18 Jun 2020 09:30:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC386E420;
+	Thu, 18 Jun 2020 13:07:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770042.outbound.protection.outlook.com [40.107.77.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C27BB6E849
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 09:29:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Zj95s6UwydmMfoOf4v3EyNP3PCg8Vw1selwivL7o09DQnetrTxQ5z9jXA7joMKhaL1lg9h9egK0ijdtu+C+2iVTZcqSRsFbyReS6Gj0pdKb+VFXCQx4Lr99c0s4+PVsRWLGQVsgCEKHxyXq6FEYbVVUhqHSx9Hn+HcR5euk6jcz0lDninZhITBogBimJEXJNyll+48KXAtzIsTYphB6csL7V48adwN/6fDY/ei+azjuEBGy/6DdgReM5hefCDZOQPT2fGlv7OdOFLYc/yGXEDrl4pZ6r5CfxdAG9ZwKVYFfZMpBIH1+bhvkvZ+AribaX3AdXbVoFaSZtm0mK9sV6/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nn7fpirh0ZwJiHgXETuZYreq/ZU8XdGZw8DjgqhQ9vc=;
- b=JU3a6SCgJvVf+Z941S7i8wiRXVYz2cNxoq07tt2dVHuZfN6y2u79Fq4ee1UMZHkFfwKtxYteEt0p/Q2W2ZRIgrP8lr5L190EovGsVQpdDWgR4NE0QDt2VJ51Dx1blOEAJUO90KYOvRARvlhuzDweArYKCoVYQkMS5xhSpM3aUQcTeyqNk5mPE+qbKTkzPznJAEQJVjTrIb66DR939lt1XJfi407iCv35f2EfyfvTim6mWHIt2gSv4lv5OnWeLKX9xr/q1WRi0p++raz269EMM9AyOLd7GC2PTU3Qf2L3n/nqGdung8uP17LGqXr5pJRi0SsnLbkX4O7DFcpayVqkGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nn7fpirh0ZwJiHgXETuZYreq/ZU8XdGZw8DjgqhQ9vc=;
- b=FLhYes+MEPN3ZMUGpsXzZMuGWKGSTBfOmE2FX0Ajc2bGpkmwwOEZO/Tu0NkW5Q4q+H9Xwr+/YkPXDjv20my+DxfOFVFrQMNHswabGjOGI+FIwlhU0FiLpzQ/ZA5Ph88xkyIzdPJan6pXbnV2p5zOL+9wtPmLnIQifOfgKaguht8=
-Received: from MN2PR12MB3022.namprd12.prod.outlook.com (2603:10b6:208:ce::32)
- by MN2PR12MB3327.namprd12.prod.outlook.com (2603:10b6:208:cd::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.22; Thu, 18 Jun
- 2020 09:29:56 +0000
-Received: from MN2PR12MB3022.namprd12.prod.outlook.com
- ([fe80::493c:9d42:501b:59d6]) by MN2PR12MB3022.namprd12.prod.outlook.com
- ([fe80::493c:9d42:501b:59d6%3]) with mapi id 15.20.3109.021; Thu, 18 Jun 2020
- 09:29:56 +0000
-From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
-To: "Sheng, Wenhui" <Wenhui.Sheng@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0
-Thread-Topic: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0
-Thread-Index: AQHWRUWyyxt0twhDmECVwlQ36PPmrajeCMCJgAACjYCAAALTd4AACviAgAABcCY=
-Date: Thu, 18 Jun 2020 09:29:56 +0000
-Message-ID: <MN2PR12MB302257CEE4B130B29B87D699A29B0@MN2PR12MB3022.namprd12.prod.outlook.com>
-References: <20200618075307.3721-1-Wenhui.Sheng@amd.com>,
- <20200618075307.3721-2-Wenhui.Sheng@amd.com>
- <MN2PR12MB3022D32C41B32F413AEFF151A29B0@MN2PR12MB3022.namprd12.prod.outlook.com>,
- <CH2PR12MB4101B7B650649CADE1501E6A8C9B0@CH2PR12MB4101.namprd12.prod.outlook.com>
- <MN2PR12MB30220020DF792ED8CF72490EA29B0@MN2PR12MB3022.namprd12.prod.outlook.com>,
- <CH2PR12MB4101B84E569C4DCE6F77D1F38C9B0@CH2PR12MB4101.namprd12.prod.outlook.com>
-In-Reply-To: <CH2PR12MB4101B84E569C4DCE6F77D1F38C9B0@CH2PR12MB4101.namprd12.prod.outlook.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-06-18T09:29:55.653Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [58.246.142.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 961603d1-d58a-46d3-c019-08d8136a29f4
-x-ms-traffictypediagnostic: MN2PR12MB3327:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB33273C2047DA7BD0EDD036E4A29B0@MN2PR12MB3327.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2887;
-x-forefront-prvs: 0438F90F17
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fl0DePm2AgHnwPyUswtdZhIZQoAKPq92a+TcJw7wQnrpeLXK9A+vFjTGBk99S6o6BGOLjq3/eEzpPVv+nXSapeULZw37J8gubuEe+k2ozx4ATBq2fAyIeQDeUll/U6nm3TWbi/nKoE4eOgHWNrqBllaJQBz13BnrwsxuxLOi0IENjZmZNqSmqss07/JR7EipjBpIV/ONOy4bBc1KpVqmtJvi/JTVw0W5bGorx0tBwEZE2uSWPojgFh1XNY4yWQicWikx/6GfI+VfKzzQUXVKZ/j65AaSRlznacmEma3OKUfvZZnt6qx4OThs1aacSwFJ616M4bZ1/Sx27SWlGLkoXP+PKdkT+6/5EFu6NjbJuCo=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3022.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(136003)(396003)(376002)(346002)(366004)(39860400002)(8676002)(2906002)(71200400001)(33656002)(186003)(55016002)(26005)(166002)(966005)(8936002)(66946007)(19627405001)(110136005)(478600001)(9686003)(83380400001)(76116006)(7696005)(91956017)(52536014)(66476007)(66574015)(316002)(86362001)(6506007)(66556008)(64756008)(5660300002)(53546011)(45080400002)(66446008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: nv5Sdge3+G+U+ONTIb2mDJbEfDZCjqQfAHu2iMYi24rLxsPHqHvcMPisoYOv9EteRRcAnLkCgIfaDbPa/CFNt/Q9Jd1q2sU47SYscpbe92/MFytYGPD2lfwyzCOZOIOJObcnkEN/P/08pEBQHqnE4NGSUfNJPCXs2WMEKDGpGc6Y7HQHXMV+E4hb7zJbhgARNwzb9Jkra37H5y85okcA16/97bJVk6vs4Stdd5Kiw+JcOSAfggiDjwudPd4brz3dWc10cILm2n5xD3N+JbXRJdW2EnnO08ZiIJDfuDsVq9Z+nLZ0f6LRkD3fXvhdCeNtHlLsPGBSEefvBN0oPfRWlYDnNCKfZQwXd80WZqCOacy7UlxsJPwhf0e6LASITizVseP5vzpjzuwggKfr9iCDO2GkbPJlzcsV7uCu8Hvob/uk4CE3VVWV9SYcgReHuGR20A24jzv/MEfmfxlazQ1kSUzLVBZlq0nDbWEUHyDqrPI=
+X-Greylist: delayed 682 seconds by postgrey-1.36 at gabe;
+ Thu, 18 Jun 2020 08:17:19 UTC
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F93A6EB0B
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2020 08:17:19 +0000 (UTC)
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 05I84GQo094657; Thu, 18 Jun 2020 04:05:26 -0400
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com with ESMTP id 31r1qbcnx4-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 18 Jun 2020 04:05:26 -0400
+Received: from m0098410.ppops.net (m0098410.ppops.net [127.0.0.1])
+ by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 05I84Tsu095683;
+ Thu, 18 Jun 2020 04:05:26 -0400
+Received: from ppma02fra.de.ibm.com (47.49.7a9f.ip4.static.sl-reverse.com
+ [159.122.73.71])
+ by mx0a-001b2d01.pphosted.com with ESMTP id 31r1qbcnwa-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 18 Jun 2020 04:05:25 -0400
+Received: from pps.filterd (ppma02fra.de.ibm.com [127.0.0.1])
+ by ppma02fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 05I84kMX000783;
+ Thu, 18 Jun 2020 08:05:23 GMT
+Received: from b06cxnps3075.portsmouth.uk.ibm.com
+ (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
+ by ppma02fra.de.ibm.com with ESMTP id 31r0dvr499-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 18 Jun 2020 08:05:23 +0000
+Received: from b06wcsmtp001.portsmouth.uk.ibm.com
+ (b06wcsmtp001.portsmouth.uk.ibm.com [9.149.105.160])
+ by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 05I85KSa50659410
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 18 Jun 2020 08:05:20 GMT
+Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id F2316A405C;
+ Thu, 18 Jun 2020 08:05:19 +0000 (GMT)
+Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 3C8E3A405F;
+ Thu, 18 Jun 2020 08:05:19 +0000 (GMT)
+Received: from localhost.localdomain (unknown [9.145.12.179])
+ by b06wcsmtp001.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+ Thu, 18 Jun 2020 08:05:19 +0000 (GMT)
+Subject: Re: [PATCH v2 02/12] ocxl: Change type of pasid to unsigned int
+To: Fenghua Yu <fenghua.yu@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ H Peter Anvin <hpa@zytor.com>, David Woodhouse <dwmw2@infradead.org>,
+ Lu Baolu <baolu.lu@linux.intel.com>, Andrew Donnellan <ajd@linux.ibm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Joerg Roedel <joro@8bytes.org>, Dave Hansen <dave.hansen@intel.com>,
+ Tony Luck <tony.luck@intel.com>, Ashok Raj <ashok.raj@intel.com>,
+ Jacob Jun Pan <jacob.jun.pan@intel.com>,
+ Dave Jiang <dave.jiang@intel.com>, Yu-cheng Yu <yu-cheng.yu@intel.com>,
+ Sohil Mehta <sohil.mehta@intel.com>,
+ Ravi V Shankar <ravi.v.shankar@intel.com>
+References: <1592008893-9388-1-git-send-email-fenghua.yu@intel.com>
+ <1592008893-9388-3-git-send-email-fenghua.yu@intel.com>
+From: Frederic Barrat <fbarrat@linux.ibm.com>
+Message-ID: <972dc2cb-9643-53af-b11d-ebb56d96053d@linux.ibm.com>
+Date: Thu, 18 Jun 2020 10:05:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 961603d1-d58a-46d3-c019-08d8136a29f4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2020 09:29:56.3492 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hJVG435fT+mtE7lYIrAqurn6GQeUgkFer78b+Z46YtU/1qjkyrmCtJUvefRLH6Sd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3327
+In-Reply-To: <1592008893-9388-3-git-send-email-fenghua.yu@intel.com>
+Content-Language: en-US
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216, 18.0.687
+ definitions=2020-06-18_04:2020-06-17,
+ 2020-06-18 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0
+ cotscore=-2147483648 mlxscore=0 lowpriorityscore=0 bulkscore=0 spamscore=0
+ phishscore=0 priorityscore=1501 clxscore=1011 mlxlogscore=999
+ impostorscore=0 adultscore=0 suspectscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.12.0-2004280000
+ definitions=main-2006180057
+X-Mailman-Approved-At: Thu, 18 Jun 2020 13:07:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,701 +98,165 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0637997572=="
+Cc: iommu@lists.linux-foundation.org, x86 <x86@kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ amd-gfx <amd-gfx@lists.freedesktop.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0637997572==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB302257CEE4B130B29B87D699A29B0MN2PR12MB3022namp_"
-
---_000_MN2PR12MB302257CEE4B130B29B87D699A29B0MN2PR12MB3022namp_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-[AMD Official Use Only - Internal Distribution Only]
-
-before this patch, the driver has same code logic at "drivers/gpu/drm/amd/a=
-mdgpu/sdma_v3_0.c"
-related patch: drm/amdgpu: fix sdma3 ucode mem leak
-
-commit 14d83e78c578a6c45163fb399ee760fe0d314bad
-Author: Monk Liu <Monk.Liu@amd.com>
-Date:   Mon May 30 15:15:32 2016 +0800
-
-    drm/amdgpu: fix sdma3 ucode mem leak
-
-    Signed-off-by: Monk Liu <Monk.Liu@amd.com>
-    Reviewed-by: Christian K=F6nig <christian.koenig@amd.com>
-    Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/sdma_v3_0.c
-index 33605d4ac2d9..532ea88da66a 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-@@ -236,6 +236,15 @@ static void sdma_v3_0_init_golden_registers(struct amd=
-gpu_device *adev)
-        }
- }
-
-+static void sdma_v3_0_free_microcode(struct amdgpu_device *adev)
-+{
-+       int i;
-+       for (i =3D 0; i < adev->sdma.num_instances; i++) {
-+               release_firmware(adev->sdma.instance[i].fw);
-+               adev->sdma.instance[i].fw =3D NULL;
-+       }
-+}
-+
- /**
-  * sdma_v3_0_init_microcode - load ucode images from disk
-  *
-@@ -1256,6 +1265,7 @@ static int sdma_v3_0_sw_fini(void *handle)
-        for (i =3D 0; i < adev->sdma.num_instances; i++)
-                amdgpu_ring_fini(&adev->sdma.instance[i].ring);
-
-+       sdma_v3_0_free_microcode(adev);
-        return 0;
- }
-
-Best Regards,
-Kevin
-________________________________
-From: Sheng, Wenhui <Wenhui.Sheng@amd.com>
-Sent: Thursday, June 18, 2020 5:21 PM
-To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>; amd-gfx@lists.freedesktop.org =
-<amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0
-
-
-[AMD Official Use Only - Internal Distribution Only]
-
-
-[AMD Official Use Only - Internal Distribution Only]
-
-
-
-Hmmmm=85.
-
-
-
-  1.  There are some places in amdgpu driver using release_firmware like th=
-is way
-  2.  This case is a little different, we use it in loop and maybe not all =
-sdma instances=92 fw is initialized, just like we did in v5_2
-
-
-
-Brs
-
-Wenhui
-
-
-
-From: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
-Sent: Thursday, June 18, 2020 4:48 PM
-To: Sheng, Wenhui <Wenhui.Sheng@amd.com>; amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0
-
-
-
-[AMD Official Use Only - Internal Distribution Only]
-
-
-
-afte the API firmware_realease created, the api logic never changed. (the f=
-irst commit by Linus)
-
-and you can use below command to reference the api usage case in our drm dr=
-iver.
-
-
-
-$ grep -nR "release_firmware" -A 5 -B 5 drivers/gpu/drm/ | vim -
-
-
-
-Best Regards,
-
-Kevin
-
-________________________________
-
-From: Sheng, Wenhui <Wenhui.Sheng@amd.com<mailto:Wenhui.Sheng@amd.com>>
-Sent: Thursday, June 18, 2020 4:31 PM
-To: Wang, Kevin(Yang) <Kevin1.Wang@amd.com<mailto:Kevin1.Wang@amd.com>>; am=
-d-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org> <amd-gfx@=
-lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>>
-Subject: RE: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0
-
-
-
-[AMD Official Use Only - Internal Distribution Only]
-
-
-
-[AMD Official Use Only - Internal Distribution Only]
-
-
-
-Although we know that release_firmware has null check, but the code is not =
-maintained by ourselves, so I think it=92s much more safe to add null  chec=
-k before invoke release_firmware.
-
-
-
-
-
-Brs
-
-Wenhui
-
-From: Wang, Kevin(Yang) <Kevin1.Wang@amd.com<mailto:Kevin1.Wang@amd.com>>
-Sent: Thursday, June 18, 2020 4:25 PM
-To: Sheng, Wenhui <Wenhui.Sheng@amd.com<mailto:Wenhui.Sheng@amd.com>>; amd-=
-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0
-
-
-
-[AMD Official Use Only - Internal Distribution Only]
-
-
-
-
-
-
-
-________________________________
-
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
-@lists.freedesktop.org>> on behalf of Wenhui Sheng <Wenhui.Sheng@amd.com<ma=
-ilto:Wenhui.Sheng@amd.com>>
-Sent: Thursday, June 18, 2020 3:53 PM
-To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org> <am=
-d-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>>
-Cc: Sheng, Wenhui <Wenhui.Sheng@amd.com<mailto:Wenhui.Sheng@amd.com>>
-Subject: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0
-
-
-
-sdma v5_0 fw isn't released when module exit
-
-Signed-off-by: Wenhui Sheng <Wenhui.Sheng@amd.com<mailto:Wenhui.Sheng@amd.c=
-om>>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/sdma_v5_0.c
-index 58d2a80af450..6751ad69ed90 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-@@ -1299,8 +1299,12 @@ static int sdma_v5_0_sw_fini(void *handle)
-         struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-         int i;
-
--       for (i =3D 0; i < adev->sdma.num_instances; i++)
-+       for (i =3D 0; i < adev->sdma.num_instances; i++) {
-+               if (adev->sdma.instance[i].fw !=3D NULL)
-+                       release_firmware(adev->sdma.instance[i].fw);
-
-[kevin]:
-
-the kernel api "release_firmware()" will check argument (is NULL pointer).
-
-i think the patch don't need to double check it.
-
-+
-                 amdgpu_ring_fini(&adev->sdma.instance[i].ring);
-+       }
-
-         return 0;
- }
---
-2.17.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D02%7C01%7CKevin1.W=
-ang%40amd.com%7Cd0b8b72e0be443a7343d08d8135cb093%7C3dd8961fe4884e608e11a82d=
-994e183d%7C0%7C0%7C637280636699912801&amp;sdata=3DHrKVAmRO0HKFZBRG6oWq3thNl=
-GBd0T9bMramDU1ijys%3D&amp;reserved=3D0
-
---_000_MN2PR12MB302257CEE4B130B29B87D699A29B0MN2PR12MB3022namp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
-ign=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-before this patch, the driver has same code logic at &quot;drivers/gpu/drm/=
-amd/amdgpu/sdma_v3_0.c&quot;</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-related patch:&nbsp;drm/amdgpu: fix sdma3 ucode mem leak<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span></span><span>commit 14d83e78c578a6c45163fb399ee760fe0d314bad<br>
-</span>
-<div>Author: Monk Liu &lt;Monk.Liu@amd.com&gt;<br>
-</div>
-<div>Date: &nbsp; Mon May 30 15:15:32 2016 &#43;0800<br>
-</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; drm/amdgpu: fix sdma3 ucode mem leak<br>
-</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; Signed-off-by: Monk Liu &lt;Monk.Liu@amd.com&gt;<br>
-</div>
-<div>&nbsp; &nbsp; Reviewed-by: Christian K=F6nig &lt;christian.koenig@amd.=
-com&gt;<br>
-</div>
-<div>&nbsp; &nbsp; Signed-off-by: Alex Deucher &lt;alexander.deucher@amd.co=
-m&gt;<br>
-</div>
-<div><br>
-</div>
-<div>diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c b/drivers/gpu/drm/=
-amd/amdgpu/sdma_v3_0.c<br>
-</div>
-<div>index 33605d4ac2d9..532ea88da66a 100644<br>
-</div>
-<div>--- a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c<br>
-</div>
-<div>&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c<br>
-</div>
-<div>@@ -236,6 &#43;236,15 @@ static void sdma_v3_0_init_golden_registers(s=
-truct amdgpu_device *adev)<br>
-</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; }<br>
-</div>
-<div>&nbsp;}<br>
-</div>
-<div><br>
-</div>
-<div>&#43;static void sdma_v3_0_free_microcode(struct amdgpu_device *adev)<=
-br>
-</div>
-<div>&#43;{<br>
-</div>
-<div>&#43; &nbsp; &nbsp; &nbsp; int i;<br>
-</div>
-<div>&#43; &nbsp; &nbsp; &nbsp; for (i =3D 0; i &lt; adev-&gt;sdma.num_inst=
-ances; i&#43;&#43;) {<br>
-</div>
-<div>&#43; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; release_firmwar=
-e(adev-&gt;sdma.instance[i].fw);<br>
-</div>
-<div>&#43; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; adev-&gt;sdma.i=
-nstance[i].fw =3D NULL;<br>
-</div>
-<div>&#43; &nbsp; &nbsp; &nbsp; }<br>
-</div>
-<div>&#43;}<br>
-</div>
-<div>&#43;<br>
-</div>
-<div>&nbsp;/**<br>
-</div>
-<div>&nbsp; * sdma_v3_0_init_microcode - load ucode images from disk<br>
-</div>
-<div>&nbsp; *<br>
-</div>
-<div>@@ -1256,6 &#43;1265,7 @@ static int sdma_v3_0_sw_fini(void *handle)<b=
-r>
-</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; for (i =3D 0; i &lt; adev-&gt;sdma.num_ins=
-tances; i&#43;&#43;)<br>
-</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; amdgpu_ring_fi=
-ni(&amp;adev-&gt;sdma.instance[i].ring);<br>
-</div>
-<div><br>
-</div>
-<div>&#43; &nbsp; &nbsp; &nbsp; sdma_v3_0_free_microcode(adev);<br>
-</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; return 0;<br>
-</div>
-<div>&nbsp;}<br>
-</div>
-<div><br>
-</div>
-<span></span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<div>Best Regards,</div>
-<div>Kevin</div>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Sheng, Wenhui &lt;Wen=
-hui.Sheng@amd.com&gt;<br>
-<b>Sent:</b> Thursday, June 18, 2020 5:21 PM<br>
-<b>To:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt;; amd-gfx@lists.fre=
-edesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Subject:</b> RE: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0</f=
-ont>
-<div>&nbsp;</div>
-</div>
-<div lang=3D"EN-US">
-<p align=3D"Left" style=3D"font-family:Arial; font-size:10pt; color:#0078D7=
-; margin:15pt">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div class=3D"x_WordSection1">
-<p class=3D"x_msipheadera92e061b" style=3D"margin-right: 0in; margin-left: =
-0in; font-size: 11pt; font-family: Calibri, sans-serif;margin:0in; margin-b=
-ottom:.0001pt">
-<span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,sans-serif; =
-color:#0078D7">[AMD Official Use Only - Internal Distribution Only]</span><=
-/p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-Hmmmm=85. </p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<ol start=3D"1" type=3D"1" style=3D"margin-bottom: 0in;margin-top:0in">
-<li class=3D"x_MsoListParagraph" style=3D"margin: 0in 0in 0.0001pt 0.5in; f=
-ont-size: 11pt; font-family: Calibri, sans-serif;margin-left:0in; mso-list:=
-l0 level1 lfo3">
-There are some places in amdgpu driver using release_firmware like this way=
-</li><li class=3D"x_MsoListParagraph" style=3D"margin: 0in 0in 0.0001pt 0.5=
-in; font-size: 11pt; font-family: Calibri, sans-serif;margin-left:0in; mso-=
-list:l0 level1 lfo3">
-This case is a little different, we use it in loop and maybe not all sdma i=
-nstances=92 fw is initialized, just like we did in v5_2</li></ol>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-Brs</p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-Wenhui</p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<div>
-<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0i=
-n 0in 0in">
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-<b>From:</b> Wang, Kevin(Yang) &lt;Kevin1.Wang@amd.com&gt; <br>
-<b>Sent:</b> Thursday, June 18, 2020 4:48 PM<br>
-<b>To:</b> Sheng, Wenhui &lt;Wenhui.Sheng@amd.com&gt;; amd-gfx@lists.freede=
-sktop.org<br>
-<b>Subject:</b> Re: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0</p=
->
-</div>
-</div>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<p style=3D"margin:15.0pt"><span style=3D"font-size:10.0pt; font-family:&qu=
-ot;Arial&quot;,sans-serif; color:#0078D7">[AMD Official Use Only - Internal=
- Distribution Only]</span></p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<div>
-<div>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">afte the API <b><i>firmware_r=
-ealease </i>
-</b>created, the api logic never changed. (the first commit by Linus)</span=
-></p>
-</div>
-<div>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">and you can use below command=
- to reference the api usage case in our drm driver.</span></p>
-</div>
-<div>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">&nbsp;</span></p>
-</div>
-<div>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-<i><span style=3D"font-size:12.0pt; color:black">$ grep -nR &quot;release_f=
-irmware&quot; -A 5 -B 5 drivers/gpu/drm/ | vim -</span></i><span style=3D"f=
-ont-size:12.0pt; color:black"></span></p>
-</div>
-<div>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">&nbsp;</span></p>
-</div>
-<div>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">Best Regards,</span></p>
-</div>
-<div>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">Kevin</span></p>
-</div>
-<div class=3D"x_MsoNormal" align=3D"center" style=3D"margin: 0in 0in 0.0001=
-pt; font-size: 11pt; font-family: Calibri, sans-serif;text-align:center">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</div>
-<div id=3D"x_divRplyFwdMsg">
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-<b><span style=3D"color:black">From:</span></b><span style=3D"color:black">=
- Sheng, Wenhui &lt;</span><a href=3D"mailto:Wenhui.Sheng@amd.com">Wenhui.Sh=
-eng@amd.com</a><span style=3D"color:black">&gt;<br>
-<b>Sent:</b> Thursday, June 18, 2020 4:31 PM<br>
-<b>To:</b> Wang, Kevin(Yang) &lt;</span><a href=3D"mailto:Kevin1.Wang@amd.c=
-om">Kevin1.Wang@amd.com</a><span style=3D"color:black">&gt;;
-</span><a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freed=
-esktop.org</a><span style=3D"color:black"> &lt;</span><a href=3D"mailto:amd=
--gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><span style=3D=
-"color:black">&gt;<br>
-<b>Subject:</b> RE: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0</s=
-pan> </p>
-<div>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-</div>
-</div>
-<div>
-<p style=3D"margin:15.0pt"><span style=3D"font-size:10.0pt; font-family:&qu=
-ot;Arial&quot;,sans-serif; color:#0078D7">[AMD Official Use Only - Internal=
- Distribution Only]</span></p>
-<p class=3D"x_MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt=
-; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<div>
-<div>
-<p class=3D"x_xmsipheadera92e061b" style=3D"margin: 0in 0in 0.0001pt; font-=
-size: 11pt; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,sans-serif; =
-color:#0078D7">[AMD Official Use Only - Internal Distribution Only]</span><=
-/p>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-Although we know that release_firmware has null check, but the code is not =
-maintained by ourselves, so I think it=92s much more safe to add null &nbsp=
-;check before invoke release_firmware.</p>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-Brs</p>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-Wenhui</p>
-<div>
-<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0i=
-n 0in 0in">
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-<b>From:</b> Wang, Kevin(Yang) &lt;<a href=3D"mailto:Kevin1.Wang@amd.com">K=
-evin1.Wang@amd.com</a>&gt;
-<br>
-<b>Sent:</b> Thursday, June 18, 2020 4:25 PM<br>
-<b>To:</b> Sheng, Wenhui &lt;<a href=3D"mailto:Wenhui.Sheng@amd.com">Wenhui=
-.Sheng@amd.com</a>&gt;;
-<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
-org</a><br>
-<b>Subject:</b> Re: [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0</p=
->
-</div>
-</div>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<p style=3D"margin:15.0pt"><span style=3D"font-size:10.0pt; font-family:&qu=
-ot;Arial&quot;,sans-serif; color:#0078D7">[AMD Official Use Only - Internal=
- Distribution Only]</span></p>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-<div>
-<div>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">&nbsp;</span></p>
-</div>
-<div>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">&nbsp;</span></p>
-</div>
-<div class=3D"x_MsoNormal" align=3D"center" style=3D"margin: 0in 0in 0.0001=
-pt; font-size: 11pt; font-family: Calibri, sans-serif;text-align:center">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</div>
-<div id=3D"x_x_divRplyFwdMsg">
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-<b><span style=3D"color:black">From:</span></b><span style=3D"color:black">=
- amd-gfx &lt;</span><a href=3D"mailto:amd-gfx-bounces@lists.freedesktop.org=
-">amd-gfx-bounces@lists.freedesktop.org</a><span style=3D"color:black">&gt;=
- on behalf of Wenhui Sheng &lt;</span><a href=3D"mailto:Wenhui.Sheng@amd.co=
-m">Wenhui.Sheng@amd.com</a><span style=3D"color:black">&gt;<br>
-<b>Sent:</b> Thursday, June 18, 2020 3:53 PM<br>
-<b>To:</b> </span><a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@=
-lists.freedesktop.org</a><span style=3D"color:black"> &lt;</span><a href=3D=
-"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><sp=
-an style=3D"color:black">&gt;<br>
-<b>Cc:</b> Sheng, Wenhui &lt;</span><a href=3D"mailto:Wenhui.Sheng@amd.com"=
->Wenhui.Sheng@amd.com</a><span style=3D"color:black">&gt;<br>
-<b>Subject:</b> [PATCH 2/2] drm/amdgpu: add fw release for sdma v5_0</span>=
- </p>
-<div>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-&nbsp;</p>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-sdma v5_0 fw isn't released when module exit<br>
-<br>
-Signed-off-by: Wenhui Sheng &lt;<a href=3D"mailto:Wenhui.Sheng@amd.com">Wen=
-hui.Sheng@amd.com</a>&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c | 6 &#43;&#43;&#43;&#43;&#43;-=
-<br>
-&nbsp;1 file changed, 5 insertions(&#43;), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/sdma_v5_0.c<br>
-index 58d2a80af450..6751ad69ed90 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c<br>
-@@ -1299,8 &#43;1299,12 @@ static int sdma_v5_0_sw_fini(void *handle)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev=
- =3D (struct amdgpu_device *)handle;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; adev-&gt;sdma.nu=
-m_instances; i&#43;&#43;)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; adev-&gt;sdm=
-a.num_instances; i&#43;&#43;) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; if (adev-&gt;sdma.instance[i].fw !=3D NULL)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; release_firm=
-ware(adev-&gt;sdma.instance[i].fw);</p>
-</div>
-<div>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">[kevin]:</span></p>
-<div>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">the kernel api &quot;release_=
-firmware()&quot; will check argument (is NULL pointer).</span></p>
-</div>
-<div>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-<span style=3D"font-size:12.0pt; color:black">i think the patch don't need =
-to double check it.</span></p>
-</div>
-<p class=3D"x_xmsonormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11p=
-t; font-family: Calibri, sans-serif;">
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; amdgpu_ring_fini(&amp;adev-&gt;sdma.instance[i].ring)=
-;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
--- <br>
-2.17.1<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
-org</a><br>
-<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
-F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%=
-7C01%7CKevin1.Wang%40amd.com%7Cd0b8b72e0be443a7343d08d8135cb093%7C3dd8961fe=
-4884e608e11a82d994e183d%7C0%7C0%7C637280636699912801&amp;amp;sdata=3DHrKVAm=
-RO0HKFZBRG6oWq3thNlGBd0T9bMramDU1ijys%3D&amp;amp;reserved=3D0">https://nam1=
-1.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.freedesktop.o=
-rg%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%7C01%7CKevin1.Wang%40am=
-d.com%7Cd0b8b72e0be443a7343d08d8135cb093%7C3dd8961fe4884e608e11a82d994e183d=
-%7C0%7C0%7C637280636699912801&amp;amp;sdata=3DHrKVAmRO0HKFZBRG6oWq3thNlGBd0=
-T9bMramDU1ijys%3D&amp;amp;reserved=3D0</a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_MN2PR12MB302257CEE4B130B29B87D699A29B0MN2PR12MB3022namp_--
-
---===============0637997572==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0637997572==--
+CgpMZSAxMy8wNi8yMDIwIMOgIDAyOjQxLCBGZW5naHVhIFl1IGEgw6ljcml0wqA6Cj4gUEFTSUQg
+aXMgZGVmaW5lZCBhcyAiaW50IiBhbHRob3VnaCBpdCdzIGEgMjAtYml0IHZhbHVlIGFuZCBzaG91
+bGRuJ3QgYmUKPiBuZWdhdGl2ZSBpbnQuIFRvIGJlIGNvbnNpc3RlbnQgd2l0aCB0eXBlIGRlZmlu
+ZWQgaW4gaW9tbXUsIGRlZmluZSBQQVNJRAo+IGFzICJ1bnNpZ25lZCBpbnQiLgoKCkl0IGxvb2tz
+IGxpa2UgdGhpcyBwYXRjaCB3YXMgY29uc2lkZXJlZCBiZWNhdXNlIG9mIHRoZSB1c2Ugb2YgJ3Bh
+c2lkJyBpbiAKdmFyaWFibGUgb3IgZnVuY3Rpb24gbmFtZXMuIFRoZSBvY3hsIGRyaXZlciBvbmx5
+IG1ha2VzIHNlbnNlIG9uIHBvd2VycGMgCmFuZCBzaG91bGRuJ3QgY29tcGlsZSBvbiBhbnl0aGlu
+ZyBlbHNlLCBzbyBpdCdzIHByb2JhYmx5IHVzZWxlc3MgaW4gdGhlIApjb250ZXh0IG9mIHRoYXQg
+c2VyaWVzLgpUaGUgcGFzaWQgaGVyZSBpcyBkZWZpbmVkIGJ5IHRoZSBvcGVuY2FwaSBzcGVjaWZp
+Y2F0aW9uIAooaHR0cHM6Ly9vcGVuY2FwaS5vcmcpLCBpdCBpcyBib3Jyb3dlZCBmcm9tIHRoZSBQ
+Q0kgd29ybGQgYW5kIHlvdSBjb3VsZCAKYXJndWUgaXQgY291bGQgYmUgYW4gdW5zaWduZWQgaW50
+LiBCdXQgdGhlbiBJIHRoaW5rIHRoZSBwYXRjaCBkb2Vzbid0IGdvIApmYXIgZW5vdWdoLiBCdXQg
+Y29uc2lkZXJpbmcgaXQncyBub3QgdXNlZCBvbiB4ODYsIEkgdGhpbmsgdGhpcyBwYXRjaCBjYW4g
+CmJlIGRyb3BwZWQuCgogICBGcmVkCgoKCj4gU3VnZ2VzdGVkLWJ5OiBUaG9tYXMgR2xlaXhuZXIg
+PHRnbHhAbGludXRyb25peC5kZT4KPiBTaWduZWQtb2ZmLWJ5OiBGZW5naHVhIFl1IDxmZW5naHVh
+Lnl1QGludGVsLmNvbT4KPiBSZXZpZXdlZC1ieTogVG9ueSBMdWNrIDx0b255Lmx1Y2tAaW50ZWwu
+Y29tPgo+IC0tLQo+IHYyOgo+IC0gQ3JlYXRlIHRoaXMgbmV3IHBhdGNoIHRvIGRlZmluZSBQQVNJ
+RCBhcyAidW5zaWduZWQgaW50IiBjb25zaXN0ZW50bHkgaW4KPiAgICBvY3hsIChUaG9tYXMpCj4g
+Cj4gICBkcml2ZXJzL21pc2Mvb2N4bC9jb25maWcuYyAgICAgICAgfCAgMyArKy0KPiAgIGRyaXZl
+cnMvbWlzYy9vY3hsL2xpbmsuYyAgICAgICAgICB8ICA2ICsrKy0tLQo+ICAgZHJpdmVycy9taXNj
+L29jeGwvb2N4bF9pbnRlcm5hbC5oIHwgIDYgKysrLS0tCj4gICBkcml2ZXJzL21pc2Mvb2N4bC9w
+YXNpZC5jICAgICAgICAgfCAgMiArLQo+ICAgZHJpdmVycy9taXNjL29jeGwvdHJhY2UuaCAgICAg
+ICAgIHwgMjAgKysrKysrKysrKy0tLS0tLS0tLS0KPiAgIGluY2x1ZGUvbWlzYy9vY3hsLmggICAg
+ICAgICAgICAgICB8ICA2ICsrKy0tLQo+ICAgNiBmaWxlcyBjaGFuZ2VkLCAyMiBpbnNlcnRpb25z
+KCspLCAyMSBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9taXNjL29jeGwv
+Y29uZmlnLmMgYi9kcml2ZXJzL21pc2Mvb2N4bC9jb25maWcuYwo+IGluZGV4IGM4ZTE5YmZiNWVm
+OS4uMjJkMDM0Y2FlZDNkIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvbWlzYy9vY3hsL2NvbmZpZy5j
+Cj4gKysrIGIvZHJpdmVycy9taXNjL29jeGwvY29uZmlnLmMKPiBAQCAtODA2LDcgKzgwNiw4IEBA
+IGludCBvY3hsX2NvbmZpZ19zZXRfVEwoc3RydWN0IHBjaV9kZXYgKmRldiwgaW50IHRsX2R2c2Vj
+KQo+ICAgfQo+ICAgRVhQT1JUX1NZTUJPTF9HUEwob2N4bF9jb25maWdfc2V0X1RMKTsKPiAgIAo+
+IC1pbnQgb2N4bF9jb25maWdfdGVybWluYXRlX3Bhc2lkKHN0cnVjdCBwY2lfZGV2ICpkZXYsIGlu
+dCBhZnVfY29udHJvbCwgaW50IHBhc2lkKQo+ICtpbnQgb2N4bF9jb25maWdfdGVybWluYXRlX3Bh
+c2lkKHN0cnVjdCBwY2lfZGV2ICpkZXYsIGludCBhZnVfY29udHJvbCwKPiArCQkJCXVuc2lnbmVk
+IGludCBwYXNpZCkKPiAgIHsKPiAgIAl1MzIgdmFsOwo+ICAgCXVuc2lnbmVkIGxvbmcgdGltZW91
+dDsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9taXNjL29jeGwvbGluay5jIGIvZHJpdmVycy9taXNj
+L29jeGwvbGluay5jCj4gaW5kZXggNThkMTExYWZkOWY2Li45MzFmNmFlMDIyZGIgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9taXNjL29jeGwvbGluay5jCj4gKysrIGIvZHJpdmVycy9taXNjL29jeGwv
+bGluay5jCj4gQEAgLTQ5Miw3ICs0OTIsNyBAQCBzdGF0aWMgdTY0IGNhbGN1bGF0ZV9jZmdfc3Rh
+dGUoYm9vbCBrZXJuZWwpCj4gICAJcmV0dXJuIHN0YXRlOwo+ICAgfQo+ICAgCj4gLWludCBvY3hs
+X2xpbmtfYWRkX3BlKHZvaWQgKmxpbmtfaGFuZGxlLCBpbnQgcGFzaWQsIHUzMiBwaWRyLCB1MzIg
+dGlkciwKPiAraW50IG9jeGxfbGlua19hZGRfcGUodm9pZCAqbGlua19oYW5kbGUsIHVuc2lnbmVk
+IGludCBwYXNpZCwgdTMyIHBpZHIsIHUzMiB0aWRyLAo+ICAgCQl1NjQgYW1yLCBzdHJ1Y3QgbW1f
+c3RydWN0ICptbSwKPiAgIAkJdm9pZCAoKnhzbF9lcnJfY2IpKHZvaWQgKmRhdGEsIHU2NCBhZGRy
+LCB1NjQgZHNpc3IpLAo+ICAgCQl2b2lkICp4c2xfZXJyX2RhdGEpCj4gQEAgLTU3Miw3ICs1NzIs
+NyBAQCBpbnQgb2N4bF9saW5rX2FkZF9wZSh2b2lkICpsaW5rX2hhbmRsZSwgaW50IHBhc2lkLCB1
+MzIgcGlkciwgdTMyIHRpZHIsCj4gICB9Cj4gICBFWFBPUlRfU1lNQk9MX0dQTChvY3hsX2xpbmtf
+YWRkX3BlKTsKPiAgIAo+IC1pbnQgb2N4bF9saW5rX3VwZGF0ZV9wZSh2b2lkICpsaW5rX2hhbmRs
+ZSwgaW50IHBhc2lkLCBfX3UxNiB0aWQpCj4gK2ludCBvY3hsX2xpbmtfdXBkYXRlX3BlKHZvaWQg
+KmxpbmtfaGFuZGxlLCB1bnNpZ25lZCBpbnQgcGFzaWQsIF9fdTE2IHRpZCkKPiAgIHsKPiAgIAlz
+dHJ1Y3Qgb2N4bF9saW5rICpsaW5rID0gKHN0cnVjdCBvY3hsX2xpbmsgKikgbGlua19oYW5kbGU7
+Cj4gICAJc3RydWN0IHNwYSAqc3BhID0gbGluay0+c3BhOwo+IEBAIC02MDgsNyArNjA4LDcgQEAg
+aW50IG9jeGxfbGlua191cGRhdGVfcGUodm9pZCAqbGlua19oYW5kbGUsIGludCBwYXNpZCwgX191
+MTYgdGlkKQo+ICAgCXJldHVybiByYzsKPiAgIH0KPiAgIAo+IC1pbnQgb2N4bF9saW5rX3JlbW92
+ZV9wZSh2b2lkICpsaW5rX2hhbmRsZSwgaW50IHBhc2lkKQo+ICtpbnQgb2N4bF9saW5rX3JlbW92
+ZV9wZSh2b2lkICpsaW5rX2hhbmRsZSwgdW5zaWduZWQgaW50IHBhc2lkKQo+ICAgewo+ICAgCXN0
+cnVjdCBvY3hsX2xpbmsgKmxpbmsgPSAoc3RydWN0IG9jeGxfbGluayAqKSBsaW5rX2hhbmRsZTsK
+PiAgIAlzdHJ1Y3Qgc3BhICpzcGEgPSBsaW5rLT5zcGE7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+bWlzYy9vY3hsL29jeGxfaW50ZXJuYWwuaCBiL2RyaXZlcnMvbWlzYy9vY3hsL29jeGxfaW50ZXJu
+YWwuaAo+IGluZGV4IDM0NWJmODQzYTM4ZS4uM2NhOTgyYmE3NDcyIDEwMDY0NAo+IC0tLSBhL2Ry
+aXZlcnMvbWlzYy9vY3hsL29jeGxfaW50ZXJuYWwuaAo+ICsrKyBiL2RyaXZlcnMvbWlzYy9vY3hs
+L29jeGxfaW50ZXJuYWwuaAo+IEBAIC00MSw3ICs0MSw3IEBAIHN0cnVjdCBvY3hsX2FmdSB7Cj4g
+ICAJc3RydWN0IG9jeGxfYWZ1X2NvbmZpZyBjb25maWc7Cj4gICAJaW50IHBhc2lkX2Jhc2U7Cj4g
+ICAJaW50IHBhc2lkX2NvdW50OyAvKiBvcGVuZWQgY29udGV4dHMgKi8KPiAtCWludCBwYXNpZF9t
+YXg7IC8qIG1heGltdW0gbnVtYmVyIG9mIGNvbnRleHRzICovCj4gKwl1bnNpZ25lZCBpbnQgcGFz
+aWRfbWF4OyAvKiBtYXhpbXVtIG51bWJlciBvZiBjb250ZXh0cyAqLwo+ICAgCWludCBhY3RhZ19i
+YXNlOwo+ICAgCWludCBhY3RhZ19lbmFibGVkOwo+ICAgCXN0cnVjdCBtdXRleCBjb250ZXh0c19s
+b2NrOwo+IEBAIC02OSw3ICs2OSw3IEBAIHN0cnVjdCBvY3hsX3hzbF9lcnJvciB7Cj4gICAKPiAg
+IHN0cnVjdCBvY3hsX2NvbnRleHQgewo+ICAgCXN0cnVjdCBvY3hsX2FmdSAqYWZ1Owo+IC0JaW50
+IHBhc2lkOwo+ICsJdW5zaWduZWQgaW50IHBhc2lkOwo+ICAgCXN0cnVjdCBtdXRleCBzdGF0dXNf
+bXV0ZXg7Cj4gICAJZW51bSBvY3hsX2NvbnRleHRfc3RhdHVzIHN0YXR1czsKPiAgIAlzdHJ1Y3Qg
+YWRkcmVzc19zcGFjZSAqbWFwcGluZzsKPiBAQCAtMTI4LDcgKzEyOCw3IEBAIGludCBvY3hsX2Nv
+bmZpZ19jaGVja19hZnVfaW5kZXgoc3RydWN0IHBjaV9kZXYgKmRldiwKPiAgICAqIHBhc2lkOiB0
+aGUgUEFTSUQgZm9yIHRoZSBBRlUgY29udGV4dAo+ICAgICogdGlkOiB0aGUgbmV3IHRocmVhZCBp
+ZCBmb3IgdGhlIHByb2Nlc3MgZWxlbWVudAo+ICAgICovCj4gLWludCBvY3hsX2xpbmtfdXBkYXRl
+X3BlKHZvaWQgKmxpbmtfaGFuZGxlLCBpbnQgcGFzaWQsIF9fdTE2IHRpZCk7Cj4gK2ludCBvY3hs
+X2xpbmtfdXBkYXRlX3BlKHZvaWQgKmxpbmtfaGFuZGxlLCB1bnNpZ25lZCBpbnQgcGFzaWQsIF9f
+dTE2IHRpZCk7Cj4gICAKPiAgIGludCBvY3hsX2NvbnRleHRfbW1hcChzdHJ1Y3Qgb2N4bF9jb250
+ZXh0ICpjdHgsCj4gICAJCQlzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSk7Cj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvbWlzYy9vY3hsL3Bhc2lkLmMgYi9kcml2ZXJzL21pc2Mvb2N4bC9wYXNpZC5j
+Cj4gaW5kZXggZDE0Y2I1NmU2OTIwLi5hMTUxZmM4ZjBiZWMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
+cy9taXNjL29jeGwvcGFzaWQuYwo+ICsrKyBiL2RyaXZlcnMvbWlzYy9vY3hsL3Bhc2lkLmMKPiBA
+QCAtODAsNyArODAsNyBAQCBzdGF0aWMgdm9pZCByYW5nZV9mcmVlKHN0cnVjdCBsaXN0X2hlYWQg
+KmhlYWQsIHUzMiBzdGFydCwgdTMyIHNpemUsCj4gICAKPiAgIGludCBvY3hsX3Bhc2lkX2FmdV9h
+bGxvYyhzdHJ1Y3Qgb2N4bF9mbiAqZm4sIHUzMiBzaXplKQo+ICAgewo+IC0JaW50IG1heF9wYXNp
+ZDsKPiArCXVuc2lnbmVkIGludCBtYXhfcGFzaWQ7Cj4gICAKPiAgIAlpZiAoZm4tPmNvbmZpZy5t
+YXhfcGFzaWRfbG9nIDwgMCkKPiAgIAkJcmV0dXJuIC1FTk9TUEM7Cj4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvbWlzYy9vY3hsL3RyYWNlLmggYi9kcml2ZXJzL21pc2Mvb2N4bC90cmFjZS5oCj4gaW5k
+ZXggMTdlMjFjYjJhZGRkLi4wMTllMmZjNjNiMWQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9taXNj
+L29jeGwvdHJhY2UuaAo+ICsrKyBiL2RyaXZlcnMvbWlzYy9vY3hsL3RyYWNlLmgKPiBAQCAtOSwx
+MyArOSwxMyBAQAo+ICAgI2luY2x1ZGUgPGxpbnV4L3RyYWNlcG9pbnQuaD4KPiAgIAo+ICAgREVD
+TEFSRV9FVkVOVF9DTEFTUyhvY3hsX2NvbnRleHQsCj4gLQlUUF9QUk9UTyhwaWRfdCBwaWQsIHZv
+aWQgKnNwYSwgaW50IHBhc2lkLCB1MzIgcGlkciwgdTMyIHRpZHIpLAo+ICsJVFBfUFJPVE8ocGlk
+X3QgcGlkLCB2b2lkICpzcGEsIHVuc2lnbmVkIGludCBwYXNpZCwgdTMyIHBpZHIsIHUzMiB0aWRy
+KSwKPiAgIAlUUF9BUkdTKHBpZCwgc3BhLCBwYXNpZCwgcGlkciwgdGlkciksCj4gICAKPiAgIAlU
+UF9TVFJVQ1RfX2VudHJ5KAo+ICAgCQlfX2ZpZWxkKHBpZF90LCBwaWQpCj4gICAJCV9fZmllbGQo
+dm9pZCosIHNwYSkKPiAtCQlfX2ZpZWxkKGludCwgcGFzaWQpCj4gKwkJX19maWVsZCh1bnNpZ25l
+ZCBpbnQsIHBhc2lkKQo+ICAgCQlfX2ZpZWxkKHUzMiwgcGlkcikKPiAgIAkJX19maWVsZCh1MzIs
+IHRpZHIpCj4gICAJKSwKPiBAQCAtMzgsMjEgKzM4LDIxIEBAIERFQ0xBUkVfRVZFTlRfQ0xBU1Mo
+b2N4bF9jb250ZXh0LAo+ICAgKTsKPiAgIAo+ICAgREVGSU5FX0VWRU5UKG9jeGxfY29udGV4dCwg
+b2N4bF9jb250ZXh0X2FkZCwKPiAtCVRQX1BST1RPKHBpZF90IHBpZCwgdm9pZCAqc3BhLCBpbnQg
+cGFzaWQsIHUzMiBwaWRyLCB1MzIgdGlkciksCj4gKwlUUF9QUk9UTyhwaWRfdCBwaWQsIHZvaWQg
+KnNwYSwgdW5zaWduZWQgaW50IHBhc2lkLCB1MzIgcGlkciwgdTMyIHRpZHIpLAo+ICAgCVRQX0FS
+R1MocGlkLCBzcGEsIHBhc2lkLCBwaWRyLCB0aWRyKQo+ICAgKTsKPiAgIAo+ICAgREVGSU5FX0VW
+RU5UKG9jeGxfY29udGV4dCwgb2N4bF9jb250ZXh0X3JlbW92ZSwKPiAtCVRQX1BST1RPKHBpZF90
+IHBpZCwgdm9pZCAqc3BhLCBpbnQgcGFzaWQsIHUzMiBwaWRyLCB1MzIgdGlkciksCj4gKwlUUF9Q
+Uk9UTyhwaWRfdCBwaWQsIHZvaWQgKnNwYSwgdW5zaWduZWQgaW50IHBhc2lkLCB1MzIgcGlkciwg
+dTMyIHRpZHIpLAo+ICAgCVRQX0FSR1MocGlkLCBzcGEsIHBhc2lkLCBwaWRyLCB0aWRyKQo+ICAg
+KTsKPiAgIAo+ICAgVFJBQ0VfRVZFTlQob2N4bF90ZXJtaW5hdGVfcGFzaWQsCj4gLQlUUF9QUk9U
+TyhpbnQgcGFzaWQsIGludCByYyksCj4gKwlUUF9QUk9UTyh1bnNpZ25lZCBpbnQgcGFzaWQsIGlu
+dCByYyksCj4gICAJVFBfQVJHUyhwYXNpZCwgcmMpLAo+ICAgCj4gICAJVFBfU1RSVUNUX19lbnRy
+eSgKPiAtCQlfX2ZpZWxkKGludCwgcGFzaWQpCj4gKwkJX19maWVsZCh1bnNpZ25lZCBpbnQsIHBh
+c2lkKQo+ICAgCQlfX2ZpZWxkKGludCwgcmMpCj4gICAJKSwKPiAgIAo+IEBAIC0xMDcsMTEgKzEw
+NywxMSBAQCBERUZJTkVfRVZFTlQob2N4bF9mYXVsdF9oYW5kbGVyLCBvY3hsX2ZhdWx0X2FjaywK
+PiAgICk7Cj4gICAKPiAgIFRSQUNFX0VWRU5UKG9jeGxfYWZ1X2lycV9hbGxvYywKPiAtCVRQX1BS
+T1RPKGludCBwYXNpZCwgaW50IGlycV9pZCwgdW5zaWduZWQgaW50IHZpcnEsIGludCBod19pcnEp
+LAo+ICsJVFBfUFJPVE8odW5zaWduZWQgaW50IHBhc2lkLCBpbnQgaXJxX2lkLCB1bnNpZ25lZCBp
+bnQgdmlycSwgaW50IGh3X2lycSksCj4gICAJVFBfQVJHUyhwYXNpZCwgaXJxX2lkLCB2aXJxLCBo
+d19pcnEpLAo+ICAgCj4gICAJVFBfU1RSVUNUX19lbnRyeSgKPiAtCQlfX2ZpZWxkKGludCwgcGFz
+aWQpCj4gKwkJX19maWVsZCh1bnNpZ25lZCBpbnQsIHBhc2lkKQo+ICAgCQlfX2ZpZWxkKGludCwg
+aXJxX2lkKQo+ICAgCQlfX2ZpZWxkKHVuc2lnbmVkIGludCwgdmlycSkKPiAgIAkJX19maWVsZChp
+bnQsIGh3X2lycSkKPiBAQCAtMTMzLDExICsxMzMsMTEgQEAgVFJBQ0VfRVZFTlQob2N4bF9hZnVf
+aXJxX2FsbG9jLAo+ICAgKTsKPiAgIAo+ICAgVFJBQ0VfRVZFTlQob2N4bF9hZnVfaXJxX2ZyZWUs
+Cj4gLQlUUF9QUk9UTyhpbnQgcGFzaWQsIGludCBpcnFfaWQpLAo+ICsJVFBfUFJPVE8odW5zaWdu
+ZWQgaW50IHBhc2lkLCBpbnQgaXJxX2lkKSwKPiAgIAlUUF9BUkdTKHBhc2lkLCBpcnFfaWQpLAo+
+ICAgCj4gICAJVFBfU1RSVUNUX19lbnRyeSgKPiAtCQlfX2ZpZWxkKGludCwgcGFzaWQpCj4gKwkJ
+X19maWVsZCh1bnNpZ25lZCBpbnQsIHBhc2lkKQo+ICAgCQlfX2ZpZWxkKGludCwgaXJxX2lkKQo+
+ICAgCSksCj4gICAKPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9taXNjL29jeGwuaCBiL2luY2x1ZGUv
+bWlzYy9vY3hsLmgKPiBpbmRleCAwNmRkNTgzOWU0MzguLjVlY2EwNGM4ZGE5NyAxMDA2NDQKPiAt
+LS0gYS9pbmNsdWRlL21pc2Mvb2N4bC5oCj4gKysrIGIvaW5jbHVkZS9taXNjL29jeGwuaAo+IEBA
+IC00MjksNyArNDI5LDcgQEAgaW50IG9jeGxfY29uZmlnX3NldF9UTChzdHJ1Y3QgcGNpX2RldiAq
+ZGV2LCBpbnQgdGxfZHZzZWMpOwo+ICAgICogZGVzaXJlZCBBRlUuIEl0IGNhbiBiZSBmb3VuZCBp
+biB0aGUgQUZVIGNvbmZpZ3VyYXRpb24KPiAgICAqLwo+ICAgaW50IG9jeGxfY29uZmlnX3Rlcm1p
+bmF0ZV9wYXNpZChzdHJ1Y3QgcGNpX2RldiAqZGV2LAo+IC0JCQkJaW50IGFmdV9jb250cm9sX29m
+ZnNldCwgaW50IHBhc2lkKTsKPiArCQkJCWludCBhZnVfY29udHJvbF9vZmZzZXQsIHVuc2lnbmVk
+IGludCBwYXNpZCk7Cj4gICAKPiAgIC8qCj4gICAgKiBSZWFkIHRoZSBjb25maWd1cmF0aW9uIHNw
+YWNlIG9mIGEgZnVuY3Rpb24gYW5kIGZpbGwgaW4gYQo+IEBAIC00NjYsNyArNDY2LDcgQEAgdm9p
+ZCBvY3hsX2xpbmtfcmVsZWFzZShzdHJ1Y3QgcGNpX2RldiAqZGV2LCB2b2lkICpsaW5rX2hhbmRs
+ZSk7Cj4gICAgKiAneHNsX2Vycl9kYXRhJyBpcyBhbiBhcmd1bWVudCBwYXNzZWQgdG8gdGhlIGFi
+b3ZlIGNhbGxiYWNrLCBpZgo+ICAgICogZGVmaW5lZAo+ICAgICovCj4gLWludCBvY3hsX2xpbmtf
+YWRkX3BlKHZvaWQgKmxpbmtfaGFuZGxlLCBpbnQgcGFzaWQsIHUzMiBwaWRyLCB1MzIgdGlkciwK
+PiAraW50IG9jeGxfbGlua19hZGRfcGUodm9pZCAqbGlua19oYW5kbGUsIHVuc2lnbmVkIGludCBw
+YXNpZCwgdTMyIHBpZHIsIHUzMiB0aWRyLAo+ICAgCQl1NjQgYW1yLCBzdHJ1Y3QgbW1fc3RydWN0
+ICptbSwKPiAgIAkJdm9pZCAoKnhzbF9lcnJfY2IpKHZvaWQgKmRhdGEsIHU2NCBhZGRyLCB1NjQg
+ZHNpc3IpLAo+ICAgCQl2b2lkICp4c2xfZXJyX2RhdGEpOwo+IEBAIC00NzQsNyArNDc0LDcgQEAg
+aW50IG9jeGxfbGlua19hZGRfcGUodm9pZCAqbGlua19oYW5kbGUsIGludCBwYXNpZCwgdTMyIHBp
+ZHIsIHUzMiB0aWRyLAo+ICAgLyoKPiAgICAqIFJlbW92ZSBhIFByb2Nlc3MgRWxlbWVudCBmcm9t
+IHRoZSBTaGFyZWQgUHJvY2VzcyBBcmVhIGZvciBhIGxpbmsKPiAgICAqLwo+IC1pbnQgb2N4bF9s
+aW5rX3JlbW92ZV9wZSh2b2lkICpsaW5rX2hhbmRsZSwgaW50IHBhc2lkKTsKPiAraW50IG9jeGxf
+bGlua19yZW1vdmVfcGUodm9pZCAqbGlua19oYW5kbGUsIHVuc2lnbmVkIGludCBwYXNpZCk7Cj4g
+ICAKPiAgIC8qCj4gICAgKiBBbGxvY2F0ZSBhbiBBRlUgaW50ZXJydXB0IGFzc29jaWF0ZWQgdG8g
+dGhlIGxpbmsuCj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
