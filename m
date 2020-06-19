@@ -1,38 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A96DD201C1B
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 22:13:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24928201C14
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 22:13:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B20089354;
-	Fri, 19 Jun 2020 20:13:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 805416EA38;
+	Fri, 19 Jun 2020 20:12:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2076.outbound.protection.outlook.com [40.107.243.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AA9F6EA38
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2043.outbound.protection.outlook.com [40.107.94.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DBB56E98A
  for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:12:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RGO8ltyvoxpk+Uubd037/OmDN+4Uqvg6mdQrAE3UsEw9kzazmxQUB7SDy3/ORTaSzUvCMFgjBW/6Q/JoUINFIGdrNKAJ6Z4oyMHr5HYYcfeosIqbfCbfysWufFU4P6/8i/GDv2nLhKDVUvldm+7PddA0RuNU4Jywy7oGAYaNHW4bPD94BL1/0WL/E7bU4i2OOVDC9Dr4MOYtAcxz3aEUkEXF2GRp5QvWBtMDwoEsAwIl5LGPjJHpOQ94jnkcehiSqkasDKhPbrOxa/k1PbNzDCzmjLZXtb+MrJyOQ+PExrtYtRRtQcJq6LXuGXIuu18QFowW0r8GmAjawagcP0uFsQ==
+ b=X3Z50HWOFy2XCM4ELLDs/7UZp29C6gpWvhE953f6x6rrNNZXmEf/Vu9oEByK45W9yxhNC7vi0MDsHEsZNHvyRjOMb2ZDR4iiYM+P3nzjIJPICqYqdg/n+9n6fJs//pwCRO06MIMiUsZQ0VvZbw/yi9/FHxh9bPV2OPsUx5Gps+NpR2qI3lduEM7s9AseXcjPOTy3kRAPuEV/4Q46NFS3j+/jpHN56AjLvXLyGcmuIBWxNPfYFYvx4BpQZx/duv2v8n2H8Ww2CtW7lJ8yL1V/psZ/5E0jGJFhMMHjLVJfblUnscVVNhtcgNHkEcL/gPymsGZty3MkHdT8/YYCGBsgGA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MbKG3b/T8613ia8mvdRcBycj/LL4cxcTiCgy4IMP29c=;
- b=AG31AOBaX9cFA/C9t5mk+wd6oPDb8SssxpXAxu++/H+7BpiKJQ689BWpD/9jR8rZ0uhl24q/iEBmYy5am+Ut7oH42M+s0HuhKR3zH6S/UXKq3OEu1gjGONkXROy/345k/9QaKomtp8uFCiBOOkGjCx96LjK1l2HtqK73E9Bkq2b1/cBU/zcJVHL2Y5bsdY4W9QmowL708kbfkCH4o0IKFSWSFSMTkihV+/r9pjWWea8GStnP7uBqj3Im0RAG0TYJcWojXHttvF5aPiJ5wH112DIbW9mgm8hsmQ2130fxRfd+uR92N2iaUUzCrvw4DkGZn7Ue0NmAftZXo1hcjTxlBw==
+ bh=Crh+toC5kN2aAWicLSLUcSjwXpO/N7Hi6W9TQTI6O5E=;
+ b=BmBSAovQuT/DZ/0Xd7/P1n443mMmzMSTPu5WNgqzENXVkEsis6pYrC4lzQVhlwOs/MKJBXuD+wGPWmWn2dUVxE9eCW7I2W9/SEvfSI7Im5QhHPwODgwU3JWPD9pLSat+SMvcw0UppQrHYiwxI+Hwdcxb3esfAS6FcNTq3wNpzq1UNR3V9HplDDv+Vn/YbyF17WUHsFsnQD8wPBA+vW3zz/NUnxpeofnDvYboMsW/Jm7cMqVHYoSb4t2lKch3DJodlMe18rU4vJNuP3JgzRUZNSsZpq0j1sk+QVoAfgGJ6X6DnOwmeOaZ7l262wxJtAIyyDGMYrlhcN/NQ7+UfOZIzw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MbKG3b/T8613ia8mvdRcBycj/LL4cxcTiCgy4IMP29c=;
- b=CB3X8LPDw1jrnQ/sXq3ljC+XHkT9TvLRyvp14+G+OMyH1PsDTYMFKL0nACZlHbOGKpLDK7SJKDCY766X1Qe3wMGL5zbf9vnkj9Fm07V9mKeQVXSiL1BK9ZljiLSjyICpNMm1ixuhk5WyxQqeSw9iL8UFp/F/9QlwjAxOVOg7lxE=
+ bh=Crh+toC5kN2aAWicLSLUcSjwXpO/N7Hi6W9TQTI6O5E=;
+ b=qkaHSvYRD5GNV5faPteGSXI8i5jAGkc2dh91g4k/uJ1rE1JXCe4+Ubv08rC+rmFURFyH4/3cceJJgD1axtKTRx73c8f+jk9dkrlsaqWqh+kcqEBIPonCR5lqtndNHv6cKPw3RP5z9Ai6+38jKhCrOx/3ruiuyANRIhYqYfKOuDI=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
- by CH2PR12MB3717.namprd12.prod.outlook.com (2603:10b6:610:24::19)
+ by CH2PR12MB4087.namprd12.prod.outlook.com (2603:10b6:610:7f::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.23; Fri, 19 Jun
  2020 20:12:52 +0000
@@ -42,10 +42,9 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  20:12:52 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/30] drm/amd/display: implement edid max TMDS clock check in
- DC
-Date: Fri, 19 Jun 2020 16:11:58 -0400
-Message-Id: <20200619201222.2916504-7-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 07/30] drm/amd/display: enable assr
+Date: Fri, 19 Jun 2020 16:11:59 -0400
+Message-Id: <20200619201222.2916504-8-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200619201222.2916504-1-Rodrigo.Siqueira@amd.com>
 References: <20200619201222.2916504-1-Rodrigo.Siqueira@amd.com>
@@ -57,34 +56,34 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:f5c::9) by
  YTXPR0101CA0024.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3109.22 via Frontend Transport; Fri, 19 Jun 2020 20:12:51 +0000
+ 15.20.3109.22 via Frontend Transport; Fri, 19 Jun 2020 20:12:52 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [2607:fea8:56a0:f5c::9]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 68c60a43-5612-44aa-7955-08d8148d24fd
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3717:
+X-MS-Office365-Filtering-Correlation-Id: ba140d8f-602f-42b9-a042-08d8148d2558
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4087:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB37172A6A46402B90870CE0C398980@CH2PR12MB3717.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:773;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB408718F859AB1DA65E49AF1398980@CH2PR12MB4087.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-Forefront-PRVS: 0439571D1D
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bejGN3DdSKYG04I7CQixHqgqB2Q1bICSqQCkxzIfE75LUDtseYEDRADG8p6I0LMbubgF7wFBgwoMZQ324Ro3/29B1UbFw+Z+kQSilDhH97M42mpgwmSBwUbPl8/fmeVkapT8/Eb92lk9o1N1FSXodq0o91HiV3U2Ao0AQm0JSeHHnwpHVmj+HQH+JOjU94XMCl6L8qnoef57Ae7MedUuoZGUy+Ma7eS4GfmNAcRuXucQJTTYa2kOF87CzRSZKEZwWBKjEJ4trqRW/6bjqU82CZuCeuURNc6r5sjfTdpdVMAf91plDmD2IglvKHH89qYo6i2P5nzf7nlbiUdMcide8Q==
+X-Microsoft-Antispam-Message-Info: xWMYs+o+Wltsu3qur35AkPIpfde3q5Nj9J8sClYbgAewijSjupvrkyRSQshFDKUjOKZiuM7E1HKNCmCW12v/mAL6Z0oT9zxRgY7HvzdxPQF2Uy76NforLiwVTJSQvAJP5t/pD1cfZncoL902lmZCXle+l+Sd1RfWa406R8yGR0I/QVXqOuYmFdFWjq5Wwsf8iNR+qsUlZCldJXTflqXfPllP8ysk/Y1cf2RM5N1zkOZ0CGoMgfZzZCj/6Dyqtnm5GyyOX+xXh3+Gj1NkwsLGj/Z3AukhODRWJJMcTZcTthbg5mR8UDIaLouyk2p6VQg0E7e0tKCZGeTPvkOZiIpnQA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(136003)(396003)(39860400002)(346002)(376002)(366004)(5660300002)(66476007)(16526019)(86362001)(6916009)(83380400001)(478600001)(66556008)(66946007)(8676002)(6512007)(1076003)(6506007)(4326008)(52116002)(8936002)(2906002)(316002)(6486002)(36756003)(186003)(2616005)(54906003);
+ SFS:(4636009)(376002)(366004)(39860400002)(136003)(396003)(346002)(4326008)(36756003)(6486002)(83380400001)(86362001)(5660300002)(8676002)(2906002)(2616005)(6916009)(8936002)(1076003)(6506007)(66946007)(52116002)(478600001)(186003)(316002)(6512007)(66556008)(16526019)(66476007);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: u2PV7dbat1HvGR/+yzvhiy8/PmggwrkkTVADYJaFtnUcPAvNU9ieFI9GEhp8TlAzzZM7zSofhtATmxVzrUvsIJfgF3YpxusqEerJT/Dfa4vD8JIPBvq2YuDDrIBsTz3Zh1bD6DMpVPdcMQjWWBzhYdlp6rQlSnJvtmgHCf4MxDTpq6DMHtutfPX7YfO2bImjfnGQdt15/wPBCOoQPMxhB4QMkEbD51dPTS8Hjl2bzOytkbFqJMGHLbnfGspH5aWNaiAr9PSgIFfcxtfa5KpjzeTY2GNkfNfNJ7lt2rtl9E+OVBAdEU1Yy7TZ8qyX6sUUFUKauvIGDINo0xUIwFj0nnKPwPOqiCkm3ZWGxIygzhGmZwuUNYzr/9oa2CM3aSjxCtEW/kheGDcvcHc69gXbTYGKPfJWjICJkJx35/3XfdRR++1AF4WaYF6VUJ+UYBeCSx+NIUHN41/jcn8zjuJ5iImbxIBz/f0LelekwcxghLGFFPw16l1f1J1pOEBUf5dc
+X-MS-Exchange-AntiSpam-MessageData: Ki+i2VyG3WLbh9bB1EDVe2Us00KKuED7IxOhlVEdOogQ7pJtUMa/cmC2I2jqLzgrW37/1tAtitJTshWfnzX/U2cI5NPrpPa4Wo7QZYtVPCmkGZC7tx1c1dKUZVZsnLYsHN+kN01UgQdNntTni8jm7/yeH5B9+bibTJEJ+oDSdqa+PhzqdxmCoOfNQRAKbv7rKoG/AWqI0ctHRK7bValcgYo5s6o6HozShCy+BZfhsmNc50ce70Tom+va1qlr/Xg6mla4GYDFnZmUvL1BKv0gazwrq+livfzZjikAb7ynD10SxnG3h1odQv1KIJxEkHTVyNBrjG0TXHn9vt544VzSvIKawbMAyx4AM+gtE6k2watiGFyolmadhMdwy6b3KEprCFUDeXu9Nlim0iq9GVPGmbb/Eml4fHpI946aI+J5cM3nDUQLesEgFp47hFZjZ4Ic4QlH1tFOm50nhcBo0JtHyUyrWEwiuYbYBwSw8/7MGYjtmUIfbzFWuBihF6OQbfVH
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 68c60a43-5612-44aa-7955-08d8148d24fd
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2020 20:12:51.8860 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ba140d8f-602f-42b9-a042-08d8148d2558
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2020 20:12:52.6337 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nn6tuxQL5JZ2akWAHsCHnAeU/LvSulNit76/t7Ap8ZuL515royY/EYsFG9lAiobrYQbf4Rd5U0R9l9orhk45QA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3717
+X-MS-Exchange-CrossTenant-UserPrincipalName: +wWvps1yadP6UI1nApy0fSYJdOOyGcruHqGBTr43kUncWBj+VTi5wlx00BoF/iLeEIUs1ZwWooht7csCcYSKWA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4087
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,78 +95,99 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eric Yang <eric.yang2@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- Michael Strauss <michael.strauss@amd.com>, Bhawanpreet.Lakha@amd.com
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
+ Hersen Wu <hersenxs.wu@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Michael Strauss <michael.strauss@amd.com>
+From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 
-[WHY]
-Currently DC doesn't check requested pixel clock against an EDID
-specified TMDS max clock if it exists, passing modes that should fail
+[Why]
+assr is content protection for eDP, in order to use it we need to call
+psp ta (dtm)
 
-[HOW]
-Add max TMDS clk to edid caps and perform check during validation
+[How]
+We have a enable_assr callback, hook into this and call the correct psp
+cmd id to enable assr.
 
-Signed-off-by: Michael Strauss <michael.strauss@amd.com>
-Reviewed-by: Eric Yang <eric.yang2@amd.com>
+Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_types.h              |  3 +++
- .../gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c  | 10 ++++++++++
- 2 files changed, 13 insertions(+)
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    | 37 +++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/dm_cp_psp.h    |  1 +
+ 2 files changed, 38 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
-index d7b9d311d9e0..f51e5766d8f5 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
-@@ -261,6 +261,9 @@ struct dc_edid_caps {
- 	bool edid_hdmi;
- 	bool hdr_supported;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+index dcf84a61de37..a8ee42d30911 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+@@ -390,6 +390,42 @@ void hdcp_destroy(struct hdcp_workqueue *hdcp_work)
+ 	kfree(hdcp_work);
+ }
  
-+	uint32_t max_tmds_clk_mhz;
-+	uint32_t max_forum_tmds_clk_mhz;
 +
- 	struct dc_panel_patch panel_patch;
++static bool enable_assr(void *handle, struct dc_link *link)
++{
++
++	struct hdcp_workqueue *hdcp_work = handle;
++	struct mod_hdcp hdcp = hdcp_work->hdcp;
++	struct psp_context *psp = hdcp.config.psp.handle;
++	struct ta_dtm_shared_memory *dtm_cmd;
++	bool res = true;
++
++	if (!psp->dtm_context.dtm_initialized) {
++		DRM_INFO("Failed to enable ASSR, DTM TA is not initialized.");
++		return false;
++	}
++
++	dtm_cmd = (struct ta_dtm_shared_memory *)psp->dtm_context.dtm_shared_buf;
++
++	mutex_lock(&psp->dtm_context.mutex);
++	memset(dtm_cmd, 0, sizeof(struct ta_dtm_shared_memory));
++
++	dtm_cmd->cmd_id = TA_DTM_COMMAND__TOPOLOGY_ASSR_ENABLE;
++	dtm_cmd->dtm_in_message.topology_assr_enable.display_topology_dig_be_index = link->link_enc_hw_inst;
++	dtm_cmd->dtm_status = TA_DTM_STATUS__GENERIC_FAILURE;
++
++	psp_dtm_invoke(psp, dtm_cmd->cmd_id);
++
++	if (dtm_cmd->dtm_status != TA_DTM_STATUS__SUCCESS) {
++		DRM_INFO("Failed to enable ASSR");
++		res = false;
++	}
++
++	mutex_unlock(&psp->dtm_context.mutex);
++
++	return res;
++}
++
+ static void update_config(void *handle, struct cp_psp_stream_config *config)
+ {
+ 	struct hdcp_workqueue *hdcp_work = handle;
+@@ -599,6 +635,7 @@ struct hdcp_workqueue *hdcp_create_workqueue(struct amdgpu_device *adev, struct
+ 	}
+ 
+ 	cp_psp->funcs.update_stream_config = update_config;
++	cp_psp->funcs.enable_assr = enable_assr;
+ 	cp_psp->handle = hdcp_work;
+ 
+ 	/* File created at /sys/class/drm/card0/device/hdcp_srm*/
+diff --git a/drivers/gpu/drm/amd/display/dc/dm_cp_psp.h b/drivers/gpu/drm/amd/display/dc/dm_cp_psp.h
+index 968c46dfb506..5da7677627a1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dm_cp_psp.h
++++ b/drivers/gpu/drm/amd/display/dc/dm_cp_psp.h
+@@ -38,6 +38,7 @@ struct cp_psp_stream_config {
  };
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c
-index 7fd385be3f3d..a9af3f6fd8ec 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.c
-@@ -619,11 +619,20 @@ bool dcn10_link_encoder_validate_dvi_output(
- static bool dcn10_link_encoder_validate_hdmi_output(
- 	const struct dcn10_link_encoder *enc10,
- 	const struct dc_crtc_timing *crtc_timing,
-+	const struct dc_edid_caps *edid_caps,
- 	int adjusted_pix_clk_100hz)
- {
- 	enum dc_color_depth max_deep_color =
- 			enc10->base.features.max_hdmi_deep_color;
+ struct cp_psp_funcs {
++	bool (*enable_assr)(void *handle, struct dc_link *link);
+ 	void (*update_stream_config)(void *handle, struct cp_psp_stream_config *config);
+ };
  
-+	// check pixel clock against edid specified max TMDS clk
-+	if (edid_caps->max_tmds_clk_mhz != 0 &&
-+			adjusted_pix_clk_100hz > edid_caps->max_tmds_clk_mhz * 10000)
-+		return false;
-+	if (edid_caps->max_forum_tmds_clk_mhz != 0 &&
-+			adjusted_pix_clk_100hz > edid_caps->max_forum_tmds_clk_mhz * 10000)
-+		return false;
-+
- 	if (max_deep_color < crtc_timing->display_color_depth)
- 		return false;
- 
-@@ -801,6 +810,7 @@ bool dcn10_link_encoder_validate_output_with_stream(
- 		is_valid = dcn10_link_encoder_validate_hdmi_output(
- 				enc10,
- 				&stream->timing,
-+				&stream->sink->edid_caps,
- 				stream->phy_pix_clk * 10);
- 	break;
- 	case SIGNAL_TYPE_DISPLAY_PORT:
 -- 
 2.27.0
 
