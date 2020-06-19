@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EAEA201C1C
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 22:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76CAE201C1F
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 22:13:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC2AC8985A;
-	Fri, 19 Jun 2020 20:13:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3040F89A76;
+	Fri, 19 Jun 2020 20:13:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2061.outbound.protection.outlook.com [40.107.94.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADF9A89354
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:13:01 +0000 (UTC)
+ (mail-mw2nam10on2077.outbound.protection.outlook.com [40.107.94.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2175589354
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:13:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Otz8gAvSMUNjR1Sfvh1dPl1zsrfboMvvEtRP+UUEVNFkklPwL4JzyYGsBw5q3KQnT6aWj/jZVB/YFYeIhRBT20tUm4LDcGCoOBl5tBYI+saFCqAX0tCMwXooJZByS6xiWjqqzFnd/c7BzyEExRsO0N1/QLoK7wRhgij8ENOggVVpfrWPk5VJN0GV48hKECG2OUAEOMsqXj/GDIapBQqYJ76Kk9WQyHdo0sdYXbRNRwUl/PRoznVr5A2hk/7IO6G5q/oC97qdY/Kg13PqDy7/PTF2Thihg1fXkZLDRFyzto9n33/VmGXJ6tZFElfCCKyFBmdyMyTIWxzazRZcjxSagg==
+ b=ZW+lKkboNz3Hc2GwhI75AvbeTdpjRiRYnHnAWskkFVDRSW18WHDq8PNs6w0KpPIQJdQTv+c1h/9XKKk0IftnS+jt4zePlZQK6wF+G0HriMze2RymWeJNUMNRq+deK2qPDZxIfFFc5QY96MOXje1qGrJqAmuN8NS2vjRp2Zrbwx3iSOIVeJVXFeHYmQs6V/tJcfsFOrSncF6/ixKsxLOQ2xZhcPx7yRHMQjiRcsbRHTJpmQKcWXffseKjCzgQlqW+l2/yE1sR82KSjKhN3yfdku4VbZ7Q6D7Gz+KcILawbVfr8Wl+/4+4WU7J3Wtg16wuIukaOQcev4ECoOd+PlF64w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d0nx/97gsUT93z0/3InSciDwtn4DhpuAZ0pdrDtGVbY=;
- b=Aat15qy9jThXCqHSTrQO3TsNoZnYFCKaCAmfccW0MooxaBQw4XDcn9PZZTxEFupUJLejr4a917DvHwts9Mh5a57ccRr6P/KlNi2o3oqj2ccWOefDF0VmdRQFE5V7LxwFcwySmjaDxrsAtNajhXrDSL2jFzkSvPD7V6tygCDIJuewZymjkevvSMj2YLszskTBhwUnEdhgqf28NTuYsYLNQvU2XI3ZSQfEjZJvHjt3EZJlojNS1jqQAwE8krHl2m18T2yCdkR56TDFmE/SNcIKK45b5RpExuZWArs5JwiEI7AnEOkohA/bhHIK3re8+JT83BFYv4ZwLTpMQlti8ZTddg==
+ bh=93og56mFR70NabNwDYsNjY9cwZtwbGbfZRP3f6AXJIw=;
+ b=aoNBrjv4IXkds/zFuAAatAhtvUhKVGHNXJ1Vdh5kQP7PLOSvmD17oaFTTyK6kk8CxQObbDDnROf4aakLh9X5vrR73r87iT6UjEYmKq7r6R5bE17I/d88bE/8Pgok8J7bTSTQdBnK6Ens1QaZcdr8VZ4xZWPkHpjL7S7vfQ1LvstMPsToP2DubvvQg5oVQRSSe7nzsaymcIHA3fDYee6FQVM2LwXajSDeU5eOJH0gZUrrHpg0BpqoirgwrhJ/2/uOvRqS6okotLAaIn2IAW3ZhfnDu5ZIvzhr8Kn7srvcaY1Cuz45WehbFhCZVwIRE5YTbVWRsAEMBoi/aiRgyQfT5w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d0nx/97gsUT93z0/3InSciDwtn4DhpuAZ0pdrDtGVbY=;
- b=XCXdDrgO7lku8aRa1FgQLPHXdnsoQKNpXlSagPDKwN2B6+apU1RWtn3WXJW3v3NutyCTE9huLQbVCqjexiuGbgKILf8isSoCRdf30G/U7nO6fhK850l6LiEZ3cgKcTkJhU1KCcpszS9n1ycYO2keI2DuCzCUFvayKZ1hi5lFqkE=
+ bh=93og56mFR70NabNwDYsNjY9cwZtwbGbfZRP3f6AXJIw=;
+ b=pxBYd1eNuY1HwRlSn9Y+dr4kogw46tqHsiQ3QftxJAbJcuATo+uHTpFirqKPN5Q90nJf0n+29jR8l7o9l71fdzug/+1WizBdpNMBpKEDEWkuD3LoXONYbAw9rTQaV2VpePzVeseJ/CgAutkYnxyp71COQe0lJVGhIkoajZygkOI=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -39,12 +39,13 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580%8]) with mapi id 15.20.3109.021; Fri, 19 Jun 2020
- 20:13:00 +0000
+ 20:13:01 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 18/30] drm/amd/display: Force ODM combine on 5K+ 420 modes
-Date: Fri, 19 Jun 2020 16:12:10 -0400
-Message-Id: <20200619201222.2916504-19-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 19/30] drm/amd/display: Enable output_bpc property on all
+ outputs
+Date: Fri, 19 Jun 2020 16:12:11 -0400
+Message-Id: <20200619201222.2916504-20-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200619201222.2916504-1-Rodrigo.Siqueira@amd.com>
 References: <20200619201222.2916504-1-Rodrigo.Siqueira@amd.com>
@@ -56,33 +57,33 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:f5c::9) by
  YTXPR0101CA0024.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3109.22 via Frontend Transport; Fri, 19 Jun 2020 20:12:59 +0000
+ 15.20.3109.22 via Frontend Transport; Fri, 19 Jun 2020 20:13:00 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [2607:fea8:56a0:f5c::9]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 10537076-1f4a-44d4-3dd6-08d8148d29cd
+X-MS-Office365-Filtering-Correlation-Id: f1d7e35b-309d-4c87-3e45-08d8148d2a34
 X-MS-TrafficTypeDiagnostic: CH2PR12MB4087:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB408747B78F674526909DDFA698980@CH2PR12MB4087.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB408777C1E985C2BA364FE23298980@CH2PR12MB4087.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:551;
 X-Forefront-PRVS: 0439571D1D
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: C3aySnaMlEr/sisoEq1S5ZahdEK/7KZOOoae6A3XpXGW/xqVY2EYqy4rQg4WXRpizop26dXEwXbyUvY99JIitMp5s0Ac26QEX/Iz3Sd/OiSuZfQUAVjKgyKABOCt3IntUaGZW2PaFb7pI5G5dSRihIfV2ktG6TVGy9lELukgTjhEK1ZL9i7aMaQS+N42XAqhAoRNFivxsq2/92pJnxnZFg3KvAfAEs6cjK4mMghKOX4ZbVQwMccAu+DT2M8jpdKORQ/qD2n8XpVq0D+ktvxqkwuAXpsC1IASV50TWlO8fPw2CiYYMG6SlDbAXMNMD7XVYGmbA6gb9Ar2J2dYfct0+vsrPtEM8wrfSjv1KAjGNDy6ZVZTnVbyhAUBIbyAELCC
+X-Microsoft-Antispam-Message-Info: 7yKWcgqYHBTrCIKukG+rlhQGBoImRP4UBjNI/6QO2sVWbq/7yk8YuMDhw6X5A3c/pbomrpAU4ATwd1kuZpHcO01BznPtnn8B326jlLNB3ZMJFE2/II2d3lye/e8/GLYDK0o7NkEbvW81s7H1nJ25ICn8a5MBO08DDXbaQcRCUyVMS/ODk73OL/0TYqY4+k2WgV9FIWBs9je8rVYduhwn0wvFU9iw/sIEe06gIbTDUVEy0fNxWdvHQyOsPnlzxc3G+55LLE8dDb7IfYB92PTVbXuKBvVnTmIU9RxLpHBfsj8FuoYYLR8t17Na6KXIII+1
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(366004)(39860400002)(136003)(396003)(346002)(4326008)(36756003)(6486002)(83380400001)(86362001)(5660300002)(8676002)(2906002)(6666004)(2616005)(6916009)(8936002)(1076003)(6506007)(66946007)(52116002)(478600001)(186003)(316002)(6512007)(54906003)(66556008)(16526019)(66476007)(44824005);
+ SFS:(4636009)(376002)(366004)(39860400002)(136003)(396003)(346002)(4326008)(36756003)(6486002)(83380400001)(86362001)(5660300002)(8676002)(2906002)(6666004)(2616005)(6916009)(8936002)(1076003)(6506007)(66946007)(52116002)(478600001)(186003)(316002)(6512007)(54906003)(66556008)(16526019)(66476007);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: xU/gxFAh/p9ZinIHvX0rzbOzGJ42b3YbTgMlUcJTpfZ+vfK3dru9gaCk5qCk9iGUVtGfag1v6NJVXZuyAID5kPjCwgMrPYUCu+GHPYiId9jXouCsPU84qWmosqBYumIA7QRKPVZdZzUHgeZ/TiVAhiVC6a9N5EUN1sb4ycXs6plOXzx2msY59ulzfcVgFcWhD1r2ieVaQFfJJza/OmOoAwy4oBc3mqu0u/kPgkPz0t+76/SMGnqgUCrVlq0pwuMHC/TvJEptCNgXzpMg3GPrOTgWXYKgNqt5/dynvH5bYKIFnzunXT5+ZMtsBjcqVGaHLi0j1S2Oe6pyckLMShhDHM+fw+F6jOL2GLFRy70ueuYL4e0jDOOrJ8V8Mca2dvB+LePpvh0asgX7kvEdSxGsAdyc6daaoqvwZiSdKAo2TqdYx37BeF1cBzca1K6Csh3GGO8YizvL9AwAjvD0cRVBkYX1R8Mpsi9iFmWNfxJK/DRgQDmpBHc2m6UWOjHsGrE81uziHqQgi/RAO4gY3YRt4Q==
+X-MS-Exchange-AntiSpam-MessageData: 4GZSJbmsU6A1/+2htvk2RAyr8pQJrvHSPf+827wXmx7Xu9038yVsiymZDpJd9BUdt0YqWBiEXnAdVKWMcKHeGx3X+eelPfwXoMjTR0zGGsZKoj1MprJiYhzDz5V8+q47xrvHvEAdNE3147fzS3yJB0p1kb7f+AJknjIoDsM+uTMtepnfYkA+VQXpxZHKDjW/H6gJcs3fEtNT858MT0NQUPt+F9nR+5d4lizD5kklrk0Tx3qFAud6AFt3M6dTTEVBArFfPNYHKYvs75YnFe0dpteVh9SNponlDzGdxnwBiH0CEmu0yYVpZ1bUSPII+dtYrnxSdg1el2nFskMSbSQK247Okvsx+dJ0FldCpi2TWMbkeA+ZqCIj6/KtClWvYBQBcMdWaRxAz5/uLqiuIe+TBpaHtmE072EbUhgzmrKWvzwDWyU/fG9VvgccIGpaWOe8VQQa4oHxDq6in3tNQPEDKhpvF5goMKFApHzEquTPe8gmmo+Ecvb+QhBTdy3VQ1rHreaXh/C7RnAF2fafBiXndg==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10537076-1f4a-44d4-3dd6-08d8148d29cd
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2020 20:12:59.9261 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1d7e35b-309d-4c87-3e45-08d8148d2a34
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2020 20:13:00.6116 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x8gkSdbKwYXDL9innSvYdSJUxMdzzsu9egWSpcH0Ozpz3jvdGytOQcfev1fDHtOnd+bDuZS+kipCJNKELwaOVA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: yx3xwKmJ5f2hSVrwbHkRFyvJ+7Q7bqEUHgvmmWF9lAAFaW2Rd+Z/h9MRGRRwbu8AbUYnHGPoH0SXLc1ShTOEiA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4087
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,62 +96,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Charlene Liu <Charlene.Liu@amd.com>, Chris Park <Chris.Park@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
+Cc: Stylon Wang <stylon.wang@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Park <Chris.Park@amd.com>
+From: Stylon Wang <stylon.wang@amd.com>
 
 [Why]
-All YCbCr420 resolutions 5K and above have tiling and discoloration
-issues.  The issue can be remedied by forcing ODM combine from 5K to 8K.
-10K resolution requires ODM 4:1.  The mechanism of what the real problem
-is, that is inherent in ODM combine programming, doesn't seem to be
-pointed at singular register programming (CLK, MPC, DCSURF, etc.), and
-needs more in-depth programming sequence review for these new use case
-scenarios.  Until then, workaround to enable ODM combine is proposed.
-While it is not our policy, HW spreadsheet also recommends turning on
-ODM for these scenario to lower the voltage.
+Connector property output_bpc is available on DP/eDP only. New IGT tests
+would benifit if this property works on HDMI.
 
 [How]
-Make pixel encoding and resolution size specific workaround to enable
-ODM combine on YCbCr420 high resolution modes.
+Enable this read-only property on all types of connectors.
 
-Signed-off-by: Chris Park <Chris.Park@amd.com>
-Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
+Signed-off-by: Stylon Wang <stylon.wang@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-index 2a32ed6682fc..5909af0a25fb 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-@@ -3986,9 +3986,19 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 				} else if (v->PlaneRequiredDISPCLKWithoutODMCombine > v->MaxDispclkRoundedDownToDFSGranularity) {
- 					v->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
- 					v->PlaneRequiredDISPCLK = v->PlaneRequiredDISPCLKWithODMCombine2To1;
-+					/*420 format workaround*/
-+					if (v->HActive[k] > 7680 && v->OutputFormat[k] == dm_420) {
-+						v->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
-+						v->PlaneRequiredDISPCLK = v->PlaneRequiredDISPCLKWithODMCombine2To1;
-+					}
- 				} else {
- 					v->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_disabled;
- 					v->PlaneRequiredDISPCLK = v->PlaneRequiredDISPCLKWithoutODMCombine;
-+					/*420 format workaround*/
-+					if (v->HActive[k] > 4096 && v->OutputFormat[k] == dm_420) {
-+						v->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
-+						v->PlaneRequiredDISPCLK = v->PlaneRequiredDISPCLKWithODMCombine2To1;
-+					}
- 				}
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index 7b8968baaeb9..db4fab10a0c4 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -1058,7 +1058,6 @@ static const struct {
+ 		{"link_settings", &dp_link_settings_debugfs_fops},
+ 		{"phy_settings", &dp_phy_settings_debugfs_fop},
+ 		{"test_pattern", &dp_phy_test_pattern_fops},
+-		{"output_bpc", &output_bpc_fops},
+ 		{"vrr_range", &vrr_range_fops},
+ #ifdef CONFIG_DRM_AMD_DC_HDCP
+ 		{"hdcp_sink_capability", &hdcp_sink_capability_fops},
+@@ -1142,6 +1141,9 @@ void connector_debugfs_init(struct amdgpu_dm_connector *connector)
+ 	debugfs_create_file_unsafe("force_yuv420_output", 0644, dir, connector,
+ 				   &force_yuv420_output_fops);
  
- 				if (v->ODMCombineEnablePerState[i][k] == dm_odm_combine_mode_4to1) {
++	debugfs_create_file("output_bpc", 0644, dir, connector,
++			    &output_bpc_fops);
++
+ 	connector->debugfs_dpcd_address = 0;
+ 	connector->debugfs_dpcd_size = 0;
+ 
 -- 
 2.27.0
 
