@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F8FC201C2E
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 22:13:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1800201C1D
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 22:13:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A7256EB0E;
-	Fri, 19 Jun 2020 20:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 888DA897C8;
+	Fri, 19 Jun 2020 20:13:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
  (mail-mw2nam10on2043.outbound.protection.outlook.com [40.107.94.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D56DA6E98A
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:12:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CBA56EA5E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:12:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PQHzMKve8XUfH9joG1M+np15RiUr/AXUkah2bN+kQ4jyoRCgHgYf7zQHP1vrWaaIAW6ETrORYgWrDDSAGstciApkokIJHCG2ebEyQUjMKL6JFj/Ss/ts+8RnB69INBX7hBDz80WM+PgITUfltF4/+sF5XqfoGQBTg/aeMWBYNuQrTCJ4bZtYfhgv92hmLTarj6CeLnpUqZDl2oQwWAgru79tnco2dkTe2zfnd9ExxrRwH1RZQEgNDEUiWJJQD2sdzLIPbaqYrJMLFRf7vtiORpfZeXCppswUJ7G9A0CfxdHUtg5irv7eOmHLmvxB0Z0LsLulCw1hYQv1cBSBgD8xtg==
+ b=DDGubSMyPjJOQzLGTjFnf1IIXOr19FomI8w1V8c0+ooL+DczAIK+q6igHNS4xNM9GSA2EgXLrGgub/Yk7IRZpbYRq3HAXcm2Gc6Id8U43jDIMZd6eGff6/0dAO36UXif+Txegm4+CkLhEbVL7GXrWzTyYvcK59oYcTlw3LYyho4VyIvgrN5smuTRdfzCeiIl0kfO0iwOKZY/yq0jncjycg8yA7Qww8LhuIwcewwY3Jz5KLcKH+VEHqvqc+yu7YBMguRf34pFwKuwy6KD5NC4+aKW+DwdWKq3nYfdxHl74VkANaAPkoDxEglAt/+ioFsLyGDCe6rZiSNQbFNpiGC7EA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=We+Z6o37NvMTiovQoJMl2riBlmQxC7VlWHq+aZTnwJ4=;
- b=Fh+NLOKzzw00p0Ib02/KtlZooBJe79QWt/t4yHQsUYakKPBNioxWWPB71voqNNToDLgB57nfFuU7gTPWnl2Fgf2/b8kl4xvHSWvxnst2deWjyAGK/Res1O8TC5uWBH5/Zmc4T9pMQJOENuvp0G6D+xgTto0X3RvL7Uil5AH9VXfhZiqMKnSgG2XSDsz27OJVAyuGeQNPm/V5MkIoZ/MY9TLK674vIwtqNbeUH1ZwepR0TuOPB/wLlAV3VtWlpOiZS1vKIj1gZfJ9vpa+nob/piT3ItFXuNQSZx7kHXZ+v7s+aVaJlbQHsm53ngwuL6kdWFzX5FVcYe1KNcQqopc6ig==
+ bh=tn6qe+2q/PFEi4ISHvjZbbLyL9SlNcMIc+STnLZqneU=;
+ b=AIjC4ZJO/N1g7FaXj+i51fSVQCNDrhuEj9BQLN7E+krW/bEBrjtF6C/FvzTzl6exJ9UgrPsh3DgalboQ95nyiB02aQUpTq4j67lBgAWtphbDZpjhNWl26/RH7yjI4XKKxi6jh2L8o+VOybsTK7CBtvj90s02UBIexdmv8y0ekOxbxEd7MwYaQIwVzDwm6o35wpIjnIVbF/U98iu7rn1wBk97UDIcysLqZc/6aPx0XGUTHTer6Qj339d8UJvip5UmjNZ/dLx8gItj+jJ1uGYgWkhdUTG0eY0nitxoiG6DXl3bUkDx/dToiPTXkHnFhIycr1M6zvg0o6XKi9Y3wmQadw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=We+Z6o37NvMTiovQoJMl2riBlmQxC7VlWHq+aZTnwJ4=;
- b=G3Gp36DJztXU1clmJJxLBKq7xo+UF8cD+8ReFILiOZhMU30Gs09wTVzRPFDkeVTvVz7iZb/b4TnoG6l2WMACuhjb7Yd9/vfLM3Xv8Cm+PFqnIvLpXtyScoWs6KOQWzEaBbX3RXNX5U7Cy1qPMiRQyxvPFAs/8htVBLHQjIa75uA=
+ bh=tn6qe+2q/PFEi4ISHvjZbbLyL9SlNcMIc+STnLZqneU=;
+ b=FBWPWdlG9J8Pb0I7RhX27lkpzXARPaoXztiklJlrnUocga2L3k2uYB/Sf/W4eDxDy+S76/3zHvUbO2zuTftIQKWfSYYRj9QPw4+HJqIoc+BcKgYMQC2BxMO/u1eNWBH5YimCTQeQvDI6ZkOYT2AoX99ar9tjmuEsO+E/Sw6TPy4=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,17 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
  by CH2PR12MB4087.namprd12.prod.outlook.com (2603:10b6:610:7f::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.23; Fri, 19 Jun
- 2020 20:12:56 +0000
+ 2020 20:12:57 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::812c:cc72:6d14:9580%8]) with mapi id 15.20.3109.021; Fri, 19 Jun 2020
  20:12:56 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 12/30] drm/amd/display: clip plane rects in DM before passing
- into DC
-Date: Fri, 19 Jun 2020 16:12:04 -0400
-Message-Id: <20200619201222.2916504-13-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 13/30] drm/amd/display: Added local_sink null check before
+ access
+Date: Fri, 19 Jun 2020 16:12:05 -0400
+Message-Id: <20200619201222.2916504-14-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200619201222.2916504-1-Rodrigo.Siqueira@amd.com>
 References: <20200619201222.2916504-1-Rodrigo.Siqueira@amd.com>
@@ -57,33 +57,33 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56a0:f5c::9) by
  YTXPR0101CA0024.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3109.22 via Frontend Transport; Fri, 19 Jun 2020 20:12:55 +0000
+ 15.20.3109.22 via Frontend Transport; Fri, 19 Jun 2020 20:12:56 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [2607:fea8:56a0:f5c::9]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 89bd487c-5c9e-41c3-d3a6-08d8148d276a
+X-MS-Office365-Filtering-Correlation-Id: 160040ef-af01-41dd-c4c0-08d8148d27e8
 X-MS-TrafficTypeDiagnostic: CH2PR12MB4087:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB408761389B2C8D1826A8416898980@CH2PR12MB4087.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4087D80E10AA96FE5E2E285798980@CH2PR12MB4087.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1360;
 X-Forefront-PRVS: 0439571D1D
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0ALi2yEK2T8CWapv7yXpXQ2lpGowa4HadHrrT5ZTL+iSqk03aTXtVCjzseWf89J2WxAXYC+VM2auk86qW5kf0GnlFi3kAW4xzoxsjNm0BvVBS9l0iMasZoEV2D5xwQcQLqaRub5MeiO8CEN2tnD+ILuHCDvLTb4ikpGabP1zPu/jcVKa/N9xLTf7SffmBgEazxdHUy47BZ8uHjVaQZ0rtmQlrkqZpIFik5eXTBIXE2694BAn75Z+wf7ytESBe2D7OkCf1TnkVqRQAlhabJw6u/tY1b6QhQw9d8oq9QDpHzdixPEZbgAkJTnSfQFdSrIVPmPbbGb8I1WerCkmdA0phg==
+X-Microsoft-Antispam-Message-Info: sV6dMiaG5vfN7E4elDqw93igLxOnU80OUTFh5NG1WdbTOvpUJRkvYBy49Gdci8cQVsl36BhESGTAdVbpjqfng/+s4SBtL2C2H3vE/wMtYPf4wks3F8iRvnIjB1QdlIuehsqSYmH9tVyW+4qO/9kqip4/tCSpp0jQ2yHcmVrDBpiAuK9V/nNJJ45ZOpGC7FWPaay4fN56weNKLtlWfhNIdb8fbxBDCnm5YuxCgTq73xPnCeDb4tKweDveoMkpSwZQipP959GYd411VM61uVygwQRPK38zjZPLGP2oelXBqWj/ibVa7OyvDKsE8T5ad0Q4Qa1lt+nC0BUj8jdDE5x6Lg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
  SFS:(4636009)(376002)(366004)(39860400002)(136003)(396003)(346002)(4326008)(36756003)(6486002)(83380400001)(86362001)(5660300002)(8676002)(2906002)(6666004)(2616005)(6916009)(8936002)(1076003)(6506007)(66946007)(52116002)(478600001)(186003)(316002)(6512007)(54906003)(66556008)(16526019)(66476007);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: Panbp8FeZHCFecZJq8E4qbyoIn2P4zmsyuoLd1AZtUPhsDKxpQ/Zpx4Hn2Am92zkfFeLAGVMUyD03s+X51kTn64PchYt7Y1FogMjKE4JHEhXRCLsrHH/d15VLMhX7b7IrwCL+FDRCBCG4gDkkBYGi/IIVdJ31X+IwY0SSNE9tiNk4bz9dN56xfPU8plg03THLzQvOZxOe+HpaXZ9/ko84chTU9TRS3mP6LmsckqokB3uYz6SxAliocM1iZpuTBWmjJPRHgsIR1En5bEnTSp3E8SSYyOhvXBN43W4co/LurbzvTHnRVduXC2ocSYgfo6VgvZJWOnptqSj0pcF/7DAnrOCYIO9AJNWnLYiJ9pJsJqPWnwyci138pPwgWFOP0skf3tNNHg5dvbz5cEz1x+qIOM00OBAiDchAzx4dJfw/pTZ1ugD12VJBVKEqoBPvfxT5csUDUROykMKKhcKY9lDn2OkY8AcGI9Lhm482PXakNUVZK0CtqJX+ZLi028hj1sHhCH+uY7a8cwPI6qyqQwXEg==
+X-MS-Exchange-AntiSpam-MessageData: 98j+32JUeVCyTB93BxdvVUcpZ4MEWE1WCyvqQQhlR4zIJrTMgZ9j28eT6pl38g7GD6g6t0x2qdRa9NpgcUE90ttuDAXrbkvXtYaXK1RgjQH6OVz+SUenhAMfh6tYShs0h3RvgaXb8eroMFU31dTU3AOeLI2A/LmgtxXU/5Y/MvWYXn7juM7v4c5aeqB2DRfyTBBiWSAt2Z0JcO+U3xfsN0MtMivWuUv1+g5bEt+3oWjyI4TBAcjQvXIVAWlEswJPEGvLrwv6MUywBbhwXXYtdYFh2NVz6GO6DCYk1m7NaN2Yu9Fd9M0ECes5M6SaAPyxA0hDZA2TKOcLHsB+gC8L4SmsZd9lmz2UekHFdX9Pe1P3+RmGWjOnu/6dY9/dRjYjJ1roi6RIA3YDi8oq/EIrq4U/CnMTY5Q9JYfoLYLhKSc3aDy3iWmwGLnccGQ2EDLoyV8183zWh0OQEVxRKVQqQLL9RwmZ2/5j9dOzyCfbZPC2lbPr7JkfdKWI97Q2OhAA8GssG08xLSeCMyP06Ls/8Q==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89bd487c-5c9e-41c3-d3a6-08d8148d276a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2020 20:12:55.9083 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 160040ef-af01-41dd-c4c0-08d8148d27e8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2020 20:12:56.7133 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PQTzJlrdIzpJc/sEMJUQCMWAFpBhuptd/cfcQL4JHl99symNm7JImj46DfMV2tLV9V/JqhHyQDHr9X3SWd6zoA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5t1tlTtr7wc4b5emqiT5o9Xrx/bV6yyx9QriEjfvEfRcEI2F/PW91rLpWLyAHsEpFrCis56BSbiSsaauJHoXvQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4087
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,93 +96,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Cc: Jake Wang <haonan.wang2@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ Anthony Koo <Anthony.Koo@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+From: Jake Wang <haonan.wang2@amd.com>
 
-[Why]
-DC global validation can fail when userspace requests to draw large
-plane without performing the clipping themselves.
+[Why & How]
+Need to check if local_sink is NULL before accessing.
 
-This is observed in the IGT kms_plane panning tests for 4K displays
-where they draw an 8K plane without any clipping while expecting only
-the top 4K to be drawn.
-
-[How]
-DRM already has helpers to take care of the clipping necessary and to
-mark whether a plane is visible or not, so make use of these helpers
-in DM before passing the plane to DC.
-
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Signed-off-by: Jake Wang <haonan.wang2@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 6be4913a0239..2dc419194817 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5779,6 +5779,17 @@ static void dm_plane_helper_cleanup_fb(struct drm_plane *plane,
- 	amdgpu_bo_unref(&rbo);
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
+index 6590f51caefa..93e28231a9d0 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
+@@ -167,7 +167,8 @@ bool edp_receiver_ready_T9(struct dc_link *link)
+ 		} while (++tries < 50);
+ 	}
  
-+static int dm_plane_helper_check_state(struct drm_plane_state *state,
-+				       struct drm_crtc_state *new_crtc_state)
-+{
-+	int max_downscale = 0;
-+	int max_upscale = INT_MAX;
-+
-+	/* TODO: These should be checked against DC plane caps */
-+	return drm_atomic_helper_check_plane_state(
-+		state, new_crtc_state, max_downscale, max_upscale, true, true);
-+}
-+
- static int dm_plane_atomic_check(struct drm_plane *plane,
- 				 struct drm_plane_state *state)
- {
-@@ -5786,6 +5797,7 @@ static int dm_plane_atomic_check(struct drm_plane *plane,
- 	struct dc *dc = adev->dm.dc;
- 	struct dm_plane_state *dm_plane_state;
- 	struct dc_scaling_info scaling_info;
-+	struct drm_crtc_state *new_crtc_state;
- 	int ret;
+-	if (link->local_sink->edid_caps.panel_patch.extra_delay_backlight_off > 0)
++	if (link->local_sink &&
++			link->local_sink->edid_caps.panel_patch.extra_delay_backlight_off > 0)
+ 		udelay(link->local_sink->edid_caps.panel_patch.extra_delay_backlight_off * 1000);
  
- 	dm_plane_state = to_dm_plane_state(state);
-@@ -5793,6 +5805,15 @@ static int dm_plane_atomic_check(struct drm_plane *plane,
- 	if (!dm_plane_state->dc_state)
- 		return 0;
+ 	return result;
+@@ -201,7 +202,8 @@ bool edp_receiver_ready_T7(struct dc_link *link)
+ 		} while (time_taken_in_ns < 50 * 1000000); //MAx T7 is 50ms
+ 	}
  
-+	new_crtc_state =
-+		drm_atomic_get_new_crtc_state(state->state, state->crtc);
-+	if (!new_crtc_state)
-+		return -EINVAL;
-+
-+	ret = dm_plane_helper_check_state(state, new_crtc_state);
-+	if (ret)
-+		return ret;
-+
- 	ret = fill_dc_scaling_info(state, &scaling_info);
- 	if (ret)
- 		return ret;
-@@ -8312,6 +8333,10 @@ static int dm_update_plane_state(struct dc *dc,
- 		if (!needs_reset)
- 			return 0;
+-	if (link->local_sink->edid_caps.panel_patch.extra_t7_ms > 0)
++	if (link->local_sink &&
++			link->local_sink->edid_caps.panel_patch.extra_t7_ms > 0)
+ 		udelay(link->local_sink->edid_caps.panel_patch.extra_t7_ms * 1000);
  
-+		ret = dm_plane_helper_check_state(new_plane_state, new_crtc_state);
-+		if (ret)
-+			return ret;
-+
- 		WARN_ON(dm_new_plane_state->dc_state);
- 
- 		dc_new_plane_state = dc_create_plane_state(dc);
+ 	return result;
 -- 
 2.27.0
 
