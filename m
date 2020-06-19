@@ -1,68 +1,73 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C34120099D
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 15:12:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C548200E4E
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 17:09:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82BF66ECA9;
-	Fri, 19 Jun 2020 13:12:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F8F26E062;
+	Fri, 19 Jun 2020 15:09:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D5C96ECA9;
- Fri, 19 Jun 2020 13:12:23 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id r15so9067362wmh.5;
- Fri, 19 Jun 2020 06:12:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:mime-version:content-transfer-encoding:in-reply-to
- :references:subject:from:to:cc:message-id:user-agent:date;
- bh=GkCNCBDLTGNPQOWA3LlDB+HVQOoFNOeRv8FRTeVEIsM=;
- b=O2IoOtXTfwDLnURJ+oPXILPR4bZC5yfvkimT/xe7sHph7oSWi+9ZBJeMgu8VpB3O29
- ry7T5AuBz/T6GsCRSKV57xS6lXox0wOBXO8sjeaiphnDq1DCuvVEW2v4bqnwaVh/2QPf
- /0wtqTvZCSwapDz1xOsN6Mu0PnC3VB0PLCIHTsJT9jVJRXpbEC0mqIgCAd23/Xj6iIme
- h41kY/cj1d4TZuuhdwGtSzI8WXAiTVpGeedX/ZRocox5N/ealOWbJt3k2FWnmLx3ON2B
- h5X1CEinnZWXMmTGjhjnsyM7tqY9OpSHy2JEtUoNXVA5mL6gs8baEUtVkUR64tvx3vdi
- GC7g==
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
+ [IPv6:2607:f8b0:4864:20::741])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D9306EC93
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 11:39:37 +0000 (UTC)
+Received: by mail-qk1-x741.google.com with SMTP id r22so7071498qke.13
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 04:39:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=5lQCYSoi4FC78xGjLBeogrhLOaSlungd8A2lT6c416A=;
+ b=GpTji/yhJTYfywss1k5am+JyELnNZlvvM8qP/Uyg3OD7x7MqDitwSWfgM3HPj0UhUM
+ CmGRkgXfDHKjJbk/G94ThGo65HoXLKpYTHWId62kC64177gtGxTII+K1ZYz1wipOiAHJ
+ eNgWeTmTaG/jDKlMWG2mJATpUK5rAwHHXT5FR/exkvaSA9MSXlfn3hlOUhTW2ZxS/H4F
+ HEmI2H47vtMrMdfYBePKTzq7Q28TCNQpdwQLKytMyWVDkIDxh7YsNl1xg+jdzcXMR0cI
+ rZrwuwfz+8JvRuJ/hZc0oTCMz+QMnazKQOTVrKsL2AkwHyGJfWycuxP+cVSimTbDO1fJ
+ 9CVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:mime-version:content-transfer-encoding
- :in-reply-to:references:subject:from:to:cc:message-id:user-agent
- :date;
- bh=GkCNCBDLTGNPQOWA3LlDB+HVQOoFNOeRv8FRTeVEIsM=;
- b=uOnVbfjonA5lhxH8IL5RR5GTOF7+U/7/WtoT73bV3hvVsMCfNH1zooYCEUT6mp14tn
- FgBWTjJt9LrcLCidkDLrPsqgXzvIn5GiVBR64V8wf0RCD96B7+66WK7I1ayAO5nsyWln
- le+NdCUuxMcds4t6DL0HsLDFIEAVRp4bqYddb/GEJYDORZq5nk7ESC1R3g92TB8uvlFX
- lAk4kt5V5nurHPxvEraKiADTK+dbL2CMJ+8d/nnG7aTr35izIWkOpSJgs7oteSUyhUdU
- ucAfdGq1PJsnhkcEwfNXdGWzceC/flsKLpyOu7Yns22pXWgpCJlhaxMh8Gf7NpGstyzZ
- LaSg==
-X-Gm-Message-State: AOAM5324d2PSjZFplUU4BhrNAH+aJau/5xhnGVWjGrGPvo7ytoiwGQ4/
- 3mn6a4JH/Ni7caoVgFhPsug=
-X-Google-Smtp-Source: ABdhPJwSjmILeC2LcTtTmmx0JTtIYZ95VNY2hAQJPzgz/V8uF2EioBLqs1vbWGMXNu2IaPLP58n7IA==
-X-Received: by 2002:a7b:c441:: with SMTP id l1mr3494639wmi.7.1592572341541;
- Fri, 19 Jun 2020 06:12:21 -0700 (PDT)
-Received: from localhost ([78.156.65.138])
- by smtp.gmail.com with ESMTPSA id v24sm8375716wrd.92.2020.06.19.06.12.18
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=5lQCYSoi4FC78xGjLBeogrhLOaSlungd8A2lT6c416A=;
+ b=BiDiVbe+PpUTFtmAbZqfT3nkrzzpL02loo/lVmRmWZSiHtMtraz3V0ANuDIJCqDCHe
+ Ff5BJ7p5dnrtdTOrl4sLzrKB5Vc3304B5KTTNrJV0EXVtAU2l8cUYndvSsV7teeDEvX8
+ Yi6eVcoBcvqOZ8IHsbbH14q7cbdNFFDCFwvQHKdi+0uh8DaH/LgNkLOkkicpWtHvJ/RP
+ +Org3uToy0zlqi5BVU89YqHgUuC101h6cf/CWIokwA6j+pQ/x3mxpJXOU+6A9IBN6/i3
+ klPEBgRYASAKQngf53ROjJbOdu3dfH40YqN7gpIeMp3H3e/qSoiaP77TdCZPe2t0wAkx
+ CTwQ==
+X-Gm-Message-State: AOAM533zFlsqDp9uW0GNVeh+JEGsVC22xJREBNb6qyXoZLQO0M2cTcIE
+ SqpTPuUBuY3yhR4PgWT/gq6bJg==
+X-Google-Smtp-Source: ABdhPJyvT5Fp9eB5e8a01kFzBtsDczKSLoT1L7Q5mintxsSice/gNXkvAdcFjnB+DRsdXJvj32xdRg==
+X-Received: by 2002:a37:6191:: with SMTP id v139mr2946071qkb.213.1592566776171; 
+ Fri, 19 Jun 2020 04:39:36 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-156-34-48-30.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [156.34.48.30])
+ by smtp.gmail.com with ESMTPSA id o6sm6016053qtd.59.2020.06.19.04.39.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Jun 2020 06:12:18 -0700 (PDT)
-MIME-Version: 1.0
-In-Reply-To: <20200619094309.GT20149@phenom.ffwll.local>
-References: <20200604081224.863494-1-daniel.vetter@ffwll.ch>
- <20200604081224.863494-4-daniel.vetter@ffwll.ch>
- <159186243606.1506.4437341616828968890@build.alporthouse.com>
- <CAPM=9ty6r1LuXAH_rf98GH0R9yN3x8xzKPjZG3QyvokpQBR-Hg@mail.gmail.com>
- <CAPj87rM0S2OPssf+WA+pjanT-0Om3yuUM1zUJCv4qTx5VYE=Fw@mail.gmail.com>
- <159255511144.7737.12635440776531222029@build.alporthouse.com>
- <CAKMK7uHEwj6jiZkRZ5PaCUNWcuU9oE4KYm4XHZwHnFzEuChZ7w@mail.gmail.com>
- <159255801588.7737.4425728073225310839@build.alporthouse.com>
- <20200619094309.GT20149@phenom.ffwll.local>
-Subject: Re: [Intel-gfx] [PATCH 03/18] dma-fence: basic lockdep annotations
-From: Chris Wilson <chris@chris-wilson.co.uk>
+ Fri, 19 Jun 2020 04:39:35 -0700 (PDT)
+Received: from jgg by mlx with local (Exim 4.93) (envelope-from <jgg@ziepe.ca>)
+ id 1jmFMs-00AiVa-OZ; Fri, 19 Jun 2020 08:39:34 -0300
+Date: Fri, 19 Jun 2020 08:39:34 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
 To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <159257233754.7737.17318605310513355800@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 19 Jun 2020 14:12:17 +0100
+Subject: Re: [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime lockdep annotations
+Message-ID: <20200619113934.GN6578@ziepe.ca>
+References: <20200604081224.863494-5-daniel.vetter@ffwll.ch>
+ <b11c2140-1b9c-9013-d9bb-9eb2c1906710@shipmail.org>
+ <20200611083430.GD20149@phenom.ffwll.local>
+ <20200611141515.GW6578@ziepe.ca>
+ <20200616120719.GL20149@phenom.ffwll.local>
+ <CAKMK7uE7DKUo9Z+yCpY+mW5gmKet8ugbF3yZNyHGqsJ=e-g_hA@mail.gmail.com>
+ <20200617152835.GF6578@ziepe.ca>
+ <20200618150051.GS20149@phenom.ffwll.local>
+ <20200618172338.GM6578@ziepe.ca>
+ <CAKMK7uEbqTu4q-amkLXyd1i8KNtLaoO2ZFoGqYiG6D0m0FKpOg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uEbqTu4q-amkLXyd1i8KNtLaoO2ZFoGqYiG6D0m0FKpOg@mail.gmail.com>
+X-Mailman-Approved-At: Fri, 19 Jun 2020 15:09:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,127 +79,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, DRI Development <dri-devel@lists.freedesktop.org>, "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>, Thomas Hellstrom <thomas.hellstrom@intel.com>, amd-gfx mailing list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, Linux Media Mailing List <linux-media@vger.kernel.org>, Christian König <christian.koenig@amd.com>, Mika Kuoppala <mika.kuoppala@intel.com>
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ Thomas =?utf-8?B?SGVsbHN0csO2bSAoSW50ZWwp?= <thomas_os@shipmail.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mika Kuoppala <mika.kuoppala@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniel Vetter (2020-06-19 10:43:09)
-> On Fri, Jun 19, 2020 at 10:13:35AM +0100, Chris Wilson wrote:
-> > Quoting Daniel Vetter (2020-06-19 09:51:59)
-> > > On Fri, Jun 19, 2020 at 10:25 AM Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > > > Forcing a generic primitive to always be part of the same global map is
-> > > > horrible.
-> > > 
-> > > And  no concrete example or reason for why that's not possible.
-> > > Because frankly it's not horrible, this is what upstream is all about:
-> > > Shared concepts, shared contracts, shared code.
-> > > 
-> > > The proposed patches might very well encode the wrong contract, that's
-> > > all up for discussion. But fundamentally questioning that we need one
-> > > is missing what upstream is all about.
-> > 
-> > Then I have not clearly communicated, as my opinion is not that
-> > validation is worthless, but that the implementation is enshrining a
-> > global property on a low level primitive that prevents it from being
-> > used elsewhere. And I want to replace completion [chains] with fences, and
-> > bio with fences, and closures with fences, and what other equivalencies
-> > there are in the kernel. The fence is as central a locking construct as
-> > struct completion and deserves to be a foundational primitive provided
-> > by kernel/ used throughout all drivers for discrete problem domains.
-> > 
-> > This is narrowing dma_fence whereby adding
-> >       struct lockdep_map *dma_fence::wait_map
-> > and annotating linkage, allows you to continue to specify that all
-> > dma_fence used for a particular purpose must follow common rules,
-> > without restricting the primitive for uses outside of this scope.
+On Fri, Jun 19, 2020 at 09:22:09AM +0200, Daniel Vetter wrote:
+> > As I've understood GPU that means you need to show that the commands
+> > associated with the buffer have completed. This is all local stuff
+> > within the driver, right? Why use fence (other than it already exists)
 > 
-> Somewhere else in this thread I had discussions with Jason Gunthorpe about
-> this topic. It might maybe change somewhat depending upon exact rules, but
-> his take is very much "I don't want dma_fence in rdma". Or pretty close to
-> that at least.
-> 
-> Similar discussions with habanalabs, they're using dma_fence internally
-> without any of the uapi. Discussion there has also now concluded that it's
-> best if they remove them, and simply switch over to a wait_queue or
-> completion like every other driver does.
-> 
-> The next round of the patches already have a paragraph to at least
-> somewhat limit how non-gpu drivers use dma_fence. And I guess actual
-> consensus might be pointing even more strongly at dma_fence being solely
-> something for gpus and closely related subsystem (maybe media) for syncing
-> dma-buf access.
-> 
-> So dma_fence as general replacement for completion chains I think just
-> wont happen.
+> Because that's the end-of-dma thing. And it's cross-driver for the
+> above reasons, e.g.
+> - device A renders some stuff. Userspace gets dma_fence A out of that
+> (well sync_file or one of the other uapi interfaces, but you get the
+> idea)
+> - userspace (across process or just different driver) issues more
+> rendering for device B, which depends upon the rendering done on
+> device A. So dma_fence A is an dependency and will block this dma
+> operation. Userspace (and the kernel) gets dma_fence B out of this
+> - because unfortunate reasons, the same rendering on device B also
+> needs a userptr buffer, which means that dma_fence B is also the one
+> that the mmu_range_notifier needs to wait on before it can tell core
+> mm that it can go ahead and release those pages
 
-That is sad. I cannot comprehend going back to pure completions after a
-taste of fence scheduling. And we are not even close to fully utilising
-them, as not all the async cpu [allocation!] tasks are fully tracked by
-fences yet and are still stuck in a FIFO workqueue.
+I was afraid you'd say this - this is complete madness for other DMA
+devices to borrow the notifier hook of the first device!
 
-> What might make sense is if e.g. the lockdep annotations could be reused,
-> at least in design, for wait_queue or completion or anything else
-> really. I do think that has a fair chance compared to the automagic
-> cross-release annotations approach, which relied way too heavily on
-> guessing where barriers are. My experience from just a bit of playing
-> around with these patches here and discussing them with other driver
-> maintainers is that accurately deciding where critical sections start and
-> end is a job for humans only. And if you get it wrong, you will have a
-> false positive.
-> 
-> And you're indeed correct that if we'd do annotations for completions and
-> wait queues, then that would need to have a class per semantically
-> equivalent user, like we have lockdep classes for mutexes, not just one
-> overall.
-> 
-> But dma_fence otoh is something very specific, which comes with very
-> specific rules attached - it's not a generic wait_queue at all. Originally
-> it did start out as one even, but it is a very specialized wait_queue.
-> 
-> So there's imo two cases:
-> 
-> - Your completion is entirely orthogonal of dma_fences, and can never ever
->   block a dma_fence. Don't use dma_fence for this, and no problem. It's
->   just another wait_queue somewhere.
-> 
-> - Your completion can eventually, maybe through lots of convolutions and
->   depdencies, block a dma_fence. In that case full dma_fence rules apply,
->   and the only thing you can do with a custom annotation is make the rules
->   even stricter. E.g. if a sub-timeline in the scheduler isn't allowed to
->   take certain scheduler locks. But the userspace visible/published fence
->   do take them, maybe as part of command submission or retirement.
->   Entirely hypotethical, no idea any driver actually needs this.
+What if the first device is a page faulting device and doesn't call
+dma_fence??
 
-I think we are faced with this very real problem.
+It you are going to treat things this way then the mmu notifier really
+needs to be part of the some core DMA buf, and not randomly sprinkled
+in drivers
 
-The papering we have today over userptr is so very thin, and if you
-squint you can already see it is coupled into the completion signal. Just
-it happens to be on the other side of the fence.
+But really this is what page pinning is supposed to be used for, the
+MM behavior when it blocks on a pinned page is less invasive than if
+it stalls inside a mmu notifier.
 
-The next batch of priority inversions involve integrating the async cpu
-tasks into the scheduler, and have full dependency tracking over every
-internal fence. I do not see any way to avoid coupling the completion
-signal from the GPU to the earliest resource allocation, as it's an
-unbroken chain of work, at least from the user's perspective. [Next up
-for annotations is that we need to always assume that userspace has an
-implicit lock on GPU resources; having to break that lock with a GPU
-reset should be a breach of our data integrity, and best avoided, for
-compute does not care one iota about system integrity and insist
-userspace knows best.] Such allocations have to be allowed to fail and
-for that failure to propagate cancelling the queued work, such that I'm
-considering what rules we need for gfp_t. That might allow enough
-leverage to break any fs_reclaim loops, but userptr is likely forever
-doomed [aside from its fs_reclaim loop is as preventable as the normal
-shrinker paths], but we still need to suggest to pin_user_pages that
-failure is better than oom and that is not clear atm. Plus the usual
-failure can happen at any time after updating the user facing
-bookkeeping, but that is just extra layers in the execution monitor
-ready to step in and replacing failing work with the error propagation.
-Or where the system grinds to a halt, requiring the monitor to patch in
-a new page / resource.
--Chris
+You can mix it, use mmu notififers to keep track if the buffer is
+still live, but when you want to trigger DMA then pin the pages and
+keep them pinned until DMA is done. The pin protects things (well,
+fork is still a problem)
+
+Do not need to wait on dma_fence in notifiers.
+
+Jason
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
