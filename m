@@ -1,60 +1,87 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9072201C06
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 22:10:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5FA201C17
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2020 22:13:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F68C6E98A;
-	Fri, 19 Jun 2020 20:10:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 267A76EA50;
+	Fri, 19 Jun 2020 20:12:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC64C6E98A
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:10:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1592597419;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=sNFVnCF0ZnPwrKnet21C7zXJrmj/IcMRNriOPX8epSE=;
- b=JtnfnatSqqZyb1fzaEPuugz7hHWSKzNNljrO/zg0y9mBoBS8OculI5m4o5g+IxwTpEU3Sg
- ciT6hxnAFDhpegv0qmkzmsKWKBLABtlqhNPIQI1Dd07cxGGMVElZQBMr14Ix+mQVy5DATK
- MCmdB/TDC5r7AmsUctjoV12xAxPGn6s=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-8-OXocr5PeP2CcqCjY-9Fygw-1; Fri, 19 Jun 2020 16:10:17 -0400
-X-MC-Unique: OXocr5PeP2CcqCjY-9Fygw-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E9E831005512;
- Fri, 19 Jun 2020 20:10:14 +0000 (UTC)
-Received: from redhat.com (ovpn-112-200.rdu2.redhat.com [10.10.112.200])
- by smtp.corp.redhat.com (Postfix) with ESMTPS id 6849210013D7;
- Fri, 19 Jun 2020 20:10:13 +0000 (UTC)
-Date: Fri, 19 Jun 2020 16:10:11 -0400
-From: Jerome Glisse <jglisse@redhat.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime lockdep annotations
-Message-ID: <20200619201011.GB13117@redhat.com>
-References: <20200618150051.GS20149@phenom.ffwll.local>
- <20200618172338.GM6578@ziepe.ca>
- <CAKMK7uEbqTu4q-amkLXyd1i8KNtLaoO2ZFoGqYiG6D0m0FKpOg@mail.gmail.com>
- <20200619113934.GN6578@ziepe.ca>
- <CAKMK7uE-kWA==Cko5uenMrcnopEjq42HxoDTDywzBAbHqsN13g@mail.gmail.com>
- <20200619151551.GP6578@ziepe.ca>
- <CAKMK7uEvkshAM6KUYZu8_OCpF4+1Y_SM7cQ9nJWpagfke8s8LA@mail.gmail.com>
- <20200619172308.GQ6578@ziepe.ca>
- <20200619180935.GA10009@redhat.com>
- <20200619181849.GR6578@ziepe.ca>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2076.outbound.protection.outlook.com [40.107.243.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 880546EA38
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2020 20:12:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XZubPt0sG125s2ahnpcYMd7EEN5aPscfZW9WBW3dM0VuI5MnZwnEv0UxWBFdwzjKsI6fCyzacrMgngt8mPgsUnIR3wMLZkXXicjehDUcsUPQc3JELG1zVCkobvExx8X3sauAyfc4RZKSCCPCXvIs1dt2/uZbI6KViSGshO09/bvbOeGeXas4eiq712GcbPBAR4AoYIO89ryyu4FZ2K+kBdZ1vu2U0OYQ2W8mL0Br8UaDQKCiImR2y9uarf4RTx1W+OusX8/TDdK1Adt+BEafIl8xqx/aw5VYQ4VMrcUe2jt7K9VMBw2wISNbTaqU8vlfXz7PchBJXDG9czYBXOXMJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BZc+njAN5ziLZUyV2+xMPxF53yZCKgxiS3AhByeCYJA=;
+ b=VKsXNyQWWGmdGZcpTEN2rQite3poqRt+xr0a9l5f9LdP5yX4Y0qxXGDcssl07J0xiRCW8O6V5b2Jozrj1XSt8IEi/VoLD3FtdK6yWUZMaWfaSKL/wa+LHrXHA6YE1d5Vohi5oI7nI1Zutkiur8ntNa+Tkmny5OA+ucImn02pI3lpxZl5PZ5aR8+iKsxx0JlgzOkf+W6w6kUIpKWO/QOUM1rLy9qll8K17/jZCaHuk3SDMIrKirt4jIeaGh286q6zo+zpaG2Vgt27VJyZ+mENLZ50Yi2DuPKV1SjA8WP174uiBV3izBU5zWUtqhHYDQGS0X3C9FS4qTQjmDt3Hptfnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BZc+njAN5ziLZUyV2+xMPxF53yZCKgxiS3AhByeCYJA=;
+ b=PPLbqEyji18WYw+k0MHvkzaxLuexIRK/nCx5jyAsEK3qzJcPOOACfpR59u3xxCRCHpcl7y5X9z4qmJhKnTTxS0x9pzmEBGqtyQdNXX9eT7v9QQAKjKkD1DIHgGQe0V/c8kgzbLZ45/qBKhD+JPvdSjsk0oGeCCx+h8Yt57dVtvw=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
+ by CH2PR12MB3717.namprd12.prod.outlook.com (2603:10b6:610:24::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.23; Fri, 19 Jun
+ 2020 20:12:48 +0000
+Received: from CH2PR12MB4198.namprd12.prod.outlook.com
+ ([fe80::812c:cc72:6d14:9580]) by CH2PR12MB4198.namprd12.prod.outlook.com
+ ([fe80::812c:cc72:6d14:9580%8]) with mapi id 15.20.3109.021; Fri, 19 Jun 2020
+ 20:12:48 +0000
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 00/30] DC Patches Jun 19, 2020
+Date: Fri, 19 Jun 2020 16:11:52 -0400
+Message-Id: <20200619201222.2916504-1-Rodrigo.Siqueira@amd.com>
+X-Mailer: git-send-email 2.27.0
+X-ClientProxiedBy: YTXPR0101CA0024.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00::37) To CH2PR12MB4198.namprd12.prod.outlook.com
+ (2603:10b6:610:7e::23)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200619181849.GR6578@ziepe.ca>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from atma2.hitronhub.home (2607:fea8:56a0:f5c::9) by
+ YTXPR0101CA0024.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3109.22 via Frontend Transport; Fri, 19 Jun 2020 20:12:48 +0000
+X-Mailer: git-send-email 2.27.0
+X-Originating-IP: [2607:fea8:56a0:f5c::9]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 86be36f4-40cf-4fd1-76e2-08d8148d22f4
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3717:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH2PR12MB3717D6DF68985241AD32C0C498980@CH2PR12MB3717.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-Forefront-PRVS: 0439571D1D
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1rjT5h0Gv4VuxMbGE/jbKCSckopdeLmsTmg1NKCun9S0X35vFx5cXxf5IjdBR/3MRBnPCGIo4qRtfnbqBDNx4o+lUueUGgAt1WMtE7U3EQMqiKBMN+ZleH1x/2xvSKm1oq4v0/6SyPMVr/drvDcQHmfpL47H7yepGthZbImRULkw5TiYD8wWX4l578yyaWSJKcyXdagVqfW92sIfWimq10bkjMV2FJadoeiIuKXFvwKxp9n6M1FWMSNXSnl3I5TZIhb9j5slmCYxUGemggG4Ut85CqANO+vdxEX14RjiyVbEl9vLwT8BEqWysDQ07QlP
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(136003)(396003)(39860400002)(346002)(376002)(366004)(5660300002)(66476007)(16526019)(86362001)(6916009)(83380400001)(478600001)(66556008)(66946007)(8676002)(6512007)(1076003)(6666004)(6506007)(4326008)(52116002)(8936002)(2906002)(316002)(6486002)(36756003)(186003)(2616005);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: NKf0hvwTCRs0wyg8Oi/uNh5RmPjFA6KWPPRYpjZ3lV29mXeBFWrxA5ToL8HR6PY292CCNpqrq58CwGbseEHAVRquCUl9bbiywxf/4ispPkIiUPMb4LIIG/h3yepPhI2UxDTV6h1mdrwYpoYqi6beEgmZGt19A4IBstoDMsUcRfdzKs1hODaGpWFnB6vwLrQnTymg7euwAs+/fAuUXhGhh7FoHJE1/CH5rnvXW0yAUQFpmzo7FgidoA6dju9fQXgtXicLpeNsCQFmlDub1jmvJh9UsGWFc4fMlbAEByaokeje1Acixp7MGmG+WsLM6fRIgyKTbfi+wPDFKz3thyHziAkACWldP9u8B+EDnOxhQsBRWFNe9awSaHgD9BGkUUDHv64T6p+ECBEEe8HiPVpu7WBizjn67VRBKPQZmSlOOdokIkAr2v9A6F8JNYNl+0r1RjuOKKydFwGZncOhA2CyTq9lhVf3NJQyeFzk4M0kUQvoHPCsw99Dc/LbXc88jNco
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86be36f4-40cf-4fd1-76e2-08d8148d22f4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2020 20:12:48.4083 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YaBCiwtzpPKdrjzoiydk4m1PudUju3NXxoeOrrh80HRcGXJTr6enhOHZlzYNXq2380o30+2QV5bAjHf7pe+Sew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3717
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,158 +93,141 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 19, 2020 at 03:18:49PM -0300, Jason Gunthorpe wrote:
-> On Fri, Jun 19, 2020 at 02:09:35PM -0400, Jerome Glisse wrote:
-> > On Fri, Jun 19, 2020 at 02:23:08PM -0300, Jason Gunthorpe wrote:
-> > > On Fri, Jun 19, 2020 at 06:19:41PM +0200, Daniel Vetter wrote:
-> > > =
+This DC patchset brings improvements in multiple areas. In summary, we
+highlight:
 
-> > > > The madness is only that device B's mmu notifier might need to wait
-> > > > for fence_B so that the dma operation finishes. Which in turn has to
-> > > > wait for device A to finish first.
-> > > =
+* DCN3 improvements
+* Fw updates
+* A series of improvements and fixes
 
-> > > So, it sound, fundamentally you've got this graph of operations across
-> > > an unknown set of drivers and the kernel cannot insert itself in
-> > > dma_fence hand offs to re-validate any of the buffers involved?
-> > > Buffers which by definition cannot be touched by the hardware yet.
-> > > =
+Anthony Koo (4):
+  drm/amd/display: [FW Promotion] Release 1.0.16
+  drm/amd/display: [FW Promotion] Release 1.0.17
+  drm/amd/display: [FW Promotion] Release 1.0.18
+  drm/amd/display: [FW Promotion] Release 1.0.19
 
-> > > That really is a pretty horrible place to end up..
-> > > =
+Aric Cyr (2):
+  drm/amd/display: 3.2.90
+  drm/amd/display: 3.2.91
 
-> > > Pinning really is right answer for this kind of work flow. I think
-> > > converting pinning to notifers should not be done unless notifier
-> > > invalidation is relatively bounded. =
+Aurabindo Pillai (1):
+  drm/amd/display: clip plane rects in DM before passing into DC
 
-> > > =
+Bhawanpreet Lakha (1):
+  drm/amd/display: enable assr
 
-> > > I know people like notifiers because they give a bit nicer performance
-> > > in some happy cases, but this cripples all the bad cases..
-> > > =
+Brandon Syu (1):
+  drm/amd/display: use dispclk AVFS for dppclk
 
-> > > If pinning doesn't work for some reason maybe we should address that?
-> > =
+Camille Cho (1):
+  drm/amd/display: Correctly respond in psr enablement interface
 
-> > Note that the dma fence is only true for user ptr buffer which predate
-> > any HMM work and thus were using mmu notifier already. You need the
-> > mmu notifier there because of fork and other corner cases.
-> =
+Chris Park (2):
+  drm/amd/display: Force ODM combine on 5K+ 420 modes
+  drm/amd/display: Allow 4 split on 10K 420 modes
 
-> I wonder if we should try to fix the fork case more directly - RDMA
-> has this same problem and added MADV_DONTFORK a long time ago as a
-> hacky way to deal with it.
->
-> Some crazy page pin that resolved COW in a way that always kept the
-> physical memory with the mm that initiated the pin?
+Dale Zhao (1):
+  drm/amd/display: fine tune logic of edid max TMDS clock check
 
-Just no way to deal with it easily, i thought about forcing the
-anon_vma (page->mapping for anonymous page) to the anon_vma that
-belongs to the vma against which the GUP was done but it would
-break things if page is already in other branch of a fork tree.
-Also this forbid fast GUP.
+David Galiffi (1):
+  drm/amd/display: Compare v_front_porch when checking if streams are
+    synchronizable
 
-Quite frankly the fork was not the main motivating factor. GPU
-can pin potentialy GBytes of memory thus we wanted to be able
-to release it but since Michal changes to reclaim code this is
-no longer effective.
+Derek Lai (1):
+  drm/amd/display: VSC SDP supported for SST
 
-User buffer should never end up in those weird corner case, iirc
-the first usage was for xorg exa texture upload, then generalize
-to texture upload in mesa and latter on to more upload cases
-(vertices, ...). At least this is what i remember today. So in
-those cases we do not expect fork, splice, mremap, mprotect, ...
+Dmytro Laktyushkin (1):
+  drm/amd/display: fix 4to1 odm MPC_OUT_FLOW_CONTROL_COUNT
 
-Maybe we can audit how user ptr buffer are use today and see if
-we can define a usage pattern that would allow to cut corner in
-kernel. For instance we could use mmu notifier just to block CPU
-pte update while we do GUP and thus never wait on dma fence.
+Eric Yang (1):
+  drm/amd/display: add mechanism to skip DCN init
 
-Then GPU driver just keep the GUP pin around until they are done
-with the page. They can also use the mmu notifier to keep a flag
-so that the driver know if it needs to redo a GUP ie:
+Jake Wang (1):
+  drm/amd/display: Added local_sink null check before access
 
-The notifier path:
-   GPU_mmu_notifier_start_callback(range)
-        gpu_lock_cpu_pagetable(range)
-        for_each_bo_in(bo, range) {
-            bo->need_gup =3D true;
-        }
-        gpu_unlock_cpu_pagetable(range)
+Martin Leung (1):
+  drm/amd/display: enable seamless boot for dcn30
 
-   GPU_validate_buffer_pages(bo)
-        if (!bo->need_gup)
-            return;
-        put_pages(bo->pages);
-        range =3D bo_vaddr_range(bo)
-        gpu_lock_cpu_pagetable(range)
-        GUP(bo->pages, range)
-        gpu_unlock_cpu_pagetable(range)
+Michael Strauss (1):
+  drm/amd/display: implement edid max TMDS clock check in DC
 
+Mikita Lipski (1):
+  drm/amd/display: Fix calculation of virtual channel payload
 
-Depending on how user_ptr are use today this could work.
+Nicholas Kazlauskas (2):
+  drm/amd/display: Fix DML failures caused by doubled stereo viewport
+  drm/amd/display: Fill in dmub_srv fw_version from firmware metadata
 
+Peikang Zhang (1):
+  drm/amd/display: Red screen observed on startup
 
-> (isn't this broken for O_DIRECT as well anyhow?)
+Stylon Wang (2):
+  drm/amd/display: Enable output_bpc property on all outputs
+  drm/amd/display: Fix ineffective setting of max bpc property
 
-Yes it can in theory, if you have an application that does O_DIRECT
-and fork concurrently (ie O_DIRECT in one thread and fork in another).
-Note that O_DIRECT after fork is fine, it is an issue only if GUP_fast
-was able to lookup a page with write permission before fork had the
-chance to update it to read only for COW.
+Wenjing Liu (2):
+  drm/amd/display: allow query ddc data over aux to be read only
+    operation
+  drm/amd/display: DP link layer test 4.2.1.1 fix due to specs update
 
-But doing O_DIRECT (or anything that use GUP fast) in one thread and
-fork in another is inherently broken ie there is no way to fix it.
+Wyatt Wood (1):
+  drm/amd/display: Use dmub fw to lock pipe, cursor, dig
 
-See 17839856fd588f4ab6b789f482ed3ffd7c403e1f
+Yi-Ling Chen (1):
+  drm/amd/display: Fixed using wrong eDP power sequence function pointer
 
-> =
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  34 ++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |   4 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    |  37 +++
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  19 +-
+ .../gpu/drm/amd/display/dc/calcs/dcn_calcs.c  |  11 +-
+ .../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c  |  18 +-
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |   3 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  40 ++-
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  14 +-
+ .../gpu/drm/amd/display/dc/core/dc_link_ddc.c |  42 +--
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 121 ++++++---
+ .../drm/amd/display/dc/core/dc_link_hwss.c    |   8 +-
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |   4 +
+ drivers/gpu/drm/amd/display/dc/dc.h           |   5 +-
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  28 +-
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |   2 +
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |   2 +-
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |   2 +
+ drivers/gpu/drm/amd/display/dc/dce/Makefile   |   3 +-
+ .../drm/amd/display/dc/dce/dmub_hw_lock_mgr.c |  57 ++++
+ .../drm/amd/display/dc/dce/dmub_hw_lock_mgr.h |  39 +++
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  25 +-
+ .../amd/display/dc/dcn10/dcn10_link_encoder.c |   7 +
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  20 +-
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c |  13 +
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c |   2 +-
+ .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    | 245 +++++++++---------
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_init.c |   8 +-
+ drivers/gpu/drm/amd/display/dc/dm_cp_psp.h    |   1 +
+ .../dc/dml/dcn30/display_mode_vba_30.c        |   5 +
+ .../gpu/drm/amd/display/dc/inc/dc_link_ddc.h  |   2 +-
+ .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |   2 +-
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |   5 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  51 +++-
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn20.c |  15 ++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn20.h |   4 +
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn21.c |  10 -
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn21.h |   6 -
+ .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |  50 ++--
+ 39 files changed, 649 insertions(+), 315 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h
 
-> How does mmu_notifiers help the fork case anyhow? Block fork from
-> progressing?
-
-It enforce ordering between fork and GUP, if fork is first it blocks
-GUP and if forks is last then fork waits on GUP and then user buffer
-get invalidated.
-
-> =
-
-> > I probably need to warn AMD folks again that using HMM means that you
-> > must be able to update the GPU page table asynchronously without
-> > fence wait.
-> =
-
-> It is kind of unrelated to HMM, it just shouldn't be using mmu
-> notifiers to replace page pinning..
-
-Well my POV is that if you abide by rules HMM defined then you do
-not need to pin pages. The rule is asynchronous device page table
-update.
-
-Pinning pages is problematic it blocks many core mm features and
-it is just bad all around. Also it is inherently broken in front
-of fork/mremap/splice/...
-
-Cheers,
-J=E9r=F4me
+-- 
+2.27.0
 
 _______________________________________________
 amd-gfx mailing list
