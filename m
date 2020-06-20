@@ -1,21 +1,21 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80BD7203074
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2020 09:17:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62ACF203079
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2020 09:17:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBF56E57E;
-	Mon, 22 Jun 2020 07:16:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51D636E5AB;
+	Mon, 22 Jun 2020 07:16:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-m17613.qiye.163.com (mail-m17613.qiye.163.com
  [59.111.176.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAFC86E02A
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2020 08:54:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB8186E02D
+ for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2020 09:12:02 +0000 (UTC)
 Received: from njvxl5505.vivo.xyz (unknown [157.0.31.125])
- by mail-m17613.qiye.163.com (Hmail) with ESMTPA id 4787E481E89;
- Sat, 20 Jun 2020 16:54:13 +0800 (CST)
+ by mail-m17613.qiye.163.com (Hmail) with ESMTPA id 03FEF4815C6;
+ Sat, 20 Jun 2020 17:11:59 +0800 (CST)
 From: Bernard Zhao <bernard@vivo.com>
 To: Felix Kuehling <Felix.Kuehling@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
@@ -23,17 +23,17 @@ To: Felix Kuehling <Felix.Kuehling@amd.com>,
  David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v2] drm/amd: fix potential memleak in err branch
-Date: Sat, 20 Jun 2020 16:54:06 +0800
-Message-Id: <20200620085407.21922-1-bernard@vivo.com>
+Subject: [PATCH v3] drm/amd: fix potential memleak in err branch
+Date: Sat, 20 Jun 2020 17:11:52 +0800
+Message-Id: <20200620091152.11206-1-bernard@vivo.com>
 X-Mailer: git-send-email 2.17.1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
- oVCBIfWUFZSxhKGUxKTUxCSx9DVkpOQklNT0hJTkhPQ0xVEwETFhoSFyQUDg9ZV1kWGg8SFR0UWU
+ oVCBIfWUFZTB8dQ0pISUxOSk5IVkpOQklNT09ISkJJSE5VEwETFhoSFyQUDg9ZV1kWGg8SFR0UWU
  FZT0tIVUpKS0hKTFVKS0tZBg++
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ohg6Iyo5UTg1CQI*Cz0UITAi
- PC0wCTlVSlVKTkJJTU9ISU5IQ0JCVTMWGhIXVRkeCRUaCR87DRINFFUYFBZFWVdZEgtZQVlKTkxV
- S1VISlVKSU5ZV1kIAVlBSU5PSDcG
-X-HM-Tid: 0a72d0ef74b893bakuws4787e481e89
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OTI6Sww5MDgxPwIySCg0MRUX
+ ITwKCUxVSlVKTkJJTU9PSEpCTU9JVTMWGhIXVRkeCRUaCR87DRINFFUYFBZFWVdZEgtZQVlKTkxV
+ S1VISlVKSU5ZV1kIAVlBSUhJQzcG
+X-HM-Tid: 0a72d0ffb7d393bakuws03fef4815c6
 X-Mailman-Approved-At: Mon, 22 Jun 2020 07:16:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,26 +63,20 @@ failed branch, fix potential memleak.
 
 Signed-off-by: Bernard Zhao <bernard@vivo.com>
 ---
-Changes since V1:
-*Remove duplicate changed file kfd_topology.c, this file`s fix
-already applied to the main line.
+Changes since V2:
+*remove duplicate kobject_put in kfd_procfs_init.
+
+Link for V1:
+*https://lore.kernel.org/patchwork/patch/1258608/
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_process.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index d27221ddcdeb..5ee4d6cfb16d 100644
+index d27221ddcdeb..0e0c42e9f6a3 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -124,6 +124,7 @@ void kfd_procfs_init(void)
- 	if (ret) {
- 		pr_warn("Could not create procfs proc folder");
- 		/* If we fail to create the procfs, clean up */
-+		kobject_put(procfs.kobj);
- 		kfd_procfs_shutdown();
- 	}
- }
-@@ -428,6 +429,7 @@ struct kfd_process *kfd_create_process(struct file *filep)
+@@ -428,6 +428,7 @@ struct kfd_process *kfd_create_process(struct file *filep)
  					   (int)process->lead_thread->pid);
  		if (ret) {
  			pr_warn("Creating procfs pid directory failed");
