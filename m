@@ -2,95 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 846C12037F4
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2020 15:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 519EA20380C
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2020 15:31:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C87AB6E5BE;
-	Mon, 22 Jun 2020 13:27:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDAE56E7D7;
+	Mon, 22 Jun 2020 13:31:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2082.outbound.protection.outlook.com [40.107.236.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88C416E5BE;
- Mon, 22 Jun 2020 13:27:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RDEEC50pPC6iLJGCZZjRBGhq44xviGVSiKBtu4DTt3FjVFtmI2S5wKcG0G73yipzIX6oDU7KZoUbdip3yQiAfhDDwLy7vSD1dw3Basszfmuf9hnoHd6GYQvzrZuRCdvKsN6OwcjPRbTiTF0+Ry+hrXHnlSTyL6wRmdpNbPa+VGBfygso8BxXoUVRQq9L7QuJ2KUgP04NwLwR58lfOhbvjBugPEFppL7owoOCrWpReuY3EtLot63/iOZC7L84IJc9CvcYKNN7W/R86mnkjiOevreFyTCB5rKuVvzATMflehFxiJW7Xs4OJUOuLkZ8FZ7Qc4WBMobSN2kutIvDhaWfEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JRYQoZ5H1TPJjWCVT8S5DZS5cjDSG05Tkg8JhBfpSaI=;
- b=LJhDT5KdhFxIBHNmqEVJI67KljrCWUGm4YRBGC40sgbeXR6zm4x/iVvHbi3cxZuOZyIjslhC74rJo9KC8Rud2Ks8vvoAZWyAd35gLJHiaTWXoX220NKBZDIEGfej1Z+PiImoREvDUNjGq7Q/WT4xOzvptk6qaSM5Vur8WCjzgpnKBjKy1f7ueoA2is7Oh0idSkCV/EUrv67JaBR65VUHLTFCBCe9ua1UTFkAlrTVdt5lCRyolCbRBkut0nmJwEReM8hT69OJKPLEfoyFtlOUqXZQPa1HljT8/2hKAHXXuxBx4jEUDn7Qhu2fUDG5mdmmtIeoPsCSB7GonUjCguimEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JRYQoZ5H1TPJjWCVT8S5DZS5cjDSG05Tkg8JhBfpSaI=;
- b=taZqGJIhg5TuCs+QwikL85oeuajB+bNzvl3lfLC08pYXkYtjzdv6Uhfslq8EiXx82g1mCsooHctlQD0pyENGf8DnxDpGwyduMB0EDfVnB4JP5w28OqGcPQ7eX5uoDBvLGL56ae40YPOZvVfilNyYNjR19u+G0CMYcSBYm9NYmEE=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB4401.namprd12.prod.outlook.com (2603:10b6:5:2a9::15)
- by DM6PR12MB4577.namprd12.prod.outlook.com (2603:10b6:5:2aa::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.21; Mon, 22 Jun
- 2020 13:27:48 +0000
-Received: from DM6PR12MB4401.namprd12.prod.outlook.com
- ([fe80::a045:f8c0:8edb:1ef1]) by DM6PR12MB4401.namprd12.prod.outlook.com
- ([fe80::a045:f8c0:8edb:1ef1%9]) with mapi id 15.20.3109.027; Mon, 22 Jun 2020
- 13:27:48 +0000
-Subject: Re: [PATCH v7 04/36] drm: amdgpu: fix common struct sg_table related
- issues
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
- dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org
-References: <20200619103636.11974-1-m.szyprowski@samsung.com>
- <CGME20200619103655eucas1p28ea4bf59428550217c8962666d6f077b@eucas1p2.samsung.com>
- <20200619103636.11974-5-m.szyprowski@samsung.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <bfbdf1ee-c970-d862-cc81-4712c34b7685@amd.com>
-Date: Mon, 22 Jun 2020 15:27:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-In-Reply-To: <20200619103636.11974-5-m.szyprowski@samsung.com>
-Content-Language: en-US
-X-ClientProxiedBy: AM0PR06CA0132.eurprd06.prod.outlook.com
- (2603:10a6:208:ab::37) To DM6PR12MB4401.namprd12.prod.outlook.com
- (2603:10b6:5:2a9::15)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD3496E40C;
+ Mon, 22 Jun 2020 11:21:46 +0000 (UTC)
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
+ [83.86.89.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 112FD206F1;
+ Mon, 22 Jun 2020 11:21:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1592824906;
+ bh=lFek1BEUqA6xCz+il7aUmb2eH/+1UATeCOvsWK+H6Fc=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=JX0NSCWXK5vztXsp5GGe2fbAc1t/ZUVWI6c05FU9ujSFIGU31/YteobJ+JOSdqHtv
+ gsiHPCMkQbfwWHn8/U7MJsp1NAbbnkiaYmMhz2AlIFA4to6T+vrJKUyjDz/T8AqY/4
+ 9R0g+L9fI6VvRSWlkQxhk0sPTJIGCGtgsBObKMIA=
+Date: Mon, 22 Jun 2020 13:21:39 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Daniel Vetter <daniel@ffwll.ch>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Subject: Re: [PATCH v2 5/8] drm/amdgpu: Refactor sysfs removal
+Message-ID: <20200622112139.GA3421602@kroah.com>
+References: <1592719388-13819-1-git-send-email-andrey.grodzovsky@amd.com>
+ <1592719388-13819-6-git-send-email-andrey.grodzovsky@amd.com>
+ <20200622095124.GE20149@phenom.ffwll.local>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- AM0PR06CA0132.eurprd06.prod.outlook.com (2603:10a6:208:ab::37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3109.21 via Frontend Transport; Mon, 22 Jun 2020 13:27:46 +0000
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 7fcc1676-6187-43cc-1b50-08d816b00e42
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4577:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB45777D224B535FCBC3BEB6C683970@DM6PR12MB4577.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-Forefront-PRVS: 0442E569BC
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KNl3O9rzf6HMUcZUHlQaBbBLbE3tAfhoinQ2lEp/pYx4nGlAgMhsbZ0diWyE6FkWjbIaeDoNpRsnP/hsdVmsoNkpyseBQ4df79mEYmKfG+oze03JUo7KwidpoOYv5AwUbic/+4ciHUQgObM417ZKLmnFA6QgBF9CzhW98gHOOHVlx2w3w/iHOfJd1FdMzP5shkPnKNOto1xUEaaLXFEmRK6k7yNyaoo9K1miidKaoTrOvIBWPTYR83RjKx74lrc2q/pE9kZ/Au+3bHjF19vfCmPi/LWSDDP1lvPEDZUkveowJe8iacys1aSdlzSm8FXRE5/Ujxb9IYFzOCYwxt3VlaKAKGDFrtq9eBkGze87QJf+zZsGmfLimysttst2SK8s
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4401.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(39860400002)(366004)(136003)(376002)(396003)(346002)(54906003)(52116002)(478600001)(6486002)(36756003)(16526019)(186003)(7416002)(316002)(2616005)(2906002)(31696002)(86362001)(6666004)(31686004)(66476007)(4326008)(83380400001)(66946007)(8936002)(8676002)(5660300002)(66556008)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: i7pPeDmDKemDS0xqLiBqG4KEj5Hf/UubSHYecnB4kTaelcDXJKeup58XOrbWLf2zQAqgJG4U23FTLHTqqPAT6HvpKAS31yJ+BLlosIWwI9NeLL5Hk0IZQbt3QPnCF/mqhK5gBWm3AaAmdxCcCQ81qKmxKh33IWwzMMEk2118apwp09ZaTnhC2z+ifQsnT7FjIayQSzS2chsTZknLVL5l9AWRBaLsqeYzW7aesaFtkJbtp8Ws8FY2WzW0/l+BYtE1yYG3cEoD3c7Hn+DOxHkgVvnCdCb8g5a1YSowvLjvOzt+rWPIU+vOl1OIoybrWyzBbM2HjzkuXs9gcLirNjN0eB8/RPQojBJIg5d/3GMqrWuPoIOaR4DyzgGHLJIpf7ZGxuCfka7BlCgDADe0xaCWlJI/1Sqbi+mEEJpccygwwngaZXGdhevH6Wp5JRVdWohb8RXC6hrUZpx5ZJw3EQ9ITx3ubG1BBsbVjFCkkTLzGvFfw2XW5CPKb4FVcVmtepMB1FP659YR94ZCrGVuRhg/8DWs/Un7sh5S67t34OB3tfCxCHACYMFdHnsW5PSg6kyk
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fcc1676-6187-43cc-1b50-08d816b00e42
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2020 13:27:48.4065 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: r9fpi1OOFRn6KwrPuzeWvO1lvcJajrPO5QgZWjoG/Y/b2k1Dhe2BoA8mZM6Lm5SA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4577
+Content-Disposition: inline
+In-Reply-To: <20200622095124.GE20149@phenom.ffwll.local>
+X-Mailman-Approved-At: Mon, 22 Jun 2020 13:31:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,111 +49,304 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- David Airlie <airlied@linux.ie>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Robin Murphy <robin.murphy@arm.com>, Christoph Hellwig <hch@lst.de>,
- linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: daniel.vetter@ffwll.ch, michel@daenzer.net, dri-devel@lists.freedesktop.org,
+ ppaalanen@gmail.com, amd-gfx@lists.freedesktop.org,
+ ckoenig.leichtzumerken@gmail.com, alexdeucher@gmail.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMTkuMDYuMjAgdW0gMTI6MzYgc2NocmllYiBNYXJlayBTenlwcm93c2tpOgo+IFRoZSBEb2N1
-bWVudGF0aW9uL0RNQS1BUEktSE9XVE8udHh0IHN0YXRlcyB0aGF0IHRoZSBkbWFfbWFwX3NnKCkg
-ZnVuY3Rpb24KPiByZXR1cm5zIHRoZSBudW1iZXIgb2YgdGhlIGNyZWF0ZWQgZW50cmllcyBpbiB0
-aGUgRE1BIGFkZHJlc3Mgc3BhY2UuCj4gSG93ZXZlciB0aGUgc3Vic2VxdWVudCBjYWxscyB0byB0
-aGUgZG1hX3N5bmNfc2dfZm9yX3tkZXZpY2UsY3B1fSgpIGFuZAo+IGRtYV91bm1hcF9zZyBtdXN0
-IGJlIGNhbGxlZCB3aXRoIHRoZSBvcmlnaW5hbCBudW1iZXIgb2YgdGhlIGVudHJpZXMKPiBwYXNz
-ZWQgdG8gdGhlIGRtYV9tYXBfc2coKS4KPgo+IHN0cnVjdCBzZ190YWJsZSBpcyBhIGNvbW1vbiBz
-dHJ1Y3R1cmUgdXNlZCBmb3IgZGVzY3JpYmluZyBhIG5vbi1jb250aWd1b3VzCj4gbWVtb3J5IGJ1
-ZmZlciwgdXNlZCBjb21tb25seSBpbiB0aGUgRFJNIGFuZCBncmFwaGljcyBzdWJzeXN0ZW1zLiBJ
-dAo+IGNvbnNpc3RzIG9mIGEgc2NhdHRlcmxpc3Qgd2l0aCBtZW1vcnkgcGFnZXMgYW5kIERNQSBh
-ZGRyZXNzZXMgKHNnbCBlbnRyeSksCj4gYXMgd2VsbCBhcyB0aGUgbnVtYmVyIG9mIHNjYXR0ZXJs
-aXN0IGVudHJpZXM6IENQVSBwYWdlcyAob3JpZ19uZW50cyBlbnRyeSkKPiBhbmQgRE1BIG1hcHBl
-ZCBwYWdlcyAobmVudHMgZW50cnkpLgo+Cj4gSXQgdHVybmVkIG91dCB0aGF0IGl0IHdhcyBhIGNv
-bW1vbiBtaXN0YWtlIHRvIG1pc3VzZSBuZW50cyBhbmQgb3JpZ19uZW50cwo+IGVudHJpZXMsIGNh
-bGxpbmcgRE1BLW1hcHBpbmcgZnVuY3Rpb25zIHdpdGggYSB3cm9uZyBudW1iZXIgb2YgZW50cmll
-cyBvcgo+IGlnbm9yaW5nIHRoZSBudW1iZXIgb2YgbWFwcGVkIGVudHJpZXMgcmV0dXJuZWQgYnkg
-dGhlIGRtYV9tYXBfc2coKQo+IGZ1bmN0aW9uLgo+Cj4gVG8gYXZvaWQgc3VjaCBpc3N1ZXMsIGxl
-dHMgdXNlIGEgY29tbW9uIGRtYS1tYXBwaW5nIHdyYXBwZXJzIG9wZXJhdGluZwo+IGRpcmVjdGx5
-IG9uIHRoZSBzdHJ1Y3Qgc2dfdGFibGUgb2JqZWN0cyBhbmQgdXNlIHNjYXR0ZXJsaXN0IHBhZ2UK
-PiBpdGVyYXRvcnMgd2hlcmUgcG9zc2libGUuIFRoaXMsIGFsbW9zdCBhbHdheXMsIGhpZGVzIHJl
-ZmVyZW5jZXMgdG8gdGhlCj4gbmVudHMgYW5kIG9yaWdfbmVudHMgZW50cmllcywgbWFraW5nIHRo
-ZSBjb2RlIHJvYnVzdCwgZWFzaWVyIHRvIGZvbGxvdwo+IGFuZCBjb3B5L3Bhc3RlIHNhZmUuCj4K
-PiBTaWduZWQtb2ZmLWJ5OiBNYXJlayBTenlwcm93c2tpIDxtLnN6eXByb3dza2lAc2Ftc3VuZy5j
-b20+Cj4gUmV2aWV3ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1k
-LmNvbT4KCkFueSBvYmplY3Rpb24gdGhhdCB3ZSBwaWNrIHRoaXMgb25lIGFuZCB0aGUgcmFkZW9u
-IHVwIGludG8gb3VyIGJyYW5jaGVzIApmb3IgdXBzdHJlYW1pbmc/CgpUaGF0IHNob3VsZCBhYm91
-dCBjbGFzaGVzIHdpdGggb3RoZXIgZHJpdmVyIGNoYW5nZXMuCgpUaGFua3MsCkNocmlzdGlhbi4K
-Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5jICB8
-IDYgKysrLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMgICAg
-ICB8IDkgKysrLS0tLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdnJh
-bV9tZ3IuYyB8IDggKysrKy0tLS0KPiAgIDMgZmlsZXMgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygr
-KSwgMTMgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvYW1kZ3B1X2RtYV9idWYuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
-dV9kbWFfYnVmLmMKPiBpbmRleCA0M2Q4ZWQ3ZGJkMDAuLjUxOWNlNDQyN2ZjZSAxMDA2NDQKPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5jCj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuYwo+IEBAIC0zMDcsOCAr
-MzA3LDggQEAgc3RhdGljIHN0cnVjdCBzZ190YWJsZSAqYW1kZ3B1X2RtYV9idWZfbWFwKHN0cnVj
-dCBkbWFfYnVmX2F0dGFjaG1lbnQgKmF0dGFjaCwKPiAgIAkJaWYgKElTX0VSUihzZ3QpKQo+ICAg
-CQkJcmV0dXJuIHNndDsKPiAgIAo+IC0JCWlmICghZG1hX21hcF9zZ19hdHRycyhhdHRhY2gtPmRl
-diwgc2d0LT5zZ2wsIHNndC0+bmVudHMsIGRpciwKPiAtCQkJCSAgICAgIERNQV9BVFRSX1NLSVBf
-Q1BVX1NZTkMpKQo+ICsJCWlmIChkbWFfbWFwX3NndGFibGUoYXR0YWNoLT5kZXYsIHNndCwgZGly
-LAo+ICsJCQkJICAgIERNQV9BVFRSX1NLSVBfQ1BVX1NZTkMpKQo+ICAgCQkJZ290byBlcnJvcl9m
-cmVlOwo+ICAgCQlicmVhazsKPiAgIAo+IEBAIC0zNDksNyArMzQ5LDcgQEAgc3RhdGljIHZvaWQg
-YW1kZ3B1X2RtYV9idWZfdW5tYXAoc3RydWN0IGRtYV9idWZfYXR0YWNobWVudCAqYXR0YWNoLAo+
-ICAgCXN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gYW1kZ3B1X3R0bV9hZGV2KGJvLT50Ym8u
-YmRldik7Cj4gICAKPiAgIAlpZiAoc2d0LT5zZ2wtPnBhZ2VfbGluaykgewo+IC0JCWRtYV91bm1h
-cF9zZyhhdHRhY2gtPmRldiwgc2d0LT5zZ2wsIHNndC0+bmVudHMsIGRpcik7Cj4gKwkJZG1hX3Vu
-bWFwX3NndGFibGUoYXR0YWNoLT5kZXYsIHNndCwgZGlyLCAwKTsKPiAgIAkJc2dfZnJlZV90YWJs
-ZShzZ3QpOwo+ICAgCQlrZnJlZShzZ3QpOwo+ICAgCX0gZWxzZSB7Cj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1L2FtZGdwdV90dG0uYwo+IGluZGV4IDUxMjlhOTk2ZTk0MS4uOTdmYjczZTVhNmFl
-IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwo+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwo+IEBAIC0xMDI1
-LDcgKzEwMjUsNiBAQCBzdGF0aWMgaW50IGFtZGdwdV90dG1fdHRfcGluX3VzZXJwdHIoc3RydWN0
-IHR0bV90dCAqdHRtKQo+ICAgewo+ICAgCXN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gYW1k
-Z3B1X3R0bV9hZGV2KHR0bS0+YmRldik7Cj4gICAJc3RydWN0IGFtZGdwdV90dG1fdHQgKmd0dCA9
-ICh2b2lkICopdHRtOwo+IC0JdW5zaWduZWQgbmVudHM7Cj4gICAJaW50IHI7Cj4gICAKPiAgIAlp
-bnQgd3JpdGUgPSAhKGd0dC0+dXNlcmZsYWdzICYgQU1ER1BVX0dFTV9VU0VSUFRSX1JFQURPTkxZ
-KTsKPiBAQCAtMTA0MCw5ICsxMDM5LDggQEAgc3RhdGljIGludCBhbWRncHVfdHRtX3R0X3Bpbl91
-c2VycHRyKHN0cnVjdCB0dG1fdHQgKnR0bSkKPiAgIAkJZ290byByZWxlYXNlX3NnOwo+ICAgCj4g
-ICAJLyogTWFwIFNHIHRvIGRldmljZSAqLwo+IC0JciA9IC1FTk9NRU07Cj4gLQluZW50cyA9IGRt
-YV9tYXBfc2coYWRldi0+ZGV2LCB0dG0tPnNnLT5zZ2wsIHR0bS0+c2ctPm5lbnRzLCBkaXJlY3Rp
-b24pOwo+IC0JaWYgKG5lbnRzID09IDApCj4gKwlyID0gZG1hX21hcF9zZ3RhYmxlKGFkZXYtPmRl
-diwgdHRtLT5zZywgZGlyZWN0aW9uLCAwKTsKPiArCWlmIChyKQo+ICAgCQlnb3RvIHJlbGVhc2Vf
-c2c7Cj4gICAKPiAgIAkvKiBjb252ZXJ0IFNHIHRvIGxpbmVhciBhcnJheSBvZiBwYWdlcyBhbmQg
-ZG1hIGFkZHJlc3NlcyAqLwo+IEBAIC0xMDczLDggKzEwNzEsNyBAQCBzdGF0aWMgdm9pZCBhbWRn
-cHVfdHRtX3R0X3VucGluX3VzZXJwdHIoc3RydWN0IHR0bV90dCAqdHRtKQo+ICAgCQlyZXR1cm47
-Cj4gICAKPiAgIAkvKiB1bm1hcCB0aGUgcGFnZXMgbWFwcGVkIHRvIHRoZSBkZXZpY2UgKi8KPiAt
-CWRtYV91bm1hcF9zZyhhZGV2LT5kZXYsIHR0bS0+c2ctPnNnbCwgdHRtLT5zZy0+bmVudHMsIGRp
-cmVjdGlvbik7Cj4gLQo+ICsJZG1hX3VubWFwX3NndGFibGUoYWRldi0+ZGV2LCB0dG0tPnNnLCBk
-aXJlY3Rpb24sIDApOwo+ICAgCXNnX2ZyZWVfdGFibGUodHRtLT5zZyk7Cj4gICAKPiAgICNpZiBJ
-U19FTkFCTEVEKENPTkZJR19EUk1fQU1ER1BVX1VTRVJQVFIpCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92cmFtX21nci5jIGIvZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvYW1kZ3B1X3ZyYW1fbWdyLmMKPiBpbmRleCBkMzk5ZTU4OTMxNzAuLmMyODFh
-YTEzZjVlYyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-dnJhbV9tZ3IuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92cmFt
-X21nci5jCj4gQEAgLTQ3NywxMSArNDc3LDExIEBAIGludCBhbWRncHVfdnJhbV9tZ3JfYWxsb2Nf
-c2d0KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LAo+ICAgCWlmIChyKQo+ICAgCQlnb3RvIGVy
-cm9yX2ZyZWU7Cj4gICAKPiAtCWZvcl9lYWNoX3NnKCgqc2d0KS0+c2dsLCBzZywgbnVtX2VudHJp
-ZXMsIGkpCj4gKwlmb3JfZWFjaF9zZ3RhYmxlX3NnKCgqc2d0KSwgc2csIGkpCj4gICAJCXNnLT5s
-ZW5ndGggPSAwOwo+ICAgCj4gICAJbm9kZSA9IG1lbS0+bW1fbm9kZTsKPiAtCWZvcl9lYWNoX3Nn
-KCgqc2d0KS0+c2dsLCBzZywgbnVtX2VudHJpZXMsIGkpIHsKPiArCWZvcl9lYWNoX3NndGFibGVf
-c2coKCpzZ3QpLCBzZywgaSkgewo+ICAgCQlwaHlzX2FkZHJfdCBwaHlzID0gKG5vZGUtPnN0YXJ0
-IDw8IFBBR0VfU0hJRlQpICsKPiAgIAkJCWFkZXYtPmdtYy5hcGVyX2Jhc2U7Cj4gICAJCXNpemVf
-dCBzaXplID0gbm9kZS0+c2l6ZSA8PCBQQUdFX1NISUZUOwo+IEBAIC01MDEsNyArNTAxLDcgQEAg
-aW50IGFtZGdwdV92cmFtX21ncl9hbGxvY19zZ3Qoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYs
-Cj4gICAJcmV0dXJuIDA7Cj4gICAKPiAgIGVycm9yX3VubWFwOgo+IC0JZm9yX2VhY2hfc2coKCpz
-Z3QpLT5zZ2wsIHNnLCBudW1fZW50cmllcywgaSkgewo+ICsJZm9yX2VhY2hfc2d0YWJsZV9zZygo
-KnNndCksIHNnLCBpKSB7Cj4gICAJCWlmICghc2ctPmxlbmd0aCkKPiAgIAkJCWNvbnRpbnVlOwo+
-ICAgCj4gQEAgLTUzMiw3ICs1MzIsNyBAQCB2b2lkIGFtZGdwdV92cmFtX21ncl9mcmVlX3NndChz
-dHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwKPiAgIAlzdHJ1Y3Qgc2NhdHRlcmxpc3QgKnNnOwo+
-ICAgCWludCBpOwo+ICAgCj4gLQlmb3JfZWFjaF9zZyhzZ3QtPnNnbCwgc2csIHNndC0+bmVudHMs
-IGkpCj4gKwlmb3JfZWFjaF9zZ3RhYmxlX3NnKHNndCwgc2csIGkpCj4gICAJCWRtYV91bm1hcF9y
-ZXNvdXJjZShkZXYsIHNnLT5kbWFfYWRkcmVzcywKPiAgIAkJCQkgICBzZy0+bGVuZ3RoLCBkaXIs
-Cj4gICAJCQkJICAgRE1BX0FUVFJfU0tJUF9DUFVfU1lOQyk7CgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2FtZC1nZngK
+On Mon, Jun 22, 2020 at 11:51:24AM +0200, Daniel Vetter wrote:
+> On Sun, Jun 21, 2020 at 02:03:05AM -0400, Andrey Grodzovsky wrote:
+> > Track sysfs files in a list so they all can be removed during pci remove
+> > since otherwise their removal after that causes crash because parent
+> > folder was already removed during pci remove.
+
+Huh?  That should not happen, do you have a backtrace of that crash?
+
+> > Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> 
+> Uh I thought sysfs just gets yanked completely. Please check with Greg KH
+> whether hand-rolling all this really is the right solution here ... Feels
+> very wrong. I thought this was all supposed to work by adding attributes
+> before publishing the sysfs node, and then letting sysfs clean up
+> everything. Not by cleaning up manually yourself.
+
+Yes, that is supposed to be the correct thing to do.
+
+> 
+> Adding Greg for an authoritative answer.
+> -Daniel
+> 
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu.h          | 13 +++++++++++
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c |  7 +++++-
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   | 35 ++++++++++++++++++++++++----
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c  | 12 ++++++----
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c      |  8 ++++++-
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 17 ++++++++++++--
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c     | 13 ++++++++++-
+> >  drivers/gpu/drm/amd/amdgpu/df_v3_6.c         | 10 +++++---
+> >  8 files changed, 99 insertions(+), 16 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > index 604a681..ba3775f 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -726,6 +726,15 @@ struct amd_powerplay {
+> >  
+> >  #define AMDGPU_RESET_MAGIC_NUM 64
+> >  #define AMDGPU_MAX_DF_PERFMONS 4
+> > +
+> > +struct amdgpu_sysfs_list_node {
+> > +	struct list_head head;
+> > +	struct device_attribute *attr;
+> > +};
+
+You know we have lists of attributes already, called attribute groups,
+if you really wanted to do something like this.  But, I don't think so.
+
+Either way, don't hand-roll your own stuff that the driver core has
+provided for you for a decade or more, that's just foolish :)
+
+> > +
+> > +#define AMDGPU_DEVICE_ATTR_LIST_NODE(_attr) \
+> > +	struct amdgpu_sysfs_list_node dev_attr_handle_##_attr = {.attr = &dev_attr_##_attr}
+> > +
+> >  struct amdgpu_device {
+> >  	struct device			*dev;
+> >  	struct drm_device		*ddev;
+> > @@ -992,6 +1001,10 @@ struct amdgpu_device {
+> >  	char				product_number[16];
+> >  	char				product_name[32];
+> >  	char				serial[16];
+> > +
+> > +	struct list_head sysfs_files_list;
+> > +	struct mutex	 sysfs_files_list_lock;
+> > +
+> >  };
+> >  
+> >  static inline struct amdgpu_device *amdgpu_ttm_adev(struct ttm_bo_device *bdev)
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+> > index fdd52d8..c1549ee 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+> > @@ -1950,8 +1950,10 @@ static ssize_t amdgpu_atombios_get_vbios_version(struct device *dev,
+> >  	return snprintf(buf, PAGE_SIZE, "%s\n", ctx->vbios_version);
+> >  }
+> >  
+> > +
+> >  static DEVICE_ATTR(vbios_version, 0444, amdgpu_atombios_get_vbios_version,
+> >  		   NULL);
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(vbios_version);
+> >  
+> >  /**
+> >   * amdgpu_atombios_fini - free the driver info and callbacks for atombios
+> > @@ -1972,7 +1974,6 @@ void amdgpu_atombios_fini(struct amdgpu_device *adev)
+> >  	adev->mode_info.atom_context = NULL;
+> >  	kfree(adev->mode_info.atom_card_info);
+> >  	adev->mode_info.atom_card_info = NULL;
+> > -	device_remove_file(adev->dev, &dev_attr_vbios_version);
+> >  }
+> >  
+> >  /**
+> > @@ -2038,6 +2039,10 @@ int amdgpu_atombios_init(struct amdgpu_device *adev)
+> >  		return ret;
+> >  	}
+> >  
+> > +	mutex_lock(&adev->sysfs_files_list_lock);
+> > +	list_add_tail(&dev_attr_handle_vbios_version.head, &adev->sysfs_files_list);
+> > +	mutex_unlock(&adev->sysfs_files_list_lock);
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > index e7b9065..3173046 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -2928,6 +2928,12 @@ static const struct attribute *amdgpu_dev_attributes[] = {
+> >  	NULL
+> >  };
+> >  
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(product_name);
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(product_number);
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(serial_number);
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(pcie_replay_count);
+> > +
+> > +
+> >  /**
+> >   * amdgpu_device_init - initialize the driver
+> >   *
+> > @@ -3029,6 +3035,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+> >  	INIT_LIST_HEAD(&adev->shadow_list);
+> >  	mutex_init(&adev->shadow_list_lock);
+> >  
+> > +	INIT_LIST_HEAD(&adev->sysfs_files_list);
+> > +	mutex_init(&adev->sysfs_files_list_lock);
+> > +
+> >  	INIT_DELAYED_WORK(&adev->delayed_init_work,
+> >  			  amdgpu_device_delayed_init_work_handler);
+> >  	INIT_DELAYED_WORK(&adev->gfx.gfx_off_delay_work,
+> > @@ -3281,6 +3290,13 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+> >  	if (r) {
+> >  		dev_err(adev->dev, "Could not create amdgpu device attr\n");
+> >  		return r;
+> > +	} else {
+> > +		mutex_lock(&adev->sysfs_files_list_lock);
+> > +		list_add_tail(&dev_attr_handle_product_name.head, &adev->sysfs_files_list);
+> > +		list_add_tail(&dev_attr_handle_product_number.head, &adev->sysfs_files_list);
+> > +		list_add_tail(&dev_attr_handle_serial_number.head, &adev->sysfs_files_list);
+> > +		list_add_tail(&dev_attr_handle_pcie_replay_count.head, &adev->sysfs_files_list);
+> > +		mutex_unlock(&adev->sysfs_files_list_lock);
+> >  	}
+> >  
+> >  	if (IS_ENABLED(CONFIG_PERF_EVENTS))
+> > @@ -3298,6 +3314,16 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+> >  	return r;
+> >  }
+> >  
+> > +static void amdgpu_sysfs_remove_files(struct amdgpu_device *adev)
+> > +{
+> > +	struct amdgpu_sysfs_list_node *node;
+> > +
+> > +	mutex_lock(&adev->sysfs_files_list_lock);
+> > +	list_for_each_entry(node, &adev->sysfs_files_list, head)
+> > +		device_remove_file(adev->dev, node->attr);
+> > +	mutex_unlock(&adev->sysfs_files_list_lock);
+> > +}
+> > +
+> >  /**
+> >   * amdgpu_device_fini - tear down the driver
+> >   *
+> > @@ -3332,6 +3358,11 @@ void amdgpu_device_fini_early(struct amdgpu_device *adev)
+> >  	amdgpu_fbdev_fini(adev);
+> >  
+> >  	amdgpu_irq_fini_early(adev);
+> > +
+> > +	amdgpu_sysfs_remove_files(adev);
+> > +
+> > +	if (adev->ucode_sysfs_en)
+> > +		amdgpu_ucode_sysfs_fini(adev);
+> >  }
+> >  
+> >  void amdgpu_device_fini_late(struct amdgpu_device *adev)
+> > @@ -3366,10 +3397,6 @@ void amdgpu_device_fini_late(struct amdgpu_device *adev)
+> >  	adev->rmmio = NULL;
+> >  	amdgpu_device_doorbell_fini(adev);
+> >  
+> > -	if (adev->ucode_sysfs_en)
+> > -		amdgpu_ucode_sysfs_fini(adev);
+> > -
+> > -	sysfs_remove_files(&adev->dev->kobj, amdgpu_dev_attributes);
+> >  	if (IS_ENABLED(CONFIG_PERF_EVENTS))
+> >  		amdgpu_pmu_fini(adev);
+> >  	if (amdgpu_discovery && adev->asic_type >= CHIP_NAVI10)
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> > index 6271044..e7b6c4a 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> > @@ -76,6 +76,9 @@ static DEVICE_ATTR(mem_info_gtt_total, S_IRUGO,
+> >  static DEVICE_ATTR(mem_info_gtt_used, S_IRUGO,
+> >  	           amdgpu_mem_info_gtt_used_show, NULL);
+> >  
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(mem_info_gtt_total);
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(mem_info_gtt_used);
+> > +
+> >  /**
+> >   * amdgpu_gtt_mgr_init - init GTT manager and DRM MM
+> >   *
+> > @@ -114,6 +117,11 @@ static int amdgpu_gtt_mgr_init(struct ttm_mem_type_manager *man,
+> >  		return ret;
+> >  	}
+> >  
+> > +	mutex_lock(&adev->sysfs_files_list_lock);
+> > +	list_add_tail(&dev_attr_handle_mem_info_gtt_total.head, &adev->sysfs_files_list);
+> > +	list_add_tail(&dev_attr_handle_mem_info_gtt_used.head, &adev->sysfs_files_list);
+> > +	mutex_unlock(&adev->sysfs_files_list_lock);
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > @@ -127,7 +135,6 @@ static int amdgpu_gtt_mgr_init(struct ttm_mem_type_manager *man,
+> >   */
+> >  static int amdgpu_gtt_mgr_fini(struct ttm_mem_type_manager *man)
+> >  {
+> > -	struct amdgpu_device *adev = amdgpu_ttm_adev(man->bdev);
+> >  	struct amdgpu_gtt_mgr *mgr = man->priv;
+> >  	spin_lock(&mgr->lock);
+> >  	drm_mm_takedown(&mgr->mm);
+> > @@ -135,9 +142,6 @@ static int amdgpu_gtt_mgr_fini(struct ttm_mem_type_manager *man)
+> >  	kfree(mgr);
+> >  	man->priv = NULL;
+> >  
+> > -	device_remove_file(adev->dev, &dev_attr_mem_info_gtt_total);
+> > -	device_remove_file(adev->dev, &dev_attr_mem_info_gtt_used);
+> > -
+> >  	return 0;
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > index ddb4af0c..554fec0 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > @@ -2216,6 +2216,8 @@ static DEVICE_ATTR(usbc_pd_fw, S_IRUGO | S_IWUSR,
+> >  		   psp_usbc_pd_fw_sysfs_read,
+> >  		   psp_usbc_pd_fw_sysfs_write);
+> >  
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(usbc_pd_fw);
+> > +
+> >  
+> >  
+> >  const struct amd_ip_funcs psp_ip_funcs = {
+> > @@ -2242,13 +2244,17 @@ static int psp_sysfs_init(struct amdgpu_device *adev)
+> >  
+> >  	if (ret)
+> >  		DRM_ERROR("Failed to create USBC PD FW control file!");
+> > +	else {
+> > +		mutex_lock(&adev->sysfs_files_list_lock);
+> > +		list_add_tail(&dev_attr_handle_usbc_pd_fw.head, &adev->sysfs_files_list);
+> > +		mutex_unlock(&adev->sysfs_files_list_lock);
+> > +	}
+> >  
+> >  	return ret;
+> >  }
+> >  
+> >  static void psp_sysfs_fini(struct amdgpu_device *adev)
+> >  {
+> > -	device_remove_file(adev->dev, &dev_attr_usbc_pd_fw);
+> >  }
+> >  
+> >  const struct amdgpu_ip_block_version psp_v3_1_ip_block =
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> > index 7723937..39c400c 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> > @@ -148,6 +148,12 @@ static DEVICE_ATTR(mem_info_vis_vram_used, S_IRUGO,
+> >  static DEVICE_ATTR(mem_info_vram_vendor, S_IRUGO,
+> >  		   amdgpu_mem_info_vram_vendor, NULL);
+> >  
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(mem_info_vram_total);
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(mem_info_vis_vram_total);
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(mem_info_vram_used);
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(mem_info_vis_vram_used);
+> > +static AMDGPU_DEVICE_ATTR_LIST_NODE(mem_info_vram_vendor);
+
+Converting all of these individual attributes to an attribute group
+would be a nice thing to do anyway.  Makes your logic much simpler and
+less error-prone.
+
+But again, the driver core should do all of the device file removal
+stuff automatically for you when your PCI device is removed from the
+system _UNLESS_ you are doing crazy things like creating child devices
+or messing with raw kobjects or other horrible things that I haven't
+read the code to see if you are, but hopefully not :)
+
+thanks,
+
+greg k-h
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
