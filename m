@@ -2,56 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4F242042C8
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2020 23:41:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4807320435D
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 00:12:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1911E6E91C;
-	Mon, 22 Jun 2020 21:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C68D56E927;
+	Mon, 22 Jun 2020 22:12:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
- [IPv6:2607:f8b0:4864:20::744])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33AE36E91C
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 21:41:23 +0000 (UTC)
-Received: by mail-qk1-x744.google.com with SMTP id z63so4951108qkb.8
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 14:41:23 -0700 (PDT)
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
+ [IPv6:2607:f8b0:4864:20::742])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3CD86E927
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 22:12:29 +0000 (UTC)
+Received: by mail-qk1-x742.google.com with SMTP id l17so17060976qki.9
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 15:12:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=DkXB2V4ogcP+9ukF//eFEa30Qb9tOpSiiuUpuQIL5io=;
- b=XV4s8j7+aJz/tz2HtNuw7wAXF6M9awAKCFT+zKXrLiY8dMFIMhn3zaokKUDLrLSQhu
- TgpgPsO7B1BD+niUczvTpBMrBf9OtGD4phwgjWrAZUoN8AkSvrGlxuvd9BcIxvpMRnn0
- 6bHDiGlSlpUIf3budiMn9G7dyOUPAqaTOVm9Ews8QDr3yE6NCTjS5pu6ms+VSsl2hcQy
- eAjH9NLJFbQjY/ioVWm0LvzNQRA3Pk9vQpXW0AbfIjoha3Ii6oHr0s1Y/7DWogYA9X+D
- 30VbJnZlAmw0sVgZvIhK2iUMklvkbMeuF8yPncpJ7FD1wYRQ5byhS+neEr3GxClYl13d
- +H/A==
+ bh=efGDABAFw741FfexPsj08vWZnhg8ahbi8j4xIN0Duxg=;
+ b=gv1gATg37JHyGCjuMYaqUWwQwhtuNj95jmVCl6EOljL+FoqHxjAJiFeQ5VcL5yJxEw
+ rTa2TylEv3Bk9jNz9+DO1lWc2HvSHAufLIJJJHn3RTnz3pK/F3OACnyQnQxpTvNK7nyL
+ duxMCX418vSuTgnDfsixxwfnu1Rr72XjpG2kvLZCKbv8qWgjbD9gerv1eeh39SpYfhJs
+ 5y/D8zNZLYvuEku2l8mdo0dLjNTZwUEwDxhk9lN7oWNJ35NZMNBLPJbgc6eLvM1XTult
+ 8V0bS0xhphwy2pON1yqtUn/kyyRMEEqjeHjBOLaRW5cpip08hNPLh11c9K8fAelOzh+E
+ 7bmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=DkXB2V4ogcP+9ukF//eFEa30Qb9tOpSiiuUpuQIL5io=;
- b=B/XLQ4XCUQI3ynJV3E86Ip6z9xs/2dpXbvSeYHmbO//h+1ccyvk7yesDrQcGVmyuUC
- /PSHswmONVoWY19Wqc/rH5BxFqF464sLLEpYbxDZOoCuvvHk0NkZl8A+UhxSqRowmsSX
- 467aOcKvuiwjoWpBK3fFDCEyrCvmTGgudGuNO82aa5C+AR/eXYUxF7/gr6WQ5brTbadE
- MRJLcsf9KYxkvM3dclxEAN4VM7kVvzFMVLa3H7HUKxaNayH6TbJH/C1Jt+NSe5Rz1Yue
- d9Zw7qGs0OungXyGbxeKdEXjAQQM2T25TiJfQ5jRKmE/s1TXdDuUVqRtOKVnnEz/JQ3a
- HHpQ==
-X-Gm-Message-State: AOAM532aI8cbPFM9BgNPjG5R/HRDmnth6qya/yVX8tGeci0j1vcLpS62
- vumuSKzBFfO/YlVUu4DknL7ukmwy
-X-Google-Smtp-Source: ABdhPJwSlA9DbOT1B5Lun2bzB27thRQnpYATGXSKBpxqZRlwenjpgUgsVCmlFdeFs4fb+NITzPYW2A==
-X-Received: by 2002:a37:2d43:: with SMTP id t64mr5861662qkh.81.1592862082178; 
- Mon, 22 Jun 2020 14:41:22 -0700 (PDT)
+ bh=efGDABAFw741FfexPsj08vWZnhg8ahbi8j4xIN0Duxg=;
+ b=t16IwsLIEcOsE6r0QozTWW9HROT/WeVgIvoRf1lEjNcJV79Jyq1Ebp75bPEYCftYtN
+ CmePKf5xvC8T7jpZB0rSCE8lTJTGInTmnOWkoWGnAiLo7OIh0Mj1+Gh6e01RtakwkZoa
+ c/Ku4nJ6swrDjdSgMsIZetDMvAy1AsO+F66tit9UaX4uRLOd0OYaftjxhly0a3ExN/QP
+ TiIBriC0ag5+iKbFMaF/zH1Zs0TVIazRvxkZgAna6d/bN1XAnbl33sWWoBB3cfw/0yS+
+ oV35iFVHx/19kGXwMg+DnfbprOAu6If8LniwJZ0GCYfAHstCz3fVskx4RL8tNqJlL85i
+ Xj8w==
+X-Gm-Message-State: AOAM533qFXnwIklevxZb6yHi1qXDJFdupC2IiASZ02ST4YMTmZCzRPpk
+ gRD0Z3vUxs8iQaBlG4HXdiaefW6C
+X-Google-Smtp-Source: ABdhPJzUuj4uSk+cRtxhjbVWEF6BVW2wuOv6+uS5inpq449z/Mh638UHgKjcOOzbkWLnbPChePhSYQ==
+X-Received: by 2002:a37:b341:: with SMTP id c62mr17455255qkf.128.1592863948665; 
+ Mon, 22 Jun 2020 15:12:28 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id a14sm13809101qkn.16.2020.06.22.14.41.21
+ by smtp.gmail.com with ESMTPSA id j24sm3309074qkl.79.2020.06.22.15.12.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Jun 2020 14:41:21 -0700 (PDT)
+ Mon, 22 Jun 2020 15:12:28 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: make sure to reserve tmr region on all asics
- which support it
-Date: Mon, 22 Jun 2020 17:41:13 -0400
-Message-Id: <20200622214113.969491-1-alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu/uvd3.x: fix register definition warnings
+Date: Mon, 22 Jun 2020 18:12:19 -0400
+Message-Id: <20200622221219.1046290-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -71,26 +70,85 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This includes older APUs like renoir.
+drop the duplicate register macros from sid.h and use the
+standard ones in the oss register headers.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/si.c    |  1 +
+ drivers/gpu/drm/amd/amdgpu/si_ih.c |  2 ++
+ drivers/gpu/drm/amd/amdgpu/sid.h   | 19 -------------------
+ 3 files changed, 3 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index f1855a8323b2..7d51768684dd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1974,7 +1974,7 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
- 	 * If IP discovery enabled, a block of memory should be
- 	 * reserved for IP discovey.
- 	 */
--	if (adev->asic_type >= CHIP_NAVI10 && amdgpu_discovery) {
-+	if (adev->discovery_bin) {
- 		r = amdgpu_ttm_reserve_tmr(adev);
- 		if (r)
- 			return r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
+index cda9aa5e4b9e..9b12285177e3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/si.c
++++ b/drivers/gpu/drm/amd/amdgpu/si.c
+@@ -45,6 +45,7 @@
+ #include "dce_virtual.h"
+ #include "gca/gfx_6_0_d.h"
+ #include "oss/oss_1_0_d.h"
++#include "oss/oss_1_0_sh_mask.h"
+ #include "gmc/gmc_6_0_d.h"
+ #include "dce/dce_6_0_d.h"
+ #include "uvd/uvd_4_0_d.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/si_ih.c b/drivers/gpu/drm/amd/amdgpu/si_ih.c
+index 88ae27a5a03d..621727d7fd18 100644
+--- a/drivers/gpu/drm/amd/amdgpu/si_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/si_ih.c
+@@ -27,6 +27,8 @@
+ #include "amdgpu_ih.h"
+ #include "sid.h"
+ #include "si_ih.h"
++#include "oss/oss_1_0_d.h"
++#include "oss/oss_1_0_sh_mask.h"
+ 
+ static void si_ih_set_interrupt_funcs(struct amdgpu_device *adev);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/sid.h b/drivers/gpu/drm/amd/amdgpu/sid.h
+index 75b5d441b628..5f660f0c819f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sid.h
++++ b/drivers/gpu/drm/amd/amdgpu/sid.h
+@@ -2341,11 +2341,6 @@
+ #       define NI_INPUT_GAMMA_XVYCC_222                3
+ #       define NI_OVL_INPUT_GAMMA_MODE(x)              (((x) & 0x3) << 4)
+ 
+-#define IH_RB_WPTR__RB_OVERFLOW_MASK	0x1
+-#define IH_RB_CNTL__WPTR_OVERFLOW_CLEAR_MASK 0x80000000
+-#define SRBM_STATUS__IH_BUSY_MASK	0x20000
+-#define SRBM_SOFT_RESET__SOFT_RESET_IH_MASK	0x400
+-
+ #define	BLACKOUT_MODE_MASK			0x00000007
+ #define	VGA_RENDER_CONTROL			0xC0
+ #define R_000300_VGA_RENDER_CONTROL             0xC0
+@@ -2432,18 +2427,6 @@
+ #define MC_SEQ_MISC0__MT__HBM    0x60000000
+ #define MC_SEQ_MISC0__MT__DDR3   0xB0000000
+ 
+-#define SRBM_STATUS__MCB_BUSY_MASK 0x200
+-#define SRBM_STATUS__MCB_BUSY__SHIFT 0x9
+-#define SRBM_STATUS__MCB_NON_DISPLAY_BUSY_MASK 0x400
+-#define SRBM_STATUS__MCB_NON_DISPLAY_BUSY__SHIFT 0xa
+-#define SRBM_STATUS__MCC_BUSY_MASK 0x800
+-#define SRBM_STATUS__MCC_BUSY__SHIFT 0xb
+-#define SRBM_STATUS__MCD_BUSY_MASK 0x1000
+-#define SRBM_STATUS__MCD_BUSY__SHIFT 0xc
+-#define SRBM_STATUS__VMC_BUSY_MASK 0x100
+-#define SRBM_STATUS__VMC_BUSY__SHIFT 0x8
+-
+-
+ #define GRBM_STATUS__GUI_ACTIVE_MASK 0x80000000
+ #define CP_INT_CNTL_RING__TIME_STAMP_INT_ENABLE_MASK 0x4000000
+ #define CP_INT_CNTL_RING0__PRIV_REG_INT_ENABLE_MASK 0x800000
+@@ -2468,8 +2451,6 @@
+ 
+ #define PCIE_BUS_CLK    10000
+ #define TCLK            (PCIE_BUS_CLK / 10)
+-#define CC_DRM_ID_STRAPS__ATI_REV_ID_MASK		0xf0000000
+-#define CC_DRM_ID_STRAPS__ATI_REV_ID__SHIFT 0x1c
+ #define	PCIE_PORT_INDEX					0xe
+ #define	PCIE_PORT_DATA					0xf
+ #define EVERGREEN_PIF_PHY0_INDEX                        0x8
 -- 
 2.25.4
 
