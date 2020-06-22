@@ -1,60 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E4222041BF
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2020 22:15:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1927F20430C
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2020 23:56:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8907E6E90F;
-	Mon, 22 Jun 2020 20:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64F946E920;
+	Mon, 22 Jun 2020 21:56:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 965706E176
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 20:15:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1592856951;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=TSUweuZT4DKGDzPl0W0mgX7uetKvmHq3b3GY3r5obEQ=;
- b=AvujDWVv1fJT1dJn+N4SkW5GMmDU7IzbCKKcFRWYUi39vcyRdTrOXRiPgl3E7M3zge/VvR
- ZkRQMMmnk1YvVdlxpk+BsrqFbmZI7D1S3R3L9QdDGE/3EqgrbhDjYqVmFyvP22lTRRtz4m
- 8LgSdLETYuzgVcOxuBQArD3DxdwY2O0=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-420-f7cc3XQuNW-UeEjQYsAiCA-1; Mon, 22 Jun 2020 16:15:47 -0400
-X-MC-Unique: f7cc3XQuNW-UeEjQYsAiCA-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
- [10.5.11.12])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 03BD218FF665;
- Mon, 22 Jun 2020 20:15:45 +0000 (UTC)
-Received: from redhat.com (ovpn-119-159.rdu2.redhat.com [10.10.119.159])
- by smtp.corp.redhat.com (Postfix) with ESMTPS id 8972560F89;
- Mon, 22 Jun 2020 20:15:42 +0000 (UTC)
-Date: Mon, 22 Jun 2020 16:15:40 -0400
-From: Jerome Glisse <jglisse@redhat.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime lockdep annotations
-Message-ID: <20200622201540.GB9708@redhat.com>
-References: <CAKMK7uE-kWA==Cko5uenMrcnopEjq42HxoDTDywzBAbHqsN13g@mail.gmail.com>
- <20200619151551.GP6578@ziepe.ca>
- <CAKMK7uEvkshAM6KUYZu8_OCpF4+1Y_SM7cQ9nJWpagfke8s8LA@mail.gmail.com>
- <20200619172308.GQ6578@ziepe.ca>
- <20200619180935.GA10009@redhat.com>
- <20200619181849.GR6578@ziepe.ca>
- <56008d64-772d-5757-6136-f20591ef71d2@amd.com>
- <20200619195538.GT6578@ziepe.ca>
- <20200619203147.GC13117@redhat.com>
- <20200622114617.GU6578@ziepe.ca>
+Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
+ [209.85.208.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15A8C6E172;
+ Mon, 22 Jun 2020 20:31:34 +0000 (UTC)
+Received: by mail-lj1-f194.google.com with SMTP id q19so20916069lji.2;
+ Mon, 22 Jun 2020 13:31:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=h8HniiSVoKsGZ/ERECfPVj/nc7IWNw6qhcYKMolA91Q=;
+ b=cDfecMW3tebFBqR18eMoifsZCGh7ewmXwwt/0eZSXledHbudNWtONwD4S2457wrW/G
+ P795i+WjTLCskYVTqLZCFaHLInib00p/RLubp5eW1qen0PgGBvh0jNNn/hdWTgfJjxmb
+ BvAA+Bg9iyEHKvcL0yHhzOqocRJsEEMMTMvfaPVKW7FZHnlFmRtQ4uDynYFHO9bURdHP
+ wgLARxWiyIhZs7vmAAWGvF8A2Rf0A3OLbmiJCWpDlak/635f8FiE3uFd5MCTuYtLW2In
+ o3svn4VxAXnJy5Fh80SsG/I2qzraddXf6BWwqHMv0Z1Hgi//1Px1XZLW8u+oXtaCGbQm
+ cZTA==
+X-Gm-Message-State: AOAM530IeAAOvO2qYKXaVRn6AXVRbkiE7rHvppbKIiaNLrzsB2kvnBPv
+ chaVV53WxY8UktsCowjuP54=
+X-Google-Smtp-Source: ABdhPJz37T3KcEtin9mmO3jL3SyxSsPs1OmE+fOB967YPMpslsKyG6O5PxGgCQv2SwoUzBV2/HHFfg==
+X-Received: by 2002:a2e:9a08:: with SMTP id o8mr9066001lji.126.1592857892366; 
+ Mon, 22 Jun 2020 13:31:32 -0700 (PDT)
+Received: from localhost.localdomain (broadband-37-110-38-130.ip.moscow.rt.ru.
+ [37.110.38.130])
+ by smtp.googlemail.com with ESMTPSA id y143sm2577314lff.88.2020.06.22.13.31.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Jun 2020 13:31:31 -0700 (PDT)
+From: Denis Efremov <efremov@linux.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH] drm/radeon: fix fb_div check in ni_init_smc_spll_table()
+Date: Mon, 22 Jun 2020 23:31:22 +0300
+Message-Id: <20200622203122.25749-1-efremov@linux.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200622114617.GU6578@ziepe.ca>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+X-Mailman-Approved-At: Mon, 22 Jun 2020 21:56:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,74 +56,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- Felix Kuehling <felix.kuehling@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Vetter <daniel.vetter@intel.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>,
- Mika Kuoppala <mika.kuoppala@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: stable@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Denis Efremov <efremov@linux.com>,
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 22, 2020 at 08:46:17AM -0300, Jason Gunthorpe wrote:
-> On Fri, Jun 19, 2020 at 04:31:47PM -0400, Jerome Glisse wrote:
-> > Not doable as page refcount can change for things unrelated to GUP, with
-> > John changes we can identify GUP and we could potentialy copy GUPed page
-> > instead of COW but this can potentialy slow down fork() and i am not su=
-re
-> > how acceptable this would be. Also this does not solve GUP against page
-> > that are already in fork tree ie page P0 is in process A which forks,
-> > we now have page P0 in process A and B. Now we have process A which for=
-ks
-> > again and we have page P0 in A, B, and C. Here B and C are two branches
-> > with root in A. B and/or C can keep forking and grow the fork tree.
-> =
+clk_s is checked twice in a row in ni_init_smc_spll_table().
+fb_div should be checked instead.
 
-> For a long time now RDMA has broken COW pages when creating user DMA
-> regions.
-> =
+Fixes: 69e0b57a91ad ("drm/radeon/kms: add dpm support for cayman (v5)")
+Cc: stable@vger.kernel.org
+Signed-off-by: Denis Efremov <efremov@linux.com>
+---
+ drivers/gpu/drm/radeon/ni_dpm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> The problem has been that fork re-COW's regions that had their COW
-> broken.
-> =
-
-> So, if you break the COW upon mapping and prevent fork (and others)
-> from copying DMA pinned then you'd cover the cases.
-
-I am not sure we want to prevent COW for pinned GUP pages, this would
-change current semantic and potentialy break/slow down existing apps.
-
-Anyway i think we focus too much on fork/COW, it is just an unfixable
-broken corner cases, mmu notifier allows you to avoid it. Forcing real
-copy on fork would likely be seen as regression by most people.
-
-
-> > Semantic was change with 17839856fd588f4ab6b789f482ed3ffd7c403e1f to so=
-me
-> > what "fix" that but GUP fast is still succeptible to this.
-> =
-
-> Ah, so everyone breaks the COW now, not just RDMA..
-> =
-
-> What do you mean 'GUP fast is still succeptible to this' ?
-
-Not all GUP fast path are updated (intentionaly) __get_user_pages_fast()
-for instance still keeps COW intact. People using GUP should really knows
-what they are doing.
-
-Cheers,
-J=E9r=F4me
+diff --git a/drivers/gpu/drm/radeon/ni_dpm.c b/drivers/gpu/drm/radeon/ni_dpm.c
+index b57c37ddd164..c7fbb7932f37 100644
+--- a/drivers/gpu/drm/radeon/ni_dpm.c
++++ b/drivers/gpu/drm/radeon/ni_dpm.c
+@@ -2127,7 +2127,7 @@ static int ni_init_smc_spll_table(struct radeon_device *rdev)
+ 		if (clk_s & ~(SMC_NISLANDS_SPLL_DIV_TABLE_CLKS_MASK >> SMC_NISLANDS_SPLL_DIV_TABLE_CLKS_SHIFT))
+ 			ret = -EINVAL;
+ 
+-		if (clk_s & ~(SMC_NISLANDS_SPLL_DIV_TABLE_CLKS_MASK >> SMC_NISLANDS_SPLL_DIV_TABLE_CLKS_SHIFT))
++		if (fb_div & ~(SMC_NISLANDS_SPLL_DIV_TABLE_FBDIV_MASK >> SMC_NISLANDS_SPLL_DIV_TABLE_FBDIV_SHIFT))
+ 			ret = -EINVAL;
+ 
+ 		if (clk_v & ~(SMC_NISLANDS_SPLL_DIV_TABLE_CLKV_MASK >> SMC_NISLANDS_SPLL_DIV_TABLE_CLKV_SHIFT))
+-- 
+2.26.2
 
 _______________________________________________
 amd-gfx mailing list
