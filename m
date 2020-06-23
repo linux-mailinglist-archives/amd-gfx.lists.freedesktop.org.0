@@ -1,70 +1,84 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2224204BB0
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A5FA204BAF
 	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 09:49:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 792FA6E96B;
-	Tue, 23 Jun 2020 07:49:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C44936E977;
+	Tue, 23 Jun 2020 07:49:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
- [IPv6:2607:f8b0:4864:20::842])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB036E935
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 00:05:27 +0000 (UTC)
-Received: by mail-qt1-x842.google.com with SMTP id u17so14168373qtq.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2020 17:05:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=ZARmJJ7xCkdZZ2t8wNh4/tQvVIlLfUoBxGbPVnLj1no=;
- b=ZqLlsVf823WvkS6Pxei8NiC2W2IIsAJoQA2urO7e9M3j3n78WU8zuiQnBC/Hh13LQ7
- W82cIEkI8yK1kig27JBpN1A+kBTvdyfep2zqFSsRZ3bneYMoHddrECdeOHAhBx3jAggE
- 8oQvGlZO4VuJSft8Izl2Bf/u/NJdZDmJmyKoVRcHZq2TKwggLrrOlhDeM/ysxoX7/Me3
- dqRCX3t0aoqiPb12yGgusjNMnEL8ewMvbu4zIi2lDYR1tedgzPmqU85hNdNt9mW7kpmp
- xuKIYdmxHb1ZwHUACc5P3GQ4w7GIm5gpp47skdgCpNYwfEX9eupQQgKd/elWzUh05kv2
- mhag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ZARmJJ7xCkdZZ2t8wNh4/tQvVIlLfUoBxGbPVnLj1no=;
- b=N79MoMk4cF5Bxpon03IXUQZ5OlWQ66yjtRDxfY1RICXJloR7B1BYmGNXY+GUmFQ99S
- rOUMk22oUa25oh/SLZJQcpDvpJZO9TCrYOKrATGqD+/z2crt1YQOa+NDmxqcKInKqca3
- w0RfAFiZhxw3szhnlfNyx8JE50ozRtj4j8yrmHjarqbqA+Te1E4whZ7wFK/lwoY/11Fm
- gAHZMGFg9NOdqdtz0JeZitoI7QH64jSmCsA96AuMHWQYa+yDN+ogvDgC291b5WSzWViG
- +SrKzx7CC4D7BAN7lPHyf3CF+Y+N6ggkp2Zu8oFmIkg4oQzyMV3so94WWOC6QZtpTJ3n
- Z1mg==
-X-Gm-Message-State: AOAM532zwuolZtbEoo6Dn9yYUznYpgV+8YoZM8pVrLjrumiJsJiE+pdf
- SO/h9XQxUnu7uJmEoxiuN1f0VQ==
-X-Google-Smtp-Source: ABdhPJybLGEC9Vkbo3afR1e0rkiE4Uqi81y09rG7Z316acKAzGcUboScxSHByPFqPGL4yR3GT9b3Ew==
-X-Received: by 2002:ac8:279a:: with SMTP id w26mr18731669qtw.309.1592870726664; 
- Mon, 22 Jun 2020 17:05:26 -0700 (PDT)
-Received: from ziepe.ca ([206.223.160.26])
- by smtp.gmail.com with ESMTPSA id n143sm1204192qkn.94.2020.06.22.17.05.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Jun 2020 17:05:26 -0700 (PDT)
-Received: from jgg by mlx with local (Exim 4.93) (envelope-from <jgg@ziepe.ca>)
- id 1jnWRJ-00CHPu-Cd; Mon, 22 Jun 2020 21:05:25 -0300
-Date: Mon, 22 Jun 2020 21:05:25 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Jerome Glisse <jglisse@redhat.com>
-Subject: Re: [Linaro-mm-sig] [PATCH 04/18] dma-fence: prime lockdep annotations
-Message-ID: <20200623000525.GX6578@ziepe.ca>
-References: <20200618172338.GM6578@ziepe.ca>
- <CAKMK7uEbqTu4q-amkLXyd1i8KNtLaoO2ZFoGqYiG6D0m0FKpOg@mail.gmail.com>
- <20200619113934.GN6578@ziepe.ca>
- <CAKMK7uE-kWA==Cko5uenMrcnopEjq42HxoDTDywzBAbHqsN13g@mail.gmail.com>
- <20200619151551.GP6578@ziepe.ca>
- <CAKMK7uEvkshAM6KUYZu8_OCpF4+1Y_SM7cQ9nJWpagfke8s8LA@mail.gmail.com>
- <20200619172308.GQ6578@ziepe.ca>
- <20200619180935.GA10009@redhat.com>
- <20200619181849.GR6578@ziepe.ca>
- <20200619201011.GB13117@redhat.com>
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F39D06E1F3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 00:23:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1592871824;
+ bh=0+MYqNKXdYy0wI31MEcZKFU5aoZnMhAIPdBenhXVf0w=;
+ h=X-UI-Sender-Class:To:From:Subject:Date;
+ b=Cid8vqDdqwt8UXuZKxOG2u4K77/sEIvsQZOqEvjCm4RIsTSigA1Ek8+dhveAYRT6K
+ ByCMVnsOUVp+xsdFgP9C2upilBfrGizcU5rJYkHg7g+L4INkbIsZsIjrsbjM6ia5D1
+ EOzw1DxFO9v/AnZs3jqxyn1pW136Dsw/OVBqxQfQ=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [0.0.0.0] ([149.28.201.231]) by mail.gmx.com (mrgmx005
+ [212.227.17.184]) with ESMTPSA (Nemesis) id 1MV67o-1jOkLh1gz0-00S4iR for
+ <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 02:23:44 +0200
+To: amd-gfx@lists.freedesktop.org
+From: Qu Wenruo <quwenruo.btrfs@gmx.com>
+Subject: Renoir kernel warnings and crashes with external monitors (DP mst)
+Autocrypt: addr=quwenruo.btrfs@gmx.com; prefer-encrypt=mutual; keydata=
+ mQENBFnVga8BCACyhFP3ExcTIuB73jDIBA/vSoYcTyysFQzPvez64TUSCv1SgXEByR7fju3o
+ 8RfaWuHCnkkea5luuTZMqfgTXrun2dqNVYDNOV6RIVrc4YuG20yhC1epnV55fJCThqij0MRL
+ 1NxPKXIlEdHvN0Kov3CtWA+R1iNN0RCeVun7rmOrrjBK573aWC5sgP7YsBOLK79H3tmUtz6b
+ 9Imuj0ZyEsa76Xg9PX9Hn2myKj1hfWGS+5og9Va4hrwQC8ipjXik6NKR5GDV+hOZkktU81G5
+ gkQtGB9jOAYRs86QG/b7PtIlbd3+pppT0gaS+wvwMs8cuNG+Pu6KO1oC4jgdseFLu7NpABEB
+ AAG0IlF1IFdlbnJ1byA8cXV3ZW5ydW8uYnRyZnNAZ214LmNvbT6JAVQEEwEIAD4CGwMFCwkI
+ BwIGFQgJCgsCBBYCAwECHgECF4AWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCWdWCnQUJCWYC
+ bgAKCRDCPZHzoSX+qAR8B/94VAsSNygx1C6dhb1u1Wp1Jr/lfO7QIOK/nf1PF0VpYjTQ2au8
+ ihf/RApTna31sVjBx3jzlmpy+lDoPdXwbI3Czx1PwDbdhAAjdRbvBmwM6cUWyqD+zjVm4RTG
+ rFTPi3E7828YJ71Vpda2qghOYdnC45xCcjmHh8FwReLzsV2A6FtXsvd87bq6Iw2axOHVUax2
+ FGSbardMsHrya1dC2jF2R6n0uxaIc1bWGweYsq0LXvLcvjWH+zDgzYCUB0cfb+6Ib/ipSCYp
+ 3i8BevMsTs62MOBmKz7til6Zdz0kkqDdSNOq8LgWGLOwUTqBh71+lqN2XBpTDu1eLZaNbxSI
+ ilaVuQENBFnVga8BCACqU+th4Esy/c8BnvliFAjAfpzhI1wH76FD1MJPmAhA3DnX5JDORcga
+ CbPEwhLj1xlwTgpeT+QfDmGJ5B5BlrrQFZVE1fChEjiJvyiSAO4yQPkrPVYTI7Xj34FnscPj
+ /IrRUUka68MlHxPtFnAHr25VIuOS41lmYKYNwPNLRz9Ik6DmeTG3WJO2BQRNvXA0pXrJH1fN
+ GSsRb+pKEKHKtL1803x71zQxCwLh+zLP1iXHVM5j8gX9zqupigQR/Cel2XPS44zWcDW8r7B0
+ q1eW4Jrv0x19p4P923voqn+joIAostyNTUjCeSrUdKth9jcdlam9X2DziA/DHDFfS5eq4fEv
+ ABEBAAGJATwEGAEIACYCGwwWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCXZw1rgUJCWpOfwAK
+ CRDCPZHzoSX+qFcEB/95cs8cM1OQdE/GgOfCGxwgckMeWyzOR7bkAWW0lDVp2hpgJuxBW/gy
+ fmtBnUaifnggx3EE3ev8HTysZU9q0h+TJwwJKGv6sUc8qcTGFDtavnnl+r6xDUY7A6GvXEsS
+ oCEEynby72byGeSovfq/4AWGNPBG1L61Exl+gbqfvbECP3ziXnob009+z9I4qXodHSYINfAk
+ ZkA523JGap12LndJeLk3gfWNZfXEWyGnuciRGbqESkhIRav8ootsCIops/SqXm0/k+Kcl4gG
+ UO/iD/T5oagaDh0QtOd8RWSMwLxwn8uIhpH84Q4X1LadJ5NCgGa6xPP5qqRuiC+9gZqbq4Nj
+Message-ID: <5142c866-fecd-b344-f650-70930fc4542c@gmx.com>
+Date: Tue, 23 Jun 2020 08:23:40 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200619201011.GB13117@redhat.com>
+X-Provags-ID: V03:K1:q0VxdZzDhfRbSy8EMLjq4wUz2Q+MDrVLuBrVOmjWBvDgFB4Zwxk
+ AfUhqtw3N2HWhb3iT3pXimTS1zqgeV+dIcBcNd7Q9Ul/C3HBIxDavF3dsQ+kohpthZMAgYW
+ /AeZDNXWou9Qm2lHwRkXDipNBtOjEz/tZderlvMYgxB1SH0MXoN8mO6cKIlWQCwue8wjdAG
+ S2/lvMDfnRky3nXwO/VzQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dfgo9dsaKWA=:GZVhNk/7SfW5T63tWAIpDj
+ 6BdmAGx8Ts71aJT9T8WkfHekqPtJjsY1Q01PIEzKA2FOyJJ0UdI9HIVKEpqOsiQnNAoV7ArII
+ zEA2izJBcpX/QjQlJX3rLCC4uQsPFbroLQrv9hXxe111uPzqmRr1Rw9k4/cNUOn5CwreWFiRG
+ ONBx1BGggmoOB75FoHEzJUmwm71kt70fDc/oP6RNpsu4yczwxoBUG3EvFwj29X+s6Lw7GAyUT
+ GWNdqBPboasldVxaPNg0i6NrOppRUKR7MmpCidoynA2NQkmvO6Wn+2XaozmMPRl6RSZtujfqa
+ A0u9cQ+4sWxz1FcbQeXiMCkqHZf/0SPq4A/6wEEnTJDn7VNcLKzSZry3KvNyg6nNIQlc1YVCr
+ Cy+Rs2NBK84V20BwsQV0KzMHeLw/4F66pt3Ma5gCQHNOPp1P1SCfXxXLB6rbeRlGzAaU/E+IH
+ NSpjfb0E9kFAeep6f9RFNqi2yYzbv3BiR3cGPwmqZy7lk8XO6aMjeL3sI0dM6v89AIpjlwXm8
+ TqjohhfE+uqsKOWk1WPoQvj+ij5krdRVLZhtriER8UDF46w5ozLmRPMq2S2yZtyWSOyORB0N9
+ gSCaetSYTRAnRFTKgzcxdsx33LLFdAdw7guM8WDkc/6dCc2RLTAwIVmpva7fsg79g1alD1i1t
+ J2qqVqPFTFvwLvg7IpaoRDOe6YXzdA0cLmXLl4qYscTgzVFHh1EOq1bShgYUFEwUOw7Oe9QtN
+ 0JfBIChEIdkuRmOWAARd1WkSOrQgiwX5SCy02ouXOjgmDGPCCqYwWEzr1VAnv0hMPKAjB7oDD
+ rLD55vbh6LwqbX5VKnRZX7iU2mqnYEBf58qPz7JvPZlKjphLSp8C+kjn7yMiXbWDVnAYidD3i
+ C04GTE7fVsSwmybNUlERBJfeKYeefbIG4pBTScbh2ZPQ3FlypVDPDT+LVPn9GOHgg5qp3mCdE
+ NF47k5AKnYy05JKNrQjbOe0GIGbkedepNJUwyf9UtV2jwJj39wT+WcITVCyHcG4oqWC0GXmLQ
+ Eklk8y/488qRGQBiPZbHkFm4Ge0u4gH0Clx5SicV+NJXq7MvqRoY86yfIJIyInKOuxZaJhYbM
+ 8jZ1oIuxsBF4Q+IvZvMDeS/QfqvhaWRoxmmooBTcI2WTxRgEdbMAiIzYC1Y+VoGpaTSjnSnoK
+ 5D2jtJzuafRUnjjEJFPFl/mYUZ0+fihjDSk9FT80EzglS0laH15E6Of84MTr/t+zQjVUTOJoH
+ 2UQI/2GHQ2lbuH8e4
 X-Mailman-Approved-At: Tue, 23 Jun 2020 07:49:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,64 +91,125 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma <linux-rdma@vger.kernel.org>,
- Thomas =?utf-8?B?SGVsbHN0csO2bSAoSW50ZWwp?= <thomas_os@shipmail.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mika Kuoppala <mika.kuoppala@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1332621869=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 19, 2020 at 04:10:11PM -0400, Jerome Glisse wrote:
- 
-> Maybe we can audit how user ptr buffer are use today and see if
-> we can define a usage pattern that would allow to cut corner in
-> kernel. For instance we could use mmu notifier just to block CPU
-> pte update while we do GUP and thus never wait on dma fence.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1332621869==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="Ll9EuxqJc91rQOv49VBjNoPwIP7AZ3Buj"
 
-The DMA fence is the main problem, if you can think of a way to avoid
-it then it would be great!
- 
-> Then GPU driver just keep the GUP pin around until they are done
-> with the page. They can also use the mmu notifier to keep a flag
-> so that the driver know if it needs to redo a GUP ie:
-> 
-> The notifier path:
->    GPU_mmu_notifier_start_callback(range)
->         gpu_lock_cpu_pagetable(range)
->         for_each_bo_in(bo, range) {
->             bo->need_gup = true;
->         }
->         gpu_unlock_cpu_pagetable(range)
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--Ll9EuxqJc91rQOv49VBjNoPwIP7AZ3Buj
+Content-Type: multipart/mixed; boundary="K4lqSHLQGLTlXfyGnUDgnhCiu26BBjbTe"
 
-So some kind of invalidation tracking? But this doesn't solve COW and
-Fork problem?
+--K4lqSHLQGLTlXfyGnUDgnhCiu26BBjbTe
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-> > It is kind of unrelated to HMM, it just shouldn't be using mmu
-> > notifiers to replace page pinning..
-> 
-> Well my POV is that if you abide by rules HMM defined then you do
-> not need to pin pages. The rule is asynchronous device page table
-> update.
+Hi guys,
 
-I think one of the hmm rules is to not block notifiers for a long
-time, which these scheme seem to violate already.
+Firstly thanks for the awesome renoir CPUs.
 
-Pinning for a long time is less bad than blocing notifiers for a long
-time, IMHO
+However it looks like there are still some bugs in the Linux support,
+especially with external monitors.
 
-Jason
+My setup:
+- Laptop: Lenovo IdeaPad S540 13ARE (Or, Xiaoxin Pro 13 in Chinese market=
+)
+  4800U CPU, with 5.7.4 Arch kernel. (Also tried 5.8-rc kernels, even
+more crashes)
+  The eDP display is 2560x1600 natively, but to cooperate with external
+monitors, it's
+  set to 1920x1200.
+  And under my daily usage, the lid is closed, thus the eDP display
+shouldn't be involved.
+
+- Two external monitors connected using USB-c dock
+  The dock is HP usb-c dock G4, which uses DP alt mode MST for external
+displays.
+  So not DisplayLink garbage, and all monitors are handled by Vega
+internal GPU.
+
+  Both external displays are 1080P 60hz, so definitely inside the spec
+for DP 1.2.
+
+- X11 environment
+  xf86-video-amdgpu, along with mesa stack.
+
+With such setup, the kernel boots with warning already related to DP MST:=
+
+https://paste.opensuse.org/54293967
+
+Furthermore, under certain GPU load (?), the graphic stack just crashes
+completely.
+
+The reproducer is a little complex to setup (involves steam Linux and
+CNC remastered collection, which needs to download 15G contents):
+
+- Steam, runtime from Arch repo
+
+- Purchase "Command & Conquer Remastered Collection"
+
+https://store.steampowered.com/app/1213210/Command__Conquer_Remastered_Co=
+llection/
+
+- Use Proton 4.11-13
+  As Proton 5.x failed to start the game
+- Run the game
+
+Then the graphic stack would crash, the external monitors lost signal,
+and internal display won't react to any input, have to force shutdown
+the system.
+
+Furthermore, if not using the external monitors (disconnected from
+dock), the game starts without any problem.
+Thus it should be a bug in the MST routine.
+
+The full dmesg (without crash) can be fetched here:
+https://paste.opensuse.org/92544722
+
+No call trace for the crash though, if really needed, I could setup
+netconsole to try to catch the dying message.
+
+Thanks again for the awesome hardware and the awesome opensource graphic
+stack!
+Qu
+
+
+--K4lqSHLQGLTlXfyGnUDgnhCiu26BBjbTe--
+
+--Ll9EuxqJc91rQOv49VBjNoPwIP7AZ3Buj
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEELd9y5aWlW6idqkLhwj2R86El/qgFAl7xS4wACgkQwj2R86El
+/qg0ZAf/S1j8Wp+cKvwYBtKCreV3UAwiYTjWcCUSGGBxjvvWxlEQ7UvB3mnw178A
+iEW5MDtqVtU2cXeHeTzqKX5pJoDgvwteIiwPINSFThmwhEkRgJjOJdlqD6KwOEE1
+tFFRoxoqt0KxhLkp7EdIhXwUngTEJ2A3E6Kx4Hn/L8SCjTPL6okwXFxKtoPhXOY+
+c3/tU1Qvrjblq0EpwfXHOpcNtTCzUC2YVWY+vgTJlp/yGaOeIrzsCrpUlt9m7mdp
+wDHl42wdxctDYvVkkBZx1YOry+ORtZP9yt2phWbRtSEHrfLEx2Sxf3/5yV6vB/PM
+mFYZD4HCJo9K7c78uKynU3h+5qzLJA==
+=Tsbh
+-----END PGP SIGNATURE-----
+
+--Ll9EuxqJc91rQOv49VBjNoPwIP7AZ3Buj--
+
+--===============1332621869==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1332621869==--
