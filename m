@@ -1,84 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A5FA204BAF
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 09:49:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90FFA204BAD
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 09:49:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C44936E977;
-	Tue, 23 Jun 2020 07:49:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2683F6E96C;
+	Tue, 23 Jun 2020 07:49:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F39D06E1F3
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 00:23:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1592871824;
- bh=0+MYqNKXdYy0wI31MEcZKFU5aoZnMhAIPdBenhXVf0w=;
- h=X-UI-Sender-Class:To:From:Subject:Date;
- b=Cid8vqDdqwt8UXuZKxOG2u4K77/sEIvsQZOqEvjCm4RIsTSigA1Ek8+dhveAYRT6K
- ByCMVnsOUVp+xsdFgP9C2upilBfrGizcU5rJYkHg7g+L4INkbIsZsIjrsbjM6ia5D1
- EOzw1DxFO9v/AnZs3jqxyn1pW136Dsw/OVBqxQfQ=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [0.0.0.0] ([149.28.201.231]) by mail.gmx.com (mrgmx005
- [212.227.17.184]) with ESMTPSA (Nemesis) id 1MV67o-1jOkLh1gz0-00S4iR for
- <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 02:23:44 +0200
-To: amd-gfx@lists.freedesktop.org
-From: Qu Wenruo <quwenruo.btrfs@gmx.com>
-Subject: Renoir kernel warnings and crashes with external monitors (DP mst)
-Autocrypt: addr=quwenruo.btrfs@gmx.com; prefer-encrypt=mutual; keydata=
- mQENBFnVga8BCACyhFP3ExcTIuB73jDIBA/vSoYcTyysFQzPvez64TUSCv1SgXEByR7fju3o
- 8RfaWuHCnkkea5luuTZMqfgTXrun2dqNVYDNOV6RIVrc4YuG20yhC1epnV55fJCThqij0MRL
- 1NxPKXIlEdHvN0Kov3CtWA+R1iNN0RCeVun7rmOrrjBK573aWC5sgP7YsBOLK79H3tmUtz6b
- 9Imuj0ZyEsa76Xg9PX9Hn2myKj1hfWGS+5og9Va4hrwQC8ipjXik6NKR5GDV+hOZkktU81G5
- gkQtGB9jOAYRs86QG/b7PtIlbd3+pppT0gaS+wvwMs8cuNG+Pu6KO1oC4jgdseFLu7NpABEB
- AAG0IlF1IFdlbnJ1byA8cXV3ZW5ydW8uYnRyZnNAZ214LmNvbT6JAVQEEwEIAD4CGwMFCwkI
- BwIGFQgJCgsCBBYCAwECHgECF4AWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCWdWCnQUJCWYC
- bgAKCRDCPZHzoSX+qAR8B/94VAsSNygx1C6dhb1u1Wp1Jr/lfO7QIOK/nf1PF0VpYjTQ2au8
- ihf/RApTna31sVjBx3jzlmpy+lDoPdXwbI3Czx1PwDbdhAAjdRbvBmwM6cUWyqD+zjVm4RTG
- rFTPi3E7828YJ71Vpda2qghOYdnC45xCcjmHh8FwReLzsV2A6FtXsvd87bq6Iw2axOHVUax2
- FGSbardMsHrya1dC2jF2R6n0uxaIc1bWGweYsq0LXvLcvjWH+zDgzYCUB0cfb+6Ib/ipSCYp
- 3i8BevMsTs62MOBmKz7til6Zdz0kkqDdSNOq8LgWGLOwUTqBh71+lqN2XBpTDu1eLZaNbxSI
- ilaVuQENBFnVga8BCACqU+th4Esy/c8BnvliFAjAfpzhI1wH76FD1MJPmAhA3DnX5JDORcga
- CbPEwhLj1xlwTgpeT+QfDmGJ5B5BlrrQFZVE1fChEjiJvyiSAO4yQPkrPVYTI7Xj34FnscPj
- /IrRUUka68MlHxPtFnAHr25VIuOS41lmYKYNwPNLRz9Ik6DmeTG3WJO2BQRNvXA0pXrJH1fN
- GSsRb+pKEKHKtL1803x71zQxCwLh+zLP1iXHVM5j8gX9zqupigQR/Cel2XPS44zWcDW8r7B0
- q1eW4Jrv0x19p4P923voqn+joIAostyNTUjCeSrUdKth9jcdlam9X2DziA/DHDFfS5eq4fEv
- ABEBAAGJATwEGAEIACYCGwwWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCXZw1rgUJCWpOfwAK
- CRDCPZHzoSX+qFcEB/95cs8cM1OQdE/GgOfCGxwgckMeWyzOR7bkAWW0lDVp2hpgJuxBW/gy
- fmtBnUaifnggx3EE3ev8HTysZU9q0h+TJwwJKGv6sUc8qcTGFDtavnnl+r6xDUY7A6GvXEsS
- oCEEynby72byGeSovfq/4AWGNPBG1L61Exl+gbqfvbECP3ziXnob009+z9I4qXodHSYINfAk
- ZkA523JGap12LndJeLk3gfWNZfXEWyGnuciRGbqESkhIRav8ootsCIops/SqXm0/k+Kcl4gG
- UO/iD/T5oagaDh0QtOd8RWSMwLxwn8uIhpH84Q4X1LadJ5NCgGa6xPP5qqRuiC+9gZqbq4Nj
-Message-ID: <5142c866-fecd-b344-f650-70930fc4542c@gmx.com>
-Date: Tue, 23 Jun 2020 08:23:40 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CD326E93D;
+ Tue, 23 Jun 2020 06:05:38 +0000 (UTC)
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
+ [83.86.89.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 8204A2064B;
+ Tue, 23 Jun 2020 06:05:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1592892338;
+ bh=YM37cmelNi9PFEWrjf67bskr2FP0y42ZpXHWKL8DuXE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ONxKLCpJzE1vpcZoA/h3UBpShtoDEXT7vekOYWP0QAHml3ZdEklhCEFfkvLlXT4qk
+ y0fOziOXKKmH2u+Sz6XLa00YHCd7vaNS5KRewp5IA5uCAgGql/v0D0qQbvous7wCqe
+ e+VwdIG9+DpmUP1t1AzBATNHJss8DYivwiq22goU=
+Date: Tue, 23 Jun 2020 08:05:32 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
+Subject: Re: [PATCH v2 5/8] drm/amdgpu: Refactor sysfs removal
+Message-ID: <20200623060532.GB3818201@kroah.com>
+References: <1592719388-13819-1-git-send-email-andrey.grodzovsky@amd.com>
+ <1592719388-13819-6-git-send-email-andrey.grodzovsky@amd.com>
+ <20200622095124.GE20149@phenom.ffwll.local>
+ <20200622112139.GA3421602@kroah.com>
+ <fdaebe5b-3930-66d6-4f62-3e59e515e3da@amd.com>
+ <20200622164551.GA112181@kroah.com>
+ <4787b2a9-e7bf-ea3c-02e9-484a4fcb4742@amd.com>
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:q0VxdZzDhfRbSy8EMLjq4wUz2Q+MDrVLuBrVOmjWBvDgFB4Zwxk
- AfUhqtw3N2HWhb3iT3pXimTS1zqgeV+dIcBcNd7Q9Ul/C3HBIxDavF3dsQ+kohpthZMAgYW
- /AeZDNXWou9Qm2lHwRkXDipNBtOjEz/tZderlvMYgxB1SH0MXoN8mO6cKIlWQCwue8wjdAG
- S2/lvMDfnRky3nXwO/VzQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dfgo9dsaKWA=:GZVhNk/7SfW5T63tWAIpDj
- 6BdmAGx8Ts71aJT9T8WkfHekqPtJjsY1Q01PIEzKA2FOyJJ0UdI9HIVKEpqOsiQnNAoV7ArII
- zEA2izJBcpX/QjQlJX3rLCC4uQsPFbroLQrv9hXxe111uPzqmRr1Rw9k4/cNUOn5CwreWFiRG
- ONBx1BGggmoOB75FoHEzJUmwm71kt70fDc/oP6RNpsu4yczwxoBUG3EvFwj29X+s6Lw7GAyUT
- GWNdqBPboasldVxaPNg0i6NrOppRUKR7MmpCidoynA2NQkmvO6Wn+2XaozmMPRl6RSZtujfqa
- A0u9cQ+4sWxz1FcbQeXiMCkqHZf/0SPq4A/6wEEnTJDn7VNcLKzSZry3KvNyg6nNIQlc1YVCr
- Cy+Rs2NBK84V20BwsQV0KzMHeLw/4F66pt3Ma5gCQHNOPp1P1SCfXxXLB6rbeRlGzAaU/E+IH
- NSpjfb0E9kFAeep6f9RFNqi2yYzbv3BiR3cGPwmqZy7lk8XO6aMjeL3sI0dM6v89AIpjlwXm8
- TqjohhfE+uqsKOWk1WPoQvj+ij5krdRVLZhtriER8UDF46w5ozLmRPMq2S2yZtyWSOyORB0N9
- gSCaetSYTRAnRFTKgzcxdsx33LLFdAdw7guM8WDkc/6dCc2RLTAwIVmpva7fsg79g1alD1i1t
- J2qqVqPFTFvwLvg7IpaoRDOe6YXzdA0cLmXLl4qYscTgzVFHh1EOq1bShgYUFEwUOw7Oe9QtN
- 0JfBIChEIdkuRmOWAARd1WkSOrQgiwX5SCy02ouXOjgmDGPCCqYwWEzr1VAnv0hMPKAjB7oDD
- rLD55vbh6LwqbX5VKnRZX7iU2mqnYEBf58qPz7JvPZlKjphLSp8C+kjn7yMiXbWDVnAYidD3i
- C04GTE7fVsSwmybNUlERBJfeKYeefbIG4pBTScbh2ZPQ3FlypVDPDT+LVPn9GOHgg5qp3mCdE
- NF47k5AKnYy05JKNrQjbOe0GIGbkedepNJUwyf9UtV2jwJj39wT+WcITVCyHcG4oqWC0GXmLQ
- Eklk8y/488qRGQBiPZbHkFm4Ge0u4gH0Clx5SicV+NJXq7MvqRoY86yfIJIyInKOuxZaJhYbM
- 8jZ1oIuxsBF4Q+IvZvMDeS/QfqvhaWRoxmmooBTcI2WTxRgEdbMAiIzYC1Y+VoGpaTSjnSnoK
- 5D2jtJzuafRUnjjEJFPFl/mYUZ0+fihjDSk9FT80EzglS0laH15E6Of84MTr/t+zQjVUTOJoH
- 2UQI/2GHQ2lbuH8e4
+Content-Disposition: inline
+In-Reply-To: <4787b2a9-e7bf-ea3c-02e9-484a4fcb4742@amd.com>
 X-Mailman-Approved-At: Tue, 23 Jun 2020 07:49:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,125 +52,221 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1332621869=="
+Cc: daniel.vetter@ffwll.ch, michel@daenzer.net, dri-devel@lists.freedesktop.org,
+ ppaalanen@gmail.com, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, ckoenig.leichtzumerken@gmail.com,
+ alexdeucher@gmail.com
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1332621869==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="Ll9EuxqJc91rQOv49VBjNoPwIP7AZ3Buj"
+On Tue, Jun 23, 2020 at 12:51:00AM -0400, Andrey Grodzovsky wrote:
+> =
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---Ll9EuxqJc91rQOv49VBjNoPwIP7AZ3Buj
-Content-Type: multipart/mixed; boundary="K4lqSHLQGLTlXfyGnUDgnhCiu26BBjbTe"
+> On 6/22/20 12:45 PM, Greg KH wrote:
+> > On Mon, Jun 22, 2020 at 12:07:25PM -0400, Andrey Grodzovsky wrote:
+> > > On 6/22/20 7:21 AM, Greg KH wrote:
+> > > > On Mon, Jun 22, 2020 at 11:51:24AM +0200, Daniel Vetter wrote:
+> > > > > On Sun, Jun 21, 2020 at 02:03:05AM -0400, Andrey Grodzovsky wrote:
+> > > > > > Track sysfs files in a list so they all can be removed during p=
+ci remove
+> > > > > > since otherwise their removal after that causes crash because p=
+arent
+> > > > > > folder was already removed during pci remove.
+> > > > Huh?  That should not happen, do you have a backtrace of that crash?
+> > > =
 
---K4lqSHLQGLTlXfyGnUDgnhCiu26BBjbTe
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+> > > 2 examples in the attached trace.
+> > Odd, how did you trigger these?
+> =
 
-Hi guys,
+> =
 
-Firstly thanks for the awesome renoir CPUs.
+> By manually triggering PCI remove from sysfs
+> =
 
-However it looks like there are still some bugs in the Linux support,
-especially with external monitors.
+> cd /sys/bus/pci/devices/0000\:05\:00.0 && echo 1 > remove
 
-My setup:
-- Laptop: Lenovo IdeaPad S540 13ARE (Or, Xiaoxin Pro 13 in Chinese market=
-)
-  4800U CPU, with 5.7.4 Arch kernel. (Also tried 5.8-rc kernels, even
-more crashes)
-  The eDP display is 2560x1600 natively, but to cooperate with external
-monitors, it's
-  set to 1920x1200.
-  And under my daily usage, the lid is closed, thus the eDP display
-shouldn't be involved.
+For some reason, I didn't think that video/drm devices could handle
+hot-remove like this.  The "old" PCI hotplug specification explicitly
+said that video devices were not supported, has that changed?
 
-- Two external monitors connected using USB-c dock
-  The dock is HP usb-c dock G4, which uses DP alt mode MST for external
-displays.
-  So not DisplayLink garbage, and all monitors are handled by Vega
-internal GPU.
+And this whole issue is probably tied to the larger issue that Daniel
+was asking me about, when it came to device lifetimes and the drm layer,
+so odds are we need to fix that up first before worrying about trying to
+support this crazy request, right?  :)
 
-  Both external displays are 1080P 60hz, so definitely inside the spec
-for DP 1.2.
+> > > [  925.738225 <    0.188086>] BUG: kernel NULL pointer dereference, a=
+ddress: 0000000000000090
+> > > [  925.738232 <    0.000007>] #PF: supervisor read access in kernel m=
+ode
+> > > [  925.738236 <    0.000004>] #PF: error_code(0x0000) - not-present p=
+age
+> > > [  925.738240 <    0.000004>] PGD 0 P4D 0
+> > > [  925.738245 <    0.000005>] Oops: 0000 [#1] SMP PTI
+> > > [  925.738249 <    0.000004>] CPU: 7 PID: 2547 Comm: amdgpu_test Tain=
+ted: G        W  OE     5.5.0-rc7-dev-kfd+ #50
+> > > [  925.738256 <    0.000007>] Hardware name: System manufacturer Syst=
+em Product Name/RAMPAGE IV FORMULA, BIOS 4804 12/30/2013
+> > > [  925.738266 <    0.000010>] RIP: 0010:kernfs_find_ns+0x18/0x110
+> > > [  925.738270 <    0.000004>] Code: a6 cf ff 0f 1f 44 00 00 66 2e 0f =
+1f 84 00 00 00 00 00 66 66 66 66 90 41 57 41 56 49 89 f6 41 55 41 54 49 89 =
+fd 55 53 49 89 d4 <0f> b7 af 90 00 00 00 8b 05 8f ee 6b 01 48 8b 5f 68 66 8=
+3 e5 20 41
+> > > [  925.738282 <    0.000012>] RSP: 0018:ffffad6d0118fb00 EFLAGS: 0001=
+0246
+> > > [  925.738287 <    0.000005>] RAX: 0000000000000000 RBX: 000000000000=
+0000 RCX: 2098a12076864b7e
+> > > [  925.738292 <    0.000005>] RDX: 0000000000000000 RSI: ffffffffb660=
+6b31 RDI: 0000000000000000
+> > > [  925.738297 <    0.000005>] RBP: ffffffffb6606b31 R08: ffffffffb537=
+9d10 R09: 0000000000000000
+> > > [  925.738302 <    0.000005>] R10: ffffad6d0118fb38 R11: ffff9a75f648=
+20a8 R12: 0000000000000000
+> > > [  925.738307 <    0.000005>] R13: 0000000000000000 R14: ffffffffb660=
+6b31 R15: ffff9a7612b06130
+> > > [  925.738313 <    0.000006>] FS:  00007f3eca4e8700(0000) GS:ffff9a76=
+3dbc0000(0000) knlGS:0000000000000000
+> > > [  925.738319 <    0.000006>] CS:  0010 DS: 0000 ES: 0000 CR0: 000000=
+0080050033
+> > > [  925.738323 <    0.000004>] CR2: 0000000000000090 CR3: 0000000035e5=
+a005 CR4: 00000000000606e0
+> > > [  925.738329 <    0.000006>] Call Trace:
+> > > [  925.738334 <    0.000005>]  kernfs_find_and_get_ns+0x2e/0x50
+> > > [  925.738339 <    0.000005>]  sysfs_remove_group+0x25/0x80
+> > > [  925.738344 <    0.000005>]  sysfs_remove_groups+0x29/0x40
+> > > [  925.738350 <    0.000006>]  free_msi_irqs+0xf5/0x190
+> > > [  925.738354 <    0.000004>]  pci_disable_msi+0xe9/0x120
+> > So the PCI core is trying to clean up attributes that it had registered,
+> > which is fine.  But we can't seem to find the attributes?  Were they
+> > already removed somewhere else?
+> > =
 
-- X11 environment
-  xf86-video-amdgpu, along with mesa stack.
+> > that's odd.
+> =
 
-With such setup, the kernel boots with warning already related to DP MST:=
+> =
 
-https://paste.opensuse.org/54293967
+> Yes, as i pointed above i am emulating device remove from sysfs and this
+> triggers pci device remove sequence and as part of that my specific device
+> folder (05:00.0) is removed from the sysfs tree.
 
-Furthermore, under certain GPU load (?), the graphic stack just crashes
-completely.
+But why are things being removed twice?
 
-The reproducer is a little complex to setup (involves steam Linux and
-CNC remastered collection, which needs to download 15G contents):
+> > > [  925.738406 <    0.000052>]  amdgpu_irq_fini+0xe3/0xf0 [amdgpu]
+> > > [  925.738453 <    0.000047>]  tonga_ih_sw_fini+0xe/0x30 [amdgpu]
+> > > [  925.738490 <    0.000037>]  amdgpu_device_fini_late+0x14b/0x440 [a=
+mdgpu]
+> > > [  925.738529 <    0.000039>]  amdgpu_driver_release_kms+0x16/0x40 [a=
+mdgpu]
+> > > [  925.738548 <    0.000019>]  drm_dev_put+0x5b/0x80 [drm]
+> > > [  925.738558 <    0.000010>]  drm_release+0xc6/0xd0 [drm]
+> > > [  925.738563 <    0.000005>]  __fput+0xc6/0x260
+> > > [  925.738568 <    0.000005>]  task_work_run+0x79/0xb0
+> > > [  925.738573 <    0.000005>]  do_exit+0x3d0/0xc60
+> > > [  925.738578 <    0.000005>]  do_group_exit+0x47/0xb0
+> > > [  925.738583 <    0.000005>]  get_signal+0x18b/0xc30
+> > > [  925.738589 <    0.000006>]  do_signal+0x36/0x6a0
+> > > [  925.738593 <    0.000004>]  ? force_sig_info_to_task+0xbc/0xd0
+> > > [  925.738597 <    0.000004>]  ? signal_wake_up_state+0x15/0x30
+> > > [  925.738603 <    0.000006>]  exit_to_usermode_loop+0x6f/0xc0
+> > > [  925.738608 <    0.000005>]  prepare_exit_to_usermode+0xc7/0x110
+> > > [  925.738613 <    0.000005>]  ret_from_intr+0x25/0x35
+> > > [  925.738617 <    0.000004>] RIP: 0033:0x417369
+> > > [  925.738621 <    0.000004>] Code: Bad RIP value.
+> > > [  925.738625 <    0.000004>] RSP: 002b:00007ffdd6bf0900 EFLAGS: 0001=
+0246
+> > > [  925.738629 <    0.000004>] RAX: 00007f3eca509000 RBX: 000000000000=
+001e RCX: 00007f3ec95ba260
+> > > [  925.738634 <    0.000005>] RDX: 00007f3ec9889790 RSI: 000000000000=
+000a RDI: 0000000000000000
+> > > [  925.738639 <    0.000005>] RBP: 00007ffdd6bf0990 R08: 00007f3ec988=
+9780 R09: 00007f3eca4e8700
+> > > [  925.738645 <    0.000006>] R10: 000000000000035c R11: 000000000000=
+0246 R12: 00000000021c6170
+> > > [  925.738650 <    0.000005>] R13: 00007ffdd6bf0c00 R14: 000000000000=
+0000 R15: 0000000000000000
+> > > =
 
-- Steam, runtime from Arch repo
+> > > =
 
-- Purchase "Command & Conquer Remastered Collection"
+> > > =
 
-https://store.steampowered.com/app/1213210/Command__Conquer_Remastered_Co=
-llection/
+> > > =
 
-- Use Proton 4.11-13
-  As Proton 5.x failed to start the game
-- Run the game
+> > > [   40.880899 <    0.000004>] BUG: kernel NULL pointer dereference, a=
+ddress: 0000000000000090
+> > > [   40.880906 <    0.000007>] #PF: supervisor read access in kernel m=
+ode
+> > > [   40.880910 <    0.000004>] #PF: error_code(0x0000) - not-present p=
+age
+> > > [   40.880915 <    0.000005>] PGD 0 P4D 0
+> > > [   40.880920 <    0.000005>] Oops: 0000 [#1] SMP PTI
+> > > [   40.880924 <    0.000004>] CPU: 1 PID: 2526 Comm: amdgpu_test Tain=
+ted: G        W  OE     5.5.0-rc7-dev-kfd+ #50
+> > > [   40.880932 <    0.000008>] Hardware name: System manufacturer Syst=
+em Product Name/RAMPAGE IV FORMULA, BIOS 4804 12/30/2013
+> > > [   40.880941 <    0.000009>] RIP: 0010:kernfs_find_ns+0x18/0x110
+> > > [   40.880945 <    0.000004>] Code: a6 cf ff 0f 1f 44 00 00 66 2e 0f =
+1f 84 00 00 00 00 00 66 66 66 66 90 41 57 41 56 49 89 f6 41 55 41 54 49 89 =
+fd 55 53 49 89 d4 <0f> b7 af 90 00 00 00 8b 05 8f ee 6b 01 48 8b 5f 68 66 8=
+3 e5 20 41
+> > > [   40.880957 <    0.000012>] RSP: 0018:ffffaf3380467ba8 EFLAGS: 0001=
+0246
+> > > [   40.880963 <    0.000006>] RAX: 0000000000000000 RBX: 000000000000=
+0000 RCX: 2098a12076864b7e
+> > > [   40.880968 <    0.000005>] RDX: 0000000000000000 RSI: ffffffffc067=
+8cfc RDI: 0000000000000000
+> > > [   40.880973 <    0.000005>] RBP: ffffffffc0678cfc R08: ffffffffaa37=
+9d10 R09: 0000000000000000
+> > > [   40.880979 <    0.000006>] R10: ffffaf3380467be0 R11: ffff93547615=
+d128 R12: 0000000000000000
+> > > [   40.880984 <    0.000005>] R13: 0000000000000000 R14: ffffffffc067=
+8cfc R15: ffff93549be86130
+> > > [   40.880990 <    0.000006>] FS:  00007fd9ecb10700(0000) GS:ffff9354=
+bd840000(0000) knlGS:0000000000000000
+> > > [   40.880996 <    0.000006>] CS:  0010 DS: 0000 ES: 0000 CR0: 000000=
+0080050033
+> > > [   40.881001 <    0.000005>] CR2: 0000000000000090 CR3: 000000007286=
+6001 CR4: 00000000000606e0
+> > > [   40.881006 <    0.000005>] Call Trace:
+> > > [   40.881011 <    0.000005>]  kernfs_find_and_get_ns+0x2e/0x50
+> > > [   40.881016 <    0.000005>]  sysfs_remove_group+0x25/0x80
+> > > [   40.881055 <    0.000039>]  amdgpu_device_fini_late+0x3eb/0x440 [a=
+mdgpu]
+> > > [   40.881095 <    0.000040>]  amdgpu_driver_release_kms+0x16/0x40 [a=
+mdgpu]
+> > Here is this is your driver doing the same thing, removing attributes it
+> > created.  But again they are not there.
+> > =
 
-Then the graphic stack would crash, the external monitors lost signal,
-and internal display won't react to any input, have to force shutdown
-the system.
+> > So something went through and wiped the tree clean, which if I'm reading
+> > this correctly, your patch would not solve as you would try to also
+> > remove attributes that were already removed, right?
+> =
 
-Furthermore, if not using the external monitors (disconnected from
-dock), the game starts without any problem.
-Thus it should be a bug in the MST routine.
+> =
 
-The full dmesg (without crash) can be fetched here:
-https://paste.opensuse.org/92544722
+> I don't think so, the stack here is from a later stage (after pci remove)
+> where the last user process holding a reference to the device file decides
+> to die and thus triggering drm_dev_release sequence after drm dev refcount
+> dropped to zero. And this why my patch helps, i am expediting all amdgpu
+> sysfs attributes removal to the pci remove stage when the device folder is
+> still present in the sysfs hierarchy. At least this is my=A0 understandin=
+g to
+> why it helped. I admit i am not an expert on sysfs internals.
 
-No call trace for the crash though, if really needed, I could setup
-netconsole to try to catch the dying message.
+Ok, yeah, I think this is back to the drm lifecycle issues mentioned
+above.
 
-Thanks again for the awesome hardware and the awesome opensource graphic
-stack!
-Qu
+{sigh}, I'll get to that once I deal with the -rc1/-rc2 merge fallout,
+that will take me a week or so, sorry...
 
+thanks,
 
---K4lqSHLQGLTlXfyGnUDgnhCiu26BBjbTe--
-
---Ll9EuxqJc91rQOv49VBjNoPwIP7AZ3Buj
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEELd9y5aWlW6idqkLhwj2R86El/qgFAl7xS4wACgkQwj2R86El
-/qg0ZAf/S1j8Wp+cKvwYBtKCreV3UAwiYTjWcCUSGGBxjvvWxlEQ7UvB3mnw178A
-iEW5MDtqVtU2cXeHeTzqKX5pJoDgvwteIiwPINSFThmwhEkRgJjOJdlqD6KwOEE1
-tFFRoxoqt0KxhLkp7EdIhXwUngTEJ2A3E6Kx4Hn/L8SCjTPL6okwXFxKtoPhXOY+
-c3/tU1Qvrjblq0EpwfXHOpcNtTCzUC2YVWY+vgTJlp/yGaOeIrzsCrpUlt9m7mdp
-wDHl42wdxctDYvVkkBZx1YOry+ORtZP9yt2phWbRtSEHrfLEx2Sxf3/5yV6vB/PM
-mFYZD4HCJo9K7c78uKynU3h+5qzLJA==
-=Tsbh
------END PGP SIGNATURE-----
-
---Ll9EuxqJc91rQOv49VBjNoPwIP7AZ3Buj--
-
---===============1332621869==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+greg k-h
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1332621869==--
