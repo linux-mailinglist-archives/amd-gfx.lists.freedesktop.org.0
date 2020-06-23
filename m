@@ -1,69 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB7062052E5
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 14:55:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 480B020535E
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 15:26:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D92A6E3C1;
-	Tue, 23 Jun 2020 12:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F36D894EB;
+	Tue, 23 Jun 2020 13:26:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 253D76E3BC;
- Tue, 23 Jun 2020 12:55:55 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id l11so20431728wru.0;
- Tue, 23 Jun 2020 05:55:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=rR1IBoPSSiuXgf6u6n+6G7s0w7sEUX31EZ8zjE+iPww=;
- b=g2dV11gnCDGO5gwnNJl4dE55nTerxQuvjULjEW20qfxNjV/BaanHAZz/9kPl/z2BwG
- aRB6eQjdPL/wCLUeYfq3t2/TDX1dlCpVMxzqqcXB89w+6rSw/2dRtI2AgR4eED5Vrrig
- iSgN/4ixAiLpTpvqHCDG7XnxcEoksY5ViQ6lGfYxbNGaWNRKUGgFz+nYigUyrqjlorbn
- pTP0rwKzr2bmGvdxKkCP96l+tofVjSmrufencGFXGBB2AjmtPg/Of/UuwTnmH1mZl/r6
- tm3RyqkR/ADyMAViFwaECN3FVji/xAJIKh1AwvmnxpcFrztsruVwhsPv8xkL0f9XtZ9J
- ZKdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=rR1IBoPSSiuXgf6u6n+6G7s0w7sEUX31EZ8zjE+iPww=;
- b=CSLGoi6derfjq/5B8fzaszOKqKLeoh+oroM0CeygjMgkQ+E9fSkefTIVngnI1wqteP
- 18LeXEcT76pKg5N2AzpXajoEmfFm0x3VEkzNwYw7fqsMIsiiahhnYRGn8US41Bklz5NT
- FdxJ4rYXS4tCKMPbU2ynVdZakHRVvPw3ZKaoNixMqDnB81ATSaS6Jwj1fQD6epOISoBi
- LWt1fMlj5ViJva/Nve1KSjeEUhjtEXBpAn4GoCnGWliFYy4T4ppYIpDKzJT5P4X7VZ14
- t03BVP85C/AmIIxbM12L2Y7+isrYuDg+YT+VruaHGsfTtyaLip/Mq2k7IEdf4gjgdNde
- pCfQ==
-X-Gm-Message-State: AOAM5338JC6rVJUJ0Wr/drYhhPLS4t7Y/n3OP2xCgerP6lQTAv6/UtNy
- zZsFIuhI6yyGLFlYG5o9Q8s=
-X-Google-Smtp-Source: ABdhPJxLlGLBgzpvcduNeKtoNfjRwm1aXuQ5t7Tr2U6hN3BhI17YZJZwWSz5sxVDIAAfYUzl2pag/A==
-X-Received: by 2002:a5d:6b83:: with SMTP id n3mr25263657wrx.395.1592916953770; 
- Tue, 23 Jun 2020 05:55:53 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id a4sm13896591wrg.80.2020.06.23.05.55.51
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 23 Jun 2020 05:55:53 -0700 (PDT)
-Subject: Re: [PATCH v2 3/8] drm/ttm: Add unampping of the entire device
- address space
-To: Daniel Vetter <daniel@ffwll.ch>,
- Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
-References: <1592719388-13819-1-git-send-email-andrey.grodzovsky@amd.com>
- <1592719388-13819-4-git-send-email-andrey.grodzovsky@amd.com>
- <20200622094502.GB20149@phenom.ffwll.local>
- <3a365581-0f00-32de-6656-77348dcd0ea2@amd.com>
- <20200623102551.GL20149@phenom.ffwll.local>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <60bbb42a-8153-eaca-07f4-95bf3bb779f1@gmail.com>
-Date: Tue, 23 Jun 2020 14:55:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 993246E986
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 08:33:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1592901192;
+ bh=HZiR/bETShuZDGICBa76JrORZyMZ5O8UFT+ENDY9RtE=;
+ h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+ b=jGB5diQ7HCX+M39/Z8zyJ0y0X0py9tlbWApSDRWq83CXsTB5HoeMAjdesc4koElSd
+ g04SneJdTsG0Na2tHkov1KVJ0NAVF263cenxvr29ogmomp3XViMI1jhMdkBYcbW8ty
+ SWtk4WgOYvJMQhYCS8hIUuOQ6/I9idWCLe5vLw4g=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [0.0.0.0] ([149.28.201.231]) by mail.gmx.com (mrgmx005
+ [212.227.17.184]) with ESMTPSA (Nemesis) id 1N1fn0-1iq8tz1e5Q-011xIT; Tue, 23
+ Jun 2020 10:33:12 +0200
+Subject: Re: Renoir kernel warnings and crashes with external monitors (DP mst)
+To: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+References: <5142c866-fecd-b344-f650-70930fc4542c@gmx.com>
+ <c3bf60a1-852d-de42-b8bc-e439677dd61f@daenzer.net>
+From: Qu Wenruo <quwenruo.btrfs@gmx.com>
+Autocrypt: addr=quwenruo.btrfs@gmx.com; prefer-encrypt=mutual; keydata=
+ mQENBFnVga8BCACyhFP3ExcTIuB73jDIBA/vSoYcTyysFQzPvez64TUSCv1SgXEByR7fju3o
+ 8RfaWuHCnkkea5luuTZMqfgTXrun2dqNVYDNOV6RIVrc4YuG20yhC1epnV55fJCThqij0MRL
+ 1NxPKXIlEdHvN0Kov3CtWA+R1iNN0RCeVun7rmOrrjBK573aWC5sgP7YsBOLK79H3tmUtz6b
+ 9Imuj0ZyEsa76Xg9PX9Hn2myKj1hfWGS+5og9Va4hrwQC8ipjXik6NKR5GDV+hOZkktU81G5
+ gkQtGB9jOAYRs86QG/b7PtIlbd3+pppT0gaS+wvwMs8cuNG+Pu6KO1oC4jgdseFLu7NpABEB
+ AAG0IlF1IFdlbnJ1byA8cXV3ZW5ydW8uYnRyZnNAZ214LmNvbT6JAVQEEwEIAD4CGwMFCwkI
+ BwIGFQgJCgsCBBYCAwECHgECF4AWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCWdWCnQUJCWYC
+ bgAKCRDCPZHzoSX+qAR8B/94VAsSNygx1C6dhb1u1Wp1Jr/lfO7QIOK/nf1PF0VpYjTQ2au8
+ ihf/RApTna31sVjBx3jzlmpy+lDoPdXwbI3Czx1PwDbdhAAjdRbvBmwM6cUWyqD+zjVm4RTG
+ rFTPi3E7828YJ71Vpda2qghOYdnC45xCcjmHh8FwReLzsV2A6FtXsvd87bq6Iw2axOHVUax2
+ FGSbardMsHrya1dC2jF2R6n0uxaIc1bWGweYsq0LXvLcvjWH+zDgzYCUB0cfb+6Ib/ipSCYp
+ 3i8BevMsTs62MOBmKz7til6Zdz0kkqDdSNOq8LgWGLOwUTqBh71+lqN2XBpTDu1eLZaNbxSI
+ ilaVuQENBFnVga8BCACqU+th4Esy/c8BnvliFAjAfpzhI1wH76FD1MJPmAhA3DnX5JDORcga
+ CbPEwhLj1xlwTgpeT+QfDmGJ5B5BlrrQFZVE1fChEjiJvyiSAO4yQPkrPVYTI7Xj34FnscPj
+ /IrRUUka68MlHxPtFnAHr25VIuOS41lmYKYNwPNLRz9Ik6DmeTG3WJO2BQRNvXA0pXrJH1fN
+ GSsRb+pKEKHKtL1803x71zQxCwLh+zLP1iXHVM5j8gX9zqupigQR/Cel2XPS44zWcDW8r7B0
+ q1eW4Jrv0x19p4P923voqn+joIAostyNTUjCeSrUdKth9jcdlam9X2DziA/DHDFfS5eq4fEv
+ ABEBAAGJATwEGAEIACYCGwwWIQQt33LlpaVbqJ2qQuHCPZHzoSX+qAUCXZw1rgUJCWpOfwAK
+ CRDCPZHzoSX+qFcEB/95cs8cM1OQdE/GgOfCGxwgckMeWyzOR7bkAWW0lDVp2hpgJuxBW/gy
+ fmtBnUaifnggx3EE3ev8HTysZU9q0h+TJwwJKGv6sUc8qcTGFDtavnnl+r6xDUY7A6GvXEsS
+ oCEEynby72byGeSovfq/4AWGNPBG1L61Exl+gbqfvbECP3ziXnob009+z9I4qXodHSYINfAk
+ ZkA523JGap12LndJeLk3gfWNZfXEWyGnuciRGbqESkhIRav8ootsCIops/SqXm0/k+Kcl4gG
+ UO/iD/T5oagaDh0QtOd8RWSMwLxwn8uIhpH84Q4X1LadJ5NCgGa6xPP5qqRuiC+9gZqbq4Nj
+Message-ID: <ab81c5d7-7a81-9a2a-9221-aa6dc8f53b3c@gmx.com>
+Date: Tue, 23 Jun 2020 16:33:06 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200623102551.GL20149@phenom.ffwll.local>
-Content-Language: en-US
+In-Reply-To: <c3bf60a1-852d-de42-b8bc-e439677dd61f@daenzer.net>
+X-Provags-ID: V03:K1:m7XHoJOrZU23pJXrlN8IDZGGprbwWf0LaLu6eHMRNcK5EY5cLD0
+ UTnB8WC3uqo3qtNShxq3wr5+dn/UGZjZTBTaGSm18pR0/A8ehWI3wnOqPJKYFZYCC/AnwTG
+ sIgmwDh21sDHprpTFbvB2tYnsfBXtDFlY0HKqV6Hx52yI5o0QJ9hI8nF7icN2o8mDrJZfx3
+ jr5NCZu5T3sby0ppWGwjQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:b/laWbVUfns=:3IEAmE5gfrRuamUadbNQeW
+ jCE//u/2diq0RsEnzSORziprAP8NvvhIbJss63Qs8mmJGBsKKsgu38iZKTGJes2x3mT+MRWVs
+ F/yrnuG8942xtGMN/j/ndfTVz0uhixgT+yXo8JOKO8oEvIRONuvjkY7ySVdo2TWy8g/QOvkUV
+ C9lx+vQZqVfFa0RszQuxQm92ZszH3h4kYQZ+ds0mXpTmYJCRd9+KZhWmjVhx9trs2dZt9b/4m
+ aD9Pkoj1aIscq7PfKmXoGi8t05H5/Xam42+AUZPjb1nK1eYaUcanZ23N8MzvB/Y0Qu3lJWh04
+ rWMzTsUg4jE7u2kthly+tHz909qE7EgkwOnqOAfvQUFjV+Yw0UZXha4fEn9BzXpITSVvLJypB
+ llum+1XRyehlOj7cs4mCVzHDJomke/7LTlNW/57tI3TTGmnfVKLN0GJ20b9sIals60bdYSGvI
+ 8zfT3p9PsiJe7ye/Dk/OjBGvpPgemTaPFKTYPIhiqc8ieJ/P37zUxpROEldsIkDLe1vT/pbFr
+ iRQYpKVwcQWagPUgQhQj2xYpzcOd0B2UpTmiYcGlTn2EWR8J+SVJlaa/ZfWIjA46tB8b4hMDN
+ edpUTT1viYKVFW4iqdnYZzdgm6A5WPWozuc1c40Y0DbL9boGIRJ/lmBpbukthmq8Q9RE9pLoy
+ appqMZYGQ+fYGhEyGkBamohjzRgtzzOx31POsYb2m6Dk83TNdgUqsgaKds77fSW6Yw+5f9kCC
+ NSJ7go07RB9XrJ60b7V+b5fSu9GNAnBFxuoj7F6186gpsfQSImk50++6QhqHa6RgljqQJUpXr
+ IfSXfa2hOxkaT0uvyVGsI4aRrNRDTOh8lc6tIb71vQ1GoxyQjBH62+75jc7BwEGz7/K9IzYvT
+ 8jOhRO/9KYUAiOpdA0LMPVkbVWDAbjGLoiiM2+7IxNbP33uXsZpYkfpp+yFyELHwSjkHG6N86
+ OTRbMI9jJI5t9Tsw83VK9s1Dy8DMaPN0Hp6ieOAhsbsEPL/ZkyD3/Rrh8fjnZWC5uH/em1xmN
+ yWhd0IGWlp9rIpWx1BobFC05EQgcS+cMowyuNiDWZFObGdDdFi3s+BA+DrXkLpwh3pNLyO6+C
+ UuYBlIrKiZ1w886uCAGAkHn5DgDAzpeypkXPGfzTxyv3OSmj3EPJ788guTeLtx80l0X0C3e/H
+ wqBD2IAShrywEViDkTGcyZvzIz5iDnhzpOrTXxBiCHVBzq+aiWOo5UQhkFRWG1fg+e/6QTZjc
+ yAX+02S5tC+72jbdo
+X-Mailman-Approved-At: Tue, 23 Jun 2020 13:26:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,69 +94,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: daniel.vetter@ffwll.ch, michel@daenzer.net, dri-devel@lists.freedesktop.org,
- ppaalanen@gmail.com, amd-gfx@lists.freedesktop.org, alexdeucher@gmail.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1076935655=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjMuMDYuMjAgdW0gMTI6MjUgc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+IE9uIFR1ZSwgSnVu
-IDIzLCAyMDIwIGF0IDAxOjAwOjAyQU0gLTA0MDAsIEFuZHJleSBHcm9kem92c2t5IHdyb3RlOgo+
-PiBPbiA2LzIyLzIwIDU6NDUgQU0sIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+PiBPbiBTdW4sIEp1
-biAyMSwgMjAyMCBhdCAwMjowMzowM0FNIC0wNDAwLCBBbmRyZXkgR3JvZHpvdnNreSB3cm90ZToK
-Pj4+PiBIZWxwZXIgZnVuY3Rpb24gdG8gYmUgdXNlZCB0byBpbnZhbGlkYXRlIGFsbCBCT3MgQ1BV
-IG1hcHBpbmdzCj4+Pj4gb25jZSBkZXZpY2UgaXMgcmVtb3ZlZC4KPj4+Pgo+Pj4+IFNpZ25lZC1v
-ZmYtYnk6IEFuZHJleSBHcm9kem92c2t5IDxhbmRyZXkuZ3JvZHpvdnNreUBhbWQuY29tPgo+Pj4g
-VGhpcyBzZWVtcyB0byBiZSBtaXNzaW5nIHRoZSBjb2RlIHRvIGludmFsaWRhdGUgYWxsIHRoZSBk
-bWEtYnVmIG1tYXBzPwo+Pj4KPj4+IFByb2JhYmx5IG5lZWRzIG1vcmUgdGVzdGNhc2VzIGlmIHlv
-dSdyZSBub3QgeWV0IGNhdGNoaW5nIHRoaXMuIE9yIGFtIEkKPj4+IG1pc3Npbmcgc29tZXRoaW5n
-LCBhbmQgd2UncmUgZXhjaGFuZ2luZyB0aGUgdGhlIGFkZHJlc3Mgc3BhY2UgYWxzbyBmb3IKPj4+
-IGRtYS1idWY/Cj4+PiAtRGFuaWVsCj4+Cj4+IElNSE8gdGhlIGRldmljZSBhZGRyZXNzIHNwYWNl
-IGluY2x1ZGVzIGFsbCB1c2VyIGNsaWVudHMgaGF2aW5nIGEgQ1BVIHZpZXcgb2YKPj4gdGhlIEJP
-IGVpdGhlciBmcm9tIGRpcmVjdCBtYXBwaW5nIHRob3VnaCBkcm0gZmlsZSBvciBiecKgIG1hcHBp
-bmcgdGhyb3VnaAo+PiBpbXBvcnRlZCBCTydzIEZELgo+IFVoIHRoaXMgaXMgYWxsIHZlcnkgY29u
-ZnVzaW5nIGFuZCB2ZXJ5IG11Y2ggbWlkbGF5ZXIteSB0aGFua3MgdG8gdHRtLgo+Cj4gSSB0aGlu
-ayBhIG11Y2ggYmV0dGVyIHNvbHV0aW9uIHdvdWxkIGJlIHRvIGhhdmUgYSBjb3JlIGdlbSBoZWxw
-ZXIgZm9yCj4gdGhpcyAod2VsbCBub3QgZXZlbiBnZW0gcmVhbGx5LCB0aGlzIGlzIGNvcmUgZHJt
-KSwgd2hpY2ggZGlyZWN0bHkgdXNlcwo+IGRybV9kZXZpY2UtPmFub25faW5vZGUtPmlfbWFwcGlu
-Zy4KPgo+IFRoZW4KPiBhKSBpdCBjbGVhcmx5IG1hdGNoZXMgd2hhdCBkcm1fcHJpbWUuYyBkb2Vz
-IG9uIGV4cG9ydAo+IGIpIGNhbiBiZSByZXVzZWQgYWNyb3NzIGFsbCBkcml2ZXJzLCBub3QganVz
-dCB0dG0KPgo+IFNvIG11Y2ggYmV0dGVyLgo+Cj4gV2hhdCdzIG1vcmUsIHdlIGNvdWxkIHRoZW4g
-dmVyeSBlYXNpbHkgbWFrZSB0aGUgZ2VuZXJpYwo+IGRybV9kZXZfdW5wbHVnX2FuZF91bm1hcCBo
-ZWxwZXIgSSd2ZSB0YWxrZWQgYWJvdXQgZm9yIHRoZSBhbWRncHUgcGF0Y2gsCj4gd2hpY2ggSSB0
-aGluayB3b3VsZCBiZSByZWFsbHkgbmVhdCZwcmV0dHkuCgpHb29kIHBvaW50LCB0aGF0IGlzIGlu
-ZGVlZCBhIHJhdGhlciBuaWNlIGlkZWEuCgpDaHJpc3RpYW4uCgo+Cj4gVGhvdWdodHM/Cj4gLURh
-bmllbAo+Cj4+IEFuZHJleQo+Pgo+Pgo+Pj4+IC0tLQo+Pj4+ICAgIGRyaXZlcnMvZ3B1L2RybS90
-dG0vdHRtX2JvLmMgICAgfCA4ICsrKysrKy0tCj4+Pj4gICAgaW5jbHVkZS9kcm0vdHRtL3R0bV9i
-b19kcml2ZXIuaCB8IDcgKysrKysrKwo+Pj4+ICAgIDIgZmlsZXMgY2hhbmdlZCwgMTMgaW5zZXJ0
-aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPj4+Pgo+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vdHRtL3R0bV9iby5jIGIvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYwo+Pj4+IGlu
-ZGV4IGM1YjUxNmYuLjkyNmEzNjUgMTAwNjQ0Cj4+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0
-bS90dG1fYm8uYwo+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMKPj4+PiBA
-QCAtMTc1MCwxMCArMTc1MCwxNCBAQCB2b2lkIHR0bV9ib191bm1hcF92aXJ0dWFsKHN0cnVjdCB0
-dG1fYnVmZmVyX29iamVjdCAqYm8pCj4+Pj4gICAgCXR0bV9ib191bm1hcF92aXJ0dWFsX2xvY2tl
-ZChibyk7Cj4+Pj4gICAgCXR0bV9tZW1faW9fdW5sb2NrKG1hbik7Cj4+Pj4gICAgfQo+Pj4+IC0K
-Pj4+PiAtCj4+Pj4gICAgRVhQT1JUX1NZTUJPTCh0dG1fYm9fdW5tYXBfdmlydHVhbCk7Cj4+Pj4g
-K3ZvaWQgdHRtX2JvX3VubWFwX3ZpcnR1YWxfYWRkcmVzc19zcGFjZShzdHJ1Y3QgdHRtX2JvX2Rl
-dmljZSAqYmRldikKPj4+PiArewo+Pj4+ICsJdW5tYXBfbWFwcGluZ19yYW5nZShiZGV2LT5kZXZf
-bWFwcGluZywgMCwgMCwgMSk7Cj4+Pj4gK30KPj4+PiArRVhQT1JUX1NZTUJPTCh0dG1fYm9fdW5t
-YXBfdmlydHVhbF9hZGRyZXNzX3NwYWNlKTsKPj4+PiArCj4+Pj4gICAgaW50IHR0bV9ib193YWl0
-KHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm8sCj4+Pj4gICAgCQlib29sIGludGVycnVwdGli
-bGUsIGJvb2wgbm9fd2FpdCkKPj4+PiAgICB7Cj4+Pj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJt
-L3R0bS90dG1fYm9fZHJpdmVyLmggYi9pbmNsdWRlL2RybS90dG0vdHRtX2JvX2RyaXZlci5oCj4+
-Pj4gaW5kZXggYzllMGZkMC4uMzllYTQ0ZiAxMDA2NDQKPj4+PiAtLS0gYS9pbmNsdWRlL2RybS90
-dG0vdHRtX2JvX2RyaXZlci5oCj4+Pj4gKysrIGIvaW5jbHVkZS9kcm0vdHRtL3R0bV9ib19kcml2
-ZXIuaAo+Pj4+IEBAIC02MDEsNiArNjAxLDEzIEBAIGludCB0dG1fYm9fZGV2aWNlX2luaXQoc3Ry
-dWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCj4+Pj4gICAgdm9pZCB0dG1fYm9fdW5tYXBfdmlydHVh
-bChzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvKTsKPj4+PiAgICAvKioKPj4+PiArICogdHRt
-X2JvX3VubWFwX3ZpcnR1YWxfYWRkcmVzc19zcGFjZQo+Pj4+ICsgKgo+Pj4+ICsgKiBAYmRldjog
-dGVhciBkb3duIGFsbCB0aGUgdmlydHVhbCBtYXBwaW5ncyBmb3IgdGhpcyBkZXZpY2UKPj4+PiAr
-ICovCj4+Pj4gK3ZvaWQgdHRtX2JvX3VubWFwX3ZpcnR1YWxfYWRkcmVzc19zcGFjZShzdHJ1Y3Qg
-dHRtX2JvX2RldmljZSAqYmRldik7Cj4+Pj4gKwo+Pj4+ICsvKioKPj4+PiAgICAgKiB0dG1fYm9f
-dW5tYXBfdmlydHVhbAo+Pj4+ICAgICAqCj4+Pj4gICAgICogQGJvOiB0ZWFyIGRvd24gdGhlIHZp
-cnR1YWwgbWFwcGluZ3MgZm9yIHRoaXMgQk8KPj4+PiAtLSAKPj4+PiAyLjcuNAo+Pj4+CgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxp
-bmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1076935655==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="Oc0zV7460mwDMTfCpyt932LYYIixcSIqN"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--Oc0zV7460mwDMTfCpyt932LYYIixcSIqN
+Content-Type: multipart/mixed; boundary="VheXZFFwiAoZ9zQQ3KapXMbL1ySrRPW3r"
+
+--VheXZFFwiAoZ9zQQ3KapXMbL1ySrRPW3r
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+
+
+On 2020/6/23 =E4=B8=8B=E5=8D=884:22, Michel D=C3=A4nzer wrote:
+> On 2020-06-23 2:23 a.m., Qu Wenruo wrote:
+>> Hi guys,
+>=20
+>> Firstly thanks for the awesome renoir CPUs.
+>=20
+>> However it looks like there are still some bugs in the Linux
+>> support, especially with external monitors.
+>=20
+>> My setup: - Laptop: Lenovo IdeaPad S540 13ARE (Or, Xiaoxin Pro 13
+>> in Chinese market) 4800U CPU, with 5.7.4 Arch kernel. (Also tried
+>> 5.8-rc kernels, even more crashes) The eDP display is 2560x1600
+>> natively, but to cooperate with external monitors, it's set to
+>> 1920x1200. And under my daily usage, the lid is closed, thus the
+>> eDP display shouldn't be involved.
+>=20
+>> - Two external monitors connected using USB-c dock The dock is HP
+>> usb-c dock G4, which uses DP alt mode MST for external displays. So
+>> not DisplayLink garbage, and all monitors are handled by Vega
+>> internal GPU.
+>=20
+>> Both external displays are 1080P 60hz, so definitely inside the
+>> spec for DP 1.2.
+>=20
+>> - X11 environment xf86-video-amdgpu, along with mesa stack.
+>=20
+>> With such setup, the kernel boots with warning already related to
+>> DP MST: https://paste.opensuse.org/54293967
+>=20
+> See https://gitlab.freedesktop.org/drm/amd/-/issues/1108 .
+>=20
+>=20
+>
+OK, that explains the warning.
+
+Although for the crash I still need to setup netconsole to capture the
+dying message though.
+
+Thanks,
+Qu
+
+
+--VheXZFFwiAoZ9zQQ3KapXMbL1ySrRPW3r--
+
+--Oc0zV7460mwDMTfCpyt932LYYIixcSIqN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEELd9y5aWlW6idqkLhwj2R86El/qgFAl7xvkIACgkQwj2R86El
+/qiAOQf+OuO1juhTcKnsPqhmHzhaIATwVhtJFXoFL9ap2up2aF9sNMMIPxhuV9GO
+CXlbnW3NyS48IXM9JXAn1GadYtLigWzj6bolLbTJ0MBn8VPBjMjzz0Nzg+jM63PQ
+OtkZ+IugneWS+U8A/aaprSywTAj2aS1LCqerUrPk4CuxDGtSwL6SN5DzAFR9TD3B
+e1qg+XKKfbJSHK4520h5hYAbkl7Rre5Y6UC32z1qazUFwqV6BfYAa7Je33/TLKhZ
+0/l/kvHNVhPfMapnyouEKq4uqA0gGLCEevHcC8JrwqOyuaAkrbOD/QKzLQ+tp+nN
+EjyHFzT3G16/gyPomMJVRxLQIUs1xg==
+=VlyK
+-----END PGP SIGNATURE-----
+
+--Oc0zV7460mwDMTfCpyt932LYYIixcSIqN--
+
+--===============1076935655==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1076935655==--
