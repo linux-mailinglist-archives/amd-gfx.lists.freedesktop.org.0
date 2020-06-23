@@ -2,44 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90FFA204BAD
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 09:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19FB0204BAE
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 09:49:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2683F6E96C;
-	Tue, 23 Jun 2020 07:49:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE216E978;
+	Tue, 23 Jun 2020 07:49:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CD326E93D;
- Tue, 23 Jun 2020 06:05:38 +0000 (UTC)
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
- [83.86.89.107])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 8204A2064B;
- Tue, 23 Jun 2020 06:05:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1592892338;
- bh=YM37cmelNi9PFEWrjf67bskr2FP0y42ZpXHWKL8DuXE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ONxKLCpJzE1vpcZoA/h3UBpShtoDEXT7vekOYWP0QAHml3ZdEklhCEFfkvLlXT4qk
- y0fOziOXKKmH2u+Sz6XLa00YHCd7vaNS5KRewp5IA5uCAgGql/v0D0qQbvous7wCqe
- e+VwdIG9+DpmUP1t1AzBATNHJss8DYivwiq22goU=
-Date: Tue, 23 Jun 2020 08:05:32 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
-Subject: Re: [PATCH v2 5/8] drm/amdgpu: Refactor sysfs removal
-Message-ID: <20200623060532.GB3818201@kroah.com>
-References: <1592719388-13819-1-git-send-email-andrey.grodzovsky@amd.com>
- <1592719388-13819-6-git-send-email-andrey.grodzovsky@amd.com>
- <20200622095124.GE20149@phenom.ffwll.local>
- <20200622112139.GA3421602@kroah.com>
- <fdaebe5b-3930-66d6-4f62-3e59e515e3da@amd.com>
- <20200622164551.GA112181@kroah.com>
- <4787b2a9-e7bf-ea3c-02e9-484a4fcb4742@amd.com>
+Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9238A6E081;
+ Tue, 23 Jun 2020 07:29:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+ s=20170329; 
+ h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
+ bh=Kzlg3bHRorDD7BWffZJv6GE9TJPKF3y/v/amkqlv3GY=; 
+ b=Aa5RZQ61Gr35Q9a7feARdpIBKBsBfXEzl4lNWlIFxFMSiigV830bNRBv9SrGb+DYg7WK4SGf4Q+HM/0DDj3K4Dc8K6i5te0h3BlsqZy1/n2G5aGhfmwbe/NH4spRpJoV80nUlOjWU0ja8SeBmTVIZYJJYWl2mm6WgA305MXx3vhGIS9oC9O4JCeiaWB6q7orEP2X7WW3mCRtIJQMOMqAoVV23wJYTEDCMEjyM94FDCnUbQ47WpNUj3pbty0pVwhMVkcCpHVUBbyCYXdCDyq+SGtPl6t0i5vgjsiUjsTmmLY7FD+TnA/V9Pz63DUOgBctFgF0maao6LvbspBiSo5vcQ==;
+Received: from 53.red-88-15-141.dynamicip.rima-tde.net ([88.15.141.53]
+ helo=maxwell) by fanzine.igalia.com with esmtpsa 
+ (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
+ id 1jndN9-0003TO-IZ; Tue, 23 Jun 2020 09:29:35 +0200
+Message-ID: <78d5ab87f0dfb7e3e1286a5f3f4f10fefa33e077.camel@igalia.com>
+Subject: Re: [Mesa-dev] XDC 2020: Registration & Call for Proposals now open!
+From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
+To: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>, 
+ "events@lists.x.org"
+ <events@lists.x.org>, "xorg-devel@lists.freedesktop.org"
+ <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
+ <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org"
+ <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org"
+ <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
+ <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
+ <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Date: Tue, 23 Jun 2020 09:29:25 +0200
+In-Reply-To: <9a4392829de747a9a752a5b13f31f90b@intel.com>
+References: <9a4392829de747a9a752a5b13f31f90b@intel.com>
+User-Agent: Evolution 3.36.3 (3.36.3-1.fc32) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <4787b2a9-e7bf-ea3c-02e9-484a4fcb4742@amd.com>
 X-Mailman-Approved-At: Tue, 23 Jun 2020 07:49:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,221 +53,151 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, michel@daenzer.net, dri-devel@lists.freedesktop.org,
- ppaalanen@gmail.com, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, ckoenig.leichtzumerken@gmail.com,
- alexdeucher@gmail.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "board@foundation.x.org" <board@foundation.x.org>
+Content-Type: multipart/mixed; boundary="===============0019938009=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 23, 2020 at 12:51:00AM -0400, Andrey Grodzovsky wrote:
-> =
 
-> On 6/22/20 12:45 PM, Greg KH wrote:
-> > On Mon, Jun 22, 2020 at 12:07:25PM -0400, Andrey Grodzovsky wrote:
-> > > On 6/22/20 7:21 AM, Greg KH wrote:
-> > > > On Mon, Jun 22, 2020 at 11:51:24AM +0200, Daniel Vetter wrote:
-> > > > > On Sun, Jun 21, 2020 at 02:03:05AM -0400, Andrey Grodzovsky wrote:
-> > > > > > Track sysfs files in a list so they all can be removed during p=
-ci remove
-> > > > > > since otherwise their removal after that causes crash because p=
-arent
-> > > > > > folder was already removed during pci remove.
-> > > > Huh?  That should not happen, do you have a backtrace of that crash?
-> > > =
+--===============0019938009==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-9+orxlxz86sWcnKf/R+o"
 
-> > > 2 examples in the attached trace.
-> > Odd, how did you trigger these?
-> =
 
-> =
+--=-9+orxlxz86sWcnKf/R+o
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> By manually triggering PCI remove from sysfs
-> =
+Hi,
 
-> cd /sys/bus/pci/devices/0000\:05\:00.0 && echo 1 > remove
+This is a kindly reminder that the CFP deadline is in less than two
+weeks :)
 
-For some reason, I didn't think that video/drm devices could handle
-hot-remove like this.  The "old" PCI hotplug specification explicitly
-said that video devices were not supported, has that changed?
+On Fri, 2020-05-15 at 14:15 +0000, Szwichtenberg, Radoslaw wrote:
+> Hello!
+>=20
+> Registration & Call for Proposals are now open for XDC 2020, which
+> will
+> take place at the Gda=C5=84sk University of Technology in Gda=C5=84sk, Po=
+land
+> on September 16-18, 2020.
+>=20
+> Thanks to LWN.net for hosting the website again this year!
+>=20
+>     https://xdc2020.x.org
+>    =20
+> As usual, the conference is free of charge and open to the general
+> public. If you plan on attending, please make sure to register as
+> early as possible! However, don't book any travel or hotel until the
+> organization decides if we keep the conference as it is or there is
+> any change. Please read this message on the website for more
+> information:
+>=20
+> https://xdc2020.x.org/event/9/page/78-covid-19
+>=20
+> In order to register as attendee, you will therefore need to register
+> via the XDC
+> website. However, as XDC is sharing the same Indico infrastructure as
+> LPC, if you previously registered on the LPC website
+> (linuxplumbersconference.org) or on the XDC 2019 website
+> (xdc2019.x.org), then you already have an active account
+> and can use the same username & password to login!
+>=20
+>     https://xdc2020.x.org/event/9/registrations/7/
+>=20
+> In addition to registration, the CfP is now open for talks, workshops
+> and demos at XDC 2020. While any serious proposal will be gratefully
+> considered, topics of interest to X.Org and freedesktop.org
+> developers
+> are encouraged. The program focus is on new development, ongoing
+> challenges and anything else that will spark discussions among
+> attendees in the hallway track.
+>=20
+> We are open to talks across all layers of the graphics stack, from
+> the
+> kernel to desktop environments / graphical applications and about how
+> to make things better for the developers who build them. Head to the
+> CfP page to learn more:=20
+>=20
+>     https://xdc2020.x.org/event/9/abstracts/
+>=20
+> The deadline for submissions is Sunday, 5 July 2020.
+>=20
+> Notice that the event may end up being postponed, converted to a
+> fully online conference, or even a hybrid one (physical event + some
+> remote talks). It depends on how COVID-19 situation evolves in the
+> different countries and the restrictions we will have at that time.
+> Also, some people may decide to skip the physical conference to avoid
+> any risk of infection. Because of that, please indicate in your talk
+> submission if you prefer to give a remote talk in the case that XDC
+> keeps being a physical event this year. Similarly, if you think that
+> your talk makes no sense if XDC ends up being a fully-virtual
+> conference, please indicate that in the notes of the talk submission.
+>=20
 
-And this whole issue is probably tied to the larger issue that Daniel
-was asking me about, when it came to device lifetimes and the drm layer,
-so odds are we need to fix that up first before worrying about trying to
-support this crazy request, right?  :)
+We are gathering all the information in order to make a decision at the
+beginning of July. Stay tuned [0]!
 
-> > > [  925.738225 <    0.188086>] BUG: kernel NULL pointer dereference, a=
-ddress: 0000000000000090
-> > > [  925.738232 <    0.000007>] #PF: supervisor read access in kernel m=
-ode
-> > > [  925.738236 <    0.000004>] #PF: error_code(0x0000) - not-present p=
-age
-> > > [  925.738240 <    0.000004>] PGD 0 P4D 0
-> > > [  925.738245 <    0.000005>] Oops: 0000 [#1] SMP PTI
-> > > [  925.738249 <    0.000004>] CPU: 7 PID: 2547 Comm: amdgpu_test Tain=
-ted: G        W  OE     5.5.0-rc7-dev-kfd+ #50
-> > > [  925.738256 <    0.000007>] Hardware name: System manufacturer Syst=
-em Product Name/RAMPAGE IV FORMULA, BIOS 4804 12/30/2013
-> > > [  925.738266 <    0.000010>] RIP: 0010:kernfs_find_ns+0x18/0x110
-> > > [  925.738270 <    0.000004>] Code: a6 cf ff 0f 1f 44 00 00 66 2e 0f =
-1f 84 00 00 00 00 00 66 66 66 66 90 41 57 41 56 49 89 f6 41 55 41 54 49 89 =
-fd 55 53 49 89 d4 <0f> b7 af 90 00 00 00 8b 05 8f ee 6b 01 48 8b 5f 68 66 8=
-3 e5 20 41
-> > > [  925.738282 <    0.000012>] RSP: 0018:ffffad6d0118fb00 EFLAGS: 0001=
-0246
-> > > [  925.738287 <    0.000005>] RAX: 0000000000000000 RBX: 000000000000=
-0000 RCX: 2098a12076864b7e
-> > > [  925.738292 <    0.000005>] RDX: 0000000000000000 RSI: ffffffffb660=
-6b31 RDI: 0000000000000000
-> > > [  925.738297 <    0.000005>] RBP: ffffffffb6606b31 R08: ffffffffb537=
-9d10 R09: 0000000000000000
-> > > [  925.738302 <    0.000005>] R10: ffffad6d0118fb38 R11: ffff9a75f648=
-20a8 R12: 0000000000000000
-> > > [  925.738307 <    0.000005>] R13: 0000000000000000 R14: ffffffffb660=
-6b31 R15: ffff9a7612b06130
-> > > [  925.738313 <    0.000006>] FS:  00007f3eca4e8700(0000) GS:ffff9a76=
-3dbc0000(0000) knlGS:0000000000000000
-> > > [  925.738319 <    0.000006>] CS:  0010 DS: 0000 ES: 0000 CR0: 000000=
-0080050033
-> > > [  925.738323 <    0.000004>] CR2: 0000000000000090 CR3: 0000000035e5=
-a005 CR4: 00000000000606e0
-> > > [  925.738329 <    0.000006>] Call Trace:
-> > > [  925.738334 <    0.000005>]  kernfs_find_and_get_ns+0x2e/0x50
-> > > [  925.738339 <    0.000005>]  sysfs_remove_group+0x25/0x80
-> > > [  925.738344 <    0.000005>]  sysfs_remove_groups+0x29/0x40
-> > > [  925.738350 <    0.000006>]  free_msi_irqs+0xf5/0x190
-> > > [  925.738354 <    0.000004>]  pci_disable_msi+0xe9/0x120
-> > So the PCI core is trying to clean up attributes that it had registered,
-> > which is fine.  But we can't seem to find the attributes?  Were they
-> > already removed somewhere else?
-> > =
+Sam
 
-> > that's odd.
-> =
+[0] https://xdc2020.x.org/event/9/page/78-covid-19
 
-> =
+> If COVID-19 situation allows it, we are looking forward to seeing you
+> in Gda=C5=84sk! If you have any questions, please send me an email to=20
+> radoslaw.szwichtenberg@intel.com,  adding on CC the X.org board
+> (board at foundation.x.org).
+>=20
+> And don't forget, you can follow us on Twitter for all the latest
+> updates and to stay connected:
+>=20
+>     https://twitter.com/xdc2020
+>=20
+> Best,
+>=20
+> Radek
+>=20
+>=20
+> _______________________________________________
+> mesa-dev mailing list
+> mesa-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+>=20
 
-> Yes, as i pointed above i am emulating device remove from sysfs and this
-> triggers pci device remove sequence and as part of that my specific device
-> folder (05:00.0) is removed from the sysfs tree.
+--=-9+orxlxz86sWcnKf/R+o
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-But why are things being removed twice?
+-----BEGIN PGP SIGNATURE-----
 
-> > > [  925.738406 <    0.000052>]  amdgpu_irq_fini+0xe3/0xf0 [amdgpu]
-> > > [  925.738453 <    0.000047>]  tonga_ih_sw_fini+0xe/0x30 [amdgpu]
-> > > [  925.738490 <    0.000037>]  amdgpu_device_fini_late+0x14b/0x440 [a=
-mdgpu]
-> > > [  925.738529 <    0.000039>]  amdgpu_driver_release_kms+0x16/0x40 [a=
-mdgpu]
-> > > [  925.738548 <    0.000019>]  drm_dev_put+0x5b/0x80 [drm]
-> > > [  925.738558 <    0.000010>]  drm_release+0xc6/0xd0 [drm]
-> > > [  925.738563 <    0.000005>]  __fput+0xc6/0x260
-> > > [  925.738568 <    0.000005>]  task_work_run+0x79/0xb0
-> > > [  925.738573 <    0.000005>]  do_exit+0x3d0/0xc60
-> > > [  925.738578 <    0.000005>]  do_group_exit+0x47/0xb0
-> > > [  925.738583 <    0.000005>]  get_signal+0x18b/0xc30
-> > > [  925.738589 <    0.000006>]  do_signal+0x36/0x6a0
-> > > [  925.738593 <    0.000004>]  ? force_sig_info_to_task+0xbc/0xd0
-> > > [  925.738597 <    0.000004>]  ? signal_wake_up_state+0x15/0x30
-> > > [  925.738603 <    0.000006>]  exit_to_usermode_loop+0x6f/0xc0
-> > > [  925.738608 <    0.000005>]  prepare_exit_to_usermode+0xc7/0x110
-> > > [  925.738613 <    0.000005>]  ret_from_intr+0x25/0x35
-> > > [  925.738617 <    0.000004>] RIP: 0033:0x417369
-> > > [  925.738621 <    0.000004>] Code: Bad RIP value.
-> > > [  925.738625 <    0.000004>] RSP: 002b:00007ffdd6bf0900 EFLAGS: 0001=
-0246
-> > > [  925.738629 <    0.000004>] RAX: 00007f3eca509000 RBX: 000000000000=
-001e RCX: 00007f3ec95ba260
-> > > [  925.738634 <    0.000005>] RDX: 00007f3ec9889790 RSI: 000000000000=
-000a RDI: 0000000000000000
-> > > [  925.738639 <    0.000005>] RBP: 00007ffdd6bf0990 R08: 00007f3ec988=
-9780 R09: 00007f3eca4e8700
-> > > [  925.738645 <    0.000006>] R10: 000000000000035c R11: 000000000000=
-0246 R12: 00000000021c6170
-> > > [  925.738650 <    0.000005>] R13: 00007ffdd6bf0c00 R14: 000000000000=
-0000 R15: 0000000000000000
-> > > =
+iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAl7xr1UACgkQf/S6MvF9
+w0OLkA//X2kk/vAbrnL+0CSgFbOfhaOJAhjB2KAGpfsKVdDYKXcRCIgoJE9ZAUDY
+HaWB/8mFfZPgfjHbqVQ7qTsQ1bITBHM0uAQ0L0PEgg/qpfaZIW5mI3jwmCWnVaXY
+NqgeicXisv2y4Fl+VzZe2qE1GWsnfnfW6NDV3rTUMckNiy1sQ9edF1vuTg1e31NB
+hCNy/50FUOR09EZAhjnMl8WfU6HSBxQNGeJK1k34TX7xGmPIjO17v4KmknZohLBd
+C441QmBG+144xV3so35CgNbtclyyJArHqUhSgsI9PoQjF6aCpw/1LFN54LPVg+dm
+848rSTgIdHNX432Zso605nv+QiU6DWCGX5/5RJ8iR9Nim3WKGZTPgdJfId3EI0BJ
+yzxIh/dJvTnoCPyYOUv4nAVdRnpAVtEBxiC4OuNnBo7szzp/qxfM/e6t0Zc6nWkx
+1gBTb5uG8JfHA6E534ktRU8INpEbwJnzsFk/GJX2oJ0CsPhhBQyBhtTAbFIDwYNP
+gHtJMzVVvp3dnYZfamqdON3fWH7/j75GT8fwGuutM/H17l4dShjKLtDX/+sLwfcn
+6dVX7Keg8PeDb6YvJhKAlT0TA2l0kqiKW7td1wkJvwp69Owkc/J81MQ5ky6vmxjT
+h/mk6pyEp31lIWNHovnfv21NWIriU7qnEc2FiPQIKsg3NJGb3n4=
+=BV8w
+-----END PGP SIGNATURE-----
 
-> > > =
+--=-9+orxlxz86sWcnKf/R+o--
 
-> > > =
 
-> > > =
+--===============0019938009==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-> > > [   40.880899 <    0.000004>] BUG: kernel NULL pointer dereference, a=
-ddress: 0000000000000090
-> > > [   40.880906 <    0.000007>] #PF: supervisor read access in kernel m=
-ode
-> > > [   40.880910 <    0.000004>] #PF: error_code(0x0000) - not-present p=
-age
-> > > [   40.880915 <    0.000005>] PGD 0 P4D 0
-> > > [   40.880920 <    0.000005>] Oops: 0000 [#1] SMP PTI
-> > > [   40.880924 <    0.000004>] CPU: 1 PID: 2526 Comm: amdgpu_test Tain=
-ted: G        W  OE     5.5.0-rc7-dev-kfd+ #50
-> > > [   40.880932 <    0.000008>] Hardware name: System manufacturer Syst=
-em Product Name/RAMPAGE IV FORMULA, BIOS 4804 12/30/2013
-> > > [   40.880941 <    0.000009>] RIP: 0010:kernfs_find_ns+0x18/0x110
-> > > [   40.880945 <    0.000004>] Code: a6 cf ff 0f 1f 44 00 00 66 2e 0f =
-1f 84 00 00 00 00 00 66 66 66 66 90 41 57 41 56 49 89 f6 41 55 41 54 49 89 =
-fd 55 53 49 89 d4 <0f> b7 af 90 00 00 00 8b 05 8f ee 6b 01 48 8b 5f 68 66 8=
-3 e5 20 41
-> > > [   40.880957 <    0.000012>] RSP: 0018:ffffaf3380467ba8 EFLAGS: 0001=
-0246
-> > > [   40.880963 <    0.000006>] RAX: 0000000000000000 RBX: 000000000000=
-0000 RCX: 2098a12076864b7e
-> > > [   40.880968 <    0.000005>] RDX: 0000000000000000 RSI: ffffffffc067=
-8cfc RDI: 0000000000000000
-> > > [   40.880973 <    0.000005>] RBP: ffffffffc0678cfc R08: ffffffffaa37=
-9d10 R09: 0000000000000000
-> > > [   40.880979 <    0.000006>] R10: ffffaf3380467be0 R11: ffff93547615=
-d128 R12: 0000000000000000
-> > > [   40.880984 <    0.000005>] R13: 0000000000000000 R14: ffffffffc067=
-8cfc R15: ffff93549be86130
-> > > [   40.880990 <    0.000006>] FS:  00007fd9ecb10700(0000) GS:ffff9354=
-bd840000(0000) knlGS:0000000000000000
-> > > [   40.880996 <    0.000006>] CS:  0010 DS: 0000 ES: 0000 CR0: 000000=
-0080050033
-> > > [   40.881001 <    0.000005>] CR2: 0000000000000090 CR3: 000000007286=
-6001 CR4: 00000000000606e0
-> > > [   40.881006 <    0.000005>] Call Trace:
-> > > [   40.881011 <    0.000005>]  kernfs_find_and_get_ns+0x2e/0x50
-> > > [   40.881016 <    0.000005>]  sysfs_remove_group+0x25/0x80
-> > > [   40.881055 <    0.000039>]  amdgpu_device_fini_late+0x3eb/0x440 [a=
-mdgpu]
-> > > [   40.881095 <    0.000040>]  amdgpu_driver_release_kms+0x16/0x40 [a=
-mdgpu]
-> > Here is this is your driver doing the same thing, removing attributes it
-> > created.  But again they are not there.
-> > =
-
-> > So something went through and wiped the tree clean, which if I'm reading
-> > this correctly, your patch would not solve as you would try to also
-> > remove attributes that were already removed, right?
-> =
-
-> =
-
-> I don't think so, the stack here is from a later stage (after pci remove)
-> where the last user process holding a reference to the device file decides
-> to die and thus triggering drm_dev_release sequence after drm dev refcount
-> dropped to zero. And this why my patch helps, i am expediting all amdgpu
-> sysfs attributes removal to the pci remove stage when the device folder is
-> still present in the sysfs hierarchy. At least this is my=A0 understandin=
-g to
-> why it helped. I admit i am not an expert on sysfs internals.
-
-Ok, yeah, I think this is back to the drm lifecycle issues mentioned
-above.
-
-{sigh}, I'll get to that once I deal with the -rc1/-rc2 merge fallout,
-that will take me a week or so, sorry...
-
-thanks,
-
-greg k-h
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0019938009==--
+
