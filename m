@@ -2,94 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300C420533E
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 15:16:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A82FA20551F
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 16:50:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12AD36E40F;
-	Tue, 23 Jun 2020 13:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F0406E178;
+	Tue, 23 Jun 2020 14:50:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2068.outbound.protection.outlook.com [40.107.92.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE666E235;
- Tue, 23 Jun 2020 13:16:26 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2044.outbound.protection.outlook.com [40.107.244.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 512396E178
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 14:50:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lnRhu8geKEFngRJHuIVheFOSO7eyro6/Z9rEeOzLan1s75x0NW4DhG3aOvFtECBC4TuArUZ/xBjQ80nCdAajMp9Vz+9JTLv+zveVViWyMLmo2ae9+GU5qs5Ae53p4SqCYzUyB0FcSNNlu7Q0sFbHmI/5vKSUQISkI9Fpb7LhzJ1fLyJBnRGVO5Ik7g6FjY97B351qgeYnvc/KMcg6skQAxreasrmVY3DTn04PzsQ5CJHkGJ3hpyICOA4gcRx3sBJGgoiTyNImTtMiDw/6Smy44Yij4vBuB/mZebwUwnlIiIXPHWOmtuTVJ/FJf8JS389bI2dXm8sV6l3hT+sfjczfw==
+ b=fUxKn7t6lrHzPDjchXHmcy5BrzZ1yDMrv2+fxtIQybi7OQhW+pOuuHDibPKJlAJI8fRyZUw5kIybFBlcsUuIKPU03Bye5l1xsX1t7oyGeuEuNoHP0SqRH13A+fUWq5xS1uNhSgBn8jgkbtFJlNMYMWCntQb4kaVoNjWHUD6+CLQEzXXBS+oGzO1C6MY1iZe0OhzHDgUWXNeoOI3XGHreIVKldAMR6LgR7Uh1x3f9s5BB2imYBm+IEzutoUTUnEGD2ciO9hpxs1Fu2IL6R0uV5/DgJqW8PrvZxmLqfx593K5HLUVciF9kGu9+sCSF4F2yf9Mh3hM40Oe0mU1EBnLlfg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nJFw02q0uYhHnOYKqfu/T9VcydLOziqaycpWegwYAPU=;
- b=biPF/00zE23pGhkKaXMCoG/+RVkCuuex5F69XlBylOmg8Oqm2pROPXICfHt4n8CPr7jZCwlo5/lklOdXlDWGsUIlpj0S4Eh///Evc3XHkIgFoQ42IzgeOcC8thBQk6ucIork0FGbui7mcDKvCMWTNb+cu28wb9dGWLLB8UuEM0/F4pVv4n4U5Sgk5XVP43jWRn5IjkLxQNy44a0hSLc3UFIgbNSzj4yGZgCq9U6SCLyvLGX7a3n4OlswL6lnJrRn49bLI9B/OUrEyzqKi5UGcBWnQkqrCEL3mUIs47aO/xPUJjtQBpzezELDH8eotRG5yBvI36hs4wP+oo440S7FNA==
+ bh=pOJWRTJqfqbzLuD98P9zP3upvorCI3Owa7L2Llx0OFo=;
+ b=ODBDe8jU46AotKkaEwn72nyJRK/On0styFk7by+2V2rUvsXj9qrnFlRCfatMZxlLKy/3AdXDBcaSi41FyUXBeMrktk9jaffByU6u9OjfrXb1xRnsu0M0sa1c6I6/dLquiQbOYP+Gz5eESSi13eP8g/V5LjHaU1V/oaU+fEHkMkPpDGSB8xHrfT0/9HHAuNEiLqLL98GQWpxDh4I9ptPQHr6wfwo63TLlfBHDiw7a2puBjXGVgiA898OPC39CtSuEQ8torI01Ka6zDBLEpkb934kcD/TQkHwDdxrqBAXExRqa1qrQP/Ls/XAClb5zpo/ZL31hByzvsfxElPYIfYKsmQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nJFw02q0uYhHnOYKqfu/T9VcydLOziqaycpWegwYAPU=;
- b=aJkczNXzFAVPaG9hpXr2DQb/BhJ0HIr6L5wIq72wAjD1+8nZa4zFVhQNzvh0R9Wty7DOQ3YoJ8OXKuJ7ZY5vtYEwBPrrYyXVdEJK5GGT+oYCp6BP7wyH3ZtFjH+JseqynfiCqAmb1QHaPg4PgHTQw0UG4NPb+FpoR8cChtwT41Y=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB4401.namprd12.prod.outlook.com (2603:10b6:5:2a9::15)
- by DM6PR12MB4204.namprd12.prod.outlook.com (2603:10b6:5:212::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.21; Tue, 23 Jun
- 2020 13:16:19 +0000
-Received: from DM6PR12MB4401.namprd12.prod.outlook.com
- ([fe80::a045:f8c0:8edb:1ef1]) by DM6PR12MB4401.namprd12.prod.outlook.com
- ([fe80::a045:f8c0:8edb:1ef1%9]) with mapi id 15.20.3109.027; Tue, 23 Jun 2020
- 13:16:19 +0000
-Subject: Re: [PATCH v2 6/8] drm/amdgpu: Unmap entire device address space on
- device remove.
-To: Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexdeucher@gmail.com>
-References: <1592719388-13819-1-git-send-email-andrey.grodzovsky@amd.com>
- <1592719388-13819-7-git-send-email-andrey.grodzovsky@amd.com>
- <ec7dc51a-231f-f9e7-6082-5aad02965c67@gmail.com>
- <CADnq5_Oz_858bq-PRc=DsL62=TiqFaONw4qARK8NVbUVzMfuCw@mail.gmail.com>
- <20200623102203.GK20149@phenom.ffwll.local>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <1bd67cd4-abd3-a6a8-e109-aea9752fff48@amd.com>
-Date: Tue, 23 Jun 2020 15:16:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-In-Reply-To: <20200623102203.GK20149@phenom.ffwll.local>
+ bh=pOJWRTJqfqbzLuD98P9zP3upvorCI3Owa7L2Llx0OFo=;
+ b=HM3Tcg8et8eqkVZrrHZXnKPIz7arpQv+gvlJw+/28nFMbnCNgSmJbawPKLQN3m1gPQIVkVo7VwQJfuQvs+iW4CohTXgUyx7+pUi5fZYMmQP2CvMBKWKYsYneo6ems7BpVLpe4zhXD7902i/+JOrr8UxacFE5T3/lcVNdrDmDQqQ=
+Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
+ by MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3109.22; Tue, 23 Jun
+ 2020 14:50:45 +0000
+Received: from MN2PR12MB4488.namprd12.prod.outlook.com
+ ([fe80::313c:e4d2:7dd2:2d72]) by MN2PR12MB4488.namprd12.prod.outlook.com
+ ([fe80::313c:e4d2:7dd2:2d72%5]) with mapi id 15.20.3109.027; Tue, 23 Jun 2020
+ 14:50:45 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: Nirmoy Das <nirmoy.aiemd@gmail.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 1/1] drm/amd/powerplay: return current DCEFCLK on sysfs
+ read
+Thread-Topic: [PATCH 1/1] drm/amd/powerplay: return current DCEFCLK on sysfs
+ read
+Thread-Index: AQHWSUKRhL2bw9Z7I0GzRuqHbJqajKjmSMLm
+Date: Tue, 23 Jun 2020 14:50:45 +0000
+Message-ID: <MN2PR12MB44887914BD44D23BA9D6ACDEF7940@MN2PR12MB4488.namprd12.prod.outlook.com>
+References: <20200623094327.10824-1-nirmoy.das@amd.com>
+In-Reply-To: <20200623094327.10824-1-nirmoy.das@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-ClientProxiedBy: FRYP281CA0009.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10::19)
- To DM6PR12MB4401.namprd12.prod.outlook.com
- (2603:10b6:5:2a9::15)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- FRYP281CA0009.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3109.23 via Frontend Transport; Tue, 23 Jun 2020 13:16:17 +0000
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 26c4af61-028e-4477-7cc5-08d817779e08
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4204:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB42042D6D540B8BD5F5397E2783940@DM6PR12MB4204.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-Forefront-PRVS: 04433051BF
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dBED2JpXWylH8T8mjI3icSEosAbHYniFk8Rxyv5NWZdP9qrNtCTF0ArfB6UMZH5UR1Y+uuNZlBDv9Tqpy5GznYdpNY5rfsOBFGgGSo/xFTiqEJwLmNyYTP89/+w7cQh0nPkvE9aUNj4h8OLgj/+Bq0tr7D/4wDKNeG3jbOcY6b1Tr0p6X29A8zPUHEbzIcQLealO5YMCR0SQrgT88SlZeSE/tWlzUiiEJD9Ed3wFgcKW46c3DjPP6W8iwEfsO/t/grhn7f2zJudPzV4NYHNZrCFJZvMDs5i3vz8OjBOTE3+MQR7CHS9NSrkDlWjyna5u97Smm5vw99aABtivrHTPtuqkOj5t5abRdQDXuJZhBA/cfc0fdxoiOl4A9fuhduLC
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4401.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-06-23T14:50:44.893Z;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
+ Distribution
+ Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [71.219.51.205]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 7ef93bab-3f0a-4912-e76c-08d81784cf4f
+x-ms-traffictypediagnostic: MN2PR12MB4488:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MN2PR12MB4488C20B97308998DD38E36AF7940@MN2PR12MB4488.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:182;
+x-forefront-prvs: 04433051BF
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0UVpkdkpV9G08aD/zFJoX1mpt6uQEhNh3ZuEv1yWb5kquFHY5KGz1DmYKJ1qp+8fPEpllBqsabQAh9GfAT9aoovXNBS+mkQiNYkQTaVRTBKmHJwQfSl4dQIahFTLuTwZlCF8L7vC0Y0xhzQ3k3/524Hh52ssPxTvbqG8GU5DbAIYV3rvPyXjwaTAurwG8QLPjcvL9MCnGcqm8S97/nK3k4PPdp3vTljThBz7yF3l240r0S1o4eWkB3B7Tv8jXPwCX/C6XmQm20CXPdTSreKB5yxSjY2q1f2cXSJFGfA3kiZkYaJkwb22yyBsXs08M8Cc9dZwJ/Cc2mzsF10MKE3J4lSicVSpZUTgak3TwWao81s=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(346002)(136003)(396003)(39860400002)(366004)(110136005)(83380400001)(6666004)(8676002)(54906003)(53546011)(6486002)(316002)(16526019)(31686004)(52116002)(2906002)(186003)(478600001)(5660300002)(4326008)(66946007)(86362001)(66556008)(8936002)(36756003)(2616005)(31696002)(66476007)(43740500002);
+ SFS:(4636009)(396003)(136003)(39860400002)(366004)(346002)(376002)(2906002)(316002)(19627405001)(33656002)(55016002)(9686003)(186003)(26005)(7696005)(53546011)(6506007)(86362001)(8676002)(66946007)(76116006)(64756008)(66446008)(66476007)(66556008)(5660300002)(478600001)(52536014)(83380400001)(71200400001)(966005)(110136005)(4326008)(8936002)(166002)(45080400002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: qEVoTj/ah8q4TUHrnkh2qXuqJFdBlebyBlBTtPxK1L47lSi/I3ggTQ9UZw+vQYMubHxbHMkHYa7v83TatD4QVkqIofmVbUmJBUJ7VF80cOx/eFcucVvIhJ/qBky6oN7P+1AJ27XHrk2RggsSW0mXVH5CP7pIcfXFi4mehjdYhIB2VfZRVWtY44HsgMPWO345vZa5bQqgRn+jOEC6IXiYNJX0adQKJCzkdkqLpDITdCRkPYO8A2dE+X02bBEkM6lkum2EOXUbpJ82w9cSQOrBlV6W+27v1ZWtVeemU2j8FToWhJf9CD7rBZNFN1U2dov0nbf1QC69OsPkdm2hrCTH2A+QyReAzd/Sp3huQn8xH9vKCSqt2zgakN82uzUFPwDWpz7xRQx6499Pe9JhCBly1zFHKot4LKv8xWzNaMEGWbNDZ7UwiuioCggk5vbcN4+EOWIR5gJC3C0P71s82adZ+V2IS4CLTzuyR6lvhXnT9HmJElgXvtyAKnaRfWXGRtyYKlSvKblKIzSpnInxiLM6fE6+zpDi87yi3Jh7SAfd7Tf/xkHDW3nsBYTij4GtSj0f
+x-ms-exchange-antispam-messagedata: B41sXiEPfRYTqOyLbRQdGlpETv/O4ng1Uz6oPEY3O/GQ+XhIMsmfsCzl43wuVTKPO8WmlH95BCM1gRAT/bMrb+z4gGVR/et2aSDX6ofxUDF7CuRwnOCNxc2swuf7d+jG93A96w7CiGfoLVc7a3mFJ5ZyML6mFR9+sqdFEo9qbuu0WD2bFXfng400QdJ8pWL8tIFJU4889AmQG8bCP9Qp0qz3YqKBCSuBE1BWCC9RAXvecdJ8g0ebk+JvNWbZnyQdpXrORjr8Akn7dFdXudjU0DrlBNMprUqVAwv5Z4VZQ0kr0JhAxcFwuhDBxSc4LVB83bi9tPtvcGUWQ9+shnoKj5wbKwrnkP5/WBJ2teyFUxgGiEBChPuta15K0l/7dS5ZcBOEpoq0IHpKq6uLaK48ZEAfg+ROpnht1uf+BFSOJTBfJfjm8s7UgCZFICkViULTURfHxHhp7HzgEDZ/7KT552a9Siwm2yWg/WYpX73DFzxxWad9zSqIA6eyDYakpupy
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26c4af61-028e-4477-7cc5-08d817779e08
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2020 13:16:19.5735 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FfO8fQszEHP0jfw/4+81Y/JiHC+tCk8pB3sfRyPvJGcs3GpOjDr0RgUZuCzbPE28
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4204
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ef93bab-3f0a-4912-e76c-08d81784cf4f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2020 14:50:45.3400 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /vjQW6by3OODEssYi4kB0JkuEVq+gHwdd48PVrZP+TGbjAavnkEeECpXMInOreUP6dGNM+Pwrn4iIG9jlkdnrQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4488
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,49 +100,269 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Pekka Paalanen <ppaalanen@gmail.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "Das, Nirmoy" <Nirmoy.Das@amd.com>
+Content-Type: multipart/mixed; boundary="===============1705005575=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjMuMDYuMjAgdW0gMTI6MjIgc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+IE9uIE1vbiwgSnVu
-IDIyLCAyMDIwIGF0IDAzOjQ4OjI5UE0gLTA0MDAsIEFsZXggRGV1Y2hlciB3cm90ZToKPj4gT24g
-TW9uLCBKdW4gMjIsIDIwMjAgYXQgMzozOCBQTSBDaHJpc3RpYW4gS8O2bmlnCj4+IDxja29lbmln
-LmxlaWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4+PiBBbSAyMS4wNi4yMCB1bSAwODow
-MyBzY2hyaWViIEFuZHJleSBHcm9kem92c2t5Ogo+Pj4+IFVzZSB0aGUgbmV3IFRUTSBpbnRlcmZh
-Y2UgdG8gaW52YWxpZGF0ZSBhbGwgZXhzaXN0aW5nIEJPIENQVSBtYXBwaW5ncwo+Pj4+IGZvcm0g
-YWxsIHVzZXIgcHJvY2Nlc3Nlcy4KPj4+Pgo+Pj4+IFNpZ25lZC1vZmYtYnk6IEFuZHJleSBHcm9k
-em92c2t5IDxhbmRyZXkuZ3JvZHpvdnNreUBhbWQuY29tPgo+Pj4gUmV2aWV3ZWQtYnk6IENocmlz
-dGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPj4+Cj4+PiBJIHRoaW5rIHRo
-b3NlIHR3byBwYXRjaGVzIGNvdWxkIGFscmVhZHkgbGFuZCBpbiBhbWQtc3RhZ2luZy1kcm0tbmV4
-dAo+Pj4gc2luY2UgdGhleSBhcmUgYSBnb29kIGlkZWEgaW5kZXBlbmRlbnQgb2YgaG93IGVsc2Ug
-d2UgZml4IHRoZSBvdGhlciBpc3N1ZXMuCj4+IFBsZWFzZSBtYWtlIHN1cmUgdGhleSBsYW5kIGlu
-IGRybS1taXNjIGFzIHdlbGwuCj4gTm90IHN1cmUgdGhhdCdzIG11Y2ggdXNlLCBzaW5jZSB3aXRo
-b3V0IGFueSBvZiB0aGUgZmF1bHQgc2lkZSBjaGFuZ2VzIHlvdQo+IGp1c3QgYmxvdyB1cCBvbiB0
-aGUgZmlyc3QgcmVmYXVsdC4gU2VlbXMgc29tZXdoYXQgc2lsbHkgdG8gY2hhcmdlIGFoZWFkIG9u
-Cj4gdGhpcyB3aXRoIHRoZSBvdGhlciBiaXRzIHN0aWxsIHZlcnkgbXVjaCB1bmRlciBkaXNjdXNz
-aW9uLgoKV2VsbCB3aGF0IEkgd2FudGVkIHRvIHNheSBpcyB0aGF0IHdlIGRvbid0IG5lZWQgdG8g
-c2VuZCBvdXQgdGhvc2Ugc2ltcGxlIApwYXRjaGVzIG9uY2UgbW9yZS4KCj4gUGx1cyBJIHN1Z2dl
-c3RlZCBhIHBvc3NpYmxlIGJpa2VzaGVkIGhlcmUgOi0pCgpObyBiaWtlc2hlZCwgYnV0IGluZGVl
-ZCBhIHJhdGhlciBnb29kIGlkZWEgdG8gbm90IG1ha2UgdGhpcyBhIFRUTSBmdW5jdGlvbi4KCkNo
-cmlzdGlhbi4KCj4gLURhbmllbAo+Cj4+IEFsZXgKPj4KPj4+PiAtLS0KPj4+PiAgICBkcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2LmMgfCAxICsKPj4+PiAgICAxIGZpbGUgY2hh
-bmdlZCwgMSBpbnNlcnRpb24oKykKPj4+Pgo+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
-bWRncHVfZHJ2LmMKPj4+PiBpbmRleCA0MzU5MmRjLi42OTMyZDc1IDEwMDY0NAo+Pj4+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYwo+Pj4+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYwo+Pj4+IEBAIC0xMTM1LDYgKzExMzUs
-NyBAQCBhbWRncHVfcGNpX3JlbW92ZShzdHJ1Y3QgcGNpX2RldiAqcGRldikKPj4+PiAgICAgICAg
-c3RydWN0IGRybV9kZXZpY2UgKmRldiA9IHBjaV9nZXRfZHJ2ZGF0YShwZGV2KTsKPj4+Pgo+Pj4+
-ICAgICAgICBkcm1fZGV2X3VucGx1ZyhkZXYpOwo+Pj4+ICsgICAgIHR0bV9ib191bm1hcF92aXJ0
-dWFsX2FkZHJlc3Nfc3BhY2UoJmFkZXYtPm1tYW4uYmRldik7Cj4+Pj4gICAgICAgIGFtZGdwdV9k
-cml2ZXJfdW5sb2FkX2ttcyhkZXYpOwo+Pj4+Cj4+Pj4gICAgICAgIHBjaV9kaXNhYmxlX2Rldmlj
-ZShwZGV2KTsKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+--===============1705005575==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB44887914BD44D23BA9D6ACDEF7940MN2PR12MB4488namp_"
+
+--_000_MN2PR12MB44887914BD44D23BA9D6ACDEF7940MN2PR12MB4488namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+[AMD Official Use Only - Internal Distribution Only]
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Nirmoy D=
+as <nirmoy.aiemd@gmail.com>
+Sent: Tuesday, June 23, 2020 5:43 AM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Das, Nirmoy <Nirmoy.Das@amd.com>
+Subject: [PATCH 1/1] drm/amd/powerplay: return current DCEFCLK on sysfs rea=
+d
+
+This fixes incorrect output when reading pp_dpm_dcefclk sysfs.
+
+Output before this patch:
+cat /sys/devices/pci0000:<snip>/pp_dpm_dcefclk
+0: 506Mhz
+1: 42949671Mhz *
+2: 1266Mhz
+
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+---
+ drivers/gpu/drm/amd/powerplay/arcturus_ppt.c       | 3 +++
+ drivers/gpu/drm/amd/powerplay/navi10_ppt.c         | 3 +++
+ drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c | 3 +++
+ 3 files changed, 9 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm=
+/amd/powerplay/arcturus_ppt.c
+index d93f8a43a96f..daeae14fd380 100644
+--- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+@@ -962,6 +962,9 @@ static int arcturus_get_smu_metrics_data(struct smu_con=
+text *smu,
+         case METRICS_CURR_FCLK:
+                 *value =3D metrics->CurrClock[PPCLK_FCLK];
+                 break;
++       case METRICS_CURR_DCEFCLK:
++               *value =3D metrics->CurrClock[PPCLK_DCEFCLK];
++               break;
+         case METRICS_AVERAGE_GFXCLK:
+                 *value =3D metrics->AverageGfxclkFrequency;
+                 break;
+diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
+md/powerplay/navi10_ppt.c
+index 6c2f582bad5d..42ade9df0d6a 100644
+--- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+@@ -613,6 +613,9 @@ static int navi10_get_smu_metrics_data(struct smu_conte=
+xt *smu,
+         case METRICS_CURR_DCLK:
+                 *value =3D metrics->CurrClock[PPCLK_DCLK];
+                 break;
++       case METRICS_CURR_DCEFCLK:
++               *value =3D metrics->CurrClock[PPCLK_DCEFCLK];
++               break;
+         case METRICS_AVERAGE_GFXCLK:
+                 *value =3D metrics->AverageGfxclkFrequency;
+                 break;
+diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/g=
+pu/drm/amd/powerplay/sienna_cichlid_ppt.c
+index 0957957a2cf5..1378dabb6463 100644
+--- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+@@ -605,6 +605,9 @@ static int sienna_cichlid_get_smu_metrics_data(struct s=
+mu_context *smu,
+         case METRICS_CURR_DCLK1:
+                 *value =3D metrics->CurrClock[PPCLK_DCLK_1];
+                 break;
++       case METRICS_CURR_DCEFCLK:
++               *value =3D metrics->CurrClock[PPCLK_DCEFCLK];
++               break;
+         case METRICS_AVERAGE_GFXCLK:
+                 *value =3D metrics->AverageGfxclkFrequency;
+                 break;
+--
+2.27.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
+reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D02%7C01%7Calexande=
+r.deucher%40amd.com%7C75a22f8a1b564c09bc9508d81759b036%7C3dd8961fe4884e608e=
+11a82d994e183d%7C0%7C0%7C637285021304836731&amp;sdata=3DVHh%2BYyp5tQBvIut5K=
+Lmb963jJnk%2BILJKF1I5BffqsF8%3D&amp;reserved=3D0
+
+--_000_MN2PR12MB44887914BD44D23BA9D6ACDEF7940MN2PR12MB4488namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
+ign=3D"Left">
+[AMD Official Use Only - Internal Distribution Only]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Nirmoy Das &lt;nirmoy.aiemd@g=
+mail.com&gt;<br>
+<b>Sent:</b> Tuesday, June 23, 2020 5:43 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Das, Nirmoy &lt;Nirmoy.Das@amd.com&gt;<br>
+<b>Subject:</b> [PATCH 1/1] drm/amd/powerplay: return current DCEFCLK on sy=
+sfs read</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">This fixes incorrect output when reading pp_dpm_dc=
+efclk sysfs.<br>
+<br>
+Output before this patch:<br>
+cat /sys/devices/pci0000:&lt;snip&gt;/pp_dpm_dcefclk<br>
+0: 506Mhz<br>
+1: 42949671Mhz *<br>
+2: 1266Mhz<br>
+<br>
+Signed-off-by: Nirmoy Das &lt;nirmoy.das@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/arcturus_ppt.c&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; | 3 &#43;&#43;&#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/navi10_ppt.c&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; | 3 &#43;&#43;&#43;<br>
+&nbsp;drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c | 3 &#43;&#43;&#43=
+;<br>
+&nbsp;3 files changed, 9 insertions(&#43;)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm=
+/amd/powerplay/arcturus_ppt.c<br>
+index d93f8a43a96f..daeae14fd380 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c<br>
+@@ -962,6 &#43;962,9 @@ static int arcturus_get_smu_metrics_data(struct smu=
+_context *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case METRICS_CURR_FCLK:<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *value =3D metrics-&gt;CurrClock[PPCLK_FCLK];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case METRICS_CURR_DCEFCLK:<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; *value =3D metrics-&gt;CurrClock[PPCLK_DCEFCLK];<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case METRICS_AVERAGE_GFXCL=
+K:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *value =3D metrics-&gt;AverageGfxclkFrequency;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
+md/powerplay/navi10_ppt.c<br>
+index 6c2f582bad5d..42ade9df0d6a 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
+@@ -613,6 &#43;613,9 @@ static int navi10_get_smu_metrics_data(struct smu_c=
+ontext *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case METRICS_CURR_DCLK:<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *value =3D metrics-&gt;CurrClock[PPCLK_DCLK];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case METRICS_CURR_DCEFCLK:<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; *value =3D metrics-&gt;CurrClock[PPCLK_DCEFCLK];<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case METRICS_AVERAGE_GFXCL=
+K:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *value =3D metrics-&gt;AverageGfxclkFrequency;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/g=
+pu/drm/amd/powerplay/sienna_cichlid_ppt.c<br>
+index 0957957a2cf5..1378dabb6463 100644<br>
+--- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c<br>
+&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c<br>
+@@ -605,6 &#43;605,9 @@ static int sienna_cichlid_get_smu_metrics_data(stru=
+ct smu_context *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case METRICS_CURR_DCLK1:<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *value =3D metrics-&gt;CurrClock[PPCLK_DCLK_1];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case METRICS_CURR_DCEFCLK:<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; *value =3D metrics-&gt;CurrClock[PPCLK_DCEFCLK];<br>
+&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case METRICS_AVERAGE_GFXCL=
+K:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *value =3D metrics-&gt;AverageGfxclkFrequency;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+-- <br>
+2.27.0<br>
+<br>
+_______________________________________________<br>
+amd-gfx mailing list<br>
+amd-gfx@lists.freedesktop.org<br>
+<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
+F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%=
+7C01%7Calexander.deucher%40amd.com%7C75a22f8a1b564c09bc9508d81759b036%7C3dd=
+8961fe4884e608e11a82d994e183d%7C0%7C0%7C637285021304836731&amp;amp;sdata=3D=
+VHh%2BYyp5tQBvIut5KLmb963jJnk%2BILJKF1I5BffqsF8%3D&amp;amp;reserved=3D0">ht=
+tps://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.fre=
+edesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D02%7C01%7Calexan=
+der.deucher%40amd.com%7C75a22f8a1b564c09bc9508d81759b036%7C3dd8961fe4884e60=
+8e11a82d994e183d%7C0%7C0%7C637285021304836731&amp;amp;sdata=3DVHh%2BYyp5tQB=
+vIut5KLmb963jJnk%2BILJKF1I5BffqsF8%3D&amp;amp;reserved=3D0</a><br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_MN2PR12MB44887914BD44D23BA9D6ACDEF7940MN2PR12MB4488namp_--
+
+--===============1705005575==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1705005575==--
