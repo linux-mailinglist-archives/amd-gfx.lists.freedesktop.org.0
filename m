@@ -1,60 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B68205723
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 18:25:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6CD2057F7
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2020 18:56:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32EBE6E433;
-	Tue, 23 Jun 2020 16:25:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D5B86EA0C;
+	Tue, 23 Jun 2020 16:56:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com
- [IPv6:2a00:1450:4864:20::643])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AAD76E433
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 16:25:08 +0000 (UTC)
-Received: by mail-ej1-x643.google.com with SMTP id a1so8214038ejg.12
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 09:25:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=eY/PFi8pMcazGvnnDrWrlScfNnxXv/DI4amy1GdyV68=;
- b=pwdGkfKQZdSXFmlLsiarX6nrv+P8bRR6HHC9/hkUKboY590lpf0DrJ/fS/3e1pq+bb
- n6gOoJRkRTz6RpLJM6RJPrHFMCwmN85FFxIvOpZVM9nLWgWdQxF6KbhR5LbwpgY0Ek5u
- kGmPEBnTsgfo9Bwe7v4K13gkrd7vdYuacDJSIh9HeOGE2uvmQoEt7UnYImuQiFF8ojwm
- Ex/MdMWHIvJbc+o2UdObK/Z1eG6rZs4+w15DUwSUgeFMewFPy/sUgJFHvNewy42ViZD4
- g4a0W/9Y9+7uiNxtuNF+AoWpNPuBHFwaOwwjlrPvtN90c+sun+0Ot8JSU4rd9LapIR3H
- pDsA==
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 125CD6E9FC
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 16:18:02 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id h23so8702846qtr.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2020 09:18:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lca.pw; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=SowX6r/DrbyMyIPo7bbmN6dCO4WOaZBpx8lXkNiYwRQ=;
+ b=q5PXizvouRcfNA2W9Djqc/Z84L8gq+5xyPGe7rkAVVUXYo0XRUHAEI4yVuKgTSfgc9
+ RoYCG4UkEgCC9vVO+IYyrz7JORXpNUWmlzMkIni2Vfw9kxBsp2K+YgamdfZElTJuJZTW
+ bbafUUDUQEhd51JcrBKUA9xHz8S+ZvnGFC/bx4j/zd/tIY4JT4nqabnA6jtnfro4Yx69
+ YevfddRvEKhgwHMyV0hQh6x3L1BXH3reCRQkEUr6zmcuCWOBikrw37RohUhW9xkrCqv7
+ nLIezDVzEaNlXEnFqrM5wDtOVHCyOyKL9todYtNNNUOatrNgrkdDPEXpNyPANNjAfT9T
+ s5yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=eY/PFi8pMcazGvnnDrWrlScfNnxXv/DI4amy1GdyV68=;
- b=ZZs7f32YAWDBLeWpm4dzmxx+Y1FDElxfkCWgvNJIaGcVNQ4z8XOo4XHKvxKZvnokxs
- UDdolH/32EiWjSCALWXNNlif/rcqH7DSIUQW7gOjxzbw/DOP7pPGQuYj31Ukweoez49n
- M/f7UVBkeFCp0tmu2SO/cYJbcm7N1aVE43lO2cpfzdK6O7OFIRkK0w9Yf78DIDo6WXIz
- 9oZLpv3qZXZBlNliQv2NPMLmOgxWNEUVzk8cK/EO0dgBxalJCHKJ7+r0SD0g+g0IsQpn
- 3o35Yb6BjxTxIO5YB0CG7kMrHeo0ZHaNQjN4A5KzT/feADxP7GD/66cjhEyhIcYvN8Kw
- DMzQ==
-X-Gm-Message-State: AOAM530HYAJW96dRzj4BQjB1bYiPolOv5MjHJ8sQHgdrEGqIdUgFp3tR
- ze6yXOGjWP9tKobK7ET57SMlx6M5HZx4hA==
-X-Google-Smtp-Source: ABdhPJyiWv7rEAkAjA8LkjiU04VjpZXRf1/QT2Grbadk4evvaOJVIppgMffwF4JTM3QLjNZig26jdQ==
-X-Received: by 2002:a17:906:7212:: with SMTP id
- m18mr20961636ejk.29.1592929506223; 
- Tue, 23 Jun 2020 09:25:06 -0700 (PDT)
-Received: from brihaspati.fritz.box (pd956781a.dip0.t-ipconnect.de.
- [217.86.120.26])
- by smtp.gmail.com with ESMTPSA id a2sm4281748ejg.76.2020.06.23.09.25.05
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=SowX6r/DrbyMyIPo7bbmN6dCO4WOaZBpx8lXkNiYwRQ=;
+ b=X5aG9Y9z2mwyhu9f6kkn+Wqp5g/IA8gL1xaGyyNWJ5fTFRLvyLK6cP85XOaU86esDc
+ L8BWXJs2Ejigf6XDOD1LarzcWZ3jDX28q9njww6yGFjUN/S5Uq2ZN8ua3hWL4VjnevSq
+ awj9DK4COhpAQ9kvqUJwHrkRLWc3YTmERFtXHbQx39TOytKr98dImLZyuAaWgr/rgm4K
+ ME77D9xFuIQUw4l6iTjkbN/3k0BkZT5bZ9Iccbv5PYOh+BEzkm/sBrk4GvCGIYdjP/hw
+ HQK6F1shAh2DfR8CJYZMjOzvqHIclM8w2uBvK7nK1IlDm2tB+x0YFLS8i6jn96/fJtTD
+ NT2w==
+X-Gm-Message-State: AOAM5308mwrj7e14rcYv0lMvvWRV0JMf8h0MoX9X7t9dNc6NVSPJhEzn
+ J8BEsfyGktIao/47PVhxDJ+viMXqvxWw5A==
+X-Google-Smtp-Source: ABdhPJy2/MUFYS3DJu96XPGFYPvGEfp9/cvT3JQEnV1SM172gUGWrPZ+0/Xawft3xZIbg4oUrttvEg==
+X-Received: by 2002:ac8:4448:: with SMTP id m8mr22935603qtn.4.1592929081912;
+ Tue, 23 Jun 2020 09:18:01 -0700 (PDT)
+Received: from lca.pw (pool-71-184-117-43.bstnma.fios.verizon.net.
+ [71.184.117.43])
+ by smtp.gmail.com with ESMTPSA id d140sm966654qkc.22.2020.06.23.09.18.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 23 Jun 2020 09:25:05 -0700 (PDT)
-From: Nirmoy Das <nirmoy.aiemd@gmail.com>
-X-Google-Original-From: Nirmoy Das <nirmoy.das@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/1] drm/amdgpu: call release_firmware() without a NULL check
-Date: Tue, 23 Jun 2020 18:26:37 +0200
-Message-Id: <20200623162637.26011-1-nirmoy.das@amd.com>
-X-Mailer: git-send-email 2.27.0
+ Tue, 23 Jun 2020 09:18:01 -0700 (PDT)
+Date: Tue, 23 Jun 2020 12:17:54 -0400
+From: Qian Cai <cai@lca.pw>
+To: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH] mm: Track mmu notifiers in fs_reclaim_acquire/release
+Message-ID: <20200623161754.GA1140@lca.pw>
+References: <20200604081224.863494-2-daniel.vetter@ffwll.ch>
+ <20200610194101.1668038-1-daniel.vetter@ffwll.ch>
+ <20200621174205.GB1398@lca.pw>
+ <CAKMK7uFZAFVmceoYvqPovOifGw_Y8Ey-OMy6wioMjwPWhu9dDg@mail.gmail.com>
+ <20200621200103.GV20149@phenom.ffwll.local>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200621200103.GV20149@phenom.ffwll.local>
+X-Mailman-Approved-At: Tue, 23 Jun 2020 16:56:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,131 +72,149 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@amd.com>, christian.koenig@amd.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-xfs@vger.kernel.org, Linux MM <linux-mm@kvack.org>,
+ Jason Gunthorpe <jgg@mellanox.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas_os@shipmail.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The release_firmware() function is NULL tolerant so we do not need
-to check for NULL param before calling it.
+On Sun, Jun 21, 2020 at 10:01:03PM +0200, Daniel Vetter wrote:
+> On Sun, Jun 21, 2020 at 08:07:08PM +0200, Daniel Vetter wrote:
+> > On Sun, Jun 21, 2020 at 7:42 PM Qian Cai <cai@lca.pw> wrote:
+> > >
+> > > On Wed, Jun 10, 2020 at 09:41:01PM +0200, Daniel Vetter wrote:
+> > > > fs_reclaim_acquire/release nicely catch recursion issues when
+> > > > allocating GFP_KERNEL memory against shrinkers (which gpu drivers t=
+end
+> > > > to use to keep the excessive caches in check). For mmu notifier
+> > > > recursions we do have lockdep annotations since 23b68395c7c7
+> > > > ("mm/mmu_notifiers: add a lockdep map for invalidate_range_start/en=
+d").
+> > > >
+> > > > But these only fire if a path actually results in some pte
+> > > > invalidation - for most small allocations that's very rarely the ca=
+se.
+> > > > The other trouble is that pte invalidation can happen any time when
+> > > > __GFP_RECLAIM is set. Which means only really GFP_ATOMIC is a safe
+> > > > choice, GFP_NOIO isn't good enough to avoid potential mmu notifier
+> > > > recursion.
+> > > >
+> > > > I was pondering whether we should just do the general annotation, b=
+ut
+> > > > there's always the risk for false positives. Plus I'm assuming that
+> > > > the core fs and io code is a lot better reviewed and tested than
+> > > > random mmu notifier code in drivers. Hence why I decide to only
+> > > > annotate for that specific case.
+> > > >
+> > > > Furthermore even if we'd create a lockdep map for direct reclaim, w=
+e'd
+> > > > still need to explicit pull in the mmu notifier map - there's a lot
+> > > > more places that do pte invalidation than just direct reclaim, these
+> > > > two contexts arent the same.
+> > > >
+> > > > Note that the mmu notifiers needing their own independent lockdep m=
+ap
+> > > > is also the reason we can't hold them from fs_reclaim_acquire to
+> > > > fs_reclaim_release - it would nest with the acquistion in the pte
+> > > > invalidation code, causing a lockdep splat. And we can't remove the
+> > > > annotations from pte invalidation and all the other places since
+> > > > they're called from many other places than page reclaim. Hence we c=
+an
+> > > > only do the equivalent of might_lock, but on the raw lockdep map.
+> > > >
+> > > > With this we can also remove the lockdep priming added in 66204f1d2=
+d1b
+> > > > ("mm/mmu_notifiers: prime lockdep") since the new annotations are
+> > > > strictly more powerful.
+> > > >
+> > > > v2: Review from Thomas Hellstrom:
+> > > > - unbotch the fs_reclaim context check, I accidentally inverted it,
+> > > >   but it didn't blow up because I inverted it immediately
+> > > > - fix compiling for !CONFIG_MMU_NOTIFIER
+> > > >
+> > > > Cc: Thomas Hellstr=F6m (Intel) <thomas_os@shipmail.org>
+> > > > Cc: Andrew Morton <akpm@linux-foundation.org>
+> > > > Cc: Jason Gunthorpe <jgg@mellanox.com>
+> > > > Cc: linux-mm@kvack.org
+> > > > Cc: linux-rdma@vger.kernel.org
+> > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > Cc: Christian K=F6nig <christian.koenig@amd.com>
+> > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > >
+> > > Replying the right patch here...
+> > >
+> > > Reverting this commit [1] fixed the lockdep warning below while apply=
+ing
+> > > some memory pressure.
+> > >
+> > > [1] linux-next cbf7c9d86d75 ("mm: track mmu notifiers in fs_reclaim_a=
+cquire/release")
+> > =
 
-Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c        |  6 ++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c           |  6 ++----
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c            |  4 ++--
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c            |  4 ++--
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c            |  4 ++--
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 ++++--------
- 6 files changed, 14 insertions(+), 22 deletions(-)
+> > Hm, then I'm confused because
+> > - there's not mmut notifier lockdep map in the splat at a..
+> > - the patch is supposed to not change anything for fs_reclaim (but the
+> > interim version got that wrong)
+> > - looking at the paths it's kmalloc vs kswapd, both places I totally
+> > expect fs_reflaim to be used.
+> > =
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 2858c09fd8c0..a649e40fd96f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3380,10 +3380,8 @@ void amdgpu_device_fini(struct amdgpu_device *adev)
- 		amdgpu_pm_sysfs_fini(adev);
- 	amdgpu_fbdev_fini(adev);
- 	r = amdgpu_device_ip_fini(adev);
--	if (adev->firmware.gpu_info_fw) {
--		release_firmware(adev->firmware.gpu_info_fw);
--		adev->firmware.gpu_info_fw = NULL;
--	}
-+	release_firmware(adev->firmware.gpu_info_fw);
-+	adev->firmware.gpu_info_fw = NULL;
- 	adev->accel_working = false;
- 	/* free i2c buses */
- 	if (!amdgpu_device_has_dc_support(adev))
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index 0723dee2958b..9342a9e8cadf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -196,10 +196,8 @@ static int psp_sw_fini(void *handle)
- 	adev->psp.sos_fw = NULL;
- 	release_firmware(adev->psp.asd_fw);
- 	adev->psp.asd_fw = NULL;
--	if (adev->psp.ta_fw) {
--		release_firmware(adev->psp.ta_fw);
--		adev->psp.ta_fw = NULL;
--	}
-+	release_firmware(adev->psp.ta_fw);
-+	adev->psp.ta_fw = NULL;
- 
- 	if (adev->asic_type == CHIP_NAVI10)
- 		psp_sysfs_fini(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-index 58382646d962..2985c61bc6a1 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-@@ -559,8 +559,8 @@ static void sdma_v4_0_destroy_inst_ctx(struct amdgpu_device *adev)
- 	int i;
- 
- 	for (i = 0; i < adev->sdma.num_instances; i++) {
--		if (adev->sdma.instance[i].fw != NULL)
--			release_firmware(adev->sdma.instance[i].fw);
-+		release_firmware(adev->sdma.instance[i].fw);
-+		adev->sdma.instance[i].fw = NULL;
- 
- 		/* arcturus shares the same FW memory across
- 		   all SDMA isntances */
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-index 6751ad69ed90..1baeddf2f1e6 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-@@ -1300,8 +1300,8 @@ static int sdma_v5_0_sw_fini(void *handle)
- 	int i;
- 
- 	for (i = 0; i < adev->sdma.num_instances; i++) {
--		if (adev->sdma.instance[i].fw != NULL)
--			release_firmware(adev->sdma.instance[i].fw);
-+		release_firmware(adev->sdma.instance[i].fw);
-+		adev->sdma.instance[i].fw = NULL;
- 
- 		amdgpu_ring_fini(&adev->sdma.instance[i].ring);
- 	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-index 95751e7bdfe8..318d32e2bbf6 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-@@ -115,8 +115,8 @@ static void sdma_v5_2_destroy_inst_ctx(struct amdgpu_device *adev)
- 	int i;
- 
- 	for (i = 0; i < adev->sdma.num_instances; i++) {
--		if (adev->sdma.instance[i].fw != NULL)
--			release_firmware(adev->sdma.instance[i].fw);
-+		release_firmware(adev->sdma.instance[i].fw);
-+		adev->sdma.instance[i].fw = NULL;
- 
- 		if (adev->asic_type == CHIP_SIENNA_CICHLID)
- 			break;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 3badf685338f..4767f9ea0352 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1318,15 +1318,11 @@ static int dm_sw_fini(void *handle)
- 		adev->dm.dmub_srv = NULL;
- 	}
- 
--	if (adev->dm.dmub_fw) {
--		release_firmware(adev->dm.dmub_fw);
--		adev->dm.dmub_fw = NULL;
--	}
-+	release_firmware(adev->dm.dmub_fw);
-+	adev->dm.dmub_fw = NULL;
- 
--	if(adev->dm.fw_dmcu) {
--		release_firmware(adev->dm.fw_dmcu);
--		adev->dm.fw_dmcu = NULL;
--	}
-+	release_firmware(adev->dm.fw_dmcu);
-+	adev->dm.fw_dmcu = NULL;
- 
- 	return 0;
- }
--- 
-2.27.0
+> > But you're claiming reverting this prevents the lockdep splat. If
+> > that's right, then my reasoning above is broken somewhere. Someone
+> > less blind than me having an idea?
+> > =
 
+> > Aside this is the first email I've typed, until I realized the first
+> > report was against the broken patch and that looked like a much more
+> > reasonable explanation (but didn't quite match up with the code
+> > paths).
+> =
+
+> Below diff should undo the functional change in my patch. Can you pls test
+> whether the lockdep splat is really gone with that? Might need a lot of
+> testing and memory pressure to be sure, since all these reclaim paths
+> aren't very deterministic.
+
+No, this patch does not help but reverting the whole patch still fixed
+the splat.
+
+> -Daniel
+> =
+
+> ---
+> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+> index d807587c9ae6..27ea763c6155 100644
+> --- a/mm/page_alloc.c
+> +++ b/mm/page_alloc.c
+> @@ -4191,11 +4191,6 @@ void fs_reclaim_acquire(gfp_t gfp_mask)
+>  		if (gfp_mask & __GFP_FS)
+>  			__fs_reclaim_acquire();
+>  =
+
+> -#ifdef CONFIG_MMU_NOTIFIER
+> -		lock_map_acquire(&__mmu_notifier_invalidate_range_start_map);
+> -		lock_map_release(&__mmu_notifier_invalidate_range_start_map);
+> -#endif
+> -
+>  	}
+>  }
+>  EXPORT_SYMBOL_GPL(fs_reclaim_acquire);
+> -- =
+
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
