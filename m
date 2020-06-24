@@ -2,91 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38BAF207594
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2020 16:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5F6820759E
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2020 16:23:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7CF689DC1;
-	Wed, 24 Jun 2020 14:21:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19A1D89DC1;
+	Wed, 24 Jun 2020 14:23:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2089.outbound.protection.outlook.com [40.107.223.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CD6089DC1
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 14:21:41 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2075.outbound.protection.outlook.com [40.107.220.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4786C89DC1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2020 14:23:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q/PyVMqV8D/h+ojswgZNgqR2w3jbh29TUPHR+Xw9fLjzTTGxhKpRZa3FZiZ2P0T1Qbv2aZDyQhYH4n1tl1LoR9r2agLmE5MLnKrfWRN3u7sRXDjf5CIli+i5sSOOfRWZczfV8lPaGo3515ESAxfs2uzfkpPdua1TjdBz2zR+TUW497DastgRh0bY0VSidSCNfqQ1D+gG2a/VNhTnEsr5i9OlLWxm80rP8H77ovS4DzhLGoj6QnB6aveFhpY7wDbHmmhB6nkR+GOpWwqkDqqO/LMvMCKSKB/bUQwcTFyo9LXJKxQgCHcWRnoOILXiO9kpDEXrteIIVT71fNmHzlNhgA==
+ b=G0O30b1yBSwdY/ZldcTXUdv573+nkqPzmJnhKpvPv5v+VlB3bP+4UveFef+bTR6d+uwezDQbe3Ivvq3pAKVvdrAypVKpi4ZWiSYzbRfY5LGtp5+zHlUwislCzmQr9Zj0QlsHAOatmD8N52XdBI4fRwlfS+IFiSoV/dSDHgtbu1KVEQ4h50p+9w8bwHeiy1bC3iih5nyCpGQoEOOq2u2LWSnFBghYq48utfm3O5fmPUmyUM71UZUVHkn5jtZvSFUfHRMTAMJuWvwJa8hU3sGCr3HgiX6mNdjv0bMyuGQEve2waEUJOazvJGQ/Rxwc8O/S0MLm6SFPJTd7UojVF+ZS+w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4IENfkOr35mNDipFVt5TZuetxwnOU1SPM+W8Db5nBAk=;
- b=QsuMXwuQDYhjyXeiZ7gbywZAi61s8DfWUUx3X/xLEE0bGB1mzWpx18+S8qg+IvC1JbBBqiWuR3uHiq57kRv0yDBqCywK2+QuUsfvyaLmR0bbQhUsSJqJH+hhp0s7luUiBWBNnz1zwoxEJv77ZXe/nsn4/vPmkBFo4K2pMWrRttbEa+4Boiri44v8gaGK4H4qs7JaDWfMeXvx2P5uh2cLT8XTKXJKkDFzR7ID+eIo/2G4QiisiJRkvEe3cfygaSwG/dvzvmT9MR4R//5j3A41406VjWO0FxkxXi0gi+MeqOYHnaOQdGM/F2E+ZMZmpNDxDuI1/JQcplq0TK0oQO4RRg==
+ bh=60/dUZS0aXytv+1HtNvILTa5SrMX2DAfIjZFcw3cjbM=;
+ b=h6I7a6mCjw0RAXpIZvTlYd0haE46milFORa69Pw3uVPS2BE69zEKsZOV+SPuxrPPBrTtM0F8QTeQqwApZdgAZNAGOUiGRko5EWxTI7Vc9mmgcH4C8LFSfNRTCythdn1al7WxbHAPYZJ1WOzZx3/UNTfRC6ouvJ4kB2Ucdi+J8VxCNRTVqmBvPw1jWU7ONlfHrhrxDotnZkvh7D8E6RZral1fqX70dY0wWMQR6y01USToC/ifsHLQhRme+Ekfs+cYBoTQEiPHbpGqntCKD8eSWkf/3uzdLdkLB+W4Dw2doNqCa86YdCpYw/aV3XNOUjbTRiR8ivGGXn3ZjpRJG79xoA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4IENfkOr35mNDipFVt5TZuetxwnOU1SPM+W8Db5nBAk=;
- b=nRbtjTKo9GZCapQodbqRPXIe5wtoHxT/wtMIz+xoH83DxxRO06X7NPBuoyTSTsqKtQlt96wYnnxfXHuwIJAFypODqfOZqAyjDzHxxLQ+LN5NAG2KZ1pYkabbEXNEX52W4vrIMlZ9glNYb5V4u9c1y/LpS/bGiuUzQcZczKGEago=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3916.namprd12.prod.outlook.com (2603:10b6:5:1ca::21)
- by DM6PR12MB3788.namprd12.prod.outlook.com (2603:10b6:5:1c5::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3131.20; Wed, 24 Jun
- 2020 14:21:40 +0000
-Received: from DM6PR12MB3916.namprd12.prod.outlook.com
- ([fe80::e14d:37fb:a0ca:aa81]) by DM6PR12MB3916.namprd12.prod.outlook.com
- ([fe80::e14d:37fb:a0ca:aa81%7]) with mapi id 15.20.3131.020; Wed, 24 Jun 2020
- 14:21:40 +0000
-Subject: Re: [PATCH] drm/amdgpu: make sure to reserve tmr region on all asics
- which support it
-To: amd-gfx@lists.freedesktop.org
-References: <20200622214113.969491-1-alexander.deucher@amd.com>
-From: Nirmoy <nirmodas@amd.com>
-Message-ID: <6746fef7-e469-f46d-2c2c-24da84876f5a@amd.com>
-Date: Wed, 24 Jun 2020 16:23:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
-In-Reply-To: <20200622214113.969491-1-alexander.deucher@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: AM3PR05CA0143.eurprd05.prod.outlook.com
- (2603:10a6:207:3::21) To DM6PR12MB3916.namprd12.prod.outlook.com
- (2603:10b6:5:1ca::21)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.178.87] (217.86.121.20) by
- AM3PR05CA0143.eurprd05.prod.outlook.com (2603:10a6:207:3::21) with Microsoft
+ bh=60/dUZS0aXytv+1HtNvILTa5SrMX2DAfIjZFcw3cjbM=;
+ b=07K3vIlqTYmBLZOBVHb7bl/bCEEKmjSs/shEF2hbDo5SwhPqaittR7IFE8+trjyHEuoVv/w2soD33HbyL53YrenA7g91WgZc9rKB7XT6zv17yoGh5xVqQ1gKNvtGIE/yoHZ13NJmsAiptvMJIGI5yDerkw6ql6nMyUwPKbbzN5k=
+Received: from DM6PR12MB4075.namprd12.prod.outlook.com (2603:10b6:5:21d::8) by
+ DM6PR12MB3867.namprd12.prod.outlook.com (2603:10b6:5:1cf::33) with
+ Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3131.21 via Frontend Transport; Wed, 24 Jun 2020 14:21:39 +0000
-X-Originating-IP: [217.86.121.20]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 56f45f00-881e-4339-9d88-08d81849e971
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3788:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3788A1F5B6F9ADF89EE633E28B950@DM6PR12MB3788.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1265;
-X-Forefront-PRVS: 0444EB1997
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ctAJvRv5mHfuZmAIXbhHqs7yt2abBYGL/LwAsDl4msF4Oz9mlXhFfv04nQNaMl9az8CMm/8eSo4xnnApBsl47nU0PiSJv1EPEVxG7rX1NYwusmSyJnDtYGS8nBz9tLGeDXODcW1n82nYoA8X2kX8Wh2CTMGBG+XMfzRIHONjwTiX26feZqFGRKRwiuGt2bNoKM80KuZM/H2tm3S2L2P201BupC0M7Nh7MOj9PHwdeAQXAJb098exhQ91gtbBqhMwHrDzRGFkcE5YVtHgCd4bWeu4F36W+7uEAX+ehvmJ5m0AwgIqEp2r9evx3v6FCJPqc1+GNd6ZPEdcJc8DZx9GmOTtP63QkTbPUrXUKwFwDvzPBNoZrT9MJnze1ukQMhtD
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3916.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ 15.20.3109.22; Wed, 24 Jun 2020 14:23:42 +0000
+Received: from DM6PR12MB4075.namprd12.prod.outlook.com
+ ([fe80::81eb:c31f:a63a:20eb]) by DM6PR12MB4075.namprd12.prod.outlook.com
+ ([fe80::81eb:c31f:a63a:20eb%8]) with mapi id 15.20.3131.020; Wed, 24 Jun 2020
+ 14:23:42 +0000
+From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx list
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu: make sure to reserve tmr region on all asics
+ which support it
+Thread-Topic: [PATCH] drm/amdgpu: make sure to reserve tmr region on all asics
+ which support it
+Thread-Index: AQHWSN4E+GcAEi6VxEmnkCS7+X7rXqjn004AgAAA8NA=
+Date: Wed, 24 Jun 2020 14:23:42 +0000
+Message-ID: <DM6PR12MB4075A113EB49D60B55C1A56AFC950@DM6PR12MB4075.namprd12.prod.outlook.com>
+References: <20200622214113.969491-1-alexander.deucher@amd.com>
+ <CADnq5_O3hjmavJMVTCv==hMn-k3v=fiDKx7AjN3bts9Aj+=gSA@mail.gmail.com>
+In-Reply-To: <CADnq5_O3hjmavJMVTCv==hMn-k3v=fiDKx7AjN3bts9Aj+=gSA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-06-24T14:23:37Z; 
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=8df2712e-7155-42c3-9f73-0000d7305548;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=1
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-06-24T14:23:28Z
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
+ Unrestricted
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: f027998d-6d40-48dc-8ccf-0000cb49fddb
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_enabled: true
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_setdate: 2020-06-24T14:23:39Z
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_method: Privileged
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_name: Public_0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_actionid: 28f2fd2b-3c59-48ea-b3bd-0000324624b0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_contentbits: 0
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [58.247.170.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 0797da08-08e6-406c-63b6-08d8184a3255
+x-ms-traffictypediagnostic: DM6PR12MB3867:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR12MB386796EE7D9EA8946B4E2101FC950@DM6PR12MB3867.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-forefront-prvs: 0444EB1997
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ZLgSErjdzTOUc5pQXzvbQdsSCHVbY9ckWAk/8yB8NFJZw1uXDwhDX2aBtE85b/BXrP/+3UWK03kMjMIqoDxbOq10tMNhgN3jgQw6JyKZZXjVvfXFC1v7j7Cfi9rPgozoMsPBJ/E8TkcJd4A1y2efey1JOKcJbv0uGkvy48KE9jGDnGZz9HZ96H47QWCot0YAfwJrSv+t00Kf890GUAG6PmdweaTzpuluDbmWC17UICSaTovQ9AIBiLjY77hw4srFQGqH1zo7fPvz/Gd1ePbJzHRKO98gVFtmqZqJrcoS4dRODQj5RgLUmhhHXYULdl2s2/32WQzr0V6VmwvfgA8q4Q6ROCKSO6Q4d9mMNnmFHf8=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4075.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(396003)(366004)(346002)(136003)(376002)(39860400002)(8936002)(2906002)(53546011)(36756003)(26005)(16526019)(186003)(83380400001)(316002)(52116002)(478600001)(16576012)(8676002)(6666004)(4744005)(66476007)(956004)(2616005)(6486002)(31686004)(6916009)(66946007)(31696002)(5660300002)(66556008)(43740500002);
+ SFS:(4636009)(376002)(39860400002)(396003)(346002)(366004)(136003)(2906002)(966005)(86362001)(8676002)(110136005)(8936002)(316002)(186003)(71200400001)(52536014)(53546011)(478600001)(66446008)(76116006)(64756008)(5660300002)(26005)(45080400002)(66476007)(7696005)(66946007)(33656002)(6506007)(66556008)(83380400001)(4326008)(55016002)(9686003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: LlKAg+YaQ4dpqb7sxC7WGbxyihn+TnIXcG+qzcFGgQDAzIehUtYFzrL+0plwmCp9hIQSvPOaD77+e7QyrvTMJjUO2mZKnZtDr2w0AFLGaYcEjPnJNGMFWHYiVUMK0Wy+AgGDFrSvA34/d9XbgRMBseLRSHK3jV8yazC9D2s8QXojWvjEQJSD5LBu8DaWPvHLo0vxSKt1upoHMAUTnKoqRCi/4X9Cne7wYq2kZTtN/z7mH0UafOhQAqS8T5zxVYveqXHruM42R2uUPCE8Wf6BP/OAStgMyslWKXvZICd5Axllz8WmCZQP812udWSZhy16PfW0N7i0td1thEMpfwi1cv5HLT16Jk9mJoSOrUz80dd9HOi/NSl4mUnCe0xrluiYkBizIcLNRA6zUQgafeD5k44qQovcveHB5z0pPswNXot7erAPFS8WHj3UDrto+/jsOa4CWXQ68itdbM9XMRvP6IwNge9Zx/Pvv0nJXiRKbNY=
+x-ms-exchange-antispam-messagedata: TIPwiPSQ8lpFOHt6ucogMQPjh6G7d5IfWgDHHDfP4VCJEodR58/FWUZH8biqipT7jcC2qgb0I2jRGSFQT+xwL3xxnUOxR5fTPGrnCGMq9Q97v5YtWL4fXH1hUM28jD0xXMCY9IF9ZnFT6rvBu0zWG7KFsV/cFW5Oq6gYuKWdQWN+onhPLB3cdw6xMBQ73ubzPpwYet56lXNwtPwKLZfPXxozi2SOUY/rvXMDlXF/01wwoKX8j9ArG3h99IX9MmovqdtGyms335CWPva6DBCs+248jBsl0Q2YIjBbWtTuY5YDhAtl2gX9cRQcySo+X14s+EuC6zd3QTkdVbLycM6Bsr5lWDLsi/W1vU/rCJbxdwC7jf+EHBob1ELU/rlNBsOVAPTYKY88ZQArtZVB/Jzd1IW/aeT8BmAMdoMw9hOziCwaKOZGFQI15D1vPwfSkUDBwj5WfsykUc73wKZGjhvJAZp2tnDNhDo0KUlMQPA1dX8ua/+v1O1bWSFqNYRYGnzM
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 56f45f00-881e-4339-9d88-08d81849e971
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3916.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2020 14:21:40.2800 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XICrmvSALw795zhoJ4lEwgE8ceqoSB6VBm/UsDPLbdS/wP18UiiJEozARh8HKdbD8cj9Lh5SrtAq7gwMFPp2bQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3788
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0797da08-08e6-406c-63b6-08d8184a3255
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2020 14:23:42.3371 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JOe34yHr/OH0bZwOuXgFoFxOpFJ851V9+K6WORxeEEVtK9ePSVNCJApjQXQxE42+0NFMM160Vk1wPNlLNEC7ng==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3867
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,34 +116,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Acked-by: Nirmoy Das <nirmoy.das@amd.com>
+[AMD Public Use]
 
-On 6/22/20 11:41 PM, Alex Deucher wrote:
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+
+Regards,
+Hawking
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex Deucher
+Sent: Wednesday, June 24, 2020 22:20
+To: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
+Subject: Re: [PATCH] drm/amdgpu: make sure to reserve tmr region on all asics which support it
+
+Ping?
+
+Alex
+
+On Mon, Jun 22, 2020 at 5:41 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+>
 > This includes older APUs like renoir.
 >
 > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
 > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
 > index f1855a8323b2..7d51768684dd 100644
 > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
 > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
 > @@ -1974,7 +1974,7 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
->   	 * If IP discovery enabled, a block of memory should be
->   	 * reserved for IP discovey.
->   	 */
-> -	if (adev->asic_type >= CHIP_NAVI10 && amdgpu_discovery) {
-> +	if (adev->discovery_bin) {
->   		r = amdgpu_ttm_reserve_tmr(adev);
->   		if (r)
->   			return r;
+>          * If IP discovery enabled, a block of memory should be
+>          * reserved for IP discovey.
+>          */
+> -       if (adev->asic_type >= CHIP_NAVI10 && amdgpu_discovery) {
+> +       if (adev->discovery_bin) {
+>                 r = amdgpu_ttm_reserve_tmr(adev);
+>                 if (r)
+>                         return r;
+> --
+> 2.25.4
+>
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Chawking.zhang%40amd.com%7C58a9357a7ff248f908ba08d81849b141%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637286052091665855&amp;sdata=7qVY5igW%2FWn0jt8NUpS1ZfbbP3%2B%2FgYPazigVBIzQqnk%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
