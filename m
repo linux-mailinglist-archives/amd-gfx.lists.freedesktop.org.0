@@ -1,96 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D26420F83B
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2020 17:26:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B7A210135
+	for <lists+amd-gfx@lfdr.de>; Wed,  1 Jul 2020 03:05:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9F476E32B;
-	Tue, 30 Jun 2020 15:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6915E6E5A0;
+	Wed,  1 Jul 2020 01:05:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF8F6E32B
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 15:26:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ekm0CW4ptNslUfe07u2Ovlu6umZpjnwmzS/siljKRzvHxeIqDGVi7SYOgyfKIK8RchhM/bxTSzTWh2I0uPl6X0vFh20QUiChBzr2LTmBjjpPWPaaTsSrx6zM8B9/4u97/VXOdnFhMFI1znf13C+pjSXMzf7v3IMcJJzjQTfukGDyJK2epmK1mlqbsFIj83jcYW24OYEhU4MohoqBL4JLCmsPNFPvAL/imYtox5J4lcjLs9wEVNDDXg+VLRw9LGS7vgSdrccNA6SaPIU2xlPbCotBsqNuPzCZ+pYZ6v6VaqMirVVn3uV70Vm6zgcftI9TLvii9FOjjmej3VE2HNJHjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ozxwLyxR3wgu/9D9i7QPNabnkV8X45DjkJJndYFtSk4=;
- b=j93vKqhLPWANby/J7dmDkQkZtcqcU5lJtzHJRBHduw8Bs0FsfEd930BiOdWn/gpYgwXCh8dfIZkKHgVIdPj37IjUsuNuNTpfY8FTWIflTEwCTGTIynCnKIWhHoshb5IbGdwkoV+n+LiTw/8IGUSe3QR6JqkCks/nR3Nl7ArKdFTjPP9C/HaNt3kyXfO0E6CS16eZaZRFzQEDiCXNcu2GVMeXn/n4gGwicSZLl+tUEe6xwD93/8JF1/nbMXIZN+V808thRqmJpVWhDKMlxu4QcAKiR/ff2dkoODASa5od6+AdvivXtEY2kcZwOY3GsMPneV9QwTczhhEPIuZpdwY/ig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ozxwLyxR3wgu/9D9i7QPNabnkV8X45DjkJJndYFtSk4=;
- b=SrHrpAKbPxEo6yaCtTnK/gK5n4Kty3j0vgyCqhaUR4wEW85JLwfzZPo6nkP8hUs45XJANXNMpBFXZRS0Ms0lYc8ub/32kpoBWci+GNXmAfdAsDWgjB543thtPHeolTyAuo2KuUN2TS6jr8m54ysPztJaRKN4YPN/oSyz98DRNos=
-Received: from BN7PR12MB2801.namprd12.prod.outlook.com (2603:10b6:408:2d::33)
- by BN8PR12MB3217.namprd12.prod.outlook.com (2603:10b6:408:6e::30)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3131.21; Tue, 30 Jun
- 2020 15:26:35 +0000
-Received: from BN7PR12MB2801.namprd12.prod.outlook.com
- ([fe80::f08f:4a05:4ebb:d8da]) by BN7PR12MB2801.namprd12.prod.outlook.com
- ([fe80::f08f:4a05:4ebb:d8da%5]) with mapi id 15.20.3131.027; Tue, 30 Jun 2020
- 15:26:35 +0000
-From: "Li, Roman" <Roman.Li@amd.com>
-To: "Kazlauskas, Nicholas" <Nicholas.Kazlauskas@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amd/display: Only revalidate bandwidth on medium and
- fast updates
-Thread-Topic: [PATCH] drm/amd/display: Only revalidate bandwidth on medium and
- fast updates
-Thread-Index: AQHWTlcBVr6Da3G1QEumfze/0T/YhKjxSEKg
-Date: Tue, 30 Jun 2020 15:26:35 +0000
-Message-ID: <BN7PR12MB280144B4E496EDE39FBD3E19896F0@BN7PR12MB2801.namprd12.prod.outlook.com>
-References: <20200629204924.13426-1-nicholas.kazlauskas@amd.com>
-In-Reply-To: <20200629204924.13426-1-nicholas.kazlauskas@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-06-30T15:26:28Z; 
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=20206637-5f6a-46c2-8582-e42d703c1126;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=1
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [165.204.55.250]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 10d0ed0c-00e4-4240-7a42-08d81d09f9a8
-x-ms-traffictypediagnostic: BN8PR12MB3217:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN8PR12MB3217B9E5A2DB39F048B6F91E896F0@BN8PR12MB3217.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:451;
-x-forefront-prvs: 0450A714CB
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kUcpm5oHjYvRFd3JvzCsj+BVVUd/V+rkxwhktyVmELuo8Mufc+tQTobJ9CX+bxlTumgIdoAtwXboFdv/w9dHFUq+/JMx7r+aMhXuGCXp4Bb8a48Dw5QM8tH03twTRLKa/Q4QQeEwF2yLedEXnnOAIETFrG/4bo+aGPQ/mi0bJvHIbaCKuTuCdWvsc0VcQd6k4b1QX3A1fP9KOwUE1l4+qJyUcovgeuQb1rlvahhWDMnwbnAMVnj3QTSQs49nSkETyFFzqFeGrSjxSMChwW9ryvIKimv0iQe1oG3JyiTinVYZojTkEGP8aPwnM/xZjAc3TYzvC8+zm3DeDpOKBiliPmmbocQTRpyXOBNzIuFvHeg=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN7PR12MB2801.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(396003)(39860400002)(346002)(376002)(136003)(366004)(8676002)(6506007)(86362001)(52536014)(45080400002)(76116006)(8936002)(5660300002)(966005)(4326008)(2906002)(53546011)(186003)(26005)(7696005)(33656002)(110136005)(54906003)(15650500001)(316002)(55016002)(478600001)(66946007)(9686003)(83380400001)(66476007)(64756008)(66556008)(66446008)(71200400001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: TlxBN2vVcAyXWSEv4iDJtLbtKCsreuIyOWxRmpcGEhC+JCQ0gRLPuuOaj4uRDnRlluhJMqxnFlHV1MGJjVnG4dx/MaaGiOiJYPqbdQz64YNx54uYhmNI+Faob6Wbzs/UHzmuySfbxwMDB83KDdKA3z4zuyugqqqOl5W3GQeep4ACM9SNt/GeOFQsC2pkwk/E3M+0FCFXDlCKYFfQb/HkO0cBa1gkNosOVVoE2MfU5tXlohGr5D0uV5zW1Vm/q3cGg6Fd4DIOLSfZnLzOwL2n1Kp46QvwPQiEu6CrBq94IkWoCK6OqQSTXkcAB+IV5+eQLtkZQeRz6khOT/XOv7NhwMIpUihcu2dt4AakrQHLZHd0MYE1gx8BCEHJJ1yC6aIZ9bujYaKvhy8954iBIP0ZoomrY6JmgF0c1PMaJNcoqeE6H7L/Sdj33zLnLdJn8ilUwiKIXTZbjbiNBrP2IowfwXXFg6wfBCAjVYS1ZrMcH+x8+mX2e/fKpdlmtiRwh/9e
-MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR12MB2801.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10d0ed0c-00e4-4240-7a42-08d81d09f9a8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2020 15:26:35.2125 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DBT4fClFU2lHkslri1MPkExb9LoLo8cYxF4rCWpAlV8iZ//K6jTD3/4XE7Qq/fh2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3217
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC876E2E9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 23:45:19 +0000 (UTC)
+IronPort-SDR: BhNAmUAKH0EGHukDWIhB62B1fEErzZ0H5yuul2p8zZkgyRwkGY0JaYLPMZcjUiP7FS78lMZSmO
+ yR1mUb9z24rw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9668"; a="145486439"
+X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="145486439"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2020 16:45:18 -0700
+IronPort-SDR: 1d2w0g0oEXr+THsF3l1K+zbXI6+lgr1NNg3NQvkVRc/72TZojcLGwV26rsQ6HxqeqK42B7FlDP
+ Wthx4SVb1UZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="386842551"
+Received: from romley-ivt3.sc.intel.com ([172.25.110.60])
+ by fmsmga001.fm.intel.com with ESMTP; 30 Jun 2020 16:44:51 -0700
+From: Fenghua Yu <fenghua.yu@intel.com>
+To: "Thomas Gleixner" <tglx@linutronix.de>, "Joerg Roedel" <joro@8bytes.org>,
+ "Ingo Molnar" <mingo@redhat.com>, "Borislav Petkov" <bp@alien8.de>,
+ "Peter Zijlstra" <peterz@infradead.org>, "H Peter Anvin" <hpa@zytor.com>,
+ "David Woodhouse" <dwmw2@infradead.org>,
+ "Lu Baolu" <baolu.lu@linux.intel.com>,
+ "Felix Kuehling" <Felix.Kuehling@amd.com>,
+ "Dave Hansen" <dave.hansen@intel.com>, "Tony Luck" <tony.luck@intel.com>,
+ "Jean-Philippe Brucker" <jean-philippe@linaro.org>,
+ "Christoph Hellwig" <hch@infradead.org>, "Ashok Raj" <ashok.raj@intel.com>,
+ "Jacob Jun Pan" <jacob.jun.pan@intel.com>,
+ "Dave Jiang" <dave.jiang@intel.com>, "Sohil Mehta" <sohil.mehta@intel.com>,
+ "Ravi V Shankar" <ravi.v.shankar@intel.com>
+Subject: [PATCH v5 00/12] x86: tag application address space for devices
+Date: Tue, 30 Jun 2020 16:44:30 -0700
+Message-Id: <1593560682-40814-1-git-send-email-fenghua.yu@intel.com>
+X-Mailer: git-send-email 2.5.0
+X-Mailman-Approved-At: Wed, 01 Jul 2020 01:05:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,72 +56,178 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Wu, Hersen" <hersenxs.wu@amd.com>, "Siqueira,
- Rodrigo" <Rodrigo.Siqueira@amd.com>, "Lakha,
- Bhawanpreet" <Bhawanpreet.Lakha@amd.com>, "Kazlauskas, 
- Nicholas" <Nicholas.Kazlauskas@amd.com>
+Cc: Fenghua Yu <fenghua.yu@intel.com>, iommu@lists.linux-foundation.org,
+ x86 <x86@kernel.org>, linux-kernel <linux-kernel@vger.kernel.org>,
+ amd-gfx <amd-gfx@lists.freedesktop.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Public Use]
+Typical hardware devices require a driver stack to translate application
+buffers to hardware addresses, and a kernel-user transition to notify the
+hardware of new work. What if both the translation and transition overhead
+could be eliminated? This is what Shared Virtual Address (SVA) and ENQCMD
+enabled hardware like Data Streaming Accelerator (DSA) aims to achieve.
+Applications map portals in their local-address-space and directly submit
+work to them using a new instruction.
 
-Reviewed-by: Roman Li <Roman.Li@amd.com>
+This series enables ENQCMD and associated management of the new MSR
+(MSR_IA32_PASID). This new MSR allows an application address space to be
+associated with what the PCIe spec calls a Process Address Space ID (PASID).
+This PASID tag is carried along with all requests between applications and
+devices and allows devices to interact with the process address space.
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Nicholas Kazlauskas
-Sent: Monday, June 29, 2020 4:49 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Lakha, Bhawanpreet <Bhawanpreet.Lakha@amd.com>; Siqueira, Rodrigo <Rodrigo.Siqueira@amd.com>; Wu, Hersen <hersenxs.wu@amd.com>; Kazlauskas, Nicholas <Nicholas.Kazlauskas@amd.com>
-Subject: [PATCH] drm/amd/display: Only revalidate bandwidth on medium and fast updates
+SVA and ENQCMD enabled device drivers need this series. The phase 2 DSA
+patches with SVA and ENQCMD support was released on the top of this series:
+https://lore.kernel.org/patchwork/cover/1244060/
 
-[Why]
-Changes that are fast don't require updating DLG parameters making this call unnecessary. Considering this is an expensive call it should not be done on every flip.
+This series only provides simple and basic support for ENQCMD and the MSR:
+1. Clean up type definitions (patch 1-2). These patches can be in a
+   separate series.
+   - Define "pasid" as "u32" consistently
+   - Define "flags" as "unsigned int"
+2. Explain different various technical terms used in the series (patch 3).
+3. Enumerate support for ENQCMD in the processor (patch 4).
+4. Handle FPU PASID state and the MSR during context switch (patches 5-6).
+5. Define "pasid" in mm_struct (patch 7).
+5. Clear PASID state for new mm and forked and cloned thread (patch 8-9).
+6. Allocate and free PASID for a process (patch 10).
+7. Fix up the PASID MSR in #GP handler when one thread in a process
+   executes ENQCMD for the first time (patches 11-12).
 
-DML touches clocks, p-state support, DLG params and a few other DC internal flags and these aren't expected during fast. A hang has been reported with this change when called on every flip which suggests that modifying these fields is not recommended behavior on fast updates.
+This patch series and the DSA phase 2 series are in
+https://github.com/intel/idxd-driver/tree/idxd-stage2
 
-[How]
-Guard the validation to only happen if update type isn't FAST.
+References:
+1. Detailed information on the ENQCMD/ENQCMDS instructions and the
+IA32_PASID MSR can be found in Intel Architecture Instruction Set
+Extensions and Future Features Programming Reference:
+https://software.intel.com/sites/default/files/managed/c5/15/architecture-instruction-set-extensions-programming-reference.pdf
 
-Bug: https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.freedesktop.org%2Fdrm%2Famd%2F-%2Fissues%2F1191&amp;data=02%7C01%7Croman.li%40amd.com%7Cc98c2d3c363643a4fef208d81c6dfa68%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637290606647861029&amp;sdata=%2B3rZlvLgef1c2FOYTKx37U%2Fbr%2BWOxI9GXVI2K7HjH3E%3D&amp;reserved=0
-Fixes: e1995f0909e3 ("drm/amd/display: Revalidate bandwidth before commiting DC updates")
-Cc: Hersen Wu <hersenxs.wu@amd.com>
-Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
----
- drivers/gpu/drm/amd/display/dc/core/dc.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+2. Detailed information on DSA can be found in DSA specification:
+https://software.intel.com/en-us/download/intel-data-streaming-accelerator-preliminary-architecture-specification
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 67402d75e67e..942ceb0f6383 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2607,10 +2607,12 @@ void dc_commit_updates_for_stream(struct dc *dc,
- 
- 	copy_stream_update_to_stream(dc, context, stream, stream_update);
- 
--	if (!dc->res_pool->funcs->validate_bandwidth(dc, context, false)) {
--		DC_ERROR("Mode validation failed for stream update!\n");
--		dc_release_state(context);
--		return;
-+	if (update_type > UPDATE_TYPE_FAST) {
-+		if (!dc->res_pool->funcs->validate_bandwidth(dc, context, false)) {
-+			DC_ERROR("Mode validation failed for stream update!\n");
-+			dc_release_state(context);
-+			return;
-+		}
- 	}
- 
- 	commit_planes_for_stream(
---
-2.25.1
+Chang log:
+v5:
+- Mark ENQCMD disabled when configured out and use cpu_feature_enabled()
+  to simplify the feature checking code in patch 10 and 12 (PeterZ and
+  Dave Hansen)
+- Add Reviewed-by: Lu Baolu to patch 1, 2, 10, and 12.
 
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Croman.li%40amd.com%7Cc98c2d3c363643a4fef208d81c6dfa68%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637290606647861029&amp;sdata=EPY6DwDOG88a944QieZj%2F8NSeBJTot2z1WLghTM2Iuw%3D&amp;reserved=0
+v4:
+- Define PASID as "u32" instead of "unsigned int" in patch 1, 7, 10, 12.
+  (Christoph)
+- Drop v3 patch 2 which changes PASID type in ocxl because it's not related
+  to x86 and was rejected by ocxl maintainer Frederic Barrat
+- A split patch which changes PASID type to u32 in crypto/hisilicon/qm.c
+  was released separately to linux-crypto mailing list because it's not
+  related to x86 and is a standalone patch:
+
+v3:
+- Change names of bind_mm() and unbind_mm() to match to new APIs in
+  patch 4 (Baolu)
+- Change CONFIG_PCI_PASID to CONFIG_IOMMU_SUPPORT because non-PCI device
+  can have PASID in ARM in patch 8 (Jean)
+- Add a few sanity checks in __free_pasid() and alloc_pasid() in
+  patch 11 (Baolu)
+- Add patch 12 to define a new flag "has_valid_pasid" for a task and
+  use the flag to identify if the task has a valid PASID MSR (PeterZ)
+- Add fpu__pasid_write() to update the MSR in fixup() in patch 13
+- Check if mm->pasid can be found in fixup() in patch 13
+
+v2:
+- Add patches 1-3 to define "pasid" and "flags" as "unsigned int"
+  consistently (Thomas)
+  (these 3 patches could be in a separate patch set)
+- Add patch 8 to move "pasid" to generic mm_struct (Christoph).
+  Jean-Philippe Brucker released a virtually same patch. Upstream only
+  needs one of the two.
+- Add patch 9 to initialize PASID in a new mm.
+- Plus other changes described in each patch (Thomas)
+
+Ashok Raj (1):
+  docs: x86: Add documentation for SVA (Shared Virtual Addressing)
+
+Fenghua Yu (9):
+  iommu: Change type of pasid to u32
+  iommu/vt-d: Change flags type to unsigned int in binding mm
+  x86/cpufeatures: Enumerate ENQCMD and ENQCMDS instructions
+  x86/msr-index: Define IA32_PASID MSR
+  mm: Define pasid in mm
+  fork: Clear PASID for new mm
+  x86/process: Clear PASID state for a newly forked/cloned thread
+  x86/mmu: Allocate/free PASID
+  x86/traps: Fix up invalid PASID
+
+Peter Zijlstra (1):
+  sched: Define and initialize a flag to identify valid PASID in the
+    task
+
+Yu-cheng Yu (1):
+  x86/fpu/xstate: Add supervisor PASID state for ENQCMD feature
+
+ Documentation/x86/index.rst                   |   1 +
+ Documentation/x86/sva.rst                     | 287 ++++++++++++++++++
+ arch/x86/include/asm/cpufeatures.h            |   1 +
+ arch/x86/include/asm/disabled-features.h      |   9 +-
+ arch/x86/include/asm/fpu/types.h              |  10 +
+ arch/x86/include/asm/fpu/xstate.h             |   2 +-
+ arch/x86/include/asm/iommu.h                  |   3 +
+ arch/x86/include/asm/mmu_context.h            |  11 +
+ arch/x86/include/asm/msr-index.h              |   3 +
+ arch/x86/kernel/cpu/cpuid-deps.c              |   1 +
+ arch/x86/kernel/fpu/xstate.c                  |   4 +
+ arch/x86/kernel/process.c                     |  18 ++
+ arch/x86/kernel/traps.c                       |  12 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |   4 +-
+ .../drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c    |   2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c |   2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c |   2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c |   2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h |   2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c       |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h       |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |   8 +-
+ .../gpu/drm/amd/amdkfd/cik_event_interrupt.c  |   2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_dbgdev.c       |   2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_dbgmgr.h       |   2 +-
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c |   7 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c       |   8 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_events.h       |   4 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_iommu.c        |   6 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_pasid.c        |   2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  18 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |   2 +-
+ .../gpu/drm/amd/include/kgd_kfd_interface.h   |   2 +-
+ drivers/iommu/amd/amd_iommu.h                 |  10 +-
+ drivers/iommu/amd/iommu.c                     |  31 +-
+ drivers/iommu/amd/iommu_v2.c                  |  20 +-
+ drivers/iommu/intel/dmar.c                    |   7 +-
+ drivers/iommu/intel/intel-pasid.h             |  24 +-
+ drivers/iommu/intel/iommu.c                   |   4 +-
+ drivers/iommu/intel/pasid.c                   |  31 +-
+ drivers/iommu/intel/svm.c                     | 225 ++++++++++++--
+ drivers/iommu/iommu.c                         |   2 +-
+ drivers/misc/uacce/uacce.c                    |   2 +-
+ include/linux/amd-iommu.h                     |   8 +-
+ include/linux/intel-iommu.h                   |  14 +-
+ include/linux/intel-svm.h                     |   2 +-
+ include/linux/iommu.h                         |  10 +-
+ include/linux/mm_types.h                      |   6 +
+ include/linux/sched.h                         |   3 +
+ include/linux/uacce.h                         |   2 +-
+ kernel/fork.c                                 |  12 +
+ 54 files changed, 719 insertions(+), 157 deletions(-)
+ create mode 100644 Documentation/x86/sva.rst
+
+-- 
+2.19.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
