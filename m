@@ -2,29 +2,29 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D997210136
-	for <lists+amd-gfx@lfdr.de>; Wed,  1 Jul 2020 03:05:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBFBB21013C
+	for <lists+amd-gfx@lfdr.de>; Wed,  1 Jul 2020 03:05:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAD7F6E5A2;
-	Wed,  1 Jul 2020 01:05:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A39F36E5B4;
+	Wed,  1 Jul 2020 01:05:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C3B66E045
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 23:45:20 +0000 (UTC)
-IronPort-SDR: t2WZx+cGisbyLlxmpjf8JkqbbFmsbME4vDn1KN8xrsVM4CP1vBOa9AyvwtVY15M2RrrU8anbbA
- 8H4wASN+fWLQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9668"; a="133879146"
-X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="133879146"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAB7E6E2E9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2020 23:45:19 +0000 (UTC)
+IronPort-SDR: GUBC4L0MkMbAMSuK+OzmlNjb5q410Vshfy78pg7y3WgKFXdGUc3B8wm01Wxt4KCb0KSDu6FoeD
+ 2biMBBgwOt0w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9668"; a="147962831"
+X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="147962831"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jun 2020 16:45:19 -0700
-IronPort-SDR: GeT/ckjKwMJQl1DBqGH+pOCXGqHfXhWGoz51qRDi499akJMp6d5xsgkznBDatAYIAHPfIAbq/a
- +xaB/oIqhxPQ==
+IronPort-SDR: Ij+AAzt2KovB/hIW1oLkM7SUKFoCTWTIBApgwJd5Ivp06wLn/3GjpdellRGZZe8FP6E4e+HzYN
+ WKe+4TpCMqMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="386842563"
+X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="386842569"
 Received: from romley-ivt3.sc.intel.com ([172.25.110.60])
  by fmsmga001.fm.intel.com with ESMTP; 30 Jun 2020 16:44:53 -0700
 From: Fenghua Yu <fenghua.yu@intel.com>
@@ -40,9 +40,9 @@ To: "Thomas Gleixner" <tglx@linutronix.de>, "Joerg Roedel" <joro@8bytes.org>,
  "Jacob Jun Pan" <jacob.jun.pan@intel.com>,
  "Dave Jiang" <dave.jiang@intel.com>, "Sohil Mehta" <sohil.mehta@intel.com>,
  "Ravi V Shankar" <ravi.v.shankar@intel.com>
-Subject: [PATCH v5 06/12] x86/msr-index: Define IA32_PASID MSR
-Date: Tue, 30 Jun 2020 16:44:36 -0700
-Message-Id: <1593560682-40814-7-git-send-email-fenghua.yu@intel.com>
+Subject: [PATCH v5 07/12] mm: Define pasid in mm
+Date: Tue, 30 Jun 2020 16:44:37 -0700
+Message-Id: <1593560682-40814-8-git-send-email-fenghua.yu@intel.com>
 X-Mailer: git-send-email 2.5.0
 In-Reply-To: <1593560682-40814-1-git-send-email-fenghua.yu@intel.com>
 References: <1593560682-40814-1-git-send-email-fenghua.yu@intel.com>
@@ -67,35 +67,48 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The IA32_PASID MSR (0xd93) contains the Process Address Space Identifier
-(PASID), a 20-bit value. Bit 31 must be set to indicate the value
-programmed in the MSR is valid. Hardware uses PASID to identify process
-address space and direct responses to the right address space.
+PASID is shared by all threads in a process. So the logical place to keep
+track of it is in the "mm". Both ARM and X86 need to use the PASID in the
+"mm".
 
+Suggested-by: Christoph Hellwig <hch@infradead.org>
 Signed-off-by: Fenghua Yu <fenghua.yu@intel.com>
 Reviewed-by: Tony Luck <tony.luck@intel.com>
 ---
+v4:
+- Change PASID type to u32 (Christoph)
+
+v3:
+- Change CONFIG_PCI_PASID to CONFIG_IOMMU_SUPPORT because non-PCI device
+  can have PASID in ARM (Jean)
+
 v2:
-- Change "identify process" to "identify process address space" in the
-  commit message (Thomas)
+- This new patch moves "pasid" from x86 specific mm_context_t to generic
+  struct mm_struct per Christopher's comment: https://lore.kernel.org/linux-iommu/20200414170252.714402-1-jean-philippe@linaro.org/T/#mb57110ffe1aaa24750eeea4f93b611f0d1913911
+- Jean-Philippe Brucker released a virtually same patch. I still put this
+  patch in the series for better review. The upstream kernel only needs one
+  of the two patches eventually.
+https://lore.kernel.org/linux-iommu/20200519175502.2504091-2-jean-philippe@linaro.org/
+- Change CONFIG_IOASID to CONFIG_PCI_PASID (Ashok)
 
- arch/x86/include/asm/msr-index.h | 3 +++
- 1 file changed, 3 insertions(+)
+ include/linux/mm_types.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/x86/include/asm/msr-index.h b/arch/x86/include/asm/msr-index.h
-index e8370e64a155..e5f699ff1dd6 100644
---- a/arch/x86/include/asm/msr-index.h
-+++ b/arch/x86/include/asm/msr-index.h
-@@ -237,6 +237,9 @@
- #define MSR_IA32_LASTINTFROMIP		0x000001dd
- #define MSR_IA32_LASTINTTOIP		0x000001de
- 
-+#define MSR_IA32_PASID			0x00000d93
-+#define MSR_IA32_PASID_VALID		BIT_ULL(31)
+diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
+index 64ede5f150dc..d61285cfe027 100644
+--- a/include/linux/mm_types.h
++++ b/include/linux/mm_types.h
+@@ -538,6 +538,10 @@ struct mm_struct {
+ 		atomic_long_t hugetlb_usage;
+ #endif
+ 		struct work_struct async_put_work;
 +
- /* DEBUGCTLMSR bits (others vary by model): */
- #define DEBUGCTLMSR_LBR			(1UL <<  0) /* last branch recording */
- #define DEBUGCTLMSR_BTF_SHIFT		1
++#ifdef CONFIG_IOMMU_SUPPORT
++		u32 pasid;
++#endif
+ 	} __randomize_layout;
+ 
+ 	/*
 -- 
 2.19.1
 
