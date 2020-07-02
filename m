@@ -2,58 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466702113C5
-	for <lists+amd-gfx@lfdr.de>; Wed,  1 Jul 2020 21:44:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 183A0211CC6
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Jul 2020 09:25:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B74036E454;
-	Wed,  1 Jul 2020 19:44:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDAE66EA88;
+	Thu,  2 Jul 2020 07:24:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com
- [IPv6:2607:f8b0:4864:20::f33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACA236E326;
- Wed,  1 Jul 2020 19:44:24 +0000 (UTC)
-Received: by mail-qv1-xf33.google.com with SMTP id t7so11563907qvl.8;
- Wed, 01 Jul 2020 12:44:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=H68WCJrZrfATgq2+qOSb/oN+5CurPVefjmJCzGslDNU=;
- b=psWK/tl+7p6/j0chpXN8DWN1qNvWmr1gzBpbSVFsgD+0IB/bEiZXxYZUyK4FqFhdq/
- 2YxzwZgZpLfWaUusAcuDgSiNnZoJMI1gz8NNospB7kw6eO3NCFPBxSVRMb0YYaAEJ/Pi
- NiIcX4WMBEtAnMWrbj3AnkWW26ItyDNzQYR/JDreAJT1sb/8z8+i/qPkYNwcoL4CB5Z/
- GFkRFY5tJlODopbEt4JyI4MWu11II3TaEpViPjbpU0Z89Eamxz0/IOq2psg3Tg/JwWTH
- NTtxl62AXMX74yqJEaWCb48bB4bQE+jtbEORp8HbE1/s4Uz7NmRumNnVxLCD9uvl5rEu
- qE+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=H68WCJrZrfATgq2+qOSb/oN+5CurPVefjmJCzGslDNU=;
- b=FuZa0Q08m0e6kkNMadWJ+FEpY/ygJ0G6TSeMoXj1+NQQqS7kMs4Zm8vVodEHj1Utjb
- nLrH13f+IfGQ+7U6H+PWvO23X9gLFSiy6BLveiRmuo8OfIfB7xASewGBJFPDQTAGgSIw
- utGDoadYg6IQfzZCEVIgL34oH6IqKC4dZaCP6YLYRjWms/7plsLZHEdizg099XBfZGiI
- H2YmfsJdyY1OaqeUCw4NoRbuj54kcvCd3dWg2m9wUuJDVDeSe7y7ro3CRMbUGAZMKi2D
- 7vesQB1mDyQM2q8BN+3slWUMvPulyeOEnYtmxCfwIgjIUD7CS4bmfpS5sIHTG3rR2W4V
- okYQ==
-X-Gm-Message-State: AOAM532U6Oc0zSv3VVP7GoOZfPU0lPwhRJnbYLUcbkeKWkrbxbbtiX5G
- YVoHzFfl0kX4KTd6/eVQ8fakal/U
-X-Google-Smtp-Source: ABdhPJwVw5vfZtLZIxQYOFnMxAsuguf99mWbMrXlItob7i4tn8GksmxER2L3WjXu9GlMV4vzrS8B2g==
-X-Received: by 2002:a0c:f214:: with SMTP id h20mr26292141qvk.131.1593632663314; 
- Wed, 01 Jul 2020 12:44:23 -0700 (PDT)
-Received: from localhost.localdomain ([71.51.183.177])
- by smtp.gmail.com with ESMTPSA id e25sm6205995qtc.93.2020.07.01.12.44.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 01 Jul 2020 12:44:22 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, daniel.vetter@ffwll.ch
-Subject: [pull] amdgpu drm-fixes-5.8
-Date: Wed,  1 Jul 2020 15:44:15 -0400
-Message-Id: <20200701194415.4065-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.25.4
+Received: from huawei.com (szxga06-in.huawei.com [45.249.212.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60EE26E0E6;
+ Thu,  2 Jul 2020 01:51:19 +0000 (UTC)
+Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id C942361FB4DC5C89F11F;
+ Thu,  2 Jul 2020 09:51:15 +0800 (CST)
+Received: from localhost.localdomain.localdomain (10.175.113.25) by
+ DGGEMS407-HUB.china.huawei.com (10.3.19.207) with Microsoft SMTP Server id
+ 14.3.487.0; Thu, 2 Jul 2020 09:51:07 +0800
+From: YueHaibing <yuehaibing@huawei.com>
+To: Alex Deucher <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <airlied@linux.ie>, <daniel@ffwll.ch>, <sumit.semwal@linaro.org>,
+ <tianci.yin@amd.com>, <kraxel@redhat.com>, <Likun.Gao@amd.com>,
+ <Felix.Kuehling@amd.com>, <jgg@ziepe.ca>, <Hawking.Zhang@amd.com>
+Subject: [PATCH -next] drm/amdgpu: remove set but not used variable 'adev'
+Date: Thu, 2 Jul 2020 01:55:52 +0000
+Message-ID: <20200702015552.42377-1-yuehaibing@huawei.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
+X-Originating-IP: [10.175.113.25]
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Thu, 02 Jul 2020 07:24:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,53 +42,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: YueHaibing <yuehaibing@huawei.com>, kernel-janitors@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ amd-gfx@lists.freedesktop.org, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+Fixes gcc '-Wunused-but-set-variable' warning:
 
-Fixes for 5.8.
+drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c: In function 'amdgpu_init_mem_type':
+drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:81:24: warning:
+ variable 'adev' set but not used [-Wunused-but-set-variable]
+  struct amdgpu_device *adev;
+                        ^
 
-The following changes since commit 5b83c254571b26e6b6110019929dc9729e5c59d1:
+Signed-off-by: YueHaibing <yuehaibing@huawei.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-  Merge tag 'amd-drm-fixes-5.8-2020-06-24' of git://people.freedesktop.org/~agd5f/linux into drm-fixes (2020-06-25 14:51:14 +1000)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index bb95627ad2cc..8199702d3354 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -78,10 +78,6 @@
+ static int amdgpu_init_mem_type(struct ttm_bo_device *bdev, uint32_t type,
+ 				struct ttm_mem_type_manager *man)
+ {
+-	struct amdgpu_device *adev;
+-
+-	adev = amdgpu_ttm_adev(bdev);
+-
+ 	switch (type) {
+ 	case TTM_PL_SYSTEM:
+ 		/* System memory */
 
-are available in the Git repository at:
 
-  git://people.freedesktop.org/~agd5f/linux tags/amd-drm-fixes-5.8-2020-07-01
 
-for you to fetch changes up to beaf10efca64ac824240838ab1f054dfbefab5e6:
 
-  drm/amdgpu: use %u rather than %d for sclk/mclk (2020-07-01 14:20:23 -0400)
 
-----------------------------------------------------------------
-amd-drm-fixes-5.8-2020-07-01:
-
-amdgpu:
-- Fix for vega20 boards without RAS support
-- DC bandwidth revalidation fix
-- Fix Renoir vram info fetching
-- Fix hwmon freq printing
-
-----------------------------------------------------------------
-Alex Deucher (2):
-      drm/amdgpu/atomfirmware: fix vram_info fetching for renoir
-      drm/amdgpu: use %u rather than %d for sclk/mclk
-
-Ivan Mironov (1):
-      drm/amd/powerplay: Fix NULL dereference in lock_bus() on Vega20 w/o RAS
-
-Nicholas Kazlauskas (1):
-      drm/amd/display: Only revalidate bandwidth on medium and fast updates
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c     |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c               |  4 ++--
- drivers/gpu/drm/amd/display/dc/core/dc.c             | 10 ++++++----
- drivers/gpu/drm/amd/powerplay/smumgr/vega20_smumgr.c | 11 +++++++----
- 4 files changed, 16 insertions(+), 10 deletions(-)
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
