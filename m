@@ -1,92 +1,29 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB18E215205
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jul 2020 07:06:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 345A4215374
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jul 2020 09:47:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 575286E317;
-	Mon,  6 Jul 2020 05:06:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 835116E364;
+	Mon,  6 Jul 2020 07:47:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2050.outbound.protection.outlook.com [40.107.244.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61DEB6E323
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jul 2020 05:06:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XEqDqMPHBAGwSiGst7SSJk6hUrOKjiH7xTupnV6/4bmJAQU1nECnN4s/TiYcub6JoPwDemXB3TkfnWZr1f5je4fdO+iZEOFC+yxe/KgziDb3gJyDem41aizzInRp/i58goNuynIAyV2cla9WZS0Nb6tSjVJ3rv/mscu9eUwzr/8pJ4slAVm1ovtB1PQVbl/Ov12HEOMWv0horNmLhcGGhRG9a7l5lDhSMWMs1c7aQIYSQ0oaHLWi3rZbqesJzNGAG1TBbTmbDUukt2kPWwWFGifRVuR06hoUsrpRmXZtyaDdB2pQRT7G4fJPeC3lZM7Ta8HN9LERaIgskAwSFie/1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ba4cP9G/0wf43rWSjRAQiP2BDj7Z3QftAHmJn3Y8HRw=;
- b=AKUDnrgBhOZeUYEseGuskKMgVnKmDvzz+kmq9YnptlNGpH/BV2vtL9XqIwDIzYa8Kmehyns6j4vYyGYW/+gB7fY3ITt8VPtpuXzJCk38UhPjWRGjTUshOUyc3lDUmOFSWzHOi11WRnrdg6WOSeTijJy0V6oJ4+gesRZDpW2QkgceCiNJQCCUJyqtegikAB2zCyv/lQu+/TdRujogKaQ1gjODvBUvUw9fKvGjIWM5mm4iCPLkq5ETf4lbLwcEG6oBIuNaBn3fQ46xbjOsxBvuEiYiaRdsd1bRWej/8+QH4Q34SWeYyeq6/tgiN0I0NrWL7bLz5YNpCOP6GeqnJ/1dHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ba4cP9G/0wf43rWSjRAQiP2BDj7Z3QftAHmJn3Y8HRw=;
- b=dK/ECoyaxevtd3VcX5DrUWEU5E+GcofETGAiQykmydL4qWummqCtCg371EvdylGWPYJsARstEOrZjPXEvkPd2sh4zRlLRBqI8HXDSgvyhK+OWg69+EoXIbDBZjIunMaJF3LPNG50l3F/8zXceUiE2/RAgC2ys358kRMNNhEwi74=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3774.namprd12.prod.outlook.com (2603:10b6:208:16a::13)
- by MN2PR12MB4470.namprd12.prod.outlook.com (2603:10b6:208:260::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3153.20; Mon, 6 Jul
- 2020 05:06:13 +0000
-Received: from MN2PR12MB3774.namprd12.prod.outlook.com
- ([fe80::9ca1:81ba:bd45:53f4]) by MN2PR12MB3774.namprd12.prod.outlook.com
- ([fe80::9ca1:81ba:bd45:53f4%5]) with mapi id 15.20.3153.029; Mon, 6 Jul 2020
- 05:06:13 +0000
-From: Huang Rui <ray.huang@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 12/12] drm/amdgpu: use register distance member instead of
- hardcode in mmhub v9.4
-Date: Mon,  6 Jul 2020 13:05:09 +0800
-Message-Id: <20200706050509.714975-13-ray.huang@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200706050509.714975-1-ray.huang@amd.com>
-References: <20200706050509.714975-1-ray.huang@amd.com>
-X-ClientProxiedBy: HK2PR0302CA0017.apcprd03.prod.outlook.com
- (2603:1096:202::27) To MN2PR12MB3774.namprd12.prod.outlook.com
- (2603:10b6:208:16a::13)
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F06106E223
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 13:49:44 +0000 (UTC)
+Received: from hopp.molgen.mpg.de (hopp.molgen.mpg.de [141.14.25.186])
+ by mx.molgen.mpg.de (Postfix) with ESMTP id 9D27E20646DD8;
+ Fri,  3 Jul 2020 15:49:42 +0200 (CEST)
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+To: Linus Torvalds <torvalds@linux-foundation.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH v2 1/2] moduleparams: Add hexint type parameter
+Date: Fri,  3 Jul 2020 15:49:39 +0200
+Message-Id: <20200703134940.27054-1-pmenzel@molgen.mpg.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from hr-amd.amd.com (58.247.170.242) by
- HK2PR0302CA0017.apcprd03.prod.outlook.com (2603:1096:202::27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3174.13 via Frontend Transport; Mon, 6 Jul 2020 05:06:10 +0000
-X-Mailer: git-send-email 2.25.1
-X-Originating-IP: [58.247.170.242]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 7fadb95d-635d-449e-d464-08d8216a4e03
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4470:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4470C5D7B8D13CC064BA66D5EC690@MN2PR12MB4470.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1201;
-X-Forefront-PRVS: 04569283F9
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: icjd2aKHctKmiSSvX21Gw/0SHNZwoF0rnMHkDiUkZzrM1k+04YiFei1zBHD4U1Rx8LtC7cKuI00GjGeBXbqjAvcpwilAAHrTP30Z5+YTnAPx5oh/EtjauTi4zriLzD0FK/4xKKb+UUFeerXZFPLf6FhrdiMF8AUDs9XM0LOA3VHfiI9gKMDDtx3m6tt0sbZTzxYVO3WLnQE5mJF/8d3y4b+rJx5aiocapHUtXicSpWDPcnS4oHljSy/z3ADzIALc1gKTEloWf6kA6IuqMh+H8OQ227PLsHQhk5GskxP54T6/TulsGMLi251BU+0CzoWbUcYR0qxfn6je7XUq9RctCA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3774.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(39860400002)(396003)(366004)(346002)(136003)(376002)(26005)(54906003)(66476007)(7696005)(52116002)(8936002)(66556008)(66946007)(36756003)(478600001)(5660300002)(86362001)(6916009)(2616005)(186003)(6486002)(2906002)(316002)(1076003)(8676002)(16526019)(956004)(4326008)(83380400001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: 4csHGNWnmz69n8U3mbWlrgnTT7e4wvymEOwUaTEsHGO5uQAz6nZ847anJNe7znVEb8sXCmAiVYPL7tDpb1Q25JAmz5mjloBwY82sNi0MWbMhaY+lRMGSfChK1BpMUpHmenND7F8JZ+ri5RGTAQahuy3DcuX5VIIfaByx0gP9jFcyBDsvdWONeX1Ke106mVnsSdWnMt2iAck7pS8n26HtzWIvrfAAvd07P23NQni8j1/uwEc2K/3WmK3o0fenRFigYhi+R+r2K21EQ/1629zgyg4l2WFSpvWXnpdKvNU7aILSudxSdhkggVJFzwVZF875ga7lBEgzCfVDe80JvqYBzbA4zVxwKm7CU/5JJEEdM/OJRLMCkv9N0s+WZyJ5CjBjCOps+WATowFgIXvI1g3bwkpN+h3TMB/3/E+r22SUTm+Us0mqqYY817zo4fhEqSRTE4+Ykne+FClaQnKiR8eS9VJ0YGTe3gwyzw0iMgy8z2vP1XjNpIt0qp/A7bLYQ7+H
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fadb95d-635d-449e-d464-08d8216a4e03
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3774.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2020 05:06:13.4027 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4YpM0KPkoiP5dHD7lNRahehMm+LKLBBqzy26zC3F71mC9IV5VsReHUAJUDF+f1YKhOv9xsT4aLpinVhNieCCoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4470
+X-Mailman-Approved-At: Mon, 06 Jul 2020 07:47:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,135 +35,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: AnZhong Huang <anzhong.huang@amd.com>, Aaron Liu <aaron.liu@amd.com>,
- Huang Rui <ray.huang@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Leo Liu <leo.liu@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Paul Menzel <pmenzel@molgen.mpg.de>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch updates to use register distance member instead of hardcode
-in mmhub v9.4.
-
-Signed-off-by: Huang Rui <ray.huang@amd.com>
-Tested-by: AnZhong Huang <anzhong.huang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c | 37 ++++++++++++++-----------
- 1 file changed, 21 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
-index df2c316accde..9979f54fef57 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
-@@ -57,20 +57,16 @@ u64 mmhub_v9_4_get_fb_location(struct amdgpu_device *adev)
- static void mmhub_v9_4_setup_hubid_vm_pt_regs(struct amdgpu_device *adev, int hubid,
- 				uint32_t vmid, uint64_t value)
- {
--	/* two registers distance between mmVML2VC0_VM_CONTEXT0_* to
--	 * mmVML2VC0_VM_CONTEXT1_*
--	 */
--	int dist = mmVML2VC0_VM_CONTEXT1_PAGE_TABLE_BASE_ADDR_LO32
--			- mmVML2VC0_VM_CONTEXT0_PAGE_TABLE_BASE_ADDR_LO32;
-+	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB_0];
- 
- 	WREG32_SOC15_OFFSET(MMHUB, 0,
- 			    mmVML2VC0_VM_CONTEXT0_PAGE_TABLE_BASE_ADDR_LO32,
--			    dist * vmid + hubid * MMHUB_INSTANCE_REGISTER_OFFSET,
-+			    hub->ctx_addr_distance * vmid + hubid * MMHUB_INSTANCE_REGISTER_OFFSET,
- 			    lower_32_bits(value));
- 
- 	WREG32_SOC15_OFFSET(MMHUB, 0,
- 			    mmVML2VC0_VM_CONTEXT0_PAGE_TABLE_BASE_ADDR_HI32,
--			    dist * vmid + hubid * MMHUB_INSTANCE_REGISTER_OFFSET,
-+			    hub->ctx_addr_distance * vmid + hubid * MMHUB_INSTANCE_REGISTER_OFFSET,
- 			    upper_32_bits(value));
- 
- }
-@@ -301,6 +297,7 @@ static void mmhub_v9_4_disable_identity_aperture(struct amdgpu_device *adev,
- 
- static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
- {
-+	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB_0];
- 	uint32_t tmp;
- 	int i;
- 
-@@ -335,21 +332,25 @@ static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
- 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
- 				    !amdgpu_noretry);
- 		WREG32_SOC15_OFFSET(MMHUB, 0, mmVML2VC0_VM_CONTEXT1_CNTL,
--				    hubid * MMHUB_INSTANCE_REGISTER_OFFSET + i,
--				    tmp);
-+				    hubid * MMHUB_INSTANCE_REGISTER_OFFSET +
-+				    i * hub->ctx_distance, tmp);
- 		WREG32_SOC15_OFFSET(MMHUB, 0,
- 			    mmVML2VC0_VM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
--			    hubid * MMHUB_INSTANCE_REGISTER_OFFSET + i*2, 0);
-+			    hubid * MMHUB_INSTANCE_REGISTER_OFFSET +
-+			    i * hub->ctx_addr_distance, 0);
- 		WREG32_SOC15_OFFSET(MMHUB, 0,
- 			    mmVML2VC0_VM_CONTEXT1_PAGE_TABLE_START_ADDR_HI32,
--			    hubid * MMHUB_INSTANCE_REGISTER_OFFSET + i*2, 0);
-+			    hubid * MMHUB_INSTANCE_REGISTER_OFFSET +
-+			    i * hub->ctx_addr_distance, 0);
- 		WREG32_SOC15_OFFSET(MMHUB, 0,
- 				mmVML2VC0_VM_CONTEXT1_PAGE_TABLE_END_ADDR_LO32,
--				hubid * MMHUB_INSTANCE_REGISTER_OFFSET + i*2,
-+				hubid * MMHUB_INSTANCE_REGISTER_OFFSET +
-+				i * hub->ctx_addr_distance,
- 				lower_32_bits(adev->vm_manager.max_pfn - 1));
- 		WREG32_SOC15_OFFSET(MMHUB, 0,
- 				mmVML2VC0_VM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
--				hubid * MMHUB_INSTANCE_REGISTER_OFFSET + i*2,
-+				hubid * MMHUB_INSTANCE_REGISTER_OFFSET +
-+				i * hub->ctx_addr_distance,
- 				upper_32_bits(adev->vm_manager.max_pfn - 1));
- 	}
- }
-@@ -357,16 +358,19 @@ static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
- static void mmhub_v9_4_program_invalidation(struct amdgpu_device *adev,
- 					    int hubid)
- {
-+	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB_0];
- 	unsigned i;
- 
- 	for (i = 0; i < 18; ++i) {
- 		WREG32_SOC15_OFFSET(MMHUB, 0,
- 				mmVML2VC0_VM_INVALIDATE_ENG0_ADDR_RANGE_LO32,
--				hubid * MMHUB_INSTANCE_REGISTER_OFFSET + 2 * i,
-+				hubid * MMHUB_INSTANCE_REGISTER_OFFSET +
-+				i * hub->eng_addr_distance,
- 				0xffffffff);
- 		WREG32_SOC15_OFFSET(MMHUB, 0,
- 				mmVML2VC0_VM_INVALIDATE_ENG0_ADDR_RANGE_HI32,
--				hubid * MMHUB_INSTANCE_REGISTER_OFFSET + 2 * i,
-+				hubid * MMHUB_INSTANCE_REGISTER_OFFSET +
-+				i * hub->eng_addr_distance,
- 				0x1f);
- 	}
- }
-@@ -395,6 +399,7 @@ int mmhub_v9_4_gart_enable(struct amdgpu_device *adev)
- 
- void mmhub_v9_4_gart_disable(struct amdgpu_device *adev)
- {
-+	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB_0];
- 	u32 tmp;
- 	u32 i, j;
- 
-@@ -404,7 +409,7 @@ void mmhub_v9_4_gart_disable(struct amdgpu_device *adev)
- 			WREG32_SOC15_OFFSET(MMHUB, 0,
- 					    mmVML2VC0_VM_CONTEXT0_CNTL,
- 					    j * MMHUB_INSTANCE_REGISTER_OFFSET +
--					    i, 0);
-+					    i * hub->ctx_distance, 0);
- 
- 		/* Setup TLB control */
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0,
--- 
-2.25.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+Rm9yIGJpdG1hc2tzIHByaW50aW5nIHZhbHVlcyBpbiBoZXggaXMgbW9yZSBjb252ZW5pZW50LgoK
+UHJlZml4IHdpdGggYDB4YCB0byBtYWtlIGl0IGNsZWFyLCB0aGF0IGl04oCZcyBhIGhleCB2YWx1
+ZSwgYW5kIHBhZCBpdApvdXQuCgpVc2luZyB0aGUgaGVscGVyIGZvciBgYW1kZ3B1LnBwZmVhdHVy
+ZW1hc2tgLCBpdCB3aWxsIGxvb2sgbGlrZSBiZWxvdy4KCkJlZm9yZToKCiAgICAkIG1vcmUgL3N5
+cy9tb2R1bGUvYW1kZ3B1L3BhcmFtZXRlcnMvcHBmZWF0dXJlbWFzawogICAgNDI5NDk1MDkxMQoK
+QWZ0ZXI6CgogICAgJCBtb3JlIC9zeXMvbW9kdWxlL2FtZGdwdS9wYXJhbWV0ZXJzL3BwZmVhdHVy
+ZW1hc2sKICAgIDB4ZmZmZmJmZmYKCkNjOiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnCkNj
+OiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpTaWduZWQtb2ZmLWJ5OiBQYXVsIE1lbnpl
+bCA8cG1lbnplbEBtb2xnZW4ubXBnLmRlPgotLS0KdjI6IEFkZHJlc3MgcmV2aWV3IGNvbW1lbnRz
+OiBSZW5hbWUgaGV4IHRvIGhleGludCwgYW5kIHBhZCBzaXplcwoKIGluY2x1ZGUvbGludXgvbW9k
+dWxlcGFyYW0uaCB8ICA3ICsrKysrKy0KIGtlcm5lbC9wYXJhbXMuYyAgICAgICAgICAgICB8IDE3
+ICsrKysrKysrKy0tLS0tLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDE1IGluc2VydGlvbnMoKyksIDkg
+ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9tb2R1bGVwYXJhbS5oIGIv
+aW5jbHVkZS9saW51eC9tb2R1bGVwYXJhbS5oCmluZGV4IDNlZjkxN2ZmMDk2NC4uY2ZmNzI2MWU5
+OGJiIDEwMDY0NAotLS0gYS9pbmNsdWRlL2xpbnV4L21vZHVsZXBhcmFtLmgKKysrIGIvaW5jbHVk
+ZS9saW51eC9tb2R1bGVwYXJhbS5oCkBAIC0xMTgsNyArMTE4LDcgQEAgc3RydWN0IGtwYXJhbV9h
+cnJheQogICogeW91IGNhbiBjcmVhdGUgeW91ciBvd24gYnkgZGVmaW5pbmcgdGhvc2UgdmFyaWFi
+bGVzLgogICoKICAqIFN0YW5kYXJkIHR5cGVzIGFyZToKLSAqCWJ5dGUsIHNob3J0LCB1c2hvcnQs
+IGludCwgdWludCwgbG9uZywgdWxvbmcKKyAqCWJ5dGUsIGhleGludCwgc2hvcnQsIHVzaG9ydCwg
+aW50LCB1aW50LCBsb25nLCB1bG9uZwogICoJY2hhcnA6IGEgY2hhcmFjdGVyIHBvaW50ZXIKICAq
+CWJvb2w6IGEgYm9vbCwgdmFsdWVzIDAvMSwgeS9uLCBZL04uCiAgKglpbnZib29sOiB0aGUgYWJv
+dmUsIG9ubHkgc2Vuc2UtcmV2ZXJzZWQgKE4gPSB0cnVlKS4KQEAgLTQ0OCw2ICs0NDgsMTEgQEAg
+ZXh0ZXJuIGludCBwYXJhbV9zZXRfdWxsb25nKGNvbnN0IGNoYXIgKnZhbCwgY29uc3Qgc3RydWN0
+IGtlcm5lbF9wYXJhbSAqa3ApOwogZXh0ZXJuIGludCBwYXJhbV9nZXRfdWxsb25nKGNoYXIgKmJ1
+ZmZlciwgY29uc3Qgc3RydWN0IGtlcm5lbF9wYXJhbSAqa3ApOwogI2RlZmluZSBwYXJhbV9jaGVj
+a191bGxvbmcobmFtZSwgcCkgX19wYXJhbV9jaGVjayhuYW1lLCBwLCB1bnNpZ25lZCBsb25nIGxv
+bmcpCiAKK2V4dGVybiBjb25zdCBzdHJ1Y3Qga2VybmVsX3BhcmFtX29wcyBwYXJhbV9vcHNfaGV4
+aW50OworZXh0ZXJuIGludCBwYXJhbV9zZXRfaGV4aW50KGNvbnN0IGNoYXIgKnZhbCwgY29uc3Qg
+c3RydWN0IGtlcm5lbF9wYXJhbSAqa3ApOworZXh0ZXJuIGludCBwYXJhbV9nZXRfaGV4aW50KGNo
+YXIgKmJ1ZmZlciwgY29uc3Qgc3RydWN0IGtlcm5lbF9wYXJhbSAqa3ApOworI2RlZmluZSBwYXJh
+bV9jaGVja19oZXhpbnQobmFtZSwgcCkgcGFyYW1fY2hlY2tfdWludChuYW1lLCBwKQorCiBleHRl
+cm4gY29uc3Qgc3RydWN0IGtlcm5lbF9wYXJhbV9vcHMgcGFyYW1fb3BzX2NoYXJwOwogZXh0ZXJu
+IGludCBwYXJhbV9zZXRfY2hhcnAoY29uc3QgY2hhciAqdmFsLCBjb25zdCBzdHJ1Y3Qga2VybmVs
+X3BhcmFtICprcCk7CiBleHRlcm4gaW50IHBhcmFtX2dldF9jaGFycChjaGFyICpidWZmZXIsIGNv
+bnN0IHN0cnVjdCBrZXJuZWxfcGFyYW0gKmtwKTsKZGlmZiAtLWdpdCBhL2tlcm5lbC9wYXJhbXMu
+YyBiL2tlcm5lbC9wYXJhbXMuYwppbmRleCA4ZTU2ZjhiMTJkOGYuLjQ4NzI2MWViODM2ZiAxMDA2
+NDQKLS0tIGEva2VybmVsL3BhcmFtcy5jCisrKyBiL2tlcm5lbC9wYXJhbXMuYwpAQCAtMjMzLDE0
+ICsyMzMsMTUgQEAgY2hhciAqcGFyc2VfYXJncyhjb25zdCBjaGFyICpkb2luZywKIAlFWFBPUlRf
+U1lNQk9MKHBhcmFtX29wc18jI25hbWUpCiAKIAotU1RBTkRBUkRfUEFSQU1fREVGKGJ5dGUsCXVu
+c2lnbmVkIGNoYXIsCQkiJWhodSIsIGtzdHJ0b3U4KTsKLVNUQU5EQVJEX1BBUkFNX0RFRihzaG9y
+dCwJc2hvcnQsCQkJIiVoaSIsICBrc3RydG9zMTYpOwotU1RBTkRBUkRfUEFSQU1fREVGKHVzaG9y
+dCwJdW5zaWduZWQgc2hvcnQsCQkiJWh1IiwgIGtzdHJ0b3UxNik7Ci1TVEFOREFSRF9QQVJBTV9E
+RUYoaW50LAkJaW50LAkJCSIlaSIsICAga3N0cnRvaW50KTsKLVNUQU5EQVJEX1BBUkFNX0RFRih1
+aW50LAl1bnNpZ25lZCBpbnQsCQkiJXUiLCAgIGtzdHJ0b3VpbnQpOwotU1RBTkRBUkRfUEFSQU1f
+REVGKGxvbmcsCWxvbmcsCQkJIiVsaSIsICBrc3RydG9sKTsKLVNUQU5EQVJEX1BBUkFNX0RFRih1
+bG9uZywJdW5zaWduZWQgbG9uZywJCSIlbHUiLCAga3N0cnRvdWwpOwotU1RBTkRBUkRfUEFSQU1f
+REVGKHVsbG9uZywJdW5zaWduZWQgbG9uZyBsb25nLAkiJWxsdSIsIGtzdHJ0b3VsbCk7CitTVEFO
+REFSRF9QQVJBTV9ERUYoYnl0ZSwJdW5zaWduZWQgY2hhciwJCSIlaGh1IiwgIGtzdHJ0b3U4KTsK
+K1NUQU5EQVJEX1BBUkFNX0RFRihzaG9ydCwJc2hvcnQsCQkJIiVoaSIsICAga3N0cnRvczE2KTsK
+K1NUQU5EQVJEX1BBUkFNX0RFRih1c2hvcnQsCXVuc2lnbmVkIHNob3J0LAkJIiVodSIsICAga3N0
+cnRvdTE2KTsKK1NUQU5EQVJEX1BBUkFNX0RFRihpbnQsCQlpbnQsCQkJIiVpIiwgICAga3N0cnRv
+aW50KTsKK1NUQU5EQVJEX1BBUkFNX0RFRih1aW50LAl1bnNpZ25lZCBpbnQsCQkiJXUiLCAgICBr
+c3RydG91aW50KTsKK1NUQU5EQVJEX1BBUkFNX0RFRihsb25nLAlsb25nLAkJCSIlbGkiLCAgIGtz
+dHJ0b2wpOworU1RBTkRBUkRfUEFSQU1fREVGKHVsb25nLAl1bnNpZ25lZCBsb25nLAkJIiVsdSIs
+ICAga3N0cnRvdWwpOworU1RBTkRBUkRfUEFSQU1fREVGKHVsbG9uZywJdW5zaWduZWQgbG9uZyBs
+b25nLAkiJWxsdSIsICBrc3RydG91bGwpOworU1RBTkRBUkRfUEFSQU1fREVGKGhleGludCwJdW5z
+aWduZWQgaW50LAkJIiUjMDh4Iiwga3N0cnRvdWludCk7CiAKIGludCBwYXJhbV9zZXRfY2hhcnAo
+Y29uc3QgY2hhciAqdmFsLCBjb25zdCBzdHJ1Y3Qga2VybmVsX3BhcmFtICprcCkKIHsKLS0gCjIu
+MjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1k
+LWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
