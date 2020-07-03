@@ -1,31 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C6DB215373
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jul 2020 09:47:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D596B215371
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jul 2020 09:47:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CCFC6E334;
-	Mon,  6 Jul 2020 07:47:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E83D06E2A0;
+	Mon,  6 Jul 2020 07:47:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4D3F6E2A5
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jul 2020 14:29:46 +0000 (UTC)
-Received: from hopp.molgen.mpg.de (hopp.molgen.mpg.de [141.14.25.186])
- by mx.molgen.mpg.de (Postfix) with ESMTP id A5F59206442E7;
- Fri,  3 Jul 2020 16:29:45 +0200 (CEST)
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-To: Linus Torvalds <torvalds@linux-foundation.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH v3 3/3] drm/amdgpu: Change type of module param
- `ppfeaturemask` to hexint
-Date: Fri,  3 Jul 2020 16:29:39 +0200
-Message-Id: <20200703142939.28663-3-pmenzel@molgen.mpg.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200703142939.28663-1-pmenzel@molgen.mpg.de>
-References: <20200703142939.28663-1-pmenzel@molgen.mpg.de>
+Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F9CC6E12E;
+ Fri,  3 Jul 2020 14:41:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+ s=20170329; 
+ h=MIME-Version:Content-Type:Date:Cc:To:From:Subject:Message-ID;
+ bh=3wtKwJ8jSwfxuwx4E2mHdRG1tuB411zQFYLo5GaTh/I=; 
+ b=Db6qtSAHt79/RpBjDbl8aIymP0L4/A9eTkabNzQadHpj5CdkpTaz4JRZSiNNgydwWHt/iFrh7YzSIwEWWX8mDmDUL4LWjqe3O5UIc+M8RiX5wLvlHp8f3uYdANV3hjKByGuOzkI8CIiYMciD5JKDiOQprRvD05q5al82Xf7SpMTtbHhSZ4ymWEILsyizYi2UwL61n5gsG3mUpyPiPQOqWPuYHvx9sUWFFNjcG0kuE3sjRErLUTv4tZKYhRVGDdIdkvnXxWaq9svl6ZC8RwX+2VXpx5LqjViVsnH6/NRzQtbM3P95qNFNXuAlPbMhc9JBnVNO4omj69f1jA7lAyaPow==;
+Received: from 53.red-88-15-141.dynamicip.rima-tde.net ([88.15.141.53]
+ helo=maxwell) by fanzine.igalia.com with esmtpsa 
+ (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
+ id 1jrMsy-0006k1-L4; Fri, 03 Jul 2020 16:41:52 +0200
+Message-ID: <4e5319c905109f9fe4ca48dee0e89d83ec73f2da.camel@igalia.com>
+Subject: [XDC 2020] Virtual conference + Call for Proposals extended 2 weeks
+ more
+From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
+To: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>, 
+ "events@lists.x.org"
+ <events@lists.x.org>, "xorg-devel@lists.freedesktop.org"
+ <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
+ <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org"
+ <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org"
+ <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
+ <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
+ <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Date: Fri, 03 Jul 2020 16:41:42 +0200
+User-Agent: Evolution 3.36.3 (3.36.3-1.fc32) 
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 06 Jul 2020 07:47:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -39,55 +52,75 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paul Menzel <pmenzel@molgen.mpg.de>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "board@foundation.x.org" <board@foundation.x.org>
+Content-Type: multipart/mixed; boundary="===============1204782801=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The newly added hexint helper is more convenient for bitmasks.
 
-Before:
+--===============1204782801==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-UA8V1+yvXFwTWVEJGo8l"
 
-    $ more /sys/module/amdgpu/parameters/ppfeaturemask
-    4294950911
 
-After:
+--=-UA8V1+yvXFwTWVEJGo8l
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-    $ more /sys/module/amdgpu/parameters/ppfeaturemask
-    0xffffbfff
+Hi,
 
-Cc: amd-gfx@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Paul Menzel <pmenzel@molgen.mpg.de>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+In the last meeting, X.Org Foundation board has decided that XDC 2020
+will be a virtual conference, given the uncertain COVID-19 situation in
+Europe by September, including the possibility of a second wave,
+outbreaks and travel restrictions, either in Poland or in other
+countries.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 126e74758a34..5c4263335cba 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -391,12 +391,12 @@ MODULE_PARM_DESC(sched_hw_submission, "the max number of HW submissions (default
- module_param_named(sched_hw_submission, amdgpu_sched_hw_submission, int, 0444);
- 
- /**
-- * DOC: ppfeaturemask (uint)
-+ * DOC: ppfeaturemask (hexint)
-  * Override power features enabled. See enum PP_FEATURE_MASK in drivers/gpu/drm/amd/include/amd_shared.h.
-  * The default is the current set of stable power features.
-  */
- MODULE_PARM_DESC(ppfeaturemask, "all power features enabled (default))");
--module_param_named(ppfeaturemask, amdgpu_pp_feature_mask, uint, 0444);
-+module_param_named(ppfeaturemask, amdgpu_pp_feature_mask, hexint, 0444);
- 
- /**
-  * DOC: forcelongtraining (uint)
--- 
-2.26.2
+XDC 2020 organization team agrees on this decision and it volunteered
+to organize our first virtual XDC!
+
+We would like to announce as well that the new CFP deadline is Sunday
+July 19th 2020. Don't forget to submit your talk, demo and workshop
+proposals!
+
+Thanks,
+
+Sam
+
+--=-UA8V1+yvXFwTWVEJGo8l
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAl7/Q6YACgkQf/S6MvF9
+w0PrUw/9Hx3/w07dFx2Eyn/tQnhsAYXs+ZSTHUZ0wuFlv+pWrLQ0g1swQF/GNpbO
+ZeJt2nKTqc8bbwdn/yQzf+ktt0jsKAktwCyJBVlHhjsvIj/tJx5IvD8iRfNZRftz
+OhE+UAqwPCUqc3QZ/R11IRyVr7XVu1RTarTGsC6Clk8tFzIuaRDEKJWTJ9B9jjy0
+WHh8ufEVVQsU3qlSNS+C7BvKKIJlHfYQvaEBDHjMYT3z9pc0ZwExMtM4zeedtCLz
+tUS9yynRrtXlrZuwvDAXZAnURMl9oj8SOPhyk1zwPoPF6FX6imurQkP9BbNeqX17
+f81vAOm4fhX5VPnFPHQ1QiwCOj8xaCiwaMPZEwr6qZbbIKQEFgRpJYzgMF8nis+K
+MOf9fPdsEbRm1B2wSNT3pcoPYkn15TztF0kq0seWhgESzXCnr+5k+1UyO66Cp22x
+xx1thK5P3Y2/nYAKy827fWc1NrDXpUOxaAaWvRAvfWNVjG37sUSFcoHE0/Sc4QZN
+cZCDfFIO1+UwYQZXHjotslrW3He4APqgRm+pZgdKLufuPuaCpdFRNYPqdpBcmSI0
+aYm3QmeCmXxiTLZak6I8wardeR9bgDBdVmexBOONbOZjIXzRg/dijn8YjxvzeiOQ
+vJslTubiFcKRbbrZnr5gBaBtp0rFGN/nSQlUT4A7loMlianuavA=
+=pmv+
+-----END PGP SIGNATURE-----
+
+--=-UA8V1+yvXFwTWVEJGo8l--
+
+
+--===============1204782801==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1204782801==--
+
