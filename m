@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1837214282
-	for <lists+amd-gfx@lfdr.de>; Sat,  4 Jul 2020 03:15:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7421621427D
+	for <lists+amd-gfx@lfdr.de>; Sat,  4 Jul 2020 03:15:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA806EBE6;
-	Sat,  4 Jul 2020 01:15:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4726B6E3D2;
+	Sat,  4 Jul 2020 01:15:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
  (mail-dm6nam11on2079.outbound.protection.outlook.com [40.107.223.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A339B6E3D2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 862F26E3D6
  for <amd-gfx@lists.freedesktop.org>; Sat,  4 Jul 2020 01:15:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A+0xqFwJr04OR/DJ2xJSFAa/+4+R0iHS6/WrxWKmsP+WOB8lOT8tukCfMIN7TMTZrDwLAqWhBZO7Qc0rfk9ZBmBh5Uw6Pr6WDUdMYraPE8HL2/jmBQ09jHP1SAFhLwM9o6o63PRAS6S3kbL3lQHXKif7BskwvaQIXgSNgC8S+aP8w+SS9PGwkL5BrC5sP8ajv81+TRjwyaJYPzK+cKvx6ByWBOA2l9ojESzGJaScsdcUx+LovwcI4dOyTYalrUUtiTXhohDgQ2j5iHmOlC2XSzl4WQ7QlxqEX3eHIk6/7aNhCAyThynbEtcMtTiaKfMwHimHezWr9BoAvtBk8gnAnw==
+ b=kppUmGKlaSK80eHg1/jK+wo2eJ2TOeCnlqBFX8H0yKDtOSbz/aSCf9cZF5BPXnReDmOehxYaR2TB8bEB1V1ag0zGnbAEBEcJ8wpyP34O3mrzw4HCTXFsL/atasiiN0LgFvGprZnjAzYrjT+s+Q0CzIEvxE5CMggeXpiylS+QFNr3dH8ZYOAFJ5MJzgOExUev2JxFNN2ewwcnZULirDFaa/8PL/b4kjwsSYUFiOYX3obyMW3Rt/oXxFkDbyiEgpb4rdSRaWYStJ4Hjbw9zmX9BZfwe+oJbiIcCyQXqdJtYYiprZu5RCQt7XeNwHnDQRAdyOigPz0vTKxM+ocsUudNBg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vvNFpYuCdNVO01Re1v4GdHfy2aJfrmapbL/ISNjWo9M=;
- b=da8pmj7PA4cKKwPpRAN1QJwR9n96no2TN2AhQe0Bn/nUMz2xXfV0Yv3pKpAEXgWK8y9KLZ016mthNRuar+lGiKngFbN448HtJeulKM3ejhLU0x00Eew9CeZN8lnn09gy4amz7SB59RfMJlrr7Xv/rBOAjTo1XpWTVKeudyLBLfizWzVBeboUDoSpDsT7xt8UCEKKdw3YPocvPF1FzHFy8xnvPoeetDdLBzxKcYsEfmanhL+R2Fe1rDcmTaz7i+rJuYpjJlpvam4Bhr8ip/jK7PToYnNSw+fuctkDaFJxLaDCTqVfrd+6pvx3PDSXcwUkJn8KsxZu0q3kjP4SeaM1/A==
+ bh=g7rXGvBR19M7eiUi/+qv3b1huGz1api5vmPY5q9B184=;
+ b=J2TIwackSSR3t7Nry/0wEaaXQFjjAvdbR3e2qnhlU3SLsJCBiQcNlE81D+InMFPKKDeVLJnCgkhcrH+V6KekoeYYWn31m0U1wQYX3mF4FQN19A76McYRHqU5S8QwJ0HWCdffik09D1lrFt6np7efy7vd3Mz3m6EGQAfVbZRoYtPAew4GJ2xk/iLid6ZTvK90YUdHDvVRb6xm4AO6vLGWSDIN5YrRW1TJ1Bfv55fxxHyguoxEip/VoIwL3z7AwzK+cMl6NU+wlLnUsvfKVDd/SMyxJ+YMR6DqLvEsk4HCGoPuNKY5TH2bktvktKEgu370WZZQklTfjObRD/mFbCJzCg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vvNFpYuCdNVO01Re1v4GdHfy2aJfrmapbL/ISNjWo9M=;
- b=EpsoEV59UAs9fAPkEEmqe4AD8kLM4noeG5XbupJIgaf10qtdpfD5m/I5jEKT+3qrucHFRrInsQzmhr6XCRIuW3ZynLZ/ARf5Fn4Mk2zooR6yOeaONBmLdG+Fo3HYFJ+HPFpXbvy/PjtuO9sAtol6RHu4fX/0PurDYLx/GuYxjNs=
+ bh=g7rXGvBR19M7eiUi/+qv3b1huGz1api5vmPY5q9B184=;
+ b=XJFh/6JUIJ4zj2fVabcWht47WpshjR/ebh3k/7XS5NXu1bM5kMhHfyo2yv0lGUPbVU8Jbpg1dW05HMbtr/HxVqI6uU67CH3NJu2uLh0HEc5lSJDfk+trcS79YDxO2n0vnhu/Ochxg5aGfWJkQEuDxP9SH1HMAdYkkJvBJI8RUYU=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -42,9 +42,9 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  01:15:25 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/8] drm/amd/display: Register init
-Date: Fri,  3 Jul 2020 21:14:51 -0400
-Message-Id: <20200704011457.2368241-3-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 3/8] drm/amd/display: Send VSIF on unsupported modes on DAL
+Date: Fri,  3 Jul 2020 21:14:52 -0400
+Message-Id: <20200704011457.2368241-4-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200704011457.2368241-1-Rodrigo.Siqueira@amd.com>
 References: <20200704011457.2368241-1-Rodrigo.Siqueira@amd.com>
@@ -57,35 +57,35 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:f5c::9) by
  YTOPR0101CA0013.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::26) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3153.20 via Frontend
- Transport; Sat, 4 Jul 2020 01:15:24 +0000
+ Transport; Sat, 4 Jul 2020 01:15:25 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [2607:fea8:56a0:f5c::9]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 4096a3bf-baa4-4df5-27a0-08d81fb7baf4
+X-MS-Office365-Filtering-Correlation-Id: 86ec225f-3db9-40fe-3521-08d81fb7bb57
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3768:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB37686089188275840385B0DD986B0@CH2PR12MB3768.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB37684BF6BD314AE812303890986B0@CH2PR12MB3768.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-Forefront-PRVS: 0454444834
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: l2nYtsYQGp6h+AGXHkRTzCskam4smPKP71wzMzkPkQz0HKnCp1BXoD+yynul3MGloJzIMTjuclQ5cYBo/YOlExuBhgOEw+B8yqBh3hhYv1XeS40Rxf4BM1xhgtmaYj7y+E2XPz0mTamxZleK/lEUs2ufNW60+JqzkMTgSMK0/s9T2JervplzgLjyLujBZ8kEPScYWl46WfpT85FBxjRh2w55u8FAgux8Znzr1BpJTpriq02UygX6VieZKR18mCKpvrKFFy7xAN5B3Ch8MzDlVLSac5u0+fvkAvNHOTsdOFreTKpq37wDqOB9HbHdGzLR19qFqS6QB5OiV07IHQEQ9w==
+X-Microsoft-Antispam-Message-Info: /mkzHTSkiNZFxhnNF5NmFO82A/t7tSXLsTVuKJV2u8Wq1NJAgOJ2GDSJ8nhq1GampKxa74PdJuS0HTR/ItvxlBXcuTcyIpl2YfaCiiwGACrqLkJeMAPDSPyHs9yrDMk2/6Ervrf/tGF1PLbos80L0x2irPbpXTuoDWi9yyeMBwUR5QJVKutMN+lbNpnHDEtxm892Sl8gmu2feyHo6eDcg5IsLsQDF8mB4Fg+UcS0sNvmkBt7w4oVKa1V/3tZlBMQrPXBdu/s7snC97LuUAy7uqOD4OydCMHS8FUQcwCELusV+f395btBLS3E8iRYr9vuGWqi3lZwzDRQFL8ZTxcGHQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
  SFS:(4636009)(39860400002)(376002)(136003)(366004)(346002)(396003)(478600001)(8936002)(8676002)(6916009)(52116002)(6506007)(6486002)(316002)(66946007)(66476007)(66556008)(6512007)(2906002)(1076003)(36756003)(4326008)(54906003)(86362001)(16526019)(5660300002)(83380400001)(186003)(2616005)(6666004);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: Aj1GTomZi4TzBwDg6dlPY7uzszu/td4zfMt+fzvBuFXL0S/j9LSQ2SLL7SAzuIg6Eg4QJXNU4BQSZvHNj31F+jOXEUGWlKb61+JwYfT7VUiVlgKmYFlo8ydUvEweEhmTc+WA5Df0uygqi2y2/R57SjfpWE2O/b2Wo3sIbpUjk2fEOHuGUku8YSJf+ZOFV6H9Kntqb/py0Dw/vjOlxFeZVfliQTiqsBQI1BNZQToE60r4MtCHZtDtd90DWl6p0SWmHmLoE6Ov72M139L3nUMNcSsI/TfWfUQ+AFTuwTqZkyIbvES04GWPyDvcoIs9cZoKshOBXm4lSMVw9OXjBycUj2uLkQxnAnxb8j5TN19IoexB3Dm1yg4azUV6g+by55N7xX2QzcUo92SvKCuOrhyv8vIZKkQ5EcD9WHGmWK8sjYv/5P7aIMmvbG4TBig+FRhrvklXMo6VyCMXdDFChk0ErLaYF6scyANC1lni7EMYvcV+LyEmHuY3obe7YJ06BEqRAZENxSS/fsAsERm7U9wuvA==
+X-MS-Exchange-AntiSpam-MessageData: d3nUOdyOnQ6euP7IgZMOHOaiPe1lVRrOX/MvzsN+OxySc2CPTbSEUZ9rQ6vfBcEHKH9I/XQJnuW9ZU0pu0A0XIwbemCcWRPwy0e72VpVKK84CrgQejoHWcf5p/LlgbiLL3FFBYE6QX90T9G0c/MzdINHJsXREZKn5822BJMROgPBvJWVzcFGhu3S0lp4Z9wiZO4NGnHr2DmP+0ADo4Mm+WpNm7tCx1orGsh8dTXKxX12pkXE72RZg3y4OZSP5gBtAM3i+ZozBmCq5ibYCA1isht+ob7ah7U2og0Uj+RpYU6yNUGEFqjhUZ/af2ZFN9PahjS64ntq/jfJicb9n1yA67KcFEs0jgbRC/t5J6dU83bdNKOy7qk3DFGSDj1l4q4lmwVu1zNAz9dCXu1ce9VkCViVu53UQvl2JxJ2m3P6Aty8LszqzRcSz7cvw+AMth3plU6XjMdY4hlmrI6Bzcn186eHFJXDFwcZv7DLyS96KQ0Pcz0Z+KjMDNpXVnz4WhWTngHTN0V3xSN4Q1qiN+m9JQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4096a3bf-baa4-4df5-27a0-08d81fb7baf4
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86ec225f-3db9-40fe-3521-08d81fb7bb57
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4198.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2020 01:15:25.0776 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2020 01:15:25.7238 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G2lnotX040Rh8PFIEyzvpKZdQxqV6Jqonqc1a1H+wIM1sCT3jyfdyCjeDNJNj2digfw/R0/KTd/VB0+q56O5Zg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: e4U5E2/MPbAAAdf4SYAKUfHzUT0gKg8ChMSkwMV8rV87k6D3LARX6MT+xgwTIsclrNdOfDL9spgh7gP6rvsU/Q==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3768
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,145 +98,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: eryk.brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Igor Kravchenko <Igor.Kravchenko@amd.com>,
- aurabindo.pillai@amd.com, Tony Cheng <Tony.Cheng@amd.com>,
- Bhawanpreet.Lakha@amd.com
+Cc: eryk.brol@amd.com, Jaehyun Chung <jaehyun.chung@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ aurabindo.pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ Anthony Koo <Anthony.Koo@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Igor Kravchenko <Igor.Kravchenko@amd.com>
+From: Jaehyun Chung <jaehyun.chung@amd.com>
 
 [Why]
-Driver re-initialize registers already set in FW
+Current DAL behaviour is to not send VSIF if mode does not support VRR
+(ie. FS range is < 10Hz). However, we should still set FS Native Color
+Active bit in some unsupported mode cases.
 
 [How]
-Transfer init to FW
+Remove check for if VRR is supported before building infopacket.
 
-Signed-off-by: Igor Kravchenko <Igor.Kravchenko@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Signed-off-by: Jaehyun Chung <jaehyun.chung@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Eryk Brol <eryk.brol@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 58 +++++++++++--------
- 1 file changed, 35 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/amd/display/modules/freesync/freesync.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index cb45f05a0319..6711ff908bcf 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -1255,6 +1255,7 @@ void dcn10_init_hw(struct dc *dc)
- 	struct dc_bios *dcb = dc->ctx->dc_bios;
- 	struct resource_pool *res_pool = dc->res_pool;
- 	uint32_t backlight = MAX_BACKLIGHT_LEVEL;
-+	bool   is_optimized_init_done = false;
- 
- 	if (dc->clk_mgr && dc->clk_mgr->funcs->init_clocks)
- 		dc->clk_mgr->funcs->init_clocks(dc->clk_mgr);
-@@ -1288,7 +1289,9 @@ void dcn10_init_hw(struct dc *dc)
- 	if (!dcb->funcs->is_accelerated_mode(dcb))
- 		hws->funcs.disable_vga(dc->hwseq);
- 
--	if (!dc_dmub_srv_optimized_init_done(dc->ctx->dmub_srv))
-+	is_optimized_init_done = dc_dmub_srv_optimized_init_done(dc->ctx->dmub_srv);
-+
-+	if (!is_optimized_init_done)
- 		hws->funcs.bios_golden_init(dc);
- 
- 	if (dc->ctx->dc_bios->fw_info_valid) {
-@@ -1323,7 +1326,8 @@ void dcn10_init_hw(struct dc *dc)
- 		 */
- 		struct dc_link *link = dc->links[i];
- 
--		link->link_enc->funcs->hw_init(link->link_enc);
-+		if (!is_optimized_init_done)
-+			link->link_enc->funcs->hw_init(link->link_enc);
- 
- 		/* Check for enabled DIG to identify enabled display */
- 		if (link->link_enc->funcs->is_dig_enabled &&
-@@ -1332,9 +1336,11 @@ void dcn10_init_hw(struct dc *dc)
- 	}
- 
- 	/* Power gate DSCs */
--	for (i = 0; i < res_pool->res_cap->num_dsc; i++)
--		if (hws->funcs.dsc_pg_control != NULL)
--			hws->funcs.dsc_pg_control(hws, res_pool->dscs[i]->inst, false);
-+	if (!is_optimized_init_done) {
-+		for (i = 0; i < res_pool->res_cap->num_dsc; i++)
-+			if (hws->funcs.dsc_pg_control != NULL)
-+				hws->funcs.dsc_pg_control(hws, res_pool->dscs[i]->inst, false);
-+	}
- 
- 	/* we want to turn off all dp displays before doing detection */
- 	if (dc->config.power_down_display_on_boot) {
-@@ -1379,10 +1385,12 @@ void dcn10_init_hw(struct dc *dc)
- 	 * everything down.
+diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+index 5ddfd6476ff9..d3a5ba9ee782 100644
+--- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
++++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+@@ -790,7 +790,7 @@ void mod_freesync_build_vrr_infopacket(struct mod_freesync *mod_freesync,
+ 	 * Check if Freesync is supported. Return if false. If true,
+ 	 * set the corresponding bit in the info packet
  	 */
- 	if (dcb->funcs->is_accelerated_mode(dcb) || dc->config.power_down_display_on_boot) {
--		hws->funcs.init_pipes(dc, dc->current_state);
--		if (dc->res_pool->hubbub->funcs->allow_self_refresh_control)
--			dc->res_pool->hubbub->funcs->allow_self_refresh_control(dc->res_pool->hubbub,
--					!dc->res_pool->hubbub->ctx->dc->debug.disable_stutter);
-+		if (!is_optimized_init_done) {
-+			hws->funcs.init_pipes(dc, dc->current_state);
-+			if (dc->res_pool->hubbub->funcs->allow_self_refresh_control)
-+				dc->res_pool->hubbub->funcs->allow_self_refresh_control(dc->res_pool->hubbub,
-+						!dc->res_pool->hubbub->ctx->dc->debug.disable_stutter);
-+		}
- 	}
+-	if (!vrr->supported || (!vrr->send_info_frame))
++	if (!vrr->send_info_frame)
+ 		return;
  
- 	/* In headless boot cases, DIG may be turned
-@@ -1417,30 +1425,34 @@ void dcn10_init_hw(struct dc *dc)
- 		}
- 	}
- 
--	for (i = 0; i < res_pool->audio_count; i++) {
--		struct audio *audio = res_pool->audios[i];
-+	if (!is_optimized_init_done) {
- 
--		audio->funcs->hw_init(audio);
--	}
-+		for (i = 0; i < res_pool->audio_count; i++) {
-+			struct audio *audio = res_pool->audios[i];
- 
--	for (i = 0; i < dc->link_count; i++) {
--		struct dc_link *link = dc->links[i];
-+			audio->funcs->hw_init(audio);
-+		}
- 
--		if (link->panel_cntl)
--			backlight = link->panel_cntl->funcs->hw_init(link->panel_cntl);
--	}
-+		for (i = 0; i < dc->link_count; i++) {
-+			struct dc_link *link = dc->links[i];
- 
--	if (abm != NULL)
--		abm->funcs->abm_init(abm, backlight);
-+			if (link->panel_cntl)
-+				backlight = link->panel_cntl->funcs->hw_init(link->panel_cntl);
-+		}
- 
--	if (dmcu != NULL && !dmcu->auto_load_dmcu)
--		dmcu->funcs->dmcu_init(dmcu);
-+		if (abm != NULL)
-+			abm->funcs->abm_init(abm, backlight);
-+
-+		if (dmcu != NULL && !dmcu->auto_load_dmcu)
-+			dmcu->funcs->dmcu_init(dmcu);
-+	}
- 
- 	if (abm != NULL && dmcu != NULL)
- 		abm->dmcu_is_running = dmcu->funcs->is_dmcu_initialized(dmcu);
- 
- 	/* power AFMT HDMI memory TODO: may move to dis/en output save power*/
--	REG_WRITE(DIO_MEM_PWR_CTRL, 0);
-+	if (!is_optimized_init_done)
-+		REG_WRITE(DIO_MEM_PWR_CTRL, 0);
- 
- 	if (!dc->debug.disable_clock_gate) {
- 		/* enable all DCN clock gating */
+ 	switch (packet_type) {
 -- 
 2.27.0
 
