@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD271214284
-	for <lists+amd-gfx@lfdr.de>; Sat,  4 Jul 2020 03:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1837214282
+	for <lists+amd-gfx@lfdr.de>; Sat,  4 Jul 2020 03:15:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 486B06EBE2;
-	Sat,  4 Jul 2020 01:15:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA806EBE6;
+	Sat,  4 Jul 2020 01:15:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
  (mail-dm6nam11on2079.outbound.protection.outlook.com [40.107.223.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C5D06E3D6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A339B6E3D2
  for <amd-gfx@lists.freedesktop.org>; Sat,  4 Jul 2020 01:15:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WzLi5eZFNibiguxY2F+18n47SIQuAMHpxOdY0OWe8FaFA23cXHJBtEbDRPpieBBG7IJtbUrESDgdPtrZXEMeuRGp331JCyNXx9I6wPTnRKp5jLNuYWSTpnsFOacJxkLMFDWoRj0IC7S90/pkwOXWT8yxYPbZAW2clFCt22f5/i1QnVe5HcotrS1YC7HFspauNtp6rHW+nN757kRlkMwWCO7E/0wYxACz8kcPbwf7n7XsyiKIwJt0F78zKLAKeaIxdn9NnxXCZCSqfFfR0XWqiva2L5CMiLKH9Hk1h5GWbbxgGnL2VvBG6ygbPMC7tlPJQx884f8GhNIvOmPDQpxvZw==
+ b=A+0xqFwJr04OR/DJ2xJSFAa/+4+R0iHS6/WrxWKmsP+WOB8lOT8tukCfMIN7TMTZrDwLAqWhBZO7Qc0rfk9ZBmBh5Uw6Pr6WDUdMYraPE8HL2/jmBQ09jHP1SAFhLwM9o6o63PRAS6S3kbL3lQHXKif7BskwvaQIXgSNgC8S+aP8w+SS9PGwkL5BrC5sP8ajv81+TRjwyaJYPzK+cKvx6ByWBOA2l9ojESzGJaScsdcUx+LovwcI4dOyTYalrUUtiTXhohDgQ2j5iHmOlC2XSzl4WQ7QlxqEX3eHIk6/7aNhCAyThynbEtcMtTiaKfMwHimHezWr9BoAvtBk8gnAnw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5ubF97VqwLSmKzRHf+A6l9R4bbgzpZ3gJY5uyVYrOS4=;
- b=TjcIpIlsGSd4bsgfR9aqrQh65x1C5/pe69+gHYL0yOnTWL4BMDbmL4I4sBNkfyZElpvovmZjPt1dAfkf54aWdkGhw5gf4ckBO127yP4hG0JLc+9CkZSaeHG0Asyc9KVfxCalaHLeJBRNtzqB79DVkrHyVp0lhM4uyqRKyppy1KaGY3+cxpb8ScXPMRvEjiwwxb6k3vM/y82JrAfmajS1YytbaNT1atzPAb59Yw1R3To8td+JeEa9Xr8cEL8+ba20wq7IGyBVS5s+wmmjtSQhYMdSN4gtkxhcO6RK+XloNRFXpTxEMgWz5r1ig6GqVDX+/xku6GGobzinow/rRd0oRg==
+ bh=vvNFpYuCdNVO01Re1v4GdHfy2aJfrmapbL/ISNjWo9M=;
+ b=da8pmj7PA4cKKwPpRAN1QJwR9n96no2TN2AhQe0Bn/nUMz2xXfV0Yv3pKpAEXgWK8y9KLZ016mthNRuar+lGiKngFbN448HtJeulKM3ejhLU0x00Eew9CeZN8lnn09gy4amz7SB59RfMJlrr7Xv/rBOAjTo1XpWTVKeudyLBLfizWzVBeboUDoSpDsT7xt8UCEKKdw3YPocvPF1FzHFy8xnvPoeetDdLBzxKcYsEfmanhL+R2Fe1rDcmTaz7i+rJuYpjJlpvam4Bhr8ip/jK7PToYnNSw+fuctkDaFJxLaDCTqVfrd+6pvx3PDSXcwUkJn8KsxZu0q3kjP4SeaM1/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5ubF97VqwLSmKzRHf+A6l9R4bbgzpZ3gJY5uyVYrOS4=;
- b=sOkZB6w8p/h8taevrHctWbPfb4joqrVyx+ov/XjwNJGj/4c6ycrVIkvRFCwHGMJ7ORbLnq2VmJVzajEZGK/OJi1QNG6uJTMpHVipviBY/vepvZB+9vh6KeH98xZLpnju9D6jRPTUV0BbT6zUa4VXlY1Ph9W8hbF1Xvd4d2ruP/s=
+ bh=vvNFpYuCdNVO01Re1v4GdHfy2aJfrmapbL/ISNjWo9M=;
+ b=EpsoEV59UAs9fAPkEEmqe4AD8kLM4noeG5XbupJIgaf10qtdpfD5m/I5jEKT+3qrucHFRrInsQzmhr6XCRIuW3ZynLZ/ARf5Fn4Mk2zooR6yOeaONBmLdG+Fo3HYFJ+HPFpXbvy/PjtuO9sAtol6RHu4fX/0PurDYLx/GuYxjNs=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,16 +35,16 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
  by CH2PR12MB3768.namprd12.prod.outlook.com (2603:10b6:610:22::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3153.27; Sat, 4 Jul
- 2020 01:15:24 +0000
+ 2020 01:15:25 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::9013:9410:7d60:cce1]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::9013:9410:7d60:cce1%8]) with mapi id 15.20.3153.028; Sat, 4 Jul 2020
- 01:15:24 +0000
+ 01:15:25 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/8] drm/amd/display: Add diags scaling log by default
-Date: Fri,  3 Jul 2020 21:14:50 -0400
-Message-Id: <20200704011457.2368241-2-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 2/8] drm/amd/display: Register init
+Date: Fri,  3 Jul 2020 21:14:51 -0400
+Message-Id: <20200704011457.2368241-3-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200704011457.2368241-1-Rodrigo.Siqueira@amd.com>
 References: <20200704011457.2368241-1-Rodrigo.Siqueira@amd.com>
@@ -62,30 +62,30 @@ X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [2607:fea8:56a0:f5c::9]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2cfdb974-1698-4c5e-54b2-08d81fb7ba97
+X-MS-Office365-Filtering-Correlation-Id: 4096a3bf-baa4-4df5-27a0-08d81fb7baf4
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3768:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB37683C8B8778E3E5CBFF7C94986B0@CH2PR12MB3768.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:233;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB37686089188275840385B0DD986B0@CH2PR12MB3768.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
 X-Forefront-PRVS: 0454444834
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gaL8x5N+FUbLVv8Bj/hGGmzaVr5tZo43hSILdqbaCFU0oLUWmJwLLwcLwt0fZfFN4Bz9HBw9BDfv56DQg5QnAmDuOQRJo1JKtflPUX+Mf86qpqzkXIPsHQGpPT4zgv6dn8AMJ/FanyXh78hcCOQ69fuwWiQrF4yG86eSC/ECjIergvvpz/Dz6y73OQlFG74i/gF8pQaxuLvTZ0R+baQ2FyyBk2TRq4Gc+O5d7GNHRuUZaYCpZ4U8kvYWiKin91KOOMvmCSzvZ63RsWYQac0syEi2p3gHw3ZD+AqcW+aBOvXyPwbVtdcbpI8XHkBcm+Y+ErnW0qYViAW8EtqiFOd+qQ==
+X-Microsoft-Antispam-Message-Info: l2nYtsYQGp6h+AGXHkRTzCskam4smPKP71wzMzkPkQz0HKnCp1BXoD+yynul3MGloJzIMTjuclQ5cYBo/YOlExuBhgOEw+B8yqBh3hhYv1XeS40Rxf4BM1xhgtmaYj7y+E2XPz0mTamxZleK/lEUs2ufNW60+JqzkMTgSMK0/s9T2JervplzgLjyLujBZ8kEPScYWl46WfpT85FBxjRh2w55u8FAgux8Znzr1BpJTpriq02UygX6VieZKR18mCKpvrKFFy7xAN5B3Ch8MzDlVLSac5u0+fvkAvNHOTsdOFreTKpq37wDqOB9HbHdGzLR19qFqS6QB5OiV07IHQEQ9w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
  SFS:(4636009)(39860400002)(376002)(136003)(366004)(346002)(396003)(478600001)(8936002)(8676002)(6916009)(52116002)(6506007)(6486002)(316002)(66946007)(66476007)(66556008)(6512007)(2906002)(1076003)(36756003)(4326008)(54906003)(86362001)(16526019)(5660300002)(83380400001)(186003)(2616005)(6666004);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: BF7qpeezqqmQw62IPMeZ6rOFF4vE0jBzyYI3nHi2BJvb4K2Jy3oMcvL+TglY235jpRNFYyn2Mu1sOZilfzdx7vwcxFYmvqATkEpjwhPQ3+PinKPx48YvYJypYlIbFxWOTthqjUQFus8yicrNlr49WPaBj7rfmuLW7s+CckYETY5fdd2Gs8cMg0KHndBwZcMXu3Guc6NcGzBUFpl3ssxob0l0/oJ9o7csqOJtHfCri3sFEVgflNzNGHTQMFHyWi6ZZy7yjE45/iVKijG2Tl6xHTjnVIHN/ZP/KeINcS4YkTCXX5unTlIgSpvXjBgJE9AW/ys1wW4evk95fOMJdDPhIuJsF0JVY3pmzb+XQSYMdAtZay3yivaZ/yrixpdh4TTeLs7liRYidpywIbC3gVAizGpCgx6bmTfdbG2Fcm3UVNyZpYH17+2eTP6X/JeTnuRM3B2PyT15pF5P5mgEw0jUSbqpw9l0+KkXmubhoGBixzPRh+cB0vkVyQd4VZXeJp7mvh98AJ2JGtkwwIX2Ph+tRA==
+X-MS-Exchange-AntiSpam-MessageData: Aj1GTomZi4TzBwDg6dlPY7uzszu/td4zfMt+fzvBuFXL0S/j9LSQ2SLL7SAzuIg6Eg4QJXNU4BQSZvHNj31F+jOXEUGWlKb61+JwYfT7VUiVlgKmYFlo8ydUvEweEhmTc+WA5Df0uygqi2y2/R57SjfpWE2O/b2Wo3sIbpUjk2fEOHuGUku8YSJf+ZOFV6H9Kntqb/py0Dw/vjOlxFeZVfliQTiqsBQI1BNZQToE60r4MtCHZtDtd90DWl6p0SWmHmLoE6Ov72M139L3nUMNcSsI/TfWfUQ+AFTuwTqZkyIbvES04GWPyDvcoIs9cZoKshOBXm4lSMVw9OXjBycUj2uLkQxnAnxb8j5TN19IoexB3Dm1yg4azUV6g+by55N7xX2QzcUo92SvKCuOrhyv8vIZKkQ5EcD9WHGmWK8sjYv/5P7aIMmvbG4TBig+FRhrvklXMo6VyCMXdDFChk0ErLaYF6scyANC1lni7EMYvcV+LyEmHuY3obe7YJ06BEqRAZENxSS/fsAsERm7U9wuvA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2cfdb974-1698-4c5e-54b2-08d81fb7ba97
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4096a3bf-baa4-4df5-27a0-08d81fb7baf4
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4198.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2020 01:15:24.5041 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2020 01:15:25.0776 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oeDUgJdoZlGaI3zNNiqGCxYDOznXcl8X6zlMTQA9gwxAJSGI9anFn2GGoFseniKjESkudUcfbTx1H3ysqusZRg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: G2lnotX040Rh8PFIEyzvpKZdQxqV6Jqonqc1a1H+wIM1sCT3jyfdyCjeDNJNj2digfw/R0/KTd/VB0+q56O5Zg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3768
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,95 +98,145 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, eryk.brol@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- aurabindo.pillai@amd.com, Eric Bernstein <Eric.Bernstein@amd.com>,
+Cc: eryk.brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Igor Kravchenko <Igor.Kravchenko@amd.com>,
+ aurabindo.pillai@amd.com, Tony Cheng <Tony.Cheng@amd.com>,
  Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+From: Igor Kravchenko <Igor.Kravchenko@amd.com>
 
-Print scaling parameters as they are calculated in diags.
+[Why]
+Driver re-initialize registers already set in FW
 
-Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
-Reviewed-by: Eric Bernstein <Eric.Bernstein@amd.com>
+[How]
+Transfer init to FW
+
+Signed-off-by: Igor Kravchenko <Igor.Kravchenko@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Eryk Brol <eryk.brol@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_resource.c | 39 ++++++++++++-------
- .../drm/amd/display/include/logger_types.h    |  2 +-
- 2 files changed, 27 insertions(+), 14 deletions(-)
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 58 +++++++++++--------
+ 1 file changed, 35 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 1000dc6daf72..7b5f90ebb133 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -1162,19 +1162,32 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
- 		/* May need to re-check lb size after this in some obscure scenario */
- 		calculate_inits_and_adj_vp(pipe_ctx);
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+index cb45f05a0319..6711ff908bcf 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+@@ -1255,6 +1255,7 @@ void dcn10_init_hw(struct dc *dc)
+ 	struct dc_bios *dcb = dc->ctx->dc_bios;
+ 	struct resource_pool *res_pool = dc->res_pool;
+ 	uint32_t backlight = MAX_BACKLIGHT_LEVEL;
++	bool   is_optimized_init_done = false;
  
--	DC_LOG_SCALER(
--				"%s: Viewport:\nheight:%d width:%d x:%d "
--				"y:%d\n dst_rect:\nheight:%d width:%d x:%d "
--				"y:%d\n",
--				__func__,
--				pipe_ctx->plane_res.scl_data.viewport.height,
--				pipe_ctx->plane_res.scl_data.viewport.width,
--				pipe_ctx->plane_res.scl_data.viewport.x,
--				pipe_ctx->plane_res.scl_data.viewport.y,
--				plane_state->dst_rect.height,
--				plane_state->dst_rect.width,
--				plane_state->dst_rect.x,
--				plane_state->dst_rect.y);
-+	DC_LOG_SCALER("%s pipe %d:\nViewport: height:%d width:%d x:%d y:%d  Recout: height:%d width:%d x:%d y:%d  HACTIVE:%d VACTIVE:%d\n"
-+			"src_rect: height:%d width:%d x:%d y:%d  dst_rect: height:%d width:%d x:%d y:%d  clip_rect: height:%d width:%d x:%d y:%d\n",
-+			__func__,
-+			pipe_ctx->pipe_idx,
-+			pipe_ctx->plane_res.scl_data.viewport.height,
-+			pipe_ctx->plane_res.scl_data.viewport.width,
-+			pipe_ctx->plane_res.scl_data.viewport.x,
-+			pipe_ctx->plane_res.scl_data.viewport.y,
-+			pipe_ctx->plane_res.scl_data.recout.height,
-+			pipe_ctx->plane_res.scl_data.recout.width,
-+			pipe_ctx->plane_res.scl_data.recout.x,
-+			pipe_ctx->plane_res.scl_data.recout.y,
-+			pipe_ctx->plane_res.scl_data.h_active,
-+			pipe_ctx->plane_res.scl_data.v_active,
-+			plane_state->src_rect.height,
-+			plane_state->src_rect.width,
-+			plane_state->src_rect.x,
-+			plane_state->src_rect.y,
-+			plane_state->dst_rect.height,
-+			plane_state->dst_rect.width,
-+			plane_state->dst_rect.x,
-+			plane_state->dst_rect.y,
-+			plane_state->clip_rect.height,
-+			plane_state->clip_rect.width,
-+			plane_state->clip_rect.x,
-+			plane_state->clip_rect.y);
+ 	if (dc->clk_mgr && dc->clk_mgr->funcs->init_clocks)
+ 		dc->clk_mgr->funcs->init_clocks(dc->clk_mgr);
+@@ -1288,7 +1289,9 @@ void dcn10_init_hw(struct dc *dc)
+ 	if (!dcb->funcs->is_accelerated_mode(dcb))
+ 		hws->funcs.disable_vga(dc->hwseq);
  
- 	if (store_h_border_left)
- 		restore_border_left_from_dst(pipe_ctx, store_h_border_left);
-diff --git a/drivers/gpu/drm/amd/display/include/logger_types.h b/drivers/gpu/drm/amd/display/include/logger_types.h
-index d66f9d8eefb4..5dea27fc5198 100644
---- a/drivers/gpu/drm/amd/display/include/logger_types.h
-+++ b/drivers/gpu/drm/amd/display/include/logger_types.h
-@@ -147,11 +147,11 @@ enum dc_log_type {
- 		(1ULL << LOG_I2C_AUX) | \
- 		(1ULL << LOG_IF_TRACE) | \
- 		(1ULL << LOG_HDMI_FRL) | \
-+		(1ULL << LOG_SCALER) | \
- 		(1ULL << LOG_DTN) /* | \
- 		(1ULL << LOG_DEBUG) | \
- 		(1ULL << LOG_BIOS) | \
- 		(1ULL << LOG_SURFACE) | \
--		(1ULL << LOG_SCALER) | \
- 		(1ULL << LOG_DML) | \
- 		(1ULL << LOG_HW_LINK_TRAINING) | \
- 		(1ULL << LOG_HW_AUDIO)| \
+-	if (!dc_dmub_srv_optimized_init_done(dc->ctx->dmub_srv))
++	is_optimized_init_done = dc_dmub_srv_optimized_init_done(dc->ctx->dmub_srv);
++
++	if (!is_optimized_init_done)
+ 		hws->funcs.bios_golden_init(dc);
+ 
+ 	if (dc->ctx->dc_bios->fw_info_valid) {
+@@ -1323,7 +1326,8 @@ void dcn10_init_hw(struct dc *dc)
+ 		 */
+ 		struct dc_link *link = dc->links[i];
+ 
+-		link->link_enc->funcs->hw_init(link->link_enc);
++		if (!is_optimized_init_done)
++			link->link_enc->funcs->hw_init(link->link_enc);
+ 
+ 		/* Check for enabled DIG to identify enabled display */
+ 		if (link->link_enc->funcs->is_dig_enabled &&
+@@ -1332,9 +1336,11 @@ void dcn10_init_hw(struct dc *dc)
+ 	}
+ 
+ 	/* Power gate DSCs */
+-	for (i = 0; i < res_pool->res_cap->num_dsc; i++)
+-		if (hws->funcs.dsc_pg_control != NULL)
+-			hws->funcs.dsc_pg_control(hws, res_pool->dscs[i]->inst, false);
++	if (!is_optimized_init_done) {
++		for (i = 0; i < res_pool->res_cap->num_dsc; i++)
++			if (hws->funcs.dsc_pg_control != NULL)
++				hws->funcs.dsc_pg_control(hws, res_pool->dscs[i]->inst, false);
++	}
+ 
+ 	/* we want to turn off all dp displays before doing detection */
+ 	if (dc->config.power_down_display_on_boot) {
+@@ -1379,10 +1385,12 @@ void dcn10_init_hw(struct dc *dc)
+ 	 * everything down.
+ 	 */
+ 	if (dcb->funcs->is_accelerated_mode(dcb) || dc->config.power_down_display_on_boot) {
+-		hws->funcs.init_pipes(dc, dc->current_state);
+-		if (dc->res_pool->hubbub->funcs->allow_self_refresh_control)
+-			dc->res_pool->hubbub->funcs->allow_self_refresh_control(dc->res_pool->hubbub,
+-					!dc->res_pool->hubbub->ctx->dc->debug.disable_stutter);
++		if (!is_optimized_init_done) {
++			hws->funcs.init_pipes(dc, dc->current_state);
++			if (dc->res_pool->hubbub->funcs->allow_self_refresh_control)
++				dc->res_pool->hubbub->funcs->allow_self_refresh_control(dc->res_pool->hubbub,
++						!dc->res_pool->hubbub->ctx->dc->debug.disable_stutter);
++		}
+ 	}
+ 
+ 	/* In headless boot cases, DIG may be turned
+@@ -1417,30 +1425,34 @@ void dcn10_init_hw(struct dc *dc)
+ 		}
+ 	}
+ 
+-	for (i = 0; i < res_pool->audio_count; i++) {
+-		struct audio *audio = res_pool->audios[i];
++	if (!is_optimized_init_done) {
+ 
+-		audio->funcs->hw_init(audio);
+-	}
++		for (i = 0; i < res_pool->audio_count; i++) {
++			struct audio *audio = res_pool->audios[i];
+ 
+-	for (i = 0; i < dc->link_count; i++) {
+-		struct dc_link *link = dc->links[i];
++			audio->funcs->hw_init(audio);
++		}
+ 
+-		if (link->panel_cntl)
+-			backlight = link->panel_cntl->funcs->hw_init(link->panel_cntl);
+-	}
++		for (i = 0; i < dc->link_count; i++) {
++			struct dc_link *link = dc->links[i];
+ 
+-	if (abm != NULL)
+-		abm->funcs->abm_init(abm, backlight);
++			if (link->panel_cntl)
++				backlight = link->panel_cntl->funcs->hw_init(link->panel_cntl);
++		}
+ 
+-	if (dmcu != NULL && !dmcu->auto_load_dmcu)
+-		dmcu->funcs->dmcu_init(dmcu);
++		if (abm != NULL)
++			abm->funcs->abm_init(abm, backlight);
++
++		if (dmcu != NULL && !dmcu->auto_load_dmcu)
++			dmcu->funcs->dmcu_init(dmcu);
++	}
+ 
+ 	if (abm != NULL && dmcu != NULL)
+ 		abm->dmcu_is_running = dmcu->funcs->is_dmcu_initialized(dmcu);
+ 
+ 	/* power AFMT HDMI memory TODO: may move to dis/en output save power*/
+-	REG_WRITE(DIO_MEM_PWR_CTRL, 0);
++	if (!is_optimized_init_done)
++		REG_WRITE(DIO_MEM_PWR_CTRL, 0);
+ 
+ 	if (!dc->debug.disable_clock_gate) {
+ 		/* enable all DCN clock gating */
 -- 
 2.27.0
 
