@@ -2,57 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AC3E218E57
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jul 2020 19:35:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB67218DF0
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jul 2020 19:08:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8F9E6E902;
-	Wed,  8 Jul 2020 17:35:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 830476E8F5;
+	Wed,  8 Jul 2020 17:08:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com
- [IPv6:2607:f8b0:4864:20::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CFAA6E06D
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 16:12:02 +0000 (UTC)
-Received: by mail-pl1-x62b.google.com with SMTP id x8so17476960plm.10
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Jul 2020 09:12:02 -0700 (PDT)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
+ [IPv6:2a00:1450:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9DBA6E8F5
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jul 2020 17:08:53 +0000 (UTC)
+Received: by mail-ej1-x630.google.com with SMTP id f12so25135935eja.9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Jul 2020 10:08:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:mime-version:content-disposition
- :user-agent; bh=O8NVmCrn7rmWx/EasIgqaaIL2HEOytbX8KlkosnSljU=;
- b=txdPHnuKi8jNIzLrEJ2Jsanim9Gtuu9h9TVh3AYwbvPOiYex6jxnL4nHM29ZbFOItJ
- Kr4fPd2Uq6Uaw3WK2H9BUVYJHBbg6NrMs+N46T5+0LFmwGudJiC96NOw53nZXvnYuq9I
- kWdvNsWybDklGVbhpewXqhJuEicCtHfoSATA0m7hPt3I4Ity6uoBdvrcH7jPJAhCYyne
- qAHV1S6w7iGDGM4P1yVQ2kGMbfqM6Jb17TpP5z2XgFlAjj+bmJ9McBEPc4TnIhQVE2bX
- KTIsloHDtoldoaac6b/FxU9EMIbwPRkV7Qt/6mfPY7GqUzEELwKNgPZrcoAA/CtYyCv7
- Z7uA==
+ h=from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=F/FVPHRGWDz5gMawOje+kyeIrStFWYZnAbHcEHarQaM=;
+ b=GPTpfzZ84fziUw28dc+dWis4wRTCQX/5xlZB8QsYrTOYdb/PMeIPXCaNmXzwcl9So1
+ XcGfy+B2Z3Hbeyss4ttguV4YIluhQUJij1Cpg0frRrdYGyEmXKjuNV76/GMZhBpbteco
+ C4H1NFJFOLUlsZtZv1AVpd/3kZ20NioVL9YsnFfx5aSH8D1HhD8JpmBszApafzmbt+vS
+ tA+qfJudtZspDaCMqHgGzatp8/jBYlTsYbI16bDGHGreh4fuojr+UOs9kbPiBojXnUsH
+ 9Xm7KGwwLROJXFEoKq02j/PL6ZJcRMZv/Oxz5T/AjlLqgxI8ny34xn+41b7MbU6glIhI
+ 6K8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-disposition:user-agent;
- bh=O8NVmCrn7rmWx/EasIgqaaIL2HEOytbX8KlkosnSljU=;
- b=B4J/4yyhbC01XXs9Di5woSpKvOH8LyOWO7XIs+Z/59V5sgHEy5F23ON2I+nGBF5M/q
- /oobXlNzh6MG28Y7rLqqJw6wkQ9/Vj4K99+2rkNNUvxlwgRIHzHK1RNKbGgi+y9Sia67
- HUompOcSUm1xuICYb0dVil1jp/KvYR/+I/mUwFchr2Qb/3UPNbiQ5AE0IyqxD0KBZfoI
- b1RGa2zv5EaGbF4FauV+Z1othGLJm6PoTu9QWOF17JlnAtRMnoUDs+jw9JG/DYfeDJKF
- 8wwCcuAFlEHi0kFlcrnidgI2tDOIx7+BpCrWeO9Tq7lfoEOvszjEJeJge9qPdfxUoceg
- L02A==
-X-Gm-Message-State: AOAM532w+Ww7cEBX8UONjloZuV2zUUsmM3Pi3CIUJD2QvmAupeMGdY10
- ++VbaE/cIW3V14UIr6nE19o=
-X-Google-Smtp-Source: ABdhPJwZK9rxp3LPxedGPA+AhLma7JOzuo6h4Jy9BY9kWGCtku96xzxKbMxxipK+Yo+nTV4wGra79g==
-X-Received: by 2002:a17:902:934a:: with SMTP id
- g10mr40305193plp.83.1594224721738; 
- Wed, 08 Jul 2020 09:12:01 -0700 (PDT)
-Received: from blackclown ([103.88.82.67])
- by smtp.gmail.com with ESMTPSA id u20sm305267pfk.91.2020.07.08.09.11.59
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 08 Jul 2020 09:12:00 -0700 (PDT)
-Date: Wed, 8 Jul 2020 21:41:46 +0530
-From: Suraj Upadhyay <usuraj35@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com
-Subject: [Proposal] DRM: AMD: Convert logging to drm_* functions.
-Message-ID: <20200708161123.GA30962@blackclown>
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=F/FVPHRGWDz5gMawOje+kyeIrStFWYZnAbHcEHarQaM=;
+ b=U6eWLuNqypzZ7zjyQtC2T34lT22YUDuh78zhuKSwn6t0Zmr00XeUvXBFGSu+6Jm9Pa
+ GRa3GCiA/Cd7d9xalT1m64cLBQrHsK4ghtQlUN5rQbbtBIapt6tsGyvBnHpoKKCAdrvz
+ Nlhzs8rCxepBtoQv+79NWvw6/fjV3U2GRl40f7fFEljrq3aeBT+vt8piH80HidtIbF+u
+ r4XL7HWRvNapg22gLrjzzXIf7pkxqwPn7lmGd12B7OuQ9dmBMyyGVB/JNN4e7bml9r/z
+ AlTZJb3ycBmezo57i1Jw23GMHJv1PgQEqtW4lokorSdl3rt7o1Io/992LwoVRrRfxd5f
+ WajQ==
+X-Gm-Message-State: AOAM531ZiQ9L4gb9UaOPU5qFVR/7kQsTSST4mxzkE0aU4jYjP4QuffDZ
+ 34+9hUvOPdzqQ67YT0gDF4yxGRxZH58=
+X-Google-Smtp-Source: ABdhPJw+TatAhSvM4kt0rzsuLdcSu95dXGJXBVb2pSF2S0ZZftsZ4BRy2wkvKV6tdHSTYXjnxCNaSA==
+X-Received: by 2002:a17:906:94c4:: with SMTP id
+ d4mr51272856ejy.232.1594228132482; 
+ Wed, 08 Jul 2020 10:08:52 -0700 (PDT)
+Received: from saturn.localnet ([41.182.130.16])
+ by smtp.gmail.com with ESMTPSA id cq7sm93162edb.66.2020.07.08.10.08.51
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Jul 2020 10:08:52 -0700 (PDT)
+From: rigo.reddig@gmail.com
+To: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Subject: Linux 5.7.7 complete system freeze
+Date: Wed, 08 Jul 2020 19:08:49 +0200
+Message-ID: <3564679.7nI7lTb4kJ@saturn>
 MIME-Version: 1.0
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Mailman-Approved-At: Wed, 08 Jul 2020 17:35:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,64 +64,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1888364270=="
+Content-Type: multipart/mixed; boundary="===============0397974370=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This is a multi-part message in MIME format.
 
---===============1888364270==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Clx92ZfkiYIKRjnr"
-Content-Disposition: inline
+--===============0397974370==
+Content-Type: multipart/alternative; boundary="nextPart2257869.EM3LvLAjl0"
+Content-Transfer-Encoding: 7Bit
 
+This is a multi-part message in MIME format.
 
---Clx92ZfkiYIKRjnr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--nextPart2257869.EM3LvLAjl0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hii AMD Maintainers,
-	I plan to convert logging of information, error and warnings
-inside the AMD driver(s) to drm_* functions and macros for loggin,
-as described by the TODO list in the DRM documentation[1].
+I get complete and total kernel freezes that result in an entirely unresponsive 
+system. This issue as driven me entirely insane since it happens at random. It has 
+cost me lost work on my machine and I haven't the energy to further 
+troubleshoot, since it took me ages to get just this kernel dump via netconsole 
+(which didn't always print before dying).
 
-I need your approval for the change before sending any patches, to make
-sure that this is a good idea and that the patches will be merged.
+System is a 1700X with 2X GFX 803 (RX580)
 
-The patches will essentially convert all the dev_info(), dev_warn(),
-dev_err() and dev_err_once() to drm_info(), drm_warn(), drm_err() and
-drm_err_once() respectively.
-
-Thank You,
-
-Suraj Upadhyay.
-
-[1] https://dri.freedesktop.org/docs/drm/gpu/todo.html#convert-logging-to-drm-functions-with-drm-device-paramater
+[ 2203.126193] general protection fault, probably for non-canonical address 
+0x93e3cc5d552d69c3: 0000 [#1] PREEMPT SMP NOPTI 
 
 
---Clx92ZfkiYIKRjnr
-Content-Type: application/pgp-signature; name="signature.asc"
+Best Regards
+Rigo Reddig
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE7AbCa0kOsMJ4cx0j+gRsbIfe744FAl8F8EEACgkQ+gRsbIfe
-747q8RAAiRLWSZwsG5CBT/ZTm2IXpxxLmCcMsgTF6ntpL2WjPwHGgsECD1NPYR7T
-Cdxs0Kc0OnpO/MZqoiaqXhPvfvX61zww/nWX3kl0aDhAh6nZlfQ758hO6bY//fNg
-cKmF5WEj2xWxpMNCfvYet/8k74iAcZ/+LVMAo9AgWcWb3tFr/pUqAX+NrtpxEibc
-SyOZOF2HuSjVsrQkUmbtcJ1plvhVQ6AUdn4UNIGXaPxxamQvNjXuorqELERoCXZH
-GTtiAe3X68D0f3k5nwaE6yqiKwL5qlPMkulOqbW1qPmYB6vQZAdSaHhHVANuTwlS
-A3LlnPHvnNtluOukB+obqxZw5MKLCderk1KfHESHudF9am/8IKI5YFSqJR4LtHBm
-lJHyfc3b54kljwxTbs6KVP/o6lTjTBX7KuTvj9ZHIbTGRZ0Fip/E5gOkuwU9l2OA
-WpB1Rqle/FB3mZFeNTB/Blk1y59aOsRDCqYU91xCDictW7ho8sd5F3h90llFQADL
-qbQKhiveae0fcqApt84hjxdnpoc0EWRpcO0Cs4swRyngxu9KFv5LnWy6Zqh/EMJk
-jrja2upJzZc7wNWtOQ/Fvn7CaBhhto940aBp/u+rrBg/Ow20sbh3KJdOKABdq2ZJ
-FNR22+8vibUNaIJiae6sEx1DisK/izz0XJpf5PnU8ACnBvCEdK8=
-=DuJn
------END PGP SIGNATURE-----
+--nextPart2257869.EM3LvLAjl0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/html; charset="us-ascii"
 
---Clx92ZfkiYIKRjnr--
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">I get complete and total kernel freezes that result in an entirely unresponsive system. This issue as driven me entirely insane since it happens at random. It has cost me lost work on my machine and I haven't the energy to further troubleshoot, since it took me ages to get just this kernel dump via netconsole (which didn't always print before dying).</p>
+<p>&nbsp;<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">System is a 1700X with 2X GFX 803 (RX580)</p>
+<p>&nbsp;<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;"><span style="font-family:monospace;"><span style="background-color:#ffffff;"><span style="color:#000000;">[ 2203.126193] general protection fault, probably for non-canonical address 0x93e3cc5d552d69c3: 0000 [#1] PREEMPT SMP NOPTI </span></span><p>&nbsp;<p>&nbsp;</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Best Regards</span></p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Rigo Reddig</p>
+<p>&nbsp;</body>
+</html>
+--nextPart2257869.EM3LvLAjl0--
 
---===============1888364270==
+
+
+
+--===============0397974370==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +127,7 @@ amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
---===============1888364270==--
+--===============0397974370==--
+
+
+
