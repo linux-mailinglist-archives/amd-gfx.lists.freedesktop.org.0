@@ -2,37 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61762199ED
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Jul 2020 09:30:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11235219839
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Jul 2020 08:10:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AFBA6E9B4;
-	Thu,  9 Jul 2020 07:30:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF93A6E3D6;
+	Thu,  9 Jul 2020 06:10:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C11B36E999
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 05:41:50 +0000 (UTC)
-Received: from [192.168.0.6] (ip5f5af27e.dynamic.kabel-deutschland.de
- [95.90.242.126])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 5D15920646095;
- Thu,  9 Jul 2020 07:41:47 +0200 (CEST)
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-Subject: drm: BUG: unable to handle page fault for address: 17ec6000
-To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- LKML <linux-kernel@vger.kernel.org>
-Message-ID: <10b8419e-9e98-56c4-f4ab-9463cccd8f60@molgen.mpg.de>
-Date: Thu, 9 Jul 2020 07:41:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2066.outbound.protection.outlook.com [40.107.223.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 998736E03D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2020 06:10:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BdGA0MIQiapHH8C30g29S4G3q0SLXGO8GF4CTHCkAACfyyW2SjVEHP/4h+U3MJ0rzxelfy6H7g9cpsr7Gx/SdmKs7umAHeoJFxjDJOhu/ZYERKBOjYUdv4nFO7nzqSqFSH4KvufDD4Q4lhIxYxUDGABa9ubzP9vkxSWZPh3KEqeOz0x1N6MqJUlt2nBdwAR/hB7OMiun3+YQBgVfIrRsxRbdcDxRcCIU+XYJjhVxiCItRN8Ji5KRSMc1n/KPape58e6llOlV5hMsRCvdYKQ499WGkaYOAG/EWj9vRYeC1eFRFlCTQmxCJWJROWhiX8ytsbym9VeWjgiE8xdCDT0lMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pHH0qUyZw2bSCKUYgSBvLMJoceVh1liA17tStKQT5aI=;
+ b=DktuRnQ8e+fQIVA433lZVLrkl97+QH8+t7ErLucsF6QPui3alQy+PV7rA5xDR/lOvi2UF5sux1dM6kI1TAlvO1F0lX/r4x74Qg00QBOeLjpLKgvGo7OjH6R4ayjQjBhIz2QRv1ihWttPgdWWgFLnEcf0qLHpyE6eFNgv3qsVCGS/QxFS0nuqDHqc6INuRWGML2GRFnZZBoX77aPtVbxUdkDbf1dwvB4jTiSVNgkbph1nv0YuqLgW6xRo6cFdvlcEiYkfxglO0Ge5XdPQoVNOXHuDFFkMnPfO3xQ7g2CY3gV65YNtCXw/D0G8BFjyCZHkwvuoObFhI4XuuTaCgCVDLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pHH0qUyZw2bSCKUYgSBvLMJoceVh1liA17tStKQT5aI=;
+ b=FeBUAiMdQA2jDlUoiMRIH/RRx9U1lNuf4nCPycUVv/lifv855XZ9RALKCysEhxy/BB2u3Ydx6TsSgk+bv4jTdYyq0hocNy2zcj1iVYQf+F1dzuY8Cxgz0/EJuJUBae5R5lpuxrD5hvqnNO3v8CNw8cCLaAEQm7CSqDs8jytfCKA=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3774.namprd12.prod.outlook.com (2603:10b6:208:16a::13)
+ by MN2PR12MB4191.namprd12.prod.outlook.com (2603:10b6:208:1d3::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.22; Thu, 9 Jul
+ 2020 06:10:06 +0000
+Received: from MN2PR12MB3774.namprd12.prod.outlook.com
+ ([fe80::9cd:9d82:d316:9285]) by MN2PR12MB3774.namprd12.prod.outlook.com
+ ([fe80::9cd:9d82:d316:9285%4]) with mapi id 15.20.3174.022; Thu, 9 Jul 2020
+ 06:10:06 +0000
+Date: Thu, 9 Jul 2020 14:09:57 +0800
+From: Huang Rui <ray.huang@amd.com>
+To: "Zhu, Changfeng" <Changfeng.Zhu@amd.com>
+Subject: Re: [PATCH] Revert "drm/amd/display: add mechanism to skip DCN init"
+Message-ID: <20200709060957.GA3530712@hr-amd>
+References: <20200709053253.24653-1-changfeng.zhu@amd.com>
+Content-Disposition: inline
+In-Reply-To: <20200709053253.24653-1-changfeng.zhu@amd.com>
+X-ClientProxiedBy: HK2PR03CA0055.apcprd03.prod.outlook.com
+ (2603:1096:202:17::25) To MN2PR12MB3774.namprd12.prod.outlook.com
+ (2603:10b6:208:16a::13)
 MIME-Version: 1.0
-Content-Language: en-US
-X-Mailman-Approved-At: Thu, 09 Jul 2020 07:30:26 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from hr-amd (58.247.170.242) by
+ HK2PR03CA0055.apcprd03.prod.outlook.com (2603:1096:202:17::25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3195.9 via Frontend Transport; Thu, 9 Jul 2020 06:10:04 +0000
+X-Originating-IP: [58.247.170.242]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: c3d6e308-0015-4c41-0346-08d823ceb9a1
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4191:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4191B845869EBE26AD3E8B79EC640@MN2PR12MB4191.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: o3Oo0h5md7UlNFTXHyWaGs4Fh0p+BORkxRcsyUgoAXuY9qriNDAdukS5Lly+UXGE7ZQq19NvffFqknD8rW0+5dWgnKTE2JE3uXUBrxv6fvGPythDxegH9NQRQB7jiCRHCLKEQDbNaHOgBxzphEWZ2NEyDQJRctOF0NLJmz4v4Fp4I+I/Q/O5hBFTFWmT/ZOlL4XcVBYoLBzzid1drXaGjut1gobsf25bMVLfwHIF00rm10nFo/rGjJ/IDE93jWs2rG6PMdwvH7rwPGLUmkLAiH2YErKP275JX4bqhQoTAA/6yruxSlSWGPhrqLrp6QXOFPCk7p7vIaGDPi2AnhD+qw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3774.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(366004)(396003)(376002)(136003)(39860400002)(346002)(478600001)(26005)(4326008)(86362001)(52116002)(6636002)(956004)(16526019)(2906002)(186003)(83380400001)(33716001)(30864003)(8936002)(8676002)(5660300002)(6496006)(6666004)(316002)(66946007)(66476007)(6862004)(66556008)(33656002)(9686003)(55016002)(54906003)(1076003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: AKpvqfsT4BfmH5+9j/uD/d/TdR5s6yE/d8xGDYEAgOZjUmV8TLye6FZDOiLhDeuvcBwlqS/uElFbgIwS3G3kyO7LeWYBibcTBOt/UpV8IUiZW3aAl405I1BsXoDwLs2pTjEbWdp7QPos/fx5LFRl2cJXvjLdHcEDYygviszbm0sYyV1MvYCurKA4h38qxAkx4tbu16bglYayPG37ku/JnIGJGcji89wR/nuMeam4YtKRyzBkDnmehhozwhcnOisqnngb3FlY3Hykqy59GoQoVe5Xz23X1oHET4BBDULA1cn/I/VkEXoVrhevQ3VzGYt3r7XtW+yOeMp/cliGrahOS54LPzndEjjO/08G7SbHOS0Zi3v0Yjv82GtGR7iAdYBIdY6b2PpXQYCtUB3WH5y4haTblruGqplfh5HCFK0R356X00jUnIs3keoGy0nTNASSU6UAENjk02Y4waf+hC1QuQRNwf5iplQeDkxX9FNBWFvycuA1Y2eB+tpRanLgy7+2
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3d6e308-0015-4c41-0346-08d823ceb9a1
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3774.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2020 06:10:06.2084 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6x88N3rcRmKdG/tdXD+CDd6DT/Knb05Ef9XdMaJu0HTMxHVQyaNkAXkLyWq/LGZlHN7iv5ZRw0tZHJYAiCq/SA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4191
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,112 +94,301 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nathan Chancellor <natechancellor@gmail.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: "Wentland, Harry" <Harry.Wentland@amd.com>, "Yang,
+ Eric" <Eric.Yang2@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Linux folks,
-
-
-Building Linux v5.8-rc4-25-gbfe91da29bfad with Clang/LLD 
-1:11~++20200701093119+ffee8040534-1~exp1 from Debian experimental for 
-32-bit (`ARCH=i386`), starting Weston (Wayland) or X.Org Server results 
-in non-working screen, and Linux shows the trace below [1].
-
-> [  502.044997] BUG: unable to handle page fault for address: 17ec6000
-> [  502.045650] #PF: supervisor write access in kernel mode
-> [  502.046301] #PF: error_code(0x0002) - not-present page
-> [  502.046956] *pde = 00000000 
-> [  502.047612] Oops: 0002 [#1] SMP
-> [  502.048269] CPU: 0 PID: 2125 Comm: Xorg.wrap Not tainted 5.8.0-rc4-00105-g4da71f1ee6263 #141
-> [  502.048967] Hardware name: System manufacturer System Product Name/F2A85-M PRO, BIOS 6601 11/25/2014
-> [  502.049686] EIP: __srcu_read_lock+0x11/0x20
-> [  502.050413] Code: 83 e0 03 50 56 68 72 c6 99 dd 68 46 c6 99 dd e8 3a c8 fe ff 83 c4 10 eb ce 0f 1f 44 00 00 55 89 e5 8b 48 68 8b 40 7c 83 e1 01 <64> ff 04 88 f0 83 44 24 fc 00 89 c8 5d c3 90 0f 1f 44 00 00 55 89
-> [  502.052027] EAX: 00000000 EBX: f36671b8 ECX: 00000000 EDX: 00000286
-> [  502.052856] ESI: f3f94eb8 EDI: f3e51c00 EBP: f303dd9c ESP: f303dd9c
-> [  502.053695] DS: 007b ES: 007b FS: 00d8 GS: 00e0 SS: 0068 EFLAGS: 00010246
-> [  502.054543] CR0: 80050033 CR2: 17ec6000 CR3: 2eea2000 CR4: 000406d0
-> [  502.055402] Call Trace:
-> [  502.056275]  drm_minor_acquire+0x6f/0x140 [drm]
-> [  502.057162]  drm_stub_open+0x2e/0x110 [drm]
-> [  502.058049]  chrdev_open+0xdd/0x1e0
-> [  502.058937]  do_dentry_open+0x21d/0x330
-> [  502.059828]  vfs_open+0x23/0x30
-> [  502.060718]  path_openat+0x947/0xd60
-> [  502.061610]  ? unlink_anon_vmas+0x53/0x120
-> [  502.062504]  do_filp_open+0x6d/0x100
-> [  502.063404]  ? __alloc_fd+0x73/0x140
-> [  502.064305]  do_sys_openat2+0x1b3/0x2a0
-> [  502.065217]  __ia32_sys_openat+0x90/0xb0
-> [  502.066128]  ? prepare_exit_to_usermode+0xa/0x20
-> [  502.067046]  do_fast_syscall_32+0x68/0xd0
-> [  502.067970]  do_SYSENTER_32+0x12/0x20
-> [  502.068902]  entry_SYSENTER_32+0x9f/0xf2
-> [  502.069839] EIP: 0xb7ef14f9
-> [  502.070764] Code: Bad RIP value.
-> [  502.071689] EAX: ffffffda EBX: ffffff9c ECX: bfa6a2ac EDX: 00008002
-> [  502.072654] ESI: 00000000 EDI: b7ed1000 EBP: bfa6b2c8 ESP: bfa6a1c0
-> [  502.073630] DS: 007b ES: 007b FS: 0000 GS: 0033 SS: 007b EFLAGS: 00000246
-> [  502.074615] Modules linked in: af_packet k10temp r8169 realtek i2c_piix4 snd_hda_codec_realtek snd_hda_codec_generic ohci_pci ohci_hcd ehci_pci snd_hda_codec_hdmi ehci_hcd radeon i2c_algo_bit snd_hda_intel ttm snd_intel_dspcfg snd_hda_codec drm_kms_helper snd_hda_core snd_pcm cfbimgblt cfbcopyarea cfbfillrect snd_timer sysimgblt syscopyarea sysfillrect snd fb_sys_fops xhci_pci xhci_hcd soundcore acpi_cpufreq drm drm_panel_orientation_quirks agpgart ipv6 nf_defrag_ipv6
-> [  502.077895] CR2: 0000000017ec6000
-> [  502.079050] ---[ end trace ced4517b63a6db26 ]---
-> [  502.080214] EIP: __srcu_read_lock+0x11/0x20
-> [  502.081392] Code: 83 e0 03 50 56 68 72 c6 99 dd 68 46 c6 99 dd e8 3a c8 fe ff 83 c4 10 eb ce 0f 1f 44 00 00 55 89 e5 8b 48 68 8b 40 7c 83 e1 01 <64> ff 04 88 f0 83 44 24 fc 00 89 c8 5d c3 90 0f 1f 44 00 00 55 89
-> [  502.083891] EAX: 00000000 EBX: f36671b8 ECX: 00000000 EDX: 00000286
-> [  502.085148] ESI: f3f94eb8 EDI: f3e51c00 EBP: f303dd9c ESP: f303dd9c
-> [  502.086406] DS: 007b ES: 007b FS: 00d8 GS: 00e0 SS: 0068 EFLAGS: 00010246
-> [  502.087675] CR0: 80050033 CR2: 17ec6000 CR3: 2eea2000 CR4: 000406d0
-
-> $ dmesg | ./scripts/decodecode
-> [ 55.784870] Code: 83 e0 03 50 56 68 ca c6 99 cf 68 9e c6 99 cf e8 3a c8 fe ff 83 c4 10 eb ce 0f 1f 44 00 00 55 89 e5 8b 48 68 8b 40 7c 83 e1 01 <64> ff 04 88 f0 83 44 24 fc 00 89 c8 5d c3 90 0f 1f 44 00 00 55 89
-> All code
-> ========
->    0:	83 e0 03             	and    $0x3,%eax
->    3:	50                   	push   %eax
->    4:	56                   	push   %esi
->    5:	68 ca c6 99 cf       	push   $0xcf99c6ca
->    a:	68 9e c6 99 cf       	push   $0xcf99c69e
->    f:	e8 3a c8 fe ff       	call   0xfffec84e
->   14:	83 c4 10             	add    $0x10,%esp
->   17:	eb ce                	jmp    0xffffffe7
->   19:	0f 1f 44 00 00       	nopl   0x0(%eax,%eax,1)
->   1e:	55                   	push   %ebp
->   1f:	89 e5                	mov    %esp,%ebp
->   21:	8b 48 68             	mov    0x68(%eax),%ecx
->   24:	8b 40 7c             	mov    0x7c(%eax),%eax
->   27:	83 e1 01             	and    $0x1,%ecx
->   2a:*	64 ff 04 88          	incl   %fs:(%eax,%ecx,4)		<-- trapping instruction
->   2e:	f0 83 44 24 fc 00    	lock addl $0x0,-0x4(%esp)
->   34:	89 c8                	mov    %ecx,%eax
->   36:	5d                   	pop    %ebp
->   37:	c3                   	ret    
->   38:	90                   	nop
->   39:	0f 1f 44 00 00       	nopl   0x0(%eax,%eax,1)
->   3e:	55                   	push   %ebp
->   3f:	89                   	.byte 0x89
+On Thu, Jul 09, 2020 at 01:32:53PM +0800, Zhu, Changfeng wrote:
+> From: changzhu <Changfeng.Zhu@amd.com>
 > 
-> Code starting with the faulting instruction
-> ===========================================
->    0:	64 ff 04 88          	incl   %fs:(%eax,%ecx,4)
->    4:	f0 83 44 24 fc 00    	lock addl $0x0,-0x4(%esp)
->    a:	89 c8                	mov    %ecx,%eax
->    c:	5d                   	pop    %ebp
->    d:	c3                   	ret    
->    e:	90                   	nop
->    f:	0f 1f 44 00 00       	nopl   0x0(%eax,%eax,1)
->   14:	55                   	push   %ebp
->   15:	89                   	.byte 0x89
+> From: Changfeng <Changfeng.Zhu@amd.com>
+> 
+> To avoid s3 faild at the first cycle on renoir platform, it
+> needs to revert this patch:
+> drm/amd/display: add mechanism to skip DCN init
+> 
+> Change-Id: Idca8933d728531fb68ea2ff00c6c8d77d2a3cdca
+> Signed-off-by: changfeng <Changfeng.Zhu@amd.com>
 
+Ackedy-by: Huang Rui <ray.huang@amd.com>
 
-Kind regards,
-
-Paul
-
-
-[1]: https://github.com/ClangBuiltLinux/linux/issues/1081
+> ---
+>  drivers/gpu/drm/amd/display/dc/core/dc.c      |  4 +-
+>  drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  | 28 +++++++++----
+>  drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |  2 -
+>  .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  4 +-
+>  drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |  5 +--
+>  .../gpu/drm/amd/display/dmub/src/dmub_dcn20.c | 15 -------
+>  .../gpu/drm/amd/display/dmub/src/dmub_dcn20.h |  4 --
+>  .../gpu/drm/amd/display/dmub/src/dmub_dcn21.c | 10 +++++
+>  .../gpu/drm/amd/display/dmub/src/dmub_dcn21.h |  6 +++
+>  .../gpu/drm/amd/display/dmub/src/dmub_srv.c   | 40 ++++++++++++++-----
+>  10 files changed, 72 insertions(+), 46 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+> index 67402d75e67e..db5feb89d4af 100644
+> --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
+> +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+> @@ -2681,7 +2681,6 @@ void dc_interrupt_ack(struct dc *dc, enum dc_irq_source src)
+>  	dal_irq_service_ack(dc->res_pool->irqs, src);
+>  }
+>  
+> -
+>  void dc_set_power_state(
+>  	struct dc *dc,
+>  	enum dc_acpi_cm_power_state power_state)
+> @@ -2693,6 +2692,9 @@ void dc_set_power_state(
+>  	case DC_ACPI_CM_POWER_STATE_D0:
+>  		dc_resource_state_construct(dc, dc->current_state);
+>  
+> +		if (dc->ctx->dmub_srv)
+> +			dc_dmub_srv_wait_phy_init(dc->ctx->dmub_srv);
+> +
+>  		dc->hwss.init_hw(dc);
+>  
+>  		if (dc->hwss.init_sys_ctx != NULL &&
+> diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+> index 96532f7ba480..eea2429ac67d 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+> @@ -106,17 +106,29 @@ void dc_dmub_srv_wait_idle(struct dc_dmub_srv *dc_dmub_srv)
+>  		DC_ERROR("Error waiting for DMUB idle: status=%d\n", status);
+>  }
+>  
+> -bool dc_dmub_srv_optimized_init_done(struct dc_dmub_srv *dc_dmub_srv)
+> +void dc_dmub_srv_wait_phy_init(struct dc_dmub_srv *dc_dmub_srv)
+>  {
+> -	struct dmub_srv *dmub;
+> -	union dmub_fw_boot_status status;
+> +	struct dmub_srv *dmub = dc_dmub_srv->dmub;
+> +	struct dc_context *dc_ctx = dc_dmub_srv->ctx;
+> +	enum dmub_status status;
+>  
+> -	if (!dc_dmub_srv || !dc_dmub_srv->dmub)
+> -		return false;
+> +	for (;;) {
+> +		/* Wait up to a second for PHY init. */
+> +		status = dmub_srv_wait_for_phy_init(dmub, 1000000);
+> +		if (status == DMUB_STATUS_OK)
+> +			/* Initialization OK */
+> +			break;
+>  
+> -	dmub = dc_dmub_srv->dmub;
+> +		DC_ERROR("DMCUB PHY init failed: status=%d\n", status);
+> +		ASSERT(0);
+>  
+> -	status = dmub->hw_funcs.get_fw_status(dmub);
+> +		if (status != DMUB_STATUS_TIMEOUT)
+> +			/*
+> +			 * Server likely initialized or we don't have
+> +			 * DMCUB HW support - this won't end.
+> +			 */
+> +			break;
+>  
+> -	return status.bits.optimized_init_done;
+> +		/* Continue spinning so we don't hang the ASIC. */
+> +	}
+>  }
+> diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
+> index 8bd20d0d7689..a3a09ccb6d26 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
+> +++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
+> @@ -56,6 +56,4 @@ void dc_dmub_srv_wait_idle(struct dc_dmub_srv *dc_dmub_srv);
+>  
+>  void dc_dmub_srv_wait_phy_init(struct dc_dmub_srv *dc_dmub_srv);
+>  
+> -bool dc_dmub_srv_optimized_init_done(struct dc_dmub_srv *dc_dmub_srv);
+> -
+>  #endif /* _DMUB_DC_SRV_H_ */
+> diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+> index cb45f05a0319..abb160b5c395 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+> @@ -1288,9 +1288,7 @@ void dcn10_init_hw(struct dc *dc)
+>  	if (!dcb->funcs->is_accelerated_mode(dcb))
+>  		hws->funcs.disable_vga(dc->hwseq);
+>  
+> -	if (!dc_dmub_srv_optimized_init_done(dc->ctx->dmub_srv))
+> -		hws->funcs.bios_golden_init(dc);
+> -
+> +	hws->funcs.bios_golden_init(dc);
+>  	if (dc->ctx->dc_bios->fw_info_valid) {
+>  		res_pool->ref_clocks.xtalin_clock_inKhz =
+>  				dc->ctx->dc_bios->fw_info.pll_info.crystal_frequency;
+> diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+> index 3cac170312fc..c6a8d6c54621 100644
+> --- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+> +++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+> @@ -264,10 +264,9 @@ struct dmub_srv_hw_funcs {
+>  
+>  	bool (*is_hw_init)(struct dmub_srv *dmub);
+>  
+> -	void (*enable_dmub_boot_options)(struct dmub_srv *dmub);
+> -
+> -	union dmub_fw_boot_status (*get_fw_status)(struct dmub_srv *dmub);
+> +	bool (*is_phy_init)(struct dmub_srv *dmub);
+>  
+> +	bool (*is_auto_load_done)(struct dmub_srv *dmub);
+>  
+>  	void (*set_gpint)(struct dmub_srv *dmub,
+>  			  union dmub_gpint_data_register reg);
+> diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
+> index 0cd78e745e7e..2c4a2fe9311d 100644
+> --- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
+> +++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
+> @@ -312,18 +312,3 @@ uint32_t dmub_dcn20_get_gpint_response(struct dmub_srv *dmub)
+>  {
+>  	return REG_READ(DMCUB_SCRATCH7);
+>  }
+> -
+> -union dmub_fw_boot_status dmub_dcn20_get_fw_boot_status(struct dmub_srv *dmub)
+> -{
+> -	union dmub_fw_boot_status status;
+> -
+> -	status.all = REG_READ(DMCUB_SCRATCH0);
+> -	return status;
+> -}
+> -
+> -void dmub_dcn20_enable_dmub_boot_options(struct dmub_srv *dmub)
+> -{
+> -	union dmub_fw_boot_options boot_options = {0};
+> -
+> -	REG_WRITE(DMCUB_SCRATCH14, boot_options.all);
+> -}
+> diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
+> index a27b509cd6fd..a316f260f6ac 100644
+> --- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
+> +++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
+> @@ -192,8 +192,4 @@ bool dmub_dcn20_is_gpint_acked(struct dmub_srv *dmub,
+>  
+>  uint32_t dmub_dcn20_get_gpint_response(struct dmub_srv *dmub);
+>  
+> -void dmub_dcn20_enable_dmub_boot_options(struct dmub_srv *dmub);
+> -
+> -union dmub_fw_boot_status dmub_dcn20_get_fw_boot_status(struct dmub_srv *dmub);
+> -
+>  #endif /* _DMUB_DCN20_H_ */
+> diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn21.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn21.c
+> index a6047673c3f5..e8f488232e34 100644
+> --- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn21.c
+> +++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn21.c
+> @@ -51,4 +51,14 @@ const struct dmub_srv_common_regs dmub_srv_dcn21_regs = {
+>  #undef DMUB_SF
+>  };
+>  
+> +/* Shared functions. */
+>  
+> +bool dmub_dcn21_is_auto_load_done(struct dmub_srv *dmub)
+> +{
+> +	return (REG_READ(DMCUB_SCRATCH0) == 3);
+> +}
+> +
+> +bool dmub_dcn21_is_phy_init(struct dmub_srv *dmub)
+> +{
+> +	return REG_READ(DMCUB_SCRATCH10) == 0;
+> +}
+> diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn21.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn21.h
+> index 8c4033ae4007..2bbea237137b 100644
+> --- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn21.h
+> +++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn21.h
+> @@ -32,4 +32,10 @@
+>  
+>  extern const struct dmub_srv_common_regs dmub_srv_dcn21_regs;
+>  
+> +/* Hardware functions. */
+> +
+> +bool dmub_dcn21_is_auto_load_done(struct dmub_srv *dmub);
+> +
+> +bool dmub_dcn21_is_phy_init(struct dmub_srv *dmub);
+> +
+>  #endif /* _DMUB_DCN21_H_ */
+> diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+> index aa41dfa23020..08da423b24a1 100644
+> --- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+> +++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+> @@ -153,16 +153,18 @@ static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
+>  		funcs->set_gpint = dmub_dcn20_set_gpint;
+>  		funcs->is_gpint_acked = dmub_dcn20_is_gpint_acked;
+>  		funcs->get_gpint_response = dmub_dcn20_get_gpint_response;
+> -		funcs->get_fw_status = dmub_dcn20_get_fw_boot_status;
+> -		funcs->enable_dmub_boot_options = dmub_dcn20_enable_dmub_boot_options;
+>  
+> -		if (asic == DMUB_ASIC_DCN21)
+> +		if (asic == DMUB_ASIC_DCN21) {
+>  			dmub->regs = &dmub_srv_dcn21_regs;
+>  
+> +			funcs->is_auto_load_done = dmub_dcn21_is_auto_load_done;
+> +			funcs->is_phy_init = dmub_dcn21_is_phy_init;
+> +		}
+>  #ifdef CONFIG_DRM_AMD_DC_DCN3_0
+>  		if (asic == DMUB_ASIC_DCN30) {
+>  			dmub->regs = &dmub_srv_dcn30_regs;
+>  
+> +			funcs->is_auto_load_done = dmub_dcn30_is_auto_load_done;
+>  			funcs->backdoor_load = dmub_dcn30_backdoor_load;
+>  			funcs->setup_windows = dmub_dcn30_setup_windows;
+>  		}
+> @@ -462,10 +464,6 @@ enum dmub_status dmub_srv_hw_init(struct dmub_srv *dmub,
+>  		dmub_rb_init(&dmub->inbox1_rb, &rb_params);
+>  	}
+>  
+> -	/* Report to DMUB what features are supported by current driver */
+> -	if (dmub->hw_funcs.enable_dmub_boot_options)
+> -		dmub->hw_funcs.enable_dmub_boot_options(dmub);
+> -
+>  	if (dmub->hw_funcs.reset_release)
+>  		dmub->hw_funcs.reset_release(dmub);
+>  
+> @@ -526,10 +524,11 @@ enum dmub_status dmub_srv_wait_for_auto_load(struct dmub_srv *dmub,
+>  	if (!dmub->hw_init)
+>  		return DMUB_STATUS_INVALID;
+>  
+> -	for (i = 0; i <= timeout_us; i += 100) {
+> -		union dmub_fw_boot_status status = dmub->hw_funcs.get_fw_status(dmub);
+> +	if (!dmub->hw_funcs.is_auto_load_done)
+> +		return DMUB_STATUS_OK;
+>  
+> -		if (status.bits.dal_fw && status.bits.mailbox_rdy)
+> +	for (i = 0; i <= timeout_us; i += 100) {
+> +		if (dmub->hw_funcs.is_auto_load_done(dmub))
+>  			return DMUB_STATUS_OK;
+>  
+>  		udelay(100);
+> @@ -538,6 +537,27 @@ enum dmub_status dmub_srv_wait_for_auto_load(struct dmub_srv *dmub,
+>  	return DMUB_STATUS_TIMEOUT;
+>  }
+>  
+> +enum dmub_status dmub_srv_wait_for_phy_init(struct dmub_srv *dmub,
+> +					    uint32_t timeout_us)
+> +{
+> +	uint32_t i = 0;
+> +
+> +	if (!dmub->hw_init)
+> +		return DMUB_STATUS_INVALID;
+> +
+> +	if (!dmub->hw_funcs.is_phy_init)
+> +		return DMUB_STATUS_OK;
+> +
+> +	for (i = 0; i <= timeout_us; i += 10) {
+> +		if (dmub->hw_funcs.is_phy_init(dmub))
+> +			return DMUB_STATUS_OK;
+> +
+> +		udelay(10);
+> +	}
+> +
+> +	return DMUB_STATUS_TIMEOUT;
+> +}
+> +
+>  enum dmub_status dmub_srv_wait_for_idle(struct dmub_srv *dmub,
+>  					uint32_t timeout_us)
+>  {
+> -- 
+> 2.17.1
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
