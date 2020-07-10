@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73A1821BE7D
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 22:34:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ECF421BE7E
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 22:34:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 258C56E18E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 559436ED0D;
 	Fri, 10 Jul 2020 20:34:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
- (mail-eopbgr750078.outbound.protection.outlook.com [40.107.75.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 431016E18E
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760083.outbound.protection.outlook.com [40.107.76.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BA8D6E18E
  for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 20:34:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jXMJWkGv+9BRZmpTJonWSUQGfq4TNRSscJx4sWHRvawSPZ+W8YP96VHuyu+D+dPDexLwNhSvfOkSP6IDpE/CLTVrIKo5VLbTLEA641xZhYThNZ4KFNdqCTatxU2Ux1NpsVhlHxhsCADAo9ej8Hmdnmcoyw1cksPAxiVB0aBNUF7kKE0Yfkt+b1I2epWGrLe3x2211/Cem1GIdkzmrxZmCIBnLUOcxp01fIo5uPSI9wxqSU5IOB3Ijs9F5OFJ8aGRGzofmVkQFXgEja/R/IfJwvJn476GMQCCAij+u1ocRZ88O767vAy4VNA+88QTEUPD6dF5x3zAaTOw8PD8IIIV6A==
+ b=US0JimYqrmGQOMMcCh/DJVBCS2lqa2WrgWsltXZ+Fk3h+CwcrsO5c0mCycRsBhA1Vzo+ZmQUCYnHU3QS2p3bLWB2lC6QA1Ieay0bkLV/s7s8krXmwHAFNrfSnSdTC3cQd2jvuAl+19XbSbUUUg+US4BCt9Qg7AhmXCUubC6/c7Bn82k6QORC5kv8xfY0n2UJQn8fh3/T70fsVkzGYF5i6Y9MncwRELhvW1G35n1+6ZxpcrMJKwmtzEKAPtWgmfA4ieSJ13dkzV0XQODB1r33H8pKcQyfoWj9c+R/cgjW1u1VkDuReV7o6ZM8wKmhZhZBdph/HyJypb7lUKUJdeK7yw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7y+3wOvytf5ojtpAfYtBXvsumTDvFGINKFVnOMkq+Qo=;
- b=YQ2hfTWB7yUn+YSW16AeABm1kCiOmaYXgQ891D6FTQN0mJWNgX/uWNFXLiDcTlX1hPTSlBumUf3KmjkCBLGW/SX+qc11IWHxohNZ7DjKz/UQHHinkgH8Fnos52MNzBZ717qr6azZSfplFZSRpPnvmfbvh0iNWJ7ntg9YXUj9qwJq4UpU3U+igqV8SIThtjGV20nWja7IWnkYc4716hTEbiPS2sSxeRGcRqG6z2Q11LFmOrfX3O5C1twRXKdp31IW650E5ZtjpFr+ZQNZ9gwg5RSIErrp6yudctrnGv5bq7UOtvfOENUBG/pxOdlf8hhEetRre5HlzrVyH4+nreNMnA==
+ bh=XDb1eCkePB+anfUa47jRWW3xQgq2f8JNAsutE2fzmpg=;
+ b=PQYb+8OOYS7LniGyI04MmtowZ8Bx5julBM+r6JgjNY21IyM4jQIM0FpepfkDruazrRPMMbMzMEwL0zF+uZdx6eyFGi+m/RWD6+11Uagyk1IzloMCw7IpqljuzJIgyuK+RUmPbdGWgarskg4/yBJYm+cbfzIks2/gsXB89LguircW4pKf/lfl4RabmP7ufgytnA33nz+4RLBNsLE18aGFKlnNXNm0oWoYf2UDK8cgfi/0T/9x/dYBIdzfTbawEsK9uPHYraOTllkJzx0joylShj2NKTgWC+3UzZaPCF7Bze1T6g3rUSPHVAMSSuCSPMUkY4kFY4Xq6S+nvZ29qXWrWQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7y+3wOvytf5ojtpAfYtBXvsumTDvFGINKFVnOMkq+Qo=;
- b=XpgL5aEMAqNll2gARtyvnF7zndw2mLviil22Fl5dUA2S6ivd5u/iyRAgyWxHbF0HVjNSUeJ+5125+U7rXqxiXOJSfVqGWSD/zMRz28RmAbanJevfBEfougkzRg1jp0jxoP8g50bGPQANCEnKlfUF47NtPCVO0E7EvAdYVgz6fV0=
+ bh=XDb1eCkePB+anfUa47jRWW3xQgq2f8JNAsutE2fzmpg=;
+ b=GsXymPKhYA+hPlSExLcYg9s02c1gQnieYTxxeSZE/5brUUmOIJR8VSPaLcJqOZhsOwFx2BUvzFawg84oQK1QD5l+5Kdq2+GcW0to6AyMvlIvc7noJMu2SDmFP3bzyhqB8zhKAqPPwZHB1hClt3t7/WYNBZA9ofOnP2w18zFVACo=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,19 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
  by CH2PR12MB4231.namprd12.prod.outlook.com (2603:10b6:610:7d::24)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.21; Fri, 10 Jul
- 2020 20:33:59 +0000
+ 2020 20:34:00 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::9013:9410:7d60:cce1]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::9013:9410:7d60:cce1%9]) with mapi id 15.20.3174.023; Fri, 10 Jul 2020
- 20:33:59 +0000
+ 20:34:00 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 00/10] DC Patches July 10, 2020
-Date: Fri, 10 Jul 2020 16:33:15 -0400
-Message-Id: <20200710203325.1097188-1-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 01/10] drm/amd/display: update dml var
+Date: Fri, 10 Jul 2020 16:33:16 -0400
+Message-Id: <20200710203325.1097188-2-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200710203325.1097188-1-Rodrigo.Siqueira@amd.com>
+References: <20200710203325.1097188-1-Rodrigo.Siqueira@amd.com>
 X-ClientProxiedBy: YTOPR0101CA0025.CANPRD01.PROD.OUTLOOK.COM
  (2603:10b6:b00:15::38) To CH2PR12MB4198.namprd12.prod.outlook.com
  (2603:10b6:610:7e::23)
@@ -55,34 +57,34 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:8440::b10e) by
  YTOPR0101CA0025.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::38) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.21 via Frontend
- Transport; Fri, 10 Jul 2020 20:33:58 +0000
+ Transport; Fri, 10 Jul 2020 20:33:59 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [2607:fea8:56a0:8440::b10e]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: bb8e54dc-f536-431d-cc8b-08d825109329
+X-MS-Office365-Filtering-Correlation-Id: a54899b5-d685-4c48-e370-08d825109377
 X-MS-TrafficTypeDiagnostic: CH2PR12MB4231:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB42311D04ABEACC5A617A22BD98650@CH2PR12MB4231.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4231FCD254A4EEEE5AAF845B98650@CH2PR12MB4231.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:238;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EXyUJD4xCli6Izpa+xlT3g2A26bX9xtlP8H/G7xtG3zo4lWSYN0x1eyB2vsQ8lPEitSgUY8sY28PSWcxsLN8lG1KxUMv6zVDtrfjcSSC1dACcKzJYtNLReJ6XjuCNftULaCq/akg6VLqiH+tmk4ah5wYRfIzzvf5iC12J2HGVG8iBpgJuRlAJLw4/8od5/gMYfCAXAQvZ5Lror9vnSw7cYhS7m55OP/5GKDsegLN6GgkToQr059qL1uDUEabVTZhxmfLV1TD3/K80pg0tPYLxik8VfyeOjjkcRnfzG5yYKn+//rwZzAbNNEmIeV9j5bU7eDsx1L62CKdVI5mQRiMAjvVa+xjCfczXe+L8t/JE1dhN4HeO1VgI8LMvojSrgNZ
+X-Microsoft-Antispam-Message-Info: Th67OMUMlsBrkTsFiI80Pp2WMoNmi4Aji1gJSxTptEUvFj3TveokV9XfaxRt6dtlrN82kyp5Nyd8zfON3j76mbRCNe8LSYKkjnV/CVox0OA1r8/6sryu0PN36U6nZ60NN58muoehKyAQwH/XGUS+oT+yVgq+vigDSHdKyrLXrKZlGcUMAOcY7y0zWES/QfxZnv6J/h6VPJQYeJ72Jx02Kf6nshugtT4fyp+5vL+RgwlzLUO1kmX+TedVM643P09+lyy51MX+JjczJAXjVlDK/DNZNqzY8XYSpL3jGiC67ixDhNO+sw1nygrIfJCkiXjAcYyD3v2gq7REL7QXzyVStfuVlRrOxp4B4/+eA94aaZj+ZEEmhZ1LFa4JexMmFQqH
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(366004)(2616005)(8936002)(8676002)(6512007)(478600001)(316002)(16526019)(5660300002)(186003)(4326008)(86362001)(6916009)(52116002)(6506007)(6486002)(1076003)(6666004)(36756003)(66476007)(66556008)(66946007)(83380400001)(2906002)(21314003);
+ SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(366004)(2616005)(8936002)(8676002)(6512007)(478600001)(316002)(15650500001)(16526019)(5660300002)(186003)(4326008)(86362001)(6916009)(52116002)(6506007)(6486002)(1076003)(6666004)(36756003)(66476007)(66556008)(66946007)(83380400001)(2906002)(44824005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: LgerSSVXek0gr3Tq+xh08D01J7sIPhCUSzrD548uTuBDFDeD3knRPQZjQ3w6nqrXVjbMXEtagX8qRQxZRP4BoUQ0oLV8ZYNuNs+8HBisSRGJALSdVAZZ8uAXWZztZIPBo3H0c509uS1b177GDC7j4nbT0Mb2re/Ne21ntH2ntsqObGVyKO+3a3AtoxPOhnCjKbTKfQzeo1hS/RXfeY6xadz/DCCUr5XejXH+UtRfpJFn6P47bDETiFw3W1XlmrSpW/Om4sZt81u1c6VN0AxF6TNrHC0dXEe8QnHV90sjMsRqEKWmsdUCfjCeLcvdTDwKCLsZcD4wWfgw/S1RZtqB24174eNPhI0xjHln7lt03VzXC9/WurjcIXR9iAU7TM+hUCC8TYvXwqG8pgVpUOIjgmCdCDj9Jxb81nd1rLd6RNhfRID6SEwNu1IBumi86YpPFl2D50jhoKou3Xb5H8b3lijJs8SIoO6UC4N3YUiO59Wry9YmS8l+6Bjs16Smuhwn40JwO21VFRx63kzWXOgNeA==
+X-MS-Exchange-AntiSpam-MessageData: N9qtjCez4dkf4l0T+hz6006YuVHm4cy7xNJulVaD5QgihYhTLAKgyDuu18N78MmmMBpy9QKnhw/XXJ28TXVlzeJ4+Zi54bUAqIOobVUX3DgNysVdWrhQPPi5vlOYpLTlqpK9Wt7ILXpDXFyRpcZQ9G22HB8N1x8bYN1rxRVXTMSNof4dPay58KQfh3JcCkWGg29lVoh4YzpfWdai6GkcvvtyniB5pfJ6KSWqHKtnP3qXkF9WX+JCShPIYdLJ14JFQ5pXMObH1ziSBdRmm+Y6Q8CdN4/ODt+dgvM1TXvZyMrjQYl5LNqP5V/oNd8weY8gWhZYvHc2moPVzGWqs3AF/iFiOVYjKIgnd+AD6hfWETzHJx26EmqNjiVg3cMxNkwnvlNumSZ9PkLh173HnHIAbOYguDJzEZVOmVGLrtiHEVM50Sm2OqSEv/IGAv7dLJWgodBa3tm+6DLmh5GsnYt4SNMl3vUc1DwYGTTwZhuXSlViW2rv/YhHJ23WIFxGxf1FA27Vikbfp/huLO0DV/1s/A==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb8e54dc-f536-431d-cc8b-08d825109329
+X-MS-Exchange-CrossTenant-Network-Message-Id: a54899b5-d685-4c48-e370-08d825109377
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4198.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 20:33:59.3133 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 20:34:00.0759 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Me8p40DYIdsASI06EE1ZywJdH+Zqn6WtFJa2DjZS9LBM+6JMtJvEFbfB7QvwNEoLFl+PB6fXKY/kc9ZEN0KGqw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: TlnBCJqGbS7sywQpCdImc+1TyJShfXb9ztmH2q9mQA/sl9rKTzyr+RRwUmL1W5DTP1HF/UGfzL6VZUBJtDjM9w==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4231
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,73 +97,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- Bhawanpreet.Lakha@amd.com
+Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Eryk.Brol@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This DC patchset brings improvements in multiple areas. In summary, we
-highlight:
-* Updates on DML code;
-* Bug fixes;
-* FW and DC version update.
+From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-Best Regards
-Rodrigo Siqueira
+Update *DynamicMetadata variables for providing more flexibility.
 
-Anthony Koo (1):
-  drm/amd/display: [FW Promotion] Release 0.0.24
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
+Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+---
+ .../drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c    | 8 +++-----
+ drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h     | 2 +-
+ 2 files changed, 4 insertions(+), 6 deletions(-)
 
-Aric Cyr (1):
-  drm/amd/display: 3.2.94
-
-Chiawen Huang (1):
-  drm/amd/display: reduce sr_xxx_time by 3 us when ppt disable
-
-Dmytro Laktyushkin (2):
-  drm/amd/display: update dml var
-  drm/amd/display: fix dcn3 p_state_change_support validation
-
-Josip Pavic (1):
-  drm/amd/display: handle failed allocation during stream construction
-
-Mikita Lipski (1):
-  drm/amd/display: Reuse parsing code of debugfs write buffer
-
-Sung Lee (1):
-  drm/amd/display: Power down hardware if set mode is not called before
-    timeout
-
-hersen wu (2):
-  drm/amd/display: OLED panel backlight adjust not work with external
-    display connected
-  drm/amd/display: p-state warning occurs while changing resolution from
-    120hz to 60hz
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   5 +
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 259 +++++++++---------
- .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |  43 ++-
- .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c   |  13 +-
- .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h   |   1 +
- drivers/gpu/drm/amd/display/dc/core/dc.c      |   6 +
- .../gpu/drm/amd/display/dc/core/dc_stream.c   |  19 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |   5 +-
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 105 ++++---
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.h |   1 +
- .../gpu/drm/amd/display/dc/dcn10/dcn10_init.c |   1 +
- .../gpu/drm/amd/display/dc/dcn20/dcn20_init.c |   1 +
- .../gpu/drm/amd/display/dc/dcn21/dcn21_init.c |   1 +
- .../drm/amd/display/dc/dcn30/dcn30_resource.c |  46 +++-
- .../dc/dml/dcn30/display_mode_vba_30.c        |   8 +-
- .../drm/amd/display/dc/dml/display_mode_vba.h |   2 +-
- .../amd/display/dc/inc/hw/clk_mgr_internal.h  |   1 +
- .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |   1 +
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   4 +-
- 19 files changed, 335 insertions(+), 187 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+index 75dc4fe41731..b54814f11b74 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+@@ -2567,7 +2567,7 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 					&v->VRatioPrefetchC[k],
+ 					&v->RequiredPrefetchPixDataBWLuma[k],
+ 					&v->RequiredPrefetchPixDataBWChroma[k],
+-					&v->NotEnoughTimeForDynamicMetadata,
++					&v->NotEnoughTimeForDynamicMetadata[k],
+ 					&v->Tno_bw[k],
+ 					&v->prefetch_vmrow_bw[k],
+ 					&v->Tdmdl_vm[k],
+@@ -2686,7 +2686,7 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 		v->FractionOfUrgentBandwidth = MaxTotalRDBandwidthNoUrgentBurst / v->ReturnBW;
+ 
+ 
+-		if (MaxTotalRDBandwidth <= v->ReturnBW && v->NotEnoughUrgentLatencyHiding == 0 && v->NotEnoughUrgentLatencyHidingPre == 0 && v->NotEnoughTimeForDynamicMetadata == 0 && !VRatioPrefetchMoreThan4
++		if (MaxTotalRDBandwidth <= v->ReturnBW && v->NotEnoughUrgentLatencyHiding == 0 && v->NotEnoughUrgentLatencyHidingPre == 0 && !VRatioPrefetchMoreThan4
+ 				&& !DestinationLineTimesForPrefetchLessThan2)
+ 			v->PrefetchModeSupported = true;
+ 		else {
+@@ -2695,8 +2695,6 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 			dml_print("DML: MaxTotalRDBandwidth:%f AvailReturnBandwidth:%f\n", MaxTotalRDBandwidth, v->ReturnBW);
+ 			dml_print("DML: VRatioPrefetch %s more than 4\n", (VRatioPrefetchMoreThan4) ? "is" : "is not");
+ 			dml_print("DML: DestinationLines for Prefetch %s less than 2\n", (DestinationLineTimesForPrefetchLessThan2) ? "is" : "is not");
+-			dml_print("DML: Not enough lines for dynamic meta is %s\n", (v->NotEnoughTimeForDynamicMetadata) ? "true" : "false");
+-
+ 		}
+ 
+ 		if (v->PrefetchModeSupported == true && v->ImmediateFlipSupport == true) {
+@@ -2786,7 +2784,7 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 		}
+ 
+ 		for (k = 0; k < v->NumberOfActivePlanes; ++k) {
+-			if (v->ErrorResult[k]) {
++			if (v->ErrorResult[k] || v->NotEnoughTimeForDynamicMetadata[k]) {
+ 				v->PrefetchModeSupported = false;
+ 				dml_print("DML: CalculatePrefetchSchedule ***failed***. Prefetch schedule violation. Results are NOT valid\n");
+ 			}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+index f615815c73bd..756d8eb1221c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+@@ -802,7 +802,7 @@ struct vba_vars_st {
+ 	unsigned int DCCCMaxCompressedBlock[DC__NUM_DPP__MAX];
+ 	unsigned int DCCCIndependent64ByteBlock[DC__NUM_DPP__MAX];
+ 	double VStartupMargin;
+-	bool NotEnoughTimeForDynamicMetadata;
++	bool NotEnoughTimeForDynamicMetadata[DC__NUM_DPP__MAX];
+ 
+ 	/* Missing from VBA */
+ 	unsigned int MaximumMaxVStartupLines;
 -- 
 2.27.0
 
