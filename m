@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18BE21BE85
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 22:34:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F84A21BE7C
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 22:34:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E4116ED13;
-	Fri, 10 Jul 2020 20:34:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEF776ED09;
+	Fri, 10 Jul 2020 20:34:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-CY1-obe.outbound.protection.outlook.com
  (mail-eopbgr760083.outbound.protection.outlook.com [40.107.76.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 291EB6ED09
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45FE96ED0A
  for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 20:34:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ihTgH4uk70pOiAwbvbKfcBTuZfysA/QDhUUJtwTANjTTbkmbIi/mQZad9vUCX9EdCo5ApttblyrHS/wyzREMuEmjd6wuP7L0cVtNUlPObyQ2qHzqMY/y9wTgfa/oNFTQhQMaZuI4rbWcJ4LGmLTQhTDofHJmKULNxUnHlwPCG7HOIYJic/3Ku7R5Y4b4vWZdJB49g+r8/fqaVlBNBh0VA5drcnAZsATN1LfGwVGy2gaAKRrBB/D+Elnx/dcvMqQjW20Ldca0Q+4HX8C7ifUaMFjD/3rvaDMSxEepPqO6ZAyQBMDSMOdj8xAaAbeYSm7zfCdMytnpf0BnwUidd6YQrA==
+ b=EePtzpgZpM5WorYVnHHdl0xd3HMSOj6qOE8iBmHzJqvwmCKaCoXjUehbYxX9Eiv9bMznCpGonsaXh5FNidd29t5HLQz6MuiakWYJkKyni+kpFG/PhzR3HRaJmekUV+AensAYA5d/yoWeWMTveNbcD6f3p06e6sxs+bUjzPDfG8zMKKMT/MU0q1oqFLuDj6/JKqEnvDNI2BEd+90h4WxL0MQinMm84GmG9VD6JVoqOlRtdeov4thU/Kqp6JuUES8MejVPYvwkcaraBTo/gKtEzwioLEiapvNJzRE+XX19iDdbriHRFUciq0mPLxrh7bhlwedF5PN+keAqCQ33q/TyaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BOwzTWXxsbkciuYDLWKVBJ1NiwQnhg3NSaM3m4KMoT0=;
- b=llVWUelmWd0wdy/S9iyUc1nFeVoOWNm5W21zWu/8QWcol300QzvheYtZ7U/5gYnz4KeLkN/xvZWSTZ2/S7b8n704KyZIvVB9rNfAM70C1YP1b8fAUcSnJic2C6btSs028xCPUCA4k/qT6uXc47Xl1blobS99daSaija7cmoMcJGBq8qOk4ggiczzzKIPYYpqM4hfgPlUFpPKXoUwhkGA96PCUf8BcI6R6aNQ5AVK7Yel2GFc8E5G13jifsrcbLmWOW3i8OHGysR8gCTBN62iyLg6st9E8I7ZPoIVcCGq0wSdK4yIpf8FU8Elz7o0BtqKOlsvN7HgWtgvWevSa9fCJQ==
+ bh=mCCsz3mp/dzl2cTBDz1ckE2/Cnv7aAJBHbuOfUF4INw=;
+ b=MW7vCEdK0YKw2B/xd8+pg+WWobZG9YPE6vV6iS2mA8Mt4GQUvkke75DfCD8eAqXAI2nLNf2G5mEcsk9uUd/j+9LnoyOuElZgQi6EySfG0KEcQPI2szq3MHsHXHHuN94tKeItL/ixKgBAE46BeSxVrVgjjEglIYVg6aRd8aGhsBoc2K0HIDsylehlfAEMBcSATmtVyGrqVtLkRy9XlNFMmIWrVi77RtSGFuv0G1gLpC0RiIYDdgE6mgp1PdDW2KVl7u4cIzP65lUm5yeL4yrwvvNrxB02ppf5ki9FNanP1GfuEIXMF79iFZ5Rx6RwaBNEvwokNOfzFayFjxFBb4Oi0g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BOwzTWXxsbkciuYDLWKVBJ1NiwQnhg3NSaM3m4KMoT0=;
- b=e800xKc1NWirmDlZaotS2ZQYLAko725LNeQoakD/D8ETaaji+Daa2qCJdam+frZ7FtA6tiIsY+/+UzfZsrqHurlBKAyuA974rdRW6zPCFHfoRIwEyaj51KOQKOedTyAJlHKCagpGb5n0Rqpggu8yGkJEDRtPpo+HKBFTS2Q3vAM=
+ bh=mCCsz3mp/dzl2cTBDz1ckE2/Cnv7aAJBHbuOfUF4INw=;
+ b=uqLAAyZ8tL8vCgK6TH6KFuuCx9Yd+9+vyxANFyYKzm1of9qCpzlraJ+V0lZOKsWv6OaN2tGm1Xudf33evcwFgr8li6K3an1WjNXAcQgSaatlmxkfgNKXw/hbY3wFv9BYuJDbz7wL+1wDxJGETT0PITKim670bT+KsYZIAwreXp8=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,17 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
  by CH2PR12MB4231.namprd12.prod.outlook.com (2603:10b6:610:7d::24)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.21; Fri, 10 Jul
- 2020 20:34:00 +0000
+ 2020 20:34:01 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::9013:9410:7d60:cce1]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::9013:9410:7d60:cce1%9]) with mapi id 15.20.3174.023; Fri, 10 Jul 2020
- 20:34:00 +0000
+ 20:34:01 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 02/10] drm/amd/display: Power down hardware if set mode is not
- called before timeout
-Date: Fri, 10 Jul 2020 16:33:17 -0400
-Message-Id: <20200710203325.1097188-3-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 03/10] drm/amd/display: reduce sr_xxx_time by 3 us when ppt
+ disable
+Date: Fri, 10 Jul 2020 16:33:18 -0400
+Message-Id: <20200710203325.1097188-4-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200710203325.1097188-1-Rodrigo.Siqueira@amd.com>
 References: <20200710203325.1097188-1-Rodrigo.Siqueira@amd.com>
@@ -63,29 +63,29 @@ X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [2607:fea8:56a0:8440::b10e]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 0479e894-c61f-48f5-cbc0-08d8251093f2
+X-MS-Office365-Filtering-Correlation-Id: 7e9f8a0e-f16a-4a24-effd-08d825109448
 X-MS-TrafficTypeDiagnostic: CH2PR12MB4231:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4231C11DD58064BD500BFF3C98650@CH2PR12MB4231.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:71;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4231C333BA48CB6DC0EBF2FC98650@CH2PR12MB4231.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dfcQ9eECzwxx0+8x39YisVJw8Q+3dBivNlefe5h4iPPS1fMqwtRmRkUmZwkQfj962bRbv/K67MBS9XubSyG1r+ZItnVSIIRaGUpoQN8DSoKQhhOKpnpEq0AlhsD6P6hdWoICYq0DBLhzVua0/Buo3eB5x0wEreTH6grz5qj0SmiziP5T0Wx55FYKSVPmyPV1OmCY6UgmAcKT3bwPBZo60NCGQs9XyR5BlOBKWe+vX2D7kAt17YJRgBw9mzXlQZeyZ6Wln6PC7VkqOyWuMuD8g0iLe0up9PHGt6ZvFgzXVRbdjzM9FjknHkmy8nMlandPCT4MZhpcd7s/IvWh2BAQhA==
+X-Microsoft-Antispam-Message-Info: 0dFYetKxd68/I4yRjgFVgFqpjzEJ6YAOsP0V3PRY0lxEGxcc+5WyvXdXooVl4CB8V52R+ltWXOnisHdabiJczIzyYj2nhyNfmeFtyEvKHIWkU8NoucKGojLnLr0wZhUXCnc+wpOrvScqFV0mWlZT3S+4HN/pomSD21nhMOKh+jF0mFqZUKpNESzJYsI66IwCTEoyOS9I3gbs9sdyodG+NGl8GKhOCRO7Nkyk6HgMa+3RDmjcLMV2GFo4b0Tr6mpiWSJ4/1wtts8aqDCWbKl3Jb5IbFmYVPF+vsX1UsONul5limryAw/jOHMjQMLBQGU75+OgBNbOSYR+l1R+Bv1e3mo2nX63NLDx/sXEytSBj3hq8AB+N3gO4LA3zwryBJ7g
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(366004)(54906003)(2616005)(8936002)(8676002)(6512007)(478600001)(316002)(16526019)(5660300002)(186003)(4326008)(86362001)(6916009)(52116002)(6506007)(6486002)(1076003)(6666004)(36756003)(66476007)(66556008)(66946007)(83380400001)(2906002);
+ SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(366004)(54906003)(2616005)(8936002)(8676002)(6512007)(478600001)(316002)(16526019)(5660300002)(186003)(4326008)(86362001)(19627235002)(6916009)(52116002)(6506007)(6486002)(1076003)(6666004)(36756003)(66476007)(66556008)(66946007)(83380400001)(2906002)(21314003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: euoAvGYoCMEzoZ/204Pf6u2gp9hTdR4y1P6ThQEu5sTpJvYdbErBMRRa3nhGdFy14DNDRlfWCKvs7FGESglS44ZFcEjY0cDXek3oiLoD4URmtSGgKBoovBoaBrla9Q04c84vFV5xmvcVVFHNIrx80eEQuAJZAoZ5s7FeA4Ew5ZDNtYIpMkCAdDoVwlto6rKgP3OJc/Lkdye0SYGAdq1c3ZtbWDz+tUTF/ghz7OlBetR0EDF+IQzNKmYLEmxD+9cvJALqpFN+OifdhtksY9n5so7Ioo9oAUVYiwOrq314EjKa6DWgXn1HXaGN34lCAG5zvsSzxK5Fj0jQXBJaFlNsC2kb8+Hbm0vz2GKKiiF2hG5NFujaSBF9/cNLVxl8hBYgBZBlUrkgr3KBngyEQwo5SjbSKcFreYB/Xb8ICy4RRBB8pBNWT4J0EsSq833dZwcnY/FRyBCtFBUGwsqaqD2dXO67vPFR/pgdcVXADy5VDVp1iCSlQ/I5eDYM6Ii3St3GurXyBu0+3AweQN7ZV+2nKA==
+X-MS-Exchange-AntiSpam-MessageData: fyAknHUE0NDojt6igmxkCkOjc/gtgs5NCzSAiDEepQ9tCcdKfpOio8oynraItY98+9QT0MoD+3s/MAaQHZCnRJK6HUdRtNisSEtwNgzurshl0ILwbZZuWsQ5y2Di3vqJ6xWDT805zInPxKCkIGimnIHrNAj6fqU8mVPabho7F40rrSnARkE5p7fDfNezvCg6RSZ+UWBZKA/HJczb8y5y3O1Irof/LWeNBNOkm4EbNvHCcmEXMMRLRQA8zEotPNooVsn1BYfTINRIqPNuZqYs4EYGkFhEWt6BBWSlYFioD+U7O+AV+/sMiydnVsQVM0afvpHo72yfYaxu2dWovIsXdjD8bAcd2Vkl1lqD/RJ5u6zDoL8WLkGpAdVjCHbdj4xlsl8r5QfZTG/pp6cBHv++yOX9oMQ8MZCedQK141vna0LmQPNQFrhRbjriy0wnkcVgMA6eO23mVhqw6oMgCuq0zU5KuAWrrbg55nbHAxtHlViypqVifI4GqWCdREHijUs1ZXumQ+MKyUCaB1h/5hw1xQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0479e894-c61f-48f5-cbc0-08d8251093f2
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e9f8a0e-f16a-4a24-effd-08d825109448
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4198.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 20:34:00.6455 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 20:34:01.2020 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k6RjLeGdjsLqlb3jo8IIJq7+Xp9zYh95TSQS11S3QlQw3OAhiEFetnkot+rsCljSCYg53E4QMn9tJGr5i5JSkQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: zLUSNbvGv2un94FGWQ80IAicz9dcqjz3xxHBgWobNW1Yvtkd12oEL+9wTlQxUw5eakrE80jhd1+YBGReQYvxcw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4231
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,225 +98,161 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sung Lee <sung.lee@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- Anthony Koo <Anthony.Koo@amd.com>
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Chiawen Huang <chiawen.huang@amd.com>, Aurabindo.Pillai@amd.com,
+ Tony Cheng <Tony.Cheng@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Lee <sung.lee@amd.com>
+From: Chiawen Huang <chiawen.huang@amd.com>
 
-[WHY]
-In headless systems, if set mode is not called, hardware will not be
-powered down on boot, causing HW/SW discrepancies.  Powering down
-hardware on boot will ensure SW state is accurate.
+[Why]
+when ppt disabled, the watermark doesn't get fine tune causing
+underflow.
 
-[HOW]
-Set a timer callback on boot for 10 seconds. If set mode is not called
-within that time, power down hardware. Otherwise, do not power down.
+[How]
+It is a temporary solution to reduce sr_xxx_time by 3 us when ppt
+disable.
 
-Signed-off-by: Sung Lee <sung.lee@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Signed-off-by: Chiawen Huang <chiawen.huang@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  6 ++
- drivers/gpu/drm/amd/display/dc/dc.h           |  3 +
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 69 ++++++++++---------
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.h |  1 +
- .../gpu/drm/amd/display/dc/dcn10/dcn10_init.c |  1 +
- .../gpu/drm/amd/display/dc/dcn20/dcn20_init.c |  1 +
- .../gpu/drm/amd/display/dc/dcn21/dcn21_init.c |  1 +
- .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |  1 +
- 8 files changed, 51 insertions(+), 32 deletions(-)
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 43 ++++++++++++++++++-
+ .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c   | 13 +++++-
+ .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h   |  1 +
+ .../amd/display/dc/inc/hw/clk_mgr_internal.h  |  1 +
+ 4 files changed, 55 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 942ceb0f6383..8d935020068f 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2683,6 +2683,12 @@ void dc_interrupt_ack(struct dc *dc, enum dc_irq_source src)
- 	dal_irq_service_ack(dc->res_pool->irqs, src);
- }
- 
-+void dc_power_down_on_boot(struct dc *dc)
-+{
-+	if (dc->ctx->dce_environment != DCE_ENV_VIRTUAL_HW &&
-+			dc->hwss.power_down_on_boot)
-+		dc->hwss.power_down_on_boot(dc);
-+}
- 
- void dc_set_power_state(
- 	struct dc *dc,
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 389edcf3f6ce..c2336ca3a9e0 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1029,6 +1029,7 @@ bool dc_resource_is_dsc_encoding_supported(const struct dc *dc);
-  */
- bool dc_commit_state(struct dc *dc, struct dc_state *context);
- 
-+void dc_power_down_on_boot(struct dc *dc);
- 
- struct dc_state *dc_create_state(struct dc *dc);
- struct dc_state *dc_copy_state(struct dc_state *src_ctx);
-@@ -1229,6 +1230,8 @@ void dc_set_power_state(
- 		enum dc_acpi_cm_power_state power_state);
- void dc_resume(struct dc *dc);
- 
-+void dc_power_down_on_boot(struct dc *dc);
-+
- #if defined(CONFIG_DRM_AMD_DC_HDCP)
- /*
-  * HDCP Interfaces
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index 6711ff908bcf..20466cad6ade 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -1393,38 +1393,6 @@ void dcn10_init_hw(struct dc *dc)
- 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+index 9b4807f52381..c664404a75d4 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+@@ -634,6 +634,42 @@ static struct wm_table lpddr4_wm_table = {
  	}
+ };
  
--	/* In headless boot cases, DIG may be turned
--	 * on which causes HW/SW discrepancies.
--	 * To avoid this, power down hardware on boot
--	 * if DIG is turned on and seamless boot not enabled
--	 */
--	if (dc->config.power_down_display_on_boot) {
--		struct dc_link *edp_link = get_edp_link(dc);
--
--		if (edp_link &&
--				edp_link->link_enc->funcs->is_dig_enabled &&
--				edp_link->link_enc->funcs->is_dig_enabled(edp_link->link_enc) &&
--				dc->hwseq->funcs.edp_backlight_control &&
--				dc->hwss.power_down &&
--				dc->hwss.edp_power_control) {
--			dc->hwseq->funcs.edp_backlight_control(edp_link, false);
--			dc->hwss.power_down(dc);
--			dc->hwss.edp_power_control(edp_link, false);
--		} else {
--			for (i = 0; i < dc->link_count; i++) {
--				struct dc_link *link = dc->links[i];
--
--				if (link->link_enc->funcs->is_dig_enabled &&
--						link->link_enc->funcs->is_dig_enabled(link->link_enc) &&
--						dc->hwss.power_down) {
--					dc->hwss.power_down(dc);
--					break;
--				}
--
--			}
--		}
--	}
--
- 	if (!is_optimized_init_done) {
- 
- 		for (i = 0; i < res_pool->audio_count; i++) {
-@@ -1475,6 +1443,43 @@ void dcn10_init_hw(struct dc *dc)
- 
- }
- 
-+/* In headless boot cases, DIG may be turned
-+ * on which causes HW/SW discrepancies.
-+ * To avoid this, power down hardware on boot
-+ * if DIG is turned on and seamless boot not enabled
-+ */
-+void dcn10_power_down_on_boot(struct dc *dc)
-+{
-+	int i = 0;
-+
-+	if (dc->config.power_down_display_on_boot) {
-+		struct dc_link *edp_link = get_edp_link(dc);
-+
-+		if (edp_link &&
-+				edp_link->link_enc->funcs->is_dig_enabled &&
-+				edp_link->link_enc->funcs->is_dig_enabled(edp_link->link_enc) &&
-+				dc->hwseq->funcs.edp_backlight_control &&
-+				dc->hwss.power_down &&
-+				dc->hwss.edp_power_control) {
-+			dc->hwseq->funcs.edp_backlight_control(edp_link, false);
-+			dc->hwss.power_down(dc);
-+			dc->hwss.edp_power_control(edp_link, false);
-+		} else {
-+			for (i = 0; i < dc->link_count; i++) {
-+				struct dc_link *link = dc->links[i];
-+
-+				if (link->link_enc->funcs->is_dig_enabled &&
-+						link->link_enc->funcs->is_dig_enabled(link->link_enc) &&
-+						dc->hwss.power_down) {
-+					dc->hwss.power_down(dc);
-+					break;
-+				}
-+
-+			}
-+		}
++static struct wm_table lpddr4_wm_table_with_disabled_ppt = {
++	.entries = {
++		{
++			.wm_inst = WM_A,
++			.wm_type = WM_TYPE_PSTATE_CHG,
++			.pstate_latency_us = 11.65333,
++			.sr_exit_time_us = 8.32,
++			.sr_enter_plus_exit_time_us = 9.38,
++			.valid = true,
++		},
++		{
++			.wm_inst = WM_B,
++			.wm_type = WM_TYPE_PSTATE_CHG,
++			.pstate_latency_us = 11.65333,
++			.sr_exit_time_us = 9.82,
++			.sr_enter_plus_exit_time_us = 11.196,
++			.valid = true,
++		},
++		{
++			.wm_inst = WM_C,
++			.wm_type = WM_TYPE_PSTATE_CHG,
++			.pstate_latency_us = 11.65333,
++			.sr_exit_time_us = 9.89,
++			.sr_enter_plus_exit_time_us = 11.24,
++			.valid = true,
++		},
++		{
++			.wm_inst = WM_D,
++			.wm_type = WM_TYPE_PSTATE_CHG,
++			.pstate_latency_us = 11.65333,
++			.sr_exit_time_us = 9.748,
++			.sr_enter_plus_exit_time_us = 11.102,
++			.valid = true,
++		},
 +	}
-+}
-+
- void dcn10_reset_hw_ctx_wrap(
- 		struct dc *dc,
- 		struct dc_state *context)
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.h
-index 42b6e016d71e..6d891166da8a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.h
-@@ -109,6 +109,7 @@ void dcn10_program_pipe(
- void dcn10_program_gamut_remap(struct pipe_ctx *pipe_ctx);
- void dcn10_init_hw(struct dc *dc);
- void dcn10_init_pipes(struct dc *dc, struct dc_state *context);
-+void dcn10_power_down_on_boot(struct dc *dc);
- enum dc_status dce110_apply_ctx_to_hw(
- 		struct dc *dc,
- 		struct dc_state *context);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c
-index f6a790c49321..5c98b71c1d47 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c
-@@ -30,6 +30,7 @@
- static const struct hw_sequencer_funcs dcn10_funcs = {
- 	.program_gamut_remap = dcn10_program_gamut_remap,
- 	.init_hw = dcn10_init_hw,
-+	.power_down_on_boot = dcn10_power_down_on_boot,
- 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
- 	.apply_ctx_for_surface = dcn10_apply_ctx_for_surface,
- 	.post_unlock_program_front_end = dcn10_post_unlock_program_front_end,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
-index bb9e9bec2f28..2380392b916e 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
-@@ -30,6 +30,7 @@
- static const struct hw_sequencer_funcs dcn20_funcs = {
- 	.program_gamut_remap = dcn10_program_gamut_remap,
- 	.init_hw = dcn10_init_hw,
-+	.power_down_on_boot =  dcn10_power_down_on_boot,
- 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
- 	.apply_ctx_for_surface = NULL,
- 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
-index 8575de1a8ad2..177d0dc8927a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
-@@ -31,6 +31,7 @@
- static const struct hw_sequencer_funcs dcn21_funcs = {
- 	.program_gamut_remap = dcn10_program_gamut_remap,
- 	.init_hw = dcn10_init_hw,
-+	.power_down_on_boot = dcn10_power_down_on_boot,
- 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
- 	.apply_ctx_for_surface = NULL,
- 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
-index 066a2a723c12..720ce5e458d8 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
-@@ -56,6 +56,7 @@ struct hw_sequencer_funcs {
++};
  
- 	/* Pipe Programming Related */
- 	void (*init_hw)(struct dc *dc);
-+	void (*power_down_on_boot)(struct dc *dc);
- 	void (*enable_accelerated_mode)(struct dc *dc,
- 			struct dc_state *context);
- 	enum dc_status (*apply_ctx_to_hw)(struct dc *dc,
+ static unsigned int find_dcfclk_for_voltage(struct dpm_clocks *clock_table, unsigned int voltage)
+ {
+@@ -738,6 +774,7 @@ void rn_clk_mgr_construct(
+ 		struct clk_log_info log_info = {0};
+ 
+ 		clk_mgr->smu_ver = rn_vbios_smu_get_smu_version(clk_mgr);
++		clk_mgr->periodic_retraining_disabled = rn_vbios_smu_is_periodic_retraining_disabled(clk_mgr);
+ 
+ 		/* SMU Version 55.51.0 and up no longer have an issue
+ 		 * that needs to limit minimum dispclk */
+@@ -752,7 +789,11 @@ void rn_clk_mgr_construct(
+ 			clk_mgr->base.dentist_vco_freq_khz = 3600000;
+ 
+ 		if (ctx->dc_bios->integrated_info->memory_type == LpDdr4MemType) {
+-			rn_bw_params.wm_table = lpddr4_wm_table;
++			if (clk_mgr->periodic_retraining_disabled) {
++				rn_bw_params.wm_table = lpddr4_wm_table_with_disabled_ppt;
++			} else {
++				rn_bw_params.wm_table = lpddr4_wm_table;
++			}
+ 		} else {
+ 			rn_bw_params.wm_table = ddr4_wm_table;
+ 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
+index d2facbb114d3..9a374522e963 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
+@@ -52,7 +52,8 @@
+ #define VBIOSSMC_MSG_GetFclkFrequency             0xB
+ #define VBIOSSMC_MSG_SetDisplayCount              0xC
+ #define VBIOSSMC_MSG_EnableTmdp48MHzRefclkPwrDown 0xD
+-#define VBIOSSMC_MSG_UpdatePmeRestore			  0xE
++#define VBIOSSMC_MSG_UpdatePmeRestore             0xE
++#define VBIOSSMC_MSG_IsPeriodicRetrainingDisabled 0xF
+ 
+ #define VBIOSSMC_Status_BUSY                      0x0
+ #define VBIOSSMC_Result_OK                        0x1
+@@ -100,7 +101,7 @@ int rn_vbios_smu_send_msg_with_param(struct clk_mgr_internal *clk_mgr, unsigned
+ 
+ 	result = rn_smu_wait_for_response(clk_mgr, 10, 1000);
+ 
+-	ASSERT(result == VBIOSSMC_Result_OK);
++	ASSERT(result == VBIOSSMC_Result_OK || result == VBIOSSMC_Result_UnknownCmd);
+ 
+ 	/* Actual dispclk set is returned in the parameter register */
+ 	return REG_READ(MP1_SMN_C2PMSG_83);
+@@ -232,3 +233,11 @@ void rn_vbios_smu_enable_pme_wa(struct clk_mgr_internal *clk_mgr)
+ 			VBIOSSMC_MSG_UpdatePmeRestore,
+ 			0);
+ }
++
++int rn_vbios_smu_is_periodic_retraining_disabled(struct clk_mgr_internal *clk_mgr)
++{
++	return rn_vbios_smu_send_msg_with_param(
++			clk_mgr,
++			VBIOSSMC_MSG_IsPeriodicRetrainingDisabled,
++			0);
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h
+index ccc01879c9d4..3e5df27aa96f 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h
+@@ -36,5 +36,6 @@ int rn_vbios_smu_set_dppclk(struct clk_mgr_internal *clk_mgr, int requested_dpp_
+ void rn_vbios_smu_set_dcn_low_power_state(struct clk_mgr_internal *clk_mgr, int display_count);
+ void rn_vbios_smu_enable_48mhz_tmdp_refclk_pwrdwn(struct clk_mgr_internal *clk_mgr, bool enable);
+ void rn_vbios_smu_enable_pme_wa(struct clk_mgr_internal *clk_mgr);
++int rn_vbios_smu_is_periodic_retraining_disabled(struct clk_mgr_internal *clk_mgr);
+ 
+ #endif /* DAL_DC_DCN10_RV1_CLK_MGR_VBIOS_SMU_H_ */
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+index b3b8b46d293e..4e6e18bbef5d 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+@@ -270,6 +270,7 @@ struct clk_mgr_internal {
+ 
+ 	enum dm_pp_clocks_state max_clks_state;
+ 	enum dm_pp_clocks_state cur_min_clks_state;
++	bool periodic_retraining_disabled;
+ 
+ 	unsigned int cur_phyclk_req_table[MAX_PIPES * 2];
+ #ifdef CONFIG_DRM_AMD_DC_DCN3_0
 -- 
 2.27.0
 
