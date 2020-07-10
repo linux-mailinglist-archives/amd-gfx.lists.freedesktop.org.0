@@ -2,89 +2,99 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4373E21B81C
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 16:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D25821B9A1
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 17:33:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D69216EC63;
-	Fri, 10 Jul 2020 14:17:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C2746EC80;
+	Fri, 10 Jul 2020 15:33:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2070.outbound.protection.outlook.com [40.107.237.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99F116EC63
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 14:17:09 +0000 (UTC)
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com
+ (mail-eopbgr130080.outbound.protection.outlook.com [40.107.13.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77FCA6EC6A;
+ Fri, 10 Jul 2020 14:23:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kFOjO+uycJHZ7qopOiM8xqBaBzTqvw93QZcoUX2GXB230jFF/zUhB10M3z7bTTVPeiOD3Oy6UKT6Ro1DyftNLtVSry0EE6pOZUz7dYbSeJV+tHoaWXmAwj+cd8ZcjmsIzlUdOayqwyPBAu4QUhNBSjIH+vVFCbQ7xDAn+NTzmvfGas/7zxkYAI3m671ZGcnKJNL/2GsxRRb79H3A4QgK+vIgmqdscgO25uMQqaro1gWfvaHvrAhyDGXYVhjnN42Zm23OUpWWWVLcKpNT4o2B1yAKj5WwjzeclDRRE+RT96W0AB3zDRx5nIi+gQb6KIp9n9sAi88w908dY3ZdI6FKRQ==
+ b=Oh89sztPYZ+0BG8IiCrSx/Iq8Eq1nXjGauB9lnldukmNwIcGfPbMl0g7kyUx3/RjVWeB0RM79082aiB8BIR94sVisA//GlXuUjVQpugWjiowg0y83pTDETxbiWMH27hfgrdRr5YVZXW2/GbBl3/kC1U7jXa44gqTllkquySTHQIf2wG2PZ5Iiuh+R0FtZioF65hBc6RWZV57kLKVyI/LJRngrmHsAJ/WYYSYJTPUdBVlDTo6LnhXkye6yR+/cY1R69WJliN32VKkQtTUf/AIcHtDYrwYzFDTNOEhX0nQGMZ1o83S6TlYH1cMaVTQU1nSOHX3RLzBZui+0KW/5Fszcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UyWDeZPM/J0sPAayfLQdLnR4LvC0oNsY6r0BqKnJXyM=;
- b=Rx8w+LzcNZl2MyKG1kOPaL3P41yXaq25Ko1RiXTua6noeMSyO8RTn+HlwZbK5QoItb+CYfme37z0Gt/QwoBzTQW3XpP8CVnFJZGv9aANRx2z3iuGit2xnQv/FL5RH0oLTBaI1lnhAFhMEv+KO+k9bhKeKvjMh/qlqMBtWzVt8AZgQtDP7i9dJ34ODV6/xWGw4QezIOh/BZJMcqniJphH+7L5hh5uzqF+GJKDihTI/ys5cS2rgi2TOQpCUr5B/Qwk4n5iBOMwswxf6fvmV6yABqvmZJZq9U8pkTkY9Tz30XYuQJAhHJptm+RDnK5GhlvGN3fOnW14jGt6HvC7Inncbw==
+ bh=JFytuY/EUc+LqnEc77x9oWQqtc40rlGKmYy91akT1SY=;
+ b=RXUrNj42ZJCGfeaPHENanBd7w1DS3gJOOq3LvGH9qSG7/RApCXPUAE3xJO6aDorpjPGp2AoITdEj1Ag0BJpZM0SIBNpguTJhJZVQUJ/TmkhLoOorxTh2aIk1yD3/LL4MGHqlqIGWm0LNGXWk5TTgpye4qt6CVevbcC/6CbQAmdQLEyx+OREtADeplyOwbLlIxf2UaHae6uURiu4WDLdTzRD9LhPOvJ4TD55elHJZwpV2LQXy/aYeHfkXg/5a5uxOe3jFBMvCRJRSdeFdBNY081WLkiIyDtbreXqVCMOIEC68fhcoCkLbIQcLeswTGeEbnQBh39sgKTyw1rKIkxWqlA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ smtp.mailfrom=mellanox.com; dmarc=pass action=none header.from=mellanox.com;
+ dkim=pass header.d=mellanox.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Mellanox.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UyWDeZPM/J0sPAayfLQdLnR4LvC0oNsY6r0BqKnJXyM=;
- b=bKrewSTV2zDoWzKpZHfqC7w/ck2CVkn/Lxbg8gvlaQC3eW9C0alir/RnvvYlSM1HLORoDFfOsRdboReVFAkgqHeYLTjJRVIgDPs1jzxuIZ4XSoNOmncxUfpuQ5FkpHXuf708FuHOWbcme1I8kIZJyTBrv8Z0Z+JVGF8WiubnMj4=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from CH2PR12MB4101.namprd12.prod.outlook.com (2603:10b6:610:a8::22)
- by CH2PR12MB3976.namprd12.prod.outlook.com (2603:10b6:610:28::26)
+ bh=JFytuY/EUc+LqnEc77x9oWQqtc40rlGKmYy91akT1SY=;
+ b=mA0M4MBUoBxBwLHtPVcGHxYa3oKbpbQyWnit3rpp0HRCCuQSOcNgwbtafymAFu01faQQ9VTIudxbJcZRy3ZTtt8MYpDJAUi5sMKcpeO3MUa+uJW3605hxAAWuSgL0n847kqNFzEfWBPukn0Uhwoh4V6q6MRkbP36BMAO0ZcHOHg=
+Authentication-Results: ffwll.ch; dkim=none (message not signed)
+ header.d=none;ffwll.ch; dmarc=none action=none header.from=mellanox.com;
+Received: from VI1PR05MB4141.eurprd05.prod.outlook.com (2603:10a6:803:44::15)
+ by VI1PR05MB5583.eurprd05.prod.outlook.com (2603:10a6:803:99::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.22; Fri, 10 Jul
- 2020 14:17:04 +0000
-Received: from CH2PR12MB4101.namprd12.prod.outlook.com
- ([fe80::b9c2:5b76:382a:c5d]) by CH2PR12MB4101.namprd12.prod.outlook.com
- ([fe80::b9c2:5b76:382a:c5d%8]) with mapi id 15.20.3174.021; Fri, 10 Jul 2020
- 14:17:04 +0000
-From: Wenhui Sheng <Wenhui.Sheng@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/amdgpu: add module parameter choose reset mode
-Date: Fri, 10 Jul 2020 22:16:44 +0800
-Message-Id: <20200710141644.1601-3-Wenhui.Sheng@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200710141644.1601-1-Wenhui.Sheng@amd.com>
-References: <20200710141644.1601-1-Wenhui.Sheng@amd.com>
-X-ClientProxiedBy: HK2PR04CA0063.apcprd04.prod.outlook.com
- (2603:1096:202:14::31) To CH2PR12MB4101.namprd12.prod.outlook.com
- (2603:10b6:610:a8::22)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3153.23; Fri, 10 Jul
+ 2020 14:23:51 +0000
+Received: from VI1PR05MB4141.eurprd05.prod.outlook.com
+ ([fe80::848b:fcd0:efe3:189e]) by VI1PR05MB4141.eurprd05.prod.outlook.com
+ ([fe80::848b:fcd0:efe3:189e%7]) with mapi id 15.20.3174.022; Fri, 10 Jul 2020
+ 14:23:51 +0000
+Date: Fri, 10 Jul 2020 11:23:47 -0300
+From: Jason Gunthorpe <jgg@mellanox.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [PATCH 02/25] dma-fence: prime lockdep annotations
+Message-ID: <20200710142347.GE23821@mellanox.com>
+References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+ <20200707201229.472834-3-daniel.vetter@ffwll.ch>
+ <20200709080911.GP3278063@phenom.ffwll.local>
+ <20200710124357.GB23821@mellanox.com>
+ <5c163d74-4a28-1d74-be86-099b4729a2e0@amd.com>
+ <20200710125453.GC23821@mellanox.com>
+ <4f4a2cf7-f505-8494-1461-bd467870481e@amd.com>
+ <20200710134826.GD23821@mellanox.com>
+ <CAKMK7uGSUULTmL=bDXty6U4e37dzLHzu7wgUyOxo2CvR9KvXGg@mail.gmail.com>
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uGSUULTmL=bDXty6U4e37dzLHzu7wgUyOxo2CvR9KvXGg@mail.gmail.com>
+X-ClientProxiedBy: BL1PR13CA0060.namprd13.prod.outlook.com
+ (2603:10b6:208:257::35) To VI1PR05MB4141.eurprd05.prod.outlook.com
+ (2603:10a6:803:44::15)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from HUI.amd.com (58.247.170.242) by
- HK2PR04CA0063.apcprd04.prod.outlook.com (2603:1096:202:14::31) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3174.21 via Frontend Transport; Fri, 10 Jul 2020 14:17:02 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [58.247.170.242]
+Received: from mlx.ziepe.ca (156.34.48.30) by
+ BL1PR13CA0060.namprd13.prod.outlook.com (2603:10b6:208:257::35) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.9 via Frontend
+ Transport; Fri, 10 Jul 2020 14:23:51 +0000
+Received: from jgg by mlx with local (Exim 4.93)	(envelope-from
+ <jgg@mellanox.com>)	id 1jttwJ-008I6d-H5; Fri, 10 Jul 2020 11:23:47 -0300
+X-Originating-IP: [156.34.48.30]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 00b91ec2-f79d-4259-8fde-08d824dbebc5
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3976:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB3976E197801E52608606188F8C650@CH2PR12MB3976.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:81;
+X-MS-Office365-Filtering-Correlation-Id: 765aa671-94f1-4fce-ce18-08d824dcde35
+X-MS-TrafficTypeDiagnostic: VI1PR05MB5583:
+X-Microsoft-Antispam-PRVS: <VI1PR05MB558313F48966B67B238810F0CF650@VI1PR05MB5583.eurprd05.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Forefront-PRVS: 046060344D
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: R3oP7M0dgE0cB0jxhshyRntKAy3hoLURRVlvkwrPqXvG99KgCCANWOdJbB1JKESALYjP3qfSajuupZDEgn6kstPmoX2dVBwYs3vcbqPWlpuSQVMwEtnk8+hnWq4PCA4pJmI8+6rdq4B1YA3LEhqVIKsehu+rnpBg+u1UNjYiETDV0HnWoOsa6qipUyxUNlnNX8tiCBr81c4auLnv14R0kNOVF76Njf3gtG3lqwlyeF3CELPm20glhEU8Ck5R+glsrbiIWIMh4nveDFfuwmTmhJaRYJMz1JUjCxM15wgjsVr34lwIzlQvgHrxbhjEgC4a
+X-Microsoft-Antispam-Message-Info: sJ3mBl5qubWb0h+JRWVh2IO4BddLMQv+Br478jHO0mdF+Gmj7sFN1+udP6Lb8Zqggj0yJZLqE2FGhKfGNdrRc6lbK6Vdu/Jkixz8onYhPqxxSRDD7VYlbF2Rasc2AMoZ5TcM6+LQ4MoXQ9+uKIOXBCb7chk1QBdTOSaPuajkI+FEWFE4PoaCGjogbXe2zQIdJImpdqbLzeq5QuBRpcI1DXW9Cm9DLTaz14gWccVdj3W3SanXwt8Zik5eJhxr9qKOupN3IILpho6HhWW/Wfh0VaQyqEVZeh7TYaPHu1EEJI3nhOiamGPfD+ZpiqHiwmhbJLJRLiwiRNQpyQrWpa+96Q==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB4101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:VI1PR05MB4141.eurprd05.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(136003)(39860400002)(346002)(366004)(376002)(396003)(16526019)(956004)(478600001)(316002)(54906003)(2616005)(86362001)(8936002)(4326008)(8676002)(2906002)(26005)(1076003)(5660300002)(66476007)(66946007)(6486002)(66556008)(52116002)(7696005)(6916009)(186003)(36756003)(6666004);
+ SFS:(4636009)(136003)(376002)(396003)(366004)(346002)(39860400002)(5660300002)(86362001)(36756003)(7416002)(26005)(6916009)(316002)(478600001)(83380400001)(2616005)(186003)(1076003)(2906002)(8936002)(426003)(4326008)(54906003)(66476007)(66946007)(66556008)(9746002)(8676002)(9786002)(33656002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: cxf5yw25f63xwRqUXIXSIv35GHXiOTzVAyW8NeiCi7Flu2gnWrcxs4RxO0PEEQYiZGOX5CpQdw2iiK0cdIV91hsDa1usOaAuoFCkoHedLfpYdZtUFkQiwbZT1znuUt1j0q1G+SMd4Y18x4vNYONYbY7TCFrvBFso87fWzgaxEr+G3o+01MoArDGc3mhIbJVLflu2WCUHM4zAh42BvSGwMI7PWbEwR+BUcQNNes7iOMeUW786hKEn19fLvCYEHyPgsuVdEulVQVyMOv1mWOgFOdhYo/HIBHTXF0rTxE2RwxXjJOayamZYrScZ9zqeVUuXyKXeWmmVUflT2TzeKPMf6Y2kYwMmlQbyECQPo3sBPDOBGV0noVjmoO8fX6oFD7UIHx+D9ABWHRl+G81EzPsbtI0gFsUIul7nzIkq77NOTBLmNBVm+H/gfCLQ3xo4uFU9WGZSB/7+W/s4eNbIgpxVO8ELiRebU8BFpLwJz80K40c=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00b91ec2-f79d-4259-8fde-08d824dbebc5
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4101.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData: cppyrSEFdAgkQ1i7W9q/voX0DbtbyyOVjwrEIOo4B7uYYODS8hmJEImRWNNtUiiOZNbaGtDnkKXCJRabgq7Bp4V5pamVdLqGNBMZzoizlzvRIc4PSgtdlF+13VePfAl+oWKQk9qlVh9blVl6PeuQYddj/USevZucky7iGVoqrg2GZ5DN2jMpZhpOaAXMbPu2PunbQ5KcLnjeYp1oJ5ZFWvNgBeIsmktajZlGxvfjkOhMNcqpA0LNpCo5GIpwIT52tIiYKLwRLQ0phw422o6y72JoJWSAwKGLaxj+zVWRs9pmtw6lHvYZwCwaoBSM2OZQeoLsZ7j0uncXth5RBLfm+/2Bv3rmRL42O8pmdQQ2NsxdQPoCFIy/30Yb5MD2tdELN2LR1o4k3i7R1AdJsyZqLM5BvRmDpRJbdg3Nwu/FEhp378GOFB8T6hAOnKknTA8vl95ONAs2NyV2N0CubuBtYkdKjh39nFGqTwJCU9QwM2Q=
+X-OriginatorOrg: Mellanox.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 765aa671-94f1-4fce-ce18-08d824dcde35
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR05MB4141.eurprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 14:17:04.6738 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 14:23:51.4197 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: a652971c-7d2e-4d9b-a6a4-d149256f461b
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dafEPybGvDTzJJHeoIfDyudKN0sP3mIsizt3QVdV1jFsdpqX8/3wZaL2jDlVnn8QUn++7gL8N5qQyvdrMbIzAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3976
+X-MS-Exchange-CrossTenant-UserPrincipalName: zwF71M+iqtNMffEf9NDildz9GQ391BR6YYfGlkhI/j0w0yOozGHG4f48p0kC5CNi1e2iLtFsRIITXUxwN0ma/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB5583
+X-Mailman-Approved-At: Fri, 10 Jul 2020 15:33:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,131 +106,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Likun Gao <Likun.Gao@amd.com>, Wenhui Sheng <Wenhui.Sheng@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>, kernel test robot <lkp@intel.com>,
+ linux-rdma <linux-rdma@vger.kernel.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Mika Kuoppala <mika.kuoppala@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Default value is auto, doesn't change
-original reset method logic.
+On Fri, Jul 10, 2020 at 04:02:35PM +0200, Daniel Vetter wrote:
 
-v2: change to use parameter reset_method
+> > dma_fence only possibly makes some sense if you intend to expose the
+> > completion outside a single driver.
+> >
+> > The prefered kernel design pattern for this is to connect things with
+> > a function callback.
+> >
+> > So the actual use case of dma_fence is quite narrow and tightly linked
+> > to DRM.
+> >
+> > I don't think we should spread this beyond DRM, I can't see a reason.
+> 
+> Yeah v4l has a legit reason to use dma_fence, android wants that
+> there. 
 
-Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Signed-off-by: Wenhui Sheng <Wenhui.Sheng@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 8 ++++++++
- drivers/gpu/drm/amd/amdgpu/cik.c        | 4 ++++
- drivers/gpu/drm/amd/amdgpu/nv.c         | 4 ++++
- drivers/gpu/drm/amd/amdgpu/soc15.c      | 5 +++++
- drivers/gpu/drm/amd/amdgpu/vi.c         | 4 ++++
- 6 files changed, 26 insertions(+)
+'legit' in the sense the v4l is supposed to trigger stuff in DRM when
+V4L DMA completes? I would still see that as part of DRM
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 4de93cef79b9..06bfb8658dec 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -196,6 +196,7 @@ static const bool debug_evictions; /* = false */
- #endif
- 
- extern int amdgpu_tmz;
-+extern int amdgpu_reset_method;
- 
- #ifdef CONFIG_DRM_AMDGPU_SI
- extern int amdgpu_si_support;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 94c83a9d4987..ed9f32b89f36 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -154,6 +154,7 @@ int amdgpu_mes = 0;
- int amdgpu_noretry = 1;
- int amdgpu_force_asic_type = -1;
- int amdgpu_tmz = 0;
-+int amdgpu_reset_method = -1; /* auto */
- 
- struct amdgpu_mgpu_info mgpu_info = {
- 	.mutex = __MUTEX_INITIALIZER(mgpu_info.mutex),
-@@ -793,6 +794,13 @@ module_param_named(abmlevel, amdgpu_dm_abm_level, uint, 0444);
- MODULE_PARM_DESC(tmz, "Enable TMZ feature (-1 = auto, 0 = off (default), 1 = on)");
- module_param_named(tmz, amdgpu_tmz, int, 0444);
- 
-+/**
-+ * DOC: reset_method (int)
-+ * SMU reset method (-1 = auto (default), 0 = legacy, 1 = mode0, 2 = mode1, 3 = mode2, 4 = baco)
-+ */
-+MODULE_PARM_DESC(reset_method, "SMU reset method (-1 = auto (default), 0 = legacy, 1 = mode0, 2 = mode1, 3 = mode2, 4 = baco)");
-+module_param_named(reset_method, amdgpu_reset_method, int, 0444);
-+
- static const struct pci_device_id pciidlist[] = {
- #ifdef  CONFIG_DRM_AMDGPU_SI
- 	{0x1002, 0x6780, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI},
-diff --git a/drivers/gpu/drm/amd/amdgpu/cik.c b/drivers/gpu/drm/amd/amdgpu/cik.c
-index fe306d0f73f7..a99418cd2f5e 100644
---- a/drivers/gpu/drm/amd/amdgpu/cik.c
-+++ b/drivers/gpu/drm/amd/amdgpu/cik.c
-@@ -1326,6 +1326,10 @@ cik_asic_reset_method(struct amdgpu_device *adev)
- {
- 	bool baco_reset;
- 
-+	if (amdgpu_reset_method == AMD_RESET_METHOD_LEGACY ||
-+	    amdgpu_reset_method == AMD_RESET_METHOD_BACO)
-+		return amdgpu_reset_method;
-+
- 	switch (adev->asic_type) {
- 	case CHIP_BONAIRE:
- 	case CHIP_HAWAII:
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 9f1240bd0310..309ff402d7be 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -311,6 +311,10 @@ nv_asic_reset_method(struct amdgpu_device *adev)
- {
- 	struct smu_context *smu = &adev->smu;
- 
-+	if (amdgpu_reset_method == AMD_RESET_METHOD_MODE1 ||
-+	    amdgpu_reset_method == AMD_RESET_METHOD_BACO)
-+		return amdgpu_reset_method;
-+
- 	if (smu_baco_is_support(smu))
- 		return AMD_RESET_METHOD_BACO;
- 	else
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-index 8c739b285915..a8a134f7bb61 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-@@ -532,6 +532,11 @@ soc15_asic_reset_method(struct amdgpu_device *adev)
- 	bool baco_reset = false;
- 	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
- 
-+	if (amdgpu_reset_method == AMD_RESET_METHOD_MODE1 ||
-+	    amdgpu_reset_method == AMD_RESET_METHOD_MODE2 ||
-+		amdgpu_reset_method == AMD_RESET_METHOD_BACO)
-+		return amdgpu_reset_method;
-+
- 	switch (adev->asic_type) {
- 	case CHIP_RAVEN:
- 	case CHIP_RENOIR:
-diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c b/drivers/gpu/drm/amd/amdgpu/vi.c
-index 4e5e91888d87..2cc8ad19ebed 100644
---- a/drivers/gpu/drm/amd/amdgpu/vi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vi.c
-@@ -710,6 +710,10 @@ vi_asic_reset_method(struct amdgpu_device *adev)
- {
- 	bool baco_reset;
- 
-+	if (amdgpu_reset_method == AMD_RESET_METHOD_LEGACY ||
-+	    amdgpu_reset_method == AMD_RESET_METHOD_BACO)
-+		return amdgpu_reset_method;
-+
- 	switch (adev->asic_type) {
- 	case CHIP_FIJI:
- 	case CHIP_TONGA:
--- 
-2.17.1
+Or is it building a parallel DRM like DMA completion graph?
 
+> > Trying to improve performance of limited HW by using sketchy
+> > techniques at the cost of general system stability should be a NAK.
+>
+> Well that's pretty much gpu drivers, all the horrors for a bit more speed :-)
+> 
+> On the text itself, should I upgrade to "must not" instead of "should
+> not"? Or more needed?
+
+Fundamentally having some unknowable graph of dependencies where parts
+of the graph can be placed in critical regions like notifiers is a
+complete maintenance nightmare.
+
+I think building systems like this should be discouraged :\
+
+Jason
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
