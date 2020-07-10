@@ -1,58 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D72721B797
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 16:02:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F98621B816
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 16:17:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B1536EC55;
-	Fri, 10 Jul 2020 14:02:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C3F96EC5A;
+	Fri, 10 Jul 2020 14:17:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com
- [IPv6:2607:f8b0:4864:20::243])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3D506EC52
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 14:02:47 +0000 (UTC)
-Received: by mail-oi1-x243.google.com with SMTP id e4so4884269oib.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 07:02:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=xTQ5MsJnerH24IzbOibKIVgALQbQ6fBLEFDFGaudNHc=;
- b=WU2W6d+TZkpC2bQ5QGHyZU588I4aYRy0pgR/0jf5dsrsdUKzG7CHHQbdXmPQGYQqUL
- nasfBbJ4/UbxjUPNH17KzLPCu8/hid/VouoHAy2Rs5LX3JMX0PseWupYbCGix+YrbFIN
- 0G929NaZD66foWbG+h37GXj5alNoKzzHEG+Eg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=xTQ5MsJnerH24IzbOibKIVgALQbQ6fBLEFDFGaudNHc=;
- b=VLpc2iyTrpDrHlxRabb08BevkZPTn8OQO3oyvlwpnt/ou/Rs+tEC0RE/LyYK8jKxJ7
- xP9zwVMJu4XdeEcjeA8AYbAwhJHcUZVzGT212SDigAN/tkupPoWFSlf2MI4y305vWdnk
- mNMjWPpU4wrbz5GtloG7JVND8ZA67J4abPkooI3fLgXo+oQotW8SRm9Z7t4BNaioAqb+
- bMxFI1T1NENHSy4APjgvuzAdlFkF+50L9XGVuqFjMbSQJUDExYGSIf3/RWQ9wORv2vDg
- 4BKJ3O16eQ5z+lmvwlVFYUL74JTFBvwDTUbQ0W3teplcSCMyFBvjmzVyKrywnL//NDBX
- bE2w==
-X-Gm-Message-State: AOAM531FqrYM8MYPn36fkz+pgpOhH49UEJA9/IoXzFKS8BeL5sANl0Km
- /npwIIfUN4cyfy3MgO3+O2OBR66u3Xll6zQCuADfNQ==
-X-Google-Smtp-Source: ABdhPJz9ueO/NwCXWq4u05bld/A1Jzmv30JDZLkssowFodTQImkU08xp+BW6yONjBlhlRH0STky3grfq96MK+YXxz58=
-X-Received: by 2002:aca:cc8e:: with SMTP id c136mr4296478oig.128.1594389767031; 
- Fri, 10 Jul 2020 07:02:47 -0700 (PDT)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2054.outbound.protection.outlook.com [40.107.243.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79E7F6EC55
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 14:17:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eWZyZKJWqFD1IOGn5jOnsu+87W/zsBF1VdoyGdlQDE6mcsZvfRbFdyoA+tZCk+n85zOy6KONjXiCmRfSkEPv/jr1rtW++ljY4rzJVrbTs+nyK1K00jVTSe+RhWEClHULnVuqYV9VAVvYvgk/WZO9PFMTgzYW2axjxLlu0T04zViFAQQtePJH6yqAxhee9h/wTfWhtg/K63CkE5QFemEvZl5oI7Hw3TNmzuJwHXk3xhh8T/2yA5nAqjghqrHit9SKWBLCQiUt7Cq9rhbjAwI/BYH4VQpA/9R6jyrDHDIO5Dwo+CqGZE6Ls1o1pTp2BrLRUdHGqk9RBIBG4AmarZ/H3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZFxvqbeiYXY7gBY2//9MkOhCafIXtDBGq14bij3IVNQ=;
+ b=BWX4AkW173aVPuUb1o/OMmAqeruYbGoUX8ktP6NGa9CGnqFIzCtFwjYvYR2G7nJpr0PgiFzpoma7qFlFxqehNjieieV33gjdNJp0aNR2GWy3qh0cg0i5GUV7wv7Tikomdn1SLYkMUpIMutZZ2j/hytfXo4xW5XEnXjsSQJLAY6T+ih47MmDfLQrAEmTFDOQ9kEhBwJejZRFg5a+k2n93bSxS7y0uGa4jBcyBwwZmp/ABc/EkB4zaDvrRpMg/udTxiB00V1TVSPKSNVbngaVoV0UdvGnKeKHZtia0hg7w0I+lXxJ7oCAWOVv9ZNnq1WRtHXRLzZiJSQLr9Vt1Yy6u1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZFxvqbeiYXY7gBY2//9MkOhCafIXtDBGq14bij3IVNQ=;
+ b=w52/65nFtnFyIGEC4n591M3wT+xpL4aeBhEYCN8/xv7mTU0Kd+VsDnv/eh4g3Q5hWs1fy7X7avMCc47x6PJ61F6ivrY9u3FLzBkpSkcuKaKyLva/95TJYphk20aEvhyeClis6+TxtX8JSTkCABSZ7bDvjLpp2r5dWkX5GaZUJBI=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from CH2PR12MB4101.namprd12.prod.outlook.com (2603:10b6:610:a8::22)
+ by CH2PR12MB3831.namprd12.prod.outlook.com (2603:10b6:610:29::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.22; Fri, 10 Jul
+ 2020 14:17:00 +0000
+Received: from CH2PR12MB4101.namprd12.prod.outlook.com
+ ([fe80::b9c2:5b76:382a:c5d]) by CH2PR12MB4101.namprd12.prod.outlook.com
+ ([fe80::b9c2:5b76:382a:c5d%8]) with mapi id 15.20.3174.021; Fri, 10 Jul 2020
+ 14:17:00 +0000
+From: Wenhui Sheng <Wenhui.Sheng@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/3] drm/amd/powerplay: add SMU mode1 reset
+Date: Fri, 10 Jul 2020 22:16:42 +0800
+Message-Id: <20200710141644.1601-1-Wenhui.Sheng@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: HK2PR04CA0063.apcprd04.prod.outlook.com
+ (2603:1096:202:14::31) To CH2PR12MB4101.namprd12.prod.outlook.com
+ (2603:10b6:610:a8::22)
 MIME-Version: 1.0
-References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
- <20200707201229.472834-3-daniel.vetter@ffwll.ch>
- <20200709080911.GP3278063@phenom.ffwll.local>
- <20200710124357.GB23821@mellanox.com>
- <5c163d74-4a28-1d74-be86-099b4729a2e0@amd.com>
- <20200710125453.GC23821@mellanox.com>
- <4f4a2cf7-f505-8494-1461-bd467870481e@amd.com>
- <20200710134826.GD23821@mellanox.com>
-In-Reply-To: <20200710134826.GD23821@mellanox.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Fri, 10 Jul 2020 16:02:35 +0200
-Message-ID: <CAKMK7uGSUULTmL=bDXty6U4e37dzLHzu7wgUyOxo2CvR9KvXGg@mail.gmail.com>
-Subject: Re: [PATCH 02/25] dma-fence: prime lockdep annotations
-To: Jason Gunthorpe <jgg@mellanox.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from HUI.amd.com (58.247.170.242) by
+ HK2PR04CA0063.apcprd04.prod.outlook.com (2603:1096:202:14::31) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3174.21 via Frontend Transport; Fri, 10 Jul 2020 14:16:58 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [58.247.170.242]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: f28634cb-01ef-483e-0d73-08d824dbe934
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3831:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH2PR12MB3831650821EF37749BD49A7B8C650@CH2PR12MB3831.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:632;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KNuovmqa7r9t/U3qGWIveVgzK6s4mqvFR+9+ZgIej7NdlrL/Sxw4gc3O8tnw6krkzTTEgBTIJHtOoFPZY8w0Fx/c7Pf3QKyMPPczrKDtIBAYcqLoMwFd+MTOLQh2hgx107HGnYYy65T+a6DXbqniSPIBd8qjhhmy56yk4Bs0QUCypEj9Mz1FetWZt3jgCBSHHMbizIbk2eZ2fDywJdevQxRMmrRQdxRszDMKggFOtJIcRNRPCyc+d8KILkM9wQ4cIVbMbj9p9kTngfr1Yl5+NV2jjWkxLrAtnywI0mhrz79IzirVD+d4+9Sh5flfYCFS
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB4101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(396003)(346002)(366004)(136003)(376002)(39860400002)(86362001)(6666004)(6916009)(1076003)(83380400001)(66476007)(8936002)(66556008)(52116002)(7696005)(6486002)(66946007)(2906002)(478600001)(54906003)(36756003)(316002)(5660300002)(8676002)(186003)(16526019)(26005)(956004)(4326008)(2616005);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: ziWhVK6V0ZRVUmL2WqOizefH7s1MGih5kuO+eXbYZmMV5e7iXFSkJeOq90KZBPqzKCIxNdk+qg1lOp63GLPAZu9wrnaWRZKQfbAdlICbwIs5jHE2pRw4GApn1e5v1qsVcmSfA2Cxm051tta0HNLFfhZzKJo1Xmcv30yheTNz15/LyThiJRIAqDCCCZJ32kszqfqhbKEv7p8POkiASQBuRcVog6N3IIMA7sNQ6hfyD3eu8Plsz8/ZuBlOhFBcI8OOTOUnR5q0A83fUvktqcJwpKe3h2IdHmdIgMXYt6NWe1Zwppedxxy2p3qXDheMxcQFbIVsC/SnhQhH7hfQZfNR/7uUGaL1qoh32Pkk0h98Pxy1+mqn6ijjwqVniPFGfb2RhJ5+fpbBO7VhlLnYKTUcIqv3g2yni7prnH3/GWsFGH49poBLBWwuUbkmeiLz35XaN77Fzpe9YEAdb9XSKTlorVqVdOAeHZYxXwfBg6Ny51vWefAa/m6pF6yQ3HnWBHqH
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f28634cb-01ef-483e-0d73-08d824dbe934
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4101.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 14:17:00.4185 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EcxXkQiepbV24taT6Bdht3uZPfxamDRE3z0JM4VetHDMzFBc9WzgNPFHWGVUJvoEtwnkvIgUiyeUdN+1N1NQNA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3831
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,87 +94,273 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>, kernel test robot <lkp@intel.com>,
- linux-rdma <linux-rdma@vger.kernel.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Mika Kuoppala <mika.kuoppala@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Likun Gao <Likun.Gao@amd.com>, Wenhui Sheng <Wenhui.Sheng@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBKdWwgMTAsIDIwMjAgYXQgMzo0OCBQTSBKYXNvbiBHdW50aG9ycGUgPGpnZ0BtZWxs
-YW5veC5jb20+IHdyb3RlOgo+Cj4gT24gRnJpLCBKdWwgMTAsIDIwMjAgYXQgMDM6MDE6MTBQTSAr
-MDIwMCwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPiA+IEFtIDEwLjA3LjIwIHVtIDE0OjU0IHNj
-aHJpZWIgSmFzb24gR3VudGhvcnBlOgo+ID4gPiBPbiBGcmksIEp1bCAxMCwgMjAyMCBhdCAwMjo0
-ODoxNlBNICswMjAwLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+ID4gPiA+IEFtIDEwLjA3LjIw
-IHVtIDE0OjQzIHNjaHJpZWIgSmFzb24gR3VudGhvcnBlOgo+ID4gPiA+ID4gT24gVGh1LCBKdWwg
-MDksIDIwMjAgYXQgMTA6MDk6MTFBTSArMDIwMCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+ID4g
-PiA+ID4gSGkgSmFzb24sCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+IEJlbG93IHRoZSBwYXJhZ3Jh
-cGggSSd2ZSBhZGRlZCBhZnRlciBvdXIgZGlzY3Vzc2lvbnMgYXJvdW5kIGRtYS1mZW5jZXMKPiA+
-ID4gPiA+ID4gb3V0c2lkZSBvZiBkcml2ZXJzL2dwdS4gR29vZCBlbm91Z2ggZm9yIGFuIGFjayBv
-biB0aGlzLCBvciB3YW50IHNvbWV0aGluZwo+ID4gPiA+ID4gPiBjaGFuZ2VkPwo+ID4gPiA+ID4g
-Pgo+ID4gPiA+ID4gPiBUaGFua3MsIERhbmllbAo+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+ICsg
-KiBOb3RlIHRoYXQgb25seSBHUFUgZHJpdmVycyBoYXZlIGEgcmVhc29uYWJsZSBleGN1c2UgZm9y
-IGJvdGggcmVxdWlyaW5nCj4gPiA+ID4gPiA+ID4gKyAqICZtbXVfaW50ZXJ2YWxfbm90aWZpZXIg
-YW5kICZzaHJpbmtlciBjYWxsYmFja3MgYXQgdGhlIHNhbWUgdGltZSBhcyBoYXZpbmcgdG8KPiA+
-ID4gPiA+ID4gPiArICogdHJhY2sgYXN5bmNocm9ub3VzIGNvbXB1dGUgd29yayB1c2luZyAmZG1h
-X2ZlbmNlLiBObyBkcml2ZXIgb3V0c2lkZSBvZgo+ID4gPiA+ID4gPiA+ICsgKiBkcml2ZXJzL2dw
-dSBzaG91bGQgZXZlciBjYWxsIGRtYV9mZW5jZV93YWl0KCkgaW4gc3VjaCBjb250ZXh0cy4KPiA+
-ID4gPiA+IEkgd2FzIGhvcGluZyB3ZSdkIGdldCB0byAnbm8gZHJpdmVyIG91dHNpZGUgR1BVIHNo
-b3VsZCBldmVuIHVzZQo+ID4gPiA+ID4gZG1hX2ZlbmNlKCknCj4gPiA+ID4gTXkgbGFzdCBzdGF0
-dXMgd2FzIHRoYXQgVjRMIGNvdWxkIGNvbWUgdXNlIGRtYV9mZW5jZXMgYXMgd2VsbC4KPiA+ID4g
-SSdtIHN1cmUgbG90cyBvZiBwbGFjZXMgKmNvdWxkKiB1c2UgaXQsIGJ1dCBJIHRoaW5rIEkgdW5k
-ZXJzdG9vZCB0aGF0Cj4gPiA+IGl0IGlzIGEgYmFkIGlkZWEgdW5sZXNzIHlvdSBoYXZlIHRvIGZp
-dCBpbnRvIHRoZSBEUk0gdUFQST8KPiA+Cj4gPiBJdCB3b3VsZCBiZSBhIGJpdCBxdWVzdGlvbmFi
-bGUgaWYgeW91IHVzZSB0aGUgY29udGFpbmVyIG9iamVjdHMgd2UgY2FtZSB1cAo+ID4gd2l0aCBp
-biB0aGUgRFJNIHN1YnN5c3RlbSBvdXRzaWRlIG9mIGl0Lgo+ID4KPiA+IEJ1dCB1c2luZyB0aGUg
-ZG1hX2ZlbmNlIGl0c2VsZiBtYWtlcyBzZW5zZSBmb3IgZXZlcnl0aGluZyB3aGljaCBjb3VsZCBk
-bwo+ID4gYXN5bmMgRE1BIGluIGdlbmVyYWwuCj4KPiBkbWFfZmVuY2Ugb25seSBwb3NzaWJseSBt
-YWtlcyBzb21lIHNlbnNlIGlmIHlvdSBpbnRlbmQgdG8gZXhwb3NlIHRoZQo+IGNvbXBsZXRpb24g
-b3V0c2lkZSBhIHNpbmdsZSBkcml2ZXIuCj4KPiBUaGUgcHJlZmVyZWQga2VybmVsIGRlc2lnbiBw
-YXR0ZXJuIGZvciB0aGlzIGlzIHRvIGNvbm5lY3QgdGhpbmdzIHdpdGgKPiBhIGZ1bmN0aW9uIGNh
-bGxiYWNrLgo+Cj4gU28gdGhlIGFjdHVhbCB1c2UgY2FzZSBvZiBkbWFfZmVuY2UgaXMgcXVpdGUg
-bmFycm93IGFuZCB0aWdodGx5IGxpbmtlZAo+IHRvIERSTS4KPgo+IEkgZG9uJ3QgdGhpbmsgd2Ug
-c2hvdWxkIHNwcmVhZCB0aGlzIGJleW9uZCBEUk0sIEkgY2FuJ3Qgc2VlIGEgcmVhc29uLgoKWWVh
-aCB2NGwgaGFzIGEgbGVnaXQgcmVhc29uIHRvIHVzZSBkbWFfZmVuY2UsIGFuZHJvaWQgd2FudHMg
-dGhhdAp0aGVyZS4gVGhlcmUncyBldmVuIGJlZW4gcGF0Y2hlcyBwcm9wb3NlZCB5ZWFycyBhZ28s
-IGJ1dCBuZXZlciBsYW5kZWQKYmVjYXVzZSBhbmRyb2lkIGlzIHVzaW5nIHNvbWUgdmVuZG9yIGhh
-Y2sgaG9ycm9yIHNob3cgZm9yIGNhbWVyYQpkcml2ZXJzIHJpZ2h0IG5vdy4KCkJ1dCB0aGVyZSBp
-cyBhbiBlZmZvcnQgZ29pbmcgb24gdG8gZml4IHRoYXQgKHVuZGVyIHRoZSBsaWJjYW1lcmEKaGVh
-ZGluZyksIGFuZCBJIGV4cGVjdCB0aGF0IG9uY2Ugd2UgaGF2ZSB0aGF0LCBpdCdsbCB3YW50IGRt
-YV9mZW5jZQpzdXBwb3J0LiBTbyBvdXRyaWdodCBleGNsdWRpbmcgZXZlcnlvbmUgZnJvbSBkbWFf
-ZmVuY2UgaXMgYSBiaXQgdG9vCm11Y2guIFRoZXkgZGVmaW5pdGVseSBzaG91bGRuJ3QgYmUgdXNl
-ZCB0aG91Z2ggZm9yIGVudGlyZWx5CmluZGVwZW5kZW50IHN0dWZmLgoKPiA+ID4gWW91IGFyZSBi
-ZXR0ZXIgdG8gZG8gc29tZXRoaW5nIGNvbnRhaW5lZCBpbiB0aGUgc2luZ2xlIGRyaXZlciB3aGVy
-ZQo+ID4gPiBsb2NraW5nIGNhbiBiZSBhbmFseXplZC4KPiA+ID4KPiA+ID4gPiBJJ20gbm90IDEw
-MCUgc3VyZSwgYnV0IHdvdWxkbid0IE1NVSBub3RpZmllciArIGRtYV9mZW5jZSBiZSBhIHZhbGlk
-IHVzZSBjYXNlCj4gPiA+ID4gZm9yIHRoaW5ncyBsaWtlIGN1c3RvbSBGUEdBIGludGVyZmFjZXMg
-YXMgd2VsbD8KPiA+ID4gSSBkb24ndCB0aGluayB3ZSBzaG91bGQgZXhwYW5kIHRoZSBsaXN0IG9m
-IGRyaXZlcnMgdGhhdCB1c2UgdGhpcwo+ID4gPiB0ZWNobmlxdWUuCj4gPiA+IERyaXZlcnMgdGhh
-dCBjYW4ndCBzdXNwZW5kIHNob3VsZCBwaW4gbWVtb3J5LCBub3QgdXNlIGJsb2NrZWQKPiA+ID4g
-bm90aWZpZXJzIHRvIGNyZWF0ZWQgcGlubmVkIG1lbW9yeS4KPiA+Cj4gPiBBZ3JlZWQgdG90YWxs
-eSwgaXQncyBhIGNvbXBsZXRlIHBhaW4gdG8gbWFpbnRhaW4gZXZlbiBmb3IgdGhlIEdQVSBkcml2
-ZXJzLgo+ID4KPiA+IFVuZm9ydHVuYXRlbHkgdGhhdCBkb2Vzbid0IGNoYW5nZSB1c2VycyBmcm9t
-IHJlcXVlc3RpbmcgaXQuIFNvIEknbSBwcmV0dHkKPiA+IHN1cmUgd2UgYXJlIGdvaW5nIHRvIHNl
-ZSBtb3JlIG9mIHRoaXMuCj4KPiBLZXJuZWwgbWFpbnRhaW5lcnMgbmVlZCB0byBzYXkgbm8uCj4K
-PiBUaGUgcHJvcGVyIHdheSB0byBkbyBETUEgb24gbm8tZmF1bHRpbmcgaGFyZHdhcmUgaXMgcGFn
-ZSBwaW5uaW5nLgo+Cj4gVHJ5aW5nIHRvIGltcHJvdmUgcGVyZm9ybWFuY2Ugb2YgbGltaXRlZCBI
-VyBieSB1c2luZyBza2V0Y2h5Cj4gdGVjaG5pcXVlcyBhdCB0aGUgY29zdCBvZiBnZW5lcmFsIHN5
-c3RlbSBzdGFiaWxpdHkgc2hvdWxkIGJlIGEgTkFLLgoKV2VsbCB0aGF0J3MgcHJldHR5IG11Y2gg
-Z3B1IGRyaXZlcnMsIGFsbCB0aGUgaG9ycm9ycyBmb3IgYSBiaXQgbW9yZSBzcGVlZCA6LSkKCk9u
-IHRoZSB0ZXh0IGl0c2VsZiwgc2hvdWxkIEkgdXBncmFkZSB0byAibXVzdCBub3QiIGluc3RlYWQg
-b2YgInNob3VsZApub3QiPyBPciBtb3JlIG5lZWRlZD8KLURhbmllbAotLSAKRGFuaWVsIFZldHRl
-cgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwu
-Y2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdm
-eCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+From PM FW 58.26.0 for sienna cichlid, SMU mode1 reset
+is support, driver sends PPSMC_MSG_Mode1Reset message
+to PM FW could trigger this reset.
+
+v2: add mode1 reset dpm interface
+
+Signed-off-by: Likun Gao <Likun.Gao@amd.com>
+Signed-off-by: Wenhui Sheng <Wenhui.Sheng@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c       | 20 +++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h       |  3 ++
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c    | 34 +++++++++++++++++++
+ .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h    |  4 +++
+ drivers/gpu/drm/amd/powerplay/inc/smu_types.h |  1 +
+ drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h |  2 ++
+ .../drm/amd/powerplay/sienna_cichlid_ppt.c    | 31 +++++++++++++++--
+ drivers/gpu/drm/amd/powerplay/smu_v11_0.c     | 13 +++++++
+ 8 files changed, 105 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c
+index 65472b3dd815..16668fc52d0d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c
+@@ -1141,6 +1141,26 @@ int amdgpu_dpm_baco_reset(struct amdgpu_device *adev)
+ 	return 0;
+ }
+ 
++bool amdgpu_dpm_is_mode1_reset_supported(struct amdgpu_device *adev)
++{
++	struct smu_context *smu = &adev->smu;
++
++	if (is_support_sw_smu(adev))
++		return smu_mode1_reset_is_support(smu);
++
++	return false;
++}
++
++int amdgpu_dpm_mode1_reset(struct amdgpu_device *adev)
++{
++	struct smu_context *smu = &adev->smu;
++
++	if (is_support_sw_smu(adev))
++		return smu_mode1_reset(smu);
++
++	return -EOPNOTSUPP;
++}
++
+ int amdgpu_dpm_switch_power_profile(struct amdgpu_device *adev,
+ 				    enum PP_SMC_POWER_PROFILE type,
+ 				    bool en)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
+index 6a8aae70a0e6..7f3cd7185650 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
+@@ -529,6 +529,9 @@ int amdgpu_dpm_mode2_reset(struct amdgpu_device *adev);
+ 
+ bool amdgpu_dpm_is_baco_supported(struct amdgpu_device *adev);
+ 
++bool amdgpu_dpm_is_mode1_reset_supported(struct amdgpu_device *adev);
++int amdgpu_dpm_mode1_reset(struct amdgpu_device *adev);
++
+ int amdgpu_dpm_set_mp1_state(struct amdgpu_device *adev,
+ 			     enum pp_mp1_state mp1_state);
+ 
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+index fe4948aa662f..b5a7422d9548 100644
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+@@ -2737,6 +2737,40 @@ int smu_baco_exit(struct smu_context *smu)
+ 	return ret;
+ }
+ 
++bool smu_mode1_reset_is_support(struct smu_context *smu)
++{
++	bool ret = false;
++
++	if (!smu->pm_enabled)
++		return false;
++
++	mutex_lock(&smu->mutex);
++
++	if (smu->ppt_funcs && smu->ppt_funcs->mode1_reset_is_support)
++		ret = smu->ppt_funcs->mode1_reset_is_support(smu);
++
++	mutex_unlock(&smu->mutex);
++
++	return ret;
++}
++
++int smu_mode1_reset(struct smu_context *smu)
++{
++	int ret = 0;
++
++	if (!smu->pm_enabled)
++		return -EOPNOTSUPP;
++
++	mutex_lock(&smu->mutex);
++
++	if (smu->ppt_funcs->mode1_reset)
++		ret = smu->ppt_funcs->mode1_reset(smu);
++
++	mutex_unlock(&smu->mutex);
++
++	return ret;
++}
++
+ int smu_mode2_reset(struct smu_context *smu)
+ {
+ 	int ret = 0;
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+index 7b349e038972..ba59620950d7 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+@@ -561,6 +561,8 @@ struct pptable_funcs {
+ 	int (*baco_set_state)(struct smu_context *smu, enum smu_baco_state state);
+ 	int (*baco_enter)(struct smu_context *smu);
+ 	int (*baco_exit)(struct smu_context *smu);
++	bool (*mode1_reset_is_support)(struct smu_context *smu);
++	int (*mode1_reset)(struct smu_context *smu);
+ 	int (*mode2_reset)(struct smu_context *smu);
+ 	int (*get_dpm_ultimate_freq)(struct smu_context *smu, enum smu_clk_type clk_type, uint32_t *min, uint32_t *max);
+ 	int (*set_soft_freq_limited_range)(struct smu_context *smu, enum smu_clk_type clk_type, uint32_t min, uint32_t max);
+@@ -672,6 +674,8 @@ int smu_baco_get_state(struct smu_context *smu, enum smu_baco_state *state);
+ int smu_baco_enter(struct smu_context *smu);
+ int smu_baco_exit(struct smu_context *smu);
+ 
++bool smu_mode1_reset_is_support(struct smu_context *smu);
++int smu_mode1_reset(struct smu_context *smu);
+ int smu_mode2_reset(struct smu_context *smu);
+ 
+ extern int smu_get_atom_data_table(struct smu_context *smu, uint32_t table,
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu_types.h b/drivers/gpu/drm/amd/powerplay/inc/smu_types.h
+index dff2295705be..7b585e205a5a 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/smu_types.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/smu_types.h
+@@ -173,6 +173,7 @@
+ 	__SMU_DUMMY_MAP(GmiPwrDnControl), \
+ 	__SMU_DUMMY_MAP(DAL_DISABLE_DUMMY_PSTATE_CHANGE), \
+ 	__SMU_DUMMY_MAP(DAL_ENABLE_DUMMY_PSTATE_CHANGE), \
++	__SMU_DUMMY_MAP(Mode1Reset), \
+ 
+ #undef __SMU_DUMMY_MAP
+ #define __SMU_DUMMY_MAP(type)	SMU_MSG_##type
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
+index d07bf4fe6e4a..38599112ae59 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
+@@ -252,6 +252,8 @@ int smu_v11_0_baco_set_state(struct smu_context *smu, enum smu_baco_state state)
+ int smu_v11_0_baco_enter(struct smu_context *smu);
+ int smu_v11_0_baco_exit(struct smu_context *smu);
+ 
++int smu_v11_0_mode1_reset(struct smu_context *smu);
++
+ int smu_v11_0_get_dpm_ultimate_freq(struct smu_context *smu, enum smu_clk_type clk_type,
+ 						 uint32_t *min, uint32_t *max);
+ 
+diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+index dc5ca9121db5..319480550bb7 100644
+--- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+@@ -39,8 +39,8 @@
+ #include "nbio/nbio_2_3_sh_mask.h"
+ #include "thm/thm_11_0_2_offset.h"
+ #include "thm/thm_11_0_2_sh_mask.h"
+-
+-#include "asic_reg/mp/mp_11_0_sh_mask.h"
++#include "mp/mp_11_0_offset.h"
++#include "mp/mp_11_0_sh_mask.h"
+ 
+ /*
+  * DO NOT use these for err/warn/info/debug messages.
+@@ -116,6 +116,7 @@ static struct smu_11_0_cmn2aisc_mapping sienna_cichlid_message_map[SMU_MSG_MAX_C
+ 	MSG_MAP(PowerDownJpeg,			PPSMC_MSG_PowerDownJpeg),
+ 	MSG_MAP(BacoAudioD3PME,			PPSMC_MSG_BacoAudioD3PME),
+ 	MSG_MAP(ArmD3,				PPSMC_MSG_ArmD3),
++	MSG_MAP(Mode1Reset,			PPSMC_MSG_Mode1Reset),
+ };
+ 
+ static struct smu_11_0_cmn2aisc_mapping sienna_cichlid_clk_map[SMU_CLK_COUNT] = {
+@@ -1760,13 +1761,35 @@ static bool sienna_cichlid_is_baco_supported(struct smu_context *smu)
+ 	struct amdgpu_device *adev = smu->adev;
+ 	uint32_t val;
+ 
+-	if (!smu_v11_0_baco_is_support(smu))
++	if (amdgpu_sriov_vf(adev) || (!smu_v11_0_baco_is_support(smu)))
+ 		return false;
+ 
+ 	val = RREG32_SOC15(NBIO, 0, mmRCC_BIF_STRAP0);
+ 	return (val & RCC_BIF_STRAP0__STRAP_PX_CAPABLE_MASK) ? true : false;
+ }
+ 
++static bool sienna_cichlid_is_mode1_reset_supported(struct smu_context *smu)
++{
++	struct amdgpu_device *adev = smu->adev;
++	uint32_t val;
++	u32 smu_version;
++
++	/**
++	 * SRIOV env will not support SMU mode1 reset
++	 * PM FW support mode1 reset from 58.26
++	 */
++	smu_get_smc_version(smu, NULL, &smu_version);
++	if (amdgpu_sriov_vf(adev) || (smu_version < 0x003a1a00))
++		return false;
++
++	/**
++	 * mode1 reset relies on PSP, so we should check if
++	 * PSP is alive.
++	 */
++	val = RREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_81);
++	return val != 0x0;
++}
++
+ static int sienna_cichlid_set_thermal_range(struct smu_context *smu,
+ 				       struct smu_temperature_range range)
+ {
+@@ -2538,6 +2561,8 @@ static const struct pptable_funcs sienna_cichlid_ppt_funcs = {
+ 	.baco_set_state = smu_v11_0_baco_set_state,
+ 	.baco_enter = smu_v11_0_baco_enter,
+ 	.baco_exit = smu_v11_0_baco_exit,
++	.mode1_reset_is_support = sienna_cichlid_is_mode1_reset_supported,
++	.mode1_reset = smu_v11_0_mode1_reset,
+ 	.get_dpm_ultimate_freq = sienna_cichlid_get_dpm_ultimate_freq,
+ 	.set_soft_freq_limited_range = sienna_cichlid_set_soft_freq_limited_range,
+ 	.override_pcie_parameters = smu_v11_0_override_pcie_parameters,
+diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
+index 48e15885e9c3..c620dccb82e5 100644
+--- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
++++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
+@@ -63,6 +63,8 @@ MODULE_FIRMWARE("amdgpu/sienna_cichlid_smc.bin");
+ 
+ #define SMU11_VOLTAGE_SCALE 4
+ 
++#define SMU11_MODE1_RESET_WAIT_TIME 500  //500ms
++
+ static int smu_v11_0_send_msg_without_waiting(struct smu_context *smu,
+ 					      uint16_t msg)
+ {
+@@ -1741,6 +1743,17 @@ int smu_v11_0_baco_exit(struct smu_context *smu)
+ 	return ret;
+ }
+ 
++int smu_v11_0_mode1_reset(struct smu_context *smu)
++{
++	int ret = 0;
++
++	ret = smu_send_smc_msg(smu, SMU_MSG_Mode1Reset, NULL);
++	if (!ret)
++		msleep(SMU11_MODE1_RESET_WAIT_TIME);
++
++	return ret;
++}
++
+ int smu_v11_0_get_dpm_ultimate_freq(struct smu_context *smu, enum smu_clk_type clk_type,
+ 						 uint32_t *min, uint32_t *max)
+ {
+-- 
+2.17.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
