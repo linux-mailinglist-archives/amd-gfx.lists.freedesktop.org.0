@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F84A21BE7C
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 22:34:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3062E21BE82
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 22:34:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEF776ED09;
-	Fri, 10 Jul 2020 20:34:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C4686ED0B;
+	Fri, 10 Jul 2020 20:34:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-CY1-obe.outbound.protection.outlook.com
  (mail-eopbgr760083.outbound.protection.outlook.com [40.107.76.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45FE96ED0A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63ABB6ED09
  for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 20:34:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EePtzpgZpM5WorYVnHHdl0xd3HMSOj6qOE8iBmHzJqvwmCKaCoXjUehbYxX9Eiv9bMznCpGonsaXh5FNidd29t5HLQz6MuiakWYJkKyni+kpFG/PhzR3HRaJmekUV+AensAYA5d/yoWeWMTveNbcD6f3p06e6sxs+bUjzPDfG8zMKKMT/MU0q1oqFLuDj6/JKqEnvDNI2BEd+90h4WxL0MQinMm84GmG9VD6JVoqOlRtdeov4thU/Kqp6JuUES8MejVPYvwkcaraBTo/gKtEzwioLEiapvNJzRE+XX19iDdbriHRFUciq0mPLxrh7bhlwedF5PN+keAqCQ33q/TyaA==
+ b=OEclNMt4AEcfXFNIVtylwPvd3XASLn7INKbWqn87lhAmCZvAarKAgXNuP0K4kmU3LCviXjiAK/p3FOoJlF9OjJgPwytUYm+okTqt07mr2FQw7Uw1j6gg0NopOGp7RnrJBA1ptmNo9vzgcL77D17yQVGgbcSRYOEsy06+rQDU35jdGfoPoEEeHVbjC5cV4hJgV8TMqjOvF35yUpCRc3iuYglPKtzKigTLJWDsBfT7xVe4y1742mTOpoTPe5qxX6jkM/gmQ2yZIEZSnSJrVxaGtcD8ieB7A3RJ8awSiU5/BqHQF/5T+MBa+64humCn7YDWUL7feRxanEnTsGp+Ov3R9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mCCsz3mp/dzl2cTBDz1ckE2/Cnv7aAJBHbuOfUF4INw=;
- b=MW7vCEdK0YKw2B/xd8+pg+WWobZG9YPE6vV6iS2mA8Mt4GQUvkke75DfCD8eAqXAI2nLNf2G5mEcsk9uUd/j+9LnoyOuElZgQi6EySfG0KEcQPI2szq3MHsHXHHuN94tKeItL/ixKgBAE46BeSxVrVgjjEglIYVg6aRd8aGhsBoc2K0HIDsylehlfAEMBcSATmtVyGrqVtLkRy9XlNFMmIWrVi77RtSGFuv0G1gLpC0RiIYDdgE6mgp1PdDW2KVl7u4cIzP65lUm5yeL4yrwvvNrxB02ppf5ki9FNanP1GfuEIXMF79iFZ5Rx6RwaBNEvwokNOfzFayFjxFBb4Oi0g==
+ bh=yN5UwhteYtoxml3Ak4BoRL/xX/HWJqs9qyXbNaW7GRI=;
+ b=nrwj9jt+oFHomt+NkDFK+ZPwJbIrPpmeP6YDaLSDxWfLVdsR/+Z45hFNFY8XYzQzZ5GAwzI5ko6pEUZROKqhqZzWdUNOw7Dsk3yq+aHN0s8XTdxtp2EK5bC/90WDFAao3PQcGQRf3wldzCur8olJI5MU9Q6Xiz1hxKroEG9v3DtzZg1fc+mejvNZ6DJoHCVZSZCCUmgYmdqQZ1aaC7i3ZKeA9r7NoLI+XzR2gPlxAlt8UZIB+fivL7Ip49r5LT+Yv00J3LU3atZXp4OqkfrXy0d0EdmE/cao/8nXszMpJIxUP1cSY94c/J/1+l6cW61/pcdfkaFqS+jZqMDiFnZTIw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mCCsz3mp/dzl2cTBDz1ckE2/Cnv7aAJBHbuOfUF4INw=;
- b=uqLAAyZ8tL8vCgK6TH6KFuuCx9Yd+9+vyxANFyYKzm1of9qCpzlraJ+V0lZOKsWv6OaN2tGm1Xudf33evcwFgr8li6K3an1WjNXAcQgSaatlmxkfgNKXw/hbY3wFv9BYuJDbz7wL+1wDxJGETT0PITKim670bT+KsYZIAwreXp8=
+ bh=yN5UwhteYtoxml3Ak4BoRL/xX/HWJqs9qyXbNaW7GRI=;
+ b=A5niN3FZt329ySaTK5OF4YuWKgqg0JUp8p99q407o9lQpPjheSSZAnH6jCLn5rBqpWmIHthCA9RR9mbEtL/0FHWZ1/b13hIwSAbr6GVcRf9CCy2JS5wIr5i7bpJvkwohq3HE/E3/7Jyg8k/O8tIzjeU0//8bQu4yLgBQXSuID5c=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,17 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23)
  by CH2PR12MB4231.namprd12.prod.outlook.com (2603:10b6:610:7d::24)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.21; Fri, 10 Jul
- 2020 20:34:01 +0000
+ 2020 20:34:02 +0000
 Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::9013:9410:7d60:cce1]) by CH2PR12MB4198.namprd12.prod.outlook.com
  ([fe80::9013:9410:7d60:cce1%9]) with mapi id 15.20.3174.023; Fri, 10 Jul 2020
  20:34:01 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 03/10] drm/amd/display: reduce sr_xxx_time by 3 us when ppt
- disable
-Date: Fri, 10 Jul 2020 16:33:18 -0400
-Message-Id: <20200710203325.1097188-4-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 04/10] drm/amd/display: OLED panel backlight adjust not work
+ with external display connected
+Date: Fri, 10 Jul 2020 16:33:19 -0400
+Message-Id: <20200710203325.1097188-5-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200710203325.1097188-1-Rodrigo.Siqueira@amd.com>
 References: <20200710203325.1097188-1-Rodrigo.Siqueira@amd.com>
@@ -58,34 +58,34 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:8440::b10e) by
  YTOPR0101CA0025.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::38) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.21 via Frontend
- Transport; Fri, 10 Jul 2020 20:34:00 +0000
+ Transport; Fri, 10 Jul 2020 20:34:01 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [2607:fea8:56a0:8440::b10e]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 7e9f8a0e-f16a-4a24-effd-08d825109448
+X-MS-Office365-Filtering-Correlation-Id: ade2866e-8867-402c-a016-08d8251094aa
 X-MS-TrafficTypeDiagnostic: CH2PR12MB4231:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4231C333BA48CB6DC0EBF2FC98650@CH2PR12MB4231.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4231394AC9FE163BBDA5727398650@CH2PR12MB4231.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0dFYetKxd68/I4yRjgFVgFqpjzEJ6YAOsP0V3PRY0lxEGxcc+5WyvXdXooVl4CB8V52R+ltWXOnisHdabiJczIzyYj2nhyNfmeFtyEvKHIWkU8NoucKGojLnLr0wZhUXCnc+wpOrvScqFV0mWlZT3S+4HN/pomSD21nhMOKh+jF0mFqZUKpNESzJYsI66IwCTEoyOS9I3gbs9sdyodG+NGl8GKhOCRO7Nkyk6HgMa+3RDmjcLMV2GFo4b0Tr6mpiWSJ4/1wtts8aqDCWbKl3Jb5IbFmYVPF+vsX1UsONul5limryAw/jOHMjQMLBQGU75+OgBNbOSYR+l1R+Bv1e3mo2nX63NLDx/sXEytSBj3hq8AB+N3gO4LA3zwryBJ7g
+X-Microsoft-Antispam-Message-Info: HTpHADZ6u1FtNBstKZXUopvZuaQi4bXAjBIIPoad0eOhRZoJvnaGEbB0vWMmh1Hx5sZtqqgnRlDP5xosEcSLyMsm5HbBGwFyxEjrfZ8JgapbN1T9apqcM3RCx7EJf+cND+hd6WjB4JZ/bWbgG08Mx0dtlwqudSFXZPA0NwSdhmCC27kpPkJ1wwn4NSOgxB1GpOYqjYkzuswwY9bM8prhm1tHG/Wd0hXAXdR8qFNaT3PtUS4IbvOqIpaRbr896w8vCHijywM1t/BNJyKwy1vIuWvpWcmsPZ/bqHPDWkt4fbBPbIAWOesnpz5OQak/L3PLNRkyEvUc9SbO8pg0m7/m2Q==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(366004)(54906003)(2616005)(8936002)(8676002)(6512007)(478600001)(316002)(16526019)(5660300002)(186003)(4326008)(86362001)(19627235002)(6916009)(52116002)(6506007)(6486002)(1076003)(6666004)(36756003)(66476007)(66556008)(66946007)(83380400001)(2906002)(21314003);
+ SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(366004)(54906003)(2616005)(8936002)(8676002)(6512007)(478600001)(316002)(16526019)(5660300002)(186003)(4326008)(86362001)(6916009)(52116002)(6506007)(6486002)(1076003)(6666004)(36756003)(66476007)(66556008)(66946007)(83380400001)(2906002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: fyAknHUE0NDojt6igmxkCkOjc/gtgs5NCzSAiDEepQ9tCcdKfpOio8oynraItY98+9QT0MoD+3s/MAaQHZCnRJK6HUdRtNisSEtwNgzurshl0ILwbZZuWsQ5y2Di3vqJ6xWDT805zInPxKCkIGimnIHrNAj6fqU8mVPabho7F40rrSnARkE5p7fDfNezvCg6RSZ+UWBZKA/HJczb8y5y3O1Irof/LWeNBNOkm4EbNvHCcmEXMMRLRQA8zEotPNooVsn1BYfTINRIqPNuZqYs4EYGkFhEWt6BBWSlYFioD+U7O+AV+/sMiydnVsQVM0afvpHo72yfYaxu2dWovIsXdjD8bAcd2Vkl1lqD/RJ5u6zDoL8WLkGpAdVjCHbdj4xlsl8r5QfZTG/pp6cBHv++yOX9oMQ8MZCedQK141vna0LmQPNQFrhRbjriy0wnkcVgMA6eO23mVhqw6oMgCuq0zU5KuAWrrbg55nbHAxtHlViypqVifI4GqWCdREHijUs1ZXumQ+MKyUCaB1h/5hw1xQ==
+X-MS-Exchange-AntiSpam-MessageData: Wo9ZNqWgUdg2WhsL5gc2C5hiSd61gZ6daIXB4gMbf1CtQo9ML1w/0zBtzw0yksU1R/P8gerwApNWxm7SWirutDAabcXv+8utH3ViYTFwVxPPsjN26LV3W7aEWqDtlfz4bqt13MtzVVfJxDra2MiPyqaEwYbhoxgstMkbogLpgDMv+dkXhl/jFgAFs/eIAXYeKYerSyQ4f5DsfgTCMVadBw1/YYg3KzpMzxrrK11Rx5lYGnn/nBIkQWcC+V5QcI4EcErvrGfIvME9hYv+gNAya4nMaky9RLglloH2m+uXCGCrEPQKG5Jff7K+Vx1adu+ekazpjLZjMcNj6vZncynUt9tNb6fxMLlJOc0SBUta4CF+ju9Znn+m1etrmE5JJbFYXiAdtgXruzYdTNf59lPNkkASl1JvdLMXR1Y9YkpdufbmH+S25Mu5mh0D5hC+iYH5o5lKlaxhda+risX9fjDw90s47lSYF9FZhLNFDFonsJ9qbuoyk+eltzVWlFrUfK5RPT/FwAcuk7F7G/WH2vfoNA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e9f8a0e-f16a-4a24-effd-08d825109448
+X-MS-Exchange-CrossTenant-Network-Message-Id: ade2866e-8867-402c-a016-08d8251094aa
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4198.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 20:34:01.2020 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 20:34:01.8412 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zLUSNbvGv2un94FGWQ80IAicz9dcqjz3xxHBgWobNW1Yvtkd12oEL+9wTlQxUw5eakrE80jhd1+YBGReQYvxcw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: j1xR+Hyb3ZDYzu2rLebRZOFK0C5PYok3J0FtERDxwYR7vUC5jIoVWpuPPeM7V9k9wmEaqCrpScF6JsyAuhnZNA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4231
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,160 +99,58 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Chiawen Huang <chiawen.huang@amd.com>, Aurabindo.Pillai@amd.com,
- Tony Cheng <Tony.Cheng@amd.com>, Bhawanpreet.Lakha@amd.com
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, stable@vger.kernel.org,
+ Aurabindo.Pillai@amd.com, hersen wu <hersenxs.wu@amd.com>,
+ Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Chiawen Huang <chiawen.huang@amd.com>
+From: hersen wu <hersenxs.wu@amd.com>
 
 [Why]
-when ppt disabled, the watermark doesn't get fine tune causing
-underflow.
+amdgpu_dm->backlight_caps is for single eDP only. the caps are upddated
+for very connector. Real eDP caps will be overwritten by other external
+display. For OLED panel, caps->aux_support is set to 1 for OLED pnael.
+after external connected, caps+.aux_support is set to 0. This causes
+OLED backlight adjustment not work.
 
 [How]
-It is a temporary solution to reduce sr_xxx_time by 3 us when ppt
-disable.
+within update_conector_ext_caps, backlight caps will be updated only for
+eDP connector.
 
-Signed-off-by: Chiawen Huang <chiawen.huang@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: hersen wu <hersenxs.wu@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 43 ++++++++++++++++++-
- .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c   | 13 +++++-
- .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h   |  1 +
- .../amd/display/dc/inc/hw/clk_mgr_internal.h  |  1 +
- 4 files changed, 55 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-index 9b4807f52381..c664404a75d4 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-@@ -634,6 +634,42 @@ static struct wm_table lpddr4_wm_table = {
- 	}
- };
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index b4e120e95438..5569e0500734 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2019,6 +2019,7 @@ static void update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
+ 	struct amdgpu_display_manager *dm;
+ 	struct drm_connector *conn_base;
+ 	struct amdgpu_device *adev;
++	struct dc_link *link = NULL;
+ 	static const u8 pre_computed_values[] = {
+ 		50, 51, 52, 53, 55, 56, 57, 58, 59, 61, 62, 63, 65, 66, 68, 69,
+ 		71, 72, 74, 75, 77, 79, 81, 82, 84, 86, 88, 90, 92, 94, 96, 98};
+@@ -2026,6 +2027,10 @@ static void update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
+ 	if (!aconnector || !aconnector->dc_link)
+ 		return;
  
-+static struct wm_table lpddr4_wm_table_with_disabled_ppt = {
-+	.entries = {
-+		{
-+			.wm_inst = WM_A,
-+			.wm_type = WM_TYPE_PSTATE_CHG,
-+			.pstate_latency_us = 11.65333,
-+			.sr_exit_time_us = 8.32,
-+			.sr_enter_plus_exit_time_us = 9.38,
-+			.valid = true,
-+		},
-+		{
-+			.wm_inst = WM_B,
-+			.wm_type = WM_TYPE_PSTATE_CHG,
-+			.pstate_latency_us = 11.65333,
-+			.sr_exit_time_us = 9.82,
-+			.sr_enter_plus_exit_time_us = 11.196,
-+			.valid = true,
-+		},
-+		{
-+			.wm_inst = WM_C,
-+			.wm_type = WM_TYPE_PSTATE_CHG,
-+			.pstate_latency_us = 11.65333,
-+			.sr_exit_time_us = 9.89,
-+			.sr_enter_plus_exit_time_us = 11.24,
-+			.valid = true,
-+		},
-+		{
-+			.wm_inst = WM_D,
-+			.wm_type = WM_TYPE_PSTATE_CHG,
-+			.pstate_latency_us = 11.65333,
-+			.sr_exit_time_us = 9.748,
-+			.sr_enter_plus_exit_time_us = 11.102,
-+			.valid = true,
-+		},
-+	}
-+};
- 
- static unsigned int find_dcfclk_for_voltage(struct dpm_clocks *clock_table, unsigned int voltage)
- {
-@@ -738,6 +774,7 @@ void rn_clk_mgr_construct(
- 		struct clk_log_info log_info = {0};
- 
- 		clk_mgr->smu_ver = rn_vbios_smu_get_smu_version(clk_mgr);
-+		clk_mgr->periodic_retraining_disabled = rn_vbios_smu_is_periodic_retraining_disabled(clk_mgr);
- 
- 		/* SMU Version 55.51.0 and up no longer have an issue
- 		 * that needs to limit minimum dispclk */
-@@ -752,7 +789,11 @@ void rn_clk_mgr_construct(
- 			clk_mgr->base.dentist_vco_freq_khz = 3600000;
- 
- 		if (ctx->dc_bios->integrated_info->memory_type == LpDdr4MemType) {
--			rn_bw_params.wm_table = lpddr4_wm_table;
-+			if (clk_mgr->periodic_retraining_disabled) {
-+				rn_bw_params.wm_table = lpddr4_wm_table_with_disabled_ppt;
-+			} else {
-+				rn_bw_params.wm_table = lpddr4_wm_table;
-+			}
- 		} else {
- 			rn_bw_params.wm_table = ddr4_wm_table;
- 		}
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
-index d2facbb114d3..9a374522e963 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
-@@ -52,7 +52,8 @@
- #define VBIOSSMC_MSG_GetFclkFrequency             0xB
- #define VBIOSSMC_MSG_SetDisplayCount              0xC
- #define VBIOSSMC_MSG_EnableTmdp48MHzRefclkPwrDown 0xD
--#define VBIOSSMC_MSG_UpdatePmeRestore			  0xE
-+#define VBIOSSMC_MSG_UpdatePmeRestore             0xE
-+#define VBIOSSMC_MSG_IsPeriodicRetrainingDisabled 0xF
- 
- #define VBIOSSMC_Status_BUSY                      0x0
- #define VBIOSSMC_Result_OK                        0x1
-@@ -100,7 +101,7 @@ int rn_vbios_smu_send_msg_with_param(struct clk_mgr_internal *clk_mgr, unsigned
- 
- 	result = rn_smu_wait_for_response(clk_mgr, 10, 1000);
- 
--	ASSERT(result == VBIOSSMC_Result_OK);
-+	ASSERT(result == VBIOSSMC_Result_OK || result == VBIOSSMC_Result_UnknownCmd);
- 
- 	/* Actual dispclk set is returned in the parameter register */
- 	return REG_READ(MP1_SMN_C2PMSG_83);
-@@ -232,3 +233,11 @@ void rn_vbios_smu_enable_pme_wa(struct clk_mgr_internal *clk_mgr)
- 			VBIOSSMC_MSG_UpdatePmeRestore,
- 			0);
- }
++	link = aconnector->dc_link;
++	if (link->connector_signal != SIGNAL_TYPE_EDP)
++		return;
 +
-+int rn_vbios_smu_is_periodic_retraining_disabled(struct clk_mgr_internal *clk_mgr)
-+{
-+	return rn_vbios_smu_send_msg_with_param(
-+			clk_mgr,
-+			VBIOSSMC_MSG_IsPeriodicRetrainingDisabled,
-+			0);
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h
-index ccc01879c9d4..3e5df27aa96f 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.h
-@@ -36,5 +36,6 @@ int rn_vbios_smu_set_dppclk(struct clk_mgr_internal *clk_mgr, int requested_dpp_
- void rn_vbios_smu_set_dcn_low_power_state(struct clk_mgr_internal *clk_mgr, int display_count);
- void rn_vbios_smu_enable_48mhz_tmdp_refclk_pwrdwn(struct clk_mgr_internal *clk_mgr, bool enable);
- void rn_vbios_smu_enable_pme_wa(struct clk_mgr_internal *clk_mgr);
-+int rn_vbios_smu_is_periodic_retraining_disabled(struct clk_mgr_internal *clk_mgr);
- 
- #endif /* DAL_DC_DCN10_RV1_CLK_MGR_VBIOS_SMU_H_ */
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
-index b3b8b46d293e..4e6e18bbef5d 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
-@@ -270,6 +270,7 @@ struct clk_mgr_internal {
- 
- 	enum dm_pp_clocks_state max_clks_state;
- 	enum dm_pp_clocks_state cur_min_clks_state;
-+	bool periodic_retraining_disabled;
- 
- 	unsigned int cur_phyclk_req_table[MAX_PIPES * 2];
- #ifdef CONFIG_DRM_AMD_DC_DCN3_0
+ 	conn_base = &aconnector->base;
+ 	adev = conn_base->dev->dev_private;
+ 	dm = &adev->dm;
 -- 
 2.27.0
 
