@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC08621BE86
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 22:34:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7119F21BE80
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2020 22:34:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A6786ED15;
-	Fri, 10 Jul 2020 20:34:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85F686ED0E;
+	Fri, 10 Jul 2020 20:34:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760083.outbound.protection.outlook.com [40.107.76.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 805926E18E
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+ (mail-eopbgr750078.outbound.protection.outlook.com [40.107.75.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1FEB6ED09
  for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2020 20:34:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IpG1iE2xw6f7PaxCFTzjqEYX8myPI4ijkRuEdr2E9/lsDhAiBU47jtCwNb8q3InWZXe2vCE04+C8AnOB+5vIWmmWNqMBT+wCcD+FNNBpDDR4UOUsG/irxWAFZ1aqvFgA3EWn2z8p0C0o5e4FdcNLMS1vvpkPrDG9QllC6W8kCzXU9djaeOJooIde7NvshWDQO5vEN/CKmwHzwO/4czxr35yrozFbV01kG42Za0hC3ydA5CipqGN/EQAvqJfmD+f8bUKnv2x34lYXAcC07xv5WikO5YoQMDlNw4vYAG+SftdWrj+BpstWHZtlIxAQHDlaQ4fJZDrzC4sEqFPbdHO2dQ==
+ b=NvMxjB5dK/WOw6fhy98GsRWhP6SNhlICPdDoI5T9Yo25EFhJle5zGlBGoA+YyRTEuP9SXfnxTOvuFd+1LqY0u1kGnP/NNbl5l/xuwPtZxI8U4+HP6d5l1mjsrPUgqdFGpzv0AQXEyyj/8k76RIwisYsaYmTbVRZyo0NizmqOmrx0M07QWjpBip2+M3Xdza8X3E/b3JMzxANUC9xaV+C3vomqPVQ9KsY2g8k7bovuQyPt+W1s+zB0ueGtgj+DWNLTXtyyqO22S/fpzWO9o8/mlAmLErl326JkqZy/ZO/ZbWE5REsMuzUVpFKVNftCUrP2xJrA6h+a8wRDUSHAPzh90w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x4AJ/WYYSQUuqWmG26fHgADMiBm5VxGTltNYFY/ZjjU=;
- b=BcHJiL0ycm/8yPHtRJVxUY6+0T9eC4r7vR8jV4iHf1BjMDbMziQW6v+eGxMw1kxu9D2zLJLt3A5RXN3YUfvxrcdOY30fAwFrgZbM3KOs77TmkY0D9tWKbLoTiXAMM9DBRXO7H4FNgqvS/qT7tWMANI6eZoJd0PYLRutZ9kGz+nAXLYSGLNwZsnGxSJXh4veuZrZ3Rsf2bcTvGJLSbD0wQRZj1l4DcHFjTdmrg6JVvSjXdF7snLZKsSt9W20WvoKgFOh5dtxFJA6lv6RANv1spI9lxuCfKNdbvI/9Romcn7Wo/CRwnYsj7fF3lDgpXtrBuxK9Mk8Mfs6JhUkavmymMQ==
+ bh=ZLD0Pe/QEq+snMt1iKyjOcNwRUWLakWQBOOn33uf4dk=;
+ b=R+h9bkUv0BpHRgyuUKHhkAqmuv/m23QaHYFN5oJLPXtEodbsB6iqA5MOsiqQWaQzioBe5BQnrS0M1ua6ex7dyUv8D7dT37iuoHt35tDZHtog0DjxTA6xzygmcpNMdezFRCO93oY1aVe7sduGrLdl7BUiYhYUS9l7lm/6LASrW/2Q+XrEM4LjQtorx9KfrHdTtk8fHleEUHhYOpI6/oBnxnvL3yX/2guveyLT+42c21tRmKrDWUe0FzNphg+eg0QtMC3hd21SEuIUEwekaN1WCXPmFG0OtRYpbnTUsngaM9FY/i/232zAuquUkL5ilA3p3QQm7wEjGn/gLItkn4pTcg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x4AJ/WYYSQUuqWmG26fHgADMiBm5VxGTltNYFY/ZjjU=;
- b=snPP6dh9oWozA3ZiFGd9gA6li6IKGCQ7EVmChabApCobHzSAlIXZCPAqCzpPjvHOh342LPh8CHKS1bxgyRvGLQ7mnqBTTNEkuokXR9fM3QUqdwEkI5jOYGDYpGdSRMpmn4hN2+A0eOkVbDZP7WKjzQ8jdhnIMaxQ8LoRAQaEjaE=
+ bh=ZLD0Pe/QEq+snMt1iKyjOcNwRUWLakWQBOOn33uf4dk=;
+ b=s4amJYOQBZu0WfNEFyHu7bYTM8lwTllpVCQ7ELbx6OfAl6spkeqrI9N+xNRxR9JqRdRBeAChq6U7rYSy2ErRdDvEH3c0181B9XtdzxDXZj5h8obHFFK1yZ6v4AU5/wFIzGmqo5j4jNpgHhyS8tC5ZhBzrG6+FF9vwYU6GqivWKs=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -42,10 +42,9 @@ Received: from CH2PR12MB4198.namprd12.prod.outlook.com
  20:34:03 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/10] drm/amd/display: fix dcn3 p_state_change_support
- validation
-Date: Fri, 10 Jul 2020 16:33:21 -0400
-Message-Id: <20200710203325.1097188-7-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 07/10] drm/amd/display: [FW Promotion] Release 0.0.24
+Date: Fri, 10 Jul 2020 16:33:22 -0400
+Message-Id: <20200710203325.1097188-8-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200710203325.1097188-1-Rodrigo.Siqueira@amd.com>
 References: <20200710203325.1097188-1-Rodrigo.Siqueira@amd.com>
@@ -58,34 +57,34 @@ Received: from atma2.hitronhub.home (2607:fea8:56a0:8440::b10e) by
  YTOPR0101CA0025.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::38) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.21 via Frontend
- Transport; Fri, 10 Jul 2020 20:34:02 +0000
+ Transport; Fri, 10 Jul 2020 20:34:03 +0000
 X-Mailer: git-send-email 2.27.0
 X-Originating-IP: [2607:fea8:56a0:8440::b10e]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: e062918f-f5b3-440c-2d05-08d825109560
+X-MS-Office365-Filtering-Correlation-Id: 87164f6a-a3e1-4537-923d-08d8251095ba
 X-MS-TrafficTypeDiagnostic: CH2PR12MB4231:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB423119510BAD5B7CC5098C0498650@CH2PR12MB4231.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB42310029EAE773AA9D5D148D98650@CH2PR12MB4231.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UisnsLIhg/iq8gdtHy1uSwtkp2UQrklj0pBWer3sd4o24L0exB0Ms51hxfcntCx9T8Kiu6R/bDC4PRgKadJsQDdgrKZbR6z9JPLPACll2d+7fX1dDeKlu+H95RQ03F15Sh9sETeSK2bwqnjHwuFebVclo6U0wa+KpKWUAO7bu2uR+FmmuO2yBBy7hf+bYgF9eFdv+XpKRBToTN8fKRnPotxU6mcb0cgpwhn5363p1VB1bOXqSTX5Mxo/Qatz7DL+GwyZavRZA5XApUcvYrrVRTtJMp4uCZFRXZRRUZHYH/XMeNK0meUkvHIl+WJQgsJQJP66ZXMZ09YIYgFNR8S+OA==
+X-Microsoft-Antispam-Message-Info: chJS7tbKjTvo6WOnAIrvg1Fr9TULaIlioQA8C6989NHqvWtbVqwdoclLY9fIaadb1HoDaQU1yf4ue2pveBv8vv2gY8Y6byEpwkXXugePx9bFXeHvLiVtdlmfB5ITj9GfT9KFy+3wfZNK4tzAackALFPVe/vuSh9jWk3rVtlfTYLd+0HpKV0RzxqIq9EGqgohhkKJeBOzx0DVGJyoAq+y1287I1vq8KZt5RnGV+CqpgNYWUn/jAUeNkirE0gcfaQE7PMHMAC0yy7qlwc3kPWwd+dIhc/z2dNdschtQh+v/iVeeLb53rKKFG8YrEX1Bsy9+0pIxvuLmhVzIu5xqEaJbw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB4198.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(366004)(54906003)(2616005)(8936002)(8676002)(6512007)(478600001)(316002)(16526019)(5660300002)(186003)(4326008)(86362001)(6916009)(52116002)(6506007)(6486002)(1076003)(6666004)(36756003)(66476007)(66556008)(66946007)(83380400001)(2906002);
+ SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(366004)(54906003)(4744005)(2616005)(8936002)(8676002)(6512007)(478600001)(316002)(16526019)(5660300002)(186003)(4326008)(86362001)(6916009)(52116002)(6506007)(6486002)(1076003)(6666004)(36756003)(66476007)(66556008)(66946007)(83380400001)(2906002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: a2WZwYD0D46tFe4plbaXM1Vi51H3rcK1DzvV9+dPk3fKtAbKZPoD8fkac/XuOyUPVCp+zrX1Ovr2x38sEEnvk+VrIMDb17dPV5YD6XDw8SOKNboPDqSylawRAxP4xcu7OXKQm2hlexS4tgteQFOi5oWAt1BU4BV6N0wL0G2coZU7GjvjRXsdZJq/WFOuZdPuFBJg9FEe/VxlYZwvO0VvmspGb0R9Jg2QmxuY4sF8cx7mR6h17IMn8vmckSJpa5fzQJ0+ypoIbW0MAvbBz0rafHpJLO4x31dZdmwO8qckdv4D7ov0c+iYcFvQ4BjZovFJDjsVVSpfqvIHiXLm3BT++Fe5e5ZTHGd3zuattJlDMzlYNBlvQV0BxOCGVdSfNzP4+AsyOZMoS2ObtJ2zoYP4TMbMicJkoIGlknCHeGq8PxPEod7jAlFXa7KWBxakMv8EHNOLH0i7/dXAQvthVeu4Be62Flw8LSQldzkHZpyeMA8U7iw4v16BMErispRJz4TaaODzgKP0Qsfo13uApTJaVw==
+X-MS-Exchange-AntiSpam-MessageData: 1RGWgfePWesHqK/mM4hylWNPKkAE+BUpKPErY369+sxDthb+Pk0PUQ8D+s8Z4/z6U/faYgPDAsIN5GaHY6r1/ndnzn1NQMB8AEkhID40NgoiX3PgkH4/rGPrgOC22SXikNJDfFqp+2I3Up+Cbi2OauOXI/ZpIn8pAMCnFb2HyHMT8nXIbQOyvGRymaLRMdn+qHIA0w8eMXihDAiOxS3juUaYsij/RTqqXgJ0sjrXHU3ewUn0ne3607vdJG44Fttgqo+Y01FsyYBz/n+/uikh3qi+BPO613WfTpYgAyrJ1YRD6JMCCOjQkcb26humR5U9zgn+XKC2f8s+0955ICUt0TQ3KrQ093qjW87Jepqo3MzYjH1dsrAGzQTmb86SJpxPH6gbr0cWUADjkusvV+BD1fms1plE9ZF5I98AZXtwnucifYukdJQPvApNOrSaHfWjVmXI7QA07848/X6AJDshyIeWEc2pjFruaMrD4ruyokkIwU667vrOkXpy59gNNwmKhOED/E0VZiM3tvHIgwSk3g==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e062918f-f5b3-440c-2d05-08d825109560
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87164f6a-a3e1-4537-923d-08d8251095ba
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4198.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 20:34:03.0529 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2020 20:34:03.6255 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zHeTwpc/An9TcyhyxLGCwmHoeEHr1xtdYnW4Leso4r42AIhq3pFBQn1kZUQ8vHiXCbPKY5qDg5XR43hzvLvmKQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2R2R3cKR3Uv6TXavgsai+IQLfeyGX2fJpDYyku7cbRLGuANxn8py5hSa67M9/whu7/Y8fqJm8vUBQfUn2cHREg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4231
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,118 +97,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Eryk.Brol@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- Alvin Lee <Alvin.Lee2@amd.com>, Bhawanpreet.Lakha@amd.com
+Cc: Aric Cyr <Aric.Cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ Anthony Koo <Anthony.Koo@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+From: Anthony Koo <Anthony.Koo@amd.com>
 
-Our validation is a known mess with actual validation mixed with
-topology configuration. This change makes sure topolgical validation is
-completed before any topology changes are made so we do not run into
-issues where we merge and split a pipe over the course of a single call.
-
-Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
-Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+Signed-off-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../drm/amd/display/dc/dcn30/dcn30_resource.c | 46 ++++++++++++++++---
- 1 file changed, 39 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index d7ba895de765..653a571e366d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -1870,12 +1870,14 @@ static bool dcn30_split_stream_for_mpc_or_odm(
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index ce96143c402a..513a5f8f817e 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -36,10 +36,10 @@
  
- 	return true;
- }
--static bool dcn30_fast_validate_bw(
-+
-+static bool dcn30_internal_validate_bw(
- 		struct dc *dc,
- 		struct dc_state *context,
- 		display_e2e_pipe_params_st *pipes,
- 		int *pipe_cnt_out,
--		int *vlevel_out)
-+		int *vlevel_out,
-+		bool fast_validate)
- {
- 	bool out = false;
- 	bool repopulate_pipes = false;
-@@ -1898,7 +1900,38 @@ static bool dcn30_fast_validate_bw(
+ /* Firmware versioning. */
+ #ifdef DMUB_EXPOSE_VERSION
+-#define DMUB_FW_VERSION_GIT_HASH 0x5ad38d883
++#define DMUB_FW_VERSION_GIT_HASH 0xf675c6448
+ #define DMUB_FW_VERSION_MAJOR 0
+ #define DMUB_FW_VERSION_MINOR 0
+-#define DMUB_FW_VERSION_REVISION 23
++#define DMUB_FW_VERSION_REVISION 24
+ #define DMUB_FW_VERSION_UCODE ((DMUB_FW_VERSION_MAJOR << 24) | (DMUB_FW_VERSION_MINOR << 16) | DMUB_FW_VERSION_REVISION)
+ #endif
  
- 	dml_log_pipe_params(&context->bw_ctx.dml, pipes, pipe_cnt);
- 
--	vlevel = dml_get_voltage_level(&context->bw_ctx.dml, pipes, pipe_cnt);
-+	if (!fast_validate) {
-+		/*
-+		 * DML favors voltage over p-state, but we're more interested in
-+		 * supporting p-state over voltage. We can't support p-state in
-+		 * prefetch mode > 0 so try capping the prefetch mode to start.
-+		 */
-+		context->bw_ctx.dml.soc.allow_dram_self_refresh_or_dram_clock_change_in_vblank =
-+			dm_allow_self_refresh_and_mclk_switch;
-+		vlevel = dml_get_voltage_level(&context->bw_ctx.dml, pipes, pipe_cnt);
-+		/* This may adjust vlevel and maxMpcComb */
-+		if (vlevel < context->bw_ctx.dml.soc.num_states)
-+			vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, merge);
-+	}
-+	if (fast_validate || vlevel == context->bw_ctx.dml.soc.num_states ||
-+			vba->DRAMClockChangeSupport[vlevel][vba->maxMpcComb] == dm_dram_clock_change_unsupported) {
-+		/*
-+		 * If mode is unsupported or there's still no p-state support then
-+		 * fall back to favoring voltage.
-+		 *
-+		 * We don't actually support prefetch mode 2, so require that we
-+		 * at least support prefetch mode 1.
-+		 */
-+		context->bw_ctx.dml.soc.allow_dram_self_refresh_or_dram_clock_change_in_vblank =
-+			dm_allow_self_refresh;
-+
-+		vlevel = dml_get_voltage_level(&context->bw_ctx.dml, pipes, pipe_cnt);
-+		if (vlevel < context->bw_ctx.dml.soc.num_states) {
-+			memset(split, 0, sizeof(split));
-+			memset(merge, 0, sizeof(merge));
-+			vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, merge);
-+		}
-+	}
- 
- 	dml_log_mode_support_params(&context->bw_ctx.dml);
- 
-@@ -1938,8 +1971,6 @@ static bool dcn30_fast_validate_bw(
- 		pipe_idx++;
- 	}
- 
--	vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, merge);
--
- 	/* merge pipes if necessary */
- 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
- 		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
-@@ -2187,7 +2218,8 @@ static void dcn30_calculate_wm(
- 	}
- }
- 
--bool dcn30_validate_bandwidth(struct dc *dc, struct dc_state *context,
-+bool dcn30_validate_bandwidth(struct dc *dc,
-+		struct dc_state *context,
- 		bool fast_validate)
- {
- 	bool out = false;
-@@ -2201,7 +2233,7 @@ bool dcn30_validate_bandwidth(struct dc *dc, struct dc_state *context,
- 
- 	BW_VAL_TRACE_COUNT();
- 
--	out = dcn30_fast_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel);
-+	out = dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, fast_validate);
- 
- 	if (pipe_cnt == 0)
- 		goto validate_out;
 -- 
 2.27.0
 
