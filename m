@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 189C021F93A
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A93C21F939
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7328D6E837;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28C436E834;
 	Tue, 14 Jul 2020 18:24:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com
- [IPv6:2607:f8b0:4864:20::f44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0D036E832
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:26 +0000 (UTC)
-Received: by mail-qv1-xf44.google.com with SMTP id m8so7931665qvk.7
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:26 -0700 (PDT)
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
+ [IPv6:2607:f8b0:4864:20::742])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB3256E834
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:27 +0000 (UTC)
+Received: by mail-qk1-x742.google.com with SMTP id k18so16517400qke.4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=UR3kIBakDiq5Rx89plrMyb3CSbBByoEZLuAz/OxS4F8=;
- b=nDkM+kKEl9HZVcUNcv5k8wQumK834oQdgnLrELgtoQO9NnCE2yIfvWMxHtyTQbwspR
- TFGXBVGOH8vSvqYvkhjxGHyk4xhlXRRjzuaezarR6RfZtidpf4i19/T51JCR6Qke4roM
- eYM1JpW10hwxZX6zhtGTlPqzoDbADOZvkFFXy4qFVUn2DDrwvfjWB/KtwpwrPTkI2pio
- msO1CUyjcuK57XLVViJm4LP+T85OKiw5Zr0x0lj0iIQLsKMvYh/KygcV5j76/V1BxJ3x
- 4BwZUpkCZ1ORf/MrXwgf27l/6wcBODFxzQv5sMPLi5+p2IirFGJJutiJSYmQ86Uv6IQK
- AAJA==
+ bh=wVxam1VV6gnYybhKuuv5Brv5NztsqPwQ/+/ts0SYGn8=;
+ b=gSyUg/P7tAgi0GXDxqpqSbstdsXAxrusZpkoIYlZ5422VAAxJbFqtfz/U8EbDbhYlq
+ StRHuB+FOPMqKw39WJoDu04lY9m1vW4yZwx9wuWhpm+pjIkl5WW3UYRztpfgBM2wSHTm
+ wasyZ3F3DX+sBTi3scCxpKdC0+agM9rD/WvzjYhFOmbn6eV875/U4KOXxUMVBLUVYTPq
+ aEjsA585MGOlr/ehK+JmjYtNeSvv3j1+xZrg3ZgxXsGOP9GqL1b4h1ZqaGIBU+A6RKV1
+ M5XK+aZUD/pFmdL4W4bnQKKUWICKb14WHGybbhHxQtYgwbSN0cSn40YU4XzfA36wz5mx
+ dESg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=UR3kIBakDiq5Rx89plrMyb3CSbBByoEZLuAz/OxS4F8=;
- b=RITt2dS+4ZEjOxCQo2tfNXCgnajc8crmpLiRA96gLBcfJGmaRyvKC1gZzqvYJnG5TY
- KA8GdGv4JlNKSTVoS6+930KYAK8E5KbrdfkJUC/h9baXn9Lt30+qKswRMp4ZV9MZ4TBF
- CDE88eaR/tV1l9Dqbz8jkUekHaLylzJR9uUityyDzJYFrwnxg8N5VNAbgGiuDcKzoRti
- Dhn9ZGwKfEOa7IH7zg7xXiZlPBbvxnQXwBjeKPcT6ZLTiYZ9TtsJQRnWYYKuaAko6zaI
- xdgtaAG2CyjfkLLhs9l6zBM9DPiQ6eGCWS+afywIjkTc5Xp1t6hO05cbBvQ2fVhhBwBq
- 43ZA==
-X-Gm-Message-State: AOAM5305MmhUp3mGXBILHYredgJaxyceck/DN4bWYVQu1VzsGJEu24Y1
- 926IVxCIhPugWApXijE8Ne6swFaF
-X-Google-Smtp-Source: ABdhPJxX+hXBAgK2pAL8apLoMHP/BORcKl17rsbwfaAPNd71PokHVLvjGUkuqpLDYcRS+ncivWJM/Q==
-X-Received: by 2002:a0c:aa41:: with SMTP id e1mr5698090qvb.117.1594751065532; 
- Tue, 14 Jul 2020 11:24:25 -0700 (PDT)
+ bh=wVxam1VV6gnYybhKuuv5Brv5NztsqPwQ/+/ts0SYGn8=;
+ b=dm7wDt1wSg9m92blfjfW8Y9uVeMPQGTtiyTNfqWbl6CQ/9gMsj4sub8MOfyRUaYEEx
+ WnizfLrYy9SOxt6jAnFi4WxgwFenpawJViBwX8w+Pn4PhuDEwEazFL5EUACmxGLnt1jb
+ IG77ccb+nFC5KsGr/VUCWXFAQsCwjjxQOiCM31PdRwVWpENDsaR4eHEXbsEQL16o+qYL
+ bZYMn9tKpZpr1GCmtWijN00FirBxTCp0Glzwq1NND/yd3amHeG059v9GAHo3Vlp6uS5T
+ dOu/zFucAXYeKcN/w+9l30Wv9xIcR2iwaCTmCI+eCzReeRc3rSz73DbzUR/eGUwpjnmc
+ 4QXQ==
+X-Gm-Message-State: AOAM531qrBB8XXnAWb9rIkk6JBP+DcVSTa5BVgh6hpE2GiN9zdRLauQi
+ A4i5bKviDuff3Bs16Jt6iIjhV2DP
+X-Google-Smtp-Source: ABdhPJxWcqUFKJs/MahXC9qaa0KfcDcp+bj2O2Q1qf8vfpv7MllpGGkq46zEkHtFWaKN0t0wCYGVGw==
+X-Received: by 2002:ae9:c313:: with SMTP id n19mr5549978qkg.299.1594751066742; 
+ Tue, 14 Jul 2020 11:24:26 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.24
+ by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Jul 2020 11:24:25 -0700 (PDT)
+ Tue, 14 Jul 2020 11:24:26 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 13/42] drm/amdgpu: add gmc ip block for navy_flounder
-Date: Tue, 14 Jul 2020 14:23:24 -0400
-Message-Id: <20200714182353.2164930-14-alexander.deucher@amd.com>
+Subject: [PATCH 14/42] drm/amdgpu: add ih ip block for navy_flounder
+Date: Tue, 14 Jul 2020 14:23:25 -0400
+Message-Id: <20200714182353.2164930-15-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200714182353.2164930-1-alexander.deucher@amd.com>
 References: <20200714182353.2164930-1-alexander.deucher@amd.com>
@@ -75,90 +75,38 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jiansong Chen <Jiansong.Chen@amd.com>
 
-navy_flounder has similar gc IP version with sienna_cichlid,
-follow its setting for the moment.
+navy_flounder has the same osssys IP verison with
+sienna_cichlid, follow its setting.
 
 Signed-off-by: Jiansong Chen <Jiansong.Chen@amd.com>
 Reviewed-by: Tao Zhou <Tao.Zhou1@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 18 ++++++++++++------
- drivers/gpu/drm/amd/amdgpu/nv.c        |  1 +
- 2 files changed, 13 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/navi10_ih.c | 1 +
+ drivers/gpu/drm/amd/amdgpu/nv.c        | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index 2bf112fc8185..55fedadd78c6 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -693,7 +693,8 @@ static void gmc_v10_0_vram_gtt_location(struct amdgpu_device *adev,
- {
- 	u64 base = 0;
- 
--	if (adev->asic_type == CHIP_SIENNA_CICHLID)
-+	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER)
- 		base = gfxhub_v2_1_get_fb_location(adev);
- 	else
- 		base = gfxhub_v2_0_get_fb_location(adev);
-@@ -705,7 +706,8 @@ static void gmc_v10_0_vram_gtt_location(struct amdgpu_device *adev,
- 	amdgpu_gmc_gart_location(adev, mc);
- 
- 	/* base offset of vram pages */
--	if (adev->asic_type == CHIP_SIENNA_CICHLID)
-+	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER)
- 		adev->vm_manager.vram_base_offset = gfxhub_v2_1_get_mc_fb_offset(adev);
- 	else
- 		adev->vm_manager.vram_base_offset = gfxhub_v2_0_get_mc_fb_offset(adev);
-@@ -822,7 +824,8 @@ static int gmc_v10_0_sw_init(void *handle)
- 	int r, vram_width = 0, vram_type = 0, vram_vendor = 0;
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	if (adev->asic_type == CHIP_SIENNA_CICHLID)
-+	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER)
- 		gfxhub_v2_1_init(adev);
- 	else
- 		gfxhub_v2_0_init(adev);
-@@ -980,7 +983,8 @@ static int gmc_v10_0_gart_enable(struct amdgpu_device *adev)
- 	if (r)
- 		return r;
- 
--	if (adev->asic_type == CHIP_SIENNA_CICHLID)
-+	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER)
- 		r = gfxhub_v2_1_gart_enable(adev);
- 	else
- 		r = gfxhub_v2_0_gart_enable(adev);
-@@ -1004,7 +1008,8 @@ static int gmc_v10_0_gart_enable(struct amdgpu_device *adev)
- 	value = (amdgpu_vm_fault_stop == AMDGPU_VM_FAULT_STOP_ALWAYS) ?
- 		false : true;
- 
--	if (adev->asic_type == CHIP_SIENNA_CICHLID)
-+	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER)
- 		gfxhub_v2_1_set_fault_enable_default(adev, value);
- 	else
- 		gfxhub_v2_0_set_fault_enable_default(adev, value);
-@@ -1045,7 +1050,8 @@ static int gmc_v10_0_hw_init(void *handle)
-  */
- static void gmc_v10_0_gart_disable(struct amdgpu_device *adev)
- {
--	if (adev->asic_type == CHIP_SIENNA_CICHLID)
-+	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER)
- 		gfxhub_v2_1_gart_disable(adev);
- 	else
- 		gfxhub_v2_0_gart_disable(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
+index 471dc82fd1aa..fdabaf0db3e6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
+@@ -270,6 +270,7 @@ static int navi10_ih_irq_init(struct amdgpu_device *adev)
+ 		if (ih->use_bus_addr) {
+ 			switch (adev->asic_type) {
+ 			case CHIP_SIENNA_CICHLID:
++			case CHIP_NAVY_FLOUNDER:
+ 				ih_chicken = RREG32_SOC15(OSSSYS, 0, mmIH_CHICKEN_Sienna_Cichlid);
+ 				ih_chicken = REG_SET_FIELD(ih_chicken,
+ 						IH_CHICKEN, MC_SPACE_GPA_ENABLE, 1);
 diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 91b4d4e27a13..bc0181da25d2 100644
+index bc0181da25d2..5990b7b3796f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/nv.c
 +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -510,6 +510,7 @@ int nv_set_ip_blocks(struct amdgpu_device *adev)
- 		break;
+@@ -511,6 +511,7 @@ int nv_set_ip_blocks(struct amdgpu_device *adev)
  	case CHIP_NAVY_FLOUNDER:
  		amdgpu_device_ip_block_add(adev, &nv_common_ip_block);
-+		amdgpu_device_ip_block_add(adev, &gmc_v10_0_ip_block);
+ 		amdgpu_device_ip_block_add(adev, &gmc_v10_0_ip_block);
++		amdgpu_device_ip_block_add(adev, &navi10_ih_ip_block);
  		break;
  	default:
  		return -EINVAL;
