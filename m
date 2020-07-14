@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E7821F94F
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A49C921F950
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68A9D6E862;
-	Tue, 14 Jul 2020 18:24:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AC856E85F;
+	Tue, 14 Jul 2020 18:24:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
- [IPv6:2607:f8b0:4864:20::741])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03A736E862
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:56 +0000 (UTC)
-Received: by mail-qk1-x741.google.com with SMTP id 80so16517011qko.7
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:55 -0700 (PDT)
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com
+ [IPv6:2607:f8b0:4864:20::72b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43FC36E862
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:57 +0000 (UTC)
+Received: by mail-qk1-x72b.google.com with SMTP id c30so16500714qka.10
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=fnBdLHPuRXHFStiHjvk2Ku9uecP5ZkuITWCOVC7SkcQ=;
- b=f5iwo+zHNEX94Vc/DGCrCwTVuzE/ZD6s+dDva/2ZSlKg3fv+N5yHgDb2Yl1ZWe9ygh
- VR7+tdCOfuBzeffVXlfKOHzCocLKXxtyd/hnZJ4sG9/J/Z2vPhSn4/Gwy2lolNpckOQ7
- ylzyXMU/FpQ51zIsoDGWMOZzadO8IjUssscrFJ9q1qm0r3GQm4TVawIHJoUMPhBzH0PF
- Ok40anI6EnspU1qdondjURXDSQSrpJdB4h7cAQqs8BHOopJBoJ7SOKryRLPimwL9WuZn
- PAgblZYh27CPYfPH9A2qIwKEuRFWvKprlpVfRfvufvjCN+NWOFZKDjrjeCwO+xtMb0Md
- vV2g==
+ bh=kTcYm+YIUORuMVyj1YF01JsIFjcEbI/NO64aPXAwwoc=;
+ b=XJA5ZukQjQIKPwMBKZbr/i5JY4smMKeTwvL2SXVf6aOwpGAN9IzvcqkRes5ufqYCbH
+ I4S6F0/WW+ggju/ikHJvxUZJY3JmhuI2oUvlLUGcem4tCZ+piDLOeYZeF0eE0hQ7fhrP
+ 30hBOdgkCsKTElATQDnCOqt9fyMRv5086rmnkFJa/FpyJIvGjCVuIQ/g0NhxjDjMRInL
+ 7QBWJIC4ExbWpQUAst/aA5kCfK2+hvEUCa3S1ivdgze+CSFOSntOAQokqJngvuhZpX6O
+ lR/TXJi29CKaXWTno7YwDfchqNauHW8As8/WL73DJHQ6PEEA50RmV68nnAT1ObY469FT
+ k2vA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=fnBdLHPuRXHFStiHjvk2Ku9uecP5ZkuITWCOVC7SkcQ=;
- b=cBT2FvxBf16aJLmCVvd00vSPZ2x4KS6M2T3xZSUNh6cOwZv5byQFrozxAVne1BojgZ
- vSP+guZtVVcsHTYtUFHRwoP4y07RERSzcjebXGH67aF2FlXwqInaHED0O9CpGtfoZW9e
- YixYX2f5An9DxyFAbn6+GNKAz2OE36MtDOH5jc68VNw4MKpL9nvtIVGb/FlATySf5v8A
- NTw3qI0R5uOZKZDlfsMwjyQY0Mo8W0i3UQho/6kWdAF7p2CnTpf9KA+7YKNbZog9/FV1
- UqpstNFgehdWPLCyneU2UfQbzKqypiRw1I8O3Vl/8ZXTzASgZ4eF56FAF8ANQLRyR77M
- SqGA==
-X-Gm-Message-State: AOAM531d7b4DSCjKN7y3tswXTYXeXqGOXO3SjGPIM/2nCfL8g3QnSRh9
- 1MjUx+2ITwQoA7XREj32Jnmp5fZO
-X-Google-Smtp-Source: ABdhPJwwhqWuW0zrh5xIZQq0058VUz6OAQFAMIN4UMUtDkz7dta5ZWrwUwNWWkeF+S+xCfptIrxYjg==
-X-Received: by 2002:a37:45cb:: with SMTP id s194mr5984540qka.74.1594751094977; 
- Tue, 14 Jul 2020 11:24:54 -0700 (PDT)
+ bh=kTcYm+YIUORuMVyj1YF01JsIFjcEbI/NO64aPXAwwoc=;
+ b=GWMMSWgRGV4WtZet2a1VGpNAU/J7PnwNHCGX6Y8HYTUC81ui5r/blO6STptcKCye9U
+ 5tKqR9nyStm1R2EBhQtGrsjBtDvN1ZcEqu7/x0k14B+c60Gs2gLxek3BIPxEqHpKsR9V
+ kqlTi8eYZEz8+3NyByMxcASg6uZxUB6JKYRlY5D8k/w/TjGJXe0Ls1ABaD4W3UTZPrjO
+ FEOlPqwj0USJmHV9JZMEfvXcJudwCkY+ELX0Q3lF1wcFKatEfhlhXWV63DqLHTl3oC2N
+ powpskwjOHAvGYSsYH4kXdADP9azoEUKUtyW+7X764yZnNK044jCwrYUv5u8LSFrX+/M
+ iS8A==
+X-Gm-Message-State: AOAM531YMbhnIBuG+h3wF3gc095M004O96ljyvGIwvd7Bfb2gacNpSPK
+ rOS6mfi/20ujulT7RZz5pitkZb+E
+X-Google-Smtp-Source: ABdhPJwKINr85kZhKuJ0ysZ/FhPe/076ooVYk2URK6YVfuOknRm6kvTODUVvx6ODXGMsdhNlIyPywg==
+X-Received: by 2002:a37:48c7:: with SMTP id v190mr5649019qka.153.1594751096183; 
+ Tue, 14 Jul 2020 11:24:56 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.53
+ by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Jul 2020 11:24:54 -0700 (PDT)
+ Tue, 14 Jul 2020 11:24:55 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 35/42] drm/amdgpu: enable GFX clock gating for navy_flounder
-Date: Tue, 14 Jul 2020 14:23:46 -0400
-Message-Id: <20200714182353.2164930-36-alexander.deucher@amd.com>
+Subject: [PATCH 36/42] drm/amdgpu: support athub cg setting for navy_flounder
+Date: Tue, 14 Jul 2020 14:23:47 -0400
+Message-Id: <20200714182353.2164930-37-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200714182353.2164930-1-alexander.deucher@amd.com>
 References: <20200714182353.2164930-1-alexander.deucher@amd.com>
@@ -75,31 +75,27 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jiansong Chen <Jiansong.Chen@amd.com>
 
-Enable GFX MGCG, CGCG and 3DCG for navy_flounder.
+navy_flounder has athub ip v2.1.
 
 Signed-off-by: Jiansong Chen <Jiansong.Chen@amd.com>
 Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/nv.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/athub_v2_1.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 34f4e636b30d..0fa1e561c2cc 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -755,7 +755,10 @@ static int nv_common_early_init(void *handle)
- 		adev->external_rev_id = adev->rev_id + 0x28;
- 		break;
- 	case CHIP_NAVY_FLOUNDER:
--		adev->cg_flags = AMD_CG_SUPPORT_VCN_MGCG |
-+		adev->cg_flags = AMD_CG_SUPPORT_GFX_MGCG |
-+			AMD_CG_SUPPORT_GFX_CGCG |
-+			AMD_CG_SUPPORT_GFX_3D_CGCG |
-+			AMD_CG_SUPPORT_VCN_MGCG |
- 			AMD_CG_SUPPORT_JPEG_MGCG;
- 		adev->pg_flags = AMD_PG_SUPPORT_VCN |
- 			AMD_PG_SUPPORT_VCN_DPG |
+diff --git a/drivers/gpu/drm/amd/amdgpu/athub_v2_1.c b/drivers/gpu/drm/amd/amdgpu/athub_v2_1.c
+index 0219bd6ce1b2..939eca63b094 100644
+--- a/drivers/gpu/drm/amd/amdgpu/athub_v2_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/athub_v2_1.c
+@@ -73,6 +73,7 @@ int athub_v2_1_set_clockgating(struct amdgpu_device *adev,
+ 
+ 	switch (adev->asic_type) {
+ 	case CHIP_SIENNA_CICHLID:
++	case CHIP_NAVY_FLOUNDER:
+ 		athub_v2_1_update_medium_grain_clock_gating(adev,
+ 				state == AMD_CG_STATE_GATE ? true : false);
+ 		athub_v2_1_update_medium_grain_light_sleep(adev,
 -- 
 2.25.4
 
