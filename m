@@ -1,57 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 617E921F92B
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C19EA21F92C
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9B786E5A2;
-	Tue, 14 Jul 2020 18:24:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 422AF6E5A3;
+	Tue, 14 Jul 2020 18:24:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com
- [IPv6:2607:f8b0:4864:20::733])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C4C36E5A2
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:08 +0000 (UTC)
-Received: by mail-qk1-x733.google.com with SMTP id j80so16542923qke.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:08 -0700 (PDT)
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com
+ [IPv6:2607:f8b0:4864:20::831])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 236526E5A3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:11 +0000 (UTC)
+Received: by mail-qt1-x831.google.com with SMTP id i3so13554695qtq.13
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=bcceYwZ40lTOD+0aqHbMstXn9E8dUqseU9+Gvrz3EVg=;
- b=XQTi96N0mxH2DCD+pG0LjLyzgc+yldSa5bdyAgrVYb64WfqDMSyTsoXS4I6VBakaaq
- 5N8HufgC4EDDVWitdrkqiJ++XFVWGt3dXIvWsODvsb+bw/WOTlRMpknK+FqjXFDEXA1V
- /hxJkFyjp3X/ggvcgOAEU27qCMxk4jRxpSDxyqDL+nkEfvcgnLjSodD3kSnX25YqSuej
- nV8NdRVUksHu2IOwlUszNoNBjDVozpjwXFcbpv8GaQojRJ4+aLI+gx4sS29enyVGGvG0
- W7YfDa0hsIyyVRYPmdxnHZ20ggOqEo20C1QH6mB1REudUMPE9lKX33r0WlF6t1pDZXyB
- TfaA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=vhI+0gyVpJ3RT57gU8RhoKIITKZXU1jpKSIovE18erc=;
+ b=YL5+6LWciunHPZEEQk5/oYvOiokiv+okRmGuCziJV5X75Dxqdja/XkkwOdYmw7h/c2
+ +0Ucsu1IdjnY21NvoAEFjoAldqllVI0wyp3MlgxNh1azOtM/CR64o4ANz+oUQBAWZcSp
+ cq6rj4QQ5XEGpyOV/GkZEA1AbL2miomVQU5pRMwx+Qvp1qOQ8DvS4N8uCOrQPfwcBh+F
+ 2M6JllxKsGRPX59WpUDGp4bRRJ44iLUV3z93eFGIQDT0YNLhTzRnFd84DLfhiWAwEuZf
+ 8SU1LrjooO3DoWLcV557fypUPKa8Y1XGV+Bsj7UpFxWrITyY4hQpSSlhE4O7ZbDHFe6j
+ TyLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=bcceYwZ40lTOD+0aqHbMstXn9E8dUqseU9+Gvrz3EVg=;
- b=bmgVWjVMNv+iZBVkJH8wQS8DceAtpsSzCRmq7rRYxHhF/bTPB43udSGGnbyyxEuOlp
- /CpaE5Kzbn45fA/suLWix+4emO21GShDFoDGURCJ8dTwMvkRWx/gcDKIppDWoc9yYkjA
- JhHc4QUnEZ4DB8QM3fyLTToh5hBSfagt9Iqy8X/VPpEKxkqEoY2rqyvyi+JUVGBZ4zM4
- 1f0VtuyVdi/VEuIIHiMIfY++F6VZRGU+8xvl+7YNVpghA6FTe/imtwImo3c/ks2EO+5C
- E3RDtA8cCGaVgR/tAxW+vWAIw5IUofQmMTQ1Oil8r8W//q8WkKdoFYZrivE3tf2BEFSo
- qaTw==
-X-Gm-Message-State: AOAM533YjhYUkaybH9kwP3IloOPJpIzvi4/jYePC7E8x300oOyISoupy
- eZUbZSZirrFt43K7m1KXc50n4PuN
-X-Google-Smtp-Source: ABdhPJwo6NTp6c2dl+fEqnCOAayRK5iH8VdH/NLXxgd0z2zZAkmrWWp8Lk1DB3EcYdaQBaZ2phaiXg==
-X-Received: by 2002:a37:7803:: with SMTP id t3mr5914003qkc.358.1594751047338; 
- Tue, 14 Jul 2020 11:24:07 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=vhI+0gyVpJ3RT57gU8RhoKIITKZXU1jpKSIovE18erc=;
+ b=VRFVVriVSXJwElI/bbc32x4+FWr/6ZPVnjANR4h0ix5WBg9d3Bc6SjSA5Rje0rCMLF
+ rUpM1ihRkuXE4Umy9tn84uyPBmRbTUUo3mOEA/WHfEzcKPGfdA6vrWJjkbFx0Ik5Nvj0
+ BpgjR7Takl+3XUyqKTOn99nuMELeNBk4Lz0zYNv7k8W/QTEno55tgxe1G7t7Tph4EAn7
+ hLP5gNQUzDixbJ++QRQgADW0laSjsqQRcCcC/kfO7+mIivGhVIC4aL/5wAXAdlauKM9f
+ fr2Q8kkPP0yXwLLT7YYpBZR28q9wQUi3+DAcJ0Cotb5p5B2W2rpTbakAnnsBpvY7pCTo
+ p+Sg==
+X-Gm-Message-State: AOAM531bWrxPY9XxhBRa62hAx02T6DZ8IYD9yri8fYvhoX6bjbXqIPQA
+ D0NOkgJgKYVgEMFjURe2+Y65tNLW
+X-Google-Smtp-Source: ABdhPJyq7fh0dqy9byiPS1/NzfRqJPHMNaBaAfEbBvKhf4k8/3eK+Oe4YI/sGJEYrVVee5AAsaRLFA==
+X-Received: by 2002:ac8:2783:: with SMTP id w3mr6318539qtw.66.1594751050087;
+ Tue, 14 Jul 2020 11:24:10 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.05
+ by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Jul 2020 11:24:06 -0700 (PDT)
+ Tue, 14 Jul 2020 11:24:09 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 00/42] Navy Flounder support
-Date: Tue, 14 Jul 2020 14:23:11 -0400
-Message-Id: <20200714182353.2164930-1-alexander.deucher@amd.com>
+Subject: [PATCH 01/42] drm/amdgpu: expand to add multiple trap event irq id
+Date: Tue, 14 Jul 2020 14:23:12 -0400
+Message-Id: <20200714182353.2164930-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
+In-Reply-To: <20200714182353.2164930-1-alexander.deucher@amd.com>
+References: <20200714182353.2164930-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,94 +66,110 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Huang Rui <ray.huang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch set adds initial support for Navy Flounder GPUs.
+From: Huang Rui <ray.huang@amd.com>
 
-Bhawanpreet Lakha (1):
-  drm/amd/display: add DC support for navy flounder
+Sienna_cichlid has four sdma instances, but other chips don't.
+So we need expand to add multiple trap event irq id in sdma
+v5.2.
 
-Boyuan Zhang (5):
-  drm/amdgpu: add navy_flounder vcn firmware support
-  drm/amdgpu: add vcn ip block for navy_flounder
-  drm/amdgpu: enable VCN3.0 PG and CG for navy_flounder
-  drm/amdgpu: enable VCN3.0 DPG for navy_flounder
-  drm/amdgpu: enable JPEG3.0 PG and CG for navy_flounder
+Signed-off-by: Huang Rui <ray.huang@amd.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 67 ++++++++++++++++----------
+ 1 file changed, 41 insertions(+), 26 deletions(-)
 
-Chengming Gui (2):
-  drm/amdkfd: Support navy_flounder KFD
-  drm/amdkfd: Add kfd2kgd_funcs for navy_flounder kfd support
-
-Huang Rui (1):
-  drm/amdgpu: expand to add multiple trap event irq id
-
-Jiansong Chen (32):
-  drm/amdgpu: add navy_flounder asic type
-  drm/amdgpu: add navy_flounder gpu info firmware
-  drm/amdgpu: set fw load type for navy_flounder
-  drm/amdgpu: set asic family and ip blocks for navy_flounder
-  drm/amdgpu/gfx10: add support for navy_flounder firmware
-  drm/amdgpu/gmc10: add navy_flounder support
-  drm/amdgpu/gfx10: add clockgating support for navy_flounder
-  drm/amdgpu/soc15: add support for navy_flounder
-  drm/amdgpu: initialize IP offset for navy_flounder
-  drm/amdgpu: add support on mmhub for navy_flounder
-  drm/amdgpu: add common ip block for navy_flounder
-  drm/amdgpu: add gmc ip block for navy_flounder
-  drm/amdgpu: add ih ip block for navy_flounder
-  drm/amdgpu: add gfx ip block for navy_flounder
-  drm/amdgpu: add sdma ip block for navy_flounder
-  drm/amdgpu: add virtual display support for navy_flounder.
-  drm/amdgpu: force pa_sc_tile_steering_override to 0 for navy_flounder
-  drm/amdgpu: add gmc cg support for navy_flounder
-  drm/amdgpu/powerplay: add smu support for navy_flounder
-  drm/amdgpu: add smu block for navy_flounder
-  drm/amdgpu: add psp support for navy_flounder
-  drm/amdgpu: add psp block for navy_flounder
-  drm/amdgpu: use front door firmware loading for navy_flounder
-  drm/amdgpu/gfx10: add gc golden setting for navy_flounder
-  drm/amdgpu: enable cp_fw_write_wait for navy_flounder
-  drm/amdgpu: enable GFX clock gating for navy_flounder
-  drm/amdgpu: support athub cg setting for navy_flounder
-  drm/amd/powerplay: set VCN1 pg only for sienna_cichlid
-  drm/amdgpu: enable athub/mmhub PG for navy_flounder
-  drm/amdgpu: enable mc CG and LS for navy_flounder
-  drm/amdgpu: enable hdp CG and LS for navy_flounder
-  drm/amdgpu: enable ih CG for navy_flounder
-
-Tao Zhou (1):
-  drm/amdgpu: configure navy_flounder gfx according to gfx 10.3
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  7 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c       |  8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c     |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c       |  8 ++
- drivers/gpu/drm/amd/amdgpu/athub_v2_1.c       |  1 +
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c        | 76 +++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c        | 27 ++++--
- drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c       |  6 ++
- drivers/gpu/drm/amd/amdgpu/navi10_ih.c        |  1 +
- drivers/gpu/drm/amd/amdgpu/nv.c               | 44 ++++++++++
- drivers/gpu/drm/amd/amdgpu/psp_v11_0.c        | 12 ++-
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c        | 87 +++++++++++++------
- drivers/gpu/drm/amd/amdkfd/kfd_crat.c         |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_device.c       | 20 +++++
- .../drm/amd/amdkfd/kfd_device_queue_manager.c |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c  |  1 +
- .../gpu/drm/amd/amdkfd/kfd_packet_manager.c   |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c     |  1 +
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  9 +-
- drivers/gpu/drm/amd/powerplay/amdgpu_smu.c    |  1 +
- drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h |  1 +
- .../drm/amd/powerplay/sienna_cichlid_ppt.c    | 20 +++--
- drivers/gpu/drm/amd/powerplay/smu_v11_0.c     | 15 +++-
- include/drm/amd_asic_type.h                   |  1 +
- 24 files changed, 300 insertions(+), 51 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+index 824f3e23c3d9..de8342283fdb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+@@ -1165,6 +1165,40 @@ static int sdma_v5_2_early_init(void *handle)
+ 	return 0;
+ }
+ 
++static unsigned sdma_v5_2_seq_to_irq_id(int seq_num)
++{
++	switch (seq_num) {
++	case 0:
++		return SOC15_IH_CLIENTID_SDMA0;
++	case 1:
++		return SOC15_IH_CLIENTID_SDMA1;
++	case 2:
++		return SOC15_IH_CLIENTID_SDMA2;
++	case 3:
++		return SOC15_IH_CLIENTID_SDMA3_Sienna_Cichlid;
++	default:
++		break;
++	}
++	return -EINVAL;
++}
++
++static unsigned sdma_v5_2_seq_to_trap_id(int seq_num)
++{
++	switch (seq_num) {
++	case 0:
++		return SDMA0_5_0__SRCID__SDMA_TRAP;
++	case 1:
++		return SDMA1_5_0__SRCID__SDMA_TRAP;
++	case 2:
++		return SDMA2_5_0__SRCID__SDMA_TRAP;
++	case 3:
++		return SDMA3_5_0__SRCID__SDMA_TRAP;
++	default:
++		break;
++	}
++	return -EINVAL;
++}
++
+ static int sdma_v5_2_sw_init(void *handle)
+ {
+ 	struct amdgpu_ring *ring;
+@@ -1172,32 +1206,13 @@ static int sdma_v5_2_sw_init(void *handle)
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 
+ 	/* SDMA trap event */
+-	r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_SDMA0,
+-			      SDMA0_5_0__SRCID__SDMA_TRAP,
+-			      &adev->sdma.trap_irq);
+-	if (r)
+-		return r;
+-
+-	/* SDMA trap event */
+-	r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_SDMA1,
+-			      SDMA1_5_0__SRCID__SDMA_TRAP,
+-			      &adev->sdma.trap_irq);
+-	if (r)
+-		return r;
+-
+-	/* SDMA trap event */
+-	r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_SDMA2,
+-			      SDMA2_5_0__SRCID__SDMA_TRAP,
+-			      &adev->sdma.trap_irq);
+-	if (r)
+-		return r;
+-
+-	/* SDMA trap event */
+-	r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_SDMA3_Sienna_Cichlid,
+-			      SDMA3_5_0__SRCID__SDMA_TRAP,
+-			      &adev->sdma.trap_irq);
+-	if (r)
+-		return r;
++	for (i = 0; i < adev->sdma.num_instances; i++) {
++		r = amdgpu_irq_add_id(adev, sdma_v5_2_seq_to_irq_id(i),
++				      sdma_v5_2_seq_to_trap_id(i),
++				      &adev->sdma.trap_irq);
++		if (r)
++			return r;
++	}
+ 
+ 	r = sdma_v5_2_init_microcode(adev);
+ 	if (r) {
 -- 
 2.25.4
 
