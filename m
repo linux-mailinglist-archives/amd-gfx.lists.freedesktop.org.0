@@ -1,117 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B5C21F54F
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 16:48:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC7C821F41D
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 16:31:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7534E6E976;
-	Tue, 14 Jul 2020 14:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8066B6E15B;
+	Tue, 14 Jul 2020 14:31:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EF236E42E
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 13:57:30 +0000 (UTC)
-IronPort-SDR: j93F3367OFAfRWid0yy4xF3k7gatNewD/bJYISqB2W5BeuzBUn5OrzhLnthr7hTK87QDtq30OB
- 6TzuA1MGs/RA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9681"; a="137032090"
-X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="137032090"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2020 06:57:29 -0700
-IronPort-SDR: HUyaNrsMEeC99FhlE005HPloc5VKquXyTYNk3gpBg4kToNNi2kvZToBk+4atCNL3vGok3bBqjK
- 2q4p4/cIWmWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,350,1589266800"; d="scan'208";a="299549530"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
- by orsmga002.jf.intel.com with ESMTP; 14 Jul 2020 06:57:29 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 14 Jul 2020 06:57:29 -0700
-Received: from ORSEDG002.ED.cps.intel.com (10.7.248.5) by
- orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Tue, 14 Jul 2020 06:57:29 -0700
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (104.47.37.57) by
- edgegateway.intel.com (134.134.137.101) with Microsoft SMTP Server
- (TLS) id 14.3.439.0; Tue, 14 Jul 2020 06:57:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RVgEmPSh78PSWyYIbx80HlJ+Dl9zkB/ERNW/R1N4NqqtIcVZRfa/w/KWK6c4fxMZlKwR+lLL+Vvl6SATPs5lhEVKyPf9JLJvZq08dXX+oJz/94Vwj8yrtQUwbjQR6j+UwCx/9VNv4KjUXbucD+srOLbg1V8oRZTgEUhni7mNYHBgqmdtCblTrAKgxiIn92VuHGKhFJ5lBn94+rla10d8XULXC/0FEAOxWQ//bmXnl3tEAJzV6roAIhxqlx2O5Fk+Ea1kplor+SsVobNtlhOhdIPZcJXc/HP2JGzui3+UXCVdeka3UgrJTTiGk9Stsn/YmIFRrya9sR6gTcJYClZWKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EAPjp+TaCA1szx00SVnF8P/v6crkJMYj+HxZ8UxYfmY=;
- b=Zbmus442SANJurX/cPFR7vOhVWWltsAYAMHQ6z0kFylfHcYketEsegG69BK96/svBbWxOr6c6vx7jMkYCDt3RPWcCbPJtqtgL6qTlW9w6X2wVW2x/+Bl5zEVorWsyX4x5PMu/R99ml6OQa1mxxrE0aqojvmY/nB/tIRE/vq7NebEpCrp1O0cfAz6CUORLmgO1nRfBOk8Tq01nlIqYwkkE+xSc8bKAx5v+8aTLNqFlP3fh193w5WrdgiQS8SEyKtKX/L1bjGhIDnulQ2ghVFSeVVRr26qKUUzFbij9/52QT47YFEHO3o3VwQfGZlV68w1qLtl+bp2Xf+7fKABrzhqvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EAPjp+TaCA1szx00SVnF8P/v6crkJMYj+HxZ8UxYfmY=;
- b=hmPodxSl4sd32CihmRDu7iezBRfNXoAr280WWKa0YEHVEJdJApGfu1H/8CI/t+UW7oZ/kpCwMZP9mGM3em+eo6EC4nalgjhby0WxU5pv/PJQOUF5fjsjY/0qTgk44xM8nZNxhQ0ofdpjDVxEPdQhypQ4v2+XxNP/XcoPPoedlpU=
-Received: from DM5PR11MB1435.namprd11.prod.outlook.com (2603:10b6:4:7::18) by
- DM5PR11MB1961.namprd11.prod.outlook.com (2603:10b6:3:107::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3174.25; Tue, 14 Jul 2020 13:56:30 +0000
-Received: from DM5PR11MB1435.namprd11.prod.outlook.com
- ([fe80::9002:97a2:d8c0:8364]) by DM5PR11MB1435.namprd11.prod.outlook.com
- ([fe80::9002:97a2:d8c0:8364%10]) with mapi id 15.20.3195.017; Tue, 14 Jul
- 2020 13:56:30 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: "Yu, Fenghua" <fenghua.yu@intel.com>
-Subject: RE: [PATCH v6 01/12] iommu: Change type of pasid to u32
-Thread-Topic: [PATCH v6 01/12] iommu: Change type of pasid to u32
-Thread-Index: AQHWWXA1h1KpvcyzpkmsBfdm/bKRN6kGXnQQgAC7WYCAAABY8A==
-Date: Tue, 14 Jul 2020 13:56:29 +0000
-Message-ID: <DM5PR11MB1435AE416B6167526CD64A6BC3610@DM5PR11MB1435.namprd11.prod.outlook.com>
-References: <1594684087-61184-1-git-send-email-fenghua.yu@intel.com>
- <1594684087-61184-2-git-send-email-fenghua.yu@intel.com>
- <DM5PR11MB1435D67E0CE9D8D4C1D7F675C3610@DM5PR11MB1435.namprd11.prod.outlook.com>
- <20200714135449.GI32961@romley-ivt3.sc.intel.com>
-In-Reply-To: <20200714135449.GI32961@romley-ivt3.sc.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-dlp-product: dlpe-windows
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [192.198.147.220]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 31ce055f-56ee-492f-e33f-08d827fdb5b3
-x-ms-traffictypediagnostic: DM5PR11MB1961:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR11MB1961BA5FA0B17F42A4DA568CC3610@DM5PR11MB1961.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OLoPUc7eubCFXHUMjLxGxapwjikiDB/LIzoizXB07C9LbPyk7sUdCbbkdtOduPSqMpGYCSps/ohZgB+M6uxnAOYGagfAwWTg/jvpfuCqvr5JMP08TlfpvQA3JT1JyPVqDU6V3YVUgUBA+lsPBAUojXerxaj5Xjt1vLFmW8pVm9Vf+JDSdDomYufKD2l/ThDM6ssvKuOwYUx6dJPUzqQw+4OpyiUr2NzQHmqtdfp2917IwVoSM7I0N2t0HZAgGzfh8hrx0FGjuCCrJVALn/jmrJ9QzqrkPC3fibUyJWUwTbpU12Smc0yMUGPDNbT8G5E/
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR11MB1435.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(396003)(136003)(346002)(366004)(39860400002)(376002)(6862004)(8936002)(8676002)(6636002)(316002)(2906002)(478600001)(83380400001)(5660300002)(52536014)(4326008)(66476007)(9686003)(7416002)(6506007)(86362001)(7696005)(66556008)(54906003)(76116006)(66446008)(64756008)(33656002)(55016002)(26005)(186003)(66946007)(71200400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: 5FbiHqEYxyMcidKmIofRgTWDrYE0ssgIW3+oCUuSUSuHqUz9JuqKSsQmFN5NCjSF0w5wzl1NZPPvNx33rpXtHCYyb361Sh48Kh0OG+1aFQAYx0MogvvAS0ppWpqQE0Ng0nQV4zPk9xTu8vS0etXJSJeMadBabKBAAkeZqZgbCcM/5HONW7xwVRwCB6RMyJzqzdKc1OvlGwIT9o/tLF2CFw5p/PMFUfnwyfePpKlFOEtICUndEqBFhEY2hHF+lckueJw1TBk3CHlUw82jZX2mf89Uk/zyJquESILKoxtt4IqWILK/C1jOtic3w83s7n+Ab5x9iOBjKzIuMYt704ll3GU095bnOMcfY0SM4dRG6edR0/54pB6zINI/KkmR3kZXnuPgNNXirsvGF698+cdsckPxjgqnJEfEruNpLtgcSP18CdYHULNIRkUwTEMKDkEDjqL6UDohz9xClCZR/eU/PZIM0uE2aDtGJberyP1q9A9rXIBA0zlfGYFNeblQUAjL
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18A386E15B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 14:31:29 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id j4so22041932wrp.10
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 07:31:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=Ed/reeYJGTUlb4ySP35k6xiv1WgC2riT/Zo21y23//U=;
+ b=Ewf+GMeScmyBFvFOvufdoDZRrV4/6flsTp734Xp/9GetkuBjRKOJnJ419fHD16cpdM
+ AhYX/iXwFsLReavk7xNIjfwi7uzIpX1dGBAozfRZNkSYjhNoMz+bLN4RXXO/WCb5gmMZ
+ 4rSM1Bm1WWSq9mBfYuICycp2sEeRqptusJlf4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=Ed/reeYJGTUlb4ySP35k6xiv1WgC2riT/Zo21y23//U=;
+ b=k4fonBH9TuSBKnU0BbJHyZi7gBi4ZmgzSkAGJvuaZI/FlHUVUqT8bKHBzZ7cNO2djw
+ d3RcB456QiHcBHcL1a1TdvubhfuuLn3mzOE78I3sO0ceN5v2mafOZmEE2PvKXig+VFl6
+ n10ep5OE3OncxXJ7V2Wu6PzDyH9mkpts62IQxyB5MoimGTszx8d8rgGaawEI5HtFqO/s
+ FNuv11M1D1u9FY8gzGkv9nR5a/oEs22leg6PANFzMSKneZGjnv9F14NrTOy455Vpgs++
+ R3MDrjosyaohJ49BScx9X2QyLJ26EFzZbZtRyLHqFz+nqyPNlQZPl3IllIrDfgaags6P
+ flDg==
+X-Gm-Message-State: AOAM5324PaYCIBoHW+QZcWL/BE3C5fpbeU/wmJUqWMoEUaApXcL1CHMi
+ rtaPtKI3Iysq+YaDMoeUqhCh8Q==
+X-Google-Smtp-Source: ABdhPJydohBAFr2y3Zo3uJbf1/CV8/Lg/F5ovzneHF4+jrt5NQvpk+Juk4QyRp3CnvJvu9Ou0xUmHQ==
+X-Received: by 2002:a05:6000:11cc:: with SMTP id
+ i12mr5936896wrx.224.1594737087739; 
+ Tue, 14 Jul 2020 07:31:27 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id d132sm4666892wmd.35.2020.07.14.07.31.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Jul 2020 07:31:26 -0700 (PDT)
+Date: Tue, 14 Jul 2020 16:31:24 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Subject: Re: [PATCH 19/25] drm/amdgpu: s/GFP_KERNEL/GFP_ATOMIC in scheduler
+ code
+Message-ID: <20200714143124.GG3278063@phenom.ffwll.local>
+References: <20200707201229.472834-1-daniel.vetter@ffwll.ch>
+ <20200707201229.472834-20-daniel.vetter@ffwll.ch>
+ <20200714104910.GC3278063@phenom.ffwll.local>
+ <d3e85f62-e427-7f1c-0ff4-842ffe57172e@amd.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1435.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31ce055f-56ee-492f-e33f-08d827fdb5b3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jul 2020 13:56:29.9520 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: g1kNW/3/2kz2iTBEB47rX+7z2YA3VllLgB3AdwAf7clDkQ7jEIGTjjlUiCD8uHtDgABRp+oa99DylV7dpJ7VYw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1961
-X-OriginatorOrg: intel.com
-X-Mailman-Approved-At: Tue, 14 Jul 2020 14:48:09 +0000
+Content-Disposition: inline
+In-Reply-To: <d3e85f62-e427-7f1c-0ff4-842ffe57172e@amd.com>
+X-Operating-System: Linux phenom 5.6.0-1-amd64 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,61 +69,205 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Zijlstra <peterz@infradead.org>, "Hansen,
- Dave" <dave.hansen@intel.com>, H Peter Anvin <hpa@zytor.com>,
- Jean-Philippe Brucker <jean-philippe@linaro.org>, "Jiang,
- Dave" <dave.jiang@intel.com>, "Raj, 
- Ashok" <ashok.raj@intel.com>, Joerg Roedel <joro@8bytes.org>,
- x86 <x86@kernel.org>, amd-gfx <amd-gfx@lists.freedesktop.org>,
- Christoph Hellwig <hch@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- "Shankar, Ravi V" <ravi.v.shankar@intel.com>, Borislav Petkov <bp@alien8.de>,
- "Mehta, Sohil" <sohil.mehta@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- "Luck, 
- Tony" <tony.luck@intel.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>, "Pan,
- Jacob jun" <jacob.jun.pan@intel.com>, David Woodhouse <dwmw2@infradead.org>,
- Lu Baolu <baolu.lu@linux.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-rdma@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Vetter <daniel.vetter@intel.com>, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> From: Yu, Fenghua <fenghua.yu@intel.com>
-> Sent: Tuesday, July 14, 2020 9:55 PM
-> On Mon, Jul 13, 2020 at 07:45:49PM -0700, Liu, Yi L wrote:
-> > > From: Fenghua Yu <fenghua.yu@intel.com>
-> > > Sent: Tuesday, July 14, 2020 7:48 AM
-> > >
-> > > PASID is defined as a few different types in iommu including "int",
-> > > "u32", and "unsigned int". To be consistent and to match with uapi
-> > > definitions, define PASID and its variations (e.g. max PASID) as "u32".
-> > > "u32" is also shorter and a little more explicit than "unsigned int".
-> > >
-> > > No PASID type change in uapi although it defines PASID as __u64 in
-> > > some places.
-> >
-> > just out of curious, why not using ioasid_t? In Linux kernel, PASID is
-> > managed by ioasid.
-> 
-> ioasid_t is only used in limited underneath files (ioasid.c and ioasid.h).
-> Instead of changing hundreds of places to use ioasid_t, it's better to keep ioasid_t
-> only used in the files.
-> 
-> And it's explict and matches with uapi to define PASID as u32. Changing to ioasid_t in
-> so many files (amd, gpu, crypto, etc) may confuse upper users on "why ioasid_t".
-> 
-> So we had better to explicitly define PASID as u32 and keep ioasid_t in the limited
-> underneath files.
+On Tue, Jul 14, 2020 at 01:40:11PM +0200, Christian K=F6nig wrote:
+> Am 14.07.20 um 12:49 schrieb Daniel Vetter:
+> > On Tue, Jul 07, 2020 at 10:12:23PM +0200, Daniel Vetter wrote:
+> > > My dma-fence lockdep annotations caught an inversion because we
+> > > allocate memory where we really shouldn't:
+> > > =
 
-fair enough, thanks,
+> > > 	kmem_cache_alloc+0x2b/0x6d0
+> > > 	amdgpu_fence_emit+0x30/0x330 [amdgpu]
+> > > 	amdgpu_ib_schedule+0x306/0x550 [amdgpu]
+> > > 	amdgpu_job_run+0x10f/0x260 [amdgpu]
+> > > 	drm_sched_main+0x1b9/0x490 [gpu_sched]
+> > > 	kthread+0x12e/0x150
+> > > =
 
-Regards,
-Yi Liu
+> > > Trouble right now is that lockdep only validates against GFP_FS, which
+> > > would be good enough for shrinkers. But for mmu_notifiers we actually
+> > > need !GFP_ATOMIC, since they can be called from any page laundering,
+> > > even if GFP_NOFS or GFP_NOIO are set.
+> > > =
 
-> Thanks.
-> 
-> -Fenghua
+> > > I guess we should improve the lockdep annotations for
+> > > fs_reclaim_acquire/release.
+> > > =
+
+> > > Ofc real fix is to properly preallocate this fence and stuff it into
+> > > the amdgpu job structure. But GFP_ATOMIC gets the lockdep splat out of
+> > > the way.
+> > > =
+
+> > > v2: Two more allocations in scheduler paths.
+> > > =
+
+> > > Frist one:
+> > > =
+
+> > > 	__kmalloc+0x58/0x720
+> > > 	amdgpu_vmid_grab+0x100/0xca0 [amdgpu]
+> > > 	amdgpu_job_dependency+0xf9/0x120 [amdgpu]
+> > > 	drm_sched_entity_pop_job+0x3f/0x440 [gpu_sched]
+> > > 	drm_sched_main+0xf9/0x490 [gpu_sched]
+> > > =
+
+> > > Second one:
+> > > =
+
+> > > 	kmem_cache_alloc+0x2b/0x6d0
+> > > 	amdgpu_sync_fence+0x7e/0x110 [amdgpu]
+> > > 	amdgpu_vmid_grab+0x86b/0xca0 [amdgpu]
+> > > 	amdgpu_job_dependency+0xf9/0x120 [amdgpu]
+> > > 	drm_sched_entity_pop_job+0x3f/0x440 [gpu_sched]
+> > > 	drm_sched_main+0xf9/0x490 [gpu_sched]
+> > > =
+
+> > > Cc: linux-media@vger.kernel.org
+> > > Cc: linaro-mm-sig@lists.linaro.org
+> > > Cc: linux-rdma@vger.kernel.org
+> > > Cc: amd-gfx@lists.freedesktop.org
+> > > Cc: intel-gfx@lists.freedesktop.org
+> > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > Cc: Christian K=F6nig <christian.koenig@amd.com>
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Has anyone from amd side started looking into how to fix this properly?
+> =
+
+> Yeah I checked both and neither are any real problem.
+
+I'm confused ... do you mean "no real problem fixing them" or "not
+actually a real problem"?
+
+> > I looked a bit into fixing this with mempool, and the big guarantee we
+> > need is that
+> > - there's a hard upper limit on how many allocations we minimally need =
+to
+> >    guarantee forward progress. And the entire vmid allocation and
+> >    amdgpu_sync_fence stuff kinda makes me question that's a valid
+> >    assumption.
+> =
+
+> We do have hard upper limits for those.
+> =
+
+> The VMID allocation could as well just return the fence instead of putting
+> it into the sync object IIRC. So that just needs some cleanup and can avo=
+id
+> the allocation entirely.
+
+Yeah embedding should be simplest solution of all.
+
+> The hardware fence is limited by the number of submissions we can have
+> concurrently on the ring buffers, so also not a problem at all.
+
+Ok that sounds good. Wrt releasing the memory again, is that also done
+without any of the allocation-side locks held? I've seen some vmid manager
+somewhere ...
+-Daniel
+
+> =
+
+> Regards,
+> Christian.
+> =
+
+> > =
+
+> > - mempool_free must be called without any locks in the way which are he=
+ld
+> >    while we call mempool_alloc. Otherwise we again have a nice deadlock
+> >    with no forward progress. I tried auditing that, but got lost in amd=
+gpu
+> >    and scheduler code. Some lockdep annotations for mempool.c might hel=
+p,
+> >    but they're not going to catch everything. Plus it would be again ma=
+nual
+> >    annotations because this is yet another cross-release issue. So not =
+sure
+> >    that helps at all.
+> > =
+
+> > iow, not sure what to do here. Ideas?
+> > =
+
+> > Cheers, Daniel
+> > =
+
+> > > ---
+> > >   drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 2 +-
+> > >   drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c   | 2 +-
+> > >   drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c  | 2 +-
+> > >   3 files changed, 3 insertions(+), 3 deletions(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/=
+drm/amd/amdgpu/amdgpu_fence.c
+> > > index 8d84975885cd..a089a827fdfe 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> > > @@ -143,7 +143,7 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring, s=
+truct dma_fence **f,
+> > >   	uint32_t seq;
+> > >   	int r;
+> > > -	fence =3D kmem_cache_alloc(amdgpu_fence_slab, GFP_KERNEL);
+> > > +	fence =3D kmem_cache_alloc(amdgpu_fence_slab, GFP_ATOMIC);
+> > >   	if (fence =3D=3D NULL)
+> > >   		return -ENOMEM;
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_ids.c
+> > > index 267fa45ddb66..a333ca2d4ddd 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+> > > @@ -208,7 +208,7 @@ static int amdgpu_vmid_grab_idle(struct amdgpu_vm=
+ *vm,
+> > >   	if (ring->vmid_wait && !dma_fence_is_signaled(ring->vmid_wait))
+> > >   		return amdgpu_sync_fence(sync, ring->vmid_wait);
+> > > -	fences =3D kmalloc_array(sizeof(void *), id_mgr->num_ids, GFP_KERNE=
+L);
+> > > +	fences =3D kmalloc_array(sizeof(void *), id_mgr->num_ids, GFP_ATOMI=
+C);
+> > >   	if (!fences)
+> > >   		return -ENOMEM;
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_sync.c
+> > > index 8ea6c49529e7..af22b526cec9 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
+> > > @@ -160,7 +160,7 @@ int amdgpu_sync_fence(struct amdgpu_sync *sync, s=
+truct dma_fence *f)
+> > >   	if (amdgpu_sync_add_later(sync, f))
+> > >   		return 0;
+> > > -	e =3D kmem_cache_alloc(amdgpu_sync_slab, GFP_KERNEL);
+> > > +	e =3D kmem_cache_alloc(amdgpu_sync_slab, GFP_ATOMIC);
+> > >   	if (!e)
+> > >   		return -ENOMEM;
+> > > -- =
+
+> > > 2.27.0
+> > > =
+
+> =
+
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
