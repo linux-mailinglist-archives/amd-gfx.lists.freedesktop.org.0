@@ -2,55 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FF3521F954
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC5E21F956
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:25:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E0756E868;
-	Tue, 14 Jul 2020 18:25:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C31A96E871;
+	Tue, 14 Jul 2020 18:25:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 857F46E865
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:25:02 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id z63so16489046qkb.8
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:25:02 -0700 (PDT)
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
+ [IPv6:2607:f8b0:4864:20::741])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3B8B6E867
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:25:03 +0000 (UTC)
+Received: by mail-qk1-x741.google.com with SMTP id b185so16551446qkg.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:25:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=D2rV6YqaZfNOUOUElAIml7X0AZqfyDh6fq9cJCuJXrI=;
- b=ZAysC4oMDQX8m12s/ATTUQW4tPGhwVhN6MAqc3iJTBU3hDGpCGs2wOrifG6oJVQnV0
- 8DSm1rE/g8FA8uidDtAyUDgp/mLV6EbyI3/L91f64ZbVqsNlTfECW5OFiUKhM3ByY3oj
- 0BbOvFoO1p/It9qz/n4h5ZsCWYRsBR25iBOqM9hHKTvseqKiu22Hp6/Z/odnDpf40A12
- 2vGnsIGfW6jANXJxWRZx/jYEmZZv9JQH44JaD2FLgTQLtVZ7T43yKbBejb9R+h3RMYji
- 9PSlXLfa4JuVXC0bn121bO0QpPDz0THUT+wcbt+JZabP5I5UJq5ltDZSHLKthrocldz+
- 06fg==
+ bh=IFl3vOiFn5NKmwo+r0PCKGeFw7DQZO5BNmrJnNX9ELk=;
+ b=XPSbxPIfTVsTkxXmGe5Y/+dmzGwge4QGF33v9V7Zuo/oMQTb5Ir/FPKTrDqVEF8P76
+ +uHHrXXfiFceVsktJvgjuuX92vgMdYFr1GbeU4/qo+vgMu+/kMuCyF04yJaVVd3HBd0c
+ jl3dLuMlfeNtIkF5qPDn64ynUQEQoDkOi3HyaWM7pHwJlAuKR5bVIznz8ufExIVJwd4a
+ WQQ8/lS6+Cq8oy2+e6RYqwGgrhynKO6P+lESvXafTeWxy/8E0yXnaMMmb3ASKctouEh+
+ shCd4DtYI5PwYLgCvAxJQF9amJbLKdO/zRFDbnjBiDTYbuY8ijC+WR5CtNspeiQwGydW
+ SwSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=D2rV6YqaZfNOUOUElAIml7X0AZqfyDh6fq9cJCuJXrI=;
- b=s1/8Ahfq1Ppk/1BUg4mz+YmJfdG5XuCdDCXp3OQubprGcwj6Lx7HKx2hg50xwS3MtY
- Fyfy4DjKkdPTYBMlDNFuE0X7LcERGnGTHPR8LdK7jxKQWvFB0caORJm9k6N2nhsq6/P2
- YZsaKNhiGqdlNmPz9s+a8cIKjIv62dw6v8TzFqIRzi7rZf+0JYjpSRe/NfnzpLraQPw3
- R1dGSiWvxEGr6o3GwteWr6R5ns4yd2TvvvBf3rDqZu+HUhE3iykILp2jgxoOEoCbwDl3
- zY3A8H1uZUBnK7yEInu5S3nzgtfcQrhCuF80QfjO3w+YWhiz/v2NlhEkRY/tIUltwsWK
- SQcA==
-X-Gm-Message-State: AOAM530sDcmUo2U+ncexBivhWti542zdUMTRSvBua7MZ1g1kljTo3m7l
- pEE3T+IQx9LeuoOomIa2nvkTXr1y
-X-Google-Smtp-Source: ABdhPJxFYpc4oz3nVrJPR6SKtAYEV7Uh/4yAuRdmoyS2zcqhpkn5VOxcHImQNMeuI6PppPwcxGGWVQ==
-X-Received: by 2002:a37:4592:: with SMTP id s140mr5678649qka.245.1594751101475; 
- Tue, 14 Jul 2020 11:25:01 -0700 (PDT)
+ bh=IFl3vOiFn5NKmwo+r0PCKGeFw7DQZO5BNmrJnNX9ELk=;
+ b=h06SM46+dGmb9SwwPDeXy40lQHRegyPcJ28PF8cmGvX67dPO5JFxVsM+7neyWX/AL/
+ gzV95xmOrX6WdjMPAOq1RE/tUofjqdk9fJlDkGFU41PZfDd3qMKBqkl2sszbCJLxH7jT
+ RWq71BFK883PCpwRgsbgmq1o0P2NK4btiOVkwFNmYl77TNwJujiF8v9NCMMxcFbifFL6
+ IDamH0zuz9PK9pqdbQ+N/oXe0T9dVN+LcTCk1ss3re8hjJrdtmWXrJP4lNZLTjXxpI0G
+ IQJljT46Ps1Gzz9lm30pFkOJns8lE5YgQI1Lwb37XUNxlQGtS75OlD3kU/agU+Kx1IE1
+ leog==
+X-Gm-Message-State: AOAM530Fb/ZT5YsvyR0vBaKubj5yFMTzUVCkvPvePgltUBrhK55skrE2
+ dQIXiOCvJhWi5uKjhuz3p6RyqoEV
+X-Google-Smtp-Source: ABdhPJx5jv+AmMEW3Zb+UgqJCPsHfeZuddkawnrSV/vJiEFLBYQ+6EdLqQr2A8AD7kZfH7zQQn+1FA==
+X-Received: by 2002:a05:620a:1235:: with SMTP id
+ v21mr6079476qkj.454.1594751102779; 
+ Tue, 14 Jul 2020 11:25:02 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.25.00
+ by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.25.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Jul 2020 11:25:01 -0700 (PDT)
+ Tue, 14 Jul 2020 11:25:02 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 40/42] drm/amdgpu: enable mc CG and LS for navy_flounder
-Date: Tue, 14 Jul 2020 14:23:51 -0400
-Message-Id: <20200714182353.2164930-41-alexander.deucher@amd.com>
+Subject: [PATCH 41/42] drm/amdgpu: enable hdp CG and LS for navy_flounder
+Date: Tue, 14 Jul 2020 14:23:52 -0400
+Message-Id: <20200714182353.2164930-42-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200714182353.2164930-1-alexander.deucher@amd.com>
 References: <20200714182353.2164930-1-alexander.deucher@amd.com>
@@ -75,7 +76,7 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jiansong Chen <Jiansong.Chen@amd.com>
 
-Enable mc CG and LS by setting the corresponding flags.
+Enable hdp CG and LS by setting the corresponding flags.
 
 Signed-off-by: Jiansong Chen <Jiansong.Chen@amd.com>
 Reviewed-by: Kenneth Feng <kenneth.feng@amd.com>
@@ -85,17 +86,17 @@ Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 1260d7d138ea..add0698df3fe 100644
+index add0698df3fe..dedc13b74b1a 100644
 --- a/drivers/gpu/drm/amd/amdgpu/nv.c
 +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -763,7 +763,9 @@ static int nv_common_early_init(void *handle)
- 			AMD_CG_SUPPORT_GFX_CGCG |
- 			AMD_CG_SUPPORT_GFX_3D_CGCG |
+@@ -765,7 +765,9 @@ static int nv_common_early_init(void *handle)
  			AMD_CG_SUPPORT_VCN_MGCG |
--			AMD_CG_SUPPORT_JPEG_MGCG;
-+			AMD_CG_SUPPORT_JPEG_MGCG |
-+			AMD_CG_SUPPORT_MC_MGCG |
-+			AMD_CG_SUPPORT_MC_LS;
+ 			AMD_CG_SUPPORT_JPEG_MGCG |
+ 			AMD_CG_SUPPORT_MC_MGCG |
+-			AMD_CG_SUPPORT_MC_LS;
++			AMD_CG_SUPPORT_MC_LS |
++			AMD_CG_SUPPORT_HDP_MGCG |
++			AMD_CG_SUPPORT_HDP_LS;
  		adev->pg_flags = AMD_PG_SUPPORT_VCN |
  			AMD_PG_SUPPORT_VCN_DPG |
  			AMD_PG_SUPPORT_JPEG |
