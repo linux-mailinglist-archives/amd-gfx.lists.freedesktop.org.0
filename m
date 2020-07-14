@@ -1,89 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7B121E4AB
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 02:44:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8ED421E5A6
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 04:29:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD0996E446;
-	Tue, 14 Jul 2020 00:44:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7193C6E88D;
+	Tue, 14 Jul 2020 02:29:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2085.outbound.protection.outlook.com [40.107.223.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BFE46E446
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 00:44:09 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2085.outbound.protection.outlook.com [40.107.237.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 870656E88D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 02:29:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XVcL+/jNF693rlhr895GNyxQ+ZTq0E71au1J8XCjeqJHbn1BSlb+thi8M71Vwf5hjY+js9K4gwnHxO119IW5aToAfWm2ey+5IRBJE2S0EGgr3nRsbhbKVxyd5YaA2eH+bIManplmEBDoprUR97mCKv99OvAM9V0l/jfXsMBzkqSGWyNHKp5JWV8ggCqft3QGjlb3yj745LE5JP+CcCtJPz8lT1Wg0z0C+332xeS3EwAwC6/dplvPRb3MFjhBGQx+czyMxPqGkSVR4GL6CIFrAAFbj26P7hyr3n9e8S4m7Evm/0jt7a2joIzNAYYy0alI/5Q0u8qYzoFI4kQuZJgy3g==
+ b=YwNq5c3yuocuOSgr4ZEjDMeWhz870b7/qb1/AiGJxkVo8DFI+0HQ1obCS3tzLtAWRbN+exMgIAwGT/TviqahnKJGhsQaxN5ICHAzajiYth4uviPWXa2XApeQXRy/uojx+T1abeLohNwVTQ9JdlfbyrmGIe1Wu87zDDG5Typf27EkoWRnjscKPV0nrp63uMZ4nyLq9Ksv+syZq7YIEB61l6HhynwXInWfSX0ew6WH27ljS4ZC+Sc2s5yijBGvoCL7I40p1+IwA7aMQ4uVWr12FKY7SHdZl3Iwi/AraUdXOE1mAttkhCdyjFgVUk4jsocuVr0LNM2CiaEwrN6zey1udQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+rEIXcsk5sCnbvR1nkH3cPhzJWOTILyAXSYxKpcNnE0=;
- b=Pa0UCeDW8SA3399CYe7kZWzM8AhqwSQaM1S5wckTyMik7TI3+6b0DWqT939VxAFSZurbxKu3HH9UjPKsgcRBA4K/F/tmMF0yhIZP0x2gEQzqcnWadKrbW81vt6g5JtqUnduZFf5rL3GGd0GMyN7i0/SwVjyO8sQnlMlh2PzbeeLJQoG65wpCwTtxeS9IOylikBYtJ4zSfWBo+PanRFzKmw9isL+fXb8jKSb8eHiG77F+8KZMuLlzTZQlPZOB2cJw2PpYO5X4pIeKLbMgObuYwUBGMORuUeWcRLfJaMcZ154mB/+lHMZ+yvUu/3iMwHHy2P0+q5pjqePyCQg+1B2m3w==
+ bh=Ix9qrfGcIoKUPT/JCo9dV52wlEqwdB89bv55dr/xqKU=;
+ b=ec6kbGUH4Osv3ADOtN+3HR8TkTwo2oWAQsXbBh7OpRgozv+ZKEG2G/Dy9wRQdW0HR4jFKqViJAo9bn+auSdzC02+7nq2/wnbKLEi0GsBDYnGkuDjFis2AvVRUCcbiDTx0e15r8uvJvqxhioRAezFghDZcdiym8D//3/3Szt+LgikRpyytC1XsKrmJJeEIJRqTPEW2Y3zglYncY+Y60qvfifcQMJV/kPhrRYl4z6u/XWKLPzWokNW10BidwSYipTKQ9++gx5/9POqcTl5QBO3F6neUmKXHHXhCJXltnol0F5LGabSFrn8EFkPTJ5nzL1zm0M1jSkvLxOxXj+wu/rxTQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+rEIXcsk5sCnbvR1nkH3cPhzJWOTILyAXSYxKpcNnE0=;
- b=sTOC0OuWXA9CI8eoNw52+Y+tJ3cube3/gz+U5aYddG6gzgE+RZaH0+jivmWf+SqXLmIIC2ntpyuMUCe0b9RlzgVmjvNJqoJLIeYX3EXXXsom0nh/Jlr20/Ngr2iDkqey4ecy4R+vD4pI7gET+p67/Z4+18w60kqL26iGrRqkyCc=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from DM5PR12MB2407.namprd12.prod.outlook.com (2603:10b6:4:b4::24) by
- DM5PR12MB1675.namprd12.prod.outlook.com (2603:10b6:4:5::21) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3174.23; Tue, 14 Jul 2020 00:44:07 +0000
-Received: from DM5PR12MB2407.namprd12.prod.outlook.com
- ([fe80::9c20:aa3e:1b50:7ce5]) by DM5PR12MB2407.namprd12.prod.outlook.com
- ([fe80::9c20:aa3e:1b50:7ce5%4]) with mapi id 15.20.3174.026; Tue, 14 Jul 2020
- 00:44:07 +0000
-To: amd-gfx list <amd-gfx@lists.freedesktop.org>,
- "Koenig, Christian" <Christian.Koenig@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Subject: Failed to find memory space for buffer eviction
-Message-ID: <9f1607ce-3f40-41f5-662f-501434625773@amd.com>
-Date: Mon, 13 Jul 2020 20:44:04 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-Content-Language: en-US
-X-ClientProxiedBy: QB1PR01CA0025.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c00:2d::38) To DM5PR12MB2407.namprd12.prod.outlook.com
- (2603:10b6:4:b4::24)
+ bh=Ix9qrfGcIoKUPT/JCo9dV52wlEqwdB89bv55dr/xqKU=;
+ b=TCyeLeadCdS6hdla1ull2vmfTjdyKo60JhEpnN/VSg2Te9vZGR89G2DfPyT2x0PY4lC4qCfXlO7mt3+Qr+WKH4fERi0ZQLVIovrSPBpiLxgevc75fmi3W3FgXGXNuUn6trEo+FRji/1lJDwpuhtBLozZdCe+AWhiZSDMKHvhPgw=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from CH2PR12MB4101.namprd12.prod.outlook.com (2603:10b6:610:a8::22)
+ by CH2PR12MB4232.namprd12.prod.outlook.com (2603:10b6:610:a4::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.21; Tue, 14 Jul
+ 2020 02:29:25 +0000
+Received: from CH2PR12MB4101.namprd12.prod.outlook.com
+ ([fe80::b9c2:5b76:382a:c5d]) by CH2PR12MB4101.namprd12.prod.outlook.com
+ ([fe80::b9c2:5b76:382a:c5d%8]) with mapi id 15.20.3174.025; Tue, 14 Jul 2020
+ 02:29:25 +0000
+From: Wenhui Sheng <Wenhui.Sheng@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/4] drm/amd/powerplay: add SMU mode1 reset
+Date: Tue, 14 Jul 2020 10:29:08 +0800
+Message-Id: <20200714022911.3006-1-Wenhui.Sheng@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: HKAPR03CA0007.apcprd03.prod.outlook.com
+ (2603:1096:203:c8::12) To CH2PR12MB4101.namprd12.prod.outlook.com
+ (2603:10b6:610:a8::22)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.2.100] (142.117.53.25) by
- QB1PR01CA0025.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c00:2d::38) with Microsoft
+Received: from HUI.amd.com (58.247.170.242) by
+ HKAPR03CA0007.apcprd03.prod.outlook.com (2603:1096:203:c8::12) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3174.21 via Frontend Transport; Tue, 14 Jul 2020 00:44:07 +0000
-X-Originating-IP: [142.117.53.25]
+ 15.20.3195.9 via Frontend Transport; Tue, 14 Jul 2020 02:29:23 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [58.247.170.242]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 080f2220-52d6-47e7-2c69-08d8278f0414
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1675:
+X-MS-Office365-Filtering-Correlation-Id: b566aa9f-20ac-4ab5-f65d-08d8279db9b8
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4232:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1675305BFA94502F4C33EA7A92610@DM5PR12MB1675.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB42328208F909A383B3FB1EDC8C610@CH2PR12MB4232.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:632;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rBfti2sE6qYFQmfDkf9FtbyeO+9x4i9dhL3azoDks5A6KkkhvkAtd8gIMkajCrBy33kDoK1cv0E7FfeRLrnwZwczyvjQJsclamVoCj5HgxjIC+sr8t6HJZHYX/wZj07u/9lse2uxpJ9AZjR+OzSoRf/F7JYE9MUiE8MR+QgDBjIhuGWi2wFxjoBQtxprIZWOFxPHkMv3SoTT7wZdVYAlGW9V1VKqxrzCHnquYD0KB0soP55hUyOfj5h3RFka4gpApDUY8OyuoxoOfFVxck6cllsBsE2JRo+c7JQvw4OR/ahYatRv3pePizqLyPv3GxBzZQU0owshuyNNXLXmgJBpdcll7/vDcNAl1aWa3bNEfFj5gTIDolIF0XhiEBS4Wzd2BZRjTq8WWpiCdf3FUektXA==
+X-Microsoft-Antispam-Message-Info: EHjLCAACMM5y9B87Asi+pBmidsk4iu9UaAa7SX+6eZZGqGSoGNQ91FI/ENUUMigtt+C7osSfOQtRyS5HkLl1UjVnuWYgMs9O+q4Riu3ic1ds8aXFKhMjiW/B7bokdT3G676ySqokd+THQT8yGUQHZO6x3UL9CLZJGe4WvHHJ0HTxbrH3Et6HZrdiRvrUhlJByrzHnm9I1Hi90MW+tWFPxPwXAnpaAnWISKoDRWiklNZyM4YG3CyL561avSMD1ntSo40vmVlN9OxHe/gq7moQXOdh3wnLVr/CTGhVWKlnKFpEEv/gws7ElTM0HWD03eSjq1w8XF+ZzYfsj5Pe2Mfotg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB2407.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB4101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(39860400002)(366004)(396003)(346002)(136003)(376002)(6666004)(316002)(66946007)(16576012)(66556008)(86362001)(52116002)(66476007)(5660300002)(36756003)(2616005)(8676002)(8936002)(956004)(31696002)(6636002)(6486002)(31686004)(26005)(110136005)(44832011)(2906002)(478600001)(16526019)(186003)(37363001)(43740500002);
+ SFS:(4636009)(39860400002)(366004)(136003)(346002)(376002)(396003)(16526019)(2616005)(2906002)(5660300002)(52116002)(26005)(54906003)(478600001)(8676002)(186003)(956004)(6666004)(1076003)(6486002)(66946007)(66476007)(66556008)(316002)(4326008)(7696005)(83380400001)(8936002)(86362001)(6916009)(36756003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: eXVPM7VjpRoBkpxEDGERwUBxhFB1t0wvH26FomyjdpUNj2uFTDHTaCKybJdsOfhRjT0hd98xFrm5xjkZxj//1KABBDZZ2C9X9bJlEnEk/c2/siSh3jyAIlHUBDmIVNsMlJzudQQQm3Iw64V0yr2LAjpPwN5lcBgW0CIcPdfQbroPrNOvhamk45tyLaX8Kie60l/UkEeTzbBpM4iOgDC2rh6BrYkQEyURPHQZirbyG2nhfPfpQY87tV7iNPzDBvUEcqonMTSpMx0d68mQCTz/yApp5UK5+L1iXabf8fLz+6uBnpla5zoOVR92zBabalKLY3XDxZYM3mYQ5b0QaToSbGd1FiWnZlcbg7gCnlSkH1xYvQsB4xA+6QvHZTUOaNR6T/DY7jV1inov86Y+3PisTM5oOGdcmJzotNwhVx59zZl3iS7XVRxmPgnaQ4JJOLigGIYmaFlmwTzrtbnLySZFwR3My6x3TOZj4UfuuiavW38OAex5MVLdJGFN/hvGKzfx
+X-MS-Exchange-AntiSpam-MessageData: 1wg9foFupqUjYJagTCyYc7K1k2fmqf+0Fsh+PUYJLxiPNmlYBxjq2fmeWhqowWL7WfYo3Vhnw8QyL8R+wwKuW+ToeQnTgLOmuhFD2IGOV3wHKTBz8t4Kl6bvtZrIVDCcAIeRXbVOzQESUrcYjYfCYJbXJO7H0fb5fs43Uj4DHuzTBMn93WjfH3yQHfmMUz7d/q+0YQnorM9GOBxmeTKLhPmYkTWjdyHWP5DUlpioOj+5FQ9cvo0d9FkC5MPzsBoBNVFguJoXMFmYahjJvfw6WLXz8XGxKkzwnk1stXhS8oWEb7KpJnknEE4RCcfmoeQpi9I9BQiSN3V4aNAky/wDTpoVWLqiNsLUO/guIwLFgeEhft3dNQAG8dzgHKFoKeRkHOOAyxH0ih4oXuj4yMdEKpCf7jc1mnDYUvZJP7R/0JLUEzFkqqW2HhWavuwrbRrvQe10lZ6TFS9aO/Z31klTFhS9srr5yauLDPbVG3qLysChOiHH0dsuPbOq0iJyz9XU
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 080f2220-52d6-47e7-2c69-08d8278f0414
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2407.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b566aa9f-20ac-4ab5-f65d-08d8279db9b8
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4101.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2020 00:44:07.6631 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2020 02:29:25.4699 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lKRAEUKo6S+AD7LzQ701R4xP1GvLVJoyHBhWuimj1Q2tQw9KVqEO2AeJg8+jfk13YvruCb3IdrtDBx+yDgOx6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1675
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7PBecI6Liy2uZq3b7ozq8pF48q60OvjrojgfMIupb2trhBGDXEi0r67U22X5q0VGDxXdxIiGpJHvqcgkkKfxJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4232
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,93 +94,266 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Likun Gao <Likun.Gao@amd.com>, Wenhui Sheng <Wenhui.Sheng@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SSdtIHJ1bm5pbmcgaW50byB0aGlzIHByb2JsZW0gd2l0aCB0aGUgS0ZEIEV2aWN0aW9uVGVzdC4g
-VGhlIGxvZyBzbmlwcGV0CmJlbG93IGxvb2tzIGxpa2UgaXQgcmFuIG91dCBvZiBHVFQgc3BhY2Ug
-Zm9yIHRoZSBldmljdGlvbiBvZiBhIDY0TUIKYnVmZmVyLiBCdXQgdGhlbiBpdCBkdW1wcyB0aGUg
-dXNlZCBhbmQgZnJlZSBzcGFjZSBhbmQgc2hvd3MgcGxlbnR5IG9mCmZyZWUgc3BhY2UuCgpBcyBJ
-IHVuZGVyc3RhbmQgaXQsIHRoZSBwZXItcGFnZSBicmVha2Rvd24gb2YgdXNlZCBhbmQgZnJlZSBz
-cGFjZSBzaG93bgpieSBUVE0gaXMgdGhlIEdBUlQgc3BhY2UuIFNvIGl0J3Mgbm90IHZlcnkgbWVh
-bmluZ2Z1bC4KCldoYXQgbWF0dGVycyBtb3JlIGlzIHRoZSBHVFQgc3BhY2UgbWFuYWdlZCBieSBh
-bWRncHVfZ3R0X21nci5jLiBBbmQKdGhhdCdzIHdoZXJlIHRoZSBwcm9ibGVtIGlzLiBJdCBrZWVw
-cyB0cmFjayBvZiBhdmFpbGFibGUgR1RUIHNwYWNlIHdpdGgKYW4gYXRvbWljIGNvdW50ZXIgaW4g
-YW1kZ3B1X2d0dF9tZ3IuYXZhaWxhYmxlLiBJdCBnZXRzIGRlY3JlbWVudGVkIGluCmFtZGdwdV9n
-dHRfbWdyX25ldyBhbmQgaW5jcmVtZW50ZWQgaW4gYW1kZ3B1X2d0dF9tZ3JfZGVsLiBUaGUgdHJv
-dWJsZQppcywgdGhhdCBUVE0gZG9lc24ndCBjYWxsIHRoZSBsYXR0ZXIgZm9yIHR0bV9tZW1fcmVn
-cyB0aGF0IGRvbid0IGhhdmUgYW4KbW1fbm9kZToKCj4gdm9pZCB0dG1fYm9fbWVtX3B1dChzdHJ1
-Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvLCBzdHJ1Y3QgdHRtX21lbV9yZWcgKm1lbSkKPiB7Cj4g
-wqDCoMKgwqDCoMKgwqAgc3RydWN0IHR0bV9tZW1fdHlwZV9tYW5hZ2VyICptYW4gPSAmYm8tPmJk
-ZXYtPm1hblttZW0tPm1lbV90eXBlXTsKPgo+IMKgwqDCoMKgwqDCoMKgIGlmIChtZW0tPm1tX25v
-ZGUpCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICgqbWFuLT5mdW5jLT5wdXRfbm9k
-ZSkobWFuLCBtZW0pOwo+IH0KR1RUIEJPcyB0aGF0IGRvbid0IGhhdmUgR0FSVCBzcGFjZSBhbGxv
-Y2F0ZWQsIGRvbid0IGhhdGUgYW4gbW1fbm9kZS4gU28KdGhlIGFtZGdwdV9ndHRfbWdyLmF2YWls
-YWJsZSBjb3VudGVyIGRvZXNuJ3QgZ2V0IGluY3JlbWVudGVkIHdoZW4gYW4KdW5tYXBwZWQgR1RU
-IEJPIGlzIGZyZWVkLCBhbmQgZXZlbnR1YWxseSBydW5zIG91dCBvZiBzcGFjZS4KCk5vdyBJIGtu
-b3cgd2hhdCB0aGUgcHJvYmxlbSBpcywgYnV0IEkgZG9uJ3Qga25vdyBob3cgdG8gZml4IGl0LiBN
-YXliZSBhCmR1bW15LW1tX25vZGUgZm9yIHVubWFwcGVkIEdUVCBCT3MsIHRvIHRyaWNrIFRUTSBp
-bnRvIGNhbGxpbmcgb3VyCnB1dF9ub2RlIGNhbGxiYWNrPyBPciBhIGNoYW5nZSBpbiBUVE0gdG8g
-Y2FsbCBwdXRfbm9kZSB1bmNvbmRpdGlvbmFsbHk/CgpSZWdhcmRzLArCoCBGZWxpeAoKClvCoCAz
-NjAuMDgyNTUyXSBbVFRNXSBGYWlsZWQgdG8gZmluZCBtZW1vcnkgc3BhY2UgZm9yIGJ1ZmZlcgow
-eDAwMDAwMDAwMjY0YzgyM2MgZXZpY3Rpb24KW8KgIDM2MC4wOTAzMzFdIFtUVE1dwqAgTm8gc3Bh
-Y2UgZm9yIDAwMDAwMDAwMjY0YzgyM2MgKDE2Mzg0IHBhZ2VzLAo2NTUzNkssIDY0TSkKW8KgIDM2
-MC4wOTAzMzRdIFtUVE1dwqDCoMKgIHBsYWNlbWVudFswXT0weDAwMDEwMDAyICgxKQpbwqAgMzYw
-LjA5MDMzNl0gW1RUTV3CoMKgwqDCoMKgIGhhc190eXBlOiAxClvCoCAzNjAuMDkwMzM3XSBbVFRN
-XcKgwqDCoMKgwqAgdXNlX3R5cGU6IDEKW8KgIDM2MC4wOTAzMzldIFtUVE1dwqDCoMKgwqDCoCBm
-bGFnczogMHgwMDAwMDAwQQpbwqAgMzYwLjA5MDM0MV0gW1RUTV3CoMKgwqDCoMKgIGdwdV9vZmZz
-ZXQ6IDB4RkYwMDAwMDAwMApbwqAgMzYwLjA5MDM0Ml0gW1RUTV3CoMKgwqDCoMKgIHNpemU6IDEw
-NDg1NzYKW8KgIDM2MC4wOTAzNDRdIFtUVE1dwqDCoMKgwqDCoCBhdmFpbGFibGVfY2FjaGluZzog
-MHgwMDA3MDAwMApbwqAgMzYwLjA5MDM0Nl0gW1RUTV3CoMKgwqDCoMKgIGRlZmF1bHRfY2FjaGlu
-ZzogMHgwMDAxMDAwMApbwqAgMzYwLjA5MDM0OV0gW1RUTV3CoCAweDAwMDAwMDAwMDAwMDA0MDAt
-MHgwMDAwMDAwMDAwMDAwNDAyOiAyOiB1c2VkClvCoCAzNjAuMDkwMzUyXSBbVFRNXcKgIDB4MDAw
-MDAwMDAwMDAwMDQwMi0weDAwMDAwMDAwMDAwMDA0MDQ6IDI6IHVzZWQKW8KgIDM2MC4wOTAzNTRd
-IFtUVE1dwqAgMHgwMDAwMDAwMDAwMDAwNDA0LTB4MDAwMDAwMDAwMDAwMDQwNjogMjogdXNlZApb
-wqAgMzYwLjA5MDM1NV0gW1RUTV3CoCAweDAwMDAwMDAwMDAwMDA0MDYtMHgwMDAwMDAwMDAwMDAw
-NDA4OiAyOiB1c2VkClvCoCAzNjAuMDkwMzU3XSBbVFRNXcKgIDB4MDAwMDAwMDAwMDAwMDQwOC0w
-eDAwMDAwMDAwMDAwMDA0MGE6IDI6IHVzZWQKW8KgIDM2MC4wOTAzNTldIFtUVE1dwqAgMHgwMDAw
-MDAwMDAwMDAwNDBhLTB4MDAwMDAwMDAwMDAwMDQwYzogMjogdXNlZApbwqAgMzYwLjA5MDM2MV0g
-W1RUTV3CoCAweDAwMDAwMDAwMDAwMDA0MGMtMHgwMDAwMDAwMDAwMDAwNDBlOiAyOiB1c2VkClvC
-oCAzNjAuMDkwMzYzXSBbVFRNXcKgIDB4MDAwMDAwMDAwMDAwMDQwZS0weDAwMDAwMDAwMDAwMDA0
-MTA6IDI6IHVzZWQKW8KgIDM2MC4wOTAzNjVdIFtUVE1dwqAgMHgwMDAwMDAwMDAwMDAwNDEwLTB4
-MDAwMDAwMDAwMDAwMDQxMjogMjogdXNlZApbwqAgMzYwLjA5MDM2N10gW1RUTV3CoCAweDAwMDAw
-MDAwMDAwMDA0MTItMHgwMDAwMDAwMDAwMDAwNDE0OiAyOiB1c2VkClvCoCAzNjAuMDkwMzY4XSBb
-VFRNXcKgIDB4MDAwMDAwMDAwMDAwMDQxNC0weDAwMDAwMDAwMDAwMDA0MTU6IDE6IHVzZWQKW8Kg
-IDM2MC4wOTAzNzBdIFtUVE1dwqAgMHgwMDAwMDAwMDAwMDAwNDE1LTB4MDAwMDAwMDAwMDAwMDUx
-NTogMjU2OiB1c2VkClvCoCAzNjAuMDkwMzcyXSBbVFRNXcKgIDB4MDAwMDAwMDAwMDAwMDUxNS0w
-eDAwMDAwMDAwMDAwMDA1MTY6IDE6IHVzZWQKW8KgIDM2MC4wOTAzNzRdIFtUVE1dwqAgMHgwMDAw
-MDAwMDAwMDAwNTE2LTB4MDAwMDAwMDAwMDAwMDUxNzogMTogdXNlZApbwqAgMzYwLjA5MDM3Nl0g
-W1RUTV3CoCAweDAwMDAwMDAwMDAwMDA1MTctMHgwMDAwMDAwMDAwMDAwNTE4OiAxOiB1c2VkClvC
-oCAzNjAuMDkwMzc4XSBbVFRNXcKgIDB4MDAwMDAwMDAwMDAwMDUxOC0weDAwMDAwMDAwMDAwMDA1
-MTk6IDE6IHVzZWQKW8KgIDM2MC4wOTAzNzldIFtUVE1dwqAgMHgwMDAwMDAwMDAwMDAwNTE5LTB4
-MDAwMDAwMDAwMDAwMDUxYTogMTogdXNlZApbwqAgMzYwLjA5MDM4MV0gW1RUTV3CoCAweDAwMDAw
-MDAwMDAwMDA1MWEtMHgwMDAwMDAwMDAwMDAwNTFiOiAxOiB1c2VkClvCoCAzNjAuMDkwMzgzXSBb
-VFRNXcKgIDB4MDAwMDAwMDAwMDAwMDUxYi0weDAwMDAwMDAwMDAwMDA1MWM6IDE6IHVzZWQKW8Kg
-IDM2MC4wOTAzODVdIFtUVE1dwqAgMHgwMDAwMDAwMDAwMDAwNTFjLTB4MDAwMDAwMDAwMDAwMDUx
-ZDogMTogdXNlZApbwqAgMzYwLjA5MDM4N10gW1RUTV3CoCAweDAwMDAwMDAwMDAwMDA1MWQtMHgw
-MDAwMDAwMDAwMDAwNTFmOiAyOiB1c2VkClvCoCAzNjAuMDkwMzg5XSBbVFRNXcKgIDB4MDAwMDAw
-MDAwMDAwMDUxZi0weDAwMDAwMDAwMDAwMDA1MjE6IDI6IHVzZWQKW8KgIDM2MC4wOTAzOTFdIFtU
-VE1dwqAgMHgwMDAwMDAwMDAwMDAwNTIxLTB4MDAwMDAwMDAwMDAwMDUyMjogMTogdXNlZApbwqAg
-MzYwLjA5MDM5Ml0gW1RUTV3CoCAweDAwMDAwMDAwMDAwMDA1MjItMHgwMDAwMDAwMDAwMDAwNTIz
-OiAxOiB1c2VkClvCoCAzNjAuMDkwMzk0XSBbVFRNXcKgIDB4MDAwMDAwMDAwMDAwMDUyMy0weDAw
-MDAwMDAwMDAwMDA1MjQ6IDE6IHVzZWQKW8KgIDM2MC4wOTAzOTZdIFtUVE1dwqAgMHgwMDAwMDAw
-MDAwMDAwNTI0LTB4MDAwMDAwMDAwMDAwMDUyNTogMTogdXNlZApbwqAgMzYwLjA5MDM5OF0gW1RU
-TV3CoCAweDAwMDAwMDAwMDAwMDA1MjUtMHgwMDAwMDAwMDAwMDAwNjI1OiAyNTY6IHVzZWQKW8Kg
-IDM2MC4wOTA0MDBdIFtUVE1dwqAgMHgwMDAwMDAwMDAwMDAwNjI1LTB4MDAwMDAwMDAwMDAwMDcy
-NTogMjU2OiB1c2VkClvCoCAzNjAuMDkwNDAyXSBbVFRNXcKgIDB4MDAwMDAwMDAwMDAwMDcyNS0w
-eDAwMDAwMDAwMDAwMDA3Mjc6IDI6IHVzZWQKW8KgIDM2MC4wOTA0MDRdIFtUVE1dwqAgMHgwMDAw
-MDAwMDAwMDAwNzI3LTB4MDAwMDAwMDAwMDAwMDdjMDogMTUzOiB1c2VkClvCoCAzNjAuMDkwNDA2
-XSBbVFRNXcKgIDB4MDAwMDAwMDAwMDAwMDdjMC0weDAwMDAwMDAwMDAwMDBiOGE6IDk3MDogdXNl
-ZApbwqAgMzYwLjA5MDQwN10gW1RUTV3CoCAweDAwMDAwMDAwMDAwMDBiOGEtMHgwMDAwMDAwMDAw
-MDAwYjhiOiAxOiB1c2VkClvCoCAzNjAuMDkwNDA5XSBbVFRNXcKgIDB4MDAwMDAwMDAwMDAwMGI4
-Yi0weDAwMDAwMDAwMDAwMDBiY2I6IDY0OiB1c2VkClvCoCAzNjAuMDkwNDExXSBbVFRNXcKgIDB4
-MDAwMDAwMDAwMDAwMGJjYi0weDAwMDAwMDAwMDAwMDBiY2Q6IDI6IHVzZWQKW8KgIDM2MC4wOTA0
-MTNdIFtUVE1dwqAgMHgwMDAwMDAwMDAwMDAwYmNkLTB4MDAwMDAwMDAwMDA0MDAwMDogMjU5MTIz
-OiBmcmVlClvCoCAzNjAuMDkwNDE1XSBbVFRNXcKgIHRvdGFsOiAyNjExMjAsIHVzZWQgMTk5NyBm
-cmVlIDI1OTEyMwpbwqAgMzYwLjA5MDQxN10gW1RUTV3CoCBtYW4gc2l6ZToxMDQ4NTc2IHBhZ2Vz
-LCBndHQgYXZhaWxhYmxlOjE0MzcxIHBhZ2VzLAp1c2FnZTo0MDM5TUIKCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAph
-bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+From PM FW 58.26.0 for sienna cichlid, SMU mode1 reset
+is support, driver sends PPSMC_MSG_Mode1Reset message
+to PM FW could trigger this reset.
+
+v2: add mode1 reset dpm interface
+v3: change maro name
+
+Signed-off-by: Likun Gao <Likun.Gao@amd.com>
+Signed-off-by: Wenhui Sheng <Wenhui.Sheng@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c       | 20 +++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h       |  3 ++
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c    | 34 +++++++++++++++++++
+ .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h    |  4 +++
+ drivers/gpu/drm/amd/powerplay/inc/smu_types.h |  1 +
+ drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h |  2 ++
+ .../drm/amd/powerplay/sienna_cichlid_ppt.c    | 29 ++++++++++++++--
+ drivers/gpu/drm/amd/powerplay/smu_v11_0.c     | 13 +++++++
+ 8 files changed, 104 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c
+index 65472b3dd815..16668fc52d0d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c
+@@ -1141,6 +1141,26 @@ int amdgpu_dpm_baco_reset(struct amdgpu_device *adev)
+ 	return 0;
+ }
+ 
++bool amdgpu_dpm_is_mode1_reset_supported(struct amdgpu_device *adev)
++{
++	struct smu_context *smu = &adev->smu;
++
++	if (is_support_sw_smu(adev))
++		return smu_mode1_reset_is_support(smu);
++
++	return false;
++}
++
++int amdgpu_dpm_mode1_reset(struct amdgpu_device *adev)
++{
++	struct smu_context *smu = &adev->smu;
++
++	if (is_support_sw_smu(adev))
++		return smu_mode1_reset(smu);
++
++	return -EOPNOTSUPP;
++}
++
+ int amdgpu_dpm_switch_power_profile(struct amdgpu_device *adev,
+ 				    enum PP_SMC_POWER_PROFILE type,
+ 				    bool en)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
+index 6a8aae70a0e6..7f3cd7185650 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
+@@ -529,6 +529,9 @@ int amdgpu_dpm_mode2_reset(struct amdgpu_device *adev);
+ 
+ bool amdgpu_dpm_is_baco_supported(struct amdgpu_device *adev);
+ 
++bool amdgpu_dpm_is_mode1_reset_supported(struct amdgpu_device *adev);
++int amdgpu_dpm_mode1_reset(struct amdgpu_device *adev);
++
+ int amdgpu_dpm_set_mp1_state(struct amdgpu_device *adev,
+ 			     enum pp_mp1_state mp1_state);
+ 
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+index fe4948aa662f..b5a7422d9548 100644
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+@@ -2737,6 +2737,40 @@ int smu_baco_exit(struct smu_context *smu)
+ 	return ret;
+ }
+ 
++bool smu_mode1_reset_is_support(struct smu_context *smu)
++{
++	bool ret = false;
++
++	if (!smu->pm_enabled)
++		return false;
++
++	mutex_lock(&smu->mutex);
++
++	if (smu->ppt_funcs && smu->ppt_funcs->mode1_reset_is_support)
++		ret = smu->ppt_funcs->mode1_reset_is_support(smu);
++
++	mutex_unlock(&smu->mutex);
++
++	return ret;
++}
++
++int smu_mode1_reset(struct smu_context *smu)
++{
++	int ret = 0;
++
++	if (!smu->pm_enabled)
++		return -EOPNOTSUPP;
++
++	mutex_lock(&smu->mutex);
++
++	if (smu->ppt_funcs->mode1_reset)
++		ret = smu->ppt_funcs->mode1_reset(smu);
++
++	mutex_unlock(&smu->mutex);
++
++	return ret;
++}
++
+ int smu_mode2_reset(struct smu_context *smu)
+ {
+ 	int ret = 0;
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+index 7b349e038972..ba59620950d7 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
+@@ -561,6 +561,8 @@ struct pptable_funcs {
+ 	int (*baco_set_state)(struct smu_context *smu, enum smu_baco_state state);
+ 	int (*baco_enter)(struct smu_context *smu);
+ 	int (*baco_exit)(struct smu_context *smu);
++	bool (*mode1_reset_is_support)(struct smu_context *smu);
++	int (*mode1_reset)(struct smu_context *smu);
+ 	int (*mode2_reset)(struct smu_context *smu);
+ 	int (*get_dpm_ultimate_freq)(struct smu_context *smu, enum smu_clk_type clk_type, uint32_t *min, uint32_t *max);
+ 	int (*set_soft_freq_limited_range)(struct smu_context *smu, enum smu_clk_type clk_type, uint32_t min, uint32_t max);
+@@ -672,6 +674,8 @@ int smu_baco_get_state(struct smu_context *smu, enum smu_baco_state *state);
+ int smu_baco_enter(struct smu_context *smu);
+ int smu_baco_exit(struct smu_context *smu);
+ 
++bool smu_mode1_reset_is_support(struct smu_context *smu);
++int smu_mode1_reset(struct smu_context *smu);
+ int smu_mode2_reset(struct smu_context *smu);
+ 
+ extern int smu_get_atom_data_table(struct smu_context *smu, uint32_t table,
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu_types.h b/drivers/gpu/drm/amd/powerplay/inc/smu_types.h
+index dff2295705be..7b585e205a5a 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/smu_types.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/smu_types.h
+@@ -173,6 +173,7 @@
+ 	__SMU_DUMMY_MAP(GmiPwrDnControl), \
+ 	__SMU_DUMMY_MAP(DAL_DISABLE_DUMMY_PSTATE_CHANGE), \
+ 	__SMU_DUMMY_MAP(DAL_ENABLE_DUMMY_PSTATE_CHANGE), \
++	__SMU_DUMMY_MAP(Mode1Reset), \
+ 
+ #undef __SMU_DUMMY_MAP
+ #define __SMU_DUMMY_MAP(type)	SMU_MSG_##type
+diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
+index b2f65438ad8d..6a496e70917d 100644
+--- a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
++++ b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
+@@ -252,6 +252,8 @@ int smu_v11_0_baco_set_state(struct smu_context *smu, enum smu_baco_state state)
+ int smu_v11_0_baco_enter(struct smu_context *smu);
+ int smu_v11_0_baco_exit(struct smu_context *smu);
+ 
++int smu_v11_0_mode1_reset(struct smu_context *smu);
++
+ int smu_v11_0_get_dpm_ultimate_freq(struct smu_context *smu, enum smu_clk_type clk_type,
+ 						 uint32_t *min, uint32_t *max);
+ 
+diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+index 3efa41444ddf..cd8590aac85d 100644
+--- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+@@ -39,8 +39,8 @@
+ #include "nbio/nbio_2_3_sh_mask.h"
+ #include "thm/thm_11_0_2_offset.h"
+ #include "thm/thm_11_0_2_sh_mask.h"
+-
+-#include "asic_reg/mp/mp_11_0_sh_mask.h"
++#include "mp/mp_11_0_offset.h"
++#include "mp/mp_11_0_sh_mask.h"
+ 
+ /*
+  * DO NOT use these for err/warn/info/debug messages.
+@@ -116,6 +116,7 @@ static struct smu_11_0_cmn2aisc_mapping sienna_cichlid_message_map[SMU_MSG_MAX_C
+ 	MSG_MAP(PowerDownJpeg,			PPSMC_MSG_PowerDownJpeg),
+ 	MSG_MAP(BacoAudioD3PME,			PPSMC_MSG_BacoAudioD3PME),
+ 	MSG_MAP(ArmD3,				PPSMC_MSG_ArmD3),
++	MSG_MAP(Mode1Reset,			PPSMC_MSG_Mode1Reset),
+ };
+ 
+ static struct smu_11_0_cmn2aisc_mapping sienna_cichlid_clk_map[SMU_CLK_COUNT] = {
+@@ -1767,6 +1768,28 @@ static bool sienna_cichlid_is_baco_supported(struct smu_context *smu)
+ 	return (val & RCC_BIF_STRAP0__STRAP_PX_CAPABLE_MASK) ? true : false;
+ }
+ 
++static bool sienna_cichlid_is_mode1_reset_supported(struct smu_context *smu)
++{
++	struct amdgpu_device *adev = smu->adev;
++	uint32_t val;
++	u32 smu_version;
++
++	/**
++	 * SRIOV env will not support SMU mode1 reset
++	 * PM FW support mode1 reset from 58.26
++	 */
++	smu_get_smc_version(smu, NULL, &smu_version);
++	if (amdgpu_sriov_vf(adev) || (smu_version < 0x003a1a00))
++		return false;
++
++	/**
++	 * mode1 reset relies on PSP, so we should check if
++	 * PSP is alive.
++	 */
++	val = RREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_81);
++	return val != 0x0;
++}
++
+ static int sienna_cichlid_set_thermal_range(struct smu_context *smu,
+ 				       struct smu_temperature_range range)
+ {
+@@ -2537,6 +2560,8 @@ static const struct pptable_funcs sienna_cichlid_ppt_funcs = {
+ 	.baco_set_state = smu_v11_0_baco_set_state,
+ 	.baco_enter = smu_v11_0_baco_enter,
+ 	.baco_exit = smu_v11_0_baco_exit,
++	.mode1_reset_is_support = sienna_cichlid_is_mode1_reset_supported,
++	.mode1_reset = smu_v11_0_mode1_reset,
+ 	.get_dpm_ultimate_freq = sienna_cichlid_get_dpm_ultimate_freq,
+ 	.set_soft_freq_limited_range = sienna_cichlid_set_soft_freq_limited_range,
+ 	.override_pcie_parameters = smu_v11_0_override_pcie_parameters,
+diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
+index 48e15885e9c3..85073d0b94f7 100644
+--- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
++++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
+@@ -63,6 +63,8 @@ MODULE_FIRMWARE("amdgpu/sienna_cichlid_smc.bin");
+ 
+ #define SMU11_VOLTAGE_SCALE 4
+ 
++#define SMU11_MODE1_RESET_WAIT_TIME_IN_MS 500  //500ms
++
+ static int smu_v11_0_send_msg_without_waiting(struct smu_context *smu,
+ 					      uint16_t msg)
+ {
+@@ -1741,6 +1743,17 @@ int smu_v11_0_baco_exit(struct smu_context *smu)
+ 	return ret;
+ }
+ 
++int smu_v11_0_mode1_reset(struct smu_context *smu)
++{
++	int ret = 0;
++
++	ret = smu_send_smc_msg(smu, SMU_MSG_Mode1Reset, NULL);
++	if (!ret)
++		msleep(SMU11_MODE1_RESET_WAIT_TIME_IN_MS);
++
++	return ret;
++}
++
+ int smu_v11_0_get_dpm_ultimate_freq(struct smu_context *smu, enum smu_clk_type clk_type,
+ 						 uint32_t *min, uint32_t *max)
+ {
+-- 
+2.17.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
