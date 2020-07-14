@@ -1,56 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5063A21F92F
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E87521F930
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BE2B6E7D4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1D2A6E7DD;
 	Tue, 14 Jul 2020 18:24:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
  [IPv6:2607:f8b0:4864:20::744])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A5F56E5D4
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:15 +0000 (UTC)
-Received: by mail-qk1-x744.google.com with SMTP id b185so16549161qkg.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:15 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6984B6E7DD
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:16 +0000 (UTC)
+Received: by mail-qk1-x744.google.com with SMTP id b4so16491408qkn.11
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=6Y7Re0RtdTQUP2XUiyU7fY1V3Om4D7ip4d6mshpnnLY=;
- b=Dtwxcf09L7nhfBPRPnJMSI8Nn6wXArpL8OKFImCbv2ZG13rduxlrqbX/h31aZ1yhZK
- feQYgWX9p3/FB1Ya9oyfdE9gPXImz9d90Dbc7SSUZIDTVY/e3DpfPikEAwgDSJuCmCzw
- IgQtTXcTcOVg69wNWwmnrlwOQaIqTwG5zzGJyUTt94LGcA/U9CBNq7YfpvXJplVIRwhl
- A5+jY/RkobFza/MX5Wl/2+hzqx3aJm1hqiIbiZ/siV/Ocb5/56iBR3jjmtlJ1CwfAhYK
- Tq1yz3StEEO4GfRxgKNyTCMxh5ES/cUXfl4tKXtyFEoC87hLmiOyqNQ+kNhPcufHVHXI
- x5bA==
+ bh=Xvb8EkHVHrLfJGlCqEFlXRgC5SCROi0PsS8a56e8UU4=;
+ b=rJGBHdLFaK5P4uKp8iiZdbF790tMHDXYBb/kgV8GLllpO4YthcPrKockVXy+aQHaXa
+ DVYkfGOXRYppXTObm47cwbJdXwuzM3Xayaigs79N4Lp/9n9kJ1YYZ2nNyLlS7m24x9Zx
+ +1tTFYr+6L/3HTJujwH8MKbqiOabXO4mCmIMN9IlGl00ApLCK8fAyFEJM0j9eNTTOKCX
+ LO24gdYFTNE4oOUxQRT9jrVytuoyyilUjglbHbNilx1eDlbVj4etOILy7646B4ZS5Hz/
+ AGwOIPeJW5XO7USDd42aHNtCQdKChOjpV2ZmYKl8t0G+cxnBEVBxm8ZCayacG6KAvM+l
+ WjFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=6Y7Re0RtdTQUP2XUiyU7fY1V3Om4D7ip4d6mshpnnLY=;
- b=GzWEdeY3jwe5UgHd8RgV9Lht7Zghq9/PaOorjl46eW4CXQU6VHxi41ceJK0fC3J81w
- CSO9W0DzxLz0URKJ0CPQyycK4jheONsc+LKhZeDibHhDGTRjZp4rLUXVNvZV0fvXOeDn
- MdJ3cyBh/eOHvq6XAgYZQAlqjrEt1TDtKWkVj36k0Js1jMuOKgBL/9Q/vJNQLa7bkXCF
- SMQogFpK8REdGdukA4znFHyI85ZNaRaRywkF40JS1Mv7xMGqoK2YPMIet9eH7LUawRps
- CGJ263me2L57dq7aZep1GwR8rEtXL7Cqi5QgDoibS4PGwJG6bYCKOnL+uAOWbWtLIuAe
- M2zQ==
-X-Gm-Message-State: AOAM532WUBA+tHgA3Nn8ZgMcCRBoX/KOAm3MaSZ6iltNd8GdaWmigmEl
- fnmTZAvHdaDlmL0ZS1+iOGQvcVp1
-X-Google-Smtp-Source: ABdhPJzcMcFOJem0kcXP/Aol/K7QSaZgFlncQJRZpGTtCdN0Ntu/t2AAnJW6uGuHuq0iU0BAchhDoA==
-X-Received: by 2002:a37:a20d:: with SMTP id l13mr6098101qke.296.1594751054254; 
- Tue, 14 Jul 2020 11:24:14 -0700 (PDT)
+ bh=Xvb8EkHVHrLfJGlCqEFlXRgC5SCROi0PsS8a56e8UU4=;
+ b=q3GB9qXyMf3/SuC6oD7q/bu0tCNaLzHpIbFqrv+K3SxW0CpHy3tOlBQcmUCvaL4h7d
+ V1Y9VxeQAJLIOw7f+yKIqa/4mvF6bQ7QK0BlPq4FYzYmqQnYiELj08Vyb7uta3W01CEK
+ K4dLG43RCu21tbATTuLjXoBPRHVQ1Mv9S2IHxv8o7a4tuuqselGBMCLUojCW65AXfFGe
+ XDqhjC1edNSTpYa15hCiblECj/h+YIdmr1kerFG/CuOyCAzrltTnUzcRW+kDuLz9arF3
+ MmrSAZOkjil57J2eAV722IUi1PLFVfOpkQLBs1SoK1oxEGEiuPnZQZDZ3Q9qMyHwjWeU
+ 1zlw==
+X-Gm-Message-State: AOAM5313bThcL6y1YxnuZVcS4JaFJci29XzD//yYaZ5NAs+mDKTxgpOU
+ 5Qdj5QQIAaz36pgLFkSxJcavEp2m
+X-Google-Smtp-Source: ABdhPJxfLOok39uSVzBZjFg6MjLkDswQ3lnfdBt/crI2Inkoau0qZy9vt5eNcN23Cu4Y4kb2MOodow==
+X-Received: by 2002:a37:8fc5:: with SMTP id r188mr5414864qkd.447.1594751055404; 
+ Tue, 14 Jul 2020 11:24:15 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.13
+ by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Jul 2020 11:24:13 -0700 (PDT)
+ Tue, 14 Jul 2020 11:24:14 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 04/42] drm/amdgpu: set fw load type for navy_flounder
-Date: Tue, 14 Jul 2020 14:23:15 -0400
-Message-Id: <20200714182353.2164930-5-alexander.deucher@amd.com>
+Subject: [PATCH 05/42] drm/amdgpu: set asic family and ip blocks for
+ navy_flounder
+Date: Tue, 14 Jul 2020 14:23:16 -0400
+Message-Id: <20200714182353.2164930-6-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200714182353.2164930-1-alexander.deucher@amd.com>
 References: <20200714182353.2164930-1-alexander.deucher@amd.com>
@@ -75,30 +76,27 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jiansong Chen <Jiansong.Chen@amd.com>
 
-Currently navy_flounder only supports backdoor loading type.
-Will switch to psp load type when psp is ready.
+Add the asic family and IP blocks for navy flounder.
 
 Signed-off-by: Jiansong Chen <Jiansong.Chen@amd.com>
 Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-index 744404a05fee..43af71c3202c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-@@ -394,7 +394,8 @@ amdgpu_ucode_get_load_type(struct amdgpu_device *adev, int load_type)
- 			return AMDGPU_FW_LOAD_DIRECT;
- 		else
- 			return AMDGPU_FW_LOAD_PSP;
--
-+	case CHIP_NAVY_FLOUNDER:
-+		return AMDGPU_FW_LOAD_DIRECT;
- 	default:
- 		DRM_ERROR("Unknown firmware load type\n");
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 99ed9cbfefcb..3efca05e5d69 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1810,6 +1810,7 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
+ 	case  CHIP_NAVI14:
+ 	case  CHIP_NAVI12:
+ 	case  CHIP_SIENNA_CICHLID:
++	case  CHIP_NAVY_FLOUNDER:
+ 		adev->family = AMDGPU_FAMILY_NV;
+ 
+ 		r = nv_set_ip_blocks(adev);
 -- 
 2.25.4
 
