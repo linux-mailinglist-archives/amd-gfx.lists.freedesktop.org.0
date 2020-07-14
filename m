@@ -1,57 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D9BB21F932
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0256621F933
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2020 20:24:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A38836E82B;
-	Tue, 14 Jul 2020 18:24:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94F1D6E82F;
+	Tue, 14 Jul 2020 18:24:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
- [IPv6:2607:f8b0:4864:20::743])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 208226E82B
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:19 +0000 (UTC)
-Received: by mail-qk1-x743.google.com with SMTP id q198so16529496qka.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:19 -0700 (PDT)
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
+ [IPv6:2607:f8b0:4864:20::744])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 608326E82C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 18:24:20 +0000 (UTC)
+Received: by mail-qk1-x744.google.com with SMTP id e13so16532599qkg.5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2020 11:24:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=63GckWYRfqN7TFWA2BiZDjURb3Th2s7M7n1aeIImYAo=;
- b=WE+wi8IsY54dTz+m94Xw1Iv60QXVH9vZc/brsOE3OykQaKjnIBg7kcmQmuQvSHsbwn
- PTcnwB1HUWjRT1Rzn/ZC0pepnvv5RyQ9bKw8kEiLIfV0s7964+mdDeRvrGTSXgkvIAnD
- 8N+ZrDAcXOIdLW5W51YfwxAi+9CYeGpT6C0KNW3DDjlMe9r6TIssIq8v29w+crDsOSoj
- j8/OiMtXs4B994Bs5BzxtBYA2jfQ6NghCVVa+ieDCaeBLjxibIO96+BThiNr3SOlDver
- z9xPc/03dmKtw4erFa5RT5d161XsH8wmoM9jQPn6+p1s31vKuixS+dK+o+cWSe43/Dox
- gfsg==
+ bh=gSfH/+zWwJqeeAp/9m4MbsvFvmHbUNhJd2hFx3ik6Ss=;
+ b=Zsr94m0JinAOR6i4pVPtDWtS2WVjWPJP/nTy7DSPZ6T+yUDaaDDZ0rJYGnBSv0ffl8
+ 5LgdrlU6EwKP1BVf/3miZ+0M7FJ1E8hVVhK4mg/uk+ZFOKDeEmmEgkjbUSbibPN9t7Mi
+ Ve0cYUorpkX5XYqGjrCLBoLYMy7PJU6YmPKFsDsWbOJnxdvxExF4/9weRoO6SmrkFI28
+ jxhD8R280rNdZgirVSkWQHV+40rR/F1ujqMP2jQf6exUvy6b7yRlBcEB6tLPwt2YaYXc
+ 66Fd/RkqgGkvk5UZlR453trisX0qX2AHEDz/LbYhpP6RiYuW67GYhYnilG7qd2A97y22
+ xO1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=63GckWYRfqN7TFWA2BiZDjURb3Th2s7M7n1aeIImYAo=;
- b=YddCf8s70AlcuCVaIfrCrroaewB0AEfHr2woZTxaeChUbGYMxTp6yxB3wTlEvbWXOe
- fLL7HHbBNloOlJ3GoX/SAHEQMFQ9XOZo+M4ZvvoRaJnpnWx6njfWPBty+Vh7lY19XcZH
- 18t1AvXSTKk+zCzRlYkc1v13HFI1nwWQp9sStupK0IxdnWXG0fzIBlUCmluJS2tf7izQ
- rXlFy1bq+pAYQZ4UMgOCvwrThOEY8pPuJmgDifTTOb/yLV6OvkgQSiJwMV9DjRguuTYW
- zuFVXw15PlWq+edQoM57oDzgw5NEj6VsTwJClVHq0WSuEhajpU+RK6dv5Jfx8DcHmQm3
- nArA==
-X-Gm-Message-State: AOAM531E3nITraXXp4Bs9hJwiWyCP46IUDnAxDikVg4TXIIo4EGB1RCL
- /BA5joz0IjD5Da9nX6/XqJBpCPEB
-X-Google-Smtp-Source: ABdhPJz+OZx4CS73QM/HBDCN/HBYZLMcxN+nylxvIlFXiHxSS2Vfjt/NHFtZBu34NPKxhs96jGVnGA==
-X-Received: by 2002:a05:620a:2eb:: with SMTP id
- a11mr5524941qko.383.1594751057963; 
- Tue, 14 Jul 2020 11:24:17 -0700 (PDT)
+ bh=gSfH/+zWwJqeeAp/9m4MbsvFvmHbUNhJd2hFx3ik6Ss=;
+ b=W9DPgt7Dm0N5fxCyhkpvnIj5CZMh/GgjqzFXpiSpx+arUiLEgN3DONRS1wResZpjmg
+ 3wK3bbRUalZ6TIpDL8UObmd9O22+3pJPOoJBgzSQ55Y+9vbDtKvDmAL5R0anaUkFBqsp
+ MnKEZez2CvBEzUf1Ha7mpHQ0CUE0yocZ7z9zM6fcXpepshCqpMG8XhaQlh4tncpg6FId
+ wrnG4G2PqrdsMeYUZFLUWLEVLzTm/+QQUUBISKKnljTAy7uOb30Y6rCqCMp4fZ4FJTt/
+ DTGRLKsc4/ehVNXqfeTZWlvPYaM6J2qyXEh+HqX0+ICKeUkvgPn7zGDh+SJ9wqu1Xgsq
+ jh9A==
+X-Gm-Message-State: AOAM531/k1okIp5yOW9YbEJ3JcSbwRDbChQXlM6Unont84tQObhDgY8K
+ ZmS8QuCEEVyTyAaa0HY7IbNu1wEn
+X-Google-Smtp-Source: ABdhPJzPPf4dgllQt7qBtWjTsBUKk/JexB9QJ1Hat/2AqAyjyPoQDHwPvcknEa99AyuonaK/S6M8fg==
+X-Received: by 2002:a37:45cb:: with SMTP id s194mr5981913qka.74.1594751059315; 
+ Tue, 14 Jul 2020 11:24:19 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.16
+ by smtp.gmail.com with ESMTPSA id d53sm26046456qtc.47.2020.07.14.11.24.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Jul 2020 11:24:17 -0700 (PDT)
+ Tue, 14 Jul 2020 11:24:18 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 07/42] drm/amdgpu/gmc10: add navy_flounder support
-Date: Tue, 14 Jul 2020 14:23:18 -0400
-Message-Id: <20200714182353.2164930-8-alexander.deucher@amd.com>
+Subject: [PATCH 08/42] drm/amdgpu/gfx10: add clockgating support for
+ navy_flounder
+Date: Tue, 14 Jul 2020 14:23:19 -0400
+Message-Id: <20200714182353.2164930-9-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200714182353.2164930-1-alexander.deucher@amd.com>
 References: <20200714182353.2164930-1-alexander.deucher@amd.com>
@@ -82,36 +82,20 @@ Signed-off-by: Jiansong Chen <Jiansong.Chen@amd.com>
 Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index 8f29f79f820d..2bf112fc8185 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -753,6 +753,7 @@ static int gmc_v10_0_mc_init(struct amdgpu_device *adev)
- 		case CHIP_NAVI14:
- 		case CHIP_NAVI12:
- 		case CHIP_SIENNA_CICHLID:
-+		case CHIP_NAVY_FLOUNDER:
- 		default:
- 			adev->gmc.gart_size = 512ULL << 20;
- 			break;
-@@ -847,6 +848,7 @@ static int gmc_v10_0_sw_init(void *handle)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 60b8da3e7321..401e9607becc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -7476,6 +7476,7 @@ static int gfx_v10_0_set_clockgating_state(void *handle,
  	case CHIP_NAVI14:
  	case CHIP_NAVI12:
  	case CHIP_SIENNA_CICHLID:
 +	case CHIP_NAVY_FLOUNDER:
- 		adev->num_vmhubs = 2;
- 		/*
- 		 * To fulfill 4-level page support,
-@@ -951,6 +953,7 @@ static void gmc_v10_0_init_golden_registers(struct amdgpu_device *adev)
- 	case CHIP_NAVI14:
- 	case CHIP_NAVI12:
- 	case CHIP_SIENNA_CICHLID:
-+	case CHIP_NAVY_FLOUNDER:
- 		break;
- 	default:
+ 		gfx_v10_0_update_gfx_clock_gating(adev,
+ 						 state == AMD_CG_STATE_GATE);
  		break;
 -- 
 2.25.4
