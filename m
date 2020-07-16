@@ -1,57 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A49222DCA
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B37E222DCD
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3359D6ECFB;
-	Thu, 16 Jul 2020 21:23:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD12A6ED02;
+	Thu, 16 Jul 2020 21:23:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
  [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B0586ECFE
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:36 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id z13so8640197wrw.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:36 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3772B6ECFF
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:37 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id b6so8601699wrs.11
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=aXY0929hnEyjy9oHOGYfW9PzPd1flXaXrUHyHSIX6Zc=;
- b=cJi1299CkLNFjsyjqbNDu4jyxRB08acQsJm65T3pB1jAvaFUsFzFwgO/vzSHHrGXz/
- FIFgPRlRFfajKXPTMDqjTvdVURtMf14XCJghqfamAJOucK7gt+jcjLBu5D4TIVCJxRK4
- 8zjeJ4J814nYUyOZjgWiVBmCm2jfx9c6aGI7rddllWP9hekDdIq+1u1vfkIGXPmFqY3A
- ddsFesj+mKlTJNaV/TNUdFZ6A/mf5kKPkEcrEnNzkKcbQSj7FRiFXFb+GqN+3uLn/azu
- t/7hUYgvzmg1mPD8qwyI/5///esJtOY/2/e2tQAkz55BfOxhIZ3tSjCrVRsgwS2aCfpB
- JAlQ==
+ bh=Qdr8ouZMcbrLXpNsTNBc/AvAIsAR8D6kw7YzhRbkS4Q=;
+ b=TFUHTfjpeUIwDN/IXtxvLeyViUSaBNFPbjieV3vtOgsXwtw8SSl5xXUaHj3faKm1Kt
+ +SrrfgDK8vf+9hn1NmTwbHrpRRjGgDFOytQfJmsB12TVPitnaCauJzvULO0V1MfhamgJ
+ nmOWH9Cat3nkBnH/lWdcmfCMizpLCmPoHCdtEhUu3eZF3bMf2WiTtpRVt48ed4JZ94Qz
+ HK21HtmZS8uU1CfbYVvXTO82rJQG2dVYVdn2EfDvelAmX5V+eQbcqF1OVXSB39djIvIt
+ VL1nkvbNEGfjT4Zzs3pMJnNzgMu26JsbsfFy6Qn1XrrUAP+hijIUlK6pKacsq08dZmkm
+ asJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=aXY0929hnEyjy9oHOGYfW9PzPd1flXaXrUHyHSIX6Zc=;
- b=I4/4wDgc0/yV60aoJi6UwYuBpaNyCwYc8g6wChRkuRZLa4ebP47RxtOqXnsDfY7wp6
- R6Ij9kli9I82bSy8tJHiHB1IhBPmOxPsVA/UEQxLrRuRDS+V+u7BGDK6NU11UPwoFmmZ
- K0a8HSQf15qxfbGzfwwEqYNMBvnFNGB4NpxtfPSaqajZBK7ti8PJ7dcNUVOtZQ3Z/1xS
- te0ojRD5wVKwjH1o778pfZzEawPztCfzJmetLwy6bPuBmyNRQgl++CVi2ImyBX8Rh6lL
- aLE1DH4KTsv+l0HVeNBeJCp25Fykv3Sbn8asPVMAcCraVAuks4cxG1zeMDOpVc9WGrgS
- b4Pw==
-X-Gm-Message-State: AOAM531FhlWyfDBB4K/Wz8+XlqYy9AeTuffImqDfkxkB7rGdIicShb9q
- VbpwNmz85kZmL0sQ1nq8ysTek7o1T7s=
-X-Google-Smtp-Source: ABdhPJzA5JnAFux2S/yyQArXrpxp535lyPPhwcC4uFb4ZUgOO+99awKuCkLmt3N2f5vF4bxrDQu0Gg==
-X-Received: by 2002:a05:6000:86:: with SMTP id
- m6mr6737790wrx.173.1594934614618; 
- Thu, 16 Jul 2020 14:23:34 -0700 (PDT)
+ bh=Qdr8ouZMcbrLXpNsTNBc/AvAIsAR8D6kw7YzhRbkS4Q=;
+ b=tIceJu7qOhWbjKHvcc5iafpgBjqlWtFmDOHBjideDqC0x3ZYuj96//wAeIHQgPdMfp
+ uhoLigG7x0jlDB5eR1WAwYWeo4UXOucRLksrJT2znuBLJse78WEJBfcXfZ8jtEmeXDby
+ 8xZRXSgnTfJeruTDrFYsDhFVHfw5B4VH11Pn+Hm833f80ksW1nT2dwJoZtAyCPxI7I2Q
+ LAfz7HOVhCgZy/WIqAM5oOcMVWveepfy/j1zXXdlWGHQVoMkIdVvTpsYGdaamFyQRGWz
+ xxx5Ye4L4QIVXi9i7guZS/HFxLBrdiM2m98SKGoMGIEmlndX4O8edyiimz0p5OxkbAgz
+ U9Ow==
+X-Gm-Message-State: AOAM533xWGCgyK9uwE61KY2SOKQ6BfVrw0t+MBJrlN4qw4CKsmPqwPaY
+ tpRD9xRmmq6yZoYrkw6pjQaM8LDaRZ8=
+X-Google-Smtp-Source: ABdhPJyV+nuH/Mis+k0Ow74X96u5n/RRVNZQTk8YG5lPbdbJZ/4Ybld5BYYIL47CwzGyivd8fz5JAg==
+X-Received: by 2002:adf:f10a:: with SMTP id r10mr6690272wro.406.1594934615539; 
+ Thu, 16 Jul 2020 14:23:35 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
- by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.33
+ by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:34 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:35 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 26/27] drm/amdgpu: enable DC support for SI parts (v2)
-Date: Thu, 16 Jul 2020 23:22:50 +0200
-Message-Id: <20200716212251.1539094-27-issor.oruam@gmail.com>
+Subject: [PATCH v3 27/27] drm/amd/display: enable SI support in the Kconfig
+ (v2)
+Date: Thu, 16 Jul 2020 23:22:51 +0200
+Message-Id: <20200716212251.1539094-28-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
 References: <20200716212251.1539094-1-issor.oruam@gmail.com>
@@ -75,76 +75,39 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-amdgpu_device.c requires changes for SI chipsets support
-si.c require changes for Display Manager IP block enabling
+All DCE6 specific code changes are guarded by CONFIG_DRM_AMD_DC_SI Kconfig option
 
 [How]
-amdgpu_device.c: add SI families in amdgpu_device_asic_has_dc_support()
-si.c: changes in si_set_ip_blocks() for Display Manager IP blocks enablement
+(v1) CONFIG_DRM_AMD_DC_SI configuration option is added, default setting is disabled
 
-(v1) NOTE: As per Kaveri and older amdgpu.dc=1 kernel cmdline is required
+(v2) Hainan is not supported, description updated accordingly
 
-(v2) fix for bc011f9350 ("drm/amdgpu: Change SI/CI gfx/sdma/smu init sequence")
-     remove CHIP_HAINAN support since it does not have physical DCE6 module
+Tested with HD7750 (Cape Verde) and HD7950 (Tahiti)
 
 Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  6 ++++++
- drivers/gpu/drm/amd/amdgpu/si.c            | 10 ++++++++++
- 2 files changed, 16 insertions(+)
+ drivers/gpu/drm/amd/display/Kconfig | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index aa5b54e5a1d7..cd5efa6c1c18 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2775,6 +2775,12 @@ bool amdgpu_device_asic_has_dc_support(enum amd_asic_type asic_type)
- {
- 	switch (asic_type) {
- #if defined(CONFIG_DRM_AMD_DC)
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+	case CHIP_TAHITI:
-+	case CHIP_PITCAIRN:
-+	case CHIP_VERDE:
-+	case CHIP_OLAND:
-+#endif
- 	case CHIP_BONAIRE:
- 	case CHIP_KAVERI:
- 	case CHIP_KABINI:
-diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
-index 1b449291f068..5a112c7a35ca 100644
---- a/drivers/gpu/drm/amd/amdgpu/si.c
-+++ b/drivers/gpu/drm/amd/amdgpu/si.c
-@@ -52,6 +52,8 @@
- #include "bif/bif_3_0_d.h"
- #include "bif/bif_3_0_sh_mask.h"
+diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
+index 34ae4f3a32f4..77569097a480 100644
+--- a/drivers/gpu/drm/amd/display/Kconfig
++++ b/drivers/gpu/drm/amd/display/Kconfig
+@@ -31,6 +31,14 @@ config DRM_AMD_DC_HDCP
+ 	help
+ 	  Choose this option if you want to support HDCP authentication.
  
-+#include "amdgpu_dm.h"
++config DRM_AMD_DC_SI
++	bool "AMD DC support for Southern Islands ASICs"
++	default n
++	help
++	  Choose this option to enable new AMD DC support for SI asics
++	  by default. This includes Tahiti, Pitcairn, Cape Verde, Oland.
++	  Hainan is not supported by AMD DC and it has no physical DCE6.
 +
- static const u32 tahiti_golden_registers[] =
- {
- 	mmAZALIA_SCLK_CONTROL, 0x00000030, 0x00000011,
-@@ -2546,6 +2548,10 @@ int si_set_ip_blocks(struct amdgpu_device *adev)
- 		amdgpu_device_ip_block_add(adev, &si_smu_ip_block);
- 		if (adev->enable_virtual_display)
- 			amdgpu_device_ip_block_add(adev, &dce_virtual_ip_block);
-+#if defined(CONFIG_DRM_AMD_DC) && defined(CONFIG_DRM_AMD_DC_SI)
-+		else if (amdgpu_device_has_dc_support(adev))
-+			amdgpu_device_ip_block_add(adev, &dm_ip_block);
-+#endif
- 		else
- 			amdgpu_device_ip_block_add(adev, &dce_v6_0_ip_block);
- 		amdgpu_device_ip_block_add(adev, &uvd_v3_1_ip_block);
-@@ -2560,6 +2566,10 @@ int si_set_ip_blocks(struct amdgpu_device *adev)
- 		amdgpu_device_ip_block_add(adev, &si_smu_ip_block);
- 		if (adev->enable_virtual_display)
- 			amdgpu_device_ip_block_add(adev, &dce_virtual_ip_block);
-+#if defined(CONFIG_DRM_AMD_DC) && defined(CONFIG_DRM_AMD_DC_SI)
-+		else if (amdgpu_device_has_dc_support(adev))
-+			amdgpu_device_ip_block_add(adev, &dm_ip_block);
-+#endif
- 		else
- 			amdgpu_device_ip_block_add(adev, &dce_v6_4_ip_block);
- 		amdgpu_device_ip_block_add(adev, &uvd_v3_1_ip_block);
+ config DEBUG_KERNEL_DC
+ 	bool "Enable kgdb break in DC"
+ 	depends on DRM_AMD_DC
 -- 
 2.25.1
 
