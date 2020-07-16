@@ -1,56 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E24F222DB8
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52CA7222DB9
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED9286ECEE;
-	Thu, 16 Jul 2020 21:23:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18CDB6ECEF;
+	Thu, 16 Jul 2020 21:23:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ED116ECE9
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:16 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id q15so11737920wmj.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:16 -0700 (PDT)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA3976ECE9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:17 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id z13so8639284wrw.5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=t63JSvVZ9IAtW198Bjbe22qehD/HPz+PiDyEG+5xOfM=;
- b=e59HdGv1j54W84pLc9thD5XkYE8c9JSQG2jZucEeTdb0eQE6/hb++Ao1wnjpYE7svI
- wNO13sogQw4nFgsAOY87vwXDhoPbmBcGIjuMWTpJxMwysaUdJlR/XGIaxJkfnrYN5BkG
- RBJo+3KuAWJPDIEUjOnGozM5ehwnpuJ3eH5xtwnyyVunKv0Orvp1X78zIMbZAopHc6+y
- s+W7WLH0nbQHxPOyLAPFDjUKUZEjuDgkhs0odA5btjZDH6QwCw0j2wfam5LowQ6nXkFk
- cOcs2JrXNidASUeCfYx2FL4bkbFc0uWCYh1rrdjr4aBe/EwxKXyTxg9L42km7BG71GG/
- KNKw==
+ bh=6L+YHvwbiSZwsb3C1dtH51zUsfbRd8q0jriqzTdndfE=;
+ b=fcJ5IYuwioiEd3SRYnl6gKoLEmtpmFeTK0R3C3V0e7mVqeHCK7+mnKiJQ24lvMghoz
+ hPpGjQXRYpv+LMmblufL2eUEIO761jmlGLTK7piYttERbifdyt2Ywm/gvLk3S4t8D+Fi
+ oUV19ZfFdWBzL1Ni3KTC3UlTsyJNeBe4wO5Qw8nQYLjRq1HNYSUzYUfiv+gaB5diCf5G
+ 9RbDXuXK16QIy7qyO3JX/G3Y0Ula6U6mYpiRxNv65Hz73Y64YKb+p4dI1VOVxq8Jxoyb
+ U0jBTgfLE4QorLBy3Sf/O29Qh2AYChlwcDGUbBYrYSkJEFg/4gzmYu1GllMvKvfnttnL
+ NOIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=t63JSvVZ9IAtW198Bjbe22qehD/HPz+PiDyEG+5xOfM=;
- b=W61grnaBdDyLqeu4dUlraK/mXiTrKz+tfTfZXJh0z7ChnQrYC20SIr8R1i+smZvSdo
- S1lChS+q0GTOmBpqxtDNPQG3pqu8yC5jsZy2MXMLbLv5Jpxd9aK60oF6adjr//jJyzUe
- OpLlALK0vY8S2oSmDu5Is/dKq8oibiNznHTCdXuk0ObhwwJwlGpFOioRnAlCcUM1sp6T
- 17wy/7vwN88oNCqBJQcFEN1UymPts1KFC/A8TA5+sUTKJwaX0Dp14penJm6Fc3Ev7eqV
- v91KOvktiO6uZgPr2t5kchUcx1H4eomPI4SS1V+qM3p0cSCui9oa/2Zn9iGS7fC1xC3X
- FTrg==
-X-Gm-Message-State: AOAM530LABS7/dDCdpP+YjHFpUsnlDWaoMeCTbGCx9BBTEdKbSgKjQQg
- VYGclQ78auBBUaKJ7r6aoThTRMJhuOw=
-X-Google-Smtp-Source: ABdhPJw+dCN/4PBITWuEd1PSaqBbFgFnQJzFoGepQSIJezMlo3rk0jRK1WHCCGEZ5mjYXZwjXVVn6g==
-X-Received: by 2002:a7b:cd10:: with SMTP id f16mr6232076wmj.86.1594934593939; 
- Thu, 16 Jul 2020 14:23:13 -0700 (PDT)
+ bh=6L+YHvwbiSZwsb3C1dtH51zUsfbRd8q0jriqzTdndfE=;
+ b=eLjzIRHJQOPuqvvJR5t+dhrtgP9DpQdgAhwL46N+NxZR5Je6/bsvdwpLCtTr6kx928
+ CRNtSsQCBvqU+18F8sWVjsrpaXXxm+Szpt5DVBcszAxBl4wdFAO7RCx0FhHHVOXQ0aky
+ KbTrbPl8q2+yRZr0jtpnqhK8E0ZB1nSztvRRp3/y1AUgv36opyUEfNoE/SWmnkUfTzOO
+ kl7hRrm8d9QSeq/eBrKAvWWbW86+Pcq2qmHo4sVm9Czm4ai2jhFMix/JOWgPtRaUPK9p
+ ftfUMICd53yb/EKzsCrFzPUgEt9wKDErhgQt6Pxi5xJsDHGSGKLxVUl0bolDjq6WdPAl
+ b73w==
+X-Gm-Message-State: AOAM532ykHhIi8YkzLxRmMeR6AzH9sMVsIL89t5hEzYfxVkUKiIESsze
+ iWCezwRIlVzBMJeIwyA6rMZPhHrYgwM=
+X-Google-Smtp-Source: ABdhPJzJTc3Khnbz/DYFf9oWe4mG/3T1PA8rB1UzmdXb3sfdWZonrrBZeevJ73zuJxRI5HgBCr8OyQ==
+X-Received: by 2002:a5d:634e:: with SMTP id b14mr7179048wrw.423.1594934595578; 
+ Thu, 16 Jul 2020 14:23:15 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
- by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.12
+ by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:13 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:14 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 06/27] drm/amd/display: dc/gpio: add support for DCE6 (v2)
-Date: Thu, 16 Jul 2020 23:22:30 +0200
-Message-Id: <20200716212251.1539094-7-issor.oruam@gmail.com>
+Subject: [PATCH v3 07/27] drm/amd/display: dc/irq: add support for DCE6 (v4)
+Date: Thu, 16 Jul 2020 23:22:31 +0200
+Message-Id: <20200716212251.1539094-8-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
 References: <20200716212251.1539094-1-issor.oruam@gmail.com>
@@ -74,58 +74,64 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-hw_factory.c requires changes for DCE6 support
+irq service requires changes for DCE6 support
 
 [How]
-DCE6 targets added replicating and adapting existing DCE8 implementation.
+(v1) DCE6 targets are added replicating existing DCE8 implementation.
+     due to missing CRTC_VERTICAL_INTERRUPT0_CONTROL registers/masks,
+     dce/dce_8_0_{d,sh_mask}.h used instead of dce/dce_6_0_{d,sh_mask}.h
 
-(v2) changes due to following commit:
-    91db931 ("drm/amd/display: refactor gpio to allocate hw_container in constructor")
+(v2) DCE6 headers used adding the necessary vblank irq registers
+     (INT_MASK and VBLANK_STATUS) and vblank irq masks as implemented
+     in amdgpu driver.
+     Add vblank_irq_info_funcs_dce60 with .set and .ack as per commit
+     b10d51f ("drm/amd/display: Add interrupt entries for VBLANK isr.")
+     and use it in vblank_int_entry(reg_num) macro definition
+
+(v3) updated due to following kernel 5.3 commit:
+     4fc4dca ("drm/amd: drop use of drmp.h in os_types.h")
+
+(v4) updated due to following kernel 5.6 commit:
+     d9e3267 ("drm/amd/display: cleanup of construct and destruct funcs")
 
 Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/gpio/Makefile  |  12 +
- .../display/dc/gpio/dce60/hw_factory_dce60.c  | 175 ++++++++
- .../display/dc/gpio/dce60/hw_factory_dce60.h  |  32 ++
- .../dc/gpio/dce60/hw_translate_dce60.c        | 411 ++++++++++++++++++
- .../dc/gpio/dce60/hw_translate_dce60.h        |  32 ++
- .../gpu/drm/amd/display/dc/gpio/hw_factory.c  |  10 +
- .../drm/amd/display/dc/gpio/hw_translate.c    |  10 +
- 7 files changed, 682 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_factory_dce60.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_factory_dce60.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_translate_dce60.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_translate_dce60.h
+ drivers/gpu/drm/amd/display/dc/irq/Makefile   |  11 +
+ .../display/dc/irq/dce60/irq_service_dce60.c  | 395 ++++++++++++++++++
+ .../display/dc/irq/dce60/irq_service_dce60.h  |  40 ++
+ .../gpu/drm/amd/display/dc/irq/irq_service.c  |   3 +
+ 4 files changed, 449 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/irq/dce60/irq_service_dce60.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/irq/dce60/irq_service_dce60.h
 
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/Makefile b/drivers/gpu/drm/amd/display/dc/gpio/Makefile
-index 0f2f4508e564..74c0943ed644 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/Makefile
-@@ -30,6 +30,18 @@ AMD_DAL_GPIO = $(addprefix $(AMDDALPATH)/dc/gpio/,$(GPIO))
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/Makefile b/drivers/gpu/drm/amd/display/dc/irq/Makefile
+index 3352b79fb1cb..405c25322607 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/irq/Makefile
+@@ -30,6 +30,17 @@ AMD_DAL_IRQ = $(addprefix $(AMDDALPATH)/dc/irq/,$(IRQ))
  
- AMD_DISPLAY_FILES += $(AMD_DAL_GPIO)
+ AMD_DISPLAY_FILES += $(AMD_DAL_IRQ)
  
 +###############################################################################
 +# DCE 6x
 +###############################################################################
-+# all DCE6.x are derived from DCE6.0
 +ifdef CONFIG_DRM_AMD_DC_SI
-+GPIO_DCE60 = hw_translate_dce60.o hw_factory_dce60.o
++IRQ_DCE60 = irq_service_dce60.o
 +
-+AMD_DAL_GPIO_DCE60 = $(addprefix $(AMDDALPATH)/dc/gpio/dce60/,$(GPIO_DCE60))
++AMD_DAL_IRQ_DCE60 = $(addprefix $(AMDDALPATH)/dc/irq/dce60/,$(IRQ_DCE60))
 +
-+AMD_DISPLAY_FILES += $(AMD_DAL_GPIO_DCE60)
++AMD_DISPLAY_FILES += $(AMD_DAL_IRQ_DCE60)
 +endif
 +
  ###############################################################################
  # DCE 8x
  ###############################################################################
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_factory_dce60.c b/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_factory_dce60.c
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dce60/irq_service_dce60.c b/drivers/gpu/drm/amd/display/dc/irq/dce60/irq_service_dce60.c
 new file mode 100644
-index 000000000000..cc69acd8ada7
+index 000000000000..524481885fd0
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_factory_dce60.c
-@@ -0,0 +1,175 @@
++++ b/drivers/gpu/drm/amd/display/dc/irq/dce60/irq_service_dce60.c
+@@ -0,0 +1,395 @@
 +/*
 + * Copyright 2020 Mauro Rossi <issor.oruam@gmail.com>
 + *
@@ -151,162 +157,382 @@ index 000000000000..cc69acd8ada7
 + *
 + */
 +
++#include <linux/slab.h>
++
 +#include "dm_services.h"
-+#include "include/gpio_types.h"
-+#include "../hw_factory.h"
 +
-+#include "hw_factory_dce60.h"
++#include "include/logger_interface.h"
 +
-+#include "../hw_gpio.h"
-+#include "../hw_ddc.h"
-+#include "../hw_hpd.h"
-+#include "../hw_generic.h"
++#include "irq_service_dce60.h"
++#include "../dce110/irq_service_dce110.h"
 +
 +#include "dce/dce_6_0_d.h"
 +#include "dce/dce_6_0_sh_mask.h"
 +
++#include "ivsrcid/ivsrcid_vislands30.h"
 +
-+#define REG(reg_name)\
-+		mm ## reg_name
++#define VISLANDS30_IV_SRCID_D1_VBLANK                        1
++#define VISLANDS30_IV_SRCID_D2_VBLANK                        2
++#define VISLANDS30_IV_SRCID_D3_VBLANK                        3
++#define VISLANDS30_IV_SRCID_D4_VBLANK                        4
++#define VISLANDS30_IV_SRCID_D5_VBLANK                        5
++#define VISLANDS30_IV_SRCID_D6_VBLANK                        6
 +
-+#include "reg_helper.h"
-+#include "../hpd_regs.h"
++#include "dc_types.h"
 +
-+#define HPD_REG_LIST_DCE6(id) \
-+	HPD_GPIO_REG_LIST(id), \
-+	.int_status = mmDC_HPD ## id ## _INT_STATUS,\
-+	.toggle_filt_cntl = mmDC_HPD ## id ## _TOGGLE_FILT_CNTL
++static bool hpd_ack(
++	struct irq_service *irq_service,
++	const struct irq_source_info *info)
++{
++	uint32_t addr = info->status_reg;
++	uint32_t value = dm_read_reg(irq_service->ctx, addr);
++	uint32_t current_status =
++		get_reg_field_value(
++			value,
++			DC_HPD1_INT_STATUS,
++			DC_HPD1_SENSE_DELAYED);
 +
-+#define HPD_MASK_SH_LIST_DCE6(mask_sh) \
-+		.DC_HPD_SENSE_DELAYED = DC_HPD1_INT_STATUS__DC_HPD1_SENSE_DELAYED ## mask_sh,\
-+		.DC_HPD_SENSE = DC_HPD1_INT_STATUS__DC_HPD1_SENSE ## mask_sh,\
-+		.DC_HPD_CONNECT_INT_DELAY = DC_HPD1_TOGGLE_FILT_CNTL__DC_HPD1_CONNECT_INT_DELAY ## mask_sh,\
-+		.DC_HPD_DISCONNECT_INT_DELAY = DC_HPD1_TOGGLE_FILT_CNTL__DC_HPD1_DISCONNECT_INT_DELAY ## mask_sh
++	dal_irq_service_ack_generic(irq_service, info);
 +
-+#define hpd_regs(id) \
-+{\
-+	HPD_REG_LIST_DCE6(id)\
++	value = dm_read_reg(irq_service->ctx, info->enable_reg);
++
++	set_reg_field_value(
++		value,
++		current_status ? 0 : 1,
++		DC_HPD1_INT_CONTROL,
++		DC_HPD1_INT_POLARITY);
++
++	dm_write_reg(irq_service->ctx, info->enable_reg, value);
++
++	return true;
 +}
 +
-+static const struct hpd_registers hpd_regs[] = {
-+	hpd_regs(1),
-+	hpd_regs(2),
-+	hpd_regs(3),
-+	hpd_regs(4),
-+	hpd_regs(5),
-+	hpd_regs(6)
++static const struct irq_source_info_funcs hpd_irq_info_funcs = {
++	.set = NULL,
++	.ack = hpd_ack
 +};
 +
-+static const struct hpd_sh_mask hpd_shift = {
-+		HPD_MASK_SH_LIST_DCE6(__SHIFT)
++static const struct irq_source_info_funcs hpd_rx_irq_info_funcs = {
++	.set = NULL,
++	.ack = NULL
 +};
 +
-+static const struct hpd_sh_mask hpd_mask = {
-+		HPD_MASK_SH_LIST_DCE6(_MASK)
++static const struct irq_source_info_funcs pflip_irq_info_funcs = {
++	.set = NULL,
++	.ack = NULL
 +};
 +
-+#include "../ddc_regs.h"
-+
-+ /* set field name */
-+#define SF_DDC(reg_name, field_name, post_fix)\
-+	.field_name = reg_name ## __ ## field_name ## post_fix
-+
-+static const struct ddc_registers ddc_data_regs[] = {
-+	ddc_data_regs(1),
-+	ddc_data_regs(2),
-+	ddc_data_regs(3),
-+	ddc_data_regs(4),
-+	ddc_data_regs(5),
-+	ddc_data_regs(6),
-+	ddc_vga_data_regs,
-+	ddc_i2c_data_regs
++static const struct irq_source_info_funcs vblank_irq_info_funcs = {
++	.set = dce110_vblank_set,
++	.ack = NULL
 +};
 +
-+static const struct ddc_registers ddc_clk_regs[] = {
-+	ddc_clk_regs(1),
-+	ddc_clk_regs(2),
-+	ddc_clk_regs(3),
-+	ddc_clk_regs(4),
-+	ddc_clk_regs(5),
-+	ddc_clk_regs(6),
-+	ddc_vga_clk_regs,
-+	ddc_i2c_clk_regs
++static const struct irq_source_info_funcs vblank_irq_info_funcs_dce60 = {
++	.set = NULL,
++	.ack = NULL
 +};
 +
-+static const struct ddc_sh_mask ddc_shift = {
-+		DDC_MASK_SH_LIST(__SHIFT)
-+};
-+
-+static const struct ddc_sh_mask ddc_mask = {
-+		DDC_MASK_SH_LIST(_MASK)
-+};
-+
-+static void define_ddc_registers(
-+		struct hw_gpio_pin *pin,
-+		uint32_t en)
-+{
-+	struct hw_ddc *ddc = HW_DDC_FROM_BASE(pin);
-+
-+	switch (pin->id) {
-+	case GPIO_ID_DDC_DATA:
-+		ddc->regs = &ddc_data_regs[en];
-+		ddc->base.regs = &ddc_data_regs[en].gpio;
-+		break;
-+	case GPIO_ID_DDC_CLOCK:
-+		ddc->regs = &ddc_clk_regs[en];
-+		ddc->base.regs = &ddc_clk_regs[en].gpio;
-+		break;
-+	default:
-+		ASSERT_CRITICAL(false);
-+		return;
++#define hpd_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_INVALID + reg_num] = {\
++		.enable_reg = mmDC_HPD ## reg_num ## _INT_CONTROL,\
++		.enable_mask = DC_HPD1_INT_CONTROL__DC_HPD1_INT_EN_MASK,\
++		.enable_value = {\
++			DC_HPD1_INT_CONTROL__DC_HPD1_INT_EN_MASK,\
++			~DC_HPD1_INT_CONTROL__DC_HPD1_INT_EN_MASK\
++		},\
++		.ack_reg = mmDC_HPD ## reg_num ## _INT_CONTROL,\
++		.ack_mask = DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK,\
++		.ack_value = DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK,\
++		.status_reg = mmDC_HPD ## reg_num ## _INT_STATUS,\
++		.funcs = &hpd_irq_info_funcs\
 +	}
 +
-+	ddc->shifts = &ddc_shift;
-+	ddc->masks = &ddc_mask;
++#define hpd_rx_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_HPD6 + reg_num] = {\
++		.enable_reg = mmDC_HPD ## reg_num ## _INT_CONTROL,\
++		.enable_mask = DC_HPD1_INT_CONTROL__DC_HPD1_RX_INT_EN_MASK,\
++		.enable_value = {\
++				DC_HPD1_INT_CONTROL__DC_HPD1_RX_INT_EN_MASK,\
++			~DC_HPD1_INT_CONTROL__DC_HPD1_RX_INT_EN_MASK },\
++		.ack_reg = mmDC_HPD ## reg_num ## _INT_CONTROL,\
++		.ack_mask = DC_HPD1_INT_CONTROL__DC_HPD1_RX_INT_ACK_MASK,\
++		.ack_value = DC_HPD1_INT_CONTROL__DC_HPD1_RX_INT_ACK_MASK,\
++		.status_reg = mmDC_HPD ## reg_num ## _INT_STATUS,\
++		.funcs = &hpd_rx_irq_info_funcs\
++	}
 +
-+}
++#define pflip_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_PFLIP1 + reg_num] = {\
++		.enable_reg = mmDCP ## reg_num ## _GRPH_INTERRUPT_CONTROL,\
++		.enable_mask =\
++		GRPH_INTERRUPT_CONTROL__GRPH_PFLIP_INT_MASK_MASK,\
++		.enable_value = {\
++			GRPH_INTERRUPT_CONTROL__GRPH_PFLIP_INT_MASK_MASK,\
++			~GRPH_INTERRUPT_CONTROL__GRPH_PFLIP_INT_MASK_MASK},\
++		.ack_reg = mmDCP ## reg_num ## _GRPH_INTERRUPT_STATUS,\
++		.ack_mask = GRPH_INTERRUPT_STATUS__GRPH_PFLIP_INT_CLEAR_MASK,\
++		.ack_value = GRPH_INTERRUPT_STATUS__GRPH_PFLIP_INT_CLEAR_MASK,\
++		.status_reg = mmDCP ## reg_num ##_GRPH_INTERRUPT_STATUS,\
++		.funcs = &pflip_irq_info_funcs\
++ 	}
 +
-+static void define_hpd_registers(struct hw_gpio_pin *pin, uint32_t en)
-+{
-+	struct hw_hpd *hpd = HW_HPD_FROM_BASE(pin);
++#define vupdate_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_VUPDATE1 + reg_num] = {\
++		.enable_reg = mmCRTC ## reg_num ## _CRTC_INTERRUPT_CONTROL,\
++		.enable_mask =\
++		CRTC_INTERRUPT_CONTROL__CRTC_V_UPDATE_INT_MSK_MASK,\
++		.enable_value = {\
++			CRTC_INTERRUPT_CONTROL__CRTC_V_UPDATE_INT_MSK_MASK,\
++			~CRTC_INTERRUPT_CONTROL__CRTC_V_UPDATE_INT_MSK_MASK},\
++		.ack_reg = mmCRTC ## reg_num ## _CRTC_V_UPDATE_INT_STATUS,\
++		.ack_mask =\
++		CRTC_V_UPDATE_INT_STATUS__CRTC_V_UPDATE_INT_CLEAR_MASK,\
++		.ack_value =\
++		CRTC_V_UPDATE_INT_STATUS__CRTC_V_UPDATE_INT_CLEAR_MASK,\
++		.funcs = &vblank_irq_info_funcs\
++	}
 +
-+	hpd->regs = &hpd_regs[en];
-+	hpd->shifts = &hpd_shift;
-+	hpd->masks = &hpd_mask;
-+	hpd->base.regs = &hpd_regs[en].gpio;
-+}
++#define vblank_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_VBLANK1 + reg_num] = {\
++		.enable_reg = mmLB ## reg_num ## _INT_MASK,\
++		.enable_mask =\
++			INT_MASK__VBLANK_INT_MASK,\
++		.enable_value = {\
++			INT_MASK__VBLANK_INT_MASK,\
++			~INT_MASK__VBLANK_INT_MASK},\
++		.ack_reg = mmLB ## reg_num ## _VBLANK_STATUS,\
++		.ack_mask =\
++		VBLANK_STATUS__VBLANK_ACK_MASK,\
++		.ack_value =\
++		VBLANK_STATUS__VBLANK_ACK_MASK,\
++		.funcs = &vblank_irq_info_funcs_dce60\
++	}
 +
-+static const struct hw_factory_funcs funcs = {
-+	.init_ddc_data = dal_hw_ddc_init,
-+	.init_generic = NULL,
-+	.init_hpd = dal_hw_hpd_init,
-+	.get_ddc_pin = dal_hw_ddc_get_pin,
-+	.get_hpd_pin = dal_hw_hpd_get_pin,
-+	.get_generic_pin = NULL,
-+	.define_hpd_registers = define_hpd_registers,
-+	.define_ddc_registers = define_ddc_registers
++#define dummy_irq_entry() \
++	{\
++		.funcs = &dummy_irq_info_funcs\
++	}
++
++#define i2c_int_entry(reg_num) \
++	[DC_IRQ_SOURCE_I2C_DDC ## reg_num] = dummy_irq_entry()
++
++#define dp_sink_int_entry(reg_num) \
++	[DC_IRQ_SOURCE_DPSINK ## reg_num] = dummy_irq_entry()
++
++#define gpio_pad_int_entry(reg_num) \
++	[DC_IRQ_SOURCE_GPIOPAD ## reg_num] = dummy_irq_entry()
++
++#define dc_underflow_int_entry(reg_num) \
++	[DC_IRQ_SOURCE_DC ## reg_num ## UNDERFLOW] = dummy_irq_entry()
++
++
++static const struct irq_source_info_funcs dummy_irq_info_funcs = {
++	.set = dal_irq_service_dummy_set,
++	.ack = dal_irq_service_dummy_ack
 +};
 +
-+void dal_hw_factory_dce60_init(
-+	struct hw_factory *factory)
-+{
-+	factory->number_of_pins[GPIO_ID_DDC_DATA] = 8;
-+	factory->number_of_pins[GPIO_ID_DDC_CLOCK] = 8;
-+	factory->number_of_pins[GPIO_ID_GENERIC] = 7;
-+	factory->number_of_pins[GPIO_ID_HPD] = 6;
-+	factory->number_of_pins[GPIO_ID_GPIO_PAD] = 31;
-+	factory->number_of_pins[GPIO_ID_VIP_PAD] = 0;
-+	factory->number_of_pins[GPIO_ID_SYNC] = 2;
-+	factory->number_of_pins[GPIO_ID_GSL] = 4;
++static const struct irq_source_info
++irq_source_info_dce60[DAL_IRQ_SOURCES_NUMBER] = {
++	[DC_IRQ_SOURCE_INVALID] = dummy_irq_entry(),
++	hpd_int_entry(1),
++	hpd_int_entry(2),
++	hpd_int_entry(3),
++	hpd_int_entry(4),
++	hpd_int_entry(5),
++	hpd_int_entry(6),
++	hpd_rx_int_entry(1),
++	hpd_rx_int_entry(2),
++	hpd_rx_int_entry(3),
++	hpd_rx_int_entry(4),
++	hpd_rx_int_entry(5),
++	hpd_rx_int_entry(6),
++	i2c_int_entry(1),
++	i2c_int_entry(2),
++	i2c_int_entry(3),
++	i2c_int_entry(4),
++	i2c_int_entry(5),
++	i2c_int_entry(6),
++	dp_sink_int_entry(1),
++	dp_sink_int_entry(2),
++	dp_sink_int_entry(3),
++	dp_sink_int_entry(4),
++	dp_sink_int_entry(5),
++	dp_sink_int_entry(6),
++	[DC_IRQ_SOURCE_TIMER] = dummy_irq_entry(),
++	pflip_int_entry(0),
++	pflip_int_entry(1),
++	pflip_int_entry(2),
++	pflip_int_entry(3),
++	pflip_int_entry(4),
++	pflip_int_entry(5),
++	[DC_IRQ_SOURCE_PFLIP_UNDERLAY0] = dummy_irq_entry(),
++	gpio_pad_int_entry(0),
++	gpio_pad_int_entry(1),
++	gpio_pad_int_entry(2),
++	gpio_pad_int_entry(3),
++	gpio_pad_int_entry(4),
++	gpio_pad_int_entry(5),
++	gpio_pad_int_entry(6),
++	gpio_pad_int_entry(7),
++	gpio_pad_int_entry(8),
++	gpio_pad_int_entry(9),
++	gpio_pad_int_entry(10),
++	gpio_pad_int_entry(11),
++	gpio_pad_int_entry(12),
++	gpio_pad_int_entry(13),
++	gpio_pad_int_entry(14),
++	gpio_pad_int_entry(15),
++	gpio_pad_int_entry(16),
++	gpio_pad_int_entry(17),
++	gpio_pad_int_entry(18),
++	gpio_pad_int_entry(19),
++	gpio_pad_int_entry(20),
++	gpio_pad_int_entry(21),
++	gpio_pad_int_entry(22),
++	gpio_pad_int_entry(23),
++	gpio_pad_int_entry(24),
++	gpio_pad_int_entry(25),
++	gpio_pad_int_entry(26),
++	gpio_pad_int_entry(27),
++	gpio_pad_int_entry(28),
++	gpio_pad_int_entry(29),
++	gpio_pad_int_entry(30),
++	dc_underflow_int_entry(1),
++	dc_underflow_int_entry(2),
++	dc_underflow_int_entry(3),
++	dc_underflow_int_entry(4),
++	dc_underflow_int_entry(5),
++	dc_underflow_int_entry(6),
++	[DC_IRQ_SOURCE_DMCU_SCP] = dummy_irq_entry(),
++	[DC_IRQ_SOURCE_VBIOS_SW] = dummy_irq_entry(),
++	vupdate_int_entry(0),
++	vupdate_int_entry(1),
++	vupdate_int_entry(2),
++	vupdate_int_entry(3),
++	vupdate_int_entry(4),
++	vupdate_int_entry(5),
++	vblank_int_entry(0),
++	vblank_int_entry(1),
++	vblank_int_entry(2),
++	vblank_int_entry(3),
++	vblank_int_entry(4),
++	vblank_int_entry(5),
++};
 +
-+	factory->funcs = &funcs;
++enum dc_irq_source to_dal_irq_source_dce60(
++		struct irq_service *irq_service,
++		uint32_t src_id,
++		uint32_t ext_id)
++{
++	switch (src_id) {
++	case VISLANDS30_IV_SRCID_D1_VBLANK:
++		return DC_IRQ_SOURCE_VBLANK1;
++	case VISLANDS30_IV_SRCID_D2_VBLANK:
++		return DC_IRQ_SOURCE_VBLANK2;
++	case VISLANDS30_IV_SRCID_D3_VBLANK:
++		return DC_IRQ_SOURCE_VBLANK3;
++	case VISLANDS30_IV_SRCID_D4_VBLANK:
++		return DC_IRQ_SOURCE_VBLANK4;
++	case VISLANDS30_IV_SRCID_D5_VBLANK:
++		return DC_IRQ_SOURCE_VBLANK5;
++	case VISLANDS30_IV_SRCID_D6_VBLANK:
++		return DC_IRQ_SOURCE_VBLANK6;
++	case VISLANDS30_IV_SRCID_D1_V_UPDATE_INT:
++		return DC_IRQ_SOURCE_VUPDATE1;
++	case VISLANDS30_IV_SRCID_D2_V_UPDATE_INT:
++		return DC_IRQ_SOURCE_VUPDATE2;
++	case VISLANDS30_IV_SRCID_D3_V_UPDATE_INT:
++		return DC_IRQ_SOURCE_VUPDATE3;
++	case VISLANDS30_IV_SRCID_D4_V_UPDATE_INT:
++		return DC_IRQ_SOURCE_VUPDATE4;
++	case VISLANDS30_IV_SRCID_D5_V_UPDATE_INT:
++		return DC_IRQ_SOURCE_VUPDATE5;
++	case VISLANDS30_IV_SRCID_D6_V_UPDATE_INT:
++		return DC_IRQ_SOURCE_VUPDATE6;
++	case VISLANDS30_IV_SRCID_D1_GRPH_PFLIP:
++		return DC_IRQ_SOURCE_PFLIP1;
++	case VISLANDS30_IV_SRCID_D2_GRPH_PFLIP:
++		return DC_IRQ_SOURCE_PFLIP2;
++	case VISLANDS30_IV_SRCID_D3_GRPH_PFLIP:
++		return DC_IRQ_SOURCE_PFLIP3;
++	case VISLANDS30_IV_SRCID_D4_GRPH_PFLIP:
++		return DC_IRQ_SOURCE_PFLIP4;
++	case VISLANDS30_IV_SRCID_D5_GRPH_PFLIP:
++		return DC_IRQ_SOURCE_PFLIP5;
++	case VISLANDS30_IV_SRCID_D6_GRPH_PFLIP:
++		return DC_IRQ_SOURCE_PFLIP6;
++
++	case VISLANDS30_IV_SRCID_HOTPLUG_DETECT_A:
++		/* generic src_id for all HPD and HPDRX interrupts */
++		switch (ext_id) {
++		case VISLANDS30_IV_EXTID_HOTPLUG_DETECT_A:
++			return DC_IRQ_SOURCE_HPD1;
++		case VISLANDS30_IV_EXTID_HOTPLUG_DETECT_B:
++			return DC_IRQ_SOURCE_HPD2;
++		case VISLANDS30_IV_EXTID_HOTPLUG_DETECT_C:
++			return DC_IRQ_SOURCE_HPD3;
++		case VISLANDS30_IV_EXTID_HOTPLUG_DETECT_D:
++			return DC_IRQ_SOURCE_HPD4;
++		case VISLANDS30_IV_EXTID_HOTPLUG_DETECT_E:
++			return DC_IRQ_SOURCE_HPD5;
++		case VISLANDS30_IV_EXTID_HOTPLUG_DETECT_F:
++			return DC_IRQ_SOURCE_HPD6;
++		case VISLANDS30_IV_EXTID_HPD_RX_A:
++			return DC_IRQ_SOURCE_HPD1RX;
++		case VISLANDS30_IV_EXTID_HPD_RX_B:
++			return DC_IRQ_SOURCE_HPD2RX;
++		case VISLANDS30_IV_EXTID_HPD_RX_C:
++			return DC_IRQ_SOURCE_HPD3RX;
++		case VISLANDS30_IV_EXTID_HPD_RX_D:
++			return DC_IRQ_SOURCE_HPD4RX;
++		case VISLANDS30_IV_EXTID_HPD_RX_E:
++			return DC_IRQ_SOURCE_HPD5RX;
++		case VISLANDS30_IV_EXTID_HPD_RX_F:
++			return DC_IRQ_SOURCE_HPD6RX;
++		default:
++			return DC_IRQ_SOURCE_INVALID;
++		}
++		break;
++
++	default:
++		return DC_IRQ_SOURCE_INVALID;
++	}
 +}
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_factory_dce60.h b/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_factory_dce60.h
++
++static const struct irq_service_funcs irq_service_funcs_dce60 = {
++		.to_dal_irq_source = to_dal_irq_source_dce60
++};
++
++static void dce60_irq_construct(
++	struct irq_service *irq_service,
++	struct irq_service_init_data *init_data)
++{
++	dal_irq_service_construct(irq_service, init_data);
++
++	irq_service->info = irq_source_info_dce60;
++	irq_service->funcs = &irq_service_funcs_dce60;
++}
++
++struct irq_service *dal_irq_service_dce60_create(
++	struct irq_service_init_data *init_data)
++{
++	struct irq_service *irq_service = kzalloc(sizeof(*irq_service),
++						  GFP_KERNEL);
++
++	if (!irq_service)
++		return NULL;
++
++	dce60_irq_construct(irq_service, init_data);
++	return irq_service;
++}
++
++
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dce60/irq_service_dce60.h b/drivers/gpu/drm/amd/display/dc/irq/dce60/irq_service_dce60.h
 new file mode 100644
-index 000000000000..1fd54ff8979c
+index 000000000000..294db29e8115
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_factory_dce60.h
-@@ -0,0 +1,32 @@
++++ b/drivers/gpu/drm/amd/display/dc/irq/dce60/irq_service_dce60.h
+@@ -0,0 +1,40 @@
 +/*
 + * Copyright 2020 Mauro Rossi <issor.oruam@gmail.com>
 + *
@@ -332,524 +558,35 @@ index 000000000000..1fd54ff8979c
 + *
 + */
 +
-+#ifndef __DAL_HW_FACTORY_DCE60_H__
-+#define __DAL_HW_FACTORY_DCE60_H__
++#ifndef __DAL_IRQ_SERVICE_DCE60_H__
++#define __DAL_IRQ_SERVICE_DCE60_H__
 +
-+void dal_hw_factory_dce60_init(
-+	struct hw_factory *factory);
++#include "../irq_service.h"
 +
-+#endif
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_translate_dce60.c b/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_translate_dce60.c
-new file mode 100644
-index 000000000000..255df31ec577
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_translate_dce60.c
-@@ -0,0 +1,411 @@
-+/*
-+ * Copyright 2020 Mauro Rossi <issor.oruam@gmail.com>
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: AMD
-+ *
-+ */
++enum dc_irq_source to_dal_irq_source_dce60(
++		struct irq_service *irq_service,
++		uint32_t src_id,
++		uint32_t ext_id);
 +
-+#include "dm_services.h"
-+
-+/*
-+ * Pre-requisites: headers required by header of this unit
-+ */
-+#include "include/gpio_types.h"
-+#include "../hw_translate.h"
-+
-+#include "hw_translate_dce60.h"
-+
-+#include "dce/dce_6_0_d.h"
-+#include "dce/dce_6_0_sh_mask.h"
-+#include "smu/smu_6_0_d.h"
-+
-+/*
-+ * @brief
-+ * Returns index of first bit (starting with LSB) which is set
-+ */
-+static uint32_t index_from_vector(
-+	uint32_t vector)
-+{
-+	uint32_t result = 0;
-+	uint32_t mask = 1;
-+
-+	do {
-+		if (vector == mask)
-+			return result;
-+
-+		++result;
-+		mask <<= 1;
-+	} while (mask);
-+
-+	BREAK_TO_DEBUGGER();
-+
-+	return GPIO_ENUM_UNKNOWN;
-+}
-+
-+static bool offset_to_id(
-+	uint32_t offset,
-+	uint32_t mask,
-+	enum gpio_id *id,
-+	uint32_t *en)
-+{
-+	switch (offset) {
-+	/* GENERIC */
-+	case mmDC_GPIO_GENERIC_A:
-+		*id = GPIO_ID_GENERIC;
-+		switch (mask) {
-+		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICA_A_MASK:
-+			*en = GPIO_GENERIC_A;
-+			return true;
-+		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICB_A_MASK:
-+			*en = GPIO_GENERIC_B;
-+			return true;
-+		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICC_A_MASK:
-+			*en = GPIO_GENERIC_C;
-+			return true;
-+		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICD_A_MASK:
-+			*en = GPIO_GENERIC_D;
-+			return true;
-+		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICE_A_MASK:
-+			*en = GPIO_GENERIC_E;
-+			return true;
-+		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICF_A_MASK:
-+			*en = GPIO_GENERIC_F;
-+			return true;
-+		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICG_A_MASK:
-+			*en = GPIO_GENERIC_G;
-+			return true;
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			return false;
-+		}
-+	break;
-+	/* HPD */
-+	case mmDC_GPIO_HPD_A:
-+		*id = GPIO_ID_HPD;
-+		switch (mask) {
-+		case DC_GPIO_HPD_A__DC_GPIO_HPD1_A_MASK:
-+			*en = GPIO_HPD_1;
-+			return true;
-+		case DC_GPIO_HPD_A__DC_GPIO_HPD2_A_MASK:
-+			*en = GPIO_HPD_2;
-+			return true;
-+		case DC_GPIO_HPD_A__DC_GPIO_HPD3_A_MASK:
-+			*en = GPIO_HPD_3;
-+			return true;
-+		case DC_GPIO_HPD_A__DC_GPIO_HPD4_A_MASK:
-+			*en = GPIO_HPD_4;
-+			return true;
-+		case DC_GPIO_HPD_A__DC_GPIO_HPD5_A_MASK:
-+			*en = GPIO_HPD_5;
-+			return true;
-+		case DC_GPIO_HPD_A__DC_GPIO_HPD6_A_MASK:
-+			*en = GPIO_HPD_6;
-+			return true;
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			return false;
-+		}
-+	break;
-+	/* SYNCA */
-+	case mmDC_GPIO_SYNCA_A:
-+		*id = GPIO_ID_SYNC;
-+		switch (mask) {
-+		case DC_GPIO_SYNCA_A__DC_GPIO_HSYNCA_A_MASK:
-+			*en = GPIO_SYNC_HSYNC_A;
-+			return true;
-+		case DC_GPIO_SYNCA_A__DC_GPIO_VSYNCA_A_MASK:
-+			*en = GPIO_SYNC_VSYNC_A;
-+			return true;
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			return false;
-+		}
-+	break;
-+	/* mmDC_GPIO_GENLK_MASK */
-+	case mmDC_GPIO_GENLK_A:
-+		*id = GPIO_ID_GSL;
-+		switch (mask) {
-+		case DC_GPIO_GENLK_A__DC_GPIO_GENLK_CLK_A_MASK:
-+			*en = GPIO_GSL_GENLOCK_CLOCK;
-+			return true;
-+		case DC_GPIO_GENLK_A__DC_GPIO_GENLK_VSYNC_A_MASK:
-+			*en = GPIO_GSL_GENLOCK_VSYNC;
-+			return true;
-+		case DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_A_A_MASK:
-+			*en = GPIO_GSL_SWAPLOCK_A;
-+			return true;
-+		case DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_B_A_MASK:
-+			*en = GPIO_GSL_SWAPLOCK_B;
-+			return true;
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			return false;
-+		}
-+	break;
-+	/* GPIOPAD */
-+	case mmGPIOPAD_A:
-+		*id = GPIO_ID_GPIO_PAD;
-+		*en = index_from_vector(mask);
-+		return (*en <= GPIO_GPIO_PAD_MAX);
-+	/* DDC */
-+	/* we don't care about the GPIO_ID for DDC
-+	 * in DdcHandle it will use GPIO_ID_DDC_DATA/GPIO_ID_DDC_CLOCK
-+	 * directly in the create method */
-+	case mmDC_GPIO_DDC1_A:
-+		*en = GPIO_DDC_LINE_DDC1;
-+		return true;
-+	case mmDC_GPIO_DDC2_A:
-+		*en = GPIO_DDC_LINE_DDC2;
-+		return true;
-+	case mmDC_GPIO_DDC3_A:
-+		*en = GPIO_DDC_LINE_DDC3;
-+		return true;
-+	case mmDC_GPIO_DDC4_A:
-+		*en = GPIO_DDC_LINE_DDC4;
-+		return true;
-+	case mmDC_GPIO_DDC5_A:
-+		*en = GPIO_DDC_LINE_DDC5;
-+		return true;
-+	case mmDC_GPIO_DDC6_A:
-+		*en = GPIO_DDC_LINE_DDC6;
-+		return true;
-+	case mmDC_GPIO_DDCVGA_A:
-+		*en = GPIO_DDC_LINE_DDC_VGA;
-+		return true;
-+	/* GPIO_I2CPAD */
-+	case mmDC_GPIO_I2CPAD_A:
-+		*en = GPIO_DDC_LINE_I2C_PAD;
-+		return true;
-+	/* Not implemented */
-+	case mmDC_GPIO_PWRSEQ_A:
-+	case mmDC_GPIO_PAD_STRENGTH_1:
-+	case mmDC_GPIO_PAD_STRENGTH_2:
-+	case mmDC_GPIO_DEBUG:
-+		return false;
-+	/* UNEXPECTED */
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		return false;
-+	}
-+}
-+
-+static bool id_to_offset(
-+	enum gpio_id id,
-+	uint32_t en,
-+	struct gpio_pin_info *info)
-+{
-+	bool result = true;
-+
-+	switch (id) {
-+	case GPIO_ID_DDC_DATA:
-+		info->mask = DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK;
-+		switch (en) {
-+		case GPIO_DDC_LINE_DDC1:
-+			info->offset = mmDC_GPIO_DDC1_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC2:
-+			info->offset = mmDC_GPIO_DDC2_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC3:
-+			info->offset = mmDC_GPIO_DDC3_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC4:
-+			info->offset = mmDC_GPIO_DDC4_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC5:
-+			info->offset = mmDC_GPIO_DDC5_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC6:
-+			info->offset = mmDC_GPIO_DDC6_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC_VGA:
-+			info->offset = mmDC_GPIO_DDCVGA_A;
-+		break;
-+		case GPIO_DDC_LINE_I2C_PAD:
-+			info->offset = mmDC_GPIO_I2CPAD_A;
-+		break;
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			result = false;
-+		}
-+	break;
-+	case GPIO_ID_DDC_CLOCK:
-+		info->mask = DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK;
-+		switch (en) {
-+		case GPIO_DDC_LINE_DDC1:
-+			info->offset = mmDC_GPIO_DDC1_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC2:
-+			info->offset = mmDC_GPIO_DDC2_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC3:
-+			info->offset = mmDC_GPIO_DDC3_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC4:
-+			info->offset = mmDC_GPIO_DDC4_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC5:
-+			info->offset = mmDC_GPIO_DDC5_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC6:
-+			info->offset = mmDC_GPIO_DDC6_A;
-+		break;
-+		case GPIO_DDC_LINE_DDC_VGA:
-+			info->offset = mmDC_GPIO_DDCVGA_A;
-+		break;
-+		case GPIO_DDC_LINE_I2C_PAD:
-+			info->offset = mmDC_GPIO_I2CPAD_A;
-+		break;
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			result = false;
-+		}
-+	break;
-+	case GPIO_ID_GENERIC:
-+		info->offset = mmDC_GPIO_GENERIC_A;
-+		switch (en) {
-+		case GPIO_GENERIC_A:
-+			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICA_A_MASK;
-+		break;
-+		case GPIO_GENERIC_B:
-+			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICB_A_MASK;
-+		break;
-+		case GPIO_GENERIC_C:
-+			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICC_A_MASK;
-+		break;
-+		case GPIO_GENERIC_D:
-+			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICD_A_MASK;
-+		break;
-+		case GPIO_GENERIC_E:
-+			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICE_A_MASK;
-+		break;
-+		case GPIO_GENERIC_F:
-+			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICF_A_MASK;
-+		break;
-+		case GPIO_GENERIC_G:
-+			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICG_A_MASK;
-+		break;
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			result = false;
-+		}
-+	break;
-+	case GPIO_ID_HPD:
-+		info->offset = mmDC_GPIO_HPD_A;
-+		switch (en) {
-+		case GPIO_HPD_1:
-+			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD1_A_MASK;
-+		break;
-+		case GPIO_HPD_2:
-+			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD2_A_MASK;
-+		break;
-+		case GPIO_HPD_3:
-+			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD3_A_MASK;
-+		break;
-+		case GPIO_HPD_4:
-+			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD4_A_MASK;
-+		break;
-+		case GPIO_HPD_5:
-+			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD5_A_MASK;
-+		break;
-+		case GPIO_HPD_6:
-+			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD6_A_MASK;
-+		break;
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			result = false;
-+		}
-+	break;
-+	case GPIO_ID_SYNC:
-+		switch (en) {
-+		case GPIO_SYNC_HSYNC_A:
-+			info->offset = mmDC_GPIO_SYNCA_A;
-+			info->mask = DC_GPIO_SYNCA_A__DC_GPIO_HSYNCA_A_MASK;
-+		break;
-+		case GPIO_SYNC_VSYNC_A:
-+			info->offset = mmDC_GPIO_SYNCA_A;
-+			info->mask = DC_GPIO_SYNCA_A__DC_GPIO_VSYNCA_A_MASK;
-+		break;
-+		case GPIO_SYNC_HSYNC_B:
-+		case GPIO_SYNC_VSYNC_B:
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			result = false;
-+		}
-+	break;
-+	case GPIO_ID_GSL:
-+		switch (en) {
-+		case GPIO_GSL_GENLOCK_CLOCK:
-+			info->offset = mmDC_GPIO_GENLK_A;
-+			info->mask = DC_GPIO_GENLK_A__DC_GPIO_GENLK_CLK_A_MASK;
-+		break;
-+		case GPIO_GSL_GENLOCK_VSYNC:
-+			info->offset = mmDC_GPIO_GENLK_A;
-+			info->mask =
-+				DC_GPIO_GENLK_A__DC_GPIO_GENLK_VSYNC_A_MASK;
-+		break;
-+		case GPIO_GSL_SWAPLOCK_A:
-+			info->offset = mmDC_GPIO_GENLK_A;
-+			info->mask = DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_A_A_MASK;
-+		break;
-+		case GPIO_GSL_SWAPLOCK_B:
-+			info->offset = mmDC_GPIO_GENLK_A;
-+			info->mask = DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_B_A_MASK;
-+		break;
-+		default:
-+			BREAK_TO_DEBUGGER();
-+			result = false;
-+		}
-+	break;
-+	case GPIO_ID_GPIO_PAD:
-+		info->offset = mmGPIOPAD_A;
-+		info->mask = (1 << en);
-+		result = (info->mask <= GPIO_GPIO_PAD_MAX);
-+	break;
-+	case GPIO_ID_VIP_PAD:
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		result = false;
-+	}
-+
-+	if (result) {
-+		info->offset_y = info->offset + 2;
-+		info->offset_en = info->offset + 1;
-+		info->offset_mask = info->offset - 1;
-+
-+		info->mask_y = info->mask;
-+		info->mask_en = info->mask;
-+		info->mask_mask = info->mask;
-+	}
-+
-+	return result;
-+}
-+
-+static const struct hw_translate_funcs funcs = {
-+		.offset_to_id = offset_to_id,
-+		.id_to_offset = id_to_offset,
-+};
-+
-+void dal_hw_translate_dce60_init(
-+	struct hw_translate *translate)
-+{
-+	translate->funcs = &funcs;
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_translate_dce60.h b/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_translate_dce60.h
-new file mode 100644
-index 000000000000..1e811f35cec7
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dce60/hw_translate_dce60.h
-@@ -0,0 +1,32 @@
-+/*
-+ * Copyright 2020 Mauro Rossi <issor.oruam@gmail.com>
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: AMD
-+ *
-+ */
-+
-+#ifndef __DAL_HW_TRANSLATE_DCE60_H__
-+#define __DAL_HW_TRANSLATE_DCE60_H__
-+
-+void dal_hw_translate_dce60_init(
-+	struct hw_translate *tr);
++struct irq_service *dal_irq_service_dce60_create(
++	struct irq_service_init_data *init_data);
 +
 +#endif
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_factory.c b/drivers/gpu/drm/amd/display/dc/gpio/hw_factory.c
-index e5cfe28bc7bf..6fc8a6e9dc15 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/hw_factory.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_factory.c
-@@ -42,6 +42,9 @@
-  * Post-requisites: headers required by this unit
-  */
++
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/irq_service.c b/drivers/gpu/drm/amd/display/dc/irq/irq_service.c
+index 33053b9fe6bd..6bf27bde8724 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/irq_service.c
++++ b/drivers/gpu/drm/amd/display/dc/irq/irq_service.c
+@@ -32,6 +32,9 @@
+ 
+ #include "dce110/irq_service_dce110.h"
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+#include "dce60/hw_factory_dce60.h"
++#include "dce60/irq_service_dce60.h"
 +#endif
- #include "dce80/hw_factory_dce80.h"
- #include "dce110/hw_factory_dce110.h"
- #include "dce120/hw_factory_dce120.h"
-@@ -71,6 +74,13 @@ bool dal_hw_factory_init(
- 	}
  
- 	switch (dce_version) {
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+	case DCE_VERSION_6_0:
-+	case DCE_VERSION_6_1:
-+	case DCE_VERSION_6_4:
-+		dal_hw_factory_dce60_init(factory);
-+		return true;
-+#endif
- 	case DCE_VERSION_8_0:
- 	case DCE_VERSION_8_1:
- 	case DCE_VERSION_8_3:
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.c b/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.c
-index efea7cb0f17c..3a93c945e57d 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.c
-@@ -40,6 +40,9 @@
-  * Post-requisites: headers required by this unit
-  */
+ #include "dce80/irq_service_dce80.h"
  
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+#include "dce60/hw_translate_dce60.h"
-+#endif
- #include "dce80/hw_translate_dce80.h"
- #include "dce110/hw_translate_dce110.h"
- #include "dce120/hw_translate_dce120.h"
-@@ -69,6 +72,13 @@ bool dal_hw_translate_init(
- 	}
- 
- 	switch (dce_version) {
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+	case DCE_VERSION_6_0:
-+	case DCE_VERSION_6_1:
-+	case DCE_VERSION_6_4:
-+		dal_hw_translate_dce60_init(translate);
-+		return true;
-+#endif
- 	case DCE_VERSION_8_0:
- 	case DCE_VERSION_8_1:
- 	case DCE_VERSION_8_3:
 -- 
 2.25.1
 
