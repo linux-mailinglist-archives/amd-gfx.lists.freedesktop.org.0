@@ -2,56 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80212222DB2
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D709222DB3
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8DB86EC76;
-	Thu, 16 Jul 2020 21:23:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9549B6E069;
+	Thu, 16 Jul 2020 21:23:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E488B6E069
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:08 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id z2so8667308wrp.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:08 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B55BB6E069
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:09 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id j4so8601762wrp.10
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=N0TtJ4dwuNmMMy25kcvRl6z8tUWJFcPi5FQEZvtRpBc=;
- b=FageieCrzu/AJKurYg3l3XB88JedAka0jQRTmAGjRPd33PTgCeEFTGkYP9fP3hNVBK
- /FN1Z7eSpL/urkGSQML53efPhc73dOO/qpmc1eTRcu5kTsSfrRHjAkbrspvC45fKKsy8
- XYvPWjnCbeHmEbu94jU+emvWDSwKMmZUgcRx4iGURFd2ZnPcOWGru7mHnXxFJokuV7lO
- VBq4jo4eMFV9Nmb7DRlIMWFALUi/+xrd5xzMvhIaC/TUZHBF+avr2hMynQeo/rSnoaeR
- hs15xq1ryydL20iu5D1GMbYuPWk9uc8OgkSt3d2EQ6TCO9dNz1XNrdtYbSToHnrWrZdw
- bl4g==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=VXqwqE7Zo5JLpQgFKTzr3chggYFs3dKeOMtv8JxFwWg=;
+ b=BBiUYJ6zmTZ6NXywDOaukxGt2DABwmOqVGRQUKOTDOsSBaVgOaJm+GE5VnJWssZlnP
+ rRnB//Tv/ZNpUnB2LzJLR01U7G/2qkCD78tQvJ6d8r3+810zfIw8QMqllhcOmQR+9z4Q
+ 5nlCc3d1Z4cM9jwgiErtQvcdZQcWY5ey2TfjX3XU5I6hk5guXPxZNfdZml8XEvEmJ90k
+ VTNfHXr8jWrj8PYLtXveyQCdvErNoPneU36Iz5RUtdKuDnfjKztoubjADOgl1TA48Hbi
+ Qfz9B8aUblmXD9UvJn5ZxdRqMcoyxNibA5tLzjemdMPOSR6V+tZMVjHYGOnE4Euf1lAZ
+ pARg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=N0TtJ4dwuNmMMy25kcvRl6z8tUWJFcPi5FQEZvtRpBc=;
- b=jncN1TCAs9jFs9d7i2zRBCnq7I+Fb/Kma6IkbhvUSou4oU0JwVg0M4hU2VBVxQouJ/
- mm2JJgpebVE43d/slws+32xfsTzzskNUNN08bAqAXzd0w8TedAhCE+6erAgen3T66MBg
- cX7D7B3A7RML3CYT3A44JLNCVZmQ+upRWYuQqC8y4uI+2SpM6/6ntYvSHkPxOLZleE0e
- /PiRDEwbj0xX3cGYlX9BAvXHH9VOwDnOEFx38z9/x2zrtPRp9kJhh/lRogzpezFHA//v
- 5PsKG6fAoUdaTP31vC19CQPLNqR6qoYoLFsuGxfAj0/mGRAqIE0tb3kZ6fA7V0NyKRXO
- IDbg==
-X-Gm-Message-State: AOAM532OyXeY2WF3G+z3sCaT2HF/ecPth1YFVeJf9poCpRMl7m92N8WG
- qFWYP8KF/Y2q+02DM4esEvCJ4sdBep0=
-X-Google-Smtp-Source: ABdhPJyLzZoBqgPOZ+sO0GcDbPi6ZrfA1aAJ8MW7W1Fxhfal629zNlpmNcdp+jMvHrtbYGPzsLpTEw==
-X-Received: by 2002:adf:ef4d:: with SMTP id c13mr6679536wrp.315.1594934586899; 
- Thu, 16 Jul 2020 14:23:06 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=VXqwqE7Zo5JLpQgFKTzr3chggYFs3dKeOMtv8JxFwWg=;
+ b=rWxbyX6CZwYAYImZw1gXW2YPP3uU8uYwbAgJz2bM5ySl1ur30V+Nu933kqN9+Nv+R2
+ xZkR9hx9unC0CoqdcoAfMk0OYDrAHU2q6j1/0lzPrMoo+PLEB//gIAIt0Lm4k0uWcey0
+ 92O5P8B1hDaMVu5RRki+YxDmprhFVl5tUHhaHaJpCJaAghHwnWuGKE/++bXdqATA2fhC
+ lxiY++6ZZGY1elmDUH7YssGiPcdPbWPNGiLKpRapY91fjqn6Yi8mT3mS/L4B7oV8mRI4
+ c+o22d1TJqHiQLZwJXVYG76pK0vyr1hYYfCc7MRJ/Q00Xrjwa3ha4NSAb6JP1CAOxOIk
+ WH0w==
+X-Gm-Message-State: AOAM530SpV6+p3mTiPA5d3JP6fL161gMZpLfHp6g0vL5cKTwqcWFEJdS
+ ZQDaawHI2I+KIVG0mrAwIsXejRXNKUs=
+X-Google-Smtp-Source: ABdhPJwHUPS4DwkMGowisLPGyBxZPbe8KEoPJ3v56etkeKg3TIXXkVmBR2Lm6vDmaTWJHJqT2QiyqA==
+X-Received: by 2002:a5d:628b:: with SMTP id k11mr6901728wru.107.1594934587790; 
+ Thu, 16 Jul 2020 14:23:07 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
- by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.04
+ by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:04 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:07 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: 
-Date: Thu, 16 Jul 2020 23:22:24 +0200
-Message-Id: <20200716212251.1539094-1-issor.oruam@gmail.com>
+Subject: [PATCH v3 01/27] drm/amdgpu: add some required DCE6 registers (v6)
+Date: Thu, 16 Jul 2020 23:22:25 +0200
+Message-Id: <20200716212251.1539094-2-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
+References: <20200716212251.1539094-1-issor.oruam@gmail.com>
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,68 +66,246 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Mauro Rossi <issor.oruam@gmail.com>,
- harry.wentland@amd.com
+Cc: alexander.deucher@amd.com, harry.wentland@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The series adds SI support to AMD DC
+From: Alex Deucher <alexander.deucher@amd.com>
 
-Changelog:
+To help with the DC port.
 
-[RFC]
-Preliminar Proof Of Concept, with DCE8 headers still used in dce60_resources.c
+v2: add missing masks, add additional registers
+v3: more updates
+v4: fix accidently dropped changes
+v5: add missing nb pstate mask
+v6: add vblank, vline masks
 
-[PATCH v2]
-Rebase on amd-staging-drm-next dated 17-Oct-2018
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ .../drm/amd/include/asic_reg/dce/dce_6_0_d.h  | 62 ++++++++++++-
+ .../include/asic_reg/dce/dce_6_0_sh_mask.h    | 92 +++++++++++++++++++
+ 2 files changed, 153 insertions(+), 1 deletion(-)
 
-[PATCH v3]
-Add support for DCE6 specific headers,
-ad hoc DCE6 macros, funtions and fixes,
-rebase on current amd-staging-drm-next
-
-
-Commits [01/27]..[08/27] SI support added in various DC components
-
-[PATCH v3 01/27] drm/amdgpu: add some required DCE6 registers (v6)
-[PATCH v3 02/27] drm/amd/display: add asics info for SI parts
-[PATCH v3 03/27] drm/amd/display: dc/dce: add initial DCE6 support (v9b)
-[PATCH v3 04/27] drm/amd/display: dc/core: add SI/DCE6 support (v2)
-[PATCH v3 05/27] drm/amd/display: dc/bios: add support for DCE6
-[PATCH v3 06/27] drm/amd/display: dc/gpio: add support for DCE6 (v2)
-[PATCH v3 07/27] drm/amd/display: dc/irq: add support for DCE6 (v4)
-[PATCH v3 08/27] drm/amd/display: amdgpu_dm: add SI support (v4)
-
-Commits [09/27]..[24/27] DCE6 specific code adaptions
-
-[PATCH v3 09/27] drm/amd/display: dc/clk_mgr: add support for SI parts (v2)
-[PATCH v3 10/27] drm/amd/display: dc/dce60: set max_cursor_size to 64
-[PATCH v3 11/27] drm/amd/display: dce_audio: add DCE6 specific macros,functions
-[PATCH v3 12/27] drm/amd/display: dce_dmcu: add DCE6 specific macros
-[PATCH v3 13/27] drm/amd/display: dce_hwseq: add DCE6 specific macros,functions
-[PATCH v3 14/27] drm/amd/display: dce_ipp: add DCE6 specific macros,functions
-[PATCH v3 15/27] drm/amd/display: dce_link_encoder: add DCE6 specific macros,functions
-[PATCH v3 16/27] drm/amd/display: dce_mem_input: add DCE6 specific macros,functions
-[PATCH v3 17/27] drm/amd/display: dce_opp: add DCE6 specific macros,functions
-[PATCH v3 18/27] drm/amd/display: dce_transform: add DCE6 specific macros,functions
-[PATCH v3 19/27] drm/amdgpu: add some required DCE6 registers (v7)
-[PATCH v3 20/27] drm/amd/display: dce_transform: DCE6 Scaling Horizontal Filter Init
-[PATCH v3 21/27] drm/amd/display: dce60_hw_sequencer: add DCE6 macros,functions
-[PATCH v3 22/27] drm/amd/display: dce60_hw_sequencer: add DCE6 specific .cursor_lock
-[PATCH v3 23/27] drm/amd/display: dce60_timing_generator: add DCE6 specific functions
-[PATCH v3 24/27] drm/amd/display: dc/dce60: use DCE6 headers (v6)
-
-
-Commits [25/27]..[27/27] SI support final enablements
-
-[PATCH v3 25/27] drm/amd/display: create plane rotation property for Bonarie and later
-[PATCH v3 26/27] drm/amdgpu: enable DC support for SI parts (v2)
-[PATCH v3 27/27] drm/amd/display: enable SI support in the Kconfig (v2)
-
-
-Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_d.h b/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_d.h
+index ae798f768853..74897b046006 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_d.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_d.h
+@@ -4444,14 +4444,74 @@
+ 
+ /* Registers that spilled out of sid.h */
+ #define mmDATA_FORMAT                              0x1AC0
++#define mmLB0_DATA_FORMAT                               0x1AC0
++#define mmLB1_DATA_FORMAT                               0x1DC0
++#define mmLB2_DATA_FORMAT                               0x40C0
++#define mmLB3_DATA_FORMAT                               0x43C0
++#define mmLB4_DATA_FORMAT                               0x46C0
++#define mmLB5_DATA_FORMAT                               0x49C0
+ #define mmDESKTOP_HEIGHT                           0x1AC1
++#define mmLB0_DESKTOP_HEIGHT                            0x1AC1
++#define mmLB1_DESKTOP_HEIGHT                            0x1DC1
++#define mmLB2_DESKTOP_HEIGHT                            0x40C1
++#define mmLB3_DESKTOP_HEIGHT                            0x43C1
++#define mmLB4_DESKTOP_HEIGHT                            0x46C1
++#define mmLB5_DESKTOP_HEIGHT                            0x49C1
+ #define mmDC_LB_MEMORY_SPLIT                       0x1AC3
++#define mmLB0_DC_LB_MEMORY_SPLIT                        0x1AC3
++#define mmLB1_DC_LB_MEMORY_SPLIT                        0x1DC3
++#define mmLB2_DC_LB_MEMORY_SPLIT                        0x40C3
++#define mmLB3_DC_LB_MEMORY_SPLIT                        0x43C3
++#define mmLB4_DC_LB_MEMORY_SPLIT                        0x46C3
++#define mmLB5_DC_LB_MEMORY_SPLIT                        0x49C3
++#define mmDC_LB_MEM_SIZE                                0x1AC4
++#define mmLB0_DC_LB_MEM_SIZE                            0x1AC4
++#define mmLB1_DC_LB_MEM_SIZE                            0x1DC4
++#define mmLB2_DC_LB_MEM_SIZE                            0x40C4
++#define mmLB3_DC_LB_MEM_SIZE                            0x43C4
++#define mmLB4_DC_LB_MEM_SIZE                            0x46C4
++#define mmLB5_DC_LB_MEM_SIZE                            0x49C4
+ #define mmPRIORITY_A_CNT                           0x1AC6
++#define mmLB0_PRIORITY_A_CNT                            0x1AC6
++#define mmLB1_PRIORITY_A_CNT                            0x1DC6
++#define mmLB2_PRIORITY_A_CNT                            0x40C6
++#define mmLB3_PRIORITY_A_CNT                            0x43C6
++#define mmLB4_PRIORITY_A_CNT                            0x46C6
++#define mmLB5_PRIORITY_A_CNT                            0x49C6
+ #define mmPRIORITY_B_CNT                           0x1AC7
++#define mmLB0_PRIORITY_B_CNT                            0x1AC7
++#define mmLB1_PRIORITY_B_CNT                            0x1DC7
++#define mmLB2_PRIORITY_B_CNT                            0x40C7
++#define mmLB3_PRIORITY_B_CNT                            0x43C7
++#define mmLB4_PRIORITY_B_CNT                            0x46C7
++#define mmLB5_PRIORITY_B_CNT                            0x49C7
+ #define mmDPG_PIPE_ARBITRATION_CONTROL3            0x1B32
++#define mmDMIF_PG0_DPG_PIPE_ARBITRATION_CONTROL3        0x1B32
++#define mmDMIF_PG1_DPG_PIPE_ARBITRATION_CONTROL3        0x1E32
++#define mmDMIF_PG2_DPG_PIPE_ARBITRATION_CONTROL3        0x4132
++#define mmDMIF_PG3_DPG_PIPE_ARBITRATION_CONTROL3        0x4432
++#define mmDMIF_PG4_DPG_PIPE_ARBITRATION_CONTROL3        0x4732
++#define mmDMIF_PG5_DPG_PIPE_ARBITRATION_CONTROL3        0x4A32
+ #define mmINT_MASK                                 0x1AD0
++#define mmLB0_INT_MASK                                  0x1AD0
++#define mmLB1_INT_MASK                                  0x1DD0
++#define mmLB2_INT_MASK                                  0x40D0
++#define mmLB3_INT_MASK                                  0x43D0
++#define mmLB4_INT_MASK                                  0x46D0
++#define mmLB5_INT_MASK                                  0x49D0
+ #define mmVLINE_STATUS                             0x1AEE
++#define mmLB0_VLINE_STATUS                              0x1AEE
++#define mmLB1_VLINE_STATUS                              0x1DEE
++#define mmLB2_VLINE_STATUS                              0x40EE
++#define mmLB3_VLINE_STATUS                              0x43EE
++#define mmLB4_VLINE_STATUS                              0x46EE
++#define mmLB5_VLINE_STATUS                              0x49EE
+ #define mmVBLANK_STATUS                            0x1AEF
+-
++#define mmLB0_VBLANK_STATUS                             0x1AEF
++#define mmLB1_VBLANK_STATUS                             0x1DEF
++#define mmLB2_VBLANK_STATUS                             0x40EF
++#define mmLB3_VBLANK_STATUS                             0x43EF
++#define mmLB4_VBLANK_STATUS                             0x46EF
++#define mmLB5_VBLANK_STATUS                             0x49EF
+ 
+ #endif
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_sh_mask.h
+index abe05bc80752..bf262460b0b9 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_sh_mask.h
+@@ -2076,6 +2076,8 @@
+ #define CRTC_CONTROL__CRTC_START_POINT_CNTL__SHIFT 0x0000000c
+ #define CRTC_CONTROL__CRTC_SYNC_RESET_SEL_MASK 0x00000010L
+ #define CRTC_CONTROL__CRTC_SYNC_RESET_SEL__SHIFT 0x00000004
++#define CRTC_CONTROL__CRTC_PREFETCH_EN_MASK                0x10000000L
++#define	CRTC_CONTROL__CRTC_PREFETCH_EN__SHIFT              0x0000001c
+ #define CRTC_COUNT_CONTROL__CRTC_HORZ_COUNT_BY2_EN_MASK 0x00000001L
+ #define CRTC_COUNT_CONTROL__CRTC_HORZ_COUNT_BY2_EN__SHIFT 0x00000000
+ #define CRTC_COUNT_CONTROL__CRTC_HORZ_REPETITION_COUNT_MASK 0x0000001eL
+@@ -6364,6 +6366,8 @@
+ #define DPG_PIPE_ARBITRATION_CONTROL2__TIME_WEIGHT__SHIFT 0x00000000
+ #define DPG_PIPE_ARBITRATION_CONTROL2__URGENCY_WEIGHT_MASK 0xffff0000L
+ #define DPG_PIPE_ARBITRATION_CONTROL2__URGENCY_WEIGHT__SHIFT 0x00000010
++#define DPG_PIPE_ARBITRATION_CONTROL3__URGENCY_WATERMARK_MASK_MASK 0x00030000L
++#define	DPG_PIPE_ARBITRATION_CONTROL3__URGENCY_WATERMARK_MASK__SHIFT 0x00000010
+ #define DPG_PIPE_DPM_CONTROL__DPM_ENABLE_MASK 0x00000001L
+ #define DPG_PIPE_DPM_CONTROL__DPM_ENABLE__SHIFT 0x00000000
+ #define DPG_PIPE_DPM_CONTROL__MCLK_CHANGE_ENABLE_MASK 0x00000010L
+@@ -6384,6 +6388,8 @@
+ #define DPG_PIPE_NB_PSTATE_CHANGE_CONTROL__NB_PSTATE_CHANGE_NOT_SELF_REFRESH_DURING_REQUEST__SHIFT 0x00000008
+ #define DPG_PIPE_NB_PSTATE_CHANGE_CONTROL__NB_PSTATE_CHANGE_URGENT_DURING_REQUEST_MASK 0x00000010L
+ #define DPG_PIPE_NB_PSTATE_CHANGE_CONTROL__NB_PSTATE_CHANGE_URGENT_DURING_REQUEST__SHIFT 0x00000004
++#define DPG_PIPE_NB_PSTATE_CHANGE_CONTROL__NB_PSTATE_CHANGE_WATERMARK_MASK_MASK 0x00003000L
++#define	DPG_PIPE_NB_PSTATE_CHANGE_CONTROL__NB_PSTATE_CHANGE_WATERMARK_MASK__SHIFT 0x0000000c
+ #define DPG_PIPE_NB_PSTATE_CHANGE_CONTROL__NB_PSTATE_CHANGE_WATERMARK_MASK 0xffff0000L
+ #define DPG_PIPE_NB_PSTATE_CHANGE_CONTROL__NB_PSTATE_CHANGE_WATERMARK__SHIFT 0x00000010
+ #define DPG_PIPE_STUTTER_CONTROL_NONLPTCH__STUTTER_ENABLE_NONLPTCH_MASK 0x00000001L
+@@ -6406,6 +6412,8 @@
+ #define DPG_PIPE_STUTTER_CONTROL_NONLPTCH__STUTTER_WM_HIGH_FORCE_ON_NONLPTCH__SHIFT 0x00000008
+ #define DPG_PIPE_STUTTER_CONTROL__STUTTER_ENABLE_MASK 0x00000001L
+ #define DPG_PIPE_STUTTER_CONTROL__STUTTER_ENABLE__SHIFT 0x00000000
++#define DPG_PIPE_STUTTER_CONTROL__STUTTER_EXIT_SELF_REFRESH_WATERMARK_MASK_MASK 0x00003000L
++#define	DPG_PIPE_STUTTER_CONTROL__STUTTER_EXIT_SELF_REFRESH_WATERMARK_MASK__SHIFT 0x0000000c
+ #define DPG_PIPE_STUTTER_CONTROL__STUTTER_EXIT_SELF_REFRESH_WATERMARK_MASK 0xffff0000L
+ #define DPG_PIPE_STUTTER_CONTROL__STUTTER_EXIT_SELF_REFRESH_WATERMARK__SHIFT 0x00000010
+ #define DPG_PIPE_STUTTER_CONTROL__STUTTER_IGNORE_CURSOR_MASK 0x00000010L
+@@ -7256,6 +7264,8 @@
+ #define GRPH_CONTROL__GRPH_FORMAT__SHIFT 0x00000008
+ #define GRPH_CONTROL__GRPH_MACRO_TILE_ASPECT_MASK 0x000c0000L
+ #define GRPH_CONTROL__GRPH_MACRO_TILE_ASPECT__SHIFT 0x00000012
++#define GRPH_CONTROL__GRPH_ARRAY_MODE_MASK                 0x00f00000L
++#define	GRPH_CONTROL__GRPH_ARRAY_MODE__SHIFT               0x00000014
+ #define GRPH_CONTROL__GRPH_NUM_BANKS_MASK 0x0000000cL
+ #define GRPH_CONTROL__GRPH_NUM_BANKS__SHIFT 0x00000002
+ #define GRPH_CONTROL__GRPH_PIPE_CONFIG_MASK 0x1f000000L
+@@ -9835,4 +9845,86 @@
+ #define XDMA_TEST_DEBUG_INDEX__XDMA_TEST_DEBUG_WRITE_EN_MASK 0x00000100L
+ #define XDMA_TEST_DEBUG_INDEX__XDMA_TEST_DEBUG_WRITE_EN__SHIFT 0x00000008
+ 
++// DATA_FORMAT
++#define DATA_FORMAT__INTERLEAVE_EN_MASK                    0x00000001L
++#define	DATA_FORMAT__INTERLEAVE_EN__SHIFT                  0x00000000
++#define DATA_FORMAT__RESET_REQ_AT_EOL_MASK                 0x00000010L
++#define	DATA_FORMAT__RESET_REQ_AT_EOL__SHIFT               0x00000004
++#define DATA_FORMAT__PREFETCH_MASK                         0x00001000L
++#define	DATA_FORMAT__PREFETCH__SHIFT                       0x0000000c
++#define DATA_FORMAT__SOF_READ_PT_MASK                      0x001f0000L
++#define	DATA_FORMAT__SOF_READ_PT__SHIFT                    0x00000010
++#define DATA_FORMAT__REQUEST_MODE_MASK                     0x03000000L
++#define	DATA_FORMAT__REQUEST_MODE__SHIFT                   0x00000018
++#define DATA_FORMAT__ALLOW_REQ_MODE_1_2_MASK               0x10000000L
++#define	DATA_FORMAT__ALLOW_REQ_MODE_1_2__SHIFT             0x0000001c
++
++
++// DC_LB_MEMORY_SPLIT
++#define DC_LB_MEMORY_SPLIT__LB_NUM_PARTITIONS_MASK         0x000f0000L
++#define	DC_LB_MEMORY_SPLIT__LB_NUM_PARTITIONS__SHIFT       0x00000010
++#define DC_LB_MEMORY_SPLIT__DC_LB_MEMORY_CONFIG_MASK       0x00300000L
++#define	DC_LB_MEMORY_SPLIT__DC_LB_MEMORY_CONFIG__SHIFT     0x00000014
++
++// DC_LB_MEM_SIZE
++#define DC_LB_MEM_SIZE__DC_LB_MEM_SIZE_MASK                0x000007ffL
++#define	DC_LB_MEM_SIZE__DC_LB_MEM_SIZE__SHIFT              0x00000000
++
++// SCL_TAP_CONTROL
++#define SCL_TAP_CONTROL__SCL_V_NUM_OF_TAPS_MASK            0x00000007L
++#define	SCL_TAP_CONTROL__SCL_V_NUM_OF_TAPS__SHIFT          0x00000000
++#define SCL_TAP_CONTROL__SCL_H_NUM_OF_TAPS_MASK            0x00000f00L
++#define	SCL_TAP_CONTROL__SCL_H_NUM_OF_TAPS__SHIFT          0x00000008
++
++// INT_MASK
++#define INT_MASK__VBLANK_INT_MASK                          0x00000001L
++#define	INT_MASK__VBLANK_INT__SHIFT                        0x00000000
++#define INT_MASK__VLINE_INT_MASK                           0x00000010L
++#define	INT_MASK__VLINE_INT__SHIFT                         0x00000004
++
++// PRIORITY_A_CNT
++#define PRIORITY_A_CNT__PRIORITY_MARK_A_MASK               0x00007fffL
++#define	PRIORITY_A_CNT__PRIORITY_MARK_A__SHIFT             0x00000000
++#define PRIORITY_A_CNT__PRIORITY_A_OFF_MASK                0x00010000L
++#define	PRIORITY_A_CNT__PRIORITY_A_OFF__SHIFT              0x00000010
++#define PRIORITY_A_CNT__PRIORITY_A_ALWAYS_ON_MASK          0x00100000L
++#define	PRIORITY_A_CNT__PRIORITY_A_ALWAYS_ON__SHIFT        0x00000014
++#define PRIORITY_A_CNT__PRIORITY_A_FORCE_MASK_MASK         0x01000000L
++#define	PRIORITY_A_CNT__PRIORITY_A_FORCE_MASK__SHIFT       0x00000018
++
++// PRIORITY_B_CNT
++#define PRIORITY_B_CNT__PRIORITY_MARK_B_MASK               0x00007fffL
++#define	PRIORITY_B_CNT__PRIORITY_MARK_B__SHIFT             0x00000000
++#define PRIORITY_B_CNT__PRIORITY_B_OFF_MASK                0x00010000L
++#define	PRIORITY_B_CNT__PRIORITY_B_OFF__SHIFT              0x00000010
++#define PRIORITY_B_CNT__PRIORITY_B_ALWAYS_ON_MASK          0x00100000L
++#define	PRIORITY_B_CNT__PRIORITY_B_ALWAYS_ON__SHIFT        0x00000014
++#define PRIORITY_B_CNT__PRIORITY_B_FORCE_MASK_MASK         0x01000000L
++#define	PRIORITY_B_CNT__PRIORITY_B_FORCE_MASK__SHIFT       0x00000018
++
++// VLINE_STATUS
++#define VLINE_STATUS__VLINE_OCCURRED_MASK                  0x00000001L
++#define	VLINE_STATUS__VLINE_OCCURRED__SHIFT                0x00000000
++#define VLINE_STATUS__VLINE_ACK_MASK                       0x00000010L
++#define	VLINE_STATUS__VLINE_ACK__SHIFT                     0x00000004
++#define VLINE_STATUS__VLINE_STAT_MASK                      0x00001000L
++#define	VLINE_STATUS__VLINE_STAT__SHIFT                    0x0000000c
++#define VLINE_STATUS__VLINE_INTERRUPT_MASK                 0x00010000L
++#define	VLINE_STATUS__VLINE_INTERRUPT__SHIFT               0x00000010
++#define VLINE_STATUS__VLINE_INTERRUPT_TYPE_MASK            0x00020000L
++#define	VLINE_STATUS__VLINE_INTERRUPT_TYPE__SHIFT          0x00000011
++
++// VBLANK_STATUS
++#define VBLANK_STATUS__VBLANK_OCCURRED_MASK                0x00000001L
++#define	VBLANK_STATUS__VBLANK_OCCURRED__SHIFT              0x00000000
++#define VBLANK_STATUS__VBLANK_ACK_MASK                     0x00000010L
++#define	VBLANK_STATUS__VBLANK_ACK__SHIFT                   0x00000004
++#define VBLANK_STATUS__VBLANK_STAT_MASK                    0x00001000L
++#define	VBLANK_STATUS__VBLANK_STAT__SHIFT                  0x0000000c
++#define VBLANK_STATUS__VBLANK_INTERRUPT_MASK               0x00010000L
++#define	VBLANK_STATUS__VBLANK_INTERRUPT__SHIFT             0x00000010
++#define VBLANK_STATUS__VBLANK_INTERRUPT_TYPE_MASK          0x00020000L
++#define	VBLANK_STATUS__VBLANK_INTERRUPT_TYPE__SHIFT        0x00000011
++
++
+ #endif
+-- 
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
