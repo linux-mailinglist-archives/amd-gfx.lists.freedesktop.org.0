@@ -2,56 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C1B3222DC2
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C890D222DC4
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA3D66ECF7;
-	Thu, 16 Jul 2020 21:23:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 416776ECF9;
+	Thu, 16 Jul 2020 21:23:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 870BA6ECF7
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:26 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id o2so13178958wmh.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:26 -0700 (PDT)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5A6C6ECED
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:27 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id a6so6119314wmm.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=+94iN5jmV4vW7sjBL7GViScIdGhXe7wMUmgKWTXosoA=;
- b=nEUqJa7wydhN3LXKUFlp/JkWkdeGelpdFG3dcC8MhPhGa0W8rcuTIpRZhydy/GCJFx
- Yuu4xKe9espwQ0iQITecsuD2Ru5aeCDAeqQp+LA8LAFNPCJnfluglTZO7hwJ/qoYa6UZ
- G3jVszGKlCxXndl7s6vFv0vg3gKS6JtvBTqCoWAsP1ITqKJuQ1k88zlyfmJzXw50CclM
- AgyDJrNfqto9ncKj3Ys9fOUYSr/D4c4WCPTHISlxQ61yVBXtaYL6c85wEO+WiMd9YKrM
- qBb/PSBDjjBW3UJQhwL9acdWX9X/5dNnkV5eKnk2EiWxsxd924BuG4B7565cs8G5Bc9b
- b4yQ==
+ bh=5oxbm+OwYrXJfeu8fsvHEXPJKp4UzzNYF3dRL7NE5CA=;
+ b=tX2MOg3+ZHKBlX03kERqo7NI43lVs6PtSmZSDvdo8HccrmTpE+eb5EWqPv6QNFWxlw
+ ZkMRqbN5DKxMtk4biYesN3tPlKlW5NxcXN0TWfZzqllNoerq5U/3dsotRZsgX9/weWuu
+ A90ruhNswY3g8r7Vrs1ryBBRCcEvwB3MCbKXa01rcVYVzL7iLbeqjlbbenEn5E22dDJI
+ KpdMLRvaEzhAwCmxaSyESdacv5fj8k5SdMB/DWv6/NgCWIRbu3MFUW+L5Kpzo7qFlGNc
+ PEAS7EqQZ0zrS70iDpjgJRug5KaNOUP/h3YQMAuq/Vqcy1SWcSoiMnktjoMlXczPSCDu
+ fQ0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=+94iN5jmV4vW7sjBL7GViScIdGhXe7wMUmgKWTXosoA=;
- b=rc44ndb020jq/PU4IEv9LSDYNQxSrAVn+dLY5Qw0XebVnZ8QkI4OzfW0gag0EqYsIW
- 42W80b0gFHoiYRCXjdMiov59zPKrHFPGwbFEI/PgRBo3PI4tI5dc1/sbjVcqiU4E7EFT
- pY4QhdVm+KnzyRLNNWrtzqlrs0kEtWA8DjiU5HO0y//twVx7ZdNAlBDEsZkk8YcT6Iz9
- Sy9+Ek5efc680caVlpKKlBIjvcAy8i+aRtefndNhX/UbeBPVcuwFdC6ppjMX7ttXP7YF
- yhx7hp803AaUeVyHi25M0j52NAAo6uPLVeSrgAomLqFzVRwRXzYpS//A7xttSnkm4wtR
- mMOQ==
-X-Gm-Message-State: AOAM530dJ/cz4K3V0BeiHUsSfv7drizqxRvlKhwYP773W5/wuT9jv3SF
- j+uPspBKAOsoWvCjfyV+kkozgDxXeK0=
-X-Google-Smtp-Source: ABdhPJwGf46w+MIjWp9EkJ6rhpZEhc3/DhzPRrpcWmTfFS3uzksXpkSo6quMFm259gq3hT3UOt/73g==
-X-Received: by 2002:a1c:49d4:: with SMTP id w203mr6411660wma.13.1594934604493; 
- Thu, 16 Jul 2020 14:23:24 -0700 (PDT)
+ bh=5oxbm+OwYrXJfeu8fsvHEXPJKp4UzzNYF3dRL7NE5CA=;
+ b=j2xGGLmhrgLwK0NOEh50RlWZm/yKlqIB/7iL7qOp1Hra42XJEe93+mfQqCPBcVgsP/
+ YfEzaccZ3Ob4/qpWxM2n+Y7JwEiAv7x3bMk/uCXYU5FNnUpRKFwEP7AfOShpvr5LgbZM
+ 0Fxfq/HOTDyVO4Rz/e+CvrV1SuW8jp5Ib+ye2+whIn+4H/ZSZEmlPKizOxXAlhZidqEV
+ HBdzKumsFx+dB3qZbfk6ogUazVSQn/bE5wPDrQv0ovOJbNVMr9a/ovrxRYrn1YGH48/X
+ zmqu/GOs/Qg8TWj1Wc/oUZuxQpstmKkGMiGIlajclJ1Cftondy4WZJkA1/J0k0xs5yOk
+ cNMg==
+X-Gm-Message-State: AOAM5324GZPMLvRt4v3ZzGrpQlKBxx+eWUckmi1uhtjRJ3Ofz6NDWJni
+ bRQ9zpBWJDGTiIo9wLpEZxl0iqWa8jM=
+X-Google-Smtp-Source: ABdhPJzin89YDoZLf6G1SwQjFSoM0FR65gZf7IpZuG5aKNwzW6CVXRDl8HLEI0xeHycDmZ7C84JcDg==
+X-Received: by 2002:a1c:f219:: with SMTP id s25mr5859419wmc.2.1594934605851;
+ Thu, 16 Jul 2020 14:23:25 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
- by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.23
+ by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:24 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:25 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 16/27] drm/amd/display: dce_mem_input: add DCE6 specific
- macros, functions
-Date: Thu, 16 Jul 2020 23:22:40 +0200
-Message-Id: <20200716212251.1539094-17-issor.oruam@gmail.com>
+Subject: [PATCH v3 17/27] drm/amd/display: dce_opp: add DCE6 specific macros,
+ functions
+Date: Thu, 16 Jul 2020 23:22:41 +0200
+Message-Id: <20200716212251.1539094-18-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
 References: <20200716212251.1539094-1-issor.oruam@gmail.com>
@@ -75,434 +75,367 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-DCE6 has DPG_PIPE_ARBITRATION_CONTROL3 register for Line Buffer watermark selection
-DCE6 has STUTTER_EXIT_SELF_REFRESH_WATERMARK_MASK mask for Stutter watermark selection
-DCE6 has NB_PSTATE_CHANGE_WATERMARK_MASK mask for North Bridge watermark selection
-DCE6 has no GRPH_MICRO_TILE_MODE mask
-DCE6 has no HW_ROTATION register
+DCE6 has no FMT_TRUNCATE_MODE bit in FMT_BIT_DEPTH_CONTROL register
+DCE6 has no FMT_CLAMP_COMPONENT_{R,G,B} registers
+DCE6 has no FMT_SUBSAMPLING_{MODE,ORDER} bits in FMT_CONTROL register
 
 [How]
-Add DCE6 specific macros definitions for MI registers and masks
-Add DCE6 specific registers to dce_mem_input_registers struct
-Add DCE6 specific masks to dce_mem_input_masks struct
-DCE6 MI macros/structs changes will avoid buiding errors when using DCE6 headers
-Add dce60_program_urgency_watermark() function
-Add dce60_program_nbp_watermark() function
-Add dce60_program_stutter_watermark() function
-Add dce60_mi_program_display_marks() function w/ new DCE6 watermark programming
-Add DCE6 specific tiling programming and modify DCE8 case
-Add dce60_program_size() fuction w/o Rotation processing
-Add dce60_mi_program_surface_config() fuction
-Use dce60_mi_program_display_marks() in dce60_mi_funcs
-Use dce60_mi_program_surface_config() in dce60_mi_funcs
-Add DCE6 specific dce60_mem_input_construct
+Add DCE6 specific macros definitions for OPP registers and masks
+DCE6 OPP macros will avoid buiding errors when using DCE6 headers
+Add dce60_set_truncation() w/o FMT_TRUNCATE_MODE bit programming
+Add dce60_opp_set_clamping() w/o Format Clamp Component programming
+Add dce60_opp_program_fmt() w/o Format Subsampling bits programming
+Add dce60_opp_program_bit_depth_reduction() with dce60_set_truncation
+Use dce60_opp_program_fmt() in dce60_opp_funcs
+Use dce60_opp_program_bit_depth_reduction() in dce60_opp_funcs
+Add DCE6 specific dce60_opp_construct
 
 Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
 ---
- .../drm/amd/display/dc/dce/dce_mem_input.c    | 177 +++++++++++++++++-
- .../drm/amd/display/dc/dce/dce_mem_input.h    | 103 ++++++++++
- 2 files changed, 279 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dce/dce_opp.c | 205 +++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/dce/dce_opp.h |  49 +++++
+ 2 files changed, 254 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
-index 51481e922eb9..422a9fc61b71 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
-@@ -174,6 +174,22 @@ static void program_urgency_watermark(
- 		URGENCY_HIGH_WATERMARK, urgency_high_wm);
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_opp.c b/drivers/gpu/drm/amd/display/dc/dce/dce_opp.c
+index 51081d9ae3fb..e459ae65aaf7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_opp.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_opp.c
+@@ -141,6 +141,47 @@ static void set_truncation(
+ 				params->flags.TRUNCATE_MODE);
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_program_urgency_watermark(
-+	struct dce_mem_input *dce_mi,
-+	uint32_t wm_select,
-+	uint32_t urgency_low_wm,
-+	uint32_t urgency_high_wm)
++/**
++ *	dce60_set_truncation
++ *	1) set truncation depth: 0 for 18 bpp or 1 for 24 bpp
++ *	2) enable truncation
++ *	3) HW remove 12bit FMT support for DCE11 power saving reason.
++ */
++static void dce60_set_truncation(
++		struct dce110_opp *opp110,
++		const struct bit_depth_reduction_params *params)
 +{
-+	REG_UPDATE(DPG_PIPE_ARBITRATION_CONTROL3,
-+		URGENCY_WATERMARK_MASK, wm_select);
++	/* DCE6 has no FMT_TRUNCATE_MODE bit in FMT_BIT_DEPTH_CONTROL reg */
 +
-+	REG_SET_2(DPG_PIPE_URGENCY_CONTROL, 0,
-+		URGENCY_LOW_WATERMARK, urgency_low_wm,
-+		URGENCY_HIGH_WATERMARK, urgency_high_wm);
-+}
-+#endif
++	/*Disable truncation*/
++	REG_UPDATE_2(FMT_BIT_DEPTH_CONTROL,
++			FMT_TRUNCATE_EN, 0,
++			FMT_TRUNCATE_DEPTH, 0);
 +
- static void dce120_program_urgency_watermark(
- 	struct dce_mem_input *dce_mi,
- 	uint32_t wm_select,
-@@ -193,6 +209,25 @@ static void dce120_program_urgency_watermark(
- 
- }
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_program_nbp_watermark(
-+	struct dce_mem_input *dce_mi,
-+	uint32_t wm_select,
-+	uint32_t nbp_wm)
-+{
-+	REG_UPDATE(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL,
-+		NB_PSTATE_CHANGE_WATERMARK_MASK, wm_select);
-+
-+	REG_UPDATE_3(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL,
-+		NB_PSTATE_CHANGE_ENABLE, 1,
-+		NB_PSTATE_CHANGE_URGENT_DURING_REQUEST, 1,
-+		NB_PSTATE_CHANGE_NOT_SELF_REFRESH_DURING_REQUEST, 1);
-+
-+	REG_UPDATE(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL,
-+		NB_PSTATE_CHANGE_WATERMARK, nbp_wm);
-+}
-+#endif
-+
- static void program_nbp_watermark(
- 	struct dce_mem_input *dce_mi,
- 	uint32_t wm_select,
-@@ -225,6 +260,20 @@ static void program_nbp_watermark(
- 	}
- }
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_program_stutter_watermark(
-+	struct dce_mem_input *dce_mi,
-+	uint32_t wm_select,
-+	uint32_t stutter_mark)
-+{
-+	REG_UPDATE(DPG_PIPE_STUTTER_CONTROL,
-+		STUTTER_EXIT_SELF_REFRESH_WATERMARK_MASK, wm_select);
-+
-+	REG_UPDATE(DPG_PIPE_STUTTER_CONTROL,
-+		STUTTER_EXIT_SELF_REFRESH_WATERMARK, stutter_mark);
-+}
-+#endif
-+
- static void dce120_program_stutter_watermark(
- 	struct dce_mem_input *dce_mi,
- 	uint32_t wm_select,
-@@ -286,6 +335,34 @@ static void dce_mi_program_display_marks(
- 	program_stutter_watermark(dce_mi, 1, stutter_exit.d_mark); /* set d */
- }
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_mi_program_display_marks(
-+	struct mem_input *mi,
-+	struct dce_watermarks nbp,
-+	struct dce_watermarks stutter_exit,
-+	struct dce_watermarks stutter_enter,
-+	struct dce_watermarks urgent,
-+	uint32_t total_dest_line_time_ns)
-+{
-+	struct dce_mem_input *dce_mi = TO_DCE_MEM_INPUT(mi);
-+	uint32_t stutter_en = mi->ctx->dc->debug.disable_stutter ? 0 : 1;
-+
-+	dce60_program_urgency_watermark(dce_mi, 2, /* set a */
-+			urgent.a_mark, total_dest_line_time_ns);
-+	dce60_program_urgency_watermark(dce_mi, 1, /* set d */
-+			urgent.d_mark, total_dest_line_time_ns);
-+
-+	REG_UPDATE_2(DPG_PIPE_STUTTER_CONTROL,
-+		STUTTER_ENABLE, stutter_en,
-+		STUTTER_IGNORE_FBC, 1);
-+	dce60_program_nbp_watermark(dce_mi, 2, nbp.a_mark); /* set a */
-+	dce60_program_nbp_watermark(dce_mi, 1, nbp.d_mark); /* set d */
-+
-+	dce60_program_stutter_watermark(dce_mi, 2, stutter_exit.a_mark); /* set a */
-+	dce60_program_stutter_watermark(dce_mi, 1, stutter_exit.d_mark); /* set d */
-+}
-+#endif
-+
- static void dce112_mi_program_display_marks(struct mem_input *mi,
- 	struct dce_watermarks nbp,
- 	struct dce_watermarks stutter_exit,
-@@ -369,7 +446,7 @@ static void program_tiling(
- 		 */
- 	}
- 
--	if (dce_mi->masks->GRPH_ARRAY_MODE) { /* GFX8 */
-+	if (dce_mi->masks->GRPH_MICRO_TILE_MODE) { /* GFX8 */
- 		REG_UPDATE_9(GRPH_CONTROL,
- 				GRPH_NUM_BANKS, info->gfx8.num_banks,
- 				GRPH_BANK_WIDTH, info->gfx8.bank_width,
-@@ -385,6 +462,23 @@ static void program_tiling(
- 				GRPH_Z, 0);
- 				*/
- 	}
-+
-+	if (dce_mi->masks->GRPH_ARRAY_MODE) { /* GFX6 but reuses gfx8 struct */
-+		REG_UPDATE_8(GRPH_CONTROL,
-+				GRPH_NUM_BANKS, info->gfx8.num_banks,
-+				GRPH_BANK_WIDTH, info->gfx8.bank_width,
-+				GRPH_BANK_HEIGHT, info->gfx8.bank_height,
-+				GRPH_MACRO_TILE_ASPECT, info->gfx8.tile_aspect,
-+				GRPH_TILE_SPLIT, info->gfx8.tile_split,
-+				/* DCE6 has no GRPH_MICRO_TILE_MODE mask */
-+				GRPH_PIPE_CONFIG, info->gfx8.pipe_config,
-+				GRPH_ARRAY_MODE, info->gfx8.array_mode,
-+				GRPH_COLOR_EXPANSION_MODE, 1);
-+		/* 01 - DCP_GRPH_COLOR_EXPANSION_MODE_ZEXP: zero expansion for YCbCr */
-+		/*
-+				GRPH_Z, 0);
-+				*/
++	if (params->pixel_encoding == PIXEL_ENCODING_YCBCR422) {
++		/*  8bpc trunc on YCbCr422*/
++		if (params->flags.TRUNCATE_DEPTH == 1)
++			REG_UPDATE_2(FMT_BIT_DEPTH_CONTROL,
++					FMT_TRUNCATE_EN, 1,
++					FMT_TRUNCATE_DEPTH, 1);
++		else if (params->flags.TRUNCATE_DEPTH == 2)
++			/*  10bpc trunc on YCbCr422*/
++			REG_UPDATE_2(FMT_BIT_DEPTH_CONTROL,
++					FMT_TRUNCATE_EN, 1,
++					FMT_TRUNCATE_DEPTH, 2);
++		return;
 +	}
- }
++	/* on other format-to do */
++	if (params->flags.TRUNCATE_ENABLED == 0)
++		return;
++	/*Set truncation depth and Enable truncation*/
++	REG_UPDATE_2(FMT_BIT_DEPTH_CONTROL,
++				FMT_TRUNCATE_EN, 1,
++				FMT_TRUNCATE_DEPTH,
++				params->flags.TRUNCATE_DEPTH);
++}
++#endif
  
- 
-@@ -429,6 +523,37 @@ static void program_size_and_rotation(
- 			GRPH_ROTATION_ANGLE, rotation_angles[rotation]);
+ /**
+  *	set_spatial_dither
+@@ -373,6 +414,57 @@ void dce110_opp_set_clamping(
+ 	}
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_program_size(
-+	struct dce_mem_input *dce_mi,
-+	enum dc_rotation_angle rotation, /* not used in DCE6 */
-+	const struct plane_size *plane_size)
++/**
++ *	Set Clamping for DCE6 parts
++ *	1) Set clamping format based on bpc - 0 for 6bpc (No clamping)
++ *		1 for 8 bpc
++ *		2 for 10 bpc
++ *		3 for 12 bpc
++ *		7 for programable
++ *	2) Enable clamp if Limited range requested
++ */
++void dce60_opp_set_clamping(
++	struct dce110_opp *opp110,
++	const struct clamping_and_pixel_encoding_params *params)
 +{
-+	const struct rect *in_rect = &plane_size->surface_size;
-+	struct rect hw_rect = plane_size->surface_size;
-+	/* DCE6 has no HW rotation, skip rotation_angles declaration */
++	REG_SET_2(FMT_CLAMP_CNTL, 0,
++		FMT_CLAMP_DATA_EN, 0,
++		FMT_CLAMP_COLOR_FORMAT, 0);
 +
-+	/* DCE6 has no HW rotation, skip ROTATION_ANGLE_* processing */
++	switch (params->clamping_level) {
++	case CLAMPING_FULL_RANGE:
++		break;
++	case CLAMPING_LIMITED_RANGE_8BPC:
++		REG_SET_2(FMT_CLAMP_CNTL, 0,
++			FMT_CLAMP_DATA_EN, 1,
++			FMT_CLAMP_COLOR_FORMAT, 1);
++		break;
++	case CLAMPING_LIMITED_RANGE_10BPC:
++		REG_SET_2(FMT_CLAMP_CNTL, 0,
++			FMT_CLAMP_DATA_EN, 1,
++			FMT_CLAMP_COLOR_FORMAT, 2);
++		break;
++	case CLAMPING_LIMITED_RANGE_12BPC:
++		REG_SET_2(FMT_CLAMP_CNTL, 0,
++			FMT_CLAMP_DATA_EN, 1,
++			FMT_CLAMP_COLOR_FORMAT, 3);
++		break;
++	case CLAMPING_LIMITED_RANGE_PROGRAMMABLE:
++		/*Set clamp control*/
++		REG_SET_2(FMT_CLAMP_CNTL, 0,
++			FMT_CLAMP_DATA_EN, 1,
++			FMT_CLAMP_COLOR_FORMAT, 7);
 +
-+	REG_SET(GRPH_X_START, 0,
-+			GRPH_X_START, hw_rect.x);
++		/* DCE6 does have FMT_CLAMP_COMPONENT_{R,G,B} registers */
 +
-+	REG_SET(GRPH_Y_START, 0,
-+			GRPH_Y_START, hw_rect.y);
-+
-+	REG_SET(GRPH_X_END, 0,
-+			GRPH_X_END, hw_rect.width);
-+
-+	REG_SET(GRPH_Y_END, 0,
-+			GRPH_Y_END, hw_rect.height);
-+
-+	REG_SET(GRPH_PITCH, 0,
-+			GRPH_PITCH, plane_size->surface_pitch);
-+
-+	/* DCE6 has no HW_ROTATION register, skip setting rotation_angles */
++		break;
++	default:
++		break;
++	}
 +}
 +#endif
 +
- static void program_grph_pixel_format(
- 	struct dce_mem_input *dce_mi,
- 	enum surface_pixel_format format)
-@@ -521,6 +646,28 @@ static void dce_mi_program_surface_config(
- 		program_grph_pixel_format(dce_mi, format);
+ /**
+  *	set_pixel_encoding
+  *
+@@ -408,6 +500,39 @@ static void set_pixel_encoding(
+ 
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_mi_program_surface_config(
-+	struct mem_input *mi,
-+	enum surface_pixel_format format,
-+	union dc_tiling_info *tiling_info,
-+	struct plane_size *plane_size,
-+	enum dc_rotation_angle rotation, /* not used in DCE6 */
-+	struct dc_plane_dcc_param *dcc,
-+	bool horizontal_mirror)
++/**
++ *	dce60_set_pixel_encoding
++ *	DCE6 has no FMT_SUBSAMPLING_{MODE,ORDER} bits in FMT_CONTROL reg
++ *	Set Pixel Encoding
++ *		0: RGB 4:4:4 or YCbCr 4:4:4 or YOnly
++ *		1: YCbCr 4:2:2
++ */
++static void dce60_set_pixel_encoding(
++	struct dce110_opp *opp110,
++	const struct clamping_and_pixel_encoding_params *params)
 +{
-+	struct dce_mem_input *dce_mi = TO_DCE_MEM_INPUT(mi);
-+	REG_UPDATE(GRPH_ENABLE, GRPH_ENABLE, 1);
++	if (opp110->opp_mask->FMT_CBCR_BIT_REDUCTION_BYPASS)
++		REG_UPDATE_2(FMT_CONTROL,
++				FMT_PIXEL_ENCODING, 0,
++				FMT_CBCR_BIT_REDUCTION_BYPASS, 0);
++	else
++		REG_UPDATE(FMT_CONTROL,
++				FMT_PIXEL_ENCODING, 0);
 +
-+	program_tiling(dce_mi, tiling_info);
-+	dce60_program_size(dce_mi, rotation, plane_size);
++	if (params->pixel_encoding == PIXEL_ENCODING_YCBCR422) {
++		REG_UPDATE(FMT_CONTROL,
++				FMT_PIXEL_ENCODING, 1);
++	}
++	if (params->pixel_encoding == PIXEL_ENCODING_YCBCR420) {
++		REG_UPDATE_2(FMT_CONTROL,
++				FMT_PIXEL_ENCODING, 2,
++				FMT_CBCR_BIT_REDUCTION_BYPASS, 1);
++	}
 +
-+	if (format >= SURFACE_PIXEL_FORMAT_GRPH_BEGIN &&
-+		format < SURFACE_PIXEL_FORMAT_VIDEO_BEGIN)
-+		program_grph_pixel_format(dce_mi, format);
 +}
 +#endif
 +
- static uint32_t get_dmif_switch_time_us(
- 	uint32_t h_total,
- 	uint32_t v_total,
-@@ -741,6 +888,20 @@ static const struct mem_input_funcs dce_mi_funcs = {
- 	.mem_input_is_flip_pending = dce_mi_is_flip_pending
+ void dce110_opp_program_bit_depth_reduction(
+ 	struct output_pixel_processor *opp,
+ 	const struct bit_depth_reduction_params *params)
+@@ -419,6 +544,19 @@ void dce110_opp_program_bit_depth_reduction(
+ 	set_temporal_dither(opp110, params);
+ }
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++void dce60_opp_program_bit_depth_reduction(
++	struct output_pixel_processor *opp,
++	const struct bit_depth_reduction_params *params)
++{
++	struct dce110_opp *opp110 = TO_DCE110_OPP(opp);
++
++	dce60_set_truncation(opp110, params);
++	set_spatial_dither(opp110, params);
++	set_temporal_dither(opp110, params);
++}
++#endif
++
+ void dce110_opp_program_clamping_and_pixel_encoding(
+ 	struct output_pixel_processor *opp,
+ 	const struct clamping_and_pixel_encoding_params *params)
+@@ -429,6 +567,19 @@ void dce110_opp_program_clamping_and_pixel_encoding(
+ 	set_pixel_encoding(opp110, params);
+ }
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++void dce60_opp_program_clamping_and_pixel_encoding(
++	struct output_pixel_processor *opp,
++	const struct clamping_and_pixel_encoding_params *params)
++{
++	struct dce110_opp *opp110 = TO_DCE110_OPP(opp);
++
++	dce60_opp_set_clamping(opp110, params);
++	dce60_set_pixel_encoding(opp110, params);
++}
++#endif
++
++
+ static void program_formatter_420_memory(struct output_pixel_processor *opp)
+ {
+ 	struct dce110_opp *opp110 = TO_DCE110_OPP(opp);
+@@ -526,7 +677,32 @@ void dce110_opp_program_fmt(
+ 	return;
+ }
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++void dce60_opp_program_fmt(
++	struct output_pixel_processor *opp,
++	struct bit_depth_reduction_params *fmt_bit_depth,
++	struct clamping_and_pixel_encoding_params *clamping)
++{
++	/* dithering is affected by <CrtcSourceSelect>, hence should be
++	 * programmed afterwards */
++
++	if (clamping->pixel_encoding == PIXEL_ENCODING_YCBCR420)
++		program_formatter_420_memory(opp);
++
++	dce60_opp_program_bit_depth_reduction(
++		opp,
++		fmt_bit_depth);
++
++	dce60_opp_program_clamping_and_pixel_encoding(
++		opp,
++		clamping);
++
++	if (clamping->pixel_encoding == PIXEL_ENCODING_YCBCR420)
++		program_formatter_reset_dig_resync_fifo(opp);
+ 
++	return;
++}
++#endif
+ 
+ 
+ 
+@@ -541,6 +717,15 @@ static const struct opp_funcs funcs = {
+ 	.opp_program_bit_depth_reduction = dce110_opp_program_bit_depth_reduction
  };
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+static const struct mem_input_funcs dce60_mi_funcs = {
-+	.mem_input_program_display_marks = dce60_mi_program_display_marks,
-+	.allocate_mem_input = dce_mi_allocate_dmif,
-+	.free_mem_input = dce_mi_free_dmif,
-+	.mem_input_program_surface_flip_and_addr =
-+			dce_mi_program_surface_flip_and_addr,
-+	.mem_input_program_pte_vm = dce_mi_program_pte_vm,
-+	.mem_input_program_surface_config =
-+			dce60_mi_program_surface_config,
-+	.mem_input_is_flip_pending = dce_mi_is_flip_pending
++static const struct opp_funcs dce60_opp_funcs = {
++	.opp_set_dyn_expansion = dce110_opp_set_dyn_expansion,
++	.opp_destroy = dce110_opp_destroy,
++	.opp_program_fmt = dce60_opp_program_fmt,
++	.opp_program_bit_depth_reduction = dce60_opp_program_bit_depth_reduction
 +};
 +#endif
 +
- static const struct mem_input_funcs dce112_mi_funcs = {
- 	.mem_input_program_display_marks = dce112_mi_program_display_marks,
- 	.allocate_mem_input = dce_mi_allocate_dmif,
-@@ -783,6 +944,20 @@ void dce_mem_input_construct(
- 	dce_mi->masks = mi_mask;
+ void dce110_opp_construct(struct dce110_opp *opp110,
+ 	struct dc_context *ctx,
+ 	uint32_t inst,
+@@ -559,6 +744,26 @@ void dce110_opp_construct(struct dce110_opp *opp110,
+ 	opp110->opp_mask = opp_mask;
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_mem_input_construct(
-+	struct dce_mem_input *dce_mi,
++void dce60_opp_construct(struct dce110_opp *opp110,
 +	struct dc_context *ctx,
-+	int inst,
-+	const struct dce_mem_input_registers *regs,
-+	const struct dce_mem_input_shift *mi_shift,
-+	const struct dce_mem_input_mask *mi_mask)
++	uint32_t inst,
++	const struct dce_opp_registers *regs,
++	const struct dce_opp_shift *opp_shift,
++	const struct dce_opp_mask *opp_mask)
 +{
-+	dce_mem_input_construct(dce_mi, ctx, inst, regs, mi_shift, mi_mask);
-+	dce_mi->base.funcs = &dce60_mi_funcs;
++	opp110->base.funcs = &dce60_opp_funcs;
++
++	opp110->base.ctx = ctx;
++
++	opp110->base.inst = inst;
++
++	opp110->regs = regs;
++	opp110->opp_shift = opp_shift;
++	opp110->opp_mask = opp_mask;
 +}
 +#endif
 +
- void dce112_mem_input_construct(
- 	struct dce_mem_input *dce_mi,
- 	struct dc_context *ctx,
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.h b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.h
-index d15b0d7f47fc..23db5c72f07e 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.h
-@@ -58,6 +58,31 @@
- 	SRI(DVMM_PTE_CONTROL, DCP, id),\
- 	SRI(DVMM_PTE_ARB_CONTROL, DCP, id)
+ void dce110_opp_destroy(struct output_pixel_processor **opp)
+ {
+ 	if (*opp)
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_opp.h b/drivers/gpu/drm/amd/display/dc/dce/dce_opp.h
+index 2ab0147cbd9d..4d484ef60f35 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_opp.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_opp.h
+@@ -81,6 +81,17 @@ enum dce110_opp_reg_type {
+ 	OPP_COMMON_REG_LIST_BASE(id), \
+ 	SRI(CONTROL, FMT_MEMORY, id)
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+#define MI_DCE6_REG_LIST(id)\
-+	SRI(GRPH_ENABLE, DCP, id),\
-+	SRI(GRPH_CONTROL, DCP, id),\
-+	SRI(GRPH_X_START, DCP, id),\
-+	SRI(GRPH_Y_START, DCP, id),\
-+	SRI(GRPH_X_END, DCP, id),\
-+	SRI(GRPH_Y_END, DCP, id),\
-+	SRI(GRPH_PITCH, DCP, id),\
-+	SRI(GRPH_SWAP_CNTL, DCP, id),\
-+	SRI(PRESCALE_GRPH_CONTROL, DCP, id),\
-+	SRI(GRPH_UPDATE, DCP, id),\
-+	SRI(GRPH_FLIP_CONTROL, DCP, id),\
-+	SRI(GRPH_PRIMARY_SURFACE_ADDRESS, DCP, id),\
-+	SRI(GRPH_PRIMARY_SURFACE_ADDRESS_HIGH, DCP, id),\
-+	SRI(GRPH_SECONDARY_SURFACE_ADDRESS, DCP, id),\
-+	SRI(GRPH_SECONDARY_SURFACE_ADDRESS_HIGH, DCP, id),\
-+	SRI(DPG_PIPE_ARBITRATION_CONTROL1, DMIF_PG, id),\
-+	SRI(DPG_PIPE_ARBITRATION_CONTROL3, DMIF_PG, id),\
-+	SRI(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, DMIF_PG, id),\
-+	SRI(DPG_PIPE_URGENCY_CONTROL, DMIF_PG, id),\
-+	SRI(DPG_PIPE_STUTTER_CONTROL, DMIF_PG, id),\
-+	SRI(DMIF_BUFFER_CONTROL, PIPE, id)
++#define OPP_DCE_60_REG_LIST(id) \
++	SRI(FMT_DYNAMIC_EXP_CNTL, FMT, id), \
++	SRI(FMT_BIT_DEPTH_CONTROL, FMT, id), \
++	SRI(FMT_CONTROL, FMT, id), \
++	SRI(FMT_DITHER_RAND_R_SEED, FMT, id), \
++	SRI(FMT_DITHER_RAND_G_SEED, FMT, id), \
++	SRI(FMT_DITHER_RAND_B_SEED, FMT, id), \
++	SRI(FMT_CLAMP_CNTL, FMT, id)
 +#endif
 +
- #define MI_DCE8_REG_LIST(id)\
- 	MI_DCE_BASE_REG_LIST(id),\
- 	SRI(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, DMIF_PG, id)
-@@ -104,6 +129,9 @@ struct dce_mem_input_registers {
- 	uint32_t GRPH_SECONDARY_SURFACE_ADDRESS_HIGH;
- 	/* DMIF_PG */
- 	uint32_t DPG_PIPE_ARBITRATION_CONTROL1;
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+	uint32_t DPG_PIPE_ARBITRATION_CONTROL3;
-+#endif
- 	uint32_t DPG_WATERMARK_MASK_CONTROL;
- 	uint32_t DPG_PIPE_URGENCY_CONTROL;
- 	uint32_t DPG_PIPE_URGENT_LEVEL_CONTROL;
-@@ -126,6 +154,18 @@ struct dce_mem_input_registers {
- #define SFB(blk_name, reg_name, field_name, post_fix)\
- 	.field_name = blk_name ## reg_name ## __ ## field_name ## post_fix
+ #define OPP_SF(reg_name, field_name, post_fix)\
+ 	.field_name = reg_name ## __ ## field_name ## post_fix
+ 
+@@ -192,6 +203,35 @@ enum dce110_opp_reg_type {
+ 	OPP_SF(FMT0_FMT_CONTROL, FMT_SUBSAMPLING_ORDER, mask_sh),\
+ 	OPP_SF(FMT0_FMT_CONTROL, FMT_CBCR_BIT_REDUCTION_BYPASS, mask_sh)
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+#define MI_GFX6_TILE_MASK_SH_LIST(mask_sh, blk)\
-+	SFB(blk, GRPH_CONTROL, GRPH_NUM_BANKS, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_BANK_WIDTH, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_BANK_HEIGHT, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_MACRO_TILE_ASPECT, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_TILE_SPLIT, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_PIPE_CONFIG, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_ARRAY_MODE, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_COLOR_EXPANSION_MODE, mask_sh)
-+#endif
-+
- #define MI_GFX8_TILE_MASK_SH_LIST(mask_sh, blk)\
- 	SFB(blk, GRPH_CONTROL, GRPH_NUM_BANKS, mask_sh),\
- 	SFB(blk, GRPH_CONTROL, GRPH_BANK_WIDTH, mask_sh),\
-@@ -162,6 +202,32 @@ struct dce_mem_input_registers {
- 	SFB(blk, GRPH_UPDATE, GRPH_UPDATE_LOCK, mask_sh),\
- 	SFB(blk, GRPH_FLIP_CONTROL, GRPH_SURFACE_UPDATE_H_RETRACE_EN, mask_sh)
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+#define MI_DCP_MASK_SH_LIST_DCE6(mask_sh, blk)\
-+	SFB(blk, GRPH_ENABLE, GRPH_ENABLE, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_DEPTH, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_FORMAT, mask_sh),\
-+	SFB(blk, GRPH_CONTROL, GRPH_NUM_BANKS, mask_sh),\
-+	SFB(blk, GRPH_X_START, GRPH_X_START, mask_sh),\
-+	SFB(blk, GRPH_Y_START, GRPH_Y_START, mask_sh),\
-+	SFB(blk, GRPH_X_END, GRPH_X_END, mask_sh),\
-+	SFB(blk, GRPH_Y_END, GRPH_Y_END, mask_sh),\
-+	SFB(blk, GRPH_PITCH, GRPH_PITCH, mask_sh),\
-+	SFB(blk, GRPH_SWAP_CNTL, GRPH_RED_CROSSBAR, mask_sh),\
-+	SFB(blk, GRPH_SWAP_CNTL, GRPH_BLUE_CROSSBAR, mask_sh),\
-+	SFB(blk, PRESCALE_GRPH_CONTROL, GRPH_PRESCALE_SELECT, mask_sh),\
-+	SFB(blk, PRESCALE_GRPH_CONTROL, GRPH_PRESCALE_R_SIGN, mask_sh),\
-+	SFB(blk, PRESCALE_GRPH_CONTROL, GRPH_PRESCALE_G_SIGN, mask_sh),\
-+	SFB(blk, PRESCALE_GRPH_CONTROL, GRPH_PRESCALE_B_SIGN, mask_sh),\
-+	SFB(blk, GRPH_SECONDARY_SURFACE_ADDRESS_HIGH, GRPH_SECONDARY_SURFACE_ADDRESS_HIGH, mask_sh),\
-+	SFB(blk, GRPH_SECONDARY_SURFACE_ADDRESS, GRPH_SECONDARY_SURFACE_ADDRESS, mask_sh),\
-+	SFB(blk, GRPH_PRIMARY_SURFACE_ADDRESS_HIGH, GRPH_PRIMARY_SURFACE_ADDRESS_HIGH, mask_sh),\
-+	SFB(blk, GRPH_PRIMARY_SURFACE_ADDRESS, GRPH_PRIMARY_SURFACE_ADDRESS, mask_sh),\
-+	SFB(blk, GRPH_UPDATE, GRPH_SURFACE_UPDATE_PENDING, mask_sh),\
-+	SFB(blk, GRPH_UPDATE, GRPH_UPDATE_LOCK, mask_sh),\
-+	SFB(blk, GRPH_FLIP_CONTROL, GRPH_SURFACE_UPDATE_H_RETRACE_EN, mask_sh)
++#define OPP_COMMON_MASK_SH_LIST_DCE_60(mask_sh)\
++	OPP_SF(FMT_DYNAMIC_EXP_CNTL, FMT_DYNAMIC_EXP_EN, mask_sh),\
++	OPP_SF(FMT_DYNAMIC_EXP_CNTL, FMT_DYNAMIC_EXP_MODE, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TRUNCATE_EN, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TRUNCATE_DEPTH, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_SPATIAL_DITHER_EN, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_SPATIAL_DITHER_DEPTH, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_SPATIAL_DITHER_MODE, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_HIGHPASS_RANDOM_ENABLE, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_FRAME_RANDOM_ENABLE, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_RGB_RANDOM_ENABLE, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_EN, mask_sh),\
++	OPP_SF(FMT_DITHER_RAND_R_SEED, FMT_RAND_R_SEED, mask_sh),\
++	OPP_SF(FMT_DITHER_RAND_G_SEED, FMT_RAND_G_SEED, mask_sh),\
++	OPP_SF(FMT_DITHER_RAND_B_SEED, FMT_RAND_B_SEED, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_EN, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_RESET, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_OFFSET, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_DEPTH, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_LEVEL, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_25FRC_SEL, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_50FRC_SEL, mask_sh),\
++	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_75FRC_SEL, mask_sh),\
++	OPP_SF(FMT_CLAMP_CNTL, FMT_CLAMP_DATA_EN, mask_sh),\
++	OPP_SF(FMT_CLAMP_CNTL, FMT_CLAMP_COLOR_FORMAT, mask_sh),\
++	OPP_SF(FMT_CONTROL, FMT_PIXEL_ENCODING, mask_sh)
 +#endif
 +
- #define MI_DCP_DCE11_MASK_SH_LIST(mask_sh, blk)\
- 	SFB(blk, GRPH_PIPE_OUTSTANDING_REQUEST_LIMIT, GRPH_PIPE_OUTSTANDING_REQUEST_LIMIT, mask_sh)
- 
-@@ -172,6 +238,33 @@ struct dce_mem_input_registers {
- 	SFB(blk, DVMM_PTE_ARB_CONTROL, DVMM_PTE_REQ_PER_CHUNK, mask_sh),\
- 	SFB(blk, DVMM_PTE_ARB_CONTROL, DVMM_MAX_PTE_REQ_OUTSTANDING, mask_sh)
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+#define MI_DMIF_PG_MASK_SH_LIST_DCE6(mask_sh, blk)\
-+	SFB(blk, DPG_PIPE_ARBITRATION_CONTROL1, PIXEL_DURATION, mask_sh),\
-+	SFB(blk, DPG_PIPE_URGENCY_CONTROL, URGENCY_LOW_WATERMARK, mask_sh),\
-+	SFB(blk, DPG_PIPE_URGENCY_CONTROL, URGENCY_HIGH_WATERMARK, mask_sh),\
-+	SFB(blk, DPG_PIPE_STUTTER_CONTROL, STUTTER_ENABLE, mask_sh),\
-+	SFB(blk, DPG_PIPE_STUTTER_CONTROL, STUTTER_IGNORE_FBC, mask_sh),\
-+	SF(PIPE0_DMIF_BUFFER_CONTROL, DMIF_BUFFERS_ALLOCATED, mask_sh),\
-+	SF(PIPE0_DMIF_BUFFER_CONTROL, DMIF_BUFFERS_ALLOCATION_COMPLETED, mask_sh)
-+
-+#define MI_DMIF_PG_MASK_SH_DCE6(mask_sh, blk)\
-+	SFB(blk, DPG_PIPE_ARBITRATION_CONTROL3, URGENCY_WATERMARK_MASK, mask_sh),\
-+	SFB(blk, DPG_PIPE_STUTTER_CONTROL, STUTTER_EXIT_SELF_REFRESH_WATERMARK_MASK, mask_sh),\
-+	SFB(blk, DPG_PIPE_STUTTER_CONTROL, STUTTER_EXIT_SELF_REFRESH_WATERMARK, mask_sh),\
-+	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_WATERMARK_MASK, mask_sh),\
-+	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_ENABLE, mask_sh),\
-+	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_URGENT_DURING_REQUEST, mask_sh),\
-+	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_NOT_SELF_REFRESH_DURING_REQUEST, mask_sh),\
-+	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_WATERMARK, mask_sh)
-+
-+#define MI_DCE6_MASK_SH_LIST(mask_sh)\
-+	MI_DCP_MASK_SH_LIST_DCE6(mask_sh, ),\
-+	MI_DMIF_PG_MASK_SH_LIST_DCE6(mask_sh, ),\
-+	MI_DMIF_PG_MASK_SH_DCE6(mask_sh, ),\
-+	MI_GFX6_TILE_MASK_SH_LIST(mask_sh, )
-+#endif
-+
- #define MI_DMIF_PG_MASK_SH_LIST(mask_sh, blk)\
- 	SFB(blk, DPG_PIPE_ARBITRATION_CONTROL1, PIXEL_DURATION, mask_sh),\
- 	SFB(blk, DPG_WATERMARK_MASK_CONTROL, URGENCY_WATERMARK_MASK, mask_sh),\
-@@ -345,6 +438,16 @@ void dce_mem_input_construct(
- 	const struct dce_mem_input_shift *mi_shift,
- 	const struct dce_mem_input_mask *mi_mask);
+ #define OPP_REG_FIELD_LIST(type) \
+ 	type FMT_DYNAMIC_EXP_EN; \
+ 	type FMT_DYNAMIC_EXP_MODE; \
+@@ -279,6 +319,15 @@ void dce110_opp_construct(struct dce110_opp *opp110,
+ 	const struct dce_opp_shift *opp_shift,
+ 	const struct dce_opp_mask *opp_mask);
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_mem_input_construct(
-+	struct dce_mem_input *dce_mi,
++void dce60_opp_construct(struct dce110_opp *opp110,
 +	struct dc_context *ctx,
-+	int inst,
-+	const struct dce_mem_input_registers *regs,
-+	const struct dce_mem_input_shift *mi_shift,
-+	const struct dce_mem_input_mask *mi_mask);
++	uint32_t inst,
++	const struct dce_opp_registers *regs,
++	const struct dce_opp_shift *opp_shift,
++	const struct dce_opp_mask *opp_mask);
 +#endif
 +
- void dce112_mem_input_construct(
- 	struct dce_mem_input *dce_mi,
- 	struct dc_context *ctx,
+ void dce110_opp_destroy(struct output_pixel_processor **opp);
+ 
+ 
 -- 
 2.25.1
 
