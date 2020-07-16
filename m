@@ -2,56 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C890D222DC4
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AF55222DC3
 	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 416776ECF9;
-	Thu, 16 Jul 2020 21:23:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6ACD6ECF6;
+	Thu, 16 Jul 2020 21:23:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
  [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5A6C6ECED
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:27 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id a6so6119314wmm.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:27 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E975E6ECF9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:28 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id 17so13148676wmo.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=5oxbm+OwYrXJfeu8fsvHEXPJKp4UzzNYF3dRL7NE5CA=;
- b=tX2MOg3+ZHKBlX03kERqo7NI43lVs6PtSmZSDvdo8HccrmTpE+eb5EWqPv6QNFWxlw
- ZkMRqbN5DKxMtk4biYesN3tPlKlW5NxcXN0TWfZzqllNoerq5U/3dsotRZsgX9/weWuu
- A90ruhNswY3g8r7Vrs1ryBBRCcEvwB3MCbKXa01rcVYVzL7iLbeqjlbbenEn5E22dDJI
- KpdMLRvaEzhAwCmxaSyESdacv5fj8k5SdMB/DWv6/NgCWIRbu3MFUW+L5Kpzo7qFlGNc
- PEAS7EqQZ0zrS70iDpjgJRug5KaNOUP/h3YQMAuq/Vqcy1SWcSoiMnktjoMlXczPSCDu
- fQ0g==
+ bh=mxao9o31/pSkCHCKjhluWXxojL1oqpx3hdJaDq1d3Hg=;
+ b=AHe34k2zDVv0lssEK5B9LKVgdEHl/9Sqv8/tJUtvo/XOIR5OXWc26jM/zlVsekBqIz
+ t4LpTM1B+yyTaNWC8Dn/k++worgbgH6lpaqEgedr4RkPHkkcjz+cZrCag98+tPYWVANZ
+ c1FssUER3XlWFGzdK0bSGh3p8dWuJxbiIxsmslG3KBipNRIodGOdtnDwDPOtSYr47osg
+ e/A/RAOpoOOyJP91RNXQ7g3juwggxUn6vg+Uc7hrMvOJuPDMAXnimv9WWEv8B/jdBFM2
+ 30oXTTRtb9BJov8/bKmxd56qDjzFTqITTCV7r2wih7pSkDWXuBonJgHe2qcaMjIgCPiD
+ Ou8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=5oxbm+OwYrXJfeu8fsvHEXPJKp4UzzNYF3dRL7NE5CA=;
- b=j2xGGLmhrgLwK0NOEh50RlWZm/yKlqIB/7iL7qOp1Hra42XJEe93+mfQqCPBcVgsP/
- YfEzaccZ3Ob4/qpWxM2n+Y7JwEiAv7x3bMk/uCXYU5FNnUpRKFwEP7AfOShpvr5LgbZM
- 0Fxfq/HOTDyVO4Rz/e+CvrV1SuW8jp5Ib+ye2+whIn+4H/ZSZEmlPKizOxXAlhZidqEV
- HBdzKumsFx+dB3qZbfk6ogUazVSQn/bE5wPDrQv0ovOJbNVMr9a/ovrxRYrn1YGH48/X
- zmqu/GOs/Qg8TWj1Wc/oUZuxQpstmKkGMiGIlajclJ1Cftondy4WZJkA1/J0k0xs5yOk
- cNMg==
-X-Gm-Message-State: AOAM5324GZPMLvRt4v3ZzGrpQlKBxx+eWUckmi1uhtjRJ3Ofz6NDWJni
- bRQ9zpBWJDGTiIo9wLpEZxl0iqWa8jM=
-X-Google-Smtp-Source: ABdhPJzin89YDoZLf6G1SwQjFSoM0FR65gZf7IpZuG5aKNwzW6CVXRDl8HLEI0xeHycDmZ7C84JcDg==
-X-Received: by 2002:a1c:f219:: with SMTP id s25mr5859419wmc.2.1594934605851;
- Thu, 16 Jul 2020 14:23:25 -0700 (PDT)
+ bh=mxao9o31/pSkCHCKjhluWXxojL1oqpx3hdJaDq1d3Hg=;
+ b=NJUOvuimDguiQYtzvr6cot2g95TQ+LYVWVXuy4H6wdBMU8/GKmuXCMJDYFAFBvv6As
+ AFpFzRRCGO+I/APdBFWzasNGK6c2aIVfwnIEIDVfBBZToiDzweaDok6a15Nvl8Q4HA03
+ HacKyGGRDlQzfwR6QkWCEeZcLp2usx2oEDYPuDNxuL+diqaQqVldrt3Uz7/FVeZPub/u
+ gZg4UrmwJvPREhXYS2sEP6BKl5C8MlkGlmsCi7rsd0OgwCj7plPYGqQtik3EfL0Zhg/7
+ ZAMQQkrmu/9x+CODCslynqGUElO0yH9z+UGw6nCs0Z0JkeE1nnFg9EPyFLt8gunt9bF4
+ zYaQ==
+X-Gm-Message-State: AOAM532abJuohGE+/kzVWRKdGsa74rWPObHKYDFV7CdK2zu0zRK/Vm9y
+ o7AkP4V378I9zwzbsk65eaHhyPQi0AU=
+X-Google-Smtp-Source: ABdhPJy81fIX1qeT6amXUFC6YUnUysoN0xgGl8HA1mnt8w2BvBmfOEwMK6ftMNFU1lAfK9tSHQZcqA==
+X-Received: by 2002:a1c:bb44:: with SMTP id l65mr6363119wmf.51.1594934606930; 
+ Thu, 16 Jul 2020 14:23:26 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
- by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.24
+ by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:25 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:26 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 17/27] drm/amd/display: dce_opp: add DCE6 specific macros,
- functions
-Date: Thu, 16 Jul 2020 23:22:41 +0200
-Message-Id: <20200716212251.1539094-18-issor.oruam@gmail.com>
+Subject: [PATCH v3 18/27] drm/amd/display: dce_transform: add DCE6 specific
+ macros, functions
+Date: Thu, 16 Jul 2020 23:22:42 +0200
+Message-Id: <20200716212251.1539094-19-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
 References: <20200716212251.1539094-1-issor.oruam@gmail.com>
@@ -75,367 +75,545 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-DCE6 has no FMT_TRUNCATE_MODE bit in FMT_BIT_DEPTH_CONTROL register
-DCE6 has no FMT_CLAMP_COMPONENT_{R,G,B} registers
-DCE6 has no FMT_SUBSAMPLING_{MODE,ORDER} bits in FMT_CONTROL register
+DCE6 has no SCL_MODE and no SCL_{HORZ,VERT}_FILTER_INIT registers
+DCE6 has no SCL_BOUNDARY_MODE bit in SCL_CONTROL register
+DCE6 has Line Buffer programming registers (DC_LB_MEMORY_SPLIT,DC_LB_MEM_SIZE)
+DCE6 DATA_FORMAT register has only INTERLEAVE_EN bit
+DCE6 has no Out Clamp Control programming registers (OUT_CLAMP_CONTROL_*)
 
 [How]
-Add DCE6 specific macros definitions for OPP registers and masks
-DCE6 OPP macros will avoid buiding errors when using DCE6 headers
-Add dce60_set_truncation() w/o FMT_TRUNCATE_MODE bit programming
-Add dce60_opp_set_clamping() w/o Format Clamp Component programming
-Add dce60_opp_program_fmt() w/o Format Subsampling bits programming
-Add dce60_opp_program_bit_depth_reduction() with dce60_set_truncation
-Use dce60_opp_program_fmt() in dce60_opp_funcs
-Use dce60_opp_program_bit_depth_reduction() in dce60_opp_funcs
-Add DCE6 specific dce60_opp_construct
+Add DCE6 specific macros definitions for XFM registers and masks
+Add DCE6 specific registers to dce_transform_registers struct
+Add DCE6 specific masks to dce_transform_mask struct
+DCE6 XFM macros/structs changes will avoid buiding errors when using DCE6 headers
+Add dce60_setup_scaling_configuration() w/o missing Scaling registers/bit programming
+Add dce60_transform_set_scaler() using DCE6 Line Buffer programming registers
+Add dce60_program_bit_depth_reduction() w/o Out Clamp Control programming
+Add dce60_transform_set_pixel_storage_depth() use dce60_program_bit_depth_reduction()
+Use dce60_transform_set_scaler() in dce60_transform_funcs
+Use dce60_transform_set_pixel_storage_depth() in dce60_transform_funcs
+Add DCE6 specific dce60_transform_construct
 
 Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_opp.c | 205 +++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/dce/dce_opp.h |  49 +++++
- 2 files changed, 254 insertions(+)
+ .../drm/amd/display/dc/dce/dce_transform.c    | 268 ++++++++++++++++++
+ .../drm/amd/display/dc/dce/dce_transform.h    | 150 ++++++++++
+ 2 files changed, 418 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_opp.c b/drivers/gpu/drm/amd/display/dc/dce/dce_opp.c
-index 51081d9ae3fb..e459ae65aaf7 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_opp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_opp.c
-@@ -141,6 +141,47 @@ static void set_truncation(
- 				params->flags.TRUNCATE_MODE);
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
+index ab63d0d0304c..3303d01c1aae 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
+@@ -146,6 +146,33 @@ static bool setup_scaling_configuration(
+ 	return true;
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+/**
-+ *	dce60_set_truncation
-+ *	1) set truncation depth: 0 for 18 bpp or 1 for 24 bpp
-+ *	2) enable truncation
-+ *	3) HW remove 12bit FMT support for DCE11 power saving reason.
-+ */
-+static void dce60_set_truncation(
-+		struct dce110_opp *opp110,
-+		const struct bit_depth_reduction_params *params)
++static bool dce60_setup_scaling_configuration(
++	struct dce_transform *xfm_dce,
++	const struct scaler_data *data)
 +{
-+	/* DCE6 has no FMT_TRUNCATE_MODE bit in FMT_BIT_DEPTH_CONTROL reg */
++	REG_SET(SCL_BYPASS_CONTROL, 0, SCL_BYPASS_MODE, 0);
 +
-+	/*Disable truncation*/
-+	REG_UPDATE_2(FMT_BIT_DEPTH_CONTROL,
-+			FMT_TRUNCATE_EN, 0,
-+			FMT_TRUNCATE_DEPTH, 0);
++	if (data->taps.h_taps + data->taps.v_taps <= 2) {
++		/* Set bypass */
 +
-+	if (params->pixel_encoding == PIXEL_ENCODING_YCBCR422) {
-+		/*  8bpc trunc on YCbCr422*/
-+		if (params->flags.TRUNCATE_DEPTH == 1)
-+			REG_UPDATE_2(FMT_BIT_DEPTH_CONTROL,
-+					FMT_TRUNCATE_EN, 1,
-+					FMT_TRUNCATE_DEPTH, 1);
-+		else if (params->flags.TRUNCATE_DEPTH == 2)
-+			/*  10bpc trunc on YCbCr422*/
-+			REG_UPDATE_2(FMT_BIT_DEPTH_CONTROL,
-+					FMT_TRUNCATE_EN, 1,
-+					FMT_TRUNCATE_DEPTH, 2);
-+		return;
++		/* DCE6 has no SCL_MODE register, skip scale mode programming */
++
++		return false;
 +	}
-+	/* on other format-to do */
-+	if (params->flags.TRUNCATE_ENABLED == 0)
-+		return;
-+	/*Set truncation depth and Enable truncation*/
-+	REG_UPDATE_2(FMT_BIT_DEPTH_CONTROL,
-+				FMT_TRUNCATE_EN, 1,
-+				FMT_TRUNCATE_DEPTH,
-+				params->flags.TRUNCATE_DEPTH);
++
++	REG_SET_2(SCL_TAP_CONTROL, 0,
++			SCL_H_NUM_OF_TAPS, data->taps.h_taps - 1,
++			SCL_V_NUM_OF_TAPS, data->taps.v_taps - 1);
++
++	/* DCE6 has no SCL_MODE register, skip scale mode programming */
++
++	/* DCE6 has no SCL_BOUNDARY_MODE bit, skip replace out of bound pixels */
++
++	return true;
 +}
 +#endif
++
+ static void program_overscan(
+ 		struct dce_transform *xfm_dce,
+ 		const struct scaler_data *data)
+@@ -399,6 +426,89 @@ static void dce_transform_set_scaler(
+ 	REG_UPDATE(LB_DATA_FORMAT, ALPHA_EN, data->lb_params.alpha_en);
+ }
  
- /**
-  *	set_spatial_dither
-@@ -373,6 +414,57 @@ void dce110_opp_set_clamping(
++#if defined(CONFIG_DRM_AMD_DC_SI)
++static void dce60_transform_set_scaler(
++	struct transform *xfm,
++	const struct scaler_data *data)
++{
++	struct dce_transform *xfm_dce = TO_DCE_TRANSFORM(xfm);
++	bool is_scaling_required;
++	bool filter_updated = false;
++	const uint16_t *coeffs_v, *coeffs_h;
++
++	/*Use whole line buffer memory always*/
++	REG_SET(DC_LB_MEMORY_SPLIT, 0,
++		DC_LB_MEMORY_CONFIG, 0);
++
++	REG_SET(DC_LB_MEM_SIZE, 0,
++		DC_LB_MEM_SIZE, xfm_dce->lb_memory_size);
++
++	/* Clear SCL_F_SHARP_CONTROL value to 0 */
++	REG_WRITE(SCL_F_SHARP_CONTROL, 0);
++
++	/* 1. Program overscan */
++	program_overscan(xfm_dce, data);
++
++	/* 2. Program taps and configuration */
++	is_scaling_required = dce60_setup_scaling_configuration(xfm_dce, data);
++
++	if (is_scaling_required) {
++		/* 3. Calculate and program ratio, filter initialization */
++		struct scl_ratios_inits inits = { 0 };
++
++		calculate_inits(xfm_dce, data, &inits);
++
++		program_scl_ratios_inits(xfm_dce, &inits);
++
++		coeffs_v = get_filter_coeffs_16p(data->taps.v_taps, data->ratios.vert);
++		coeffs_h = get_filter_coeffs_16p(data->taps.h_taps, data->ratios.horz);
++
++		if (coeffs_v != xfm_dce->filter_v || coeffs_h != xfm_dce->filter_h) {
++			/* 4. Program vertical filters */
++			if (xfm_dce->filter_v == NULL)
++				REG_SET(SCL_VERT_FILTER_CONTROL, 0,
++						SCL_V_2TAP_HARDCODE_COEF_EN, 0);
++			program_multi_taps_filter(
++					xfm_dce,
++					data->taps.v_taps,
++					coeffs_v,
++					FILTER_TYPE_RGB_Y_VERTICAL);
++			program_multi_taps_filter(
++					xfm_dce,
++					data->taps.v_taps,
++					coeffs_v,
++					FILTER_TYPE_ALPHA_VERTICAL);
++
++			/* 5. Program horizontal filters */
++			if (xfm_dce->filter_h == NULL)
++				REG_SET(SCL_HORZ_FILTER_CONTROL, 0,
++						SCL_H_2TAP_HARDCODE_COEF_EN, 0);
++			program_multi_taps_filter(
++					xfm_dce,
++					data->taps.h_taps,
++					coeffs_h,
++					FILTER_TYPE_RGB_Y_HORIZONTAL);
++			program_multi_taps_filter(
++					xfm_dce,
++					data->taps.h_taps,
++					coeffs_h,
++					FILTER_TYPE_ALPHA_HORIZONTAL);
++
++			xfm_dce->filter_v = coeffs_v;
++			xfm_dce->filter_h = coeffs_h;
++			filter_updated = true;
++		}
++	}
++
++	/* 6. Program the viewport */
++	program_viewport(xfm_dce, &data->viewport);
++
++	/* DCE6 does not have bit to flip to new coefficient memory */
++
++	/* DCE6 DATA_FORMAT register does not support ALPHA_EN */
++}
++#endif
++
+ /*****************************************************************************
+  * set_clamp
+  *
+@@ -664,6 +774,67 @@ static void program_bit_depth_reduction(
+ 		   bit_depth_params->flags.HIGHPASS_RANDOM);
+ }
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++/*****************************************************************************
++ * dce60_transform_bit_depth_reduction program
++ *
++ * @brief
++ *     Programs the DCP bit depth reduction registers (Clamp, Round/Truncate,
++ *      Dither) for dce
++ *
++ * @param depth : bit depth to set the clamp to (should match denorm)
++ *
++ ******************************************************************************/
++static void dce60_program_bit_depth_reduction(
++	struct dce_transform *xfm_dce,
++	enum dc_color_depth depth,
++	const struct bit_depth_reduction_params *bit_depth_params)
++{
++	enum dcp_out_trunc_round_depth trunc_round_depth;
++	enum dcp_out_trunc_round_mode trunc_mode;
++	bool spatial_dither_enable;
++
++	ASSERT(depth < COLOR_DEPTH_121212); /* Invalid clamp bit depth */
++
++	spatial_dither_enable = bit_depth_params->flags.SPATIAL_DITHER_ENABLED;
++	/* Default to 12 bit truncation without rounding */
++	trunc_round_depth = DCP_OUT_TRUNC_ROUND_DEPTH_12BIT;
++	trunc_mode = DCP_OUT_TRUNC_ROUND_MODE_TRUNCATE;
++
++	if (bit_depth_params->flags.TRUNCATE_ENABLED) {
++		/* Don't enable dithering if truncation is enabled */
++		spatial_dither_enable = false;
++		trunc_mode = bit_depth_params->flags.TRUNCATE_MODE ?
++			     DCP_OUT_TRUNC_ROUND_MODE_ROUND :
++			     DCP_OUT_TRUNC_ROUND_MODE_TRUNCATE;
++
++		if (bit_depth_params->flags.TRUNCATE_DEPTH == 0 ||
++		    bit_depth_params->flags.TRUNCATE_DEPTH == 1)
++			trunc_round_depth = DCP_OUT_TRUNC_ROUND_DEPTH_8BIT;
++		else if (bit_depth_params->flags.TRUNCATE_DEPTH == 2)
++			trunc_round_depth = DCP_OUT_TRUNC_ROUND_DEPTH_10BIT;
++		else {
++			/*
++			 * Invalid truncate/round depth. Setting here to 12bit
++			 * to prevent use-before-initialize errors.
++			 */
++			trunc_round_depth = DCP_OUT_TRUNC_ROUND_DEPTH_12BIT;
++			BREAK_TO_DEBUGGER();
++		}
++	}
++
++	/* DCE6 has no OUT_CLAMP_CONTROL_* registers - set_clamp() is skipped */
++	set_round(xfm_dce, trunc_mode, trunc_round_depth);
++	set_dither(xfm_dce,
++		   spatial_dither_enable,
++		   DCP_SPATIAL_DITHER_MODE_A_AA_A,
++		   DCP_SPATIAL_DITHER_DEPTH_30BPP,
++		   bit_depth_params->flags.FRAME_RANDOM,
++		   bit_depth_params->flags.RGB_RANDOM,
++		   bit_depth_params->flags.HIGHPASS_RANDOM);
++}
++#endif
++
+ static int dce_transform_get_max_num_of_supported_lines(
+ 	struct dce_transform *xfm_dce,
+ 	enum lb_pixel_depth depth,
+@@ -797,6 +968,59 @@ static void dce_transform_set_pixel_storage_depth(
  	}
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+/**
-+ *	Set Clamping for DCE6 parts
-+ *	1) Set clamping format based on bpc - 0 for 6bpc (No clamping)
-+ *		1 for 8 bpc
-+ *		2 for 10 bpc
-+ *		3 for 12 bpc
-+ *		7 for programable
-+ *	2) Enable clamp if Limited range requested
-+ */
-+void dce60_opp_set_clamping(
-+	struct dce110_opp *opp110,
-+	const struct clamping_and_pixel_encoding_params *params)
++static void dce60_transform_set_pixel_storage_depth(
++	struct transform *xfm,
++	enum lb_pixel_depth depth,
++	const struct bit_depth_reduction_params *bit_depth_params)
 +{
-+	REG_SET_2(FMT_CLAMP_CNTL, 0,
-+		FMT_CLAMP_DATA_EN, 0,
-+		FMT_CLAMP_COLOR_FORMAT, 0);
++	struct dce_transform *xfm_dce = TO_DCE_TRANSFORM(xfm);
++	int pixel_depth, expan_mode;
++	enum dc_color_depth color_depth;
 +
-+	switch (params->clamping_level) {
-+	case CLAMPING_FULL_RANGE:
++	switch (depth) {
++	case LB_PIXEL_DEPTH_18BPP:
++		color_depth = COLOR_DEPTH_666;
++		pixel_depth = 2;
++		expan_mode  = 1;
 +		break;
-+	case CLAMPING_LIMITED_RANGE_8BPC:
-+		REG_SET_2(FMT_CLAMP_CNTL, 0,
-+			FMT_CLAMP_DATA_EN, 1,
-+			FMT_CLAMP_COLOR_FORMAT, 1);
++	case LB_PIXEL_DEPTH_24BPP:
++		color_depth = COLOR_DEPTH_888;
++		pixel_depth = 1;
++		expan_mode  = 1;
 +		break;
-+	case CLAMPING_LIMITED_RANGE_10BPC:
-+		REG_SET_2(FMT_CLAMP_CNTL, 0,
-+			FMT_CLAMP_DATA_EN, 1,
-+			FMT_CLAMP_COLOR_FORMAT, 2);
++	case LB_PIXEL_DEPTH_30BPP:
++		color_depth = COLOR_DEPTH_101010;
++		pixel_depth = 0;
++		expan_mode  = 1;
 +		break;
-+	case CLAMPING_LIMITED_RANGE_12BPC:
-+		REG_SET_2(FMT_CLAMP_CNTL, 0,
-+			FMT_CLAMP_DATA_EN, 1,
-+			FMT_CLAMP_COLOR_FORMAT, 3);
-+		break;
-+	case CLAMPING_LIMITED_RANGE_PROGRAMMABLE:
-+		/*Set clamp control*/
-+		REG_SET_2(FMT_CLAMP_CNTL, 0,
-+			FMT_CLAMP_DATA_EN, 1,
-+			FMT_CLAMP_COLOR_FORMAT, 7);
-+
-+		/* DCE6 does have FMT_CLAMP_COMPONENT_{R,G,B} registers */
-+
++	case LB_PIXEL_DEPTH_36BPP:
++		color_depth = COLOR_DEPTH_121212;
++		pixel_depth = 3;
++		expan_mode  = 0;
 +		break;
 +	default:
++		color_depth = COLOR_DEPTH_101010;
++		pixel_depth = 0;
++		expan_mode  = 1;
++		BREAK_TO_DEBUGGER();
 +		break;
 +	}
-+}
-+#endif
 +
- /**
-  *	set_pixel_encoding
-  *
-@@ -408,6 +500,39 @@ static void set_pixel_encoding(
- 
- }
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+/**
-+ *	dce60_set_pixel_encoding
-+ *	DCE6 has no FMT_SUBSAMPLING_{MODE,ORDER} bits in FMT_CONTROL reg
-+ *	Set Pixel Encoding
-+ *		0: RGB 4:4:4 or YCbCr 4:4:4 or YOnly
-+ *		1: YCbCr 4:2:2
-+ */
-+static void dce60_set_pixel_encoding(
-+	struct dce110_opp *opp110,
-+	const struct clamping_and_pixel_encoding_params *params)
-+{
-+	if (opp110->opp_mask->FMT_CBCR_BIT_REDUCTION_BYPASS)
-+		REG_UPDATE_2(FMT_CONTROL,
-+				FMT_PIXEL_ENCODING, 0,
-+				FMT_CBCR_BIT_REDUCTION_BYPASS, 0);
-+	else
-+		REG_UPDATE(FMT_CONTROL,
-+				FMT_PIXEL_ENCODING, 0);
++	set_denormalization(xfm_dce, color_depth);
++	dce60_program_bit_depth_reduction(xfm_dce, color_depth, bit_depth_params);
 +
-+	if (params->pixel_encoding == PIXEL_ENCODING_YCBCR422) {
-+		REG_UPDATE(FMT_CONTROL,
-+				FMT_PIXEL_ENCODING, 1);
++	/* DATA_FORMAT in DCE6 does not have PIXEL_DEPTH and PIXEL_EXPAN_MODE masks */
++
++	if (!(xfm_dce->lb_pixel_depth_supported & depth)) {
++		/*we should use unsupported capabilities
++		 *  unless it is required by w/a*/
++		DC_LOG_WARNING("%s: Capability not supported",
++			__func__);
 +	}
-+	if (params->pixel_encoding == PIXEL_ENCODING_YCBCR420) {
-+		REG_UPDATE_2(FMT_CONTROL,
-+				FMT_PIXEL_ENCODING, 2,
-+				FMT_CBCR_BIT_REDUCTION_BYPASS, 1);
-+	}
-+
 +}
 +#endif
 +
- void dce110_opp_program_bit_depth_reduction(
- 	struct output_pixel_processor *opp,
- 	const struct bit_depth_reduction_params *params)
-@@ -419,6 +544,19 @@ void dce110_opp_program_bit_depth_reduction(
- 	set_temporal_dither(opp110, params);
- }
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_opp_program_bit_depth_reduction(
-+	struct output_pixel_processor *opp,
-+	const struct bit_depth_reduction_params *params)
-+{
-+	struct dce110_opp *opp110 = TO_DCE110_OPP(opp);
-+
-+	dce60_set_truncation(opp110, params);
-+	set_spatial_dither(opp110, params);
-+	set_temporal_dither(opp110, params);
-+}
-+#endif
-+
- void dce110_opp_program_clamping_and_pixel_encoding(
- 	struct output_pixel_processor *opp,
- 	const struct clamping_and_pixel_encoding_params *params)
-@@ -429,6 +567,19 @@ void dce110_opp_program_clamping_and_pixel_encoding(
- 	set_pixel_encoding(opp110, params);
- }
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_opp_program_clamping_and_pixel_encoding(
-+	struct output_pixel_processor *opp,
-+	const struct clamping_and_pixel_encoding_params *params)
-+{
-+	struct dce110_opp *opp110 = TO_DCE110_OPP(opp);
-+
-+	dce60_opp_set_clamping(opp110, params);
-+	dce60_set_pixel_encoding(opp110, params);
-+}
-+#endif
-+
-+
- static void program_formatter_420_memory(struct output_pixel_processor *opp)
- {
- 	struct dce110_opp *opp110 = TO_DCE110_OPP(opp);
-@@ -526,7 +677,32 @@ void dce110_opp_program_fmt(
- 	return;
- }
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_opp_program_fmt(
-+	struct output_pixel_processor *opp,
-+	struct bit_depth_reduction_params *fmt_bit_depth,
-+	struct clamping_and_pixel_encoding_params *clamping)
-+{
-+	/* dithering is affected by <CrtcSourceSelect>, hence should be
-+	 * programmed afterwards */
-+
-+	if (clamping->pixel_encoding == PIXEL_ENCODING_YCBCR420)
-+		program_formatter_420_memory(opp);
-+
-+	dce60_opp_program_bit_depth_reduction(
-+		opp,
-+		fmt_bit_depth);
-+
-+	dce60_opp_program_clamping_and_pixel_encoding(
-+		opp,
-+		clamping);
-+
-+	if (clamping->pixel_encoding == PIXEL_ENCODING_YCBCR420)
-+		program_formatter_reset_dig_resync_fifo(opp);
- 
-+	return;
-+}
-+#endif
- 
- 
- 
-@@ -541,6 +717,15 @@ static const struct opp_funcs funcs = {
- 	.opp_program_bit_depth_reduction = dce110_opp_program_bit_depth_reduction
+ static void program_gamut_remap(
+ 	struct dce_transform *xfm_dce,
+ 	const uint16_t *reg_val)
+@@ -1335,6 +1559,21 @@ static const struct transform_funcs dce_transform_funcs = {
+ 	.transform_get_optimal_number_of_taps = dce_transform_get_optimal_number_of_taps
  };
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+static const struct opp_funcs dce60_opp_funcs = {
-+	.opp_set_dyn_expansion = dce110_opp_set_dyn_expansion,
-+	.opp_destroy = dce110_opp_destroy,
-+	.opp_program_fmt = dce60_opp_program_fmt,
-+	.opp_program_bit_depth_reduction = dce60_opp_program_bit_depth_reduction
++static const struct transform_funcs dce60_transform_funcs = {
++	.transform_reset = dce_transform_reset,
++	.transform_set_scaler = dce60_transform_set_scaler,
++	.transform_set_gamut_remap = dce_transform_set_gamut_remap,
++	.opp_set_csc_adjustment = dce110_opp_set_csc_adjustment,
++	.opp_set_csc_default = dce110_opp_set_csc_default,
++	.opp_power_on_regamma_lut = dce110_opp_power_on_regamma_lut,
++	.opp_program_regamma_pwl = dce110_opp_program_regamma_pwl,
++	.opp_set_regamma_mode = dce110_opp_set_regamma_mode,
++	.transform_set_pixel_storage_depth = dce60_transform_set_pixel_storage_depth,
++	.transform_get_optimal_number_of_taps = dce_transform_get_optimal_number_of_taps
 +};
 +#endif
 +
- void dce110_opp_construct(struct dce110_opp *opp110,
- 	struct dc_context *ctx,
- 	uint32_t inst,
-@@ -559,6 +744,26 @@ void dce110_opp_construct(struct dce110_opp *opp110,
- 	opp110->opp_mask = opp_mask;
+ /*****************************************/
+ /* Constructor, Destructor               */
+ /*****************************************/
+@@ -1365,3 +1604,32 @@ void dce_transform_construct(
+ 	xfm_dce->lb_bits_per_entry = LB_BITS_PER_ENTRY;
+ 	xfm_dce->lb_memory_size = LB_TOTAL_NUMBER_OF_ENTRIES; /*0x6B0*/
  }
- 
++
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_opp_construct(struct dce110_opp *opp110,
++void dce60_transform_construct(
++	struct dce_transform *xfm_dce,
 +	struct dc_context *ctx,
 +	uint32_t inst,
-+	const struct dce_opp_registers *regs,
-+	const struct dce_opp_shift *opp_shift,
-+	const struct dce_opp_mask *opp_mask)
++	const struct dce_transform_registers *regs,
++	const struct dce_transform_shift *xfm_shift,
++	const struct dce_transform_mask *xfm_mask)
 +{
-+	opp110->base.funcs = &dce60_opp_funcs;
++	xfm_dce->base.ctx = ctx;
 +
-+	opp110->base.ctx = ctx;
++	xfm_dce->base.inst = inst;
++	xfm_dce->base.funcs = &dce60_transform_funcs;
 +
-+	opp110->base.inst = inst;
++	xfm_dce->regs = regs;
++	xfm_dce->xfm_shift = xfm_shift;
++	xfm_dce->xfm_mask = xfm_mask;
 +
-+	opp110->regs = regs;
-+	opp110->opp_shift = opp_shift;
-+	opp110->opp_mask = opp_mask;
++	xfm_dce->prescaler_on = true;
++	xfm_dce->lb_pixel_depth_supported =
++			LB_PIXEL_DEPTH_18BPP |
++			LB_PIXEL_DEPTH_24BPP |
++			LB_PIXEL_DEPTH_30BPP;
++
++	xfm_dce->lb_bits_per_entry = LB_BITS_PER_ENTRY;
++	xfm_dce->lb_memory_size = LB_TOTAL_NUMBER_OF_ENTRIES; /*0x6B0*/
 +}
 +#endif
-+
- void dce110_opp_destroy(struct output_pixel_processor **opp)
- {
- 	if (*opp)
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_opp.h b/drivers/gpu/drm/amd/display/dc/dce/dce_opp.h
-index 2ab0147cbd9d..4d484ef60f35 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_opp.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_opp.h
-@@ -81,6 +81,17 @@ enum dce110_opp_reg_type {
- 	OPP_COMMON_REG_LIST_BASE(id), \
- 	SRI(CONTROL, FMT_MEMORY, id)
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h
+index 948281d8b6af..95b28dadc8c5 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h
+@@ -108,6 +108,68 @@
+ 	SRI(DCFE_MEM_PWR_CTRL, DCFE, id), \
+ 	SRI(DCFE_MEM_PWR_STATUS, DCFE, id)
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+#define OPP_DCE_60_REG_LIST(id) \
-+	SRI(FMT_DYNAMIC_EXP_CNTL, FMT, id), \
-+	SRI(FMT_BIT_DEPTH_CONTROL, FMT, id), \
-+	SRI(FMT_CONTROL, FMT, id), \
-+	SRI(FMT_DITHER_RAND_R_SEED, FMT, id), \
-+	SRI(FMT_DITHER_RAND_G_SEED, FMT, id), \
-+	SRI(FMT_DITHER_RAND_B_SEED, FMT, id), \
-+	SRI(FMT_CLAMP_CNTL, FMT, id)
++#define XFM_COMMON_REG_LIST_DCE60_BASE(id) \
++	SRI(DATA_FORMAT, LB, id), \
++	SRI(GAMUT_REMAP_CONTROL, DCP, id), \
++	SRI(GAMUT_REMAP_C11_C12, DCP, id), \
++	SRI(GAMUT_REMAP_C13_C14, DCP, id), \
++	SRI(GAMUT_REMAP_C21_C22, DCP, id), \
++	SRI(GAMUT_REMAP_C23_C24, DCP, id), \
++	SRI(GAMUT_REMAP_C31_C32, DCP, id), \
++	SRI(GAMUT_REMAP_C33_C34, DCP, id), \
++	SRI(OUTPUT_CSC_C11_C12, DCP, id), \
++	SRI(OUTPUT_CSC_C13_C14, DCP, id), \
++	SRI(OUTPUT_CSC_C21_C22, DCP, id), \
++	SRI(OUTPUT_CSC_C23_C24, DCP, id), \
++	SRI(OUTPUT_CSC_C31_C32, DCP, id), \
++	SRI(OUTPUT_CSC_C33_C34, DCP, id), \
++	SRI(OUTPUT_CSC_CONTROL, DCP, id), \
++	SRI(REGAMMA_CNTLA_START_CNTL, DCP, id), \
++	SRI(REGAMMA_CNTLA_SLOPE_CNTL, DCP, id), \
++	SRI(REGAMMA_CNTLA_END_CNTL1, DCP, id), \
++	SRI(REGAMMA_CNTLA_END_CNTL2, DCP, id), \
++	SRI(REGAMMA_CNTLA_REGION_0_1, DCP, id), \
++	SRI(REGAMMA_CNTLA_REGION_2_3, DCP, id), \
++	SRI(REGAMMA_CNTLA_REGION_4_5, DCP, id), \
++	SRI(REGAMMA_CNTLA_REGION_6_7, DCP, id), \
++	SRI(REGAMMA_CNTLA_REGION_8_9, DCP, id), \
++	SRI(REGAMMA_CNTLA_REGION_10_11, DCP, id), \
++	SRI(REGAMMA_CNTLA_REGION_12_13, DCP, id), \
++	SRI(REGAMMA_CNTLA_REGION_14_15, DCP, id), \
++	SRI(REGAMMA_LUT_WRITE_EN_MASK, DCP, id), \
++	SRI(REGAMMA_LUT_INDEX, DCP, id), \
++	SRI(REGAMMA_LUT_DATA, DCP, id), \
++	SRI(REGAMMA_CONTROL, DCP, id), \
++	SRI(DENORM_CONTROL, DCP, id), \
++	SRI(DCP_SPATIAL_DITHER_CNTL, DCP, id), \
++	SRI(OUT_ROUND_CONTROL, DCP, id), \
++	SRI(SCL_TAP_CONTROL, SCL, id), \
++	SRI(SCL_CONTROL, SCL, id), \
++	SRI(SCL_BYPASS_CONTROL, SCL, id), \
++	SRI(EXT_OVERSCAN_LEFT_RIGHT, SCL, id), \
++	SRI(EXT_OVERSCAN_TOP_BOTTOM, SCL, id), \
++	SRI(SCL_VERT_FILTER_CONTROL, SCL, id), \
++	SRI(SCL_HORZ_FILTER_CONTROL, SCL, id), \
++	SRI(SCL_COEF_RAM_SELECT, SCL, id), \
++	SRI(SCL_COEF_RAM_TAP_DATA, SCL, id), \
++	SRI(VIEWPORT_START, SCL, id), \
++	SRI(VIEWPORT_SIZE, SCL, id), \
++	SRI(SCL_HORZ_FILTER_SCALE_RATIO, SCL, id), \
++	SRI(SCL_VERT_FILTER_SCALE_RATIO, SCL, id), \
++	SRI(SCL_VERT_FILTER_INIT, SCL, id), \
++	SRI(SCL_AUTOMATIC_MODE_CONTROL, SCL, id), \
++	SRI(DC_LB_MEMORY_SPLIT, LB, id), \
++	SRI(DC_LB_MEM_SIZE, LB, id), \
++	SRI(DCFE_MEM_LIGHT_SLEEP_CNTL, CRTC, id), \
++	SRI(SCL_UPDATE, SCL, id), \
++	SRI(SCL_F_SHARP_CONTROL, SCL, id)
++
++#define XFM_COMMON_REG_LIST_DCE60(id) \
++	XFM_COMMON_REG_LIST_DCE60_BASE(id), \
++	SRI(DCFE_MEM_LIGHT_SLEEP_CNTL, CRTC, id)
 +#endif
 +
- #define OPP_SF(reg_name, field_name, post_fix)\
+ #define XFM_SF(reg_name, field_name, post_fix)\
  	.field_name = reg_name ## __ ## field_name ## post_fix
  
-@@ -192,6 +203,35 @@ enum dce110_opp_reg_type {
- 	OPP_SF(FMT0_FMT_CONTROL, FMT_SUBSAMPLING_ORDER, mask_sh),\
- 	OPP_SF(FMT0_FMT_CONTROL, FMT_CBCR_BIT_REDUCTION_BYPASS, mask_sh)
+@@ -204,6 +266,75 @@
+ 	XFM_SF(DCFE_MEM_PWR_STATUS, DCP_REGAMMA_MEM_PWR_STATE, mask_sh),\
+ 	XFM_SF(SCL_MODE, SCL_PSCL_EN, mask_sh)
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+#define OPP_COMMON_MASK_SH_LIST_DCE_60(mask_sh)\
-+	OPP_SF(FMT_DYNAMIC_EXP_CNTL, FMT_DYNAMIC_EXP_EN, mask_sh),\
-+	OPP_SF(FMT_DYNAMIC_EXP_CNTL, FMT_DYNAMIC_EXP_MODE, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TRUNCATE_EN, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TRUNCATE_DEPTH, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_SPATIAL_DITHER_EN, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_SPATIAL_DITHER_DEPTH, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_SPATIAL_DITHER_MODE, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_HIGHPASS_RANDOM_ENABLE, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_FRAME_RANDOM_ENABLE, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_RGB_RANDOM_ENABLE, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_EN, mask_sh),\
-+	OPP_SF(FMT_DITHER_RAND_R_SEED, FMT_RAND_R_SEED, mask_sh),\
-+	OPP_SF(FMT_DITHER_RAND_G_SEED, FMT_RAND_G_SEED, mask_sh),\
-+	OPP_SF(FMT_DITHER_RAND_B_SEED, FMT_RAND_B_SEED, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_EN, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_RESET, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_OFFSET, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_DITHER_DEPTH, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_TEMPORAL_LEVEL, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_25FRC_SEL, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_50FRC_SEL, mask_sh),\
-+	OPP_SF(FMT_BIT_DEPTH_CONTROL, FMT_75FRC_SEL, mask_sh),\
-+	OPP_SF(FMT_CLAMP_CNTL, FMT_CLAMP_DATA_EN, mask_sh),\
-+	OPP_SF(FMT_CLAMP_CNTL, FMT_CLAMP_COLOR_FORMAT, mask_sh),\
-+	OPP_SF(FMT_CONTROL, FMT_PIXEL_ENCODING, mask_sh)
++#define XFM_COMMON_MASK_SH_LIST_DCE60(mask_sh) \
++	XFM_COMMON_MASK_SH_LIST_DCE60_COMMON_BASE(mask_sh), \
++	OPP_SF(DCFE_MEM_LIGHT_SLEEP_CNTL, REGAMMA_LUT_LIGHT_SLEEP_DIS, mask_sh),\
++	OPP_SF(DCFE_MEM_LIGHT_SLEEP_CNTL, DCP_LUT_LIGHT_SLEEP_DIS, mask_sh),\
++	OPP_SF(DCFE_MEM_LIGHT_SLEEP_CNTL, REGAMMA_LUT_MEM_PWR_STATE, mask_sh)
++
++#define XFM_COMMON_MASK_SH_LIST_DCE60_COMMON_BASE(mask_sh) \
++	XFM_SF(OUT_ROUND_CONTROL, OUT_ROUND_TRUNC_MODE, mask_sh), \
++	XFM_SF(DCP_SPATIAL_DITHER_CNTL, DCP_SPATIAL_DITHER_EN, mask_sh), \
++	XFM_SF(DCP_SPATIAL_DITHER_CNTL, DCP_SPATIAL_DITHER_MODE, mask_sh), \
++	XFM_SF(DCP_SPATIAL_DITHER_CNTL, DCP_SPATIAL_DITHER_DEPTH, mask_sh), \
++	XFM_SF(DCP_SPATIAL_DITHER_CNTL, DCP_FRAME_RANDOM_ENABLE, mask_sh), \
++	XFM_SF(DCP_SPATIAL_DITHER_CNTL, DCP_RGB_RANDOM_ENABLE, mask_sh), \
++	XFM_SF(DCP_SPATIAL_DITHER_CNTL, DCP_HIGHPASS_RANDOM_ENABLE, mask_sh), \
++	XFM_SF(DENORM_CONTROL, DENORM_MODE, mask_sh), \
++	XFM_SF(DATA_FORMAT, INTERLEAVE_EN, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C11_C12, GAMUT_REMAP_C11, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C11_C12, GAMUT_REMAP_C12, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C13_C14, GAMUT_REMAP_C13, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C13_C14, GAMUT_REMAP_C14, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C21_C22, GAMUT_REMAP_C21, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C21_C22, GAMUT_REMAP_C22, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C23_C24, GAMUT_REMAP_C23, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C23_C24, GAMUT_REMAP_C24, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C31_C32, GAMUT_REMAP_C31, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C31_C32, GAMUT_REMAP_C32, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C33_C34, GAMUT_REMAP_C33, mask_sh), \
++	XFM_SF(GAMUT_REMAP_C33_C34, GAMUT_REMAP_C34, mask_sh), \
++	XFM_SF(GAMUT_REMAP_CONTROL, GRPH_GAMUT_REMAP_MODE, mask_sh), \
++	XFM_SF(OUTPUT_CSC_C11_C12, OUTPUT_CSC_C11, mask_sh),\
++	XFM_SF(OUTPUT_CSC_C11_C12, OUTPUT_CSC_C12, mask_sh),\
++	XFM_SF(OUTPUT_CSC_CONTROL, OUTPUT_CSC_GRPH_MODE, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_START_CNTL, REGAMMA_CNTLA_EXP_REGION_START, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_START_CNTL, REGAMMA_CNTLA_EXP_REGION_START_SEGMENT, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_SLOPE_CNTL, REGAMMA_CNTLA_EXP_REGION_LINEAR_SLOPE, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_END_CNTL1, REGAMMA_CNTLA_EXP_REGION_END, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_END_CNTL2, REGAMMA_CNTLA_EXP_REGION_END_BASE, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_END_CNTL2, REGAMMA_CNTLA_EXP_REGION_END_SLOPE, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_REGION_0_1, REGAMMA_CNTLA_EXP_REGION0_LUT_OFFSET, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_REGION_0_1, REGAMMA_CNTLA_EXP_REGION0_NUM_SEGMENTS, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_REGION_0_1, REGAMMA_CNTLA_EXP_REGION1_LUT_OFFSET, mask_sh),\
++	XFM_SF(REGAMMA_CNTLA_REGION_0_1, REGAMMA_CNTLA_EXP_REGION1_NUM_SEGMENTS, mask_sh),\
++	XFM_SF(REGAMMA_LUT_WRITE_EN_MASK, REGAMMA_LUT_WRITE_EN_MASK, mask_sh),\
++	XFM_SF(REGAMMA_CONTROL, GRPH_REGAMMA_MODE, mask_sh),\
++	XFM_SF(SCL_TAP_CONTROL, SCL_H_NUM_OF_TAPS, mask_sh), \
++	XFM_SF(SCL_TAP_CONTROL, SCL_V_NUM_OF_TAPS, mask_sh), \
++	XFM_SF(SCL_BYPASS_CONTROL, SCL_BYPASS_MODE, mask_sh), \
++	XFM_SF(EXT_OVERSCAN_LEFT_RIGHT, EXT_OVERSCAN_LEFT, mask_sh), \
++	XFM_SF(EXT_OVERSCAN_LEFT_RIGHT, EXT_OVERSCAN_RIGHT, mask_sh), \
++	XFM_SF(EXT_OVERSCAN_TOP_BOTTOM, EXT_OVERSCAN_TOP, mask_sh), \
++	XFM_SF(EXT_OVERSCAN_TOP_BOTTOM, EXT_OVERSCAN_BOTTOM, mask_sh), \
++	XFM_SF(SCL_COEF_RAM_SELECT, SCL_C_RAM_FILTER_TYPE, mask_sh), \
++	XFM_SF(SCL_COEF_RAM_SELECT, SCL_C_RAM_PHASE, mask_sh), \
++	XFM_SF(SCL_COEF_RAM_SELECT, SCL_C_RAM_TAP_PAIR_IDX, mask_sh), \
++	XFM_SF(SCL_COEF_RAM_TAP_DATA, SCL_C_RAM_EVEN_TAP_COEF_EN, mask_sh), \
++	XFM_SF(SCL_COEF_RAM_TAP_DATA, SCL_C_RAM_EVEN_TAP_COEF, mask_sh), \
++	XFM_SF(SCL_COEF_RAM_TAP_DATA, SCL_C_RAM_ODD_TAP_COEF_EN, mask_sh), \
++	XFM_SF(SCL_COEF_RAM_TAP_DATA, SCL_C_RAM_ODD_TAP_COEF, mask_sh), \
++	XFM_SF(VIEWPORT_START, VIEWPORT_X_START, mask_sh), \
++	XFM_SF(VIEWPORT_START, VIEWPORT_Y_START, mask_sh), \
++	XFM_SF(VIEWPORT_SIZE, VIEWPORT_HEIGHT, mask_sh), \
++	XFM_SF(VIEWPORT_SIZE, VIEWPORT_WIDTH, mask_sh), \
++	XFM_SF(SCL_HORZ_FILTER_SCALE_RATIO, SCL_H_SCALE_RATIO, mask_sh), \
++	XFM_SF(SCL_VERT_FILTER_SCALE_RATIO, SCL_V_SCALE_RATIO, mask_sh), \
++	XFM_SF(DC_LB_MEMORY_SPLIT, DC_LB_MEMORY_CONFIG, mask_sh), \
++	XFM_SF(DC_LB_MEM_SIZE, DC_LB_MEM_SIZE, mask_sh)
 +#endif
 +
- #define OPP_REG_FIELD_LIST(type) \
- 	type FMT_DYNAMIC_EXP_EN; \
- 	type FMT_DYNAMIC_EXP_MODE; \
-@@ -279,6 +319,15 @@ void dce110_opp_construct(struct dce110_opp *opp110,
- 	const struct dce_opp_shift *opp_shift,
- 	const struct dce_opp_mask *opp_mask);
+ #define XFM_COMMON_MASK_SH_LIST_SOC_BASE(mask_sh) \
+ 	XFM_SF(DCP0_OUT_CLAMP_CONTROL_B_CB, OUT_CLAMP_MIN_B_CB, mask_sh), \
+ 	XFM_SF(DCP0_OUT_CLAMP_CONTROL_B_CB, OUT_CLAMP_MAX_B_CB, mask_sh), \
+@@ -302,6 +433,7 @@
+ 	type DCP_RGB_RANDOM_ENABLE; \
+ 	type DCP_HIGHPASS_RANDOM_ENABLE; \
+ 	type DENORM_MODE; \
++	type INTERLEAVE_EN; \
+ 	type PIXEL_DEPTH; \
+ 	type PIXEL_EXPAN_MODE; \
+ 	type GAMUT_REMAP_C11; \
+@@ -367,6 +499,8 @@
+ 	type SCL_H_INIT_FRAC; \
+ 	type SCL_V_INIT_INT; \
+ 	type SCL_V_INIT_FRAC; \
++	type DC_LB_MEMORY_CONFIG; \
++	type DC_LB_MEM_SIZE; \
+ 	type LB_MEMORY_CONFIG; \
+ 	type LB_MEMORY_SIZE; \
+ 	type SCL_V_2TAP_HARDCODE_COEF_EN; \
+@@ -383,6 +517,9 @@ struct dce_transform_mask {
+ };
+ 
+ struct dce_transform_registers {
++#if defined(CONFIG_DRM_AMD_DC_SI)
++	uint32_t DATA_FORMAT;
++#endif
+ 	uint32_t LB_DATA_FORMAT;
+ 	uint32_t GAMUT_REMAP_CONTROL;
+ 	uint32_t GAMUT_REMAP_C11_C12;
+@@ -440,6 +577,10 @@ struct dce_transform_registers {
+ 	uint32_t SCL_HORZ_FILTER_INIT;
+ 	uint32_t SCL_VERT_FILTER_INIT;
+ 	uint32_t SCL_AUTOMATIC_MODE_CONTROL;
++#if defined(CONFIG_DRM_AMD_DC_SI)
++	uint32_t DC_LB_MEMORY_SPLIT;
++	uint32_t DC_LB_MEM_SIZE;
++#endif
+ 	uint32_t LB_MEMORY_CTRL;
+ 	uint32_t SCL_UPDATE;
+ 	uint32_t SCL_F_SHARP_CONTROL;
+@@ -489,6 +630,15 @@ void dce_transform_construct(struct dce_transform *xfm_dce,
+ 	const struct dce_transform_shift *xfm_shift,
+ 	const struct dce_transform_mask *xfm_mask);
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_opp_construct(struct dce110_opp *opp110,
++void dce60_transform_construct(struct dce_transform *xfm_dce,
 +	struct dc_context *ctx,
 +	uint32_t inst,
-+	const struct dce_opp_registers *regs,
-+	const struct dce_opp_shift *opp_shift,
-+	const struct dce_opp_mask *opp_mask);
++	const struct dce_transform_registers *regs,
++	const struct dce_transform_shift *xfm_shift,
++	const struct dce_transform_mask *xfm_mask);
 +#endif
 +
- void dce110_opp_destroy(struct output_pixel_processor **opp);
- 
- 
+ bool dce_transform_get_optimal_number_of_taps(
+ 	struct transform *xfm,
+ 	struct scaler_data *scl_data,
 -- 
 2.25.1
 
