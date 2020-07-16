@@ -2,56 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B28A6222DC5
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 582BE222DCB
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21D6E6ECF8;
-	Thu, 16 Jul 2020 21:23:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F9656ECFF;
+	Thu, 16 Jul 2020 21:23:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FFEC6ECFA
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:30 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id z2so8668378wrp.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:30 -0700 (PDT)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 349A66ECFB
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:32 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id o11so8628607wrv.9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=WPA8YI4EMiyXJ9siv1XMPxcQyUraoARWxACqmUOxRhw=;
- b=SD2QhcAynDO+8TR4zb343xic/F1W6W6+uS7XbQhfOB+E1WdGORB24ke+Jj/zWEPez0
- dPVVrPJRuxXJFpueB9JswBOGHg19RD1ye6gWWSwt5VtuBIrgUOH7UHh+Uedq+oYemtXg
- RQ4du9vM+3mclo26e6L6/jHEaZKprafHM3q8m7pHoKSukE48Q1YNVsdbwqv7sXvUfgDv
- wdv4H10vhRnCAcwIxJM4Td3fzmCbAdpK6TiBdIWneVK+fIbaLQKiCnYic+bXXQBUMTyj
- zvnw8v700aD8mCSt2l0zxq8kF/OuxFt1LhtDvQwctA/Lclegj6RL6EUBjXezrAanc9bO
- e3qQ==
+ bh=T3KodtiSpmMJvjN8ChJXoDrmzGriUEjRbsU2pNIabpQ=;
+ b=Qun7go3Uv9HH2m0VaCJ/iBj30P3RHBqDAtcGyHhAUNF7wdNXyMTDz5Ux6eNlNsbRQR
+ 43q+KuPg9/c+tCVQtzt0rkXmjX+XJgz+c3btn1OLqKq08lO6s7PPl/Va0mozqBQNnZuN
+ 5w1UTs9lZFKW42RJPZ+3VzD6x2MnO6kLA02WFsiJyJDGu/Eq0NxDrhziw8xmN4RYzagy
+ FXhdMIVI5BWbjATq0R15VlBmedKvbALdtDzH95Cg1YVHBA9Mtip/3y11wYOgOlCrBe8e
+ W0sk+U1105uuVyZtbjJLc13bwwQNgtzZhKf8ICrgs4xkMgk+1ZUjRf4LUCOwMZWHMTNA
+ 6qDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=WPA8YI4EMiyXJ9siv1XMPxcQyUraoARWxACqmUOxRhw=;
- b=R83Vr6QR96cqbrpYJuCksNooCzpwnxtPact9iuEOLtIfj765mSQZ7sFsIdAtWPZfPU
- TbTZ5t5YmNi2AYz2lAdajV2lCZZPkVphvDL/L9wqvyeBINu8bBvQOWszkyWoMc/8hsdj
- yGlKrarrFWNWIXGVHvUagBn9cbBbv4bGiST6zUMJ0M936gnC7I388DZIJ5RJZHYrPkPn
- kp8/inqe79Pe/jx3q38tAY72XRVA7h0BQJclb619uUdZZylOggA8Le1iQhzlTpv3TyCb
- zUEKk6rt62Ott6tkKWJwKdKtqeuZrrqUjVzbHp5KjL3YzFFbd+iNdfabc5amZEZmv9SS
- QsVQ==
-X-Gm-Message-State: AOAM5334rMDDrxe0fySLA84weZjAd4FooxdZLp0aUAKj+N8NS1xu5bDV
- ijcyE7zzqjS904hMYLegV0siWSQe5Z0=
-X-Google-Smtp-Source: ABdhPJwWeosr+JTmxoyuM4SkPNAKRAsPRnIFeiNDVuRExqJjoXSHzEAy0LxDmvtSBtXXWKj3wd/QtA==
-X-Received: by 2002:adf:d08a:: with SMTP id y10mr383308wrh.361.1594934608675; 
- Thu, 16 Jul 2020 14:23:28 -0700 (PDT)
+ bh=T3KodtiSpmMJvjN8ChJXoDrmzGriUEjRbsU2pNIabpQ=;
+ b=ha958utRhRyoZK3bSq8bQVu5TJ/VpQi99xuJJuIOy7xlJz58b4K3dJ+2oq4pwJqyC6
+ fmd4GsolOozNonUqBRlBG6swHbGaKjmQDUQRAV70ccjiWmIzLMm07Eh87y1jIaZVIvm1
+ V27Vz0PsH9h5v5X5fyiiudmg6eaDVQUb4z8Pgw+k/BM+EA9alMzd+tVFWK3EuywDnCrd
+ f1yGKFkJ7LuFkq6RrY1o8vKI2dYDrUZlfT4tHceKvP0UAQ06qgV7PbkcldpRNXaYEe4A
+ AebVw50oSevt88qX9Zo/wMUpbWO7JABrJtZcdZHDsjFjAyuBgGSfYDmevKOIQ568qHxb
+ Sl+g==
+X-Gm-Message-State: AOAM530n19SzHrYRurvzAEgNQkpssLzKUiXCOEmKA78OSnLp8BsyHls8
+ U7/o7LdxtVzCoWA2LKRm6R7GDnw2ScE=
+X-Google-Smtp-Source: ABdhPJwagOOC4D07CQvcTDsU8GvbV22mEUueLHc6/Bqqkjydq1NSeROtqNlijW9mGg5ufxyULiNs3A==
+X-Received: by 2002:adf:84e2:: with SMTP id 89mr7079471wrg.139.1594934610131; 
+ Thu, 16 Jul 2020 14:23:30 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
- by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.27
+ by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:28 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:29 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 20/27] drm/amd/display: dce_transform: DCE6 Scaling
- Horizontal Filter Init
-Date: Thu, 16 Jul 2020 23:22:44 +0200
-Message-Id: <20200716212251.1539094-21-issor.oruam@gmail.com>
+Subject: [PATCH v3 21/27] drm/amd/display: dce60_hw_sequencer: add DCE6
+ specific functions
+Date: Thu, 16 Jul 2020 23:22:45 +0200
+Message-Id: <20200716212251.1539094-22-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
 References: <20200716212251.1539094-1-issor.oruam@gmail.com>
@@ -75,197 +75,428 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-DCE6 has specific SCL_HORZ_FILTER_INIT_{LUMA_RGB,CHROMA} registers
-In DCE6 h_init_luma and h_init_chroma initialization is required
-Some DCE6 specific SCL_{HORZ,VERT}_FILTER_CONTROL masks were not listed
+DCE6 has no bottom_pipe and no Blender HW
+DCE6 needs 'blank_target' set to false in order to turn on the display
+DCE6 has a specific dce60_pipe_control_lock() fuction that is a no op
 
 [How]
-Add the registers and masks in dce_transform.h
-Add DCE6 specific struct sclh_ratios_inits in dce_transform.h
-Add dce60_calculate_inits() function
-Add dce60_program_scl_ratios_inits() function
-Fix dce60_transform_set_scaler() function
+Add DCE6 specific functions with needed private dce60_* dependent fuctions
+Comment DCE6 specific CTRC program visibility implementation
+Fix a typo in the initial header includes comment 's/DCE8/DCE6/g'
+Use dce60_apply_ctx_for_surface() in dce60_hw_sequencer_construct
+Use dce60_pipe_control_lock() in dce60_hw_sequencer_construct
 
 Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
 ---
- .../drm/amd/display/dc/dce/dce_transform.c    | 73 +++++++++++++++++--
- .../drm/amd/display/dc/dce/dce_transform.h    | 28 +++++++
- 2 files changed, 96 insertions(+), 5 deletions(-)
+ .../amd/display/dc/dce60/dce60_hw_sequencer.c | 381 +++++++++++++++++-
+ 1 file changed, 379 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
-index 3303d01c1aae..51ad48e36a8a 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
-@@ -306,6 +306,37 @@ static void calculate_inits(
- 	inits->v_init.fraction = dc_fixpt_u0d19(v_init) << 5;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
+index e30e3510ec4a..37bd91883926 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
+@@ -32,22 +32,399 @@
+ #include "dce110/dce110_hw_sequencer.h"
+ #include "dce100/dce100_hw_sequencer.h"
  
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_calculate_inits(
-+	struct dce_transform *xfm_dce,
-+	const struct scaler_data *data,
-+	struct sclh_ratios_inits *inits)
-+{
-+	struct fixed31_32 h_init;
-+	struct fixed31_32 v_init;
-+
-+	inits->h_int_scale_ratio =
-+		dc_fixpt_u2d19(data->ratios.horz) << 5;
-+	inits->v_int_scale_ratio =
-+		dc_fixpt_u2d19(data->ratios.vert) << 5;
-+
-+	/* DCE6 h_init_luma setting inspired by DCE110 */
-+	inits->h_init_luma.integer = 1;
-+
-+	/* DCE6 h_init_chroma setting inspired by DCE110 */
-+	inits->h_init_chroma.integer = 1;
-+
-+	v_init =
-+		dc_fixpt_div_int(
-+			dc_fixpt_add(
-+				data->ratios.vert,
-+				dc_fixpt_from_int(data->taps.v_taps + 1)),
-+				2);
-+	inits->v_init.integer = dc_fixpt_floor(v_init);
-+	inits->v_init.fraction = dc_fixpt_u0d19(v_init) << 5;
-+}
-+#endif
-+
- static void program_scl_ratios_inits(
- 	struct dce_transform *xfm_dce,
- 	struct scl_ratios_inits *inits)
-@@ -328,6 +359,36 @@ static void program_scl_ratios_inits(
- 	REG_WRITE(SCL_AUTOMATIC_MODE_CONTROL, 0);
- }
+-/* include DCE8 register header files */
++/* include DCE6 register header files */
+ #include "dce/dce_6_0_d.h"
+ #include "dce/dce_6_0_sh_mask.h"
  
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_program_scl_ratios_inits(
-+	struct dce_transform *xfm_dce,
-+	struct sclh_ratios_inits *inits)
++#define DC_LOGGER_INIT()
++
+ /*******************************************************************************
+  * Private definitions
+  ******************************************************************************/
+ 
+ /***************************PIPE_CONTROL***********************************/
+ 
++/*
++ *  Check if FBC can be enabled
++ */
++static bool dce60_should_enable_fbc(struct dc *dc,
++		struct dc_state *context,
++		uint32_t *pipe_idx)
 +{
++	uint32_t i;
++	struct pipe_ctx *pipe_ctx = NULL;
++	struct resource_context *res_ctx = &context->res_ctx;
++	unsigned int underlay_idx = dc->res_pool->underlay_pipe_index;
 +
-+	REG_SET(SCL_HORZ_FILTER_SCALE_RATIO, 0,
-+			SCL_H_SCALE_RATIO, inits->h_int_scale_ratio);
 +
-+	REG_SET(SCL_VERT_FILTER_SCALE_RATIO, 0,
-+			SCL_V_SCALE_RATIO, inits->v_int_scale_ratio);
++	ASSERT(dc->fbc_compressor);
 +
-+	/* DCE6 has SCL_HORZ_FILTER_INIT_RGB_LUMA register */
-+	REG_SET_2(SCL_HORZ_FILTER_INIT_RGB_LUMA, 0,
-+			SCL_H_INIT_INT_RGB_Y, inits->h_init_luma.integer,
-+			SCL_H_INIT_FRAC_RGB_Y, inits->h_init_luma.fraction);
++	/* FBC memory should be allocated */
++	if (!dc->ctx->fbc_gpu_addr)
++		return false;
 +
-+	/* DCE6 has SCL_HORZ_FILTER_INIT_CHROMA register */
-+	REG_SET_2(SCL_HORZ_FILTER_INIT_CHROMA, 0,
-+			SCL_H_INIT_INT_CBCR, inits->h_init_chroma.integer,
-+			SCL_H_INIT_FRAC_CBCR, inits->h_init_chroma.fraction);
++	/* Only supports single display */
++	if (context->stream_count != 1)
++		return false;
 +
-+	REG_SET_2(SCL_VERT_FILTER_INIT, 0,
-+			SCL_V_INIT_INT, inits->v_init.integer,
-+			SCL_V_INIT_FRAC, inits->v_init.fraction);
++	for (i = 0; i < dc->res_pool->pipe_count; i++) {
++		if (res_ctx->pipe_ctx[i].stream) {
 +
-+	REG_WRITE(SCL_AUTOMATIC_MODE_CONTROL, 0);
++			pipe_ctx = &res_ctx->pipe_ctx[i];
++
++			if (!pipe_ctx)
++				continue;
++
++			/* fbc not applicable on underlay pipe */
++			if (pipe_ctx->pipe_idx != underlay_idx) {
++				*pipe_idx = i;
++				break;
++			}
++		}
++	}
++
++	if (i == dc->res_pool->pipe_count)
++		return false;
++
++	if (!pipe_ctx->stream->link)
++		return false;
++
++	/* Only supports eDP */
++	if (pipe_ctx->stream->link->connector_signal != SIGNAL_TYPE_EDP)
++		return false;
++
++	/* PSR should not be enabled */
++	if (pipe_ctx->stream->link->psr_settings.psr_feature_enabled)
++		return false;
++
++	/* Nothing to compress */
++	if (!pipe_ctx->plane_state)
++		return false;
++
++	/* Only for non-linear tiling */
++	if (pipe_ctx->plane_state->tiling_info.gfx8.array_mode == DC_ARRAY_LINEAR_GENERAL)
++		return false;
++
++	return true;
 +}
-+#endif
 +
- static const uint16_t *get_filter_coeffs_16p(int taps, struct fixed31_32 ratio)
++/*
++ *  Enable FBC
++ */
++static void dce60_enable_fbc(
++		struct dc *dc,
++		struct dc_state *context)
++{
++	uint32_t pipe_idx = 0;
++
++	if (dce60_should_enable_fbc(dc, context, &pipe_idx)) {
++		/* Program GRPH COMPRESSED ADDRESS and PITCH */
++		struct compr_addr_and_pitch_params params = {0, 0, 0};
++		struct compressor *compr = dc->fbc_compressor;
++		struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[pipe_idx];
++
++		params.source_view_width = pipe_ctx->stream->timing.h_addressable;
++		params.source_view_height = pipe_ctx->stream->timing.v_addressable;
++		params.inst = pipe_ctx->stream_res.tg->inst;
++		compr->compr_surface_address.quad_part = dc->ctx->fbc_gpu_addr;
++
++		compr->funcs->surface_address_and_pitch(compr, &params);
++		compr->funcs->set_fbc_invalidation_triggers(compr, 1);
++
++		compr->funcs->enable_fbc(compr, &params);
++	}
++}
++
++
++/*******************************************************************************
++ * Front End programming
++ ******************************************************************************/
++
++static void dce60_set_default_colors(struct pipe_ctx *pipe_ctx)
++{
++	struct default_adjustment default_adjust = { 0 };
++
++	default_adjust.force_hw_default = false;
++	default_adjust.in_color_space = pipe_ctx->plane_state->color_space;
++	default_adjust.out_color_space = pipe_ctx->stream->output_color_space;
++	default_adjust.csc_adjust_type = GRAPHICS_CSC_ADJUST_TYPE_SW;
++	default_adjust.surface_pixel_format = pipe_ctx->plane_res.scl_data.format;
++
++	/* display color depth */
++	default_adjust.color_depth =
++		pipe_ctx->stream->timing.display_color_depth;
++
++	/* Lb color depth */
++	default_adjust.lb_color_depth = pipe_ctx->plane_res.scl_data.lb_params.depth;
++
++	pipe_ctx->plane_res.xfm->funcs->opp_set_csc_default(
++					pipe_ctx->plane_res.xfm, &default_adjust);
++}
++
++/*******************************************************************************
++ * In order to turn on surface we will program
++ * CRTC
++ *
++ * DCE6 has no bottom_pipe and no Blender HW
++ * We need to set 'blank_target' to false in order to turn on the display
++ *
++ * |-----------|------------|---------|
++ * |curr pipe  | set_blank  |         |
++ * |Surface    |blank_target|  CRCT   |
++ * |visibility |  argument  |         |
++ * |-----------|------------|---------|
++ * |    off    |   true     | blank   |
++ * |    on     |   false    | unblank |
++ * |-----------|------------|---------|
++ *
++ ******************************************************************************/
++static void dce60_program_surface_visibility(const struct dc *dc,
++		struct pipe_ctx *pipe_ctx)
++{
++	bool blank_target = false;
++
++	/* DCE6 has no bottom_pipe and no Blender HW */
++
++	if (!pipe_ctx->plane_state->visible)
++		blank_target = true;
++
++	/* DCE6 skip dce_set_blender_mode() but then proceed to 'unblank' CRTC */
++	pipe_ctx->stream_res.tg->funcs->set_blank(pipe_ctx->stream_res.tg, blank_target);
++
++}
++
++
++static void dce60_get_surface_visual_confirm_color(const struct pipe_ctx *pipe_ctx,
++		struct tg_color *color)
++{
++	uint32_t color_value = MAX_TG_COLOR_VALUE * (4 - pipe_ctx->stream_res.tg->inst) / 4;
++
++	switch (pipe_ctx->plane_res.scl_data.format) {
++	case PIXEL_FORMAT_ARGB8888:
++		/* set boarder color to red */
++		color->color_r_cr = color_value;
++		break;
++
++	case PIXEL_FORMAT_ARGB2101010:
++		/* set boarder color to blue */
++		color->color_b_cb = color_value;
++		break;
++	case PIXEL_FORMAT_420BPP8:
++		/* set boarder color to green */
++		color->color_g_y = color_value;
++		break;
++	case PIXEL_FORMAT_420BPP10:
++		/* set boarder color to yellow */
++		color->color_g_y = color_value;
++		color->color_r_cr = color_value;
++		break;
++	case PIXEL_FORMAT_FP16:
++		/* set boarder color to white */
++		color->color_r_cr = color_value;
++		color->color_b_cb = color_value;
++		color->color_g_y = color_value;
++		break;
++	default:
++		break;
++	}
++}
++
++static void dce60_program_scaler(const struct dc *dc,
++		const struct pipe_ctx *pipe_ctx)
++{
++	struct tg_color color = {0};
++
++	/* DCE6 skips DCN TOFPGA check for transform_set_pixel_storage_depth == NULL */
++
++	if (dc->debug.visual_confirm == VISUAL_CONFIRM_SURFACE)
++		dce60_get_surface_visual_confirm_color(pipe_ctx, &color);
++	else
++		color_space_to_black_color(dc,
++				pipe_ctx->stream->output_color_space,
++				&color);
++
++	pipe_ctx->plane_res.xfm->funcs->transform_set_pixel_storage_depth(
++		pipe_ctx->plane_res.xfm,
++		pipe_ctx->plane_res.scl_data.lb_params.depth,
++		&pipe_ctx->stream->bit_depth_params);
++
++	if (pipe_ctx->stream_res.tg->funcs->set_overscan_blank_color) {
++		/*
++		 * The way 420 is packed, 2 channels carry Y component, 1 channel
++		 * alternate between Cb and Cr, so both channels need the pixel
++		 * value for Y
++		 */
++		if (pipe_ctx->stream->timing.pixel_encoding == PIXEL_ENCODING_YCBCR420)
++			color.color_r_cr = color.color_g_y;
++
++		pipe_ctx->stream_res.tg->funcs->set_overscan_blank_color(
++				pipe_ctx->stream_res.tg,
++				&color);
++	}
++
++	pipe_ctx->plane_res.xfm->funcs->transform_set_scaler(pipe_ctx->plane_res.xfm,
++		&pipe_ctx->plane_res.scl_data);
++}
++
++
++dce60_program_front_end_for_pipe(
++		struct dc *dc, struct pipe_ctx *pipe_ctx)
++{
++	struct mem_input *mi = pipe_ctx->plane_res.mi;
++	struct dc_plane_state *plane_state = pipe_ctx->plane_state;
++	struct xfm_grph_csc_adjustment adjust;
++	struct out_csc_color_matrix tbl_entry;
++	unsigned int i;
++	struct dce_hwseq *hws = dc->hwseq;
++
++	DC_LOGGER_INIT();
++	memset(&tbl_entry, 0, sizeof(tbl_entry));
++
++	memset(&adjust, 0, sizeof(adjust));
++	adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_BYPASS;
++
++	dce_enable_fe_clock(dc->hwseq, mi->inst, true);
++
++	dce60_set_default_colors(pipe_ctx);
++	if (pipe_ctx->stream->csc_color_matrix.enable_adjustment
++			== true) {
++		tbl_entry.color_space =
++			pipe_ctx->stream->output_color_space;
++
++		for (i = 0; i < 12; i++)
++			tbl_entry.regval[i] =
++			pipe_ctx->stream->csc_color_matrix.matrix[i];
++
++		pipe_ctx->plane_res.xfm->funcs->opp_set_csc_adjustment
++				(pipe_ctx->plane_res.xfm, &tbl_entry);
++	}
++
++	if (pipe_ctx->stream->gamut_remap_matrix.enable_remap == true) {
++		adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_SW;
++
++		for (i = 0; i < CSC_TEMPERATURE_MATRIX_SIZE; i++)
++			adjust.temperature_matrix[i] =
++				pipe_ctx->stream->gamut_remap_matrix.matrix[i];
++	}
++
++	pipe_ctx->plane_res.xfm->funcs->transform_set_gamut_remap(pipe_ctx->plane_res.xfm, &adjust);
++
++	pipe_ctx->plane_res.scl_data.lb_params.alpha_en = pipe_ctx->bottom_pipe != 0;
++
++	dce60_program_scaler(dc, pipe_ctx);
++
++	mi->funcs->mem_input_program_surface_config(
++			mi,
++			plane_state->format,
++			&plane_state->tiling_info,
++			&plane_state->plane_size,
++			plane_state->rotation,
++			NULL,
++			false);
++	if (mi->funcs->set_blank)
++		mi->funcs->set_blank(mi, pipe_ctx->plane_state->visible);
++
++	if (dc->config.gpu_vm_support)
++		mi->funcs->mem_input_program_pte_vm(
++				pipe_ctx->plane_res.mi,
++				plane_state->format,
++				&plane_state->tiling_info,
++				plane_state->rotation);
++
++	/* Moved programming gamma from dc to hwss */
++	if (pipe_ctx->plane_state->update_flags.bits.full_update ||
++			pipe_ctx->plane_state->update_flags.bits.in_transfer_func_change ||
++			pipe_ctx->plane_state->update_flags.bits.gamma_change)
++		hws->funcs.set_input_transfer_func(dc, pipe_ctx, pipe_ctx->plane_state);
++
++	if (pipe_ctx->plane_state->update_flags.bits.full_update)
++		hws->funcs.set_output_transfer_func(dc, pipe_ctx, pipe_ctx->stream);
++
++	DC_LOG_SURFACE(
++			"Pipe:%d %p: addr hi:0x%x, "
++			"addr low:0x%x, "
++			"src: %d, %d, %d,"
++			" %d; dst: %d, %d, %d, %d;"
++			"clip: %d, %d, %d, %d\n",
++			pipe_ctx->pipe_idx,
++			(void *) pipe_ctx->plane_state,
++			pipe_ctx->plane_state->address.grph.addr.high_part,
++			pipe_ctx->plane_state->address.grph.addr.low_part,
++			pipe_ctx->plane_state->src_rect.x,
++			pipe_ctx->plane_state->src_rect.y,
++			pipe_ctx->plane_state->src_rect.width,
++			pipe_ctx->plane_state->src_rect.height,
++			pipe_ctx->plane_state->dst_rect.x,
++			pipe_ctx->plane_state->dst_rect.y,
++			pipe_ctx->plane_state->dst_rect.width,
++			pipe_ctx->plane_state->dst_rect.height,
++			pipe_ctx->plane_state->clip_rect.x,
++			pipe_ctx->plane_state->clip_rect.y,
++			pipe_ctx->plane_state->clip_rect.width,
++			pipe_ctx->plane_state->clip_rect.height);
++
++	DC_LOG_SURFACE(
++			"Pipe %d: width, height, x, y\n"
++			"viewport:%d, %d, %d, %d\n"
++			"recout:  %d, %d, %d, %d\n",
++			pipe_ctx->pipe_idx,
++			pipe_ctx->plane_res.scl_data.viewport.width,
++			pipe_ctx->plane_res.scl_data.viewport.height,
++			pipe_ctx->plane_res.scl_data.viewport.x,
++			pipe_ctx->plane_res.scl_data.viewport.y,
++			pipe_ctx->plane_res.scl_data.recout.width,
++			pipe_ctx->plane_res.scl_data.recout.height,
++			pipe_ctx->plane_res.scl_data.recout.x,
++			pipe_ctx->plane_res.scl_data.recout.y);
++}
++
++static void dce60_apply_ctx_for_surface(
++		struct dc *dc,
++		const struct dc_stream_state *stream,
++		int num_planes,
++		struct dc_state *context)
++{
++	int i;
++
++	if (num_planes == 0)
++		return;
++
++	if (dc->fbc_compressor)
++		dc->fbc_compressor->funcs->disable_fbc(dc->fbc_compressor);
++
++	for (i = 0; i < dc->res_pool->pipe_count; i++) {
++		struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[i];
++
++		if (pipe_ctx->stream != stream)
++			continue;
++
++		/* Need to allocate mem before program front end for Fiji */
++		pipe_ctx->plane_res.mi->funcs->allocate_mem_input(
++				pipe_ctx->plane_res.mi,
++				pipe_ctx->stream->timing.h_total,
++				pipe_ctx->stream->timing.v_total,
++				pipe_ctx->stream->timing.pix_clk_100hz / 10,
++				context->stream_count);
++
++		dce60_program_front_end_for_pipe(dc, pipe_ctx);
++
++		dc->hwss.update_plane_addr(dc, pipe_ctx);
++
++		dce60_program_surface_visibility(dc, pipe_ctx);
++
++	}
++
++	if (dc->fbc_compressor)
++		dce60_enable_fbc(dc, context);
++}
++
+ void dce60_hw_sequencer_construct(struct dc *dc)
  {
- 	if (taps == 4)
-@@ -453,12 +514,14 @@ static void dce60_transform_set_scaler(
- 	is_scaling_required = dce60_setup_scaling_configuration(xfm_dce, data);
+ 	dce110_hw_sequencer_construct(dc);
  
- 	if (is_scaling_required) {
--		/* 3. Calculate and program ratio, filter initialization */
--		struct scl_ratios_inits inits = { 0 };
-+		/* 3. Calculate and program ratio, DCE6 filter initialization */
-+		struct sclh_ratios_inits inits = { 0 };
- 
--		calculate_inits(xfm_dce, data, &inits);
-+		/* DCE6 has specific calculate_inits() function */
-+		dce60_calculate_inits(xfm_dce, data, &inits);
- 
--		program_scl_ratios_inits(xfm_dce, &inits);
-+		/* DCE6 has specific program_scl_ratios_inits() function */
-+		dce60_program_scl_ratios_inits(xfm_dce, &inits);
- 
- 		coeffs_v = get_filter_coeffs_16p(data->taps.v_taps, data->ratios.vert);
- 		coeffs_h = get_filter_coeffs_16p(data->taps.h_taps, data->ratios.horz);
-@@ -503,7 +566,7 @@ static void dce60_transform_set_scaler(
- 	/* 6. Program the viewport */
- 	program_viewport(xfm_dce, &data->viewport);
- 
--	/* DCE6 does not have bit to flip to new coefficient memory */
-+	/* DCE6 has no SCL_COEF_UPDATE_COMPLETE bit to flip to new coefficient memory */
- 
- 	/* DCE6 DATA_FORMAT register does not support ALPHA_EN */
+ 	dc->hwseq->funcs.enable_display_power_gating = dce100_enable_display_power_gating;
+-	dc->hwss.pipe_control_lock = dce_pipe_control_lock;
++	dc->hwss.apply_ctx_for_surface = dce60_apply_ctx_for_surface;
++	dc->hwss.pipe_control_lock = dce60_pipe_control_lock;
+ 	dc->hwss.prepare_bandwidth = dce100_prepare_bandwidth;
+ 	dc->hwss.optimize_bandwidth = dce100_optimize_bandwidth;
  }
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h
-index 95b28dadc8c5..cbce194ec7b8 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h
-@@ -331,6 +331,14 @@
- 	XFM_SF(VIEWPORT_SIZE, VIEWPORT_WIDTH, mask_sh), \
- 	XFM_SF(SCL_HORZ_FILTER_SCALE_RATIO, SCL_H_SCALE_RATIO, mask_sh), \
- 	XFM_SF(SCL_VERT_FILTER_SCALE_RATIO, SCL_V_SCALE_RATIO, mask_sh), \
-+	XFM_SF(SCL_HORZ_FILTER_INIT_RGB_LUMA, SCL_H_INIT_INT_RGB_Y, mask_sh), \
-+	XFM_SF(SCL_HORZ_FILTER_INIT_RGB_LUMA, SCL_H_INIT_FRAC_RGB_Y, mask_sh), \
-+	XFM_SF(SCL_HORZ_FILTER_INIT_CHROMA, SCL_H_INIT_INT_CBCR, mask_sh), \
-+	XFM_SF(SCL_HORZ_FILTER_INIT_CHROMA, SCL_H_INIT_FRAC_CBCR, mask_sh), \
-+	XFM_SF(SCL_VERT_FILTER_INIT, SCL_V_INIT_INT, mask_sh), \
-+	XFM_SF(SCL_VERT_FILTER_INIT, SCL_V_INIT_FRAC, mask_sh), \
-+	XFM_SF(SCL_HORZ_FILTER_CONTROL, SCL_H_FILTER_PICK_NEAREST, mask_sh), \
-+	XFM_SF(SCL_VERT_FILTER_CONTROL, SCL_V_FILTER_PICK_NEAREST, mask_sh), \
- 	XFM_SF(DC_LB_MEMORY_SPLIT, DC_LB_MEMORY_CONFIG, mask_sh), \
- 	XFM_SF(DC_LB_MEM_SIZE, DC_LB_MEM_SIZE, mask_sh)
- #endif
-@@ -497,6 +505,10 @@
- 	type SCL_V_SCALE_RATIO; \
- 	type SCL_H_INIT_INT; \
- 	type SCL_H_INIT_FRAC; \
-+	type SCL_H_INIT_INT_RGB_Y; \
-+	type SCL_H_INIT_FRAC_RGB_Y; \
-+	type SCL_H_INIT_INT_CBCR; \
-+	type SCL_H_INIT_FRAC_CBCR; \
- 	type SCL_V_INIT_INT; \
- 	type SCL_V_INIT_FRAC; \
- 	type DC_LB_MEMORY_CONFIG; \
-@@ -505,6 +517,8 @@
- 	type LB_MEMORY_SIZE; \
- 	type SCL_V_2TAP_HARDCODE_COEF_EN; \
- 	type SCL_H_2TAP_HARDCODE_COEF_EN; \
-+	type SCL_V_FILTER_PICK_NEAREST; \
-+	type SCL_H_FILTER_PICK_NEAREST; \
- 	type SCL_COEF_UPDATE_COMPLETE; \
- 	type ALPHA_EN
- 
-@@ -575,6 +589,10 @@ struct dce_transform_registers {
- 	uint32_t SCL_HORZ_FILTER_SCALE_RATIO;
- 	uint32_t SCL_VERT_FILTER_SCALE_RATIO;
- 	uint32_t SCL_HORZ_FILTER_INIT;
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+	uint32_t SCL_HORZ_FILTER_INIT_RGB_LUMA;
-+	uint32_t SCL_HORZ_FILTER_INIT_CHROMA;
-+#endif
- 	uint32_t SCL_VERT_FILTER_INIT;
- 	uint32_t SCL_AUTOMATIC_MODE_CONTROL;
- #if defined(CONFIG_DRM_AMD_DC_SI)
-@@ -598,6 +616,16 @@ struct scl_ratios_inits {
- 	struct init_int_and_frac v_init;
- };
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+struct sclh_ratios_inits {
-+	uint32_t h_int_scale_ratio;
-+	uint32_t v_int_scale_ratio;
-+	struct init_int_and_frac h_init_luma;
-+	struct init_int_and_frac h_init_chroma;
-+	struct init_int_and_frac v_init;
-+};
-+#endif
-+
- enum ram_filter_type {
- 	FILTER_TYPE_RGB_Y_VERTICAL	= 0, /* 0 - RGB/Y Vertical filter */
- 	FILTER_TYPE_CBCR_VERTICAL	= 1, /* 1 - CbCr  Vertical filter */
 -- 
 2.25.1
 
