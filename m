@@ -1,57 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83DA6222DC0
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83915222DC1
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C73B6ECF4;
-	Thu, 16 Jul 2020 21:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1C556ECED;
+	Thu, 16 Jul 2020 21:23:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1891C6ECF4
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:24 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id b6so8601197wrs.11
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:24 -0700 (PDT)
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51A706ECED
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:25 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id o2so13178866wmh.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=iwTPI0esP17Kv/FIvD6deYVyRSVj2+zzjLrHO6SV/Jg=;
- b=LWbEx36j+C1JcaTs+b3/Zre6oVvi2bs4vtAM/T6x2m6Cjs/0R9aJDihGqWg+bI7jFn
- nzK1lDi10A2Mso+EZTeR/4duMwCwfSjO5wdGNXWQQvbhXpCSsvq08r2zA0Dbzd11tcfJ
- zz1EXRIWCBKTwcSX/KuyC14UkXL5SRnAlF9Gei34bpQ/O7fSjN/HF2xvASyHb6X49F4O
- U0RjJ1ArGH6XnHDrdXkBBZ9+SIxslFNVGjHvlmca4b2RgMXJaXagXdAez3d3hWb/dSRR
- orm/pQmwGOgOmr0AeBvI2gdUycZbkCjr8Dhk6pwSF00/L8Vux0Xlhm9JtXC83rnrl0Ca
- KL3A==
+ bh=rtv4i8MMwkzTKf+SmHguIDfFOZ7poQYPzd9r/5xReJc=;
+ b=PO1NHbzSTtUu9tfBsQh7OTO6cdps7VYRpG3UC56oqR6tdY8BZU70kB2ydD5VojnepL
+ vE+EsuT12hUR0fk+2wmF+7QK6c7A7TuzpK8FumYiKaB+MJ4ps+HTNRPu8kU0ya9DIJAA
+ JKt48/cDtahpxfX9gNoDZZlCzpW01imQB1xsLO+5ywk6V/l9Hf2iUjUtu75hWdJM7qm1
+ f9ET6Inm3Na8Efw3Z0GQRG1c8z4611ALl14m+GDIyHhpgnLuTMzZN8EB0y1c4bYOi0wJ
+ RPmPAcIG/fO09kzukhr0vzL0LzKP3AR5MzbGwJAraXj7e2grVHSvUnVnaa04/VBEYadV
+ XTqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=iwTPI0esP17Kv/FIvD6deYVyRSVj2+zzjLrHO6SV/Jg=;
- b=i+THBqhdIOWyjO+GS4IN5My052y4j54wDXCg7xUcij9iPCpgKwud5X93WpZBnrmw54
- H7Vh7PxEmXDOde9TEJ3WHqVGga8ZMApIAFYiGHgCdZtehMeywE00vUblp53DZpNxOZcJ
- 3J8ePYDrRRCI85HdgiI8C3hhQly0cB7JgK2k35k/cpYrMJPtaOEKS656ZjnwFd1Ps+At
- afgldX4SfWB23AEBvi1cdf2oB2glDTazS4bQhQbj4Wj9gigXzhRbN5fn9vMOvPfmYwjv
- 3EIYQr/ffq2f5FBWVZH7v+tzxm1LPiVFi3HG7TqenNzsgcXNv0T7vWTOYSw0xO+wZWpG
- VpYA==
-X-Gm-Message-State: AOAM530tJEOf4D0onXQhPIXljvveZ7mjPIjBaOJXaDAv+b3rRiK4dy55
- Zt9wRVi12DHpVGTRfcqcrKtI029JnTw=
-X-Google-Smtp-Source: ABdhPJxJYRZ49c4+qrYWVe+rQSXStLsMJKmj1jpM/RFzD6JuCyarzdHyZD9/P9BvR9W93XCivMgGjw==
-X-Received: by 2002:a5d:628b:: with SMTP id k11mr6902798wru.107.1594934602376; 
- Thu, 16 Jul 2020 14:23:22 -0700 (PDT)
+ bh=rtv4i8MMwkzTKf+SmHguIDfFOZ7poQYPzd9r/5xReJc=;
+ b=kRYdX0S3ywLzd9O3A+j2QSr7eckhLcCgOWbP+hraA6lYDF0Pd1Ta/zKApVgonO5GqU
+ NuytfPLEZCAG6Kdj1O+EY9TFxV1vTCTiP+yfS6JT7eqkHCV+InhFF6SCRRYd/h91TAQl
+ 8Xn39ihffljsCQlNRoCSnf0ux57P0xLk2MhkkK6G+KgAzLblaX/XpDYSzHm4xV3suqOD
+ D1usedZnUCm1l/3Uaew0O1r/zh+hJbfMLBcL1i6LaNKw+FFqvm9KgcD/4+B0yLAZCktK
+ qWNzW3xwhGFYmqBWuqN1DiLNnX1/YS0IFmTnChqYaQp6hNpuyCpaET60YKurnN1sWgS7
+ 6q2w==
+X-Gm-Message-State: AOAM531jyQy41q7ffwdkqeG4BvoSJSQ+y95X4cBOwwBgjE3L12KAmH2c
+ DLU0yLmc3/DNwtrMdejqx2PFSjT/83Q=
+X-Google-Smtp-Source: ABdhPJxFAybm4+7QS4OoLpWOcdfHi6zxZ9ES2ztdNihZ9/UmpGBoGMHdcBEWKu89WTy0dYERf4eYkA==
+X-Received: by 2002:a1c:23d0:: with SMTP id j199mr6396739wmj.12.1594934603418; 
+ Thu, 16 Jul 2020 14:23:23 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
- by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.21
+ by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:22 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:23 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 14/27] drm/amd/display: dce_ipp: add DCE6 specific macros,
- functions
-Date: Thu, 16 Jul 2020 23:22:38 +0200
-Message-Id: <20200716212251.1539094-15-issor.oruam@gmail.com>
+Subject: [PATCH v3 15/27] drm/amd/display: dce_link_encoder: add DCE6 specific
+ macros, functions
+Date: Thu, 16 Jul 2020 23:22:39 +0200
+Message-Id: <20200716212251.1539094-16-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
 References: <20200716212251.1539094-1-issor.oruam@gmail.com>
@@ -75,159 +75,496 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-DCE6 does not have CURSOR2_DEGAMMA_MODE bit in DEGAMMA_CONTROL register
+DCE6 has no DP_DPHY_SCRAM_CNTL register
 
 [How]
-Add DCE6 specific macros definitions for IPP masks
-DCE6 IPP macros will avoid buiding errors when using DCE6 headers
-Add dce60_ipp_set_degamma() function w/o Cursor2 Degamma programming
-Use dce60_ipp_set_degamma() in ipp_funcs dce60_ipp_funcs
-Add DCE6 specific dce60_ipp_construct
+Add DCE6 specific macros definitions for LE registers
+DCE6 LE macros will avoid buiding errors when using DCE6 headers
+Add dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2() w/o Scramble Control programming
+Add dce60_set_dp_phy_pattern_passthrough_mode() w/o Scramble Control programming
+Add dce60_configure_encoder() w/o Scramble Control programming
+Add dce60_link_encoder_enable_dp_output() w/ dce60_configure_encoder
+Add dce60_link_encoder_enable_dp_mst_output() w/ dce60_configure_encoder
+Add dce60_link_encoder_dp_set_phy_pattern() w/ dce60_set_dp_phy_pattern_passthrough_mode
+Use dce60_link_encoder_enable_dp_output() in dce60_lnk_enc_funcs
+Use dce60_link_encoder_enable_dp_mst_output() in dce60_lnk_enc_funcs
+Use dce60_link_encoder_dp_set_phy_pattern() in dce60_lnk_enc_funcs
+Add DCE6 specific dce60_link_encoder_construct
 
 Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_ipp.c | 46 ++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/dce/dce_ipp.h | 49 ++++++++++++++++++++
- 2 files changed, 95 insertions(+)
+ .../drm/amd/display/dc/dce/dce_link_encoder.c | 369 ++++++++++++++++++
+ .../drm/amd/display/dc/dce/dce_link_encoder.h |  38 ++
+ 2 files changed, 407 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_ipp.c b/drivers/gpu/drm/amd/display/dc/dce/dce_ipp.c
-index ce30dbf579d4..80569a2734eb 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_ipp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_ipp.c
-@@ -231,6 +231,22 @@ static void dce_ipp_set_degamma(
- 		  CURSOR2_DEGAMMA_MODE, degamma_type);
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
+index 8d8c84c81b34..b409f6b2bfd8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
+@@ -425,6 +425,59 @@ static void set_dp_phy_pattern_hbr2_compliance_cp2520_2(
+ 	enable_phy_bypass_mode(enc110, false);
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_ipp_set_degamma(
-+	struct input_pixel_processor *ipp,
-+	enum ipp_degamma_mode mode)
++static void dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2(
++	struct dce110_link_encoder *enc110,
++	unsigned int cp2520_pattern)
 +{
-+	struct dce_ipp *ipp_dce = TO_DCE_IPP(ipp);
-+	uint32_t degamma_type = (mode == IPP_DEGAMMA_MODE_HW_sRGB) ? 1 : 0;
 +
-+	ASSERT(mode == IPP_DEGAMMA_MODE_BYPASS || mode == IPP_DEGAMMA_MODE_HW_sRGB);
-+	/* DCE6 does not have CURSOR2_DEGAMMA_MODE bit in DEGAMMA_CONTROL reg */
-+	REG_SET_2(DEGAMMA_CONTROL, 0,
-+		  GRPH_DEGAMMA_MODE, degamma_type,
-+		  CURSOR_DEGAMMA_MODE, degamma_type);
++	/* previously there is a register DP_HBR2_EYE_PATTERN
++	 * that is enabled to get the pattern.
++	 * But it does not work with the latest spec change,
++	 * so we are programming the following registers manually.
++	 *
++	 * The following settings have been confirmed
++	 * by Nick Chorney and Sandra Liu */
++
++	/* Disable PHY Bypass mode to setup the test pattern */
++
++	enable_phy_bypass_mode(enc110, false);
++
++	/* Setup DIG encoder in DP SST mode */
++	enc110->base.funcs->setup(&enc110->base, SIGNAL_TYPE_DISPLAY_PORT);
++
++	/* ensure normal panel mode. */
++	setup_panel_mode(enc110, DP_PANEL_MODE_DEFAULT);
++
++	/* no vbid after BS (SR)
++	 * DP_LINK_FRAMING_CNTL changed history Sandra Liu
++	 * 11000260 / 11000104 / 110000FC */
++	REG_UPDATE_3(DP_LINK_FRAMING_CNTL,
++			DP_IDLE_BS_INTERVAL, 0xFC,
++			DP_VBID_DISABLE, 1,
++			DP_VID_ENHANCED_FRAME_MODE, 1);
++
++	/* DCE6 has no DP_DPHY_SCRAM_CNTL register, skip swap BS with SR */
++
++	/* select cp2520 patterns */
++	if (REG(DP_DPHY_HBR2_PATTERN_CONTROL))
++		REG_UPDATE(DP_DPHY_HBR2_PATTERN_CONTROL,
++				DP_DPHY_HBR2_PATTERN_CONTROL, cp2520_pattern);
++	else
++		/* pre-DCE11 can only generate CP2520 pattern 2 */
++		ASSERT(cp2520_pattern == 2);
++
++	/* set link training complete */
++	set_link_training_complete(enc110, true);
++
++	/* disable video stream */
++	REG_UPDATE(DP_VID_STREAM_CNTL, DP_VID_STREAM_ENABLE, 0);
++
++	/* Disable PHY Bypass mode to setup the test pattern */
++	enable_phy_bypass_mode(enc110, false);
 +}
 +#endif
 +
- static const struct ipp_funcs dce_ipp_funcs = {
- 	.ipp_cursor_set_attributes = dce_ipp_cursor_set_attributes,
- 	.ipp_cursor_set_position = dce_ipp_cursor_set_position,
-@@ -239,6 +255,17 @@ static const struct ipp_funcs dce_ipp_funcs = {
- 	.ipp_set_degamma = dce_ipp_set_degamma
- };
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+static const struct ipp_funcs dce60_ipp_funcs = {
-+	.ipp_cursor_set_attributes = dce_ipp_cursor_set_attributes,
-+	.ipp_cursor_set_position = dce_ipp_cursor_set_position,
-+	.ipp_program_prescale = dce_ipp_program_prescale,
-+	.ipp_program_input_lut = dce_ipp_program_input_lut,
-+	.ipp_set_degamma = dce60_ipp_set_degamma
-+};
-+#endif
-+
-+
- /*****************************************/
- /* Constructor, Destructor               */
- /*****************************************/
-@@ -260,6 +287,25 @@ void dce_ipp_construct(
- 	ipp_dce->ipp_mask = ipp_mask;
+ static void set_dp_phy_pattern_passthrough_mode(
+ 	struct dce110_link_encoder *enc110,
+ 	enum dp_panel_mode panel_mode)
+@@ -452,6 +505,35 @@ static void set_dp_phy_pattern_passthrough_mode(
+ 	disable_prbs_mode(enc110);
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_ipp_construct(
-+	struct dce_ipp *ipp_dce,
-+	struct dc_context *ctx,
-+	int inst,
-+	const struct dce_ipp_registers *regs,
-+	const struct dce_ipp_shift *ipp_shift,
-+	const struct dce_ipp_mask *ipp_mask)
++static void dce60_set_dp_phy_pattern_passthrough_mode(
++	struct dce110_link_encoder *enc110,
++	enum dp_panel_mode panel_mode)
 +{
-+	ipp_dce->base.ctx = ctx;
-+	ipp_dce->base.inst = inst;
-+	ipp_dce->base.funcs = &dce60_ipp_funcs;
++	/* program correct panel mode */
++	setup_panel_mode(enc110, panel_mode);
 +
-+	ipp_dce->regs = regs;
-+	ipp_dce->ipp_shift = ipp_shift;
-+	ipp_dce->ipp_mask = ipp_mask;
++	/* restore LINK_FRAMING_CNTL
++	 * in case we were doing HBR2 compliance pattern before
++	 */
++	REG_UPDATE_3(DP_LINK_FRAMING_CNTL,
++			DP_IDLE_BS_INTERVAL, 0x2000,
++			DP_VBID_DISABLE, 0,
++			DP_VID_ENHANCED_FRAME_MODE, 1);
++
++	/* DCE6 has no DP_DPHY_SCRAM_CNTL register, skip DPHY_SCRAMBLER_BS_COUNT restore */
++
++	/* set link training complete */
++	set_link_training_complete(enc110, true);
++
++	/* Disable PHY Bypass mode to setup the test pattern */
++	enable_phy_bypass_mode(enc110, false);
++
++	/* Disable PRBS mode */
++	disable_prbs_mode(enc110);
 +}
 +#endif
 +
- void dce_ipp_destroy(struct input_pixel_processor **ipp)
+ /* return value is bit-vector */
+ static uint8_t get_frontend_source(
+ 	enum engine_id engine)
+@@ -490,6 +572,20 @@ static void configure_encoder(
+ 	REG_UPDATE(DP_DPHY_SCRAM_CNTL, DPHY_SCRAMBLER_ADVANCE, 1);
+ }
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++static void dce60_configure_encoder(
++	struct dce110_link_encoder *enc110,
++	const struct dc_link_settings *link_settings)
++{
++	/* set number of lanes */
++
++	REG_SET(DP_CONFIG, 0,
++			DP_UDI_LANES, link_settings->lane_count - LANE_COUNT_ONE);
++
++	/* DCE6 has no DP_DPHY_SCRAM_CNTL register, skip setup scrambler */
++}
++#endif
++
+ static void aux_initialize(
+ 	struct dce110_link_encoder *enc110)
  {
- 	kfree(TO_DCE_IPP(*ipp));
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_ipp.h b/drivers/gpu/drm/amd/display/dc/dce/dce_ipp.h
-index ca04e97d44c3..0028d4bdd81b 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_ipp.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_ipp.h
-@@ -147,6 +147,46 @@
- 	IPP_SF(DCP0_DEGAMMA_CONTROL, CURSOR_DEGAMMA_MODE, mask_sh), \
- 	IPP_SF(DCP0_DEGAMMA_CONTROL, CURSOR2_DEGAMMA_MODE, mask_sh)
- 
+@@ -1059,6 +1155,87 @@ void dce110_link_encoder_enable_dp_mst_output(
+ 		BREAK_TO_DEBUGGER();
+ 	}
+ }
++
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+#define IPP_DCE60_MASK_SH_LIST_DCE_COMMON_BASE(mask_sh) \
-+	IPP_SF(CUR_UPDATE, CURSOR_UPDATE_LOCK, mask_sh), \
-+	IPP_SF(CUR_CONTROL, CURSOR_EN, mask_sh), \
-+	IPP_SF(CUR_CONTROL, CURSOR_MODE, mask_sh), \
-+	IPP_SF(CUR_CONTROL, CURSOR_2X_MAGNIFY, mask_sh), \
-+	IPP_SF(CUR_CONTROL, CUR_INV_TRANS_CLAMP, mask_sh), \
-+	IPP_SF(CUR_POSITION, CURSOR_X_POSITION, mask_sh), \
-+	IPP_SF(CUR_POSITION, CURSOR_Y_POSITION, mask_sh), \
-+	IPP_SF(CUR_HOT_SPOT, CURSOR_HOT_SPOT_X, mask_sh), \
-+	IPP_SF(CUR_HOT_SPOT, CURSOR_HOT_SPOT_Y, mask_sh), \
-+	IPP_SF(CUR_COLOR1, CUR_COLOR1_BLUE, mask_sh), \
-+	IPP_SF(CUR_COLOR1, CUR_COLOR1_GREEN, mask_sh), \
-+	IPP_SF(CUR_COLOR1, CUR_COLOR1_RED, mask_sh), \
-+	IPP_SF(CUR_COLOR2, CUR_COLOR2_BLUE, mask_sh), \
-+	IPP_SF(CUR_COLOR2, CUR_COLOR2_GREEN, mask_sh), \
-+	IPP_SF(CUR_COLOR2, CUR_COLOR2_RED, mask_sh), \
-+	IPP_SF(CUR_SIZE, CURSOR_WIDTH, mask_sh), \
-+	IPP_SF(CUR_SIZE, CURSOR_HEIGHT, mask_sh), \
-+	IPP_SF(CUR_SURFACE_ADDRESS_HIGH, CURSOR_SURFACE_ADDRESS_HIGH, mask_sh), \
-+	IPP_SF(CUR_SURFACE_ADDRESS, CURSOR_SURFACE_ADDRESS, mask_sh), \
-+	IPP_SF(PRESCALE_GRPH_CONTROL, GRPH_PRESCALE_BYPASS, mask_sh), \
-+	IPP_SF(PRESCALE_VALUES_GRPH_R, GRPH_PRESCALE_SCALE_R, mask_sh), \
-+	IPP_SF(PRESCALE_VALUES_GRPH_R, GRPH_PRESCALE_BIAS_R, mask_sh), \
-+	IPP_SF(PRESCALE_VALUES_GRPH_G, GRPH_PRESCALE_SCALE_G, mask_sh), \
-+	IPP_SF(PRESCALE_VALUES_GRPH_G, GRPH_PRESCALE_BIAS_G, mask_sh), \
-+	IPP_SF(PRESCALE_VALUES_GRPH_B, GRPH_PRESCALE_SCALE_B, mask_sh), \
-+	IPP_SF(PRESCALE_VALUES_GRPH_B, GRPH_PRESCALE_BIAS_B, mask_sh), \
-+	IPP_SF(INPUT_GAMMA_CONTROL, GRPH_INPUT_GAMMA_MODE, mask_sh), \
-+	IPP_SF(DC_LUT_WRITE_EN_MASK, DC_LUT_WRITE_EN_MASK, mask_sh), \
-+	IPP_SF(DC_LUT_RW_MODE, DC_LUT_RW_MODE, mask_sh), \
-+	IPP_SF(DC_LUT_CONTROL, DC_LUT_DATA_R_FORMAT, mask_sh), \
-+	IPP_SF(DC_LUT_CONTROL, DC_LUT_DATA_G_FORMAT, mask_sh), \
-+	IPP_SF(DC_LUT_CONTROL, DC_LUT_DATA_B_FORMAT, mask_sh), \
-+	IPP_SF(DC_LUT_RW_INDEX, DC_LUT_RW_INDEX, mask_sh), \
-+	IPP_SF(DC_LUT_SEQ_COLOR, DC_LUT_SEQ_COLOR, mask_sh), \
-+	IPP_SF(DEGAMMA_CONTROL, GRPH_DEGAMMA_MODE, mask_sh), \
-+	IPP_SF(DEGAMMA_CONTROL, CURSOR_DEGAMMA_MODE, mask_sh)
++/* enables DP PHY output */
++void dce60_link_encoder_enable_dp_output(
++	struct link_encoder *enc,
++	const struct dc_link_settings *link_settings,
++	enum clock_source_id clock_source)
++{
++	struct dce110_link_encoder *enc110 = TO_DCE110_LINK_ENC(enc);
++	struct bp_transmitter_control cntl = { 0 };
++	enum bp_result result;
++
++	/* Enable the PHY */
++
++	/* number_of_lanes is used for pixel clock adjust,
++	 * but it's not passed to asic_control.
++	 * We need to set number of lanes manually.
++	 */
++	dce60_configure_encoder(enc110, link_settings);
++	cntl.connector_obj_id = enc110->base.connector;
++	cntl.action = TRANSMITTER_CONTROL_ENABLE;
++	cntl.engine_id = enc->preferred_engine;
++	cntl.transmitter = enc110->base.transmitter;
++	cntl.pll_id = clock_source;
++	cntl.signal = SIGNAL_TYPE_DISPLAY_PORT;
++	cntl.lanes_number = link_settings->lane_count;
++	cntl.hpd_sel = enc110->base.hpd_source;
++	cntl.pixel_clock = link_settings->link_rate
++						* LINK_RATE_REF_FREQ_IN_KHZ;
++	/* TODO: check if undefined works */
++	cntl.color_depth = COLOR_DEPTH_UNDEFINED;
++
++	result = link_transmitter_control(enc110, &cntl);
++
++	if (result != BP_RESULT_OK) {
++		DC_LOG_ERROR("%s: Failed to execute VBIOS command table!\n",
++			__func__);
++		BREAK_TO_DEBUGGER();
++	}
++}
++
++/* enables DP PHY output in MST mode */
++void dce60_link_encoder_enable_dp_mst_output(
++	struct link_encoder *enc,
++	const struct dc_link_settings *link_settings,
++	enum clock_source_id clock_source)
++{
++	struct dce110_link_encoder *enc110 = TO_DCE110_LINK_ENC(enc);
++	struct bp_transmitter_control cntl = { 0 };
++	enum bp_result result;
++
++	/* Enable the PHY */
++
++	/* number_of_lanes is used for pixel clock adjust,
++	 * but it's not passed to asic_control.
++	 * We need to set number of lanes manually.
++	 */
++	dce60_configure_encoder(enc110, link_settings);
++
++	cntl.action = TRANSMITTER_CONTROL_ENABLE;
++	cntl.engine_id = ENGINE_ID_UNKNOWN;
++	cntl.transmitter = enc110->base.transmitter;
++	cntl.pll_id = clock_source;
++	cntl.signal = SIGNAL_TYPE_DISPLAY_PORT_MST;
++	cntl.lanes_number = link_settings->lane_count;
++	cntl.hpd_sel = enc110->base.hpd_source;
++	cntl.pixel_clock = link_settings->link_rate
++						* LINK_RATE_REF_FREQ_IN_KHZ;
++	/* TODO: check if undefined works */
++	cntl.color_depth = COLOR_DEPTH_UNDEFINED;
++
++	result = link_transmitter_control(enc110, &cntl);
++
++	if (result != BP_RESULT_OK) {
++		DC_LOG_ERROR("%s: Failed to execute VBIOS command table!\n",
++			__func__);
++		BREAK_TO_DEBUGGER();
++	}
++}
 +#endif
 +
- #define IPP_REG_FIELD_LIST(type) \
- 	type CURSOR_UPDATE_LOCK; \
- 	type CURSOR_EN; \
-@@ -233,6 +273,15 @@ void dce_ipp_construct(struct dce_ipp *ipp_dce,
- 	const struct dce_ipp_shift *ipp_shift,
- 	const struct dce_ipp_mask *ipp_mask);
+ /*
+  * @brief
+  * Disable transmitter and its encoder
+@@ -1208,6 +1385,63 @@ void dce110_link_encoder_dp_set_phy_pattern(
+ 	}
+ }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_ipp_construct(struct dce_ipp *ipp_dce,
-+	struct dc_context *ctx,
-+	int inst,
-+	const struct dce_ipp_registers *regs,
-+	const struct dce_ipp_shift *ipp_shift,
-+	const struct dce_ipp_mask *ipp_mask);
++/* set DP PHY test and training patterns */
++void dce60_link_encoder_dp_set_phy_pattern(
++	struct link_encoder *enc,
++	const struct encoder_set_dp_phy_pattern_param *param)
++{
++	struct dce110_link_encoder *enc110 = TO_DCE110_LINK_ENC(enc);
++
++	switch (param->dp_phy_pattern) {
++	case DP_TEST_PATTERN_TRAINING_PATTERN1:
++		dce110_link_encoder_set_dp_phy_pattern_training_pattern(enc, 0);
++		break;
++	case DP_TEST_PATTERN_TRAINING_PATTERN2:
++		dce110_link_encoder_set_dp_phy_pattern_training_pattern(enc, 1);
++		break;
++	case DP_TEST_PATTERN_TRAINING_PATTERN3:
++		dce110_link_encoder_set_dp_phy_pattern_training_pattern(enc, 2);
++		break;
++	case DP_TEST_PATTERN_TRAINING_PATTERN4:
++		dce110_link_encoder_set_dp_phy_pattern_training_pattern(enc, 3);
++		break;
++	case DP_TEST_PATTERN_D102:
++		set_dp_phy_pattern_d102(enc110);
++		break;
++	case DP_TEST_PATTERN_SYMBOL_ERROR:
++		set_dp_phy_pattern_symbol_error(enc110);
++		break;
++	case DP_TEST_PATTERN_PRBS7:
++		set_dp_phy_pattern_prbs7(enc110);
++		break;
++	case DP_TEST_PATTERN_80BIT_CUSTOM:
++		set_dp_phy_pattern_80bit_custom(
++			enc110, param->custom_pattern);
++		break;
++	case DP_TEST_PATTERN_CP2520_1:
++		dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2(enc110, 1);
++		break;
++	case DP_TEST_PATTERN_CP2520_2:
++		dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2(enc110, 2);
++		break;
++	case DP_TEST_PATTERN_CP2520_3:
++		dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2(enc110, 3);
++		break;
++	case DP_TEST_PATTERN_VIDEO_MODE: {
++		dce60_set_dp_phy_pattern_passthrough_mode(
++			enc110, param->dp_panel_mode);
++		break;
++	}
++
++	default:
++		/* invalid phy pattern */
++		ASSERT_CRITICAL(false);
++		break;
++	}
++}
 +#endif
 +
- void dce_ipp_destroy(struct input_pixel_processor **ipp);
+ static void fill_stream_allocation_row_info(
+ 	const struct link_mst_stream_allocation *stream_allocation,
+ 	uint32_t *src,
+@@ -1407,3 +1641,138 @@ void dce110_link_encoder_get_max_link_cap(struct link_encoder *enc,
  
- #endif /* _DCE_IPP_H_ */
+ 	*link_settings = max_link_cap;
+ }
++
++#if defined(CONFIG_DRM_AMD_DC_SI)
++static const struct link_encoder_funcs dce60_lnk_enc_funcs = {
++	.validate_output_with_stream =
++		dce110_link_encoder_validate_output_with_stream,
++	.hw_init = dce110_link_encoder_hw_init,
++	.setup = dce110_link_encoder_setup,
++	.enable_tmds_output = dce110_link_encoder_enable_tmds_output,
++	.enable_dp_output = dce60_link_encoder_enable_dp_output,
++	.enable_dp_mst_output = dce60_link_encoder_enable_dp_mst_output,
++	.enable_lvds_output = dce110_link_encoder_enable_lvds_output,
++	.disable_output = dce110_link_encoder_disable_output,
++	.dp_set_lane_settings = dce110_link_encoder_dp_set_lane_settings,
++	.dp_set_phy_pattern = dce60_link_encoder_dp_set_phy_pattern,
++	.update_mst_stream_allocation_table =
++		dce110_link_encoder_update_mst_stream_allocation_table,
++	.psr_program_dp_dphy_fast_training =
++			dce110_psr_program_dp_dphy_fast_training,
++	.psr_program_secondary_packet = dce110_psr_program_secondary_packet,
++	.connect_dig_be_to_fe = dce110_link_encoder_connect_dig_be_to_fe,
++	.enable_hpd = dce110_link_encoder_enable_hpd,
++	.disable_hpd = dce110_link_encoder_disable_hpd,
++	.is_dig_enabled = dce110_is_dig_enabled,
++	.destroy = dce110_link_encoder_destroy,
++	.get_max_link_cap = dce110_link_encoder_get_max_link_cap
++};
++
++void dce60_link_encoder_construct(
++	struct dce110_link_encoder *enc110,
++	const struct encoder_init_data *init_data,
++	const struct encoder_feature_support *enc_features,
++	const struct dce110_link_enc_registers *link_regs,
++	const struct dce110_link_enc_aux_registers *aux_regs,
++	const struct dce110_link_enc_hpd_registers *hpd_regs)
++{
++	struct bp_encoder_cap_info bp_cap_info = {0};
++	const struct dc_vbios_funcs *bp_funcs = init_data->ctx->dc_bios->funcs;
++	enum bp_result result = BP_RESULT_OK;
++
++	enc110->base.funcs = &dce60_lnk_enc_funcs;
++	enc110->base.ctx = init_data->ctx;
++	enc110->base.id = init_data->encoder;
++
++	enc110->base.hpd_source = init_data->hpd_source;
++	enc110->base.connector = init_data->connector;
++
++	enc110->base.preferred_engine = ENGINE_ID_UNKNOWN;
++
++	enc110->base.features = *enc_features;
++
++	enc110->base.transmitter = init_data->transmitter;
++
++	/* set the flag to indicate whether driver poll the I2C data pin
++	 * while doing the DP sink detect
++	 */
++
++/*	if (dal_adapter_service_is_feature_supported(as,
++		FEATURE_DP_SINK_DETECT_POLL_DATA_PIN))
++		enc110->base.features.flags.bits.
++			DP_SINK_DETECT_POLL_DATA_PIN = true;*/
++
++	enc110->base.output_signals =
++		SIGNAL_TYPE_DVI_SINGLE_LINK |
++		SIGNAL_TYPE_DVI_DUAL_LINK |
++		SIGNAL_TYPE_LVDS |
++		SIGNAL_TYPE_DISPLAY_PORT |
++		SIGNAL_TYPE_DISPLAY_PORT_MST |
++		SIGNAL_TYPE_EDP |
++		SIGNAL_TYPE_HDMI_TYPE_A;
++
++	/* For DCE 8.0 and 8.1, by design, UNIPHY is hardwired to DIG_BE.
++	 * SW always assign DIG_FE 1:1 mapped to DIG_FE for non-MST UNIPHY.
++	 * SW assign DIG_FE to non-MST UNIPHY first and MST last. So prefer
++	 * DIG is per UNIPHY and used by SST DP, eDP, HDMI, DVI and LVDS.
++	 * Prefer DIG assignment is decided by board design.
++	 * For DCE 8.0, there are only max 6 UNIPHYs, we assume board design
++	 * and VBIOS will filter out 7 UNIPHY for DCE 8.0.
++	 * By this, adding DIGG should not hurt DCE 8.0.
++	 * This will let DCE 8.1 share DCE 8.0 as much as possible
++	 */
++
++	enc110->link_regs = link_regs;
++	enc110->aux_regs = aux_regs;
++	enc110->hpd_regs = hpd_regs;
++
++	switch (enc110->base.transmitter) {
++	case TRANSMITTER_UNIPHY_A:
++		enc110->base.preferred_engine = ENGINE_ID_DIGA;
++	break;
++	case TRANSMITTER_UNIPHY_B:
++		enc110->base.preferred_engine = ENGINE_ID_DIGB;
++	break;
++	case TRANSMITTER_UNIPHY_C:
++		enc110->base.preferred_engine = ENGINE_ID_DIGC;
++	break;
++	case TRANSMITTER_UNIPHY_D:
++		enc110->base.preferred_engine = ENGINE_ID_DIGD;
++	break;
++	case TRANSMITTER_UNIPHY_E:
++		enc110->base.preferred_engine = ENGINE_ID_DIGE;
++	break;
++	case TRANSMITTER_UNIPHY_F:
++		enc110->base.preferred_engine = ENGINE_ID_DIGF;
++	break;
++	case TRANSMITTER_UNIPHY_G:
++		enc110->base.preferred_engine = ENGINE_ID_DIGG;
++	break;
++	default:
++		ASSERT_CRITICAL(false);
++		enc110->base.preferred_engine = ENGINE_ID_UNKNOWN;
++	}
++
++	/* default to one to mirror Windows behavior */
++	enc110->base.features.flags.bits.HDMI_6GB_EN = 1;
++
++	result = bp_funcs->get_encoder_cap_info(enc110->base.ctx->dc_bios,
++						enc110->base.id, &bp_cap_info);
++
++	/* Override features with DCE-specific values */
++	if (BP_RESULT_OK == result) {
++		enc110->base.features.flags.bits.IS_HBR2_CAPABLE =
++				bp_cap_info.DP_HBR2_EN;
++		enc110->base.features.flags.bits.IS_HBR3_CAPABLE =
++				bp_cap_info.DP_HBR3_EN;
++		enc110->base.features.flags.bits.HDMI_6GB_EN = bp_cap_info.HDMI_6GB_EN;
++	} else {
++		DC_LOG_WARNING("%s: Failed to get encoder_cap_info from VBIOS with error code %d!\n",
++				__func__,
++				result);
++	}
++	if (enc110->base.ctx->dc->debug.hdmi20_disable) {
++		enc110->base.features.flags.bits.HDMI_6GB_EN = 0;
++	}
++}
++#endif
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h
+index 384389f0e2c3..40ea2220330c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h
+@@ -75,6 +75,34 @@
+ 	SRI(DP_DPHY_INTERNAL_CTRL, DP, id), \
+ 	SR(DCI_MEM_PWR_STATUS)
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++#define LE_DCE60_REG_LIST(id)\
++	SRI(DP_DPHY_INTERNAL_CTRL, DP, id), \
++	SR(DMCU_RAM_ACCESS_CTRL), \
++	SR(DMCU_IRAM_RD_CTRL), \
++	SR(DMCU_IRAM_RD_DATA), \
++	SR(DMCU_INTERRUPT_TO_UC_EN_MASK), \
++	SRI(DIG_BE_CNTL, DIG, id), \
++	SRI(DIG_BE_EN_CNTL, DIG, id), \
++	SRI(DP_CONFIG, DP, id), \
++	SRI(DP_DPHY_CNTL, DP, id), \
++	SRI(DP_DPHY_PRBS_CNTL, DP, id), \
++	SRI(DP_DPHY_SYM0, DP, id), \
++	SRI(DP_DPHY_SYM1, DP, id), \
++	SRI(DP_DPHY_SYM2, DP, id), \
++	SRI(DP_DPHY_TRAINING_PATTERN_SEL, DP, id), \
++	SRI(DP_LINK_CNTL, DP, id), \
++	SRI(DP_LINK_FRAMING_CNTL, DP, id), \
++	SRI(DP_MSE_SAT0, DP, id), \
++	SRI(DP_MSE_SAT1, DP, id), \
++	SRI(DP_MSE_SAT2, DP, id), \
++	SRI(DP_MSE_SAT_UPDATE, DP, id), \
++	SRI(DP_SEC_CNTL, DP, id), \
++	SRI(DP_VID_STREAM_CNTL, DP, id), \
++	SRI(DP_DPHY_FAST_TRAINING, DP, id), \
++	SRI(DP_SEC_CNTL1, DP, id)
++#endif
++
+ #define LE_DCE80_REG_LIST(id)\
+ 	SRI(DP_DPHY_INTERNAL_CTRL, DP, id), \
+ 	LE_COMMON_REG_LIST_BASE(id)
+@@ -169,6 +197,16 @@ void dce110_link_encoder_construct(
+ 	const struct dce110_link_enc_aux_registers *aux_regs,
+ 	const struct dce110_link_enc_hpd_registers *hpd_regs);
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++void dce60_link_encoder_construct(
++	struct dce110_link_encoder *enc110,
++	const struct encoder_init_data *init_data,
++	const struct encoder_feature_support *enc_features,
++	const struct dce110_link_enc_registers *link_regs,
++	const struct dce110_link_enc_aux_registers *aux_regs,
++	const struct dce110_link_enc_hpd_registers *hpd_regs);
++#endif
++
+ bool dce110_link_encoder_validate_dvi_output(
+ 	const struct dce110_link_encoder *enc110,
+ 	enum signal_type connector_signal,
 -- 
 2.25.1
 
