@@ -1,56 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F453222DC6
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B28A6222DC5
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B2F06ECFC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21D6E6ECF8;
 	Thu, 16 Jul 2020 21:23:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E0A56ECF6
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:29 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id b6so8601409wrs.11
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:29 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FFEC6ECFA
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:30 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id z2so8668378wrp.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=OB9A5je+ITjs+npj5K9T9J+FLWCfi2rKow4+8bb6mNI=;
- b=WZ0snQ1vq0tCGAlYwMw+sx1mAqAcz1NWk7CvuNzF/Tm0Owu/m72s3MI/dhEDJEaenL
- Zen7ngCl27HS+3BNONCdao7JN4LR4Rznyhyj+vhU/RKCOXEpIOZd/3xIifizkaiMlgNO
- wqfnL93Wx9mVHt/YvPoUyokCdi7FhNZ0HEKF2bpqj84KpfQdTOwC330yHLeGE0KfS0t6
- m5yg1Lp/+XawH1+aDP+R/6E8T30kIIvpJGZ4i8HDeovI+WxqWJRoGOnFdvE8yK/mfJMl
- lVnzRu6yYdCTVLlEiJ5iASh6gimh/5PBxUJO2HcxJbsOVfq80LjFicRX6RGC3G/uFAEJ
- qYEQ==
+ bh=WPA8YI4EMiyXJ9siv1XMPxcQyUraoARWxACqmUOxRhw=;
+ b=SD2QhcAynDO+8TR4zb343xic/F1W6W6+uS7XbQhfOB+E1WdGORB24ke+Jj/zWEPez0
+ dPVVrPJRuxXJFpueB9JswBOGHg19RD1ye6gWWSwt5VtuBIrgUOH7UHh+Uedq+oYemtXg
+ RQ4du9vM+3mclo26e6L6/jHEaZKprafHM3q8m7pHoKSukE48Q1YNVsdbwqv7sXvUfgDv
+ wdv4H10vhRnCAcwIxJM4Td3fzmCbAdpK6TiBdIWneVK+fIbaLQKiCnYic+bXXQBUMTyj
+ zvnw8v700aD8mCSt2l0zxq8kF/OuxFt1LhtDvQwctA/Lclegj6RL6EUBjXezrAanc9bO
+ e3qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=OB9A5je+ITjs+npj5K9T9J+FLWCfi2rKow4+8bb6mNI=;
- b=ryZpRwvyj5DoYdwSnik8Ke4UQLxGg/ZaTIvYuTwyEDvJiDoWwYZuUEgT+Om774miEC
- UxxFt2P2ntCzBCeojF06VUxwiMp+ozK9fCvgL93o9c60XJ7CTILdZuQbHK9rBY05D+bn
- jS+D0DyHKgsBArFqjBnGagdt8/flrH3PD29hMVv2e+/XHpYzLhPQOu9XsT/1TAJA9ZO9
- f7rzH1Gl9viSrtOkbmfo2NkRUSMywvWQMby4y+utsOGbTVE+b0tTjXTeR8D0ku0eDzQ0
- XEszLYUUJqhJEtd9XTXBg3W23FqhtWCV0193WGHBGBC65VQIZHH3ZTLl8FP//yzqV/PQ
- c0Fw==
-X-Gm-Message-State: AOAM530BocvGRJqUJt8LuDuYmo/mRrp2EwLWBuR1t4k9edJZDi1vDL+c
- 3EOjAcSUNH36mw6lw1wZMNal7JDevXc=
-X-Google-Smtp-Source: ABdhPJy8e0yS6jpOofb6Wu9Xpp8hdtt+dhSxaAZLbyeptp0IZc4/PLOHIdK1Q7QxG04KLJBxsLeNXw==
-X-Received: by 2002:a5d:4751:: with SMTP id o17mr6983816wrs.345.1594934607805; 
- Thu, 16 Jul 2020 14:23:27 -0700 (PDT)
+ bh=WPA8YI4EMiyXJ9siv1XMPxcQyUraoARWxACqmUOxRhw=;
+ b=R83Vr6QR96cqbrpYJuCksNooCzpwnxtPact9iuEOLtIfj765mSQZ7sFsIdAtWPZfPU
+ TbTZ5t5YmNi2AYz2lAdajV2lCZZPkVphvDL/L9wqvyeBINu8bBvQOWszkyWoMc/8hsdj
+ yGlKrarrFWNWIXGVHvUagBn9cbBbv4bGiST6zUMJ0M936gnC7I388DZIJ5RJZHYrPkPn
+ kp8/inqe79Pe/jx3q38tAY72XRVA7h0BQJclb619uUdZZylOggA8Le1iQhzlTpv3TyCb
+ zUEKk6rt62Ott6tkKWJwKdKtqeuZrrqUjVzbHp5KjL3YzFFbd+iNdfabc5amZEZmv9SS
+ QsVQ==
+X-Gm-Message-State: AOAM5334rMDDrxe0fySLA84weZjAd4FooxdZLp0aUAKj+N8NS1xu5bDV
+ ijcyE7zzqjS904hMYLegV0siWSQe5Z0=
+X-Google-Smtp-Source: ABdhPJwWeosr+JTmxoyuM4SkPNAKRAsPRnIFeiNDVuRExqJjoXSHzEAy0LxDmvtSBtXXWKj3wd/QtA==
+X-Received: by 2002:adf:d08a:: with SMTP id y10mr383308wrh.361.1594934608675; 
+ Thu, 16 Jul 2020 14:23:28 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
  by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:27 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:28 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 19/27] drm/amdgpu: add some required DCE6 registers (v7)
-Date: Thu, 16 Jul 2020 23:22:43 +0200
-Message-Id: <20200716212251.1539094-20-issor.oruam@gmail.com>
+Subject: [PATCH v3 20/27] drm/amd/display: dce_transform: DCE6 Scaling
+ Horizontal Filter Init
+Date: Thu, 16 Jul 2020 23:22:44 +0200
+Message-Id: <20200716212251.1539094-21-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
 References: <20200716212251.1539094-1-issor.oruam@gmail.com>
@@ -73,59 +74,198 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-v7: add SCL_HORZ_FILTER_INIT regs
----
- .../gpu/drm/amd/include/asic_reg/dce/dce_6_0_d.h | 16 ++++++++++++++++
- .../amd/include/asic_reg/dce/dce_6_0_sh_mask.h   | 12 ++++++++++++
- 2 files changed, 28 insertions(+)
+[Why]
+DCE6 has specific SCL_HORZ_FILTER_INIT_{LUMA_RGB,CHROMA} registers
+In DCE6 h_init_luma and h_init_chroma initialization is required
+Some DCE6 specific SCL_{HORZ,VERT}_FILTER_CONTROL masks were not listed
 
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_d.h b/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_d.h
-index 74897b046006..9de01ae574c0 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_d.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_d.h
-@@ -4514,4 +4514,20 @@
- #define mmLB4_VBLANK_STATUS                             0x46EF
- #define mmLB5_VBLANK_STATUS                             0x49EF
+[How]
+Add the registers and masks in dce_transform.h
+Add DCE6 specific struct sclh_ratios_inits in dce_transform.h
+Add dce60_calculate_inits() function
+Add dce60_program_scl_ratios_inits() function
+Fix dce60_transform_set_scaler() function
+
+Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
+---
+ .../drm/amd/display/dc/dce/dce_transform.c    | 73 +++++++++++++++++--
+ .../drm/amd/display/dc/dce/dce_transform.h    | 28 +++++++
+ 2 files changed, 96 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
+index 3303d01c1aae..51ad48e36a8a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
+@@ -306,6 +306,37 @@ static void calculate_inits(
+ 	inits->v_init.fraction = dc_fixpt_u0d19(v_init) << 5;
+ }
  
-+#define mmSCL_HORZ_FILTER_INIT_RGB_LUMA            0x1B4C
-+#define mmSCL0_SCL_HORZ_FILTER_INIT_RGB_LUMA            0x1B4C
-+#define mmSCL1_SCL_HORZ_FILTER_INIT_RGB_LUMA            0x1E4C
-+#define mmSCL2_SCL_HORZ_FILTER_INIT_RGB_LUMA            0x414C
-+#define mmSCL3_SCL_HORZ_FILTER_INIT_RGB_LUMA            0x444C
-+#define mmSCL4_SCL_HORZ_FILTER_INIT_RGB_LUMA            0x474C
-+#define mmSCL5_SCL_HORZ_FILTER_INIT_RGB_LUMA            0x4A4C
++#if defined(CONFIG_DRM_AMD_DC_SI)
++static void dce60_calculate_inits(
++	struct dce_transform *xfm_dce,
++	const struct scaler_data *data,
++	struct sclh_ratios_inits *inits)
++{
++	struct fixed31_32 h_init;
++	struct fixed31_32 v_init;
 +
-+#define mmSCL_HORZ_FILTER_INIT_CHROMA              0x1B4D
-+#define mmSCL0_SCL_HORZ_FILTER_INIT_CHROMA              0x1B4D
-+#define mmSCL1_SCL_HORZ_FILTER_INIT_CHROMA              0x1E4D
-+#define mmSCL2_SCL_HORZ_FILTER_INIT_CHROMA              0x414D
-+#define mmSCL3_SCL_HORZ_FILTER_INIT_CHROMA              0x444D
-+#define mmSCL4_SCL_HORZ_FILTER_INIT_CHROMA              0x474D
-+#define mmSCL5_SCL_HORZ_FILTER_INIT_CHROMA              0x4A4D
++	inits->h_int_scale_ratio =
++		dc_fixpt_u2d19(data->ratios.horz) << 5;
++	inits->v_int_scale_ratio =
++		dc_fixpt_u2d19(data->ratios.vert) << 5;
 +
++	/* DCE6 h_init_luma setting inspired by DCE110 */
++	inits->h_init_luma.integer = 1;
++
++	/* DCE6 h_init_chroma setting inspired by DCE110 */
++	inits->h_init_chroma.integer = 1;
++
++	v_init =
++		dc_fixpt_div_int(
++			dc_fixpt_add(
++				data->ratios.vert,
++				dc_fixpt_from_int(data->taps.v_taps + 1)),
++				2);
++	inits->v_init.integer = dc_fixpt_floor(v_init);
++	inits->v_init.fraction = dc_fixpt_u0d19(v_init) << 5;
++}
++#endif
++
+ static void program_scl_ratios_inits(
+ 	struct dce_transform *xfm_dce,
+ 	struct scl_ratios_inits *inits)
+@@ -328,6 +359,36 @@ static void program_scl_ratios_inits(
+ 	REG_WRITE(SCL_AUTOMATIC_MODE_CONTROL, 0);
+ }
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++static void dce60_program_scl_ratios_inits(
++	struct dce_transform *xfm_dce,
++	struct sclh_ratios_inits *inits)
++{
++
++	REG_SET(SCL_HORZ_FILTER_SCALE_RATIO, 0,
++			SCL_H_SCALE_RATIO, inits->h_int_scale_ratio);
++
++	REG_SET(SCL_VERT_FILTER_SCALE_RATIO, 0,
++			SCL_V_SCALE_RATIO, inits->v_int_scale_ratio);
++
++	/* DCE6 has SCL_HORZ_FILTER_INIT_RGB_LUMA register */
++	REG_SET_2(SCL_HORZ_FILTER_INIT_RGB_LUMA, 0,
++			SCL_H_INIT_INT_RGB_Y, inits->h_init_luma.integer,
++			SCL_H_INIT_FRAC_RGB_Y, inits->h_init_luma.fraction);
++
++	/* DCE6 has SCL_HORZ_FILTER_INIT_CHROMA register */
++	REG_SET_2(SCL_HORZ_FILTER_INIT_CHROMA, 0,
++			SCL_H_INIT_INT_CBCR, inits->h_init_chroma.integer,
++			SCL_H_INIT_FRAC_CBCR, inits->h_init_chroma.fraction);
++
++	REG_SET_2(SCL_VERT_FILTER_INIT, 0,
++			SCL_V_INIT_INT, inits->v_init.integer,
++			SCL_V_INIT_FRAC, inits->v_init.fraction);
++
++	REG_WRITE(SCL_AUTOMATIC_MODE_CONTROL, 0);
++}
++#endif
++
+ static const uint16_t *get_filter_coeffs_16p(int taps, struct fixed31_32 ratio)
+ {
+ 	if (taps == 4)
+@@ -453,12 +514,14 @@ static void dce60_transform_set_scaler(
+ 	is_scaling_required = dce60_setup_scaling_configuration(xfm_dce, data);
+ 
+ 	if (is_scaling_required) {
+-		/* 3. Calculate and program ratio, filter initialization */
+-		struct scl_ratios_inits inits = { 0 };
++		/* 3. Calculate and program ratio, DCE6 filter initialization */
++		struct sclh_ratios_inits inits = { 0 };
+ 
+-		calculate_inits(xfm_dce, data, &inits);
++		/* DCE6 has specific calculate_inits() function */
++		dce60_calculate_inits(xfm_dce, data, &inits);
+ 
+-		program_scl_ratios_inits(xfm_dce, &inits);
++		/* DCE6 has specific program_scl_ratios_inits() function */
++		dce60_program_scl_ratios_inits(xfm_dce, &inits);
+ 
+ 		coeffs_v = get_filter_coeffs_16p(data->taps.v_taps, data->ratios.vert);
+ 		coeffs_h = get_filter_coeffs_16p(data->taps.h_taps, data->ratios.horz);
+@@ -503,7 +566,7 @@ static void dce60_transform_set_scaler(
+ 	/* 6. Program the viewport */
+ 	program_viewport(xfm_dce, &data->viewport);
+ 
+-	/* DCE6 does not have bit to flip to new coefficient memory */
++	/* DCE6 has no SCL_COEF_UPDATE_COMPLETE bit to flip to new coefficient memory */
+ 
+ 	/* DCE6 DATA_FORMAT register does not support ALPHA_EN */
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h
+index 95b28dadc8c5..cbce194ec7b8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.h
+@@ -331,6 +331,14 @@
+ 	XFM_SF(VIEWPORT_SIZE, VIEWPORT_WIDTH, mask_sh), \
+ 	XFM_SF(SCL_HORZ_FILTER_SCALE_RATIO, SCL_H_SCALE_RATIO, mask_sh), \
+ 	XFM_SF(SCL_VERT_FILTER_SCALE_RATIO, SCL_V_SCALE_RATIO, mask_sh), \
++	XFM_SF(SCL_HORZ_FILTER_INIT_RGB_LUMA, SCL_H_INIT_INT_RGB_Y, mask_sh), \
++	XFM_SF(SCL_HORZ_FILTER_INIT_RGB_LUMA, SCL_H_INIT_FRAC_RGB_Y, mask_sh), \
++	XFM_SF(SCL_HORZ_FILTER_INIT_CHROMA, SCL_H_INIT_INT_CBCR, mask_sh), \
++	XFM_SF(SCL_HORZ_FILTER_INIT_CHROMA, SCL_H_INIT_FRAC_CBCR, mask_sh), \
++	XFM_SF(SCL_VERT_FILTER_INIT, SCL_V_INIT_INT, mask_sh), \
++	XFM_SF(SCL_VERT_FILTER_INIT, SCL_V_INIT_FRAC, mask_sh), \
++	XFM_SF(SCL_HORZ_FILTER_CONTROL, SCL_H_FILTER_PICK_NEAREST, mask_sh), \
++	XFM_SF(SCL_VERT_FILTER_CONTROL, SCL_V_FILTER_PICK_NEAREST, mask_sh), \
+ 	XFM_SF(DC_LB_MEMORY_SPLIT, DC_LB_MEMORY_CONFIG, mask_sh), \
+ 	XFM_SF(DC_LB_MEM_SIZE, DC_LB_MEM_SIZE, mask_sh)
  #endif
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_sh_mask.h
-index bf262460b0b9..41c4a46ce357 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dce/dce_6_0_sh_mask.h
-@@ -9926,5 +9926,17 @@
- #define VBLANK_STATUS__VBLANK_INTERRUPT_TYPE_MASK          0x00020000L
- #define	VBLANK_STATUS__VBLANK_INTERRUPT_TYPE__SHIFT        0x00000011
+@@ -497,6 +505,10 @@
+ 	type SCL_V_SCALE_RATIO; \
+ 	type SCL_H_INIT_INT; \
+ 	type SCL_H_INIT_FRAC; \
++	type SCL_H_INIT_INT_RGB_Y; \
++	type SCL_H_INIT_FRAC_RGB_Y; \
++	type SCL_H_INIT_INT_CBCR; \
++	type SCL_H_INIT_FRAC_CBCR; \
+ 	type SCL_V_INIT_INT; \
+ 	type SCL_V_INIT_FRAC; \
+ 	type DC_LB_MEMORY_CONFIG; \
+@@ -505,6 +517,8 @@
+ 	type LB_MEMORY_SIZE; \
+ 	type SCL_V_2TAP_HARDCODE_COEF_EN; \
+ 	type SCL_H_2TAP_HARDCODE_COEF_EN; \
++	type SCL_V_FILTER_PICK_NEAREST; \
++	type SCL_H_FILTER_PICK_NEAREST; \
+ 	type SCL_COEF_UPDATE_COMPLETE; \
+ 	type ALPHA_EN
  
-+// SCL_HORZ_FILTER_INIT_RGB_LUMA
-+#define SCL_HORZ_FILTER_INIT_RGB_LUMA__SCL_H_INIT_FRAC_RGB_Y_MASK 0x0000ffffL
-+#define	SCL_HORZ_FILTER_INIT_RGB_LUMA__SCL_H_INIT_FRAC_RGB_Y__SHIFT 0x00000000
-+#define SCL_HORZ_FILTER_INIT_RGB_LUMA__SCL_H_INIT_INT_RGB_Y_MASK 0x000f0000L
-+#define	SCL_HORZ_FILTER_INIT_RGB_LUMA__SCL_H_INIT_INT_RGB_Y__SHIFT 0x00000010
-+
-+// SCL_HORZ_FILTER_INIT_CHROMA
-+#define SCL_HORZ_FILTER_INIT_CHROMA__SCL_H_INIT_FRAC_CBCR_MASK 0x0000ffffL
-+#define	SCL_HORZ_FILTER_INIT_CHROMA__SCL_H_INIT_FRAC_CBCR__SHIFT 0x00000000
-+#define SCL_HORZ_FILTER_INIT_CHROMA__SCL_H_INIT_INT_CBCR_MASK 0x00070000L
-+#define	SCL_HORZ_FILTER_INIT_CHROMA__SCL_H_INIT_INT_CBCR__SHIFT 0x00000010
-+
+@@ -575,6 +589,10 @@ struct dce_transform_registers {
+ 	uint32_t SCL_HORZ_FILTER_SCALE_RATIO;
+ 	uint32_t SCL_VERT_FILTER_SCALE_RATIO;
+ 	uint32_t SCL_HORZ_FILTER_INIT;
++#if defined(CONFIG_DRM_AMD_DC_SI)
++	uint32_t SCL_HORZ_FILTER_INIT_RGB_LUMA;
++	uint32_t SCL_HORZ_FILTER_INIT_CHROMA;
++#endif
+ 	uint32_t SCL_VERT_FILTER_INIT;
+ 	uint32_t SCL_AUTOMATIC_MODE_CONTROL;
+ #if defined(CONFIG_DRM_AMD_DC_SI)
+@@ -598,6 +616,16 @@ struct scl_ratios_inits {
+ 	struct init_int_and_frac v_init;
+ };
  
- #endif
++#if defined(CONFIG_DRM_AMD_DC_SI)
++struct sclh_ratios_inits {
++	uint32_t h_int_scale_ratio;
++	uint32_t v_int_scale_ratio;
++	struct init_int_and_frac h_init_luma;
++	struct init_int_and_frac h_init_chroma;
++	struct init_int_and_frac v_init;
++};
++#endif
++
+ enum ram_filter_type {
+ 	FILTER_TYPE_RGB_Y_VERTICAL	= 0, /* 0 - RGB/Y Vertical filter */
+ 	FILTER_TYPE_CBCR_VERTICAL	= 1, /* 1 - CbCr  Vertical filter */
 -- 
 2.25.1
 
