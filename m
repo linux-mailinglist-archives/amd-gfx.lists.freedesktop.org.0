@@ -2,56 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F17222DC7
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FD4222DC9
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C5206ECFA;
-	Thu, 16 Jul 2020 21:23:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 338386ECFE;
+	Thu, 16 Jul 2020 21:23:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEE456ECFB
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:32 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id k6so8661827wrn.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:32 -0700 (PDT)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB1646ECFB
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:33 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id r12so8549160wrj.13
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=D8zHBqQShFenOhn5sUdTCaXue2kUqd5or1RvllBciTM=;
- b=FBogIQLSwtT5j4rLRwi2fey8R46JpS5cIv+GKxtuKbxo9gk009uoD5oX+Z0M5OMhGO
- RdnY+O4GshXH0fw1PxpPufR3V4t0rhFRxHIz3J2I8fUZBLTDsDg/jSjzsBXUK4+TYChB
- u3YWMBRFLGFgrP5Jn9/CBgQx6zEVrxKHRVPmDJQ1leN7I31OH+fpZgswRn2q9vRtm2ad
- +LaQpnKjRezjsqnmkoqxPo6qCPVzti2Y4yu6UyGwkFbZbvJRSUR3llVHA8ZFM1j+giwJ
- 2vNTaj834wXhs9EyBlNamLwfJ3K92NFNhtO/3hk6i2o173XamPeiIeBbt2uch5Ta1cjd
- PXSg==
+ bh=YHwJQcedQhttw7mtON6s0uW8hl2PvBEhpvVb9iB6wH8=;
+ b=pNuipgmtiwMPQrHOU2Vl98zUNTqud4cfshffRYdmSpo+lZKPrLIY7alsUwVKMMFn/I
+ KzYqoMmAlQr2A0NLZppJbu3RiIAODut1hY1PDlZuvHWrXKAU05F0jMembSxdZQEKm2m+
+ oYcdhHhRtfZI+b0ct7TI5FANtV/0H3VoEdZybvp3+uEPJzAItfcKE2VTS2DrFL5+UFNQ
+ gN86QjIG2Y5G9ookomLZbgwhoiOQoJlcgq+6HizhfCr6DhIzu/jc8fpwamhO2Tu4O4he
+ YVRXp8PAAzimdJajcloliJLC1mbg7oaiV2WISqVKbDNKhJxj9dilv0bokAgTo1LFCEoc
+ 5hIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=D8zHBqQShFenOhn5sUdTCaXue2kUqd5or1RvllBciTM=;
- b=FXL/u1+qprRsPp4pzLFQs1t5oEqU5jDrEpCq1jbB/N9oWlMqB5waWlAX2TkGA3K5Q5
- /WE3uhKtDfkHB/o18upxp2aKwUsFYNt7nFWpepg+me2h9N2bABBsXG0SSSj9f/CPTCll
- 0HMu1664dFYTbBvYPImKzuZM2I1HpLWTbIqzlU8tvz/wQNV4ZVeFc9/Lmb6JBVXVUGpi
- 570oFXSMfQ95WdleGK5b7MozIS1/I0w/1LX7A2d0TJEmHvcOHcC5IM30gUMcI0ESiRrl
- l7YyoGW+cerZuiJGaRVy5QuV0wUchatbPUbZHJWA2dVQSNGZv5Ei5Wtama5jXn/2HDGJ
- l56g==
-X-Gm-Message-State: AOAM533oSyJm5sNHfKsv2C8TAhOUqmSgCDsQvv+eBPa68hgLSRGk9K0j
- KCoTf2XJ4DrkV9Vs6iR1eYWZtz/Bx28=
-X-Google-Smtp-Source: ABdhPJxO6ODspyUZW6vptiMhVSDR7x4Vb74Vbw6ZvfhRxXycrHnbLETSjrilXvLPvrZVsumRpkh6RA==
-X-Received: by 2002:adf:82b8:: with SMTP id 53mr7394967wrc.172.1594934611094; 
+ bh=YHwJQcedQhttw7mtON6s0uW8hl2PvBEhpvVb9iB6wH8=;
+ b=B/GOQho+S3ABPcnmodhWjUZsVr0jEKNHWig2bEne3m5wVG61gnxEXhTh9YTuL43j/6
+ a/zuV4RJDHQEQtMyyksOllyovbLL1y8zaKYqU4sjBWtrnyiLNRY2lXbZe+ai9tQK8dva
+ NXGFFHRGfO+uJ7P4nNorwHO3aB27kxoqt54XbGSGMqj3Yoqd9SpoH+LsQNowSFlrcwgD
+ OVG+NnK4WVPU/K8rta6xg6mqyK5IeeBl8hKMG+W7i7H8bueS9NfEJwhviF9w7IFMEnr6
+ x6EbswXEQxjgK7CdcFpOcxdjU5nUxHLd2YrtFTvQKoEOVFyibNOSNXLBE+DPq+PrMb/E
+ rjwA==
+X-Gm-Message-State: AOAM532XN+fWkKpEDF/jj446B719nQAOYltFgAdcKjzshKxkuGmnG9/H
+ rafAggagSE8j0Q3/ylYhNZwPLVkhHos=
+X-Google-Smtp-Source: ABdhPJyxSQhjC97WLpTJ6c3eEHNfdBgsm6771nPSpA++xgx5YOjwO7NauAZXPkft0uf0DxER92caPw==
+X-Received: by 2002:adf:a111:: with SMTP id o17mr6683460wro.257.1594934611943; 
  Thu, 16 Jul 2020 14:23:31 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
- by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.30
+ by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:30 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:31 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 22/27] drm/amd/display: dce60_hw_sequencer: add DCE6
- specific .cursor_lock
-Date: Thu, 16 Jul 2020 23:22:46 +0200
-Message-Id: <20200716212251.1539094-23-issor.oruam@gmail.com>
+Subject: [PATCH v3 23/27] drm/amd/display: dce60_timing_generator: add DCE6
+ specific functions
+Date: Thu, 16 Jul 2020 23:22:47 +0200
+Message-Id: <20200716212251.1539094-24-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
 References: <20200716212251.1539094-1-issor.oruam@gmail.com>
@@ -75,28 +75,149 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-kernel WARNING due to use of .cursor_lock = dce_pipe_control_lock inherited by dce110
+DCE6 has CRTC_PREFETCH_EN bit in CRTC_CONTROL register
+DCE6 has no CRTC_LEGACY_REQUESTOR_EN bit in CRTC_START_LINE_CONTROL register
+DCE6 has no CRTC_CRC_CNTL register
 
 [How]
-DCE6 set .cursor_lock = dce60_pipe_control_lock
+Modify dce60_timing_generator_enable_advanced_request() function
+Add dce60_configure_crc() function and dce60_is_tg_enabled() kept as static
+Use dce60_configure_crc() function in dce60_tg_funcs
 
 Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c | 1 +
- 1 file changed, 1 insertion(+)
+ .../display/dc/dce60/dce60_timing_generator.c | 57 +++++++++++++------
+ .../amd/display/dc/inc/hw/clk_mgr_internal.h  | 11 ++++
+ 2 files changed, 50 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
-index 37bd91883926..66e5a1ba2a58 100644
---- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
-@@ -424,6 +424,7 @@ void dce60_hw_sequencer_construct(struct dc *dc)
+diff --git a/drivers/gpu/drm/amd/display/dc/dce60/dce60_timing_generator.c b/drivers/gpu/drm/amd/display/dc/dce60/dce60_timing_generator.c
+index eb9705e9d40a..4a5b7a0940c6 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_timing_generator.c
++++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_timing_generator.c
+@@ -128,20 +128,12 @@ static void dce60_timing_generator_enable_advanced_request(
+ 	struct dce110_timing_generator *tg110 = DCE110TG_FROM_TG(tg);
+ 	uint32_t addr = CRTC_REG(mmCRTC_START_LINE_CONTROL);
+ 	uint32_t value = dm_read_reg(tg->ctx, addr);
++	/* DCE6 has CRTC_PREFETCH_EN bit in CRTC_CONTROL register */
++	uint32_t addr2 = CRTC_REG(mmCRTC_CONTROL);
++	uint32_t value2 = dm_read_reg(tg->ctx, addr2);
  
- 	dc->hwseq->funcs.enable_display_power_gating = dce100_enable_display_power_gating;
- 	dc->hwss.apply_ctx_for_surface = dce60_apply_ctx_for_surface;
-+	dc->hwss.cursor_lock = dce60_pipe_control_lock;
- 	dc->hwss.pipe_control_lock = dce60_pipe_control_lock;
- 	dc->hwss.prepare_bandwidth = dce100_prepare_bandwidth;
- 	dc->hwss.optimize_bandwidth = dce100_optimize_bandwidth;
+-	if (enable) {
+-		set_reg_field_value(
+-			value,
+-			0,
+-			CRTC_START_LINE_CONTROL,
+-			CRTC_LEGACY_REQUESTOR_EN);
+-	} else {
+-		set_reg_field_value(
+-			value,
+-			1,
+-			CRTC_START_LINE_CONTROL,
+-			CRTC_LEGACY_REQUESTOR_EN);
+-	}
++	/* DCE6 does not support CRTC_LEGACY_REQUESTOR_EN bit
++	   so here is not possible to set bit based on enable argument */
+ 
+ 	if ((timing->v_sync_width + timing->v_front_porch) <= 3) {
+ 		set_reg_field_value(
+@@ -150,9 +142,9 @@ static void dce60_timing_generator_enable_advanced_request(
+ 			CRTC_START_LINE_CONTROL,
+ 			CRTC_ADVANCED_START_LINE_POSITION);
+ 		set_reg_field_value(
+-			value,
++			value2,
+ 			0,
+-			CRTC_START_LINE_CONTROL,
++			CRTC_CONTROL,
+ 			CRTC_PREFETCH_EN);
+ 	} else {
+ 		set_reg_field_value(
+@@ -161,9 +153,9 @@ static void dce60_timing_generator_enable_advanced_request(
+ 			CRTC_START_LINE_CONTROL,
+ 			CRTC_ADVANCED_START_LINE_POSITION);
+ 		set_reg_field_value(
+-			value,
++			value2,
+ 			1,
+-			CRTC_START_LINE_CONTROL,
++			CRTC_CONTROL,
+ 			CRTC_PREFETCH_EN);
+ 	}
+ 
+@@ -180,6 +172,35 @@ static void dce60_timing_generator_enable_advanced_request(
+ 		CRTC_INTERLACE_START_LINE_EARLY);
+ 
+ 	dm_write_reg(tg->ctx, addr, value);
++	dm_write_reg(tg->ctx, addr2, value2);
++}
++
++static bool dce60_is_tg_enabled(struct timing_generator *tg)
++{
++	uint32_t addr = 0;
++	uint32_t value = 0;
++	uint32_t field = 0;
++	struct dce110_timing_generator *tg110 = DCE110TG_FROM_TG(tg);
++
++	addr = CRTC_REG(mmCRTC_CONTROL);
++	value = dm_read_reg(tg->ctx, addr);
++	field = get_reg_field_value(value, CRTC_CONTROL,
++				    CRTC_CURRENT_MASTER_EN_STATE);
++	return field == 1;
++}
++
++bool dce60_configure_crc(struct timing_generator *tg,
++			  const struct crc_params *params)
++{
++	struct dce110_timing_generator *tg110 = DCE110TG_FROM_TG(tg);
++
++	/* Cannot configure crc on a CRTC that is disabled */
++	if (!dce60_is_tg_enabled(tg))
++		return false;
++
++	/* DCE6 has no CRTC_CRC_CNTL register, nothing to do */
++
++	return true;
+ }
+ 
+ static const struct timing_generator_funcs dce60_tg_funcs = {
+@@ -217,7 +238,7 @@ static const struct timing_generator_funcs dce60_tg_funcs = {
+ 		/* DCE6.0 overrides */
+ 		.enable_advanced_request =
+ 				dce60_timing_generator_enable_advanced_request,
+-		.configure_crc = dce110_configure_crc,
++		.configure_crc = dce60_configure_crc,
+ 		.get_crc = dce110_get_crc,
+ };
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+index 4e6e18bbef5d..ca9eedb643f2 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+@@ -88,6 +88,11 @@ enum dentist_divider_range {
+ 	.DPREFCLK_CNTL = mmDPREFCLK_CNTL, \
+ 	.DENTIST_DISPCLK_CNTL = mmDENTIST_DISPCLK_CNTL
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++#define CLK_COMMON_REG_LIST_DCE60_BASE() \
++	SR(DENTIST_DISPCLK_CNTL)
++#endif
++
+ #define CLK_COMMON_REG_LIST_DCN_BASE() \
+ 	SR(DENTIST_DISPCLK_CNTL)
+ 
+@@ -114,6 +119,12 @@ enum dentist_divider_range {
+ 	CLK_SF(DPREFCLK_CNTL, DPREFCLK_SRC_SEL, mask_sh), \
+ 	CLK_SF(DENTIST_DISPCLK_CNTL, DENTIST_DPREFCLK_WDIVIDER, mask_sh)
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++#define CLK_COMMON_MASK_SH_LIST_DCE60_COMMON_BASE(mask_sh) \
++	CLK_SF(DENTIST_DISPCLK_CNTL, DENTIST_DISPCLK_WDIVIDER, mask_sh),\
++	CLK_SF(DENTIST_DISPCLK_CNTL, DENTIST_DISPCLK_CHG_DONE, mask_sh)
++#endif
++
+ #define CLK_COMMON_MASK_SH_LIST_DCN_COMMON_BASE(mask_sh) \
+ 	CLK_SF(DENTIST_DISPCLK_CNTL, DENTIST_DISPCLK_WDIVIDER, mask_sh),\
+ 	CLK_SF(DENTIST_DISPCLK_CNTL, DENTIST_DISPCLK_CHG_DONE, mask_sh)
 -- 
 2.25.1
 
