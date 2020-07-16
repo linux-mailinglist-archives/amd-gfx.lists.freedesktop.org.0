@@ -2,56 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83915222DC1
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1B3222DC2
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jul 2020 23:23:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1C556ECED;
-	Thu, 16 Jul 2020 21:23:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA3D66ECF7;
+	Thu, 16 Jul 2020 21:23:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51A706ECED
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:25 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id o2so13178866wmh.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:25 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 870BA6ECF7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 21:23:26 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id o2so13178958wmh.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jul 2020 14:23:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=rtv4i8MMwkzTKf+SmHguIDfFOZ7poQYPzd9r/5xReJc=;
- b=PO1NHbzSTtUu9tfBsQh7OTO6cdps7VYRpG3UC56oqR6tdY8BZU70kB2ydD5VojnepL
- vE+EsuT12hUR0fk+2wmF+7QK6c7A7TuzpK8FumYiKaB+MJ4ps+HTNRPu8kU0ya9DIJAA
- JKt48/cDtahpxfX9gNoDZZlCzpW01imQB1xsLO+5ywk6V/l9Hf2iUjUtu75hWdJM7qm1
- f9ET6Inm3Na8Efw3Z0GQRG1c8z4611ALl14m+GDIyHhpgnLuTMzZN8EB0y1c4bYOi0wJ
- RPmPAcIG/fO09kzukhr0vzL0LzKP3AR5MzbGwJAraXj7e2grVHSvUnVnaa04/VBEYadV
- XTqA==
+ bh=+94iN5jmV4vW7sjBL7GViScIdGhXe7wMUmgKWTXosoA=;
+ b=nEUqJa7wydhN3LXKUFlp/JkWkdeGelpdFG3dcC8MhPhGa0W8rcuTIpRZhydy/GCJFx
+ Yuu4xKe9espwQ0iQITecsuD2Ru5aeCDAeqQp+LA8LAFNPCJnfluglTZO7hwJ/qoYa6UZ
+ G3jVszGKlCxXndl7s6vFv0vg3gKS6JtvBTqCoWAsP1ITqKJuQ1k88zlyfmJzXw50CclM
+ AgyDJrNfqto9ncKj3Ys9fOUYSr/D4c4WCPTHISlxQ61yVBXtaYL6c85wEO+WiMd9YKrM
+ qBb/PSBDjjBW3UJQhwL9acdWX9X/5dNnkV5eKnk2EiWxsxd924BuG4B7565cs8G5Bc9b
+ b4yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=rtv4i8MMwkzTKf+SmHguIDfFOZ7poQYPzd9r/5xReJc=;
- b=kRYdX0S3ywLzd9O3A+j2QSr7eckhLcCgOWbP+hraA6lYDF0Pd1Ta/zKApVgonO5GqU
- NuytfPLEZCAG6Kdj1O+EY9TFxV1vTCTiP+yfS6JT7eqkHCV+InhFF6SCRRYd/h91TAQl
- 8Xn39ihffljsCQlNRoCSnf0ux57P0xLk2MhkkK6G+KgAzLblaX/XpDYSzHm4xV3suqOD
- D1usedZnUCm1l/3Uaew0O1r/zh+hJbfMLBcL1i6LaNKw+FFqvm9KgcD/4+B0yLAZCktK
- qWNzW3xwhGFYmqBWuqN1DiLNnX1/YS0IFmTnChqYaQp6hNpuyCpaET60YKurnN1sWgS7
- 6q2w==
-X-Gm-Message-State: AOAM531jyQy41q7ffwdkqeG4BvoSJSQ+y95X4cBOwwBgjE3L12KAmH2c
- DLU0yLmc3/DNwtrMdejqx2PFSjT/83Q=
-X-Google-Smtp-Source: ABdhPJxFAybm4+7QS4OoLpWOcdfHi6zxZ9ES2ztdNihZ9/UmpGBoGMHdcBEWKu89WTy0dYERf4eYkA==
-X-Received: by 2002:a1c:23d0:: with SMTP id j199mr6396739wmj.12.1594934603418; 
- Thu, 16 Jul 2020 14:23:23 -0700 (PDT)
+ bh=+94iN5jmV4vW7sjBL7GViScIdGhXe7wMUmgKWTXosoA=;
+ b=rc44ndb020jq/PU4IEv9LSDYNQxSrAVn+dLY5Qw0XebVnZ8QkI4OzfW0gag0EqYsIW
+ 42W80b0gFHoiYRCXjdMiov59zPKrHFPGwbFEI/PgRBo3PI4tI5dc1/sbjVcqiU4E7EFT
+ pY4QhdVm+KnzyRLNNWrtzqlrs0kEtWA8DjiU5HO0y//twVx7ZdNAlBDEsZkk8YcT6Iz9
+ Sy9+Ek5efc680caVlpKKlBIjvcAy8i+aRtefndNhX/UbeBPVcuwFdC6ppjMX7ttXP7YF
+ yhx7hp803AaUeVyHi25M0j52NAAo6uPLVeSrgAomLqFzVRwRXzYpS//A7xttSnkm4wtR
+ mMOQ==
+X-Gm-Message-State: AOAM530dJ/cz4K3V0BeiHUsSfv7drizqxRvlKhwYP773W5/wuT9jv3SF
+ j+uPspBKAOsoWvCjfyV+kkozgDxXeK0=
+X-Google-Smtp-Source: ABdhPJwGf46w+MIjWp9EkJ6rhpZEhc3/DhzPRrpcWmTfFS3uzksXpkSo6quMFm259gq3hT3UOt/73g==
+X-Received: by 2002:a1c:49d4:: with SMTP id w203mr6411660wma.13.1594934604493; 
+ Thu, 16 Jul 2020 14:23:24 -0700 (PDT)
 Received: from utente-Giga.homenet.telecomitalia.it
  (host-79-21-65-179.retail.telecomitalia.it. [79.21.65.179])
- by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.22
+ by smtp.googlemail.com with ESMTPSA id c15sm10288696wme.23.2020.07.16.14.23.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jul 2020 14:23:23 -0700 (PDT)
+ Thu, 16 Jul 2020 14:23:24 -0700 (PDT)
 From: Mauro Rossi <issor.oruam@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 15/27] drm/amd/display: dce_link_encoder: add DCE6 specific
+Subject: [PATCH v3 16/27] drm/amd/display: dce_mem_input: add DCE6 specific
  macros, functions
-Date: Thu, 16 Jul 2020 23:22:39 +0200
-Message-Id: <20200716212251.1539094-16-issor.oruam@gmail.com>
+Date: Thu, 16 Jul 2020 23:22:40 +0200
+Message-Id: <20200716212251.1539094-17-issor.oruam@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200716212251.1539094-1-issor.oruam@gmail.com>
 References: <20200716212251.1539094-1-issor.oruam@gmail.com>
@@ -75,496 +75,434 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-DCE6 has no DP_DPHY_SCRAM_CNTL register
+DCE6 has DPG_PIPE_ARBITRATION_CONTROL3 register for Line Buffer watermark selection
+DCE6 has STUTTER_EXIT_SELF_REFRESH_WATERMARK_MASK mask for Stutter watermark selection
+DCE6 has NB_PSTATE_CHANGE_WATERMARK_MASK mask for North Bridge watermark selection
+DCE6 has no GRPH_MICRO_TILE_MODE mask
+DCE6 has no HW_ROTATION register
 
 [How]
-Add DCE6 specific macros definitions for LE registers
-DCE6 LE macros will avoid buiding errors when using DCE6 headers
-Add dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2() w/o Scramble Control programming
-Add dce60_set_dp_phy_pattern_passthrough_mode() w/o Scramble Control programming
-Add dce60_configure_encoder() w/o Scramble Control programming
-Add dce60_link_encoder_enable_dp_output() w/ dce60_configure_encoder
-Add dce60_link_encoder_enable_dp_mst_output() w/ dce60_configure_encoder
-Add dce60_link_encoder_dp_set_phy_pattern() w/ dce60_set_dp_phy_pattern_passthrough_mode
-Use dce60_link_encoder_enable_dp_output() in dce60_lnk_enc_funcs
-Use dce60_link_encoder_enable_dp_mst_output() in dce60_lnk_enc_funcs
-Use dce60_link_encoder_dp_set_phy_pattern() in dce60_lnk_enc_funcs
-Add DCE6 specific dce60_link_encoder_construct
+Add DCE6 specific macros definitions for MI registers and masks
+Add DCE6 specific registers to dce_mem_input_registers struct
+Add DCE6 specific masks to dce_mem_input_masks struct
+DCE6 MI macros/structs changes will avoid buiding errors when using DCE6 headers
+Add dce60_program_urgency_watermark() function
+Add dce60_program_nbp_watermark() function
+Add dce60_program_stutter_watermark() function
+Add dce60_mi_program_display_marks() function w/ new DCE6 watermark programming
+Add DCE6 specific tiling programming and modify DCE8 case
+Add dce60_program_size() fuction w/o Rotation processing
+Add dce60_mi_program_surface_config() fuction
+Use dce60_mi_program_display_marks() in dce60_mi_funcs
+Use dce60_mi_program_surface_config() in dce60_mi_funcs
+Add DCE6 specific dce60_mem_input_construct
 
 Signed-off-by: Mauro Rossi <issor.oruam@gmail.com>
 ---
- .../drm/amd/display/dc/dce/dce_link_encoder.c | 369 ++++++++++++++++++
- .../drm/amd/display/dc/dce/dce_link_encoder.h |  38 ++
- 2 files changed, 407 insertions(+)
+ .../drm/amd/display/dc/dce/dce_mem_input.c    | 177 +++++++++++++++++-
+ .../drm/amd/display/dc/dce/dce_mem_input.h    | 103 ++++++++++
+ 2 files changed, 279 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
-index 8d8c84c81b34..b409f6b2bfd8 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
-@@ -425,6 +425,59 @@ static void set_dp_phy_pattern_hbr2_compliance_cp2520_2(
- 	enable_phy_bypass_mode(enc110, false);
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
+index 51481e922eb9..422a9fc61b71 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
+@@ -174,6 +174,22 @@ static void program_urgency_watermark(
+ 		URGENCY_HIGH_WATERMARK, urgency_high_wm);
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2(
-+	struct dce110_link_encoder *enc110,
-+	unsigned int cp2520_pattern)
++static void dce60_program_urgency_watermark(
++	struct dce_mem_input *dce_mi,
++	uint32_t wm_select,
++	uint32_t urgency_low_wm,
++	uint32_t urgency_high_wm)
 +{
++	REG_UPDATE(DPG_PIPE_ARBITRATION_CONTROL3,
++		URGENCY_WATERMARK_MASK, wm_select);
 +
-+	/* previously there is a register DP_HBR2_EYE_PATTERN
-+	 * that is enabled to get the pattern.
-+	 * But it does not work with the latest spec change,
-+	 * so we are programming the following registers manually.
-+	 *
-+	 * The following settings have been confirmed
-+	 * by Nick Chorney and Sandra Liu */
-+
-+	/* Disable PHY Bypass mode to setup the test pattern */
-+
-+	enable_phy_bypass_mode(enc110, false);
-+
-+	/* Setup DIG encoder in DP SST mode */
-+	enc110->base.funcs->setup(&enc110->base, SIGNAL_TYPE_DISPLAY_PORT);
-+
-+	/* ensure normal panel mode. */
-+	setup_panel_mode(enc110, DP_PANEL_MODE_DEFAULT);
-+
-+	/* no vbid after BS (SR)
-+	 * DP_LINK_FRAMING_CNTL changed history Sandra Liu
-+	 * 11000260 / 11000104 / 110000FC */
-+	REG_UPDATE_3(DP_LINK_FRAMING_CNTL,
-+			DP_IDLE_BS_INTERVAL, 0xFC,
-+			DP_VBID_DISABLE, 1,
-+			DP_VID_ENHANCED_FRAME_MODE, 1);
-+
-+	/* DCE6 has no DP_DPHY_SCRAM_CNTL register, skip swap BS with SR */
-+
-+	/* select cp2520 patterns */
-+	if (REG(DP_DPHY_HBR2_PATTERN_CONTROL))
-+		REG_UPDATE(DP_DPHY_HBR2_PATTERN_CONTROL,
-+				DP_DPHY_HBR2_PATTERN_CONTROL, cp2520_pattern);
-+	else
-+		/* pre-DCE11 can only generate CP2520 pattern 2 */
-+		ASSERT(cp2520_pattern == 2);
-+
-+	/* set link training complete */
-+	set_link_training_complete(enc110, true);
-+
-+	/* disable video stream */
-+	REG_UPDATE(DP_VID_STREAM_CNTL, DP_VID_STREAM_ENABLE, 0);
-+
-+	/* Disable PHY Bypass mode to setup the test pattern */
-+	enable_phy_bypass_mode(enc110, false);
++	REG_SET_2(DPG_PIPE_URGENCY_CONTROL, 0,
++		URGENCY_LOW_WATERMARK, urgency_low_wm,
++		URGENCY_HIGH_WATERMARK, urgency_high_wm);
 +}
 +#endif
 +
- static void set_dp_phy_pattern_passthrough_mode(
- 	struct dce110_link_encoder *enc110,
- 	enum dp_panel_mode panel_mode)
-@@ -452,6 +505,35 @@ static void set_dp_phy_pattern_passthrough_mode(
- 	disable_prbs_mode(enc110);
+ static void dce120_program_urgency_watermark(
+ 	struct dce_mem_input *dce_mi,
+ 	uint32_t wm_select,
+@@ -193,6 +209,25 @@ static void dce120_program_urgency_watermark(
+ 
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_set_dp_phy_pattern_passthrough_mode(
-+	struct dce110_link_encoder *enc110,
-+	enum dp_panel_mode panel_mode)
++static void dce60_program_nbp_watermark(
++	struct dce_mem_input *dce_mi,
++	uint32_t wm_select,
++	uint32_t nbp_wm)
 +{
-+	/* program correct panel mode */
-+	setup_panel_mode(enc110, panel_mode);
++	REG_UPDATE(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL,
++		NB_PSTATE_CHANGE_WATERMARK_MASK, wm_select);
 +
-+	/* restore LINK_FRAMING_CNTL
-+	 * in case we were doing HBR2 compliance pattern before
-+	 */
-+	REG_UPDATE_3(DP_LINK_FRAMING_CNTL,
-+			DP_IDLE_BS_INTERVAL, 0x2000,
-+			DP_VBID_DISABLE, 0,
-+			DP_VID_ENHANCED_FRAME_MODE, 1);
++	REG_UPDATE_3(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL,
++		NB_PSTATE_CHANGE_ENABLE, 1,
++		NB_PSTATE_CHANGE_URGENT_DURING_REQUEST, 1,
++		NB_PSTATE_CHANGE_NOT_SELF_REFRESH_DURING_REQUEST, 1);
 +
-+	/* DCE6 has no DP_DPHY_SCRAM_CNTL register, skip DPHY_SCRAMBLER_BS_COUNT restore */
-+
-+	/* set link training complete */
-+	set_link_training_complete(enc110, true);
-+
-+	/* Disable PHY Bypass mode to setup the test pattern */
-+	enable_phy_bypass_mode(enc110, false);
-+
-+	/* Disable PRBS mode */
-+	disable_prbs_mode(enc110);
++	REG_UPDATE(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL,
++		NB_PSTATE_CHANGE_WATERMARK, nbp_wm);
 +}
 +#endif
 +
- /* return value is bit-vector */
- static uint8_t get_frontend_source(
- 	enum engine_id engine)
-@@ -490,6 +572,20 @@ static void configure_encoder(
- 	REG_UPDATE(DP_DPHY_SCRAM_CNTL, DPHY_SCRAMBLER_ADVANCE, 1);
- }
- 
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+static void dce60_configure_encoder(
-+	struct dce110_link_encoder *enc110,
-+	const struct dc_link_settings *link_settings)
-+{
-+	/* set number of lanes */
-+
-+	REG_SET(DP_CONFIG, 0,
-+			DP_UDI_LANES, link_settings->lane_count - LANE_COUNT_ONE);
-+
-+	/* DCE6 has no DP_DPHY_SCRAM_CNTL register, skip setup scrambler */
-+}
-+#endif
-+
- static void aux_initialize(
- 	struct dce110_link_encoder *enc110)
- {
-@@ -1059,6 +1155,87 @@ void dce110_link_encoder_enable_dp_mst_output(
- 		BREAK_TO_DEBUGGER();
- 	}
- }
-+
-+#if defined(CONFIG_DRM_AMD_DC_SI)
-+/* enables DP PHY output */
-+void dce60_link_encoder_enable_dp_output(
-+	struct link_encoder *enc,
-+	const struct dc_link_settings *link_settings,
-+	enum clock_source_id clock_source)
-+{
-+	struct dce110_link_encoder *enc110 = TO_DCE110_LINK_ENC(enc);
-+	struct bp_transmitter_control cntl = { 0 };
-+	enum bp_result result;
-+
-+	/* Enable the PHY */
-+
-+	/* number_of_lanes is used for pixel clock adjust,
-+	 * but it's not passed to asic_control.
-+	 * We need to set number of lanes manually.
-+	 */
-+	dce60_configure_encoder(enc110, link_settings);
-+	cntl.connector_obj_id = enc110->base.connector;
-+	cntl.action = TRANSMITTER_CONTROL_ENABLE;
-+	cntl.engine_id = enc->preferred_engine;
-+	cntl.transmitter = enc110->base.transmitter;
-+	cntl.pll_id = clock_source;
-+	cntl.signal = SIGNAL_TYPE_DISPLAY_PORT;
-+	cntl.lanes_number = link_settings->lane_count;
-+	cntl.hpd_sel = enc110->base.hpd_source;
-+	cntl.pixel_clock = link_settings->link_rate
-+						* LINK_RATE_REF_FREQ_IN_KHZ;
-+	/* TODO: check if undefined works */
-+	cntl.color_depth = COLOR_DEPTH_UNDEFINED;
-+
-+	result = link_transmitter_control(enc110, &cntl);
-+
-+	if (result != BP_RESULT_OK) {
-+		DC_LOG_ERROR("%s: Failed to execute VBIOS command table!\n",
-+			__func__);
-+		BREAK_TO_DEBUGGER();
-+	}
-+}
-+
-+/* enables DP PHY output in MST mode */
-+void dce60_link_encoder_enable_dp_mst_output(
-+	struct link_encoder *enc,
-+	const struct dc_link_settings *link_settings,
-+	enum clock_source_id clock_source)
-+{
-+	struct dce110_link_encoder *enc110 = TO_DCE110_LINK_ENC(enc);
-+	struct bp_transmitter_control cntl = { 0 };
-+	enum bp_result result;
-+
-+	/* Enable the PHY */
-+
-+	/* number_of_lanes is used for pixel clock adjust,
-+	 * but it's not passed to asic_control.
-+	 * We need to set number of lanes manually.
-+	 */
-+	dce60_configure_encoder(enc110, link_settings);
-+
-+	cntl.action = TRANSMITTER_CONTROL_ENABLE;
-+	cntl.engine_id = ENGINE_ID_UNKNOWN;
-+	cntl.transmitter = enc110->base.transmitter;
-+	cntl.pll_id = clock_source;
-+	cntl.signal = SIGNAL_TYPE_DISPLAY_PORT_MST;
-+	cntl.lanes_number = link_settings->lane_count;
-+	cntl.hpd_sel = enc110->base.hpd_source;
-+	cntl.pixel_clock = link_settings->link_rate
-+						* LINK_RATE_REF_FREQ_IN_KHZ;
-+	/* TODO: check if undefined works */
-+	cntl.color_depth = COLOR_DEPTH_UNDEFINED;
-+
-+	result = link_transmitter_control(enc110, &cntl);
-+
-+	if (result != BP_RESULT_OK) {
-+		DC_LOG_ERROR("%s: Failed to execute VBIOS command table!\n",
-+			__func__);
-+		BREAK_TO_DEBUGGER();
-+	}
-+}
-+#endif
-+
- /*
-  * @brief
-  * Disable transmitter and its encoder
-@@ -1208,6 +1385,63 @@ void dce110_link_encoder_dp_set_phy_pattern(
+ static void program_nbp_watermark(
+ 	struct dce_mem_input *dce_mi,
+ 	uint32_t wm_select,
+@@ -225,6 +260,20 @@ static void program_nbp_watermark(
  	}
  }
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+/* set DP PHY test and training patterns */
-+void dce60_link_encoder_dp_set_phy_pattern(
-+	struct link_encoder *enc,
-+	const struct encoder_set_dp_phy_pattern_param *param)
++static void dce60_program_stutter_watermark(
++	struct dce_mem_input *dce_mi,
++	uint32_t wm_select,
++	uint32_t stutter_mark)
 +{
-+	struct dce110_link_encoder *enc110 = TO_DCE110_LINK_ENC(enc);
++	REG_UPDATE(DPG_PIPE_STUTTER_CONTROL,
++		STUTTER_EXIT_SELF_REFRESH_WATERMARK_MASK, wm_select);
 +
-+	switch (param->dp_phy_pattern) {
-+	case DP_TEST_PATTERN_TRAINING_PATTERN1:
-+		dce110_link_encoder_set_dp_phy_pattern_training_pattern(enc, 0);
-+		break;
-+	case DP_TEST_PATTERN_TRAINING_PATTERN2:
-+		dce110_link_encoder_set_dp_phy_pattern_training_pattern(enc, 1);
-+		break;
-+	case DP_TEST_PATTERN_TRAINING_PATTERN3:
-+		dce110_link_encoder_set_dp_phy_pattern_training_pattern(enc, 2);
-+		break;
-+	case DP_TEST_PATTERN_TRAINING_PATTERN4:
-+		dce110_link_encoder_set_dp_phy_pattern_training_pattern(enc, 3);
-+		break;
-+	case DP_TEST_PATTERN_D102:
-+		set_dp_phy_pattern_d102(enc110);
-+		break;
-+	case DP_TEST_PATTERN_SYMBOL_ERROR:
-+		set_dp_phy_pattern_symbol_error(enc110);
-+		break;
-+	case DP_TEST_PATTERN_PRBS7:
-+		set_dp_phy_pattern_prbs7(enc110);
-+		break;
-+	case DP_TEST_PATTERN_80BIT_CUSTOM:
-+		set_dp_phy_pattern_80bit_custom(
-+			enc110, param->custom_pattern);
-+		break;
-+	case DP_TEST_PATTERN_CP2520_1:
-+		dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2(enc110, 1);
-+		break;
-+	case DP_TEST_PATTERN_CP2520_2:
-+		dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2(enc110, 2);
-+		break;
-+	case DP_TEST_PATTERN_CP2520_3:
-+		dce60_set_dp_phy_pattern_hbr2_compliance_cp2520_2(enc110, 3);
-+		break;
-+	case DP_TEST_PATTERN_VIDEO_MODE: {
-+		dce60_set_dp_phy_pattern_passthrough_mode(
-+			enc110, param->dp_panel_mode);
-+		break;
-+	}
-+
-+	default:
-+		/* invalid phy pattern */
-+		ASSERT_CRITICAL(false);
-+		break;
-+	}
++	REG_UPDATE(DPG_PIPE_STUTTER_CONTROL,
++		STUTTER_EXIT_SELF_REFRESH_WATERMARK, stutter_mark);
 +}
 +#endif
 +
- static void fill_stream_allocation_row_info(
- 	const struct link_mst_stream_allocation *stream_allocation,
- 	uint32_t *src,
-@@ -1407,3 +1641,138 @@ void dce110_link_encoder_get_max_link_cap(struct link_encoder *enc,
- 
- 	*link_settings = max_link_cap;
+ static void dce120_program_stutter_watermark(
+ 	struct dce_mem_input *dce_mi,
+ 	uint32_t wm_select,
+@@ -286,6 +335,34 @@ static void dce_mi_program_display_marks(
+ 	program_stutter_watermark(dce_mi, 1, stutter_exit.d_mark); /* set d */
  }
-+
+ 
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+static const struct link_encoder_funcs dce60_lnk_enc_funcs = {
-+	.validate_output_with_stream =
-+		dce110_link_encoder_validate_output_with_stream,
-+	.hw_init = dce110_link_encoder_hw_init,
-+	.setup = dce110_link_encoder_setup,
-+	.enable_tmds_output = dce110_link_encoder_enable_tmds_output,
-+	.enable_dp_output = dce60_link_encoder_enable_dp_output,
-+	.enable_dp_mst_output = dce60_link_encoder_enable_dp_mst_output,
-+	.enable_lvds_output = dce110_link_encoder_enable_lvds_output,
-+	.disable_output = dce110_link_encoder_disable_output,
-+	.dp_set_lane_settings = dce110_link_encoder_dp_set_lane_settings,
-+	.dp_set_phy_pattern = dce60_link_encoder_dp_set_phy_pattern,
-+	.update_mst_stream_allocation_table =
-+		dce110_link_encoder_update_mst_stream_allocation_table,
-+	.psr_program_dp_dphy_fast_training =
-+			dce110_psr_program_dp_dphy_fast_training,
-+	.psr_program_secondary_packet = dce110_psr_program_secondary_packet,
-+	.connect_dig_be_to_fe = dce110_link_encoder_connect_dig_be_to_fe,
-+	.enable_hpd = dce110_link_encoder_enable_hpd,
-+	.disable_hpd = dce110_link_encoder_disable_hpd,
-+	.is_dig_enabled = dce110_is_dig_enabled,
-+	.destroy = dce110_link_encoder_destroy,
-+	.get_max_link_cap = dce110_link_encoder_get_max_link_cap
++static void dce60_mi_program_display_marks(
++	struct mem_input *mi,
++	struct dce_watermarks nbp,
++	struct dce_watermarks stutter_exit,
++	struct dce_watermarks stutter_enter,
++	struct dce_watermarks urgent,
++	uint32_t total_dest_line_time_ns)
++{
++	struct dce_mem_input *dce_mi = TO_DCE_MEM_INPUT(mi);
++	uint32_t stutter_en = mi->ctx->dc->debug.disable_stutter ? 0 : 1;
++
++	dce60_program_urgency_watermark(dce_mi, 2, /* set a */
++			urgent.a_mark, total_dest_line_time_ns);
++	dce60_program_urgency_watermark(dce_mi, 1, /* set d */
++			urgent.d_mark, total_dest_line_time_ns);
++
++	REG_UPDATE_2(DPG_PIPE_STUTTER_CONTROL,
++		STUTTER_ENABLE, stutter_en,
++		STUTTER_IGNORE_FBC, 1);
++	dce60_program_nbp_watermark(dce_mi, 2, nbp.a_mark); /* set a */
++	dce60_program_nbp_watermark(dce_mi, 1, nbp.d_mark); /* set d */
++
++	dce60_program_stutter_watermark(dce_mi, 2, stutter_exit.a_mark); /* set a */
++	dce60_program_stutter_watermark(dce_mi, 1, stutter_exit.d_mark); /* set d */
++}
++#endif
++
+ static void dce112_mi_program_display_marks(struct mem_input *mi,
+ 	struct dce_watermarks nbp,
+ 	struct dce_watermarks stutter_exit,
+@@ -369,7 +446,7 @@ static void program_tiling(
+ 		 */
+ 	}
+ 
+-	if (dce_mi->masks->GRPH_ARRAY_MODE) { /* GFX8 */
++	if (dce_mi->masks->GRPH_MICRO_TILE_MODE) { /* GFX8 */
+ 		REG_UPDATE_9(GRPH_CONTROL,
+ 				GRPH_NUM_BANKS, info->gfx8.num_banks,
+ 				GRPH_BANK_WIDTH, info->gfx8.bank_width,
+@@ -385,6 +462,23 @@ static void program_tiling(
+ 				GRPH_Z, 0);
+ 				*/
+ 	}
++
++	if (dce_mi->masks->GRPH_ARRAY_MODE) { /* GFX6 but reuses gfx8 struct */
++		REG_UPDATE_8(GRPH_CONTROL,
++				GRPH_NUM_BANKS, info->gfx8.num_banks,
++				GRPH_BANK_WIDTH, info->gfx8.bank_width,
++				GRPH_BANK_HEIGHT, info->gfx8.bank_height,
++				GRPH_MACRO_TILE_ASPECT, info->gfx8.tile_aspect,
++				GRPH_TILE_SPLIT, info->gfx8.tile_split,
++				/* DCE6 has no GRPH_MICRO_TILE_MODE mask */
++				GRPH_PIPE_CONFIG, info->gfx8.pipe_config,
++				GRPH_ARRAY_MODE, info->gfx8.array_mode,
++				GRPH_COLOR_EXPANSION_MODE, 1);
++		/* 01 - DCP_GRPH_COLOR_EXPANSION_MODE_ZEXP: zero expansion for YCbCr */
++		/*
++				GRPH_Z, 0);
++				*/
++	}
+ }
+ 
+ 
+@@ -429,6 +523,37 @@ static void program_size_and_rotation(
+ 			GRPH_ROTATION_ANGLE, rotation_angles[rotation]);
+ }
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++static void dce60_program_size(
++	struct dce_mem_input *dce_mi,
++	enum dc_rotation_angle rotation, /* not used in DCE6 */
++	const struct plane_size *plane_size)
++{
++	const struct rect *in_rect = &plane_size->surface_size;
++	struct rect hw_rect = plane_size->surface_size;
++	/* DCE6 has no HW rotation, skip rotation_angles declaration */
++
++	/* DCE6 has no HW rotation, skip ROTATION_ANGLE_* processing */
++
++	REG_SET(GRPH_X_START, 0,
++			GRPH_X_START, hw_rect.x);
++
++	REG_SET(GRPH_Y_START, 0,
++			GRPH_Y_START, hw_rect.y);
++
++	REG_SET(GRPH_X_END, 0,
++			GRPH_X_END, hw_rect.width);
++
++	REG_SET(GRPH_Y_END, 0,
++			GRPH_Y_END, hw_rect.height);
++
++	REG_SET(GRPH_PITCH, 0,
++			GRPH_PITCH, plane_size->surface_pitch);
++
++	/* DCE6 has no HW_ROTATION register, skip setting rotation_angles */
++}
++#endif
++
+ static void program_grph_pixel_format(
+ 	struct dce_mem_input *dce_mi,
+ 	enum surface_pixel_format format)
+@@ -521,6 +646,28 @@ static void dce_mi_program_surface_config(
+ 		program_grph_pixel_format(dce_mi, format);
+ }
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++static void dce60_mi_program_surface_config(
++	struct mem_input *mi,
++	enum surface_pixel_format format,
++	union dc_tiling_info *tiling_info,
++	struct plane_size *plane_size,
++	enum dc_rotation_angle rotation, /* not used in DCE6 */
++	struct dc_plane_dcc_param *dcc,
++	bool horizontal_mirror)
++{
++	struct dce_mem_input *dce_mi = TO_DCE_MEM_INPUT(mi);
++	REG_UPDATE(GRPH_ENABLE, GRPH_ENABLE, 1);
++
++	program_tiling(dce_mi, tiling_info);
++	dce60_program_size(dce_mi, rotation, plane_size);
++
++	if (format >= SURFACE_PIXEL_FORMAT_GRPH_BEGIN &&
++		format < SURFACE_PIXEL_FORMAT_VIDEO_BEGIN)
++		program_grph_pixel_format(dce_mi, format);
++}
++#endif
++
+ static uint32_t get_dmif_switch_time_us(
+ 	uint32_t h_total,
+ 	uint32_t v_total,
+@@ -741,6 +888,20 @@ static const struct mem_input_funcs dce_mi_funcs = {
+ 	.mem_input_is_flip_pending = dce_mi_is_flip_pending
+ };
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++static const struct mem_input_funcs dce60_mi_funcs = {
++	.mem_input_program_display_marks = dce60_mi_program_display_marks,
++	.allocate_mem_input = dce_mi_allocate_dmif,
++	.free_mem_input = dce_mi_free_dmif,
++	.mem_input_program_surface_flip_and_addr =
++			dce_mi_program_surface_flip_and_addr,
++	.mem_input_program_pte_vm = dce_mi_program_pte_vm,
++	.mem_input_program_surface_config =
++			dce60_mi_program_surface_config,
++	.mem_input_is_flip_pending = dce_mi_is_flip_pending
 +};
++#endif
 +
-+void dce60_link_encoder_construct(
-+	struct dce110_link_encoder *enc110,
-+	const struct encoder_init_data *init_data,
-+	const struct encoder_feature_support *enc_features,
-+	const struct dce110_link_enc_registers *link_regs,
-+	const struct dce110_link_enc_aux_registers *aux_regs,
-+	const struct dce110_link_enc_hpd_registers *hpd_regs)
+ static const struct mem_input_funcs dce112_mi_funcs = {
+ 	.mem_input_program_display_marks = dce112_mi_program_display_marks,
+ 	.allocate_mem_input = dce_mi_allocate_dmif,
+@@ -783,6 +944,20 @@ void dce_mem_input_construct(
+ 	dce_mi->masks = mi_mask;
+ }
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++void dce60_mem_input_construct(
++	struct dce_mem_input *dce_mi,
++	struct dc_context *ctx,
++	int inst,
++	const struct dce_mem_input_registers *regs,
++	const struct dce_mem_input_shift *mi_shift,
++	const struct dce_mem_input_mask *mi_mask)
 +{
-+	struct bp_encoder_cap_info bp_cap_info = {0};
-+	const struct dc_vbios_funcs *bp_funcs = init_data->ctx->dc_bios->funcs;
-+	enum bp_result result = BP_RESULT_OK;
-+
-+	enc110->base.funcs = &dce60_lnk_enc_funcs;
-+	enc110->base.ctx = init_data->ctx;
-+	enc110->base.id = init_data->encoder;
-+
-+	enc110->base.hpd_source = init_data->hpd_source;
-+	enc110->base.connector = init_data->connector;
-+
-+	enc110->base.preferred_engine = ENGINE_ID_UNKNOWN;
-+
-+	enc110->base.features = *enc_features;
-+
-+	enc110->base.transmitter = init_data->transmitter;
-+
-+	/* set the flag to indicate whether driver poll the I2C data pin
-+	 * while doing the DP sink detect
-+	 */
-+
-+/*	if (dal_adapter_service_is_feature_supported(as,
-+		FEATURE_DP_SINK_DETECT_POLL_DATA_PIN))
-+		enc110->base.features.flags.bits.
-+			DP_SINK_DETECT_POLL_DATA_PIN = true;*/
-+
-+	enc110->base.output_signals =
-+		SIGNAL_TYPE_DVI_SINGLE_LINK |
-+		SIGNAL_TYPE_DVI_DUAL_LINK |
-+		SIGNAL_TYPE_LVDS |
-+		SIGNAL_TYPE_DISPLAY_PORT |
-+		SIGNAL_TYPE_DISPLAY_PORT_MST |
-+		SIGNAL_TYPE_EDP |
-+		SIGNAL_TYPE_HDMI_TYPE_A;
-+
-+	/* For DCE 8.0 and 8.1, by design, UNIPHY is hardwired to DIG_BE.
-+	 * SW always assign DIG_FE 1:1 mapped to DIG_FE for non-MST UNIPHY.
-+	 * SW assign DIG_FE to non-MST UNIPHY first and MST last. So prefer
-+	 * DIG is per UNIPHY and used by SST DP, eDP, HDMI, DVI and LVDS.
-+	 * Prefer DIG assignment is decided by board design.
-+	 * For DCE 8.0, there are only max 6 UNIPHYs, we assume board design
-+	 * and VBIOS will filter out 7 UNIPHY for DCE 8.0.
-+	 * By this, adding DIGG should not hurt DCE 8.0.
-+	 * This will let DCE 8.1 share DCE 8.0 as much as possible
-+	 */
-+
-+	enc110->link_regs = link_regs;
-+	enc110->aux_regs = aux_regs;
-+	enc110->hpd_regs = hpd_regs;
-+
-+	switch (enc110->base.transmitter) {
-+	case TRANSMITTER_UNIPHY_A:
-+		enc110->base.preferred_engine = ENGINE_ID_DIGA;
-+	break;
-+	case TRANSMITTER_UNIPHY_B:
-+		enc110->base.preferred_engine = ENGINE_ID_DIGB;
-+	break;
-+	case TRANSMITTER_UNIPHY_C:
-+		enc110->base.preferred_engine = ENGINE_ID_DIGC;
-+	break;
-+	case TRANSMITTER_UNIPHY_D:
-+		enc110->base.preferred_engine = ENGINE_ID_DIGD;
-+	break;
-+	case TRANSMITTER_UNIPHY_E:
-+		enc110->base.preferred_engine = ENGINE_ID_DIGE;
-+	break;
-+	case TRANSMITTER_UNIPHY_F:
-+		enc110->base.preferred_engine = ENGINE_ID_DIGF;
-+	break;
-+	case TRANSMITTER_UNIPHY_G:
-+		enc110->base.preferred_engine = ENGINE_ID_DIGG;
-+	break;
-+	default:
-+		ASSERT_CRITICAL(false);
-+		enc110->base.preferred_engine = ENGINE_ID_UNKNOWN;
-+	}
-+
-+	/* default to one to mirror Windows behavior */
-+	enc110->base.features.flags.bits.HDMI_6GB_EN = 1;
-+
-+	result = bp_funcs->get_encoder_cap_info(enc110->base.ctx->dc_bios,
-+						enc110->base.id, &bp_cap_info);
-+
-+	/* Override features with DCE-specific values */
-+	if (BP_RESULT_OK == result) {
-+		enc110->base.features.flags.bits.IS_HBR2_CAPABLE =
-+				bp_cap_info.DP_HBR2_EN;
-+		enc110->base.features.flags.bits.IS_HBR3_CAPABLE =
-+				bp_cap_info.DP_HBR3_EN;
-+		enc110->base.features.flags.bits.HDMI_6GB_EN = bp_cap_info.HDMI_6GB_EN;
-+	} else {
-+		DC_LOG_WARNING("%s: Failed to get encoder_cap_info from VBIOS with error code %d!\n",
-+				__func__,
-+				result);
-+	}
-+	if (enc110->base.ctx->dc->debug.hdmi20_disable) {
-+		enc110->base.features.flags.bits.HDMI_6GB_EN = 0;
-+	}
++	dce_mem_input_construct(dce_mi, ctx, inst, regs, mi_shift, mi_mask);
++	dce_mi->base.funcs = &dce60_mi_funcs;
 +}
 +#endif
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h
-index 384389f0e2c3..40ea2220330c 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h
-@@ -75,6 +75,34 @@
- 	SRI(DP_DPHY_INTERNAL_CTRL, DP, id), \
- 	SR(DCI_MEM_PWR_STATUS)
++
+ void dce112_mem_input_construct(
+ 	struct dce_mem_input *dce_mi,
+ 	struct dc_context *ctx,
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.h b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.h
+index d15b0d7f47fc..23db5c72f07e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.h
+@@ -58,6 +58,31 @@
+ 	SRI(DVMM_PTE_CONTROL, DCP, id),\
+ 	SRI(DVMM_PTE_ARB_CONTROL, DCP, id)
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+#define LE_DCE60_REG_LIST(id)\
-+	SRI(DP_DPHY_INTERNAL_CTRL, DP, id), \
-+	SR(DMCU_RAM_ACCESS_CTRL), \
-+	SR(DMCU_IRAM_RD_CTRL), \
-+	SR(DMCU_IRAM_RD_DATA), \
-+	SR(DMCU_INTERRUPT_TO_UC_EN_MASK), \
-+	SRI(DIG_BE_CNTL, DIG, id), \
-+	SRI(DIG_BE_EN_CNTL, DIG, id), \
-+	SRI(DP_CONFIG, DP, id), \
-+	SRI(DP_DPHY_CNTL, DP, id), \
-+	SRI(DP_DPHY_PRBS_CNTL, DP, id), \
-+	SRI(DP_DPHY_SYM0, DP, id), \
-+	SRI(DP_DPHY_SYM1, DP, id), \
-+	SRI(DP_DPHY_SYM2, DP, id), \
-+	SRI(DP_DPHY_TRAINING_PATTERN_SEL, DP, id), \
-+	SRI(DP_LINK_CNTL, DP, id), \
-+	SRI(DP_LINK_FRAMING_CNTL, DP, id), \
-+	SRI(DP_MSE_SAT0, DP, id), \
-+	SRI(DP_MSE_SAT1, DP, id), \
-+	SRI(DP_MSE_SAT2, DP, id), \
-+	SRI(DP_MSE_SAT_UPDATE, DP, id), \
-+	SRI(DP_SEC_CNTL, DP, id), \
-+	SRI(DP_VID_STREAM_CNTL, DP, id), \
-+	SRI(DP_DPHY_FAST_TRAINING, DP, id), \
-+	SRI(DP_SEC_CNTL1, DP, id)
++#define MI_DCE6_REG_LIST(id)\
++	SRI(GRPH_ENABLE, DCP, id),\
++	SRI(GRPH_CONTROL, DCP, id),\
++	SRI(GRPH_X_START, DCP, id),\
++	SRI(GRPH_Y_START, DCP, id),\
++	SRI(GRPH_X_END, DCP, id),\
++	SRI(GRPH_Y_END, DCP, id),\
++	SRI(GRPH_PITCH, DCP, id),\
++	SRI(GRPH_SWAP_CNTL, DCP, id),\
++	SRI(PRESCALE_GRPH_CONTROL, DCP, id),\
++	SRI(GRPH_UPDATE, DCP, id),\
++	SRI(GRPH_FLIP_CONTROL, DCP, id),\
++	SRI(GRPH_PRIMARY_SURFACE_ADDRESS, DCP, id),\
++	SRI(GRPH_PRIMARY_SURFACE_ADDRESS_HIGH, DCP, id),\
++	SRI(GRPH_SECONDARY_SURFACE_ADDRESS, DCP, id),\
++	SRI(GRPH_SECONDARY_SURFACE_ADDRESS_HIGH, DCP, id),\
++	SRI(DPG_PIPE_ARBITRATION_CONTROL1, DMIF_PG, id),\
++	SRI(DPG_PIPE_ARBITRATION_CONTROL3, DMIF_PG, id),\
++	SRI(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, DMIF_PG, id),\
++	SRI(DPG_PIPE_URGENCY_CONTROL, DMIF_PG, id),\
++	SRI(DPG_PIPE_STUTTER_CONTROL, DMIF_PG, id),\
++	SRI(DMIF_BUFFER_CONTROL, PIPE, id)
 +#endif
 +
- #define LE_DCE80_REG_LIST(id)\
- 	SRI(DP_DPHY_INTERNAL_CTRL, DP, id), \
- 	LE_COMMON_REG_LIST_BASE(id)
-@@ -169,6 +197,16 @@ void dce110_link_encoder_construct(
- 	const struct dce110_link_enc_aux_registers *aux_regs,
- 	const struct dce110_link_enc_hpd_registers *hpd_regs);
+ #define MI_DCE8_REG_LIST(id)\
+ 	MI_DCE_BASE_REG_LIST(id),\
+ 	SRI(DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, DMIF_PG, id)
+@@ -104,6 +129,9 @@ struct dce_mem_input_registers {
+ 	uint32_t GRPH_SECONDARY_SURFACE_ADDRESS_HIGH;
+ 	/* DMIF_PG */
+ 	uint32_t DPG_PIPE_ARBITRATION_CONTROL1;
++#if defined(CONFIG_DRM_AMD_DC_SI)
++	uint32_t DPG_PIPE_ARBITRATION_CONTROL3;
++#endif
+ 	uint32_t DPG_WATERMARK_MASK_CONTROL;
+ 	uint32_t DPG_PIPE_URGENCY_CONTROL;
+ 	uint32_t DPG_PIPE_URGENT_LEVEL_CONTROL;
+@@ -126,6 +154,18 @@ struct dce_mem_input_registers {
+ #define SFB(blk_name, reg_name, field_name, post_fix)\
+ 	.field_name = blk_name ## reg_name ## __ ## field_name ## post_fix
  
 +#if defined(CONFIG_DRM_AMD_DC_SI)
-+void dce60_link_encoder_construct(
-+	struct dce110_link_encoder *enc110,
-+	const struct encoder_init_data *init_data,
-+	const struct encoder_feature_support *enc_features,
-+	const struct dce110_link_enc_registers *link_regs,
-+	const struct dce110_link_enc_aux_registers *aux_regs,
-+	const struct dce110_link_enc_hpd_registers *hpd_regs);
++#define MI_GFX6_TILE_MASK_SH_LIST(mask_sh, blk)\
++	SFB(blk, GRPH_CONTROL, GRPH_NUM_BANKS, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_BANK_WIDTH, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_BANK_HEIGHT, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_MACRO_TILE_ASPECT, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_TILE_SPLIT, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_PIPE_CONFIG, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_ARRAY_MODE, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_COLOR_EXPANSION_MODE, mask_sh)
 +#endif
 +
- bool dce110_link_encoder_validate_dvi_output(
- 	const struct dce110_link_encoder *enc110,
- 	enum signal_type connector_signal,
+ #define MI_GFX8_TILE_MASK_SH_LIST(mask_sh, blk)\
+ 	SFB(blk, GRPH_CONTROL, GRPH_NUM_BANKS, mask_sh),\
+ 	SFB(blk, GRPH_CONTROL, GRPH_BANK_WIDTH, mask_sh),\
+@@ -162,6 +202,32 @@ struct dce_mem_input_registers {
+ 	SFB(blk, GRPH_UPDATE, GRPH_UPDATE_LOCK, mask_sh),\
+ 	SFB(blk, GRPH_FLIP_CONTROL, GRPH_SURFACE_UPDATE_H_RETRACE_EN, mask_sh)
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++#define MI_DCP_MASK_SH_LIST_DCE6(mask_sh, blk)\
++	SFB(blk, GRPH_ENABLE, GRPH_ENABLE, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_DEPTH, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_FORMAT, mask_sh),\
++	SFB(blk, GRPH_CONTROL, GRPH_NUM_BANKS, mask_sh),\
++	SFB(blk, GRPH_X_START, GRPH_X_START, mask_sh),\
++	SFB(blk, GRPH_Y_START, GRPH_Y_START, mask_sh),\
++	SFB(blk, GRPH_X_END, GRPH_X_END, mask_sh),\
++	SFB(blk, GRPH_Y_END, GRPH_Y_END, mask_sh),\
++	SFB(blk, GRPH_PITCH, GRPH_PITCH, mask_sh),\
++	SFB(blk, GRPH_SWAP_CNTL, GRPH_RED_CROSSBAR, mask_sh),\
++	SFB(blk, GRPH_SWAP_CNTL, GRPH_BLUE_CROSSBAR, mask_sh),\
++	SFB(blk, PRESCALE_GRPH_CONTROL, GRPH_PRESCALE_SELECT, mask_sh),\
++	SFB(blk, PRESCALE_GRPH_CONTROL, GRPH_PRESCALE_R_SIGN, mask_sh),\
++	SFB(blk, PRESCALE_GRPH_CONTROL, GRPH_PRESCALE_G_SIGN, mask_sh),\
++	SFB(blk, PRESCALE_GRPH_CONTROL, GRPH_PRESCALE_B_SIGN, mask_sh),\
++	SFB(blk, GRPH_SECONDARY_SURFACE_ADDRESS_HIGH, GRPH_SECONDARY_SURFACE_ADDRESS_HIGH, mask_sh),\
++	SFB(blk, GRPH_SECONDARY_SURFACE_ADDRESS, GRPH_SECONDARY_SURFACE_ADDRESS, mask_sh),\
++	SFB(blk, GRPH_PRIMARY_SURFACE_ADDRESS_HIGH, GRPH_PRIMARY_SURFACE_ADDRESS_HIGH, mask_sh),\
++	SFB(blk, GRPH_PRIMARY_SURFACE_ADDRESS, GRPH_PRIMARY_SURFACE_ADDRESS, mask_sh),\
++	SFB(blk, GRPH_UPDATE, GRPH_SURFACE_UPDATE_PENDING, mask_sh),\
++	SFB(blk, GRPH_UPDATE, GRPH_UPDATE_LOCK, mask_sh),\
++	SFB(blk, GRPH_FLIP_CONTROL, GRPH_SURFACE_UPDATE_H_RETRACE_EN, mask_sh)
++#endif
++
+ #define MI_DCP_DCE11_MASK_SH_LIST(mask_sh, blk)\
+ 	SFB(blk, GRPH_PIPE_OUTSTANDING_REQUEST_LIMIT, GRPH_PIPE_OUTSTANDING_REQUEST_LIMIT, mask_sh)
+ 
+@@ -172,6 +238,33 @@ struct dce_mem_input_registers {
+ 	SFB(blk, DVMM_PTE_ARB_CONTROL, DVMM_PTE_REQ_PER_CHUNK, mask_sh),\
+ 	SFB(blk, DVMM_PTE_ARB_CONTROL, DVMM_MAX_PTE_REQ_OUTSTANDING, mask_sh)
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++#define MI_DMIF_PG_MASK_SH_LIST_DCE6(mask_sh, blk)\
++	SFB(blk, DPG_PIPE_ARBITRATION_CONTROL1, PIXEL_DURATION, mask_sh),\
++	SFB(blk, DPG_PIPE_URGENCY_CONTROL, URGENCY_LOW_WATERMARK, mask_sh),\
++	SFB(blk, DPG_PIPE_URGENCY_CONTROL, URGENCY_HIGH_WATERMARK, mask_sh),\
++	SFB(blk, DPG_PIPE_STUTTER_CONTROL, STUTTER_ENABLE, mask_sh),\
++	SFB(blk, DPG_PIPE_STUTTER_CONTROL, STUTTER_IGNORE_FBC, mask_sh),\
++	SF(PIPE0_DMIF_BUFFER_CONTROL, DMIF_BUFFERS_ALLOCATED, mask_sh),\
++	SF(PIPE0_DMIF_BUFFER_CONTROL, DMIF_BUFFERS_ALLOCATION_COMPLETED, mask_sh)
++
++#define MI_DMIF_PG_MASK_SH_DCE6(mask_sh, blk)\
++	SFB(blk, DPG_PIPE_ARBITRATION_CONTROL3, URGENCY_WATERMARK_MASK, mask_sh),\
++	SFB(blk, DPG_PIPE_STUTTER_CONTROL, STUTTER_EXIT_SELF_REFRESH_WATERMARK_MASK, mask_sh),\
++	SFB(blk, DPG_PIPE_STUTTER_CONTROL, STUTTER_EXIT_SELF_REFRESH_WATERMARK, mask_sh),\
++	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_WATERMARK_MASK, mask_sh),\
++	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_ENABLE, mask_sh),\
++	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_URGENT_DURING_REQUEST, mask_sh),\
++	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_NOT_SELF_REFRESH_DURING_REQUEST, mask_sh),\
++	SFB(blk, DPG_PIPE_NB_PSTATE_CHANGE_CONTROL, NB_PSTATE_CHANGE_WATERMARK, mask_sh)
++
++#define MI_DCE6_MASK_SH_LIST(mask_sh)\
++	MI_DCP_MASK_SH_LIST_DCE6(mask_sh, ),\
++	MI_DMIF_PG_MASK_SH_LIST_DCE6(mask_sh, ),\
++	MI_DMIF_PG_MASK_SH_DCE6(mask_sh, ),\
++	MI_GFX6_TILE_MASK_SH_LIST(mask_sh, )
++#endif
++
+ #define MI_DMIF_PG_MASK_SH_LIST(mask_sh, blk)\
+ 	SFB(blk, DPG_PIPE_ARBITRATION_CONTROL1, PIXEL_DURATION, mask_sh),\
+ 	SFB(blk, DPG_WATERMARK_MASK_CONTROL, URGENCY_WATERMARK_MASK, mask_sh),\
+@@ -345,6 +438,16 @@ void dce_mem_input_construct(
+ 	const struct dce_mem_input_shift *mi_shift,
+ 	const struct dce_mem_input_mask *mi_mask);
+ 
++#if defined(CONFIG_DRM_AMD_DC_SI)
++void dce60_mem_input_construct(
++	struct dce_mem_input *dce_mi,
++	struct dc_context *ctx,
++	int inst,
++	const struct dce_mem_input_registers *regs,
++	const struct dce_mem_input_shift *mi_shift,
++	const struct dce_mem_input_mask *mi_mask);
++#endif
++
+ void dce112_mem_input_construct(
+ 	struct dce_mem_input *dce_mi,
+ 	struct dc_context *ctx,
 -- 
 2.25.1
 
