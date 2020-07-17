@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5747E2241F8
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jul 2020 19:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 832472241F9
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jul 2020 19:38:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 544DD6EE19;
-	Fri, 17 Jul 2020 17:38:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A07C26EE1B;
+	Fri, 17 Jul 2020 17:38:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2055.outbound.protection.outlook.com [40.107.223.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 618E76EE15
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 17:38:24 +0000 (UTC)
+ (mail-dm6nam11on2089.outbound.protection.outlook.com [40.107.223.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF69D6EE15
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 17:38:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V23T0u87xX2GiIyz7sc95HRECDruBMVrtMOYkL/VZLYOflfSsu3RtZvXPaHNsce9reS1AcOoynSIbcWoZo0BKhria5ZpgGHf3oIr/97xh60+ixWmwZyk4RNGHcSlLOqAy1NZ4tTg8ohvCnYT+Oj2xkDi5BjfAF/5qQZCAwvdDc8s7bknARlGhYw/fSYlo8aYTEk6idF2D3W4Wrvp6FWTmflPu+zqoHGmZa0WT5R+lG29HXi07Z6HLcZgrodqe0tTRTraUsX+JMehj/bE4Pr2vya2vVVMfPIJr+2bvOtqIEJZPPvhb7Sr7e2catrWO8dyZk0lPe9FnQp4hhSTmBvS/A==
+ b=h3HsVg8LeLDgZxi1JhacTKz6eiFrvQt/ZGLxntIjJ1CBqnX6fJOD4ICDPEd3Jx/uDPWjGd8PCb5gbG5Vwq4398+lyJZmYh4JBVIGqvDQLUL+U+fhCW1gcJZybM/YRNpeIJG3EJjhDIwsN48vpnQ6nv5ieH/aSrlJidistFpmgLA+rLFGh62Dmcj2x+ehMZOTXQ4nsbCZLR1melZVjP2hvCYYqKIMytk2qTwBihbscirn0jX9luKz4YpEOjicoyJpNdF7vfs9ZNOyDZ1kTrXx4l5Go3P1eYXWacTvhPA6ynez1yGD7S+FKGJj679xQzlgtT4w5F04IX+KsM4ng1SbyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jN4kQd1bX2Kl/29tC3aBXnmOvuOTVoenpSF7pkzyxyM=;
- b=Y70+bLWwsuJsADqgMIMLP76bnS/HBoL0DwM7rsgCWzll7+ZPJgtHJbghCJoW85EA2og4fgpCnc1tvxd/o23MlDhgEqzidVLjN7yl81KBGLWdQLDo24hsLPJ8GzcBtAP3v0tOXCsrP5tuA3Y8yuUDFfGtnKRDGVXHMaYa2KBMiDksTsBXOF/xuXqcX1Eb/GA0oTkBw6ADRXRoRFjWxnM0ehro1FK3AzfeH9IYT3yy/FgihU7BI1e67e/o7I9/jLzSFMFIpdzpUDZOWI/iYB/JoCiCGP8TMu1SJafKimbIxYd0jL94l4dU2wPHGYb8XOQX+y9alnuwD+ZHlc/ybh2UyA==
+ bh=+uhpk1uSuGNT6nxw0WyhB72TlebG5fdAgaa6DoN9/wA=;
+ b=kUtGSRzhXQhcrSTQntrsUtptt8Tcv8I8xR3N1im5rVX8NsvzrS10Rod2gCBagL9YLjdgo/hL4uIlIamoWJdTKqZMCdOPAVsMMeW6pPFv5FoOcG4WOqv7SXN/9yigWoZlVU86ILKdReRo6xKPkYknf5saGgdGGLax0f7eYBrCZz/u7b/dKHS5M2zcGQcbUGEMWWDTkgc44pDBXkKq/HkWhQ77JwE3d93a53rUGBBbbJ7V8B8FJG6KXiVkS9KMpaWoQwwrt/OOtnqKW5s3k+6AM71ipu0UFGM7OmVrxVy1W3DA+g7ynH1uOuL5m0pc+NEEG99Gqsc+lxp1zjOsLvheDw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,17 +27,17 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jN4kQd1bX2Kl/29tC3aBXnmOvuOTVoenpSF7pkzyxyM=;
- b=PlR3lYde++wbJ+tJ4hvc4CwQPHOR9NNM8tpsvOobpCd4rakAu2bvP9MO/XQr7R8E3m9hv2NFvvD9QIq4lX4U8pLGVbc51TLPpVlxSyVz9YaK1bY/yXnNtxxHJW7A/VEd5U1C785fJ9C9cvBMrvAmuv6g48KZWGI/M9Mr7Ptcq70=
-Received: from CO2PR05CA0102.namprd05.prod.outlook.com (2603:10b6:104:1::28)
- by CH2PR12MB4326.namprd12.prod.outlook.com (2603:10b6:610:af::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.22; Fri, 17 Jul
+ bh=+uhpk1uSuGNT6nxw0WyhB72TlebG5fdAgaa6DoN9/wA=;
+ b=UQPvpVKMbOXsbdESDf/+gOKJy8L4P9Wj+e5SDr+GJgrSYJwWCBlZgn5uA01zcpjaKEkwt/qYtQVBRxcmuUGhlvRELhgED9D/DFz5c1gtXjaw562xsOGM7Hr/iC9D5/0ClrG0hHB7Fn0Yu4ZLJGxe8UIqr8ZaiYj4VDrKRbk4jak=
+Received: from BN7PR02CA0012.namprd02.prod.outlook.com (2603:10b6:408:20::25)
+ by BY5PR12MB4099.namprd12.prod.outlook.com (2603:10b6:a03:20f::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.23; Fri, 17 Jul
  2020 17:38:22 +0000
-Received: from CO1NAM11FT039.eop-nam11.prod.protection.outlook.com
- (2603:10b6:104:1:cafe::e0) by CO2PR05CA0102.outlook.office365.com
- (2603:10b6:104:1::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.14 via Frontend
+Received: from BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:20:cafe::2b) by BN7PR02CA0012.outlook.office365.com
+ (2603:10b6:408:20::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.17 via Frontend
  Transport; Fri, 17 Jul 2020 17:38:21 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -45,26 +45,26 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT039.mail.protection.outlook.com (10.13.174.110) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT008.mail.protection.outlook.com (10.13.177.95) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.3195.18 via Frontend Transport; Fri, 17 Jul 2020 17:38:21 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 17 Jul
- 2020 12:38:20 -0500
+ 2020 12:38:21 -0500
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 17 Jul
- 2020 12:38:20 -0500
+ 2020 12:38:21 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Fri, 17 Jul 2020 12:38:14 -0500
+ Transport; Fri, 17 Jul 2020 12:38:20 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 02/12] drm/amd/display: Add DSC parameters logging to debugfs
-Date: Fri, 17 Jul 2020 13:38:03 -0400
-Message-ID: <20200717173813.11674-3-qingqing.zhuo@amd.com>
+Subject: [PATCH 03/12] drm/amd/display: Implement AMD VSIF V3
+Date: Fri, 17 Jul 2020 13:38:04 -0400
+Message-ID: <20200717173813.11674-4-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200717173813.11674-1-qingqing.zhuo@amd.com>
 References: <20200717173813.11674-1-qingqing.zhuo@amd.com>
@@ -72,28 +72,28 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(346002)(376002)(396003)(136003)(39860400002)(46966005)(54906003)(2906002)(6666004)(8936002)(316002)(8676002)(36756003)(5660300002)(426003)(1076003)(81166007)(82310400002)(44832011)(2616005)(336012)(356005)(70206006)(478600001)(70586007)(86362001)(4326008)(6916009)(83380400001)(82740400003)(186003)(30864003)(47076004)(26005);
+ SFS:(4636009)(39860400002)(376002)(346002)(136003)(396003)(46966005)(316002)(44832011)(81166007)(1076003)(356005)(54906003)(86362001)(2906002)(6666004)(4326008)(8936002)(36756003)(83380400001)(2616005)(26005)(478600001)(8676002)(336012)(426003)(47076004)(5660300002)(82310400002)(186003)(82740400003)(70586007)(6916009)(70206006);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9a12fe54-8e96-4001-359f-08d82a783336
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4326:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4326F3641552A62D3F7348DEFB7C0@CH2PR12MB4326.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:113;
+X-MS-Office365-Filtering-Correlation-Id: 57668d1d-14de-443a-b651-08d82a783348
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4099:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB4099E3A5BD569B22561EBA57FB7C0@BY5PR12MB4099.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: umyzN16yo33lFpD9e378OXRDTbPyF4r5v3s2aBXGr13+fAlrmamF0hN/3RFCGRS89Gad3z1t1zvvl0z/9eVtszG/1tsKIMD9zvehYmgTaps7LKwC6Y/0TVnL2CbiWu3e5TGSLi2AUEQnBdt9VniR32HsBG4ClXGN0WD/trSMu2Zt5J+iAR8EmBu6lJ2Vb/jWy2zIywWVj1kI8KLq0PPdbvYZ+9tXjufLr8JDq1fJDKVe/ELF7ZkGGp7rfAXm9ATylM7Ca5pTfs62QioNVo/6vwbMBL41xjMYCGEx4teR+uKlstdijIG24xyAHWQquyV/FNSVB/kBc2UKMs3GJJiJ3W1R2aybgKvZyYi7kPsx9JMrxi0iJIzE4efU14prBxlrI/m8MC8zxd+0VIOEUQTvhQ==
+X-Microsoft-Antispam-Message-Info: Ala1raikSvSQ1ksQ0+XfTSO/QKmGoJY6cJHPADoG/L/mU5/KfGJZoVNw9RA0DCTJjk+LJ4y2GMpsfNfQSJwB5HUXYJRl/5VdSzW6h7HhOEG/YdHOhfBNaZoSW+vxEyOtusahFcm5vfU8OXMb4Dy5l6G9TdfHI8QU5sUQNfempphyvm9qbm+N8v/bEauo0Yh/ao6geGJa3ZWP8Lgr5KOC9Itz4uVfp8iYBTvu58htwvN2u0ib/DbVRJq4GlajuIAe8kV2x873b5G8EcxIRRaOU8/UJgZDY8qFmIA3wmMIW5ek8/4cTLo8kjtf7wqZJ0ZGhPzfU0TEwhBvTl9dktItn0uxt+8ZIOEzRCTronrTeDSuoW70MpvZdPbkdiD3fV7uvQmFZD/t7nxMzB7TWZ390w==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2020 17:38:21.4968 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a12fe54-8e96-4001-359f-08d82a783336
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2020 17:38:21.7340 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57668d1d-14de-443a-b651-08d82a783348
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT039.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4326
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4099
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,610 +105,174 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk Brol <eryk.brol@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Bhawanpreet.Lakha@amd.com
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Reza Amini <Reza.Amini@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Eryk Brol <eryk.brol@amd.com>
+From: Reza Amini <Reza.Amini@amd.com>
 
-[why]
-Need to add new parameters to debugfs logging so
-we will know what parameters DSC is using for
-debug purposes. So we are adding a read function
-in debugfs to read DSC status registers
+[Why]
+To support V3
 
-Signed-off-by: Eryk Brol <eryk.brol@amd.com>
-Reviewed-by: Mikita Lipski <Mikita.Lipski@amd.com>
+[How]
+Generate new VSIF for V3
+
+Signed-off-by: Reza Amini <Reza.Amini@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 516 +++++++++++++++++-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c  |   5 +
- drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h   |   5 +
- 3 files changed, 525 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   | 19 +++++++++
+ drivers/gpu/drm/amd/display/dc/dc_hw_types.h  |  7 ++++
+ drivers/gpu/drm/amd/display/dc/dc_stream.h    |  6 +++
+ .../amd/display/modules/freesync/freesync.c   | 41 +++++++++++++++++++
+ 4 files changed, 73 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index caf3beaf4b7b..8bbf54ffe01b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -33,6 +33,8 @@
- #include "amdgpu_dm_debugfs.h"
- #include "dm_helpers.h"
- #include "dmub/dmub_srv.h"
-+#include "resource.h"
-+#include "dsc.h"
- 
- struct dmub_debugfs_trace_header {
- 	uint32_t entry_count;
-@@ -995,6 +997,462 @@ static ssize_t dp_dpcd_data_read(struct file *f, char __user *buf,
- 	return read_size - r;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+index d6989d115c5c..41c278519b67 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+@@ -244,6 +244,25 @@ struct dc_stream_status *dc_stream_get_status(
+ 	return dc_stream_get_status_from_state(dc->current_state, stream);
  }
  
-+static ssize_t dp_dsc_clock_en_read(struct file *f, char __user *buf,
-+				    size_t size, loff_t *pos)
++#ifndef TRIM_FSFT
++/**
++ * dc_optimize_timing() - dc to optimize timing
++ */
++bool dc_optimize_timing(
++	struct dc_crtc_timing *timing,
++	unsigned int max_input_rate_in_khz)
 +{
-+	char *rd_buf = NULL;
-+	char *rd_buf_ptr = NULL;
-+	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
-+	struct display_stream_compressor *dsc;
-+	struct dcn_dsc_state dsc_state = {0};
-+	const uint32_t rd_buf_size = 10;
-+	struct pipe_ctx *pipe_ctx;
-+	ssize_t result = 0;
-+	int i, r, str_len = 30;
++	//optimization is expected to assing a value to these:
++	//timing->pix_clk_100hz
++	//timing->v_front_porch
++	//timing->v_total
++	//timing->fast_transport_output_rate_100hz;
++	timing->fast_transport_output_rate_100hz = timing->pix_clk_100hz;
 +
-+	rd_buf = kcalloc(rd_buf_size, sizeof(char), GFP_KERNEL);
-+
-+	if (!rd_buf)
-+		return -ENOMEM;
-+
-+	rd_buf_ptr = rd_buf;
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream &&
-+			    pipe_ctx->stream->link == aconnector->dc_link)
-+				break;
-+	}
-+
-+	if (!pipe_ctx)
-+		return -ENXIO;
-+
-+	dsc = pipe_ctx->stream_res.dsc;
-+	if (dsc)
-+		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-+
-+	snprintf(rd_buf_ptr, str_len,
-+		"%d\n",
-+		dsc_state.dsc_clock_en);
-+	rd_buf_ptr += str_len;
-+
-+	while (size) {
-+		if (*pos >= rd_buf_size)
-+			break;
-+
-+		r = put_user(*(rd_buf + result), buf);
-+		if (r)
-+			return r; /* r = -EFAULT */
-+
-+		buf += 1;
-+		size -= 1;
-+		*pos += 1;
-+		result += 1;
-+	}
-+
-+	kfree(rd_buf);
-+	return result;
++	return true;
 +}
++#endif
 +
-+static ssize_t dp_dsc_slice_width_read(struct file *f, char __user *buf,
-+				    size_t size, loff_t *pos)
-+{
-+	char *rd_buf = NULL;
-+	char *rd_buf_ptr = NULL;
-+	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
-+	struct display_stream_compressor *dsc;
-+	struct dcn_dsc_state dsc_state = {0};
-+	const uint32_t rd_buf_size = 100;
-+	struct pipe_ctx *pipe_ctx;
-+	ssize_t result = 0;
-+	int i, r, str_len = 30;
-+
-+	rd_buf = kcalloc(rd_buf_size, sizeof(char), GFP_KERNEL);
-+
-+	if (!rd_buf)
-+		return -ENOMEM;
-+
-+	rd_buf_ptr = rd_buf;
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream &&
-+			    pipe_ctx->stream->link == aconnector->dc_link)
-+				break;
-+	}
-+
-+	if (!pipe_ctx)
-+		return -ENXIO;
-+
-+	dsc = pipe_ctx->stream_res.dsc;
-+	if (dsc)
-+		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-+
-+	snprintf(rd_buf_ptr, str_len,
-+		"%d\n",
-+		dsc_state.dsc_slice_width);
-+	rd_buf_ptr += str_len;
-+
-+	while (size) {
-+		if (*pos >= rd_buf_size)
-+			break;
-+
-+		r = put_user(*(rd_buf + result), buf);
-+		if (r)
-+			return r; /* r = -EFAULT */
-+
-+		buf += 1;
-+		size -= 1;
-+		*pos += 1;
-+		result += 1;
-+	}
-+
-+	kfree(rd_buf);
-+	return result;
-+}
-+
-+static ssize_t dp_dsc_slice_height_read(struct file *f, char __user *buf,
-+				    size_t size, loff_t *pos)
-+{
-+	char *rd_buf = NULL;
-+	char *rd_buf_ptr = NULL;
-+	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
-+	struct display_stream_compressor *dsc;
-+	struct dcn_dsc_state dsc_state = {0};
-+	const uint32_t rd_buf_size = 100;
-+	struct pipe_ctx *pipe_ctx;
-+	ssize_t result = 0;
-+	int i, r, str_len = 30;
-+
-+	rd_buf = kcalloc(rd_buf_size, sizeof(char), GFP_KERNEL);
-+
-+	if (!rd_buf)
-+		return -ENOMEM;
-+
-+	rd_buf_ptr = rd_buf;
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream &&
-+			    pipe_ctx->stream->link == aconnector->dc_link)
-+				break;
-+	}
-+
-+	if (!pipe_ctx)
-+		return -ENXIO;
-+
-+	dsc = pipe_ctx->stream_res.dsc;
-+	if (dsc)
-+		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-+
-+	snprintf(rd_buf_ptr, str_len,
-+		"%d\n",
-+		dsc_state.dsc_slice_height);
-+	rd_buf_ptr += str_len;
-+
-+	while (size) {
-+		if (*pos >= rd_buf_size)
-+			break;
-+
-+		r = put_user(*(rd_buf + result), buf);
-+		if (r)
-+			return r; /* r = -EFAULT */
-+
-+		buf += 1;
-+		size -= 1;
-+		*pos += 1;
-+		result += 1;
-+	}
-+
-+	kfree(rd_buf);
-+	return result;
-+}
-+
-+static ssize_t dp_dsc_bytes_per_pixel_read(struct file *f, char __user *buf,
-+				    size_t size, loff_t *pos)
-+{
-+	char *rd_buf = NULL;
-+	char *rd_buf_ptr = NULL;
-+	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
-+	struct display_stream_compressor *dsc;
-+	struct dcn_dsc_state dsc_state = {0};
-+	const uint32_t rd_buf_size = 100;
-+	struct pipe_ctx *pipe_ctx;
-+	ssize_t result = 0;
-+	int i, r, str_len = 30;
-+
-+	rd_buf = kcalloc(rd_buf_size, sizeof(char), GFP_KERNEL);
-+
-+	if (!rd_buf)
-+		return -ENOMEM;
-+
-+	rd_buf_ptr = rd_buf;
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream &&
-+			    pipe_ctx->stream->link == aconnector->dc_link)
-+				break;
-+	}
-+
-+	if (!pipe_ctx)
-+		return -ENXIO;
-+
-+	dsc = pipe_ctx->stream_res.dsc;
-+	if (dsc)
-+		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-+
-+	snprintf(rd_buf_ptr, str_len,
-+		"%d\n",
-+		dsc_state.dsc_bytes_per_pixel);
-+	rd_buf_ptr += str_len;
-+
-+	while (size) {
-+		if (*pos >= rd_buf_size)
-+			break;
-+
-+		r = put_user(*(rd_buf + result), buf);
-+		if (r)
-+			return r; /* r = -EFAULT */
-+
-+		buf += 1;
-+		size -= 1;
-+		*pos += 1;
-+		result += 1;
-+	}
-+
-+	kfree(rd_buf);
-+	return result;
-+}
-+
-+static ssize_t dp_dsc_pic_width_read(struct file *f, char __user *buf,
-+				    size_t size, loff_t *pos)
-+{
-+	char *rd_buf = NULL;
-+	char *rd_buf_ptr = NULL;
-+	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
-+	struct display_stream_compressor *dsc;
-+	struct dcn_dsc_state dsc_state = {0};
-+	const uint32_t rd_buf_size = 100;
-+	struct pipe_ctx *pipe_ctx;
-+	ssize_t result = 0;
-+	int i, r, str_len = 30;
-+
-+	rd_buf = kcalloc(rd_buf_size, sizeof(char), GFP_KERNEL);
-+
-+	if (!rd_buf)
-+		return -ENOMEM;
-+
-+	rd_buf_ptr = rd_buf;
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream &&
-+			    pipe_ctx->stream->link == aconnector->dc_link)
-+				break;
-+	}
-+
-+	if (!pipe_ctx)
-+		return -ENXIO;
-+
-+	dsc = pipe_ctx->stream_res.dsc;
-+	if (dsc)
-+		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-+
-+	snprintf(rd_buf_ptr, str_len,
-+		"%d\n",
-+		dsc_state.dsc_pic_width);
-+	rd_buf_ptr += str_len;
-+
-+	while (size) {
-+		if (*pos >= rd_buf_size)
-+			break;
-+
-+		r = put_user(*(rd_buf + result), buf);
-+		if (r)
-+			return r; /* r = -EFAULT */
-+
-+		buf += 1;
-+		size -= 1;
-+		*pos += 1;
-+		result += 1;
-+	}
-+
-+	kfree(rd_buf);
-+	return result;
-+}
-+
-+static ssize_t dp_dsc_pic_height_read(struct file *f, char __user *buf,
-+				    size_t size, loff_t *pos)
-+{
-+	char *rd_buf = NULL;
-+	char *rd_buf_ptr = NULL;
-+	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
-+	struct display_stream_compressor *dsc;
-+	struct dcn_dsc_state dsc_state = {0};
-+	const uint32_t rd_buf_size = 100;
-+	struct pipe_ctx *pipe_ctx;
-+	ssize_t result = 0;
-+	int i, r, str_len = 30;
-+
-+	rd_buf = kcalloc(rd_buf_size, sizeof(char), GFP_KERNEL);
-+
-+	if (!rd_buf)
-+		return -ENOMEM;
-+
-+	rd_buf_ptr = rd_buf;
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream &&
-+			    pipe_ctx->stream->link == aconnector->dc_link)
-+				break;
-+	}
-+
-+	if (!pipe_ctx)
-+		return -ENXIO;
-+
-+	dsc = pipe_ctx->stream_res.dsc;
-+	if (dsc)
-+		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-+
-+	snprintf(rd_buf_ptr, str_len,
-+		"%d\n",
-+		dsc_state.dsc_pic_height);
-+	rd_buf_ptr += str_len;
-+
-+	while (size) {
-+		if (*pos >= rd_buf_size)
-+			break;
-+
-+		r = put_user(*(rd_buf + result), buf);
-+		if (r)
-+			return r; /* r = -EFAULT */
-+
-+		buf += 1;
-+		size -= 1;
-+		*pos += 1;
-+		result += 1;
-+	}
-+
-+	kfree(rd_buf);
-+	return result;
-+}
-+
-+static ssize_t dp_dsc_chunk_size_read(struct file *f, char __user *buf,
-+				    size_t size, loff_t *pos)
-+{
-+	char *rd_buf = NULL;
-+	char *rd_buf_ptr = NULL;
-+	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
-+	struct display_stream_compressor *dsc;
-+	struct dcn_dsc_state dsc_state = {0};
-+	const uint32_t rd_buf_size = 100;
-+	struct pipe_ctx *pipe_ctx;
-+	ssize_t result = 0;
-+	int i, r, str_len = 30;
-+
-+	rd_buf = kcalloc(rd_buf_size, sizeof(char), GFP_KERNEL);
-+
-+	if (!rd_buf)
-+		return -ENOMEM;
-+
-+	rd_buf_ptr = rd_buf;
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream &&
-+			    pipe_ctx->stream->link == aconnector->dc_link)
-+				break;
-+	}
-+
-+	if (!pipe_ctx)
-+		return -ENXIO;
-+
-+	dsc = pipe_ctx->stream_res.dsc;
-+	if (dsc)
-+		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-+
-+	snprintf(rd_buf_ptr, str_len,
-+		"%d\n",
-+		dsc_state.dsc_chunk_size);
-+	rd_buf_ptr += str_len;
-+
-+	while (size) {
-+		if (*pos >= rd_buf_size)
-+			break;
-+
-+		r = put_user(*(rd_buf + result), buf);
-+		if (r)
-+			return r; /* r = -EFAULT */
-+
-+		buf += 1;
-+		size -= 1;
-+		*pos += 1;
-+		result += 1;
-+	}
-+
-+	kfree(rd_buf);
-+	return result;
-+}
-+
-+static ssize_t dp_dsc_slice_bpg_offset_read(struct file *f, char __user *buf,
-+				    size_t size, loff_t *pos)
-+{
-+	char *rd_buf = NULL;
-+	char *rd_buf_ptr = NULL;
-+	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
-+	struct display_stream_compressor *dsc;
-+	struct dcn_dsc_state dsc_state = {0};
-+	const uint32_t rd_buf_size = 100;
-+	struct pipe_ctx *pipe_ctx;
-+	ssize_t result = 0;
-+	int i, r, str_len = 30;
-+
-+	rd_buf = kcalloc(rd_buf_size, sizeof(char), GFP_KERNEL);
-+
-+	if (!rd_buf)
-+		return -ENOMEM;
-+
-+	rd_buf_ptr = rd_buf;
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream &&
-+			    pipe_ctx->stream->link == aconnector->dc_link)
-+				break;
-+	}
-+
-+	if (!pipe_ctx)
-+		return -ENXIO;
-+
-+	dsc = pipe_ctx->stream_res.dsc;
-+	if (dsc)
-+		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-+
-+	snprintf(rd_buf_ptr, str_len,
-+		"%d\n",
-+		dsc_state.dsc_slice_bpg_offset);
-+	rd_buf_ptr += str_len;
-+
-+	while (size) {
-+		if (*pos >= rd_buf_size)
-+			break;
-+
-+		r = put_user(*(rd_buf + result), buf);
-+		if (r)
-+			return r; /* r = -EFAULT */
-+
-+		buf += 1;
-+		size -= 1;
-+		*pos += 1;
-+		result += 1;
-+	}
-+
-+	kfree(rd_buf);
-+	return result;
-+}
-+
- DEFINE_SHOW_ATTRIBUTE(dmub_fw_state);
- DEFINE_SHOW_ATTRIBUTE(dmub_tracebuffer);
- DEFINE_SHOW_ATTRIBUTE(output_bpc);
-@@ -1003,6 +1461,54 @@ DEFINE_SHOW_ATTRIBUTE(vrr_range);
- DEFINE_SHOW_ATTRIBUTE(hdcp_sink_capability);
- #endif
  
-+static const struct file_operations dp_dsc_clock_en_debugfs_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dp_dsc_clock_en_read,
-+	.llseek = default_llseek
-+};
-+
-+static const struct file_operations dp_dsc_slice_width_debugfs_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dp_dsc_slice_width_read,
-+	.llseek = default_llseek
-+};
-+
-+static const struct file_operations dp_dsc_slice_height_debugfs_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dp_dsc_slice_height_read,
-+	.llseek = default_llseek
-+};
-+
-+static const struct file_operations dp_dsc_bytes_per_pixel_debugfs_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dp_dsc_bytes_per_pixel_read,
-+	.llseek = default_llseek
-+};
-+
-+static const struct file_operations dp_dsc_pic_width_debugfs_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dp_dsc_pic_width_read,
-+	.llseek = default_llseek
-+};
-+
-+static const struct file_operations dp_dsc_pic_height_debugfs_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dp_dsc_pic_height_read,
-+	.llseek = default_llseek
-+};
-+
-+static const struct file_operations dp_dsc_chunk_size_debugfs_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dp_dsc_chunk_size_read,
-+	.llseek = default_llseek
-+};
-+
-+static const struct file_operations dp_dsc_slice_bpg_offset_debugfs_fops = {
-+	.owner = THIS_MODULE,
-+	.read = dp_dsc_slice_bpg_offset_read,
-+	.llseek = default_llseek
-+};
-+
- static const struct file_operations dp_link_settings_debugfs_fops = {
- 	.owner = THIS_MODULE,
- 	.read = dp_link_settings_read,
-@@ -1062,7 +1568,15 @@ static const struct {
- 		{"sdp_message", &sdp_message_fops},
- 		{"aux_dpcd_address", &dp_dpcd_address_debugfs_fops},
- 		{"aux_dpcd_size", &dp_dpcd_size_debugfs_fops},
--		{"aux_dpcd_data", &dp_dpcd_data_debugfs_fops}
-+		{"aux_dpcd_data", &dp_dpcd_data_debugfs_fops},
-+		{"dsc_clock_en", &dp_dsc_clock_en_debugfs_fops},
-+		{"dsc_slice_width", &dp_dsc_slice_width_debugfs_fops},
-+		{"dsc_slice_height", &dp_dsc_slice_height_debugfs_fops},
-+		{"dsc_bytes_per_pixel", &dp_dsc_bytes_per_pixel_debugfs_fops},
-+		{"dsc_pic_width", &dp_dsc_pic_width_debugfs_fops},
-+		{"dsc_pic_height", &dp_dsc_pic_height_debugfs_fops},
-+		{"dsc_chunk_size", &dp_dsc_chunk_size_debugfs_fops},
-+		{"dsc_slice_bpg", &dp_dsc_slice_bpg_offset_debugfs_fops}
+ /**
+  * dc_stream_set_cursor_attributes() - Update cursor attributes and set cursor surface address
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
+index b7a8c71e3e39..1a87bc3da826 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
+@@ -713,6 +713,9 @@ struct dc_crtc_timing_flags {
+ 	uint32_t LTE_340MCSC_SCRAMBLE:1;
+ 
+ 	uint32_t DSC : 1; /* Use DSC with this timing */
++#ifndef TRIM_FSFT
++	uint32_t FAST_TRANSPORT: 1;
++#endif
  };
  
- #ifdef CONFIG_DRM_AMD_DC_HDCP
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
-index 3c6ecfe141bb..ba50214d6c32 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
-@@ -157,6 +157,11 @@ static void dsc2_read_state(struct display_stream_compressor *dsc, struct dcn_ds
- 	REG_GET(DSC_TOP_CONTROL, DSC_CLOCK_EN, &s->dsc_clock_en);
- 	REG_GET(DSCC_PPS_CONFIG3, SLICE_WIDTH, &s->dsc_slice_width);
- 	REG_GET(DSCC_PPS_CONFIG1, BITS_PER_PIXEL, &s->dsc_bytes_per_pixel);
-+	REG_GET(DSCC_PPS_CONFIG3, SLICE_HEIGHT, &s->dsc_slice_height);
-+	REG_GET(DSCC_PPS_CONFIG1, CHUNK_SIZE, &s->dsc_chunk_size);
-+	REG_GET(DSCC_PPS_CONFIG2, PIC_WIDTH, &s->dsc_pic_width);
-+	REG_GET(DSCC_PPS_CONFIG2, PIC_HEIGHT, &s->dsc_pic_height);
-+	REG_GET(DSCC_PPS_CONFIG7, SLICE_BPG_OFFSET, &s->dsc_slice_bpg_offset);
+ enum dc_timing_3d_format {
+@@ -772,6 +775,10 @@ struct dc_crtc_timing {
+ 	enum dc_aspect_ratio aspect_ratio;
+ 	enum scanning_type scan_type;
+ 
++#ifndef TRIM_FSFT
++	uint32_t fast_transport_output_rate_100hz;
++#endif
++
+ 	struct dc_crtc_timing_flags flags;
+ 	struct dc_dsc_config dsc_cfg;
+ };
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_stream.h b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+index f2ed9bc5a319..f599a72dab50 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+@@ -419,6 +419,12 @@ struct dc_stream_status *dc_stream_get_status_from_state(
+ struct dc_stream_status *dc_stream_get_status(
+ 	struct dc_stream_state *dc_stream);
+ 
++#ifndef TRIM_FSFT
++bool dc_optimize_timing(
++	struct dc_crtc_timing *timing,
++	unsigned int max_input_rate_in_khz);
++#endif
++
+ /*******************************************************************************
+  * Cursor interfaces - To manages the cursor within a stream
+  ******************************************************************************/
+diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+index d3a5ba9ee782..7a2500fbf3f2 100644
+--- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
++++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+@@ -760,9 +760,35 @@ static void build_vrr_infopacket_v2(enum signal_type signal,
+ 
+ 	infopacket->valid = true;
  }
++#ifndef TRIM_FSFT
++static void build_vrr_infopacket_fast_transport_data(
++	bool ftActive,
++	unsigned int ftOutputRate,
++	struct dc_info_packet *infopacket)
++{
++	/* PB9 : bit7 - fast transport Active*/
++	unsigned char activeBit = (ftActive) ? 1 << 7 : 0;
++
++	infopacket->sb[1] &= ~activeBit;  //clear bit
++	infopacket->sb[1] |=  activeBit;  //set bit
++
++	/* PB13 : Target Output Pixel Rate [kHz] - bits 7:0  */
++	infopacket->sb[13] = ftOutputRate & 0xFF;
++
++	/* PB14 : Target Output Pixel Rate [kHz] - bits 15:8  */
++	infopacket->sb[14] = (ftOutputRate >> 8) & 0xFF;
++
++	/* PB15 : Target Output Pixel Rate [kHz] - bits 23:16  */
++	infopacket->sb[15] = (ftOutputRate >> 16) & 0xFF;
++
++}
++#endif
  
+ static void build_vrr_infopacket_v3(enum signal_type signal,
+ 		const struct mod_vrr_params *vrr,
++#ifndef TRIM_FSFT
++		bool ftActive, unsigned int ftOutputRate,
++#endif
+ 		enum color_transfer_func app_tf,
+ 		struct dc_info_packet *infopacket)
+ {
+@@ -773,6 +799,13 @@ static void build_vrr_infopacket_v3(enum signal_type signal,
  
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h
-index 7c2a3328b208..5915994f9eb8 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h
-@@ -56,6 +56,11 @@ struct dcn_dsc_state {
- 	uint32_t dsc_clock_en;
- 	uint32_t dsc_slice_width;
- 	uint32_t dsc_bytes_per_pixel;
-+	uint32_t dsc_slice_height;
-+	uint32_t dsc_pic_width;
-+	uint32_t dsc_pic_height;
-+	uint32_t dsc_slice_bpg_offset;
-+	uint32_t dsc_chunk_size;
- };
+ 	build_vrr_infopacket_fs2_data(app_tf, infopacket);
  
++#ifndef TRIM_FSFT
++	build_vrr_infopacket_fast_transport_data(
++			ftActive,
++			ftOutputRate,
++			infopacket);
++#endif
++
+ 	build_vrr_infopacket_checksum(&payload_size, infopacket);
  
+ 	infopacket->valid = true;
+@@ -795,7 +828,15 @@ void mod_freesync_build_vrr_infopacket(struct mod_freesync *mod_freesync,
+ 
+ 	switch (packet_type) {
+ 	case PACKET_TYPE_FS_V3:
++#ifndef TRIM_FSFT
++		build_vrr_infopacket_v3(
++				stream->signal, vrr,
++				stream->timing.flags.FAST_TRANSPORT,
++				stream->timing.fast_transport_output_rate_100hz,
++				app_tf, infopacket);
++#else
+ 		build_vrr_infopacket_v3(stream->signal, vrr, app_tf, infopacket);
++#endif
+ 		break;
+ 	case PACKET_TYPE_FS_V2:
+ 		build_vrr_infopacket_v2(stream->signal, vrr, app_tf, infopacket);
 -- 
 2.17.1
 
