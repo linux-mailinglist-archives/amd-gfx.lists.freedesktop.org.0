@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7949C224200
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jul 2020 19:38:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F00252241FF
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jul 2020 19:38:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65AB26EE23;
-	Fri, 17 Jul 2020 17:38:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDEDA6EE22;
+	Fri, 17 Jul 2020 17:38:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2070.outbound.protection.outlook.com [40.107.236.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 808DA6EE1A
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 17:38:27 +0000 (UTC)
+ (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F67B6EE1F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 17:38:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ch3Ik0VFMPWsfEmbDySvvrWTtwjARF/AEcEb1Rss2NB7QiYeZVohPdJYCSpzG1tGVNmkyKfTCxrRJSB/DNm2KCtSYUBCq3pcZv5MJHLM+w/VxgH6WfRr9xhZsbskGzr0k3yWfwdXmA8LtjwvX0qJXKENwbhWNiFKjVHNByhND8iAw1UcAQYQkZIw729xuWhmuhcMA+bnLTqfhQgB3fpFtN3Yb4LtOOHKn7yvSaWxPygobgE9C1Eo2b8KzFuDEcP6y1xRqvgo3L6L5py+FO8oU2krK9lEe0qWlldnj6WP7J5uL83d0B4V1K/TL04SBgULo/qN/vPOV39J4NoMkmD7Ow==
+ b=Yt6Dk7vW0ItCs/7w3iA5EjCdS6tSqkiGDPJsAKZIeZ2q8XBfL1hthWyIPDrLxGBF8wTpBSA9i1QGzAXrnYXR1WMBpgwsi1ngxfAMRWhKNUy4Mzo6ohzP5d7QtUGZR+sKlvY/OYXkaz/5PTLiddPHMImaIJik8zZI90GJKTKfWHx/Dz2kjReD2BR4X5RhYkmM4KLX0ENfW89gmjahppwHYG2vDTE+WCpPToFO+shfXeh5k4JSW5NwCyFjTP4q0+5IXufCsZC+CaljCA+ZIdid8uS+CspIyzq1rne9OERklEoUyB6PUwRw8P1ZLhTPvNaVnK7uZEyIXbHyqn7+hsGHGw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4ruFXpTcgFu/Fag11EQBR+aSoAt3povzv++wkehMFFs=;
- b=iHfs8HM1rOg5eWNAg2iaX0gSTFF4xDdJZIVbDw2SBDKulp3etR/BeOWNkcm/wWSSfr7qlJwrGrocgoGNkqeJb8hH8tBPuMmv4YZJPtie2ck3puFE7gd3XJ2Jt+po25Qcw1iod8hK4P93QcDm1t/Z30amCnNkOcRer9im1VVtoPEnpUJQ/jEk/5mLMNoZcaiGzumUMpVcEiyNVTt6LKpp2LOJjzzMqDkPZirInpSYvXwECbGbPYAQ3xJT3SnCIvc1EEQ1+FVFq/4H//cHfnjRUzzBPHJ/q/ykJ5zaVeVeI6t+/Nb6O/rHVgAMScgkxYs5MMWgf18LSQysrOJAALmZvQ==
+ bh=QqpvtVK+la7qTEk0LPgCHv2a2D9JhNBmO55Ug1tDJlY=;
+ b=LKZCPGweZUmkNwX4QL9W/e8i9i4GZEh21M/H/bqbolSfEIlSLR6LH32PSQ6LvFjL8difjUvobxqa//60LRN9mZNYIPsrrEgVZv2EGSR1R33y+h3an/sOnFeI39rJEn5mp1tzZPcEt88meiPa0ocsuWuBoQIg8d84iDWr8j7uYLt/zqCi0b0cwD+EMzQd2yWtT8lUo8j0AH2nCS/WaNaBe6gqbP2LWVaI5GydwXBoId+a/l31Y7WVV2MYYtMMrkWFVnX4/xitb+pkfXye0IPdsS5AuhhSo5Ct93xrWrThsnKA5QJTz+lR9r/RwR1hSKgPxx0sPwdepaBkZhe+hIftZw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,45 +27,45 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4ruFXpTcgFu/Fag11EQBR+aSoAt3povzv++wkehMFFs=;
- b=D1g0443Tb38Dq+ibTNSCEhK/+kM9I1MvsNNWBXvnsS8YcyB2/m1d1JKeCwmD4wKjNQtIaTexeJG9q6g6G6KZlqKV3cbSu6OmslZKC2wKhXw667AvpK1Uu80jsLQouwCXqyQREmaiLvGUwSNnbuwq8VZ63ARU9ek44EqFp7eTPLk=
-Received: from DM5PR18CA0090.namprd18.prod.outlook.com (2603:10b6:3:3::28) by
- BN8PR12MB3170.namprd12.prod.outlook.com (2603:10b6:408:98::33) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3174.23; Fri, 17 Jul 2020 17:38:25 +0000
-Received: from DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:3:cafe::ab) by DM5PR18CA0090.outlook.office365.com
- (2603:10b6:3:3::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.19 via Frontend
- Transport; Fri, 17 Jul 2020 17:38:25 +0000
+ bh=QqpvtVK+la7qTEk0LPgCHv2a2D9JhNBmO55Ug1tDJlY=;
+ b=nuY2whbLI7zIBP3IuraqfC7YOtF3NNz13mEb88Dexet7VN9iapJ0i2iyluZXktF75UWaVGB7cXj7acv72F/RIVqnJnluGYoprZ6v5ERz6lTBMTYvrt2o4QmM2ef3G3uQuzSP07FbbkVccbUisR10Jzvj6utbeLbVL47EphuHV5E=
+Received: from BN6PR11CA0031.namprd11.prod.outlook.com (2603:10b6:404:4b::17)
+ by BN8PR12MB3345.namprd12.prod.outlook.com (2603:10b6:408:64::30)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.23; Fri, 17 Jul
+ 2020 17:38:26 +0000
+Received: from BN8NAM11FT051.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:4b:cafe::ab) by BN6PR11CA0031.outlook.office365.com
+ (2603:10b6:404:4b::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.17 via Frontend
+ Transport; Fri, 17 Jul 2020 17:38:26 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- DM6NAM11FT065.mail.protection.outlook.com (10.13.172.109) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT051.mail.protection.outlook.com (10.13.177.66) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3195.18 via Frontend Transport; Fri, 17 Jul 2020 17:38:25 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3195.18 via Frontend Transport; Fri, 17 Jul 2020 17:38:26 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 17 Jul
- 2020 12:38:24 -0500
+ 2020 12:38:25 -0500
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 17 Jul
- 2020 12:38:24 -0500
+ 2020 12:38:25 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
  Transport; Fri, 17 Jul 2020 12:38:24 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/12] drm/amd/display: Improve compatibility by re-ordering
- info-packets
-Date: Fri, 17 Jul 2020 13:38:09 -0400
-Message-ID: <20200717173813.11674-9-qingqing.zhuo@amd.com>
+Subject: [PATCH 09/12] drm/amd/display: Call dsc related functions indirectly
+ via dc interface
+Date: Fri, 17 Jul 2020 13:38:10 -0400
+Message-ID: <20200717173813.11674-10-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200717173813.11674-1-qingqing.zhuo@amd.com>
 References: <20200717173813.11674-1-qingqing.zhuo@amd.com>
@@ -73,28 +73,28 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(39860400002)(136003)(346002)(376002)(396003)(46966005)(70206006)(82740400003)(336012)(4326008)(2616005)(36756003)(26005)(356005)(1076003)(82310400002)(47076004)(2906002)(81166007)(86362001)(8936002)(316002)(6916009)(6666004)(426003)(8676002)(5660300002)(70586007)(478600001)(54906003)(186003)(44832011)(83380400001);
+ SFS:(4636009)(396003)(39860400002)(346002)(376002)(136003)(46966005)(2906002)(6916009)(316002)(47076004)(82740400003)(1076003)(356005)(5660300002)(82310400002)(8936002)(70586007)(81166007)(6666004)(83380400001)(54906003)(70206006)(186003)(36756003)(86362001)(4326008)(26005)(2616005)(44832011)(426003)(336012)(478600001)(8676002);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e814d71f-bba3-42b4-0b7a-08d82a78356f
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3170:
-X-Microsoft-Antispam-PRVS: <BN8PR12MB31703F4EE18AA15989F0E8DAFB7C0@BN8PR12MB3170.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
+X-MS-Office365-Filtering-Correlation-Id: 66f8eff5-dc65-463d-ece1-08d82a783635
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3345:
+X-Microsoft-Antispam-PRVS: <BN8PR12MB33450FB2EB9520F7E20E9F1FFB7C0@BN8PR12MB3345.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2Yte337azd93DPWpswBUdwydiYDAWaU5VP9KwznQ+mql11Z8EVglHeFZw0Xaw0Sf6PSe7CH2KJ8NScsAYq4spO9yIWk2QurUfW1PiBsVOUWojsrk9ZZnrJXRrpRRqv/tzU7aqJ/sXMw93wJBY6gdV7uaVfZZmZf4lG1RNzh1hCyeMWI2MIxOG4KdAw+iwraBF5U/YOXxHX4gb5KfeAwwcBWzTNgBGmbYjpsQ19UKU+c1Obvug0OsTgA+arHpwwBGCarB1/IZgkKA8iqFlJQk6uzme9T2POv15aw4zr0PP2nMI9YC/LBy3iFn3+DhWjdULZ9yRqwzqDJGTFhN/sHcz0SBazQdftpwAI1jWd6EFOFlO+T0S2EtovupxGwIciCOvWZdFWsyoZvecieUJJMUmQ==
+X-Microsoft-Antispam-Message-Info: HNwkL2URx34OdDPBSu7kZtGhBcUBTcm1lYDrVYHNKEzvATkUz1SBAlydl+zQIsD4PQ+tiQ6lVaKmXQ1MrXZRzIQZq4YFzrKA4DoIHlP4JJJS+Dup/LUN+ezmlf2EsMx/Obllgxh+hAM54W3L4eBtyzgyVj34lMhgeDX4foE6q0xilCVnGZCqEMBu72bXvqP6X9QUZe7LH6OC985vQTAcz5DHy6G4U7elgBchAuBLbKI1eouMeaU1Sb1dVi5jPK7Sa93ljNbfxEbMNjGk8x6B0S9yz7KY+MHV4GGJub4eE/FFIq9BsJgG5ZtELpdI+lOI734oWhyazZegVZOsNhnz0onGaah122oMhWy8ZhPwGFYGyI8Y+8g+7RAxBQgGDuNOFcmqFBmkPKfCQhEWJ8QCIQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2020 17:38:25.2997 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e814d71f-bba3-42b4-0b7a-08d82a78356f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2020 17:38:26.6441 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66f8eff5-dc65-463d-ece1-08d82a783635
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT051.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3170
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3345
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,55 +106,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Naveed Ashfaq <Naveed.Ashfaq@amd.com>, Eryk.Brol@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Bhawanpreet.Lakha@amd.com
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Naveed Ashfaq <Naveed.Ashfaq@amd.com>
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
-[why]
-On DCN20, Some features would not be activated when ALLM was turned on.
-TV seemed to activate only the latest info packet sent, and the ALLM
-info packet was sent after the VSIF info packet.
+[Why&How]
+Accessing dcn20_add_dsc_to_stream_resource directly
+causes build failure for configuration which has
+CONFIG_DRM_AMD_DC_DCN disabled. Fix this by
+calling the corresponding function exposed via dc
+resource functions.
 
-The packet indices was also inconsistent between DCN10 and DCN20.
-
-[how]
-Change the packet indices of DCN20 to match those of DCN10.
-This makes them consistent and also makes the vendor info packet
-be sent after the hfvsif info packet.
-
-Signed-off-by: Naveed Ashfaq <Naveed.Ashfaq@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c   | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c
-index 99a7ef6ab878..e3984f02b7b3 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c
-@@ -152,11 +152,11 @@ static void enc2_stream_encoder_update_hdmi_info_packets(
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index 20d420b26ef7..729ca38750d9 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -827,7 +827,7 @@ bool compute_mst_dsc_configs_for_state(struct drm_atomic_state *state,
+ 		stream = dc_state->streams[i];
  
- 	/*Always add mandatory packets first followed by optional ones*/
- 	enc2_update_hdmi_info_packet(enc1, 0, &info_frame->avi);
--	enc2_update_hdmi_info_packet(enc1, 5, &info_frame->hfvsif);
-+	enc2_update_hdmi_info_packet(enc1, 1, &info_frame->hfvsif);
- 	enc2_update_hdmi_info_packet(enc1, 2, &info_frame->gamut);
--	enc2_update_hdmi_info_packet(enc1, 1, &info_frame->vendor);
--	enc2_update_hdmi_info_packet(enc1, 3, &info_frame->spd);
--	enc2_update_hdmi_info_packet(enc1, 4, &info_frame->hdrsmd);
-+	enc2_update_hdmi_info_packet(enc1, 3, &info_frame->vendor);
-+	enc2_update_hdmi_info_packet(enc1, 4, &info_frame->spd);
-+	enc2_update_hdmi_info_packet(enc1, 5, &info_frame->hdrsmd);
- }
+ 		if (stream->timing.flags.DSC == 1)
+-			dcn20_add_dsc_to_stream_resource(stream->ctx->dc, dc_state, stream);
++			dc_stream_add_dsc_to_resource(stream->ctx->dc, dc_state, stream);
+ 	}
  
- static void enc2_stream_encoder_stop_hdmi_info_packets(
+ 	return true;
 -- 
 2.17.1
 
