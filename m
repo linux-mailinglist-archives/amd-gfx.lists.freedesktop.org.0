@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBCB52241FD
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jul 2020 19:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 586E82241FE
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jul 2020 19:38:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 822056EE1D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B40266EE1F;
 	Fri, 17 Jul 2020 17:38:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2046.outbound.protection.outlook.com [40.107.94.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 629656EE1F
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 17:38:28 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2063.outbound.protection.outlook.com [40.107.223.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 598976EE1A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jul 2020 17:38:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lnomd4CjAfD5DQsmrvZQ5+/McVFp0VnCMV1Zgcr+exgJoFAJmVWcVZ4PWFpQJJQGPwMf3SqY7ec5/rqxKQrrK1V3QlluZr4evRd1WhTgPFen+Sgwn226LY0y549s0vd9ptB6CcfFYRjlMy9SymFCa5QAXmLMH7ZCvpdpTyfu1/AZABb2FQ9pTaw5o3pf+vBjgmtdEOhz8LYhqyuEpo5DUV2G7et2Vr1/o0BFLVLfwuwlnHIdUTMW7UjzrcCslQ45jFxD8T/p1F0VACQjo8I0qrSEjXiFwAJO+Gr3Qd3Un7BUS/Dg0coTyut1TlAlRhXiNzpBFE9jZCx3VbYJen1kkQ==
+ b=JmpbHgNvKUk4BXM/yKmYTFf3hJJ4lGg+iffC8rmY/JMIz6S5QpaQpX2R0UnqIBlx/VqX6KBWeHUbomAJnshnS04QUQlG6Hby1TUy9u1jsb07dYKHp3t+lBiy2YkA7jI188/RoP4s72VMTNDdviNcdJFb5YOYRyaXl2WOL+UtbgZK95kC+rODoV1i+D7yuHbfE/39a2ym5KTJrrnAbVsWoVBtsnOPRdy/A8QyBnX8MNXBgsAa2ESF/bOjnvfb2/swR9mgqL7uE5lXKwP0IfQKic5RBrC6AwybHUfYMO/myWKiyQJR5moYhjvNdWfcIAmIYM5fb4dL49ilf+Bs2tujiw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P1Qb3d/pBj5bjszZiyfYSA36tt8nBmWutIwTnw6+78I=;
- b=QoTYB3SOEYS3EX5BlgSff6bpgTBchrARXKiTdODua61VHzlPSJU4ARYpTStMLqLSHXX4oCAtgyujRoOFyhBJkJmk8eMpjfw6u5cbaEVQ+I/moFLHR8e780uYM3UJOWCEaALGHZ1Kx9n2g4QJInlL4R/v/frewET48L5Dqu76E3HoS5RNsjxsdpK5ir5gav+qC4k6JEbKdO/YHLGeV+CYE6vJIywLoNE4oJTdWJboldqvTZMauEandQLfv7D3F+3r9/twEajh5jbaOrKIH1PB0fJisnT4bnm1Z74tw9Alae3xnGZKqSDtfoONBuJmUl6wSx/cZTHfGmOz6Vg9YD6FFQ==
+ bh=sE200ANjFRICcujqNkCWMgFvLiqM2z91qu0xvO9LHOQ=;
+ b=oKahsArAxIxLGljszwt6J3ezJFwQ6bpNLX4zJEzZjTKr6rlH3EWBBGOCdHHHYLCkgBrz4is/MQEpgqH7T9c/V3j63Bk16hAdCWxQyawPN1J95rzKTe2SrndH0nOkbD4KfTb5piABMcc3cIN+bFLBOezDmB6Fa8VqoxPyFsLyINezywd60ENgib3uIpSu1cX9jut8HMp5k/+94DUoN1pOSpW2eu3yehfbzpMSC5VQFPfoYa+uSJE5ECgbfSekjkIdOPfb+dWR18HAxeODJqy9Owy5jodWp/kVf1s0FrxMpg/4zDSKzd2K8cQZpcjzs1YXkCUnBX3ZJJGxJcoMODaiTQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,17 +27,17 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P1Qb3d/pBj5bjszZiyfYSA36tt8nBmWutIwTnw6+78I=;
- b=jZh3PaGwKH2rSbC7Rc/5k3E1voWi+E3mTg/fVizyO26umXB08nY7JL83y540ZlH/eRsx8znee6mrCjEvOKnIdytCeZf5vtxOJN8aIbu/ZLYseAPYWO9uskMopR5I0H2XuvAun8jjdM9HwTQa+ok5uud5cTNaA/l5Ug17dKzFavA=
-Received: from DM5PR1401CA0021.namprd14.prod.outlook.com (2603:10b6:4:4a::31)
- by SN6PR12MB2813.namprd12.prod.outlook.com (2603:10b6:805:69::27)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.24; Fri, 17 Jul
+ bh=sE200ANjFRICcujqNkCWMgFvLiqM2z91qu0xvO9LHOQ=;
+ b=hk0XfFQSzt3GhODHKxOYInxeA/GePlY7BJzZiSdg0Av6h4XGK5uphjO6wAhuiw98SqWDpU/mtmAHt/96km3fu9PzTGDlcSws4EjmACg94+NslNYuOlxIxOJWSE3NbmEJUdiK+lIMauER6MuHx1Bhb7YEwX7X+8STBYP+lXLN+HY=
+Received: from BN6PR21CA0019.namprd21.prod.outlook.com (2603:10b6:404:8e::29)
+ by DM6PR12MB2828.namprd12.prod.outlook.com (2603:10b6:5:77::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3174.28; Fri, 17 Jul
  2020 17:38:27 +0000
-Received: from DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:4a:cafe::b5) by DM5PR1401CA0021.outlook.office365.com
- (2603:10b6:4:4a::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.17 via Frontend
+Received: from BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:8e:cafe::51) by BN6PR21CA0019.outlook.office365.com
+ (2603:10b6:404:8e::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.7 via Frontend
  Transport; Fri, 17 Jul 2020 17:38:27 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -45,26 +45,27 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- DM6NAM11FT009.mail.protection.outlook.com (10.13.173.20) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT049.mail.protection.outlook.com (10.13.177.157) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3195.18 via Frontend Transport; Fri, 17 Jul 2020 17:38:26 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3195.18 via Frontend Transport; Fri, 17 Jul 2020 17:38:27 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 17 Jul
  2020 12:38:26 -0500
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 17 Jul
- 2020 12:38:25 -0500
+ 2020 12:38:26 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Fri, 17 Jul 2020 12:38:25 -0500
+ Transport; Fri, 17 Jul 2020 12:38:26 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 10/12] drm/amd/display: Add additional config guards for DCN
-Date: Fri, 17 Jul 2020 13:38:11 -0400
-Message-ID: <20200717173813.11674-11-qingqing.zhuo@amd.com>
+Subject: [PATCH 11/12] drm/amd/display: interface to obtain minimum plane size
+ caps
+Date: Fri, 17 Jul 2020 13:38:12 -0400
+Message-ID: <20200717173813.11674-12-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200717173813.11674-1-qingqing.zhuo@amd.com>
 References: <20200717173813.11674-1-qingqing.zhuo@amd.com>
@@ -72,28 +73,28 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(136003)(346002)(376002)(396003)(39860400002)(46966005)(1076003)(8936002)(8676002)(2906002)(82310400002)(356005)(6666004)(4326008)(54906003)(83380400001)(478600001)(81166007)(44832011)(36756003)(186003)(26005)(70586007)(6916009)(70206006)(82740400003)(316002)(2616005)(86362001)(336012)(47076004)(5660300002)(426003);
+ SFS:(4636009)(346002)(376002)(396003)(136003)(39860400002)(46966005)(4326008)(2616005)(70586007)(70206006)(81166007)(82740400003)(44832011)(47076004)(83380400001)(82310400002)(356005)(426003)(336012)(36756003)(86362001)(186003)(1076003)(2906002)(26005)(8676002)(316002)(6916009)(8936002)(5660300002)(478600001)(6666004)(54906003);
  DIR:OUT; SFP:1101; 
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: df24dc83-b777-4f39-e629-08d82a783645
-X-MS-TrafficTypeDiagnostic: SN6PR12MB2813:
-X-Microsoft-Antispam-PRVS: <SN6PR12MB281374870D67D92445C89050FB7C0@SN6PR12MB2813.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:168;
+X-MS-Office365-Filtering-Correlation-Id: 1bd8bb71-07aa-40fd-37fc-08d82a783690
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2828:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2828B4BA8712FAF4ED73C786FB7C0@DM6PR12MB2828.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EfWd+O5T3g6Beu8gLku3K4z4+48+4veAdY0Fr8uqewVYIjOyaEAVsiKyQRXEWs+voQ54bjscV6EQa/6AVL+QvzUbXNaQMpmGNrmBPe6kh3rux953nLLNTMPIul4uaGKGKedsBAipf6XAHZvTEDkoU9DmWAkvK6jSE7wf5afmfpa44gdM27lkKGZyofmI3tmgweGpGRPc1clGS9fZekWRDMMKBMep8sB5WRv+f650rRmxGsguwJFXC19WsWA27sX01DCe7QZecGrbWsghHg4DGLebwjq/D7PJ+4HZaHm6Gv0Kq6gOfDrCdIWvV/8Tg0zKCmeVieXbbdtp640nbsw0nInIcZz1A/2yEER/Gwd2A2m8p9UABsKyYYv7KBPMDxF8tQTnSDuJPEfUlN3WlzRoZA==
+X-Microsoft-Antispam-Message-Info: URV4OIAh3EMPn5u9y3VeU+hyTpv1EtorudAGPF2KKfv0VWDwdI1QSL4HrsSoWLiKtaxmzPN5zcuBwzUBuFCzn8oaEbW9scCr55CuSS502WEG90VQxmrlAcE3ypCRc6KuDnzAZMGyEb69CQl0hbh4LKq7H2Gmwqxkdiqd8Tze8NVRV5X96sGeP/Vx4iqEI5W8YMw1eQuGkN7r651ZkPe7rloumx3L/Gn3TAWzqs8t0k9Q0XyTeP6DFVqvH4vAQIg30aNJgtfbCWQHLo7GkVzE+LSLqpKJ2giJLxeV9ZQyyj2+dC4MK8IS8nozKeItqWYZGAZdrIc0b2n81wjnCyarxNd9TOWBLnGx59y+wmEMFDV63spf+ChQX6ghlTpfy4bEUPRsNi3MtNgBhamtkKARAg==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2020 17:38:26.7088 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: df24dc83-b777-4f39-e629-08d82a783645
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2020 17:38:27.2348 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1bd8bb71-07aa-40fd-37fc-08d82a783690
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2813
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2828
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,65 +108,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Bhawanpreet.Lakha@amd.com
+ Igor Kravchenko <Igor.Kravchenko@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+From: Igor Kravchenko <Igor.Kravchenko@amd.com>
 
-[Why&How]
+[Why]
+Implement an interface to obtain plane size caps
 
-Fix build error by protecting code with config guard
-to enable building amdgpu without CONFIG_DRM_AMD_DC_DCN
-enabled. This option is disabled by default for allmodconfig.
+[How]
+Add min_width, min_height fields to dc_plane_cap structure.
+Set values to 16x16 for discrete ASICs, and 64x64 for others.
 
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Signed-off-by: Igor Kravchenko <Igor.Kravchenko@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h                     | 3 +++
+ drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c | 8 ++++++--
+ drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c | 4 +++-
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c   | 4 +++-
+ drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c   | 4 +++-
+ 5 files changed, 18 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 7d78205d3604..e97f317179f2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8564,7 +8564,7 @@ dm_determine_update_type_for_commit(struct amdgpu_display_manager *dm,
- 	*out_type = update_type;
- 	return ret;
- }
--
-+#if defined(CONFIG_DRM_AMD_DC_DCN)
- static int add_affected_mst_dsc_crtcs(struct drm_atomic_state *state, struct drm_crtc *crtc)
- {
- 	struct drm_connector *connector;
-@@ -8587,6 +8587,7 @@ static int add_affected_mst_dsc_crtcs(struct drm_atomic_state *state, struct drm
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index e5a1a9eb6217..a5faedf66470 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -96,6 +96,9 @@ struct dc_plane_cap {
+ 		uint32_t nv12;
+ 		uint32_t fp16;
+ 	} max_downscale_factor;
++	// minimal width/height
++	uint32_t min_width;
++	uint32_t min_height;
+ };
  
- 	return drm_dp_mst_add_affected_dsc_crtcs(state, &aconnector->mst_port->mst_mgr);
- }
-+#endif
+ // Color management caps (DPP and MPC)
+diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c
+index a043ddae5149..70c6f917139e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c
+@@ -423,7 +423,9 @@ static const struct dc_plane_cap plane_cap = {
+ 				.argb8888 = 250,
+ 				.nv12 = 1,
+ 				.fp16 = 1
+-		}
++		},
++		64,
++		64
+ };
  
- /**
-  * amdgpu_dm_atomic_check() - Atomic check implementation for AMDgpu DM.
-@@ -8640,6 +8641,7 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 	if (ret)
- 		goto fail;
+ static const struct dc_plane_cap underlay_plane_cap = {
+@@ -447,7 +449,9 @@ static const struct dc_plane_cap underlay_plane_cap = {
+ 				.argb8888 = 1,
+ 				.nv12 = 250,
+ 				.fp16 = 1
+-		}
++		},
++		64,
++		64
+ };
  
-+#if defined(CONFIG_DRM_AMD_DC_DCN)
- 	if (adev->asic_type >= CHIP_NAVI10) {
- 		for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
- 			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
-@@ -8649,7 +8651,7 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 			}
- 		}
- 	}
--
-+#endif
- 	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
- 		if (!drm_atomic_crtc_needs_modeset(new_crtc_state) &&
- 		    !new_crtc_state->color_mgmt_changed &&
+ #define CTX  ctx
+diff --git a/drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c b/drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c
+index 51b3fe502670..5d83e8174005 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c
+@@ -424,7 +424,9 @@ static const struct dc_plane_cap plane_cap = {
+ 			.argb8888 = 250,
+ 			.nv12 = 1,
+ 			.fp16 = 1
+-	}
++	},
++	64,
++	64
+ };
+ 
+ #define CTX  ctx
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index c8c6225c7e9e..968a89bbcf24 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -1043,7 +1043,9 @@ static const struct dc_plane_cap plane_cap = {
+ 			.argb8888 = 250,
+ 			.nv12 = 250,
+ 			.fp16 = 1
+-	}
++	},
++	16,
++	16
+ };
+ static const struct resource_caps res_cap_nv14 = {
+ 		.num_timing_generator = 5,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+index 7d82648bec90..88d41a385add 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+@@ -857,7 +857,9 @@ static const struct dc_plane_cap plane_cap = {
+ 			.argb8888 = 250,
+ 			.nv12 = 250,
+ 			.fp16 = 250
+-	}
++	},
++	64,
++	64
+ };
+ 
+ static const struct dc_debug_options debug_defaults_drv = {
 -- 
 2.17.1
 
