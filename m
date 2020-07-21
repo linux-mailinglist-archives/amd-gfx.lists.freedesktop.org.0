@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 623D6227CF5
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jul 2020 12:29:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C45D227CF6
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jul 2020 12:29:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9DA16E4B1;
-	Tue, 21 Jul 2020 10:29:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B322E6E4C5;
+	Tue, 21 Jul 2020 10:29:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2043.outbound.protection.outlook.com [40.107.223.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 044E26E4B1
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 10:29:40 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2063.outbound.protection.outlook.com [40.107.237.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3271B6E4B7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 10:29:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cf9jEhiy2rvum1EDbfU1A97hO4oUSPO51hBaf+8PuLnmfVxrb+qJPIwMETUvvBGMYdgxUpnZyw35vxh6V5RDG08MEKDKIHxApnvuWbmzDox/96Qe2GqsiNisF6JYOgTr6pidXZitwGoPiaV0UU6rk7GufyQ3wWKLVFX5/L/H3qLYRxirT0CtgvuA6jNvAMoj90/Kk/9nqE0jQ25de2ihqY9shEL5kAVTjbjCn8AqRttsTgSgFB9RSwh4oI5cH0niU0GoUKYnQWMkvwZQ8ydEzF70UGewd2iP+e1Kr5qBA33g7yAEUj7m+gOJ65XsGXzPFAk2+ddaGa/yreJI11SgVA==
+ b=EbUkRdLG1YB3pVVFClBJtWJDiPaUNMhHsnDsbbJtlxQJFbikSsyZ10Kq3DpuGm43N1ldjyHCXX2YExd4NMs9sYRoGh12OF1ApLroZ5OuHD3IqDYWg+o17SVleZXFPpD5FoCXMeman7rlOM3reSZj6HkHUXkaMd3ccpdPbDsW5nQHX1QzOGSnwVKFrjShmEn2u+wiaAciY0cT10sC+1z+/unvxL07S7ypwoLzuOworF0/M7m8F5cLtUhFTBU86YV19nARUuz7ScHDak1ALHHhLXB4AlxgfoJX26AmLbi5QW9L1Yb8qd1B4JMwO215q1QQZdvGE9tzbWSeA0y8XAeN6Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wramnzfhfV22qShfni5FmW0LEUowvlm3Wx1F5l9vlfI=;
- b=Z3y0iT6nAL7R3OqNSijTeAVN/cWSogTmpQbrR8HfJq0YnrGUpjX1R4oNY+D+/Qz+JtGMS0EGDdb/dzUxvS4eRq0v/lkIGHsp6HciDAqwOOnJY/DiY8lGuBCkZ6eRpERuctjC7PmYO/WDcqhu70hjI4lA/FzBW8s5s6+Bai/NfXRh8VDGraM68oBGdXd2zUMSyVxRq3PZdVjRbAUevpWSDLpL/AnbpVf8z0ivl4vV7BwWePkimBHmXw6a/JPeS0nHDMGiaGjrVBS0Q7u9V3Mx7/USDLQINKuSgFZMLMN1zM3SjHPYNm3SnEXzF467IXz0KhZZ1PbJW6pttHR4Yna/Aw==
+ bh=a2NoLgT8TL8fyFkCHLruD/Retu/N2TVcjRsB6n9Nbkw=;
+ b=UoC80qHumlXbifc5/mQyFjLoX3gp14sCSBhd6BXxhFUrbNfysumqY3NeSC06ZBR3PZ9PmJ1YNwHwMTxb0vFOv0qxEZsLpUnABVPhTTWv/NgGp1i+Rz5EOcQvJQo3Xi0PIZR6clrULK2x2pxdc1ycL6K8eEWcsk6WbPwMlVYXrdJOj29zg1HfJ4iTkqH0oal9zyFTbXyaTyvFSk4bmRIwfvezAmE3fT+XDyjjaBQhQYdmaNAO4O2AA7Zg91f216Sl/54OCyoH0w7wvMv64K0HOBkazqxDQuThYF/7CaHq0BiITnmhm8y8mO4bDPje2YIeUuo8gCs8yLjYqLZj9MH8Lw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wramnzfhfV22qShfni5FmW0LEUowvlm3Wx1F5l9vlfI=;
- b=S8QWdUUsFDQKs6Vfoqqa0GiNVLZ3zHp8g09E4CNIrBBbepZxUO4jP8VsdNovy7jI5A6mKaj5wDYukg2FWbuiyDKdnzeieH2ggsERnBHJCj4qF4axrvLt4UzN0C2GWln1FreBGhmZ/kR4EoFn7ZvseFMVbGEjmYxfxHCDjjjpW0s=
+ bh=a2NoLgT8TL8fyFkCHLruD/Retu/N2TVcjRsB6n9Nbkw=;
+ b=DHMIyqjr6olXXif67AdkbDoXHbzeFeq+b6b/6IyMNwNboCrCYJ2iZMtmIjpIo/md+9g4pDXuefwpgrrHf+/fcH7x/t7PuIf4h0ml9YuMU02HqqOV7XVIvgSaB5HBTGGjBf3A+xdvp4etI9XxOquqBfBuqFnNEqZu06KeLrixqoc=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,16 @@ Received: from MN2PR12MB3774.namprd12.prod.outlook.com (2603:10b6:208:16a::13)
  by MN2PR12MB4144.namprd12.prod.outlook.com (2603:10b6:208:15f::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.23; Tue, 21 Jul
- 2020 10:29:38 +0000
+ 2020 10:29:40 +0000
 Received: from MN2PR12MB3774.namprd12.prod.outlook.com
  ([fe80::9cd:9d82:d316:9285]) by MN2PR12MB3774.namprd12.prod.outlook.com
  ([fe80::9cd:9d82:d316:9285%4]) with mapi id 15.20.3216.020; Tue, 21 Jul 2020
- 10:29:38 +0000
+ 10:29:40 +0000
 From: Huang Rui <ray.huang@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/5] drm/amdgpu: abstract set_vm_fault_masks function to
- refine the programming
-Date: Tue, 21 Jul 2020 18:29:16 +0800
-Message-Id: <1595327359-120379-3-git-send-email-ray.huang@amd.com>
+Subject: [PATCH 3/5] drm/amdgpu: add vmhub funcs helper
+Date: Tue, 21 Jul 2020 18:29:17 +0800
+Message-Id: <1595327359-120379-4-git-send-email-ray.huang@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1595327359-120379-1-git-send-email-ray.huang@amd.com>
 References: <1595327359-120379-1-git-send-email-ray.huang@amd.com>
@@ -57,34 +56,34 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from hr-intel.amd.com (58.247.170.245) by
  HKAPR04CA0008.apcprd04.prod.outlook.com (2603:1096:203:d0::18) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.3195.18 via Frontend Transport; Tue, 21 Jul 2020 10:29:36 +0000
+ 15.20.3195.18 via Frontend Transport; Tue, 21 Jul 2020 10:29:38 +0000
 X-Mailer: git-send-email 2.7.4
 X-Originating-IP: [58.247.170.245]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 0b8e54fa-3a2d-4dfd-a6ee-08d82d60f880
+X-MS-Office365-Filtering-Correlation-Id: 059ff263-7107-42de-f47f-08d82d60f97d
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4144:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB414465384AEAD2DF1249143AEC780@MN2PR12MB4144.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4144A207C246490A6247263AEC780@MN2PR12MB4144.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +3E8at1HAEZAlu1Yb8CUR0CyLzn6U2cidqJDZdekqU7keJ0hVEQc9zJcaRrfgRtv68OUl2Kx/hFgZRZUPYpVfvPddq8DcADPDYpzAETh/kSY+6+v5lKum84mv8JMZ0Fp0TQpSywI67DQfodL7bNH9hRooex9hyxyNoFmOkCkBggB7iPh4CIxHH/sg+ldqTXIkSFg5gl+1yF9sK8J1yORv1m/ZjLh2uyJ2iw9M2xrv8pcXp7u+AFNfra4g8HB/BkbmklaIes2RILf/sBV1ZtDqKhteHx14NvfLv0ka+83l3v8B5Q0Ass6X0Z7HkuzDgvgvncTQpckAJ83I4fyHMl4xg==
+X-Microsoft-Antispam-Message-Info: RE/dtp9zXrZUQixLuzchnaSPBAfQaUhmDFxIpj0GiCfdeS9++lnbviknBuijl+guodCBPIXymlsbssKcX7EabxoDG2PZ/LFJfd18/z1j1jVW1gbya8EusLp7BMJN5m3gJYL+DBmbd4t7HE4j5/r8nb5pxW4dNeJ6ZiPHtVPy8lrKaSx1JpCdrsw6iC/23oarGAs2SeVKDKTInCvIKiz6JrgdOpoUn6GbZI3lloBiiym5AGyizvwPoctEZnPT21UqHwrKtsxIunVATbJmbu9gM6GXogh2A+uv/F/FM8zutOBQm0GAz5yWhrJdKOxlsv0mPeTd7fal/cIfz4E2VXsHWg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB3774.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(376002)(39860400002)(136003)(346002)(366004)(396003)(956004)(2616005)(7696005)(26005)(478600001)(16526019)(186003)(4326008)(52116002)(6486002)(6666004)(2906002)(66476007)(66556008)(36756003)(83380400001)(5660300002)(86362001)(66946007)(8676002)(6916009)(8936002)(316002);
+ SFS:(4636009)(376002)(39860400002)(136003)(346002)(366004)(396003)(956004)(2616005)(7696005)(26005)(478600001)(16526019)(186003)(4326008)(52116002)(19627235002)(6486002)(6666004)(2906002)(66476007)(66556008)(36756003)(83380400001)(5660300002)(86362001)(66946007)(8676002)(6916009)(8936002)(316002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: 6WrnnYCrF+0DAv9r/HUQTRAIqvFCHavfgyd4mjv/88Gu47Th7yV012e3zhrgvjwlY/3za2uQMLWrjHvGo1/+DRcZ/CgyzutnCGtoicBEK6ua1EzW3Y1mmodAKzgJ8HFeiLypldQydy4rHIdz2Jmj3flV344LiY7ZKcGXmBuBW0/jlaeemuXfCi8YcJ5U0PYV+U+kcV5A5pptrntInYh5SVnSz5/6luA5c8krMJda5zXxiPaENpxE3kwyyIhhyzcMcOCHALG3nZIDvlWq9FuHFiC9Qi0O7E6AhrpkWTnqAVuUwLwSH11UJBeqiOg3moI9f3CBGcpT2i6h4n0QuLxuYfaoSyskiCHlUjapF/NRUTVffkdkzAj39JFYpelJ1yT5weaBeak+7eyWuSWuB6M4YTOHLEi+5jWlbl/vjl2YIvbk7R2ZvoKC9EVdKO+yHG8TGI/P3WfKFJyIq31XfUCZwIi9+bRoGcBO2kLtkQwkgq+ZdKlQFL4dNEGQrOUGlgtI
+X-MS-Exchange-AntiSpam-MessageData: zJRikeYbDHXgcCwaAiKleSKFtMgUu9MLwIV54pohZW5GRZ4dseJZGhal23OO7p4kmkC8ZxGw22snB3Ga/5vGnjczNbmT+oV0DXaKTTuYFztTX+3i9UcnE5rmzCCj5W3O/HGezEJ7/CLf+PKOPQqM2nF4WYa/iUJi3tQkZcyIQf01Kfj1Z++YH7kGZA9ZSLbKyel4DCykRou9TtxsjAdTkrVQp/HDzFLVTQ7AZQCaTnxdQPHGPv/UXEBUjpjY07WTbeMWhAPzBIsnqXybLBAfkND8lsPUYddMD+KCQSQGD0mi/Nnm/AcYbSiz34fbnBwPOYiGFdhM5LHBYFzPWYGS5ScvrdsZ0igQlyYSPLU7o0anZ5E5zrDGnXQ4WAFo9MpIFb71T+y8IhP4gYLZNa06Bv4C8aqFETGqdhBU6dahVui9OGU05R0l4piLQMdxUK8+R4mcaRwbgkXuUGjW6GQzTVBWegVxVXiaJGMIBFDFpas6wVbk9O5oSVUrfTA2SDAO
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b8e54fa-3a2d-4dfd-a6ee-08d82d60f880
+X-MS-Exchange-CrossTenant-Network-Message-Id: 059ff263-7107-42de-f47f-08d82d60f97d
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3774.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2020 10:29:38.5294 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2020 10:29:40.4243 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oi2Hxl2Zd7Wib/DfK7mxk4EY3p/aGd4WRM0YWZsvtJcyLlfIiEtVvwHODLlVh4vhSS3UyKMhGLX095l6Q7eW4Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: vkTGO4i8X7DwKh8MObQ3QTn42KFwbl3A0p3aVmiJJAmMSy4pDPxJplK0VJS6841AjUbAYOZkx57soqT2uaX/Ow==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4144
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -103,129 +102,255 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch is to add set_vm_fault_masks helper to amdgpu_gmc to refine the
-original programming.
+This patch is to introduce vmhub funcs helper to add following callback
+(print_l2_protection_fault_status). Each GC/MMHUB register specific programming
+should be in gfxhub/mmhub level.
 
 Signed-off-by: Huang Rui <ray.huang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 20 +++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  4 +++
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 53 +++------------------------------
- 3 files changed, 28 insertions(+), 49 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h  |  7 +++++++
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c | 34 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c | 34 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c   | 25 ++---------------------
+ drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c  | 34 ++++++++++++++++++++++++++++++++
+ 5 files changed, 111 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 34cbd6f..21d2c85 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -411,3 +411,23 @@ void amdgpu_gmc_tmz_set(struct amdgpu_device *adev)
- 		break;
- 	}
- }
-+
-+void amdgpu_gmc_set_vm_fault_masks(struct amdgpu_device *adev, int hub_type,
-+				   bool enable)
-+{
-+	struct amdgpu_vmhub *hub;
-+	u32 tmp, reg, i;
-+
-+	hub = &adev->vmhub[hub_type];
-+	for (i = 0; i < 16; i++) {
-+		reg = hub->vm_context0_cntl + hub->ctx_distance * i;
-+
-+		tmp = RREG32(reg);
-+		if (enable)
-+			tmp |= hub->vm_cntx_cntl_vm_fault;
-+		else
-+			tmp &= ~hub->vm_cntx_cntl_vm_fault;
-+
-+		WREG32(reg, tmp);
-+	}
-+}
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-index e11c21a..1785a0e 100644
+index 1785a0e..bbecd87 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-@@ -291,4 +291,8 @@ int amdgpu_gmc_allocate_vm_inv_eng(struct amdgpu_device *adev);
- 
- extern void amdgpu_gmc_tmz_set(struct amdgpu_device *adev);
- 
-+extern void
-+amdgpu_gmc_set_vm_fault_masks(struct amdgpu_device *adev, int hub_type,
-+			      bool enable);
+@@ -74,6 +74,11 @@ struct amdgpu_gmc_fault {
+ /*
+  * VMHUB structures, functions & helpers
+  */
++struct amdgpu_vmhub_funcs {
++	void (*print_l2_protection_fault_status)(struct amdgpu_device *adev,
++						 uint32_t status);
++};
 +
- #endif
+ struct amdgpu_vmhub {
+ 	uint32_t	ctx0_ptb_addr_lo32;
+ 	uint32_t	ctx0_ptb_addr_hi32;
+@@ -94,6 +99,8 @@ struct amdgpu_vmhub {
+ 	uint32_t	eng_addr_distance; /* include LO32/HI32 */
+ 
+ 	uint32_t	vm_cntx_cntl_vm_fault;
++
++	const struct amdgpu_vmhub_funcs *vmhub_funcs;
+ };
+ 
+ /*
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
+index 993185f..14268ea 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
+@@ -31,6 +31,33 @@
+ 
+ #include "soc15_common.h"
+ 
++static void
++gfxhub_v2_0_print_l2_protection_fault_status(struct amdgpu_device *adev,
++					     uint32_t status)
++{
++	dev_err(adev->dev,
++		"GCVM_L2_PROTECTION_FAULT_STATUS:0x%08X\n",
++		status);
++	dev_err(adev->dev, "\t Faulty UTCL2 client ID: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, CID));
++	dev_err(adev->dev, "\t MORE_FAULTS: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, MORE_FAULTS));
++	dev_err(adev->dev, "\t WALKER_ERROR: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, WALKER_ERROR));
++	dev_err(adev->dev, "\t PERMISSION_FAULTS: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, PERMISSION_FAULTS));
++	dev_err(adev->dev, "\t MAPPING_ERROR: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, MAPPING_ERROR));
++	dev_err(adev->dev, "\t RW: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, RW));
++}
++
+ u64 gfxhub_v2_0_get_fb_location(struct amdgpu_device *adev)
+ {
+ 	u64 base = RREG32_SOC15(GC, 0, mmGCMC_VM_FB_LOCATION_BASE);
+@@ -360,6 +387,10 @@ void gfxhub_v2_0_set_fault_enable_default(struct amdgpu_device *adev,
+ 	WREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_CNTL, tmp);
+ }
+ 
++static const struct amdgpu_vmhub_funcs gfxhub_v2_0_vmhub_funcs = {
++	.print_l2_protection_fault_status = gfxhub_v2_0_print_l2_protection_fault_status,
++};
++
+ void gfxhub_v2_0_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_GFXHUB_0];
+@@ -398,4 +429,7 @@ void gfxhub_v2_0_init(struct amdgpu_device *adev)
+ 		GCVM_CONTEXT1_CNTL__READ_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
+ 		GCVM_CONTEXT1_CNTL__WRITE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
+ 		GCVM_CONTEXT1_CNTL__EXECUTE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK;
++
++	if (hub->vmhub_funcs == NULL)
++		hub->vmhub_funcs = &gfxhub_v2_0_vmhub_funcs;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
+index 07cae64..45fbce7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
+@@ -31,6 +31,33 @@
+ 
+ #include "soc15_common.h"
+ 
++static void
++gfxhub_v2_1_print_l2_protection_fault_status(struct amdgpu_device *adev,
++					     uint32_t status)
++{
++	dev_err(adev->dev,
++		"GCVM_L2_PROTECTION_FAULT_STATUS:0x%08X\n",
++		status);
++	dev_err(adev->dev, "\t Faulty UTCL2 client ID: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, CID));
++	dev_err(adev->dev, "\t MORE_FAULTS: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, MORE_FAULTS));
++	dev_err(adev->dev, "\t WALKER_ERROR: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, WALKER_ERROR));
++	dev_err(adev->dev, "\t PERMISSION_FAULTS: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, PERMISSION_FAULTS));
++	dev_err(adev->dev, "\t MAPPING_ERROR: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, MAPPING_ERROR));
++	dev_err(adev->dev, "\t RW: 0x%lx\n",
++		REG_GET_FIELD(status,
++		GCVM_L2_PROTECTION_FAULT_STATUS, RW));
++}
++
+ u64 gfxhub_v2_1_get_fb_location(struct amdgpu_device *adev)
+ {
+ 	u64 base = RREG32_SOC15(GC, 0, mmGCMC_VM_FB_LOCATION_BASE);
+@@ -359,6 +386,10 @@ void gfxhub_v2_1_set_fault_enable_default(struct amdgpu_device *adev,
+ 	WREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_CNTL, tmp);
+ }
+ 
++static const struct amdgpu_vmhub_funcs gfxhub_v2_1_vmhub_funcs = {
++	.print_l2_protection_fault_status = gfxhub_v2_1_print_l2_protection_fault_status,
++};
++
+ void gfxhub_v2_1_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_GFXHUB_0];
+@@ -397,6 +428,9 @@ void gfxhub_v2_1_init(struct amdgpu_device *adev)
+ 		GCVM_CONTEXT1_CNTL__READ_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
+ 		GCVM_CONTEXT1_CNTL__WRITE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
+ 		GCVM_CONTEXT1_CNTL__EXECUTE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK;
++
++	if (hub->vmhub_funcs == NULL)
++		hub->vmhub_funcs = &gfxhub_v2_1_vmhub_funcs;
+ }
+ 
+ int gfxhub_v2_1_get_xgmi_info(struct amdgpu_device *adev)
 diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index ec90c62..e6c8526 100644
+index e6c8526..8f35e13 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -62,63 +62,18 @@ gmc_v10_0_vm_fault_interrupt_state(struct amdgpu_device *adev,
- 				   struct amdgpu_irq_src *src, unsigned type,
- 				   enum amdgpu_interrupt_state state)
+@@ -121,29 +121,8 @@ static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
+ 			task_info.task_name, task_info.pid);
+ 		dev_err(adev->dev, "  in page starting at address 0x%016llx from client %d\n",
+ 			addr, entry->client_id);
+-		if (!amdgpu_sriov_vf(adev)) {
+-			dev_err(adev->dev,
+-				"GCVM_L2_PROTECTION_FAULT_STATUS:0x%08X\n",
+-				status);
+-			dev_err(adev->dev, "\t Faulty UTCL2 client ID: 0x%lx\n",
+-				REG_GET_FIELD(status,
+-				GCVM_L2_PROTECTION_FAULT_STATUS, CID));
+-			dev_err(adev->dev, "\t MORE_FAULTS: 0x%lx\n",
+-				REG_GET_FIELD(status,
+-				GCVM_L2_PROTECTION_FAULT_STATUS, MORE_FAULTS));
+-			dev_err(adev->dev, "\t WALKER_ERROR: 0x%lx\n",
+-				REG_GET_FIELD(status,
+-				GCVM_L2_PROTECTION_FAULT_STATUS, WALKER_ERROR));
+-			dev_err(adev->dev, "\t PERMISSION_FAULTS: 0x%lx\n",
+-				REG_GET_FIELD(status,
+-				GCVM_L2_PROTECTION_FAULT_STATUS, PERMISSION_FAULTS));
+-			dev_err(adev->dev, "\t MAPPING_ERROR: 0x%lx\n",
+-				REG_GET_FIELD(status,
+-				GCVM_L2_PROTECTION_FAULT_STATUS, MAPPING_ERROR));
+-			dev_err(adev->dev, "\t RW: 0x%lx\n",
+-				REG_GET_FIELD(status,
+-				GCVM_L2_PROTECTION_FAULT_STATUS, RW));
+-		}
++		if (!amdgpu_sriov_vf(adev))
++			hub->vmhub_funcs->print_l2_protection_fault_status(adev, status);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+index 48134b9..fb634c1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+@@ -36,6 +36,33 @@
+ #define mmDAGB0_CNTL_MISC2_Sienna_Cichlid                       0x0070
+ #define mmDAGB0_CNTL_MISC2_Sienna_Cichlid_BASE_IDX              0
+ 
++static void
++mmhub_v2_0_print_l2_protection_fault_status(struct amdgpu_device *adev,
++					     uint32_t status)
++{
++	dev_err(adev->dev,
++		"MMVM_L2_PROTECTION_FAULT_STATUS:0x%08X\n",
++		status);
++	dev_err(adev->dev, "\t Faulty UTCL2 client ID: 0x%lx\n",
++		REG_GET_FIELD(status,
++		MMVM_L2_PROTECTION_FAULT_STATUS, CID));
++	dev_err(adev->dev, "\t MORE_FAULTS: 0x%lx\n",
++		REG_GET_FIELD(status,
++		MMVM_L2_PROTECTION_FAULT_STATUS, MORE_FAULTS));
++	dev_err(adev->dev, "\t WALKER_ERROR: 0x%lx\n",
++		REG_GET_FIELD(status,
++		MMVM_L2_PROTECTION_FAULT_STATUS, WALKER_ERROR));
++	dev_err(adev->dev, "\t PERMISSION_FAULTS: 0x%lx\n",
++		REG_GET_FIELD(status,
++		MMVM_L2_PROTECTION_FAULT_STATUS, PERMISSION_FAULTS));
++	dev_err(adev->dev, "\t MAPPING_ERROR: 0x%lx\n",
++		REG_GET_FIELD(status,
++		MMVM_L2_PROTECTION_FAULT_STATUS, MAPPING_ERROR));
++	dev_err(adev->dev, "\t RW: 0x%lx\n",
++		REG_GET_FIELD(status,
++		MMVM_L2_PROTECTION_FAULT_STATUS, RW));
++}
++
+ void mmhub_v2_0_setup_vm_pt_regs(struct amdgpu_device *adev, uint32_t vmid,
+ 				uint64_t page_table_base)
  {
--	struct amdgpu_vmhub *hub;
--	u32 tmp, reg, bits[AMDGPU_MAX_VMHUBS], i;
--
--	bits[AMDGPU_GFXHUB_0] = GCVM_CONTEXT1_CNTL__RANGE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		GCVM_CONTEXT1_CNTL__DUMMY_PAGE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		GCVM_CONTEXT1_CNTL__PDE0_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		GCVM_CONTEXT1_CNTL__VALID_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		GCVM_CONTEXT1_CNTL__READ_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		GCVM_CONTEXT1_CNTL__WRITE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		GCVM_CONTEXT1_CNTL__EXECUTE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK;
--
--	bits[AMDGPU_MMHUB_0] = MMVM_CONTEXT1_CNTL__RANGE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		MMVM_CONTEXT1_CNTL__DUMMY_PAGE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		MMVM_CONTEXT1_CNTL__PDE0_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		MMVM_CONTEXT1_CNTL__VALID_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		MMVM_CONTEXT1_CNTL__READ_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		MMVM_CONTEXT1_CNTL__WRITE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
--		MMVM_CONTEXT1_CNTL__EXECUTE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK;
--
- 	switch (state) {
- 	case AMDGPU_IRQ_STATE_DISABLE:
- 		/* MM HUB */
--		hub = &adev->vmhub[AMDGPU_MMHUB_0];
--		for (i = 0; i < 16; i++) {
--			reg = hub->vm_context0_cntl + hub->ctx_distance * i;
--			tmp = RREG32(reg);
--			tmp &= ~bits[AMDGPU_MMHUB_0];
--			WREG32(reg, tmp);
--		}
--
-+		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB_0, false);
- 		/* GFX HUB */
--		hub = &adev->vmhub[AMDGPU_GFXHUB_0];
--		for (i = 0; i < 16; i++) {
--			reg = hub->vm_context0_cntl + hub->ctx_distance * i;
--			tmp = RREG32(reg);
--			tmp &= ~bits[AMDGPU_GFXHUB_0];
--			WREG32(reg, tmp);
--		}
-+		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB_0, false);
- 		break;
- 	case AMDGPU_IRQ_STATE_ENABLE:
- 		/* MM HUB */
--		hub = &adev->vmhub[AMDGPU_MMHUB_0];
--		for (i = 0; i < 16; i++) {
--			reg = hub->vm_context0_cntl + hub->ctx_distance * i;
--			tmp = RREG32(reg);
--			tmp |= bits[AMDGPU_MMHUB_0];
--			WREG32(reg, tmp);
--		}
--
-+		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB_0, true);
- 		/* GFX HUB */
--		hub = &adev->vmhub[AMDGPU_GFXHUB_0];
--		for (i = 0; i < 16; i++) {
--			reg = hub->vm_context0_cntl + hub->ctx_distance * i;
--			tmp = RREG32(reg);
--			tmp |= bits[AMDGPU_GFXHUB_0];
--			WREG32(reg, tmp);
--		}
-+		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB_0, true);
- 		break;
- 	default:
- 		break;
+@@ -351,6 +378,10 @@ void mmhub_v2_0_set_fault_enable_default(struct amdgpu_device *adev, bool value)
+ 	WREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_CNTL, tmp);
+ }
+ 
++static const struct amdgpu_vmhub_funcs mmhub_v2_0_vmhub_funcs = {
++	.print_l2_protection_fault_status = mmhub_v2_0_print_l2_protection_fault_status,
++};
++
+ void mmhub_v2_0_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB_0];
+@@ -389,6 +420,9 @@ void mmhub_v2_0_init(struct amdgpu_device *adev)
+ 		MMVM_CONTEXT1_CNTL__READ_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
+ 		MMVM_CONTEXT1_CNTL__WRITE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK |
+ 		MMVM_CONTEXT1_CNTL__EXECUTE_PROTECTION_FAULT_ENABLE_INTERRUPT_MASK;
++
++	if (hub->vmhub_funcs == NULL)
++		hub->vmhub_funcs = &mmhub_v2_0_vmhub_funcs;
+ }
+ 
+ static void mmhub_v2_0_update_medium_grain_clock_gating(struct amdgpu_device *adev,
 -- 
 2.7.4
 
