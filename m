@@ -1,57 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C86062287FE
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jul 2020 20:09:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EFDA228800
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jul 2020 20:09:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3674A6E456;
-	Tue, 21 Jul 2020 18:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 296E56E426;
+	Tue, 21 Jul 2020 18:09:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com
- [IPv6:2607:f8b0:4864:20::741])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CED426E426
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 18:09:16 +0000 (UTC)
-Received: by mail-qk1-x741.google.com with SMTP id 11so10809777qkn.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 11:09:16 -0700 (PDT)
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
+ [IPv6:2607:f8b0:4864:20::744])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78C656E426
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 18:09:20 +0000 (UTC)
+Received: by mail-qk1-x744.google.com with SMTP id x69so7708969qkb.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 11:09:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=d8+tE3M8y8ZD9PCxB1FAflXKOsCV/iHdVfu46La29qk=;
- b=thE+WiusuXhrtz+o7NcZVw/eFaXauXNFJ26SqKQQmqhb+5cN+1tUPx+rXQ+shZdvbQ
- hMmJwkrWU2Sbu+ig2TYd9lUGeVyeObPxh4B4HfHvff/ImHpx0upodbAwJ6h72fqQ1syh
- lP5T4U6yv5/uerDNK3J1JfKHV59CytdLmTeyRmLHY0KWxSRm2tLW6JQAoVwsX49oND7/
- eg4/8WkoOOjFqNRn9/FVy1FJ7uw2Qw1eo1JVoa3PFjSWzPIUbdHjwmub1mtUWBHpXcwQ
- giKNnEsc99WOmft8xWqZbYl1pRFdwcW9dANsdq7rfrpQZdNgUEo0tSuQqCOz37KL4q9r
- 20iA==
+ bh=QuGVsDpM/PiY30tVtdZFXOZLYjr5hy8UmhNqW0ij9BQ=;
+ b=TMyAwG4kWcwCK63mjFVpAEAmIx2Q9fDW+EKjoeJLnIyYOyF3SnrP+aIoZaz9F5ZtfD
+ pZh1HGLFbp8TtYw9GQQurmtGBjs25HE28JwyfLT/ZVyYNtflW97MhG5wtANbbV12wrW4
+ lG868pTEHb+aYzGLKxkEZ174M+eQGAvSI9fY5asSxTY/T2O8Xwb45NTu1YZ/GuhHGZC3
+ RvTuTdWOi1h9kow1l48CeKdilFptdNy50GvPgHm/QYDk5xPEB/8rAZisFMT+T6DEIIhG
+ OCYGFC2udKMK+JWAxyrkULpSVCe78D7uVaHBvtXln5fetJSNvRz1USrX7nZ/fwWYj43v
+ 0ybA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=d8+tE3M8y8ZD9PCxB1FAflXKOsCV/iHdVfu46La29qk=;
- b=d0GUBPlIFAG5vp1egiI54q/9lWXHwrbVloZok0uJN7pEYPradyZQvDr7IcxOyr9aTy
- ugurl/M8PuJ0B5yAc4S3zis2oVe/niOHLOlfYcnuMY5oA4XqMsD6NwiTyzfuqxXAmQKw
- QkfmqiaNM/pllfTSbnCNQprWtduol0XWjKOewPPyylBqNZ0BKba67QbmJy/v+8GBPtAI
- el2DqB4nO6DBi1EJ0K8Ke1fzem0CUg2Y0C08veyyuA82V/t3UA944ApcCC1og8k2y1s/
- Hw4N7MexyVsPoTBKa3sPY07rhXXPKpBdIJsVBRgeY0cxMYqnhMoFk7oNIOMm96OW2zoc
- /27Q==
-X-Gm-Message-State: AOAM532lvBUbkamA/c4TEX8jXMtR0/edM2fazwnMrTQ0HfCW2n3TrmfA
- C7N3OAerQgSgmgzFQZb4ox7FQAt6
-X-Google-Smtp-Source: ABdhPJzkfM7AzwSnhswQNUZguFlQNjEkE0DENli1exTsWg+lDdAj/aXKQyL44f/lqmVsTukyOU022A==
-X-Received: by 2002:a37:b341:: with SMTP id c62mr27341898qkf.128.1595354952728; 
- Tue, 21 Jul 2020 11:09:12 -0700 (PDT)
+ bh=QuGVsDpM/PiY30tVtdZFXOZLYjr5hy8UmhNqW0ij9BQ=;
+ b=a/vxkIz0NBu4fdiCgLRQ8cyv+5lS9aOzi6DABN+ICiq0B8B+XhElpSBZIL676weG2m
+ kBhpjfUmbrhYThMtCkjoE9jXiinQ3aH5Rd/c0Vcgc1saslaLnfj6V0/WNZZkYrRO3WjC
+ SljpSOqBlByEJYQ/Nfd8XK1oQlc5DnRGYaL6BUEq54TF8ZFZcm9vrPdXPP3mWcG73+ZU
+ rBmOShbL72UlfNSS7mvLjCycuncd/Z8LbHPbyLZEc/QYClbW2+ArhirAHKzZ7cEVfLnw
+ YAMNF7bL1WOqaZ/uX2InGWBJJNWXWUhQJ7MIwGfiIJEfGSBlavAFbumEyRPffH3S4Lav
+ 7Hpg==
+X-Gm-Message-State: AOAM533UF9DSRkQ+GM0DNbLQtuoGrmf1wrAteGckSmWik2ZuN5IOHk/G
+ RinfYlkT91MP7D2Dwhn7rfgOsVnp
+X-Google-Smtp-Source: ABdhPJwmTReTGmft2F3ucbORvl9JH9Y/iEuuRGwzEE5dq1DzTsT6rBEYUp78aV3AOrVE/pjK3Yveug==
+X-Received: by 2002:a37:a906:: with SMTP id s6mr4093970qke.320.1595354955487; 
+ Tue, 21 Jul 2020 11:09:15 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id t65sm2957284qkf.119.2020.07.21.11.09.10
+ by smtp.gmail.com with ESMTPSA id t65sm2957284qkf.119.2020.07.21.11.09.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jul 2020 11:09:12 -0700 (PDT)
+ Tue, 21 Jul 2020 11:09:14 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 4/6] drm/amdgpu/swSMU: remove eeprom from the smu i2c handlers
- (v2)
-Date: Tue, 21 Jul 2020 14:08:48 -0400
-Message-Id: <20200721180850.813406-4-alexander.deucher@amd.com>
+Subject: [PATCH 5/6] drm/amdgpu/navi1x: add SMU i2c support (v2)
+Date: Tue, 21 Jul 2020 14:08:49 -0400
+Message-Id: <20200721180850.813406-5-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200721180850.813406-1-alexander.deucher@amd.com>
 References: <20200721180850.813406-1-alexander.deucher@amd.com>
@@ -73,250 +72,293 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The driver uses it for EEPROM access, but it's just an i2c bus.
+Enable SMU i2c bus access for navi1x asics.
 
-v2: change the callback name as well.
+v2: add missing implementation
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/powerplay/amdgpu_smu.c    |  4 +-
- drivers/gpu/drm/amd/powerplay/arcturus_ppt.c  | 60 +++++++++----------
- .../gpu/drm/amd/powerplay/inc/amdgpu_smu.h    |  4 +-
- drivers/gpu/drm/amd/powerplay/smu_internal.h  |  4 +-
- 4 files changed, 36 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 239 +++++++++++++++++++++
+ 1 file changed, 239 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-index 03125c8a2145..2940e94e9962 100644
---- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-@@ -1135,7 +1135,7 @@ static int smu_smc_hw_setup(struct smu_context *smu)
- 		return ret;
- 	}
+diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+index ead135f39c7e..0bcbcdd90e40 100644
+--- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+@@ -23,6 +23,7 @@
  
--	ret = smu_i2c_eeprom_init(smu, &adev->pm.smu_i2c);
-+	ret = smu_i2c_init(smu, &adev->pm.smu_i2c);
- 	if (ret)
- 		return ret;
+ #include <linux/firmware.h>
+ #include <linux/pci.h>
++#include <linux/i2c.h>
+ #include "amdgpu.h"
+ #include "amdgpu_smu.h"
+ #include "smu_internal.h"
+@@ -52,6 +53,8 @@
+ #undef pr_info
+ #undef pr_debug
  
-@@ -1341,7 +1341,7 @@ static int smu_smc_hw_cleanup(struct smu_context *smu)
- 	struct amdgpu_device *adev = smu->adev;
- 	int ret = 0;
- 
--	smu_i2c_eeprom_fini(smu, &adev->pm.smu_i2c);
-+	smu_i2c_fini(smu, &adev->pm.smu_i2c);
- 
- 	cancel_work_sync(&smu->throttling_logging_work);
- 
-diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-index 56dc20a617fd..5333827b7dd3 100644
---- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-@@ -1947,7 +1947,7 @@ static int arcturus_dpm_set_vcn_enable(struct smu_context *smu, bool enable)
- 	return ret;
++#define to_amdgpu_device(x) (container_of(x, struct amdgpu_device, pm.smu_i2c))
++
+ #define FEATURE_MASK(feature) (1ULL << feature)
+ #define SMC_DPM_FEATURE ( \
+ 	FEATURE_MASK(FEATURE_DPM_PREFETCHER_BIT) | \
+@@ -553,6 +556,8 @@ static int navi10_tables_init(struct smu_context *smu, struct smu_table *tables)
+ 		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
+ 	SMU_TABLE_INIT(tables, SMU_TABLE_SMU_METRICS, sizeof(SmuMetrics_t),
+ 		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
++	SMU_TABLE_INIT(tables, SMU_TABLE_I2C_COMMANDS, sizeof(SwI2cRequest_t),
++		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
+ 	SMU_TABLE_INIT(tables, SMU_TABLE_OVERDRIVE, sizeof(OverDriveTable_t),
+ 		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
+ 	SMU_TABLE_INIT(tables, SMU_TABLE_PMSTATUSLOG, SMU11_TOOL_SIZE,
+@@ -2340,6 +2345,238 @@ static int navi10_disable_umc_cdr_12gbps_workaround(struct smu_context *smu)
+ 	return navi10_dummy_pstate_control(smu, true);
  }
  
--static void arcturus_fill_eeprom_i2c_req(SwI2cRequest_t  *req, bool write,
-+static void arcturus_fill_i2c_req(SwI2cRequest_t  *req, bool write,
- 				  uint8_t address, uint32_t numbytes,
- 				  uint8_t *data)
- {
-@@ -1981,7 +1981,7 @@ static void arcturus_fill_eeprom_i2c_req(SwI2cRequest_t  *req, bool write,
- 	}
- }
- 
--static int arcturus_i2c_eeprom_read_data(struct i2c_adapter *control,
-+static int arcturus_i2c_read_data(struct i2c_adapter *control,
- 					       uint8_t address,
- 					       uint8_t *data,
- 					       uint32_t numbytes)
-@@ -1993,7 +1993,7 @@ static int arcturus_i2c_eeprom_read_data(struct i2c_adapter *control,
- 	struct smu_table *table = &smu_table->driver_table;
- 
- 	memset(&req, 0, sizeof(req));
--	arcturus_fill_eeprom_i2c_req(&req, false, address, numbytes, data);
-+	arcturus_fill_i2c_req(&req, false, address, numbytes, data);
- 
- 	mutex_lock(&adev->smu.mutex);
- 	/* Now read data starting with that address */
-@@ -2008,18 +2008,18 @@ static int arcturus_i2c_eeprom_read_data(struct i2c_adapter *control,
- 		for (i = 0; i < numbytes; i++)
- 			data[i] = res->SwI2cCmds[i].Data;
- 
--		dev_dbg(adev->dev, "arcturus_i2c_eeprom_read_data, address = %x, bytes = %d, data :",
-+		dev_dbg(adev->dev, "arcturus_i2c_read_data, address = %x, bytes = %d, data :",
- 				  (uint16_t)address, numbytes);
- 
- 		print_hex_dump(KERN_DEBUG, "data: ", DUMP_PREFIX_NONE,
- 			       8, 1, data, numbytes, false);
- 	} else
--		dev_err(adev->dev, "arcturus_i2c_eeprom_read_data - error occurred :%x", ret);
-+		dev_err(adev->dev, "arcturus_i2c_read_data - error occurred :%x", ret);
- 
- 	return ret;
- }
- 
--static int arcturus_i2c_eeprom_write_data(struct i2c_adapter *control,
-+static int arcturus_i2c_write_data(struct i2c_adapter *control,
- 						uint8_t address,
- 						uint8_t *data,
- 						uint32_t numbytes)
-@@ -2029,7 +2029,7 @@ static int arcturus_i2c_eeprom_write_data(struct i2c_adapter *control,
- 	struct amdgpu_device *adev = to_amdgpu_device(control);
- 
- 	memset(&req, 0, sizeof(req));
--	arcturus_fill_eeprom_i2c_req(&req, true, address, numbytes, data);
-+	arcturus_fill_i2c_req(&req, true, address, numbytes, data);
- 
- 	mutex_lock(&adev->smu.mutex);
- 	ret = smu_update_table(&adev->smu, SMU_TABLE_I2C_COMMANDS, 0, &req, true);
-@@ -2055,7 +2055,7 @@ static int arcturus_i2c_eeprom_write_data(struct i2c_adapter *control,
- 	return ret;
- }
- 
--static int arcturus_i2c_eeprom_i2c_xfer(struct i2c_adapter *i2c_adap,
-+static int arcturus_i2c_xfer(struct i2c_adapter *i2c_adap,
- 			      struct i2c_msg *msgs, int num)
- {
- 	uint32_t  i, j, ret, data_size, data_chunk_size, next_eeprom_addr = 0;
-@@ -2078,18 +2078,18 @@ static int arcturus_i2c_eeprom_i2c_xfer(struct i2c_adapter *i2c_adap,
- 			data_chunk[1] = (next_eeprom_addr & 0xff);
- 
- 			if (msgs[i].flags & I2C_M_RD) {
--				ret = arcturus_i2c_eeprom_read_data(i2c_adap,
--								(uint8_t)msgs[i].addr,
--								data_chunk, MAX_SW_I2C_COMMANDS);
-+				ret = arcturus_i2c_read_data(i2c_adap,
++static void navi10_fill_i2c_req(SwI2cRequest_t  *req, bool write,
++				  uint8_t address, uint32_t numbytes,
++				  uint8_t *data)
++{
++	int i;
++
++	BUG_ON(numbytes > MAX_SW_I2C_COMMANDS);
++
++	req->I2CcontrollerPort = 0;
++	req->I2CSpeed = 2;
++	req->SlaveAddress = address;
++	req->NumCmds = numbytes;
++
++	for (i = 0; i < numbytes; i++) {
++		SwI2cCmd_t *cmd =  &req->SwI2cCmds[i];
++
++		/* First 2 bytes are always write for lower 2b EEPROM address */
++		if (i < 2)
++			cmd->Cmd = 1;
++		else
++			cmd->Cmd = write;
++
++
++		/* Add RESTART for read  after address filled */
++		cmd->CmdConfig |= (i == 2 && !write) ? CMDCONFIG_RESTART_MASK : 0;
++
++		/* Add STOP in the end */
++		cmd->CmdConfig |= (i == (numbytes - 1)) ? CMDCONFIG_STOP_MASK : 0;
++
++		/* Fill with data regardless if read or write to simplify code */
++		cmd->RegisterAddr = data[i];
++	}
++}
++
++static int navi10_i2c_read_data(struct i2c_adapter *control,
++					       uint8_t address,
++					       uint8_t *data,
++					       uint32_t numbytes)
++{
++	uint32_t  i, ret = 0;
++	SwI2cRequest_t req;
++	struct amdgpu_device *adev = to_amdgpu_device(control);
++	struct smu_table_context *smu_table = &adev->smu.smu_table;
++	struct smu_table *table = &smu_table->driver_table;
++
++	memset(&req, 0, sizeof(req));
++	navi10_fill_i2c_req(&req, false, address, numbytes, data);
++
++	mutex_lock(&adev->smu.mutex);
++	/* Now read data starting with that address */
++	ret = smu_update_table(&adev->smu, SMU_TABLE_I2C_COMMANDS, 0, &req,
++					true);
++	mutex_unlock(&adev->smu.mutex);
++
++	if (!ret) {
++		SwI2cRequest_t *res = (SwI2cRequest_t *)table->cpu_addr;
++
++		/* Assume SMU  fills res.SwI2cCmds[i].Data with read bytes */
++		for (i = 0; i < numbytes; i++)
++			data[i] = res->SwI2cCmds[i].Data;
++
++		dev_dbg(adev->dev, "navi10_i2c_read_data, address = %x, bytes = %d, data :",
++				  (uint16_t)address, numbytes);
++
++		print_hex_dump(KERN_DEBUG, "data: ", DUMP_PREFIX_NONE,
++			       8, 1, data, numbytes, false);
++	} else
++		dev_err(adev->dev, "navi10_i2c_read_data - error occurred :%x", ret);
++
++	return ret;
++}
++
++static int navi10_i2c_write_data(struct i2c_adapter *control,
++						uint8_t address,
++						uint8_t *data,
++						uint32_t numbytes)
++{
++	uint32_t ret;
++	SwI2cRequest_t req;
++	struct amdgpu_device *adev = to_amdgpu_device(control);
++
++	memset(&req, 0, sizeof(req));
++	navi10_fill_i2c_req(&req, true, address, numbytes, data);
++
++	mutex_lock(&adev->smu.mutex);
++	ret = smu_update_table(&adev->smu, SMU_TABLE_I2C_COMMANDS, 0, &req, true);
++	mutex_unlock(&adev->smu.mutex);
++
++	if (!ret) {
++		dev_dbg(adev->dev, "navi10_i2c_write(), address = %x, bytes = %d , data: ",
++					 (uint16_t)address, numbytes);
++
++		print_hex_dump(KERN_DEBUG, "data: ", DUMP_PREFIX_NONE,
++			       8, 1, data, numbytes, false);
++		/*
++		 * According to EEPROM spec there is a MAX of 10 ms required for
++		 * EEPROM to flush internal RX buffer after STOP was issued at the
++		 * end of write transaction. During this time the EEPROM will not be
++		 * responsive to any more commands - so wait a bit more.
++		 */
++		msleep(10);
++
++	} else
++		dev_err(adev->dev, "navi10_i2c_write- error occurred :%x", ret);
++
++	return ret;
++}
++
++static int navi10_i2c_xfer(struct i2c_adapter *i2c_adap,
++			      struct i2c_msg *msgs, int num)
++{
++	uint32_t  i, j, ret, data_size, data_chunk_size, next_eeprom_addr = 0;
++	uint8_t *data_ptr, data_chunk[MAX_SW_I2C_COMMANDS] = { 0 };
++
++	for (i = 0; i < num; i++) {
++		/*
++		 * SMU interface allows at most MAX_SW_I2C_COMMANDS bytes of data at
++		 * once and hence the data needs to be spliced into chunks and sent each
++		 * chunk separately
++		 */
++		data_size = msgs[i].len - 2;
++		data_chunk_size = MAX_SW_I2C_COMMANDS - 2;
++		next_eeprom_addr = (msgs[i].buf[0] << 8 & 0xff00) | (msgs[i].buf[1] & 0xff);
++		data_ptr = msgs[i].buf + 2;
++
++		for (j = 0; j < data_size / data_chunk_size; j++) {
++			/* Insert the EEPROM dest addess, bits 0-15 */
++			data_chunk[0] = ((next_eeprom_addr >> 8) & 0xff);
++			data_chunk[1] = (next_eeprom_addr & 0xff);
++
++			if (msgs[i].flags & I2C_M_RD) {
++				ret = navi10_i2c_read_data(i2c_adap,
 +							     (uint8_t)msgs[i].addr,
 +							     data_chunk, MAX_SW_I2C_COMMANDS);
- 
- 				memcpy(data_ptr, data_chunk + 2, data_chunk_size);
- 			} else {
- 
- 				memcpy(data_chunk + 2, data_ptr, data_chunk_size);
- 
--				ret = arcturus_i2c_eeprom_write_data(i2c_adap,
--								 (uint8_t)msgs[i].addr,
--								 data_chunk, MAX_SW_I2C_COMMANDS);
-+				ret = arcturus_i2c_write_data(i2c_adap,
++
++				memcpy(data_ptr, data_chunk + 2, data_chunk_size);
++			} else {
++
++				memcpy(data_chunk + 2, data_ptr, data_chunk_size);
++
++				ret = navi10_i2c_write_data(i2c_adap,
 +							      (uint8_t)msgs[i].addr,
 +							      data_chunk, MAX_SW_I2C_COMMANDS);
- 			}
- 
- 			if (ret) {
-@@ -2106,17 +2106,17 @@ static int arcturus_i2c_eeprom_i2c_xfer(struct i2c_adapter *i2c_adap,
- 			data_chunk[1] = (next_eeprom_addr & 0xff);
- 
- 			if (msgs[i].flags & I2C_M_RD) {
--				ret = arcturus_i2c_eeprom_read_data(i2c_adap,
--								(uint8_t)msgs[i].addr,
--								data_chunk, (data_size % data_chunk_size) + 2);
-+				ret = arcturus_i2c_read_data(i2c_adap,
++			}
++
++			if (ret) {
++				num = -EIO;
++				goto fail;
++			}
++
++			next_eeprom_addr += data_chunk_size;
++			data_ptr += data_chunk_size;
++		}
++
++		if (data_size % data_chunk_size) {
++			data_chunk[0] = ((next_eeprom_addr >> 8) & 0xff);
++			data_chunk[1] = (next_eeprom_addr & 0xff);
++
++			if (msgs[i].flags & I2C_M_RD) {
++				ret = navi10_i2c_read_data(i2c_adap,
 +							     (uint8_t)msgs[i].addr,
 +							     data_chunk, (data_size % data_chunk_size) + 2);
- 
- 				memcpy(data_ptr, data_chunk + 2, data_size % data_chunk_size);
- 			} else {
- 				memcpy(data_chunk + 2, data_ptr, data_size % data_chunk_size);
- 
--				ret = arcturus_i2c_eeprom_write_data(i2c_adap,
--								 (uint8_t)msgs[i].addr,
--								 data_chunk, (data_size % data_chunk_size) + 2);
-+				ret = arcturus_i2c_write_data(i2c_adap,
++
++				memcpy(data_ptr, data_chunk + 2, data_size % data_chunk_size);
++			} else {
++				memcpy(data_chunk + 2, data_ptr, data_size % data_chunk_size);
++
++				ret = navi10_i2c_write_data(i2c_adap,
 +							      (uint8_t)msgs[i].addr,
 +							      data_chunk, (data_size % data_chunk_size) + 2);
- 			}
- 
- 			if (ret) {
-@@ -2130,15 +2130,15 @@ static int arcturus_i2c_eeprom_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	return num;
- }
- 
--static u32 arcturus_i2c_eeprom_i2c_func(struct i2c_adapter *adap)
-+static u32 arcturus_i2c_func(struct i2c_adapter *adap)
- {
- 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
- }
- 
- 
--static const struct i2c_algorithm arcturus_i2c_eeprom_i2c_algo = {
--	.master_xfer = arcturus_i2c_eeprom_i2c_xfer,
--	.functionality = arcturus_i2c_eeprom_i2c_func,
-+static const struct i2c_algorithm arcturus_i2c_algo = {
-+	.master_xfer = arcturus_i2c_xfer,
-+	.functionality = arcturus_i2c_func,
- };
- 
- static bool arcturus_i2c_adapter_is_added(struct i2c_adapter *control)
-@@ -2148,7 +2148,7 @@ static bool arcturus_i2c_adapter_is_added(struct i2c_adapter *control)
- 	return control->dev.parent == &adev->pdev->dev;
- }
- 
--static int arcturus_i2c_eeprom_control_init(struct smu_context *smu, struct i2c_adapter *control)
-+static int arcturus_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
- {
- 	struct amdgpu_device *adev = to_amdgpu_device(control);
- 	int res;
-@@ -2160,8 +2160,8 @@ static int arcturus_i2c_eeprom_control_init(struct smu_context *smu, struct i2c_
- 	control->owner = THIS_MODULE;
- 	control->class = I2C_CLASS_SPD;
- 	control->dev.parent = &adev->pdev->dev;
--	control->algo = &arcturus_i2c_eeprom_i2c_algo;
--	snprintf(control->name, sizeof(control->name), "AMDGPU EEPROM");
-+	control->algo = &arcturus_i2c_algo;
++			}
++
++			if (ret) {
++				num = -EIO;
++				goto fail;
++			}
++		}
++	}
++
++fail:
++	return num;
++}
++
++static u32 navi10_i2c_func(struct i2c_adapter *adap)
++{
++	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
++}
++
++
++static const struct i2c_algorithm navi10_i2c_algo = {
++	.master_xfer = navi10_i2c_xfer,
++	.functionality = navi10_i2c_func,
++};
++
++static bool navi10_i2c_adapter_is_added(struct i2c_adapter *control)
++{
++	struct amdgpu_device *adev = to_amdgpu_device(control);
++
++	return control->dev.parent == &adev->pdev->dev;
++}
++
++static int navi10_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
++{
++	struct amdgpu_device *adev = to_amdgpu_device(control);
++	int res;
++
++	/* smu_i2c_eeprom_init may be called twice in sriov */
++	if (navi10_i2c_adapter_is_added(control))
++		return 0;
++
++	control->owner = THIS_MODULE;
++	control->class = I2C_CLASS_SPD;
++	control->dev.parent = &adev->pdev->dev;
++	control->algo = &navi10_i2c_algo;
 +	snprintf(control->name, sizeof(control->name), "AMDGPU SMU");
- 
- 	res = i2c_add_adapter(control);
- 	if (res)
-@@ -2170,7 +2170,7 @@ static int arcturus_i2c_eeprom_control_init(struct smu_context *smu, struct i2c_
- 	return res;
- }
- 
--static void arcturus_i2c_eeprom_control_fini(struct smu_context *smu, struct i2c_adapter *control)
-+static void arcturus_i2c_control_fini(struct smu_context *smu, struct i2c_adapter *control)
- {
- 	if (!arcturus_i2c_adapter_is_added(control))
- 		return;
-@@ -2346,8 +2346,8 @@ static const struct pptable_funcs arcturus_ppt_funcs = {
- 	.get_power_limit = arcturus_get_power_limit,
- 	.is_dpm_running = arcturus_is_dpm_running,
- 	.dpm_set_vcn_enable = arcturus_dpm_set_vcn_enable,
--	.i2c_eeprom_init = arcturus_i2c_eeprom_control_init,
--	.i2c_eeprom_fini = arcturus_i2c_eeprom_control_fini,
-+	.i2c_init = arcturus_i2c_control_init,
-+	.i2c_fini = arcturus_i2c_control_fini,
- 	.get_unique_id = arcturus_get_unique_id,
- 	.init_microcode = smu_v11_0_init_microcode,
- 	.load_microcode = smu_v11_0_load_microcode,
-diff --git a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-index 70181ba7ee0c..ff8c7222c7c9 100644
---- a/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/powerplay/inc/amdgpu_smu.h
-@@ -494,8 +494,8 @@ struct pptable_funcs {
- 	int (*set_df_cstate)(struct smu_context *smu, enum pp_df_cstate state);
- 	int (*allow_xgmi_power_down)(struct smu_context *smu, bool en);
- 	int (*update_pcie_parameters)(struct smu_context *smu, uint32_t pcie_gen_cap, uint32_t pcie_width_cap);
--	int (*i2c_eeprom_init)(struct smu_context *smu, struct i2c_adapter *control);
--	void (*i2c_eeprom_fini)(struct smu_context *smu, struct i2c_adapter *control);
-+	int (*i2c_init)(struct smu_context *smu, struct i2c_adapter *control);
-+	void (*i2c_fini)(struct smu_context *smu, struct i2c_adapter *control);
- 	void (*get_unique_id)(struct smu_context *smu);
- 	int (*get_dpm_clock_table)(struct smu_context *smu, struct dpm_clocks *clock_table);
- 	int (*init_microcode)(struct smu_context *smu);
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_internal.h b/drivers/gpu/drm/amd/powerplay/smu_internal.h
-index afb3ef874fc5..1961cce5ef28 100644
---- a/drivers/gpu/drm/amd/powerplay/smu_internal.h
-+++ b/drivers/gpu/drm/amd/powerplay/smu_internal.h
-@@ -91,8 +91,8 @@
- #define smu_update_pcie_parameters(smu, pcie_gen_cap, pcie_width_cap)	smu_ppt_funcs(update_pcie_parameters, 0, smu, pcie_gen_cap, pcie_width_cap)
- #define smu_disable_umc_cdr_12gbps_workaround(smu)			smu_ppt_funcs(disable_umc_cdr_12gbps_workaround, 0, smu)
- #define smu_set_power_source(smu, power_src)				smu_ppt_funcs(set_power_source, 0, smu, power_src)
--#define smu_i2c_eeprom_init(smu, control)				smu_ppt_funcs(i2c_eeprom_init, 0, smu, control)
--#define smu_i2c_eeprom_fini(smu, control)				smu_ppt_funcs(i2c_eeprom_fini, 0, smu, control)
-+#define smu_i2c_init(smu, control)					smu_ppt_funcs(i2c_init, 0, smu, control)
-+#define smu_i2c_fini(smu, control)					smu_ppt_funcs(i2c_fini, 0, smu, control)
- #define smu_get_unique_id(smu)						smu_ppt_funcs(get_unique_id, 0, smu)
- #define smu_log_thermal_throttling(smu)					smu_ppt_funcs(log_thermal_throttling_event, 0, smu)
- #define smu_get_asic_power_limits(smu)					smu_ppt_funcs(get_power_limit, 0, smu)
++
++	res = i2c_add_adapter(control);
++	if (res)
++		DRM_ERROR("Failed to register hw i2c, err: %d\n", res);
++
++	return res;
++}
++
++static void navi10_i2c_control_fini(struct smu_context *smu, struct i2c_adapter *control)
++{
++	if (!navi10_i2c_adapter_is_added(control))
++		return;
++
++	i2c_del_adapter(control);
++}
++
++
+ static const struct pptable_funcs navi10_ppt_funcs = {
+ 	.tables_init = navi10_tables_init,
+ 	.alloc_dpm_context = navi10_allocate_dpm_context,
+@@ -2353,6 +2590,8 @@ static const struct pptable_funcs navi10_ppt_funcs = {
+ 	.set_default_dpm_table = navi10_set_default_dpm_table,
+ 	.dpm_set_vcn_enable = navi10_dpm_set_vcn_enable,
+ 	.dpm_set_jpeg_enable = navi10_dpm_set_jpeg_enable,
++	.i2c_init = navi10_i2c_control_init,
++	.i2c_fini = navi10_i2c_control_fini,
+ 	.print_clk_levels = navi10_print_clk_levels,
+ 	.force_clk_levels = navi10_force_clk_levels,
+ 	.populate_umd_state_clk = navi10_populate_umd_state_clk,
 -- 
 2.25.4
 
