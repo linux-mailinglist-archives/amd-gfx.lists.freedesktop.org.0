@@ -1,93 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F92B2287FA
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jul 2020 20:07:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6155B2287FC
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jul 2020 20:09:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0CE6E040;
-	Tue, 21 Jul 2020 18:07:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 600DA6E2F8;
+	Tue, 21 Jul 2020 18:09:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2088.outbound.protection.outlook.com [40.107.220.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 289AD6E040
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 18:07:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mSEOGNhpsdQX8M4Sf4Hn0/ZxAU2sRZ5IcMqb+UfPZ+vUPCjJUN4pSiumY74bON+JblI5EU6Dyl3BEPbFO5hqtSZXWHdsxciMwbJyx0J73hbN2XrpAT8R22ZYOKHUMwgLLl8GzdwwIeBu850CXqtBNscAGUDYxGNveoDOCTTuMns7+TSrs+UC56q3RRzWhQJhbY3rUYiaeJAEf3m+kCh+7gUPKUV9tqKZ2NSYiSjeaSnKxKyZ4NXmX3t1sjgagk9hPOyOa9LQDYuF3Sp5jO0vM/82nVCNf19YJR4MNeZOBtECQ4tzzqUObbP8td6mzStqqdlEosSqf6nb4v7H1And4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=liZDQbvj1MZcRBFurKpBes6klqmJmCQkbJoAqv9WDN8=;
- b=masfFQW9nBh9q0UG60BEyXan5Wn6iEhafnIuTUEd0mkUbCwXcKCJnvHWhh0+ZraQDll1pjQFnGBrGr/6gMPgaEuJNgGkLMRkzeg7gSNNr44UENl7x/9QfghK1E3t9NxOQE1UCPcKhdl1/ebcMvHj75xN1tHXfSZ9K48Yg/IRR2d7OIrPq/UPrLC1QQstkK7ca/+U9e0MvEW5ebOXwvqgyQwcTsLOTs2ZEw1UZFJ/fuJfChTTXd39kIlJH3FL/Q9Eyb47Zi4NjDX3TL8n5skI63QbKyL9OTyiRXmoHoovUT/kdvkseROz8+puccWEhLCTFrpMXXLk0bieMRmBS/TGNQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=liZDQbvj1MZcRBFurKpBes6klqmJmCQkbJoAqv9WDN8=;
- b=Nx1RSK7G3RwPnXtqibPWpIdX7Kna+lSsM9Wwkj6Oy00to40GCcZemgr/7bsBcH+W7M6kmuYf6ivHkYou0Y/870/M7CnaMS3gz8yPFFE0BszpdSp6TbVSZrtg/c4zwu4NWHzBufpGVjAK98uOL3RRcoOGo7o02Aztf6eZyDg9PG4=
-Received: from BN0PR02CA0022.namprd02.prod.outlook.com (2603:10b6:408:e4::27)
- by CY4PR1201MB0071.namprd12.prod.outlook.com (2603:10b6:910:1f::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.23; Tue, 21 Jul
- 2020 18:07:33 +0000
-Received: from BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e4:cafe::c5) by BN0PR02CA0022.outlook.office365.com
- (2603:10b6:408:e4::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.19 via Frontend
- Transport; Tue, 21 Jul 2020 18:07:32 +0000
-X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- BN8NAM11FT034.mail.protection.outlook.com (10.13.176.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3195.18 via Frontend Transport; Tue, 21 Jul 2020 18:07:32 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 21 Jul
- 2020 13:07:31 -0500
-Received: from blakha.amd.com (10.180.168.240) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Tue, 21 Jul 2020 13:07:29 -0500
-From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
-To: <nicholas.kazlauskas@amd.com>, <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: Use seperate dmcub firmware for navy_flounder
-Date: Tue, 21 Jul 2020 14:07:22 -0400
-Message-ID: <20200721180722.6344-1-Bhawanpreet.Lakha@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com
+ [IPv6:2607:f8b0:4864:20::f42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B7A8892D8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 18:09:10 +0000 (UTC)
+Received: by mail-qv1-xf42.google.com with SMTP id t11so9761792qvk.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 11:09:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/UrB7RJKkE+GqomEqpNLE/sQtmAP8IYOHTwch51bVxY=;
+ b=O6sYOWR4upQfMRlmXlj4qweZN7C1xVXo4leZo8UTqbeaRLutVJsLZcRxxGGeG4QQiX
+ xRC5UUN/4R77+AfaYeXWX+nx41AklNXMMXIIu3boDulnN3wSJLuxUdtXvFWfRr+KqZcH
+ siDAXhJacQ1Mfyl0AqAX/0LltbPK0SNm/63KVCw7CHE4gdkVDm6Bqnr0wfVY0oOZCDWc
+ +icVN4bWoyv3NNnl2BtPlOwksfsXcDcUD1g9n+Jpv0tPlQzJmCUUn9dUk2EASPo4JSY6
+ S5b29Dkh+XIEXUQa1Yo26qNm7owVYrQeSyfABh2ZHwn6+DPDHjelfOegz1XRT8Pqfe1i
+ XbTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/UrB7RJKkE+GqomEqpNLE/sQtmAP8IYOHTwch51bVxY=;
+ b=HQyVvQGw6vHQv31pkzkzMF4/bvuFc14Dr3FOx8sT4VnhiWTICpu32QZz1geQP1Q+oy
+ JNdfDvA+Anp++jPI5fQXZtwJkmBXPEXo1jghHx7MaVwsbLVCE4tsn/rWywPcfyn+iT3X
+ UTYlL9T4myc80C/nxDcSQbiOuC+RPL1jhCb9ejNwr5paAtlZXuV/rKrWY/HqqzqYnvxI
+ CG2b3U5MqxLChDk47WW+4alcKhP8m1e+r463zkQFbNWlDi542YvXpVQmL696wc7VWuLn
+ AQMKV/djVXFK1Yol7F75ciF0J0bOhQO8oldEyDofkUSVdcF1cLQuvBTI3L1kdreZfdvF
+ B+zg==
+X-Gm-Message-State: AOAM530qQSpIeFZP/0iVui9kpRzh1lsHVpnk/Kc9nqea2IVxlBIxrtiT
+ dwucfq1kp2Uwl4C6RTa4zW6lp12E
+X-Google-Smtp-Source: ABdhPJwiustCYdudPAwTi7uWNV2t6Dp4TvdDwUXEolhtKmqdx9iZNrrpn78OVumQW9G8vmqccjF9JA==
+X-Received: by 2002:a0c:e5cc:: with SMTP id u12mr27861335qvm.54.1595354945620; 
+ Tue, 21 Jul 2020 11:09:05 -0700 (PDT)
+Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
+ by smtp.gmail.com with ESMTPSA id t65sm2957284qkf.119.2020.07.21.11.09.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 21 Jul 2020 11:09:05 -0700 (PDT)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/6] drm/amdgpu: move i2c bus lock out of ras structure
+Date: Tue, 21 Jul 2020 14:08:45 -0400
+Message-Id: <20200721180850.813406-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFTY:;
- SFS:(4636009)(376002)(39860400002)(396003)(136003)(346002)(46966005)(70586007)(70206006)(2616005)(356005)(7696005)(82310400002)(83380400001)(86362001)(2906002)(36756003)(336012)(6666004)(1076003)(8676002)(81166007)(8936002)(426003)(82740400003)(186003)(26005)(54906003)(110136005)(47076004)(5660300002)(478600001)(316002)(4326008);
- DIR:OUT; SFP:1101; 
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b46dac98-acc8-4421-2e12-08d82da0f0a4
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB0071:
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB0071B4F44D00EFE56D768446F9780@CY4PR1201MB0071.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:346;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PX/NzC2a2JRHYGywdgPNwW6t0i9l61g7gCmsevq3aOnHqzVbnMvlxjC556JTxx8qEQQ2S8+O7DnHBykA+8qRrzpkwgMBXo91hBsc7HiU7KyTU+zZkG1BdBv7hKknOm/ApWgLXk29A/1FA6YakLIPrYoS8PR6Q7n5hSnV/obWFqwa6GKZs187z+Wf4lD15L97MPdoO6X/1xBE+wO8PwK1sc6HPNz8HXgS2mQbJ6ZTJCfEBU8DHI3vHTzhWhZeNCcpdrIT3KH8El/+zHmOw9MWOhbXu3vG/PrAiYX2dmnbxw0yOkts0AlM7wSyRQrD03w7th1r7ApMSU8tYrjlN9m2GCL7CLCH41s8HP0oGzj7UhVaEKzaT8NoiKIP+7KRMu5KrKVhm0BmxCeUZCgjPWyzFA==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2020 18:07:32.7794 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b46dac98-acc8-4421-2e12-08d82da0f0a4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0071
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,53 +64,106 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-Currently navy_flounder is using sienna_cichlid_dmcub.bin.
+It's not really ras related.  It's just a lock for the
+bus in general.  This removes the ras dependency from
+the smu i2c bus.
 
-[How]
-Create a seperate define so navy_flounder will use its own firmware.
-
-Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Reviewed-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h        |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h |  1 -
+ drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c     | 10 +++-------
+ 3 files changed, 4 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 95185cc58fcb..268eb7ddf364 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -97,6 +97,8 @@ MODULE_FIRMWARE(FIRMWARE_RENOIR_DMUB);
- #if defined(CONFIG_DRM_AMD_DC_DCN3_0)
- #define FIRMWARE_SIENNA_CICHLID_DMUB "amdgpu/sienna_cichlid_dmcub.bin"
- MODULE_FIRMWARE(FIRMWARE_SIENNA_CICHLID_DMUB);
-+#define FIRMWARE_NAVY_FLOUNDER_DMUB "amdgpu/navy_flounder_dmcub.bin"
-+MODULE_FIRMWARE(FIRMWARE_NAVY_FLOUNDER_DMUB);
- #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
+index 7f3cd7185650..aa27fe65cdfa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.h
+@@ -425,6 +425,7 @@ struct amdgpu_pm {
+ 	u32                     default_sclk;
+ 	u32                     default_mclk;
+ 	struct amdgpu_i2c_chan *i2c_bus;
++	bool                    bus_locked;
+ 	/* internal thermal controller on rv6xx+ */
+ 	enum amdgpu_int_thermal_type int_thermal_type;
+ 	struct device	        *int_hwmon_dev;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+index 7e8647a05df7..9e7d640920fb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+@@ -47,7 +47,6 @@ struct amdgpu_ras_eeprom_control {
+ 	uint32_t next_addr;
+ 	unsigned int num_recs;
+ 	struct mutex tbl_mutex;
+-	bool bus_locked;
+ 	uint32_t tbl_byte_sum;
+ 	uint16_t i2c_address; // 8-bit represented address
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c b/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
+index 9bffbab35041..f3d0324c4a7f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
++++ b/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
+@@ -32,7 +32,6 @@
+ #include "amdgpu_amdkfd.h"
+ #include <linux/i2c.h>
+ #include <linux/pci.h>
+-#include "amdgpu_ras.h"
  
- #define FIRMWARE_RAVEN_DMCU		"amdgpu/raven_dmcu.bin"
-@@ -1185,10 +1187,13 @@ static int dm_dmub_sw_init(struct amdgpu_device *adev)
- 		break;
- #if defined(CONFIG_DRM_AMD_DC_DCN3_0)
- 	case CHIP_SIENNA_CICHLID:
--	case CHIP_NAVY_FLOUNDER:
- 		dmub_asic = DMUB_ASIC_DCN30;
- 		fw_name_dmub = FIRMWARE_SIENNA_CICHLID_DMUB;
- 		break;
-+	case CHIP_NAVY_FLOUNDER:
-+		dmub_asic = DMUB_ASIC_DCN30;
-+		fw_name_dmub = FIRMWARE_NAVY_FLOUNDER_DMUB;
-+		break;
- #endif
+ /* error codes */
+ #define I2C_OK                0
+@@ -592,14 +591,13 @@ static uint32_t smu_v11_0_i2c_eeprom_write_data(struct i2c_adapter *control,
+ static void lock_bus(struct i2c_adapter *i2c, unsigned int flags)
+ {
+ 	struct amdgpu_device *adev = to_amdgpu_device(i2c);
+-	struct amdgpu_ras_eeprom_control *control = &adev->psp.ras.ras->eeprom_control;
  
- 	default:
+ 	if (!smu_v11_0_i2c_bus_lock(i2c)) {
+ 		DRM_ERROR("Failed to lock the bus from SMU");
+ 		return;
+ 	}
+ 
+-	control->bus_locked = true;
++	adev->pm.bus_locked = true;
+ }
+ 
+ static int trylock_bus(struct i2c_adapter *i2c, unsigned int flags)
+@@ -611,14 +609,13 @@ static int trylock_bus(struct i2c_adapter *i2c, unsigned int flags)
+ static void unlock_bus(struct i2c_adapter *i2c, unsigned int flags)
+ {
+ 	struct amdgpu_device *adev = to_amdgpu_device(i2c);
+-	struct amdgpu_ras_eeprom_control *control = &adev->psp.ras.ras->eeprom_control;
+ 
+ 	if (!smu_v11_0_i2c_bus_unlock(i2c)) {
+ 		DRM_ERROR("Failed to unlock the bus from SMU");
+ 		return;
+ 	}
+ 
+-	control->bus_locked = false;
++	adev->pm.bus_locked = false;
+ }
+ 
+ static const struct i2c_lock_operations smu_v11_0_i2c_i2c_lock_ops = {
+@@ -632,9 +629,8 @@ static int smu_v11_0_i2c_eeprom_i2c_xfer(struct i2c_adapter *i2c_adap,
+ {
+ 	int i, ret;
+ 	struct amdgpu_device *adev = to_amdgpu_device(i2c_adap);
+-	struct amdgpu_ras_eeprom_control *control = &adev->psp.ras.ras->eeprom_control;
+ 
+-	if (!control->bus_locked) {
++	if (!adev->pm.bus_locked) {
+ 		DRM_ERROR("I2C bus unlocked, stopping transaction!");
+ 		return -EIO;
+ 	}
 -- 
-2.17.1
+2.25.4
 
 _______________________________________________
 amd-gfx mailing list
