@@ -2,93 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CAF4228684
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jul 2020 18:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 035C4228697
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jul 2020 19:01:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 995B16E2C7;
-	Tue, 21 Jul 2020 16:56:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B53F6E156;
+	Tue, 21 Jul 2020 17:01:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2081.outbound.protection.outlook.com [40.107.237.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1955C6E1A2
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 16:56:27 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2068.outbound.protection.outlook.com [40.107.243.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8676E156
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jul 2020 17:01:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eotnpWKmI3b+ekosRd+PsuYhdN8Mf28blT8woNuUSCdSWanH7H+0t9ydMc3Qjtnfrf3Z+DGML5iJcE4/+Zq5oYpw3fvxFKIvUdNSlhmUis5rYhjvtzEdYtgxRUAqBQ/clvMlTjXhP4hGfkKXo0XX3f6VUa4bo6eEV6s3S3c5PIu6YWuUDSlnvn+7HxU5MTPOWQkV28uqSQjP0unZB8O7Ximp87d4tA0GPQ66wgkArbqRXYwC8wGbBzpK5bkJ7E2Kva7SYhjZPvhMsK8XlxaoyJ8CFMdMJx5XoTJrhxntfVvtiQf+cmNttPmxSIbHiJ6+Slup9O5OSebexOJPlPBMEQ==
+ b=DgYR2zuyAj1rO92zB67qc09sFzUnZT46SjnRCiD6Y8iWSZbXTD9LLqZnDZ57IggqK79L5wl/T/1uQpRhiViGLAVkfs7bCbD6aaYwFuEQpYJFl6/2kLMmoOBSF3GJi6DvLso5uVimOTOQKWDmE8lpc4V/2xZpCxmAl7TxPK9rIbA5hy6mJvQjFusmilstbhiQ1zB07CcriSTVLHfCUseySWZeRM8hms+N0UlyfQscwqYUlGm9DmySpWYm8qnc9m79TXC5EWuWAvLlXgtLjyvE9jaKyF0jk9V2UUz8Upk0X5/QwLOt4VORXT7yW4LkHYQ0OYTGPjWOt5X3j8UpqFqxLg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oW/vwmAEz+TG9qAGtynEpXtJ8+fsMg/RtVhEDrb39Y0=;
- b=QVfYLWZ5iaYGESjXFvEzCIWvglzgwO9Ar1YvPGjcyfUGU8K594pVnzPJJ69wgKh+dbniDooxZYc7zfD5f7xEoaJ36AWmv3LtKJN4EjIoX7wiCFaWUucMFLdjV33iG/8dQDTJavsAgf4FUirCFbRZ+v82RA74/7I7b3EyDsAlNeyrbnHo0JoBpNvrDkWoMETf+KcgrSTmrIFvzPtvxDZ54jIQSKS1wYTpDpYRC1ApOAuun1jxe7lNdnWATM4Pwqwf9z4BsIDXPb6x0IQnFlIuf4VegL02aLG831ZjDVLU17JoTSc0oF7h6OuaWnuPXTCeVqzCQWQ6wgg5Ao6xQFK3NQ==
+ bh=7TEdWLNeZl+JUjylz3Z5t1F3fc0UIog58x0CT61dk9o=;
+ b=P7Ikj92JVct7vUXg3W8nnPnwz2lRKLpojsQIt63+vX6Kds/9Wff/0l7Bvo86UGCSUmakCtCEEU7oa9Wu9pH8dkvRxS9Y/JsIIzA58LLlJfrZG7MNHtkwLz6/H0WWuMlJFCKHMKmOpa/SUXnttQxC+ON7nksgGCO+B7YEJe7q3JD8vA9kSGKxETPAfcrhQEjLsw/Q2C0GHdleTfmmDxKu++RWq0KS13QBClaH4TLn6UVhow/dP4piP/oL6Qiifj9nhmD9SG7sfq8YitGZvF19C30mZQSKL4m2ZqdbyEHXTSeIdxz19L7xDJoYJ1zIlQBSL83mOqUAYd9TZS83HveIjw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oW/vwmAEz+TG9qAGtynEpXtJ8+fsMg/RtVhEDrb39Y0=;
- b=g6KbamjfYBKRWONgO4cydroPnfYs6wUtMJ8EuebGo92PemKjzWHCzZjZdoCcCkD9OyXMCcyissQcx6ieveZoZsEPdinuZoZOYNFyMdgy5ZoAnBZNAv7CecVXJZEFvy1wEAh5jrDOhDrEcwEyKt6p5sKPfCbZ07QtcH5cwiWeHDM=
-Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
- by MN2PR12MB3854.namprd12.prod.outlook.com (2603:10b6:208:16a::27)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.23; Tue, 21 Jul
- 2020 16:56:25 +0000
-Received: from MN2PR12MB4488.namprd12.prod.outlook.com
- ([fe80::c8b3:24f3:c561:97d9]) by MN2PR12MB4488.namprd12.prod.outlook.com
- ([fe80::c8b3:24f3:c561:97d9%5]) with mapi id 15.20.3195.025; Tue, 21 Jul 2020
- 16:56:25 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: Alex Deucher <alexdeucher@gmail.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 5/6] drm/amdgpu/navi1x: add SMU i2c support
-Thread-Topic: [PATCH 5/6] drm/amdgpu/navi1x: add SMU i2c support
-Thread-Index: AQHWX39hfLSzF5Z8UkakXbWVggy5dKkSQKXJ
-Date: Tue, 21 Jul 2020 16:56:24 +0000
-Message-ID: <MN2PR12MB44881AE65EFC4A6CA484C479F7780@MN2PR12MB4488.namprd12.prod.outlook.com>
-References: <20200721165240.296265-1-alexander.deucher@amd.com>,
- <20200721165240.296265-5-alexander.deucher@amd.com>
-In-Reply-To: <20200721165240.296265-5-alexander.deucher@amd.com>
-Accept-Language: en-US
+ bh=7TEdWLNeZl+JUjylz3Z5t1F3fc0UIog58x0CT61dk9o=;
+ b=afpmPez2wuitADhYWQpla1PlxAnU8psj7jSzdYo1A+DSo/tg9WsA3PiwQEf/jDZlwhU7f+xkZBVwqcfAfs6XZm/kRlNzDA85TSS/j4axm6GA1/B+0E6PDjPSmMi8u8GsksaVWOnIQgUouFDYn9McoK4zMJ/jGrPhZHmLbZMlzWA=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB4340.namprd12.prod.outlook.com (2603:10b6:5:2a8::7) by
+ DM5PR1201MB0105.namprd12.prod.outlook.com (2603:10b6:4:54::23) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3216.20; Tue, 21 Jul 2020 17:01:31 +0000
+Received: from DM6PR12MB4340.namprd12.prod.outlook.com
+ ([fe80::f5e6:e937:2eac:18cf]) by DM6PR12MB4340.namprd12.prod.outlook.com
+ ([fe80::f5e6:e937:2eac:18cf%4]) with mapi id 15.20.3195.026; Tue, 21 Jul 2020
+ 17:01:31 +0000
+Subject: Re: [PATCH 6/6] drm/amdgpu/sienna_cichlid: add SMU i2c support
+To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
+References: <20200721165240.296265-1-alexander.deucher@amd.com>
+ <20200721165240.296265-6-alexander.deucher@amd.com>
+From: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
+Message-ID: <fa57d3dd-f945-1407-b813-170be1cbfa0a@amd.com>
+Date: Tue, 21 Jul 2020 13:01:28 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
+In-Reply-To: <20200721165240.296265-6-alexander.deucher@amd.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-07-21T16:56:24.329Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [172.58.190.150]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: dd5bdc9d-0399-4771-21b0-08d82d9700dc
-x-ms-traffictypediagnostic: MN2PR12MB3854:
-x-microsoft-antispam-prvs: <MN2PR12MB38548981D8CC77C11531D5BBF7780@MN2PR12MB3854.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3631;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: w0y8ips6/JoutTNLzcLO0r5tM2QUuqYpYBMCvi0Q1o1kOhkcbEfRhfzL+1pkmD1hr0kQQ5O6ysLw+l+1qu7+gyyuiyFA6wpj6DG/Arpi8D19/G+Mh1s/3hsnQBSx+7DOhbYky+ATGZtjjC1YQx0tr5qEImejEZ4tTYXNNtYLnJilwQ8tAEBfN1CZMwCMk1wDSCwOJJoUFElxhccwIDqENkWR3OwEueONeldW3QLLohAckQq8K7Ik8ZEurxzFqR5DemljstBD6uWcKaSNEPuVp7P8smvYZeHpCrXz9wrEJ823FSOI0lwRsG2m5Hnx4aLgZsGsuFfDPHG/MnR3t3wU86OYuoPjl6vlI3SuP8kzvbtLPB7DXA5KFvdDAkb3w11L
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(396003)(136003)(346002)(376002)(39860400002)(366004)(2906002)(33656002)(66946007)(52536014)(76116006)(8936002)(64756008)(6506007)(53546011)(110136005)(66476007)(66556008)(66446008)(9686003)(55016002)(8676002)(7696005)(478600001)(71200400001)(316002)(86362001)(5660300002)(26005)(19627405001)(83380400001)(186003)(357404004);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: ziOIrw1etYAePTMYyfAG88JnYnNdOcMarhMijWkIEjRrgHO7WdIx9/A4+0qqv8Sn+U3KNqKGtYHJ/fEMZj5Mn9GB/eVcDhfhiPUyHzp7C86QvdfdMlTXHt/TvcPMyrZ28JLCa0z+QpDIiIN5nqoEB1Ad7196IGjhNBqmN4HywVSouyAlikuOJtKi4xn36efAozZb/CQmb8YoqoKFWH8OdX9PXwUfA/XiB5UeMlmztLPiMpZdtSRvSQYz6mCAFAOguxSOgfSveYM4YA4I+iRZr9eCy8iO6s9EAZUgexiNI4aW7IOt5K2+rQhZOS79vdxLDDhseJkLiHg3uqmr+hdr2xMXNPblcX14fn+Rkws9yJGBg+u704bMCasl4lEsKlv7sR4RLVS6Bnkw3Ji7rDvvTu0SE/VIe2uZpiLWIFe3lyCwwH9qBPFtS4lElq8tjvW1jRfGw0VU3ZMF1Ql3PWCkYhl+EAaJUpBaj2DdmqjRgqIDV9EXujyd3UaN+Y4puv4X
-x-ms-exchange-transport-forked: True
+X-ClientProxiedBy: BN7PR06CA0054.namprd06.prod.outlook.com
+ (2603:10b6:408:34::31) To DM6PR12MB4340.namprd12.prod.outlook.com
+ (2603:10b6:5:2a8::7)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2607:fea8:3edf:49b0:646c:e41c:908f:f19b]
+ (2607:fea8:3edf:49b0:646c:e41c:908f:f19b) by
+ BN7PR06CA0054.namprd06.prod.outlook.com (2603:10b6:408:34::31) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3195.18 via Frontend Transport; Tue, 21 Jul 2020 17:01:30 +0000
+X-Originating-IP: [2607:fea8:3edf:49b0:646c:e41c:908f:f19b]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 820d9f55-eeb9-4d01-8466-08d82d97b766
+X-MS-TrafficTypeDiagnostic: DM5PR1201MB0105:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR1201MB0105227CD5A0A2542D9A6FC7EA780@DM5PR1201MB0105.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ARRSY3ewrtNSemmbD53iwj8/Rog+4vHQUnJdpErVB6kcFq88fdRGL6RMuDhoOsm3boZmmaWXDYq8eKGqQoxLqWeuwREp4neZBwlvjNivtatEd3KwH4yqOlWRhcjnPN02pKg6LrAJCTdkVDBEIE59XL8jHiOFiNghE5fZ2JtoEJ5+jx1z+5cs+DIiaPofnY0G2C0KMojQavtjNe6D4HIDQzeZpDENjmREHbGHTmesUrUFRatOlwOqM4HN4EZz8H/uW5RHk2UkKDMT4Yvn+6+lJRaiQFywMFnMXfPJOS5VhKDGbj3DrBx8jashQ4+w91jtZpforOSTVFOXYAjgZP6EbPc/PL8LFGnZmytHJ43ROh+Y3aMV+sxC1cMlLTyuy0F5
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4340.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(136003)(346002)(376002)(39860400002)(366004)(396003)(8676002)(478600001)(36756003)(186003)(31686004)(66556008)(6486002)(53546011)(66476007)(52116002)(83380400001)(66946007)(16526019)(8936002)(5660300002)(4326008)(2906002)(86362001)(31696002)(316002)(2616005)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: C4/6dhOrdQaxZGvR47Q5ysi2r4Cy4LOfmy2b9TlkLBxtehxQfKsw1QNefv20F5D8PL+oLFg2SnWTYzjlihbpLYVyMKzg0bIMe1sVLJMuKDllav1WhDqIzge9Z1XqfnmRcwEpAtRaus9aiosoVVOKx5MpXAtUEmpE90vLjZYUNl9cEKf6S25McC8GCt1DI90sY+ESbyBxXpGBl8aqGkSf/ja89BM6q8Og2qwFIzzXNESJk+6bXS6aXoCAq+m+ttmVbRrBs+jtt8iUPLtIjBv/kOx1DLajpKnKrXtzr5H1Xt6T6uPZb7Pex1rKzLquuLXx7bRrnO9NLWFzcuk9EO39zaHoFoe3ZbNwPCXp+z1yauazIJ1YUV+zKiqwLMhEuX+6v7/sotqDSy4K1F9bW4bQXIj5UTpYAfAMyTvfknJSVfhfKG9sFTg04u416tmbDZ/DD6V+r44Go69I/SqNzZP7pwhyFhq5CnKijtJwkrsljDqEBA0f0/xQw4Yl/UIoa6IOg+g9OYy9sQKnsU3jwNuCLSAQ3QGUScYq49u81peZk6RJ12waRbZ1NPDVUCq0Eqts
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 820d9f55-eeb9-4d01-8466-08d82d97b766
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4340.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd5bdc9d-0399-4771-21b0-08d82d9700dc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jul 2020 16:56:24.9508 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Wr30swv4dROgajUXIND8B8R3bFW/V4KTL4vIJ+8RmqGExZZdvaViqxAvyxrh2J4IPxzG7el22Y3ZN7fRkMCqwQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3854
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2020 17:01:31.6590 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fgWoOrbabYz9v02bU839n9QB0YaIpx4n4SScDukDh/QCCe/RwIjsLSr230MaL+D/8LVzt1yG5yq8L+SGlG+BTA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0105
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,159 +98,304 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0408604054=="
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0408604054==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB44881AE65EFC4A6CA484C479F7780MN2PR12MB4488namp_"
+Looks like same code as arcturus - should we make it common helper code and 
+reuse in both ?
 
---_000_MN2PR12MB44881AE65EFC4A6CA484C479F7780MN2PR12MB4488namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Andrey
 
-[AMD Official Use Only - Internal Distribution Only]
-
-Ignore this.  Sent out the wrong version.
-
-Alex
-________________________________
-From: Alex Deucher <alexdeucher@gmail.com>
-Sent: Tuesday, July 21, 2020 12:52 PM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-Subject: [PATCH 5/6] drm/amdgpu/navi1x: add SMU i2c support
-
-Enable SMU i2c bus access for navi1x asics.
-
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/navi10_ppt.c
-index ead135f39c7e..56267e6c600e 100644
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-@@ -23,6 +23,7 @@
-
- #include <linux/firmware.h>
- #include <linux/pci.h>
-+#include <linux/i2c.h>
- #include "amdgpu.h"
- #include "amdgpu_smu.h"
- #include "smu_internal.h"
-@@ -52,6 +53,8 @@
- #undef pr_info
- #undef pr_debug
-
-+#define to_amdgpu_device(x) (container_of(x, struct amdgpu_device, pm.smu_=
-i2c))
-+
- #define FEATURE_MASK(feature) (1ULL << feature)
- #define SMC_DPM_FEATURE ( \
-         FEATURE_MASK(FEATURE_DPM_PREFETCHER_BIT) | \
---
-2.25.4
-
-
---_000_MN2PR12MB44881AE65EFC4A6CA484C479F7780MN2PR12MB4488namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 7/21/20 12:52 PM, Alex Deucher wrote:
+> Enable SMU i2c bus access for sienna_cichlid asics.
 >
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
-ign=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Ignore this.&nbsp; Sent out the wrong version.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Alex<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Alex Deucher &lt;alex=
-deucher@gmail.com&gt;<br>
-<b>Sent:</b> Tuesday, July 21, 2020 12:52 PM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;<br>
-<b>Subject:</b> [PATCH 5/6] drm/amdgpu/navi1x: add SMU i2c support</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Enable SMU i2c bus access for navi1x asics.<br>
-<br>
-Signed-off-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/powerplay/navi10_ppt.c | 3 &#43;&#43;&#43;<br>
-&nbsp;1 file changed, 3 insertions(&#43;)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/a=
-md/powerplay/navi10_ppt.c<br>
-index ead135f39c7e..56267e6c600e 100644<br>
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c<br>
-@@ -23,6 &#43;23,7 @@<br>
-&nbsp;<br>
-&nbsp;#include &lt;linux/firmware.h&gt;<br>
-&nbsp;#include &lt;linux/pci.h&gt;<br>
-&#43;#include &lt;linux/i2c.h&gt;<br>
-&nbsp;#include &quot;amdgpu.h&quot;<br>
-&nbsp;#include &quot;amdgpu_smu.h&quot;<br>
-&nbsp;#include &quot;smu_internal.h&quot;<br>
-@@ -52,6 &#43;53,8 @@<br>
-&nbsp;#undef pr_info<br>
-&nbsp;#undef pr_debug<br>
-&nbsp;<br>
-&#43;#define to_amdgpu_device(x) (container_of(x, struct amdgpu_device, pm.=
-smu_i2c))<br>
-&#43;<br>
-&nbsp;#define FEATURE_MASK(feature) (1ULL &lt;&lt; feature)<br>
-&nbsp;#define SMC_DPM_FEATURE ( \<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FEATURE_MASK(FEATURE_DPM_P=
-REFETCHER_BIT) | \<br>
--- <br>
-2.25.4<br>
-<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_MN2PR12MB44881AE65EFC4A6CA484C479F7780MN2PR12MB4488namp_--
-
---===============0408604054==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>   .../drm/amd/powerplay/sienna_cichlid_ppt.c    | 239 ++++++++++++++++++
+>   1 file changed, 239 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+> index 5faef41b63a3..e1857fbb0a6f 100644
+> --- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+> +++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+> @@ -23,6 +23,7 @@
+>   
+>   #include <linux/firmware.h>
+>   #include <linux/pci.h>
+> +#include <linux/i2c.h>
+>   #include "amdgpu.h"
+>   #include "amdgpu_smu.h"
+>   #include "smu_internal.h"
+> @@ -52,6 +53,8 @@
+>   #undef pr_info
+>   #undef pr_debug
+>   
+> +#define to_amdgpu_device(x) (container_of(x, struct amdgpu_device, pm.smu_i2c))
+> +
+>   #define FEATURE_MASK(feature) (1ULL << feature)
+>   #define SMC_DPM_FEATURE ( \
+>   	FEATURE_MASK(FEATURE_DPM_PREFETCHER_BIT) | \
+> @@ -455,6 +458,8 @@ static int sienna_cichlid_tables_init(struct smu_context *smu, struct smu_table
+>   		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
+>   	SMU_TABLE_INIT(tables, SMU_TABLE_SMU_METRICS, sizeof(SmuMetrics_t),
+>   		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
+> +	SMU_TABLE_INIT(tables, SMU_TABLE_I2C_COMMANDS, sizeof(SwI2cRequest_t),
+> +		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
+>   	SMU_TABLE_INIT(tables, SMU_TABLE_OVERDRIVE, sizeof(OverDriveTable_t),
+>   		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
+>   	SMU_TABLE_INIT(tables, SMU_TABLE_PMSTATUSLOG, SMU11_TOOL_SIZE,
+> @@ -2487,6 +2492,238 @@ static void sienna_cichlid_dump_pptable(struct smu_context *smu)
+>   	dev_info(smu->adev->dev, "MmHubPadding[7] = 0x%x\n", pptable->MmHubPadding[7]);
+>   }
+>   
+> +static void sienna_cichlid_fill_i2c_req(SwI2cRequest_t  *req, bool write,
+> +				  uint8_t address, uint32_t numbytes,
+> +				  uint8_t *data)
+> +{
+> +	int i;
+> +
+> +	BUG_ON(numbytes > MAX_SW_I2C_COMMANDS);
+> +
+> +	req->I2CcontrollerPort = 0;
+> +	req->I2CSpeed = 2;
+> +	req->SlaveAddress = address;
+> +	req->NumCmds = numbytes;
+> +
+> +	for (i = 0; i < numbytes; i++) {
+> +		SwI2cCmd_t *cmd =  &req->SwI2cCmds[i];
+> +
+> +		/* First 2 bytes are always write for lower 2b EEPROM address */
+> +		if (i < 2)
+> +			cmd->CmdConfig = CMDCONFIG_READWRITE_MASK;
+> +		else
+> +			cmd->CmdConfig = write ? CMDCONFIG_READWRITE_MASK : 0;
+> +
+> +
+> +		/* Add RESTART for read  after address filled */
+> +		cmd->CmdConfig |= (i == 2 && !write) ? CMDCONFIG_RESTART_MASK : 0;
+> +
+> +		/* Add STOP in the end */172.31.4.187
+> +		cmd->CmdConfig |= (i == (numbytes - 1)) ? CMDCONFIG_STOP_MASK : 0;
+> +
+> +		/* Fill with data regardless if read or write to simplify code */
+> +		cmd->ReadWriteData = data[i];
+> +	}
+> +}
+> +
+> +static int sienna_cichlid_i2c_read_data(struct i2c_adapter *control,
+> +					       uint8_t address,
+> +					       uint8_t *data,
+> +					       uint32_t numbytes)
+> +{
+> +	uint32_t  i, ret = 0;
+> +	SwI2cRequest_t req;
+> +	struct amdgpu_device *adev = to_amdgpu_device(control);
+> +	struct smu_table_context *smu_table = &adev->smu.smu_table;
+> +	struct smu_table *table = &smu_table->driver_table;
+> +
+> +	memset(&req, 0, sizeof(req));
+> +	sienna_cichlid_fill_i2c_req(&req, false, address, numbytes, data);
+> +
+> +	mutex_lock(&adev->smu.mutex);
+> +	/* Now read data starting with that address */
+> +	ret = smu_update_table(&adev->smu, SMU_TABLE_I2C_COMMANDS, 0, &req,
+> +					true);
+> +	mutex_unlock(&adev->smu.mutex);
+> +
+> +	if (!ret) {
+> +		SwI2cRequest_t *res = (SwI2cRequest_t *)table->cpu_addr;
+> +
+> +		/* Assume SMU  fills res.SwI2cCmds[i].Data with read bytes */
+> +		for (i = 0; i < numbytes; i++)
+> +			data[i] = res->SwI2cCmds[i].ReadWriteData;
+> +
+> +		dev_dbg(adev->dev, "sienna_cichlid_i2c_read_data, address = %x, bytes = %d, data :",
+> +				  (uint16_t)address, numbytes);
+> +
+> +		print_hex_dump(KERN_DEBUG, "data: ", DUMP_PREFIX_NONE,
+> +			       8, 1, data, numbytes, false);
+> +	} else
+> +		dev_err(adev->dev, "sienna_cichlid_i2c_read_data - error occurred :%x", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int sienna_cichlid_i2c_write_data(struct i2c_adapter *control,
+> +						uint8_t address,
+> +						uint8_t *data,
+> +						uint32_t numbytes)
+> +{
+> +	uint32_t ret;
+> +	SwI2cRequest_t req;
+> +	struct amdgpu_device *adev = to_amdgpu_device(control);
+> +
+> +	memset(&req, 0, sizeof(req));
+> +	sienna_cichlid_fill_i2c_req(&req, true, address, numbytes, data);
+> +
+> +	mutex_lock(&adev->smu.mutex);
+> +	ret = smu_update_table(&adev->smu, SMU_TABLE_I2C_COMMANDS, 0, &req, true);
+> +	mutex_unlock(&adev->smu.mutex);
+> +
+> +	if (!ret) {
+> +		dev_dbg(adev->dev, "sienna_cichlid_i2c_write(), address = %x, bytes = %d , data: ",
+> +					 (uint16_t)address, numbytes);
+> +
+> +		print_hex_dump(KERN_DEBUG, "data: ", DUMP_PREFIX_NONE,
+> +			       8, 1, data, numbytes, false);
+> +		/*
+> +		 * According to EEPROM spec there is a MAX of 10 ms required for
+> +		 * EEPROM to flush internal RX buffer after STOP was issued at the
+> +		 * end of write transaction. During this time the EEPROM will not be
+> +		 * responsive to any more commands - so wait a bit more.
+> +		 */
+> +		msleep(10);
+> +
+> +	} else
+> +		dev_err(adev->dev, "sienna_cichlid_i2c_write- error occurred :%x", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int sienna_cichlid_i2c_xfer(struct i2c_adapter *i2c_adap,
+> +			      struct i2c_msg *msgs, int num)
+> +{
+> +	uint32_t  i, j, ret, data_size, data_chunk_size, next_eeprom_addr = 0;
+> +	uint8_t *data_ptr, data_chunk[MAX_SW_I2C_COMMANDS] = { 0 };
+> +
+> +	for (i = 0; i < num; i++) {
+> +		/*
+> +		 * SMU interface allows at most MAX_SW_I2C_COMMANDS bytes of data at
+> +		 * once and hence the data needs to be spliced into chunks and sent each
+> +		 * chunk separately
+> +		 */
+> +		data_size = msgs[i].len - 2;
+> +		data_chunk_size = MAX_SW_I2C_COMMANDS - 2;
+> +		next_eeprom_addr = (msgs[i].buf[0] << 8 & 0xff00) | (msgs[i].buf[1] & 0xff);
+> +		data_ptr = msgs[i].buf + 2;
+> +
+> +		for (j = 0; j < data_size / data_chunk_size; j++) {
+> +			/* Insert the EEPROM dest addess, bits 0-15 */
+> +			data_chunk[0] = ((next_eeprom_addr >> 8) & 0xff);
+> +			data_chunk[1] = (next_eeprom_addr & 0xff);
+> +
+> +			if (msgs[i].flags & I2C_M_RD) {
+> +				ret = sienna_cichlid_i2c_read_data(i2c_adap,
+> +							     (uint8_t)msgs[i].addr,
+> +							     data_chunk, MAX_SW_I2C_COMMANDS);
+> +
+> +				memcpy(data_ptr, data_chunk + 2, data_chunk_size);
+> +			} else {
+> +
+> +				memcpy(data_chunk + 2, data_ptr, data_chunk_size);
+> +
+> +				ret = sienna_cichlid_i2c_write_data(i2c_adap,
+> +							      (uint8_t)msgs[i].addr,
+> +							      data_chunk, MAX_SW_I2C_COMMANDS);
+> +			}
+> +
+> +			if (ret) {
+> +				num = -EIO;
+> +				goto fail;
+> +			}
+> +
+> +			next_eeprom_addr += data_chunk_size;
+> +			data_ptr += data_chunk_size;
+> +		}
+> +
+> +		if (data_size % data_chunk_size) {
+> +			data_chunk[0] = ((next_eeprom_addr >> 8) & 0xff);
+> +			data_chunk[1] = (next_eeprom_addr & 0xff);
+> +
+> +			if (msgs[i].flags & I2C_M_RD) {
+> +				ret = sienna_cichlid_i2c_read_data(i2c_adap,
+> +							     (uint8_t)msgs[i].addr,
+> +							     data_chunk, (data_size % data_chunk_size) + 2);
+> +
+> +				memcpy(data_ptr, data_chunk + 2, data_size % data_chunk_size);
+> +			} else {
+> +				memcpy(data_chunk + 2, data_ptr, data_size % data_chunk_size);
+> +
+> +				ret = sienna_cichlid_i2c_write_data(i2c_adap,
+> +							      (uint8_t)msgs[i].addr,
+> +							      data_chunk, (data_size % data_chunk_size) + 2);
+> +			}
+> +
+> +			if (ret) {
+> +				num = -EIO;
+> +				goto fail;
+> +			}
+> +		}
+> +	}
+> +
+> +fail:
+> +	return num;
+> +}
+> +
+> +static u32 sienna_cichlid_i2c_func(struct i2c_adapter *adap)
+> +{
+> +	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
+> +}
+> +
+> +
+> +static const struct i2c_algorithm sienna_cichlid_i2c_algo = {
+> +	.master_xfer = sienna_cichlid_i2c_xfer,
+> +	.functionality = sienna_cichlid_i2c_func,
+> +};
+> +
+> +static bool sienna_cichlid_i2c_adapter_is_added(struct i2c_adapter *control)
+> +{
+> +	struct amdgpu_device *adev = to_amdgpu_device(control);
+> +
+> +	return control->dev.parent == &adev->pdev->dev;
+> +}
+> +
+> +static int sienna_cichlid_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
+> +{
+> +	struct amdgpu_device *adev = to_amdgpu_device(control);
+> +	int res;
+> +
+> +	/* smu_i2c_eeprom_init may be called twice in sriov */
+> +	if (sienna_cichlid_i2c_adapter_is_added(control))
+> +		return 0;
+> +
+> +	control->owner = THIS_MODULE;
+> +	control->class = I2C_CLASS_SPD;
+> +	control->dev.parent = &adev->pdev->dev;
+> +	control->algo = &sienna_cichlid_i2c_algo;
+> +	snprintf(control->name, sizeof(control->name), "AMDGPU SMU");
+> +
+> +	res = i2c_add_adapter(control);
+> +	if (res)
+> +		DRM_ERROR("Failed to register hw i2c, err: %d\n", res);
+> +
+> +	return res;
+> +}
+> +
+> +static void sienna_cichlid_i2c_control_fini(struct smu_context *smu, struct i2c_adapter *control)
+> +{
+> +	if (!sienna_cichlid_i2c_adapter_is_added(control))
+> +		return;
+> +
+> +	i2c_del_adapter(control);
+> +}
+> +
+> +
+>   static const struct pptable_funcs sienna_cichlid_ppt_funcs = {
+>   	.tables_init = sienna_cichlid_tables_init,
+>   	.alloc_dpm_context = sienna_cichlid_allocate_dpm_context,
+> @@ -2500,6 +2737,8 @@ static const struct pptable_funcs sienna_cichlid_ppt_funcs = {
+>   	.set_default_dpm_table = sienna_cichlid_set_default_dpm_table,
+>   	.dpm_set_vcn_enable = sienna_cichlid_dpm_set_vcn_enable,
+>   	.dpm_set_jpeg_enable = sienna_cichlid_dpm_set_jpeg_enable,
+> +	.i2c_eeprom_init = sienna_cichlid_i2c_control_init,
+> +	.i2c_eeprom_fini = sienna_cichlid_i2c_control_fini,
+>   	.print_clk_levels = sienna_cichlid_print_clk_levels,
+>   	.force_clk_levels = sienna_cichlid_force_clk_levels,
+>   	.populate_umd_state_clk = sienna_cichlid_populate_umd_state_clk,
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0408604054==--
