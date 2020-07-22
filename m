@@ -2,87 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4A3229951
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Jul 2020 15:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B578A2299D5
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 Jul 2020 16:12:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70B366E05D;
-	Wed, 22 Jul 2020 13:42:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 498896E826;
+	Wed, 22 Jul 2020 14:12:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690084.outbound.protection.outlook.com [40.107.69.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC5B6E05D
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Jul 2020 13:42:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QSwuRygj21YnQ4t7MI9t/LSra4kzrJ7mAuBxWPYGj2NOcQpkvz24fQFs0dKlZeRzkXzktmdKREtQ907GDp+RpIlbgwTHzeF6Jitb5yeLEt4DT8O9LCqdc3lHe6ur1XCKRJLq00idYWZCOqgAw1qb3NL0dy/mqF58HNOv4/4M0C++S6cMgC+R5PqJPk9oM8Tpoo4+pgrjTCaa9Ksw0iiLV2ctySAG69JgUZYQ8VXkiBZTpj38hZTF/+R2slPeH/1lgh5p5Zdwmtif5O90zLICxU+TXaRXzjOA7ERRJg82ilCMTOZuMr52YP4Zmcq+l4DIqbmx/K9mNRCpDUiLpIHH3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3yj0OFN2Aqayo1q4nD1ws8I3OZ49H//OWgYjLfXRa/E=;
- b=Nfn8N58gOG3m2TNiQvAic8fjsvdDxtoapQEFjMo+bq/8BIEYoyGTwR0O1RCD9eXV8jmbFyiZ2JjTBdy9/4q36NWdLkTEZi1nusuj5cGZLnM68rTvM+ya7zlWjydU1ly3DOP0WjGfye7+p3mXJM9XhgLo69k8pADfW9rRiZx4U9Fl9vMQWfEXjeKhWHsIJT8+kzXxy0vLpwAswEMvtMyeXHYCM5G4xwz3TUI54MhEmptUJwhnojsufMt5UXg5h0ncdXWa3b8q+r9C9Ba3raaqXR+GiJYJVY5NXqnAhk+H8piG03eTs53bqfc6FmGW3ZLT4IXUuk3IZvrxlIRNVE2/ug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3yj0OFN2Aqayo1q4nD1ws8I3OZ49H//OWgYjLfXRa/E=;
- b=LKiebQ3iFdLj7RmwJpxUN25y9O9f/SzgzqaW6EdZyvJMdGj1H6SExskvg5L7zVDEdcmm/LALR8iN3/EUZxucO0doz31rHV00/zdn8CVU/A5hiw1fnaVwZaikmStELMZZWaWE1F0t33Sr8X8LtfwzrUneR8q4Zp9Ekmz5rmo1opA=
-Received: from MN2PR12MB3022.namprd12.prod.outlook.com (2603:10b6:208:ce::32)
- by MN2PR12MB2942.namprd12.prod.outlook.com (2603:10b6:208:108::27)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.22; Wed, 22 Jul
- 2020 13:42:06 +0000
-Received: from MN2PR12MB3022.namprd12.prod.outlook.com
- ([fe80::493c:9d42:501b:59d6]) by MN2PR12MB3022.namprd12.prod.outlook.com
- ([fe80::493c:9d42:501b:59d6%3]) with mapi id 15.20.3195.028; Wed, 22 Jul 2020
- 13:42:06 +0000
-From: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>
-To: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-Subject: Re: [PATCH] drm/amd/powerplay: remove the dpm checking in the boot
- sequence
-Thread-Topic: [PATCH] drm/amd/powerplay: remove the dpm checking in the boot
- sequence
-Thread-Index: AQHWYC02FRJ0KmV4B0ut5rynY0wEhakTm2z7
-Date: Wed, 22 Jul 2020 13:42:06 +0000
-Message-ID: <8B78CD9A-E162-4634-B43C-BEA45A784B76@amd.com>
-References: <20200722133705.6633-1-kenneth.feng@amd.com>
-In-Reply-To: <20200722133705.6633-1-kenneth.feng@amd.com>
-Accept-Language: en-US, zh-CN
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-x-originating-ip: [58.246.142.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: d3d307d9-14d5-4fda-49db-08d82e450638
-x-ms-traffictypediagnostic: MN2PR12MB2942:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB2942CF1AD432B6C56194D487A2790@MN2PR12MB2942.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ego2IE7FaKPFccjiB0RcT0hVgRy9ZsV3Gfs7qA54htEMZ7YLWE+Sec+bV+sw7wYA5yzj13uJUTDn3KyHVlmJKa6ak8Zu5tnP0evK+bINSJJAyXjb1RvOP6jUDE+QVL5g7YVI/484uKm/JLK2SAyt0966aAO/+MDa01ssmL7xLoYIEG1bIa5X7wBdb/On7oPoFsrP1f3lMPtJF9gS9V5kVb/VE5INiwIUl+YMS/Qz7NLMlWrhOSiag9NdfC/xOSItLP2f43RPEJJRKEHHD5iaOdSRHfAotNNkxGXk2DeWmILC0F5fE5VOMdk6oaEFpK9xVbhUrFyDAygSMA3w5t4P9Ab+LV6ftDJu1qEeSYQua/o=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3022.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(39860400002)(376002)(396003)(346002)(366004)(136003)(6636002)(71200400001)(86362001)(6506007)(45080400002)(66946007)(186003)(8936002)(83380400001)(26005)(4326008)(91956017)(6862004)(6512007)(36756003)(76116006)(6486002)(8676002)(2906002)(33656002)(316002)(2616005)(478600001)(966005)(5660300002)(66476007)(66556008)(64756008)(66446008)(37006003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: HCZcRMHADOR6IYweOFoRDEVf2+xTesdI87E50hC/eRjfelrQ2NlBYGFqKSWx2BRF8V2LVSbDO+Wx8UbMnGacd7bVcBkQXx3Ys51pp0EAmqY3iEddwmCI5gxYkmXXCE9F+vt1XirdWZ7pXdTSFasyYWE72/7yzU//eEKxGGiTk03HVsm4PDOZjjtHOjcbtwxPT2vJGoLX/0mrBKFEgxlttL882COwF3dXIXS18DsoZNQgfdm2NAf3awmNZ2V0Q6HKLbhcaiL6HWoVEyseRCBVRExW5tcg0fej9BdjJf1/W2cqal8UJ6tRsl4mLJnNBTzqRELtHbh7lpmBuTBhEj5g7GiVGMWv7n5XMwS25n/C5k9H5WmdWTAEMLnvtTdINMUbaw6KIkdO1fy8+Qle2m5NPL69QCfTV5UlbKgtMpIj234IptVZUd+dvuzvRYJKpWi0xnNe+zcWkU8k2X7wLmb3cOBmBp6paDCU7qiMPaCDoB0=
+X-Greylist: delayed 336 seconds by postgrey-1.36 at gabe;
+ Wed, 22 Jul 2020 14:09:22 UTC
+Received: from theia.8bytes.org (8bytes.org [81.169.241.247])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7197B891DB
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Jul 2020 14:09:22 +0000 (UTC)
+Received: by theia.8bytes.org (Postfix, from userid 1000)
+ id 1D0C62C8; Wed, 22 Jul 2020 16:03:42 +0200 (CEST)
+Date: Wed, 22 Jul 2020 16:03:40 +0200
+From: Joerg Roedel <joro@8bytes.org>
+To: Fenghua Yu <fenghua.yu@intel.com>
+Subject: Re: [PATCH v6 01/12] iommu: Change type of pasid to u32
+Message-ID: <20200722140340.GJ27672@8bytes.org>
+References: <1594684087-61184-1-git-send-email-fenghua.yu@intel.com>
+ <1594684087-61184-2-git-send-email-fenghua.yu@intel.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3022.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3d307d9-14d5-4fda-49db-08d82e450638
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2020 13:42:06.3679 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oXfFUE7wKiFn+dWhGhm9Yj40FTq7AEtKEN3EVf34n3X39kKY1Xldi+0oWGzDT4Xz
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB2942
+Content-Disposition: inline
+In-Reply-To: <1594684087-61184-2-git-send-email-fenghua.yu@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Approved-At: Wed, 22 Jul 2020 14:12:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,41 +39,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jean-Philippe Brucker <jean-philippe@linaro.org>,
+ Tony Luck <tony.luck@intel.com>, Dave Jiang <dave.jiang@intel.com>,
+ Ashok Raj <ashok.raj@intel.com>, Ravi V Shankar <ravi.v.shankar@intel.com>,
+ Peter Zijlstra <peterz@infradead.org>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ x86 <x86@kernel.org>, linux-kernel <linux-kernel@vger.kernel.org>,
+ amd-gfx <amd-gfx@lists.freedesktop.org>, Christoph Hellwig <hch@infradead.org>,
+ Dave Hansen <dave.hansen@intel.com>, iommu@lists.linux-foundation.org,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Jacob Jun Pan <jacob.jun.pan@intel.com>, H Peter Anvin <hpa@zytor.com>,
+ Sohil Mehta <sohil.mehta@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
+ David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-UmV2aWV3ZWQtYnk6DQpLZXZpbiBXYW5nIDxrZXZpbjEud2FuZ0BhbWQuY29tPg0KDQoNCj4g5Zyo
-IDIwMjDlubQ35pyIMjLml6XvvIzkuIvljYg5OjM377yMS2VubmV0aCBGZW5nIDxrZW5uZXRoLmZl
-bmdAYW1kLmNvbT4g5YaZ6YGT77yaDQo+IA0KPiDvu79JdCdzIG5vdCBuZWNlc3NhcnkgdG8gcmV0
-cmlldmUgdGhlIHBvd2VyIGZlYXR1cmVzIHN0YXR1cyB3aGVuIHRoZQ0KPiBhc2ljIGlzIGJvb3Rl
-ZCB1cCB0aGUgZmlyc3QgdGltZS4gVGhpcyBwYXRjaCBjYW4gaGF2ZSB0aGUgZmVhdHVyZXMNCj4g
-ZW5hYmxlbWVudCBzdGF0dXMgc3RpbGwgY2hlY2tlZCBpbiBzdXNwZW5kL3Jlc3VtZSBjYXNlIGFu
-ZCByZW1vdmVkDQo+IGZyb20gdGhlIGZpcnN0IGJvb3QgdXAgc2VxdWVuY2UuDQo+IA0KPiBTaWdu
-ZWQtb2ZmLWJ5OiBLZW5uZXRoIEZlbmcgPGtlbm5ldGguZmVuZ0BhbWQuY29tPg0KPiAtLS0NCj4g
-ZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvYW1kZ3B1X3NtdS5jIHwgMiArLQ0KPiAxIGZp
-bGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9hbWRncHVfc211LmMgYi9kcml2ZXJz
-L2dwdS9kcm0vYW1kL3Bvd2VycGxheS9hbWRncHVfc211LmMNCj4gaW5kZXggZjc3OGIwMGU0OWVi
-Li42YjAzZjc1MGU2M2IgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJw
-bGF5L2FtZGdwdV9zbXUuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9h
-bWRncHVfc211LmMNCj4gQEAgLTczNSw3ICs3MzUsNyBAQCBzdGF0aWMgaW50IHNtdV9zbWNfaHdf
-c2V0dXAoc3RydWN0IHNtdV9jb250ZXh0ICpzbXUpDQo+ICAgIHVpbnQzMl90IHBjaWVfZ2VuID0g
-MCwgcGNpZV93aWR0aCA9IDA7DQo+ICAgIGludCByZXQ7DQo+IA0KPiAtICAgIGlmIChzbXVfaXNf
-ZHBtX3J1bm5pbmcoc211KSAmJiBhZGV2LT5pbl9zdXNwZW5kKSB7DQo+ICsgICAgaWYgKGFkZXYt
-PmluX3N1c3BlbmQgJiYgc211X2lzX2RwbV9ydW5uaW5nKHNtdSkpIHsNCj4gICAgICAgIGRldl9p
-bmZvKGFkZXYtPmRldiwgImRwbSBoYXMgYmVlbiBlbmFibGVkXG4iKTsNCj4gICAgICAgIHJldHVy
-biAwOw0KPiAgICB9DQo+IC0tIA0KPiAyLjE3LjENCj4gDQo+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IGFtZC1nZnggbWFpbGluZyBsaXN0DQo+IGFt
-ZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IGh0dHBzOi8vbmFtMTEuc2FmZWxpbmtzLnBy
-b3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZyUyRm1haWxtYW4lMkZsaXN0aW5mbyUyRmFtZC1nZngmYW1wO2RhdGE9MDIlN0MwMSU3Q0tl
-dmluMS5XYW5nJTQwYW1kLmNvbSU3QzAzYTNlODFiNjY1MDRkYTYxNjM0MDhkODJlNDQ1N2E5JTdD
-M2RkODk2MWZlNDg4NGU2MDhlMTFhODJkOTk0ZTE4M2QlN0MwJTdDMCU3QzYzNzMxMDIxODM1NTgz
-NDUxNyZhbXA7c2RhdGE9N2lzcXl5QjAyNjd6Y25lSmc1cFJNZEZiT0lkOThYekFGRmtSdjFUOWQw
-WSUzRCZhbXA7cmVzZXJ2ZWQ9MA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQt
-Z2Z4Cg==
+On Mon, Jul 13, 2020 at 04:47:56PM -0700, Fenghua Yu wrote:
+> PASID is defined as a few different types in iommu including "int",
+> "u32", and "unsigned int". To be consistent and to match with uapi
+> definitions, define PASID and its variations (e.g. max PASID) as "u32".
+> "u32" is also shorter and a little more explicit than "unsigned int".
+> 
+> No PASID type change in uapi although it defines PASID as __u64 in
+> some places.
+> 
+> Suggested-by: Thomas Gleixner <tglx@linutronix.de>
+> Signed-off-by: Fenghua Yu <fenghua.yu@intel.com>
+> Reviewed-by: Tony Luck <tony.luck@intel.com>
+> Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
+> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
+
+For the IOMMU parts:
+
+Acked-by: Joerg Roedel <jroedel@suse.de>
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
