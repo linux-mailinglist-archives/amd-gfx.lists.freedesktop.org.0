@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F06D22AAB5
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jul 2020 10:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5F022AAB7
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jul 2020 10:34:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E66DF6E866;
-	Thu, 23 Jul 2020 08:34:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84D836E868;
+	Thu, 23 Jul 2020 08:34:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2086.outbound.protection.outlook.com [40.107.236.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5A36E866
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Jul 2020 08:34:17 +0000 (UTC)
+ (mail-bn8nam11on2089.outbound.protection.outlook.com [40.107.236.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F7C46E868
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Jul 2020 08:34:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=amjpotSINSW/lZupOyVeU8C2114UPPR11VvGP2JI10OrepHKf5cxsm1qAIu3Nw7liLrUE2N+63JyNHWrtsfAKMbQHjmqmDH3bYGdkzSk33RgzimH7+5Xs69aK4hz0JXM7DUcK1t+M+W+1PaI9q4alI4clOYUxCVGv6cquGN9hzV6g2T3yUkYip4f4+1Mv8GZajER2F9ijaB4cqQ56l8kRhiXJjZXbJ8eeJc0IuAZD6Lae9Hyf1zchuh6dw5KK6nZoWhQy3UAieADOwSJizk2DeTgsSL/Leys5rSmrowZx+KSf+8mhrWGqQ5VJ7dpHc2vOrdQph8S26r0plSwjbGSmA==
+ b=Kxzkf6ltdXxr4ItTXUNWd4u68+uHDd+kOm/oH4BNDFxwqTOweq1fG2wxRY2vud0WIoqR25AMrs6rrx8VIqzzZrkms8JrvMn5Y9MM+iKxAXcS/8J/UH/8JdyjAEsqmgDiHbRcivDNBS49OPCjd5SGPxqTH8iQF1JU7doIzGCqhZub3S0+uB8EQFrAH077eDRN93OewFVh32oq63p0s+rFOZ6xtcaT2+yqVhpfKSrNVQ6ZcWtlzBpnRWWrnwlH4T1slBQrYjhv4hb0mAXLYFuLcXxCd0EQ5EwezsBKqy7tXujkfdnkz2Rtx7JgVQKWpzNXP45yjDlUPmAMkh4E4zSREQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5r2O6JfzOI57RNulbexZIwN6gXYELplBvurx9XSxUGU=;
- b=B0KmY+WE+cv9bee9giQFrDoxBnrd/5ra823Ys4ZEf61odylRA4FaE7r+MHIzznylNaoniXlhh1pRS1w82QrxuQjE8FGBwh7tfSx3tE2fCPBPYHt0+8/WKLOgjj7DVH2Oov9k28ci3vedHM5hX3xIRW7yLA+BAY4vi53p21HUFSb6czUyhx/ATzhE3CQEG1U/cBTY+cbCcFfOD61ujKn4PwvS59nQ1yiKDB/6OxuQSGUqqKkJx8gWZ3P8yLwGM0kHfPF7vysR0s5+f7s1eg9fn7YnzXCGvZigrzTiREjMyDQRIMtbyuvv+hEJ59Ty9U2tSvN5vXJsepUqjDuix7RvgQ==
+ bh=iSK+TxUJWEWdZy09/9wY0+SpoUh4nQxFism3FdQ2bpY=;
+ b=ET4YkI4XOOxUBsoW/CWX5jpqSsYkNxTD5He8Mfeo/CQ2h03zYbcRD+9t3YNXHmlc6nv5kM4d1ewR43i3TPIkogDXc9iWwcXIRPjZyOmE14OWYLlBIYv5hReGyj5mm8JHrvVGLNwDdsqSIlSV4xyGHBQjrgM6XqvoD0PgjX81trDxVYAyvIvzB4Ww7eMEh6Cs/XS5tE64Y2DZ7/GlnX23FPrpaAFtXTFn04SG2VjWEB7OCcoK/ZHx82HLUNIu/C9s15id5MhlDWX2ICcSjNlzXsO+whp8s2jsxj1l84TKMZniNbDgmCIpNl9LYMLHIMZcYEPkdVR4Fkxed1PxW1Ztxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5r2O6JfzOI57RNulbexZIwN6gXYELplBvurx9XSxUGU=;
- b=kyIntst7B95qYkLoYmCU9d6pkVVKwAYScsOezGUcBnQTqj+Z+Hai88k7mj/56Ytb5aJQD3H36elfVIKio9aaF99WPm9HCh9b1Ra+5xECBTHgau/w94wP8phPejrN05plWRoO0r+Q3YO+HQ2zEUKEVqWKH9cRRpYAkPjn8qNjYxA=
+ bh=iSK+TxUJWEWdZy09/9wY0+SpoUh4nQxFism3FdQ2bpY=;
+ b=AwCdcRK0+MpScEj/1eKrum+WDCU+rmvOoD4FxSMSemhk+CK6YAz4HWRxe4gXK3o2K5wiYYTqEDpoY09YJ+Ib2GWjPvl8ZtiX32sGfn0Mffxy7V49jJrLc/rVaieNpuE05N+4gN28tPC89aMe5N55Im1LwEJ3nEchJKc4J3raoz8=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,18 +35,18 @@ Received: from CY4PR12MB1287.namprd12.prod.outlook.com (2603:10b6:903:40::8)
  by CY4PR1201MB0005.namprd12.prod.outlook.com (2603:10b6:903:d1::23) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Thu, 23 Jul
- 2020 08:34:16 +0000
+ 2020 08:34:19 +0000
 Received: from CY4PR12MB1287.namprd12.prod.outlook.com
  ([fe80::e0b1:48e7:bcbc:351c]) by CY4PR12MB1287.namprd12.prod.outlook.com
  ([fe80::e0b1:48e7:bcbc:351c%11]) with mapi id 15.20.3216.024; Thu, 23 Jul
- 2020 08:34:16 +0000
+ 2020 08:34:19 +0000
 From: Guchun Chen <guchun.chen@amd.com>
 To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Hawking.Zhang@amd.com, Dennis.Li@amd.com, Stanley.Yang@amd.com,
  Tao.Zhou1@amd.com, John.Clements@amd.com, lijo.lazar@amd.com
-Subject: [PATCH 3/9] drm/amdgpu: add bad gpu tag definition
-Date: Thu, 23 Jul 2020 16:33:40 +0800
-Message-Id: <20200723083346.8743-4-guchun.chen@amd.com>
+Subject: [PATCH 4/9] drm/amdgpu: break driver init process when it's bad GPU
+Date: Thu, 23 Jul 2020 16:33:41 +0800
+Message-Id: <20200723083346.8743-5-guchun.chen@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200723083346.8743-1-guchun.chen@amd.com>
 References: <20200723083346.8743-1-guchun.chen@amd.com>
@@ -58,34 +58,34 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from guchchen-System-Product-Name.amd.com (58.247.170.242) by
  HK0PR03CA0105.apcprd03.prod.outlook.com (2603:1096:203:b0::21) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3216.21 via Frontend Transport; Thu, 23 Jul 2020 08:34:12 +0000
+ 15.20.3216.21 via Frontend Transport; Thu, 23 Jul 2020 08:34:16 +0000
 X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [58.247.170.242]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: b930158a-0e79-44ee-6883-08d82ee32efd
+X-MS-Office365-Filtering-Correlation-Id: addf5a67-a486-4c3d-f1d2-08d82ee33110
 X-MS-TrafficTypeDiagnostic: CY4PR1201MB0005:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB000580F62253F24135ABE635F1760@CY4PR1201MB0005.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1303;
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB000591361D9EC8EA483C2F20F1760@CY4PR1201MB0005.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EYg0aBJ/5IN3YsAFMOKLjfz9Wb4IdOWKw2tVwDQWcRGrbPXLjfOP61lUyU6jRa/s4eVrU0U+KDfvQ+14+hcPe/mbcA2LflvE+r8ZFg/FhbYFPSPlsknNOYugTsjK8eCwYnArhcBq/Y0LNQTcMZEqQxuwDvqZDWdY0mBDEpK3TmyyJzXUzpEZnNWnqZ+8mLoWg+hIoJo+RVYkowU7y71eRfKT5Sypz5R5Dwwgtp/CxRF5InRopC/FZTIb7FY1GsHuvsofW4dfXeyNgjGMvzoPiZb1r6RUtQhgvUCUEAyeoe0Zw6NnybwGWYGeFUgzme74
+X-Microsoft-Antispam-Message-Info: h+oVQrfxOx+jUhveKsdrbv9hMibwFID1xzSkjP3kFBiAmbohnl0rJqdx5QCgK/WrBtspoNjOefdnMmLMbNOHyrk8qP6o127E9w+GZu7RhFBvV0ZgaX7c+MueM9OO7wCzSb8juLYMOF2bpiFbBSjnOKg0DjfmKw6Cqsk8BdyXvihDe3l5ZeRdPG5Fxfy2W8MFXMt80bAq90xEcI0PV4+pNvZ0dp6syMVmtY+QWvSU3Evj0PQVJOG0IvwXU2mAq5b4AFgtZr5naOIW4w5K4Yhxx57DvHLFOj6uCgQsFkQ8M/bmS+cBkmr/Bt3PqLdYTaIxSlzjVZKo4qIsirsYyKF/Ng==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY4PR12MB1287.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(346002)(376002)(396003)(39860400002)(136003)(366004)(8936002)(316002)(2616005)(36756003)(2906002)(16526019)(186003)(8676002)(6486002)(44832011)(4326008)(956004)(26005)(7696005)(4744005)(478600001)(52116002)(5660300002)(66476007)(66556008)(66946007)(83380400001)(1076003)(6636002)(86362001)(6666004);
+ SFS:(4636009)(346002)(376002)(396003)(39860400002)(136003)(366004)(8936002)(316002)(2616005)(36756003)(2906002)(16526019)(186003)(8676002)(6486002)(44832011)(4326008)(956004)(26005)(7696005)(478600001)(52116002)(5660300002)(66476007)(66556008)(66946007)(83380400001)(1076003)(6636002)(86362001)(6666004);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: oX9sEjxDoJDPBb++Yb6/79IXttbxLBzkTd+L/xhvMpKIGnRKIyjd03mdszoXlZ8wJK5OPlxUFfLXJRd+hVPg0HwIZ0IBPcr57xsKcAWdr/GfDhFkK0Y6Evc0agjmxMJ7sC8+1r0GFkuJDvQBhcnde2p9PnDub7siha1gYbOuA6cCcrDeBeYvD3yEXO3x6E2W1mTPVdq+sBeJBjzF+NcitVdd2GpNrfM+Xi0Am2gjxRf0jhgCYtdYDkSxluFlS//Ve8Syvc41KM0stCMFQU09HTPVfbdzpH6hGcaQcJOYOQDssihTRnNI4lfusIYWBXUnyg9/OkEVCMAUap4PCtyl049qInwX3wNIlrr7uaX4nI+FlhIgOsl4YBVlNLvkMbAELJ68JDhakHCx1tHjtOAeGNdp+5sDZj5pqfHlu0srcuQvesw3GsBioNf6HCNGwwCeG9JY3UYylf86en7KKXqG5hp6Z2xWe5LBw0Uy2fNBIAv56c5S4dhfkT4Z3UcS9OO/
+X-MS-Exchange-AntiSpam-MessageData: KS/JlsR3/zB4d4Mmn9/s+TM1mLD2HCWiT/whjrPcujwp/IVv1UCd/+iL7TE15lhxVQFMtE7gw3IVgHKpvXOE+Qx8a0E7jaayvNWHFxy0KXHFKR08EyGzva24OPvr1WQNPmNiMuNcQOe1Tqt8qxwfK1FfgpUo7ilGhGsaoRAwH0Gbrx3TBlkyHoh7lHk6Q4ydIVdCxAI9qu9+p7ZmbOndo+H9Og/PzJU5MYHdTZYtiSTClgv2kzu3TxrCP1FolpTqgoHpIOMRMuQ03sWG03LjdiS5ASiuXh7oSn+ssZruGcRA6NUDnx5zj/asa5Aaf0uCtdtqTNaasZNXW7ElP6b4mTguH5jkYRt2OAHxFiBygewTOPJaaMG/RG6vZ9Qb1dw924O916b2f9+ou64ufAUgILRyFYaW86OF9kR36PaunS9FNyPSRCsw6mZge7Xc6XhNeeug7x/2vvxEJ+IaQVm5zocIo0rfU8ovRg3GnFgfc+TpXWVKp2o9nytaCdMB63dF
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b930158a-0e79-44ee-6883-08d82ee32efd
+X-MS-Exchange-CrossTenant-Network-Message-Id: addf5a67-a486-4c3d-f1d2-08d82ee33110
 X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1287.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2020 08:34:15.8736 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2020 08:34:19.2771 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3NjmS3l6dJabIPv7sPyi1VixRDvNUDo8kOBZ42zTSXqpvV7mXjWDyKKFHw1hrOWo/B45VWxVDLLlx1Jjw1xHIA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: vLDNe4IzAiZA6TgQT9f9TjqmG/9cChdpQkKrszLGM6Qf446RA94UkhnhxJAqGlFslj+hZMAIr+HQh+d8rxGhdQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0005
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,24 +99,149 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Guchun Chen <guchun.chen@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyB0YWcgd2lsbCBiZSBoaXJlZCBmb3IgYmFkIGdwdSBkZXRlY3Rpb24uCgpTaWduZWQtb2Zm
-LWJ5OiBHdWNodW4gQ2hlbiA8Z3VjaHVuLmNoZW5AYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzX2VlcHJvbS5jIHwgMyArKysKIDEgZmlsZSBjaGFuZ2Vk
-LCAzIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9hbWRncHVfcmFzX2VlcHJvbS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
-X3Jhc19lZXByb20uYwppbmRleCBhMmM5ODJiMWVhYzYuLjM1YzBjODQ5ZDQ5YiAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhc19lZXByb20uYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzX2VlcHJvbS5jCkBAIC00Niw2ICs0
-Niw5IEBACiAjZGVmaW5lIEVFUFJPTV9UQUJMRV9IRFJfVkFMIDB4NDE0ZDQ0NTIKICNkZWZpbmUg
-RUVQUk9NX1RBQkxFX1ZFUiAweDAwMDEwMDAwCiAKKy8qIEJhZCBHUFUgdGFnIOKAmEJBREfigJkg
-Ki8KKyNkZWZpbmUgRUVQUk9NX1RBQkxFX0hEUl9CQUQgMHg0MjQxNDQ0NworCiAvKiBBc3N1bWUg
-MiBNYml0IHNpemUgKi8KICNkZWZpbmUgRUVQUk9NX1NJWkVfQllURVMgMjU2MDAwCiAjZGVmaW5l
-IEVFUFJPTV9QQUdFX19TSVpFX0JZVEVTIDI1NgotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+When retrieving bad gpu tag from eeprom, GPU init should
+fail as the GPU needs to be retired for further check.
+
+Signed-off-by: Guchun Chen <guchun.chen@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c     | 12 +++++++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c        | 15 +++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c | 11 ++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h |  3 ++-
+ 4 files changed, 34 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 2662cd7c8685..882f8a0964a5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2059,13 +2059,19 @@ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
+ 	 * it should be called after amdgpu_device_ip_hw_init_phase2  since
+ 	 * for some ASICs the RAS EEPROM code relies on SMU fully functioning
+ 	 * for I2C communication which only true at this point.
+-	 * recovery_init may fail, but it can free all resources allocated by
+-	 * itself and its failure should not stop amdgpu init process.
++	 *
++	 * amdgpu_ras_recovery_init may fail, but the upper only cares the
++	 * failure from bad gpu situation and stop amdgpu init process
++	 * arrordingly. For other failed cases, it will still release all
++	 * the resource and print error message, rather than returning one
++	 * negative value to upper level.
+ 	 *
+ 	 * Note: theoretically, this should be called before all vram allocations
+ 	 * to protect retired page from abusing
+ 	 */
+-	amdgpu_ras_recovery_init(adev);
++	r = amdgpu_ras_recovery_init(adev);
++	if (r)
++		goto init_failed;
+ 
+ 	if (adev->gmc.xgmi.num_physical_nodes > 1)
+ 		amdgpu_xgmi_add_device(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 8daeb54917ed..06db2f0b78d7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -1819,6 +1819,7 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
+ 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+ 	struct ras_err_handler_data **data;
+ 	uint32_t max_eeprom_records_len = 0;
++	bool bad_gpu = false;
+ 	int ret;
+ 
+ 	if (con)
+@@ -1840,9 +1841,12 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
+ 	max_eeprom_records_len = amdgpu_ras_eeprom_get_record_max_length();
+ 	amdgpu_ras_validate_threshold(adev, max_eeprom_records_len);
+ 
+-	ret = amdgpu_ras_eeprom_init(&con->eeprom_control);
+-	if (ret)
++	ret = amdgpu_ras_eeprom_init(&con->eeprom_control, &bad_gpu);
++	/* We only fail this calling and halt booting when bad_gpu is true. */
++	if (bad_gpu) {
++		ret = -EINVAL;
+ 		goto free;
++	}
+ 
+ 	if (con->eeprom_control.num_recs) {
+ 		ret = amdgpu_ras_load_bad_pages(adev);
+@@ -1865,6 +1869,13 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
+ out:
+ 	dev_warn(adev->dev, "Failed to initialize ras recovery!\n");
+ 
++	/*
++	 * Except bad_gpu case, other failure cases in this function
++	 * would not fail amdgpu driver init.
++	 */
++	if (!bad_gpu)
++		ret = 0;
++
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+index 35c0c849d49b..3f1b167afe6b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+@@ -241,12 +241,14 @@ int amdgpu_ras_eeprom_reset_table(struct amdgpu_ras_eeprom_control *control)
+ 
+ }
+ 
+-int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control)
++int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
++			bool *bad_gpu)
+ {
+ 	int ret = 0;
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+ 	unsigned char buff[EEPROM_ADDRESS_SIZE + EEPROM_TABLE_HEADER_SIZE] = { 0 };
+ 	struct amdgpu_ras_eeprom_table_header *hdr = &control->tbl_hdr;
++	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
+ 	struct i2c_msg msg = {
+ 			.addr	= 0,
+ 			.flags	= I2C_M_RD,
+@@ -254,6 +256,8 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control)
+ 			.buf	= buff,
+ 	};
+ 
++	*bad_gpu = false;
++
+ 	/* Verify i2c adapter is initialized */
+ 	if (!adev->pm.smu_i2c.algo)
+ 		return -ENOENT;
+@@ -282,6 +286,11 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control)
+ 		DRM_DEBUG_DRIVER("Found existing EEPROM table with %d records",
+ 				 control->num_recs);
+ 
++	} else if ((ras->bad_page_cnt_threshold != 0xFFFFFFFF) && (
++			hdr->header == EEPROM_TABLE_HDR_BAD)) {
++		*bad_gpu = true;
++		DRM_ERROR("Detect BAD GPU TAG in eeprom table and "
++			"GPU shall be retired.\n");
+ 	} else {
+ 		DRM_INFO("Creating new EEPROM table");
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+index b272840cb069..a2de243da31d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+@@ -77,7 +77,8 @@ struct eeprom_table_record {
+ 	unsigned char mcumc_id;
+ }__attribute__((__packed__));
+ 
+-int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control);
++int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
++			bool *bad_gpu);
+ int amdgpu_ras_eeprom_reset_table(struct amdgpu_ras_eeprom_control *control);
+ 
+ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+-- 
+2.17.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
