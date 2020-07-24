@@ -1,25 +1,26 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 771B622D05F
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jul 2020 23:15:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B05D22D060
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jul 2020 23:15:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5C226E994;
-	Fri, 24 Jul 2020 21:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F5A86EA09;
+	Fri, 24 Jul 2020 21:15:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail4.protonmail.ch (mail4.protonmail.ch [185.70.40.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5236E98C
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 21:09:16 +0000 (UTC)
+Received: from mail-40138.protonmail.ch (mail-40138.protonmail.ch
+ [185.70.40.138])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4C5F6E994
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 21:09:13 +0000 (UTC)
 Date: Fri, 24 Jul 2020 21:09:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail; t=1595624954;
+ s=protonmail; t=1595624951;
  bh=Y8a3UGIVUH//nWWAHOfJ574aWDANSyRzuKfaeg2ulx4=;
  h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=FIb+sm+kToFyvdLp5N0/6hKTvNwAfMtyf/yJabXCCV82G7xS4BSSkPqbOzKTVkDfj
- Ti4DQ5zBK5IpE6qXC4tBSmqWqjrslvgzQUJ4uOgLCHAEbkLAvgXrweslc+EbfyMfwm
- 9gb/43k3dt2k56PceZP9puWUjg3j1CXGUlY6EIsw=
+ b=YGj/lN+HFANsv1agtWAfUQJ7IvssJEJY15hq9PWChRGnsw5JEgsYYiWDl31LukOud
+ dOE/V34tZUicUA8wP8eoHSncAd542wShdz8LPbuUbbzSPBZJ5Dc7yEPvZxzXeW/Ik6
+ Q9yTCzgVKFotxwH/ft0g8N6MDWQonb3zGWZES6KI=
 To: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
 From: Mazin Rezk <mnrzk@protonmail.com>
 Subject: Re: [PATCH] amdgpu_dm: fix nonblocking atomic commit use-after-free
