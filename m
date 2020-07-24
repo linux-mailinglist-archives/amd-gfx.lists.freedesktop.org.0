@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C4C22D036
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jul 2020 23:07:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1BDF22D037
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jul 2020 23:07:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B31F6EA09;
-	Fri, 24 Jul 2020 21:07:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A7626EA0A;
+	Fri, 24 Jul 2020 21:07:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2088.outbound.protection.outlook.com [40.107.94.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2DE46EA09
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 21:07:06 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2061.outbound.protection.outlook.com [40.107.236.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86CA16EA0A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 21:07:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ID7acs0tb65pR2yBsqhnmQiMfLDVV5sCJpJk8fCwHoNhMA+YOuUhcNyohMX86Xc4J1M+TkZFcclJDujfAYuL+M74qgX/7gqhd/b0FKiASQ3xjkJnlmYe6PYCQlJiA5fFnK0LxTHyTN/eDlwo0rmJwkwWLSn4PGdixvJY4l+ADxZiFbHPpIrIdJu+gZLYCFpiqtWVbIC+MaDCGdk0dXnawDTkX1U7MVHs5aMrtQLoH/yaklqCPXeLChLs6ESv3aa0xTubJJs7sOPq1y3K4KBVsuZPOatxVZVNI+whFV8d8ATtyTJ3UpCpgNMBygfYOJ/Xa544uYTWAitg+4EftQQWOQ==
+ b=kBlVAjCVfyj0j5m/FOJ7ygBeLEsyvuIvcv+j/R8K39lEJOZCpnlDdu1qcPhj3xrN2fEB1JhcjyZu6dbult2TDPP9e/hb2HFPOqX8KjdlpBQDtKxD6DvN9e8dX/pXlgcpk44bW8mVC2DCsMhm+IgRokzQFufN0iySc/sgGb6CqOBfxjSh9ZvCKeqO+MEI5EGjrIlWGNozhFfHagDkq28eZP36fW+dfxZk1DObwM2WoEb+6IUkbeh9DX9lu04ILV6cRoVEEjoqgKWgTn4jOIuwaTllXkx1/PA1e90eJ99+xcgN1qugjMkNyT85NEa7Q608/rAIzx4P/K6uJCxwO2g4xQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bxguRn6SiHM6+nqAlNfk102O5oLUgb7QwfZlS28cNkk=;
- b=BgGspYa4jSksFwkaevHldVHsVGCal5zAs6yye2eGDuCPDzGlO4kCwJFKF9PqpkQpaF2WWHsHt8p3w3Nji0/MSH4BKCVaAqs7X3RpeQaH+oC12Si2bDGbIBI6j1L+Vfkmh8Ac8c78ZUrtIJRFPi9BtI+qLsaVq6NOC1OCbsJw12xNV8/gb3r9j5SFQE+YjwfdEGQVh9miiXeOxXJgIJR7JmGNsFgZJ9Ih9B6bjdHmC4DBvNq4OVfq5yaaFKUQxR1U1wbK0wvBScfAksQqEdG9G4E6SbWvxIG06f06HhqAhwWMU/GU1cJmMP+kOoiCY6t1a7VHg1Zx1mhTUvEuVuu6bQ==
+ bh=8membIbfB0mjDRiJLGX/uRMDO/L0Qlow23b+TsKd+9s=;
+ b=Kr6o4IbtN5xHM20UrPkibKVc/VDocQd7nUmBplGax3nSlDAZtLa3zUvN2VfXYfl4EuSM0AlSiS6ptaMllwztZ48qbIOWKUKIOb5DZL1vEDYGn/BMbtPIUMHm1mr0EXCYgcnvnc49kwbdNFi9ePCdNpsXtLSgut46w+lshb9beNbr10smM/gPwEbf52q+cx+b12yYuxrpiNzKTRP1VMHRAvfwu3j7C6PQk57QG2Fk83nqzNqPbuhbHOUxUNpFU1tJG7HYD5TrblFKz12jVC7FSq6RC9z7hXBVA7SngGqBx0BeQiGjBufbDnbazDusdCgTwPB3jvq0kvJmySq2glWe7A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bxguRn6SiHM6+nqAlNfk102O5oLUgb7QwfZlS28cNkk=;
- b=LT4syWphR84aRQgXG4UypRLtQlR//ghQh6AlWc7tngFqd72cGRQAKli7yBjWEtoQFiLYQ7qiH80XQX49E3+NJd5l5qjhPOZnvH/bAcj3XcFG41stmyBHbIE31uRhyRX9g082+k1otBpxkLtWHqcJZ3sHmP3SUAj2DFTBSIWun4w=
-Received: from MWHPR19CA0058.namprd19.prod.outlook.com (2603:10b6:300:94::20)
- by MWHPR12MB1647.namprd12.prod.outlook.com (2603:10b6:301:c::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.25; Fri, 24 Jul
- 2020 21:07:05 +0000
-Received: from CO1NAM11FT015.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:94:cafe::ab) by MWHPR19CA0058.outlook.office365.com
- (2603:10b6:300:94::20) with Microsoft SMTP Server (version=TLS1_2,
+ bh=8membIbfB0mjDRiJLGX/uRMDO/L0Qlow23b+TsKd+9s=;
+ b=HUuKX/VvWNHWYphkgHeHr6eojG4wJ7Q56rUtZhNS/9WbPsQ3pX8WeCDJka3o9dnJ+7Q7vXz/TVu/QNB+E5/ub0D4ltjq/ZQldEMwGCJ/R0mFhYg10F3mZF58UqLs1+y46nGnVDJxkpdhrROHxnvkk6kOeNAMtiY8hAuFU4OBwa4=
+Received: from MWHPR22CA0021.namprd22.prod.outlook.com (2603:10b6:300:ef::31)
+ by SA0PR12MB4366.namprd12.prod.outlook.com (2603:10b6:806:72::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.21; Fri, 24 Jul
+ 2020 21:07:10 +0000
+Received: from CO1NAM11FT042.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:ef:cafe::7d) by MWHPR22CA0021.outlook.office365.com
+ (2603:10b6:300:ef::31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.22 via Frontend
- Transport; Fri, 24 Jul 2020 21:07:05 +0000
+ Transport; Fri, 24 Jul 2020 21:07:10 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -46,21 +46,26 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT015.mail.protection.outlook.com (10.13.175.130) with Microsoft SMTP
+ CO1NAM11FT042.mail.protection.outlook.com (10.13.174.250) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3216.10 via Frontend Transport; Fri, 24 Jul 2020 21:07:04 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
+ 15.20.3216.10 via Frontend Transport; Fri, 24 Jul 2020 21:07:10 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 24 Jul
- 2020 16:07:03 -0500
+ 2020 16:07:09 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 24 Jul
+ 2020 16:07:09 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Fri, 24 Jul 2020 16:06:53 -0500
+ Transport; Fri, 24 Jul 2020 16:07:03 -0500
 From: Eryk Brol <eryk.brol@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/15] drm/amd/display: Fix naming of DSC Debugfs entry
-Date: Fri, 24 Jul 2020 17:06:06 -0400
-Message-ID: <20200724210618.2709738-4-eryk.brol@amd.com>
+Subject: [PATCH 04/15] drm/amd/display: Don't compare dppclk before updating
+ DTO
+Date: Fri, 24 Jul 2020 17:06:07 -0400
+Message-ID: <20200724210618.2709738-5-eryk.brol@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200724210618.2709738-1-eryk.brol@amd.com>
 References: <20200724210618.2709738-1-eryk.brol@amd.com>
@@ -68,28 +73,29 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 46f8b882-6efa-4dd1-c43d-08d83015847a
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1647:
-X-Microsoft-Antispam-PRVS: <MWHPR12MB164757B2F06CD197B38E7029E5770@MWHPR12MB1647.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Office365-Filtering-Correlation-Id: bec4ae35-f073-4e48-9b11-08d8301587fc
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4366:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SA0PR12MB436673D341F8DA1A443553A3E5770@SA0PR12MB4366.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GrxYZ3liicUcHGWadGbs7JrmAhf1gcEkg+hrK/KRa8uKo9Qf9DW2vAvIK+DbBHdYfvQLTQNOTbA5l1Sc3jn4oTsXPxDFwAxh1WAipI9oxmyTHClmLPdM+MuDYrpthsxqjIZIaNX0HHyPJJM9ygS1fx1unczuej2vTzv9iHvxhMZQpXgF9cTAnTHONYdBpWDpBi7sXsSmNcW2HL4WfJImX0BM/474G07lP1vYMtPPOVD2FlOHbcpDxQhyX1jeL0odt1pTj85D24i4RalSg5V4goqcKA3g12Xi4rZiPnoBV37k55vMPt4PXmpgYpHMZQd56MTr3HjlAytpO9GbP8xKq1WcTBzwSSnITp3X2z8cJlcMmY4/AShu346BmBCCsgsrz/+0FUkaLJQC5abSRhjtlQ==
+X-Microsoft-Antispam-Message-Info: mWjdSXmLOj2g67e/fM2XXHN+M6q8tFq7vI5PZ/74mOh3GPBzJ3T6WjMb/9Zw4sZu5YDaKYIaN3W9BM2Avv1RVY4BALhFc+P7tox4wqvvQJG7UEhsqDW5nK8P5lNtLpAAUUJnU0MmHw8Mw21Pu8ao/KUB+lbFW7FE8mKdOVPiZ+gILgiBnE2n7585S7nYRgSvUPcdswTbQ6loaTeADGoxUd9kanriRDJujfFzfo+wXP1jVppqpVKKdv0TOnyrOOp2OGJpOPZfgrJKznvq9fDr6nG6d7BpAHRbMmSs/0i3g54Ee0SLrV43HPNlSe1uvTIx8+a56v5bk2BS3fH8YI5xgpC6ARFbL/VZ/0QlwH7snTMNRrQPmMzjzak7i4rjzM6NH2KQTVQpUvur3HTxc4/tfw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(136003)(346002)(376002)(396003)(39860400002)(46966005)(70206006)(5660300002)(47076004)(2906002)(36756003)(4326008)(8676002)(356005)(6666004)(70586007)(6916009)(2616005)(44832011)(54906003)(186003)(86362001)(316002)(426003)(82740400003)(26005)(83380400001)(8936002)(1076003)(336012)(81166007)(82310400002)(478600001);
+ SFS:(4636009)(396003)(136003)(376002)(346002)(39860400002)(46966005)(83380400001)(47076004)(316002)(86362001)(82740400003)(8676002)(82310400002)(2616005)(5660300002)(36756003)(44832011)(478600001)(4326008)(356005)(186003)(70586007)(70206006)(54906003)(8936002)(336012)(81166007)(26005)(1076003)(6916009)(426003)(2906002);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2020 21:07:04.6310 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46f8b882-6efa-4dd1-c43d-08d83015847a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2020 21:07:10.5251 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bec4ae35-f073-4e48-9b11-08d8301587fc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT015.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT042.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1647
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4366
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,68 +109,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk Brol <eryk.brol@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Mikita Lipski <Mikita.Lipski@amd.com>, Bhawanpreet.Lakha@amd.com
+ Alvin Lee <alvin.lee2@amd.com>, Jun Lei <Jun.Lei@amd.com>,
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[why]
-Fix naming and return bits rather than bytes per pixel for
-naming consistency. Because registers return Bytes per pixel,
-but DSC Config structure is expecting bits per pixel as input.
-So when returning the value convert from bytes into bits.
+From: Alvin Lee <alvin.lee2@amd.com>
 
-Signed-off-by: Eryk Brol <eryk.brol@amd.com>
-Signed-off-by: Mikita Lipski <mikita.lipski@amd.com>
-Reviewed-by: Mikita Lipski <Mikita.Lipski@amd.com>
+[Why]
+In dcn3_update_clocks there are situations where dppclk is not
+lowered (i.e. stays the same), but DTO still needs to be increased
+before we program pipe frontend (i.e. in prepare_bandwidth). If we
+don't program the new DTO value before we program the pipe,
+we will underflow as soon as the pipe lock is released until the
+next call to dcn3_update_clocks where the DTO is updated.
+
+[How]
+Remove dppclk check before programming new DTO value.
+
+Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Eryk Brol <eryk.brol@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c    | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c   | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 3dd7da16cc18..65e9ee64c70c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -35,6 +35,7 @@
- #include "dmub/dmub_srv.h"
- #include "resource.h"
- #include "dsc.h"
-+#include "dc_link_dp.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
+index d8af56a58196..b0e9b0509568 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
+@@ -323,9 +323,10 @@ static void dcn3_update_clocks(struct clk_mgr *clk_mgr_base,
+ 			/* if clock is being raised, increase refclk before lowering DTO */
+ 			if (update_dppclk || update_dispclk)
+ 				dcn20_update_clocks_update_dentist(clk_mgr);
+-			/* always update dtos unless clock is lowered and not safe to lower */
+-			if (new_clocks->dppclk_khz >= dc->current_state->bw_ctx.bw.dcn.clk.dppclk_khz)
+-				dcn20_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
++			/* There is a check inside dcn20_update_clocks_update_dpp_dto which ensures
++			 * that we do not lower dto when it is not safe to lower. We do not need to
++			 * compare the current and new dppclk before calling this function.*/
++			dcn20_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
+ 		}
+ 	}
  
- struct dmub_debugfs_trace_header {
- 	uint32_t entry_count;
-@@ -1168,7 +1169,7 @@ static ssize_t dp_dsc_slice_height_read(struct file *f, char __user *buf,
- 	return result;
- }
- 
--static ssize_t dp_dsc_bytes_per_pixel_read(struct file *f, char __user *buf,
-+static ssize_t dp_dsc_bits_per_pixel_read(struct file *f, char __user *buf,
- 				    size_t size, loff_t *pos)
- {
- 	char *rd_buf = NULL;
-@@ -1479,9 +1480,9 @@ static const struct file_operations dp_dsc_slice_height_debugfs_fops = {
- 	.llseek = default_llseek
- };
- 
--static const struct file_operations dp_dsc_bytes_per_pixel_debugfs_fops = {
-+static const struct file_operations dp_dsc_bits_per_pixel_debugfs_fops = {
- 	.owner = THIS_MODULE,
--	.read = dp_dsc_bytes_per_pixel_read,
-+	.read = dp_dsc_bits_per_pixel_read,
- 	.llseek = default_llseek
- };
- 
-@@ -1572,7 +1573,7 @@ static const struct {
- 		{"dsc_clock_en", &dp_dsc_clock_en_debugfs_fops},
- 		{"dsc_slice_width", &dp_dsc_slice_width_debugfs_fops},
- 		{"dsc_slice_height", &dp_dsc_slice_height_debugfs_fops},
--		{"dsc_bytes_per_pixel", &dp_dsc_bytes_per_pixel_debugfs_fops},
-+		{"dsc_bits_per_pixel", &dp_dsc_bits_per_pixel_debugfs_fops},
- 		{"dsc_pic_width", &dp_dsc_pic_width_debugfs_fops},
- 		{"dsc_pic_height", &dp_dsc_pic_height_debugfs_fops},
- 		{"dsc_chunk_size", &dp_dsc_chunk_size_debugfs_fops},
 -- 
 2.25.1
 
