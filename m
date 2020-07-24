@@ -1,96 +1,39 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20CDF22D047
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jul 2020 23:08:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 771B622D05F
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jul 2020 23:15:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA3146EA0C;
-	Fri, 24 Jul 2020 21:08:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5C226E994;
+	Fri, 24 Jul 2020 21:15:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690059.outbound.protection.outlook.com [40.107.69.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 404C06EA0C
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 21:08:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FqIYqhFZ6OZYiMmzFwome9r5ZOl34AGNdnim2Ut8DB8qEpAGNnRRSqCGOVCVVPvoLGXYtvU8i1vZzH8q2y2wAZbNpB+McR0ast8f8XI1vRXlGuKrjNPyupqZPN3TJM5lJyhulPxPx7PEKzc8dFrmO6TZHDRPsSRnZxCYDc1LquQDDnNiDs1lm11lPKPn6mgrI0PyT2BQSL5Ot4hqnG4xkE6RpFZNBviYi639rwOQpHqL5iBbRSRVUGYOKSrayD7cKBUOFDIWUPbtb8aSrO8Ql+bP5AQGaq88hVNBIbkChEsA/I+2GBEa4F8LCt/xKaJMBBIZuUJsKSJ7xMs/SmvtmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gdNeebindIyc8Ysy6MiTuE8hJXvqCaMN/bp/i601eEs=;
- b=kWN4PGcXpscY1ZaBK/nZEF70yunXcPar2M/zXWssdF3AkJ+OiF0Fyg+xoYl/G8XrtUazSEhDvOta0rmLxa4TtFOxpjn4MauC9ojDsy75LdZl40O3MqtFh0gr/R28d9FS03KAqIvwbX1vFl3821dsq+9zPlcuZWuiNKoCx8ijnmSqMXIHZP5inGaKv5d+ZpQECmmpnu5bBrdAPZ7XfCLeRLucm95N+95FQBtiiuAaezYN/2Fde0tcyShElA99r5DSatcOGkAqWCM8YEoJgFOAL5Selo9JK9IYSDkRdWZZJj8GM829JIZnvVGGch+8AI3g41gaEyzDOgfsOv3EIHW8pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gdNeebindIyc8Ysy6MiTuE8hJXvqCaMN/bp/i601eEs=;
- b=HRntcGINpZAj5qJwPquBe9z8Ho30hLHBJq265/mCmyN+9/4MtV7x2xB4uQ1DGE6v6WmV20PH+vlVWpk9lah4FDsS/x58wPysDDqWOP96CvZjtbHWM8/cjgwiQzDCNOnVKMCELbvYaHTMjybMOr49jUwoP0nb1ncdVfm99cRcTLg=
-Received: from BN6PR11CA0022.namprd11.prod.outlook.com (2603:10b6:405:2::32)
- by MN2PR12MB3102.namprd12.prod.outlook.com (2603:10b6:208:c6::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.26; Fri, 24 Jul
- 2020 21:08:34 +0000
-Received: from BN8NAM11FT041.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:2:cafe::29) by BN6PR11CA0022.outlook.office365.com
- (2603:10b6:405:2::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.23 via Frontend
- Transport; Fri, 24 Jul 2020 21:08:34 +0000
-X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT041.mail.protection.outlook.com (10.13.177.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3216.10 via Frontend Transport; Fri, 24 Jul 2020 21:08:34 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 24 Jul
- 2020 16:08:33 -0500
-Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Fri, 24 Jul 2020 16:08:28 -0500
-From: Eryk Brol <eryk.brol@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 15/15] drm/amd/display: Fix DP Compliance tests 4.3.2.1 and
- 4.3.2.2
-Date: Fri, 24 Jul 2020 17:06:18 -0400
-Message-ID: <20200724210618.2709738-16-eryk.brol@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200724210618.2709738-1-eryk.brol@amd.com>
-References: <20200724210618.2709738-1-eryk.brol@amd.com>
+Received: from mail4.protonmail.ch (mail4.protonmail.ch [185.70.40.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5236E98C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 21:09:16 +0000 (UTC)
+Date: Fri, 24 Jul 2020 21:09:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail; t=1595624954;
+ bh=Y8a3UGIVUH//nWWAHOfJ574aWDANSyRzuKfaeg2ulx4=;
+ h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+ b=FIb+sm+kToFyvdLp5N0/6hKTvNwAfMtyf/yJabXCCV82G7xS4BSSkPqbOzKTVkDfj
+ Ti4DQ5zBK5IpE6qXC4tBSmqWqjrslvgzQUJ4uOgLCHAEbkLAvgXrweslc+EbfyMfwm
+ 9gb/43k3dt2k56PceZP9puWUjg3j1CXGUlY6EIsw=
+To: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
+From: Mazin Rezk <mnrzk@protonmail.com>
+Subject: Re: [PATCH] amdgpu_dm: fix nonblocking atomic commit use-after-free
+Message-ID: <84wa2rcw2dJSFkRVMxsGwnf-BOUvLL6jFG8orKz4_sjwWChkTbrAUVmOupfV1AmPm0MxqbRGwtvn_v_EAMhM_ngI73p-sjscgKg106fcu4U=@protonmail.com>
+In-Reply-To: <3iDgskt5iP3y77MHUJ2_5uSThyUteHxPvVqoL5SpnpTIpz5cdkifyDOynpiVukS_peaYGOkn9bHSpvRYa-vFOCjUYH68taIuKyZqhOByAVI=@protonmail.com>
+References: <YIGsJ9LlFquvBI2iWPKhJwjKBwDUr_C-38oVpLJJHJ5rDCY_Zrrv392o6UPNxHoeQrcpLYC9U4fZdpD9ilz6Amg2IxkSexGLQMCQIBek8rc=@protonmail.com>
+ <ccd5d51b-b018-a3db-169b-ba6278a7be9f@amd.com>
+ <3iDgskt5iP3y77MHUJ2_5uSThyUteHxPvVqoL5SpnpTIpz5cdkifyDOynpiVukS_peaYGOkn9bHSpvRYa-vFOCjUYH68taIuKyZqhOByAVI=@protonmail.com>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3836578e-e59f-4fc2-f578-08d83015b9d7
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3102:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB3102CA17C6551069A376A7F7E5770@MN2PR12MB3102.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CV4ZFo+x6+HLX65VB5dIfLEjp+O0QEROM66rgV6kipSkoK8a9z7TjjheIY0834Ao203Lit6ChR0Fkph7ivIZkxuJNZTbxaaIvUYawlsPvnVN+/45usohZxHSCQwB518IlAoS9gWsAC1h8pnstlvC1ib4T2dL8Aie0w/UH7bU5Sr94cC97db2AtVSSGXcYQFMwaJ1SvJqAcMHVvcnw819g/A4pi49ZM0c/wSzP7qQ1h4tM6W1+weINv2MP9qNjEZ0T3iN/pb6K1BUsKJHmiUbUAyxPMtKzByfhvYYFsOlzg3oYuLnAKAIXr04NrXL5w4omKLnWhyDVvHqFGEJaejPLs7iPlYx0DDYCy2VZAeFbT+2zgG4xX9HIZ3YNfYxcXGKOCcYNlIt9S5r22W30vms0g==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFTY:;
- SFS:(4636009)(396003)(39860400002)(346002)(376002)(136003)(46966005)(1076003)(54906003)(316002)(186003)(44832011)(26005)(36756003)(336012)(356005)(478600001)(2906002)(86362001)(8936002)(2616005)(47076004)(6916009)(70206006)(70586007)(83380400001)(82310400002)(6666004)(82740400003)(5660300002)(81166007)(426003)(8676002)(4326008);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2020 21:08:34.2879 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3836578e-e59f-4fc2-f578-08d83015b9d7
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT041.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3102
+X-Spam-Status: No, score=-0.5 required=7.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HK_RANDOM_REPLYTO
+ shortcircuit=no autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on mail.protonmail.ch
+X-Mailman-Approved-At: Fri, 24 Jul 2020 21:15:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,66 +45,206 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <aric.cyr@amd.com>, Eryk Brol <eryk.brol@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com
+Reply-To: Mazin Rezk <mnrzk@protonmail.com>
+Cc: "pmenzel@molgen.mpg.de" <pmenzel@molgen.mpg.de>,
+ "anthony.ruhier@gmail.com" <anthony.ruhier@gmail.com>,
+ "1i5t5.duncan@cox.net" <1i5t5.duncan@cox.net>,
+ "keescook@chromium.org" <keescook@chromium.org>,
+ "sunpeng.li@amd.com" <sunpeng.li@amd.com>, Mazin Rezk <mnrzk@protonmail.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "regressions@leemhuis.info" <regressions@leemhuis.info>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+ "mphantomx@yahoo.com.br" <mphantomx@yahoo.com.br>,
+ "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+On Thursday, July 23, 2020 6:57 PM, Mazin Rezk <mnrzk@protonmail.com> wrote:
 
-[Why]
-Test expects that we also read HPD_IRQ_VECTOR when checking for
-symbol loss as well lane status.
+> It seems that I spoke too soon. I ran the system for another hour after
+> submitting the patch and the bug just occurred. :/
+>
+> Sadly, that means the bug isn't really fixed and that I have to go
+> investigate further.
+>
+> At the very least, this patch seems to delay the occurrence of the bug
+> significantly which may help in further discovering the cause.
+>
+> On Thursday, July 23, 2020 6:16 PM, Kazlauskas, Nicholas nicholas.kazlauskas@amd.com wrote:
+>
+> > On 2020-07-23 5:10 p.m., Mazin Rezk wrote:
+> >
+> > > When amdgpu_dm_atomic_commit_tail is running in the workqueue,
+> > > drm_atomic_state_put will get called while amdgpu_dm_atomic_commit_tail is
+> > > running, causing a race condition where state (and then dm_state) is
+> > > sometimes freed while amdgpu_dm_atomic_commit_tail is running. This bug has
+> > > occurred since 5.7-rc1 and is well documented among polaris11 users [1].
+> > > Prior to 5.7, this was not a noticeable issue since the freelist pointer
+> > > was stored at the beginning of dm_state (base), which was unused. After
+> > > changing the freelist pointer to be stored in the middle of the struct, the
+> > > freelist pointer overwrote the context, causing dc_state to become garbage
+> > > data and made the call to dm_enable_per_frame_crtc_master_sync dereference
+> > > a freelist pointer.
+> > > This patch fixes the aforementioned issue by calling drm_atomic_state_get
+> > > in amdgpu_dm_atomic_commit before drm_atomic_helper_commit is called and
+> > > drm_atomic_state_put after amdgpu_dm_atomic_commit_tail is complete.
+> > > According to my testing on 5.8.0-rc6, this should fix bug 207383 on
+> > > Bugzilla [1].
+> > > [1] https://bugzilla.kernel.org/show_bug.cgi?id=207383
+> > > Fixes: 3202fa62f ("slub: relocate freelist pointer to middle of object")
+> > > Reported-by: Duncan 1i5t5.duncan@cox.net
+> > > Signed-off-by: Mazin Rezk mnrzk@protonmail.com
+> >
+> > Thanks for the investigation and your patch. I appreciate the help in
+> > trying to narrow down the root cause as this issue has been difficult to
+> > reproduce on my setups.
+> > Though I'm not sure this really resolves the issue - we make use of the
+> > drm_atomic_helper_commit helper function from DRM which internally does
+> > what you're doing with this patch:
+> > drm_atomic_state_get(state);
+> > if (nonblock)
+> > queue_work(system_unbound_wq, &state->commit_work);
+> >
+> >     else
+> >     	commit_tail(state);
+> >
+> >
+> > So even when it gets queued off to the unbound workqueue we still have a
+> > reference on the state.
+> > That reference gets dropped as part of commit tail helper in DRM as well:
+> > if (funcs && funcs->atomic_commit_tail)
+> >
+> >     	funcs->atomic_commit_tail(old_state);
+> >
+> >     else
+> >     	drm_atomic_helper_commit_tail(old_state);
+> >
+> >
+> > commit_time_ms = ktime_ms_delta(ktime_get(), start);
+> > if (commit_time_ms > 0)
+> >
+> >     	drm_self_refresh_helper_update_avg_times(old_state,
+> >     					 (unsigned long)commit_time_ms,
+> >     					 new_self_refresh_mask);
+> >
+> >
+> > drm_atomic_helper_commit_cleanup_done(old_state);
+> > drm_atomic_state_put(old_state);
+>
+> I initially noticed that right after I wrote this patch so I was expecting
+> the patch to fail. However, after several hours of testing, the crash just
+> didn't occur so I believed the bug was fixed.
+>
+> > So instead of a use after free happening when we access the state we get
+> > a double-free happening later at the end of commit tail in DRM.
+> > What I think would be the right next step here is to actually determine
+> > what sequence of IOCTLs and atomic commits are happening under your
+> > setup with a very verbose dmesg log. You can set a debug level for DRM
+> > in your kernel parameters with something like:
+> > drm.debug=0x54
+> > I don't see anything in amdgpu_dm.c that looks like it would be freeing
+> > the state so I suspect something in the core is this doing this.
+>
+> Going through the KASAN use-after-free bug report in the Bugzilla
+> attachments, it appears that the state is being freed at the end of
+> commit_tail. Perhaps amdgpu_dm_atomic_commit_tail is being called on the
+> the same old state twice? I can't quite think of any other possible
+> explanation as to why that happens.
 
-[How]
-Read bytes 0x200-0x205 instead of just 0x202-0x205
+I think I've more or less confirmed that this is the case.
 
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
-Acked-by: Eryk Brol <eryk.brol@amd.com>
----
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+I created two padding variables, one to store debug magic numbers and one
+to store the freelist pointer. I had magic numbers for initialised,
+preuse, and used states. When the dm_atomic_state is initialised, the
+padding is set to the init magic number. Right before commit_tail is
+called, the padding is set to the preuse magic number. During
+dm_atomic_get_new_state checks the magic number to confirm that it
+was in the preuse state and then set it to used. If it failed that check
+and it was already in a used state, there was a breakpoint set so I could
+gather further information.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 0447492d30ca..2bfa4e35c2cf 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -1138,23 +1138,22 @@ static enum link_training_result check_link_loss_status(
- 	const struct link_training_settings *link_training_setting)
- {
- 	enum link_training_result status = LINK_TRAINING_SUCCESS;
--	unsigned int lane01_status_address = DP_LANE0_1_STATUS;
- 	union lane_status lane_status;
--	uint8_t dpcd_buf[4] = {0};
-+	uint8_t dpcd_buf[6] = {0};
- 	uint32_t lane;
- 
- 	core_link_read_dpcd(
--		link,
--		lane01_status_address,
--		(uint8_t *)(dpcd_buf),
--		sizeof(dpcd_buf));
-+			link,
-+			DP_SINK_COUNT,
-+			(uint8_t *)(dpcd_buf),
-+			sizeof(dpcd_buf));
- 
- 	/*parse lane status*/
- 	for (lane = 0; lane < link->cur_link_settings.lane_count; lane++) {
- 		/*
- 		 * check lanes status
- 		 */
--		lane_status.raw = get_nibble_at_index(&dpcd_buf[0], lane);
-+		lane_status.raw = get_nibble_at_index(&dpcd_buf[2], lane);
- 
- 		if (!lane_status.bits.CHANNEL_EQ_DONE_0 ||
- 			!lane_status.bits.CR_DONE_0 ||
--- 
-2.25.1
+At one point (presumably where the crash would have occurred), the debug
+padding variable was set to the used state during the call to commit_tail
+which I believe confirms my guess that amdgpu_dm_atomic_commit_tail is
+being called on the same state twice.
+
+What's weird, however, is that dmesg (w/ drm.debug=0x54) says this right
+before amdgpu_dm_atomic_commit_tail is called:
+
+[ 3277.580205] [drm:drm_atomic_state_init [drm]] Allocated atomic state 00000000a06f4024
+[ 3277.580262] [drm:drm_atomic_get_crtc_state [drm]] Added [CRTC:49:crtc-1] 000000003b9da5c1 state to 00000000a06f4024
+[ 3277.580316] [drm:drm_atomic_get_plane_state [drm]] Added [PLANE:44:plane-4] 000000003488c027 state to 00000000a06f4024
+[ 3277.580366] [drm:drm_atomic_set_fb_for_plane [drm]] Set [FB:103] for [PLANE:44:plane-4] state 000000003488c027
+[ 3277.580417] [drm:drm_atomic_check_only [drm]] checking 00000000a06f4024
+[ 3277.580519] [drm:drm_atomic_get_private_obj_state [drm]] Added new private object 0000000002a633ab state 00000000695dff15 to 00000000a06f4024
+[ 3277.580579] [drm:drm_atomic_nonblocking_commit [drm]] committing 00000000a06f4024 nonblocking
+[ 3277.582325] [drm:drm_atomic_state_default_clear [drm]] Clearing atomic state 00000000a06f4024
+[ 3277.582393] [drm:__drm_atomic_state_free [drm]] Freeing atomic state 00000000a06f4024
+
+From the log, I'm noticing that drm_atomic_nonblocking_commit is only
+called once and that whatever is calling the second non-blocking
+commit_tail on the same state doesn't seem to be using
+drm_atomic_nonblocking_commit.
+
+Perhaps someone with more knowledge of the code can give a possible
+explanation as to why that's happening.
+
+Thanks,
+Mazin Rezk
+
+>
+> > > drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +++
+> > > 1 file changed, 3 insertions(+)
+> > > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > > index 86ffa0c2880f..86d6652872f2 100644
+> > > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > > @@ -7303,6 +7303,7 @@ static int amdgpu_dm_atomic_commit(struct drm_device *dev,
+> > >
+> > > -   unset legacy_cursor_update
+> > >     */
+> > >
+> > >
+> > > -   drm_atomic_state_get(state);
+> >
+> > Also note that if the drm_atomic_helper_commit() call fails here then
+> > we're going to never free this structure. So we should really be
+> > checking the return code here below before trying to do this, if at all.
+>
+> Oh right, that's true. I looked at amdgpu_dm_atomic_commit_tail and didn't
+> see any return statements in there, so I thought it was safe.
+>
+> > Regards,
+> > Nicholas Kazlauskas
+> >
+> > >       return drm_atomic_helper_commit(dev, state, nonblock);
+> > >
+> > >       /*TODO Handle EINTR, reenable IRQ*/
+> > >
+> > >
+> > > @@ -7628,6 +7629,8 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+> > >
+> > >       if (dc_state_temp)
+> > >       	dc_release_state(dc_state_temp);
+> > >
+> > >
+> > > -
+> > > -   drm_atomic_state_put(state);
+> > >     }
+> > >
+> > >
+> > > --
+> > > 2.27.0
+>
+> Thanks,
+> Mazin Rezk
+
 
 _______________________________________________
 amd-gfx mailing list
