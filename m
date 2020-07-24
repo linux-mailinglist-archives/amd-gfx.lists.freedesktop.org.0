@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BD4222D03C
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jul 2020 23:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F8E22D03D
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jul 2020 23:07:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D606B6EA0E;
-	Fri, 24 Jul 2020 21:07:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFFF96EA0F;
+	Fri, 24 Jul 2020 21:07:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2050.outbound.protection.outlook.com [40.107.244.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B86486EA0E
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 21:07:39 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2054.outbound.protection.outlook.com [40.107.236.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2DB46EA0F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Jul 2020 21:07:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m99FA1byUa1nJliVQbX2kY8zNM4/9UrD+mXgRNddH/s0cMCee5kTiy2Zv/3rJBn/DVPEakVvY4FevNeObjTp/CIuo6OrkMmXQI48RkWRY+lP6CXhr30k7ZxiSYPUG2JnzIm3TdVnr/0JY+RjDXq/EFFIri5nyCNdvDf4PSqloMdCX4CTzX68wjJpa98pDxw4KzDaJ0Dz/9SRY1oFjBsIcScpYPAElM9bYyFdRRRjb2pA5Qdlx5XDzn0tMcDFeOGHwUtZnN7yNSEhWkXLSFPy/bFNAy6JpGBkg2Q0+J5AzX6Y/1lQ6RPAS73IhhXN1IDqQMyo3IVfjNzeY7i1WM+UnQ==
+ b=gQgCTKVJpS27elTzfUmsDhj5LxVlIX9jWwHdmaU4VlJEEPLRAZ8d56OqB6mRv2diEk5F9/iuqVS3RQGLM5S9JRzPMBMG0LWZzaCyxjr388fvBbu0ovixVM+jeJnrBq0EAX7crtqM/fa3Uk1DwHd441ov4MbP1BiYrhMBDCyR3Oj9EPrSgnZFRFW8gdNmZKF4HUQCv/qrPn8zRjtSOObI7GQL+uClTmghCEyscL5W+XlPZEEQGMckZMlZy4wVvPNSumKjOpGnQ2+uR9rBoLdvDiFccWHxqERqzVYvZ5fY6MFd0hVXfKeUEoawTSEverevG9oH8HVChZ94xpvkgvSzeg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cgTJuy6KdpM4BjiK2C1jYa2Xur4t98yjXObVYQTcwpE=;
- b=FWoiW5B9PRUrLjzqyrF5mYDW4s8/XK1LPy039guVyS8Uu5NgMtK2+bHjqJMgPUITYKtqGEWIlcQn26lUUVT92ip/zDjL1r61zoIX3FaHbp5SCl+f8DeYUoNUIz9lpm8PJa03Uk+yVPsUSozE5vtCbgtprIazUfyJ/6VjbXxH0FaxUzV/5wvZYQX3ALBhJgXqkMfSIs4Hx9I3kPbrYO9ojVyWttQikOeyPXPA6UdhH5KyAzILK4K38+ur0X6TgGg1clcisgv0DJdWCutAAXeUmKPaxDIoTBiw4Yj81mfZJDUqU56e4vH9U59LhFA+zSEDHUaBfY9HDx/+oVnLdk118Q==
+ bh=i/denN/8/OXXrSc6HCrMi3tzLXt+gm0lbqczncFGXiw=;
+ b=F9ZZ9d8Xm3Uj9jssGvEXPPRM0x1zgtcwmCXVix4bDzZMnU8AO+i4GghSJnCfU5k59qPNu80k1gulgfV9LBMaK5Gs/LOFtWcbJ1/vC/CkeutvX1rd16DuDhUoTH66gScLm6JZqtvwPVDlVMkyxiygVr/HJYnoTPvD4dM+b4GFBFDVCdSSZ7aqwM4soitnfXIBKn711fmaXo9UbwfA7xN8Nh5FrP4lLgPNowKqWxnQNt8xr+7EL7ZT8SMHbDYrRaMWyXCfUTl3QenQOFMmO64m0Z/KLjELcBg3itita+P/K0Vuf632GTxCCGu0UM6ueYt1HDzxwLkdRkHQmvNXLd2Y1w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cgTJuy6KdpM4BjiK2C1jYa2Xur4t98yjXObVYQTcwpE=;
- b=QLnN9O0xLPcEnP3PidMXFwEeCEQpl9x3n/+ug+plZbwwqaiK/SQKRkB488zES4uA9hQyCoiRrvGiUoaqYnNJPAbJfMFeULdBQJGwP/7B+qkUVla9ZnJZadAvOGxN55Z55G0nQv2byGvBlE55WEAjky44oaHDQ150M5frCtNrbqw=
-Received: from BN6PR1701CA0008.namprd17.prod.outlook.com
- (2603:10b6:405:15::18) by MN2PR12MB3775.namprd12.prod.outlook.com
- (2603:10b6:208:159::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.21; Fri, 24 Jul
- 2020 21:07:38 +0000
-Received: from BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:15:cafe::95) by BN6PR1701CA0008.outlook.office365.com
- (2603:10b6:405:15::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.20 via Frontend
- Transport; Fri, 24 Jul 2020 21:07:38 +0000
+ bh=i/denN/8/OXXrSc6HCrMi3tzLXt+gm0lbqczncFGXiw=;
+ b=mjOMZnD2kuCFAlv15wrT3gGfxvohdqjfvAQc/VB44He4psU++YY7rrajjHhm2aYJDt7qEUwwR3bHsnpgFzR1xCAWehZHbT4FYs/IFOtj8wlHK07dAyASKuPPRa1LnxIYZtG/Ftt+VTq2/5a2itfMYUp+yC9ia1wQniqK9F/BEdk=
+Received: from BN6PR10CA0031.namprd10.prod.outlook.com (2603:10b6:404:109::17)
+ by DM6PR12MB3004.namprd12.prod.outlook.com (2603:10b6:5:11b::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.25; Fri, 24 Jul
+ 2020 21:07:49 +0000
+Received: from BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:109:cafe::a4) by BN6PR10CA0031.outlook.office365.com
+ (2603:10b6:404:109::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.23 via Frontend
+ Transport; Fri, 24 Jul 2020 21:07:49 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -46,26 +46,25 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT022.mail.protection.outlook.com (10.13.176.112) with Microsoft SMTP
+ BN8NAM11FT068.mail.protection.outlook.com (10.13.177.69) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3216.10 via Frontend Transport; Fri, 24 Jul 2020 21:07:38 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
+ 15.20.3216.10 via Frontend Transport; Fri, 24 Jul 2020 21:07:49 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 24 Jul
- 2020 16:07:38 -0500
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 16:07:49 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 24 Jul
- 2020 16:07:38 -0500
+ 2020 16:07:48 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Fri, 24 Jul 2020 16:07:32 -0500
+ Transport; Fri, 24 Jul 2020 16:07:38 -0500
 From: Eryk Brol <eryk.brol@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/15] drm/amd/display: Allow asic specific FSFT timing
- optimization
-Date: Fri, 24 Jul 2020 17:06:11 -0400
-Message-ID: <20200724210618.2709738-9-eryk.brol@amd.com>
+Subject: [PATCH 09/15] drm/amd/display: DSC Clock enable debugfs write entry
+Date: Fri, 24 Jul 2020 17:06:12 -0400
+Message-ID: <20200724210618.2709738-10-eryk.brol@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200724210618.2709738-1-eryk.brol@amd.com>
 References: <20200724210618.2709738-1-eryk.brol@amd.com>
@@ -73,28 +72,28 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a8758f62-fc40-4112-cd56-08d8301598ae
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3775:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB3775DA18FB40F8526357EA5AE5770@MN2PR12MB3775.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:267;
+X-MS-Office365-Filtering-Correlation-Id: 10ac5669-a676-47c8-2b4b-08d830159f4e
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3004:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB30046F1BA8733D2D8A332157E5770@DM6PR12MB3004.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1013;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MzsREU/kU2Ss5AD2HkuL3N2a11chJOVkuMj1vPv8FjJNY7r14jOIg9VYlJz7xqiQSJ3b0IHivqsRzV2pwDWQrsBZKqZpW+jxyrQM2v7pyJC3CEOIXvwIUZK+/P4gTbhRzoX6Zgmv19dZxZMwdveg24oLRrjAhF4Mhbkk7wYLDzN7eM7VBgpGIxOJtNyJvUAkar+KDj3jUPdpQw/B1b/QLVtKQlU8cjfYcAE2vQ5CqpspGL5TTusVBQDgoeamTRHQkOTfxAG0RYrXdkEVXj9Cm3jmmpgDXJh71+5zqQ1rIg96RFl6f91fQMsEB7BGSRZOTJWAREAkmyeb0STSwLktag5EK8+AyyuRV/jQV2Jr2P/S5VAzaZlC6jqjPG36IKqfwXaxg7tFwsjmT7petUogUA==
+X-Microsoft-Antispam-Message-Info: tYl7qQXXkN5A7OHrfO/W6s0p9m6i7pYiuvwk36m/uDgEVSfOX1+5xx538rBHSBFggLrK8ejZvZ8DnNs0zOw2+SxV5aACQFSMYWb2YiNdSHPIwUQFbhesNDse9oZ9/dM+CZRhW0JT1zFas/pm17lY91rZ+Whm+RkGNbGZJs7N8E3jx7PfAmLyDr5Wy1KzJdtAHLYKfLnpogkKSQ1uMdE4WuNrmzLDby0iBR0utNuNoKbjiQdaekBKYiLj6N9/Gt6H0UesNnnVpQU0niQ+VMgjyii9Xo3nDxEp55vBpIEHB8NHxFtXs7GDWg/q0xhAeqVPW15ooRyN0PaULokyvyMka7z6g+oJy40KhiA3sTMf0tYrjbAHhweN8PJRPQU+mfQ1fkltF5R8feYvj75D8hqPkQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(396003)(136003)(376002)(346002)(39860400002)(46966005)(47076004)(83380400001)(316002)(86362001)(8676002)(36756003)(82740400003)(82310400002)(5660300002)(2616005)(44832011)(478600001)(4326008)(356005)(186003)(70586007)(54906003)(336012)(70206006)(8936002)(81166007)(26005)(1076003)(6916009)(426003)(2906002)(6666004);
+ SFS:(4636009)(136003)(376002)(346002)(396003)(39860400002)(46966005)(70206006)(5660300002)(47076004)(2906002)(36756003)(4326008)(8676002)(356005)(6666004)(70586007)(6916009)(2616005)(44832011)(54906003)(186003)(86362001)(426003)(316002)(82740400003)(26005)(83380400001)(8936002)(1076003)(336012)(81166007)(478600001)(82310400002);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2020 21:07:38.6524 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8758f62-fc40-4112-cd56-08d8301598ae
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2020 21:07:49.7642 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10ac5669-a676-47c8-2b4b-08d830159f4e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3775
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3004
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,196 +107,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk Brol <eryk.brol@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Reza Amini <Reza.Amini@amd.com>, Bhawanpreet.Lakha@amd.com,
- Anthony Koo <Anthony.Koo@amd.com>
+ Mikita Lipski <Mikita.Lipski@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Reza Amini <Reza.Amini@amd.com>
-
 [Why]
-Each asic can optimize best based on its capabilities
+Need a mechanism to force enable DSC on any connector
 
 [How]
-Optimizing timing for a new pixel clock
+Debugfs entry overwrites newly added connector's dsc preffered
+settings structure and sets dsc_clock_en flag on it.
+During the attomic commit, depending if connector is SST or
+MST, we will enable DSC manually by overwriting stream's DSC flag.
 
-Signed-off-by: Reza Amini <Reza.Amini@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Signed-off-by: Eryk Brol <eryk.brol@amd.com>
+Signed-off-by: Mikita Lipski <mikita.lipski@amd.com>
+Reviewed-by: Mikita Lipski <Mikita.Lipski@amd.com>
 Acked-by: Eryk Brol <eryk.brol@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_stream.c   | 18 ++++++-------
- drivers/gpu/drm/amd/display/dc/dc_stream.h    |  4 +--
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 27 +++++++++++++++++++
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.h    |  5 ++++
- .../gpu/drm/amd/display/dc/dcn20/dcn20_init.c |  3 +++
- .../gpu/drm/amd/display/dc/dcn21/dcn21_init.c |  3 +++
- .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |  5 ++++
- .../amd/display/modules/freesync/freesync.c   |  5 +++-
- 8 files changed, 57 insertions(+), 13 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  5 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  5 ++
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 89 +++++++++++++++++++
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 11 ++-
+ 4 files changed, 107 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-index 10d69ada88e3..0257a900fe2b 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-@@ -246,20 +246,18 @@ struct dc_stream_status *dc_stream_get_status(
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index b1bc03594e5c..5105e13a6088 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -4613,7 +4613,7 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 							     dc_link_get_link_cap(aconnector->dc_link));
  
- #ifndef TRIM_FSFT
- /**
-- * dc_optimize_timing() - dc to optimize timing
-+ * dc_optimize_timing_for_fsft() - dc to optimize timing
-  */
--bool dc_optimize_timing(
--	struct dc_crtc_timing *timing,
-+bool dc_optimize_timing_for_fsft(
-+	struct dc_stream_state *pStream,
- 	unsigned int max_input_rate_in_khz)
- {
--	//optimization is expected to assing a value to these:
--	//timing->pix_clk_100hz
--	//timing->v_front_porch
--	//timing->v_total
--	//timing->fast_transport_output_rate_100hz;
--	timing->fast_transport_output_rate_100hz = timing->pix_clk_100hz;
-+	struct dc  *dc;
- 
--	return true;
-+	dc = pStream->ctx->dc;
-+
-+	return (dc->hwss.optimize_timing_for_fsft &&
-+		dc->hwss.optimize_timing_for_fsft(dc, &pStream->timing, max_input_rate_in_khz));
- }
+ #if defined(CONFIG_DRM_AMD_DC_DCN)
+-		if (dsc_caps.is_dsc_supported)
++		if (dsc_caps.is_dsc_supported) {
+ 			if (dc_dsc_compute_config(aconnector->dc_link->ctx->dc->res_pool->dscs[0],
+ 						  &dsc_caps,
+ 						  aconnector->dc_link->ctx->dc->debug.dsc_min_slice_height_override,
+@@ -4621,6 +4621,9 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 						  &stream->timing,
+ 						  &stream->timing.dsc_cfg))
+ 				stream->timing.flags.DSC = 1;
++			if (aconnector->dsc_settings.dsc_clock_en)
++				stream->timing.flags.DSC = 1;
++		}
  #endif
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_stream.h b/drivers/gpu/drm/amd/display/dc/dc_stream.h
-index e4e85a159462..633442bc7ef2 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
-@@ -424,8 +424,8 @@ struct dc_stream_status *dc_stream_get_status(
- 	struct dc_stream_state *dc_stream);
- 
- #ifndef TRIM_FSFT
--bool dc_optimize_timing(
--	struct dc_crtc_timing *timing,
-+bool dc_optimize_timing_for_fsft(
-+	struct dc_stream_state *pStream,
- 	unsigned int max_input_rate_in_khz);
- #endif
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index 7725a406c16e..66180b4332f1 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -2498,3 +2498,30 @@ void dcn20_fpga_init_hw(struct dc *dc)
- 		tg->funcs->tg_init(tg);
  	}
+ 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+index 82cdf07b4bd0..6f0a81f6f3c4 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+@@ -342,6 +342,10 @@ struct amdgpu_display_manager {
+ 	struct amdgpu_encoder mst_encoders[AMDGPU_DM_MAX_CRTC];
+ };
+ 
++struct dsc_preferred_settings {
++	bool dsc_clock_en;
++};
++
+ struct amdgpu_dm_connector {
+ 
+ 	struct drm_connector base;
+@@ -389,6 +393,7 @@ struct amdgpu_dm_connector {
+ 	uint32_t debugfs_dpcd_size;
+ #endif
+ 	bool force_yuv420_output;
++	struct dsc_preferred_settings dsc_settings;
+ };
+ 
+ #define to_amdgpu_dm_connector(x) container_of(x, struct amdgpu_dm_connector, base)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index 65e9ee64c70c..d88620fa9d2b 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -998,6 +998,21 @@ static ssize_t dp_dpcd_data_read(struct file *f, char __user *buf,
+ 	return read_size - r;
  }
-+#ifndef TRIM_FSFT
-+bool dcn20_optimize_timing_for_fsft(struct dc *dc,
-+		struct dc_crtc_timing *timing,
-+		unsigned int max_input_rate_in_khz)
+ 
++/* function: read DSC status on the connector
++ *
++ * The read function: dp_dsc_clock_en_read
++ * returns current status of DSC clock on the connector.
++ * The return is a boolean flag: 1 or 0.
++ *
++ * Access it with the following command (you need to specify
++ * connector like DP-1):
++ *
++ *	cat /sys/kernel/debug/dri/0/DP-X/dsc_clock_en
++ *
++ * Expected output:
++ * 1 - means that DSC is currently enabled
++ * 0 - means that DSC is disabled
++ */
+ static ssize_t dp_dsc_clock_en_read(struct file *f, char __user *buf,
+ 				    size_t size, loff_t *pos)
+ {
+@@ -1055,6 +1070,79 @@ static ssize_t dp_dsc_clock_en_read(struct file *f, char __user *buf,
+ 	return result;
+ }
+ 
++/* function: write force DSC on the connector
++ *
++ * The write function: dp_dsc_clock_en_write
++ * enables to force DSC on the connector.
++ * User can write to either force enable DSC
++ * on the next modeset or set it to driver default
++ *
++ * Writing DSC settings is done with the following command:
++ * - To force enable DSC (you need to specify
++ * connector like DP-1):
++ *
++ *	echo 0x1 > /sys/kernel/debug/dri/0/DP-X/dsc_clock_en
++ *
++ * - To return to default state set the flag to zero and
++ * let driver deal with DSC automatically
++ * (you need to specify connector like DP-1):
++ *
++ *	echo 0x0 > /sys/kernel/debug/dri/0/DP-X/dsc_clock_en
++ *
++ */
++static ssize_t dp_dsc_clock_en_write(struct file *f, const char __user *buf,
++				     size_t size, loff_t *pos)
 +{
-+	unsigned int old_v_front_porch;
-+	unsigned int old_v_total;
-+	unsigned int max_input_rate_in_100hz;
-+	unsigned long long new_v_total;
++	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
++	struct pipe_ctx *pipe_ctx;
++	int i;
++	char *wr_buf = NULL;
++	uint32_t wr_buf_size = 42;
++	int max_param_num = 1;
++	long param[1] = {0};
++	uint8_t param_nums = 0;
 +
-+	max_input_rate_in_100hz = max_input_rate_in_khz * 10;
-+	if (max_input_rate_in_100hz < timing->pix_clk_100hz)
-+		return false;
++	if (size == 0)
++		return -EINVAL;
 +
-+	old_v_total = timing->v_total;
-+	old_v_front_porch = timing->v_front_porch;
++	wr_buf = kcalloc(wr_buf_size, sizeof(char), GFP_KERNEL);
 +
-+	timing->fast_transport_output_rate_100hz = timing->pix_clk_100hz;
-+	timing->pix_clk_100hz = max_input_rate_in_100hz;
++	if (!wr_buf) {
++		DRM_DEBUG_DRIVER("no memory to allocate write buffer\n");
++		return -ENOSPC;
++	}
 +
-+	new_v_total = div_u64((unsigned long long)old_v_total * max_input_rate_in_100hz, timing->pix_clk_100hz);
++	if (parse_write_buffer_into_params(wr_buf, wr_buf_size,
++					    (long *)param, buf,
++					    max_param_num,
++					    &param_nums)) {
++		kfree(wr_buf);
++		return -EINVAL;
++	}
 +
-+	timing->v_total = new_v_total;
-+	timing->v_front_porch = old_v_front_porch + (timing->v_total - old_v_total);
-+	return true;
++	if (param_nums <= 0) {
++		DRM_DEBUG_DRIVER("user data not be read\n");
++		kfree(wr_buf);
++		return -EINVAL;
++	}
++
++	for (i = 0; i < MAX_PIPES; i++) {
++		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
++			if (pipe_ctx && pipe_ctx->stream &&
++			    pipe_ctx->stream->link == aconnector->dc_link)
++				break;
++	}
++
++	if (!pipe_ctx || !pipe_ctx->stream)
++		goto done;
++
++	aconnector->dsc_settings.dsc_clock_en = param[0];
++
++done:
++	kfree(wr_buf);
++	return size;
 +}
-+#endif
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.h
-index 63ce763f148e..83220e34c1a9 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.h
-@@ -132,5 +132,10 @@ int dcn20_init_sys_ctx(struct dce_hwseq *hws,
- 		struct dc *dc,
- 		struct dc_phy_addr_space_config *pa_config);
- 
-+#ifndef TRIM_FSFT
-+bool dcn20_optimize_timing_for_fsft(struct dc *dc,
-+		struct dc_crtc_timing *timing,
-+		unsigned int max_input_rate_in_khz);
-+#endif
- #endif /* __DC_HWSS_DCN20_H__ */
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
-index 2380392b916e..3dde6f26de47 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
-@@ -88,6 +88,9 @@ static const struct hw_sequencer_funcs dcn20_funcs = {
- 	.set_backlight_level = dce110_set_backlight_level,
- 	.set_abm_immediate_disable = dce110_set_abm_immediate_disable,
- 	.set_pipe = dce110_set_pipe,
-+#ifndef TRIM_FSFT
-+	.optimize_timing_for_fsft = dcn20_optimize_timing_for_fsft,
-+#endif
++
+ static ssize_t dp_dsc_slice_width_read(struct file *f, char __user *buf,
+ 				    size_t size, loff_t *pos)
+ {
+@@ -1465,6 +1553,7 @@ DEFINE_SHOW_ATTRIBUTE(hdcp_sink_capability);
+ static const struct file_operations dp_dsc_clock_en_debugfs_fops = {
+ 	.owner = THIS_MODULE,
+ 	.read = dp_dsc_clock_en_read,
++	.write = dp_dsc_clock_en_write,
+ 	.llseek = default_llseek
  };
  
- static const struct hwseq_private_funcs dcn20_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
-index 177d0dc8927a..b187f71afa65 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
-@@ -92,6 +92,9 @@ static const struct hw_sequencer_funcs dcn21_funcs = {
- 	.set_backlight_level = dcn21_set_backlight_level,
- 	.set_abm_immediate_disable = dcn21_set_abm_immediate_disable,
- 	.set_pipe = dcn21_set_pipe,
-+#ifndef TRIM_FSFT
-+	.optimize_timing_for_fsft = dcn20_optimize_timing_for_fsft,
-+#endif
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index 729ca38750d9..8250c37abe40 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -471,6 +471,7 @@ struct dsc_mst_fairness_params {
+ 	struct dc_dsc_bw_range bw_range;
+ 	bool compression_possible;
+ 	struct drm_dp_mst_port *port;
++	bool clock_overwrite;
  };
  
- static const struct hwseq_private_funcs dcn21_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
-index 720ce5e458d8..3c986717dcd5 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
-@@ -116,6 +116,11 @@ struct hw_sequencer_funcs {
- 	void (*set_static_screen_control)(struct pipe_ctx **pipe_ctx,
- 			int num_pipes,
- 			const struct dc_static_screen_params *events);
-+#ifndef TRIM_FSFT
-+	bool (*optimize_timing_for_fsft)(struct dc *dc,
-+			struct dc_crtc_timing *timing,
-+			unsigned int max_input_rate_in_khz);
-+#endif
+ struct dsc_mst_fairness_vars {
+@@ -636,7 +637,9 @@ static void try_disable_dsc(struct drm_atomic_state *state,
+ 	int remaining_to_try = 0;
  
- 	/* Stream Related */
- 	void (*enable_stream)(struct pipe_ctx *pipe_ctx);
-diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-index 7a2500fbf3f2..81820f3d6b3b 100644
---- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-+++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-@@ -829,10 +829,13 @@ void mod_freesync_build_vrr_infopacket(struct mod_freesync *mod_freesync,
- 	switch (packet_type) {
- 	case PACKET_TYPE_FS_V3:
- #ifndef TRIM_FSFT
-+		// always populate with pixel rate.
- 		build_vrr_infopacket_v3(
- 				stream->signal, vrr,
- 				stream->timing.flags.FAST_TRANSPORT,
--				stream->timing.fast_transport_output_rate_100hz,
-+				(stream->timing.flags.FAST_TRANSPORT) ?
-+						stream->timing.fast_transport_output_rate_100hz :
-+						stream->timing.pix_clk_100hz,
- 				app_tf, infopacket);
- #else
- 		build_vrr_infopacket_v3(stream->signal, vrr, app_tf, infopacket);
+ 	for (i = 0; i < count; i++) {
+-		if (vars[i].dsc_enabled && vars[i].bpp_x16 == params[i].bw_range.max_target_bpp_x16) {
++		if (vars[i].dsc_enabled
++				&& vars[i].bpp_x16 == params[i].bw_range.max_target_bpp_x16
++				&& !params[i].clock_overwrite) {
+ 			kbps_increase[i] = params[i].bw_range.stream_kbps - params[i].bw_range.max_kbps;
+ 			tried[i] = false;
+ 			remaining_to_try += 1;
+@@ -697,6 +700,7 @@ static bool compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
+ 	struct dsc_mst_fairness_vars vars[MAX_PIPES];
+ 	struct amdgpu_dm_connector *aconnector;
+ 	int count = 0;
++	bool debugfs_overwrite = false;
+ 
+ 	memset(params, 0, sizeof(params));
+ 
+@@ -715,6 +719,9 @@ static bool compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
+ 		params[count].sink = stream->sink;
+ 		aconnector = (struct amdgpu_dm_connector *)stream->dm_stream_context;
+ 		params[count].port = aconnector->port;
++		params[count].clock_overwrite = aconnector->dsc_settings.dsc_clock_en;
++		if (params[count].clock_overwrite)
++			debugfs_overwrite = true;
+ 		params[count].compression_possible = stream->sink->dsc_caps.dsc_dec_caps.is_dsc_supported;
+ 		dc_dsc_get_policy_for_timing(params[count].timing, &dsc_policy);
+ 		if (!dc_dsc_compute_bandwidth_range(
+@@ -740,7 +747,7 @@ static bool compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
+ 						 dm_mst_get_pbn_divider(dc_link)) < 0)
+ 			return false;
+ 	}
+-	if (!drm_dp_mst_atomic_check(state)) {
++	if (!drm_dp_mst_atomic_check(state) && !debugfs_overwrite) {
+ 		set_dsc_configs_from_fairness_vars(params, vars, count);
+ 		return true;
+ 	}
 -- 
 2.25.1
 
