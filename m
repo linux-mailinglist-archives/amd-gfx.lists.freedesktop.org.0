@@ -1,25 +1,26 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B2B223044A
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jul 2020 09:41:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0CA4230446
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jul 2020 09:41:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9BE86E1EE;
-	Tue, 28 Jul 2020 07:41:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E57E6E1F6;
+	Tue, 28 Jul 2020 07:41:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail4.protonmail.ch (mail4.protonmail.ch [185.70.40.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD5E86E10D;
- Mon, 27 Jul 2020 23:42:21 +0000 (UTC)
+Received: from mail-40141.protonmail.ch (mail-40141.protonmail.ch
+ [185.70.40.141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 507D46E137
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Jul 2020 23:42:23 +0000 (UTC)
 Date: Mon, 27 Jul 2020 23:42:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail; t=1595893339;
+ s=protonmail; t=1595893340;
  bh=AQmh+uIpMfdES2g/A6HYV2B7dFrVRubFbvwlphZUT8g=;
  h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=cHrGxmf4oAuMDr7t2PFpVVj0YlkaTbYoryFFckpC/cCCzKLMJPbLhnWeFpiBrBkeL
- kFgOmaek9XuMkWzxx8byw9Hk4snVK5hcaZ03hTd57k6FRUor/rqU3uJifmCAirVDwK
- Qr7fsTYZ4gT3PKeWvReeuNy4tjoGs65wI02Y5dps=
+ b=WPaKlK87v5tMlYboefBGF39WRaUFU27b7wQRzJkJ9uB7fbY/ytSsgHkgcbkkq8cfV
+ /OJfCX1otKSQfRrp98/he37W9RmEybcs/bJZU4qBd4/ja2FdEBxx0mVv06ZN9wj9JT
+ W/xhMBV3amEPPZj0xrA5KyRlcMg2flG8EQszcoG4=
 To: Daniel Vetter <daniel@ffwll.ch>
 From: Mazin Rezk <mnrzk@protonmail.com>
 Subject: Re: [PATCH] drm/amd/display: Clear dm_state for fast updates
