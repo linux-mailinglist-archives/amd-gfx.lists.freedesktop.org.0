@@ -2,88 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 683DA22E2B8
-	for <lists+amd-gfx@lfdr.de>; Sun, 26 Jul 2020 23:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA9D22E431
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Jul 2020 05:04:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECF8F6E101;
-	Sun, 26 Jul 2020 21:25:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C98E6E108;
+	Mon, 27 Jul 2020 03:04:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5045A6E101
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Jul 2020 21:25:13 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2070.outbound.protection.outlook.com [40.107.92.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0099489FD4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Jul 2020 03:04:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jdSo9bKKhqT4zEQjy1XqjHhKGd3hot+BbTGiOQoPvQxKSVC91MQKUz88rNlxCm3XwOOGUI3Qe6fY9NsbgVgDXzHPMBQZODjms6ugtI9yuZNJ1FnSGpOm1IN9dISVdqlZPdacfNxoKCS1hCnwHlrCrGqX9alN/UINRMmGSVcLhjbfc50TA+vjCenmBw+fES5xyAZwffewcm00P2uPFLvkciuLcEUq83QzsksUPjhf6kdM3sHNWZYwdReXqElKRT+Axhro5uzzB6g8E1bXtffU2ta0OoQDNxgTkepZ22B258fAKWtjkPqFuJmvgYy+lnPN7D7yva80sq5yWW9IjJDeqg==
+ b=I2z/WK+H5rvYc1tH4dTbe3ns+YRTfH1xrU/G/GlY53UZL+bA5Unz/g30T4eMufNgPahECNTgceUaufP+d9px3JPsd/SeKpqslzaTcETzi6nv+Tb5/eVhfuo7AWWEdA8ElN3MKwdhWNxpdLkOiHKNCVrCV3FiNivsL4NDkNRknQO1DLNreAGzRj4fYPYaQHyCI3T+Sw1WWx/B4rIj46oMlH2mQQA0hXzqTUZSlqT+XN8YyP0CF41UwycDMhPWREAc2VRloHC6EolKaal+6k6aIe9R7St2A3JQLSLP+h7c8EYurzLik0F0UAAkshLTveDOwtHsYEhMPHK3h8nte9+QDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=70S0mYhG2hqYZZuKahZipMywKZ3N+20b3UUKvV4xGD4=;
- b=F9Mowek5uWDYDfYPiLWsGwdUQPtgBQS5VsFr7rpXGR2tx5MoVEBkSh+svGjGLClSm6BCCjBJbDT4w41FHB7uKzK4zvl0jwmkDbdGXLCxo+d0ReBWREVsqjQ1LLYWkj0S9LE5xfRQkl1hrE/qN63orUz3wJcbpV0hCvJLCDfEvVpENn2i2dF2X62txZK6IYCrZaMhB2LYQNTNn7K2ca9u2XVreusRIROpmai+yNWMyzuvHz314syBipDAfaJNBvYXqGuNZ2yXLGozC8PK2Z/IeanuO8TXS31bvxG6wp/jo/wNFb43UWpRwS75bbuRXIlWF5DP8ILJPegpgwWR401tbA==
+ bh=b9WpGI/9az8fpdE4p66nnFht+eV2NqclNDQGdnEeWBE=;
+ b=E5RBtGkdj/buU3kOTzDCcvazCPKkFyz8CnP7ouC+vzgGsMrALZOlWBuFeMP/Ni6OriUVwNHK3o2iM1Ccs+VjVmgmdERCnM/WZh5Dh0+UTLekfhGl5F1TvogQDdowaVhnoO82Lj2btVfNUWY/Uv1hiW3ptt6VAK2Ouym23yEvG9b1SOn/8p57rcy326YStynTxnsy7+UvkgTda7NUpPSJaJlAq8PqspdrE0ERlpG4zUQkdxhzpcUNd42LXvr+PWEGIiaWpNPGK2ZsTjw0SRSj0eWLJX5ZMDaJNEiQ/ANSUIDtpiLWgGwmNRMjWb9LsBnSMXFS39jQzwXujmdDqggi6Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=70S0mYhG2hqYZZuKahZipMywKZ3N+20b3UUKvV4xGD4=;
- b=oJ9mEiq94lAxFRnVleT586nBXSt3IsYnSVhs56VyNPImt/JuP3d/Tj4E+RQeOrk2DWmn1bk4+iE9X4m8uhAsQSkyqVSHmRYvQ5sh9UPYv6EetMFF4cd0QvL9QR4ppVO640GcjrTj2VFRq7hJFisrwcaztuArq6SAZHZJECToPYk=
+ bh=b9WpGI/9az8fpdE4p66nnFht+eV2NqclNDQGdnEeWBE=;
+ b=NmbdbiKj/gRpi/M/g/8MIbVjS/aCK5na+xHx27AFwZIrNN9yPafrn1d2AGl7bWmuqZz/i0K6sH9dOZ4QyQedoGT9cTZrEq8omfMeikZeedQg1FhuPCIrt8CIq9mQ9MD/NyB9orS2A/tGaye5ZdcBFCLPAqc6ua1gjZEl696Nt9I=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB4272.namprd12.prod.outlook.com (2603:10b6:208:1de::14)
- by MN2PR12MB4269.namprd12.prod.outlook.com (2603:10b6:208:1d4::7)
+Received: from MN2PR12MB3022.namprd12.prod.outlook.com (2603:10b6:208:ce::32)
+ by MN2PR12MB3598.namprd12.prod.outlook.com (2603:10b6:208:d1::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Sun, 26 Jul
- 2020 21:25:09 +0000
-Received: from MN2PR12MB4272.namprd12.prod.outlook.com
- ([fe80::d0b0:991f:89a3:2a06]) by MN2PR12MB4272.namprd12.prod.outlook.com
- ([fe80::d0b0:991f:89a3:2a06%3]) with mapi id 15.20.3216.033; Sun, 26 Jul 2020
- 21:25:09 +0000
-From: Mukul Joshi <mukul.joshi@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Mon, 27 Jul
+ 2020 03:04:25 +0000
+Received: from MN2PR12MB3022.namprd12.prod.outlook.com
+ ([fe80::493c:9d42:501b:59d6]) by MN2PR12MB3022.namprd12.prod.outlook.com
+ ([fe80::493c:9d42:501b:59d6%3]) with mapi id 15.20.3216.033; Mon, 27 Jul 2020
+ 03:04:25 +0000
+From: Kevin Wang <kevin1.wang@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdkfd: Replace bitmask with event idx in SMI event msg
-Date: Sun, 26 Jul 2020 17:24:53 -0400
-Message-Id: <20200726212453.24106-1-mukul.joshi@amd.com>
-X-Mailer: git-send-email 2.17.1
-X-ClientProxiedBy: YTOPR0101CA0045.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::22) To MN2PR12MB4272.namprd12.prod.outlook.com
- (2603:10b6:208:1de::14)
+Subject: [PATCH 1/2] drm/amd/swsmu: allow asic to handle sensor type by itself
+Date: Mon, 27 Jul 2020 11:05:27 +0800
+Message-Id: <20200727030528.586004-1-kevin1.wang@amd.com>
+X-Mailer: git-send-email 2.27.0
+X-ClientProxiedBy: HKAPR04CA0003.apcprd04.prod.outlook.com
+ (2603:1096:203:d0::13) To MN2PR12MB3022.namprd12.prod.outlook.com
+ (2603:10b6:208:ce::32)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from Ryzen-3700X.amd.com (165.204.55.251) by
- YTOPR0101CA0045.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.20 via Frontend
- Transport; Sun, 26 Jul 2020 21:25:08 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [165.204.55.251]
+Received: from kevin-pc.amd.com (58.247.170.242) by
+ HKAPR04CA0003.apcprd04.prod.outlook.com (2603:1096:203:d0::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3216.23 via Frontend Transport; Mon, 27 Jul 2020 03:04:23 +0000
+X-Mailer: git-send-email 2.27.0
+X-Originating-IP: [58.247.170.242]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 22cdcf99-81ed-4564-af9f-08d831aa5f69
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4269:
+X-MS-Office365-Filtering-Correlation-Id: f858b8a9-2cc6-470a-c9df-08d831d9c48b
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3598:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB42691BD35C9C56C65775B549EE750@MN2PR12MB4269.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:161;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3598539852B4F4A2CFE70665A2720@MN2PR12MB3598.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:962;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: m3t6A7hdrHKvA0MHSUBO1YOH2kv+TeVLGGq/mdaZVfna+sSmfw51ahAVSs38w4WGv9zmehoWRGExk8EKrBHDUGfyEqObxJHQujVcAKty6Dtiz0hwU4lj2//lMpN+2ghDzc6/69YXw/0CYQ60Fs6rQc1ZtliwUsARIihhXv+e+V5tUH6vbNj2eAUDKFSEXs6WCoah6xhUaTK75452ohW7wKnNYYuyw93Y9af6mWA2i+2eeg00a1U+wJe7fraelqvkJ2AB89Q8fnaEMLppJFBaRVYoRlcMymYf6weQFGbTGLyb2kxFk4ADkTYWM3Fh3aTER2lz1MrrlZBU0AwRdDNosw==
+X-Microsoft-Antispam-Message-Info: h6h0iY7sB3AoBkKwridwq+8CwCdruHPY1jwrlDAEBeMTqZNdf4Bi68svnIKJHD6X204Y+pI+R0N7+RzeWbD/RqLjpRwqyDE/73sKPkf0Byh4w3gmJjibzDOLUi092HxcvZHk5IGC3F/2WcxksIH7802Dji3zyqCtApJMAYUm2C0JSul1hzdtEU5l1ua05DsRSeVxO749N8aP2r7Lauer75spm2vUtCcRlLwXxlGpl/K/2gpOUYlr8Fbr5vjp0G+CFa2uF9Kno0UcYnc0CBubLEFfBPCRhlqKZUGWYhlB4aAz2SoCvEgijW56QEuQ5MsPiMcKrulSe5lYRrIuZV5pZ1weNtto81LRa+9a+UsJKl7P8yRfQ9VAUCLMt9bV0EQy
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4272.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3022.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(366004)(136003)(346002)(376002)(396003)(39860400002)(86362001)(52116002)(7696005)(8676002)(44832011)(83380400001)(956004)(36756003)(2616005)(6916009)(6486002)(8936002)(4326008)(26005)(66476007)(16526019)(2906002)(478600001)(186003)(66946007)(316002)(5660300002)(1076003)(6666004)(66556008);
+ SFS:(4636009)(366004)(136003)(39860400002)(346002)(376002)(396003)(5660300002)(66476007)(83380400001)(4326008)(66556008)(1076003)(16526019)(186003)(6486002)(26005)(66946007)(478600001)(52116002)(2906002)(8676002)(2616005)(86362001)(316002)(6916009)(36756003)(8936002)(7696005)(956004)(16060500001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: PIswbWIEw0wCo4zYisWbn0lWWKE/DXRqqTf8Q65OAQHKA2FPq8IE+xBENX9NQK5xvz/FS+3o1PV9Y4jBypfzmpd22A0qExZ0uoTimlAFdJibyK+50C2DjgWVmlhLc6z4Yq+t8NwF3mskzb4NVEWNpfFjpGNmyQBK5JOuywjctlslbfO475qQcRpydyoj588Os7qVrz9ZnQZOIi9ElCgIWD/vDUN1g+o+xr6TJE7wG8bwq6grxjxf++7DLC/H0SKggYzHJONUTiDtZ3LpVcJQXUbGQfCpqOcY+D+n4sURxXxGHJ9pKGdK9kUOaUx+DaaTOeQ82Yw1AKOBwtuMhrX/RW03u0dS2dncppxb/Lt5YWzrfC/JyBMGF/PC6SYr/TL7zqa9B/0XGmu3ih9aryQUCSm4kt90PNVsLUEmoS2S4ueqlO5a4grV2k6E87CXPo+sxG5sK08ai/CMlIpGgUl8iw5q0sFzGhXrnpK2DXKtA4EbM8J8wi/wHYsN+/urxNww
+X-MS-Exchange-AntiSpam-MessageData: GkWQQnTCbYzLsRntPPgN5Ha9IEyPUjSENguBLyacwXP0yoPKaL/XKJJsiOkFi2mIo3vY6B/MhuARYOYUjbxjDn0i8sZnKAQTbL6EYv9t38EgcXpHOUD09d8I5C/jgUgT9Hd+vh3AwpB2QFJ4huQn+qGvxtgFn1o6/K4XZq0acX8cDBcsW+QLRsV+GBYdutAc+xZtzfB434Bs4SRuUb3h6zWHoQOCTX0vOBw5zoNDqatDCWRq4OtZ8Yzk2uDXR4X9g9XdFoND8Ibfu0NlcvF4jhIIE5Wt4gStVhK1BYsBstYTyKhkwGwiJmlGShWGWj7cJIdBDu4cmrb55dH4V9RKBGcV0rTNFbsiMWOqI75sYgUJkrSIMgpTHHCUVGd5culq/wvM9gmWyqHNnRy7UaRJBqKGTVxIIz2hBEzACorS+z1YyBCJ9wDIzaVTjBUOW3NLjvOjy1BIwEVgGcscNLDaUBqTRWjUnhxAw//sQjOrNPnAWbx9+5vqLnTWNkCp6qNn
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22cdcf99-81ed-4564-af9f-08d831aa5f69
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4272.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f858b8a9-2cc6-470a-c9df-08d831d9c48b
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3022.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2020 21:25:09.0078 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2020 03:04:25.3911 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PtZQZDYhL3jm49omUAsyuwOBmEM9y0rs6M2l8p+EuhrrMu8UY+HuR0zhtfZgzZeaXAItjt8p8FKJPGRcFeXH6Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4269
+X-MS-Exchange-CrossTenant-UserPrincipalName: +132Rm1yRp6vpNq/fCuxEUK4bgq9SySWaPfIoreAqR8DMZuQuDbUHEIrocBJRW+Q
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3598
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,127 +94,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mukul Joshi <mukul.joshi@amd.com>, Felix.Kuehling@amd.com
+Cc: Kevin Wang <kevin1.wang@amd.com>, kenneth.feng@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Event bitmask is a 64-bit mask with only 1 bit set. Sending this
-event bitmask in KFD SMI event message is both wasteful of memory
-and potentially limiting to only 64 events. Instead send event
-index in SMI event message.
+1. allow asic to handle sensor type by itself.
+2. if not, use smu common sensor to handle it.
 
-Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
-Suggested-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Signed-off-by: Kevin Wang <kevin1.wang@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c | 24 +++++++++++----------
- include/uapi/linux/kfd_ioctl.h              | 10 ++++++---
- 2 files changed, 20 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/amd/powerplay/amdgpu_smu.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-index 86c2c3e97944..4d4b6e3ab697 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-@@ -149,7 +149,7 @@ static int kfd_smi_ev_release(struct inode *inode, struct file *filep)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+index 3b427fa099fe..55463e7a11e2 100644
+--- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+@@ -1948,6 +1948,10 @@ int smu_read_sensor(struct smu_context *smu,
  
--static void add_event_to_kfifo(struct kfd_dev *dev, unsigned long long smi_event,
-+static void add_event_to_kfifo(struct kfd_dev *dev, unsigned int smi_event,
- 			      char *event_msg, int len)
- {
- 	struct kfd_smi_client *client;
-@@ -157,14 +157,15 @@ static void add_event_to_kfifo(struct kfd_dev *dev, unsigned long long smi_event
- 	rcu_read_lock();
+ 	mutex_lock(&smu->mutex);
  
- 	list_for_each_entry_rcu(client, &dev->smi_clients, list) {
--		if (!(READ_ONCE(client->events) & smi_event))
-+		if (!(READ_ONCE(client->events) &
-+				KFD_SMI_EVENT_MASK_FROM_INDEX(smi_event)))
- 			continue;
- 		spin_lock(&client->lock);
- 		if (kfifo_avail(&client->fifo) >= len) {
- 			kfifo_in(&client->fifo, event_msg, len);
- 			wake_up_all(&client->wait_queue);
- 		} else {
--			pr_debug("smi_event(EventID: %llu): no space left\n",
-+			pr_debug("smi_event(EventID: %u): no space left\n",
- 					smi_event);
- 		}
- 		spin_unlock(&client->lock);
-@@ -180,21 +181,21 @@ void kfd_smi_event_update_thermal_throttling(struct kfd_dev *dev,
- 	/*
- 	 * ThermalThrottle msg = throttle_bitmask(8):
- 	 * 			 thermal_interrupt_count(16):
--	 * 16 bytes event + 1 byte space + 8 byte throttle_bitmask +
-+	 * 1 byte event + 1 byte space + 8 byte throttle_bitmask +
- 	 * 1 byte : + 16 byte thermal_interupt_counter + 1 byte \n +
--	 * 1 byte \0 = 44
-+	 * 1 byte \0 = 29
- 	 */
--	char fifo_in[44];
-+	char fifo_in[29];
- 	int len;
- 
- 	if (list_empty(&dev->smi_clients))
- 		return;
- 
--	len = snprintf(fifo_in, 44, "%x %x:%llx\n",
-+	len = snprintf(fifo_in, 29, "%x %x:%llx\n",
- 		       KFD_SMI_EVENT_THERMAL_THROTTLE, throttle_bitmask,
- 		       atomic64_read(&adev->smu.throttle_int_counter));
- 
--	add_event_to_kfifo(dev, KFD_SMI_EVENT_THERMAL_THROTTLE, fifo_in, len);
-+	add_event_to_kfifo(dev, KFD_SMI_EVENT_THERMAL_THROTTLE,	fifo_in, len);
- }
- 
- void kfd_smi_event_update_vmfault(struct kfd_dev *dev, uint16_t pasid)
-@@ -202,9 +203,10 @@ void kfd_smi_event_update_vmfault(struct kfd_dev *dev, uint16_t pasid)
- 	struct amdgpu_device *adev = (struct amdgpu_device *)dev->kgd;
- 	struct amdgpu_task_info task_info;
- 	/* VmFault msg = (hex)uint32_pid(8) + :(1) + task name(16) = 25 */
--	/* 16 bytes event + 1 byte space + 25 bytes msg + 1 byte \n = 43
-+	/* 1 byte event + 1 byte space + 25 bytes msg + 1 byte \n +
-+	 * 1 byte \0 = 29
- 	 */
--	char fifo_in[43];
-+	char fifo_in[29];
- 	int len;
- 
- 	if (list_empty(&dev->smi_clients))
-@@ -216,7 +218,7 @@ void kfd_smi_event_update_vmfault(struct kfd_dev *dev, uint16_t pasid)
- 	if (!task_info.pid)
- 		return;
- 
--	len = snprintf(fifo_in, 43, "%x %x:%s\n", KFD_SMI_EVENT_VMFAULT,
-+	len = snprintf(fifo_in, 29, "%x %x:%s\n", KFD_SMI_EVENT_VMFAULT,
- 		task_info.pid, task_info.task_name);
- 
- 	add_event_to_kfifo(dev, KFD_SMI_EVENT_VMFAULT, fifo_in, len);
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index df6c7a43aadc..796f836ba773 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -449,9 +449,13 @@ struct kfd_ioctl_import_dmabuf_args {
- /*
-  * KFD SMI(System Management Interface) events
-  */
--/* Event type (defined by bitmask) */
--#define KFD_SMI_EVENT_VMFAULT			0x0000000000000001
--#define KFD_SMI_EVENT_THERMAL_THROTTLE		0x0000000000000002
-+enum kfd_smi_event {
-+        KFD_SMI_EVENT_NONE = 0, /* not used */
-+        KFD_SMI_EVENT_VMFAULT = 1, /* event start counting at 1 */
-+        KFD_SMI_EVENT_THERMAL_THROTTLE = 2,
-+};
++	if (smu->ppt_funcs->read_sensor)
++		if (!smu->ppt_funcs->read_sensor(smu, sensor, data, size))
++			goto unlock;
 +
-+#define KFD_SMI_EVENT_MASK_FROM_INDEX(i) (1ULL << (i - 1))
+ 	switch (sensor) {
+ 	case AMDGPU_PP_SENSOR_STABLE_PSTATE_SCLK:
+ 		*((uint32_t *)data) = pstate_table->gfxclk_pstate.standard * 100;
+@@ -1978,11 +1982,12 @@ int smu_read_sensor(struct smu_context *smu,
+ 		*size = 4;
+ 		break;
+ 	default:
+-		if (smu->ppt_funcs->read_sensor)
+-			ret = smu->ppt_funcs->read_sensor(smu, sensor, data, size);
++		*size = 0;
++		ret = -EOPNOTSUPP;
+ 		break;
+ 	}
  
- struct kfd_ioctl_smi_events_args {
- 	__u32 gpuid;	/* to KFD */
++unlock:
+ 	mutex_unlock(&smu->mutex);
+ 
+ 	return ret;
 -- 
-2.17.1
+2.27.0
 
 _______________________________________________
 amd-gfx mailing list
