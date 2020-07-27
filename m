@@ -2,25 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C04F230442
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jul 2020 09:41:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B2B223044A
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jul 2020 09:41:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 230456E1D7;
-	Tue, 28 Jul 2020 07:41:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9BE86E1EE;
+	Tue, 28 Jul 2020 07:41:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-40138.protonmail.ch (mail-40138.protonmail.ch
- [185.70.40.138])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4C856E125
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Jul 2020 23:42:19 +0000 (UTC)
+Received: from mail4.protonmail.ch (mail4.protonmail.ch [185.70.40.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD5E86E10D;
+ Mon, 27 Jul 2020 23:42:21 +0000 (UTC)
 Date: Mon, 27 Jul 2020 23:42:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail; t=1595893337;
+ s=protonmail; t=1595893339;
  bh=AQmh+uIpMfdES2g/A6HYV2B7dFrVRubFbvwlphZUT8g=;
  h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=P6r7QQ9T1mUUCe5fmJwfr+/kY8+mA6XOr2sAZots0cNaZeHaUfbM8Tsy5jyZLr+nf
- bML7DBIC0dePa0e6X/I8sldsMsTIv+ERmWX6lWbGOwU4T3neAeUVDPAuIWl2eU88Qr
- XAE1c+i8xkb18SMkhuTRNnfjyD0ED4b8chkNbWXY=
+ b=cHrGxmf4oAuMDr7t2PFpVVj0YlkaTbYoryFFckpC/cCCzKLMJPbLhnWeFpiBrBkeL
+ kFgOmaek9XuMkWzxx8byw9Hk4snVK5hcaZ03hTd57k6FRUor/rqU3uJifmCAirVDwK
+ Qr7fsTYZ4gT3PKeWvReeuNy4tjoGs65wI02Y5dps=
 To: Daniel Vetter <daniel@ffwll.ch>
 From: Mazin Rezk <mnrzk@protonmail.com>
 Subject: Re: [PATCH] drm/amd/display: Clear dm_state for fast updates
