@@ -2,93 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1192304A3
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jul 2020 09:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA0B22304BE
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jul 2020 09:55:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E5B06E1F6;
-	Tue, 28 Jul 2020 07:50:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7180C6E20E;
+	Tue, 28 Jul 2020 07:55:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2066.outbound.protection.outlook.com [40.107.236.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC7A26E1F6
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 07:50:37 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2060.outbound.protection.outlook.com [40.107.243.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C02BE6E204
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 07:55:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dsV2P3+fpyCnskHecW0dN52obT14Xk2FXMoJoQZHYOt5XLFIZF6ZJGTPsKJEMdaCKpWcWszsqsB5HoAKL/fhHmoWKg9OpAt4eebzZbcE3Qi8CeMXtFsO9ZJgB9nM0tcI3ob1SUr5fQE5OkU7D1mFm5RW0FeSSjqPBS6KHACjHyDH/klC69MkrP39PjJrB0j9/Gg04ANT8ydwGNGw8ohi286j9pH2Pqd4WXxlSrY1dVk41lYqQoUzfoIzhASGXicrsCHoNsfAWPJ15LE02Rzulp2VQGT5142Qn0RA+coKcSaHwHhDcC1RnduH1sY2rvY1V7N21hXcgzrnL9cNWDpbAg==
+ b=hZf8fLCo584HGhHPwl9I4Wed1syKrSjRM/po9sss9upIhwHyv2wIrGLBDTrXXc+q57W3LJa2YRamVIQxWGG96Gnr4kP7MuUshBHYMfT0y6UZ2P058vwpRPpVWdANtnnj7oJ6EzBCA3WJ+r2jUA+IylK82g5bqC72OvIoNJJSh5iA4plqUxXRDK3V5Eyfj4b+P4wYT7ksnjR7w8Jf87RfczQme1oRx461DuyvGaGtSeYfJb/EKA66ykmMNJDHD81xkRDxCsyeqhLwlTcU2wN6FqZFxehusScHNmAvKN+ItosYdZmM+pFhNfmiw7K3EBeJPcrfHSnxiA7cem3GBNB/IQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lRp1HYdIcCVXpRh6E1Qa/uQIun2frT9PU1oKUQrCPwQ=;
- b=gMJbDTU7Bq1fr6Ddw+DxoQi8lfqhU99of3NdPb/wSCvxOR6a9rqZVVpu21E6cDYPbrQF06TkhATK3nm0tda4RBVGUBapF8RVn0yrCWjiNl79a9TNb9p2k+KNqrKNyd1s1k5XvaedKeY21wrPI1OcZc82wnos++ayBX79vEyHMWVCQMb4o0QA+ZhaXBiD67LZOidUUFtwbR+YF1uKV6NWa0IATRR/gyzsRHUGhtDC3ksHrzokXywBTLvi2LTQxLr9EFwlxN+3YyTIZRwI3lbWmN+KWGVh3mq9kG1odzY880IwszL41aScumUCR6UJMpUwf/UCfsfk+VJccEGGujVf9g==
+ bh=9Bctjx3mXtLLl89qzyorVU6PJUB7jvLSAjOqu+hUEt0=;
+ b=SIErQg+3lC+UHmuAYa6EjM7ZizsgDwdapVw59VE0D8b5rG6tcpknImsdcSh+hZgpvbysR76ySace2PFwXseD6j0MDyG+8SBZPYdzUAiGYfQ9bZrctS0qlsUmIgyenWgZvLSyoeIdQPz8x6BJnp41ncoa516dlB67KEwrvsKKlE8Lawi3Xw0O8VQN57eT6FoXTc++XMrYLZlqo2Fl1Oal/0Ko1Qg91WcxpA4BFpRCbAZm03YPnBt/93PfjL88pWnA+f5+kT+FbSQAOYze8wnfHXv4yxShgdL+VKpNbeUf5G8ZcBDgRjoPhBg6SqkfHmZsyd90ibs5DG1PM8WSumjoMw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lRp1HYdIcCVXpRh6E1Qa/uQIun2frT9PU1oKUQrCPwQ=;
- b=1Il6zmOHoFjIL69BTpkspaWC2hfe5nr1t25m+mNFjR7+9cnD60VokjmC++L4zkbV2ar7Wo8IO59PadRv+fAn0oemkLF7eS9tGpe+mXpz+jRd+HnJhiHRIfV1kjccJHriBl7WFEx1WCPOifhEquxz4e9elXd++56NfjNTGDVDSXM=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from CY4PR12MB1287.namprd12.prod.outlook.com (2603:10b6:903:40::8)
- by CY4PR1201MB0120.namprd12.prod.outlook.com (2603:10b6:910:1c::14) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=9Bctjx3mXtLLl89qzyorVU6PJUB7jvLSAjOqu+hUEt0=;
+ b=OshN+qPR67gTCnpYYqZj1+L+1gZhAR7RC24WixEvXrfTbzu0246cUTD+AYUQuWv3mseHSj2x6eZwYRxYnxYgl/v4O4U+EXOzrsgAPrY/04nSrV+g8Yzg+4CyJWwfoR7Zv7MaEMHMQ5xHlsvUcGobY1QW2Ng341wzw7vdJxmSPtg=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB3776.namprd12.prod.outlook.com (2603:10b6:208:167::17)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.21; Tue, 28 Jul
- 2020 07:50:36 +0000
-Received: from CY4PR12MB1287.namprd12.prod.outlook.com
- ([fe80::e0b1:48e7:bcbc:351c]) by CY4PR12MB1287.namprd12.prod.outlook.com
- ([fe80::e0b1:48e7:bcbc:351c%11]) with mapi id 15.20.3216.033; Tue, 28 Jul
- 2020 07:50:36 +0000
-From: Guchun Chen <guchun.chen@amd.com>
-To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- Hawking.Zhang@amd.com, Dennis.Li@amd.com, andrey.grodzovsky@amd.com,
- Tao.Zhou1@amd.com, John.Clements@amd.com, lijo.lazar@amd.com,
- christian.koenig@amd.com, stanley.yang@amd.com
-Subject: [PATCH 12/12] drm/amdgpu: reset eeprom once specifying one bigger
- threshold
-Date: Tue, 28 Jul 2020 15:49:34 +0800
-Message-Id: <20200728074934.12490-13-guchun.chen@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200728074934.12490-1-guchun.chen@amd.com>
+ 2020 07:55:27 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::a16e:8812:b4c0:918d]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::a16e:8812:b4c0:918d%6]) with mapi id 15.20.3216.033; Tue, 28 Jul 2020
+ 07:55:27 +0000
+Subject: Re: [PATCH 09/12] drm/amdgpu: define one macro for RAS's
+ sysfs/debugfs name
+To: Guchun Chen <guchun.chen@amd.com>, amd-gfx@lists.freedesktop.org,
+ alexander.deucher@amd.com, Hawking.Zhang@amd.com, Dennis.Li@amd.com,
+ andrey.grodzovsky@amd.com, Tao.Zhou1@amd.com, John.Clements@amd.com,
+ lijo.lazar@amd.com, stanley.yang@amd.com
 References: <20200728074934.12490-1-guchun.chen@amd.com>
-X-ClientProxiedBy: HKAPR03CA0004.apcprd03.prod.outlook.com
- (2603:1096:203:c8::9) To CY4PR12MB1287.namprd12.prod.outlook.com
- (2603:10b6:903:40::8)
+ <20200728074934.12490-10-guchun.chen@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <3a8a1c02-8248-997e-f87a-a111e86dd0ff@amd.com>
+Date: Tue, 28 Jul 2020 09:55:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <20200728074934.12490-10-guchun.chen@amd.com>
+Content-Language: en-US
+X-ClientProxiedBy: AM0PR01CA0116.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:168::21) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from guchchen-System-Product-Name.amd.com (58.247.170.242) by
- HKAPR03CA0004.apcprd03.prod.outlook.com (2603:1096:203:c8::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3239.9 via Frontend Transport; Tue, 28 Jul 2020 07:50:32 +0000
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [58.247.170.242]
+Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+ (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
+ AM0PR01CA0116.eurprd01.prod.exchangelabs.com (2603:10a6:208:168::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.16 via Frontend
+ Transport; Tue, 28 Jul 2020 07:55:25 +0000
+X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 165b0f26-4aed-4cd7-abf6-08d832cae986
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB0120:
+X-MS-Office365-Filtering-Correlation-Id: bb00d618-40ad-4d7b-023f-08d832cb9751
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3776:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB012062B42A947491138F8771F1730@CY4PR1201MB0120.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB37766EEF95E045253AE9F18883730@MN2PR12MB3776.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: clGUcEf9MoZeJq+egFfTtTxUOr6XkA0s50xmEce3RtkktVGaVEBDIUczTPlub3iJr6hAJsasexia8dIXJpjVZhwKrsoQkV/bzZhLBTr4O4jetsWE0PH9url8E8lDfWOXNKDIKmHKUKW2OLMVc5ETnGjmItH7POK+X4hGb5RJD4hhzsqkmvyj54eCJ2TXShfqKdhU4VJm7RdSUadpz91GOSgn3jL53kMd+pkdaf1PLwF8AaVQnYKpw+fy4LRlpjEzTF+ejOWEpcAX8xiFeGalM6WR3qlsG0iJQa4+QP72MllOAOR6K2I1T9spe7fIGDJw7V61+AESBON0+ERb61rA0Tl1tM54AsRNmKibBfe9mHQ9dlmSO/G02uFepX8fmCscK5HoVT2Pdgc7NgutCQynrA==
+X-Microsoft-Antispam-Message-Info: mZfGtdPfOEKAs19OKaqq5Bds7zFebJjbF+GjAzQNczasjmx7YuPTC+AzUk/17hBGmoufwVKL0smIqyRLbomcXdsUklICHIV4qKb0A1ukQo9wff+218VTkvVUvrAmtYRjHkvr4VLpN+qq5pzEv80EuwMIde4tQY4u5BM3QVekExm7qcEVTOSoNEpFgduqMNaOKjlFXNuWSMqisEDfgZOA2QWkgdqY16hseRHeFjJendmLjZxFckVFHxibsLIouCI1KPNR5ZwhyRSVsyECmQfPKMvtpAo5Sv4E6AkIEIRdKmsMaL2DQRspInoKVYFtZlG5p38gqLpAZR6hAkrM4MukGIOVFoKDj3D3xEhM+9ZMhkGcSZ8JobGejsqGnArhC0eCD403nIjHfJmRHNXnFdebJA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY4PR12MB1287.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(346002)(366004)(376002)(39860400002)(136003)(396003)(5660300002)(44832011)(6636002)(1076003)(2616005)(478600001)(26005)(186003)(16526019)(8676002)(86362001)(83380400001)(2906002)(52116002)(66946007)(956004)(36756003)(8936002)(66556008)(66476007)(6486002)(7696005)(316002)(4326008)(135533001)(921003);
+ SFS:(4636009)(39860400002)(376002)(366004)(346002)(136003)(396003)(478600001)(86362001)(31696002)(36756003)(83380400001)(5660300002)(31686004)(8676002)(52116002)(316002)(6636002)(8936002)(2906002)(6486002)(186003)(66476007)(66556008)(6666004)(66946007)(2616005)(16526019)(921003)(43740500002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: puykIZe77lp5o62kpufHBwvI20pNIcPXhlQPVJyl0BLRe2HrReQI+zgX9huPc5mM0H9n+JccLYXaY34cXif3unWTlx0poMPdv/Ok+muOgXXaDJ7qBBPedlZ1n52Irs2StVO/KvIqqBKBt6k4SiVL0gKUDC1/9XqnNBLfJCPiZ1s/0PuKTnH6i8gz3zYmEiehxACDnAH5dZT7O9cJYdqwlbTX+YNkvZGz4iq8t59UAQfZHq1SufzEgZp9rUnEbHuxF18GcddLzmQfQOsidvvgBnvo1yQYTnTawJNshhvQVEIp6/SK8TgUTm9UqB9HFEhFK3UEta+1Fz/01m+8fOkFCl9ckLrm89c7T0j1OgF33syzj9Vv17L+Dc6UnDKuA91X4mIOr4U0ttjZe3U8xYjv2vu5Yc4Evib3M6dI1srvkB6NWGaWAdKlQYKkHDql3V1UYjmD67J2JJv6kdqFaWoAyWQzl5w7Fs9apatEiiGn99boD8W4EFYYR85vo3HURmfq
+X-MS-Exchange-AntiSpam-MessageData: vzQ0q/IsLNlk6tiBK5U0sB8TB2NfwHHCtlRXdBbQwFLSNexy6lghL5e6egVxPby2a4+WNsL45szX/zl+1YsqprMI3ROZHDkV+pfbPK/dhLNyPcaszjqjyoQErrdsRGB8yCXmV/+CWk0yujmvSbfgNBSXVRnYZPOK07bHyptu6BCZwNbj2Z2xJ6mwPyuKOfvSvtzw3oNePlflJBlT1aH09S2uzp+7LnmMrTmXOiuPeDaa8e0deqLKyanmn3lrS9v3C8vPrCsF2WySPsOYhuu3NQhjNOs5F6V8cmszeZBeWtKUugwXUuB0K3adxVnMthL2anQqcTFYWH0FRIztpJybFApsRcYNNaFOZVLgSIXF0a9YYd+KUyN6z9LFeDNgHOWZCvDf6Egrccc9k22T+ct1qaV3jfybedIzNeDTyUUinnAcqAjxyXyEkDm1R5UuRcM1jv+qnTe0Z3xc9vTUQP20yLCexhz3lrJl2nRSQm92ed0Ob1KissTqjSyfajUw08/HYpRLXZKlpC5g5B2DnOoyZ80iulT5KJF0Cf//CwxH7ZbGu6b2iACc5Fv2iVd2VTtE
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 165b0f26-4aed-4cd7-abf6-08d832cae986
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1287.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb00d618-40ad-4d7b-023f-08d832cb9751
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2020 07:50:35.8303 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2020 07:55:27.2752 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: q1TkCqB9T04nI5oBx6uwdAArsDtTPgqz4V40pDjVq6R/VYPLK2rAR2RUpIkZXmE7VA/deJqCmJe2ARMEArP2pw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0120
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3f/BfFM2TU+KXvNhOY36Ihq/K2CQAcSlEwXJMVCnE3IHq68HoK/59JDPqwa4+BGg
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3776
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,62 +103,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Guchun Chen <guchun.chen@amd.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-During driver's probe, when it hits bad gpu tag in eeprom i2c
-init calling(the tag was set when reported bad page reaches
-bad page threshold in last driver's working loop), there are
-some strategys to deal with the cases:
+Am 28.07.20 um 09:49 schrieb Guchun Chen:
+> Add one definition for the RAS module's FS name. It's used
+> in both debugfs and sysfs case.
 
-1. when the module parameter amdgpu_bad_page_threshold = 0,
-that means page retirement feature is disabled, so just resetting
-the eeprom is fine.
-2. When amdgpu_bad_page_threshold is not 0, and moreover, user
-sets one bigger valid value in order to make current boot up
-succeeds, reset the eeprom data and do not break booting.
-3. For other cases, driver's probe will be broken.
+Maybe better do this with a "static const char*".
 
-Signed-off-by: Guchun Chen <guchun.chen@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+Christian.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-index be895dc2d739..02933050081b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-@@ -248,6 +248,7 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
- 	struct amdgpu_device *adev = to_amdgpu_device(control);
- 	unsigned char buff[EEPROM_ADDRESS_SIZE + EEPROM_TABLE_HEADER_SIZE] = { 0 };
- 	struct amdgpu_ras_eeprom_table_header *hdr = &control->tbl_hdr;
-+	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
- 	struct i2c_msg msg = {
- 			.addr	= 0,
- 			.flags	= I2C_M_RD,
-@@ -287,9 +288,15 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
- 
- 	} else if ((hdr->header == EEPROM_TABLE_HDR_BAD) &&
- 			(amdgpu_bad_page_threshold != 0)) {
--		*exceed_err_limit = true;
--		DRM_ERROR("Exceeding the bad_page_threshold parameter, "
-+		if (ras->bad_page_cnt_threshold > control->num_recs) {
-+			DRM_INFO("One valid bigger bad page threshold is "
-+					"used, reset eeprom.\n");
-+			ret = amdgpu_ras_eeprom_reset_table(control);
-+		} else {
-+			*exceed_err_limit = true;
-+			DRM_ERROR("Exceeding the bad_page_threshold parameter, "
- 				"disabling the GPU.\n");
-+		}
- 	} else {
- 		DRM_INFO("Creating new EEPROM table");
- 
--- 
-2.17.1
+>
+> Signed-off-by: Guchun Chen <guchun.chen@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 13 ++++++++-----
+>   1 file changed, 8 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> index 2cc09aa67423..c1ed0074a52b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> @@ -34,6 +34,8 @@
+>   #include "amdgpu_xgmi.h"
+>   #include "ivsrcid/nbio/irqsrcs_nbif_7_4.h"
+>   
+> +#define AMDGPU_RAS_FS_NAME "ras"
+> +
+>   const char *ras_error_string[] = {
+>   	"none",
+>   	"parity",
+> @@ -1037,7 +1039,7 @@ static int amdgpu_ras_sysfs_create_feature_node(struct amdgpu_device *adev)
+>   		NULL
+>   	};
+>   	struct attribute_group group = {
+> -		.name = "ras",
+> +		.name = AMDGPU_RAS_FS_NAME,
+>   		.attrs = attrs,
+>   #if defined(HAVE_ATTRIBUTE_GROUP_BIN_ATTRS)
+>   		.bin_attrs = bin_attrs,
+> @@ -1080,7 +1082,7 @@ static int amdgpu_ras_sysfs_remove_feature_node(struct amdgpu_device *adev)
+>   		NULL
+>   	};
+>   	struct attribute_group group = {
+> -		.name = "ras",
+> +		.name = AMDGPU_RAS_FS_NAME,
+>   		.attrs = attrs,
+>   #if defined(HAVE_ATTRIBUTE_GROUP_BIN_ATTRS)
+>   		.bin_attrs = bin_attrs,
+> @@ -1117,7 +1119,7 @@ int amdgpu_ras_sysfs_create(struct amdgpu_device *adev,
+>   
+>   	if (sysfs_add_file_to_group(&adev->dev->kobj,
+>   				&obj->sysfs_attr.attr,
+> -				"ras")) {
+> +				AMDGPU_RAS_FS_NAME)) {
+>   		put_obj(obj);
+>   		return -EINVAL;
+>   	}
+> @@ -1137,7 +1139,7 @@ int amdgpu_ras_sysfs_remove(struct amdgpu_device *adev,
+>   
+>   	sysfs_remove_file_from_group(&adev->dev->kobj,
+>   				&obj->sysfs_attr.attr,
+> -				"ras");
+> +				AMDGPU_RAS_FS_NAME);
+>   	obj->attr_inuse = 0;
+>   	put_obj(obj);
+>   
+> @@ -1183,7 +1185,8 @@ static void amdgpu_ras_debugfs_create_ctrl_node(struct amdgpu_device *adev)
+>   	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+>   	struct drm_minor *minor = adev->ddev->primary;
+>   
+> -	con->dir = debugfs_create_dir("ras", minor->debugfs_root);
+> +	con->dir = debugfs_create_dir(AMDGPU_RAS_FS_NAME,
+> +					minor->debugfs_root);
+>   	debugfs_create_file("ras_ctrl", S_IWUGO | S_IRUGO, con->dir,
+>   				adev, &amdgpu_ras_debugfs_ctrl_ops);
+>   	debugfs_create_file("ras_eeprom_reset", S_IWUGO | S_IRUGO, con->dir,
 
 _______________________________________________
 amd-gfx mailing list
