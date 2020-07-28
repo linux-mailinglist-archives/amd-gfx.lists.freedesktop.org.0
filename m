@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A01B230495
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jul 2020 09:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43BCE230496
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jul 2020 09:50:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2176E1F9;
-	Tue, 28 Jul 2020 07:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E79B6E213;
+	Tue, 28 Jul 2020 07:50:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D8F96E1F9
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 07:50:01 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2048.outbound.protection.outlook.com [40.107.94.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C2116E1F9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jul 2020 07:50:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OxoHqwcsbEy7YoLG99qqQ+GbnnPt4a5MOw/tWaLptDRGvZmyo965MxWtRCbUYHM2SYjDdN9HN0XuuJaHUMmeDFBXc/gUTA0g6JYA3iczzW8zQXodbVRj8jkXvMqiQQW01Fa6wu7WS6AA9jIp7twscWd27MlNaLi2wsWMU5d43wkhdj/hR4PsdAiDUFC+cDuMjSV0RvNi0sX1wOFWDvHD0OuctT6pLdj2GXUz9nMdVIC5vz3OAtu80mkvhayBpyNxBZ3oruRctav7GXtJVl1FVJsnAcBFpH2TJgq911ZafuW9CoJsvSctc7e7l9F/WOGtC+w2DvcUxO77w5h+XJd1og==
+ b=N/d+GuHhDFxhwyYgVJ8L3ubAB+amxoDcBxzRYI7GGf6lM/HZWfY18qGLj5j7kR+zMn6UEE5Vzo5RFBUfBs1PFTLP5XhuPQ6xEALsSaxBfJpRUBXHPQUvrClRpaUmfjFoUCCrCwr09AluLIHQ+EyQLBQDfU0ZBtsnXesMTXoxHlyVahhvN8ro0dxzON1OKtwwgc80kJmXPi4ftLRc89giQRrjds2o6yNi63y0+2BEy0QPs4cnFax3dHdDRNaMUo6rL7OUnr4UeHUaS3ht2y7S4C/LwB1BmvlrDiwuM+nksFpUKaX2YHIRyOtFvXo5pOfLdD+47Vb8ogMlJ6i8qICXSg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B/0a0VlcHewAV3ianBPmO2ZUNo3iJMGhIKa28d4B1A8=;
- b=RDR0cF1NdzzA7CCPbJsv95ghvRMxyl+ueXw7lCkGM4xa98m79/iOe052OB2d5pVwBq9G/91dig71WqlegxRSkGKXykwgLFI+g4nofg/DD7QPTdavHwwJ1tTsyBdg6gj1heIu2UVf6bJDmQKnnGC1u3KqxYu+BS6BS6qxWxoINVQEEbyIEcV+SvrkyNqoWxNjQL+cpRPSXjn8kGk+bvMsOBVMlKl515wXW4xkKj+0vmWk7X2qIX/o8BbEcq2cGZeSjDLp4OiEi5Be+o6fxyDf0PVMpJ9RsEC3pViXXWlMV+q5baaashD3kjlt99UDPE8H1dUfeP++PQLy5AVuiatJFQ==
+ bh=P37OcHYlJ1C50DZ4H477Sq+eVNO5LNFYETJXj3pv4xY=;
+ b=c043takxJl1Jw9qhm7LzmXXtDgwCeqIGq6Lc0JcIURbQELkyEZlaiVcVmw2z9TYUc1EnvUOTJ6oNQHI7woJ9iuKMv5t+9hAmlxIbFzFOEsVeFPuTMU38gSdyC+4Jt9CsXUuFLFEX+MzG03ujcp8Z/438Ql3jyvS079D4uxZEC2ajOqGrMdu68gCQkFUzNg6Ni2MA1NguqpaOvmf4M3jtlA6h+q9q8tFugcbdfIW6GszexdXxjmie4hIyUmYeHZLXVWDxluXHKVePamWpdYr4FF6ljqQ7gdkkJmdugMb+vi3MbMQ4qtS88I1850Ok+gU9gm2C4+tiA4U06N1Owr6sYQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B/0a0VlcHewAV3ianBPmO2ZUNo3iJMGhIKa28d4B1A8=;
- b=XT/jtFJqqIjQWgdu8nzqUOKxXC2wNTU1FgsqZYL3cGGPA/oTIH0mOiDIzavFsRNHAPbE9g4XsLSxeG7XdhkJMXPoY+yOx8OWSDJJTEiOMWSfMvHxsEJjqoocZk4DWWZeli9hKi52+/W4cAOjPoMgKAf6cZsgPIkQtrAyxFnZdgU=
+ bh=P37OcHYlJ1C50DZ4H477Sq+eVNO5LNFYETJXj3pv4xY=;
+ b=sCa0QkG39nBE7Z7TXsA/i5T5z0oY0EAJjM44JHavNbEiDAs58VXVikupIFpmSg4y5YDhyhPqeGY3OJtIAlnV6Bpvfxti+cQeOZjeIwFcnHsyoxm1qi3ivdFViBQ9HA2rzBGr0UJXknEWsN/yzyx3YpcxX3KgKLOH4SiuTra2SKk=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from CY4PR12MB1287.namprd12.prod.outlook.com (2603:10b6:903:40::8)
- by CY4PR1201MB0120.namprd12.prod.outlook.com (2603:10b6:910:1c::14) with
+ by CY4PR12MB1752.namprd12.prod.outlook.com (2603:10b6:903:120::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.21; Tue, 28 Jul
- 2020 07:49:57 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Tue, 28 Jul
+ 2020 07:50:01 +0000
 Received: from CY4PR12MB1287.namprd12.prod.outlook.com
  ([fe80::e0b1:48e7:bcbc:351c]) by CY4PR12MB1287.namprd12.prod.outlook.com
  ([fe80::e0b1:48e7:bcbc:351c%11]) with mapi id 15.20.3216.033; Tue, 28 Jul
- 2020 07:49:57 +0000
+ 2020 07:50:01 +0000
 From: Guchun Chen <guchun.chen@amd.com>
 To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Hawking.Zhang@amd.com, Dennis.Li@amd.com, andrey.grodzovsky@amd.com,
  Tao.Zhou1@amd.com, John.Clements@amd.com, lijo.lazar@amd.com,
  christian.koenig@amd.com, stanley.yang@amd.com
-Subject: [PATCH 01/12] drm/amdgpu: add bad page count threshold in module
- parameter
-Date: Tue, 28 Jul 2020 15:49:23 +0800
-Message-Id: <20200728074934.12490-2-guchun.chen@amd.com>
+Subject: [PATCH 02/12] drm/amdgpu: validate bad page threshold in ras
+Date: Tue, 28 Jul 2020 15:49:24 +0800
+Message-Id: <20200728074934.12490-3-guchun.chen@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200728074934.12490-1-guchun.chen@amd.com>
 References: <20200728074934.12490-1-guchun.chen@amd.com>
@@ -60,35 +59,35 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from guchchen-System-Product-Name.amd.com (58.247.170.242) by
  HKAPR03CA0004.apcprd03.prod.outlook.com (2603:1096:203:c8::9) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3239.9 via Frontend Transport; Tue, 28 Jul 2020 07:49:54 +0000
+ 15.20.3239.9 via Frontend Transport; Tue, 28 Jul 2020 07:49:57 +0000
 X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [58.247.170.242]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c08dd0f9-aa67-47c1-cae8-08d832cad2d0
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB0120:
+X-MS-Office365-Filtering-Correlation-Id: b309add0-8fb3-4f1f-1eba-08d832cad4d8
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1752:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB012036D7383650BA8039BB98F1730@CY4PR1201MB0120.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1752DD874CC5CEF8A899ED9EF1730@CY4PR12MB1752.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PCSmfvpucthl/qw9NaTrHjLt5TtUjcbuG0EPfcPFKhe0KjPulGRHBHB/4z95fIGdnQdk2CJSFtzPj7XIdQmW4dIQJ5KlErW5crMS6TFQ0q0mqzdUq0/COcuPsvD2J5NtEFGMnstsT1/mj1tYgE44Qa041vW4IJAmuottkjpzbAERuHeDOnHZul/TDmUh4n5VX3gar9jWCKXdi6bInel8MPQK9U4lx8LQEKK6L3PabIUlVwrFjSeWxDP80U7PSEI6DFdRiB9jx/kugwUkO4IyywwYPhR+XNazSO2LyoKqyej13a6UXK80sdJCnrfLA90gdXMFMzQk2c6L9RwgPG0nbKXL/E2ojFWXEV8ZIL0lJ7TSu7ALOERxVdmDEHYh/2kT
+X-Microsoft-Antispam-Message-Info: z6Xr93EA/V5UMShKzXcW5BNgiLYF+mAgPObBnM30Z+BtsBpYbQ7yWZ0Oe+uAws5mQEhmvjh+P2THWHIZ5/LPHBtTqIqpyz01Qbus56zHBJMZtFohsjF8jAoUxPVDkW7VgTrlxgZBYeyvQknu0yZYmvE1IbyAmWhxFUskOd72Lw8HVl/zvU/LvaaW8oMiPIineEoBV1QkDlOWq9n2KlZs5a6Lls/2cdUkVWOxoIGITfYaNfoWks+to1pb4gQGpaPfKTX+ExvBXCi6kyezBoN5kmHk8xWTTNDV/f57Nj7nRSCL+gHyy4jSzXFvpd5HmHQSfyoj79gtvd9gCtfVINqTfNziRo/cxTfCDlju/QgM/nlxe+z3OaSFBIt9ditd99fR
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY4PR12MB1287.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(346002)(366004)(376002)(39860400002)(136003)(396003)(5660300002)(44832011)(6636002)(1076003)(2616005)(478600001)(26005)(186003)(16526019)(8676002)(86362001)(83380400001)(2906002)(52116002)(66946007)(956004)(36756003)(8936002)(66556008)(66476007)(6486002)(7696005)(316002)(4326008)(6666004)(921003);
+ SFS:(4636009)(136003)(376002)(366004)(396003)(346002)(39860400002)(2906002)(956004)(2616005)(1076003)(6486002)(66476007)(66556008)(4326008)(6636002)(66946007)(52116002)(478600001)(36756003)(44832011)(86362001)(83380400001)(316002)(6666004)(16526019)(186003)(26005)(5660300002)(7696005)(8936002)(8676002)(921003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: /CtwNV3RpmH55OVtYf6nevuzEpdGBeMVYY6E2eatreqTw5JS+r8dpq9d6BZ7sS+uas20a829CaZEkQmMfiIs9qmG2aKzE/0PBgRIPnL9b8v5igoeZi/vsC/lhRFxnqrnsphRVV28GaOcfZHh2zLuegHmJToekBrjnZ79Ryz9uObVB0/w4/9jRwkGzjZbTXfKDUDMn4JHsYkCYNtyUQUgbHtl4gTKpOuCbz2O19rsUQz6wFxFGY+b8A1P356saFqbM8/zeVJ+7P0LDPxXncaQBS5aJnT1VMWybKdugxHpGUKKwboOP3Bicdg4+55M93VS6bSn71OZE1k/CABY/thUo+SJT0ZeEJ9a2D97R2cqdVfUHM1X8QNKljjtgLSjKfCR0iG9KH5YXOwL1qhbDacwaFaDotUuJplNfcsBP0ZJBfbTBoZ7CAv+daIy02FuKjZImJixiFd1tqW2CwKlnsVqYHL+1nTiPexCczD/SKWMOvOK4cPTtNn7z6y0pXdWw2gO
+X-MS-Exchange-AntiSpam-MessageData: OiQd5DQrWwL9SwdMfHUyeQaCdABjtnN8OC4YAwHlIcyS8GIO9/rb+/fKnvm/ISYEfT4iwZOGRt26KUb1aAkAcoqFJ0QLErqsrcgn776vkUmgRy2Nq0hu2qglugMVhPiAtQ6XQ2s+Rk5bI8qTkJDSPsJ5j5Rrh6Z2nda1yRpVuty3WfZYM1QUGUJ+v5SXQ8AKhc1I06Xe8AlKh94S+GGqgKrQcJ6CBPyw8k2lSqhz/98raSAPim8q/Guk92wCvMwPBRSojamzQDjrMu4Fk/pbwLPnMw4v1i1OlurdVuVYyhA2dreIcJXJKNyxff8KbAppIBT2LkMr0dPgNYIf9C8mMoeLuTqBgpxuHXGitW4+SECxjY6j2LIXkuWYvZ+0kRnCmyfgNqMZr5SAwQKtr2R3BeO546/c1i2fko0OxYkdREUG3NJnwuZPubWsP0a/rooq3Q4AFQ99Mr9DxSNdJmJ1bxHBgwc1dz19ZrVGRyK7bBeHgSFrwob4gU7eDYkA9eTy
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c08dd0f9-aa67-47c1-cae8-08d832cad2d0
+X-MS-Exchange-CrossTenant-Network-Message-Id: b309add0-8fb3-4f1f-1eba-08d832cad4d8
 X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1287.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2020 07:49:57.6815 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2020 07:50:01.0840 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JShE/EC5Jzvwa0NTv6hh4exeHSekFGVjVDrkeAa8uQk3VZbLuUIElWUdBsIkcpQ6qLeitrhngtYHmHAzZjiMAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0120
+X-MS-Exchange-CrossTenant-UserPrincipalName: BVK6FHELfZ4twCRHAa4z8aRKXOPWxfn/RBmzQ2OebpfxLf+TGhmMwp0ekiDCTMcWM0dq1KtBN73PNdbfdWHvHA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1752
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,68 +105,148 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-bad_page_threshold could be configured to enable/disable the
-associated bad page retirement feature in RAS.
+Bad page threshold value should be valid in the range between
+-1 and max records length of eeprom. It could determine when
+saved bad pages exceed threshold value, and proceed corresponding
+actions.
 
-When it's -1, ras will use typical bad page failure value to
-handle bad page retirement.
+v2: When using the default typical value, it should be min
+value between typical value and eeprom max records length.
 
-When it's 0, disable bad page retirement, and no bad page
-will be recorded and saved.
-
-For other valid value, driver will use this manual value
-as the threshold value of totoal bad pages.
-
-v2: correct documentation of this parameter.
-v3: remove confused statement in documentation.
+v3: drop the case of setting bad_page_cnt_threshold to be
+    0xFFFFFFFF, as it confuses user.
 
 Signed-off-by: Guchun Chen <guchun.chen@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 11 +++++++++++
- 2 files changed, 12 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       | 48 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h       |  3 ++
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    |  5 ++
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h    |  2 +
+ 4 files changed, 58 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 06bfb8658dec..bb83ffb5e26a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -181,6 +181,7 @@ extern uint amdgpu_dm_abm_level;
- extern struct amdgpu_mgpu_info mgpu_info;
- extern int amdgpu_ras_enable;
- extern uint amdgpu_ras_mask;
-+extern int amdgpu_bad_page_threshold;
- extern int amdgpu_async_gfx_ring;
- extern int amdgpu_mcbp;
- extern int amdgpu_discovery;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index d28b95f721c4..820a28c9e957 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -161,6 +161,7 @@ struct amdgpu_mgpu_info mgpu_info = {
- };
- int amdgpu_ras_enable = -1;
- uint amdgpu_ras_mask = 0xffffffff;
-+int amdgpu_bad_page_threshold = -1;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 6f06e1214622..3c4c142e9d8a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -69,6 +69,9 @@ const char *ras_block_string[] = {
+ /* inject address is 52 bits */
+ #define	RAS_UMC_INJECT_ADDR_LIMIT	(0x1ULL << 52)
  
- /**
-  * DOC: vramlimit (int)
-@@ -801,6 +802,16 @@ module_param_named(tmz, amdgpu_tmz, int, 0444);
- MODULE_PARM_DESC(reset_method, "GPU reset method (-1 = auto (default), 0 = legacy, 1 = mode0, 2 = mode1, 3 = mode2, 4 = baco)");
- module_param_named(reset_method, amdgpu_reset_method, int, 0444);
- 
-+/**
-+ * DOC: bad_page_threshold (int)
-+ * Bad page threshold is to specify the threshold value of faulty pages
-+ * detected by RAS ECC, that may result in GPU entering bad status if total
-+ * faulty pages by ECC exceed threshold value and leave it for user's further
-+ * check.
-+ */
-+MODULE_PARM_DESC(bad_page_threshold, "Bad page threshold(-1 = auto(default typical value), 0 = disable bad page retirement)");
-+module_param_named(bad_page_threshold, amdgpu_bad_page_threshold, int, 0444);
++/* typical ECC bad page rate(1 bad page per 100MB VRAM) */
++#define RAS_BAD_PAGE_RATE		(100 * 1024 * 1024ULL)
 +
- static const struct pci_device_id pciidlist[] = {
- #ifdef  CONFIG_DRM_AMDGPU_SI
- 	{0x1002, 0x6780, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI},
+ enum amdgpu_ras_retire_page_reservation {
+ 	AMDGPU_RAS_RETIRE_PAGE_RESERVED,
+ 	AMDGPU_RAS_RETIRE_PAGE_PENDING,
+@@ -1700,6 +1703,47 @@ static bool amdgpu_ras_check_bad_page(struct amdgpu_device *adev,
+ 	return ret;
+ }
+ 
++static void amdgpu_ras_validate_threshold(struct amdgpu_device *adev,
++					uint32_t max_length)
++{
++	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
++	int tmp_threshold = amdgpu_bad_page_threshold;
++	u64 val;
++
++	/*
++	 * Justification of value bad_page_cnt_threshold in ras structure
++	 *
++	 * Generally, -1 <= amdgpu_bad_page_threshold <= max record length
++	 * in eeprom, and introduce two scenarios accordingly.
++	 *
++	 * Bad page retirement enablement:
++	 *    - If amdgpu_bad_page_threshold = -1,
++	 *      bad_page_cnt_threshold = typical value by formula.
++	 *
++	 *    - When the value from user is 0 < amdgpu_bad_page_threshold <
++	 *      max record length in eeprom, use it directly.
++	 *
++	 * Bad page retirement disablement:
++	 *    - If amdgpu_bad_page_threshold = 0, bad page retirement
++	 *      functionality is disabled, and bad_page_cnt_threshold will
++	 *      take no effect.
++	 */
++
++	if (tmp_threshold < -1)
++		tmp_threshold = -1;
++	else if (tmp_threshold > max_length)
++		tmp_threshold = max_length;
++
++	if (tmp_threshold == -1) {
++		val = adev->gmc.mc_vram_size;
++		do_div(val, RAS_BAD_PAGE_RATE);
++		con->bad_page_cnt_threshold = min(lower_32_bits(val),
++						max_length);
++	} else {
++		con->bad_page_cnt_threshold = tmp_threshold;
++	}
++}
++
+ /* called in gpu recovery/init */
+ int amdgpu_ras_reserve_bad_pages(struct amdgpu_device *adev)
+ {
+@@ -1777,6 +1821,7 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+ 	struct ras_err_handler_data **data;
++	uint32_t max_eeprom_records_len = 0;
+ 	int ret;
+ 
+ 	if (con)
+@@ -1795,6 +1840,9 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
+ 	atomic_set(&con->in_recovery, 0);
+ 	con->adev = adev;
+ 
++	max_eeprom_records_len = amdgpu_ras_eeprom_get_record_max_length();
++	amdgpu_ras_validate_threshold(adev, max_eeprom_records_len);
++
+ 	ret = amdgpu_ras_eeprom_init(&con->eeprom_control);
+ 	if (ret)
+ 		goto free;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+index b2667342cf67..4672649a9293 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+@@ -336,6 +336,9 @@ struct amdgpu_ras {
+ 	struct amdgpu_ras_eeprom_control eeprom_control;
+ 
+ 	bool error_query_ready;
++
++	/* bad page count threshold */
++	uint32_t bad_page_cnt_threshold;
+ };
+ 
+ struct ras_fs_data {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+index c0096097bbcf..a2c982b1eac6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+@@ -499,6 +499,11 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+ 	return ret == num ? 0 : -EIO;
+ }
+ 
++inline uint32_t amdgpu_ras_eeprom_get_record_max_length(void)
++{
++	return EEPROM_MAX_RECORD_NUM;
++}
++
+ /* Used for testing if bugs encountered */
+ #if 0
+ void amdgpu_ras_eeprom_test(struct amdgpu_ras_eeprom_control *control)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+index 7e8647a05df7..b272840cb069 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+@@ -85,6 +85,8 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+ 					    bool write,
+ 					    int num);
+ 
++inline uint32_t amdgpu_ras_eeprom_get_record_max_length(void);
++
+ void amdgpu_ras_eeprom_test(struct amdgpu_ras_eeprom_control *control);
+ 
+ #endif // _AMDGPU_RAS_EEPROM_H
 -- 
 2.17.1
 
