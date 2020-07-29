@@ -1,58 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C879232371
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jul 2020 19:34:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15909232374
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jul 2020 19:35:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35FBE6E5C5;
-	Wed, 29 Jul 2020 17:34:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67AD26E5CA;
+	Wed, 29 Jul 2020 17:35:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
- [IPv6:2607:f8b0:4864:20::743])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7975E6E5C1
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 17:34:55 +0000 (UTC)
-Received: by mail-qk1-x743.google.com with SMTP id 11so23046360qkn.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 10:34:55 -0700 (PDT)
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
+ [IPv6:2607:f8b0:4864:20::742])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 243446E5CA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 17:34:57 +0000 (UTC)
+Received: by mail-qk1-x742.google.com with SMTP id l64so16205789qkb.8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 10:34:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=r18oPVXv0IMyymb52P6a5Lmr7QX+ngKP34/PJcJgsYM=;
- b=DExYgivyRO9Zt/DsVHu4LHcd/TbGpygLKiKNZMNDYU50/ApW3jdbl+SQTPRurnee22
- hnLwVMq5w/IcULBvHBlj2Vnp8X5TkSBaeXe8zeCVK6aY0eBdlMOVjW8CPfJ2ozJkET9E
- e6Y0G4KycXKcMfLDb4KYMqB17XPxjx2YTiIs+sc6j5msjHFJhukI16Ba1lSOmCG8J/G8
- PaiUbs0q5U/j+3Nct4/cOdJfeChhZFqJLC7iZmTQxbt6dUPHJA0bkgvIUXR05nYmjOU0
- Nl8G+d5Fw0W0UyBS+DjyIqh9iWS27ATgYobtFU9NZogkuZJHOGcID6fA1P9IOeM54exo
- 367g==
+ bh=zHNpl+LOqceyTzATokgDJbn7rrhFrKZSXVJV3VlMlyw=;
+ b=KVsWsuo15idZyA3VKtGXoDD5m9zlHkHctgCtcpHGtuftsDwZjm83LzaCV3+kSBFHmU
+ 3/AAo8/M7C9Vn0u102AHpz2DPKACLK54hb+MmIXvo57MhSwnsd3M4HFsoVMeGBHIGW+r
+ GMnxJpWKvTzjibXS670Kua5qlOXm4P8k7fHFG9xkssUSKHVkU2gpxvS6GpBDtCXRKA6t
+ ApmvHmB9XCncaTcMiR5p1bL6XnojSWymANId+P+Eb7Aku6nVoH8bwFJVjwQhQM5hv+jd
+ XuRWjUoZIp6ci2iv1IjoNL5chs3nN7bfJgO42Q4N5vQ6a4wtY+qRPj5faEgvUl9RTAat
+ WB2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=r18oPVXv0IMyymb52P6a5Lmr7QX+ngKP34/PJcJgsYM=;
- b=kJFQLDFoE2h9Ls/ByBBx7DrYwyGRxqWU0TNpcmJF3ro4DF04u7BW/Y9UTTYGb3NlP4
- 5GDapAnWchgM0PcfS3wGwmDtSoxhvPeERdQwSUNpV92glhCBbDjjSW0JbmmWhi+mzNU/
- +Lr12gVKNxzhW45GLjjSSYfahdqNgznV6Zn68ai1F/KF2XiO/UD5OrP9HNhO+apG4PWL
- gBAkM7A+TGBloobTSSdOyJHsoTHIQPQczoDqMYy7gYaAgvtbZpTp1rv38mgEdS3Hp1is
- nGksuAvkChSyYagmBXHumBHur99M3jFSTnZfk9NoGFowbwXiG5CayutLU9J5JYaYDQJx
- 5W9A==
-X-Gm-Message-State: AOAM5334VcLt+qeU15B2fA3kS1O/Xp/b3rQOLyg5GrrA1O2YRKWlGvqv
- 0ppzgW+4Zzm5oXsZSPqIzPpVjb8E
-X-Google-Smtp-Source: ABdhPJyyIDAF+33AKqiDzTIW0dNV3OV9DpcCzWczGufwDtEWHQtlPiJJSlcyAGzpCrIFLlGs/WjdkQ==
-X-Received: by 2002:a05:620a:15e8:: with SMTP id
- p8mr33416828qkm.182.1596044094493; 
- Wed, 29 Jul 2020 10:34:54 -0700 (PDT)
+ bh=zHNpl+LOqceyTzATokgDJbn7rrhFrKZSXVJV3VlMlyw=;
+ b=c80foTh1qSkz/pUMDJ6tDCLzWo9NvXVadj4aOOjQERXcUnFadRX/c5ROw3vGjoTgOs
+ ZW75JvT+6qSufFDhtxHE3GXieErdC6vvINHJwEBr9rSmyDHJHp1RFS4FDs9/fGw0wrQQ
+ taOTjNDmqR3c68nzFzDjUB5upBU3ZKYikx+cci9bmyocCWH+qh6scnjCQwNNDRyiA+vm
+ /ulGmC6bv0kWgzaq/JrzrKraagb6cmpPnCuxxOTS011cMhkzP3GgldhUXCAu7YSB+Za6
+ LhQGQkkb5oxcJdWrgXR5Swt/q35qP8MdOy5RoxFie5J2hVKZpzLWhFepAdYtXSV4QvWv
+ uL0Q==
+X-Gm-Message-State: AOAM531NfNxSBEqtG2hkIqg+tNaVPskA1zQACqDsFQIjXW2hLcV4v9CN
+ 1/gxiSz5GTpgwQSEGT3WgufV5WR0
+X-Google-Smtp-Source: ABdhPJwuwhN7WQqmrVkWMh+hVUVfAFZ4Ojog/zqOocrq5SgTDqV7S5LOxGjSrOhr32WL86REuF/cAQ==
+X-Received: by 2002:a05:620a:152d:: with SMTP id
+ n13mr32491108qkk.43.1596044095586; 
+ Wed, 29 Jul 2020 10:34:55 -0700 (PDT)
 Received: from localhost.localdomain ([71.219.66.138])
- by smtp.gmail.com with ESMTPSA id z72sm2132956qka.107.2020.07.29.10.34.53
+ by smtp.gmail.com with ESMTPSA id z72sm2132956qka.107.2020.07.29.10.34.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Jul 2020 10:34:53 -0700 (PDT)
+ Wed, 29 Jul 2020 10:34:55 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 08/17] drm/amdgpu/gmc6: switch to using
+Subject: [PATCH 09/17] drm/amdgpu/gmc7: switch to using
  amdgpu_gmc_get_vbios_allocations
-Date: Wed, 29 Jul 2020 13:34:30 -0400
-Message-Id: <20200729173439.3698-9-alexander.deucher@amd.com>
+Date: Wed, 29 Jul 2020 13:34:31 -0400
+Message-Id: <20200729173439.3698-10-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200729173439.3698-1-alexander.deucher@amd.com>
 References: <20200729173439.3698-1-alexander.deucher@amd.com>
@@ -80,40 +80,43 @@ The new helper centralizes the logic in one place.
 Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-index 28ddb41a78c8..95a9117e9564 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-@@ -812,9 +812,6 @@ static unsigned gmc_v6_0_get_vbios_fb_size(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+index 8b8ecbb99d84..80c146df338a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+@@ -977,9 +977,7 @@ static unsigned gmc_v7_0_get_vbios_fb_size(struct amdgpu_device *adev)
  			REG_GET_FIELD(viewport, VIEWPORT_SIZE, VIEWPORT_WIDTH) *
  			4);
  	}
 -	/* return 0 if the pre-OS buffer uses up most of vram */
 -	if ((adev->gmc.real_vram_size - size) < (8 * 1024 * 1024))
 -		return 0;
++
  	return size;
  }
  
-@@ -862,7 +859,7 @@ static int gmc_v6_0_sw_init(void *handle)
+@@ -1035,7 +1033,7 @@ static int gmc_v7_0_sw_init(void *handle)
  	if (r)
  		return r;
  
--	adev->gmc.stolen_vga_size = gmc_v6_0_get_vbios_fb_size(adev);
+-	adev->gmc.stolen_vga_size = gmc_v7_0_get_vbios_fb_size(adev);
 +	amdgpu_gmc_get_vbios_allocations(adev);
  
+ 	/* Memory manager */
  	r = amdgpu_bo_init(adev);
- 	if (r)
-@@ -1136,6 +1133,7 @@ static const struct amdgpu_gmc_funcs gmc_v6_0_gmc_funcs = {
- 	.set_prt = gmc_v6_0_set_prt,
- 	.get_vm_pde = gmc_v6_0_get_vm_pde,
- 	.get_vm_pte = gmc_v6_0_get_vm_pte,
-+	.get_vbios_fb_size = gmc_v6_0_get_vbios_fb_size,
+@@ -1372,7 +1370,8 @@ static const struct amdgpu_gmc_funcs gmc_v7_0_gmc_funcs = {
+ 	.emit_pasid_mapping = gmc_v7_0_emit_pasid_mapping,
+ 	.set_prt = gmc_v7_0_set_prt,
+ 	.get_vm_pde = gmc_v7_0_get_vm_pde,
+-	.get_vm_pte = gmc_v7_0_get_vm_pte
++	.get_vm_pte = gmc_v7_0_get_vm_pte,
++	.get_vbios_fb_size = gmc_v7_0_get_vbios_fb_size,
  };
  
- static const struct amdgpu_irq_src_funcs gmc_v6_0_irq_funcs = {
+ static const struct amdgpu_irq_src_funcs gmc_v7_0_irq_funcs = {
 -- 
 2.25.4
 
