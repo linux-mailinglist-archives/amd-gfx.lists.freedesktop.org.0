@@ -2,57 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83A82232375
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jul 2020 19:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 507B6232377
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jul 2020 19:35:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B16C76E5CE;
-	Wed, 29 Jul 2020 17:35:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B59B26E5CC;
+	Wed, 29 Jul 2020 17:35:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD7B26E5C8
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 17:34:58 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id 11so23046551qkn.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 10:34:58 -0700 (PDT)
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 551666E5C8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 17:35:00 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id e5so4233701qth.5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 10:35:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=zMOVJJrKNgOJYFIMzVTaoMmkZXUDp7Ra1nV8MPQsqzY=;
- b=m3xtFVAlgCdDoxNo/0U6Yk8jSyZYf4bA3wVXyQGOh7Wz8iP018OnhHT7ZqoTtwVVZN
- r9CUbaSzI1J4v6AoCOvx7kk4rI58fyAy3tpUk06PHOm3hZ8WloIjBacG7nZkzDeIz5yE
- oSi0mhZqoDUfgWSvXtk0tNDlOxH3rTiBrS6WEpPpXAJ9NaYNOTE/9hGUw3yF2jPrZx5R
- NuKV0jVRm3kCeXsW0Q9PbCOjMARl2NyYs9513R66DkFHD4jcd7msQaSMJMKXNORgjqFT
- A/b8vbtA5jhvnaruKkQCkZs5Y1nENMkUcv9d5RRQo+/xTzoOsM40UquArPZoxVdHfzkr
- uclQ==
+ bh=5i8LKvqoK3g92YP3Gk/m5KCmk0EjbMnnuQ62eDpdBr0=;
+ b=Livbxng6vKE9OOK0Llb/lma4/W0SSpEvxCk+hMQn4fsyAt3ZUSh3kYZ3J2s6VOMEli
+ OZ8kULzmWzv7jWBpsgbJu8UCwHhtzSRMjRPuRPJmtoQ0EROVzJI6n/6bbEUS84Sce7/B
+ s2Xc/U1zBgMBvw7au0CPabUXP0TVK4vaDcqBMky4ksMpanj9Ec00yx7azloKfFMzNCpS
+ 3AtMmQne2gcXbadkY5qU739c+pqb+munP8FmEFwTGujy3PXinwM4DGBz/ejs+Et6ZcbV
+ uaAq25/klbiiUQupT3shS/sWW9RTULk+LnbVNWYhWyL/wH/TawZRnwvGPCDuih48uR/A
+ OAxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=zMOVJJrKNgOJYFIMzVTaoMmkZXUDp7Ra1nV8MPQsqzY=;
- b=WWi3AFmMb1Zgmzk2g15W9WXxx+zXSboRfCH4RiDStJAJIEOfTDdVreSh42xxjvhLy+
- Gqj5tQaFef9Aocdo8l/MTvQcH6ST+y9ZH7BqXOsR/k8/2dxp1l5pu8dLYkWZvKwfL85B
- TfBR0Pi3V9zGyFUCnYR6qlU/zk/MPT8Xu8PwzWASsZ108QIJd5bs5PeHFqbWgXMNet5T
- btRRoAnhcm7EFf867sS/sOBJyGApMyQFFlqTzQH6wu7D5QKTikJmdAA7x+fwEZIeHITl
- KoubkNLbtXlgKW1HRouoFrGhVuDQmKFPF01Rn5iqjdgz/taFwfftMhwgImqvW2yaElxm
- PPag==
-X-Gm-Message-State: AOAM530IDU/PnSiBZ7IZLAB0outjsgozlVbpr7u7DYEzqd+rmWSLIbXj
- szMe5FVe/TnJmIuZ3WJCWgGEyqWq
-X-Google-Smtp-Source: ABdhPJw0sfZNOCjdo93B2P1YO0ZWkVLohmAqJvi1dveubjewTcQg9a5Nmhziz3W0HQE7qyVY+ns6eg==
-X-Received: by 2002:a05:620a:2231:: with SMTP id
- n17mr32994875qkh.37.1596044097715; 
- Wed, 29 Jul 2020 10:34:57 -0700 (PDT)
+ bh=5i8LKvqoK3g92YP3Gk/m5KCmk0EjbMnnuQ62eDpdBr0=;
+ b=eqVivh1mLDIo7PrFFgjJy8j/I7/cGwYgYATaBbUjULoRUPfiXlINvlBtkTDaUjQSg9
+ 9ODU4/j8YKv/Cdv1vJmqeVf5idPia5m+XhF7JVIUQkal4QO+l53Epnbm3hHRoVhUw9fA
+ 21IrJhHC5EhzpkinRitRueAuFwDtJ7pI1RL75ZUN8iVpjCXlg7HDAv+hXhlJlTazRfg6
+ T3HNhUhx7iRmR4zY+5AlEjbPsrwBpEhqiSfrgRec4dpC+LkTtUw3oNLiMdMquEp+Ujpt
+ 9Ywy5UEfV8mDtkLSTq0m0WgbnVpi6rXiKgzALWe3JS2Hqxf06p+TUABFJZTn1T3UqM5i
+ n3uw==
+X-Gm-Message-State: AOAM532S89KFT2p8wnTncpbay6ucUgL/8oU1Nw8zZI76mefCBKSL4v6C
+ 7DmI/7p+spP4Ky77bo+zRPSbp+Cr
+X-Google-Smtp-Source: ABdhPJw2N4GvvPpmz0BW6RfGdyOsAsRmdFkpiRIoKKidR04dlb8gAaTkkvbv6lO+Z655kAf7kpCkfA==
+X-Received: by 2002:ac8:545a:: with SMTP id d26mr14177423qtq.50.1596044099297; 
+ Wed, 29 Jul 2020 10:34:59 -0700 (PDT)
 Received: from localhost.localdomain ([71.219.66.138])
- by smtp.gmail.com with ESMTPSA id z72sm2132956qka.107.2020.07.29.10.34.56
+ by smtp.gmail.com with ESMTPSA id z72sm2132956qka.107.2020.07.29.10.34.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Jul 2020 10:34:57 -0700 (PDT)
+ Wed, 29 Jul 2020 10:34:58 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 11/17] drm/amdgpu/gmc9: switch to using
+Subject: [PATCH 12/17] drm/amdgpu/gmc10: switch to using
  amdgpu_gmc_get_vbios_allocations
-Date: Wed, 29 Jul 2020 13:34:33 -0400
-Message-Id: <20200729173439.3698-12-alexander.deucher@amd.com>
+Date: Wed, 29 Jul 2020 13:34:34 -0400
+Message-Id: <20200729173439.3698-13-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200729173439.3698-1-alexander.deucher@amd.com>
 References: <20200729173439.3698-1-alexander.deucher@amd.com>
@@ -80,18 +79,18 @@ The new helper centralizes the logic in one place.
 Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c | 112 +++++++++-----------------
- 1 file changed, 38 insertions(+), 74 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 57 +++++++++++---------------
+ 1 file changed, 25 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-index c5d2e4390fba..65488ddc34c3 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -827,6 +827,41 @@ static void gmc_v9_0_get_vm_pte(struct amdgpu_device *adev,
- 		*flags |= AMDGPU_PTE_SNOOPED;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index 337d70503970..fcde302d3eb0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -553,6 +553,28 @@ static void gmc_v10_0_get_vm_pte(struct amdgpu_device *adev,
+ 	}
  }
  
-+static unsigned gmc_v9_0_get_vbios_fb_size(struct amdgpu_device *adev)
++static unsigned gmc_v10_0_get_vbios_fb_size(struct amdgpu_device *adev)
 +{
 +	u32 d1vga_control = RREG32_SOC15(DCE, 0, mmD1VGA_CONTROL);
 +	unsigned size;
@@ -100,136 +99,74 @@ index c5d2e4390fba..65488ddc34c3 100644
 +		size = AMDGPU_VBIOS_VGA_ALLOCATION;
 +	} else {
 +		u32 viewport;
++		u32 pitch;
 +
-+		switch (adev->asic_type) {
-+		case CHIP_RAVEN:
-+		case CHIP_RENOIR:
-+			viewport = RREG32_SOC15(DCE, 0, mmHUBP0_DCSURF_PRI_VIEWPORT_DIMENSION);
-+			size = (REG_GET_FIELD(viewport,
-+					      HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION, PRI_VIEWPORT_HEIGHT) *
-+				REG_GET_FIELD(viewport,
-+					      HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION, PRI_VIEWPORT_WIDTH) *
++		viewport = RREG32_SOC15(DCE, 0, mmHUBP0_DCSURF_PRI_VIEWPORT_DIMENSION);
++		pitch = RREG32_SOC15(DCE, 0, mmHUBPREQ0_DCSURF_SURFACE_PITCH);
++		size = (REG_GET_FIELD(viewport,
++					HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION, PRI_VIEWPORT_HEIGHT) *
++				REG_GET_FIELD(pitch, HUBPREQ0_DCSURF_SURFACE_PITCH, PITCH) *
 +				4);
-+			break;
-+		case CHIP_VEGA10:
-+		case CHIP_VEGA12:
-+		case CHIP_VEGA20:
-+		default:
-+			viewport = RREG32_SOC15(DCE, 0, mmSCL0_VIEWPORT_SIZE);
-+			size = (REG_GET_FIELD(viewport, SCL0_VIEWPORT_SIZE, VIEWPORT_HEIGHT) *
-+				REG_GET_FIELD(viewport, SCL0_VIEWPORT_SIZE, VIEWPORT_WIDTH) *
-+				4);
-+			break;
-+		}
 +	}
 +
 +	return size;
 +}
 +
- static const struct amdgpu_gmc_funcs gmc_v9_0_gmc_funcs = {
- 	.flush_gpu_tlb = gmc_v9_0_flush_gpu_tlb,
- 	.flush_gpu_tlb_pasid = gmc_v9_0_flush_gpu_tlb_pasid,
-@@ -834,7 +869,8 @@ static const struct amdgpu_gmc_funcs gmc_v9_0_gmc_funcs = {
- 	.emit_pasid_mapping = gmc_v9_0_emit_pasid_mapping,
- 	.map_mtype = gmc_v9_0_map_mtype,
- 	.get_vm_pde = gmc_v9_0_get_vm_pde,
--	.get_vm_pte = gmc_v9_0_get_vm_pte
-+	.get_vm_pte = gmc_v9_0_get_vm_pte,
-+	.get_vbios_fb_size = gmc_v9_0_get_vbios_fb_size,
+ static const struct amdgpu_gmc_funcs gmc_v10_0_gmc_funcs = {
+ 	.flush_gpu_tlb = gmc_v10_0_flush_gpu_tlb,
+ 	.flush_gpu_tlb_pasid = gmc_v10_0_flush_gpu_tlb_pasid,
+@@ -560,7 +582,8 @@ static const struct amdgpu_gmc_funcs gmc_v10_0_gmc_funcs = {
+ 	.emit_pasid_mapping = gmc_v10_0_emit_pasid_mapping,
+ 	.map_mtype = gmc_v10_0_map_mtype,
+ 	.get_vm_pde = gmc_v10_0_get_vm_pde,
+-	.get_vm_pte = gmc_v10_0_get_vm_pte
++	.get_vm_pte = gmc_v10_0_get_vm_pte,
++	.get_vbios_fb_size = gmc_v10_0_get_vbios_fb_size,
  };
  
- static void gmc_v9_0_set_gmc_funcs(struct amdgpu_device *adev)
-@@ -902,31 +938,6 @@ static int gmc_v9_0_early_init(void *handle)
- 	return 0;
- }
- 
--static bool gmc_v9_0_keep_stolen_memory(struct amdgpu_device *adev)
--{
--
--	/*
--	 * TODO:
--	 * Currently there is a bug where some memory client outside
--	 * of the driver writes to first 8M of VRAM on S3 resume,
--	 * this overrides GART which by default gets placed in first 8M and
--	 * causes VM_FAULTS once GTT is accessed.
--	 * Keep the stolen memory reservation until the while this is not solved.
--	 * Also check code in gmc_v9_0_get_vbios_fb_size and gmc_v9_0_late_init
--	 */
--	switch (adev->asic_type) {
--	case CHIP_VEGA10:
--	case CHIP_RAVEN:
--	case CHIP_ARCTURUS:
--	case CHIP_RENOIR:
--		return true;
--	case CHIP_VEGA12:
--	case CHIP_VEGA20:
--	default:
--		return false;
--	}
--}
--
- static int gmc_v9_0_late_init(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-@@ -1066,52 +1077,6 @@ static int gmc_v9_0_gart_init(struct amdgpu_device *adev)
+ static void gmc_v10_0_set_gmc_funcs(struct amdgpu_device *adev)
+@@ -701,36 +724,6 @@ static int gmc_v10_0_gart_init(struct amdgpu_device *adev)
  	return amdgpu_gart_table_vram_alloc(adev);
  }
  
--static unsigned gmc_v9_0_get_vbios_fb_size(struct amdgpu_device *adev)
+-static unsigned gmc_v10_0_get_vbios_fb_size(struct amdgpu_device *adev)
 -{
--	u32 d1vga_control;
+-	u32 d1vga_control = RREG32_SOC15(DCE, 0, mmD1VGA_CONTROL);
 -	unsigned size;
 -
--	/*
--	 * TODO Remove once GART corruption is resolved
--	 * Check related code in gmc_v9_0_sw_fini
--	 * */
--	if (adev->gmc.keep_stolen_vga_memory)
--		return AMDGPU_VBIOS_VGA_ALLOCATION;
--
--	d1vga_control = RREG32_SOC15(DCE, 0, mmD1VGA_CONTROL);
 -	if (REG_GET_FIELD(d1vga_control, D1VGA_CONTROL, D1VGA_MODE_ENABLE)) {
 -		size = AMDGPU_VBIOS_VGA_ALLOCATION;
 -	} else {
 -		u32 viewport;
+-		u32 pitch;
 -
--		switch (adev->asic_type) {
--		case CHIP_RAVEN:
--		case CHIP_RENOIR:
--			viewport = RREG32_SOC15(DCE, 0, mmHUBP0_DCSURF_PRI_VIEWPORT_DIMENSION);
--			size = (REG_GET_FIELD(viewport,
--					      HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION, PRI_VIEWPORT_HEIGHT) *
--				REG_GET_FIELD(viewport,
--					      HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION, PRI_VIEWPORT_WIDTH) *
+-		viewport = RREG32_SOC15(DCE, 0, mmHUBP0_DCSURF_PRI_VIEWPORT_DIMENSION);
+-		pitch = RREG32_SOC15(DCE, 0, mmHUBPREQ0_DCSURF_SURFACE_PITCH);
+-		size = (REG_GET_FIELD(viewport,
+-					HUBP0_DCSURF_PRI_VIEWPORT_DIMENSION, PRI_VIEWPORT_HEIGHT) *
+-				REG_GET_FIELD(pitch, HUBPREQ0_DCSURF_SURFACE_PITCH, PITCH) *
 -				4);
--			break;
--		case CHIP_VEGA10:
--		case CHIP_VEGA12:
--		case CHIP_VEGA20:
--		default:
--			viewport = RREG32_SOC15(DCE, 0, mmSCL0_VIEWPORT_SIZE);
--			size = (REG_GET_FIELD(viewport, SCL0_VIEWPORT_SIZE, VIEWPORT_HEIGHT) *
--				REG_GET_FIELD(viewport, SCL0_VIEWPORT_SIZE, VIEWPORT_WIDTH) *
--				4);
--			break;
--		}
 -	}
 -	/* return 0 if the pre-OS buffer uses up most of vram */
--	if ((adev->gmc.real_vram_size - size) < (8 * 1024 * 1024))
+-	if ((adev->gmc.real_vram_size - size) < (8 * 1024 * 1024)) {
+-		DRM_ERROR("Warning: pre-OS buffer uses most of vram, \
+-				be aware of gart table overwrite\n");
 -		return 0;
+-	}
 -
 -	return size;
 -}
 -
- static int gmc_v9_0_sw_init(void *handle)
+-
+-
+ static int gmc_v10_0_sw_init(void *handle)
  {
  	int r, vram_width = 0, vram_type = 0, vram_vendor = 0;
-@@ -1242,8 +1207,7 @@ static int gmc_v9_0_sw_init(void *handle)
+@@ -812,7 +805,7 @@ static int gmc_v10_0_sw_init(void *handle)
  	if (r)
  		return r;
  
--	adev->gmc.keep_stolen_vga_memory = gmc_v9_0_keep_stolen_memory(adev);
--	adev->gmc.stolen_vga_size = gmc_v9_0_get_vbios_fb_size(adev);
+-	adev->gmc.stolen_vga_size = gmc_v10_0_get_vbios_fb_size(adev);
 +	amdgpu_gmc_get_vbios_allocations(adev);
  
  	/* Memory manager */
