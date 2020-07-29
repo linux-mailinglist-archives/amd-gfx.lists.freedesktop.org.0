@@ -2,56 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F9823236F
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jul 2020 19:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C879232371
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jul 2020 19:34:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF386E5C1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35FBE6E5C5;
 	Wed, 29 Jul 2020 17:34:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com
- [IPv6:2607:f8b0:4864:20::f44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C4BB6E5C0
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 17:34:54 +0000 (UTC)
-Received: by mail-qv1-xf44.google.com with SMTP id l13so4869805qvt.10
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 10:34:54 -0700 (PDT)
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com
+ [IPv6:2607:f8b0:4864:20::743])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7975E6E5C1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 17:34:55 +0000 (UTC)
+Received: by mail-qk1-x743.google.com with SMTP id 11so23046360qkn.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jul 2020 10:34:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=DDymwZ64nOKQVp+UZ6s7IlleNOHqfxqgSwVWLOm7Yek=;
- b=kpUFItnMUIrrgPtTdrwzLfLK53UT1rrElg2Sxk4wBemQo4roj14x7t00T0lp20B8WZ
- CkqV1HLZk57QSPhcWq5oWPNgVxfpwIhH/b4rqosjcEjJLcmaqDPJmkwp6tSvnCEzO/Ph
- gngHcF1YBf5NZYVLPMSvxMx/Z7nhoJ69HtNpUFBNdBDzeVPj4JHgb5KQIWMkmOPYneGi
- UbhvCb9fl230UvpRkl0xKetV9qAWxzvzN0Sv0RiZb0PJNzZOXQisDnTKtq6qn7UoIDlC
- 52Cv8d8VArxUe46WAGwwr5oXE3O03mdYaSJ6eDQrqUQIdsEL3OEO8pmOfxvlZMSaw4wZ
- BPfA==
+ bh=r18oPVXv0IMyymb52P6a5Lmr7QX+ngKP34/PJcJgsYM=;
+ b=DExYgivyRO9Zt/DsVHu4LHcd/TbGpygLKiKNZMNDYU50/ApW3jdbl+SQTPRurnee22
+ hnLwVMq5w/IcULBvHBlj2Vnp8X5TkSBaeXe8zeCVK6aY0eBdlMOVjW8CPfJ2ozJkET9E
+ e6Y0G4KycXKcMfLDb4KYMqB17XPxjx2YTiIs+sc6j5msjHFJhukI16Ba1lSOmCG8J/G8
+ PaiUbs0q5U/j+3Nct4/cOdJfeChhZFqJLC7iZmTQxbt6dUPHJA0bkgvIUXR05nYmjOU0
+ Nl8G+d5Fw0W0UyBS+DjyIqh9iWS27ATgYobtFU9NZogkuZJHOGcID6fA1P9IOeM54exo
+ 367g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=DDymwZ64nOKQVp+UZ6s7IlleNOHqfxqgSwVWLOm7Yek=;
- b=exXDoZklOlxvCo8z+vUpJOagZlIMrkoXiJEUIX2iYigpsbPDUvFk/BLg04WVo2VDAR
- 6VtT/tgcAjww1Vr6gplPIL7x+/NQ8TVXgfVwtyPG4W3XbkI4hpVFfckw7d+fduWFEwJR
- Ud/Hq6KlxvMswPZx7GXbJCVdMtctbiFr+NtanWqPGE16vLD90HvLl7AbaK/XlLZSvriC
- 1FSd+4nXODWiG4j/hBFoPDlwIixPdmVgb9H2hlzzaHWOBQn0xrXQf8S1CniuVZfxo6h4
- 9DA7VDaClyVW3FcGDX4nxVqLvDkVPzgLwGTgV5jeFTHW7/P2XN8AeurVWdm0QcFK714y
- Vauw==
-X-Gm-Message-State: AOAM533c3PU28xhbpFBBwPHkUSGhGffXTHCNPZKkM3gERlQH/qf3z0Pc
- MMZF9i0SrVccIxERFLio8FNBMI0K
-X-Google-Smtp-Source: ABdhPJw/Nq5o5oUVosdVviCUrP7VkvUkbA3Uis9JTnecmJU6xjhswq1DpZIkgu/dTUa/3dFeSQfhPg==
-X-Received: by 2002:a0c:ea8e:: with SMTP id d14mr17677316qvp.37.1596044093467; 
- Wed, 29 Jul 2020 10:34:53 -0700 (PDT)
+ bh=r18oPVXv0IMyymb52P6a5Lmr7QX+ngKP34/PJcJgsYM=;
+ b=kJFQLDFoE2h9Ls/ByBBx7DrYwyGRxqWU0TNpcmJF3ro4DF04u7BW/Y9UTTYGb3NlP4
+ 5GDapAnWchgM0PcfS3wGwmDtSoxhvPeERdQwSUNpV92glhCBbDjjSW0JbmmWhi+mzNU/
+ +Lr12gVKNxzhW45GLjjSSYfahdqNgznV6Zn68ai1F/KF2XiO/UD5OrP9HNhO+apG4PWL
+ gBAkM7A+TGBloobTSSdOyJHsoTHIQPQczoDqMYy7gYaAgvtbZpTp1rv38mgEdS3Hp1is
+ nGksuAvkChSyYagmBXHumBHur99M3jFSTnZfk9NoGFowbwXiG5CayutLU9J5JYaYDQJx
+ 5W9A==
+X-Gm-Message-State: AOAM5334VcLt+qeU15B2fA3kS1O/Xp/b3rQOLyg5GrrA1O2YRKWlGvqv
+ 0ppzgW+4Zzm5oXsZSPqIzPpVjb8E
+X-Google-Smtp-Source: ABdhPJyyIDAF+33AKqiDzTIW0dNV3OV9DpcCzWczGufwDtEWHQtlPiJJSlcyAGzpCrIFLlGs/WjdkQ==
+X-Received: by 2002:a05:620a:15e8:: with SMTP id
+ p8mr33416828qkm.182.1596044094493; 
+ Wed, 29 Jul 2020 10:34:54 -0700 (PDT)
 Received: from localhost.localdomain ([71.219.66.138])
- by smtp.gmail.com with ESMTPSA id z72sm2132956qka.107.2020.07.29.10.34.52
+ by smtp.gmail.com with ESMTPSA id z72sm2132956qka.107.2020.07.29.10.34.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Jul 2020 10:34:52 -0700 (PDT)
+ Wed, 29 Jul 2020 10:34:53 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 07/17] drm/amdgpu/gmc: add new helper to get the FB size used
- by pre-OS console
-Date: Wed, 29 Jul 2020 13:34:29 -0400
-Message-Id: <20200729173439.3698-8-alexander.deucher@amd.com>
+Subject: [PATCH 08/17] drm/amdgpu/gmc6: switch to using
+ amdgpu_gmc_get_vbios_allocations
+Date: Wed, 29 Jul 2020 13:34:30 -0400
+Message-Id: <20200729173439.3698-9-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200729173439.3698-1-alexander.deucher@amd.com>
 References: <20200729173439.3698-1-alexander.deucher@amd.com>
@@ -74,102 +75,45 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This adds a new gmc callback to get the size reserved by the pre-OS
-console and provides a helper function for use by gmc IP drivers.
+The new helper centralizes the logic in one place.
 
 Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 43 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  5 +++
- 2 files changed, 48 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 21d2c8543f85..fc9e18aaa76e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -27,6 +27,7 @@
- #include <linux/io-64-nonatomic-lo-hi.h>
- 
- #include "amdgpu.h"
-+#include "amdgpu_gmc.h"
- #include "amdgpu_ras.h"
- #include "amdgpu_xgmi.h"
- 
-@@ -431,3 +432,45 @@ void amdgpu_gmc_set_vm_fault_masks(struct amdgpu_device *adev, int hub_type,
- 		WREG32(reg, tmp);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+index 28ddb41a78c8..95a9117e9564 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+@@ -812,9 +812,6 @@ static unsigned gmc_v6_0_get_vbios_fb_size(struct amdgpu_device *adev)
+ 			REG_GET_FIELD(viewport, VIEWPORT_SIZE, VIEWPORT_WIDTH) *
+ 			4);
  	}
+-	/* return 0 if the pre-OS buffer uses up most of vram */
+-	if ((adev->gmc.real_vram_size - size) < (8 * 1024 * 1024))
+-		return 0;
+ 	return size;
  }
-+
-+void amdgpu_gmc_get_vbios_allocations(struct amdgpu_device *adev)
-+{
-+	unsigned size;
-+
-+	/*
-+	 * TODO:
-+	 * Currently there is a bug where some memory client outside
-+	 * of the driver writes to first 8M of VRAM on S3 resume,
-+	 * this overrides GART which by default gets placed in first 8M and
-+	 * causes VM_FAULTS once GTT is accessed.
-+	 * Keep the stolen memory reservation until the while this is not solved.
-+	 */
-+	switch (adev->asic_type) {
-+	case CHIP_VEGA10:
-+	case CHIP_RAVEN:
-+	case CHIP_ARCTURUS:
-+	case CHIP_RENOIR:
-+		adev->gmc.keep_stolen_vga_memory = true;
-+		break;
-+	default:
-+		adev->gmc.keep_stolen_vga_memory = false;
-+		break;
-+	}
-+
-+	if (!amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_DCE))
-+		size = 0;
-+	else
-+		size = amdgpu_gmc_get_vbios_fb_size(adev);
-+
-+	/* set to 0 if the pre-OS buffer uses up most of vram */
-+	if ((adev->gmc.real_vram_size - size) < (8 * 1024 * 1024))
-+		size = 0;
-+
-+	if (size > AMDGPU_VBIOS_VGA_ALLOCATION) {
-+		adev->gmc.stolen_vga_size = AMDGPU_VBIOS_VGA_ALLOCATION;
-+		adev->gmc.stolen_extended_size = size - adev->gmc.stolen_vga_size;
-+	} else {
-+		adev->gmc.stolen_vga_size = size;
-+		adev->gmc.stolen_extended_size = 0;
-+	}
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-index 8f4af955d72c..c2a85d0b1546 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-@@ -131,6 +131,8 @@ struct amdgpu_gmc_funcs {
- 	void (*get_vm_pte)(struct amdgpu_device *adev,
- 			   struct amdgpu_bo_va_mapping *mapping,
- 			   uint64_t *flags);
-+	/* get the amount of memory used by the vbios for pre-OS console */
-+	unsigned int (*get_vbios_fb_size)(struct amdgpu_device *adev);
+ 
+@@ -862,7 +859,7 @@ static int gmc_v6_0_sw_init(void *handle)
+ 	if (r)
+ 		return r;
+ 
+-	adev->gmc.stolen_vga_size = gmc_v6_0_get_vbios_fb_size(adev);
++	amdgpu_gmc_get_vbios_allocations(adev);
+ 
+ 	r = amdgpu_bo_init(adev);
+ 	if (r)
+@@ -1136,6 +1133,7 @@ static const struct amdgpu_gmc_funcs gmc_v6_0_gmc_funcs = {
+ 	.set_prt = gmc_v6_0_set_prt,
+ 	.get_vm_pde = gmc_v6_0_get_vm_pde,
+ 	.get_vm_pte = gmc_v6_0_get_vm_pte,
++	.get_vbios_fb_size = gmc_v6_0_get_vbios_fb_size,
  };
  
- struct amdgpu_xgmi {
-@@ -253,6 +255,7 @@ struct amdgpu_gmc {
- #define amdgpu_gmc_map_mtype(adev, flags) (adev)->gmc.gmc_funcs->map_mtype((adev),(flags))
- #define amdgpu_gmc_get_vm_pde(adev, level, dst, flags) (adev)->gmc.gmc_funcs->get_vm_pde((adev), (level), (dst), (flags))
- #define amdgpu_gmc_get_vm_pte(adev, mapping, flags) (adev)->gmc.gmc_funcs->get_vm_pte((adev), (mapping), (flags))
-+#define amdgpu_gmc_get_vbios_fb_size(adev) (adev)->gmc.gmc_funcs->get_vbios_fb_size((adev))
- 
- /**
-  * amdgpu_gmc_vram_full_visible - Check if full VRAM is visible through the BAR
-@@ -307,4 +310,6 @@ extern void
- amdgpu_gmc_set_vm_fault_masks(struct amdgpu_device *adev, int hub_type,
- 			      bool enable);
- 
-+void amdgpu_gmc_get_vbios_allocations(struct amdgpu_device *adev);
-+
- #endif
+ static const struct amdgpu_irq_src_funcs gmc_v6_0_irq_funcs = {
 -- 
 2.25.4
 
