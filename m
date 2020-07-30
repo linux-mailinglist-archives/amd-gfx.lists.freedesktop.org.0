@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4707A2338D2
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 21:12:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69B922338CD
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 21:12:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D176E6E95D;
-	Thu, 30 Jul 2020 19:12:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2E76E95F;
+	Thu, 30 Jul 2020 19:12:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2061.outbound.protection.outlook.com [40.107.244.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 643B26E95D
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 19:12:41 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2089.outbound.protection.outlook.com [40.107.243.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D5AE6E95B
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 19:12:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LsalQerbu0LCRSshqknEa+H+/SnZa+IzqOsmt87D4ViDjgVkauVVX538iG1uSuFke+g4o+NyIGvOQePA9Wscb+Wp+fKq8O4/8WsA0abRIvQrtHm2ByAQE3nmaUaqoJ/Xa/ASE9ur1a1qrK1miaPo6XmrHddpRSGt+g8Z1e67lnF0b/mqrttmODzJUGGmGZlruGuod/whk3KdvgSy1KFg76DUYKxI6VkpHGLUA3jKSML4Xr+38k+lrzU1R2qxLrXelSfW5kw3Wm9VauvwBxUPtavqklmusk388K/ymLsHz/GJ6emLKKaREiL3J2lJ3V9u4QAx4vVQvFjplftKwvfSBg==
+ b=PLqjeOVfs7FpCnGpQoxJLLfd08338T+NahwaABhvg3ZS+uW+yQa3qX+5EpmCFglimGXoph+xQl5qS4BAC8aI0doREjXbmMmAvlQUeUzpwDfvaaICQzsIvSWj4kn5tl7jbTAYnYE5NcENlgmmEgInB0+cb2tgqZWwg5FEpOR7L2umRvot3GeOF01+uvPEPogQB7QrPYcXfjJMaDjj6wfPL6Paj5w3lysZ5PXeVOKcyfbOMzFSFOQzOVchtIUQaTywnkwjoeYtnHurqUyq63HWqqN5XQnMxLGOe6OCwVSw04gVR5FFSJLnpAb5uRU+8qbJ7dPNR1ftgOas9EjTatelwA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e5pgWVTaGTyRxwVwHAbMQxzqiNpq11kEmx8KuLbP5oo=;
- b=PqwzRWA57F1z2gUbPg+SbVdsFYHi4fdEwbyCuf2m51/eYGG0waa1XItbciiLQj56gCh/7BeEf40JTWTHQWRTyjPzV/MMahv6WxEzVcWimAGrkj9krH4/BvemCuhAz2zrbgR9NQErhhJwOg8yA7hkSz13COXgn7HCUROFSC07M1nVqP29CsXYcfb8xlk6A1T82Orl8yoz4m7M9aTjZFYk/De7pSZhFD0BRqV349xy6BYnT2drTPNPD7sJszNRgxq+EMeZWG2oKtZvi4HXcrXx8klgPy7ROi6YavCO8hCyD07TKEDKUnr68VdDAMz5A1Q3ZLjamTrBRm+OdIEDlCoJOw==
+ bh=+TXR5wLC/w/tFvXvcB5HxZyGSQ1Uz3NQA9oS8oZnRik=;
+ b=nkqhjViIGmFGOTE/hUfGROR2Zv24/NkjKApwrRvcZ9YT+nutZ9oL3Z/JFuLX4Aw5XpZbU8UJfZfQ7E09DvLSmvo412rLZ1Fzuaqm//xx61+5kXVWErNx/Bu9VUewhSXJSPlRkYhX4xcK+smvqbFDtgRvjsyCbt+KqOxnn2Gl0n33+rNMfeMZQVjFJZuDIi0HFHT1lUR60XAXvIh6Iv5iww01ajCQ0is9Y9z4WKAmZnh9R/dK7kXwnOS5fDb/inaHF3TBGEB0jB8h3WvJ4EsHkjqCDro914TZwxnXTMncr/tSzWUQULxrYCDicENUA2/YAAPbFl9KxEDUB1xH3JK1xg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,16 +27,16 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e5pgWVTaGTyRxwVwHAbMQxzqiNpq11kEmx8KuLbP5oo=;
- b=bJF/m03O0LYH+DPbomM4qBrHXySdXzTOWVMJwEkYH3JJXA15LJMoG3W+QDHGAbSHlSsZiRy1t/Yof3pOTWjMcmcjYD88kshrrEy6T86ckp3Y1Mr0P6XbwCDQ+lVZUka5huxkG4JYjg6/7T7iSShs3qEhgR5oZVIO4o0RXC5Vkfk=
-Received: from BN6PR03CA0008.namprd03.prod.outlook.com (2603:10b6:404:23::18)
- by DM6PR12MB4298.namprd12.prod.outlook.com (2603:10b6:5:21e::9) with
+ bh=+TXR5wLC/w/tFvXvcB5HxZyGSQ1Uz3NQA9oS8oZnRik=;
+ b=SuSV8ITGrZI21Q2AgVfyTxg2G434JrDZ2Sp75dePr5JWtb06rt4lA9qnewmEHpiMNZznNQM9aQUiCfOk24gcrf0N+gR6FgrJmGKBkaqveZtfMGY/AXIO+zorgFoYPWN1zVurZUig2TudxTYGAOG2Ibm9QXdOJbM7CgDtaxUzvCw=
+Received: from DM5PR12CA0069.namprd12.prod.outlook.com (2603:10b6:3:103::31)
+ by MN2PR12MB3392.namprd12.prod.outlook.com (2603:10b6:208:cb::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Thu, 30 Jul
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.16; Thu, 30 Jul
  2020 19:12:34 +0000
-Received: from BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:23:cafe::72) by BN6PR03CA0008.outlook.office365.com
- (2603:10b6:404:23::18) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:103:cafe::80) by DM5PR12CA0069.outlook.office365.com
+ (2603:10b6:3:103::31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.16 via Frontend
  Transport; Thu, 30 Jul 2020 19:12:34 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
@@ -45,27 +45,26 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- BN8NAM11FT039.mail.protection.outlook.com (10.13.177.169) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ DM6NAM11FT068.mail.protection.outlook.com (10.13.173.67) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3239.20 via Frontend Transport; Thu, 30 Jul 2020 19:12:33 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3239.20 via Frontend Transport; Thu, 30 Jul 2020 19:12:34 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 30 Jul
- 2020 14:12:33 -0500
+ 2020 14:12:34 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 30 Jul
- 2020 14:12:32 -0500
+ 2020 14:12:33 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
  Transport; Thu, 30 Jul 2020 14:12:32 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 11/16] drm/amd/display: Change null plane state swizzle mode
- to 4kb_s
-Date: Thu, 30 Jul 2020 15:11:41 -0400
-Message-ID: <20200730191146.33112-12-aurabindo.pillai@amd.com>
+Subject: [PATCH 12/16] drm/amd/display: Display goes blank after inst
+Date: Thu, 30 Jul 2020 15:11:42 -0400
+Message-ID: <20200730191146.33112-13-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200730191146.33112-1-aurabindo.pillai@amd.com>
 References: <20200730191146.33112-1-aurabindo.pillai@amd.com>
@@ -73,28 +72,28 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: caf46e8d-ebba-42d9-a348-08d834bc835f
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4298:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB42984A14301AEF562BB81D328B710@DM6PR12MB4298.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:569;
+X-MS-Office365-Filtering-Correlation-Id: c2b02624-7ba5-4393-c9b2-08d834bc8418
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3392:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3392F7E92853884C4B2EC15E8B710@MN2PR12MB3392.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:989;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zr3SNtd/OLQwnxiPpk3MQJZz92Nk2ukqqjRP73Rwzr4mieewCRQwoZJf7SbeSgaWu1pGcoVv/bGPxD4go7FOTuJum8hW9zUE/G+/OnzBpoVp8AyiEDjRV+8vYec/QsyiC0cdEACOP8kSrTpENuZmCjvGxMTtlat9PyqLYI9LRnsQyfi8jWzTbSVnapPNrBqtu53/eg41UFpShDtLwJd3Mp4E738dVsFSvEWYJo0MVPzoBurmkosC0qsdcAB0Yi/8+MoE5PLEaKwbYtG93CpR9/IGKN7DqMJaUgQYSYP/TsDd1ibyzSHZIm4yFikMLzBm8X5O6Hx7oO49IQsJwebiWahZOFqR/aMVLvSJLzNpMGJF+6UZVFMWK/1OkJpVGzq6q3jyhJktfywKOHMXe8yJxw==
+X-Microsoft-Antispam-Message-Info: G8SG1L/v6D3eaItkCOC91xaOMLND7DOMgxjoEQGzd2m3+meYLWw2ZHDuGv2DAsS9fnR1xs1NLm6sWqvAUeLpYPRdhgopPgaBtyhug8FVA5UUs7iRoKe4q3EJPR7/MlZnMSZPZe6n13vY6qi0tDWfdbbYJTKSLToEZjJpd27oIVqWyuaUb94HxlQS2fAMdaxF2JyrtpmCT/G2ECE9dfpBy/Ww3l32R9hc/JTNTQER+e48y6jVEbM5vAiA9Oe4jzIOrVbi6NWBQcNJGksx/R0+dI2pY8TTptWyILRe/ZEyrA2HkLeeB/SEsb6B2aiPyN/G2ocT332OhIoRaWzhJ+YxeHGufufJS4JxKZx860bw5uQn0Lx1aCsSO8yp9iSx1+Jjg+rEn3uC+AaIUb1R1QNjSw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(346002)(136003)(376002)(396003)(39860400002)(46966005)(7696005)(54906003)(356005)(5660300002)(26005)(186003)(4326008)(83380400001)(70206006)(2906002)(36756003)(70586007)(478600001)(86362001)(8936002)(82310400002)(1076003)(316002)(81166007)(47076004)(8676002)(2616005)(82740400003)(44832011)(336012)(426003)(6666004)(6916009);
+ SFS:(4636009)(39860400002)(396003)(346002)(376002)(136003)(46966005)(70586007)(70206006)(356005)(6916009)(81166007)(82740400003)(4326008)(83380400001)(478600001)(82310400002)(47076004)(54906003)(5660300002)(2906002)(36756003)(8676002)(86362001)(8936002)(7696005)(2616005)(336012)(1076003)(26005)(186003)(6666004)(426003)(316002)(44832011);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2020 19:12:33.5074 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: caf46e8d-ebba-42d9-a348-08d834bc835f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2020 19:12:34.6798 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2b02624-7ba5-4393-c9b2-08d834bc8418
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4298
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3392
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,55 +105,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Eryk.Brol@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- George Shen <george.shen@amd.com>, Bhawanpreet.Lakha@amd.com
+Cc: Aric Cyr <Aric.Cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Igor Kravchenko <Igor.Kravchenko@amd.com>, Aurabindo.Pillai@amd.com,
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: George Shen <george.shen@amd.com>
+From: Igor Kravchenko <Igor.Kravchenko@amd.com>
 
-[Why]
-During SetPathMode and UpdatePlanes, the plane state can be null. We default
-to linear swizzle mode when plane state is null. This resulted in bandwidth
-validation failing when trying to set 8K60 mode (which previously passed validation
-during rebuild timing list).
+[why]
+Display goes blank after driver installation.
+Aux tuning parameters must be used for 2.x only.
+Wrong dc_golden_table offset was used.
 
 [How]
-Change the default swizzle mode from linear to 4kb_s and update pitch accordingly.
+Implement a new enc3_hw_init function without VBIOS constants usage to
+be called for 3.x
+Calculate dc_golden_table offset using sum of
+base dce_info offset and golden table offset
 
-Signed-off-by: George Shen <george.shen@amd.com>
-Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Signed-off-by: Igor Kravchenko <Igor.Kravchenko@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../drm/amd/display/dc/bios/bios_parser2.c    |  4 +-
+ .../display/dc/dcn30/dcn30_dio_link_encoder.c | 53 ++++++++++++++++++-
+ .../display/dc/dcn30/dcn30_dio_link_encoder.h |  2 +
+ 3 files changed, 56 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 2a5e7175926a..790baf552695 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -2223,7 +2223,7 @@ int dcn20_populate_dml_pipes_from_context(
- 		if (!res_ctx->pipe_ctx[i].plane_state) {
- 			pipes[pipe_cnt].pipe.src.is_hsplit = pipes[pipe_cnt].pipe.dest.odm_combine != dm_odm_combine_mode_disabled;
- 			pipes[pipe_cnt].pipe.src.source_scan = dm_horz;
--			pipes[pipe_cnt].pipe.src.sw_mode = dm_sw_linear;
-+			pipes[pipe_cnt].pipe.src.sw_mode = dm_sw_4kb_s;
- 			pipes[pipe_cnt].pipe.src.macro_tile_size = dm_64k_tile;
- 			pipes[pipe_cnt].pipe.src.viewport_width = timing->h_addressable;
- 			if (pipes[pipe_cnt].pipe.src.viewport_width > 1920)
-@@ -2235,7 +2235,7 @@ int dcn20_populate_dml_pipes_from_context(
- 			pipes[pipe_cnt].pipe.src.surface_width_y = pipes[pipe_cnt].pipe.src.viewport_width;
- 			pipes[pipe_cnt].pipe.src.surface_height_c = pipes[pipe_cnt].pipe.src.viewport_height;
- 			pipes[pipe_cnt].pipe.src.surface_width_c = pipes[pipe_cnt].pipe.src.viewport_width;
--			pipes[pipe_cnt].pipe.src.data_pitch = ((pipes[pipe_cnt].pipe.src.viewport_width + 63) / 64) * 64; /* linear sw only */
-+			pipes[pipe_cnt].pipe.src.data_pitch = ((pipes[pipe_cnt].pipe.src.viewport_width + 255) / 256) * 256;
- 			pipes[pipe_cnt].pipe.src.source_format = dm_444_32;
- 			pipes[pipe_cnt].pipe.dest.recout_width = pipes[pipe_cnt].pipe.src.viewport_width; /*vp_width/hratio*/
- 			pipes[pipe_cnt].pipe.dest.recout_height = pipes[pipe_cnt].pipe.src.viewport_height; /*vp_height/vratio*/
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index f8db92fed9cf..078b7e344185 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -2101,7 +2101,7 @@ static struct atom_dc_golden_table_v1 *bios_get_golden_table(
+ 									DATA_TABLES(dce_info));
+ 			if (!disp_cntl_tbl_4_4)
+ 				return NULL;
+-			dc_golden_offset = disp_cntl_tbl_4_4->dc_golden_table_offset;
++			dc_golden_offset = DATA_TABLES(dce_info) + disp_cntl_tbl_4_4->dc_golden_table_offset;
+ 			*dc_golden_table_ver = disp_cntl_tbl_4_4->dc_golden_table_ver;
+ 			break;
+ 		}
+@@ -2115,7 +2115,7 @@ static struct atom_dc_golden_table_v1 *bios_get_golden_table(
+ 		return NULL;
+ 
+ 	return GET_IMAGE(struct atom_dc_golden_table_v1,
+-					 dc_golden_offset);
++			dc_golden_offset);
+ }
+ 
+ static enum bp_result bios_get_atom_dc_golden_table(
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.c
+index c29326e9856a..2ae159e2dd6e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.c
+@@ -62,7 +62,7 @@ static const struct link_encoder_funcs dcn30_link_enc_funcs = {
+ 	.read_state = link_enc2_read_state,
+ 	.validate_output_with_stream =
+ 			dcn30_link_encoder_validate_output_with_stream,
+-	.hw_init = enc2_hw_init,
++	.hw_init = enc3_hw_init,
+ 	.setup = dcn10_link_encoder_setup,
+ 	.enable_tmds_output = dcn10_link_encoder_enable_tmds_output,
+ 	.enable_dp_output = dcn20_link_encoder_enable_dp_output,
+@@ -203,3 +203,54 @@ void dcn30_link_encoder_construct(
+ 		enc10->base.features.flags.bits.HDMI_6GB_EN = 0;
+ 	}
+ }
++
++#define AUX_REG(reg)\
++	(enc10->aux_regs->reg)
++
++#define AUX_REG_READ(reg_name) \
++		dm_read_reg(CTX, AUX_REG(reg_name))
++
++#define AUX_REG_WRITE(reg_name, val) \
++			dm_write_reg(CTX, AUX_REG(reg_name), val)
++void enc3_hw_init(struct link_encoder *enc)
++{
++	struct dcn10_link_encoder *enc10 = TO_DCN10_LINK_ENC(enc);
++
++/*
++	00 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__1to2 : 1/2
++	01 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__3to4 : 3/4
++	02 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__7to8 : 7/8
++	03 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__15to16 : 15/16
++	04 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__31to32 : 31/32
++	05 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__63to64 : 63/64
++	06 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__127to128 : 127/128
++	07 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__255to256 : 255/256
++*/
++
++/*
++	AUX_REG_UPDATE_5(AUX_DPHY_RX_CONTROL0,
++	AUX_RX_START_WINDOW = 1 [6:4]
++	AUX_RX_RECEIVE_WINDOW = 1 default is 2 [10:8]
++	AUX_RX_HALF_SYM_DETECT_LEN  = 1 [13:12] default is 1
++	AUX_RX_TRANSITION_FILTER_EN = 1 [16] default is 1
++	AUX_RX_ALLOW_BELOW_THRESHOLD_PHASE_DETECT [17] is 0  default is 0
++	AUX_RX_ALLOW_BELOW_THRESHOLD_START [18] is 1  default is 1
++	AUX_RX_ALLOW_BELOW_THRESHOLD_STOP [19] is 1  default is 1
++	AUX_RX_PHASE_DETECT_LEN,  [21,20] = 0x3 default is 3
++	AUX_RX_DETECTION_THRESHOLD [30:28] = 1
++*/
++	AUX_REG_WRITE(AUX_DPHY_RX_CONTROL0, 0x103d1110);
++
++	AUX_REG_WRITE(AUX_DPHY_TX_CONTROL, 0x21c7a);
++
++	//AUX_DPHY_TX_REF_CONTROL'AUX_TX_REF_DIV HW default is 0x32;
++	// Set AUX_TX_REF_DIV Divider to generate 2 MHz reference from refclk
++	// 27MHz -> 0xd
++	// 100MHz -> 0x32
++	// 48MHz -> 0x18
++
++	// Set TMDS_CTL0 to 1.  This is a legacy setting.
++	REG_UPDATE(TMDS_CTL_BITS, TMDS_CTL0, 1);
++
++	dcn10_aux_initialize(enc10);
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h
+index 585d1ce63db1..8e9fd59ccde8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h
+@@ -73,4 +73,6 @@ void dcn30_link_encoder_construct(
+ 	const struct dcn10_link_enc_shift *link_shift,
+ 	const struct dcn10_link_enc_mask *link_mask);
+ 
++void enc3_hw_init(struct link_encoder *enc);
++
+ #endif /* __DC_LINK_ENCODER__DCN30_H__ */
 -- 
 2.25.1
 
