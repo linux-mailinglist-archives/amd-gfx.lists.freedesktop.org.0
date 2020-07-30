@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2600D2338C3
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 21:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28FBD2338C5
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 21:12:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94D906E952;
-	Thu, 30 Jul 2020 19:12:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95A386E955;
+	Thu, 30 Jul 2020 19:12:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2075.outbound.protection.outlook.com [40.107.236.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21E8B6E952
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 19:12:02 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA1916E955
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 19:12:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DNbdfs1BPswaWR9jO3eizax+gEdxXEWwcK/lH76ssNvGJAKJs8jTZW/wydjWCoULvu6OzcBZxZ1UczXf3U0hZQZKz8HcMJ0n6ksallBxdP1LY9keGvJs7kzOG5Q1RL6Q8FwA+mBX1U0F92sNFZ9sOZisyPSUCQfKrgwlXpyH4cloq8YI/3mkbTGj1f9zKfQGI1wfwPPstIrHMoQ1hT1tmtS7y5GgloVleY9KlUvhNpo7icixQlY4iYGTefTSxNnW8062m6qiZ9XjbPeMoO4JpQUVsMGwXDnXUeULrIwLL0KIxo/Y+YObu+g8ep3Oup83TtUknWEN4PoMrHsGSpSKMQ==
+ b=HmCI0cClKJJN+YN6ozzVtShBCma3EIHNA0VoUG7k7Y5PBg/fZXWsbzM6jpvXv0gpqh7Vzr++956yEBAvL1IzRuecQQwxzwrCTnW95Se98rt5NoFIdcEg5Sl373o3Y88FamYd2MW96Ef/qONsOMOwaMRDdyXskszbaxtZVx0DBm+cwra3mMe8e/Rz0SG1I4epj/VNbOSvW+CMgp5EFTM1pgiRaFCbnMAmoyUmQ2Lpm+x/Fs/UTzE7kh2nhm3GHcFTkU4yL2HWcEFfhJji3YBP9rivlJzyLuKylU8IedGMXqW4t0wzak7KhW14/zCwC5sxEHF1PP5o91CK43Gyc+Lt8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1WhR/EppiEyn7nfsA3QCcrcwbt7zc/AfzR8pMVuDnXg=;
- b=eWk0TVPfBtUNmQufzp45uBcgyu9xDYq5M3Ss9paRUddiXTVnB/MsgMGEPt8WarmxkLRanR171ghe5Fl8yrP/E54r4kyx1TZ/OBS7VtH7/rGYiYWS+4rFM/eKQYDg5fz6yKz3u69ahMpmo22g+rn0c4N9q/r2LHFVYbU5m6OjNdHIgbZ+6y1U12rk0eoq8E3hs41GMF85sLqkmlByGrQ96IUJvIh1WcTpmVuGiEipvOu4Xen7RjADxGOoinY8bm5ZkRU0xlZZAYgqphtq0VHgws1NTDtqL2wcG5HjB40SvXnpnjFonNur+JRgvw1j8l73gkczhopjtOySDcJ4tHvqJQ==
+ bh=ZixWhTz4zv/Hc4SjaJuu7znBBHWXKOjUkU7mSmuQyXk=;
+ b=G/8SOrXbcOO4xbhCjfhNuet1y7ma24pHFQk7PVNAG0kKQwlGrbqcUQfZDwGOV/mdc9VP7wrRO/DFq/9rPBH4BNsb/WL9VBIBpDEMLDGoreW9CmrqhH0M3Gel/R7D1o3AiRhdHoTMp/GHnlX0bBgOdix7yljBTjRF8cLzK94TwBAgZTZo9M7uYjKVW1lzYJEl7Bx2TdAcPBWa4JdfHeqRrwdU5VT061h+FhTr300lObTQVx+p2rTaa8TxyW9MslUOmeBUKwS3x99t5+Ujil19fS0PUn4NZjmhpXyBcF9vkl4aJEgi267Ew9jmrJlNSJpe4B7L6X/xNtRz6yxdpBTBaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,44 +27,44 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1WhR/EppiEyn7nfsA3QCcrcwbt7zc/AfzR8pMVuDnXg=;
- b=uaulWtEQcAcQwS/LAUwhELyXW8flqcTmg7YUQlhXkJH9ZMv7X/QsM8hMDew8J/P7HDTX284C2D7F/C35qNAtZ1qxHvEuAmI8d1UQvCQQNGYRNkKKVl+EvOS+IRUREVdTizFdY8B4h1SKCvbIEAhx+DeaLTng3DzHUKO4qo2GsX8=
-Received: from BN6PR16CA0026.namprd16.prod.outlook.com (2603:10b6:405:14::12)
- by DM6PR12MB3132.namprd12.prod.outlook.com (2603:10b6:5:3c::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.33; Thu, 30 Jul
- 2020 19:11:59 +0000
-Received: from BN8NAM11FT042.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:14:cafe::c7) by BN6PR16CA0026.outlook.office365.com
- (2603:10b6:405:14::12) with Microsoft SMTP Server (version=TLS1_2,
+ bh=ZixWhTz4zv/Hc4SjaJuu7znBBHWXKOjUkU7mSmuQyXk=;
+ b=YpooDOfhmllGm77HgNixEVBd6X4GYe5S4vfTRNFZCjUsGDHaMDnPW2hIPpeIpWaiiGwwTIXpH2NKQHmtTG5P0AGqtnLU04TGkXc+dh4bVJBdb40ugSNiE2HhiI/nYLwerz5PLGzuJ2vTMjbFB1qrPm4EAE6Kk02c0PJWjAQYq7w=
+Received: from DM3PR12CA0056.namprd12.prod.outlook.com (2603:10b6:0:56::24) by
+ SN1PR12MB2574.namprd12.prod.outlook.com (2603:10b6:802:26::32) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3239.16; Thu, 30 Jul 2020 19:12:01 +0000
+Received: from DM6NAM11FT046.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:0:56:cafe::c8) by DM3PR12CA0056.outlook.office365.com
+ (2603:10b6:0:56::24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.18 via Frontend
- Transport; Thu, 30 Jul 2020 19:11:59 +0000
+ Transport; Thu, 30 Jul 2020 19:12:01 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- BN8NAM11FT042.mail.protection.outlook.com (10.13.177.85) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ DM6NAM11FT046.mail.protection.outlook.com (10.13.172.121) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3239.17 via Frontend Transport; Thu, 30 Jul 2020 19:11:59 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3239.17 via Frontend Transport; Thu, 30 Jul 2020 19:12:01 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 30 Jul
- 2020 14:11:58 -0500
+ 2020 14:11:59 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 30 Jul
- 2020 14:11:58 -0500
+ 2020 14:11:59 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Thu, 30 Jul 2020 14:11:47 -0500
+ Transport; Thu, 30 Jul 2020 14:11:58 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 01/16] drm/amd/display: DSC Slice height debugfs write entry
-Date: Thu, 30 Jul 2020 15:11:31 -0400
-Message-ID: <20200730191146.33112-2-aurabindo.pillai@amd.com>
+Subject: [PATCH 02/16] drm/amd/display: Update virtual stream encoder
+Date: Thu, 30 Jul 2020 15:11:32 -0400
+Message-ID: <20200730191146.33112-3-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200730191146.33112-1-aurabindo.pillai@amd.com>
 References: <20200730191146.33112-1-aurabindo.pillai@amd.com>
@@ -72,28 +72,28 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b7f83a5a-737a-4a0b-f865-08d834bc6f01
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3132:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3132243E62A6D5D4A043BDCE8B710@DM6PR12MB3132.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: 6bb4b397-34be-4cce-8c3c-08d834bc7021
+X-MS-TrafficTypeDiagnostic: SN1PR12MB2574:
+X-Microsoft-Antispam-PRVS: <SN1PR12MB25747EA72F7F88C22699D7028B710@SN1PR12MB2574.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:418;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ldLl1ojCDVtE9EdKDkMdgONX1s9rXZRuS0i+jtx/WwypnRGivQkAkpEphwycvm9sG4b+zD/VBU3dyFF/GnC3J3LC5vq/WZy6l2yeIXxNhvt2cJ/ZE5w2OQa0tw6UJ5KSZjzLEqOdXlNSEtz1Ykrtqxjb8R0g/Rl6we860qzmknEPii745uWhPPGYIjNUPsesag7crU/rntLtuqfQepEUYvE2MOKm4V44NkxCx1CNwTSmXi65SyvxGZQ/VAcAEuRzJRvtge6mz/IL+4cJKZCgBHX30ZYruIGgGdvTHdrCL4o7p9QDfsVbbR+rrEs8QPLjHAh+ZBpNuG5bk488JJtIgHsuvi+961XIzjkzzmzfO52EAG2WuKPMb4Hqp8/qbeoE4H/FJxRTutBDmqKpyfxmKA==
+X-Microsoft-Antispam-Message-Info: UYdDilNODcUfZ7b6J/mvbGrK73GgyXpT1V7a1ZcsUW7xINk/nBOOe5PPBmjd06An6n0KEgf/OBRbAUaYy02dm0vKu8zvwILXGOg+vT765zJM3ReminJ7IKzxlG5rvMpXIUbHdNSR0le0CbMcqhFQKGjcbxZ8JOeHSn96IJ22gJ04rZ97pqb1AYtYObIZOEabkM5mkYV0+4X4uTjas5RNeYY6uU0ev7OjJFhhkrKjwOQq63jpMjyc5Zvmba5NZbZn60EDbW4HACQRKnWZ1M/LbvDUJDV7geu43iLmFSVXHdS+mYgvvZIaNwNxR6H0le6uauUaxVpkUeeE6jr0VTr/mX+T9rknOW632+hdV5TkOxMjsJvd4X/W6mIBq6VR6N0Yw2wPVT3zOS3QK43oKhknnA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(39860400002)(376002)(346002)(396003)(136003)(46966005)(6916009)(83380400001)(8676002)(8936002)(2906002)(82310400002)(356005)(70586007)(86362001)(316002)(36756003)(54906003)(70206006)(82740400003)(81166007)(186003)(426003)(26005)(7696005)(4326008)(5660300002)(336012)(1076003)(6666004)(44832011)(2616005)(478600001)(47076004);
+ SFS:(4636009)(136003)(376002)(396003)(39860400002)(346002)(46966005)(1076003)(6916009)(478600001)(36756003)(2906002)(54906003)(6666004)(70206006)(316002)(5660300002)(2616005)(47076004)(44832011)(82310400002)(4326008)(82740400003)(426003)(86362001)(356005)(186003)(7696005)(70586007)(26005)(8676002)(336012)(8936002)(81166007);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2020 19:11:59.3381 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7f83a5a-737a-4a0b-f865-08d834bc6f01
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2020 19:12:01.1838 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6bb4b397-34be-4cce-8c3c-08d834bc7021
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT042.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT046.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3132
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2574
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,216 +105,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk Brol <eryk.brol@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- Mikita Lipski <Mikita.Lipski@amd.com>, Bhawanpreet.Lakha@amd.com
+Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Eryk.Brol@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
+ Eric Bernstein <eric.bernstein@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Eryk Brol <eryk.brol@amd.com>
+From: Eric Bernstein <eric.bernstein@amd.com>
 
-[Why]
-We need to be able to specify slice height for any connector's DSC
-
-[How]
-Overwrite computed parameters in dsc_cfg, with the value needed/
-Overwrites for both SST and MST connectors, but in different places, but the process is identical. Overwrites only if DSC is decided to be enabled on that connector.
-
-Signed-off-by: Eryk Brol <eryk.brol@amd.com>
-Signed-off-by: Mikita Lipski <mikita.lipski@amd.com>
-Reviewed-by: Mikita Lipski <Mikita.Lipski@amd.com>
+Signed-off-by: Eric Bernstein <eric.bernstein@amd.com>
+Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  7 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  1 +
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 93 +++++++++++++++++++
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  7 ++
- 4 files changed, 107 insertions(+), 1 deletion(-)
+ .../amd/display/dc/virtual/virtual_stream_encoder.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 346a6afd16ab..29570ce77967 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -4743,9 +4743,14 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
- 			/* Overwrite the stream flag if DSC is enabled through debugfs */
- 			if (aconnector->dsc_settings.dsc_clock_en)
- 				stream->timing.flags.DSC = 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c
+index b8040da94b9d..944c0327763c 100644
+--- a/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c
+@@ -87,6 +87,17 @@ static void virtual_enc_dp_set_odm_combine(
+ 	bool odm_combine)
+ {}
+ 
++static void virtual_dig_connect_to_otg(
++		struct stream_encoder *enc,
++		int tg_inst)
++{}
 +
- 			if (stream->timing.flags.DSC && aconnector->dsc_settings.dsc_slice_width)
- 				stream->timing.dsc_cfg.num_slices_h = DIV_ROUND_UP(stream->timing.h_addressable,
--										   aconnector->dsc_settings.dsc_slice_width);
-+									aconnector->dsc_settings.dsc_slice_width);
++static void virtual_setup_stereo_sync(
++			struct stream_encoder *enc,
++			int tg_inst,
++			bool enable)
++{}
 +
-+			if (stream->timing.flags.DSC && aconnector->dsc_settings.dsc_slice_height)
-+				stream->timing.dsc_cfg.num_slices_v = DIV_ROUND_UP(stream->timing.v_addressable,
-+									aconnector->dsc_settings.dsc_slice_height);
- 		}
- #endif
- 	}
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index 5b6f879a108c..333813ede0c7 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -345,6 +345,7 @@ struct amdgpu_display_manager {
- struct dsc_preferred_settings {
- 	bool dsc_clock_en;
- 	uint32_t dsc_slice_width;
-+	uint32_t dsc_slice_height;
+ static const struct stream_encoder_funcs virtual_str_enc_funcs = {
+ 	.dp_set_odm_combine =
+ 		virtual_enc_dp_set_odm_combine,
+@@ -114,6 +125,8 @@ static const struct stream_encoder_funcs virtual_str_enc_funcs = {
+ 	.audio_mute_control = virtual_audio_mute_control,
+ 	.set_avmute = virtual_stream_encoder_set_avmute,
+ 	.hdmi_reset_stream_attribute = virtual_stream_encoder_reset_hdmi_stream_attribute,
++	.dig_connect_to_otg = virtual_dig_connect_to_otg,
++	.setup_stereo_sync = virtual_setup_stereo_sync,
  };
  
- struct amdgpu_dm_connector {
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index df8b84aecc4d..971b75a52e89 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -1292,6 +1292,22 @@ static ssize_t dp_dsc_slice_width_write(struct file *f, const char __user *buf,
- 	return size;
- }
- 
-+/* function: read DSC slice height parameter on the connector
-+ *
-+ * The read function: dp_dsc_slice_height_read
-+ * returns dsc slice height used in the current configuration
-+ * The return is an integer: 0 or other positive number
-+ *
-+ * Access the status with the following command:
-+ *
-+ *	cat /sys/kernel/debug/dri/0/DP-X/dsc_slice_height
-+ *
-+ * 0 - means that DSC is disabled
-+ *
-+ * Any other number more than zero represents the
-+ * slice height currently used by DSC in pixels
-+ *
-+ */
- static ssize_t dp_dsc_slice_height_read(struct file *f, char __user *buf,
- 				    size_t size, loff_t *pos)
- {
-@@ -1349,6 +1365,82 @@ static ssize_t dp_dsc_slice_height_read(struct file *f, char __user *buf,
- 	return result;
- }
- 
-+/* function: write DSC slice height parameter
-+ *
-+ * The write function: dp_dsc_slice_height_write
-+ * overwrites automatically generated DSC configuration
-+ * of slice height.
-+ *
-+ * The user has to write the slice height divisible by the
-+ * picture height.
-+ *
-+ * Also the user has to write height in hexidecimal
-+ * rather than in decimal.
-+ *
-+ * Writing DSC settings is done with the following command:
-+ * - To force overwrite slice height (example sets to 128 pixels):
-+ *
-+ *	echo 0x80 > /sys/kernel/debug/dri/0/DP-X/dsc_slice_height
-+ *
-+ *  - To stop overwriting and let driver find the optimal size,
-+ * set the height to zero:
-+ *
-+ *	echo 0x0 > /sys/kernel/debug/dri/0/DP-X/dsc_slice_height
-+ *
-+ */
-+static ssize_t dp_dsc_slice_height_write(struct file *f, const char __user *buf,
-+				     size_t size, loff_t *pos)
-+{
-+	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
-+	struct pipe_ctx *pipe_ctx;
-+	int i;
-+	char *wr_buf = NULL;
-+	uint32_t wr_buf_size = 42;
-+	int max_param_num = 1;
-+	uint8_t param_nums = 0;
-+	long param[1] = {0};
-+
-+	if (size == 0)
-+		return -EINVAL;
-+
-+	wr_buf = kcalloc(wr_buf_size, sizeof(char), GFP_KERNEL);
-+
-+	if (!wr_buf) {
-+		DRM_DEBUG_DRIVER("no memory to allocate write buffer\n");
-+		return -ENOSPC;
-+	}
-+
-+	if (parse_write_buffer_into_params(wr_buf, wr_buf_size,
-+					    (long *)param, buf,
-+					    max_param_num,
-+					    &param_nums)) {
-+		kfree(wr_buf);
-+		return -EINVAL;
-+	}
-+
-+	if (param_nums <= 0) {
-+		DRM_DEBUG_DRIVER("user data not be read\n");
-+		kfree(wr_buf);
-+		return -EINVAL;
-+	}
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-+			if (pipe_ctx && pipe_ctx->stream &&
-+			    pipe_ctx->stream->link == aconnector->dc_link)
-+				break;
-+	}
-+
-+	if (!pipe_ctx || !pipe_ctx->stream)
-+		goto done;
-+
-+	aconnector->dsc_settings.dsc_slice_height = param[0];
-+
-+done:
-+	kfree(wr_buf);
-+	return size;
-+}
-+
- static ssize_t dp_dsc_bits_per_pixel_read(struct file *f, char __user *buf,
- 				    size_t size, loff_t *pos)
- {
-@@ -1659,6 +1751,7 @@ static const struct file_operations dp_dsc_slice_width_debugfs_fops = {
- static const struct file_operations dp_dsc_slice_height_debugfs_fops = {
- 	.owner = THIS_MODULE,
- 	.read = dp_dsc_slice_height_read,
-+	.write = dp_dsc_slice_height_write,
- 	.llseek = default_llseek
- };
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 2c10352fa514..d433949fe53a 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -473,6 +473,7 @@ struct dsc_mst_fairness_params {
- 	struct drm_dp_mst_port *port;
- 	bool clock_overwrite;
- 	uint32_t slice_width_overwrite;
-+	uint32_t slice_height_overwrite;
- };
- 
- struct dsc_mst_fairness_vars {
-@@ -511,6 +512,11 @@ static void set_dsc_configs_from_fairness_vars(struct dsc_mst_fairness_params *p
- 				params[i].timing->dsc_cfg.num_slices_h = DIV_ROUND_UP(
- 										params[i].timing->h_addressable,
- 										params[i].slice_width_overwrite);
-+
-+			if (params[i].slice_height_overwrite)
-+				params[i].timing->dsc_cfg.num_slices_v = DIV_ROUND_UP(
-+										params[i].timing->v_addressable,
-+										params[i].slice_height_overwrite);
- 		} else {
- 			params[i].timing->flags.DSC = 0;
- 		}
-@@ -728,6 +734,7 @@ static bool compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
- 		if (params[count].clock_overwrite)
- 			debugfs_overwrite = true;
- 		params[count].slice_width_overwrite = aconnector->dsc_settings.dsc_slice_width;
-+		params[count].slice_height_overwrite = aconnector->dsc_settings.dsc_slice_height;
- 		params[count].compression_possible = stream->sink->dsc_caps.dsc_dec_caps.is_dsc_supported;
- 		dc_dsc_get_policy_for_timing(params[count].timing, &dsc_policy);
- 		if (!dc_dsc_compute_bandwidth_range(
+ bool virtual_stream_encoder_construct(
 -- 
 2.25.1
 
