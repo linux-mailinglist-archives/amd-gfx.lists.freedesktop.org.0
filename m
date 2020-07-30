@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 210F22338CE
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 21:12:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF00C2338D3
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 21:12:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B98B6E95E;
-	Thu, 30 Jul 2020 19:12:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47F1C6E960;
+	Thu, 30 Jul 2020 19:12:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680045.outbound.protection.outlook.com [40.107.68.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 544BC6E95E
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 19:12:38 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770089.outbound.protection.outlook.com [40.107.77.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3AFD6E95D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 19:12:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SfVINRnkliZzsTec06DkBIon3YDllif8mu5OoOvwskG++wi/LjPOtDkXDXiS2s9548qhwkBqqEyhj20eA6vBcAjT7uuGT5zAD+X26A1xX5mHIEiBDRgKllQ7xPdm+hpOjtxknzVkDt3+TAtH57ME7gepBCBY0oyKwjYJTmxI74d6PsusAMvrE2n18Gk+G3VPFjlMHFSS47Si+MDytsrFNX4wOTmbbOAyYcrhcdOElWrxh3s7nLzzUXBZE8BfhI23ffo2Axttpi1JVNKvBSv5CQeAkXBKpnAkdz55KHEfaaTB0g2KiRYmogIBveyhuSaM1gGhWaf/fU/FLXpEU/Z0fQ==
+ b=NYBRUcZaejRGNj0s+H8nCB3RwTWdmbfrDa5HmbSgCPb4sD3HGaZa3dTgaa9irgDiYLLS6CQ+/nqFq4MKAocNO27+ojAKWva/R8oDXQBI7gkzmISMCojNbZyP2jrowHyo9UeaQ+lSvE2E9hM+KgDk1zngmF0QCzTmpGy+VR6Wc8zXrpJLmcnGDk3JrEO2Z/1KZFi6GuJQWLHG04qebD/QBwco8PODRbZYLFSLnMADRS2ZxMbopBnfSsgPvnWFIWWm05OtdC7SbUWc0kexQo3WdlgNZfYgb5NJ9no57quydBlfPW5DRDktT+TIsXXcBx1N2vUYoAEkXnydNZEsR+DrZg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m2Bzx+14ELs+RNDEmPhFSeHZhRQqkEHQs9rUOa1dHo8=;
- b=esVG7/Yvr3A0A1O3b8U8sUQue7UtNuwMgz4zGJhQ/eXuJH2JGtVb4nriGJ4qkVWWI0Vceg4DrvXpW18to9lWYsYA/ozWIqZ3O9Yj6P8B38vCHxr7uFp0dQ6LCJ3eAnOANcT+7vWI5j79zASvpgfg/gjk3e25WTmA0NL23FevCJixxATBPWSBojr0hCKzqF9L5dwF/9FJIX6sC5r4MGxD9nrAweIptbrLf141jlKqG3Tn4dMsiyzu4sUSqr0WFuurrOG/Y0Z8OTHS616jd7+wOINfgVzYGRNBh/Y7xYV9Q1BO9DAb7fL3DvC7u8Ja0VT0LdoFvOykCV+Gc6plfzpxwg==
+ bh=AAt1W8RBP5/MIWOtAATVZsvHqflgqIDq4KnQ0oW7iY0=;
+ b=EByFbx9axcejzFckCmwxNZgB1b/pP4CpUUN5kbwPXPjnoyjLENm2Xvz3tkCRgwai7eYPd/LVroLQX/NAnCWfyW7+Php8GNgbjkDl/oJ1q/nd6hrVKKe5SJNL4NZViyOBgtm4Q1FxE0xV/IKv3B+nJd/ZIAeO/cWTyLGDkYva6zfXV9bFL6EsmIpEvIsBuxnZ3952VE7hNbv04ix2xL6BXv8xeLkzCcy3viGrFLL22vAYaQudSqo0LLYkdGtixhZomDuQqlTVUBd7d8STfKZy9ZHGQN34oI0Dm0sEmWfQ+GOSv7LyP1pYyPdvTv4HZDVEtnYqegn7hck1JjHlEjPo7g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,45 +27,45 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m2Bzx+14ELs+RNDEmPhFSeHZhRQqkEHQs9rUOa1dHo8=;
- b=sIpFMK1Dp0OQclbhSMwJTVIE5urG/n4Ur50OTtA6VJZrd08hiDxlAc3jfMwlmA13RUFtD6vu7g5UPo7JK85h9iuq/0hgtxkTRdDXU0J/6VXQ/POIUFuhKPieZaSSbnS0PW8uUaMZ6Ak5Yzx/gnxQvzK7HfQiXHD8wtyvGzgWG+k=
-Received: from BN6PR22CA0028.namprd22.prod.outlook.com (2603:10b6:404:37::14)
- by MW3PR12MB4395.namprd12.prod.outlook.com (2603:10b6:303:5c::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.20; Thu, 30 Jul
- 2020 19:12:35 +0000
-Received: from BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:37:cafe::cc) by BN6PR22CA0028.outlook.office365.com
- (2603:10b6:404:37::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.16 via Frontend
- Transport; Thu, 30 Jul 2020 19:12:35 +0000
+ bh=AAt1W8RBP5/MIWOtAATVZsvHqflgqIDq4KnQ0oW7iY0=;
+ b=ZHVxoNXbw1qZ8H65mYoBX0Zlq94s4yzZfyP5TaOR7xHVPOofmhYNifeWafUJoQR8M+zPUREfJaU1Tg7oPEEwkvIDqUGayzsaSUPbg9Z6XJxXbBavsonD5llyhwstaLIh3l7oD1drKnkLg1RLdf4yqSfkAr6MhDxBGSulBy7KbKk=
+Received: from DM6PR17CA0026.namprd17.prod.outlook.com (2603:10b6:5:1b3::39)
+ by BN8PR12MB3347.namprd12.prod.outlook.com (2603:10b6:408:43::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.16; Thu, 30 Jul
+ 2020 19:12:37 +0000
+Received: from DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1b3:cafe::67) by DM6PR17CA0026.outlook.office365.com
+ (2603:10b6:5:1b3::39) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.17 via Frontend
+ Transport; Thu, 30 Jul 2020 19:12:37 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- BN8NAM11FT008.mail.protection.outlook.com (10.13.177.95) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ DM6NAM11FT032.mail.protection.outlook.com (10.13.173.93) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3239.20 via Frontend Transport; Thu, 30 Jul 2020 19:12:35 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3239.20 via Frontend Transport; Thu, 30 Jul 2020 19:12:36 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 30 Jul
  2020 14:12:35 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 30 Jul
- 2020 14:12:34 -0500
+ 2020 14:12:35 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
  Transport; Thu, 30 Jul 2020 14:12:34 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 13/16] drm/amd/display: Add debugfs for forcing stream timing
- sync
-Date: Thu, 30 Jul 2020 15:11:43 -0400
-Message-ID: <20200730191146.33112-14-aurabindo.pillai@amd.com>
+Subject: [PATCH 14/16] drm/amd/display: Separate pipe disconnect from rest of
+ progrmaming
+Date: Thu, 30 Jul 2020 15:11:44 -0400
+Message-ID: <20200730191146.33112-15-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200730191146.33112-1-aurabindo.pillai@amd.com>
 References: <20200730191146.33112-1-aurabindo.pillai@amd.com>
@@ -73,28 +73,29 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: caf69dd8-5fe7-4b06-0950-08d834bc8486
-X-MS-TrafficTypeDiagnostic: MW3PR12MB4395:
-X-Microsoft-Antispam-PRVS: <MW3PR12MB43956F9CCBEBF56DB5FC48FA8B710@MW3PR12MB4395.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1417;
+X-MS-Office365-Filtering-Correlation-Id: dbf3f43f-b4bf-4fc7-048c-08d834bc8533
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3347:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BN8PR12MB3347F37150B1DB1A283F0BCD8B710@BN8PR12MB3347.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:962;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2pfCrKgDG9CPvCauOSLdujABlTzfgz6sV8/z+AGjeoIKa3m1vjJ+whkHKKQ/N7rqWn1JKtBkcgUHykR8/Kz8DStgU6lzW8K9rsbydHfXeU+9KVMjiyJAPU2CrmTe9pqH2I5XwxfP3a6eAbAEtGOH//8MWivpg7lj38rLln4glH/ox9uFFQmeBt4tib6zhoXV12QfMR4kKNCm49ftJX4S45KOeh7ZV8KiTeyMJNnMqX2MwEyMM4o2vK6lMWuko+d0JQmbKa9SfkrXo/rWIWbANuKs6KHdYNrKLZNmoT6Xu0Dlp6aWk09z+Jr0AY7XjEJ0N52kbW0z8mz6g22yQ+h5hahPSO8y6fbJAAcZiftgrdpZZv5ktaurxU6NJHa1vQdGg+DrP2lZm2jGht79QO9qgA==
+X-Microsoft-Antispam-Message-Info: v1wH5Ayl9yO65pQMzZkO+LOvyDMvQdEEUlGtwY6QmQfwTigwFS515M00d7pH3MLsEpjJyetsQ4xD15c0B3SCfgrXsL8PshULGFPqM6P1GF/I9avNjbapjfa424b41bFrG2qczEc/W+QQu4C8G2i33/dQCrVGf6hcOLedQs+pIACYxQVZwQROVfdt3Hez45Qgc9ZlwQJyIevbblIK+INd6OFXYsw+UmxUiJ+RN9Pp56w65WVO5IWj3yrvuqWGwKsihd9rhRvsXSJxnqwaMVVXj1/CXHqACI/7O9SL099pTZYMaA7acvzEjiT5MzU+awV2VdEamlNw+oYZ5E5wc6NB5KFvGh33DqUT5WPicR9cZ73n+LiDra8mkDJ4SeRaAVLcEHYSCdyxLGfu8UNH9ADcdg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(39860400002)(346002)(376002)(396003)(136003)(46966005)(26005)(54906003)(4326008)(336012)(83380400001)(36756003)(8936002)(6916009)(5660300002)(478600001)(1076003)(86362001)(2616005)(356005)(7696005)(316002)(82310400002)(426003)(2906002)(44832011)(8676002)(6666004)(81166007)(82740400003)(186003)(70206006)(47076004)(70586007);
+ SFS:(4636009)(396003)(376002)(346002)(39860400002)(136003)(46966005)(82310400002)(356005)(82740400003)(81166007)(44832011)(36756003)(86362001)(8676002)(426003)(47076004)(6916009)(8936002)(70586007)(2906002)(336012)(70206006)(2616005)(83380400001)(30864003)(1076003)(7696005)(186003)(6666004)(4326008)(5660300002)(54906003)(316002)(478600001)(26005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2020 19:12:35.4378 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: caf69dd8-5fe7-4b06-0950-08d834bc8486
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2020 19:12:36.5294 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbf3f43f-b4bf-4fc7-048c-08d834bc8533
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4395
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3347
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,204 +108,270 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Victor Lu <victorchengchi.lu@amd.com>, Aurabindo.Pillai@amd.com,
- Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
+ Alvin Lee <alvin.lee2@amd.com>, Jun Lei <Jun.Lei@amd.com>,
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Victor Lu <victorchengchi.lu@amd.com>
+From: Alvin Lee <alvin.lee2@amd.com>
 
-[why]
-There's currently no method to enable multi-stream synchronization from
-userspace and we don't check the VSDB bits to know whether or not
-specific displays should have the feature enable.
+[Why]
+When changing pixel formats for HDR (e.g. ARGB -> FP16)
+there are configurations that change from 2 pipes to 1 pipe.
+In these cases, it seems that disconnecting MPCC and doing
+a surface update at the same time(after unlocking) causes
+some registers to be updated slightly faster than others
+after unlocking (e.g. if the pixel format is updated to FP16
+before the new surface address is programmed, we get
+corruption on the screen because the pixel formats aren't
+matching). We separate disconnecting MPCC from the rest
+of  the  pipe programming sequence to prevent this.
 
-[how]
-Add a debugfs entry that controls a new DM debug option,
-"force_timing_sync". This debug option will set on any newly created
-stream following the change to the debug option.
-Expose a new interface from DC that performs the timing sync and a helper
-to the "force_timing_sync" debugfs that iterates over the current streams
-and modifies the current synchornization state and grouping.
+[How]
+Move MPCC disconnect into separate operation than the
+rest of the pipe programming.
 
-Example usage to force a resync (from an X based desktop):
-
-echo 1 > /sys/kernel/debug/dri/0/amdgpu_dm_force_timing_sync
-xset dpms force off && xset dpms force on
-
-Signed-off-by: Victor Lu <victorchengchi.lu@amd.com>
-Reviewed-by: Aurabindo Jayamohanan Pillai <Aurabindo.Pillai@amd.com>
+Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Acked-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 26 ++++++++++++++
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  3 ++
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 35 +++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/core/dc.c      | 13 ++++---
- drivers/gpu/drm/amd/display/dc/dc_stream.h    |  2 ++
- 5 files changed, 75 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  10 ++
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 114 ++++++++++++++++++
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.h    |   7 ++
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_init.c |   2 +
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_init.c |   2 +
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_init.c |   2 +
+ .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |   4 +
+ 7 files changed, 141 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index a64c2d5789df..0e1921a8f08c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8130,6 +8130,13 @@ static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
- 			goto fail;
- 		}
- 
-+		/*
-+		 * TODO: Check VSDB bits to decide whether this should
-+		 * be enabled or not.
-+		 */
-+		new_stream->triggered_crtc_reset.enabled =
-+			dm->force_timing_sync;
-+
- 		dm_new_crtc_state->abm_level = dm_new_conn_state->abm_level;
- 
- 		ret = fill_hdr_info_packet(drm_new_conn_state,
-@@ -9268,3 +9275,22 @@ static bool amdgpu_dm_psr_disable(struct dc_stream_state *stream)
- 
- 	return dc_link_set_psr_allow_active(stream->link, false, true);
- }
-+
-+void amdgpu_dm_trigger_timing_sync(struct drm_device *dev)
-+{
-+	struct amdgpu_device *adev = dev->dev_private;
-+	struct dc *dc = adev->dm.dc;
-+	int i;
-+
-+	mutex_lock(&adev->dm.dc_lock);
-+	if (dc->current_state) {
-+		for (i = 0; i < dc->current_state->stream_count; ++i)
-+			dc->current_state->streams[i]
-+				->triggered_crtc_reset.enabled =
-+				adev->dm.force_timing_sync;
-+
-+		dm_enable_per_frame_crtc_master_sync(dc->current_state);
-+		dc_trigger_sync(dc, dc->current_state);
-+	}
-+	mutex_unlock(&adev->dm.dc_lock);
-+}
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index 3114f6e938e3..16455898972e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -340,6 +340,7 @@ struct amdgpu_display_manager {
- 	 * fake encoders used for DP MST.
- 	 */
- 	struct amdgpu_encoder mst_encoders[AMDGPU_DM_MAX_CRTC];
-+        bool force_timing_sync;
- };
- 
- struct dsc_preferred_settings {
-@@ -494,6 +495,8 @@ void dm_restore_drm_connector_state(struct drm_device *dev,
- void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
- 					struct edid *edid);
- 
-+void amdgpu_dm_trigger_timing_sync(struct drm_device *dev);
-+
- #define MAX_COLOR_LUT_ENTRIES 4096
- /* Legacy gamm LUT users such as X doesn't like large LUT sizes */
- #define MAX_COLOR_LEGACY_LUT_ENTRIES 256
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 4f6393332c7a..84360f3a0162 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -2203,6 +2203,38 @@ static const struct drm_info_list amdgpu_dm_debugfs_list[] = {
- 	{"amdgpu_mst_topology", &mst_topo},
- };
- 
-+/*
-+ * Sets the force_timing_sync debug optino from the given string.
-+ * All connected displays will be force synchronized immediately.
-+ * Usage: echo 1 > /sys/kernel/debug/dri/0/amdgpu_dm_force_timing_sync
-+ */
-+static int force_timing_sync_set(void *data, u64 val)
-+{
-+	struct amdgpu_device *adev = data;
-+
-+	adev->dm.force_timing_sync = (bool)val;
-+
-+	amdgpu_dm_trigger_timing_sync(adev->ddev);
-+
-+	return 0;
-+}
-+
-+/*
-+ * Gets the force_timing_sync debug option value into the given buffer.
-+ * Usage: cat /sys/kernel/debug/dri/0/amdgpu_dm_force_timing_sync
-+ */
-+static int force_timing_sync_get(void *data, u64 *val)
-+{
-+	struct amdgpu_device *adev = data;
-+
-+	*val = adev->dm.force_timing_sync;
-+
-+	return 0;
-+}
-+
-+DEFINE_DEBUGFS_ATTRIBUTE(force_timing_sync_ops, force_timing_sync_get,
-+			 force_timing_sync_set, "%llu\n");
-+
- /*
-  * Sets the DC visual confirm debug option from the given string.
-  * Example usage: echo 1 > /sys/kernel/debug/dri/0/amdgpu_visual_confirm
-@@ -2262,5 +2294,8 @@ int dtn_debugfs_init(struct amdgpu_device *adev)
- 	debugfs_create_file_unsafe("amdgpu_dm_dmub_fw_state", 0644, root,
- 				   adev, &dmub_fw_state_fops);
- 
-+	debugfs_create_file_unsafe("amdgpu_dm_force_timing_sync", 0644, root,
-+				   adev, &force_timing_sync_ops);
-+
- 	return 0;
- }
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 92eb1ca1634f..5aa3b89471c3 100644
+index 5aa3b89471c3..ebbb8182228d 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1238,6 +1238,14 @@ bool dc_enable_stereo(
- 	return ret;
+@@ -2300,6 +2300,7 @@ static void commit_planes_for_stream(struct dc *dc,
+ 		enum surface_update_type update_type,
+ 		struct dc_state *context)
+ {
++	bool mpcc_disconnected = false;
+ 	int i, j;
+ 	struct pipe_ctx *top_pipe_to_program = NULL;
+ 
+@@ -2330,6 +2331,15 @@ static void commit_planes_for_stream(struct dc *dc,
+ 		context_clock_trace(dc, context);
+ 	}
+ 
++	if (update_type != UPDATE_TYPE_FAST && dc->hwss.interdependent_update_lock &&
++		dc->hwss.disconnect_pipes && dc->hwss.wait_for_pending_cleared){
++		dc->hwss.interdependent_update_lock(dc, context, true);
++		mpcc_disconnected = dc->hwss.disconnect_pipes(dc, context);
++		dc->hwss.interdependent_update_lock(dc, context, false);
++		if (mpcc_disconnected)
++			dc->hwss.wait_for_pending_cleared(dc, context);
++	}
++
+ 	for (j = 0; j < dc->res_pool->pipe_count; j++) {
+ 		struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[j];
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 66180b4332f1..73eb4e76a0b1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -1624,6 +1624,120 @@ static void dcn20_program_pipe(
+ 	}
  }
  
-+void dc_trigger_sync(struct dc *dc, struct dc_state *context)
++bool dcn20_disconnect_pipes(
++		struct dc *dc,
++		struct dc_state *context)
 +{
-+	if (context->stream_count > 1 && !dc->debug.disable_timing_sync) {
-+		enable_timing_multisync(dc, context);
-+		program_timing_sync(dc, context);
++		int i;
++		struct dce_hwseq *hws = dc->hwseq;
++		bool mpcc_disconnected = false;
++		DC_LOGGER_INIT(dc->ctx->logger);
++
++		/* Set pipe update flags and lock pipes */
++		for (i = 0; i < dc->res_pool->pipe_count; i++)
++			dcn20_detect_pipe_changes(&dc->current_state->res_ctx.pipe_ctx[i],
++					&context->res_ctx.pipe_ctx[i]);
++
++		if (!IS_DIAG_DC(dc->ctx->dce_environment)) {
++			/* OTG blank before disabling all front ends */
++			for (i = 0; i < dc->res_pool->pipe_count; i++) {
++				if (context->res_ctx.pipe_ctx[i].update_flags.bits.disable
++					&& !context->res_ctx.pipe_ctx[i].top_pipe
++					&& !context->res_ctx.pipe_ctx[i].prev_odm_pipe
++					&& context->res_ctx.pipe_ctx[i].stream) {
++					hws->funcs.blank_pixel_data(dc, &context->res_ctx.pipe_ctx[i], true);
++				}
++			}
++
++			/* Disconnect mpcc */
++			for (i = 0; i < dc->res_pool->pipe_count; i++) {
++				if (context->res_ctx.pipe_ctx[i].update_flags.bits.disable) {
++					hws->funcs.plane_atomic_disconnect(dc, &dc->current_state->res_ctx.pipe_ctx[i]);
++					DC_LOG_DC("Reset mpcc for pipe %d\n", dc->current_state->res_ctx.pipe_ctx[i].pipe_idx);
++					mpcc_disconnected = true;
++				}
++			}
++		}
++
++		if (mpcc_disconnected) {
++			for (i = 0; i < dc->res_pool->pipe_count; i++) {
++				struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[i];
++				struct pipe_ctx *old_pipe = &dc->current_state->res_ctx.pipe_ctx[i];
++				struct dc_plane_state *plane_state = pipe_ctx->plane_state;
++				struct hubp *hubp = pipe_ctx->plane_res.hubp;
++
++				if (!pipe_ctx || !plane_state || !pipe_ctx->stream)
++					continue;
++
++			// Only update scaler and viewport here if we lose a pipe split.
++			// This is to prevent half the screen from being black when we
++			// unlock after disconnecting MPCC.
++			if (!(old_pipe && !pipe_ctx->top_pipe &&
++				!pipe_ctx->bottom_pipe && old_pipe->bottom_pipe))
++				continue;
++
++			if (pipe_ctx->update_flags.raw || pipe_ctx->plane_state->update_flags.raw || pipe_ctx->stream->update_flags.raw) {
++				if (pipe_ctx->update_flags.bits.scaler ||
++					plane_state->update_flags.bits.scaling_change ||
++					plane_state->update_flags.bits.position_change ||
++					plane_state->update_flags.bits.per_pixel_alpha_change ||
++					pipe_ctx->stream->update_flags.bits.scaling) {
++
++					pipe_ctx->plane_res.scl_data.lb_params.alpha_en = pipe_ctx->plane_state->per_pixel_alpha;
++					ASSERT(pipe_ctx->plane_res.scl_data.lb_params.depth == LB_PIXEL_DEPTH_30BPP);
++					/* scaler configuration */
++					pipe_ctx->plane_res.dpp->funcs->dpp_set_scaler(
++					pipe_ctx->plane_res.dpp, &pipe_ctx->plane_res.scl_data);
++				}
++
++				if (pipe_ctx->update_flags.bits.viewport ||
++					(context == dc->current_state && plane_state->update_flags.bits.position_change) ||
++					(context == dc->current_state && plane_state->update_flags.bits.scaling_change) ||
++					(context == dc->current_state && pipe_ctx->stream->update_flags.bits.scaling)) {
++
++					hubp->funcs->mem_program_viewport(
++						hubp,
++						&pipe_ctx->plane_res.scl_data.viewport,
++						&pipe_ctx->plane_res.scl_data.viewport_c);
++				}
++			}
++		}
 +	}
++	return mpcc_disconnected;
 +}
 +
- /*
-  * Applies given context to HW and copy it into current context.
-  * It's up to the user to release the src context afterwards.
-@@ -1297,10 +1305,7 @@ static enum dc_status dc_commit_state_no_check(struct dc *dc, struct dc_state *c
- 	if (result != DC_OK)
- 		return result;
- 
--	if (context->stream_count > 1 && !dc->debug.disable_timing_sync) {
--		enable_timing_multisync(dc, context);
--		program_timing_sync(dc, context);
--	}
-+	dc_trigger_sync(dc, context);
- 
- 	/* Program all planes within new context*/
- 	if (dc->hwss.program_front_end_for_ctx) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_stream.h b/drivers/gpu/drm/amd/display/dc/dc_stream.h
-index 633442bc7ef2..37743073772b 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
-@@ -397,6 +397,8 @@ bool dc_enable_stereo(
- 	struct dc_stream_state *streams[],
- 	uint8_t stream_count);
- 
-+/* Triggers multi-stream synchronization. */
-+void dc_trigger_sync(struct dc *dc, struct dc_state *context);
- 
- enum surface_update_type dc_check_update_surfaces_for_stream(
++void dcn20_wait_for_pending_cleared(struct dc *dc,
++		struct dc_state *context)
++{
++		struct pipe_ctx *pipe_ctx;
++		struct timing_generator *tg;
++		int i;
++
++		for (i = 0; i < dc->res_pool->pipe_count; i++) {
++			pipe_ctx = &context->res_ctx.pipe_ctx[i];
++			tg = pipe_ctx->stream_res.tg;
++
++			/*
++			 * Only wait for top pipe's tg penindg bit
++			 * Also skip if pipe is disabled.
++			 */
++			if (pipe_ctx->top_pipe ||
++			    !pipe_ctx->stream || !pipe_ctx->plane_state ||
++			    !tg->funcs->is_tg_enabled(tg))
++				continue;
++
++			/*
++			 * Wait for VBLANK then VACTIVE to ensure we get VUPDATE.
++			 * For some reason waiting for OTG_UPDATE_PENDING cleared
++			 * seems to not trigger the update right away, and if we
++			 * lock again before VUPDATE then we don't get a separated
++			 * operation.
++			 */
++			pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VBLANK);
++			pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VACTIVE);
++		}
++}
++
+ void dcn20_program_front_end_for_ctx(
  		struct dc *dc,
+ 		struct dc_state *context)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.h
+index 83220e34c1a9..7befd35a2359 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.h
+@@ -131,6 +131,13 @@ void dcn20_dccg_init(struct dce_hwseq *hws);
+ int dcn20_init_sys_ctx(struct dce_hwseq *hws,
+ 		struct dc *dc,
+ 		struct dc_phy_addr_space_config *pa_config);
++bool dcn20_disconnect_pipes(
++		struct dc *dc,
++		struct dc_state *context);
++
++void dcn20_wait_for_pending_cleared(struct dc *dc,
++		struct dc_state *context);
++                
+ 
+ #ifndef TRIM_FSFT
+ bool dcn20_optimize_timing_for_fsft(struct dc *dc,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
+index 3dde6f26de47..55afb70d33e5 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_init.c
+@@ -34,6 +34,8 @@ static const struct hw_sequencer_funcs dcn20_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.disconnect_pipes = dcn20_disconnect_pipes,
++	.wait_for_pending_cleared = dcn20_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+ 	.update_dchub = dcn10_update_dchub,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
+index b187f71afa65..264302b27d4f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_init.c
+@@ -35,6 +35,8 @@ static const struct hw_sequencer_funcs dcn21_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.disconnect_pipes = dcn20_disconnect_pipes,
++	.wait_for_pending_cleared = dcn20_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+ 	.update_dchub = dcn10_update_dchub,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_init.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_init.c
+index 9afee7160490..845aaf1c816c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_init.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_init.c
+@@ -35,6 +35,8 @@ static const struct hw_sequencer_funcs dcn30_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.disconnect_pipes = dcn20_disconnect_pipes,
++	.wait_for_pending_cleared = dcn20_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+ 	.update_dchub = dcn10_update_dchub,
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
+index 3c986717dcd5..64c1be818b0e 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
+@@ -67,6 +67,10 @@ struct hw_sequencer_funcs {
+ 			int num_planes, struct dc_state *context);
+ 	void (*program_front_end_for_ctx)(struct dc *dc,
+ 			struct dc_state *context);
++	bool (*disconnect_pipes)(struct dc *dc,
++			struct dc_state *context);
++	void (*wait_for_pending_cleared)(struct dc *dc,
++			struct dc_state *context);
+ 	void (*post_unlock_program_front_end)(struct dc *dc,
+ 			struct dc_state *context);
+ 	void (*update_plane_addr)(const struct dc *dc,
 -- 
 2.25.1
 
