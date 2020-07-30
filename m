@@ -1,61 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DF5E23398A
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 22:04:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 106E72339BB
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 22:37:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B96516E96A;
-	Thu, 30 Jul 2020 20:04:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC5436E96A;
+	Thu, 30 Jul 2020 20:37:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com
- [IPv6:2607:f8b0:4864:20::f43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B8786E966
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 20:04:45 +0000 (UTC)
-Received: by mail-qv1-xf43.google.com with SMTP id l13so6756562qvt.10
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 13:04:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=3h7+47C10uNtgr0TxcOz+R3XZON1T+Tc5FDnPO34Qzo=;
- b=OVHqjKQSsbGNqRBKWb6/g8gg5FcDUvopsE90ulxWG4Vnb9GBY2yMZLUZyPMjyTd+rq
- lHk1en2PKTNZiN2R94EfQume9ef5ZsRJYchd9i3Qpnp1IN64LY2AB8UhVl1fQJNxDvgI
- ktWrpWfZpQQAIuX681feFuOtDSQWC09GDX14vYMnmkalCvNKA1izstIgtSttOs/ydsuN
- fDA84gmnurLc7xCCGID4Ig2+FJf4D9MNpGTNlqyHB8jDurR0tscF++0iniuZONXvzbzK
- E0z/uEKbqPHq5D05eiWmPflp+E93njnmLy92oc9zwk+O9vxHpTmZGZFG4XsrXmwC+n/i
- PXxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=3h7+47C10uNtgr0TxcOz+R3XZON1T+Tc5FDnPO34Qzo=;
- b=LaaN0gzyXXd7i+b9gq/O0Nqrgv7lxalNzrUzxNfxKgBnnyzl1/JiEbB4J2hZ3heuh7
- /zC+Cpq03R5A5cgdjVXQgAxicX39UYJtjI+5okBe7Ild6hKB8K+wTwxKMsnAELv3SZsO
- yyGFTNcwdmSXw6kIbb4sxMQDqlj+AhefTteiu9C1MBEGX90+wEeIyvkrrKa2F5URskJ4
- tg4Ct1Zazkik/DpeDd6tR7F+hZOrvYl3eM/Z1MAZKUrr2Pj2lKVbArEEoOv368lMG+YO
- Yz3xJG9vTJ5ZRSnDCyEO3/qo64ezJKQq5TEs/P/mqEK6iptnh76NbGDQdpaqkkCFX1mj
- 4Mzg==
-X-Gm-Message-State: AOAM532L5d3g0iEseNKPfK80UJ16hllkSwuFi5PFzViSQgMv0wekHClW
- 9ILfIrcyDpXhCKaBvLxd8PWmNrD7
-X-Google-Smtp-Source: ABdhPJyGDOXtR5ja2B3rAe9ZlwAgjuIls6fmhlMCMQ/mJFtsCkaYDe2wcpLdGLDvatdG+LNbSpxhew==
-X-Received: by 2002:a05:6214:849:: with SMTP id
- dg9mr800353qvb.165.1596139481208; 
- Thu, 30 Jul 2020 13:04:41 -0700 (PDT)
-Received: from localhost.localdomain ([71.219.66.138])
- by smtp.gmail.com with ESMTPSA id d8sm5652757qtr.12.2020.07.30.13.04.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Jul 2020 13:04:40 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 17/17] drm/amdgpu: move vram usage by vbios to mman (v2)
-Date: Thu, 30 Jul 2020 16:04:14 -0400
-Message-Id: <20200730200414.40485-18-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20200730200414.40485-1-alexander.deucher@amd.com>
-References: <20200730200414.40485-1-alexander.deucher@amd.com>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2043.outbound.protection.outlook.com [40.107.236.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D2BC6E0C8;
+ Thu, 30 Jul 2020 20:37:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Wa/ZIQOJTaFePX5rDCkAYr5XelCjVxxnVzM/ktei8+CYlghI61l30Rtr+A4Tm1ZiAQP45WrQVoHxR0XnJoyhQl/d/53Tpzn1BWAhzR2mMqUOtOWkZtH8M+evXes+PTPR9HKADxsOpwjnnTrdeoldjj4ZlTfIWK0gFo2F//cZI5oQXDQoEUm+H9LGi2R0/QPQEy0zFFePy82Oo0cxcTuulB7sElBKAd8hw2Wgusx65P6yFbUSRHK6iNOZLketqZaX6YeglMcs7bjhBpTURsfez/0IlFRf3xy8m4EGvF51HnWKTZ5DBBK1xUYfd6xYYz07XBZDoEOgKKX8OGl4pg/Wcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5e69Ilo/bMBgpQW8I3mYz9pocP4dv/eVrXfcpyGjez4=;
+ b=Rm7H0iMICZNiQ2GHzRH6cw4BWa1+Bdr4nRa+phYhwlhs/zDpLDWFzful08Zp+8MH3Y+621dUw9eTvSGufstREI3WCPU45GTl+tz1+kAwFq2vgPjh9OvJWEQAOy66MXmSb9NDgGtULgRYjIV85IdJ8I1AzhdB1N5yg3UqoURK5XlDcxF0qAkneG9puuKBcgnKk6Iou8Op82Az6ZV9TEXRl8ogoO8z6alt2/Q1xWAzG09q37JkqwTSI61Fcm1S1o4VlmMSmyx2NS6ibJRIi3sDKbembCTT7DdfLPlvtRWSILr2obBKHksN5e6FeJ32nL04ywjgYbT0GYpMB6eO6lW54w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5e69Ilo/bMBgpQW8I3mYz9pocP4dv/eVrXfcpyGjez4=;
+ b=Uq8lsuVgNNskcDycUxvm9dWvEQVjIjX9IKE92FJFhBAR66oSFVBXAVeEU643l2Bh+lheZ436rEX1CoqHPbAsBc7HH0lMDV7WeM2TWKGnLYTKKfv3dFn6/bzT5ENFWIGq0gpZR3sYOHyCHcbdukriAt4GQvw5m8NJuXwiunzfwg0=
+Received: from MWHPR18CA0036.namprd18.prod.outlook.com (2603:10b6:320:31::22)
+ by DM6PR12MB3915.namprd12.prod.outlook.com (2603:10b6:5:1c4::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.17; Thu, 30 Jul
+ 2020 20:37:29 +0000
+Received: from CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:320:31:cafe::e6) by MWHPR18CA0036.outlook.office365.com
+ (2603:10b6:320:31::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.18 via Frontend
+ Transport; Thu, 30 Jul 2020 20:37:29 +0000
+X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ CO1NAM11FT059.mail.protection.outlook.com (10.13.174.160) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3239.20 via Frontend Transport; Thu, 30 Jul 2020 20:37:28 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 30 Jul
+ 2020 15:37:28 -0500
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 30 Jul
+ 2020 15:37:27 -0500
+Received: from DESKTOP-3JO4JG6.localdomain (10.180.168.240) by
+ SATLEXMB01.amd.com (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5
+ via Frontend Transport; Thu, 30 Jul 2020 15:37:27 -0500
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+Subject: [PATCH 0/7] drm/amd/display: Drop DRM private objects from amdgpu_dm
+Date: Thu, 30 Jul 2020 16:36:35 -0400
+Message-ID: <20200730203642.17553-1-nicholas.kazlauskas@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 491b7617-6813-4f72-c1fb-08d834c8607c
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3915:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3915EB926D5187A42DF16D60EC710@DM6PR12MB3915.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WKPhf3V5BqTeFTg2mIDuQ7dEQwWlaLay8L0Evv135v83e+5dwxj7lTAvjZC9ZkatibO8u8UbPBPGkCFulRQ4zzdKdW7G/qqpC6vpgxoPRm0Oqie/0YwlCH9co6Yi2dNkGm3iSeUdI8b1pncGmzsiS6yEFPdEP3D9b4Z0TpNv3zQh4/ghsHmRJpstac2nZWAcy+V7SalN5JjbjHxbp+Sk+QZWpWNys9lgZRXd5f5UkJzAvDpbe0juEduU3gsVexDZHlQwmK1HdM+Yb+NS5Yd+ENN9AgrHCsMCw83ZH9sNXHdN8aYi31kBi7Xg924UAcNoHuyHiRrZMDoVksZXSIA1JwmX0FPVVsL/VUGH09S6/z6RDpMfgAy/bMTCgOsfL3EnwDSnBw9mznqeY/aGEyr570tr68iabRy8R6TBODoaqXCQo73zpZsLCsFB215ZuMF2b3QhgM9jW9MoanW5i0eOm6Bi+nwzL6ZRiRLkx/cQygc=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(136003)(396003)(346002)(376002)(39860400002)(46966005)(26005)(82740400003)(4326008)(336012)(2616005)(426003)(44832011)(8936002)(2906002)(5660300002)(81166007)(966005)(110136005)(83380400001)(6666004)(316002)(478600001)(8676002)(356005)(450100002)(70206006)(47076004)(36756003)(86362001)(70586007)(1076003)(186003)(82310400002);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2020 20:37:28.8248 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 491b7617-6813-4f72-c1fb-08d834c8607c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3915
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,176 +103,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-It's related to the memory manager so move it there.
+Based on the analysis of the bug from [1] the best course of action seems
+to be swapping off of DRM private objects back to subclassing DRM atomic
+state instead.
 
-v2: inline the structure
+This patch series implements this change, but not yet the other changes
+suggested in the threads from that bug - these will come later.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           | 12 -----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c  |  4 ++--
- .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  |  4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 20 +++++++++----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |  6 ++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c      |  6 +++---
- 6 files changed, 23 insertions(+), 29 deletions(-)
+CCing dri-devel per Daniel's suggestion since this issue brought
+some interesting misuse of private objects.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 44fd0ef7394f..81f6412eb54f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -649,16 +649,6 @@ struct amdgpu_atcs {
- 	struct amdgpu_atcs_functions functions;
- };
- 
--/*
-- * Firmware VRAM reservation
-- */
--struct amdgpu_fw_vram_usage {
--	u64 start_offset;
--	u64 size;
--	struct amdgpu_bo *reserved_bo;
--	void *va;
--};
--
- /*
-  * CGS
-  */
-@@ -942,8 +932,6 @@ struct amdgpu_device {
- 	struct delayed_work     delayed_init_work;
- 
- 	struct amdgpu_virt	virt;
--	/* firmware VRAM reservation */
--	struct amdgpu_fw_vram_usage fw_vram_usage;
- 
- 	/* link all shadow bo */
- 	struct list_head                shadow_list;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-index 29f767e026e4..e33f63712b46 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-@@ -1786,9 +1786,9 @@ static int amdgpu_atombios_allocate_fb_scratch(struct amdgpu_device *adev)
- 			(uint32_t)(ATOM_VRAM_BLOCK_SRIOV_MSG_SHARE_RESERVATION <<
- 			ATOM_VRAM_OPERATION_FLAGS_SHIFT)) {
- 			/* Firmware request VRAM reservation for SR-IOV */
--			adev->fw_vram_usage.start_offset = (start_addr &
-+			adev->mman.fw_vram_usage_start_offset = (start_addr &
- 				(~ATOM_VRAM_OPERATION_FLAGS_MASK)) << 10;
--			adev->fw_vram_usage.size = size << 10;
-+			adev->mman.fw_vram_usage_size = size << 10;
- 			/* Use the default scratch size */
- 			usage_bytes = 0;
- 		} else {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-index 1279053324f9..17c010d0431f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-@@ -89,9 +89,9 @@ int amdgpu_atomfirmware_allocate_fb_scratch(struct amdgpu_device *adev)
- 			(uint32_t)(ATOM_VRAM_BLOCK_SRIOV_MSG_SHARE_RESERVATION <<
- 			ATOM_VRAM_OPERATION_FLAGS_SHIFT)) {
- 			/* Firmware request VRAM reservation for SR-IOV */
--			adev->fw_vram_usage.start_offset = (start_addr &
-+			adev->mman.fw_vram_usage_start_offset = (start_addr &
- 				(~ATOM_VRAM_OPERATION_FLAGS_MASK)) << 10;
--			adev->fw_vram_usage.size = size << 10;
-+			adev->mman.fw_vram_usage_size = size << 10;
- 			/* Use the default scratch size */
- 			usage_bytes = 0;
- 		} else {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index ea9b5b39f640..c7421aa32946 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1766,8 +1766,8 @@ static struct ttm_bo_driver amdgpu_bo_driver = {
-  */
- static void amdgpu_ttm_fw_reserve_vram_fini(struct amdgpu_device *adev)
- {
--	amdgpu_bo_free_kernel(&adev->fw_vram_usage.reserved_bo,
--		NULL, &adev->fw_vram_usage.va);
-+	amdgpu_bo_free_kernel(&adev->mman.fw_vram_usage_reserved_bo,
-+		NULL, &adev->mman.fw_vram_usage_va);
- }
- 
- /**
-@@ -1781,19 +1781,19 @@ static int amdgpu_ttm_fw_reserve_vram_init(struct amdgpu_device *adev)
- {
- 	uint64_t vram_size = adev->gmc.visible_vram_size;
- 
--	adev->fw_vram_usage.va = NULL;
--	adev->fw_vram_usage.reserved_bo = NULL;
-+	adev->mman.fw_vram_usage_va = NULL;
-+	adev->mman.fw_vram_usage_reserved_bo = NULL;
- 
--	if (adev->fw_vram_usage.size == 0 ||
--	    adev->fw_vram_usage.size > vram_size)
-+	if (adev->mman.fw_vram_usage_size == 0 ||
-+	    adev->mman.fw_vram_usage_size > vram_size)
- 		return 0;
- 
- 	return amdgpu_bo_create_kernel_at(adev,
--					  adev->fw_vram_usage.start_offset,
--					  adev->fw_vram_usage.size,
-+					  adev->mman.fw_vram_usage_start_offset,
-+					  adev->mman.fw_vram_usage_size,
- 					  AMDGPU_GEM_DOMAIN_VRAM,
--					  &adev->fw_vram_usage.reserved_bo,
--					  &adev->fw_vram_usage.va);
-+					  &adev->mman.fw_vram_usage_reserved_bo,
-+					  &adev->mman.fw_vram_usage_va);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-index 6d7b83d967ce..de37ceff0e56 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-@@ -70,6 +70,12 @@ struct amdgpu_mman {
- 	uint8_t				*discovery_bin;
- 	uint32_t			discovery_tmr_size;
- 	struct amdgpu_bo		*discovery_memory;
-+
-+	/* firmware VRAM reservation */
-+	u64		fw_vram_usage_start_offset;
-+	u64		fw_vram_usage_size;
-+	struct amdgpu_bo	*fw_vram_usage_reserved_bo;
-+	void		*fw_vram_usage_va;
- };
- 
- struct amdgpu_copy_mem {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-index 5cae39d35c04..1e211544f2dc 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-@@ -401,7 +401,7 @@ static void amdgpu_virt_add_bad_page(struct amdgpu_device *adev,
- 	if (bp_block_size) {
- 		bp_cnt = bp_block_size / sizeof(uint64_t);
- 		for (bp_idx = 0; bp_idx < bp_cnt; bp_idx++) {
--			retired_page = *(uint64_t *)(adev->fw_vram_usage.va +
-+			retired_page = *(uint64_t *)(adev->mman.fw_vram_usage_va +
- 					bp_block_offset + bp_idx * sizeof(uint64_t));
- 			bp.retired_page = retired_page;
- 
-@@ -428,10 +428,10 @@ void amdgpu_virt_init_data_exchange(struct amdgpu_device *adev)
- 	adev->virt.fw_reserve.p_pf2vf = NULL;
- 	adev->virt.fw_reserve.p_vf2pf = NULL;
- 
--	if (adev->fw_vram_usage.va != NULL) {
-+	if (adev->mman.fw_vram_usage_va != NULL) {
- 		adev->virt.fw_reserve.p_pf2vf =
- 			(struct amd_sriov_msg_pf2vf_info_header *)(
--			adev->fw_vram_usage.va + AMDGIM_DATAEXCHANGE_OFFSET);
-+			adev->mman.fw_vram_usage_va + AMDGIM_DATAEXCHANGE_OFFSET);
- 		AMDGPU_FW_VRAM_PF2VF_READ(adev, header.size, &pf2vf_size);
- 		AMDGPU_FW_VRAM_PF2VF_READ(adev, checksum, &checksum);
- 		AMDGPU_FW_VRAM_PF2VF_READ(adev, feature_flags, &adev->virt.gim_feature);
+[1] https://bugzilla.kernel.org/show_bug.cgi?id=207383
+
+Nicholas Kazlauskas (7):
+  drm/amd/display: Store tiling_flags and tmz_surface on dm_plane_state
+  drm/amd/display: Reset plane when tiling flags change
+  drm/amd/display: Avoid using unvalidated tiling_flags and tmz_surface
+    in prepare_planes
+  drm/amd/display: Use validated tiling_flags and tmz_surface in
+    commit_tail
+  drm/amd/display: Reset plane for anything that's not a FAST update
+  drm/amd/display: Drop dm_determine_update_type_for_commit
+  drm/amd/display: Replace DRM private objects with subclassed DRM
+    atomic state
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 967 ++++++------------
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  13 +-
+ 2 files changed, 343 insertions(+), 637 deletions(-)
+
 -- 
-2.25.4
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
