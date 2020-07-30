@@ -1,56 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD57F2338EB
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 21:24:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9AEA233978
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jul 2020 22:04:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5DAE6E95B;
-	Thu, 30 Jul 2020 19:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 815716E95C;
+	Thu, 30 Jul 2020 20:04:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71A0E6E95A
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 19:24:47 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id l23so26743570qkk.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 12:24:47 -0700 (PDT)
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
+ [IPv6:2607:f8b0:4864:20::841])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 462B86E959
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 20:04:24 +0000 (UTC)
+Received: by mail-qt1-x841.google.com with SMTP id b25so21320655qto.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Jul 2020 13:04:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=JYeynkPIivTD/DtZOxTYtcIythtFUEZ9Ml060YzM/qE=;
- b=nmwGick5ZxdFIwdQ2VwKFrd59O+mUKsdA837SNUt0ySTJf+CCk4EyelqNGmtoygyg9
- P9PC94EzB3rZjzAvIMV89MRzjq5f48t4LciUabaJn7KptiD/hJcPFPKPsAEBJOBKgPo9
- 649n7vJl4AsECDsCORA3Sz2PnNttVui7mBFD5FNQNRO5EGCEKac5ci/5Ng14h7+F+9QR
- cw38Rh0naTtOgooDxQFmnl9LV/E+ZIeGXSL1c19r7Nw1bcYz1vZyc9Bw/zzCvMu9264h
- RrHTvGSkSd3RHUmXH6c8z53lEuodtAi94WNBlfw4isBt611NshSsPfXlTARKw28Aysgq
- rayA==
+ bh=b5bcuCJpeW3IczAg1ncwMpvvTD1iDA0cFhsvO4LfUR4=;
+ b=cHMYSYeXNfP8PZmWthOLRzbvAeUm4dOmLUvTgKw52eoKDPaDHKj09cFwqQY7WyMBvr
+ rnyEC0aHc68fXqrwllIh8WmMnDLmc8iaOwoHh2ihbXnfW+bosuqUozWbcndsSeCCElBz
+ zhhCMNj1muCrqftBPpw/oYqTo2UIwLgFhWEJXKHivYaEFqdlz/TGgDqM6Nm3c4XCrSZe
+ szbzcdAc97UZDvcr8Svhg6PcjmnY9dbxtICC3/tB+DVs9ZdkfyT7bhx5+uxhIFvIp4Z0
+ LyBtTfJD2w0zOwQg1YNKwfzH5exs7XX7VdrcWDhhVMFdW55zn1qLt2Jwd6BHQZGItWxO
+ kVVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=JYeynkPIivTD/DtZOxTYtcIythtFUEZ9Ml060YzM/qE=;
- b=VGgp6r8ump67guGgBflin5INUHwYMUelFSqLYwFusceRuNiAl1kTil7gF1Rq0hcQJg
- 8atpjJ6gbwL2ZYk1EI0oXddt94jC8KXB7vQFTcQGALZnpjCFi8kX7F2zaU+gEr6dWjLF
- dk6K65gXZeJsqhsE+5qimZlcPjnT2DqU+Kh7GeHrJhb3/EgGxLi2EDAuyy8gDxQib0eX
- TYJAi/ZF9hOSaS92HtRn3jiqLT7107FUWpkoza4okdU/rGY5zmKJHPKjVQ6nZBve9DlR
- rvy9jw9TkHIoGWIM+QMqZfBtUMUC8ilX9TS6Y6zhagKFLr8mDjFEZw9BllorDUUJB1yB
- 2n+g==
-X-Gm-Message-State: AOAM530DiRcu1v/YmpbFmKWG2mCZhgZWs2eOfwoIjMAS/H5pRgmuyzQr
- 7TCOyAlAsqrqMBN+hM6JPsO7KSKC
-X-Google-Smtp-Source: ABdhPJx9QmM+UD6Y52h96T3DJBw5TXUcGIjA8EXDZGC6d8ajR+M3VY36Rv6WDOJsU7ohCpbj9KOeGQ==
-X-Received: by 2002:a37:e89:: with SMTP id 131mr714432qko.279.1596137086489;
- Thu, 30 Jul 2020 12:24:46 -0700 (PDT)
+ bh=b5bcuCJpeW3IczAg1ncwMpvvTD1iDA0cFhsvO4LfUR4=;
+ b=p2hM4i93DWEj9c3J58iICF9o+39PwL+Ccd4eNDgnyCXZ+e+tOhQVrTqrJcZ8J2VMra
+ 1tlHsV9KEKyLn/dRDWwvJp6Mgxti82tJ+I6Qr0vlYlct2h3F/yT8euaLmbW97mvsJ/Jo
+ P+8b3AqgxOKtV8J+4bJ9ialalCFNdV4UF0QJdDthewwjyGX4dAqlFLrzx/slXOiMgkiO
+ BjucO3dXALik/fkB6dsayFbGR0sIJvwPi+jJishP/Vfrpd36WccRougJmQuNWpPpYsS6
+ H2u00kL8oc+wmpWZp/7Seety0hIn9KPtKLuaTy2cRyrqW+EEcGPr2Rf8o4eEnrvWaFsU
+ HBtw==
+X-Gm-Message-State: AOAM531mpsxGtwDASdq5j8XMC4/iXM2tSeRnENn7xM5/mFrsISGFLK3Q
+ aigy2MxcnNpfixAdEElSslISn0Pb
+X-Google-Smtp-Source: ABdhPJwKSEeS5PVYRxrNAA8/poyV4YrcjLt3ME9FTXTXpsKfQoUEd/Idq/OetrvL/gBd0gCjHBuffA==
+X-Received: by 2002:ac8:7b94:: with SMTP id p20mr348096qtu.312.1596139462208; 
+ Thu, 30 Jul 2020 13:04:22 -0700 (PDT)
 Received: from localhost.localdomain ([71.219.66.138])
- by smtp.gmail.com with ESMTPSA id q126sm4512113qke.34.2020.07.30.12.24.45
+ by smtp.gmail.com with ESMTPSA id d8sm5652757qtr.12.2020.07.30.13.04.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Jul 2020 12:24:45 -0700 (PDT)
+ Thu, 30 Jul 2020 13:04:21 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu/smu: rework i2c adpater registration
-Date: Thu, 30 Jul 2020 15:24:39 -0400
-Message-Id: <20200730192439.2005-1-alexander.deucher@amd.com>
+Subject: [PATCH 00/17] rework stolen pre-OS fb allocation handling (v3)
+Date: Thu, 30 Jul 2020 16:03:57 -0400
+Message-Id: <20200730200414.40485-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -70,175 +70,56 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The i2c init/fini functions just register the i2c adapter.
-There is no need to call them during hw init/fini.  They only
-need to be called once per driver init/fini.  The previous
-behavior broke runtime pm because we unregistered the i2c
-adapter during suspend.
+Split the allocations into two so we can still support the S3
+workarounds required on some platforms while also avoiding
+any artifacts when transitioning from bios to driver.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/powerplay/amdgpu_smu.c         | 12 ++++++------
- drivers/gpu/drm/amd/powerplay/arcturus_ppt.c       | 14 --------------
- drivers/gpu/drm/amd/powerplay/navi10_ppt.c         | 14 --------------
- drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c | 14 --------------
- 4 files changed, 6 insertions(+), 48 deletions(-)
+In the future we could integrate handling of the ip discovery
+data and other vbios allocations into this helper function
+to consolidate handling of all of the vbios reservations.
 
-diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-index 55463e7a11e2..d03b4852ed5f 100644
---- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
-@@ -579,6 +579,10 @@ static int smu_smc_table_sw_init(struct smu_context *smu)
- 	if (ret)
- 		return ret;
- 
-+	ret = smu_i2c_init(smu, &smu->adev->pm.smu_i2c);
-+	if (ret)
-+		return ret;
-+
- 	return 0;
- }
- 
-@@ -586,6 +590,8 @@ static int smu_smc_table_sw_fini(struct smu_context *smu)
- {
- 	int ret;
- 
-+	smu_i2c_fini(smu, &smu->adev->pm.smu_i2c);
-+
- 	ret = smu_free_memory_pool(smu);
- 	if (ret)
- 		return ret;
-@@ -845,10 +851,6 @@ static int smu_smc_hw_setup(struct smu_context *smu)
- 		return ret;
- 	}
- 
--	ret = smu_i2c_init(smu, &adev->pm.smu_i2c);
--	if (ret)
--		return ret;
--
- 	ret = smu_disable_umc_cdr_12gbps_workaround(smu);
- 	if (ret) {
- 		dev_err(adev->dev, "Workaround failed to disable UMC CDR feature on 12Gbps SKU!\n");
-@@ -1047,8 +1049,6 @@ static int smu_smc_hw_cleanup(struct smu_context *smu)
- 	struct amdgpu_device *adev = smu->adev;
- 	int ret = 0;
- 
--	smu_i2c_fini(smu, &adev->pm.smu_i2c);
--
- 	cancel_work_sync(&smu->throttling_logging_work);
- 
- 	ret = smu_disable_thermal_alert(smu);
-diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-index f13979687b9e..0147a5b9b06d 100644
---- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-@@ -2080,22 +2080,11 @@ static const struct i2c_algorithm arcturus_i2c_algo = {
- 	.functionality = arcturus_i2c_func,
- };
- 
--static bool arcturus_i2c_adapter_is_added(struct i2c_adapter *control)
--{
--	struct amdgpu_device *adev = to_amdgpu_device(control);
--
--	return control->dev.parent == &adev->pdev->dev;
--}
--
- static int arcturus_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
- {
- 	struct amdgpu_device *adev = to_amdgpu_device(control);
- 	int res;
- 
--	/* smu_i2c_eeprom_init may be called twice in sriov */
--	if (arcturus_i2c_adapter_is_added(control))
--		return 0;
--
- 	control->owner = THIS_MODULE;
- 	control->class = I2C_CLASS_SPD;
- 	control->dev.parent = &adev->pdev->dev;
-@@ -2111,9 +2100,6 @@ static int arcturus_i2c_control_init(struct smu_context *smu, struct i2c_adapter
- 
- static void arcturus_i2c_control_fini(struct smu_context *smu, struct i2c_adapter *control)
- {
--	if (!arcturus_i2c_adapter_is_added(control))
--		return;
--
- 	i2c_del_adapter(control);
- }
- 
-diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-index 6aaf483858a0..c33bdc6747f2 100644
---- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
-@@ -2457,22 +2457,11 @@ static const struct i2c_algorithm navi10_i2c_algo = {
- 	.functionality = navi10_i2c_func,
- };
- 
--static bool navi10_i2c_adapter_is_added(struct i2c_adapter *control)
--{
--	struct amdgpu_device *adev = to_amdgpu_device(control);
--
--	return control->dev.parent == &adev->pdev->dev;
--}
--
- static int navi10_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
- {
- 	struct amdgpu_device *adev = to_amdgpu_device(control);
- 	int res;
- 
--	/* smu_i2c_eeprom_init may be called twice in sriov */
--	if (navi10_i2c_adapter_is_added(control))
--		return 0;
--
- 	control->owner = THIS_MODULE;
- 	control->class = I2C_CLASS_SPD;
- 	control->dev.parent = &adev->pdev->dev;
-@@ -2488,9 +2477,6 @@ static int navi10_i2c_control_init(struct smu_context *smu, struct i2c_adapter *
- 
- static void navi10_i2c_control_fini(struct smu_context *smu, struct i2c_adapter *control)
- {
--	if (!navi10_i2c_adapter_is_added(control))
--		return;
--
- 	i2c_del_adapter(control);
- }
- 
-diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
-index f64a1be94cb8..f373e2d0d31c 100644
---- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
-@@ -2630,22 +2630,11 @@ static const struct i2c_algorithm sienna_cichlid_i2c_algo = {
- 	.functionality = sienna_cichlid_i2c_func,
- };
- 
--static bool sienna_cichlid_i2c_adapter_is_added(struct i2c_adapter *control)
--{
--	struct amdgpu_device *adev = to_amdgpu_device(control);
--
--	return control->dev.parent == &adev->pdev->dev;
--}
--
- static int sienna_cichlid_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
- {
- 	struct amdgpu_device *adev = to_amdgpu_device(control);
- 	int res;
- 
--	/* smu_i2c_eeprom_init may be called twice in sriov */
--	if (sienna_cichlid_i2c_adapter_is_added(control))
--		return 0;
--
- 	control->owner = THIS_MODULE;
- 	control->class = I2C_CLASS_SPD;
- 	control->dev.parent = &adev->pdev->dev;
-@@ -2661,9 +2650,6 @@ static int sienna_cichlid_i2c_control_init(struct smu_context *smu, struct i2c_a
- 
- static void sienna_cichlid_i2c_control_fini(struct smu_context *smu, struct i2c_adapter *control)
- {
--	if (!sienna_cichlid_i2c_adapter_is_added(control))
--		return;
--
- 	i2c_del_adapter(control);
- }
- 
+v2: Check if bo object is NULL rather than checking size
+    Move all vbios/firmware allocations into mman structure
+v3: Inline fw vram usage structure
+
+Alex Deucher (17):
+  drm/amdgpu: handle bo size 0 in amdgpu_bo_create_kernel_at (v2)
+  drm/amdgpu: use create_at for the stolen pre-OS buffer
+  drm/amdgpu: use a define for the memory size of the vga emulator
+  drm/amdgpu: move stolen vga bo from amdgpu to amdgpu.gmc
+  drm/amdgpu: move keep stolen memory check into gmc core
+  drm/amdgpu: add support for extended stolen vga memory
+  drm/amdgpu/gmc: add new helper to get the FB size used by pre-OS
+    console
+  drm/amdgpu/gmc6: switch to using amdgpu_gmc_get_vbios_allocations
+  drm/amdgpu/gmc7: switch to using amdgpu_gmc_get_vbios_allocations
+  drm/amdgpu/gmc8: switch to using amdgpu_gmc_get_vbios_allocations
+  drm/amdgpu/gmc9: switch to using amdgpu_gmc_get_vbios_allocations
+  drm/amdgpu/gmc10: switch to using amdgpu_gmc_get_vbios_allocations
+  drm/amdgpu: drop the CPU pointers for the stolen vga bos
+  drm/amdgpu/gmc: disable keep_stolen_vga_memory on arcturus
+  drm/amdgpu: move stolen memory from gmc to mman
+  drm/amdgpu: move IP discovery data to mman
+  drm/amdgpu: move vram usage by vbios to mman (v2)
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  20 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c  |   4 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  54 ++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c       |  42 +++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h       |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c    |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |  64 ++++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |  17 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c      |   6 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c        |  57 ++++-----
+ drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c         |   8 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c         |  11 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c         |  11 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c         | 119 ++++++------------
+ 16 files changed, 219 insertions(+), 211 deletions(-)
+
 -- 
 2.25.4
 
