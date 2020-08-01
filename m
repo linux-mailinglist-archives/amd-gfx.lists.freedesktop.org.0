@@ -2,46 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E6323A0DE
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Aug 2020 10:21:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E0CB23A0E1
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Aug 2020 10:21:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 844EE89CB3;
-	Mon,  3 Aug 2020 08:20:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA276E215;
+	Mon,  3 Aug 2020 08:21:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org
- [IPv6:2001:67c:2050::465:103])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E2C46E040
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Jul 2020 20:20:23 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
- (using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4BJJYd4lBjzKmbG;
- Fri, 31 Jul 2020 22:20:21 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
- by gerste.heinlein-support.de (gerste.heinlein-support.de [91.198.250.173])
- (amavisd-new, port 10030)
- with ESMTP id zMhM0HW-QDnM; Fri, 31 Jul 2020 22:20:17 +0200 (CEST)
-Date: Fri, 31 Jul 2020 22:20:14 +0200
-From: =?utf-8?B?UGF3ZcWC?= Gronowski <me@woland.xyz>
-To: Matt Coffin <mcoffin13@gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Fix regression in adjusting power
- table/profile
-Message-ID: <20200731202014.GA3750@tower>
-References: <20200729231106.GA6598@tower>
- <CADnq5_NQ9Oo85cV49+3pcQZTrBBc5HvoV_MQ_-wAmPhuzhq6uA@mail.gmail.com>
- <91bb8e22-9a8d-6b17-f40c-ab7a09a60fa8@gmail.com>
- <20200731003117.GA20523@tower>
- <c18325ea-3fda-74d3-47fc-eb057739b889@gmail.com>
- <20200731133437.GA4878@tower>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9110B6E128
+ for <amd-gfx@lists.freedesktop.org>; Sat,  1 Aug 2020 00:42:09 +0000 (UTC)
+IronPort-SDR: Ub4n405VLt6R7WGd5csIl9EnC4RA8vtjvkum1k0YlF6Mkttyuu+QErwX0GQ3HP7FaENx8EOVM3
+ 66BsNh+4MaQg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9699"; a="149342580"
+X-IronPort-AV: E=Sophos;i="5.75,420,1589266800"; d="scan'208";a="149342580"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2020 17:42:09 -0700
+IronPort-SDR: P6H3jEK43GdS1/8t4/7dSlDlGHhnsqkKpcsT+VzyPTLx2laDWwmcvrMJ+8mkdacBSts+EB4NII
+ 1VV+17pJzvng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.75,420,1589266800"; d="scan'208";a="329450720"
+Received: from otcwcpicx6.sc.intel.com ([172.25.55.29])
+ by FMSMGA003.fm.intel.com with ESMTP; 31 Jul 2020 17:42:08 -0700
+Date: Sat, 1 Aug 2020 00:42:08 +0000
+From: Fenghua Yu <fenghua.yu@intel.com>
+To: Andy Lutomirski <luto@kernel.org>
+Subject: Re: [PATCH v6 12/12] x86/traps: Fix up invalid PASID
+Message-ID: <20200801004208.GA324365@otcwcpicx6.sc.intel.com>
+References: <1594684087-61184-1-git-send-email-fenghua.yu@intel.com>
+ <1594684087-61184-13-git-send-email-fenghua.yu@intel.com>
+ <CALCETrXnO4oh+WyxtSM-j_pP4QgkSg24=y76OBEHxXxAfJtPhA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200731133437.GA4878@tower>
-X-MBO-SPAM-Probability: 0
-X-Rspamd-Score: -4.75 / 15.00 / 15.00
-X-Rspamd-Queue-Id: 5738417F1
-X-Rspamd-UID: 464823
+In-Reply-To: <CALCETrXnO4oh+WyxtSM-j_pP4QgkSg24=y76OBEHxXxAfJtPhA@mail.gmail.com>
 X-Mailman-Approved-At: Mon, 03 Aug 2020 08:20:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,126 +50,128 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Ravi V Shankar <ravi.v.shankar@intel.com>,
+ Peter Zijlstra <peterz@infradead.org>, Dave Hansen <dave.hansen@intel.com>,
+ H Peter Anvin <hpa@zytor.com>,
+ Jean-Philippe Brucker <jean-philippe@linaro.org>,
+ Dave Jiang <dave.jiang@intel.com>, Ashok Raj <ashok.raj@intel.com>,
+ Joerg Roedel <joro@8bytes.org>, x86 <x86@kernel.org>,
+ amd-gfx <amd-gfx@lists.freedesktop.org>, Christoph Hellwig <hch@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Fenghua Yu <fenghua.yu@intel.com>,
+ Borislav Petkov <bp@alien8.de>, Sohil Mehta <sohil.mehta@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Tony Luck <tony.luck@intel.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ iommu <iommu@lists.linux-foundation.org>,
+ Jacob Jun Pan <jacob.jun.pan@intel.com>, David Woodhouse <dwmw2@infradead.org>,
+ Lu Baolu <baolu.lu@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SGVsbG8gYWdhaW4sCgpJIGp1c3QgZmluaXNoZWQgYSBiaXNlY3Qgb2YgYW1kLXN0YWdpbmctZHJt
-LW5leHQgYW5kIGl0IGxvb2tzIGxpa2UKdGhlIGhhbmcgaXMgZmlyc3QgaW50cm9kdWNlZCBpbiBl
-ZGFkODMxMmNiYmY5YTMzYzg2ODczZmM0MDkzNjY0ZjE1MGRkNWMxCigiZHJtL2FtZGdwdTogZml4
-IHN5c3RlbSBoYW5nIGlzc3VlIGR1cmluZyBHUFUgcmVzZXQiKS4KCkl0IGlzIGEgYml0IHRyaWNr
-eSwgYmVjYXVzZSBpdCBpcyBjb21taXRlZCBvbiB0b3Agb2YgbXkgZmlyc3QgZmF1bHR5IHBhdGNo
-CjcxNzM5NDlkZjQ1NDgyICgiZHJtL2FtZGdwdTogRml4IE5VTEwgZGVyZWZlcmVuY2UgaW4gZHBt
-IHN5c2ZzIGhhbmRsZXJzIikgc28KaXQgbmVlZHMgdG8gYmUgcmV2ZXJ0ZWQgZml4IHRoZSBwcmVt
-YXR1cmUgLUlOVkFMLgoKVGVzdCBjYXNlOgogIHN1ZG8gc2ggLWMgJ2VjaG8gInMgMCAzMDUgNzUw
-IiA+IC9zeXMvY2xhc3MvZHJtL2NhcmQwL2RldmljZS9wcF9vZF9jbGtfdm9sdGFnZScKUmVzdWx0
-czoKICBlZGFkODMxMmNiYmY5YTMgKyByZXZlcnQgNzE3Mzk0OWRmNDU0ODIgPSBoYW5nCiAgZWRh
-ZDgzMTJjYmJmOWEzfjEgKyByZXZlcnQgNzE3Mzk0OWRmNDU0ODIgPSBubyBoYW5nCgpDb3VsZCB5
-b3UgY29uZmlybSB0aGF0IHlvdSBnZXQgdGhlIHNhbWUgcmVzdWx0cz8KClRoYW5rcywKUGF3ZcWC
-IEdyb25vd3NraQoKCk9uIEZyaSwgSnVsIDMxLCAyMDIwIGF0IDAzOjM0OjQwUE0gKzAyMDAsIFBh
-d2XFgiBHcm9ub3dza2kgd3JvdGU6Cj4gSGV5IE1hdHQsCj4gCj4gSSBoYXZlIGp1c3QgdGVzdGVk
-IHRoZSBhbWQtc3RhZ2luZy1kcm0tbmV4dCBicmFuY2ggCj4gKGRkNjU0Yzc2ZDZlODU0YWZhZDcx
-NmRlZDg5OWU0NDA0NzM0YWFhMTApIHdpdGggbXkgcGF0Y2hlcyByZXZlcnRlZAo+IGFuZCBJIGNh
-biByZXByb2R1Y2UgeW91ciBpc3N1ZSB3aXRoOgo+IAo+ICAgc3VkbyBzaCAtYyAnZWNobyAicyAw
-IDMwNSA3NTAiID4gL3N5cy9jbGFzcy9kcm0vY2FyZDAvZGV2aWNlL3BwX29kX2Nsa192b2x0YWdl
-Jwo+IAo+IFdoaWNoIG1ha2VzIHRoZSBzaCBoYW5nIHdpdGggMTAwJSB1c2FnZS4KPiAKPiBUaGUg
-aXNzdWUgZG9lcyBub3QgaGFwcGVuIG9uIHRoZSBtYWlubGluZSAoZDhiOWZhZWM1NGFlNGJjMmZm
-ZjY4YmNkMGJlZmE5M2FjZTgyNTZjZSkKPiBib3RoIHdpdGhvdXQgYW5kIHdpdGggbXkgcGF0Y2hl
-cyByZWFwcGxpZWQuCj4gU28gdGhlIHByb2JsZW0gbXVzdCBiZSByZWxhdGVkIHRvIHNvbWUgY29t
-bWl0IHRoYXQgaXMgcHJlc2VudCBpbiB0aGUKPiBhbWQtc3RhZ2luZy1kcm0tbmV4dCBidXQgbm90
-IGluIHRoZSBtYWlubGluZS4KPiAKPiAKPiBQYXdlxYIgR3Jvbm93c2tpCj4gCj4gT24gVGh1LCBK
-dWwgMzAsIDIwMjAgYXQgMDY6MzQ6MTRQTSAtMDYwMCwgTWF0dCBDb2ZmaW4gd3JvdGU6Cj4gPiBI
-ZXkgUGF3ZWwsCj4gPiAKPiA+IEkgZGlkIGNvbmZpcm0gdGhhdCB0aGlzIHBhdGNoICppbnRyb2R1
-Y2VkKiB0aGUgaXNzdWUgYm90aCB3aXRoIHRoZQo+ID4gYmlzZWN0LCBhbmQgYnkgdGVzdGluZyBy
-ZXZlcnRpbmcgaXQuCj4gPiAKPiA+IE5vdywgdGhlcmUncyBhIGxvdCBvZiBmcmFnaWxlIHBpZWNl
-cyBpbiB0aGUgZHBtIGhhbmRsaW5nLCBzbyBpdCBjb3VsZCBiZQo+ID4gdGhpcyBwYXRjaCdzIGlu
-dGVyYWN0aW9uIHdpdGggc29tZXRoaW5nIGVsc2UgdGhhdCdzIGNhdXNpbmcgaXQgYW5kIGl0Cj4g
-PiBtYXkgd2VsbCBub3QgYmUgdGhlIGZhdWx0IG9mIHRoaXMgY29kZSwgYnV0IHRoaXMgaXMgdGhl
-IHBhdGNoIHRoYXQKPiA+IGludHJvZHVjZWQgdGhlIGlzc3VlLgo+ID4gCj4gPiBJJ2xsIGhhdmUg
-c29tZSBtb3JlIHRpbWUgdG9tb3Jyb3cgdG8gdHJ5IHRvIGdldCBkb3duIHRvIHJvb3QgY2F1c2Ug
-aGVyZSwKPiA+IHNvIG1heWJlIEknbGwgaGF2ZSBtb3JlIHRvIG9mZmVyIHRoZW4uCj4gPiAKPiA+
-IFRoYW5rcyBmb3IgdGFraW5nIGEgbG9vaywKPiA+IE1hdHQKPiA+IAo+ID4gT24gNy8zMC8yMCA2
-OjMxIFBNLCBQYXdlxYIgR3Jvbm93c2tpIHdyb3RlOgo+ID4gPiBIZWxsbyBNYXR0LAo+ID4gPiAK
-PiA+ID4gVGhhbmsgeW91IGZvciB5b3VyIHRlc3RpbmcuIEl0IHNlZW1zIHRoYXQgbXkgZ3B1IChS
-WCA1NzApIGRvZXMgbm90IHN1cHBvcnQgdGhlCj4gPiA+IHZjIHNldHRpbmcgc28gSSBjYW4gbm90
-IGV4YWN0bHkgcmVwcm9kdWNlIHRoZSBpc3N1ZS4gSG93ZXZlciBJIGRpZCB0cmFjZSB0aGUKPiA+
-ID4gY29kZSBwYXRoIHRoZSB0ZXN0IGNhc2UgdGFrZXMgYW5kIGl0IHNlZW1zIHRvIGNvcnJlY3Rs
-eSBwYXNzIHRocm91Z2ggdGhlIHdoaWxlCj4gPiA+IGxvb3AgdGhhdCBwYXJzZXMgdGhlIGlucHV0
-IGFuZCBmYWlscyBvbmx5IGluIGFtZGdwdV9kcG1fb2RuX2VkaXRfZHBtX3RhYmxlLgo+ID4gPiBU
-aGUgJ3BhcmFtZXRlcicgYXJyYXkgaXMgcG9wdWxhdGVkIHRoZSBzYW1lIHdheSBhcyB0aGUgb3Jp
-Z2luYWwgY29kZSBkaWQuIFNpbmNlCj4gPiA+IHRoZSBhbWRncHVfZHBtX29kbl9lZGl0X2RwbV90
-YWJsZSBpcyByZWFjaGVkLCBJIHRoaW5rIHRoYXQgeW91ciBwcm9ibGVtIGlzCj4gPiA+IHVuZm9y
-dHVuYXRlbHkgY2F1c2VkIGJ5IHNvbWV0aGluZyBlbHNlLgo+ID4gPiAKPiA+ID4gCj4gPiA+IFBh
-d2XFgiBHcm9ub3dza2kKPiA+ID4gCj4gPiA+IE9uIFRodSwgSnVsIDMwLCAyMDIwIGF0IDA4OjQ5
-OjQxQU0gLTA2MDAsIE1hdHQgQ29mZmluIHdyb3RlOgo+ID4gPj4gSGVsbG8gYWxsLCBJIGp1c3Qg
-ZGlkIHNvbWUgdGVzdGluZyB3aXRoIHRoaXMgYXBwbGllZCwgYW5kIHdoaWxlIGl0IG5vCj4gPiA+
-PiBsb25nZXIgcmV0dXJucyAtRUlOVkFMLCBydW5uaW5nIGBzdWRvIHNoIC1jICdlY2hvICJ2YyAy
-IDIxNTAgMTE5NSIgPgo+ID4gPj4gL3N5cy9jbGFzcy9kcm0vY2FyZDEvZGV2aWNlL3BwX29kX2Ns
-a192b2x0YWdlJ2AgcmVzdWx0cyBpbiBgc2hgIHNwaWtpbmcKPiA+ID4+IHRvLCBhbmQgc3RheWlu
-ZyBhdCAxMDAlIENQVSB1c2FnZSwgd2l0aCBubyBpbmRpY2F0aW5nIGluZm9ybWF0aW9uIGluCj4g
-PiA+PiBgZG1lc2dgIGZyb20gdGhlIGtlcm5lbC4KPiA+ID4+Cj4gPiA+PiBJdCBhcHBlYXJlZCB0
-byB3b3JrIGF0IGxlYXN0IE9OQ0UsIGJ1dCBwb3RlbnRpYWxseSBub3QgYWZ0ZXIuCj4gPiA+Pgo+
-ID4gPj4gVGhpcyBpcyBub3QgdW5pcXVlIHRvIE5hdmksIGFuZCBjYXVzZWQgdGhlIHByb2JsZW0g
-b24gYSBQT0xBUklTMTAgY2FyZAo+ID4gPj4gYXMgd2VsbC4KPiA+ID4+Cj4gPiA+PiBTb3JyeSBm
-b3IgdGhlIGJhZCBuZXdzLCBhbmQgdGhhbmtzIGZvciBhbnkgaW5zaWdodCB5b3UgbWF5IGhhdmUs
-Cj4gPiA+PiBNYXR0IENvZmZpbgo+ID4gPj4KPiA+ID4+IE9uIDcvMjkvMjAgODo1MyBQTSwgQWxl
-eCBEZXVjaGVyIHdyb3RlOgo+ID4gPj4+IE9uIFdlZCwgSnVsIDI5LCAyMDIwIGF0IDEwOjIwIFBN
-IFBhd2XFgiBHcm9ub3dza2kgPG1lQHdvbGFuZC54eXo+IHdyb3RlOgo+ID4gPj4+Pgo+ID4gPj4+
-PiBSZWdyZXNzaW9uIHdhcyBpbnRyb2R1Y2VkIGluIGNvbW1pdCAzOGUwYzg5YTE5ZmQKPiA+ID4+
-Pj4gKCJkcm0vYW1kZ3B1OiBGaXggTlVMTCBkZXJlZmVyZW5jZSBpbiBkcG0gc3lzZnMgaGFuZGxl
-cnMiKSB3aGljaAo+ID4gPj4+PiBtYWRlIHRoZSBzZXRfcHBfb2RfY2xrX3ZvbHRhZ2UgYW5kIHNl
-dF9wcF9wb3dlcl9wcm9maWxlX21vZGUgcmV0dXJuCj4gPiA+Pj4+IC1FSU5WQUwgZm9yIHByZXZp
-b3VzbHkgdmFsaWQgaW5wdXQuIFRoaXMgd2FzIGNhdXNlZCBieSBhbiBlbXB0eQo+ID4gPj4+PiBz
-dHJpbmcgKHN0YXJ0aW5nIGF0IHRoZSBcMCBjaGFyYWN0ZXIpIGJlaW5nIHBhc3NlZCB0byB0aGUg
-a3N0cnRvbC4KPiA+ID4+Pj4KPiA+ID4+Pj4gU2lnbmVkLW9mZi1ieTogUGF3ZcWCIEdyb25vd3Nr
-aSA8bWVAd29sYW5kLnh5ej4KPiA+ID4+Pgo+ID4gPj4+IEFwcGxpZWQuICBUaGFua3MhCj4gPiA+
-Pj4KPiA+ID4+PiBBbGV4Cj4gPiA+Pj4KPiA+ID4+Pj4gLS0tCj4gPiA+Pj4+ICBkcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcG0uYyB8IDkgKysrKysrKy0tCj4gPiA+Pj4+ICAxIGZp
-bGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+ID4gPj4+Pgo+ID4g
-Pj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3BtLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcG0uYwo+ID4gPj4+PiBpbmRleCBl
-YmI4YTI4ZmYwMDIuLmNiZjYyM2ZmMDNiZCAxMDA2NDQKPiA+ID4+Pj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3BtLmMKPiA+ID4+Pj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3BtLmMKPiA+ID4+Pj4gQEAgLTc3OCwxMiArNzc4LDE0IEBA
-IHN0YXRpYyBzc2l6ZV90IGFtZGdwdV9zZXRfcHBfb2RfY2xrX3ZvbHRhZ2Uoc3RydWN0IGRldmlj
-ZSAqZGV2LAo+ID4gPj4+PiAgICAgICAgICAgICAgICAgdG1wX3N0cisrOwo+ID4gPj4+PiAgICAg
-ICAgIHdoaWxlIChpc3NwYWNlKCorK3RtcF9zdHIpKTsKPiA+ID4+Pj4KPiA+ID4+Pj4gLSAgICAg
-ICB3aGlsZSAoKHN1Yl9zdHIgPSBzdHJzZXAoJnRtcF9zdHIsIGRlbGltaXRlcikpICE9IE5VTEwp
-IHsKPiA+ID4+Pj4gKyAgICAgICB3aGlsZSAoKHN1Yl9zdHIgPSBzdHJzZXAoJnRtcF9zdHIsIGRl
-bGltaXRlcikpICYmICpzdWJfc3RyKSB7Cj4gPiA+Pj4+ICAgICAgICAgICAgICAgICByZXQgPSBr
-c3RydG9sKHN1Yl9zdHIsIDAsICZwYXJhbWV0ZXJbcGFyYW1ldGVyX3NpemVdKTsKPiA+ID4+Pj4g
-ICAgICAgICAgICAgICAgIGlmIChyZXQpCj4gPiA+Pj4+ICAgICAgICAgICAgICAgICAgICAgICAg
-IHJldHVybiAtRUlOVkFMOwo+ID4gPj4+PiAgICAgICAgICAgICAgICAgcGFyYW1ldGVyX3NpemUr
-KzsKPiA+ID4+Pj4KPiA+ID4+Pj4gKyAgICAgICAgICAgICAgIGlmICghdG1wX3N0cikKPiA+ID4+
-Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7Cj4gPiA+Pj4+ICAgICAgICAgICAgICAg
-ICB3aGlsZSAoaXNzcGFjZSgqdG1wX3N0cikpCj4gPiA+Pj4+ICAgICAgICAgICAgICAgICAgICAg
-ICAgIHRtcF9zdHIrKzsKPiA+ID4+Pj4gICAgICAgICB9Cj4gPiA+Pj4+IEBAIC0xNjM1LDExICsx
-NjM3LDE0IEBAIHN0YXRpYyBzc2l6ZV90IGFtZGdwdV9zZXRfcHBfcG93ZXJfcHJvZmlsZV9tb2Rl
-KHN0cnVjdCBkZXZpY2UgKmRldiwKPiA+ID4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgaSsr
-Owo+ID4gPj4+PiAgICAgICAgICAgICAgICAgbWVtY3B5KGJ1Zl9jcHksIGJ1ZiwgY291bnQtaSk7
-Cj4gPiA+Pj4+ICAgICAgICAgICAgICAgICB0bXBfc3RyID0gYnVmX2NweTsKPiA+ID4+Pj4gLSAg
-ICAgICAgICAgICAgIHdoaWxlICgoc3ViX3N0ciA9IHN0cnNlcCgmdG1wX3N0ciwgZGVsaW1pdGVy
-KSkgIT0gTlVMTCkgewo+ID4gPj4+PiArICAgICAgICAgICAgICAgd2hpbGUgKChzdWJfc3RyID0g
-c3Ryc2VwKCZ0bXBfc3RyLCBkZWxpbWl0ZXIpKSAmJiAqc3ViX3N0cikgewo+ID4gPj4+PiAgICAg
-ICAgICAgICAgICAgICAgICAgICByZXQgPSBrc3RydG9sKHN1Yl9zdHIsIDAsICZwYXJhbWV0ZXJb
-cGFyYW1ldGVyX3NpemVdKTsKPiA+ID4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgaWYgKHJl
-dCkKPiA+ID4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gLUVJTlZB
-TDsKPiA+ID4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgcGFyYW1ldGVyX3NpemUrKzsKPiA+
-ID4+Pj4gKwo+ID4gPj4+PiArICAgICAgICAgICAgICAgICAgICAgICBpZiAoIXRtcF9zdHIpCj4g
-PiA+Pj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7Cj4gPiA+Pj4+ICAg
-ICAgICAgICAgICAgICAgICAgICAgIHdoaWxlIChpc3NwYWNlKCp0bXBfc3RyKSkKPiA+ID4+Pj4g
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0bXBfc3RyKys7Cj4gPiA+Pj4+ICAgICAg
-ICAgICAgICAgICB9Cj4gPiA+Pj4+IC0tCj4gPiA+Pj4+IDIuMjUuMQo+ID4gPj4+Pgo+ID4gPj4+
-PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gPj4+
-PiBhbWQtZ2Z4IG1haWxpbmcgbGlzdAo+ID4gPj4+PiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwo+ID4gPj4+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2FtZC1nZngKPiA+ID4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwo+ID4gPj4+IGFtZC1nZnggbWFpbGluZyBsaXN0Cj4gPiA+Pj4gYW1kLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+ID4+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngKPiA+ID4+Pgo+ID4gPj4KPiA+ID4gCj4gPiA+IAo+
-ID4gPiAKPiA+IAo+IAo+IAo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1n
-ZngK
+Hi, Andy,
+
+On Fri, Jul 31, 2020 at 04:34:11PM -0700, Andy Lutomirski wrote:
+> On Mon, Jul 13, 2020 at 4:48 PM Fenghua Yu <fenghua.yu@intel.com> wrote:
+> >
+> > A #GP fault is generated when ENQCMD instruction is executed without
+> > a valid PASID value programmed in the current thread's PASID MSR. The
+> > #GP fault handler will initialize the MSR if a PASID has been allocated
+> > for this process.
+> >
+> > Decoding the user instruction is ugly and sets a bad architecture
+> > precedent. It may not function if the faulting instruction is modified
+> > after #GP.
+> >
+> > Thomas suggested to provide a reason for the #GP caused by executing ENQCMD
+> > without a valid PASID value programmed. #GP error codes are 16 bits and all
+> > 16 bits are taken. Refer to SDM Vol 3, Chapter 16.13 for details. The other
+> > choice was to reflect the error code in an MSR. ENQCMD can also cause #GP
+> > when loading from the source operand, so its not fully comprehending all
+> > the reasons. Rather than special case the ENQCMD, in future Intel may
+> > choose a different fault mechanism for such cases if recovery is needed on
+> > #GP.
+> 
+> Decoding the user instruction is ugly and sets a bad architecture
+> precedent, but we already do it in #GP for UMIP.  So I'm unconvinced.
+
+Maybe just remove the "Decoding the user instruction ... bad architecture
+precedent" sentence? The sentence is vague.
+
+As described in the following "It may not function ..." sentence, the real
+issue of parsing the instruction is the instruction may be modified by
+another processor before it's parsed in the #GP handler.
+
+If just keep the "It may not function ..." sentence, is that good enough to
+explain why we don't parse the faulting instruction?
+
+> 
+> Memo to Intel, though: you REALLY need to start thinking about what
+> the heck an OS is supposed to do with all these new faults you're
+> coming up with.  The new #NM for TILE is utterly nonsensical.  Sure,
+> it works for an OS that does not use CR0.TS and as long as no one
+> tries to extend the same mechanism for some new optional piece of
+> state, but as soon as Intel tries to use the same mechanism for
+> anything else, it falls apart.
+> 
+> Please do better.
+
+Internally we did discuss the error code in #GP for PASID with HW architects.
+But due to some uarch reason, it's not simple to report the error code for
+PASID:( Please see previous discussion on the error code for PASID:
+https://lore.kernel.org/lkml/20200427224646.GA103955@otc-nc-03/
+
+It's painful for our SW guys to check exception reasons if hardware
+doesn't explicitly tell us.
+
+Hopefully the heuristics (fixup the PASID MSR if the process already has
+a valid PASID but the MSR doesn't have one yet) in this patch is acceptable.
+ 
+> 
+> > +
+> > +/*
+> > + * Write the current task's PASID MSR/state. This is called only when PASID
+> > + * is enabled.
+> > + */
+> > +static void fpu__pasid_write(u32 pasid)
+> > +{
+> > +       u64 msr_val = pasid | MSR_IA32_PASID_VALID;
+> > +
+> > +       fpregs_lock();
+> > +
+> > +       /*
+> > +        * If the MSR is active and owned by the current task's FPU, it can
+> > +        * be directly written.
+> > +        *
+> > +        * Otherwise, write the fpstate.
+> > +        */
+> > +       if (!test_thread_flag(TIF_NEED_FPU_LOAD)) {
+> > +               wrmsrl(MSR_IA32_PASID, msr_val);
+> > +       } else {
+> > +               struct ia32_pasid_state *ppasid_state;
+> > +
+> > +               ppasid_state = get_xsave_addr(&current->thread.fpu.state.xsave,
+> > +                                             XFEATURE_PASID);
+> > +               /*
+> > +                * ppasid_state shouldn't be NULL because XFEATURE_PASID
+> > +                * is enabled.
+> > +                */
+> > +               WARN_ON_ONCE(!ppasid_state);
+> > +               ppasid_state->pasid = msr_val;
+> 
+> WARN instead of BUG is nice, but you'll immediate oops if this fails.
+> How about:
+> 
+> if (!WARN_ON_ONCE(!ppasid_state))
+>   ppasid_state->pasid = msr_val;
+
+OK. I will fix this issue.
+
+Thank you very much for your review!
+
+-Fenghua
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
