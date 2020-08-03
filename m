@@ -1,39 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A2B23A0E0
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Aug 2020 10:21:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26BD923A893
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Aug 2020 16:35:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D4BD6E219;
-	Mon,  3 Aug 2020 08:21:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BB59891C7;
+	Mon,  3 Aug 2020 14:35:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 315 seconds by postgrey-1.36 at gabe;
- Sun, 02 Aug 2020 11:20:58 UTC
-Received: from out30-57.freemail.mail.aliyun.com
- (out30-57.freemail.mail.aliyun.com [115.124.30.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EF416E0F2
- for <amd-gfx@lists.freedesktop.org>; Sun,  2 Aug 2020 11:20:57 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R101e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e01422;
- MF=tianjia.zhang@linux.alibaba.com; NM=1; PH=DS; RN=16; SR=0;
- TI=SMTPD_---0U4T30DO_1596366936; 
-Received: from localhost(mailfrom:tianjia.zhang@linux.alibaba.com
- fp:SMTPD_---0U4T30DO_1596366936) by smtp.aliyun-inc.com(127.0.0.1);
- Sun, 02 Aug 2020 19:15:37 +0800
-From: Tianjia Zhang <tianjia.zhang@linux.alibaba.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
- nicholas.kazlauskas@amd.com, Rodrigo.Siqueira@amd.com,
- Bhawanpreet.Lakha@amd.com, stylon.wang@amd.com, roman.li@amd.com,
- mikita.lipski@amd.com
-Subject: [PATCH] drm/amd/display: Fix wrong return value in
- dm_update_plane_state()
-Date: Sun,  2 Aug 2020 19:15:36 +0800
-Message-Id: <20200802111536.5246-1-tianjia.zhang@linux.alibaba.com>
-X-Mailer: git-send-email 2.17.1
-X-Mailman-Approved-At: Mon, 03 Aug 2020 08:20:56 +0000
+Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0E37891C7
+ for <amd-gfx@lists.freedesktop.org>; Mon,  3 Aug 2020 14:35:44 +0000 (UTC)
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 073ER85T179105;
+ Mon, 3 Aug 2020 14:35:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=rmNK5gO7GIs9HZl9reoxxn3f8bE0c52R1BgKEeLZob4=;
+ b=tqgA2ECQSo8e/LGISelYd4oNo5+ldklvMKBX6FccCVxdD11PQ18FAvhr/T3uGTsXDoiS
+ Uzf+u+/FgF8afddon/esDsAAyZGM1ziGxzXWHuCL96Rdypc+mHipQ7+tw9LHOKgyt7EH
+ OoQQs2LPJ57FrDAvGeF2K8yWQjxAHPQdSKxes+mPtLZzyx/Fz61fbdMaMocvkNC9LvPq
+ c8GVJxp5QdzrOQ/53U1B7LVkLJRh2kCNH4f5gaxVrooeNfDDjDrdQ8IKiJZQQpAgYXCW
+ r93UGynvpoyD3Tt+d93+PDdByDUV4tAnnl0K2EIddlAZ1kBSwNXK5uaGR0QgIao0AjKE tQ== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+ by userp2130.oracle.com with ESMTP id 32pdnq238w-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Mon, 03 Aug 2020 14:35:39 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+ by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 073EWm8T082137;
+ Mon, 3 Aug 2020 14:35:38 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+ by aserp3020.oracle.com with ESMTP id 32pdnng3qw-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 03 Aug 2020 14:35:38 +0000
+Received: from abhmp0004.oracle.com (abhmp0004.oracle.com [141.146.116.10])
+ by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 073EZVPF008394;
+ Mon, 3 Aug 2020 14:35:31 GMT
+Received: from mwanda (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Mon, 03 Aug 2020 07:35:30 -0700
+Date: Mon, 3 Aug 2020 17:35:19 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Harry Wentland <harry.wentland@amd.com>,
+ Mauro Rossi <issor.oruam@gmail.com>
+Subject: [PATCH] drm/amd/display: Indent an if statement
+Message-ID: <20200803143519.GB346925@mwanda>
+MIME-Version: 1.0
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9702
+ signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ spamscore=0 mlxscore=0
+ bulkscore=0 adultscore=0 phishscore=0 malwarescore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008030110
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9702
+ signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 impostorscore=0
+ mlxscore=0
+ suspectscore=0 clxscore=1011 priorityscore=1501 bulkscore=0 adultscore=0
+ malwarescore=0 phishscore=0 mlxlogscore=999 spamscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008030109
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,40 +75,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tianjia.zhang@alibaba.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-MIME-Version: 1.0
+Cc: Charlene Liu <Charlene.Liu@amd.com>, Aric Cyr <aric.cyr@amd.com>,
+ Reza Amini <Reza.Amini@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ kernel-janitors@vger.kernel.org, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Samson Tam <Samson.Tam@amd.com>, David Airlie <airlied@linux.ie>,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Martin Leung <martin.leung@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On an error exit path, a negative error code should be returned
-instead of a positive return value.
+The if statement wasn't indented so it's confusing.
 
-Fixes: 9e869063b0021 ("drm/amd/display: Move iteration out of dm_update_planes")
-Cc: Leo Li <sunpeng.li@amd.com>
-Signed-off-by: Tianjia Zhang <tianjia.zhang@linux.alibaba.com>
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 710edc70e37e..5810416e2ddc 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8182,8 +8182,7 @@ static int dm_update_plane_state(struct dc *dc,
- 				dm_old_plane_state->dc_state,
- 				dm_state->context)) {
- 
--			ret = EINVAL;
--			return ret;
-+			return -EINVAL;
- 		}
- 
- 
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index ca26714c800e..c6b737dd8425 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -71,7 +71,7 @@ enum dce_version resource_parse_asic_id(struct hw_asic_id asic_id)
+ 		if (ASIC_REV_IS_TAHITI_P(asic_id.hw_internal_rev) ||
+ 		    ASIC_REV_IS_PITCAIRN_PM(asic_id.hw_internal_rev) ||
+ 		    ASIC_REV_IS_CAPEVERDE_M(asic_id.hw_internal_rev))
+-		dc_version = DCE_VERSION_6_0;
++			dc_version = DCE_VERSION_6_0;
+ 		else if (ASIC_REV_IS_OLAND_M(asic_id.hw_internal_rev))
+ 			dc_version = DCE_VERSION_6_4;
+ 		else
 -- 
-2.26.2
+2.27.0
 
 _______________________________________________
 amd-gfx mailing list
