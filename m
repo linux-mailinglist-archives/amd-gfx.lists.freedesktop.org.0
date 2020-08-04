@@ -2,53 +2,30 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E35DA23BEDC
-	for <lists+amd-gfx@lfdr.de>; Tue,  4 Aug 2020 19:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B5F523BEEC
+	for <lists+amd-gfx@lfdr.de>; Tue,  4 Aug 2020 19:36:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E5CB6E4B0;
-	Tue,  4 Aug 2020 17:29:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DAA26E4AE;
+	Tue,  4 Aug 2020 17:36:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8E376E4B0
- for <amd-gfx@lists.freedesktop.org>; Tue,  4 Aug 2020 17:29:55 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id a14so38196996wra.5
- for <amd-gfx@lists.freedesktop.org>; Tue, 04 Aug 2020 10:29:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Flu8zxwd9SYVA83ZSifdSS4TWGmigR1QwUHZu1JCQ9U=;
- b=ZBPvscrA1VsV8CZBqee07rZQGA6h1LhRKQq1/bxC4edzsPCtPVd6T7J05Y55F2Hoxi
- qZu+fWVSX0QRPa8ipn8lfL4Vi0g0lrDI92gpZpU3tSscN4wjFZpy6HSmzikFAQRxt7p+
- PmD6nchffnZycmROxnF/Dsfoe9BV5tRHY9XHXWXOhFkauSh1hy4sysgI2JBZsRDSqTDy
- w8q34qeOhRDHXeBM7gFQxcG234UrBwg9RE5Hn/IG8NhMP6wXtaZ2cF1z777CO7B+JwYd
- nz8P7EqIJRzhCgbEh6oVbECOPi6+00KqeKYkHYWhDczuEIOb6BTqdHmPxtrMs4ZJkjGm
- eWDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Flu8zxwd9SYVA83ZSifdSS4TWGmigR1QwUHZu1JCQ9U=;
- b=pazfKzIlNfmPl+jF01nFOMVfzqHN2nDJOHru+2JEcrbCk0Je8gwHcKBLrl2P90JHiC
- SkwNxz+RhlJxoL63f9COPYjhzcJKMr/v1XoRf+qWcxzcn+dAe5xTyfYQEXMIG7ZkDArM
- k6KP7UCkoHGFnTtJ9KtBxPaCua6WSZIcg+gvr7e6TW94iF+uOuMuQ6wjL8xd7QGBnPaO
- UWt8Z04Bzk/NsLZ87PYuHEAJKiPOQzEafUvV10aStpc3LIuncnDB6UOsrI/+PC18hJ6D
- zFd3yfIx3qfZcSdb3/Avw5As7P/JBKfcEd3+1Wb22Pyyzoj2IHyS0G+uZ1yZFFEdqDbn
- PUtQ==
-X-Gm-Message-State: AOAM532rWr0UGSXT7Exxtuy8EBIQf7ysF7T1p5rvohsrWu2DPiOg2hE8
- W5lXy/C72YH/YS9c8Rq1V/Nf6NlN6xOjwppRN8iXCQ==
-X-Google-Smtp-Source: ABdhPJxb0O8rBdTti+qionJ927o7dTUEmc6P0YfjDhgvhAsCZbHx0uyYRmq9WEggUIhol1YFBF4R6ISLIzjIvu7Drks=
-X-Received: by 2002:a5d:494b:: with SMTP id r11mr3018960wrs.419.1596562194293; 
- Tue, 04 Aug 2020 10:29:54 -0700 (PDT)
+Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E474F89AAE
+ for <amd-gfx@lists.freedesktop.org>; Tue,  4 Aug 2020 16:34:57 +0000 (UTC)
+Received: from monopod.intra.ispras.ru (unknown [10.10.3.121])
+ by mail.ispras.ru (Postfix) with ESMTPS id 9337A40A2070;
+ Tue,  4 Aug 2020 16:28:33 +0000 (UTC)
+Date: Tue, 4 Aug 2020 19:28:33 +0300 (MSK)
+From: Alexander Monakov <amonakov@ispras.ru>
+To: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
+Subject: Re: [PATCH] drm/amd/display: use correct scale for actual_brightness
+In-Reply-To: <35b551fe-7c14-3d8e-4056-39975bd75105@amd.com>
+Message-ID: <alpine.LNX.2.20.13.2008041922170.2454@monopod.intra.ispras.ru>
+References: <20200803200218.2167-1-amonakov@ispras.ru>
+ <35b551fe-7c14-3d8e-4056-39975bd75105@amd.com>
+User-Agent: Alpine 2.20.13 (LNX 116 2015-12-14)
 MIME-Version: 1.0
-References: <20200727132455.26657-1-Philip.Yang@amd.com>
- <406653af-5b66-6c77-1104-8fdf89be5c99@amd.com>
-In-Reply-To: <406653af-5b66-6c77-1104-8fdf89be5c99@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 4 Aug 2020 13:29:43 -0400
-Message-ID: <CADnq5_Nbg+sKXOJ9diUwqt6y19Uk+v_YNcE_PhDEGmgnZLm0cw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdkfd: option to disable system mem limit
-To: Felix Kuehling <felix.kuehling@amd.com>
+X-Mailman-Approved-At: Tue, 04 Aug 2020 17:36:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,127 +37,174 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Yang, Philip" <Philip.Yang@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 4, 2020 at 1:27 PM Felix Kuehling <felix.kuehling@amd.com> wrote:
->
-> Am 2020-07-27 um 9:24 a.m. schrieb Philip Yang:
-> > If multiple process share system memory through /dev/shm, KFD allocate
-> > memory should not fail if it reachs the system memory limit because
-> > one copy of physical system memory are shared by multiple process.
-> >
-> > Add module parameter to provide user option to disable system memory
-> > limit check, to run multiple process share memory application. By
-> > default the system memory limit is on.
-> >
-> > Print out debug message to warn user if KFD allocate memory failed
-> > because of system memory limit.
-> >
-> > Signed-off-by: Philip Yang <Philip.Yang@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu.h              | 2 ++
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 9 ++++++++-
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c          | 9 +++++++++
-> >  3 files changed, 19 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > index e97c088d03b3..3c0d5ecfe0d5 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > @@ -187,9 +187,11 @@ extern int amdgpu_force_asic_type;
-> >  #ifdef CONFIG_HSA_AMD
-> >  extern int sched_policy;
-> >  extern bool debug_evictions;
-> > +extern bool no_system_mem_limit;
-> >  #else
-> >  static const int sched_policy = KFD_SCHED_POLICY_HWS;
-> >  static const bool debug_evictions; /* = false */
-> > +static const bool no_system_mem_limit;
-> >  #endif
-> >
-> >  extern int amdgpu_tmz;
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > index 8703aa1fe4a5..502e8204c012 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > @@ -99,7 +99,10 @@ void amdgpu_amdkfd_gpuvm_init_mem_limits(void)
-> >       mem *= si.mem_unit;
-> >
-> >       spin_lock_init(&kfd_mem_limit.mem_limit_lock);
-> > -     kfd_mem_limit.max_system_mem_limit = mem - (mem >> 4);
-> > +     if (no_system_mem_limit)
-> > +             kfd_mem_limit.max_system_mem_limit = U64_MAX;
-> > +     else
-> > +             kfd_mem_limit.max_system_mem_limit = mem - (mem >> 4);
-> >       kfd_mem_limit.max_ttm_mem_limit = (mem >> 1) - (mem >> 3);
-> >       pr_debug("Kernel memory limit %lluM, TTM limit %lluM\n",
-> >               (kfd_mem_limit.max_system_mem_limit >> 20),
-> > @@ -148,6 +151,10 @@ static int amdgpu_amdkfd_reserve_mem_limit(struct amdgpu_device *adev,
-> >
-> >       spin_lock(&kfd_mem_limit.mem_limit_lock);
-> >
-> > +     if (kfd_mem_limit.system_mem_used + system_mem_needed >
-> > +         kfd_mem_limit.max_system_mem_limit)
-> > +             pr_debug("Set no_system_mem_limit if using shared memory\n");
-> > +
-> >       if ((kfd_mem_limit.system_mem_used + system_mem_needed >
-> >            kfd_mem_limit.max_system_mem_limit) ||
-> >           (kfd_mem_limit.ttm_mem_used + ttm_mem_needed >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > index 6291f5f0d223..e9acd0a9f327 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > @@ -715,6 +715,15 @@ MODULE_PARM_DESC(queue_preemption_timeout_ms, "queue preemption timeout in ms (1
-> >  bool debug_evictions;
-> >  module_param(debug_evictions, bool, 0644);
-> >  MODULE_PARM_DESC(debug_evictions, "enable eviction debug messages (false = default)");
-> > +
-> > +/**
-> > + * DOC: no_system_mem_limit(bool)
-> > + * Disable system memory limit, to support multiple process shared memory
-> > + */
-> > +bool no_system_mem_limit;
-> > +module_param(no_system_mem_limit, bool, 0644);
->
-> The permissions suggest that this parameter is writable at runtime using
-> sysfs. However, the parameter is only read once during module init. So
-> any runtime changes to this parameter will not take effect.
->
-> You can fix this in two ways:
->
->  1. Make the parameter read only
->  2. Change the implementation of amdgpu_amdkfd_reserve_mem_limit to
->     check the parameter every time and only apply the system memory
->     limit check if necessary
->
-> I think the second option is preferable, because it allows user to
-> experiment with this without rebooting.
 
-Agreed.  If we go with that approach, maybe just drop the module
-parameter altogether and just let the user set it manually per device
-at runtime.
 
-Alex
+On Tue, 4 Aug 2020, Kazlauskas, Nicholas wrote:
 
->
+> This is a cleaner change the other proposed patch since it doesn't need to
+
+Can you give a URL to the other patch please?
+
+> modify the exist conversion functions but I'd be worried about broken
+> userspace relying on 0-255 as the only acceptable range.
+
+Not sure what you mean by this. Userspace simply reads the maximum value from
+max_brightness sysfs file. On other gpu/firmware combinations it can be 7 or 9
+for example, it just happens to be 255 with modern amdgpu. Minimum value is
+always zero.
+
+Value seen in max_brightness remains 255 with this patch, so as far as userspace
+is concerned nothing is changed apart from value given by actual_brightness file.
+
+Alexander
+
+> 
+> Not an expert on existing implementations to point out a specific one though.
+> 
 > Regards,
->   Felix
->
->
-> > +MODULE_PARM_DESC(no_system_mem_limit, "disable system memory limit (false = default)");
+> Nicholas Kazlauskas
+> 
+> On 2020-08-03 4:02 p.m., Alexander Monakov wrote:
+> > Documentation for sysfs backlight level interface requires that
+> > values in both 'brightness' and 'actual_brightness' files are
+> > interpreted to be in range from 0 to the value given in the
+> > 'max_brightness' file.
+> > 
+> > With amdgpu, max_brightness gives 255, and values written by the user
+> > into 'brightness' are internally rescaled to a wider range. However,
+> > reading from 'actual_brightness' gives the raw register value without
+> > inverse rescaling. This causes issues for various userspace tools such
+> > as PowerTop and systemd that expect the value to be in the correct
+> > range.
+> > 
+> > Introduce a helper to retrieve internal backlight range. Extend the
+> > existing 'convert_brightness' function to handle conversion in both
+> > directions.
+> > 
+> > Bug: https://bugzilla.kernel.org/show_bug.cgi?id=203905
+> > Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1242
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Signed-off-by: Alexander Monakov <amonakov@ispras.ru>
+> > ---
+> >   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 73 ++++++++-----------
+> >   1 file changed, 32 insertions(+), 41 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > index 710edc70e37e..03e21e7b7917 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > @@ -2881,51 +2881,42 @@ static int set_backlight_via_aux(struct dc_link
+> > *link, uint32_t brightness)
+> >   	return rc ? 0 : 1;
+> >   }
+> >   -static u32 convert_brightness(const struct amdgpu_dm_backlight_caps
+> > *caps,
+> > -			      const uint32_t user_brightness)
+> > +static int get_brightness_range(const struct amdgpu_dm_backlight_caps
+> > *caps,
+> > +				unsigned *min, unsigned *max)
+> >   {
+> > -	u32 min, max, conversion_pace;
+> > -	u32 brightness = user_brightness;
+> > -
+> >   	if (!caps)
+> > -		goto out;
+> > +		return 0;
+> >   -	if (!caps->aux_support) {
+> > -		max = caps->max_input_signal;
+> > -		min = caps->min_input_signal;
+> > -		/*
+> > -		 * The brightness input is in the range 0-255
+> > -		 * It needs to be rescaled to be between the
+> > -		 * requested min and max input signal
+> > -		 * It also needs to be scaled up by 0x101 to
+> > -		 * match the DC interface which has a range of
+> > -		 * 0 to 0xffff
+> > -		 */
+> > -		conversion_pace = 0x101;
+> > -		brightness =
+> > -			user_brightness
+> > -			* conversion_pace
+> > -			* (max - min)
+> > -			/ AMDGPU_MAX_BL_LEVEL
+> > -			+ min * conversion_pace;
+> > +	if (caps->aux_support) {
+> > +		// Firmware limits are in nits, DC API wants millinits.
+> > +		*max = 1000 * caps->aux_max_input_signal;
+> > +		*min = 1000 * caps->aux_min_input_signal;
+> >   	} else {
+> > -		/* TODO
+> > -		 * We are doing a linear interpolation here, which is OK but
+> > -		 * does not provide the optimal result. We probably want
+> > -		 * something close to the Perceptual Quantizer (PQ) curve.
+> > -		 */
+> > -		max = caps->aux_max_input_signal;
+> > -		min = caps->aux_min_input_signal;
+> > -
+> > -		brightness = (AMDGPU_MAX_BL_LEVEL - user_brightness) * min
+> > -			       + user_brightness * max;
+> > -		// Multiple the value by 1000 since we use millinits
+> > -		brightness *= 1000;
+> > -		brightness = DIV_ROUND_CLOSEST(brightness,
+> > AMDGPU_MAX_BL_LEVEL);
+> > +		// Firmware limits are 8-bit, PWM control is 16-bit.
+> > +		*max = 0x101 * caps->max_input_signal;
+> > +		*min = 0x101 * caps->min_input_signal;
+> >   	}
+> > +	return 1;
+> > +}
+> >   -out:
+> > -	return brightness;
+> > +static u32 convert_brightness(const struct amdgpu_dm_backlight_caps *caps,
+> > +			      const uint32_t brightness, int from_user)
+> > +{
+> > +	unsigned min, max;
 > > +
-> >  #endif
-> >
-> >  /**
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+> > +	if (!get_brightness_range(caps, &min, &max))
+> > +		return brightness;
+> > +
+> > +	if (from_user)
+> > +		// Rescale 0..255 to min..max
+> > +		return min + DIV_ROUND_CLOSEST((max - min) * brightness,
+> > +					       AMDGPU_MAX_BL_LEVEL);
+> > +
+> > +	if (brightness < min)
+> > +		return 0;
+> > +	// Rescale min..max to 0..255
+> > +	return DIV_ROUND_CLOSEST(AMDGPU_MAX_BL_LEVEL * (brightness - min),
+> > +				 max - min);
+> >   }
+> >     static int amdgpu_dm_backlight_update_status(struct backlight_device
+> > *bd)
+> > @@ -2941,7 +2932,7 @@ static int amdgpu_dm_backlight_update_status(struct
+> > backlight_device *bd)
+> >     	link = (struct dc_link *)dm->backlight_link;
+> >   -	brightness = convert_brightness(&caps, bd->props.brightness);
+> > +	brightness = convert_brightness(&caps, bd->props.brightness, 1);
+> >   	// Change brightness based on AUX property
+> >   	if (caps.aux_support)
+> >   		return set_backlight_via_aux(link, brightness);
+> > @@ -2958,7 +2949,7 @@ static int amdgpu_dm_backlight_get_brightness(struct
+> > backlight_device *bd)
+> >     	if (ret == DC_ERROR_UNEXPECTED)
+> >   		return bd->props.brightness;
+> > -	return ret;
+> > +	return convert_brightness(&dm->backlight_caps, ret, 0);
+> >   }
+> >     static const struct backlight_ops amdgpu_dm_backlight_ops = {
+> > 
+> > base-commit: bcf876870b95592b52519ed4aafcf9d95999bc9c
+> > 
+> 
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
