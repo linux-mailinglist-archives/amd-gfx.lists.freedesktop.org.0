@@ -2,54 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF25C23BEEA
-	for <lists+amd-gfx@lfdr.de>; Tue,  4 Aug 2020 19:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B4F123BF8A
+	for <lists+amd-gfx@lfdr.de>; Tue,  4 Aug 2020 21:00:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6666489DF7;
-	Tue,  4 Aug 2020 17:35:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 537768924A;
+	Tue,  4 Aug 2020 19:00:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
- [IPv6:2a00:1450:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A14789DF7
- for <amd-gfx@lists.freedesktop.org>; Tue,  4 Aug 2020 17:35:58 +0000 (UTC)
-Received: by mail-wm1-x32a.google.com with SMTP id x5so3432336wmi.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 04 Aug 2020 10:35:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=moikFXOUhYzWQlP6dimVGVbv0r7k/XVQZmJnqhWPu4c=;
- b=V1nDuZ25O0PxeiQtLIaZAhNnvEWTwpWEqmcwbqZXIGIV1wLN75RbJn8XiVjGFDVHq2
- 0h/UvbetJ/vKWIXyQZqVcAsJXM3YrKZnrXb6wAF9TdQe6Hr2JxoPWLTnheeGYTQH3zKW
- 367M/mPianzzmOblBmBgUE/8dfJB940XB8g+zxpra9nvIJdRUDo/4bHsYxv29FDgThUv
- 3RGhqGsMxzeBwtmsHi3Npi1ONZNoTXH2gx6lw89Q5aQGe05Qve39mol0zjXrAZ4c4NyZ
- uLVfT190rMm01myRHsLrt1VuUMKcQIttCJ1/Nyec/MoogWYYRwjj/mQIy2Vw0yeaa9aB
- H8PA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=moikFXOUhYzWQlP6dimVGVbv0r7k/XVQZmJnqhWPu4c=;
- b=cQgudnubOPolyq9wWyhEwpo81meTQmbVnje8MFZBis5lg3yAJ7BH8ew/xrHpsaxmmG
- P87GozeT9+Ivql1/WML0WucAoO5E+PQ/2XgwWZeye+uorWZy+i/Jr1jDTqWNZNekkRmK
- zogHw1R/V5RMr/kIhYDAzG8dTAY0oNFAJTUSO8vIpmM1wMjc1VMNaQI1N5QQC2ThnGdR
- o9KfWsLOe4x5tDrG7ViLuCx/ir8i21EjxvhlIaobqmm6vvPnrfBcI10YtwQBJ5lxf0g2
- 6+CHMADPNiQXVwdEZitTjO+6se70S6lVNuBKafMEyL65u4MQW8YSbW/R/1gw0+9sI0CV
- Y42w==
-X-Gm-Message-State: AOAM532seCoIjb4PObAlY0rh+CvMET6xo7T7cq+v42q3ttkvCF0ifabD
- Sq7P/Bsu96f5rRs5Q14FBABr4bKV8C8mWkz+b052FQ==
-X-Google-Smtp-Source: ABdhPJxgGwQiirTo7V3+QPgor1qpMTPdnHo64FohB/ciOJ00m6eNoCx0X1DpNkYULLtapgHJO4VXPmiFoDfmrWbHKas=
-X-Received: by 2002:a1c:f70a:: with SMTP id v10mr4970880wmh.39.1596562556894; 
- Tue, 04 Aug 2020 10:35:56 -0700 (PDT)
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0685489DF7;
+ Tue,  4 Aug 2020 17:39:14 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212])
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1k30u8-0004j5-KD; Tue, 04 Aug 2020 17:39:12 +0000
+Subject: NAK: [PATCH][next] drm/amd/display: fix spelling mistake "Usupported"
+ -> "Unsupported"
+From: Colin Ian King <colin.king@canonical.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ David Zhou <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20200804173421.401415-1-colin.king@canonical.com>
+Autocrypt: addr=colin.king@canonical.com; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <0d337d6e-55d1-4940-3406-c2e8e39e5eb3@canonical.com>
+Date: Tue, 4 Aug 2020 18:39:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <CAP+8YyHwMPPTiPAEs0CV+K+NSWtQmKQ-1hL0CmoGvUjA=P_1+Q@mail.gmail.com>
- <6964a9dc-00dc-6e72-f3ad-b4c80c49ec68@daenzer.net>
-In-Reply-To: <6964a9dc-00dc-6e72-f3ad-b4c80c49ec68@daenzer.net>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 4 Aug 2020 13:35:46 -0400
-Message-ID: <CADnq5_OzAfTyufz0qzOQYqMbkYYGx6FaFLi-nvRvvzLcYrFQcQ@mail.gmail.com>
-Subject: Re: Enabling AMDGPU by default for SI & CIK
-To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
+In-Reply-To: <20200804173421.401415-1-colin.king@canonical.com>
+Content-Language: en-US
+X-Mailman-Approved-At: Tue, 04 Aug 2020 19:00:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,30 +87,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, "Koenig,
- Christian" <christian.koenig@amd.com>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBBdWcgNCwgMjAyMCBhdCA0OjM4IEFNIE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFl
-bnplci5uZXQ+IHdyb3RlOgo+Cj4gT24gMjAyMC0wOC0wMyAxOjQ1IGEubS4sIEJhcyBOaWV1d2Vu
-aHVpemVuIHdyb3RlOgo+ID4gSGkgYWxsLAo+ID4KPiA+IE5vdyB0aGF0IHdlIGhhdmUgcmVjZW50
-bHkgbWFkZSBzb21lIHByb2dyZXNzIG9uIGdldHRpbmcgZmVhdHVyZSBwYXJpdHkKPiA+IHdpdGgg
-dGhlIFJhZGVvbiBkcml2ZXIgZm9yIFNJLCBJJ20gd29uZGVyaW5nIHdoYXQgaXQgd291bGQgdGFr
-ZSB0bwo+ID4gbWFrZSBBTURHUFUgdGhlIGRlZmF1bHQgZHJpdmVyIGZvciB0aGVzZSBnZW5lcmF0
-aW9ucy4KPiA+Cj4gPiBBcyBmYXIgYXMgSSB1bmRlcnN0YW5kIEFNREdQVSBoYXMgaGFkIHRoZXNl
-IGZlYXR1cmVzIGZvciBDSUsgZm9yIGEKPiA+IHdoaWxlIGFscmVhZHkgYnV0IGl0IGlzIHN0aWxs
-IG5vdCB0aGUgZGVmYXVsdCBkcml2ZXIuIFdoYXQgd291bGQgaXQKPiA+IHRha2UgdG8gbWFrZSBp
-dCB0aGUgZGVmYXVsdD8gV2hhdCBpcyBtaXNzaW5nIGFuZC9vciBicm9rZW4/Cj4KPiBUaGUgbWFp
-biBibG9ja2VycyBJJ20gYXdhcmUgb2YgZm9yIENJSyBhcmU6Cj4KPiAxKSBMYWNrIG9mIGFuYWxv
-Z3VlIGNvbm5lY3RvciBzdXBwb3J0IHdpdGggREMKPiAyKSBMYWNrIG9mIEhETUkvRFAgYXVkaW8g
-c3VwcG9ydCB3aXRob3V0IERDCj4KPgo+IDEpIG1heSBhcHBseSB0byBTSSBhcyB3ZWxsLgoKQWxz
-bywgSUlSQywgdGhlcmUgYXJlIHN1c3BlbmQgYW5kIHJlc3VtZSBwcm9ibGVtcyB3aXRoIHNvbWUg
-Q0lLIHBhcnRzCnVzaW5nIGFtZGdwdS4KCkFsZXgKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9hbWQtZ2Z4Cg==
+On 04/08/2020 18:34, Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+> 
+> There are spelling mistakes in two DRM_ERROR error messages. Fix them.
+> 
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 27579443cdc5..fe5f6350e288 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -1549,7 +1549,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+>  		break;
+>  #endif
+>  	default:
+> -		DRM_ERROR("Usupported ASIC type: 0x%X\n", adev->asic_type);
+> +		DRM_ERROR("Unsupported ASIC type: 0x%X\n", adev->asic_type);
+>  		goto fail;
+>  	}
+>  
+> @@ -1743,7 +1743,7 @@ static int dm_early_init(void *handle)
+>  		break;
+>  #endif
+>  	default:
+> -		DRM_ERROR("Usupported ASIC type: 0x%X\n", adev->asic_type);
+> +		DRM_ERROR("Unsupported ASIC type: 0x%X\n", adev->asic_type);
+>  		return -EINVAL;
+>  	}
+>  
+> 
+Nack. I was on the wrong repo.
+
+Colin
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
