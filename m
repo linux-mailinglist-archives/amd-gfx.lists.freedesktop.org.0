@@ -2,57 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45EE023BE63
-	for <lists+amd-gfx@lfdr.de>; Tue,  4 Aug 2020 18:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3C5923BE70
+	for <lists+amd-gfx@lfdr.de>; Tue,  4 Aug 2020 18:57:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE00B6E48D;
-	Tue,  4 Aug 2020 16:51:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 996FB6E497;
+	Tue,  4 Aug 2020 16:57:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 740CB89FF7
- for <amd-gfx@lists.freedesktop.org>; Tue,  4 Aug 2020 16:51:31 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id l2so27522832wrc.7
- for <amd-gfx@lists.freedesktop.org>; Tue, 04 Aug 2020 09:51:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=wUbgutt9s0+CCMHi1qud9oNrcmOOFtkb66mgbjS4rEA=;
- b=IN57bkXjy0RshEYGFTxN/4j5lylwCW1mPwLmhq2YXvUbI3Wd9JDSoJzBPwZcL9ne3Z
- Ex451xozQNGVqEwiyxyIjQvrJFe7P80s6Nq1GfTnu994wYpwFdGXVkScEPlhUYrsPQg7
- 1pFzVXlji7qZ2Q3SbPmtYaDk7Q+aSkCa+EVNo=
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BC576E492
+ for <amd-gfx@lists.freedesktop.org>; Tue,  4 Aug 2020 16:57:41 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id y3so38081454wrl.4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 04 Aug 2020 09:57:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=aNUSjgTyDpduyMo5XV7HZHBvS7gMWnPrnqLjhAyC4lw=;
+ b=kbtczW/j/rDtMJo/bf+/wSSdjmCQJlh+/GXKQ7wtJYper7HyrkvBOYT/7fs+vl9rGl
+ PfCx7SYF3CYinElNMekxY+4MwXOjnavx7Gam/CxJt8sApiBu0My3qjI48glZZxai1nkf
+ BTuZ/aiAFCGGtqoQMyaj7CiBeK+XibWMYivxevz2RIXJ0F5XcfZ40PPyhCdlcwX4mugZ
+ F9gwtjZ4TYYTCXxDwE7JN5B4nc0aZjHEfdl5M36HHSNeCOXUWdj1nqnqCbkf8+ceIMnR
+ Oe7ladOYM4KmnKaEyVAVWiO0zXsTQYHiyfrX7do78Csfq2VnGpvD9A/J8fqNVybYJNIk
+ sPCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=wUbgutt9s0+CCMHi1qud9oNrcmOOFtkb66mgbjS4rEA=;
- b=TZiRhSVTR419lcEu0/LnRZKn9RSJ4VdARAOCNLnYbMMigEcdbuinc/BUHN1wGw3NTH
- rdL4DJtf0Y9fJDIlFfBbOJ3UZxdgRZ4bgTVWIAtJVbIi2QN8LeakNCJTv98rnGYYotl/
- qr4RDK3MW29fblDoBDbewXxZHp9Ak4o5frsRINo9KJw7oa0yL5Eitp1oZhAUXzet6HUM
- Inrb/z1trxFcQbh3Mu31CcCTmbUaSiNzvlUsluUnap4bNgUWSSsMrW2TxGHHH4ww1FbC
- wJdlN1YLUTw3L+OB0DA3rqIKyxOgahgKKywP9LWDwSRDsSaG7hq8B277UAhZG/g40AbR
- pRAg==
-X-Gm-Message-State: AOAM530cXgO0FkujuPwCvpFfQAh3pqXoZbmXxEcDNF+eR4sTbQhxhOy3
- bySQk56QS8qFJl+ZEMosJAsReA==
-X-Google-Smtp-Source: ABdhPJyt77JgawFZyjfhRmRpXgrohlDBQM6vv3o2xf0fZLT0bJ/pclPUCZUGXIWMuIDtEjV+vmatWA==
-X-Received: by 2002:adf:fdce:: with SMTP id i14mr19848772wrs.273.1596559890052; 
- Tue, 04 Aug 2020 09:51:30 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id o125sm5719234wma.27.2020.08.04.09.51.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Aug 2020 09:51:28 -0700 (PDT)
-Date: Tue, 4 Aug 2020 18:51:26 +0200
-From: daniel@ffwll.ch
-To: 
-Subject: Re: [RFC PATCH v1 0/22] backlight: add init macros and accessors
-Message-ID: <20200804165126.GM6419@phenom.ffwll.local>
-References: <20200802110636.1018743-1-sam@ravnborg.org>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=aNUSjgTyDpduyMo5XV7HZHBvS7gMWnPrnqLjhAyC4lw=;
+ b=cuQkpPIOBDjSd16/qm/NtTOr4MDIdS1k5J+0K654/OC45fDNYPP2qzt/F7yLx5jGUJ
+ Krv1qZpXX2QLbgwU+eqb0qN40uigZsPthgs2RcjAatlp/oUNIOzBjjMrcBtqhws+NVGP
+ vGR3ug2yHMNS+bJiaFLAc26q7PLwxKsAYWMyOnc0XJKfOqocjK1FZsm7//NpTR8VRRLA
+ Tbk9KVQVsG3dIfaw7usIny2CptsJXEjrsXcElEE0DuUJWoQy+LrjlzgDnsBNyWEwapwp
+ g8HPHImgRBDdCwUn+DkX6JuEzYhMLG8QQHNn0zamb0lgWVcBWrjqWjEe1YUnHVztEBdr
+ ILQQ==
+X-Gm-Message-State: AOAM533BkfWZSrtQySyPhBHxFst9VMLbTYa+QjU6Ov6mM/tSFmALXxSs
+ /aKdXiyb7WpeMGptDvA97HFDVcBhu52LOfWhN2EKuA==
+X-Google-Smtp-Source: ABdhPJyu90uIswk8d4aAGJVSg2POGbX435kvbkyg2F2LFyZ29m4n7vLs3mc4dh03PJ/AXtFelG25fs5P/JsgrSUTo9M=
+X-Received: by 2002:a5d:494b:: with SMTP id r11mr2903353wrs.419.1596560259751; 
+ Tue, 04 Aug 2020 09:57:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200802110636.1018743-1-sam@ravnborg.org>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
+References: <20200730192439.2005-1-alexander.deucher@amd.com>
+In-Reply-To: <20200730192439.2005-1-alexander.deucher@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 4 Aug 2020 12:57:28 -0400
+Message-ID: <CADnq5_OO1GAAG+4qpHSoiHs7nFb54MNLz6tcBCfJCUzM6c5C2Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/smu: rework i2c adpater registration
+To: amd-gfx list <amd-gfx@lists.freedesktop.org>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,173 +59,190 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Linus Walleij <linus.walleij@linaro.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Andrzej Hajda <a.hajda@samsung.com>, Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Lee Jones <lee.jones@linaro.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Manasi Navare <manasi.d.navare@intel.com>,
- Daniel Thompson <daniel.thompson@linaro.org>,
- Konrad Dybcio <konradybcio@gmail.com>, amd-gfx@lists.freedesktop.org,
- Zheng Bin <zhengbin13@huawei.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Robert Chiras <robert.chiras@nxp.com>, Vinay Simha BN <simhavcs@gmail.com>,
- Hoegeun Kwon <hoegeun.kwon@samsung.com>,
- =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
- Jonas Karlman <jonas@kwiboo.se>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Inki Dae <inki.dae@samsung.com>,
- Hans de Goede <hdegoede@redhat.com>, Jyri Sarha <jsarha@ti.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jernej Skrabec <jernej.skrabec@siol.net>, Jingoo Han <jingoohan1@gmail.com>,
- Philippe CORNU <philippe.cornu@st.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- linux-renesas-soc@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Wambui Karuga <wambui.karugax@gmail.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gU3VuLCBBdWcgMDIsIDIwMjAgYXQgMDE6MDY6MTRQTSArMDIwMCwgU2FtIFJhdm5ib3JnIHdy
-b3RlOgo+IFRoZSBiYWNrbGlnaHQgZHJpdmVycyB1c2VzIHNldmVyYWwgZGlmZmVyZW50IHBhdHRl
-cm5zIHdoZW4gcmVnaXN0ZXJpbmcKPiBhIGJhY2tsaWdodDoKPiAKPiAtIFJlZ2lzdGVyIGJhY2ts
-aWdodCBhbmQgYXNzaWduIHByb3BlcnRpZXMgbGF0ZXIKPiAtIERlZmluZSBhIGxvY2FsIGJhY2ts
-aWdodF9wcm9wZXJ0aWVzIHZhcmlhYmxlIGFuZCB1c2UgbWVtc2V0Cj4gLSBEZWZpbmUgYSBjb25z
-dCBiYWNrbGlnaHRfcHJvcGVydGllcyBhbmQgYXNzaWduIHJlbGV2YW50IHByb3BlcnRpZXMKPiAK
-PiBPbiB0b3Agb2YgdGhpcyB0aGVyZSB3YXMgZGlmZmVyZW5jZXMgaW4gd2hhdCBtZW1iZXJzIHdh
-cyBhc3NpZ25lZCBpbgo+IGJhY2tsaWdodF9wcm9wZXJ0aWVzLgo+IAo+IFRvIGFsaWduIGhvdyBi
-YWNrbGlnaHQgZHJpdmVycyBhcmUgaW5pdGlhbGl6ZWQgaW50cm9kdWNlIGZvbGxvd2luZyBoZWxw
-ZXIgbWFjcm9zOgo+IC0gREVDTEFSRV9CQUNLTElHSFRfSU5JVF9GSVJNV0FSRSgpCj4gLSBERUNM
-QVJFX0JBQ0tMSUdIVF9JTklUX1BMQVRGT1JNKCkKPiAtIERFQ0xBUkVfQkFDS0xJR0hUX0lOSVRf
-UkFXKCkKPiAKPiBUaGUgbWFjcm9zIGFyZSBpbnRyb2R1Y2VkIGluIHBhdGNoIDIuCj4gCj4gVGhl
-IGJhY2tsaWdodCBkcml2ZXJzIHVzZWQgZGlyZWN0IGFjY2VzcyB0byBiYWNrbGlnaHRfcHJvcGVy
-dGllcy4KPiBFbmNhcHN1bGF0ZSB0aGVzZSBpbiBnZXQvc2V0IGFjY2VzcyBvcGVyYXRpb25zIHJl
-c3VsdGluZyBpbiBmb2xsb3dpbmcgYmVuZWZpdHM6Cj4gLSBUaGUgZHJpdmVycyBubyBsb25nZXIg
-bmVlZCB0byBiZSBjb25jZXJuZWQgYWJvdXQgdGhlIGNvbmZ1c2luZyBwb3dlciBzdGF0ZXMsCj4g
-ICBhcyB0aGVyZSBpcyBub3cgb25seSBhIHNldF9wb3dlcl9vbigpIGFuZCBzZXRfcG93ZXJfb2Zm
-KCkgb3BlcmF0aW9uLgo+IC0gVGhlIGFjY2VzcyBtZXRob2RzIGNhbiBiZSBjYWxsZWQgd2l0aCBh
-IE5VTEwgcG9pbnRlciBzbyBsb2dpYyBhcm91bmQgdGhlCj4gICBhY2Nlc3MgY2FuIGJlIG1hZGUg
-c2ltcGxlci4KPiAtIFRoZSBjb2RlIGlzIGluIG1vc3QgY2FzZXMgbW9yZSByZWFkYWJsZSB3aXRo
-IHRoZSBhY2Nlc3Mgb3BlcmF0aW9ucy4KPiAtIFdoZW4gZXZlcnlvbmUgdXNlcyB0aGUgYWNjZXNz
-IG1ldGhvZHMgcmVmYWN0cm9yaW5nIGluIHRoZSBiYWNrbGlnaHQgY29yZSBpcyBzaW1wbGVyLgo+
-IAo+IFRoZSBnZXQvc2V0IG9wZXJhdGlvbnMgYXJlIGludHJvZHVjZWQgaW4gcGF0Y2ggMy4KPiAK
-PiBUaGUgZmlyc3QgcGF0Y2ggdHJpbXMgYmFja2xpZ2h0X3VwZGF0ZV9zdGF0dXMoKSBzbyBpdCBj
-YW4gYmUgY2FsbGVkIHdpdGggYSBOVUxMCj4gYmFja2xpZ2h0X2RldmljZS4gVGhlbiB0aGUgY2Fs
-bGVkIGRvIG5vdCBuZWVkIHRvIGFkZCB0aGlzIGNoZWNrIGp1c3QgdG8gYXZvaWQKPiBhIE5VTEwg
-cmVmZXJlbmNlLgo+IAo+IFRoZSBmb3VydGggcGF0Y2ggaW50cm9kdWNlIHRoZSBuZXcgbWFjcm9z
-IGFuZCBnZXQvc2V0IG9wZXJhdGlvbnMgZm9yIHRoZQo+IGdwaW8gYmFja2xpZ2h0IGRyaXZlciwg
-YXMgYW4gZXhhbXBsZS4KPiAKPiBUaGUgcmVtYWluaW5nIHBhdGNoZXMgdXBkYXRlcyBtb3N0IGJh
-Y2tsaWdodCB1c2VycyBpbiBkcml2ZXJzL2dwdS9kcm0vKgo+IFdpdGggdGhpcyBwYXRjaCBzZXQg
-YXBwbGllZCB0aGVuOgo+IC0gQWxtb3N0IGFsbCByZWZlcmVuY2VzIHRvIEZCX0JMQU5LKiBhcmUg
-Z29uZSBmcm9tIGRybS8qCj4gLSBBbGwgcGFuZWwgZHJpdmVycyB1c2VzIGRldm1fIHZhcmlhbnQg
-Zm9yIHJlZ2lzdGVyaW5nIGJhY2tsaWdodAo+IC0gQWxtb3N0IGFsbCBkaXJlY3QgcmVmZXJlbmNl
-cyB0byBiYWNrbGlnaHQgcHJvcGVydGllcyBhcmUgZ29uZQo+IAo+IFRoZSBkcm0vKiBwYXRjaGVz
-IGFyZSAgdXNlZCBhcyBleGFtcGxlcyBob3cgZHJpdmVycyBjYW4gYmVuZWZpdCBmcm9tIHRoZQo+
-IG5ldyBtYWNyb3MgYW5kIGdldC9zZXQgb3BlcmF0aW9ucy4KPiAKPiBJbmRpdmlkdWFsIHBhdGNo
-ZXMgYXJlIG9ubHkgc2VudCB0byB0aGUgcGVvcGxlIGxpc3RlZCBpbiB0aGUgcGF0Y2ggKyBhIGZl
-dyBtb3JlLgo+IFBsZWFzZSBjaGVjayBodHRwczovL2xvcmUua2VybmVsLm9yZy9kcmktZGV2ZWwv
-IGZvciB0aGUgZnVsbCBzZXJpZXMuCj4gCj4gRmVlZGJhY2sgd2VsY29tZSEKClNpbmNlIHRoaXMg
-bmVlZHMgYmFja2xpZ2h0IHBhdGNoZXMgcXVldWVkIHVwIG91dHNpZGUgb2YgZHJtIHRoZXJlJ3Mg
-dHdvCm9wdGlvbnM6CgotIG1lcmdlIHRoZSBiYWNrbGlnaHQgc3R1ZmYgdGhyb3VnaCBkcm0tbWlz
-YyAoaW1vIHNpbXBsZXN0LCB3ZSBoYXZlIGFsbAogIHRoZSBmYmRldiBzdHVmZiBpbiB0aGVyZSB0
-b28gYnkgbm93KQotIHNoYXJlZCB0b3BpYyBicmFuY2ggbWVyZ2VkIGluIGRybS1taXNjIGFuZCBv
-cHRpb25hbGx5IGJhY2tsaWdodCB0cmVlCgpPdGhlcndpc2UgdGhpcyBpcyBnb2luZyB0byBiZSBh
-IHBhaW4gdG8gbWVyZ2UuCi1EYW5pZWwKCj4gCj4gCVNhbQo+IAo+IENjOiBBbGV4IERldWNoZXIg
-PGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Cj4gQ2M6IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCj4gQ2M6IEFuZHJ6ZWogSGFqZGEgPGEuaGFqZGFAc2Ftc3VuZy5jb20+Cj4gQ2M6IENo
-cmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBDYzogQ2hyaXMgV2ls
-c29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IERhbmllbCBUaG9tcHNvbiA8ZGFu
-aWVsLnRob21wc29uQGxpbmFyby5vcmc+Cj4gQ2M6IEV6ZXF1aWVsIEdhcmNpYSA8ZXplcXVpZWxA
-dmFuZ3VhcmRpYXN1ci5jb20uYXI+Cj4gQ2M6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhh
-dC5jb20+Cj4gQ2M6IEhvZWdldW4gS3dvbiA8aG9lZ2V1bi5rd29uQHNhbXN1bmcuY29tPgo+IENj
-OiBJbmtpIERhZSA8aW5raS5kYWVAc2Ftc3VuZy5jb20+Cj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5p
-Lm5pa3VsYUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IEplcm5laiBTa3JhYmVjIDxqZXJuZWouc2ty
-YWJlY0BzaW9sLm5ldD4KPiBDYzogSmluZ29vIEhhbiA8amluZ29vaGFuMUBnbWFpbC5jb20+Cj4g
-Q2M6IEpvbmFzIEthcmxtYW4gPGpvbmFzQGt3aWJvby5zZT4KPiBDYzogSm9vbmFzIExhaHRpbmVu
-IDxqb29uYXMubGFodGluZW5AbGludXguaW50ZWwuY29tPgo+IENjOiBKeXJpIFNhcmhhIDxqc2Fy
-aGFAdGkuY29tPgo+IENjOiBLaWVyYW4gQmluZ2hhbSA8a2llcmFuLmJpbmdoYW0rcmVuZXNhc0Bp
-ZGVhc29uYm9hcmQuY29tPgo+IENjOiBLb25yYWQgRHliY2lvIDxrb25yYWR5YmNpb0BnbWFpbC5j
-b20+Cj4gQ2M6IExhdXJlbnQgUGluY2hhcnQgPGxhdXJlbnQucGluY2hhcnRAaWRlYXNvbmJvYXJk
-LmNvbT4KPiBDYzogTGVlIEpvbmVzIDxsZWUuam9uZXNAbGluYXJvLm9yZz4KPiBDYzogTGludXMg
-V2FsbGVpaiA8bGludXMud2FsbGVpakBsaW5hcm8ub3JnPgo+IENjOiBsaW51eC1yZW5lc2FzLXNv
-Y0B2Z2VyLmtlcm5lbC5vcmcKPiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hv
-cnN0QGxpbnV4LmludGVsLmNvbT4KPiBDYzogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJl
-QGludGVsLmNvbT4KPiBDYzogTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29t
-Pgo+IENjOiBQYXRyaWsgSmFrb2Jzc29uIDxwYXRyaWsuci5qYWtvYnNzb25AZ21haWwuY29tPgo+
-IENjOiBQYXdlxYIgQ2htaWVsIDxwYXdlbC5taWtvbGFqLmNobWllbEBnbWFpbC5jb20+Cj4gQ2M6
-IFBoaWxpcHBlIENPUk5VIDxwaGlsaXBwZS5jb3JudUBzdC5jb20+Cj4gQ2M6IFJvYiBDbGFyayA8
-cm9iZGNsYXJrQGdtYWlsLmNvbT4KPiBDYzogUm9iZXJ0IENoaXJhcyA8cm9iZXJ0LmNoaXJhc0Bu
-eHAuY29tPgo+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+Cj4gQ2M6
-IFNhbSBSYXZuYm9yZyA8c2FtQHJhdm5ib3JnLm9yZz4KPiBDYzogU2ViYXN0aWFuIFJlaWNoZWwg
-PHNlYmFzdGlhbi5yZWljaGVsQGNvbGxhYm9yYS5jb20+Cj4gQ2M6IFRoaWVycnkgUmVkaW5nIDx0
-aGllcnJ5LnJlZGluZ0BnbWFpbC5jb20+Cj4gQ2M6IFRvbWkgVmFsa2VpbmVuIDx0b21pLnZhbGtl
-aW5lbkB0aS5jb20+Cj4gQ2M6ICJWaWxsZSBTeXJqw6Rsw6QiIDx2aWxsZS5zeXJqYWxhQGxpbnV4
-LmludGVsLmNvbT4KPiBDYzogVmluYXkgU2ltaGEgQk4gPHNpbWhhdmNzQGdtYWlsLmNvbT4KPiBD
-YzogV2FtYnVpIEthcnVnYSA8d2FtYnVpLmthcnVnYXhAZ21haWwuY29tPgo+IENjOiBaaGVuZyBC
-aW4gPHpoZW5nYmluMTNAaHVhd2VpLmNvbT4KPiAKPiBTYW0gUmF2bmJvcmcgKDIyKToKPiAgICAg
-ICBiYWNrbGlnaHQ6IFNpbGVudGx5IGZhaWwgYmFja2xpZ2h0X3VwZGF0ZV9zdGF0dXMoKSBpZiBu
-byBkZXZpY2UKPiAgICAgICBiYWNrbGlnaHQ6IEFkZCBERUNMQVJFXyogbWFjcm8gZm9yIGRldmlj
-ZSByZWdpc3RyYXRpb24KPiAgICAgICBiYWNrbGlnaHQ6IEFkZCBnZXQvc2V0IG9wZXJhdGlvbnMg
-Zm9yIGJyaWdodG5lc3MvcG93ZXIgcHJvcGVydGllcwo+ICAgICAgIGJhY2tsaWdodDogZ3Bpbzog
-VXNlIERFQ0xBUkVfQkFDS0xJR0hUX0lOSVRfUkFXIGFuZCBnZXQvc2V0dGVycwo+ICAgICAgIGRy
-bS9nbWE1MDA6IEJhY2tsaWdodCBzdXBwb3J0Cj4gICAgICAgZHJtL3BhbmVsOiBhc3VzLXowMHQt
-dG01cDUtbjM1NTk2OiBCYWNrbGlnaHQgdXBkYXRlCj4gICAgICAgZHJtL3BhbmVsOiBqZGktbHQw
-NzBtZTA1MDAwOiBCYWNrbGlnaHQgdXBkYXRlCj4gICAgICAgZHJtL3BhbmVsOiBub3ZhdGVrLW50
-MzU1MTA6IEJhY2tsaWdodCB1cGRhdGUKPiAgICAgICBkcm0vcGFuZWw6IG9yaXNldGVjaC1vdG04
-MDA5YTogQmFja2xpZ2h0IHVwZGF0ZQo+ICAgICAgIGRybS9wYW5lbDogcmF5ZGl1bS1ybTY3MTkx
-OiBCYWNrbGlnaHQgdXBkYXRlCj4gICAgICAgZHJtL3BhbmVsOiBzYW1zdW5nLXM2ZTYzbTA6IEJh
-Y2tsaWdodCB1cGRhdGUKPiAgICAgICBkcm0vcGFuZWw6IHNhbXN1bmctczZlNjNqMHgwMzogQmFj
-a2xpZ2h0IHVwZGF0ZQo+ICAgICAgIGRybS9wYW5lbDogc2Ftc3VuZy1zNmUzaGEyOiBCYWNrbGln
-aHQgdXBkYXRlCj4gICAgICAgZHJtL3BhbmVsOiBzb255LWFjeDQyNGFrcDogQmFja2xpZ2h0IHVw
-ZGF0ZQo+ICAgICAgIGRybS9wYW5lbDogc29ueS1hY3g1NjVha206IEJhY2tsaWdodCB1cGRhdGUK
-PiAgICAgICBkcm0vYnJpZGdlOiBwYXJhZGUtcHM4NjIyOiBCYWNrbGlnaHQgdXBkYXRlCj4gICAg
-ICAgZHJtL3RpbGNkYzogQmFja2xpZ2h0IHVwZGF0ZQo+ICAgICAgIGRybS9yYWRlb246IEJhY2ts
-aWdodCB1cGRhdGUKPiAgICAgICBkcm0vYW1kZ3B1L2F0b206IEJhY2tsaWdodCB1cGRhdGUKPiAg
-ICAgICBkcm0vaTkxNTogQmFja2xpZ2h0IHVwZGF0ZQo+ICAgICAgIGRybS9vbWFwOiBkaXNwbGF5
-OiBCYWNrbGlnaHQgdXBkYXRlCj4gICAgICAgZHJtL3NobW9iaWxlOiBCYWNrbGlnaHQgdXBkYXRl
-Cj4gCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2F0b21iaW9zX2VuY29kZXJzLmMgICAg
-IHwgIDE1ICsrLQo+ICBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3BhcmFkZS1wczg2MjIuYyAgICAg
-ICAgICAgICB8ICA0MyArKysrLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL2JhY2tsaWdo
-dC5jICAgICAgICAgICAgICAgICB8ICAzNSArKy0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL2dtYTUw
-MC9jZHZfZGV2aWNlLmMgICAgICAgICAgICAgICAgfCAgMjkgKysrLS0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2dtYTUwMC9tZGZsZF9kZXZpY2UuYyAgICAgICAgICAgICAgfCAgIDkgKy0KPiAgZHJpdmVy
-cy9ncHUvZHJtL2dtYTUwMC9vYWt0cmFpbF9kZXZpY2UuYyAgICAgICAgICAgfCAgMTAgKy0KPiAg
-ZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9vcHJlZ2lvbi5jICAgICAgICAgICAgICAgICAgfCAgIDIg
-Ky0KPiAgZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfZGV2aWNlLmMgICAgICAgICAgICAgICAg
-fCAgMTAgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfZHJ2LmMgICAgICAgICAgICAg
-ICAgICAgfCAgIDggKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5l
-bC5jICAgICAgICAgfCAgODggKysrKysrKy0tLS0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9vbWFw
-ZHJtL2Rpc3BsYXlzL3BhbmVsLWRzaS1jbS5jICAgIHwgIDM1ICsrLS0tLQo+ICAuLi4vZ3B1L2Ry
-bS9wYW5lbC9wYW5lbC1hc3VzLXowMHQtdG01cDUtbjM1NTk2LmMgICB8ICAxNSArLS0KPiAgZHJp
-dmVycy9ncHUvZHJtL3BhbmVsL3BhbmVsLWpkaS1sdDA3MG1lMDUwMDAuYyAgICAgfCAgMTcgKyst
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9wYW5lbC9wYW5lbC1ub3ZhdGVrLW50MzU1MTAuYyAgICAgIHwg
-ICA5ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9wYW5lbC9wYW5lbC1vcmlzZXRlY2gtb3RtODAwOWEu
-YyAgIHwgIDE0ICstLQo+ICBkcml2ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtcmF5ZGl1bS1ybTY3
-MTkxLmMgICAgICB8ICAxMSArLQo+ICBkcml2ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtc2Ftc3Vu
-Zy1zNmUzaGEyLmMgICAgICB8ICA2OCArKysrKystLS0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL3Bh
-bmVsL3BhbmVsLXNhbXN1bmctczZlNjNqMHgwMy5jICAgfCAgNTYgKysrKystLS0tLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtc2Ftc3VuZy1zNmU2M20wLmMgICAgICB8ICAyNSArKy0t
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtc29ueS1hY3g0MjRha3AuYyAgICAgICB8
-ICA0OSArKy0tLS0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL3BhbmVsL3BhbmVsLXNvbnktYWN4NTY1
-YWttLmMgICAgICAgfCAgNDQgKysrLS0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9hdG9t
-Ymlvc19lbmNvZGVycy5jICAgICAgICAgfCAgMjMgKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFk
-ZW9uL3JhZGVvbl9sZWdhY3lfZW5jb2RlcnMuYyAgICB8ICAxNSArKy0KPiAgZHJpdmVycy9ncHUv
-ZHJtL3NobW9iaWxlL3NobW9iX2RybV9iYWNrbGlnaHQuYyAgICAgfCAgMjAgKystLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vdGlsY2RjL3RpbGNkY19wYW5lbC5jICAgICAgICAgICAgICB8ICAxMSArLQo+
-ICBkcml2ZXJzL3ZpZGVvL2JhY2tsaWdodC9ncGlvX2JhY2tsaWdodC5jICAgICAgICAgICB8ICAx
-NyArKy0KPiAgaW5jbHVkZS9saW51eC9iYWNrbGlnaHQuaCAgICAgICAgICAgICAgICAgICAgICAg
-ICAgfCAxMjAgKysrKysrKysrKysrKysrKysrKysrCj4gIDI3IGZpbGVzIGNoYW5nZWQsIDM3NyBp
-bnNlcnRpb25zKCspLCA0MjEgZGVsZXRpb25zKC0pCj4gCj4gCgotLSAKRGFuaWVsIFZldHRlcgpT
-b2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+Ping?
+
+
+On Thu, Jul 30, 2020 at 3:24 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+>
+> The i2c init/fini functions just register the i2c adapter.
+> There is no need to call them during hw init/fini.  They only
+> need to be called once per driver init/fini.  The previous
+> behavior broke runtime pm because we unregistered the i2c
+> adapter during suspend.
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/powerplay/amdgpu_smu.c         | 12 ++++++------
+>  drivers/gpu/drm/amd/powerplay/arcturus_ppt.c       | 14 --------------
+>  drivers/gpu/drm/amd/powerplay/navi10_ppt.c         | 14 --------------
+>  drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c | 14 --------------
+>  4 files changed, 6 insertions(+), 48 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> index 55463e7a11e2..d03b4852ed5f 100644
+> --- a/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/powerplay/amdgpu_smu.c
+> @@ -579,6 +579,10 @@ static int smu_smc_table_sw_init(struct smu_context *smu)
+>         if (ret)
+>                 return ret;
+>
+> +       ret = smu_i2c_init(smu, &smu->adev->pm.smu_i2c);
+> +       if (ret)
+> +               return ret;
+> +
+>         return 0;
+>  }
+>
+> @@ -586,6 +590,8 @@ static int smu_smc_table_sw_fini(struct smu_context *smu)
+>  {
+>         int ret;
+>
+> +       smu_i2c_fini(smu, &smu->adev->pm.smu_i2c);
+> +
+>         ret = smu_free_memory_pool(smu);
+>         if (ret)
+>                 return ret;
+> @@ -845,10 +851,6 @@ static int smu_smc_hw_setup(struct smu_context *smu)
+>                 return ret;
+>         }
+>
+> -       ret = smu_i2c_init(smu, &adev->pm.smu_i2c);
+> -       if (ret)
+> -               return ret;
+> -
+>         ret = smu_disable_umc_cdr_12gbps_workaround(smu);
+>         if (ret) {
+>                 dev_err(adev->dev, "Workaround failed to disable UMC CDR feature on 12Gbps SKU!\n");
+> @@ -1047,8 +1049,6 @@ static int smu_smc_hw_cleanup(struct smu_context *smu)
+>         struct amdgpu_device *adev = smu->adev;
+>         int ret = 0;
+>
+> -       smu_i2c_fini(smu, &adev->pm.smu_i2c);
+> -
+>         cancel_work_sync(&smu->throttling_logging_work);
+>
+>         ret = smu_disable_thermal_alert(smu);
+> diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+> index f13979687b9e..0147a5b9b06d 100644
+> --- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+> +++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+> @@ -2080,22 +2080,11 @@ static const struct i2c_algorithm arcturus_i2c_algo = {
+>         .functionality = arcturus_i2c_func,
+>  };
+>
+> -static bool arcturus_i2c_adapter_is_added(struct i2c_adapter *control)
+> -{
+> -       struct amdgpu_device *adev = to_amdgpu_device(control);
+> -
+> -       return control->dev.parent == &adev->pdev->dev;
+> -}
+> -
+>  static int arcturus_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
+>  {
+>         struct amdgpu_device *adev = to_amdgpu_device(control);
+>         int res;
+>
+> -       /* smu_i2c_eeprom_init may be called twice in sriov */
+> -       if (arcturus_i2c_adapter_is_added(control))
+> -               return 0;
+> -
+>         control->owner = THIS_MODULE;
+>         control->class = I2C_CLASS_SPD;
+>         control->dev.parent = &adev->pdev->dev;
+> @@ -2111,9 +2100,6 @@ static int arcturus_i2c_control_init(struct smu_context *smu, struct i2c_adapter
+>
+>  static void arcturus_i2c_control_fini(struct smu_context *smu, struct i2c_adapter *control)
+>  {
+> -       if (!arcturus_i2c_adapter_is_added(control))
+> -               return;
+> -
+>         i2c_del_adapter(control);
+>  }
+>
+> diff --git a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+> index 6aaf483858a0..c33bdc6747f2 100644
+> --- a/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+> +++ b/drivers/gpu/drm/amd/powerplay/navi10_ppt.c
+> @@ -2457,22 +2457,11 @@ static const struct i2c_algorithm navi10_i2c_algo = {
+>         .functionality = navi10_i2c_func,
+>  };
+>
+> -static bool navi10_i2c_adapter_is_added(struct i2c_adapter *control)
+> -{
+> -       struct amdgpu_device *adev = to_amdgpu_device(control);
+> -
+> -       return control->dev.parent == &adev->pdev->dev;
+> -}
+> -
+>  static int navi10_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
+>  {
+>         struct amdgpu_device *adev = to_amdgpu_device(control);
+>         int res;
+>
+> -       /* smu_i2c_eeprom_init may be called twice in sriov */
+> -       if (navi10_i2c_adapter_is_added(control))
+> -               return 0;
+> -
+>         control->owner = THIS_MODULE;
+>         control->class = I2C_CLASS_SPD;
+>         control->dev.parent = &adev->pdev->dev;
+> @@ -2488,9 +2477,6 @@ static int navi10_i2c_control_init(struct smu_context *smu, struct i2c_adapter *
+>
+>  static void navi10_i2c_control_fini(struct smu_context *smu, struct i2c_adapter *control)
+>  {
+> -       if (!navi10_i2c_adapter_is_added(control))
+> -               return;
+> -
+>         i2c_del_adapter(control);
+>  }
+>
+> diff --git a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+> index f64a1be94cb8..f373e2d0d31c 100644
+> --- a/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+> +++ b/drivers/gpu/drm/amd/powerplay/sienna_cichlid_ppt.c
+> @@ -2630,22 +2630,11 @@ static const struct i2c_algorithm sienna_cichlid_i2c_algo = {
+>         .functionality = sienna_cichlid_i2c_func,
+>  };
+>
+> -static bool sienna_cichlid_i2c_adapter_is_added(struct i2c_adapter *control)
+> -{
+> -       struct amdgpu_device *adev = to_amdgpu_device(control);
+> -
+> -       return control->dev.parent == &adev->pdev->dev;
+> -}
+> -
+>  static int sienna_cichlid_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
+>  {
+>         struct amdgpu_device *adev = to_amdgpu_device(control);
+>         int res;
+>
+> -       /* smu_i2c_eeprom_init may be called twice in sriov */
+> -       if (sienna_cichlid_i2c_adapter_is_added(control))
+> -               return 0;
+> -
+>         control->owner = THIS_MODULE;
+>         control->class = I2C_CLASS_SPD;
+>         control->dev.parent = &adev->pdev->dev;
+> @@ -2661,9 +2650,6 @@ static int sienna_cichlid_i2c_control_init(struct smu_context *smu, struct i2c_a
+>
+>  static void sienna_cichlid_i2c_control_fini(struct smu_context *smu, struct i2c_adapter *control)
+>  {
+> -       if (!sienna_cichlid_i2c_adapter_is_added(control))
+> -               return;
+> -
+>         i2c_del_adapter(control);
+>  }
+>
+> --
+> 2.25.4
+>
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
