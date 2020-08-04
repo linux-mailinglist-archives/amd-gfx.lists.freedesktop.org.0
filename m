@@ -1,55 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60DEB23C05E
-	for <lists+amd-gfx@lfdr.de>; Tue,  4 Aug 2020 22:02:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BAD223C088
+	for <lists+amd-gfx@lfdr.de>; Tue,  4 Aug 2020 22:08:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8A1F89227;
-	Tue,  4 Aug 2020 20:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66A206E2E3;
+	Tue,  4 Aug 2020 20:08:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C26CE89227
- for <amd-gfx@lists.freedesktop.org>; Tue,  4 Aug 2020 20:02:10 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id f18so2891411wmc.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 04 Aug 2020 13:02:10 -0700 (PDT)
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com
+ [IPv6:2a00:1450:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FFF589E52;
+ Tue,  4 Aug 2020 20:07:08 +0000 (UTC)
+Received: by mail-lj1-x244.google.com with SMTP id w25so9585075ljo.12;
+ Tue, 04 Aug 2020 13:07:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LLO/rcWBQPARE6ry1zojr30W4XyQOnnb/qFSIx4UP+M=;
- b=ZgtVAZBUMcPfnaRAHct89SKDDE4beOACewbKWY+nTcXD1FNlFjrRWlC4U5m7OZV5ko
- oswA705WuAoNtLYeC2qHTm3qduUAlTNtn/l/eKYiqY4ps5KIW1Qv5BUm8Nt3q6g1Yqmq
- SOXt2ne1Ne73srnfL8AXTpriVzSP7+trf+vigcT1XyQM4DbSpUFNou1ZCKfdq7C1/dSA
- KVnMnX+sD3WVzHYv6FeMx3qVZCPl5jvyUKltiPyMx7WMlGtfcTFZrd8i+fSY9nSjksv5
- p4yw31kJGCoffsFtx4hhaFO3cZh8I5jSjHAdutTQtn2B2Npr2Qq5KToXIwUi8zPg9sMl
- W9eQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=3azTrGP+LhHvSC09M4k8Vw28GxxV8PL/Fmjx/psKnVE=;
+ b=KD3U4/FABUKWR1juhGbVRQ1Y/MC22u+FfGKWnvS2okLXEIMhyY8rJYmqIWpChTclgK
+ odWpgxAEob6xjlmB8BrGY+z5JzGAt4USWspVBigQLML5OEhzjUpFl/uH8M3gZ1+xE9qE
+ HTsT3dAeJMYYrq2dqC4Ucq0DxpwzlZZUhLzp+0L4fmP5RLUjGR+sYsMPwAXiNbFoNK7V
+ 1jBmby/vCggXOMFr5DilaagPTwqRsvRpQ0M/YhcxaMxRPaxU4qu705/FOo16JVV98CKv
+ +Hncxu27XUQ5LRoaAy8NDMQ/73OgqbafNmuXJe8LKUG3QU4bB2p3IE1kqSlbITTpu1fG
+ g/vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=LLO/rcWBQPARE6ry1zojr30W4XyQOnnb/qFSIx4UP+M=;
- b=f9L+BPE2/hx2Aw09fAh0n9T3VkhKYxTO6GNQ1n5IaXs1Ay5nep586ZgnVhnFpkbWiC
- 0cZulNelSd7EngWE4E8aRCmrxQi48RkCZHIrnCltEbvCDOiW/RH5JTh4xGKsm7sU68/v
- e4EhAhqz58h8eJjAm+ZXYt4hJtKltRhXJ+qRwSDSd+SoDPgUG+nNEoai6ELF+UU3XuLE
- Dp8UlSMHEIxy0VykDmKKB1ZnqPJTkReJmpkBFheJu+z8GDgLPWS/nrZZanWIAMu+WlNU
- kZOQUza3OE6hlBrSI0JcgEgVIrHNiOFgad7YUR4A8TnEJ9LZbfHX03oQ9P8R6k16gTis
- u1Tg==
-X-Gm-Message-State: AOAM532bk84oIiEsq9nV8Xb2ExrAUUD3CZQRVDJ8WPhxyeUEOZk1mCXW
- IjjmN4HJc5KRPkqdZ2zwoZx8gY/K+X7HOSdgw6o=
-X-Google-Smtp-Source: ABdhPJwbAqAaLIgqlKJufuJ9QuyZujGywPIBRjtTns//NI8UNhIWX+UbOjAYnQYrq3dEE8rXr4flo7E2nbVE0h5+fSY=
-X-Received: by 2002:a1c:f70a:: with SMTP id v10mr79807wmh.39.1596571329459;
- Tue, 04 Aug 2020 13:02:09 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=3azTrGP+LhHvSC09M4k8Vw28GxxV8PL/Fmjx/psKnVE=;
+ b=DgVuLvWJfjL5AaZKXHE+H0bGAVkSlMN87SMwHiqYj8YfxzwX9wFsIW1Js5HHbT8yFL
+ dlfTl4WIaxgnP7+SuSnyqqTThpfoFRm10f91v2CbDIO6dT9DciUHEn/9F/LVQVkMehtW
+ OuaiyTPAS8fesuXxhlU9pxMq9/Gv5eCHzpjwqcZV4dHQ6kzn7fop832fuPm9TA9yFy62
+ BnoxRwpREWu60UCWAz3Ng7cyaM5gGEcj8DeU9T5X/nt9QIVVpWeG5NgJ9GQTpfDNsLEZ
+ splZP2VVyDzwNWw9rzKTVkKvDte1nFdxVWzehz24fYi0jn4OgyA7lfmegRM+VAJ/C4aM
+ qnag==
+X-Gm-Message-State: AOAM530ZZNLE0WqtlYi7QCIYfddDgUic7eAPaInggmvirlEz3V5mtjLE
+ AMIXQPDM/PcgsPwzY/HebvM=
+X-Google-Smtp-Source: ABdhPJy3AsPNQaIKiToyk18pBgh3WPFP2MudjbtbKX6Ce/AOCPL8HID0YU1jQ5OnAZqwhLBdXlUuog==
+X-Received: by 2002:a2e:8197:: with SMTP id e23mr11882263ljg.406.1596571625718; 
+ Tue, 04 Aug 2020 13:07:05 -0700 (PDT)
+Received: from localhost.localdomain (h-82-196-111-59.NA.cust.bahnhof.se.
+ [82.196.111.59])
+ by smtp.gmail.com with ESMTPSA id g21sm3080020ljh.103.2020.08.04.13.07.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 04 Aug 2020 13:07:05 -0700 (PDT)
+From: Rikard Falkeborn <rikard.falkeborn@gmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com
+Subject: [PATCH 0/3] drm/amd/display: Constify static resource_funcs
+Date: Tue,  4 Aug 2020 22:06:52 +0200
+Message-Id: <20200804200655.30495-1-rikard.falkeborn@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <44e135ed-dfb7-533f-3c55-8e852a349762@gmx.de>
- <CADnq5_PcEo7sXFpEoKLj5q4J52ehtGjMvQzUFPHLcHObR3Q94A@mail.gmail.com>
- <796fb0f5-d2fa-0456-5f5e-9413c9fb5a0f@gmx.de>
-In-Reply-To: <796fb0f5-d2fa-0456-5f5e-9413c9fb5a0f@gmx.de>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 4 Aug 2020 16:01:58 -0400
-Message-ID: <CADnq5_MP-j6JpW+q6XV5nqwXfgFOEvgZ_GBRP3uuinSn98CRng@mail.gmail.com>
-Subject: Re: Amdgpu kernel oops and freezing graphics
-To: harv@gmx.de
+X-Mailman-Approved-At: Tue, 04 Aug 2020 20:08:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,51 +66,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: amd-gfx@lists.freedesktop.org, airlied@linux.ie,
+ linux-kernel@vger.kernel.org, Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 21, 2020 at 2:21 PM Harvey <harv@gmx.de> wrote:
->
-> Alex,
->
-> tnak you so much - you're my hero!
->
-> Am 21.07.20 um 18:17 schrieb Alex Deucher:
-> > On Mon, Jul 20, 2020 at 4:22 AM Harvey <harv@gmx.de> wrote:
-> >>
-> >> Hello,
-> >>
-> >> this is my first post to this list so please be patient with me ;)
-> >>
-> >> The facts:
-> >>
-> >> it is now one week that I own a new laptop, a MSI Bravo 17 A4DDR/MS-17FK
-> >> with Ryzen 7 4800U and hybrid graphics on a Radeon RX 5500M. I installed
-> >> my beloved Archlinux but I can't start any graphics withpout kernel oops
-> >> on it beside the normal console, even calling 'lspci' on the console is
-> >> provoking errors.
-> >>
-> >> I am using linux kernel 5.7.9 and linux-firmware 20200619.e96c121
-> >>
-> >> (FWIW: I even tried with a self-cmpiled kernel 5.8-rc5 and
-> >> linux-firmware directly from the git repository - no changes)
-> >>
-> >> The following is only part of the information I can provide but I didn't
-> >> want to make this mail bigger than it already is.
-> >
-> > Does appending amdgpu.runpm=0 on the kernel command line in grub help?
->
-> Yes it does. Woohoo! The system is not freezing anymore! Can I provide
-> any further information to get this sorted?
->
-> I will be happy to help investigating and testing if needed.
+Constify a couple of instances of resource_funcs that are never
+modified to allow the compiler to put it in read-only memory.
 
-Does appending pci=noats on the kernel command line in grub also fix the issue?
+The other drivers in drivers/gpu/drm/amd/display/dc already have
+these as const.
 
-Alex
+Rikard Falkeborn (3):
+  drm/amd/display: Constify dcn20_res_pool_funcs
+  drm/amd/display: Constify dcn21_res_pool_funcs
+  drm/amd/display: Constify dcn30_res_pool_funcs
+
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+-- 
+2.28.0
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
