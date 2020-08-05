@@ -1,64 +1,46 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A01923D728
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Aug 2020 09:08:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 301CF23D792
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Aug 2020 09:41:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 613636E161;
-	Thu,  6 Aug 2020 07:08:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4DCE6E87F;
+	Thu,  6 Aug 2020 07:41:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90F096E161
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 07:08:12 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id f12so7075997wru.13
- for <amd-gfx@lists.freedesktop.org>; Thu, 06 Aug 2020 00:08:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=1Zl7T0esuBFnNTI4MSMIey5F9+ZI9M5OA2mjgbgFMDk=;
- b=kQ0XPspgISOnMqiQisCX3YW2XB6JCZNrvKevJFxHCTUwIWtQ3TB2w6dXeVv4MNaj04
- E19Eq3m/0aJivkUondO/qFwJ+pJWmtGxNyftTSxJau7kXdUPtATA9B4iffai4BQjGKQS
- rFVsIfyYiMggZj/O72iltcG5sJ1ova+Ot3oqInQgRxHyxrHiZR04WNBeTSbvUm8AOf9r
- 9iS+WqZSVEUbj3TpAqoGK3Y5/AmVeuDj2L0566fXdGAZ8vaztP6UZSLD0NYsfBO/FOm8
- jXW8NIZnIdvfqXHPoLa614Hc1aeRqOLHMtEIZB81Z1b/ktkB2M8hAkijQaBX8ZazpgFi
- AFtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:references:from:message-id
- :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=1Zl7T0esuBFnNTI4MSMIey5F9+ZI9M5OA2mjgbgFMDk=;
- b=K/CypZYyZgW+2dii0KukcQFyfjex0pmMc7xkJYJ1GVZk7HrOuh2k4S6nskzVyYWVZu
- 6c026AK5lcMd91jLegrg2tpOqBKOokv+KFO+yTNAEe7WMHXfvXgqGRKA7c1A/eXIk4Ti
- j89TFbGjrRCqywEFpyJ/EX8bIscyeVn/74gMz7K5rzDaC2DXqOxCKrPVwwOqOirnu8kA
- iL3dJhqegDXgcpS6FrrB4teq2WcFUMWd4n+4M0nWZHrZFFghAz7HiV1gIFMlOGTbGUey
- xfqTJDRn2PkxLx9CEVCH2sBOFPjUzbZjYg5heGkSyjBVpq9sPDR9VJF0vITPk7HgCWvd
- Pefg==
-X-Gm-Message-State: AOAM531V646/iDNK8BGaS7iFHDTwiFdbsPwSdHxSzotpsVDAxHCPEw+O
- 107KaS+fC36x0KPe05Mn60wSq1/P
-X-Google-Smtp-Source: ABdhPJxXIy5aQbT6Gft1+QP85Aw/vHsXzQmc+kQCHhisTnjSclJ4a9HjUgWD5x2I/k6t9YsTALHcIg==
-X-Received: by 2002:adf:dd01:: with SMTP id a1mr6445365wrm.301.1596697691242; 
- Thu, 06 Aug 2020 00:08:11 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id p22sm4960347wmc.38.2020.08.06.00.08.10
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 06 Aug 2020 00:08:10 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu: annotate a false positive recursive locking
-To: Dennis Li <Dennis.Li@amd.com>, amd-gfx@lists.freedesktop.org,
- Alexander.Deucher@amd.com, felix.kuehling@amd.com, Hawking.Zhang@amd.com
-References: <20200806070230.21457-1-Dennis.Li@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <84678659-b4a6-8332-a71b-28d1b412ae16@gmail.com>
-Date: Thu, 6 Aug 2020 09:08:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53CE86E06E;
+ Wed,  5 Aug 2020 23:36:50 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4BMSgv6kJrz9sPC;
+ Thu,  6 Aug 2020 09:36:43 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1596670607;
+ bh=Cmh/gB9YJihUYayn4qJ1dLbYOonTO4P9wvqqLFhuqPM=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=gMGB7OleVdn5cjisxmKfyvCr1i8cngUbFqDEf3wpMsZTuhGJlTH5/8b6NrR2yPDYF
+ 6461a3Wakqw5GpknHt9hRaLV+xUslzyu3htkmS9ohuD94+cT5tCXU2oo6J+8bL2TkV
+ QM7BSPYLOGZI2ouZPaZcLzezQyMGWM3yQ7Em7r/SUyL+oKfKdc15/zI1zGLgOHNsCw
+ R8YnEPhLqIgrhJaChRyN9pTabR22KYIF550x+gH0KBlGHsQrhC5eBuZUZKqiojL0nz
+ Wn2/AGmBPcw8R1txRDz0B1MG9HT87eAD07VYDJuj+kV1INQIPKY6Os3zyNFiNb2Z81
+ tq3iL17uoCxrg==
+Date: Thu, 6 Aug 2020 09:36:41 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Joe Perches <joe@perches.com>
+Subject: Re: [PATCH] drm/amdgpu: fix spelling mistake "Falied" -> "Failed"
+Message-ID: <20200806093641.5795690c@canb.auug.org.au>
+In-Reply-To: <d720b466a2b4b7507a963f9a2605c7f81e82e7ba.camel@perches.com>
+References: <20200805113510.18277-1-colin.king@canonical.com>
+ <CADnq5_NA9f2N3xkH4WAdDEP+0-5W0LkmTRy3yXqFdnWQmfsVmQ@mail.gmail.com>
+ <a8ab7d75ef9df54bd193fc88e0670b30026e7e67.camel@perches.com>
+ <CADnq5_P9hfv=Zt9+m47sFC0z202x+q-Otifv7a5z4afJamtQ2Q@mail.gmail.com>
+ <d720b466a2b4b7507a963f9a2605c7f81e82e7ba.camel@perches.com>
 MIME-Version: 1.0
-In-Reply-To: <20200806070230.21457-1-Dennis.Li@amd.com>
-Content-Language: en-US
+X-Mailman-Approved-At: Thu, 06 Aug 2020 07:41:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,109 +52,152 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ kernel-janitors@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexdeucher@gmail.com>,
+ Colin King <colin.king@canonical.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============0781417763=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 06.08.20 um 09:02 schrieb Dennis Li:
-> [  584.110304] ============================================
-> [  584.110590] WARNING: possible recursive locking detected
-> [  584.110876] 5.6.0-deli-v5.6-2848-g3f3109b0e75f #1 Tainted: G           OE
-> [  584.111164] --------------------------------------------
-> [  584.111456] kworker/38:1/553 is trying to acquire lock:
-> [  584.111721] ffff9b15ff0a47a0 (&adev->reset_sem){++++}, at: amdgpu_device_gpu_recover+0x262/0x1030 [amdgpu]
-> [  584.112112]
->                 but task is already holding lock:
-> [  584.112673] ffff9b1603d247a0 (&adev->reset_sem){++++}, at: amdgpu_device_gpu_recover+0x262/0x1030 [amdgpu]
-> [  584.113068]
->                 other info that might help us debug this:
-> [  584.113689]  Possible unsafe locking scenario:
->
-> [  584.114350]        CPU0
-> [  584.114685]        ----
-> [  584.115014]   lock(&adev->reset_sem);
-> [  584.115349]   lock(&adev->reset_sem);
-> [  584.115678]
->                  *** DEADLOCK ***
->
-> [  584.116624]  May be due to missing lock nesting notation
->
-> [  584.117284] 4 locks held by kworker/38:1/553:
-> [  584.117616]  #0: ffff9ad635c1d348 ((wq_completion)events){+.+.}, at: process_one_work+0x21f/0x630
-> [  584.117967]  #1: ffffac708e1c3e58 ((work_completion)(&con->recovery_work)){+.+.}, at: process_one_work+0x21f/0x630
-> [  584.118358]  #2: ffffffffc1c2a5d0 (&tmp->hive_lock){+.+.}, at: amdgpu_device_gpu_recover+0xae/0x1030 [amdgpu]
-> [  584.118786]  #3: ffff9b1603d247a0 (&adev->reset_sem){++++}, at: amdgpu_device_gpu_recover+0x262/0x1030 [amdgpu]
-> [  584.119222]
->                 stack backtrace:
-> [  584.119990] CPU: 38 PID: 553 Comm: kworker/38:1 Kdump: loaded Tainted: G           OE     5.6.0-deli-v5.6-2848-g3f3109b0e75f #1
-> [  584.120782] Hardware name: Supermicro SYS-7049GP-TRT/X11DPG-QT, BIOS 3.1 05/23/2019
-> [  584.121223] Workqueue: events amdgpu_ras_do_recovery [amdgpu]
-> [  584.121638] Call Trace:
-> [  584.122050]  dump_stack+0x98/0xd5
-> [  584.122499]  __lock_acquire+0x1139/0x16e0
-> [  584.122931]  ? trace_hardirqs_on+0x3b/0xf0
-> [  584.123358]  ? cancel_delayed_work+0xa6/0xc0
-> [  584.123771]  lock_acquire+0xb8/0x1c0
-> [  584.124197]  ? amdgpu_device_gpu_recover+0x262/0x1030 [amdgpu]
-> [  584.124599]  down_write+0x49/0x120
-> [  584.125032]  ? amdgpu_device_gpu_recover+0x262/0x1030 [amdgpu]
-> [  584.125472]  amdgpu_device_gpu_recover+0x262/0x1030 [amdgpu]
-> [  584.125910]  ? amdgpu_ras_error_query+0x1b8/0x2a0 [amdgpu]
-> [  584.126367]  amdgpu_ras_do_recovery+0x159/0x190 [amdgpu]
-> [  584.126789]  process_one_work+0x29e/0x630
-> [  584.127208]  worker_thread+0x3c/0x3f0
-> [  584.127621]  ? __kthread_parkme+0x61/0x90
-> [  584.128014]  kthread+0x12f/0x150
-> [  584.128402]  ? process_one_work+0x630/0x630
-> [  584.128790]  ? kthread_park+0x90/0x90
-> [  584.129174]  ret_from_fork+0x3a/0x50
->
-> Each adev has owned lock_class_key to avoid false positive
-> recursive locking.
+--===============0781417763==
+Content-Type: multipart/signed; boundary="Sig_/NtAfwcFVg/Q5mr7.l90JiEZ";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-NAK, that is not a false positive but a real problem.
+--Sig_/NtAfwcFVg/Q5mr7.l90JiEZ
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-The issue here is that we have multiple reset semaphores, one for each 
-device in the hive. If those are not acquired in the correct order we 
-deadlock.
+Hi all,
 
-The real solution would be to move the reset_sem into the hive structure 
-and make sure that we lock it only once.
-
-Christian.
-
+On Wed, 05 Aug 2020 15:19:38 -0700 Joe Perches <joe@perches.com> wrote:
 >
-> Signed-off-by: Dennis Li <Dennis.Li@amd.com>
-> Change-Id: I7571efeccbf15483982031d00504a353031a854a
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index e97c088d03b3..766dc8f8c8a0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -967,6 +967,7 @@ struct amdgpu_device {
->   	atomic_t                        in_gpu_reset;
->   	enum pp_mp1_state               mp1_state;
->   	struct rw_semaphore	reset_sem;
-> +	struct lock_class_key lock_key;
->   	struct amdgpu_doorbell_index doorbell_index;
->   
->   	struct mutex			notifier_lock;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 6c572db42d92..d78df9312d34 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3037,6 +3037,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
->   	mutex_init(&adev->virt.vf_errors.lock);
->   	hash_init(adev->mn_hash);
->   	init_rwsem(&adev->reset_sem);
-> +	lockdep_set_class(&adev->reset_sem, &adev->lock_key);
->   	atomic_set(&adev->in_gpu_reset, 0);
->   	mutex_init(&adev->psp.mutex);
->   	mutex_init(&adev->notifier_lock);
+> On Wed, 2020-08-05 at 17:27 -0400, Alex Deucher wrote:
+> > On Wed, Aug 5, 2020 at 4:53 PM Joe Perches <joe@perches.com> wrote: =20
+> > > On Wed, 2020-08-05 at 16:01 -0400, Alex Deucher wrote: =20
+> > > > On Wed, Aug 5, 2020 at 7:35 AM Colin King <colin.king@canonical.com=
+> wrote: =20
+> > > > > From: Colin Ian King <colin.king@canonical.com>
+> > > > >=20
+> > > > > There is a spelling mistake in a DRM_ERROR message. Fix it.
+> > > > >=20
+> > > > > Signed-off-by: Colin Ian King <colin.king@canonical.com> =20
+> > > >=20
+> > > > This is already fixed. =20
+> > >=20
+> > > This fix is not in today's -next.
+> > >=20
+> > > Perhaps whatever tree it's fixed in should be in -next.
+> > >  =20
+> >=20
+> > Weird.  It's in the drm-next tree as:
+> >=20
+> > commit 4afaa61db9cf5250b5734c2531b226e7b3a3d691
+> > Author: Colin Ian King <colin.king@canonical.com>
+> > Date:   Fri Jul 10 09:37:58 2020 +0100
+> >=20
+> >     drm/amdgpu: fix spelling mistake "Falied" -> "Failed"
+> >=20
+> >     There is a spelling mistake in a DRM_ERROR error message. Fix it.
+> >=20
+> >     Signed-off-by: Colin Ian King <colin.king@canonical.com>
+> >     Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> >=20
+> > Alex
+> >  =20
+> > > $ git show --oneline -s
+> > > d15fe4ec0435 (HEAD, tag: next-20200805, origin/master, origin/HEAD) A=
+dd linux-next specific files for 20200805
+> > >=20
+> > > $ git grep -i falied drivers
+> > > drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:                DRM_ERROR("Fa=
+lied to terminate tmr\n");
+> > >  =20
+> > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gp=
+u/drm/amd/amdgpu/amdgpu_psp.c =20
+> > > [] =20
+> > > > > @@ -2010,7 +2010,7 @@ static int psp_suspend(void *handle)
+> > > > >=20
+> > > > >         ret =3D psp_tmr_terminate(psp);
+> > > > >         if (ret) {
+> > > > > -               DRM_ERROR("Falied to terminate tmr\n");
+> > > > > +               DRM_ERROR("Failed to terminate tmr\n");
+> > > > >                 return ret;
+> > > > >         } =20
+>=20
+> Dunno.
+>=20
+> Maybe it's due to some ordering of trees in
+> how -next accumulates patches?
+
+The spelling error is introduced in two commits:
+
+  c564b8601ae9 ("drm/amdgpu: add TMR destory function for psp")
+
+in Linus' tree between v5.8-rc4 and rc5
+
+  90937420c44f ("drm/amdgpu: add TMR destory function for psp")
+
+in the amdgpu tree between two merges by the drm tree.  In this same
+interval, the error is corrected by commit
+
+  4afaa61db9cf ("drm/amdgpu: fix spelling mistake "Falied" -> "Failed"")
+
+so when David comes to merge the amdgpu tree in commit
+
+  206739119508 ("Merge tag 'amd-drm-next-5.9-2020-07-17' of git://people.fr=
+eedesktop.org/~agd5f/linux into drm-next")
+
+the spelling error has been introduced on one side of the merge and
+introduced and corrected on the other.  This would have produced a
+conflict which David presumably resolved in haste by picking the HEAD
+side of the merge instead of the MERGE_HEAD side (it happens).
+
+This could have been avoided by not cherry-picking fix commits around
+in the amdgpu process - instead having a fixes branch that is merged
+into the next branch after the fixes branch has been accepted upstream
+(that way there is only one commit for each fix and less conflicts).
+
+I have to deal with these sort of conflicts (sometimes daily) due to
+the drm processes.  Its a pain as I have to track down each conflict to
+see if the same patches appear on both sides of merges and then try to
+figure out what other changes occur.  (This is only slightly helped by
+have the "cherry-picked from" tags in the fix commits.)
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/NtAfwcFVg/Q5mr7.l90JiEZ
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl8rQokACgkQAVBC80lX
+0Gw3xggAk/E16XshgUXV574Pqu7SjSyeHU5oUQeRvdnP348Xm+8+fzR+TJ4//Fot
+mHgy13Z06GupLFaKGLqJx8ftRBKlFhOZ+s5xzzUwfXs8GI6FmXINGk9x6uJm2PYo
+gxtDzLSnq/GVlcbMJJ12ejIpjn3fpoP3fPFBO+rVLZkDZ+cZbABEyrrbi/jJbbKp
+SBJ+vMfBR9i7jtt5StFBfTp9JEWUqqIJhtT0aJwA/ycmUse+ynHHzsGQPADads5V
+fo16ICEKNN9fjPKbaBArUK6v/WRFd+2UQDhQNsNWJ9DgkGXyACGkOCarv76EoqGP
+LB0oyyiSB6p2xz40nUvPJsWmw9ecPA==
+=Osit
+-----END PGP SIGNATURE-----
+
+--Sig_/NtAfwcFVg/Q5mr7.l90JiEZ--
+
+--===============0781417763==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0781417763==--
