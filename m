@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C4823CDA3
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 Aug 2020 19:41:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A458623CDA1
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 Aug 2020 19:41:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9070B6E832;
-	Wed,  5 Aug 2020 17:41:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 227176E82F;
+	Wed,  5 Aug 2020 17:41:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680040.outbound.protection.outlook.com [40.107.68.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09A326E832
- for <amd-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 17:41:15 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2051.outbound.protection.outlook.com [40.107.93.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 738CC6E82D
+ for <amd-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 17:41:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X8Jd0b/b0/vSOaS9CFEyxjBDnJnPAfAX1XMb5iSYHyy0WhGL+QYRmG4Sc2sjpSFiLgRbtO8C0f174e8QXMgGIYx4ECT4ybGkWfmGtjyT/B6Biv3bLqOvOiQRMHCQPJjeFmFMt5tcKOb7L21TCDnUu3FEirjwxtjFrY2LsUMW9HkgN+bw1RYHUYO3c3+STWqQ1sN9J9CYuHBhT6+BJAm/e5f4SSrOm2KMX+g9RDXjPO7+5gl4NfjS3e6uNlO0jaQTHODxC4hpXaoCEetElRmbh6Phe5tNHBbir4kbuhXxITeIVWVJTumTtlrj3gmojmvgIrgWTn21RASL/uROM0oOyA==
+ b=dmyCyUaQfti9EzNHMtITZg5AOfTZO6E7zZw5PTeXD0kxiSNLkaUbgh879R/uPjEYAVajJA++dr2r2BCmUxOflMW6XgkV7YzR8pBjQo+8GGL5iNfmEEHlbm93Sp8xFN0BdP3LiWjVh1Y9St5jm16WldY8hLL1vTF7VNuh3ovurRBKIAFhNi0g5hjbTzXjaANMg/pWh92wtoCY0O9EmH/DumWZM5OX+YEmQYWhIzBCfn5nMTpjleCtOf8I9UfXIBI0ygmfbeGfjkDV7UxEiyJ/T99cZG6271u0RK1f9+dlts3+mbitgF+DiL2ZkluI2iQs0UWscBV/hO2ss9iOn+pPmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MaCF5xQua7BGZ2dCLmPEJHXq5PLuhSNuHl6z0+pTXy0=;
- b=OxP/gO+xco6Zzi20ZpqSVHARwJprSVWRFaS0JE54+M3aPLCr3Ekip93y4/AK9e3uFpND8f3enpZ+gqwTcNKBYdzy2mqXi7C8OBfnj9VblJgCLgqdUGJxZYgeLSEHUI4WArbvAW7DBartfK+BQZie6BxrhLoQChhTZsYP5n7a+N1f/0UiLDamDpnQWRjjryZAUBEMBP7oEa2224X35WPDQKlNjO0EGIx7xsdfzwyFZtorGEAx84DqFB+6LeZgmNaEsluZiqRrpuAy+C6WP3aqixtVktbLL5eEwfU4ZgJ0IZusEaEkwXTelk2d1/IvHXc9ObtkQOr4Lg+p7lWYfayNVw==
+ bh=0qu+zyUr7PEJQp/kzztpEcu3aLeFEsgoH72KHUyyPPQ=;
+ b=ecC4gk6rvmqVoVxF1leyIjRVWjhUXsTd9wW07QuJuXfoLAfVMBQs2qTphsxO8KkHnqVQjcTeJ8KSIS8p5zvEjobhj1f8A6ZwkqIcCR8EXRhe3p+H1OZiPgh1OzAlErnBOeCVpyXdnI5mvxUI0PY+B1Ucgew+K4thXqkWZOFwAt3FOAqmLsqSaGkozd1OlCpjtk1a7qLGeNGq5m/F8SKlvm4uf0QW3GGYiYsepj9NTe1CfJACulKQvMX/XEq34zqPunXD5LqyPV+kGvi540PwAGGTtE4cWe5N4Y7Ozcnq8g17Yj4FPLZGCm7cW5w5Vhk/9NFAGxs8crtUlvmZXlJ7iw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MaCF5xQua7BGZ2dCLmPEJHXq5PLuhSNuHl6z0+pTXy0=;
- b=YB90dGRSxMVKxsN03lJLBqMqxxfaaXblz1ZkEAh/nPIAlsz9vZSDG6ax6OrAuSlOdZf6jFz4/6sP9a7YIyy1FQLFwP33GSoUfn9zYJxKwv7mK5mqitlCTgXqAijjIDTZECY55Mms5WfKekvz+vxlaGDF+VMIsheD6rfO0SQfhwM=
-Received: from MWHPR02CA0006.namprd02.prod.outlook.com (2603:10b6:300:4b::16)
- by DM5PR12MB1449.namprd12.prod.outlook.com (2603:10b6:4:10::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.16; Wed, 5 Aug
- 2020 17:41:09 +0000
-Received: from CO1NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:4b:cafe::ee) by MWHPR02CA0006.outlook.office365.com
- (2603:10b6:300:4b::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.18 via Frontend
- Transport; Wed, 5 Aug 2020 17:41:09 +0000
+ bh=0qu+zyUr7PEJQp/kzztpEcu3aLeFEsgoH72KHUyyPPQ=;
+ b=CAtqHo7uT98OF3AieUEjDEKhCD4mycPkiikPZynkr4HQsPw9BaUyYKDo0V19PSSpRokHfPoNvoQ5wRFBwcO4cmuAazVHRwXYciUg7vGEhWF6XbJt57eVsc/w3mvI6I5d8JVjXKsb65IAXYSlknnhdC4HJ4g9xCmx8uoHnayTdYE=
+Received: from CO1PR15CA0087.namprd15.prod.outlook.com (2603:10b6:101:20::31)
+ by CH2PR12MB3733.namprd12.prod.outlook.com (2603:10b6:610:15::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.20; Wed, 5 Aug
+ 2020 17:41:08 +0000
+Received: from CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:101:20:cafe::57) by CO1PR15CA0087.outlook.office365.com
+ (2603:10b6:101:20::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.17 via Frontend
+ Transport; Wed, 5 Aug 2020 17:41:08 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -46,21 +46,22 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT011.mail.protection.outlook.com (10.13.175.186) with Microsoft SMTP
+ CO1NAM11FT068.mail.protection.outlook.com (10.13.175.142) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3261.16 via Frontend Transport; Wed, 5 Aug 2020 17:41:09 +0000
+ 15.20.3261.16 via Frontend Transport; Wed, 5 Aug 2020 17:41:08 +0000
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 5 Aug 2020
- 12:41:02 -0500
+ 12:41:03 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
  Transport; Wed, 5 Aug 2020 12:41:02 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 5/9] drm/amd/display: Fix LFC multiplier changing erratically
-Date: Wed, 5 Aug 2020 13:40:54 -0400
-Message-ID: <20200805174058.11736-6-qingqing.zhuo@amd.com>
+Subject: [PATCH 6/9] drm/amd/display: Switch to immediate mode for updating
+ infopackets
+Date: Wed, 5 Aug 2020 13:40:55 -0400
+Message-ID: <20200805174058.11736-7-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200805174058.11736-1-qingqing.zhuo@amd.com>
 References: <20200805174058.11736-1-qingqing.zhuo@amd.com>
@@ -68,28 +69,28 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 34243ca2-8745-4306-c6ca-08d83966bd05
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1449:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1449F338B383B77CAD9FD649FB4B0@DM5PR12MB1449.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Office365-Filtering-Correlation-Id: 45bf1543-ba07-47e4-b832-08d83966bc98
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3733:
+X-Microsoft-Antispam-PRVS: <CH2PR12MB37331E13887DD851FD28AD45FB4B0@CH2PR12MB3733.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:268;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6fgBeRjUqljb9TcmmXMTJCZEX1cmR59P6Bzs/LQlGL0dnzrSnky1Y4xtyrSQmp5aZmn0K+63QXRNQMGBAai8kidIBq55hh/YvteNmLMcSFXSC0eWQaMtcoj2hVL8SVWCwVq1w/c4tFMGtQIEeSVgKngQD6yNMoFkPUqKOyu/ZdfdUxMMeeQwNo3XdN91mNDLI5jSCSgqTa62VV1+ZXv4uhPXzwU3rut6FB9zH8FIXdqjQs+dcRwNt40HiozXCFessDr5WsVoiFqfwwJxoHRh31bYoQyLAUm/wdntV3PGqxXo8syWaTz34nVtmZIWiiVvR/6p+AJVZhOoqiT6MNU4ViwGVzUCooh+okNAkXGaZQuF9ZupXMJtIfRZdSr5cVaYUbz27IXy7KbltpceTektxA==
+X-Microsoft-Antispam-Message-Info: +S8lpCmtcIVvkZVFSDIIUpmgMOI8hL3xnGB8Gsc5/DXC/6sXGm5A8i2/MfS+v/Tm+W8DzWP8WVwaHYqk9MxVWbRIH9iY75wCvzl9HsqPA4juQkEhS21o+4EDlKGhjLKhOC/pfuu17GOXTlK/C4nfhhYNSwUtdqG2Ibu7rltHMy1vDL8zb8h3/yAQOTlKlwjj9qnHxMrrpT9jWbg1J4MbYr+p/NfHOJa4rm/EnexDlcemSZ+ormHs6fCNCykLmmFQfbohOdy9/HitY+aJ1qiIZfvPD73qXdvktBeJEqklFeBD+3zXFTPenNGM7H1Zc8T3GkBu93Cq5DH9vUAd81hVcLLgt6p5RgDpgGoPLogCctJtNx5fNmbXZEN05P9zhSNFhVLM92eR63ZqqGPxWuw7papSbml2DzwiPkw2wBMAx2M=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(136003)(396003)(346002)(39860400002)(376002)(46966005)(6666004)(8936002)(2616005)(2906002)(4326008)(44832011)(36756003)(426003)(82310400002)(83380400001)(8676002)(336012)(1076003)(81166007)(47076004)(356005)(86362001)(478600001)(6916009)(70586007)(70206006)(316002)(5660300002)(186003)(82740400003)(54906003)(26005);
+ SFS:(4636009)(346002)(136003)(376002)(39860400002)(396003)(46966005)(2906002)(1076003)(336012)(70206006)(36756003)(8676002)(6666004)(70586007)(356005)(82310400002)(81166007)(83380400001)(186003)(26005)(8936002)(44832011)(2616005)(426003)(86362001)(54906003)(6916009)(47076004)(82740400003)(5660300002)(4326008)(478600001)(316002)(14773001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2020 17:41:09.1935 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34243ca2-8745-4306-c6ca-08d83966bd05
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2020 17:41:08.4868 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45bf1543-ba07-47e4-b832-08d83966bc98
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT011.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1449
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3733
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,81 +113,105 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Anthony Koo <Anthony.Koo@amd.com>
 
 [Why]
-1. There is a calculation that is using frame_time_in_us instead of
-last_render_time_in_us to calculate whether choosing an LFC multiplier
-would cause the inserted frame duration to be outside of range.
-
-2. We do not handle unsigned integer subtraction correctly and it underflows
-to a really large value, which causes some logic errors.
+Using FRAME_UPDATE will result in infopacket to be potentially updated
+one frame late.
+In commit stream scenarios for previously active stream, some stale
+infopacket data from previous config might be erroneously sent out on
+initial frame after stream is re-enabled.
 
 [How]
-1. Fix logic to calculate 'within range' using last_render_time_in_us
-2. Split out delta_from_mid_point_delta_in_us calculation to ensure
-we don't underflow and wrap around
+Switch to using IMMEDIATE_UPDATE mode
 
 Signed-off-by: Anthony Koo <Anthony.Koo@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+Reviewed-by: Ashley Thomas <Ashley.Thomas2@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- .../amd/display/modules/freesync/freesync.c   | 36 +++++++++++++++----
- 1 file changed, 29 insertions(+), 7 deletions(-)
+ .../amd/display/dc/dcn10/dcn10_stream_encoder.c  | 16 ++++++++--------
+ .../amd/display/dc/dcn10/dcn10_stream_encoder.h  | 14 ++++++++++++++
+ 2 files changed, 22 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-index 81820f3d6b3b..d988533d4af5 100644
---- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-+++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-@@ -324,22 +324,44 @@ static void apply_below_the_range(struct core_freesync *core_freesync,
- 
- 		/* Choose number of frames to insert based on how close it
- 		 * can get to the mid point of the variable range.
-+		 *  - Delta for CEIL: delta_from_mid_point_in_us_1
-+		 *  - Delta for FLOOR: delta_from_mid_point_in_us_2
- 		 */
--		if ((frame_time_in_us / mid_point_frames_ceil) > in_out_vrr->min_duration_in_us &&
--				(delta_from_mid_point_in_us_1 < delta_from_mid_point_in_us_2 ||
--						mid_point_frames_floor < 2)) {
-+		if ((last_render_time_in_us / mid_point_frames_ceil) < in_out_vrr->min_duration_in_us) {
-+			/* Check for out of range.
-+			 * If using CEIL produces a value that is out of range,
-+			 * then we are forced to use FLOOR.
-+			 */
-+			frames_to_insert = mid_point_frames_floor;
-+		} else if (mid_point_frames_floor < 2) {
-+			/* Check if FLOOR would result in non-LFC. In this case
-+			 * choose to use CEIL
-+			 */
-+			frames_to_insert = mid_point_frames_ceil;
-+		} else if (delta_from_mid_point_in_us_1 < delta_from_mid_point_in_us_2) {
-+			/* If choosing CEIL results in a frame duration that is
-+			 * closer to the mid point of the range.
-+			 * Choose CEIL
-+			 */
- 			frames_to_insert = mid_point_frames_ceil;
--			delta_from_mid_point_delta_in_us = delta_from_mid_point_in_us_2 -
--					delta_from_mid_point_in_us_1;
- 		} else {
-+			/* If choosing FLOOR results in a frame duration that is
-+			 * closer to the mid point of the range.
-+			 * Choose FLOOR
-+			 */
- 			frames_to_insert = mid_point_frames_floor;
--			delta_from_mid_point_delta_in_us = delta_from_mid_point_in_us_1 -
--					delta_from_mid_point_in_us_2;
- 		}
- 
- 		/* Prefer current frame multiplier when BTR is enabled unless it drifts
- 		 * too far from the midpoint
- 		 */
-+		if (delta_from_mid_point_in_us_1 < delta_from_mid_point_in_us_2) {
-+			delta_from_mid_point_delta_in_us = delta_from_mid_point_in_us_2 -
-+					delta_from_mid_point_in_us_1;
-+		} else {
-+			delta_from_mid_point_delta_in_us = delta_from_mid_point_in_us_1 -
-+					delta_from_mid_point_in_us_2;
-+		}
- 		if (in_out_vrr->btr.frames_to_insert != 0 &&
- 				delta_from_mid_point_delta_in_us < BTR_DRIFT_MARGIN) {
- 			if (((last_render_time_in_us / in_out_vrr->btr.frames_to_insert) <
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c
+index 07b2f9399671..842abb4c475b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c
+@@ -121,35 +121,35 @@ void enc1_update_generic_info_packet(
+ 	switch (packet_index) {
+ 	case 0:
+ 		REG_UPDATE(AFMT_VBI_PACKET_CONTROL1,
+-				AFMT_GENERIC0_FRAME_UPDATE, 1);
++				AFMT_GENERIC0_IMMEDIATE_UPDATE, 1);
+ 		break;
+ 	case 1:
+ 		REG_UPDATE(AFMT_VBI_PACKET_CONTROL1,
+-				AFMT_GENERIC1_FRAME_UPDATE, 1);
++				AFMT_GENERIC1_IMMEDIATE_UPDATE, 1);
+ 		break;
+ 	case 2:
+ 		REG_UPDATE(AFMT_VBI_PACKET_CONTROL1,
+-				AFMT_GENERIC2_FRAME_UPDATE, 1);
++				AFMT_GENERIC2_IMMEDIATE_UPDATE, 1);
+ 		break;
+ 	case 3:
+ 		REG_UPDATE(AFMT_VBI_PACKET_CONTROL1,
+-				AFMT_GENERIC3_FRAME_UPDATE, 1);
++				AFMT_GENERIC3_IMMEDIATE_UPDATE, 1);
+ 		break;
+ 	case 4:
+ 		REG_UPDATE(AFMT_VBI_PACKET_CONTROL1,
+-				AFMT_GENERIC4_FRAME_UPDATE, 1);
++				AFMT_GENERIC4_IMMEDIATE_UPDATE, 1);
+ 		break;
+ 	case 5:
+ 		REG_UPDATE(AFMT_VBI_PACKET_CONTROL1,
+-				AFMT_GENERIC5_FRAME_UPDATE, 1);
++				AFMT_GENERIC5_IMMEDIATE_UPDATE, 1);
+ 		break;
+ 	case 6:
+ 		REG_UPDATE(AFMT_VBI_PACKET_CONTROL1,
+-				AFMT_GENERIC6_FRAME_UPDATE, 1);
++				AFMT_GENERIC6_IMMEDIATE_UPDATE, 1);
+ 		break;
+ 	case 7:
+ 		REG_UPDATE(AFMT_VBI_PACKET_CONTROL1,
+-				AFMT_GENERIC7_FRAME_UPDATE, 1);
++				AFMT_GENERIC7_IMMEDIATE_UPDATE, 1);
+ 		break;
+ 	default:
+ 		break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
+index ed385b1477be..30eae7459d50 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
+@@ -281,7 +281,14 @@ struct dcn10_stream_enc_registers {
+ 	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC2_FRAME_UPDATE, mask_sh),\
+ 	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC3_FRAME_UPDATE, mask_sh),\
+ 	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC4_FRAME_UPDATE, mask_sh),\
++	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC0_IMMEDIATE_UPDATE, mask_sh),\
++	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC1_IMMEDIATE_UPDATE, mask_sh),\
++	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC2_IMMEDIATE_UPDATE, mask_sh),\
++	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC3_IMMEDIATE_UPDATE, mask_sh),\
+ 	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC4_IMMEDIATE_UPDATE, mask_sh),\
++	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC5_IMMEDIATE_UPDATE, mask_sh),\
++	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC6_IMMEDIATE_UPDATE, mask_sh),\
++	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC7_IMMEDIATE_UPDATE, mask_sh),\
+ 	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC5_FRAME_UPDATE, mask_sh),\
+ 	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC6_FRAME_UPDATE, mask_sh),\
+ 	SE_SF(DIG0_AFMT_VBI_PACKET_CONTROL1, AFMT_GENERIC7_FRAME_UPDATE, mask_sh),\
+@@ -345,7 +352,14 @@ struct dcn10_stream_enc_registers {
+ 	type AFMT_GENERIC2_FRAME_UPDATE;\
+ 	type AFMT_GENERIC3_FRAME_UPDATE;\
+ 	type AFMT_GENERIC4_FRAME_UPDATE;\
++	type AFMT_GENERIC0_IMMEDIATE_UPDATE;\
++	type AFMT_GENERIC1_IMMEDIATE_UPDATE;\
++	type AFMT_GENERIC2_IMMEDIATE_UPDATE;\
++	type AFMT_GENERIC3_IMMEDIATE_UPDATE;\
+ 	type AFMT_GENERIC4_IMMEDIATE_UPDATE;\
++	type AFMT_GENERIC5_IMMEDIATE_UPDATE;\
++	type AFMT_GENERIC6_IMMEDIATE_UPDATE;\
++	type AFMT_GENERIC7_IMMEDIATE_UPDATE;\
+ 	type AFMT_GENERIC5_FRAME_UPDATE;\
+ 	type AFMT_GENERIC6_FRAME_UPDATE;\
+ 	type AFMT_GENERIC7_FRAME_UPDATE;\
 -- 
 2.17.1
 
