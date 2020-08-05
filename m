@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B5623CDA0
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 Aug 2020 19:41:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C4823CDA3
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 Aug 2020 19:41:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 961C76E82D;
-	Wed,  5 Aug 2020 17:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9070B6E832;
+	Wed,  5 Aug 2020 17:41:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2079.outbound.protection.outlook.com [40.107.237.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACBE16E82D
- for <amd-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 17:41:10 +0000 (UTC)
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680040.outbound.protection.outlook.com [40.107.68.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09A326E832
+ for <amd-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 17:41:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iKXLqatcleViNjGF0OlsakHrU41/mXdAWwGxkYvj/M/GBzDaAlAjoXIH1xGlwlVLkBjoU9CcEHVQmDzvZyd+8TSmmSEf4dOzj9IPBMnLRbnTMcg9J/nK1NL11p8vNY7q/6BUFIxq/WCNMW3uy0ZJzpQm6P7bX8z10DvPVNRCp7LUEVt2z9Xuyv/ghjf8nwqkRhgDF/nrZjpRqtm/ErHSP6IN8tXrG6nLtqYAKQgWTcnbWA8glqBDYJc2yyu2vaQFfy9pEgpCmPPClMMLUGVRyzPuHvcj7glnWWUe4VD7RKXwzn6WqhTkQhS8y2LXABepxzwiXl25sR5tRd2bX2xWjA==
+ b=X8Jd0b/b0/vSOaS9CFEyxjBDnJnPAfAX1XMb5iSYHyy0WhGL+QYRmG4Sc2sjpSFiLgRbtO8C0f174e8QXMgGIYx4ECT4ybGkWfmGtjyT/B6Biv3bLqOvOiQRMHCQPJjeFmFMt5tcKOb7L21TCDnUu3FEirjwxtjFrY2LsUMW9HkgN+bw1RYHUYO3c3+STWqQ1sN9J9CYuHBhT6+BJAm/e5f4SSrOm2KMX+g9RDXjPO7+5gl4NfjS3e6uNlO0jaQTHODxC4hpXaoCEetElRmbh6Phe5tNHBbir4kbuhXxITeIVWVJTumTtlrj3gmojmvgIrgWTn21RASL/uROM0oOyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SqXo1NqwoKFKUexSU1qXGTstbeloq8p5tkDpbS3lILY=;
- b=W0LJbq2j75xO+79Fsa5VjCRCOOlbe0bzOXY0M+GwfzVXDCmxCtlZvM4F61mX8pyOn8LES3By4+qB8zd2QKmMrIrAn1uIXaxaesmMU3FIhTbBpmpOPcZ7WFTdFLLSfGRbG32yYXAc5085hjVbYuWPS8+6jECnIxwaUY/Z/QlW+OpzR6j/SacQ7AE9THL7GFjLwHkAfuoCJvIRlS0p+dWUuzUCoG4peaZEJmGaDyAcs8QZBmr2REmjJmAl83EiI0VL3wtUYuud+f288yB6Avi/MDOS8byRorhRNaQf7+g90hTgCAsGQgQwZqDYRm/Ia4yhptt48pdMQGODZCxiklFUTw==
+ bh=MaCF5xQua7BGZ2dCLmPEJHXq5PLuhSNuHl6z0+pTXy0=;
+ b=OxP/gO+xco6Zzi20ZpqSVHARwJprSVWRFaS0JE54+M3aPLCr3Ekip93y4/AK9e3uFpND8f3enpZ+gqwTcNKBYdzy2mqXi7C8OBfnj9VblJgCLgqdUGJxZYgeLSEHUI4WArbvAW7DBartfK+BQZie6BxrhLoQChhTZsYP5n7a+N1f/0UiLDamDpnQWRjjryZAUBEMBP7oEa2224X35WPDQKlNjO0EGIx7xsdfzwyFZtorGEAx84DqFB+6LeZgmNaEsluZiqRrpuAy+C6WP3aqixtVktbLL5eEwfU4ZgJ0IZusEaEkwXTelk2d1/IvHXc9ObtkQOr4Lg+p7lWYfayNVw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SqXo1NqwoKFKUexSU1qXGTstbeloq8p5tkDpbS3lILY=;
- b=ugI/AzfkNi8YgXX+bfjuHqhjYVx5vbn2LJkOnrnVRp7OSbNP9C8SU/lhwST1IJbyKWXwNPzTccGbKTYDfui1bp7Dm5PNU8V7zBwUaurf/ZyW7Ah0fdF3OcP4Tb3N4Z2lFw++bcjSkIvLeGDe9xHj8SYTnrrSGCembTRr24raU70=
-Received: from CO1PR15CA0067.namprd15.prod.outlook.com (2603:10b6:101:20::11)
- by SN6PR12MB2832.namprd12.prod.outlook.com (2603:10b6:805:eb::30)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.20; Wed, 5 Aug
- 2020 17:41:05 +0000
-Received: from CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:101:20:cafe::86) by CO1PR15CA0067.outlook.office365.com
- (2603:10b6:101:20::11) with Microsoft SMTP Server (version=TLS1_2,
+ bh=MaCF5xQua7BGZ2dCLmPEJHXq5PLuhSNuHl6z0+pTXy0=;
+ b=YB90dGRSxMVKxsN03lJLBqMqxxfaaXblz1ZkEAh/nPIAlsz9vZSDG6ax6OrAuSlOdZf6jFz4/6sP9a7YIyy1FQLFwP33GSoUfn9zYJxKwv7mK5mqitlCTgXqAijjIDTZECY55Mms5WfKekvz+vxlaGDF+VMIsheD6rfO0SQfhwM=
+Received: from MWHPR02CA0006.namprd02.prod.outlook.com (2603:10b6:300:4b::16)
+ by DM5PR12MB1449.namprd12.prod.outlook.com (2603:10b6:4:10::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.16; Wed, 5 Aug
+ 2020 17:41:09 +0000
+Received: from CO1NAM11FT011.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:4b:cafe::ee) by MWHPR02CA0006.outlook.office365.com
+ (2603:10b6:300:4b::16) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.18 via Frontend
- Transport; Wed, 5 Aug 2020 17:41:05 +0000
+ Transport; Wed, 5 Aug 2020 17:41:09 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -46,26 +46,21 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT068.mail.protection.outlook.com (10.13.175.142) with Microsoft SMTP
+ CO1NAM11FT011.mail.protection.outlook.com (10.13.175.186) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3261.16 via Frontend Transport; Wed, 5 Aug 2020 17:41:05 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
+ 15.20.3261.16 via Frontend Transport; Wed, 5 Aug 2020 17:41:09 +0000
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 5 Aug 2020
  12:41:02 -0500
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 5 Aug 2020
- 12:41:01 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Wed, 5 Aug 2020 12:41:01 -0500
+ Transport; Wed, 5 Aug 2020 12:41:02 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/9] drm/amd/display: mpcc black color should not be impacted
- by pixel encoding format
-Date: Wed, 5 Aug 2020 13:40:53 -0400
-Message-ID: <20200805174058.11736-5-qingqing.zhuo@amd.com>
+Subject: [PATCH 5/9] drm/amd/display: Fix LFC multiplier changing erratically
+Date: Wed, 5 Aug 2020 13:40:54 -0400
+Message-ID: <20200805174058.11736-6-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200805174058.11736-1-qingqing.zhuo@amd.com>
 References: <20200805174058.11736-1-qingqing.zhuo@amd.com>
@@ -73,28 +68,28 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 02dac367-eb9b-433f-0a7a-08d83966bab8
-X-MS-TrafficTypeDiagnostic: SN6PR12MB2832:
-X-Microsoft-Antispam-PRVS: <SN6PR12MB28325A1CE5B3489D516C7F13FB4B0@SN6PR12MB2832.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-MS-Office365-Filtering-Correlation-Id: 34243ca2-8745-4306-c6ca-08d83966bd05
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1449:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1449F338B383B77CAD9FD649FB4B0@DM5PR12MB1449.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4h5pWFrwNYUlaOlq6qalwIiyhEluVk3H7tInzFlUoMsEhjITbjcEM7prkv+OqLEbVHxk2wviY1bHzPcr01vWzfpwRlzBEJRgqE9W2hSYrkHs6PJdvr0Uiyp0xt/uIwfge3ruo7I4CO5hEdsm9pp88VPqm+POMe6Y0ycQ4FH1YwVrWJwWHfsyqdQ4/nEhPvWGopV5IlJxBVy4C26Kj/zCfqvCvflylG0bhkFiq+WZo33vsu3kfEnNudr+V8u8ZEMnfPbDjPltwGwolRWK++sXKbtHglQ9y1mKM1SAOzSdPWw/Na1JlF6yZ+ZsOP0VRG9W8OIewEhvO0oSKwJ88wNv4QtAkmgUhF1H3GgbnHuDlRdKY/6G4VYne7F2mz+DGf8VHGoSfNy2BSqLFRI9Hr39Wg==
+X-Microsoft-Antispam-Message-Info: 6fgBeRjUqljb9TcmmXMTJCZEX1cmR59P6Bzs/LQlGL0dnzrSnky1Y4xtyrSQmp5aZmn0K+63QXRNQMGBAai8kidIBq55hh/YvteNmLMcSFXSC0eWQaMtcoj2hVL8SVWCwVq1w/c4tFMGtQIEeSVgKngQD6yNMoFkPUqKOyu/ZdfdUxMMeeQwNo3XdN91mNDLI5jSCSgqTa62VV1+ZXv4uhPXzwU3rut6FB9zH8FIXdqjQs+dcRwNt40HiozXCFessDr5WsVoiFqfwwJxoHRh31bYoQyLAUm/wdntV3PGqxXo8syWaTz34nVtmZIWiiVvR/6p+AJVZhOoqiT6MNU4ViwGVzUCooh+okNAkXGaZQuF9ZupXMJtIfRZdSr5cVaYUbz27IXy7KbltpceTektxA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFTY:;
- SFS:(4636009)(136003)(396003)(376002)(346002)(39860400002)(46966005)(8936002)(336012)(4326008)(82740400003)(8676002)(81166007)(36756003)(70206006)(70586007)(186003)(47076004)(83380400001)(478600001)(26005)(82310400002)(356005)(6916009)(86362001)(2616005)(426003)(44832011)(316002)(5660300002)(54906003)(6666004)(1076003)(2906002);
+ SFS:(4636009)(136003)(396003)(346002)(39860400002)(376002)(46966005)(6666004)(8936002)(2616005)(2906002)(4326008)(44832011)(36756003)(426003)(82310400002)(83380400001)(8676002)(336012)(1076003)(81166007)(47076004)(356005)(86362001)(478600001)(6916009)(70586007)(70206006)(316002)(5660300002)(186003)(82740400003)(54906003)(26005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2020 17:41:05.3377 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02dac367-eb9b-433f-0a7a-08d83966bab8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2020 17:41:09.1935 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34243ca2-8745-4306-c6ca-08d83966bd05
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT011.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2832
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1449
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,47 +102,91 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Xiaodong Yan <Xiaodong.Yan@amd.com>, Bhawanpreet.Lakha@amd.com
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Bhawanpreet.Lakha@amd.com,
+ Anthony Koo <Anthony.Koo@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Xiaodong Yan <Xiaodong.Yan@amd.com>
+From: Anthony Koo <Anthony.Koo@amd.com>
 
 [Why]
-The format in MPCC should be 444
+1. There is a calculation that is using frame_time_in_us instead of
+last_render_time_in_us to calculate whether choosing an LFC multiplier
+would cause the inserted frame duration to be outside of range.
+
+2. We do not handle unsigned integer subtraction correctly and it underflows
+to a really large value, which causes some logic errors.
 
 [How]
-do not modify the mpcc black color according to pixel encoding format
+1. Fix logic to calculate 'within range' using last_render_time_in_us
+2. Split out delta_from_mid_point_delta_in_us calculation to ensure
+we don't underflow and wrap around
 
-Signed-off-by: Xiaodong Yan <Xiaodong.Yan@amd.com>
-Reviewed-by: Eric Yang <eric.yang2@amd.com>
+Signed-off-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c | 8 --------
- 1 file changed, 8 deletions(-)
+ .../amd/display/modules/freesync/freesync.c   | 36 +++++++++++++++----
+ 1 file changed, 29 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index a643927e272b..57cd52789606 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -2368,14 +2368,6 @@ void dcn10_update_mpcc(struct dc *dc, struct pipe_ctx *pipe_ctx)
- 				&blnd_cfg.black_color);
- 	}
+diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+index 81820f3d6b3b..d988533d4af5 100644
+--- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
++++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+@@ -324,22 +324,44 @@ static void apply_below_the_range(struct core_freesync *core_freesync,
  
--	/*
--	 * The way 420 is packed, 2 channels carry Y component, 1 channel
--	 * alternate between Cb and Cr, so both channels need the pixel
--	 * value for Y
--	 */
--	if (pipe_ctx->stream->timing.pixel_encoding == PIXEL_ENCODING_YCBCR420)
--		blnd_cfg.black_color.color_r_cr = blnd_cfg.black_color.color_g_y;
--
- 	if (per_pixel_alpha)
- 		blnd_cfg.alpha_mode = MPCC_ALPHA_BLEND_MODE_PER_PIXEL_ALPHA;
- 	else
+ 		/* Choose number of frames to insert based on how close it
+ 		 * can get to the mid point of the variable range.
++		 *  - Delta for CEIL: delta_from_mid_point_in_us_1
++		 *  - Delta for FLOOR: delta_from_mid_point_in_us_2
+ 		 */
+-		if ((frame_time_in_us / mid_point_frames_ceil) > in_out_vrr->min_duration_in_us &&
+-				(delta_from_mid_point_in_us_1 < delta_from_mid_point_in_us_2 ||
+-						mid_point_frames_floor < 2)) {
++		if ((last_render_time_in_us / mid_point_frames_ceil) < in_out_vrr->min_duration_in_us) {
++			/* Check for out of range.
++			 * If using CEIL produces a value that is out of range,
++			 * then we are forced to use FLOOR.
++			 */
++			frames_to_insert = mid_point_frames_floor;
++		} else if (mid_point_frames_floor < 2) {
++			/* Check if FLOOR would result in non-LFC. In this case
++			 * choose to use CEIL
++			 */
++			frames_to_insert = mid_point_frames_ceil;
++		} else if (delta_from_mid_point_in_us_1 < delta_from_mid_point_in_us_2) {
++			/* If choosing CEIL results in a frame duration that is
++			 * closer to the mid point of the range.
++			 * Choose CEIL
++			 */
+ 			frames_to_insert = mid_point_frames_ceil;
+-			delta_from_mid_point_delta_in_us = delta_from_mid_point_in_us_2 -
+-					delta_from_mid_point_in_us_1;
+ 		} else {
++			/* If choosing FLOOR results in a frame duration that is
++			 * closer to the mid point of the range.
++			 * Choose FLOOR
++			 */
+ 			frames_to_insert = mid_point_frames_floor;
+-			delta_from_mid_point_delta_in_us = delta_from_mid_point_in_us_1 -
+-					delta_from_mid_point_in_us_2;
+ 		}
+ 
+ 		/* Prefer current frame multiplier when BTR is enabled unless it drifts
+ 		 * too far from the midpoint
+ 		 */
++		if (delta_from_mid_point_in_us_1 < delta_from_mid_point_in_us_2) {
++			delta_from_mid_point_delta_in_us = delta_from_mid_point_in_us_2 -
++					delta_from_mid_point_in_us_1;
++		} else {
++			delta_from_mid_point_delta_in_us = delta_from_mid_point_in_us_1 -
++					delta_from_mid_point_in_us_2;
++		}
+ 		if (in_out_vrr->btr.frames_to_insert != 0 &&
+ 				delta_from_mid_point_delta_in_us < BTR_DRIFT_MARGIN) {
+ 			if (((last_render_time_in_us / in_out_vrr->btr.frames_to_insert) <
 -- 
 2.17.1
 
