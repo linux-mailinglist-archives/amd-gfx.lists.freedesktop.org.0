@@ -1,29 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35AE423CBC3
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 Aug 2020 17:39:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDEC23CD9E
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 Aug 2020 19:41:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E3556E81E;
-	Wed,  5 Aug 2020 15:39:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 528EF89FD1;
+	Wed,  5 Aug 2020 17:41:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 440 seconds by postgrey-1.36 at gabe;
- Wed, 05 Aug 2020 15:39:52 UTC
-Received: from svt-ETHLX-2.amd.com (unknown [165.204.55.250])
- by gabe.freedesktop.org (Postfix) with ESMTP id 916EF6E81E
- for <amd-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 15:39:52 +0000 (UTC)
-Received: by svt-ETHLX-2.amd.com (Postfix, from userid 0)
- id 87D61184010C; Wed,  5 Aug 2020 11:32:31 -0400 (EDT)
-From: Bokun Zhang <Bokun.Zhang@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] SWDEV-220451 - Query guest's information by VF2PF message -
- Guest side - part 1
-Date: Wed,  5 Aug 2020 11:32:21 -0400
-Message-Id: <20200805153222.33202-1-Bokun.Zhang@amd.com>
-X-Mailer: git-send-email 2.20.1
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2079.outbound.protection.outlook.com [40.107.244.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3560789DDF
+ for <amd-gfx@lists.freedesktop.org>; Wed,  5 Aug 2020 17:41:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kHn4XCjrE/eQvd/D3kJexjGlS1bi6p0WlW9XXBCygCpKObLH5xbDktT3pxqDoSE1iITiOu+tYhUOfikkd9SNdwRe4MdlMwI356GSORs6QLHFkaMO6UkBFSaJcVmh9TVr88KzbiYbObvxfwmBB9tYBmThish5JWf22hP3KhXKdYEZlfk6izoMlKeWFq8QB/Z6Oh2490ESi9MKxXkHkpPJl6BdS7g+RjhNaSq8G//Zgn+NJoXeZosXx340KWjRqK9gCWzBoVZtXggbdiPf1R+Nw5w9WFt84ey6C4CsS1vxd5VzjlidEucnXC3uSRYD6eOm7b1GnZiE2/GvooMGFRo/tQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dGeUVkJ1S+Z/RuKXvvA9+R2u+8QnKgwEJyvDhq9Hzvc=;
+ b=OLVveNWOMxl6a7dnl/ZT7soJZRVECerA3XyzCeXz+DORAdEqw9D+99myyVTkP1EBgoqcdl8FpBdoovlgpKuVnkMrXchTMA7dlTNnZWMWc413YpfKuUbqKUCHkcLexNnWM/+PfpfzJ5MlZf+wQFOX7XGOTP6oyCjW/GuWuxdDTsztm1vMozJisawl2WW1JcqpeEYBEWiFgqeNeZZmpjAPVhxtBbrdww2TElTXFjRKVxw6rd5bNwHP1pzhsVrO4lAojocAjSMcU61AYn27ksGjShkPANSFd9EZyR6wihdaMr9zLN5Vwj6DzGqHIAJbxDiLBFeM9OCQyW4RsBy6yJjYpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dGeUVkJ1S+Z/RuKXvvA9+R2u+8QnKgwEJyvDhq9Hzvc=;
+ b=YbxgZVKAzFRUGGg8Y1tuxCV4Nr2EkSIr8FMhEs/fyK+7j+V8D6debxdw262pyc5XmKvMW5hddoe8TBBcqt4SrDgY/K9iDbMDB6bjBkPrxCRbCzjm8STDN/M6XOijzWFs2IJ6+SPluQ4uv1AMfu2HAIjjHS1OIqiCdb/4NIUq77Q=
+Received: from CO1PR15CA0082.namprd15.prod.outlook.com (2603:10b6:101:20::26)
+ by BL0PR12MB2546.namprd12.prod.outlook.com (2603:10b6:207:3f::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.16; Wed, 5 Aug
+ 2020 17:41:01 +0000
+Received: from CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:101:20:cafe::47) by CO1PR15CA0082.outlook.office365.com
+ (2603:10b6:101:20::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.17 via Frontend
+ Transport; Wed, 5 Aug 2020 17:41:00 +0000
+X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT068.mail.protection.outlook.com (10.13.175.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3261.16 via Frontend Transport; Wed, 5 Aug 2020 17:41:00 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 5 Aug 2020
+ 12:40:59 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Wed, 5 Aug 2020
+ 12:40:59 -0500
+Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Wed, 5 Aug 2020 12:40:58 -0500
+From: Qingqing Zhuo <qingqing.zhuo@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 0/9] DC Patches August 10th, 2020
+Date: Wed, 5 Aug 2020 13:40:49 -0400
+Message-ID: <20200805174058.11736-1-qingqing.zhuo@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cda01ade-3897-4b4d-cb9e-08d83966b7c3
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2546:
+X-Microsoft-Antispam-PRVS: <BL0PR12MB25460A0515D6DCF7029456BDFB4B0@BL0PR12MB2546.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KqTfaUE2xnbqgcazxjSflLhIaSioV1mxxkUVEHebfJS8Gc0tYmfbeeQ2Wd0Psz9psA/OCbnNU2vU+tnlgm8QzzNGcBgPisJSYslV4cdy/dT1jQRFDjahDHzTXTnQ1pPRaNVl8bpetSFZqLi1/z9iOJIygklA4V1zapAHafIeNzog6Xk2Cg/63qATBDMMH3/ElKI5Eou2p086eo65KP4224n9p41OTa4cNXEk9EFwrk9LIOpQBi7e0agYSmStEKPvl2d5Wen64thLWIrfdOysEJrrMExDmvwfghKvNeYIkXUNRrkqCNMVWAoIPpDVGKTaXsPW1ds+LHKXbVXV+QdJtmE5c48RPVxCidBYsCPkpVX2A07T3bImyfOxgfZa22QVXTxhysCAxO70iNpmlJvvbQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(136003)(396003)(346002)(376002)(39860400002)(46966005)(8936002)(478600001)(336012)(4326008)(8676002)(36756003)(86362001)(316002)(54906003)(26005)(5660300002)(186003)(81166007)(6666004)(2906002)(82310400002)(70206006)(70586007)(83380400001)(47076004)(82740400003)(44832011)(1076003)(2616005)(356005)(426003)(6916009);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2020 17:41:00.3815 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cda01ade-3897-4b4d-cb9e-08d83966b7c3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2546
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,384 +103,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bokun Zhang <Bokun.Zhang@amd.com>
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-- Add guest side change to support VF2PF message
-- Fix coding style
+This DC patchset brings improvements in multiple areas. In summary, we highlight:
 
-Change-Id: I82e5518cb10ec0b19fecaba7e05b02f4b7f2b409
-Signed-off-by: Bokun Zhang <Bokun.Zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h    |  29 +-
- drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h | 276 ++++++++++++++++++++
- 2 files changed, 285 insertions(+), 20 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
+* Fixes on LFC, pipe split, register mapping and others.
+* Code clean-up.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-index b0b2bdc750df..ad2b2628ab67 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-@@ -24,6 +24,8 @@
- #ifndef AMDGPU_VIRT_H
- #define AMDGPU_VIRT_H
- 
-+#include "amdgv_sriovmsg.h"
-+
- #define AMDGPU_SRIOV_CAPS_SRIOV_VBIOS  (1 << 0) /* vBIOS is sr-iov ready */
- #define AMDGPU_SRIOV_CAPS_ENABLE_IOV   (1 << 1) /* sr-iov is enabled on this GPU */
- #define AMDGPU_SRIOV_CAPS_IS_VF        (1 << 2) /* this GPU is a virtual function */
-@@ -69,7 +71,10 @@ struct amdgpu_virt_fw_reserve {
- 	struct amd_sriov_msg_vf2pf_info_header *p_vf2pf;
- 	unsigned int checksum_key;
- };
-+
- /*
-+ * Legacy GIM header
-+ *
-  * Defination between PF and VF
-  * Structures forcibly aligned to 4 to keep the same style as PF.
-  */
-@@ -89,15 +94,7 @@ enum AMDGIM_FEATURE_FLAG {
- 	AMDGIM_FEATURE_HW_PERF_SIMULATION = (1 << 3),
- };
- 
--struct amd_sriov_msg_pf2vf_info_header {
--	/* the total structure size in byte. */
--	uint32_t size;
--	/* version of this structure, written by the GIM */
--	uint32_t version;
--	/* reserved */
--	uint32_t reserved[2];
--} __aligned(4);
--struct  amdgim_pf2vf_info_v1 {
-+struct amdgim_pf2vf_info_v1 {
- 	/* header contains size and version */
- 	struct amd_sriov_msg_pf2vf_info_header header;
- 	/* max_width * max_height */
-@@ -116,6 +113,7 @@ struct  amdgim_pf2vf_info_v1 {
- 	unsigned int checksum;
- } __aligned(4);
- 
-+/* TODO: below struct is duplicated to amd_sriov_msg_pf2vf_info */
- struct  amdgim_pf2vf_info_v2 {
- 	/* header contains size and version */
- 	struct amd_sriov_msg_pf2vf_info_header header;
-@@ -146,16 +144,6 @@ struct  amdgim_pf2vf_info_v2 {
- 	uint32_t reserved[AMDGIM_GET_STRUCTURE_RESERVED_SIZE(256, 0, 0, (9 + sizeof(struct amd_sriov_msg_pf2vf_info_header)/sizeof(uint32_t)), 3)];
- } __aligned(4);
- 
--
--struct amd_sriov_msg_vf2pf_info_header {
--	/* the total structure size in byte. */
--	uint32_t size;
--	/*version of this structure, written by the guest */
--	uint32_t version;
--	/* reserved */
--	uint32_t reserved[2];
--} __aligned(4);
--
- struct amdgim_vf2pf_info_v1 {
- 	/* header contains size and version */
- 	struct amd_sriov_msg_vf2pf_info_header header;
-@@ -217,8 +205,9 @@ struct amdgim_vf2pf_info_v2 {
- 	uint32_t reserved[AMDGIM_GET_STRUCTURE_RESERVED_SIZE(256, 64, 0, (12 + sizeof(struct amd_sriov_msg_vf2pf_info_header)/sizeof(uint32_t)), 0)];
- } __aligned(4);
- 
-+/* TODO: below macro and typedef will cause compile error, need to remove */
- #define AMDGPU_FW_VRAM_VF2PF_VER 2
--typedef struct amdgim_vf2pf_info_v2 amdgim_vf2pf_info ;
-+typedef struct amd_sriov_msg_vf2pf_info amdgim_vf2pf_info;
- 
- #define AMDGPU_FW_VRAM_VF2PF_WRITE(adev, field, val) \
- 	do { \
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-new file mode 100644
-index 000000000000..5355827ed0ae
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-@@ -0,0 +1,276 @@
-+/*
-+ * Copyright 2018-2019 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
-+
-+#ifndef AMDGV_SRIOV_MSG__H_
-+#define AMDGV_SRIOV_MSG__H_
-+
-+/* unit in kilobytes */
-+#define AMD_SRIOV_MSG_VBIOS_OFFSET              0
-+#define AMD_SRIOV_MSG_VBIOS_SIZE_KB             64
-+#define AMD_SRIOV_MSG_DATAEXCHANGE_OFFSET_KB    AMD_SRIOV_MSG_VBIOS_SIZE_KB
-+#define AMD_SRIOV_MSG_DATAEXCHANGE_SIZE_KB      4
-+
-+/*
-+ * layout
-+ * 0           64KB        65KB        66KB
-+ * |   VBIOS   |   PF2VF   |   VF2PF   |   Bad Page   | ...
-+ * |   64KB    |   1KB     |   1KB     |
-+ */
-+#define AMD_SRIOV_MSG_SIZE_KB                   1
-+#define AMD_SRIOV_MSG_PF2VF_OFFSET_KB           AMD_SRIOV_MSG_DATAEXCHANGE_OFFSET_KB
-+#define AMD_SRIOV_MSG_VF2PF_OFFSET_KB           (AMD_SRIOV_MSG_PF2VF_OFFSET_KB + AMD_SRIOV_MSG_SIZE_KB)
-+#define AMD_SRIOV_MSG_BAD_PAGE_OFFSET_KB        (AMD_SRIOV_MSG_VF2PF_OFFSET_KB + AMD_SRIOV_MSG_SIZE_KB)
-+
-+/*
-+ * PF2VF history log:
-+ * v1 defined in amdgim
-+ * v2 current
-+ *
-+ * VF2PF history log:
-+ * v1 defined in amdgim
-+ * v2 defined in amdgim
-+ * v3 current
-+ */
-+#define AMD_SRIOV_MSG_FW_VRAM_PF2VF_VER			2
-+#define AMD_SRIOV_MSG_FW_VRAM_VF2PF_VER			3
-+
-+#define AMD_SRIOV_MSG_RESERVE_UCODE		24
-+
-+enum amd_sriov_ucode_engine_id {
-+	AMD_SRIOV_UCODE_ID_VCE = 0,
-+	AMD_SRIOV_UCODE_ID_UVD,
-+	AMD_SRIOV_UCODE_ID_MC,
-+	AMD_SRIOV_UCODE_ID_ME,
-+	AMD_SRIOV_UCODE_ID_PFP,
-+	AMD_SRIOV_UCODE_ID_CE,
-+	AMD_SRIOV_UCODE_ID_RLC,
-+	AMD_SRIOV_UCODE_ID_RLC_SRLC,
-+	AMD_SRIOV_UCODE_ID_RLC_SRLG,
-+	AMD_SRIOV_UCODE_ID_RLC_SRLS,
-+	AMD_SRIOV_UCODE_ID_MEC,
-+	AMD_SRIOV_UCODE_ID_MEC2,
-+	AMD_SRIOV_UCODE_ID_SOS,
-+	AMD_SRIOV_UCODE_ID_ASD,
-+	AMD_SRIOV_UCODE_ID_TA_RAS,
-+	AMD_SRIOV_UCODE_ID_TA_XGMI,
-+	AMD_SRIOV_UCODE_ID_SMC,
-+	AMD_SRIOV_UCODE_ID_SDMA,
-+	AMD_SRIOV_UCODE_ID_SDMA2,
-+	AMD_SRIOV_UCODE_ID_VCN,
-+	AMD_SRIOV_UCODE_ID_DMCU,
-+	AMD_SRIOV_UCODE_ID__MAX
-+};
-+
-+#pragma pack(push, 1) 	// PF2VF / VF2PF data areas are byte packed
-+
-+union amd_sriov_msg_feature_flags {
-+	struct {
-+		uint32_t  error_log_collect  : 1;
-+		uint32_t  host_load_ucodes   : 1;
-+		uint32_t  host_flr_vramlost  : 1;
-+		uint32_t  mm_bw_management   : 1;
-+		uint32_t  pp_one_vf_mode     : 1;
-+		uint32_t  reserved           : 27;
-+	} flags;
-+	uint32_t      all;
-+};
-+
-+union amd_sriov_msg_os_info {
-+	struct {
-+		uint32_t  windows            : 1;
-+		uint32_t  reserved           : 31;
-+	} info;
-+	uint32_t      all;
-+};
-+
-+struct amd_sriov_msg_pf2vf_info_header {
-+	/* the total structure size in byte */
-+	uint32_t size;
-+	/* version of this structure, written by the HOST */
-+	uint32_t version;
-+	/* reserved */
-+	uint32_t reserved[2];
-+};
-+
-+struct amd_sriov_msg_pf2vf_info {
-+	/* header contains size and version */
-+	struct amd_sriov_msg_pf2vf_info_header header;
-+	/* use private key from mailbox 2 to create checksum */
-+	uint32_t checksum;
-+	/* The features flags of the HOST driver supports */
-+	union amd_sriov_msg_feature_flags feature_flags;
-+	/* (max_width * max_height * fps) / (16 * 16) */
-+	uint32_t hevc_enc_max_mb_per_second;
-+	/* (max_width * max_height) / (16 * 16) */
-+	uint32_t hevc_enc_max_mb_per_frame;
-+	/* (max_width * max_height * fps) / (16 * 16) */
-+	uint32_t avc_enc_max_mb_per_second;
-+	/* (max_width * max_height) / (16 * 16) */
-+	uint32_t avc_enc_max_mb_per_frame;
-+	/* MEC FW position in BYTE from the start of VF visible frame buffer */
-+	uint64_t mecfw_offset;
-+	/* MEC FW size in BYTE */
-+	uint32_t mecfw_size;
-+	/* UVD FW position in BYTE from the start of VF visible frame buffer */
-+	uint64_t uvdfw_offset;
-+	/* UVD FW size in BYTE */
-+	uint32_t uvdfw_size;
-+	/* VCE FW position in BYTE from the start of VF visible frame buffer */
-+	uint64_t vcefw_offset;
-+	/* VCE FW size in BYTE */
-+	uint32_t vcefw_size;
-+	/* Bad pages block position in BYTE */
-+	uint32_t bp_block_offset_low;
-+	uint32_t bp_block_offset_high;
-+	/* Bad pages block size in BYTE */
-+	uint32_t bp_block_size;
-+	/* frequency for VF to update the VF2PF area in msec, 0 = manual */
-+	uint32_t vf2pf_update_interval_ms;
-+	/* identification in ROCm SMI */
-+	uint64_t uuid;
-+	uint32_t fcn_idx;
-+	/* reserved */
-+	uint32_t reserved[256-26];
-+};
-+
-+struct amd_sriov_msg_vf2pf_info_header {
-+	/* the total structure size in byte */
-+	uint32_t size;
-+	/* version of this structure, written by the guest */
-+	uint32_t version;
-+	/* reserved */
-+	uint32_t reserved[2];
-+};
-+
-+struct amd_sriov_msg_vf2pf_info {
-+	/* header contains size and version */
-+	struct amd_sriov_msg_vf2pf_info_header header;
-+	uint32_t checksum;
-+	/* driver version */
-+	uint8_t  driver_version[64];
-+	/* driver certification, 1=WHQL, 0=None */
-+	uint32_t driver_cert;
-+	/* guest OS type and version */
-+	union amd_sriov_msg_os_info os_info;
-+	/* guest fb information in the unit of MB */
-+	uint32_t fb_usage;
-+	/* guest gfx engine usage percentage */
-+	uint32_t gfx_usage;
-+	/* guest gfx engine health percentage */
-+	uint32_t gfx_health;
-+	/* guest compute engine usage percentage */
-+	uint32_t compute_usage;
-+	/* guest compute engine health percentage */
-+	uint32_t compute_health;
-+	/* guest avc engine usage percentage. 0xffff means N/A */
-+	uint32_t avc_enc_usage;
-+	/* guest avc engine health percentage. 0xffff means N/A */
-+	uint32_t avc_enc_health;
-+	/* guest hevc engine usage percentage. 0xffff means N/A */
-+	uint32_t hevc_enc_usage;
-+	/* guest hevc engine usage percentage. 0xffff means N/A */
-+	uint32_t hevc_enc_health;
-+	/* combined encode/decode usage */
-+	uint32_t encode_usage;
-+	uint32_t decode_usage;
-+	/* Version of PF2VF that VF understands */
-+	uint32_t pf2vf_version_required;
-+	/* additional FB usage */
-+	uint32_t fb_vis_usage;
-+	uint32_t fb_vis_size;
-+	uint32_t fb_size;
-+	/* guest ucode data, each one is 1.25 Dword */
-+	struct {
-+		uint8_t  id;
-+		uint32_t version;
-+	} ucode_info[AMD_SRIOV_MSG_RESERVE_UCODE];
-+
-+	/* reserved */
-+	uint32_t reserved[256-68];
-+};
-+
-+/* mailbox message send from guest to host  */
-+enum amd_sriov_mailbox_request_message {
-+	MB_REQ_MSG_REQ_GPU_INIT_ACCESS = 1,
-+	MB_REQ_MSG_REL_GPU_INIT_ACCESS,
-+	MB_REQ_MSG_REQ_GPU_FINI_ACCESS,
-+	MB_REQ_MSG_REL_GPU_FINI_ACCESS,
-+	MB_REQ_MSG_REQ_GPU_RESET_ACCESS,
-+	MB_REQ_MSG_REQ_GPU_INIT_DATA,
-+
-+	MB_REQ_MSG_LOG_VF_ERROR       = 200,
-+};
-+
-+/* mailbox message send from host to guest  */
-+enum amd_sriov_mailbox_response_message {
-+	MB_RES_MSG_CLR_MSG_BUF = 0,
-+	MB_RES_MSG_READY_TO_ACCESS_GPU = 1,
-+	MB_RES_MSG_FLR_NOTIFICATION,
-+	MB_RES_MSG_FLR_NOTIFICATION_COMPLETION,
-+	MB_RES_MSG_SUCCESS,
-+	MB_RES_MSG_FAIL,
-+	MB_RES_MSG_QUERY_ALIVE,
-+	MB_RES_MSG_GPU_INIT_DATA_READY,
-+
-+	MB_RES_MSG_TEXT_MESSAGE = 255
-+};
-+
-+/* version data stored in MAILBOX_MSGBUF_RCV_DW1 for future expansion */
-+enum amd_sriov_gpu_init_data_version {
-+	GPU_INIT_DATA_READY_V1 = 1,
-+};
-+
-+#pragma pack(pop)	// Restore previous packing option
-+
-+/* checksum function between host and guest */
-+unsigned int amd_sriov_msg_checksum(void *obj,
-+				unsigned long obj_size,
-+				unsigned int key,
-+				unsigned int checksum);
-+
-+/* assertion at compile time */
-+#ifdef __linux__
-+#define stringification(s) _stringification(s)
-+#define _stringification(s) #s
-+
-+_Static_assert(
-+	sizeof(struct amd_sriov_msg_vf2pf_info) == AMD_SRIOV_MSG_SIZE_KB << 10,
-+	"amd_sriov_msg_vf2pf_info must be " stringification(AMD_SRIOV_MSG_SIZE_KB) " KB");
-+
-+_Static_assert(
-+	sizeof(struct amd_sriov_msg_pf2vf_info) == AMD_SRIOV_MSG_SIZE_KB << 10,
-+	"amd_sriov_msg_pf2vf_info must be " stringification(AMD_SRIOV_MSG_SIZE_KB) " KB");
-+
-+_Static_assert(
-+	AMD_SRIOV_MSG_RESERVE_UCODE % 4 == 0,
-+	"AMD_SRIOV_MSG_RESERVE_UCODE must be multiple of 4");
-+
-+_Static_assert(
-+	AMD_SRIOV_MSG_RESERVE_UCODE > AMD_SRIOV_UCODE_ID__MAX,
-+	"AMD_SRIOV_MSG_RESERVE_UCODE must be bigger than AMD_SRIOV_UCODE_ID__MAX");
-+
-+#undef _stringification
-+#undef stringification
-+#endif
-+
-+#endif /* AMDGV_SRIOV_MSG__H_ */
+
+Alvin Lee (2):
+  drm/amd/display: Revert regression
+  drm/amd/display: Disconnect pipe separetely when disable pipe split
+
+Anthony Koo (2):
+  drm/amd/display: Fix LFC multiplier changing erratically
+  drm/amd/display: Switch to immediate mode for updating infopackets
+
+Aric Cyr (1):
+  drm/amd/display: Fix incorrect backlight register offset for DCN
+
+Jaehyun Chung (1):
+  drm/amd/display: Blank stream before destroying HDCP session
+
+Joshua Aberback (1):
+  drm/amd/display: Adjust static-ness of resource functions
+
+Stylon Wang (1):
+  drm/amd/display: Fix EDID parsing after resume from suspend
+
+Xiaodong Yan (1):
+  drm/amd/display: mpcc black color should not be impacted by pixel
+    encoding format
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   1 +
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |   3 +-
+ .../drm/amd/display/dc/dce/dce_panel_cntl.h   |   2 +-
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 154 +++++++++++++++++-
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.h |   6 +
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_init.c |   2 +
+ .../display/dc/dcn10/dcn10_stream_encoder.c   |  16 +-
+ .../display/dc/dcn10/dcn10_stream_encoder.h   |  14 ++
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 114 -------------
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.h    |   7 -
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_init.c |   4 +-
+ .../drm/amd/display/dc/dcn20/dcn20_resource.h |   1 -
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_init.c |   4 +-
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_init.c |   4 +-
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c |  27 +--
+ .../drm/amd/display/dc/dcn30/dcn30_resource.h |   3 +
+ .../amd/display/modules/freesync/freesync.c   |  36 +++-
+ 17 files changed, 232 insertions(+), 166 deletions(-)
+
 -- 
-2.20.1
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
