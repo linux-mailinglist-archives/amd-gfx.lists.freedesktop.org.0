@@ -2,94 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0557523D810
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Aug 2020 10:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23FC023D845
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Aug 2020 11:05:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 025CD89C80;
-	Thu,  6 Aug 2020 08:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87E006E89D;
+	Thu,  6 Aug 2020 09:05:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2050.outbound.protection.outlook.com [40.107.92.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7E3B6E897
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 08:39:52 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 432D76E89D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 09:05:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iZrW74GVDUwgPz4HMfh4leVDV4I1tQauG8D4p8M1RmsCQz9zG4Gp2cNckgBNYtnxrAkOVQQnDVbEOVzJTat+Ff1SWZC4ForIeSha7uPO+OK4ud03kXAy8MsIQmfFUOQh/hGpGRLYl1pf4ykPMCNojf1SKKjl0C9v8rTWUnzRsV7VHRfjnCbhKSX3rwe2Bh0nWuj+MD3nsUuA0m3CeKQUEVuNVFCb7n8BIu0PyTapI+01KL9lyhyb1GDUmXryb4ZPioDG0Qc4dWckxAxSFlkem4m8zN6pD8w8Ty4RcbNIXIN7I5AUl1YZw5vngRl60L9zUJuQw8gWMd8bADYWKU4PNw==
+ b=objEgyao8cKJug/lFHa/ydtYjog6IyM84le253eNU+65QS2CyJDz6fTqOuaJ9Is8P8PXmBFO7NSdINwsPLMjONDRYCuigDW9t79cHgry/xKAO35ypLrPqTFWMnAacZbjaW0bzmH0fTIBiJ+BicwgXDFezw4GNchxV9fR9M38vlnds6CwMlrSOlfnMEMyCnHl0o51T4RoP7rJ7H+q0OxDDGsB40HsdkC3sfvgmoeZSTRg1p+dgzC46qp3zVvT3j4y4IDrWyJQFzinGvKaCnBEK40B6ZxaKk1PXn3mB2QK5gpUuifJzoOGrxhxMeMtIsVl/Xh1t8Wy6NmmF42aVz0WJw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pJH+/SnuKWltkBo9FC8Xo+ukL5D69y/DymaQ2G+fAM0=;
- b=BPKlvsP/aly1jYjd7oV9tU9Ckp/VDzNqMIeRrCUyGlg2/Be2MCfDLPHQhDGPYqeClACGTR8jDX1DbqhDY+Dz3Tul1oc/Yqil9Tw+vVos9rHj4dqrsQ7EwDp3wmS//iyWs8nJGWCTDDf88mD6briy51sHNisshP1g9unrEnX1qvqchaZsv9UuGZR+Im0PudS2G36W1RhO4JrlTDE6/S0anhsknHNCtNmsYICe+jj5qjiCjuDxv79cQml198zljHdyb7zDQ6UQtVek1IEtpRK/U/Ineny+8Qyyk8r6Vy5qaoBVbRDwiQNeFCqI4Gr81kmb1w92pREgHnn8hoWpEM6kvg==
+ bh=4gx5X2U9Yn1xAOAexhsi30rP07fonwwl2nRrkB2zXNs=;
+ b=be6bR8qQQkTDcpllKJ+aJ5z6qZe6CH+r98AM1fvh/iTMK8Gy6cOxnd5WCbheW/Q6oilbTjcTQUGJlqm+0PDf490HaF9QjNi4Nk/mmMUSUxkzb/uTpy7OcBM5djGTOuium9Ak+uuEZM4V50kAiYBIgXdi27cEojWG1M10mEWC8QrkSlx1ANGmYZrhbIguGeoulWlBkfBinevEStUT2GfNqCnKtpIS7/3tbouAg9DIBbEHuXKuMa2mk/YYMWeKUhhiUa1DPdlJtNE0azvLpJUv2cZKl4EMIXKKdlZIPSE3RdjGKT5jp4muB8/d7/Ai3oeKm0r8zX9nIE66/ylafCZuZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pJH+/SnuKWltkBo9FC8Xo+ukL5D69y/DymaQ2G+fAM0=;
- b=1azoKcIvsGuFQQ8zeR0wnSDJyblGpnBPldRyxtlGXdbahgRBEtJy+kNLpkTJYCIk6Yz0lP1LN18B/BbuwDjeI4mJ92O577f2YIfStCjvzjFFPdptaiNQNVq+/I/6H5zpGt9E7R1uLuIJrZeCeHp5mjG3e9z6jODBIIcnCSidliE=
-Received: from CH2PR12MB3766.namprd12.prod.outlook.com (2603:10b6:610:16::21)
- by CH2PR12MB4232.namprd12.prod.outlook.com (2603:10b6:610:a4::21)
+ bh=4gx5X2U9Yn1xAOAexhsi30rP07fonwwl2nRrkB2zXNs=;
+ b=BZmRJIWEt2bV/JBktiHebRw/5J0dsRp4t2lza7N3Qn72CBV2geVxeep/NQ/n8tgDnAksWps6f3i1NsGAuc3Hg8JbLL6fqpsKxU5tnNr72wSpvwRL/vrXYY+qqOHfjP024tG9BMtk7RW6W5BTWPgP7DFJG3HZapJpqg6JtD7Gb6c=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from MWHPR12MB1311.namprd12.prod.outlook.com (2603:10b6:300:13::20)
+ by MW3PR12MB4426.namprd12.prod.outlook.com (2603:10b6:303:58::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.17; Thu, 6 Aug
- 2020 08:39:40 +0000
-Received: from CH2PR12MB3766.namprd12.prod.outlook.com
- ([fe80::9117:2aae:1acf:dec6]) by CH2PR12MB3766.namprd12.prod.outlook.com
- ([fe80::9117:2aae:1acf:dec6%7]) with mapi id 15.20.3239.022; Thu, 6 Aug 2020
- 08:39:40 +0000
-From: "Lin, Wayne" <Wayne.Lin@amd.com>
-To: "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>
-Subject: RE: [PATCH] drm/amd/mst: clean DP main link status only when unplug
- mst 1st link
-Thread-Topic: [PATCH] drm/amd/mst: clean DP main link status only when unplug
- mst 1st link
-Thread-Index: AQHWag/YG0jbL61JbUSPgaYPq3WCL6kpnJ0AgAEmi2A=
-Date: Thu, 6 Aug 2020 08:39:40 +0000
-Message-ID: <CH2PR12MB3766A68DA7760AC75E79972CFC480@CH2PR12MB3766.namprd12.prod.outlook.com>
-References: <20200804032927.32274-1-Wayne.Lin@amd.com>
- <20200805145450.ouxbrqlhd6xnrwu7@outlook.office365.com>
-In-Reply-To: <20200805145450.ouxbrqlhd6xnrwu7@outlook.office365.com>
-Accept-Language: en-US, zh-TW
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-08-06T08:29:11Z; 
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=d52ce0bb-5821-4e21-bd17-3c67e815f103;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=1
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [165.204.135.251]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 264fd0f7-670f-40d5-2287-08d839e442b7
-x-ms-traffictypediagnostic: CH2PR12MB4232:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CH2PR12MB423256CCEA6D2E0A4D80CD5EFC480@CH2PR12MB4232.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: XAOYsYRxZApSYT9sAHb2W90yZlvKqVaXb+KRxwygid7Rcpss166Hbs5fThG32u5esu/xsDmaI3F7bIy+i/QSL56Y/6av6gxFwLoIKnA1QmbQpHcgF1kFwiMYR0M/n6WtRnyHr+zIdjymIXtkqXKOlZCeOkZE5bbfToRQsFY/qWG6Y0H1nEeyO5KH1YNmi5moBoJcQBT3Dw33ivGHlv2oboxTtQ7bz72QcbUI/BYKwEhDQu6s/s2i6ftHaphlKcZoK+cJ6Ya7/c3UCmp0rhZJmYDh7IWs3lVTZIiiEG3lWLwHi/O++GuZxfxfB1F8aWU0QFRqq5Ah9Fbi6+8vvjkMYgmHwUDPhyC7yRdpZvFrjzfqwV/RmdnrOf9byDAwh5w3yIWTGitSXL/w3OUK0hiMQA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB3766.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(376002)(136003)(346002)(396003)(39860400002)(366004)(8936002)(4326008)(26005)(86362001)(6506007)(53546011)(7696005)(186003)(76116006)(6636002)(52536014)(2906002)(55016002)(6862004)(33656002)(66556008)(66946007)(64756008)(66446008)(66476007)(71200400001)(54906003)(966005)(9686003)(478600001)(5660300002)(83380400001)(316002)(8676002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: eJNPqL9Na4J9WfDOqQU5ylAr/7u1ibPzDc+iu9U+kTVNYgHCYJXUJ/oPeOnrFiD7qterKWOcXLK9XFj21XZMhNcFwtIJ1Dmq9xcT5wDVXfFNPywwsXOyBbWU3x8IFctidCOEythMOof2YtfHUxRfeExb+QkaMCI5qQ7BdCULa8AA+0+42OzQBX07ILkva4Fe3/WBtMBTitrn0Ol4Oburb4OJ1LyHe7AZebYcEYy+vOQpWjT7LflWxPq+X8aNF+NR2apMdewXDuQ6y97tIIxCfj8Nmgzi1zTTeFAWz3XfpTra2BzS8LOBBh0Wo66S1oYMXd9M+4NUuSgxxwyyjmRh5xL49IjdtWFDQZsUbA5E/Tc31K02nmd1omnXQiFkoDFTWUz0Slhm5eMPcqA7DU3aXPxiBaPjACMWCo442a5xY41hHygrOyR0ExKA9ZkXEoUEE/aVBxH13hcT0+bbhQsYN40cVSGGeve5G4I70iyAE9Lk56wX9CmcGDeHcHHUxErsBP/yarf63Gw5MuIgVsBDxkJEH4S+DSDALa22Q53mDy/7WJBrmh+Vbin2O4+9Ad5/Jq6ygLnsKPvZUQecP5AyLnQMcqYLlJ2hdyoWOAU5D7Z6lIJpzAKk9mVLMowQ/7+z5Ni8uzVPhJalYNRZaB1Wkw==
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.19; Thu, 6 Aug
+ 2020 09:05:10 +0000
+Received: from MWHPR12MB1311.namprd12.prod.outlook.com
+ ([fe80::d515:bc2c:c60c:349a]) by MWHPR12MB1311.namprd12.prod.outlook.com
+ ([fe80::d515:bc2c:c60c:349a%6]) with mapi id 15.20.3261.019; Thu, 6 Aug 2020
+ 09:05:10 +0000
+From: Arunpravin <apaneers@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: Enable P2P dmabuf over XGMI
+Date: Thu,  6 Aug 2020 14:34:33 +0530
+Message-Id: <20200806090433.148129-1-apaneers@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-ClientProxiedBy: MAXPR01CA0118.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:5d::36) To MWHPR12MB1311.namprd12.prod.outlook.com
+ (2603:10b6:300:13::20)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from arun-MS-7C37.amd.com (165.204.156.251) by
+ MAXPR01CA0118.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:5d::36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3261.18 via Frontend Transport; Thu, 6 Aug 2020 09:05:08 +0000
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [165.204.156.251]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: e37b32a3-ea4e-4161-4667-08d839e7d242
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4426:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MW3PR12MB44261DA988C9D48302A31423E4480@MW3PR12MB4426.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6im0VvF+wz6Gt8Sj+fIZ7XjxWZ/ZMjL3ZpRd8v1rj8aVpdG57xDLCKxAsRLawcwlQEdjp1vWScAWYbEnSf6SPzcXd3MesZJcuOy7aTPTk4X7NoahucO6X6rfqLDL0WPI6cQaxAYu7vyltn62X12G8t5nYzKA1S1MOMS7Lph8Rj5H0mmT9A3CSl/NH6gD1MSURtKKk4xoYY8pDETZ/ytXAjtZyWZV+JYVBkYpOGPekvoEzNAL3x67TOaerV0mGltJ3kvB0kcv62EORqtavTiuN1p65AKPU1eR8smc0ed7nl+3SubUssMaj4uNuiFsO4+r
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR12MB1311.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(396003)(366004)(346002)(39860400002)(136003)(376002)(2906002)(6486002)(186003)(52116002)(316002)(6916009)(16526019)(26005)(478600001)(36756003)(66946007)(7696005)(2616005)(956004)(1076003)(66556008)(66476007)(6666004)(5660300002)(4326008)(8676002)(8936002)(83380400001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: 046TT7DPNvQelpKkqhrPTPVTwXgS0o2xMHmruG8CtzIC0lkwYI+OaHXs43WeiqBDX4kxaetScj+1Xkr2l17rH6jUcWzQljUVxpzD8qjik/W15Go+X7s1JQ2bb44CCwSrNyKZEOyuKNxd0VNum8z4jWvOKdcBKrAniElRSrdbdt4Ffii/kFGUMtZd8WtzuZ4eJG7oIlRlJLzDwOzazoyGIxdgJX2r3HzUtuHymCNORUy1+9tv/QixT1bi/8daVJvqy0cIf34g+7oH0MYiUejLPc3mUFtnNvrpxPWoHRbJXO/Bij3cIXGQ7AMmJWryLfaHUd9LJCsugUNG9xG6x2aboT/fyOWVYL+i29zOiQ9WWavYq5apeI4perShKHWKuEwmQ9CqTVfnhnk+ezgs5HIyg/UHDXQC1lAit9s88hZMCMxZc8lOIENhM3AA8pw9TZkU8w/zOFRVZw0QZXlb3PBhSt3zJ+XiVBnKXNgBVfv924Ch4jQHFPgeFuHiw2jKBlJ/DHesglqfxGh75+bEgl8yaE6+Kp5wXPQ/Gswn2lG+Z4g5VdaEtvNoriakCGlkLNWuwIlL4J1Zb2Ks79k6UUN/YVTLvJRaBWHehYF0kmvd263ThB/uGpS9eqsYLfDxPRkBfVnsoT/4ka0iXdLpYoPkYg==
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e37b32a3-ea4e-4161-4667-08d839e7d242
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR12MB1311.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3766.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 264fd0f7-670f-40d5-2287-08d839e442b7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2020 08:39:40.4921 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wcvjjqt2gp7cvbE1B3HGKBoamKfte65aLemfxox/hqKJDqKYjIyo6My8UanaYnagULS11Mq9qAODcyWDx4TncA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4232
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2020 09:05:10.2601 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eeO9WHqddY78+R+RofI+RxZDKuVNB8IPAq4k1WVSaWy+WL7xTn1hdpXMIcFIiUSQWvZd0yb28JLK0bo3SiXqkw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4426
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,103 +94,147 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Wu, Hersen" <hersenxs.wu@amd.com>, "Zuo, Jerry" <Jerry.Zuo@amd.com>,
- "Lakha, Bhawanpreet" <Bhawanpreet.Lakha@amd.com>, "Kazlauskas,
- Nicholas" <Nicholas.Kazlauskas@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
+ Arunpravin <apaneers@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Public Use]
+Access the exported P2P dmabuf over XGMI, if available.
+Otherwise, fall back to the existing PCIe method.
 
+Signed-off-by: Arunpravin <apaneers@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 34 +++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c      | 19 ++++++++++--
+ 3 files changed, 52 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+index ffeb20f11c07..589d008f91df 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+@@ -35,6 +35,7 @@
+ #include "amdgpu_display.h"
+ #include "amdgpu_gem.h"
+ #include "amdgpu_dma_buf.h"
++#include "amdgpu_xgmi.h"
+ #include <drm/amdgpu_drm.h>
+ #include <linux/dma-buf.h>
+ #include <linux/dma-fence-array.h>
+@@ -560,3 +561,36 @@ struct drm_gem_object *amdgpu_gem_prime_import(struct drm_device *dev,
+ 	obj->import_attach = attach;
+ 	return obj;
+ }
++
++/**
++ * amdgpu_dmabuf_is_xgmi_accessible - Check if xgmi available for P2P transfer
++ *
++ * @adev: amdgpu_device pointer of the importer
++ * @bo: amdgpu buffer object
++ *
++ * Returns:
++ * True if dmabuf accessible over xgmi, false otherwise.
++ */
++bool amdgpu_dmabuf_is_xgmi_accessible(struct amdgpu_device *adev,
++				      struct amdgpu_bo *bo)
++{
++	struct drm_gem_object *obj = &bo->tbo.base;
++	struct drm_gem_object *gobj;
++
++	if (obj->import_attach) {
++		struct dma_buf *dma_buf = obj->import_attach->dmabuf;
++
++		if (dma_buf->ops != &amdgpu_dmabuf_ops)
++			/* No XGMI with non AMD GPUs */
++			return false;
++
++		gobj = dma_buf->priv;
++		bo = gem_to_amdgpu_bo(gobj);
++	}
++
++	if (amdgpu_xgmi_same_hive(adev, amdgpu_ttm_adev(bo->tbo.bdev)) &&
++			(bo->preferred_domains & AMDGPU_GEM_DOMAIN_VRAM))
++		return true;
++
++	return false;
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h
+index ec447a7b6b28..2c5c84a06bb9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h
+@@ -29,6 +29,8 @@ struct dma_buf *amdgpu_gem_prime_export(struct drm_gem_object *gobj,
+ 					int flags);
+ struct drm_gem_object *amdgpu_gem_prime_import(struct drm_device *dev,
+ 					    struct dma_buf *dma_buf);
++bool amdgpu_dmabuf_is_xgmi_accessible(struct amdgpu_device *adev,
++				      struct amdgpu_bo *bo);
+ void *amdgpu_gem_prime_vmap(struct drm_gem_object *obj);
+ void amdgpu_gem_prime_vunmap(struct drm_gem_object *obj, void *vaddr);
+ int amdgpu_gem_prime_mmap(struct drm_gem_object *obj,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 71e005cf2952..771c27478bb1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -28,6 +28,7 @@
+ #include <linux/dma-fence-array.h>
+ #include <linux/interval_tree_generic.h>
+ #include <linux/idr.h>
++#include <linux/dma-buf.h>
+ 
+ #include <drm/amdgpu_drm.h>
+ #include "amdgpu.h"
+@@ -35,6 +36,7 @@
+ #include "amdgpu_amdkfd.h"
+ #include "amdgpu_gmc.h"
+ #include "amdgpu_xgmi.h"
++#include "amdgpu_dma_buf.h"
+ 
+ /**
+  * DOC: GPUVM
+@@ -1778,15 +1780,24 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
+ 		nodes = NULL;
+ 		resv = vm->root.base.bo->tbo.base.resv;
+ 	} else {
++		struct drm_gem_object *obj = &bo->tbo.base;
+ 		struct ttm_dma_tt *ttm;
+ 
++		resv = bo->tbo.base.resv;
++		if (obj->import_attach && bo_va->is_xgmi) {
++			struct dma_buf *dma_buf = obj->import_attach->dmabuf;
++			struct drm_gem_object *gobj = dma_buf->priv;
++			struct amdgpu_bo *abo = gem_to_amdgpu_bo(gobj);
++
++			if (abo->tbo.mem.mem_type == TTM_PL_VRAM)
++				bo = gem_to_amdgpu_bo(gobj);
++		}
+ 		mem = &bo->tbo.mem;
+ 		nodes = mem->mm_node;
+ 		if (mem->mem_type == TTM_PL_TT) {
+ 			ttm = container_of(bo->tbo.ttm, struct ttm_dma_tt, ttm);
+ 			pages_addr = ttm->dma_address;
+ 		}
+-		resv = bo->tbo.base.resv;
+ 	}
+ 
+ 	if (bo) {
+@@ -2132,8 +2143,10 @@ struct amdgpu_bo_va *amdgpu_vm_bo_add(struct amdgpu_device *adev,
+ 	INIT_LIST_HEAD(&bo_va->valids);
+ 	INIT_LIST_HEAD(&bo_va->invalids);
+ 
+-	if (bo && amdgpu_xgmi_same_hive(adev, amdgpu_ttm_adev(bo->tbo.bdev)) &&
+-	    (bo->preferred_domains & AMDGPU_GEM_DOMAIN_VRAM)) {
++	if (!bo)
++		return bo_va;
++
++	if (amdgpu_dmabuf_is_xgmi_accessible(adev, bo)) {
+ 		bo_va->is_xgmi = true;
+ 		/* Power up XGMI if it can be potentially used */
+ 		amdgpu_xgmi_set_pstate(adev, AMDGPU_XGMI_PSTATE_MAX_VEGA20);
+-- 
+2.25.1
 
-> -----Original Message-----
-> From: Siqueira, Rodrigo <Rodrigo.Siqueira@amd.com>
-> Sent: Wednesday, August 5, 2020 10:55 PM
-> To: Lin, Wayne <Wayne.Lin@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org; Lakha, Bhawanpreet 
-> <Bhawanpreet.Lakha@amd.com>; Wu, Hersen <hersenxs.wu@amd.com>; 
-> Kazlauskas, Nicholas <Nicholas.Kazlauskas@amd.com>; Zuo, Jerry 
-> <Jerry.Zuo@amd.com>
-> Subject: Re: [PATCH] drm/amd/mst: clean DP main link status only when 
-> unplug mst 1st link
-> 
-> On 08/04, Wayne Lin wrote:
-> > [Why]
-> > Under DP daisy chain scenario as below:
-> >
-> > 	Src - Monitor_1 - Monitor_2
-> >
-> > If unplug 2nd Monitor_2 and plug in again, observe that Monitor_1 
-> > doesn't light up.
-> >
-> > When unplug 2nd monitor, we clear the 
-> > dc_link->cur_link_settings.lane_count in dm_dp_destroy_mst_connector().
-> > However this link status is a shared data structure by all connected 
-> > mst monitors. Although the 2nd monitor is gone, this link status 
-> > should still be retained for other connected mst monitors. 
-> > Otherwise, when we plug the 2nd monitor in again, we find out that 
-> > main link is not trained and do link training again. Payload ID 
-> > Table for Monitor_1 is ruined and we don't reallocate it.
-> >
-> > [How]
-> > In dm_dp_destroy_mst_connector(), only clean the cur_link_settings 
-> > when we no longer do mst mode.
-> >
-> > Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 5
-> ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> >
-> > diff --git
-> > a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > index 2c10352fa514..526f29598403 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > @@ -415,7 +415,10 @@ static void dm_dp_destroy_mst_connector(struct
-> drm_dp_mst_topology_mgr *mgr,
-> >  					   aconnector->dc_sink);
-> >  		dc_sink_release(aconnector->dc_sink);
-> >  		aconnector->dc_sink = NULL;
-> > -		aconnector->dc_link->cur_link_settings.lane_count = 0;
-> > +		mutex_lock(&mgr->lock);
-> > +		if (!mgr->mst_state)
-> > +			aconnector->dc_link->cur_link_settings.lane_count = 0;
-> > +		mutex_unlock(&mgr->lock);
-> Hi Wayne,
-> 
-> The change looks good to me.
-> 
-> Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> 
-> Just for curiosity, do you know why we use a mutex instead of 
-> spin_lock_irq for this case? FWIU, the spin_lock_irq behavior looks 
-> better for this sort of manipulation.
-
-Hi Siqueira,
-
-Thanks for your time.
-AFAIK, changing mst_state (e.g. enabling MST mode) involves some reading/writing steps on DPCD which might cost some time. 
-> 
-> Thanks
-> 
-> >  	}
-> >
-> >  	drm_connector_unregister(connector);
-> > --
-> > 2.17.1
-> >
-> 
-> --
-> Rodrigo Siqueira
-> https://siqueira.tech
---
-Wayne Lin
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
