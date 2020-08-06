@@ -1,74 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518FF23D765
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Aug 2020 09:34:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 484CD23D791
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Aug 2020 09:40:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3121A6E181;
-	Thu,  6 Aug 2020 07:34:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B98FC6E878;
+	Thu,  6 Aug 2020 07:40:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB10689FDE
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 07:34:18 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id g8so7936488wmk.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 06 Aug 2020 00:34:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=Hm62n5nWJfQYQSRT7FGneq7QpvGO136qnX0cS28TOP4=;
- b=iy1UdrUQvj4AI5QzJyGQoO6FBXcrVB/n4g+YTAECDOb44jx4iDA09EXPKCIvJFoVs9
- pLAdLlB/Yjh8tDgn7z+Pabpx2ZDO7wojvuzSPqrv/UcUB/VT/XJIu82TrcALtCdFtVeC
- x3p892QNqvgJz6JgwOYqXmBdnRLykiYLr0LEA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=Hm62n5nWJfQYQSRT7FGneq7QpvGO136qnX0cS28TOP4=;
- b=C+1XxXwXrLJjvWUuIjUv7PYvsyvhPkxP+e2nJG8thgT1RvaXO++ud1RPAZoQwHVqTA
- LFFO0CQKIMtFExAVHuW63FVtBGJ8rvNG/I+7YlLptozWGH6LlXQjNfyG/rSpe6gjlX8t
- 7yl/wkDGkooLkER7FCEbXl8PjDijQXDhjydvrkeyWUncvB5W0qcuq2wQK6X+CUwHShMg
- Zh+nmQwDES1s/3Vdu61TTlqfalyIxr/mQMW1z0TXZcWByDThvEfN5UZKn8bGjndhdVwy
- hSPNpLqodWt0sT4dBOzSWmyBatPJFd+RCgonwhxJUsUkQn34PrhOmgTelUN1qIN3d24M
- Xp9Q==
-X-Gm-Message-State: AOAM5324Kw3fvkmGfUlPEtgbTRUuIoi+O5xauBP2mhfjPyp2wkAn8wRq
- JdiB7MkLNJI1TrTiBes5tyW2xQ==
-X-Google-Smtp-Source: ABdhPJxPq3ysYOKZG3ngTkjjNcApdV2mBktQcQ2Zrr47LAqC//negOwZ9ogSW5b45w3DjOfK8YMsxQ==
-X-Received: by 2002:a05:600c:2209:: with SMTP id
- z9mr6527177wml.70.1596699257216; 
- Thu, 06 Aug 2020 00:34:17 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id w1sm5537739wmc.18.2020.08.06.00.34.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Aug 2020 00:34:16 -0700 (PDT)
-Date: Thu, 6 Aug 2020 09:34:14 +0200
-From: daniel@ffwll.ch
-To: 
-Subject: Re: [PATCH] drm/amdgpu: fix spelling mistake "Falied" -> "Failed"
-Message-ID: <20200806073414.GH6419@phenom.ffwll.local>
-Mail-Followup-To: Stephen Rothwell <sfr@canb.auug.org.au>,
- Joe Perches <joe@perches.com>, Alex Deucher <alexdeucher@gmail.com>,
- Colin King <colin.king@canonical.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- kernel-janitors@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>
-References: <20200805113510.18277-1-colin.king@canonical.com>
- <CADnq5_NA9f2N3xkH4WAdDEP+0-5W0LkmTRy3yXqFdnWQmfsVmQ@mail.gmail.com>
- <a8ab7d75ef9df54bd193fc88e0670b30026e7e67.camel@perches.com>
- <CADnq5_P9hfv=Zt9+m47sFC0z202x+q-Otifv7a5z4afJamtQ2Q@mail.gmail.com>
- <d720b466a2b4b7507a963f9a2605c7f81e82e7ba.camel@perches.com>
- <20200806093641.5795690c@canb.auug.org.au>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2051.outbound.protection.outlook.com [40.107.94.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA216E878
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 07:40:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GHKb7vNYFbbfbLIRaLLzkpJBEzZ73p6wi8rbHyRHK/lirFiK7hj63+sAhRZh5tOza/nI3otowykfCAqMCNRufVqftHCrtHLGxClHMzIBbL0O5DxyqAeTZ4ABTx2Fd22Ji8JdIKAwR8HrhM8K1HwtBslXV3HdQHjKwgSQJy+JTTHiXYPlF8Rk3Pbjp2kMHbE+X9lqPnuhrmliBzm7KEtWqWSrlcrK1Q/N9tBan7O68c22IypU7R657jYPDRKQ564iXbA2QYQf/J1zIaDRPhqqJsj3QGm82E4pH/VTycYS4ebOv68Z51M50dssYFqRwzoS4awO7/CU+qdB4Rvw9qxi2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SN2OGA/jqAUYnI+AVGgEiNu1c4ybncj72DQgnihRzBI=;
+ b=d/UiMtdTrvxbZMPRfSRW01ynol4A+LSjJ5eRsRjGYsx0K82xnIAdAy9VC+LDPEO2CCRg4+GJl1hGEsw9eZPdrkUezuWf4oFn2pmHUV01bCrk33WtZmJAevQsBODkYTbL1ButPXRrqKPWFludl2efs13/2RDQlAIBsVN2TsFgppxBM/Naq2NEK6ApIW9j6uAF3MIIwWc2bGSLdoTBszqWmB5InymwFI2NoImJ60CZszSJhjbHoHUag8Nurj02j0xART6fFpKXA6sl7blIFt7lAGuYt2Zf+4wKVQbiAKV7uJH+OJKUhvKjj/Rx26s83N0kkkdBQdy19vVZUEJDqS+muA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SN2OGA/jqAUYnI+AVGgEiNu1c4ybncj72DQgnihRzBI=;
+ b=OOqCZy1kDnZq0MUn5opnoluGirpeNAXovIPsGyhncPlRYRWVfM2fa+3uyoMlUczZzcQ2ozhU+/T85zUTmn193nuJNwp1xXDw42PGzv4hYUmFUvw59fjbeDAP9V8RgdQ7HR+0al01vLoysrXRSv2ZbGU6pdIrKryEawP6ZHFa40Q=
+Received: from BN6PR22CA0050.namprd22.prod.outlook.com (2603:10b6:404:ca::12)
+ by MWHPR12MB1664.namprd12.prod.outlook.com (2603:10b6:301:b::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.20; Thu, 6 Aug
+ 2020 07:40:45 +0000
+Received: from BN8NAM11FT055.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:ca:cafe::b2) by BN6PR22CA0050.outlook.office365.com
+ (2603:10b6:404:ca::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.15 via Frontend
+ Transport; Thu, 6 Aug 2020 07:40:44 +0000
+X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ BN8NAM11FT055.mail.protection.outlook.com (10.13.177.62) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3261.16 via Frontend Transport; Thu, 6 Aug 2020 07:40:42 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 6 Aug 2020
+ 02:40:42 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 6 Aug 2020
+ 02:40:42 -0500
+Received: from chengzhe-System-Product-Name.amd.com (10.180.168.240) by
+ SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1713.5
+ via Frontend Transport; Thu, 6 Aug 2020 02:40:39 -0500
+From: Liu ChengZhe <ChengZhe.Liu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: Skip some registers config for SRIOV
+Date: Thu, 6 Aug 2020 15:40:36 +0800
+Message-ID: <20200806074036.404227-1-ChengZhe.Liu@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200806093641.5795690c@canb.auug.org.au>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7adb649b-1f87-4e22-c9a0-08d839dc05fa
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1664:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB16643DF58FC77AC62EF13F0193480@MWHPR12MB1664.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2512;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fSjOp4ihDAH7qtHaAf1dwqy2V5LH8Q/l87lGD1ISNG5iwCd2Ko7hC6GMsvZmxB+MqlhuV0HGqt+LSWb4mCzup1FUZLRaDIapjdozgN6/oCFy6DPNth1wieKu4nBkU63aRsPzAGizv1n/uV8gfCneHtRtK0uaRQgjaaXQZhpp3WZDQW524gAxGQ9qw+E4n115OndRDX/KrncKLH06W4IyEZ7Jmrfblc0t2yInCBGYPizC+9YDDvrF0WZze+E1A+NAeZThYHcc9GlYdAYNcrP87HKOj/PjmJ2U8t94iNKeFwmths4JTckaaEFKWUn7YOq0SuhqNb95e7Gt9glpyNC3kVbtRaqOuoCTj6Fo52glwPhKqKQsO06VscQBuakMvkhDHSaUjiSD5Zc4skEZ4gutbg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(39860400002)(346002)(396003)(376002)(136003)(46966005)(6916009)(316002)(54906003)(336012)(2616005)(26005)(4326008)(186003)(6666004)(426003)(2906002)(478600001)(8676002)(70206006)(36756003)(86362001)(8936002)(82740400003)(356005)(1076003)(7696005)(5660300002)(47076004)(70586007)(81166007)(82310400002)(83380400001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2020 07:40:42.8405 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7adb649b-1f87-4e22-c9a0-08d839dc05fa
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT055.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1664
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,120 +103,97 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- kernel-janitors@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Alex Deucher <alexdeucher@gmail.com>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Colin King <colin.king@canonical.com>,
- Joe Perches <joe@perches.com>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Jack Xiao <Jack.Xiao@amd.com>, Feifei
+ Xu <Feifei.Xu@amd.com>, Kevin Wang <Kevin1.Wang@amd.com>,
+ Liu ChengZhe <ChengZhe.Liu@amd.com>, Tuikov Luben <Luben.Tuikov@amd.com>,
+ Deucher Alexander <Alexander.Deucher@amd.com>,
+ Xiaojie Yuan <xiaojie.yuan@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 06, 2020 at 09:36:41AM +1000, Stephen Rothwell wrote:
-> Hi all,
-> 
-> On Wed, 05 Aug 2020 15:19:38 -0700 Joe Perches <joe@perches.com> wrote:
-> >
-> > On Wed, 2020-08-05 at 17:27 -0400, Alex Deucher wrote:
-> > > On Wed, Aug 5, 2020 at 4:53 PM Joe Perches <joe@perches.com> wrote:  
-> > > > On Wed, 2020-08-05 at 16:01 -0400, Alex Deucher wrote:  
-> > > > > On Wed, Aug 5, 2020 at 7:35 AM Colin King <colin.king@canonical.com> wrote:  
-> > > > > > From: Colin Ian King <colin.king@canonical.com>
-> > > > > > 
-> > > > > > There is a spelling mistake in a DRM_ERROR message. Fix it.
-> > > > > > 
-> > > > > > Signed-off-by: Colin Ian King <colin.king@canonical.com>  
-> > > > > 
-> > > > > This is already fixed.  
-> > > > 
-> > > > This fix is not in today's -next.
-> > > > 
-> > > > Perhaps whatever tree it's fixed in should be in -next.
-> > > >   
-> > > 
-> > > Weird.  It's in the drm-next tree as:
-> > > 
-> > > commit 4afaa61db9cf5250b5734c2531b226e7b3a3d691
-> > > Author: Colin Ian King <colin.king@canonical.com>
-> > > Date:   Fri Jul 10 09:37:58 2020 +0100
-> > > 
-> > >     drm/amdgpu: fix spelling mistake "Falied" -> "Failed"
-> > > 
-> > >     There is a spelling mistake in a DRM_ERROR error message. Fix it.
-> > > 
-> > >     Signed-off-by: Colin Ian King <colin.king@canonical.com>
-> > >     Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > > 
-> > > Alex
-> > >   
-> > > > $ git show --oneline -s
-> > > > d15fe4ec0435 (HEAD, tag: next-20200805, origin/master, origin/HEAD) Add linux-next specific files for 20200805
-> > > > 
-> > > > $ git grep -i falied drivers
-> > > > drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c:                DRM_ERROR("Falied to terminate tmr\n");
-> > > >   
-> > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c  
-> > > > []  
-> > > > > > @@ -2010,7 +2010,7 @@ static int psp_suspend(void *handle)
-> > > > > > 
-> > > > > >         ret = psp_tmr_terminate(psp);
-> > > > > >         if (ret) {
-> > > > > > -               DRM_ERROR("Falied to terminate tmr\n");
-> > > > > > +               DRM_ERROR("Failed to terminate tmr\n");
-> > > > > >                 return ret;
-> > > > > >         }  
-> > 
-> > Dunno.
-> > 
-> > Maybe it's due to some ordering of trees in
-> > how -next accumulates patches?
-> 
-> The spelling error is introduced in two commits:
-> 
->   c564b8601ae9 ("drm/amdgpu: add TMR destory function for psp")
-> 
-> in Linus' tree between v5.8-rc4 and rc5
-> 
->   90937420c44f ("drm/amdgpu: add TMR destory function for psp")
-> 
-> in the amdgpu tree between two merges by the drm tree.  In this same
-> interval, the error is corrected by commit
-> 
->   4afaa61db9cf ("drm/amdgpu: fix spelling mistake "Falied" -> "Failed"")
-> 
-> so when David comes to merge the amdgpu tree in commit
-> 
->   206739119508 ("Merge tag 'amd-drm-next-5.9-2020-07-17' of git://people.freedesktop.org/~agd5f/linux into drm-next")
-> 
-> the spelling error has been introduced on one side of the merge and
-> introduced and corrected on the other.  This would have produced a
-> conflict which David presumably resolved in haste by picking the HEAD
-> side of the merge instead of the MERGE_HEAD side (it happens).
-> 
-> This could have been avoided by not cherry-picking fix commits around
-> in the amdgpu process - instead having a fixes branch that is merged
-> into the next branch after the fixes branch has been accepted upstream
-> (that way there is only one commit for each fix and less conflicts).
-> 
-> I have to deal with these sort of conflicts (sometimes daily) due to
-> the drm processes.  Its a pain as I have to track down each conflict to
-> see if the same patches appear on both sides of merges and then try to
-> figure out what other changes occur.  (This is only slightly helped by
-> have the "cherry-picked from" tags in the fix commits.)
+For VF, registers L2_CNTL, L2_CONTEXT1_IDENTITY_APERTURE
+L2_PROTECTION_FAULT_CNTL are not accesible, skip the
+configuration for them in SRIOV mode.
 
-Yeah cherry-picking breaks if you only occasionally cherry-pick - then
-stuff gets lost.
+Signed-off-by: Liu ChengZhe <ChengZhe.Liu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c | 12 ++++++++++--
+ drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c  | 12 ++++++++++--
+ 2 files changed, 20 insertions(+), 4 deletions(-)
 
-I'd say just apply it once more for the merge window fixes pull.
--Daniel
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
+index 1f6112b7fa49..6b96f45fde2a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
+@@ -330,10 +330,13 @@ int gfxhub_v2_1_gart_enable(struct amdgpu_device *adev)
+ 	gfxhub_v2_1_init_gart_aperture_regs(adev);
+ 	gfxhub_v2_1_init_system_aperture_regs(adev);
+ 	gfxhub_v2_1_init_tlb_regs(adev);
+-	gfxhub_v2_1_init_cache_regs(adev);
++	if (!amdgpu_sriov_vf(adev))
++		gfxhub_v2_1_init_cache_regs(adev);
+ 
+ 	gfxhub_v2_1_enable_system_domain(adev);
+-	gfxhub_v2_1_disable_identity_aperture(adev);
++	if (!amdgpu_sriov_vf(adev))
++		gfxhub_v2_1_disable_identity_aperture(adev);
++
+ 	gfxhub_v2_1_setup_vmid_config(adev);
+ 	gfxhub_v2_1_program_invalidation(adev);
+ 
+@@ -372,7 +375,12 @@ void gfxhub_v2_1_gart_disable(struct amdgpu_device *adev)
+ void gfxhub_v2_1_set_fault_enable_default(struct amdgpu_device *adev,
+ 					  bool value)
+ {
++	/*These regs are not accessible for VF, PF will program in SRIOV */
++	if (amdgpu_sriov_vf(adev))
++		return;
++
+ 	u32 tmp;
++
+ 	tmp = RREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_CNTL);
+ 	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL,
+ 			    RANGE_PROTECTION_FAULT_ENABLE_DEFAULT, value);
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+index d83912901f73..9cfde9b81600 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+@@ -321,10 +321,13 @@ int mmhub_v2_0_gart_enable(struct amdgpu_device *adev)
+ 	mmhub_v2_0_init_gart_aperture_regs(adev);
+ 	mmhub_v2_0_init_system_aperture_regs(adev);
+ 	mmhub_v2_0_init_tlb_regs(adev);
+-	mmhub_v2_0_init_cache_regs(adev);
++	if (!amdgpu_sriov_vf(adev))
++		mmhub_v2_0_init_cache_regs(adev);
+ 
+ 	mmhub_v2_0_enable_system_domain(adev);
+-	mmhub_v2_0_disable_identity_aperture(adev);
++	if (!amdgpu_sriov_vf(adev))
++		mmhub_v2_0_disable_identity_aperture(adev);
++
+ 	mmhub_v2_0_setup_vmid_config(adev);
+ 	mmhub_v2_0_program_invalidation(adev);
+ 
+@@ -364,7 +367,12 @@ void mmhub_v2_0_gart_disable(struct amdgpu_device *adev)
+  */
+ void mmhub_v2_0_set_fault_enable_default(struct amdgpu_device *adev, bool value)
+ {
++	/*These regs are not accessible for VF, PF will program in SRIOV */
++	if (amdgpu_sriov_vf(adev))
++		return;
++
+ 	u32 tmp;
++
+ 	tmp = RREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_CNTL);
+ 	tmp = REG_SET_FIELD(tmp, MMVM_L2_PROTECTION_FAULT_CNTL,
+ 			    RANGE_PROTECTION_FAULT_ENABLE_DEFAULT, value);
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.25.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
