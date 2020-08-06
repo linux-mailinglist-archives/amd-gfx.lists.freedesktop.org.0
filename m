@@ -1,88 +1,88 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAA4523D8D7
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Aug 2020 11:43:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5998F23D8DA
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Aug 2020 11:43:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 681AF6E8A9;
-	Thu,  6 Aug 2020 09:42:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D720E6E8AE;
+	Thu,  6 Aug 2020 09:43:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2043.outbound.protection.outlook.com [40.107.243.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3A9B6E8A9
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 09:42:57 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2053.outbound.protection.outlook.com [40.107.244.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA2C6E8AE
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Aug 2020 09:43:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e55WIF8L2O+k7VdqN4//uGagYAsBWiErv3IMzA1gKjwcw1MnguDDyh+UlUpgv4a4kAh9q3yFcOXJ7vKdC+0oWS6FrQwmsrKeBoQDxpxvljR0zLn4Gk/xjyu1uI0PiqFUExpeFbsZYhcDoHOcixLV8zyMfjPvBSdeddHAZLYSjfCyHCKkOajoAAu4M0tvg4CRPRIDqYUogaMhHDrrk4ukaj3qRI2E+Ig7mc7x2DoY72wsuPueKLuoG1KpU0w5X/3ijQTqpqU0zydPXrlj40Fcuj+8yJE9TOkk3d9BphrwcVft5hq31vJ72uvAOfITPaeMT+FozI+odBeKsliONjPmow==
+ b=E3UoOu0mQmuoldWQgWgI6R7Vw89UxOKWLtMsPPH69JPJl6EqUkqoMzwJ0IgboGvPpH4ZextwmJZLXqnkrUakT+HEChM9CV3rXR4ktqa8hHtuDTLZwtjlm52La84pNEY8k0wRuWrZ8ESPE8Ls0fxcJ/X3rQpKdrSFu09BE/h2NdgVOsrvKn2V18p58/0fEeff4uhArui4FtiOrABmeB/qCPGYjjg2wCZL7fRBZbQ4dc2eba1kqKW92KZRSNJtxP0Tb/Vka3lfaiT7yE7gU3BokhV9InYaspSnc6XEIrD962tqa+Sxva7CQ2Q+tr+gVvkO0IhBJGIdbQNxcq9cc5D6fA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1KlgeIwK4DTYrSy+MUBRTyJK7qJD5Ix26c51JgEFl0w=;
- b=i4Qy4Q8KdRHMxBPJ2bud/j5JLdbdRYXxjCg6RYPI6a2clTx7H7nZJfghWXG/5V9hWpxW5F4vES3a8O5gv2ZTYkd32TJDSZKOGbKUgpxk9HhnLxjcYmwJ4IffPgDB+AXy/AF81PmAjz3VHynvkM1f8ObMOye5wHLT4TfxbyzGEMVBI1jHm9ROIFXlKhm4h8uBuIIqw9nUnEg9tynlnAOIS9qoCg7J2gVJWM6Fa8vIhKiJFby2EtZHgRffke9dsX/Y6VSWeFSjs/Z/Uk5jtwSIsgTkyyObeCXmhH+O2UcZBCgQI0TaxXwAUYm4raJFkRp9/IOp6yghdTTvF3LZv+W61A==
+ bh=EZow72oeGV3GygxUMdhWAkCpKbBAA08y1/OKRA2dGh8=;
+ b=YymDoZHqxTipCgFgxQC90z5NR6rO5npleMqCpcpRon3L49y5d9E/bj4IzYkCzwNV+5GAdYKOMlOEEe+WIs5VUzuH8lZp3Klfk1dcogyhgHNbgmypbF3jjtpDWln8Hw62bJ/BaZxsSJ6Kp26hnOIT4THcoxCdBpCEvkXANzDL+gj1HKz9OBU1BpPf0XOe59OSbBBVxL3kxDEPUOrsInXnDUqZVYtmH3hA9I9MLDZktpw39vUNFLAi/myek0AGecZFTWqa9TaR6NWER7l4/gtxerYX0vaYUKM0Sw/xiTnTAawhXZozw0w5Ean6PYBtVlNzYdNVBPs48DtYQdhYOlvYYA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1KlgeIwK4DTYrSy+MUBRTyJK7qJD5Ix26c51JgEFl0w=;
- b=kvsZ7gUPcWATCulNIjXpY0QQvABWWT3MwN9vZ8ScWR6donSuZ3PRIIADerIsAFC3NaTXDT25ICt/WAADl6gxkZwFNbZUaKHcppEFNARb2AJElDDakjrPFNw0ovyKjYDu42Y73+x0zspkYLUznMrSOu5Uu84/+i0dK4eFBTd3izs=
+ bh=EZow72oeGV3GygxUMdhWAkCpKbBAA08y1/OKRA2dGh8=;
+ b=TqHm4tFKNptgNrv8uekzFn8saRLrS4S5FVRTpfeW8nmupDnapqMxatCYYJSGCFW6enomrabtzqHxnnc60HDJCaFG8zzkcQaE9+puqbyAGGXhJ92tDoglKUQuC0MgU4Se5irfwhYmfiY73LagGBiJB5AsQs49Qa2vyW5FVNxJ9EM=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from MWHPR12MB1854.namprd12.prod.outlook.com (2603:10b6:300:114::19)
- by MW3PR12MB4522.namprd12.prod.outlook.com (2603:10b6:303:5f::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.20; Thu, 6 Aug
- 2020 09:42:56 +0000
+ by MW3PR12MB4428.namprd12.prod.outlook.com (2603:10b6:303:57::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.19; Thu, 6 Aug
+ 2020 09:43:37 +0000
 Received: from MWHPR12MB1854.namprd12.prod.outlook.com
  ([fe80::c83a:4059:70c4:3911]) by MWHPR12MB1854.namprd12.prod.outlook.com
  ([fe80::c83a:4059:70c4:3911%9]) with mapi id 15.20.3261.019; Thu, 6 Aug 2020
- 09:42:56 +0000
+ 09:43:37 +0000
 From: Likun Gao <likun.gao@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd/powerplay: update driver if file for sienna_cichlid
-Date: Thu,  6 Aug 2020 17:42:38 +0800
-Message-Id: <20200806094238.2022133-1-likun.gao@amd.com>
+Subject: [PATCH] drm/amdgpu: use mode1 reset by default for sienna_cichlid
+Date: Thu,  6 Aug 2020 17:43:17 +0800
+Message-Id: <20200806094317.2022184-1-likun.gao@amd.com>
 X-Mailer: git-send-email 2.25.1
-X-ClientProxiedBy: HK2PR06CA0012.apcprd06.prod.outlook.com
- (2603:1096:202:2e::24) To MWHPR12MB1854.namprd12.prod.outlook.com
+X-ClientProxiedBy: HK2PR04CA0046.apcprd04.prod.outlook.com
+ (2603:1096:202:14::14) To MWHPR12MB1854.namprd12.prod.outlook.com
  (2603:10b6:300:114::19)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from lnx-glk.amd.com (58.247.170.242) by
- HK2PR06CA0012.apcprd06.prod.outlook.com (2603:1096:202:2e::24) with Microsoft
+ HK2PR04CA0046.apcprd04.prod.outlook.com (2603:1096:202:14::14) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3261.18 via Frontend Transport; Thu, 6 Aug 2020 09:42:54 +0000
+ 15.20.3239.18 via Frontend Transport; Thu, 6 Aug 2020 09:43:34 +0000
 X-Mailer: git-send-email 2.25.1
 X-Originating-IP: [58.247.170.242]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 7ed9515f-61b8-46cd-0022-08d839ed18d1
-X-MS-TrafficTypeDiagnostic: MW3PR12MB4522:
+X-MS-Office365-Filtering-Correlation-Id: 0715177e-4440-4d6e-5f6e-08d839ed3108
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4428:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW3PR12MB45227E51BAEEE37BA0A4C71AEF480@MW3PR12MB4522.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-Microsoft-Antispam-PRVS: <MW3PR12MB44286AA33BE85F9F366A3F96EF480@MW3PR12MB4428.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IslE350ngmfr88UtlFuHlV+VqnXzUnhP7MWgj+yAXqD3MtAf0mvN5Se9SKgbsUkFuWta0LgjE6jygTXRWcbzilNN0bzT3eR3i1vkPRPZsBxsVQ5DZN6lwNcRibEVNxRm9O4xWrU0C2n0Kn/plwK2k4/tVfGvMzs4YaTAfaFfhNqU2u0zeZ6Xp+qCzlrV9HWFZX0upnC3l8lEAT5Dh1BtAVqUvQGPh+SOjvz7gR5HdzGhzA4Zr1Ly3jAi2nuthVHZh9HxlVpvxmvC1ki1guvKgTaFQtbyb6uZ4w8UROMt3HIE6ZjTrb8JOEwnazPl9JC4AQri03a5KrCzFDFHsDo7eg==
+X-Microsoft-Antispam-Message-Info: RvuX1t4zkP0+x7ovxqOfrc8iNq10YcRUlwF2PR1rhEIw3PVb8tvIm1+T2agAPqFs9jqb9OSYxh5OGt+Jsn/WGHL6bT9+Pu/HQY1JgqGKJsNGpY9k5AaruFvYM53CjwvS+Y3YRYpN5tfoMnd3Z7y8MM4/lC7M3N2H1ldJOmscyWkEE9z6dxTxfGVPmgZSVt6S/Y/DoMV/tEjxWQFfvOpjZbICvQMt4TnQBfs02wFxBrsAPfvACs0IkhEmRMGLwX+WJbGFtPRi0bE2cO7GUJzxkzLvdgpm1uTqEgAriCny69yhCCMrU87URnzenP7s1UPs
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MWHPR12MB1854.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(4636009)(39860400002)(346002)(396003)(366004)(136003)(376002)(52116002)(186003)(1076003)(7696005)(4326008)(15650500001)(16526019)(36756003)(8936002)(316002)(8676002)(5660300002)(86362001)(2906002)(478600001)(54906003)(26005)(6666004)(6486002)(66556008)(66946007)(2616005)(956004)(44832011)(83380400001)(6916009)(66476007);
+ SFS:(4636009)(39860400002)(396003)(136003)(366004)(346002)(376002)(5660300002)(66556008)(86362001)(2616005)(956004)(44832011)(36756003)(66946007)(66476007)(16526019)(26005)(186003)(83380400001)(7696005)(52116002)(8676002)(54906003)(4326008)(478600001)(6916009)(6486002)(6666004)(1076003)(316002)(2906002)(8936002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: ZLVfQkxoL8YD4DWO4wVEMgy50u3E5E0kAs+NoR8+bjNHtBEFYdGYdcyvB3yRFN80zAawfOgFvuD2l3w7cTzblsf8q7CTiPf8ODuP7rq7jV9e16lAJJg6/b7HqkTM87gpcZ6xF6bsW7Mtox/wI3Pi3jw8/a+MYLh/nV5k/+82PyQ+bkK63oTRHwr2505BlnEay4pb+hf20jFOYx2kJ8VPiVZdOiMdhgkQdkjO6Q5ST6wJLCpHTOJs/109QVvByv/Xh1lsBiD4YBgEufCqoqvN855yTpzZbc1zsvP2Ow3p0RrpV0yJ8yOm/+r8uzUmExK6NsWXQK6EFnoJ2k+zm9TumJSjXM1Wfx7W/c0GyN7ITX4/qtL9CNkXb8xaFGsGnNMQHIISRBUkFSmLUzY3mvtV+MFa/wQBZJgBvcZ2Jh87yqYLW/kJqTz3MTrzz9/bWhz5amew8f8Qptzgvv/Kyu69LBQ9v5/DmoE8dDXf62dn4eCrGu3ylRyK6bPo2A4XiXN7Im64O4QomEdAQyNUVRWoAcGLXvHns5Z0GpFg591NeVjpEcdquUnhN8m5/SBURo4lWD/pFiUmGKndIFcl0laPcQ5KiTrczLVBKDLnvugp93RpGqtpxv3cg2xuggFjiPZ1kk8T2XzbNkUIeuDoQz53yQ==
+X-MS-Exchange-AntiSpam-MessageData: e7thl9SuC1OfAwgZXXVuBSfeLODgcJUft5RZPDBxbiLwfUHmyjq9gPOnTQ/Kb9v/dWLibu8n9wnWMJNZDMReNNYPipR6tZ4eD2ptNf6hj/DMqivQxmfL42lTZANM7ztL5+KO9XZT2s3qWyD0faMxNBvgMz2/qsbXBLq+O9Wq8KZQJgsexTyHh3JfX6svU3viGRCDvEvIIlxCOBeVl26agd5USksuJXtThAIV5e2JvCvhPULb5fPkyfMKhW5hStAOROfrRgJZi37DuTbPzjMHWbLDnWM9R379vJVnG0OqkFWKrkXAikXkUx581D/knhP38nN9rZaoTsHkT+qJt4TbtjmlwC49jovyN5X0RUAkksnVUBNYfZUDz/+mkmUOS/pI4FQJKqGWJK60FO9eeQuTULPgy6rOloWL25q1ISjk9W1thqd7k1aGMlQao9RmQgg/7fuL7Rh3MMz0UtOcA8q9Nv9ndKdmwU4DOW4EgC21jCz9TX5LNUj4r2btFFn3u15A8+9FpBFcaEPWE3QMEpafPAyVM8FpzXBLFlnkFhkeRz+BqmOf2OX3ZjhIIUwrQMY+LtSgrZx2aobTIs2g0YEawDCySiUnpvaw5dhJOPJ6DetaH+t5VcPLeLGpLDiXI0nWpN94GOla8RKIMYKnf7ph+w==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ed9515f-61b8-46cd-0022-08d839ed18d1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0715177e-4440-4d6e-5f6e-08d839ed3108
 X-MS-Exchange-CrossTenant-AuthSource: MWHPR12MB1854.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2020 09:42:56.3166 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2020 09:43:37.0777 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JuzPc+bFhCwMVhyF0CrQrFcUnyVnN6HF0ciwtLxKv+Fglmko/RNoh6IR51cvG6Zw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4522
+X-MS-Exchange-CrossTenant-UserPrincipalName: kui8jUGGS7yUEoAbE/df1J2qQZTVWCnQPtQiyIrsIUyuYPZ4b02qrdHjJgn9HShg
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4428
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,59 +103,37 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Likun Gao <Likun.Gao@amd.com>
 
-Update drive if file for sienna_cichlid.
+Swith default gpu reset method for sienna_cichlid to MODE1 reset.
 
 Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Change-Id: If405461cfbe0133ceb61fa123272b2e53db99755
+Change-Id: I775e5a66bbac474f65ca8c999136ccaf9c1dc14e
 ---
- .../drm/amd/powerplay/inc/smu11_driver_if_sienna_cichlid.h  | 6 +++---
- drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h               | 2 +-
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/nv.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu11_driver_if_sienna_cichlid.h b/drivers/gpu/drm/amd/powerplay/inc/smu11_driver_if_sienna_cichlid.h
-index aa2708fccb6d..5ef9c92f57c4 100644
---- a/drivers/gpu/drm/amd/powerplay/inc/smu11_driver_if_sienna_cichlid.h
-+++ b/drivers/gpu/drm/amd/powerplay/inc/smu11_driver_if_sienna_cichlid.h
-@@ -27,7 +27,7 @@
- // *** IMPORTANT ***
- // SMU TEAM: Always increment the interface version if 
- // any structure is changed in this file
--#define SMU11_DRIVER_IF_VERSION 0x34
-+#define SMU11_DRIVER_IF_VERSION 0x35
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 74d02d270d34..da8024c2826e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -362,10 +362,15 @@ nv_asic_reset_method(struct amdgpu_device *adev)
+ 		dev_warn(adev->dev, "Specified reset method:%d isn't supported, using AUTO instead.\n",
+ 				  amdgpu_reset_method);
  
- #define PPTABLE_Sienna_Cichlid_SMU_VERSION 5
+-	if (smu_baco_is_support(smu))
+-		return AMD_RESET_METHOD_BACO;
+-	else
++	switch (adev->asic_type) {
++	case CHIP_SIENNA_CICHLID:
+ 		return AMD_RESET_METHOD_MODE1;
++	default:
++		if (smu_baco_is_support(smu))
++			return AMD_RESET_METHOD_BACO;
++		else
++			return AMD_RESET_METHOD_MODE1;
++	}
+ }
  
-@@ -127,7 +127,7 @@
- #define FEATURE_DF_CSTATE_BIT           45
- #define FEATURE_2_STEP_PSTATE_BIT       46
- #define FEATURE_SMNCLK_DPM_BIT          47
--#define FEATURE_SPARE_48_BIT            48
-+#define FEATURE_PERLINK_GMIDOWN_BIT     48
- #define FEATURE_GFX_EDC_BIT             49
- #define FEATURE_SPARE_50_BIT            50
- #define FEATURE_SPARE_51_BIT            51
-@@ -169,7 +169,7 @@ typedef enum {
- #define DPM_OVERRIDE_DISABLE_DFLL_PLL_SHUTDOWN       0x00000200
- #define DPM_OVERRIDE_DISABLE_MEMORY_TEMPERATURE_READ 0x00000400
- #define DPM_OVERRIDE_DISABLE_VOLT_LINK_VCN_DCEFCLK   0x00000800
--#define DPM_OVERRIDE_DISABLE_FAST_FCLK_TIMER         0x00001000
-+#define DPM_OVERRIDE_ENABLE_FAST_FCLK_TIMER          0x00001000
- #define DPM_OVERRIDE_DISABLE_VCN_PG                  0x00002000
- #define DPM_OVERRIDE_DISABLE_FMAX_VMAX               0x00004000
- 
-diff --git a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
-index 6a42331aba8a..737b6d14372c 100644
---- a/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
-+++ b/drivers/gpu/drm/amd/powerplay/inc/smu_v11_0.h
-@@ -30,7 +30,7 @@
- #define SMU11_DRIVER_IF_VERSION_NV10 0x36
- #define SMU11_DRIVER_IF_VERSION_NV12 0x33
- #define SMU11_DRIVER_IF_VERSION_NV14 0x36
--#define SMU11_DRIVER_IF_VERSION_Sienna_Cichlid 0x34
-+#define SMU11_DRIVER_IF_VERSION_Sienna_Cichlid 0x35
- #define SMU11_DRIVER_IF_VERSION_Navy_Flounder 0x3
- 
- /* MP Apertures */
+ static int nv_asic_reset(struct amdgpu_device *adev)
 -- 
 2.25.1
 
