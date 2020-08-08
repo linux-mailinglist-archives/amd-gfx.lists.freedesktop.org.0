@@ -1,47 +1,35 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1FB3240074
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Aug 2020 01:59:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C05240078
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Aug 2020 01:59:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF5E46E0EE;
-	Sun,  9 Aug 2020 23:59:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D2C26E33D;
+	Sun,  9 Aug 2020 23:59:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 465 seconds by postgrey-1.36 at gabe;
- Sat, 08 Aug 2020 07:32:58 UTC
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id A4FA26E14F
- for <amd-gfx@lists.freedesktop.org>; Sat,  8 Aug 2020 07:32:58 +0000 (UTC)
-Received: from linux.localdomain (unknown [113.200.148.30])
- by mail.loongson.cn (Coremail) with SMTP id AQAAf9DxmMVPUy5fb_4FAA--.2028S2;
- Sat, 08 Aug 2020 15:25:05 +0800 (CST)
-From: Tiezhu Yang <yangtiezhu@loongson.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
-	christian.koenig@amd.com
-Subject: [PATCH] gpu/drm: Remove TTM_PL_FLAG_WC of VRAM to fix writecombine
- issue for Loongson64
-Date: Sat,  8 Aug 2020 15:25:02 +0800
-Message-Id: <1596871502-3432-1-git-send-email-yangtiezhu@loongson.cn>
-X-Mailer: git-send-email 2.1.0
-X-CM-TRANSID: AQAAf9DxmMVPUy5fb_4FAA--.2028S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxGFyDGrW8Ww4UZFWrWF1kGrg_yoW5Zry7pF
- 4SkwnxG393tr1DtFW7GF18WF98Ca1kuay8Cr15Gw17u3y3ZFW8Wr9xJr4fJrWUXrW7t3yU
- tr1kCr4qvFyYv3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUyqb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
- 0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
- A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
- jxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I
- 8E87Iv6xkF7I0E14v26r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
- F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r
- 4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x0EwIxGrwCF
- x2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14
- v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY
- 67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2
- IYs7xG6rW3Jr0E3s1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AK
- xVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUqEoXUUUUU
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+X-Greylist: delayed 1909 seconds by postgrey-1.36 at gabe;
+ Sat, 08 Aug 2020 14:13:52 UTC
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 22DE16E219
+ for <amd-gfx@lists.freedesktop.org>; Sat,  8 Aug 2020 14:13:52 +0000 (UTC)
+Received: from uucp (helo=alpha)
+ by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+ id 1k4P6k-0004vB-00; Sat, 08 Aug 2020 15:41:58 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+ id 19B0AC0C98; Sat,  8 Aug 2020 15:41:47 +0200 (CEST)
+Date: Sat, 8 Aug 2020 15:41:47 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Tiezhu Yang <yangtiezhu@loongson.cn>
+Subject: Re: [PATCH] gpu/drm: Remove TTM_PL_FLAG_WC of VRAM to fix
+ writecombine issue for Loongson64
+Message-ID: <20200808134147.GA5772@alpha.franken.de>
+References: <1596871502-3432-1-git-send-email-yangtiezhu@loongson.cn>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1596871502-3432-1-git-send-email-yangtiezhu@loongson.cn>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 X-Mailman-Approved-At: Sun, 09 Aug 2020 23:59:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,91 +42,68 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Huacai Chen <chenhc@lemote.com>, amd-gfx@lists.freedesktop.org,
- linux-mips@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- linux-kernel@vger.kernel.org
-MIME-Version: 1.0
+Cc: linux-mips@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Huacai Chen <chenhc@lemote.com>,
+ christian.koenig@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Loongson processors have a writecombine issue that maybe failed to
-write back framebuffer used with ATI Radeon or AMD GPU at times,
-after commit 8a08e50cee66 ("drm: Permit video-buffers writecombine
-mapping for MIPS"), there exists some errors such as blurred screen
-and lockup, and so on.
+On Sat, Aug 08, 2020 at 03:25:02PM +0800, Tiezhu Yang wrote:
+> Loongson processors have a writecombine issue that maybe failed to
+> write back framebuffer used with ATI Radeon or AMD GPU at times,
+> after commit 8a08e50cee66 ("drm: Permit video-buffers writecombine
+> mapping for MIPS"), there exists some errors such as blurred screen
+> and lockup, and so on.
+> 
+> Remove the flag TTM_PL_FLAG_WC of VRAM to fix writecombine issue for
+> Loongson64 to work well with ATI Radeon or AMD GPU, and it has no any
+> influence on the other platforms.
 
-Remove the flag TTM_PL_FLAG_WC of VRAM to fix writecombine issue for
-Loongson64 to work well with ATI Radeon or AMD GPU, and it has no any
-influence on the other platforms.
+well it's not my call to take or reject this patch, but I already
+indicated it might be better to disable writecombine on the CPU
+detection side (or do you have other devices where writecombining
+works ?). Something like below will disbale it for all loongson64 CPUs.
+If you now find out where it works and where it doesn't, you can even
+reduce it to the required minium of affected CPUs.
 
-[   60.958721] radeon 0000:03:00.0: ring 0 stalled for more than 10079msec
-[   60.965315] radeon 0000:03:00.0: GPU lockup (current fence id 0x0000000000000112 last fence id 0x000000000000011d on ring 0)
-[   60.976525] radeon 0000:03:00.0: ring 3 stalled for more than 10086msec
-[   60.983156] radeon 0000:03:00.0: GPU lockup (current fence id 0x0000000000000374 last fence id 0x00000000000003a8 on ring 3)
+Thomas.
 
-Signed-off-by: Tiezhu Yang <yangtiezhu@loongson.cn>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  7 +++++--
- drivers/gpu/drm/radeon/radeon_object.c     | 20 ++++++++++++++------
- 2 files changed, 19 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 5ac7b55..9f785f6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -136,8 +136,11 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
- 
- 		places[c].fpfn = 0;
- 		places[c].lpfn = 0;
--		places[c].flags = TTM_PL_FLAG_WC | TTM_PL_FLAG_UNCACHED |
--			TTM_PL_FLAG_VRAM;
-+		if (IS_ENABLED(CONFIG_MACH_LOONGSON64))
-+			places[c].flags = TTM_PL_FLAG_UNCACHED | TTM_PL_FLAG_VRAM;
-+		else
-+			places[c].flags = TTM_PL_FLAG_WC | TTM_PL_FLAG_UNCACHED |
-+					  TTM_PL_FLAG_VRAM;
- 
- 		if (flags & AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED)
- 			places[c].lpfn = visible_pfn;
-diff --git a/drivers/gpu/drm/radeon/radeon_object.c b/drivers/gpu/drm/radeon/radeon_object.c
-index f3dee01..c6cede6 100644
---- a/drivers/gpu/drm/radeon/radeon_object.c
-+++ b/drivers/gpu/drm/radeon/radeon_object.c
-@@ -112,15 +112,23 @@ void radeon_ttm_placement_from_domain(struct radeon_bo *rbo, u32 domain)
- 		    rbo->rdev->mc.visible_vram_size < rbo->rdev->mc.real_vram_size) {
- 			rbo->placements[c].fpfn =
- 				rbo->rdev->mc.visible_vram_size >> PAGE_SHIFT;
--			rbo->placements[c++].flags = TTM_PL_FLAG_WC |
--						     TTM_PL_FLAG_UNCACHED |
--						     TTM_PL_FLAG_VRAM;
-+			if (IS_ENABLED(CONFIG_MACH_LOONGSON64))
-+				rbo->placements[c++].flags = TTM_PL_FLAG_UNCACHED |
-+							     TTM_PL_FLAG_VRAM;
-+			else
-+				rbo->placements[c++].flags = TTM_PL_FLAG_WC |
-+							     TTM_PL_FLAG_UNCACHED |
-+							     TTM_PL_FLAG_VRAM;
+diff --git a/arch/mips/kernel/cpu-probe.c b/arch/mips/kernel/cpu-probe.c
+index def1659fe262..cdd87009e931 100644
+--- a/arch/mips/kernel/cpu-probe.c
++++ b/arch/mips/kernel/cpu-probe.c
+@@ -2043,7 +2043,6 @@ static inline void cpu_probe_loongson(struct cpuinfo_mips *c, unsigned int cpu)
+ 			set_isa(c, MIPS_CPU_ISA_M64R2);
+ 			break;
  		}
- 
- 		rbo->placements[c].fpfn = 0;
--		rbo->placements[c++].flags = TTM_PL_FLAG_WC |
--					     TTM_PL_FLAG_UNCACHED |
--					     TTM_PL_FLAG_VRAM;
-+		if (IS_ENABLED(CONFIG_MACH_LOONGSON64))
-+			rbo->placements[c++].flags = TTM_PL_FLAG_UNCACHED |
-+						     TTM_PL_FLAG_VRAM;
-+		else
-+			rbo->placements[c++].flags = TTM_PL_FLAG_WC |
-+						     TTM_PL_FLAG_UNCACHED |
-+						     TTM_PL_FLAG_VRAM;
- 	}
- 
- 	if (domain & RADEON_GEM_DOMAIN_GTT) {
--- 
-2.1.0
+-		c->writecombine = _CACHE_UNCACHED_ACCELERATED;
+ 		c->ases |= (MIPS_ASE_LOONGSON_MMI | MIPS_ASE_LOONGSON_EXT |
+ 				MIPS_ASE_LOONGSON_EXT2);
+ 		break;
+@@ -2073,7 +2072,6 @@ static inline void cpu_probe_loongson(struct cpuinfo_mips *c, unsigned int cpu)
+ 		 * register, we correct it here.
+ 		 */
+ 		c->options |= MIPS_CPU_FTLB | MIPS_CPU_TLBINV | MIPS_CPU_LDPTE;
+-		c->writecombine = _CACHE_UNCACHED_ACCELERATED;
+ 		c->ases |= (MIPS_ASE_LOONGSON_MMI | MIPS_ASE_LOONGSON_CAM |
+ 			MIPS_ASE_LOONGSON_EXT | MIPS_ASE_LOONGSON_EXT2);
+ 		c->ases &= ~MIPS_ASE_VZ; /* VZ of Loongson-3A2000/3000 is incomplete */
+@@ -2084,7 +2082,6 @@ static inline void cpu_probe_loongson(struct cpuinfo_mips *c, unsigned int cpu)
+ 		set_elf_platform(cpu, "loongson3a");
+ 		set_isa(c, MIPS_CPU_ISA_M64R2);
+ 		decode_cpucfg(c);
+-		c->writecombine = _CACHE_UNCACHED_ACCELERATED;
+ 		break;
+ 	default:
+ 		panic("Unknown Loongson Processor ID!");
 
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
