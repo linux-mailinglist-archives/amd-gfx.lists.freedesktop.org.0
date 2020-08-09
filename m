@@ -2,100 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C117324007A
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Aug 2020 01:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F192240076
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Aug 2020 01:59:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 759856E34C;
-	Sun,  9 Aug 2020 23:59:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E761A6E115;
+	Sun,  9 Aug 2020 23:59:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 414 seconds by postgrey-1.36 at gabe;
- Sat, 08 Aug 2020 13:58:17 UTC
-Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com
- [51.81.35.219])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C43C8925D
- for <amd-gfx@lists.freedesktop.org>; Sat,  8 Aug 2020 13:58:17 +0000 (UTC)
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
- by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 8E6D920EBA
- for <amd-gfx@lists.freedesktop.org>; Sat,  8 Aug 2020 13:51:21 +0000 (UTC)
-Received: from relay3.mymailcheap.com (relay3.mymailcheap.com
- [217.182.119.157])
- by relay5.mymailcheap.com (Postfix) with ESMTPS id 0E0EA2008F
- for <amd-gfx@lists.freedesktop.org>; Sat,  8 Aug 2020 13:51:18 +0000 (UTC)
-Received: from filter2.mymailcheap.com (filter2.mymailcheap.com
- [91.134.140.82])
- by relay3.mymailcheap.com (Postfix) with ESMTPS id 8226F3F15F;
- Sat,  8 Aug 2020 15:51:15 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
- by filter2.mymailcheap.com (Postfix) with ESMTP id 59A9E2A7CD;
- Sat,  8 Aug 2020 15:51:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
- s=default; t=1596894675;
- bh=aMvdZDiGSkgDY34UFhCXqMYg0yzNL97YlcKNxs7qbyM=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=ylgj3ZeC6SrvHrTDxBpi2JJuB5D7RxGXVhJeE0bC76iqaf7IVqu6A2BNQtR2+U+DB
- vnPnz11HPKDlUFGFTjtkk/cE8Wg0i+vxqh3wd6vNALWoLc8YA9TFTemd8zcarvpg8Q
- QxW1w/GTjxJYHX953UiWIlZ0KKp1FyeP5OtJmmTY=
-X-Virus-Scanned: Debian amavisd-new at filter2.mymailcheap.com
-Received: from filter2.mymailcheap.com ([127.0.0.1])
- by localhost (filter2.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id pKApvAm2ixEj; Sat,  8 Aug 2020 15:51:13 +0200 (CEST)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
- (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by filter2.mymailcheap.com (Postfix) with ESMTPS;
- Sat,  8 Aug 2020 15:51:13 +0200 (CEST)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
- by mail20.mymailcheap.com (Postfix) with ESMTP id 9CC79419E4;
- Sat,  8 Aug 2020 13:51:11 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com; dkim=pass (1024-bit key;
- unprotected) header.d=flygoat.com header.i=@flygoat.com header.b="MJHIzbWP"; 
- dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from [0.0.0.0] (unknown [203.86.239.91])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by mail20.mymailcheap.com (Postfix) with ESMTPSA id 14D50419E4;
- Sat,  8 Aug 2020 13:51:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com;
- s=default; t=1596894667;
- bh=aMvdZDiGSkgDY34UFhCXqMYg0yzNL97YlcKNxs7qbyM=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=MJHIzbWPjOIoXUO93z3n0T2+G0nMiFSPIIPlB237bMTBEFDgVBTc0BIb3nV+BtZRI
- cz3Mi7mHVmLK9Qo6WQ41zTNeQtb+WGgVP/pA/Ak+NP31tLS6Eh4Ggn5xPVFuRLKTep
- /wz/8xlJ0A/eVao6Qh2XTZxKy1TCkbsaHMUVB0j8=
-Subject: Re: [PATCH] gpu/drm: Remove TTM_PL_FLAG_WC of VRAM to fix
- writecombine issue for Loongson64
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Tiezhu Yang <yangtiezhu@loongson.cn>
-References: <1596871502-3432-1-git-send-email-yangtiezhu@loongson.cn>
- <20200808134147.GA5772@alpha.franken.de>
-From: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Message-ID: <b7b16df1-d661-d59a-005b-da594ce9fc95@flygoat.com>
-Date: Sat, 8 Aug 2020 21:50:59 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB936E170
+ for <amd-gfx@lists.freedesktop.org>; Sun,  9 Aug 2020 02:11:01 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id x5so4760274wmi.2
+ for <amd-gfx@lists.freedesktop.org>; Sat, 08 Aug 2020 19:11:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=KpAo+FfJlilkpAREGzFNdGpnqlhg3TDH8XYFS3haQrQ=;
+ b=jLoyquRcjzflBE5UT+eONKMUX7r18NEx0dzv0pW8Xg01jtuN8tS2ZCahvOlxUblfku
+ xfDkyPMZdV8DFG3nFniK97PGFDxpLV6B4DHCVyFZ1YydmRJj1scd7+a5XohNLoCnu6xm
+ LUjC0NPMZ8YHUzwtMOXET/hjFvOwVpo/BsnJmjJyFQG6g5vW4AlBY1TPue5XLpxsJdig
+ R9BTrMzDqX5CGvXUnpZRjy+uXBPsCKLJrXKkiTnO4ROVmpb0VYXhB8DkrsD2pgz51yUf
+ OJhoHpP0O0HbJ4iN0+qRp1uSbj9nFrKg9jgey216hxGMFF10HXGDrAEmvZ5Iuk+3tcBr
+ h7ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=KpAo+FfJlilkpAREGzFNdGpnqlhg3TDH8XYFS3haQrQ=;
+ b=OIaPXneA4KzlOjnfNVoILFX6kQJIL/MbD3YaBB7quljt0g4aORDn09LFMoul8QTSn8
+ Tm3It1l7pTXrZyJqtiNDme1OecvA1he71KqZuor/INDA6iNzyA11y1Yj/ItO4q2V/MaJ
+ g8iZuiEYfWVbiTO8ywn44QwjG6KZvd8HsrDc6ZWrhNmSOLkW/XZLHMH+bltnI6oloHfm
+ nylEGD83w50iaanOGUQXwqhKCg3rR27iY8gDTVydek/27426Hx/k5sK8pdY6c7Q1gciT
+ gtc+PpJJAjjsnuCrADwCgoCAyhvqj7At3mcXqJsJLJ1sxOwf+O42BZpydrHmhD6lrMXn
+ pLjA==
+X-Gm-Message-State: AOAM5312MpU3l8pHnCMjbbmBGWtf3PUoXBZ09FB2zWDwX0q0V/jt6kFG
+ 9+IVFOD/9yiFh4vnU6tYqIiwmt+7voA/Euq0oyCiEjBW
+X-Google-Smtp-Source: ABdhPJzXGI5fPvYaPA9bzQykMfsARxFPvljEr5e5RXZfv4wHIbrRK4bKCPVdNGxH7ka/TxGJITjWSd0JLoKovBuLxRs=
+X-Received: by 2002:a1c:40b:: with SMTP id 11mr18941888wme.116.1596939060124; 
+ Sat, 08 Aug 2020 19:11:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200808134147.GA5772@alpha.franken.de>
-Content-Language: en-US
-X-Rspamd-Queue-Id: 9CC79419E4
-X-Spamd-Result: default: False [-0.10 / 10.00]; RCVD_VIA_SMTP_AUTH(0.00)[];
- ARC_NA(0.00)[]; R_DKIM_ALLOW(0.00)[flygoat.com:s=default];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; MIME_GOOD(-0.10)[text/plain];
- R_SPF_SOFTFAIL(0.00)[~all]; ML_SERVERS(-3.10)[213.133.102.83];
- DKIM_TRACE(0.00)[flygoat.com:+];
- DMARC_POLICY_ALLOW(0.00)[flygoat.com,none];
- RCPT_COUNT_SEVEN(0.00)[8];
- RCVD_IN_DNSWL_NONE(0.00)[213.133.102.83:from];
- DMARC_POLICY_ALLOW_WITH_FAILURES(0.00)[];
- RCVD_NO_TLS_LAST(0.10)[]; FROM_EQ_ENVFROM(0.00)[];
- MIME_TRACE(0.00)[0:+];
- ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
- RCVD_COUNT_TWO(0.00)[2]; MID_RHS_MATCH_FROM(0.00)[];
- HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+From: Brandon Wright <bearoso@gmail.com>
+Date: Sat, 8 Aug 2020 21:10:49 -0500
+Message-ID: <CA+3_KcDvzjTwARb1w4d5YfW9Y99ZaxVex+G7R7SzB5SoPsYBpQ@mail.gmail.com>
+Subject: Re: [PATCH 12/15] drm/amd/display: Use hw lock mgr
+To: eryk.brol@amd.com, amd-gfx@lists.freedesktop.org, wyatt.wood@amd.com
 X-Mailman-Approved-At: Sun, 09 Aug 2020 23:59:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -108,39 +57,128 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-mips@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
- Huacai Chen <chenhc@lemote.com>, christian.koenig@amd.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="gbk"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============0558390079=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CgrU2iAyMDIwLzgvOCDPws7nOTo0MSwgVGhvbWFzIEJvZ2VuZG9lcmZlciDQtLXAOgo+IE9uIFNh
-dCwgQXVnIDA4LCAyMDIwIGF0IDAzOjI1OjAyUE0gKzA4MDAsIFRpZXpodSBZYW5nIHdyb3RlOgo+
-PiBMb29uZ3NvbiBwcm9jZXNzb3JzIGhhdmUgYSB3cml0ZWNvbWJpbmUgaXNzdWUgdGhhdCBtYXli
-ZSBmYWlsZWQgdG8KPj4gd3JpdGUgYmFjayBmcmFtZWJ1ZmZlciB1c2VkIHdpdGggQVRJIFJhZGVv
-biBvciBBTUQgR1BVIGF0IHRpbWVzLAo+PiBhZnRlciBjb21taXQgOGEwOGU1MGNlZTY2ICgiZHJt
-OiBQZXJtaXQgdmlkZW8tYnVmZmVycyB3cml0ZWNvbWJpbmUKPj4gbWFwcGluZyBmb3IgTUlQUyIp
-LCB0aGVyZSBleGlzdHMgc29tZSBlcnJvcnMgc3VjaCBhcyBibHVycmVkIHNjcmVlbgo+PiBhbmQg
-bG9ja3VwLCBhbmQgc28gb24uCj4+Cj4+IFJlbW92ZSB0aGUgZmxhZyBUVE1fUExfRkxBR19XQyBv
-ZiBWUkFNIHRvIGZpeCB3cml0ZWNvbWJpbmUgaXNzdWUgZm9yCj4+IExvb25nc29uNjQgdG8gd29y
-ayB3ZWxsIHdpdGggQVRJIFJhZGVvbiBvciBBTUQgR1BVLCBhbmQgaXQgaGFzIG5vIGFueQo+PiBp
-bmZsdWVuY2Ugb24gdGhlIG90aGVyIHBsYXRmb3Jtcy4KPiB3ZWxsIGl0J3Mgbm90IG15IGNhbGwg
-dG8gdGFrZSBvciByZWplY3QgdGhpcyBwYXRjaCwgYnV0IEkgYWxyZWFkeQo+IGluZGljYXRlZCBp
-dCBtaWdodCBiZSBiZXR0ZXIgdG8gZGlzYWJsZSB3cml0ZWNvbWJpbmUgb24gdGhlIENQVQo+IGRl
-dGVjdGlvbiBzaWRlIChvciBkbyB5b3UgaGF2ZSBvdGhlciBkZXZpY2VzIHdoZXJlIHdyaXRlY29t
-YmluaW5nCj4gd29ya3MgPykuIFNvbWV0aGluZyBsaWtlIGJlbG93IHdpbGwgZGlzYmFsZSBpdCBm
-b3IgYWxsIGxvb25nc29uNjQgQ1BVcy4KPiBJZiB5b3Ugbm93IGZpbmQgb3V0IHdoZXJlIGl0IHdv
-cmtzIGFuZCB3aGVyZSBpdCBkb2Vzbid0LCB5b3UgY2FuIGV2ZW4KPiByZWR1Y2UgaXQgdG8gdGhl
-IHJlcXVpcmVkIG1pbml1bSBvZiBhZmZlY3RlZCBDUFVzLgpIaSBUaWV6aHUsIFRob21hcywKClll
-cywgd3JpdGVjb21iaW5lIHdvcmtzIHdlbGwgb24gTFM3QSdzIGludGVybmFsIEdQVS4uLi4KQW5k
-IGV2ZW4gd29ya3Mgd2VsbCB3aXRoIHNvbWUgQU1EIEdQVXMgKGluIG15IGNhc2UsIFJYNTUwKS4K
-ClRpZXpodSwgaXMgaXQgcG9zc2libGUgdG8gaW52ZXN0aWdhdGUgdGhlIGlzc3VlIGRlZXBlciBp
-biBMb29uZ3Nvbj8KUHJvYmFibHkgd2UganVzdCBuZWVkIHRvIGFkZCBzb21lIGJhcnJpZXIgdG8g
-bWFpbnRhaW4gdGhlIGRhdGEgY29oZXJlbmN5LApvciBkaXNhYmxlIHdyaXRlY29tYmluZSBmb3Ig
-QU1EIEdQVSdzIGNvbW1hbmQgYnVmZmVyIGFuZCBsZWF2ZSB0ZXh0dXJlL2ZyYW1lCmJ1ZmZlciB3
-YyBhY2NlbGVyYXRlZC4KClRoYW5rcy4KCi0gSmlheHVuCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vYW1kLWdmeAo=
+--===============0558390079==
+Content-Type: multipart/alternative; boundary="0000000000006823d805ac68597d"
+
+--0000000000006823d805ac68597d
+Content-Type: text/plain; charset="UTF-8"
+
+Just curious, but I noticed this new lock manager isn't being used because
+of the definitive false return value in display/dc/dce/dmub_hw_lock_mgr.c:
+should_use_dmub_lock.
+Was this supposed to be enabled?
+
+From: Wyatt Wood <wyatt.w...@amd.com>
+>
+> [Why]
+> Feature requires synchronization of dig, pipe, and cursor locking
+> between driver and fw.
+>
+> [How]
+> Set flag to force psr to use hw lock mgr.
+>
+> Signed-off-by: Wyatt Wood <wyatt.w...@amd.com>
+> Reviewed-by: Anthony Koo <anthony....@amd.com>
+> Acked-by: Eryk Brol <eryk.b...@amd.com>
+> ---
+>  drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+> b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+> index 82e67bd81f2d..5167d6b8a48d 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+> @@ -233,8 +233,8 @@ static bool dmub_psr_copy_settings(struct dmub_psr *dmub,
+>         copy_settings_data->frame_cap_ind                       =
+> psr_context->psrFrameCaptureIndicationReq;
+>         copy_settings_data->debug.bitfields.visual_confirm      =
+> dc->dc->debug.visual_confirm == VISUAL_CONFIRM_PSR ?
+>                                                                         true :
+> false;
+> +       copy_settings_data->debug.bitfields.use_hw_lock_mgr     = 1;
+>         copy_settings_data->init_sdp_deadline                   =
+> psr_context->sdpTransmitLineNumDeadline;
+> -       copy_settings_data->debug.bitfields.use_hw_lock_mgr     = 0;
+>
+>         dc_dmub_srv_cmd_queue(dc->dmub_srv, &cmd);
+>         dc_dmub_srv_cmd_execute(dc->dmub_srv);
+> --
+> 2.25.1
+>
+>
+
+--0000000000006823d805ac68597d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Just curious, but I noticed this new lock manager isn=
+&#39;t being used because of the definitive false return value in=C2=A0disp=
+lay/dc/dce/dmub_hw_lock_mgr.c:<span style=3D"color:rgb(0,0,0);font-size:13.=
+3333px">should_use_dmub_lock.</span></div><div>Was this supposed to be enab=
+led?</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+<pre style=3D"font-family:courier,&quot;courier new&quot;,monospace;font-si=
+ze:14px;white-space:pre-wrap;margin-top:0px;margin-bottom:0px;color:rgb(0,0=
+,0)">From: Wyatt Wood &lt;<a href=3D"mailto:wyatt.w...@amd.com">wyatt.w...@=
+amd.com</a>&gt;
+
+[Why]
+Feature requires synchronization of dig, pipe, and cursor locking
+between driver and fw.</pre><pre style=3D"font-family:courier,&quot;courier=
+ new&quot;,monospace;font-size:14px;white-space:pre-wrap;margin-top:0px;mar=
+gin-bottom:0px;color:rgb(0,0,0)">[How]
+Set flag to force psr to use hw lock mgr.
+
+Signed-off-by: Wyatt Wood &lt;<a href=3D"mailto:wyatt.w...@amd.com">wyatt.w=
+...@amd.com</a>&gt;
+Reviewed-by: Anthony Koo &lt;<a href=3D"mailto:anthony....@amd.com">anthony=
+....@amd.com</a>&gt;
+Acked-by: Eryk Brol &lt;<a href=3D"mailto:eryk.b...@amd.com">eryk.b...@amd.=
+com</a>&gt;
+---
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c=20
+b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+index 82e67bd81f2d..5167d6b8a48d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+@@ -233,8 +233,8 @@ static bool dmub_psr_copy_settings(struct dmub_psr *dmu=
+b,
+        copy_settings_data-&gt;frame_cap_ind                       =3D=20
+psr_context-&gt;psrFrameCaptureIndicationReq;
+        copy_settings_data-&gt;debug.bitfields.visual_confirm      =3D=20
+dc-&gt;dc-&gt;debug.visual_confirm =3D=3D VISUAL_CONFIRM_PSR ?
+                                                                        tru=
+e :=20
+false;
++       copy_settings_data-&gt;debug.bitfields.use_hw_lock_mgr     =3D 1;
+        copy_settings_data-&gt;init_sdp_deadline                   =3D=20
+psr_context-&gt;sdpTransmitLineNumDeadline;
+-       copy_settings_data-&gt;debug.bitfields.use_hw_lock_mgr     =3D 0;
+=20
+        dc_dmub_srv_cmd_queue(dc-&gt;dmub_srv, &amp;cmd);
+        dc_dmub_srv_cmd_execute(dc-&gt;dmub_srv);
+--=20
+2.25.1</pre></blockquote></div>
+
+--0000000000006823d805ac68597d--
+
+--===============0558390079==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0558390079==--
