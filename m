@@ -2,36 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A748240DA4
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Aug 2020 21:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44753240DAB
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Aug 2020 21:10:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E53DA89FF7;
-	Mon, 10 Aug 2020 19:09:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95DB96E0A1;
+	Mon, 10 Aug 2020 19:10:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E54E589FE8;
- Mon, 10 Aug 2020 19:09:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCA1E89C08;
+ Mon, 10 Aug 2020 19:10:05 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id B6094221E2;
- Mon, 10 Aug 2020 19:09:51 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id BF04322B47;
+ Mon, 10 Aug 2020 19:10:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1597086592;
- bh=D3e2sCJnG9+J5kUil6HoKlVF6yIWV36S5MEhl2IJmDg=;
+ s=default; t=1597086605;
+ bh=T0tVjBCCXbNXEeU92uTxmw1N0dDtQvtH7f6NELAnp1Y=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ewiMCR0tjKgmc4isYmGv3N/dowGjUcVcyuPYXylQHMwijXcmrDRlrNZUYECbXeqY2
- Ig3Sx2qmNJZnAOXeJMfStIr9e5gTooDRrnL6xrYzuIPK0md85Nsgqtf1oNhneCJEKn
- NpbwdBR6OmxDoPsF2fF+pZmaOMQ69JvSj0gt42/w=
+ b=XmercCbQgD1u+sH56W6H+MuOxptXryH2jPIRg3CnxZXjPargev4FA4c8Nhfu+bRIS
+ JX3/nKwJ2S52n5GvdlS6oaonntGRt01oCzb/YDiJPtA0pI6cCWXCzGygBmb4ucv+ja
+ 7RNmSeJuvhr3ORfitahVuvbSnrqOqZgRKsazLQhc=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.8 39/64] drm/amd/powerplay: fix compile error with
- ARCH=arc
-Date: Mon, 10 Aug 2020 15:08:34 -0400
-Message-Id: <20200810190859.3793319-39-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.8 48/64] drm/amd/powerplay: suppress compile error
+ around BUG_ON
+Date: Mon, 10 Aug 2020 15:08:43 -0400
+Message-Id: <20200810190859.3793319-48-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200810190859.3793319-1-sashal@kernel.org>
 References: <20200810190859.3793319-1-sashal@kernel.org>
@@ -49,9 +49,9 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, kernel test robot <lkp@intel.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
+ Evan Quan <evan.quan@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
@@ -59,39 +59,66 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Evan Quan <evan.quan@amd.com>
 
-[ Upstream commit 9822ba2ead1baa3de4860ad9472f652c4cc78c9c ]
+[ Upstream commit 75bc07e2403caea9ecac69f766dfb7dc33547594 ]
 
-Fix the compile error below:
-drivers/gpu/drm/amd/amdgpu/../powerplay/smu_v11_0.c: In function 'smu_v11_0_init_microcode':
+To suppress the compile error below for "ARCH=arc".
+   drivers/gpu/drm/amd/amdgpu/../powerplay/arcturus_ppt.c: In function 'arcturus_fill_eeprom_i2c_req':
 >> arch/arc/include/asm/bug.h:22:2: error: implicit declaration of function 'pr_warn'; did you mean 'pci_warn'? [-Werror=implicit-function-declaration]
       22 |  pr_warn("BUG: failure at %s:%d/%s()!\n", __FILE__, __LINE__, __func__); \
          |  ^~~~~~~
-drivers/gpu/drm/amd/amdgpu/../powerplay/smu_v11_0.c:176:3: note: in expansion of macro 'BUG'
-     176 |   BUG();
+   include/asm-generic/bug.h:62:57: note: in expansion of macro 'BUG'
+      62 | #define BUG_ON(condition) do { if (unlikely(condition)) BUG(); } while (0)
+         |                                                         ^~~
+   drivers/gpu/drm/amd/amdgpu/../powerplay/arcturus_ppt.c:2157:2: note: in expansion of macro 'BUG_ON'
+    2157 |  BUG_ON(numbytes > MAX_SW_I2C_COMMANDS);
 
-Reported-by: kernel test robot <lkp@intel.com>
 Signed-off-by: Evan Quan <evan.quan@amd.com>
 Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/powerplay/smu_v11_0.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/powerplay/arcturus_ppt.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-index aa76c2cea7471..7897be877b961 100644
---- a/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/powerplay/smu_v11_0.c
-@@ -164,7 +164,8 @@ int smu_v11_0_init_microcode(struct smu_context *smu)
- 		chip_name = "navi12";
- 		break;
- 	default:
--		BUG();
-+		dev_err(adev->dev, "Unsupported ASIC type %d\n", adev->asic_type);
-+		return -EINVAL;
- 	}
+diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+index 27c5fc9572b27..e4630a76d7bf5 100644
+--- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
++++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
+@@ -2042,8 +2042,6 @@ static void arcturus_fill_eeprom_i2c_req(SwI2cRequest_t  *req, bool write,
+ {
+ 	int i;
  
- 	snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_smc.bin", chip_name);
+-	BUG_ON(numbytes > MAX_SW_I2C_COMMANDS);
+-
+ 	req->I2CcontrollerPort = 0;
+ 	req->I2CSpeed = 2;
+ 	req->SlaveAddress = address;
+@@ -2081,6 +2079,12 @@ static int arcturus_i2c_eeprom_read_data(struct i2c_adapter *control,
+ 	struct smu_table_context *smu_table = &adev->smu.smu_table;
+ 	struct smu_table *table = &smu_table->driver_table;
+ 
++	if (numbytes > MAX_SW_I2C_COMMANDS) {
++		dev_err(adev->dev, "numbytes requested %d is over max allowed %d\n",
++			numbytes, MAX_SW_I2C_COMMANDS);
++		return -EINVAL;
++	}
++
+ 	memset(&req, 0, sizeof(req));
+ 	arcturus_fill_eeprom_i2c_req(&req, false, address, numbytes, data);
+ 
+@@ -2117,6 +2121,12 @@ static int arcturus_i2c_eeprom_write_data(struct i2c_adapter *control,
+ 	SwI2cRequest_t req;
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+ 
++	if (numbytes > MAX_SW_I2C_COMMANDS) {
++		dev_err(adev->dev, "numbytes requested %d is over max allowed %d\n",
++			numbytes, MAX_SW_I2C_COMMANDS);
++		return -EINVAL;
++	}
++
+ 	memset(&req, 0, sizeof(req));
+ 	arcturus_fill_eeprom_i2c_req(&req, true, address, numbytes, data);
+ 
 -- 
 2.25.1
 
