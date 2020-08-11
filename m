@@ -2,91 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB616241DF2
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Aug 2020 18:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D303241E87
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Aug 2020 18:44:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F2816E5C0;
-	Tue, 11 Aug 2020 16:14:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A16356E7D3;
+	Tue, 11 Aug 2020 16:44:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam07on2059.outbound.protection.outlook.com [40.107.95.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E858B6E5C0
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Aug 2020 16:14:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jxOQpbIRbME8+U1VhVgYyUMdn4Tz0Y26iGzvc0f9Cj5qrcGvkEr9Shoxa09n1ZqTClxgPt4oyOYXXyYm2gO0EakODcxhYGdXHGpvsVSD0h51wLrQvQnfrU3fQvskZg1UNpaLQ+hvunlOFd6NNvpA5po5+Fhl2NEzhwLCXHl1nethULZzmm7ARdW10jG4Gw+Y/EI5q+R5m/DoLi1r9ZQVnbhZoIEBv7gcR98G1Sq01Z+1XkK1T6kn4Gf6xvR3+d7uwcYiEvTlpbcT8T7XGFm8iYkO6+0kY4/0hjv+LVZ7yDowlFekLj9OVu8mIwMs1PpAQiFKAnupVcjliAW39QVtbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nK10fMUnKbywoMNYNlu4V4ACZz9sNRf94tPZhFXvYPk=;
- b=PTK5FR6pSyRxQyYok2IwF22gixAg3QLOkkRST4G9jmwDC0X6FtEHzBhju08UMiBG854zyw38MbKsMqWbhDobryS07Dcm2SLHNPAEfl2p0XRgXY4Y6VI2UuRbsb9SJ7c9QX8QdV2FFYsPFsy8ga6EY0Ag0Lpu8rYQIcJ8Y7PHzo8JrSp33y4UuBd0cHu0Yqqa5GcBVM3hl0SP4umeO+j6ATgRIIFAA1STl+XpyDWBoFRrYUWhBHe5d/52209IoV01Z2ukS8GLXFv8mZbP5IQ7QZfRQtFvhDsnlKCJdqR3YGvU1cqw+KCGQYoOkaKjDflq1gVHCevGVHsrl4aGyOdlOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nK10fMUnKbywoMNYNlu4V4ACZz9sNRf94tPZhFXvYPk=;
- b=LcwZDkqOCtn5IJJVIS5FJW2MIfZ6/QZ0JYovPj7n7oQaojAFDWEzU8yK42pWXCOXPhJRawOVBVzSahhRq7s41hp0UzH/qHVXLdyTnT5o5y82QUEyLX76AFRhhZUNmAfeWmDSEkqcTvVdM+i9JyNNHCAvtCO+WQG3vglXD27HLaA=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3916.namprd12.prod.outlook.com (2603:10b6:5:1ca::21)
- by DM6PR12MB4138.namprd12.prod.outlook.com (2603:10b6:5:220::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.19; Tue, 11 Aug
- 2020 16:14:08 +0000
-Received: from DM6PR12MB3916.namprd12.prod.outlook.com
- ([fe80::e8b8:d8a1:5adb:614d]) by DM6PR12MB3916.namprd12.prod.outlook.com
- ([fe80::e8b8:d8a1:5adb:614d%4]) with mapi id 15.20.3261.024; Tue, 11 Aug 2020
- 16:14:08 +0000
-Subject: Re: [PATCH] drm/amdgpu: note what type of reset we are using
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com
+ [IPv6:2a00:1450:4864:20::643])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60A8A6E5D3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Aug 2020 16:44:14 +0000 (UTC)
+Received: by mail-ej1-x643.google.com with SMTP id d6so13806397ejr.5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Aug 2020 09:44:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=UgjfvW4Z6Qlf7cbvuqd5sMGzC3IZvfRU5v1wckPL0TE=;
+ b=axsQnJGgtMKSSgoVbtpvyt5poQ9YgDuxlRh2zfXXvxXOlcoQMvbvnyuTR/66owAjG0
+ 0O1LIHNmoNnOcHmX7Fvx6HAB7nGgUq8Hnx+wpKRQoqMJwV1DMfXyXlTKGwbZfNSguX8g
+ khk1kpRpp/3xvVsKwOdo34SkmMk4dApCCTiDUTDzFO0PhP77yDpxmYkUARlxGyE500BO
+ Fc9KjrFpIsBoyaNp9JJl4Uyg1ymB0iwWt+AoK8A7CTyNXKj43UzGtKEJnm9eQr/wsmm2
+ ovSRpyuB7kyiZO+Cdg4HAaXyQ+aDgq5FQHjUlo4uLS8eChR+hvBf7vJTjM0wCaysMWLX
+ kyBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=UgjfvW4Z6Qlf7cbvuqd5sMGzC3IZvfRU5v1wckPL0TE=;
+ b=cASHjlpCsMoDC+AMjm61nRMhfcVYPlh/H/jE1AoqAHsup7+zb1bXYtBOfi+ZI+oud2
+ 0Ya+Om5e0vp6KaxVByvW2WV6b82eJC2ak1AWTMfooGTurthazA+NL+OLZCn7zqr5tQyd
+ wXNri1GXm345ZfYqmZplsNxwVbj/cVhbA0LI4ZbPqZJRrOe2MMehMpn9Y6KFjSS0etgg
+ LVhDr2I5Zndi7ybB3boG5QA6DthowYKbSaBQDBYsOumuKJZFYqH4D+MI47fC2tEEQDmF
+ B6DG61i+MZ6IO2+6/Z0uyI3tvjSHdFYKZnqQTnSOs465lLCSSmgAyRDCcEGEbyA3Qbgd
+ bG9w==
+X-Gm-Message-State: AOAM533pq3QFrFUSCgPpGSslMuBvs8rLKmuJKBJD3EfB5ZCl/A+HJc4s
+ JQ70+lqqzqX14H4tZVD2Oxo=
+X-Google-Smtp-Source: ABdhPJwQUdOJXUt5GNqKFTG1GjkB4v+/SAImttGylhnRfl5Y80YZhO3noO19TzGXSaZV8Jtj1XXXew==
+X-Received: by 2002:a17:906:5ac8:: with SMTP id
+ x8mr26989637ejs.486.1597164253025; 
+ Tue, 11 Aug 2020 09:44:13 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id i26sm14604286edv.70.2020.08.11.09.44.11
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 11 Aug 2020 09:44:12 -0700 (PDT)
+Subject: Re: [PATCH] drm/amdgpu: print where we get the vbios image from
 To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
 References: <20200811160457.1073325-1-alexander.deucher@amd.com>
- <20200811160457.1073325-2-alexander.deucher@amd.com>
-From: Nirmoy <nirmodas@amd.com>
-Message-ID: <1579beb2-5cc4-624a-e211-3f2681374be7@amd.com>
-Date: Tue, 11 Aug 2020 18:17:31 +0200
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <74eff14a-9a37-1d92-da49-fc3e53d5bf5e@gmail.com>
+Date: Tue, 11 Aug 2020 18:44:09 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
-In-Reply-To: <20200811160457.1073325-2-alexander.deucher@amd.com>
-Content-Language: en-US
-X-ClientProxiedBy: AM0PR10CA0045.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:150::25) To DM6PR12MB3916.namprd12.prod.outlook.com
- (2603:10b6:5:1ca::21)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.178.87] (217.86.98.104) by
- AM0PR10CA0045.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:150::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.18 via Frontend
- Transport; Tue, 11 Aug 2020 16:14:07 +0000
-X-Originating-IP: [217.86.98.104]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 90a18109-6382-47b7-b84a-08d83e11936c
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4138:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB41381B95F23BD64B300554F58B450@DM6PR12MB4138.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MhXZcNS4HbPGJlnMosvue9tH1+jRPber5Pk0cahZfjO54sQvKlvVlb37dtz0o7MLNK7cVh1s4ks5ezWkCtnw1Muf0DeG3baO/8HkHC5dwvOHSp1YnqEBl7j/hkTibWdzAH/Pm4jvMnEcO3Z6VVatEJJsV90RzDF82Gfv4Eg/qINWpyZfhDSEiFKcKB4HSvf/dncfLcSasDHjhGEQMXEsxVDGjj+xOFhM/cv0hxh23H1cPLYDkSC7QIDa/XV4u//LMgC0hKy1NtNsO5SH9YTjHK7c1LbKIdbghsw0UwiKmJETenqIRihk3cDx5nFpUQz0ku/NFIUzoWDREGkW6DsySPPRsilrBs+zAuxvhsc+BYiGnx2F439uH9sJP62DTsMY
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3916.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(366004)(136003)(376002)(346002)(396003)(39860400002)(66556008)(66946007)(66476007)(53546011)(8676002)(52116002)(16576012)(2906002)(31696002)(478600001)(83380400001)(36756003)(6666004)(26005)(31686004)(5660300002)(316002)(6486002)(186003)(956004)(2616005)(8936002)(4326008)(16526019)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: qhTeoCQnKov0SqjGTV8G3/IVBEtGOcagOMbaAQn1uQ/6PX8PU8s9AU1JNkZGUUfbKDIty+8oEVV5ZUVh6wMViXRYNfTIT6bSRGxGxS0q5JD6Ta902U1m6GE00q5wLe5LFawqJ3+NtkpsIjXPYk1WnT5vj0NsJ6J3aFboSWZBDtB6q6Z1KLlv6wzM6YVD+dGJ5yI1+3pQTwJr/Wk2p6Na+VrBUVqjYauWpsJjzbZnsII7yU/ADDT0tQWRuW/ooEhLZtzDYSaBYfO7CL0/Y4fyMEUlUQ6/vcOa0I6+/QGEiOBzVpcRpkr7S/1lZe8IOewkTvsPyvrCjeMwlGni79kKLZXNCnQihG9eZBk/konGqA/CTD5pUvkS9NwOf7JDPav8/1j6W+9QAEljZ2mW58zJD0XahQzVMoY6qv+vzw5h/YBBvZEIEv04Y6wfRpadWXRusj9velhaJEIkOaCp2SsB+9LRwWeuW/IS+wfZ7KlIh5akEVdPq8YkJITAVslhbnq23mq4ojQkvVLjb928nABvyEWHP1vLmDca9TL21pajY0g1rGRbtrSYEvfLySlK8uI/2DVky/yP2HM0o4oSOgqP7Rhhs7DoKRjwu0uxf9jTTnopU238WVupzXGam7P8+DlOKafOKt0mEE4Ai8fO8XP5+g==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90a18109-6382-47b7-b84a-08d83e11936c
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3916.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2020 16:14:08.3955 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: W4GKf1SqENYlbVzYugp424Yykjj/EUX8XPrKRBZ15DAU1Ii6mWiAA6QiGhm+juFgRqJ+2vr+fSLRxxgVG7yUTw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4138
+In-Reply-To: <20200811160457.1073325-1-alexander.deucher@amd.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,116 +70,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: christian.koenig@amd.com
 Cc: Alex Deucher <alexander.deucher@amd.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Acked-by: Nirmoy Das <nirmoy.das@amd.com> for both patches.
-
-On 8/11/20 6:04 PM, Alex Deucher wrote:
-> When we reset the GPU, note what type of reset will be
-> used.  This makes debugging different reset scenarios
-> more clear as the driver may use different reset
-> methods depending on conditions on the system.
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/cik.c   | 2 ++
->   drivers/gpu/drm/amd/amdgpu/nv.c    | 6 ++++--
->   drivers/gpu/drm/amd/amdgpu/si.c    | 2 ++
->   drivers/gpu/drm/amd/amdgpu/soc15.c | 3 +++
->   drivers/gpu/drm/amd/amdgpu/vi.c    | 2 ++
->   5 files changed, 13 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/cik.c b/drivers/gpu/drm/amd/amdgpu/cik.c
-> index c2c67ab68a43..7e71ffbca93d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/cik.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/cik.c
-> @@ -1366,8 +1366,10 @@ static int cik_asic_reset(struct amdgpu_device *adev)
->   	int r;
->   
->   	if (cik_asic_reset_method(adev) == AMD_RESET_METHOD_BACO) {
-> +		dev_info(adev->dev, "BACO reset\n");
->   		r = amdgpu_dpm_baco_reset(adev);
->   	} else {
-> +		dev_info(adev->dev, "PCI CONFIG reset\n");
->   		r = cik_asic_pci_config_reset(adev);
->   	}
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-> index da8024c2826e..54e941e0db60 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/nv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-> @@ -379,7 +379,7 @@ static int nv_asic_reset(struct amdgpu_device *adev)
->   	struct smu_context *smu = &adev->smu;
->   
->   	if (nv_asic_reset_method(adev) == AMD_RESET_METHOD_BACO) {
-> -		dev_info(adev->dev, "GPU BACO reset\n");
-> +		dev_info(adev->dev, "BACO reset\n");
->   
->   		ret = smu_baco_enter(smu);
->   		if (ret)
-> @@ -387,8 +387,10 @@ static int nv_asic_reset(struct amdgpu_device *adev)
->   		ret = smu_baco_exit(smu);
->   		if (ret)
->   			return ret;
-> -	} else
-> +	} else {
-> +		dev_info(adev->dev, "MODE1 reset\n");
->   		ret = nv_asic_mode1_reset(adev);
-> +	}
->   
->   	return ret;
->   }
-> diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
-> index e330884edd19..eaa2f071b139 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/si.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/si.c
-> @@ -1302,6 +1302,8 @@ static int si_asic_reset(struct amdgpu_device *adev)
->   {
->   	int r;
->   
-> +	dev_info(adev->dev, "PCI CONFIG reset\n");
-> +
->   	amdgpu_atombios_scratch_regs_engine_hung(adev, true);
->   
->   	r = si_gpu_pci_config_reset(adev);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-> index 84d811b6e48b..3cd98c144bc6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-> @@ -580,10 +580,13 @@ static int soc15_asic_reset(struct amdgpu_device *adev)
->   
->   	switch (soc15_asic_reset_method(adev)) {
->   		case AMD_RESET_METHOD_BACO:
-> +			dev_info(adev->dev, "BACO reset\n");
->   			return soc15_asic_baco_reset(adev);
->   		case AMD_RESET_METHOD_MODE2:
-> +			dev_info(adev->dev, "MODE2 reset\n");
->   			return amdgpu_dpm_mode2_reset(adev);
->   		default:
-> +			dev_info(adev->dev, "MODE1 reset\n");
->   			return soc15_asic_mode1_reset(adev);
->   	}
->   }
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c b/drivers/gpu/drm/amd/amdgpu/vi.c
-> index f6f2ed0830b1..f03314300ae3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vi.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vi.c
-> @@ -752,8 +752,10 @@ static int vi_asic_reset(struct amdgpu_device *adev)
->   	int r;
->   
->   	if (vi_asic_reset_method(adev) == AMD_RESET_METHOD_BACO) {
-> +		dev_info(adev->dev, "BACO reset\n");
->   		r = amdgpu_dpm_baco_reset(adev);
->   	} else {
-> +		dev_info(adev->dev, "PCI CONFIG reset\n");
->   		r = vi_asic_pci_config_reset(adev);
->   	}
->   
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+QW0gMTEuMDguMjAgdW0gMTg6MDQgc2NocmllYiBBbGV4IERldWNoZXI6Cj4gQUNQSSwgUk9NLCBQ
+Q0kgQkFSLCBldGMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5k
+ZXVjaGVyQGFtZC5jb20+CgpSZXZpZXdlZC1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFu
+LmtvZW5pZ0BhbWQuY29tPgoKPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
+ZGdwdV9iaW9zLmMgfCAyOCArKysrKysrKysrKysrKysrKystLS0tLS0KPiAgIDEgZmlsZSBjaGFu
+Z2VkLCAyMSBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfYmlvcy5jCj4gaW5kZXggYjExNzJkOTNjOTljLi42MzMzY2FkYTFl
+MDkgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Jpb3Mu
+Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9iaW9zLmMKPiBAQCAt
+NDE3LDI2ICs0MTcsNDAgQEAgc3RhdGljIGlubGluZSBib29sIGFtZGdwdV9hY3BpX3ZmY3RfYmlv
+cyhzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKPiAgIAo+ICAgYm9vbCBhbWRncHVfZ2V0X2Jp
+b3Moc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gICB7Cj4gLQlpZiAoYW1kZ3B1X2F0cm1f
+Z2V0X2Jpb3MoYWRldikpCj4gKwlpZiAoYW1kZ3B1X2F0cm1fZ2V0X2Jpb3MoYWRldikpIHsKPiAr
+CQlkZXZfaW5mbyhhZGV2LT5kZXYsICJGZXRjaGVkIFZCSU9TIGZyb20gQVRSTVxuIik7Cj4gICAJ
+CWdvdG8gc3VjY2VzczsKPiArCX0KPiAgIAo+IC0JaWYgKGFtZGdwdV9hY3BpX3ZmY3RfYmlvcyhh
+ZGV2KSkKPiArCWlmIChhbWRncHVfYWNwaV92ZmN0X2Jpb3MoYWRldikpIHsKPiArCQlkZXZfaW5m
+byhhZGV2LT5kZXYsICJGZXRjaGVkIFZCSU9TIGZyb20gVkZDVFxuIik7Cj4gICAJCWdvdG8gc3Vj
+Y2VzczsKPiArCX0KPiAgIAo+IC0JaWYgKGlncF9yZWFkX2Jpb3NfZnJvbV92cmFtKGFkZXYpKQo+
+ICsJaWYgKGlncF9yZWFkX2Jpb3NfZnJvbV92cmFtKGFkZXYpKSB7Cj4gKwkJZGV2X2luZm8oYWRl
+di0+ZGV2LCAiRmV0Y2hlZCBWQklPUyBmcm9tIFZSQU0gQkFSXG4iKTsKPiAgIAkJZ290byBzdWNj
+ZXNzOwo+ICsJfQo+ICAgCj4gLQlpZiAoYW1kZ3B1X3JlYWRfYmlvcyhhZGV2KSkKPiArCWlmIChh
+bWRncHVfcmVhZF9iaW9zKGFkZXYpKSB7Cj4gKwkJZGV2X2luZm8oYWRldi0+ZGV2LCAiRmV0Y2hl
+ZCBWQklPUyBmcm9tIFJPTSBCQVJcbiIpOwo+ICAgCQlnb3RvIHN1Y2Nlc3M7Cj4gKwl9Cj4gICAK
+PiAtCWlmIChhbWRncHVfcmVhZF9iaW9zX2Zyb21fcm9tKGFkZXYpKQo+ICsJaWYgKGFtZGdwdV9y
+ZWFkX2Jpb3NfZnJvbV9yb20oYWRldikpIHsKPiArCQlkZXZfaW5mbyhhZGV2LT5kZXYsICJGZXRj
+aGVkIFZCSU9TIGZyb20gUk9NXG4iKTsKPiAgIAkJZ290byBzdWNjZXNzOwo+ICsJfQo+ICAgCj4g
+LQlpZiAoYW1kZ3B1X3JlYWRfZGlzYWJsZWRfYmlvcyhhZGV2KSkKPiArCWlmIChhbWRncHVfcmVh
+ZF9kaXNhYmxlZF9iaW9zKGFkZXYpKSB7Cj4gKwkJZGV2X2luZm8oYWRldi0+ZGV2LCAiRmV0Y2hl
+ZCBWQklPUyBmcm9tIGRpc2FibGVkIFJPTSBCQVJcbiIpOwo+ICAgCQlnb3RvIHN1Y2Nlc3M7Cj4g
+Kwl9Cj4gICAKPiAtCWlmIChhbWRncHVfcmVhZF9wbGF0Zm9ybV9iaW9zKGFkZXYpKQo+ICsJaWYg
+KGFtZGdwdV9yZWFkX3BsYXRmb3JtX2Jpb3MoYWRldikpIHsKPiArCQlkZXZfaW5mbyhhZGV2LT5k
+ZXYsICJGZXRjaGVkIFZCSU9TIGZyb20gcGxhdGZvcm1cbiIpOwo+ICAgCQlnb3RvIHN1Y2Nlc3M7
+Cj4gKwl9Cj4gICAKPiAgIAlEUk1fRVJST1IoIlVuYWJsZSB0byBsb2NhdGUgYSBCSU9TIFJPTVxu
+Iik7Cj4gICAJcmV0dXJuIGZhbHNlOwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
+bWQtZ2Z4Cg==
