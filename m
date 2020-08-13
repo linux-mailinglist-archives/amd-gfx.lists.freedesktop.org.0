@@ -2,48 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26CB22440BC
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 Aug 2020 23:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0662440B4
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 Aug 2020 23:35:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FF866E142;
-	Thu, 13 Aug 2020 21:35:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 518406E25F;
+	Thu, 13 Aug 2020 21:35:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
  (mail-bn7nam10on2059.outbound.protection.outlook.com [40.107.92.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6ACF6E142
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BE336E142
  for <amd-gfx@lists.freedesktop.org>; Thu, 13 Aug 2020 21:35:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Igv0HOh9amBReNsZKRiJ7/atIzpgcQcf8fG8KLpukljckKaXNl1yx0Ekn1jf1ND3zPzg5p8TuPPNZUCLQRPre1mAYYO2WCHxnpBabcjtpzlc49SHp+oa9l83dOckiGuZ7C5On5NhcLhBRn17FNaq21+beIH9p8BW42bFjyzO8zwD+EcCovELZjQoETsPZJM5KbYq5N4jc+waZIxZElAzOOhU+BfkqFLaXTyA1g0JMtvMxdLur/GYObCyQNfu1ms3QQfSnipE0puLNDcTcL/IAnvj2cbwR0G2Q0qA//JnmteAPKPh7mGEaFrFqxT7ZDzh16MwsYd3jzKOCH8XDK7HfA==
+ b=gHRgmN9psbd+ueAMBYcilpogVu7thEwYh1SaAeCgZMd5eC8YnM0uYB65wGID89x34lAuYs21WISZ4b/weu42n7EqtkmkScPorLg7YLLqsv4fcBTpjrYIKgD8iRdHu5QEgkRYh6aiwzlBvcHdYXu6RcvrYwRx8TMMwgjAi/4pBULiCsxXBF2Mfu1pqvOqUatzYe7DnoX422rH3foDWZfJ8M0Tbrc+RMgHAYtyCBRfrrN8sKT22xy+OxedFLOIi0IH4c7kV/GFCZbMOnqZYYJl011SnoHZ7GicVxR53AS2NyMevGUpQQAN7DhX3Xv647Bb62bDBcspLtWihvg8yjuSjA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WYxOncoxj0HCzXOfg5vuhpL4dgvW7BRd3OCm9ZEL/sI=;
- b=IQmqo6ITQjiHuJ2TLui/kzBv0BhAMEV4eossl5ZnqNjnrgAFS5YLnRCtKiRp4XTmlV41EmFdb1rH5nSrlDLNH3QQ1Cy2X7JbDp6sBStmgkOs6rZ8/U7/ZKRKR5s/NowtK2G/1MEabIxJoBmYU3aOS8Ebpq1BTgGUp0Lq5nDFHjpJfvGaNa9EXkwnb/pBeIvXt+zW9R3AZxR2c26FSBQeyAmCJ+KmBqY4fGDKhoenyQYcMJ5CfrNw573YYxLwkgVXcMfB6K/QutD7RxQq5dJxM3ZinVGhXVjRogynBsaJj45YncPvI0FMR0uDGYcL4irQcjDxAmymo2SbEjb/bXCgpA==
+ bh=ScPPtFGjBldxSKtkhsxpGXqclgLkB+oMTVO/Ya9VkxY=;
+ b=Sc+c5osRPUUWNRKrzQid/N/OOxQ0dyRbTyyTLWktbQq9qd94hzLbLWzSPYFS492qUL0nmOyiRLiAGA850s3s2c1asghfgyV3yzDZhRM1VyGkIHzHvDfrzerViwlXvMb4IFc1ZGGtuWRRFK4WhqIehco7uwsVzQFx5bRDKL4sYHMtUqQd9Sfpv2Q9g7TpvVdL9LwhjgwM4RAvPb4Wqi3s/UgyOrV87iENZacFl94BpwM7z5zwaP96RPUD0kzOx3pJ0nEVi/Z/DILi5uepa9mDUY5sjw5HV7uabmnuOqPLXzEqq83S5MbBxtNI/11PW8RDaGSEkGVX5kUGZh6x3eFJ1Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WYxOncoxj0HCzXOfg5vuhpL4dgvW7BRd3OCm9ZEL/sI=;
- b=Glabx438q9itcK1uri5ZveEgUQqPDq7e9HN5+dWQr9eP+blbcbqL19VQilJOA1oPrdiKR9TxDwO6coVHUihbqiJBRkKvXwwPTn0BBv9MZl8xUqd+YHMzDm2WovF4cMvub06GQPTORcmlCxuapioBz0xgsKfPK95kmQ8eH9nFhzI=
+ bh=ScPPtFGjBldxSKtkhsxpGXqclgLkB+oMTVO/Ya9VkxY=;
+ b=kYI4zHknjOn5MxVkHwxn7SUiAnTzJv+wKAsWUh3X+MveF5L1QB6gb6jIdzyZIeDzfwLgcFKFCWwNsDHoMnMngOfxEEHUilDGpTVT9ww3hUy3OeYVFVjLJEkOS00wtgpxtWmIdrGDH93Qz8t9NGmFGH8mh0j6V9JbeRthZsM3whk=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from DM6PR12MB4124.namprd12.prod.outlook.com (2603:10b6:5:221::20)
  by DM5PR12MB1355.namprd12.prod.outlook.com (2603:10b6:3:6e::7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3261.19; Thu, 13 Aug 2020 21:35:29 +0000
+ 15.20.3261.19; Thu, 13 Aug 2020 21:35:30 +0000
 Received: from DM6PR12MB4124.namprd12.prod.outlook.com
  ([fe80::75f2:ebaa:bca6:3db7]) by DM6PR12MB4124.namprd12.prod.outlook.com
  ([fe80::75f2:ebaa:bca6:3db7%9]) with mapi id 15.20.3283.016; Thu, 13 Aug 2020
  21:35:29 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/17] drm/amd/display: Change ABM config init interface
-Date: Thu, 13 Aug 2020 17:33:45 -0400
-Message-Id: <20200813213356.1606886-7-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 07/17] drm/amd/display: Fix DFPstate hang due to view port
+ changed
+Date: Thu, 13 Aug 2020 17:33:46 -0400
+Message-Id: <20200813213356.1606886-8-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20200813213356.1606886-1-Rodrigo.Siqueira@amd.com>
 References: <20200813213356.1606886-1-Rodrigo.Siqueira@amd.com>
@@ -55,34 +56,34 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60::2db6) by
  YTBPR01CA0005.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::18) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3283.15 via Frontend Transport; Thu, 13 Aug 2020 21:35:28 +0000
+ 15.20.3283.15 via Frontend Transport; Thu, 13 Aug 2020 21:35:29 +0000
 X-Mailer: git-send-email 2.28.0
 X-Originating-IP: [2607:fea8:56e0:6d60::2db6]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 6e88e743-09dc-4c16-0d1a-08d83fd0cc65
+X-MS-Office365-Filtering-Correlation-Id: 2fd06817-f07b-4877-4be3-08d83fd0ccd7
 X-MS-TrafficTypeDiagnostic: DM5PR12MB1355:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1355D2AECDF64E3D7AD5BA9E98430@DM5PR12MB1355.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:311;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB13551215CA2D4CB03A8BEF0998430@DM5PR12MB1355.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: U0b6qniyg6dKq1rmIQpt8SgXJbv0C4iHXU0im8o4r26Wawu89cpAWQy+lchtFYEX6uDUfeCNkfwlZ3+vDhkYa6fh6blObR01sYW7ijbMOWI5ICab2S2wOmsTQ56oALXgAHD3e5UXme5p6f9Cbj+R+mArgnQuIx8cIEto19dN1WKnaLGhxXk64JlMvd7wLTh9FcxxeU4a0bvLXqOlDAmjDW7/35dzgwiL+f8KN2+jVB/rNsxqoQUBME5DnZ2d4TlzXgFR/HTWOvKnvMLlWAmu+G8Zc1STXERGpPmrp8YaMZz9erHk4EFwuHa/dz38DN84
+X-Microsoft-Antispam-Message-Info: vdsWrRXeVU3bJ0gF+/6LVIOYj2nev3JlXD4GY3/KBG9bRIciF3KqQ0iICXc2z0PK+GMRUujyPJgZKxBsqp2LkKU08f0pzFWhEHMj3KugCdDd2dvMdT/+WiivHnfNXmTGKmcvqJchi5oByXuGgRDWLBwIAPRoneq4CE6h/i6FmVVpW6ipLTC+qxpNdcTMC5tY8vW1rRiXO6SW+6q0kafAPbvTCzP6KNvPrgHUT3lHOZ/zjFeopUs73RNkPGdCNNX8JOBUZBjP8a8TfbhAOdcBUDbKkq2V2BhnttMgg3v0n4Qoap4hQbjDFyFVNq1HBC8Vvu3KNb9XSzMIFR6nIfkfgw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB4124.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
  SFS:(4636009)(366004)(39860400002)(346002)(376002)(396003)(136003)(2616005)(6512007)(83380400001)(6486002)(4326008)(316002)(478600001)(1076003)(6916009)(66476007)(66556008)(36756003)(52116002)(66946007)(2906002)(6506007)(8676002)(6666004)(54906003)(16526019)(8936002)(5660300002)(186003)(86362001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: ucISJC7xuuenDJjM9SyfOCCAJWkBRQclvzQ7l50KghNEKS56CvhawZ5IrDcRL7yT46iCgcu2xtqysqGI61zz5yL/pifZafTWc+1CRtTooobj+GPsxEit+SpX9vCOtjjxUVC8vW/kY8NX4KHDPcoxRLY4KNrV/7AzmN4j9jg2+v50xVlCRCESgAFigc19ky9rJ/60RrIvhQULhHgjueXRF0CCEB8KJBe+UZdwVrj2mOFfrPXIa7eRua05LNUiHx0/jOvYRzJbUZSbVMtkTDnfRjHNANcFGlZwQ4tHvcn/ZcV7FG9KtH91dAVsOUgTJOEXC91ma5oMoWD4d6/QGj5n09dwp+GS5KUX1TjQoqZ/4EK+W++NYIDjPaPTGdgE9TtPoaFhY/skzQmNoA6y61TIYmfU2+3ISObGImihC5+qqHhoHbP/2eBhtq3eKcX0+/8H90KqPi8FqSQDsyC/vshYY13jwv2DA8xxMRLfC6dfegvslKcEaym+zAakMnWu6ykuFRhF9nPPpUHMQeNQGZZSaGym82ODVVDSQwvN1g0GJSfYXtBcvirSDvkdRRoLof0LKA5kBNPm8iVn2wnTTtQzHEIWvMB31PuW+fiPr0kV5367Y7hsYs1O+slvGTKTGAj2x9VG/pyzfp1Id0r1LHFVEO7lKyk1S2PiNHpKGjN5chNNTapo1debfZXlSU9kVrk6
+X-MS-Exchange-AntiSpam-MessageData: PzHaSgCDjsgVundLai+uOBoN+1Tvp7Y8+rITB80fhsx5lHNV7xGEtHwNI9yKInoFidZ1tkqtGTwskpoq/vve17aDZsftkJBfR3LeltjYXm6XF3kaI0eiB6/Ngj7bNqXVaD5nWi81sP4naTpKU3u6jQmX9ejxDKXYGCmd6FBZiqNd9lnBU5ZrCZN51PrHdKoBQx6/PwsH9YL6WFu9f+HEL5wygf5SR7meNVO0/qEqRrkuHqDq5sp1sBv4zxohljyJI1MSfBE7Wq3GMHnHdvJi3pOeBIj1xvFNdfwQOF2Euscpmm0/a9/khkVeB0PHkDu/UIpeoBD3jVKoSAvotX0Q3P4C2qTJzaSePhYhtEheEi65cwPYj3ToJoCCDwqmP+Spw8r42fPaYoPmT257qJ1bSjXvQshNmI9+UgLu93nJDfZtlw+/dDXfFeF7I56zt+5YEEUegZr4pBIvVegKj9qmUsDw6+RwLFg2IsUAl/vDLMDpsQ8e4Wurm5Om6X+rrs4s82OPxCTJP2YnrK6LxtFBIvrPrXEIfhJbYO9eYQr9/lTrncRdYRoqMXxh8m/ntb2ndbQ0aShuFS5cIecrH3AeXk7/BDAPkjwDhV2U5EuB3Rn8vfSz+Em0z4RuY6fzI8ryDsoSdxA/8Vzjm70G2dydMMVsTJ6kKgQubRgrSgSV01NJ68DsBvPsRCli2hchTGjJ
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e88e743-09dc-4c16-0d1a-08d83fd0cc65
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2fd06817-f07b-4877-4be3-08d83fd0ccd7
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4124.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2020 21:35:28.9818 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2020 21:35:29.7026 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZhrVVv7zOpuQqnBngM5gI7p2ZSsrkGZT8tSfhvsGTG2e9VnkgYKNDXi/Y7xWNjMGMlZ3dsaoyRSUkU6PZshljw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: G40BtlPPQsOWx87evqD4Cm9Aq/oLOkxlvCIpJppPvC41pL7mFyXU5w/71dzsi8pmaxESHKBMIGpA0Y97Y9w4Wg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1355
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,109 +96,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Park <Chris.Park@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+Cc: Aric Cyr <Aric.Cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
  Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Aurabindo.Pillai@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>,
- Bhawanpreet.Lakha@amd.com
+ stable@vger.kernel.org, Aurabindo.Pillai@amd.com,
+ Paul Hsieh <paul.hsieh@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yongqiang Sun <yongqiang.sun@amd.com>
+From: Paul Hsieh <paul.hsieh@amd.com>
 
-[Why & How]
-change abm config init interface to support multiple ABMs.
+[Why]
+Place the cursor in the center of screen between two pipes then
+adjusting the viewport but cursour doesn't update cause DFPstate hang.
 
-Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
-Reviewed-by: Chris Park <Chris.Park@amd.com>
+[How]
+If viewport changed, update cursor as well.
+
+Cc: stable@vger.kernel.org
+Signed-off-by: Paul Hsieh <paul.hsieh@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +-
- .../amd/display/modules/power/power_helpers.c | 19 +++++++++++++++----
- .../amd/display/modules/power/power_helpers.h |  4 +++-
- 3 files changed, 19 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index ff5f7f7ceec6..6165bd51f5a6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1415,7 +1415,7 @@ static int dm_late_init(void *handle)
- 	if (dmcu)
- 		ret = dmcu_load_iram(dmcu, params);
- 	else if (adev->dm.dc->ctx->dmub_srv)
--		ret = dmub_init_abm_config(adev->dm.dc->res_pool->abm, params);
-+		ret = dmub_init_abm_config(adev->dm.dc->res_pool, params);
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 66180b4332f1..c8cfd3ba1c15 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -1457,8 +1457,8 @@ static void dcn20_update_dchubp_dpp(
  
- 	if (!ret)
- 		return -EINVAL;
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-index 859724771a75..61497954e67e 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-@@ -657,7 +657,7 @@ void fill_iram_v_2_3(struct iram_table_v_2_2 *ram_table, struct dmcu_iram_parame
- 			params, ram_table, big_endian);
- }
+ 	/* Any updates are handled in dc interface, just need to apply existing for plane enable */
+ 	if ((pipe_ctx->update_flags.bits.enable || pipe_ctx->update_flags.bits.opp_changed ||
+-			pipe_ctx->update_flags.bits.scaler || pipe_ctx->update_flags.bits.viewport)
+-			&& pipe_ctx->stream->cursor_attributes.address.quad_part != 0) {
++			pipe_ctx->update_flags.bits.scaler || viewport_changed == true) &&
++			pipe_ctx->stream->cursor_attributes.address.quad_part != 0) {
+ 		dc->hwss.set_cursor_position(pipe_ctx);
+ 		dc->hwss.set_cursor_attribute(pipe_ctx);
  
--bool dmub_init_abm_config(struct abm *abm,
-+bool dmub_init_abm_config(struct resource_pool *res_pool,
- 	struct dmcu_iram_parameters params)
- {
- 	struct iram_table_v_2_2 ram_table;
-@@ -665,8 +665,13 @@ bool dmub_init_abm_config(struct abm *abm,
- 	bool result = false;
- 	uint32_t i, j = 0;
- 
--	if (abm == NULL)
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	if (res_pool->abm == NULL && res_pool->multiple_abms[0] == NULL)
- 		return false;
-+#else
-+	if (res_pool->abm == NULL)
-+		return false;
-+#endif
- 
- 	memset(&ram_table, 0, sizeof(ram_table));
- 	memset(&config, 0, sizeof(config));
-@@ -707,8 +712,14 @@ bool dmub_init_abm_config(struct abm *abm,
- 
- 	config.min_abm_backlight = ram_table.min_abm_backlight;
- 
--	result = abm->funcs->init_abm_config(
--		abm, (char *)(&config), sizeof(struct abm_config_table));
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
-+	if (res_pool->multiple_abms[0]) {
-+		result = res_pool->multiple_abms[0]->funcs->init_abm_config(
-+			res_pool->multiple_abms[0], (char *)(&config), sizeof(struct abm_config_table));
-+	} else
-+#endif
-+		result = res_pool->abm->funcs->init_abm_config(
-+			res_pool->abm, (char *)(&config), sizeof(struct abm_config_table));
- 
- 	return result;
- }
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.h b/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
-index 46fbca2e2cd1..fa4728d88092 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
-+++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
-@@ -28,6 +28,8 @@
- #include "dc/inc/hw/dmcu.h"
- #include "dc/inc/hw/abm.h"
- 
-+struct resource_pool;
-+
- 
- enum abm_defines {
- 	abm_defines_max_level = 4,
-@@ -45,7 +47,7 @@ struct dmcu_iram_parameters {
- 
- bool dmcu_load_iram(struct dmcu *dmcu,
- 		struct dmcu_iram_parameters params);
--bool dmub_init_abm_config(struct abm *abm,
-+bool dmub_init_abm_config(struct resource_pool *res_pool,
- 		struct dmcu_iram_parameters params);
- 
- #endif /* MODULES_POWER_POWER_HELPERS_H_ */
 -- 
 2.28.0
 
