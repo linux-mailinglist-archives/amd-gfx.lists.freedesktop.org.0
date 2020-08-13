@@ -2,48 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F922440B1
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 Aug 2020 23:35:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 317AA2440B9
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 Aug 2020 23:35:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E50CC6E258;
-	Thu, 13 Aug 2020 21:35:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB43B6E25C;
+	Thu, 13 Aug 2020 21:35:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
  (mail-bn7nam10on2059.outbound.protection.outlook.com [40.107.92.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35D236E258
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A166F6E142
  for <amd-gfx@lists.freedesktop.org>; Thu, 13 Aug 2020 21:35:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=awdJq+CctGyFq4e3K0oveCcw6GeZCKtjGcWDyCdXSjxMNJ793brWzJli+eDapRZlpRjDGuL9JUVegOktK1s8mZGr8AaZMSvqhYCjkR39VQ9BTUu2Lbjikg+XmKmtlSHE3OiuKXh26ANXqqHEGxsAIzpwrnvEt/1k0FyVDz4Ggx5erWmdc6uc5T1kcOSK/ybSDLw/CP/5OvM62r5t0WlfzdjK8yHb8NbplEa4oelYTc4rrSys/n8kE6/fO/Vnw8XU+2aToUQruH74UiWHfarz3ey/zXykRWiLyb+wiU88LmXC6lWVTGA/YzoY+JIE+XnG2E3jxTjaZMvfZwZ+FQ2e5w==
+ b=OxvIQ2woVCYirKpVv0aybXGh9sFS6eBq5hcPkAJKtcU8EHhQKc0/Dlmpt8/GCprX+YM3hBkG8li+7eiwCiAarVgeaVDxmzyM27awPIgcDao1cBbXqNHcB7/8CkziszYOGyNvDEvZyJSBXUvEyvtjfDAhPZt9dkGEc8hL5UnwvwHr38AcvOXqiDy6xFR+SMbQadFAwztK/pq/CKfAbpkcyPY2MMozRpA4FiYCYYplWc/M/skbA8Vbri1GwugYcDTor9mw73o7dVg9/xAFm1pZ/1jIxYavi9bvz83Sq5D/9dC7oYfXfIgTuq0EtIHCbMU8NaNstteFQLqoLvWJ0QvdvQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IX1b7QtHygLR8XO9eZWTU30oMA0Dzr9BQtyQxmm9ais=;
- b=kwopC9pOG7mIaJBMY/CwNl6FoIBfb/+xbxVrJUKBR2KsURTK25i4Wm2xZDe7jHYB4sCUjQZZLgYVqg8WVgbHhSWqxZyrKrg0wfoJwAgcUKU6FjuHB2EqNj/KGXniZLweZsNMcyO+rcWei01dBStcG63gZmYrDfvQDo9uDJNSw/0kYVvisoDhzyUD4uF67c2KuVEIMPR33cO2QpTCc0jnpM2QgmspGLq4z3EfpyiipVPA+aEyTyQq0WDCZGh3VB+OBCtzdPZUb03vrHpx2wHV9TKj+9Gpd5cy5OCbHV5uYLebcLkaorRLDg54Z2WM6LBRsdvXESOoXWtSayKqYs+U/A==
+ bh=ZUoOFt2kMbD8sLyph/vxjny+hIzqYDI1C01lEkA2TMU=;
+ b=LM7xectwN1r3Rez5hDAxYMM3H5HNE8zvZfpNULOYS4vyAf6Na5vjOqVxArYyBsDqx6Jjk7uLzxNZXJUODi/U7Cwdw6hs8BRs+/TOtfhEHlsA3WA9gtVDhmk7NzJ8x6qx9adBiseXLb/ca6KP5AUGHPkF0NZRRJB39+ndRdwVzggPp8J5iW65zhgvn+t4AGqUvPjBEo8cmbP2TsMWJmygM7vjg9zYPtmM8EGaJd/goexyGYC0bVLzXxDcTWlOYdAdm6mGkUkh/xWbiUUQ/UeZkThlOIfs+YZmzN0SF0PAEHGuJ0GcFrs7N+ND012WosrCn2qblSUDHiBL0t101a5URw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IX1b7QtHygLR8XO9eZWTU30oMA0Dzr9BQtyQxmm9ais=;
- b=Ke97fbg+d7CDMv09Ds1O3CVhxP/XCfzZymM/7oWj6zd9BCTRwck+MsTYJ+L9tpowEVquqsDHvPzQIo4SQJJYgLP7ZZY4OgWr+KBJt9rejN+0CdczChaAis+LOZck30lDolNhsBK6wvReUF+GMwjtcN++YjxRRg9YFksaBaq1/vU=
+ bh=ZUoOFt2kMbD8sLyph/vxjny+hIzqYDI1C01lEkA2TMU=;
+ b=ddE7lgKDj7gyFj/d5PPoiHjt2sUpy2FfZteAQITkqlAEaty7O7Gtl89DYaGRwNQFOYy94wojh7ABpuOQqW3Cpr5dTHkOheWozSpxUcVsDHYvgTcJPhRIjJODr6IoEPbTaYSB3kCYir+RXGyZlbFXrvcOOil0kKHcydOCMLlBOcA=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from DM6PR12MB4124.namprd12.prod.outlook.com (2603:10b6:5:221::20)
  by DM5PR12MB1355.namprd12.prod.outlook.com (2603:10b6:3:6e::7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3261.19; Thu, 13 Aug 2020 21:35:27 +0000
+ 15.20.3261.19; Thu, 13 Aug 2020 21:35:28 +0000
 Received: from DM6PR12MB4124.namprd12.prod.outlook.com
  ([fe80::75f2:ebaa:bca6:3db7]) by DM6PR12MB4124.namprd12.prod.outlook.com
  ([fe80::75f2:ebaa:bca6:3db7%9]) with mapi id 15.20.3283.016; Thu, 13 Aug 2020
- 21:35:27 +0000
+ 21:35:28 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 04/17] drm/amd/display: Assign correct left shift
-Date: Thu, 13 Aug 2020 17:33:43 -0400
-Message-Id: <20200813213356.1606886-5-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 05/17] drm/amd/display: create a function to decide mst link
+ settings
+Date: Thu, 13 Aug 2020 17:33:44 -0400
+Message-Id: <20200813213356.1606886-6-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20200813213356.1606886-1-Rodrigo.Siqueira@amd.com>
 References: <20200813213356.1606886-1-Rodrigo.Siqueira@amd.com>
@@ -60,29 +61,29 @@ X-Mailer: git-send-email 2.28.0
 X-Originating-IP: [2607:fea8:56e0:6d60::2db6]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 4433fd05-16e2-4fab-632f-08d83fd0cb9a
+X-MS-Office365-Filtering-Correlation-Id: d190b9aa-c3af-4191-8476-08d83fd0cc03
 X-MS-TrafficTypeDiagnostic: DM5PR12MB1355:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1355DADBAA87C7484C51BB6398430@DM5PR12MB1355.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB135569648D17605DA0290A9298430@DM5PR12MB1355.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QE1fhIzdDrDC/6vusGaEXtjM9n8GMhSKZUuDVIZ8P7lV7GV8yVVIJsZDlIr0Kb0ALMTax+FaLczESYCFpA0kOz1tCsOuCejesn1yBZU0hFUzb96nEfhnDkEu/6nFDxrpHm3mxj0UUU96oM56S9lvuSVNaM49bqvzVHt5aAOskGNZzt20UZxBW52q28KrsL+bRzEEAvksGHnCZ8M1zmimnULvozc5XaKdLfY2BjpKAz6gVFhaD/5O/bg4dXdtOSN114+HYOtCzjQ9wwrVby32e/WD6EzG33mf6CFy5jdLMv0ohcZ2CyTS8Pkhk4DiqUJcqdLPv/1plX6oWq1gQ9hjPw==
+X-Microsoft-Antispam-Message-Info: lddm7g2OI5NeQIkVNVYHPFB8XVI15F4Fb5Sve5yWk5F4/zVlFN3Cl+KT0DRb8mHdJltqICvO+NyyZiA8QV0mI2HaA6j2hVCOX6I4n96cKz6o3peKro27ggfTg6wgnyfrxBraU2sJOjPtzUKi2mAcCPNkmcqi7MwbtQb6Nwe/BgfZaxZY8+pRJTUNiv2rQJxWJ0hc+FNAS0nD+ojbkOx8aB8sbN5R2HKdp4peQ122QCjeQpBXYu9WjslfENo7m3Ew27W5sC0y3zJxQ23eQhA+xbFx5wZVbBeTgx24bf5g+kIR70ws8wCkO1YnLBTdr6VrgOgxB/rVIC2qOTmKWPFEzQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB4124.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
  SFS:(4636009)(366004)(39860400002)(346002)(376002)(396003)(136003)(2616005)(6512007)(83380400001)(6486002)(4326008)(316002)(478600001)(1076003)(6916009)(66476007)(66556008)(36756003)(52116002)(66946007)(2906002)(6506007)(8676002)(6666004)(54906003)(16526019)(8936002)(5660300002)(186003)(86362001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: RTMpafLioha9IKQt5M3ErVzng1QWbsQbu8E7/qxCp64IetHeS5I9ZNmc5XAlcUE8/0Xc0L9AwU0ATuyF/iIoGP5VmT9gSNMWl05/8UZWnRL4l9NOHsofWu7mdRxX6LLfDyF83urXxGNAUuPjABO9WI+C+uOxycNoOnIpd+Ebhc8LJvUQ17pOT7F+YyK/BvhljjJVrcgxWI1EMDTQLoLX0GbGJSvA/pEZkxGxuWyN/gC5W2HyOPzhDNZobR5uPcDtoqIguPeXlsCNZvI4j+b4RoiVVrTQkMl61mOxwd8GaerD7Ah0SeP6I7cXEG/Fva4Q/PgaGa7luCkCr0Mi5wrYv4l6HcXJf+KsSBdM0mgOEZgqbFpmj/PHIFX1NeRgYGJ6lFgjRFV8WZ/NPCZimJAnz2ndhLe/rDayIawznnD+wm7xY+IQfn8xcwh1f5GzBFHyIGPFVBFAfU1OWmh74REsJKjkH6mHqIQyFH0h792wxYKpQOrSOnNYIntuAKd00TY9x5S9FMQaL0Mo2tW4/f9aXGUXF3/s6gix/w9t7/5grJm36rZFA9m0f+MVPdawtN4qh74mZ01VxdSNg71FO21369ga2Aj6xxzo2bOqzgaGoqS9tqYNtRz2qT9zT/9ag8F1TinbTZkeDKd5S5jfevNOrD/EgP3fmgzpFDLGBWihho2MJNcH4nviaqaWkS5OfeBY
+X-MS-Exchange-AntiSpam-MessageData: Dz7zoycOQEXwf6wYpmSOwvl9xyw/x1XFKhvAGBraxtpNf5dTtEUG/IMO5RiEMa7A28cOUIvk0XSDQdfr5Sayml3f0nhpELfONOaE5jioFKMfB13lwIb3eKSyt9iHtS/7LVbLiN5gig3nYw9MCoNyh7ftpdRhr/n/yPK2g0Gj+poFPW/vvXyn1qrmaQTZX3ds4WNssAX+3z1SKoTrFC+Llyjj8G8D/cdj+gCSCnmTamyBU5E7EzZgz3kSultQI+q7ygdxxZ8dlmLUY9AQHZitlhD8TNyUyax5rF9tmV73KsQz3cVAYvEMRm8seeYgh/5LYgghPyILPL5w5FNhKoj2Wcwl+63+a3sgM0zFrdNyg/RVpzECRF4VvC+VcIcph2EQNYRl0C5yIXUH33KGQtPjcE7dWOMwFjWKX5k1zgJx+TYnJlwTsXgTlJJT3/hcJrY3DqmDjYG5NmVN8fjMOTQrGjvi74NOExlKXWYzNzl5TpLxu0185YTGNjt4wJalUI1Xije5SE86R/w5mEksjQaVRcXinGXR6tZcGOHJQMf6UCks8lwPSCsEgla1WHeO0ND9UhMxguWdi1YoyBbI4b6kfSpAoGW1ckJKM79tcjIdtgUqq/kZQh2eYxzFIFwcPzWGnvEYqK3l7s199Dskbd5Q80Xknpq8mDBFDEH1yT1Exi3smVhDUmj/XJypUeLY+IUL
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4433fd05-16e2-4fab-632f-08d83fd0cb9a
+X-MS-Exchange-CrossTenant-Network-Message-Id: d190b9aa-c3af-4191-8476-08d83fd0cc03
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4124.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2020 21:35:27.6078 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2020 21:35:28.3107 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JkzKJZLbs9iKXi6e/iKShRNz92wViGMldzknoXkDM5N/dbrUCnUhx4mYT9gkDQki3xvvYbpC3qNyk8wzxpqhfQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: F5kcrW+Y3hBCsPYk6Arqz8l2h07rrSUZTvjXhGvejjAbX00t9KSaHYPY/5qQ1YPvWx9TFRG4PsW/HklODbmWrw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1355
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,63 +96,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Park <Chris.Park@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Wenjing Liu <wenjing.liu@amd.com>, Aurabindo.Pillai@amd.com,
+ Tony Cheng <Tony.Cheng@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Park <Chris.Park@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-[Why]
-Reading for DP alt registers return incorrect values due to LE_SF
-definition missing.
+[why]
+create a dedicated function to make mst link settings decision, so that
+the policy's decision is made in a unified place.
 
-[How]
-Define correct LE_SF or DP alt registers.
-
-Signed-off-by: Chris Park <Chris.Park@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h    | 4 +++-
- .../gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h    | 5 ++++-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h
-index bf0044f7417e..dcbf28dd72d4 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.h
-@@ -167,7 +167,9 @@
- 	LE_SF(DCIO_SOFT_RESET, UNIPHYB_SOFT_RESET, mask_sh),\
- 	LE_SF(DCIO_SOFT_RESET, UNIPHYC_SOFT_RESET, mask_sh),\
- 	LE_SF(DCIO_SOFT_RESET, UNIPHYD_SOFT_RESET, mask_sh),\
--	LE_SF(DCIO_SOFT_RESET, UNIPHYE_SOFT_RESET, mask_sh)
-+	LE_SF(DCIO_SOFT_RESET, UNIPHYE_SOFT_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DP4, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DISABLE, mask_sh)
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 1032551f84fc..e8d968af6af3 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -2431,6 +2431,12 @@ static bool decide_edp_link_settings(struct dc_link *link, struct dc_link_settin
+ 	return false;
+ }
  
- #define LINK_ENCODER_MASK_SH_LIST_DCN20(mask_sh)\
- 	LINK_ENCODER_MASK_SH_LIST_DCN10(mask_sh),\
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h
-index 8e9fd59ccde8..2fbf879cd327 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h
-@@ -61,7 +61,10 @@
- 	DPCS_DCN2_MASK_SH_LIST(mask_sh),\
- 	LE_SF(DPCSTX0_DPCSTX_TX_CNTL, DPCS_TX_DATA_ORDER_INVERT_18_BIT, mask_sh),\
- 	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_PHY_TX_VBOOST_LVL, mask_sh),\
--	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_TX_CLK_EN, mask_sh)
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_TX_CLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DP4, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DISABLE, mask_sh)
++static bool decide_mst_link_settings(const struct dc_link *link, struct dc_link_settings *link_setting)
++{
++	*link_setting = link->verified_link_cap;
++	return true;
++}
 +
- 
- void dcn30_link_encoder_construct(
- 	struct dcn20_link_encoder *enc20,
+ void decide_link_settings(struct dc_stream_state *stream,
+ 	struct dc_link_settings *link_setting)
+ {
+@@ -2456,11 +2462,9 @@ void decide_link_settings(struct dc_stream_state *stream,
+ 	 * TODO: add MST specific link training routine
+ 	 */
+ 	if (stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST) {
+-		*link_setting = link->verified_link_cap;
+-		return;
+-	}
+-
+-	if (link->connector_signal == SIGNAL_TYPE_EDP) {
++		if (decide_mst_link_settings(link, link_setting))
++			return;
++	} else if (link->connector_signal == SIGNAL_TYPE_EDP) {
+ 		if (decide_edp_link_settings(link, link_setting, req_bw))
+ 			return;
+ 	} else if (decide_dp_link_settings(link, link_setting, req_bw))
 -- 
 2.28.0
 
