@@ -1,98 +1,149 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE78B243965
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 Aug 2020 13:33:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17498243B21
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 Aug 2020 15:59:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 726EA6E9C0;
-	Thu, 13 Aug 2020 11:33:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2626E9FF;
+	Thu, 13 Aug 2020 13:59:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2042.outbound.protection.outlook.com [40.107.244.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AA2C6E9C0
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 Aug 2020 11:33:22 +0000 (UTC)
+X-Greylist: delayed 9446 seconds by postgrey-1.36 at gabe;
+ Thu, 13 Aug 2020 13:57:46 UTC
+Received: from mx0a-0039f301.pphosted.com (mx0a-0039f301.pphosted.com
+ [148.163.133.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A16976EA00;
+ Thu, 13 Aug 2020 13:57:46 +0000 (UTC)
+Received: from pps.filterd (m0174676.ppops.net [127.0.0.1])
+ by mx0a-0039f301.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 07DBAhIo032308; Thu, 13 Aug 2020 11:19:48 GMT
+Received: from eur01-ve1-obe.outbound.protection.outlook.com
+ (mail-ve1eur01lp2050.outbound.protection.outlook.com [104.47.1.50])
+ by mx0a-0039f301.pphosted.com with ESMTP id 32vyhf16ah-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 13 Aug 2020 11:19:48 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IoyaYg5D+W0pwiJ588d6YgRfX9we1Uof+scxzTxZHPiptYAlmV6ig9hMkF5cP3pXjpwrVT0pmr/SOeeOEifncslkNe0LhxgyVDwTav4ZNVTWdhaHNoZB8s3u1nqLykT+ev9mO95s+ThyrkVRc1kCcelXM8RCz5Bvbu7ji8nokD8aUog9gvrYJHrEX2oa/upHHRIZSldAACI6hJiQNq+pnzq8bc07C9ouQpmbR6wL0D/boJCEIOTlmy5hqilH7DXaRoL70OWIIZD6fk7Skp85iQk8pYo6EGn81dkYR8gUaWJa11HyswLtl3BrLKWxgY1XoxcZadRSJRwDp7O59Y3vQQ==
+ b=Ytoj84cGx07WDOAYCzIkNgAt5bJioV7W5YtrVQQAS/+DhksIreP6wUY2d7IxNw3e1dabLKO/joyhyWebgFQqE7U8FYMt8ZYhPnCqjE5ZIzWeJKfvh6OOtWmbCaoocBhxVDJghXveZhwrRLWUgpYJoUeJivPrrUx1cDSfoZ1X4Jed6KVCVnEtCywv0EJXptrjjIlxNbLZDgnkBtcViT9MIz5xfnuKWrBu18bowc9xWX03oicTJdWZ/BnK5NGg1irxdBljvs2qWsyrCW6lxrzabvSp8t9NDmP8axaAZebkUB8HE2VdtkyqacdQWdZWmR0DlAoyL5JuHkuQCowNN55twA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rRRIsor+mwUX94SDBlDt0nT6PYS9YHCpcehcuSWZ25Q=;
- b=k48iqvM7xCP9Y8WVU9DuxLjP7SR2JGalk54WVpTyU/NWbbBWXSYp0dSsc4HyU6IW4DyRprqkw1Ok2qkDF23rZIkXi/XaLB1L7/Qv7k1fqvkadiyobMQhvQL1inUWTwbxqS88oAonPpOBWqhrCF86C714h4/RzdZ34B8GfQ/QyEf1JGsRv9odSvYWOdTpYhO/kOyAUjPrDdXamQ+9XHzc5ibqLJE5BJBrhqX+dagabH1kgXFwoVKr9EjvWIQ9ITv/bVeI6NPES43WGDaRdSKL6FAEAaimC2Ep9psWK/z0nqrBLx1nAP2l0TINytJU1X917F5liGxHi2iRhzLXzZjlug==
+ bh=fc8o5Gg9pCw3D3wzThNao2OARb2LAoDAO0TM8iReMrs=;
+ b=FA7ZbC6kciQiDieES6zzXHbSBfxZUGb12XnTnuuuSTbWoHlcbY/pT+hwappdevHvqexWw/Bz8Q3o54YGu+tjl6vRVDeK78eNIKpH5yzt/n7WIoLrFXY4aV0JyWHJkdIoz2BQUJsh3tZzWwZ6bc5eQ+LCtWLgiIAm3lqIfD+rBIgFimrNgU9NILIddLJaOJBvfokjHR1rH9cCNDsdKqUQUYGUg4ozdb6KGT2+pO9RFz+mujUN/Rw1GEbte2Iy5nbG5oAd2Rp4R307KczLAP1co92UuESu2fqk5bXsxRQesZhQvPXAEpxgYTIwo/PJxqc4eIXw8dhpotVco9zVWZbrpg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ smtp.mailfrom=epam.com; dmarc=pass action=none header.from=epam.com;
+ dkim=pass header.d=epam.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rRRIsor+mwUX94SDBlDt0nT6PYS9YHCpcehcuSWZ25Q=;
- b=ywWAOiWDh/FzjR+nyAKwly7vxvLfAUecabXG9ClDLfRmKFTWfbEF+Qaa7/ZvRh+D/6hj9gWcO8Be1lhL434U0yeWRo+XQCVwGDYpc0ZmPQ+/PxEjD5NYehTtBxzUtAfji0uCAYcXZ6UIuswptU+n43Aqk+27Zc4tOtxKBTlaXss=
-Received: from MN2PR12MB3549.namprd12.prod.outlook.com (2603:10b6:208:107::17)
- by MN2PR12MB3487.namprd12.prod.outlook.com (2603:10b6:208:c7::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.20; Thu, 13 Aug
- 2020 11:33:15 +0000
-Received: from MN2PR12MB3549.namprd12.prod.outlook.com
- ([fe80::d82b:d4a2:7ef2:c42d]) by MN2PR12MB3549.namprd12.prod.outlook.com
- ([fe80::d82b:d4a2:7ef2:c42d%3]) with mapi id 15.20.3261.026; Thu, 13 Aug 2020
- 11:33:15 +0000
-From: "StDenis, Tom" <Tom.StDenis@amd.com>
-To: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>, "Quan, Evan"
- <Evan.Quan@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amd/powerplay: Fix uninitialized warning in arcturus
- ppt driver
-Thread-Topic: [PATCH] drm/amd/powerplay: Fix uninitialized warning in arcturus
- ppt driver
-Thread-Index: AQHWcKMBwaE+m4TZeEmsKDw7aj6cEak1S9SAgAALFwCAAJLHTg==
-Date: Thu, 13 Aug 2020 11:33:15 +0000
-Message-ID: <MN2PR12MB3549DA1D217AB0AA2AE56F85F7430@MN2PR12MB3549.namprd12.prod.outlook.com>
-References: <20200812122030.215907-1-tom.stdenis@amd.com>,
- <DM6PR12MB2619E6D6AD9439DDA1FB72B6E4430@DM6PR12MB2619.namprd12.prod.outlook.com>,
- <MN2PR12MB3022A54F624AF49FE9B2C9CDA2430@MN2PR12MB3022.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB3022A54F624AF49FE9B2C9CDA2430@MN2PR12MB3022.namprd12.prod.outlook.com>
+ bh=fc8o5Gg9pCw3D3wzThNao2OARb2LAoDAO0TM8iReMrs=;
+ b=w0RBY+eABwbLn3WzOKHTQ+/6O47gVx9rhalSLNXWETvTcqRI0v/DAlgzUBuGpVyIziCE00oFTPjIM/iudEjyjQVk+XvLxQ8tI2UJ5bJ0CSCE5TLL7VWkb4nKcKqCVaUImcwC5/+COKOhReKDCguIyo1dXrlnKyPnLBzbzwEGVBF74jfS8ALEQu9QqmcwTjtmInyu8pDWb/LtEDVmpxcJlsOJI60844+BquPe/P2FPh9BUJGiy1dA6ylKrn30TvBeZ+1hIcjNPxuHT4KWjo5Nk4+ACUgIdU5r3kpetdSHTZvtESHa48wY8dYQLaaop8HgjQTTD4jLAVU3rXpLMWUvLg==
+Received: from AM7PR03MB6325.eurprd03.prod.outlook.com (2603:10a6:20b:13c::18)
+ by AM6PR03MB4294.eurprd03.prod.outlook.com (2603:10a6:20b:4::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.18; Thu, 13 Aug
+ 2020 11:19:44 +0000
+Received: from AM7PR03MB6325.eurprd03.prod.outlook.com
+ ([fe80::1c2:462c:58b8:7ee9]) by AM7PR03MB6325.eurprd03.prod.outlook.com
+ ([fe80::1c2:462c:58b8:7ee9%7]) with mapi id 15.20.3283.018; Thu, 13 Aug 2020
+ 11:19:44 +0000
+From: Oleksandr Andrushchenko <Oleksandr_Andrushchenko@epam.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, "alexander.deucher@amd.com"
+ <alexander.deucher@amd.com>, "christian.koenig@amd.com"
+ <christian.koenig@amd.com>, "airlied@linux.ie" <airlied@linux.ie>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>, "linux@armlinux.org.uk"
+ <linux@armlinux.org.uk>, "maarten.lankhorst@linux.intel.com"
+ <maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+ <mripard@kernel.org>, "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+ "christian.gmeiner@gmail.com" <christian.gmeiner@gmail.com>,
+ "inki.dae@samsung.com" <inki.dae@samsung.com>, "jy0922.shim@samsung.com"
+ <jy0922.shim@samsung.com>,
+ "sw0312.kim@samsung.com" <sw0312.kim@samsung.com>,
+ "kyungmin.park@samsung.com" <kyungmin.park@samsung.com>, "kgene@kernel.org"
+ <kgene@kernel.org>, "krzk@kernel.org" <krzk@kernel.org>,
+ "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "robdclark@gmail.com"
+ <robdclark@gmail.com>, "sean@poorly.run" <sean@poorly.run>,
+ "bskeggs@redhat.com" <bskeggs@redhat.com>, "tomi.valkeinen@ti.com"
+ <tomi.valkeinen@ti.com>, "eric@anholt.net" <eric@anholt.net>,
+ "hjc@rock-chips.com" <hjc@rock-chips.com>, "heiko@sntech.de"
+ <heiko@sntech.de>, "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ "jonathanh@nvidia.com" <jonathanh@nvidia.com>,
+ "rodrigosiqueiramelo@gmail.com" <rodrigosiqueiramelo@gmail.com>,
+ "hamohammed.sa@gmail.com" <hamohammed.sa@gmail.com>, "hyun.kwon@xilinx.com"
+ <hyun.kwon@xilinx.com>, "laurent.pinchart@ideasonboard.com"
+ <laurent.pinchart@ideasonboard.com>, "michal.simek@xilinx.com"
+ <michal.simek@xilinx.com>, "sumit.semwal@linaro.org"
+ <sumit.semwal@linaro.org>, "evan.quan@amd.com" <evan.quan@amd.com>,
+ "Hawking.Zhang@amd.com" <Hawking.Zhang@amd.com>, "tianci.yin@amd.com"
+ <tianci.yin@amd.com>, "marek.olsak@amd.com" <marek.olsak@amd.com>,
+ "hdegoede@redhat.com" <hdegoede@redhat.com>, "andrey.grodzovsky@amd.com"
+ <andrey.grodzovsky@amd.com>, "Felix.Kuehling@amd.com"
+ <Felix.Kuehling@amd.com>, "xinhui.pan@amd.com" <xinhui.pan@amd.com>,
+ "aaron.liu@amd.com" <aaron.liu@amd.com>, "nirmoy.das@amd.com"
+ <nirmoy.das@amd.com>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>,
+ "matthew.auld@intel.com" <matthew.auld@intel.com>,
+ "abdiel.janulgue@linux.intel.com" <abdiel.janulgue@linux.intel.com>,
+ "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
+ "andi.shyti@intel.com" <andi.shyti@intel.com>, "sam@ravnborg.org"
+ <sam@ravnborg.org>, "miaoqinglang@huawei.com" <miaoqinglang@huawei.com>,
+ "emil.velikov@collabora.com" <emil.velikov@collabora.com>
+Subject: Re: [PATCH 18/20] drm/xen: Introduce GEM object functions
+Thread-Topic: [PATCH 18/20] drm/xen: Introduce GEM object functions
+Thread-Index: AQHWcUzwRlAvqlodBUmjrM9igZrPiqk15K+A
+Date: Thu, 13 Aug 2020 11:19:44 +0000
+Message-ID: <1fe5f918-2445-d2e6-a501-881e70929404@epam.com>
+References: <20200813083644.31711-1-tzimmermann@suse.de>
+ <20200813083644.31711-19-tzimmermann@suse.de>
+In-Reply-To: <20200813083644.31711-19-tzimmermann@suse.de>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-08-13T11:33:14.755Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [165.204.84.11]
+authentication-results: suse.de; dkim=none (message not signed)
+ header.d=none;suse.de; dmarc=none action=none header.from=epam.com;
+x-originating-ip: [185.199.97.5]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 4ac3c4f4-bda6-4d9d-7448-08d83f7cab2c
-x-ms-traffictypediagnostic: MN2PR12MB3487:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB3487856A0A4915CC11619D59F7430@MN2PR12MB3487.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:191;
+x-ms-office365-filtering-correlation-id: 98c2df7f-79af-4148-ee6b-08d83f7ac817
+x-ms-traffictypediagnostic: AM6PR03MB4294:
+x-microsoft-antispam-prvs: <AM6PR03MB42948483A47DA7E7FF20A061E7430@AM6PR03MB4294.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2201;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ubXhLd5A1uSinTcsjL5lTLkEz4SceIIXxQNGWDr4YVW0dZsPBO7kCK9WGmgtIjQhYahOsJMaHiSCEqzI2lMwhHL6sckRf5VT/R2dbeGTjLOwFVV9scTa9JsiMxt8tNLSrOAlwPjZ7GdAnKR2ipNRhEtIRrXOffEo3tfTlR1iRxWUAlvm9NX3zbgZwn+miDSOSNafA57gDvaFJI6htqi/yp9NcGobTnGOlPLM+fCZ6vEKgdWA+551PT+Q2hFN6YWj2ynaZQ2fAwOj62YklV7zatBLA1B8AuFs+Wf7BRSfYT7WnS1RqjOx+evg029ZTLAsdvC4+gSYgNaprygAl1rRAbcSPQdVlxhUU2nEAPh3KGg=
+x-microsoft-antispam-message-info: 9OuhwFxQyiR1r6WZCNoxvlXl+F4BeIHs0Lj7XIYCOMfjlBUvc5wx2AH3cjVee20NCw2z2cPzZ66ecnTR62GJzmNWY8h8LSmhhC/EsaiBe0DBD2OfrRcKJAT4hamZv2xqu3XMDY6/N716vxoQ8fp7BqbbQbIDCLa6KvKOARS0o2KWYxXwggf2rh3Z4TMmiBtUgvIk8eryhP305FHCtCAkHlKgq8qasIbIPBMwIY3hW23rQo+9HVzXRQQYsnqfTqyMMVE2X6wNsxG5m6ioY6ZblXGROvXJZlZX1Zm5fQD2yiFyx/T9McHKZt6C1RvPJcolYPLatWRukLV4k9PA/9VbSZwEpt3OcTTDIS93rscyCcpYbHBB+xFV1WyOX/f4hJur
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3549.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(376002)(366004)(39860400002)(346002)(136003)(396003)(8936002)(8676002)(9686003)(2906002)(55016002)(966005)(110136005)(478600001)(316002)(45080400002)(52536014)(83380400001)(86362001)(66446008)(66556008)(66946007)(64756008)(66476007)(76116006)(5660300002)(7696005)(71200400001)(186003)(26005)(53546011)(6506007)(33656002);
+ IPV:NLI; SFV:NSPM; H:AM7PR03MB6325.eurprd03.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39860400002)(136003)(366004)(346002)(376002)(396003)(4326008)(76116006)(7406005)(316002)(7416002)(6512007)(54906003)(7366002)(66946007)(110136005)(478600001)(6506007)(53546011)(64756008)(86362001)(66476007)(2906002)(8676002)(66446008)(66556008)(71200400001)(8936002)(6486002)(31696002)(26005)(5660300002)(1191002)(186003)(31686004)(83380400001)(36756003)(2616005)(921003);
  DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: rTxvJNds91aUiJVQgGCDk0TJH+EdhTr/5rqDwfip1OEoqNL5pljgZkZiHz5ix2UMzoj7LyPcoVieA7nuXkZvvYQ80ufhqgGeUCjrQ5pjqtIWdg7S9LjUQBFBGktVAAFXPav3Kne/w7EHZetaiStXS/wFLcD1OlF7GivXqGxloX5BwzjxffpzxicU/ADVNH4cE6V52DfkXfPCQZncs4gyv+cdhNlqbJPXDR7TvR740AzMKlY+Cj58K662mlSDTzPuLjbfOeOYLYbQUMkeaovWmrAcszQ/b6fjqJGBt61tJQvjPEQX+P7i8p5FryxlG6sGRfIlQX7YaKpAh6TjNFZxe72qI+qZQdIuV8tsvX67wdny98FqWQQhSIUXuYr3U51Evv++C4fYpkLqgPw12oSiB9d+x5ulpgPNm2YIoGZXzGbidzyGzXWLiUPpn7jaao8o7aBo7glEnKcJSJZQctP61wfcfxalieDkBn6hepB71JOBih5y4eCFRJk2M6cJl70iqaKeAGKL4L4SpM4a+FtU9j6o34Mjy52ENmRJaEFm3m5meODdqrawQrJeH7l/gzyGYYoU+FpywYfmQpbIbtQ2/Qbirsm/VPqbStcWIkoedpTHFfZ5eqyNgDP7dhq26DF3t/FJC3nzPodH2TKTmDTO9g==
+x-ms-exchange-antispam-messagedata: RE/ytRISihDqVWLNAbZa6AMa6DykADf3L3prJiKeO9tLqyEL6pS7z6d7YS/5xwHDeDnKCuUMAUmNfHTLmpHstKw4/sCkLIAw55CLJasWUweCRGjRetUQX23J26TgBD/3q2hA+QG2a44++Ls8adHHKalvWZWDn281MI14G54ooFjzYTb1CoYbryKGXOxahysDtcfCSiaMSrC6WABHJkkf6gYfccHAzJMIiaMW9sYyJRML3v9o4BkX9/DtM5QFLa2ZCOQeqKWhPY9jcLPYo8K/HC7vabBlWXoXJmrw4avg7Gdr9wagIg3ESoB/dKSGWQOT3cM+HB5sLxxHaiuv16rgMNbqMTNhYQvuGVWu6Yg+sJOvNxDbEStBRe/tuvuBnI7ozGt+r2+JNK5UywIbuXtD12UAOe+aM5uJxsOoXGefBlaXFbgRH9WdPmrjtIS2HphZvjKFIPRlY9RScte8D1bScGUcLYqflfIw+LQ0S8AGQ9LoOQM8dKyWpHwc7GO+AbyLxT1ZmLLBeJ+I5PMqJc0k95MxFi4ueOcymKFCKNtfckT5jweqr2mtlrsTaEmc5dzsPQVDY42C+4nZspiabPTq7k3I0wzwW9xn6wWhbuLhoh+xI97P9riZFZygqwzUUj254yzRx2ZF3X1qCi5s/u/zlA==
+x-ms-exchange-transport-forked: True
+Content-ID: <73B83228210C8B4092A3A2E420A1C72C@eurprd03.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
+X-OriginatorOrg: epam.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3549.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ac3c4f4-bda6-4d9d-7448-08d83f7cab2c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Aug 2020 11:33:15.1518 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR03MB6325.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98c2df7f-79af-4148-ee6b-08d83f7ac817
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Aug 2020 11:19:44.5649 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: T5ZZEB3V9Su6gPd6iOUrFJfP4QOti/ckCpY83zn8nqpeLWVuYsDPdZPoKYzodUgFqGev6k7ytu+N+w82BWXGOQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3487
+X-MS-Exchange-CrossTenant-userprincipalname: Uf3Ju+H72OtC//NmTqgcZeFyfKALyi2YcwCTi756Jif6gg6QmkKzaeMSl8qoWK868gGdtmA2N9qB0vAvmyjlq1MS3Eh0vEaiNq869roKrHvQDdr2jkXV8UZTYjjxWvux
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR03MB4294
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
+ definitions=2020-08-13_10:2020-08-13,
+ 2020-08-13 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0
+ malwarescore=0 phishscore=0 clxscore=1011 bulkscore=0 impostorscore=0
+ suspectscore=0 spamscore=0 mlxscore=0 mlxlogscore=999 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2008130085
+X-Mailman-Approved-At: Thu, 13 Aug 2020 13:59:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,157 +155,134 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Cc: "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+ "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
+Hi,
 
-Hi Kevin,
+On 8/13/20 11:36 AM, Thomas Zimmermann wrote:
+> GEM object functions deprecate several similar callback interfaces in
+> struct drm_driver. This patch replaces the per-driver callbacks with
+> per-instance callbacks in xen. The only exception is gem_prime_mmap,
+> which is non-trivial to convert.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>   drivers/gpu/drm/xen/xen_drm_front.c     | 12 +-----------
+>   drivers/gpu/drm/xen/xen_drm_front.h     |  2 ++
+>   drivers/gpu/drm/xen/xen_drm_front_gem.c | 15 +++++++++++++++
+>   3 files changed, 18 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xen/xen_drm_front.c b/drivers/gpu/drm/xen/xen_drm_front.c
+> index 3e660fb111b3..bd9af1875af1 100644
+> --- a/drivers/gpu/drm/xen/xen_drm_front.c
+> +++ b/drivers/gpu/drm/xen/xen_drm_front.c
+> @@ -433,7 +433,7 @@ static int xen_drm_drv_dumb_create(struct drm_file *filp,
+>   	return ret;
+>   }
+>   
+> -static void xen_drm_drv_free_object_unlocked(struct drm_gem_object *obj)
+> +void xen_drm_drv_free_object_unlocked(struct drm_gem_object *obj)
 
-Ah ok disregard the (v2) I just sent then :-)
+Can we please have naming consistent and name it as
 
-Thanks,
-Tom
+xen_drm_front_drv_free_object_unlocked or any other name if this seems to be too long,
 
-________________________________________
-From: Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
-Sent: Wednesday, August 12, 2020 22:47
-To: Quan, Evan; StDenis, Tom; amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/amd/powerplay: Fix uninitialized warning in arctur=
-us ppt driver
+but starting with xen_drm_front_ as the rest of exported functions?
 
-[AMD Official Use Only - Internal Distribution Only]
+With this,
 
-Hi Tom,
+Acked-by: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
 
-drm/amdgpu: fix uninit-value in arcturus_log_thermal_throttling_event()
+Thank you,
 
-the fixed patch has been merged into drm-next branch.
+Oleksandr
 
-Best Regards,
-Kevin
-
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Quan, Ev=
-an <Evan.Quan@amd.com>
-Sent: Thursday, August 13, 2020 10:07 AM
-To: StDenis, Tom <Tom.StDenis@amd.com>; amd-gfx@lists.freedesktop.org <amd-=
-gfx@lists.freedesktop.org>
-Cc: StDenis, Tom <Tom.StDenis@amd.com>
-Subject: RE: [PATCH] drm/amd/powerplay: Fix uninitialized warning in arctur=
-us ppt driver
-
-[AMD Official Use Only - Internal Distribution Only]
-
-[AMD Official Use Only - Internal Distribution Only]
-
-Your change below should be able to suppress the compile warning.
--arcturus_get_smu_metrics_data(smu,
-+ret =3D arcturus_get_smu_metrics_data(smu,
-       METRICS_THROTTLER_STATUS,
-       &throttler_status);
-
-+if (ret) {
-+dev_err(adev->dev, "Could not read from arcturus_get_smu_metrics_data()\n"=
-);
-+return;
-+}
-+
-Setting *value as 0 may be unnecessary.  However anyway this patch is revie=
-wed-by: Evan Quan <evan.quan@amd.com>
-
-BR
-Evan
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Tom St D=
-enis
-Sent: Wednesday, August 12, 2020 8:21 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: StDenis, Tom <Tom.StDenis@amd.com>
-Subject: [PATCH] drm/amd/powerplay: Fix uninitialized warning in arcturus p=
-pt driver
-
-Fixes:
-
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_typ=
-es.o
-drivers/gpu/drm/amd/amdgpu/../powerplay/arcturus_ppt.c: In function =91arct=
-urus_log_thermal_throttling_event=92:
-drivers/gpu/drm/amd/amdgpu/../powerplay/arcturus_ppt.c:2223:24: warning: =
-=91throttler_status=92 may be used uninitialized in this function [-Wmaybe-=
-uninitialized]
- 2223 |   if (throttler_status & logging_label[throttler_idx].feature_mask)=
- {
-
-by making arcturus_get_smu_metrics_data() assign a default value (of zero) =
-before any possible return point as well as simply error out of arcturus_lo=
-g_thermal_throttling_event() if it fails.
-
-Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
----
- drivers/gpu/drm/amd/powerplay/arcturus_ppt.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c b/drivers/gpu/drm=
-/amd/powerplay/arcturus_ppt.c
-index 8b1025dc54fd..78f7ec95e4f5 100644
---- a/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-+++ b/drivers/gpu/drm/amd/powerplay/arcturus_ppt.c
-@@ -551,6 +551,9 @@ static int arcturus_get_smu_metrics_data(struct smu_con=
-text *smu,
-
- mutex_lock(&smu->metrics_lock);
-
-+// assign default value
-+*value =3D 0;
-+
- ret =3D smu_cmn_get_metrics_table_locked(smu,
-        NULL,
-        false);
-@@ -2208,15 +2211,20 @@ static const struct throttling_logging_label {  }; =
- static void arcturus_log_thermal_throttling_event(struct smu_context *smu)=
-  {
--int throttler_idx, throtting_events =3D 0, buf_idx =3D 0;
-+int throttler_idx, throtting_events =3D 0, buf_idx =3D 0, ret;
- struct amdgpu_device *adev =3D smu->adev;
- uint32_t throttler_status;
- char log_buf[256];
-
--arcturus_get_smu_metrics_data(smu,
-+ret =3D arcturus_get_smu_metrics_data(smu,
-       METRICS_THROTTLER_STATUS,
-       &throttler_status);
-
-+if (ret) {
-+dev_err(adev->dev, "Could not read from arcturus_get_smu_metrics_data()\n"=
-);
-+return;
-+}
-+
- memset(log_buf, 0, sizeof(log_buf));
- for (throttler_idx =3D 0; throttler_idx < ARRAY_SIZE(logging_label);
-      throttler_idx++) {
---
-2.26.2
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D02%7C01%7CKevin1.W=
-ang%40amd.com%7Cf47512097dfc40168e1a08d83f2db359%7C3dd8961fe4884e608e11a82d=
-994e183d%7C0%7C0%7C637328812813110771&amp;sdata=3DxedbRrZeOi0PK3EM%2FKBYhfX=
-xdfpOkocXPjQjcQ5ErI0%3D&amp;reserved=3D0
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D02%7C01%7CKevin1.W=
-ang%40amd.com%7Cf47512097dfc40168e1a08d83f2db359%7C3dd8961fe4884e608e11a82d=
-994e183d%7C0%7C0%7C637328812813110771&amp;sdata=3DxedbRrZeOi0PK3EM%2FKBYhfX=
-xdfpOkocXPjQjcQ5ErI0%3D&amp;reserved=3D0
+>   {
+>   	struct xen_drm_front_drm_info *drm_info = obj->dev->dev_private;
+>   	int idx;
+> @@ -481,22 +481,12 @@ static const struct file_operations xen_drm_dev_fops = {
+>   	.mmap           = xen_drm_front_gem_mmap,
+>   };
+>   
+> -static const struct vm_operations_struct xen_drm_drv_vm_ops = {
+> -	.open           = drm_gem_vm_open,
+> -	.close          = drm_gem_vm_close,
+> -};
+> -
+>   static struct drm_driver xen_drm_driver = {
+>   	.driver_features           = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>   	.release                   = xen_drm_drv_release,
+> -	.gem_vm_ops                = &xen_drm_drv_vm_ops,
+> -	.gem_free_object_unlocked  = xen_drm_drv_free_object_unlocked,
+>   	.prime_handle_to_fd        = drm_gem_prime_handle_to_fd,
+>   	.prime_fd_to_handle        = drm_gem_prime_fd_to_handle,
+>   	.gem_prime_import_sg_table = xen_drm_front_gem_import_sg_table,
+> -	.gem_prime_get_sg_table    = xen_drm_front_gem_get_sg_table,
+> -	.gem_prime_vmap            = xen_drm_front_gem_prime_vmap,
+> -	.gem_prime_vunmap          = xen_drm_front_gem_prime_vunmap,
+>   	.gem_prime_mmap            = xen_drm_front_gem_prime_mmap,
+>   	.dumb_create               = xen_drm_drv_dumb_create,
+>   	.fops                      = &xen_drm_dev_fops,
+> diff --git a/drivers/gpu/drm/xen/xen_drm_front.h b/drivers/gpu/drm/xen/xen_drm_front.h
+> index f92c258350ca..93e60c1db550 100644
+> --- a/drivers/gpu/drm/xen/xen_drm_front.h
+> +++ b/drivers/gpu/drm/xen/xen_drm_front.h
+> @@ -160,4 +160,6 @@ int xen_drm_front_page_flip(struct xen_drm_front_info *front_info,
+>   void xen_drm_front_on_frame_done(struct xen_drm_front_info *front_info,
+>   				 int conn_idx, u64 fb_cookie);
+>   
+> +void xen_drm_drv_free_object_unlocked(struct drm_gem_object *obj);
+> +
+>   #endif /* __XEN_DRM_FRONT_H_ */
+> diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.c b/drivers/gpu/drm/xen/xen_drm_front_gem.c
+> index f0b85e094111..7b315c08bcfc 100644
+> --- a/drivers/gpu/drm/xen/xen_drm_front_gem.c
+> +++ b/drivers/gpu/drm/xen/xen_drm_front_gem.c
+> @@ -56,6 +56,19 @@ static void gem_free_pages_array(struct xen_gem_object *xen_obj)
+>   	xen_obj->pages = NULL;
+>   }
+>   
+> +static const struct vm_operations_struct xen_drm_drv_vm_ops = {
+> +	.open           = drm_gem_vm_open,
+> +	.close          = drm_gem_vm_close,
+> +};
+> +
+> +static const struct drm_gem_object_funcs xen_drm_front_gem_object_funcs = {
+> +	.free = xen_drm_drv_free_object_unlocked,
+> +	.get_sg_table = xen_drm_front_gem_get_sg_table,
+> +	.vmap = xen_drm_front_gem_prime_vmap,
+> +	.vunmap = xen_drm_front_gem_prime_vunmap,
+> +	.vm_ops = &xen_drm_drv_vm_ops,
+> +};
+> +
+>   static struct xen_gem_object *gem_create_obj(struct drm_device *dev,
+>   					     size_t size)
+>   {
+> @@ -66,6 +79,8 @@ static struct xen_gem_object *gem_create_obj(struct drm_device *dev,
+>   	if (!xen_obj)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> +	xen_obj->base.funcs = &xen_drm_front_gem_object_funcs;
+> +
+>   	ret = drm_gem_object_init(dev, &xen_obj->base, size);
+>   	if (ret < 0) {
+>   		kfree(xen_obj);
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
