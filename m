@@ -1,95 +1,139 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E775D244E95
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Aug 2020 20:53:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA71A244EB1
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Aug 2020 21:13:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 761AC6E303;
-	Fri, 14 Aug 2020 18:53:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D0F46EC03;
+	Fri, 14 Aug 2020 19:13:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam07on2067.outbound.protection.outlook.com [40.107.212.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B76FB6E303;
- Fri, 14 Aug 2020 18:53:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ed5yGCAaU0rbg0uBd3yC0Sat5aOnWq/GTr1xosW+N5HALXIDHAmw9qITVvFyx8WuvWOtwsg6ijSDvk7fR3AvifK+51vjPbXOwCGbnkQ5AGYUlGKiaqdRzs+iuddamz1LLRrM1lD661iVORCtVd4b3OBHZQKGqKu/p9Nb/aOLe99KhQkIQtBkcGFI8VpvJSk4iUecFJNV/9MGqVZ09OpnrAXLuFnaPAJY4TS7/eILyJ6UlhzCHGlVJEPdJS5KM6vGoXGevPI5bcJcKR2Vzjvw5ON5Qgylmfs91rODc871Qk6M5wFlWumO8oC6uCFrXNisq4GiBP0sbvd7vfLBO4ZsqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oLNpvKKGOdDfyiJCn+hXzlvC0Bfj2uTBm1n3yhe4GtY=;
- b=N4AckO7/VKVi66MQaF6DU/9LJoLLMDLSAqBj6viNFtlNyDHouwceyyebeqs7Qh+5DDImHIfdzFaipSOBvSI2Xd2ome2XHMwej7eu5cff9h22k2vj8XrR1QZWp0qRwsh9k55Y0yg4lqu1fW2mMZi+2ERraaG7p8rIh2Avcpzk6gZLEBuNw7Hoa9B3flTwP4N4f1Jq82mGNX1nAqXkTvo+vUPo81XgRrvScrkwcZ6Gj6b87CwFFOR4NFJNc8cZfTPMEvhlvjRZaS24b+vNH4nXO1NWgskg0PBuMMX4ygsQaZGnY/g0ivdpY3LW+qQ6tjVdoGawnt8w+evzDwW5yDtmJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oLNpvKKGOdDfyiJCn+hXzlvC0Bfj2uTBm1n3yhe4GtY=;
- b=Key0Lcl0LKL+9z9SpoiTU+/GzcU+T/CIjjp6eQO0ENIk9Zjgd0EDL2rRmvY2BvL4SI+vdeXWRlxLDY+7Wzb4E80O4ktGS1Y8GjBJcjXPJIEJr5AzHul3PAoG+TFOi94Aa3y9H3ARM2QJn2/Zlb3oyYQpKiBPJGrod5WCdcBHlXo=
-Received: from MW3PR12MB4554.namprd12.prod.outlook.com (2603:10b6:303:55::21)
- by MWHPR1201MB0064.namprd12.prod.outlook.com (2603:10b6:301:58::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.16; Fri, 14 Aug
- 2020 18:52:55 +0000
-Received: from MW3PR12MB4554.namprd12.prod.outlook.com
- ([fe80::8468:a7f8:d931:ccac]) by MW3PR12MB4554.namprd12.prod.outlook.com
- ([fe80::8468:a7f8:d931:ccac%5]) with mapi id 15.20.3283.022; Fri, 14 Aug 2020
- 18:52:54 +0000
-From: "Lakha, Bhawanpreet" <Bhawanpreet.Lakha@amd.com>
-To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>, "Lipski, Mikita"
- <Mikita.Lipski@amd.com>, "Kazlauskas, Nicholas"
- <Nicholas.Kazlauskas@amd.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>
-Subject: Re: [PATCH] drm/dp_mst: Don't return error code when crtc is null
-Thread-Topic: [PATCH] drm/dp_mst: Don't return error code when crtc is null
-Thread-Index: AQHWclybDoXzoVuz9kKvcJQdF8P9L6k33fUAgAAQvXc=
-Date: Fri, 14 Aug 2020 18:52:54 +0000
-Message-ID: <MW3PR12MB4554A2B48BAB3A196CE9FFB6F9400@MW3PR12MB4554.namprd12.prod.outlook.com>
-References: <20200814170140.24917-1-Bhawanpreet.Lakha@amd.com>,
- <97348c62b6024e0aa8f8d537e3ec50b4@intel.com>
-In-Reply-To: <97348c62b6024e0aa8f8d537e3ec50b4@intel.com>
-Accept-Language: en-CA, en-US
-Content-Language: en-CA
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-08-14T18:52:54.050Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [165.204.84.11]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: b36e69f7-31b5-4c41-9876-08d840834112
-x-ms-traffictypediagnostic: MWHPR1201MB0064:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR1201MB00643583CB83B4F96278A3FDF9400@MWHPR1201MB0064.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: NUVnjNKgl8byKIbOzZk72jkGbhQUeRFDKXHa4f/hUBW1LynDnTtsbjiOvI1HU+loVKVoMlfWK09bIyeq1kNJcVBzLimD+OEr/HCxCrw5yfbqS50RR2RdcDwkn825YWS0myGdOiUn9iqiSQirMHL8B4wybNnQpvrWBTzgvfPqSWyqxtVZEuzpBIItopMrNi+Morw6gvCFShm475GZJyvyyBQW1o5KibkkFNPS3u2ypauNgDUfOWCdsUycUuZcc0jctXKzuc2bjZ1/4FQYar3Ap+rP17eL2tZkDm7oXtWdYuY6qaXG0KUhHCKTN6XFDLrQdUQt1BUOnMCj7kkIALqXFzgrMZTYP5vXinI3sQ0usgc=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW3PR12MB4554.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(366004)(136003)(376002)(396003)(346002)(4326008)(26005)(478600001)(6506007)(86362001)(33656002)(186003)(83380400001)(7696005)(45080400002)(66946007)(66556008)(66476007)(76116006)(66446008)(110136005)(316002)(6636002)(54906003)(55016002)(64756008)(52536014)(5660300002)(9686003)(8936002)(71200400001)(19627405001)(8676002)(91956017)(2906002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: 4RYY/5jF8atLpbIWvWCKQsy7bIey7/W4rzMHYsdzKtQHaXr4PB767cx6dDnOP4JYdxfzwLUdncJV9bQ0cBQ/xs6qbaxgyo/JChXde2NZ8mLtmiTf3/71LjrCV1CClI6nxcYwZukpsOuLeJAGcAZexpVVO7SItC6XmfEZzk1bexPesGbd76h82V65DU0W2bXpghwKyHmZlHapmnrTdw7KusybVBSeZ7Ah5BpEdIOOygSihaktLp2vSEkP9bxWzkyqd94phWg0lvpIKtKpzBqYAV5dJaVNMmLX+Scqxevc5OLK3Ig+CLr7Abc8ilG4FBVKHsrMXXH7kjOOcAxbAFuM2oN/j6R7poPY789IO3rO/lpcDS1UqC3TBBjmAPVU3EVqjrPs0b6a8W7yalmLyxG+qdFCMXeXZtkCmZGyDjKe855iBlgO/3sJAZFyGGPLev16USC0YQ94Mi2xfkWaDIvOv9cQc21ZPsXU/Nhbi0AKmCVRpKLYfnxbn70jmoQ26T7jqESA+OUWf/H8LO3Ky0tZH7teGteeCK9ZFoVi50hze1bMWYD8UZ0efzZ/Jh8a8wxFYRuPFJWwbYZHehPUPT9KH3GsZqE96eqK+3ZMUvlQI9UM3mQyW19M7jyIlFxywbwKiSBXS9mBf8j4GDDPgXR5nw==
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com
+ [IPv6:2607:f8b0:4864:20::d43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 143446EC03
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Aug 2020 19:13:49 +0000 (UTC)
+Received: by mail-io1-xd43.google.com with SMTP id j8so11773843ioe.9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Aug 2020 12:13:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=TPQ0EmlcCOwA8CORlJ+v2IpbAMQjm4yMBxym6pZqPWw=;
+ b=gEqiT1qIkjzntmEpXDx29w9RcVIeHI2a7Q2YTgYRVvvAtZCSeNJyA6ty7TIstEoExG
+ 2f36ex8odghBtJTX7IOpFYySnjw/aZyCLwjA94M4J2H9d5K5Yp0ALLO+mhwUSpu7Bg++
+ WaWuCeWx6EDOK/9bUlmNVncna3FIdQONZaqbG01U+hEgjJS8Y38vnNXzj1gkGD/d5Py/
+ KHAWxuZPQcl+U/uEp5+KCNb2QsQgzhlJ2nmM2JKR75eFUzyk3TyZoNj63SOu4nDjCaLk
+ YFISsAzwIsP9Ql4ICiKOB5au58kvGZcPHYd8ex9yswfSqm1n0qCfAlBWHsfFxn2qzq6E
+ 7FUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=TPQ0EmlcCOwA8CORlJ+v2IpbAMQjm4yMBxym6pZqPWw=;
+ b=sU/W6Iq9bT7qlcMjtTHS0E033Ip2ZzNo99PX96tegJOqUhHA2ilXWJWWfNMqz0zlHL
+ 1I7pR2AQaeJVNF0tJJRqBHSqhbCUu4aTFs5PsI2tCx2QIAoVPNpllRQylWSg3gJAApx5
+ +tPY4FmCIUM7TQZNg1mE8fa4492X1pz6Jnyn93PlW6wiTPpsCnRo4RbXZnOuoRHnm9ew
+ YSmYYYGWi7NGCqKoNlvO2tN43WxLflnUW+HYdGt87YdZI0+8XPpjjWH+QA2AsLuo7Fpm
+ YgNj7xpKs9kMG9298pUEBuo3/UwxqBqatqBmpB4am4fn4tFV72p2AZAjGuKDBbuE/Jwn
+ QhrA==
+X-Gm-Message-State: AOAM530DFarOypvKTdTA//LZpLXiOxPzwL9Xhtdl3MsXSU5MAv0Zn9hV
+ AMsVyl7N9IWT1/bmwqzR5JS87/lzRt2d0Q==
+X-Google-Smtp-Source: ABdhPJxPTiG/ReMsRRvcL7psMhHxMu42eOsVdBgs/98udjLEZXfxH+B6GFQYh7ZlApbkXetmEIeuag==
+X-Received: by 2002:a05:6602:29c3:: with SMTP id
+ z3mr3263383ioq.126.1597432429360; 
+ Fri, 14 Aug 2020 12:13:49 -0700 (PDT)
+Received: from ?IPv6:2602:4b:a6ae:c000:6d4:c4ff:fe4a:ea6b?
+ ([2602:4b:a6ae:c000:6d4:c4ff:fe4a:ea6b])
+ by smtp.gmail.com with ESMTPSA id 13sm4722309ilz.58.2020.08.14.12.13.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 14 Aug 2020 12:13:48 -0700 (PDT)
+Subject: Re: [PATCH] drm/amdgpu: Fix incorrect return value in sysfs for
+ pp_od_clk_voltage
+To: amd-gfx@lists.freedesktop.org
+References: <20200814011528.10862-1-mcoffin13@gmail.com>
+From: Matt Coffin <mcoffin13@gmail.com>
+Autocrypt: addr=mcoffin13@gmail.com; keydata=
+ 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
+ tuwClJVHcEqY1gkUE/HKR1MQFfXl979G/1Ql1g==
+Message-ID: <18f2505d-021b-c2ad-9a47-056aa644c242@gmail.com>
+Date: Fri, 14 Aug 2020 13:13:47 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW3PR12MB4554.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b36e69f7-31b5-4c41-9876-08d840834112
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Aug 2020 18:52:54.7047 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: i47aayTIDg+Q9vUlr10TpWHivCSP7gyi4xpPKsiifDJOyuf9+14oBI8b0maSqvVu
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0064
+In-Reply-To: <20200814011528.10862-1-mcoffin13@gmail.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,248 +145,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0167064428=="
+Cc: "Quan, Evan" <Evan.Quan@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Dennis Li <Dennis.Li@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0167064428==
-Content-Language: en-CA
-Content-Type: multipart/alternative;
-	boundary="_000_MW3PR12MB4554A2B48BAB3A196CE9FFB6F9400MW3PR12MB4554namp_"
+Hi all,
 
---_000_MW3PR12MB4554A2B48BAB3A196CE9FFB6F9400MW3PR12MB4554namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+As of 026acaeac2d205f22c0f682cc1c7b1a85b9ccd00 ("drm/amdgpu: revert "fix
+system hang issue during GPU reset""), this patch is no longer needed,
+and won't apply, because the badly-behaving code was removed; I'll
+withdraw this patch for now.
 
-[AMD Official Use Only - Internal Distribution Only]
+Sorry to those who wasted their time reviewing.
 
+Cheers,
+Matt
 
-pos->port->connector?
-This is checking the crtc not the connector. The crtc can be null if its di=
-sabled.
-
-Since it is happening after a unplug->hotplug, I guess we are missing somet=
-hing in the disable sequence and the old connector is still in the list.
-
-Bhawan
-
->>-----Original Message-----
->>From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of
->>Bhawanpreet Lakha
->>Sent: Friday, August 14, 2020 1:02 PM
->>To: mikita.lipski@amd.com; nicholas.kazlauskas@amd.com;
->>alexander.deucher@amd.com
->>Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>; dri-
->>devel@lists.freedesktop.org; amd-gfx@lists.freedesktop.org
->>Subject: [PATCH] drm/dp_mst: Don't return error code when crtc is null
->>
->>[Why]
->>In certain cases the crtc can be NULL and returning -EINVAL causes
->>atomic check to fail when it shouln't. This leads to valid
->>configurations failing because atomic check fails.
->
->So is this a bug fix or an exception case, or an expected possibility?
->
->From my reading of the function comments, it is not clear that pos->port->=
-connector
->might be NULL for some reason.
-
->A better explanation of why this would occur would make this a much more
->useful commit message.
->
-
->My reading is that you ran into this issue an are masking it with this fix=
-.
->
->Rather than this is a real possibility and this is the correct fix.
->
->Mike
->
->>[How]
->>Don't early return if crtc is null
->>
->>Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
->>---
->> drivers/gpu/drm/drm_dp_mst_topology.c | 4 ++--
->> 1 file changed, 2 insertions(+), 2 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c
->>b/drivers/gpu/drm/drm_dp_mst_topology.c
->>index 70c4b7afed12..bc90a1485699 100644
->>--- a/drivers/gpu/drm/drm_dp_mst_topology.c
->>+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
->>@@ -5037,8 +5037,8 @@ int drm_dp_mst_add_affected_dsc_crtcs(struct
->>drm_atomic_state *state, struct drm
->>
->>                crtc =3D conn_state->crtc;
->>
->>-              if (WARN_ON(!crtc))
->>-                      return -EINVAL;
->>+              if (!crtc)
->>+                      continue;
->>
->>                if (!drm_dp_mst_dsc_aux_for_port(pos->port))
->>                        continue;
->>--
->>2.17.1
->>
->>_______________________________________________
->>dri-devel mailing list
->>dri-devel@lists.freedesktop.org
->>https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists=
-.freedesktop.org%2Fmailman%2Flistinfo%2Fdri-devel&amp;data=3D02%7C01%7CBhaw=
-anpreet.Lakha%40amd.com%7C0f5d55c551644fef3df908d840787b3e%7C3dd8961fe4884e=
-608e11a82d994e183d%7C0%7C0%7C637330233520819407&amp;sdata=3D5N%2BBb0Qp3bd5z=
-ANfxovb%2BrVLAGnbP1sjyw3EeCHXj2w%3D&amp;reserved=3D0
-
---_000_MW3PR12MB4554A2B48BAB3A196CE9FFB6F9400MW3PR12MB4554namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
-ign=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div></div>
-<div><br>
-</div>
-<div>pos-&gt;port-&gt;connector?</div>
-<div>This is checking the crtc not the connector. The crtc can be null if i=
-ts disabled.<br>
-</div>
-<div><br>
-</div>
-<div>
-<div></div>
-<div>Since it is happening after a unplug-&gt;hotplug, I guess we are missi=
-ng something in the disable sequence and the old connector is still in the =
-list.<br>
-</div>
-</div>
-<div><br>
-</div>
-<div>Bhawan</div>
-<div><br>
-</div>
-<div>&gt;&gt;-----Original Message-----<br>
-</div>
-<div>&gt;&gt;From: dri-devel &lt;dri-devel-bounces@lists.freedesktop.org&gt=
-; On Behalf Of</div>
-<div>&gt;&gt;Bhawanpreet Lakha</div>
-<div>&gt;&gt;Sent: Friday, August 14, 2020 1:02 PM</div>
-<div>&gt;&gt;To: mikita.lipski@amd.com; nicholas.kazlauskas@amd.com;</div>
-<div>&gt;&gt;alexander.deucher@amd.com</div>
-<div>&gt;&gt;Cc: Bhawanpreet Lakha &lt;Bhawanpreet.Lakha@amd.com&gt;; dri-<=
-/div>
-<div>&gt;&gt;devel@lists.freedesktop.org; amd-gfx@lists.freedesktop.org</di=
-v>
-<div>&gt;&gt;Subject: [PATCH] drm/dp_mst: Don't return error code when crtc=
- is null</div>
-<div>&gt;&gt;</div>
-<div>&gt;&gt;[Why]</div>
-<div>&gt;&gt;In certain cases the crtc can be NULL and returning -EINVAL ca=
-uses</div>
-<div>&gt;&gt;atomic check to fail when it shouln't. This leads to valid</di=
-v>
-<div>&gt;&gt;configurations failing because atomic check fails.</div>
-<div>&gt;</div>
-<div>&gt;So is this a bug fix or an exception case, or an expected possibil=
-ity?</div>
-<div>&gt;</div>
-<div>&gt;From my reading of the function comments, it is not clear that pos=
--&gt;port-&gt;connector</div>
-<div>&gt;might be NULL for some reason.</div>
-<br>
-<div>&gt;A better explanation of why this would occur would make this a muc=
-h more</div>
-<div>&gt;useful commit message.</div>
-<div>&gt;</div>
-<div><br>
-</div>
-<div>&gt;My reading is that you ran into this issue an are masking it with =
-this fix.</div>
-<div>&gt;</div>
-<div>&gt;Rather than this is a real possibility and this is the correct fix=
-.</div>
-<div>&gt;</div>
-<div>&gt;Mike</div>
-<div>&gt;</div>
-<div>&gt;&gt;[How]</div>
-<div>&gt;&gt;Don't early return if crtc is null</div>
-<div>&gt;&gt;</div>
-<div>&gt;&gt;Signed-off-by: Bhawanpreet Lakha &lt;Bhawanpreet.Lakha@amd.com=
-&gt;</div>
-<div>&gt;&gt;---</div>
-<div>&gt;&gt; drivers/gpu/drm/drm_dp_mst_topology.c | 4 ++--</div>
-<div>&gt;&gt; 1 file changed, 2 insertions(+), 2 deletions(-)</div>
-<div>&gt;&gt;</div>
-<div>&gt;&gt;diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c</div>
-<div>&gt;&gt;b/drivers/gpu/drm/drm_dp_mst_topology.c</div>
-<div>&gt;&gt;index 70c4b7afed12..bc90a1485699 100644</div>
-<div>&gt;&gt;--- a/drivers/gpu/drm/drm_dp_mst_topology.c</div>
-<div>&gt;&gt;+++ b/drivers/gpu/drm/drm_dp_mst_topology.c</div>
-<div>&gt;&gt;@@ -5037,8 +5037,8 @@ int drm_dp_mst_add_affected_dsc_crtcs(st=
-ruct</div>
-<div>&gt;&gt;drm_atomic_state *state, struct drm</div>
-<div>&gt;&gt;</div>
-<div>&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;crtc =
-=3D conn_state-&gt;crtc;</div>
-<div>&gt;&gt;</div>
-<div>&gt;&gt;- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (WARN_ON(=
-!crtc))</div>
-<div>&gt;&gt;- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp;return -EINVAL;</div>
-<div>&gt;&gt;+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (!crtc)</=
-div>
-<div>&gt;&gt;+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp;continue;</div>
-<div>&gt;&gt;</div>
-<div>&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (!d=
-rm_dp_mst_dsc_aux_for_port(pos-&gt;port))</div>
-<div>&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp;continue;</div>
-<div>&gt;&gt;--</div>
-<div>&gt;&gt;2.17.1</div>
-<div>&gt;&gt;</div>
-<div>&gt;&gt;_______________________________________________</div>
-<div>&gt;&gt;dri-devel mailing list</div>
-<div>&gt;&gt;dri-devel@lists.freedesktop.org</div>
-<div>&gt;&gt;https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A=
-%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Fdri-devel&amp;amp;data=
-=3D02%7C01%7CBhawanpreet.Lakha%40amd.com%7C0f5d55c551644fef3df908d840787b3e=
-%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637330233520819407&amp;amp;sd=
-ata=3D5N%2BBb0Qp3bd5zANfxovb%2BrVLAGnbP1sjyw3EeCHXj2w%3D&amp;amp;reserved=
-=3D0&nbsp;
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp;&nbsp; <br>
-</div>
-</div>
-</body>
-</html>
-
---_000_MW3PR12MB4554A2B48BAB3A196CE9FFB6F9400MW3PR12MB4554namp_--
-
---===============0167064428==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On 8/13/20 7:15 PM, Matt Coffin wrote:
+> The changes in edad8312cbbf9a33c86873fc4093664f150dd5c1 introduced an
+> issue with the sysfs interface for pp_od_clk_voltage. It overwrites the
+> return value to 0 when it calls another function, then returns 0. The
+> intended behavior is that a positive return value indicates the number
+> of bytes from the buffer that you processed in that call.
+> 
+> With the 0 return value, clients would submit the same value to be
+> written over and over again, resulting in an infinite loop.
+> 
+> This is resolved by returning the count of bytes read (in this case the
+> whole message), when the desired return is 0 (success).
+> 
+> Fixes: edad8312cbbf ("drm/amdgpu: fix system hang issue during GPU")
+> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1245
+> Signed-off-by: Matt Coffin <mcoffin13@gmail.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> index 1705e328c6fc..f00c7ed361d4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> @@ -937,7 +937,11 @@ static ssize_t amdgpu_set_pp_od_clk_voltage(struct device *dev,
+>  
+>  pro_end:
+>  	up_read(&adev->reset_sem);
+> -	return ret;
+> +	if (ret) {
+> +		return ret;
+> +	} else {
+> +		return count;
+> +	}
+>  }
+>  
+>  static ssize_t amdgpu_get_pp_od_clk_voltage(struct device *dev,
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0167064428==--
