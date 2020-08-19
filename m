@@ -1,90 +1,111 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC590249443
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Aug 2020 07:01:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 829AC24978C
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Aug 2020 09:36:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D19C89F0A;
-	Wed, 19 Aug 2020 05:01:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 141B789B3B;
+	Wed, 19 Aug 2020 07:36:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr700087.outbound.protection.outlook.com [40.107.70.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4845B89B18;
- Wed, 19 Aug 2020 05:01:03 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam07on2042.outbound.protection.outlook.com [40.107.95.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67B4589B3B
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Aug 2020 07:36:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gJvwUpQ4d0OFZN1XBwJ8xMoqNoJwm1q7zpqLdnIpidRGdITpM6wVw32GeM8F2EUWuKZsxIZgrZhcl88s1LjFVT6acR6L9N0MOxKK3PqH3PAH2FJjKmlBqXcYn3ojc6qCut92GD8GY58YEaNbiYeW99VbxUGcEnc1vimQrrMdXKyUdnqzB20fKSUUwf2VOozdGOCnuTQ/J7ii4fvKx5Fg9LmgzhbLwmhN8sSwLN2zcHDlaR+k8w0FKGYFx0kGPsJPT520RK6mRG6cdd6Vhz9FGaQwM2UOWwvfwbaMDOXuUEYdmo/S45skkPBUW9wqL0YgY8FZfEpPAH7A5wK57Kch7w==
+ b=TuYRFiGCKSveOh1zy7mYFpXZ2Bfz2zXQAh4z6e7ycHlisGGdbW0pfIFhYNdsULHGYtDjej3iPGJGcG+1qmB5riLLTB9ZzqFjrKgoOpjrSTzVRovKmLt81jcD0kqtICvUnPDquX5ut0Ks7w0F+wqf+Cz9XcMhxU86HKaQ6wJQ6z8ZDuX6EhiTCIUWq27nrE12jq6wsST0LO/GLz8rfENwvuiRyDqUQCFZXbVw/CdMCfjbeQZXP6h5GLe1e8AiIPaip8R8o0jVzj1rehKsSYAYl9m++75dDt5/5rSGmh+UxohG4KxEmrlD0UYb5+z2JYtLfLaD46T0V51KkQCJb/k0CA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BOtVYHQ+IwAD0+sK2JkU+3v07JnhsAAbvemtZnsLWzE=;
- b=is5xRaWr2t9rW+6xl7J32U9ovZnG8xidlrITTUsDaaMEchuIojQ3dBVDtu6tv/UdF5RaD2wIPU9roqp03fAg2GH/8wTJtN77UfJm2/wFcdih5JLCo8W0iitGORk1UuKp24jkX+2SRoggy0K4hRypB7VNyDWM5JlQmCcOMMAl99BwiTJHrlpTVttttsup0bO+NMxM4lz2Mg+4Fvu2bMBEnODlgMGYvstqoKETuvegkA06RZuRWUoghJX2KFCcWPW3NfQuRCdS0gTrkktzLnKxlNSZvl3XQ/lfWM0oAaA71Kwldap/Pfu9Oe/EPcS+DWp6I29kbOrln/7btXYiviZ3ZQ==
+ bh=ZV7YaDP87Lbb52Btm2d+yrAI+M6tzyuwZkjq6j9sOJ8=;
+ b=BsohCao+3yO9bktpy/PHln05wJ9ErU2l+VcwclrTXM3EGcIJdTxz0ixQzTrHpjTz4xZDKYvpdq7K3uoZhBLJbO2cOHBaWBQwBRmJiU+0AQWMNb5DmYpwUdHrT9LSLre3uzl/cyEWb9kq+sg+b1pntS7+tW1Lm+MIp/Rlk6eVQ6uoea4fC7xp22DHYlRyxeENFp6TnSToCzXpcc5rE8bNIlkubNTkUeAiLZs0G2pzGjKz8tmr4Lh+90GlrNfLVymQBtRki2gFOkHf6tCn7bTXD3UvtYg/c8ITp35rwlDu98rjH+fS5ROht1IhbxkCoFpKhM+Dyir3r7mvmr0gIh85zw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BOtVYHQ+IwAD0+sK2JkU+3v07JnhsAAbvemtZnsLWzE=;
- b=R3GMbZFYG6IQ6h2L3m35aU0QflReXdETC82wBgpFFMXUTMgAHWJQd38AC4U+VxMr564b1QaRQYSgd37QlvNe0IBmzLIFySWYilhOgg0zB6uylr83jmxkNCRjbSqMKeM+ilPKHXZEZafExsztU6hU47Y1qegBGW4+GrdmAHWgTzw=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
- by DM6PR12MB2618.namprd12.prod.outlook.com (2603:10b6:5:49::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.15; Wed, 19 Aug
- 2020 05:00:59 +0000
-Received: from DM6PR12MB3962.namprd12.prod.outlook.com
- ([fe80::3452:6d8f:e0ef:b45e]) by DM6PR12MB3962.namprd12.prod.outlook.com
- ([fe80::3452:6d8f:e0ef:b45e%6]) with mapi id 15.20.3305.024; Wed, 19 Aug 2020
- 05:00:59 +0000
-From: Luben Tuikov <luben.tuikov@amd.com>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/amdgpu: Embed drm_device into amdgpu_device (v2)
-Date: Wed, 19 Aug 2020 01:00:42 -0400
-Message-Id: <20200819050042.7370-4-luben.tuikov@amd.com>
-X-Mailer: git-send-email 2.28.0.215.g878e727637
-In-Reply-To: <20200819050042.7370-1-luben.tuikov@amd.com>
-References: <20200819050042.7370-1-luben.tuikov@amd.com>
-X-ClientProxiedBy: YT1PR01CA0016.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::29)
- To DM6PR12MB3962.namprd12.prod.outlook.com
- (2603:10b6:5:1ce::21)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from 255.255.255.255 (255.255.255.255) by
- YT1PR01CA0016.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::29) with Microsoft
+ bh=ZV7YaDP87Lbb52Btm2d+yrAI+M6tzyuwZkjq6j9sOJ8=;
+ b=F82ztjJoXk02QnEt2jQ6TjofzFn1ze5l4vyiitdDtZ4e8CayfdLp8aw9IIFNJ7DbXRCfLol6Hj/oDlM2On1WDGk6kGFkcGyJVWzzhtko2UbuTogPMwNRmQURi/6iRONdz0kxjETHQ/dePWJnLTKiMy545uSBRY0dmcnWE/I74Zo=
+Received: from DM6PR12MB4075.namprd12.prod.outlook.com (2603:10b6:5:21d::8) by
+ DM6PR12MB4436.namprd12.prod.outlook.com (2603:10b6:5:2a3::20) with
+ Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3283.16 via Frontend Transport; Wed, 19 Aug 2020 05:00:59 +0000
-X-Mailer: git-send-email 2.28.0.215.g878e727637
-X-Originating-IP: [165.204.55.250]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 1a8ddffc-a655-4c79-dc6b-08d843fcdd2b
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2618:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB261890DDEDEF46DD1B05DDF4995D0@DM6PR12MB2618.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zKboyuUcVcRFu38K1j2eeWh8wuF267jh4hGRpiSWoYRaTufDxuzgbNtkm78hDADyvsQ7fr0oOYT+2K1h1edmz7Lws5tmch0TPhN/FkHVCGTQjKy9o+9OJWSV1FnrIEg8bgM/7Bz/BGFUESCAs5Xuett5bR+bQk+E9dvbqBI/YD1MwGhVQGuy2dduC2dmjJ37RtgHudV5p7GGqT5+O3FdK4s/e+bi2drp/6qvhvy5WQuBq5kh26Kg8uhaH/vPymV7NefNDLNQXKrkkSsRgz9ypKfxWwp9t3YEXXQSucqXNeMH75yDUEuwUGl5DbUEIYxZaZ+sqPEKDYkcGl1HW2arAUvfdVa4PD0U0DiLcslsFsvn4tIvDqInGyKnE3SUJDyY
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(39860400002)(396003)(136003)(376002)(346002)(26005)(110011004)(83380400001)(16576012)(316002)(2906002)(4326008)(36756003)(54906003)(8676002)(1076003)(478600001)(186003)(66556008)(66476007)(6486002)(44832011)(66946007)(5660300002)(52116002)(6666004)(8936002)(86362001)(956004)(2616005);
+ 15.20.3305.24; Wed, 19 Aug 2020 07:36:23 +0000
+Received: from DM6PR12MB4075.namprd12.prod.outlook.com
+ ([fe80::84dc:a0e7:6158:ce4e]) by DM6PR12MB4075.namprd12.prod.outlook.com
+ ([fe80::84dc:a0e7:6158:ce4e%7]) with mapi id 15.20.3305.024; Wed, 19 Aug 2020
+ 07:36:23 +0000
+From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+To: "Li, Dennis" <Dennis.Li@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "Deucher, Alexander"
+ <Alexander.Deucher@amd.com>, "Kuehling, Felix" <Felix.Kuehling@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>
+Subject: RE: [PATCH v3] drm/amdgpu: refine create and release logic of hive
+ info
+Thread-Topic: [PATCH v3] drm/amdgpu: refine create and release logic of hive
+ info
+Thread-Index: AQHWdVx0elKnoENDUkGMzcoGMcCDA6k/DATQ
+Date: Wed, 19 Aug 2020 07:36:22 +0000
+Message-ID: <DM6PR12MB4075F6FCA06956CC95FFC5BDFC5D0@DM6PR12MB4075.namprd12.prod.outlook.com>
+References: <20200818123807.11333-1-Dennis.Li@amd.com>
+In-Reply-To: <20200818123807.11333-1-Dennis.Li@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-08-19T07:36:16Z; 
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=cd5710d6-97ef-480b-bf61-00007821101e;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=1
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-08-19T07:36:11Z
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
+ Unrestricted
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: a43b88a6-9215-49fd-bc07-000054aa64ff
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_enabled: true
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_setdate: 2020-08-19T07:36:18Z
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_method: Privileged
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_name: Public_0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_actionid: 9b1e51aa-52e3-4939-b7b2-0000920c2f9d
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_contentbits: 0
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [58.247.170.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: a90bb054-da58-4d79-cb0f-08d844129275
+x-ms-traffictypediagnostic: DM6PR12MB4436:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR12MB44361F740038B68CED82DD9EFC5D0@DM6PR12MB4436.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:862;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wUbBlSXAk+bFclvCbESrmIH4nMsX6E+DPHrKPjYfmZFqsOtBsEmc2PVRBZWa/q5DIGN/eznx0sGLg0rXpZkLYHwCgAsfQhFA8emqvCQvEN6WIascrra1k+oQ5lfbVFo3iHcd/N0o3Uaj+ikiP/EdK3bCku+OJseUhxQ/tCNTZCQsD754TMZGI6cgVmCVZS+9K4dXBvkEQjuqWzjHTKU4zNnQzbgLNvh+aB72Y7zWmZbnXzNPPI5pzUDZRQif1SMSVtoYzl9a5fJppgUG1s8ddfSdXuWjqR4gN9cfuUdZeK3zKSkA5BF9M47CQDI9sdPmjCczSiHYty2VtNbnXEq2tw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4075.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(39860400002)(396003)(136003)(376002)(366004)(478600001)(316002)(110136005)(64756008)(2906002)(66556008)(6636002)(66946007)(66476007)(5660300002)(33656002)(76116006)(4326008)(66446008)(8676002)(52536014)(26005)(71200400001)(83380400001)(7696005)(86362001)(30864003)(6506007)(9686003)(53546011)(186003)(55016002)(8936002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: MOYhn+RBYr9aumSBUaSomKX8KG7/qjYpQyVjbPlQ+DR7mTnTASrsyhgLDhKsIoro84azbJasd0I132ffc6Dg4iRCas1Jeg95rFeZbkxrhKyvKMJZKj5gRjUDEL6ywnA/JWtdnOLdr6++RCiAJTbjU817C573F/KLD0UcZw4Rg2bYb8s9TiyU6si+oYx0EuyCj8ZyD3kDbfzKhM6RymusidQjEiRof/zN4BfMjQY+lVOMQw5AbJ8AEXJVvSaHztjNRolL33EBF1K6EnnREgiyk81+P8ytGZu0BSOLKf7Xi6/XevEE1zxLM1IPxXHfTeLdNQ1AQGmtrEA3eegAqJY7w/rrC1o3RAacdzn0wz++SCWJruffHM/hpI3BMFM9f32AEJ1xPtuE2Ef6ni/A7vFwP6CNAjy5yy9sB7G1hgmsaLZUTIe85+tpYoi2yGrvjuodp+OEfOWY9RhkJyLOwYuaHorwYyo71s0+TG/GtmLB1phsDo2esPxidxxYd36gMNDb7PLdTFMLzQ2Pb7CU3NRpQFYL/w8HX+hz0jIewSWKMmZQxWqi/SiaSZyNpqJ7G/Cz775la76ck2avoDrJuPDESPc792w7y1wX0azIWMSc1RkGxdFNZf2hj1ARHxjQ7ItmfOiFsMnP5cDWoNN/WJwjXQ==
+x-ms-exchange-antispam-messagedata: 6yZA1Tt+LiGpoBlDMO79cDzlxuCV30QS1+JklyCeSKqtdgNieLR8hWTnt7oYT7hiNtKG+2hzuDRhIG5mBrmbNrR0NF4+7XM4IOL4nq/TgfyhD/BgLeCHLgX0i3hRwb/jnlr1fSUNwoIVStrkCm5K0CwDiebwT81pF2HIzS2tpYEH1dV9ACHpWzVZpTtfb8siY3vqqxUg/DcVqkQcEgwLBWwdnAGNDMN+JKe9/Hpu2G1eoSZHiFZ30GEThvTlN7AKVK20KFtIVhjeY2JjwitNQGxEwMsRML/Lj8/q2LlIXCzyB61Fxc9fRDkUcGJ2af3JLGe5bjjeK7KyEXKu3F74fS8/tB7gGE+EU+GUjXQGGDLkwKCJ4HzS5/9YBrFZn+n13YrXRrMUIXMKS9q0IWdgseviU8sw8lHnopweI/wSc5uFqdbLRyGQabl/81e7l2BemuTAiCOR/VNzuYCetoG/KmhlfzKwGK3A1qVDvKrAc8Dp/xOxR8eL0OK/f4K5rqkxHepz6A9Bdp/cRgxKJQ3y4KvRl4+k9Dtx9LPM/W82MQAG6o8YOPLAriJ+bhXP7otpMCjw8YZYf83VTByAhv8lqVUq1SS9NEi9sEULT9bB/P2yCZyKiEoX3psdEiOf4awiFdiLpir7kXFwsbwr7xk2RA==
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a8ddffc-a655-4c79-dc6b-08d843fcdd2b
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2020 05:00:59.5773 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DEJ91C0tlxzGpDJnITpxg3CnyfUWbpg3Z+88qdelwEKPsjm8LLdrJchO95jWPtxX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2618
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4075.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a90bb054-da58-4d79-cb0f-08d844129275
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2020 07:36:22.8346 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4EvU/JAxuexpdGcW7sF2M/hffdq+JqR5V/LSDEQeAeV4jD2gFpF3Y95lbIFoIxbwtZBXcTm9qRB46iiVws9tCA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4436
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,310 +117,485 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
- Luben Tuikov <luben.tuikov@amd.com>, Dave Airlie <airlied@gmail.com>
+Cc: "Li, Dennis" <Dennis.Li@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-a) Embed struct drm_device into struct amdgpu_device.
-b) Modify the inline-f drm_to_adev() accordingly.
-c) Modify the inline-f adev_to_drm() accordingly.
-d) Eliminate the use of drm_device.dev_private,
-   in amdgpu.
-e) Switch from using drm_dev_alloc() to
-   drm_dev_init().
-f) Add a DRM driver release function, which frees
-   the container amdgpu_device after all krefs on
-   the contained drm_device have been released.
+[AMD Public Use]
 
-v2: Split out adding adev_to_drm() into its own
-    patch (previous commit), making this patch
-    more succinct and clear. More detailed commit
-    description.
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 
-Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 10 ++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 15 +++-----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 43 ++++++++++++++--------
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    | 20 +++-------
- 4 files changed, 43 insertions(+), 45 deletions(-)
+Regards,
+Hawking
+-----Original Message-----
+From: Dennis Li <Dennis.Li@amd.com> 
+Sent: Tuesday, August 18, 2020 20:38
+To: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix <Felix.Kuehling@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>
+Cc: Li, Dennis <Dennis.Li@amd.com>
+Subject: [PATCH v3] drm/amdgpu: refine create and release logic of hive info
+
+Change to dynamically create and release hive info object, which help driver support more hives in the future.
+
+v2:
+Change to save hive object pointer in adev, to avoid locking xgmi_mutex every time when calling amdgpu_get_xgmi_hive.
+
+v3:
+1. Change type of hive object pointer in adev from void* to amdgpu_hive_info*.
+2. remove unnecessary variable initialization.
+
+Signed-off-by: Dennis Li <Dennis.Li@amd.com>
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 735480cc7dcf..107a6ec920f7 100644
+index 98d0c6e5ab3c..e25f952d8836 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -724,8 +724,8 @@ struct amd_powerplay {
- #define AMDGPU_MAX_DF_PERFMONS 4
- struct amdgpu_device {
- 	struct device			*dev;
--	struct drm_device		*ddev;
- 	struct pci_dev			*pdev;
-+	struct drm_device		ddev;
+@@ -251,6 +251,7 @@ struct amdgpu_fpriv;  struct amdgpu_bo_va_mapping;  struct amdgpu_atif;  struct kfd_vm_fault_info;
++struct amdgpu_hive_info;
  
- #ifdef CONFIG_DRM_AMD_ACP
+ enum amdgpu_cp_irq {
+ 	AMDGPU_CP_IRQ_GFX_ME0_PIPE0_EOP = 0,
+@@ -730,7 +731,7 @@ struct amdgpu_device {  #ifdef CONFIG_DRM_AMD_ACP
  	struct amdgpu_acp		acp;
-@@ -990,12 +990,12 @@ struct amdgpu_device {
- 
- static inline struct amdgpu_device *drm_to_adev(struct drm_device *ddev)
- {
--	return ddev->dev_private;
-+	return container_of(ddev, struct amdgpu_device, ddev);
- }
- 
- static inline struct drm_device *adev_to_drm(struct amdgpu_device *adev)
- {
--	return adev->ddev;
-+	return &adev->ddev;
- }
- 
- static inline struct amdgpu_device *amdgpu_ttm_adev(struct ttm_bo_device *bdev)
-@@ -1004,8 +1004,6 @@ static inline struct amdgpu_device *amdgpu_ttm_adev(struct ttm_bo_device *bdev)
- }
- 
- int amdgpu_device_init(struct amdgpu_device *adev,
--		       struct drm_device *ddev,
--		       struct pci_dev *pdev,
- 		       uint32_t flags);
- void amdgpu_device_fini(struct amdgpu_device *adev);
- int amdgpu_gpu_wait_for_idle(struct amdgpu_device *adev);
-@@ -1195,7 +1193,7 @@ static inline void *amdgpu_atpx_get_dhandle(void) { return NULL; }
- extern const struct drm_ioctl_desc amdgpu_ioctls_kms[];
- extern const int amdgpu_max_kms_ioctl;
- 
--int amdgpu_driver_load_kms(struct drm_device *dev, unsigned long flags);
-+int amdgpu_driver_load_kms(struct amdgpu_device *adev, unsigned long flags);
- void amdgpu_driver_unload_kms(struct drm_device *dev);
- void amdgpu_driver_lastclose_kms(struct drm_device *dev);
- int amdgpu_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv);
+ #endif
+-
++	struct amdgpu_hive_info *hive;
+ 	/* ASIC */
+ 	enum amd_asic_type		asic_type;
+ 	uint32_t			family;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 07012d71eeea..6e529548e708 100644
+index f323281c82b0..bc6ef0caf157 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1216,7 +1216,8 @@ static int amdgpu_device_check_arguments(struct amdgpu_device *adev)
-  * Callback for the switcheroo driver.  Suspends or resumes the
-  * the asics before or after it is powered up using ACPI methods.
-  */
--static void amdgpu_switcheroo_set_state(struct pci_dev *pdev, enum vga_switcheroo_state state)
-+static void amdgpu_switcheroo_set_state(struct pci_dev *pdev,
-+					enum vga_switcheroo_state state)
- {
- 	struct drm_device *dev = pci_get_drvdata(pdev);
- 	int r;
-@@ -2977,8 +2978,6 @@ static const struct attribute *amdgpu_dev_attributes[] = {
-  * amdgpu_device_init - initialize the driver
-  *
-  * @adev: amdgpu_device pointer
-- * @ddev: drm dev pointer
-- * @pdev: pci dev pointer
-  * @flags: driver flags
-  *
-  * Initializes the driver info and hw (all asics).
-@@ -2986,18 +2985,15 @@ static const struct attribute *amdgpu_dev_attributes[] = {
-  * Called at driver startup.
-  */
- int amdgpu_device_init(struct amdgpu_device *adev,
--		       struct drm_device *ddev,
--		       struct pci_dev *pdev,
- 		       uint32_t flags)
- {
-+	struct drm_device *ddev = adev_to_drm(adev);
-+	struct pci_dev *pdev = adev->pdev;
- 	int r, i;
- 	bool boco = false;
- 	u32 max_MBps;
+@@ -2857,7 +2857,7 @@ static void amdgpu_device_xgmi_reset_func(struct work_struct *__work)  {
+ 	struct amdgpu_device *adev =
+ 		container_of(__work, struct amdgpu_device, xgmi_reset_work);
+-	struct amdgpu_hive_info *hive = amdgpu_get_xgmi_hive(adev, 0);
++	struct amdgpu_hive_info *hive = amdgpu_get_xgmi_hive(adev);
  
- 	adev->shutdown = false;
--	adev->dev = &pdev->dev;
--	adev->ddev = ddev;
--	adev->pdev = pdev;
- 	adev->flags = flags;
+ 	/* It's a bug to not have a hive within this function */
+ 	if (WARN_ON(!hive))
+@@ -2895,6 +2895,7 @@ static void amdgpu_device_xgmi_reset_func(struct work_struct *__work)
+ 	if (adev->asic_reset_res)
+ 		DRM_WARN("ASIC reset failed with error, %d for drm dev, %s",
+ 			 adev->asic_reset_res, adev->ddev->unique);
++	amdgpu_put_xgmi_hive(hive);
+ }
  
- 	if (amdgpu_force_asic_type >= 0 && amdgpu_force_asic_type < CHIP_LAST)
-@@ -3451,9 +3447,8 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
- 	struct drm_connector_list_iter iter;
- 	int r;
+ static int amdgpu_device_get_job_timeout_settings(struct amdgpu_device *adev) @@ -4315,7 +4316,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+ 	 * We always reset all schedulers for device and all devices for XGMI
+ 	 * hive so that should take care of them too.
+ 	 */
+-	hive = amdgpu_get_xgmi_hive(adev, false);
++	hive = amdgpu_get_xgmi_hive(adev);
+ 	if (hive) {
+ 		if (atomic_cmpxchg(&hive->in_reset, 0, 1) != 0) {
+ 			DRM_INFO("Bailing on TDR for s_job:%llx, hive: %llx as another already in progress", diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index bf71f0a58786..18cdd259d568 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -1555,9 +1555,10 @@ static void amdgpu_ras_do_recovery(struct work_struct *work)
+ 	struct amdgpu_device *remote_adev = NULL;
+ 	struct amdgpu_device *adev = ras->adev;
+ 	struct list_head device_list, *device_list_handle =  NULL;
+-	struct amdgpu_hive_info *hive = amdgpu_get_xgmi_hive(adev, false);
  
--	if (dev == NULL || dev->dev_private == NULL) {
-+	if (!dev)
- 		return -ENODEV;
--	}
- 
- 	adev = drm_to_adev(dev);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 38023c879db1..6866c515f00a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1082,7 +1082,7 @@ static struct drm_driver kms_driver;
- static int amdgpu_pci_probe(struct pci_dev *pdev,
- 			    const struct pci_device_id *ent)
- {
--	struct drm_device *dev;
-+	struct drm_device *ddev;
- 	struct amdgpu_device *adev;
- 	unsigned long flags = ent->driver_data;
- 	int ret, retry = 0;
-@@ -1138,36 +1138,42 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 	if (ret)
- 		return ret;
- 
--	dev = drm_dev_alloc(&kms_driver, &pdev->dev);
--	if (IS_ERR(dev))
--		return PTR_ERR(dev);
-+	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-+	if (!adev)
-+		return -ENOMEM;
+ 	if (!ras->disable_ras_err_cnt_harvest) {
++		struct amdgpu_hive_info *hive = amdgpu_get_xgmi_hive(adev);
 +
-+	adev->dev  = &pdev->dev;
-+	adev->pdev = pdev;
-+	ddev = adev_to_drm(adev);
-+	ret = drm_dev_init(ddev, &kms_driver, &pdev->dev);
-+	if (ret)
-+		goto err_free;
+ 		/* Build list of devices to query RAS related errors */
+ 		if  (hive && adev->gmc.xgmi.num_physical_nodes > 1) {
+ 			device_list_handle = &hive->device_list; @@ -1570,6 +1571,8 @@ static void amdgpu_ras_do_recovery(struct work_struct *work)
+ 		list_for_each_entry(remote_adev,
+ 				device_list_handle, gmc.xgmi.head)
+ 			amdgpu_ras_log_on_err_counter(remote_adev);
++
++		amdgpu_put_xgmi_hive(hive);
+ 	}
  
- 	if (!supports_atomic)
--		dev->driver_features &= ~DRIVER_ATOMIC;
-+		ddev->driver_features &= ~DRIVER_ATOMIC;
+ 	if (amdgpu_device_should_recover_gpu(ras->adev))
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 7a61dc6738eb..08ed4dddfaf1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -35,11 +35,9 @@
  
- 	ret = pci_enable_device(pdev);
- 	if (ret)
- 		goto err_free;
+ static DEFINE_MUTEX(xgmi_mutex);
  
--	dev->pdev = pdev;
-+	ddev->pdev = pdev;
-+	pci_set_drvdata(pdev, ddev);
+-#define AMDGPU_MAX_XGMI_HIVE			8
+ #define AMDGPU_MAX_XGMI_DEVICE_PER_HIVE		4
  
--	pci_set_drvdata(pdev, dev);
+-static struct amdgpu_hive_info xgmi_hives[AMDGPU_MAX_XGMI_HIVE]; -static unsigned hive_count = 0;
++static LIST_HEAD(xgmi_hive_list);
+ 
+ static const int xgmi_pcs_err_status_reg_vg20[] = {
+ 	smnXGMI0_PCS_GOPX16_PCS_ERROR_STATUS,
+@@ -171,59 +169,47 @@ static const struct amdgpu_pcs_ras_field wafl_pcs_ras_fields[] = {
+  *
+  */
+ 
++static struct attribute amdgpu_xgmi_hive_id = {
++	.name = "xgmi_hive_id",
++	.mode = S_IRUGO
++};
+ 
+-static ssize_t amdgpu_xgmi_show_hive_id(struct device *dev,
+-		struct device_attribute *attr, char *buf)
+-{
+-	struct amdgpu_hive_info *hive =
+-			container_of(attr, struct amdgpu_hive_info, dev_attr);
 -
--	ret = amdgpu_driver_load_kms(dev, ent->driver_data);
-+	ret = amdgpu_driver_load_kms(adev, ent->driver_data);
- 	if (ret)
- 		goto err_pci;
+-	return snprintf(buf, PAGE_SIZE, "%llu\n", hive->hive_id);
+-}
++static struct attribute *amdgpu_xgmi_hive_attrs[] = {
++	&amdgpu_xgmi_hive_id,
++	NULL
++};
  
- retry_init:
--	ret = drm_dev_register(dev, ent->driver_data);
-+	ret = drm_dev_register(ddev, ent->driver_data);
- 	if (ret == -EAGAIN && ++retry <= 3) {
- 		DRM_INFO("retry init %d\n", retry);
- 		/* Don't request EX mode too frequently which is attacking */
- 		msleep(5000);
- 		goto retry_init;
--	} else if (ret)
-+	} else if (ret) {
- 		goto err_pci;
+-static int amdgpu_xgmi_sysfs_create(struct amdgpu_device *adev,
+-				    struct amdgpu_hive_info *hive)
++static ssize_t amdgpu_xgmi_show_attrs(struct kobject *kobj,
++	struct attribute *attr, char *buf)
+ {
+-	int ret = 0;
+-
+-	if (WARN_ON(hive->kobj))
+-		return -EINVAL;
+-
+-	hive->kobj = kobject_create_and_add("xgmi_hive_info", &adev->dev->kobj);
+-	if (!hive->kobj) {
+-		dev_err(adev->dev, "XGMI: Failed to allocate sysfs entry!\n");
+-		return -EINVAL;
+-	}
+-
+-	hive->dev_attr = (struct device_attribute) {
+-		.attr = {
+-			.name = "xgmi_hive_id",
+-			.mode = S_IRUGO,
++	struct amdgpu_hive_info *hive = container_of(
++		kobj, struct amdgpu_hive_info, kobj);
+ 
+-		},
+-		.show = amdgpu_xgmi_show_hive_id,
+-	};
+-
+-	ret = sysfs_create_file(hive->kobj, &hive->dev_attr.attr);
+-	if (ret) {
+-		dev_err(adev->dev, "XGMI: Failed to create device file xgmi_hive_id\n");
+-		kobject_del(hive->kobj);
+-		kobject_put(hive->kobj);
+-		hive->kobj = NULL;
+-	}
++	if (attr == &amdgpu_xgmi_hive_id)
++		return snprintf(buf, PAGE_SIZE, "%llu\n", hive->hive_id);
+ 
+-	return ret;
++	return 0;
+ }
+ 
+-static void amdgpu_xgmi_sysfs_destroy(struct amdgpu_device *adev,
+-				    struct amdgpu_hive_info *hive)
++static void amdgpu_xgmi_hive_release(struct kobject *kobj)
+ {
+-	sysfs_remove_file(hive->kobj, &hive->dev_attr.attr);
+-	kobject_del(hive->kobj);
+-	kobject_put(hive->kobj);
+-	hive->kobj = NULL;
++	struct amdgpu_hive_info *hive = container_of(
++		kobj, struct amdgpu_hive_info, kobj);
++
++	mutex_destroy(&hive->hive_lock);
++	kfree(hive);
+ }
+ 
++static const struct sysfs_ops amdgpu_xgmi_hive_ops = {
++	.show = amdgpu_xgmi_show_attrs,
++};
++
++struct kobj_type amdgpu_xgmi_hive_type = {
++	.release = amdgpu_xgmi_hive_release,
++	.sysfs_ops = &amdgpu_xgmi_hive_ops,
++	.default_attrs = amdgpu_xgmi_hive_attrs, };
++
+ static ssize_t amdgpu_xgmi_show_device_id(struct device *dev,
+ 				     struct device_attribute *attr,
+ 				     char *buf)
+@@ -287,8 +273,8 @@ static int amdgpu_xgmi_sysfs_add_dev_info(struct amdgpu_device *adev,
+ 
+ 
+ 	/* Create sysfs link to hive info folder on the first device */
+-	if (adev != hive->adev) {
+-		ret = sysfs_create_link(&adev->dev->kobj, hive->kobj,
++	if (hive->kobj.parent != (&adev->dev->kobj)) {
++		ret = sysfs_create_link(&adev->dev->kobj, &hive->kobj,
+ 					"xgmi_hive_info");
+ 		if (ret) {
+ 			dev_err(adev->dev, "XGMI: Failed to create link to hive info"); @@ -296,9 +282,9 @@ static int amdgpu_xgmi_sysfs_add_dev_info(struct amdgpu_device *adev,
+ 		}
+ 	}
+ 
+-	sprintf(node, "node%d", hive->number_devices);
++	sprintf(node, "node%d", atomic_read(&hive->number_devices));
+ 	/* Create sysfs link form the hive folder to yourself */
+-	ret = sysfs_create_link(hive->kobj, &adev->dev->kobj, node);
++	ret = sysfs_create_link(&hive->kobj, &adev->dev->kobj, node);
+ 	if (ret) {
+ 		dev_err(adev->dev, "XGMI: Failed to create link from hive info");
+ 		goto remove_link;
+@@ -326,78 +312,96 @@ static void amdgpu_xgmi_sysfs_rem_dev_info(struct amdgpu_device *adev,
+ 	device_remove_file(adev->dev, &dev_attr_xgmi_device_id);
+ 	device_remove_file(adev->dev, &dev_attr_xgmi_error);
+ 
+-	if (adev != hive->adev)
++	if (hive->kobj.parent != (&adev->dev->kobj))
+ 		sysfs_remove_link(&adev->dev->kobj,"xgmi_hive_info");
+ 
+-	sprintf(node, "node%d", hive->number_devices);
+-	sysfs_remove_link(hive->kobj, node);
++	sprintf(node, "node%d", atomic_read(&hive->number_devices));
++	sysfs_remove_link(&hive->kobj, node);
+ 
+ }
+ 
+ 
+ 
+-struct amdgpu_hive_info *amdgpu_get_xgmi_hive(struct amdgpu_device *adev, int lock)
++struct amdgpu_hive_info *amdgpu_get_xgmi_hive(struct amdgpu_device 
++*adev)
+ {
+-	int i;
+-	struct amdgpu_hive_info *tmp;
++	struct amdgpu_hive_info *hive = NULL, *tmp = NULL;
++	int ret;
+ 
+ 	if (!adev->gmc.xgmi.hive_id)
+ 		return NULL;
+ 
++	if (adev->hive) {
++		kobject_get(&adev->hive->kobj);
++		return adev->hive;
++	}
++
+ 	mutex_lock(&xgmi_mutex);
+ 
+-	for (i = 0 ; i < hive_count; ++i) {
+-		tmp = &xgmi_hives[i];
+-		if (tmp->hive_id == adev->gmc.xgmi.hive_id) {
+-			if (lock)
+-				mutex_lock(&tmp->hive_lock);
+-			mutex_unlock(&xgmi_mutex);
+-			return tmp;
++	if (!list_empty(&xgmi_hive_list)) {
++		list_for_each_entry_safe(hive, tmp, &xgmi_hive_list, node)  {
++			if (hive->hive_id == adev->gmc.xgmi.hive_id)
++				goto pro_end;
+ 		}
+ 	}
+-	if (i >= AMDGPU_MAX_XGMI_HIVE) {
+-		mutex_unlock(&xgmi_mutex);
+-		return NULL;
++
++	hive = kzalloc(sizeof(*hive), GFP_KERNEL);
++	if (!hive) {
++		dev_err(adev->dev, "XGMI: allocation failed\n");
++		hive = NULL;
++		goto pro_end;
+ 	}
+ 
+ 	/* initialize new hive if not exist */
+-	tmp = &xgmi_hives[hive_count++];
+-
+-	if (amdgpu_xgmi_sysfs_create(adev, tmp)) {
+-		mutex_unlock(&xgmi_mutex);
+-		return NULL;
++	ret = kobject_init_and_add(&hive->kobj,
++			&amdgpu_xgmi_hive_type,
++			&adev->dev->kobj,
++			"%s", "xgmi_hive_info");
++	if (ret) {
++		dev_err(adev->dev, "XGMI: failed initializing kobject for xgmi hive\n");
++		kfree(hive);
++		hive = NULL;
++		goto pro_end;
+ 	}
+ 
+-	tmp->adev = adev;
+-	tmp->hive_id = adev->gmc.xgmi.hive_id;
+-	INIT_LIST_HEAD(&tmp->device_list);
+-	mutex_init(&tmp->hive_lock);
+-	atomic_set(&tmp->in_reset, 0);
+-	task_barrier_init(&tmp->tb);
+-
+-	if (lock)
+-		mutex_lock(&tmp->hive_lock);
+-	tmp->pstate = AMDGPU_XGMI_PSTATE_UNKNOWN;
+-	tmp->hi_req_gpu = NULL;
++	hive->hive_id = adev->gmc.xgmi.hive_id;
++	INIT_LIST_HEAD(&hive->device_list);
++	INIT_LIST_HEAD(&hive->node);
++	mutex_init(&hive->hive_lock);
++	atomic_set(&hive->in_reset, 0);
++	atomic_set(&hive->number_devices, 0);
++	task_barrier_init(&hive->tb);
++	hive->pstate = AMDGPU_XGMI_PSTATE_UNKNOWN;
++	hive->hi_req_gpu = NULL;
+ 	/*
+ 	 * hive pstate on boot is high in vega20 so we have to go to low
+ 	 * pstate on after boot.
+ 	 */
+-	tmp->hi_req_count = AMDGPU_MAX_XGMI_DEVICE_PER_HIVE;
++	hive->hi_req_count = AMDGPU_MAX_XGMI_DEVICE_PER_HIVE;
++	list_add_tail(&hive->node, &xgmi_hive_list);
++
++pro_end:
++	if (hive)
++		kobject_get(&hive->kobj);
+ 	mutex_unlock(&xgmi_mutex);
++	return hive;
++}
+ 
+-	return tmp;
++void amdgpu_put_xgmi_hive(struct amdgpu_hive_info *hive) {
++	if (hive)
++		kobject_put(&hive->kobj);
+ }
+ 
+ int amdgpu_xgmi_set_pstate(struct amdgpu_device *adev, int pstate)  {
+ 	int ret = 0;
+-	struct amdgpu_hive_info *hive = amdgpu_get_xgmi_hive(adev, 0);
++	struct amdgpu_hive_info *hive = amdgpu_get_xgmi_hive(adev);
+ 	struct amdgpu_device *request_adev = hive->hi_req_gpu ?
+ 						hive->hi_req_gpu : adev;
+ 	bool is_hi_req = pstate == AMDGPU_XGMI_PSTATE_MAX_VEGA20;
+ 	bool init_low = hive->pstate == AMDGPU_XGMI_PSTATE_UNKNOWN;
+ 
++	amdgpu_put_xgmi_hive(hive);
+ 	/* fw bug so temporarily disable pstate switching */
+ 	return 0;
+ 
+@@ -449,7 +453,7 @@ int amdgpu_xgmi_update_topology(struct amdgpu_hive_info *hive, struct amdgpu_dev
+ 
+ 	/* Each psp need to set the latest topology */
+ 	ret = psp_xgmi_set_topology_info(&adev->psp,
+-					 hive->number_devices,
++					 atomic_read(&hive->number_devices),
+ 					 &adev->psp.xgmi_context.top_info);
+ 	if (ret)
+ 		dev_err(adev->dev,
+@@ -511,7 +515,7 @@ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ 		adev->gmc.xgmi.node_id = adev->gmc.xgmi.physical_node_id + 16;
+ 	}
+ 
+-	hive = amdgpu_get_xgmi_hive(adev, 1);
++	hive = amdgpu_get_xgmi_hive(adev);
+ 	if (!hive) {
+ 		ret = -EINVAL;
+ 		dev_err(adev->dev,
+@@ -519,6 +523,7 @@ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ 			adev->gmc.xgmi.node_id, adev->gmc.xgmi.hive_id);
+ 		goto exit;
+ 	}
++	mutex_lock(&hive->hive_lock);
+ 
+ 	top_info = &adev->psp.xgmi_context.top_info;
+ 
+@@ -526,7 +531,7 @@ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ 	list_for_each_entry(entry, &hive->device_list, head)
+ 		top_info->nodes[count++].node_id = entry->node_id;
+ 	top_info->num_nodes = count;
+-	hive->number_devices = count;
++	atomic_set(&hive->number_devices, count);
+ 
+ 	task_barrier_add_task(&hive->tb);
+ 
+@@ -565,35 +570,48 @@ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ exit_unlock:
+ 	mutex_unlock(&hive->hive_lock);
+ exit:
+-	if (!ret)
++	if (!ret) {
++		adev->hive = hive;
+ 		dev_info(adev->dev, "XGMI: Add node %d, hive 0x%llx.\n",
+ 			 adev->gmc.xgmi.physical_node_id, adev->gmc.xgmi.hive_id);
+-	else
++	} else {
++		amdgpu_put_xgmi_hive(hive);
+ 		dev_err(adev->dev, "XGMI: Failed to add node %d, hive 0x%llx ret: %d\n",
+ 			adev->gmc.xgmi.physical_node_id, adev->gmc.xgmi.hive_id,
+ 			ret);
 +	}
  
--	adev = drm_to_adev(dev);
- 	ret = amdgpu_debugfs_init(adev);
- 	if (ret)
- 		DRM_ERROR("Creating debugfs files failed (%d).\n", ret);
-@@ -1177,7 +1183,7 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- err_pci:
- 	pci_disable_device(pdev);
- err_free:
--	drm_dev_put(dev);
-+	drm_dev_put(ddev);
  	return ret;
  }
  
-@@ -1197,6 +1203,14 @@ amdgpu_pci_remove(struct pci_dev *pdev)
- 	drm_dev_put(dev);
- }
+ int amdgpu_xgmi_remove_device(struct amdgpu_device *adev)  {
+-	struct amdgpu_hive_info *hive;
++	struct amdgpu_hive_info *hive = adev->hive;
  
-+static void amdgpu_driver_release(struct drm_device *ddev)
-+{
-+	struct amdgpu_device *adev = drm_to_adev(ddev);
+ 	if (!adev->gmc.xgmi.supported)
+ 		return -EINVAL;
+ 
+-	hive = amdgpu_get_xgmi_hive(adev, 1);
+ 	if (!hive)
+ 		return -EINVAL;
+ 
++	mutex_lock(&hive->hive_lock);
+ 	task_barrier_rem_task(&hive->tb);
+ 	amdgpu_xgmi_sysfs_rem_dev_info(adev, hive);
++	if (hive->hi_req_gpu == adev)
++		hive->hi_req_gpu = NULL;
++	list_del(&adev->gmc.xgmi.head);
+ 	mutex_unlock(&hive->hive_lock);
+ 
+-	if(!(--hive->number_devices)){
+-		amdgpu_xgmi_sysfs_destroy(adev, hive);
+-		mutex_destroy(&hive->hive_lock);
++	amdgpu_put_xgmi_hive(hive);
++	adev->hive = NULL;
 +
-+	drm_dev_fini(ddev);
-+	kfree(adev);
-+}
++	if (atomic_dec_return(&hive->number_devices) == 0) {
++		/* Remove the hive from global hive list */
++		mutex_lock(&xgmi_mutex);
++		list_del(&hive->node);
++		mutex_unlock(&xgmi_mutex);
 +
- static void
- amdgpu_pci_shutdown(struct pci_dev *pdev)
- {
-@@ -1491,6 +1505,7 @@ static struct drm_driver kms_driver = {
- 	.open = amdgpu_driver_open_kms,
- 	.postclose = amdgpu_driver_postclose_kms,
- 	.lastclose = amdgpu_driver_lastclose_kms,
-+	.release   = amdgpu_driver_release,
- 	.irq_handler = amdgpu_irq_handler,
- 	.ioctls = amdgpu_ioctls_kms,
- 	.gem_free_object_unlocked = amdgpu_gem_object_free,
-@@ -1525,8 +1540,6 @@ static struct pci_driver amdgpu_kms_pci_driver = {
- 	.driver.pm = &amdgpu_pm_ops,
++		amdgpu_put_xgmi_hive(hive);
+ 	}
+ 
+ 	return psp_xgmi_terminate(&adev->psp); diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
+index 453336ca9675..148560d63554 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
+@@ -27,13 +27,12 @@
+ 
+ 
+ struct amdgpu_hive_info {
+-	uint64_t		hive_id;
+-	struct list_head	device_list;
+-	int number_devices;
++	struct kobject kobj;
++	uint64_t hive_id;
++	struct list_head device_list;
++	struct list_head node;
++	atomic_t number_devices;
+ 	struct mutex hive_lock;
+-	struct kobject *kobj;
+-	struct device_attribute dev_attr;
+-	struct amdgpu_device *adev;
+ 	atomic_t in_reset;
+ 	int hi_req_count;
+ 	struct amdgpu_device *hi_req_gpu;
+@@ -51,7 +50,8 @@ struct amdgpu_pcs_ras_field {
+ 	uint32_t pcs_err_shift;
  };
  
--
--
- static int __init amdgpu_init(void)
- {
- 	int r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 47cd3558f9c7..f2a4fdcd542d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -86,7 +86,7 @@ void amdgpu_driver_unload_kms(struct drm_device *dev)
- 	amdgpu_unregister_gpu_instance(adev);
- 
- 	if (adev->rmmio == NULL)
--		goto done_free;
-+		return;
- 
- 	if (adev->runpm) {
- 		pm_runtime_get_sync(dev->dev);
-@@ -96,10 +96,6 @@ void amdgpu_driver_unload_kms(struct drm_device *dev)
- 	amdgpu_acpi_fini(adev);
- 
- 	amdgpu_device_fini(adev);
--
--done_free:
--	kfree(adev);
--	dev->dev_private = NULL;
- }
- 
- void amdgpu_register_gpu_instance(struct amdgpu_device *adev)
-@@ -130,22 +126,18 @@ void amdgpu_register_gpu_instance(struct amdgpu_device *adev)
- /**
-  * amdgpu_driver_load_kms - Main load function for KMS.
-  *
-- * @dev: drm dev pointer
-+ * @adev: pointer to struct amdgpu_device
-  * @flags: device flags
-  *
-  * This is the main load function for KMS (all asics).
-  * Returns 0 on success, error on failure.
-  */
--int amdgpu_driver_load_kms(struct drm_device *dev, unsigned long flags)
-+int amdgpu_driver_load_kms(struct amdgpu_device *adev, unsigned long flags)
- {
--	struct amdgpu_device *adev;
-+	struct drm_device *dev;
- 	int r, acpi_status;
- 
--	adev = kzalloc(sizeof(struct amdgpu_device), GFP_KERNEL);
--	if (adev == NULL) {
--		return -ENOMEM;
--	}
--	dev->dev_private = (void *)adev;
-+	dev = adev_to_drm(adev);
- 
- 	if (amdgpu_has_atpx() &&
- 	    (amdgpu_is_atpx_hybrid() ||
-@@ -160,7 +152,7 @@ int amdgpu_driver_load_kms(struct drm_device *dev, unsigned long flags)
- 	 * properly initialize the GPU MC controller and permit
- 	 * VRAM allocation
- 	 */
--	r = amdgpu_device_init(adev, dev, dev->pdev, flags);
-+	r = amdgpu_device_init(adev, flags);
- 	if (r) {
- 		dev_err(&dev->pdev->dev, "Fatal error during GPU init\n");
- 		goto out;
--- 
-2.28.0.215.g878e727637
-
+-struct amdgpu_hive_info *amdgpu_get_xgmi_hive(struct amdgpu_device *adev, int lock);
++struct amdgpu_hive_info *amdgpu_get_xgmi_hive(struct amdgpu_device 
++*adev); void amdgpu_put_xgmi_hive(struct amdgpu_hive_info *hive);
+ int amdgpu_xgmi_update_topology(struct amdgpu_hive_info *hive, struct amdgpu_device *adev);  int amdgpu_xgmi_add_device(struct amdgpu_device *adev);  int amdgpu_xgmi_remove_device(struct amdgpu_device *adev);
+--
+2.17.1
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
