@@ -1,56 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85A572501D0
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Aug 2020 18:15:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1DD72501D2
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Aug 2020 18:15:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F3EE6E2E6;
-	Mon, 24 Aug 2020 16:15:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9598E6E2EA;
+	Mon, 24 Aug 2020 16:15:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
- [IPv6:2607:f8b0:4864:20::829])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 595606E2E6
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 16:15:44 +0000 (UTC)
-Received: by mail-qt1-x829.google.com with SMTP id t23so6565534qto.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 09:15:44 -0700 (PDT)
+Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com
+ [IPv6:2607:f8b0:4864:20::f43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43FF36E2EA
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 16:15:45 +0000 (UTC)
+Received: by mail-qv1-xf43.google.com with SMTP id v1so3974496qvn.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 09:15:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=w1RxilnAk64Ue8kavIL9UgQkrO3vygEHe9JUJ/xgiIs=;
- b=FgJBnUKQFrkaRj8VaOWSPBa1WvPTtaFU/FU8Fv7rMV+hKYqw8Vgl25bqi3cvRKSPeg
- h76HslEYdrgvXKrvO8qFnH8tL8hY9yoOIMLS7DmYl4HRuZ16ywA4G3mGS7xYeAGLdWgv
- Opm05QeKKR2cJEOkFa8ELk1XWpXsXAfbTO5ES1OIQIljvOe3zh5/Qa2ExlqNyc6KMObl
- 0boB6t1RkbEkt8qxvdj63ugnJZsut2nVPwvjXNHmMIlCM8xDA6iFW8IR6wt+AU03/qE8
- NqMaMcx2NDTAf9bvZpDpbfrP8Azr1IPmRvokVD0tAjm/Akd1aQzZT41ALcPnJ+9ltd6r
- NT9A==
+ bh=1W8I/fI/iKDBgDC4xvNx/Qz0cPLrwCZnp4kM059eolA=;
+ b=ZFemWSB2OjgAPDmsAnxOxZr9c2G4oVEuIMbfOsIKPW0eIqEP3HfloKQNTBNvwQR5QC
+ ZmEQT3n1WDZuGSAAP0MyLvs8VLgUXq7VzEiqYRKxxV1NgYLosVUAfK0dKMmiiNDuhGgA
+ 02N2ZyGJEiPpJtWIRlyPdez03jIuTJa9I0UnoGbp/fmqQI2MGpMp+7CMe4iF4hndUFdr
+ N4rCemB4Bfte7gzdtb91JHtaijtb4gDzPJbaO54gP0LPSgS4rqz1Y2nzzkQjhbxgXjPu
+ XZG8Bncy1NC+UcQlKxhhPa1LyoDTHgdBjLl0kdhL5Zv8Sg+Tzsd8oBU3fru7YW/57fFZ
+ JgrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=w1RxilnAk64Ue8kavIL9UgQkrO3vygEHe9JUJ/xgiIs=;
- b=Lp4zmQqQAnwTs6UVOllZlr8aIuMscChsAO2HGtBQeswX8JagdnwxJqj9yg4II59+sj
- BKWXopwtKqx1yhMkO2vaU5RhPs2oPke3u6BhWU/TV39SGCDdGaOKHg5YVwn6z0rih4h1
- i35zglzyrWYMWJllDMz0C8j8uvzX9kVJl2CrIO9d019+wiMIXB3ZMB8nX0ZP69MQSsZP
- DechtJrGOV+9CrgRrEz8OTE6PKz4icD+1tBOZJQebQoqW81fKIiX2wjKDRDmDrS4cR4l
- rcMkakJLTe40MyEwhQxepQflLYrCfUAJnIvOpvu7+V2V+4+ojN1evBcdoPpAeayNgT84
- o7AA==
-X-Gm-Message-State: AOAM531ZbUYkC1F1jbApENhcDY2iazxRpRewYF6hjmSiVw8JkAkvY5CB
- Kn5hLuAMux0V3LHiyUWBniJgwgYLXbQ=
-X-Google-Smtp-Source: ABdhPJyy4kEbBa0TG0xhExWdV6z3Z+BAYW/OHDgyedZUY2I1lk44qr9XJHFx9K0PyTk5LN+YUKHocw==
-X-Received: by 2002:ac8:45c3:: with SMTP id e3mr5496743qto.149.1598285739307; 
- Mon, 24 Aug 2020 09:15:39 -0700 (PDT)
+ bh=1W8I/fI/iKDBgDC4xvNx/Qz0cPLrwCZnp4kM059eolA=;
+ b=gxhtxpfLBdYxrwlkEzaE6KfN9n1L7+mPej1n6QsEo8S49KtQSUMl9N46JIyfEKGpS1
+ oNomihoqjgX+940shJVeQcxYXWCt0B3UJ3C8KnoXme6Q3No/kzbSqq+LJqr/72WZcsj+
+ IY8ygHn+OuUwLIl0G7nPLHId+WEfY7TFmT11mK+kDPhEXWmUESyspAZhEcZauoHlrwIM
+ 5bVvkVJedRW6ugp0QFacyDqCl42wLnoDY+HUL2a1F/HUg5joTcGgGIiSfqt+X9jzYKh5
+ qWnKOufe2wiblKEApiXvyOdQg9M+AFkkMVst/KTEn1gOGKAkqSUABIlMuHIImavhJLqL
+ Hv/g==
+X-Gm-Message-State: AOAM532ccMhATlpNUfOnRuQv7qpjcKJId+8tUkWwH/T2QIriLxE2oG4Z
+ jlMS9O/81U7QS8NOJyGq90Z5mFg4xw4=
+X-Google-Smtp-Source: ABdhPJymcV/AkgG6INjdaXpz4sNVviawbLLIN66cWkoutjFq4Kgn/R09TTD2elucZ/Ynn4TpdMRDSQ==
+X-Received: by 2002:a05:6214:2a4:: with SMTP id
+ m4mr5684343qvv.120.1598285740285; 
+ Mon, 24 Aug 2020 09:15:40 -0700 (PDT)
 Received: from localhost.localdomain ([71.219.66.138])
- by smtp.gmail.com with ESMTPSA id q7sm9654097qkf.35.2020.08.24.09.15.38
+ by smtp.gmail.com with ESMTPSA id q7sm9654097qkf.35.2020.08.24.09.15.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Aug 2020 09:15:38 -0700 (PDT)
+ Mon, 24 Aug 2020 09:15:39 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/8] drm/amdgpu: add an asic callback for pre asic init
-Date: Mon, 24 Aug 2020 12:15:21 -0400
-Message-Id: <20200824161527.2001591-2-alexander.deucher@amd.com>
+Subject: [PATCH 3/8] drm/amdgpu: add pre_asic_init callback for SI
+Date: Mon, 24 Aug 2020 12:15:22 -0400
+Message-Id: <20200824161527.2001591-3-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200824161527.2001591-1-alexander.deucher@amd.com>
 References: <20200824161527.2001591-1-alexander.deucher@amd.com>
@@ -72,35 +73,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This callback can be used by asics that need to
-do something special prior to calling atom asic init.
+Nothing to do for this family.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/si.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 54666eea1863..4746b60b5327 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -617,6 +617,8 @@ struct amdgpu_asic_funcs {
- 	uint64_t (*get_pcie_replay_count)(struct amdgpu_device *adev);
- 	/* device supports BACO */
- 	bool (*supports_baco)(struct amdgpu_device *adev);
-+	/* pre asic_init quirks */
-+	void (*pre_asic_init)(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
+index eaa2f071b139..455d5e366c69 100644
+--- a/drivers/gpu/drm/amd/amdgpu/si.c
++++ b/drivers/gpu/drm/amd/amdgpu/si.c
+@@ -1871,6 +1871,10 @@ static int si_set_vce_clocks(struct amdgpu_device *adev, u32 evclk, u32 ecclk)
+ 	return 0;
+ }
+ 
++static void si_pre_asic_init(struct amdgpu_device *adev)
++{
++}
++
+ static const struct amdgpu_asic_funcs si_asic_funcs =
+ {
+ 	.read_disabled_bios = &si_read_disabled_bios,
+@@ -1892,6 +1896,7 @@ static const struct amdgpu_asic_funcs si_asic_funcs =
+ 	.need_reset_on_init = &si_need_reset_on_init,
+ 	.get_pcie_replay_count = &si_get_pcie_replay_count,
+ 	.supports_baco = &si_asic_supports_baco,
++	.pre_asic_init = &si_pre_asic_init,
  };
  
- /*
-@@ -1129,6 +1131,7 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
- #define amdgpu_asic_need_reset_on_init(adev) (adev)->asic_funcs->need_reset_on_init((adev))
- #define amdgpu_asic_get_pcie_replay_count(adev) ((adev)->asic_funcs->get_pcie_replay_count((adev)))
- #define amdgpu_asic_supports_baco(adev) (adev)->asic_funcs->supports_baco((adev))
-+#define amdgpu_asic_pre_asic_init(adev) (adev)->asic_funcs->pre_asic_init((adev))
- 
- #define amdgpu_inc_vram_lost(adev) atomic_inc(&((adev)->vram_lost_counter));
- 
+ static uint32_t si_get_rev_id(struct amdgpu_device *adev)
 -- 
 2.25.4
 
