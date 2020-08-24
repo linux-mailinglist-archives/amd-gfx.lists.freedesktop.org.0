@@ -1,60 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF052501D6
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Aug 2020 18:16:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FEA32502AC
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Aug 2020 18:35:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 124D06E332;
-	Mon, 24 Aug 2020 16:16:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 235CB6E2E6;
+	Mon, 24 Aug 2020 16:35:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com
- [IPv6:2607:f8b0:4864:20::f41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2293895E7
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 16:15:59 +0000 (UTC)
-Received: by mail-qv1-xf41.google.com with SMTP id t6so3980185qvw.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Aug 2020 09:15:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=xSMCnJXUgVEjbYwuFgOj13JLGcy/vKv8//CyHG1n4GE=;
- b=ZsbjvPMzI44zBl6uYVJjZBdX0kphT3YqrSk62JlvAFaPtjdCB3ebqQs5Ak7OlFwGuA
- hA9jaOo1V9blq+0Kk7wIWplWSnsZgglY8Ul3bva26ps3pT30fWUFcAYr9X3KtUkRg23N
- USH9Y8OqsXo6PDXhMX+nw+rqWn2kKRT4+LBx7ncMht6M2WSlcNcShWbu/GOUji5fnpNu
- VTXfvP9f049CtGElwOO697njTpMUE8oP9nwHoel8Uv18AMmSq3JpD8t9pi4DRKJLzfjU
- UKRj+zUiMtlSXo7BKdfsdnztzj8/4CCuyvhchNAuL16S/SgR+qI6GleUNKuaY3qqcAeX
- fKig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=xSMCnJXUgVEjbYwuFgOj13JLGcy/vKv8//CyHG1n4GE=;
- b=kZ39mjM5EH809kI8mfgDeiRr9/AvHf7qDRPk+Tz9SOChEI2cPyNP8F9np+HnwCsG4/
- 7le9w0kKyfhsNZBPaRediMizwg7EkWj7QKfyV43ySNiOc9yDjOLKxO6VJ/tgVrv8nY0P
- qmAsexwKCDczysoNYrfN0XM15uRdWUyUhTxQGWvSUpA6hWvEbi2Dik0h5bqrTZdReIKo
- uG6XYyg8oQGBzkGqjuXCIVAGNFl+DQnQwsu/dMxqTwvFuFT8T1NYdsxSpW/vpdtZxyFJ
- 9R2pHHutrfeF6kF5YOaEOPICP4VeDFrOpWy+j0igE53pOcQOgqmudIK2QyE9W6lIYKQQ
- NSjg==
-X-Gm-Message-State: AOAM530v9VcVjcweVktZOXtu1Pg8eKjbykfyW87VW4tvvPdEr3SlcMcD
- aQU/B4mHUYvALCRtbjDVowJ9tRfcbMk=
-X-Google-Smtp-Source: ABdhPJySnl0wLVX40xbmcUwLG+f9nTLF1Sgixqi8iHVweZl9uDnynFHThYz+Uh9LCl2QPc8n+09MFA==
-X-Received: by 2002:a0c:ea21:: with SMTP id t1mr5515046qvp.62.1598285754874;
- Mon, 24 Aug 2020 09:15:54 -0700 (PDT)
-Received: from localhost.localdomain ([71.219.66.138])
- by smtp.gmail.com with ESMTPSA id q7sm9654097qkf.35.2020.08.24.09.15.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Aug 2020 09:15:54 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 8/8] drm/amdgpu: add a wrapper for atom asic_init
-Date: Mon, 24 Aug 2020 12:15:27 -0400
-Message-Id: <20200824161527.2001591-8-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20200824161527.2001591-1-alexander.deucher@amd.com>
-References: <20200824161527.2001591-1-alexander.deucher@amd.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 250E36E2E6;
+ Mon, 24 Aug 2020 16:35:27 +0000 (UTC)
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 3537C22BED;
+ Mon, 24 Aug 2020 16:35:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1598286927;
+ bh=+fTUKEyrtLg4Uiu2RbCq3/3bQ+IX0Dc03GZZYbNK0kc=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=C3rgBByF+VEIpXqmh69Hoy2v10zgXyL9H1sA5weMYM3OfNIZCRjUdFi5WIsibLmey
+ AsjYDqmb8BAlEw3rzXmhi5//6Lb763PamQMwd6yYHzuQqVz3CpMZ+05qXMbqlMRzDw
+ qn4g/vWr6lxu3/+WJfPriQiO6Q2q3DYVx4euPlKs=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.8 17/63] drm/amd/powerplay: correct Vega20 cached
+ smu feature state
+Date: Mon, 24 Aug 2020 12:34:17 -0400
+Message-Id: <20200824163504.605538-17-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200824163504.605538-1-sashal@kernel.org>
+References: <20200824163504.605538-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,75 +49,101 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
+ Evan Quan <evan.quan@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This allows us to add asic specific workarounds for atom
-asic init while keeping the adev specifics out of the
-atombios parser code.
+From: Evan Quan <evan.quan@amd.com>
 
+[ Upstream commit 266d81d9eed30f4994d76a2b237c63ece062eefe ]
+
+Correct the cached smu feature state on pp_features sysfs
+setting.
+
+Signed-off-by: Evan Quan <evan.quan@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 20 +++++++++++++++++---
- 1 file changed, 17 insertions(+), 3 deletions(-)
+ .../drm/amd/powerplay/hwmgr/vega20_hwmgr.c    | 38 +++++++++----------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 6573e1112462..e41aa1e885ba 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -653,6 +653,20 @@ static void amdgpu_block_invalid_wreg(struct amdgpu_device *adev,
- 	BUG();
+diff --git a/drivers/gpu/drm/amd/powerplay/hwmgr/vega20_hwmgr.c b/drivers/gpu/drm/amd/powerplay/hwmgr/vega20_hwmgr.c
+index 9ff470f1b826c..b7f3f8b62c2ac 100644
+--- a/drivers/gpu/drm/amd/powerplay/hwmgr/vega20_hwmgr.c
++++ b/drivers/gpu/drm/amd/powerplay/hwmgr/vega20_hwmgr.c
+@@ -979,10 +979,7 @@ static int vega20_disable_all_smu_features(struct pp_hwmgr *hwmgr)
+ {
+ 	struct vega20_hwmgr *data =
+ 			(struct vega20_hwmgr *)(hwmgr->backend);
+-	uint64_t features_enabled;
+-	int i;
+-	bool enabled;
+-	int ret = 0;
++	int i, ret = 0;
+ 
+ 	PP_ASSERT_WITH_CODE((ret = smum_send_msg_to_smc(hwmgr,
+ 			PPSMC_MSG_DisableAllSmuFeatures,
+@@ -990,17 +987,8 @@ static int vega20_disable_all_smu_features(struct pp_hwmgr *hwmgr)
+ 			"[DisableAllSMUFeatures] Failed to disable all smu features!",
+ 			return ret);
+ 
+-	ret = vega20_get_enabled_smc_features(hwmgr, &features_enabled);
+-	PP_ASSERT_WITH_CODE(!ret,
+-			"[DisableAllSMUFeatures] Failed to get enabled smc features!",
+-			return ret);
+-
+-	for (i = 0; i < GNLD_FEATURES_MAX; i++) {
+-		enabled = (features_enabled & data->smu_features[i].smu_feature_bitmap) ?
+-			true : false;
+-		data->smu_features[i].enabled = enabled;
+-		data->smu_features[i].supported = enabled;
+-	}
++	for (i = 0; i < GNLD_FEATURES_MAX; i++)
++		data->smu_features[i].enabled = 0;
+ 
+ 	return 0;
+ }
+@@ -3230,10 +3218,11 @@ static int vega20_get_ppfeature_status(struct pp_hwmgr *hwmgr, char *buf)
+ 
+ static int vega20_set_ppfeature_status(struct pp_hwmgr *hwmgr, uint64_t new_ppfeature_masks)
+ {
+-	uint64_t features_enabled;
+-	uint64_t features_to_enable;
+-	uint64_t features_to_disable;
+-	int ret = 0;
++	struct vega20_hwmgr *data =
++			(struct vega20_hwmgr *)(hwmgr->backend);
++	uint64_t features_enabled, features_to_enable, features_to_disable;
++	int i, ret = 0;
++	bool enabled;
+ 
+ 	if (new_ppfeature_masks >= (1ULL << GNLD_FEATURES_MAX))
+ 		return -EINVAL;
+@@ -3262,6 +3251,17 @@ static int vega20_set_ppfeature_status(struct pp_hwmgr *hwmgr, uint64_t new_ppfe
+ 			return ret;
+ 	}
+ 
++	/* Update the cached feature enablement state */
++	ret = vega20_get_enabled_smc_features(hwmgr, &features_enabled);
++	if (ret)
++		return ret;
++
++	for (i = 0; i < GNLD_FEATURES_MAX; i++) {
++		enabled = (features_enabled & data->smu_features[i].smu_feature_bitmap) ?
++			true : false;
++		data->smu_features[i].enabled = enabled;
++	}
++
+ 	return 0;
  }
  
-+/**
-+ * amdgpu_device_asic_init - Wrapper for atom asic_init
-+ *
-+ * @dev: drm_device pointer
-+ *
-+ * Does any asic specific work and then calls atom asic init.
-+ */
-+static int amdgpu_device_asic_init(struct amdgpu_device *adev)
-+{
-+	amdgpu_asic_pre_asic_init(adev);
-+
-+	return amdgpu_atom_asic_init(adev->mode_info.atom_context);
-+}
-+
- /**
-  * amdgpu_device_vram_scratch_init - allocate the VRAM scratch page
-  *
-@@ -3203,7 +3217,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 			goto failed;
- 		}
- 		DRM_INFO("GPU posting now...\n");
--		r = amdgpu_atom_asic_init(adev->mode_info.atom_context);
-+		r = amdgpu_device_asic_init(adev);
- 		if (r) {
- 			dev_err(adev->dev, "gpu post error!\n");
- 			goto failed;
-@@ -3552,7 +3566,7 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
- 
- 	/* post card */
- 	if (amdgpu_device_need_post(adev)) {
--		r = amdgpu_atom_asic_init(adev->mode_info.atom_context);
-+		r = amdgpu_device_asic_init(adev);
- 		if (r)
- 			DRM_ERROR("amdgpu asic init failed\n");
- 	}
-@@ -4109,7 +4123,7 @@ static int amdgpu_do_asic_reset(struct amdgpu_hive_info *hive,
- 	list_for_each_entry(tmp_adev, device_list_handle, gmc.xgmi.head) {
- 		if (need_full_reset) {
- 			/* post card */
--			if (amdgpu_atom_asic_init(tmp_adev->mode_info.atom_context))
-+			if (amdgpu_device_asic_init(tmp_adev))
- 				DRM_WARN("asic atom init failed!");
- 
- 			if (!r) {
 -- 
-2.25.4
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
