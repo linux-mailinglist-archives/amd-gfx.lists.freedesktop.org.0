@@ -2,52 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46087250036
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Aug 2020 16:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A94A25004D
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Aug 2020 17:00:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C21766E286;
-	Mon, 24 Aug 2020 14:55:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB466E290;
+	Mon, 24 Aug 2020 14:59:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE4976E045;
- Mon, 24 Aug 2020 14:55:11 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id 83so8623910wme.4;
- Mon, 24 Aug 2020 07:55:11 -0700 (PDT)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA1D6E290;
+ Mon, 24 Aug 2020 14:59:58 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id h15so2274701wrt.12;
+ Mon, 24 Aug 2020 07:59:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=nhgjcGDiszmemLXRD4pV8iiEXCU7SaZcnWn1+uyj7dA=;
- b=u4nFtsVYYLdNR+pErZEZECWTnFSvE3O3DCzrqMuh8reuj9NQ/nCMZAkjiFnFFpRr/o
- 7FvO+w2VmWyHOAxj5aNO+F34jF7R+zheD7iHJu+zUHnl6rYJdIqyDePWlgXUNmFr3UWs
- xqNY3r9yO1as69MM2n9kWCCp1OCVoxZBnqiBShqcVYTkpTt2iakcOH2ennn0fyMU4tsc
- Pvfx1qO4ZRMMKMdSWQRJ1Y4xyr7rLFmGO60h5j6UA7XA2X62enGHooY2rCHXPI413AFA
- WtnSpK0waO1zvPf5swCYTTDL94erIKmbKTuEhGduVrrDXiKasgtqKUR+OC08HqX4mH6G
- i43A==
+ :cc; bh=ECIS0WvUxPFVgMktd3Czk1dDXzjjTjHRcV5bwp6ngFM=;
+ b=j/kO8WW7gObqi+5HMo+buADm2a+ih9UengrJgOL337n5w/QcYEKWJwJeubXbEMtiKN
+ CVRXlXaD3Jg6gon3qEW20iuBmhjk98hPdRzD7tIEvkfL2a54/QhHZxaepO1uL59JplHQ
+ 5myoJF1ALxkCmikteTDObYZkb8JLR7i0sJ9kURl8MLaBZ4DfVAun0eNeBz6FXO4xkQQg
+ bXNzjLeljviOdI0ywe9TbFzpUeS5/P1aUzNd/f8KAXbJZbjyiu00AR8/1BVF6ic36dn1
+ ywT8qGFhc7b5soVlklRQYH8zafaQCy07MALVx3l+55ZOGqWX0VN0c1lvgsZM3gqjM58o
+ QoQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=nhgjcGDiszmemLXRD4pV8iiEXCU7SaZcnWn1+uyj7dA=;
- b=kbH1mXqCqBPEhRyUpBXzab8xKD7DK4jwVK9WKP1ZWLeHpoLlYZvXsNy1OgzJvpjXPp
- u+IVR91wRtkwRIVNqTyaVa6iXmWOBV7Vll5l8QKLBoeHg0OJ+m53kyqCkUAjHaiqD3ew
- ys+XKRhLyKrLuxYLwqMtxeRwmGs/wVeBnOEheHwBb90zY+zFyvlZee2HtaJz+y6r2azu
- P5/AKGLx3KQQQ0k7yNXezMD9eredK/UqvX/5usFUOK7Pw5xfdQQt/+yWZEwzeUvFX+vp
- kDOz98fT3jQ2+81MYzQ+NHVPgZivn/b+gsQwH8ZBiFQmYtLBtbamX2i9H3+UFMBYsEK/
- 3Bew==
-X-Gm-Message-State: AOAM531Xqvc6clMJ+DwYUEH+/x5Pb4th6XuvWfTcqEBrDjh1z7HS6/ry
- VnKb8IWaq3ZysvgD8k5J2xTi/5smQ7U/X92Cpcw=
-X-Google-Smtp-Source: ABdhPJy+o0pSEX67YJFDALr/uKsAz7GjoWM/46FnxnObEN6n0CVfQB0jnjTYCfcivpI2EUL4og7c2zcHY7f127ZJddQ=
-X-Received: by 2002:a1c:bc85:: with SMTP id m127mr5905233wmf.70.1598280909545; 
- Mon, 24 Aug 2020 07:55:09 -0700 (PDT)
+ bh=ECIS0WvUxPFVgMktd3Czk1dDXzjjTjHRcV5bwp6ngFM=;
+ b=ZgKdG5er6Q4T2vUK3ggNPMn0pe/P1rLyPBkXPgZOfMDZYzKd08sR6nuSR91ayWI19m
+ BmK7TS+SWGu/Gr9AdKEI51uoU/z3RTSbAinirGXOvZ+fcKyoHA6Z3VT4yJuXmT/QQp3y
+ 6M3FIaApSm0jVu8w5l7WGAcHlkHJ/+Nt21WTTpz7iuQhq96aY/gNdc2d8swELzx+/dnB
+ mHWs00h5gY79g/l3bUUeoSbF2nCOGhZ8jcgOzJghMrJrqz2Wp38Mhs3PsT00Z3KwQC1i
+ hxZtQotTZrSMVoHdcP5IPG6oUuwuF8frfQNDom+7LPwc2hooGBfJsnG0lh6Ugz1REAW5
+ 9gRg==
+X-Gm-Message-State: AOAM531uCysamS/v0Xos797zjf2hTIi4DMQGYcgEyx5dumLJ4YVF+sFG
+ 8GXLuj4jqAj2exQQlcvTj16FRl5GmozbD5hBqhvNnn/0
+X-Google-Smtp-Source: ABdhPJxCuqKgX0AFTlWxXp2R3Wly05aExi3+NuRrzLBuuUo4hIBiE2jI2dPZrZMyJusG1E1ajD5TG3Fa5oWOUZIlgiI=
+X-Received: by 2002:adf:fecc:: with SMTP id q12mr6445535wrs.374.1598281197086; 
+ Mon, 24 Aug 2020 07:59:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <1598084843-32270-1-git-send-email-tangyouling@loongson.cn>
-In-Reply-To: <1598084843-32270-1-git-send-email-tangyouling@loongson.cn>
+References: <88d43daf-f29b-0fbe-cf58-930e8caca0e7@infradead.org>
+ <DM6PR12MB261924212A1791B949B43903E4560@DM6PR12MB2619.namprd12.prod.outlook.com>
+In-Reply-To: <DM6PR12MB261924212A1791B949B43903E4560@DM6PR12MB2619.namprd12.prod.outlook.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 24 Aug 2020 10:54:58 -0400
-Message-ID: <CADnq5_MUkcTk1Mzh+22MRBoYEZnHDzhNkWNBD1XHZaPhYyXOHQ@mail.gmail.com>
-Subject: Re: [PATCH] gpu: amd: Remove duplicate semicolons at the end of line
-To: Youling Tang <tangyouling@loongson.cn>
+Date: Mon, 24 Aug 2020 10:59:46 -0400
+Message-ID: <CADnq5_M7TA_w5vNctfC2vCDwxZAsGcagjsS8WNUWQGFiS--s+A@mail.gmail.com>
+Subject: Re: [PATCH -next] amdgpu: fix Documentation builds for pm/ file
+ movement
+To: "Quan, Evan" <Evan.Quan@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,65 +61,142 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, LKML <linux-kernel@vger.kernel.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Leo Li <sunpeng.li@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Randy Dunlap <rdunlap@infradead.org>, LKML <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Aug 22, 2020 at 5:02 AM Youling Tang <tangyouling@loongson.cn> wrote:
->
-> Remove duplicate semicolons at the end of line.
->
-> Signed-off-by: Youling Tang <tangyouling@loongson.cn>
-
 Applied.  Thanks!
 
 Alex
 
+On Sun, Aug 23, 2020 at 11:00 PM Quan, Evan <Evan.Quan@amd.com> wrote:
+>
+> [AMD Official Use Only - Internal Distribution Only]
+>
+> Thanks for fixing this. The patch is reviewed-by: Evan Quan <evan.quan@amd.com>
+>
+> BR
+> Evan
+> -----Original Message-----
+> From: Randy Dunlap <rdunlap@infradead.org>
+> Sent: Monday, August 24, 2020 6:36 AM
+> To: dri-devel <dri-devel@lists.freedesktop.org>; LKML <linux-kernel@vger.kernel.org>; amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@amd.com>
+> Cc: Quan, Evan <Evan.Quan@amd.com>; Stephen Rothwell <sfr@canb.auug.org.au>
+> Subject: [PATCH -next] amdgpu: fix Documentation builds for pm/ file movement
+>
+> From: Randy Dunlap <rdunlap@infradead.org>
+>
+> Fix Documentation errors for amdgpu.rst due to file rename (moved to another subdirectory).
+>
+> Error: Cannot open file ../drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> WARNING: kernel-doc '../scripts/kernel-doc -rst -enable-lineno -function hwmon ../drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c' failed with return code 1
+>
+> Fixes: e098bc9612c2 ("drm/amd/pm: optimize the power related source code layout")
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Evan Quan <evan.quan@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c                 | 2 +-
->  drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+>  Documentation/gpu/amdgpu.rst |   24 ++++++++++++------------
+>  1 file changed, 12 insertions(+), 12 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> index e99bef6..8603a26 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> @@ -1108,7 +1108,7 @@ static int vcn_v2_5_mmsch_start(struct amdgpu_device *adev,
->  {
->         uint32_t data = 0, loop = 0, size = 0;
->         uint64_t addr = table->gpu_addr;
-> -       struct mmsch_v1_1_init_header *header = NULL;;
-> +       struct mmsch_v1_1_init_header *header = NULL;
+> --- linux-next-20200821.orig/Documentation/gpu/amdgpu.rst
+> +++ linux-next-20200821/Documentation/gpu/amdgpu.rst
+> @@ -153,7 +153,7 @@ This section covers hwmon and power/ther  HWMON Interfaces
+>  ----------------
 >
->         header = (struct mmsch_v1_1_init_header *)table->cpu_addr;
->         size = header->total_size;
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
-> index afdd4f0..b320931 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
-> @@ -467,7 +467,7 @@ static void fetch_pipe_params(struct display_mode_lib *mode_lib)
->                 mode_lib->vba.AudioSampleLayout[mode_lib->vba.NumberOfActivePlanes] =
->                         1;
->                 mode_lib->vba.DRAMClockChangeLatencyOverride = 0.0;
-> -               mode_lib->vba.DSCEnabled[mode_lib->vba.NumberOfActivePlanes] = dout->dsc_enable;;
-> +               mode_lib->vba.DSCEnabled[mode_lib->vba.NumberOfActivePlanes] = dout->dsc_enable;
->                 mode_lib->vba.DSCEnable[mode_lib->vba.NumberOfActivePlanes] = dout->dsc_enable;
->                 mode_lib->vba.NumberOfDSCSlices[mode_lib->vba.NumberOfActivePlanes] =
->                                 dout->dsc_slices;
-> --
-> 2.1.0
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: hwmon
+>
+>  GPU sysfs Power State Interfaces
+> @@ -164,52 +164,52 @@ GPU power controls are exposed via sysfs  power_dpm_state  ~~~~~~~~~~~~~~~
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: power_dpm_state
+>
+>  power_dpm_force_performance_level
+>  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: power_dpm_force_performance_level
+>
+>  pp_table
+>  ~~~~~~~~
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: pp_table
+>
+>  pp_od_clk_voltage
+>  ~~~~~~~~~~~~~~~~~
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: pp_od_clk_voltage
+>
+>  pp_dpm_*
+>  ~~~~~~~~
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: pp_dpm_sclk pp_dpm_mclk pp_dpm_socclk pp_dpm_fclk pp_dpm_dcefclk pp_dpm_pcie
+>
+>  pp_power_profile_mode
+>  ~~~~~~~~~~~~~~~~~~~~~
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: pp_power_profile_mode
+>
+>  *_busy_percent
+>  ~~~~~~~~~~~~~~
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: gpu_busy_percent
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: mem_busy_percent
+>
+>  gpu_metrics
+>  ~~~~~~~~~~~~~~~~~~~~~
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: gpu_metrics
+>
+>  GPU Product Information
+> @@ -239,7 +239,7 @@ serial_number
+>  unique_id
+>  ---------
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: unique_id
+>
+>  GPU Memory Usage Information
+> @@ -289,7 +289,7 @@ PCIe Accounting Information  pcie_bw
+>  -------
+>
+> -.. kernel-doc:: drivers/gpu/drm/amd/amdgpu/amdgpu_pm.c
+> +.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>     :doc: pcie_bw
+>
+>  pcie_replay_count
 >
 > _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
