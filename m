@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2A0E2531BD
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Aug 2020 16:46:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEAF92531C1
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Aug 2020 16:46:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 466FD6E9AE;
-	Wed, 26 Aug 2020 14:46:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7051B6EA9C;
+	Wed, 26 Aug 2020 14:46:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2060.outbound.protection.outlook.com [40.107.223.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECA536E992
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 14:46:38 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7520B6EA94
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Aug 2020 14:46:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CuDcD8NtVTzovwFKK5Tmqgd/W/1JJlkr8Dmeh/4qlEQph00H44gOdwBa3XEOB/Ru1cjCW/mRebSuNXttTkUFgQT0rwalfQOkjMr6R3fZ8X+UFA/A1Oop87LnlmIk8Z3JgPdZthZLellGeLbiOCqZr+1S56p3wXaK+ccietz/dFGx0PPJkNiKLPfCKRjxiZ0aUMrwXHlX0y4OKRhdqvBwax8ZFp9GG2pTgb6zy4u//FJB6wRTkrvuuWsjWpJz5kf5RzLsFM4CwFk9HbsJXdmEmhUgO7m80Jk/MAkOzZMeFJyxiQLx8XJdeb2juCMeDcT+rZQG9IfXacjEmk5hyTNQpw==
+ b=IldzmWGCQRWvlAYrEYIkVx60NqU5WiveNA0jSTThgS7dYmTpQUcoYY6mWoZrf+2KaWgsMtpPCfMp0lA8okKuD3AWKmSGUCoJVLln3xS0MM8LEXxMjQ2E25pnMaye8mBzbHgJRG37TCFyMaRJZVREpbMXVQnkwsCgT0Qzk44ZInDLvCIlK/Z1+fWTk3Xf39Mfqph3JKwHpRyPH9jR1c71GN3f+DqRVB2yRskif8QZjVXuYLoQqZtsLV5d8SF95Lb1moFE4g3AN5dujdeD03trC9KikiTdr/RLdi05q4VUItr5OnSTcMGH/3kqhEfiVgokUWXXQbK6/4xjZce+86GlKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fFxnF1TE8VXtLp6ssA2D12yw0EFkS2c7kK8Sjg0RWjQ=;
- b=Npmb9iN3EUkOsCAvQOX5ELZOHdCBbatbBPeh1v9Dabwix8mKnbUzQnd2H1QWvndriZ1Zch00CPTllv379M5XQRmRylH7zQ0F/8uC2LRv7Xmd/GpP5EUdfTtH5dY1fhfTdqe10UXsAmG5u0jmfr9VbrKg9fxNKLaSxwFVVScilgyOIZsafNAHkGitawUJfDhg6UNvWNUpnJ5jLFWFX3JHvh2FobyahlfFo7h9cld1l8miQNDvLy29pC0KtubAIemQwkdy8nm3igKeStF/CBd/+DJoZhU+mllnZJsnifxmCW3Tnhw8zPoC6uIGb/jtqu3ZaPQDV8nveuAYTAJjkQ8aUg==
+ bh=r/FqUd5Wrb2fnjPsYs7TUlp5nTKtaemZr/mhz/OIO5E=;
+ b=J9EysTheH6rOD4Xz/G3Gf9MNd02RVS72PORsSqCKbuvyrT7yGJ8fbMHxDeUsFSD05tbZw9G0TJZo8pwkmJRueKVW5SrgedroQj0Y4j6DKSn4F0gxK5sPHKU/+pvAFr1+Dd2mmkc88+ExY0vBYtPNNq8cgHuMRK4ck4Hq3xbhJtLUWHiiUmoD9c7SdkXKQoTBKa+KXSVWPKBjOKY27SEqjhbNNb6BteUIJCK3fWaonFGxrhb4Mb/AayxXNsO9hKX3+VGJ2eJ1NQ3ZtaWbJg9jtdVdOdg6MO9RVLfBveYtmo60j1mC9Od+6oNevP4XC0rB8bYmbDw9ZMJi++Kh6IbaiQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fFxnF1TE8VXtLp6ssA2D12yw0EFkS2c7kK8Sjg0RWjQ=;
- b=j29mKtCOhunGqgHoq/bXB1bwSYNxlZOBlwWYZmCtft1OQkTht9I73g62UhPJKwman+UAm//+W4i85GPKWDrpikQSeH8YBK1yLDhte9Q28RcMJw+FrIzn1LzOcfysPAGRvf9rv2845HyllugzxZxG+5lcuWMD73LlMJHAV9pVWMI=
+ bh=r/FqUd5Wrb2fnjPsYs7TUlp5nTKtaemZr/mhz/OIO5E=;
+ b=GwyssRttB1DlOskLcXfh9jsZZhLKyZ80+P4BGvYx9yTNxfATH9Y34au40oheuBQaW5RrxeRIwR5/UjHSG9aKXXLW7KPHGaZP4uQ4NerM1lb6U+goBl3cb2advIsviIRl+knqmvi0R5U355VHE2+vyS/suPbZND2G86NfKvVP4MY=
 Received: from MWHPR22CA0042.namprd22.prod.outlook.com (2603:10b6:300:69::28)
- by MN2PR12MB3919.namprd12.prod.outlook.com (2603:10b6:208:16a::16)
+ by SN6PR12MB2637.namprd12.prod.outlook.com (2603:10b6:805:6b::23)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.26; Wed, 26 Aug
- 2020 14:46:37 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24; Wed, 26 Aug
+ 2020 14:46:42 +0000
 Received: from CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
  (2603:10b6:300:69:cafe::ee) by MWHPR22CA0042.outlook.office365.com
  (2603:10b6:300:69::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19 via Frontend
- Transport; Wed, 26 Aug 2020 14:46:36 +0000
+ Transport; Wed, 26 Aug 2020 14:46:41 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -48,23 +48,23 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
  CO1NAM11FT033.mail.protection.outlook.com (10.13.174.247) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3326.19 via Frontend Transport; Wed, 26 Aug 2020 14:46:36 +0000
+ 15.20.3326.19 via Frontend Transport; Wed, 26 Aug 2020 14:46:41 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 26 Aug
- 2020 09:46:36 -0500
+ 2020 09:46:37 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 26 Aug
- 2020 09:46:36 -0500
+ 2020 09:46:37 -0500
 Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
  SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3
- via Frontend Transport; Wed, 26 Aug 2020 09:46:35 -0500
+ via Frontend Transport; Wed, 26 Aug 2020 09:46:36 -0500
 From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/7] drm/amdgpu: Fix SMU error failure
-Date: Wed, 26 Aug 2020 10:46:19 -0400
-Message-ID: <1598453182-6946-5-git-send-email-andrey.grodzovsky@amd.com>
+Subject: [PATCH 5/7] drm/amdgpu: Fix consecutive DPC recoveries failure.
+Date: Wed, 26 Aug 2020 10:46:20 -0400
+Message-ID: <1598453182-6946-6-git-send-email-andrey.grodzovsky@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1598453182-6946-1-git-send-email-andrey.grodzovsky@amd.com>
 References: <1598453182-6946-1-git-send-email-andrey.grodzovsky@amd.com>
@@ -72,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b55c81fa-54a1-4d55-0b16-08d849ced590
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3919:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB3919587906ACD49706A48BA7EA540@MN2PR12MB3919.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: 2888889b-4c84-44a5-7f5c-08d849ced875
+X-MS-TrafficTypeDiagnostic: SN6PR12MB2637:
+X-Microsoft-Antispam-PRVS: <SN6PR12MB2637F2C73069268B34A54301EA540@SN6PR12MB2637.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Cn4YDDxjrW97NETgrJnSQWpOnS0QWipP8K7U/L3FIyagwUuRIv7yf08OW3mjKtAu4rtUglohhYKbwEnfSmVNRsTlII7OQKujN49BIDBTtuLCQAAtsZq1yFdAtG6Jrf9APECPrhdaCAUeoj3Mt3s0mTWgDmY5zTOBAls0bsej66Q18mEYVMH2EDy5l095TZWJx9ZWKh/Xcm9faxayV3jhfrtYSXE9cgvOtZ6aE7R5jBxo+kMwY/0ixId+IfS78JkH6XSxaUh6SsNUuQZxoNoZKyK/6PsvO1R4SD/YrTAwgghyRkWPgdioXwmZppN+y3BAxYNR+/a1SuFbJsV0VbG+gRhAp/0htOSgOofJRQFTlLeSVSj/fYNld9G1FLq95OzwJqx1jfMp0Bs+eU8kq9Ghow==
+X-Microsoft-Antispam-Message-Info: Wqt5eUhxEUL+eFbfW4uIa0z8jpxBee9700tJNI2lA4F5IdNkXKZbpBnnKgZfbDoOU2le0g5xlZyPfCGz3sGbNO5CZ9Dk+tuXNlKSnklxioh3nJk3HTpaCz11U38nBUkCsWOFeox1hGM0frQg2llISIQSiFVKFaACzBx7H5XKNN/o7Mx3mvhcwk1F0+brYUCgXrJPJW8phkM4oqCxY1pKunUwRxRo1If7Cz4RXn0OdGGJqyAWxz/AlmjilPgrA1zDyubSjolTw1IYtS8THvl0y2H6Vv2xiM0s36+JeshWBSa39CMfZLFCVDB0/iXd4LqSSd5I8qIXfymOTIzTKZGSJxJpeZjHgm1MGhTEfFZH4Ypwid8+A/olU2ouyDFTO18+jPTLxeHadbLtawnGmdptWA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(376002)(136003)(39860400002)(396003)(46966005)(7696005)(70586007)(70206006)(81166007)(336012)(2906002)(5660300002)(36756003)(83380400001)(8676002)(4326008)(8936002)(356005)(82310400002)(82740400003)(186003)(44832011)(47076004)(26005)(2616005)(6666004)(86362001)(316002)(6916009)(426003)(54906003)(478600001);
+ SFS:(4636009)(346002)(39860400002)(376002)(136003)(396003)(46966005)(26005)(2906002)(8676002)(336012)(6666004)(2616005)(36756003)(5660300002)(8936002)(426003)(44832011)(186003)(70206006)(478600001)(70586007)(316002)(86362001)(356005)(82740400003)(6916009)(4326008)(47076004)(81166007)(82310400002)(54906003)(7696005)(83380400001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2020 14:46:36.6213 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b55c81fa-54a1-4d55-0b16-08d849ced590
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2020 14:46:41.4985 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2888889b-4c84-44a5-7f5c-08d849ced875
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3919
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2637
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,60 +111,221 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Wait for HW/PSP initiated ASIC reset to complete before
-starting the recovery operations.
+DPC recovery after prev. DPC recovery or after prev. MODE1 reset fails
+unles you save the cashe the saved PCI confspace to load it after
+each new reset.
+Also use same cached state for other use case of restoring PCI confspace
+such as GPU mode1 or VGA switheroo.
 
 Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  6 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 60 +++++++++++++++++++++++++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  4 +-
+ drivers/gpu/drm/amd/amdgpu/nv.c            |  4 +-
+ drivers/gpu/drm/amd/amdgpu/soc15.c         |  4 +-
+ 5 files changed, 66 insertions(+), 12 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 3489622..42ee208 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -992,7 +992,9 @@ struct amdgpu_device {
+ 	atomic_t			throttling_logging_enabled;
+ 	struct ratelimit_state		throttling_logging_rs;
+ 	uint32_t			ras_features;
++
+ 	bool                            in_dpc;
++	struct pci_saved_state          *pci_state;
+ };
+ 
+ static inline struct amdgpu_device *drm_to_adev(struct drm_device *ddev)
+@@ -1272,6 +1274,10 @@ pci_ers_result_t amdgpu_pci_mmio_enabled(struct pci_dev *pdev);
+ pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev);
+ void amdgpu_pci_resume(struct pci_dev *pdev);
+ 
++bool amdgpu_device_cache_pci_state(struct pci_dev *pdev);
++bool amdgpu_device_load_pci_state(struct pci_dev *pdev);
++
++
+ 
+ #include "amdgpu_object.h"
+ 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 0a2130b..d9e3994 100644
+index d9e3994..2c088df 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -4846,13 +4846,31 @@ pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev)
- {
- 	struct drm_device *dev = pci_get_drvdata(pdev);
- 	struct amdgpu_device *adev = drm_to_adev(dev);
--	int r;
-+	int r, i;
- 	bool vram_lost;
-+	u32 memsize;
+@@ -1283,7 +1283,7 @@ static void amdgpu_switcheroo_set_state(struct pci_dev *pdev,
+ 		dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
  
- 	DRM_INFO("PCI error: slot reset callback!!\n");
- 
-+	/* wait for asic to come out of reset */
-+	msleep(500);
-+
- 	pci_restore_state(pdev);
- 
-+	/* confirm  ASIC came out of reset */
-+	for (i = 0; i < adev->usec_timeout; i++) {
-+		memsize = amdgpu_asic_get_config_memsize(adev);
-+
-+		if (memsize != 0xffffffff)
-+			break;
-+		udelay(1);
-+	}
-+	if (memsize == 0xffffffff) {
-+		r = -ETIME;
-+		goto out;
-+	}
-+
-+	/* TODO Call amdgpu_pre_asic_reset instead */
- 	adev->in_dpc = true;
- 	r = amdgpu_device_ip_suspend(adev);
- 	adev->in_dpc = false;
-@@ -4882,7 +4900,7 @@ pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev)
- 
- 	r = amdgpu_device_fw_loading(adev);
+ 		pci_set_power_state(dev->pdev, PCI_D0);
+-		pci_restore_state(dev->pdev);
++		amdgpu_device_load_pci_state(dev->pdev);
+ 		r = pci_enable_device(dev->pdev);
+ 		if (r)
+ 			DRM_WARN("pci_enable_device failed (%d)\n", r);
+@@ -1296,7 +1296,7 @@ static void amdgpu_switcheroo_set_state(struct pci_dev *pdev,
+ 		drm_kms_helper_poll_disable(dev);
+ 		dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
+ 		amdgpu_device_suspend(dev, true);
+-		pci_save_state(dev->pdev);
++		amdgpu_device_cache_pci_state(dev->pdev);
+ 		/* Shut down the device */
+ 		pci_disable_device(dev->pdev);
+ 		pci_set_power_state(dev->pdev, PCI_D3cold);
+@@ -3401,8 +3401,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
  	if (r)
--		return r;
-+		goto out;
+ 		dev_err(adev->dev, "amdgpu_pmu_init failed\n");
  
- 	r = amdgpu_device_ip_resume_phase2(adev);
- 	if (r)
+-	if (pci_save_state(pdev))
+-		DRM_ERROR("Failed to save PCI state!!\n");
++	/* Have stored pci confspace at hand for restore in sudden PCI error */
++	if (!amdgpu_device_cache_pci_state(adev->pdev))
++		DRM_WARN("Failed to cache PCI state!");
+ 
+ 	return 0;
+ 
+@@ -3430,6 +3431,8 @@ void amdgpu_device_fini(struct amdgpu_device *adev)
+ 	flush_delayed_work(&adev->delayed_init_work);
+ 	adev->shutdown = true;
+ 
++	kfree(adev->pci_state);
++
+ 	/* make sure IB test finished before entering exclusive mode
+ 	 * to avoid preemption on IB test
+ 	 * */
+@@ -4855,7 +4858,7 @@ pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev)
+ 	/* wait for asic to come out of reset */
+ 	msleep(500);
+ 
+-	pci_restore_state(pdev);
++	amdgpu_device_load_pci_state(pdev);
+ 
+ 	/* confirm  ASIC came out of reset */
+ 	for (i = 0; i < adev->usec_timeout; i++) {
+@@ -4934,8 +4937,10 @@ pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev)
+ 
+ out:
+ 
+-	if (!r)
++	if (!r) {
++		amdgpu_device_cache_pci_state(adev->pdev);
+ 		DRM_INFO("PCIe error recovery succeeded\n");
++	}
+ 	else {
+ 		DRM_ERROR("PCIe error recovery failed, err:%d", r);
+ 		amdgpu_device_unlock_adev(adev);
+@@ -4974,3 +4979,46 @@ void amdgpu_pci_resume(struct pci_dev *pdev)
+ 
+ 	amdgpu_device_unlock_adev(adev);
+ }
++
++bool amdgpu_device_cache_pci_state(struct pci_dev *pdev)
++{
++	struct drm_device *dev = pci_get_drvdata(pdev);
++	struct amdgpu_device *adev = drm_to_adev(dev);
++	int r;
++
++	r = pci_save_state(pdev);
++	if (!r) {
++		kfree(adev->pci_state);
++
++		adev->pci_state = pci_store_saved_state(pdev);
++
++		if (!adev->pci_state) {
++			DRM_ERROR("Failed to store PCI saved state");
++			return false;
++		}
++	} else {
++		DRM_WARN("Failed to save PCI state, err:%d\n", r);
++		return false;
++	}
++
++	return true;
++}
++
++bool amdgpu_device_load_pci_state(struct pci_dev *pdev)
++{
++	struct drm_device *dev = pci_get_drvdata(pdev);
++	struct amdgpu_device *adev = drm_to_adev(dev);
++	int r;
++
++	if (!adev->pci_state)
++		return false;
++
++	r = pci_load_saved_state(pdev, adev->pci_state);
++
++	if (!r) {
++		pci_restore_state(pdev);
++	} else {
++		DRM_WARN("Failed to load PCI state, err:%d\n", r);
++		return false;
++	}
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 4bbcc70..7a6482a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -1320,7 +1320,7 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
+ 		if (amdgpu_is_atpx_hybrid()) {
+ 			pci_ignore_hotplug(pdev);
+ 		} else {
+-			pci_save_state(pdev);
++			amdgpu_device_cache_pci_state(pdev);
+ 			pci_disable_device(pdev);
+ 			pci_ignore_hotplug(pdev);
+ 			pci_set_power_state(pdev, PCI_D3cold);
+@@ -1353,7 +1353,7 @@ static int amdgpu_pmops_runtime_resume(struct device *dev)
+ 			pci_set_master(pdev);
+ 		} else {
+ 			pci_set_power_state(pdev, PCI_D0);
+-			pci_restore_state(pdev);
++			amdgpu_device_load_pci_state(pdev);
+ 			ret = pci_enable_device(pdev);
+ 			if (ret)
+ 				return ret;
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 4d14023..0ec6603 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -311,7 +311,7 @@ static int nv_asic_mode1_reset(struct amdgpu_device *adev)
+ 	/* disable BM */
+ 	pci_clear_master(adev->pdev);
+ 
+-	pci_save_state(adev->pdev);
++	amdgpu_device_cache_pci_state(adev->pdev);
+ 
+ 	if (amdgpu_dpm_is_mode1_reset_supported(adev)) {
+ 		dev_info(adev->dev, "GPU smu mode1 reset\n");
+@@ -323,7 +323,7 @@ static int nv_asic_mode1_reset(struct amdgpu_device *adev)
+ 
+ 	if (ret)
+ 		dev_err(adev->dev, "GPU mode1 reset failed\n");
+-	pci_restore_state(adev->pdev);
++	amdgpu_device_load_pci_state(adev->pdev);
+ 
+ 	/* wait for asic to come out of reset */
+ 	for (i = 0; i < adev->usec_timeout; i++) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index 2f93c47..ddd55e3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -484,13 +484,13 @@ static int soc15_asic_mode1_reset(struct amdgpu_device *adev)
+ 	/* disable BM */
+ 	pci_clear_master(adev->pdev);
+ 
+-	pci_save_state(adev->pdev);
++	amdgpu_device_cache_pci_state(adev->pdev);
+ 
+ 	ret = psp_gpu_reset(adev);
+ 	if (ret)
+ 		dev_err(adev->dev, "GPU mode1 reset failed\n");
+ 
+-	pci_restore_state(adev->pdev);
++	amdgpu_device_load_pci_state(adev->pdev);
+ 
+ 	/* wait for asic to come out of reset */
+ 	for (i = 0; i < adev->usec_timeout; i++) {
 -- 
 2.7.4
 
