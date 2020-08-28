@@ -1,59 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18209255C88
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Aug 2020 16:32:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E587255E89
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Aug 2020 18:06:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A41386E4C1;
-	Fri, 28 Aug 2020 14:32:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 083B86E4D0;
+	Fri, 28 Aug 2020 16:06:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFD626E4C1
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Aug 2020 14:32:18 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id t14so1105171wmi.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Aug 2020 07:32:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=RZyXiJErFahYmZMjPVL015OQAuHwT2nEGfh/ceNHS40=;
- b=ujUdgmAporM+1NtWlrXZQFAE0ghdcbhJ0OM3BGZGoJdLnmmt5iIgQUgLbj6UmJvkAU
- y+ePBVDf0YyVAwGFB2Hp8e6QTONzKY7BGAoCop1R6+Ro180wJbyv6pvHJ3vWYFkFDdxY
- Qk3+MDkJ+p53AMNBpsnwv/lpGSD6VwJ2VQOVE9sZ6OMt32UyEa5hofS6CKYo4JGnehyD
- ZyvrSMob4IJsLLpJ/uaNSQdprwe4C1DNXeh4pso2quORONeAY6pfrjPqH1fGnrNPLhNt
- zeiVebG/j0Siqj9XohB6P0lmQd0f4SnK2vj+C0OkvlXChyBoPKt9OnC6TzaqevkE8I2h
- /lEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=RZyXiJErFahYmZMjPVL015OQAuHwT2nEGfh/ceNHS40=;
- b=iJ0TAl1fikGAipyz1rRjZn0Cj6XLd/gi6V4oIWTRztjn2zWnrnmq9gVOTerfsZ573q
- AGGLuky0+u/mgDXYqGM3GOqLuMEcagewygHyLTCT0lO34letg4ccSNGJwKUXo3D+4px2
- ChSLxU3bjUTPaJcbyXbVH4LlUOr2Ux9frjmDrfNz0jCLN42xjGRYfvte5+q4WgAc74qd
- VMya8pZZayHrIHkKOeQdRaSFXulAoXHb7rDWz5gbJ4yTs8pql+moh9scv06+CnrQ8Qm5
- 22kLXk80sWJi3HFUVFRlWvX78Xazg3bw810wZDEtpD4xV2cJmo0224ZAxo6B54lo8rFG
- dYYw==
-X-Gm-Message-State: AOAM533aJAwcgTiEDl6imir1TDxxLLJH9h3Ke+GPb0FLALYlPaM15sA7
- fHEDwZTs2fJo1y54kLwllD5hEIuEirRH4wDfC31xBGI7
-X-Google-Smtp-Source: ABdhPJzy26toOo4YZ6Qe+uIPhmtHm16Iw4XAx9ZQHiEE/xEqoylUWnbFmTg8/HU/6+js5yctRCU+U6agOmOrytBKYZo=
-X-Received: by 2002:a1c:ed15:: with SMTP id l21mr1931042wmh.56.1598625134048; 
- Fri, 28 Aug 2020 07:32:14 -0700 (PDT)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760075.outbound.protection.outlook.com [40.107.76.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAE816E4EC
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Aug 2020 16:06:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FYqKJH9xAKf+RWxgYvr2U3mHZ6PSa8eC0Tc5/Bs6yhZIbZFztj8yUH5KTpCZ6HES+dY0rWzTm0fVVix1s1xpiULG71TS1bnCujo1ABZiGv8UpiAFbZ4PDjcK0VgTmjcnTyORTMhz2793QvUMOZqp1fMW7YlGDC+LqbT2oWRERzQDlKHjS+ioHA7mirMLcQ0cS57mm7h6tHjnNzDlzoAMDkZ3cwg1KORIQKP0ZfdH+EkkPY01MWLDZOTMg0AtnnxgmihWkz/NDVo8uKHx1IKnLEY9oZ/Glhfn7+J+JmQ/H6oj5TkaT40AWFyKj5UIovhTxSnnYmuXGrU/5jbDfddZBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fPSQP9zwV4RlyItPfMH97M6+K7PyiZsdkIHXC6F2DgU=;
+ b=hm/KZpIQ8OwQXInuc1ddcrecuAhV/Si1lBSJHrionOON6EFxzwub0AKUTzWiVMIPHoPFzyLtVcsTY/ETujcxi1BFw91N544tn7FAkqq3hjCKxo6fPRPNamPd9C5HNtVNZPKQuCiEDRmzKzID3K3sQC6cCH4kH4UA+XBqklJc4XXBY9d2HDVALZfPUtPCtY7ZD50JtJ6XeZZlfI/Oh0ugB8wmb9sokIXQXLBHWEtQ4LOhO9eTZ/DxPXyO5yUdnJSm8SMbdRgRipjrJ6GNNEYwWmy+r33glsNwGH5hVyl7usyvMpMTCqVgsAndS5Lln/Ec1vtADpGXu8LeVfoKGhhwug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 165.204.84.17)
+ smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=amd.com; dmarc=permerror action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fPSQP9zwV4RlyItPfMH97M6+K7PyiZsdkIHXC6F2DgU=;
+ b=WhpbvxWW+cfwdxVhvqqlNnh4iiKg2Rl3QLvlwHb98tF1mj7Bda+ANyaURROij0qKbhUgKCNRjg5tRlziC5TGxaH6E8yj1R/V6l1fdipOrnqs1fu7NByOGeWogXmwBDRYhsrBn6+QhpQ93U+AipspxJDvRl6A7PM5jcDrPrAYkeQ=
+Received: from MWHPR18CA0040.namprd18.prod.outlook.com (2603:10b6:320:31::26)
+ by DM5PR12MB1258.namprd12.prod.outlook.com (2603:10b6:3:79::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.25; Fri, 28 Aug
+ 2020 16:05:55 +0000
+Received: from CO1NAM11FT016.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:320:31:cafe::e) by MWHPR18CA0040.outlook.office365.com
+ (2603:10b6:320:31::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19 via Frontend
+ Transport; Fri, 28 Aug 2020 16:05:55 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
+ 165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
+ (message not signed) header.d=none;lists.freedesktop.org; dmarc=permerror
+ action=none header.from=amd.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of amd.com: DNS Timeout)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ CO1NAM11FT016.mail.protection.outlook.com (10.13.175.141) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3326.19 via Frontend Transport; Fri, 28 Aug 2020 16:05:53 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 28 Aug
+ 2020 11:05:53 -0500
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 28 Aug
+ 2020 11:05:53 -0500
+Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
+ SATLEXMB01.amd.com (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3
+ via Frontend Transport; Fri, 28 Aug 2020 11:05:52 -0500
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v2 0/7] Implement PCI Error Recovery on Navi12
+Date: Fri, 28 Aug 2020 12:05:36 -0400
+Message-ID: <1598630743-21155-1-git-send-email-andrey.grodzovsky@amd.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <1598453182-6946-1-git-send-email-andrey.grodzovsky@amd.com>
- <1598453182-6946-6-git-send-email-andrey.grodzovsky@amd.com>
- <CADnq5_NtAaNd3_XYrs4K8uLFF49Xv-46801Cy3Y0fNuLG_YPoA@mail.gmail.com>
- <0c2ada8e-5dde-0165-c8b3-cf6d6d3fba46@amd.com>
- <CADnq5_MJEsSp1UKXDf-1saNTKV_i3E6vtnMCgGesAz=Resk78Q@mail.gmail.com>
- <45fdf263-69f7-1c9e-770b-8adaf8574c26@amd.com>
-In-Reply-To: <45fdf263-69f7-1c9e-770b-8adaf8574c26@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 28 Aug 2020 10:32:02 -0400
-Message-ID: <CADnq5_PhbJkkZ4FmTn5OyOXUnRT_=UN1_oFjMyMQh2OiSQuFPw@mail.gmail.com>
-Subject: Re: [PATCH 5/7] drm/amdgpu: Fix consecutive DPC recoveries failure.
-To: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c406ad20-d839-46e8-a466-08d84b6c3dc4
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1258:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1258979100F9E2B294DF65E5EA520@DM5PR12MB1258.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7JE3OckpOx36//+bXjFCkA3t54KOACISlVRLqsI4HW4oM/MjWw1F5KY2x16wPj+E1vgvj/0jfe0sNn4ckMgbyYmrxwDV+3xNoGbmwb9S/KqE0ZOyGYKsEsqNoNk6X0OuSPxUiYpjhsAOJxE3J+FDwV4a1/+4O+ii2kOQxbkIOFQy3cSYVgvyVC8JIkTIqIhpMHFxtw/PNshW7GIsmNgklO5yqk//3ETE8042V2udQOWlr2YfVP+4jjxALht25wtKYmvBJtuG/aLvTlsbTOXuieMHS6QnTqB0NXkEl3CZBt95wlKsM6PLuZCpSEt9Aea50nT1+x8813RNMd5nL7mxTQuUt4l46etHK0tTebgZTBGhLIldzgwUkB7B7qE9vNOQA5Shss/hOrDvDfAoQhyQ3A==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(396003)(39860400002)(136003)(46966005)(70586007)(8936002)(478600001)(70206006)(7696005)(83380400001)(6916009)(54906003)(6666004)(4326008)(44832011)(47076004)(36756003)(8676002)(316002)(186003)(336012)(2616005)(82310400002)(86362001)(63350400001)(81166007)(82740400003)(26005)(356005)(426003)(5660300002)(2906002);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2020 16:05:53.6214 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c406ad20-d839-46e8-a466-08d84b6c3dc4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT016.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1258
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,335 +103,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>, Nirmoy <nirmodas@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: alexander.deucher@amd.com, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ nirmodas@amd.com, christian.koenig@amd.com, Dennis.Li@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 28, 2020 at 10:21 AM Andrey Grodzovsky
-<Andrey.Grodzovsky@amd.com> wrote:
->
->
-> On 8/28/20 10:13 AM, Alex Deucher wrote:
-> > On Thu, Aug 27, 2020 at 10:54 AM Andrey Grodzovsky
-> > <Andrey.Grodzovsky@amd.com> wrote:
-> >>
-> >> On 8/26/20 11:20 AM, Alex Deucher wrote:
-> >>> On Wed, Aug 26, 2020 at 10:46 AM Andrey Grodzovsky
-> >>> <andrey.grodzovsky@amd.com> wrote:
-> >>>> DPC recovery after prev. DPC recovery or after prev. MODE1 reset fails
-> >>>> unles you save the cashe the saved PCI confspace to load it after
-> >>>> each new reset.
-> >>>> Also use same cached state for other use case of restoring PCI confspace
-> >>>> such as GPU mode1 or VGA switheroo.
-> >>>>
-> >>> We don't want to keep the saved state around in the pci core
-> >>> otherwise, the pci core will assume we are managing the saved state
-> >>> for suspend and resume.  I think we want logic like this:
-> >>>
-> >>> At driver load time:
-> >>> pci_save_state(pdev);
-> >>> adev->pci_state = pci_store_saved_state(pdev);
-> >>> pci_restore_state(adev->pdev);
-> >>>
-> >>> then in the case of dpc, do:
-> >>> pci_load_saved_state(pdev, adev->pci_state);
-> >>>
-> >>> For all the other cases, just leave the code as is.
-> >>
-> >> Actually, as we already discussed - caching the PCI confspace only once on boot
-> >> and not doing it again after each subsequent
-> >> controlled or spontaneous reset runs the risk of loading back outdated confspace
-> >> settings. I am not sure if and when but, is it indeed
-> >> possible we make changes to PCI confspace registers during runtime and so the
-> >> cached state from boot might be outdated
-> >> to load back ?
-> > As Christain noted we may change config space at load time if we
-> > resize the BAR.  So we should probably save config space at the end of
-> > the driver load init sequence.  This saved state is just a backup in
-> > case something kills pci config space without saving it.  I think it's
-> > fine to update the cached copy whenever we call pci_save_state(), but
-> > what we don't want to do is call pci_save_state() at init time without
-> > calling pci_restore_state().  pci_save_state() caches a copy of the
-> > save state in the pdev structure.  The pci core uses the presence of
-> > this cached state to make decisions about whether the driver or the
-> > core should handle a bunch of stuff at suspend/resume.  If the cached
-> > state is present, it assumes the driver will be handling all of the
-> > pci related state management for power management.  I'd rather keep
-> > that in the core.  I think the patch is good, but this part needs to
-> > be reworked:
->
->
-> In this case I believe the patch should stay as is with the only change at
-> adding pci_restore_state(pdev) in amdgpu_device_cache_pci_state after the call
-> to pci_store_saved_state - right ?
+Many PCI bus controllers are able to detect a variety of hardware PCI errors on the bus, 
+such as parity errors on the data and address buses,  A typical action taken is to disconnect 
+the affected device, halting all I/O to it. Typically, a reconnection mechanism is also offered, 
+so that the affected PCI device(s) are reset and put back into working condition. 
+In our case the reconnection mechanism is facilitated by kernel Downstream Port Containment (DPC) 
+driver which will intercept the PCIe error, remove (isolate) the faulting device and reset the PCI 
+link of the device after which it will call into PCIe recovery code of the PCI core. 
+This code will call hooks which are implemented in this patchset where the error is 
+first reported at which point we block the GPU scheduler, next DPC resets the 
+PCI link which generates HW interrupt which is intercepted by SMU/PSP who 
+start executing mode1 reset of the ASIC, next step is slot reset hook is called 
+at which point we wait for ASIC reset to complete, restore PCI config space and run 
+HW suspend/resume sequence to resinit the ASIC. 
+Last hook called is resume normal operation at which point we will restart the GPU scheduler.
 
-Correct.
+Andrey Grodzovsky (7):
+  drm/amdgpu: Implement DPC recovery
+  drm/amdgpu: Avoid accessing HW when suspending SW state
+  drm/amdgpu: Block all job scheduling activity during DPC recovery
+  drm/amdgpu: Fix SMU error failure
+  drm/amdgpu: Fix consecutive DPC recovery failures.
+  drm/amdgpu: Trim amdgpu_pci_slot_reset by reusing code.
+  drm/amdgpu: Disable DPC for XGMI for now.
 
-Alex
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  16 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 296 ++++++++++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  13 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c    |   6 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c    |   6 +
+ drivers/gpu/drm/amd/amdgpu/atom.c          |   1 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c     |  18 +-
+ drivers/gpu/drm/amd/amdgpu/nv.c            |   4 +-
+ drivers/gpu/drm/amd/amdgpu/soc15.c         |   4 +-
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c  |   3 +
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c     |   3 +
+ 11 files changed, 348 insertions(+), 22 deletions(-)
 
+-- 
+2.7.4
 
->
-> Andrey
->
->
-> >
-> > @@ -3401,8 +3401,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
-> >          if (r)
-> >                  dev_err(adev->dev, "amdgpu_pmu_init failed\n");
-> >
-> > -       if (pci_save_state(pdev))
-> > -               DRM_ERROR("Failed to save PCI state!!\n");
-> > +       /* Have stored pci confspace at hand for restore in sudden PCI error */
-> > +       if (!amdgpu_device_cache_pci_state(adev->pdev))
-> > +               DRM_WARN("Failed to cache PCI state!");
-> >
-> > Something like this:
-> >
-> > @@ -3401,8 +3401,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
-> >          if (r)
-> >                  dev_err(adev->dev, "amdgpu_pmu_init failed\n");
-> >
-> > -       if (pci_save_state(pdev))
-> > -               DRM_ERROR("Failed to save PCI state!!\n");
-> > +       /* Have stored pci confspace at hand for restore in sudden PCI error */
-> > +       if (!amdgpu_device_cache_pci_state(adev->pdev))
-> > +               DRM_WARN("Failed to cache PCI state!");
-> > +       if (!amdgpu_device_load_pci_state(adev->pdev))
-> > +               DRM_WARN("Failed to restore PCI state!");
-> >
-> > This way we have a cached copy in the driver but not in the pci core.
-> >
-> >
-> > Alex
-> >
-> >
-> >> Andrey
-> >>
-> >>
-> >>> Alex
-> >>>
-> >>>
-> >>>> Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-> >>>> ---
-> >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  6 +++
-> >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 60 +++++++++++++++++++++++++++---
-> >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  4 +-
-> >>>>    drivers/gpu/drm/amd/amdgpu/nv.c            |  4 +-
-> >>>>    drivers/gpu/drm/amd/amdgpu/soc15.c         |  4 +-
-> >>>>    5 files changed, 66 insertions(+), 12 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> >>>> index 3489622..42ee208 100644
-> >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> >>>> @@ -992,7 +992,9 @@ struct amdgpu_device {
-> >>>>           atomic_t                        throttling_logging_enabled;
-> >>>>           struct ratelimit_state          throttling_logging_rs;
-> >>>>           uint32_t                        ras_features;
-> >>>> +
-> >>> Unrelated whitespace changes.
-> >>>
-> >>>>           bool                            in_dpc;
-> >>>> +       struct pci_saved_state          *pci_state;
-> >>>>    };
-> >>>>
-> >>>>    static inline struct amdgpu_device *drm_to_adev(struct drm_device *ddev)
-> >>>> @@ -1272,6 +1274,10 @@ pci_ers_result_t amdgpu_pci_mmio_enabled(struct pci_dev *pdev);
-> >>>>    pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev);
-> >>>>    void amdgpu_pci_resume(struct pci_dev *pdev);
-> >>>>
-> >>>> +bool amdgpu_device_cache_pci_state(struct pci_dev *pdev);
-> >>>> +bool amdgpu_device_load_pci_state(struct pci_dev *pdev);
-> >>>> +
-> >>>> +
-> >>>>
-> >>>>    #include "amdgpu_object.h"
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >>>> index d9e3994..2c088df 100644
-> >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >>>> @@ -1283,7 +1283,7 @@ static void amdgpu_switcheroo_set_state(struct pci_dev *pdev,
-> >>>>                   dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
-> >>>>
-> >>>>                   pci_set_power_state(dev->pdev, PCI_D0);
-> >>>> -               pci_restore_state(dev->pdev);
-> >>>> +               amdgpu_device_load_pci_state(dev->pdev);
-> >>>>                   r = pci_enable_device(dev->pdev);
-> >>>>                   if (r)
-> >>>>                           DRM_WARN("pci_enable_device failed (%d)\n", r);
-> >>>> @@ -1296,7 +1296,7 @@ static void amdgpu_switcheroo_set_state(struct pci_dev *pdev,
-> >>>>                   drm_kms_helper_poll_disable(dev);
-> >>>>                   dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
-> >>>>                   amdgpu_device_suspend(dev, true);
-> >>>> -               pci_save_state(dev->pdev);
-> >>>> +               amdgpu_device_cache_pci_state(dev->pdev);
-> >>>>                   /* Shut down the device */
-> >>>>                   pci_disable_device(dev->pdev);
-> >>>>                   pci_set_power_state(dev->pdev, PCI_D3cold);
-> >>>> @@ -3401,8 +3401,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
-> >>>>           if (r)
-> >>>>                   dev_err(adev->dev, "amdgpu_pmu_init failed\n");
-> >>>>
-> >>>> -       if (pci_save_state(pdev))
-> >>>> -               DRM_ERROR("Failed to save PCI state!!\n");
-> >>>> +       /* Have stored pci confspace at hand for restore in sudden PCI error */
-> >>>> +       if (!amdgpu_device_cache_pci_state(adev->pdev))
-> >>>> +               DRM_WARN("Failed to cache PCI state!");
-> >>>>
-> >>>>           return 0;
-> >>>>
-> >>>> @@ -3430,6 +3431,8 @@ void amdgpu_device_fini(struct amdgpu_device *adev)
-> >>>>           flush_delayed_work(&adev->delayed_init_work);
-> >>>>           adev->shutdown = true;
-> >>>>
-> >>>> +       kfree(adev->pci_state);
-> >>>> +
-> >>>>           /* make sure IB test finished before entering exclusive mode
-> >>>>            * to avoid preemption on IB test
-> >>>>            * */
-> >>>> @@ -4855,7 +4858,7 @@ pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev)
-> >>>>           /* wait for asic to come out of reset */
-> >>>>           msleep(500);
-> >>>>
-> >>>> -       pci_restore_state(pdev);
-> >>>> +       amdgpu_device_load_pci_state(pdev);
-> >>>>
-> >>>>           /* confirm  ASIC came out of reset */
-> >>>>           for (i = 0; i < adev->usec_timeout; i++) {
-> >>>> @@ -4934,8 +4937,10 @@ pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev)
-> >>>>
-> >>>>    out:
-> >>>>
-> >>>> -       if (!r)
-> >>>> +       if (!r) {
-> >>>> +               amdgpu_device_cache_pci_state(adev->pdev);
-> >>>>                   DRM_INFO("PCIe error recovery succeeded\n");
-> >>>> +       }
-> >>>>           else {
-> >>>>                   DRM_ERROR("PCIe error recovery failed, err:%d", r);
-> >>>>                   amdgpu_device_unlock_adev(adev);
-> >>>> @@ -4974,3 +4979,46 @@ void amdgpu_pci_resume(struct pci_dev *pdev)
-> >>>>
-> >>>>           amdgpu_device_unlock_adev(adev);
-> >>>>    }
-> >>>> +
-> >>>> +bool amdgpu_device_cache_pci_state(struct pci_dev *pdev)
-> >>>> +{
-> >>>> +       struct drm_device *dev = pci_get_drvdata(pdev);
-> >>>> +       struct amdgpu_device *adev = drm_to_adev(dev);
-> >>>> +       int r;
-> >>>> +
-> >>>> +       r = pci_save_state(pdev);
-> >>>> +       if (!r) {
-> >>>> +               kfree(adev->pci_state);
-> >>>> +
-> >>>> +               adev->pci_state = pci_store_saved_state(pdev);
-> >>>> +
-> >>>> +               if (!adev->pci_state) {
-> >>>> +                       DRM_ERROR("Failed to store PCI saved state");
-> >>>> +                       return false;
-> >>>> +               }
-> >>>> +       } else {
-> >>>> +               DRM_WARN("Failed to save PCI state, err:%d\n", r);
-> >>>> +               return false;
-> >>>> +       }
-> >>>> +
-> >>>> +       return true;
-> >>>> +}
-> >>>> +
-> >>>> +bool amdgpu_device_load_pci_state(struct pci_dev *pdev)
-> >>>> +{
-> >>>> +       struct drm_device *dev = pci_get_drvdata(pdev);
-> >>>> +       struct amdgpu_device *adev = drm_to_adev(dev);
-> >>>> +       int r;
-> >>>> +
-> >>>> +       if (!adev->pci_state)
-> >>>> +               return false;
-> >>>> +
-> >>>> +       r = pci_load_saved_state(pdev, adev->pci_state);
-> >>>> +
-> >>>> +       if (!r) {
-> >>>> +               pci_restore_state(pdev);
-> >>>> +       } else {
-> >>>> +               DRM_WARN("Failed to load PCI state, err:%d\n", r);
-> >>>> +               return false;
-> >>>> +       }
-> >>>> +}
-> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >>>> index 4bbcc70..7a6482a 100644
-> >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >>>> @@ -1320,7 +1320,7 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
-> >>>>                   if (amdgpu_is_atpx_hybrid()) {
-> >>>>                           pci_ignore_hotplug(pdev);
-> >>>>                   } else {
-> >>>> -                       pci_save_state(pdev);
-> >>>> +                       amdgpu_device_cache_pci_state(pdev);
-> >>>>                           pci_disable_device(pdev);
-> >>>>                           pci_ignore_hotplug(pdev);
-> >>>>                           pci_set_power_state(pdev, PCI_D3cold);
-> >>>> @@ -1353,7 +1353,7 @@ static int amdgpu_pmops_runtime_resume(struct device *dev)
-> >>>>                           pci_set_master(pdev);
-> >>>>                   } else {
-> >>>>                           pci_set_power_state(pdev, PCI_D0);
-> >>>> -                       pci_restore_state(pdev);
-> >>>> +                       amdgpu_device_load_pci_state(pdev);
-> >>>>                           ret = pci_enable_device(pdev);
-> >>>>                           if (ret)
-> >>>>                                   return ret;
-> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-> >>>> index 4d14023..0ec6603 100644
-> >>>> --- a/drivers/gpu/drm/amd/amdgpu/nv.c
-> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-> >>>> @@ -311,7 +311,7 @@ static int nv_asic_mode1_reset(struct amdgpu_device *adev)
-> >>>>           /* disable BM */
-> >>>>           pci_clear_master(adev->pdev);
-> >>>>
-> >>>> -       pci_save_state(adev->pdev);
-> >>>> +       amdgpu_device_cache_pci_state(adev->pdev);
-> >>>>
-> >>>>           if (amdgpu_dpm_is_mode1_reset_supported(adev)) {
-> >>>>                   dev_info(adev->dev, "GPU smu mode1 reset\n");
-> >>>> @@ -323,7 +323,7 @@ static int nv_asic_mode1_reset(struct amdgpu_device *adev)
-> >>>>
-> >>>>           if (ret)
-> >>>>                   dev_err(adev->dev, "GPU mode1 reset failed\n");
-> >>>> -       pci_restore_state(adev->pdev);
-> >>>> +       amdgpu_device_load_pci_state(adev->pdev);
-> >>>>
-> >>>>           /* wait for asic to come out of reset */
-> >>>>           for (i = 0; i < adev->usec_timeout; i++) {
-> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-> >>>> index 2f93c47..ddd55e3 100644
-> >>>> --- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-> >>>> @@ -484,13 +484,13 @@ static int soc15_asic_mode1_reset(struct amdgpu_device *adev)
-> >>>>           /* disable BM */
-> >>>>           pci_clear_master(adev->pdev);
-> >>>>
-> >>>> -       pci_save_state(adev->pdev);
-> >>>> +       amdgpu_device_cache_pci_state(adev->pdev);
-> >>>>
-> >>>>           ret = psp_gpu_reset(adev);
-> >>>>           if (ret)
-> >>>>                   dev_err(adev->dev, "GPU mode1 reset failed\n");
-> >>>>
-> >>>> -       pci_restore_state(adev->pdev);
-> >>>> +       amdgpu_device_load_pci_state(adev->pdev);
-> >>>>
-> >>>>           /* wait for asic to come out of reset */
-> >>>>           for (i = 0; i < adev->usec_timeout; i++) {
-> >>>> --
-> >>>> 2.7.4
-> >>>>
-> >>>> _______________________________________________
-> >>>> amd-gfx mailing list
-> >>>> amd-gfx@lists.freedesktop.org
-> >>>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7CAndrey.Grodzovsky%40amd.com%7C3d5f35b27c9c4055150908d84b5c81cb%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637342207973407357&amp;sdata=qA1xTpuY1JtOTPf7m1WhpH%2BFqVv8GA5CDMu%2BJa3Ds4o%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
