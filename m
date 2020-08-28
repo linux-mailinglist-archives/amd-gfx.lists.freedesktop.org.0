@@ -1,58 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E80256027
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Aug 2020 19:59:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF4DE25602A
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Aug 2020 19:59:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18AA46E503;
-	Fri, 28 Aug 2020 17:59:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E8556E50D;
+	Fri, 28 Aug 2020 17:59:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
  [IPv6:2607:f8b0:4864:20::843])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A83246E503
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Aug 2020 17:59:03 +0000 (UTC)
-Received: by mail-qt1-x843.google.com with SMTP id k18so101874qtm.10
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Aug 2020 10:59:03 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 859B66E503
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Aug 2020 17:59:04 +0000 (UTC)
+Received: by mail-qt1-x843.google.com with SMTP id t23so142838qto.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Aug 2020 10:59:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=tYr+CuIqMACsGLjRgUJ8fDfNmHqZqhp4YW8uDoEnrjM=;
- b=l5dqjmc4lASr2kbhg5OzOoxetrNw5gHYqZ4YfRbs7nCMJn3NuBHsn6sw7PiFTyd9xy
- jjJCCWPjmdKCHV+/88wC87ALjBCr/xZT4nUuzzcVvTTySaCopQk7z3i9mXglcvjJfM/w
- dX8fsqwcrOXttRF0QFfWgnIsvOvIfdlAwK6DEOyyFP0u/5rdNNz5A/f4zuonco/1bbXW
- aRqnv9sUApvJBpQ+Bj66Agu1u1O/K1TCoS9evJm5mVdBYWVlJRWGbxtyyo0VzNKoT6bw
- RozYW1ualJH2/umzOKUHkcLXCNSwrQev90r3e3ym1+S7NthWx9WyReSHNhwgBF23S6mB
- TUeQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=TKY2HA/SzLZIb1ZBtJFoeTp8wR6lR8GkMdDOohqvCC8=;
+ b=VljGurHiQ/V/k5mVCL4ysd6JQB5Eos7pk9DA8STr08HAreejsJwblB1YNdvq7CN9g1
+ vQ5VWdyNGcjgdZM1mocAgehwBwGEEdhzJdUFEhhOjspccx9bUFggcvuux3QE3C9EGRQd
+ tRznZwr9AoFHwtEkbMIAkbMEGf3XJRJPFZBrCuUZOE8pL93nvmqZUlHK3FEx44rmcg4E
+ qG+b+kpRgLluxjwG8KbKhxdjjgJvN/7De221BbUa8D1sH9SYsnzuq86uHCChnLlSt6Ko
+ 5AtChAP/XfEENmM0566ezAEQNpCj1/t3Unp6btFKSBUksb0uPAjF/iAPS7UPOFf3s+9H
+ Q+DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=tYr+CuIqMACsGLjRgUJ8fDfNmHqZqhp4YW8uDoEnrjM=;
- b=coC9jnE+fbjRCGeN4zUic6/MFwMRZDNrFPcB1SzFzchwGVkwrKZx1hUG4m+UMi1bhW
- HIrDh1UEp9Mwc07r0q9z1dX80dDaftuqa78FY49oquEnv9Qyq3k3OS8S8mZ0gUDKyfMq
- 4avpr6mNvy0+xPZFTMq0JB5eMsduGE1aAJ9nWOhFqOcIVp/uOZEYRl0AymhRro9RMhsN
- QgBoxheKFK6jkM6DOff0EwhQvgVBEVA2zkg62DSRbS8BfgmgGV1MMpovfIyhy7l/YGnJ
- MYU6VZQC2LSv8ValDeXicuw2p9b8PLN1Dyk8rZMD2BCE4w7WWH/zHyFqVfQySEG2W7sa
- d9SA==
-X-Gm-Message-State: AOAM530NMRysLvfI7aeNZWSyBVUgz0bME145f730QyWWdCys+MJIjE8v
- rhJouCyyeFcQHs9PsJKodw/u9Sdt/zM=
-X-Google-Smtp-Source: ABdhPJzKZDpLcC/qoYHaL80j2uadozCipHLYQTM9xY0rFDitgciJxCQmAJvZpxdtJ832X9kTHT5AUA==
-X-Received: by 2002:aed:2907:: with SMTP id s7mr2480868qtd.321.1598637542612; 
- Fri, 28 Aug 2020 10:59:02 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=TKY2HA/SzLZIb1ZBtJFoeTp8wR6lR8GkMdDOohqvCC8=;
+ b=Cr674pb73kLEIoGZYIY7qt/4k+ABN6XW7vf98yvt16mlxHBOXgYqgno3HGBQ+c6i8U
+ ulLbm9lV+uThNs5ql4Fj3jqGrYQ549WzFgjnQhCLxHQgJiAWisl+P9E3+5KtlsDlqt8J
+ ikbIFPmbsiaOuZtiZsx9aT1Tr3WkQQg2GfnCQZAqjfBE9DWhmGtB6pCuOG8ijhhi1xmx
+ A3m45qjrfM5wM2m3GAR2VYigs+abaezj+G7fsrMFQS8n6UNH1rMO5eojabILxrEIM+UC
+ ldON/XLIDU3kifVvB4kH4lCQIM8+VfxXtQRTXE2I9Ii93PxUp8ICnXK41xOEXsy7PMz9
+ vf0Q==
+X-Gm-Message-State: AOAM530HgdJKhlfVuzDoPMT3wY/GLKv6eshikn989oNpYaPgHLGjl++5
+ yYnR5d+Kq6JfCIoTlvb3fpceyHGNt9w=
+X-Google-Smtp-Source: ABdhPJxO80UrwWY03Nc1jIWLBkkTexsFel71M9gFlsd65FmKb+g2sfOtpvFCn46UMTmwm00QBiMiZA==
+X-Received: by 2002:ac8:7741:: with SMTP id g1mr2566207qtu.28.1598637543531;
+ Fri, 28 Aug 2020 10:59:03 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id x28sm1278129qki.55.2020.08.28.10.59.01
+ by smtp.gmail.com with ESMTPSA id x28sm1278129qki.55.2020.08.28.10.59.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Aug 2020 10:59:02 -0700 (PDT)
+ Fri, 28 Aug 2020 10:59:03 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/6] drm/amdgpu/swsmu: add new callback for getting fan
- parameters
-Date: Fri, 28 Aug 2020 13:58:48 -0400
-Message-Id: <20200828175853.2378523-1-alexander.deucher@amd.com>
+Subject: [PATCH 2/6] drm/amdgpu/swsmu: add get_fan_parameters callbacks for
+ smu11 asics
+Date: Fri, 28 Aug 2020 13:58:49 -0400
+Message-Id: <20200828175853.2378523-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
+In-Reply-To: <20200828175853.2378523-1-alexander.deucher@amd.com>
+References: <20200828175853.2378523-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,62 +73,99 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-To fetch the max rpm from pptable.
+grab the value from the pptable.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h     | 4 ++++
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c   | 2 ++
- drivers/gpu/drm/amd/pm/swsmu/smu_internal.h | 1 +
- 3 files changed, 7 insertions(+)
+ drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c      | 10 ++++++++++
+ drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c        | 10 ++++++++++
+ .../gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c    | 10 ++++++++++
+ 3 files changed, 30 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-index 4c5c041af4ee..787fc682e0a5 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-@@ -452,6 +452,9 @@ struct smu_context
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+index 59b245c6c4d7..198fc1185b2d 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+@@ -1148,6 +1148,15 @@ static int arcturus_get_fan_speed_percent(struct smu_context *smu,
+ 	return ret;
+ }
  
- 	struct work_struct throttling_logging_work;
- 	atomic64_t throttle_int_counter;
++static int arcturus_get_fan_parameters(struct smu_context *smu)
++{
++	PPTable_t *pptable = smu->smu_table.driver_pptable;
 +
-+	unsigned fan_max_rpm;
-+	unsigned manual_fan_speed_rpm;
++	smu->fan_max_rpm = pptable->FanMaximumRpm;
++
++	return 0;
++}
++
+ static int arcturus_get_power_limit(struct smu_context *smu)
+ {
+ 	struct smu_11_0_powerplay_table *powerplay_table =
+@@ -2397,6 +2406,7 @@ static const struct pptable_funcs arcturus_ppt_funcs = {
+ 	.get_gpu_metrics = arcturus_get_gpu_metrics,
+ 	.gfx_ulv_control = smu_v11_0_gfx_ulv_control,
+ 	.deep_sleep_control = smu_v11_0_deep_sleep_control,
++	.get_fan_parameters = arcturus_get_fan_parameters,
  };
  
- struct i2c_adapter;
-@@ -598,6 +601,7 @@ struct pptable_funcs {
- 	int (*enable_mgpu_fan_boost)(struct smu_context *smu);
- 	int (*gfx_ulv_control)(struct smu_context *smu, bool enablement);
- 	int (*deep_sleep_control)(struct smu_context *smu, bool enablement);
-+	int (*get_fan_parameters)(struct smu_context *smu);
+ void arcturus_set_ppt_funcs(struct smu_context *smu)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+index cc67d5c60f3d..3a9500dcb436 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+@@ -1385,6 +1385,15 @@ static int navi10_get_fan_speed_percent(struct smu_context *smu,
+ 	return ret;
+ }
+ 
++static int navi10_get_fan_parameters(struct smu_context *smu)
++{
++	PPTable_t *pptable = smu->smu_table.driver_pptable;
++
++	smu->fan_max_rpm = pptable->FanMaximumRpm;
++
++	return 0;
++}
++
+ static int navi10_get_power_profile_mode(struct smu_context *smu, char *buf)
+ {
+ 	DpmActivityMonitorCoeffInt_t activity_monitor;
+@@ -2666,6 +2675,7 @@ static const struct pptable_funcs navi10_ppt_funcs = {
+ 	.enable_mgpu_fan_boost = navi10_enable_mgpu_fan_boost,
+ 	.gfx_ulv_control = smu_v11_0_gfx_ulv_control,
+ 	.deep_sleep_control = smu_v11_0_deep_sleep_control,
++	.get_fan_parameters = navi10_get_fan_parameters,
  };
  
- typedef enum {
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 8462b30f4fe3..114e85613e24 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -504,6 +504,8 @@ static int smu_late_init(void *handle)
+ void navi10_set_ppt_funcs(struct smu_context *smu)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index b67931fd64b4..2ac942b13bad 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -1192,6 +1192,15 @@ static int sienna_cichlid_get_fan_speed_percent(struct smu_context *smu,
+ 	return ret;
+ }
  
- 	smu_get_unique_id(smu);
- 
-+	smu_get_fan_parameters(smu);
++static int sienna_cichlid_get_fan_parameters(struct smu_context *smu)
++{
++	PPTable_t *pptable = smu->smu_table.driver_pptable;
 +
- 	smu_handle_task(&adev->smu,
- 			smu->smu_dpm.dpm_level,
- 			AMD_PP_TASK_COMPLETE_INIT,
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h b/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h
-index c88f8fab1bae..38c10177ed21 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h
-@@ -94,6 +94,7 @@
- #define smu_set_pp_feature_mask(smu, new_mask)				smu_ppt_funcs(set_pp_feature_mask, 0, smu, new_mask)
- #define smu_gfx_ulv_control(smu, enablement)				smu_ppt_funcs(gfx_ulv_control, 0, smu, enablement)
- #define smu_deep_sleep_control(smu, enablement)				smu_ppt_funcs(deep_sleep_control, 0, smu, enablement)
-+#define smu_get_fan_parameters(smu)					smu_ppt_funcs(get_fan_parameters, 0, smu)
++	smu->fan_max_rpm = pptable->FanMaximumRpm;
++
++	return 0;
++}
++
+ static int sienna_cichlid_get_power_profile_mode(struct smu_context *smu, char *buf)
+ {
+ 	DpmActivityMonitorCoeffInt_t activity_monitor;
+@@ -2811,6 +2820,7 @@ static const struct pptable_funcs sienna_cichlid_ppt_funcs = {
+ 	.enable_mgpu_fan_boost = sienna_cichlid_enable_mgpu_fan_boost,
+ 	.gfx_ulv_control = smu_v11_0_gfx_ulv_control,
+ 	.deep_sleep_control = smu_v11_0_deep_sleep_control,
++	.get_fan_parameters = sienna_cichlid_get_fan_parameters,
+ };
  
- #endif
- #endif
+ void sienna_cichlid_set_ppt_funcs(struct smu_context *smu)
 -- 
 2.25.4
 
