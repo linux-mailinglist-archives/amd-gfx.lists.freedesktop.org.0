@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C808257DFE
-	for <lists+amd-gfx@lfdr.de>; Mon, 31 Aug 2020 17:51:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D99A257E01
+	for <lists+amd-gfx@lfdr.de>; Mon, 31 Aug 2020 17:51:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D06CF6E393;
-	Mon, 31 Aug 2020 15:51:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA40A6E3A0;
+	Mon, 31 Aug 2020 15:51:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2055.outbound.protection.outlook.com [40.107.93.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9908689C49
- for <amd-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 15:51:08 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2051.outbound.protection.outlook.com [40.107.102.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F31426E3A0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 31 Aug 2020 15:51:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bHqRe4JqSD9P+cP0DOm7O80BGLVd+bu0L3+Rf7+EOJxA/sdiBkaDfgQrYmV6BB+Z7qOINhMD7tiqZbB09e7ob6cSUn2qw/AbrHDAvgDg2XDF7LVML06J9Y8Uy/b0s6tYD/Q+yOkpDUnT70CiwDP9dQxzqJCSIR/nSHYTuvHkn15FDQaM2Z+fPmtHwicoQENz7oS7e34mbc129MmRtglnorGuxSSAWtaasyzZzCaHL6r0WA1nzpgWqFY9P/4oAHezT1VE3oEFUN33B+ahEXS51+bWUA6thkVGeD9znRzOa65BBNBcyndlYukGjX79towl4lnohfoh6opa+uZABRGz7A==
+ b=mXjwSleYbytUZ7oQeR8jwZw9FLa024S0L9oOGOeQhasg8ED6ELmzIfZAGaTTo/q9wZCNejwBn/MHDDSoDkqESV2WMaLbw5t0+crQyiXL+3OBKe9gyrr9zW0T9zXGxFJXFfDaEkr3jU+IXMfoRSwg/sXan8FXIk0QdC8Em4uqQI6UMHoFPWqaDsU1hea91ETDyOtwz00SMP2PJsAACSITZdrrgbHTzx9++BWpXAfX62Q3d4lkewsWvJeCSDYu0BWpZB7Itak2Nb8MLtMWNiwXAygfeqmkCTbfBw+l4bzdcK/uyaN0H+8GPqFXKQjIerozlzT7EEOnUk7Id6Dv330Vmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mc87bi/ySbwv0DsCt9ZYRkUJwyNnPcw5lyixISskkkg=;
- b=Xrgn919jYhTQHbSjN/1m/Y9lzEKKWxlLeWuCOJ31sfBE9GxjSQ5rcwZiRiEVXLNpztgGGlAhQC3WsFrlzeycW6kSq4lzN65fT2DWSuwZI/kckz7ucmDVAU8v1+xrdjnEAPyHKB1qxG3xZtB8263EKIJCzu0jGJdIDcLlmqD3QctyV7fi2cc4+IMY/EZl2jSgxgvOwfX5Ujh7NQ3vzBdEqAvbr+KhbYX2zQyfTWG/S4KsLVt1H4Jr/1qCxj0iGNc0IBTr8Kgmm+CytPIAM7T27n+lNYVXHduY6gIkcHis2Wa2va5pv+57vu60u/LVBozPEfktgwBn3bFJDvNSkcjGYg==
+ bh=yGzvEqWX7fppaPDbwdKn1WOa9UGbOEXccGpdIRsLIg4=;
+ b=Uxy3/IsbEfCA8QbzQ6kOXu83EBlI8rOumzJqnTjfxVCN7UnaKHpsUIjpJX5BnuS92L4012TsNzWY5p86t3Fvi5nAGre+ki9V/wIf7I0TWFq2XD4jzY8Rm/q3dtV6S3hGRorD2YGFMAxkQrD+a1D5rvQRurKe65iSFc/58zFTFRNmudLjM83290fO1MjQcqqPfFXJ6V8sevTCvSixCzZx0zYIMc6cjHWXVg9PgY7dzOkJP1H0Tz/jOK+6e1n1/MuQI4fOIYJsT51X2LysQl6DwNsQ9QKrNoQsw2uaFsmudRu7OZAItH0bB1QbfdWetS+guEcqsPFOaoAFfNf5r+OUyw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,17 +27,17 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mc87bi/ySbwv0DsCt9ZYRkUJwyNnPcw5lyixISskkkg=;
- b=BgM3IB1TVWmPd0klJgOzrKDxTWMA0HwEr+ZuRjbtf/zhma7agKWZxfDoLxEAtkIglSS+gjG9q+RVaDbkSPQd3fEtAe77evo/Nt9Hl9OsqRo8hO782n0vWzgiCczyrMKiEIv6K3SWhirQakq31QDAv2slHt42Cbx/bxJO7MgLMfY=
-Received: from DM5PR07CA0150.namprd07.prod.outlook.com (2603:10b6:3:ee::16) by
- BY5PR12MB4178.namprd12.prod.outlook.com (2603:10b6:a03:20e::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3326.23; Mon, 31 Aug 2020 15:51:07 +0000
+ bh=yGzvEqWX7fppaPDbwdKn1WOa9UGbOEXccGpdIRsLIg4=;
+ b=fU1ObIaFK24Uck704GplV3J1NROo9TvKK8rTuqkCYj4T91zF0TIC0i3EQzdCp9B3jX/mNmZ0USjWAWumJ69IymKTKxNg04eZy79YPp8qUpg/Ic43c/x/UFJJr/NGNsZZT0mOTY5S+wb7y3lV0m1gegGTqzcWjv/h9tdMpzTvzfM=
+Received: from DM5PR07CA0160.namprd07.prod.outlook.com (2603:10b6:3:ee::26) by
+ MWHPR12MB1709.namprd12.prod.outlook.com (2603:10b6:300:111::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.23; Mon, 31 Aug
+ 2020 15:51:07 +0000
 Received: from DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:ee:cafe::f) by DM5PR07CA0150.outlook.office365.com
- (2603:10b6:3:ee::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19 via Frontend
+ (2603:10b6:3:ee:cafe::ba) by DM5PR07CA0160.outlook.office365.com
+ (2603:10b6:3:ee::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.20 via Frontend
  Transport; Mon, 31 Aug 2020 15:51:07 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -48,19 +48,19 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
  DM6NAM11FT062.mail.protection.outlook.com (10.13.173.40) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3326.19 via Frontend Transport; Mon, 31 Aug 2020 15:51:06 +0000
+ 15.20.3326.19 via Frontend Transport; Mon, 31 Aug 2020 15:51:07 +0000
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Mon, 31 Aug
- 2020 10:51:04 -0500
+ 2020 10:51:05 -0500
 Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
  SATLEXMB01.amd.com (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3
- via Frontend Transport; Mon, 31 Aug 2020 10:51:03 -0500
+ via Frontend Transport; Mon, 31 Aug 2020 10:51:04 -0500
 From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3 7/8] drm/amdgpu: Disable DPC for XGMI for now.
-Date: Mon, 31 Aug 2020 11:50:48 -0400
-Message-ID: <1598889049-28321-8-git-send-email-andrey.grodzovsky@amd.com>
+Subject: [PATCH v3 8/8] drm/amdgpu: Minor checkpatch fix
+Date: Mon, 31 Aug 2020 11:50:49 -0400
+Message-ID: <1598889049-28321-9-git-send-email-andrey.grodzovsky@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1598889049-28321-1-git-send-email-andrey.grodzovsky@amd.com>
 References: <1598889049-28321-1-git-send-email-andrey.grodzovsky@amd.com>
@@ -68,27 +68,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d21c3152-44eb-410f-a0a6-08d84dc5ac7e
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4178:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB41782F142AF4DC81D03EE3E1EA510@BY5PR12MB4178.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Office365-Filtering-Correlation-Id: 5e57145a-8b1a-4bce-7421-08d84dc5accf
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1709:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB1709653ACB5002200386FBE1EA510@MWHPR12MB1709.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XN6NOPFF1FrCUo2zVt3KkPKl7weiwW4/Hzki1zVZU3Ni7BHDjCYER2CtMfhUVEq6tFak4Ab2XIfA8rLkwR8MFrsX/znC7rOp9Xiub9pcsrC1RtJfY4M2TJapkO7CEQ5WLqW/esUDiQLt20Fj/E2OzM7ORSHyOZDvflFbcnO/px2ehqli7X48NOVH4rF/d9I18bgDqf/qPbAGh/Z9hjLbC91Y5G4vuI3519iREjSeSc7IgrhVG540htsn3Wk+YW/ZHlA70fY32KK4Jn2eyN6KKdDtYLmYg4GZDJgA2gOdx/RhI8sTfFO2AYezg2XkviSVHjcGS7FY77KmHJ/lc9XjI1YEpC1/Cqco6qPCuS4TC+2E6fyU9WYT1ZQaXjVmWU/EHxP4Bz9QiNst6aK1tYzXeA==
+X-Microsoft-Antispam-Message-Info: U3cCmgJaA5dMDcIPnDS7fMS9vKBvupQzknEUchhusIB2cLmv8xy7XpLR4P+zd0JnCLr0cpv1i3vckb6aRQqK+T0DzQU1bh0FqZ7+1aUamzW9wQ0YhNecsrrz7X4MkANja3rwtnPL6+MTJQswrJ1Wi1wExaV+kBcundApFA+t3ceYDV/RKQH5TT1tx6hm1H4M3S+ru8MU+JtyZQoLU+aQ+TvmbCp7dipbJ4EEoOYv+e1kHFgTSQJrDoCHTkHpygV345V8hLsKOBtPFsBJ8vlJnVZbZTCzCn4UNNh5NSZFRtg+yeufkZNdidVFxIdjRH7YnvVNuHT7AzM4Uf4U5qTgI/dKqcqorSDIY4c/NggUS7EMtaKW8oJGfPHIC2bXInUEH832qWFDGnKxk4Bm2ucokw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(376002)(346002)(39860400002)(396003)(46966005)(4326008)(86362001)(70586007)(478600001)(8676002)(83380400001)(54906003)(70206006)(316002)(5660300002)(6916009)(36756003)(26005)(186003)(336012)(8936002)(6666004)(2906002)(2616005)(7696005)(47076004)(426003)(82740400003)(356005)(81166007)(44832011)(82310400002);
+ SFS:(4636009)(376002)(346002)(396003)(39860400002)(136003)(46966005)(26005)(2906002)(86362001)(70206006)(70586007)(186003)(36756003)(5660300002)(478600001)(7696005)(426003)(2616005)(44832011)(356005)(82310400002)(4326008)(82740400003)(83380400001)(54906003)(336012)(6666004)(6916009)(47076004)(8676002)(316002)(8936002)(81166007);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2020 15:51:06.9891 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d21c3152-44eb-410f-a0a6-08d84dc5ac7e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2020 15:51:07.5188 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e57145a-8b1a-4bce-7421-08d84dc5accf
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4178
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1709
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,33 +107,35 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-XGMI support is more complicated then single device support as
-questions of synchronization between the device recovering from
-PCI error and other members of the hive is required.
-Leaving this for next round.
-
 Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index b31868a..fe720c2 100644
+index fe720c2..16c7842 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -4781,6 +4781,11 @@ pci_ers_result_t amdgpu_pci_error_detected(struct pci_dev *pdev, pci_channel_sta
+@@ -353,7 +353,8 @@ uint32_t amdgpu_mm_rreg(struct amdgpu_device *adev, uint32_t reg,
+  *
+  * Returns the 8 bit value from the offset specified.
+  */
+-uint8_t amdgpu_mm_rreg8(struct amdgpu_device *adev, uint32_t offset) {
++uint8_t amdgpu_mm_rreg8(struct amdgpu_device *adev, uint32_t offset)
++{
+ 	if (adev->in_pci_err_recovery)
+ 		return 0;
  
- 	DRM_INFO("PCI error: detected callback, state(%d)!!\n", state);
+@@ -377,7 +378,8 @@ uint8_t amdgpu_mm_rreg8(struct amdgpu_device *adev, uint32_t offset) {
+  *
+  * Writes the value specified to the offset specified.
+  */
+-void amdgpu_mm_wreg8(struct amdgpu_device *adev, uint32_t offset, uint8_t value) {
++void amdgpu_mm_wreg8(struct amdgpu_device *adev, uint32_t offset, uint8_t value)
++{
+ 	if (adev->in_pci_err_recovery)
+ 		return;
  
-+	if (adev->gmc.xgmi.num_physical_nodes > 1) {
-+		DRM_WARN("No support for XGMI hive yet...");
-+		return PCI_ERS_RESULT_DISCONNECT;
-+	}
-+
- 	switch (state) {
- 	case pci_channel_io_normal:
- 		return PCI_ERS_RESULT_CAN_RECOVER;
 -- 
 2.7.4
 
