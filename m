@@ -2,90 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AEF258985
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Sep 2020 09:46:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72992258995
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Sep 2020 09:50:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D07C6E5B4;
-	Tue,  1 Sep 2020 07:46:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4247B6E429;
+	Tue,  1 Sep 2020 07:50:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2069.outbound.protection.outlook.com [40.107.93.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34FCE6E5B4
- for <amd-gfx@lists.freedesktop.org>; Tue,  1 Sep 2020 07:45:58 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760053.outbound.protection.outlook.com [40.107.76.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 450AF6E429
+ for <amd-gfx@lists.freedesktop.org>; Tue,  1 Sep 2020 07:50:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hse9z4hWXixv8vt6rmarx3O9rCllbNZbmpqIaplI5HUFCXcVCeBCUDBq4MBvZ/QKPd7oJ98JUyxz0Phajk9tGrk6KdfXUzIKhIn0ndL2O6b0CGIevsIRq+DtGZ/tInYUkk+taujFdrmPaRHihT9ArzykqX9Jjp4uVdBcHKffPLJoqXgwZl2oHdOlJhO53ToHM8w1sHkwU046pG3CWy+eFuxSmybH9becwjfNmbT7nkx7dK12Mt/6itheZVqYn63TVNHzt/i7aRLxcJ9MhmSCjtJGXlk7gcYkvxo2Ic2yhzz3q6k3/C4R9hzrshOitgLG7psfyPyq2+ADtBjH0sk3tg==
+ b=bH12WgJcQp0zdbe0OY92xFFiP113s+m7XVmVVo/bTI0lgpklGcEj58tbb7W7WUM44OWlZdyzwIM1SWzcfHXgvTGNQGADRoKrvW2bjwxD5oS5PQwsMuvaE+UE4B2xNKbpJpWlP/enr6wDX/xdRDV3mkGEcu0Xv9mTvVzVV7cn+Ol+FTSK9+LUa2gcpFkqTB8OIYHYSDIEcJJLxLJ/J1uFmS+lL8bnznsgFEB0DmHBjtH2sOpy2KAjEkn8OwFltOz4j6E2Xc1lnCjos9t79l2t8deCEo/mwCTqQC1GVa8OzOXY4uAltlYDGjLF4i/xcDef5id4lDeznFgdjEvsXGddUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rK+TxkyjwedjvVg+yAFAKX8GH+RwCJMs0xAu8KQ7nPc=;
- b=Vk2NsFoTjEyYjHb2cVVjrMqRzLDub6I7tjL7XGJmZtp33OWIOCtUyFavWfSh9F9fjHRb1mt1fsiuqsbfxtHn2pBAMTEzlMvnJA7HPvFfr0d86uY4f2SH16WuQOe2AnWwp383rFBJA0sOGwRXRjEs4Z/k6L5VG2JxUHU7Qbnl3tPj2nMorf6j8/5c9bk7EtI9LdMwJMzA2m4BAGZbODYA1YCT9kgdVMcIGvh0NBTqG3EIo/NM2JuoWgbXusdxa3SdEOSA69R1drP6yPhmUZTVxUoZ0nudHol8J1NNDO1NqPzsbHJpGT4GEA99gVltN8BVJlIROGqrCCegx8oRKxm99A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=qe0xRpvVozurAHV5aoubCsu17m3IAEvzXvDmuyq+Wv4=;
+ b=lmek9wVH1abFBOsIsXks5thotYdBDfSr37paSPrHe69BadinnimpTORyr77mIxm3XlghWMhiPl2E42lA0AmMldF/vPnU6QHuwQ02Te8vg1+CSds3Trn0kLxsBsg4UB334bNfrXzOTuDB0ErMG45Wr8/Y6UT9+AXY2Y8FOW7O/2NKB1EbvvWy8uufh5L7ERNFHw4P8z8B7cXRiOUN3pIrsqEIOP/eR2gs2pTXsZ2EJRN4lxA4mJ0klHR9GWruEbTxlSltPrRnPCNjo55U837g8yzi+SzgTIp+/AMSALRxbGAbrAwx2MnO4H2K+ZaDjUXc6EscHgbR/tOGxdUH8M8DYg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rK+TxkyjwedjvVg+yAFAKX8GH+RwCJMs0xAu8KQ7nPc=;
- b=E6rvBPbUSkcx/ktIP65u+y+fVlLzl39Wl3UGvS0Y+OFm6TQ4pfm4n3FYv3aFdkLES6DOyKiWiXaq38h5QnFR0H7cPhhEiGCNC0QDiWi6wW14KdRApvietQYtoFVvMTzpxWN9R+TNftD5R4Sq9q2HyHweXX435eCBPPcgkc7NQHU=
-Received: from SN1PR12MB2558.namprd12.prod.outlook.com (2603:10b6:802:2b::18)
- by SN6PR12MB2734.namprd12.prod.outlook.com (2603:10b6:805:76::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.22; Tue, 1 Sep
- 2020 07:45:57 +0000
-Received: from SN1PR12MB2558.namprd12.prod.outlook.com
- ([fe80::c8c0:9bc9:57ed:cb03]) by SN1PR12MB2558.namprd12.prod.outlook.com
- ([fe80::c8c0:9bc9:57ed:cb03%3]) with mapi id 15.20.3326.025; Tue, 1 Sep 2020
- 07:45:57 +0000
-From: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: Fix a redundant kfree
-Thread-Topic: [PATCH] drm/amdgpu: Fix a redundant kfree
-Thread-Index: AdaAM8FOrTvEfqviRDOZEE5pxC7W1g==
-Date: Tue, 1 Sep 2020 07:45:57 +0000
-Message-ID: <SN1PR12MB25588CE66B9F67BBAED67655872E0@SN1PR12MB2558.namprd12.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=88499811-f894-4564-b445-98db696aa6dc;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Use Only - Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-09-01T07:44:19Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-x-originating-ip: [58.247.170.242]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: ca084677-25bd-4585-d2a3-08d84e4b104a
-x-ms-traffictypediagnostic: SN6PR12MB2734:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SN6PR12MB2734FED9DE314E0EDA820538872E0@SN6PR12MB2734.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:245;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: V/7/slVPvAJn3IzJ7rZI4Vj4sXYOqnm5P4Ve6RiFkO33Guib/Z+pTm+QtoNDDNIAyUoH9HKj5XezP94Qn8M642B8Pmrto4AC0nQeFkqGXCPBCTjephaxfxBjRkLqcqAtk7eXddeCEFLO7IhVlXCC/YnqpvC/Gh4z+p87rK8+uU3SGolY5nVwB49g+WGxJOx/vANBAGn8TC0bPN2Yyk3rlPBnUFAWKnAdzU4DKYJiSHWMHoC7LMwOZ9L6ZhH8qu6j01KRPLWfTVYtVRR6xxbluW/VjOkECkDLDsSiKannIegTfTndW/OAUfCyu64TyrLB4y6uB4TmTrtSqm3gOR5gsQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN1PR12MB2558.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(346002)(376002)(396003)(366004)(4326008)(6506007)(71200400001)(186003)(8676002)(66946007)(76116006)(6916009)(7696005)(26005)(66446008)(2906002)(64756008)(33656002)(66476007)(66556008)(5660300002)(52536014)(8936002)(316002)(55016002)(86362001)(478600001)(9686003)(83380400001)(54906003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: 1E/Pzh/KWAhPfMipQaQ8ZAbqnmw4ZPLtr4+1wJvrLEPzQobxViOZqyE99v2lsLF2yczGAAe2NOGo0tB5DCGhcFIvIrAr6h9vI4Oj/4F/7tJxJ80QHUMT4VDO8HsCAcirU2ye49H8y2QLuFkyXnIXxfxy3CINvyXGtBLTkW+4je6BkAt45qJPHMpBTgDuF3UACjbjAR+qFUAw6nBDBIrGdb381uAVaMkqbFwcaTMwa8zYxQKj3unv8ECi/z/AEWfTWphXbGeaL2r36Rkw9GqBQbcfBkKLq15LEh8ng8yWDimC4d4qhwwvIScvUNN49UA3GT8OeERxwnd0wvPqXPsPzj9DnbA6w5z843voUAN19suF9v8LHAnbzGiJpWp/8EpvqaGB3XqsCR3lOoo5mrtMhIReCRVTVP34gIPhKeOtwTMVJL7JoBGTW7idpfnN1ZNEqyJbwS2tUzywwE13UC5CaDTlQwikhtOojGunVn/SDnk+/sw3g5qDSBrvurHTKJOIrYF2bWBVwaNEr8j79BQiUQo0tYugz32hh3uG+HXUm0Bg6dqdcxLbXEwIl8wSjzJjEQd0+VIDImEh0D0LPIz8Ao6UgCqDhrsEomjmISvZk6HG6TmLSFD4DxeejdobU8PSSPtzMSQl/K/ktU4eq+QxQA==
+ bh=qe0xRpvVozurAHV5aoubCsu17m3IAEvzXvDmuyq+Wv4=;
+ b=N/9/YUMbW+JOWhfpEIDhKEXkBEcwd2Yw87DM3Y10rZan/zwN83JZGrPFpsZytiEmOhhIGvhR1uMYUyOkg4TE2iFO+ozrHV3XoS0NWNpZex5jHSIqkLnwxNYq8/ODrdFGgb65QrEnR9IzqONajTuviVEJGNGMeXtpXcbvi61oEZ4=
+Received: from MWHPR20CA0028.namprd20.prod.outlook.com (2603:10b6:300:ed::14)
+ by DM6PR12MB3324.namprd12.prod.outlook.com (2603:10b6:5:11e::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19; Tue, 1 Sep
+ 2020 07:50:42 +0000
+Received: from CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:ed:cafe::78) by MWHPR20CA0028.outlook.office365.com
+ (2603:10b6:300:ed::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.19 via Frontend
+ Transport; Tue, 1 Sep 2020 07:50:41 +0000
+X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT018.mail.protection.outlook.com (10.13.175.16) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3326.19 via Frontend Transport; Tue, 1 Sep 2020 07:50:41 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Tue, 1 Sep 2020
+ 02:50:40 -0500
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Tue, 1 Sep 2020
+ 02:50:39 -0500
+Received: from yajunl-gv.amd.com (10.180.168.240) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3 via Frontend
+ Transport; Tue, 1 Sep 2020 02:50:38 -0500
+From: Dennis Li <Dennis.Li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>,
+ <felix.kuehling@amd.com>, <Hawking.Zhang@amd.com>, <christian.koenig@amd.com>
+Subject: [PATCH v2] drm/amdgpu: block ring buffer access during GPU recovery
+Date: Tue, 1 Sep 2020 15:50:29 +0800
+Message-ID: <20200901075029.23502-1-Dennis.Li@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5ea25c50-1b91-4219-2177-08d84e4bb97e
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3324:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3324AFFA440AD052E4B842B0ED2E0@DM6PR12MB3324.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RB2IPO51MZMniLgze7hjP0T7s6Epema3oGwHfeiLwjMC2K9H/WOZtRHkZgHijXh2/Ta6JGkXO0PKkiFsavajmWFHeFNp62wss0CfJqjvEkN31mKaYItSTU0Z9/9OI0WrCpioqf7x2+w+dctqqZeN5hKvSI4rs8iiOuKQP4GgHn21o5TBRa7YTtaSmVy4gLndVgvdczKlfA3b2/MSHLGaAWT3TfJ6bshiuUwestUts2iOlmFyFTIh71XPor78e7blHpSIfsxMWyWkSUL7V/vGcwn6LhZ4oR2zv8B7aaZ8m7v3gZGmAJ8ueBw0Dm042/oggbM2BzohPF6CKWqrG5V7uRJle1kTOGtsYVbwBb+WODGQwcFuCVF8do60pJG18hi5jrUYsnGoFRp9mPAxsTnjqIzOdyw4/a3yWvC0K1W2LJg=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(346002)(396003)(39860400002)(376002)(136003)(46966005)(81166007)(6666004)(47076004)(426003)(2906002)(356005)(2616005)(83380400001)(8936002)(82740400003)(8676002)(316002)(5660300002)(6636002)(1076003)(7696005)(70206006)(70586007)(186003)(26005)(36756003)(4326008)(478600001)(336012)(86362001)(110136005)(82310400003)(2101003);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN1PR12MB2558.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca084677-25bd-4585-d2a3-08d84e4b104a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2020 07:45:57.4368 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fEC1RNxRKhwl97a90uZzlfefDYEM4xVTP7Dfl7ZHtkaxqHzrVXnZle1hMhKD31N3
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2734
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2020 07:50:41.2920 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ea25c50-1b91-4219-2177-08d84e4bb97e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3324
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,107 +104,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Tuikov,
- Luben" <Luben.Tuikov@amd.com>
+Cc: Dennis Li <Dennis.Li@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
+When GPU is in reset, its status isn't stable and ring buffer also need
+be reset when resuming. Therefore driver should protect GPU recovery
+thread from ring buffer accessed by other threads. Otherwise GPU will
+randomly hang during recovery.
 
-drm_dev_alloc() alloc *dev* and set managed.final_kfree to dev to free
-itself.
-Now from commit 5cdd68498918("drm/amdgpu: Embed drm_device into
-amdgpu_device (v3)") we alloc *adev* and ddev is just a member of it.
-So drm_dev_release try to free a wrong pointer then.
+v2: correct indent
 
-Also driver's release trys to free adev, but drm_dev_release will
-access dev after call drvier's release.
+Signed-off-by: Dennis Li <Dennis.Li@amd.com>
 
-To fix it, remove driver's release and set managed.final_kfree to adev.
-
-[   36.269348] BUG: unable to handle page fault for address: ffffa0c279940028
-[   36.276841] #PF: supervisor read access in kernel mode
-[   36.282434] #PF: error_code(0x0000) - not-present page
-[   36.288053] PGD 676601067 P4D 676601067 PUD 86a414067 PMD 86a247067 PTE 800ffff8066bf060
-[   36.296868] Oops: 0000 [#1] SMP DEBUG_PAGEALLOC NOPTI
-[   36.302409] CPU: 4 PID: 1375 Comm: bash Tainted: G           O      5.9.0-rc2+ #46
-[   36.310670] Hardware name: System manufacturer System Product Name/PRIME Z390-A, BIOS 1401 11/26/2019
-[   36.320725] RIP: 0010:drm_managed_release+0x25/0x110 [drm]
-[   36.326741] Code: 80 00 00 00 00 0f 1f 44 00 00 55 48 c7 c2 5a 9f 41 c0 be 00 02 00 00 48 89 e5 41 57 41 56 41 55 41 54 49 89 fc 53 48 83 ec 08 <48> 8b 7f 18 e8 c2 10 ff ff 4d 8b 74 24 20 49 8d 44 24 5
-[   36.347217] RSP: 0018:ffffb9424141fce0 EFLAGS: 00010282
-[   36.352931] RAX: 0000000000000006 RBX: ffffa0c279940010 RCX: 0000000000000006
-[   36.360718] RDX: ffffffffc0419f5a RSI: 0000000000000200 RDI: ffffa0c279940010
-[   36.368503] RBP: ffffb9424141fd10 R08: 0000000000000001 R09: 0000000000000001
-[   36.376304] R10: 0000000000000000 R11: 0000000000000000 R12: ffffa0c279940010
-[   36.384070] R13: ffffffffc0e2a000 R14: ffffa0c26924e220 R15: fffffffffffffff2
-[   36.391845] FS:  00007fc4a277b740(0000) GS:ffffa0c288e00000(0000) knlGS:0000000000000000
-[   36.400669] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   36.406937] CR2: ffffa0c279940028 CR3: 0000000792304006 CR4: 00000000003706e0
-[   36.414732] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[   36.422550] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[   36.430354] Call Trace:
-[   36.433044]  drm_dev_put.part.0+0x40/0x60 [drm]
-[   36.438017]  drm_dev_put+0x13/0x20 [drm]
-[   36.442398]  amdgpu_pci_remove+0x56/0x60 [amdgpu]
-[   36.447528]  pci_device_remove+0x3e/0xb0
-[   36.451807]  device_release_driver_internal+0xff/0x1d0
-[   36.457416]  device_release_driver+0x12/0x20
-[   36.462094]  pci_stop_bus_device+0x70/0xa0
-[   36.466588]  pci_stop_and_remove_bus_device_locked+0x1b/0x30
-[   36.472786]  remove_store+0x7b/0x90
-[   36.476614]  dev_attr_store+0x17/0x30
-[   36.480646]  sysfs_kf_write+0x4b/0x60
-[   36.484655]  kernfs_fop_write+0xe8/0x1d0
-[   36.488952]  vfs_write+0xf5/0x230
-[   36.492562]  ksys_write+0x70/0xf0
-[   36.496206]  __x64_sys_write+0x1a/0x20
-[   36.500292]  do_syscall_64+0x38/0x90
-[   36.504219]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-
-Signed-off-by: xinhui pan <xinhui.pan@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 10 +---------
- 1 file changed, 1 insertion(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index c12e9acd421d..52fc0c6c8538 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1165,7 +1165,7 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- if (ret)
- goto err_free;
-
--drmm_add_final_kfree(ddev, ddev);
-+drmm_add_final_kfree(ddev, adev);
-
- if (!supports_atomic)
- ddev->driver_features &= ~DRIVER_ATOMIC;
-@@ -1221,13 +1221,6 @@ amdgpu_pci_remove(struct pci_dev *pdev)
- drm_dev_put(dev);
- }
-
--static void amdgpu_driver_release(struct drm_device *ddev)
--{
--struct amdgpu_device *adev = drm_to_adev(ddev);
--
--kfree(adev);
--}
--
- static void
- amdgpu_pci_shutdown(struct pci_dev *pdev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 172dc47b7f39..9b586bc80c38 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -319,8 +319,12 @@ uint32_t amdgpu_mm_rreg(struct amdgpu_device *adev, uint32_t reg,
  {
-@@ -1522,7 +1515,6 @@ static struct drm_driver kms_driver = {
- .open = amdgpu_driver_open_kms,
- .postclose = amdgpu_driver_postclose_kms,
- .lastclose = amdgpu_driver_lastclose_kms,
--.release   = amdgpu_driver_release,
- .irq_handler = amdgpu_irq_handler,
- .ioctls = amdgpu_ioctls_kms,
- .gem_free_object_unlocked = amdgpu_gem_object_free,
---
-2.25.1
+ 	uint32_t ret;
+ 
+-	if (!(acc_flags & AMDGPU_REGS_NO_KIQ) && amdgpu_sriov_runtime(adev))
+-		return amdgpu_kiq_rreg(adev, reg);
++	if (!(acc_flags & AMDGPU_REGS_NO_KIQ) && amdgpu_sriov_runtime(adev) &&
++	    down_read_trylock(&adev->reset_sem)) {
++		ret = amdgpu_kiq_rreg(adev, reg);
++		up_read(&adev->reset_sem);
++		return ret;
++	}
+ 
+ 	if ((reg * 4) < adev->rmmio_size)
+ 		ret = readl(((void __iomem *)adev->rmmio) + (reg * 4));
+@@ -332,6 +336,7 @@ uint32_t amdgpu_mm_rreg(struct amdgpu_device *adev, uint32_t reg,
+ 		ret = readl(((void __iomem *)adev->rmmio) + (mmMM_DATA * 4));
+ 		spin_unlock_irqrestore(&adev->mmio_idx_lock, flags);
+ 	}
++
+ 	trace_amdgpu_mm_rreg(adev->pdev->device, reg, ret);
+ 	return ret;
+ }
+@@ -407,8 +412,12 @@ void static inline amdgpu_mm_wreg_mmio(struct amdgpu_device *adev, uint32_t reg,
+ void amdgpu_mm_wreg(struct amdgpu_device *adev, uint32_t reg, uint32_t v,
+ 		    uint32_t acc_flags)
+ {
+-	if (!(acc_flags & AMDGPU_REGS_NO_KIQ) && amdgpu_sriov_runtime(adev))
+-		return amdgpu_kiq_wreg(adev, reg, v);
++	if (!(acc_flags & AMDGPU_REGS_NO_KIQ) && amdgpu_sriov_runtime(adev) &&
++	    down_read_trylock(&adev->reset_sem)) {
++		amdgpu_kiq_wreg(adev, reg, v);
++		up_read(&adev->reset_sem);
++		return;
++	}
+ 
+ 	amdgpu_mm_wreg_mmio(adev, reg, v, acc_flags);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index ad9ad622ccce..31359e519d69 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -287,8 +287,7 @@ static void gmc_v10_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 	 */
+ 	if (adev->gfx.kiq.ring.sched.ready &&
+ 	    (amdgpu_sriov_runtime(adev) || !amdgpu_sriov_vf(adev)) &&
+-	    !amdgpu_in_reset(adev)) {
+-
++	    down_read_trylock(&adev->reset_sem)) {
+ 		struct amdgpu_vmhub *hub = &adev->vmhub[vmhub];
+ 		const unsigned eng = 17;
+ 		u32 inv_req = hub->vmhub_funcs->get_invalidate_req(vmid, flush_type);
+@@ -297,6 +296,8 @@ static void gmc_v10_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 
+ 		amdgpu_virt_kiq_reg_write_reg_wait(adev, req, ack, inv_req,
+ 				1 << vmid);
++
++		up_read(&adev->reset_sem);
+ 		return;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index e1a0ae327cf5..c602ddc68384 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -500,13 +500,14 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 	 * as GFXOFF under bare metal
+ 	 */
+ 	if (adev->gfx.kiq.ring.sched.ready &&
+-			(amdgpu_sriov_runtime(adev) || !amdgpu_sriov_vf(adev)) &&
+-			!amdgpu_in_reset(adev)) {
++	    (amdgpu_sriov_runtime(adev) || !amdgpu_sriov_vf(adev)) &&
++	    down_read_trylock(&adev->reset_sem)) {
+ 		uint32_t req = hub->vm_inv_eng0_req + hub->eng_distance * eng;
+ 		uint32_t ack = hub->vm_inv_eng0_ack + hub->eng_distance * eng;
+ 
+ 		amdgpu_virt_kiq_reg_write_reg_wait(adev, req, ack, inv_req,
+ 						   1 << vmid);
++		up_read(&adev->reset_sem);
+ 		return;
+ 	}
+ 
+@@ -599,7 +600,7 @@ static int gmc_v9_0_flush_gpu_tlb_pasid(struct amdgpu_device *adev,
+ 	if (amdgpu_in_reset(adev))
+ 		return -EIO;
+ 
+-	if (ring->sched.ready) {
++	if (ring->sched.ready && down_read_trylock(&adev->reset_sem)) {
+ 		/* Vega20+XGMI caches PTEs in TC and TLB. Add a
+ 		 * heavy-weight TLB flush (type 2), which flushes
+ 		 * both. Due to a race condition with concurrent
+@@ -626,6 +627,7 @@ static int gmc_v9_0_flush_gpu_tlb_pasid(struct amdgpu_device *adev,
+ 		if (r) {
+ 			amdgpu_ring_undo(ring);
+ 			spin_unlock(&adev->gfx.kiq.ring_lock);
++			up_read(&adev->reset_sem);
+ 			return -ETIME;
+ 		}
+ 
+@@ -634,9 +636,10 @@ static int gmc_v9_0_flush_gpu_tlb_pasid(struct amdgpu_device *adev,
+ 		r = amdgpu_fence_wait_polling(ring, seq, adev->usec_timeout);
+ 		if (r < 1) {
+ 			dev_err(adev->dev, "wait for kiq fence error: %ld.\n", r);
++			up_read(&adev->reset_sem);
+ 			return -ETIME;
+ 		}
+-
++		up_read(&adev->reset_sem);
+ 		return 0;
+ 	}
+ 
+-- 
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
