@@ -2,61 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641D125AC07
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Sep 2020 15:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E56125ABA0
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Sep 2020 15:02:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33F886E4C9;
-	Wed,  2 Sep 2020 13:28:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A9CE6E4BA;
+	Wed,  2 Sep 2020 13:02:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC726E4A2
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 11:29:42 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id t10so4000142wrv.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 02 Sep 2020 04:29:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=DRdg4lDZzKfGv+sVCvvFW5qNZj4PdeMoeoXDHIqu9+Q=;
- b=Vtbq+LTVNo68gOj/uCEqTpS7m6mQ9vEi+Oonu3JkUaFWQ9sFxuUY0oNita+QhdKEL5
- NvqxqZIinPMbg28rNDfln5qP8DEyHOMTcITWgIfdwsGCfQl12VXtVGIHHEcizLslisaQ
- kAmuha4b0PUsQLgh31JP+Jnqa0nF0Iw4lmkTOedjHsVg4C+nkSm8W6+Z3ylNnJLu9usG
- 6TjuI1igFN2Zh6fOnYMB5wzeMsSjgQPi5aU7QkdKniNN6FSZPHZinrU/L8UYGhSHetxb
- D/umW6TzVj87kCeCWqe8v5K4pxpm103n/fGF+VL+7Cr4r2PTH0VePzXEv77KJvSFMZd9
- NBzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=DRdg4lDZzKfGv+sVCvvFW5qNZj4PdeMoeoXDHIqu9+Q=;
- b=k1HXt9aNXizO/Xi9AWk+OeUyTSsU1aVbk9tuzn1TfQD/1yh6Vrg6CFjYmc3PC7yg/G
- GFQ8t0iZ5gAESRJX+IrKfe2UMFdLih8kTwZm6DN2RMssQxaaeL6MnIdcDzGL3/R4X1hp
- Ov8hyauouOfU+Q+7K7fnJsuAfP+03W/87UFQu5g8tRtk3LpGrvKOi9tB96oGwjpKcITB
- OWQ71p8g+K6emEN8mKIOPQybkeaeF2ZjvXiRAVctjty13liu7nhBLTLKqNgmHEfP75De
- qzyHYva94Gb9ccrOnUxBhrdzFl9ZDKCnv0OgyFCSfopDrkbeP7is/RULir568RoU34Ya
- QNwQ==
-X-Gm-Message-State: AOAM5329E2ajNdnxiEUQov7c0Rhtz/q31FpgleDnCbnIZOK0BLZrOxct
- CoSAmmmA4mVlwJa/HNU8RDozIQ==
-X-Google-Smtp-Source: ABdhPJxpR43l7DicQVi3TBCBkSijmT/uTZDoOFSaDV0lH6CI8svVBIKpdjWvqT0V1L0zUsnU9WARIw==
-X-Received: by 2002:a5d:6404:: with SMTP id z4mr4585153wru.423.1599046180907; 
- Wed, 02 Sep 2020 04:29:40 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net.
- [86.9.19.6])
- by smtp.gmail.com with ESMTPSA id g143sm5858835wme.0.2020.09.02.04.29.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Sep 2020 04:29:40 -0700 (PDT)
-Date: Wed, 2 Sep 2020 12:29:37 +0100
-From: Daniel Thompson <daniel.thompson@linaro.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 0/24] backlight: add init macros and accessors
-Message-ID: <20200902112937.u6spv5rgjqcaiaex@holly.lan>
-References: <20200823104532.1024798-1-sam@ravnborg.org>
- <CACRpkdaQ9bYrvVdBtz_7=juG175G+WRXbebfkt61tGqtGGoH5Q@mail.gmail.com>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2076.outbound.protection.outlook.com [40.107.236.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64D9F6E4BA
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 13:02:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nvAdUAEcTbabMkDayL5KthQb5AqPaCwrXHJWeUvJ/EeZEz2QXPb1i1e3SLfTDN8GZMXkFLUS1YYXpQId0dWb/xlLaEwKbfjq9G6NQeTleXQOh/Dw0/83I61gZtDRi+jy9CJRPnKilw5Gk070MAAsQWHqYncQ+tuQ2qz9McvypoI/O7zD+9bxNCFULiS5KTCJK7jqCuwmkDFqad/6KJhjNDXQfXayFBLdMZRIJUlEK4GnMRtgTJ2BPexXElhzmsTTrMmJNA5S1BPCtwr3MwZRT8OzrHqj6ZG7ioHKDdledCJe7g5ijBACnYzFKLm1zYJUqyCLrWPABNXMfgoe7rS7qA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M3GLRKa0CMSKM1WnGeSewmKU8Scd3U/ahfFVHiJg0RU=;
+ b=IkUx0mjSliQwvyrX1PaPUDUcpBpslxqsts4gA/VQ2F+HTeGI0jHoS4zfOTHfOPJImeXkq4WhBm14KzaBSEx3C0VjhWTCiG/L6eXmH8NPPqqIycQaeNuoz/pC2jRvK8LymksvODRmsNSk4own3OR9hm3DgsW8S3gAcjsFtVn78G00owRrrV0RC+EWkDtwN5ko7XeFJWbKNgtwvsuzUoJUX4dGC7NpdFbWH7f+ugLy0J4lPEGNCfq3TDGvzYv4yRukx8Ksyr5o0GtFrixSLR60ZgPJS/KNtmVefQ/lG6TZ1KiXG7SybQFBzzo5sm5ejshT/nC4fw8zh0H8tCW2CXogqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M3GLRKa0CMSKM1WnGeSewmKU8Scd3U/ahfFVHiJg0RU=;
+ b=Tw9tXb2/W4aS2F1yXg9AWx4ylF47XD0bYiGoZCYOTJt9RUf7o5OWmXZo5byj7GH2X9uiTVUGEuNTrh3+m5RpX7olFMRobM4j5kJPhK2Hi0o3e3qTR/edX+dqmBs0BQclO6o5xby5HX2yZo8DO7GVa/BgJCbdHVVN0mvU1lkwSa8=
+Received: from SN1PR12MB2558.namprd12.prod.outlook.com (2603:10b6:802:2b::18)
+ by SA0PR12MB4527.namprd12.prod.outlook.com (2603:10b6:806:73::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Wed, 2 Sep
+ 2020 13:02:39 +0000
+Received: from SN1PR12MB2558.namprd12.prod.outlook.com
+ ([fe80::c8c0:9bc9:57ed:cb03]) by SN1PR12MB2558.namprd12.prod.outlook.com
+ ([fe80::c8c0:9bc9:57ed:cb03%3]) with mapi id 15.20.3326.025; Wed, 2 Sep 2020
+ 13:02:39 +0000
+From: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+To: =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <ckoenig.leichtzumerken@gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: fix max_entries calculation
+Thread-Topic: [PATCH] drm/amdgpu: fix max_entries calculation
+Thread-Index: AQHWgSFt5UBymSTD/E+wKYXXCRwzJalVUGcA
+Date: Wed, 2 Sep 2020 13:02:39 +0000
+Message-ID: <BFD95252-9F9E-431A-8284-4751698332DB@amd.com>
+References: <20200902120557.2229-1-christian.koenig@amd.com>
+In-Reply-To: <20200902120557.2229-1-christian.koenig@amd.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [180.167.199.182]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 1dc4418d-30c5-4bc3-d438-08d84f407897
+x-ms-traffictypediagnostic: SA0PR12MB4527:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <SA0PR12MB45272ED169C15EB19566A34F872F0@SA0PR12MB4527.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3513;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: U8iqaHWiEC4C1478H+3hYLQO+yj9CLyH4PbJ7mKqB7hTbRw9qUs6OdwNcg3TwMWrHmAdMVYvNITD4QQ2XTSaFfJuwww3fLYgk2gh+c21cQGKqAiQm9yiWN7CwVEOV5SpWEyPr2LB4oBnbLb2GuUfPyc9O42cZZmVOztFaOqw6WgkydcDSD1OwWdR7e9H3sOkcoU7W9IkoKHivBOcwPi2dVNYw2nTYy+mOuueRhjWyiWYgwl0Pc+pmm/+cLaQoWhIrctEwc2wls46O1KgtiSCfy/BRLJmnIS7oWrV3jZrsfvqJs/xpDsWFiCceMf3VM3sDTBuA0gtnXeR6EZ3C5s9NA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN1PR12MB2558.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(366004)(346002)(376002)(396003)(39860400002)(2616005)(4326008)(6512007)(6506007)(316002)(66476007)(6486002)(66946007)(66556008)(71200400001)(76116006)(33656002)(64756008)(91956017)(5660300002)(66446008)(26005)(86362001)(83380400001)(8676002)(66574015)(36756003)(6916009)(2906002)(478600001)(54906003)(186003)(8936002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: su+KwybpkLPY1lcYOUeJ7UVT7AjEuZXGtOLBVDk0hpjOohOeCa9OUnY2zXzGUQ0gs7x3yCB9sOn66FsxGjzWdSkk2jlSd4pIFZeiTq4HKCfzfV5ldCeD36dOCWQ9D3cBDIxbSCPsH4otnwRTWzkP8SIw6ZpTtXgnLGrLodULKSAoYQGMB9mTheFMgieQ9ljbUD7fju/C3geiTBdLIPCLMFuHuQbGPc3hSdaenLhSpzizQCFxZaCOVQGw10EEE4dsyugMePbDqxASdlGp6+mnm8IJghiSlokQbxqwr+vNPUtkeaPx9mJqIRrfjsTvDHhsvKlazUe5yBSJa4gXsmUOmhHzuLtRdlGuUCmMgkuhRF3k3/7yLNgPTSwS9QUXvxb9nWDQ0VXi/fx2BNjlkXgXzDu7Vn1bJS3UNkRv51kcXT6i6U6qh7k/7575ho/IAEkCfgOZ+r8QuwSB/DkA/jA1ZdnOsfSGMS1vguxIRmhhSiEEYSEPyOe94dHy7tffnHqn+KTAm/Q06qlBJ+FBUOTMWjHT3607WOJPn6iqAaIQRxcycH1SBr6qdMHmuDm2la/L9iHfk6siQJc1CHHpM3WqVJpYSlS1/jZO6gRVnZzUEScy4Fgt30SBVt8j1bxIOUUJzRRPltPR+Yj/abK/Q5RkbA==
+Content-ID: <C3E01D33F659EE42A2515533205FDD4B@namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CACRpkdaQ9bYrvVdBtz_7=juG175G+WRXbebfkt61tGqtGGoH5Q@mail.gmail.com>
-X-Mailman-Approved-At: Wed, 02 Sep 2020 13:28:00 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN1PR12MB2558.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1dc4418d-30c5-4bc3-d438-08d84f407897
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2020 13:02:39.1223 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: C0WUJngqK8n3nW7SQWXG52x4OkzPTV6t+gI0I7F4wxSM+63XLFROKM3v2FPRuEif
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4527
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,133 +91,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Andrzej Hajda <a.hajda@samsung.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Sam Ravnborg <sam@ravnborg.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Manasi Navare <manasi.d.navare@intel.com>, Lee Jones <lee.jones@linaro.org>,
- Konrad Dybcio <konradybcio@gmail.com>, amd-gfx@lists.freedesktop.org,
- Zheng Bin <zhengbin13@huawei.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Robert Chiras <robert.chiras@nxp.com>, Vinay Simha BN <simhavcs@gmail.com>,
- Hoegeun Kwon <hoegeun.kwon@samsung.com>,
- =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
- Jonas Karlman <jonas@kwiboo.se>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Inki Dae <inki.dae@samsung.com>,
- Hans de Goede <hdegoede@redhat.com>, Jyri Sarha <jsarha@ti.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jernej Skrabec <jernej.skrabec@siol.net>, Jingoo Han <jingoohan1@gmail.com>,
- Philippe CORNU <philippe.cornu@st.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- Rob Clark <robdclark@gmail.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Wambui Karuga <wambui.karugax@gmail.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 28, 2020 at 11:40:28AM +0200, Linus Walleij wrote:
-> On Sun, Aug 23, 2020 at 12:45 PM Sam Ravnborg <sam@ravnborg.org> wrote:
-> 
-> > The first patch trims backlight_update_status() so it can be called with a NULL
-> > backlight_device. Then the caller do not need to add this check just to avoid
-> > a NULL reference.
-> >
-> > The backlight drivers uses several different patterns when registering
-> > a backlight:
-> >
-> > - Register backlight and assign properties later
-> > - Define a local backlight_properties variable and use memset
-> > - Define a const backlight_properties and assign relevant properties
-> >
-> > On top of this there was differences in what members was assigned.
-> >
-> > To align how backlight drivers are initialized introduce following helper macros:
-> > - DECLARE_BACKLIGHT_INIT_FIRMWARE()
-> > - DECLARE_BACKLIGHT_INIT_PLATFORM()
-> > - DECLARE_BACKLIGHT_INIT_RAW()
-> >
-> > The macros are introduced in patch 2.
-> >
-> > The backlight drivers used direct access to backlight_properties.
-> > Encapsulate these in get/set access operations resulting in following benefits:
-> > - The access methods can be called with a NULL pointer so logic around the
-> >   access can be made simpler.
-> > - The update_brightness and enable_brightness simplifies the users
-> > - The code is in most cases more readable with the access operations.
-> > - When everyone uses the access methods refactoring in the backlight core is simpler.
-> >
-> > The get/set operations are introduced in patch 3.
-> >
-> > The gpio backlight driver received a small overhaul in a set of three patches.
-> > The result is a smaller and more readable driver.
-> >
-> > The remaining patches updates all backlight users in drivers/gpu/drm/*
-> > With this patch set all of drivers/gpu/drm/:
-> > - All backlight references to FB_BLANK* are gone from drm/*
-> > - All direct references to backlight properties are gone
-> > - All panel drivers uses the devm_ variant for registering backlight
-> >   Daniel Vetter had some concerns with this for future updates,
-> >   but we are aligned now and can update if refoctoring demands it
-> > - All panel drivers uses the backlight support in drm_panel
-> >
-> > Individual patches are only sent to the people listed in the patch + a few more.
-> > Please check https://lore.kernel.org/dri-devel/ for the full series.
-> >
-> > v2:
-> >   - Documented BACKLIGHT_PROPS as it may be used by drivers
-> >   - Dropped backlight_set_power_{on,off}, they were a mistake (Daniel)
-> >   - Added backlight_update_brightness() and use it (Daniel)
-> >   - Added backlight_enable_brightness() and use it
-> >   - Moved remaining drm_panel driver to use backlight support in drm_panel
-> >   - gpio backlight driver overhaul
-> >
-> > The patches are made on top of the for-backlight-next branch at
-> > https://git.kernel.org/pub/scm/linux/kernel/git/lee/backlight.git
-> > The branch needs v5.8-rc1 backported to build as dev_err_probe()
-> > is used.
-> >
-> > The first 6 patches are candidates for the backlight tree.
-> > If they are applied then this should preferably be to an immutable
-> > branch we can merge to drm-misc-next where the drm patches shall go.
-> >
-> > The drm patches has known conflics and shall *not* be applied to the
-> > backlight tree, they are included in this patchset to show how the
-> > new functions are used.
-> >
-> > Diffstat for the drm bits alone looks nice:
-> >  25 files changed, 243 insertions(+), 460 deletions(-)
-> >
-> > Feedback welcome!
-> 
-> Thank you for trying to make backlight easier for developers.
-> I am a big supporter of this type of simplifications and
-> generalizations, it is what makes DRM great.
-
-+1!
-
-I've reviewed and sent out patch by patch replies for the backlight
-patches.
-
-I've eyeballed the drm patches but not reviewed at same depth
-and FWIW for all the patches whose subject *doesn't* start with
-backlight then:
-Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
-
-
-Daniel.
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+DQoNCj4gMjAyMOW5tDnmnIgy5pelIDIwOjA177yMQ2hyaXN0aWFuIEvDtm5pZyA8Y2tvZW5pZy5s
+ZWljaHR6dW1lcmtlbkBnbWFpbC5jb20+IOWGmemBk++8mg0KPiANCj4gQ2FsY3VsYXRlIHRoZSBj
+b3JyZWN0IHZhbHVlIGZvciBtYXhfZW50cmllcyBvciB3ZSBtaWdodCBydW4gYWZ0ZXIgdGhlDQo+
+IHBhZ2VfYWRkcmVzcyBhcnJheS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IENocmlzdGlhbiBLw7Zu
+aWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4NCj4gRml4ZXM6IDFlNjkxZTI0NDQ4NyBkcm0v
+YW1kZ3B1OiBzdG9wIGFsbG9jYXRpbmcgZHVtbXkgR1RUIG5vZGVzDQo+IC0tLQ0KPiBkcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYyB8IDMgKystDQo+IDEgZmlsZSBjaGFuZ2Vk
+LCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L2FtZGdwdV92bS5jDQo+IGluZGV4IDhiYzIyNTM5MzliZS4uOGFhOTU4NGMxODRmIDEw
+MDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYw0KPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYw0KPiBAQCAtMTY5Nyw3
+ICsxNjk3LDggQEAgc3RhdGljIGludCBhbWRncHVfdm1fYm9fc3BsaXRfbWFwcGluZyhzdHJ1Y3Qg
+YW1kZ3B1X2RldmljZSAqYWRldiwNCj4gCQkJCUFNREdQVV9HUFVfUEFHRVNfSU5fQ1BVX1BBR0U7
+DQo+IAkJfSBlbHNlIHsNCj4gCQkJYWRkciA9IDA7DQo+IC0JCQltYXhfZW50cmllcyA9IFM2NF9N
+QVg7DQo+ICsJCQltYXhfZW50cmllcyA9ICgobWFwcGluZy0+bGFzdCAtIG1hcHBpbmctPnN0YXJ0
+KSA+Pg0KPiArCQkJCSAgICAgICBBTURHUFVfR1BVX1BBR0VfU0hJRlQpICsgMTsNCg0Kc2hvdWxk
+IGl0IGJlIGxpa2UgYmVsb3c/DQptYXhfZW50cmllcyA9IChtYXBwaW5nLT5sYXN0IC0gbWFwcGlu
+Zy0+c3RhcnQgKyAxIC0gcGZuKSAqIEFNREdQVV9HUFVfUEFHRVNfSU5fQ1BVX1BBR0U7DQoNCmxh
+c3QgYW5kIHN0YXJ0IGFyZSBhbHJlYWR5IHBmbnMuIHdoeSBzdGlsbCA+PiBBTURHUFVfR1BVX1BB
+R0VfU0hJRlQ/IEFtIEkgbWlzc2luZyBzb21ldGhpbmc/DQoNCj4gCQl9DQo+IA0KPiAJCWlmIChw
+YWdlc19hZGRyKSB7DQo+IC0tIA0KPiAyLjE3LjENCj4gDQoNCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vYW1kLWdmeAo=
