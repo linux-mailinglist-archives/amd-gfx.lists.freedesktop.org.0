@@ -2,59 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F0CA25AAD5
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Sep 2020 14:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 641D125AC07
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Sep 2020 15:28:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CC0C6E488;
-	Wed,  2 Sep 2020 12:06:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33F886E4C9;
+	Wed,  2 Sep 2020 13:28:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85C666E488
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 12:06:00 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id c19so3024574wmd.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 02 Sep 2020 05:06:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=3ZXVSraDp98clxRU6vQz4fdtIglZYAG/44ntY18YFn8=;
- b=kUlZEYcHCKZ15HvK3f0gMHAjFj05JwiZuivrtYcRNeoNZvj0utyIo88VaA5yPWRfZS
- ZNK6nkBY8PhuqMSard2iaAnCFRtHNiqtKMzQrXFcqtEZ+xz7/ShTi2kCCFKzJTENKi6t
- s1P0DMM21dHP7kC2Xlg5nNcvww64RGFeWOd78jrkgkK0hPyKWvl8ia/+Gts5i2gJf354
- 3tQCSvcfE8dcBgOhXDnzYfvMAHQBxR/qeRT36nK+JZdnTvcP0SGKRr0d48J3x7L8l8Bd
- RupC2jZiXxcPa7JFBiEbUjrXGXzJegT89N+2LtN5fhjmBqYARnLILJa0McqmU+Tdyhxp
- HIMQ==
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC726E4A2
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 11:29:42 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id t10so4000142wrv.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 02 Sep 2020 04:29:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=DRdg4lDZzKfGv+sVCvvFW5qNZj4PdeMoeoXDHIqu9+Q=;
+ b=Vtbq+LTVNo68gOj/uCEqTpS7m6mQ9vEi+Oonu3JkUaFWQ9sFxuUY0oNita+QhdKEL5
+ NvqxqZIinPMbg28rNDfln5qP8DEyHOMTcITWgIfdwsGCfQl12VXtVGIHHEcizLslisaQ
+ kAmuha4b0PUsQLgh31JP+Jnqa0nF0Iw4lmkTOedjHsVg4C+nkSm8W6+Z3ylNnJLu9usG
+ 6TjuI1igFN2Zh6fOnYMB5wzeMsSjgQPi5aU7QkdKniNN6FSZPHZinrU/L8UYGhSHetxb
+ D/umW6TzVj87kCeCWqe8v5K4pxpm103n/fGF+VL+7Cr4r2PTH0VePzXEv77KJvSFMZd9
+ NBzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=3ZXVSraDp98clxRU6vQz4fdtIglZYAG/44ntY18YFn8=;
- b=NU8e1DAJRddSRph7gruQxckUJreeKWQlLv3STw/SGPyPXOAsvcHCI4+sX4WT4L/hzI
- PJr6bHfcv7GPE+JFBZYxbUKonf2RG4GLhZXu+PnMz11gYwIGgeb6/8RtvYWJNDA+rDd/
- B0rau+/xX/3qHmrZdVHqA51pzL0k8Rza6QCopN3//yiMMKBDa+DLJD9TT/pqI/bQHGSf
- dyH/3l/gelqk51TU5dOHoaQVrxrAimKvA7CE2HCbJ1PX+ZSAADeWEfYyrECbBZRqz5vT
- TgBmmTWEXeCzNeJQ42gc9Iak7xLCsu1d1JdajF0nQaHxWmtNi3TSgm2ogSMfV+I45zMl
- G3uA==
-X-Gm-Message-State: AOAM532r6aBZwTcOQsFzHjaARM0PLN2U3pzIKLcTwau7lSbrRxP599qt
- pYKAnAnCkoLpOXEfpR08eDE=
-X-Google-Smtp-Source: ABdhPJxxzo6wuqh4GDs39R+YSVIfo5A02ZBr97RDousT61COYCMDgS16eTL4Bc2mMMrzDeLuREuPQg==
-X-Received: by 2002:a1c:20d3:: with SMTP id g202mr369225wmg.54.1599048359217; 
- Wed, 02 Sep 2020 05:05:59 -0700 (PDT)
-Received: from abel.fritz.box ([2a02:908:1252:fb60:75a9:138:b492:b07])
- by smtp.gmail.com with ESMTPSA id q18sm6178655wmc.21.2020.09.02.05.05.58
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=DRdg4lDZzKfGv+sVCvvFW5qNZj4PdeMoeoXDHIqu9+Q=;
+ b=k1HXt9aNXizO/Xi9AWk+OeUyTSsU1aVbk9tuzn1TfQD/1yh6Vrg6CFjYmc3PC7yg/G
+ GFQ8t0iZ5gAESRJX+IrKfe2UMFdLih8kTwZm6DN2RMssQxaaeL6MnIdcDzGL3/R4X1hp
+ Ov8hyauouOfU+Q+7K7fnJsuAfP+03W/87UFQu5g8tRtk3LpGrvKOi9tB96oGwjpKcITB
+ OWQ71p8g+K6emEN8mKIOPQybkeaeF2ZjvXiRAVctjty13liu7nhBLTLKqNgmHEfP75De
+ qzyHYva94Gb9ccrOnUxBhrdzFl9ZDKCnv0OgyFCSfopDrkbeP7is/RULir568RoU34Ya
+ QNwQ==
+X-Gm-Message-State: AOAM5329E2ajNdnxiEUQov7c0Rhtz/q31FpgleDnCbnIZOK0BLZrOxct
+ CoSAmmmA4mVlwJa/HNU8RDozIQ==
+X-Google-Smtp-Source: ABdhPJxpR43l7DicQVi3TBCBkSijmT/uTZDoOFSaDV0lH6CI8svVBIKpdjWvqT0V1L0zUsnU9WARIw==
+X-Received: by 2002:a5d:6404:: with SMTP id z4mr4585153wru.423.1599046180907; 
+ Wed, 02 Sep 2020 04:29:40 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net.
+ [86.9.19.6])
+ by smtp.gmail.com with ESMTPSA id g143sm5858835wme.0.2020.09.02.04.29.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Sep 2020 05:05:58 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: xinhui.pan@amd.com,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: fix max_entries calculation
-Date: Wed,  2 Sep 2020 14:05:57 +0200
-Message-Id: <20200902120557.2229-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.17.1
+ Wed, 02 Sep 2020 04:29:40 -0700 (PDT)
+Date: Wed, 2 Sep 2020 12:29:37 +0100
+From: Daniel Thompson <daniel.thompson@linaro.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 0/24] backlight: add init macros and accessors
+Message-ID: <20200902112937.u6spv5rgjqcaiaex@holly.lan>
+References: <20200823104532.1024798-1-sam@ravnborg.org>
+ <CACRpkdaQ9bYrvVdBtz_7=juG175G+WRXbebfkt61tGqtGGoH5Q@mail.gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CACRpkdaQ9bYrvVdBtz_7=juG175G+WRXbebfkt61tGqtGGoH5Q@mail.gmail.com>
+X-Mailman-Approved-At: Wed, 02 Sep 2020 13:28:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,26 +68,133 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Andrzej Hajda <a.hajda@samsung.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Manasi Navare <manasi.d.navare@intel.com>, Lee Jones <lee.jones@linaro.org>,
+ Konrad Dybcio <konradybcio@gmail.com>, amd-gfx@lists.freedesktop.org,
+ Zheng Bin <zhengbin13@huawei.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Robert Chiras <robert.chiras@nxp.com>, Vinay Simha BN <simhavcs@gmail.com>,
+ Hoegeun Kwon <hoegeun.kwon@samsung.com>,
+ =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Inki Dae <inki.dae@samsung.com>,
+ Hans de Goede <hdegoede@redhat.com>, Jyri Sarha <jsarha@ti.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, Jingoo Han <jingoohan1@gmail.com>,
+ Philippe CORNU <philippe.cornu@st.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ Rob Clark <robdclark@gmail.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Wambui Karuga <wambui.karugax@gmail.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Q2FsY3VsYXRlIHRoZSBjb3JyZWN0IHZhbHVlIGZvciBtYXhfZW50cmllcyBvciB3ZSBtaWdodCBy
-dW4gYWZ0ZXIgdGhlCnBhZ2VfYWRkcmVzcyBhcnJheS4KClNpZ25lZC1vZmYtYnk6IENocmlzdGlh
-biBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KRml4ZXM6IDFlNjkxZTI0NDQ4NyBk
-cm0vYW1kZ3B1OiBzdG9wIGFsbG9jYXRpbmcgZHVtbXkgR1RUIG5vZGVzCi0tLQogZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMgfCAzICsrLQogMSBmaWxlIGNoYW5nZWQsIDIg
-aW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X3ZtLmMKaW5kZXggOGJjMjI1MzkzOWJlLi44YWE5NTg0YzE4NGYgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jCkBAIC0xNjk3LDcgKzE2OTcsOCBAQCBzdGF0aWMgaW50
-IGFtZGdwdV92bV9ib19zcGxpdF9tYXBwaW5nKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LAog
-CQkJCUFNREdQVV9HUFVfUEFHRVNfSU5fQ1BVX1BBR0U7CiAJCX0gZWxzZSB7CiAJCQlhZGRyID0g
-MDsKLQkJCW1heF9lbnRyaWVzID0gUzY0X01BWDsKKwkJCW1heF9lbnRyaWVzID0gKChtYXBwaW5n
-LT5sYXN0IC0gbWFwcGluZy0+c3RhcnQpID4+CisJCQkJICAgICAgIEFNREdQVV9HUFVfUEFHRV9T
-SElGVCkgKyAxOwogCQl9CiAKIAkJaWYgKHBhZ2VzX2FkZHIpIHsKLS0gCjIuMTcuMQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5n
-IGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+On Fri, Aug 28, 2020 at 11:40:28AM +0200, Linus Walleij wrote:
+> On Sun, Aug 23, 2020 at 12:45 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+> 
+> > The first patch trims backlight_update_status() so it can be called with a NULL
+> > backlight_device. Then the caller do not need to add this check just to avoid
+> > a NULL reference.
+> >
+> > The backlight drivers uses several different patterns when registering
+> > a backlight:
+> >
+> > - Register backlight and assign properties later
+> > - Define a local backlight_properties variable and use memset
+> > - Define a const backlight_properties and assign relevant properties
+> >
+> > On top of this there was differences in what members was assigned.
+> >
+> > To align how backlight drivers are initialized introduce following helper macros:
+> > - DECLARE_BACKLIGHT_INIT_FIRMWARE()
+> > - DECLARE_BACKLIGHT_INIT_PLATFORM()
+> > - DECLARE_BACKLIGHT_INIT_RAW()
+> >
+> > The macros are introduced in patch 2.
+> >
+> > The backlight drivers used direct access to backlight_properties.
+> > Encapsulate these in get/set access operations resulting in following benefits:
+> > - The access methods can be called with a NULL pointer so logic around the
+> >   access can be made simpler.
+> > - The update_brightness and enable_brightness simplifies the users
+> > - The code is in most cases more readable with the access operations.
+> > - When everyone uses the access methods refactoring in the backlight core is simpler.
+> >
+> > The get/set operations are introduced in patch 3.
+> >
+> > The gpio backlight driver received a small overhaul in a set of three patches.
+> > The result is a smaller and more readable driver.
+> >
+> > The remaining patches updates all backlight users in drivers/gpu/drm/*
+> > With this patch set all of drivers/gpu/drm/:
+> > - All backlight references to FB_BLANK* are gone from drm/*
+> > - All direct references to backlight properties are gone
+> > - All panel drivers uses the devm_ variant for registering backlight
+> >   Daniel Vetter had some concerns with this for future updates,
+> >   but we are aligned now and can update if refoctoring demands it
+> > - All panel drivers uses the backlight support in drm_panel
+> >
+> > Individual patches are only sent to the people listed in the patch + a few more.
+> > Please check https://lore.kernel.org/dri-devel/ for the full series.
+> >
+> > v2:
+> >   - Documented BACKLIGHT_PROPS as it may be used by drivers
+> >   - Dropped backlight_set_power_{on,off}, they were a mistake (Daniel)
+> >   - Added backlight_update_brightness() and use it (Daniel)
+> >   - Added backlight_enable_brightness() and use it
+> >   - Moved remaining drm_panel driver to use backlight support in drm_panel
+> >   - gpio backlight driver overhaul
+> >
+> > The patches are made on top of the for-backlight-next branch at
+> > https://git.kernel.org/pub/scm/linux/kernel/git/lee/backlight.git
+> > The branch needs v5.8-rc1 backported to build as dev_err_probe()
+> > is used.
+> >
+> > The first 6 patches are candidates for the backlight tree.
+> > If they are applied then this should preferably be to an immutable
+> > branch we can merge to drm-misc-next where the drm patches shall go.
+> >
+> > The drm patches has known conflics and shall *not* be applied to the
+> > backlight tree, they are included in this patchset to show how the
+> > new functions are used.
+> >
+> > Diffstat for the drm bits alone looks nice:
+> >  25 files changed, 243 insertions(+), 460 deletions(-)
+> >
+> > Feedback welcome!
+> 
+> Thank you for trying to make backlight easier for developers.
+> I am a big supporter of this type of simplifications and
+> generalizations, it is what makes DRM great.
+
++1!
+
+I've reviewed and sent out patch by patch replies for the backlight
+patches.
+
+I've eyeballed the drm patches but not reviewed at same depth
+and FWIW for all the patches whose subject *doesn't* start with
+backlight then:
+Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+
+
+Daniel.
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
