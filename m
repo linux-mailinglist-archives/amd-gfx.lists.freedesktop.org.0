@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B10D25A7CA
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Sep 2020 10:32:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F5C125A7CC
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Sep 2020 10:32:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 602256E13B;
-	Wed,  2 Sep 2020 08:32:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 630BA6E13C;
+	Wed,  2 Sep 2020 08:32:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2043.outbound.protection.outlook.com [40.107.93.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0BF36E13C
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 08:32:06 +0000 (UTC)
+ (mail-dm6nam10on2046.outbound.protection.outlook.com [40.107.93.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B53746E13C
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Sep 2020 08:32:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tykz4ZDofsNHV3QlUUN5fAliZ2I7ex6HRIpwMnOAaXhn40U5i49izsJwjlhtzAiFZSZKyLAuDmhI62htD0Qjf7/8sq/OhP7PBSpGPTgR9T6TBm5H9kHtHbCz1dVgg4qctuTrFioLFUgEjPeFSHgVLjKy21q9utpK3YnmJ31kC+2RHm5aXWrBXxuc35yZfmIOym1PMzSaW53Co8j5Q1vt/JPaLcTmGE0AY4XPNNsKPz1Y/LXAaXyZhSQaOgP3jMF9P2gU0TvVzx02lWlpLE328oz/39e6A6/XshKoYnQ3g05l2kkqnNGP8tuoI5X1FZiAxE07peReZTRR6Vnus+p4vQ==
+ b=Ul4u7q5H+V8CVBgn7G51B2/IuznoLsuT69bR4rJOL4e+BRUgbdyOrT/fEOmROVw5z33jlOeefC2+jEG//Kq/fprqSS4MT9+NLpD1pw/GSdiO/l4zhZhJrsh3TNAi1EbPJ/XMEzm9i8h3YtWNQ6C5BW4ZUpoRQ8NPvHvjDs7QuZY8dM5++8PbA/hXcayo9sQf1lSzE+kmKiyy3s8JF3LAxkBlLC6NjKkErFVf4qcPyEWORH3U3/Un0c0QZD5GZABXiklKEUbESkKX+30HuwzltPcPkhB8L4UnQ4EQOHDy1LgbBOIJfekQP6TQI91FnwQyKEhcPvWkryizrWBRvvKrQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l2CRko+HA3691TXwsrXVQ1al2iIW3EqTNGadXmppcAI=;
- b=gu7EZPD3bN/tnGLmPEi27ZwapeRVpQicYTyrpk3abZHxtnXz6Q0KdfLRMucxuaveni05l4hekVC/7/xnn0G1jKgT//G/lzclatbMv5i/qg1i+5U+qloPkfl0ZwpunfQr2/c3D+jwdVXy+NJghs3Ge3AT4VgrEAconMyONBAnWUUml6+mUvdrQNw3ovU9GcuBI3IzofC+kbZIhssj6973W/ZJQ6hdXYbUefsWF94U0u8OrOS8vKzxqxhIsi4imiCzr+tljv5A6gQWQe5tvj5EzSGWWg2dACISOIXBbxpnG669VRhlc/8PuLJ93djs1Ym22U62pcc+hM/JOcQy7b/JBQ==
+ bh=hEZhzZYhOjAo9SnWNlPVXkBQmctoclj9vVGsuSn/s5o=;
+ b=UTf6JVEekyRo3dp4HRzqaNcMx7g0jrRkuoJweHCp+VwLlnXySDvEid5kQY4ngUU1kcyg5JK6HrON1yozZ94lct+OjU1xZf+eXfx0l6ZyG3+92PhxVf/A5wJBhZX2NWmRIHA1DjkXlbBlWFc7XP3B2ClJtZZXbvOLNfFMiuZ/W/RJAEBclAHvXosl+2wDxOAAjWDAiexbKBRGkfbPEPCqe46Pib/esNevegzdrjJt4luE3kyaUSwQkh6A2BrF3XRE6t3hQYcmv7N8CH8/MR9cVClzaBRnk519fxPvUUnPHqwLACO/oQirHsjyZfNEF3fqg1zeJNPpFIV0Rv75bQ310Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l2CRko+HA3691TXwsrXVQ1al2iIW3EqTNGadXmppcAI=;
- b=q78gik/4Ca7tlxheaVtx9KPFuZtw0gZVVWDN8fb4EW9xm/V6OqjzQjsbhk2mC1XJOOv8lJIbA/BP0SSLvQqtWES5aDkiICf1lZOJJxCCe+Lg/llZteGU7rd97IPy5kzefRZiW+FB9DaV07zY3uYETsPIVBFUR0yNJ6IksE2/5iU=
+ bh=hEZhzZYhOjAo9SnWNlPVXkBQmctoclj9vVGsuSn/s5o=;
+ b=pTuzZPgnemRoIQlkUU8uSMiDsVUiwu7AYgf94QXTbXIbDTqqh/+x+tW06q30ufow/f0Xfpw5Rurge/mNA2g1qV7MpRbAVlw5rbouQjoFAM/bQVkfsscDdnE9ipH+Exj1el7t1mECOb+72LqX2MrxbxgsxoJa1wc6BvohkYhYLxE=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,16 @@ Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
  DM6PR12MB3868.namprd12.prod.outlook.com (2603:10b6:5:1c8::21) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3326.23; Wed, 2 Sep 2020 08:32:06 +0000
+ 15.20.3326.23; Wed, 2 Sep 2020 08:32:07 +0000
 Received: from DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::bcb1:de80:f60c:8118]) by DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::bcb1:de80:f60c:8118%5]) with mapi id 15.20.3348.015; Wed, 2 Sep 2020
- 08:32:05 +0000
+ 08:32:07 +0000
 From: Evan Quan <evan.quan@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/9] drm/amd/pm: postpone SOCCLK/UCLK enablement after DAL
- initialization(V2)
-Date: Wed,  2 Sep 2020 16:31:27 +0800
-Message-Id: <20200902083134.25569-2-evan.quan@amd.com>
+Subject: [PATCH 3/9] drm/amd/pm: put Navi1X umc cdr workaround in post_smu_init
+Date: Wed,  2 Sep 2020 16:31:28 +0800
+Message-Id: <20200902083134.25569-3-evan.quan@amd.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20200902083134.25569-1-evan.quan@amd.com>
 References: <20200902083134.25569-1-evan.quan@amd.com>
@@ -57,33 +56,33 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from 255.255.255.255 (255.255.255.255) by
  HK2PR0302CA0004.apcprd03.prod.outlook.com (2603:1096:202::14) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3348.7 via Frontend Transport; Wed, 2 Sep 2020 08:32:04 +0000
+ 15.20.3348.7 via Frontend Transport; Wed, 2 Sep 2020 08:32:06 +0000
 X-Mailer: git-send-email 2.28.0
 X-Originating-IP: [58.247.170.242]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 58f8756d-7685-4039-8edf-08d84f1aac80
+X-MS-Office365-Filtering-Correlation-Id: 4f44d5e5-6d76-40e3-7ff5-08d84f1aad95
 X-MS-TrafficTypeDiagnostic: DM6PR12MB3868:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB38681A1CF887D64C27E45960E42F0@DM6PR12MB3868.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1284;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB38680C0E79FC4F2C6373793FE42F0@DM6PR12MB3868.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wN+lO+m7tufFS53CUYmUUkBYYoRc0w/L61YNi6nrtqcJLkRcwf+SeDbb9mNCqxb3w4+OdFKk4IoIIXoNWCcrTXeVvfPV3+uojiVvfTi7rW/7Q4+FjonC4IVE4J2G6CN+jajoAGwxjPcBYpDjH8249d7WOoki8f0X5LlWaQ3gmAbM/AjU+rEnUiuQqM4xkHRFdwvVhkxBgy/4EaYGSrGWCFYQnNkWi8APNK8XlAokVAuJ8lI65J+NP5w4xEa4amkLZAWNI62vjXhw/UNDjJzkuyG0pSJF9RxG2n5sdSYi1Osh/YsrdGR+zWa6aADetW6rrTWqczUSlJt7NrWFRohReQ==
+X-Microsoft-Antispam-Message-Info: uDpCKX+eACjYVjQZbzNqptWb5DT/tyQTzahK8HNu3c6dM7ZByI9LsGwWaR2asjAS7A31pJvLqF4XgSYCb7b1FX591I6lv5N4OxFCUbiKXa1n5tdsXp4e7qBoFhuZIKbxXyr+9HUain8RnBwwfkGbiR0S3zcIQ+p5C9IlaEJHiWsm1YJDf/2za0IraI+rzixBtzePZxeNSq6eelRjsdtp39L1X0CekqNbeBiqVx8KmmUp/lkyN9oQmtSTQ4FyMx4EXTQHl2gkFwVUHwQMEAse6ylzphsUCGBpevbpM3G77CFNWyE8TYdlW5d3jaMGF+s008opQr+0917dSdlC4dpg4CPsTGkML80FrWiTb85OKiaVj6TbIOnI+TiCPaZZt+2D
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(396003)(366004)(136003)(39860400002)(376002)(83380400001)(66946007)(2906002)(36756003)(16576012)(66556008)(4326008)(44832011)(316002)(186003)(66476007)(5660300002)(6486002)(8676002)(86362001)(6666004)(26005)(2616005)(956004)(6916009)(478600001)(52116002)(8936002)(1076003);
+ SFS:(4636009)(346002)(396003)(366004)(136003)(39860400002)(376002)(83380400001)(66574015)(66946007)(2906002)(36756003)(16576012)(66556008)(4326008)(44832011)(316002)(186003)(66476007)(5660300002)(6486002)(8676002)(86362001)(6666004)(26005)(2616005)(956004)(6916009)(478600001)(52116002)(8936002)(1076003)(32563001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: oimqYNtbpgtFyiMssiOOozascWYc12aDfRlDp5Q31aYdUQQH2ueHUP9z2oEz09PCOPnFz2ehcYQvajdZVg7W6MaaTQcFe7VMzWlBnbtoMFNgTFVguNyyhlbdAmIEPy4lsK1Y08TXOXirvcDxDLW4r5rqRNvKQyYWzCkG7Af9EH3ulhOiUcXkMJtt9EPB5/+X9b72WLO4n4GouMf5Sc0inJ/J1NWvRYReotlj7gTjl0ExrTKZLTC9UZ5FJO2Sc7LkYolODIAmVSbO51kNSIek1ZWztTi9AormPTKSX6I6YDspIBqCYkC+CT/g5+VAcHaAbxGNdA8783G8kZ7mVxeEiSZO2QUHUoIRuu0JoKHkR7r5wCgkq/fRScv5SBd+I/EYswBMuVhtHf6t5oPCsvTBKN58iDHmPJnGXgPVGCvoQVgyfjqXp/waEyIvCIwICXd3E1CG0QC+B3//iExWgTsuSRJ04QM6FtfKlPGRQoYY8CsRSuL+/aKDPk7Br/v9gV4Ywx0UnZS7H1DUjOfBtP2Q+5JCGnWRl6nG9DjsnEngNpMLDIXIOx62/i3+vPjINyhHqzPiUT1IvWWFxmhLITxHS/NXpawTxJMf9x9i+7ORM81/ghFJp7EuGjgkiSxhA13+Dys0d1nJQI9xIg+65NNR7A==
+X-MS-Exchange-AntiSpam-MessageData: ylXi7lPRKMa2smLtGLi3llykay2lV5Gq2hsZvY0UmQfQcjDzuBYBkZaFO8HwdQA3UDYbNZZSi6K/UxeJvAg30kpNB1pJdUK+4HfN82E0Lb1P+qV6TMxJIhrHV9LyXxEFvoFHV/zQb1QlgMF5qqpqx0R7s+SUIp/+Qe/STI8CLcpZUSF5ECE3CIEvJor8ea0r2TiD+DqSPkHJYWQAYKsQzRwvUwIA3cattN1+qklW5xpD+2xtLObGHKvNzIrK4ZPzWTUg5vncM3n9i81nNhOgHm2jaD4ZGNZAnfzwrknU47k22rDRLljWEbtf4vimSD9c1a1li64T4/THEK4WYOzzvCVekpq2fBTkDVcTKgjEZAMJmXzl2bLGc6H5dgy2X0f7VKaeUhMx5tYFz9cT6iSzcevoqmYm+bRic3iTBpSleAErol3JX7e88yFrDlCbvqWagh0H2VP7p2ec7+j6nqZYI5lrMOEMLPbSLF9HGmY08T/UaerllOlQYl6mS+7FhdKzrM3wUm36Ijb/rGkLy/Rge+hvhPxzQgn4sDj9Jk98ytZ0WcQsQNF9CMhHruRB+1mZlfAlV4j84sLy6+pUQd4COHr58Z5Edt/KXmweLsYJVJUomq9BG4WIfMLg0r4+uwKvcCBeBsnhNbUgsJmJQDHneA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58f8756d-7685-4039-8edf-08d84f1aac80
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f44d5e5-6d76-40e3-7ff5-08d84f1aad95
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2619.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2020 08:32:05.8703 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2020 08:32:07.4354 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MUmGyGv23NXdge0WJnPkU8AI4w8JF2R0Ewaecnj1QF5Pb+fM2K6AEYLWfIYUakUA
+X-MS-Exchange-CrossTenant-UserPrincipalName: adIzmZbrQ0u0nKY2x96PK5QXQa0XjHEuB+kravxnjWUmme8pNatXG4WiTVCXAIBS
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3868
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,150 +101,102 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is needed for Navi1X only. And it may help for display missing
-or hang issue seen on some high resolution monitors.
+That's where the uclk dpm get enabled and then the
+uclk cdr workaround can be applied.
 
-V2: no UCLK DPM enablement for Navi10 A0 secure SKU
-
-Change-Id: Id3965a638c2a238d52cf074f2111dc4bf2244a3e
+Change-Id: I520ae0fbc1c3be68324377c7d8c6dc4a346d3a57
 Signed-off-by: Evan Quan <evan.quan@amd.com>
 ---
- .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 60 ++++++++++++-------
- drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c        |  6 +-
- drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h        |  4 ++
- 3 files changed, 46 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h        |  1 -
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c      |  6 ------
+ .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c    | 18 ++++++++++++++----
+ drivers/gpu/drm/amd/pm/swsmu/smu_internal.h    |  1 -
+ 4 files changed, 14 insertions(+), 12 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+index 4acc3c4c4737..701a94d4b9f6 100644
+--- a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+@@ -590,7 +590,6 @@ struct pptable_funcs {
+ 	int (*mode2_reset)(struct smu_context *smu);
+ 	int (*get_dpm_ultimate_freq)(struct smu_context *smu, enum smu_clk_type clk_type, uint32_t *min, uint32_t *max);
+ 	int (*set_soft_freq_limited_range)(struct smu_context *smu, enum smu_clk_type clk_type, uint32_t min, uint32_t max);
+-	int (*disable_umc_cdr_12gbps_workaround)(struct smu_context *smu);
+ 	int (*set_power_source)(struct smu_context *smu, enum smu_power_src_type power_src);
+ 	void (*log_thermal_throttling_event)(struct smu_context *smu);
+ 	size_t (*get_pp_feature_mask)(struct smu_context *smu, char *buf);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index 8d7c75c51fe5..a9c0c20efddb 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -975,12 +975,6 @@ static int smu_smc_hw_setup(struct smu_context *smu)
+ 		return ret;
+ 	}
+ 
+-	ret = smu_disable_umc_cdr_12gbps_workaround(smu);
+-	if (ret) {
+-		dev_err(adev->dev, "Workaround failed to disable UMC CDR feature on 12Gbps SKU!\n");
+-		return ret;
+-	}
+-
+ 	/*
+ 	 * For Navi1X, manually switch it to AC mode as PMFW
+ 	 * may boot it with DC mode.
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index 42d53cca7360..8180b7f99991 100644
+index 8180b7f99991..6674f3abd457 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -279,9 +279,6 @@ navi10_get_allowed_feature_mask(struct smu_context *smu,
- 				| FEATURE_MASK(FEATURE_FW_CTF_BIT)
- 				| FEATURE_MASK(FEATURE_OUT_OF_BAND_MONITOR_BIT);
- 
--	if (adev->pm.pp_feature & PP_SOCCLK_DPM_MASK)
--		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_DPM_SOCCLK_BIT);
--
- 	if (adev->pm.pp_feature & PP_SCLK_DPM_MASK)
- 		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_DPM_GFXCLK_BIT);
- 
-@@ -291,11 +288,6 @@ navi10_get_allowed_feature_mask(struct smu_context *smu,
- 	if (adev->pm.pp_feature & PP_DCEFCLK_DPM_MASK)
- 		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_DPM_DCEFCLK_BIT);
- 
--	if (adev->pm.pp_feature & PP_MCLK_DPM_MASK)
--		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_DPM_UCLK_BIT)
--				| FEATURE_MASK(FEATURE_MEM_VDDCI_SCALING_BIT)
--				| FEATURE_MASK(FEATURE_MEM_MVDD_SCALING_BIT);
--
- 	if (adev->pm.pp_feature & PP_ULV_MASK)
- 		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_GFX_ULV_BIT);
- 
-@@ -320,19 +312,12 @@ navi10_get_allowed_feature_mask(struct smu_context *smu,
- 	if (smu->dc_controlled_by_gpio)
- 		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_ACDC_BIT);
- 
--	/* disable DPM UCLK and DS SOCCLK on navi10 A0 secure board */
--	if (is_asic_secure(smu)) {
--		/* only for navi10 A0 */
--		if ((adev->asic_type == CHIP_NAVI10) &&
--			(adev->rev_id == 0)) {
--			*(uint64_t *)feature_mask &=
--					~(FEATURE_MASK(FEATURE_DPM_UCLK_BIT)
--					  | FEATURE_MASK(FEATURE_MEM_VDDCI_SCALING_BIT)
--					  | FEATURE_MASK(FEATURE_MEM_MVDD_SCALING_BIT));
--			*(uint64_t *)feature_mask &=
--					~FEATURE_MASK(FEATURE_DS_SOCCLK_BIT);
--		}
--	}
-+	/* DS SOCCLK enablement should be skipped for navi10 A0 secure board */
-+	if (is_asic_secure(smu) &&
-+	    (adev->asic_type == CHIP_NAVI10) &&
-+	    (adev->rev_id == 0))
-+		*(uint64_t *)feature_mask &=
-+				~FEATURE_MASK(FEATURE_DS_SOCCLK_BIT);
- 
- 	return 0;
- }
-@@ -2578,6 +2563,38 @@ static int navi10_enable_mgpu_fan_boost(struct smu_context *smu)
- 					       NULL);
- }
- 
-+static int navi10_post_smu_init(struct smu_context *smu)
-+{
-+	struct smu_feature *feature = &smu->smu_feature;
-+	struct amdgpu_device *adev = smu->adev;
-+	uint64_t feature_mask = 0;
-+
-+	/* For Naiv1x, enable these features only after DAL initialization */
-+	if (adev->pm.pp_feature & PP_SOCCLK_DPM_MASK)
-+		feature_mask |= FEATURE_MASK(FEATURE_DPM_SOCCLK_BIT);
-+
-+	/* DPM UCLK enablement should be skipped for navi10 A0 secure board */
-+	if (!(is_asic_secure(smu) &&
-+	     (adev->asic_type == CHIP_NAVI10) &&
-+	     (adev->rev_id == 0)) &&
-+	    (adev->pm.pp_feature & PP_MCLK_DPM_MASK))
-+		feature_mask |= FEATURE_MASK(FEATURE_DPM_UCLK_BIT)
-+				| FEATURE_MASK(FEATURE_MEM_VDDCI_SCALING_BIT)
-+				| FEATURE_MASK(FEATURE_MEM_MVDD_SCALING_BIT);
-+
-+	if (!feature_mask)
-+		return 0;
-+
-+	bitmap_or(feature->allowed,
-+		  feature->allowed,
-+		  (unsigned long *)(&feature_mask),
-+		  SMU_FEATURE_MAX);
-+
-+	return smu_cmn_feature_update_enable_state(smu,
-+						   feature_mask,
-+						   true);
-+}
-+
- static const struct pptable_funcs navi10_ppt_funcs = {
- 	.get_allowed_feature_mask = navi10_get_allowed_feature_mask,
- 	.set_default_dpm_table = navi10_set_default_dpm_table,
-@@ -2661,6 +2678,7 @@ static const struct pptable_funcs navi10_ppt_funcs = {
- 	.gfx_ulv_control = smu_v11_0_gfx_ulv_control,
- 	.deep_sleep_control = smu_v11_0_deep_sleep_control,
- 	.get_fan_parameters = navi10_get_fan_parameters,
-+	.post_init = navi10_post_smu_init,
- };
- 
- void navi10_set_ppt_funcs(struct smu_context *smu)
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-index a58ea08cd115..5fd98c1c3d7c 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-@@ -343,9 +343,9 @@ int smu_cmn_get_enabled_mask(struct smu_context *smu,
- 	return ret;
- }
- 
--static int smu_cmn_feature_update_enable_state(struct smu_context *smu,
--					       uint64_t feature_mask,
--					       bool enabled)
-+int smu_cmn_feature_update_enable_state(struct smu_context *smu,
-+					uint64_t feature_mask,
-+					bool enabled)
- {
+@@ -2568,6 +2568,7 @@ static int navi10_post_smu_init(struct smu_context *smu)
  	struct smu_feature *feature = &smu->smu_feature;
- 	int ret = 0;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-index 6d00ad740c27..ab577be23c15 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-@@ -52,6 +52,10 @@ int smu_cmn_get_enabled_mask(struct smu_context *smu,
- 			     uint32_t *feature_mask,
- 			     uint32_t num);
+ 	struct amdgpu_device *adev = smu->adev;
+ 	uint64_t feature_mask = 0;
++	int ret = 0;
  
-+int smu_cmn_feature_update_enable_state(struct smu_context *smu,
-+					uint64_t feature_mask,
-+					bool enabled);
+ 	/* For Naiv1x, enable these features only after DAL initialization */
+ 	if (adev->pm.pp_feature & PP_SOCCLK_DPM_MASK)
+@@ -2590,9 +2591,19 @@ static int navi10_post_smu_init(struct smu_context *smu)
+ 		  (unsigned long *)(&feature_mask),
+ 		  SMU_FEATURE_MAX);
+ 
+-	return smu_cmn_feature_update_enable_state(smu,
+-						   feature_mask,
+-						   true);
++	ret = smu_cmn_feature_update_enable_state(smu,
++						  feature_mask,
++						  true);
++	if (ret) {
++		dev_err(adev->dev, "Failed to post uclk/socclk dpm enablement!\n");
++		return ret;
++	}
 +
- int smu_cmn_feature_set_enabled(struct smu_context *smu,
- 				enum smu_feature_mask mask,
- 				bool enable);
++	ret = navi10_disable_umc_cdr_12gbps_workaround(smu);
++	if (ret)
++		dev_err(adev->dev, "Failed to apply umc cdr workaround!\n");
++
++	return ret;
+ }
+ 
+ static const struct pptable_funcs navi10_ppt_funcs = {
+@@ -2669,7 +2680,6 @@ static const struct pptable_funcs navi10_ppt_funcs = {
+ 	.set_default_od_settings = navi10_set_default_od_settings,
+ 	.od_edit_dpm_table = navi10_od_edit_dpm_table,
+ 	.run_btc = navi10_run_btc,
+-	.disable_umc_cdr_12gbps_workaround = navi10_disable_umc_cdr_12gbps_workaround,
+ 	.set_power_source = smu_v11_0_set_power_source,
+ 	.get_pp_feature_mask = smu_cmn_get_pp_feature_mask,
+ 	.set_pp_feature_mask = smu_cmn_set_pp_feature_mask,
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h b/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h
+index db903889f6a7..521b805c920e 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h
+@@ -83,7 +83,6 @@
+ #define smu_asic_set_performance_level(smu, level)			smu_ppt_funcs(set_performance_level, -EINVAL, smu, level)
+ #define smu_dump_pptable(smu)						smu_ppt_funcs(dump_pptable, 0, smu)
+ #define smu_update_pcie_parameters(smu, pcie_gen_cap, pcie_width_cap)	smu_ppt_funcs(update_pcie_parameters, 0, smu, pcie_gen_cap, pcie_width_cap)
+-#define smu_disable_umc_cdr_12gbps_workaround(smu)			smu_ppt_funcs(disable_umc_cdr_12gbps_workaround, 0, smu)
+ #define smu_set_power_source(smu, power_src)				smu_ppt_funcs(set_power_source, 0, smu, power_src)
+ #define smu_i2c_init(smu, control)					smu_ppt_funcs(i2c_init, 0, smu, control)
+ #define smu_i2c_fini(smu, control)					smu_ppt_funcs(i2c_fini, 0, smu, control)
 -- 
 2.28.0
 
