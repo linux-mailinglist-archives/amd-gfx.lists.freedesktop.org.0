@@ -2,80 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CD3A25C6A4
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Sep 2020 18:22:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5367D25C69C
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Sep 2020 18:22:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF4346E1F7;
-	Thu,  3 Sep 2020 16:22:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B01F76EA09;
+	Thu,  3 Sep 2020 16:22:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 367 seconds by postgrey-1.36 at gabe;
- Thu, 03 Sep 2020 16:22:26 UTC
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 152056E1F7
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Sep 2020 16:22:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1599150145;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type: content-transfer-encoding:content-transfer-encoding;
- bh=u3UKX1foVctwA0pjlmKCaupVmNxBUnqY8/QtNhjTAM4=;
- b=Uyd07pUi6WUHeUKn51XBEr4u3Y3zZkHcCOBFwESQmUydUmos/4Mk0mG2kBZx+GrGjteJfH
- k+OOwUIZux2Q9F5oirMmoIwQgsujcN89r74WkMgW72/mcqwiHQMYkyEsvYQZEocBCBOe6P
- bVVQDZM0LoZSse8NXqh9wsstOM4Mq70=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-313-j0TvL4XgNqaeAGmaJFjA9A-1; Thu, 03 Sep 2020 12:16:15 -0400
-X-MC-Unique: j0TvL4XgNqaeAGmaJFjA9A-1
-Received: by mail-qk1-f197.google.com with SMTP id c67so1883886qkd.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 03 Sep 2020 09:16:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:date
- :organization:user-agent:mime-version:content-transfer-encoding;
- bh=u3UKX1foVctwA0pjlmKCaupVmNxBUnqY8/QtNhjTAM4=;
- b=Cw101VPlI4hlu0bqNdVpp1XMbufKKEVDXjFCk+k1zS+HFm6osTGiZ3mLPHcI4hPm1G
- zS85Akv4rWU9cHVGCompgo2wrYHo8ta0TKsdVUjnwHybXfAK3simynqwgiRWRgerGQUh
- t9TvLD0Z+gilkrtdEwdG7RlthmvUabztk9D7VhiZZTisS1inYFNTOlJTWASX+3BqTKEc
- o3fgtru5j6M+7cY4YSSPk+twXDzANt75eVcLn/mCftBqxkn4UHuF/gwu3CxSKT15czMZ
- TgCPYweguL8I0O/qxSOynJBaO3b7gyOK9WmHeNVINkYOI6MsDWeKoae0Vanj5deaCnlR
- esEw==
-X-Gm-Message-State: AOAM530TehKXa7iyKXWRivMR1HbQRqJEw6O9F2NWOw7kPVo5QvO/ttYz
- nKWrHlaSdiBE/+XKFgReyZA9evFIGDKy2mx7/n8G1VjYnlXND91nft0i+nlGeKMfqXWuJW0DJEw
- +aTT1a5GzAv6PeA7YAlNSAfU20A==
-X-Received: by 2002:a37:4856:: with SMTP id v83mr3858274qka.213.1599149774548; 
- Thu, 03 Sep 2020 09:16:14 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwnfAdAK5CNCb5UmSVJq15cU0SizGC7Yx7dV8yC6nzLLK6R0zfayileCjx+GmqCX6TZawwcfg==
-X-Received: by 2002:a37:4856:: with SMTP id v83mr3858162qka.213.1599149773275; 
- Thu, 03 Sep 2020 09:16:13 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id v14sm2295211qto.81.2020.09.03.09.16.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Sep 2020 09:16:12 -0700 (PDT)
-Message-ID: <a171fea35e5dab03873876e221ab15b74ab24d62.camel@redhat.com>
-Subject: [RESEND] Requests For Proposals for hosting XDC2021 are now open
-From: Lyude Paul <lyude@redhat.com>
-To: "events@lists.x.org" <events@lists.x.org>, 
- "xorg-devel@lists.freedesktop.org"
- <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
- <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org"
- <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org"
- <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
- <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
- <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Date: Thu, 03 Sep 2020 12:16:11 -0400
-Organization: Red Hat
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2047.outbound.protection.outlook.com [40.107.243.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 087626E1F7
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Sep 2020 16:22:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XtQJrgtRE3BuxDzP5u9XLlqX4G6uUnrczGg7j62UsP+1/Q14hpviSzw0NrMq7tU861gqNXbVHyWj1cEE6ydIi1GfU0lFT/Z6/6LVc967kIh9vgX6orZ8FuE7RNFRCgD7ooPWmQN03E0QTfKQIacp9n+1kOwHC6baLycG7eNwElr7ofVt+Kwo15jjOhb/lmp+itH0E4MITBX7JseGIdtVtlrf2tA/vBgIXzATp1OW644DTog4H5rwArtBb9p36qfMRLPZHg+eA1eQLB1ISLKuRb/Fp6w0OmEpu8co4HREK37GrSO1JnUoeea54z1Hgt5YEfnEkAvC3O94lv4MWiSM5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MMzSFHSXv+BWk0jRijO5ddStd0dgN+OP6xAXkt2Lguk=;
+ b=Wog7tpwusNtsQtyFs7P3Rlh25D9b6/h+LJ7jWBleJo//HRQjV9JDG64X7TicCCGpAoizFqs9Qud6aLEsEF9MgXwgEINIUR4ftpdqgaAAzkNVUgTlVOULHcls2lNXn+4SFODCQNesSvM+BKy7IIVJsUiBCvLqWG8fnQy55RePFwPLTQft5mLBrYWACUzN722r/qTDqC8V1dbG48ksbX4vZSHLXELJKR2OxvnfC++Bsy2j/AB/1ksPDtuxma+XsOJhjqMO47ch3C6I8tdk8V5xrKPeIOkzbhsFWtLsL+GujfkQSx5zM24AitMe90kwd0KVm6liMGDFEr5AxNRnN+82vA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MMzSFHSXv+BWk0jRijO5ddStd0dgN+OP6xAXkt2Lguk=;
+ b=GoSpmBd/ueB6+Li5VKuAc0ifRoJMelgHG+uia7iRh0Odvwh6WmVabWFAQanGFeSQhObB7SJfKVTCPczQ8NxV1bepwmpWvCWP9WN4k5t5+dF/5ifCO7N8SlNyIm0oExdDM24chFh0ZdHG85z3SE7qmS5knd4kDPNy1jRzowOPKRY=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from BN6PR1201MB0146.namprd12.prod.outlook.com
+ (2603:10b6:405:59::18) by BN8PR12MB2978.namprd12.prod.outlook.com
+ (2603:10b6:408:42::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.23; Thu, 3 Sep
+ 2020 16:22:09 +0000
+Received: from BN6PR1201MB0146.namprd12.prod.outlook.com
+ ([fe80::615d:bea9:8838:92be]) by BN6PR1201MB0146.namprd12.prod.outlook.com
+ ([fe80::615d:bea9:8838:92be%4]) with mapi id 15.20.3348.016; Thu, 3 Sep 2020
+ 16:22:09 +0000
+From: Jonathan Kim <jonathan.kim@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/6] drm/amdgpu: stop resetting xgmi perfmons on disable
+Date: Thu,  3 Sep 2020 12:21:49 -0400
+Message-Id: <20200903162154.55694-1-jonathan.kim@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: YTXPR0101CA0027.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00::40) To BN6PR1201MB0146.namprd12.prod.outlook.com
+ (2603:10b6:405:59::18)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0.001
-X-Mimecast-Originator: redhat.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from 255.255.255.255 (255.255.255.255) by
+ YTXPR0101CA0027.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3326.19 via Frontend Transport; Thu, 3 Sep 2020 16:22:08 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.55.251]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: ebf5bd9b-b106-48ab-38df-08d850258192
+X-MS-TrafficTypeDiagnostic: BN8PR12MB2978:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BN8PR12MB2978FA36D3B704F39A42F54B852C0@BN8PR12MB2978.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: l4wJHM3MpBoF4nQdm4sRIy1p4UKaP3bDp/gMmswDB2Xq3g9fWWn50FK04ABdxdZ53uYypNEvXMXxtlhifmNjAuAxyN2ot7tpBCbxynViBU+QBdiuBIXd30IOgt0NAvLy45RnhAvYI3Yc1+l7jok86G3Hh5tRuiSalIZ3d8QMfL5wHeJo08chVqVq+AOq0gk8VAMqoMYmHnMkhf59A3dUWNnu/m0viwxSehWuW5gBNXW333P1QXW/RaydU/0SRnUpYHurX66w4+d+tiK784OdYSLspo4D5PIPmmXeITF0Q5QaOOicNNu+25OUW1wcy4JP
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN6PR1201MB0146.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(39860400002)(136003)(376002)(346002)(366004)(316002)(54906003)(2906002)(6486002)(4326008)(16576012)(478600001)(8936002)(6666004)(83380400001)(8676002)(66556008)(52116002)(6916009)(66476007)(5660300002)(86362001)(2616005)(186003)(44832011)(1076003)(66946007)(956004)(36756003)(26005);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: yOBbOzYbJP9w7FXEOytkhPjKKSGo16K1WDEM8szl1OZPw/vzoyQkBsBm3Ixa+jG3C6dH9c6icFUD51yLTQlt5gjJtt1rKyx00GpvCtylj0kkwLC0nkmsoTHPG3q469kkkOvHH2UuAV+eB6OuW2d4Nw4N0xFN6pGx4zSgM5Pca2ymP+tdlsKvI1IMWC8tihFEKYm2zuZjMymwe1emsR7/dekFw3KHTt1I6x6sbBlhuOE9/fBeMNr/EoCAh+UOQrMJZAVbIsL6LcA6lBH+7cnrv2VsPr1O7aZmB5YesWpAU9m30D/M8/gbmpuyFYu9Zey0zZVhpLB6q4Ffahdpx6jrpEI+Jf9IqpoVGiUQxMk2gVq2p3Lijh00G2e948YZs7tJ4MR8+siMiaBSqjOxWdDFc0arHJOhkSMYptYloYD03Z0bXXmXO2sOWwRcQJzgE20eu2b0b5dTknGe8jA5pAAN5OmG5TAKNPjohaTdOYJYvGdi3nJ6s2jFsOSr6NWQU34kZnphnFggnIJ9t+qH5ndgAthUch/oYDibFFXRy1toG22WDYnCDFOfzEEGbCjvKvI1QMg7BlnRTcqoXzckdDgfhkGKbKNWvHBUocYLlmxNzrx5s+SkW5ngNVGvdSGiJB7M+CWMeb/5NDe+zjWi8CV8ZA==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ebf5bd9b-b106-48ab-38df-08d850258192
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR1201MB0146.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2020 16:22:09.2720 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YsWTthvYXA4gDMY3SViNexc8Wi+F/i/Cr1cVf5dW1VJMbKqaiqrHT2HaSauPo7Ez
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2978
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,50 +93,120 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
+Cc: Felix.Kuehling@amd.com, Jonathan Kim <Jonathan.Kim@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-(Including a bunch more emails in the To: that got missed the first time)
+Disabling perf events does not specify reset in ABI so stop doing it in
+hardware.
 
-Hello everyone!
+Signed-off-by: Jonathan Kim <Jonathan.Kim@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_df.h |  4 ++--
+ drivers/gpu/drm/amd/amdgpu/df_v3_6.c   | 23 ++++++++++++++---------
+ 2 files changed, 16 insertions(+), 11 deletions(-)
 
-The X.org board is soliciting proposals to host XDC in 2021. Since
-XDC2020 is being held virtually this year, we've decided to host in
-either North America or Europe. However, the board is open to other
-locations, especially if there's an interesting co-location with another
-conference.
-
-Of course though, due to the ongoing COVID-19 pandemic it's not yet
-clear whether or not it will be possible to host XDC2021 in person.
-Because of this, we would like to make it clear that sponsors should
-prepare for both the possibility of an in person conference, and the
-possibility of a virtual conference. We will work with organizers on
-coming up with a deadline for deciding whether or not we'll be going
-virtual, likely sometime around July.
-
-If you're considering hosting XDC, we've assembled a wiki page with
-what's generally expected and needed:
-
-https://www.x.org/wiki/Events/RFP/
-
-When submitting your proposal, please make sure to include at least the
-key information about the potential location in question, possible dates
-along with estimated costs. Proposals can be submitted to board at
-foundation.x.org until the deadline of November 1st. Additionally, an
-quirk early heads-up to the board if you're considering hosting would be
-appreciated, in case we need to adjust the schedule a bit. Also, earlier
-is better since there generally will be a bit of Q&A with organizers.
-
-And if you just have some questions about what organizing XDC entails,
-please feel free to chat with previous organizers, or someone from the
-board.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_df.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_df.h
+index 61a26c15c8dd..373cdebe0e2f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_df.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_df.h
+@@ -44,9 +44,9 @@ struct amdgpu_df_funcs {
+ 	void (*enable_ecc_force_par_wr_rmw)(struct amdgpu_device *adev,
+ 					    bool enable);
+ 	int (*pmc_start)(struct amdgpu_device *adev, uint64_t config,
+-					 int is_enable);
++					 int is_add);
+ 	int (*pmc_stop)(struct amdgpu_device *adev, uint64_t config,
+-					 int is_disable);
++					 int is_remove);
+ 	void (*pmc_get_count)(struct amdgpu_device *adev, uint64_t config,
+ 					 uint64_t *count);
+ 	uint64_t (*get_fica)(struct amdgpu_device *adev, uint32_t ficaa_val);
+diff --git a/drivers/gpu/drm/amd/amdgpu/df_v3_6.c b/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
+index 2eab808fffeb..7b89fd2aa44a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
++++ b/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
+@@ -455,7 +455,8 @@ static int df_v3_6_pmc_get_ctrl_settings(struct amdgpu_device *adev,
+ 					  uint32_t *lo_base_addr,
+ 					  uint32_t *hi_base_addr,
+ 					  uint32_t *lo_val,
+-					  uint32_t *hi_val)
++					  uint32_t *hi_val,
++					  bool is_enable)
+ {
+ 
+ 	uint32_t eventsel, instance, unitmask;
+@@ -477,7 +478,8 @@ static int df_v3_6_pmc_get_ctrl_settings(struct amdgpu_device *adev,
+ 	instance_5432 = (instance >> 2) & 0xf;
+ 	instance_76 = (instance >> 6) & 0x3;
+ 
+-	*lo_val = (unitmask << 8) | (instance_10 << 6) | eventsel | (1 << 22);
++	*lo_val = (unitmask << 8) | (instance_10 << 6) | eventsel;
++	*lo_val = is_enable ? *lo_val | (1 << 22) : *lo_val & ~(1 << 22);
+ 	*hi_val = (instance_76 << 29) | instance_5432;
+ 
+ 	DRM_DEBUG_DRIVER("config=%llx addr=%08x:%08x val=%08x:%08x",
+@@ -572,14 +574,14 @@ static void df_v3_6_reset_perfmon_cntr(struct amdgpu_device *adev,
+ }
+ 
+ static int df_v3_6_pmc_start(struct amdgpu_device *adev, uint64_t config,
+-			     int is_enable)
++			     int is_add)
+ {
+ 	uint32_t lo_base_addr, hi_base_addr, lo_val, hi_val;
+ 	int err = 0, ret = 0;
+ 
+ 	switch (adev->asic_type) {
+ 	case CHIP_VEGA20:
+-		if (is_enable)
++		if (is_add)
+ 			return df_v3_6_pmc_add_cntr(adev, config);
+ 
+ 		df_v3_6_reset_perfmon_cntr(adev, config);
+@@ -589,7 +591,8 @@ static int df_v3_6_pmc_start(struct amdgpu_device *adev, uint64_t config,
+ 					&lo_base_addr,
+ 					&hi_base_addr,
+ 					&lo_val,
+-					&hi_val);
++					&hi_val,
++					true);
+ 
+ 		if (ret)
+ 			return ret;
+@@ -612,7 +615,7 @@ static int df_v3_6_pmc_start(struct amdgpu_device *adev, uint64_t config,
+ }
+ 
+ static int df_v3_6_pmc_stop(struct amdgpu_device *adev, uint64_t config,
+-			    int is_disable)
++			    int is_remove)
+ {
+ 	uint32_t lo_base_addr, hi_base_addr, lo_val, hi_val;
+ 	int ret = 0;
+@@ -624,15 +627,17 @@ static int df_v3_6_pmc_stop(struct amdgpu_device *adev, uint64_t config,
+ 			&lo_base_addr,
+ 			&hi_base_addr,
+ 			&lo_val,
+-			&hi_val);
++			&hi_val,
++			false);
+ 
+ 		if (ret)
+ 			return ret;
+ 
+-		df_v3_6_reset_perfmon_cntr(adev, config);
+ 
+-		if (is_disable)
++		if (is_remove) {
++			df_v3_6_reset_perfmon_cntr(adev, config);
+ 			df_v3_6_pmc_release_cntr(adev, config);
++		}
+ 
+ 		break;
+ 	default:
 -- 
-Sincerely,
-      Lyude Paul (she/her)
-      Software Engineer at Red Hat
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
