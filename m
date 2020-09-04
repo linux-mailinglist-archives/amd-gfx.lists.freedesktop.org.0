@@ -2,88 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EF4F25D34B
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Sep 2020 10:15:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F4AA25D342
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Sep 2020 10:13:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0857C6EB25;
-	Fri,  4 Sep 2020 08:15:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 946306EB24;
+	Fri,  4 Sep 2020 08:13:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 886AC6EB26
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Sep 2020 08:15:17 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2072.outbound.protection.outlook.com [40.107.92.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E51F6EB21
+ for <amd-gfx@lists.freedesktop.org>; Fri,  4 Sep 2020 08:13:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ODiByQ1lvk8WBZZuDERjpLRrM31gGnsErJk7jfxE4PCHcEV6gL8pAYG8s38Q60Zo+pdOWoD3aCeoqa2kW/dvdX7hG5jHRxJc+eDrCGlcTORH2SKT3BjYu0geBDjhgm7eQxbEJK5KsLWqbmJ/s8IeHBNnR5E0RkrO7jkpgdlsrjo8RomJOvlW5xWJh++MwfryGDrx7bimv6WJ8/eYIzr2VMvrYB58G3AW84GxTN8bQjA/QUcpahExdWpTfxmrBKuN4zj5E6H9FgElmCD5SUGMmRrKtO516CTaMtHRdLpcqeuvhmWBuRayKbwG3RcuuEs7QgJJ6+ACgtXatzcYX8NPqQ==
+ b=NJ1tQf/XXpxxIFG+yGhwVmfXIAxMKnL8kBmquCN3+gj26b9n3Sv0zUCPnEVh1gHRo4BkaSLcZSQVtQzqdEUgzDd9rAESg2+n5gJsfBx6LhGhuaeIo1bnvxY+asYkLYOmAc5dqsMA+qGnqhOmyPB/M1FYQy8ByryZYp1WiLGxtCu1j9D1DsW18Qebri5i6pzZCRq61S6L0/ayCiUAhjVLrZCSzFJyYsGFFNuESZBUJHef27poE/nvhT/q4Kri66qo5jO2DCHGnNihohoT86ziiY6Ntw1ujGlXptuFgV0SWvJgQkhKnhS/GioPhSDE50fzrSZ97s6gkJOU8ob2QiFklA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YjoEIW7iOpi7nsKB64767QtrKeSyJOa+B8B9tna91lk=;
- b=WoMyqNrsUAnqlCxLZAZNxFwIBscnLJFFwdTZNJvKMvSXjM4npOO+plc/GXXd5JR/+PkREwPrNJ3YciV0nZvGZEudVRHR4D60AtQoLdnuKrDQSdpOouJ83ML9WcvDKQLaaFdAdHZVnUyVfLNXy/LiwamODUYd8/6rUi55LQlArbosbrgnBxFOpCaTPKoMhQehlB9pNQI9yRQ+PBNGRBUSHSs7XgZdTTyBB62WLcZs7xtgmeqZUQvUSERpX6WcXwGQxU8cy1fwdaC32YpG5W7pqJDRwLSwdLYwrWqF5TgrDXmxcoQbekYHD15+0EeBFawMKlHx6a8teDQ4dJ/MzT1MgA==
+ bh=mj7x4dg+w0QRgtZqJHycPs7B3Fgq3JYMv42kiMqQ6X0=;
+ b=Wey0Go0jy6MxbKAFv3u1O/VaAf3iBU/lSHsUYjkBydLLb+mIBywLHdVUjP2AYma41iQ2co7QssBUPiun3cpNPBSJzAc/J/3j4WbqL8aqF+v8E1Pc/Mv4dfsEv0otPUfYkZAlCEy5hBGXxVqqv5daLAHpGftxFg1CwfsWuO0E8hpmUoffdlf9EXC3af0Fm8oyAdaukBFH0TgUJjfl7TcVD0QJ/rECNKolQz8sNh0WyhxxsgwgyvEkBie6dmvnldaki5VCBd/OWlEBCIdkLnCOAx1pO7Peqpdwow8xToYtk4pA0YnRfvZJ3Hqe8Wolwjs286sHj81C7hiL3sgx86jwcQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YjoEIW7iOpi7nsKB64767QtrKeSyJOa+B8B9tna91lk=;
- b=tkk2iscdhGrgFbXMwhsAIN3+EJ3LmCn2XPyjnlSQ0s2mBcxRr3NjqBTEgmPtVIrWiWLRolbruAjMKnh90xdaeNmerLgGgjD60EUmvVkb2q6Ic7lm7oqnkmSeONDNuq/UHYHGnQc7FqQnJWh2YCFTVJY+MYLz5HZNf+/UZ/2BU1I=
+ bh=mj7x4dg+w0QRgtZqJHycPs7B3Fgq3JYMv42kiMqQ6X0=;
+ b=rLYOj9dc9XBLpH95YKa5vzQDzAhVbblLbrCY24aHWn0uPS3egmChpARj+vIP5uTpyTqVvOl7bZfkVd/8BxMxgeQzxiVqRt5iIS3vYGSx1g+jPrQPHa9MCzcN4TP90UJGQiG/rgQHZRAKJVK3F1q5oK2uGujxNnhtlwkYFaUmgvk=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
- DM5PR12MB2469.namprd12.prod.outlook.com (2603:10b6:4:af::38) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3326.23; Fri, 4 Sep 2020 08:15:15 +0000
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::bcb1:de80:f60c:8118]) by DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::bcb1:de80:f60c:8118%5]) with mapi id 15.20.3348.015; Fri, 4 Sep 2020
- 08:15:15 +0000
-From: Evan Quan <evan.quan@amd.com>
+Received: from DM6PR12MB3916.namprd12.prod.outlook.com (2603:10b6:5:1ca::21)
+ by DM5PR12MB1817.namprd12.prod.outlook.com (2603:10b6:3:109::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.21; Fri, 4 Sep
+ 2020 08:13:15 +0000
+Received: from DM6PR12MB3916.namprd12.prod.outlook.com
+ ([fe80::5c29:f133:1209:b74d]) by DM6PR12MB3916.namprd12.prod.outlook.com
+ ([fe80::5c29:f133:1209:b74d%6]) with mapi id 15.20.3348.015; Fri, 4 Sep 2020
+ 08:13:15 +0000
+Subject: Re: [PATCH] drm/amdgpu: Fix L1 policy violations (PSP) on Navi21 SRIOV
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amd/pm: correct Renoir UMD Stable Pstate settings
-Date: Fri,  4 Sep 2020 16:14:43 +0800
-Message-Id: <20200904081443.19768-2-evan.quan@amd.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200904081443.19768-1-evan.quan@amd.com>
-References: <20200904081443.19768-1-evan.quan@amd.com>
-X-ClientProxiedBy: HKAPR04CA0008.apcprd04.prod.outlook.com
- (2603:1096:203:d0::18) To DM6PR12MB2619.namprd12.prod.outlook.com
- (2603:10b6:5:45::18)
+References: <20200903211146.6692-1-rohit.khaire@amd.com>
+From: Nirmoy <nirmodas@amd.com>
+Message-ID: <43428d71-3136-5dd8-c0f4-530a8649d845@amd.com>
+Date: Fri, 4 Sep 2020 10:17:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+In-Reply-To: <20200903211146.6692-1-rohit.khaire@amd.com>
+Content-Language: en-US
+X-ClientProxiedBy: BN6PR11CA0047.namprd11.prod.outlook.com
+ (2603:10b6:404:4b::33) To DM6PR12MB3916.namprd12.prod.outlook.com
+ (2603:10b6:5:1ca::21)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from equan-buildpc.amd.com (58.247.170.242) by
- HKAPR04CA0008.apcprd04.prod.outlook.com (2603:1096:203:d0::18) with Microsoft
+Received: from [10.252.0.238] (165.204.84.11) by
+ BN6PR11CA0047.namprd11.prod.outlook.com (2603:10b6:404:4b::33) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3348.15 via Frontend Transport; Fri, 4 Sep 2020 08:15:13 +0000
-X-Mailer: git-send-email 2.28.0
-X-Originating-IP: [58.247.170.242]
+ 15.20.3348.15 via Frontend Transport; Fri, 4 Sep 2020 08:13:14 +0000
+X-Originating-IP: [165.204.84.11]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: b512299c-e37e-4ded-4c80-08d850aaa6db
-X-MS-TrafficTypeDiagnostic: DM5PR12MB2469:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB24693F21F7C497DF30FC315FE42D0@DM5PR12MB2469.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:813;
+X-MS-Office365-Filtering-Correlation-Id: 3391a0be-55fc-4344-8b36-08d850aa5fa5
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1817:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1817022A53F4D903930506308B2D0@DM5PR12MB1817.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:173;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: teXYhXtEg3LL1k1qA8i3I4LXe7cafbBybeYefoOwQKjPdv3pjRb+76MOXuF29r/XFBFDCqhzRZelKvDSol913guhltWWZ+AjY4NWpLd/aWy7YtTzm/Oh2R0agHROcgKElGUf7mtAodwUWfru5NB4dHfbvTXTzdjSWUFeX1+q2vwcQbrbFQZUvi3y+S13X72e5C+RVnlgBg2tTaVYV6qhm7+Gu8X7LSAPKxbVidyojEBcduoQGkJvxc88WY6WRo94TuPO3npCzy65L2QVBb0VsdYozjPfa+zj1GEkajXFjGsTHPjSe9R4xEgxPt2+HY7IU/iG3D2wmoYpDLG0NYG+uQ==
+X-Microsoft-Antispam-Message-Info: XQW3n2m5S9vxw+19OdTntwFHWBtaPxh90x/D05MejredCq8QSdSW6IuHecp7ecJk/FKAbKSfE3tq3gqUW6V/AcUwisj5OQogH8wqXfLHPA+5MX9qHhdURCAYjT44R+bdgFDDBMmz7wwSEc+SpdVQABy4GNdequK4FfJ2Ua59Y2kkW4aywT6myhm59oTTM0n8oN93BBxIEx5GWEmxYJeIJ6NiZa0s2xuH+fO6hsfviK4CsnARKhGkiNYqL1qE5/QCHPup1Q7urjjsHLjiP2S0PyeMTBOTJvKAnD5LLdhE8XlfcKQegnDPOfwhhwrh9DcdYAg/KUZRSdQdvyZRZwmjGFP17pUfEF3IIEqH4Ko9apq5f2sJ/EoAUTNcgymoDmmp
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(39860400002)(396003)(366004)(346002)(376002)(1076003)(8676002)(6666004)(316002)(6486002)(6916009)(8936002)(83380400001)(16526019)(52116002)(7696005)(66556008)(956004)(86362001)(26005)(44832011)(478600001)(36756003)(66946007)(66476007)(2906002)(4326008)(186003)(5660300002)(2616005);
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3916.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(39860400002)(346002)(396003)(366004)(376002)(8936002)(52116002)(2906002)(16576012)(5660300002)(31686004)(8676002)(6916009)(316002)(16526019)(66476007)(36756003)(186003)(66556008)(53546011)(478600001)(83380400001)(31696002)(2616005)(66946007)(6666004)(30864003)(26005)(956004)(6486002)(43740500002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: 9DaDy1VC99Tz16Qf43X8UTu+cdC4tPvDe1p6H0Vw+YiAxmDfBkhNTqlIpKvOjtT1E1SIwVHgJVrel2Qc2TeJEPK04mhg9pUwVVRW154vgGUHk/s026hkAGBdAtfnZLrjLtXX5EpKeSXLMiRrMMRRH57fl6eImiq97AXM/s9d/lnbgLmp04C75MQz7eOiHXwB2RE8+lMpXRbcNpwMRoNar7nrPmn6cuOtJ2Pl5qt9GHSryYB41i6iUcM9bZHeaoIZvZgaiKVJPs8rqxPQX4o/wVByHunpmCiP44HWXKyjo5yMkxUxHkYc61xGq2t5nrKWsOI1G9M3bY6tJPi5xQaySWAsTZtFyENavmv5+VxKDCtMV9A/rOn+EVpRPYjXZIuvbtad803ISrZmDukRg+HwIwblfOarrwND4px+cbZrWl8+QeK71DA4IkepVIWxgcrNCMuu1uyM0ir7ATTLH8r62RDgjpgZlMRXix9EKFkVbs7j4zt1y23bGyp4rxQKWAi78P2kLL5F3S/5blZBuqlAZ3xuPIhxHhOEXQHJ/5j/vIrUT3uUwj2g99PMgk6WzzlNE0sHXL5YnXwToy35/qCQmhoFV9zMSOXcbTifQOfXdz8VZQHqH1NHMuSK8KwZ4DqAsfd4Bdsv5OYEqUcZaGivMA==
+X-MS-Exchange-AntiSpam-MessageData: cSjym11cmh9+Hg0kXGb/lM9KtxhVz3J1XbPzIa68bAyglk8SwoRYD/Vx9PIbt4ihmnPD2mM0tPlzDxlz1iucjAO6EJRAvAH3FBYjcnhFxhzixvvgxX47KDFkOz8qKKPbJRLMISuMgzfzqa+HEavr4YoimiKdaK9Rlvo/FNf8RxLoOx0lZCQfus5Jvfp8PAj7QRjQVvbZnOBiP3MQydefyIo4eSw5TLpo2+LE/2LuMjUI/TzteiFvU2AdPT822iQOcBmHSwRgzMzdMtYDtRm/g/hmDzdYkzr5BTxtCIlE+ZPmZQa/BdMdJWk/kzFxlfT/kAG6KrpVMscs4ZQxtQpMzhmA7FvjjYQ30Z3QhoUx3NpqEBz191triwQchNuWF1q/yzt2qR3YLSFX9W/lRfM3sDRe1xuQgGBrL6czwC9ZE7vl9QJH193nTuXPtr5BFl3evaqTVmm8kaEYWGCR6Ow5SStRDz5p3hSteQOA36t+126qAzvu3ZlAcNMw71fody8qFNEl8wX3wfUvwE3CEJRbJkZxQNxaHs/xwpqZ6o6h8d3jop1okNCJqvcbxzoYPg7z1k2NVvk+JsFfbPahLZZnk4qR/VvGurLQjUbWLGgla+3KHu6JPNu4oka1lSz+pwgD5vS0AKPwRTynbv9NlOUdGw==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b512299c-e37e-4ded-4c80-08d850aaa6db
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2619.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3391a0be-55fc-4344-8b36-08d850aa5fa5
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3916.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2020 08:15:14.9735 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2020 08:13:15.4850 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3rBD64R+AtWLDAOekHnyPcz61BwKhHUacL0axd3WRtG17Yqp9fgAQLUvfX5CoOy4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2469
+X-MS-Exchange-CrossTenant-UserPrincipalName: HORkTsoMISxV1qz2zYhfiRUGmNtyDw6pfhUyeQpNFD9I91BhRuGOIOCx9SIVgE/YSyGbeVl/9cQPLg0Y35yxvw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1817
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,101 +95,326 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, ray.huang@amd.com, Evan Quan <evan.quan@amd.com>,
- changfeng.zhu@amd.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Update the UMD stable Pstate settings with correct clocks.
 
-Change-Id: Ia14eb8e23c513cad0bd633fbeb99ed694c7e3f7e
-Signed-off-by: Evan Quan <evan.quan@amd.com>
----
- .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   | 52 ++++++++++++++++++-
- .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.h   |  1 +
- 2 files changed, 52 insertions(+), 1 deletion(-)
+On 9/3/20 11:11 PM, Rohit Khaire wrote:
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-index f4c55e8b5221..8a0bc7f5ec03 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-@@ -832,9 +832,59 @@ static int renoir_set_performance_level(struct smu_context *smu,
- 		ret = renoir_force_dpm_limit_value(smu, false);
- 		break;
- 	case AMD_DPM_FORCED_LEVEL_AUTO:
--	case AMD_DPM_FORCED_LEVEL_PROFILE_STANDARD:
- 		ret = renoir_unforce_dpm_levels(smu);
- 		break;
-+	case AMD_DPM_FORCED_LEVEL_PROFILE_STANDARD:
-+		ret = smu_cmn_send_smc_msg_with_param(smu,
-+						      SMU_MSG_SetHardMinGfxClk,
-+						      RENOIR_UMD_PSTATE_GFXCLK,
-+						      NULL);
-+		if (ret)
-+			return ret;
-+		ret = smu_cmn_send_smc_msg_with_param(smu,
-+						      SMU_MSG_SetHardMinFclkByFreq,
-+						      RENOIR_UMD_PSTATE_FCLK,
-+						      NULL);
-+		if (ret)
-+			return ret;
-+		ret = smu_cmn_send_smc_msg_with_param(smu,
-+						      SMU_MSG_SetHardMinSocclkByFreq,
-+						      RENOIR_UMD_PSTATE_SOCCLK,
-+						      NULL);
-+		if (ret)
-+			return ret;
-+		ret = smu_cmn_send_smc_msg_with_param(smu,
-+						      SMU_MSG_SetHardMinVcn,
-+						      RENOIR_UMD_PSTATE_VCNCLK,
-+						      NULL);
-+		if (ret)
-+			return ret;
-+
-+		ret = smu_cmn_send_smc_msg_with_param(smu,
-+						      SMU_MSG_SetSoftMaxGfxClk,
-+						      RENOIR_UMD_PSTATE_GFXCLK,
-+						      NULL);
-+		if (ret)
-+			return ret;
-+		ret = smu_cmn_send_smc_msg_with_param(smu,
-+						      SMU_MSG_SetSoftMaxFclkByFreq,
-+						      RENOIR_UMD_PSTATE_FCLK,
-+						      NULL);
-+		if (ret)
-+			return ret;
-+		ret = smu_cmn_send_smc_msg_with_param(smu,
-+						      SMU_MSG_SetSoftMaxSocclkByFreq,
-+						      RENOIR_UMD_PSTATE_SOCCLK,
-+						      NULL);
-+		if (ret)
-+			return ret;
-+		ret = smu_cmn_send_smc_msg_with_param(smu,
-+						      SMU_MSG_SetSoftMaxVcn,
-+						      RENOIR_UMD_PSTATE_VCNCLK,
-+						      NULL);
-+		if (ret)
-+			return ret;
-+		break;
- 	case AMD_DPM_FORCED_LEVEL_PROFILE_MIN_SCLK:
- 	case AMD_DPM_FORCED_LEVEL_PROFILE_MIN_MCLK:
- 		ret = renoir_get_profiling_clk_mask(smu, level,
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.h b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.h
-index 8c3f004cdf8d..11c3c22fecbe 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.h
-@@ -29,5 +29,6 @@ extern void renoir_set_ppt_funcs(struct smu_context *smu);
- #define RENOIR_UMD_PSTATE_GFXCLK       700
- #define RENOIR_UMD_PSTATE_SOCCLK       678
- #define RENOIR_UMD_PSTATE_FCLK         800
-+#define RENOIR_UMD_PSTATE_VCNCLK       0x022D01D8
- 
- #endif
--- 
-2.28.0
+Please add commit message here.
 
+> Signed-off-by: Rohit Khaire <rohit.khaire@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   | 49 ++++++++++++++++--
+>   drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c | 64 +++++++++++-------------
+>   drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c  | 42 ++++++++--------
+>   3 files changed, 95 insertions(+), 60 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> index d502e30f67d9..4bafbd453e53 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> @@ -4808,14 +4808,23 @@ static int gfx_v10_0_init_csb(struct amdgpu_device *adev)
+>   
+>   void gfx_v10_0_rlc_stop(struct amdgpu_device *adev)
+>   {
+> -	u32 tmp = RREG32_SOC15(GC, 0, mmRLC_CNTL);
+> +	u32 tmp;
+>   
+> +	/* For SRIOV, don't touch RLC_G */
+> +	if (amdgpu_sriov_vf(adev))
+> +		return;
+> +
+> +	tmp = RREG32_SOC15(GC, 0, mmRLC_CNTL);
+>   	tmp = REG_SET_FIELD(tmp, RLC_CNTL, RLC_ENABLE_F32, 0);
+>   	WREG32_SOC15(GC, 0, mmRLC_CNTL, tmp);
+>   }
+>   
+>   static void gfx_v10_0_rlc_reset(struct amdgpu_device *adev)
+>   {
+> +	/* For SRIOV, don't touch RLC_G */
+> +	if (amdgpu_sriov_vf(adev))
+> +		return;
+> +
+>   	WREG32_FIELD15(GC, 0, GRBM_SOFT_RESET, SOFT_RESET_RLC, 1);
+>   	udelay(50);
+>   	WREG32_FIELD15(GC, 0, GRBM_SOFT_RESET, SOFT_RESET_RLC, 0);
+> @@ -4846,6 +4855,10 @@ static void gfx_v10_0_rlc_smu_handshake_cntl(struct amdgpu_device *adev,
+>   
+>   static void gfx_v10_0_rlc_start(struct amdgpu_device *adev)
+>   {
+> +	/* For SRIOV, don't touch RLC_G */
+> +	if (amdgpu_sriov_vf(adev))
+> +		return;
+> +
+>   	/* TODO: enable rlc & smu handshake until smu
+>   	 * and gfxoff feature works as expected */
+>   	if (!(amdgpu_pp_feature_mask & PP_GFXOFF_MASK))
+> @@ -4859,6 +4872,10 @@ static void gfx_v10_0_rlc_enable_srm(struct amdgpu_device *adev)
+>   {
+>   	uint32_t tmp;
+>   
+> +	/* For SRIOV, don't touch RLC_G */
+> +	if (amdgpu_sriov_vf(adev))
+> +		return;
+> +
+>   	/* enable Save Restore Machine */
+>   	tmp = RREG32(SOC15_REG_OFFSET(GC, 0, mmRLC_SRM_CNTL));
+>   	tmp |= RLC_SRM_CNTL__AUTO_INCR_ADDR_MASK;
+> @@ -4872,6 +4889,10 @@ static int gfx_v10_0_rlc_load_microcode(struct amdgpu_device *adev)
+>   	const __le32 *fw_data;
+>   	unsigned i, fw_size;
+>   
+> +	/* For SRIOV, don't touch RLC_G */
+> +	if (amdgpu_sriov_vf(adev))
+> +		return;
+> +
+>   	if (!adev->gfx.rlc_fw)
+>   		return -EINVAL;
+>   
+> @@ -4906,8 +4927,7 @@ static int gfx_v10_0_rlc_resume(struct amdgpu_device *adev)
+>   
+>   		gfx_v10_0_init_csb(adev);
+>   
+> -		if (!amdgpu_sriov_vf(adev)) /* enable RLC SRM */
+> -			gfx_v10_0_rlc_enable_srm(adev);
+> +		gfx_v10_0_rlc_enable_srm(adev);
+>   	} else {
+>   		if (amdgpu_sriov_vf(adev)) {
+>   			gfx_v10_0_init_csb(adev);
+> @@ -6990,7 +7010,6 @@ static int gfx_v10_0_hw_fini(void *handle)
+>   	if (amdgpu_gfx_disable_kcq(adev))
+>   		DRM_ERROR("KCQ disable failed\n");
+>   	if (amdgpu_sriov_vf(adev)) {
+> -		gfx_v10_0_cp_gfx_enable(adev, false);
+>   		/* Program KIQ position of RLC_CP_SCHEDULERS during destroy */
+>   		tmp = RREG32_SOC15(GC, 0, mmRLC_CP_SCHEDULERS);
+>   		tmp &= 0xffffff00;
+> @@ -7272,6 +7291,10 @@ static void gfx_v10_0_update_medium_grain_clock_gating(struct amdgpu_device *ade
+>   {
+>   	uint32_t data, def;
+>   
+> +	/* For SRIOV, guest VM should not touch CGCG and PG stuff */
+> +	if (amdgpu_sriov_vf(adev))
+> +		return;
+> +
+>   	/* It is disabled by HW by default */
+>   	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_GFX_MGCG)) {
+>   		/* 0 - Disable some blocks' MGCG */
+> @@ -7339,6 +7362,10 @@ static void gfx_v10_0_update_3d_clock_gating(struct amdgpu_device *adev,
+>   {
+>   	uint32_t data, def;
+>   
+> +	/* For SRIOV, guest VM should not touch CGCG and PG stuff */
+> +	if (amdgpu_sriov_vf(adev))
+> +		return;
+> +
+>   	/* Enable 3D CGCG/CGLS */
+>   	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGCG)) {
+>   		/* write cmd to clear cgcg/cgls ov */
+> @@ -7381,6 +7408,10 @@ static void gfx_v10_0_update_coarse_grain_clock_gating(struct amdgpu_device *ade
+>   {
+>   	uint32_t def, data;
+>   
+> +	/* For SRIOV, guest VM should not touch CGCG and PG stuff */
+> +	if (amdgpu_sriov_vf(adev))
+> +		return;
+> +
+>   	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGCG)) {
+>   		def = data = RREG32_SOC15(GC, 0, mmRLC_CGTT_MGCG_OVERRIDE);
+>   		/* unset CGCG override */
+> @@ -7422,6 +7453,10 @@ static void gfx_v10_0_update_coarse_grain_clock_gating(struct amdgpu_device *ade
+>   static int gfx_v10_0_update_gfx_clock_gating(struct amdgpu_device *adev,
+>   					    bool enable)
+>   {
+> +	/* For SRIOV, guest VM should not touch CGCG and PG stuff */
+> +	if (amdgpu_sriov_vf(adev))
+> +		return;
+> +
+>   	amdgpu_gfx_rlc_enter_safe_mode(adev);
+>   
+>   	if (enable) {
+> @@ -7584,6 +7619,12 @@ static void gfx_v10_0_get_clockgating_state(void *handle, u32 *flags)
+>   	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+>   	int data;
+>   
+> +	/* bypass PG and CG on SRIOV VF */
+> +	if (amdgpu_sriov_vf(adev)) {
+> +		*flags = 0;
+> +		return;
+> +	}
+> +
+>   	/* AMD_CG_SUPPORT_GFX_MGCG */
+>   	data = RREG32_KIQ(SOC15_REG_OFFSET(GC, 0, mmRLC_CGTT_MGCG_OVERRIDE));
+>   	if (!(data & RLC_CGTT_MGCG_OVERRIDE__GFXIP_MGCG_OVERRIDE_MASK))
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
+> index 237a9ff5afa0..44ebb2722c4e 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
+> @@ -152,33 +152,35 @@ static void gfxhub_v2_1_init_system_aperture_regs(struct amdgpu_device *adev)
+>   {
+>   	uint64_t value;
+>   
+> -	/* Disable AGP. */
+> -	WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_BASE, 0);
+> -	WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_TOP, 0);
+> -	WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_BOT, 0x00FFFFFF);
+> -
+> -	/* Program the system aperture low logical page number. */
+> -	WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_LOW_ADDR,
+> -		     adev->gmc.vram_start >> 18);
+> -	WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR,
+> -		     adev->gmc.vram_end >> 18);
+> -
+> -	/* Set default page address. */
+> -	value = adev->vram_scratch.gpu_addr - adev->gmc.vram_start
+> -		+ adev->vm_manager.vram_base_offset;
+> -	WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_LSB,
+> -		     (u32)(value >> 12));
+> -	WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_MSB,
+> -		     (u32)(value >> 44));
+> +	if (!amdgpu_sriov_vf(adev)) {
+> +		/* Disable AGP. */
+> +		WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_BASE, 0);
+> +		WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_TOP, 0);
+> +		WREG32_SOC15(GC, 0, mmGCMC_VM_AGP_BOT, 0x00FFFFFF);
+> +
+> +		/* Program the system aperture low logical page number. */
+> +		WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_LOW_ADDR,
+> +				adev->gmc.vram_start >> 18);
+> +		WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_HIGH_ADDR,
+> +				adev->gmc.vram_end >> 18);
+> +
+> +		/* Set default page address. */
+> +		value = adev->vram_scratch.gpu_addr - adev->gmc.vram_start
+> +			+ adev->vm_manager.vram_base_offset;
+> +		WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_LSB,
+> +				(u32)(value >> 12));
+> +		WREG32_SOC15(GC, 0, mmGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_MSB,
+> +				(u32)(value >> 44));
+> +	}
+>   
+>   	/* Program "protection fault". */
+>   	WREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_LO32,
+> -		     (u32)(adev->dummy_page_addr >> 12));
+> +				 (u32)(adev->dummy_page_addr >> 12));
+>   	WREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+> -		     (u32)((u64)adev->dummy_page_addr >> 44));
+> +				 (u32)((u64)adev->dummy_page_addr >> 44));
+>   
+>   	WREG32_FIELD15(GC, 0, GCVM_L2_PROTECTION_FAULT_CNTL2,
+> -		       ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
+> +				   ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
+>   }
+>   
+
+
+Indentation looks off here and in 
+gfxhub_v2_1_init_system_aperture_regs() as well.
+
+
+Nirmoy
+
+
+>   
+> @@ -350,18 +352,6 @@ static void gfxhub_v2_1_program_invalidation(struct amdgpu_device *adev)
+>   
+>   int gfxhub_v2_1_gart_enable(struct amdgpu_device *adev)
+>   {
+> -	if (amdgpu_sriov_vf(adev)) {
+> -		/*
+> -		 * GCMC_VM_FB_LOCATION_BASE/TOP is NULL for VF, becuase they are
+> -		 * VF copy registers so vbios post doesn't program them, for
+> -		 * SRIOV driver need to program them
+> -		 */
+> -		WREG32_SOC15(GC, 0, mmGCMC_VM_FB_LOCATION_BASE,
+> -			     adev->gmc.vram_start >> 24);
+> -		WREG32_SOC15(GC, 0, mmGCMC_VM_FB_LOCATION_TOP,
+> -			     adev->gmc.vram_end >> 24);
+> -	}
+> -
+>   	/* GART Enable. */
+>   	gfxhub_v2_1_init_gart_aperture_regs(adev);
+>   	gfxhub_v2_1_init_system_aperture_regs(adev);
+> @@ -394,9 +384,11 @@ void gfxhub_v2_1_gart_disable(struct amdgpu_device *adev)
+>   			    ENABLE_ADVANCED_DRIVER_MODEL, 0);
+>   	WREG32_SOC15(GC, 0, mmGCMC_VM_MX_L1_TLB_CNTL, tmp);
+>   
+> -	/* Setup L2 cache */
+> -	WREG32_FIELD15(GC, 0, GCVM_L2_CNTL, ENABLE_L2_CACHE, 0);
+> -	WREG32_SOC15(GC, 0, mmGCVM_L2_CNTL3, 0);
+> +	if (!amdgpu_sriov_vf(adev)) {
+> +		/* Setup L2 cache */
+> +		WREG32_FIELD15(GC, 0, GCVM_L2_CNTL, ENABLE_L2_CACHE, 0);
+> +		WREG32_SOC15(GC, 0, mmGCVM_L2_CNTL3, 0);
+> +	}
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+> index 2d88278c50bf..99f697e63e3c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+> @@ -211,26 +211,26 @@ static void mmhub_v2_0_init_system_aperture_regs(struct amdgpu_device *adev)
+>   			     adev->gmc.vram_start >> 18);
+>   		WREG32_SOC15(MMHUB, 0, mmMMMC_VM_SYSTEM_APERTURE_HIGH_ADDR,
+>   			     adev->gmc.vram_end >> 18);
+> -	}
+>   
+> -	/* Set default page address. */
+> -	value = adev->vram_scratch.gpu_addr - adev->gmc.vram_start +
+> -		adev->vm_manager.vram_base_offset;
+> -	WREG32_SOC15(MMHUB, 0, mmMMMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_LSB,
+> -		     (u32)(value >> 12));
+> -	WREG32_SOC15(MMHUB, 0, mmMMMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_MSB,
+> -		     (u32)(value >> 44));
+> -
+> -	/* Program "protection fault". */
+> -	WREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_LO32,
+> -		     (u32)(adev->dummy_page_addr >> 12));
+> -	WREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+> -		     (u32)((u64)adev->dummy_page_addr >> 44));
+> -
+> -	tmp = RREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_CNTL2);
+> -	tmp = REG_SET_FIELD(tmp, MMVM_L2_PROTECTION_FAULT_CNTL2,
+> -			    ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
+> -	WREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+> +		/* Set default page address. */
+> +		value = adev->vram_scratch.gpu_addr - adev->gmc.vram_start +
+> +			adev->vm_manager.vram_base_offset;
+> +		WREG32_SOC15(MMHUB, 0, mmMMMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_LSB,
+> +				(u32)(value >> 12));
+> +		WREG32_SOC15(MMHUB, 0, mmMMMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_MSB,
+> +				(u32)(value >> 44));
+> +
+> +		/* Program "protection fault". */
+> +		WREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_LO32,
+> +				(u32)(adev->dummy_page_addr >> 12));
+> +		WREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+> +				(u32)((u64)adev->dummy_page_addr >> 44));
+> +
+> +		tmp = RREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_CNTL2);
+> +		tmp = REG_SET_FIELD(tmp, MMVM_L2_PROTECTION_FAULT_CNTL2,
+> +					ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
+> +		WREG32_SOC15(MMHUB, 0, mmMMVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+> +	}
+>   }
+>   
+>   static void mmhub_v2_0_init_tlb_regs(struct amdgpu_device *adev)
+> @@ -656,8 +656,10 @@ static void mmhub_v2_0_get_clockgating(struct amdgpu_device *adev, u32 *flags)
+>   {
+>   	int data, data1;
+>   
+> -	if (amdgpu_sriov_vf(adev))
+> +	if (amdgpu_sriov_vf(adev)) {
+>   		*flags = 0;
+> +		return;
+> +	}
+>   
+>   	switch (adev->asic_type) {
+>   	case CHIP_SIENNA_CICHLID:
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
