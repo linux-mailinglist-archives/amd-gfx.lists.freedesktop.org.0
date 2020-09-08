@@ -2,92 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73FB42610CA
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Sep 2020 13:37:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 726472611CA
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Sep 2020 15:06:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B26D6E5CA;
-	Tue,  8 Sep 2020 11:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0839E6E1CE;
+	Tue,  8 Sep 2020 13:06:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A95956E7D9
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Sep 2020 11:37:17 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id m6so18780890wrn.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 08 Sep 2020 04:37:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=I/sh0hf7RWpKTkHRG2sXo6X29i3mK1fyatkLVFjwPyY=;
- b=TRI4o8zL814YHGA/D/zYMJIAaCIYqFZ0mIpUDMLZUZN87cVGkWukeoAQibFqRSdTi0
- 6pbezBxBfFFSAjRUKWB8QJP5CHgs93NHYtFiS1nIDp648nb0kIv2ZVQ/RTs1fTwlNaec
- GPg0wCc5jkN3j+ma2gtmxo4nY/EYhDvIrUWKQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=I/sh0hf7RWpKTkHRG2sXo6X29i3mK1fyatkLVFjwPyY=;
- b=ryy2dQ7yvgayMKkGE+o6e3Hzw5hEH1MWvtlubz7gMslAoiYcJo/idddl7L+rUqH3xH
- fPp08/IZNBkRDCmIf6pEBwc/umH/7WF4CGoaVJVzfXenX2jhejHX91rSogsWdqIRX1uG
- vfuomCz+9BCfIvk/ccCYmt+iqs5HG1Ef6YeTMEl2zpnSCLkeqErI0cDtY+2ckq0Jgn0m
- 29660l0yhVudDHLOQwpnwtOHCs85nfKINLZRPJ6Yc+JLkgZZUpO/Z1ikL37nMCuOb99L
- LG8I6icIc0SSMNjxYXBQmdvpfSUfxNZoAHiLdWU8V6aDwb8JPokk2T9ogEZayUNdviso
- 2oaw==
-X-Gm-Message-State: AOAM532TSq+9zF+k7YVEV7+lPTPFqk1lwz76kEfvU4qwkPo86mmBAqGj
- j7gvSEwhD/pG5SR0Qh55xhtbfg==
-X-Google-Smtp-Source: ABdhPJyF2qwliIvI/LNW3ilYwO975TKwRXyUs29RK60LvcJNYZwaiKnp5x/7ZaLEGFTKwLjPhYZ/og==
-X-Received: by 2002:adf:fd01:: with SMTP id e1mr24749831wrr.44.1599565035147; 
- Tue, 08 Sep 2020 04:37:15 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id e18sm39103291wra.36.2020.09.08.04.37.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Sep 2020 04:37:14 -0700 (PDT)
-Date: Tue, 8 Sep 2020 13:37:12 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Gerd Hoffmann <kraxel@redhat.com>
-Subject: Re: [PATCH v4 1/1] drm: allow limiting the scatter list size.
-Message-ID: <20200908113712.GL2352366@phenom.ffwll.local>
-Mail-Followup-To: Gerd Hoffmann <kraxel@redhat.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Ben Skeggs <bskeggs@redhat.com>, Sandy Huang <hjc@rock-chips.com>,
- Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- "moderated list:DRM DRIVERS FOR VIVANTE GPU IP"
- <etnaviv@lists.freedesktop.org>, 
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <freedreno@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>, 
- "moderated list:ARM/Rockchip SoC support"
- <linux-arm-kernel@lists.infradead.org>, 
- "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
- "open list:DRM DRIVERS FOR NVIDIA TEGRA" <linux-tegra@vger.kernel.org>,
- "moderated list:DRM DRIVERS FOR XEN" <xen-devel@lists.xenproject.org>
-References: <20200907112425.15610-1-kraxel@redhat.com>
- <20200907112425.15610-2-kraxel@redhat.com>
- <CAKMK7uGjT73rh=9iuCKAXvC_CaOuygm8PgOQgofkTgH7wRysFw@mail.gmail.com>
- <20200908054858.um34wojjv6uhi7d3@sirius.home.kraxel.org>
- <20200908085544.GI2352366@phenom.ffwll.local>
- <20200908100253.b22sff23737l77bo@sirius.home.kraxel.org>
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680088.outbound.protection.outlook.com [40.107.68.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6480A6E029
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Sep 2020 13:06:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hf42FnKrN2tcDjom8+MckVDj+WtV9//5ZfSYsp3THV9blxp87a7sdPbqpA5utFtRRShczWuAnXzh4NqjMeVK3HQRRgLVRp8US9I8f2VVlKT7H2eov26WAnqo4GCSbqxlWMUhl+T+7/jmUmd5KuwNJclkpF3fTIgiur7dEyVIjdNbO/OeREswg76OlnlvEpqs4u0WnuhHF1SCMPisf7ZIaZG/j5qzaqehQYs8MnePgrjnPkk0qrxjqKFDsmLubeQI2z2TZlptJ5doL9Mxz/rkDpzpT8JS5LxC0GD2jx9Y/xJqg0nOpKCCnxyagAKeKkL5sFWvdt3njjoFrk3V6voesg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MMzSFHSXv+BWk0jRijO5ddStd0dgN+OP6xAXkt2Lguk=;
+ b=U1ARfB0A84//0jF8Bn9KbLTIZ2ocPnqf/ChknU5ddXrOIYHjnvOST807pBz1Qkp0IHkoV4sTsIfaeIA6EPULNV8gkU/xNrVVdyXRirvsEPvPVPctbbdWPQfqE3VUajFY37fM40BU+gQEzXcNwH9UEoJrcUeDZlwGwbWFShXfyCVikki5TxH/WDnKHibrTRyRvCP6ZmabQq8m1161MvU4nRUCxOCTZjSnwR6l7wBhhM/FbUq+8TjWAF/IauwU7p3B0VsPcVWno4skcnnXL1RTp8Nb4hV2B/BILKF5dTneX3riaFPvhfCDdLRDrNralUXzG0x6nZFLHDbMaWmHApkJ1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MMzSFHSXv+BWk0jRijO5ddStd0dgN+OP6xAXkt2Lguk=;
+ b=aAOh6lzUrXQyggVS0kskN1NGpsQvH2JRSqxzrxKA8EheYCwfo5zfxcsm9dQjorUgcb06nIyyP2aref0rS9nrRPxZSnCFkXHJvxV5CQyGzg8ej4vGvjWc5WEqCfKjTcLDsgg0BaQjD+P0dwvjr9j2XIb9YN8GJTedxHuKGyj+qm0=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from BN6PR1201MB0146.namprd12.prod.outlook.com
+ (2603:10b6:405:59::18) by BN8PR12MB3604.namprd12.prod.outlook.com
+ (2603:10b6:408:45::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Tue, 8 Sep
+ 2020 13:06:46 +0000
+Received: from BN6PR1201MB0146.namprd12.prod.outlook.com
+ ([fe80::615d:bea9:8838:92be]) by BN6PR1201MB0146.namprd12.prod.outlook.com
+ ([fe80::615d:bea9:8838:92be%4]) with mapi id 15.20.3348.019; Tue, 8 Sep 2020
+ 13:06:46 +0000
+From: Jonathan Kim <jonathan.kim@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/4] drm/amdgpu: stop resetting xgmi perfmons on disable
+Date: Tue,  8 Sep 2020 09:06:00 -0400
+Message-Id: <20200908130603.10344-1-jonathan.kim@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: YTXPR0101CA0061.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:1::38) To BN6PR1201MB0146.namprd12.prod.outlook.com
+ (2603:10b6:405:59::18)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200908100253.b22sff23737l77bo@sirius.home.kraxel.org>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from jonathan-KFD.amd.com (165.204.55.251) by
+ YTXPR0101CA0061.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::38) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.16 via Frontend
+ Transport; Tue, 8 Sep 2020 13:06:45 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.55.251]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: df03f703-e506-4e85-8c05-08d853f809fe
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3604:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BN8PR12MB36043EE4778797C463D6A79C85290@BN8PR12MB3604.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 73zbrPJpgvhx6Mug2J2YcTK8MSna4bdKcnYtHY0ng59eMKQq445tHC1Ye1IHtdDt57s+vz8LCeL8TvvEf6Q0K5FhCuYLN/urncSDW9+cpne2KuhKNEkNKgTZ5gpCKyrJ5dn1r9cAj1h/eld0qlokQXFcizoNFI+W+yzNSXSUwctrnFeTmQJLGv52vtPgYXeD/iFcL9IEowqNBxyZRQNfUDNbc/tLOn0Vc/+roFVIrb38Km0/Q/QfMfPY2gFADKCZE/KHBj/NmjSpHxgoxRJvQ9cjWCfut3QLXAo/lsijf1BvhWocWg5LEwG2e5Jc6gQ/
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN6PR1201MB0146.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(39860400002)(376002)(396003)(346002)(366004)(36756003)(26005)(956004)(16526019)(2906002)(83380400001)(6916009)(2616005)(186003)(44832011)(7696005)(6486002)(66946007)(8676002)(6666004)(5660300002)(52116002)(54906003)(66476007)(66556008)(316002)(4326008)(478600001)(8936002)(86362001)(1076003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: MrjvuPQPisywfKETQjITr2oZrxlzysORjEnOf52ZlxaAJnbz5JsyAz/FRO59Y5JowETZwWbLhbz41MCSGq0X9bz32FB0Y4tUnuo7Qcy7PfXkktNCuYOAvPjsvJCncjRcP5xLTeNGFZFEREGLEb+a1HEJVLUvA4KZDCmt2MZCJLs7UYYoIxX9PWPAjqwcw3S7Q7siANL8FlfDD5v892DLPQx8I38mIxpXBeKJYJeRSHE5xq3mQTWvzk5Kw2wWZJLeOK1XOUcVsVVgOCmVhT1UxZ7FmcWDMSZwl/qv/GoXZ61tyMQ4tFjdEZ1Sk9SLq1gDm7OXjEcYhhkTAoZPv94DikenGp8goqph0cID3YVyyxVHYekaF74z/TolyN0kgqrkBYoVSGDT21cr6am9L3glw7aRyjSvouv3pkItznyKxh/3vwhw3cP6b7d2ZEnp/qIJP8s8OpjdeRGPKreKczmNb0kzyGxFiZc+t63Fc6VLDYXEOrHIrti1/A+6zXnjBCt7qKrztKd7CssH8qLTpLeLy2+QiQG3mqHcPrSmizqtk969grkJfllY0dvK8gKes4l7EbLWAPNs08yds24PTmKi16ll7gCI0rNs0dYFVoe8sRIwqc/A0wq7zWQIcsKKcHjGpbb4OQj2wkCt4d2VbOEAuw==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: df03f703-e506-4e85-8c05-08d853f809fe
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR1201MB0146.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2020 13:06:46.1045 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IV4snG1erOWuX3NLlBMz5i7gPGy2IN4wA35MUw7eLUc6smv1BuGYF+i16R1DgKU3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3604
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,76 +94,121 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- David Airlie <airlied@linux.ie>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>,
- Sandy Huang <hjc@rock-chips.com>, Thierry Reding <thierry.reding@gmail.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
- Ben Skeggs <bskeggs@redhat.com>, Russell King <linux+etnaviv@armlinux.org.uk>,
- "moderated list:DRM DRIVERS FOR XEN" <xen-devel@lists.xenproject.org>,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "moderated list:DRM DRIVERS FOR VIVANTE GPU IP"
- <etnaviv@lists.freedesktop.org>, Maxime Ripard <mripard@kernel.org>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- "open list:DRM DRIVERS FOR NVIDIA TEGRA" <linux-tegra@vger.kernel.org>,
- Sean Paul <sean@poorly.run>, "moderated list:ARM/Rockchip SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <freedreno@lists.freedesktop.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: Felix.Kuehling@amd.com, Jonathan Kim <Jonathan.Kim@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 08, 2020 at 12:02:53PM +0200, Gerd Hoffmann wrote:
-> > > > The comments I've found suggest very much not ... Or is that all very
-> > > > old stuff only that no one cares about anymore?
-> > > 
-> > > I think these days it is possible to override dma_ops per device, which
-> > > in turn allows virtio to deal with the quirks without the rest of the
-> > > kernel knowing about these details.
-> > > 
-> > > I also think virtio-gpu can drop the virtio_has_dma_quirk() checks, just
-> > > use the dma api path unconditionally and depend on virtio core having
-> > > setup dma_ops in a way that it JustWorks[tm].  I'll look into that next.
-> > 
-> > The comment above vring_use_dma_api() suggests that this has not yet
-> > happened, that's why I'm asking.
-> 
-> Hmm, wading through the code, seems it indeed happen yet, even though my
-> testing didn't show any issues.  Probably pure luck because devices and
-> cpus have the same memory view on x86.  Guess I need to try this on
-> ppc64 to see it actually failing ...
-> 
-> So dropping the virtio_has_dma_quirk() checks isn't going to fly.
-> 
-> Using dma_max_mapping_size() should be fine though.  It might use a
-> lower limit than needed for virtio, but it should not break things.
+Disabling perf events does not specify reset in ABI so stop doing it in
+hardware.
 
-Makes sense. On this patch here:
+Signed-off-by: Jonathan Kim <Jonathan.Kim@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_df.h |  4 ++--
+ drivers/gpu/drm/amd/amdgpu/df_v3_6.c   | 23 ++++++++++++++---------
+ 2 files changed, 16 insertions(+), 11 deletions(-)
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-And I guess would be good if virtio pushes a bit more towards using the
-dma api abstraction fully so we can get rid of these hacks. Virtio feels
-like a driver that really should be using dma-api and not dig around
-behind it because "it' makes stuff 0.5% faster" or so, since being
-virtualized it's already not the king of speed anyway :-)
-
-Cheers, Daniel
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_df.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_df.h
+index 61a26c15c8dd..373cdebe0e2f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_df.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_df.h
+@@ -44,9 +44,9 @@ struct amdgpu_df_funcs {
+ 	void (*enable_ecc_force_par_wr_rmw)(struct amdgpu_device *adev,
+ 					    bool enable);
+ 	int (*pmc_start)(struct amdgpu_device *adev, uint64_t config,
+-					 int is_enable);
++					 int is_add);
+ 	int (*pmc_stop)(struct amdgpu_device *adev, uint64_t config,
+-					 int is_disable);
++					 int is_remove);
+ 	void (*pmc_get_count)(struct amdgpu_device *adev, uint64_t config,
+ 					 uint64_t *count);
+ 	uint64_t (*get_fica)(struct amdgpu_device *adev, uint32_t ficaa_val);
+diff --git a/drivers/gpu/drm/amd/amdgpu/df_v3_6.c b/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
+index 2eab808fffeb..7b89fd2aa44a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
++++ b/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
+@@ -455,7 +455,8 @@ static int df_v3_6_pmc_get_ctrl_settings(struct amdgpu_device *adev,
+ 					  uint32_t *lo_base_addr,
+ 					  uint32_t *hi_base_addr,
+ 					  uint32_t *lo_val,
+-					  uint32_t *hi_val)
++					  uint32_t *hi_val,
++					  bool is_enable)
+ {
+ 
+ 	uint32_t eventsel, instance, unitmask;
+@@ -477,7 +478,8 @@ static int df_v3_6_pmc_get_ctrl_settings(struct amdgpu_device *adev,
+ 	instance_5432 = (instance >> 2) & 0xf;
+ 	instance_76 = (instance >> 6) & 0x3;
+ 
+-	*lo_val = (unitmask << 8) | (instance_10 << 6) | eventsel | (1 << 22);
++	*lo_val = (unitmask << 8) | (instance_10 << 6) | eventsel;
++	*lo_val = is_enable ? *lo_val | (1 << 22) : *lo_val & ~(1 << 22);
+ 	*hi_val = (instance_76 << 29) | instance_5432;
+ 
+ 	DRM_DEBUG_DRIVER("config=%llx addr=%08x:%08x val=%08x:%08x",
+@@ -572,14 +574,14 @@ static void df_v3_6_reset_perfmon_cntr(struct amdgpu_device *adev,
+ }
+ 
+ static int df_v3_6_pmc_start(struct amdgpu_device *adev, uint64_t config,
+-			     int is_enable)
++			     int is_add)
+ {
+ 	uint32_t lo_base_addr, hi_base_addr, lo_val, hi_val;
+ 	int err = 0, ret = 0;
+ 
+ 	switch (adev->asic_type) {
+ 	case CHIP_VEGA20:
+-		if (is_enable)
++		if (is_add)
+ 			return df_v3_6_pmc_add_cntr(adev, config);
+ 
+ 		df_v3_6_reset_perfmon_cntr(adev, config);
+@@ -589,7 +591,8 @@ static int df_v3_6_pmc_start(struct amdgpu_device *adev, uint64_t config,
+ 					&lo_base_addr,
+ 					&hi_base_addr,
+ 					&lo_val,
+-					&hi_val);
++					&hi_val,
++					true);
+ 
+ 		if (ret)
+ 			return ret;
+@@ -612,7 +615,7 @@ static int df_v3_6_pmc_start(struct amdgpu_device *adev, uint64_t config,
+ }
+ 
+ static int df_v3_6_pmc_stop(struct amdgpu_device *adev, uint64_t config,
+-			    int is_disable)
++			    int is_remove)
+ {
+ 	uint32_t lo_base_addr, hi_base_addr, lo_val, hi_val;
+ 	int ret = 0;
+@@ -624,15 +627,17 @@ static int df_v3_6_pmc_stop(struct amdgpu_device *adev, uint64_t config,
+ 			&lo_base_addr,
+ 			&hi_base_addr,
+ 			&lo_val,
+-			&hi_val);
++			&hi_val,
++			false);
+ 
+ 		if (ret)
+ 			return ret;
+ 
+-		df_v3_6_reset_perfmon_cntr(adev, config);
+ 
+-		if (is_disable)
++		if (is_remove) {
++			df_v3_6_reset_perfmon_cntr(adev, config);
+ 			df_v3_6_pmc_release_cntr(adev, config);
++		}
+ 
+ 		break;
+ 	default:
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.17.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
