@@ -2,51 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BC46263EBA
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 09:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C46A263ECA
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 09:29:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD4576E29E;
-	Thu, 10 Sep 2020 07:29:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 350D96E32D;
+	Thu, 10 Sep 2020 07:29:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 800116EDBC
- for <amd-gfx@lists.freedesktop.org>; Wed,  9 Sep 2020 09:39:24 +0000 (UTC)
-Received: from [10.130.0.80] (unknown [113.200.148.30])
- by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxn961olhf294TAA--.4061S3;
- Wed, 09 Sep 2020 17:39:02 +0800 (CST)
-Subject: Re: [PATCH 1/2] drm/radeon: Don't use WC for VRAM if
- !RADEON_GEM_GTT_WC
-To: Huacai Chen <chenhc@lemote.com>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Thomas Gleixner <tglx@linutronix.de>, Jason Cooper <jason@lakedaemon.net>,
- Marc Zyngier <maz@kernel.org>
-References: <1599625320-17637-1-git-send-email-chenhc@lemote.com>
-From: Tiezhu Yang <yangtiezhu@loongson.cn>
-Message-ID: <9fc515b9-bf6d-fa05-880f-1e0b473d1d19@loongson.cn>
-Date: Wed, 9 Sep 2020 17:39:01 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
- Thunderbird/45.4.0
+Received: from huawei.com (szxga06-in.huawei.com [45.249.212.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9767A6EB52;
+ Wed,  9 Sep 2020 13:00:37 +0000 (UTC)
+Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.59])
+ by Forcepoint Email with ESMTP id 65E8EBEA3453F427F1BC;
+ Wed,  9 Sep 2020 21:00:33 +0800 (CST)
+Received: from huawei.com (10.90.53.225) by DGGEMS413-HUB.china.huawei.com
+ (10.3.19.213) with Microsoft SMTP Server id 14.3.487.0; Wed, 9 Sep 2020
+ 21:00:25 +0800
+From: Zheng Bin <zhengbin13@huawei.com>
+To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <airlied@linux.ie>, <daniel@ffwll.ch>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH -next 0/8] drm/amd/amdgpu: fix comparison pointer to bool
+ warning
+Date: Wed, 9 Sep 2020 21:07:12 +0800
+Message-ID: <20200909130720.105234-1-zhengbin13@huawei.com>
+X-Mailer: git-send-email 2.26.0.106.g9fadedd
 MIME-Version: 1.0
-In-Reply-To: <1599625320-17637-1-git-send-email-chenhc@lemote.com>
-X-CM-TRANSID: AQAAf9Dxn961olhf294TAA--.4061S3
-X-Coremail-Antispam: 1UD129KBjvJXoWxAFW3JFy7trW5XFy3tF18Zrb_yoW5XrW5pF
- 4fC39xJwsIy3yqya97JF4q9FZ8ua18Ga40qry5Gw1Uury3JF4rW393Kr43KrZrXry8W3yf
- tFs7CFnxZ3WYvFJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9lb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
- 0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
- A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
- jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwV
- C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
- 0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Gr0_Cr
- 1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
- Mxk0xIA0c2IEe2xFo4CEbIxvr21lc2xSY4AK67AK6r4fMxAIw28IcxkI7VAKI48JMxC20s
- 026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_
- JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14
- v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xva
- j40_WFyUJVCq3wCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r
- 4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUxeT5DUUUU
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+X-Originating-IP: [10.90.53.225]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Thu, 10 Sep 2020 07:29:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,105 +42,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Huacai Chen <chenhuacai@gmail.com>, michel.daenzer@amd.com,
- linux-mips@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- amd-gfx@lists.freedesktop.org, Fuxin Zhang <zhangfx@lemote.com>,
- Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Cc: zhengbin13@huawei.com, yi.zhang@huawei.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 09/09/2020 12:21 PM, Huacai Chen wrote:
-> Though RADEON_GEM_GTT_WC is initially used for GTT, but this flag is
-> bound to drm_arch_can_wc_memory(), and if arch doesn't support WC, then
-> VRAM should not use WC.
+Zheng Bin (8):
+  drm/amd/amdgpu: fix comparison pointer to bool warning in gfx_v9_0.c
+  drm/amd/amdgpu: fix comparison pointer to bool warning in gfx_v10_0.c
+  drm/amd/amdgpu: fix comparison pointer to bool warning in sdma_v5_0.c
+  drm/amd/amdgpu: fix comparison pointer to bool warning in sdma_v5_2.c
+  drm/amd/amdgpu: fix comparison pointer to bool warning in si.c
+  drm/amd/amdgpu: fix comparison pointer to bool warning in uvd_v6_0.c
+  drm/amd/amdgpu: fix comparison pointer to bool warning in
+    amdgpu_atpx_handler.c
+  drm/amd/amdgpu: fix comparison pointer to bool warning in sdma_v4_0.c
 
-+cc RADEON and AMDGPU DRM DRIVERS maintainer
-Alex Deucher <alexander.deucher@amd.com>
-Christian K=F6nig <christian.koenig@amd.com>
-amd-gfx@lists.freedesktop.org
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c           | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c            | 2 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c           | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c           | 2 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c           | 2 +-
+ drivers/gpu/drm/amd/amdgpu/si.c                  | 2 +-
+ drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c            | 4 ++--
+ 8 files changed, 11 insertions(+), 11 deletions(-)
 
-Hi all,
-
-In the current code, if CONFIG_CPU_LOONGSON64 is set, =
-
-drm_arch_can_wc_memory()
-returns false, and then bo->flags clears the flag RADEON_GEM_GTT_WC, so with
-this patch, TTM_PL_FLAG_WC of VRAM is removed on the Loongson platform,
-the writecombine issue for Loongson64 can be fixed [1].
-
-I find this is done by commit 221004c66a58 ("drm: Loongson-3 doesn't fully
-support wc memory"), but I want to know why drm_arch_can_wc_memory() returns
-false for Loongson64, is there some historical reasons?
-
-include/drm/drm_cache.h
-static inline bool drm_arch_can_wc_memory(void)
-{
-#if defined(CONFIG_PPC) && !defined(CONFIG_NOT_COHERENT_CACHE)
-     return false;
-#elif defined(CONFIG_MIPS) && defined(CONFIG_CPU_LOONGSON64)
-     return false;
-#elif defined(CONFIG_ARM) || defined(CONFIG_ARM64)
-...
-}
-
-drivers/gpu/drm/radeon/radeon_object.c
-int radeon_bo_create()
-{
-...
-     if (!drm_arch_can_wc_memory())
-         bo->flags &=3D ~RADEON_GEM_GTT_WC;
-...
-}
-
-[1] https://lore.kernel.org/patchwork/patch/1285542/
-gpu/drm: Remove TTM_PL_FLAG_WC of VRAM to fix writecombine issue for =
-
-Loongson64
-[2] =
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-id=3D221004c66a58
-
-Thanks,
-Tiezhu
-
->
-> Signed-off-by: Huacai Chen <chenhc@lemote.com>
-> ---
->   drivers/gpu/drm/radeon/radeon_object.c | 14 ++++++++++----
->   1 file changed, 10 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/radeon/radeon_object.c b/drivers/gpu/drm/rad=
-eon/radeon_object.c
-> index f3dee01..07b82d9 100644
-> --- a/drivers/gpu/drm/radeon/radeon_object.c
-> +++ b/drivers/gpu/drm/radeon/radeon_object.c
-> @@ -117,10 +117,16 @@ void radeon_ttm_placement_from_domain(struct radeon=
-_bo *rbo, u32 domain)
->   						     TTM_PL_FLAG_VRAM;
->   		}
->   =
-
-> -		rbo->placements[c].fpfn =3D 0;
-> -		rbo->placements[c++].flags =3D TTM_PL_FLAG_WC |
-> -					     TTM_PL_FLAG_UNCACHED |
-> -					     TTM_PL_FLAG_VRAM;
-> +		if (rbo->flags & RADEON_GEM_GTT_WC) {
-> +			rbo->placements[c].fpfn =3D 0;
-> +			rbo->placements[c++].flags =3D TTM_PL_FLAG_WC |
-> +						     TTM_PL_FLAG_UNCACHED |
-> +						     TTM_PL_FLAG_VRAM;
-> +		} else {
-> +			rbo->placements[c].fpfn =3D 0;
-> +			rbo->placements[c++].flags =3D TTM_PL_FLAG_UNCACHED |
-> +						     TTM_PL_FLAG_VRAM;
-> +		}
->   	}
->   =
-
->   	if (domain & RADEON_GEM_DOMAIN_GTT) {
+--
+2.26.0.106.g9fadedd
 
 _______________________________________________
 amd-gfx mailing list
