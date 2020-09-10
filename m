@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 842A2264741
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:47:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FEC1264748
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:47:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 135AE6E93F;
-	Thu, 10 Sep 2020 13:47:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B800B6E961;
+	Thu, 10 Sep 2020 13:47:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2077.outbound.protection.outlook.com [40.107.93.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D19296E93E
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:47:34 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2052.outbound.protection.outlook.com [40.107.237.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 928E76E93F
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:47:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YddLNa+HYeYL2rjfFgOWqMDH+GCn9uF4K00/Ixb+xqpOMTgoL0EyA98v0YeMNBdGi2Thu8x1Zm0qI8VCNxECQV3Is6PB3xuguWeGSGS9zXuYPhpTBEaaaeB5YgB8o/WcSCtGEPku9WuqxrJFTFc8mQmCiYjJrv+v+Wxvn4DDyegZTsarblLPUUH1K7Qsyu5fQMyi/MISo7cc4Q9i0unb4vVwCWubLpC4NCNnuWDYeu/2rLboEfoM3GbgOI5b6573JSi17bnFFEz5QyiJbtiyh8CGAiHeretw63NDdBqKHE6vNQOuhj2LD5j2PqH7qmojk5W4d7xDgqGKc7Yz4yv4Jw==
+ b=cTEkTPfANgISipz9LODc9c9bS1KS6XANezTchFqpjr2IPecd2LZ3WGw5sYl5xqNjPW9UJlvjofEJtu9J/idagc3gaiw4KNcBNBz0Cg/lx+hPH9eg2lc6CUl2q2yiIJq9ffdfurLrRtSAgvENV8R9BeECEQfZXHtJ/4d+iBUIdTjbWT1dSK/+pHOPX639LUcNX7KapmSyXxdAZD29GQDejYo5uNNKF+hAztlhS6L7VXC/4JfTn+6csZLliq+WgVWqyRaovsR3C9axNmm86ZtPOOpZPFcgMB1COm3mwa76d7RB3NiUBL0mTic0LMqTOu/8viSjpEzD0U1iDoMNFOi4Lg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SBPchVjbLjOrukdMElLHb791KDSfCeN9kMvaXKB2q/4=;
- b=Y+aREbSZsRonl0pmcBIPgKEiCbXqEN9K30lxKRQZCzWTjMeOgIfhWQvvgPJgdVgdpgUp6L7rnK+Bw90HKFSxUrzgCvIN3aXktba7wisYqPbpe5/fMVn/1V5Bq4f9U8pcoj6iy9AvN3kFBkQeUqMjrqYTm19ugTTmDU+H8R/KFoIAz9L7KhETsRctx/FJOlUTNPJb3e6dQYDD/KEIPauzexuyfBqAL9UboRVxzADvkFGrJp7GBwEBrJxDxMkIqWxTG9EwEmDCiJJBlZP0lydOIMTqqWLY3jWa/0cDz0pe5zuJw3AUrVk9q9BIeC8C98ispnSFloWz+D5rCCorWHZXKA==
+ bh=RXTe6rXzoqsyMLU3mtEJ1msLHoH+PMVciE8G/MO62Hg=;
+ b=QKlbDkWxCvlxAfPvxYvKWh+Bp2Cntoora4IGojX5AS/DoAstThb83O8NtzYRRgac+LTBarbL7wQE1RWcVVSCS4IDIAojR0IUqzbEdNitudSN63mxHk/AAcmsNJo1a/JLPycoYstTxxxZVy+4nZp3xEBekN2xVxNFx+0mBawTYYhJJ8c88vYjWnWmVT2BBXWpXRUPRZhT2b+GuyKdq+RA9Tgq5wpCxQf0W2pop1XJgsDRPqIL42JsLfJ1psU5mEEBOfv56aS2+Bmcb9t4aOZmLX0h8xtPzrB92z1aD0cTydQzs1bFT5Q7wRE6hiRSigxIiwc/Wwqasa/zLnH9lnE/pQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,40 +27,44 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SBPchVjbLjOrukdMElLHb791KDSfCeN9kMvaXKB2q/4=;
- b=wCajlwhr3k0vBecWtRG4iPe7KXmQlh7Q/Em3y+6dVOOhiHg/pMNsXl/gwEm4WScR62pPzrbVNyNz89zSzL7+/jys8ZQ2rRFfMqsd82BlEAC/L9KkLENh7hUgez+LPWrTDNgjGEwv20QTjTQQ0r5cqPJ4uOi1ujcaPlCV1B0ezwQ=
-Received: from BN6PR04CA0084.namprd04.prod.outlook.com (2603:10b6:404:8d::34)
- by MW3PR12MB4345.namprd12.prod.outlook.com (2603:10b6:303:59::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 10 Sep
- 2020 13:47:32 +0000
-Received: from BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:8d:cafe::16) by BN6PR04CA0084.outlook.office365.com
- (2603:10b6:404:8d::34) with Microsoft SMTP Server (version=TLS1_2,
+ bh=RXTe6rXzoqsyMLU3mtEJ1msLHoH+PMVciE8G/MO62Hg=;
+ b=gEVnP6oknU2WOvp4NkPxCl3LreRvQ86+L9XIYlTChMux4J5khadHwfjLboqoO969TnqFghIjCoOXV6H1PeDHYDdJFDf2kVRFVYzgUGwfwSvzxNlMZa1oOt0akTDOAZdTVf5jeZp1ZzcL04Enq7DyGwbAcAtFE1+poQtbq6etkAo=
+Received: from DM6PR03CA0019.namprd03.prod.outlook.com (2603:10b6:5:40::32) by
+ SN1PR12MB2430.namprd12.prod.outlook.com (2603:10b6:802:30::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3348.15; Thu, 10 Sep 2020 13:47:33 +0000
+Received: from DM6NAM11FT023.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:40:cafe::7c) by DM6PR03CA0019.outlook.office365.com
+ (2603:10b6:5:40::32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend
- Transport; Thu, 10 Sep 2020 13:47:32 +0000
+ Transport; Thu, 10 Sep 2020 13:47:33 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT004.mail.protection.outlook.com (10.13.176.164) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ DM6NAM11FT023.mail.protection.outlook.com (10.13.173.96) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 13:47:32 +0000
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 13:47:33 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Thu, 10 Sep
+ 2020 08:47:33 -0500
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Thu, 10 Sep
  2020 08:47:32 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Thu, 10 Sep 2020 08:47:31 -0500
+ Transport; Thu, 10 Sep 2020 08:47:32 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 12/42] drm/amd/display: always use 100us for cr aux rd interval
-Date: Thu, 10 Sep 2020 09:46:53 -0400
-Message-ID: <20200910134723.27410-13-aurabindo.pillai@amd.com>
+Subject: [PATCH 13/42] drm/amd/display: Only use offset for first ODM pipe
+Date: Thu, 10 Sep 2020 09:46:54 -0400
+Message-ID: <20200910134723.27410-14-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200910134723.27410-1-aurabindo.pillai@amd.com>
 References: <20200910134723.27410-1-aurabindo.pillai@amd.com>
@@ -68,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 72febab2-ab1a-411b-63d5-08d855901142
-X-MS-TrafficTypeDiagnostic: MW3PR12MB4345:
-X-Microsoft-Antispam-PRVS: <MW3PR12MB4345F71ABE4EB03E04F9A3428B270@MW3PR12MB4345.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:862;
+X-MS-Office365-Filtering-Correlation-Id: 75a85881-a1f2-407d-9e52-08d8559011ec
+X-MS-TrafficTypeDiagnostic: SN1PR12MB2430:
+X-Microsoft-Antispam-PRVS: <SN1PR12MB2430B42E270AFD17336C21B68B270@SN1PR12MB2430.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Tj2vJEr1QetcDd+Cb7sIGerqIKC3nr3O//jDtjA7Uly6ChgM+WE0DQEAEQNwQOH79DOuZeJyW0vlFizKQ/w/55GfWahHTnA00OzxSOgxdSR1UprFDtqbKZ+MHWVjYHw8XXAS6tx3XFROW7HOxdbw8w6aEXde2YlPlkhNvo812xbpHnX5Rg15dnrgUplj1R+g8lVfhbkUZcuY+TIK9cySTgxwFjiC5OpmvhcNkUOHoDMyk98Edu2iil7xKlLthiOahb7Rkqmk5StXZirf5s7MBQuzzyIqXSLv2T7GuFqpiGjLwJjmJFBsm+qt4T06bvyRrNIx+qRO8+6lYoLzONQ66dkuOeCSExspbMTzycVdp1E3LPhj37hWr2SGxPA3L3VhCIrv0wSwuQXwxjOpCEwYcQ==
+X-Microsoft-Antispam-Message-Info: 7x1VpxqojDbFLADkCtMczgPsWTrLw8kN6hvww3O8Dea6XR7AEIQDLeJs/y8rYWVtIKa5yBD88wlX4rvM+ecO+JiL5Rmp3X3a3vgok67raX4mvnSC4yIvDSfD7/WukL0VIaaJ/dTkrdrgZn/iqUtvm9KdC3ONZohYcvgkYE/bGX8kfjVW9P63QWl5opIo8jHhEOswyIeA3lHu6AeLqAzXgx7Al/rWaBK28mdStpuXG4LnRkEIGKbQD100hstVu6dPxgw2/uO2qcufC6XHDxTRGvcj3DoJ9o5OW7z1uAsPXGyFRFN2kw1WX1bCkI7lcGPUi7zMNa+JcILToUueLPBUQkbwEd0X21mgLbWeIKDlDoRg+41M/tiZSZkkxsYKggQ8IlCbQY8srMRe7v549gZ7zw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(376002)(136003)(346002)(396003)(39860400002)(46966005)(44832011)(7696005)(6916009)(316002)(83380400001)(26005)(54906003)(336012)(478600001)(70206006)(186003)(356005)(70586007)(8676002)(36756003)(81166007)(4326008)(426003)(2906002)(5660300002)(1076003)(86362001)(82310400003)(82740400003)(6666004)(8936002)(2616005)(47076004);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(136003)(39860400002)(346002)(376002)(396003)(46966005)(478600001)(86362001)(2616005)(70586007)(316002)(7696005)(426003)(82310400003)(4326008)(1076003)(336012)(5660300002)(44832011)(8676002)(8936002)(81166007)(70206006)(6666004)(36756003)(83380400001)(54906003)(26005)(356005)(47076004)(82740400003)(2906002)(6916009)(186003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:47:32.5700 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72febab2-ab1a-411b-63d5-08d855901142
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:47:33.6456 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75a85881-a1f2-407d-9e52-08d8559011ec
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT023.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4345
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2430
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,81 +104,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Wenjing Liu <wenjing.liu@amd.com>, Aurabindo.Pillai@amd.com,
- Bhawanpreet.Lakha@amd.com
+Cc: Wesley Chalmers <Wesley.Chalmers@amd.com>, Eryk.Brol@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wenjing Liu <wenjing.liu@amd.com>
+From: Wesley Chalmers <Wesley.Chalmers@amd.com>
 
-[why]
-It is a regression caused by below commit.
-I1654c11ba3e229e17483959e0f66319d7de9e320
-In this commit the cr training aux rd interval is
-modified without following specs requirements.
-According to the commit message the change was not intended to modify the value.
-Therefore it looks like it is caused by a typo in the change.
+[WHY]
+Only the first pipe in ODM combine group should have nonzero recout
+offset. All other pipes should have recout offset 0;
+otherwise there will be gaps in the image.
 
-Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+[HOW]
+Set recout.x to 0 if the pipe is not the leftmost ODM pipe.
+
+When computing viewports, calculate the horizontal offset of a pipe's src
+based on the current pipe's position in the ODM group, plus whatever offset the
+leftmost ODM pipe has; otherwise there will be discontinuity in the image.
+
+Since ODM combine can only combine pipes horizontally, nothing needs to
+be done for recout.y.
+
+Signed-off-by: Wesley Chalmers <Wesley.Chalmers@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 29 ++++++++++++-------
+ 1 file changed, 19 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 2334ec428098..e4b3b71dad03 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -49,14 +49,14 @@ static struct dc_link_settings get_common_supported_link_settings(
- 		struct dc_link_settings link_setting_a,
- 		struct dc_link_settings link_setting_b);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index c6b737dd8425..4cea9344d8aa 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -782,7 +782,13 @@ static void calculate_recout(struct pipe_ctx *pipe_ctx)
  
--static uint32_t get_training_aux_rd_interval(
-+static uint32_t get_eq_training_aux_rd_interval(
- 	struct dc_link *link,
--	uint32_t default_wait_in_micro_secs)
-+	const struct dc_link_settings *link_settings)
+ 	calculate_split_count_and_index(pipe_ctx, &split_count, &split_idx);
+ 
+-	data->recout.x = stream->dst.x;
++	/*
++	 * Only the leftmost ODM pipe should be offset by a nonzero distance
++	 */
++	if (!pipe_ctx->prev_odm_pipe)
++		data->recout.x = stream->dst.x;
++	else
++		data->recout.x = 0;
+ 	if (stream->src.x < surf_clip.x)
+ 		data->recout.x += (surf_clip.x - stream->src.x) * stream->dst.width
+ 						/ stream->src.width;
+@@ -957,7 +963,7 @@ static void calculate_inits_and_adj_vp(struct pipe_ctx *pipe_ctx)
  {
- 	union training_aux_rd_interval training_rd_interval;
-+	uint32_t wait_in_micro_secs = 400;
- 
- 	memset(&training_rd_interval, 0, sizeof(training_rd_interval));
--
- 	/* overwrite the delay if rev > 1.1*/
- 	if (link->dpcd_caps.dpcd_rev.raw >= DPCD_REV_12) {
- 		/* DP 1.2 or later - retrieve delay through
-@@ -68,10 +68,10 @@ static uint32_t get_training_aux_rd_interval(
- 			sizeof(training_rd_interval));
- 
- 		if (training_rd_interval.bits.TRAINIG_AUX_RD_INTERVAL)
--			default_wait_in_micro_secs = training_rd_interval.bits.TRAINIG_AUX_RD_INTERVAL * 4000;
-+			wait_in_micro_secs = training_rd_interval.bits.TRAINIG_AUX_RD_INTERVAL * 4000;
+ 	const struct dc_plane_state *plane_state = pipe_ctx->plane_state;
+ 	const struct dc_stream_state *stream = pipe_ctx->stream;
+-	struct pipe_ctx *odm_pipe = pipe_ctx->prev_odm_pipe;
++	struct pipe_ctx *odm_pipe = pipe_ctx;
+ 	struct scaler_data *data = &pipe_ctx->plane_res.scl_data;
+ 	struct rect src = pipe_ctx->plane_state->src_rect;
+ 	int recout_skip_h, recout_skip_v, surf_size_h, surf_size_v;
+@@ -988,21 +994,24 @@ static void calculate_inits_and_adj_vp(struct pipe_ctx *pipe_ctx)
+ 		swap(src.width, src.height);
  	}
  
--	return default_wait_in_micro_secs;
-+	return wait_in_micro_secs;
- }
++	/*modified recout_skip_h calculation due to odm having no recout offset*/
++	while (odm_pipe->prev_odm_pipe) {
++		odm_idx++;
++		odm_pipe = odm_pipe->prev_odm_pipe;
++	}
++	/*odm_pipe is the leftmost pipe in the ODM group*/
++	recout_skip_h = odm_idx * data->recout.width;
++
+ 	/* Recout matching initial vp offset = recout_offset - (stream dst offset +
+ 	 *			((surf dst offset - stream src offset) * 1/ stream scaling ratio)
+ 	 *			- (surf surf_src offset * 1/ full scl ratio))
+ 	 */
+-	recout_skip_h = data->recout.x - (stream->dst.x + (plane_state->dst_rect.x - stream->src.x)
++	recout_skip_h += odm_pipe->plane_res.scl_data.recout.x
++				- (stream->dst.x + (plane_state->dst_rect.x - stream->src.x)
+ 					* stream->dst.width / stream->src.width -
+ 					src.x * plane_state->dst_rect.width / src.width
+ 					* stream->dst.width / stream->src.width);
+-	/*modified recout_skip_h calculation due to odm having no recout offset*/
+-	while (odm_pipe) {
+-		odm_idx++;
+-		odm_pipe = odm_pipe->prev_odm_pipe;
+-	}
+-	if (odm_idx)
+-		recout_skip_h += odm_idx * data->recout.width;
++
  
- static void wait_for_training_aux_rd_interval(
-@@ -1251,12 +1251,12 @@ static void initialize_training_settings(
- 	if (overrides->cr_pattern_time != NULL)
- 		lt_settings->cr_pattern_time = *overrides->cr_pattern_time;
- 	else
--		lt_settings->cr_pattern_time = get_training_aux_rd_interval(link, 100);
-+		lt_settings->cr_pattern_time = 100;
- 
- 	if (overrides->eq_pattern_time != NULL)
- 		lt_settings->eq_pattern_time = *overrides->eq_pattern_time;
- 	else
--		lt_settings->eq_pattern_time = get_training_aux_rd_interval(link, 400);
-+		lt_settings->eq_pattern_time = get_eq_training_aux_rd_interval(link, link_setting);
- 
- 	if (overrides->pattern_for_cr != NULL)
- 		lt_settings->pattern_for_cr = *overrides->pattern_for_cr;
+ 	recout_skip_v = data->recout.y - (stream->dst.y + (plane_state->dst_rect.y - stream->src.y)
+ 					* stream->dst.height / stream->src.height -
 -- 
 2.25.1
 
