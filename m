@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B1F26473C
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 327DC264742
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:47:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4F226E93A;
-	Thu, 10 Sep 2020 13:47:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 710D76E940;
+	Thu, 10 Sep 2020 13:47:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760045.outbound.protection.outlook.com [40.107.76.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F00E16E933
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:47:29 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2087.outbound.protection.outlook.com [40.107.92.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC5A86E93D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:47:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IP3K62dJRiaYOYgz9kekZu5lUtMRBykfqdG45cKLEYtL4Igm248t2f8cYp5yBky7rCG1h8shq62Bv3UOzW6/HtZ4HhDcYrxYmDq0yBX3tnhg1gnXS74Mr7Az3w4krbkwIq1L6VX1HI+csS+/Ui+cPsAPxTup8H3A1QFsvTyeU8cSaGrcSRXXEWozqsncu3KScEQHLfoZfSZkxMqipNz/Wczy99a9GiygupLQLHYKqSPqgVoXij3j/667/6zru8pDNWK/g9DnQukv7yyN/Ki8Gj2X/DZJ+c6Gnx1nRfnDPzurt6BcuvSRcxZyksvUHyFdVdA3qdI+jrAO+kLn1fGdMw==
+ b=O7EDjG4WBcrbcUeLYPJSzGROLgoIyoJTSueWzO90IUMgp3s1gFt+kEJQ5CqwWNVodZZNtM4LczEu0lU+IFHhAp2pnUPPqAa4WxxP4Cjb1cEfr2OhuDKT2GZ2BWTwQNc7PdSWDwBBVyjL95gRdgV4Or07aC7OzOhhZT8qBi4CV7hlVqxK/+DcOW8V/SCXHDxjowvearx4AnR2p6CQgr7IcSHDHY54JyO4ELfj4+S35FhhM/stBJG+rRRg6nhgRXssscfrSAvesI1YdIMPRN38dT0Msw8Z4B56iwPxSK5c/2gNwQmcWP4MLYelGeltdoKmzMXNDAuh9BXu2JaZjsevfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cO3FDOk1BFNXfFxAlf/S5au5n9600Rcwgw710sth8Xw=;
- b=eW6nOLDF75mskFKqocNEb0y+04+d2jE5no4AkhLTaYxlCULw3fjBxB40KrqVfpFQ11CkCjGBglnrFBi8b1G5uwtbo+RmyJTzOSKcQZ8xDxbvjoRHMBbeZpQSQJrCeIBv6s0wP7C0v1g/cl5f7P6mtg1hHFTp+opk/CQF04qjnO0sPwmZvCcojOvg6exxUXayfuTY8gR1Kyxwu1/aI2/tZvetOYYFmGTQTeoRJ9sX4vJaKfGI7HKALoe31UYS0R3PqY/CEcEUeb7OkQWfRTwMhmOH/fkDdNqd5qF1pDjUZkYUDthz2sFGaBdPuQgU93a6Y2H3ynYMQg7ofjr/STvmPw==
+ bh=qo2b/7JtpFhsXhI2zZVVK4cnFXZZS70OiYwpkVs0x+k=;
+ b=AONgorDvOsSShAkDKEeEcC4XeRr3GPbYVYuuqiXYWJ+v8bXaThZRwijCP8d/iPmOw2X8mKo4lU2zvs7ejCwMJwBducknn13suAKt4iNYgj1IluP/sGz7QN0WACnaNxkhS/aJFib/XGAHu57v0eBZCvKlvv66dcSLyMwxXM5UNaSRl5KciG1HeOcWF3fUCwIe9BKzuDE7JaH3F+0Rim/7nTKWr1zPli9RsdXJXmiY6k5BimPCQn6M6Ji3Kh2eW5f1PV2ZXbch4AC1nTDWdLc3k7kTcYhqkDAMyfVEhPOEvXG+PX2qhqvk1SesSYHzzZiiSF9BIk7zxrge3B5SLctreQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,16 +27,16 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cO3FDOk1BFNXfFxAlf/S5au5n9600Rcwgw710sth8Xw=;
- b=gHXbiC7TtYDb9WxHpMwKumRdRvmwLsN3fT60PhW8mjDH8A6TvWRtVznnUqWM8V49qbjrC9ndnfxAS+IHxqHiS+a/67PXnCJdatKLCic++mAs7tWMcYZLUzzbIoZnBw7mvFmMxeLzdBU49t82ieAwCHgYST83ejuIiYKnUcQhUm8=
-Received: from DM5PR07CA0066.namprd07.prod.outlook.com (2603:10b6:4:ad::31) by
- DM6PR12MB3434.namprd12.prod.outlook.com (2603:10b6:5:3b::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3370.16; Thu, 10 Sep 2020 13:47:28 +0000
-Received: from DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:ad:cafe::82) by DM5PR07CA0066.outlook.office365.com
- (2603:10b6:4:ad::31) with Microsoft SMTP Server (version=TLS1_2,
+ bh=qo2b/7JtpFhsXhI2zZVVK4cnFXZZS70OiYwpkVs0x+k=;
+ b=D+H5ho5UO9MMs7NOg+TtkWd5GibjGhkIJoVZJFPxJ3Cx91yDWd8eOeBu4AsLCn0PndikZPFSl1ynB54tQJ2wZOKHv/TuvYMGlGgBHa2VKzmGvuAF+OwSxzLaRHe07bq6fYog8aVTk9LCtEHriRSnIGk6wFqHG2E6lX2nvhh3APQ=
+Received: from BN6PR2001CA0035.namprd20.prod.outlook.com
+ (2603:10b6:405:16::21) by CY4PR1201MB0168.namprd12.prod.outlook.com
+ (2603:10b6:910:1d::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 10 Sep
+ 2020 13:47:29 +0000
+Received: from BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:405:16:cafe::78) by BN6PR2001CA0035.outlook.office365.com
+ (2603:10b6:405:16::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend
  Transport; Thu, 10 Sep 2020 13:47:28 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
@@ -45,26 +45,27 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- DM6NAM11FT020.mail.protection.outlook.com (10.13.172.224) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ BN8NAM11FT034.mail.protection.outlook.com (10.13.176.139) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 13:47:28 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Thu, 10 Sep
- 2020 08:47:27 -0500
+ 2020 08:47:28 -0500
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Thu, 10 Sep
- 2020 08:47:27 -0500
+ 2020 08:47:28 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Thu, 10 Sep 2020 08:47:26 -0500
+ Transport; Thu, 10 Sep 2020 08:47:27 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/42] drm/amd/display: Add CP_IRQ clear capability
-Date: Thu, 10 Sep 2020 09:46:46 -0400
-Message-ID: <20200910134723.27410-6-aurabindo.pillai@amd.com>
+Subject: [PATCH 06/42] drm/amd/display: Compare mpcc_inst to mpcc_count
+ instead of a constant
+Date: Thu, 10 Sep 2020 09:46:47 -0400
+Message-ID: <20200910134723.27410-7-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200910134723.27410-1-aurabindo.pillai@amd.com>
 References: <20200910134723.27410-1-aurabindo.pillai@amd.com>
@@ -72,27 +73,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3c1364b6-3ad6-4ccc-5850-08d855900ea2
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3434:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB34345E03375AA0A2D5057A4C8B270@DM6PR12MB3434.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1728;
+X-MS-Office365-Filtering-Correlation-Id: f6991bcc-7ce6-4353-4bbe-08d855900ee8
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0168:
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB01685D3B430FA5D3286031F88B270@CY4PR1201MB0168.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:260;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hp2MyzfIz5R3ziAMktaZbwNh5tYUHR/fJD6ykYCm7xcOZxus4GxW1aTlyicxDM+9wQauBgp/kIZUZY4h2Rt9ZjcctKc5QK9vZxq7cek90ap2MNR4A7aVMCTXoG+YcHwzuM0YirHIOhuBQfZHJCWVdrwhSIgEmvEdwOZpJKcOP6Pd8hzrpYSAVqfqjQe20gYLAksIruM7rCQ6bjPGliCIe1iBBXwEsAcGphI9h7zU3l34iwUMQVDb2tFwBwinzmgfbNu7OMZqxZZJCpC8AoEFVCjV/ZKF0r7NfD0krK4GiaF6U62q33OBJZxnexrXdYYFfF6UdkBNH8JS2Qv088rkCI0F0AF4aV00Lx5M0ukMKeeKuGMOql59ZdOSjP9en/H+/dtj73PB+MT1G5bHrj23fw==
+X-Microsoft-Antispam-Message-Info: J4qhXQTagIPWeEvFwYaenQRabkHhmE1IK2IqILzA/E2yBPdEa81jYiFZ+21KeCWyNfffgW86PzjJHsfyrN0/QWna6Hejtb4MZtS3peJOZMKtM0cSWaaWQs8q/5MCeZzMEKZ+IvlcI0j51JxlwnMOp4TFtNDSPHdCtsjA2WoFZD3WBadfLqrBD4NXd5693RW17VPivptCWWyH7iUyYlqykSL+4TyzhB2iUr4tIhTBXIGAM+OolWczhxQBYgAhelDnJA2XOwrhnd7aIOfuL69DH+ex8dZqsIFpAtOtUOi9DUJxM8Gs9lU1UW1VmX7lkoshmQlEXhSL6HMS3tIQhQkhFnwHLPLwtLmP1rnw2qUeGQLkJ9mT1rUxhLNO/FkuctXpR5wYsJc6DSUEEDATKnyRTg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(136003)(39860400002)(376002)(396003)(46966005)(8936002)(7696005)(4326008)(83380400001)(6916009)(2906002)(54906003)(36756003)(86362001)(82740400003)(47076004)(2616005)(336012)(478600001)(44832011)(70586007)(316002)(426003)(356005)(81166007)(82310400003)(26005)(6666004)(5660300002)(186003)(8676002)(70206006)(1076003);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(376002)(39860400002)(396003)(346002)(136003)(46966005)(1076003)(6666004)(8936002)(2906002)(70206006)(70586007)(5660300002)(36756003)(86362001)(6916009)(26005)(7696005)(44832011)(8676002)(186003)(2616005)(336012)(426003)(316002)(4326008)(54906003)(478600001)(82310400003)(81166007)(356005)(47076004)(82740400003)(83380400001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:47:28.1187 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c1364b6-3ad6-4ccc-5850-08d855900ea2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:47:28.6241 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6991bcc-7ce6-4353-4bbe-08d855900ee8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3434
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0168
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,90 +105,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Harmanprit Tatla <harmanprit.tatla@amd.com>, Aurabindo.Pillai@amd.com,
- Bhawanpreet.Lakha@amd.com
+Cc: Joshua Aberback <joshua.aberback@amd.com>, Eryk.Brol@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Harmanprit Tatla <harmanprit.tatla@amd.com>
+From: Joshua Aberback <joshua.aberback@amd.com>
 
 [Why]
-Currently we do not clear the CP_IRQ bit upon receiving it.
+This assert triggers a false negative because there are more than 4 MPCCs
+on many asics.
 
 [How]
-Added a function to clear CP_IRQ bit.
+ - change assert comparisson
+ - remove unused variable
 
-Signed-off-by: Harmanprit Tatla <harmanprit.tatla@amd.com>
+Signed-off-by: Joshua Aberback <joshua.aberback@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../gpu/drm/amd/display/modules/hdcp/hdcp.c   |  9 +++++++++
- .../gpu/drm/amd/display/modules/hdcp/hdcp.h   |  1 +
- .../drm/amd/display/modules/hdcp/hdcp_ddc.c   | 19 +++++++++++++++++++
- 3 files changed, 29 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
-index e9fbd94f8635..a82975970e87 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
-@@ -470,6 +470,15 @@ enum mod_hdcp_status mod_hdcp_process_event(struct mod_hdcp *hdcp,
- 		if (reset_status != MOD_HDCP_STATUS_SUCCESS)
- 			push_error_status(hdcp, reset_status);
- 	}
-+
-+	/* Clear CP_IRQ status if needed */
-+	if (event_ctx.event == MOD_HDCP_EVENT_CPIRQ &&
-+			event_ctx.unexpected_event == 0) {
-+		status = mod_hdcp_clear_cp_irq_status(hdcp);
-+		if (status != MOD_HDCP_STATUS_SUCCESS)
-+			push_error_status(hdcp, status);
-+	}
-+
- 	return status;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
+index a5d750ed569e..1390ff1ce7be 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
+@@ -220,15 +220,13 @@ static void dcn30_set_writeback(
+ 		struct dc_writeback_info *wb_info,
+ 		struct dc_state *context)
+ {
+-	struct dwbc *dwb;
+ 	struct mcif_wb *mcif_wb;
+ 	struct mcif_buf_params *mcif_buf_params;
  
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
-index b0cefed2eb02..6c678cfb82e3 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
-@@ -386,6 +386,7 @@ enum mod_hdcp_status mod_hdcp_write_eks(struct mod_hdcp *hdcp);
- enum mod_hdcp_status mod_hdcp_write_repeater_auth_ack(struct mod_hdcp *hdcp);
- enum mod_hdcp_status mod_hdcp_write_stream_manage(struct mod_hdcp *hdcp);
- enum mod_hdcp_status mod_hdcp_write_content_type(struct mod_hdcp *hdcp);
-+enum mod_hdcp_status mod_hdcp_clear_cp_irq_status(struct mod_hdcp *hdcp);
+ 	ASSERT(wb_info->dwb_pipe_inst < MAX_DWB_PIPES);
+ 	ASSERT(wb_info->wb_enabled);
+ 	ASSERT(wb_info->mpcc_inst >= 0);
+-	ASSERT(wb_info->mpcc_inst < 4);
+-	dwb = dc->res_pool->dwbc[wb_info->dwb_pipe_inst];
++	ASSERT(wb_info->mpcc_inst < dc->res_pool->mpcc_count);
+ 	mcif_wb = dc->res_pool->mcif_wb[wb_info->dwb_pipe_inst];
+ 	mcif_buf_params = &wb_info->mcif_buf_params;
  
- /* hdcp version helpers */
- static inline uint8_t is_dp_hdcp(struct mod_hdcp *hdcp)
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c
-index bb5130f4228d..9dd8c854fd81 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c
-@@ -645,3 +645,22 @@ enum mod_hdcp_status mod_hdcp_write_content_type(struct mod_hdcp *hdcp)
- 		status = MOD_HDCP_STATUS_INVALID_OPERATION;
- 	return status;
- }
-+
-+enum mod_hdcp_status mod_hdcp_clear_cp_irq_status(struct mod_hdcp *hdcp)
-+{
-+	uint8_t clear_cp_irq_bit = 2;
-+	uint32_t size = 1;
-+
-+	if (is_dp_hdcp(hdcp)) {
-+		if (hdcp->connection.link.dp.rev >= 0x14)
-+			return hdcp->config.ddc.funcs.write_dpcd(hdcp->config.ddc.handle,
-+					DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0, &clear_cp_irq_bit, size)
-+					? MOD_HDCP_STATUS_SUCCESS : MOD_HDCP_STATUS_DDC_FAILURE;
-+		else
-+			return hdcp->config.ddc.funcs.write_dpcd(hdcp->config.ddc.handle,
-+					DP_DEVICE_SERVICE_IRQ_VECTOR, &clear_cp_irq_bit, size)
-+					? MOD_HDCP_STATUS_SUCCESS : MOD_HDCP_STATUS_DDC_FAILURE;
-+	}
-+
-+	return MOD_HDCP_STATUS_INVALID_OPERATION;
-+}
 -- 
 2.25.1
 
