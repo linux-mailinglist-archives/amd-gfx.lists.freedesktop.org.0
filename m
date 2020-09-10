@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0621926474F
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:47:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E956126474D
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:47:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB736E954;
-	Thu, 10 Sep 2020 13:47:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF7756E934;
+	Thu, 10 Sep 2020 13:47:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2087.outbound.protection.outlook.com [40.107.243.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E571E6E945
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:47:39 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2059.outbound.protection.outlook.com [40.107.220.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48DFD6E945
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:47:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QnoSsc785urB4XqoYggJeDxW5UW+er4QU0dvClIkjAT0VfkFwmJ8zVuGqWVO0elS2l/nV94wlJhqJoF/tgIa5uHEMRxSwF5xgviZ+0Xf3Op+GUutoICSsatZlxeBgoArYP107nRdABS9+DTxrcQRDUfnwox8wZXbosSahF3Ypi4OaA4M8Cif0ux+mhvzJH8RDLmuKKRwbSZrLYwSIRYtk5SZ1DmGT3+bxZthAVAqatJe5Dbp8cwA+npXTEEJhk6AZ581FywVtBLjh775HuH/e7RWCqn/2WB3UXdt0qfgI3soqiki/+oF9CahNhwzIFMBvRnvFu5vwAlghc5UiLlNJw==
+ b=Q6OR04ZdNCCoF3u0N4M3zX4z/7Zf/2BeJGk+oN91GCKgvqDdLQMpJS5/mPvi4h3jBms/oldfg28kfwIFMM7d6lzV4xHzy88iNzF9i9f3pC8l2/yNz9F0FP+Uw1fClhIPWJVvnuCQ7+QhKmO2l443jestMX3CATRpMYdX67TRuoFwE0UAYLdLHQ5GfwkOC/aQg2AF2Y+I0ncUzSav5b5KqLKPz83pmDbwl1FxIYPTqPZNmTRHrazFUJUbnY6BmrHUcHNxZ4hsG2qqJVky879JUUffzD771fVgKQSraz3mL39pWk8UF+65F46gtHpknk+vmayrsBZ24Zpu63vrmTHnmg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P0NtUGHi71aUELqMWG/e1DF+PEqAh6ydcoYGw9Nozn8=;
- b=WrAWWf2Gxb3hK+xt80bYqSs6bpYQeUUlTrohUintyFEqn+P2FSPSws9bXCPY7xWyt8uhcNEo5rjdcdnUD3exmTPZ1p2rx2bMIXDV5thAErvq8UCb+VWZc3kq71DKfp4OBFqByWRSZLF10vWt0WVljCOW1tLDdtYmBPDKrcKCmMbuvyNOTH06c1cTVz78zI4142hwIZf7BwkeMctsc+9aFmiNqWoX+vBfQN8u2ZXT8h9Fwok4Ea/Ox90+4bF3RMW46QzV6jW+xeXwZbFGe9mymfkxTwnMhDQ9/gQbYFCrVZNqcyT2nDmz6w1DvxVTzszhVXDvDb4ArZ5MIwk3mz4VsA==
+ bh=ccfS2J3ryZrhcYLsBKKmIB6RKp7SinejzbxHBWpOlF8=;
+ b=RlehH7r+S5mhcd0AJOzaqDrFw+10VGJsSBYElXV/EUEeRZ7T5KONLKc+VlDuLCSVeY2sOjks8TPEWRnqj8VbKflDJZ2W5sbMBdoyLOOhv2dS4fHfn7DwlsiTygII2uUbj0ktD+Imr/zfFaP9lDJ6i2ZjG1AMGhAB64mMEdGH+olJ7ZEtKgeArv5AWstqdh3MzHQ0DANhDUZ9pCE1eTOn8U5ArmBHrY/aM7rEJOxGVxujjMb5WLogMrCwhII93ZbqQ8DaYPQBiBgwQy1bFTXnL18QIk7RVY9pBNaAfd4qsH8AhHHN9ZviioknW64xOqhPzcu27Hq+Txj5pWUCofb5Vw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P0NtUGHi71aUELqMWG/e1DF+PEqAh6ydcoYGw9Nozn8=;
- b=PAzggzM2NVgQ/w0MUfIn48ogbLTVZDqUnAjaAdVFhdloTW7+D02xz9qtg92RtmFhSJb9h1aDIJmI3q5PuyzMhiQleoywKkDcITEEvdGQ8fdKkf3nZxQnTsAPqfw5M91bBOSwkWXsIbVCbz9FlL2LY5Y2XkBASU/yx2V0uuHXlTg=
-Received: from BN6PR2001CA0045.namprd20.prod.outlook.com
- (2603:10b6:405:16::31) by CY4PR1201MB2471.namprd12.prod.outlook.com
- (2603:10b6:903:d0::10) with Microsoft SMTP Server (version=TLS1_2,
+ bh=ccfS2J3ryZrhcYLsBKKmIB6RKp7SinejzbxHBWpOlF8=;
+ b=NbbMJEU/E7jv5dO2sa4oWUdtKSuPEtIEGlYsbGe5wQ1nLQOUJBebDGHCAnWRKO9sg1175DgjET+o1BXriDVHwkZwrqo0UJagSqa23g3ffGGnrxgA80ped7TMYIhr/Fr1cQJGgd3kWbKoDeS9aCENGMqj/Y9XOLjcYIwTZ43xd7U=
+Received: from BN6PR2001CA0028.namprd20.prod.outlook.com
+ (2603:10b6:405:16::14) by CY4PR12MB1909.namprd12.prod.outlook.com
+ (2603:10b6:903:124::14) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 10 Sep
  2020 13:47:38 +0000
 Received: from BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:16:cafe::5c) by BN6PR2001CA0045.outlook.office365.com
- (2603:10b6:405:16::31) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:405:16:cafe::f1) by BN6PR2001CA0028.outlook.office365.com
+ (2603:10b6:405:16::14) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend
- Transport; Thu, 10 Sep 2020 13:47:37 +0000
+ Transport; Thu, 10 Sep 2020 13:47:38 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
@@ -48,19 +48,19 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
  BN8NAM11FT034.mail.protection.outlook.com (10.13.176.139) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 13:47:37 +0000
+ 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 13:47:38 +0000
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Thu, 10 Sep
- 2020 08:47:36 -0500
+ 2020 08:47:37 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Thu, 10 Sep 2020 08:47:36 -0500
+ Transport; Thu, 10 Sep 2020 08:47:37 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 19/42] drm/amd/display: remove early return from dm_late_init
-Date: Thu, 10 Sep 2020 09:47:00 -0400
-Message-ID: <20200910134723.27410-20-aurabindo.pillai@amd.com>
+Subject: [PATCH 20/42] drm/amd/display: Enabling PSR on DCN30 on driver side
+Date: Thu, 10 Sep 2020 09:47:01 -0400
+Message-ID: <20200910134723.27410-21-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200910134723.27410-1-aurabindo.pillai@amd.com>
 References: <20200910134723.27410-1-aurabindo.pillai@amd.com>
@@ -68,27 +68,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d5d2882e-e089-46db-ad71-08d855901462
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB2471:
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB2471AEC22B31FF5F2D62D7C78B270@CY4PR1201MB2471.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Office365-Filtering-Correlation-Id: a0f0b4f8-ccd8-473f-9f47-08d8559014ae
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1909:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB190917C4E24509B51E63EE2E8B270@CY4PR12MB1909.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1775;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hKqb70ZctC09zolbpsncW5yBq/vP+v/4Rr57PaNR1DDzbvik9LNsicY9DgZRKv2g6JKRA0C+ecM3lF47nNzBRQeqO+33FIyCZHzoWnWKeJQjHDEKV1HxF2RCko3bvXs2DFWRvYqqMgOW1IYjWj/uRmjKWUZXHdGNIPeLlvKkLfkZEbM9m6lp4IQA8n3XtiOWRNZXDTGjodXn7ln/ZvI0IOs7IteLQEMliQp2V3xpoJ5oj5c/9d2+3vIlOCUTxOrY2cRHQcw7n9p+n/i7k0MMhLgrZpJ8qjjolgdJsvjMDVJzE+RVekoY3Yzoqfa9Nkrysa14AFxcHHIaWOJrkSP4HQMByFvMQdRzY8HNkKZk58IVAUp3d0mQtHFUEjYoEsweye+lLC+W5Z+Ks7S9XnZ8cA==
+X-Microsoft-Antispam-Message-Info: 0kFgMBj4sbz6Iiv9TYw/sxXJ44ZwvyJTwwsWKuarM4/Z1G2MOhstdoZFagLTvi/pHIYyswCyLXDLK9rgZBfYAc3a5wAff/cixcOhKS2ZgM66QnoQ74lcZp01EyhNnpxTSL++1b7AJ0kjJ2eSKwvb/WR2okgPUGs73hJT1eyunA5rcsQoIgT0k1y4jQlEs023wzTxrnsc9XPpBY31Z23DY/18h5EC4pR8XFlW6mIDjEhBxKhgHqTZZoorltEMFM4e2BpZ9L5kOdYl7JIChKPWMzz7tjXWZpiOKqOyn/0JbzOxuC2L7wPDr9pmDnHLTHmer3nVH5SPH75Xo7NEllLnHIyOR5+lOGwXK9DssfuGLxZSFPqlSPw2a+Ok40LndcByFv0sfxJ7DYVMd1suXfUtsA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(376002)(39860400002)(346002)(396003)(46966005)(70206006)(1076003)(356005)(82310400003)(8676002)(186003)(81166007)(26005)(336012)(86362001)(7696005)(83380400001)(478600001)(47076004)(54906003)(316002)(82740400003)(4326008)(44832011)(70586007)(426003)(2616005)(36756003)(6666004)(6916009)(2906002)(8936002)(5660300002);
+ SFS:(4636009)(396003)(39860400002)(136003)(376002)(346002)(46966005)(44832011)(6666004)(336012)(70206006)(86362001)(36756003)(6916009)(2616005)(70586007)(8676002)(1076003)(8936002)(7696005)(47076004)(186003)(26005)(356005)(81166007)(426003)(478600001)(2906002)(316002)(82310400003)(54906003)(5660300002)(4326008)(83380400001)(82740400003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:47:37.8138 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5d2882e-e089-46db-ad71-08d855901462
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:47:38.3135 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0f0b4f8-ccd8-473f-9f47-08d8559014ae
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB2471
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1909
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,47 +100,99 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Roman Li <roman.li@amd.com>,
+Cc: Zhan Liu <zhan.liu@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
  Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <roman.li@amd.com>
+From: Zhan Liu <zhan.liu@amd.com>
 
 [Why]
-ABM feature initialization was not executed due to early return.
+PSR needs to be enabled on DCN30. This is the driver part of PSR
+enablement.
 
-dm_late_init() had an early return in case if DMCU is not used.
-With the implementation of ABM on DMUB, DMCU can be disabled
-but ABM still needs to be initialized.
+Also disabled retired DMCU on driver side, since DMCU is
+not supported on DCN30 anymore.
 
 [How]
-Remove verification for DMCU from the top of the function.
-The existing logic will handle the case when DMCU is not used.
+Add necessary changes to enable PSR on DCN30.
 
-Signed-off-by: Roman Li <roman.li@amd.com>
+Signed-off-by: Zhan Liu <zhan.liu@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 ---
- 1 file changed, 3 deletions(-)
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c  | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index a7f08a8199e7..9fb0dca839a5 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1389,9 +1389,6 @@ static int dm_late_init(void *handle)
- 	struct dmcu *dmcu = NULL;
- 	bool ret = true;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index 6746d582d723..88f23f12aeb8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -79,6 +79,7 @@
  
--	if (!adev->dm.fw_dmcu && !adev->dm.dmub_fw)
--		return detect_mst_link_for_all_connectors(adev_to_drm(adev));
--
- 	dmcu = adev->dm.dc->res_pool->dmcu;
+ #include "reg_helper.h"
+ #include "dce/dmub_abm.h"
++#include "dce/dmub_psr.h"
+ #include "dce/dce_aux.h"
+ #include "dce/dce_i2c.h"
  
- 	for (i = 0; i < 16; i++)
+@@ -832,7 +833,7 @@ static const struct dc_plane_cap plane_cap = {
+ };
+ 
+ static const struct dc_debug_options debug_defaults_drv = {
+-	.disable_dmcu = true,
++	.disable_dmcu = true, //No DMCU on DCN30
+ 	.force_abm_enable = false,
+ 	.timing_trace = false,
+ 	.clock_trace = true,
+@@ -849,10 +850,11 @@ static const struct dc_debug_options debug_defaults_drv = {
+ 	.underflow_assert_delay_us = 0xFFFFFFFF,
+ 	.dwb_fi_phase = -1, // -1 = disable,
+ 	.dmub_command_table = true,
++	.disable_psr = false,
+ };
+ 
+ static const struct dc_debug_options debug_defaults_diags = {
+-	.disable_dmcu = true,
++	.disable_dmcu = true, //No dmcu on DCN30
+ 	.force_abm_enable = false,
+ 	.timing_trace = true,
+ 	.clock_trace = true,
+@@ -865,6 +867,7 @@ static const struct dc_debug_options debug_defaults_diags = {
+ 	.scl_reset_length10 = true,
+ 	.dwb_fi_phase = -1, // -1 = disable
+ 	.dmub_command_table = true,
++	.disable_psr = true,
+ 	.enable_tri_buf = true,
+ };
+ 
+@@ -1313,6 +1316,9 @@ static void dcn30_resource_destruct(struct dcn30_resource_pool *pool)
+ 			dce_abm_destroy(&pool->base.multiple_abms[i]);
+ 	}
+ 
++	if (pool->base.psr != NULL)
++		dmub_psr_destroy(&pool->base.psr);
++
+ 	if (pool->base.dccg != NULL)
+ 		dcn_dccg_destroy(&pool->base.dccg);
+ }
+@@ -2624,6 +2630,14 @@ static bool dcn30_resource_construct(
+ 		}
+ 	}
+ 	pool->base.timing_generator_count = i;
++	/* PSR */
++	pool->base.psr = dmub_psr_create(ctx);
++
++	if (pool->base.psr == NULL) {
++		dm_error("DC: failed to create PSR obj!\n");
++		BREAK_TO_DEBUGGER();
++		goto create_fail;
++	}
+ 
+ 	/* ABM */
+ 	for (i = 0; i < pool->base.res_cap->num_timing_generator; i++) {
 -- 
 2.25.1
 
