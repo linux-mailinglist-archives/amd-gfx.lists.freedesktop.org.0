@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F28A126475D
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 282BD26475F
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:48:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 760B46E932;
-	Thu, 10 Sep 2020 13:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A92AF6E953;
+	Thu, 10 Sep 2020 13:48:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2049.outbound.protection.outlook.com [40.107.94.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACC8C6E932
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:48:17 +0000 (UTC)
+ (mail-mw2nam10on2055.outbound.protection.outlook.com [40.107.94.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C3D56E932
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:48:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Kjhi8iy619FWhDIL0vm4Wdk1J45BZywvrZEraA2DFdKxBKgz7iih3i0nCW2RmCnGAhQ8hhL9StKGbrr9KVTdchJc6aeeQtkPKUr2cfVfRruDN82HhZAc3sTZIOu1f5/3C3dVWlkVxoJgqcpianeyuIf3WIu2Je/c39U1YOJvmZd7dhwDMxWaoR7zvKpCrQn4/kg/mxkb8IB314s+PRkYUVIVcElrWdxVhjw+NjhThMvxTSlCCfl/dqJVfIhyRzJK4mqkUZG3xXIQCx4OnX+6+2pSjENRjXorHnO/Z0TMI4zLKyXhnDGYRqD/LnI7l0xLN0HHdyHSxxS7Z9QHCYUlGg==
+ b=g6vah8eBS5ci7ZMrYn/9qynO/M7+qdxQrc/pKn0KqzCHe+tT3+KHwGtFfwpflyDg/cfPZ/+E5k7xyRCqh2kSiGm+FXowtgRO3nfrdGwbcB2bHglbI/FtOiQ/HGW2AwGO5M5Xlr9t8K9h+lC2tIsk3GRQbw4+LYFYIvdGbmq3290mnS+9JcaU0zPEMA+aSYJof0YeGSPKngk5vDvik9CY1+/n0C4KP1UxqL14sHPCWoF00CJ/S2bGSyWwJc8kGfK3E/NnDVfThW4pVxXTpQXoRQ7I+b8msDdziOOOhzcQ4cLV8iTbuEb/iaougH7UEawgvU2ivyomqu3Zhy1ZlgWmJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f5HAvtoMCyEIZ1P04T9v51kXd/9mfiVnkUAmBaal4Z0=;
- b=ZG0qpkK9wdagxNC2o/Z3v0SoWVhSOq+9PKhna253SYU4ao2qvErhVPQmRR6OIh9lz1KIXDAaqcFAHNCzar8QT6PS6+x3FouhzvuEVYzi94nQPARLYVx/0Pj/3xOQOOw0gR1dTLfjecRLxlspHS4+3LduBdKsbup6nL4CYUosxqouXuKodbbPaDr7OjyBPGu3zTeIxRMnkbwzialUgDG/7Y2KHDNP0vsvWdvG8YZPjOiU8HUFs9+v+wqCIS/sOF4lekdzp22MaxX0UZkb6xvBMEOgqt5hqKp6c0jVTiTiyuOUCgiKAO9B/hAWrdgW4gIHlsB3Fx3QllWPC9rFm7sMLQ==
+ bh=CxVhfnK1+wpWlmxY9XCEv26QqhdNJ+XoiZt4ornkrbk=;
+ b=ju7WMsd9zKtBTnKTjeezHwl4MYq2Eu9y/N9/ISro5CjiX9Nhb8K4qh+979vUFCT+lyNEr1nREuy9Z7J6jwPO/hLtFZilPVBnVAIFv9dvTW0sQg2PHOiuPZOeV2ICmve3pTs1e1Qa4xyfRt4DcSSeo3oLkMOcyxV170rMfmE1rV3YhKfaCl+WMZTs84HYpxpKvxPmlTudLYx3o9SIunaO0Cdp9lwXaBlWxLdNSO1DC6FpMVJcdPJez+e8tAmeXgnd6lUPFtDLJKLKJOEEsKdO7/j1DHUwp52h8C2p7fRcqANPYmpTbjnybeyAjUns/vRZZzklBQe9dDmzhi33BlvYdw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,16 +27,16 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f5HAvtoMCyEIZ1P04T9v51kXd/9mfiVnkUAmBaal4Z0=;
- b=qNtEXyfUeL7WFase19tegX4PonGnRnWqzjBmlEC5u6pfRZiPzbJgO+el29KjW6TGDPjttPOwDkdR/cspyVC4uhLZKYbXT6pt9r4nst4Fv8VrfyFybcCWs9YyOCW4l8VzH0INu5hK6n5IzsnF+eclKzrnBMDM0tZhj0twpALswXU=
-Received: from DM5PR06CA0094.namprd06.prod.outlook.com (2603:10b6:3:4::32) by
- DM6PR12MB3435.namprd12.prod.outlook.com (2603:10b6:5:39::26) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3370.16; Thu, 10 Sep 2020 13:48:14 +0000
-Received: from DM6NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:4:cafe::d0) by DM5PR06CA0094.outlook.office365.com
- (2603:10b6:3:4::32) with Microsoft SMTP Server (version=TLS1_2,
+ bh=CxVhfnK1+wpWlmxY9XCEv26QqhdNJ+XoiZt4ornkrbk=;
+ b=gwbI9nlr6uW92tTF5zBYE2yzqlYLYiKZ4gnVTlLopU13KddZoqMrOg/jv7nBuImgGdUUBI1HWtu51dQtPrQVhQd8ErDGAx7yqxlHtcrx5bGx1tfLP8/bbBrkr3152i3452ta0gDyKy89CC2Xg4UGyof+WuF9TAuSBW3XY8I4+P8=
+Received: from BN4PR12CA0010.namprd12.prod.outlook.com (2603:10b6:403:2::20)
+ by SN1PR12MB2574.namprd12.prod.outlook.com (2603:10b6:802:26::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 10 Sep
+ 2020 13:48:15 +0000
+Received: from BN8NAM11FT019.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:403:2:cafe::57) by BN4PR12CA0010.outlook.office365.com
+ (2603:10b6:403:2::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend
  Transport; Thu, 10 Sep 2020 13:48:14 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
@@ -45,27 +45,23 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- DM6NAM11FT008.mail.protection.outlook.com (10.13.172.85) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ BN8NAM11FT019.mail.protection.outlook.com (10.13.176.158) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 13:48:14 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Thu, 10 Sep
- 2020 08:48:13 -0500
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Thu, 10 Sep
- 2020 08:48:13 -0500
+ 2020 08:48:14 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Thu, 10 Sep 2020 08:48:07 -0500
+ Transport; Thu, 10 Sep 2020 08:48:13 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 35/42] drm/amd/display: Add connector to the state if DSC
- debugfs is set
-Date: Thu, 10 Sep 2020 09:47:16 -0400
-Message-ID: <20200910134723.27410-36-aurabindo.pillai@amd.com>
+Subject: [PATCH 36/42] drm/amd/display: remove dc context from transfer
+ function
+Date: Thu, 10 Sep 2020 09:47:17 -0400
+Message-ID: <20200910134723.27410-37-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200910134723.27410-1-aurabindo.pillai@amd.com>
 References: <20200910134723.27410-1-aurabindo.pillai@amd.com>
@@ -73,27 +69,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1ea9505d-dc74-4a6f-7826-08d855902a1e
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3435:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB34357C121FDF5C599C85FF4B8B270@DM6PR12MB3435.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
+X-MS-Office365-Filtering-Correlation-Id: 79e8fb35-73f8-4b19-cbc5-08d855902a60
+X-MS-TrafficTypeDiagnostic: SN1PR12MB2574:
+X-Microsoft-Antispam-PRVS: <SN1PR12MB257441D766C0665E23CD709F8B270@SN1PR12MB2574.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 62+yn8ahVYDlBTChycykO3KDrOVRikHN46o2HZ4ysUVmnlM9dTzSq0oX05RFFGlxa/oY/fILHTAZOkeQmdZdWsTkPOXWmdk8C6FywPZT3/g7HpYQ7qncqxmPRGBNtxw+CUnomEnuxcxhcYSUbaKNjg39Oy7pZOGwWxFtv8Gx2i5pmrvY7eMukWZ3KigSxuI7dRt1EUTYAfuLslZpjfKaBnwGqF6LPJWRXJ9r5Dhi47hiEtDRLyzsGQT2GrEPMZfWJlcoSuXxwkqsSmJ9zV1h2GSf3VdwpbEEe9GWOEQQho1hlGPh1RFCdGQjj8InzCZsVjavPYuRX4jO+FHsnRG4FZnF3dzfQDbRTVTULb0YtYcEIt2dC04OCLabGbJzZpT/x6Rlivfc/7+6q0VQyN8lzGNagM8l9Gqn5xb+JdHTs9WHjPdiFesmANoGspoMXuXA
+X-Microsoft-Antispam-Message-Info: wwUm57/CJm/Y0xv7REXPHWBUyV9rNiRp397SjS0GyQxzghkwpkmQQj9eWEeK+UcBshFoxh7kSYvbkBm9Cax8WRI8oBOmc5jAVQW3ZBfUZrSbwRXJZ2nfiPT+XviCh1tc0cmGo2x3usYSApvIQWt/mc1b0BIG06cToMBBVdrTJPkJq1V9jM0jKqY9IiFGSsJlYP08jgJj36aeGANR/hF+muwFzmQBXeKjwlfQp0hSMm1N0R+mRJm3jHAUxtSavAygeeLIYyDN/nr/wo3Hn0OlePwFUzAr64NVa+wcvECCq4+aQMO6LQA94wII0wR76XW8u0O7LPBTafqOexiDgLNrnaoojZsAYL8/MLrTYN2voz8jLzmMjYaZbQDrBKY4mzgCGv1bx1jonrTE6Aj4IggKzQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(136003)(39860400002)(376002)(346002)(46966005)(426003)(356005)(6666004)(81166007)(336012)(44832011)(70206006)(86362001)(36756003)(2616005)(70586007)(6916009)(8676002)(1076003)(8936002)(7696005)(478600001)(186003)(4326008)(47076004)(26005)(2906002)(83380400001)(5660300002)(82310400003)(54906003)(316002)(82740400003);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(39860400002)(136003)(396003)(46966005)(86362001)(1076003)(426003)(8676002)(82740400003)(356005)(36756003)(83380400001)(81166007)(54906003)(2906002)(47076004)(7696005)(316002)(336012)(4326008)(82310400003)(70206006)(70586007)(6916009)(2616005)(44832011)(26005)(5660300002)(8936002)(478600001)(186003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:48:14.2377 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ea9505d-dc74-4a6f-7826-08d855902a1e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:48:14.7123 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79e8fb35-73f8-4b19-cbc5-08d855902a60
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT008.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT019.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3435
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2574
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,90 +101,137 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk Brol <eryk.brol@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- Mikita Lipski <mikita.lipski@amd.com>, Bhawanpreet.Lakha@amd.com
+Cc: Josip Pavic <Josip.Pavic@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Eryk Brol <eryk.brol@amd.com>
+From: Josip Pavic <Josip.Pavic@amd.com>
 
-[why]
-We want to trigger atomic check on connector, which DSC debugfs
-properties have changed.
+[Why]
+The ctx field of dc_transfer_func is not always populated and therefore
+isn't reliable.
 
-[how]
-Add a helper function that iterates through all active connectors
-and add them to the state if DSC debugfs parameters have changed.
+[How]
+Remove dc context from dc_transfer_func
 
-Signed-off-by: Eryk Brol <eryk.brol@amd.com>
-Signed-off-by: Mikita Lipski <mikita.lipski@amd.com>
+Signed-off-by: Josip Pavic <Josip.Pavic@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 41 +++++++++++++++++++
- 1 file changed, 41 insertions(+)
+ drivers/gpu/drm/amd/display/dc/core/dc_stream.c        | 1 -
+ drivers/gpu/drm/amd/display/dc/core/dc_surface.c       | 7 +------
+ drivers/gpu/drm/amd/display/dc/dc.h                    | 2 --
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_cm_common.c | 4 ----
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c | 4 ----
+ 5 files changed, 1 insertion(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 11afdb28eeda..ba18c7b0cc7d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -842,6 +842,45 @@ static int dm_dmub_hw_init(struct amdgpu_device *adev)
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+index 6fef9078f3d1..d48fd87d3b95 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+@@ -123,7 +123,6 @@ static bool dc_stream_construct(struct dc_stream_state *stream,
+ 		return false;
+ 	}
+ 	stream->out_transfer_func->type = TF_TYPE_BYPASS;
+-	stream->out_transfer_func->ctx = stream->ctx;
+ 
+ 	stream->stream_id = stream->ctx->dc_stream_id_count;
+ 	stream->ctx->dc_stream_id_count++;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_surface.c b/drivers/gpu/drm/amd/display/dc/core/dc_surface.c
+index ea1229a3e2b2..3d7d27435f15 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_surface.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_surface.c
+@@ -48,22 +48,17 @@ static void dc_plane_construct(struct dc_context *ctx, struct dc_plane_state *pl
+ 	plane_state->in_transfer_func = dc_create_transfer_func();
+ 	if (plane_state->in_transfer_func != NULL) {
+ 		plane_state->in_transfer_func->type = TF_TYPE_BYPASS;
+-		plane_state->in_transfer_func->ctx = ctx;
+ 	}
+ 	plane_state->in_shaper_func = dc_create_transfer_func();
+ 	if (plane_state->in_shaper_func != NULL) {
+ 		plane_state->in_shaper_func->type = TF_TYPE_BYPASS;
+-		plane_state->in_shaper_func->ctx = ctx;
+ 	}
+ 
+ 	plane_state->lut3d_func = dc_create_3dlut_func();
+-	if (plane_state->lut3d_func != NULL) {
+-		plane_state->lut3d_func->ctx = ctx;
+-	}
++
+ 	plane_state->blend_tf = dc_create_transfer_func();
+ 	if (plane_state->blend_tf != NULL) {
+ 		plane_state->blend_tf->type = TF_TYPE_BYPASS;
+-		plane_state->blend_tf->ctx = ctx;
+ 	}
+ 
  }
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 9d7d5dd9e820..d9b22d6a985a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -745,7 +745,6 @@ struct dc_transfer_func {
+ 	enum dc_transfer_func_predefined tf;
+ 	/* FP16 1.0 reference level in nits, default is 80 nits, only for PQ*/
+ 	uint32_t sdr_ref_white_level;
+-	struct dc_context *ctx;
+ 	union {
+ 		struct pwl_params pwl;
+ 		struct dc_transfer_func_distributed_points tf_pts;
+@@ -772,7 +771,6 @@ struct dc_3dlut {
+ 	struct tetrahedral_params lut_3d;
+ 	struct fixed31_32 hdr_multiplier;
+ 	union dc_3dlut_state state;
+-	struct dc_context *ctx;
+ };
+ /*
+  * This structure is filled in by dc_surface_get_status and contains
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_cm_common.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_cm_common.c
+index 47a39eb9400b..7a00fe525dfb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_cm_common.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_cm_common.c
+@@ -325,8 +325,6 @@ bool cm_helper_translate_curve_to_hw_format(
+ 	if (output_tf == NULL || lut_params == NULL || output_tf->type == TF_TYPE_BYPASS)
+ 		return false;
  
-+static void amdgpu_check_debugfs_connector_property_change(struct amdgpu_device *adev,
-+							   struct drm_atomic_state *state)
-+{
-+	struct drm_connector *connector;
-+	struct drm_crtc *crtc;
-+	struct amdgpu_dm_connector *amdgpu_dm_connector;
-+	struct drm_connector_state *conn_state;
-+	struct dm_crtc_state *acrtc_state;
-+	struct drm_crtc_state *crtc_state;
-+	struct dc_stream_state *stream;
-+	struct drm_device *dev = adev_to_drm(adev);
-+
-+	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
-+
-+		amdgpu_dm_connector = to_amdgpu_dm_connector(connector);
-+		conn_state = connector->state;
-+
-+		if (!(conn_state && conn_state->crtc))
-+			continue;
-+
-+		crtc = conn_state->crtc;
-+		acrtc_state = to_dm_crtc_state(crtc->state);
-+
-+		if (!(acrtc_state && acrtc_state->stream))
-+			continue;
-+
-+		stream = acrtc_state->stream;
-+
-+		if (amdgpu_dm_connector->dsc_settings.dsc_force_enable ||
-+		    amdgpu_dm_connector->dsc_settings.dsc_num_slices_v ||
-+		    amdgpu_dm_connector->dsc_settings.dsc_num_slices_h ||
-+		    amdgpu_dm_connector->dsc_settings.dsc_bits_per_pixel) {
-+			conn_state = drm_atomic_get_connector_state(state, connector);
-+			crtc_state = drm_atomic_get_crtc_state(state, crtc);
-+			crtc_state->mode_changed = true;
-+		}
-+	}
-+}
-+
- static int amdgpu_dm_init(struct amdgpu_device *adev)
- {
- 	struct dc_init_data init_data;
-@@ -8609,6 +8648,8 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 	int ret, i;
- 	bool lock_and_validation_needed = false;
+-	PERF_TRACE_CTX(output_tf->ctx);
+-
+ 	corner_points = lut_params->corner_points;
+ 	rgb_resulted = lut_params->rgb_resulted;
+ 	hw_points = 0;
+@@ -524,8 +522,6 @@ bool cm_helper_translate_curve_to_degamma_hw_format(
+ 	if (output_tf == NULL || lut_params == NULL || output_tf->type == TF_TYPE_BYPASS)
+ 		return false;
  
-+	amdgpu_check_debugfs_connector_property_change(adev, state);
-+
- 	ret = drm_atomic_helper_check_modeset(dev, state);
- 	if (ret)
- 		goto fail;
+-	PERF_TRACE_CTX(output_tf->ctx);
+-
+ 	corner_points = lut_params->corner_points;
+ 	rgb_resulted = lut_params->rgb_resulted;
+ 	hw_points = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c
+index a139a87a1a81..41a1d0e9b7e2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c
+@@ -122,8 +122,6 @@ bool cm3_helper_translate_curve_to_hw_format(
+ 	if (output_tf == NULL || lut_params == NULL || output_tf->type == TF_TYPE_BYPASS)
+ 		return false;
+ 
+-	PERF_TRACE_CTX(output_tf->ctx);
+-
+ 	corner_points = lut_params->corner_points;
+ 	rgb_resulted = lut_params->rgb_resulted;
+ 	hw_points = 0;
+@@ -314,8 +312,6 @@ bool cm3_helper_translate_curve_to_degamma_hw_format(
+ 	if (output_tf == NULL || lut_params == NULL || output_tf->type == TF_TYPE_BYPASS)
+ 		return false;
+ 
+-	PERF_TRACE_CTX(output_tf->ctx);
+-
+ 	corner_points = lut_params->corner_points;
+ 	rgb_resulted = lut_params->rgb_resulted;
+ 	hw_points = 0;
 -- 
 2.25.1
 
