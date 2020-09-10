@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7BCB264745
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D601F264749
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Sep 2020 15:47:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED07B6E948;
-	Thu, 10 Sep 2020 13:47:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B85906E962;
+	Thu, 10 Sep 2020 13:47:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2085.outbound.protection.outlook.com [40.107.94.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A7826E945
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680057.outbound.protection.outlook.com [40.107.68.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F4646E948
  for <amd-gfx@lists.freedesktop.org>; Thu, 10 Sep 2020 13:47:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sh8Xu9mQq1msCV6HkZJOplEC+OkRLD61lNqS2j3AiIGCk46QGyhvq6yuKu9SDhzOCgLllWYLxsefJSOQpeVtGyd2xIwZ63e1DWWokEAbtkodQ0Up/NHGAjnBZqfMZ5UH5ihQkpwkoLxUvGuRveD0B4w87H8HipFG4aIZ49MdVBte7NwJ4II+q66Hyb5ZtwXbHWJf91Y3h16XH10IeoMvHHFu0BETepWe6UVjxhpVmVT4/Cb88+IWgwU1NTqOgA/k10R8yEtplkR3Cpwy+Jp8vcEh3WIMOFkAWZIWR0S8it9GtlvEJYeN6X3V3p3qwdjpPVyd2i+J0f7P7lzVM38W8A==
+ b=BTMIGhgeTysnzQ012VZHdIvagQXiN0zyqKsz8hU7iyPbWezd9nOI17UqRpFTcx6+WO6sdws4q8bBobco0bd1h2WINIuKzBN5NLZKaBHKIrAoB3YGACdeu71uPk9F+38ps7i+6GmNREdDf3Pwh0v+pjfYPn5og5eOAotMP//51SfbTiK81S0LvH1NmkAkkseVLnQtkR990mTtdsncg3TesfJAX/ItCtH3yO/FcsUm9WFBfSuhykp2xgYbluywCwCvnCyCS6Lo1JwGD/jfaikPBPOOh3e1TCwmdkSuRZWBaJDv0fewfN4t9SZqKy5tlI2IwaxkzRZwRvBqivwn9NSPqw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yNiHBFFlDHOyXY49nIB/vVhO6DuBfxBC2OY/e6Jo4Zc=;
- b=hX39lzCl9hyAESQHIS/Cg32IFx2qP5E+rUAZGPwd03KheoKbG0s195HuRWoHF0qdnGOCDLvvU9YkxQ1hWS+811DR/rES+QyTk67qvcnupK+AEtRGmmei8iDe67ZA1G5nVXOCvxXc9OKVAK0AAIxBkUWLlZgpmERRoPLhkHqrxJfAUAImMjZwOOHFdV5SzyHLh0lzV3JfTyoM3EYMoa6iMCEJoEzvtnFeNcmGogsJhB8kYOi4D+T/oO9T0CLOtDNy128rqkbBdSuOASqnI3q7yBgaszZBMf+OZqWqZFdT23X6Z6Hbvlmlbi+vkrity46BeHjWFB5bnLm90L4yghsUbw==
+ bh=PEZa9f7CR2XsG0ger0W8awuxqMTl9cc1K9lT8zpMBm4=;
+ b=nqMLZZNEDvus5it7RU+WCzlvaq1a8OLYJZoyUcabp9yuWt2rGB9d+nl41EFe45zld0t1EBQla2OL0jx3ut0m41Y/twBwJDdgrJjAOVjILDs00w9dhAv2enmpxssVoYlrOUUpG7AtBW56+v5aui9v/JdwPxETU3jAMfuhUdr56ssWQEx2oBkz2kWJH3qjzkQ+32z2s8CI0BVgGqszf6GcTIjq15MDpDj1VgvICaGKbor+jmOOANDL8N1mUB/awoLUK8nt48rJ65MNKlWzlO/g6e0QOq5Te3QWA67jwVppiXnxFvU7R3EXWOQKSxmUC4SrwPqRoMYbXA0jrBklxQ5JIA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,41 +27,45 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yNiHBFFlDHOyXY49nIB/vVhO6DuBfxBC2OY/e6Jo4Zc=;
- b=plbw0CwxjNmpxtlTLxSd2ZPAxIFAT85OLwQN9wrX/SNiC6guzO3aAiN3dYfoqLnLZAhL+c01mm0FwJX4flaNu1mk1/igb4afLbZ2g5fwHlbeSbUR8bTkXErRnebU/PhrXf6kklu51JAamthHR1MNbmUfWdpOvrXNMWdcrTK7O5g=
-Received: from BN6PR2001CA0030.namprd20.prod.outlook.com
- (2603:10b6:405:16::16) by BN8PR12MB3220.namprd12.prod.outlook.com
- (2603:10b6:408:9e::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Thu, 10 Sep
- 2020 13:47:36 +0000
-Received: from BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:16:cafe::fe) by BN6PR2001CA0030.outlook.office365.com
- (2603:10b6:405:16::16) with Microsoft SMTP Server (version=TLS1_2,
+ bh=PEZa9f7CR2XsG0ger0W8awuxqMTl9cc1K9lT8zpMBm4=;
+ b=hIdpdRDczJXnr+xyRYLHGCARzQEELPaDw+SlYYAKDkWcoDbWk+93PKjDB97JB6dvj1ylBEiCkvaD+EcSFYKXMlN/IC4Czpq2tFKW6Shvkha9ozb4ee9gFCNYDF+v1+YVvZDp1W9s39gGfSPxjA3o6JtmOMlKOy0ayLJ9IZMtKsM=
+Received: from DM5PR19CA0007.namprd19.prod.outlook.com (2603:10b6:3:151::17)
+ by DM6PR12MB3803.namprd12.prod.outlook.com (2603:10b6:5:1ce::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 10 Sep
+ 2020 13:47:37 +0000
+Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:151:cafe::fc) by DM5PR19CA0007.outlook.office365.com
+ (2603:10b6:3:151::17) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend
- Transport; Thu, 10 Sep 2020 13:47:36 +0000
+ Transport; Thu, 10 Sep 2020 13:47:37 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT034.mail.protection.outlook.com (10.13.176.139) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 13:47:36 +0000
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 13:47:37 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Thu, 10 Sep
- 2020 08:47:35 -0500
+ 2020 08:47:36 -0500
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Thu, 10 Sep
+ 2020 08:47:36 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
  Transport; Thu, 10 Sep 2020 08:47:35 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 17/42] drm/amd/display: Flip pending check timeout due to
- disabled hubp
-Date: Thu, 10 Sep 2020 09:46:58 -0400
-Message-ID: <20200910134723.27410-18-aurabindo.pillai@amd.com>
+Subject: [PATCH 18/42] drm/amd/display: Rename set_mst_bandwidth to align with
+ DP spec
+Date: Thu, 10 Sep 2020 09:46:59 -0400
+Message-ID: <20200910134723.27410-19-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200910134723.27410-1-aurabindo.pillai@amd.com>
 References: <20200910134723.27410-1-aurabindo.pillai@amd.com>
@@ -69,27 +73,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8482928c-6afb-418e-c064-08d85590135d
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3220:
-X-Microsoft-Antispam-PRVS: <BN8PR12MB3220D08F7464B6BF6F8E9DA98B270@BN8PR12MB3220.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1728;
+X-MS-Office365-Filtering-Correlation-Id: 018c547e-f33a-462d-15a5-08d8559013ed
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3803:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3803BA3FBD58972D219181588B270@DM6PR12MB3803.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:534;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +RY/YoCRgeS5xC4AroZoJgWZ3RI04iQ7FeWekO9EAbK7oU+d0w7k759lTX044NmbmhLK3Wga9rwd0VN+araxebx+NEXu/jTHiYLpYbgWFevWPI2Ki1Qgzxgo4vuPFTickxt3lV4vsu3A5Le4nY8gvUA+amWvYeSsUPYmXswhctjf0Fqid0/j4JN4yznPlgSeMfgVMeAf2YaS8Yl/mQmE+ehLBKHXEstgQoLQ2xLPNlPELRp+UgxY+5cXt+VJTCzzgjij76fnKDrhAs36wajw3xz6jdd4ZJIGVb6jSTi24qjOY8r4xkJb/EE0E2LHVWLmziMA0OcYACBn5RqcsG1CkJ3VP6WytLmJrUQz3d0vRJrjXpBw6QKVnu6pm3UYIk4q+i/Z7tJVuFSAzXLXNq1LrQ==
+X-Microsoft-Antispam-Message-Info: aeGKehiLDEZiOYlu1wrpJQfgt6cLLAO5h/tWuakGOsrgVBQ4xz9NJDM4ED5kcBDn834iBRMamDKqeuK9OyWv/00ib8pwjLD8v4+UXCEbQsy6//o0mb0BB4V/6u8qN4RaW/zuuhIwE9e3xv4hC+oAG0onlmh+gKOQbVf88LrXLiyfYFmvgU2aw50gk4D4NY9U2QXVGiQ3GWw7d/nCi9wsT5Watnbd051aTBPVBE3yuAbzd5Of37h8UHUfjIH8vB8rkJnAUO9fvVVTTLmICx4DKJVk0OQPKiPrvs1nwpdDfcN6th98QBlEDP2UmTyZ9GJR3WXQwn17wBPwWGQvsiLIH5RKLTx9Rj5SgfV7DwYenKm07Lxy9FkHUO+1PRJdlZC11oZyScTcFt5qjXEa1B/G6A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(39860400002)(396003)(376002)(346002)(46966005)(2906002)(186003)(8676002)(8936002)(83380400001)(6666004)(426003)(44832011)(336012)(7696005)(70586007)(81166007)(6916009)(356005)(36756003)(54906003)(5660300002)(26005)(47076004)(82310400003)(82740400003)(478600001)(86362001)(316002)(1076003)(70206006)(2616005)(4326008);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(136003)(376002)(346002)(39860400002)(396003)(46966005)(81166007)(356005)(426003)(44832011)(7696005)(4326008)(36756003)(8676002)(82740400003)(6666004)(336012)(82310400003)(26005)(478600001)(186003)(2616005)(54906003)(83380400001)(5660300002)(316002)(2906002)(6916009)(8936002)(70206006)(1076003)(47076004)(70586007)(86362001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:47:36.1058 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8482928c-6afb-418e-c064-08d85590135d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 13:47:37.0041 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 018c547e-f33a-462d-15a5-08d8559013ed
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3220
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3803
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,59 +105,192 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <aric.cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
+ George Shen <george.shen@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: George Shen <george.shen@amd.com>
 
 [Why]
-When pipe locks are being taken we wait for flip pending to clear first.
-In some cases the pipe mapping is changed and the pending we're checking
-for will never clear.
+The function set_mst_bandwidth is poorly name since it isn't clear what
+it does, and it also does not reflect any part of the allocation sequence
+described in the DP spec.
 
 [How]
-Don't check disabled pipes for flip pending.
+Rename the function set_mst_bandwidth to set_throttled_vcp_size.
 
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+(cherry picked from commit 9a630236f857562ae8a8af9c6b2a5ce79b409795)
+Signed-off-by: George Shen <george.shen@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c | 3 +++
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c | 3 +++
- 2 files changed, 6 insertions(+)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c            | 4 ++--
+ drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c  | 6 +++---
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c  | 6 +++---
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h  | 2 +-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c  | 4 ++--
+ .../drm/amd/display/dc/dcn30/dcn30_dio_stream_encoder.c  | 4 ++--
+ drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h   | 2 +-
+ .../drm/amd/display/dc/virtual/virtual_stream_encoder.c  | 9 +++++----
+ 8 files changed, 19 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c
-index cedf359a00f5..db5615a51fea 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c
-@@ -734,6 +734,9 @@ bool hubp1_is_flip_pending(struct hubp *hubp)
- 	struct dcn10_hubp *hubp1 = TO_DCN10_HUBP(hubp);
- 	struct dc_plane_address earliest_inuse_address;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 437d1a7a16fe..1871ff6119ae 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -2946,7 +2946,7 @@ enum dc_status dc_link_allocate_mst_payload(struct pipe_ctx *pipe_ctx)
+ 	pbn = get_pbn_from_timing(pipe_ctx);
+ 	avg_time_slots_per_mtp = dc_fixpt_div(pbn, pbn_per_slot);
  
-+	if (hubp && hubp->power_gated)
-+		return false;
-+
- 	REG_GET(DCSURF_FLIP_CONTROL,
- 			SURFACE_FLIP_PENDING, &flip_pending);
+-	stream_encoder->funcs->set_mst_bandwidth(
++	stream_encoder->funcs->set_throttled_vcp_size(
+ 		stream_encoder,
+ 		avg_time_slots_per_mtp);
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c
-index bb920d0e0b89..368818d2dfc6 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c
-@@ -908,6 +908,9 @@ bool hubp2_is_flip_pending(struct hubp *hubp)
- 	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
- 	struct dc_plane_address earliest_inuse_address;
+@@ -2974,7 +2974,7 @@ static enum dc_status deallocate_mst_payload(struct pipe_ctx *pipe_ctx)
+ 	 */
  
-+	if (hubp && hubp->power_gated)
-+		return false;
-+
- 	REG_GET(DCSURF_FLIP_CONTROL,
- 			SURFACE_FLIP_PENDING, &flip_pending);
+ 	/* slot X.Y */
+-	stream_encoder->funcs->set_mst_bandwidth(
++	stream_encoder->funcs->set_throttled_vcp_size(
+ 		stream_encoder,
+ 		avg_time_slots_per_mtp);
  
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+index 4cdaaf4d881c..5054bb567b74 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+@@ -710,7 +710,7 @@ static void dce110_stream_encoder_lvds_set_stream_attribute(
+ 	ASSERT(crtc_timing->pixel_encoding == PIXEL_ENCODING_RGB);
+ }
+ 
+-static void dce110_stream_encoder_set_mst_bandwidth(
++static void dce110_stream_encoder_set_throttled_vcp_size(
+ 	struct stream_encoder *enc,
+ 	struct fixed31_32 avg_time_slots_per_mtp)
+ {
+@@ -1621,8 +1621,8 @@ static const struct stream_encoder_funcs dce110_str_enc_funcs = {
+ 		dce110_stream_encoder_dvi_set_stream_attribute,
+ 	.lvds_set_stream_attribute =
+ 		dce110_stream_encoder_lvds_set_stream_attribute,
+-	.set_mst_bandwidth =
+-		dce110_stream_encoder_set_mst_bandwidth,
++	.set_throttled_vcp_size =
++		dce110_stream_encoder_set_throttled_vcp_size,
+ 	.update_hdmi_info_packets =
+ 		dce110_stream_encoder_update_hdmi_info_packets,
+ 	.stop_hdmi_info_packets =
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c
+index 842abb4c475b..9cf139be3f40 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c
+@@ -619,7 +619,7 @@ void enc1_stream_encoder_dvi_set_stream_attribute(
+ 	enc1_stream_encoder_set_stream_attribute_helper(enc1, crtc_timing);
+ }
+ 
+-void enc1_stream_encoder_set_mst_bandwidth(
++void enc1_stream_encoder_set_throttled_vcp_size(
+ 	struct stream_encoder *enc,
+ 	struct fixed31_32 avg_time_slots_per_mtp)
+ {
+@@ -1616,8 +1616,8 @@ static const struct stream_encoder_funcs dcn10_str_enc_funcs = {
+ 		enc1_stream_encoder_hdmi_set_stream_attribute,
+ 	.dvi_set_stream_attribute =
+ 		enc1_stream_encoder_dvi_set_stream_attribute,
+-	.set_mst_bandwidth =
+-		enc1_stream_encoder_set_mst_bandwidth,
++	.set_throttled_vcp_size =
++		enc1_stream_encoder_set_throttled_vcp_size,
+ 	.update_hdmi_info_packets =
+ 		enc1_stream_encoder_update_hdmi_info_packets,
+ 	.stop_hdmi_info_packets =
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
+index 30eae7459d50..b99d2527cf03 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
+@@ -588,7 +588,7 @@ void enc1_stream_encoder_dvi_set_stream_attribute(
+ 	struct dc_crtc_timing *crtc_timing,
+ 	bool is_dual_link);
+ 
+-void enc1_stream_encoder_set_mst_bandwidth(
++void enc1_stream_encoder_set_throttled_vcp_size(
+ 	struct stream_encoder *enc,
+ 	struct fixed31_32 avg_time_slots_per_mtp);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c
+index e3984f02b7b3..4075ae111530 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c
+@@ -561,8 +561,8 @@ static const struct stream_encoder_funcs dcn20_str_enc_funcs = {
+ 		enc1_stream_encoder_hdmi_set_stream_attribute,
+ 	.dvi_set_stream_attribute =
+ 		enc1_stream_encoder_dvi_set_stream_attribute,
+-	.set_mst_bandwidth =
+-		enc1_stream_encoder_set_mst_bandwidth,
++	.set_throttled_vcp_size =
++		enc1_stream_encoder_set_throttled_vcp_size,
+ 	.update_hdmi_info_packets =
+ 		enc2_stream_encoder_update_hdmi_info_packets,
+ 	.stop_hdmi_info_packets =
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_stream_encoder.c
+index f5e80a0db72b..6c0f7ef0a3df 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_stream_encoder.c
+@@ -790,8 +790,8 @@ static const struct stream_encoder_funcs dcn30_str_enc_funcs = {
+ 		enc3_stream_encoder_hdmi_set_stream_attribute,
+ 	.dvi_set_stream_attribute =
+ 		enc3_stream_encoder_dvi_set_stream_attribute,
+-	.set_mst_bandwidth =
+-		enc1_stream_encoder_set_mst_bandwidth,
++	.set_throttled_vcp_size =
++		enc1_stream_encoder_set_throttled_vcp_size,
+ 	.update_hdmi_info_packets =
+ 		enc3_stream_encoder_update_hdmi_info_packets,
+ 	.stop_hdmi_info_packets =
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h b/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h
+index 11ce06e69d3f..0184cefb083b 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h
+@@ -143,7 +143,7 @@ struct stream_encoder_funcs {
+ 		struct stream_encoder *enc,
+ 		struct dc_crtc_timing *crtc_timing);
+ 
+-	void (*set_mst_bandwidth)(
++	void (*set_throttled_vcp_size)(
+ 		struct stream_encoder *enc,
+ 		struct fixed31_32 avg_time_slots_per_mtp);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c
+index 944c0327763c..f0a0d419e555 100644
+--- a/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c
+@@ -46,9 +46,10 @@ static void virtual_stream_encoder_dvi_set_stream_attribute(
+ 	struct dc_crtc_timing *crtc_timing,
+ 	bool is_dual_link) {}
+ 
+-static void virtual_stream_encoder_set_mst_bandwidth(
++static void virtual_stream_encoder_set_throttled_vcp_size(
+ 	struct stream_encoder *enc,
+-	struct fixed31_32 avg_time_slots_per_mtp) {}
++	struct fixed31_32 avg_time_slots_per_mtp)
++{}
+ 
+ static void virtual_stream_encoder_update_hdmi_info_packets(
+ 	struct stream_encoder *enc,
+@@ -107,8 +108,8 @@ static const struct stream_encoder_funcs virtual_str_enc_funcs = {
+ 		virtual_stream_encoder_hdmi_set_stream_attribute,
+ 	.dvi_set_stream_attribute =
+ 		virtual_stream_encoder_dvi_set_stream_attribute,
+-	.set_mst_bandwidth =
+-		virtual_stream_encoder_set_mst_bandwidth,
++	.set_throttled_vcp_size =
++		virtual_stream_encoder_set_throttled_vcp_size,
+ 	.update_hdmi_info_packets =
+ 		virtual_stream_encoder_update_hdmi_info_packets,
+ 	.stop_hdmi_info_packets =
 -- 
 2.25.1
 
