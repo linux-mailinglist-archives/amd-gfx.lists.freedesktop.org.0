@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC542663E4
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Sep 2020 18:27:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF1302663E7
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Sep 2020 18:27:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA276EAA8;
-	Fri, 11 Sep 2020 16:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42E876EAAD;
+	Fri, 11 Sep 2020 16:27:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam08on2080.outbound.protection.outlook.com [40.107.100.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07E546EAA8
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Sep 2020 16:27:13 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2070.outbound.protection.outlook.com [40.107.236.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 755386EAAD
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Sep 2020 16:27:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZmPL3dht98Gom6wYEW754OUPtDXqAioCBk2c2djSkppNPUhRkwmoIQeFZ3HACEreykb3Ozo2NXb9QvZJqHgNLxNyQsoFSNpp+hrDSSitnJJo1ah7gICPJFcOJblYzxh5HLbrcsZ2wat10EXbsWm1WwLJjWIGjA7c9cA8Yb7OS0T/NJ2NPfDPv/ZMv0oGGznREmJ8duhIH1Pslz5OaVW745LaQmmIdpGJNZs+yJYIwFxZO8bBNMWCCchGcen65EPcjoRh8PmOEmTzW0b4blZjQA/igPPllDoUbWuUgz+FdYFRVZsvCtpxQ8CaVvkBtANvALMvcTMe7Uq8ThnD7qVpBA==
+ b=lOaDS/T/NnWK7ACB7XV369jPQUtpVkCNK4w+eMd5Uc4ETD9jGPbhJbGgCO1E61xtaNdlkks+L6GZoTvS6OKoOHtpegvlz2h7O6x0n3790NwExLxhjxKSpFky6lzBAQvviqf1NOY52ChgmSZxTtvU5hkJUSEAcc5erwY20Amwubf0umnL9f89CgPL6Ugtxbs4pfpJn2iPtQdSYLuLcr5KjQPEgaGw7tIBkaANE7aThBiF9Y9lddsCODOnDKGgsslhH755br27Rf+HLfICCYab1LY10sDDDlm0sw0UDk6G9fjoxV/j0MfBKRjlC5zvKnpRz7AqqdE4mfvcJJMt1WLNeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qlS4OlsfWP6t7hrcIRnZulgoGODI3noXtVxpBRnyzBc=;
- b=e2VQUX+Ha39bFx/uxti6Speh6DI2BwKnlpT2XIi+yZjHfny2AdOb8p8j9L64Dg3ts+m3FVXo76+zhJSYUHV/h7OsfOUrsSOQ3P7izuda/6/wAZOq5q4lPU+UXzix198qUvDITKtVX+QwNlgNqfrKwppkcbHHCTPMFgmcQkbvAWQ/l+jrLi1zFUR8RHXqYqNpJccNGpM4y2/VS28VJXuu7ifIxlLTPEMfz1De/3qoQ99L8LKewBSj9mhNi/a3j8FfUgyEPP88vej60OtpBzuyPuLlQzaa2Zl/dj3AJftvj6UQ+RE5RJ6LQM9o67QOE5w/lyCpqdPnpUM+P2DCuwnADw==
+ bh=/wQJP5+yDAvVrXZLndy1Kfv9Ems41KYM5mVxyW6UlDQ=;
+ b=aBwWFcO14PPe9S2Yf4oMJZR2JkD+78GU+nHcLMIBA3QvRfmuDP73Neei7TqaISAcU2uZs3fxsO41AbZRAWLbWe80hKzGqXSN6GDx6HKWX4v935ON8nWBt1a4lQG5WkV9JseoVjPvOlZKSGxgyYysAdZUXD6H/STIvcTE9hnG1Ga6QsWYFifWEOt4Th5jZgzXU+Cs+wwSGtNU0tIKltJZAi4htbn+/Z/BnNIX1p6FFQ1zfSQBrHO1UJnvLX3QRIX3JRZQjt0rJyR3qp+hrv2rERmXiFCjiZb/SBH5Ht3uI01hAXpQL6ZPgDwE8bnQtTsPwIBLrb3guVBAuI/s2K9bTA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,16 +27,16 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qlS4OlsfWP6t7hrcIRnZulgoGODI3noXtVxpBRnyzBc=;
- b=BrT/FiYE89f+3Io/1E9ilpKR2h+ey92SAyzfF6qkLuo+vrFkrc1mOJnrY55HjxYEhdTzW+9iRrOEcKChtk5Piw1KAlREhn0TxOKM06srQ/ZWkykK7LEOxWtoFqnGu+6hDTwr74IfORG/HzsZNIF0XQPawKV5Bu3SUPh0vXVdhuQ=
-Received: from BN8PR04CA0038.namprd04.prod.outlook.com (2603:10b6:408:d4::12)
- by DM5PR12MB2373.namprd12.prod.outlook.com (2603:10b6:4:b1::19) with
+ bh=/wQJP5+yDAvVrXZLndy1Kfv9Ems41KYM5mVxyW6UlDQ=;
+ b=M8tPzpbGmjoP2SkhfHNmoTS4XsI/yHjUGkrji7LZ/mBu0JdQbk80YTcwwzcGtfHq3MsnA4GAr+KP/bCoBoCRC2AGLDL5GSA5vCd/ynu3XmHQ1ug2OFQC655LyL2JdYrnV1I+kaR0qx4MqSfWIe8JvyPsvEzfhMkzV5PvPg9JdxU=
+Received: from DM6PR17CA0026.namprd17.prod.outlook.com (2603:10b6:5:1b3::39)
+ by MN2PR12MB3325.namprd12.prod.outlook.com (2603:10b6:208:ce::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Fri, 11 Sep
  2020 16:27:11 +0000
-Received: from BN8NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:d4:cafe::d2) by BN8PR04CA0038.outlook.office365.com
- (2603:10b6:408:d4::12) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1b3:cafe::7) by DM6PR17CA0026.outlook.office365.com
+ (2603:10b6:5:1b3::39) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend
  Transport; Fri, 11 Sep 2020 16:27:11 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
@@ -45,16 +45,12 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- BN8NAM11FT067.mail.protection.outlook.com (10.13.177.159) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ DM6NAM11FT027.mail.protection.outlook.com (10.13.172.205) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3370.16 via Frontend Transport; Fri, 11 Sep 2020 16:27:10 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 11 Sep
- 2020 11:27:10 -0500
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3370.16 via Frontend Transport; Fri, 11 Sep 2020 16:27:11 +0000
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 11 Sep
  2020 11:27:10 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
@@ -62,10 +58,10 @@ Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  Transport; Fri, 11 Sep 2020 11:27:10 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 1/3] drm/amdgpu: Move existing pflip fields into separate
- struct
-Date: Fri, 11 Sep 2020 12:27:07 -0400
-Message-ID: <20200911162709.87720-2-aurabindo.pillai@amd.com>
+Subject: [PATCH v2 2/3] drm/amd/display: Refactor to prevent crtc state access
+ in DM IRQ handler
+Date: Fri, 11 Sep 2020 12:27:08 -0400
+Message-ID: <20200911162709.87720-3-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200911162709.87720-1-aurabindo.pillai@amd.com>
 References: <20200911162709.87720-1-aurabindo.pillai@amd.com>
@@ -73,27 +69,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a1b1eba7-8d9e-4078-6066-08d8566f88cd
-X-MS-TrafficTypeDiagnostic: DM5PR12MB2373:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB23732DF5F31D374CF6940CC38B240@DM5PR12MB2373.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2582;
+X-MS-Office365-Filtering-Correlation-Id: e5548cf9-1a62-4a1d-ce85-08d8566f8931
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3325:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB332546DB3AE04AEA169E63868B240@MN2PR12MB3325.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a6FqYrDZLe+oaEXD8OvGQNX4oZInmbct6wh/hw+u2lJnl5bHzn6Q2uDgIm28YJOJ6eyA0p36E2GzTU4iOdQkblP8FGGsUFn++0GQGbx1gz+eydfImNc8LLOEyIarC9dLGAP1+Sh3LIvEeSin+ij6kibZlbGOCYL39Z+1CHu1CADtqPUcCjWgzeHkHnu6zSc8gU9dmKReOPlbShv7oV6QyCNWC7bSN9NagQYrQ3GEGvqWJaqMj2T5IxDboWEtHF53CAK7XH2zx5QoAKtDDIWexxetbIOAp2j5Fgb6L7LrFnlDgVE1ulMBh5X7XxX4PpFlorqEn1fGHSZjXZvay+ao1H8N5hlbNZ9HQ6dYLhEmWbGJAURL1utBVlHbAT30r1lgGj0LP0a+oELuCmgzIvDHCw==
+X-Microsoft-Antispam-Message-Info: lIemZLxRTDKjEqrxISkWwmcYvaRNqHdEpVYxCBKR68+52W3FcA1SRGNcoLx2BLSvKMlT0QWHWXx11xV8FHWPKi3pmUwIYMwz8uiSWzJTqWu4obIzdRM0sCEYk/z2R13PYLgdpbqs20KWP7Q2kTLLFoTO/IfMyrTcXyIJY1CS54SHbBxMYN0uGwhBpK49NZExhXveyf9cPF2PW3/Wy3Ocpvi75p+1lx29CZxtVklmASqIvjpr3CPyKzz53ZcknVr3gZRJZXoDOFunZ+sqpT0fdcHDJOIgBO1qD4sX3XZDkLCD0WnZIZFD7lQq4bkIrIplVYNXVZQ5q39W8WTcohtYDnW/hWdIF78ZMbfWKGRPQ68k/Fq+wYm3aBUwbYnm+3VWhQs0NpZY12iUEuxtto7LRQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(376002)(39860400002)(346002)(396003)(136003)(46966005)(2906002)(336012)(1076003)(26005)(426003)(44832011)(6916009)(7696005)(86362001)(70586007)(70206006)(5660300002)(82310400003)(4326008)(2616005)(186003)(478600001)(6666004)(36756003)(47076004)(8936002)(316002)(81166007)(83380400001)(82740400003)(356005)(8676002);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(39860400002)(396003)(376002)(136003)(346002)(46966005)(1076003)(26005)(83380400001)(336012)(7696005)(8676002)(70206006)(44832011)(316002)(47076004)(82740400003)(6916009)(426003)(30864003)(2906002)(70586007)(478600001)(8936002)(82310400003)(5660300002)(356005)(2616005)(4326008)(36756003)(81166007)(186003)(86362001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2020 16:27:10.9014 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1b1eba7-8d9e-4078-6066-08d8566f88cd
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2020 16:27:11.5176 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5548cf9-1a62-4a1d-ce85-08d8566f8931
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT067.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2373
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3325
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,101 +108,394 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why&How]
-To refactor DM IRQ management, all fields used by IRQ is best moved
-to a separate struct so that main amdgpu_crtc struct need not be changed
-Location of the new struct shall be in DM
+Currently commit_tail holds global locks and wait for dependencies which is
+against the DRM API contracts. Inorder to fix this, IRQ handler should be able
+to run without having to access crtc state. Required parameters are copied over
+so that they can be directly accessed from the interrupt handler
 
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |  4 ++-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 +--
- .../display/amdgpu_dm/amdgpu_dm_irq_params.h  | 33 +++++++++++++++++++
- 3 files changed, 38 insertions(+), 3 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq_params.h
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 111 ++++++++++--------
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   1 -
+ .../display/amdgpu_dm/amdgpu_dm_irq_params.h  |   4 +
+ 3 files changed, 64 insertions(+), 52 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-index aa3e22be4f2d..345cb0464370 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-@@ -46,6 +46,7 @@
- 
- #include <drm/drm_dp_mst_helper.h>
- #include "modules/inc/mod_freesync.h"
-+#include "amdgpu_dm_irq_params.h"
- 
- struct amdgpu_bo;
- struct amdgpu_device;
-@@ -410,7 +411,8 @@ struct amdgpu_crtc {
- 	struct amdgpu_flip_work *pflip_works;
- 	enum amdgpu_flip_status pflip_status;
- 	int deferred_flip_completion;
--	u32 last_flip_vblank;
-+	/* parameters access from DM IRQ handler */
-+	struct dm_irq_params dm_irq_params;
- 	/* pll sharing */
- 	struct amdgpu_atom_ss ss;
- 	bool ss_enabled;
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index cb624ee70545..40814cdd8c92 100644
+index 40814cdd8c92..1455acf5beca 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -389,7 +389,7 @@ static void dm_pflip_high_irq(void *interrupt_params)
- 	 * of pageflip completion, so last_flip_vblank is the forbidden count
- 	 * for queueing new pageflips if vsync + VRR is enabled.
- 	 */
--	amdgpu_crtc->last_flip_vblank =
-+	amdgpu_crtc->dm_irq_params.last_flip_vblank =
- 		amdgpu_get_vblank_counter_kms(&amdgpu_crtc->base);
+@@ -192,17 +192,14 @@ static u32 dm_vblank_get_counter(struct amdgpu_device *adev, int crtc)
+ 		return 0;
+ 	else {
+ 		struct amdgpu_crtc *acrtc = adev->mode_info.crtcs[crtc];
+-		struct dm_crtc_state *acrtc_state = to_dm_crtc_state(
+-				acrtc->base.state);
  
- 	amdgpu_crtc->pflip_status = AMDGPU_FLIP_NONE;
-@@ -7248,7 +7248,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 			 * on late submission of flips.
- 			 */
- 			spin_lock_irqsave(&pcrtc->dev->event_lock, flags);
--			last_flip_vblank = acrtc_attach->last_flip_vblank;
-+			last_flip_vblank = acrtc_attach->dm_irq_params.last_flip_vblank;
- 			spin_unlock_irqrestore(&pcrtc->dev->event_lock, flags);
+-
+-		if (acrtc_state->stream == NULL) {
++		if (acrtc->dm_irq_params.stream == NULL) {
+ 			DRM_ERROR("dc_stream_state is NULL for crtc '%d'!\n",
+ 				  crtc);
+ 			return 0;
  		}
  
+-		return dc_stream_get_vblank_counter(acrtc_state->stream);
++		return dc_stream_get_vblank_counter(acrtc->dm_irq_params.stream);
+ 	}
+ }
+ 
+@@ -215,10 +212,8 @@ static int dm_crtc_get_scanoutpos(struct amdgpu_device *adev, int crtc,
+ 		return -EINVAL;
+ 	else {
+ 		struct amdgpu_crtc *acrtc = adev->mode_info.crtcs[crtc];
+-		struct dm_crtc_state *acrtc_state = to_dm_crtc_state(
+-						acrtc->base.state);
+ 
+-		if (acrtc_state->stream ==  NULL) {
++		if (acrtc->dm_irq_params.stream ==  NULL) {
+ 			DRM_ERROR("dc_stream_state is NULL for crtc '%d'!\n",
+ 				  crtc);
+ 			return 0;
+@@ -228,7 +223,7 @@ static int dm_crtc_get_scanoutpos(struct amdgpu_device *adev, int crtc,
+ 		 * TODO rework base driver to use values directly.
+ 		 * for now parse it back into reg-format
+ 		 */
+-		dc_stream_get_scanoutpos(acrtc_state->stream,
++		dc_stream_get_scanoutpos(acrtc->dm_irq_params.stream,
+ 					 &v_blank_start,
+ 					 &v_blank_end,
+ 					 &h_position,
+@@ -287,6 +282,14 @@ get_crtc_by_otg_inst(struct amdgpu_device *adev,
+ 	return NULL;
+ }
+ 
++static inline bool amdgpu_dm_vrr_active_irq(struct amdgpu_crtc *acrtc)
++{
++	return acrtc->dm_irq_params.freesync_config.state ==
++		       VRR_STATE_ACTIVE_VARIABLE ||
++	       acrtc->dm_irq_params.freesync_config.state ==
++		       VRR_STATE_ACTIVE_FIXED;
++}
++
+ static inline bool amdgpu_dm_vrr_active(struct dm_crtc_state *dm_state)
+ {
+ 	return dm_state->freesync_config.state == VRR_STATE_ACTIVE_VARIABLE ||
+@@ -307,7 +310,6 @@ static void dm_pflip_high_irq(void *interrupt_params)
+ 	struct amdgpu_device *adev = irq_params->adev;
+ 	unsigned long flags;
+ 	struct drm_pending_vblank_event *e;
+-	struct dm_crtc_state *acrtc_state;
+ 	uint32_t vpos, hpos, v_blank_start, v_blank_end;
+ 	bool vrr_active;
+ 
+@@ -339,12 +341,11 @@ static void dm_pflip_high_irq(void *interrupt_params)
+ 	if (!e)
+ 		WARN_ON(1);
+ 
+-	acrtc_state = to_dm_crtc_state(amdgpu_crtc->base.state);
+-	vrr_active = amdgpu_dm_vrr_active(acrtc_state);
++	vrr_active = amdgpu_dm_vrr_active_irq(amdgpu_crtc);
+ 
+ 	/* Fixed refresh rate, or VRR scanout position outside front-porch? */
+ 	if (!vrr_active ||
+-	    !dc_stream_get_scanoutpos(acrtc_state->stream, &v_blank_start,
++	    !dc_stream_get_scanoutpos(amdgpu_crtc->dm_irq_params.stream, &v_blank_start,
+ 				      &v_blank_end, &hpos, &vpos) ||
+ 	    (vpos < v_blank_start)) {
+ 		/* Update to correct count and vblank timestamp if racing with
+@@ -405,17 +406,17 @@ static void dm_vupdate_high_irq(void *interrupt_params)
+ 	struct common_irq_params *irq_params = interrupt_params;
+ 	struct amdgpu_device *adev = irq_params->adev;
+ 	struct amdgpu_crtc *acrtc;
+-	struct dm_crtc_state *acrtc_state;
+ 	unsigned long flags;
++	int vrr_active;
+ 
+ 	acrtc = get_crtc_by_otg_inst(adev, irq_params->irq_src - IRQ_TYPE_VUPDATE);
+ 
+ 	if (acrtc) {
+-		acrtc_state = to_dm_crtc_state(acrtc->base.state);
++		vrr_active = amdgpu_dm_vrr_active_irq(acrtc);
+ 
+ 		DRM_DEBUG_VBL("crtc:%d, vupdate-vrr:%d\n",
+ 			      acrtc->crtc_id,
+-			      amdgpu_dm_vrr_active(acrtc_state));
++			      vrr_active);
+ 
+ 		/* Core vblank handling is done here after end of front-porch in
+ 		 * vrr mode, as vblank timestamping will give valid results
+@@ -423,22 +424,22 @@ static void dm_vupdate_high_irq(void *interrupt_params)
+ 		 * page-flip completion events that have been queued to us
+ 		 * if a pageflip happened inside front-porch.
+ 		 */
+-		if (amdgpu_dm_vrr_active(acrtc_state)) {
++		if (vrr_active) {
+ 			drm_crtc_handle_vblank(&acrtc->base);
+ 
+ 			/* BTR processing for pre-DCE12 ASICs */
+-			if (acrtc_state->stream &&
++			if (acrtc->dm_irq_params.stream &&
+ 			    adev->family < AMDGPU_FAMILY_AI) {
+ 				spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+ 				mod_freesync_handle_v_update(
+ 				    adev->dm.freesync_module,
+-				    acrtc_state->stream,
+-				    &acrtc_state->vrr_params);
++				    acrtc->dm_irq_params.stream,
++				    &acrtc->dm_irq_params.vrr_params);
+ 
+ 				dc_stream_adjust_vmin_vmax(
+ 				    adev->dm.dc,
+-				    acrtc_state->stream,
+-				    &acrtc_state->vrr_params.adjust);
++				    acrtc->dm_irq_params.stream,
++				    &acrtc->dm_irq_params.vrr_params.adjust);
+ 				spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
+ 			}
+ 		}
+@@ -457,18 +458,17 @@ static void dm_crtc_high_irq(void *interrupt_params)
+ 	struct common_irq_params *irq_params = interrupt_params;
+ 	struct amdgpu_device *adev = irq_params->adev;
+ 	struct amdgpu_crtc *acrtc;
+-	struct dm_crtc_state *acrtc_state;
+ 	unsigned long flags;
++	int vrr_active;
+ 
+ 	acrtc = get_crtc_by_otg_inst(adev, irq_params->irq_src - IRQ_TYPE_VBLANK);
+ 	if (!acrtc)
+ 		return;
+ 
+-	acrtc_state = to_dm_crtc_state(acrtc->base.state);
++	vrr_active = amdgpu_dm_vrr_active_irq(acrtc);
+ 
+ 	DRM_DEBUG_VBL("crtc:%d, vupdate-vrr:%d, planes:%d\n", acrtc->crtc_id,
+-			 amdgpu_dm_vrr_active(acrtc_state),
+-			 acrtc_state->active_planes);
++		      vrr_active, acrtc->dm_irq_params.active_planes);
+ 
+ 	/**
+ 	 * Core vblank handling at start of front-porch is only possible
+@@ -476,7 +476,7 @@ static void dm_crtc_high_irq(void *interrupt_params)
+ 	 * valid results while done in front-porch. Otherwise defer it
+ 	 * to dm_vupdate_high_irq after end of front-porch.
+ 	 */
+-	if (!amdgpu_dm_vrr_active(acrtc_state))
++	if (!vrr_active)
+ 		drm_crtc_handle_vblank(&acrtc->base);
+ 
+ 	/**
+@@ -491,14 +491,16 @@ static void dm_crtc_high_irq(void *interrupt_params)
+ 
+ 	spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+ 
+-	if (acrtc_state->stream && acrtc_state->vrr_params.supported &&
+-	    acrtc_state->freesync_config.state == VRR_STATE_ACTIVE_VARIABLE) {
++	if (acrtc->dm_irq_params.stream &&
++	    acrtc->dm_irq_params.vrr_params.supported &&
++	    acrtc->dm_irq_params.freesync_config.state ==
++		    VRR_STATE_ACTIVE_VARIABLE) {
+ 		mod_freesync_handle_v_update(adev->dm.freesync_module,
+-					     acrtc_state->stream,
+-					     &acrtc_state->vrr_params);
++					     acrtc->dm_irq_params.stream,
++					     &acrtc->dm_irq_params.vrr_params);
+ 
+-		dc_stream_adjust_vmin_vmax(adev->dm.dc, acrtc_state->stream,
+-					   &acrtc_state->vrr_params.adjust);
++		dc_stream_adjust_vmin_vmax(adev->dm.dc, acrtc->dm_irq_params.stream,
++					   &acrtc->dm_irq_params.vrr_params.adjust);
+ 	}
+ 
+ 	/*
+@@ -513,7 +515,7 @@ static void dm_crtc_high_irq(void *interrupt_params)
+ 	 */
+ 	if (adev->family >= AMDGPU_FAMILY_RV &&
+ 	    acrtc->pflip_status == AMDGPU_FLIP_SUBMITTED &&
+-	    acrtc_state->active_planes == 0) {
++	    acrtc->dm_irq_params.active_planes == 0) {
+ 		if (acrtc->event) {
+ 			drm_crtc_send_vblank_event(&acrtc->base, acrtc->event);
+ 			acrtc->event = NULL;
+@@ -4845,7 +4847,6 @@ dm_crtc_duplicate_state(struct drm_crtc *crtc)
+ 	}
+ 
+ 	state->active_planes = cur->active_planes;
+-	state->vrr_params = cur->vrr_params;
+ 	state->vrr_infopacket = cur->vrr_infopacket;
+ 	state->abm_level = cur->abm_level;
+ 	state->vrr_supported = cur->vrr_supported;
+@@ -6913,6 +6914,7 @@ static void update_freesync_state_on_stream(
+ 	struct mod_vrr_params vrr_params;
+ 	struct dc_info_packet vrr_infopacket = {0};
+ 	struct amdgpu_device *adev = dm->adev;
++	struct amdgpu_crtc *acrtc = to_amdgpu_crtc(new_crtc_state->base.crtc);
+ 	unsigned long flags;
+ 
+ 	if (!new_stream)
+@@ -6927,7 +6929,7 @@ static void update_freesync_state_on_stream(
+ 		return;
+ 
+ 	spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+-	vrr_params = new_crtc_state->vrr_params;
++        vrr_params = acrtc->dm_irq_params.vrr_params;
+ 
+ 	if (surface) {
+ 		mod_freesync_handle_preflip(
+@@ -6958,7 +6960,7 @@ static void update_freesync_state_on_stream(
+ 		&vrr_infopacket);
+ 
+ 	new_crtc_state->freesync_timing_changed |=
+-		(memcmp(&new_crtc_state->vrr_params.adjust,
++		(memcmp(&acrtc->dm_irq_params.vrr_params.adjust,
+ 			&vrr_params.adjust,
+ 			sizeof(vrr_params.adjust)) != 0);
+ 
+@@ -6967,10 +6969,10 @@ static void update_freesync_state_on_stream(
+ 			&vrr_infopacket,
+ 			sizeof(vrr_infopacket)) != 0);
+ 
+-	new_crtc_state->vrr_params = vrr_params;
++	acrtc->dm_irq_params.vrr_params = vrr_params;
+ 	new_crtc_state->vrr_infopacket = vrr_infopacket;
+ 
+-	new_stream->adjust = new_crtc_state->vrr_params.adjust;
++	new_stream->adjust = acrtc->dm_irq_params.vrr_params.adjust;
+ 	new_stream->vrr_infopacket = vrr_infopacket;
+ 
+ 	if (new_crtc_state->freesync_vrr_info_changed)
+@@ -6982,7 +6984,7 @@ static void update_freesync_state_on_stream(
+ 	spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
+ }
+ 
+-static void pre_update_freesync_state_on_stream(
++static void update_stream_irq_parameters(
+ 	struct amdgpu_display_manager *dm,
+ 	struct dm_crtc_state *new_crtc_state)
+ {
+@@ -6990,6 +6992,7 @@ static void pre_update_freesync_state_on_stream(
+ 	struct mod_vrr_params vrr_params;
+ 	struct mod_freesync_config config = new_crtc_state->freesync_config;
+ 	struct amdgpu_device *adev = dm->adev;
++	struct amdgpu_crtc *acrtc = to_amdgpu_crtc(new_crtc_state->base.crtc);
+ 	unsigned long flags;
+ 
+ 	if (!new_stream)
+@@ -7003,7 +7006,7 @@ static void pre_update_freesync_state_on_stream(
+ 		return;
+ 
+ 	spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+-	vrr_params = new_crtc_state->vrr_params;
++	vrr_params = acrtc->dm_irq_params.vrr_params;
+ 
+ 	if (new_crtc_state->vrr_supported &&
+ 	    config.min_refresh_in_uhz &&
+@@ -7020,11 +7023,14 @@ static void pre_update_freesync_state_on_stream(
+ 				      &config, &vrr_params);
+ 
+ 	new_crtc_state->freesync_timing_changed |=
+-		(memcmp(&new_crtc_state->vrr_params.adjust,
+-			&vrr_params.adjust,
+-			sizeof(vrr_params.adjust)) != 0);
++		(memcmp(&acrtc->dm_irq_params.vrr_params.adjust,
++			&vrr_params.adjust, sizeof(vrr_params.adjust)) != 0);
+ 
+-	new_crtc_state->vrr_params = vrr_params;
++	new_crtc_state->freesync_config = config;
++	/* Copy state for access from DM IRQ handler */
++	acrtc->dm_irq_params.freesync_config = config;
++	acrtc->dm_irq_params.active_planes = new_crtc_state->active_planes;
++	acrtc->dm_irq_params.vrr_params = vrr_params;
+ 	spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
+ }
+ 
+@@ -7332,7 +7338,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+ 			spin_lock_irqsave(&pcrtc->dev->event_lock, flags);
+ 			dc_stream_adjust_vmin_vmax(
+ 				dm->dc, acrtc_state->stream,
+-				&acrtc_state->vrr_params.adjust);
++				&acrtc_attach->dm_irq_params.vrr_params.adjust);
+ 			spin_unlock_irqrestore(&pcrtc->dev->event_lock, flags);
+ 		}
+ 		mutex_lock(&dm->dc_lock);
+@@ -7545,6 +7551,7 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 	struct dm_crtc_state *dm_old_crtc_state, *dm_new_crtc_state;
+ 	int crtc_disable_count = 0;
+ 	bool mode_set_reset_required = false;
++	struct amdgpu_crtc *acrtc;
+ 
+ 	drm_atomic_helper_update_legacy_modeset_state(dev, state);
+ 
+@@ -7654,7 +7661,6 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 			if (!status)
+ 				status = dc_stream_get_status_from_state(dc_state,
+ 									 dm_new_crtc_state->stream);
+-
+ 			if (!status)
+ 				DC_ERR("got no status for stream %p on acrtc%p\n", dm_new_crtc_state->stream, acrtc);
+ 			else
+@@ -7780,8 +7786,8 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 		dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
+ 		dm_old_crtc_state = to_dm_crtc_state(old_crtc_state);
+ 
+-		/* Update freesync active state. */
+-		pre_update_freesync_state_on_stream(dm, dm_new_crtc_state);
++		/* For freesync config update on crtc state and params for irq */
++		update_stream_irq_parameters(dm, dm_new_crtc_state);
+ 
+ 		/* Handle vrr on->off / off->on transitions */
+ 		amdgpu_dm_handle_vrr_transition(dm_old_crtc_state,
+@@ -7797,10 +7803,15 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+ 		struct amdgpu_crtc *acrtc = to_amdgpu_crtc(crtc);
+ 
++		dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
++
+ 		if (new_crtc_state->active &&
+ 		    (!old_crtc_state->active ||
+ 		     drm_atomic_crtc_needs_modeset(new_crtc_state))) {
++			dc_stream_retain(dm_new_crtc_state->stream);
++			acrtc->dm_irq_params.stream = dm_new_crtc_state->stream;
+ 			manage_dm_interrupts(adev, acrtc, true);
++
+ #ifdef CONFIG_DEBUG_FS
+ 			/**
+ 			 * Frontend may have changed so reapply the CRC capture
+@@ -8044,8 +8055,6 @@ static void reset_freesync_config_for_crtc(
+ {
+ 	new_crtc_state->vrr_supported = false;
+ 
+-	memset(&new_crtc_state->vrr_params, 0,
+-	       sizeof(new_crtc_state->vrr_params));
+ 	memset(&new_crtc_state->vrr_infopacket, 0,
+ 	       sizeof(new_crtc_state->vrr_infopacket));
+ }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+index 4da7cd065ba0..6d4a751a389f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+@@ -434,7 +434,6 @@ struct dm_crtc_state {
+ 
+ 	bool vrr_supported;
+ 	struct mod_freesync_config freesync_config;
+-	struct mod_vrr_params vrr_params;
+ 	struct dc_info_packet vrr_infopacket;
+ 
+ 	int abm_level;
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq_params.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq_params.h
-new file mode 100644
-index 000000000000..55ef237eed8b
---- /dev/null
+index 55ef237eed8b..45825a34f8eb 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq_params.h
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq_params.h
-@@ -0,0 +1,33 @@
-+/*
-+ * Copyright 2020 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: AMD
-+ *
-+ */
-+
-+#ifndef __AMDGPU_DM_IRQ_PARAMS_H__
-+#define __AMDGPU_DM_IRQ_PARAMS_H__
-+
-+struct dm_irq_params {
-+	u32 last_flip_vblank;
-+};
-+
-+#endif /* __AMDGPU_DM_IRQ_PARAMS_H__ */
+@@ -28,6 +28,10 @@
+ 
+ struct dm_irq_params {
+ 	u32 last_flip_vblank;
++	struct mod_vrr_params vrr_params;
++	struct dc_stream_state *stream;
++	int active_planes;
++	struct mod_freesync_config freesync_config;
+ };
+ 
+ #endif /* __AMDGPU_DM_IRQ_PARAMS_H__ */
 -- 
 2.25.1
 
