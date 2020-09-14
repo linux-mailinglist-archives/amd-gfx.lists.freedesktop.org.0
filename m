@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 628012683FD
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Sep 2020 07:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BFA7268434
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Sep 2020 07:46:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6254F89F41;
-	Mon, 14 Sep 2020 05:16:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 692CD89AC2;
+	Mon, 14 Sep 2020 05:46:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06B5289F41
- for <amd-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 05:16:00 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id d4so3973151wmd.5
- for <amd-gfx@lists.freedesktop.org>; Sun, 13 Sep 2020 22:16:00 -0700 (PDT)
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1E7489AC2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 14 Sep 2020 05:46:17 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id k15so17201938wrn.10
+ for <amd-gfx@lists.freedesktop.org>; Sun, 13 Sep 2020 22:46:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QOgD2K6RgFVtdn+pi4DRvNJal9NI3iSeX+M3t6zDXGQ=;
- b=dd2yo1NO5UZeKkA4zO6rEfObNc8gdaZXXku5u+VXkaD0Ob2hJeNCudHJsm+nYQ6gCP
- BP1AWDlPiSaDNkQfeD9+EJi6pJ9I+/NYzPuWbbbVh50zCu2Gg4HTnzURlSSB87yHDhVt
- mZ5LIKElUGIwfMIrSawu09+paVYKPl/EUQhZFeGfQzeHM5gcEQCaLoliSjbJqxOg3DXx
- 8W9FPNUtPbpjyF3ZCHHYWo0WIechB8OmfKSVFMMLC0/8GD60dF8cAuhrIgcVbkSR3lDl
- KJSN2A18ED9W5yYCTVfS9zWs4nutSrFqvBcducVWCnCD/6lLLWWW4UCDz8w3b64obvSn
- KzRg==
+ :cc; bh=nJ1CDBfqrFU9hv1lKXABmfQfLHNDJ5sMGWgZOv7MGu8=;
+ b=dF4YOI3st+njKZy/5fzTzN6R5zxiirzFLHEwdDebQhMBpl0dsYFLdRMsM3Kpo9RSSs
+ ik4SrN6CytdghM0rKFcxTVuO6WEzOIM94xtlO2goEvOS8lHEiGvVliSZuHhscYA7ASy+
+ x2+SKBfmwv3NVVdWXhQrg7dJtNzHj5a8ytzT520mt33yKoXUe+Z8lAShiUDBZniKZnUx
+ qHzqcU9Qf4IReEc8upETCyD2IgAFfkojPkSP6J4d+fgKsrYrwAovJkp+3IuEXNC5Z9Kf
+ YZPUva5pxjaDaZZPuq0HXn5oGsGB+gpEljmj/8cn31z4vh8Rq1ih0tmV6XaXriyS0TO4
+ SJBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=QOgD2K6RgFVtdn+pi4DRvNJal9NI3iSeX+M3t6zDXGQ=;
- b=LC/CC9eL53X96TKGd35GfGxMPjBgWZw3twV9gsUwUssbFgSng8eeQxDnGpyr1sAHIg
- M5MElNF6fQWvCCbXY98t9vU1otU55UwrW22vIB/0W1IvnI7R7pHm2DnYtneELdeyulBF
- ZBCEaGWmyaMXiAtStJbk4ZiMrJtRs/KWvLGvSUv6uzngtEsVzOg5eSPiY4H3wPe0sb9v
- y6Lxj5U5BOdpYQ8BwMI1JrBgZ8+26JrdD+LLMStBXZ2jxiuIzx9oKsYXzKdCQ0aSAGTv
- 8FSDbMdKIFmbZOjvtpIE1rPrEMfg35rs3plU2QzTWnjFmnw9vRTwFhhlq1VQvwI35eja
- SQEA==
-X-Gm-Message-State: AOAM530wti1odirNWHke9IKN4TDoLGuE0GbsS3J6t6YPPshx3ojbNlR4
- kBhS5vbVSY3Sl4sk8pqbhJa5w+ggZViwJWBFvxk=
-X-Google-Smtp-Source: ABdhPJyzll/7gAu9Fkda2d/gNB35pAd3c6ORdpgZHmnZNxAnleyxXMMtKZssAw4SRiabC/ic4S3GK2fKuLBexg/Rdsw=
-X-Received: by 2002:a1c:e90b:: with SMTP id q11mr13148336wmc.39.1600060559552; 
- Sun, 13 Sep 2020 22:15:59 -0700 (PDT)
+ bh=nJ1CDBfqrFU9hv1lKXABmfQfLHNDJ5sMGWgZOv7MGu8=;
+ b=oVDgH01Ckh0FkhCXpyU0CvsBEblBiSSXommtRgssKsMBu6HKBFnFs0ivCpQAzhTIsW
+ BBGMsLE+TiBuwOLBo4vzQ8x44K2ivqRRbH/0mfL9nHIBbSJ/qKg7zC2kfXfCHgIH28O4
+ KR+S3UIi3+sWl1h4XX3QPz4dVKlQIidk3B4wwO90AxlEoNydPDk3s6OmlLq3zHyo/AIE
+ 5zEutRtgzviTUaZA3mKS0Rz+av2MHWWRSPt1qVcauFql6ihqSU4SsnKMLc4Bt/IVCUJF
+ HNphyxKZaOJHjZ8f8kQYzzrGhB0CWCD8R5UMf5cTNvYOut7L7GzroeLlZkR7Z8lDRpzl
+ Fm6A==
+X-Gm-Message-State: AOAM531W4AEaEh813aFQsMdzGuWpEzpjSv+a++h6hQ5bZN6zHGmn5pgB
+ v+/MkWwBGsqyxDHzRnEDT4u6xtxtKKxcUMvLJBQ=
+X-Google-Smtp-Source: ABdhPJymh8Y1Rp0YuAC9g+MdMRdPD+sK/7NgKyFOFw54bziH9E+xJd5kOHRBcsPWBgsWbGzHLjXJnmWGi8GAP2hsV8U=
+X-Received: by 2002:a5d:6886:: with SMTP id h6mr14479062wru.374.1600062376303; 
+ Sun, 13 Sep 2020 22:46:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200911220240.2848-1-rohit.khaire@amd.com>
-In-Reply-To: <20200911220240.2848-1-rohit.khaire@amd.com>
+References: <36ccfc64de628c060a736b8e05ae076246b686fc.camel@hadess.net>
+In-Reply-To: <36ccfc64de628c060a736b8e05ae076246b686fc.camel@hadess.net>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 14 Sep 2020 01:15:48 -0400
-Message-ID: <CADnq5_Mhid2qV+cq8ywjrBSoKedjdf1gnMO13Wv+8JBWK0FbZQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Workaround RCC_DEV0_EPF0_STRAP0 access issue
- for SRIOV
-To: Rohit Khaire <rohit.khaire@amd.com>
+Date: Mon, 14 Sep 2020 01:46:05 -0400
+Message-ID: <CADnq5_NdfbJ9RAqMMxLYfvC70QPyuTQ8ggRZM2uYZAOuQx_vSQ@mail.gmail.com>
+Subject: Re: Power-saving/performance toggles for amdgpu
+To: Bastien Nocera <hadess@hadess.net>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,54 +65,45 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 11, 2020 at 6:03 PM Rohit Khaire <rohit.khaire@amd.com> wrote:
+On Mon, Sep 7, 2020 at 10:30 AM Bastien Nocera <hadess@hadess.net> wrote:
 >
-> Signed-off-by: Rohit Khaire <rohit.khaire@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
+> Hey,
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
-> index 7429f30398b9..fdfa075e6d5a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
-> @@ -51,8 +51,20 @@ static void nbio_v2_3_remap_hdp_registers(struct amdgpu_device *adev)
+> I'm currently working on a daemon that allows a UI that will eventually
+> look like the power mode section in this mockup:
+> https://gitlab.gnome.org/Teams/Design/settings-mockups/-/blob/master/power/power.png
 >
->  static u32 nbio_v2_3_get_rev_id(struct amdgpu_device *adev)
->  {
-> -       u32 tmp = RREG32_SOC15(NBIO, 0, mmRCC_DEV0_EPF0_STRAP0);
-> +       u32 tmp;
+> The daemon:
+> https://gitlab.freedesktop.org/hadess/power-profiles-daemon
+> The UI:
+> https://gitlab.gnome.org/GNOME/gnome-control-center/-/merge_requests/816
 >
-> +       /*
-> +        * On SRIOV VF RCC_DEV0_EPF0_STRAP is blocked.
-> +        * So we read rev_id from PCI config space.
-> +        */
-> +       if (amdgpu_sriov_vf(adev)) {
-> +               pci_read_config_dword(adev->pdev, PCI_REVISION_ID, &tmp);
+> It might be interesting, on some systems, to nudge the GPU drivers
+> in the direction wanted by the user, either enabling aggressive power-
+> saving or allowing more power to be used for better temporary
+> performance.
+>
+> I was wondering whether the tweaks
+> in /sys/class/drm/card*/device/power_profile
+> and /sys/class/drm/card*/device/power_method were things that this
+> daemon could and should tweak, or whether it was present solely for
+> debug purposes and shouldn't be needed even when high performance or
+> power-saving is wanted:
+> https://gitlab.freedesktop.org/hadess/power-profiles-daemon/-/issues/3
+>
+> Thanks in advance!
+>
 
-This is not going to do what you want.  The pci revision id is not the
-same as the ati rev id.  If you actually want the pci revision id, we
-already have it in adev->pdev->revision, no need to fetch it directly.
+On older radeons (e.g., pre-GCN hardware), there were separate power
+states for battery and AC, but these asics are supported by the radeon
+kernel driver.  None of the hardware supported by amdgpu exposes
+anything like that anymore.  The rest is mainly for profiling and
+debugging.  For more information see the relevant kernel
+documentation:
+https://www.kernel.org/doc/html/latest/gpu/amdgpu.html#gpu-power-thermal-controls-and-monitoring
+I don't think there is anything you'd want to tweak there.
 
 Alex
-
-
-> +               /* Revision ID is the least significant 8 bits */
-> +               tmp &= 0xFF;
-> +               return tmp;
-> +       }
-> +
-> +       tmp = RREG32_SOC15(NBIO, 0, mmRCC_DEV0_EPF0_STRAP0);
->         tmp &= RCC_DEV0_EPF0_STRAP0__STRAP_ATI_REV_ID_DEV0_F0_MASK;
->         tmp >>= RCC_DEV0_EPF0_STRAP0__STRAP_ATI_REV_ID_DEV0_F0__SHIFT;
->
-> --
-> 2.17.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
