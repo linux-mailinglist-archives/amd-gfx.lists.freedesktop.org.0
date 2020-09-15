@@ -1,55 +1,113 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA7426AD97
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Sep 2020 21:29:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C471B26AE13
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Sep 2020 21:51:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1806C6E14C;
-	Tue, 15 Sep 2020 19:29:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1567B6E907;
+	Tue, 15 Sep 2020 19:51:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81B706E134;
- Tue, 15 Sep 2020 19:29:10 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id m6so4557336wrn.0;
- Tue, 15 Sep 2020 12:29:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=WNOfew7cieK0fIPLf+MgiYy15Qujw2hwL5Iyu+qX2xE=;
- b=ohIxN49DAtGodQKEvkH4w5EPA9qaRJCt40swRQWxkKBIH88SL2NiKg9Rkf+SzBnXum
- lbwoLOchshoLLVuj/uAxwWx5oPPjMuLlA9109ML1HwWD2mX1Tp1ri6h1INF0fFX9VlOJ
- d/GsTLZC97ULuqqanrTeAHEjN0FGguNndIdLqiP54DHqJPsWAuXyLuc5/cbPUF8Hm9Wy
- 2rpCh6l9A4560fyFoRSa0Tvl0aMlPq3brU6PrQpl2cZqF99ydsKO+QHuABkBXxJ6xbdl
- EsUNJv7OaFIrRFGSEjhlRbCMp5w6JnmVQ5RxcY0SWg/pjOLDSgksRQQ2/64+eWdnlb+p
- nW4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=WNOfew7cieK0fIPLf+MgiYy15Qujw2hwL5Iyu+qX2xE=;
- b=k23H+eJQ9WZRPI7S5kHBUA9jxvneWlEtDoDbkl1Q/Vp+JfnxsdZTnTQSqKOBfun6tA
- JFV3BRzr2N/J0HgyhawgEUAcDVHOhVD/pq4BY81Tsw2AQR0R/oPOxh0xsk89c10t39pV
- s/J/jgqH5n6+b/moQdh0xjLqF0Xh8VqUdFo+PNMryURuEhR9b/cHjSdR4HhPYJ0DlzBX
- kCO5tl2WEs5Sd2sLUCmU+L6Mq+Q2rrHPJywBebiht4LN0+5OpuT/f71iNeN/47ew/qce
- nefimXDqeYOOAuso2A37LVM0WLfxVqLBlocoJL9mwHxl44qDtmxT+u1noZYwxxOVKK0z
- T90A==
-X-Gm-Message-State: AOAM5330jDfEHdQ8uREF59qj1BDR4H3MtvzgJuxuu04m3sfqzj0pD02e
- cQvh7X+qAqbZPOwO+9HmkMuzMqCoTiCQj3zNXYI=
-X-Google-Smtp-Source: ABdhPJwuQ0az1NkHLajypW7vFoAnyGiloF+XVUfUJYGPW+n9xw4FDqRbB7+px/Or23gTyNjs6vYN7wMcMcZ6+jqqP9A=
-X-Received: by 2002:a5d:6886:: with SMTP id h6mr23815361wru.374.1600198149147; 
- Tue, 15 Sep 2020 12:29:09 -0700 (PDT)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2047.outbound.protection.outlook.com [40.107.93.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F1776E8D7;
+ Tue, 15 Sep 2020 18:39:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RArpkZ/l/P0gBhyiVnFzlnK1+ltpu4x88FRuCdWtNwWkp98mExU2EARfU6VG5otrPM9YMztHQ/zNIMyLWyYeDSehv+5ddUu5QkXHHrPXqkcHNzmYi/ERU4FdoINvsO0vS4BwlbEdx7+wtX0wfgwsnyORrfNfHGuXiyS1GCBCOdPHP7YfyO9HbWENIeHr4NEhKRcC1qdLa1GgV9F9xiTcV35GTG9B98p17FI7Dcmdoy5O8kN2yk4QEPzW+msX7k0AmzfXVF4ub8AMUSXd/UHcD3pRDMGcul4U5uWl9czAi4Uclw9huD+9RW5oEjZtfYzlCedo3XonK4F5T9S6WNrTwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4nIO+lhNFgioRkRyGhdB1I3Uj8gi/oxj23FCH5WSe8E=;
+ b=R8H8SkAXciLhrprBnQK3SHbWsJcLCXqoT+g20E1/ybgGhxqZtPiDOGOmY/LrTSxcpGB73tZW5v1PNPMcgwEzSZMJdunPyGyb+IohPUaPR8BO2oj2GZkHVfq647GrY3z9KniynTif8AVTOztHi1kEtPjQOLSScdWMVRNUP4xQLbCzGB+Kfj9GTwzzxOTbf1K+UAkqii38ibdb+kBBQr49WLJLJh8RjphzYqjDNYKUdZZhOGHIvovYgMzNgpj8qUJI3LwCXulrTIIc9F1n4FS+99hApKJrfmt6b9+AGfaSps5cJLpvUeMu5jyKWPcKjQLuB7YD69qLPjzISQqhD+zOhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4nIO+lhNFgioRkRyGhdB1I3Uj8gi/oxj23FCH5WSe8E=;
+ b=Ft9IxLhrSyAZPH7YXskNwwHcjwsioZd1gYOVg7DJ49DbK3VXAIGTwQZq6Glqpt3+ujNcSgKehvmyZBDWmlOiekjX6vYBG7i/63A/aBX5gGzuEwyXfvt9wM1DbWvK0PScJ0JlBQD0msFJtI3bvUvSgDPCXYHOa2r5LaLrKnngICs=
+Received: from DM5PR06CA0035.namprd06.prod.outlook.com (2603:10b6:3:5d::21) by
+ MN2PR02MB6862.namprd02.prod.outlook.com (2603:10b6:208:1d4::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Tue, 15 Sep
+ 2020 18:39:12 +0000
+Received: from CY1NAM02FT041.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:3:5d:cafe::2b) by DM5PR06CA0035.outlook.office365.com
+ (2603:10b6:3:5d::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend
+ Transport; Tue, 15 Sep 2020 18:39:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ CY1NAM02FT041.mail.protection.outlook.com (10.152.74.156) with Microsoft SMTP
+ Server id 15.20.3370.16 via Frontend Transport; Tue, 15 Sep 2020 18:39:12
+ +0000
+Received: from [149.199.38.66] (port=33482 helo=smtp.xilinx.com)
+ by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
+ (envelope-from <hyun.kwon@xilinx.com>)
+ id 1kIFr8-00079j-0A; Tue, 15 Sep 2020 11:39:06 -0700
+Received: from [127.0.0.1] (helo=xsj-smtp-dlp2.xlnx.xilinx.com)
+ by smtp.xilinx.com with esmtp (Exim 4.63)
+ (envelope-from <hyun.kwon@xilinx.com>)
+ id 1kIFrD-0001kg-Qb; Tue, 15 Sep 2020 11:39:11 -0700
+Received: from xsj-pvapsmtp01 (smtp3.xilinx.com [149.199.38.66])
+ by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id 08FId9Zt008885; 
+ Tue, 15 Sep 2020 11:39:09 -0700
+Received: from [172.19.75.82] (helo=xsjsycl40.xilinx.com)
+ by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+ (envelope-from <hyun.kwon@xilinx.com>)
+ id 1kIFrB-0001kJ-AL; Tue, 15 Sep 2020 11:39:09 -0700
+Received: by xsjsycl40.xilinx.com (Postfix, from userid 13638)
+ id 491F2352CB5; Tue, 15 Sep 2020 11:39:09 -0700 (PDT)
+Date: Tue, 15 Sep 2020 11:39:09 -0700
+From: Hyun Kwon <hyun.kwon@xilinx.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v2 20/21] drm/xlnx: Initialize DRM driver instance with
+ CMA helper macro
+Message-ID: <20200915183909.GA2471550@xilinx.com>
+References: <20200915145958.19993-1-tzimmermann@suse.de>
+ <20200915145958.19993-21-tzimmermann@suse.de>
+ <20200915155346.GA26029@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-References: <20200910023345.20428-1-yuehaibing@huawei.com>
- <1226ea65-a957-baa2-e9c7-fe88b1aae620@amd.com>
-In-Reply-To: <1226ea65-a957-baa2-e9c7-fe88b1aae620@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 15 Sep 2020 15:28:58 -0400
-Message-ID: <CADnq5_NFKaOmx5s2DA1fkaTpYXPnFwkeUP=rtgF9yij64KJ6yA@mail.gmail.com>
-Subject: Re: [PATCH -next] drm/ttm/agp: Fix Wunused-variable warning
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Disposition: inline
+In-Reply-To: <20200915155346.GA26029@pendragon.ideasonboard.com>
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4c65fab7-7d10-4b9a-748b-08d859a6a3fb
+X-MS-TrafficTypeDiagnostic: MN2PR02MB6862:
+X-Microsoft-Antispam-PRVS: <MN2PR02MB686297B0A5D949DD63A5E1D5D6200@MN2PR02MB6862.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:157;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: azHD76tuOPuB48RIPJTmGE1GeguOaYooVgA1zfaOFcdq8MvHicW8zvBOOLEI7v5gvGiv/ru7NR+rNkmZPFHOALmKpoRinkan47/aYxnYbvK6VEwY/OAaIqXB9x/lZV06yan8U1lpw5LLFrWxbrNF7RDDiUXWcoZhlDIIqmoXRIxH2kk1gVeGVQxpil9Yqv5px4Xylh/WWh8og85pL+UeJMu8leYXUObrWsn3WgnSoYFYSTSbQFHNMLLNJCFl9A6QJq0jelg6HSpNYrgTXAMJxhf4AeNxHfvpX7fbhsxqChK+Uqg44tLfuYfzGP5FHI2EgX8VmfPRVNe+b1OAxcxv7BJf9nYTCE4oeoVql+sStizjqxSu/OZCr/zt8ApQWS/2m80VUw8QelAhhDh5SWCSKRUKgL4LYo9OHWt/g9Z7hOwMuPzuwZG8AKr0ULbHWlZB
+X-Forefront-Antispam-Report: CIP:149.199.60.83; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:xsj-pvapsmtpgw01; PTR:unknown-60-83.xilinx.com; CAT:NONE;
+ SFS:(346002)(136003)(39860400002)(376002)(396003)(46966005)(478600001)(36756003)(1076003)(6916009)(336012)(4326008)(186003)(26005)(6266002)(426003)(356005)(8936002)(83380400001)(2906002)(82740400003)(8676002)(82310400003)(7406005)(7366002)(7416002)(81166007)(70206006)(47076004)(966005)(70586007)(44832011)(42186006)(33656002)(316002)(2616005)(54906003)(5660300002);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2020 18:39:12.2114 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c65fab7-7d10-4b9a-748b-08d859a6a3fb
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c; Ip=[149.199.60.83];
+ Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT041.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6862
+X-Mailman-Approved-At: Tue, 15 Sep 2020 19:51:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,45 +119,130 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, YueHaibing <yuehaibing@huawei.com>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, "Deucher,
- Alexander" <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "hamohammed.sa@gmail.com" <hamohammed.sa@gmail.com>,
+ "airlied@linux.ie" <airlied@linux.ie>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "sam@ravnborg.org" <sam@ravnborg.org>,
+ "emil.velikov@collabora.com" <emil.velikov@collabora.com>,
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ "jy0922.shim@samsung.com" <jy0922.shim@samsung.com>,
+ "oleksandr_andrushchenko@epam.com" <oleksandr_andrushchenko@epam.com>,
+ "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+ "krzk@kernel.org" <krzk@kernel.org>,
+ "jonathanh@nvidia.com" <jonathanh@nvidia.com>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "tomi.valkeinen@ti.com" <tomi.valkeinen@ti.com>,
+ Michal Simek <michals@xilinx.com>, "bskeggs@redhat.com" <bskeggs@redhat.com>,
+ "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>,
+ "marek.olsak@amd.com" <marek.olsak@amd.com>,
+ "matthew.auld@intel.com" <matthew.auld@intel.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "andi.shyti@intel.com" <andi.shyti@intel.com>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "tianci.yin@amd.com" <tianci.yin@amd.com>,
+ "nirmoy.das@amd.com" <nirmoy.das@amd.com>,
+ "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>,
+ "hdegoede@redhat.com" <hdegoede@redhat.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+ "evan.quan@amd.com" <evan.quan@amd.com>, "sean@poorly.run" <sean@poorly.run>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
+ "rodrigosiqueiramelo@gmail.com" <rodrigosiqueiramelo@gmail.com>,
+ "aaron.liu@amd.com" <aaron.liu@amd.com>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "xinhui.pan@amd.com" <xinhui.pan@amd.com>,
+ "sw0312.kim@samsung.com" <sw0312.kim@samsung.com>,
+ "hjc@rock-chips.com" <hjc@rock-chips.com>,
+ "kyungmin.park@samsung.com" <kyungmin.park@samsung.com>,
+ "miaoqinglang@huawei.com" <miaoqinglang@huawei.com>,
+ "kgene@kernel.org" <kgene@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "Hawking.Zhang@amd.com" <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBmdW5jdGlvbiBubyBsb25nZXIgZXhpc3RzLgoKQWxleAoKT24gVGh1LCBTZXAgMTAsIDIw
-MjAgYXQgNDo1NiBBTSBDaHJpc3RpYW4gS8O2bmlnCjxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+
-IHdyb3RlOgo+Cj4gQW0gMTAuMDkuMjAgdW0gMDQ6MzMgc2NocmllYiBZdWVIYWliaW5nOgo+ID4g
-SWYgQ09ORklHX0FHUCBpcyBub3Qgc2V0LCBnY2Mgd2FybnM6Cj4gPgo+ID4gZHJpdmVycy9ncHUv
-ZHJtL3JhZGVvbi9yYWRlb25fdHRtLmM6IEluIGZ1bmN0aW9uIOKAmHJhZGVvbl90dG1fdHRfYmlu
-ZOKAmToKPiA+IGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX3R0bS5jOjY5MjoyNDogd2Fy
-bmluZzogdW51c2VkIHZhcmlhYmxlIOKAmHJkZXbigJkgWy1XdW51c2VkLXZhcmlhYmxlXQo+ID4g
-ICAgc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYgPSByYWRlb25fZ2V0X3JkZXYoYmRldik7Cj4g
-PiAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fgo+ID4KPiA+IE1vdmUgaXQgdG8gaWZkZWYg
-YmxvY2sgdG8gZml4IHRoaXMuCj4gPgo+ID4gU2lnbmVkLW9mZi1ieTogWXVlSGFpYmluZyA8eXVl
-aGFpYmluZ0BodWF3ZWkuY29tPgo+Cj4gUmV2aWV3ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNo
-cmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPgo+ID4gLS0tCj4gPiAgIGRyaXZlcnMvZ3B1L2RybS9y
-YWRlb24vcmFkZW9uX3R0bS5jIHwgMiArLQo+ID4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
-b24oKyksIDEgZGVsZXRpb24oLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L3JhZGVvbi9yYWRlb25fdHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl90dG0u
-Ywo+ID4gaW5kZXggMzFjNjNkMzM5NjI5Li40NDllNzdlYjc1ZjkgMTAwNjQ0Cj4gPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl90dG0uYwo+ID4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL3JhZGVvbi9yYWRlb25fdHRtLmMKPiA+IEBAIC02ODksOSArNjg5LDkgQEAgc3RhdGljIGlu
-dCByYWRlb25fdHRtX3R0X2JpbmQoc3RydWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCj4gPiAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IHR0bV90dCAqdHRtLAo+ID4gICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIHN0cnVjdCB0dG1fcmVzb3VyY2UgKmJvX21lbSkKPiA+ICAgewo+
-ID4gKyNpZiBJU19FTkFCTEVEKENPTkZJR19BR1ApCj4gPiAgICAgICBzdHJ1Y3QgcmFkZW9uX2Rl
-dmljZSAqcmRldiA9IHJhZGVvbl9nZXRfcmRldihiZGV2KTsKPiA+Cj4gPiAtI2lmIElTX0VOQUJM
-RUQoQ09ORklHX0FHUCkKPiA+ICAgICAgIGlmIChyZGV2LT5mbGFncyAmIFJBREVPTl9JU19BR1Ap
-Cj4gPiAgICAgICAgICAgICAgIHJldHVybiB0dG1fYWdwX2JpbmQodHRtLCBib19tZW0pOwo+ID4g
-ICAjZW5kaWYKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-Zwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdm
-eApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4
-IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+Hi Tomas,
+
+Thanks for the patch.
+
+On Tue, Sep 15, 2020 at 08:53:46AM -0700, Laurent Pinchart wrote:
+> Hi Thomas,
+> 
+> Thank you for the patch.
+> 
+> On Tue, Sep 15, 2020 at 04:59:57PM +0200, Thomas Zimmermann wrote:
+> > The xlnx driver uses CMA helpers with default callback functions.
+> > Initialize the driver structure with the rsp CMA helper macro. The
+> > driver is being converted to use GEM object functions as part of
+> > this change.
+> > 
+> > Two callbacks, .dumb_destroy and .gem_prime_import, were initialized
+> > to their default implementations, so they are just kept empty now.
+> > 
+> > v2:
+> > 	* initialize with DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE (Laurent)
+> > 
+> > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+
+Reviewed-by: Hyun Kwon <hyun.kwon@xilinx.com>
+
+Thanks,
+-hyun
+
+> > ---
+> >  drivers/gpu/drm/xlnx/zynqmp_dpsub.c | 14 +-------------
+> >  1 file changed, 1 insertion(+), 13 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+> > index 8e69303aad3f..f3ffc3703a0e 100644
+> > --- a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+> > +++ b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+> > @@ -80,19 +80,7 @@ static struct drm_driver zynqmp_dpsub_drm_driver = {
+> >  	.driver_features		= DRIVER_MODESET | DRIVER_GEM |
+> >  					  DRIVER_ATOMIC,
+> >  
+> > -	.prime_handle_to_fd		= drm_gem_prime_handle_to_fd,
+> > -	.prime_fd_to_handle		= drm_gem_prime_fd_to_handle,
+> > -	.gem_prime_export		= drm_gem_prime_export,
+> > -	.gem_prime_import		= drm_gem_prime_import,
+> > -	.gem_prime_get_sg_table		= drm_gem_cma_prime_get_sg_table,
+> > -	.gem_prime_import_sg_table	= drm_gem_cma_prime_import_sg_table,
+> > -	.gem_prime_vmap			= drm_gem_cma_prime_vmap,
+> > -	.gem_prime_vunmap		= drm_gem_cma_prime_vunmap,
+> > -	.gem_prime_mmap			= drm_gem_cma_prime_mmap,
+> > -	.gem_free_object_unlocked	= drm_gem_cma_free_object,
+> > -	.gem_vm_ops			= &drm_gem_cma_vm_ops,
+> > -	.dumb_create			= zynqmp_dpsub_dumb_create,
+> > -	.dumb_destroy			= drm_gem_dumb_destroy,
+> > +	DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE(zynqmp_dpsub_dumb_create),
+> >  
+> >  	.fops				= &zynqmp_dpsub_drm_fops,
+> >  
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
