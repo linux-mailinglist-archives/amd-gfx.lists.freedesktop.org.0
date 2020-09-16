@@ -2,94 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3006426C9F4
-	for <lists+amd-gfx@lfdr.de>; Wed, 16 Sep 2020 21:41:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60C4026CA61
+	for <lists+amd-gfx@lfdr.de>; Wed, 16 Sep 2020 21:58:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 922736E075;
-	Wed, 16 Sep 2020 19:41:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4EEB6EB18;
+	Wed, 16 Sep 2020 19:58:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2061d.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5b::61d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E5B26E075
- for <amd-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 19:41:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fmelpah6WjKBljZoD/THy24NBsrw2LrwVcJ7dOlsoFqp9qei/IokFkwq9WfKH1JKu3ffpRR3974a1aFyNxviJT5PngUMQEEDCwYtWEuYU+Tcr8V9SMR8C94M+RhjJjVVx6mwO2GqgXDJ4Mn4vhu5NpPghNFwkQXsG7hZDRabtE8WcxlyoB5w2BwoLhJOkMD3cHktlBVLjtoT1rXo2wcrskW3mvMNtuPuDM+epSR+bk4xOZJb/qM3LgkYMXSKEiq48MZrgC5tjrJbDLS0dmN8kVF82+vLH+HsFQ/wunEFlRvyX+r2nBh0gzxaRmvmH9M+wlAMTuwYf2GFAPGQ6HpWpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eBJ1U5TuCN80QZDTKpom2inABfPjqqqIlIV07VeIZgI=;
- b=CFywj0+s93c+gg5/0LR/dn9FsNevO5xyZADNCRXLqasTA7AaXYLvp//26VaN5Xc1cU+V5T+IXL5jNF3zQAB+GBoeihqgPjydqXeN/Fc3fQqVJT469fN4rXc2eNx1GK3+Ch7mI7P+LdT2XI/WsNQOheRAb1t5VeCh0xsHQVeLwrtVK4HYwinw5xE3Ra6+5viwJ2zGxhJbW7k/3qNe22/qgn/PLTJ3pmT+CQnFt5U2Pd8XBUyxHDhZHyeD/JK4kv4kRclNPErAtHk7DAXmVimjRbJKZJm3KC1lPywcY5tfGBOCtJezsXXx05xCyRpp8Z8N13nvODvqYNsQjiepWbn28Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eBJ1U5TuCN80QZDTKpom2inABfPjqqqIlIV07VeIZgI=;
- b=Y2/aMyCGdg20VzmybafK09JpCmzyNsK2/W44nwhpckvWNBudKQCxHkjFgp0STXIMPpRhXcMaN6Jy3w5zuMrmVO8K4mAnrBy5SkXgngRu5pwZLSQw2Nw1EJJAO/lzMVjWnlmU3AbgxsqZx90RhkVknrUerHagBmRSYhgeLH56tX0=
-Received: from DM5PR18CA0093.namprd18.prod.outlook.com (2603:10b6:3:3::31) by
- MW3PR12MB4346.namprd12.prod.outlook.com (2603:10b6:303:58::20) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3391.11; Wed, 16 Sep 2020 19:36:47 +0000
-Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:3:cafe::f8) by DM5PR18CA0093.outlook.office365.com
- (2603:10b6:3:3::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.13 via Frontend
- Transport; Wed, 16 Sep 2020 19:36:47 +0000
-X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3370.16 via Frontend Transport; Wed, 16 Sep 2020 19:36:46 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 16 Sep
- 2020 14:36:45 -0500
-Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 16 Sep 2020 14:36:45 -0500
-From: Qingqing Zhuo <qingqing.zhuo@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 15/15] drm/amd/display: 3.2.104
-Date: Wed, 16 Sep 2020 15:36:35 -0400
-Message-ID: <20200916193635.5169-16-qingqing.zhuo@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200916193635.5169-1-qingqing.zhuo@amd.com>
-References: <20200916193635.5169-1-qingqing.zhuo@amd.com>
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54CE66EB18
+ for <amd-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 19:58:36 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id y15so4292289wmi.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 12:58:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=DfA6+xRS6Nq0n8p9CQ9hN/w7hL9OWCmZOuirF19p7YU=;
+ b=eX9KxJmQXk34gPW15ogEcW2MO7ICw8F85oKVDechB68LJEwXkikXAYYraJOZxw2DcF
+ wMJtucBpj7nGAqLuAfFa9fRhZeJjhU4T9VPM7z076Bt5IhwxIHQ4qsMC5H8+GNsn/TM7
+ 9MOJbhJ7cJDGy38xybTz+YWXZZRukvbRJ7RW1VxdMCWeFy2AMsQF95CheSxaSUwuQ1VX
+ wKxlxQm0PBtG5iCYnXMe6CJR6CYxhQdGNjrbWkS6J9lm3u35MG+gr0CS1KHmSGPDgskY
+ y0fc0FWl53gGZlNJHxmDAwWx3QwIPwunwAfoMBl9YFG8jaZcDMnTTOV8lC5GKArZaOoK
+ +uyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=DfA6+xRS6Nq0n8p9CQ9hN/w7hL9OWCmZOuirF19p7YU=;
+ b=i/9yv65RXc8qdz24zuaWJ7YB2Wv96agzWShtVyt+TiEgb55HnBkDyQe1iI3EOfThaV
+ y1Hzv1JjOWc2TpuEHVs8F4Z3hRRLvYt3psio+vHbPos1idHR3lKzWFkguX6NSW7rC7x9
+ 0vI6xkg8tL0LzknHJaThmBJFNu/YQwsDtSDQNNaeRzfNN/HYeQuScz6v1x3EeenGDFSg
+ qzDacaVdyt91zblaonbXzl3a7lSA8cV8BqjC3lc6wVeFGGX+0mYCeBA/MM+oBUcu9Dsb
+ ygIvmnokGXvk3G2mGG5l5rvyY4b3gW+xrQiT3j3icweRatmdlJKUAHE3rXiph2BrYdys
+ 5rHg==
+X-Gm-Message-State: AOAM533hbdQsmB497/4EGE6vAkCq8VcfP2ceiFJLetfLb1s60n/OVIBg
+ i19T3psh6VIOMy+Wa+dlQJeZs/bqlh7GHh1LXHnv5fw1
+X-Google-Smtp-Source: ABdhPJzfaisBnHsunDQBfZXSkRgkLwEjiD+g1akR3X6Q8dyPPDlF5qOkbvHXG0uciBf2Brv5HpTx8LXgHwaVc7b8Z4A=
+X-Received: by 2002:a1c:7d4d:: with SMTP id y74mr6361326wmc.73.1600286314982; 
+ Wed, 16 Sep 2020 12:58:34 -0700 (PDT)
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0b103f76-007c-4930-0eed-08d85a77d970
-X-MS-TrafficTypeDiagnostic: MW3PR12MB4346:
-X-Microsoft-Antispam-PRVS: <MW3PR12MB4346A9101902FA60D8669260FB210@MW3PR12MB4346.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:296;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9CKeYn5h+b9uUuzDVNwuAcMTvbBWD9lCfK3ZgwldFLAAH/uIBz2vUuFp9p+871KomtqBBv+me/wuyg3TJF1msDPCfatpIsGdCdpVV7SHWmd1xUfUm/+4VaMeH14ilMUXXglTXma/m3QGRFVilJzU4hekk7c1JhVOM2oG7QXw5alUtwGDL8En/iRJzF8D1jYgThVlOD9rMitUD4DixpGzUtAeQYxAVOiiTq4TwZ8nu3MQF7Om+aDsGxGP/Wif1x4M2YnsLTpggtpcPZX0m4SMb615k1VarUCPzYZ7oN9eCN6yOND+D4tES5JYTqk0L0/F94wkq2aVfPlYaNSEFQ2DdmiJDvfQArA8OYYX9hgt6JbzATLhUJSOlW4qMOVnKaXZKHHjFIkORcmXk3rwBICLoA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(346002)(376002)(396003)(46966005)(186003)(6916009)(70586007)(5660300002)(70206006)(36756003)(86362001)(1076003)(2906002)(8676002)(4744005)(82310400003)(8936002)(82740400003)(6666004)(26005)(478600001)(356005)(83380400001)(2616005)(81166007)(44832011)(316002)(47076004)(336012)(54906003)(4326008)(426003);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2020 19:36:46.7003 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b103f76-007c-4930-0eed-08d85a77d970
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4346
+References: <20200916162130.1562572-1-tom.stdenis@amd.com>
+In-Reply-To: <20200916162130.1562572-1-tom.stdenis@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 16 Sep 2020 15:58:24 -0400
+Message-ID: <CADnq5_OM1dJEB8tbMfxu8CzjhR_niww4DLq8pi4aDYj05Pbfjw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/amdgpu: add mmUVD_FW_STATUS register to uvd700
+To: Tom St Denis <tom.stdenis@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,39 +59,81 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <aric.cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Bhawanpreet.Lakha@amd.com
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+On Wed, Sep 16, 2020 at 12:21 PM Tom St Denis <tom.stdenis@amd.com> wrote:
+>
+> This register was requested for umr debugging support.
+>
+> Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
 
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
-Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index d65483483d05..061ca15660ac 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -42,7 +42,7 @@
- #include "inc/hw/dmcu.h"
- #include "dml/display_mode_lib.h"
- 
--#define DC_VER "3.2.103"
-+#define DC_VER "3.2.104"
- 
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
--- 
-2.17.1
-
+> ---
+>  .../amd/include/asic_reg/uvd/uvd_7_0_offset.h |  3 +++
+>  .../include/asic_reg/uvd/uvd_7_0_sh_mask.h    | 20 +++++++++++++++++++
+>  2 files changed, 23 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_7_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_7_0_offset.h
+> index 07aceffb108a..524ba4421c17 100644
+> --- a/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_7_0_offset.h
+> +++ b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_7_0_offset.h
+> @@ -151,6 +151,8 @@
+>  #define mmUVD_LMI_CTRL2_BASE_IDX                                                                       1
+>  #define mmUVD_MASTINT_EN                                                                               0x0540
+>  #define mmUVD_MASTINT_EN_BASE_IDX                                                                      1
+> +#define mmUVD_FW_STATUS                                                                                0x0557
+> +#define mmUVD_FW_STATUS_BASE_IDX                                                                       1
+>  #define mmJPEG_CGC_CTRL                                                                                0x0565
+>  #define mmJPEG_CGC_CTRL_BASE_IDX                                                                       1
+>  #define mmUVD_LMI_CTRL                                                                                 0x0566
+> @@ -219,4 +221,5 @@
+>  #define mmUVD_CONTEXT_ID2_BASE_IDX                                                                     1
+>
+>
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_7_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_7_0_sh_mask.h
+> index b427f73bd536..919be1842bd5 100644
+> --- a/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_7_0_sh_mask.h
+> +++ b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_7_0_sh_mask.h
+> @@ -807,5 +807,25 @@
+>  #define UVD_CONTEXT_ID2__CONTEXT_ID2__SHIFT                                                                   0x0
+>  #define UVD_CONTEXT_ID2__CONTEXT_ID2_MASK                                                                     0xFFFFFFFFL
+>
+> +//UVD_FW_STATUS
+> +#define UVD_FW_STATUS__BUSY__SHIFT                                                                            0x0
+> +#define UVD_FW_STATUS__ACTIVE__SHIFT                                                                          0x1
+> +#define UVD_FW_STATUS__SEND_EFUSE_REQ__SHIFT                                                                  0x2
+> +#define UVD_FW_STATUS__DONE__SHIFT                                                                            0x8
+> +#define UVD_FW_STATUS__PASS__SHIFT                                                                            0x10
+> +#define UVD_FW_STATUS__FAIL__SHIFT                                                                            0x11
+> +#define UVD_FW_STATUS__INVALID_LEN__SHIFT                                                                     0x12
+> +#define UVD_FW_STATUS__INVALID_0_PADDING__SHIFT                                                               0x13
+> +#define UVD_FW_STATUS__INVALID_NONCE__SHIFT                                                                   0x14
+> +#define UVD_FW_STATUS__BUSY_MASK                                                                              0x00000001L
+> +#define UVD_FW_STATUS__ACTIVE_MASK                                                                            0x00000002L
+> +#define UVD_FW_STATUS__SEND_EFUSE_REQ_MASK                                                                    0x00000004L
+> +#define UVD_FW_STATUS__DONE_MASK                                                                              0x00000100L
+> +#define UVD_FW_STATUS__PASS_MASK                                                                              0x00010000L
+> +#define UVD_FW_STATUS__FAIL_MASK                                                                              0x00020000L
+> +#define UVD_FW_STATUS__INVALID_LEN_MASK                                                                       0x00040000L
+> +#define UVD_FW_STATUS__INVALID_0_PADDING_MASK                                                                 0x00080000L
+> +#define UVD_FW_STATUS__INVALID_NONCE_MASK                                                                     0x00100000L
+> +
+>
+>  #endif
+> --
+> 2.26.2
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
