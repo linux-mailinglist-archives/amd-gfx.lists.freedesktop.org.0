@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D462C26C9FC
-	for <lists+amd-gfx@lfdr.de>; Wed, 16 Sep 2020 21:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B0926C9FE
+	for <lists+amd-gfx@lfdr.de>; Wed, 16 Sep 2020 21:42:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07B676EAE3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5DFA6EB10;
 	Wed, 16 Sep 2020 19:42:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2055.outbound.protection.outlook.com [40.107.92.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 846B16EADE
- for <amd-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 19:42:31 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2053.outbound.protection.outlook.com [40.107.237.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1EE6EADE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 16 Sep 2020 19:42:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PuansHBbFRNyTX9TgjYZjxdgUGVcqGyGZlgHs879L4KlrEewWF3WNry+v+SF73kSvyjq1YO5QsYNYT3qr+vjNcTPw0dZh6kHQP/xXIFvdojKf2Nmrh4Rf/6QPqzxiXKqQEdVkDFJMfKe1CPVplmTIXECT7ji7NRF1oqhwEPcDLzpc53dVEtGOPuKf6qQc7R7Nm0zW9+h10K3tJdzqh4lOzswrgexYFhsmmqAtUK06T8hjQWeZ73iy8pi15O13sqVdNVwbR8mdlksNun39kWML0sJFvTZVBzeozvAZPALAxS0LyB3v7QLXE8Wn9qMIH7dA8YhMchUbeVy1YDi7EygWQ==
+ b=DXow+Z2CQIpsy5UJqoWxjnXYYm51QN3a2dYTlhjcmMYsLxZL3HWOTXY8iZgGyP+BjPYPLax2qxnkL+H/vJ7GLS8Xr+oKEiEoIDXWytNLWNxxQDN8vRZBvdR4mMZee2VizjkCTkxcw3lOvqBziVhVJLMo3824wj2h0onzqeAfl0gL/SOkCHhpriL7UeFqSmW1PqnN9m8eSqsWcsMQzg8CHr77A8zAYY+sAFAZ7LfqwNExH9vXU3Ahhs9vpYIZnoUPG+cK6OMcJuEZw41cZPG7qCq5Gk+lpOxMtMwAokoDST8MOdi688eQp/28+WNOwg1KEiNWhUFrZMRc8ztiyeNi6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e70dvBwLCqXBJ04cOKPCj86OuC6sKXgti5XdlJdZT3s=;
- b=J1mEj8SjpHu4nXjmURBjnkncTiKGhkF54NmzrGbSKlqfgG8UM34g5k5rmKd0h4ddrpV9E4Ro36sShARrC1HJJQmUW3CjkOycboTCHGArLfT34KWwLID2MpAFCKhwKono3UGrD+IOhlfvSCVTZ7nPdMfj+dIpwexi4OfzGhPZH9NeCJPLajent1OB30DlvxbR0rMvzw9wmIjZX6EL9f34C8FWy0+dIjvWIZXq3LdEciGjXwfth8U/lvCgbVQAPDOyu0VIwA6UX3Zd6j3N9TCW8BbPzsU6kTdL6eKP77OKjTsU8AdOX+VpzEiAcDCEIP+1bktFGkmAwywmlgHVoXZTkQ==
+ bh=xxLMxfoIgv91bmsCmruVMHnuWRc2Hw/XqZdAakMzhto=;
+ b=Veu0L1PRJqibbGtlmyuQieSj+6TtO2VBZfGZUheCFcxvV8O+Mg2yeGSJ2Vq3FrFQygzsxWRefkB/1Jm0nMSGX7yQwvbaPg/RaEl/D5D7wtSM3Q2EGz5EwmFbC69r2kp3ron6nkbPF9kl0PiiuhK0Lct6t30KONjJ8epfbFgSirckSyCJuyMCaEyg9gQK6ZbYrIzPrgJeJERH8p/z1Hlp+YsMYrR0EckdZd6/WAv4cgbLMXOTfMx9PltFguSy7XUc3kQPHWYQ1fhezaimdjuIjk/l9HcgvWjGeL26AJRvTPL/DDM5H3YNGOU1t2mgCgY8CgQiU60CYX7tpVxOcomfQQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=permerror action=none header.from=amd.com; dkim=none (message not
@@ -27,45 +27,44 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e70dvBwLCqXBJ04cOKPCj86OuC6sKXgti5XdlJdZT3s=;
- b=yTDwFl8G09WCpEdeDCz98+HneZ/IB15wJ603jMqF9i+ThmKv+wW6qYdTOv2kci2vK2ZFglzt7lr4T67q02J/pVfCY2JtLekGeNQ0xO8cu6wXz2kQ6TTpdA2Gt41u7tGsqnYgK1NaYmEFL5kNszKJ+lXwws+XyOe5yxBy7lRXpSE=
-Received: from BN6PR03CA0117.namprd03.prod.outlook.com (2603:10b6:404:10::31)
- by CH2PR12MB3895.namprd12.prod.outlook.com (2603:10b6:610:2a::13)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=xxLMxfoIgv91bmsCmruVMHnuWRc2Hw/XqZdAakMzhto=;
+ b=EqYMlrrKMWJTkAbqnXZXzfap+yY5aLHpV/LJjDTF+Xm83JI4X7eolsDxpFqfHlJmG7ZjUHMb2Oz0XKyGOa7h/TvDRBCF8NL+oxuhZnpRindnmFZ9DvgPBl29BolCwFvTJe3d+bputtb5BzNl+Odc48+fca4agwXWCEMinFnaoA8=
+Received: from DM5PR22CA0003.namprd22.prod.outlook.com (2603:10b6:3:101::13)
+ by DM6PR12MB2971.namprd12.prod.outlook.com (2603:10b6:5:118::28) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Wed, 16 Sep
- 2020 19:36:39 +0000
-Received: from BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:10:cafe::43) by BN6PR03CA0117.outlook.office365.com
- (2603:10b6:404:10::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.14 via Frontend
- Transport; Wed, 16 Sep 2020 19:36:39 +0000
+ 2020 19:36:40 +0000
+Received: from DM6NAM11FT040.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:101:cafe::8) by DM5PR22CA0003.outlook.office365.com
+ (2603:10b6:3:101::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.11 via Frontend
+ Transport; Wed, 16 Sep 2020 19:36:40 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=permerror action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT022.mail.protection.outlook.com (10.13.176.112) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ DM6NAM11FT040.mail.protection.outlook.com (10.13.173.133) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3370.16 via Frontend Transport; Wed, 16 Sep 2020 19:36:39 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3370.16 via Frontend Transport; Wed, 16 Sep 2020 19:36:40 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 16 Sep
- 2020 14:36:38 -0500
+ 2020 14:36:39 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 16 Sep
- 2020 14:36:38 -0500
+ 2020 14:36:39 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
  Transport; Wed, 16 Sep 2020 14:36:38 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 04/15] drm/amd/display: Replace msleep with udelay while read
- edid return defer.
-Date: Wed, 16 Sep 2020 15:36:24 -0400
-Message-ID: <20200916193635.5169-5-qingqing.zhuo@amd.com>
+Subject: [PATCH 05/15] drm/amd/display: Bug in dce_is_panel_backlight_on()
+Date: Wed, 16 Sep 2020 15:36:25 -0400
+Message-ID: <20200916193635.5169-6-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200916193635.5169-1-qingqing.zhuo@amd.com>
 References: <20200916193635.5169-1-qingqing.zhuo@amd.com>
@@ -73,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 79f32d04-e24e-4432-a3ed-08d85a77d4f6
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3895:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB38958D09741EE8A65E3C5536FB210@CH2PR12MB3895.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
+X-MS-Office365-Filtering-Correlation-Id: ab0e28aa-78f7-4d42-b13f-08d85a77d577
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2971:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2971E760CE23DB72E468DF97FB210@DM6PR12MB2971.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:227;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DbEUksxbhPaQDOP3u/oa8x/uJSNOpqdvlvcxayD4+zbwZk7z4BCflfLg7si/CiDxK+exHwZKZ89h5lsGOojaE9J0LX/PztWXBEMN8yOuqytqDX8jjkv4KIjosOdPp4R2hCNuIh029/iFW82iZeH3OgD7i1Gbo/mQLu60jmplR69FsropRvVQ+vIEcAp5DuP1VIxrrffG/JDwiKVxeuGN7Pwoy9d9HPq1d7nDi9EK6H/yv8VShqIczBRymZ1qZHxqc+PRC+3mVQ1xgxeYN1MhRYHS+1bKumUoHEQwbjUBQtWXEletGXVHwhMksZwOm6bIwC/9kcYKpHieLvhik3UvUZ1uoR7+tVd3rmLeOKaBR/76J3vkH1GheQVGmukDXHV4xYpoy0VKdYlNTlw0HidUdQ==
+X-Microsoft-Antispam-Message-Info: /X7S6N7qlWLlP4KEmz25iA6KiAlKG+rB4eUQGbMi1zcOTgA6fRShSkkcX1FHu3YYN3gT14zW4iTuvsVRS17LL4r2EjKd96igo7IUASj3XP/CHJ6/Ktl3Zfx78sEL3B9Ul5xBKNxMQWo52sbsillqM+NvuhCzUGII+zyDCGVuJ4j7GOPwvNI4DVrVqWqOZtz7EtkJy1+UuzrfMGwZG+GBxkErceQtHAbiJ54uCZoJ9RdFynfC0jBVHb8sAdheYrN5XNCKoBQgNTWRiGTlOkaUauNxrPfIlMDkxSWU4r629pkwwTS7NZlpaiy5kTx7Son70o2IzCRkyTyIv/HWLoDqvXg5w3NTJ6rQaxBaN4bUU7SNR1YmB8PYJaiARF3bpLdAxlXJTIUsFdGmTjXNN4civw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(376002)(346002)(136003)(396003)(39850400004)(46966005)(54906003)(426003)(44832011)(47076004)(186003)(4326008)(70206006)(2616005)(316002)(70586007)(86362001)(8936002)(1076003)(478600001)(6916009)(336012)(8676002)(36756003)(5660300002)(83380400001)(82310400003)(356005)(2906002)(82740400003)(6666004)(26005)(81166007);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(376002)(346002)(136003)(39850400004)(396003)(46966005)(478600001)(70586007)(2616005)(8676002)(26005)(5660300002)(426003)(81166007)(1076003)(82310400003)(356005)(6666004)(4326008)(186003)(82740400003)(8936002)(86362001)(36756003)(2906002)(83380400001)(70206006)(44832011)(6916009)(316002)(47076004)(54906003)(336012);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2020 19:36:39.3037 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79f32d04-e24e-4432-a3ed-08d85a77d4f6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2020 19:36:40.1074 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ab0e28aa-78f7-4d42-b13f-08d85a77d577
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT040.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3895
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2971
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,42 +106,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- jinlong zhang <jinlong.zhang@amd.com>, Bhawanpreet.Lakha@amd.com
+ Peikang Zhang <peikang.zhang@amd.com>, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: jinlong zhang <jinlong.zhang@amd.com>
+From: Peikang Zhang <peikang.zhang@amd.com>
 
-[why]
-while read edid return defer, then it enter to msleep,
-but it actually took more time during msleep,
-this will cause remaining edid read fail.
+[Why]
+dce_is_panel_backlight_on() will return wrong value if
+LVTMA_BLON_OVRD is 0
 
-[how]
-Replacing msleep with udelay, it will not take any extra time, edid return pass finally.
+[How]
+When LVTMA_BLON_OVRD is 0, read
+LVTMA_PWRSEQ_TARGET_STATE instead
 
-Signed-off-by: jinlong zhang <jinlong.zhang@amd.com>
-Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+Signed-off-by: Peikang Zhang <peikang.zhang@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_aux.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.c | 10 +++++++---
+ drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.h |  4 ++++
+ 2 files changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
-index 743042d5905a..cdcad82765e0 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
-@@ -653,7 +653,7 @@ bool dce_aux_transfer_with_retries(struct ddc_service *ddc,
- 					if ((*payload->reply == AUX_TRANSACTION_REPLY_AUX_DEFER) ||
- 						(*payload->reply == AUX_TRANSACTION_REPLY_I2C_OVER_AUX_DEFER)) {
- 						if (payload->defer_delay > 0)
--							msleep(payload->defer_delay);
-+							udelay(payload->defer_delay * 1000);
- 					}
- 				}
- 				break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.c b/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.c
+index df7f826eebd8..74f7619d4154 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.c
+@@ -159,11 +159,15 @@ static uint32_t dce_panel_cntl_hw_init(struct panel_cntl *panel_cntl)
+ static bool dce_is_panel_backlight_on(struct panel_cntl *panel_cntl)
+ {
+ 	struct dce_panel_cntl *dce_panel_cntl = TO_DCE_PANEL_CNTL(panel_cntl);
+-	uint32_t value;
++	uint32_t blon, blon_ovrd, pwrseq_target_state;
+ 
+-	REG_GET(PWRSEQ_CNTL, LVTMA_BLON, &value);
++	REG_GET_2(PWRSEQ_CNTL, LVTMA_BLON, &blon, LVTMA_BLON_OVRD, &blon_ovrd);
++	REG_GET(PWRSEQ_CNTL, LVTMA_PWRSEQ_TARGET_STATE, &pwrseq_target_state);
+ 
+-	return value;
++	if (blon_ovrd)
++		return blon;
++	else
++		return pwrseq_target_state;
+ }
+ 
+ static bool dce_is_panel_powered_on(struct panel_cntl *panel_cntl)
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.h b/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.h
+index 967d04d75b98..6bd1196083a3 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_panel_cntl.h
+@@ -61,8 +61,10 @@
+ 
+ #define DCE_PANEL_CNTL_MASK_SH_LIST(mask_sh) \
+ 	DCE_PANEL_CNTL_SF(LVTMA_PWRSEQ_CNTL, LVTMA_BLON, mask_sh),\
++	DCE_PANEL_CNTL_SF(LVTMA_PWRSEQ_CNTL, LVTMA_BLON_OVRD, mask_sh),\
+ 	DCE_PANEL_CNTL_SF(LVTMA_PWRSEQ_CNTL, LVTMA_DIGON, mask_sh),\
+ 	DCE_PANEL_CNTL_SF(LVTMA_PWRSEQ_CNTL, LVTMA_DIGON_OVRD, mask_sh),\
++	DCE_PANEL_CNTL_SF(LVTMA_PWRSEQ_CNTL, LVTMA_PWRSEQ_TARGET_STATE, mask_sh), \
+ 	DCE_PANEL_CNTL_SF(LVTMA_PWRSEQ_STATE, LVTMA_PWRSEQ_TARGET_STATE_R, mask_sh), \
+ 	DCE_PANEL_CNTL_SF(LVTMA_PWRSEQ_REF_DIV, BL_PWM_REF_DIV, mask_sh), \
+ 	DCE_PANEL_CNTL_SF(BL_PWM_PERIOD_CNTL, BL_PWM_PERIOD, mask_sh), \
+@@ -76,8 +78,10 @@
+ 
+ #define DCE_PANEL_CNTL_REG_FIELD_LIST(type) \
+ 	type LVTMA_BLON;\
++	type LVTMA_BLON_OVRD;\
+ 	type LVTMA_DIGON;\
+ 	type LVTMA_DIGON_OVRD;\
++	type LVTMA_PWRSEQ_TARGET_STATE; \
+ 	type LVTMA_PWRSEQ_TARGET_STATE_R; \
+ 	type BL_PWM_REF_DIV; \
+ 	type BL_PWM_EN; \
 -- 
 2.17.1
 
