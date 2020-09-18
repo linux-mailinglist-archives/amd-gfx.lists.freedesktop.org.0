@@ -1,33 +1,108 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEC6926F6A5
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Sep 2020 09:21:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E308926F7FB
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Sep 2020 10:20:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 768166ECB4;
-	Fri, 18 Sep 2020 07:21:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7856F6E12B;
+	Fri, 18 Sep 2020 08:20:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga06-in.huawei.com [45.249.212.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA74A6E112
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Sep 2020 03:43:42 +0000 (UTC)
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.58])
- by Forcepoint Email with ESMTP id 7257AA7591A4C09F00A5;
- Fri, 18 Sep 2020 11:43:39 +0800 (CST)
-Received: from huawei.com (10.175.124.27) by DGGEMS412-HUB.china.huawei.com
- (10.3.19.212) with Microsoft SMTP Server id 14.3.487.0; Fri, 18 Sep 2020
- 11:43:32 +0800
-From: Yang Yingliang <yangyingliang@huawei.com>
-To: <amd-gfx@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH -next] drm/amd/display: remove unused variable in amdgpu_dm.c
-Date: Fri, 18 Sep 2020 11:42:14 +0800
-Message-ID: <20200918034214.2534751-1-yangyingliang@huawei.com>
-X-Mailer: git-send-email 2.25.1
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2081.outbound.protection.outlook.com [40.107.92.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1FAA6E12B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Sep 2020 08:20:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=D4wQWyE46zow2FRUoqOQLVJ+nVM8WxnJtXgxRp0GsfwuL3EW9V+eiCpVOPaMNOEZn01fuemPHHF6K/H3A2M575hpRvxogC5YgzXtK4vVB54EOjR60b1OUe7o6d8Gp0imWLre50ZkPReIvwmEcK37uiKyoYE13JgLF2ETd5z2a/1eSoDi1urDczweEYMT/IG9+R2Ok+KaBQ5rjhDQRYfbasfBrw7J13neCqKJoOyGtPDJaKr8rjBTAPXNdeMWqOUgPQvmHBYRFLpwTgaAUx7Z9hS3U/CJrYtoylxH+CCN3uBUtPEf/w8qhNbsCSVFeYWd9szz0bu+FC2mitzEU+LABg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V9twMM/omUZD7zKequ+f3P6dIz9LQErJZqQUxkJviLc=;
+ b=iJJ4Fp2W6po8b/+kz0kzXq5WqlJrEscZvvLBV4V+GS+Pd8ut66TD8sSxDPzBzK6zyp7nxue0YZGjEF3y3GpwjQumzOsVgdZfMgh78gaCDHsyri6NvCY9Bd+e5gQGBLjjt8IreGPDsAeq+/bSshBX5NWfCzXsG5RITxOoIfHwvONvObdK2djNGn/3739Vaqh8ZFla1Ts83+PxUwSK3ZzpOYllW1zXR1/x0dJL6EZgiL0qG+ZA7MBXIBpFb0yJu/IzKtC/1PEaEyFtOF0mBvneEUsnPioDOOo89eP/DO+l3nekaOeEhTi8AsdqmZtZovKchEr7syRIsCtlfEz4/b2wsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V9twMM/omUZD7zKequ+f3P6dIz9LQErJZqQUxkJviLc=;
+ b=tXuevTG526GGZwdhT3UUdVfPcoeTEUtjKDVciJTEhuJuVEJ+6iH/ccz1QBDMXhvXYxk43nEViqWcFnyiLMHrBo1VTK+AwKXq5Hzr5I9hR3Z3SQrUYu4cXWeEyB8lw4//IGhhhCq52YGHZSIFKxgfPXDDSTmQv/MJzXjhzGuGnCY=
+Received: from DM6PR12MB4075.namprd12.prod.outlook.com (2603:10b6:5:21d::8) by
+ DM5PR1201MB0122.namprd12.prod.outlook.com (2603:10b6:4:57::10) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3391.11; Fri, 18 Sep 2020 08:20:16 +0000
+Received: from DM6PR12MB4075.namprd12.prod.outlook.com
+ ([fe80::b51c:2b0e:7e1:b233]) by DM6PR12MB4075.namprd12.prod.outlook.com
+ ([fe80::b51c:2b0e:7e1:b233%9]) with mapi id 15.20.3391.014; Fri, 18 Sep 2020
+ 08:20:16 +0000
+From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+To: "Deng, Emily" <Emily.Deng@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH 2/2] drm/amdgpu: Fix dead lock issue for vblank
+Thread-Topic: [PATCH 2/2] drm/amdgpu: Fix dead lock issue for vblank
+Thread-Index: AQHWjWum3ujm0JlefEGRNu61UVKmUaluDOnA
+Date: Fri, 18 Sep 2020 08:20:16 +0000
+Message-ID: <DM6PR12MB4075C89B8F981E8BB463F0CBFC3F0@DM6PR12MB4075.namprd12.prod.outlook.com>
+References: <20200918032717.184758-1-Emily.Deng@amd.com>
+ <20200918032717.184758-2-Emily.Deng@amd.com>
+In-Reply-To: <20200918032717.184758-2-Emily.Deng@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-09-18T08:20:10Z; 
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=061adb61-9a2b-4f1c-8b0c-0000e5abbde6;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=1
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-09-18T08:20:05Z
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
+ Unrestricted
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: 95835619-5d91-40e6-ad43-000036176714
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_enabled: true
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_setdate: 2020-09-18T08:20:12Z
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_method: Privileged
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_name: Public_0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_actionid: 93879447-23cb-4ec5-806b-0000cb3c7508
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_contentbits: 0
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [58.247.170.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 4d7714e1-6f72-45fb-2363-08d85babaca4
+x-ms-traffictypediagnostic: DM5PR1201MB0122:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM5PR1201MB0122E0DFD3FEB6250D3044FCFC3F0@DM5PR1201MB0122.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Sttee7oarxaUcH37BHYaNO69BKdSD6W5MWbYxwymKOqKzmBbuIZi8CjsAk2UWcqnZsXaYNrATzEQOw7CLWiimXM25/YD/9KG6qyQloIuu47F0ibP/ZP8PjdH0PSLrsB2txZ7AurhP4a4caKHEmvOwT6x053zmkjLh/G/udzvIFLAPWs4qHPOEoia3vE8U5ChOre2K4LzgYzAABe0zX31V2Bn02eP8znK4YU31SbGmx+mfP1YDVqxJw8yiRCaQbRNDccxXS5K9VuqCfcBol7qP5bqPcIncOoUm6gNMacI9ZqrPY6rn8S29fzImzIhiUqIcxsX4GIG1aKz4pOqQXGxvIFmN+daXdMwMY91HS5kNiqwKGEZNBu4VKQeWnAZMAkxv3eLR9361kTTC582OwxW3k2cHNRfvMdiwVK17uVDBx0=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4075.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(366004)(346002)(376002)(396003)(39860400002)(186003)(5660300002)(9686003)(966005)(7696005)(45080400002)(8936002)(66946007)(26005)(4326008)(316002)(86362001)(53546011)(478600001)(76116006)(6506007)(2906002)(33656002)(66446008)(52536014)(64756008)(110136005)(8676002)(83380400001)(55016002)(71200400001)(66556008)(66476007);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: ZLOTOqtc+ETcF775uW2z+oUE0nv2JfTty0KQe2bSYsK+hXW+A2QdfkUKzKS/591UV7Ogf6yub/MHmvSweUhJY6zNM8f2aJaStFW28pxhkw0Wb24/27J9BRBNtu9Q4RAIxBlzZxGOeNlBCXN6tyzarJUycxeWSgMSLWL/W7QEy3rNHHNuj4y/RDXEdc+sNelF04tqbQEMYluAqriMLOqZy9Q/e8i8SUWKwEHpXT2C6zm0GErbAn4C1Tp3C6K+8eCAZ2UuaRoiagwmK9zW30euI3uYDI1FsglMieWtyZR6pya/0jIJWZ61PyL8Mgh+1FoOnCAs+a1GSnwmuMGCpKRQFHcKKwb4SmrDGHqZExlzkP5qQ38GT74YdekOaLawUsGvtTwR2QI1ZfBMZc9SC8RgwuJTxCGH3IhN4e1D79v/Nr0SlBzhqwefKCxlhHNWxOIr9hhf8lTtY+jzpSG+zWaKDUQ3LXZVFFqe0O+Lhz7IQCh+E6pHWtzx+JzAoKkjA4Mw0bDHZMgbTZrGWYfOtNY9TfJTkP2s8g/JTikgIL0dltfPCc3Fg13sAYYvR117oQWLJ399YOchOiFrSQIA2oahzoJT+VupqjTW8h+oEmrY8PtE3VH+LO/sase9Fg37dXXzfgk8u2J425O8AEJA2Zfm4Q==
 MIME-Version: 1.0
-X-Originating-IP: [10.175.124.27]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Fri, 18 Sep 2020 07:21:35 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4075.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d7714e1-6f72-45fb-2363-08d85babaca4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2020 08:20:16.4767 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XvRAho/g9z1Tq2eFw7EfD/wZkMpmRVunbDVaccnt/luOCxFUVOJlldZyyAN/kaRaP22V1E6iy2J+WM7SPHyKyA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0122
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +114,238 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, yangyingliang@huawei.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Deng, Emily" <Emily.Deng@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4IHRoZSBjb21waWxlIHdhcm5pbmc6CmRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rp
-c3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jOjg5MjoyNjogd2FybmluZzogdmFyaWFibGUg4oCY
-c3RyZWFt4oCZIHNldCBidXQgbm90IHVzZWQgWy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGVdCiAg
-c3RydWN0IGRjX3N0cmVhbV9zdGF0ZSAqc3RyZWFtOwogICAgICAgICAgICAgICAgICAgICAgICAg
-IF5+fn5+fgoKUmVwb3J0ZWQtYnk6IEh1bGsgUm9ib3QgPGh1bGtjaUBodWF3ZWkuY29tPgpTaWdu
-ZWQtb2ZmLWJ5OiBZYW5nIFlpbmdsaWFuZyA8eWFuZ3lpbmdsaWFuZ0BodWF3ZWkuY29tPgotLS0K
-IGRyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMgfCAzIC0t
-LQogMSBmaWxlIGNoYW5nZWQsIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKaW5kZXggYmIxYmM3ZjVkMTQ5Li43
-ZDllOGMzMTE4NzkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRn
-cHVfZG0vYW1kZ3B1X2RtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdw
-dV9kbS9hbWRncHVfZG0uYwpAQCAtODg5LDcgKzg4OSw2IEBAIHN0YXRpYyB2b2lkIGFtZGdwdV9j
-aGVja19kZWJ1Z2ZzX2Nvbm5lY3Rvcl9wcm9wZXJ0eV9jaGFuZ2Uoc3RydWN0IGFtZGdwdV9kZXZp
-Y2UKIAlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29ubl9zdGF0ZTsKIAlzdHJ1Y3QgZG1f
-Y3J0Y19zdGF0ZSAqYWNydGNfc3RhdGU7CiAJc3RydWN0IGRybV9jcnRjX3N0YXRlICpjcnRjX3N0
-YXRlOwotCXN0cnVjdCBkY19zdHJlYW1fc3RhdGUgKnN0cmVhbTsKIAlzdHJ1Y3QgZHJtX2Rldmlj
-ZSAqZGV2ID0gYWRldl90b19kcm0oYWRldik7CiAKIAlsaXN0X2Zvcl9lYWNoX2VudHJ5KGNvbm5l
-Y3RvciwgJmRldi0+bW9kZV9jb25maWcuY29ubmVjdG9yX2xpc3QsIGhlYWQpIHsKQEAgLTkwNiw4
-ICs5MDUsNiBAQCBzdGF0aWMgdm9pZCBhbWRncHVfY2hlY2tfZGVidWdmc19jb25uZWN0b3JfcHJv
-cGVydHlfY2hhbmdlKHN0cnVjdCBhbWRncHVfZGV2aWNlCiAJCWlmICghKGFjcnRjX3N0YXRlICYm
-IGFjcnRjX3N0YXRlLT5zdHJlYW0pKQogCQkJY29udGludWU7CiAKLQkJc3RyZWFtID0gYWNydGNf
-c3RhdGUtPnN0cmVhbTsKLQogCQlpZiAoYW1kZ3B1X2RtX2Nvbm5lY3Rvci0+ZHNjX3NldHRpbmdz
-LmRzY19mb3JjZV9lbmFibGUgfHwKIAkJICAgIGFtZGdwdV9kbV9jb25uZWN0b3ItPmRzY19zZXR0
-aW5ncy5kc2NfbnVtX3NsaWNlc192IHx8CiAJCSAgICBhbWRncHVfZG1fY29ubmVjdG9yLT5kc2Nf
-c2V0dGluZ3MuZHNjX251bV9zbGljZXNfaCB8fAotLSAKMi4yNS4xCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+[AMD Public Use]
+
++	spin_lock_irqsave(&adev->ddev->event_lock, flags);
+
+Are you sure you used the latest code base? I think recently we already switch to adev_to_drm(adev). 
+
+Could you please double check?
+
+Regards,
+Hawking
+
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Emily.Deng
+Sent: Friday, September 18, 2020 11:27
+To: amd-gfx@lists.freedesktop.org
+Cc: Deng, Emily <Emily.Deng@amd.com>
+Subject: [PATCH 2/2] drm/amdgpu: Fix dead lock issue for vblank
+
+Always start vblank timer, but only calls vblank function when vblank is enabled.
+
+This is used to fix the dead lock issue.
+When drm_crtc_vblank_off want to disable vblank, it first get event_lock, and then call hrtimer_cancel, but hrtimer_cancel want to wait timer handler function finished.
+Timer handler also want to aquire event_lock in drm_handle_vblank.
+
+Signed-off-by: Emily.Deng <Emily.Deng@amd.com>
+Change-Id: I7d3cfb1202cd030fdcdec3e7483fcc4c9fa8db70
+---
+ drivers/gpu/drm/amd/amdgpu/dce_virtual.c | 155 +++++++++++------------
+ 1 file changed, 77 insertions(+), 78 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_virtual.c b/drivers/gpu/drm/amd/amdgpu/dce_virtual.c
+index cc93577dee03..8c02ab74c1de 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_virtual.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_virtual.c
+@@ -226,6 +226,74 @@ static const struct drm_crtc_helper_funcs dce_virtual_crtc_helper_funcs = {
+ 	.get_scanout_position = amdgpu_crtc_get_scanout_position,  };
+ 
++static int dce_virtual_pageflip(struct amdgpu_device *adev,
++				unsigned crtc_id)
++{
++	unsigned long flags;
++	struct amdgpu_crtc *amdgpu_crtc;
++	struct amdgpu_flip_work *works;
++
++	amdgpu_crtc = adev->mode_info.crtcs[crtc_id];
++
++	if (crtc_id >= adev->mode_info.num_crtc) {
++		DRM_ERROR("invalid pageflip crtc %d\n", crtc_id);
++		return -EINVAL;
++	}
++
++	/* IRQ could occur when in initial stage */
++	if (amdgpu_crtc == NULL)
++		return 0;
++
++	spin_lock_irqsave(&adev->ddev->event_lock, flags);
++	works = amdgpu_crtc->pflip_works;
++	if (amdgpu_crtc->pflip_status != AMDGPU_FLIP_SUBMITTED) {
++		DRM_DEBUG_DRIVER("amdgpu_crtc->pflip_status = %d != "
++			"AMDGPU_FLIP_SUBMITTED(%d)\n",
++			amdgpu_crtc->pflip_status,
++			AMDGPU_FLIP_SUBMITTED);
++		spin_unlock_irqrestore(&adev->ddev->event_lock, flags);
++		return 0;
++	}
++
++	/* page flip completed. clean up */
++	amdgpu_crtc->pflip_status = AMDGPU_FLIP_NONE;
++	amdgpu_crtc->pflip_works = NULL;
++
++	/* wakeup usersapce */
++	if (works->event)
++		drm_crtc_send_vblank_event(&amdgpu_crtc->base, works->event);
++
++	spin_unlock_irqrestore(&adev->ddev->event_lock, flags);
++
++	drm_crtc_vblank_put(&amdgpu_crtc->base);
++	amdgpu_bo_unref(&works->old_abo);
++	kfree(works->shared);
++	kfree(works);
++
++	return 0;
++}
++
++static enum hrtimer_restart dce_virtual_vblank_timer_handle(struct 
++hrtimer *vblank_timer) {
++	struct amdgpu_crtc *amdgpu_crtc = container_of(vblank_timer,
++						       struct amdgpu_crtc, vblank_timer);
++	struct drm_device *ddev = amdgpu_crtc->base.dev;
++	struct amdgpu_device *adev = ddev->dev_private;
++	struct amdgpu_irq_src *source = adev->irq.client[AMDGPU_IRQ_CLIENTID_LEGACY].sources
++		[VISLANDS30_IV_SRCID_SMU_DISP_TIMER2_TRIGGER];
++	int irq_type = amdgpu_display_crtc_idx_to_irq_type(adev,
++						amdgpu_crtc->crtc_id);
++
++	if (amdgpu_irq_enabled(adev, source, irq_type)) {
++		drm_handle_vblank(ddev, amdgpu_crtc->crtc_id);
++		dce_virtual_pageflip(adev, amdgpu_crtc->crtc_id);
++	}
++	hrtimer_start(vblank_timer, ktime_set(0, DCE_VIRTUAL_VBLANK_PERIOD),
++		      HRTIMER_MODE_REL);
++
++	return HRTIMER_NORESTART;
++}
++
+ static int dce_virtual_crtc_init(struct amdgpu_device *adev, int index)  {
+ 	struct amdgpu_crtc *amdgpu_crtc;
+@@ -247,6 +315,14 @@ static int dce_virtual_crtc_init(struct amdgpu_device *adev, int index)
+ 	amdgpu_crtc->vsync_timer_enabled = AMDGPU_IRQ_STATE_DISABLE;
+ 	drm_crtc_helper_add(&amdgpu_crtc->base, &dce_virtual_crtc_helper_funcs);
+ 
++	hrtimer_init(&amdgpu_crtc->vblank_timer,
++		     CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++	hrtimer_set_expires(&amdgpu_crtc->vblank_timer,
++			    ktime_set(0, DCE_VIRTUAL_VBLANK_PERIOD));
++	amdgpu_crtc->vblank_timer.function =
++		dce_virtual_vblank_timer_handle;
++	hrtimer_start(&amdgpu_crtc->vblank_timer,
++			      ktime_set(0, DCE_VIRTUAL_VBLANK_PERIOD), HRTIMER_MODE_REL);
+ 	return 0;
+ }
+ 
+@@ -476,7 +552,7 @@ static int dce_virtual_hw_fini(void *handle)
+ 
+ 	for (i = 0; i<adev->mode_info.num_crtc; i++)
+ 		if (adev->mode_info.crtcs[i])
+-			dce_virtual_set_crtc_vblank_interrupt_state(adev, i, AMDGPU_IRQ_STATE_DISABLE);
++			hrtimer_cancel(&adev->mode_info.crtcs[i]->vblank_timer);
+ 
+ 	return 0;
+ }
+@@ -645,68 +721,6 @@ static void dce_virtual_set_display_funcs(struct amdgpu_device *adev)
+ 	adev->mode_info.funcs = &dce_virtual_display_funcs;  }
+ 
+-static int dce_virtual_pageflip(struct amdgpu_device *adev,
+-				unsigned crtc_id)
+-{
+-	unsigned long flags;
+-	struct amdgpu_crtc *amdgpu_crtc;
+-	struct amdgpu_flip_work *works;
+-
+-	amdgpu_crtc = adev->mode_info.crtcs[crtc_id];
+-
+-	if (crtc_id >= adev->mode_info.num_crtc) {
+-		DRM_ERROR("invalid pageflip crtc %d\n", crtc_id);
+-		return -EINVAL;
+-	}
+-
+-	/* IRQ could occur when in initial stage */
+-	if (amdgpu_crtc == NULL)
+-		return 0;
+-
+-	spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+-	works = amdgpu_crtc->pflip_works;
+-	if (amdgpu_crtc->pflip_status != AMDGPU_FLIP_SUBMITTED) {
+-		DRM_DEBUG_DRIVER("amdgpu_crtc->pflip_status = %d != "
+-			"AMDGPU_FLIP_SUBMITTED(%d)\n",
+-			amdgpu_crtc->pflip_status,
+-			AMDGPU_FLIP_SUBMITTED);
+-		spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
+-		return 0;
+-	}
+-
+-	/* page flip completed. clean up */
+-	amdgpu_crtc->pflip_status = AMDGPU_FLIP_NONE;
+-	amdgpu_crtc->pflip_works = NULL;
+-
+-	/* wakeup usersapce */
+-	if (works->event)
+-		drm_crtc_send_vblank_event(&amdgpu_crtc->base, works->event);
+-
+-	spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
+-
+-	drm_crtc_vblank_put(&amdgpu_crtc->base);
+-	amdgpu_bo_unref(&works->old_abo);
+-	kfree(works->shared);
+-	kfree(works);
+-
+-	return 0;
+-}
+-
+-static enum hrtimer_restart dce_virtual_vblank_timer_handle(struct hrtimer *vblank_timer) -{
+-	struct amdgpu_crtc *amdgpu_crtc = container_of(vblank_timer,
+-						       struct amdgpu_crtc, vblank_timer);
+-	struct drm_device *ddev = amdgpu_crtc->base.dev;
+-	struct amdgpu_device *adev = drm_to_adev(ddev);
+-
+-	drm_handle_vblank(ddev, amdgpu_crtc->crtc_id);
+-	dce_virtual_pageflip(adev, amdgpu_crtc->crtc_id);
+-	hrtimer_start(vblank_timer, DCE_VIRTUAL_VBLANK_PERIOD,
+-		      HRTIMER_MODE_REL);
+-
+-	return HRTIMER_NORESTART;
+-}
+-
+ static void dce_virtual_set_crtc_vblank_interrupt_state(struct amdgpu_device *adev,
+ 							int crtc,
+ 							enum amdgpu_interrupt_state state) @@ -716,21 +730,6 @@ static void dce_virtual_set_crtc_vblank_interrupt_state(struct amdgpu_device *ad
+ 		return;
+ 	}
+ 
+-	if (state && !adev->mode_info.crtcs[crtc]->vsync_timer_enabled) {
+-		DRM_DEBUG("Enable software vsync timer\n");
+-		hrtimer_init(&adev->mode_info.crtcs[crtc]->vblank_timer,
+-			     CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+-		hrtimer_set_expires(&adev->mode_info.crtcs[crtc]->vblank_timer,
+-				    DCE_VIRTUAL_VBLANK_PERIOD);
+-		adev->mode_info.crtcs[crtc]->vblank_timer.function =
+-			dce_virtual_vblank_timer_handle;
+-		hrtimer_start(&adev->mode_info.crtcs[crtc]->vblank_timer,
+-			      DCE_VIRTUAL_VBLANK_PERIOD, HRTIMER_MODE_REL);
+-	} else if (!state && adev->mode_info.crtcs[crtc]->vsync_timer_enabled) {
+-		DRM_DEBUG("Disable software vsync timer\n");
+-		hrtimer_cancel(&adev->mode_info.crtcs[crtc]->vblank_timer);
+-	}
+-
+ 	adev->mode_info.crtcs[crtc]->vsync_timer_enabled = state;
+ 	DRM_DEBUG("[FM]set crtc %d vblank interrupt state %d\n", crtc, state);  }
+--
+2.25.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=02%7C01%7Chawking.zhang%40amd.com%7C4aa2942fb0bd4a25c66a08d85b82c813%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637359964549266369&amp;sdata=1ohOBjPciizMDNdCYnMUj9e160K%2FQyKzpgmmEYhCIOM%3D&amp;reserved=0
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
