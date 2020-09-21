@@ -2,44 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C05B272525
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Sep 2020 15:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3553027251D
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Sep 2020 15:14:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4AB96E351;
-	Mon, 21 Sep 2020 13:14:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7786189D52;
+	Mon, 21 Sep 2020 13:14:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-m17613.qiye.163.com (mail-m17613.qiye.163.com
- [59.111.176.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BD216E2A3
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Sep 2020 11:42:58 +0000 (UTC)
-Received: from ubuntu.localdomain (unknown [157.0.31.125])
- by mail-m17613.qiye.163.com (Hmail) with ESMTPA id C0EEB4829CC;
- Mon, 21 Sep 2020 19:42:52 +0800 (CST)
-From: Bernard Zhao <bernard@vivo.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Jun Lei <Jun.Lei@amd.com>,
- Aric Cyr <aric.cyr@amd.com>, Wenjing Liu <wenjing.liu@amd.com>,
- abdoulaye berthe <abdoulaye.berthe@amd.com>,
- Michael Strauss <michael.strauss@amd.com>,
- Brandon Syu <Brandon.Syu@amd.com>, Martin Leung <martin.leung@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amd/display: optimize code runtime a bit
-Date: Mon, 21 Sep 2020 04:42:42 -0700
-Message-Id: <20200921114244.20506-1-bernard@vivo.com>
-X-Mailer: git-send-email 2.28.0
+Received: from huawei.com (szxga05-in.huawei.com [45.249.212.191])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1631789D53;
+ Mon, 21 Sep 2020 13:09:56 +0000 (UTC)
+Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.59])
+ by Forcepoint Email with ESMTP id 9E403A6ADBBBD87B25B4;
+ Mon, 21 Sep 2020 21:09:54 +0800 (CST)
+Received: from localhost.localdomain.localdomain (10.175.113.25) by
+ DGGEMS401-HUB.china.huawei.com (10.3.19.201) with Microsoft SMTP Server id
+ 14.3.487.0; Mon, 21 Sep 2020 21:09:47 +0800
+From: Qinglang Miao <miaoqinglang@huawei.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
+ <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Subject: [PATCH -next] drm/amdgpu/mes: simplify the return expression of
+ mes_v10_1_ring_init
+Date: Mon, 21 Sep 2020 21:10:11 +0800
+Message-ID: <20200921131011.91281-1-miaoqinglang@huawei.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
- oVCBIfWUFZH0pCTh1OSx5OHU0aVkpNS0tNQ0NOTEhKSkpVEwETFhoSFyQUDg9ZV1kWGg8SFR0UWU
- FZT0tIVUpKS0hKTFVKS0tZBg++
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PVE6Fjo*Ez8ZLA8oKjpPOgkX
- GFZPCR5VSlVKTUtLTUNDTkxITU1DVTMWGhIXVRkeCRUaCR87DRINFFUYFBZFWVdZEgtZQVlKTkxV
- S1VISlVKSU5ZV1kIAVlBSUxDTDcG
-X-HM-Tid: 0a74b0794a8893bakuwsc0eeb4829cc
+X-Originating-IP: [10.175.113.25]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Mon, 21 Sep 2020 13:14:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,38 +42,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: opensource.kernel@vivo.com, Bernard Zhao <bernard@vivo.com>
+Cc: Qinglang Miao <miaoqinglang@huawei.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Static function dal_ddc_i2c_payloads_destroy is only called
-in dal_ddc_service_query_ddc_data, the parameter is &payloads
-, there is no point NULL risk, so no need to check.
-This change is to make the code run a bit fast.
+Simplify the return expression.
 
-Signed-off-by: Bernard Zhao <bernard@vivo.com>
+Signed-off-by: Qinglang Miao <miaoqinglang@huawei.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/mes_v10_1.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-index b984eecca58b..6dcc666738fc 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-@@ -150,9 +150,6 @@ static uint32_t dal_ddc_i2c_payloads_get_count(struct i2c_payloads *p)
- 
- static void dal_ddc_i2c_payloads_destroy(struct i2c_payloads *p)
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
+index 4b746584a..1c22d8393 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
+@@ -832,7 +832,6 @@ static int mes_v10_1_queue_init(struct amdgpu_device *adev)
+ static int mes_v10_1_ring_init(struct amdgpu_device *adev)
  {
--	if (!p)
--		return;
+ 	struct amdgpu_ring *ring;
+-	int r;
+ 
+ 	ring = &adev->mes.ring;
+ 
+@@ -849,11 +848,7 @@ static int mes_v10_1_ring_init(struct amdgpu_device *adev)
+ 	ring->no_scheduler = true;
+ 	sprintf(ring->name, "mes_%d.%d.%d", ring->me, ring->pipe, ring->queue);
+ 
+-	r = amdgpu_ring_init(adev, ring, 1024, NULL, 0, AMDGPU_RING_PRIO_DEFAULT);
+-	if (r)
+-		return r;
 -
- 	dal_vector_destruct(&p->payloads);
+-	return 0;
++	return amdgpu_ring_init(adev, ring, 1024, NULL, 0, AMDGPU_RING_PRIO_DEFAULT);
  }
  
+ static int mes_v10_1_mqd_sw_init(struct amdgpu_device *adev)
 -- 
-2.28.0
+2.23.0
 
 _______________________________________________
 amd-gfx mailing list
