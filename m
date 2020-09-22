@@ -1,61 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B01B273D50
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Sep 2020 10:30:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDD7273E2A
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Sep 2020 11:10:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC73C6E146;
-	Tue, 22 Sep 2020 08:30:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21F6E6E841;
+	Tue, 22 Sep 2020 09:10:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com
- [IPv6:2607:f8b0:4864:20::f43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFFD66E054;
- Tue, 22 Sep 2020 05:48:22 +0000 (UTC)
-Received: by mail-qv1-xf43.google.com with SMTP id f11so8924155qvw.3;
- Mon, 21 Sep 2020 22:48:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=a6SQCCgOvcVnYbZwR03FGL/qrYw5HjNsY2fRdLjl82U=;
- b=tyxd8motev6kgLZAmtucstDnnqDnmRrH1bXuX8dpwrbECLXnH1JtDxKqoxjgE0uC84
- 7n9GPEGtLPig1f11FKwN4BbeUiL1H/uO1foqLPkARf/52IgAKH7ztxlGaHfn526dxaZJ
- NPqKyOEc281EQ9Uab7r0EdPwKX0dUaJnPSKEokB9UWfFPSVNz8HMkBbbCKUGeh/VmQHK
- b+hqP2KuGBETHFdMYNxVA/P4hCdE7gUbgI0JS6i+iJyLP1oMz1gaYc2yGX8On+Baqodm
- qpr+KvJnF+ZqjtAwln2PwQLrkuTppySz8EskYw5z/3PQZpru3gb+V5z7k2L8P+HyAbIu
- BVbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=a6SQCCgOvcVnYbZwR03FGL/qrYw5HjNsY2fRdLjl82U=;
- b=oushioi3Q1RzRc3GPHVpKZ4RC6LeCJdhqwQExfsosPu2ihf8FvkHqsfrlThynDt6qC
- t65ki1crXKcM4LBtzwL5VUEh6SNvvl2r/KqLPeMBg0avUMneWK4tdVOI3326y/uzJFkv
- VaYd+1doeCfmXDRW+uerVEGgLpTaPmVfzMY5h9fDrsdr79ta76KDqw0/7zudOLL9Xf46
- hVNsh2nBrfT39/q3d/8UXPpR7LqhD+sfLCbAQ5PY0fbVtO/hqQ7GA/0fBMEwRpOh3l7t
- 7seRZPw8jer/ZSVv1800eoN0FZ3VrsPuqA8gh9JIxiPjtmDIKN/teb5i+eTKW6KqWa+f
- E9sQ==
-X-Gm-Message-State: AOAM531xDj9h95s/TlJEHkS8WFhZd6OxSb08Zi20D+912REe/fpUOO3R
- nWnoG1R7e3XUJHIcziQUsPk=
-X-Google-Smtp-Source: ABdhPJwDGs7jGImCpG+LB2Wp3WIK7lBkKjX1BDHsgY5T+UNvYa3EP/dCUzbFJjmmzMUvzLl0gjP1ew==
-X-Received: by 2002:a0c:a4c5:: with SMTP id x63mr4315522qvx.58.1600753701601; 
- Mon, 21 Sep 2020 22:48:21 -0700 (PDT)
-Received: from localhost.localdomain ([2604:1380:45d1:2600::1])
- by smtp.gmail.com with ESMTPSA id i187sm10961909qke.43.2020.09.21.22.48.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Sep 2020 22:48:19 -0700 (PDT)
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH] drm/amd/display: Simplify condition in try_disable_dsc
-Date: Mon, 21 Sep 2020 22:47:43 -0700
-Message-Id: <20200922054743.2422929-1-natechancellor@gmail.com>
-X-Mailer: git-send-email 2.28.0
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2072.outbound.protection.outlook.com [40.107.236.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE15E6E841
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 09:10:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jxsNpUrAKIaSMIuojV/MgNn0OtQeWPcAXLgfYTexLW5BqIlp4V96lyJhsxVSNQNHokxfGGEqC8kbe6nTIw8+8IarUWOU04IizoxzavGjLx0oXg11Ap1LdrYeyZ5P6bSo8tdf9KbMevMNV2baE75oIEU5Ea1Vtu2RkHDDQmhR8Ars1C+CaoWoLAT3Ax2Bnn/Wo0F0yWfljpmFsNQ7JkP/Wb7/XTPW9Awm/JA3gDwobrxANuvLd4+6EmzYdqkvzawZryEJdG72yUCLoVU3Dya1YRFDrXVZWT/i6ICetz54S9g9ead1Ay5BVzf4zSDjdBntPk0BUS7yZ1I5KGpx9OafhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EkpDuuAZNT2zazM8GOpXaJgZfr7hIP/cyIihVbb6RiA=;
+ b=fehxktMXkq7rQn1HK05rWeydZGp+L9WAT2lYVufmkUGA8RNK0TaTTHXxK4U0d2SPIXpeG1mmO/aDl8VJxqKCpZUTN3x/6sIYa8R+Qzpvs4rEygQWZOYEPaKXqMEVDdfoC67xyKgnKi4bCX+/2cbpIenusBmX65heYQKReZx3ltI9bbjk/M7aGR92t+nQtRT0nGlPC/24FJE7W9zZTGeBI/pQbYkVabClL3QRkJ/X+qVqcTC9lnFekGRbnhkgnk/KZTzCZSEPYjQ2l4TwIc3YqQqh0yCAjWFXCG47F+biDMUxzQmiuOUKKAtVx3chZuu4F9YESpNI09oK5aOamq4Mkg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EkpDuuAZNT2zazM8GOpXaJgZfr7hIP/cyIihVbb6RiA=;
+ b=Slpqvk+dCNksufzHRdY1mbc5Vt8s1c39EGrcuwB0rJLPzrxguK6z04+ahJSluKLLJk3FJb4WvSNDfkZFUSePgayPaeJ2kymstefo3YyH1sqWN4zv7vhq1bnYR/RM+qr1qGnONt4R10vhAo+nCYwwvhSCNs5sdXPPJ4YBsqryyFw=
+Received: from DM3PR12CA0061.namprd12.prod.outlook.com (2603:10b6:0:56::29) by
+ MN2PR12MB3166.namprd12.prod.outlook.com (2603:10b6:208:106::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.11; Tue, 22 Sep
+ 2020 09:10:27 +0000
+Received: from DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:0:56:cafe::65) by DM3PR12CA0061.outlook.office365.com
+ (2603:10b6:0:56::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.19 via Frontend
+ Transport; Tue, 22 Sep 2020 09:10:27 +0000
+X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ DM6NAM11FT029.mail.protection.outlook.com (10.13.173.23) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3391.15 via Frontend Transport; Tue, 22 Sep 2020 09:10:26 +0000
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Tue, 22 Sep
+ 2020 04:10:25 -0500
+Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Tue, 22 Sep 2020 04:10:24 -0500
+From: Stanley.Yang <Stanley.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/1] drm/amdgpu: fix hdp register access error
+Date: Tue, 22 Sep 2020 17:10:22 +0800
+Message-ID: <20200922091022.31676-1-Stanley.Yang@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-X-Mailman-Approved-At: Tue, 22 Sep 2020 08:30:08 +0000
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 22f51e4b-9126-4394-b2e1-08d85ed75856
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3166:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB316680D6AD684C36D3C437529A3B0@MN2PR12MB3166.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +PMbp4CfHrLn+LuPGQU01lM0KVQTpZpCM+UpbDZ3ButTmwF0EPHAqqCcaBpCDiKOmdi1pG/wKopcW1RHNHJmNvlWbZGeAgM9BILG6AABdUHzq/iLpltCOKTHPsKhVNvsSfoRjKHXMd3aBNX+8kxuuZ8EZANTwuPzqHxgUUXaEO3KmVB18p+MQX5+7KQVWKukN6Q7F/G36BMamivC1RiQZHeIg/te81O9qoiZgEwR3ZGXQcVZTOgDn+zu1y/rJuj7/Cn3PU/JDXv5lwurthQv+y6GO9Uyuw5ZC2ZfEc6cKnP3fUhzokzo+qo3YoGFcT4bnCsgkA+LTE2QI+ZVEH4SewdMOEaW1xdYNvJqw83Qjpy8go0HbRnKa90tB0+gGqzV1YC0OcZxdpv4n9rDqojzihUUHA8cW2/izD41cDuI2ped6nww4pBrtZnS5m3R8wRs
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:ErrorRetry; CAT:NONE;
+ SFS:(4636009)(136003)(346002)(39860400002)(396003)(376002)(46966005)(83380400001)(70206006)(86362001)(316002)(47076004)(336012)(478600001)(426003)(2906002)(2616005)(4326008)(8936002)(81166007)(36756003)(1076003)(26005)(6916009)(8676002)(4744005)(186003)(54906003)(70586007)(7696005)(356005)(5660300002)(82310400003)(82740400003);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2020 09:10:26.5092 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22f51e4b-9126-4394-b2e1-08d85ed75856
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3166
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,62 +98,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: clang-built-linux@googlegroups.com,
- Nathan Chancellor <natechancellor@gmail.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: "Stanley.Yang" <Stanley.Yang@amd.com>, Hawking.Zhang@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Clang warns:
+mmHDP_READ_CACHE_INVALIDATE register is in HDP not in NBIO
 
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:637:8:
-warning: logical not is only applied to the left hand side of this
-comparison [-Wlogical-not-parentheses]
-                                && !params[i].clock_force_enable == DSC_CLK_FORCE_DEFAULT) {
-                                   ^                             ~~
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:637:8:
-note: add parentheses after the '!' to evaluate the comparison first
-                                && !params[i].clock_force_enable == DSC_CLK_FORCE_DEFAULT) {
-                                   ^
-                                    (
-)
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:637:8:
-note: add parentheses around left hand side expression to silence this
-warning
-                                && !params[i].clock_force_enable == DSC_CLK_FORCE_DEFAULT) {
-                                   ^
-                                   (                            )
-1 warning generated.
-
-The expression "!a == 0" can be more simply written as "a", which makes
-it easier to reason about the logic and prevents the warning.
-
-Fixes: 0749ddeb7d6c ("drm/amd/display: Add DSC force disable to dsc_clock_en debugfs entry")
-Link: https://github.com/ClangBuiltLinux/linux/issues/1158
-Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
+Change-Id: I4375a8a67d3a13f9605479e169169e22dd5833d1
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/nv.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 9d7333a36fac..0852a24ee392 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -634,7 +634,7 @@ static void try_disable_dsc(struct drm_atomic_state *state,
- 	for (i = 0; i < count; i++) {
- 		if (vars[i].dsc_enabled
- 				&& vars[i].bpp_x16 == params[i].bw_range.max_target_bpp_x16
--				&& !params[i].clock_force_enable == DSC_CLK_FORCE_DEFAULT) {
-+				&& params[i].clock_force_enable) {
- 			kbps_increase[i] = params[i].bw_range.stream_kbps - params[i].bw_range.max_kbps;
- 			tried[i] = false;
- 			remaining_to_try += 1;
-
-base-commit: 6651cdf3bfeeaeb499db11668313666bf756579a
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 0ec66030bd11..bc894cfba60c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -621,7 +621,7 @@ static void nv_invalidate_hdp(struct amdgpu_device *adev,
+ 				struct amdgpu_ring *ring)
+ {
+ 	if (!ring || !ring->funcs->emit_wreg) {
+-		WREG32_SOC15_NO_KIQ(NBIO, 0, mmHDP_READ_CACHE_INVALIDATE, 1);
++		WREG32_SOC15_NO_KIQ(HDP, 0, mmHDP_READ_CACHE_INVALIDATE, 1);
+ 	} else {
+ 		amdgpu_ring_emit_wreg(ring, SOC15_REG_OFFSET(
+ 					HDP, 0, mmHDP_READ_CACHE_INVALIDATE), 1);
 -- 
-2.28.0
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
