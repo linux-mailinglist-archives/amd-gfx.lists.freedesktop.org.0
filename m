@@ -2,37 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D80B8274375
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Sep 2020 15:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41673274316
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Sep 2020 15:32:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14CBB6E86E;
-	Tue, 22 Sep 2020 13:49:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18F396E872;
+	Tue, 22 Sep 2020 13:32:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1004 seconds by postgrey-1.36 at gabe;
- Tue, 22 Sep 2020 13:42:11 UTC
-Received: from services.gouders.net (services.gouders.net [141.101.32.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B149B6E873
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Sep 2020 13:42:11 +0000 (UTC)
-Received: from localhost (ltea-047-066-036-058.pools.arcor-ip.net
- [47.66.36.58]) (authenticated bits=0)
- by services.gouders.net (8.14.8/8.14.8) with ESMTP id 08MDNAXH029898
- (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 22 Sep 2020 15:23:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gouders.net; s=gnet;
- t=1600780991; bh=coiTodviEcrcWxbwMzd9GUCHHrnCtn2z1Ed7xLk9mlY=;
- h=From:To:Cc:Subject:Date;
- b=ewkZtHTKNy2m8ROiLmQcBRUetAem+7GCruAm0U94ouRSFagvie7nET4flARo7Hh3s
- sWW7Kafg6QUMIMhecesh9ipdJX1zS2LRB+W7SCF3ltGTmEfi3WkZtn3LQ8FnCxiKPI
- 93zGIQ5pd8eWwpxbmYBYXhOfZxxR9GSPKY7qk5gY=
-From: Dirk Gouders <dirk@gouders.net>
-To: Felix Kuehling <Felix.Kuehling@amd.com>
-Subject: amdgpu: call trace introduced in 5.9-rc1 for Lenovo L14 Renoir
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
-Date: Tue, 22 Sep 2020 15:23:10 +0200
-Message-ID: <ghh7rqvtc1.fsf@gouders.net>
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
+ [IPv6:2a00:1450:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADB6D6E862;
+ Tue, 22 Sep 2020 13:32:11 +0000 (UTC)
+Received: by mail-ej1-x635.google.com with SMTP id e23so22909295eja.3;
+ Tue, 22 Sep 2020 06:32:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=7/8jc/lfYCAs4mbuUcap9dH6khXGsPrncUoASGGnc3k=;
+ b=s5K0zqoPbQmS6PUHjEPZdF6ga2+voqSLLrsErnX/XKMIDtlXuv9PDMWAi6Q7USXdFs
+ PwRv1aZ9BnbrNWJCJZ/SmHu0qmZrnM98FIIW6Sykk6lUGStjmGEn6bBH+tdhqaoUZhwr
+ GDBfaMfrkAzx/xf2ttLtkzLiHungnuVOiG9TS7zSp7WGv3jHJ8znWrw32Kj7NZKVmw9z
+ Z0ODnz7B5INTkrxmzU7MVoqReAvCHFJ8vFX6ISD71Y1Dhk1zM87rkyVstdE2iK5Lee5e
+ zU5stxJCR9aBRxQGCtowlHwxAEfaXNZjauOuS2rj+0FVpWgr/p/bmfPCprHmtq92AChF
+ AKog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=7/8jc/lfYCAs4mbuUcap9dH6khXGsPrncUoASGGnc3k=;
+ b=OFFE7CqGADVcF8FiDX0IDosL9eGRXwD0clFE8dmEIBaTCo62cmk3Lr+8Sf0CedJi1/
+ 12KQKc5loPXrn+O8+fWbspqoxTirKkln534UJ7IvlKvrL0HEDWRBGEsbNxWdm8Cbv/MJ
+ vXJSDoLHtYs96ohGAF599OeC9Ah85UzRtEfFg7DytxRjXbqTFis0OuFnHDMUatqlgQUx
+ 9usBsa0s9DXNy5qi8NK7WHfzsLo0x4LCSG+a+BegTHhKEQlHWn7TZZMBwGsuvjT9x2ea
+ vV7pAGSh7tHrb22FiWRzY4pioerVnvpNzXWGSYdOg6usvemfeH2xCHzVKT7qi+AJx2rH
+ KJiw==
+X-Gm-Message-State: AOAM531Bc8STWIpT78KjChUKcm2a+NfqDUazXWZGRE3qHvitrrrDbHI0
+ EkmO8WoEYbbfsJxoC+mGFOE=
+X-Google-Smtp-Source: ABdhPJxof2rePgfesueDabQpstTHFBwOLMcabf+ePYn4t4QurORltEeg6FxJfXSf/2bpTeah2v1rBQ==
+X-Received: by 2002:a17:906:cb92:: with SMTP id
+ mf18mr5124921ejb.485.1600781530354; 
+ Tue, 22 Sep 2020 06:32:10 -0700 (PDT)
+Received: from abel.fritz.box ([2a02:908:1252:fb60:11af:3d77:a1c7:4f3a])
+ by smtp.gmail.com with ESMTPSA id z21sm11541028eja.72.2020.09.22.06.32.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Sep 2020 06:32:09 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: linux-graphics-maintainer@vmware.com, sroland@vmware.com, airlied@linux.ie,
+ daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ray.huang@amd.com
+Subject: [PATCH 01/11] drm/ttm: add ttm_bo_pin()/ttm_bo_unpin() v2
+Date: Tue, 22 Sep 2020 15:31:58 +0200
+Message-Id: <20200922133208.1273-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 22 Sep 2020 13:49:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,116 +68,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-I noticed a call trace (attached) when starting my machine (ThinkPad
-L14).  This machine is new and I am still working on it's
-configuration but visually noticeable is that scrolling in xterms with
-SHIFT-PgUp/PgDn is broken.  Using the mouse wheel works.
-
-It seems the call trace has been introduced between 5.8 and 5.9-rc1 and
-I tried to bisect this but always end in situations where I dont't find
-a bootable commit around the current bisect position.  Mainly the
-machine then hangs when udevd is started.
-
-Please let me know if I can help with further information.
-
-Dirk
-
-= lspci -vk ============================================================
-
-06:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Renoir (rev c3) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo Renoir
-        Flags: bus master, fast devsel, latency 0, IRQ 64
-        Memory at 460000000 (64-bit, prefetchable) [size=256M]
-        Memory at 470000000 (64-bit, prefetchable) [size=2M]
-        I/O ports at 1000 [size=256]
-        Memory at fd300000 (32-bit, non-prefetchable) [size=512K]
-        Capabilities: [48] Vendor Specific Information: Len=08 <?>
-        Capabilities: [50] Power Management version 3
-        Capabilities: [64] Express Legacy Endpoint, MSI 00
-        Capabilities: [a0] MSI: Enable- Count=1/4 Maskable- 64bit+
-        Capabilities: [c0] MSI-X: Enable+ Count=4 Masked-
-        Capabilities: [100] Vendor Specific Information: ID=0001 Rev=1 Len=010 <?>
-        Capabilities: [270] Secondary PCI Express
-        Capabilities: [2b0] Address Translation Service (ATS)
-        Capabilities: [2c0] Page Request Interface (PRI)
-        Capabilities: [2d0] Process Address Space ID (PASID)
-        Capabilities: [400] Data Link Feature <?>
-        Capabilities: [410] Physical Layer 16.0 GT/s <?>
-        Capabilities: [440] Lane Margining at the Receiver <?>
-        Kernel driver in use: amdgpu
-        Kernel modules: amdgpu
-
-= call trace ===========================================================
-
-[    5.181468] amdgpu 0000:06:00.0: amdgpu: SMU is initialized successfully!
-[    5.182857] [drm] kiq ring mec 2 pipe 1 q 0
-[    5.183374] ------------[ cut here ]------------
-[    5.183448] WARNING: CPU: 1 PID: 684 at drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn21/rn_clk_mgr.c:716 rn_clk_mgr_construct+0x242/0x389 [amdgpu]
-[    5.183449] Modules linked in: btusb btrtl btbcm btintel bluetooth ecdh_generic ecc iwlmvm mac80211 libarc4 wmi_bmof crct10dif_pclmul snd_hda_codec_realtek 
-crc32c_intel iwlwifi snd_hda_codec_generic amdgpu(+) tpm_crb snd_hda_codec_hdmi gpu_sched i2c_algo_bit ttm sdhci_pci aesni_intel drm_kms_helper cqhci sdhci ccp
- syscopyarea snd_hda_intel sysfillrect tpm_tis snd_intel_dspcfg sysimgblt xhci_pci tpm_tis_core fb_sys_fops r8169 snd_hda_codec mmc_core snd_hda_core xhci_hcd 
-thinkpad_acpi cfg80211 realtek drm snd_pcm rng_core mdio_devres sha1_generic snd_timer nvram libphy i2c_piix4 snd k10temp soundcore ledtrig_audio rfkill tpm hw
-mon wmi battery ac video backlight pinctrl_amd acpi_cpufreq button efivarfs
-[    5.183470] CPU: 1 PID: 684 Comm: udevd Not tainted 5.9.0-rc6-x86_64+ #170
-[    5.183471] Hardware name: LENOVO 20U50008GE/20U50008GE, BIOS R19ET26W (1.10 ) 06/22/2020
-[    5.183531] RIP: 0010:rn_clk_mgr_construct+0x242/0x389 [amdgpu]
-[    5.183533] Code: 30 4d 85 c9 74 26 ba 03 00 00 00 83 bc d4 a8 00 00 00 00 89 d6 74 0a 83 bc d4 ac 00 00 00 00 75 40 48 ff ca 48 83 fa ff 75 e1 <0f> 0b 83 7
-b 20 01 0f 84 13 01 00 00 81 bd e8 00 00 00 ff 14 37 00
-[    5.183533] RSP: 0018:ffffc9000111f798 EFLAGS: 00010246
-[    5.183534] RAX: ffff8883fc1d8e00 RBX: ffff8883f925c9c0 RCX: 0000000000000000
-[    5.183535] RDX: ffffffffffffffff RSI: 0000000000000000 RDI: ffff8883f8da70c8
-[    5.183535] RBP: ffff8883fe8da000 R08: 0000000000000000 R09: ffff8883f724fc00
-[    5.183535] R10: 7fc9117fffffffff R11: ffff8883f925c9c0 R12: ffff8883f925c900
-[    5.183536] R13: ffff8883f5980000 R14: 0000000000000000 R15: 0000000000000001
-[    5.183537] FS:  00007f9e31a83d80(0000) GS:ffff88840ec40000(0000) knlGS:0000000000000000
-[    5.183537] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[    5.183538] CR2: 000055fdf9ec5568 CR3: 00000003fb2b6000 CR4: 0000000000350ee0
-[    5.183538] Call Trace:
-[    5.183595]  dc_clk_mgr_create+0x135/0x18b [amdgpu]
-[    5.183651]  dc_create+0x238/0x5e3 [amdgpu]
-[    5.183708]  amdgpu_dm_init+0x167/0x1101 [amdgpu]
-[    5.183762]  dm_hw_init+0xa/0x17 [amdgpu]
-[    5.183805]  amdgpu_device_init+0x1566/0x1853 [amdgpu]
-[    5.183811]  ? __kmalloc+0xad/0xbf
-[    5.183852]  ? amdgpu_driver_load_kms+0x1c/0x17f [amdgpu]
-[    5.183892]  amdgpu_driver_load_kms+0x41/0x17f [amdgpu]
-[    5.183959]  amdgpu_pci_probe+0x139/0x1c0 [amdgpu]
-[    5.183967]  pci_device_probe+0xc6/0x135
-[    5.183971]  really_probe+0x157/0x32a
-[    5.183974]  driver_probe_device+0x63/0x97
-[    5.183976]  device_driver_attach+0x37/0x50
-[    5.183978]  __driver_attach+0x92/0x9a
-[    5.183980]  ? device_driver_attach+0x50/0x50
-[    5.183983]  bus_for_each_dev+0x70/0xa6
-[    5.183986]  bus_add_driver+0x103/0x1b4
-[    5.183988]  driver_register+0x99/0xd2
-[    5.183990]  ? 0xffffffffa0b2f000
-[    5.183993]  do_one_initcall+0x8a/0x195
-[    5.183997]  ? kmem_cache_alloc_trace+0x80/0x8f
-[    5.184002]  do_init_module+0x56/0x1e8
-[    5.184005]  load_module+0x1c2c/0x2139
-[    5.184010]  ? __do_sys_finit_module+0x8f/0xb6
-[    5.184012]  __do_sys_finit_module+0x8f/0xb6
-[    5.184017]  do_syscall_64+0x5d/0x6a
-[    5.184021]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-[    5.184023] RIP: 0033:0x7f9e31b93919
-[    5.184026] Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 47 05 0c 00 f7 d8 64 89 01 48
-[    5.184028] RSP: 002b:00007fff315a0fa8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-[    5.184030] RAX: ffffffffffffffda RBX: 000055fdf9eebde0 RCX: 00007f9e31b93919
-[    5.184031] RDX: 0000000000000000 RSI: 00007f9e31c6a91d RDI: 0000000000000013
-[    5.184032] RBP: 0000000000020000 R08: 0000000000000000 R09: 00007fff315a1110
-[    5.184033] R10: 0000000000000013 R11: 0000000000000246 R12: 00007f9e31c6a91d
-[    5.184034] R13: 0000000000000000 R14: 000055fdf9ed8060 R15: 000055fdf9eebde0
-[    5.184037] ---[ end trace a782862b8da91b8d ]---
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+QXMgYW4gYWx0ZXJuYXRpdmUgdG8gdGhlIHBsYWNlbWVudCBmbGFnIGFkZCBhCnBpbiBjb3VudCB0
+byB0aGUgdHRtIGJ1ZmZlciBvYmplY3QuCgp2MjogYWRkIGRtYV9yZXN2X2Fzc2VydF9oZWxwKCkg
+Y2FsbHMKClNpZ25lZC1vZmYtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdA
+YW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jICAgICAgfCAgOSArKysr
+KystLS0KIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3V0aWwuYyB8ICAyICstCiBpbmNsdWRl
+L2RybS90dG0vdHRtX2JvX2FwaS5oICAgICAgfCAyNiArKysrKysrKysrKysrKysrKysrKysrKysr
+KwogMyBmaWxlcyBjaGFuZ2VkLCAzMyBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+dHRtL3R0bV9iby5jCmluZGV4IDcwYjNiZWUyNzg1MC4uYjgyYjQ5ZDQzOTQyIDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0v
+dHRtX2JvLmMKQEAgLTExNSw3ICsxMTUsNyBAQCBzdGF0aWMgdm9pZCB0dG1fYm9fYWRkX21lbV90
+b19scnUoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywKIAlzdHJ1Y3QgdHRtX2JvX2Rldmlj
+ZSAqYmRldiA9IGJvLT5iZGV2OwogCXN0cnVjdCB0dG1fcmVzb3VyY2VfbWFuYWdlciAqbWFuOwog
+Ci0JaWYgKCFsaXN0X2VtcHR5KCZiby0+bHJ1KSkKKwlpZiAoIWxpc3RfZW1wdHkoJmJvLT5scnUp
+IHx8IGJvLT5waW5fY291bnQpCiAJCXJldHVybjsKIAogCWlmIChtZW0tPnBsYWNlbWVudCAmIFRU
+TV9QTF9GTEFHX05PX0VWSUNUKQpAQCAtMTY1LDcgKzE2NSw4IEBAIHZvaWQgdHRtX2JvX21vdmVf
+dG9fbHJ1X3RhaWwoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywKIAl0dG1fYm9fZGVsX2Zy
+b21fbHJ1KGJvKTsKIAl0dG1fYm9fYWRkX21lbV90b19scnUoYm8sICZiby0+bWVtKTsKIAotCWlm
+IChidWxrICYmICEoYm8tPm1lbS5wbGFjZW1lbnQgJiBUVE1fUExfRkxBR19OT19FVklDVCkpIHsK
+KwlpZiAoYnVsayAmJiAhKGJvLT5tZW0ucGxhY2VtZW50ICYgVFRNX1BMX0ZMQUdfTk9fRVZJQ1Qp
+ICYmCisJICAgICFiby0+cGluX2NvdW50KSB7CiAJCXN3aXRjaCAoYm8tPm1lbS5tZW1fdHlwZSkg
+ewogCQljYXNlIFRUTV9QTF9UVDoKIAkJCXR0bV9ib19idWxrX21vdmVfc2V0X3BvcygmYnVsay0+
+dHRbYm8tPnByaW9yaXR5XSwgYm8pOwpAQCAtNTQ0LDggKzU0NSw5IEBAIHN0YXRpYyB2b2lkIHR0
+bV9ib19yZWxlYXNlKHN0cnVjdCBrcmVmICprcmVmKQogCQkgKiBzaHJpbmtlcnMsIG5vdyB0aGF0
+IHRoZXkgYXJlIHF1ZXVlZCBmb3IKIAkJICogZGVzdHJ1Y3Rpb24uCiAJCSAqLwotCQlpZiAoYm8t
+Pm1lbS5wbGFjZW1lbnQgJiBUVE1fUExfRkxBR19OT19FVklDVCkgeworCQlpZiAoYm8tPm1lbS5w
+bGFjZW1lbnQgJiBUVE1fUExfRkxBR19OT19FVklDVCB8fCBiby0+cGluX2NvdW50KSB7CiAJCQli
+by0+bWVtLnBsYWNlbWVudCAmPSB+VFRNX1BMX0ZMQUdfTk9fRVZJQ1Q7CisJCQliby0+cGluX2Nv
+dW50ID0gMDsKIAkJCXR0bV9ib19kZWxfZnJvbV9scnUoYm8pOwogCQkJdHRtX2JvX2FkZF9tZW1f
+dG9fbHJ1KGJvLCAmYm8tPm1lbSk7CiAJCX0KQEAgLTExNzIsNiArMTE3NCw3IEBAIGludCB0dG1f
+Ym9faW5pdF9yZXNlcnZlZChzdHJ1Y3QgdHRtX2JvX2RldmljZSAqYmRldiwKIAliby0+bW92aW5n
+ID0gTlVMTDsKIAliby0+bWVtLnBsYWNlbWVudCA9IFRUTV9QTF9GTEFHX0NBQ0hFRDsKIAliby0+
+YWNjX3NpemUgPSBhY2Nfc2l6ZTsKKwliby0+cGluX2NvdW50ID0gMDsKIAliby0+c2cgPSBzZzsK
+IAlpZiAocmVzdikgewogCQliby0+YmFzZS5yZXN2ID0gcmVzdjsKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS90dG0vdHRtX2JvX3V0aWwuYyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2Jv
+X3V0aWwuYwppbmRleCBmYjJhMjVmODQwOGYuLjE5NjhkZjk3NDNmYyAxMDA2NDQKLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL3R0bS90dG1fYm9fdXRpbC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0v
+dHRtX2JvX3V0aWwuYwpAQCAtMzUyLDcgKzM1Miw2IEBAIHN0YXRpYyBpbnQgdHRtX2J1ZmZlcl9v
+YmplY3RfdHJhbnNmZXIoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywKIAkJcmV0dXJuIC1F
+Tk9NRU07CiAKIAlmYm8tPmJhc2UgPSAqYm87Ci0JZmJvLT5iYXNlLm1lbS5wbGFjZW1lbnQgfD0g
+VFRNX1BMX0ZMQUdfTk9fRVZJQ1Q7CiAKIAl0dG1fYm9fZ2V0KGJvKTsKIAlmYm8tPmJvID0gYm87
+CkBAIC0zNzIsNiArMzcxLDcgQEAgc3RhdGljIGludCB0dG1fYnVmZmVyX29iamVjdF90cmFuc2Zl
+cihzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvLAogCWtyZWZfaW5pdCgmZmJvLT5iYXNlLmty
+ZWYpOwogCWZiby0+YmFzZS5kZXN0cm95ID0gJnR0bV90cmFuc2ZlcmVkX2Rlc3Ryb3k7CiAJZmJv
+LT5iYXNlLmFjY19zaXplID0gMDsKKwlmYm8tPmJhc2UucGluX2NvdW50ID0gMTsKIAlpZiAoYm8t
+PnR5cGUgIT0gdHRtX2JvX3R5cGVfc2cpCiAJCWZiby0+YmFzZS5iYXNlLnJlc3YgPSAmZmJvLT5i
+YXNlLmJhc2UuX3Jlc3Y7CiAKZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fYXBp
+LmggYi9pbmNsdWRlL2RybS90dG0vdHRtX2JvX2FwaS5oCmluZGV4IDBmN2NkMjFkNmQ3NC4uMzNh
+Y2E2MDg3MGUyIDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS90dG0vdHRtX2JvX2FwaS5oCisrKyBi
+L2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fYXBpLmgKQEAgLTE1Nyw2ICsxNTcsNyBAQCBzdHJ1Y3Qg
+dHRtX2J1ZmZlcl9vYmplY3QgewogCiAJc3RydWN0IGRtYV9mZW5jZSAqbW92aW5nOwogCXVuc2ln
+bmVkIHByaW9yaXR5OworCXVuc2lnbmVkIHBpbl9jb3VudDsKIAogCS8qKgogCSAqIFNwZWNpYWwg
+bWVtYmVycyB0aGF0IGFyZSBwcm90ZWN0ZWQgYnkgdGhlIHJlc2VydmUgbG9jawpAQCAtNjA2LDYg
+KzYwNywzMSBAQCBzdGF0aWMgaW5saW5lIGJvb2wgdHRtX2JvX3VzZXNfZW1iZWRkZWRfZ2VtX29i
+amVjdChzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvKQogCXJldHVybiBiby0+YmFzZS5kZXYg
+IT0gTlVMTDsKIH0KIAorLyoqCisgKiB0dG1fYm9fcGluIC0gUGluIHRoZSBidWZmZXIgb2JqZWN0
+LgorICogQGJvOiBUaGUgYnVmZmVyIG9iamVjdCB0byBwaW4KKyAqCisgKiBNYWtlIHN1cmUgdGhl
+IGJ1ZmZlciBpcyBub3QgZXZpY3RlZCBhbnkgbW9yZSBkdXJpbmcgbWVtb3J5IHByZXNzdXJlLgor
+ICovCitzdGF0aWMgaW5saW5lIHZvaWQgdHRtX2JvX3BpbihzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmpl
+Y3QgKmJvKQoreworCWRtYV9yZXN2X2Fzc2VydF9oZWxkKGJvLT5iYXNlLnJlc3YpOworCSsrYm8t
+PnBpbl9jb3VudDsKK30KKworLyoqCisgKiB0dG1fYm9fdW5waW4gLSBVbnBpbiB0aGUgYnVmZmVy
+IG9iamVjdC4KKyAqIEBibzogVGhlIGJ1ZmZlciBvYmplY3QgdG8gdW5waW4KKyAqCisgKiBBbGxv
+d3MgdGhlIGJ1ZmZlciBvYmplY3QgdG8gYmUgZXZpY3RlZCBhZ2FpbiBkdXJpbmcgbWVtb3J5IHBy
+ZXNzdXJlLgorICovCitzdGF0aWMgaW5saW5lIHZvaWQgdHRtX2JvX3VucGluKHN0cnVjdCB0dG1f
+YnVmZmVyX29iamVjdCAqYm8pCit7CisJZG1hX3Jlc3ZfYXNzZXJ0X2hlbGQoYm8tPmJhc2UucmVz
+dik7CisJV0FSTl9PTl9PTkNFKCFiby0+cGluX2NvdW50KTsKKwktLWJvLT5waW5fY291bnQ7Cit9
+CisKIGludCB0dG1fbWVtX2V2aWN0X2ZpcnN0KHN0cnVjdCB0dG1fYm9fZGV2aWNlICpiZGV2LAog
+CQkJc3RydWN0IHR0bV9yZXNvdXJjZV9tYW5hZ2VyICptYW4sCiAJCQljb25zdCBzdHJ1Y3QgdHRt
+X3BsYWNlICpwbGFjZSwKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9hbWQtZ2Z4Cg==
