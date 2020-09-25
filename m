@@ -1,58 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D9A2791B1
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A5422791B3
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD7EF6ED72;
-	Fri, 25 Sep 2020 20:11:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01E626ED78;
+	Fri, 25 Sep 2020 20:11:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com
- [IPv6:2607:f8b0:4864:20::744])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90B216ED75
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:35 +0000 (UTC)
-Received: by mail-qk1-x744.google.com with SMTP id f142so4064436qke.13
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:35 -0700 (PDT)
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
+ [IPv6:2607:f8b0:4864:20::843])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 141246ED78
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:37 +0000 (UTC)
+Received: by mail-qt1-x843.google.com with SMTP id a4so3105614qth.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=hWgP8zDBjSBdxoW0JuFFRsc6hfdGhhTMo0RFTbVy4TQ=;
- b=ipwDFrNqGaJQyFBkm3KeSQCKqKOM6GXXwaQpAfJ+uxWPuxgif+JuMQ0/LT2QQ+9p7U
- JXn5OluYYJkkCHu12Xy3FSMPr+mbvn598Q2J0O8YBabL8+oSLTigfU6IGXC1ZfzFi/Kj
- qJ4IT+rWw2YjS7G4loFlSVb5mAN1Wli26lhYjiytIwPVg+QrmkCtV9FM1mSO3DcvLr41
- FOYLuQ5+v7KDjc2YwBMShGVW22LlsDT6ToYYgvfM14UUYjRKsQctO1a6fAv8o+8nrV8r
- 9LPjKuIGRTEXWAgT4GKq7i0ghOVfb1tyczFQrXwfId40yLlqZECokxlFhDqJ/TURKstL
- YiiQ==
+ bh=CuykHKMn5sUvAkFYXIE99o7vuPOSNCSlqfofiVB9EH8=;
+ b=ToNCXEVe4gfE8gvGsMc7JuvPIdIpoL13zPxJBMADTzGedc/b0FFYXuvyfW+ng748gy
+ M0oAmsARgBZQwluXciIMnpnUAV9x2HzjGndwcsQhYMKCFYV8spqO5uUwC0rYGc2za7Oy
+ 0CU7m0f00ghtEQqzAfbmJpDuxk1dobDbDhdPG7ETslRktl+7lTGUJh1iKGnaVlGVa8ln
+ ypht+EsZP2SqBkQQzvg/7000CcO+FEPZQJqNU+39jN6Gq083i2oQqTxUkRUXHRtzlkoa
+ EGFeezDYsLJ24QF1W926f3MQlG/6KeYNOzqhDtEHauqusBXy0rEXCVKa/dX99VmhkW4g
+ QlRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=hWgP8zDBjSBdxoW0JuFFRsc6hfdGhhTMo0RFTbVy4TQ=;
- b=ipzg9bUSRbOdxSNUlGR5UjrMY1ououW4BjgWS6nmOIdPKOHQbOA1MoYKZfVu72KDlg
- TabL6ulUenEIza0jo73ySCFWwHnNlt+881Sryy73I92FYcFH5ddUbrexIZGgfqk8zd5o
- UNe08HTkuA7Ntm+1JM4sHpJSHCjwkRlPn9MID8YGUbWEqY4AFE8B0z+KhCN5Bp+VvldH
- 7DP31pB+ffxfZzuVPYjk5ZSIPnLg18EZxq97PC9hq7RZfMQGt6+aPtcA13PgXc0wDs33
- WcGyagqTonGMaRjWUKfB0nRzanfzr7ZJparmmZhOkN5n4jHlv435uQS/2AjE2o77drHn
- xNOw==
-X-Gm-Message-State: AOAM530YePweqREKV+XQa84CsKz2CikNQENZQptG+iECUSQ0Jj2ntdVU
- s4tB58J7PjCJ1xF4K7T3drJeZez8W2I=
-X-Google-Smtp-Source: ABdhPJy/HGB6+AWCtKRZSbWQfxRKk+RjfVgw2oV5GjK4WNxuoLDVByh3YE9ISvycUQdHrYzB+SPXGw==
-X-Received: by 2002:a05:620a:1411:: with SMTP id
- d17mr1713280qkj.325.1601064694498; 
- Fri, 25 Sep 2020 13:11:34 -0700 (PDT)
+ bh=CuykHKMn5sUvAkFYXIE99o7vuPOSNCSlqfofiVB9EH8=;
+ b=RlJ61FwtuKK44B5pUAno2sxxzR5QWMvx5u3lnclLKwR50Gr0OI+Ads3Po5s7+fejnJ
+ 1AQB1w59gDQ2bXzSCpfP/TdoYKpVbyf/ANijt2idauOvZDKuKFVuLOmY2UWt4G0E/PM+
+ vKvC4pPZ2+d6TLeFciDMn7fERucN4ovPooi1DxF1CPgYK38pZFLTSEnUXPNdDf5noM/D
+ G1mwrdJHU0zStuc/5W18CYMz3ST83WMkvwiGGe8WQ1/tKoMbYHg7CvsNaK0ElI13igis
+ F2TNmdpWYzvaCtMAT2Uogmj/OEVpSOqBxGK6qzSkGRSUgsjzXtr+3E6f3kJIxzwCXgLN
+ cVYQ==
+X-Gm-Message-State: AOAM532CTHUHnuzW2RUdWc/4e0gzXngAZCjAhoPKddTiLYLi0NFH/1By
+ KcaB5Z8AlqgC5AqRktby128g4L2SYmQ=
+X-Google-Smtp-Source: ABdhPJyzx8e15t+kPL2Fj5FG74FfbgZSawwPmHgfk4/mGDtt9fiLdZA27Z5BNZVnSM1yW3Lu6AoPlQ==
+X-Received: by 2002:aed:2c61:: with SMTP id f88mr1462167qtd.388.1601064695949; 
+ Fri, 25 Sep 2020 13:11:35 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.33
+ by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 13:11:34 -0700 (PDT)
+ Fri, 25 Sep 2020 13:11:35 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 28/45] drm/amdgpu/powerplay: add smu v11.5 firmware header for
- vangogh (v2)
-Date: Fri, 25 Sep 2020 16:10:12 -0400
-Message-Id: <20200925201029.1738724-28-alexander.deucher@amd.com>
+Subject: [PATCH 29/45] drm/amdgpu/powerplay: add smu v11.5 smc header for
+ vangogh
+Date: Fri, 25 Sep 2020 16:10:13 -0400
+Message-Id: <20200925201029.1738724-29-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200925201029.1738724-1-alexander.deucher@amd.com>
 References: <20200925201029.1738724-1-alexander.deucher@amd.com>
@@ -77,25 +76,23 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Xiaojian Du <xiaojian.du@amd.com>
 
-This patch is to add smu v11.5 firmware header for vangogh
-
-v2: squash in updates
+This patch is to add smu v11.5 smc header for vangogh.
 
 Signed-off-by: Xiaojian Du <xiaojian.du@amd.com>
 Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
 Reviewed-by: Huang Rui <ray.huang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/pm/inc/smu_v11_5_pmfw.h | 120 ++++++++++++++++++++
- 1 file changed, 120 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/pm/inc/smu_v11_5_pmfw.h
+ drivers/gpu/drm/amd/pm/inc/smu_v11_5_ppsmc.h | 86 ++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/pm/inc/smu_v11_5_ppsmc.h
 
-diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v11_5_pmfw.h b/drivers/gpu/drm/amd/pm/inc/smu_v11_5_pmfw.h
+diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v11_5_ppsmc.h b/drivers/gpu/drm/amd/pm/inc/smu_v11_5_ppsmc.h
 new file mode 100644
-index 000000000000..abf13abd3919
+index 000000000000..55c1b151a68d
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/pm/inc/smu_v11_5_pmfw.h
-@@ -0,0 +1,120 @@
++++ b/drivers/gpu/drm/amd/pm/inc/smu_v11_5_ppsmc.h
+@@ -0,0 +1,86 @@
 +/*
 + * Copyright 2020 Advanced Micro Devices, Inc.
 + *
@@ -119,101 +116,67 @@ index 000000000000..abf13abd3919
 + *
 + */
 +
-+#ifndef __SMU_V11_5_0_PMFW_H__
-+#define __SMU_V11_5_0_PMFW_H__
++#ifndef SMU_11_5_0_PPSMC_H
++#define SMU_11_5_0_PPSMC_H
 +
-+#include "smu11_driver_if_vangogh.h"
++// SMU Response Codes:
++#define PPSMC_Result_OK 0x1
++#define PPSMC_Result_Failed 0xFF
++#define PPSMC_Result_UnknownCmd 0xFE
++#define PPSMC_Result_CmdRejectedPrereq 0xFD
++#define PPSMC_Result_CmdRejectedBusy 0xFC
 +
-+#pragma pack(push, 1)
++// Message Definitions:
++#define PPSMC_MSG_TestMessage 0x1
++#define PPSMC_MSG_GetSmuVersion 0x2
++#define PPSMC_MSG_GetDriverIfVersion 0x3
++#define PPSMC_MSG_EnableGfxOff 0x4
++#define PPSMC_MSG_DisableGfxOff 0x5
++#define PPSMC_MSG_PowerDownIspByTile 0x6 // ISP is power gated by default
++#define PPSMC_MSG_PowerUpIspByTile 0x7
++#define PPSMC_MSG_PowerDownVcn 0x8 // VCN is power gated by default
++#define PPSMC_MSG_PowerUpVcn 0x9
++#define PPSMC_MSG_spare 0xA
++#define PPSMC_MSG_SetHardMinVcn 0xB // For wireless display
++#define PPSMC_MSG_SetMinVideoGfxclkFreq	0xC //Sets SoftMin for GFXCLK. Arg is in MHz
++#define PPSMC_MSG_ActiveProcessNotify 0xD
++#define PPSMC_MSG_SetHardMinIspiclkByFreq 0xE
++#define PPSMC_MSG_SetHardMinIspxclkByFreq 0xF
++#define PPSMC_MSG_SetDriverDramAddrHigh 0x10
++#define PPSMC_MSG_SetDriverDramAddrLow 0x11
++#define PPSMC_MSG_TransferTableSmu2Dram 0x12
++#define PPSMC_MSG_TransferTableDram2Smu 0x13
++#define PPSMC_MSG_GfxDeviceDriverReset 0x14 //mode 2 reset during TDR
++#define PPSMC_MSG_GetEnabledSmuFeatures 0x15
++#define PPSMC_MSG_spare1 0x16
++#define PPSMC_MSG_SetHardMinSocclkByFreq 0x17
++#define PPSMC_MSG_SetMinVideoFclkFreq 0x18
++#define PPSMC_MSG_SetSoftMinVcn 0x19
++#define PPSMC_MSG_EnablePostCode 0x1A
++#define PPSMC_MSG_GetGfxclkFrequency 0x1B
++#define PPSMC_MSG_GetFclkFrequency 0x1C
++#define PPSMC_MSG_AllowGfxOff 0x1D
++#define PPSMC_MSG_DisallowGfxOff 0x1E
++#define PPSMC_MSG_SetSoftMaxGfxClk 0x1F
++#define PPSMC_MSG_SetHardMinGfxClk 0x20
++#define PPSMC_MSG_SetSoftMaxSocclkByFreq 0x21
++#define PPSMC_MSG_SetSoftMaxFclkByFreq 0x22
++#define PPSMC_MSG_SetSoftMaxVcn 0x23
++#define PPSMC_MSG_GpuChangeState 0x24 //FIXME AHOLLA - check how to do for VGM
++#define PPSMC_MSG_SetPowerLimitPercentage 0x25
++#define PPSMC_MSG_PowerDownJpeg 0x26
++#define PPSMC_MSG_PowerUpJpeg 0x27
++#define PPSMC_MSG_SetHardMinFclkByFreq 0x28
++#define PPSMC_MSG_SetSoftMinSocclkByFreq 0x29
++#define PPSMC_MSG_PowerUpCvip 0x2A
++#define PPSMC_MSG_PowerDownCvip 0x2B
++#define PPSMC_Message_Count 0x2C
 +
-+#define ENABLE_DEBUG_FEATURES
-+
-+// Feature Control Defines
-+#define FEATURE_CCLK_DPM_BIT           0
-+#define FEATURE_FAN_CONTROLLER_BIT     1
-+#define FEATURE_DATA_CALCULATION_BIT   2
-+#define FEATURE_PPT_BIT                3
-+#define FEATURE_TDC_BIT                4
-+#define FEATURE_THERMAL_BIT            5
-+#define FEATURE_FIT_BIT                6
-+#define FEATURE_EDC_BIT                7
-+#define FEATURE_PLL_POWER_DOWN_BIT     8
-+#define FEATURE_ULV_BIT                9
-+#define FEATURE_VDDOFF_BIT            10
-+#define FEATURE_VCN_DPM_BIT           11
-+#define FEATURE_CSTATE_BOOST_BIT      12
-+#define FEATURE_FCLK_DPM_BIT          13
-+#define FEATURE_SOCCLK_DPM_BIT        14
-+#define FEATURE_MP0CLK_DPM_BIT        15
-+#define FEATURE_LCLK_DPM_BIT          16
-+#define FEATURE_SHUBCLK_DPM_BIT       17
-+#define FEATURE_DCFCLK_DPM_BIT        18
-+#define FEATURE_GFX_DPM_BIT           19
-+#define FEATURE_DS_GFXCLK_BIT         20
-+#define FEATURE_DS_SOCCLK_BIT         21
-+#define FEATURE_DS_LCLK_BIT           22
-+#define FEATURE_DS_DCFCLK_BIT         23
-+#define FEATURE_DS_SHUBCLK_BIT        24
-+#define FEATURE_GFX_TEMP_VMIN_BIT     25
-+#define FEATURE_S0I2_BIT              26
-+#define FEATURE_WHISPER_MODE_BIT      27
-+#define FEATURE_DS_FCLK_BIT           28
-+#define FEATURE_DS_SMNCLK_BIT         29
-+#define FEATURE_DS_MP1CLK_BIT         30
-+#define FEATURE_DS_MP0CLK_BIT         31
-+#define FEATURE_SMU_LOW_POWER_BIT     32
-+#define FEATURE_FUSE_PG_BIT           33
-+#define FEATURE_GFX_DEM_BIT           34
-+#define FEATURE_PSI_BIT               35
-+#define FEATURE_PROCHOT_BIT           36
-+#define FEATURE_CPUOFF_BIT            37
-+#define FEATURE_STAPM_BIT             38
-+#define FEATURE_S0I3_BIT              39
-+#define FEATURE_DF_CSTATES_BIT        40
-+#define FEATURE_PERF_LIMIT_BIT        41
-+#define FEATURE_CORE_DLDO_BIT         42
-+#define FEATURE_RSMU_LOW_POWER_BIT    43
-+#define FEATURE_SMN_LOW_POWER_BIT     44
-+#define FEATURE_THM_LOW_POWER_BIT     45
-+#define FEATURE_SMUIO_LOW_POWER_BIT   46
-+#define FEATURE_MP1_LOW_POWER_BIT     47
-+#define FEATURE_DS_VCN_BIT            48
-+#define FEATURE_CPPC_BIT              49
-+#define FEATURE_OS_CSTATES_BIT        50
-+#define FEATURE_ISP_DPM_BIT           51
-+#define FEATURE_A55_DPM_BIT           52
-+#define FEATURE_CVIP_DSP_DPM_BIT      53
-+#define FEATURE_MSMU_LOW_POWER_BIT    54
-+#define FEATURE_SOC_VOLTAGE_MON_BIT   55
-+#define FEATURE_ATHUB_PG_BIT          56
-+#define FEATURE_ECO_DEEPCSTATE_BIT    57
-+#define FEATURE_CC6                   58
-+#define NUM_FEATURES                  59
-+
-+typedef struct {
-+  // MP1_EXT_SCRATCH0
-+  uint32_t DpmHandlerID         : 8;
-+  uint32_t ActivityMonitorID    : 8;
-+  uint32_t DpmTimerID           : 8;
-+  uint32_t spare0               : 8;
-+  // MP1_EXT_SCRATCH1
-+  uint32_t GfxStatus            : 2;
-+  uint32_t GfxoffStatus         : 8;
-+  uint32_t CpuOff               : 1;
-+  uint32_t VddOff               : 1;
-+  uint32_t InUlv                : 1;
-+  uint32_t InS0i2               : 2;
-+  uint32_t InWhisperMode        : 1;
-+  uint32_t spare1               : 16;
-+  // MP1_EXT_SCRATCH2
-+  uint32_t P2JobHandler			: 32;
-+  // MP1_EXT_SCRATCH3
-+//  uint32_t spare2               : 32;
-+  // MP1_EXT_SCRATCH4:6 are used by Kernel
-+} FwStatus_t;
-+
-+
-+#pragma pack(pop)
++//Argument for  PPSMC_MSG_GpuChangeState
++enum {
++  GpuChangeState_D0Entry = 1,
++  GpuChangeState_D3Entry,
++};
 +
 +#endif
 -- 
