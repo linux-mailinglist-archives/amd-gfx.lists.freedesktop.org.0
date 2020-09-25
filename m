@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E980F2791AB
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 958C72791A9
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78DF06ED6F;
-	Fri, 25 Sep 2020 20:11:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE9786ED6B;
+	Fri, 25 Sep 2020 20:11:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com
- [IPv6:2607:f8b0:4864:20::f43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0B946ED65
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:21 +0000 (UTC)
-Received: by mail-qv1-xf43.google.com with SMTP id h1so2033683qvo.9
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:21 -0700 (PDT)
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com
+ [IPv6:2607:f8b0:4864:20::f30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEFA26ED6A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:22 +0000 (UTC)
+Received: by mail-qv1-xf30.google.com with SMTP id db4so2043648qvb.4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=5DMjdDdy9MWbNC8Uyo+udb2bGv0LTTxGFYyF/FADlnc=;
- b=CwW8LQnXPLHkMFwY/5hGs0zQazLQK4HX9vv+b46368VHxFv1wX51vjNgFH++JgIzoM
- 8T8ypDzt8UZuPTe5nYlsdt/yJZJGgeLQwj1k6NaiH42WZd772D/iImMBL9CBb3yOs05/
- lJTbOavhsDT6Jxuum7DsnyBNWtN+xJuVhVSAKCG2VRilANR/CgUc9WX9/S301afLGS0Q
- kRlfyT35tj5D1NHqbvFEhJSmwSim9E0v/He2dcl8SRS/qwLOO6yPZPlNw/HeIaplZhUH
- Z5cjD1Z2iDMRTYDCCo4IrRQaFelosgRTtG1EOI4huJf90EY3EImRVQdHVV2vUkeWbu84
- 2neA==
+ bh=Hc3w66p7RObQH95t+ur7uBsDisFKgJhR2LHCyQOttu0=;
+ b=QyXZY9TqxYapeVZgNurlU+VJC+wM3KqGJsn8YINinZv32zsBUAa0KODeNJBh2uNXjF
+ zMVv9aS3rxYlLYhCgt52wrlDaNhPLaaJGTbKWv+43gyMzNQJ+++5SEmUNvAKztechw28
+ zadxuXvQSYzGneTcVWSDQVlPOwh/ZoSPUwHd5QsSE86Cl6WmcfU1Mg4Ty7/Z2QRamEAR
+ rCaZnDWS7lwymNqz1qY1xkOBl9vOL19LtLt6lQIYwJSY2o7MC3iQVpQFOLtrVB9isvGE
+ N33g8+NZ7xsDVn1olTWPwKGeB/d9ctjrata5RQhAUilJ4fLrdMBw2s8fMWDx1TzuPmA1
+ 4XEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=5DMjdDdy9MWbNC8Uyo+udb2bGv0LTTxGFYyF/FADlnc=;
- b=EjF1eHqN0mPuiRgO3Haw0hbrOwsixxJGSy7C8KT0ioI6/0HnOqGEu92GMndRc9MurF
- 9pH/VwJmoN5A8bQCGbMIaNxIdbtvWuOlrcsZ7OaRpqkET+ldH8WKzuJoYeKNoB44L59/
- sWKNhqg5sJRP+jP8sZB6Srk2k/6h8MyvsYJiOJduS96o1jaVM28UbQtqyrz+eQAAVqoq
- HXl1yLQ/71tfeGoQIywwKV+Ra9n3wp97CKeLmCN2vsAZiaf9ZLH0cuOrQhygyrBUYYer
- RbdIg5SAYPaQB6J2Am44/1YaDcKO1n1pEjywV/hqgs+3/tG/bHC+rxIQkYaFfFqNv5nS
- WIbQ==
-X-Gm-Message-State: AOAM5334cqz32CgW7eNS5Q4rBBtqiy+sS7vXJCBTxrK92hyMwr20NAX3
- D+TKLXwRy5fQKowDgDu7cryFN2hVOUk=
-X-Google-Smtp-Source: ABdhPJwVjSwIRb3gofhcjnMPeHckQKY4c354E36bioc2NvLAngkfEl1/D7AIosJbZoSHlj0HLoW93A==
-X-Received: by 2002:ad4:57a7:: with SMTP id g7mr381161qvx.10.1601064680762;
- Fri, 25 Sep 2020 13:11:20 -0700 (PDT)
+ bh=Hc3w66p7RObQH95t+ur7uBsDisFKgJhR2LHCyQOttu0=;
+ b=tXY1HpzlZuaq8p+xG4d+ZP0ko+xS44Ys3b8J+GjB6BetCL0cDrO+PIcnsKqB1VBwDy
+ kHmfDxM0lihynThawTRKfN2mV6Vs7WPJnwOLXwLc5uA4jczweDBrBzzyZUJF4PZg1oZH
+ j/hUlL+DEYwhalSPyT8Mm6J63WK6mE61DIka3xHqJk7rfqpB74dqUrF5A9uy9z1XtMmT
+ RaAadkJ9RrwExwUTyAocGuxNlRkjaiFqtvHD3+46vbK20xwkeO2AFw7bzK3XpNIg248X
+ hJ8bNDt+b29pxM/gHfY1mAY4Kr0GOWyFq9L9addM3DCNt8VUWUii2WBQESSpHMvyFr2+
+ HMEw==
+X-Gm-Message-State: AOAM5315r3mDCpvHu3Huvz9kcy3F//PIcQlxK8HGbVB2OrzdlDV0CkIy
+ fvi5QQ34oA8yBTE+Nur0zoXfoIT5zGY=
+X-Google-Smtp-Source: ABdhPJzAh0HNzaDYV1emnsRGoiEYYIWMF/Fhw3qHu0cd+ld3ErJpZXqer3Canm5XIZ9Fy1G1+kghqQ==
+X-Received: by 2002:a05:6214:292:: with SMTP id l18mr355954qvv.3.1601064681779; 
+ Fri, 25 Sep 2020 13:11:21 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.19
+ by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 13:11:20 -0700 (PDT)
+ Fri, 25 Sep 2020 13:11:21 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 19/45] drm/amdgpu: add sdma support for van gogh
-Date: Fri, 25 Sep 2020 16:10:03 -0400
-Message-Id: <20200925201029.1738724-19-alexander.deucher@amd.com>
+Subject: [PATCH 20/45] drm/amdgpu: set ip blocks for van gogh
+Date: Fri, 25 Sep 2020 16:10:04 -0400
+Message-Id: <20200925201029.1738724-20-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200925201029.1738724-1-alexander.deucher@amd.com>
 References: <20200925201029.1738724-1-alexander.deucher@amd.com>
@@ -74,64 +74,35 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Huang Rui <ray.huang@amd.com>
 
-This patch adds the sdma v5.2 support for van gogh.
+Enable ip blocks for van gogh.
 
 Signed-off-by: Huang Rui <ray.huang@amd.com>
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/nv.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-index 9f3952723c63..100d0a921ede 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-@@ -47,6 +47,8 @@
- MODULE_FIRMWARE("amdgpu/sienna_cichlid_sdma.bin");
- MODULE_FIRMWARE("amdgpu/navy_flounder_sdma.bin");
- 
-+MODULE_FIRMWARE("amdgpu/vangogh_sdma.bin");
-+
- #define SDMA1_REG_OFFSET 0x600
- #define SDMA3_REG_OFFSET 0x400
- #define SDMA0_HYP_DEC_REG_START 0x5880
-@@ -87,6 +89,7 @@ static void sdma_v5_2_init_golden_registers(struct amdgpu_device *adev)
- 	switch (adev->asic_type) {
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
-+	case CHIP_VANGOGH:
- 		break;
- 	default:
- 		break;
-@@ -160,6 +163,9 @@ static int sdma_v5_2_init_microcode(struct amdgpu_device *adev)
- 	case CHIP_NAVY_FLOUNDER:
- 		chip_name = "navy_flounder";
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 8616d397da00..df94f72e017a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -604,6 +604,15 @@ int nv_set_ip_blocks(struct amdgpu_device *adev)
+ 		    is_support_sw_smu(adev))
+ 			amdgpu_device_ip_block_add(adev, &smu_v11_0_ip_block);
  		break;
 +	case CHIP_VANGOGH:
-+		chip_name = "vangogh";
++		amdgpu_device_ip_block_add(adev, &nv_common_ip_block);
++		amdgpu_device_ip_block_add(adev, &gmc_v10_0_ip_block);
++		amdgpu_device_ip_block_add(adev, &navi10_ih_ip_block);
++		if (adev->enable_virtual_display || amdgpu_sriov_vf(adev))
++			amdgpu_device_ip_block_add(adev, &dce_virtual_ip_block);
++		amdgpu_device_ip_block_add(adev, &gfx_v10_0_ip_block);
++		amdgpu_device_ip_block_add(adev, &sdma_v5_2_ip_block);
 +		break;
  	default:
- 		BUG();
+ 		return -EINVAL;
  	}
-@@ -1171,6 +1177,9 @@ static int sdma_v5_2_early_init(void *handle)
- 	case CHIP_NAVY_FLOUNDER:
- 		adev->sdma.num_instances = 2;
- 		break;
-+	case CHIP_VANGOGH:
-+		adev->sdma.num_instances = 1;
-+		break;
- 	default:
- 		break;
- 	}
-@@ -1567,6 +1576,7 @@ static int sdma_v5_2_set_clockgating_state(void *handle,
- 	switch (adev->asic_type) {
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
-+	case CHIP_VANGOGH:
- 		sdma_v5_2_update_medium_grain_clock_gating(adev,
- 				state == AMD_CG_STATE_GATE ? true : false);
- 		sdma_v5_2_update_medium_grain_light_sleep(adev,
 -- 
 2.25.4
 
