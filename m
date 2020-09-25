@@ -1,57 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A487727919D
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 158A727919F
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C44E6ED13;
-	Fri, 25 Sep 2020 20:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C5D76ED5D;
+	Fri, 25 Sep 2020 20:11:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com
- [IPv6:2607:f8b0:4864:20::f41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17ADB6ED4A
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:07 +0000 (UTC)
-Received: by mail-qv1-xf41.google.com with SMTP id cv8so2019949qvb.12
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:07 -0700 (PDT)
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
+ [IPv6:2607:f8b0:4864:20::841])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 211DE6ED13
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:08 +0000 (UTC)
+Received: by mail-qt1-x841.google.com with SMTP id 19so3100235qtp.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=2Odi8lVc+ucXInzKoRR5Q+KkJrsXbIjk3O/I3DT4GcM=;
- b=jxn7vHg1U1yyJkipYEfS5MS89f6GiuFcmLhX9kWXHHJn/CcTX8blSqkp+zjfbCGeva
- 7Am1y6H1FaYZK6iwISWpyMxFh3rdygh85xdnEku8niBakqHrIRDXG7mytH28F36LmbEn
- QV8S/srMzphmGu6lmnXFVeNxqGrO+AGB9YAnNqYKYcmpmm27cj4GXUqKj5iLamBQMSWx
- piUnJyWXcpzFDQJlywv8GNvqhJqWu7Y2KPi3JPLC/7ZwlVT1eMnlKLOvaMQxSW+Q2nQT
- gLn3Id7NfiEjBC8O8OepjJlK6fG91YnhWYQ8znubb9QlhxGCt5nok1pCsJf60Iubecv/
- 4fMA==
+ bh=VE+FJj85L5N7J2s/AP1JfWuSqMPiw/pQONGJQssRQFs=;
+ b=BBkDI7x8gMEcvLw/+VdHOwMsVm2rd07/jviBiBM+w9hTxU2CAYZ6otySdZci0DJOQv
+ Tmh6NHlR1QM+CK+6PxM/2T3FA7bgkImpN8H23K2uYyIgOXogFGHM82oo12C4b4viQScS
+ 1wUBjvGS8P/0lWqNSfI922yd+qYeEA2vfvZJsP+OlSG/Ee70JaQhHVqbAFpl2FEKtENC
+ FlQN6XXMajcxG2Ei57nb587fbYdjLQxC7kjDEF6oeJTO6+lUuzYHLYnz7WK/DDvK1McG
+ d9lyV83yadX5O3s1muPwnsUbV3XaxsxDYt7EyZwh3uFNCo7KolRqAL8SMXwOdF4ihWA7
+ Xk8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=2Odi8lVc+ucXInzKoRR5Q+KkJrsXbIjk3O/I3DT4GcM=;
- b=gXpOv/tU+nt/TAUpKu/zuZzHQKg7hWHCc9En7B9KnUd54WWxBx+kazgsVs0dKX+5q5
- Nmshks5H2+QdIVW6CCnolKJ6XTiEDfonDz47+kEnFkxo51W7lAkQCKY1nieXhoIh4Zxc
- sE4bYmHCknobdaBEyJCDEXH/AiVkuiRfcpipUUkaNwZO32ODWjO114CSYu8FrU+cgwz9
- kcv3EtGJfMrFXZdS7OpkEMtSSTlo7x1FztUsineVZkAklY0qOqDkN9CW0lFldV1FyBzt
- P9FbjBzz0Vne6JkDZx/5YJsthjxvb9j1NyOfoI3t1IezGXxnnjQvK2J5gV0aZwUduV11
- tfoQ==
-X-Gm-Message-State: AOAM531idGylwwOrGX7LSe48KQQ2+NnPi6FVJx8oGqxybULJgwPngkhg
- U7ySnf40r7LUVQp3PS4QAsFLlMwE2p4=
-X-Google-Smtp-Source: ABdhPJzDQT05SKiq9rH8N6cb91L7WCnClSJ3Nbzv1UW95fNkmuiRrfgfCIBZjO07kJgp2lqr18W3Fg==
-X-Received: by 2002:ad4:5387:: with SMTP id i7mr314867qvv.43.1601064666064;
- Fri, 25 Sep 2020 13:11:06 -0700 (PDT)
+ bh=VE+FJj85L5N7J2s/AP1JfWuSqMPiw/pQONGJQssRQFs=;
+ b=edVxxsNV73/efGhVvLZv0KmZBzIcsRj4NelgdR/V97TXKyMVGvJGy47azUjbtKcm26
+ 5BTCXyCWQ3aunlKsPbBHQFREONS/FTw3RmfLbMYdn8uTPWAJ1bX9lTf+Mgswc4pFJiMn
+ XPrtjbKde7tZHgPAhtSjox5esP8AhTj1o2eZa3k9quy5Tj3fr7njmO854HGQuyGN/jrH
+ r/w9oSt4EpnMXDz1eIRsP+DAJI3uIRkKynirai4ZW3TzbBYQGDNJg5BvCdeuSiriTPJN
+ mUM0pFU/h1xqfZJLfnBhTWMQgHHswsvVA8Y3IaY8d1oSCLGqpR8C0RmofQRUdz7DWcZv
+ rlgg==
+X-Gm-Message-State: AOAM532VOTQSs/oFQkgTXEUmNOJfT9FahNJ1b+FpwXPKY+DprmLWkQjw
+ HwAEqUMfUDRfxjaNmw9j/Y5hN/dU6Ws=
+X-Google-Smtp-Source: ABdhPJyk9rXYK65qgEE29jn2MnGiP79H7w/145g6K2f66jLasMHgy6tU4rMT2qA0RwLY87lgtPjWaA==
+X-Received: by 2002:ac8:39a7:: with SMTP id v36mr1542940qte.140.1601064667089; 
+ Fri, 25 Sep 2020 13:11:07 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.05
+ by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 13:11:05 -0700 (PDT)
+ Fri, 25 Sep 2020 13:11:06 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 07/45] drm/amdgpu: skip sdma1 in nv_allowed_read_registers
- list for van gogh (v2)
-Date: Fri, 25 Sep 2020 16:09:51 -0400
-Message-Id: <20200925201029.1738724-7-alexander.deucher@amd.com>
+Subject: [PATCH 08/45] drm/amdgpu: add van gogh support for ih block
+Date: Fri, 25 Sep 2020 16:09:52 -0400
+Message-Id: <20200925201029.1738724-8-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200925201029.1738724-1-alexander.deucher@amd.com>
 References: <20200925201029.1738724-1-alexander.deucher@amd.com>
@@ -75,30 +74,27 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Huang Rui <ray.huang@amd.com>
 
-Van gogh only has one sdma.
-
-v2: use num_instances rather than APU flag
+This patch adds the support for van gogh ih block.
 
 Signed-off-by: Huang Rui <ray.huang@amd.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/nv.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/navi10_ih.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 2077f897d6eb..8616d397da00 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -289,7 +289,8 @@ static int nv_read_register(struct amdgpu_device *adev, u32 se_num,
- 	*value = 0;
- 	for (i = 0; i < ARRAY_SIZE(nv_allowed_read_registers); i++) {
- 		en = &nv_allowed_read_registers[i];
--		if (reg_offset !=
-+		if ((i == 7 && (adev->sdma.num_instances == 1)) || /* some asics don't have SDMA1 */
-+		    reg_offset !=
- 		    (adev->reg_offset[en->hwip][en->inst][en->seg] + en->reg_offset))
- 			continue;
- 
+diff --git a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
+index 74b1e7dc49a9..ce4a974ab777 100644
+--- a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
+@@ -314,6 +314,7 @@ static int navi10_ih_irq_init(struct amdgpu_device *adev)
+ 			switch (adev->asic_type) {
+ 			case CHIP_SIENNA_CICHLID:
+ 			case CHIP_NAVY_FLOUNDER:
++			case CHIP_VANGOGH:
+ 				ih_chicken = RREG32_SOC15(OSSSYS, 0, mmIH_CHICKEN_Sienna_Cichlid);
+ 				ih_chicken = REG_SET_FIELD(ih_chicken,
+ 						IH_CHICKEN, MC_SPACE_GPA_ENABLE, 1);
 -- 
 2.25.4
 
