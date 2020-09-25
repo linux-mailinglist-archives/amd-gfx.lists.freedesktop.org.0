@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF38D2791A2
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9D932791A4
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A6966ED5F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C11A6ED62;
 	Fri, 25 Sep 2020 20:11:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
- [IPv6:2607:f8b0:4864:20::841])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6F6F6ED5F
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:14 +0000 (UTC)
-Received: by mail-qt1-x841.google.com with SMTP id b2so3058797qtp.8
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:14 -0700 (PDT)
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
+ [IPv6:2607:f8b0:4864:20::742])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A66866ED5F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:15 +0000 (UTC)
+Received: by mail-qk1-x742.google.com with SMTP id f142so4063308qke.13
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=IGElWQMRcbQ46wVJmZ/A3PYAiKdxbDWR7mVzBOODs6U=;
- b=mDuSPX2t0Zm5c/4OWoDsipKJrNGcvR51fQXeXQKtn3cVfpHHGHYwzEDClZIbg4hrvj
- ZbnMX7ofUNbiYBbLbdoUXnKCYsffQzCMKIgygZsyDa8Nt0nrR/pKMLGnNpn/ryxYS7vZ
- u9gB9VpTzwexiEaFEmQZZtra0BcSNCghzQs2u6jwU0LRVA7ci0RpCWgWbywSpc5NTAqN
- wfiqRxVw4e6Q/VBmJgy2+AHP5+8Y5iKu9A/yb8vB4bdl3QtvqzUYj/FscYoOtMtccJcI
- iJkw5/nG5QA5+m4znC48V4nMU3Cb5MKRFBNkWRUd5Qg56zH5ABdoBDrVatgNlcyPIdu/
- EvmA==
+ bh=4tohG8na0h/+M+Pys37sQXjJGt8foqNaKdXQik5SaTw=;
+ b=Ep/qNvCpCq6mQzYgB9ufzIJ91HGwE4yc5RMyS/nf7ohJ8zfckAQOztUFyvhYUrmgtL
+ Njh65ZLD6kYiL0LolOIelB2KrJqvwMrQG1L0FkT9gWnj4s/RQnyQe6mM04nHjr2KYM64
+ 62TUMmZYvBYnVUlcwJ6RxjavMnu5zAbk7QxEogBhRWzar4KRT0kaurY8yfi4d3rsDQ/Y
+ dDqoig6pr98TzIioiDwBfRfVE66Gm5EPIXwDpyvzfhHozvGnK/KlwQqhLGopOXb9OEqR
+ bw22fYlTjA7sHIdiGzoz1eLVE9nYYos7yLIdhz8CVOhWuZ5CMV7zGr/IHtEcO+VphYB2
+ f7Kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=IGElWQMRcbQ46wVJmZ/A3PYAiKdxbDWR7mVzBOODs6U=;
- b=RWKylpNtNo9DUhNu5cVo/YUB6kLwRRKCWvJTufuF1LDpWQdD/na49+jHjcyGj3d3Mo
- FNGQqT6RFRtsoZXcqF7ElNjLAx+xv4+wCH5WTx3diAkbYaGZA2mAI4XsnZfitRugaqri
- b92p2dSOgkAn6Lo26EgEqaq6K9GVFWfxgNZigeMHh0I7yQO0NBJ4KHTebXguvOSgPH2s
- XC3A5H6rMSnxIVP3pumB8sCBw0N3CzL1Rpg2kJJnMzK9ATkEPVQeCghpoDOTgc4egetE
- XIkmBhQiI+1fC9I9DRKNkOGBKlhRw0/3J/ZqvPUniTI9qqgrvdXaQwJukQDdvIeKh92K
- nyhw==
-X-Gm-Message-State: AOAM5339q6DLEBibSMKgeHNId5X6a3g115gFq+SCx9Kgs+rKXqHG6vMk
- zrDXJ9s5nqQvxuYUboPteeSekSk85S4=
-X-Google-Smtp-Source: ABdhPJyixHjcw3su4U+NVr7gQyXQKZjsX3dYwjfsa83nE/Or9V8DWriHjPk9mPZQNZrgYdWNG5Krjw==
-X-Received: by 2002:ac8:581:: with SMTP id a1mr1375444qth.161.1601064673673;
- Fri, 25 Sep 2020 13:11:13 -0700 (PDT)
+ bh=4tohG8na0h/+M+Pys37sQXjJGt8foqNaKdXQik5SaTw=;
+ b=W/y34LJJDuUy1GJCmbVXpV2Td+6jTItcUfG9eh+U0ylbLFpVrL+8lf2+4WW6Uy4lnb
+ zWmyTa3MXi8D3EkFUuNnrIu9eV4xokFJpzeQxfm9vAuPN7bFtuyb6XoO7EmANsqIb7u2
+ WZ8O4742w5kRJ4GZwrurrfadpqxSO31FXVEtM5FaVWGBmkg1f3NPWFIu5lljWIGP86TP
+ h2R3p3YNIRhHeiiPMu3wSUX0bAs8NoGo8w/2JGPb8YuZ+RaMQpr4oqxyrSSO0LrWBLlX
+ WPeOluwC94FIjyqj+26pKCp5pC6SDN6qm21/uxmITfEls1Syb5Rm1BFmfaq5CIZGs18+
+ /fYw==
+X-Gm-Message-State: AOAM532dQv7z7LBHHFGnngtsEO/ViCyPhIwJfpKdf/VRPvlbo73els06
+ LHX71DIaKlbFxkvHuApSxiGTYJbDb5g=
+X-Google-Smtp-Source: ABdhPJyKDD9tMhexyCgNDSG8rlgtG4SF/hTVPGRS4hrPYCKJy445kVrvWn4D/g3EuWV/q0GnOiR4Xw==
+X-Received: by 2002:a37:5fc6:: with SMTP id t189mr1651190qkb.78.1601064674677; 
+ Fri, 25 Sep 2020 13:11:14 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.12
+ by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 13:11:13 -0700 (PDT)
+ Fri, 25 Sep 2020 13:11:14 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 14/45] drm/amdgpu: add gmc v10 supports for van gogh (v3)
-Date: Fri, 25 Sep 2020 16:09:58 -0400
-Message-Id: <20200925201029.1738724-14-alexander.deucher@amd.com>
+Subject: [PATCH 15/45] drm/amdgpu: set fw load type for van gogh
+Date: Fri, 25 Sep 2020 16:09:59 -0400
+Message-Id: <20200925201029.1738724-15-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200925201029.1738724-1-alexander.deucher@amd.com>
 References: <20200925201029.1738724-1-alexander.deucher@amd.com>
@@ -74,132 +74,29 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Huang Rui <ray.huang@amd.com>
 
-Add gfx memory controller support for van gogh.
-
-v2: don't use dynamic invalidate eng allocation for van gogh.
-v3: squash in other fixes
+This patch sets fw load type as direct for van gogh for the moment.
+Will switch to psp when psp is ready.
 
 Signed-off-by: Huang Rui <ray.huang@amd.com>
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 33 ++++++++++++++++++++------
- 1 file changed, 26 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index 31359e519d69..fa0a0c8a6b11 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -677,7 +677,8 @@ static void gmc_v10_0_vram_gtt_location(struct amdgpu_device *adev,
- 	u64 base = 0;
- 
- 	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
--	    adev->asic_type == CHIP_NAVY_FLOUNDER)
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER ||
-+	    adev->asic_type == CHIP_VANGOGH)
- 		base = gfxhub_v2_1_get_fb_location(adev);
- 	else
- 		base = gfxhub_v2_0_get_fb_location(adev);
-@@ -690,7 +691,8 @@ static void gmc_v10_0_vram_gtt_location(struct amdgpu_device *adev,
- 
- 	/* base offset of vram pages */
- 	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
--	    adev->asic_type == CHIP_NAVY_FLOUNDER)
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER ||
-+	    adev->asic_type == CHIP_VANGOGH)
- 		adev->vm_manager.vram_base_offset = gfxhub_v2_1_get_mc_fb_offset(adev);
- 	else
- 		adev->vm_manager.vram_base_offset = gfxhub_v2_0_get_mc_fb_offset(adev);
-@@ -726,6 +728,13 @@ static int gmc_v10_0_mc_init(struct amdgpu_device *adev)
- 	adev->gmc.aper_base = pci_resource_start(adev->pdev, 0);
- 	adev->gmc.aper_size = pci_resource_len(adev->pdev, 0);
- 
-+#ifdef CONFIG_X86_64
-+	if (adev->flags & AMD_IS_APU) {
-+		adev->gmc.aper_base = gfxhub_v2_1_get_mc_fb_offset(adev);
-+		adev->gmc.aper_size = adev->gmc.real_vram_size;
-+	}
-+#endif
-+
- 	/* In case the PCI BAR is larger than the actual amount of vram */
- 	adev->gmc.visible_vram_size = adev->gmc.aper_size;
- 	if (adev->gmc.visible_vram_size > adev->gmc.real_vram_size)
-@@ -739,6 +748,7 @@ static int gmc_v10_0_mc_init(struct amdgpu_device *adev)
- 		case CHIP_NAVI12:
- 		case CHIP_SIENNA_CICHLID:
- 		case CHIP_NAVY_FLOUNDER:
-+		case CHIP_VANGOGH:
- 		default:
- 			adev->gmc.gart_size = 512ULL << 20;
- 			break;
-@@ -778,7 +788,8 @@ static int gmc_v10_0_sw_init(void *handle)
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
- 	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
--	    adev->asic_type == CHIP_NAVY_FLOUNDER)
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER ||
-+	    adev->asic_type == CHIP_VANGOGH)
- 		gfxhub_v2_1_init(adev);
- 	else
- 		gfxhub_v2_0_init(adev);
-@@ -787,7 +798,10 @@ static int gmc_v10_0_sw_init(void *handle)
- 
- 	spin_lock_init(&adev->gmc.invalidate_lock);
- 
--	if (adev->asic_type == CHIP_SIENNA_CICHLID && amdgpu_emu_mode == 1) {
-+	if ((adev->flags & AMD_IS_APU) && amdgpu_emu_mode == 1) {
-+		adev->gmc.vram_type = AMDGPU_VRAM_TYPE_DDR4;
-+		adev->gmc.vram_width = 64;
-+	} else if (amdgpu_emu_mode == 1) {
- 		adev->gmc.vram_type = AMDGPU_VRAM_TYPE_GDDR6;
- 		adev->gmc.vram_width = 1 * 128; /* numchan * chansize */
- 	} else {
-@@ -805,6 +819,7 @@ static int gmc_v10_0_sw_init(void *handle)
- 	case CHIP_NAVI12:
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+index 55fe19a2f332..3f791ca73ff7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+@@ -395,6 +395,8 @@ amdgpu_ucode_get_load_type(struct amdgpu_device *adev, int load_type)
+ 			return AMDGPU_FW_LOAD_DIRECT;
+ 		else
+ 			return AMDGPU_FW_LOAD_PSP;
 +	case CHIP_VANGOGH:
- 		adev->num_vmhubs = 2;
- 		/*
- 		 * To fulfill 4-level page support,
-@@ -918,6 +933,7 @@ static void gmc_v10_0_init_golden_registers(struct amdgpu_device *adev)
- 	case CHIP_NAVI12:
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
-+	case CHIP_VANGOGH:
- 		break;
++		return AMDGPU_FW_LOAD_DIRECT;
  	default:
- 		break;
-@@ -945,7 +961,8 @@ static int gmc_v10_0_gart_enable(struct amdgpu_device *adev)
- 		return r;
- 
- 	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
--	    adev->asic_type == CHIP_NAVY_FLOUNDER)
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER ||
-+	    adev->asic_type == CHIP_VANGOGH)
- 		r = gfxhub_v2_1_gart_enable(adev);
- 	else
- 		r = gfxhub_v2_0_gart_enable(adev);
-@@ -970,7 +987,8 @@ static int gmc_v10_0_gart_enable(struct amdgpu_device *adev)
- 		false : true;
- 
- 	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
--	    adev->asic_type == CHIP_NAVY_FLOUNDER)
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER ||
-+	    adev->asic_type == CHIP_VANGOGH)
- 		gfxhub_v2_1_set_fault_enable_default(adev, value);
- 	else
- 		gfxhub_v2_0_set_fault_enable_default(adev, value);
-@@ -1015,7 +1033,8 @@ static int gmc_v10_0_hw_init(void *handle)
- static void gmc_v10_0_gart_disable(struct amdgpu_device *adev)
- {
- 	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
--	    adev->asic_type == CHIP_NAVY_FLOUNDER)
-+	    adev->asic_type == CHIP_NAVY_FLOUNDER ||
-+	    adev->asic_type == CHIP_VANGOGH)
- 		gfxhub_v2_1_gart_disable(adev);
- 	else
- 		gfxhub_v2_0_gart_disable(adev);
+ 		DRM_ERROR("Unknown firmware load type\n");
+ 	}
 -- 
 2.25.4
 
