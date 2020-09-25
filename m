@@ -1,57 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 058582791A1
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232C72791AA
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 823A36ED5E;
-	Fri, 25 Sep 2020 20:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F374E6ED6C;
+	Fri, 25 Sep 2020 20:11:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
- [IPv6:2607:f8b0:4864:20::841])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68D706ED58
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:11 +0000 (UTC)
-Received: by mail-qt1-x841.google.com with SMTP id c18so3087474qtw.5
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:11 -0700 (PDT)
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
+ [IPv6:2607:f8b0:4864:20::829])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94A9D6ED5C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:12 +0000 (UTC)
+Received: by mail-qt1-x829.google.com with SMTP id n10so3093738qtv.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=IJYQC5AJ5ldzBQjY2T6xvUqKYb6IBj47enz5jAUbYj4=;
- b=d6q1aHMKXaDyrng71lRvgimHLjtde3FBDKdqqzGV8Ay6sckR5hyQ71ga+I/ePe9eIm
- fJN3KBFG+ZrLyhvF3L4+ogKFMm2Xsp21UAlSw4s1n8Hjz6fTDy/9yFfJEA6XdioGBvUu
- 3L24R5EdMr4jcEecT0qALKivoz0tKXlIwK3aC7H3mbOD/B1wmcVjiIcv2ThfKUzslbQ1
- tGf8QTFvLAPwoFJ1/G/frnQ7R04Q7IGfyhB5NyzBlqPfi2G/IwQORx8T5tC8B0E5v5YS
- kt1d/Qaz/ZGn1cYPi6B2Sll8mrR7GnJOt+hrKBtonLGpUfrg9MbFK45GjEI10QiIKema
- pHgg==
+ bh=5K9ZKBs39iPDbx0opuWaMW/4iVJzB7B0v9irOsB9ea8=;
+ b=uJEt9+85tVUcWE1v/J2wft6wFTolBPpNFBAgi+GyfG/VxNcIFUKYCZ9rKzJU9Q/GMK
+ hNtFkzMgx/i1ouOO9X2clBGfr4GESIkHTRk8GBtVJIbCiQIB2GEbrnh3MrUAe8EXgG+x
+ QgUfahjEMMLL30mt0dz2NgxBD/S4a2WGaOhJhOc8gpHBs4DlXErhQ2WW4FzAsWHAH7ai
+ Y1XIppsqjs6Iq2d2GsJBv86ypofSfbHYlvrZk4OpfKJFmMAy8EZknRGOnzsEFY4quNT8
+ w3Ol5ukJ7PqrXLx0RKCH8HlPVtRsPDQnU948kwEg21Igb9r3GFferyRMmQfuD6XPj/Bc
+ eqqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=IJYQC5AJ5ldzBQjY2T6xvUqKYb6IBj47enz5jAUbYj4=;
- b=bS8bicoTZsbgVoZBVCdWVeB/kznX8ywdVLIbfzJMXHc18rAE2XgbPCVFGKtAiZvreG
- gp9Fz3NE760NmVu87DwuFmMTTjogk+nIVA5yeyu7D0+WaVsSMp5zDAvEi8HVoZ64qCGJ
- SD/6BfK5rQX1Lt+5JzqnmKJOhMg0Q19LHTFBbIN8xMmwXEKeymp0Odh5AC9EZqT0wzFB
- 5DBakdZ1l4hYtlYCjCnXyPlhgaxUSEQPhyS2BtSC14XPgpCozt276yxkUdRjkLOOWmO5
- B6HB5gLxSjJLCdssVAEohNmTRCeVasLOBsKW8VDfLAUcL+df0AuJyRn9o8WuzJH862E5
- 7ufg==
-X-Gm-Message-State: AOAM530AvxC6PMmRRo1tiTKzz7goRH6peBX0UF73QI/0kNidxyHX2wY/
- btq7il5FDAAzPiVhtPPzPIkLi7E6bKQ=
-X-Google-Smtp-Source: ABdhPJwmrLimoOiFjoVESH2L3mAFDTnsFFKUZ397DuwXwU+XsUlBGJ4UibgQqXJnoRGxFPFtjmLoRg==
-X-Received: by 2002:aed:2c61:: with SMTP id f88mr1460319qtd.388.1601064670448; 
- Fri, 25 Sep 2020 13:11:10 -0700 (PDT)
+ bh=5K9ZKBs39iPDbx0opuWaMW/4iVJzB7B0v9irOsB9ea8=;
+ b=IlwY+OmtzofweHidsTZ88BVub74Qg4ry3NS6TnPKhA0r3j46UdBDoqF6mQ1ZeDsPCJ
+ jCoGvhhOm3gfDZaIlP7wit1NOvV2KIy8DOwnWXOQUbE8TujM7W4pIhkp79SuztBna+00
+ zJL/V1KoDVGZi67y0eyVe1+6KtaxIo/5KHl9FGd3Z6PMER//vdfgf60a2qid0f76G5Bf
+ 1EpuKGDV6vsX1WNgRSlqmhJmBat9qKQ6M21E9TlDzEVjEGi1c/encOtHHEu54fkkWqoh
+ KRFWNZDMNhUreMe27m6C/vOtlX9W0dM/stJEPyMwFRI9twku313wbPoZYO5GUS5wZSeD
+ J6kw==
+X-Gm-Message-State: AOAM531/eKnS7MpOAexKeVzOwdfgKH550xLpi/fp+N+qjeWzm8iV9saC
+ ObOysz6E28eRewl3ZBdoROXn0SDkh/o=
+X-Google-Smtp-Source: ABdhPJwlShmxgJx2a1awK6qNJJZ1gNNs000ktB29k9R8zzgCFqgoK/eg3o3uWSe99LiRilvnpt+jJA==
+X-Received: by 2002:ac8:7208:: with SMTP id a8mr1517349qtp.22.1601064671533;
+ Fri, 25 Sep 2020 13:11:11 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.09
+ by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 13:11:09 -0700 (PDT)
+ Fri, 25 Sep 2020 13:11:11 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 11/45] drm/amdgpu: update new memory types in atomfirmware
- header
-Date: Fri, 25 Sep 2020 16:09:55 -0400
-Message-Id: <20200925201029.1738724-11-alexander.deucher@amd.com>
+Subject: [PATCH 12/45] drm/amdgpu/atomfirmware: Add edp and integrated info
+ v2.1 tables
+Date: Fri, 25 Sep 2020 16:09:56 -0400
+Message-Id: <20200925201029.1738724-12-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200925201029.1738724-1-alexander.deucher@amd.com>
 References: <20200925201029.1738724-1-alexander.deucher@amd.com>
@@ -67,38 +67,102 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Huang Rui <ray.huang@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Roman Li <Roman.Li@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Huang Rui <ray.huang@amd.com>
+From: Roman Li <Roman.Li@amd.com>
 
-Add new nemory types in atomfirmware header.
+Required for vangogh.
 
-Signed-off-by: Huang Rui <ray.huang@amd.com>
+Signed-off-by: Roman Li <Roman.Li@amd.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/include/atomfirmware.h | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/amd/include/atomfirmware.h | 62 +++++++++++++++++++++-
+ 1 file changed, 61 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
-index 3e526c394f6c..0799a9ca0440 100644
+index 0799a9ca0440..4eb578b1baef 100644
 --- a/drivers/gpu/drm/amd/include/atomfirmware.h
 +++ b/drivers/gpu/drm/amd/include/atomfirmware.h
-@@ -1367,6 +1367,11 @@ enum atom_dmi_t17_mem_type_def{
-   LpDdr2MemType,                                        ///< Assign 28 to LPDDR2
-   LpDdr3MemType,                                        ///< Assign 29 to LPDDR3
-   LpDdr4MemType,                                        ///< Assign 30 to LPDDR4
-+  GDdr6MemType,                                         ///< Assign 31 to GDDR6
-+  HbmMemType,                                           ///< Assign 32 to HBM
-+  Hbm2MemType,                                          ///< Assign 33 to HBM2
-+  Ddr5MemType,                                          ///< Assign 34 to DDR5
-+  LpDdr5MemType,                                        ///< Assign 35 to LPDDR5
+@@ -1304,11 +1304,71 @@ struct atom_integrated_system_info_v1_12
+   struct atom_hdmi_retimer_redriver_set dp3_retimer_set;   //for DP3
+   struct atom_DCN_dpphy_dp_tuningset hbr_tuningset;    //hbr 2.7G dp tuning set
+   struct atom_DCN_dpphy_dp_tuningset hbr2_tuningset;   //hbr2 5.4G dp turnig set
+-  struct atom_DCN_dpphy_dp_tuningset edp_tunings;       //edp tuning set  
++  struct atom_DCN_dpphy_dp_tuningset edp_tunings;       //edp tuning set
+   struct atom_DCN_dpphy_dvihdmi_tuningset  hdmiCLK6_tuningset;
+   uint32_t  reserved[63];
  };
  
- 
++
++#if defined(CONFIG_DRM_AMD_DC_DCN3_01)
++
++struct edp_info_table
++{
++        uint16_t edp_backlight_pwm_hz;
++        uint16_t edp_ss_percentage;
++        uint16_t edp_ss_rate_10hz;
++        uint16_t reserved1;
++        uint32_t reserved2;
++        uint8_t  edp_pwr_on_off_delay;
++        uint8_t  edp_pwr_on_vary_bl_to_blon;
++        uint8_t  edp_pwr_down_bloff_to_vary_bloff;
++        uint8_t  edp_panel_bpc;
++        uint8_t  edp_bootup_bl_level;
++        uint8_t  reserved3[3];
++        uint32_t reserved4[3];
++};
++
++struct atom_integrated_system_info_v2_1
++{
++        struct  atom_common_table_header  table_header;
++        uint32_t  vbios_misc;                       //enum of atom_system_vbiosmisc_def
++        uint32_t  gpucapinfo;                       //enum of atom_system_gpucapinf_def
++        uint32_t  system_config;
++        uint32_t  cpucapinfo;
++        uint16_t  gpuclk_ss_percentage;             //unit of 0.001%,   1000 mean 1%
++        uint16_t  gpuclk_ss_type;
++        uint16_t  dpphy_override;                   // bit vector, enum of atom_sysinfo_dpphy_override_def
++        uint8_t   memorytype;                       // enum of atom_dmi_t17_mem_type_def, APU memory type indication.
++        uint8_t   umachannelnumber;                 // number of memory channels
++        uint8_t   htc_hyst_limit;
++        uint8_t   htc_tmp_limit;
++        uint8_t   reserved1;
++        uint8_t   reserved2;
++        struct edp_info_table edp1_info;
++        struct edp_info_table edp2_info;
++        uint32_t  reserved3[8];
++        struct atom_external_display_connection_info extdispconninfo;
++        struct atom_DCN_dpphy_dvihdmi_tuningset  TMDS_tuningset;
++        struct atom_DCN_dpphy_dvihdmi_tuningset  hdmiCLK5_tuningset; //add clk6
++        struct atom_DCN_dpphy_dvihdmi_tuningset  hdmiCLK6_tuningset;
++        struct atom_DCN_dpphy_dvihdmi_tuningset  hdmiCLK8_tuningset;
++        uint32_t reserved4[6];//reserve 2*sizeof(atom_DCN_dpphy_dvihdmi_tuningset)
++        struct atom_DCN_dpphy_dp_tuningset rbr_tuningset;        // rbr 1.62G dp tuning set
++        struct atom_DCN_dpphy_dp_tuningset hbr_tuningset;    //hbr 2.7G dp tuning set
++        struct atom_DCN_dpphy_dp_tuningset hbr2_tuningset;   //hbr2 5.4G dp turnig set
++        struct atom_DCN_dpphy_dp_tuningset hbr3_tuningset;   // HBR3 dp tuning set
++        struct atom_DCN_dpphy_dp_tuningset edp_tunings;       //edp tuning set
++        uint32_t reserved5[28];//reserve 2*sizeof(atom_DCN_dpphy_dp_tuningset)
++        struct atom_hdmi_retimer_redriver_set dp0_retimer_set;   //for DP0
++        struct atom_hdmi_retimer_redriver_set dp1_retimer_set;   //for DP1
++        struct atom_hdmi_retimer_redriver_set dp2_retimer_set;   //for DP2
++        struct atom_hdmi_retimer_redriver_set dp3_retimer_set;   //for DP3
++        uint32_t reserved6[30];// reserve size of(atom_camera_data) for camera_info
++        uint32_t reserved7[32];
++
++};
++#endif
++
+ // system_config
+ enum atom_system_vbiosmisc_def{
+   INTEGRATED_SYSTEM_INFO__GET_EDID_CALLBACK_FUNC_SUPPORT = 0x01,
 -- 
 2.25.4
 
