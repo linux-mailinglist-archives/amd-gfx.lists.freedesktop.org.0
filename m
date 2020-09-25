@@ -2,55 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC9C2791BE
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF9C02791C0
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Sep 2020 22:11:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A08A16ED7D;
-	Fri, 25 Sep 2020 20:11:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA636ED80;
+	Fri, 25 Sep 2020 20:11:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
  [IPv6:2607:f8b0:4864:20::844])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFE7C6ED7D
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:52 +0000 (UTC)
-Received: by mail-qt1-x844.google.com with SMTP id a4so3106430qth.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:52 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00EEA6ED80
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 20:11:53 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id d1so3082490qtr.6
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Sep 2020 13:11:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=n6U70RhiWGAVfkVFv/7BGojT7mQeLAksRoszgvULfq0=;
- b=hNXeihDiE5r/KeaKaah19wOuKT/UHbMsp/Cz4yllC+RncrJwjy6Y3vPkHJmawEuQy8
- 3Uh4I7b0YX9u2bMKfV2uODgxSS/MOJAqNOLZNhG6s8OT/t22S5f+e0IrKNd2YgTKCoVt
- Uz/5zttz6jSehPBC0UGKqbdpG+v6JJl733ZuttZqJJdpBiyfliD/R2GyLjXJwF/eISUZ
- pCH1Ad3oR31g+xK7Ylw6R6w1d6sHGZu3DMQLcK0khzrJq0THBkNnBZ/jxi/QnEzOsEtv
- 4Ct54XSw2/C27rrt2GX1ck5s/kq6EFQ/Nh4XD9eokPtFcpoh4hw+ysukp8UpxvHvw47h
- PBSg==
+ bh=WHOZ9gQWsiI7JvkfIQegXoauQluPixctieLSKxa7ZP0=;
+ b=Vf7LrNModTcgwRtwDYMdP8HW4PfftM9YlTNrm9cyzJAlUjcpdwxEOcN61F1VZLB7GU
+ GmwSi2KXu2A4WP3jj+eBsMaQkFH14htHIjvup1hWjcPNw2o8W4BswUOLO1v6Pj4Xmztm
+ LaUIBrwrQIu4OtOpU5q8wsBk4YPjZoqGHkw4JpDZobfXWLg4NochRjAhFZVDSzXe4wKH
+ NrQedqtU/n4ax5+7804obOzbE1J4YEjkR+6O1PZX6abO2cUYv22xauWkeKG6IcjTKLp5
+ 4Sok6yZR/ZJB2jAPFoXMJljuoKTFHsxw/cB8xfG1uSqcgZH0vQ3db5rv9ZCFpjh0Kv5k
+ VlHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=n6U70RhiWGAVfkVFv/7BGojT7mQeLAksRoszgvULfq0=;
- b=KwdGPAuaeML6+MyNxgGvWb0V8tpKo0svb8+1GhFpvbAr2hr7F3PXKkKxAcbNHciDuF
- +taYNO0L0a27XL6iupp5AdJL9d8im2MbpfDNjMch4Pypxeqj7QWz6TxX3jWpjL8Z31Wu
- SLdYX0Ddm/1R81Kwf7wXDqDHn72PpRlpM/N7/5Ar7UPxoHFBUAGQkYo9Pl3ZuZavNy0f
- BCexUnsf/npkEam3uXkmrZUduV0l1L3WJy2ggxui5FCJhUpReHlXsgxQ9zUxiGIdyORR
- NW4alnOB6ChJsXyx8eZK5Lgb8wCW416o4v4VyyQw9F9gKvXSnpHuRioj9GTiRL+QPOfV
- r0eA==
-X-Gm-Message-State: AOAM531ar9MgfH8duklbPETG7IbJjl69TAEIazISyq4y2C0UCwubZu30
- 0L/OJjdeui/ze95IUbauVK8TherVVpo=
-X-Google-Smtp-Source: ABdhPJzkvOEFoptDvpXr2a2mO72UujwvEHVSp1Dz/rFB73siKIRzaR2y5uKHIiAJlB4rclleS1E7Ig==
-X-Received: by 2002:ac8:39a7:: with SMTP id v36mr1546256qte.140.1601064711912; 
- Fri, 25 Sep 2020 13:11:51 -0700 (PDT)
+ bh=WHOZ9gQWsiI7JvkfIQegXoauQluPixctieLSKxa7ZP0=;
+ b=hmmFJRempCrNPVZNFugie9BibrPNccuR+CvvF0c9kURxbQKwc4+DgTBl+MKbiN/Dko
+ NLeNIw1F0yD7Ga2Rb0W7sneFEWsMcGXeK4jV5obPmD0xiIjuQylwNmaDtq6oZ76GzvjZ
+ dc7QSZXhTKteYd47cokDNAkn/FnvH4sbyKvhlT8J76RGlZ38t0tbNLVtsoZ+u7w+gxOZ
+ Jq1Ja9Yo9Fe10WdDMDnp6QRHTteOCGBIlBOpaxyrhZdPXF3rcsqLhjrZxDA4p2ZFtPv+
+ dXphykWhwr6RS9X7Zte1FXNncrT3KHlvyf9ucEsp+B8CoNwYVX6uJDRm9GPVqqjj6OJY
+ i4rw==
+X-Gm-Message-State: AOAM531NgynksPedKtHU23xKoJvPoKDXu526glPlk3HOlhPLqaxdLHSs
+ eB210zTajbkRNBjiJ+My+hU3SEqmMHM=
+X-Google-Smtp-Source: ABdhPJxEaRjM3DugOthlYWVGm2D0p02vHv/vlB09ltPdznJl3k8m/xKeXBm3ctNZdatXAJS7/b8KJQ==
+X-Received: by 2002:ac8:4e0b:: with SMTP id c11mr1498092qtw.37.1601064713037; 
+ Fri, 25 Sep 2020 13:11:53 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.50
+ by smtp.gmail.com with ESMTPSA id m67sm2301237qkf.98.2020.09.25.13.11.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Sep 2020 13:11:51 -0700 (PDT)
+ Fri, 25 Sep 2020 13:11:52 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 41/45] drm/amdgpu: add gfx power gating for gfx10
-Date: Fri, 25 Sep 2020 16:10:25 -0400
-Message-Id: <20200925201029.1738724-41-alexander.deucher@amd.com>
+Subject: [PATCH 42/45] drm/amdgpu: enable gfx clock gating and power gating
+ for vangogh
+Date: Fri, 25 Sep 2020 16:10:26 -0400
+Message-Id: <20200925201029.1738724-42-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200925201029.1738724-1-alexander.deucher@amd.com>
 References: <20200925201029.1738724-1-alexander.deucher@amd.com>
@@ -74,60 +75,33 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Huang Rui <ray.huang@amd.com>
 
-This patch is to add power gating handle for gfx10.
+This patch is to enable the gfx cg and pg for vangogh.
 
 Signed-off-by: Huang Rui <ray.huang@amd.com>
 Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 27 ++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/nv.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index fd29a6d7285b..f2849f180c91 100755
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -7583,6 +7583,30 @@ static bool gfx_v10_0_is_rlcg_access_range(struct amdgpu_device *adev, u32 offse
- 	return gfx_v10_0_check_rlcg_range(adev, offset, NULL, 0);
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 4bd2e2f35fa4..67b6067f2bd3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -919,8 +919,11 @@ static int nv_common_early_init(void *handle)
+ 		break;
  
-+static void gfx_v10_cntl_power_gating(struct amdgpu_device *adev, bool enable)
-+{
-+	int data;
-+
-+	if (enable && (adev->cg_flags & AMD_PG_SUPPORT_GFX_PG)) {
-+		data = RREG32_SOC15(GC, 0, mmRLC_PG_CNTL);
-+		data |= RLC_PG_CNTL__GFX_POWER_GATING_ENABLE_MASK;
-+		WREG32_SOC15(GC, 0, mmRLC_PG_CNTL, data);
-+	} else {
-+		data = RREG32_SOC15(GC, 0, mmRLC_PG_CNTL);
-+		data &= ~RLC_PG_CNTL__GFX_POWER_GATING_ENABLE_MASK;
-+		WREG32_SOC15(GC, 0, mmRLC_PG_CNTL, data);
-+	}
-+}
-+
-+static void gfx_v10_cntl_pg(struct amdgpu_device *adev, bool enable)
-+{
-+	amdgpu_gfx_rlc_enter_safe_mode(adev);
-+
-+	gfx_v10_cntl_power_gating(adev, enable);
-+
-+	amdgpu_gfx_rlc_exit_safe_mode(adev);
-+}
-+
- static const struct amdgpu_rlc_funcs gfx_v10_0_rlc_funcs = {
- 	.is_rlc_enabled = gfx_v10_0_is_rlc_enabled,
- 	.set_safe_mode = gfx_v10_0_set_safe_mode,
-@@ -7630,6 +7654,9 @@ static int gfx_v10_0_set_powergating_state(void *handle,
- 	case CHIP_NAVY_FLOUNDER:
- 		amdgpu_gfx_off_ctrl(adev, enable);
+ 	case CHIP_VANGOGH:
+-		adev->cg_flags = 0;
+-		adev->pg_flags = 0;
++		adev->cg_flags = AMD_CG_SUPPORT_GFX_CGCG |
++			AMD_CG_SUPPORT_GFX_CGLS |
++			AMD_CG_SUPPORT_GFX_3D_CGCG |
++			AMD_CG_SUPPORT_GFX_3D_CGLS;
++		adev->pg_flags = AMD_PG_SUPPORT_GFX_PG;
+ 		adev->external_rev_id = adev->rev_id + 0x01;
  		break;
-+	case CHIP_VANGOGH:
-+		gfx_v10_cntl_pg(adev, enable);
-+		break;
  	default:
- 		break;
- 	}
 -- 
 2.25.4
 
