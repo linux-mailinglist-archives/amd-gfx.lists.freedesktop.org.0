@@ -2,35 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6BB827A830
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Sep 2020 09:07:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12E1827A832
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Sep 2020 09:07:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 893716E2E1;
-	Mon, 28 Sep 2020 07:06:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 694AE6E321;
+	Mon, 28 Sep 2020 07:06:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from services.gouders.net (services.gouders.net [141.101.32.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E158F6E059
- for <amd-gfx@lists.freedesktop.org>; Sun, 27 Sep 2020 10:46:40 +0000 (UTC)
-Received: from localhost (ltea-047-066-007-142.pools.arcor-ip.net
- [47.66.7.142]) (authenticated bits=0)
- by services.gouders.net (8.14.8/8.14.8) with ESMTP id 08RAiO5n021841
- (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256 verify=OK);
- Sun, 27 Sep 2020 12:44:26 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gouders.net; s=gnet;
- t=1601203466; bh=aemTqKatBtqbMCYYYd/wKTQrYKgZpQbntOAIXHlmPC4=;
- h=From:To:Cc:Subject:Date;
- b=Sd1lid5AcokPfqHVSgfrBXVne/jk/3n4TUcrRkK1sBopIKCWXQlesovQSSkKqy5k0
- wi57oF7MdB/XMt3pFD0fftwnxWM19Z4Rnp2BH5uS8d3NM1FXMF17tSfwo17GQOMZWy
- e9XJ4dcalJlPt2eCI+qb0qSob0n/AOcTlnLfjmfA=
-From: Dirk Gouders <dirk@gouders.net>
-To: Alex Deucher <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6n?=
- =?utf-8?Q?ig?= <christian.koenig@amd.com>
-Subject: [PATCH] drm/amd/display: remove duplicate call to
- rn_vbios_smu_get_smu_version()
-Date: Sun, 27 Sep 2020 11:39:45 +0200
-Message-ID: <ghwo0fzegq.fsf@gouders.net>
+Received: from huawei.com (szxga04-in.huawei.com [45.249.212.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E4F16E084;
+ Mon, 28 Sep 2020 02:34:48 +0000 (UTC)
+Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.60])
+ by Forcepoint Email with ESMTP id 7583D40C5226D708D607;
+ Mon, 28 Sep 2020 10:34:44 +0800 (CST)
+Received: from huawei.com (10.175.127.227) by DGGEMS403-HUB.china.huawei.com
+ (10.3.19.203) with Microsoft SMTP Server id 14.3.487.0; Mon, 28 Sep 2020
+ 10:34:42 +0800
+From: Jason Yan <yanaijie@huawei.com>
+To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
+ <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <airlied@linux.ie>,
+ <daniel@ffwll.ch>, <Anthony.Koo@amd.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>
+Subject: [PATCH] drm/amd/display: make two symbols static
+Date: Mon, 28 Sep 2020 10:35:43 +0800
+Message-ID: <20200928023543.70093-1-yanaijie@huawei.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
+X-Originating-IP: [10.175.127.227]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Mon, 28 Sep 2020 07:06:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -43,42 +42,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sung Lee <sung.lee@amd.com>, Yongqiang Sun <yongqiang.sun@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Commit 78fe9f63947a2b (drm/amd/display: Remove DISPCLK Limit Floor
-for Certain SMU Versions) added a call to
-rn_vbios_smu_get_smu_version() to set clk_mgr->smu_ver.  That field is
-initialized prior to the if-statement, already.
+This addresses the following sparse warning:
 
-Fixes: 78fe9f63947a2b (drm/amd/display: Remove DISPCLK Limit Floor for Certain SMU Versions)
-Signed-off-by: Dirk Gouders <dirk@gouders.net>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Sung Lee <sung.lee@amd.com>
-Cc: Yongqiang Sun <yongqiang.sun@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_hw_sequencer.c:2740:6:
+warning: symbol 'dce110_set_cursor_position' was not declared. Should it
+be static?
+drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_hw_sequencer.c:2785:6:
+warning: symbol 'dce110_set_cursor_attribute' was not declared. Should
+it be static?
+
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: Jason Yan <yanaijie@huawei.com>
 ---
- drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-index 543afa34d87a..21a3073c8929 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-@@ -783,7 +783,6 @@ void rn_clk_mgr_construct(
- 	} else {
- 		struct clk_log_info log_info = {0};
+diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+index 1002ce9979dc..31a8d3452e83 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+@@ -2737,7 +2737,7 @@ static void program_output_csc(struct dc *dc,
+ 	}
+ }
  
--		clk_mgr->smu_ver = rn_vbios_smu_get_smu_version(clk_mgr);
- 		clk_mgr->periodic_retraining_disabled = rn_vbios_smu_is_periodic_retraining_disabled(clk_mgr);
+-void dce110_set_cursor_position(struct pipe_ctx *pipe_ctx)
++static void dce110_set_cursor_position(struct pipe_ctx *pipe_ctx)
+ {
+ 	struct dc_cursor_position pos_cpy = pipe_ctx->stream->cursor_position;
+ 	struct input_pixel_processor *ipp = pipe_ctx->plane_res.ipp;
+@@ -2782,7 +2782,7 @@ void dce110_set_cursor_position(struct pipe_ctx *pipe_ctx)
+ 		mi->funcs->set_cursor_position(mi, &pos_cpy, &param);
+ }
  
- 		/* SMU Version 55.51.0 and up no longer have an issue
+-void dce110_set_cursor_attribute(struct pipe_ctx *pipe_ctx)
++static void dce110_set_cursor_attribute(struct pipe_ctx *pipe_ctx)
+ {
+ 	struct dc_cursor_attributes *attributes = &pipe_ctx->stream->cursor_attributes;
+ 
 -- 
-2.26.2
+2.25.4
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
