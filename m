@@ -1,55 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 461FB27D23F
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Sep 2020 17:13:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6293527D26F
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Sep 2020 17:15:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 905ED6E1F7;
-	Tue, 29 Sep 2020 15:13:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01B376E4C1;
+	Tue, 29 Sep 2020 15:14:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5896E1F6
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 15:13:24 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id z4so5851701wrr.4
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 08:13:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ysan0j2ITN6KiqzUtltSL0fKREP9FUGNXqYdgzUWkkQ=;
- b=ssKlzkHmwviYCmfp2KakVLqH+hMFXmeyJu1tAg36fhqo5j2Z2EoQ117ZCguuMU/MKq
- LAIkCR8wYeSSD7qhnkICRrqFoc8Ib7m5X6i9OymsT9ESXAaIL3zIsJVSMIN4QllTgKdt
- npeAMlkqwTkevZaCRPDNlGv19CMlwxbLvABfBlZea3nAToykjEKdeGBofR9jNkljMq8G
- tYtDYl6PfKyBpQBSsCGk2itsvYYYMif44CabA7NrdgJ+tJogzseD8wfwtY2naNXxCz4q
- HDAy2+KUQWjXjogfAZW7FRG2azByfq+FAxJFB5IEP40OxGFtJqWu5vb+UAIqUlEhfWOJ
- rOig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ysan0j2ITN6KiqzUtltSL0fKREP9FUGNXqYdgzUWkkQ=;
- b=Mz0k5JbmUCx5XPnl7VlasYC8UsCNQI+VlQuTAdYi+0qeDsLIJkIwe87ObCTCYPJrGj
- gxKm7f1nrzCagueB2F7HPeHMT5jT6pUkE8HALM7k8f3M+/kfQl+hPELzba5nNbaHGeZm
- tO0lzWglwomG6xCbJcd4gnRmonl7ZJVztjdlUDg8d9h1m8uisNURUhL6cXiayVs2rnS4
- yQ0c7Zy0GiBgG9W4aYRpZr6bm2yaXBj34+pfl8YlndHjCflo0a+PGa4UWKrlWBB+OUti
- OlKl7jzd8Mz3THgY7JTxJVPdy5eT0icIqkY5IUWQ/ictEnbL8Gxipjs/RUT9hEic7idj
- pTzQ==
-X-Gm-Message-State: AOAM530WKT4BywGwwcUIeLz96fg+KVYBk3rdhD4TqVXT6oqRNNnKQnS4
- ToEwZxEazz34KQ5U4PXKy0VgxmmG0pI179gzxOAgPama
-X-Google-Smtp-Source: ABdhPJwDFbRCIskR/dPVIbeTDLyvZdSEwy9VVnD5CFZIndztSjhrFgvv3OREda/5TiLfSeDu0nPiYpZQD3eaPLoVkF8=
-X-Received: by 2002:adf:fc0a:: with SMTP id i10mr4854579wrr.111.1601392403078; 
- Tue, 29 Sep 2020 08:13:23 -0700 (PDT)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C2A06E200;
+ Tue, 29 Sep 2020 15:14:45 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 9C5B0B053;
+ Tue, 29 Sep 2020 15:14:43 +0000 (UTC)
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie,
+ daniel@ffwll.ch, sam@ravnborg.org, alexander.deucher@amd.com,
+ christian.koenig@amd.com, kraxel@redhat.com, l.stach@pengutronix.de,
+ linux+etnaviv@armlinux.org.uk, christian.gmeiner@gmail.com,
+ inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org,
+ yuq825@gmail.com, bskeggs@redhat.com, robh@kernel.org,
+ tomeu.vizoso@collabora.com, steven.price@arm.com,
+ alyssa.rosenzweig@collabora.com, hjc@rock-chips.com, heiko@sntech.de,
+ hdegoede@redhat.com, sean@poorly.run, eric@anholt.net,
+ oleksandr_andrushchenko@epam.com, ray.huang@amd.com,
+ sumit.semwal@linaro.org, emil.velikov@collabora.com, luben.tuikov@amd.com,
+ apaneers@amd.com, linus.walleij@linaro.org, melissa.srw@gmail.com,
+ chris@chris-wilson.co.uk, miaoqinglang@huawei.com
+Subject: [PATCH v3 0/7] Support GEM object mappings from I/O memory
+Date: Tue, 29 Sep 2020 17:14:30 +0200
+Message-Id: <20200929151437.19717-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20200925201029.1738724-1-alexander.deucher@amd.com>
- <20200925201029.1738724-41-alexander.deucher@amd.com>
- <9ecb966a-4b3e-2ffa-b72c-c88bd31b87a0@amd.com>
-In-Reply-To: <9ecb966a-4b3e-2ffa-b72c-c88bd31b87a0@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 29 Sep 2020 11:13:11 -0400
-Message-ID: <CADnq5_MYZZsZTZDxU-SgK-bQ7Y-24wteSTE+e63jhtzYTZJn-A@mail.gmail.com>
-Subject: Re: [PATCH 41/45] drm/amdgpu: add gfx power gating for gfx10
-To: Luben Tuikov <luben.tuikov@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,103 +47,118 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Huang Rui <ray.huang@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: linux-samsung-soc@vger.kernel.org, lima@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ xen-devel@lists.xenproject.org, spice-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 28, 2020 at 6:48 PM Luben Tuikov <luben.tuikov@amd.com> wrote:
->
-> On 2020-09-25 4:10 p.m., Alex Deucher wrote:
-> > From: Huang Rui <ray.huang@amd.com>
-> >
-> > This patch is to add power gating handle for gfx10.
->
-> Ray, you can just say:
->
-> "This patch adds power gating handler for gfx10."
->
-> You can drop "is to" and just use "adds".
-> And similarly for all other patches where you use that.
->
-> >
-> > Signed-off-by: Huang Rui <ray.huang@amd.com>
-> > Acked-by: Alex Deucher <alexander.deucher@amd.com>
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 27 ++++++++++++++++++++++++++
-> >  1 file changed, 27 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> > index fd29a6d7285b..f2849f180c91 100755
-> > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> > @@ -7583,6 +7583,30 @@ static bool gfx_v10_0_is_rlcg_access_range(struct amdgpu_device *adev, u32 offse
-> >       return gfx_v10_0_check_rlcg_range(adev, offset, NULL, 0);
-> >  }
-> >
-> > +static void gfx_v10_cntl_power_gating(struct amdgpu_device *adev, bool enable)
-> > +{
-> > +     int data;
-> > +
-> > +     if (enable && (adev->cg_flags & AMD_PG_SUPPORT_GFX_PG)) {
-> > +             data = RREG32_SOC15(GC, 0, mmRLC_PG_CNTL);
-> > +             data |= RLC_PG_CNTL__GFX_POWER_GATING_ENABLE_MASK;
-> > +             WREG32_SOC15(GC, 0, mmRLC_PG_CNTL, data);
-> > +     } else {
-> > +             data = RREG32_SOC15(GC, 0, mmRLC_PG_CNTL);
-> > +             data &= ~RLC_PG_CNTL__GFX_POWER_GATING_ENABLE_MASK;
-> > +             WREG32_SOC15(GC, 0, mmRLC_PG_CNTL, data);
-> > +     }
-> > +}
->
-> So here, you can just do:
->
-> static void gfx_v10_cntl_power_gating(struct amdgpu_device *adev, bool enable)
-> {
->         data = RREG32_SOC15(GC, 0, mmRLC_PG_CNTL);
->         if (enable && (adev->cg_flags & AMD_PG_SUPPORT_GFX_PG))
->                 data |= RLC_PG_CNTL__GFX_POWER_GATING_ENABLE_MASK;
->         else
->                 data &= ~RLC_PG_CNTL__GFX_POWER_GATING_ENABLE_MASK;
->         WREG32_SOC15(GC, 0, mmRLC_PG_CNTL, data);
-> }
->
+DRM's fbdev console uses regular load and store operations to update
+framebuffer memory. The bochs driver on sparc64 requires the use of
+I/O-specific load and store operations. We have a workaround, but need
+a long-term solution to the problem.
 
-Updated.  Thanks!
+This patchset changes GEM's vmap/vunmap interfaces to forward pointers
+of type struct dma_buf_map and updates the generic fbdev emulation to
+use them correctly. This enables I/O-memory operations on all framebuffers
+that require and support them.
 
-Alex
+Patches #1 and #2 prepare VRAM helpers and TTM for the changes in patch
+#3. Patch #3 updates GEM's vmap/vunmap callback to forward instances of
+type struct dma_buf_map. While the patch touches many files throughout the
+DRM modules, the applied changes are mostly trivial interface fixes.
 
-> Regards,
-> Luben
->
-> > +
-> > +static void gfx_v10_cntl_pg(struct amdgpu_device *adev, bool enable)
-> > +{
-> > +     amdgpu_gfx_rlc_enter_safe_mode(adev);
-> > +
-> > +     gfx_v10_cntl_power_gating(adev, enable);
-> > +
-> > +     amdgpu_gfx_rlc_exit_safe_mode(adev);
-> > +}
-> > +
-> >  static const struct amdgpu_rlc_funcs gfx_v10_0_rlc_funcs = {
-> >       .is_rlc_enabled = gfx_v10_0_is_rlc_enabled,
-> >       .set_safe_mode = gfx_v10_0_set_safe_mode,
-> > @@ -7630,6 +7654,9 @@ static int gfx_v10_0_set_powergating_state(void *handle,
-> >       case CHIP_NAVY_FLOUNDER:
-> >               amdgpu_gfx_off_ctrl(adev, enable);
-> >               break;
-> > +     case CHIP_VANGOGH:
-> > +             gfx_v10_cntl_pg(adev, enable);
-> > +             break;
-> >       default:
-> >               break;
-> >       }
-> >
->
+Patch #4 updates GEM's internal vmap/vunmap functions to forward struct
+dma_buf_map.
+
+Patches #5 and #6 convert DRM clients and generic fbdev emulation to use
+struct dma_buf_map. Updating the fbdev framebuffer will select the correct
+functions, either for system or I/O memory.
+
+The patch set is just enough to fix the bochs issue on sparc64 and a
+correct way. Patch #7 updates the TODO list with ideas for further
+improvements
+
+v3:
+	* recreate the whole patchset on top of struct dma_buf_map
+
+v2:
+	* RFC patchset
+
+Thomas Zimmermann (7):
+  drm/vram-helper: Remove invariant parameters from internal kmap
+    function
+  drm/ttm: Add ttm_kmap_obj_to_dma_buf_map() for type conversion
+  drm/gem: Use struct dma_buf_map in GEM vmap ops and convert GEM
+    backends
+  drm/gem: Update internal GEM vmap/vunmap interfaces to use struct
+    dma_buf_map
+  drm/gem: Store client buffer mappings as struct dma_buf_map
+  drm/fb_helper: Support framebuffers in I/O memory
+  drm/todo: Update entries around struct dma_buf_map
+
+ Documentation/gpu/todo.rst                  |  24 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |  14 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h |   4 +-
+ drivers/gpu/drm/ast/ast_cursor.c            |  29 ++-
+ drivers/gpu/drm/ast/ast_drv.h               |   7 +-
+ drivers/gpu/drm/bochs/bochs_kms.c           |   1 -
+ drivers/gpu/drm/drm_client.c                |  38 ++--
+ drivers/gpu/drm/drm_fb_helper.c             | 238 ++++++++++++++++++--
+ drivers/gpu/drm/drm_gem.c                   |  28 ++-
+ drivers/gpu/drm/drm_gem_cma_helper.c        |  14 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c      |  48 ++--
+ drivers/gpu/drm/drm_gem_vram_helper.c       |  93 ++++----
+ drivers/gpu/drm/drm_internal.h              |   5 +-
+ drivers/gpu/drm/drm_prime.c                 |  14 +-
+ drivers/gpu/drm/etnaviv/etnaviv_drv.h       |   4 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c |  11 +-
+ drivers/gpu/drm/exynos/exynos_drm_gem.c     |   6 +-
+ drivers/gpu/drm/exynos/exynos_drm_gem.h     |   4 +-
+ drivers/gpu/drm/lima/lima_gem.c             |   6 +-
+ drivers/gpu/drm/lima/lima_sched.c           |  11 +-
+ drivers/gpu/drm/mgag200/mgag200_mode.c      |  12 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.h       |   4 +-
+ drivers/gpu/drm/nouveau/nouveau_prime.c     |   9 +-
+ drivers/gpu/drm/panfrost/panfrost_perfcnt.c |  14 +-
+ drivers/gpu/drm/qxl/qxl_display.c           |  13 +-
+ drivers/gpu/drm/qxl/qxl_draw.c              |  16 +-
+ drivers/gpu/drm/qxl/qxl_drv.h               |   8 +-
+ drivers/gpu/drm/qxl/qxl_object.c            |  23 +-
+ drivers/gpu/drm/qxl/qxl_object.h            |   2 +-
+ drivers/gpu/drm/qxl/qxl_prime.c             |  12 +-
+ drivers/gpu/drm/radeon/radeon_gem.c         |   4 +-
+ drivers/gpu/drm/radeon/radeon_prime.c       |   9 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c |  22 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.h |   4 +-
+ drivers/gpu/drm/tiny/cirrus.c               |  10 +-
+ drivers/gpu/drm/tiny/gm12u320.c             |  10 +-
+ drivers/gpu/drm/udl/udl_modeset.c           |   8 +-
+ drivers/gpu/drm/vboxvideo/vbox_mode.c       |  11 +-
+ drivers/gpu/drm/vc4/vc4_bo.c                |   6 +-
+ drivers/gpu/drm/vc4/vc4_drv.h               |   2 +-
+ drivers/gpu/drm/vgem/vgem_drv.c             |  16 +-
+ drivers/gpu/drm/xen/xen_drm_front_gem.c     |  18 +-
+ drivers/gpu/drm/xen/xen_drm_front_gem.h     |   6 +-
+ include/drm/drm_client.h                    |   7 +-
+ include/drm/drm_gem.h                       |   5 +-
+ include/drm/drm_gem_cma_helper.h            |   4 +-
+ include/drm/drm_gem_shmem_helper.h          |   4 +-
+ include/drm/drm_gem_vram_helper.h           |   4 +-
+ include/drm/drm_mode_config.h               |  12 -
+ include/drm/ttm/ttm_bo_api.h                |  24 ++
+ include/linux/dma-buf-map.h                 |  92 +++++++-
+ 51 files changed, 685 insertions(+), 305 deletions(-)
+
+--
+2.28.0
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
