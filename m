@@ -2,36 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75BBE27D00B
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Sep 2020 15:56:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1180D27D058
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Sep 2020 16:00:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC80289D7F;
-	Tue, 29 Sep 2020 13:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 785B289E33;
+	Tue, 29 Sep 2020 14:00:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 351 seconds by postgrey-1.36 at gabe;
- Tue, 29 Sep 2020 13:17:49 UTC
-Received: from mail-smail-vm53.hanmail.net (mail-smail-vm53.daum.net
- [203.133.181.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF3276E1D6
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 13:17:49 +0000 (UTC)
-Received: from mail-hmail-pgwas15 ([10.194.50.135])
- by mail-smail-vm53.hanmail.net (8.13.8/8.9.1) with SMTP id 08TDBTVV001135
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 22:11:29 +0900
-X-Hermes-Message-Id: o8TM8vi6y772971006
-Received: from mail-hammer-was10.s2.krane.9rum.cc ([10.197.10.43]) by hermes
- of mail-hmail-pgwas6 (10.194.50.164) with ESMTP id o8TM8vi6y772971006 for
- <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 22:08:57 +0900 (KST)
-Date: Tue, 29 Sep 2020 22:08:56 +0900 (KST)
-From: Tech Pac <saletechpac1@daum.net>
-To: stodor@techpacsolutions.be
-Message-ID: <20200929220856.EiBJdsFDSBqyhibTQ7MQ_Q@saletechpac1.hanmail.net>
-Subject: Dell Latitude E6430 i7 Laptop
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A641789E33
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 14:00:10 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id t17so2285800wmi.4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 07:00:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=8tzcEt+qhg8yUqs5+4X7vttv8Wttqj6vWby5fIGme78=;
+ b=cnkUy/PEX0S4dUzjyn+q86h9XVio0eUu09w/YhWeZVLE9VGqo4kIVrvZ2nnXTc2tGW
+ 90Uv0e17mVL32GL8DeyKEs0Uo2hB2l50X6YmEdokWFiXZcE9jMoJFlgECK1eVgHFRXef
+ FccKRIEaz0wLBJGoZOMdwJLZ52h8NunjW6G+2kIw/HdttY4sYXUrjjjDCnghvWvcPs5g
+ E5nPt/1m4v9KtjCGch/gUzBhPHUWn7gHBVUnm7YD/rpVrdwAgdmiGRkCqcUoj67YO9Wy
+ FngQXU+qdW7EvvOndy3AoxIFxY3nERhVMPFctlX5IDbKwCn9Uebd8i+AO30y9ec5M/lf
+ qreA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=8tzcEt+qhg8yUqs5+4X7vttv8Wttqj6vWby5fIGme78=;
+ b=bHdl2NpQ3ZWG53LqJ3VVv6sOS/6ocFNOzVQoBACIwroTvBxUQlMh6yWiphPZvXWNwd
+ ZuU3DYANiyEz7CpPqJV3JA0qIa+jfF/TYWVe5l++KZObcsUsqYvQuYMNh9CtGpQzvbOy
+ 5MXPfJSJrTBro0ahZU7NHDcrVttdZlfVEeR74Fd0TpPou33wDJdr3zDTTvTiPrdhyagY
+ VwGd7FOcbZFqhPmzOrMXR2S54XSJ7ef5cBVbmE1R8DpuJ4mlgL7pSxM9gks3LzWW+Jju
+ T34u5Yeu7bzR7F+AiM0jhuoeXF/CHdY9oOSnxFXRAE5S9826IBcIBru3UmE44slF/TT8
+ x2wA==
+X-Gm-Message-State: AOAM531ORXtb4qc6rNH7eXWzEs5xEppkdkSGzfyKVeKzfNIVE1k+lUg0
+ 3sHvq4Q08xmdhFea/cLnQLyYq0qgq9VIHwr34gHM9Hug
+X-Google-Smtp-Source: ABdhPJx1flOM1X1RrnCcYqbze4cF8P30Iwlz0dprbWPEHlAixrLAGJbf5NKzIyw3aAcL5bBqzEM942YRgWSaNWrWgHI=
+X-Received: by 2002:a7b:c3c5:: with SMTP id t5mr4855833wmj.79.1601388009239;
+ Tue, 29 Sep 2020 07:00:09 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Daum Mint Web 1.0
-X-Originating-IP: [103.48.111.61]
-X-HM-UT: /0XytcGqhP2AaYQV6RhFp6j07AB1YGBk45kzA40hN1g=
-X-Mailman-Approved-At: Tue, 29 Sep 2020 13:56:34 +0000
+References: <ghwo0fzegq.fsf@gouders.net>
+In-Reply-To: <ghwo0fzegq.fsf@gouders.net>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 29 Sep 2020 09:59:58 -0400
+Message-ID: <CADnq5_Mw6hc2kv6tQMs+rfxczF6OfwFJBuBV=UzY+Vr=rCBKsw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: remove duplicate call to
+ rn_vbios_smu_get_smu_version()
+To: Dirk Gouders <dirk@gouders.net>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,51 +60,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1052052418=="
+Cc: Sung Lee <sung.lee@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Yongqiang Sun <yongqiang.sun@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1052052418==
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+Applied.  Thanks!
 
-PGh0bWw+CjxoZWFkPgogICAgPHN0eWxlPgogICAgICAgIHB7bWFyZ2luLXRvcDowO21hcmdpbi1i
-b3R0b206MH0KICAgIDwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CiAgICA8dGFibGUgY2xhc3M9InR4
-Yy13cmFwcGVyIiBib3JkZXI9IjAiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMCIgd2lk
-dGg9IjEwMCUiPjx0cj48dGQgY2xhc3M9InR4Yy13cmFwcGVyLXRkIj48ZGl2IGNsYXNzPSJ0eGMt
-Y29udGVudC13cmFwcGVyIiBzdHlsZT0iY29sb3I6IzExMTtmb250LWZhbWlseTpBcHBsZSBTRCBH
-b3RoaWMgTmVvLE1hbGd1biBHb3RoaWMsJ+unkeydgCDqs6DrlJUnLHNhbnMtc2VyaWY7Zm9udC1z
-aXplOjEwcHQ7bGluZS1oZWlnaHQ6MS41OyI+PGRpdj5NYWtlIHVzIGFuIG9mZmVyIG9uIHRoZSBm
-b2xsb3dpbmcgY2xlYW4gcHVsbCB0ZXN0ZWQgSW50ZWwgQ1BVJ3MmbmJzcDsgbG9jYXRlZCBpbiBV
-U0EuPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5JbnRlbCBYZW9uIEU1LTQ2NjkgVjMgU1IyMk08
-L2Rpdj48ZGl2PlF0eSAzM3BjczwvZGl2PjxkaXY+SW50ZWwgWGVvbiBFNS00NjY5IFY0IFNSMlNH
-PC9kaXY+PGRpdj5RdHkgMTNwY3M8L2Rpdj48ZGl2PkludGVsIFhlb24gRTUtMjY5OUEgVjQgU1Iz
-MFk8L2Rpdj48ZGl2PlF0eSAxMHBjczwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+RGVsbCBMYXB0
-b3AgTGF0aXR1ZGUgRTY0MzB1IENvcmUgSTcgMzY4N3UgQCAyLjEwR0h6LCAyNTZHQiBTU0QsIDE2
-R0IsIFdJTiA3IFBSTyBRdWFudGl0eSA0MDwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGJyPjwv
-ZGl2PjxkaXY+SWYgeW91IGFyZSBJbnRlcmVzdGVkIGtpbmRseSBjb250YWMgU3RlZmFuIGVNYWls
-IHN0b2RvckB0ZWNocGFjc29sdXRpb25zLmJlPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj48YnI+
-PC9kaXY+PGRpdj5UaGFua3M8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PlN0ZWZhbiBUb2Rvcjwv
-ZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+VGVjaCBQYWMgU29sdXRpb25zPC9kaXY+PGRpdj5Ub3Jo
-b3V0c2VzdGVlbndlZyAxMDUgODQwMDwvZGl2PjxkaXY+T29zdGVuZGUgQmVsZ2l1bTwvZGl2Pjxk
-aXY+ZU1haWwgOiBzdG9kb3JAdGVjaHBhY3NvbHV0aW9ucy5iZTwvZGl2PjxkaXY+VCA6ICsgMzIg
-NTkyIDgwMSAxODwvZGl2PjxkaXY+RiA6ICsgMzIgNTkyIDUwMSAyMDwvZGl2PjxkaXY+V2Vic2l0
-ZTogd3d3LnRlY2hwYWNzb2x1dGlvbnMuYmU8L2Rpdj48cD48YnI+PC9wPgo8cD48YnI+PC9wPjwv
-ZGl2PjwvdGQ+PC90cj48L3RhYmxlPgo8L2JvZHk+CjwvaHRtbD4KPGltZyBzcmM9Imh0dHBzOi8v
-Y29uZmlybS5tYWlsLmRhdW0ubmV0L2NvbmZpcm1hcGkvdjEvdXNlcnMvc2FsZXRlY2hwYWMxJTQw
-aGFubWFpbCUyRW5ldC9jbWFpbHMvMjAyMDA5MjkyMjA4NTYlMkVFaUJKZHNGRFNCcXloaWJUUTdN
-UV9RJTQwc2FsZXRlY2hwYWMxJTJFaGFubWFpbCUyRW5ldC9yZWNpcGllbnRzL2FtZC1nZnglNDBs
-aXN0cyUyRWZyZWVkZXNrdG9wJTJFb3JnIj4=
+Alex
 
---===============1052052418==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On Mon, Sep 28, 2020 at 3:07 AM Dirk Gouders <dirk@gouders.net> wrote:
+>
+> Commit 78fe9f63947a2b (drm/amd/display: Remove DISPCLK Limit Floor
+> for Certain SMU Versions) added a call to
+> rn_vbios_smu_get_smu_version() to set clk_mgr->smu_ver.  That field is
+> initialized prior to the if-statement, already.
+>
+> Fixes: 78fe9f63947a2b (drm/amd/display: Remove DISPCLK Limit Floor for Certain SMU Versions)
+> Signed-off-by: Dirk Gouders <dirk@gouders.net>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Sung Lee <sung.lee@amd.com>
+> Cc: Yongqiang Sun <yongqiang.sun@amd.com>
+> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> ---
+>  drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+> index 543afa34d87a..21a3073c8929 100644
+> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+> @@ -783,7 +783,6 @@ void rn_clk_mgr_construct(
+>         } else {
+>                 struct clk_log_info log_info = {0};
+>
+> -               clk_mgr->smu_ver = rn_vbios_smu_get_smu_version(clk_mgr);
+>                 clk_mgr->periodic_retraining_disabled = rn_vbios_smu_is_periodic_retraining_disabled(clk_mgr);
+>
+>                 /* SMU Version 55.51.0 and up no longer have an issue
+> --
+> 2.26.2
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1052052418==--
