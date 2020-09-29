@@ -1,34 +1,109 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F24C27BE12
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Sep 2020 09:33:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2209C27BF71
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Sep 2020 10:31:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 073A788F78;
-	Tue, 29 Sep 2020 07:33:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4DB189DA9;
+	Tue, 29 Sep 2020 08:31:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60C0D89D4F
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 06:42:01 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 1EF9CAA55;
- Tue, 29 Sep 2020 06:42:00 +0000 (UTC)
-Date: Tue, 29 Sep 2020 08:41:58 +0200
-From: Jean Delvare <jdelvare@suse.de>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: Regression in amdgpu driver / kernel v5.8.6
-Message-ID: <20200929084118.1ff66f59@endymion>
-In-Reply-To: <20200929081404.4d8df525@endymion>
-References: <20200928111037.51ed4aeb@endymion>
- <CADnq5_OBSxK=Ds7X-e8xfHUDb0js7vtWbz-y7mabpFg0BhB5kw@mail.gmail.com>
- <20200929081404.4d8df525@endymion>
-Organization: SUSE Linux
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2069.outbound.protection.outlook.com [40.107.223.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4307989DA9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 08:31:12 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PFMVsm5cyj0qSk/s5WUrqc3U2zytVwTHjrTOO0VJRkFC9OYPBrQi2ysd7JkwngxjEc0xuP+F02JFKRCh1zztv3UDWUpPu9qnrsy+HlZw8/5v3a2+3x2g2C9MBj69tvrl1oU90KbbZSj4wJNVAxC0i4/8472ud+LuGZXlXvqcEgPXydhVQyERdPWaXovlO6WQ6+HRfuHrbLf6kt0YsLqfbA0ARl66+K19dQGBkFDSiDk8anH9Gj6Kgg8xD5TTCe+gnHyu3aIg5i1NjzJz//UbaoSlXCc57wmbPGOfHUgSWcc+zcLy7s+eFl4Jq0NvHtyhqlUQ2/q1S3UdnHl1piTMBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sUjFVqhO4M6jS5TbV7T4X7GjDw660snIwSRycIkwZlc=;
+ b=Igfygksn9lRIHjo9av87A6PwOIWpXxNyL2CEuPvaiMvmtJ8NCe01coRalHIa+r4VVSkZrPbfFd1KKEolKADUU8RuXAsLW3lPf4s42Ld8tFzKCx2cNCEs4Fp3XSlimzDfPJoxyPc5MeH889Dpk9yUpTlLB4wvw3iSmz4Yo9mPTlkDZy10M5Wn8VeAfHraiGcRvO4XxJIFkvg0vThE0ObA+OC8NJ9DDHkqQQTxqDabGhubwyj+QQsvtAHmuhT0qOq2sm0/BYy3WE2SZ6gspkP1kFnKmc/aiOkV7VDuMXhH4lWTGMGbuAmq+fhcEqlHwlzdwWepPvatgu6oKYuT8ewi+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sUjFVqhO4M6jS5TbV7T4X7GjDw660snIwSRycIkwZlc=;
+ b=ketOLDuT1j2ZYjerKhnehaif3t26Yt229BIOW8m60wsR9+I18mjun9slPlLUDR9QqU4fYieIBf33lN/5cORNzH7SnrmShVoYkyTTxgPsbYI1enHeEVok1v2rBSbEF8EpGySCmK3KQPi1ffz/rH5wz0HTST/GuVSLPQsO8psrRLg=
+Received: from DM6PR12MB4075.namprd12.prod.outlook.com (2603:10b6:5:21d::8) by
+ DM5PR1201MB0028.namprd12.prod.outlook.com (2603:10b6:4:5a::11) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3412.23; Tue, 29 Sep 2020 08:31:10 +0000
+Received: from DM6PR12MB4075.namprd12.prod.outlook.com
+ ([fe80::b51c:2b0e:7e1:b233]) by DM6PR12MB4075.namprd12.prod.outlook.com
+ ([fe80::b51c:2b0e:7e1:b233%9]) with mapi id 15.20.3412.029; Tue, 29 Sep 2020
+ 08:31:10 +0000
+From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+To: "Chen, Guchun" <Guchun.Chen@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "Deucher, Alexander"
+ <Alexander.Deucher@amd.com>, "Li, Dennis" <Dennis.Li@amd.com>, "Zhou1, Tao"
+ <Tao.Zhou1@amd.com>, "Clements, John" <John.Clements@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: drop duplicated ecc check for vega10 (v3)
+Thread-Topic: [PATCH] drm/amdgpu: drop duplicated ecc check for vega10 (v3)
+Thread-Index: AQHWli00CuP/AJk6bEeihNA2mfGgc6l/RrEg
+Date: Tue, 29 Sep 2020 08:31:10 +0000
+Message-ID: <DM6PR12MB407561BB1D3293D1EF0497F8FC320@DM6PR12MB4075.namprd12.prod.outlook.com>
+References: <20200929065255.11856-1-guchun.chen@amd.com>
+In-Reply-To: <20200929065255.11856-1-guchun.chen@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-09-29T08:31:00Z; 
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=9a6c1653-4234-4c9a-a6c1-00005369f35c;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=1
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-09-29T08:30:56Z
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
+ Unrestricted
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: a0bf5c3b-7ed9-4ead-a767-0000338e8140
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_enabled: true
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_setdate: 2020-09-29T08:31:08Z
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_method: Privileged
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_name: Public_0
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_actionid: 825f02d3-fba2-48a3-a85a-0000cb4eb584
+msip_label_0d814d60-469d-470c-8cb0-58434e2bf457_contentbits: 0
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [58.247.170.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 7d834dc2-675d-4001-7916-08d8645204f6
+x-ms-traffictypediagnostic: DM5PR1201MB0028:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM5PR1201MB0028301EEE00CB4CD26F08AAFC320@DM5PR1201MB0028.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: FBcgJsPjyvG0NBLLSQRGJxHhGJKkygKsXEIjGUoMTEyyUGTRJShNPnyvc30HzwAh2ETmZak2CxTKpwJmMuXmZalzSQ4beGe7oz6xIh91g2fdrcvkJEfvvn8xqXdpKlgij+XwqneanHLGqMqT/XhwyDhKoxYaZdXKJftUvLsttcRnegnXQpFfMEIXl4I5/oEUnEJcfjnpN57cfCEvrfbhxaM5hcEtrSktsBfI0nR1fIUMjQSy0+xzmaZGx6vjz7H5i6hUKhLNetiGvBHuhPrOB6WJlfCKPS1v9tSdTaSuLLJyNyZ9aCn6uH6HgBkfUElLNrkp1CA6iWESid5d0AnCvoBjVFOua2zf9MugQzp4hcP7G6RR7/CdAj7MMyuZM+Y+xZrak8B/QgOihyF5+Geg6ABmURc25pzPxSYOQg/0qAU=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4075.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(376002)(39860400002)(136003)(396003)(346002)(8676002)(478600001)(33656002)(186003)(76116006)(2906002)(26005)(66946007)(86362001)(66446008)(64756008)(66476007)(66556008)(6636002)(83380400001)(110136005)(6506007)(53546011)(316002)(55016002)(52536014)(71200400001)(5660300002)(7696005)(8936002)(9686003)(921003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: h0Q/wqGLDwH8OczHVu7GsoGh3Wbc0ND4bCZ0aXylaIY3Nj4Y0XeodjXRvgvH4fgnNnP/Jp/VWJRpZOu5AhCSumXkINy/a9VHx33U5ocwFFk3TEjJ+fAMNCdlIsvojCZ+tEeVXPeL9MbHquhoLjXI6tUw8yNTvihogJZfdie9NusT7XwivBFSgSVZZIot0Bc7poOdrknL8vjSnL7AQiff6W7AzrWm5Mb+crJadWjTu+pmQm6YKY0lM6TJJo4EjzXUSB2gR1C5gkJFID7i2Ua7cnqrjGrwfthmx58t1KMDbX9fNgEWX7LhVBr0OgKQcY+gD6NPJ2rWoiwYGi1Z6zy3tshOSmGG5d8/ueVWDIWtvc11sZOgyWzF2u5a/qFP+1B7BzKrswE8RvEzaTQ6LF6ehs7ZEisQbLZBXEEfEjHYdS3AJRvek9zcycVFrV2KTurXKM3qHiyD9F4tnyAk57T2Qqy3bPlYjvgvuG0mljkrR6Z44Lh4BOPOWP79wxWax/+N7oJ1bD+28+HEN+w98SmGJUhDdIXfXrAMMBPPLp/azzRZh3XxcDNKFjMY3dm5SfRFDLAbejuBrzwwuafrMHgpFjgsVT/7UFleRnstOPA5qFWotlPVK7kzx9TdFMIF5AzoKp5SCl2XK3ZvJsP3UCzAPQ==
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 29 Sep 2020 07:33:52 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4075.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d834dc2-675d-4001-7916-08d8645204f6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2020 08:31:10.4012 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0cJod/mcs+lOq89ZHPk4lwxSSXz/+rYOJN6D1Wo9pxf1Iv8fyqMrcCPwtG03Ej+Oc7MLDncbil3pARoiohjhmw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0028
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,161 +115,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Navid Emamdoost <navid.emamdoost@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 29 Sep 2020 08:14:04 +0200, Jean Delvare wrote:
-> I'm not familiar enough with the amdgpu driver to efficiently continue
-> debugging this issue on my own, so I'll do what I can, but some
-> guidance would be welcome.
+[AMD Public Use]
 
-As an additional data point, here's what I found this morning in my
-kernel logs after the bug happened (this is kernel v5.8.10 + my partial
-revert):
++		if (adev->ras_features & (1 << AMDGPU_RAS_BLOCK__UMC)) {
+ 			if (adev->df.funcs->enable_ecc_force_par_wr_rmw)
+ 				adev->df.funcs->enable_ecc_force_par_wr_rmw(adev, false);
 
-[  849.877422] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[  850.001620] [drm] UVD and UVD ENC initialized successfully.
-[  850.133559] [drm] VCE initialized successfully.
-[  868.849448] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[  868.973664] [drm] UVD and UVD ENC initialized successfully.
-[  869.105600] [drm] VCE initialized successfully.
-[  909.889523] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[  910.013726] [drm] UVD and UVD ENC initialized successfully.
-[  910.145661] [drm] VCE initialized successfully.
-[  943.837573] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[  943.961773] [drm] UVD and UVD ENC initialized successfully.
-[  944.093708] [drm] VCE initialized successfully.
-[ 2008.410353] tun: Universal TUN/TAP device driver, 1.6
-[ 2448.911371] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 2449.028562] [drm] UVD and UVD ENC initialized successfully.
-[ 2449.167507] [drm] VCE initialized successfully.
-[ 2449.583552] ------------[ cut here ]------------
-[ 2449.583654] WARNING: CPU: 2 PID: 1935 at drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1005 amdgpu_bo_unpin.cold+0x0/0x3b [amdgpu]
-[ 2449.583655] Modules linked in: tun fuse af_packet ip6t_REJECT
-nf_reject_ipv6 ip6t_rpfilter xt_tcpudp ipt_REJECT nf_reject_ipv4
-xt_conntrack ebtable_nat ebtable_broute ip6table_nat ip6table_mangle
-ip6table_raw ip6table_security iptable_nat nf_nat nf_conntrack
-nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c iptable_mangle iptable_raw
-iptable_security iscsi_ibft iscsi_boot_sysfs ip_set nfnetlink
-ebtable_filter ebtables rfkill ip6table_filter ip6_tables
-iptable_filter ip_tables x_tables bpfilter dmi_sysfs msr intel_rapl_msr
-iTCO_wdt intel_pmc_bxt intel_rapl_common joydev ee1004
-iTCO_vendor_support mei_hdcp ppdev x86_pkg_temp_thermal
-intel_powerclamp coretemp kvm_intel kvm snd_usb_audio uvcvideo
-videobuf2_vmalloc snd_hda_codec_realtek videobuf2_memops
-snd_hda_codec_generic snd_hda_codec_hdmi ledtrig_audio videobuf2_v4l2
-irqbypass snd_usbmidi_lib videobuf2_common snd_rawmidi snd_hda_intel
-snd_seq_device snd_intel_dspcfg videodev snd_hda_codec e1000e
-efi_pstore pcspkr snd_hda_core i2c_i801 mc snd_hwdep [ 2449.583671]
-hid_cherry i2c_smbus snd_pcm snd_timer snd mei_me parport_pc soundcore
-mei tiny_power_button parport button acpi_pad squashfs nls_iso8859_1
-nls_cp437 vfat fat loop hid_generic usbhid amdgpu iommu_v2 gpu_sched
-i2c_algo_bit ttm drm_kms_helper syscopyarea sysfillrect sysimgblt
-fb_sys_fops cec rc_core crct10dif_pclmul crc32_pclmul xhci_pci
-crc32c_intel xhci_pci_renesas ghash_clmulni_intel xhci_hcd drm usbcore
-aesni_intel glue_helper crypto_simd sr_mod cryptd cdrom video sg
-dm_multipath dm_mod scsi_dh_rdac scsi_dh_emc scsi_dh_alua efivarfs
-[ 2449.583685] CPU: 2 PID: 1935 Comm: X Not tainted 5.8.10-1-default #1 openSUSE Tumbleweed
-[ 2449.583686] Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./H270M Pro4, BIOS P1.10 11/14/2016
-[ 2449.583777] RIP: 0010:amdgpu_bo_unpin.cold+0x0/0x3b [amdgpu]
-[ 2449.583779] Code: e9 41 e9 d5 ff 48 c7 c7 b8 d6 95 c0 41 89 c4 e8 31 3c 69 cc e9 bf ea d5 ff 48 c7 c7 f0 d6 95 c0 e8 20 3c 69 cc e9 15 ed d5 ff <0f> 0b 48 8b bb d0 b0 ff ff 4c 89 e2 48 c7 c6 b0 d7 95 c0 45 31 ed
-[ 2449.583780] RSP: 0018:ffffa95b41f33870 EFLAGS: 00010246
-[ 2449.583781] RAX: 0000000000000000 RBX: ffff891ccc404f30 RCX: 0000000000000000
-[ 2449.583781] RDX: ffff891cb35ede80 RSI: 0000000000000000 RDI: ffff891be0051400
-[ 2449.583782] RBP: ffff891ccc400000 R08: 0000000000000000 R09: 0000000000000000
-[ 2449.583782] R10: 000000000548700e R11: 0000000000000000 R12: ffff891be0051400
-[ 2449.583783] R13: ffff891ccc404f30 R14: ffff891be0051400 R15: 000000f47c000000
-[ 2449.583784] FS:  00007f9426fc6940(0000) GS:ffff891cded00000(0000) knlGS:0000000000000000
-[ 2449.583785] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[ 2449.583786] CR2: 00003714b98d0000 CR3: 000000044f0ea005 CR4: 00000000003606e0
-[ 2449.583786] Call Trace:
-[ 2449.583846]  dce_v11_0_crtc_do_set_base+0x4a3/0x760 [amdgpu]
-[ 2449.583902]  dce_v11_0_crtc_mode_set+0x72/0x1b0 [amdgpu]
-[ 2449.583910]  drm_crtc_helper_set_mode+0x31e/0x450 [drm_kms_helper]
-[ 2449.583917]  drm_crtc_helper_set_config+0x734/0x970 [drm_kms_helper]
-[ 2449.583962]  amdgpu_display_crtc_set_config+0x4c/0x110 [amdgpu]
-[ 2449.583977]  __drm_mode_set_config_internal+0x8f/0x130 [drm]
-[ 2449.583987]  drm_mode_setcrtc+0x518/0x6f0 [drm]
-[ 2449.584033]  ? amdgpu_cs_wait_ioctl+0xd2/0x160 [amdgpu]
-[ 2449.584043]  ? drm_mode_getcrtc+0x180/0x180 [drm]
-[ 2449.584051]  drm_ioctl_kernel+0xaa/0xf0 [drm]
-[ 2449.584059]  drm_ioctl+0x1f6/0x390 [drm]
-[ 2449.584068]  ? drm_mode_getcrtc+0x180/0x180 [drm]
-[ 2449.584110]  amdgpu_drm_ioctl+0x49/0x80 [amdgpu]
-[ 2449.584114]  ksys_ioctl+0x82/0xc0
-[ 2449.584116]  __x64_sys_ioctl+0x16/0x20
-[ 2449.584118]  do_syscall_64+0x4d/0xd0
-[ 2449.584120]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-[ 2449.584121] RIP: 0033:0x7f94273f3797
-[ 2449.584123] Code: 00 00 00 48 8b 05 f9 96 0c 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c9 96 0c 00 f7 d8 64 89 01 48
-[ 2449.584123] RSP: 002b:00007ffc127a2688 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-[ 2449.584124] RAX: ffffffffffffffda RBX: 00007ffc127a26c0 RCX: 00007f94273f3797
-[ 2449.584125] RDX: 00007ffc127a26c0 RSI: 00000000c06864a2 RDI: 000000000000000d
-[ 2449.584125] RBP: 00000000c06864a2 R08: 0000000000000000 R09: 00005595b333cae0
-[ 2449.584126] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
-[ 2449.584127] R13: 000000000000000d R14: 00005595b333cae0 R15: 0000000000000000
-[ 2449.584128] ---[ end trace a36c3045e99be6ba ]---
-[ 2449.584131] amdgpu 0000:01:00.0: amdgpu: 0000000061406071 unpin not necessary
-[ 2449.824003] amdgpu 0000:01:00.0: amdgpu: 0000000061406071 unpin not necessary
-[ 2469.495402] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 2469.619600] [drm] UVD and UVD ENC initialized successfully.
-[ 2469.751539] [drm] VCE initialized successfully.
-[ 2470.148575] amdgpu 0000:01:00.0: amdgpu: 000000009785bfb8 unpin not necessary
-[ 2470.383791] amdgpu 0000:01:00.0: amdgpu: 000000009785bfb8 unpin not necessary
-[ 3245.012201] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 3245.136400] [drm] UVD and UVD ENC initialized successfully.
-[ 3245.268338] [drm] VCE initialized successfully.
-[ 3249.045528] amdgpu 0000:01:00.0: amdgpu: 0000000056989517 unpin not necessary
-[ 3249.313774] amdgpu 0000:01:00.0: amdgpu: 0000000056989517 unpin not necessary
-[ 3773.420824] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 3773.538022] [drm] UVD and UVD ENC initialized successfully.
-[ 3773.676961] [drm] VCE initialized successfully.
-[ 3774.143007] amdgpu 0000:01:00.0: amdgpu: 0000000036bd3a17 unpin not necessary
-[ 3774.371396] amdgpu 0000:01:00.0: amdgpu: 0000000036bd3a17 unpin not necessary
-[ 3908.876874] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 3909.001080] [drm] UVD and UVD ENC initialized successfully.
-[ 3909.133013] [drm] VCE initialized successfully.
-[ 3909.532184] amdgpu 0000:01:00.0: amdgpu: 000000000458519d unpin not necessary
-[ 3909.778349] amdgpu 0000:01:00.0: amdgpu: 000000000458519d unpin not necessary
-[ 6080.746984] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 6080.874179] [drm] UVD and UVD ENC initialized successfully.
-[ 6081.003121] [drm] VCE initialized successfully.
-[ 6081.411166] amdgpu 0000:01:00.0: amdgpu: 000000000d5c57b8 unpin not necessary
-[ 6081.661361] amdgpu 0000:01:00.0: amdgpu: 000000000d5c57b8 unpin not necessary
-[ 6092.286906] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 6092.411104] [drm] UVD and UVD ENC initialized successfully.
-[ 6092.543045] [drm] VCE initialized successfully.
-[ 6118.075052] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 6118.199250] [drm] UVD and UVD ENC initialized successfully.
-[ 6118.331191] [drm] VCE initialized successfully.
-[ 6126.742796] amdgpu 0000:01:00.0: amdgpu: 0000000052c9ac62 unpin not necessary
-[ 6126.742876] amdgpu 0000:01:00.0: amdgpu: 0000000052c9ac62 unpin not necessary
-[ 6129.882923] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 6130.007124] [drm] UVD and UVD ENC initialized successfully.
-[ 6130.139061] [drm] VCE initialized successfully.
-[ 6144.402143] amdgpu 0000:01:00.0: amdgpu: 0000000052c9ac62 unpin not necessary
-[ 6144.402189] amdgpu 0000:01:00.0: amdgpu: 0000000052c9ac62 unpin not necessary
-[ 6146.118917] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 6146.243115] [drm] UVD and UVD ENC initialized successfully.
-[ 6146.375053] [drm] VCE initialized successfully.
-[ 6199.891325] amdgpu 0000:01:00.0: amdgpu: 0000000052c9ac62 unpin not necessary
-[ 6199.891373] amdgpu 0000:01:00.0: amdgpu: 0000000052c9ac62 unpin not necessary
-[ 6200.759095] [drm] PCIE GART of 256M enabled (table at 0x000000F400000000).
-[ 6200.883293] [drm] UVD and UVD ENC initialized successfully.
-[ 6201.015234] [drm] VCE initialized successfully.
-[ 6213.815047] amdgpu 0000:01:00.0: amdgpu: 0000000052c9ac62 unpin not necessary
-[ 6214.064355] amdgpu 0000:01:00.0: amdgpu: 0000000052c9ac62 unpin not necessary
+Hmm... this is still not correct. If the UMC ECC is enabled, we don't need to apply the workaround.
 
-Hopefully this sets you guys on a useful track.
+Regards,
+Hawking
+-----Original Message-----
+From: Chen, Guchun <Guchun.Chen@amd.com> 
+Sent: Tuesday, September 29, 2020 14:53
+To: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Li, Dennis <Dennis.Li@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>; Clements, John <John.Clements@amd.com>
+Cc: Chen, Guchun <Guchun.Chen@amd.com>
+Subject: [PATCH] drm/amdgpu: drop duplicated ecc check for vega10 (v3)
 
--- 
-Jean Delvare
-SUSE L3 Support
+The same ECC check has been executed in amdgpu_ras_init for vega10, prior to gmc_v9_0_late_init.
+
+v2: drop all atombios helper callings
+v3: use bit operation
+
+Signed-off-by: Guchun Chen <guchun.chen@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c | 16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index 3dddbc60fe3d..9599946e4bee 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -1193,21 +1193,13 @@ static int gmc_v9_0_late_init(void *handle)
+ 	r = amdgpu_gmc_allocate_vm_inv_eng(adev);
+ 	if (r)
+ 		return r;
+-	/* Check if ecc is available */
++
++	/* apply DF parity workaround */
+ 	if (!amdgpu_sriov_vf(adev) && (adev->asic_type == CHIP_VEGA10)) {
+-		r = amdgpu_atomfirmware_mem_ecc_supported(adev);
+-		if (!r) {
+-			DRM_INFO("ECC is not present.\n");
++		if (adev->ras_features & (1 << AMDGPU_RAS_BLOCK__UMC)) {
+ 			if (adev->df.funcs->enable_ecc_force_par_wr_rmw)
+ 				adev->df.funcs->enable_ecc_force_par_wr_rmw(adev, false);
+-		} else
+-			DRM_INFO("ECC is active.\n");
+-
+-		r = amdgpu_atomfirmware_sram_ecc_supported(adev);
+-		if (!r)
+-			DRM_INFO("SRAM ECC is not present.\n");
+-		else
+-			DRM_INFO("SRAM ECC is active.\n");
++		}
+ 	}
+ 
+ 	if (adev->mmhub.funcs && adev->mmhub.funcs->reset_ras_error_count)
+--
+2.17.1
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
