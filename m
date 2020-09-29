@@ -2,90 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F63C27BD81
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Sep 2020 09:00:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D42D727BE13
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Sep 2020 09:33:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2B0289DF9;
-	Tue, 29 Sep 2020 07:00:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19215899B3;
+	Tue, 29 Sep 2020 07:33:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2047.outbound.protection.outlook.com [40.107.92.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B096C89DF9
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 07:00:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ULZT2jrT5dzbL5ZYs/H/CJTVQ4bpUYffQ7yFBhan06zX94JDxLMUwM9QZYG0FNcuez4qy34AVv7Sh/oJUXcJKwRQPRM0NR7CyEMLd66o2qOnUZWUv60ruzEK5KqNeCRMIFMVHfAW3RpawhhKCX4qPQh57Ev2x04v6PbcwCjpE5FjQ5VoKG4U25S14EeAOMo78G6uRW91fohzNiGAQu26tgeKPSbWruZEKVz7+SLE3Auaa4r3gtVYDpwni2zBaW1XZZpYoSfjKTSFM5jJro5bvo/TmTVKi2/mWPhnkF0ZLa1SdB7XtOz/Meg74bnijpv7DJ81cqgnrMB19mQAy1bqfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=472jpKYXDS6NLErYJF1Kgib/H8j+aMLpCVGgtUpRX60=;
- b=h5M3m5lN6KQ/nudKuoHImbgGFGI/HroMwgmvewby9GA9bVf12RlSohEuQvFD8rMLquFJ9Shv3JHZPpMnxxnelucrOUZ8wqRTbljo5wqRv8OsFU0stxF5Hw1dOa7oHRbr/tJq8BfzbDxIM8FIAew2ufqxlAhQyJO9AgTGUCbuI/l2eYJskmlVY8GjgEiTRj+2qtx0EY/aXuOK+3xiifL50h+f/d4RPh0Hk6Z7xa+MRo4rFWQ80xfFBU3sinbeY6TXiFDAs+OEMBvj94hs7yKenw1/stuvxGLP5exrI+SwZst3mrmelk1tny6Q24i5jUaDHylBqnDIgJMekCKZA/55aw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=472jpKYXDS6NLErYJF1Kgib/H8j+aMLpCVGgtUpRX60=;
- b=LN/ScAJmjHjWrztUKnMwb+fx/ypsLWUUfsSy0/PBfq9PvruZ+jMEWr4CDVpAhj8gaYYQaCcp3KmtKhxCkLABhWe6d2mIZkxNiLprU9KC5eo8XZyRDKcC3pJ9yedsC2sBPYkROwcVtePOwT6N09wYc62tSn5xoOmFdstzmbABeaY=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
- by MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Tue, 29 Sep
- 2020 07:00:43 +0000
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::f8f7:7403:1c92:3a60]) by MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::f8f7:7403:1c92:3a60%6]) with mapi id 15.20.3412.029; Tue, 29 Sep 2020
- 07:00:43 +0000
-Subject: Re: [PATCH v2] amd/amdgpu: Fix resv shared fence overflow
-To: xinhui pan <xinhui.pan@amd.com>, amd-gfx@lists.freedesktop.org,
- Philip Yang <Philip.Yang@amd.com>
-References: <20200929055701.3120-1-xinhui.pan@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <2b2813db-1253-e3c5-551d-ff94a01931ed@amd.com>
-Date: Tue, 29 Sep 2020 09:00:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <20200929055701.3120-1-xinhui.pan@amd.com>
-Content-Language: en-US
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-ClientProxiedBy: FR2P281CA0035.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:14::22) To MN2PR12MB3775.namprd12.prod.outlook.com
- (2603:10b6:208:159::19)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DEAA89C89
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Sep 2020 06:14:07 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 97E74AC4D;
+ Tue, 29 Sep 2020 06:14:05 +0000 (UTC)
+Date: Tue, 29 Sep 2020 08:14:04 +0200
+From: Jean Delvare <jdelvare@suse.de>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: Regression in amdgpu driver / kernel v5.8.6
+Message-ID: <20200929081404.4d8df525@endymion>
+In-Reply-To: <CADnq5_OBSxK=Ds7X-e8xfHUDb0js7vtWbz-y7mabpFg0BhB5kw@mail.gmail.com>
+References: <20200928111037.51ed4aeb@endymion>
+ <CADnq5_OBSxK=Ds7X-e8xfHUDb0js7vtWbz-y7mabpFg0BhB5kw@mail.gmail.com>
+Organization: SUSE Linux
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- FR2P281CA0035.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:14::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3433.16 via Frontend Transport; Tue, 29 Sep 2020 07:00:41 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 6cf2b94e-681f-494a-13ae-08d864456121
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4192:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB419268BC1DF4C49144968C2783320@MN2PR12MB4192.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OIAnzavBHzhYR/DoEc5weft+sR82BStQaPLxipUQJdhboZmUycWJthPjxnFx+urv6vNlGJF/bSPLgrPtRBDuzs5zXDu8GApNXqSZ7abTT/zKroYttbESlUa8wM4fj+4Xm/+ouLtsVSqqMEaYcQOH2c67Gp2cTydOKEZekRJTeeJZfI+8iaGH2XTWEqbIIYgy8OWho6ZUM8jvgvdXk3F9bry0O+OzoGEPFy7mL4jftpSdm0ys1wBUMPU2qXcHpj6OJN270qf8sKButATVXfi0rkJXz9HpchBOMp8HX84sWBHjEZBUiqSJRHvV9pBd1Ln/omWOAglSmM/E6hN4kqXFSEks8QaInvYLQiqDFWD9wePOW7nyaEaUFpdWFUq1q1dK8wUAIybVDaTHkiAHMPFNRpAy+Sy5EOmcPIzaOZ7TUvb01+188AyjstelA56K9QsA
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(136003)(39860400002)(366004)(376002)(346002)(66946007)(6666004)(31696002)(5660300002)(8936002)(86362001)(66476007)(66556008)(8676002)(83380400001)(6486002)(2906002)(16526019)(186003)(110136005)(52116002)(2616005)(316002)(36756003)(31686004)(478600001)(6636002)(4326008)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: nO0KOFQ8uAaQmS3zwzCyQPi6SATUQWo5OMuL422nwinLnlmsQ1Vhm14yJi4MteApgcvjoYYkhi+T4FXb/zJvUihVWfZW5QvfVhAjvRxoudXZrP4U8ABYIPnhdjka9RsdeNgRJQli19yYNyMzDUVV+Ij4qpdNkGPD7JC7pk7M7Dy5vKAKIq05Y0VF4dw11hnv26Mn3XsTQ9PzT7RS/LyVVeRLh9proNYPIHuJwc9jrtoJT9QG1/jzJhQjMLfNXrysh20kPfjYBwYLuunmc5XqPNxx6aH1XreSp9QBqvPb+LvCrEHrLNVTauC/oC5Fy9fokhgRD1Ql2kt9X5TDjnHJwzvPSt0yLNh8nfCtXOCawTa1VhK4MZ7JfUizZGY6ArMcT0emg2/55rjCezu5/e8/PcuNbv3EDeg1I3S+OeK5lrnUQALEx/xQUdU1C1rkDOtRXtCaZtUUrO7qHWxWuvXDFZdrQmG+O1I2EzKpbUDxFrF68lhV6kiqKsW0zmrWum/ImKeoXR38sh5xPwLSRX/KLJrsXJXzlg+PG/sbT0TpUgUaJaUePTmV657JCWoS+hWRLC8OpOyS5vWurF7yERZiujyJARIIhtuZBErtTW1JAZOUmchNRWAJbnqri8Av60DIZ8fUhxgZwX23KYy0KZunsCyPmxfH31g5DU/CKRzxatriqD9Z10rIXtkGaMOtb8W06YGIcHmZmZMSlcTDg5bvqQ==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6cf2b94e-681f-494a-13ae-08d864456121
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2020 07:00:43.2945 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WxbjxhQ6S2L8Wop/E+D6xIsMqA8XqpCB+vav3lKYGLdp5Ahfu7xDwWhADu2QLt09
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4192
+X-Mailman-Approved-At: Tue, 29 Sep 2020 07:33:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,69 +39,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Navid Emamdoost <navid.emamdoost@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Philip already stumbled over this issue as well, but this is the wrong 
-place to fix this.
+Hi Alex,
 
-dma_resv_reserve_shared() needs to be called after we reserved the page 
-tables and before we do the update in amdgpu_vm_handle_fault().
+On Mon, 28 Sep 2020 17:44:28 -0400, Alex Deucher wrote:
+> On Mon, Sep 28, 2020 at 9:23 AM Jean Delvare <jdelvare@suse.de> wrote:
+> > I have recently experienced a regression in stable kernel series 5.8.
+> > The problem is that my display will randomly turn to black after just a
+> > few seconds of inactivity. I have to switch to text console then back
+> > to X to recover.
+> >
+> > I bisected it down to:
+> >
+> > commit b86657e328b601a5b98f8c4c21d108d356dbceee
+> > Author: Navid Emamdoost <navid.emamdoost@gmail.com>
+> > Date:   Sun Jun 14 02:09:44 2020 -0500
+> >
+> >     drm/amdgpu: fix ref count leak in amdgpu_display_crtc_set_config
+> >
+> >     [ Upstream commit e008fa6fb41544b63973a529b704ef342f47cc65 ]
+> >
+> > Reverting this commit on top of 5.8.10 makes the problem go away. My
+> > hardware setup:
+> >
+> > 01:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Baffin [Radeon RX 550 640SP / RX 560/560X] [1002:67ff] (rev ff)
+> > 01:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Baffin HDMI/DP Audio [Radeon RX 550 640SP / RX 560/560X] [1002:aae0]
+> >
+> > This is a Sapphire Pulse Radeon RX550 card, with two Lenovo P27h-10
+> > displays connected (one over DP, one over HDMI). I'm using option dc=0
+> > otherwise the multi-screen setup doesn't work.
+> >
+> > Looking at the patch, and at the logic of function
+> > amdgpu_display_crtc_set_config() in general, I suspect that the middle
+> > chunk of the patch is incorrect. Calling pm_runtime_put_autosuspend()
+> > if pm_runtime_get_sync() failed is, albeit surprising, correct due to
+> > how that function is implemented. Calling it right after
+> > "adev->have_disp_power_ref = true" however looks wrong. The comment
+> > right before that line pretty much implies that we *want* to keep the
+> > reference.
+> >
+> > So I think we want to apply a partial revert like the following:  
+> 
+> Nice analysis.  I've applied the patch.
 
-Reserved slots are freed (in a debug build) as soon as we release the 
-reservation.
+Unfortunately, further testing shows that this partial revert is
+insufficient to fully fix the problem. Only a complete revert works.
+This worries me a little though, because my analysis seemed correct. If
+the first chunk needs to be reverted too, it means that this code path
+is taken on a regular basis in my case. I would expect
+pm_runtime_get_sync() failures to be an error path that should normally
+not be taken?
 
-Christian.
+At this point I am wondering if maybe we had 2 opposite reference
+counting bugs covering for each other, and fixing one revealed the
+other. Or maybe the prime issue is that pm_runtime_get_sync() shouldn't
+fail in the first place, and that's what we need to fix.
 
-Am 29.09.20 um 07:57 schrieb xinhui pan:
-> [  179.556745] kernel BUG at drivers/dma-buf/dma-resv.c:282!
-> [snip]
-> [  179.702910] Call Trace:
-> [  179.705696]  amdgpu_bo_fence+0x21/0x50 [amdgpu]
-> [  179.710707]  amdgpu_vm_sdma_commit+0x299/0x430 [amdgpu]
-> [  179.716497]  amdgpu_vm_bo_update_mapping.constprop.0+0x29f/0x390 [amdgpu]
-> [  179.723927]  ? find_held_lock+0x38/0x90
-> [  179.728183]  amdgpu_vm_handle_fault+0x1af/0x420 [amdgpu]
-> [  179.734063]  gmc_v9_0_process_interrupt+0x245/0x2e0 [amdgpu]
-> [  179.740347]  ? kgd2kfd_interrupt+0xb8/0x1e0 [amdgpu]
-> [  179.745808]  amdgpu_irq_dispatch+0x10a/0x3c0 [amdgpu]
-> [  179.751380]  ? amdgpu_irq_dispatch+0x10a/0x3c0 [amdgpu]
-> [  179.757159]  amdgpu_ih_process+0xbb/0x1a0 [amdgpu]
-> [  179.762466]  amdgpu_irq_handle_ih1+0x27/0x40 [amdgpu]
-> [  179.767997]  process_one_work+0x23c/0x580
-> [  179.772371]  worker_thread+0x50/0x3b0
-> [  179.776356]  ? process_one_work+0x580/0x580
-> [  179.780939]  kthread+0x128/0x160
-> [  179.784462]  ? kthread_park+0x90/0x90
-> [  179.788466]  ret_from_fork+0x1f/0x30
->
-> We have two scheduler entities, immediate and delayed.
-> So there are two kinds of scheduler finished fences.
-> We might add these two fences in root bo resv at same time while we
-> only reserve one slot.
->
-> Signed-off-by: xinhui pan <xinhui.pan@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> index 37221b99ca96..9e0116c7f8d1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> @@ -2869,7 +2869,7 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
->   	if (r)
->   		goto error_free_root;
->   
-> -	r = dma_resv_reserve_shared(root->tbo.base.resv, 1);
-> +	r = dma_resv_reserve_shared(root->tbo.base.resv, 2);
->   	if (r)
->   		goto error_unreserve;
->   
+I'm not familiar enough with the amdgpu driver to efficiently continue
+debugging this issue on my own, so I'll do what I can, but some
+guidance would be welcome.
 
+-- 
+Jean Delvare
+SUSE L3 Support
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
