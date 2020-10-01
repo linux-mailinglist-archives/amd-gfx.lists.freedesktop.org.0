@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 887F128084D
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 Oct 2020 22:17:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6695D28084C
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 Oct 2020 22:17:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C67F36E06D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB0436E069;
 	Thu,  1 Oct 2020 20:17:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from services.gouders.net (services.gouders.net [141.101.32.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC8056E063
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD0936E069
  for <amd-gfx@lists.freedesktop.org>; Thu,  1 Oct 2020 19:59:57 +0000 (UTC)
 Received: from lena.gouders.net (ltea-047-066-024-155.pools.arcor-ip.net
  [47.66.24.155]) (authenticated bits=0)
- by services.gouders.net (8.14.8/8.14.8) with ESMTP id 091JtVtT012416
+ by services.gouders.net (8.14.8/8.14.8) with ESMTP id 091JtVtU012416
  (version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
- Thu, 1 Oct 2020 21:55:32 +0200
+ Thu, 1 Oct 2020 21:55:33 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gouders.net; s=gnet;
- t=1601582133; bh=+c1Qskew6XfuK4sFE9wvL98lkeAWXt2+Jq5q/gW488k=;
+ t=1601582134; bh=Ctcg+UIz5/6JiLTMTFXfdVAgfet3Y/GfA39of6MSzr8=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=JmC1J8dwKII1dewZfDGkgW0nbtA2ZSDvkYbR953c4qSu11FVo6IX7DKUQL4nr74t2
- ZUjifx35Emh1kZsfadniVSE4sS8DI/Tq9sjmfqP96Cm8ks4DcShIoXVV2WakjURJDw
- y5AEp5mkLVZke4CFCX56lmWMaYWSsZgOhae/AxsE=
+ b=WolxGcANP45H7W4siC/GpvpArvgd9LvcrFUQM0rFFYHKLTfC669JIG4M+muTbYj/n
+ yrW/uwJKgJnxkRL0KlC3E/LpaHiMamj77W2BJA2iPpMbkYERvXfX2SOFmemEw0H+6C
+ Sl2eY9NudUquDM1hU+JXYk+Zvvp8JVkEn82nkBz0=
 From: Dirk Gouders <dirk@gouders.net>
 To: Alex Deucher <alexdeucher@gmail.com>
-Subject: [PATCH 0/1] drm/amdgpu: fix NULL pointer dereference for Renoir
-Date: Thu,  1 Oct 2020 21:55:24 +0200
-Message-Id: <20201001195525.3477-1-dirk@gouders.net>
+Subject: [PATCH 1/1] drm/amdgpu: fix NULL pointer dereference for Renoir
+Date: Thu,  1 Oct 2020 21:55:25 +0200
+Message-Id: <20201001195525.3477-2-dirk@gouders.net>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <CADnq5_OOL3UZXKXEKU8VzkZAkOnk9HM8m=nEwywoQPm4GXs0rw@mail.gmail.com>
 References: <CADnq5_OOL3UZXKXEKU8VzkZAkOnk9HM8m=nEwywoQPm4GXs0rw@mail.gmail.com>
@@ -54,68 +54,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Alex Deucher <alexdeucher@gmail.com> writes:
+Commit c1cf79ca5ced46 (drm/amdgpu: use IP discovery table for renoir)
+introduced a NULL pointer dereference when booting with
+amdgpu.discovery=0, because it removed the call of vega10_reg_base_init()
+for that case.
 
-> On Wed, Sep 30, 2020 at 4:46 PM Dirk Gouders <dirk@gouders.net> wrote:
->>
->> Commit c1cf79ca5ced46 (drm/amdgpu: use IP discovery table for renoir)
->> introduced a NULL pointer dereference when booting with
->> amdgpu.discovery=0.
->>
->> For amdgpu.discovery=0 that commit effectively removed the call of
->> vega10_reg_base_init(adev), so I tested the correctness of the bisect
->> session by restoring that function call for amdgpu_discovery == 0 and with
->> that change, the NULL pointer dereference does not occur:
->>
->
-> Can I add your Signed-off-by?
+Fix this by calling that funcion if amdgpu_discovery == 0 in addition to
+the case that amdgpu_discovery_reg_base_init() failed.
 
-I did not expect the diff to be seen as a proposed patch, not even that it
-shows the correct fix.
-
-Anyway, I did my best to create a hopefully acceptable patch with
-some modification of the code that avoids "else" and an identical function call
-at two places in the code.
-
-I testet that patch with amdgpu.discovery={0,1} and together with the patch for the
-first issue you helped me with.  The result is no more call traces.
-
-Thank you for your patient assistance with the two issues.
-
-Dirk
-
-
-> Thanks,
->
-> Alex
->
->> diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
->> index 84d811b6e48b..2e93c5e1e7e6 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/soc15.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
->> @@ -699,7 +699,8 @@ static void soc15_reg_base_init(struct amdgpu_device *adev)
->>                                          "fallback to legacy init method\n");
->>                                 vega10_reg_base_init(adev);
->>                         }
->> -               }
->> +               } else
->> +                       vega10_reg_base_init(adev);
->>                 break;
->>         case CHIP_VEGA20:
->>                 vega20_reg_base_init(adev);
->>
->> Dirk
->> _______________________________________________
->> amd-gfx mailing list
->> amd-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
-Dirk Gouders (1):
-  drm/amdgpu: fix NULL pointer dereference for Renoir
-
+Fixes: c1cf79ca5ced46 (drm/amdgpu: use IP discovery table for renoir)
+Signed-off-by: Dirk Gouders <dirk@gouders.net>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Evan Quan <evan.quan@amd.com>
+---
  drivers/gpu/drm/amd/amdgpu/soc15.c | 10 +++++-----
  1 file changed, 5 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index 84d811b6e48b..f8cb62b326d6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -694,12 +694,12 @@ static void soc15_reg_base_init(struct amdgpu_device *adev)
+ 		 * it doesn't support SRIOV. */
+ 		if (amdgpu_discovery) {
+ 			r = amdgpu_discovery_reg_base_init(adev);
+-			if (r) {
+-				DRM_WARN("failed to init reg base from ip discovery table, "
+-					 "fallback to legacy init method\n");
+-				vega10_reg_base_init(adev);
+-			}
++			if (r == 0)
++			  break;
++			DRM_WARN("failed to init reg base from ip discovery table, "
++				 "fallback to legacy init method\n");
+ 		}
++		vega10_reg_base_init(adev);
+ 		break;
+ 	case CHIP_VEGA20:
+ 		vega20_reg_base_init(adev);
 -- 
 2.26.2
 
