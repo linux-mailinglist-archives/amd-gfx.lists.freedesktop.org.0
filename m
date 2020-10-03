@@ -1,96 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5A80281FA7
-	for <lists+amd-gfx@lfdr.de>; Sat,  3 Oct 2020 02:16:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8174F282318
+	for <lists+amd-gfx@lfdr.de>; Sat,  3 Oct 2020 11:25:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 478356E9F6;
-	Sat,  3 Oct 2020 00:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECE046E3B2;
+	Sat,  3 Oct 2020 09:25:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2040.outbound.protection.outlook.com [40.107.92.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E4976E9F6
- for <amd-gfx@lists.freedesktop.org>; Sat,  3 Oct 2020 00:16:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ewH9J1LulpobLxiZp08wkCIME55LsTI/rr+N7ro5rneJhHiWC5AdzziVjdD47VmXVRFNc2qklXLEdAfuP2TSDLT1Os5V9Y/VXpKbx6++PiowG7cnrK9EDHy2r+lNHCDPNmXV+9fTyn6YTNurjzQNseEoqAYnFz3d/00UnNdf8I6jcN7l0eiQTTo9wdt066BcpIyikK1jRZcV1odW5/wbJ8OWiJSvLkLmNff50+Z2n8UsNrpQI8kjo9qPn1xTL5hkT6gMzJj9PHDaO/UJAqEXjXZrv/C9flWI1wsULP9sH0Tt2PP0deCp3iJfRjcus8xTryNDeZvI8W8VF5/FxOXhqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qguI5WP31wPs7CePkC9z8U0WRS70DZJ2s4GuJjyCMJM=;
- b=AWA01aprR4l6MhZZk3wCjmhYS4kkEM5xMg4bddPUBhf0oTdsB1JWZSbgEqsgd+2ScMZWGPxd7S0zoJ8IyNAT5O+csXZf11GjDrVwHvN5tPHrPQZ0QAJMGtUfa2pPIT8LymXcnZj+FUk/YlqNiABo6b865Akh8YG/K6uY1J/P9+8X3Pn1j0I9EDMuIV1/y6C8kHQrHsMSUDDSaTYdEmttoQUpfqRP7E155ZonpixzkAKt2RGoyFahZ3lweUA956K2wcfjByMpiBGFC+j6JOlWIhjsHsCzU6/01dqbAJ7oE5qTVZUASwFu4eSH/ZybnpjP3XF3/WYuY1Qa/IR7ldQ3wg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=permerror action=none header.from=amd.com; dkim=none (message not
- signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qguI5WP31wPs7CePkC9z8U0WRS70DZJ2s4GuJjyCMJM=;
- b=N0jh+aR/+TfBIsY8VXkblqNqQ0a2nOObErkgbSa8HPFfUWVw4Udke8VzwHk5jeX7Xp/tetPekUYpgHTPHSf3RR3bpOGqBDPQvuHfS9dTktUlu3l5vMqDNZlGBzgT7ogI8RT23guonM2IhVgFnW36iqy3cv+pUlAlDpCI0yWH3U0=
-Received: from CO2PR05CA0079.namprd05.prod.outlook.com (2603:10b6:102:2::47)
- by DM5PR12MB2391.namprd12.prod.outlook.com (2603:10b6:4:b3::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.24; Sat, 3 Oct
- 2020 00:16:19 +0000
-Received: from CO1NAM11FT061.eop-nam11.prod.protection.outlook.com
- (2603:10b6:102:2:cafe::c0) by CO2PR05CA0079.outlook.office365.com
- (2603:10b6:102:2::47) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.13 via Frontend
- Transport; Sat, 3 Oct 2020 00:16:18 +0000
-X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=permerror action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- CO1NAM11FT061.mail.protection.outlook.com (10.13.175.200) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3433.35 via Frontend Transport; Sat, 3 Oct 2020 00:16:18 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 2 Oct 2020
- 19:16:17 -0500
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 2 Oct 2020
- 19:16:17 -0500
-Received: from localhost.localdomain (10.180.168.240) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Fri, 2 Oct 2020 19:16:16 -0500
-From: Qingqing Zhuo <qingqing.zhuo@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: [FIX] Compilation error
-Date: Fri, 2 Oct 2020 20:16:16 -0400
-Message-ID: <20201003001616.16816-1-qingqing.zhuo@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CDF96EA05
+ for <amd-gfx@lists.freedesktop.org>; Sat,  3 Oct 2020 01:11:59 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4C38310W9Rz9sSf;
+ Sat,  3 Oct 2020 11:11:56 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1601687517;
+ bh=XoaN3P5jnPla9ib682+fD/pchX2RuDH7ngOYA3Skz2w=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=vE1fXTANqHW8W7u5jPPfzIrt5zSPQihru0Ebh8U2HhQoyz+1D7dkk4QyFi4Xl+7N4
+ f9pw3Kmwq/kXHE+RQ6p3RR1QAxTsm1XeQRSVkmF4Q/tUeyeHYpww1PWAnzTOweVxR2
+ ZO0QaZajw/yuqphStJNey1clww0NtT0vsWhzIQgQvhcdRq2Q4e9mjTMLGoZzipfrS6
+ wrw5Uq2qkjTQyUxTakzgFkbAfaKuybD3gaLbfZ+hoVRz5CA9dUlBVr/QrO7L0YNmnq
+ nH2Ds0kRvS3UAXl2xx6XI1U3oIfrBVW1klbiQLv1RFONN8nOBUSfNHjgemS65ZMxHP
+ 3oBf0wxiYBDBQ==
+Date: Sat, 3 Oct 2020 11:11:55 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Qingqing Zhuo <qingqing.zhuo@amd.com>
+Subject: Re: [PATCH] drm/amd/display: [FIX] Compilation error
+Message-ID: <20201003111155.0c3458a0@canb.auug.org.au>
+In-Reply-To: <20201002235608.10953-1-qingqing.zhuo@amd.com>
+References: <20201002235608.10953-1-qingqing.zhuo@amd.com>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1d64baf1-a6a1-4282-ca10-08d867318cb3
-X-MS-TrafficTypeDiagnostic: DM5PR12MB2391:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB23914652DF80B92F6DF2F716FB0E0@DM5PR12MB2391.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1051;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JQa2HpqVUyyIruDOkNutWVbRccrlopXxtv+eGt68XPZQOz2HPyO+XMcuBZq4ty4Q4j2UhbPyekT4xHUdgCLQPt0qiZNAbjmGfxpGdX+4/qwYCou1VQGu44d1LMewcB8tOtuWuSqGB1afgnwHf/pWX40JHXpyno8vR5sILfsupMKjFdXr5u9X1ITdOVU1NdGxY0y4RNRH8qbhZ0mdNQ5XliZkjtRWBvS2JQ/tGx+toIVncxPV2twUb81aCn/7RmFhzBKByEnF/149xRKyNEdyperY35XGQBOPfErtrs0mXTUek2wD1Pgt0rwwOg12cbFutVfEiJrxxrr+KuOE/kSEJHE55Vt+nsR0AtJ+F8TEF3BLCRTEvlM5AR5F+rJiM2GWa+oJmb48mitTC/IPh1ulf6rDIKVEa6O5oaGJSwqhXqfSwKs3ihmkstEnInEM1jBr
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(39860400002)(346002)(376002)(136003)(46966005)(2616005)(426003)(44832011)(26005)(186003)(70206006)(70586007)(47076004)(4744005)(83380400001)(86362001)(336012)(2906002)(8936002)(54906003)(36756003)(356005)(5660300002)(1076003)(82740400003)(4326008)(316002)(81166007)(6916009)(82310400003)(478600001)(8676002);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2020 00:16:18.2767 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d64baf1-a6a1-4282-ca10-08d867318cb3
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT061.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2391
+X-Mailman-Approved-At: Sat, 03 Oct 2020 09:25:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,43 +48,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, stable@vger.kernel.org,
- Bhawanpreet.Lakha@amd.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Lewis.Huang@amd.com, Aric.Cyr@amd.com, Harry.Wentland@amd.com,
+ amd-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ Alexander.Deucher@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas.Kazlauskas@amd.com
+Content-Type: multipart/mixed; boundary="===============0711119464=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-ifdef mismatch.
+--===============0711119464==
+Content-Type: multipart/signed; boundary="Sig_/rWUpIF9.qf2Wcc_y9HSfktQ";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-[How]
-Update to the correct flag.
+--Sig_/rWUpIF9.qf2Wcc_y9HSfktQ
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Cc: <stable@vger.kernel.org>
----
- drivers/gpu/drm/amd/display/dc/dce/dce_abm.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Qingqing,
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_abm.h b/drivers/gpu/drm/amd/display/dc/dce/dce_abm.h
-index 389ca0d54d1b..829cd9a93ba9 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_abm.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_abm.h
-@@ -189,7 +189,7 @@
- 
- #define ABM_MASK_SH_LIST_DCN20(mask_sh) ABM_MASK_SH_LIST_DCE110(mask_sh)
- 
--#if defined(CONFIG_DRM_AMD_DC_DCN3_01)
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_0) || defined(CONFIG_DRM_AMD_DC_DCN3_01)
- #define ABM_MASK_SH_LIST_DCN301(mask_sh) ABM_MASK_SH_LIST_DCN10(mask_sh)
- #endif
- 
--- 
-2.17.1
+On Fri, 2 Oct 2020 19:56:08 -0400 Qingqing Zhuo <qingqing.zhuo@amd.com> wro=
+te:
+>
+> [Why]
+> ifdef mismatch.
+>=20
+> [How]
+> Update to the correct flag.
+>=20
+> Signed-off-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
+> Cc: <stable@vger.kernel.org>
+
+This needs a Fixes: tag (if possible) and the error message, please.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/rWUpIF9.qf2Wcc_y9HSfktQ
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl93z9sACgkQAVBC80lX
+0GxOKQf+PUvWRbiUOrNb64ItXGzhQEdFADSBzIRFBA5E2N2PYjoUjl7T2OTeWcuG
+bb1SPP6a1jScNoPQfAQz1XI63Kn3YpNq27gn1bOE1aNMI7R2WcRT5/JLBRYCk89n
+qujr3DvotA3AefL/wGnVpDQWzjqpMUyoLdyQrezNb+O29o5/hNtzEWfvuEtC2QSK
+84ck3igrQ0z7qiU6xlOw6aY1t6IDFbAji4KVBci093Lhh+9/QnjqZEZw+bJH2if7
+Lo/n7K5tbNS7vAOKbSsSSyq88dvunnw1WNJzQzRyCSjk9BEPWufvpWeoDmR8SX/J
++qpXMx/3azlzhYtzzxhkhFF8XLp3ew==
+=2D+W
+-----END PGP SIGNATURE-----
+
+--Sig_/rWUpIF9.qf2Wcc_y9HSfktQ--
+
+--===============0711119464==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0711119464==--
