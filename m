@@ -2,49 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D0B282319
-	for <lists+amd-gfx@lfdr.de>; Sat,  3 Oct 2020 11:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 954602830DB
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Oct 2020 09:29:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B4136E3D0;
-	Sat,  3 Oct 2020 09:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B868A89CBA;
+	Mon,  5 Oct 2020 07:29:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-il1-f207.google.com (mail-il1-f207.google.com
- [209.85.166.207])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 589986EA20
- for <amd-gfx@lists.freedesktop.org>; Sat,  3 Oct 2020 02:33:06 +0000 (UTC)
-Received: by mail-il1-f207.google.com with SMTP id o18so2574651ilm.16
- for <amd-gfx@lists.freedesktop.org>; Fri, 02 Oct 2020 19:33:06 -0700 (PDT)
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com
+ [IPv6:2a00:1450:4864:20::641])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE3E76E15D;
+ Sun,  4 Oct 2020 06:49:34 +0000 (UTC)
+Received: by mail-ej1-x641.google.com with SMTP id c22so6021469ejx.0;
+ Sat, 03 Oct 2020 23:49:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=wiRu/UNA0pjlrtebSlMYi06x0VP2UdPXkT2G8Mphkow=;
+ b=HfuxUtnUsdgWaV/IejQpBLhZK4DHvH7NTScAIhboOCXBEFSb6p7xTUDQgHNwsoHaTm
+ mK0DwcWi2+vAgTtHWu4eGnYZ1KxIDMIr0nQvdLXPDNup3ZY/yCBBKqQUqv+B5RqfpqGN
+ Uh50R6W/f0DRNU6QKqqs+l+vh/pWYCuUjQspigeNZywYJJ2hDkhMvuRzwSLCC877/47Z
+ kLAeUQzUR8ByVehoQlSHYMsbnXMxRKAGQB4QbnffuYDc0SX42s7r3kseOdab1mvRg2da
+ hJjLM87djzOLAOsY5Mg8h6Meso9nKpVY+E8ktIWVesCfULLqo1smeieB9W63OQ1ZiNFy
+ RbAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=huAQ2XNxNk0+JP0caungu+yrhrmWz2OAWIUz9RtSlI4=;
- b=UniwmnyJ8c0uneXuxoiYQhA48vR2EMU/F6tWysoaTKz2tZjwyWykT8lCvNujY11/mT
- H3pljeBN9Htyj/40vmpXSK52SjfWCoM3+cpIr7+aOFSU0/7vol915yDyWnBaA5loVWbJ
- yWxSP0eFovaC14K0VltljxePJ9kehpUwrPwbaaeM3JRgfJOlgc46KIavZ9fjcvZEhu8A
- 0wW77LyOgYiahRi6BShdteQmn256PFIZU1eZ1fTHuj/wM/2y0UR0bybwSsrBa0PYSwDT
- eFepGAJ9+oWheAjqcE6nZgv7wlXqXPnziXL5G2SYrJ6KmKrfeYysa4htatjNu2m4AfRE
- W9wg==
-X-Gm-Message-State: AOAM533Vbp7DQlzPovjTgetk+QIG/d1GNsdrRjaKJCYGjJpotbA81Cdt
- tOuEa1wmCDCKiuhDrOKLEjSGjmXQvjIE4QNxprmE57vq4QuD
-X-Google-Smtp-Source: ABdhPJzrlAP5imDWEPKyVGiLnhg0plpe3Pjdz0K8YSADKul87MvIbS1OPbnv7c/HZQJfp1argFlx9wEiLJU/BiWVN/BRncyNJ03n
-MIME-Version: 1.0
-X-Received: by 2002:a02:5d85:: with SMTP id w127mr4693509jaa.76.1601692385603; 
- Fri, 02 Oct 2020 19:33:05 -0700 (PDT)
-Date: Fri, 02 Oct 2020 19:33:05 -0700
-In-Reply-To: <000000000000ed022605b0b1efaa@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000aef3fc05b0bb11ce@google.com>
-Subject: Re: WARNING in ieee80211_bss_info_change_notify
-From: syzbot <syzbot+09d1cd2f71e6dd3bfd2c@syzkaller.appspotmail.com>
-To: airlied@linux.ie, alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- christian.koenig@amd.com, davem@davemloft.net, dieter@nuetzel-hh.de, 
- dri-devel@lists.freedesktop.org, johannes@sipsolutions.net, kuba@kernel.org, 
- linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
- netdev@vger.kernel.org, syzkaller-bugs@googlegroups.com
-X-Mailman-Approved-At: Sat, 03 Oct 2020 09:25:53 +0000
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=wiRu/UNA0pjlrtebSlMYi06x0VP2UdPXkT2G8Mphkow=;
+ b=ZwCvSV4vaXSzZ+9fvFkzRWTAZ8PsdIbu2AY4dn9FYzmsPUYcdYVwiqd13kyOEQCdve
+ DREZb+Kf36Wtc0UohjbywQHUAktTI3XMQypHtREXMSe0s6itJAUnmlV1Ey4Ku+eA/Tqh
+ dBpRhgWSxCHVB5V28VDnYLKs0vH+ouahZLbWxtaeRd20Nx9ZnFM7ksH/TAYFfTDqcYep
+ fyJRYyKUbWHmXnbqZ0ZIFLY0BZaiJ51s07ZHtujqSeK6TdTWn4wIiCThtSJModyutbey
+ tCEUBLbS8TaNB+02E7lJfCWCdWdjjc8VuPFxuJUiNGq/RIzDVVl0ShjGu7H3DhRIAjCy
+ MPqA==
+X-Gm-Message-State: AOAM532xYRjz5jGmS/qKiZKAcomg+HeiKCy2T90XL0AZd+vdNgEZnE2r
+ OXfou3BlLy3Xt6tZ7JnH/24=
+X-Google-Smtp-Source: ABdhPJz14hUFLw7fCqVAA9pOdA4Sq3LEc7INoEX7Lx5q+AmDdf1Cl+/cjL3SumAP0xn9ifG93rM2ng==
+X-Received: by 2002:a17:906:af10:: with SMTP id
+ lx16mr987391ejb.400.1601794173230; 
+ Sat, 03 Oct 2020 23:49:33 -0700 (PDT)
+Received: from felia.fritz.box ([2001:16b8:2d26:f700:8d52:b46b:d125:e62a])
+ by smtp.gmail.com with ESMTPSA id x12sm5840602edq.77.2020.10.03.23.49.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 03 Oct 2020 23:49:32 -0700 (PDT)
+From: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+	Huang Rui <ray.huang@amd.com>
+Subject: [PATCH] drm/amdgpu: remove unintended executable mode
+Date: Sun,  4 Oct 2020 08:49:17 +0200
+Message-Id: <20201004064917.17941-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Mailman-Approved-At: Mon, 05 Oct 2020 07:29:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,33 +63,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lukas Bulwahn <lukas.bulwahn@gmail.com>, dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-syzbot has bisected this issue to:
+Besides the intended change, commit 3437f5f6c979 ("drm/amdgpu: add gfx
+support for van gogh (v2)") also set the source files gfx_v10_0.c to be
+executable, i.e., changed from old mode 644 to new mode 755.
 
-commit 135f971181d779c96ff3725c1a350a721785cc66
-Author: Alex Deucher <alexander.deucher@amd.com>
-Date:   Mon Nov 20 22:49:53 2017 +0000
+Set to the usual mode for source and headers files. No functional change.
 
-    drm/amdgpu: don't skip attributes when powerplay is enabled
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+---
+applies cleanly on next-20201002
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=120f55bd900000
-start commit:   fcadab74 Merge tag 'drm-fixes-2020-10-01-1' of git://anong..
-git tree:       upstream
-final oops:     https://syzkaller.appspot.com/x/report.txt?x=110f55bd900000
-console output: https://syzkaller.appspot.com/x/log.txt?x=160f55bd900000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=4e672827d2ffab1f
-dashboard link: https://syzkaller.appspot.com/bug?extid=09d1cd2f71e6dd3bfd2c
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=161112eb900000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=124fc533900000
+Alex, please pick this minor non-urgent cleanup patch on your -next tree.
 
-Reported-by: syzbot+09d1cd2f71e6dd3bfd2c@syzkaller.appspotmail.com
-Fixes: 135f971181d7 ("drm/amdgpu: don't skip attributes when powerplay is enabled")
+Huang Rui, please ack. You might want to check your development environment
+introducing those executable modes on files.
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ mode change 100755 => 100644 drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+old mode 100755
+new mode 100644
+-- 
+2.17.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
