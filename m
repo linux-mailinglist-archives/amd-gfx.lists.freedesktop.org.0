@@ -2,85 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A11F2845CC
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Oct 2020 08:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0231284B9F
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Oct 2020 14:29:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C667A6E106;
-	Tue,  6 Oct 2020 06:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7A06E196;
+	Tue,  6 Oct 2020 12:29:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2059.outbound.protection.outlook.com [40.107.237.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C13F6E106
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 06:05:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FrM6xZWPFRdhztMmj3+O1guWc9t3+ASyIIMWQwrh9DLoDDqYS+yJmvyCs3UMVsQuujRLHYzzBweH2dVYZzXEkdiZhK3umI+iPVnp1YVTSN6KOcYNIWzbzk+ZID2KU9zcsc0cgM5SNSnJu9N1polOWI7frV2ByoOeBfRNYtc/KlMGQOjBJ6kR2bvf25s5SDpRhsGy+l7/8IcIl8vNY867tMN7IrOrItxPZIEH4T/LAoPuhWf8vUSYi0Ja2cZ8GaTnWKKL/msuCmTcDPrH+7sl7AmDb/Rp7vDln0eNALuWGJJbMgY3hLkBc5rdaqKDEfeWgUoGdjDLqRQBtux7PlLGWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6/UQXn9wdF4OABIDEhOkmBjIGsUK0nBTyFb6UFviJX8=;
- b=YNNd3say+cu6b+Ah29XYLAnLFPeZHeCzCYP8Ps/QZSItraa7Mw6hMp3Uk1fNtnLQzztKavLYO5uSxATsiApw+34tTWpluzXrUeFsZZ4wJjc8US07Clrk8WwXPlNKkDFj6yitzsDQJr1TvXIsTwra3eV92mFr/BvnerjTFU/heCt0p9Evf0d8zR7X6bqNTkSMX5PxzO2T3eud7MzRNC11i/flNtSFATBggKbmfmnuEmBMxttENPH64Klvq4tfml9Dkth5F+DwPxiNY+w4dBXwKAllR6N9gqOMaSBruCN+v8xSabgKL48MogMEjveIDObpKSfWUPHwO1wkgbiZeybPrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6/UQXn9wdF4OABIDEhOkmBjIGsUK0nBTyFb6UFviJX8=;
- b=oBHuKXsQlh6tsJCtXpD2HLFZ9MLblzVOpCT6Pp6rAmmuTvQhlduxVfiK6fDBQcFlpyZirRstnryIKL0TVkIU7vgsJNR0+0ZKShaDjK3m5NoNDSKtAUkaWmcswMSuToT4XCkwroBjNUjChQ88kKnwXH1pwjqZzto1VezzbJkODxo=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB3126.namprd12.prod.outlook.com (2603:10b6:a03:df::28)
- by BYAPR12MB3510.namprd12.prod.outlook.com (2603:10b6:a03:13a::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.39; Tue, 6 Oct
- 2020 06:05:43 +0000
-Received: from BYAPR12MB3126.namprd12.prod.outlook.com
- ([fe80::98f2:8459:fb8d:577f]) by BYAPR12MB3126.namprd12.prod.outlook.com
- ([fe80::98f2:8459:fb8d:577f%7]) with mapi id 15.20.3433.044; Tue, 6 Oct 2020
- 06:05:43 +0000
-From: Shashank Sharma <shashank.sharma@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: Add error message for DAC setup failure
-Date: Tue,  6 Oct 2020 11:35:15 +0530
-Message-Id: <20201006060515.4622-1-shashank.sharma@amd.com>
-X-Mailer: git-send-email 2.25.1
-X-Originating-IP: [165.204.158.249]
-X-ClientProxiedBy: BM1PR01CA0161.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:68::31) To BYAPR12MB3126.namprd12.prod.outlook.com
- (2603:10b6:a03:df::28)
+Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFB88913B;
+ Tue,  6 Oct 2020 08:48:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+ s=20170329; 
+ h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
+ bh=B6IlmCjekqif+t616Ax228HYiFyy1jBul9azecGXGdU=; 
+ b=geZKcgdaXju0bL8gRGOeUyvkSMBYsw+tzWrb2nldtRplQlj96kTyLTzKGWzVLBDvg3Vv3DuvC7t3x7LRJisRpV05u2vagDLVV/Qfluc2YoeteExiYTJlj+4hJZrGk/M0km8hQ911sN1+MKqfth/5BTpVRr6yEBZgWk03/rPn9TvD895jFTHmqthkwD2t1hob4rMGgbe/sRpG0XkGXBWoLZ2WpxjFlEr2zROlcPj+IEyAvdcjTZGtn6ayTL36IlgoHwKYWcoM2sbvTgEyIs9KqAeNKU63fQOuXKJjKCVxxIFMGOdURWZ7lorJwn1O3SmT/PgAYJBnv2P4pqs4VNa8iw==;
+Received: from 11.red-79-157-245.dynamicip.rima-tde.net ([79.157.245.11]
+ helo=fourier) by fanzine.igalia.com with esmtpsa 
+ (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
+ id 1kPidq-0005Cc-Uk; Tue, 06 Oct 2020 10:48:15 +0200
+Message-ID: <ee5153f7dc037ab96aff6795c5514da3fea3af94.camel@igalia.com>
+Subject: Re: [Freedreno] [RESEND] Requests For Proposals for hosting XDC2021
+ are now open
+From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
+To: "members@x.org" <members@x.org>, "events@lists.x.org"
+ <events@lists.x.org>,  "xorg-devel@lists.freedesktop.org"
+ <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
+ <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org"
+ <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org"
+ <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
+ <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
+ <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Date: Tue, 06 Oct 2020 10:48:04 +0200
+In-Reply-To: <a171fea35e5dab03873876e221ab15b74ab24d62.camel@redhat.com>
+References: <a171fea35e5dab03873876e221ab15b74ab24d62.camel@redhat.com>
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from shashanks-target.amd.com (165.204.158.249) by
- BM1PR01CA0161.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:68::31) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3433.35 via Frontend Transport; Tue, 6 Oct 2020 06:05:41 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: a601e124-ca28-4193-16c7-08d869bddbc6
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3510:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR12MB3510372CF32EFD9C16534AF4F20D0@BYAPR12MB3510.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1247;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /jaZzCppLrKjfuOQyAOq2QLVlNfqhl50zhkV2dV8WQbWsYKxZnRao4ddb0qqUxCSK/Q9/EcQQJtEM4TQXDySOmXBPED5eN3f9nEq9MhpDB9xPAeiE9svyG4aX2KVgTBx0npdqvaUmk/IxSThQia8ahka98jSxbtrH+Vm5OlBE3cE32Vc96ZuvPelDgimNNYUBJn0IQTp0U4hUnA/9QGFMY0h2BrlO77xEqzwX/ybETY2xLfxxHeCQHM9dpOkVp3fPs6Gu8yFWr2Nax3k7G3Za0YfOZQN8+Uz+Cu2zoXtV8WcSRzFYuJkgorxE29TF20+/g0OeoL5jX8/emf38c4dvw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB3126.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(396003)(39860400002)(346002)(136003)(366004)(4326008)(83380400001)(44832011)(8936002)(478600001)(6486002)(15650500001)(2616005)(5660300002)(956004)(52116002)(6666004)(36756003)(1076003)(66946007)(8676002)(16526019)(2906002)(186003)(316002)(66556008)(6916009)(66476007)(86362001)(7696005)(26005)(54906003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: C/79V/H5nkX7nTlKG9PB9vxp3INPNlzSqRuklRK31A20M3WtwaemUmlAZLYgb3/n5bFT18tRsLXqqpPLvhg/A3qtAgz6S0USC0xMs37PosXDJTbtlEyVMYhMX+qaGuMyot2ebOSOnszCt7LyPAwedM36lyeb4OArLHBVDWEGhGzxU45nCpYulQ5WaFutA6MVP08JaDjusRAz3jMXQ1O1X4jlBx+JrLTIbK/Lnw5M2bHqWXv9+rJtpbL7kW/jP3ShLxynerUkIVRKKkYiil1EDlJbW86oBdjPy46ntjbNjM8xj+F6UYjBaY4wGdDB8+FbZxrWP0yxSbE0t2T5t/na9BZnpnciv9dZHHvB8TJgHIqi/MvBgYvAPJUXxDvjA7V9q2ECMaKkspcIDaf43sJ85oQHBrgdQ9MZrRc7yzeedn3LDnQ4XTjsZlVd2iUmf73T3xmtg5lJ8jXxqjhJcvvaW7Y1H7OZCBaNAVN5raWUe+pWn2d9ZQ2J0E2DWxK7K2ljWAmFo6zS491GaUgZIboceuUQ37/fR28WAly8UilP8Ao26k9TtzPPM8OkQmXlZgQQQvzb5CWEOMgyTFvSBYgRkiNfFsINvXNz5E5NMu6BeBv+XYjxBjKm+G5UXnbAOck/izlnii/yd8f0WayzdCSV6Q==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a601e124-ca28-4193-16c7-08d869bddbc6
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3126.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2020 06:05:43.4780 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fbaJlGnXb6ZgQAQgMsebMO7Rwg2HSHwV5ZAUeydLshghnhtoQ0wP426vZwbouKm4fq5ipDAPjTkS3DJAT8kqkg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3510
+X-Mailman-Approved-At: Tue, 06 Oct 2020 12:29:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,42 +53,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Shashank Sharma <shashank.sharma@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "X.Org Foundation Board" <board@foundation.x.org>
+Content-Type: multipart/mixed; boundary="===============0346984706=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch adds a return value check and an error message to
-highlight the DAC setup failure case during encoder DPMS
-operation.
 
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/atombios_encoders.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+--===============0346984706==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-i8Rt81kDKlWriGrdIRjk"
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-index 1e94a9b652f7..3779f933564b 100644
---- a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-+++ b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-@@ -341,8 +341,8 @@ amdgpu_atombios_encoder_setup_dac(struct drm_encoder *encoder, int action)
- 	args.ucDacStandard = ATOM_DAC1_PS2;
- 	args.usPixelClock = cpu_to_le16(amdgpu_encoder->pixel_clock / 10);
- 
--	amdgpu_atom_execute_table(adev->mode_info.atom_context, index, (uint32_t *)&args);
--
-+	if (amdgpu_atom_execute_table(adev->mode_info.atom_context, index, (uint32_t *)&args))
-+		DRM_ERROR("AMDGPU: dac setup failed\n");
- }
- 
- static u8 amdgpu_atombios_encoder_get_bpc(struct drm_encoder *encoder)
--- 
-2.25.1
+
+--=-i8Rt81kDKlWriGrdIRjk
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Deadline is November 1st, just in a few weeks!
+
+Don't forget to submit your XDC 2021 proposal to board@foundation.x.org
+.
+
+Sam
+
+On Thu, 2020-09-03 at 12:16 -0400, Lyude Paul wrote:
+> (Including a bunch more emails in the To: that got missed the first
+> time)
+>=20
+> Hello everyone!
+>=20
+> The X.org board is soliciting proposals to host XDC in 2021. Since
+> XDC2020 is being held virtually this year, we've decided to host in
+> either North America or Europe. However, the board is open to other
+> locations, especially if there's an interesting co-location with
+> another
+> conference.
+>=20
+> Of course though, due to the ongoing COVID-19 pandemic it's not yet
+> clear whether or not it will be possible to host XDC2021 in person.
+> Because of this, we would like to make it clear that sponsors should
+> prepare for both the possibility of an in person conference, and the
+> possibility of a virtual conference. We will work with organizers on
+> coming up with a deadline for deciding whether or not we'll be going
+> virtual, likely sometime around July.
+>=20
+> If you're considering hosting XDC, we've assembled a wiki page with
+> what's generally expected and needed:
+>=20
+> https://www.x.org/wiki/Events/RFP/
+>=20
+> When submitting your proposal, please make sure to include at least
+> the
+> key information about the potential location in question, possible
+> dates
+> along with estimated costs. Proposals can be submitted to board at
+> foundation.x.org until the deadline of November 1st. Additionally, an
+> quirk early heads-up to the board if you're considering hosting would
+> be
+> appreciated, in case we need to adjust the schedule a bit. Also,
+> earlier
+> is better since there generally will be a bit of Q&A with organizers.
+>=20
+> And if you just have some questions about what organizing XDC
+> entails,
+> please feel free to chat with previous organizers, or someone from
+> the
+> board.
+
+--=-i8Rt81kDKlWriGrdIRjk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAl98L0QACgkQf/S6MvF9
+w0MB5Q//ZfxA9TMZbNgz2V21T4oNCgQg7w3bkzftP1l10UHVSfnpbz3mKGctMm6K
+csjdcmQgVJ6n4gs2VlDGhluukN5hMnBQPe+py1Oyu7SmBYyB6TjhjExHGnd/TX1j
+G/KqpyAnXCZOE1JzuK4u4fmLenGbzqywXgciRuWria6QxG0z06K+8yjZMMk3C1Dv
+O0dRGMt7SLzXwojjWSZQqsY50wBeafdfsP5l1encOn8/KEqSIhf2fnnrKhdt24UT
+8Sravrz1bN0MaCEVFqA51Vq5/RxgA/VY8+VVP+fXRdJdvoJzozlTr7Oj1OtIz9KC
+2aJp+BzV9zlVyPyEOe9aFJUeCUpa8PulNSi6Yuoy6l8Bbqu1KqdGC8rOT2A2eFHo
+yIxHkXDBr+PTb59k6tXzCL6usuUgNFcExnJxIjEJ1XZLscm5hq2aGb9EzeiSYPVE
+Y+W0/x5EyoIGzd1owJQM1GqrXnDqcyNiSAqi/6J7Gae8FS4k4qTg8nRu6wxzYNnt
+aJ4ZuOplyLrFAnP+Wz1b80S/i5kl6sVpopytFMp3biLTXg6z1FfnCKiF1u9SrHYM
+P7c4WS8L3aWrOLh0eZI2Q1Lfiu8EPeAWk4Dkt6gBkjdHbDmKuOZnLgm7rStu4gWm
+th2pTohkIOJtv2QRJ1ysnK5QaR1294jB+fUfLN+PultZiPunLEA=
+=4OiG
+-----END PGP SIGNATURE-----
+
+--=-i8Rt81kDKlWriGrdIRjk--
+
+
+--===============0346984706==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0346984706==--
+
