@@ -1,57 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E76286448
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 18:32:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4AEB28644A
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 18:32:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 870EA6E959;
-	Wed,  7 Oct 2020 16:32:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E8C56E95C;
+	Wed,  7 Oct 2020 16:32:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com
- [IPv6:2607:f8b0:4864:20::843])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4E226E959
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 16:32:13 +0000 (UTC)
-Received: by mail-qt1-x843.google.com with SMTP id r8so2364569qtp.13
- for <amd-gfx@lists.freedesktop.org>; Wed, 07 Oct 2020 09:32:13 -0700 (PDT)
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A4F66E95B
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 16:32:15 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id j22so2395391qtj.8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 07 Oct 2020 09:32:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=6peItMIaKEiZ8unFE6VAIznFDsqwl4a1bkMOfJl4f6U=;
- b=gkG7aUpvSkpc2KK1umSD8DYP01QSnRkCB7PQY2QGd/RsLY0riEgppIKkL1j26lHQvE
- 89aEz0cojukh7OMF16rWf3XZQNRHrw4MIoFXAJh9FSD1SjeJRShSRZ1yUuBtClFK4Xan
- RYSyl+UwAlv713Pmc3DJRnazW9ab2raVRE0m9FFSmJ8K09RyEMJSuFIzdOBQKInSMcx2
- ncbjfWo1Q9cI4mN83sa2Ex1rzFjRgWcHkCB/88RrckACaDkofsRaM2c2gPt21Cej4YQS
- Jom7VcWfBag73XLqwBOl1GREUIIP/S9vLezzmE/HhTwIn5S7qSvcFfcSSa15J5IBRi9q
- DcHQ==
+ bh=jzBBcKoRa6HCKMJoi6QM7/xAPKNDpw4I0Ie5Y9Fl6u0=;
+ b=T25vxt20bg4ELsqZWmWNVuLT58EqRn6TUFdkjFMDvRUG3RfbieRvn5tFyDXNshJlST
+ phwNNK7CU8tRd5h+Z9MjFtn/EMZSxdC4G66H2XQWMvFp1WGxzIbGhRqeB84FCn4Wtqtj
+ YK7OgA59omz1nLfqHt61F8fH2G/GG7LEiOR5KLT6rWewQAl15ML9BKQKWpOU1fM4XkIe
+ GplKH2iN/vkvxIDO72ixcBDOlUzyBi0RaZbWyzwikwzA39YAr5JV6NaZCW9PFkxUVWaY
+ vDyRgJRM0ZdV6J8tkT+g0CRt4wRCdKvYenFw1Yq6P6fjLt/59h9aa6DAD5VwgwDk66K2
+ RcsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=6peItMIaKEiZ8unFE6VAIznFDsqwl4a1bkMOfJl4f6U=;
- b=ToCFOI38EwyVFscEWsuXLoUJyvWjmidHaNZY10v7oVxZSJiJDy+mEfoNor2T9xpVtd
- 7LtCzpMuY+qqS7DVGuFNfgiSSFfEW7saRuCmVUlQJntIito29INnquQz4/Ju1ctkyTxY
- fQnDeh5VL7t/gbauAnNao4X5MgEbjgfkbhGPPmGzRJ+a3JQ5uySQQvYarts80Tmqz3wS
- eWC85i/bAMT8EbNFa1EdeWT7uJ1augzkhF6CqvCXwKPawGT+gleprHGwenD0NbgqCs04
- sbpTxepiKLU9Wpv8/lj6+raCgCCvbkdWMsT8Ry5khn6ZullcFu2eE04iOtiBzHXzLfor
- dFJg==
-X-Gm-Message-State: AOAM5313mORova5KeyYo7XK38Y4FYYMk/HXKcL1htnRiA6NpyA+nxhgh
- JX27YXBpkJOfVQdfNWsuzZgeqayDC94=
-X-Google-Smtp-Source: ABdhPJwE8PPw09YLyzWNOcUmq629L5sj6ZLDV3wlNaQOTri/985tkFp3k4feTYWJQCLd83MfgjxQqw==
-X-Received: by 2002:ac8:2d81:: with SMTP id p1mr4162735qta.261.1602088332823; 
- Wed, 07 Oct 2020 09:32:12 -0700 (PDT)
+ bh=jzBBcKoRa6HCKMJoi6QM7/xAPKNDpw4I0Ie5Y9Fl6u0=;
+ b=Zq5/ny4zc/YISFw+dZGEnuXC7BI28jBPQN3x3QvOFUX/7JuuxOY0JBUAQB0koh04OV
+ R65i8l3Ednu/Lr1WeqpK6SNrUroytrXmiMv66OlvbeDFJPoOqcuSj0flK97aA0q1GHEw
+ fVXxbqCc0L+N/rmHLHmyYZidV26tybuzA4hyDvnmcpPtndLKuGlYmBjJsZC/UYTVF0M7
+ ljbMGD+qhPOQn5v0LxvXqsftWuvl9CF5T1vDRTQ/+Fnmbs+T0mRVAFHwj75qe+suMu4N
+ H6CKCXpKtR/UKV+nUs6OUviospkRhBlKzN3RIUUQTFQ28iM5tp9hQZnRNXPrIcXQID+g
+ RnvA==
+X-Gm-Message-State: AOAM5316juFz6nXDqjVkUUvHrvm/hhf5CJk6vv89l+ftq9eNF52EpFlG
+ CMHkS8vGQsLGnsH8mgwDu0WhYQfCkRw=
+X-Google-Smtp-Source: ABdhPJzC5ozZ8LT26oJFZve0VfOVG40ukSd39vrZJdgrbyVN8tPlQOy3bG6oNNMpLxlW0k5LQJU2Zw==
+X-Received: by 2002:ac8:1246:: with SMTP id g6mr4106955qtj.353.1602088334011; 
+ Wed, 07 Oct 2020 09:32:14 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id l19sm1725576qkk.99.2020.10.07.09.32.11
+ by smtp.gmail.com with ESMTPSA id l19sm1725576qkk.99.2020.10.07.09.32.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 07 Oct 2020 09:32:12 -0700 (PDT)
+ Wed, 07 Oct 2020 09:32:13 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 16/50] drm/amdgpu: configure dimgrey_cavefish gfx according to
- gfx 10.3's definition
-Date: Wed,  7 Oct 2020 12:31:01 -0400
-Message-Id: <20201007163135.1944186-17-alexander.deucher@amd.com>
+Subject: [PATCH 17/50] drm/amdgpu: add virtual display support for
+ dimgrey_cavefish
+Date: Wed,  7 Oct 2020 12:31:02 -0400
+Message-Id: <20201007163135.1944186-18-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20201007163135.1944186-1-alexander.deucher@amd.com>
 References: <20201007163135.1944186-1-alexander.deucher@amd.com>
@@ -77,93 +77,29 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Tao Zhou <tao.zhou1@amd.com>
 
-The gfx version of dimgrey_cavefish is 10.3, identical to sienna_cichlid, follow the way
-of sienna_cichlid.
+Add virtual ip block for dimgrey_cavefish.
 
 Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Reviewed-by: Jiansong Chen <Jiansong.Chen@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/nv.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index 2dfc4efa92f0..6ee25dcccafd 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -5880,6 +5880,7 @@ static void gfx_v10_0_cp_gfx_set_doorbell(struct amdgpu_device *adev,
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
- 	case CHIP_VANGOGH:
-+	case CHIP_DIMGREY_CAVEFISH:
- 		tmp = REG_SET_FIELD(0, CP_RB_DOORBELL_RANGE_LOWER,
- 				    DOORBELL_RANGE_LOWER_Sienna_Cichlid, ring->doorbell_index);
- 		WREG32_SOC15(GC, 0, mmCP_RB_DOORBELL_RANGE_LOWER, tmp);
-@@ -6014,6 +6015,7 @@ static void gfx_v10_0_cp_compute_enable(struct amdgpu_device *adev, bool enable)
- 		case CHIP_SIENNA_CICHLID:
- 		case CHIP_NAVY_FLOUNDER:
- 		case CHIP_VANGOGH:
-+		case CHIP_DIMGREY_CAVEFISH:
- 			WREG32_SOC15(GC, 0, mmCP_MEC_CNTL_Sienna_Cichlid, 0);
- 			break;
- 		default:
-@@ -6025,6 +6027,7 @@ static void gfx_v10_0_cp_compute_enable(struct amdgpu_device *adev, bool enable)
- 		case CHIP_SIENNA_CICHLID:
- 		case CHIP_NAVY_FLOUNDER:
- 		case CHIP_VANGOGH:
-+		case CHIP_DIMGREY_CAVEFISH:
- 			WREG32_SOC15(GC, 0, mmCP_MEC_CNTL_Sienna_Cichlid,
- 				     (CP_MEC_CNTL__MEC_ME1_HALT_MASK |
- 				      CP_MEC_CNTL__MEC_ME2_HALT_MASK));
-@@ -6120,6 +6123,7 @@ static void gfx_v10_0_kiq_setting(struct amdgpu_ring *ring)
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
- 	case CHIP_VANGOGH:
-+	case CHIP_DIMGREY_CAVEFISH:
- 		tmp = RREG32_SOC15(GC, 0, mmRLC_CP_SCHEDULERS_Sienna_Cichlid);
- 		tmp &= 0xffffff00;
- 		tmp |= (ring->me << 5) | (ring->pipe << 3) | (ring->queue);
-@@ -6828,6 +6832,7 @@ static bool gfx_v10_0_check_grbm_cam_remapping(struct amdgpu_device *adev)
- 	switch (adev->asic_type) {
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
-+	case CHIP_DIMGREY_CAVEFISH:
- 		data = RREG32_SOC15(GC, 0, mmVGT_ESGS_RING_SIZE_Sienna_Cichlid);
- 		WREG32_SOC15(GC, 0, mmVGT_ESGS_RING_SIZE_Sienna_Cichlid, 0);
- 		WREG32_SOC15(GC, 0, mmVGT_ESGS_RING_SIZE_UMD, pattern);
-@@ -6870,6 +6875,7 @@ static void gfx_v10_0_setup_grbm_cam_remapping(struct amdgpu_device *adev)
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
- 	case CHIP_VANGOGH:
-+	case CHIP_DIMGREY_CAVEFISH:
- 		/* mmVGT_TF_RING_SIZE_UMD -> mmVGT_TF_RING_SIZE */
- 		data = (SOC15_REG_OFFSET(GC, 0, mmVGT_TF_RING_SIZE_UMD) <<
- 			GRBM_CAM_DATA__CAM_ADDR__SHIFT) |
-@@ -7165,6 +7171,7 @@ static int gfx_v10_0_soft_reset(void *handle)
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
- 	case CHIP_VANGOGH:
-+	case CHIP_DIMGREY_CAVEFISH:
- 		if (REG_GET_FIELD(tmp, GRBM_STATUS2, RLC_BUSY_Sienna_Cichlid))
- 			grbm_soft_reset = REG_SET_FIELD(grbm_soft_reset,
- 							GRBM_SOFT_RESET,
-@@ -7320,6 +7327,7 @@ static void gfx_v10_0_set_safe_mode(struct amdgpu_device *adev)
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
- 	case CHIP_VANGOGH:
-+	case CHIP_DIMGREY_CAVEFISH:
- 		WREG32_SOC15(GC, 0, mmRLC_SAFE_MODE_Sienna_Cichlid, data);
- 
- 		/* wait for RLC_SAFE_MODE */
-@@ -7353,6 +7361,7 @@ static void gfx_v10_0_unset_safe_mode(struct amdgpu_device *adev)
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
- 	case CHIP_VANGOGH:
-+	case CHIP_DIMGREY_CAVEFISH:
- 		WREG32_SOC15(GC, 0, mmRLC_SAFE_MODE_Sienna_Cichlid, data);
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 2974f45c4571..90ff9cdcb924 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -630,6 +630,8 @@ int nv_set_ip_blocks(struct amdgpu_device *adev)
+ 		amdgpu_device_ip_block_add(adev, &nv_common_ip_block);
+ 		amdgpu_device_ip_block_add(adev, &gmc_v10_0_ip_block);
+ 		amdgpu_device_ip_block_add(adev, &navi10_ih_ip_block);
++		if (adev->enable_virtual_display || amdgpu_sriov_vf(adev))
++			amdgpu_device_ip_block_add(adev, &dce_virtual_ip_block);
+ 		amdgpu_device_ip_block_add(adev, &gfx_v10_0_ip_block);
+ 		amdgpu_device_ip_block_add(adev, &sdma_v5_2_ip_block);
  		break;
- 	default:
 -- 
 2.25.4
 
