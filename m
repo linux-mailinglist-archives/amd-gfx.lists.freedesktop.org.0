@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 348A6285F5A
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 14:42:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C11285F5C
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 14:42:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D246B6E8D5;
-	Wed,  7 Oct 2020 12:42:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3E0B6E8D9;
+	Wed,  7 Oct 2020 12:42:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2064.outbound.protection.outlook.com [40.107.102.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E77CF893D5
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 12:42:30 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2047.outbound.protection.outlook.com [40.107.223.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 088046E8D8
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 12:42:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bRnyc7ItIlzSK2b9HcSBjglNT8I5gGGNEuY/6Geh+92LSjIG8on2jGRbcll9tvdm+EZwCRdechjU8jhJewVp7G3/I2yXJqQC4/fK9mmkm/epjoo2Vu5wTQibhvYpqjYavkoJaOKjs6Ev64Xge3nocLS1fR3mljaaoIeYkTvwPxo15+QpmUk3jwOE3A1RBeXQca50Jt+5XO7uFGCHkoBt1N0DbzQFoH3QTgJ321+nOrRVRxa89muB3PZYlZsA9t3hDrMZ36BFTHBxm1WT668b/W44Wum1WIABxnE0KaOcQTSXh7mAqpuWIHhyV9FnxhRcWf3vqKnPbYyEJEZOCnwzhw==
+ b=nmZIYJgpBkapt8/BRwoiWGtRHbd1LeThuhxtqllfjxP1uzzOBj1dvn2vU/gCIJIyhx//tNcNszbz7CkiFUFKmGK+YnRbF6O/AcVfdFdOm9TdIw0qODvUaWRfTAM8QT3JFDm6sWVtq1zwICuo3Rvt4AAxnPpKXeoBOJ9duKzuE8i39BxnEiZR0NayGei2X61gZ6F7VjQENnv2x9mfsLA/eN94r1ntb5+GKVaZDB5lKO0UAXsZZkeHT97zUMpXd+yAN033e643pXw4AGyhPq3q1Qub4jzapguZHr2rOo0ibjW4csGZy4Yn/mepNhl82yjaX8UAjlL49mhKaHi3uzQ/HQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=smR9du/tdowfPUxeD2r73j6ctz6VGWzroCi2FtJiWv4=;
- b=mMWvrLJt+UeSPr0ki0kXEyzC/kJuVKdoD/mygu5g5XpnEdd2oI2u0CUB0ET1km4SIGNe/Il8E5ePz/zFhVwPZN4Ta5n+F0a0EuAiu4XGB9j8yTywal46tiSIfvjfH4N3BFgWYRtq34ABLNfwgEhSi/yP4ntUr286Tklp/AMVO7oG54n34bXT3W4a1l1twNGZcsgE5HI304bCDOZMXHJTbTias2ASEr8xM8IV4EZ0RgRD5Xlh5JVZEP3tVa8+KrxjN/MNXJAcWUdN1vzUFsWvy/VI5an7qnjnlsvcoyW+cVLEI8Sj2+z+kjst3ye2F63RohQ7CoqhEX9cyvVbyKU6/g==
+ bh=+IuMhgKBLJJqaAuy8syMhxIR9XEK5tplBCAJfzpQ8Ag=;
+ b=V21q48T/IEnz8fR6mNk1MrL0aENMvn/n5nKBuXYRbJTp3+zqz1cJVBefGYmlw4Tv+L7IQxcTGTj/H/To6Jh3I3vCfRVEIJ5QmXhN+s8OQyf4YR3F1eMes+M3vBgnwQadKu2b8KyRddy1qbsh7DbQeFP2KZJkqXUxsO20k0YYZ7uE/0EgQujX0JoB6DgIzDW90sUoV4fWNJJA56CMiiITmO0y3T4q+eW/1fu6DV0ACAZ6TXTD09VyoiVCBOL7c0pwN6rHff6HwyVryZD1qpExkOdLZf0sa2xMf/o/QYyTFH4lVfKm1WKRZVUkXKpjUwpsoXS9Nn2HvI3naBvTQTssBQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
@@ -27,44 +27,44 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=smR9du/tdowfPUxeD2r73j6ctz6VGWzroCi2FtJiWv4=;
- b=TmZSxkAbuUFyF6nMQfXn3acwlGvHSqAYorPQlVpxSSGM0rvE+BbSGNgKBW+F+pQKa/YV/W5sHFXsEttltHo4/tBR8CxcEtUDZMYHSDTZkcjntEkaD7VN8grF1lYn1CCEyuD2enXw2pPO9JYw6gKr5y0/JK2hoVUCBbNcNtsF8Wo=
-Received: from DM5PR12CA0018.namprd12.prod.outlook.com (2603:10b6:4:1::28) by
- BN6PR12MB1252.namprd12.prod.outlook.com (2603:10b6:404:15::18) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3433.34; Wed, 7 Oct 2020 12:42:28 +0000
-Received: from DM6NAM11FT038.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:1:cafe::7a) by DM5PR12CA0018.outlook.office365.com
- (2603:10b6:4:1::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23 via Frontend
- Transport; Wed, 7 Oct 2020 12:42:28 +0000
+ bh=+IuMhgKBLJJqaAuy8syMhxIR9XEK5tplBCAJfzpQ8Ag=;
+ b=gar+cDFAv49etqmegng97gNvNCYYTfMINS77BbsRi1eWV91KfKQjPgs7M3L4AZkTXpl7WmqzG0L6la2TkaYNU2N8dY+tHtqxX7iUD6lW5G2z/DSdN1t0+z0omVeCCd/mdk+pYJJ3laAZwJhPh5e5wte+U2Hz/ZuuwlwdP2iPG14=
+Received: from CO1PR15CA0091.namprd15.prod.outlook.com (2603:10b6:101:21::11)
+ by SN6PR12MB4719.namprd12.prod.outlook.com (2603:10b6:805:e9::25)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.36; Wed, 7 Oct
+ 2020 12:42:30 +0000
+Received: from CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:101:21:cafe::d1) by CO1PR15CA0091.outlook.office365.com
+ (2603:10b6:101:21::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21 via Frontend
+ Transport; Wed, 7 Oct 2020 12:42:29 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=none action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- DM6NAM11FT038.mail.protection.outlook.com (10.13.173.137) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ CO1NAM11FT066.mail.protection.outlook.com (10.13.175.18) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3455.23 via Frontend Transport; Wed, 7 Oct 2020 12:42:28 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3455.23 via Frontend Transport; Wed, 7 Oct 2020 12:42:29 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 7 Oct 2020
- 07:42:27 -0500
+ 07:42:28 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 7 Oct 2020
- 07:42:27 -0500
+ 07:42:28 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 7 Oct 2020 07:42:26 -0500
+ Transport; Wed, 7 Oct 2020 07:42:27 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/12] drm/amd/display: add dcn21 bw validation
-Date: Wed, 7 Oct 2020 08:42:15 -0400
-Message-ID: <20201007124224.18789-4-aurabindo.pillai@amd.com>
+Subject: [PATCH 04/12] drm/amd/display: enable odm + full screen mpo on dcn21
+Date: Wed, 7 Oct 2020 08:42:16 -0400
+Message-ID: <20201007124224.18789-5-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201007124224.18789-1-aurabindo.pillai@amd.com>
 References: <20201007124224.18789-1-aurabindo.pillai@amd.com>
@@ -72,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6a20f215-447b-4fed-31d5-08d86abe7360
-X-MS-TrafficTypeDiagnostic: BN6PR12MB1252:
-X-Microsoft-Antispam-PRVS: <BN6PR12MB1252BF00544A88E2F43CB3D98B0A0@BN6PR12MB1252.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Office365-Filtering-Correlation-Id: 85b4a47d-538a-4458-bcd1-08d86abe73f8
+X-MS-TrafficTypeDiagnostic: SN6PR12MB4719:
+X-Microsoft-Antispam-PRVS: <SN6PR12MB47194554AB3AC7AB4008D4EB8B0A0@SN6PR12MB4719.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wfpYuhCXecYglmln0IUYt7WuzUwK3ITgOMoJFIpS/hltVpG7bC7K+NS6Rgb02kPBreOFZLxd++YJ6v34bCXujGgXLiC54YllEiGv2GDg99mFwtBE7ZBphmCYAnwYdDQHdEtgS4HMr5vEtVsaRLsw296kkXRrCepVaDKP2ydPsj/TDgo2kKK4JuT6qp4nR4XpaGQyePDcJTPfNAhN0Tbsj2mMzdWY/gQhipUZ028CY24vd3YWHs3nh25hLq6xD+PLa5Pm/xY4KtqI1yaB9KCLBqgkwwgjxnvVrKiuSTxlCqprygsXbSxQinn/wVV2kx7ecz0Wdr4uq5PQowKZxGBgznxSOgjoOqgLwN0FER1L/nuA3LAOnosJsMp+DLpIQB8j462QSAWQE/wmPaJ/RZ9Ypg==
+X-Microsoft-Antispam-Message-Info: 3D5018aRPp9MhUmYOZbkVrsGIUouGexC+wE4gAmOxw//pF1X6aztwfPWhqyMLmknWLERe+0XyQIc/MYwfXjjwtlFhM8Dw4kY0YLPGZ8DMMsdHcfgezf3QbZ0In8lP0pGoYbpIBFC/OefKcVpEv0Zbf4KvYungD8OsVTo1cGa16Hp76PJ9tVun8EP32idHd2GP9l2WcCxRoNAzIrWho9LmfnZF5ynr46o+rq6Z3gqOiuv/A6aSFGKmhP+Q1IU85bjscmnAZcoF0z7zotg911TI+SL2IOAA0LiA4IcOc4EAJ1itqG2Yu+0Ycg8lz2g7D8fbIOAyhJd/vPMbFWmbs4XWYbnTvjXUxp3oA40Dmmb+fmqF93gLFCr0VF9fLdRIy3Jrj2I7az/bm3ePFfhUHXDVQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(346002)(376002)(39860400002)(136003)(46966005)(70586007)(70206006)(1076003)(5660300002)(186003)(81166007)(6916009)(36756003)(426003)(356005)(336012)(2616005)(8936002)(82310400003)(478600001)(86362001)(83380400001)(44832011)(8676002)(54906003)(47076004)(4326008)(26005)(6666004)(2906002)(7696005)(316002)(82740400003);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(39860400002)(396003)(376002)(136003)(346002)(46966005)(86362001)(44832011)(2616005)(1076003)(316002)(6916009)(54906003)(82740400003)(5660300002)(6666004)(47076004)(478600001)(8676002)(36756003)(2906002)(81166007)(356005)(8936002)(70206006)(70586007)(26005)(82310400003)(4326008)(83380400001)(336012)(426003)(186003)(7696005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2020 12:42:28.3970 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a20f215-447b-4fed-31d5-08d86abe7360
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2020 12:42:29.3387 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85b4a47d-538a-4458-bcd1-08d86abe73f8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT038.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1252
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB4719
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,7 +104,8 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Eryk.Brol@amd.com,
+Cc: Sung Lee <sung.lee@amd.com>,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Eryk.Brol@amd.com,
  Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
  Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
@@ -114,181 +115,144 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-[Why&How]
-Create a separate dcn21_fast_validate_bw function for dcn21.
+[WHY & HOW]
+Enable ODM Combine + Fullscreen MPO on DCN2.1
+For lower power consumption in video use cases.
 
 Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Signed-off-by: Sung Lee <sung.lee@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../drm/amd/display/dc/dcn20/dcn20_resource.c |   2 +-
- .../drm/amd/display/dc/dcn20/dcn20_resource.h |   3 +
- .../drm/amd/display/dc/dcn21/dcn21_resource.c | 119 +++++++++++++++++-
- 3 files changed, 122 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  8 ++++++
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c | 14 +++++++++--
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c | 25 +++++++++++++++----
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c | 13 +++++++++-
+ 4 files changed, 52 insertions(+), 8 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index f240576a87a2..75b6aee1d664 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -1493,6 +1493,14 @@ bool dc_add_plane_to_context(
+ 			free_pipe->clock_source = tail_pipe->clock_source;
+ 			free_pipe->top_pipe = tail_pipe;
+ 			tail_pipe->bottom_pipe = free_pipe;
++			if (!free_pipe->next_odm_pipe && tail_pipe->next_odm_pipe && tail_pipe->next_odm_pipe->bottom_pipe) {
++				free_pipe->next_odm_pipe = tail_pipe->next_odm_pipe->bottom_pipe;
++				tail_pipe->next_odm_pipe->bottom_pipe->prev_odm_pipe = free_pipe;
++			}
++			if (!free_pipe->prev_odm_pipe && tail_pipe->prev_odm_pipe && tail_pipe->prev_odm_pipe->bottom_pipe) {
++				free_pipe->prev_odm_pipe = tail_pipe->prev_odm_pipe->bottom_pipe;
++				tail_pipe->prev_odm_pipe->bottom_pipe->next_odm_pipe = free_pipe;
++			}
+ 		}
+ 		head_pipe = head_pipe->next_odm_pipe;
+ 	}
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 1b3b6ba20d18..01fa8de8ff86 100644
+index 01fa8de8ff86..2e613960516a 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -2582,7 +2582,7 @@ struct pipe_ctx *dcn20_find_secondary_pipe(struct dc *dc,
- 	return secondary_pipe;
- }
+@@ -1882,9 +1882,16 @@ bool dcn20_split_stream_for_odm(
+ 		next_odm_pipe->next_odm_pipe = prev_odm_pipe->next_odm_pipe;
+ 		next_odm_pipe->next_odm_pipe->prev_odm_pipe = next_odm_pipe;
+ 	}
++	if (prev_odm_pipe->top_pipe && prev_odm_pipe->top_pipe->next_odm_pipe) {
++		prev_odm_pipe->top_pipe->next_odm_pipe->bottom_pipe = next_odm_pipe;
++		next_odm_pipe->top_pipe = prev_odm_pipe->top_pipe->next_odm_pipe;
++	}
++	if (prev_odm_pipe->bottom_pipe && prev_odm_pipe->bottom_pipe->next_odm_pipe) {
++		prev_odm_pipe->bottom_pipe->next_odm_pipe->top_pipe = next_odm_pipe;
++		next_odm_pipe->bottom_pipe = prev_odm_pipe->bottom_pipe->next_odm_pipe;
++	}
+ 	prev_odm_pipe->next_odm_pipe = next_odm_pipe;
+ 	next_odm_pipe->prev_odm_pipe = prev_odm_pipe;
+-	ASSERT(next_odm_pipe->top_pipe == NULL);
  
--static void dcn20_merge_pipes_for_validate(
-+void dcn20_merge_pipes_for_validate(
- 		struct dc *dc,
- 		struct dc_state *context)
- {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-index cdd39ee9761d..64bce14fefa3 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
-@@ -118,6 +118,9 @@ void dcn20_set_mcif_arb_params(
- 		display_e2e_pipe_params_st *pipes,
- 		int pipe_cnt);
- bool dcn20_validate_bandwidth(struct dc *dc, struct dc_state *context, bool fast_validate);
-+void dcn20_merge_pipes_for_validate(
-+		struct dc *dc,
-+		struct dc_state *context);
- int dcn20_validate_apply_pipe_split_flags(
- 		struct dc *dc,
- 		struct dc_state *context,
+ 	if (prev_odm_pipe->plane_state) {
+ 		struct scaler_data *sd = &prev_odm_pipe->plane_res.scl_data;
+@@ -1922,7 +1929,10 @@ bool dcn20_split_stream_for_odm(
+ 				sd->ratios.horz_c, sd->h_active - sd->recout.x));
+ 		sd->recout.x = 0;
+ 	}
+-	next_odm_pipe->stream_res.opp = pool->opps[next_odm_pipe->pipe_idx];
++	if (!next_odm_pipe->top_pipe)
++		next_odm_pipe->stream_res.opp = pool->opps[next_odm_pipe->pipe_idx];
++	else
++		next_odm_pipe->stream_res.opp = next_odm_pipe->top_pipe->stream_res.opp;
+ 	if (next_odm_pipe->stream->timing.flags.DSC == 1) {
+ 		dcn20_acquire_dsc(dc, res_ctx, &next_odm_pipe->stream_res.dsc, next_odm_pipe->pipe_idx);
+ 		ASSERT(next_odm_pipe->stream_res.dsc);
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 72cbc13ce3da..c5108029f75e 100644
+index c5108029f75e..8a85e07935b2 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -1171,6 +1171,123 @@ void dcn21_calculate_wm(
- }
+@@ -1205,6 +1205,26 @@ static bool dcn21_fast_validate_bw(
  
+ 	vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, NULL);
  
-+static bool dcn21_fast_validate_bw(
-+		struct dc *dc,
-+		struct dc_state *context,
-+		display_e2e_pipe_params_st *pipes,
-+		int *pipe_cnt_out,
-+		int *pipe_split_from,
-+		int *vlevel_out)
-+{
-+	bool out = false;
-+	int split[MAX_PIPES] = { 0 };
-+	int pipe_cnt, i, pipe_idx, vlevel;
-+
-+	ASSERT(pipes);
-+	if (!pipes)
-+		return false;
-+
-+	dcn20_merge_pipes_for_validate(dc, context);
-+
-+	pipe_cnt = dc->res_pool->funcs->populate_dml_pipes(dc, context, pipes);
-+
-+	*pipe_cnt_out = pipe_cnt;
-+
-+	if (!pipe_cnt) {
-+		out = true;
-+		goto validate_out;
-+	}
-+
-+	vlevel = dml_get_voltage_level(&context->bw_ctx.dml, pipes, pipe_cnt);
-+
-+	if (vlevel > context->bw_ctx.dml.soc.num_states)
-+		goto validate_fail;
-+
-+	vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, NULL);
-+
-+	/*initialize pipe_just_split_from to invalid idx*/
-+	for (i = 0; i < MAX_PIPES; i++)
-+		pipe_split_from[i] = -1;
-+
-+	for (i = 0, pipe_idx = -1; i < dc->res_pool->pipe_count; i++) {
++	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
 +		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
-+		struct pipe_ctx *hsplit_pipe = pipe->bottom_pipe;
++		struct pipe_ctx *mpo_pipe = pipe->bottom_pipe;
++		struct vba_vars_st *vba = &context->bw_ctx.dml.vba;
 +
-+		if (!pipe->stream || pipe_split_from[i] >= 0)
++		if (!pipe->stream)
 +			continue;
 +
-+		pipe_idx++;
-+
-+		if (!pipe->top_pipe && !pipe->plane_state && context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_idx]) {
-+			hsplit_pipe = dcn20_find_secondary_pipe(dc, &context->res_ctx, dc->res_pool, pipe);
-+			ASSERT(hsplit_pipe);
-+			if (!dcn20_split_stream_for_odm(
-+					dc, &context->res_ctx,
-+					pipe, hsplit_pipe))
-+				goto validate_fail;
-+			pipe_split_from[hsplit_pipe->pipe_idx] = pipe_idx;
-+			dcn20_build_mapped_resource(dc, context, pipe->stream);
-+		}
-+
-+		if (!pipe->plane_state)
-+			continue;
-+		/* Skip 2nd half of already split pipe */
-+		if (pipe->top_pipe && pipe->plane_state == pipe->top_pipe->plane_state)
-+			continue;
-+
-+		/* We do not support mpo + odm at the moment */
-+		if (hsplit_pipe && hsplit_pipe->plane_state != pipe->plane_state
-+				&& context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_idx])
++		/* We only support full screen mpo with ODM */
++		if (vba->ODMCombineEnabled[vba->pipe_plane[pipe_idx]] != dm_odm_combine_mode_disabled
++				&& pipe->plane_state && mpo_pipe
++				&& memcmp(&mpo_pipe->plane_res.scl_data.recout,
++						&pipe->plane_res.scl_data.recout,
++						sizeof(struct rect)) != 0) {
++			ASSERT(mpo_pipe->plane_state != pipe->plane_state);
 +			goto validate_fail;
-+
-+		if (split[i] == 2) {
-+			if (!hsplit_pipe || hsplit_pipe->plane_state != pipe->plane_state) {
-+				/* pipe not split previously needs split */
-+				hsplit_pipe = dcn20_find_secondary_pipe(dc, &context->res_ctx, dc->res_pool, pipe);
-+				ASSERT(hsplit_pipe);
-+				if (!hsplit_pipe) {
-+					context->bw_ctx.dml.vba.RequiredDPPCLK[vlevel][context->bw_ctx.dml.vba.maxMpcComb][pipe_idx] *= 2;
-+					continue;
-+				}
-+				if (context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_idx]) {
-+					if (!dcn20_split_stream_for_odm(
-+							dc, &context->res_ctx,
-+							pipe, hsplit_pipe))
-+						goto validate_fail;
-+					dcn20_build_mapped_resource(dc, context, pipe->stream);
-+				} else {
-+					dcn20_split_stream_for_mpc(
-+							&context->res_ctx, dc->res_pool,
-+							pipe, hsplit_pipe);
-+					resource_build_scaling_params(pipe);
-+					resource_build_scaling_params(hsplit_pipe);
-+				}
-+				pipe_split_from[hsplit_pipe->pipe_idx] = pipe_idx;
-+			}
-+		} else if (hsplit_pipe && hsplit_pipe->plane_state == pipe->plane_state) {
-+			/* merge should already have been done */
-+			ASSERT(0);
 +		}
-+	}
-+	/* Actual dsc count per stream dsc validation*/
-+	if (!dcn20_validate_dsc(dc, context)) {
-+		context->bw_ctx.dml.vba.ValidationStatus[context->bw_ctx.dml.vba.soc.num_states] =
-+				DML_FAIL_DSC_VALIDATION_FAILURE;
-+		goto validate_fail;
++		pipe_idx++;
 +	}
 +
-+	*vlevel_out = vlevel;
-+
-+	out = true;
-+	goto validate_out;
-+
-+validate_fail:
-+	out = false;
-+
-+validate_out:
-+	return out;
-+}
-+
- bool dcn21_validate_bandwidth(struct dc *dc, struct dc_state *context,
- 		bool fast_validate)
- {
-@@ -1189,7 +1306,7 @@ bool dcn21_validate_bandwidth(struct dc *dc, struct dc_state *context,
- 	/*Unsafe due to current pipe merge and split logic*/
- 	ASSERT(context != dc->current_state);
+ 	/*initialize pipe_just_split_from to invalid idx*/
+ 	for (i = 0; i < MAX_PIPES; i++)
+ 		pipe_split_from[i] = -1;
+@@ -1235,11 +1255,6 @@ static bool dcn21_fast_validate_bw(
+ 		if (pipe->top_pipe && pipe->plane_state == pipe->top_pipe->plane_state)
+ 			continue;
  
--	out = dcn20_fast_validate_bw(dc, context, pipes, &pipe_cnt, pipe_split_from, &vlevel);
-+	out = dcn21_fast_validate_bw(dc, context, pipes, &pipe_cnt, pipe_split_from, &vlevel);
+-		/* We do not support mpo + odm at the moment */
+-		if (hsplit_pipe && hsplit_pipe->plane_state != pipe->plane_state
+-				&& context->bw_ctx.dml.vba.ODMCombineEnabled[pipe_idx])
+-			goto validate_fail;
+-
+ 		if (split[i] == 2) {
+ 			if (!hsplit_pipe || hsplit_pipe->plane_state != pipe->plane_state) {
+ 				/* pipe not split previously needs split */
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index 783a1d7ae7d3..060c2e65718a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -1873,11 +1873,22 @@ static bool dcn30_split_stream_for_mpc_or_odm(
+ 			sec_pipe->next_odm_pipe = pri_pipe->next_odm_pipe;
+ 			sec_pipe->next_odm_pipe->prev_odm_pipe = sec_pipe;
+ 		}
++		if (pri_pipe->top_pipe && pri_pipe->top_pipe->next_odm_pipe) {
++			pri_pipe->top_pipe->next_odm_pipe->bottom_pipe = sec_pipe;
++			sec_pipe->top_pipe = pri_pipe->top_pipe->next_odm_pipe;
++		}
++		if (pri_pipe->bottom_pipe && pri_pipe->bottom_pipe->next_odm_pipe) {
++			pri_pipe->bottom_pipe->next_odm_pipe->top_pipe = sec_pipe;
++			sec_pipe->bottom_pipe = pri_pipe->bottom_pipe->next_odm_pipe;
++		}
+ 		pri_pipe->next_odm_pipe = sec_pipe;
+ 		sec_pipe->prev_odm_pipe = pri_pipe;
+ 		ASSERT(sec_pipe->top_pipe == NULL);
  
- 	if (pipe_cnt == 0)
- 		goto validate_out;
+-		sec_pipe->stream_res.opp = pool->opps[pipe_idx];
++		if (!sec_pipe->top_pipe)
++			sec_pipe->stream_res.opp = pool->opps[pipe_idx];
++		else
++			sec_pipe->stream_res.opp = sec_pipe->top_pipe->stream_res.opp;
+ 		if (sec_pipe->stream->timing.flags.DSC == 1) {
+ 			dcn20_acquire_dsc(dc, res_ctx, &sec_pipe->stream_res.dsc, pipe_idx);
+ 			ASSERT(sec_pipe->stream_res.dsc);
 -- 
 2.25.1
 
