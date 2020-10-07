@@ -1,57 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA0B28646B
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 18:32:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8051428646D
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 18:32:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 392BD6E977;
-	Wed,  7 Oct 2020 16:32:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B57A6E97B;
+	Wed,  7 Oct 2020 16:32:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
- [IPv6:2607:f8b0:4864:20::844])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 416C66E977
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 16:32:53 +0000 (UTC)
-Received: by mail-qt1-x844.google.com with SMTP id s47so2413826qth.4
- for <amd-gfx@lists.freedesktop.org>; Wed, 07 Oct 2020 09:32:53 -0700 (PDT)
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
+ [IPv6:2607:f8b0:4864:20::841])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64DA56E979
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 16:32:54 +0000 (UTC)
+Received: by mail-qt1-x841.google.com with SMTP id q26so2404704qtb.5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 07 Oct 2020 09:32:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Uc+GPRonU9krE6cPl2TjSfglb8hB+dxdrkfqSSEOhYo=;
- b=ertEqP5IVFPgNZno8Dtq05Dp8Swf/x/x5pn4xS3UvLao56xihD8226SJchyJrZnvM3
- ShlNFSj6ADIsndhUv1SxSvgviLqNLpUZZRpNFGBiFRmk82YR8f4/uJzpIWNV7slxOEpD
- HIaQ9GIMb6mpandUxiMioQedMS/7CVLmHCMkcYmURyA8rlj9Imr5onqoJDoDEbbYFWJD
- L1GqhYB2Qax51qDSdwG6v4YyDAYzEWM2/7gNrpTF6zh/514K9Bv5o6FUaR1MgOFYfdin
- 2LFaojjSXnkeJt7fTnTJU75DjL8m+2le23WhGRhwwlZfHC1c0upCqOSOf+fP2RhaSS8D
- bVEA==
+ bh=gBhcjXJbCCNxFoXu1vSSKtve6DrqmB2rIPOUF1DWRGg=;
+ b=t9bF0L2OfbMjIvLDgzDADQJPetN8RWCu5dpajiAJT/0P9cdqhumf5Qhph35ZlallKB
+ Pg3N8paWBUJMUPCD2e0rgxyGVMNVf1sIHonQiHL3tokyM98bGclRcWWQXwQRlZQG9XZ2
+ KPct/RRZbTg60vdp+C8Qxdf8r02xaDOFgz1/jREBB5xcjSRhNNkyj2vNmU4SAC+3qD8l
+ S8xfcMGahsL7/feeWmXEVXNLMv77sU9PpKYu5SyBlrQYH9vOZy2J3tVCRAWFaFlg3H2A
+ U+ZKbWz7kEy/BP5l9Zn96PuPHls1fbRdN4JJjzh3aSErCM7MwTQyeQ3kLj8NATG0oXFo
+ iZpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Uc+GPRonU9krE6cPl2TjSfglb8hB+dxdrkfqSSEOhYo=;
- b=MYY0nywBsY7/wjOCFKee7xnDfhptCUFfevaZisHAoEFFPWaLDW6aMtLNvbiC4wIxuE
- OsjA6nOJ3DqKlLZNX32OVfFjvKXTli5U8di3mDYDmeeG7A7Bvlw0fS0KzxsTO8ODN/3D
- huatP1lXuQ6iRVIHAtuejyosHcI5gsnxcFf1G4abkmP8+wzEDqLV9qgmhEHGGlvRowFN
- xqDeLEeXlBp+2M5VjES3PKuoGFQ/U9/syrE6OQEyBmuBl8rB3HUOEFy0zJq2BWAZaRdG
- 3HuH8CYBu7VexNgkFj3KW5bALNwuRdGFgXBfPyWaNKWL4EkdBi3Z3SmdCq9NFL4VFttu
- KaEg==
-X-Gm-Message-State: AOAM532jYESXjXKfgHc9hULcGyLUSJ956ei0OqGFKOVvr5fNqAnSxNlZ
- v7nU7+hm4YCsQdh3XeFPPmCXN8jsSw4=
-X-Google-Smtp-Source: ABdhPJyIuyNG3i18b5yBBlE66UIKv5EwyH6vo4vJT7SvTfi3cfKMiXzcqjFF/RPKhdV/iG7Mr3GLlg==
-X-Received: by 2002:ac8:c44:: with SMTP id l4mr4120077qti.2.1602088372099;
- Wed, 07 Oct 2020 09:32:52 -0700 (PDT)
+ bh=gBhcjXJbCCNxFoXu1vSSKtve6DrqmB2rIPOUF1DWRGg=;
+ b=LRdpjYYXEE9ZqMKyV8wf0PozuZshRBbY+4hAloXBujiF0pfN6RsmmFtrApgFL9hz3U
+ vL8VONHjnfkyHw6671lWeciFcw0M2+aRN+FqAwAIzGD6x8GjW5GujKdtoL6Xyl5hBVmq
+ eID/yn5B93wTdzz/vlFP5zPjVh2GGdMA1zbWWrG8x9fxwwXkRAFV7GlKRYFFk+LIKB/0
+ UjJzsmknhFuSDGSjTWWuE/h32D7i4wrN2uDtMGS5PZyHElEtN1P+sY5Xn13Xypc1Tab0
+ UtVyAke942072G6c1mfjxXKZhsvEGtXs7bL57ZB+1//+430fCMmBL1QipmsH4Q/JuEdU
+ 7OOg==
+X-Gm-Message-State: AOAM532ZKzCjLzVvYlU6k2RTLteJ4or1xonXsBzDzagBy77jls0YTi4P
+ W3dFPYtJ7yF2DmhwBuFicB1V5bJ83bk=
+X-Google-Smtp-Source: ABdhPJxW3RvtcBf8WQ0Ym5pFHDrh/QSMFsMTCF2Q3AlicaCYxbWfp2FH0qxFCDP0V2MUzfVGdrUU/Q==
+X-Received: by 2002:ac8:b8b:: with SMTP id h11mr3966709qti.28.1602088373407;
+ Wed, 07 Oct 2020 09:32:53 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id l19sm1725576qkk.99.2020.10.07.09.32.51
+ by smtp.gmail.com with ESMTPSA id l19sm1725576qkk.99.2020.10.07.09.32.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 07 Oct 2020 09:32:51 -0700 (PDT)
+ Wed, 07 Oct 2020 09:32:52 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 47/50] drm/amdgpu: remove gpu_info fw support for
+Subject: [PATCH 48/50] drm/amdgpu/swsmu: update driver if version for
  dimgrey_cavefish
-Date: Wed,  7 Oct 2020 12:31:32 -0400
-Message-Id: <20201007163135.1944186-48-alexander.deucher@amd.com>
+Date: Wed,  7 Oct 2020 12:31:33 -0400
+Message-Id: <20201007163135.1944186-49-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20201007163135.1944186-1-alexander.deucher@amd.com>
 References: <20201007163135.1944186-1-alexander.deucher@amd.com>
@@ -76,46 +76,28 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Tao Zhou <tao.zhou1@amd.com>
 
-Remove gpu_info fw support for dimgrey_cavefish, gpu info can be got
-from ip discovery.
+Per PMFW 59.7.0.
 
 Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
 Reviewed-by: Jiansong Chen <Jiansong.Chen@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ drivers/gpu/drm/amd/pm/inc/smu_v11_0.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 5de583295fe6..19d70e2445a5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -81,7 +81,6 @@ MODULE_FIRMWARE("amdgpu/navi10_gpu_info.bin");
- MODULE_FIRMWARE("amdgpu/navi14_gpu_info.bin");
- MODULE_FIRMWARE("amdgpu/navi12_gpu_info.bin");
- MODULE_FIRMWARE("amdgpu/vangogh_gpu_info.bin");
--MODULE_FIRMWARE("amdgpu/dimgrey_cavefish_gpu_info.bin");
+diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h b/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h
+index ee13dad65e7b..2fba050b3180 100644
+--- a/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h
++++ b/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h
+@@ -33,7 +33,7 @@
+ #define SMU11_DRIVER_IF_VERSION_Sienna_Cichlid 0x39
+ #define SMU11_DRIVER_IF_VERSION_Navy_Flounder 0x5
+ #define SMU11_DRIVER_IF_VERSION_VANGOGH 0x01
+-#define SMU11_DRIVER_IF_VERSION_Dimgrey_Cavefish 0x7
++#define SMU11_DRIVER_IF_VERSION_Dimgrey_Cavefish 0x9
  
- #define AMDGPU_RESUME_MS		2000
- 
-@@ -1785,6 +1784,7 @@ static int amdgpu_device_parse_gpu_info_fw(struct amdgpu_device *adev)
- 	case CHIP_VEGA20:
- 	case CHIP_SIENNA_CICHLID:
- 	case CHIP_NAVY_FLOUNDER:
-+	case CHIP_DIMGREY_CAVEFISH:
- 	default:
- 		return 0;
- 	case CHIP_VEGA10:
-@@ -1819,9 +1819,6 @@ static int amdgpu_device_parse_gpu_info_fw(struct amdgpu_device *adev)
- 	case CHIP_VANGOGH:
- 		chip_name = "vangogh";
- 		break;
--	case CHIP_DIMGREY_CAVEFISH:
--		chip_name = "dimgrey_cavefish";
--		break;
- 	}
- 
- 	snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_gpu_info.bin", chip_name);
+ /* MP Apertures */
+ #define MP0_Public			0x03800000
 -- 
 2.25.4
 
