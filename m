@@ -1,56 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFC8228646A
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 18:32:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7372328646C
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 18:32:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E3066E956;
-	Wed,  7 Oct 2020 16:32:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB9586E97C;
+	Wed,  7 Oct 2020 16:32:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
- [IPv6:2607:f8b0:4864:20::844])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E72A76E979
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 16:32:50 +0000 (UTC)
-Received: by mail-qt1-x844.google.com with SMTP id o21so2420956qtp.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 07 Oct 2020 09:32:50 -0700 (PDT)
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
+ [IPv6:2607:f8b0:4864:20::841])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E74476E956
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 16:32:51 +0000 (UTC)
+Received: by mail-qt1-x841.google.com with SMTP id o21so2421046qtp.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 07 Oct 2020 09:32:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=80fccle5uMb0KOag9oSlBj+vfwP4PJxiTgj0KZ+cNjA=;
- b=P3EEsEvIMXwwXkE+ICdq0b15SXd9bRVJkLZW+nEzM6xWVR2vKbiTEaq7mA6qqbXXQ6
- d+A57ClAMcpvKP7tXospFDisG4KHsV9vWIr5kefsr8iGc4s21iPYUx/BkOM6JxMwUIr7
- r0oXqZQcYLUhMVZemn+9UvN9GpYg1W1+/6rn1w4fIti0aq6PIc+I100couooZ+V4MeJI
- fM6GdbGqDVCfO5g/dJMpPvJFriGszKYn1umVtIETnV9ZuVsEjk73h1vjy7/z0/z03G+q
- 5uHSd25lmZwLrfw2xS57uUecd9cMaU6spg24UK6QPqYmj7uBxQ/ercPpK9gTNSfAQ/yU
- 6Qmg==
+ bh=URpWmPSDM7brhAXWw6g9TJz52lkF75UrCCwM2/anyVM=;
+ b=cMqa5MiBqvF6LY8CygROLoDbexPGqnfUni52T/4n9E1t10yP0aZw3qY1iti/HmC4cj
+ rl0gkkdp5z53ik2dRrvRz/7oBhGe6xZxzWtBg4GAwCvMyYyxLHPkUB4u/4exMn0tavcI
+ zw9YRi9c9bX4ySNiZN8cpYNWBspgdHduaVLnLt+s/KhYfFwrnakRFfJQZRwwHgTt7yaY
+ Zbg+qAmeyMfPCkWF/frUNX6WHRbxAh4fX9hGmc4BBOXefurtL23zX+r5Kr3DZpfRj5Vs
+ h1bUY/gYRsEr0UleyXMyAzMfrSUXtvd/KngAoXuqB/RMH4jJLNQeEq459EX2RPVk1zgf
+ cDEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=80fccle5uMb0KOag9oSlBj+vfwP4PJxiTgj0KZ+cNjA=;
- b=Vp7ihLDxvnWO/wQuHU2gJ429ZLEW72qhioWOE9H+bNjj9ratRAUi2nlkfqeU7Hrfoy
- KTDXJgQHHOQM7H7jeLRXALPlIJkn7rJq5hXH78sjzDTp6VXZUaM2hM59gTJ/KuFbHN/L
- UwfjJpr7Wycf2SC68LshZ6f78VDwjHMAjQpxQXNdj4Eh/flItIymQRKFs5EIP09IcNBl
- aIA9zsLGzuO7zI+rk8rlrTk9G/dDFe4wrKjSgsXUGHGxeyOnpzcouC1LUrL8TvcgLbtn
- LArt/5Rhrp6CjGllhbX7vKwQ5Qvf+921hPerGyG8ZRB7BsfmellJyHP0ODqeSKGY3fc1
- t30Q==
-X-Gm-Message-State: AOAM531Un+XJPnKqWX12C8ixBoKegC+GDzplIN6f6ZyPGV9aLrRcaekE
- foY7pUfMZxJhe9MIKB21VxSwk033E44=
-X-Google-Smtp-Source: ABdhPJzbELjxXWdyzTEEu68+1foOz/vaHMg4FbW5JLWeK0RWOJXwOrhcq5rOcJvjARH6hoOdnVNsgg==
-X-Received: by 2002:ac8:6e90:: with SMTP id c16mr3973418qtv.391.1602088369953; 
- Wed, 07 Oct 2020 09:32:49 -0700 (PDT)
+ bh=URpWmPSDM7brhAXWw6g9TJz52lkF75UrCCwM2/anyVM=;
+ b=pWw7CgOQXBJ4NCBCn3ESp4xOPFELm8sqZlxprETZKTlCOgjJUYFWP1qcPK6rNqb7Js
+ 1J+b7xfOhyvqDuX7aAqiQTXXFcww2uDjVpueP15okbUVOpqDBPG/V/2ap9aU0OLCvcq4
+ mdf4iJW35a1w593X6kLi91mwdoo3X3SL5GDW5q82boKm79UCevUs/lHd/Sv79ckpLIW2
+ MGY84L2VL0FLcB4RoFrfIq6bw8fqh0lX3BHJvUgHv1DUJQrNWkPBd2YzJ7EKeJWk4vl1
+ UNVo9iDpx31LevbrsaGsHjUDeQQMj9wvxMwElb7coV3hM5XFlrCMwaC9uhEXI+k/u87k
+ sjsw==
+X-Gm-Message-State: AOAM530PVy/wsE2yDzMXFy5IXpMMHJyg/isJV4LCxikVltySMqIZYGpS
+ hm0J3+vDaNGDYCE/JLOcTX+ZvMG7xHo=
+X-Google-Smtp-Source: ABdhPJzFjAlE516C5LFDuRqHGEKIzEBze6npP+/D2NvHE7QREMs42Zha64Uyg0W939RsW0HK37NUiA==
+X-Received: by 2002:ac8:1246:: with SMTP id g6mr4109924qtj.353.1602088370967; 
+ Wed, 07 Oct 2020 09:32:50 -0700 (PDT)
 Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id l19sm1725576qkk.99.2020.10.07.09.32.48
+ by smtp.gmail.com with ESMTPSA id l19sm1725576qkk.99.2020.10.07.09.32.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 07 Oct 2020 09:32:49 -0700 (PDT)
+ Wed, 07 Oct 2020 09:32:50 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 45/50] drm/amdgpu: enable hdp CG and LS for dimgrey_cavefish
-Date: Wed,  7 Oct 2020 12:31:30 -0400
-Message-Id: <20201007163135.1944186-46-alexander.deucher@amd.com>
+Subject: [PATCH 46/50] drm/amdgpu: enable ih CG for dimgrey_cavefish
+Date: Wed,  7 Oct 2020 12:31:31 -0400
+Message-Id: <20201007163135.1944186-47-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20201007163135.1944186-1-alexander.deucher@amd.com>
 References: <20201007163135.1944186-1-alexander.deucher@amd.com>
@@ -75,27 +75,26 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Tao Zhou <tao.zhou1@amd.com>
 
-Set hdp CG and LS flag for dimgrey_cavefish.
+Set ih CG flag for dimgrey_cavefish.
 
 Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/nv.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/nv.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index b8b9ac722b6d..c73ad0482022 100644
+index c73ad0482022..e6bc7f09ec43 100644
 --- a/drivers/gpu/drm/amd/amdgpu/nv.c
 +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -917,7 +917,9 @@ static int nv_common_early_init(void *handle)
- 			AMD_CG_SUPPORT_VCN_MGCG |
- 			AMD_CG_SUPPORT_JPEG_MGCG |
+@@ -919,7 +919,8 @@ static int nv_common_early_init(void *handle)
  			AMD_CG_SUPPORT_MC_MGCG |
--			AMD_CG_SUPPORT_MC_LS;
-+			AMD_CG_SUPPORT_MC_LS |
-+			AMD_CG_SUPPORT_HDP_MGCG |
-+			AMD_CG_SUPPORT_HDP_LS;
+ 			AMD_CG_SUPPORT_MC_LS |
+ 			AMD_CG_SUPPORT_HDP_MGCG |
+-			AMD_CG_SUPPORT_HDP_LS;
++			AMD_CG_SUPPORT_HDP_LS |
++			AMD_CG_SUPPORT_IH_CG;
  		adev->pg_flags = AMD_PG_SUPPORT_VCN |
  			AMD_PG_SUPPORT_VCN_DPG |
  			AMD_PG_SUPPORT_JPEG |
