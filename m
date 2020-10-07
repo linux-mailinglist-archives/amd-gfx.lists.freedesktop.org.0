@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E11285F5B
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 14:42:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97EFD285F59
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Oct 2020 14:42:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E090D89450;
-	Wed,  7 Oct 2020 12:42:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D12C893D5;
+	Wed,  7 Oct 2020 12:42:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770047.outbound.protection.outlook.com [40.107.77.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E2F589450
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 12:42:31 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2087.outbound.protection.outlook.com [40.107.244.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0BD8893D5
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 12:42:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Kiw2eeMBVo9IYfNhFwCqyCdD6euX6B8XHXQR9FBCAU8tp4khLHg5+R04vjA+vqEgLgMVVIuvvmRZPwikjEH7eKR7sGAKLRNnd8d9/oQ8Xl7Gle5MTZQDvwQgad70djUxz5VQmEBg6palwDR7333JUesMnkuksmUXHET8HrEe3iiQcsE4UpTiSGgX9ZWKv4t+ILzjuWKgdsH6WbkdA2fIvRjFWEy+dD/XpVlKtphrCnIv7BCL8nOygezxuuZ9WCoAOY0b8AU7D+q4r/wqIiYKFM/z3yPtWJMUz6uaHqsmYcnNNr59xi4sFGtiRQ0J1Y2Lj8ft0PmllPsaIFKNyaZhOg==
+ b=fVJy6KdoZfzZYrkwClE6QS/rN3+zkJZoKDubdipgFFFMa0rxzU5sQH5BjPzZxYTJx0XxYQqMs2rvi1+Mb/1h7IQPy7/KyduFXI1icYeUKJ9nk370jzqeubEQdG2000gRzDNNPn/uvBPbnKO9St56/eJiR/DI6az93zZVMOIDkeRVY5SeFoHxo6Nucpo6IxDdP7JKfYHAahm2U03pailj27t3JVCCZjSP37n61+9mCp0DwJYY7YE8k7QtGksVjvxhJGT6SIjjIdtPTB+/KC8LPIRxvX9MhEK1LFPrnz4rNs65QcM2FpHSTDIOPFjSmh/C1qUZQABmWFcUrvxPNIzd9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BSM6hx9hNf5H6eZJYU8X6g9aYCLCAXq3IAmJ8LVHOeg=;
- b=J31znANzJKANyVgW/INt+vn7kTQwWAVL1pJlXnlA/aTbfEIeM9+WySPHb3L/IpJ5xzhU9JC6rxniPkTlpoywrJtHcrJqeVkdf/duLC7BtvxRsQP7B9GHu+iVXxtsPhWCvltg1PU+WV/QnIvsxXTroW1D05f2SKYHNuG2NH5tE0ru3PpiXOd04qB5WUZ6/pHRFbf5NQ2egDVmEoi7feBPfMJeQxaoZ5lLButDHl91BC+krMVCjmUPjePEM0aQGXsMkgueWEarK45aSjUbdZel1jJgnF7bgrSi8IhJ7oGsFPf2q/wdQ2bkqoVhztjnFOu5RVgy1ogk/MTgfJFfcb/HLQ==
+ bh=/VzfCggcI9Llb6ZYwaC1EorxmfQilN4sGJnbG+OW2Tw=;
+ b=krQguAnhwllMbUjIHTxCoyXeQvTioS0pGkqsR+u10PdRnuBFq+CTkYjovCsUEoe3Xq3FtwZhcKy5LAyDaUoWa8xv919orWQp5aclVA9s7O9chnKPakZpIwyBkL7439cbSuv3XE484R1TIk6Y/ylCnJDAUwVq9YgCEYkay2ZbHeL30j4lqZVANiVUAitmzTEzea+J2Ch84B8sIMXa19elqtFZYqSn+KZEAobEAEHIzyNY5A7ObuLd+WHMAJHnPXLl9iuG33dGJSeTXj34eYegQn7gn3hMVHQoyQIlq5LFUCYhKDx1eJ2gcpUlMJKl3dY6QoFGFpOtvGXfhojwo4gGow==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
@@ -27,40 +27,45 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BSM6hx9hNf5H6eZJYU8X6g9aYCLCAXq3IAmJ8LVHOeg=;
- b=BSlEST+N4bdm5kIQVO2aBxM3UAp0owQRllkF58mazNM2+hNUcVQNDimYcCWSCi8alAJ2/8cGg4t2hi5zLKtkAU5pQHB3rEHjat6JMs81qF7HJq4ylFblMFBzkTpSt4zeZuXaq3JW/BSblLci18CqvRqZboSDZi2fYth/4Dadq7Q=
-Received: from DM5PR06CA0051.namprd06.prod.outlook.com (2603:10b6:3:37::13) by
- DM6PR12MB2858.namprd12.prod.outlook.com (2603:10b6:5:182::21) with
+ bh=/VzfCggcI9Llb6ZYwaC1EorxmfQilN4sGJnbG+OW2Tw=;
+ b=n0zrQV1YHINl/o12/4tk+icfhyMq9oJUHRTaNN6SSR28XMCBwAFdnHWwk+qYyyzHB0ZvZRner6r2ZFVSw6SYX3TiKWWTqajF2T5Ck6B5QQ2WhBzmLVrgt0jktLqGwu41RM339kgPnDWDvWHOyvl/cCq8MaeSyVZaJ2DJ3WVsTjQ=
+Received: from MWHPR19CA0001.namprd19.prod.outlook.com (2603:10b6:300:d4::11)
+ by DM5PR12MB1546.namprd12.prod.outlook.com (2603:10b6:4:8::23) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3433.40; Wed, 7 Oct 2020 12:42:26 +0000
-Received: from DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:37:cafe::ed) by DM5PR06CA0051.outlook.office365.com
- (2603:10b6:3:37::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.22 via Frontend
- Transport; Wed, 7 Oct 2020 12:42:26 +0000
+ 15.20.3433.34; Wed, 7 Oct 2020 12:42:28 +0000
+Received: from CO1NAM11FT053.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:d4:cafe::49) by MWHPR19CA0001.outlook.office365.com
+ (2603:10b6:300:d4::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20 via Frontend
+ Transport; Wed, 7 Oct 2020 12:42:28 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=none action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- DM6NAM11FT034.mail.protection.outlook.com (10.13.173.47) with Microsoft SMTP
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ CO1NAM11FT053.mail.protection.outlook.com (10.13.175.63) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3455.23 via Frontend Transport; Wed, 7 Oct 2020 12:42:26 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3455.23 via Frontend Transport; Wed, 7 Oct 2020 12:42:27 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 7 Oct 2020
+ 07:42:27 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 7 Oct 2020
  07:42:26 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 7 Oct 2020 07:42:25 -0500
+ Transport; Wed, 7 Oct 2020 07:42:26 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 01/12] drm/amd/display: Fix black screen after DP/HDMI hot-plug
-Date: Wed, 7 Oct 2020 08:42:13 -0400
-Message-ID: <20201007124224.18789-2-aurabindo.pillai@amd.com>
+Subject: [PATCH 02/12] drm/amd/display: Add Bounding Box State for Low DF
+ PState but High Voltage State
+Date: Wed, 7 Oct 2020 08:42:14 -0400
+Message-ID: <20201007124224.18789-3-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201007124224.18789-1-aurabindo.pillai@amd.com>
 References: <20201007124224.18789-1-aurabindo.pillai@amd.com>
@@ -68,27 +73,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f974a045-27a4-4bac-200a-08d86abe7256
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2858:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB2858D5284F5DF37A7F730EDF8B0A0@DM6PR12MB2858.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-MS-Office365-Filtering-Correlation-Id: 2e084206-8fae-4368-5638-08d86abe7316
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1546:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1546FDE9AFFACA238AC58CE88B0A0@DM5PR12MB1546.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cWigTnDQqd46pG0IQczzjpYTLVeYPK8NK5i2GsLMow2AbLcled/JtiG7EGRnOBCaHJTgpTYZLDedfa/k/AQhSha36xDSRcthfW/3iOXzYd5X6QRiX85RWSQt1rGBJhgflpAyrVUvJ8vLsB+sqx+5phBfGDgfG4msGBdB0ZPg+pJYyxKh6USe+efrDWkx8YhyK6jzXmVFN31yXcSVdHW2YsIXLPoEmfna6xlSqHoBKvr1MZhBbf9IMQGpuKTE5PEOSXeK8vpTzi7Hrn/QRnFoa16O/+lsyvh3pBaMnl0TfJNQGL8bFwzi8HkGs0LeKaufoPaTrHSI9NAzr6QCa9ByJFhFBOq/tXsB73B6kbNByS3qKqe3oA2ziKAdMNDT2bUeHo28J7L30TVAch4vbhdjYQ==
+X-Microsoft-Antispam-Message-Info: xfeV3s0MY8TyW7vrVgzGXG6EneDpGw4xpTmtHLX/U899cOfBeDB2IZg2UPS4QgGX+uBlui2vuLqaypTmosLI/sKD+QkqaLSaauqIZ9sqqUJP+oH4KjFIdn139PnI1J51DaoRDoKF7n3BCfPvds5r/a3Xnd+nBv2qtSVhQ0vMTWMkeO4QZp/VrCSsT+A5lWx7d6JPCkS7QB2VEYqyzsu4CKAEf59pU2bL8VmkkXQJva4Qjh5moKpc2BuWfIW2cBypxmvDjRfdftAEVDKQ7BlhLVWs0zR0vQb4FwuLf0kQY4kTVZfh7B49m5ct1wC6+kGzC5PR44wqEIoNWHK0FduDg/8IBphynI14JWqxmMJAcjJ4+vM3a/NWRL8f0Gc3Z8torVtGryiRvvZ03h5Aiob4Ig==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(346002)(39860400002)(376002)(396003)(46966005)(83380400001)(356005)(47076004)(82740400003)(316002)(81166007)(44832011)(86362001)(6666004)(82310400003)(5660300002)(4326008)(70586007)(478600001)(54906003)(70206006)(1076003)(2906002)(8676002)(8936002)(426003)(2616005)(6916009)(336012)(36756003)(7696005)(186003)(26005);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(396003)(346002)(376002)(39860400002)(136003)(46966005)(70586007)(70206006)(5660300002)(4326008)(1076003)(81166007)(6916009)(36756003)(186003)(426003)(336012)(356005)(86362001)(8936002)(478600001)(2616005)(82310400003)(83380400001)(44832011)(8676002)(54906003)(47076004)(6666004)(26005)(316002)(7696005)(2906002)(82740400003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2020 12:42:26.6503 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f974a045-27a4-4bac-200a-08d86abe7256
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2020 12:42:27.8350 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e084206-8fae-4368-5638-08d86abe7316
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT053.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2858
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1546
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,105 +105,144 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stylon Wang <stylon.wang@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+Cc: Sung Lee <sung.lee@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
  Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- stable@vger.kernel.org, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Stylon Wang <stylon.wang@amd.com>
+From: Sung Lee <sung.lee@amd.com>
 
-[Why]
-When restoring connector state we relies on drm_connector->status
-to check if the connector with matching crtc is connected.
-But that status is only updated later when user space calls
-DRM_IOCTL_MODE_GETCONNECTOR and then calls fillsmodes().
-This causes connectors being incorrectly reported as not connected
-when we hot-plug the cable.
+[WHY]
+DF PState and Voltage State are coupled such that one cannot be
+raised without raising the other. This uses more power than
+is necessary in high bandwidth scenarios.
 
-[How]
-Instead of checking drm_connector->status directly, use helper
-amdgpu_dm_connector_detect() to check for connectivity.
+[HOW]
+Add logic to create a new bounding box state that allows for
+DF PState to be low while Voltage State is high. Watermarks
+vlevel calculation logic was also udpated to assume
+state 1 contains the new optimized state.
 
-Signed-off-by: Stylon Wang <stylon.wang@amd.com>
+Signed-off-by: Sung Lee <sung.lee@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: <stable@vger.kernel.org>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 45 ++++++++++---------
- 1 file changed, 25 insertions(+), 20 deletions(-)
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c | 71 ++++++++++++++-----
+ 1 file changed, 53 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 3cf4e08931bb..dfcea66ee23c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1735,25 +1735,6 @@ static int dm_suspend(void *handle)
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+index 686e1d47faa4..72cbc13ce3da 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+@@ -1154,12 +1154,12 @@ void dcn21_calculate_wm(
+ 						&context->bw_ctx.dml, pipes, pipe_cnt);
+ 	/* WM Set C */
+ 	table_entry = &bw_params->wm_table.entries[WM_C];
+-	vlevel = MIN(MAX(vlevel_req, 2), vlevel_max);
++	vlevel = MIN(MAX(vlevel_req, 3), vlevel_max);
+ 	calculate_wm_set_for_vlevel(vlevel, table_entry, &context->bw_ctx.bw.dcn.watermarks.c,
+ 						&context->bw_ctx.dml, pipes, pipe_cnt);
+ 	/* WM Set B */
+ 	table_entry = &bw_params->wm_table.entries[WM_B];
+-	vlevel = MIN(MAX(vlevel_req, 1), vlevel_max);
++	vlevel = MIN(MAX(vlevel_req, 2), vlevel_max);
+ 	calculate_wm_set_for_vlevel(vlevel, table_entry, &context->bw_ctx.bw.dcn.watermarks.b,
+ 						&context->bw_ctx.dml, pipes, pipe_cnt);
+ 
+@@ -1385,12 +1385,39 @@ struct display_stream_compressor *dcn21_dsc_create(
+ 	return &dsc->base;
  }
  
--static struct amdgpu_dm_connector *
--amdgpu_dm_find_first_crtc_matching_connector(struct drm_atomic_state *state,
--					     struct drm_crtc *crtc)
--{
--	uint32_t i;
--	struct drm_connector_state *new_con_state;
--	struct drm_connector *connector;
--	struct drm_crtc *crtc_from_state;
--
--	for_each_new_connector_in_state(state, connector, new_con_state, i) {
--		crtc_from_state = new_con_state->crtc;
--
--		if (crtc_from_state == crtc)
--			return to_amdgpu_dm_connector(connector);
--	}
--
--	return NULL;
--}
--
- static void emulated_link_detect(struct dc_link *link)
- {
- 	struct dc_sink_init_data sink_init_data = { 0 };
-@@ -5003,7 +4984,8 @@ amdgpu_dm_connector_detect(struct drm_connector *connector, bool force)
- 	    !aconnector->fake_enable)
- 		connected = (aconnector->dc_sink != NULL);
- 	else
--		connected = (aconnector->base.force == DRM_FORCE_ON);
-+		connected = (aconnector->base.force == DRM_FORCE_ON ||
-+				aconnector->base.force == DRM_FORCE_ON_DIGITAL);
- 
- 	return (connected ? connector_status_connected :
- 			connector_status_disconnected);
-@@ -8090,6 +8072,29 @@ static void reset_freesync_config_for_crtc(
- 	       sizeof(new_crtc_state->vrr_infopacket));
- }
- 
-+static struct amdgpu_dm_connector *
-+amdgpu_dm_find_first_crtc_matching_connector(struct drm_atomic_state *state,
-+					     struct drm_crtc *crtc)
++static struct _vcs_dpi_voltage_scaling_st construct_low_pstate_lvl(struct clk_limit_table *clk_table, unsigned int high_voltage_lvl)
 +{
-+	uint32_t i;
-+	struct drm_connector_state *new_con_state;
-+	struct drm_connector *connector;
-+	struct drm_crtc *crtc_from_state;
++	struct _vcs_dpi_voltage_scaling_st low_pstate_lvl;
++	int i;
 +
-+	for_each_new_connector_in_state(state, connector, new_con_state, i) {
-+		struct amdgpu_dm_connector *aconnector =
-+			to_amdgpu_dm_connector(connector);
-+		crtc_from_state = new_con_state->crtc;
++	low_pstate_lvl.state = 1;
++	low_pstate_lvl.dcfclk_mhz = clk_table->entries[0].dcfclk_mhz;
++	low_pstate_lvl.fabricclk_mhz = clk_table->entries[0].fclk_mhz;
++	low_pstate_lvl.socclk_mhz = clk_table->entries[0].socclk_mhz;
++	low_pstate_lvl.dram_speed_mts = clk_table->entries[0].memclk_mhz * 2;
 +
-+		if (crtc_from_state == crtc
-+			&& connector != NULL
-+			&& amdgpu_dm_connector_detect(connector, false) == connector_status_connected)
-+			return aconnector;
-+	}
++	low_pstate_lvl.dispclk_mhz = dcn2_1_soc.clock_limits[high_voltage_lvl].dispclk_mhz;
++	low_pstate_lvl.dppclk_mhz = dcn2_1_soc.clock_limits[high_voltage_lvl].dppclk_mhz;
++	low_pstate_lvl.dram_bw_per_chan_gbps = dcn2_1_soc.clock_limits[high_voltage_lvl].dram_bw_per_chan_gbps;
++	low_pstate_lvl.dscclk_mhz = dcn2_1_soc.clock_limits[high_voltage_lvl].dscclk_mhz;
++	low_pstate_lvl.dtbclk_mhz = dcn2_1_soc.clock_limits[high_voltage_lvl].dtbclk_mhz;
++	low_pstate_lvl.phyclk_d18_mhz = dcn2_1_soc.clock_limits[high_voltage_lvl].phyclk_d18_mhz;
++	low_pstate_lvl.phyclk_mhz = dcn2_1_soc.clock_limits[high_voltage_lvl].phyclk_mhz;
 +
-+	return NULL;
++	for (i = clk_table->num_entries; i > 1; i--)
++		clk_table->entries[i] = clk_table->entries[i-1];
++	clk_table->entries[1] = clk_table->entries[0];
++	clk_table->num_entries++;
++
++	return low_pstate_lvl;
 +}
 +
- static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
- 				struct drm_atomic_state *state,
- 				struct drm_crtc *crtc,
+ static void update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
+ {
+ 	struct dcn21_resource_pool *pool = TO_DCN21_RES_POOL(dc->res_pool);
+ 	struct clk_limit_table *clk_table = &bw_params->clk_table;
+ 	struct _vcs_dpi_voltage_scaling_st clock_limits[DC__VOLTAGE_STATES];
+-	unsigned int i, closest_clk_lvl;
++	unsigned int i, closest_clk_lvl = 0, k = 0;
+ 	int j;
+ 
+ 	dcn2_1_ip.max_num_otg = pool->base.res_cap->num_timing_generator;
+@@ -1407,27 +1434,35 @@ static void update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_param
+ 			}
+ 		}
+ 
+-		clock_limits[i].state = i;
+-		clock_limits[i].dcfclk_mhz = clk_table->entries[i].dcfclk_mhz;
+-		clock_limits[i].fabricclk_mhz = clk_table->entries[i].fclk_mhz;
+-		clock_limits[i].socclk_mhz = clk_table->entries[i].socclk_mhz;
+-		clock_limits[i].dram_speed_mts = clk_table->entries[i].memclk_mhz * 2;
+-
+-		clock_limits[i].dispclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].dispclk_mhz;
+-		clock_limits[i].dppclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].dppclk_mhz;
+-		clock_limits[i].dram_bw_per_chan_gbps = dcn2_1_soc.clock_limits[closest_clk_lvl].dram_bw_per_chan_gbps;
+-		clock_limits[i].dscclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].dscclk_mhz;
+-		clock_limits[i].dtbclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].dtbclk_mhz;
+-		clock_limits[i].phyclk_d18_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].phyclk_d18_mhz;
+-		clock_limits[i].phyclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].phyclk_mhz;
++		/* clk_table[1] is reserved for min DF PState.  skip here to fill in later. */
++		if (i == 1)
++			k++;
++
++		clock_limits[k].state = k;
++		clock_limits[k].dcfclk_mhz = clk_table->entries[i].dcfclk_mhz;
++		clock_limits[k].fabricclk_mhz = clk_table->entries[i].fclk_mhz;
++		clock_limits[k].socclk_mhz = clk_table->entries[i].socclk_mhz;
++		clock_limits[k].dram_speed_mts = clk_table->entries[i].memclk_mhz * 2;
++
++		clock_limits[k].dispclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].dispclk_mhz;
++		clock_limits[k].dppclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].dppclk_mhz;
++		clock_limits[k].dram_bw_per_chan_gbps = dcn2_1_soc.clock_limits[closest_clk_lvl].dram_bw_per_chan_gbps;
++		clock_limits[k].dscclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].dscclk_mhz;
++		clock_limits[k].dtbclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].dtbclk_mhz;
++		clock_limits[k].phyclk_d18_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].phyclk_d18_mhz;
++		clock_limits[k].phyclk_mhz = dcn2_1_soc.clock_limits[closest_clk_lvl].phyclk_mhz;
++
++		k++;
+ 	}
+-	for (i = 0; i < clk_table->num_entries; i++)
++	for (i = 0; i < clk_table->num_entries + 1; i++)
+ 		dcn2_1_soc.clock_limits[i] = clock_limits[i];
+ 	if (clk_table->num_entries) {
+-		dcn2_1_soc.num_states = clk_table->num_entries;
++		dcn2_1_soc.num_states = clk_table->num_entries + 1;
+ 		/* duplicate last level */
+ 		dcn2_1_soc.clock_limits[dcn2_1_soc.num_states] = dcn2_1_soc.clock_limits[dcn2_1_soc.num_states - 1];
+ 		dcn2_1_soc.clock_limits[dcn2_1_soc.num_states].state = dcn2_1_soc.num_states;
++		/* fill in min DF PState */
++		dcn2_1_soc.clock_limits[1] = construct_low_pstate_lvl(clk_table, closest_clk_lvl);
+ 	}
+ 
+ 	dml_init_instance(&dc->dml, &dcn2_1_soc, &dcn2_1_ip, DML_PROJECT_DCN21);
 -- 
 2.25.1
 
