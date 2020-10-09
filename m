@@ -1,58 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F5F289BC2
-	for <lists+amd-gfx@lfdr.de>; Sat, 10 Oct 2020 00:28:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DA11289BEC
+	for <lists+amd-gfx@lfdr.de>; Sat, 10 Oct 2020 00:49:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B74DE6EE31;
-	Fri,  9 Oct 2020 22:28:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A761E6EE44;
+	Fri,  9 Oct 2020 22:49:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com
- [IPv6:2607:f8b0:4864:20::72b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 459106EE2F;
- Fri,  9 Oct 2020 22:28:40 +0000 (UTC)
-Received: by mail-qk1-x72b.google.com with SMTP id b69so12252030qkg.8;
- Fri, 09 Oct 2020 15:28:40 -0700 (PDT)
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 498756EE44
+ for <amd-gfx@lists.freedesktop.org>; Fri,  9 Oct 2020 22:48:59 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id c23so9304442qtp.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 09 Oct 2020 15:48:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=+lt5Jd7YC7DH6niYBHptmYTDZ+Xfw81ve5JyVXKnAgM=;
- b=FpLJx0OnLOZfd85S5tft5nlCm3Q6mGYdYb74yMtcKTShc2ZSGXmR15q+ruQT2BECzL
- wFAPw/ghEn7UkvSl4KF1hhzRQV2+L8b0EyNR8+EsQR4l65LGCgQ9hkwjS/A5z+v/BT0a
- YShP10WBFpvDjpnG0XL4XHAPiaSTSDPF2bMSHN1y1pwOtwa/W58K/FVfFW84cqInV2uJ
- tXiIL7l0XEVYWsK0w2MNhWpZ51j2APmpVhvvNzJoMuwngrCWfASrkcKYXVEGsfHjtT81
- RlKUWHSq6Gy5ajNeaTleK/P8HjJSR6+l/wxxlh3J2Ni5nSLH2NewpBm+g0LhEJTBZ4DA
- 4FcQ==
+ bh=o4hOKG7rui7F9XbIbJp0tc6eoSUVARe39VfXwYe4P0E=;
+ b=W7XXOgvo9Nk5MBlDEvbWrIQx18DFAr3SMsewnhvXFbbPWVNEIb1lzM0Vkca51Yff6B
+ +r21VZ3RVRRp/k0EUyl20IoQJHxRfHX7KYJkUOPHJuseRcJ8h1J753xnvehaK4uNUDTb
+ U3gogvZA2CD29ivYm7fthqA5u7QUmk2Mi+6Wj0AMKibH5GG5iwsm2UsGMVZMT10Y6qir
+ Mx3jvYT+G5cOSGHkodhdQKYVRjnKNZclO219Y0QYw+smJB1OoT0prdXISjDaXuyPs5mV
+ hcZ9ChW6mZ6rSvkxp9agPcHjGPBofREfnxd45pUiomXAs3s6olsfxrN8EsbmMOtr3MoP
+ 1zKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=+lt5Jd7YC7DH6niYBHptmYTDZ+Xfw81ve5JyVXKnAgM=;
- b=jqKyXo2W/FBT87Ijn2O5fQHyovulChrtTz1veO4VTOkBeWZ9SyQU58XZNK44C9AmiH
- X7R0K7NoG9iJK6Pb5RvXnVdv+p+oDvi4aFdBlmewaj03+Jx+ktWuNqoQ5nphd/y4RL61
- djeNTS2Dyfp98uezDVZu5nn+OyhOpLEqb3L2dXxdo8/l5WWPkNDFhfvh2SWnnh8fIbGb
- uSRukGpIWHQfAW5ckIUCccXdf07EivytSJ4hBdC1Vzf3FgJpSFMnhNZ3DcVBVygJkHjE
- AtilNi/AqkRjBG80YmzDdNj5V1VzVNPPILfR/bFcxSSMsn/FJkrg5QeSxi9gaHaDPJyV
- 8rug==
-X-Gm-Message-State: AOAM530lgDjU2RtcPDOW7emA97PxrlIgTMUdJ+lJYVhU4YxoqfLqRycH
- wCfjECn8d1B+If5yvBwuMXQVr6A99hQ=
-X-Google-Smtp-Source: ABdhPJzSsAK5K+uzJPPMBd5wUXWQEuZ0DzdduiCxtBHrseOPA60b0it7m3EtFwZltKGkXWonb4IjnA==
-X-Received: by 2002:a05:620a:6d8:: with SMTP id
- 24mr189590qky.294.1602282518965; 
- Fri, 09 Oct 2020 15:28:38 -0700 (PDT)
-Received: from localhost.localdomain ([71.219.66.138])
- by smtp.gmail.com with ESMTPSA id d7sm7139003qkg.29.2020.10.09.15.28.38
+ bh=o4hOKG7rui7F9XbIbJp0tc6eoSUVARe39VfXwYe4P0E=;
+ b=GTKpnv5zJ1u+2TdMKijyMXJh7wW2Z1s2KP79J7Pa5Yia1J3U1knpWaMh0/ffdGFTZF
+ URjQDaWPF1OsqnUmWg/UI0p8o4PGuoWIB/+3X6tsmZ7/bOsw2CZpSuYqpfcxdbUYY03Y
+ avzH5wYILRUULnYRRLq3csyf0iXTe7hAwId7r4PaVcsotY6W5RauIH3BUbK3dsFNJPJc
+ D+Ior1V3vNLudLPc/gCmP2TnutG5jU+apgsmDeBWikKzwd/btKcotdE5Z+bJUyQzXdEe
+ p8pFZ9xasRE/KTW7sUYSAwmj8sbrVZl6PsKGtRQtsfSqvPnMLsJo6ISWRnbZtUU2ZLyk
+ 8qCw==
+X-Gm-Message-State: AOAM530ON5hYdt/I5Amw5T8K1rm0vmpfuERCy0vjqIy/0BoVuuY+5FC8
+ vEqzDvUhrp1IC6lsgrKDYaUmqqathKc=
+X-Google-Smtp-Source: ABdhPJzZz7Yyzyr9TIT5M3abFxlLfmoh3WBpkPzj6mUK5it6YJNLJt8WkA8OfZtW63qsAzOKZsvvZA==
+X-Received: by 2002:aed:2983:: with SMTP id o3mr245204qtd.285.1602283737151;
+ Fri, 09 Oct 2020 15:48:57 -0700 (PDT)
+Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
+ by smtp.gmail.com with ESMTPSA id t3sm7185482qtq.24.2020.10.09.15.48.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 09 Oct 2020 15:28:38 -0700 (PDT)
+ Fri, 09 Oct 2020 15:48:56 -0700 (PDT)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, daniel.vetter@ffwll.ch
-Subject: [pull] amdgpu drm-fixes-5.10
-Date: Fri,  9 Oct 2020 18:28:10 -0400
-Message-Id: <20201009222810.4030-1-alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amd/display: Add green_sardine support to DC
+Date: Fri,  9 Oct 2020 18:48:46 -0400
+Message-Id: <20201009224847.238484-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -66,111 +64,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Hersen Wu <hersenxs.wu@amd.com>,
+ Roman Li <Roman.Li@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+From: Roman Li <Roman.Li@amd.com>
 
-Fixes for 5.10.
+Display Core support for green_sardine
 
-The following changes since commit f2fa07b39fafb2a5f49c71a504862c5efa57d03e:
+Signed-off-by: Roman Li <Roman.Li@amd.com>
+Acked-by: Hersen Wu <hersenxs.wu@amd.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/display/Kconfig               | 8 ++++++++
+ drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c  | 7 +++++++
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 4 ++++
+ drivers/gpu/drm/amd/display/include/dal_asic_id.h | 6 ++++++
+ 4 files changed, 25 insertions(+)
 
-  drm/amd/amdkfd: Surface files in Sysfs to allow users to get number of compute units that are in use. (2020-09-30 15:26:27 -0400)
+diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
+index 6ff878c8e454..5906778627f0 100644
+--- a/drivers/gpu/drm/amd/display/Kconfig
++++ b/drivers/gpu/drm/amd/display/Kconfig
+@@ -17,6 +17,14 @@ config DRM_AMD_DC_DCN
+ 	help
+ 	  Raven, Navi and Renoir family support for display engine
+ 
++config DRM_AMD_DC_GREEN_SARDINE
++	bool "Green Sardine support"
++	default y
++	depends on DRM_AMD_DC_DCN
++        help
++            Choose this option if you want to have
++            Green Sardine support for display engine
++
+ config DRM_AMD_DC_DCN3_0
+         bool "DCN 3.0 family"
+         depends on DRM_AMD_DC && X86
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+index 0b0b840a006c..b361dc6c3489 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+@@ -169,6 +169,13 @@ struct clk_mgr *dc_clk_mgr_create(struct dc_context *ctx, struct pp_smu_funcs *p
+ 			rn_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
+ 			break;
+ 		}
++
++#if defined(CONFIG_DRM_AMD_DC_GREEN_SARDINE)
++		if (ASICREV_IS_GREEN_SARDINE(asic_id.hw_internal_rev)) {
++			rn_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
++			break;
++		}
++#endif
+ 		if (ASICREV_IS_RAVEN2(asic_id.hw_internal_rev)) {
+ 			rv2_clk_mgr_construct(ctx, clk_mgr, pp_smu);
+ 			break;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 78e0a5e20aba..ab105f26b511 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -126,6 +126,10 @@ enum dce_version resource_parse_asic_id(struct hw_asic_id asic_id)
+ 			dc_version = DCN_VERSION_1_01;
+ 		if (ASICREV_IS_RENOIR(asic_id.hw_internal_rev))
+ 			dc_version = DCN_VERSION_2_1;
++#if defined(CONFIG_DRM_AMD_DC_GREEN_SARDINE)
++		if (ASICREV_IS_GREEN_SARDINE(asic_id.hw_internal_rev))
++			dc_version = DCN_VERSION_2_1;
++#endif
+ 		break;
+ #endif
+ 
+diff --git a/drivers/gpu/drm/amd/display/include/dal_asic_id.h b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+index e4f24dbb2572..b4c3838322af 100644
+--- a/drivers/gpu/drm/amd/display/include/dal_asic_id.h
++++ b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+@@ -209,6 +209,12 @@ enum {
+ #if defined(CONFIG_DRM_AMD_DC_DCN3_02)
+ #define ASICREV_IS_DIMGREY_CAVEFISH_P(eChipRev)        ((eChipRev >= NV_DIMGREY_CAVEFISH_P_A0) && (eChipRev < NV_UNKNOWN))
+ #endif
++#if defined(CONFIG_DRM_AMD_DC_GREEN_SARDINE)
++#define GREEN_SARDINE_A0 0xA1
++#ifndef ASICREV_IS_GREEN_SARDINE
++#define ASICREV_IS_GREEN_SARDINE(eChipRev) ((eChipRev >= GREEN_SARDINE_A0) && (eChipRev < 0xFF))
++#endif
++#endif
+ #if defined(CONFIG_DRM_AMD_DC_DCN3_01)
+ #define FAMILY_VGH 144
+ #define DEVICE_ID_VGH_163F 0x163F
+-- 
+2.25.4
 
-are available in the Git repository at:
-
-  git://people.freedesktop.org/~agd5f/linux tags/amd-drm-fixes-5.10-2020-10-09
-
-for you to fetch changes up to 9c27bc97aff8bbe62b5b29ebf528291dd85d9c86:
-
-  drm/amdgpu: Fix invalid number of character '{' in amdgpu_acpi_init (2020-10-09 15:16:10 -0400)
-
-----------------------------------------------------------------
-amd-drm-fixes-5.10-2020-10-09:
-
-amdgpu:
-- Clean up indirect register access
-- Navy Flounder fixes
-- SMU11 AC/DC interrupt fixes
-- GPUVM alignment fix
-- Display fixes
-- Misc other fixes
-
-----------------------------------------------------------------
-Alex Deucher (4):
-      drm/amdgpu/swsmu: add interrupt work function
-      drm/amdgpu/swsmu: add interrupt work handler for smu11 parts
-      drm/amdgpu/swsmu: fix ARC build errors
-      drm/amdgpu: prevent spurious warning
-
-Alex Sierra (1):
-      drm/amdgpu: align frag_end to covered address space
-
-Alvin Lee (1):
-      drm/amd/display: Don't allow pstate if no support in blank
-
-Chris Park (1):
-      drm/amd/display: Change to correct unit on audio rate
-
-Dirk Gouders (1):
-      drm/amdgpu: fix NULL pointer dereference for Renoir
-
-Dmytro Laktyushkin (1):
-      drm/amd/display: Fix OPTC_DATA_FORMAT programming
-
-Emily.Deng (1):
-      drm/amdgpu: Remove warning for virtual_display
-
-Evan Quan (1):
-      drm/amd/pm: setup APU dpm clock table in SMU HW initialization
-
-Fangzhi Zuo (1):
-      drm/amd/display: HDMI remote sink need mode validation for Linux
-
-Hawking Zhang (4):
-      drm/amdgpu: add helper function for indirect reg access (v3)
-      drm/amdgpu: switch to indirect reg access helper
-      drm/amdgpu: support indirect access reg outside of mmio bar (v2)
-      drm/amdgpu: enable GDDR6 save-restore support for navy_flounder
-
-Rodrigo Siqueira (1):
-      drm/amd/display: Avoid set zero in the requested clk
-
-Ye Bin (1):
-      drm/amdgpu: Fix invalid number of character '{' in amdgpu_acpi_init
-
-kernel test robot (1):
-      drm/amdgpu: kfd_initialized can be static
-
- drivers/gpu/drm/amd/amdgpu/amdgpu.h                |  36 +++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c           |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c         |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c   |   1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c        |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         | 228 +++++++++++++++------
- drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h          |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |   2 +
- drivers/gpu/drm/amd/amdgpu/dce_virtual.c           |   4 +-
- drivers/gpu/drm/amd/amdgpu/nv.c                    |  51 +----
- drivers/gpu/drm/amd/amdgpu/soc15.c                 |  61 ++----
- .../amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c |   3 +-
- drivers/gpu/drm/amd/display/dc/core/dc_link.c      |   2 +-
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c  |  11 +
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c  |   8 -
- .../gpu/drm/amd/display/dc/dcn20/dcn20_resource.c  |   5 +-
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c  |   8 -
- .../amd/display/dc/dml/dcn30/display_mode_vba_30.c |   2 +-
- drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h            |   2 +
- drivers/gpu/drm/amd/pm/inc/smu_v11_0.h             |   2 +
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c          |  37 +++-
- drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c  |   1 +
- drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c    |  15 +-
- .../drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c    |  15 +-
- drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c     |  10 +-
- 25 files changed, 308 insertions(+), 206 deletions(-)
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
