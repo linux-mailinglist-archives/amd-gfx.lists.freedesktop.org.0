@@ -1,61 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85DD7289BEB
-	for <lists+amd-gfx@lfdr.de>; Sat, 10 Oct 2020 00:49:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98D73289FD9
+	for <lists+amd-gfx@lfdr.de>; Sat, 10 Oct 2020 12:04:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 792176EE43;
-	Fri,  9 Oct 2020 22:49:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9D5C6EEA3;
+	Sat, 10 Oct 2020 10:04:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4461A6EE43
- for <amd-gfx@lists.freedesktop.org>; Fri,  9 Oct 2020 22:48:59 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id s7so12268966qkh.11
- for <amd-gfx@lists.freedesktop.org>; Fri, 09 Oct 2020 15:48:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=oiNjyh2trq/fxU6Upm51coJZfs7ZRS9Tkd6aofdALr0=;
- b=LBWTS1+7e2P08HPDGZvVPN5NHf5hQn3VRCql3TSFVEVJOGSGLyf2c3skaUO7ar5HwZ
- 3EuWGambjVjvKU18Al6qo9Th1p7Oi9Qxv9iMz69t46r5x1f3OpH3ADaUOea4J6BBhTak
- LJgPzyfTKmE2LPK3RczJBtmSdIVJcTrNRQ9OJJZkFoy3w2qcM+z6PDKnJRrEzIIHS82d
- jRR4WQkPacS21Pxl7k8HwVMk/oHySQ2sdrv6jgkU2E+a3aSdOvs3668enpo/STUEAIim
- /sZu6sAJ8qgzuGroPq1Ip71JX2b2lGbsr+WE8wT28vgaZGNkScznBc629HrxT2gArEqQ
- h6Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=oiNjyh2trq/fxU6Upm51coJZfs7ZRS9Tkd6aofdALr0=;
- b=OTvLrkmc4Aif0cEI/PR1eI+hEoY2dG/52/IQWrA7eqn58bKb8kzF2RTw2e2TSiGBIE
- 8GSMy5gRwasJB9SmkzzTidK1BobkQaayJzEK4FI5AkfoJJWb+4k/zbh4bTDguf7qCOOC
- CCOOqtK5pvlGtMLrfKON1kLigd2abTwJ5pWep7BYp70M6Awl+mBOffX5bvadjiElVoKF
- SE6/Ygabdjtj7l7ufIiqU1IxgqcO0l8fFI8ITj31x0X9Ebwz1n4MOHhp4uWuPNXPBnah
- afXaPb1VcOLWLi/PWY6CtCCnfDwWnlUWolMkd102ejqEcEIz8uj+NYE9IMfawBu+4OTM
- V44Q==
-X-Gm-Message-State: AOAM531NrdmB2RnlpcSwnAmsQufMHJbbHascj9pRGmAih0f5VqpyS1hl
- 4tWNvKJwBGPEbji4Q9Q1tHK8JSX/9aw=
-X-Google-Smtp-Source: ABdhPJxBC+thr97P9jo86bDw5wf4wafsUaPm/pralWMLnHgtmtVnoNg+UTpdWXvkq4p2rrXHBLGWWA==
-X-Received: by 2002:a05:620a:15ac:: with SMTP id
- f12mr236589qkk.19.1602283738277; 
- Fri, 09 Oct 2020 15:48:58 -0700 (PDT)
-Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
- by smtp.gmail.com with ESMTPSA id t3sm7185482qtq.24.2020.10.09.15.48.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 09 Oct 2020 15:48:57 -0700 (PDT)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amd/display: Add green_sardine support to DM
-Date: Fri,  9 Oct 2020 18:48:47 -0400
-Message-Id: <20201009224847.238484-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20201009224847.238484-1-alexander.deucher@amd.com>
-References: <20201009224847.238484-1-alexander.deucher@amd.com>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E760E6EE68;
+ Sat, 10 Oct 2020 00:40:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=wylOEgAZGPAkxCdlobMzyIfu/ZrVv1Os6TQldUFLziM=; b=F41ki3gR7FBgwnVausn+Ym7HP1
+ XlPOrKIoC49hpvUE9/aWBoH68sW9nzN+roolJxog6JtW0hinw+GJGJQweM2tJ1u8x4huOElOun4HX
+ OLG5RHoBoAf3CSIzFNHpVgsRU+TgTIZh4srysDUduyMdIIxPlPK5JA/amN/knuZnCqa9Zv6UObB0o
+ hZnMFz1K/YCtH1pW7cz6Th6CIA0I8ero69lmDRA42tDkhymN2BfqXsEeqYlbw/xTqpsZhH92AuKGR
+ +ciamleDZuZCDFfE/FcJg9XsXU418hEml49KDOM/rl5J3rO0lFNTAWXDAV5Z24k3Ay+VgEnmqYlhx
+ rI3nBVLQ==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1kR2vS-0004My-FJ; Sat, 10 Oct 2020 00:39:54 +0000
+Date: Sat, 10 Oct 2020 01:39:54 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Eric Biggers <ebiggers@kernel.org>
+Subject: Re: [PATCH RFC PKS/PMEM 22/58] fs/f2fs: Utilize new kmap_thread()
+Message-ID: <20201010003954.GW20115@casper.infradead.org>
+References: <20201009195033.3208459-1-ira.weiny@intel.com>
+ <20201009195033.3208459-23-ira.weiny@intel.com>
+ <20201009213434.GA839@sol.localdomain>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20201009213434.GA839@sol.localdomain>
+X-Mailman-Approved-At: Sat, 10 Oct 2020 10:04:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,63 +48,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Roman Li <Roman.Li@amd.com>
+Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+ linux-mmc@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ target-devel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-kselftest@vger.kernel.org, ira.weiny@intel.com,
+ Thomas Gleixner <tglx@linutronix.de>, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-nvdimm@lists.01.org, linux-rdma@vger.kernel.org, x86@kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-afs@lists.infradead.org,
+ cluster-devel@redhat.com, Ingo Molnar <mingo@redhat.com>,
+ intel-wired-lan@lists.osuosl.org, kexec@lists.infradead.org,
+ xen-devel@lists.xenproject.org, linux-ext4@vger.kernel.org,
+ bpf@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>,
+ Fenghua Yu <fenghua.yu@intel.com>, intel-gfx@lists.freedesktop.org,
+ ecryptfs@vger.kernel.org, linux-um@lists.infradead.org,
+ reiserfs-devel@vger.kernel.org, linux-block@vger.kernel.org,
+ linux-bcache@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
+ Andy Lutomirski <luto@kernel.org>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ ceph-devel@vger.kernel.org, io-uring@vger.kernel.org, linux-cachefs@redhat.com,
+ linux-nfs@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
+ netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, linux-fsdevel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, linux-erofs@lists.ozlabs.org,
+ linux-btrfs@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <Roman.Li@amd.com>
+On Fri, Oct 09, 2020 at 02:34:34PM -0700, Eric Biggers wrote:
+> On Fri, Oct 09, 2020 at 12:49:57PM -0700, ira.weiny@intel.com wrote:
+> > The kmap() calls in this FS are localized to a single thread.  To avoid
+> > the over head of global PKRS updates use the new kmap_thread() call.
+> >
+> > @@ -2410,12 +2410,12 @@ static inline struct page *f2fs_pagecache_get_page(
+> >  
+> >  static inline void f2fs_copy_page(struct page *src, struct page *dst)
+> >  {
+> > -	char *src_kaddr = kmap(src);
+> > -	char *dst_kaddr = kmap(dst);
+> > +	char *src_kaddr = kmap_thread(src);
+> > +	char *dst_kaddr = kmap_thread(dst);
+> >  
+> >  	memcpy(dst_kaddr, src_kaddr, PAGE_SIZE);
+> > -	kunmap(dst);
+> > -	kunmap(src);
+> > +	kunmap_thread(dst);
+> > +	kunmap_thread(src);
+> >  }
+> 
+> Wouldn't it make more sense to switch cases like this to kmap_atomic()?
+> The pages are only mapped to do a memcpy(), then they're immediately unmapped.
 
-Display Manager support for green_sardine
+Maybe you missed the earlier thread from Thomas trying to do something
+similar for rather different reasons ...
 
-Signed-off-by: Roman Li <Roman.Li@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f45f9baec156..aae53589879a 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -100,6 +100,10 @@ MODULE_FIRMWARE(FIRMWARE_SIENNA_CICHLID_DMUB);
- #define FIRMWARE_NAVY_FLOUNDER_DMUB "amdgpu/navy_flounder_dmcub.bin"
- MODULE_FIRMWARE(FIRMWARE_NAVY_FLOUNDER_DMUB);
- #endif
-+#if defined(CONFIG_DRM_AMD_DC_GREEN_SARDINE)
-+#define FIRMWARE_GREEN_SARDINE_DMUB "amdgpu/green_sardine_dmcub.bin"
-+MODULE_FIRMWARE(FIRMWARE_GREEN_SARDINE_DMUB);
-+#endif
- #if defined(CONFIG_DRM_AMD_DC_DCN3_01)
- #define FIRMWARE_VANGOGH_DMUB "amdgpu/vangogh_dmcub.bin"
- MODULE_FIRMWARE(FIRMWARE_VANGOGH_DMUB);
-@@ -945,6 +949,10 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 	case CHIP_RAVEN:
- 	case CHIP_RENOIR:
- 		init_data.flags.gpu_vm_support = true;
-+#if defined(CONFIG_DRM_AMD_DC_GREEN_SARDINE)
-+		if (ASICREV_IS_GREEN_SARDINE(adev->external_rev_id))
-+			init_data.flags.disable_dmcu = true;
-+#endif
- 		break;
- 	default:
- 		break;
-@@ -1245,6 +1253,10 @@ static int dm_dmub_sw_init(struct amdgpu_device *adev)
- 	case CHIP_RENOIR:
- 		dmub_asic = DMUB_ASIC_DCN21;
- 		fw_name_dmub = FIRMWARE_RENOIR_DMUB;
-+#if defined(CONFIG_DRM_AMD_DC_GREEN_SARDINE)
-+		if (ASICREV_IS_GREEN_SARDINE(adev->external_rev_id))
-+			fw_name_dmub = FIRMWARE_GREEN_SARDINE_DMUB;
-+#endif
- 		break;
- #if defined(CONFIG_DRM_AMD_DC_DCN3_0)
- 	case CHIP_SIENNA_CICHLID:
--- 
-2.25.4
-
+https://lore.kernel.org/lkml/20200919091751.011116649@linutronix.de/
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
