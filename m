@@ -2,90 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A3D128AE45
-	for <lists+amd-gfx@lfdr.de>; Mon, 12 Oct 2020 08:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E20128B108
+	for <lists+amd-gfx@lfdr.de>; Mon, 12 Oct 2020 11:00:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1ADD6E040;
-	Mon, 12 Oct 2020 06:42:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E28F46E0CE;
+	Mon, 12 Oct 2020 09:00:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760071.outbound.protection.outlook.com [40.107.76.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 403E16E040
- for <amd-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 06:42:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fo4zgLeP6R+8UD7WV1+JfPuxgl3Hr0os4hu1DcdopOcxHZ89SUXoQinoj+cVl2x91jwyZyrGA2Kod6iW+bPeBmatMqJKsk+JwwDecnb8o3EKQbPAA4mIND3VZZUcRT3yUi9E+HpXIYoaK5UV9QegtCnhSRnB2RLLlFH0yjhLXHTZ/pw6jPY5+jHOIDzzzyZO+UTKq1X84mQqmHt8/mZwTPH6eoZtRt0pCbl6HZm2vP5kL/z3IJab+OOjkCbQUPiDhogNV/0vctl+AmifYfdliPzDh6hMkRNc6FrnTP/L8olMx5bfYyr8fIQyZC8fSJ+vxME/CX8qnB9EtzYrCRENoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PIp8A+Ne17vn0qFDSqIYo1nDQBG9fFL79PjIw5qrmO8=;
- b=CFke+t6Ayd8t7eaSaYQH/WJnr8aUuiuox2mfn3HHaVrBDoA4068jAjq5D0jdDXp9PnYp5YT2pKxYMT1ceKG8oVEdgCuuJGJrfrW870QbihFLQVRUE5TVqAdvVJEFD8rG3CweARZfbOMZEo2bXUC/eumpFn5WXfyMQsvh/JAuTb27JcZuG5JF6LMk3xf32o7K2DXoHU57M9t0JinIIEU0wWPnhL5ODh4xx/aSDWQ/IQbUdEWUGBBEazJbM0JCvdot8nzRE+QS1RA9Hteh3xMx70nh+mCqVzUOkGplx+d7KsfCB041xcxqw26d0eUzjnMls5oMGZ8j972oEjB5hxVvsw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PIp8A+Ne17vn0qFDSqIYo1nDQBG9fFL79PjIw5qrmO8=;
- b=hZQuxd1HwOElGJf1X2KhylpvN4/3BtNEJd72uG/2ba0fNcIAum4lajDHGtHmazqZsR0mcO+Ctk+KEBV6PMIlTyfc93nh3Daki4I6BtBPSnppfY5D3pz+7u3043bjAqRAO1EQdxx1uFJZP/qNv3wOZaJ+h/D9QwqhJWwfT+ECBmc=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
- by MN2PR12MB4520.namprd12.prod.outlook.com (2603:10b6:208:26f::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21; Mon, 12 Oct
- 2020 06:42:04 +0000
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::f8f7:7403:1c92:3a60]) by MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::f8f7:7403:1c92:3a60%6]) with mapi id 15.20.3455.029; Mon, 12 Oct 2020
- 06:42:04 +0000
-Subject: Re: [PATCH v3] amd/amdgpu: Fix resv shared fence overflow
-To: xinhui pan <xinhui.pan@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20201012061414.5160-1-xinhui.pan@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <f2b5b24b-9d1e-442e-f296-519047670987@amd.com>
-Date: Mon, 12 Oct 2020 08:41:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <20201012061414.5160-1-xinhui.pan@amd.com>
-Content-Language: en-US
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-ClientProxiedBy: AM0PR10CA0047.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:150::27) To MN2PR12MB3775.namprd12.prod.outlook.com
- (2603:10b6:208:159::19)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A617D6E07B;
+ Mon, 12 Oct 2020 06:56:39 +0000 (UTC)
+IronPort-SDR: J5pHIn7aSuQjCIKysETNS6iP1yBEj3+Qb7I1h5hvCZC6N0tzTyCu4Bee8UBMqvvJXx/AIcag8n
+ gUpHs1fLOD6g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9771"; a="152624631"
+X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="152624631"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2020 23:56:37 -0700
+IronPort-SDR: DSpSIoZKV7KPLq4zxFvBA+ZLKNkpgmuUQCwMmUi8wsqk6OFxxWBKXoVpyUUZRY9EN2DChpPczf
+ 4EPhWIQlBVGQ==
+X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="529842687"
+Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2020 23:56:35 -0700
+Date: Sun, 11 Oct 2020 23:56:35 -0700
+From: Ira Weiny <ira.weiny@intel.com>
+To: Eric Biggers <ebiggers@kernel.org>
+Subject: Re: [PATCH RFC PKS/PMEM 22/58] fs/f2fs: Utilize new kmap_thread()
+Message-ID: <20201012065635.GB2046448@iweiny-DESK2.sc.intel.com>
+References: <20201009195033.3208459-1-ira.weiny@intel.com>
+ <20201009195033.3208459-23-ira.weiny@intel.com>
+ <20201009213434.GA839@sol.localdomain>
+ <20201010003954.GW20115@casper.infradead.org>
+ <20201010013036.GD1122@sol.localdomain>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- AM0PR10CA0047.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:150::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.22 via Frontend
- Transport; Mon, 12 Oct 2020 06:42:02 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: a433d776-d8c1-49da-5fd5-08d86e79ee10
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4520:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB452002FCFC2A1A15F74A03EA83070@MN2PR12MB4520.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1265;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uUqAYTLlWP5U+CLHr/rL0+17KVp8p1IT/wPgA9sxuD9loYqn+glRjT7HfznxVBsO2xF4yiVWCNMSIiVgKfBi3pxhrYNS2jSVPl2pD+znWFL/XKleVGCIG8zAg0keaarDEzO7QoH+3n6Hf9Bwulvs/FwjRhsLWweJFqutQL97N3GYkTxt8oaCOXcR+GvO+hCjJfMeNys4MM+vKGtsZ4JosP/3GLfbrYZX4f1GwBPxaLnmRtAHpdCFbFugZdHFiNy659aK3AoHXgdDBZPpSlf213pdR3ebmw+KONF6BbD2a6XOr4Q8l5ymr3VDHtjQynONVqKhEdSFpDd/Bx9J8mnnD/JOyaHabV6rSa7EzsR3fvJUoOYLujl8nxg0ruEnYzVH
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(376002)(396003)(366004)(136003)(66574015)(36756003)(52116002)(6666004)(316002)(8676002)(2906002)(5660300002)(6486002)(83380400001)(31696002)(478600001)(2616005)(86362001)(66476007)(186003)(16526019)(8936002)(66556008)(4326008)(66946007)(31686004)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: obGbh/2oWV3of/0xA585/XWggBhCltLM8eWXebJdq+41ASLOtIvghBrWWW5DQmbfIVFPAWqVErK7qHerMvaJnaTV7H6h1I0W7anjw1NNaNbfRpj2TC1mzuKXqxkmc6A9+nFTjtQZGwO0l5bQET9pkxdz13ycQYXPgsg5EYJXQ8XVGARaG9s0vzXsWpfZsribJqcYabc3y1642Ys/j5qWXLDcl871YHWA3rjqsCwa9GITW2XmJ9v8UGuWAYoemHC2ppSt4fkKNVYli5+PqtSmQlE5lq9SgsbXxdGT3/zQLTaiNb2daWtxbjtGRXpxEumYmNiXODfVBMtaS5YogTLEK8+H6woS8TmeMoxo4pQGhLjdyjlju6t3/p2wRi2ltNS/CFnl5DttucwNOMNL0q8iXbgXOAgPjoMsdgs6VV4qHZKTdBRCrCad9ft++62NYOpnh6eHMg5+wpYN5qVs3fnqXmwywB7J/HM4MPkyt8wKGkr9/v6w/kPjXhwA+oJ3NUAYajTnUqcNpIGtgdLyP20wfyxZTCeyeznslCONCcyA8mYgIjl65gB4j8RybAyFxiBWYZYAxRZ46s8VgkFJnwuVGa+ARQme2DOw1zVgIzQS2NkX75bmqPnsV//VLYG72JiQjSaWC7VKD2kXXtUfH9OKxeA5/AKab/TB6QU26mNhbk+ZiXxoL9wAe4k1kA5CJf5hd3TAIE7a6ngl/N/ymixhrg==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a433d776-d8c1-49da-5fd5-08d86e79ee10
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2020 06:42:03.9352 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +Y0+ipvMSD9iXtRRQJ+gecQsY4uwPpWgpqFoHRc+RfG0janPSHsuagILroUG40A2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4520
+Content-Disposition: inline
+In-Reply-To: <20201010013036.GD1122@sol.localdomain>
+User-Agent: Mutt/1.11.1 (2018-12-01)
+X-Mailman-Approved-At: Mon, 12 Oct 2020 09:00:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,51 +53,118 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+ linux-mmc@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ target-devel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, linux-kselftest@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-nvdimm@lists.01.org, linux-rdma@vger.kernel.org, x86@kernel.org,
+ Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
+ cluster-devel@redhat.com, Ingo Molnar <mingo@redhat.com>,
+ intel-wired-lan@lists.osuosl.org, kexec@lists.infradead.org,
+ xen-devel@lists.xenproject.org, linux-ext4@vger.kernel.org,
+ bpf@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>,
+ Fenghua Yu <fenghua.yu@intel.com>, intel-gfx@lists.freedesktop.org,
+ ecryptfs@vger.kernel.org, linux-um@lists.infradead.org,
+ reiserfs-devel@vger.kernel.org, linux-block@vger.kernel.org,
+ linux-bcache@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
+ Andy Lutomirski <luto@kernel.org>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ ceph-devel@vger.kernel.org, io-uring@vger.kernel.org, linux-cachefs@redhat.com,
+ linux-nfs@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
+ netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, linux-fsdevel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, linux-erofs@lists.ozlabs.org,
+ linux-btrfs@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMTIuMTAuMjAgdW0gMDg6MTQgc2NocmllYiB4aW5odWkgcGFuOgo+IFsgIDE3OS41NTY3NDVd
-IGtlcm5lbCBCVUcgYXQgZHJpdmVycy9kbWEtYnVmL2RtYS1yZXN2LmM6MjgyIQo+IFtzbmlwXQo+
-IFsgIDE3OS43MDI5MTBdIENhbGwgVHJhY2U6Cj4gWyAgMTc5LjcwNTY5Nl0gIGFtZGdwdV9ib19m
-ZW5jZSsweDIxLzB4NTAgW2FtZGdwdV0KPiBbICAxNzkuNzEwNzA3XSAgYW1kZ3B1X3ZtX3NkbWFf
-Y29tbWl0KzB4Mjk5LzB4NDMwIFthbWRncHVdCj4gWyAgMTc5LjcxNjQ5N10gIGFtZGdwdV92bV9i
-b191cGRhdGVfbWFwcGluZy5jb25zdHByb3AuMCsweDI5Zi8weDM5MCBbYW1kZ3B1XQo+IFsgIDE3
-OS43MjM5MjddICA/IGZpbmRfaGVsZF9sb2NrKzB4MzgvMHg5MAo+IFsgIDE3OS43MjgxODNdICBh
-bWRncHVfdm1faGFuZGxlX2ZhdWx0KzB4MWFmLzB4NDIwIFthbWRncHVdCj4gWyAgMTc5LjczNDA2
-M10gIGdtY192OV8wX3Byb2Nlc3NfaW50ZXJydXB0KzB4MjQ1LzB4MmUwIFthbWRncHVdCj4gWyAg
-MTc5Ljc0MDM0N10gID8ga2dkMmtmZF9pbnRlcnJ1cHQrMHhiOC8weDFlMCBbYW1kZ3B1XQo+IFsg
-IDE3OS43NDU4MDhdICBhbWRncHVfaXJxX2Rpc3BhdGNoKzB4MTBhLzB4M2MwIFthbWRncHVdCj4g
-WyAgMTc5Ljc1MTM4MF0gID8gYW1kZ3B1X2lycV9kaXNwYXRjaCsweDEwYS8weDNjMCBbYW1kZ3B1
-XQo+IFsgIDE3OS43NTcxNTldICBhbWRncHVfaWhfcHJvY2VzcysweGJiLzB4MWEwIFthbWRncHVd
-Cj4gWyAgMTc5Ljc2MjQ2Nl0gIGFtZGdwdV9pcnFfaGFuZGxlX2loMSsweDI3LzB4NDAgW2FtZGdw
-dV0KPiBbICAxNzkuNzY3OTk3XSAgcHJvY2Vzc19vbmVfd29yaysweDIzYy8weDU4MAo+IFsgIDE3
-OS43NzIzNzFdICB3b3JrZXJfdGhyZWFkKzB4NTAvMHgzYjAKPiBbICAxNzkuNzc2MzU2XSAgPyBw
-cm9jZXNzX29uZV93b3JrKzB4NTgwLzB4NTgwCj4gWyAgMTc5Ljc4MDkzOV0gIGt0aHJlYWQrMHgx
-MjgvMHgxNjAKPiBbICAxNzkuNzg0NDYyXSAgPyBrdGhyZWFkX3BhcmsrMHg5MC8weDkwCj4gWyAg
-MTc5Ljc4ODQ2Nl0gIHJldF9mcm9tX2ZvcmsrMHgxZi8weDMwCj4KPiBXZSBoYXZlIHR3byBzY2hl
-ZHVsZXIgZW50aXRpZXMsIGltbWVkaWF0ZSBhbmQgZGVsYXllZC4KPiBTbyB0aGVyZSBhcmUgdHdv
-IGtpbmRzIG9mIHNjaGVkdWxlciBmaW5pc2hlZCBmZW5jZXMuCj4gV2UgbWlnaHQgYWRkIHRoZXNl
-IHR3byBmZW5jZXMgaW4gcm9vdCBibyByZXN2IGF0IHNhbWUgdGltZS4KPgo+IFdlIGhhdmUgcmVz
-ZXJ2ZWQgdGhlIGRlbGF5ZWQgc2hhcmVkIGZlbmNlIHNsb3QgZHVyaW5nIHZtIGluaXQgYW5kIGJv
-Cj4gbW92aW5nLgo+IEJ1dCBsb29rcyBsaWtlIHdlIGZvcmdldCB0byByZXNlcnZlIHRoZSBpbW1l
-ZGlhdGUgc2hhcmVkIGZlbmNlIHNsb3QKPiBkdXJpbmcgdm0gZmF1bHQuCj4KPiBTaWduZWQtb2Zm
-LWJ5OiB4aW5odWkgcGFuIDx4aW5odWkucGFuQGFtZC5jb20+CgpSZXZpZXdlZC1ieTogQ2hyaXN0
-aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgoKPiAtLS0KPiAgIGRyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jIHwgMyArKysKPiAgIDEgZmlsZSBjaGFuZ2Vk
-LCAzIGluc2VydGlvbnMoKykKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS9hbWRncHVfdm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5j
-Cj4gaW5kZXggM2NkOTQ5YWFkNTAwLi5hNzM3MjMyY2ViMzggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfdm0uYwo+IEBAIC0zMzUyLDYgKzMzNTIsOSBAQCBib29sIGFtZGdw
-dV92bV9oYW5kbGVfZmF1bHQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsIHVuc2lnbmVkIGlu
-dCBwYXNpZCwKPiAgIAlpZiAoIXZtKQo+ICAgCQlnb3RvIGVycm9yX3VubG9jazsKPiAgIAo+ICsJ
-aWYgKGRtYV9yZXN2X3Jlc2VydmVfc2hhcmVkKHJvb3QtPnRiby5iYXNlLnJlc3YsIDEpKQo+ICsJ
-CWdvdG8gZXJyb3JfdW5sb2NrOwo+ICsKPiAgIAlhZGRyIC89IEFNREdQVV9HUFVfUEFHRV9TSVpF
-Owo+ICAgCWZsYWdzID0gQU1ER1BVX1BURV9WQUxJRCB8IEFNREdQVV9QVEVfU05PT1BFRCB8Cj4g
-ICAJCUFNREdQVV9QVEVfU1lTVEVNOwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
-bWQtZ2Z4Cg==
+On Fri, Oct 09, 2020 at 06:30:36PM -0700, Eric Biggers wrote:
+> On Sat, Oct 10, 2020 at 01:39:54AM +0100, Matthew Wilcox wrote:
+> > On Fri, Oct 09, 2020 at 02:34:34PM -0700, Eric Biggers wrote:
+> > > On Fri, Oct 09, 2020 at 12:49:57PM -0700, ira.weiny@intel.com wrote:
+> > > > The kmap() calls in this FS are localized to a single thread.  To avoid
+> > > > the over head of global PKRS updates use the new kmap_thread() call.
+> > > >
+> > > > @@ -2410,12 +2410,12 @@ static inline struct page *f2fs_pagecache_get_page(
+> > > >  
+> > > >  static inline void f2fs_copy_page(struct page *src, struct page *dst)
+> > > >  {
+> > > > -	char *src_kaddr = kmap(src);
+> > > > -	char *dst_kaddr = kmap(dst);
+> > > > +	char *src_kaddr = kmap_thread(src);
+> > > > +	char *dst_kaddr = kmap_thread(dst);
+> > > >  
+> > > >  	memcpy(dst_kaddr, src_kaddr, PAGE_SIZE);
+> > > > -	kunmap(dst);
+> > > > -	kunmap(src);
+> > > > +	kunmap_thread(dst);
+> > > > +	kunmap_thread(src);
+> > > >  }
+> > > 
+> > > Wouldn't it make more sense to switch cases like this to kmap_atomic()?
+> > > The pages are only mapped to do a memcpy(), then they're immediately unmapped.
+> > 
+> > Maybe you missed the earlier thread from Thomas trying to do something
+> > similar for rather different reasons ...
+> > 
+> > https://lore.kernel.org/lkml/20200919091751.011116649@linutronix.de/
+> 
+> I did miss it.  I'm not subscribed to any of the mailing lists it was sent to.
+> 
+> Anyway, it shouldn't matter.  Patchsets should be standalone, and not require
+> reading random prior threads on linux-kernel to understand.
+
+Sorry, but I did not think that the discussion above was directly related.  If
+I'm not mistaken, Thomas' work was directed at relaxing kmap_atomic() into
+kmap_thread() calls.  While interesting, it is not the point of this series.  I
+want to restrict kmap() callers into kmap_thread().
+
+For this series it was considered to change the kmap_thread() call sites to
+kmap_atomic().  But like I said in the cover letter kmap_atomic() is not the
+same semantic.  It is too strict.  Perhaps I should have expanded that
+explanation.
+
+> 
+> And I still don't really understand.  After this patchset, there is still code
+> nearly identical to the above (doing a temporary mapping just for a memcpy) that
+> would still be using kmap_atomic().
+
+I don't understand.  You mean there would be other call sites calling:
+
+kmap_atomic()
+memcpy()
+kunmap_atomic()
+
+?
+
+> Is the idea that later, such code will be
+> converted to use kmap_thread() instead?  If not, why use one over the other?
+ 
+
+The reason for the new call is that with PKS added behind kmap we have 3 levels
+of mapping we want.
+
+global kmap (can span threads and sleep)
+'thread' kmap (can sleep but not span threads)
+'atomic' kmap (can't sleep nor span threads [by definition])
+
+As Matthew said perhaps 'global kmaps' may be best changed to vmaps?  I just
+don't know the details of every call site.
+
+And since I don't know the call site details if there are kmap_thread() calls
+which are better off as kmap_atomic() calls I think it is worth converting
+them.  But I made the assumption that kmap users would already be calling
+kmap_atomic() if they could (because it is more efficient).
+
+Ira
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
