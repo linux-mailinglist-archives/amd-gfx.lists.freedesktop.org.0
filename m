@@ -2,97 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CBA528E54B
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Oct 2020 19:25:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 672E028E5C5
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Oct 2020 19:55:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB4696EB0B;
-	Wed, 14 Oct 2020 17:25:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00DE76EB1E;
+	Wed, 14 Oct 2020 17:55:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2089.outbound.protection.outlook.com [40.107.93.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B608B6EB0D
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Oct 2020 17:25:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fkTs+RGJI3EB21+47BhyOIESDbDAHO3xeD6nxyqSn26UJRJsL8YTMO56HHyTjVL/jnS8iZcQ1V9pIOutFzBT/WWg6EgAgx1UDIbzFxHbOTxTYj4SLXKQLCtj4tlatN4erf51QMzQfnYDKbxRLLe4E8GuYXhFNmnsRI6xutNoM6nIlBjNAIprDwuLqOrb41r9mLKimKQ5rcsDnxeyH56YLnUvbKuES1HzCmkuFww6UPvoY0ZyVKwG8vIxs2fofKiDnm3H1OmoEhUhAibkuYFEKk8uOt6xJBKL6johlHAKqWYBk8WrGPPvSH09HXoBEMbpPBkkikrM8t/qJmMIa2sFAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rtFnUZZbyxjtIQCa34ZbXrPuYsVNOcx6vU7UjWKnO8k=;
- b=WyzhudFqqEw9xOcyC4Ho8qWZTPNckgyX2B3AI3wQGd+RnwYuZi7YMO+EQcLs8gr8UpQIb1nPnOm+HcnRdp55NBtX60BCzEcCTwipWTHnXrjgtZ3HKLZSw6YCbCIXKcvpqR2lT/U7+jx4Npprygym1WwC+YeBTDXkK+vKgiMTRkNTa9R0R4Y5YtENYkKJhdQCrwQZ3iQ9R/N89Agj1utc8W0lvtXv+arPWmx82Z0DlbVqkVAv/B459rj7hsff6t+qMdwxV1LtLQEWtjfixiji6AGzh4Vo7VbjdMbBpzAv50AvnFUkIyXvNagxGRezZKulgviHUTZevxrhgzOaMWY5cg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rtFnUZZbyxjtIQCa34ZbXrPuYsVNOcx6vU7UjWKnO8k=;
- b=AxK8N5oqzAsMt0kTjKCIAHaI9eXhbo6atduXWPigcx9VQdc6Y3hSftSeSe8RHc6ICkoy1+UoowhcxS3RIEuVOtS4qHgFFB9gBj+Ket3bQ9YGuHehgn6k603CJTdkgIYCmP3A7IVVmhIlSJ2XeP8Sfr5dT4dlxnDHla6Zu1prSYI=
-Received: from BN6PR04CA0086.namprd04.prod.outlook.com (2603:10b6:404:c9::12)
- by CH2PR12MB4104.namprd12.prod.outlook.com (2603:10b6:610:a4::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23; Wed, 14 Oct
- 2020 17:25:00 +0000
-Received: from BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:c9:cafe::bf) by BN6PR04CA0086.outlook.office365.com
- (2603:10b6:404:c9::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21 via Frontend
- Transport; Wed, 14 Oct 2020 17:25:00 +0000
-X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=none action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT008.mail.protection.outlook.com (10.13.177.95) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3455.23 via Frontend Transport; Wed, 14 Oct 2020 17:25:00 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 14 Oct
- 2020 12:24:59 -0500
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 14 Oct
- 2020 12:24:59 -0500
-Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
- SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3
- via Frontend Transport; Wed, 14 Oct 2020 12:24:58 -0500
-From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amd/display: Avoid MST manager resource leak.
-Date: Wed, 14 Oct 2020 13:24:54 -0400
-Message-ID: <1602696294-5611-2-git-send-email-andrey.grodzovsky@amd.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1602696294-5611-1-git-send-email-andrey.grodzovsky@amd.com>
-References: <1602696294-5611-1-git-send-email-andrey.grodzovsky@amd.com>
+Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com
+ [IPv6:2607:f8b0:4864:20::f44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E4BF6EB1E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Oct 2020 17:55:25 +0000 (UTC)
+Received: by mail-qv1-xf44.google.com with SMTP id t20so1877844qvv.8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Oct 2020 10:55:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=F78BnGQMQedx0jg5elGHac11ukD8IlWUk1yGtAVoA+U=;
+ b=U7O8f36XKhqOGGoUCJkK5UHgWwlX/NrNy6aeCWuY1X7HV2WegZAcwPID0biWTkt0DY
+ cC937CmcXXyCxla9Yg/MFSg1gKpLYXxaX+9LySnn8S4z6nxuQfy1GPe3uA8fiPLwKpUe
+ brcn8BdofIuIkzPokmgeuv8UIBlt3Xb19r6ipfIKuMcLFtxaRUj8Cds2fNSAU2ER6Q4K
+ aNPPTsUTee9RZNYzD134Wair7/8M5BIB84zw9Hw7E0eApwXBnXTlwJQioCMGzp50IuoX
+ GxkJkwOr4uK1wS7Za3FfYY59VOZb4ddacMQ3ylF3I0bpqCA9W582fzCIhWNJAOGGvNqY
+ tmBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=F78BnGQMQedx0jg5elGHac11ukD8IlWUk1yGtAVoA+U=;
+ b=pZ4WeNflmiCAvtP7j8g5PuW0JkYkMMQcB1z+/26yo2rK4YMH9xkt8L9MLFVwmzxRyD
+ NwpueolKZMF/7xpyeJgexpVOUcmXCkJt78PDKK5L2g4nfOGYYG+DO/9H69TsQbrOHIzh
+ nN/8DKuyCO3uCxW1ffBJy1aczeIFAPaRVH/NY6qI8Q7n5V6jIGSuF7BU9aQE33wZCShC
+ oFraSSjVxK/uU/xTLZ2B347Qb/eb8jPuJBZoPf8MfPXxRnzQx+GjnqzrTADHP74GfxYk
+ t/mmf0VngKFrtM/lP76PQAzq5Nl71NXBA25BmNqIU/x1JGsUS+yQQyApu0aFIZKlP82Z
+ LmaA==
+X-Gm-Message-State: AOAM532oxbBZKtiaPSQho7fyLj+B3f2Kbi/eQP44WrmYQLr+jJUSb3wP
+ +l8QinDLSXYaO33C85EXfWIWSe9/YUQ=
+X-Google-Smtp-Source: ABdhPJxPaiwW/N71cQfjlFKwLDTGzcofebFgpKhFOCVmFqevaRYFuGbx99WdkQ9ZI9hJLB0YELN8jA==
+X-Received: by 2002:a0c:f706:: with SMTP id w6mr696164qvn.48.1602698124063;
+ Wed, 14 Oct 2020 10:55:24 -0700 (PDT)
+Received: from tr4.amd.com (atlvpn.amd.com. [165.204.84.11])
+ by smtp.gmail.com with ESMTPSA id j24sm155403qkg.107.2020.10.14.10.55.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 14 Oct 2020 10:55:23 -0700 (PDT)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu/display: DRM_AMD_DC_DCN3_02 depends on
+ DRM_AMD_DC_DCN3_01
+Date: Wed, 14 Oct 2020 13:55:07 -0400
+Message-Id: <20201014175507.973772-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4e2e719e-5221-4f01-c60b-08d870661440
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4104:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4104EBC2793BC3FD74239B38EA050@CH2PR12MB4104.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +AeiXterSvmybwzLeImRbQ6kfwa7+DE6aRm0cfaIAq72FtA1J/WWP1JaJc9/K/YGAhcY6ql96Rc1KPU8XJ6wx6UAAfHrasd8Ag12f5uc0X5hPzlrbXKQW6yC3cirwEb8M5+8lVK9wK0VaYIlJkkWDFSiJb7jFvzdgNWJRdqu45fIAVLsYun/9N8tsXTnYFBQNJP1MECKuyF8sYNLxSlw5YSyhQPplb5kEGje4J7y2e+vYm6fJWIPM1f7Hx8Qr3zsZZdkkV2ca28ZNY6ESrOS7OSu7vEc8VQtzfSWuVxs9S46By3ZOFJWCrQIO+HtKKIkfp9WdX34LvhkoqF+JvRJQzZ6t6HPUnvjoKeXRna2ghJ8fh0kDeQWKqPiHx9dtGQkY08BEVnvhPBkZYkTB5X7sg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(376002)(136003)(39860400002)(346002)(46966005)(6666004)(8936002)(336012)(2616005)(44832011)(316002)(82310400003)(6916009)(36756003)(26005)(54906003)(5660300002)(70206006)(7696005)(356005)(186003)(8676002)(478600001)(4326008)(82740400003)(86362001)(70586007)(426003)(81166007)(2906002)(47076004);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2020 17:25:00.0680 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e2e719e-5221-4f01-c60b-08d870661440
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4104
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,43 +65,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>, xinhui.pan@amd.com,
- harry.wentland@amd.com, nicholas.kazlauskas@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>, rdunlap@infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On connector destruction call drm_dp_mst_topology_mgr_destroy
-to release resources allocated in drm_dp_mst_topology_mgr_init.
-Do it only if MST manager was initialized before otherwsie a crash
-is seen on driver unload/device unplug.
+Fix this to avoid build problems if DRM_AMD_DC_DCN3_02 is defined, but
+DRM_AMD_DC_DCN3_01 is not.
 
-Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Fixes: 36d26912e8d854 ("drm/amd/display: Add support for DCN302 (v2)")
+Reported-by: Randy Dunlap <rdunlap@infradead.org>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/amd/display/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index a72447d..64799c4 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5170,6 +5170,13 @@ static void amdgpu_dm_connector_destroy(struct drm_connector *connector)
- 	struct amdgpu_device *adev = drm_to_adev(connector->dev);
- 	struct amdgpu_display_manager *dm = &adev->dm;
- 
-+	/*
-+	 * Call only if mst_mgr was initialized before since it's not done
-+	 * for all connector types.
-+	 */
-+	if (aconnector->mst_mgr.dev)
-+		drm_dp_mst_topology_mgr_destroy(&aconnector->mst_mgr);
-+
- #if defined(CONFIG_BACKLIGHT_CLASS_DEVICE) ||\
- 	defined(CONFIG_BACKLIGHT_CLASS_DEVICE_MODULE)
- 
+diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
+index 5906778627f0..93cdcd1ee9ff 100644
+--- a/drivers/gpu/drm/amd/display/Kconfig
++++ b/drivers/gpu/drm/amd/display/Kconfig
+@@ -45,6 +45,7 @@ config DRM_AMD_DC_DCN3_01
+ config DRM_AMD_DC_DCN3_02
+         bool "DCN 3.02 family"
+         depends on DRM_AMD_DC_DCN3_0
++        depends on DRM_AMD_DC_DCN3_01
+         help
+             Choose this option if you want to have
+             Dimgrey_cavefish support for display engine
 -- 
-2.7.4
+2.25.4
 
 _______________________________________________
 amd-gfx mailing list
