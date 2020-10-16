@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B98128FCCD
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Oct 2020 05:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E153528FCCF
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Oct 2020 05:28:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D7946E9AB;
-	Fri, 16 Oct 2020 03:28:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B9336EA82;
+	Fri, 16 Oct 2020 03:28:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2077.outbound.protection.outlook.com [40.107.92.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA0796E9AB
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Oct 2020 03:28:12 +0000 (UTC)
+ (mail-bn7nam10on2045.outbound.protection.outlook.com [40.107.92.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB196EA81
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Oct 2020 03:28:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fjbmo4SmQPA1Kxzqe8bIXHDYj0P8BRTE78z0xHzIF/X2KKbntF58AOjQeofr/TbcVc09uiviv99KW7UOcszBjEnQEZDIreEugqTgGl+svkrV/4043dWMY9QV7rRbkE/ZS0bhaZcBTQqARpgNE5Qt36V7C4dfT36AyY1kJStfFaYiXgVq2yIeZ7Ru1yAiWA/CbXVHXc5mJ1Gfrk+G/qBKa5KkIn/WC8PF45O4vrH7cJzf6OlzAGczJ/8+HDmflQBab5y62Vd+NF/egtrET3qHLkcWP7OFGOrvx8/iypK6N9Fe7pGusYTyADzcsv//ghyZV/hvv7kT6CUfSfzJ+1I2Sw==
+ b=XJ84NvfCjk4zDF/uV4qD7EsjkbjhWb6QcfKj3XA2HqQINAt2RRM8T/87j8AjmK5ovZWQAEZU35jRkiGeWOBvNU9ETVCKo62REfEnG/5rpToxRhkPRkCi68FaPnyPl569vZdWirHS6yCw1xmfzXuBRLGJC2z/6l+e1uUk4XPo6i7g762XvbwlOoJAqRiNnRPE45Ii6TbJG+6YIqz+yBdb1880tkwdiQfpO6k5J1dtAUCVDhrM201CeYw6OPeNT9YrYxhiPy7GSyH4J8ZG5fjNuk6tvbbWwmhnbZLJdKo+tHE0XG3eoLGv4rWk/t76x0AFc2bcd72hGTmU1cykPl9y2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KjsWTZZMgqJ8TimwB9KO/BPazcbXF7rqCOmfqnGjSFs=;
- b=L/DD2Owo8mQqW1h9dRlSuJksvFvD+Y/IISi5ZkneYfigc5/kmWkWRsX6ujlGqr56mEJp9V+X9Ow1SrjWLUr2tLiRlC7aqTe8M/YUB1EKq6VaIl9SY7CBOCy2n5tDIzCe6NfMKxLZ/YZaLX4JCsKYnonhVer96ZvQptnPkMU1ltOlNkRJyAB0kYNx+Mw7A3Kq40mX5EedBrqhDg96q6E+58qIP+j96Tt+ZkQfqTcm5sVzCaArkn5Bg/kt4iEipR0uHUaNsl8IvhOL+XuaTfjfExtovMf50XwHEJvnOu95oQb5vLcM3xxoYUogT41g2yhMwuyc2yiGAUYhc5Y5wjDwtg==
+ bh=6uFPTjVPvw7xCf17mz5tsDIvKPdKsfAB86IUD/Bfkas=;
+ b=kUaKNk4XXWlwpCQhoGvIP57eemSVDJO0T+edf2PI0GKbkM5KBBPZyDu8VzndiRRS8FCOZNruwiQ1Rqw3X+3lc0fce8Ce6P8BuhUWjUTl3bD9A+a+3uoDVvjlxSz6gvn/vFiv98kVvCsaeBVTBUuf+lvASm5MdV4wKBP/1EKAisvtzPNXtCCIUd98DpfSClUj5jtPcV26X1GI6e9fw+SVidLISPo8Xh+w1rZyN6qJ0pxZOQ1nSBSe0Ewh3VqW6qnDFu8mT4/WPpl8r6yxpWGvzQR1foErx94g+mQiHBMWyWp4gLD09fWifNqTGhLbxEgfOQvkH5cnhhc3gGtB+DIqwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KjsWTZZMgqJ8TimwB9KO/BPazcbXF7rqCOmfqnGjSFs=;
- b=qduotEB0hNJkgNj3ORpNbfNnww+NI0yZaV1T7q1eksYangLRa3puBKrC07RsWwS2FqS62XqMPsH/IfRilX1i9sl/JcegpTBrI5QincXWpJ87jZDbU/nApfMrY0ghfjBCtTCKauSNywmggQg1WMP05ykz4AcEscxDLTzCGR33yyw=
+ bh=6uFPTjVPvw7xCf17mz5tsDIvKPdKsfAB86IUD/Bfkas=;
+ b=Kwtzc8qawWplE26OikWzvQDbYWqqiOiNaC8z0Fyf99VQt7dBnDDPtTaBEnJ9YeEvg9iqj2h4uJ/+VeM4LzmEl3uWnytI4X5kaX2VXFtFwUb+mHKEpH661Wy/d5INj2EehmGs2YNsfUDTuzfzAzF4mFDKOhVQyACKLTMOWRPb+KI=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,16 +35,16 @@ Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
  DM5PR12MB1354.namprd12.prod.outlook.com (2603:10b6:3:7a::17) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3477.21; Fri, 16 Oct 2020 03:28:11 +0000
+ 15.20.3477.21; Fri, 16 Oct 2020 03:28:13 +0000
 Received: from DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::bcb1:de80:f60c:8118]) by DM6PR12MB2619.namprd12.prod.outlook.com
  ([fe80::bcb1:de80:f60c:8118%5]) with mapi id 15.20.3477.023; Fri, 16 Oct 2020
- 03:28:11 +0000
+ 03:28:13 +0000
 From: Evan Quan <evan.quan@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 22/40] drm/amd/pm: correct the checks for sclk/mclk SS support
-Date: Fri, 16 Oct 2020 11:26:34 +0800
-Message-Id: <20201016032652.507-23-evan.quan@amd.com>
+Subject: [PATCH 23/40] drm/amd/pm: correct Polaris powertune table setup
+Date: Fri, 16 Oct 2020 11:26:35 +0800
+Message-Id: <20201016032652.507-24-evan.quan@amd.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201016032652.507-1-evan.quan@amd.com>
 References: <20201016032652.507-1-evan.quan@amd.com>
@@ -57,31 +57,31 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from equan-buildpc.amd.com (58.247.170.242) by
  HK2PR0302CA0007.apcprd03.prod.outlook.com (2603:1096:202::17) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.8 via Frontend Transport; Fri, 16 Oct 2020 03:28:10 +0000
+ 15.20.3499.8 via Frontend Transport; Fri, 16 Oct 2020 03:28:11 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2832b920-1581-4e8a-f4cc-08d87183823f
+X-MS-Office365-Filtering-Correlation-Id: dfe429f0-34f6-47db-c0ee-08d871838342
 X-MS-TrafficTypeDiagnostic: DM5PR12MB1354:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB135456E03C9BB1FC2882D8C1E4030@DM5PR12MB1354.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1247;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1354C5CB9273D37200F5E8B6E4030@DM5PR12MB1354.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: j4+guj2KvaKoWoPWflq+QlakvVP5dCeakDnsYy9UcrEBMici7cdWhyxdohMzpa+3pRDCUEVDniU5V15sYjrIz4QA3ZAN+XDjqu1eaQww56ewpilbgL2VlFdWyNKC6DFHSu2IlVJUxAOQlsBNaHSNUGxkFOdl6ajSAwS+KZQ/vNcBqGWeeYfn7TIWVGO+ZtPMdMvGq9bj2OPxNfQfWHEEiAmUgcRzvi+5jZj2SgKMrzbC2xQhJGC+i19+brQjQQP1oS2bjR/hq1O/95hYR5mvStxmFY0iKeKKAt9jdrZoSCq5tH3bxYfUMGa2mi94hbJmqZQFjj3xTsRzz82zF8PpHl4nTPLsg5xhZalfJnUrbmMPMEhmfptwLRVjnFFOBl27
+X-Microsoft-Antispam-Message-Info: Ugnak2vY4cJzrXcJfq1HPP9oo+Itfq0X8MawUarblzEychVJqag+Lh6/rcEyZ8/pAiI6RnnZYkiJT7JPtMqbitK8Oql8LfePa+eNsQrRQv3RSh9ANeyOmsLn3Yoq4EG6S3zBE0BiLIokIrhL6+braxDmB5X5jTeAaWw7ngIDsz5HdiBp11Fb/ecRhsi5+SvQtsBELhz7rigZCTEpeBcTsBfCpOvJxPa0uaMINFvbcuTdb3dwsMvuZL/VYX0MNcGFebD79oZ6CPgKPgGYjjHn469xLm4iIBjFq5uyNb+wO1zTPSep2eCQCP1VXzOtSs398aoSYaeAr0FZhSa8Yk2F18kZ10tsOtB4S3TXMo09LK7Yu5PeoB/upPVWqMqasVih
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(366004)(39860400002)(346002)(396003)(136003)(376002)(66476007)(66946007)(83380400001)(1076003)(8676002)(6486002)(5660300002)(8936002)(66556008)(6916009)(86362001)(52116002)(36756003)(7696005)(4326008)(2616005)(34490700002)(478600001)(316002)(6666004)(44832011)(16526019)(186003)(54906003)(2906002)(26005)(956004);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: rcakbS1aInXfvqPpCvJ9P7YvFG7AqASdD30FUGuZSBw+J33bE6fouZ/VewsZWzppicgFHAU6bePsaEyI0/HupaKxmRsHmfMH6NIMfMww6wfkdLY1Hl+WoYw28cAyexIxnKiMWaGIxB2s5yuIVcddlYIO8hGQt1I/zQzhv+KSvuhz6Kf7rglHSffSNUuBFvu60ooDp9umL7smBOtS8E5m/Dr5stpg+0YsSe0CSEIFjnjMMqefcdz8yGNo945TpSbTI7HQWyCXSWHnsYN+Ht6FaiTDtsOcKGSLZawK8pJAvmi1Qduhp/EzbBBhL9MI3rNl8n3iTzYx6upOe5Dz4USQ4mPZhnWBjurlvLMkWXSOPdLIAmwJN6ZFPIQqNqYTg9olCpQFNtqcwrkCRHwmoJcug+tWCesXTU0br/k3NQRXXIw3j3APdYkSjfnaOin2TG5gWJ9ON6EfmsNIBEnQYfShou3oQxY0Z7XIRv6ZHYENgaT3dXlyAyJj8ktty8PBMI3LWSeEkla2M1F5ysV79lkWppI9jifoF6P6RGI2kO0jo9Ah/jQ6BxvXF4Wt+EvGamHX3fxg2jq9xaoJmQDtkRVLdmQ8DW2BE4iaO7/V38uMAnbxdyXa2pzR3j8wB3jC+fVXl29Iqv1trIVFi3yEsJdJUQ==
+X-MS-Exchange-AntiSpam-MessageData: pWGfKbLtzlCrli3ZiQEOQSJpm98cDVbjD7Bol5ro7c2UwCg6K/20OH35QLO73qSoWt9ByPXLCmSOxdbY8NgMh7bjsz6WIQfQe9JqfluHHkmvke8UPXkkC+5bvDtEp1eClF3+JTlS3/OvcrHTtVN6YYs88UK0aL5YbicesZNqI9wTNVkP5YmdguUpSBbsHyTtijFQT8CeASiRlBUfPgCdmFCKdEv2znIGmVkq2CvkeAe0yTynow45kwTHSQ1g+qGjxdwkfzW8gKKSVrXpAhuAtWXiTRQKfZ34uIYHORlfYjn8QYte4N/y/A6iKlTVHtGorKO51JmXirjIXG4VQyllmnoCIBEwKAXa0OJfIoyUVN+Pvwc/9kD+R6cSRfxE0Um5ljWwLxT1W+7p+9mc6HLtApiZ2pOh+TbmuoD834lZDZlT3HwuNdx0bFiv6fwymYou56A99MQ/WHisDv7X6h7zNSKxQ9x7eZQXyl67cxfUFe9vpgS/IwZL+gXgbbRmf9C8X7hrBCLHBjODcSVO09g4YIDkEX1kXdPxqCoSlGWL7rOI3KKpJp5OXxrZ+6qatDprTgjzQkghnISznlxZeu/0Gy2CATJ6A9wdtvL+0ZVsvVik8hDmg5KFVC8vguUQLo/fJTO2YZo4pk1X0P2+QUjfVQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2832b920-1581-4e8a-f4cc-08d87183823f
+X-MS-Exchange-CrossTenant-Network-Message-Id: dfe429f0-34f6-47db-c0ee-08d871838342
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2619.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2020 03:28:11.3928 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2020 03:28:13.1208 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wA/zbmEXpb0uDxpaZhorJ9PQcdO8t44BZpV6LlueaQz9yqc3YelE14i4P1UTIw0x
+X-MS-Exchange-CrossTenant-UserPrincipalName: pjhdR760EcwDG1RmE3UaGnJ72BZk9rzzUxaSDVXRGHKN2VOcCV4y9ch/POxrJQAn
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1354
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,96 +100,143 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Correct sclk/mclk SS support checks.
+Correct powertune table setup for Polaris.
 
-Change-Id: Ic3842b06aa632d5bfcee09a2119dbbb74d0f008a
+Change-Id: I31fa01c5e5f88233616e51966b4fb5a161e35ff0
 Signed-off-by: Evan Quan <evan.quan@amd.com>
 Acked-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c      |  5 +++++
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.c | 13 ++++++++++++-
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.h |  2 ++
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c |  7 +++++++
- 4 files changed, 26 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/pm/inc/hwmgr.h            |  1 +
+ .../drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h | 36 ++++++++++++++
+ .../powerplay/hwmgr/process_pptables_v1_0.c   | 49 ++++++++++++++++++-
+ 3 files changed, 85 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c
-index f48fdc7f0382..68a7aed16196 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c
-@@ -478,6 +478,11 @@ int polaris_set_asic_special_caps(struct pp_hwmgr *hwmgr)
- 	phm_cap_set(hwmgr->platform_descriptor.platformCaps,
- 						PHM_PlatformCaps_RegulatorHot);
+diff --git a/drivers/gpu/drm/amd/pm/inc/hwmgr.h b/drivers/gpu/drm/amd/pm/inc/hwmgr.h
+index dad703ba0522..0e4707a76f6d 100644
+--- a/drivers/gpu/drm/amd/pm/inc/hwmgr.h
++++ b/drivers/gpu/drm/amd/pm/inc/hwmgr.h
+@@ -441,6 +441,7 @@ struct phm_cac_tdp_table {
+ 	uint8_t  ucPlx_I2C_Line;
+ 	uint32_t usBoostPowerLimit;
+ 	uint8_t  ucCKS_LDO_REFSEL;
++	uint8_t  ucHotSpotOnly;
+ };
  
-+	phm_cap_set(hwmgr->platform_descriptor.platformCaps,
-+			PHM_PlatformCaps_MemorySpreadSpectrumSupport);
-+	phm_cap_set(hwmgr->platform_descriptor.platformCaps,
-+			PHM_PlatformCaps_EngineSpreadSpectrumSupport);
-+
- 	phm_cap_set(hwmgr->platform_descriptor.platformCaps,
- 					PHM_PlatformCaps_AutomaticDCTransition);
+ struct phm_tdp_table {
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h
+index 614f61ae214a..b0ac4d121adc 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h
+@@ -419,6 +419,42 @@ typedef struct _ATOM_Fiji_PowerTune_Table {
+ 	USHORT usReserved;
+ } ATOM_Fiji_PowerTune_Table;
  
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.c
-index a553ae312e65..401b3b516db0 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.c
-@@ -1231,7 +1231,7 @@ uint32_t atomctrl_get_mpll_reference_clock(struct pp_hwmgr *hwmgr)
- /**
-  * Get the asic internal spread spectrum table
-  */
--static ATOM_ASIC_INTERNAL_SS_INFO *asic_internal_ss_get_ss_table(void *device)
-+ATOM_ASIC_INTERNAL_SS_INFO *asic_internal_ss_get_ss_table(void *device)
- {
- 	ATOM_ASIC_INTERNAL_SS_INFO *table = NULL;
- 	u8 frev, crev;
-@@ -1245,6 +1245,17 @@ static ATOM_ASIC_INTERNAL_SS_INFO *asic_internal_ss_get_ss_table(void *device)
- 	return table;
- }
- 
-+bool atomctrl_is_asic_internal_ss_supported(struct pp_hwmgr *hwmgr)
++typedef struct _ATOM_Polaris_PowerTune_Table
 +{
-+	ATOM_ASIC_INTERNAL_SS_INFO *table =
-+		asic_internal_ss_get_ss_table(hwmgr->adev);
++    UCHAR  ucRevId;
++    USHORT usTDP;
++    USHORT usConfigurableTDP;
++    USHORT usTDC;
++    USHORT usBatteryPowerLimit;
++    USHORT usSmallPowerLimit;
++    USHORT usLowCACLeakage;
++    USHORT usHighCACLeakage;
++    USHORT usMaximumPowerDeliveryLimit;
++    USHORT usTjMax;  // For Fiji, this is also usTemperatureLimitEdge;
++    USHORT usPowerTuneDataSetID;
++    USHORT usEDCLimit;
++    USHORT usSoftwareShutdownTemp;
++    USHORT usClockStretchAmount;
++    USHORT usTemperatureLimitHotspot;  //The following are added for Fiji
++    USHORT usTemperatureLimitLiquid1;
++    USHORT usTemperatureLimitLiquid2;
++    USHORT usTemperatureLimitVrVddc;
++    USHORT usTemperatureLimitVrMvdd;
++    USHORT usTemperatureLimitPlx;
++    UCHAR  ucLiquid1_I2C_address;  //Liquid
++    UCHAR  ucLiquid2_I2C_address;
++    UCHAR  ucLiquid_I2C_Line;
++    UCHAR  ucVr_I2C_address;  //VR
++    UCHAR  ucVr_I2C_Line;
++    UCHAR  ucPlx_I2C_address;  //PLX
++    UCHAR  ucPlx_I2C_Line;
++    USHORT usBoostPowerLimit;
++    UCHAR  ucCKS_LDO_REFSEL;
++    UCHAR  ucHotSpotOnly;
++    UCHAR  ucReserve;
++    USHORT usReserve;
++} ATOM_Polaris_PowerTune_Table;
 +
-+	if (table)
-+		return true;
-+	else
-+		return false;
-+}
-+
- /**
-  * Get the asic internal spread spectrum assignment
-  */
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.h b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.h
-index b3951b19fbfc..b3103bd4be42 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.h
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppatomctrl.h
-@@ -296,6 +296,8 @@ extern bool atomctrl_get_pp_assign_pin(struct pp_hwmgr *hwmgr, const uint32_t pi
- extern int atomctrl_get_voltage_evv_on_sclk(struct pp_hwmgr *hwmgr, uint8_t voltage_type, uint32_t sclk, uint16_t virtual_voltage_Id, uint16_t *voltage);
- extern int atomctrl_get_voltage_evv(struct pp_hwmgr *hwmgr, uint16_t virtual_voltage_id, uint16_t *voltage);
- extern uint32_t atomctrl_get_mpll_reference_clock(struct pp_hwmgr *hwmgr);
-+
-+bool atomctrl_is_asic_internal_ss_supported(struct pp_hwmgr *hwmgr);
- extern int atomctrl_get_memory_clock_spread_spectrum(struct pp_hwmgr *hwmgr, const uint32_t memory_clock, pp_atomctrl_internal_ss_info *ssInfo);
- extern int atomctrl_get_engine_clock_spread_spectrum(struct pp_hwmgr *hwmgr, const uint32_t engine_clock, pp_atomctrl_internal_ss_info *ssInfo);
- extern int atomctrl_initialize_mc_reg_table(struct pp_hwmgr *hwmgr, uint8_t module_index, pp_atomctrl_mc_reg_table *table);
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-index 27ca0e6b724f..03a139f2c426 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-@@ -1811,6 +1811,13 @@ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
- 	    (adev->asic_type == CHIP_POLARIS12) ||
- 	    (adev->asic_type == CHIP_VEGAM))
- 		data->disable_edc_leakage_controller = false;
-+
-+	if (!atomctrl_is_asic_internal_ss_supported(hwmgr)) {
-+		phm_cap_unset(hwmgr->platform_descriptor.platformCaps,
-+			PHM_PlatformCaps_MemorySpreadSpectrumSupport);
-+		phm_cap_unset(hwmgr->platform_descriptor.platformCaps,
-+			PHM_PlatformCaps_EngineSpreadSpectrumSupport);
-+	}
- }
+ #define ATOM_PPM_A_A    1
+ #define ATOM_PPM_A_I    2
+ typedef struct _ATOM_Tonga_PPM_Table {
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/process_pptables_v1_0.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/process_pptables_v1_0.c
+index 4ed9f8106b2e..801a56502670 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/process_pptables_v1_0.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/process_pptables_v1_0.c
+@@ -613,7 +613,7 @@ static int get_cac_tdp_table(
+ 			le16_to_cpu(tonga_table->usSoftwareShutdownTemp);
+ 		tdp_table->usClockStretchAmount =
+ 			le16_to_cpu(tonga_table->usClockStretchAmount);
+-	} else {   /* Fiji and newer */
++	} else if (table->ucRevId < 4) {   /* Fiji and newer */
+ 		const ATOM_Fiji_PowerTune_Table *fijitable =
+ 			(ATOM_Fiji_PowerTune_Table *)table;
+ 		tdp_table->usTDP = le16_to_cpu(fijitable->usTDP);
+@@ -657,6 +657,53 @@ static int get_cac_tdp_table(
+ 		tdp_table->ucVr_I2C_Line = fijitable->ucVr_I2C_Line;
+ 		tdp_table->ucPlx_I2C_address = fijitable->ucPlx_I2C_address;
+ 		tdp_table->ucPlx_I2C_Line = fijitable->ucPlx_I2C_Line;
++	} else {
++		const ATOM_Polaris_PowerTune_Table *polaristable =
++			(ATOM_Polaris_PowerTune_Table *)table;
++		tdp_table->usTDP = le16_to_cpu(polaristable->usTDP);
++		tdp_table->usConfigurableTDP = le16_to_cpu(polaristable->usConfigurableTDP);
++		tdp_table->usTDC = le16_to_cpu(polaristable->usTDC);
++		tdp_table->usBatteryPowerLimit = le16_to_cpu(polaristable->usBatteryPowerLimit);
++		tdp_table->usSmallPowerLimit = le16_to_cpu(polaristable->usSmallPowerLimit);
++		tdp_table->usLowCACLeakage = le16_to_cpu(polaristable->usLowCACLeakage);
++		tdp_table->usHighCACLeakage = le16_to_cpu(polaristable->usHighCACLeakage);
++		tdp_table->usMaximumPowerDeliveryLimit =
++			le16_to_cpu(polaristable->usMaximumPowerDeliveryLimit);
++		tdp_table->usDefaultTargetOperatingTemp =
++			le16_to_cpu(polaristable->usTjMax);
++		tdp_table->usTargetOperatingTemp =
++			le16_to_cpu(polaristable->usTjMax); /*Set the initial temp to the same as default */
++		tdp_table->usPowerTuneDataSetID =
++			le16_to_cpu(polaristable->usPowerTuneDataSetID);
++		tdp_table->usSoftwareShutdownTemp =
++			le16_to_cpu(polaristable->usSoftwareShutdownTemp);
++		tdp_table->usClockStretchAmount =
++			le16_to_cpu(polaristable->usClockStretchAmount);
++		tdp_table->usTemperatureLimitHotspot =
++			le16_to_cpu(polaristable->usTemperatureLimitHotspot);
++		tdp_table->usTemperatureLimitLiquid1 =
++			le16_to_cpu(polaristable->usTemperatureLimitLiquid1);
++		tdp_table->usTemperatureLimitLiquid2 =
++			le16_to_cpu(polaristable->usTemperatureLimitLiquid2);
++		tdp_table->usTemperatureLimitVrVddc =
++			le16_to_cpu(polaristable->usTemperatureLimitVrVddc);
++		tdp_table->usTemperatureLimitVrMvdd =
++			le16_to_cpu(polaristable->usTemperatureLimitVrMvdd);
++		tdp_table->usTemperatureLimitPlx =
++			le16_to_cpu(polaristable->usTemperatureLimitPlx);
++		tdp_table->ucLiquid1_I2C_address =
++			polaristable->ucLiquid1_I2C_address;
++		tdp_table->ucLiquid2_I2C_address =
++			polaristable->ucLiquid2_I2C_address;
++		tdp_table->ucLiquid_I2C_Line =
++			polaristable->ucLiquid_I2C_Line;
++		tdp_table->ucVr_I2C_address = polaristable->ucVr_I2C_address;
++		tdp_table->ucVr_I2C_Line = polaristable->ucVr_I2C_Line;
++		tdp_table->ucPlx_I2C_address = polaristable->ucPlx_I2C_address;
++		tdp_table->ucPlx_I2C_Line = polaristable->ucPlx_I2C_Line;
++		tdp_table->usBoostPowerLimit = polaristable->usBoostPowerLimit;
++		tdp_table->ucCKS_LDO_REFSEL = polaristable->ucCKS_LDO_REFSEL;
++		tdp_table->ucHotSpotOnly = polaristable->ucHotSpotOnly;
+ 	}
  
- static int smu7_calculate_ro_range(struct pp_hwmgr *hwmgr)
+ 	*cac_tdp_table = tdp_table;
 -- 
 2.28.0
 
