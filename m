@@ -1,88 +1,103 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA8E28FCE2
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Oct 2020 05:29:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D374128FCED
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Oct 2020 05:33:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 100736EA8F;
-	Fri, 16 Oct 2020 03:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8320A6E1A3;
+	Fri, 16 Oct 2020 03:33:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2049.outbound.protection.outlook.com [40.107.92.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 585646E9BD
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Oct 2020 03:29:06 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB876E1A3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Oct 2020 03:33:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RLKDCagtPgbxcyiqNEJnEoUwi1XefMjaJ5g7VVkrBxxUBZ181P+mKoRkS7VxuPfyvAHTkWcSEvFY8/TnI4XHa7f5YfxE5GoWkzmoasycMzCeXkh5WSShopbp8y7TpKXDFAfoppBa+3pddfbjHAa9cy3x6l6tL8xanLSDl/+oS56rkA1kGCMMdUPkW+/2tZSfCxknr/Wvw2Yoyt+5HT7XoSjtlCJOgArXPD4Ls52NBKwcmxsWrGG5Z2Lk4tHMqI2BZuuEUz8x/sC+c2/Q884mS0CXWdYof52gFVsqkcvWqqHfuMBhHcJ9JzPpgn1kaZtKhrI+749rRwyqsMYWvbeqSg==
+ b=O6uF9FiMagl5dpZrxgFRm70v3cGZaLleejr7/AjQaFEpNyuu9+uLjboWHkkNz0X4px0t1DbRPlipbKb+ECTTpNCAM8yKHmvmgZe21bD7OhxmHwsDakHiYAcHowjeCk7TxU6COTB2dpgRsZDywfkF7/V/zTStYGmsQNMeEZfzG4vKDPAdBnf7xEZ3rjvswq9R3cfqDhrtGWmyMGxwoKz5LxoZREq5dTAEp9eKWhWrBuMPL1Ah8Zpb974RwVsdaGqnOxCgnHpNMcYD3pVIzM1Pn2rOZmmcftxHZLaVO+dxklBcd0FyqyQzka5ykjLY/Cp6HPXsL/RCM/t3YDlAKHMYMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Eqz5tCsdcS/Vtfffz/ddYlNBAUOwLYQK7dgclx0H1AA=;
- b=bMGvV60dzy7+wkVxWDxoLlJPwYcdt1DyNjgBbNTTlQhYJcd6UHJSizyvbb6qd+Z2H4FUkHoPcKyc65aLpvBXsKtVoUv/fZpv3QrtfVyrPDMCH2Jj21m6zxSO4+624QdHIxmwP6czfYLZ3GQAiiaXZnu25/Ef0QZq2pJ6qs/bOpyYOtH46sv9OyhYmq4XL+LR00229CVGfH/QSL2jjAIPFMtrFzqGlIFeoreE+Rvj2fPsI88hgFoHJP/AhFfGzPVK5w/Y/ovEv2qGpTfZOtXDK8+uP808b7ebTeb/nHQMSqTdextziBizAqttXPupJqEdVKuWL7mLdih8a6lRjax/0g==
+ bh=8k3JXAgM10t0LY2eEHTmCaUsFUf3OBQCDuWuuMdhxyU=;
+ b=Esi9otJ/Xiru819nyVQ31mVkUvcPeFoIUkcNpmyhNTWyKgHSgDSb0IsyczxndOU2GjDOAPrj4r5Y4enasnobaquZ6mc4OKgqAQEkuyVFa3ZnSwwM2VjpGZPOQDKCS59h5/kAHCMW31NN8yETEA7tiTUzoCpa4CshPixJJKFuBKNZStLQ5ZGXyTT4dE2HwCl1AavnhdwKHFLIz4dJun8cwl2TqdwO4ggYk99IIsu3JdQBYTTarpXmf7BUqZdssqCgpWERRErO1CiWRguVW4HNiXs+RL89dQP0tzWP0lAZ/ih+osG//hIT3UB9ptKx67EtlHQLVfJ8sKYVcaSzPPN3xA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Eqz5tCsdcS/Vtfffz/ddYlNBAUOwLYQK7dgclx0H1AA=;
- b=1+IVAAn2NZM59SEknEU7G6mWCstwmGiNTYeIUK8kPsxdFQGUiPr9F9RrggNRcFTfF1LeOV8KN02cyK4RrlFsBBtw/weqVuJ9RCttpWzwGSYSEyBaOM9YLybGlBY+j29UVb1NrHJ6EFeG4WuMljAMwk5j/1KEBH4Pig5g66gHVzU=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
- DM5PR12MB1354.namprd12.prod.outlook.com (2603:10b6:3:7a::17) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3477.21; Fri, 16 Oct 2020 03:29:05 +0000
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::bcb1:de80:f60c:8118]) by DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::bcb1:de80:f60c:8118%5]) with mapi id 15.20.3477.023; Fri, 16 Oct 2020
- 03:29:05 +0000
-From: Evan Quan <evan.quan@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 40/40] drm/amd/pm: drop redundant display setting
-Date: Fri, 16 Oct 2020 11:26:52 +0800
-Message-Id: <20201016032652.507-41-evan.quan@amd.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201016032652.507-1-evan.quan@amd.com>
-References: <20201016032652.507-1-evan.quan@amd.com>
-X-Originating-IP: [58.247.170.242]
-X-ClientProxiedBy: HK2PR0302CA0007.apcprd03.prod.outlook.com
- (2603:1096:202::17) To DM6PR12MB2619.namprd12.prod.outlook.com
- (2603:10b6:5:45::18)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from equan-buildpc.amd.com (58.247.170.242) by
- HK2PR0302CA0007.apcprd03.prod.outlook.com (2603:1096:202::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.8 via Frontend Transport; Fri, 16 Oct 2020 03:28:42 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: a3529eaf-49ee-4b6e-ab4e-08d87183959d
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1354:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB13543A8F0E59384ED65722A1E4030@DM5PR12MB1354.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2150;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +c1BKNKU9FW8E/5fW+vBn4EVShT7gQ/QnZ1G24UC3wGD3ruTbpzi1kQkhyhfMbARlDRICURff48mMQvHomugMSWGnzlZFOouhAhaPAjI6UJrGsmwqTBR4VpqIep3upzJ/LalKDbt35uVUZ2pqduLt+n2EJFgeZTCKlAcMJvJOCFACLuASwSzksELMi5LzKGIlknQAEPFDqa62nMO5u5fhKsxKejryWLx4k+a8bbejGhibFAnZ4Y4gd9eKsTWpxRzXxI642iyuseQ2AK65C3gteHcqa7tw27p3swdqJjZFZue4wXgw30Cq6qRKmVn9Bhf2yrB5oZD2z69LcEsqgukeaqEMCfWLFP/TIbxPVedJ01q50rSGdCmQiP+Ygtm4o/m
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(39860400002)(346002)(396003)(136003)(376002)(66476007)(66946007)(83380400001)(1076003)(8676002)(6486002)(5660300002)(8936002)(66556008)(6916009)(86362001)(52116002)(36756003)(7696005)(4326008)(2616005)(34490700002)(478600001)(316002)(6666004)(44832011)(16526019)(186003)(54906003)(2906002)(26005)(956004);
+ bh=8k3JXAgM10t0LY2eEHTmCaUsFUf3OBQCDuWuuMdhxyU=;
+ b=XBnr7hBA2BIhUAdoVY7e+4o6dnxwN4/SDkdPQ9zsAaWy6Rc9md5brvwt6OsfEX9M90O4qr8jVUsXyoSz8vj70Lo4PHdZ87wGFWogArCxanHd7grENtUXxzI95l3Mm02hZRC0OZwwlAOuLaxbyyL6g5uFlezQ8DZ6VSfPMINkRDM=
+Received: from MWHPR12MB1854.namprd12.prod.outlook.com (2603:10b6:300:114::19)
+ by MW3PR12MB4572.namprd12.prod.outlook.com (2603:10b6:303:5e::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21; Fri, 16 Oct
+ 2020 03:33:06 +0000
+Received: from MWHPR12MB1854.namprd12.prod.outlook.com
+ ([fe80::5930:79ab:d15c:2826]) by MWHPR12MB1854.namprd12.prod.outlook.com
+ ([fe80::5930:79ab:d15c:2826%3]) with mapi id 15.20.3477.021; Fri, 16 Oct 2020
+ 03:33:06 +0000
+From: "Gao, Likun" <Likun.Gao@amd.com>
+To: "Wang, Kevin(Yang)" <Kevin1.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amd/swsmu: Add missing feature map for sienna_cichlid
+Thread-Topic: [PATCH] drm/amd/swsmu: Add missing feature map for sienna_cichlid
+Thread-Index: AQHWo2tSvcvpfLmAzE6G+rRazL8er6mZksLg
+Date: Fri, 16 Oct 2020 03:33:06 +0000
+Message-ID: <MWHPR12MB18541EA7E286CCFBF0FAE7A8EF030@MWHPR12MB1854.namprd12.prod.outlook.com>
+References: <20201016032004.16843-1-kevin1.wang@amd.com>
+In-Reply-To: <20201016032004.16843-1-kevin1.wang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-10-16T03:32:50Z; 
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
+ Unrestricted;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=857e74a3-03a9-4228-a884-00007ebb7bf3;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=1
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-10-16T03:32:50Z
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
+ Unrestricted
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: 2513f6ff-f3e3-470a-8453-0000115bf6eb
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
+msip_justification: I confirm the recipients are approved for sharing this
+ content
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [58.247.170.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: af31721f-a2c2-4a48-e8b2-08d871843247
+x-ms-traffictypediagnostic: MW3PR12MB4572:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MW3PR12MB457237B1A1EDD3DAA50F5AF5EF030@MW3PR12MB4572.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:635;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: yJGPIZQoG5Z7KzBsSckACJbQgFURLMWHeWZx0o2P49h1OSUoffmck6wHy/v5B/I7eHeohyWMrpr96UaULuyvjt024Vp/Btyj3zd8mMMvgSCuvON6I0nsgm4LhTFcOw4uubC6cJJ/5PbfC+Ec9j6YMp029HvRoIn4GgkoKSvEQ5EdJBU6/Q+vEbKzn+rCPLfcRapCG/kr+z+lESh8vZlcuxa9Upmdr/pKSuKp9QJ7eXaIUOUc0oT/eZG5iX1xTT3pv+wuhIU1nFWT2Q5pQfLyegTOkvJpSp0O4Um8ru7Uo9wfuVnr4USbRVkUgFhj04KuEBvOpfY0nBz0cyk4urzqIQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR12MB1854.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39860400002)(136003)(366004)(346002)(396003)(376002)(478600001)(66446008)(83380400001)(66476007)(316002)(76116006)(64756008)(66556008)(66946007)(5660300002)(2906002)(86362001)(8676002)(9686003)(110136005)(4326008)(7696005)(186003)(55016002)(71200400001)(26005)(53546011)(6506007)(8936002)(52536014)(33656002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: 24nJ3OSANYRnLtSKZY2Uvojm5WOpcv6KIeVrQjl2i1/tQt9byhUgs6gRW8BePtbC2WsP/t7H7oo/Qc+5NZ0VgoPCKVL368XbCXy7G0xxtOK90ntvV3Hrlvbahu1HfEKK14SXZI1EBbkZczkTO9n5gyU89H4AI2jKP+h7et2fT92ewYWDETVXbH1Z+E6rrTFBukQJ47rhU74EdxGXBmacNmSwccI8pLRh5DKaIlLvfXyuCSUOZKum6e/1ne+dVkHcZ6w8f9rS1ec6yD8jaakm0aRIPIj7OGraYFop9oVu2OQVjqww0pNfFW3ZapqogsdNRzcz4KE/c2fLbgCPzoGh1EIjDpuNrvNtv8jkJIxhjqkbn0GAEUISieH03RGGmyeQgeB8uNJVNCFEGqosiDCM39DPSZ/4H9TiY+kFWrc4YcHHJWllX1vh5MLaCgant7TGXKl6q/oREl80kqub/bq0SwGjixoEaky1i3eNoFpFNsBIiZkFx/AzcYDbH/Aqih2M+qZoaUbqN2KDeSjJmWeLvlzJTbrOI03TRPHR5xM2YEWW2VRrBpsyw/xnNvI7Lcp6RM6DLCTNBwHI19c6VVHD984ZhF/h4I0QjqPGZ87mon/x558SFGVSdHiKallFKFGkV2QUkrlMrkIHfG7cVuoG6g==
+x-ms-exchange-antispam-messagedata: FACJA0+OVCv28K5ilFE1FQIFYlJSYlcp6KeyGXHjUcyivuwZux7pHYkN4kRVZ9GHzXWTAQFlOFJ1Wq+Aabe8lwfh3ftciodqQ8WmlRPeIku4e6Fx3nFJ/757n3XWBIl9HB1g6djmwkhB7/h3zA1TIB6XP6aThKrgfqosDTrMvZLUTjoYeOpnH8w1WNBz/tqJhNmjb10bGf3j4PMkCODi9Xt0k2ozPsIuAFZ7ZE0DWVECFtwYWoInHtb2bzpihmJEQvsV+E0J5CtXCJw+fVfHPAzI9skAHgrII2zd7yX76cLDkHf0nPBpPqDJco5iM6M1BZJFNiW8Rgs4CFEczmCG4ACWN92TY/2AWxrpY78H0MGAhwS1r94IgrmD//MpsqVRyzj45supDa7WMsG+iHAOLX3HHSCT+MMVNNRwUTtHZxHUIBF/QxVRHBV0/0aOXdXRF6J1XE6jClwnKDXU520VbdDgDfHKRhN0aoTYoOJV3TlOjSrefpImdXqa82KsKnztnrfBJe7fg4xOJvHBQnsfjW1p9/irHS8kYR95xqceSRHtP2AEBdd+VaXZODSYrjiV6+wJzG0abhP3QjVn3b9f4bc23B3czkfeQyrvyBUk9mQnJxyTeRGFRI9pAB90RrfIqM6AGXv0X90+a/U7Qbe+Aw==
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3529eaf-49ee-4b6e-ab4e-08d87183959d
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2619.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2020 03:28:44.0886 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XNOgmoYnk6jRe2hSGNQi1UeW5s+qjHKpYp/jXg2Sal0IF2lb94aG9V10UGkfJrBw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1354
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR12MB1854.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: af31721f-a2c2-4a48-e8b2-08d871843247
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2020 03:33:06.4431 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Bb5Q+d6PO/jRKLWmNQmmZgL9CZWXprUoKJBsKHdcL5q6yrHTaa9q+QTPRkFihrgn
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4572
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,50 +109,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>
+Cc: "Feng, Kenneth" <Kenneth.Feng@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-As this is already performed in smu7_set_power_state_tasks().
+[AMD Official Use Only - Internal Distribution Only]
 
-Change-Id: I2b44e9f872c9b7ce7b38df4b97139c1f293efaf0
-Signed-off-by: Evan Quan <evan.quan@amd.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Likun Gao <Likun.Gao@amd.com>
+
+Regards,
+Likun
+
+-----Original Message-----
+From: Wang, Kevin(Yang) <Kevin1.Wang@amd.com> 
+Sent: Friday, October 16, 2020 11:20 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Feng, Kenneth <Kenneth.Feng@amd.com>; Gao, Likun <Likun.Gao@amd.com>; Wang, Kevin(Yang) <Kevin1.Wang@amd.com>
+Subject: [PATCH] drm/amd/swsmu: Add missing feature map for sienna_cichlid
+
+it will cause smu sysfs node of "pp_features" show error.
+
+Signed-off-by: Kevin Wang <kevin1.wang@amd.com>
 ---
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c | 12 ------------
- 1 file changed, 12 deletions(-)
+ drivers/gpu/drm/amd/pm/inc/smu_types.h                  | 1 +
+ drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 3 +++
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-index d6c903e80692..49db61a89505 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-@@ -4424,21 +4424,9 @@ static int smu7_set_max_fan_pwm_output(struct pp_hwmgr *hwmgr, uint16_t us_max_f
- 			NULL);
- }
- 
--static int
--smu7_notify_smc_display_change(struct pp_hwmgr *hwmgr, bool has_display)
--{
--	PPSMC_Msg msg = has_display ? (PPSMC_Msg)PPSMC_HasDisplay : (PPSMC_Msg)PPSMC_NoDisplay;
--
--	return (smum_send_msg_to_smc(hwmgr, msg, NULL) == 0) ?  0 : -1;
--}
--
- static int
- smu7_notify_smc_display_config_after_ps_adjustment(struct pp_hwmgr *hwmgr)
- {
--	if (hwmgr->display_config->num_display > 1 &&
--			!hwmgr->display_config->multi_monitor_in_sync)
--		smu7_notify_smc_display_change(hwmgr, false);
--
- 	return 0;
- }
- 
+diff --git a/drivers/gpu/drm/amd/pm/inc/smu_types.h b/drivers/gpu/drm/amd/pm/inc/smu_types.h
+index b1a18fbb7682..85ae724c66d7 100644
+--- a/drivers/gpu/drm/amd/pm/inc/smu_types.h
++++ b/drivers/gpu/drm/amd/pm/inc/smu_types.h
+@@ -227,6 +227,7 @@ enum smu_clk_type {
+        __SMU_DUMMY_MAP(DPM_MP0CLK),                    	\
+        __SMU_DUMMY_MAP(DPM_LINK),                      	\
+        __SMU_DUMMY_MAP(DPM_DCEFCLK),                   	\
++       __SMU_DUMMY_MAP(DPM_XGMI),			\
+        __SMU_DUMMY_MAP(DS_GFXCLK),                     	\
+        __SMU_DUMMY_MAP(DS_SOCCLK),                     	\
+        __SMU_DUMMY_MAP(DS_LCLK),                       	\
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index c27806fd07e0..ca2abb2e5340 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -151,14 +151,17 @@ static struct cmn2asic_mapping sienna_cichlid_feature_mask_map[SMU_FEATURE_COUNT
+ 	FEA_MAP(DPM_GFXCLK),
+ 	FEA_MAP(DPM_GFX_GPO),
+ 	FEA_MAP(DPM_UCLK),
++	FEA_MAP(DPM_FCLK),
+ 	FEA_MAP(DPM_SOCCLK),
+ 	FEA_MAP(DPM_MP0CLK),
+ 	FEA_MAP(DPM_LINK),
+ 	FEA_MAP(DPM_DCEFCLK),
++	FEA_MAP(DPM_XGMI),
+ 	FEA_MAP(MEM_VDDCI_SCALING),
+ 	FEA_MAP(MEM_MVDD_SCALING),
+ 	FEA_MAP(DS_GFXCLK),
+ 	FEA_MAP(DS_SOCCLK),
++	FEA_MAP(DS_FCLK),
+ 	FEA_MAP(DS_LCLK),
+ 	FEA_MAP(DS_DCEFCLK),
+ 	FEA_MAP(DS_UCLK),
 -- 
-2.28.0
-
+2.17.1
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
