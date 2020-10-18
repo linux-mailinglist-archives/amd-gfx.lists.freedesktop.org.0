@@ -1,39 +1,39 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02212291A66
-	for <lists+amd-gfx@lfdr.de>; Sun, 18 Oct 2020 21:24:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20C6E291A84
+	for <lists+amd-gfx@lfdr.de>; Sun, 18 Oct 2020 21:25:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E00676E884;
-	Sun, 18 Oct 2020 19:23:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1C56E884;
+	Sun, 18 Oct 2020 19:25:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3468B6E884;
- Sun, 18 Oct 2020 19:23:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD5E6E884;
+ Sun, 18 Oct 2020 19:25:17 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3AD992137B;
- Sun, 18 Oct 2020 19:23:55 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 8560620791;
+ Sun, 18 Oct 2020 19:25:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1603049036;
- bh=Y41yYFdpA7QO0iglbTr18XCgON3V9ELaeY6gNrgyVQc=;
+ s=default; t=1603049117;
+ bh=2+afdTbg2YAYcaZyREijjP+vQfr5FM7D//L2vJI8xTA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Drh7xs0A78qGrfKpW3EQl2Omd3jpmOF61u3iubNiMc+wqqpNcW2RhiAzFNMRmvG4C
- EBthRhI9mf64S5o0VPNRwwCrOxePE4DHpShI46yLIkj8FqTKhb5ysgdXHlZzgdmrTg
- NbpVTw7rlljUdknDzxSmZlVb6FnDra5snieaXpU0=
+ b=jkA+NI87/y9Spc1TTNrXyMM8GbFc7JZHMKHTQokjNSkY88H/sj8J5mcsxeO8uy+7t
+ XuSlGDwJVm8UdTWFla0oM7U7mHx9sYhKxjyBS5I1EEYhuEgw4EmJBCgzo4GYjK5nty
+ 9U3k4+tPNrok5RlGH1I5xl/uQp2KzAq2Vuk/yMSw=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 67/80] drm/amd/display: Fix a list corruption
-Date: Sun, 18 Oct 2020 15:22:18 -0400
-Message-Id: <20201018192231.4054535-67-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 49/56] drm/amd/display: Fix a list corruption
+Date: Sun, 18 Oct 2020 15:24:10 -0400
+Message-Id: <20201018192417.4055228-49-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201018192231.4054535-1-sashal@kernel.org>
-References: <20201018192231.4054535-1-sashal@kernel.org>
+In-Reply-To: <20201018192417.4055228-1-sashal@kernel.org>
+References: <20201018192417.4055228-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -113,10 +113,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 2384aa018993d..381ecd6a9e94b 100644
+index 3b07a316680c2..b01f3269595e8 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3956,6 +3956,7 @@ static void amdgpu_dm_connector_destroy(struct drm_connector *connector)
+@@ -2877,6 +2877,7 @@ static void amdgpu_dm_connector_destroy(struct drm_connector *connector)
  	struct amdgpu_device *adev = connector->dev->dev_private;
  	struct amdgpu_display_manager *dm = &adev->dm;
  
