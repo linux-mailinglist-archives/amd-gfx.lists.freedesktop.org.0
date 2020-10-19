@@ -2,60 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E70029277B
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Oct 2020 14:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5BFC292786
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Oct 2020 14:40:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 970B16E952;
-	Mon, 19 Oct 2020 12:38:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B5636E964;
+	Mon, 19 Oct 2020 12:40:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCD0189AF3
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Oct 2020 10:11:30 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id a72so9691691wme.5
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Oct 2020 03:11:30 -0700 (PDT)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84B106E964;
+ Mon, 19 Oct 2020 12:40:48 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id d3so12667812wma.4;
+ Mon, 19 Oct 2020 05:40:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:subject:from:to:cc:date:user-agent:mime-version
- :content-transfer-encoding;
- bh=V9eR4apVYbLPN0R9TWO7uweAWP/uCSyBxaW3p8qThjc=;
- b=C9VbkuMDywE9rIozAp3UMx3BWhRIdN3I4hrJraDPZjNmpApbairwwW8JT+kjXndMBS
- fpMMtkZkrhH7LPQQ+0mzBx+tWXrqzgdhxpZKF4ff+k7oROxS/cwhD3f1zfhDQgIWG05y
- TULh32zXcieQsAvYUKq4sId4qsTZ9oPHpsHK2OalhW1VxBVZOlU7P74EuE8kjvGWXhSZ
- YJOvBJaRWxRqWilmRXb+h4omkFGHEra/vgPOH9maRegTWzoT/nHueQ1AfYt1XKCZQQBi
- HWWXPE/2Fy/kuAHXubQHcIkWgJNSb4WVHpkU9V+6/whUlN95RtVHgBKHxfu7Fp3BFw/q
- 6prg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=KD+BMUqlL8wKcvAQHjeqQa4AlxPbqLKdwN0aw33PDWE=;
+ b=ZuKx3pskOFIhNVzrkDHvjM49ZIGxQ76XGRnQWJmbTBXZfYiX1LDzdRcdCPFKE1++f+
+ Sp96erK2VvPAg7tm4VHmdIP8kxJzZDhU+93j2iB1u2YDLpphjMnYgx6aNIdRkM3/8WoB
+ svK9c2enlSaP81dcmJbtt7R3ZHXvu+Niu9Hma6oA29KSaFmhCIvs90tbN+WKwWbFAxmu
+ wSTQzpujp6HuB5qp9tcfeG4xME3lLSa5TQWS/fz0YEs8SNBzE5V0FVWavzbiZLAEBMqF
+ 81lJI1Gv/fA5FotsOS4j+3XMTIf4dXzfWILCwn89429kUNNYEEOCUzUK3sBOjvxhzksZ
+ xkFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
- :mime-version:content-transfer-encoding;
- bh=V9eR4apVYbLPN0R9TWO7uweAWP/uCSyBxaW3p8qThjc=;
- b=X3CuYzTX8RRxVOce1iemLJb2gv7QH9tSz8z9AsY9kePYiFMk99+GmGxawunNGBYROp
- 3+wTTWZMoFqos/65XtalxaaBExtuBdzSV6qBcG2IOEFK0XjL+JKVxI68HaAoYqIr00Mn
- X2DJwjHjogJr6cjKdNF6FeuxKgN4794mdF3Rip/F4xf0LiN461BPz3vPS79g3ohVIEUp
- ro2GqI+J8mGFomXcUviJwFrlytL4Hy+ZbJXGDcL7kSj49XkBKKXu1xCPyODo6UmHyp/E
- bj6O2EgbDMP/ZAOJp4KgKfDP9RE+nIgLs6Kyg+Nd+iLCUshWXCNOT9EB4h9/5n+Mh7uL
- GiYA==
-X-Gm-Message-State: AOAM530ssrB1TKiOSDnlmr06cJASMz5MGXuw1czRV4RqgHmZMi3cJfpz
- GXks/qxQ886kEmRRM8TxvSE=
-X-Google-Smtp-Source: ABdhPJwXPiHC4wlUJV5laPHDqJuIf9oR6SqHGCrNLU1Cwb+V8mj/MOvIAAWhzzEr0FLbPgbDy4lMng==
-X-Received: by 2002:a7b:c189:: with SMTP id y9mr16081028wmi.141.1603102289366; 
- Mon, 19 Oct 2020 03:11:29 -0700 (PDT)
-Received: from [192.168.1.6] (ppp046176100247.access.hol.gr. [46.176.100.247])
- by smtp.gmail.com with ESMTPSA id
- c18sm17301620wrt.10.2020.10.19.03.11.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Oct 2020 03:11:28 -0700 (PDT)
-Message-ID: <a0bdd567f983e403722e257afffbed7dbbc3c226.camel@gmail.com>
-Subject: BUG: Restoring brightness with systemd-backlight doesn't work on
- Linux 5.9(.1)
-From: Leonidas-Panagiotis Papadakos <papadakospan@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Date: Mon, 19 Oct 2020 13:11:26 +0300
-User-Agent: Evolution 3.38.1 
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=KD+BMUqlL8wKcvAQHjeqQa4AlxPbqLKdwN0aw33PDWE=;
+ b=MsAJUL44BEXhH2h5ZSCmzYSM52Z7yVv2j/0n+IDAwAi+0IGVS6XT32A2l3M8azAceC
+ 6GFk61dSFmc93TUhxIyA62Qxxp3nfLiLV6sa6yYOyII13M3ZkmJkNy8xC1Xl1Sx1VCDf
+ 0u0/QuVS5WbQAjBoVfomAYeFFepVngZYm05UQKbchwf4FY5uAGAyboAh3ajvqmOXPazI
+ 0PD6pPRXUslqds+gPMelQejXs9gDOuvAuabPSt0FcpdE396dZB6KCZ4KpwgLZMXh/YHX
+ ooqqhy1ljk/z62okeyTrc/8RAy1HEnlx7Rte4WZhNMgH3A03C4ezUaNvYOJ9WOsyslk3
+ Vr5g==
+X-Gm-Message-State: AOAM532hFMVXoalC4RVOgQAX9PLhFRGXmcj4LbbdmL3h+D0LlFhbAL9f
+ JLsgGBQ4pujTqyCM1jEeC1cwcq+F/sFtntXzEr2th7BZ
+X-Google-Smtp-Source: ABdhPJz8b4JCtuKc4oS7EITtuMlo5x0b6+dBRcrE7oyGxznW6BSmG1BTTBjwCyZGUZlhONL0O17463CJLalJFiDsqns=
+X-Received: by 2002:a1c:4b05:: with SMTP id y5mr2614165wma.56.1603111247144;
+ Mon, 19 Oct 2020 05:40:47 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 19 Oct 2020 12:38:47 +0000
+References: <20201018191807.4052726-1-sashal@kernel.org>
+ <20201018191807.4052726-90-sashal@kernel.org>
+In-Reply-To: <20201018191807.4052726-90-sashal@kernel.org>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 19 Oct 2020 08:40:36 -0400
+Message-ID: <CADnq5_PeOWc_=w4aChDX=SyYH+kFggn2wrJZOzxbnGOTobZ3EQ@mail.gmail.com>
+Subject: Re: [PATCH AUTOSEL 5.9 090/111] drm/amd/display: Fix a list corruption
+To: Sasha Levin <sashal@kernel.org>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,104 +60,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: xinhui pan <xinhui.pan@amd.com>, LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Feifei Xu <FeifeiXu@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ "for 3.8" <stable@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SGksCgpJIGhhdmUgYSBMZW5vdm8gbGFwdG9wIChMMzQwLTE3QVBJKSB3aGljaCB1c2VzIGFuIEFN
-RCBjaGlwIGZvciBncmFwaGljczoKMDQ6MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyIFsw
-MzAwXTogQWR2YW5jZWQgTWljcm8gRGV2aWNlcywgSW5jLiBbQU1EL0FUSV0KUGljYXNzbyBbMTAw
-MjoxNWQ4XSAocmV2IGMyKQoKSXQgc2VlbWVkIHRoYXQgZXZlcnl0aGluZyB3YXMgZmluZSB3aXRo
-IHN5c3RlbWQtYmFja2xpZ2h0IGJlZm9yZSBBTUQgZGVjaWRlZCB0bwptaXggdXNpbmcgMTYtYml0
-IGFuZCA4LWJpdCB2YWx1ZXMuLi4KCk5vdyBpdCBzZWVtcyB0aGF0IHRoaXMgd2FzIHRhY2tsZWQg
-aGVyZQooaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0yMDM5MDUp
-IGFuZCBpbmRlZWQgSSBkb24ndCBnZXQgdGhpcwppc3N1ZSBhbnltb3JlLCB1c2luZyA1LjkgYW5k
-IG5vdyA1LjkuMSBvbiBBcmNoIExpbnV4OgrOn866z4QgMDcgMTU6MDg6NTYgTDM0MCBzeXN0ZW1k
-LWJhY2tsaWdodFszMzNdOiBhbWRncHVfYmwwOiBTYXZlZCBicmlnaHRuZXNzIDIyMzU5CnRvbyBo
-aWdoOyBkZWNyZWFzaW5nIHRvIDI1NS4KCkkgZG9uJ3Qga25vdyBpZiB0aGlzIGlzIHJlbGF0ZWQg
-dG8gdGhlIDE2LWJpdCBidWcgYW55bW9yZSwgYnV0IEkgZG8gZ2V0IHRoaXMKd2hlbiBJIGJvb3Qg
-dGhlIGxhcHRvcDoKCs6fzrrPhCAxOSAxMjowNDowNiBMMzQwIHN5c3RlbWRbMV06IFN0YXJ0aW5n
-IExvYWQvU2F2ZSBTY3JlZW4gQmFja2xpZ2h0IEJyaWdodG5lc3MKb2YgYmFja2xpZ2h0OmFtZGdw
-dV9ibDAuLi4Kzp/Ous+EIDE5IDEyOjA0OjA2IEwzNDAgc3lzdGVtZFsxXTogc3lzdGVtZC1iYWNr
-bGlnaHRAYmFja2xpZ2h0OmFtZGdwdV9ibDAuc2VydmljZToKTWFpbiBwcm9jZXNzIGV4aXRlZCwg
-Y29kZT1leGl0ZWQsIHN0YXR1cz0xL0ZBSUxVUkUKzp/Ous+EIDE5IDEyOjA0OjA2IEwzNDAgc3lz
-dGVtZFsxXTogc3lzdGVtZC1iYWNrbGlnaHRAYmFja2xpZ2h0OmFtZGdwdV9ibDAuc2VydmljZToK
-RmFpbGVkIHdpdGggcmVzdWx0ICdleGl0LWNvZGUnLgrOn866z4QgMTkgMTI6MDQ6MDYgTDM0MCBz
-eXN0ZW1kWzFdOiBGYWlsZWQgdG8gc3RhcnQgTG9hZC9TYXZlIFNjcmVlbiBCYWNrbGlnaHQKQnJp
-Z2h0bmVzcyBvZiBiYWNrbGlnaHQ6YW1kZ3B1X2JsMC4KCmRtZXNnIGdpdmVzIG1lIHRoaXMgdHJh
-Y2U6ClsgICswLDAwMDAyNV0gLS0tLS0tLS0tLS0tWyBjdXQgaGVyZSBdLS0tLS0tLS0tLS0tClsg
-ICswLDAwMDEzM10gV0FSTklORzogQ1BVOiAwIFBJRDogMTUgYXQKZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvLi4vZGlzcGxheS9kYy9jb3JlL2RjX2xpbmsuYzoyNTQ4CmRjX2xpbmtfc2V0X2Jh
-Y2tsaWdodF9sZXZlbCsweDhhLzB4ZjAgW2FtZGdwdV0KWyAgKzAsMDAwMDAzXSBNb2R1bGVzIGxp
-bmtlZCBpbjogYWMoKykgYWNwaV9jcHVmcmVxKCspIHRjcF9iYnIgdGNwX2xwCnBrY3M4X2tleV9w
-YXJzZXIgc2cgY3J5cHRvX3VzZXIgaXBfdGFibGVzIHhfdGFibGVzIGV4dDQgY3JjMzJjX2dlbmVy
-aWMgY3JjMTYKbWJjYWNoZSBqYmQyIHNlcmlvX3JhdyBhdGtiZCBsaWJwczIgYW1kZ3B1IGNyYzMy
-Y19pbnRlbCB4aGNpX3BjaQp4aGNpX3BjaV9yZW5lc2FzIHhoY2lfaGNkIGk4MDQyIHNlcmlvIGdw
-dV9zY2hlZCBpMmNfYWxnb19iaXQgdHRtIGRybV9rbXNfaGVscGVyCnN5c2NvcHlhcmVhIHN5c2Zp
-bGxyZWN0IHN5c2ltZ2JsdCBmYl9zeXNfZm9wcyBjZWMgcmNfY29yZSBkcm0gYWdwZ2FydApbICAr
-MCwwMDAwMjBdIENQVTogMCBQSUQ6IDE1IENvbW06IGt3b3JrZXIvMDoxIE5vdCB0YWludGVkIDUu
-OS4xLWFyY2gxLTEgIzEKWyAgKzAsMDAwMDAyXSBIYXJkd2FyZSBuYW1lOiBMRU5PVk8gODFMWS9M
-TlZOQjE2MTIxNiwgQklPUyBBUkNOMzRXVyAwNS8yMC8yMDIwClsgICswLDAwMDAwNV0gV29ya3F1
-ZXVlOiBrYWNwaV9ub3RpZnkgYWNwaV9vc19leGVjdXRlX2RlZmVycmVkClsgICswLDAwMDExMl0g
-UklQOiAwMDEwOmRjX2xpbmtfc2V0X2JhY2tsaWdodF9sZXZlbCsweDhhLzB4ZjAgW2FtZGdwdV0K
-WyAgKzAsMDAwMDAyXSBDb2RlOiA3MCAwMyAwMCAwMCAzMSBjMCA0OCA4ZCA5NiBjMCAwMSAwMCAw
-MCA0OCA4YiAwYSA0OCA4NSBjOSA3NAowNiA0OCAzYiA1OSAwOCA3NCAyMCA4MyBjMCAwMSA0OCA4
-MSBjMiBkOCAwNCAwMCAwMCA4MyBmOCAwNiA3NSBlMyA8MGY+IDBiIDQ1IDMxCmU0IDViIDQ0IDg5
-IGUwIDVkIDQxIDVjIDQxIDVkIDQxIDVlIGMzIDQ4IDk4IDQ4IDY5IGMwClsgICswLDAwMDAwMV0g
-UlNQOiAwMDE4OmZmZmZiOGI3MDAxNGZjYzAgRUZMQUdTOiAwMDAxMDI0NgpbICArMCwwMDAwMDJd
-IFJBWDogMDAwMDAwMDAwMDAwMDAwNiBSQlg6IGZmZmZhMjBmZjAyM2ZjMDAgUkNYOiAwMDAwMDAw
-MDAwMDAwMDAwClsgICswLDAwMDAwMV0gUkRYOiBmZmZmYTIwZmVlMDQxZWQwIFJTSTogZmZmZmEy
-MGZlZTA0MDAwMCBSREk6IDAwMDAwMDAwMDAwMDAwMDAKWyAgKzAsMDAwMDAxXSBSQlA6IGZmZmZh
-MjBmZWNkOTAwMDAgUjA4OiAwMDAwMDAwMDAwMDAwMDA0IFIwOTogMDAwMDAwMDAwMDAwMDAwMQpb
-ICArMCwwMDAwMDFdIFIxMDogZmZmZmEyMGZmNjhmNTNhOCBSMTE6IDAwMDAwMDAwMDAwMDAwMDAg
-UjEyOiAwMDAwMDAwMDAwMDAwNDAxClsgICswLDAwMDAwMV0gUjEzOiAwMDAwMDAwMDAwMDAwMDAw
-IFIxNDogMDAwMDAwMDAwMDAwMDQwNCBSMTU6IDAwMDAwMDAwZmZmZmZmZmYKWyAgKzAsMDAwMDAy
-XSBGUzogIDAwMDAwMDAwMDAwMDAwMDAoMDAwMCkgR1M6ZmZmZmEyMGZmOGEwMDAwMCgwMDAwKQpr
-bmxHUzowMDAwMDAwMDAwMDAwMDAwClsgICswLDAwMDAwMV0gQ1M6ICAwMDEwIERTOiAwMDAwIEVT
-OiAwMDAwIENSMDogMDAwMDAwMDA4MDA1MDAzMwpbICArMCwwMDAwMDFdIENSMjogMDAwMDdmZmQ1
-OTU0YmU1MCBDUjM6IDAwMDAwMDAxYjU0NDIwMDAgQ1I0OiAwMDAwMDAwMDAwMzUwNmYwClsgICsw
-LDAwMDAwMl0gQ2FsbCBUcmFjZToKWyAgKzAsMDAwMTE5XSAgYW1kZ3B1X2RtX2JhY2tsaWdodF91
-cGRhdGVfc3RhdHVzKzB4YjQvMHhjMCBbYW1kZ3B1XQpbICArMCwwMDAwMDVdICBiYWNrbGlnaHRf
-ZGV2aWNlX3NldF9icmlnaHRuZXNzKzB4N2UvMHgxMzAKWyAgKzAsMDAwMTA3XSAgYW1kZ3B1X2Fj
-cGlfZXZlbnQrMHgxZmIvMHgyNzAgW2FtZGdwdV0KWyAgKzAsMDAwMDA2XSAgYmxvY2tpbmdfbm90
-aWZpZXJfY2FsbF9jaGFpbisweDVkLzB4ODAKWyAgKzAsMDAwMDAzXSAgYWNwaV9ub3RpZmllcl9j
-YWxsX2NoYWluKzB4YTAvMHhlMApbICArMCwwMDAwMDVdICBhY3BpX3ZpZGVvX2J1c19ub3RpZnkr
-MHgxMzkvMHgxZDAKWyAgKzAsMDAwMDAzXSAgYWNwaV9ldl9ub3RpZnlfZGlzcGF0Y2grMHg0YS8w
-eDVmClsgICswLDAwMDAwMl0gIGFjcGlfb3NfZXhlY3V0ZV9kZWZlcnJlZCsweDE2LzB4MjAKWyAg
-KzAsMDAwMDAzXSAgcHJvY2Vzc19vbmVfd29yaysweDFkYS8weDNkMApbICArMCwwMDAwMDJdICB3
-b3JrZXJfdGhyZWFkKzB4NGQvMHgzZDAKWyAgKzAsMDAwMDAyXSAgPyByZXNjdWVyX3RocmVhZCsw
-eDQxMC8weDQxMApbICArMCwwMDAwMDJdICBrdGhyZWFkKzB4MTQyLzB4MTYwClsgICswLDAwMDAw
-Ml0gID8gX19rdGhyZWFkX2JpbmRfbWFzaysweDYwLzB4NjAKWyAgKzAsMDAwMDAzXSAgcmV0X2Zy
-b21fZm9yaysweDIyLzB4MzAKWyAgKzAsMDAwMDAzXSAtLS1bIGVuZCB0cmFjZSBkMDNmMzZlYmE0
-NjRkOTI4IF0tLS0KCklmIEkgcmVzdGFydMKgc3lzdGVtZC1iYWNrbGlnaHRAYmFja2xpZ2h0OmFt
-ZGdwdV9ibDAuc2VydmljZSBpdCB3b3JrcyBmaW5lLCBhbmQKcmVzdG9yZXMgdGhlIHByZXZpb3Vz
-IGJhY2tsaWdodCBsZXZlbCwgc28gbG9va2luZyBhdCB0aGlzIGZvcnVtIHBvc3QKKGh0dHBzOi8v
-YXJjaGxpbnV4Lm9yZy5ydS9mb3J1bS90b3BpYy8yMDI2Mi8/cGFnZT0xI3Bvc3QtMjM1ODE4KSBJ
-IGVkaXRlZCB0aGUKc2VydmljZSBsaWtlIHNvOgoKIwovZXRjL3N5c3RlbWQvc3lzdGVtL3N5c3Rl
-bWQtYmFja2xpZ2h0QGJhY2tsaWdodDphbWRncHVfYmwwLnNlcnZpY2UuZC9vdmVycmlkZS5jbwpu
-ZgpbU2VydmljZV0KUmVzdGFydD1vbi1mYWlsdXJlClJlc3RhcnRTZWM9NXMKCk5vdyBJIGdldCB0
-aGlzIGF0IGJvb3QgKGZhaWxzLCB0aGVuIHdvcmtzKToKzp/Ous+EIDE5IDEyOjMyOjExIEwzNDAg
-c3lzdGVtZFsxXTogU3RhcnRpbmcgTG9hZC9TYXZlIFNjcmVlbiBCYWNrbGlnaHQgQnJpZ2h0bmVz
-cwpvZiBiYWNrbGlnaHQ6YW1kZ3B1X2JsMC4uLgrOn866z4QgMTkgMTI6MzI6MTEgTDM0MCBzeXN0
-ZW1kWzFdOiBzeXN0ZW1kLWJhY2tsaWdodEBiYWNrbGlnaHQ6YW1kZ3B1X2JsMC5zZXJ2aWNlOgpN
-YWluIHByb2Nlc3MgZXhpdGVkLCBjb2RlPWV4aXRlZCwgc3RhdHVzPTEvRkFJTFVSRQrOn866z4Qg
-MTkgMTI6MzI6MTEgTDM0MCBzeXN0ZW1kWzFdOiBzeXN0ZW1kLWJhY2tsaWdodEBiYWNrbGlnaHQ6
-YW1kZ3B1X2JsMC5zZXJ2aWNlOgpGYWlsZWQgd2l0aCByZXN1bHQgJ2V4aXQtY29kZScuCs6fzrrP
-hCAxOSAxMjozMjoxMSBMMzQwIHN5c3RlbWRbMV06IEZhaWxlZCB0byBzdGFydCBMb2FkL1NhdmUg
-U2NyZWVuIEJhY2tsaWdodApCcmlnaHRuZXNzIG9mIGJhY2tsaWdodDphbWRncHVfYmwwLgrOn866
-z4QgMTkgMTI6MzI6MTYgTDM0MCBzeXN0ZW1kWzFdOiBzeXN0ZW1kLWJhY2tsaWdodEBiYWNrbGln
-aHQ6YW1kZ3B1X2JsMC5zZXJ2aWNlOgpTY2hlZHVsZWQgcmVzdGFydCBqb2IsIHJlc3RhcnQgY291
-bnRlciBpcyBhdCAxLgrOn866z4QgMTkgMTI6MzI6MTYgTDM0MCBzeXN0ZW1kWzFdOiBTdG9wcGVk
-IExvYWQvU2F2ZSBTY3JlZW4gQmFja2xpZ2h0IEJyaWdodG5lc3MKb2YgYmFja2xpZ2h0OmFtZGdw
-dV9ibDAuCs6fzrrPhCAxOSAxMjozMjoxNiBMMzQwIHN5c3RlbWRbMV06IFN0YXJ0aW5nIExvYWQv
-U2F2ZSBTY3JlZW4gQmFja2xpZ2h0IEJyaWdodG5lc3MKb2YgYmFja2xpZ2h0OmFtZGdwdV9ibDAu
-Li4Kzp/Ous+EIDE5IDEyOjMyOjE2IEwzNDAgc3lzdGVtZFsxXTogRmluaXNoZWQgTG9hZC9TYXZl
-IFNjcmVlbiBCYWNrbGlnaHQgQnJpZ2h0bmVzcwpvZiBiYWNrbGlnaHQ6YW1kZ3B1X2JsMC4KCkkg
-aGF2ZSB0cmllZCBhY3BpX2JhY2tsaWdodD12aWRlbyBhbmQgbmF0aXZlIGJ1dCB0aGVuIHRoZSBz
-eXN0ZW1kLWJhY2tsaWdodApzZXJ2aWNlIGZpbmlzaGVzIHN1Y2Nlc3NmdWxseSwgInJlc3Rvcmlu
-ZyIgbWF4IGJyaWdodG5lc3MuCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQt
-Z2Z4Cg==
+On Sun, Oct 18, 2020 at 3:19 PM Sasha Levin <sashal@kernel.org> wrote:
+>
+> From: xinhui pan <xinhui.pan@amd.com>
+>
+> [ Upstream commit 1545fbf97eafc1dbdc2923e58b4186b16a834784 ]
+>
+> Remove the private obj from the internal list before we free aconnector.
+>
+> [   56.925828] BUG: unable to handle page fault for address: ffff8f84a870a560
+> [   56.933272] #PF: supervisor read access in kernel mode
+> [   56.938801] #PF: error_code(0x0000) - not-present page
+> [   56.944376] PGD 18e605067 P4D 18e605067 PUD 86a614067 PMD 86a4d0067 PTE 800ffff8578f5060
+> [   56.953260] Oops: 0000 [#1] SMP DEBUG_PAGEALLOC NOPTI
+> [   56.958815] CPU: 6 PID: 1407 Comm: bash Tainted: G           O      5.9.0-rc2+ #46
+> [   56.967092] Hardware name: System manufacturer System Product Name/PRIME Z390-A, BIOS 1401 11/26/2019
+> [   56.977162] RIP: 0010:__list_del_entry_valid+0x31/0xa0
+> [   56.982768] Code: 00 ad de 55 48 8b 17 4c 8b 47 08 48 89 e5 48 39 c2 74 27 48 b8 22 01 00 00 00 00 ad de 49 39 c0 74 2d 49 8b 30 48 39 fe 75 3d <48> 8b 52 08 48 39 f2 75 4c b8 01 00 00 00 5d c3 48 89 7
+> [   57.003327] RSP: 0018:ffffb40c81687c90 EFLAGS: 00010246
+> [   57.009048] RAX: dead000000000122 RBX: ffff8f84ea41f4f0 RCX: 0000000000000006
+> [   57.016871] RDX: ffff8f84a870a558 RSI: ffff8f84ea41f4f0 RDI: ffff8f84ea41f4f0
+> [   57.024672] RBP: ffffb40c81687c90 R08: ffff8f84ea400998 R09: 0000000000000001
+> [   57.032490] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000006
+> [   57.040287] R13: ffff8f84ea422a90 R14: ffff8f84b4129a20 R15: fffffffffffffff2
+> [   57.048105] FS:  00007f550d885740(0000) GS:ffff8f8509600000(0000) knlGS:0000000000000000
+> [   57.056979] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [   57.063260] CR2: ffff8f84a870a560 CR3: 00000007e5144001 CR4: 00000000003706e0
+> [   57.071053] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+> [   57.078849] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+> [   57.086684] Call Trace:
+> [   57.089381]  drm_atomic_private_obj_fini+0x29/0x82 [drm]
+> [   57.095247]  amdgpu_dm_fini+0x83/0x170 [amdgpu]
+> [   57.100264]  dm_hw_fini+0x23/0x30 [amdgpu]
+> [   57.104814]  amdgpu_device_fini+0x1df/0x4fe [amdgpu]
+> [   57.110271]  amdgpu_driver_unload_kms+0x43/0x70 [amdgpu]
+> [   57.116136]  amdgpu_pci_remove+0x3b/0x60 [amdgpu]
+> [   57.121291]  pci_device_remove+0x3e/0xb0
+> [   57.125583]  device_release_driver_internal+0xff/0x1d0
+> [   57.131223]  device_release_driver+0x12/0x20
+> [   57.135903]  pci_stop_bus_device+0x70/0xa0
+> [   57.140401]  pci_stop_and_remove_bus_device_locked+0x1b/0x30
+> [   57.146571]  remove_store+0x7b/0x90
+> [   57.150429]  dev_attr_store+0x17/0x30
+> [   57.154441]  sysfs_kf_write+0x4b/0x60
+> [   57.158479]  kernfs_fop_write+0xe8/0x1d0
+> [   57.162788]  vfs_write+0xf5/0x230
+> [   57.166426]  ksys_write+0x70/0xf0
+> [   57.170087]  __x64_sys_write+0x1a/0x20
+> [   57.174219]  do_syscall_64+0x38/0x90
+> [   57.178145]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> Signed-off-by: xinhui pan <xinhui.pan@amd.com>
+> Acked-by: Feifei Xu <Feifei Xu@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Sasha Levin <sashal@kernel.org>
+
+This ended up getting reverted.  Please drop this one.
+
+Alex
+
+
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index a717a4904268e..57ad6450e20b2 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -4882,6 +4882,7 @@ static void amdgpu_dm_connector_destroy(struct drm_connector *connector)
+>         struct amdgpu_device *adev = connector->dev->dev_private;
+>         struct amdgpu_display_manager *dm = &adev->dm;
+>
+> +       drm_atomic_private_obj_fini(&aconnector->mst_mgr.base);
+>  #if defined(CONFIG_BACKLIGHT_CLASS_DEVICE) ||\
+>         defined(CONFIG_BACKLIGHT_CLASS_DEVICE_MODULE)
+>
+> --
+> 2.25.1
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
