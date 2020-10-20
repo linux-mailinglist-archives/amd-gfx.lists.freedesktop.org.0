@@ -2,95 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74FAC29352E
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Oct 2020 08:49:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48616293B78
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Oct 2020 14:25:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 057376F420;
-	Tue, 20 Oct 2020 06:49:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C88B96EC6F;
+	Tue, 20 Oct 2020 12:25:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690089.outbound.protection.outlook.com [40.107.69.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BCFD6F420
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Oct 2020 06:49:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GvGqXmjJ0elLZtgunjSEUvloRuJ6u/tFGgXTSgidBElVhe9fh726rPtLYmri8VZI7VyODqfxrl67tRl471iNnBU1Mr6ArrT341zEDzClaUdCnjyzedkzSkjxUkGbJvjdMU/pyATZ8R6EBJFEJhi4FNL1etPOX5ywOELV1oipXQnP0STnavFysBmg6hz4TK+OacZESqltWKqjEa2bg5Jcc09ZIyCKzs6FT9e74enfp6x8wGqvvLeOMnquR9hfoHlklSNC4rsZRlkYIEOj21gC/ng/EWqjeSqP2DcU4GaBN3Bg4k5oPb2No6FxXo2TmqrVyppkmKNObR1G76GmFU8LxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y7/liSdnpzyR/LZCuvrUV5ZoV0HUOnjaIpDwleWzLrQ=;
- b=Dv4WcRO+I0PBxOh7Q3gnmthIm4hE9Viyg9tfdvKYCTokBSIAeN9XvF7QkVDoe6PzZi3frIc4hBjRmCMAYrlS1eW9J8IXtvdTP2AyZmzY7BGUpensolkvaeqCvxG3vVPmFI/cYjqifH9sXrrZvyO/9VFACbnuqQNAuNF7mz/JvipHIUCdUmgkG4pDDApJqgbpRdDvewuWk59cwO1VfZxAuasaRYDBFwFpotSTDQD0RFEhOm5i8XrVjc6/FpE3jwN4D7xk8iFK1r3h7V5Zze2ISWaIPLHx0IctE8TXw7kCqIHMHJDJ2UhAhct7j+FG0CmCc6YWJf83wh0sEp+Wmh6z9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y7/liSdnpzyR/LZCuvrUV5ZoV0HUOnjaIpDwleWzLrQ=;
- b=p+pxYWSn75D5eCetfmTWXGbU0RBMDEaqr1U48hNxVZjssSdhQAgt5ZojIzp1wIZ1GNloYo/p8dKl1AsFMBKJ5Ot9f7ONTFBPWHti3hMx3YdYA0vaK8/ZYOFoLx+3y8HuxHSg9ZWTHsXej0nCyXpzRAIumNpy+aoXivc8zMlL448=
-Received: from BN6PR20CA0064.namprd20.prod.outlook.com (2603:10b6:404:151::26)
- by BN8PR12MB3570.namprd12.prod.outlook.com (2603:10b6:408:4a::31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.25; Tue, 20 Oct
- 2020 06:49:06 +0000
-Received: from BN8NAM11FT041.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:151:cafe::5f) by BN6PR20CA0064.outlook.office365.com
- (2603:10b6:404:151::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18 via Frontend
- Transport; Tue, 20 Oct 2020 06:49:06 +0000
-X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=none action=none
- header.from=amd.com;
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-Received: from SATLEXMB01.amd.com (165.204.84.17) by
- BN8NAM11FT041.mail.protection.outlook.com (10.13.177.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3477.21 via Frontend Transport; Tue, 20 Oct 2020 06:49:06 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB01.amd.com
- (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Tue, 20 Oct
- 2020 01:49:05 -0500
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Tue, 20 Oct
- 2020 01:49:05 -0500
-Received: from yifan-AX370-Gaming-5.amd.com (10.180.168.240) by
- SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3
- via Frontend Transport; Tue, 20 Oct 2020 01:49:04 -0500
-From: Yifan Zhang <yifan1.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: Fix the display corruption issue on Navi10
-Date: Tue, 20 Oct 2020 14:48:46 +0800
-Message-ID: <20201020064846.3155-1-yifan1.zhang@amd.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ef803e2b-9f47-47f8-5940-08d874c43d1c
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3570:
-X-Microsoft-Antispam-PRVS: <BN8PR12MB3570846553F0F2F04F570812C11F0@BN8PR12MB3570.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ev2SX8OXl7NMKPN3moBAov0iF3cJ9Wbu8hUmFH3Sl0FTJgtso6WZKf69mOUi5HQiDU+jf+edJmCPNSe5sNA8py/VOoKPbjxbfhoLFf6i4CjmKKZXqm65vzHwkEHeux29b/Bo5su5bG68Tmw09ZxWC6jUlmFhMtrGstTBRFWrQ03DbRB5YNCrvYQGh2IbT3ghsVNkHtijrF6TH8k8/h7EyKfT0X6GrVp30SC6uNPntAyJ3iFo9FLODhCvAT7U6NuTclhQ9lymqNvo0gj6xvosjCNckX3FOvtt9x/cvnly/XvyJT0xPlOBkjwcZmlngW96hqHr33DXsKwRGPqb9lop4+Z/sYuN+Ap2XYJa4NBlU8BKbMuAO8JtMIYLv1iSTtCbbQwMMLjJHrcAzHGmyiEyjQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(396003)(376002)(136003)(346002)(46966005)(5660300002)(70586007)(8676002)(2906002)(4326008)(356005)(82740400003)(8936002)(81166007)(82310400003)(47076004)(70206006)(186003)(478600001)(36756003)(26005)(83380400001)(54906003)(426003)(336012)(6916009)(6666004)(86362001)(316002)(2616005)(1076003)(7696005);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2020 06:49:06.0175 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef803e2b-9f47-47f8-5940-08d874c43d1c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT041.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3570
+Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C9DF6EC3D;
+ Tue, 20 Oct 2020 08:48:31 +0000 (UTC)
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+ by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 09K8i7rI188082;
+ Tue, 20 Oct 2020 08:48:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=from : message-id :
+ content-type : mime-version : subject : date : in-reply-to : cc : to :
+ references; s=corp-2020-01-29;
+ bh=UBSvDuZX45rcdCwz1yIzvCzCqfd2joSCizhea4x+Xao=;
+ b=q8gn83IPPWdFm1HT3taLhd9DUF/VTUU+yXtsd8f9nD6wriupB19ul4FsqzWGdtIZMcde
+ GW+G9oeRVHaGmJfZ8muagtVwvuWLE6AywXuhak+OXkSgdFP6EIR2H2OqKDUhR7yIW2Vz
+ zpamQMFlTWRfwdWHBA7I0p8HYGgPlEg7NOi5pNpKeOCI5/Zqu82RI3DyvlSb3YeNhNvu
+ 1nAbi2LxPOnr/RtC4QoVHdNGHfdCdQB+x9xvmqx+BqjtbEr8lrxt1aMjIali/bjhTn7W
+ dzqjxrXdOv4FjsFo2kwRKNjQX5RScYby9/qqSUitUFXIKeMy4YBvXYVTZYkhax1TMfnU 0w== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+ by userp2120.oracle.com with ESMTP id 347s8msmp0-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Tue, 20 Oct 2020 08:48:12 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+ by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 09K8is45150623;
+ Tue, 20 Oct 2020 08:48:12 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by userp3030.oracle.com with ESMTP id 348ahw07cp-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Tue, 20 Oct 2020 08:48:12 +0000
+Received: from userp3030.oracle.com (userp3030.oracle.com [127.0.0.1])
+ by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 09K8mAEe159753;
+ Tue, 20 Oct 2020 08:48:10 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+ by userp3030.oracle.com with ESMTP id 348ahw07bh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 20 Oct 2020 08:48:10 +0000
+Received: from abhmp0005.oracle.com (abhmp0005.oracle.com [141.146.116.11])
+ by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 09K8lvTX021447;
+ Tue, 20 Oct 2020 08:47:58 GMT
+Received: from [10.175.164.120] (/10.175.164.120)
+ by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Tue, 20 Oct 2020 01:47:57 -0700
+From: John Haxby <john.haxby@oracle.com>
+Message-Id: <27A23102-A7F5-48C5-8972-48CE4C283C6E@oracle.com>
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.4\))
+Subject: Re: [Ocfs2-devel] [RFC] treewide: cleanup unreachable breaks
+Date: Tue, 20 Oct 2020 09:47:45 +0100
+In-Reply-To: <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q@mail.gmail.com>
+To: Nick Desaulniers <ndesaulniers@google.com>
+References: <20201017160928.12698-1-trix@redhat.com>
+ <20201018054332.GB593954@kroah.com>
+ <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q@mail.gmail.com>
+X-Mailer: Apple Mail (2.3608.120.23.2.4)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9779
+ signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
+ suspectscore=0
+ lowpriorityscore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
+ phishscore=0 clxscore=1011 bulkscore=0 impostorscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010200059
+X-Mailman-Approved-At: Tue, 20 Oct 2020 12:25:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,48 +80,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, Yifan Zhang <yifan1.zhang@amd.com>,
- harry.wentland@amd.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: alsa-devel@alsa-project.org, linux-usb@vger.kernel.org,
+ linux-iio@vger.kernel.org, Tom Rix <trix@redhat.com>,
+ linux-pci@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org, keyrings@vger.kernel.org,
+ linux-mtd@lists.infradead.org, amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ linux-stm32@st-md-mailman.stormreply.com, usb-storage@lists.one-eyed-alien.net,
+ devel@driverdev.osuosl.org, linux-samsung-soc@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-scsi@vger.kernel.org,
+ clang-built-linux <clang-built-linux@googlegroups.com>,
+ linux-pm@vger.kernel.org, ath10k@lists.infradead.org,
+ linux-acpi@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
+ industrypack-devel@lists.sourceforge.net, nouveau@lists.freedesktop.org,
+ spice-devel@lists.freedesktop.org, MPT-FusionLinux.pdl@broadcom.com,
+ linux-media@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ linux-nfc@lists.01.org, linux-serial@vger.kernel.org,
+ linux-can@vger.kernel.org, linux-block@vger.kernel.org,
+ linux-gpio@vger.kernel.org, storagedev@microchip.com,
+ linux-amlogic@lists.infradead.org, openipmi-developer@lists.sourceforge.net,
+ platform-driver-x86@vger.kernel.org, bpf <bpf@vger.kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-edac@vger.kernel.org,
+ Greg KH <gregkh@linuxfoundation.org>, linux-nvdimm <linux-nvdimm@lists.01.org>,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>, linux-security-module@vger.kernel.org,
+ George Burgess <gbiv@google.com>, Network Development <netdev@vger.kernel.org>,
+ "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
+ <linux-crypto@vger.kernel.org>, linux-integrity@vger.kernel.org,
+ patches@opensource.cirrus.com, ocfs2-devel@oss.oracle.com,
+ linux-power@fi.rohmeurope.com
+Content-Type: multipart/mixed; boundary="===============2062512366=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-Screen corruption on Navi10 card
 
-[How]
-Set system context in DCN only on Renoir and Cezanne
+--===============2062512366==
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_9F9749E9-79EA-41AB-B516-003ECE07BEE3";
+	protocol="application/pgp-signature";
+	micalg=pgp-sha256
 
-Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 3d534a4da20b..6855aad7f312 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1061,10 +1061,12 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 
- 	dc_hardware_init(adev->dm.dc);
- 
--	mmhub_read_system_context(adev, &pa_config);
-+	if (adev->asic_type == CHIP_RENOIR) {
-+		mmhub_read_system_context(adev, &pa_config);
- 
--	// Call the DC init_memory func
--	dc_setup_system_context(adev->dm.dc, &pa_config);
-+		// Call the DC init_memory func
-+		dc_setup_system_context(adev->dm.dc, &pa_config);
-+	}
- 
- 	adev->dm.freesync_module = mod_freesync_create(adev->dm.dc);
- 	if (!adev->dm.freesync_module) {
--- 
-2.17.1
+--Apple-Mail=_9F9749E9-79EA-41AB-B516-003ECE07BEE3
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+
+
+> On 19 Oct 2020, at 20:42, Nick Desaulniers <ndesaulniers@google.com> =
+wrote:
+>=20
+> We probably should add all 3 to W=3D2 builds (wrapped in cc-option).
+> I've filed https://github.com/ClangBuiltLinux/linux/issues/1180 to
+> follow up on.
+
+It looks as though the URL mangling has been fixed.   If anyone sees =
+that specific URL mangled, please let me know.
+
+jch
+
+--Apple-Mail=_9F9749E9-79EA-41AB-B516-003ECE07BEE3
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - http://gpgtools.org
+
+iHUEAREIAB0WIQT+pxvb11CFWUkNSOVFC7t+lC+jyAUCX46kMQAKCRBFC7t+lC+j
+yBKiAP90JVXdPzuAwtRGkROpw1eVCo7wCaZ5nOa8Oo0sN6gC9gD/S0eGTqQhmg+n
+sXPJxPYqQsg09qmS6k/HX+AP5Oz2AMo=
+=xx66
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_9F9749E9-79EA-41AB-B516-003ECE07BEE3--
+
+--===============2062512366==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============2062512366==--
