@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 146CF294E82
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Oct 2020 16:23:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A7F294E81
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Oct 2020 16:23:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 533C26EDCA;
-	Wed, 21 Oct 2020 14:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 215796EDC7;
+	Wed, 21 Oct 2020 14:23:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr700083.outbound.protection.outlook.com [40.107.70.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FDB46EDC7
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 14:23:19 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2070.outbound.protection.outlook.com [40.107.244.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B67F6EDB4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 14:23:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hWIHgzyVwUs680cgo/7kDltxCjVSl3OJVT2oyNOtElo053rRCYgjCxHaaELKbdDMv+XWgK3KfiU5ELtrpI8tBhxAhkBB2GlR7OO/2yTXjqgUSlb56L7eJsCLxA26P7MOpA6pBzqDP30RSNg8PBcw9Rs1Xi7nHPYB/KzK1L6uFbrQactKQrDMKDYjC2kR/YphiuLfwOBkf9UdSxqY7ZjiwPUt4pCxq3xUsegX7qn8Rd8Hk60p0iBDhjfRzoIDdErTZ4zMxIq1UOTfvQUE8hY432qOt9yZlbNyHm+K1GcqHXe84Mie+GzFFgHHrftgmmzSQWZBd00cy9fg4MNDJJMaPg==
+ b=kWA/GzA4Xv/LdjLIp4+ulZiRG4LIw4aFL/6Lc+EweIcYuMZ1eBLehByiVgkuKswYlWjyBOj2Ofmo6QfDrMa5Qs1k3KhXA/Ht/oUChXdWmmA6o4ZMLiTcBFPsju7s6D3L/ETPsMlyc0XedYekc11vzjVAr7T2EIs6hRkrfEB6Bc7GyEnDPQ/4nn2PK1Ft3HUgpW7T2IXBe9Kg2Wme3rXvhZCDd51w8/UGyemKvb4q8hyZ54cBVkPhVmsTQSeoHoepLvfE7i3TPNhoj/cr5tlDenOfhpxHgWp2D1QhzUKZpKcaXKPYlbBR8WfiKAqUnZVSMcBrxAAv/WQoJfsm1WGTWg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JOgrf9Hq4sXE3rxm25Dq1Q+0TkZoglTk9fw7imLVDP0=;
- b=FLn1ilU8hW3L1MGZWAwXfs2D3Yf2eCd4EdKbE99cF2ZDlIhrI0DYzUeN0YYQ/XuPh5S0vxE5gUiegPodHLRMvZ9KY5eAKg4nque7tNTrZAD2tAmmP1P3Rgy+x05ALGodv4YDpmNTg1IGoi4TTBSV2sfSQ/caw5SfmtZXe4Tzkphk72ywCUUQKGtOybk5oCw2CxwKCoTNXC8gypygh948SAiQXHzMjL89fYrV19Un03QpA+CfrDZw7tC97wQqhlbHK3AVUhGwUZ5KiD62qBN2qyXcHGbuwjZZcKMtoePYATJrEO2J3deTQl1BbDRUaHw1Hu9hrL7lumWjUHf6zdbiNg==
+ bh=nn+xqLRPpTDI3S/vtGrkSHQ6eiqduhAJmgT+9N9LmoA=;
+ b=VhdxNfKLZpzl+KfvRCLaJCXu4qWQs4Sb3VFoDRV6tg2pAtuOnzdsJJZwkOJEp/LPreqLSrHud1nvYALjUN6RBzgCxg431SZPmEhNNvWtqVVVLBC0SkKzRcMqqOHuIsddsozAFr/Xq55xKJ5Bd45YyFYZseDoaONxkAR9YMxdKUNuZ4Qls7s91Akvxao2T1mGsfoTfnSWCJOndBIWvD03VoNTkA0FSsD+1JCD+o/Oed30YAqY1u8TlIeKxKC+xpTxm+wJ0IfpuSPEJzfr/e4Q2kI3dMARtaw3vTcVXNGZt8kUDdt/+dzVgYR3qwq1ehjkuvB2h4aOU3xargcOzuKIlw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
@@ -27,17 +27,17 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JOgrf9Hq4sXE3rxm25Dq1Q+0TkZoglTk9fw7imLVDP0=;
- b=PO0Ra6HpKduufrhXjxpzpWwizZWUhav75nhwIU95PheV1ifo3rAq46rFC+F9uZMMM5TDlpyaAIBINE+Iao7iRFhyrQh0LLjhnsohtBKy3RfbH5FxCQxmkI6AnMrtg5RsUIwAs8EBDdjG8lMH5nkMuhCP/0lEMMc6zdlGOkfTGmY=
-Received: from DM5PR21CA0019.namprd21.prod.outlook.com (2603:10b6:3:ac::29) by
- MW2PR12MB2474.namprd12.prod.outlook.com (2603:10b6:907:9::13) with
+ bh=nn+xqLRPpTDI3S/vtGrkSHQ6eiqduhAJmgT+9N9LmoA=;
+ b=t5KrTtotAufaRCgz9eXITFNSQ33NuGhBi4Pb+VeAI1Ffh3QKjIjXlTeG+bt19Yk9f9MlVaWye4Lz9PB7WP2TEve0NDTjue+RPnGmHevAHyBAbQY43D1eZMOPknpVJDVf2USGUFWA5HQ67xnVsNqeV3PVJSmtD0yWR+jIKqPZCA4=
+Received: from DM5PR21CA0005.namprd21.prod.outlook.com (2603:10b6:3:ac::15) by
+ MW2PR12MB2378.namprd12.prod.outlook.com (2603:10b6:907:f::15) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3477.27; Wed, 21 Oct 2020 14:23:16 +0000
+ 15.20.3477.22; Wed, 21 Oct 2020 14:23:17 +0000
 Received: from DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:ac:cafe::c9) by DM5PR21CA0019.outlook.office365.com
- (2603:10b6:3:ac::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.3 via Frontend
+ (2603:10b6:3:ac:cafe::37) by DM5PR21CA0005.outlook.office365.com
+ (2603:10b6:3:ac::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.17 via Frontend
  Transport; Wed, 21 Oct 2020 14:23:16 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -49,18 +49,22 @@ Received: from SATLEXMB01.amd.com (165.204.84.17) by
  DM6NAM11FT028.mail.protection.outlook.com (10.13.173.140) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.3499.18 via Frontend Transport; Wed, 21 Oct 2020 14:23:16 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 21 Oct
- 2020 09:23:14 -0500
+ 2020 09:23:15 -0500
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 21 Oct
+ 2020 09:23:15 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 21 Oct 2020 09:23:13 -0500
+ Transport; Wed, 21 Oct 2020 09:23:14 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 13/33] drm/amd/display: adding reading OEM init_data to dcn3
-Date: Wed, 21 Oct 2020 10:22:37 -0400
-Message-ID: <20201021142257.190969-14-aurabindo.pillai@amd.com>
+Subject: [PATCH 14/33] drm/amd/display: Refactor ABM_MASK_SH_LIST_DCN301 naming
+Date: Wed, 21 Oct 2020 10:22:38 -0400
+Message-ID: <20201021142257.190969-15-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201021142257.190969-1-aurabindo.pillai@amd.com>
 References: <20201021142257.190969-1-aurabindo.pillai@amd.com>
@@ -68,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1432b243-b0fd-4601-e5b6-08d875ccd9e8
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2474:
-X-Microsoft-Antispam-PRVS: <MW2PR12MB247460F54497DC10229902848B1C0@MW2PR12MB2474.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:257;
+X-MS-Office365-Filtering-Correlation-Id: e0bf4d2f-6117-45e3-423f-08d875ccda4b
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2378:
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2378EA33D1F5FBBE34441A388B1C0@MW2PR12MB2378.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DzKQ/6aVcF7d0PweBYibwVlOWN2gpvlKLdZ1D16qPaal1BVbC6Y8HkxI7tVGFVlflxTEJMaN8VsbErf3ZA8tVX4dWJRB5hd1nGevJ+vbF9zomEUOgE/8V0hQ6/6+q6cqRgLM+nU6dRM7+ae7q7VRt/SgoaPHeAM8/mOcehc4+m/7Rk+WT98kXOAULldTCqwwUIgAC8LTwR2PBAECQgzErNEW28/R6h6H5Aq62rjC7jytrpaQqIYFZ6CPQdo1w3bxUznPWcLc40FK/Uh3q0Baxb7L7N7ybzhVdnkTLtqMHwMTxCrHBmQ39o5R1DkCBO49oBn1Oo101HmSn/uTjvuLqxaeTj9NUt/6vFpWiZLXDj62p06qZeLD/fofOLjDWB6y+n3YrOEkTYp4Vo3oarGbhQ==
+X-Microsoft-Antispam-Message-Info: +XKnowoRaP0Jb4RXEnHXOZQHOpHUfJy0G/rp6alA7+NxwFgT5ayjS65dKnm+xIWEblMR/3ko7QAAa1saqwGRpCJVQJ9dihJp55iCzrixjzvGWJwRlUXlHMLheseQTV4seA7ynjnVOQx3QYAJh25z1a3jjByl+S7Rrn7dUZtPdxFjkc0y4oBPv1RRO/PEAsqo38z9194/mVKAbLrt2nvGx5T1wJUrB2GI3I9bkJIgVe5Bp1BW32ugid00GVh6KvVAxz0hP7U3Va3t4Fwxihf0U4aNyyPXJEDH92mTHnUSBBlFTlxZOh+nI2MReqX9QEWITreM4cDd9/l2qV3MqcQResL3yubRkv/wEBPKVn5Nlxht+WE7PQgNmSxTzyur+2rBml3d6Wba4CEv16a27uzdYg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(136003)(346002)(376002)(39860400002)(46966005)(478600001)(70206006)(81166007)(70586007)(356005)(1076003)(82740400003)(5660300002)(8936002)(2906002)(4326008)(6916009)(47076004)(8676002)(2616005)(6666004)(426003)(82310400003)(26005)(36756003)(44832011)(7696005)(186003)(54906003)(336012)(86362001)(316002);
+ SFS:(4636009)(346002)(136003)(39860400002)(396003)(376002)(46966005)(8936002)(7696005)(44832011)(4326008)(5660300002)(186003)(70206006)(83380400001)(82310400003)(70586007)(1076003)(8676002)(2616005)(336012)(6916009)(86362001)(426003)(81166007)(478600001)(2906002)(316002)(36756003)(82740400003)(356005)(6666004)(26005)(47076004)(54906003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2020 14:23:16.1682 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1432b243-b0fd-4601-e5b6-08d875ccd9e8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2020 14:23:16.8139 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0bf4d2f-6117-45e3-423f-08d875ccda4b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2474
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2378
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,76 +105,63 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- Martin Leung <martin.leung@amd.com>, Bhawanpreet.Lakha@amd.com
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Roman Li <roman.li@amd.com>,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Martin Leung <martin.leung@amd.com>
+From: Roman Li <roman.li@amd.com>
 
-why:
-missing OEM data to control graphics card functions
+[Why]
+All DCN3x resources share ABM_MASK_SH_LIST_DCN301 definition.
+The naming is misleading since it looks like DCN30 code
+depends on next version DCN301, which in fact is vice-versa.
 
-how:
-load it into init_data. copied over from dcn2 implementation.
-copied destruction sequence as well.
+[How]
+Refactor the naming to ABM_MASK_SH_LIST_DCN30.
 
-Signed-off-by: Martin Leung <martin.leung@amd.com>
+Signed-off-by: Roman Li <roman.li@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../drm/amd/display/dc/dcn30/dcn30_resource.c    | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dce/dce_abm.h          | 4 ++--
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_abm.h b/drivers/gpu/drm/amd/display/dc/dce/dce_abm.h
+index 829cd9a93ba9..dee343f8beb0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_abm.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_abm.h
+@@ -189,8 +189,8 @@
+ 
+ #define ABM_MASK_SH_LIST_DCN20(mask_sh) ABM_MASK_SH_LIST_DCE110(mask_sh)
+ 
+-#if defined(CONFIG_DRM_AMD_DC_DCN3_0) || defined(CONFIG_DRM_AMD_DC_DCN3_01)
+-#define ABM_MASK_SH_LIST_DCN301(mask_sh) ABM_MASK_SH_LIST_DCN10(mask_sh)
++#if defined(CONFIG_DRM_AMD_DC_DCN3_0)
++#define ABM_MASK_SH_LIST_DCN30(mask_sh) ABM_MASK_SH_LIST_DCN10(mask_sh)
+ #endif
+ 
+ #define ABM_REG_FIELD_LIST(type) \
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index 8a4eb8e1386c..ec04d55d87f4 100644
+index ec04d55d87f4..f227f4653a71 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -60,6 +60,7 @@
- #include "dml/display_mode_vba.h"
- #include "dcn30/dcn30_dccg.h"
- #include "dcn10/dcn10_resource.h"
-+#include "dc_link_ddc.h"
- #include "dce/dce_panel_cntl.h"
+@@ -355,11 +355,11 @@ static const struct dce_abm_registers abm_regs[] = {
+ };
  
- #include "dcn30/dcn30_dwb.h"
-@@ -1321,6 +1322,9 @@ static void dcn30_resource_destruct(struct dcn30_resource_pool *pool)
+ static const struct dce_abm_shift abm_shift = {
+-		ABM_MASK_SH_LIST_DCN301(__SHIFT)
++		ABM_MASK_SH_LIST_DCN30(__SHIFT)
+ };
  
- 	if (pool->base.dccg != NULL)
- 		dcn_dccg_destroy(&pool->base.dccg);
-+
-+	if (pool->base.oem_device != NULL)
-+		dal_ddc_service_destroy(&pool->base.oem_device);
- }
+ static const struct dce_abm_mask abm_mask = {
+-		ABM_MASK_SH_LIST_DCN301(_MASK)
++		ABM_MASK_SH_LIST_DCN30(_MASK)
+ };
  
- static struct hubp *dcn30_hubp_create(
-@@ -2589,6 +2593,7 @@ static bool dcn30_resource_construct(
- 	int i;
- 	struct dc_context *ctx = dc->ctx;
- 	struct irq_service_init_data init_data;
-+	struct ddc_service_init_data ddc_init_data;
  
- 	ctx->dc_bios->regs = &bios_regs;
- 
-@@ -2856,6 +2861,17 @@ static bool dcn30_resource_construct(
- 
- 	dc->cap_funcs = cap_funcs;
- 
-+	if (dc->ctx->dc_bios->fw_info.oem_i2c_present) {
-+		ddc_init_data.ctx = dc->ctx;
-+		ddc_init_data.link = NULL;
-+		ddc_init_data.id.id = dc->ctx->dc_bios->fw_info.oem_i2c_obj_id;
-+		ddc_init_data.id.enum_id = 0;
-+		ddc_init_data.id.type = OBJECT_TYPE_GENERIC;
-+		pool->base.oem_device = dal_ddc_service_create(&ddc_init_data);
-+	} else {
-+		pool->base.oem_device = NULL;
-+	}
-+
- 	return true;
- 
- create_fail:
 -- 
 2.25.1
 
